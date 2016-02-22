@@ -3,7 +3,7 @@ class ProcessInteractionService
     body = salmon.unpack(envelope)
     xml  = Nokogiri::XML(body)
 
-    return if xml.at_xpath('//author/name').nil? || xml.at_xpath('//author/uri').nil?
+    return if !involves_target_account(xml, target_account) || xml.at_xpath('//author/name').nil? || xml.at_xpath('//author/uri').nil?
 
     username = xml.at_xpath('//author/name').content
     url      = xml.at_xpath('//author/uri').content
@@ -27,6 +27,9 @@ class ProcessInteractionService
   end
 
   private
+
+  def involves_target_account(target_account)
+  end
 
   def salmon
     OStatus2::Salmon.new

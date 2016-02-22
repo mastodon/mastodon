@@ -37,6 +37,14 @@ class Account < ActiveRecord::Base
     :person
   end
 
+  def title
+    self.username
+  end
+
+  def summary
+    self.note
+  end
+
   def subscribed?
     !(self.secret.blank? || self.verify_token.blank?)
   end

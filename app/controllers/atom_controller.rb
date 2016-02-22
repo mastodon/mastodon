@@ -5,6 +5,10 @@ class AtomController < ApplicationController
     @account = Account.find_by!(id: params[:id], domain: nil)
   end
 
+  def entry
+    @entry = StreamEntry.find(params[:id])
+  end
+
   private
 
   def set_format
