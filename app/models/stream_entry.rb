@@ -2,32 +2,29 @@ class StreamEntry < ActiveRecord::Base
   belongs_to :account, inverse_of: :stream_entries
   belongs_to :activity, polymorphic: true
 
+  validates :account, :activity, presence: true
+
   def object_type
-    case self.activity_type
-    when 'Status'
-      :note
-    when 'Follow'
-      :person
-    end
+    self.activity.object_type
   end
 
   def verb
-    case self.activity_type
-    when 'Status'
-      :post
-    when 'Follow'
-      :follow
-    end
+    self.activity.verb
+  end
+
+  def targeted?
+    [:follow].include? self.verb
   end
 
   def target
-    case self.activity_type
-    when 'Follow'
-      self.activity.target_account
-    end
+    self.activity.target
+  end
+
+  def title
+    self.activity.title
   end
 
   def content
-    self.activity.text if self.activity_type == 'Status'
+    self.activity.content
   end
 end

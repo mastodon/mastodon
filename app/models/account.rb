@@ -29,6 +29,18 @@ class Account < ActiveRecord::Base
     self.domain.nil?
   end
 
+  def acct
+    local? ? self.username : "#{self.username}@#{self.domain}"
+  end
+
+  def object_type
+    :person
+  end
+
+  def subscribed?
+    !(self.secret.blank? || self.verify_token.blank?)
+  end
+
   def keypair
     self.private_key.nil? ? OpenSSL::PKey::RSA.new(self.public_key) : OpenSSL::PKey::RSA.new(self.private_key)
   end
