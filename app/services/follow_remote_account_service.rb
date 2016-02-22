@@ -1,14 +1,14 @@
-class FollowRemoteUserService
-  include GrapeRouteHelpers::NamedRouteMatcher
+class FollowRemoteAccountService
+  include ApplicationHelper
 
-  def call(user)
-    username, domain = user.split('@')
+  def call(uri)
+    username, domain = uri.split('@')
     account = Account.where(username: username, domain: domain).first
 
     return account unless account.nil?
 
     account = Account.new(username: username, domain: domain)
-    data    = Goldfinger.finger("acct:#{user}")
+    data    = Goldfinger.finger("acct:#{uri}")
 
     account.remote_url  = data.link('http://schemas.google.com/g/2010#updates-from').href
     account.salmon_url  = data.link('salmon').href
@@ -21,8 +21,9 @@ class FollowRemoteUserService
     feed = get_feed(account.remote_url)
     hubs = feed.xpath('//xmlns:link[@rel="hub"]')
 
-    return false if hubs.empty? || hubs.first.attribute('href').nil?
+    return false if hubs.empty? || hubs.first.attribute('href').nil? || feed.at_xpath('/xmlns:author/xmlns:uri').nil?
 
+    account.uri     = feed.at_xpath('/xmlns:author/xmlns:uri').content
     account.hub_url = hubs.first.attribute('href').value
     account.save!
 
@@ -45,16 +46,12 @@ class FollowRemoteUserService
 
     key   = OpenSSL::PKey::RSA.new
     key.n = modulus
-    key.d = exponent
+    key.e = exponent
 
     key.to_pem
   end
 
   def http_client
     HTTP
-  end
-
-  def subscription_url(account)
-    "https://649841dc.ngrok.io/api#{subscriptions_path(id: account.id)}"
   end
 end

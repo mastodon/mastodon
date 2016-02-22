@@ -3,6 +3,8 @@ module Mastodon
     class Account < Grape::Entity
       expose :username
       expose :domain
+      expose :display_name
+      expose :note
     end
 
     class Status < Grape::Entity

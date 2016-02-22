@@ -1,4 +1,4 @@
-class ProcessFeedUpdateService
+class ProcessFeedService
   def call(body, account)
     xml = Nokogiri::XML(body)
 

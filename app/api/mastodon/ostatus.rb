@@ -8,12 +8,10 @@ module Mastodon
 
     resource :subscriptions do
       helpers do
-        def subscription_url(account)
-          "https://649841dc.ngrok.io/api#{subscriptions_path(id: account.id)}"
-        end
+        include ApplicationHelper
       end
 
-      desc 'Receive updates from a feed'
+      desc 'Receive updates from an account'
 
       params do
         requires :id, type: String, desc: 'Account ID'
@@ -23,14 +21,14 @@ module Mastodon
         body = request.body.read
 
         if @account.subscription(subscription_url(@account)).verify(body, env['HTTP_X_HUB_SIGNATURE'])
-          ProcessFeedUpdateService.new.(body, @account)
+          ProcessFeedService.new.(body, @account)
           status 201
         else
           status 202
         end
       end
 
-      desc 'Confirm PuSH subscription to a feed'
+      desc 'Confirm PuSH subscription to an account'
 
       params do
         requires :id, type: String, desc: 'Account ID'
@@ -49,14 +47,15 @@ module Mastodon
     end
 
     resource :salmon do
-      desc 'Receive Salmon updates'
+      desc 'Receive Salmon updates targeted to account'
 
       params do
         requires :id, type: String, desc: 'Account ID'
       end
 
       post ':id' do
-        # todo
+        ProcessInteractionService.new.(request.body.read, @account)
+        status 201
       end
     end
   end
