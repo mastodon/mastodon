@@ -11,3 +11,9 @@ The core ideals of this project are:
 - Ease of deployment. The end-goal of this project is to be distributable as a Docker image.
 
 **Current status of the project is early development. Documentation, licensing information &co will be added later**
+
+## Configuration
+
+- `LOCAL_DOMAIN` should be the domain/hostname of your instance. This is **absolutely required** as it is used for generating unique IDs for everything federation-related
+- `LOCAL_HTTPS` set it to `true` if HTTPS works on your website. This is used to generate canonical URLs, which is also important when generating and parsing federation-related IDs
+- `HUB_URL` should be the URL of the PubsubHubbub service that your instance is going to use. By default it is the open service of Superfeedr
