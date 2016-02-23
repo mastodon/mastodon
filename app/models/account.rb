@@ -15,7 +15,7 @@ class Account < ActiveRecord::Base
   has_many :followers, through: :passive_relationships, source: :account
 
   def follow!(other_account)
-    self.active_relationships.create!(target_account: other_account)
+    self.active_relationships.first_or_create!(target_account: other_account)
   end
 
   def unfollow!(other_account)

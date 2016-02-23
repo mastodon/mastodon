@@ -18,6 +18,7 @@ class ProcessFeedService
 
       # todo: not everything is a status. there are follows, favourites
       # todo: RTs
+      # account.statuses.create!(reblog: status, uri: activity_uri(xml), url: activity_url(xml), text: content(xml))
     end
   end
 end
