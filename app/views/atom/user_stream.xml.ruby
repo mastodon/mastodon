@@ -1,52 +1,49 @@
 Nokogiri::XML::Builder.new do |xml|
-  xml.feed(xmlns: 'http://www.w3.org/2005/Atom', 'xmlns:thr': 'http://purl.org/syndication/thread/1.0', 'xmlns:activity': 'http://activitystrea.ms/spec/1.0/', 'xmlns:poco': 'http://portablecontacts.net/spec/1.0') do
-    xml.id_ atom_user_stream_url(id: @account.id)
-    xml.title @account.display_name
-    xml.subtitle @account.note
-    xml.updated stream_updated_at
+  feed(xml) do
+    simple_id  xml, atom_user_stream_url(id: @account.id)
+    title      xml, @account.display_name
+    subtitle   xml, @account.note
+    updated_at xml, stream_updated_at
 
-    xml.author do
-      xml['activity'].send('object-type', 'http://activitystrea.ms/schema/1.0/person')
-      xml.uri profile_url(name: @account.username)
-      xml.name @account.username
-      xml.summary @account.note
-
-      xml.link(rel: 'alternate', type: 'text/html', href: profile_url(name: @account.username))
-
-      xml['poco'].preferredUsername @account.username
-      xml['poco'].displayName @account.display_name
-      xml['poco'].note @account.note
+    author(xml) do
+      object_type      xml, :person
+      uri              xml, profile_url(name: @account.username)
+      name             xml, @account.username
+      summary          xml, @account.note
+      link_alternate   xml, profile_url(name: @account.username)
+      portable_contact xml, @account
     end
 
-    xml.link(rel: 'alternate', type: 'text/html', href: profile_url(name: @account.username))
-    xml.link(rel: 'hub', href: HUB_URL)
-    xml.link(rel: 'salmon', href: salmon_url(@account))
-    xml.link(rel: 'self', type: 'application/atom+xml', href: atom_user_stream_url(id: @account.id))
+    link_alternate xml, profile_url(name: @account.username)
+    link_self      xml, atom_user_stream_url(id: @account.id)
+    link_hub       xml, HUB_URL
+    link_salmon    xml, salmon_url(@account)
 
     @account.stream_entries.order('id desc').each do |stream_entry|
-      xml.entry do
-        xml.id_ unique_tag(stream_entry.created_at, stream_entry.activity_id, stream_entry.activity_type)
-
-        xml.published stream_entry.activity.created_at.iso8601
-        xml.updated   stream_entry.activity.updated_at.iso8601
-
-        xml.title stream_entry.title
-        xml.content({ type: 'html' }, stream_entry.content)
-        xml['activity'].send('verb', "http://activitystrea.ms/schema/1.0/#{stream_entry.verb}")
+      entry(xml, false) do
+        unique_id    xml, stream_entry.created_at, stream_entry.activity_id, stream_entry.activity_type
+        published_at xml, stream_entry.activity.created_at
+        updated_at   xml, stream_entry.activity.updated_at
+        title        xml, stream_entry.title
+        content      xml, stream_entry.content
+        verb         xml, stream_entry.verb
+        link_self    xml, atom_entry_url(id: stream_entry.id)
 
         if stream_entry.targeted?
-          xml['activity'].send('object') do
-            xml['activity'].send('object-type', "http://activitystrea.ms/schema/1.0/#{stream_entry.target.object_type}")
-            xml.id_ stream_entry.target.uri
-            xml.title stream_entry.target.title
-            xml.summary stream_entry.target.summary
-            xml.link(rel: 'alternate', type: 'text/html', href: stream_entry.target.uri)
+          target(xml) do
+            object_type    xml, stream_entry.target.object_type
+            simple_id      xml, stream_entry.target.uri
+            title          xml, stream_entry.target.title
+            summary        xml, stream_entry.target.summary
+            link_alternate xml, stream_entry.target.uri
+
+            if stream_entry.target.object_type == :person
+              portable_contact xml, stream_entry.target
+            end
           end
         else
-          xml['activity'].send('object-type', "http://activitystrea.ms/schema/1.0/#{stream_entry.object_type}")
+          object_type xml, stream_entry.object_type
         end
-
-        xml.link(rel: 'self', type: 'application/atom+xml', href: atom_entry_url(id: stream_entry.id))
       end
     end
   end
