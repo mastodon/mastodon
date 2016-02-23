@@ -15,6 +15,7 @@ class FollowRemoteAccountService
 
     account.remote_url  = data.link('http://schemas.google.com/g/2010#updates-from').href
     account.salmon_url  = data.link('salmon').href
+    account.url         = data.link('http://webfinger.net/rel/profile-page').href
     account.public_key  = magic_key_to_pem(data.link('magic-public-key').href)
     account.private_key = nil
 

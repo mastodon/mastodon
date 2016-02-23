@@ -3,10 +3,10 @@ class ProcessInteractionService
     body = salmon.unpack(envelope)
     xml  = Nokogiri::XML(body)
 
-    return if !involves_target_account(xml, target_account) || xml.at_xpath('//author/name').nil? || xml.at_xpath('//author/uri').nil?
+    return if !involves_target_account(xml, target_account) || xml.at_xpath('//xmlns:author/xmlns:name').nil? || xml.at_xpath('//xmlns:author/xmlns:uri').nil?
 
-    username = xml.at_xpath('//author/name').content
-    url      = xml.at_xpath('//author/uri').content
+    username = xml.at_xpath('//xmlns:author/xmlns:name').content
+    url      = xml.at_xpath('//xmlns:author/xmlns:uri').content
     domain   = Addressable::URI.parse(url).host
     account  = Account.find_by(username: username, domain: domain)
 

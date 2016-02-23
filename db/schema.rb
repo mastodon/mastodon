@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160222143943) do
+ActiveRecord::Schema.define(version: 20160223171800) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,9 +31,19 @@ ActiveRecord::Schema.define(version: 20160222143943) do
     t.text     "note",         default: "", null: false
     t.string   "display_name", default: "", null: false
     t.string   "uri",          default: "", null: false
+    t.string   "url"
   end
 
   add_index "accounts", ["username", "domain"], name: "index_accounts_on_username_and_domain", unique: true, using: :btree
+
+  create_table "favourites", force: :cascade do |t|
+    t.integer  "account_id", null: false
+    t.integer  "status_id",  null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "favourites", ["account_id", "status_id"], name: "index_favourites_on_account_id_and_status_id", unique: true, using: :btree
 
   create_table "follows", force: :cascade do |t|
     t.integer  "account_id",        null: false
@@ -45,11 +55,14 @@ ActiveRecord::Schema.define(version: 20160222143943) do
   add_index "follows", ["account_id", "target_account_id"], name: "index_follows_on_account_id_and_target_account_id", unique: true, using: :btree
 
   create_table "statuses", force: :cascade do |t|
-    t.string   "uri",        default: "", null: false
-    t.integer  "account_id",              null: false
-    t.text     "text",       default: "", null: false
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
+    t.string   "uri"
+    t.integer  "account_id",                  null: false
+    t.text     "text",           default: "", null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+    t.integer  "in_reply_to_id"
+    t.integer  "reblog_of_id"
+    t.string   "url"
   end
 
   add_index "statuses", ["uri"], name: "index_statuses_on_uri", unique: true, using: :btree

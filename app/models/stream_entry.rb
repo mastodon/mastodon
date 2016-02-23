@@ -5,7 +5,7 @@ class StreamEntry < ActiveRecord::Base
   validates :account, :activity, presence: true
 
   def object_type
-    self.activity.object_type
+    targeted? ? :activity : self.activity.object_type
   end
 
   def verb
@@ -13,7 +13,7 @@ class StreamEntry < ActiveRecord::Base
   end
 
   def targeted?
-    [:follow].include? self.verb
+    [:follow, :share, :favorite].include? verb
   end
 
   def target
@@ -26,5 +26,17 @@ class StreamEntry < ActiveRecord::Base
 
   def content
     self.activity.content
+  end
+
+  def threaded?
+    [:favorite, :comment].include? verb
+  end
+
+  def thread
+    self.activity.thread
+  end
+
+  def mentions
+    self.activity.mentions
   end
 end

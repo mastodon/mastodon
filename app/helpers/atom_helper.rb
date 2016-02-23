@@ -93,6 +93,87 @@ module AtomHelper
     xml['poco'].note account.note
   end
 
+  def in_reply_to(xml, uri, url)
+    xml['thr'].send('in-reply-to', { ref: uri, href: url, type: 'text/html' })
+  end
+
+  def disambiguate_uri(target)
+    if target.local?
+      if target.object_type == :person
+        profile_url(name: target.username)
+      else
+        unique_tag(target.stream_entry.created_at, target.stream_entry.activity_id, target.stream_entry.activity_type)
+      end
+    else
+      target.uri
+    end
+  end
+
+  def disambiguate_url(target)
+    if target.local?
+      if target.object_type == :person
+        profile_url(name: target.username)
+      else
+        status_url(name: target.stream_entry.account.username, id: target.stream_entry.id)
+      end
+    else
+      target.url
+    end
+  end
+
+  def link_mention(xml, account)
+    xml.link(rel: 'mentioned', href: disambiguate_uri(account))
+  end
+
+  def include_author(xml, account)
+    object_type      xml, :person
+    uri              xml, profile_url(name: account.username)
+    name             xml, account.username
+    summary          xml, account.note
+    link_alternate   xml, profile_url(name: account.username)
+    portable_contact xml, account
+  end
+
+  def include_entry(xml, stream_entry)
+    unique_id    xml, stream_entry.created_at, stream_entry.activity_id, stream_entry.activity_type
+    published_at xml, stream_entry.activity.created_at
+    updated_at   xml, stream_entry.activity.updated_at
+    title        xml, stream_entry.title
+    content      xml, stream_entry.content
+    verb         xml, stream_entry.verb
+    link_self    xml, atom_entry_url(id: stream_entry.id)
+    object_type  xml, stream_entry.object_type
+
+    # Comments need thread element
+    if stream_entry.threaded?
+      in_reply_to xml, disambiguate_uri(stream_entry.thread), disambiguate_url(stream_entry.thread)
+    end
+
+    if stream_entry.targeted?
+      target(xml) do
+        object_type    xml, stream_entry.target.object_type
+        simple_id      xml, disambiguate_uri(stream_entry.target)
+        title          xml, stream_entry.target.title
+        link_alternate xml, disambiguate_url(stream_entry.target)
+
+        # People have summary and portable contacts information
+        if stream_entry.target.object_type == :person
+          summary          xml, stream_entry.target.content
+          portable_contact xml, stream_entry.target
+        end
+
+        # Statuses have content
+        if [:note, :comment].include? stream_entry.target.object_type
+          content xml, stream_entry.target.content
+        end
+      end
+    end
+
+    stream_entry.mentions.each do |mentioned|
+      link_mention xml, mentioned
+    end
+  end
+
   private
 
   def root_tag(xml, tag, &block)

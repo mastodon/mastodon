@@ -5,6 +5,7 @@ class Account < ActiveRecord::Base
   # Timelines
   has_many :stream_entries, inverse_of: :account
   has_many :statuses, inverse_of: :account
+  has_many :favourites, inverse_of: :account
 
   # Follow relations
   has_many :active_relationships,  class_name: 'Follow', foreign_key: 'account_id',        dependent: :destroy
@@ -41,7 +42,7 @@ class Account < ActiveRecord::Base
     self.username
   end
 
-  def summary
+  def content
     self.note
   end
 
