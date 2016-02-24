@@ -21,6 +21,8 @@ class ProcessFeedService < BaseService
       else
         add_post!(entry, status)
       end
+
+      process_mentions_service.(status) unless status.new_record?
     end
   end
 
@@ -119,5 +121,9 @@ class ProcessFeedService < BaseService
 
   def follow_remote_account_service
     @follow_remote_account_service ||= FollowRemoteAccountService.new
+  end
+
+  def process_mentions_service
+    @process_mentions_service ||= ProcessMentionsService.new
   end
 end

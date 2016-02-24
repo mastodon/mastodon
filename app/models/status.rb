@@ -9,6 +9,7 @@ class Status < ActiveRecord::Base
   has_many :favourites, inverse_of: :status, dependent: :destroy
   has_many :reblogs, foreign_key: 'reblog_of_id', class_name: 'Status'
   has_many :replies, foreign_key: 'in_reply_to_id', class_name: 'Status'
+  has_many :mentioned_accounts, class_name: 'Mention', dependent: :destroy
 
   validates :account, presence: true
   validates :uri, uniqueness: true, unless: 'local?'

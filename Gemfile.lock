@@ -50,7 +50,6 @@ GEM
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
     builder (3.2.2)
-    byebug (8.2.2)
     coderay (1.1.1)
     coercible (1.0.0)
       descendants_tracker (~> 0.0.1)
@@ -66,6 +65,7 @@ GEM
     descendants_tracker (0.0.4)
       thread_safe (~> 0.3, >= 0.3.1)
     diff-lcs (1.2.5)
+    docile (1.1.5)
     domain_name (0.5.20160128)
       unf (>= 0.0.5, < 1.0.0)
     dotenv (2.1.0)
@@ -75,6 +75,9 @@ GEM
     equalizer (0.0.11)
     erubis (2.7.0)
     execjs (2.6.0)
+    fuubar (2.0.0)
+      rspec (~> 3.0)
+      ruby-progressbar (~> 1.4)
     globalid (0.3.6)
       activesupport (>= 4.1.0)
     goldfinger (1.0.1)
@@ -249,6 +252,11 @@ GEM
       json (~> 1.7, >= 1.7.7)
       rdoc (~> 4.0)
     sexp_processor (4.7.0)
+    simplecov (0.11.2)
+      docile (~> 1.1.0)
+      json (~> 1.8)
+      simplecov-html (~> 0.10.0)
+    simplecov-html (0.10.0)
     slop (3.6.0)
     spring (1.6.3)
     sprockets (3.5.2)
@@ -292,9 +300,9 @@ DEPENDENCIES
   addressable
   better_errors
   binding_of_caller
-  byebug
   coffee-rails (~> 4.1.0)
   dotenv-rails
+  fuubar
   goldfinger
   grape
   grape-entity
@@ -318,6 +326,7 @@ DEPENDENCIES
   rubocop
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
+  simplecov
   spring
   sqlite3
   therubyracer

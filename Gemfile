@@ -28,11 +28,15 @@ gem 'ostatus2'
 gem 'goldfinger'
 
 group :development, :test do
-  gem 'byebug'
   gem 'rspec-rails'
   gem 'quiet_assets'
-  gem 'nyan-cat-formatter'
   gem 'pry-rails'
+  gem 'nyan-cat-formatter'
+  gem 'fuubar'
+end
+
+group :test do
+  gem 'simplecov', require: false
 end
 
 group :development do
