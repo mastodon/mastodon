@@ -1,7 +1,7 @@
 class FollowRemoteAccountService
   include ApplicationHelper
 
-  def call(uri)
+  def call(uri, subscribe = true)
     username, domain = uri.split('@')
     account = Account.where(username: username, domain: domain).first
 
@@ -19,9 +19,6 @@ class FollowRemoteAccountService
     account.public_key  = magic_key_to_pem(data.link('magic-public-key').href)
     account.private_key = nil
 
-    account.secret       = SecureRandom.hex
-    account.verify_token = SecureRandom.hex
-
     feed = get_feed(account.remote_url)
     hubs = feed.xpath('//xmlns:link[@rel="hub"]')
 
@@ -33,8 +30,15 @@ class FollowRemoteAccountService
     get_profile(feed, account)
     account.save!
 
-    subscription = account.subscription(subscription_url(account))
-    subscription.subscribe
+    if subscribe
+      account.secret       = SecureRandom.hex
+      account.verify_token = SecureRandom.hex
+
+      subscription = account.subscription(subscription_url(account))
+      subscription.subscribe
+
+      account.save!
+    end
 
     return account
   rescue Goldfinger::Error, HTTP::Error => e

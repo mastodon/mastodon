@@ -31,10 +31,12 @@ class ProcessFeedService
 
   def add_reblog!(entry, status)
     status.reblog = find_original_status(entry, target_id(entry))
+    status.save! unless status.reblog.nil?
   end
 
   def add_reply!(entry, status)
     status.thread = find_original_status(entry, thread_id(entry))
+    status.save! unless status.thread.nil?
   end
 
   def find_original_status(xml, id)
@@ -54,7 +56,8 @@ class ProcessFeedService
   end
 
   def fetch_remote_status(xml, id)
-    # todo
+    url = xml.at_xpath('./link[@rel="self"]').attribute('href').value
+    nil
   end
 
   def local_id?(id)
@@ -99,5 +102,9 @@ class ProcessFeedService
     xml.at_xpath('./activity:verb').content.gsub('http://activitystrea.ms/schema/1.0/', '').to_sym
   rescue
     :post
+  end
+
+  def follow_remote_account_service
+    FollowRemoteAccountService.new
   end
 end

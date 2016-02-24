@@ -13,7 +13,7 @@ class ProcessInteractionService
     account  = Account.find_by(username: username, domain: domain)
 
     if account.nil?
-      account = follow_remote_account_service.("acct:#{username}@#{domain}")
+      account = follow_remote_account_service.("acct:#{username}@#{domain}", false)
       return if account.nil?
     end
 
