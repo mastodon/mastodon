@@ -1,6 +1,7 @@
-class ProcessFeedService
-  include ApplicationHelper
-
+class ProcessFeedService < BaseService
+  # Create local statuses from an Atom feed
+  # @param [String] body Atom feed
+  # @param [Account] account Account this feed belongs to
   def call(body, account)
     xml = Nokogiri::XML(body)
 
@@ -105,6 +106,6 @@ class ProcessFeedService
   end
 
   def follow_remote_account_service
-    FollowRemoteAccountService.new
+    @follow_remote_account_service ||= FollowRemoteAccountService.new
   end
 end

@@ -1,6 +1,10 @@
-class FollowRemoteAccountService
-  include ApplicationHelper
-
+class FollowRemoteAccountService < BaseService
+  # Find or create a local account for a remote user.
+  # When creating, look up the user's webfinger and fetch all
+  # important information from their feed
+  # @param [String] uri User URI in the form of username@domain
+  # @param [Boolean] subscribe Whether to initiate a PubSubHubbub subscription
+  # @return [Account]
   def call(uri, subscribe = true)
     username, domain = uri.split('@')
     account = Account.where(username: username, domain: domain).first

@@ -4,8 +4,11 @@ class Status < ActiveRecord::Base
   belongs_to :thread, foreign_key: 'in_reply_to_id', class_name: 'Status'
   belongs_to :reblog, foreign_key: 'reblog_of_id', class_name: 'Status'
 
-  has_one :stream_entry, as: :activity
-  has_many :favourites, inverse_of: :status
+  has_one :stream_entry, as: :activity, dependent: :destroy
+
+  has_many :favourites, inverse_of: :status, dependent: :destroy
+  has_many :reblogs, foreign_key: 'reblog_of_id', class_name: 'Status'
+  has_many :replies, foreign_key: 'in_reply_to_id', class_name: 'Status'
 
   validates :account, presence: true
   validates :uri, uniqueness: true, unless: 'local?'

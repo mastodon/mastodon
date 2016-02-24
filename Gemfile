@@ -19,6 +19,7 @@ gem 'grape'
 gem 'grape-route-helpers'
 gem 'grape-entity'
 gem 'hashie-forbidden_attributes'
+gem 'paranoia', '~> 2.0'
 
 gem 'http'
 gem 'addressable'

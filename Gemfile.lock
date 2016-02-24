@@ -152,6 +152,8 @@ GEM
       addressable (~> 2.4)
       http (~> 1.0)
       nokogiri (~> 1.6)
+    paranoia (2.1.5)
+      activerecord (~> 4.0)
     parser (2.3.0.6)
       ast (~> 2.2)
     pg (0.18.4)
@@ -305,6 +307,7 @@ DEPENDENCIES
   nokogiri
   nyan-cat-formatter
   ostatus2
+  paranoia (~> 2.0)
   pg
   pry-rails
   puma

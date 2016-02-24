@@ -1,6 +1,7 @@
-class ProcessInteractionService
-  include ApplicationHelper
-
+class ProcessInteractionService < BaseService
+  # Record locally the remote interaction with our user
+  # @param [String] envelope Salmon envelope
+  # @param [Account] target_account Account the Salmon was addressed to
   def call(envelope, target_account)
     body = salmon.unpack(envelope)
     xml  = Nokogiri::XML(body)
@@ -75,14 +76,14 @@ class ProcessInteractionService
   end
 
   def salmon
-    OStatus2::Salmon.new
+    @salmon ||= OStatus2::Salmon.new
   end
 
   def follow_remote_account_service
-    FollowRemoteAccountService.new
+    @follow_remote_account_service ||= FollowRemoteAccountService.new
   end
 
   def process_feed_service
-    ProcessFeedService.new
+    @process_feed_service ||= ProcessFeedService.new
   end
 end

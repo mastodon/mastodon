@@ -2,13 +2,13 @@ class Follow < ActiveRecord::Base
   belongs_to :account
   belongs_to :target_account, class_name: 'Account'
 
-  has_one :stream_entry, as: :activity
+  has_one :stream_entry, as: :activity, dependent: :destroy
 
   validates :account, :target_account, presence: true
   validates :account_id, uniqueness: { scope: :target_account_id }
 
   def verb
-    :follow
+    self.destroyed? ? :unfollow : :follow
   end
 
   def target
@@ -20,7 +20,7 @@ class Follow < ActiveRecord::Base
   end
 
   def content
-    "#{self.account.acct} started following #{self.target_account.acct}"
+    self.destroyed? ? "#{self.account.acct} is no longer following #{self.target_account.acct}" : "#{self.account.acct} started following #{self.target_account.acct}"
   end
 
   def title
