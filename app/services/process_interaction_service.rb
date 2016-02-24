@@ -46,6 +46,8 @@ class ProcessInteractionService
 
   def verb(xml)
     xml.at_xpath('//activity:verb').content.gsub('http://activitystrea.ms/schema/1.0/', '').to_sym
+  rescue
+    :post
   end
 
   def follow!(account, target_account)
