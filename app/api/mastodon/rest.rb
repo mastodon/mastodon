@@ -3,11 +3,11 @@ module Mastodon
     version 'v1', using: :path
     format :json
 
-    resource :statuses do
+    resource :timelines do
       desc 'Return a public timeline'
 
-      get :all do
-        present Status.all, with: Mastodon::Entities::Status
+      get :public do
+        # todo
       end
 
       desc 'Return the home timeline of a logged in user'
