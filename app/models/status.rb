@@ -51,6 +51,17 @@ class Status < ActiveRecord::Base
     m << thread.account if reply?
     m << reblog.account if reblog?
 
+    unless reblog?
+      self.text.scan(Account::MENTION_RE).each do |match|
+        uri      = match.first
+        username = uri.split('@').first
+        domain   = uri.split('@').size == 2 ? uri.split('@').last : nil
+        account  = Account.find_by(username: username, domain: domain)
+
+        m << account unless account.nil?
+      end
+    end
+
     m
   end
 

@@ -14,6 +14,8 @@ class Account < ActiveRecord::Base
   has_many :following, through: :active_relationships,  source: :target_account
   has_many :followers, through: :passive_relationships, source: :account
 
+  MENTION_RE = /(?:^|\W)@([a-z0-9_]+(?:@[a-z0-9\.\-]+)?)/i
+
   def follow!(other_account)
     self.active_relationships.first_or_create!(target_account: other_account)
   end
