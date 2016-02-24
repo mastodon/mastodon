@@ -10,6 +10,10 @@ module ApplicationHelper
     return match[1] unless match.nil?
   end
 
+  def local_id?(id)
+    id.start_with?("tag:#{LOCAL_DOMAIN}")
+  end
+
   def subscription_url(account)
     add_base_url_prefix subscriptions_path(id: account.id, format: '')
   end

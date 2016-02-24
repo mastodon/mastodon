@@ -32,12 +32,17 @@ class ProcessFeedService < BaseService
 
   def add_reblog!(entry, status)
     status.reblog = find_original_status(entry, target_id(entry))
+
+    if status.reblog.nil?
+      status.reblog = fetch_remote_status(entry)
+    end
+
     status.save! unless status.reblog.nil?
   end
 
   def add_reply!(entry, status)
     status.thread = find_original_status(entry, thread_id(entry))
-    status.save! unless status.thread.nil?
+    status.save!
   end
 
   def find_original_status(xml, id)
@@ -46,23 +51,22 @@ class ProcessFeedService < BaseService
     if local_id?(id)
       Status.find(unique_tag_to_local_id(id, 'Status'))
     else
-      status = Status.find_by(uri: id)
-
-      if status.nil?
-        status = fetch_remote_status(xml, id)
-      end
-
-      status
+      Status.find_by(uri: id)
     end
   end
 
-  def fetch_remote_status(xml, id)
-    url = xml.at_xpath('./link[@rel="self"]').attribute('href').value
-    nil
-  end
+  def fetch_remote_status(xml)
+    username = xml.at_xpath('./activity:object/xmlns:author/xmlns:name').content
+    url      = xml.at_xpath('./activity:object/xmlns:author/xmlns:uri').content
+    domain   = Addressable::URI.parse(url).host
+    account  = Account.find_by(username: username, domain: domain)
 
-  def local_id?(id)
-    id.start_with?("tag:#{LOCAL_DOMAIN}")
+    if account.nil?
+      account = follow_remote_account_service.("acct:#{username}@#{domain}", false)
+      return nil if account.nil?
+    end
+
+    Status.new(account: account, uri: target_id(xml), text: target_content(xml), url: target_url(xml))
   end
 
   def published(xml)
@@ -84,13 +88,21 @@ class ProcessFeedService < BaseService
   end
 
   def target_id(xml)
-    xml.at_xpath('./activity:object/xmlns:id').content
+    xml.at_xpath('.//activity:object/xmlns:id').content
   rescue
     nil
   end
 
   def activity_id(xml)
     entry.at_xpath('./xmlns:id').content
+  end
+
+  def target_content(xml)
+    xml.at_xpath('.//activity:object/xmlns:content').content
+  end
+
+  def target_url(xml)
+    xml.at_xpath('.//activity:object/xmlns:link[@rel=alternate]').attribute('href').value
   end
 
   def object_type(xml)
