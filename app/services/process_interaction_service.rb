@@ -28,7 +28,7 @@ class ProcessInteractionService
       when :post
         add_post!(body, account) if mentions_account?(xml, target_account)
       when :share
-        add_post!(body, account) unless status.nil?
+        add_post!(body, account) unless status(xml).nil?
       end
     end
   end
@@ -59,7 +59,7 @@ class ProcessInteractionService
   end
 
   def favourite!(xml, from_account)
-    status.favourites.first_or_create!(account: from_account)
+    status(xml).favourites.first_or_create!(account: from_account)
   end
 
   def add_post!(body, account)
