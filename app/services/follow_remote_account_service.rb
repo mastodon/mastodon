@@ -45,7 +45,7 @@ class FollowRemoteAccountService < BaseService
     end
 
     return account
-  rescue Goldfinger::Error, HTTP::Error => e
+  rescue Goldfinger::Error, HTTP::Error
     nil
   end
 

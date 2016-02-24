@@ -28,7 +28,7 @@ class ProcessFeedService < BaseService
 
   private
 
-  def add_post!(entry, status)
+  def add_post!(_entry, status)
     status.save!
   end
 
@@ -47,7 +47,7 @@ class ProcessFeedService < BaseService
     status.save!
   end
 
-  def find_original_status(xml, id)
+  def find_original_status(_xml, id)
     return nil if id.nil?
 
     if local_id?(id)
@@ -96,7 +96,7 @@ class ProcessFeedService < BaseService
   end
 
   def activity_id(xml)
-    entry.at_xpath('./xmlns:id').content
+    xml.at_xpath('./xmlns:id').content
   end
 
   def target_content(xml)

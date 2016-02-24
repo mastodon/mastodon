@@ -68,7 +68,7 @@ class ProcessInteractionService < BaseService
   end
 
   def status(xml)
-    Status.find(unique_tag_to_local_id(activity_id, 'Status'))
+    Status.find(unique_tag_to_local_id(activity_id(xml), 'Status'))
   end
 
   def activity_id(xml)

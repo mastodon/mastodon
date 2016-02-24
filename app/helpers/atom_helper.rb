@@ -7,7 +7,7 @@ module AtomHelper
     if is_root
       root_tag(xml, :entry, &block)
     else
-      xml.entry &block
+      xml.entry(&block)
     end
   end
 
@@ -44,11 +44,11 @@ module AtomHelper
   end
 
   def author(xml, &block)
-    xml.author &block
+    xml.author(&block)
   end
 
   def target(xml, &block)
-    xml['activity'].object &block
+    xml['activity'].object(&block)
   end
 
   def object_type(xml, type)
@@ -177,6 +177,6 @@ module AtomHelper
   private
 
   def root_tag(xml, tag, &block)
-    xml.send(tag, {xmlns: 'http://www.w3.org/2005/Atom', 'xmlns:thr': 'http://purl.org/syndication/thread/1.0', 'xmlns:activity': 'http://activitystrea.ms/spec/1.0/', 'xmlns:poco': 'http://portablecontacts.net/spec/1.0'}, &block)
+    xml.send(tag, { :xmlns => 'http://www.w3.org/2005/Atom', 'xmlns:thr' => 'http://purl.org/syndication/thread/1.0', 'xmlns:activity' => 'http://activitystrea.ms/spec/1.0/', 'xmlns:poco' => 'http://portablecontacts.net/spec/1.0' }, &block)
   end
 end
