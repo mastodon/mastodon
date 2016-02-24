@@ -1,4 +1,9 @@
 class PostStatusService < BaseService
+  # Post a text status update, fetch and notify remote users mentioned
+  # @param [Account] account Account from which to post
+  # @param [String] text Message
+  # @param [Status] in_reply_to Optional status to reply to
+  # @return [Status]
   def call(account, text, in_reply_to = nil)
     status = account.statuses.create!(text: text, thread: in_reply_to)
 
@@ -14,6 +19,8 @@ class PostStatusService < BaseService
       next if mentioned_account.local?
       send_interaction_service.(status.stream_entry, mentioned_account)
     end
+
+    status
   end
 
   private
