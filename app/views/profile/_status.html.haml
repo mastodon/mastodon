@@ -1,0 +1,7 @@
+%div.entry
+  .header
+    = render partial: 'status_header', locals: { status: status.reblog? ? status.reblog : status }
+  .content
+    = status.content
+  .counters
+    = render partial: 'status_footer', locals: { status: status.reblog? ? status.reblog : status }

@@ -14,6 +14,7 @@ gem 'puma'
 gem 'haml-rails'
 gem 'pg'
 gem 'dotenv-rails'
+gem 'font-awesome-sass'
 
 gem 'grape'
 gem 'grape-route-helpers'

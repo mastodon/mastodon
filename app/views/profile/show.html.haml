@@ -1,2 +1,8 @@
-%h1 Profile#show
-%p Find me in app/views/profile/show.html.haml
+%div.card
+  %h1.name
+    = @account.display_name.blank? ? @account.username : @account.display_name
+    %small= "@#{@account.username}"
+
+%div.activity-stream
+  - @account.statuses.order('id desc').each do |status|
+    = render partial: 'status', locals: { status: status }

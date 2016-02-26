@@ -3,6 +3,12 @@ module Mastodon
     version 'v1', using: :path
     format :json
 
+    helpers do
+      def current_user
+        User.first
+      end
+    end
+
     resource :timelines do
       desc 'Return a public timeline'
 
@@ -13,7 +19,7 @@ module Mastodon
       desc 'Return the home timeline of a logged in user'
 
       get :home do
-        # todo
+        present current_user.timeline, with: Mastodon::Entities::StreamEntry
       end
 
       desc 'Return the notifications timeline of a logged in user'

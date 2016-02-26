@@ -1,3 +1,114 @@
-// Place all the styles related to the Profile controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+@import url(https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic);
+
+@import "font-awesome-sprockets";
+@import "font-awesome";
+
+body {
+  font-family: 'Noto Sans', sans-serif;
+  background: #E0E3DA;
+  font-size: 13px;
+  line-height: 18px;
+}
+
+.container {
+  width: 800px;
+  margin: 0 auto;
+}
+
+.card {
+  padding-top: 20px;
+
+  .name {
+    font-size: 24px;
+    line-height: 18px * 1.5;
+
+    small {
+      display: block;
+      font-size: 14px;
+      color: #566270;
+    }
+  }
+
+  .bio {
+
+  }
+
+  .counter {
+    display: block;
+    float: left;
+    width: 100px;
+    text-align: center;
+    border: 1px solid #A593E0;
+    color: #A593E0;
+    border-radius: 5px;
+    padding: 3px 0;
+    margin-right: 3px;
+
+    .num {
+      display: block;
+      font-size: 24px;
+    }
+  }
+}
+
+.activity-stream {
+  clear: both;
+
+  .entry {
+    padding: 10px;
+    border-bottom: 1px solid #E0E3DA;
+    background: #FFFFF3;
+
+    &:first-child {
+      border-radius: 5px 5px 0 0;
+    }
+
+    &:last-child {
+      border-bottom: 0;
+      border-radius: 0 0 5px 5px;
+    }
+  }
+
+  .header {
+    margin-bottom: 10px;
+  }
+
+  .name {
+    text-decoration: none;
+    color: #566270;
+
+    strong {
+      color: #000;
+    }
+
+    &:hover {
+      strong {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  .content {
+    font-size: 16px;
+  }
+
+  .time {
+    text-decoration: none;
+    color: #566270;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  .counters {
+    margin-top: 15px;
+    color: #566270;
+    cursor: default;
+
+    .counter {
+      display: inline-block;
+      margin-right: 10px;
+    }
+  }
+}

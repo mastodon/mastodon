@@ -46,5 +46,9 @@ module Mastodon
         expose :updated_at
       end
     end
+
+    class StreamEntry < Grape::Entity
+      expose :activity, using: Mastodon::Entities::Status
+    end
   end
 end
