@@ -53,36 +53,56 @@ body {
 
 .activity-stream {
   clear: both;
+  box-shadow: 4px 3px 0 rgba(0, 0, 0, 0.1);
 
   .entry {
-    padding: 10px;
     border-bottom: 1px solid #E0E3DA;
     background: #FFFFF3;
+    border-left: 2px solid #A593E0;
 
-    &:first-child {
-      border-radius: 5px 5px 0 0;
+    &.entry-reblog {
+      border-left: 2px solid #566270;
     }
 
     &:last-child {
       border-bottom: 0;
-      border-radius: 0 0 5px 5px;
     }
   }
 
   .header {
     margin-bottom: 10px;
+    padding: 10px;
+    padding-bottom: 0;
+    padding-left: 8px;
+
+    .name {
+      text-decoration: none;
+      color: #566270;
+
+      strong {
+        color: #000;
+      }
+
+      &:hover {
+        strong {
+          text-decoration: underline;
+        }
+      }
+    }
   }
 
-  .name {
-    text-decoration: none;
+  .pre-header {
+    border-bottom: 1px solid #E0E3DA;
     color: #566270;
+    padding: 5px 10px;
+    padding-left: 8px;
 
-    strong {
-      color: #000;
-    }
+    .name {
+      color: #566270;
+      font-weight: bold;
+      text-decoration: none;
 
-    &:hover {
-      strong {
+      &:hover {
         text-decoration: underline;
       }
     }
@@ -90,6 +110,8 @@ body {
 
   .content {
     font-size: 16px;
+    padding: 0 10px;
+    padding-left: 8px;
   }
 
   .time {
@@ -105,10 +127,19 @@ body {
     margin-top: 15px;
     color: #566270;
     cursor: default;
+    padding: 10px;
+    padding-top: 0;
+    padding-left: 8px;
 
     .counter {
       display: inline-block;
       margin-right: 10px;
+    }
+
+    .conversation-link {
+      color: #A593E0;
+      text-decoration: underline;
+      float: right;
     }
   }
 }

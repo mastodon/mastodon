@@ -1,4 +1,9 @@
-%div.entry
+%div.entry{ class: status.reblog? ? 'entry-reblog' : 'entry-status' }
+  - if status.reblog?
+    .pre-header
+      %i.fa.fa-retweet
+      Shared by
+      = link_to status.account.display_name.blank? ? status.account.username : status.account.display_name, (status.account.local? ? profile_url(name: status.account.username) : status.account.url), class: 'name'
   .header
     = render partial: 'status_header', locals: { status: status.reblog? ? status.reblog : status }
   .content

@@ -5,3 +5,6 @@
 .counter.counter-favourites
   %i.fa.fa-star
   %span.num= status.favourites.count
+
+- if status.reply?
+  = link_to 'View conversation', status.thread.local? ? status_url(name: status.thread.account.username, id: status.thread.id) : status.thread.url, class: 'conversation-link'
