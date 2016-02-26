@@ -29,7 +29,7 @@ class StreamEntry < ActiveRecord::Base
   end
 
   def threaded?
-    [:favorite, :comment].include? verb
+    verb == :favorite || object_type == :comment
   end
 
   def thread

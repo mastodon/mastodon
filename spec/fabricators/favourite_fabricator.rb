@@ -1,0 +1,3 @@
+Fabricator(:favourite) do
+
+end

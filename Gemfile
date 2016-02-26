@@ -33,6 +33,7 @@ group :development, :test do
   gem 'pry-rails'
   gem 'nyan-cat-formatter'
   gem 'fuubar'
+  gem 'fabrication'
 end
 
 group :test do

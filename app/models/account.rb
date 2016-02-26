@@ -59,4 +59,12 @@ class Account < ActiveRecord::Base
   def subscription(webhook_url)
     @subscription ||= OStatus2::Subscription.new(self.remote_url, secret: self.secret, token: self.verify_token, webhook: webhook_url, hub: self.hub_url)
   end
+
+  before_create do
+    if local?
+      keypair = OpenSSL::PKey::RSA.new(Rails.env.test? ? 48 : 2048)
+      self.private_key = keypair.to_pem
+      self.public_key  = keypair.public_key.to_pem
+    end
+  end
 end

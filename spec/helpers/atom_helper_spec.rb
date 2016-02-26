@@ -1,15 +1,115 @@
 require 'rails_helper'
 
-# Specs in this file have access to a helper object that includes
-# the AtomHelper. For example:
-#
-# describe AtomHelper do
-#   describe "string concat" do
-#     it "concats two strings with spaces" do
-#       expect(helper.concat_strings("this","that")).to eq("this that")
-#     end
-#   end
-# end
 RSpec.describe AtomHelper, type: :helper do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe '#stream_updated_at' do
+    pending
+  end
+
+  describe '#entry' do
+    pending
+  end
+
+  describe '#feed' do
+    pending
+  end
+
+  describe '#unique_id' do
+    pending
+  end
+
+  describe '#simple_id' do
+    pending
+  end
+
+  describe '#published_at' do
+    pending
+  end
+
+  describe '#updated_at' do
+    pending
+  end
+
+  describe '#verb' do
+    pending
+  end
+
+  describe '#content' do
+    pending
+  end
+
+  describe '#title' do
+    pending
+  end
+
+  describe '#author' do
+    pending
+  end
+
+  describe '#target' do
+    pending
+  end
+
+  describe '#object_type' do
+    pending
+  end
+
+  describe '#uri' do
+    pending
+  end
+
+  describe '#name' do
+    pending
+  end
+
+  describe '#summary' do
+    pending
+  end
+
+  describe '#subtitle' do
+    pending
+  end
+
+  describe '#link_alternate' do
+    pending
+  end
+
+  describe '#link_self' do
+    pending
+  end
+
+  describe '#link_hub' do
+    pending
+  end
+
+  describe '#link_salmon' do
+    pending
+  end
+
+  describe '#portable_contact' do
+    pending
+  end
+
+  describe '#in_reply_to' do
+    pending
+  end
+
+  describe '#link_mention' do
+    pending
+  end
+
+  describe '#disambiguate_uri' do
+    pending
+  end
+
+  describe '#disambiguate_url' do
+    pending
+  end
+
+  describe '#include_author' do
+    pending
+  end
+
+  describe '#include_entry' do
+    pending
+  end
 end

@@ -1,27 +1,44 @@
 require 'rails_helper'
 
 RSpec.describe Follow, type: :model do
+  let(:alice) { Fabricate(:account, username: 'alice') }
+  let(:bob)   { Fabricate(:account, username: 'bob') }
+
+  subject { Follow.new(account: alice, target_account: bob) }
+
   describe '#verb' do
-    pending
+    it 'is follow' do
+      expect(subject.verb).to be :follow
+    end
   end
 
   describe '#title' do
-    pending
+    it 'describes the follow' do
+      expect(subject.title).to eql 'alice started following bob'
+    end
   end
 
   describe '#content' do
-    pending
+    it 'is the same as the title' do
+      expect(subject.content).to eql subject.title
+    end
   end
 
   describe '#object_type' do
-    pending
+    it 'is a person' do
+      expect(subject.object_type).to be :person
+    end
   end
 
   describe '#target' do
-    pending
+    it 'is the person being followed' do
+      expect(subject.target).to eq bob
+    end
   end
 
   describe '#mentions' do
-    pending
+    it 'is empty' do
+      expect(subject.mentions).to be_empty
+    end
   end
 end

@@ -6,8 +6,8 @@ module ApplicationHelper
   end
 
   def unique_tag_to_local_id(tag, expected_type)
-    Regexp.new("objectId=([\d]+):objectType=#{expected_type}").match(tag)
-    return match[1] unless match.nil?
+    matches = Regexp.new("objectId=([\\d]+):objectType=#{expected_type}").match(tag)
+    return matches[1] unless matches.nil?
   end
 
   def local_id?(id)

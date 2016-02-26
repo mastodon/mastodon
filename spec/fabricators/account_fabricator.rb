@@ -1,0 +1,3 @@
+Fabricator(:account) do
+
+end
