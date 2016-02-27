@@ -4,9 +4,13 @@
       %i.fa.fa-retweet
       Shared by
       = link_to display_name(status.account), profile_url(status.account), class: 'name'
-  .header
-    = render partial: 'status_header', locals: { status: status.reblog? ? status.reblog : status }
-  .content
-    = status.content
-  .counters
-    = render partial: 'status_footer', locals: { status: status.reblog? ? status.reblog : status }
+  .entry-container
+    .avatar
+      = image_tag status.reblog? ? status.reblog.account.avatar.url(:small) : status.account.avatar.url(:small)
+    .container
+      .header
+        = render partial: 'status_header', locals: { status: status.reblog? ? status.reblog : status }
+      .content
+        = status.content
+      .counters
+        = render partial: 'status_footer', locals: { status: status.reblog? ? status.reblog : status }

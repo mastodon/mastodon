@@ -3,7 +3,8 @@ class Account < ActiveRecord::Base
   has_one :user, inverse_of: :account
 
   # Avatar upload
-  has_attached_file :avatar, styles: { large: '300x300#', medium: '96x96#', small: '48x48#' }
+  attr_reader :avatar_remote_url
+  has_attached_file :avatar, styles: { large: '300x300#', medium: '96x96#', small: '48x48#' }, default_url: 'avatars/missing.png'
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
 
   # Timelines
@@ -62,6 +63,11 @@ class Account < ActiveRecord::Base
 
   def subscription(webhook_url)
     @subscription ||= OStatus2::Subscription.new(self.remote_url, secret: self.secret, token: self.verify_token, webhook: webhook_url, hub: self.hub_url)
+  end
+
+  def avatar_remote_url=(url)
+    self.avatar = URI.parse(url)
+    @avatar_remote_url = url
   end
 
   before_create do

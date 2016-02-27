@@ -1,8 +1,10 @@
-%div.card
-  %h1.name
-    = @account.display_name.blank? ? @account.username : @account.display_name
-    %small= "@#{@account.username}"
+.card
+  .avatar= image_tag @account.avatar.url(:medium)
+  .bio
+    %h1.name
+      = @account.display_name.blank? ? @account.username : @account.display_name
+      %small= "@#{@account.username}"
 
-%div.activity-stream
+.activity-stream
   - @account.statuses.order('id desc').each do |status|
     = render partial: 'status', locals: { status: status }

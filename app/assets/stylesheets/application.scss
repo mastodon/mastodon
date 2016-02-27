@@ -14,11 +14,24 @@ body {
   font-size: 13px;
   line-height: 18px;
   color: $quaternary-color;
+
+  &::before {
+    display: block;
+    content: "";
+    position: absolute;
+    background: $secondary-color;
+    width: 100%;
+    height: 200px;
+    z-index: -1;
+    top: 0;
+    left: 0;
+  }
 }
 
 .container {
   width: 800px;
   margin: 0 auto;
+  z-index: 2;
 }
 
 .footer {

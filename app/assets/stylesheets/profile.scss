@@ -1,5 +1,13 @@
 .card {
-  padding-top: 20px;
+  margin-top: 40px;
+  display: flex;
+  background: darken($background-color, 10%);
+  border-bottom: 1px solid darken($background-color, 15%);
+  box-shadow: 4px 3px 0 rgba(0, 0, 0, 0.1);
+
+  .bio {
+    flex-grow: 1;
+  }
 
   .name {
     font-size: 24px;
@@ -12,24 +20,18 @@
     }
   }
 
-  .bio {
-
-  }
-
-  .counter {
-    display: block;
+  .avatar {
+    width: 96px;
     float: left;
-    width: 100px;
-    text-align: center;
-    border: 1px solid #A593E0;
-    color: #A593E0;
-    border-radius: 5px;
-    padding: 3px 0;
-    margin-right: 3px;
+    margin-right: 10px;
+    padding: 10px;
+    margin-top: -30px;
 
-    .num {
+    img {
+      width: 94px;
+      height: 94px;
       display: block;
-      font-size: 24px;
+      border: 2px solid $background-color;
     }
   }
 }
@@ -52,11 +54,33 @@
     }
   }
 
+  .entry-container {
+    display: flex;
+  }
+
+  .avatar {
+    width: 48px;
+    padding: 10px;
+    padding-left: 8px;
+    padding-right: 0;
+    padding-top: 12px;
+
+    img {
+      width: 48px;
+      height: 48px;
+      display: block;
+      box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.1);
+    }
+  }
+
+  .container {
+    flex-grow: 1;
+  }
+
   .header {
     margin-bottom: 10px;
     padding: 10px;
     padding-bottom: 0;
-    padding-left: 8px;
 
     .name {
       text-decoration: none;
@@ -79,6 +103,7 @@
     color: $tertiary-color;
     padding: 5px 10px;
     padding-left: 8px;
+    clear: both;
 
     .name {
       color: $tertiary-color;
@@ -112,7 +137,6 @@
     cursor: default;
     padding: 10px;
     padding-top: 0;
-    padding-left: 8px;
 
     .counter {
       display: inline-block;
