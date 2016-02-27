@@ -1,0 +1,39 @@
+$primary-color: #ff7473;
+$secondary-color: #ffc952;
+$tertiary-color: #47b8e0;
+$quaternary-color: #34314c;
+$background-color: #fff;
+
+@import url("https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic");
+@import "font-awesome-sprockets";
+@import "font-awesome";
+
+body {
+  font-family: 'Noto Sans', sans-serif;
+  background: $secondary-color;
+  font-size: 13px;
+  line-height: 18px;
+  color: $quaternary-color;
+}
+
+.container {
+  width: 800px;
+  margin: 0 auto;
+}
+
+.footer {
+  text-align: center;
+  padding: 100px 0;
+  font-size: 12px;
+  color: lighten($quaternary-color, 15%);
+
+  .mastodon-link {
+    color: $quaternary-color;
+    text-decoration: none;
+    font-weight: bold;
+  }
+}
+
+
+@import 'home';
+@import 'profile';

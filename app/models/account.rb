@@ -2,6 +2,10 @@ class Account < ActiveRecord::Base
   # Local users
   has_one :user, inverse_of: :account
 
+  # Avatar upload
+  has_attached_file :avatar, styles: { large: '300x300#', medium: '96x96#', small: '48x48#' }
+  validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
+
   # Timelines
   has_many :stream_entries, inverse_of: :account
   has_many :statuses, inverse_of: :account

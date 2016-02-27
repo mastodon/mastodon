@@ -1,4 +1,4 @@
-.counter.counter-retweets
+.counter.counter-reblogs
   %i.fa.fa-retweet
   %span.num= status.reblogs.count
 
@@ -7,4 +7,4 @@
   %span.num= status.favourites.count
 
 - if status.reply?
-  = link_to 'View conversation', status.thread.local? ? status_url(name: status.thread.account.username, id: status.thread.id) : status.thread.url, class: 'conversation-link'
+  = link_to 'View conversation', status_url(status.thread), class: 'conversation-link'

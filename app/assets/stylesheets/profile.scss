@@ -1,20 +1,3 @@
-@import url(https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic);
-
-@import "font-awesome-sprockets";
-@import "font-awesome";
-
-body {
-  font-family: 'Noto Sans', sans-serif;
-  background: #E0E3DA;
-  font-size: 13px;
-  line-height: 18px;
-}
-
-.container {
-  width: 800px;
-  margin: 0 auto;
-}
-
 .card {
   padding-top: 20px;
 
@@ -25,7 +8,7 @@ body {
     small {
       display: block;
       font-size: 14px;
-      color: #566270;
+      color: lighten($quaternary-color, 15%);
     }
   }
 
@@ -56,12 +39,12 @@ body {
   box-shadow: 4px 3px 0 rgba(0, 0, 0, 0.1);
 
   .entry {
-    border-bottom: 1px solid #E0E3DA;
-    background: #FFFFF3;
-    border-left: 2px solid #A593E0;
+    border-bottom: 1px solid darken($background-color, 10%);
+    background: $background-color;
+    border-left: 2px solid $primary-color;
 
     &.entry-reblog {
-      border-left: 2px solid #566270;
+      border-left: 2px solid $tertiary-color;
     }
 
     &:last-child {
@@ -77,10 +60,10 @@ body {
 
     .name {
       text-decoration: none;
-      color: #566270;
+      color: lighten($quaternary-color, 15%);
 
       strong {
-        color: #000;
+        color: $quaternary-color;
       }
 
       &:hover {
@@ -92,13 +75,13 @@ body {
   }
 
   .pre-header {
-    border-bottom: 1px solid #E0E3DA;
-    color: #566270;
+    border-bottom: 1px solid darken($background-color, 10%);
+    color: $tertiary-color;
     padding: 5px 10px;
     padding-left: 8px;
 
     .name {
-      color: #566270;
+      color: $tertiary-color;
       font-weight: bold;
       text-decoration: none;
 
@@ -116,7 +99,7 @@ body {
 
   .time {
     text-decoration: none;
-    color: #566270;
+    color: lighten($quaternary-color, 15%);
 
     &:hover {
       text-decoration: underline;
@@ -125,7 +108,7 @@ body {
 
   .counters {
     margin-top: 15px;
-    color: #566270;
+    color: lighten($quaternary-color, 15%);
     cursor: default;
     padding: 10px;
     padding-top: 0;
@@ -134,10 +117,11 @@ body {
     .counter {
       display: inline-block;
       margin-right: 10px;
+      color: lighten($quaternary-color, 50%);
     }
 
     .conversation-link {
-      color: #A593E0;
+      color: $primary-color;
       text-decoration: underline;
       float: right;
     }
