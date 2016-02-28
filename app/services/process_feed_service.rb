@@ -5,6 +5,10 @@ class ProcessFeedService < BaseService
   def call(body, account)
     xml = Nokogiri::XML(body)
 
+    unless xml.at_xpath('/xmlns:feed').nil?
+      update_remote_profile_service.(xml.at_xpath('/xmlns:feed/xmlns:author'), account)
+    end
+
     xml.xpath('//xmlns:entry').each do |entry|
       next unless [:note, :comment, :activity].includes? object_type(entry)
 
@@ -125,5 +129,9 @@ class ProcessFeedService < BaseService
 
   def process_mentions_service
     @process_mentions_service ||= ProcessMentionsService.new
+  end
+
+  def update_remote_profile_service
+    @update_remote_profile_service ||= UpdateRemoteProfileService.new
   end
 end

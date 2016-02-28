@@ -100,7 +100,7 @@ module AtomHelper
   def disambiguate_uri(target)
     if target.local?
       if target.object_type == :person
-        profile_url(name: target.username)
+        profile_url(target)
       else
         unique_tag(target.stream_entry.created_at, target.stream_entry.activity_id, target.stream_entry.activity_type)
       end
@@ -112,9 +112,9 @@ module AtomHelper
   def disambiguate_url(target)
     if target.local?
       if target.object_type == :person
-        profile_url(name: target.username)
+        profile_url(target)
       else
-        status_url(name: target.stream_entry.account.username, id: target.stream_entry.id)
+        status_url(target)
       end
     else
       target.url
@@ -125,12 +125,21 @@ module AtomHelper
     xml.link(rel: 'mentioned', href: disambiguate_uri(account))
   end
 
+  def link_avatar(xml, account)
+    xml.link(rel: 'avatar', type: account.avatar_content_type, href: asset_url(account.avatar.url(:large)))
+  end
+
+  def logo(xml, url)
+    xml.logo url
+  end
+
   def include_author(xml, account)
     object_type      xml, :person
-    uri              xml, profile_url(name: account.username)
+    uri              xml, profile_url(account)
     name             xml, account.username
     summary          xml, account.note
-    link_alternate   xml, profile_url(name: account.username)
+    link_alternate   xml, profile_url(account)
+    link_avatar      xml, account
     portable_contact xml, account
   end
 
@@ -160,6 +169,7 @@ module AtomHelper
         if stream_entry.target.object_type == :person
           summary          xml, stream_entry.target.content
           portable_contact xml, stream_entry.target
+          link_avatar      xml, stream_entry.target
         end
 
         # Statuses have content
@@ -177,6 +187,6 @@ module AtomHelper
   private
 
   def root_tag(xml, tag, &block)
-    xml.send(tag, { :xmlns => 'http://www.w3.org/2005/Atom', 'xmlns:thr' => 'http://purl.org/syndication/thread/1.0', 'xmlns:activity' => 'http://activitystrea.ms/spec/1.0/', 'xmlns:poco' => 'http://portablecontacts.net/spec/1.0' }, &block)
+    xml.send(tag, { :xmlns => 'http://www.w3.org/2005/Atom', 'xmlns:thr' => 'http://purl.org/syndication/thread/1.0', 'xmlns:activity' => 'http://activitystrea.ms/spec/1.0/', 'xmlns:poco' => 'http://portablecontacts.net/spec/1.0', 'xmlns:media' => 'http://purl.org/syndication/atommedia' }, &block)
   end
 end

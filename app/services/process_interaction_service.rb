@@ -19,6 +19,8 @@ class ProcessInteractionService < BaseService
     end
 
     if salmon.verify(envelope, account.keypair)
+      update_remote_profile_service.(xml.at_xpath('/xmlns:entry/xmlns:author'), account)
+
       case verb(xml)
       when :follow
         follow!(account, target_account)
@@ -85,5 +87,9 @@ class ProcessInteractionService < BaseService
 
   def process_feed_service
     @process_feed_service ||= ProcessFeedService.new
+  end
+
+  def update_remote_profile_service
+    @update_remote_profile_service ||= UpdateRemoteProfileService.new
   end
 end

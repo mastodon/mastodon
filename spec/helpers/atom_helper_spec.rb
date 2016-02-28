@@ -112,4 +112,12 @@ RSpec.describe AtomHelper, type: :helper do
   describe '#include_entry' do
     pending
   end
+
+  describe '#link_avatar' do
+    pending
+  end
+
+  describe '#logo' do
+    pending
+  end
 end

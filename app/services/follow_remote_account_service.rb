@@ -58,16 +58,7 @@ class FollowRemoteAccountService < BaseService
 
   def get_profile(xml, account)
     author = xml.at_xpath('/xmlns:feed/xmlns:author')
-
-    if author.at_xpath('./poco:displayName').nil?
-      account.display_name = account.username
-    else
-      account.display_name = author.at_xpath('./poco:displayName').content
-    end
-
-    unless author.at_xpath('./poco:note').nil?
-      account.note = author.at_xpath('./poco:note').content
-    end
+    update_remote_profile_service.(author, account)
   end
 
   def magic_key_to_pem(magic_key)
@@ -79,6 +70,10 @@ class FollowRemoteAccountService < BaseService
     key.e = exponent
 
     key.to_pem
+  end
+
+  def update_remote_profile_service
+    @update_remote_profile_service ||= UpdateRemoteProfileService.new
   end
 
   def http_client

@@ -7,4 +7,4 @@
   %span.num= status.favourites.count
 
 - if status.reply?
-  = link_to 'View conversation', status_url(status.thread), class: 'conversation-link'
+  = link_to "In response to #{status.thread.account.acct}", status_url(status.thread), class: 'conversation-link'
