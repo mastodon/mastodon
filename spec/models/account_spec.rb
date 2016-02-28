@@ -107,4 +107,8 @@ RSpec.describe Account, type: :model do
       expect(subject.content).to eql subject.note
     end
   end
+
+  describe '#ping!' do
+    pending
+  end
 end

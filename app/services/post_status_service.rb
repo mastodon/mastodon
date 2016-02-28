@@ -7,6 +7,7 @@ class PostStatusService < BaseService
   def call(account, text, in_reply_to = nil)
     status = account.statuses.create!(text: text, thread: in_reply_to)
     process_mentions_service.(status)
+    account.ping!(atom_user_stream_url(id: account.id), HUB_URL)
     status
   end
 

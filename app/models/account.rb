@@ -65,6 +65,11 @@ class Account < ActiveRecord::Base
     @subscription ||= OStatus2::Subscription.new(self.remote_url, secret: self.secret, token: self.verify_token, webhook: webhook_url, hub: self.hub_url)
   end
 
+  def ping!(atom_url, hubs)
+    return unless local?
+    OStatus2::Publication.new(atom_url, hubs).publish
+  end
+
   def avatar_remote_url=(url)
     self.avatar = URI.parse(url)
     @avatar_remote_url = url
