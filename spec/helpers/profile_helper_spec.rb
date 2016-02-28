@@ -5,14 +5,6 @@ RSpec.describe ProfileHelper, type: :helper do
     pending
   end
 
-  describe '#profile_url' do
-    pending
-  end
-
-  describe '#status_url' do
-    pending
-  end
-
   describe '#avatar_for_status_url' do
     pending
   end

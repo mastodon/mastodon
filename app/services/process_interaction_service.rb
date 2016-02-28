@@ -43,7 +43,7 @@ class ProcessInteractionService < BaseService
   end
 
   def mentions_account?(xml, account)
-    xml.xpath('/xmlns:entry/xmlns:link[@rel="mentioned"]').each { |mention_link| return true if mention_link.attribute('ref') == profile_url(name: account.username) }
+    xml.xpath('/xmlns:entry/xmlns:link[@rel="mentioned"]').each { |mention_link| return true if mention_link.attribute('href').value == profile_url(account) }
     false
   end
 

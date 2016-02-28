@@ -5,7 +5,7 @@ class SendInteractionService < BaseService
   # @param [StreamEntry] stream_entry
   # @param [Account] target_account
   def call(stream_entry, target_account)
-    envelope = salmon.pack(entry_xml(stream_entry), target_account.keypair)
+    envelope = salmon.pack(entry_xml(stream_entry), stream_entry.account.keypair)
     salmon.post(target_account.salmon_url, envelope)
   end
 

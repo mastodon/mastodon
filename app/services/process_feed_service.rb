@@ -10,7 +10,7 @@ class ProcessFeedService < BaseService
     end
 
     xml.xpath('//xmlns:entry').each do |entry|
-      next unless [:note, :comment, :activity].includes? object_type(entry)
+      next unless [:note, :comment, :activity].include? object_type(entry)
 
       status = Status.find_by(uri: activity_id(entry))
 
@@ -88,7 +88,7 @@ class ProcessFeedService < BaseService
   end
 
   def thread_id(xml)
-    xml.at_xpath('./thr:in-reply-to-id').attribute('ref').value
+    xml.at_xpath('./thr:in-reply-to').attribute('ref').value
   rescue
     nil
   end

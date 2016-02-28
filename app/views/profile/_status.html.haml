@@ -14,7 +14,7 @@
       .header
         = render partial: 'status_header', locals: { status: status.reblog? ? status.reblog : status }
       .content
-        = status.content
+        = status.content.html_safe
       .counters
         = render partial: 'status_footer', locals: { status: status.reblog? ? status.reblog : status }
 

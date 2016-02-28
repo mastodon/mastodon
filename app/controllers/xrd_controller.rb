@@ -19,7 +19,12 @@ class XrdController < ApplicationController
   end
 
   def username_from_resource
-    params[:resource].split('@').first.gsub('acct:', '')
+    if params[:resource].start_with?('acct:')
+      params[:resource].split('@').first.gsub('acct:', '')
+    else
+      url = Addressable::URI.parse(params[:resource])
+      url.path.gsub('/users/', '')
+    end
   end
 
   def pem_to_magic_key(public_key)

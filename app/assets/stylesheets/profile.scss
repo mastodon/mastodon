@@ -56,6 +56,13 @@
       background: darken($background-color, 5%);
     }
 
+    &.entry-follow, &.entry-favourite {
+      .content {
+        padding-top: 10px;
+        padding-bottom: 10px;
+      }
+    }
+
     &:last-child {
       border-bottom: 0;
     }
@@ -127,6 +134,15 @@
     font-size: 16px;
     padding: 0 10px;
     padding-left: 8px;
+
+    a {
+      color: $primary-color;
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
   }
 
   .time {

@@ -3,14 +3,6 @@ module ProfileHelper
     account.display_name.blank? ? account.username : account.display_name
   end
 
-  def profile_url(account)
-    account.local? ? super(name: account.username) : account.url
-  end
-
-  def status_url(status)
-    status.local? ? super(name: status.account.username, id: status.stream_entry.id) : status.url
-  end
-
   def avatar_for_status_url(status)
     status.reblog? ? status.reblog.account.avatar.url(:small) : status.account.avatar.url(:small)
   end

@@ -34,4 +34,12 @@ RSpec.describe ApplicationHelper, type: :helper do
       expect(helper.add_base_url_prefix('test')).to eql "#{root_url}api/test"
     end
   end
+
+  describe '#profile_url' do
+    pending
+  end
+
+  describe '#status_url' do
+    pending
+  end
 end
