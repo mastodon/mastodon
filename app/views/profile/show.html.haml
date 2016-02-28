@@ -1,3 +1,7 @@
+- content_for :header_tags do
+  %link{ rel: 'salmon', href: salmon_url(@account) }/
+  %link{ rel: 'alternate', type: 'application/atom+xml', href: atom_user_stream_url(id: @account.id) }/
+
 .card
   .avatar= image_tag @account.avatar.url(:medium)
   .bio

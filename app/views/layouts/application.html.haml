@@ -1,4 +1,4 @@
-!!!
+!!! 5
 %html
   %head
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
@@ -6,6 +6,7 @@
     = stylesheet_link_tag    'application', media: 'all'
     = javascript_include_tag 'application'
     = csrf_meta_tags
+    = yield :header_tags
   %body
     .container
       = yield
