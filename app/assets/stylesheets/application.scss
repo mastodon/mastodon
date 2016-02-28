@@ -3,6 +3,9 @@ $secondary-color: #ffc952;
 $tertiary-color: #47b8e0;
 $quaternary-color: #34314c;
 $background-color: #fff;
+$darker-background-color: #e3dede;
+$text-color: #333030;
+$lighter-text-color: #8b8687;
 
 @import url("https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic");
 @import "font-awesome-sprockets";
@@ -10,35 +13,23 @@ $background-color: #fff;
 
 body {
   font-family: 'Noto Sans', sans-serif;
-  background: $secondary-color;
+  background: $background-color image-url('background-pattern.png');
   font-size: 13px;
   line-height: 18px;
-  color: $quaternary-color;
-
-  &::before {
-    display: block;
-    content: "";
-    position: absolute;
-    background: $secondary-color;
-    width: 100%;
-    height: 200px;
-    z-index: -1;
-    top: 0;
-    left: 0;
-  }
+  color: $text-color;
 }
 
 .container {
   width: 800px;
   margin: 0 auto;
-  z-index: 2;
+  margin-top: 40px;
 }
 
 .footer {
   text-align: center;
   padding: 100px 0;
   font-size: 12px;
-  color: lighten($quaternary-color, 15%);
+  color: $text-color;
 
   .mastodon-link {
     color: $quaternary-color;

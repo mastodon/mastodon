@@ -4,5 +4,4 @@
 
 = link_to status_url(status), class: 'time' do
   %span{ title: status.created_at }
-    = time_ago_in_words(status.created_at)
-    ago
+    = relative_time(status.created_at)

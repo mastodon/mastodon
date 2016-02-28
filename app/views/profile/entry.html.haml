@@ -1,2 +1,2 @@
 %div.activity-stream
-  = render partial: @type, locals: { @type.to_sym => @entry.activity }
+  = render partial: @type, locals: { @type.to_sym => @entry.activity, include_threads: true, is_predecessor: false, is_successor: false }

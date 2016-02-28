@@ -7,4 +7,4 @@
 
 .activity-stream
   - @account.statuses.order('id desc').each do |status|
-    = render partial: 'status', locals: { status: status }
+    = render partial: 'status', locals: { status: status, include_threads: false, is_successor: false, is_predecessor: false }

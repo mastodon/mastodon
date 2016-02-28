@@ -1,8 +1,7 @@
 .card {
-  margin-top: 40px;
   display: flex;
-  background: darken($background-color, 10%);
-  border-bottom: 1px solid darken($background-color, 15%);
+  background: $darker-background-color;
+  border: 1px solid darken($darker-background-color, 15%);
   box-shadow: 4px 3px 0 rgba(0, 0, 0, 0.1);
 
   .bio {
@@ -12,11 +11,12 @@
   .name {
     font-size: 24px;
     line-height: 18px * 1.5;
+    color: $text-color;
 
     small {
       display: block;
       font-size: 14px;
-      color: lighten($quaternary-color, 15%);
+      color: $lighter-text-color;
     }
   }
 
@@ -25,13 +25,15 @@
     float: left;
     margin-right: 10px;
     padding: 10px;
+    padding-left: 9px;
     margin-top: -30px;
 
     img {
       width: 94px;
       height: 94px;
       display: block;
-      border: 2px solid $background-color;
+      border: 2px solid $lighter-text-color;
+      border-radius: 5px;
     }
   }
 }
@@ -49,12 +51,17 @@
       border-left: 2px solid $tertiary-color;
     }
 
+    &.entry-predecessor, &.entry-successor {
+      border-left: 2px solid $lighter-text-color;
+      background: darken($background-color, 5%);
+    }
+
     &:last-child {
       border-bottom: 0;
     }
   }
 
-  .entry-container {
+  .entry__container {
     display: flex;
   }
 
@@ -69,11 +76,11 @@
       width: 48px;
       height: 48px;
       display: block;
-      box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.1);
+      border-radius: 5px;
     }
   }
 
-  .container {
+  .entry__container__container {
     flex-grow: 1;
   }
 
@@ -84,10 +91,10 @@
 
     .name {
       text-decoration: none;
-      color: lighten($quaternary-color, 15%);
+      color: $lighter-text-color;
 
       strong {
-        color: $quaternary-color;
+        color: $text-color;
       }
 
       &:hover {
@@ -124,7 +131,7 @@
 
   .time {
     text-decoration: none;
-    color: lighten($quaternary-color, 15%);
+    color: $lighter-text-color;
 
     &:hover {
       text-decoration: underline;
@@ -133,7 +140,7 @@
 
   .counters {
     margin-top: 15px;
-    color: lighten($quaternary-color, 15%);
+    color: $lighter-text-color;
     cursor: default;
     padding: 10px;
     padding-top: 0;
@@ -141,7 +148,7 @@
     .counter {
       display: inline-block;
       margin-right: 10px;
-      color: lighten($quaternary-color, 50%);
+      color: $lighter-text-color;
     }
 
     .conversation-link {
