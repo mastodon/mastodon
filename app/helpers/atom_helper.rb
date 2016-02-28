@@ -1,6 +1,6 @@
 module AtomHelper
   def stream_updated_at
-    @account.stream_entries.last ? @account.stream_entries.last.created_at : @account.updated_at
+    @account.stream_entries.last ? (@account.updated_at > @account.stream_entries.last.created_at ? @account.updated_at : @account.stream_entries.last.created_at) : @account.updated_at
   end
 
   def entry(xml, is_root, &block)
@@ -126,7 +126,9 @@ module AtomHelper
   end
 
   def link_avatar(xml, account)
-    xml.link(rel: 'avatar', type: account.avatar_content_type, href: asset_url(account.avatar.url(:large)))
+    xml.link('rel' => 'avatar', 'type' => account.avatar_content_type, 'media:width' => '300', 'media:height' =>'300', 'href' => asset_url(account.avatar.url(:large)))
+    xml.link('rel' => 'avatar', 'type' => account.avatar_content_type, 'media:width' => '96', 'media:height' =>'96', 'href' => asset_url(account.avatar.url(:medium)))
+    xml.link('rel' => 'avatar', 'type' => account.avatar_content_type, 'media:width' => '48', 'media:height' =>'48', 'href' => asset_url(account.avatar.url(:small)))
   end
 
   def logo(xml, url)

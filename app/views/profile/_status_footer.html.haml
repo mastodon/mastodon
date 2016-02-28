@@ -1,10 +1,2 @@
-.counter.counter-reblogs
-  %i.fa.fa-retweet
-  %span.num= status.reblogs.count
-
-.counter.counter-favourites
-  %i.fa.fa-star
-  %span.num= status.favourites.count
-
 - if status.reply?
   = link_to "In response to #{status.thread.account.acct}", status_url(status.thread), class: 'conversation-link'

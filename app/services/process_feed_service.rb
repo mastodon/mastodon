@@ -5,10 +5,12 @@ class ProcessFeedService < BaseService
   def call(body, account)
     xml = Nokogiri::XML(body)
 
+    # If we got a full feed, make sure the account's profile is up to date
     unless xml.at_xpath('/xmlns:feed').nil?
       update_remote_profile_service.(xml.at_xpath('/xmlns:feed/xmlns:author'), account)
     end
 
+    # Process entries
     xml.xpath('//xmlns:entry').each do |entry|
       next unless [:note, :comment, :activity].include? object_type(entry)
 
@@ -16,7 +18,7 @@ class ProcessFeedService < BaseService
 
       next unless status.nil?
 
-      status = Status.new(uri: activity_id(entry), account: account, text: content(entry), created_at: published(entry), updated_at: updated(entry))
+      status = Status.new(uri: activity_id(entry), url: activity_link(entry), account: account, text: content(entry), created_at: published(entry), updated_at: updated(entry))
 
       if object_type(entry) == :comment
         add_reply!(entry, status)
@@ -26,7 +28,25 @@ class ProcessFeedService < BaseService
         add_post!(entry, status)
       end
 
-      process_mentions_service.(status) unless status.new_record?
+      # If we added a status, go through accounts it mentions and create respective relations
+      unless status.new_record?
+        entry.xpath('./xmlns:link[@rel="mentioned"]').each do |mention_link|
+          # Here we have to do a reverse lookup of local accounts by their URL!
+          # It's not pretty at all! I really wish all these protocols sticked to
+          # using acct:username@domain only! It would make things so much easier
+          # and tidier
+
+          href = Addressable::URI.parse(mention_link.attribute('href').value)
+
+          if href.host == LOCAL_DOMAIN
+            mentioned_account = Account.find_by(username: href.path.gsub('/users/', ''), domain: nil)
+
+            unless mentioned_account.nil?
+              mentioned_account.mentions.first_or_create(status: status)
+            end
+          end
+        end
+      end
     end
   end
 
@@ -103,12 +123,18 @@ class ProcessFeedService < BaseService
     xml.at_xpath('./xmlns:id').content
   end
 
+  def activity_link(xml)
+    xml.at_xpath('./xmlns:link[@rel="alternate"]').attribute('href').value
+  rescue
+    ''
+  end
+
   def target_content(xml)
     xml.at_xpath('.//activity:object/xmlns:content').content
   end
 
   def target_url(xml)
-    xml.at_xpath('.//activity:object/xmlns:link[@rel=alternate]').attribute('href').value
+    xml.at_xpath('.//activity:object/xmlns:link[@rel="alternate"]').attribute('href').value
   end
 
   def object_type(xml)
@@ -125,10 +151,6 @@ class ProcessFeedService < BaseService
 
   def follow_remote_account_service
     @follow_remote_account_service ||= FollowRemoteAccountService.new
-  end
-
-  def process_mentions_service
-    @process_mentions_service ||= ProcessMentionsService.new
   end
 
   def update_remote_profile_service

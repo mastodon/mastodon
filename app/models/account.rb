@@ -11,6 +11,7 @@ class Account < ActiveRecord::Base
   has_many :stream_entries, inverse_of: :account
   has_many :statuses, inverse_of: :account
   has_many :favourites, inverse_of: :account
+  has_many :mentions, inverse_of: :account
 
   # Follow relations
   has_many :active_relationships,  class_name: 'Follow', foreign_key: 'account_id',        dependent: :destroy
@@ -77,7 +78,7 @@ class Account < ActiveRecord::Base
 
   before_create do
     if local?
-      keypair = OpenSSL::PKey::RSA.new(Rails.env.test? ? 48 : 2048)
+      keypair = OpenSSL::PKey::RSA.new(Rails.env.test? ? 1024 : 2048)
       self.private_key = keypair.to_pem
       self.public_key  = keypair.public_key.to_pem
     end

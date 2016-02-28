@@ -4,15 +4,17 @@ class ProcessMentionsService < BaseService
   # remote users
   # @param [Status] status
   def call(status)
-    status.text.scan(Account::MENTION_RE).each do |match|
-      username, domain = match.first.split('@')
-      local_account = Account.find_by(username: username, domain: domain)
+    return unless status.local?
 
-      if local_account.nil?
-        local_account = follow_remote_account_service.("acct:#{match.first}")
+    status.text.scan(Account::MENTION_RE).each do |match|
+      username, domain  = match.first.split('@')
+      mentioned_account = Account.find_by(username: username, domain: domain)
+
+      if mentioned_account.nil?
+        mentioned_account = follow_remote_account_service.("acct:#{match.first}")
       end
 
-      local_account.mentions.first_or_create(status: status)
+      mentioned_account.mentions.first_or_create(status: status)
     end
 
     status.mentions.each do |mentioned_account|
