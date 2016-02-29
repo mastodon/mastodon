@@ -8,7 +8,7 @@ RSpec.describe ReblogService do
   subject { ReblogService.new }
 
   before do
-    stub_const('HUB_URL', 'http://hub.example.com')
+    Rails.configuration.x.hub_url = 'http://hub.example.com'
 
     stub_request(:post, 'http://hub.example.com')
     stub_request(:post, 'http://salmon.example.com')

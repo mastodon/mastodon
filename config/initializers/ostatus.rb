@@ -1,7 +1,7 @@
-LOCAL_DOMAIN       = ENV['LOCAL_DOMAIN'] || 'localhost'
-HUB_URL            = ENV['HUB_URL']      || 'https://pubsubhubbub.superfeedr.com'
-CANONICAL_PROTOCOL = ENV['LOCAL_HTTPS'] == 'true' ? 'https://' : 'http://'
-
 Rails.application.configure do
-  config.action_mailer.default_url_options = { host: LOCAL_DOMAIN, protocol: CANONICAL_PROTOCOL }
+  config.x.local_domain = ENV['LOCAL_DOMAIN'] || 'localhost'
+  config.x.hub_url      = ENV['HUB_URL']      || 'https://pubsubhubbub.superfeedr.com'
+  config.x.use_https    = ENV['LOCAL_HTTPS'] == 'true'
+
+  config.action_mailer.default_url_options = { host: config.x.local_domain, protocol: config.x.use_https ? 'https://' : 'http://' }
 end

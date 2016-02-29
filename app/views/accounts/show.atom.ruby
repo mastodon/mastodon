@@ -12,7 +12,7 @@ Nokogiri::XML::Builder.new do |xml|
 
     link_alternate xml, url_for_target(@account)
     link_self      xml, account_url(@account, format: 'atom')
-    link_hub       xml, HUB_URL
+    link_hub       xml, Rails.configuration.x.hub_url
     link_salmon    xml, api_salmon_url(@account.id)
 
     @account.stream_entries.order('id desc').each do |stream_entry|

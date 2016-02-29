@@ -38,7 +38,7 @@ class ProcessFeedService < BaseService
 
           href = Addressable::URI.parse(mention_link.attribute('href').value)
 
-          if href.host == LOCAL_DOMAIN
+          if href.host == Rails.configuration.x.local_domain
             mentioned_account = Account.find_by(username: href.path.gsub('/users/', ''), domain: nil)
 
             unless mentioned_account.nil?

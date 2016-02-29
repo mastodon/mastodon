@@ -7,7 +7,7 @@ class PostStatusService < BaseService
   def call(account, text, in_reply_to = nil)
     status = account.statuses.create!(text: text, thread: in_reply_to)
     process_mentions_service.(status)
-    account.ping!(account_url(account, format: 'atom'), [HUB_URL])
+    account.ping!(account_url(account, format: 'atom'), [Rails.configuration.x.hub_url])
     status
   end
 

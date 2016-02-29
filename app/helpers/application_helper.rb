@@ -1,6 +1,6 @@
 module ApplicationHelper
   def unique_tag(date, id, type)
-    "tag:#{LOCAL_DOMAIN},#{date.strftime('%Y-%m-%d')}:objectId=#{id}:objectType=#{type}"
+    "tag:#{Rails.configuration.x.local_domain},#{date.strftime('%Y-%m-%d')}:objectId=#{id}:objectType=#{type}"
   end
 
   def unique_tag_to_local_id(tag, expected_type)
@@ -9,6 +9,6 @@ module ApplicationHelper
   end
 
   def local_id?(id)
-    id.start_with?("tag:#{LOCAL_DOMAIN}")
+    id.start_with?("tag:#{Rails.configuration.x.local_domain}")
   end
 end

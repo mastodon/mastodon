@@ -5,7 +5,7 @@ class ReblogService < BaseService
   # @return [Status]
   def call(account, reblogged_status)
     reblog = account.statuses.create!(reblog: reblogged_status, text: '')
-    account.ping!(account_url(account, format: 'atom'), [HUB_URL])
+    account.ping!(account_url(account, format: 'atom'), [Rails.configuration.x.hub_url])
     return reblog if reblogged_status.local?
     send_interaction_service.(reblog.stream_entry, reblogged_status.account)
     reblog

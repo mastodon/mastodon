@@ -4,7 +4,7 @@ RSpec.describe ApplicationHelper, type: :helper do
   let(:local_domain) { 'local.tld' }
 
   before do
-    stub_const('LOCAL_DOMAIN', local_domain)
+    Rails.configuration.x.local_domain = local_domain
   end
 
   describe '#unique_tag' do

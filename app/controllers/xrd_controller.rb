@@ -7,7 +7,7 @@ class XrdController < ApplicationController
 
   def webfinger
     @account = Account.find_by!(username: username_from_resource, domain: nil)
-    @canonical_account_uri = "acct:#{@account.username}@#{LOCAL_DOMAIN}"
+    @canonical_account_uri = "acct:#{@account.username}@#{Rails.configuration.x.local_domain}"
     @magic_key = pem_to_magic_key(@account.keypair.public_key)
   rescue ActiveRecord::RecordNotFound
     render nothing: true, status: 404
