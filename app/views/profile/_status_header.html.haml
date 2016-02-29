@@ -1,7 +1,0 @@
-= link_to profile_url(status.account), class: 'name' do
-  %strong= display_name(status.account)
-  = "@#{status.account.acct}"
-
-= link_to status_url(status), class: 'time' do
-  %span{ title: status.created_at }
-    = relative_time(status.created_at)

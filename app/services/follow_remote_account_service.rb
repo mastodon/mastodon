@@ -38,7 +38,7 @@ class FollowRemoteAccountService < BaseService
       account.secret       = SecureRandom.hex
       account.verify_token = SecureRandom.hex
 
-      subscription = account.subscription(subscription_url(account))
+      subscription = account.subscription(api_subscription_url(account.id))
       subscription.subscribe
 
       account.save!

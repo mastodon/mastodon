@@ -9,7 +9,7 @@ class FollowService < BaseService
 
     follow = source_account.follow!(target_account)
     send_interaction_service.(follow.stream_entry, target_account)
-    source_account.ping!(atom_user_stream_url(id: source_account.id), [HUB_URL])
+    source_account.ping!(account_url(account, format: 'atom'), [HUB_URL])
   end
 
   private

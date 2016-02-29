@@ -76,6 +76,10 @@ class Account < ActiveRecord::Base
     @avatar_remote_url = url
   end
 
+  def to_param
+    self.username
+  end
+
   before_create do
     if local?
       keypair = OpenSSL::PKey::RSA.new(Rails.env.test? ? 1024 : 2048)

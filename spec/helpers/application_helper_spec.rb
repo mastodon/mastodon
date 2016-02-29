@@ -28,18 +28,4 @@ RSpec.describe ApplicationHelper, type: :helper do
       expect(helper.local_id?('tag:foreign.tld;objectId=12:objectType=Status')).to be false
     end
   end
-
-  describe '#add_base_url_prefix' do
-    it 'returns full API URL from base to suffix' do
-      expect(helper.add_base_url_prefix('test')).to eql "#{root_url}api/test"
-    end
-  end
-
-  describe '#profile_url' do
-    pending
-  end
-
-  describe '#status_url' do
-    pending
-  end
 end

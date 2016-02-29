@@ -1,59 +1,32 @@
-.card {
-  display: flex;
-  background: $darker-background-color;
-  border: 1px solid darken($darker-background-color, 15%);
-  box-shadow: 4px 3px 0 rgba(0, 0, 0, 0.1);
-
-  .bio {
-    flex-grow: 1;
-  }
-
-  .name {
-    font-size: 24px;
-    line-height: 18px * 1.5;
-    color: $text-color;
-
-    small {
-      display: block;
-      font-size: 14px;
-      color: $lighter-text-color;
-    }
-  }
-
-  .avatar {
-    width: 96px;
-    float: left;
-    margin-right: 10px;
-    padding: 10px;
-    padding-left: 9px;
-    margin-top: -30px;
-
-    img {
-      width: 94px;
-      height: 94px;
-      display: block;
-      border: 2px solid $lighter-text-color;
-      border-radius: 5px;
-    }
-  }
-}
 
 .activity-stream {
   clear: both;
   box-shadow: 4px 3px 0 rgba(0, 0, 0, 0.1);
 
   .entry {
-    border-bottom: 1px solid darken($background-color, 10%);
+    border-bottom: 1px solid $darker-background-color;
     background: $background-color;
     border-left: 2px solid $primary-color;
 
     &.entry-reblog {
       border-left: 2px solid $tertiary-color;
+
+      .content {
+        a {
+          color: $tertiary-color;
+        }
+      }
     }
 
     &.entry-predecessor, &.entry-successor {
       border-left: 2px solid $lighter-text-color;
       background: darken($background-color, 5%);
+
+      .content {
+        a {
+          color: $lighter-text-color;
+        }
+      }
     }
 
     &.entry-follow, &.entry-favourite {
@@ -92,9 +65,10 @@
   }
 
   .header {
-    margin-bottom: 10px;
+    margin-bottom: 5px;
     padding: 10px;
     padding-bottom: 0;
+    padding-left: 8px;
 
     .name {
       text-decoration: none;
@@ -113,7 +87,7 @@
   }
 
   .pre-header {
-    border-bottom: 1px solid darken($background-color, 10%);
+    border-bottom: 1px solid darken($background-color, 5%);
     color: $tertiary-color;
     padding: 5px 10px;
     padding-left: 8px;
@@ -131,9 +105,10 @@
   }
 
   .content {
-    font-size: 16px;
+    font-size: 14px;
     padding: 0 10px;
     padding-left: 8px;
+    padding-bottom: 25px;
 
     a {
       color: $primary-color;
@@ -151,26 +126,6 @@
 
     &:hover {
       text-decoration: underline;
-    }
-  }
-
-  .counters {
-    margin-top: 15px;
-    color: $lighter-text-color;
-    cursor: default;
-    padding: 10px;
-    padding-top: 0;
-
-    .counter {
-      display: inline-block;
-      margin-right: 10px;
-      color: $lighter-text-color;
-    }
-
-    .conversation-link {
-      color: $primary-color;
-      text-decoration: underline;
-      float: right;
     }
   }
 }

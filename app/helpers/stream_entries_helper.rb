@@ -1,4 +1,4 @@
-module ProfileHelper
+module StreamEntriesHelper
   def display_name(account)
     account.display_name.blank? ? account.username : account.display_name
   end

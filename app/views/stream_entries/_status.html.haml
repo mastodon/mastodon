@@ -6,17 +6,23 @@
     .pre-header
       %i.fa.fa-retweet
       Shared by
-      = link_to display_name(status.account), profile_url(status.account), class: 'name'
+      = link_to display_name(status.account), url_for_target(status.account), class: 'name'
+
   .entry__container
     .avatar
       = image_tag avatar_for_status_url(status)
+
     .entry__container__container
       .header
-        = render partial: 'status_header', locals: { status: status.reblog? ? status.reblog : status }
+        = link_to url_for_target(status.reblog? ? status.reblog.account : status.account), class: 'name' do
+          %strong= display_name(status.reblog? ? status.reblog.account : status.account)
+          = "@#{status.reblog? ? status.reblog.account.acct : status.account.acct}"
+        = link_to url_for_target(status.reblog? ? status.reblog : status), class: 'time' do
+          %span{ title: status.reblog? ? status.reblog.created_at : status.created_at }
+            = relative_time(status.reblog? ? status.reblog.created_at : status.created_at)
+
       .content
         = status.content.html_safe
-      .counters
-        = render partial: 'status_footer', locals: { status: status.reblog? ? status.reblog : status }
 
 - if include_threads
   - status.replies.each do |status|

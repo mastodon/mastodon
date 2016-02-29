@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe ProfileHelper, type: :helper do
+RSpec.describe StreamEntriesHelper, type: :helper do
   describe '#display_name' do
     pending
   end

@@ -1,0 +1,5 @@
+- content_for :header_tags do
+  %link{ rel: 'alternate', type: 'application/atom+xml', href: account_stream_entry_url(@account, @stream_entry, format: 'atom') }/
+
+.activity-stream
+  = render partial: @type, locals: { @type.to_sym => @stream_entry.activity, include_threads: true, is_predecessor: false, is_successor: false }

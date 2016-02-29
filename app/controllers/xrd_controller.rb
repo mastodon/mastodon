@@ -9,6 +9,8 @@ class XrdController < ApplicationController
     @account = Account.find_by!(username: username_from_resource, domain: nil)
     @canonical_account_uri = "acct:#{@account.username}@#{LOCAL_DOMAIN}"
     @magic_key = pem_to_magic_key(@account.keypair.public_key)
+  rescue ActiveRecord::RecordNotFound
+    render nothing: true, status: 404
   end
 
   private

@@ -1,4 +1,4 @@
-module AtomHelper
+module AtomBuilderHelper
   def stream_updated_at
     @account.stream_entries.last ? (@account.updated_at > @account.stream_entries.last.created_at ? @account.updated_at : @account.stream_entries.last.created_at) : @account.updated_at
   end
@@ -97,10 +97,10 @@ module AtomHelper
     xml['thr'].send('in-reply-to', { ref: uri, href: url, type: 'text/html' })
   end
 
-  def disambiguate_uri(target)
+  def uri_for_target(target)
     if target.local?
       if target.object_type == :person
-        profile_url(target)
+        account_url(target)
       else
         unique_tag(target.stream_entry.created_at, target.stream_entry.activity_id, target.stream_entry.activity_type)
       end
@@ -109,12 +109,12 @@ module AtomHelper
     end
   end
 
-  def disambiguate_url(target)
+  def url_for_target(target)
     if target.local?
       if target.object_type == :person
-        profile_url(target)
+        account_url(target)
       else
-        status_url(target)
+        account_stream_entry_url(target.account, target.stream_entry)
       end
     else
       target.url
@@ -122,13 +122,13 @@ module AtomHelper
   end
 
   def link_mention(xml, account)
-    xml.link(rel: 'mentioned', href: disambiguate_uri(account))
+    xml.link(rel: 'mentioned', href: uri_for_target(account))
   end
 
   def link_avatar(xml, account)
-    xml.link('rel' => 'avatar', 'type' => account.avatar_content_type, 'media:width' => '300', 'media:height' =>'300', 'href' => asset_url(account.avatar.url(:large)))
-    xml.link('rel' => 'avatar', 'type' => account.avatar_content_type, 'media:width' => '96', 'media:height' =>'96', 'href' => asset_url(account.avatar.url(:medium)))
-    xml.link('rel' => 'avatar', 'type' => account.avatar_content_type, 'media:width' => '48', 'media:height' =>'48', 'href' => asset_url(account.avatar.url(:small)))
+    xml.link('rel' => 'avatar', 'type' => account.avatar_content_type, 'media:width' => '300', 'media:height' =>'300', 'href' => asset_url(account.avatar.url(:large, false)))
+    xml.link('rel' => 'avatar', 'type' => account.avatar_content_type, 'media:width' => '96', 'media:height' =>'96', 'href' => asset_url(account.avatar.url(:medium, false)))
+    xml.link('rel' => 'avatar', 'type' => account.avatar_content_type, 'media:width' => '48', 'media:height' =>'48', 'href' => asset_url(account.avatar.url(:small, false)))
   end
 
   def logo(xml, url)
@@ -137,10 +137,10 @@ module AtomHelper
 
   def include_author(xml, account)
     object_type      xml, :person
-    uri              xml, profile_url(account)
+    uri              xml, url_for_target(account)
     name             xml, account.username
     summary          xml, account.note
-    link_alternate   xml, profile_url(account)
+    link_alternate   xml, url_for_target(account)
     link_avatar      xml, account
     portable_contact xml, account
   end
@@ -152,20 +152,20 @@ module AtomHelper
     title        xml, stream_entry.title
     content      xml, stream_entry.content
     verb         xml, stream_entry.verb
-    link_self    xml, atom_entry_url(id: stream_entry.id)
+    link_self    xml, account_stream_entry_url(stream_entry.account, stream_entry, format: 'atom')
     object_type  xml, stream_entry.object_type
 
     # Comments need thread element
     if stream_entry.threaded?
-      in_reply_to xml, disambiguate_uri(stream_entry.thread), disambiguate_url(stream_entry.thread)
+      in_reply_to xml, uri_for_target(stream_entry.thread), url_for_target(stream_entry.thread)
     end
 
     if stream_entry.targeted?
       target(xml) do
         object_type    xml, stream_entry.target.object_type
-        simple_id      xml, disambiguate_uri(stream_entry.target)
+        simple_id      xml, uri_for_target(stream_entry.target)
         title          xml, stream_entry.target.title
-        link_alternate xml, disambiguate_url(stream_entry.target)
+        link_alternate xml, url_for_target(stream_entry.target)
 
         # People have summary and portable contacts information
         if stream_entry.target.object_type == :person

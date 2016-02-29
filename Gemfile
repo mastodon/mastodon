@@ -22,6 +22,7 @@ gem 'grape-entity'
 gem 'hashie-forbidden_attributes'
 gem 'paranoia', '~> 2.0'
 gem 'paperclip', '~> 4.3'
+gem 'backport_new_renderer'
 
 gem 'http'
 gem 'addressable'

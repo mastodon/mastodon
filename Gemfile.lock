@@ -43,6 +43,8 @@ GEM
       descendants_tracker (~> 0.0.4)
       ice_nine (~> 0.11.0)
       thread_safe (~> 0.3, >= 0.3.1)
+    backport_new_renderer (1.0.0)
+      rails
     better_errors (2.1.1)
       coderay (>= 1.0.0)
       erubis (>= 2.6.6)
@@ -320,6 +322,7 @@ PLATFORMS
 
 DEPENDENCIES
   addressable
+  backport_new_renderer
   better_errors
   binding_of_caller
   coffee-rails (~> 4.1.0)

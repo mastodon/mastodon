@@ -1,6 +1,6 @@
 Nokogiri::XML::Builder.new do |xml|
   feed(xml) do
-    simple_id  xml, atom_user_stream_url(id: @account.id)
+    simple_id  xml, account_url(@account, format: 'atom')
     title      xml, @account.display_name
     subtitle   xml, @account.note
     updated_at xml, stream_updated_at
@@ -10,10 +10,10 @@ Nokogiri::XML::Builder.new do |xml|
       include_author xml, @account
     end
 
-    link_alternate xml, profile_url(@account)
-    link_self      xml, atom_user_stream_url(id: @account.id)
+    link_alternate xml, url_for_target(@account)
+    link_self      xml, account_url(@account, format: 'atom')
     link_hub       xml, HUB_URL
-    link_salmon    xml, salmon_url(@account)
+    link_salmon    xml, api_salmon_url(@account.id)
 
     @account.stream_entries.order('id desc').each do |stream_entry|
       entry(xml, false) do

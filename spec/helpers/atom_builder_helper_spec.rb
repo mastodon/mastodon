@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe AtomHelper, type: :helper do
+RSpec.describe AtomBuilderHelper, type: :helper do
   describe '#stream_updated_at' do
     pending
   end
