@@ -69,12 +69,13 @@ table {
 
 body {
   font-family: 'Roboto', sans-serif;
-  background: $background-color image-url('background-photo.jpeg');
+  background: #282c37 image-url('background-photo.jpeg');
   background-size: cover;
   font-size: 13px;
   line-height: 18px;
   font-weight: 400;
-  color: $text-color;
+  color: #fff;
+  padding-bottom: 140px;
 }
 
 .container {
@@ -218,6 +219,17 @@ body {
   li {
     display: inline-block;
     margin: 0 5px;
+  }
+}
+
+.footer {
+  text-align: center;
+  margin-top: 30px;
+
+  .domain {
+    font-size: 12px;
+    font-weight: 400;
+    font-family: 'Roboto Mono', monospace;
   }
 }
 

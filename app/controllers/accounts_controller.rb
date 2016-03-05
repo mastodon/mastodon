@@ -1,4 +1,6 @@
 class AccountsController < ApplicationController
+  layout 'public'
+
   before_action :set_account
   before_action :set_webfinger_header
 

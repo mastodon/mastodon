@@ -1,4 +1,6 @@
 class StreamEntriesController < ApplicationController
+  layout 'public'
+
   before_action :set_account
   before_action :set_stream_entry
 

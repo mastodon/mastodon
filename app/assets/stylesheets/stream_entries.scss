@@ -4,9 +4,9 @@
   box-shadow: 4px 3px 0 rgba(0, 0, 0, 0.1);
 
   .entry {
-    border-bottom: 1px solid $darker-background-color;
-    background: $background-color;
-    border-left: 2px solid $primary-color;
+    border-bottom: 1px solid #d9e1e8;
+    background: #fff;
+    border-left: 2px solid #fff;
 
     &.entry-reblog {
       border-left: 2px solid $tertiary-color;
@@ -19,12 +19,10 @@
     }
 
     &.entry-predecessor, &.entry-successor {
-      border-left: 2px solid $lighter-text-color;
-      background: darken($background-color, 5%);
 
       .content {
         a {
-          color: $lighter-text-color;
+
         }
       }
     }
@@ -38,6 +36,7 @@
 
     &:last-child {
       border-bottom: 0;
+      border-radius: 0 0 4px 0;
     }
   }
 
@@ -47,16 +46,13 @@
 
   .avatar {
     width: 48px;
-    padding: 10px;
-    padding-left: 8px;
-    padding-right: 0;
-    padding-top: 12px;
+    padding: 15px;
 
     img {
       width: 48px;
       height: 48px;
       display: block;
-      border-radius: 5px;
+      border-radius: 48px;
     }
   }
 
@@ -66,16 +62,17 @@
 
   .header {
     margin-bottom: 5px;
-    padding: 10px;
+    padding: 15px;
     padding-bottom: 0;
     padding-left: 8px;
 
     .name {
       text-decoration: none;
-      color: $lighter-text-color;
+      color: #9baec8;
 
       strong {
-        color: $text-color;
+        color: #282c37;
+        font-weight: 500;
       }
 
       &:hover {
@@ -87,15 +84,15 @@
   }
 
   .pre-header {
-    border-bottom: 1px solid darken($background-color, 5%);
-    color: $tertiary-color;
+    border-bottom: 1px solid #d9e1e8;
+    color: #2b90d9;
     padding: 5px 10px;
     padding-left: 8px;
     clear: both;
 
     .name {
-      color: $tertiary-color;
-      font-weight: bold;
+      color: #2b90d9;
+      font-weight: 500;
       text-decoration: none;
 
       &:hover {
@@ -109,9 +106,10 @@
     padding: 0 10px;
     padding-left: 8px;
     padding-bottom: 25px;
+    color: #282c37;
 
     a {
-      color: $primary-color;
+      color: #2b90d9;
       text-decoration: none;
 
       &:hover {
@@ -122,7 +120,7 @@
 
   .time {
     text-decoration: none;
-    color: $lighter-text-color;
+    color: #9baec8;
 
     &:hover {
       text-decoration: underline;

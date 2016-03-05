@@ -22,7 +22,7 @@
             = relative_time(status.reblog? ? status.reblog.created_at : status.created_at)
 
       .content
-        = status.content.html_safe
+        = status.reblog? ? (status.reblog.local? ? linkify(status.reblog) : status.reblog.content.html_safe) : (status.local? ? linkify(status) : status.content.html_safe)
 
 - if include_threads
   - status.replies.each do |status|

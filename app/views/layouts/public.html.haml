@@ -1,0 +1,6 @@
+- content_for :content do
+  = yield
+  .footer
+    .domain= Rails.configuration.x.local_domain
+
+= render template: "layouts/application"

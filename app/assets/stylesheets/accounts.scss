@@ -1,39 +1,40 @@
 .card {
-  display: flex;
-  background: $primary-color;
-  box-shadow: 4px 3px 0 rgba(0, 0, 0, 0.1);
+  background: $primary-color image-url('background-photo.jpeg');
+  background-size: cover;
+  padding: 80px 0;
+  padding-bottom: 30px;
+  border-radius: 4px 4px 0 0;
 
   .bio {
-    flex-grow: 1;
+
   }
 
   .name {
+    display: block;
     font-size: 20px;
     line-height: 18px * 1.5;
-    color: $quaternary-color;
+    color: #fff;
+    font-weight: 500;
+    text-align: center;
 
     small {
       display: block;
       font-size: 14px;
-      color: $quaternary-color;
+      color: #2b90d9;
+      font-weight: 400;
     }
   }
 
   .avatar {
-    width: 96px;
-    float: left;
-    margin-right: 10px;
-    padding: 10px;
-    padding-right: 0;
-    padding-left: 9px;
-    margin-top: -30px;
+    width: 120px;
+    margin: 0 auto;
+    margin-bottom: 15px;
 
     img {
-      width: 94px;
-      height: 94px;
+      width: 120px;
+      height: 120px;
       display: block;
-      border-radius: 5px;
-      box-shadow: 4px 3px 0 rgba(0, 0, 0, 0.1);
+      border-radius: 120px;
     }
   }
 }

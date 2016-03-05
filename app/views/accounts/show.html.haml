@@ -3,7 +3,7 @@
   %link{ rel: 'alternate', type: 'application/atom+xml', href: account_url(@account, format: 'atom') }/
 
 .card
-  .avatar= image_tag @account.avatar.url(:medium)
+  .avatar= image_tag @account.avatar.url(:large)
   .bio
     %h1.name
       = @account.display_name.blank? ? @account.username : @account.display_name
