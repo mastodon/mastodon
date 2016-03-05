@@ -1,5 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe FetchFeedService do
-  pending
+  subject { FetchFeedService.new }
+
+  it 'fetches remote user\'s feed'
+  it 'processes the feed'
 end

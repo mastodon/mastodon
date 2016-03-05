@@ -1,4 +1,4 @@
-class Api::SalmonController < ApplicationController
+class Api::SalmonController < ApiController
   before_action :set_account
 
   def update

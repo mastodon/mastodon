@@ -1,4 +1,4 @@
-class Api::SubscriptionsController < ApplicationController
+class Api::SubscriptionsController < ApiController
   before_action :set_account
 
   def show
