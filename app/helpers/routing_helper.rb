@@ -1,7 +1,6 @@
 module RoutingHelper
   extend ActiveSupport::Concern
   include Rails.application.routes.url_helpers
-  include GrapeRouteHelpers::NamedRouteMatcher
   include ActionView::Helpers::AssetUrlHelper
 
   included do

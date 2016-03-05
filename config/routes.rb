@@ -2,6 +2,8 @@ Rails.application.routes.draw do
   get '.well-known/host-meta', to: 'xrd#host_meta', as: :host_meta
   get '.well-known/webfinger', to: 'xrd#webfinger', as: :webfinger
 
+  devise_for :users, path: 'auth'
+
   resources :accounts, path: 'users', only: [:show], param: :username do
     resources :stream_entries, path: 'updates', only: [:show]
   end
