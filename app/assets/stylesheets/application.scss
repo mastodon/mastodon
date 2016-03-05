@@ -7,15 +7,73 @@ $darker-background-color: #e3dede;
 $text-color: #333030;
 $lighter-text-color: #8b8687;
 
-@import url("https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic");
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,500,400italic);
+@import url(https://fonts.googleapis.com/css?family=Roboto+Mono);
 @import "font-awesome-sprockets";
 @import "font-awesome";
 
+/* http://meyerweb.com/eric/tools/css/reset/
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+
 body {
-  font-family: 'Noto Sans', sans-serif;
-  background: $background-color image-url('background-pattern.png');
+  line-height: 1;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+blockquote, q {
+  quotes: none;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  background: $background-color image-url('background-photo.jpeg');
+  background-size: cover;
   font-size: 13px;
   line-height: 18px;
+  font-weight: 400;
   color: $text-color;
 }
 
@@ -25,19 +83,143 @@ body {
   margin-top: 40px;
 }
 
-.footer {
-  text-align: center;
-  padding: 100px 0;
-  font-size: 12px;
-  color: $text-color;
+.logo-container {
+  width: 400px;
+  margin: 100px auto;
+  cursor: default;
 
-  .mastodon-link {
-    color: $quaternary-color;
-    text-decoration: none;
-    font-weight: bold;
+  h1 {
+    display: block;
+    text-align: center;
+    color: #fff;
+    font-size: 48px;
+    line-height: 48px;
+    font-weight: 500;
+
+    small {
+      display: block;
+      font-size: 12px;
+      font-weight: 400;
+      font-family: 'Roboto Mono', monospace;
+    }
   }
 }
 
+.form-container {
+  width: 400px;
+  margin: 0 auto;
+
+  .field {
+    margin-bottom: 15px;
+  }
+
+  input[type=text], input[type=email], input[type=password] {
+    background: transparent;
+    border: 0;
+    border-bottom: 2px solid #9baec8;
+    padding: 7px 0;
+    font-size: 16px;
+    color: #fff;
+    display: block;
+    width: 100%;
+    outline: 0;
+
+    &:invalid {
+      box-shadow: none;
+    }
+
+    &:focus:invalid {
+      border-bottom-color: #df405a;
+    }
+
+    &:required:valid {
+      border-bottom-color: #79bd9a;
+    }
+
+    &:active, &:focus {
+      border-bottom-color: #2b90d9;
+    }
+  }
+
+  .field_with_error {
+    input[type=text], input[type=email], input[type=password] {
+      border-bottom-color: #df405a;
+    }
+  }
+
+  .actions {
+    margin-top: 30px;
+
+    button {
+      display: block;
+      width: 100%;
+      border: 0;
+      border-radius: 4px;
+      background: #2b90d9;
+      color: #fff;
+      font-size: 18px;
+      padding: 10px;
+      text-transform: uppercase;
+      cursor: pointer;
+      font-weight: 500;
+      outline: 0;
+
+      &:hover {
+        background-color: lighten(#2b90d9, 5%);
+      }
+
+      &:active, &:focus {
+        position: relative;
+        top: 1px;
+        background-color: darken(#2b90d9, 5%);
+      }
+    }
+  }
+
+  .form-footer {
+    margin-top: 30px;
+    text-align: center;
+
+
+    a {
+      color: #9baec8;
+      text-decoration: none;
+
+      &:hover {
+        color: #d9e1e8;
+        text-decoration: underline;
+      }
+    }
+  }
+
+  #error_explanation {
+    background: #282c37;
+    color: #9baec8;
+    border-radius: 4px;
+    padding: 15px 10px;
+    margin-bottom: 30px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+
+    h2 {
+      font-weight: 500;
+      margin-bottom: 5px;
+    }
+
+    li {
+      margin-left: 15px;
+      list-style: circle;
+    }
+  }
+}
+
+.no-list {
+  list-style: none;
+
+  li {
+    display: inline-block;
+    margin: 0 5px;
+  }
+}
 
 @import 'home';
 @import 'accounts';

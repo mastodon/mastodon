@@ -1,0 +1,11 @@
+= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
+  = devise_error_messages!
+
+  .field
+    = f.password_field :password, autocomplete: "off", placeholder: 'New password'
+  .field
+    = f.password_field :password_confirmation, autocomplete: "off", placeholder: 'Confirm new password'
+  .field
+    = f.password_field :current_password, autocomplete: "off", placeholder: 'Current password'
+  .actions
+    = f.button "Save changes", type: 'submit'

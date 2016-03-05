@@ -9,7 +9,4 @@
     = yield :header_tags
   %body
     .container
-      = yield
-    .footer
-      Powered by
-      = link_to 'Mastodon', 'https://github.com/Gargron/mastodon', class: 'mastodon-link'
+      = content_for?(:content) ? yield(:content) : yield

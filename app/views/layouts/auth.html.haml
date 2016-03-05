@@ -1,0 +1,10 @@
+- content_for :content do
+  .logo-container
+    %h1
+      Mastodon
+      %small= Rails.configuration.x.local_domain
+
+  .form-container
+    = yield
+
+= render template: "layouts/application"

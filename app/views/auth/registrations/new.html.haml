@@ -1,0 +1,17 @@
+= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+  = devise_error_messages!
+
+  = f.fields_for :account do |ff|
+    .field
+      = ff.text_field :username, autofocus: true, placeholder: 'Username', required: true
+
+  .field
+    = f.email_field :email, placeholder: 'E-mail address', required: true
+  .field
+    = f.password_field :password, autocomplete: "off", placeholder: 'Password', required: true
+  .field
+    = f.password_field :password_confirmation, autocomplete: "off", placeholder: 'Confirm password', required: true
+  .actions
+    = f.button "Sign up", type: 'submit'
+
+.form-footer= render "auth/shared/links"
