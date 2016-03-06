@@ -9,7 +9,17 @@ Rails.application.routes.draw do
   }
 
   resources :accounts, path: 'users', only: [:show], param: :username do
-    resources :stream_entries, path: 'updates', only: [:show]
+    member do
+      post :follow
+      post :unfollow
+    end
+
+    resources :stream_entries, path: 'updates', only: [:show] do
+      member do
+        post :reblog
+        post :favourite
+      end
+    end
   end
 
   namespace :api do
