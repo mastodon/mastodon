@@ -1,13 +1,9 @@
 .card {
   background: $primary-color image-url('background-photo.jpeg');
   background-size: cover;
-  padding: 80px 0;
-  padding-bottom: 30px;
+  padding: 60px 0;
+  padding-bottom: 10px;
   border-radius: 4px 4px 0 0;
-
-  .bio {
-
-  }
 
   .name {
     display: block;
@@ -36,5 +32,39 @@
       display: block;
       border-radius: 120px;
     }
+  }
+
+  .details {
+    display: flex;
+    margin-top: 30px;
+  }
+
+  .counter {
+    width: 80px;
+    color: #9baec8;
+    padding: 0 10px;
+    border-right: 1px solid #9baec8;
+    cursor: default;
+
+    .counter-label {
+      font-size: 12px;
+      text-transform: uppercase;
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    .counter-number {
+      font-weight: 500;
+      font-size: 18px;
+      color: #fff;
+    }
+  }
+
+  .bio {
+    flex: 1;
+    font-size: 14px;
+    line-height: 18px;
+    padding: 5px 10px;
+    color: #d9e1e8;
   }
 }

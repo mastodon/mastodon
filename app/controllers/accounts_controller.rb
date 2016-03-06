@@ -5,6 +5,8 @@ class AccountsController < ApplicationController
   before_action :set_webfinger_header
 
   def show
+    @statuses = @account.statuses.order('id desc').includes(thread: [:account], reblog: [:account], stream_entry: [])
+
     respond_to do |format|
       format.html
       format.atom

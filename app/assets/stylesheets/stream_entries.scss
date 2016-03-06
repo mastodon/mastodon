@@ -9,34 +9,38 @@
     border-left: 2px solid #fff;
 
     &.entry-reblog {
-      border-left: 2px solid $tertiary-color;
-
-      .content {
-        a {
-          color: $tertiary-color;
-        }
-      }
+      border-left-color: #2b90d9;
     }
 
     &.entry-predecessor, &.entry-successor {
-
-      .content {
-        a {
-
-        }
-      }
+      background: #d9e1e8;
+      border-left-color: #d9e1e8;
     }
 
     &.entry-follow, &.entry-favourite {
       .content {
         padding-top: 10px;
         padding-bottom: 10px;
+
+        strong {
+          font-weight: 500;
+        }
       }
     }
 
     &:last-child {
       border-bottom: 0;
-      border-radius: 0 0 4px 0;
+      border-radius: 0 0 4px 4px;
+    }
+  }
+
+  &.activity-stream-headless {
+    .entry:first-child {
+      border-radius: 4px 4px 0 0;
+
+      &:last-child {
+        border-radius: 4px;
+      }
     }
   }
 

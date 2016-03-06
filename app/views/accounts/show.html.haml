@@ -4,11 +4,21 @@
 
 .card
   .avatar= image_tag @account.avatar.url(:large)
-  .bio
-    %h1.name
-      = @account.display_name.blank? ? @account.username : @account.display_name
-      %small= "@#{@account.username}"
-
+  %h1.name
+    = @account.display_name.blank? ? @account.username : @account.display_name
+    %small= "@#{@account.username}"
+  .details
+    .counter
+      %span.counter-label Posts
+      %span.counter-number= @account.statuses.count
+    .counter
+      %span.counter-label Following
+      %span.counter-number= @account.following.count
+    .counter
+      %span.counter-label Followers
+      %span.counter-number= @account.followers.count
+    .bio
+      %p= @account.note
 .activity-stream
-  - @account.statuses.order('id desc').each do |status|
+  - @statuses.each do |status|
     = render partial: 'stream_entries/status', locals: { status: status, include_threads: false, is_successor: false, is_predecessor: false }
