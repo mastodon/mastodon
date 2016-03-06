@@ -14,13 +14,20 @@
 
     .entry__container__container
       .header
-        = link_to url_for_target(status.reblog? ? status.reblog.account : status.account), class: 'name' do
-          %strong= display_name(status.reblog? ? status.reblog.account : status.account)
-          = "@#{status.reblog? ? status.reblog.account.acct : status.account.acct}"
-        = link_to url_for_target(status.reblog? ? status.reblog : status), class: 'time' do
-          %span{ title: status.reblog? ? status.reblog.created_at : status.created_at }
-            = relative_time(status.reblog? ? status.reblog.created_at : status.created_at)
-
+        .header__left
+          = link_to url_for_target(status.reblog? ? status.reblog.account : status.account), class: 'name' do
+            %strong= display_name(status.reblog? ? status.reblog.account : status.account)
+            = "@#{status.reblog? ? status.reblog.account.acct : status.account.acct}"
+          = link_to url_for_target(status.reblog? ? status.reblog : status), class: 'time' do
+            %span{ title: status.reblog? ? status.reblog.created_at : status.created_at }
+              = relative_time(status.reblog? ? status.reblog.created_at : status.created_at)
+        .header__right
+          .counter-btn{ class: reblogged_by_me_class(status) }
+            %i.fa.fa-retweet
+            %span.counter-number= status.reblog? ? status.reblog.reblogs.count : status.reblogs.count
+          .counter-btn{ class: favourited_by_me_class(status) }
+            %i.fa.fa-star
+            %span.counter-number= status.reblog? ? status.reblog.favourites.count : status.favourites.count
       .content
         = status.reblog? ? (status.reblog.local? ? linkify(status.reblog) : status.reblog.content.html_safe) : (status.local? ? linkify(status) : status.content.html_safe)
 

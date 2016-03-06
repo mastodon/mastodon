@@ -1,7 +1,6 @@
-
 .activity-stream {
   clear: both;
-  box-shadow: 4px 3px 0 rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
 
   .entry {
     border-bottom: 1px solid #d9e1e8;
@@ -49,14 +48,14 @@
   }
 
   .avatar {
-    width: 48px;
+    width: 56px;
     padding: 15px;
 
     img {
-      width: 48px;
-      height: 48px;
+      width: 56px;
+      height: 56px;
       display: block;
-      border-radius: 48px;
+      border-radius: 56px;
     }
   }
 
@@ -65,10 +64,39 @@
   }
 
   .header {
-    margin-bottom: 5px;
+    margin-bottom: 10px;
     padding: 15px;
     padding-bottom: 0;
     padding-left: 8px;
+    display: flex;
+
+    .header__left {
+      flex: 1;
+    }
+
+    .header__right {
+      .counter-btn {
+        color: #d9e1e8;
+        display: inline-block;
+        padding: 0 10px;
+        cursor: default;
+
+        .counter-number {
+          font-weight: 500;
+          display: inline-block;
+          margin-left: 3px;
+          font-size: 12px;
+        }
+
+        &.reblogged {
+          color: #2b90d9;
+        }
+
+        &.favourited {
+          color: #df405a;
+        }
+      }
+    }
 
     .name {
       text-decoration: none;
@@ -118,6 +146,16 @@
 
       &:hover {
         text-decoration: underline;
+      }
+
+      &.mention {
+        &:hover {
+          text-decoration: none;
+
+          span {
+            text-decoration: underline;
+          }
+        }
       }
     }
   }

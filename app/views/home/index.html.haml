@@ -1,3 +1,3 @@
-Mastodon
-
-= link_to 'Logout', destroy_user_session_path, method: :delete
+.activity-stream.activity-stream-headless
+  - @statuses.each do |status|
+    = render partial: 'stream_entries/status', locals: { status: status, include_threads: false, is_successor: false, is_predecessor: false }

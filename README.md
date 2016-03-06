@@ -3,7 +3,7 @@ Mastodon
 
 Mastodon is a federated microblogging engine. An alternative implementation of the GNU Social project. Based on ActivityStreams, Webfinger, PubsubHubbub and Salmon.
 
-**Current status of the project is early development. Documentation, licensing information &co will be added later**
+**Current status of the project is early development. Documentation &co will be added later**
 
 ## Status
 
@@ -12,14 +12,15 @@ Mastodon is a federated microblogging engine. An alternative implementation of t
 - Retweets, favourites, mentions, replies work in both directions
 - Public pages for profiles and single statuses
 - Sign up, login, forgotten passwords and changing password
+- Mentions and URLs converted to links in statuses
 
 Missing:
 
 - Media attachments (photos, videos)
 - Home timeline, notifications timeline
 - UI to post, reblog, favourite, follow and unfollow
-- Turn URLs in posts into links
 - Upload header image for profile page
+- Deleting statuses, deletion propagation
 
 ## Configuration
 

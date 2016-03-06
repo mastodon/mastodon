@@ -26,6 +26,7 @@ gem 'nokogiri'
 gem 'ostatus2'
 gem 'goldfinger'
 gem 'devise'
+gem 'rails_autolink'
 
 group :development, :test do
   gem 'rspec-rails'
