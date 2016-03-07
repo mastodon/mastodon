@@ -24,6 +24,11 @@ Rails.application.routes.draw do
 
     # JSON / REST API
     resources :statuses, only: [:create, :show] do
+      collection do
+        get :home
+        get :mentions
+      end
+
       member do
         post :reblog
         post :favourite
