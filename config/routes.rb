@@ -26,6 +26,7 @@ Rails.application.routes.draw do
     resources :statuses, only: [:create, :show] do
       member do
         post :reblog
+        post :favourite
       end
     end
 

@@ -15,4 +15,9 @@ class Api::StatusesController < ApiController
     @status = ReblogService.new.(current_user.account, Status.find(params[:id]))
     render action: :show
   end
+
+  def favourite
+    @status = FavouriteService.new.(current_user.account, Status.find(params[:id])).status
+    render action: :show
+  end
 end
