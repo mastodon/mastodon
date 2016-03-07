@@ -74,8 +74,10 @@ GEM
       warden (~> 1.2.3)
     diff-lcs (1.2.5)
     docile (1.1.5)
-    domain_name (0.5.20160128)
+    domain_name (0.5.20160216)
       unf (>= 0.0.5, < 1.0.0)
+    doorkeeper (3.1.0)
+      railties (>= 3.2)
     dotenv (2.1.0)
     dotenv-rails (2.1.0)
       dotenv (= 2.1.0)
@@ -90,7 +92,7 @@ GEM
       ruby-progressbar (~> 1.4)
     globalid (0.3.6)
       activesupport (>= 4.1.0)
-    goldfinger (1.0.1)
+    goldfinger (1.0.2)
       addressable (~> 2.4)
       http (~> 1.0)
       nokogiri (~> 1.6)
@@ -139,6 +141,7 @@ GEM
     multi_json (1.11.2)
     nokogiri (1.6.7.2)
       mini_portile2 (~> 2.0.0.rc2)
+    oj (2.14.5)
     orm_adapter (0.5.0)
     ostatus2 (0.1.1)
       addressable (~> 2.4)
@@ -165,6 +168,8 @@ GEM
     puma (2.16.0)
     quiet_assets (1.1.0)
       railties (>= 3.1, < 5.0)
+    rabl (0.12.0)
+      activesupport (>= 2.3.14)
     rack (1.6.4)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -300,6 +305,7 @@ DEPENDENCIES
   binding_of_caller
   coffee-rails (~> 4.1.0)
   devise
+  doorkeeper
   dotenv-rails
   fabrication
   font-awesome-sass
@@ -310,6 +316,7 @@ DEPENDENCIES
   jbuilder (~> 2.0)
   jquery-rails
   nokogiri
+  oj
   ostatus2
   paperclip (~> 4.3)
   paranoia (~> 2.0)
@@ -317,6 +324,7 @@ DEPENDENCIES
   pry-rails
   puma
   quiet_assets
+  rabl
   rails (= 4.2.5.1)
   rails_12factor
   rails_autolink

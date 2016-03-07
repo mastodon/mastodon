@@ -31,10 +31,10 @@ module StreamEntriesHelper
   end
 
   def reblogged_by_me_class(status)
-    user_signed_in? && (status.reblog? ? status.reblog : status).reblogs.where(account: current_user.account).count == 1 ? 'reblogged' : ''
+    user_signed_in? && current_user.account.reblogged?(status) ? 'reblogged' : ''
   end
 
   def favourited_by_me_class(status)
-    user_signed_in? && (status.reblog? ? status.reblog : status).favourites.where(account: current_user.account).count == 1 ? 'favourited' : ''
+    user_signed_in? && current_user.account.favourited?(status) ? 'favourited' : ''
   end
 end

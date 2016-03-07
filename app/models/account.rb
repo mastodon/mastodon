@@ -24,7 +24,7 @@ class Account < ActiveRecord::Base
   MENTION_RE = /(?:^|\W)@([a-z0-9_]+(?:@[a-z0-9\.\-]+)?)/i
 
   def follow!(other_account)
-    self.active_relationships.first_or_create!(target_account: other_account)
+    self.active_relationships.where(target_account: other_account).first_or_create!(target_account: other_account)
   end
 
   def unfollow!(other_account)
@@ -57,6 +57,14 @@ class Account < ActiveRecord::Base
 
   def subscribed?
     !(self.secret.blank? || self.verify_token.blank?)
+  end
+
+  def favourited?(status)
+    (status.reblog? ? status.reblog : status).favourites.where(account: self).count == 1
+  end
+
+  def reblogged?(status)
+    (status.reblog? ? status.reblog : status).reblogs.where(account: self).count == 1
   end
 
   def keypair

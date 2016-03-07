@@ -1,0 +1,123 @@
+en:
+  activerecord:
+    attributes:
+      doorkeeper/application:
+        name: 'Name'
+        redirect_uri: 'Redirect URI'
+    errors:
+      models:
+        doorkeeper/application:
+          attributes:
+            redirect_uri:
+              fragment_present: 'cannot contain a fragment.'
+              invalid_uri: 'must be a valid URI.'
+              relative_uri: 'must be an absolute URI.'
+              secured_uri: 'must be an HTTPS/SSL URI.'
+
+  doorkeeper:
+    applications:
+      confirmations:
+        destroy: 'Are you sure?'
+      buttons:
+        edit: 'Edit'
+        destroy: 'Destroy'
+        submit: 'Submit'
+        cancel: 'Cancel'
+        authorize: 'Authorize'
+      form:
+        error: 'Whoops! Check your form for possible errors'
+      help:
+        redirect_uri: 'Use one line per URI'
+        native_redirect_uri: 'Use %{native_redirect_uri} for local tests'
+        scopes: 'Separate scopes with spaces. Leave blank to use the default scopes.'
+      edit:
+        title: 'Edit application'
+      index:
+        title: 'Your applications'
+        new: 'New Application'
+        name: 'Name'
+        callback_url: 'Callback URL'
+      new:
+        title: 'New Application'
+      show:
+        title: 'Application: %{name}'
+        application_id: 'Application Id'
+        secret: 'Secret'
+        scopes: 'Scopes'
+        callback_urls: 'Callback urls'
+        actions: 'Actions'
+
+    authorizations:
+      buttons:
+        authorize: 'Authorize'
+        deny: 'Deny'
+      error:
+        title: 'An error has occurred'
+      new:
+        title: 'Authorization required'
+        prompt: 'Authorize %{client_name} to use your account?'
+        able_to: 'This application will be able to'
+      show:
+        title: 'Authorization code'
+
+    authorized_applications:
+      confirmations:
+        revoke: 'Are you sure?'
+      buttons:
+        revoke: 'Revoke'
+      index:
+        title: 'Your authorized applications'
+        application: 'Application'
+        created_at: 'Created At'
+        date_format: '%Y-%m-%d %H:%M:%S'
+
+    errors:
+      messages:
+        # Common error messages
+        invalid_request: 'The request is missing a required parameter, includes an unsupported parameter value, or is otherwise malformed.'
+        invalid_redirect_uri: 'The redirect uri included is not valid.'
+        unauthorized_client: 'The client is not authorized to perform this request using this method.'
+        access_denied: 'The resource owner or authorization server denied the request.'
+        invalid_scope: 'The requested scope is invalid, unknown, or malformed.'
+        server_error: 'The authorization server encountered an unexpected condition which prevented it from fulfilling the request.'
+        temporarily_unavailable: 'The authorization server is currently unable to handle the request due to a temporary overloading or maintenance of the server.'
+
+        #configuration error messages
+        credential_flow_not_configured: 'Resource Owner Password Credentials flow failed due to Doorkeeper.configure.resource_owner_from_credentials being unconfigured.'
+        resource_owner_authenticator_not_configured: 'Resource Owner find failed due to Doorkeeper.configure.resource_owner_authenticator being unconfiged.'
+
+        # Access grant errors
+        unsupported_response_type: 'The authorization server does not support this response type.'
+
+        # Access token errors
+        invalid_client: 'Client authentication failed due to unknown client, no client authentication included, or unsupported authentication method.'
+        invalid_grant: 'The provided authorization grant is invalid, expired, revoked, does not match the redirection URI used in the authorization request, or was issued to another client.'
+        unsupported_grant_type: 'The authorization grant type is not supported by the authorization server.'
+
+        # Password Access token errors
+        invalid_resource_owner: 'The provided resource owner credentials are not valid, or resource owner cannot be found'
+
+        invalid_token:
+          revoked: "The access token was revoked"
+          expired: "The access token expired"
+          unknown: "The access token is invalid"
+
+    flash:
+      applications:
+        create:
+          notice: 'Application created.'
+        destroy:
+          notice: 'Application deleted.'
+        update:
+          notice: 'Application updated.'
+      authorized_applications:
+        destroy:
+          notice: 'Application revoked.'
+
+    layouts:
+      admin:
+        nav:
+          oauth2_provider: 'OAuth2 Provider'
+          applications: 'Applications'
+      application:
+        title: 'OAuth authorization required'

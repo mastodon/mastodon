@@ -5,11 +5,12 @@ class FollowService < BaseService
   def call(source_account, uri)
     target_account = follow_remote_account_service.(uri)
 
-    return if target_account.nil?
+    return nil if target_account.nil?
 
     follow = source_account.follow!(target_account)
     send_interaction_service.(follow.stream_entry, target_account)
-    source_account.ping!(account_url(account, format: 'atom'), [Rails.configuration.x.hub_url])
+    source_account.ping!(account_url(source_account, format: 'atom'), [Rails.configuration.x.hub_url])
+    follow
   end
 
   private

@@ -3,7 +3,6 @@ class AccountsController < ApplicationController
 
   before_action :set_account
   before_action :set_webfinger_header
-  before_action :authenticate_user!, only: [:follow, :unfollow]
 
   def show
     @statuses = @account.statuses.order('id desc').includes(thread: [:account], reblog: [:account], stream_entry: [])
@@ -12,16 +11,6 @@ class AccountsController < ApplicationController
       format.html
       format.atom
     end
-  end
-
-  def follow
-    current_user.account.follow!(@account)
-    redirect_to root_path
-  end
-
-  def unfollow
-    current_user.account.unfollow!(@account)
-    redirect_to root_path
   end
 
   private

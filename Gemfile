@@ -27,6 +27,9 @@ gem 'ostatus2'
 gem 'goldfinger'
 gem 'devise'
 gem 'rails_autolink'
+gem 'doorkeeper'
+gem 'rabl'
+gem 'oj'
 
 group :development, :test do
   gem 'rspec-rails'

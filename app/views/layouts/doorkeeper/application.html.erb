@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%= t('doorkeeper.layouts.application.title') %></title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <%= stylesheet_link_tag "doorkeeper/application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+<div id="container">
+  <%- if flash[:notice].present? %>
+    <div class="alert alert-info">
+      <%= flash[:notice] %>
+    </div>
+  <% end -%>
+
+  <%= yield %>
+</div>
+</body>
+</html>
