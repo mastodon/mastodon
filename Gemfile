@@ -30,6 +30,7 @@ gem 'rails_autolink'
 gem 'doorkeeper'
 gem 'rabl'
 gem 'oj'
+gem 'redis', '~>3.2'
 
 group :development, :test do
   gem 'rspec-rails'

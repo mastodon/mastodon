@@ -22,10 +22,12 @@ class Api::StatusesController < ApiController
   end
 
   def home
-    @statuses = Status.where(account: [current_user.account] + current_user.account.following).order('created_at desc')
+    feed      = Feed.new(:home, current_user.account)
+    @statuses = feed.get(20, (params[:offset] || 0).to_i)
   end
 
   def mentions
-    @statuses = Status.where(id: Mention.where(account: current_user.account).pluck(:status_id)).order('created_at desc')
+    feed      = Feed.new(:mentions, current_user.account)
+    @statuses = feed.get(20, (params[:offset] || 0).to_i)
   end
 end

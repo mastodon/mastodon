@@ -67,5 +67,6 @@ class Status < ActiveRecord::Base
 
   after_create do
     self.account.stream_entries.create!(activity: self)
+    FanOutOnWriteService.new.(self)
   end
 end

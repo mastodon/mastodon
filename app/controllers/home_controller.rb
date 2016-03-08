@@ -2,6 +2,7 @@ class HomeController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @statuses = Status.where(account: ([current_user.account] + current_user.account.following)).where('reblog_of_id IS NULL OR account_id != ?', current_user.account.id).order('created_at desc')
+    feed      = Feed.new(:home, current_user.account)
+    @statuses = feed.get(20, (params[:offset] || 0).to_i)
   end
 end
