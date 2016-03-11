@@ -95,8 +95,13 @@ body {
     text-align: center;
     color: #fff;
     font-size: 48px;
-    line-height: 48px;
     font-weight: 500;
+
+    a {
+      color: inherit;
+      text-decoration: none;
+      outline: 0;
+    }
 
     small {
       display: block;
@@ -230,6 +235,63 @@ body {
     font-size: 12px;
     font-weight: 400;
     font-family: 'Roboto Mono', monospace;
+  }
+}
+
+.mastodon {
+  $head: #282c37;
+  $tusk: #d9e1e8;
+  $backdrop: #2b90d9;
+  $highlight: 18%;
+
+  .mastodon-backdrop {
+    fill: $backdrop;
+  }
+
+  #mastodon-ear {
+    fill: lighten($head, 5%);
+
+    &:hover, &.highlight {
+      fill: lighten($head, $highlight);
+    }
+  }
+
+  #mastodon-head-backdrop {
+    fill: darken($head, 5%);
+
+    &:hover, &.highlight {
+      fill: darken($head, 5%);
+    }
+  }
+
+  #mastodon-nose, #mastodon-cheek, #mastodon-forehead, #mastodon-backhead {
+    fill: $head;
+
+    &:hover, &.highlight {
+      fill: lighten($head, $highlight);
+    }
+  }
+
+  #mastodon-tusk-front {
+    fill: lighten($tusk, 5%);
+  }
+
+  #mastodon-tusk-back {
+    fill: $tusk;
+
+    &:hover, &.highlight {
+      fill: lighten($tusk, $highlight);
+    }
+  }
+
+  .mastodon-shape {
+    transition: all 0.8s ease;
+    stroke: transparent;
+    stroke-width: 0px;
+
+    &:hover, &.highlight {
+      transition-duration: 0.2s;
+    }
   }
 }
 

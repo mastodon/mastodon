@@ -1,8 +1,9 @@
 - content_for :content do
   .logo-container
     %h1
-      Mastodon
-      %small= Rails.configuration.x.local_domain
+      = link_to root_path do
+        = render partial: 'logo', locals: { dim: 200 }
+        %small= Rails.configuration.x.local_domain
 
   .form-container
     = yield
