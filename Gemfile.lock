@@ -85,6 +85,7 @@ GEM
     erubis (2.7.0)
     execjs (2.6.0)
     fabrication (2.14.1)
+    fast_blank (1.0.0)
     font-awesome-sass (4.5.0)
       sass (>= 3.2)
     fuubar (2.0.0)
@@ -105,11 +106,13 @@ GEM
       html2haml (>= 1.0.1)
       railties (>= 4.0.1)
     hashdiff (0.3.0)
+    hiredis (0.6.1)
     html2haml (2.0.0)
       erubis (~> 2.7.0)
       haml (~> 4.0.0)
       nokogiri (~> 1.6.0)
       ruby_parser (~> 3.5)
+    htmlentities (4.3.4)
     http (1.0.2)
       addressable (~> 2.3)
       http-cookie (~> 1.0)
@@ -133,15 +136,26 @@ GEM
       nokogiri (>= 1.5.9)
     mail (2.6.3)
       mime-types (>= 1.16, < 3)
+    message_bus (1.1.1)
+      rack (>= 1.1.3)
+      redis
     method_source (0.8.2)
     mime-types (2.99)
     mimemagic (0.3.0)
     mini_portile2 (2.0.0)
     minitest (5.8.4)
+    moneta (0.8.0)
     multi_json (1.11.2)
+    mustache (1.0.2)
     nokogiri (1.6.7.2)
       mini_portile2 (~> 2.0.0.rc2)
     oj (2.14.5)
+    onebox (1.5.35)
+      htmlentities (~> 4.3.4)
+      moneta (~> 0.8)
+      multi_json (~> 1.11)
+      mustache
+      nokogiri (~> 1.6.6)
     orm_adapter (0.5.0)
     ostatus2 (0.1.1)
       addressable (~> 2.4)
@@ -171,6 +185,8 @@ GEM
     rabl (0.12.0)
       activesupport (>= 2.3.14)
     rack (1.6.4)
+    rack-mini-profiler (0.9.9.2)
+      rack (>= 1.2.0)
     rack-test (0.6.3)
       rack (>= 1.0)
     rails (4.2.5.1)
@@ -309,15 +325,20 @@ DEPENDENCIES
   doorkeeper
   dotenv-rails
   fabrication
+  fast_blank
   font-awesome-sass
   fuubar
   goldfinger
   haml-rails
+  hiredis
+  htmlentities
   http
   jbuilder (~> 2.0)
   jquery-rails
+  message_bus
   nokogiri
   oj
+  onebox
   ostatus2
   paperclip (~> 4.3)
   paranoia (~> 2.0)
@@ -326,6 +347,7 @@ DEPENDENCIES
   puma
   quiet_assets
   rabl
+  rack-mini-profiler
   rails (= 4.2.5.1)
   rails_12factor
   rails_autolink

@@ -24,10 +24,10 @@
         .header__right
           .counter-btn{ class: reblogged_by_me_class(status) }
             %i.fa.fa-retweet
-            %span.counter-number= status.reblog? ? status.reblog.reblogs.count : status.reblogs.count
+            %span.counter-number= status.reblog? ? status.reblog.reblogs.count : status.reblogs_count
           .counter-btn{ class: favourited_by_me_class(status) }
             %i.fa.fa-star
-            %span.counter-number= status.reblog? ? status.reblog.favourites.count : status.favourites.count
+            %span.counter-number= status.reblog? ? status.reblog.favourites.count : status.favourites_count
       .content
         = status.reblog? ? (status.reblog.local? ? linkify(status.reblog) : status.reblog.content.html_safe) : (status.local? ? linkify(status) : status.content.html_safe)
 

@@ -11,7 +11,7 @@ class Feed
     # If we're after most recent items and none are there, we need to precompute the feed
     return PrecomputeFeedService.new.(@type, @account).take(limit) if unhydrated.empty? && offset == 0
 
-    Status.where(id: unhydrated).each { |status| status_map[status.id.to_s] = status }
+    Status.where(id: unhydrated).with_includes.with_counters.each { |status| status_map[status.id.to_s] = status }
     return unhydrated.map { |id| status_map[id] }
   end
 

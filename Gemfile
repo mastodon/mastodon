@@ -30,7 +30,12 @@ gem 'rails_autolink'
 gem 'doorkeeper'
 gem 'rabl'
 gem 'oj'
+gem 'hiredis'
 gem 'redis', '~>3.2'
+gem 'fast_blank'
+gem 'htmlentities'
+gem 'message_bus'
+gem 'onebox'
 
 group :development, :test do
   gem 'rspec-rails'
@@ -51,6 +56,7 @@ group :development do
   gem 'rubocop', require: false
   gem 'better_errors'
   gem 'binding_of_caller'
+  gem 'rack-mini-profiler'
 end
 
 group :production do

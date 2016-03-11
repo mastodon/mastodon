@@ -1,5 +1,5 @@
 class Api::StatusesController < ApiController
-  before_action :authenticate_user!
+  before_action :doorkeeper_authorize!
   respond_to    :json
 
   def show

@@ -18,11 +18,11 @@ class PrecomputeFeedService < BaseService
   end
 
   def home(account)
-    Status.where(account: [account] + account.following)
+    Status.where(account: [account] + account.following).with_includes.with_counts
   end
 
   def mentions(account)
-    Status.where(id: Mention.where(account: account).pluck(:status_id))
+    Status.where(id: Mention.where(account: account).pluck(:status_id)).with_includes.with_counts
   end
 
   def key(type, id)
