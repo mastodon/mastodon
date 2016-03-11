@@ -45,4 +45,4 @@ work = ->
     stop()
 
 $ ->
-  setTimeout(start, 500)
+  setTimeout(start, 100)

@@ -68,12 +68,12 @@ ActiveRecord::Schema.define(version: 20160306172223) do
   add_index "mentions", ["account_id", "status_id"], name: "index_mentions_on_account_id_and_status_id", unique: true, using: :btree
 
   create_table "oauth_access_grants", force: :cascade do |t|
-    t.integer  "user_id",        null: false
-    t.integer  "application_id", null: false
-    t.string   "token",          null: false
-    t.integer  "expires_in",     null: false
-    t.text     "redirect_uri",   null: false
-    t.datetime "created_at",     null: false
+    t.integer  "resource_owner_id", null: false
+    t.integer  "application_id",    null: false
+    t.string   "token",             null: false
+    t.integer  "expires_in",        null: false
+    t.text     "redirect_uri",      null: false
+    t.datetime "created_at",        null: false
     t.datetime "revoked_at"
     t.string   "scopes"
   end

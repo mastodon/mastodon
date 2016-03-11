@@ -154,6 +154,29 @@ body {
     }
   }
 
+  .prompt {
+    font-size: 16px;
+    color: #9baec8;
+    text-align: center;
+
+    .prompt-highlight {
+      font-weight: 500;
+      color: #fff;
+    }
+  }
+
+  code.copypasteable {
+    display: block;
+    font-family: 'Roboto Mono', monospace;
+    font-weight: 400;
+    font-size: 12px;
+    margin-top: 20px;
+    background: #282c37;
+    border-radius: 4px;
+    padding: 2px;
+    word-wrap: break-word;
+  }
+
   .actions {
     margin-top: 30px;
 
@@ -170,6 +193,7 @@ body {
       cursor: pointer;
       font-weight: 500;
       outline: 0;
+      margin-bottom: 10px;
 
       &:hover {
         background-color: lighten(#2b90d9, 5%);
@@ -179,6 +203,18 @@ body {
         position: relative;
         top: 1px;
         background-color: darken(#2b90d9, 5%);
+      }
+
+      &.negative {
+        background: #df405a;
+
+        &:hover {
+          background-color: lighten(#df405a, 5%);
+        }
+
+        &:active, &:focus {
+          background-color: darken(#df405a, 5%);
+        }
       }
     }
   }

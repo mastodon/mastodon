@@ -2,7 +2,7 @@
   .logo-container
     %h1
       = link_to root_path do
-        = render partial: 'logo', locals: { dim: 200 }
+        = render partial: 'application/logo', locals: { dim: 200 }
         %small= Rails.configuration.x.local_domain
 
   .form-container
