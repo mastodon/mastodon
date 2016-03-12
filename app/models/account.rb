@@ -8,6 +8,10 @@ class Account < ActiveRecord::Base
   has_attached_file :avatar, styles: { large: '300x300#', medium: '96x96#', small: '48x48#' }, default_url: 'avatars/missing.png'
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
 
+  # Header upload
+  has_attached_file :header, styles: { medium: '700x335#' }
+  validates_attachment_content_type :header, content_type: /\Aimage\/.*\Z/
+
   # Timelines
   has_many :stream_entries, inverse_of: :account
   has_many :statuses, inverse_of: :account

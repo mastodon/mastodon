@@ -35,6 +35,7 @@ gem 'redis', '~>3.2'
 gem 'fast_blank'
 gem 'htmlentities'
 gem 'onebox'
+gem 'simple_form'
 
 group :development, :test do
   gem 'rspec-rails'

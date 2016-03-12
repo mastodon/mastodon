@@ -17,6 +17,10 @@
           = link_to oauth_authorized_applications_path do
             = fa_icon 'shield'
             Authorized apps
+        %li{ class: active_nav_class(settings_path) }
+          = link_to settings_path do
+            = fa_icon 'user'
+            Edit profile
     .dashboard__content
       .dashboard__top-bar
         = content_for?(:page_title) ? yield(:page_title) : 'Mastodon'

@@ -1,10 +1,24 @@
 .card {
-  background: $primary-color image-url('background-photo.jpeg');
+  background: #282c37;
   background-size: cover;
   padding: 60px 0;
   padding-bottom: 10px;
   border-radius: 4px 4px 0 0;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  position: relative;
+
+  &:after {
+    background: rgba(0, 0, 0, 0.5);
+    display: block;
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+  }
 
   .name {
     display: block;
@@ -13,6 +27,8 @@
     color: #fff;
     font-weight: 500;
     text-align: center;
+    position: relative;
+    z-index: 2;
 
     small {
       display: block;
@@ -26,6 +42,8 @@
     width: 120px;
     margin: 0 auto;
     margin-bottom: 15px;
+    position: relative;
+    z-index: 2;
 
     img {
       width: 120px;
@@ -38,6 +56,8 @@
   .details {
     display: flex;
     margin-top: 30px;
+    position: relative;
+    z-index: 2;
   }
 
   .counter {

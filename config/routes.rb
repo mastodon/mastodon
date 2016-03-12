@@ -14,6 +14,8 @@ Rails.application.routes.draw do
     resources :stream_entries, path: 'updates', only: [:show]
   end
 
+  resource :settings, only: [:show, :update]
+
   namespace :api do
     # PubSubHubbub
     resources :subscriptions, only: [:show]

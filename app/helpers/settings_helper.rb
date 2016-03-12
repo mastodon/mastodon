@@ -1,0 +1,2 @@
+module SettingsHelper
+end

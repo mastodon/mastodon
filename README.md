@@ -13,17 +13,24 @@ Mastodon is a federated microblogging engine. An alternative implementation of t
 - Public pages for profiles and single statuses
 - Sign up, login, forgotten passwords and changing password
 - Mentions and URLs converted to links in statuses
+- REST API, including home and mention timelines
+- OAuth2 provider system for the API
 
 Missing:
 
 - Media attachments (photos, videos)
-- Home timeline, notifications timeline
 - UI to post, reblog, favourite, follow and unfollow
 - Upload header image for profile page
 - Deleting statuses, deletion propagation
+- Streaming API
 
 ## Configuration
 
 - `LOCAL_DOMAIN` should be the domain/hostname of your instance. This is **absolutely required** as it is used for generating unique IDs for everything federation-related
 - `LOCAL_HTTPS` set it to `true` if HTTPS works on your website. This is used to generate canonical URLs, which is also important when generating and parsing federation-related IDs
 - `HUB_URL` should be the URL of the PubsubHubbub service that your instance is going to use. By default it is the open service of Superfeedr
+
+## Requirements
+
+- PostgreSQL
+- Redis

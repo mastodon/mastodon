@@ -1,0 +1,6 @@
+= simple_form_for @account, url: settings_path, method: :put do |f|
+  = f.input :display_name
+  = f.input :note
+  = f.input :avatar
+  = f.input :header
+  = f.button :submit
