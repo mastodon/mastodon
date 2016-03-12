@@ -1,0 +1,3 @@
+= form_tag oauth_authorized_application_path(application) do
+  %input{type: "hidden", name: "_method", value: "delete"}
+  = submit_tag 'Revoke', class: 'btn'

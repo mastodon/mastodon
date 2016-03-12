@@ -11,4 +11,8 @@ module ApplicationHelper
   def local_id?(id)
     id.start_with?("tag:#{Rails.configuration.x.local_domain}")
   end
+
+  def active_nav_class(path)
+    current_page?(path) ? 'active' : ''
+  end
 end

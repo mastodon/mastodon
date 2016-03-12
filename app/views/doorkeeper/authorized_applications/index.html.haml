@@ -1,0 +1,16 @@
+- content_for :page_title do
+  Authorized apps
+
+%p
+  You can register a new OAuth2 app
+  = link_to 'here', oauth_applications_path
+
+%table.table
+  %thead
+    %tr
+      %th= t('doorkeeper.authorized_applications.index.application')
+      %th
+  - @applications.each do |application|
+    %tr
+      %td= application.name
+      %td= render 'delete_form', application: application

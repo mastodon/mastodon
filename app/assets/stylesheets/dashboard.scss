@@ -30,6 +30,11 @@
           text-align: center;
           margin-right: 5px;
         }
+
+        &:hover {
+          color: #fff;
+          background: darken(#282c37, 1%);
+        }
       }
 
       .active {
@@ -86,14 +91,12 @@
     background: #fff;
     padding: 20px;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-    border-bottom: 1px solid #d9e1e8;
     color: #282c37;
     font-size: 16px;
     overflow: hidden;
 
     &.alternate {
       background: lighten(#282c37, 10%);
-      border-bottom: 1px solid lighten(#282c37, 10%);
       text-align: center;
     }
 
@@ -104,6 +107,7 @@
 
       li {
         display: inline-block;
+        margin-left: 7px;
       }
     }
 
@@ -119,7 +123,71 @@
     border-radius: 0 4px 4px 0;
 
     .dashboard__content__content {
-      //padding: 20px;
+      padding: 20px;
+      color: #282c37;
+      line-height: 18px;
+
+      h3 {
+        font-size: 14px;
+        font-weight: 500;
+        margin-bottom: 15px;
+      }
+
+      p {
+        margin-bottom: 15px;
+      }
+
+      samp {
+        font-family: 'Roboto Mono', monospace;
+      }
+
+      ul {
+        list-style: circle;
+        padding-left: 15px;
+        margin-bottom: 15px;
+      }
+
+      .table {
+        width: 100%;
+
+        th {
+          font-weight: 500;
+          text-align: left;
+          border-bottom: 1px solid lighten(#282c37, 55%);
+        }
+
+        th, td {
+          padding: 5px 0;
+          line-height: 18px;
+        }
+      }
+
+      a {
+        color: #2b90d9;
+        text-decoration: underline;
+
+        &:hover {
+          text-decoration: none;
+        }
+      }
+
+      .btn {
+        display: inline-block;
+        border: 0;
+        background: #2b90d9;
+        border-radius: 4px;
+        padding: 4px 16px;
+        font-size: 12px;
+        font-weight: 500;
+        color: #fff;
+        cursor: pointer;
+        font-family: 'Roboto', sans-serif;
+        text-decoration: none;
+
+        &:hover {
+          background: lighten(#2b90d9, 5%);
+        }
+      }
     }
 
     .dashboard__top-bar {
