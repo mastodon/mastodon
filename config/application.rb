@@ -29,8 +29,9 @@ module Mastodon
     config.autoload_paths += Dir[Rails.root.join('app', 'api', '*')]
 
     config.to_prepare do
-      Doorkeeper::AuthorizationsController.layout 'auth'
-      Doorkeeper::AuthorizedApplicationsController.layout 'auth'
+      Doorkeeper::ApplicationsController.layout           'dashboard'
+      Doorkeeper::AuthorizedApplicationsController.layout 'dashboard'
+      Doorkeeper::AuthorizationsController.layout         'auth'
     end
   end
 end

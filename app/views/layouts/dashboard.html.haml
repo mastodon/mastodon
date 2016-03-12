@@ -1,0 +1,45 @@
+- content_for :content do
+  .dashboard-wrapper
+    .dashboard__sidebar
+      .dashboard__top-bar.alternate
+        &nbsp;
+      .dashboard__current-user
+        = link_to account_path(current_user.account) do
+          = image_tag current_user.account.avatar.url(:medium), class: 'dashboard__current-user__avatar'
+          %strong.dashboard__current-user__display-name= current_user.account.display_name
+          %span.dashboard__current-user__username= "@#{current_user.account.username}"
+      %ul
+        %li.active
+          = link_to root_path do
+            = fa_icon 'home'
+            Home
+        %li
+          = link_to mentions_path do
+            = fa_icon 'at'
+            Mentions
+        %li
+          = link_to root_path do
+            = fa_icon 'group'
+            Subscriptions
+        %li
+          = link_to oauth_authorized_applications_path do
+            = fa_icon 'shield'
+            Authorized apps
+        %li
+          = link_to root_path do
+            = fa_icon 'user'
+            Edit profile
+        %li
+          = link_to edit_registration_path(current_user) do
+            = fa_icon 'wrench'
+            Change password
+    .dashboard__content
+      .dashboard__top-bar
+        Home
+        %ul
+          %li= link_to fa_icon('sign-out'), destroy_user_session_path, method: :delete
+      .dashboard__content__content= yield
+  .footer
+    .domain= Rails.configuration.x.local_domain
+
+= render template: "layouts/application"

@@ -1,0 +1,130 @@
+.dashboard-wrapper {
+  background: #282c37;
+  border-radius: 4px;
+  margin: 20px auto;
+  width: 940px;
+  display: flex;
+
+  .dashboard__sidebar {
+    width: 240px;
+    border-radius: 4px 0 0 4px;
+
+    .dashboard__top-bar {
+      border-radius: 4px 0 0 0;
+    }
+
+    ul {
+      padding: 20px 0;
+
+      a {
+        display: block;
+        padding: 7px 20px;
+        color: #d9e1e8;
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: 400;
+
+        .fa {
+          display: inline-block;
+          width: 18px;
+          text-align: center;
+          margin-right: 5px;
+        }
+      }
+
+      .active {
+        a {
+          background: darken(#282c37, 5%);
+          border-left: 2px solid #2b90d9;
+          padding-left: 18px;
+        }
+      }
+    }
+  }
+
+  .dashboard__current-user {
+    padding: 20px;
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .dashboard__current-user__avatar {
+      display: block;
+      width: 50px;
+      height: 50px;
+      border-radius: 50px;
+      float: left;
+      margin-right: 15px;
+    }
+
+    .dashboard__current-user__display-name {
+      font-weight: 500;
+      font-size: 13px;
+      color: #d9e1e8;
+      display: block;
+      margin-top: 5px;
+    }
+
+    .dashboard__current-user__username {
+      font-size: 12px;
+      display: block;
+      color: #2b90d9;
+    }
+  }
+
+  .dashboard__logo {
+    color: #2b90d9;
+
+    span {
+      font-weight: 500;
+    }
+  }
+
+  .dashboard__top-bar {
+    background: #fff;
+    padding: 20px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid #d9e1e8;
+    color: #282c37;
+    font-size: 16px;
+    overflow: hidden;
+
+    &.alternate {
+      background: lighten(#282c37, 10%);
+      border-bottom: 1px solid lighten(#282c37, 10%);
+      text-align: center;
+    }
+
+    ul {
+      float: right;
+      list-style: none;
+      display: block;
+
+      li {
+        display: inline-block;
+      }
+    }
+
+    a {
+      color: #9baec8;
+      text-decoration: none;
+    }
+  }
+
+  .dashboard__content {
+    flex: 1;
+    background: #d9e1e8;
+    border-radius: 0 4px 4px 0;
+
+    .dashboard__content__content {
+      //padding: 20px;
+    }
+
+    .dashboard__top-bar {
+      border-radius: 0 4px 0 0;
+    }
+  }
+
+}

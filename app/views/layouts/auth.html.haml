@@ -1,11 +1,12 @@
 - content_for :content do
-  .logo-container
-    %h1
-      = link_to root_path do
-        = render partial: 'application/logo', locals: { dim: 200 }
-        %small= Rails.configuration.x.local_domain
+  .container
+    .logo-container
+      %h1
+        = link_to root_path do
+          = render partial: 'application/logo', locals: { dim: 200 }
+          %small= Rails.configuration.x.local_domain
 
-  .form-container
-    = yield
+    .form-container
+      = yield
 
 = render template: "layouts/application"

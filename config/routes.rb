@@ -49,5 +49,7 @@ Rails.application.routes.draw do
     end
   end
 
+  get '/mentions', to: 'home#mentions', as: :mentions
+
   root 'home#index'
 end

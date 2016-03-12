@@ -49,6 +49,14 @@ class Status < ActiveRecord::Base
     content.truncate(80, omission: "...")
   end
 
+  def reblogs_count
+    self.attributes['reblogs_count'] || self.reblogs.count
+  end
+
+  def favourites_count
+    self.attributes['favourites_count'] || self.favourites.count
+  end
+
   def mentions
     m = []
 

@@ -14,7 +14,7 @@ gem 'puma'
 gem 'haml-rails'
 gem 'pg'
 gem 'dotenv-rails'
-gem 'font-awesome-sass'
+gem 'font-awesome-rails'
 
 gem 'paranoia', '~> 2.0'
 gem 'paperclip', '~> 4.3'
@@ -34,7 +34,6 @@ gem 'hiredis'
 gem 'redis', '~>3.2'
 gem 'fast_blank'
 gem 'htmlentities'
-gem 'message_bus'
 gem 'onebox'
 
 group :development, :test do
@@ -52,7 +51,6 @@ end
 
 group :development do
   gem 'web-console', '~> 2.0'
-  gem 'spring'
   gem 'rubocop', require: false
   gem 'better_errors'
   gem 'binding_of_caller'
