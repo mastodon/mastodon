@@ -1,13 +1,13 @@
 - content_for :page_title do
-  Applications
+  Apps
 
-%p= link_to t('.new'), new_oauth_application_path, class: 'btn btn-success'
+%p= link_to 'Add new', new_oauth_application_path, class: 'btn btn-success'
 
 %table.table
   %thead
     %tr
-      %th= t('.name')
-      %th= t('.callback_url')
+      %th App
+      %th Callback URL
       %th
       %th
   %tbody
@@ -15,5 +15,5 @@
       %tr
         %td= link_to application.name, oauth_application_path(application)
         %td= application.redirect_uri
-        %td= link_to t('doorkeeper.applications.buttons.edit'), edit_oauth_application_path(application), class: 'btn btn-link'
-        %td= render 'delete_form', application: application
+        %td= link_to 'Edit', edit_oauth_application_path(application)
+        %td= link_to 'Delete', oauth_application_path(application), method: :delete, data: { confirm: 'Are you sure?' }
