@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  use_doorkeeper
+  use_doorkeeper do
+    controllers applications: 'oauth/applications'
+  end
 
   get '.well-known/host-meta', to: 'xrd#host_meta', as: :host_meta
   get '.well-known/webfinger', to: 'xrd#webfinger', as: :webfinger

@@ -1,0 +1,2 @@
+module Oauth::ApplicationsHelper
+end

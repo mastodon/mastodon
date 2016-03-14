@@ -5,4 +5,6 @@ class User < ActiveRecord::Base
   accepts_nested_attributes_for :account
 
   validates :account, presence: true
+
+  has_many :oauth_applications, class_name: 'Doorkeeper::Application', as: :owner
 end
