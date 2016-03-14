@@ -2,6 +2,7 @@ default: &default
   adapter: postgresql
   pool: 5
   timeout: 5000
+  encoding: unicode
 
 development:
   <<: *default
@@ -16,4 +17,7 @@ test:
 
 production:
   <<: *default
-  database: mastodon_production
+  database: postgres
+  username: postgres
+  password:
+  host: db
