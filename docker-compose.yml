@@ -12,4 +12,7 @@ services:
     depends_on:
       - db
       - redis
+    volumes:
+      - ./public/assets:/mastodon/public/assets
+      - ./public/system:/mastodon/public/system
     env_file: .env.production

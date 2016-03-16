@@ -14,4 +14,4 @@ RUN bundle install --deployment --without test --without development
 
 ADD . /mastodon
 
-VOLUME ['/mastodon/public/system']
+VOLUME ["/mastodon/public/system", "/mastodon/public/assets"]

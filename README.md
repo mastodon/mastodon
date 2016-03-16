@@ -48,3 +48,9 @@ And finally
 As usual, the first thing you would need to do would be to run migrations:
 
     docker-compose run web rake db:migrate
+
+And since the instance running in the container will be running in production mode, you need to pre-compile assets:
+
+    docker-compose run web rake assets:precompile
+
+The container has two volumes, for the assets and for user uploads. The default docker-compose.yml maps them to the repository's `public/assets` and `public/system` directories, you may wish to put them somewhere else. Likewise, the PostgreSQL and Redis images have data containers that you may wish to map somewhere where you know how to find them and back them up.
