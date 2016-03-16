@@ -25,7 +25,7 @@ module StreamEntriesHelper
     status.mentions.each { |m| mention_hash[m.acct] = m }
     coder = HTMLEntities.new
 
-    auto_link(coder.encode(status.text), link: :urls, html: { target: '_blank', rel: 'nofollow' }).gsub(Account::MENTION_RE) do |m|
+    auto_link(coder.encode(status.text), link: :urls, html: { rel: 'nofollow noopener' }).gsub(Account::MENTION_RE) do |m|
       account = mention_hash[Account::MENTION_RE.match(m)[1]]
       "#{m.split('@').first}<a href=\"#{url_for_target(account)}\" class=\"mention\">@<span>#{account.acct}</span></a>"
     end.html_safe

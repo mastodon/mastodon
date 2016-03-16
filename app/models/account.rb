@@ -12,6 +12,10 @@ class Account < ActiveRecord::Base
   has_attached_file :header, styles: { medium: '700x335#' }
   validates_attachment_content_type :header, content_type: /\Aimage\/.*\Z/
 
+  # Local user profile validations
+  validates :display_name, length: { maximum: 30 }, if: 'local?'
+  validates :note, length: { maximum: 124 }, if: 'local?'
+
   # Timelines
   has_many :stream_entries, inverse_of: :account
   has_many :statuses, inverse_of: :account

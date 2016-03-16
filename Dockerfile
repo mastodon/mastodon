@@ -13,3 +13,5 @@ ADD Gemfile.lock /mastodon/Gemfile.lock
 RUN bundle install --deployment --without test --without development
 
 ADD . /mastodon
+
+VOLUME ['/mastodon/public/system']
