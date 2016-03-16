@@ -30,6 +30,8 @@ Missing:
 - `LOCAL_HTTPS` set it to `true` if HTTPS works on your website. This is used to generate canonical URLs, which is also important when generating and parsing federation-related IDs
 - `HUB_URL` should be the URL of the PubsubHubbub service that your instance is going to use. By default it is the open service of Superfeedr
 
+Consult the example configuration file, `.env.production.sample` for the full list.
+
 ## Requirements
 
 - PostgreSQL
@@ -37,7 +39,7 @@ Missing:
 
 ## Running with Docker and Docker-Compose
 
-The project now includes a Dockerfile and a docker-compose.yml. You need to turn .env.production sample into .env.production with all the variables set before you can:
+The project now includes a `Dockerfile` and a `docker-compose.yml`. You need to turn `.env.production.sample` into `.env.production` with all the variables set before you can:
 
     docker-compose build
 
