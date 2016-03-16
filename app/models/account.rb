@@ -36,7 +36,8 @@ class Account < ActiveRecord::Base
   end
 
   def unfollow!(other_account)
-    self.active_relationships.find_by(target_account: other_account).destroy
+    follow = self.active_relationships.find_by(target_account: other_account)
+    follow.destroy unless follow.nil?
   end
 
   def following?(other_account)
