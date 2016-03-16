@@ -21,8 +21,8 @@ Mastodon is a federated microblogging engine. An alternative implementation of t
 Missing:
 
 - Media attachments (photos, videos)
-- UI to post, reblog, favourite, follow and unfollow
 - Streaming API
+- Blocking users, blocking remote instances
 
 ## Configuration
 
