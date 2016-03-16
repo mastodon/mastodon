@@ -7,7 +7,7 @@ class Status < ActiveRecord::Base
   has_one :stream_entry, as: :activity, dependent: :destroy
 
   has_many :favourites, inverse_of: :status, dependent: :destroy
-  has_many :reblogs, foreign_key: 'reblog_of_id', class_name: 'Status', inverse_of: :reblog
+  has_many :reblogs, foreign_key: 'reblog_of_id', class_name: 'Status', inverse_of: :reblog, dependent: :destroy
   has_many :replies, foreign_key: 'in_reply_to_id', class_name: 'Status', inverse_of: :thread
   has_many :mentioned_accounts, class_name: 'Mention', dependent: :destroy
 

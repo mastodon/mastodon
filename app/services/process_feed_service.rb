@@ -16,15 +16,21 @@ class ProcessFeedService < BaseService
 
       status = Status.find_by(uri: activity_id(entry))
 
+      # If we already have a post and the verb is now "delete", we gotta delete it and move on!
+      if verb(entry) == :delete
+        delete_post!(status)
+        next
+      end
+
       next unless status.nil?
 
       status = Status.new(uri: activity_id(entry), url: activity_link(entry), account: account, text: content(entry), created_at: published(entry), updated_at: updated(entry))
 
-      if object_type(entry) == :comment
+      if object_type(entry) == :comment && verb(entry) == :post
         add_reply!(entry, status)
       elsif verb(entry) == :share
         add_reblog!(entry, status)
-      else
+      elsif verb(entry) == :post
         add_post!(entry, status)
       end
 
@@ -69,6 +75,10 @@ class ProcessFeedService < BaseService
   def add_reply!(entry, status)
     status.thread = find_original_status(entry, thread_id(entry))
     status.save!
+  end
+
+  def delete_post!(status)
+    status.destroy!
   end
 
   def find_original_status(_xml, id)
