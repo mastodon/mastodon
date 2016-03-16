@@ -98,7 +98,7 @@ class ProcessFeedService < BaseService
     account  = Account.find_by(username: username, domain: domain)
 
     if account.nil?
-      account = follow_remote_account_service.("acct:#{username}@#{domain}", false)
+      account = follow_remote_account_service.("#{username}@#{domain}", false)
       return nil if account.nil?
     end
 

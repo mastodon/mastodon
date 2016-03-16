@@ -14,14 +14,12 @@ class ProcessInteractionService < BaseService
     account  = Account.find_by(username: username, domain: domain)
 
     if account.nil?
-      account = follow_remote_account_service.("acct:#{username}@#{domain}", false)
+      account = follow_remote_account_service.("#{username}@#{domain}", false)
       return if account.nil?
     end
 
     if salmon.verify(envelope, account.keypair)
       update_remote_profile_service.(xml.at_xpath('/xmlns:entry/xmlns:author'), account)
-
-      binding.pry
 
       case verb(xml)
       when :follow

@@ -11,7 +11,7 @@ class ProcessMentionsService < BaseService
       mentioned_account = Account.find_by(username: username, domain: domain)
 
       if mentioned_account.nil?
-        mentioned_account = follow_remote_account_service.("acct:#{match.first}")
+        mentioned_account = follow_remote_account_service.("#{match.first}")
       end
 
       mentioned_account.mentions.first_or_create(status: status)
