@@ -21,6 +21,8 @@ class ProcessInteractionService < BaseService
     if salmon.verify(envelope, account.keypair)
       update_remote_profile_service.(xml.at_xpath('/xmlns:entry/xmlns:author'), account)
 
+      binding.pry
+
       case verb(xml)
       when :follow
         follow!(account, target_account)
@@ -48,7 +50,7 @@ class ProcessInteractionService < BaseService
   end
 
   def verb(xml)
-    xml.at_xpath('//activity:verb').content.gsub('http://activitystrea.ms/schema/1.0/', '').to_sym
+    xml.at_xpath('//activity:verb').content.gsub('http://activitystrea.ms/schema/1.0/', '').gsub('http://ostatus.org/schema/1.0/', '').to_sym
   rescue
     :post
   end

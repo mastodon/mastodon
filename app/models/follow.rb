@@ -2,7 +2,7 @@ class Follow < ActiveRecord::Base
   belongs_to :account
   belongs_to :target_account, class_name: 'Account'
 
-  has_one :stream_entry, as: :activity, dependent: :destroy
+  has_one :stream_entry, as: :activity
 
   validates :account, :target_account, presence: true
   validates :account_id, uniqueness: { scope: :target_account_id }

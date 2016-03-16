@@ -2,7 +2,7 @@ class Favourite < ActiveRecord::Base
   belongs_to :account, inverse_of: :favourites
   belongs_to :status,  inverse_of: :favourites
 
-  has_one :stream_entry, as: :activity, dependent: :destroy
+  has_one :stream_entry, as: :activity
 
   def verb
     :favorite
