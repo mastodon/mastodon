@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160314164231) do
+ActiveRecord::Schema.define(version: 20160316103650) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -125,6 +125,9 @@ ActiveRecord::Schema.define(version: 20160314164231) do
     t.string   "url"
   end
 
+  add_index "statuses", ["account_id"], name: "index_statuses_on_account_id", using: :btree
+  add_index "statuses", ["in_reply_to_id"], name: "index_statuses_on_in_reply_to_id", using: :btree
+  add_index "statuses", ["reblog_of_id"], name: "index_statuses_on_reblog_of_id", using: :btree
   add_index "statuses", ["uri"], name: "index_statuses_on_uri", unique: true, using: :btree
 
   create_table "stream_entries", force: :cascade do |t|
@@ -134,6 +137,9 @@ ActiveRecord::Schema.define(version: 20160314164231) do
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
   end
+
+  add_index "stream_entries", ["account_id"], name: "index_stream_entries_on_account_id", using: :btree
+  add_index "stream_entries", ["activity_id", "activity_type"], name: "index_stream_entries_on_activity_id_and_activity_type", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -151,6 +157,7 @@ ActiveRecord::Schema.define(version: 20160314164231) do
     t.inet     "last_sign_in_ip"
   end
 
+  add_index "users", ["account_id"], name: "index_users_on_account_id", using: :btree
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 

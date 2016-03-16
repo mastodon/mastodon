@@ -214,6 +214,12 @@
     text-align: center;
   }
 
+  .error_notification {
+    color: #df405a;
+    font-weight: 500;
+    margin-bottom: 15px;
+  }
+
   .input {
     margin-bottom: 15px;
 
@@ -238,7 +244,7 @@
       font-size: 14px;
       font-family: 'Roboto', sans-serif;
 
-      &:focus {
+      &:focus, &:active {
         border-bottom: 2px solid #2b90d9;
         padding-bottom: 5px;
       }
@@ -252,6 +258,24 @@
       display: block;
       margin-top: 5px;
       color: lighten(#282c37, 25%);
+    }
+
+    &.field_with_errors {
+      input[type=text], input[type=email], input[type=password], textarea {
+        border-bottom: 2px solid #df405a;
+        padding-bottom: 5px;
+
+        &:focus, &:active {
+          border-bottom: 2px solid #2b90d9;
+          padding-bottom: 5px;
+        }
+      }
+
+      .error {
+        display: block;
+        margin-top: 5px;
+        color: #df405a;
+      }
     }
   }
 }

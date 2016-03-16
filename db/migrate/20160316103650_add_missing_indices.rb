@@ -1,0 +1,10 @@
+class AddMissingIndices < ActiveRecord::Migration
+  def change
+    add_index :users, :account_id
+    add_index :statuses, :account_id
+    add_index :statuses, :in_reply_to_id
+    add_index :statuses, :reblog_of_id
+    add_index :stream_entries, :account_id
+    add_index :stream_entries, [:activity_id, :activity_type]
+  end
+end
