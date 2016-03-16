@@ -12,7 +12,7 @@ class Feed
     return PrecomputeFeedService.new.(@type, @account).take(limit) if unhydrated.empty? && offset == 0
 
     Status.where(id: unhydrated).with_includes.with_counters.each { |status| status_map[status.id.to_s] = status }
-    return unhydrated.map { |id| status_map[id] }
+    return unhydrated.map { |id| status_map[id] }.compact
   end
 
   private

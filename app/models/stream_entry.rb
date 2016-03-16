@@ -5,11 +5,11 @@ class StreamEntry < ActiveRecord::Base
   validates :account, :activity, presence: true
 
   def object_type
-    targeted? ? :activity : self.activity.object_type
+    orphaned? ? :activity : (targeted? ? :activity : self.activity.object_type)
   end
 
   def verb
-    self.activity.verb
+    orphaned? ? :delete : self.activity.verb
   end
 
   def targeted?
@@ -17,15 +17,15 @@ class StreamEntry < ActiveRecord::Base
   end
 
   def target
-    self.activity.target
+    orphaned? ? nil : self.activity.target
   end
 
   def title
-    self.activity.title
+    orphaned? ? nil : self.activity.title
   end
 
   def content
-    self.activity.content
+    orphaned? ? nil : self.activity.content
   end
 
   def threaded?
@@ -33,10 +33,16 @@ class StreamEntry < ActiveRecord::Base
   end
 
   def thread
-    self.activity.thread
+    orphaned? ? nil : self.activity.thread
   end
 
   def mentions
-    self.activity.mentions
+    orphaned? ? [] : self.activity.mentions
+  end
+
+  private
+
+  def orphaned?
+    self.activity.nil?
   end
 end

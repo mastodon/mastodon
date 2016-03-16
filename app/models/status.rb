@@ -4,7 +4,7 @@ class Status < ActiveRecord::Base
   belongs_to :thread, foreign_key: 'in_reply_to_id', class_name: 'Status', inverse_of: :replies
   belongs_to :reblog, foreign_key: 'reblog_of_id', class_name: 'Status', inverse_of: :reblogs
 
-  has_one :stream_entry, as: :activity, dependent: :destroy
+  has_one :stream_entry, as: :activity
 
   has_many :favourites, inverse_of: :status, dependent: :destroy
   has_many :reblogs, foreign_key: 'reblog_of_id', class_name: 'Status', inverse_of: :reblog, dependent: :destroy

@@ -16,12 +16,12 @@ Mastodon is a federated microblogging engine. An alternative implementation of t
 - REST API, including home and mention timelines
 - OAuth2 provider system for the API
 - Upload header image for profile page
+- Deleting statuses, deletion propagation
 
 Missing:
 
 - Media attachments (photos, videos)
 - UI to post, reblog, favourite, follow and unfollow
-- Deleting statuses, deletion propagation
 - Streaming API
 
 ## Configuration

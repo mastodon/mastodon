@@ -147,8 +147,8 @@ module AtomBuilderHelper
 
   def include_entry(xml, stream_entry)
     unique_id    xml, stream_entry.created_at, stream_entry.activity_id, stream_entry.activity_type
-    published_at xml, stream_entry.activity.created_at
-    updated_at   xml, stream_entry.activity.updated_at
+    published_at xml, stream_entry.created_at
+    updated_at   xml, stream_entry.updated_at
     title        xml, stream_entry.title
     content      xml, stream_entry.content
     verb         xml, stream_entry.verb
