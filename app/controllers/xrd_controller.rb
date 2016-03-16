@@ -6,7 +6,7 @@ class XrdController < ApplicationController
   end
 
   def webfinger
-    @account = Account.find_by!(username: username_from_resource, domain: nil)
+    @account = Account.find_local!(username_from_resource)
     @canonical_account_uri = "acct:#{@account.username}@#{Rails.configuration.x.local_domain}"
     @magic_key = pem_to_magic_key(@account.keypair.public_key)
   rescue ActiveRecord::RecordNotFound
@@ -21,10 +21,10 @@ class XrdController < ApplicationController
   end
 
   def username_from_resource
-    if params[:resource].start_with?('acct:')
-      params[:resource].split('@').first.gsub('acct:', '')
+    if resource_param.start_with?('acct:')
+      resource_param.split('@').first.gsub('acct:', '')
     else
-      url = Addressable::URI.parse(params[:resource])
+      url = Addressable::URI.parse(resource_param)
       url.path.gsub('/users/', '')
     end
   end
@@ -42,5 +42,9 @@ class XrdController < ApplicationController
     end
 
     (["RSA"] + [modulus, exponent].map { |n| Base64.urlsafe_encode64(n) }).join('.')
+  end
+
+  def resource_param
+    params.require(:resource)
   end
 end

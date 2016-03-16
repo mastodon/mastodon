@@ -1,7 +1,7 @@
 class Account < ActiveRecord::Base
   # Local users
   has_one :user, inverse_of: :account
-  validates :username, uniqueness: { scope: :domain }
+  validates :username, uniqueness: { scope: :domain, case_sensitive: false }
 
   # Avatar upload
   attr_reader :avatar_remote_url
@@ -95,6 +95,11 @@ class Account < ActiveRecord::Base
 
   def to_param
     self.username
+  end
+
+  def self.find_local!(username)
+    table = self.arel_table
+    self.where(table[:username].matches(username)).where(domain: nil).take!
   end
 
   before_create do
