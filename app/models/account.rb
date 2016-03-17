@@ -1,7 +1,8 @@
 class Account < ActiveRecord::Base
   # Local users
   has_one :user, inverse_of: :account
-  validates :username, uniqueness: { scope: :domain, case_sensitive: false }
+  validates :username, uniqueness: { scope: :domain, case_sensitive: false }, if:     'local?'
+  validates :username, uniqueness: { scope: :domain, case_sensitive: true },  unless: 'local?'
 
   # Avatar upload
   attr_reader :avatar_remote_url

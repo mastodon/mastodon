@@ -19,12 +19,17 @@ class Api::AccountsController < ApiController
   end
 
   def follow
-    @follow = current_user.account.follow!(@account)
+    if @account.local?
+      @follow = current_user.account.follow!(@account)
+    else
+      @follow = FollowService.new.(current_user.account, @account.acct)
+    end
+
     render action: :show
   end
 
   def unfollow
-    @unfollow = current_user.account.unfollow!(@account)
+    @unfollow = UnfollowService.new.(current_user.account, @account)
     render action: :show
   end
 
