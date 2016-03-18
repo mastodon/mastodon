@@ -48,7 +48,7 @@ class ProcessFeedService < BaseService
             mentioned_account = Account.find_local(href.path.gsub('/users/', ''))
 
             unless mentioned_account.nil?
-              mentioned_account.mentions.first_or_create(status: status)
+              mentioned_account.mentions.where(status: status).first_or_create(status: status)
             end
           end
         end
