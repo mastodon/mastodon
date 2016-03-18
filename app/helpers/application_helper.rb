@@ -19,7 +19,7 @@ module ApplicationHelper
 
     auto_link(coder.encode(status.text), link: :urls, html: { rel: 'nofollow noopener' }).gsub(Account::MENTION_RE) do |m|
       account = mention_hash[Account::MENTION_RE.match(m)[1]]
-      return "#{m.split('@').first}<a href=\"#{url_for_target(account)}\" class=\"mention\">@<span>#{account.acct}</span></a>"
+      "#{m.split('@').first}<a href=\"#{url_for_target(account)}\" class=\"mention\">@<span>#{account.acct}</span></a>"
     end.html_safe
   end
 
