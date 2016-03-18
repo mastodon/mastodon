@@ -28,4 +28,8 @@ RSpec.describe ApplicationHelper, type: :helper do
       expect(helper.local_id?('tag:foreign.tld;objectId=12:objectType=Status')).to be false
     end
   end
+
+  describe '#linkify' do
+    pending
+  end
 end

@@ -135,6 +135,22 @@ module AtomBuilderHelper
     xml.logo url
   end
 
+  def conditionally_formatted(activity)
+    if activity.is_a?(Status)
+      if activity.reblog? && activity.reblog.local?
+        linkify(activity.reblog)
+      elsif activity.local?
+        linkify(activity)
+      else
+        activity.content
+      end
+    elsif activity.nil?
+      ''
+    else
+      activity.content
+    end
+  end
+
   def include_author(xml, account)
     object_type      xml, :person
     uri              xml, url_for_target(account)
@@ -150,7 +166,7 @@ module AtomBuilderHelper
     published_at xml, stream_entry.created_at
     updated_at   xml, stream_entry.updated_at
     title        xml, stream_entry.title
-    content      xml, stream_entry.content
+    content      xml, conditionally_formatted(stream_entry.activity)
     verb         xml, stream_entry.verb
     link_self    xml, account_stream_entry_url(stream_entry.account, stream_entry, format: 'atom')
     object_type  xml, stream_entry.object_type
@@ -176,7 +192,7 @@ module AtomBuilderHelper
 
         # Statuses have content
         if [:note, :comment].include? stream_entry.target.object_type
-          content xml, stream_entry.target.content
+          content xml, conditionally_formatted(stream_entry.target)
         end
       end
     end
