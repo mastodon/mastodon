@@ -4,5 +4,5 @@ RSpec.describe UnfollowService do
   subject { UnfollowService.new }
 
   it 'destroys the following relation'
-  it 'sends remote interactionf or remote user'
+  it 'sends remote interaction for remote user'
 end
