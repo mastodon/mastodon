@@ -7,6 +7,7 @@ class PostStatusService < BaseService
   def call(account, text, in_reply_to = nil)
     status = account.statuses.create!(text: text, thread: in_reply_to)
     process_mentions_service.(status)
+    fan_out_on_write_service.(status)
     account.ping!(account_url(account, format: 'atom'), [Rails.configuration.x.hub_url])
     status
   end
@@ -15,5 +16,9 @@ class PostStatusService < BaseService
 
   def process_mentions_service
     @process_mentions_service ||= ProcessMentionsService.new
+  end
+
+  def fan_out_on_write_service
+    @fan_out_on_write_service ||= FanOutOnWriteService.new
   end
 end

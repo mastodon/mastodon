@@ -52,6 +52,9 @@ class ProcessFeedService < BaseService
             end
           end
         end
+
+
+        fan_out_on_write_service.(status)
       end
     end
   end
@@ -165,5 +168,9 @@ class ProcessFeedService < BaseService
 
   def update_remote_profile_service
     @update_remote_profile_service ||= UpdateRemoteProfileService.new
+  end
+
+  def fan_out_on_write_service
+    @fan_out_on_write_service ||= FanOutOnWriteService.new
   end
 end
