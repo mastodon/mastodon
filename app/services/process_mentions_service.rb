@@ -14,7 +14,7 @@ class ProcessMentionsService < BaseService
         mentioned_account = follow_remote_account_service.("#{match.first}")
       end
 
-      mentioned_account.mentions.first_or_create(status: status)
+      mentioned_account.mentions.where(status: status).first_or_create(status: status)
     end
 
     status.mentions.each do |mentioned_account|

@@ -62,7 +62,7 @@ class ProcessInteractionService < BaseService
   end
 
   def favourite!(xml, from_account)
-    status(xml).favourites.first_or_create!(account: from_account)
+    status(xml).favourites.where(account: from_account).first_or_create!(account: from_account)
   end
 
   def add_post!(body, account)
