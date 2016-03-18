@@ -15,7 +15,7 @@ class Api::AccountsController < ApiController
   end
 
   def statuses
-    @statuses = @account.statuses.with_includes.with_counts.order('created_at desc')
+    @statuses = @account.statuses.with_includes.with_counters.order('created_at desc')
   end
 
   def follow

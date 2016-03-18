@@ -1,0 +1,9 @@
+language: ruby
+cache: bundler
+
+rvm:
+  - 2.2.4
+
+bundler_args: --without development --retry=3 --jobs=3
+
+script: bundle exec rspec

@@ -1,6 +1,8 @@
 Mastodon
 ========
 
+[![Build Status](https://travis-ci.org/Gargron/mastodon.svg?branch=master)](https://travis-ci.org/Gargron/mastodon)
+
 Mastodon is a federated microblogging engine. An alternative implementation of the GNU Social project. Based on ActivityStreams, Webfinger, PubsubHubbub and Salmon.
 
 **Current status of the project is early development. Documentation &co will be added later**
@@ -17,12 +19,6 @@ Mastodon is a federated microblogging engine. An alternative implementation of t
 - OAuth2 provider system for the API
 - Upload header image for profile page
 - Deleting statuses, deletion propagation
-
-Missing:
-
-- Media attachments (photos, videos)
-- Streaming API
-- Blocking users, blocking remote instances
 
 ## Configuration
 

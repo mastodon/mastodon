@@ -104,6 +104,12 @@ class Account < ActiveRecord::Base
     self.where(table[:username].matches(username)).where(domain: nil).take!
   end
 
+  def self.find_local(username)
+    self.find_local!(username)
+  rescue ActiveRecord::RecordNotFound
+    nil
+  end
+
   before_create do
     if local?
       keypair = OpenSSL::PKey::RSA.new(Rails.env.test? ? 1024 : 2048)

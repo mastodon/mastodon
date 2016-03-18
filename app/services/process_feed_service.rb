@@ -45,7 +45,7 @@ class ProcessFeedService < BaseService
           href = Addressable::URI.parse(mention_link.attribute('href').value)
 
           if href.host == Rails.configuration.x.local_domain
-            mentioned_account = Account.find_by(username: href.path.gsub('/users/', ''), domain: nil)
+            mentioned_account = Account.find_local(href.path.gsub('/users/', ''))
 
             unless mentioned_account.nil?
               mentioned_account.mentions.first_or_create(status: status)
