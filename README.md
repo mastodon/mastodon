@@ -41,7 +41,7 @@ The project now includes a `Dockerfile` and a `docker-compose.yml`. You need to 
 
 And finally
 
-    docker-compose up
+    docker-compose up -d
 
 As usual, the first thing you would need to do would be to run migrations:
 
@@ -52,3 +52,19 @@ And since the instance running in the container will be running in production mo
     docker-compose run web rake assets:precompile
 
 The container has two volumes, for the assets and for user uploads. The default docker-compose.yml maps them to the repository's `public/assets` and `public/system` directories, you may wish to put them somewhere else. Likewise, the PostgreSQL and Redis images have data containers that you may wish to map somewhere where you know how to find them and back them up.
+
+### Updating
+
+This approach makes updating to the latest version a real breeze.
+
+    git pull
+
+To pull down the updates, re-run
+
+    docker-compose build
+
+And finally,
+
+    docker-compose up -d
+
+Which will re-create the updated containers, leaving databases and data as is. Depending on what files have been updated, you might need to re-run migrations and asset compilation.
