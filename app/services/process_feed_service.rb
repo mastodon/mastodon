@@ -26,12 +26,14 @@ class ProcessFeedService < BaseService
 
       status = Status.new(uri: activity_id(entry), url: activity_link(entry), account: account, text: content(entry), created_at: published(entry), updated_at: updated(entry))
 
-      if object_type(entry) == :comment && verb(entry) == :post
-        add_reply!(entry, status)
-      elsif verb(entry) == :share
+      if verb(entry) == :share
         add_reblog!(entry, status)
       elsif verb(entry) == :post
-        add_post!(entry, status)
+        if thread_id(entry).nil?
+          add_post!(entry, status)
+        else
+          add_reply!(entry, status)
+        end
       end
 
       # If we added a status, go through accounts it mentions and create respective relations
