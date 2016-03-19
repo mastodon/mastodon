@@ -77,7 +77,7 @@ class ProcessInteractionService < BaseService
   end
 
   def activity_id(xml)
-    xml.at_xpath('/xmlns:entry/xmlns:id').content
+    xml.at_xpath('./activity:object/xmlns:id').content
   end
 
   def salmon
