@@ -1,0 +1,8 @@
+.account-grid-card
+  .account-grid-card__header
+    .avatar= image_tag account.avatar.url(:medium)
+    .name
+      = link_to url_for_target(account) do
+        %span.display_name= display_name(account)
+        %span.username= "@#{account.acct}"
+  %p.note= account.note

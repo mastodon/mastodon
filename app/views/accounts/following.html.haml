@@ -1,0 +1,15 @@
+- content_for :page_title do
+  People whom
+  = display_name(@account)
+  follows
+
+= render partial: 'header'
+
+.accounts-grid
+  - @following.each do |f|
+    = render partial: 'grid_card', locals: { account: f }
+
+  - if @following.empty?
+    = render partial: 'nothing_here'
+
+= will_paginate @following, pagination_options

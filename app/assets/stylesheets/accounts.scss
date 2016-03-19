@@ -2,7 +2,7 @@
   background: #282c37;
   background-size: cover;
   padding: 60px 0;
-  padding-bottom: 10px;
+  padding-bottom: 0;
   border-radius: 4px 4px 0 0;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
   overflow: hidden;
@@ -64,8 +64,45 @@
     width: 80px;
     color: #9baec8;
     padding: 0 10px;
+    margin-bottom: 10px;
     border-right: 1px solid #9baec8;
     cursor: default;
+    position: relative;
+
+    a {
+      display: block;
+    }
+
+    &:after {
+      display: block;
+      content: "";
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      width: 100%;
+      border-bottom: 4px solid #9baec8;
+      opacity: 0.5;
+      transition: all 0.8s ease;
+    }
+
+    &.active {
+      &:after {
+        border-bottom: 4px solid #2b90d9;
+        opacity: 1;
+      }
+    }
+
+    &:hover {
+      &:after {
+        opacity: 1;
+        transition-duration: 0.2s;
+      }
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
 
     .counter-label {
       font-size: 12px;
@@ -144,4 +181,88 @@
     cursor: default;
     color: lighten(#282c37, 10%);
   }
+}
+
+.accounts-grid {
+  clear: both;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  background: #fff;
+  border-radius: 0 0 4px 4px;
+  padding: 20px 10px;
+  padding-bottom: 10px;
+  overflow: hidden;
+
+  .account-grid-card {
+    box-sizing: border-box;
+    width: 335px;
+    float: left;
+    border: 1px solid #d9e1e8;
+    border-radius: 4px;
+    color: #282c37;
+    height: 160px;
+    margin-bottom: 10px;
+
+    &:nth-child(odd) {
+      margin-right: 10px;
+    }
+
+    .account-grid-card__header {
+      overflow: hidden;
+      padding: 10px;
+      border-bottom: 1px solid #d9e1e8;
+    }
+
+    .avatar {
+      width: 60px;
+      height: 60px;
+      float: left;
+      margin-right: 15px;
+
+      img {
+        display: block;
+        width: 60px;
+        height: 60px;
+        border-radius: 60px;
+      }
+    }
+
+    .name {
+      padding-top: 10px;
+
+      a {
+        color: #282c37;
+        text-decoration: none;
+
+        &:hover {
+          .display_name {
+            text-decoration: underline;
+          }
+        }
+      }
+    }
+
+    .display_name {
+      font-size: 14px;
+      display: block;
+    }
+
+    .username {
+      color: #2b90d9;
+    }
+
+    .note {
+      padding: 10px;
+      padding-top: 15px;
+      color: #9baec8;
+    }
+  }
+}
+
+.nothing-here {
+  color: #9baec8;
+  font-size: 14px;
+  font-weight: 500;
+  text-align: center;
+  padding: 15px 0;
+  cursor: default;
 }

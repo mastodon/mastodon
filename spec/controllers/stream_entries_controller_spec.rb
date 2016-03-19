@@ -5,12 +5,12 @@ RSpec.describe StreamEntriesController, type: :controller do
   let(:status) { Fabricate(:status, account: alice) }
 
   describe 'GET #show' do
-    it 'returns 200 with HTML' do
+    it 'returns http success with HTML' do
       get :show, account_username: alice.username, id: status.stream_entry.id
       expect(response).to have_http_status(:success)
     end
 
-    it 'returns 200 with Atom' do
+    it 'returns http success with Atom' do
       get :show, account_username: alice.username, id: status.stream_entry.id, format: 'atom'
       expect(response).to have_http_status(:success)
     end

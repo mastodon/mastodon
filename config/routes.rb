@@ -14,6 +14,11 @@ Rails.application.routes.draw do
 
   resources :accounts, path: 'users', only: [:show], param: :username do
     resources :stream_entries, path: 'updates', only: [:show]
+
+    member do
+      get :followers
+      get :following
+    end
   end
 
   resource :settings, only: [:show, :update]

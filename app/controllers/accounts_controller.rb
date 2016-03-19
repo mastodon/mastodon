@@ -13,6 +13,14 @@ class AccountsController < ApplicationController
     end
   end
 
+  def followers
+    @followers = @account.followers.paginate(page: params[:page], per_page: 6)
+  end
+
+  def following
+    @following = @account.following.paginate(page: params[:page], per_page: 6)
+  end
+
   private
 
   def set_account
