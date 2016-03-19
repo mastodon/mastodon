@@ -16,7 +16,8 @@ class FanOutOnWriteService < BaseService
     end
 
     # Deliver to local mentioned
-    status.mentions.each do |mentioned_account|
+    status.mentioned_accounts.each do |mention|
+      mentioned_account = mention.account
       next unless mentioned_account.local?
       push(:mentions, mentioned_account.id, status)
     end

@@ -51,10 +51,10 @@ class ProcessFeedService < BaseService
 
             unless mentioned_account.nil?
               mentioned_account.mentions.where(status: status).first_or_create(status: status)
+              NotificationMailer.mention(mentioned_account, status).deliver_later
             end
           end
         end
-
 
         fan_out_on_write_service.(status)
       end
@@ -74,7 +74,10 @@ class ProcessFeedService < BaseService
       status.reblog = fetch_remote_status(entry)
     end
 
-    status.save! unless status.reblog.nil?
+    if !status.reblog.nil?
+      status.save!
+      NotificationMailer.reblog(status.reblog, status.account).deliver_later
+    end
   end
 
   def add_reply!(entry, status)

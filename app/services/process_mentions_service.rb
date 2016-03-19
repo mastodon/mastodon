@@ -10,16 +10,22 @@ class ProcessMentionsService < BaseService
       username, domain  = match.first.split('@')
       mentioned_account = Account.find_by(username: username, domain: domain)
 
-      if mentioned_account.nil?
+      if mentioned_account.nil? && !domain.nil?
         mentioned_account = follow_remote_account_service.("#{match.first}")
+        next if mentioned_account.nil?
       end
 
       mentioned_account.mentions.where(status: status).first_or_create(status: status)
     end
 
-    status.mentions.each do |mentioned_account|
-      next if mentioned_account.local?
-      send_interaction_service.(status.stream_entry, mentioned_account)
+    status.mentioned_accounts.each do |mention|
+      mentioned_account = mention.account
+
+      if mentioned_account.local?
+        NotificationMailer.mention(mentioned_account, status).deliver_later
+      else
+        send_interaction_service.(status.stream_entry, mentioned_account)
+      end
     end
   end
 

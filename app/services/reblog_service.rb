@@ -7,8 +7,13 @@ class ReblogService < BaseService
     reblog = account.statuses.create!(reblog: reblogged_status, text: '')
     fan_out_on_write_service.(reblog)
     account.ping!(account_url(account, format: 'atom'), [Rails.configuration.x.hub_url])
-    return reblog if reblogged_status.local?
-    send_interaction_service.(reblog.stream_entry, reblogged_status.account)
+
+    if reblogged_status.local?
+      NotificationMailer.reblog(reblogged_status, account).deliver_later
+    else
+      send_interaction_service.(reblog.stream_entry, reblogged_status.account)
+    end
+
     reblog
   end
 

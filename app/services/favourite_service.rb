@@ -6,8 +6,13 @@ class FavouriteService < BaseService
   def call(account, status)
     favourite = Favourite.create!(account: account, status: status)
     account.ping!(account_url(account, format: 'atom'), [Rails.configuration.x.hub_url])
-    return favourite if status.local?
-    send_interaction_service.(favourite.stream_entry, status.account)
+
+    if status.local?
+      NotificationMailer.favourite(status, account).deliver_later
+    else
+      send_interaction_service.(favourite.stream_entry, status.account)
+    end
+
     favourite
   end
 

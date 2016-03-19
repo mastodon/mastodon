@@ -1,0 +1,7 @@
+<%= display_name(@me) %>,
+
+You were mentioned by <%= @status.account.acct %> in:
+
+<%= @status.content %>
+
+<%= url_for_target(@status) %>

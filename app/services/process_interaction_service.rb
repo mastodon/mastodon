@@ -55,6 +55,7 @@ class ProcessInteractionService < BaseService
 
   def follow!(account, target_account)
     account.follow!(target_account)
+    NotificationMailer.follow(target_account, account).deliver_later
   end
 
   def unfollow!(account, target_account)
@@ -62,7 +63,9 @@ class ProcessInteractionService < BaseService
   end
 
   def favourite!(xml, from_account)
-    status(xml).favourites.where(account: from_account).first_or_create!(account: from_account)
+    current_status = status(xml)
+    current_status.favourites.where(account: from_account).first_or_create!(account: from_account)
+    NotificationMailer.favourite(current_status, from_account).deliver_later
   end
 
   def add_post!(body, account)
