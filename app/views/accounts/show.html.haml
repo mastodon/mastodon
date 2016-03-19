@@ -1,3 +1,6 @@
+- content_for :page_title do
+  = display_name(@account)
+
 - content_for :header_tags do
   %link{ rel: 'salmon', href: api_salmon_url(@account.id) }/
   %link{ rel: 'alternate', type: 'application/atom+xml', href: account_url(@account, format: 'atom') }/
@@ -5,7 +8,7 @@
 .card{ style: "background-image: url(#{@account.header.url(:medium)})" }
   .avatar= image_tag @account.avatar.url(:large)
   %h1.name
-    = @account.display_name.blank? ? @account.username : @account.display_name
+    = display_name(@account)
     %small= "@#{@account.username}"
   .details
     .counter
@@ -19,6 +22,9 @@
       %span.counter-number= @account.followers.count
     .bio
       %p= @account.note
+
 .activity-stream
   - @statuses.each do |status|
     = render partial: 'stream_entries/status', locals: { status: status, include_threads: false, is_successor: false, is_predecessor: false }
+
+= will_paginate @statuses, previous_label: "#{fa_icon('chevron-left')} Prev".html_safe, next_label: "Next #{fa_icon('chevron-right')}".html_safe, inner_window: 2

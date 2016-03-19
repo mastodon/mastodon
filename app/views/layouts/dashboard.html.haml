@@ -6,7 +6,7 @@
       .dashboard__current-user
         = link_to account_path(current_user.account) do
           = image_tag current_user.account.avatar.url(:medium), class: 'dashboard__current-user__avatar'
-          %strong.dashboard__current-user__display-name= current_user.account.display_name.blank? ? current_user.account.username : current_user.account.display_name
+          %strong.dashboard__current-user__display-name= display_name(current_user.account)
           %span.dashboard__current-user__username= "@#{current_user.account.username}"
       %ul
         %li{ class: active_nav_class(root_path) }

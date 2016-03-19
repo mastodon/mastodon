@@ -16,4 +16,12 @@ RSpec.describe StreamEntriesHelper, type: :helper do
   describe '#relative_time' do
     pending
   end
+
+  describe '#reblogged_by_me_class' do
+    pending
+  end
+
+  describe '#favourited_by_me_class' do
+    pending
+  end
 end

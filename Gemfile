@@ -1,7 +1,6 @@
 source 'https://rubygems.org'
 
 gem 'rails', '4.2.5.1'
-gem 'sqlite3'
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.1.0'
@@ -18,7 +17,6 @@ gem 'font-awesome-rails'
 
 gem 'paranoia', '~> 2.0'
 gem 'paperclip', '~> 4.3'
-gem 'backport_new_renderer'
 
 gem 'http'
 gem 'addressable'
@@ -36,6 +34,7 @@ gem 'fast_blank'
 gem 'htmlentities'
 gem 'onebox'
 gem 'simple_form'
+gem 'will_paginate', '~> 3.0.6'
 
 group :development, :test do
   gem 'rspec-rails'

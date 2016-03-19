@@ -89,3 +89,59 @@
     color: #d9e1e8;
   }
 }
+
+.pagination {
+  padding: 30px 0;
+  text-align: center;
+  overflow: hidden;
+
+  a, .current, .next_page, .previous_page, .gap {
+    font-size: 14px;
+    color: #fff;
+    font-weight: 500;
+    display: inline-block;
+    padding: 6px 10px;
+    text-decoration: none;
+  }
+
+  .current {
+    background: #fff;
+    border-radius: 100px;
+    color: #282c37;
+    cursor: default;
+  }
+
+  .gap {
+    cursor: default;
+  }
+
+  .previous_page, .next_page {
+    text-transform: uppercase;
+    color: #d9e1e8;
+  }
+
+  .previous_page {
+    float: left;
+    padding-left: 0;
+
+    .fa {
+      display: inline-block;
+      margin-right: 5px;
+    }
+  }
+
+  .next_page {
+    float: right;
+    padding-right: 0;
+
+    .fa {
+      display: inline-block;
+      margin-left: 5px;
+    }
+  }
+
+  .disabled {
+    cursor: default;
+    color: lighten(#282c37, 10%);
+  }
+}
