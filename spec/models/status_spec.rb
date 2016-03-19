@@ -114,4 +114,12 @@ RSpec.describe Status, type: :model do
       expect(subject.target).to eq other
     end
   end
+
+  describe '#reblogs_count' do
+    pending
+  end
+
+  describe '#favourites_count' do
+    pending
+  end
 end

@@ -111,4 +111,16 @@ RSpec.describe Account, type: :model do
   describe '#ping!' do
     pending
   end
+
+  describe '#favourited?' do
+    pending
+  end
+
+  describe '#reblogged?' do
+    pending
+  end
+
+  describe '.find_local' do
+    pending
+  end
 end
