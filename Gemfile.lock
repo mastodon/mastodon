@@ -129,6 +129,10 @@ GEM
       railties (>= 4.2.0)
       thor (>= 0.14, < 2.0)
     json (1.8.3)
+    launchy (2.4.3)
+      addressable (~> 2.3)
+    letter_opener (1.4.1)
+      launchy (~> 2.2)
     libv8 (3.16.14.13)
     loofah (2.0.3)
       nokogiri (>= 1.5.9)
@@ -180,6 +184,8 @@ GEM
     rabl (0.12.0)
       activesupport (>= 2.3.14)
     rack (1.6.4)
+    rack-attack (4.4.1)
+      rack
     rack-mini-profiler (0.9.9.2)
       rack (>= 1.2.0)
     rack-test (0.6.3)
@@ -331,6 +337,7 @@ DEPENDENCIES
   http
   jbuilder (~> 2.0)
   jquery-rails
+  letter_opener
   nokogiri
   oj
   onebox
@@ -342,6 +349,7 @@ DEPENDENCIES
   puma
   quiet_assets
   rabl
+  rack-attack
   rack-mini-profiler
   rails (= 4.2.5.1)
   rails_12factor

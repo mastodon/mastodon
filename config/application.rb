@@ -33,5 +33,7 @@ module Mastodon
       Doorkeeper::AuthorizedApplicationsController.layout 'dashboard'
       Doorkeeper::AuthorizationsController.layout         'auth'
     end
+
+    config.middleware.use Rack::Attack
   end
 end

@@ -35,6 +35,7 @@ gem 'htmlentities'
 gem 'onebox'
 gem 'simple_form'
 gem 'will_paginate', '~> 3.0.6'
+gem 'rack-attack'
 
 group :development, :test do
   gem 'rspec-rails'
@@ -55,6 +56,7 @@ group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'rack-mini-profiler'
+  gem 'letter_opener'
 end
 
 group :production do
