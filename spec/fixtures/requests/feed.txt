@@ -1,0 +1,440 @@
+HTTP/1.1 200 OK
+Server: nginx/1.6.2
+Date: Sun, 20 Mar 2016 11:15:03 GMT
+Content-Type: application/atom+xml; charset=utf-8
+Transfer-Encoding: chunked
+Connection: keep-alive
+Access-Control-Allow-Origin: *
+Vary: Accept-Encoding,Cookie
+ETag: "ApiTimelineUser:0:en:7477:1458471931:1457967123"
+Last-Modified: Sun, 20 Mar 2016 11:05:31 +0000
+Expires: Thu, 01 Jan 1970 00:00:00 GMT
+Cache-Control: private, must-revalidate, max-age=0
+Pragma: 
+X-SUP-ID: https://quitter.no/main/sup
+Strict-Transport-Security: max-age=31536000; includeSubdomains;
+
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xml:lang="en-US" xmlns="http://www.w3.org/2005/Atom" xmlns:thr="http://purl.org/syndication/thread/1.0" xmlns:georss="http://www.georss.org/georss" xmlns:activity="http://activitystrea.ms/spec/1.0/" xmlns:media="http://purl.org/syndication/atommedia" xmlns:poco="http://portablecontacts.net/spec/1.0" xmlns:ostatus="http://ostatus.org/schema/1.0" xmlns:statusnet="http://status.net/schema/api/1/">
+ <generator uri="https://gnu.io/social" version="1.2.0-beta4">GNU social</generator>
+ <id>https://quitter.no/api/statuses/user_timeline/7477.atom</id>
+ <title>gargron timeline</title>
+ <subtitle>Updates from gargron on Quitter.no!</subtitle>
+ <logo>https://quitter.no/avatar/7477-96-20160211190340.png</logo>
+ <updated>2016-03-20T12:15:03+01:00</updated>
+<author>
+ <activity:object-type>http://activitystrea.ms/schema/1.0/person</activity:object-type>
+ <uri>https://quitter.no/user/7477</uri>
+ <name>gargron</name>
+ <summary>Software engineer, free time musician and ＤＩＧＩＴＡＬ ＳＰＯＲＴＳ enthusiast. Likes cats. Warning: May contain memes</summary>
+ <link rel="alternate" type="text/html" href="https://quitter.no/gargron"/>
+ <link rel="avatar" type="image/png" media:width="300" media:height="300" href="https://quitter.no/avatar/7477-300-20160211190340.png"/>
+ <link rel="avatar" type="image/png" media:width="96" media:height="96" href="https://quitter.no/avatar/7477-96-20160211190340.png"/>
+ <link rel="avatar" type="image/png" media:width="48" media:height="48" href="https://quitter.no/avatar/7477-48-20160211190449.png"/>
+ <link rel="avatar" type="image/png" media:width="24" media:height="24" href="https://quitter.no/avatar/7477-24-20160211190517.png"/>
+ <poco:preferredUsername>gargron</poco:preferredUsername>
+ <poco:displayName>ＤＩＧＩＴＡＬ ＣＡＴ</poco:displayName>
+ <poco:note>Software engineer, free time musician and ＤＩＧＩＴＡＬ ＳＰＯＲＴＳ enthusiast. Likes cats. Warning: May contain memes</poco:note>
+ <poco:address>
+  <poco:formatted>Germany</poco:formatted>
+ </poco:address>
+ <poco:urls>
+  <poco:type>homepage</poco:type>
+  <poco:value>https://zeonfederated.com</poco:value>
+  <poco:primary>true</poco:primary>
+ </poco:urls>
+ <followers url="https://quitter.no/gargron/subscribers"></followers>
+ <statusnet:profile_info local_id="7477"></statusnet:profile_info>
+</author>
+ <link href="https://quitter.no/gargron" rel="alternate" type="text/html"/>
+ <link href="https://quitter.no/main/sup" rel="http://api.friendfeed.com/2008/03#sup" type="application/json"/>
+ <link href="https://quitter.no/api/statuses/user_timeline/7477.atom?max_id=1243309" rel="next" type="application/atom+xml"/>
+ <link href="https://quitter.no/main/push/hub" rel="hub"/>
+ <link href="https://quitter.no/main/salmon/user/7477" rel="salmon"/>
+ <link href="https://quitter.no/main/salmon/user/7477" rel="http://salmon-protocol.org/ns/salmon-replies"/>
+ <link href="https://quitter.no/main/salmon/user/7477" rel="http://salmon-protocol.org/ns/salmon-mention"/>
+ <link href="https://quitter.no/api/statuses/user_timeline/7477.atom" rel="self" type="application/atom+xml"/>
+<entry>
+ <activity:object-type>http://activitystrea.ms/schema/1.0/note</activity:object-type>
+ <id>tag:quitter.no,2016-03-20:noticeId=1276923:objectType=note</id>
+ <title>New note by gargron</title>
+ <content type="html">@&lt;a href=&quot;https://cb6e6126.ngrok.io/users/catsrgr8&quot; class=&quot;h-card mention&quot;&gt;catsrgr8&lt;/a&gt; this is a mention</content>
+ <link rel="alternate" type="text/html" href="https://quitter.no/notice/1276923"/>
+ <status_net notice_id="1276923"></status_net>
+ <activity:verb>http://activitystrea.ms/schema/1.0/post</activity:verb>
+ <published>2016-03-20T11:05:31+00:00</published>
+ <updated>2016-03-20T11:05:31+00:00</updated>
+ <link rel="ostatus:conversation" href="tag:quitter.no,2016-03-20:objectType=thread:nonce=7c998112e39a6685"/>
+ <ostatus:conversation>tag:quitter.no,2016-03-20:objectType=thread:nonce=7c998112e39a6685</ostatus:conversation>
+ <link rel="mentioned" ostatus:object-type="http://activitystrea.ms/schema/1.0/person" href="https://cb6e6126.ngrok.io/users/catsrgr8"/>
+ <link rel="mentioned" ostatus:object-type="http://activitystrea.ms/schema/1.0/collection" href="http://activityschema.org/collection/public"/>
+ <link rel="self" type="application/atom+xml" href="https://quitter.no/api/statuses/show/1276923.atom"/>
+ <link rel="edit" type="application/atom+xml" href="https://quitter.no/api/statuses/show/1276923.atom"/>
+ <statusnet:notice_info local_id="1276923" source="Qvitter"></statusnet:notice_info>
+</entry>
+<entry>
+ <activity:object-type>http://activitystrea.ms/schema/1.0/note</activity:object-type>
+ <id>tag:quitter.no,2016-03-19:noticeId=1273635:objectType=note</id>
+ <title>New note by gargron</title>
+ <content type="html">Just testing a thing.</content>
+ <link rel="alternate" type="text/html" href="https://quitter.no/notice/1273635"/>
+ <status_net notice_id="1273635"></status_net>
+ <activity:verb>http://activitystrea.ms/schema/1.0/post</activity:verb>
+ <published>2016-03-19T20:35:53+00:00</published>
+ <updated>2016-03-19T20:35:53+00:00</updated>
+ <link rel="ostatus:conversation" href="tag:quitter.no,2016-03-19:objectType=thread:nonce=c4a61886d5cad4c2"/>
+ <ostatus:conversation>tag:quitter.no,2016-03-19:objectType=thread:nonce=c4a61886d5cad4c2</ostatus:conversation>
+ <link rel="mentioned" ostatus:object-type="http://activitystrea.ms/schema/1.0/person" href="https://mastodon.social/users/Gargron"/>
+ <link rel="mentioned" ostatus:object-type="http://activitystrea.ms/schema/1.0/collection" href="http://activityschema.org/collection/public"/>
+ <link rel="self" type="application/atom+xml" href="https://quitter.no/api/statuses/show/1273635.atom"/>
+ <link rel="edit" type="application/atom+xml" href="https://quitter.no/api/statuses/show/1273635.atom"/>
+ <statusnet:notice_info local_id="1273635" source="web"></statusnet:notice_info>
+</entry>
+<entry>
+ <id>tag:quitter.no,2016-03-19:noticeId=1272988:objectType=note</id>
+ <title>Delete</title>
+ <content type="html">&lt;a href=&quot;https://quitter.no/gargron&quot;&gt;ＤＩＧＩＴＡＬ ＣＡＴ&lt;/a&gt; deleted notice &lt;a href=&quot;https://quitter.no/notice/1272988&quot;&gt;{{tag:quitter.no,2016-03-19:noticeId=1272988:objectType=note}}&lt;/a&gt;.</content>
+ <link rel="alternate" type="text/html" href="https://quitter.no/notice/1273012"/>
+ <activity:verb>delete</activity:verb>
+ <published>2016-03-19T18:16:58+00:00</published>
+ <updated>2016-03-19T18:16:58+00:00</updated>
+ <activity:object>
+  <activity:object-type>http://activitystrea.ms/schema/1.0/note</activity:object-type>
+  <id>tag:quitter.no,2016-03-19:noticeId=1272988:objectType=note</id>
+ </activity:object>
+ <link rel="ostatus:conversation" href="tag:quitter.no,2016-03-19:objectType=thread:nonce=7913e6b6256b6d0b"/>
+ <ostatus:conversation>tag:quitter.no,2016-03-19:objectType=thread:nonce=7913e6b6256b6d0b</ostatus:conversation>
+ <link rel="mentioned" ostatus:object-type="http://activitystrea.ms/schema/1.0/collection" href="http://activityschema.org/collection/public"/>
+ <activity:target>
+  <activity:object-type>http://activitystrea.ms/schema/1.0/note</activity:object-type>
+  <id>tag:quitter.no,2016-03-19:noticeId=1272988:objectType=note</id>
+ </activity:target>
+ <link rel="self" type="application/atom+xml" href="https://quitter.no/api/statuses/show/1273012.atom"/>
+ <link rel="edit" type="application/atom+xml" href="https://quitter.no/api/statuses/show/1273012.atom"/>
+ <statusnet:notice_info local_id="1273012" source="unknown"></statusnet:notice_info>
+</entry>
+<entry>
+ <activity:object-type>http://activitystrea.ms/schema/1.0/comment</activity:object-type>
+ <id>tag:quitter.no,2016-03-19:noticeId=1269381:objectType=comment</id>
+ <title>New comment by gargron</title>
+ <content type="html">@&lt;a href=&quot;https://mastodon.social/users/Gargron&quot; class=&quot;h-card mention&quot; title=&quot;Eugen&quot;&gt;gargron&lt;/a&gt; I have to wonder if this will appear as a reply to the right status, and not just a mention.</content>
+ <link rel="alternate" type="text/html" href="https://quitter.no/notice/1269381"/>
+ <status_net notice_id="1269381"></status_net>
+ <activity:verb>http://activitystrea.ms/schema/1.0/post</activity:verb>
+ <published>2016-03-19T00:10:14+00:00</published>
+ <updated>2016-03-19T00:10:14+00:00</updated>
+ <thr:in-reply-to ref="tag:mastodon.social,2016-03-18:objectId=60:objectType=Status" href="https://quitter.no/notice/1269244"></thr:in-reply-to>
+ <link rel="related" href="https://quitter.no/notice/1269244"/>
+ <link rel="ostatus:conversation" href="tag:quitter.no,2016-03-18:objectType=thread:nonce=d05c6330fbe23fb9"/>
+ <ostatus:conversation>tag:quitter.no,2016-03-18:objectType=thread:nonce=d05c6330fbe23fb9</ostatus:conversation>
+ <link rel="mentioned" ostatus:object-type="http://activitystrea.ms/schema/1.0/person" href="https://mastodon.social/users/Gargron"/>
+ <link rel="mentioned" ostatus:object-type="http://activitystrea.ms/schema/1.0/collection" href="http://activityschema.org/collection/public"/>
+ <link rel="self" type="application/atom+xml" href="https://quitter.no/api/statuses/show/1269381.atom"/>
+ <link rel="edit" type="application/atom+xml" href="https://quitter.no/api/statuses/show/1269381.atom"/>
+ <statusnet:notice_info local_id="1269381" source="Qvitter"></statusnet:notice_info>
+</entry>
+<entry>
+ <activity:object-type>http://activitystrea.ms/schema/1.0/comment</activity:object-type>
+ <id>tag:quitter.no,2016-03-18:noticeId=1265337:objectType=comment</id>
+ <title>New comment by gargron</title>
+ <content type="html">@&lt;a href=&quot;https://community.highlandarrow.com/user/1&quot; class=&quot;h-card mention&quot; title=&quot;Maiyannah Bishop&quot;&gt;maiyannah&lt;/a&gt; Plus, Android can hardly be considered free software given how many proprietary blobs are used. I'm speaking as a disappointed Android user.</content>
+ <link rel="alternate" type="text/html" href="https://quitter.no/notice/1265337"/>
+ <status_net notice_id="1265337"></status_net>
+ <activity:verb>http://activitystrea.ms/schema/1.0/post</activity:verb>
+ <published>2016-03-18T10:01:50+00:00</published>
+ <updated>2016-03-18T10:01:50+00:00</updated>
+ <thr:in-reply-to ref="tag:quitter.no,2016-03-18:noticeId=1265331:objectType=comment" href="https://quitter.no/notice/1265331"></thr:in-reply-to>
+ <link rel="related" href="https://quitter.no/notice/1265331"/>
+ <link rel="ostatus:conversation" href="tag:community.highlandarrow.com,2016-03-18:objectType=thread:nonce=d61438407b882959"/>
+ <ostatus:conversation>tag:community.highlandarrow.com,2016-03-18:objectType=thread:nonce=d61438407b882959</ostatus:conversation>
+ <link rel="mentioned" ostatus:object-type="http://activitystrea.ms/schema/1.0/person" href="https://quitter.no/user/7477"/>
+ <link rel="mentioned" ostatus:object-type="http://activitystrea.ms/schema/1.0/person" href="https://community.highlandarrow.com/user/1"/>
+ <link rel="mentioned" ostatus:object-type="http://activitystrea.ms/schema/1.0/collection" href="http://activityschema.org/collection/public"/>
+ <link rel="self" type="application/atom+xml" href="https://quitter.no/api/statuses/show/1265337.atom"/>
+ <link rel="edit" type="application/atom+xml" href="https://quitter.no/api/statuses/show/1265337.atom"/>
+ <statusnet:notice_info local_id="1265337" source="Qvitter"></statusnet:notice_info>
+</entry>
+<entry>
+ <activity:object-type>http://activitystrea.ms/schema/1.0/comment</activity:object-type>
+ <id>tag:quitter.no,2016-03-18:noticeId=1265331:objectType=comment</id>
+ <title>New comment by gargron</title>
+ <content type="html">@&lt;a href=&quot;https://community.highlandarrow.com/user/1&quot; class=&quot;h-card mention&quot; title=&quot;Maiyannah Bishop&quot;&gt;maiyannah&lt;/a&gt; Well as it turns out, Apple software is better than Android in terms of security, and Apple is fighting FBI while Google promised to build a messaging app that facilitates wire tapping. The whole free software thing should imo be considered a bonus and not overshadow other factors.</content>
+ <link rel="alternate" type="text/html" href="https://quitter.no/notice/1265331"/>
+ <status_net notice_id="1265331"></status_net>
+ <activity:verb>http://activitystrea.ms/schema/1.0/post</activity:verb>
+ <published>2016-03-18T10:01:01+00:00</published>
+ <updated>2016-03-18T10:01:01+00:00</updated>
+ <thr:in-reply-to ref="tag:community.highlandarrow.com,2016-03-18:noticeId=54411:objectType=note" href="https://community.highlandarrow.com/notice/54411"></thr:in-reply-to>
+ <link rel="related" href="https://community.highlandarrow.com/notice/54411"/>
+ <link rel="ostatus:conversation" href="tag:community.highlandarrow.com,2016-03-18:objectType=thread:nonce=d61438407b882959"/>
+ <ostatus:conversation>tag:community.highlandarrow.com,2016-03-18:objectType=thread:nonce=d61438407b882959</ostatus:conversation>
+ <link rel="mentioned" ostatus:object-type="http://activitystrea.ms/schema/1.0/person" href="https://community.highlandarrow.com/user/1"/>
+ <link rel="mentioned" ostatus:object-type="http://activitystrea.ms/schema/1.0/collection" href="http://activityschema.org/collection/public"/>
+ <link rel="self" type="application/atom+xml" href="https://quitter.no/api/statuses/show/1265331.atom"/>
+ <link rel="edit" type="application/atom+xml" href="https://quitter.no/api/statuses/show/1265331.atom"/>
+ <statusnet:notice_info local_id="1265331" source="Qvitter"></statusnet:notice_info>
+</entry>
+<entry>
+ <activity:object-type>http://activitystrea.ms/schema/1.0/comment</activity:object-type>
+ <id>tag:quitter.no,2016-03-17:noticeId=1261358:objectType=comment</id>
+ <title>New comment by gargron</title>
+ <content type="html">@&lt;a href=&quot;https://community.highlandarrow.com/user/1&quot; class=&quot;h-card mention&quot; title=&quot;Maiyannah Bishop&quot;&gt;maiyannah&lt;/a&gt; @&lt;a href=&quot;https://gs.kawa-kun.com/user/2&quot; class=&quot;h-card mention&quot; title=&quot;&amp;#x7AF9;&amp;#x4E0B;&amp;#x61B2;&amp;#x4E8C;&quot;&gt;takeshitakenji&lt;/a&gt; There is a reason that was deprecated and we don't use tables to design websites anymore. HTML needs to be semantic, i.e. tags need to describe the *kind* of content, not how it should *look*, which is a responsibility delegated to CSS. There are so many upsides to this separation of concerns, should I start listing?</content>
+ <link rel="alternate" type="text/html" href="https://quitter.no/notice/1261358"/>
+ <status_net notice_id="1261358"></status_net>
+ <activity:verb>http://activitystrea.ms/schema/1.0/post</activity:verb>
+ <published>2016-03-17T17:00:26+00:00</published>
+ <updated>2016-03-17T17:00:26+00:00</updated>
+ <thr:in-reply-to ref="tag:community.highlandarrow.com,2016-03-17:noticeId=53857:objectType=comment" href="https://community.highlandarrow.com/notice/53857"></thr:in-reply-to>
+ <link rel="related" href="https://community.highlandarrow.com/notice/53857"/>
+ <link rel="ostatus:conversation" href="tag:gs.kawa-kun.com,2016-03-17:objectType=thread:nonce=a83963573a0520f1"/>
+ <ostatus:conversation>tag:gs.kawa-kun.com,2016-03-17:objectType=thread:nonce=a83963573a0520f1</ostatus:conversation>
+ <link rel="mentioned" ostatus:object-type="http://activitystrea.ms/schema/1.0/person" href="https://community.highlandarrow.com/user/1"/>
+ <link rel="mentioned" ostatus:object-type="http://activitystrea.ms/schema/1.0/person" href="https://gs.kawa-kun.com/user/2"/>
+ <link rel="mentioned" ostatus:object-type="http://activitystrea.ms/schema/1.0/collection" href="http://activityschema.org/collection/public"/>
+ <link rel="self" type="application/atom+xml" href="https://quitter.no/api/statuses/show/1261358.atom"/>
+ <link rel="edit" type="application/atom+xml" href="https://quitter.no/api/statuses/show/1261358.atom"/>
+ <statusnet:notice_info local_id="1261358" source="Qvitter"></statusnet:notice_info>
+</entry>
+<entry>
+ <id>tag:quitter.no,2016-03-16:subscription:7477:person:15743:2016-03-16T21:24:13+01:00</id>
+ <title>ＤＩＧＩＴＡＬ ＣＡＴ (gargron)'s status on Wednesday, 16-Mar-2016 21:24:13 CET</title>
+ <content type="html">&lt;a href=&quot;https://quitter.no/gargron&quot;&gt;ＤＩＧＩＴＡＬ ＣＡＴ&lt;/a&gt; started following &lt;a href=&quot;https://mastodon.social/users/Gargron&quot;&gt;Eugen&lt;/a&gt;.</content>
+ <link rel="alternate" type="text/html" href="https://quitter.no/notice/1256972"/>
+ <activity:verb>http://activitystrea.ms/schema/1.0/follow</activity:verb>
+ <published>2016-03-16T20:24:13+00:00</published>
+ <updated>2016-03-16T20:24:13+00:00</updated>
+ <activity:object>
+  <activity:object-type>http://activitystrea.ms/schema/1.0/person</activity:object-type>
+  <id>https://mastodon.social/users/Gargron</id>
+  <title>Eugen</title>
+  <summary>Software engineer, free time musician and ＤＩＧＩＴＡＬ ＳＰＯＲＴＳ enthusiast. Likes cats. Warning: May contain memes</summary>
+  <link rel="alternate" type="text/html" href="https://mastodon.social/users/Gargron"/>
+  <link rel="avatar" type="image/gif" media:width="96" media:height="96" href="https://quitter.no/avatar/15743-original-20160316180410.gif"/>
+  <link rel="avatar" type="image/gif" media:width="96" media:height="96" href="https://quitter.no/avatar/15743-original-20160316180410.gif"/>
+  <link rel="avatar" type="image/gif" media:width="48" media:height="48" href="https://quitter.no/avatar/15743-48-20160316180416.gif"/>
+  <link rel="avatar" type="image/gif" media:width="24" media:height="24" href="https://quitter.no/avatar/15743-24-20160316180416.gif"/>
+  <poco:preferredUsername>gargron</poco:preferredUsername>
+  <poco:displayName>Eugen</poco:displayName>
+  <poco:note>Software engineer, free time musician and ＤＩＧＩＴＡＬ ＳＰＯＲＴＳ enthusiast. Likes cats. Warning: May contain memes</poco:note>
+ </activity:object>
+ <link rel="ostatus:conversation" href="tag:quitter.no,2016-03-16:objectType=thread:nonce=073bda8223dfcaa7"/>
+ <ostatus:conversation>tag:quitter.no,2016-03-16:objectType=thread:nonce=073bda8223dfcaa7</ostatus:conversation>
+ <link rel="mentioned" ostatus:object-type="http://activitystrea.ms/schema/1.0/collection" href="http://activityschema.org/collection/public"/>
+ <link rel="self" type="application/atom+xml" href="https://quitter.no/api/statuses/show/1256972.atom"/>
+ <link rel="edit" type="application/atom+xml" href="https://quitter.no/api/statuses/show/1256972.atom"/>
+ <statusnet:notice_info local_id="1256972" source="activity"></statusnet:notice_info>
+</entry>
+<entry>
+ <id>tag:quitter.no,2016-03-16:subscription:7477:person:15743:2016-03-16T21:22:38+01:00</id>
+ <title></title>
+ <content type="html">&lt;a href=&quot;https://quitter.no/gargron&quot;&gt;ＤＩＧＩＴＡＬ ＣＡＴ&lt;/a&gt; started following &lt;a href=&quot;https://mastodon.social/users/Gargron&quot;&gt;Eugen&lt;/a&gt;.</content>
+ <link rel="alternate" type="text/html" href="https://quitter.no/notice/1256966"/>
+ <activity:verb>http://activitystrea.ms/schema/1.0/follow</activity:verb>
+ <published>2016-03-16T20:22:38+00:00</published>
+ <updated>2016-03-16T20:22:38+00:00</updated>
+ <activity:object>
+  <activity:object-type>http://activitystrea.ms/schema/1.0/person</activity:object-type>
+  <id>tag:quitter.no,2016-03-16:subscription:7477:person:15743:2016-03-16T21:22:38+01:00</id>
+  <title>New person by gargron</title>
+  <content type="html">&lt;a href=&quot;https://quitter.no/gargron&quot;&gt;ＤＩＧＩＴＡＬ ＣＡＴ&lt;/a&gt; started following &lt;a href=&quot;https://mastodon.social/users/Gargron&quot;&gt;Eugen&lt;/a&gt;.</content>
+  <link rel="alternate" type="text/html" href="https://quitter.no/notice/1256966"/>
+  <status_net notice_id="1256966"></status_net>
+ </activity:object>
+ <link rel="ostatus:conversation" href="tag:quitter.no,2016-03-16:objectType=thread:nonce=b157f676181e0ecd"/>
+ <ostatus:conversation>tag:quitter.no,2016-03-16:objectType=thread:nonce=b157f676181e0ecd</ostatus:conversation>
+ <link rel="mentioned" ostatus:object-type="http://activitystrea.ms/schema/1.0/collection" href="http://activityschema.org/collection/public"/>
+ <link rel="self" type="application/atom+xml" href="https://quitter.no/api/statuses/show/1256966.atom"/>
+ <link rel="edit" type="application/atom+xml" href="https://quitter.no/api/statuses/show/1256966.atom"/>
+ <statusnet:notice_info local_id="1256966" source="activity"></statusnet:notice_info>
+</entry>
+<entry>
+ <id>tag:quitter.no,2016-03-16:subscription:7477:person:15743:2016-03-16T21:16:14+01:00</id>
+ <title></title>
+ <content type="html">&lt;a href=&quot;https://quitter.no/gargron&quot;&gt;ＤＩＧＩＴＡＬ ＣＡＴ&lt;/a&gt; started following &lt;a href=&quot;https://mastodon.social/users/Gargron&quot;&gt;Eugen&lt;/a&gt;.</content>
+ <link rel="alternate" type="text/html" href="https://quitter.no/notice/1256939"/>
+ <activity:verb>http://activitystrea.ms/schema/1.0/follow</activity:verb>
+ <published>2016-03-16T20:16:15+00:00</published>
+ <updated>2016-03-16T20:16:15+00:00</updated>
+ <activity:object>
+  <activity:object-type>http://activitystrea.ms/schema/1.0/person</activity:object-type>
+  <id>tag:quitter.no,2016-03-16:subscription:7477:person:15743:2016-03-16T21:16:14+01:00</id>
+  <title>New person by gargron</title>
+  <content type="html">&lt;a href=&quot;https://quitter.no/gargron&quot;&gt;ＤＩＧＩＴＡＬ ＣＡＴ&lt;/a&gt; started following &lt;a href=&quot;https://mastodon.social/users/Gargron&quot;&gt;Eugen&lt;/a&gt;.</content>
+  <link rel="alternate" type="text/html" href="https://quitter.no/notice/1256939"/>
+  <status_net notice_id="1256939"></status_net>
+ </activity:object>
+ <link rel="ostatus:conversation" href="tag:quitter.no,2016-03-16:objectType=thread:nonce=6a6ebd1ed6504a11"/>
+ <ostatus:conversation>tag:quitter.no,2016-03-16:objectType=thread:nonce=6a6ebd1ed6504a11</ostatus:conversation>
+ <link rel="mentioned" ostatus:object-type="http://activitystrea.ms/schema/1.0/collection" href="http://activityschema.org/collection/public"/>
+ <link rel="self" type="application/atom+xml" href="https://quitter.no/api/statuses/show/1256939.atom"/>
+ <link rel="edit" type="application/atom+xml" href="https://quitter.no/api/statuses/show/1256939.atom"/>
+ <statusnet:notice_info local_id="1256939" source="activity"></statusnet:notice_info>
+</entry>
+<entry>
+ <id>tag:quitter.no,2016-03-16:subscription:7477:person:15750:2016-03-16T21:13:06+01:00</id>
+ <title></title>
+ <content type="html">&lt;a href=&quot;https://quitter.no/gargron&quot;&gt;ＤＩＧＩＴＡＬ ＣＡＴ&lt;/a&gt; started following &lt;a href=&quot;https://acda7931.ngrok.io/users/catsrgr8&quot;&gt;Eugen&lt;/a&gt;.</content>
+ <link rel="alternate" type="text/html" href="https://quitter.no/notice/1256929"/>
+ <activity:verb>http://activitystrea.ms/schema/1.0/follow</activity:verb>
+ <published>2016-03-16T20:13:06+00:00</published>
+ <updated>2016-03-16T20:13:06+00:00</updated>
+ <activity:object>
+  <activity:object-type>http://activitystrea.ms/schema/1.0/person</activity:object-type>
+  <id>tag:quitter.no,2016-03-16:subscription:7477:person:15750:2016-03-16T21:13:06+01:00</id>
+  <title>New person by gargron</title>
+  <content type="html">&lt;a href=&quot;https://quitter.no/gargron&quot;&gt;ＤＩＧＩＴＡＬ ＣＡＴ&lt;/a&gt; started following &lt;a href=&quot;https://acda7931.ngrok.io/users/catsrgr8&quot;&gt;Eugen&lt;/a&gt;.</content>
+  <link rel="alternate" type="text/html" href="https://quitter.no/notice/1256929"/>
+  <status_net notice_id="1256929"></status_net>
+ </activity:object>
+ <link rel="ostatus:conversation" href="tag:quitter.no,2016-03-16:objectType=thread:nonce=8f5f92443584e8f0"/>
+ <ostatus:conversation>tag:quitter.no,2016-03-16:objectType=thread:nonce=8f5f92443584e8f0</ostatus:conversation>
+ <link rel="mentioned" ostatus:object-type="http://activitystrea.ms/schema/1.0/collection" href="http://activityschema.org/collection/public"/>
+ <link rel="self" type="application/atom+xml" href="https://quitter.no/api/statuses/show/1256929.atom"/>
+ <link rel="edit" type="application/atom+xml" href="https://quitter.no/api/statuses/show/1256929.atom"/>
+ <statusnet:notice_info local_id="1256929" source="activity"></statusnet:notice_info>
+</entry>
+<entry>
+ <id>tag:quitter.no,2016-03-16:subscription:7477:person:15750:2016-03-16T21:05:02+01:00</id>
+ <title></title>
+ <content type="html">&lt;a href=&quot;https://quitter.no/gargron&quot;&gt;ＤＩＧＩＴＡＬ ＣＡＴ&lt;/a&gt; started following &lt;a href=&quot;https://acda7931.ngrok.io/users/catsrgr8&quot;&gt;Eugen&lt;/a&gt;.</content>
+ <link rel="alternate" type="text/html" href="https://quitter.no/notice/1256888"/>
+ <activity:verb>http://activitystrea.ms/schema/1.0/follow</activity:verb>
+ <published>2016-03-16T20:05:03+00:00</published>
+ <updated>2016-03-16T20:05:03+00:00</updated>
+ <activity:object>
+  <activity:object-type>http://activitystrea.ms/schema/1.0/person</activity:object-type>
+  <id>tag:quitter.no,2016-03-16:subscription:7477:person:15750:2016-03-16T21:05:02+01:00</id>
+  <title>New person by gargron</title>
+  <content type="html">&lt;a href=&quot;https://quitter.no/gargron&quot;&gt;ＤＩＧＩＴＡＬ ＣＡＴ&lt;/a&gt; started following &lt;a href=&quot;https://acda7931.ngrok.io/users/catsrgr8&quot;&gt;Eugen&lt;/a&gt;.</content>
+  <link rel="alternate" type="text/html" href="https://quitter.no/notice/1256888"/>
+  <status_net notice_id="1256888"></status_net>
+ </activity:object>
+ <link rel="ostatus:conversation" href="tag:quitter.no,2016-03-16:objectType=thread:nonce=b630d235232fcff5"/>
+ <ostatus:conversation>tag:quitter.no,2016-03-16:objectType=thread:nonce=b630d235232fcff5</ostatus:conversation>
+ <link rel="mentioned" ostatus:object-type="http://activitystrea.ms/schema/1.0/collection" href="http://activityschema.org/collection/public"/>
+ <link rel="self" type="application/atom+xml" href="https://quitter.no/api/statuses/show/1256888.atom"/>
+ <link rel="edit" type="application/atom+xml" href="https://quitter.no/api/statuses/show/1256888.atom"/>
+ <statusnet:notice_info local_id="1256888" source="activity"></statusnet:notice_info>
+</entry>
+<entry>
+ <id>tag:quitter.no,2016-03-16:subscription:7477:person:15743:2016-03-16T19:04:16+01:00</id>
+ <title></title>
+ <content type="html">&lt;a href=&quot;https://quitter.no/gargron&quot;&gt;ＤＩＧＩＴＡＬ ＣＡＴ&lt;/a&gt; started following &lt;a href=&quot;https://mastodon.social/users/Gargron&quot;&gt;Eugen&lt;/a&gt;.</content>
+ <link rel="alternate" type="text/html" href="https://quitter.no/notice/1256253"/>
+ <activity:verb>http://activitystrea.ms/schema/1.0/follow</activity:verb>
+ <published>2016-03-16T18:04:16+00:00</published>
+ <updated>2016-03-16T18:04:16+00:00</updated>
+ <activity:object>
+  <activity:object-type>http://activitystrea.ms/schema/1.0/person</activity:object-type>
+  <id>tag:quitter.no,2016-03-16:subscription:7477:person:15743:2016-03-16T19:04:16+01:00</id>
+  <title>New person by gargron</title>
+  <content type="html">&lt;a href=&quot;https://quitter.no/gargron&quot;&gt;ＤＩＧＩＴＡＬ ＣＡＴ&lt;/a&gt; started following &lt;a href=&quot;https://mastodon.social/users/Gargron&quot;&gt;Eugen&lt;/a&gt;.</content>
+  <link rel="alternate" type="text/html" href="https://quitter.no/notice/1256253"/>
+  <status_net notice_id="1256253"></status_net>
+ </activity:object>
+ <link rel="ostatus:conversation" href="tag:quitter.no,2016-03-16:objectType=thread:nonce=40eb98e5f85c9908"/>
+ <ostatus:conversation>tag:quitter.no,2016-03-16:objectType=thread:nonce=40eb98e5f85c9908</ostatus:conversation>
+ <link rel="mentioned" ostatus:object-type="http://activitystrea.ms/schema/1.0/collection" href="http://activityschema.org/collection/public"/>
+ <link rel="self" type="application/atom+xml" href="https://quitter.no/api/statuses/show/1256253.atom"/>
+ <link rel="edit" type="application/atom+xml" href="https://quitter.no/api/statuses/show/1256253.atom"/>
+ <statusnet:notice_info local_id="1256253" source="activity"></statusnet:notice_info>
+</entry>
+<entry>
+ <activity:object-type>http://activitystrea.ms/schema/1.0/comment</activity:object-type>
+ <id>tag:quitter.no,2016-03-15:noticeId=1251422:objectType=comment</id>
+ <title>New comment by gargron</title>
+ <content type="html">@&lt;a href=&quot;https://community.highlandarrow.com/user/1&quot; class=&quot;h-card mention&quot; title=&quot;Maiyannah Bishop&quot;&gt;maiyannah&lt;/a&gt; LGB, not LGBT?</content>
+ <link rel="alternate" type="text/html" href="https://quitter.no/notice/1251422"/>
+ <status_net notice_id="1251422"></status_net>
+ <activity:verb>http://activitystrea.ms/schema/1.0/post</activity:verb>
+ <published>2016-03-15T20:28:13+00:00</published>
+ <updated>2016-03-15T20:28:13+00:00</updated>
+ <thr:in-reply-to ref="tag:community.highlandarrow.com,2016-03-15:noticeId=51852:objectType=note" href="https://community.highlandarrow.com/notice/51852"></thr:in-reply-to>
+ <link rel="related" href="https://community.highlandarrow.com/notice/51852"/>
+ <link rel="ostatus:conversation" href="tag:community.highlandarrow.com,2016-03-15:objectType=thread:nonce=70ff6886d69e5225"/>
+ <ostatus:conversation>tag:community.highlandarrow.com,2016-03-15:objectType=thread:nonce=70ff6886d69e5225</ostatus:conversation>
+ <link rel="mentioned" ostatus:object-type="http://activitystrea.ms/schema/1.0/person" href="https://community.highlandarrow.com/user/1"/>
+ <link rel="mentioned" ostatus:object-type="http://activitystrea.ms/schema/1.0/collection" href="http://activityschema.org/collection/public"/>
+ <link rel="self" type="application/atom+xml" href="https://quitter.no/api/statuses/show/1251422.atom"/>
+ <link rel="edit" type="application/atom+xml" href="https://quitter.no/api/statuses/show/1251422.atom"/>
+ <statusnet:notice_info local_id="1251422" source="Qvitter"></statusnet:notice_info>
+</entry>
+<entry>
+ <activity:object-type>http://activitystrea.ms/schema/1.0/comment</activity:object-type>
+ <id>tag:quitter.no,2016-03-15:noticeId=1250742:objectType=comment</id>
+ <title>New comment by gargron</title>
+ <content type="html">@&lt;a href=&quot;https://social.umeahackerspace.se/user/2&quot; class=&quot;h-card mention&quot; title=&quot;&amp;lt;Mikael &amp;amp; Nordfeldth&amp;gt;&quot;&gt;mmn&lt;/a&gt; I'm like reeeeally close to actually deploying the first production instance of Mastodon, but it bugs me that there's gonna be that issue with avatars and profiles not updating :(</content>
+ <link rel="alternate" type="text/html" href="https://quitter.no/notice/1250742"/>
+ <status_net notice_id="1250742"></status_net>
+ <activity:verb>http://activitystrea.ms/schema/1.0/post</activity:verb>
+ <published>2016-03-15T18:44:54+00:00</published>
+ <updated>2016-03-15T18:44:54+00:00</updated>
+ <thr:in-reply-to ref="tag:social.umeahackerspace.se,2016-03-15:noticeId=424348:objectType=comment" href="https://social.umeahackerspace.se/notice/424348"></thr:in-reply-to>
+ <link rel="related" href="https://social.umeahackerspace.se/notice/424348"/>
+ <link rel="ostatus:conversation" href="tag:quitter.no,2016-03-15:objectType=thread:nonce=2fbd771270b5da80"/>
+ <ostatus:conversation>tag:quitter.no,2016-03-15:objectType=thread:nonce=2fbd771270b5da80</ostatus:conversation>
+ <link rel="mentioned" ostatus:object-type="http://activitystrea.ms/schema/1.0/person" href="https://social.umeahackerspace.se/user/2"/>
+ <link rel="mentioned" ostatus:object-type="http://activitystrea.ms/schema/1.0/collection" href="http://activityschema.org/collection/public"/>
+ <link rel="self" type="application/atom+xml" href="https://quitter.no/api/statuses/show/1250742.atom"/>
+ <link rel="edit" type="application/atom+xml" href="https://quitter.no/api/statuses/show/1250742.atom"/>
+ <statusnet:notice_info local_id="1250742" source="Qvitter"></statusnet:notice_info>
+</entry>
+<entry>
+ <activity:object-type>http://activitystrea.ms/schema/1.0/note</activity:object-type>
+ <id>tag:quitter.no,2016-03-15:noticeId=1250653:objectType=note</id>
+ <title>New note by gargron</title>
+ <content type="html">@&lt;a href=&quot;https://social.umeahackerspace.se/user/2&quot; class=&quot;h-card mention&quot; title=&quot;&amp;lt;Mikael &amp;amp; Nordfeldth&amp;gt;&quot;&gt;mmn&lt;/a&gt; Any progress on the issues I created?</content>
+ <link rel="alternate" type="text/html" href="https://quitter.no/notice/1250653"/>
+ <status_net notice_id="1250653"></status_net>
+ <activity:verb>http://activitystrea.ms/schema/1.0/post</activity:verb>
+ <published>2016-03-15T18:27:00+00:00</published>
+ <updated>2016-03-15T18:27:00+00:00</updated>
+ <link rel="ostatus:conversation" href="tag:quitter.no,2016-03-15:objectType=thread:nonce=2fbd771270b5da80"/>
+ <ostatus:conversation>tag:quitter.no,2016-03-15:objectType=thread:nonce=2fbd771270b5da80</ostatus:conversation>
+ <link rel="mentioned" ostatus:object-type="http://activitystrea.ms/schema/1.0/person" href="https://social.umeahackerspace.se/user/2"/>
+ <link rel="mentioned" ostatus:object-type="http://activitystrea.ms/schema/1.0/collection" href="http://activityschema.org/collection/public"/>
+ <link rel="self" type="application/atom+xml" href="https://quitter.no/api/statuses/show/1250653.atom"/>
+ <link rel="edit" type="application/atom+xml" href="https://quitter.no/api/statuses/show/1250653.atom"/>
+ <statusnet:notice_info local_id="1250653" source="Qvitter"></statusnet:notice_info>
+</entry>
+<entry>
+ <activity:object-type>http://activitystrea.ms/schema/1.0/comment</activity:object-type>
+ <id>tag:quitter.no,2016-03-14:noticeId=1243566:objectType=comment</id>
+ <title>New comment by gargron</title>
+ <content type="html">@&lt;a href=&quot;https://community.highlandarrow.com/user/1&quot; class=&quot;h-card mention&quot; title=&quot;Maiyannah Bishop&quot;&gt;maiyannah&lt;/a&gt; I heard Piwik is also good.</content>
+ <link rel="alternate" type="text/html" href="https://quitter.no/notice/1243566"/>
+ <status_net notice_id="1243566"></status_net>
+ <activity:verb>http://activitystrea.ms/schema/1.0/post</activity:verb>
+ <published>2016-03-14T15:35:23+00:00</published>
+ <updated>2016-03-14T15:35:23+00:00</updated>
+ <thr:in-reply-to ref="tag:community.highlandarrow.com,2016-03-14:noticeId=50467:objectType=note" href="https://community.highlandarrow.com/notice/50467"></thr:in-reply-to>
+ <link rel="related" href="https://community.highlandarrow.com/notice/50467"/>
+ <link rel="ostatus:conversation" href="tag:community.highlandarrow.com,2016-03-14:objectType=thread:nonce=8fbf00e7f76866d3"/>
+ <ostatus:conversation>tag:community.highlandarrow.com,2016-03-14:objectType=thread:nonce=8fbf00e7f76866d3</ostatus:conversation>
+ <link rel="mentioned" ostatus:object-type="http://activitystrea.ms/schema/1.0/person" href="https://community.highlandarrow.com/user/1"/>
+ <link rel="mentioned" ostatus:object-type="http://activitystrea.ms/schema/1.0/collection" href="http://activityschema.org/collection/public"/>
+ <link rel="self" type="application/atom+xml" href="https://quitter.no/api/statuses/show/1243566.atom"/>
+ <link rel="edit" type="application/atom+xml" href="https://quitter.no/api/statuses/show/1243566.atom"/>
+ <statusnet:notice_info local_id="1243566" source="Qvitter"></statusnet:notice_info>
+</entry>
+<entry>
+ <activity:object-type>http://activitystrea.ms/schema/1.0/comment</activity:object-type>
+ <id>tag:quitter.no,2016-03-14:noticeId=1243331:objectType=comment</id>
+ <title>New comment by gargron</title>
+ <content type="html">I do wish I had somebody else partake in the development process if only to give me feedback on my decisions</content>
+ <link rel="alternate" type="text/html" href="https://quitter.no/notice/1243331"/>
+ <status_net notice_id="1243331"></status_net>
+ <activity:verb>http://activitystrea.ms/schema/1.0/post</activity:verb>
+ <published>2016-03-14T14:52:03+00:00</published>
+ <updated>2016-03-14T14:52:03+00:00</updated>
+ <thr:in-reply-to ref="tag:quitter.no,2016-03-14:noticeId=1243309:objectType=comment" href="https://quitter.no/notice/1243309"></thr:in-reply-to>
+ <link rel="related" href="https://quitter.no/notice/1243309"/>
+ <link rel="ostatus:conversation" href="tag:quitter.no,2016-03-14:objectType=thread:nonce=46e8a2abc1839d01"/>
+ <ostatus:conversation>tag:quitter.no,2016-03-14:objectType=thread:nonce=46e8a2abc1839d01</ostatus:conversation>
+ <link rel="mentioned" ostatus:object-type="http://activitystrea.ms/schema/1.0/person" href="https://quitter.no/user/7477"/>
+ <link rel="mentioned" ostatus:object-type="http://activitystrea.ms/schema/1.0/collection" href="http://activityschema.org/collection/public"/>
+ <link rel="self" type="application/atom+xml" href="https://quitter.no/api/statuses/show/1243331.atom"/>
+ <link rel="edit" type="application/atom+xml" href="https://quitter.no/api/statuses/show/1243331.atom"/>
+ <statusnet:notice_info local_id="1243331" source="Qvitter"></statusnet:notice_info>
+</entry>
+</feed>

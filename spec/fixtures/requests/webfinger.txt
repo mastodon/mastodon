@@ -1,0 +1,11 @@
+HTTP/1.1 200 OK
+Server: nginx/1.6.2
+Date: Sun, 20 Mar 2016 11:13:16 GMT
+Content-Type: application/jrd+json
+Transfer-Encoding: chunked
+Connection: keep-alive
+Access-Control-Allow-Origin: *
+Vary: Accept-Encoding,Cookie
+Strict-Transport-Security: max-age=31536000; includeSubdomains;
+
+{"subject":"acct:gargron@quitter.no","aliases":["https:\/\/quitter.no\/user\/7477","https:\/\/quitter.no\/gargron","https:\/\/quitter.no\/index.php\/user\/7477","https:\/\/quitter.no\/index.php\/gargron"],"links":[{"rel":"http:\/\/webfinger.net\/rel\/profile-page","type":"text\/html","href":"https:\/\/quitter.no\/gargron"},{"rel":"http:\/\/gmpg.org\/xfn\/11","type":"text\/html","href":"https:\/\/quitter.no\/gargron"},{"rel":"describedby","type":"application\/rdf+xml","href":"https:\/\/quitter.no\/gargron\/foaf"},{"rel":"http:\/\/apinamespace.org\/atom","type":"application\/atomsvc+xml","href":"https:\/\/quitter.no\/api\/statusnet\/app\/service\/gargron.xml"},{"rel":"http:\/\/apinamespace.org\/twitter","href":"https:\/\/quitter.no\/api\/"},{"rel":"http:\/\/specs.openid.net\/auth\/2.0\/provider","href":"https:\/\/quitter.no\/gargron"},{"rel":"http:\/\/schemas.google.com\/g\/2010#updates-from","type":"application\/atom+xml","href":"https:\/\/quitter.no\/api\/statuses\/user_timeline\/7477.atom"},{"rel":"magic-public-key","href":"data:application\/magic-public-key,RSA.1ZBkHTavLvxH3FzlKv4O6WtlILKRFfNami3_Rcu8EuogtXSYiS-bB6hElZfUCSHbC4uLemOA34PEhz__CDMozax1iI_t8dzjDnh1x0iFSup7pSfW9iXk_WU3Dm74yWWW2jildY41vWgrEstuQ1dJ8vVFfSJ9T_tO4c-T9y8vDI8=.AQAB"},{"rel":"salmon","href":"https:\/\/quitter.no\/main\/salmon\/user\/7477"},{"rel":"http:\/\/salmon-protocol.org\/ns\/salmon-replies","href":"https:\/\/quitter.no\/main\/salmon\/user\/7477"},{"rel":"http:\/\/salmon-protocol.org\/ns\/salmon-mention","href":"https:\/\/quitter.no\/main\/salmon\/user\/7477"},{"rel":"http:\/\/ostatus.org\/schema\/1.0\/subscribe","template":"https:\/\/quitter.no\/main\/ostatussub?profile={uri}"}]}

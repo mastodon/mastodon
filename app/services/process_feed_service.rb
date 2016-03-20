@@ -17,7 +17,7 @@ class ProcessFeedService < BaseService
       status = Status.find_by(uri: activity_id(entry))
 
       # If we already have a post and the verb is now "delete", we gotta delete it and move on!
-      if verb(entry) == :delete
+      if !status.nil? && verb(entry) == :delete
         delete_post!(status)
         next
       end

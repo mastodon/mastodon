@@ -19,3 +19,7 @@ RSpec.configure do |config|
   config.include Devise::TestHelpers, type: :controller
   config.include Devise::TestHelpers, type: :view
 end
+
+def request_fixture(name)
+  File.read(File.join(Rails.root, 'spec', 'fixtures', 'requests', name))
+end

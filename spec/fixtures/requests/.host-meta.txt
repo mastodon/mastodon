@@ -1,0 +1,19 @@
+HTTP/1.1 200 OK
+Server: nginx/1.6.2
+Date: Sun, 20 Mar 2016 11:11:00 GMT
+Content-Type: application/xrd+xml
+Transfer-Encoding: chunked
+Connection: keep-alive
+Access-Control-Allow-Origin: *
+Vary: Accept-Encoding,Cookie
+Strict-Transport-Security: max-age=31536000; includeSubdomains;
+
+<?xml version="1.0" encoding="UTF-8"?>
+<XRD xmlns="http://docs.oasis-open.org/ns/xri/xrd-1.0">
+ <Link rel="lrdd" type="application/jrd+json" template="https://quitter.no/.well-known/webfinger?resource={uri}"/>
+ <Link rel="lrdd" type="application/json" template="https://quitter.no/.well-known/webfinger?resource={uri}"/>
+ <Link rel="lrdd" type="application/xrd+xml" template="https://quitter.no/.well-known/webfinger?resource={uri}"/>
+ <Link rel="http://apinamespace.org/oauth/access_token" href="https://quitter.no/api/oauth/access_token"/>
+ <Link rel="http://apinamespace.org/oauth/request_token" href="https://quitter.no/api/oauth/request_token"/>
+ <Link rel="http://apinamespace.org/oauth/authorize" href="https://quitter.no/api/oauth/authorize"/>
+</XRD>
