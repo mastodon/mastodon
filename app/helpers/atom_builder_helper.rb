@@ -3,7 +3,7 @@ module AtomBuilderHelper
     @account.stream_entries.last ? (@account.updated_at > @account.stream_entries.last.created_at ? @account.updated_at : @account.stream_entries.last.created_at) : @account.updated_at
   end
 
-  def entry(xml, is_root, &block)
+  def entry(xml, is_root = false, &block)
     if is_root
       root_tag(xml, :entry, &block)
     else
