@@ -3,8 +3,9 @@ cache: bundler
 
 env:
   global:
-    - LOCAL_DOMAIN=example.com
-    - LOCAL_HTTPS=false
+    - LOCAL_DOMAIN=cb6e6126.ngrok.io
+    - LOCAL_HTTPS=true
+    - RAILS_ENV=test
 
 addons:
   postgresql: 9.4

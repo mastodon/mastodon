@@ -11,7 +11,7 @@ class FanOutOnWriteService < BaseService
 
     # Deliver to local followers
     status.account.followers.each do |follower|
-      next if (status.reply? && !follower.following?(replied_to_user)) || !follower.local?
+      next if (status.reply? && !(follower.id = replied_to_user.id || follower.following?(replied_to_user))) || !follower.local?
       push(:home, follower.id, status)
     end
 
