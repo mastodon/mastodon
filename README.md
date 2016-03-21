@@ -1,7 +1,8 @@
 Mastodon
 ========
 
-[![Build Status](https://travis-ci.org/Gargron/mastodon.svg?branch=master)](https://travis-ci.org/Gargron/mastodon)
+[![Build Status](http://img.shields.io/travis/Gargron/goldfinger.svg)][travis]
+[![Code Climate](https://img.shields.io/codeclimate/github/Gargron/mastodon.svg)][code_climate]
 
 Mastodon is a federated microblogging engine. An alternative implementation of the GNU Social project. Based on ActivityStreams, Webfinger, PubsubHubbub and Salmon.
 
