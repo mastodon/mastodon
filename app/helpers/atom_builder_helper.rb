@@ -126,9 +126,9 @@ module AtomBuilderHelper
   end
 
   def link_avatar(xml, account)
-    xml.link('rel' => 'avatar', 'type' => account.avatar_content_type, 'media:width' => '300', 'media:height' =>'300', 'href' => asset_url(account.avatar.url(:large, false)))
-    xml.link('rel' => 'avatar', 'type' => account.avatar_content_type, 'media:width' => '96', 'media:height' =>'96', 'href' => asset_url(account.avatar.url(:medium, false)))
-    xml.link('rel' => 'avatar', 'type' => account.avatar_content_type, 'media:width' => '48', 'media:height' =>'48', 'href' => asset_url(account.avatar.url(:small, false)))
+    single_link_avatar(xml, account, :large,  300)
+    single_link_avatar(xml, account, :medium, 96)
+    single_link_avatar(xml, account, :small,  48)
   end
 
   def logo(xml, url)
@@ -206,5 +206,9 @@ module AtomBuilderHelper
 
   def root_tag(xml, tag, &block)
     xml.send(tag, { :xmlns => 'http://www.w3.org/2005/Atom', 'xmlns:thr' => 'http://purl.org/syndication/thread/1.0', 'xmlns:activity' => 'http://activitystrea.ms/spec/1.0/', 'xmlns:poco' => 'http://portablecontacts.net/spec/1.0', 'xmlns:media' => 'http://purl.org/syndication/atommedia' }, &block)
+  end
+
+  def single_link_avatar(xml, account, size, px)
+    xml.link('rel' => 'avatar', 'type' => account.avatar_content_type, 'media:width' => px, 'media:height' =>px, 'href' => asset_url(account.avatar.url(size, false)))
   end
 end

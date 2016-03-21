@@ -5,10 +5,8 @@ class AccountsController < ApplicationController
   before_action :set_webfinger_header
 
   def show
-    @statuses = @account.statuses.order('id desc').with_includes.with_counters
-
     respond_to do |format|
-      format.html { @statuses = @statuses.paginate(page: params[:page], per_page: 10)}
+      format.html { @statuses = @account.statuses.order('id desc').with_includes.with_counters.paginate(page: params[:page], per_page: 10)}
       format.atom
     end
   end
