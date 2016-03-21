@@ -1,5 +1,6 @@
 class Api::SalmonController < ApiController
   before_action :set_account
+  respond_to :txt
 
   def update
     ProcessInteractionService.new.(request.body.read, @account)

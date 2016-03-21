@@ -1,9 +1,10 @@
 class Api::SubscriptionsController < ApiController
   before_action :set_account
+  respond_to :txt
 
   def show
     if @account.subscription(api_subscription_url(@account.id)).valid?(params['hub.topic'], params['hub.verify_token'])
-      render text: params['hub.challenge'], status: 200
+      render text: HTMLEntities.new.encode(params['hub.challenge']), status: 200
     else
       render nothing: true, status: 404
     end
