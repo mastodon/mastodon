@@ -10,9 +10,9 @@ RSpec.describe Api::Accounts::LookupController, type: :controller do
 
   describe 'GET #index' do
     before do
-      Fabricate(:account, username: 'alice')
       Fabricate(:account, username: 'bob')
-      get :index, usernames: 'alice,bob'
+      Fabricate(:account, username: 'mcbeth')
+      get :index, usernames: 'alice,bob,mcbeth'
     end
 
     it 'returns http success' do
