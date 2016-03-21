@@ -36,6 +36,7 @@ gem 'onebox'
 gem 'simple_form'
 gem 'will_paginate', '~> 3.0.6'
 gem 'rack-attack'
+gem 'turbolinks', '~> 5.0.0.beta'
 
 group :development, :test do
   gem 'rspec-rails'

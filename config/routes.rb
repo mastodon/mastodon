@@ -21,7 +21,8 @@ Rails.application.routes.draw do
     end
   end
 
-  resource :settings, only: [:show, :update]
+  resource  :settings, only: [:show, :update]
+  resources :statuses, only: [:create]
 
   namespace :api do
     # PubSubHubbub

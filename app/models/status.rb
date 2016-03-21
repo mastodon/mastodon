@@ -13,6 +13,7 @@ class Status < ActiveRecord::Base
 
   validates :account, presence: true
   validates :uri, uniqueness: true, unless: 'local?'
+  validates :text, presence: true, if: Proc.new { |s| s.local? && !s.reblog? }
 
   scope :with_counters, -> { select('statuses.*, (select count(r.id) from statuses as r where r.reblog_of_id = statuses.id) as reblogs_count, (select count(f.id) from favourites as f where f.status_id = statuses.id) as favourites_count') }
   scope :with_includes, -> { includes(:account, reblog: :account, thread: :account) }

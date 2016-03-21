@@ -7,7 +7,10 @@ class FollowRemoteAccountService < BaseService
   # @return [Account]
   def call(uri, subscribe = true)
     username, domain = uri.split('@')
-    account = Account.where(username: username, domain: domain).first
+
+    return Account.find_local(username) if domain == Rails.configuration.x.local_domain
+
+    account = Account.find_by(username: username, domain: domain)
 
     if account.nil?
       account = Account.new(username: username, domain: domain)

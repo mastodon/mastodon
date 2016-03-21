@@ -1,3 +1,11 @@
+= simple_form_for Status.new, url: statuses_path, method: :post do |f|
+  = f.input :text, required: true, autofocus: true, label: false, placeholder: 'What are you up to?'
+
+  .form-actions
+    = f.button :submit, 'Post update'
+
+%hr/
+
 %h3 OAuth2
 %p All API methods require a valid access token.
 
@@ -83,6 +91,15 @@
       %samp /api/accounts/:id/unfollow
     .description
       Unfollows target account from the user's account. Returns the target account.
+  %li
+    .address
+      %samp.method GET
+      %samp /api/accounts/lookup
+    .options
+      Options:
+      %samp usernames
+    .description
+      Returns accounts for a comma-separated list of usernames
 
 %h3 Follows
 %ul.api-descriptions
