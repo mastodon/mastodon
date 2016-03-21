@@ -7,7 +7,7 @@ class AccountsController < ApplicationController
   def show
     respond_to do |format|
       format.html { @statuses = @account.statuses.order('id desc').with_includes.with_counters.paginate(page: params[:page], per_page: 10)}
-      format.atom
+      format.atom { @entries  = @account.stream_entries.order('id desc').with_includes }
     end
   end
 

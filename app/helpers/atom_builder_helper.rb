@@ -40,7 +40,7 @@ module AtomBuilderHelper
   end
 
   def title(xml, title)
-    xml.title title
+    xml.title strip_tags(title || '').truncate(80)
   end
 
   def author(xml, &block)

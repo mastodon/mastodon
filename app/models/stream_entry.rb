@@ -4,6 +4,8 @@ class StreamEntry < ActiveRecord::Base
 
   validates :account, :activity, presence: true
 
+  scope :with_includes, -> { includes(:activity) }
+
   def object_type
     orphaned? ? :activity : (targeted? ? :activity : self.activity.object_type)
   end

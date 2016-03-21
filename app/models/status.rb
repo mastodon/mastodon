@@ -46,7 +46,7 @@ class Status < ActiveRecord::Base
   end
 
   def title
-    content.truncate(80, omission: "...")
+    content
   end
 
   def reblogs_count
