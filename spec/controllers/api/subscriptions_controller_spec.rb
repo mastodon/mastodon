@@ -5,7 +5,7 @@ RSpec.describe Api::SubscriptionsController, type: :controller do
 
   describe 'GET #show' do
     before do
-      get :show, id: account.id, 'hub.topic': 'topic_url', 'hub.verify_token': 123, 'hub.challenge': '456'
+      get :show, :id => account.id, 'hub.topic' => 'topic_url', 'hub.verify_token' => 123, 'hub.challenge' => '456'
     end
 
     it 'returns http success' do
