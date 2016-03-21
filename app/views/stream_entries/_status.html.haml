@@ -33,8 +33,7 @@
           .counter-btn{ class: favourited_by_me_class(status) }
             %i.fa.fa-star
             %span.counter-number= status.reblog? ? status.reblog.favourites_count : status.favourites_count
-      .content
-        = status.reblog? ? (status.reblog.local? ? linkify(status.reblog) : status.reblog.content.html_safe) : (status.local? ? linkify(status) : status.content.html_safe)
+      .content= content_for_status(status.reblog? ? status.reblog : status)
 
 - if include_threads
   - status.descendants.with_includes.with_counters.each do |status|

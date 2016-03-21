@@ -5,4 +5,4 @@
       = link_to url_for_target(account) do
         %span.display_name= display_name(account)
         %span.username= "@#{account.acct}"
-  %p.note= truncate(account.note, length: 150)
+  %p.note= truncate(strip_tags(account.note), length: 150)

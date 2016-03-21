@@ -4,26 +4,31 @@ class FanOutOnWriteService < BaseService
   # Push a status into home and mentions feeds
   # @param [Status] status
   def call(status)
-    replied_to_user = status.reply? ? status.thread.account : nil
+    deliver_to_self(status) if status.account.local?
+    deliver_to_followers(status, status.reply? ? status.thread.account : nil)
+    deliver_to_mentioned(status)
+  end
 
-    # Deliver to local self
-    push(:home, status.account.id, status) if status.account.local?
+  private
 
-    # Deliver to local followers
+  def deliver_to_self(status)
+    push(:home, status.account.id, status)
+  end
+
+  def deliver_to_followers(status, replied_to_user)
     status.account.followers.each do |follower|
       next if (status.reply? && !(follower.id = replied_to_user.id || follower.following?(replied_to_user))) || !follower.local?
       push(:home, follower.id, status)
     end
+  end
 
-    # Deliver to local mentioned
+  def deliver_to_mentioned(status)
     status.mentioned_accounts.each do |mention|
       mentioned_account = mention.account
       next unless mentioned_account.local?
       push(:mentions, mentioned_account.id, status)
     end
   end
-
-  private
 
   def push(type, receiver_id, status)
     redis.zadd(key(type, receiver_id), status.created_at.to_i, status.id)

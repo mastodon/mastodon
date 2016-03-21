@@ -1,6 +1,4 @@
 class SendInteractionService < BaseService
-  include AtomBuilderHelper
-
   # Send an Atom representation of an interaction to a remote Salmon endpoint
   # @param [StreamEntry] stream_entry
   # @param [Account] target_account

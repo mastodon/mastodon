@@ -47,6 +47,10 @@ Rails.application.routes.draw do
     resources :follows,  only: [:create]
 
     resources :accounts, only: [:show] do
+      collection do
+        get :lookup, to: 'accounts/lookup#index', as: :lookup
+      end
+
       member do
         get :statuses
         get :followers
