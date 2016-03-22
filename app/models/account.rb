@@ -5,7 +5,6 @@ class Account < ActiveRecord::Base
   validates :username, uniqueness: { scope: :domain, case_sensitive: true },  unless: 'local?'
 
   # Avatar upload
-  attr_reader :avatar_remote_url
   has_attached_file :avatar, styles: { large: '300x300#', medium: '96x96#', small: '48x48#' }, default_url: 'avatars/missing.png'
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
 
@@ -91,8 +90,11 @@ class Account < ActiveRecord::Base
   end
 
   def avatar_remote_url=(url)
-    self.avatar = URI.parse(url)
-    @avatar_remote_url = url
+    unless self[:avatar_remote_url] == url
+      self.avatar = URI.parse(url)
+    end
+
+    self[:avatar_remote_url] = url
   end
 
   def to_param
