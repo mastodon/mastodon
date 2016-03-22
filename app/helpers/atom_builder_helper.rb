@@ -36,7 +36,7 @@ module AtomBuilderHelper
   end
 
   def content(xml, content)
-    xml.content({ type: 'html' }, content)
+    xml.content({ type: 'html' }, content) unless content.blank?
   end
 
   def title(xml, title)
@@ -64,11 +64,11 @@ module AtomBuilderHelper
   end
 
   def summary(xml, summary)
-    xml.summary summary
+    xml.summary(summary) unless summary.blank?
   end
 
   def subtitle(xml, subtitle)
-    xml.subtitle subtitle
+    xml.subtitle(subtitle) unless subtitle.blank?
   end
 
   def link_alternate(xml, url)
@@ -89,8 +89,8 @@ module AtomBuilderHelper
 
   def portable_contact(xml, account)
     xml['poco'].preferredUsername account.username
-    xml['poco'].displayName account.display_name
-    xml['poco'].note account.note
+    xml['poco'].displayName(account.display_name) unless account.display_name.blank?
+    xml['poco'].note(account.note) unless account.note.blank?
   end
 
   def in_reply_to(xml, uri, url)
@@ -145,7 +145,7 @@ module AtomBuilderHelper
         activity.content
       end
     elsif activity.nil?
-      ''
+      nil
     else
       activity.content
     end
@@ -169,7 +169,6 @@ module AtomBuilderHelper
     content      xml, conditionally_formatted(stream_entry.activity)
     verb         xml, stream_entry.verb
     link_self    xml, account_stream_entry_url(stream_entry.account, stream_entry, format: 'atom')
-    object_type  xml, stream_entry.object_type
 
     # Comments need thread element
     if stream_entry.threaded?
@@ -202,6 +201,8 @@ module AtomBuilderHelper
           end
         end
       end
+    else
+      object_type xml, stream_entry.object_type
     end
 
     stream_entry.mentions.each do |mentioned|
