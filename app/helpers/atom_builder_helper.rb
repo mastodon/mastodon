@@ -192,7 +192,10 @@ module AtomBuilderHelper
 
         # Statuses have content and author
         if [:note, :comment].include? stream_entry.target.object_type
-          content xml, conditionally_formatted(stream_entry.target)
+          content      xml, conditionally_formatted(stream_entry.target)
+          verb         xml, stream_entry.target.verb
+          published_at xml, stream_entry.target.created_at
+          updated_at   xml, stream_entry.target.updated_at
 
           author(xml) do
             include_author xml, stream_entry.target.account
