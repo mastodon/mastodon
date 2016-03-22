@@ -14,7 +14,7 @@ class PrecomputeFeedService < BaseService
   private
 
   def push(type, receiver_id, status)
-    redis.zadd(key(type, receiver_id), status.created_at.to_i, status.id)
+    redis.zadd(key(type, receiver_id), status.id, status.id)
   end
 
   def home(account)

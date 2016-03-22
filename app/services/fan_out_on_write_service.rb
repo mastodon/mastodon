@@ -31,7 +31,7 @@ class FanOutOnWriteService < BaseService
   end
 
   def push(type, receiver_id, status)
-    redis.zadd(key(type, receiver_id), status.created_at.to_i, status.id)
+    redis.zadd(key(type, receiver_id), status.id, status.id)
     trim(type, receiver_id)
   end
 
