@@ -190,9 +190,13 @@ module AtomBuilderHelper
           link_avatar      xml, stream_entry.target
         end
 
-        # Statuses have content
+        # Statuses have content and author
         if [:note, :comment].include? stream_entry.target.object_type
           content xml, conditionally_formatted(stream_entry.target)
+
+          author(xml) do
+            include_author xml, stream_entry.target.account
+          end
         end
       end
     end
