@@ -139,7 +139,7 @@ module AtomBuilderHelper
     if activity.is_a?(Status)
       if activity.reblog? && activity.reblog.local?
         linkify(activity.reblog)
-      elsif activity.local?
+      elsif !activity.reblog? && activity.local?
         linkify(activity)
       else
         activity.content

@@ -75,7 +75,7 @@ class Status < ActiveRecord::Base
       end
     end
 
-    m
+    m.uniq
   end
 
   def ancestors
