@@ -2,7 +2,7 @@ object @status
 attributes :id, :created_at, :in_reply_to_id
 
 node(:uri)              { |status| uri_for_target(status) }
-node(:content)          { |status| status.local? ? linkify(status) : status.content }
+node(:content)          { |status| content_for_status(status) }
 node(:url)              { |status| url_for_target(status) }
 node(:reblogs_count)    { |status| status.reblogs_count }
 node(:favourites_count) { |status| status.favourites_count }

@@ -50,7 +50,7 @@ RSpec.describe Status, type: :model do
     end
 
     it 'returns mentioned accounts' do
-      subject.text = 'Hello @bob!'
+      subject.mentioned_accounts.create!(account: bob)
       expect(subject.mentions).to include bob
     end
 

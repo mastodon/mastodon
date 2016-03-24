@@ -137,13 +137,7 @@ module AtomBuilderHelper
 
   def conditionally_formatted(activity)
     if activity.is_a?(Status)
-      if activity.reblog? && activity.reblog.local?
-        linkify(activity.reblog)
-      elsif !activity.reblog? && activity.local?
-        linkify(activity)
-      else
-        activity.content
-      end
+      content_for_status(activity.reblog? ? activity.reblog : activity)
     elsif activity.nil?
       nil
     else

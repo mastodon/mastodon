@@ -60,22 +60,15 @@ class Status < ActiveRecord::Base
   end
 
   def mentions
-    m = []
-
-    m << thread.account if reply?
-    m << reblog.account if reblog?
-
-    unless reblog?
-      self.text.scan(Account::MENTION_RE).each do |match|
-        uri = match.first
-        username, domain = uri.split('@')
-        account = Account.find_by(username: username, domain: domain)
-
-        m << account unless account.nil?
-      end
+    if @mentions.nil?
+      @mentions = []
+      @mentions << thread.account if reply?
+      @mentions << reblog.account if reblog?
+      self.mentioned_accounts.each { |mention| @mentions << mention.account } unless reblog?
+      @mentions = @mentions.uniq
     end
 
-    m.uniq
+    @mentions
   end
 
   def ancestors

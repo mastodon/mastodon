@@ -27,12 +27,4 @@ module StreamEntriesHelper
   def favourited_by_me_class(status)
     user_signed_in? && current_user.account.favourited?(status) ? 'favourited' : ''
   end
-
-  def content_for_status(actual_status)
-    if actual_status.local?
-      linkify(actual_status)
-    else
-      sanitize(actual_status.content, tags: %w(a br p), attributes: %w(href rel))
-    end
-  end
 end

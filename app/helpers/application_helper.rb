@@ -12,6 +12,14 @@ module ApplicationHelper
     id.start_with?("tag:#{Rails.configuration.x.local_domain}")
   end
 
+  def content_for_status(actual_status)
+    if actual_status.local?
+      linkify(actual_status)
+    else
+      sanitize(actual_status.content, tags: %w(a br p), attributes: %w(href rel))
+    end
+  end
+
   def linkify(status)
     mention_hash = {}
     status.mentions.each { |m| mention_hash[m.acct] = m }
