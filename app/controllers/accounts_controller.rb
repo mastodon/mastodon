@@ -11,9 +11,9 @@ class AccountsController < ApplicationController
       format.atom do
         @entries = @account.stream_entries.order('id desc').with_includes.paginate_by_max_id(20, params[:max_id] || nil)
 
-        ActiveRecord::Associations::Preloader.new.preload(@entries.select { |a| a.activity_type == 'Status' }, :mentioned_accounts, reblog: :account, thread: :account)
-        ActiveRecord::Associations::Preloader.new.preload(@entries.select { |a| a.activity_type == 'Favourite' }, status: [:account, :thread, :mentioned_accounts])
-        ActiveRecord::Associations::Preloader.new.preload(@entries.select { |a| a.activity_type == 'Follow' }, :target_account)
+        ActiveRecord::Associations::Preloader.new.preload(@entries.select { |a| a.activity_type == 'Status' }, activity: [:mentioned_accounts, reblog: :account, thread: :account])
+        ActiveRecord::Associations::Preloader.new.preload(@entries.select { |a| a.activity_type == 'Favourite' }, activity: [:account, :thread, :mentioned_accounts])
+        ActiveRecord::Associations::Preloader.new.preload(@entries.select { |a| a.activity_type == 'Follow' }, activity: :target_account)
       end
     end
   end
