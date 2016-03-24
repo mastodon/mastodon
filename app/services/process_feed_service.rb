@@ -76,7 +76,7 @@ class ProcessFeedService < BaseService
 
     if !status.reblog.nil?
       status.save!
-      NotificationMailer.reblog(status.reblog, status.account).deliver_later
+      NotificationMailer.reblog(status.reblog, status.account).deliver_later if status.reblog.local?
     end
   end
 
