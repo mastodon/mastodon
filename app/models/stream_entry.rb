@@ -4,7 +4,8 @@ class StreamEntry < ActiveRecord::Base
 
   validates :account, :activity, presence: true
 
-  scope :with_includes, -> { includes(:activity) }
+  scope :with_includes,      -> { includes(:activity) }
+  scope :paginate_by_max_id, -> (limit, max_id) { order('id desc').limit(limit).where(max_id.nil? ? '1=1' : ['id < ?', max_id]) }
 
   def object_type
     orphaned? ? :activity : (targeted? ? :activity : self.activity.object_type)

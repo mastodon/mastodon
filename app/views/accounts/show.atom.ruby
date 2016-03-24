@@ -15,7 +15,7 @@ Nokogiri::XML::Builder.new do |xml|
     link_hub       xml, Rails.configuration.x.hub_url
     link_salmon    xml, api_salmon_url(@account.id)
 
-    @entries.order('id desc').each do |stream_entry|
+    @entries.each do |stream_entry|
       entry(xml, false) do
         include_entry xml, stream_entry
       end
