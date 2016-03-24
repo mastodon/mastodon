@@ -7,7 +7,14 @@ class AccountsController < ApplicationController
   def show
     respond_to do |format|
       format.html { @statuses = @account.statuses.order('id desc').with_includes.with_counters.paginate(page: params[:page], per_page: 10)}
-      format.atom { @entries  = @account.stream_entries.order('id desc').with_includes.paginate_by_max_id(20, params[:max_id] || nil) }
+
+      format.atom do
+        @entries = @account.stream_entries.order('id desc').with_includes.paginate_by_max_id(20, params[:max_id] || nil)
+
+        ActiveRecord::Associations::Preloader.new.preload(@entries.select { |a| a.activity_type == 'Status' }, :mentioned_accounts, reblog: :account, thread: :account)
+        ActiveRecord::Associations::Preloader.new.preload(@entries.select { |a| a.activity_type == 'Favourite' }, status: [:account, :thread, :mentioned_accounts])
+        ActiveRecord::Associations::Preloader.new.preload(@entries.select { |a| a.activity_type == 'Follow' }, :target_account)
+      end
     end
   end
 

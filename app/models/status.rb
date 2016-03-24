@@ -1,4 +1,6 @@
 class Status < ActiveRecord::Base
+  include Paginable
+
   belongs_to :account, inverse_of: :statuses
 
   belongs_to :thread, foreign_key: 'in_reply_to_id', class_name: 'Status', inverse_of: :replies
@@ -15,9 +17,8 @@ class Status < ActiveRecord::Base
   validates :uri, uniqueness: true, unless: 'local?'
   validates :text, presence: true, if: Proc.new { |s| s.local? && !s.reblog? }
 
-  scope :with_counters,      -> { select('statuses.*, (select count(r.id) from statuses as r where r.reblog_of_id = statuses.id) as reblogs_count, (select count(f.id) from favourites as f where f.status_id = statuses.id) as favourites_count') }
-  scope :with_includes,      -> { includes(:account, reblog: :account, thread: :account) }
-  scope :paginate_by_max_id, -> (limit, max_id) { order('id desc').limit(limit).where(max_id.nil? ? '1=1' : ['id < ?', max_id]) }
+  scope :with_counters, -> { select('statuses.*, (select count(r.id) from statuses as r where r.reblog_of_id = statuses.id) as reblogs_count, (select count(f.id) from favourites as f where f.status_id = statuses.id) as favourites_count') }
+  scope :with_includes, -> { includes(:account, :mentioned_accounts, reblog: [:account, :mentioned_accounts], thread: [:account, :mentioned_accounts]) }
 
   def local?
     self.uri.nil?

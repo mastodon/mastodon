@@ -1,11 +1,12 @@
 class StreamEntry < ActiveRecord::Base
+  include Paginable
+
   belongs_to :account, inverse_of: :stream_entries
   belongs_to :activity, polymorphic: true
 
   validates :account, :activity, presence: true
 
-  scope :with_includes,      -> { includes(:activity) }
-  scope :paginate_by_max_id, -> (limit, max_id) { order('id desc').limit(limit).where(max_id.nil? ? '1=1' : ['id < ?', max_id]) }
+  scope :with_includes, -> { includes(:activity) }
 
   def object_type
     orphaned? ? :activity : (targeted? ? :activity : self.activity.object_type)
