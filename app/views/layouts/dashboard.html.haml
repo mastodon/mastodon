@@ -21,13 +21,18 @@
           = link_to settings_path do
             = fa_icon 'user'
             Edit profile
+
     .dashboard__content
       .dashboard__top-bar
         = content_for?(:page_title) ? yield(:page_title) : 'Mastodon'
         %ul
           %li= link_to fa_icon('gear'), edit_registration_path(current_user), title: 'Change password'
           %li= link_to fa_icon('sign-out'), destroy_user_session_path, method: :delete, title: 'Sign out'
+
       .dashboard__content__content= yield
+
+      = yield(:raw_content)
+
   .footer
     .domain= Rails.configuration.x.local_domain
 
