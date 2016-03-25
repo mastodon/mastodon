@@ -7,5 +7,5 @@ Sidekiq.configure_server do |config|
 end
 
 Sidekiq.configure_client do |config|
-  config.redis = ConnectionPool.new(size: 25, &redis_conn)
+  config.redis = ConnectionPool.new(size: 5, &redis_conn)
 end
