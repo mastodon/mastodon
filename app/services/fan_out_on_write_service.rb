@@ -3,7 +3,7 @@ class FanOutOnWriteService < BaseService
   # @param [Status] status
   def call(status)
     deliver_to_self(status) if status.account.local?
-    deliver_to_followers(status, status.reply? ? status.thread.account : nil)
+    deliver_to_followers(status)
     deliver_to_mentioned(status)
   end
 
@@ -13,7 +13,7 @@ class FanOutOnWriteService < BaseService
     push(:home, status.account.id, status)
   end
 
-  def deliver_to_followers(status, replied_to_user)
+  def deliver_to_followers(status)
     status.account.followers.each do |follower|
       next if !follower.local? || FeedManager.filter_status?(status, follower)
       push(:home, follower.id, status)

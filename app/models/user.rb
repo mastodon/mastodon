@@ -7,4 +7,8 @@ class User < ActiveRecord::Base
   validates :account, presence: true
 
   has_many :oauth_applications, class_name: 'Doorkeeper::Application', as: :owner
+
+  def admin?
+    self.admin
+  end
 end

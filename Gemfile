@@ -58,10 +58,13 @@ group :development do
   gem 'rubocop', require: false
   gem 'better_errors'
   gem 'binding_of_caller'
-  gem 'rack-mini-profiler'
   gem 'letter_opener'
 end
 
 group :production do
   gem 'rails_12factor'
+end
+
+group :development, :production do
+  gem 'rack-mini-profiler'
 end
