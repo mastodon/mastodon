@@ -1,33 +1,21 @@
 class PrecomputeFeedService < BaseService
-  MAX_FEED_SIZE = 800
-
-  # Fill up a user's home/mentions feed from DB and return it
+  # Fill up a user's home/mentions feed from DB and return a subset
   # @param [Symbol] type :home or :mentions
   # @param [Account] account
   # @return [Array]
-  def call(type, account)
-    statuses = send(type.to_s, account).order('created_at desc').limit(MAX_FEED_SIZE)
-    statuses.each { |status| push(type, account.id, status) }
-    statuses
+  def call(type, account, limit)
+    instant_return = []
+
+    Status.send("as_#{type}_timeline", account).order('created_at desc').limit(FeedManager::MAX_ITEMS).each do |status|
+      next if type == :home && FeedManager.filter_status?(status, account)
+      redis.zadd(FeedManager.key(type, receiver_id), status.id, status.id)
+      instant_return << status unless instant_return.size > limit
+    end
+
+    instant_return
   end
 
   private
-
-  def push(type, receiver_id, status)
-    redis.zadd(key(type, receiver_id), status.id, status.id)
-  end
-
-  def home(account)
-    Status.where(account: [account] + account.following).with_includes.with_counters
-  end
-
-  def mentions(account)
-    Status.where(id: Mention.where(account: account).pluck(:status_id)).with_includes.with_counters
-  end
-
-  def key(type, id)
-    "feed:#{type}:#{id}"
-  end
 
   def redis
     $redis

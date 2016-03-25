@@ -40,31 +40,6 @@ RSpec.describe Status, type: :model do
     end
   end
 
-  describe '#mentions' do
-    before do
-      bob # make sure the account exists
-    end
-
-    it 'is empty if the status is self-contained and does not mention anyone' do
-      expect(subject.mentions).to be_empty
-    end
-
-    it 'returns mentioned accounts' do
-      subject.mentioned_accounts.create!(account: bob)
-      expect(subject.mentions).to include bob
-    end
-
-    it 'returns account of the replied-to status' do
-      subject.thread = other
-      expect(subject.mentions).to include bob
-    end
-
-    it 'returns the account of the shared status' do
-      subject.reblog = other
-      expect(subject.mentions).to include bob
-    end
-  end
-
   describe '#verb' do
     it 'is always post' do
       expect(subject.verb).to be :post

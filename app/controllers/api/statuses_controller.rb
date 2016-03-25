@@ -22,12 +22,10 @@ class Api::StatusesController < ApiController
   end
 
   def home
-    feed      = Feed.new(:home, current_user.account)
-    @statuses = feed.get(20, params[:max_id] || '+inf')
+    @statuses = Feed.new(:home, current_user.account).get(20, params[:max_id])
   end
 
   def mentions
-    feed      = Feed.new(:mentions, current_user.account)
-    @statuses = feed.get(20, params[:max_id] || '+inf')
+    @statuses = Feed.new(:mentions, current_user.account).get(20, params[:max_id])
   end
 end

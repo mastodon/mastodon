@@ -1,4 +1,6 @@
 class Account < ActiveRecord::Base
+  include Targetable
+
   # Local users
   has_one :user, inverse_of: :account
   validates :username, uniqueness: { scope: :domain, case_sensitive: false }, if:     'local?'
@@ -52,18 +54,6 @@ class Account < ActiveRecord::Base
     local? ? self.username : "#{self.username}@#{self.domain}"
   end
 
-  def object_type
-    :person
-  end
-
-  def title
-    self.username
-  end
-
-  def content
-    self.note
-  end
-
   def subscribed?
     !(self.secret.blank? || self.verify_token.blank?)
   end
@@ -95,6 +85,10 @@ class Account < ActiveRecord::Base
     end
 
     self[:avatar_remote_url] = url
+  end
+
+  def object_type
+    :person
   end
 
   def to_param

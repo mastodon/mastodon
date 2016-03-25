@@ -4,7 +4,7 @@ class StatusesController < ApplicationController
   before_action :authenticate_user!
 
   def create
-    status = PostStatusService.new.(current_user.account, status_params[:text])
+    PostStatusService.new.(current_user.account, status_params[:text])
     redirect_to root_path
   rescue ActiveRecord::RecordInvalid
     redirect_to root_path

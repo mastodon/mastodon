@@ -30,6 +30,29 @@ RSpec.describe ApplicationHelper, type: :helper do
   end
 
   describe '#linkify' do
-    pending
+    let(:alice) { Fabricate(:account, username: 'alice') }
+    let(:bob) { Fabricate(:account, username: 'bob', domain: 'example.com', url: 'http://example.com/bob') }
+
+    it 'turns mention of remote user into link' do
+      status = Fabricate(:status, text: 'Hello @bob@example.com', account: bob)
+      status.mentions.create(account: bob)
+      expect(helper.linkify(status)).to match('<a href="http://example.com/bob" class="mention">@<span>bob@example.com</span></a>')
+    end
+
+    it 'turns mention of local user into link' do
+      status = Fabricate(:status, text: 'Hello @alice', account: bob)
+      status.mentions.create(account: alice)
+      expect(helper.linkify(status)).to match('<a href="http://test.host/users/alice" class="mention">@<span>alice</span></a>')
+    end
+  end
+
+  describe '#account_from_mentions' do
+    let(:bob) { Fabricate(:account, username: 'bob', domain: 'example.com') }
+    let(:status) { Fabricate(:status, text: 'Hello @bob@example.com', account: bob) }
+    let(:mentions) { [Mention.create(status: status, account: bob)] }
+
+    it 'returns account' do
+      expect(helper.account_from_mentions('bob@example.com', mentions)).to eq bob
+    end
   end
 end

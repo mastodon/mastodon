@@ -41,7 +41,7 @@ class StreamEntry < ActiveRecord::Base
   end
 
   def mentions
-    orphaned? ? [] : self.activity.mentions
+    self.activity.respond_to?(:mentions) ? self.activity.mentions.map { |x| x.account } : []
   end
 
   private

@@ -96,18 +96,6 @@ RSpec.describe Account, type: :model do
     end
   end
 
-  describe '#title' do
-    it 'is the same as the username' do
-      expect(subject.title).to eql subject.username
-    end
-  end
-
-  describe '#content' do
-    it 'is the same as the note' do
-      expect(subject.content).to eql subject.note
-    end
-  end
-
   describe '#ping!' do
     pending
   end

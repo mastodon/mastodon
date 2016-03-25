@@ -135,6 +135,10 @@ module AtomBuilderHelper
     xml.logo url
   end
 
+  def email(xml, email)
+    xml.email email
+  end
+
   def conditionally_formatted(activity)
     if activity.is_a?(Status)
       content_for_status(activity.reblog? ? activity.reblog : activity)
@@ -149,6 +153,7 @@ module AtomBuilderHelper
     object_type      xml, :person
     uri              xml, url_for_target(account)
     name             xml, account.username
+    email            xml, account.local? ? "#{account.acct}@#{Rails.configuration.x.local_domain}" : account.acct
     summary          xml, account.note
     link_alternate   xml, url_for_target(account)
     link_avatar      xml, account
@@ -171,16 +176,13 @@ module AtomBuilderHelper
 
     if stream_entry.targeted?
       target(xml) do
-        object_type    xml, stream_entry.target.object_type
-        simple_id      xml, uri_for_target(stream_entry.target)
-        title          xml, stream_entry.target.title
-        link_alternate xml, url_for_target(stream_entry.target)
-
-        # People have summary and portable contacts information
         if stream_entry.target.object_type == :person
-          summary          xml, stream_entry.target.content
-          portable_contact xml, stream_entry.target
-          link_avatar      xml, stream_entry.target
+          include_author xml, stream_entry.target
+        else
+          object_type    xml, stream_entry.target.object_type
+          simple_id      xml, uri_for_target(stream_entry.target)
+          title          xml, stream_entry.target.title
+          link_alternate xml, url_for_target(stream_entry.target)
         end
 
         # Statuses have content and author

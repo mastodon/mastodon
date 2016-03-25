@@ -42,12 +42,6 @@ RSpec.describe Favourite, type: :model do
     end
   end
 
-  describe '#mentions' do
-    it 'is always empty' do
-      expect(subject.mentions).to be_empty
-    end
-  end
-
   describe '#thread' do
     it 'equals the target' do
       expect(subject.thread).to eq subject.target

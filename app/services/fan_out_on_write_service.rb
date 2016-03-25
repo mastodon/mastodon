@@ -1,6 +1,4 @@
 class FanOutOnWriteService < BaseService
-  MAX_FEED_SIZE = 800
-
   # Push a status into home and mentions feeds
   # @param [Status] status
   def call(status)
@@ -17,13 +15,13 @@ class FanOutOnWriteService < BaseService
 
   def deliver_to_followers(status, replied_to_user)
     status.account.followers.each do |follower|
-      next if (status.reply? && !(follower.id = replied_to_user.id || follower.following?(replied_to_user))) || !follower.local?
+      next if !follower.local? || FeedManager.filter_status?(status, follower)
       push(:home, follower.id, status)
     end
   end
 
   def deliver_to_mentioned(status)
-    status.mentioned_accounts.each do |mention|
+    status.mentions.each do |mention|
       mentioned_account = mention.account
       next unless mentioned_account.local?
       push(:mentions, mentioned_account.id, status)
@@ -31,19 +29,15 @@ class FanOutOnWriteService < BaseService
   end
 
   def push(type, receiver_id, status)
-    redis.zadd(key(type, receiver_id), status.id, status.id)
+    redis.zadd(FeedManager.key(type, receiver_id), status.id, status.id)
     trim(type, receiver_id)
   end
 
   def trim(type, receiver_id)
-    return unless redis.zcard(key(type, receiver_id)) > MAX_FEED_SIZE
+    return unless redis.zcard(FeedManager.key(type, receiver_id)) > FeedManager::MAX_ITEMS
 
-    last = redis.zrevrange(key(type, receiver_id), MAX_FEED_SIZE - 1, MAX_FEED_SIZE - 1)
-    redis.zremrangebyscore(key(type, receiver_id), '-inf', "(#{last.last}")
-  end
-
-  def key(type, id)
-    "feed:#{type}:#{id}"
+    last = redis.zrevrange(FeedManager.key(type, receiver_id), FeedManager::MAX_ITEMS - 1, FeedManager::MAX_ITEMS - 1)
+    redis.zremrangebyscore(FeedManager.key(type, receiver_id), '-inf', "(#{last.last}")
   end
 
   def redis

@@ -4,64 +4,66 @@ class ProcessFeedService < BaseService
   # @param [Account] account Account this feed belongs to
   def call(body, account)
     xml = Nokogiri::XML(body)
-
-    # If we got a full feed, make sure the account's profile is up to date
-    unless xml.at_xpath('/xmlns:feed').nil?
-      update_remote_profile_service.(xml.at_xpath('/xmlns:feed/xmlns:author'), account)
-    end
-
-    # Process entries
-    xml.xpath('//xmlns:entry').each do |entry|
-      next unless [:note, :comment, :activity].include? object_type(entry)
-
-      status = Status.find_by(uri: activity_id(entry))
-
-      # If we already have a post and the verb is now "delete", we gotta delete it and move on!
-      if !status.nil? && verb(entry) == :delete
-        delete_post!(status)
-        next
-      end
-
-      next unless status.nil?
-
-      status = Status.new(uri: activity_id(entry), url: activity_link(entry), account: account, text: content(entry), created_at: published(entry), updated_at: updated(entry))
-
-      if verb(entry) == :share
-        add_reblog!(entry, status)
-      elsif verb(entry) == :post
-        if thread_id(entry).nil?
-          add_post!(entry, status)
-        else
-          add_reply!(entry, status)
-        end
-      end
-
-      # If we added a status, go through accounts it mentions and create respective relations
-      unless status.new_record?
-        entry.xpath('./xmlns:link[@rel="mentioned"]').each do |mention_link|
-          # Here we have to do a reverse lookup of local accounts by their URL!
-          # It's not pretty at all! I really wish all these protocols sticked to
-          # using acct:username@domain only! It would make things so much easier
-          # and tidier
-
-          href = Addressable::URI.parse(mention_link.attribute('href').value)
-
-          if href.host == Rails.configuration.x.local_domain
-            mentioned_account = Account.find_local(href.path.gsub('/users/', ''))
-
-            unless mentioned_account.nil?
-              mentioned_account.mentions.where(status: status).first_or_create(status: status)
-              NotificationMailer.mention(mentioned_account, status).deliver_later
-            end
-          end
-        end
-
-        fan_out_on_write_service.(status)
-      end
-    end
+    update_remote_profile_service.(xml.at_xpath('/xmlns:feed/xmlns:author'), account) unless xml.at_xpath('/xmlns:feed').nil?
+    xml.xpath('//xmlns:entry').each { |entry| process_entry(account, entry) }
   end
 
   private
+
+  def process_entry(account, entry)
+    return unless [:note, :comment, :activity].include? object_type(entry)
+
+    status = Status.find_by(uri: activity_id(entry))
+
+    # If we already have a post and the verb is now "delete", we gotta delete it and move on!
+    if !status.nil? && verb(entry) == :delete
+      delete_post!(status)
+      return
+    end
+
+    return unless status.nil?
+
+    status = Status.new(uri: activity_id(entry), url: activity_link(entry), account: account, text: content(entry), created_at: published(entry), updated_at: updated(entry))
+
+    if verb(entry) == :share
+      add_reblog!(entry, status)
+    elsif verb(entry) == :post
+      if thread_id(entry).nil?
+        add_post!(entry, status)
+      else
+        add_reply!(entry, status)
+      end
+    end
+
+    # If we added a status, go through accounts it mentions and create respective relations
+    unless status.new_record?
+      record_remote_mentions(status, entry.xpath('./xmlns:link[@rel="mentioned"]'))
+      fan_out_on_write_service.(status)
+    end
+  end
+
+  def record_remote_mentions(status, links)
+    # Here we have to do a reverse lookup of local accounts by their URL!
+    # It's not pretty at all! I really wish all these protocols sticked to
+    # using acct:username@domain only! It would make things so much easier
+    # and tidier
+
+    links.each do |mention_link|
+      href = Addressable::URI.parse(mention_link.attribute('href').value)
+
+      if href.host == Rails.configuration.x.local_domain
+        # A local user is mentioned
+        mentioned_account = Account.find_local(href.path.gsub('/users/', ''))
+
+        unless mentioned_account.nil?
+          mentioned_account.mentions.where(status: status).first_or_create(status: status)
+          NotificationMailer.mention(mentioned_account, status).deliver_later
+        end
+      else
+        # What to do about remote user?
+      end
+    end
+  end
 
   def add_post!(_entry, status)
     status.save!

@@ -35,10 +35,4 @@ RSpec.describe Follow, type: :model do
       expect(subject.target).to eq bob
     end
   end
-
-  describe '#mentions' do
-    it 'is empty' do
-      expect(subject.mentions).to be_empty
-    end
-  end
 end
