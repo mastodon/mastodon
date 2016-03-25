@@ -38,7 +38,7 @@ class ProcessFeedService < BaseService
     # If we added a status, go through accounts it mentions and create respective relations
     unless status.new_record?
       record_remote_mentions(status, entry.xpath('./xmlns:link[@rel="mentioned"]'))
-      fan_out_on_write_service.(status)
+      DistributionWorker.perform_async(status.id)
     end
   end
 

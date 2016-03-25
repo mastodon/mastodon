@@ -1,6 +1,10 @@
 - content_for :content do
   .container= yield
   .footer
-    .domain= Rails.configuration.x.local_domain
+    %span.domain= Rails.configuration.x.local_domain
+    %span.powered-by
+      \//
+      powered by
+      = link_to 'Mastodon', 'https://github.com/Gargron/mastodon'
 
 = render template: "layouts/application"

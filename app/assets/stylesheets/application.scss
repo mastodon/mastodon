@@ -262,6 +262,21 @@ body {
     font-weight: 400;
     font-family: 'Roboto Mono', monospace;
   }
+
+  .powered-by {
+    font-size: 12px;
+    font-weight: 400;
+    color: darken(#d9e1e8, 25%);
+
+    a {
+      color: inherit;
+      text-decoration: underline;
+
+      &:hover {
+        text-decoration: none;
+      }
+    }
+  }
 }
 
 .mastodon {
