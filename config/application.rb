@@ -37,5 +37,6 @@ module Mastodon
     end
 
     config.middleware.use Rack::Attack
+    config.middleware.use Rack::Deflater
   end
 end

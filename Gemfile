@@ -66,5 +66,5 @@ group :production do
 end
 
 group :development, :production do
-  gem 'rack-mini-profiler'
+  gem 'rack-mini-profiler', require: false
 end

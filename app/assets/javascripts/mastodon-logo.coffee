@@ -44,5 +44,5 @@ work = ->
   if runs == stop_at_run
     stop()
 
-$ ->
+$(document).on 'turbolinks:load', ->
   setTimeout(start, 100)
