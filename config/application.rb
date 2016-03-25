@@ -28,6 +28,8 @@ module Mastodon
     config.paths.add File.join('app', 'api'), glob: File.join('**', '*.rb')
     config.autoload_paths += Dir[Rails.root.join('app', 'api', '*')]
 
+    config.active_job.queue_adapter = :sidekiq
+
     config.to_prepare do
       Doorkeeper::ApplicationsController.layout           'dashboard'
       Doorkeeper::AuthorizedApplicationsController.layout 'dashboard'

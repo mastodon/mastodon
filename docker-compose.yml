@@ -4,8 +4,11 @@ services:
     image: postgres
   redis:
     image: redis
-  web:
+  app:
     build: .
+    env_file: .env.production
+  web:
+    extends: app
     command: bundle exec rails s -p 3000 -b '0.0.0.0'
     ports:
       - "3000:3000"
@@ -15,4 +18,11 @@ services:
     volumes:
       - ./public/assets:/mastodon/public/assets
       - ./public/system:/mastodon/public/system
-    env_file: .env.production
+  sidekiq:
+    extends: app
+    command: bundle exec sidekiq -q default -q mailers
+    depends_on:
+      - db
+      - redis
+    volumes:
+      - ./public/system:/mastodon/public/system
