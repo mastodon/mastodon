@@ -161,13 +161,14 @@ module AtomBuilderHelper
   end
 
   def include_entry(xml, stream_entry)
-    unique_id    xml, stream_entry.created_at, stream_entry.activity_id, stream_entry.activity_type
-    published_at xml, stream_entry.created_at
-    updated_at   xml, stream_entry.updated_at
-    title        xml, stream_entry.title
-    content      xml, conditionally_formatted(stream_entry.activity)
-    verb         xml, stream_entry.verb
-    link_self    xml, account_stream_entry_url(stream_entry.account, stream_entry, format: 'atom')
+    unique_id      xml, stream_entry.created_at, stream_entry.activity_id, stream_entry.activity_type
+    published_at   xml, stream_entry.created_at
+    updated_at     xml, stream_entry.updated_at
+    title          xml, stream_entry.title
+    content        xml, conditionally_formatted(stream_entry.activity)
+    verb           xml, stream_entry.verb
+    link_self      xml, account_stream_entry_url(stream_entry.account, stream_entry, format: 'atom')
+    link_alternate xml, account_stream_entry_url(stream_entry.account, stream_entry)
 
     # Comments need thread element
     if stream_entry.threaded?
