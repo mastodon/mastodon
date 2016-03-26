@@ -1,2 +1,5 @@
-$(document).on 'turbolinks:load', ->
-  window.MiniProfiler.pageTransition() unless typeof window.MiniProfiler == 'undefined'
+$ ->
+  $(document).on 'turbolinks:load', ->
+    unless typeof window.MiniProfiler == 'undefined'
+      window.MiniProfiler.init()
+      window.MiniProfiler.pageTransition()

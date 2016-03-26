@@ -51,6 +51,7 @@ end
 group :test do
   gem 'simplecov', require: false
   gem 'webmock'
+  gem 'rspec-sidekiq'
 end
 
 group :development do
@@ -59,6 +60,8 @@ group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'letter_opener'
+  gem 'bullet'
+  gem 'memory_profiler'
 end
 
 group :production do

@@ -9,6 +9,7 @@ require 'webmock/rspec'
 
 ActiveRecord::Migration.maintain_test_schema!
 WebMock.disable_net_connect!
+Sidekiq::Testing.inline!
 
 RSpec.configure do |config|
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
@@ -18,6 +19,10 @@ RSpec.configure do |config|
 
   config.include Devise::TestHelpers, type: :controller
   config.include Devise::TestHelpers, type: :view
+end
+
+RSpec::Sidekiq.configure do |config|
+  config.warn_when_jobs_not_processed_by_sidekiq = false
 end
 
 def request_fixture(name)

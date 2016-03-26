@@ -24,7 +24,7 @@ class ProcessMentionsService < BaseService
       if mentioned_account.local?
         NotificationMailer.mention(mentioned_account, status).deliver_later
       else
-        send_interaction_service.(status.stream_entry, mentioned_account)
+        NotificationWorker.perform_async(status.stream_entry.id, mentioned_account.id)
       end
     end
   end
@@ -33,9 +33,5 @@ class ProcessMentionsService < BaseService
 
   def follow_remote_account_service
     @follow_remote_account_service ||= FollowRemoteAccountService.new
-  end
-
-  def send_interaction_service
-    @send_interaction_service ||= SendInteractionService.new
   end
 end

@@ -8,7 +8,7 @@ class FollowService < BaseService
     return nil if target_account.nil?
 
     follow = source_account.follow!(target_account)
-    send_interaction_service.(follow.stream_entry, target_account)
+    NotificationWorker.perform_async(follow.stream_entry.id, target_account.id)
     source_account.ping!(account_url(source_account, format: 'atom'), [Rails.configuration.x.hub_url])
     follow
   end
@@ -17,9 +17,5 @@ class FollowService < BaseService
 
   def follow_remote_account_service
     @follow_remote_account_service ||= FollowRemoteAccountService.new
-  end
-
-  def send_interaction_service
-    @send_interaction_service ||= SendInteractionService.new
   end
 end

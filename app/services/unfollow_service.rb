@@ -4,12 +4,6 @@ class UnfollowService < BaseService
   # @param [Account] target_account Which to unfollow
   def call(source_account, target_account)
     follow = source_account.unfollow!(target_account)
-    send_interaction_service.(follow.stream_entry, target_account) unless target_account.local?
-  end
-
-  private
-
-  def send_interaction_service
-    @send_interaction_service ||= SendInteractionService.new
+    NotificationWorker.perform_async(follow.stream_entry.id, target_account.id) unless target_account.local?
   end
 end

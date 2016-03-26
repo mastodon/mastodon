@@ -5,13 +5,13 @@ class ReblogService < BaseService
   # @return [Status]
   def call(account, reblogged_status)
     reblog = account.statuses.create!(reblog: reblogged_status, text: '')
-    fan_out_on_write_service.(reblog)
+    DistributionWorker.perform_async(reblog.id)
     account.ping!(account_url(account, format: 'atom'), [Rails.configuration.x.hub_url])
 
     if reblogged_status.local?
       NotificationMailer.reblog(reblogged_status, account).deliver_later
     else
-      send_interaction_service.(reblog.stream_entry, reblogged_status.account)
+      NotificationWorker.perform_async(reblog.stream_entry.id, reblogged_status.account_id)
     end
 
     reblog
@@ -21,9 +21,5 @@ class ReblogService < BaseService
 
   def send_interaction_service
     @send_interaction_service ||= SendInteractionService.new
-  end
-
-  def fan_out_on_write_service
-    @fan_out_on_write_service ||= FanOutOnWriteService.new
   end
 end

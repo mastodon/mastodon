@@ -47,6 +47,9 @@ GEM
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
     builder (3.2.2)
+    bullet (5.0.0)
+      activesupport (>= 3.0.0)
+      uniform_notifier (~> 1.9.0)
     climate_control (0.0.3)
       activesupport (>= 3.0)
     cocaine (0.5.8)
@@ -139,6 +142,7 @@ GEM
       nokogiri (>= 1.5.9)
     mail (2.6.3)
       mime-types (>= 1.16, < 3)
+    memory_profiler (0.9.6)
     method_source (0.8.2)
     mime-types (2.99.1)
     mimemagic (0.3.0)
@@ -252,6 +256,9 @@ GEM
       rspec-expectations (~> 3.4.0)
       rspec-mocks (~> 3.4.0)
       rspec-support (~> 3.4.0)
+    rspec-sidekiq (2.2.0)
+      rspec (~> 3.0, >= 3.0.0)
+      sidekiq (>= 2.4.0)
     rspec-support (3.4.1)
     rubocop (0.38.0)
       parser (>= 2.3.0.6, < 3.0)
@@ -316,6 +323,7 @@ GEM
       unf_ext
     unf_ext (0.0.7.2)
     unicode-display_width (1.0.2)
+    uniform_notifier (1.9.0)
     warden (1.2.6)
       rack (>= 1.0)
     web-console (2.3.0)
@@ -336,6 +344,7 @@ DEPENDENCIES
   addressable
   better_errors
   binding_of_caller
+  bullet
   coffee-rails (~> 4.1.0)
   devise
   doorkeeper
@@ -352,6 +361,7 @@ DEPENDENCIES
   jbuilder (~> 2.0)
   jquery-rails
   letter_opener
+  memory_profiler
   nokogiri
   oj
   onebox
@@ -370,6 +380,7 @@ DEPENDENCIES
   rails_autolink
   redis (~> 3.2)
   rspec-rails
+  rspec-sidekiq
   rubocop
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)

@@ -10,15 +10,9 @@ class FavouriteService < BaseService
     if status.local?
       NotificationMailer.favourite(status, account).deliver_later
     else
-      send_interaction_service.(favourite.stream_entry, status.account)
+      NotificationWorker.perform_async(favourite.stream_entry.id, status.account_id)
     end
 
     favourite
-  end
-
-  private
-
-  def send_interaction_service
-    @send_interaction_service ||= SendInteractionService.new
   end
 end
