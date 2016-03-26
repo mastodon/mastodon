@@ -61,6 +61,9 @@ class ProcessFeedService < BaseService
         end
       else
         # What to do about remote user?
+        # Are we supposed to do a search in the database by URL?
+        # We could technically open the URL, look for LRDD tags, get webfinger that way,
+        # finally acquire the acct:username@domain form, and then check DB
       end
     end
   end
@@ -175,9 +178,5 @@ class ProcessFeedService < BaseService
 
   def update_remote_profile_service
     @update_remote_profile_service ||= UpdateRemoteProfileService.new
-  end
-
-  def fan_out_on_write_service
-    @fan_out_on_write_service ||= FanOutOnWriteService.new
   end
 end

@@ -11,4 +11,8 @@ class User < ActiveRecord::Base
   def admin?
     self.admin
   end
+
+  def remember_me
+    (super == nil) ? '1' : super
+  end
 end
