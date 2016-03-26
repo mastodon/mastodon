@@ -27,4 +27,8 @@ module StreamEntriesHelper
   def favourited_by_me_class(status)
     user_signed_in? && current_user.account.favourited?(status) ? 'favourited' : ''
   end
+
+  def proper_status(status)
+    status.reblog? ? status.reblog : status
+  end
 end

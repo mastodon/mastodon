@@ -14,7 +14,7 @@
     &.entry-predecessor, &.entry-successor {
       background: #d9e1e8;
       border-left-color: #d9e1e8;
-      border-bottom-color: darken(#d9e1e8, 15%);
+      border-bottom-color: darken(#d9e1e8, 10%);
 
       .header {
         .header__right {
@@ -23,6 +23,10 @@
           }
         }
       }
+    }
+
+    &.entry-center {
+      border-bottom-color: darken(#d9e1e8, 10%);
     }
 
     &.entry-follow, &.entry-favourite {

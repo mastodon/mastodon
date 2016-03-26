@@ -1,6 +1,7 @@
 - include_threads ||= false
 - is_predecessor  ||= false
 - is_successor    ||= false
+- centered          = include_threads && !is_predecessor && !is_successor
 
 - if status.reply? && include_threads
   - status.ancestors.with_includes.with_counters.each do |status|
@@ -20,20 +21,22 @@
     .entry__container__container
       .header
         .header__left
-          = link_to url_for_target(status.reblog? ? status.reblog.account : status.account), class: 'name' do
-            %strong= display_name(status.reblog? ? status.reblog.account : status.account)
-            = "@#{status.reblog? ? status.reblog.account.acct : status.account.acct}"
-          = link_to url_for_target(status.reblog? ? status.reblog : status), class: 'time' do
-            %span{ title: status.reblog? ? status.reblog.created_at : status.created_at }
-              = relative_time(status.reblog? ? status.reblog.created_at : status.created_at)
+          = link_to url_for_target(proper_status(status).account), class: 'name' do
+            %strong= display_name(proper_status(status).account)
+            = "@#{proper_status(status).account.acct}"
+          = link_to url_for_target(proper_status(status)), class: 'time' do
+            %span{ title: proper_status(status).created_at }
+              = relative_time(proper_status(status).created_at)
+
         .header__right
-          .counter-btn{ class: reblogged_by_me_class(status) }
+          .counter-btn{ class: reblogged_by_me_class(proper_status(status)) }
             %i.fa.fa-retweet
-            %span.counter-number= status.reblog? ? status.reblog.reblogs_count : status.reblogs_count
-          .counter-btn{ class: favourited_by_me_class(status) }
+            %span.counter-number= proper_status(status).reblogs_count
+          .counter-btn{ class: favourited_by_me_class(proper_status(status)) }
             %i.fa.fa-star
-            %span.counter-number= status.reblog? ? status.reblog.favourites_count : status.favourites_count
-      .content= content_for_status(status.reblog? ? status.reblog : status)
+            %span.counter-number= proper_status(status).favourites_count
+
+      .content= content_for_status(proper_status(status))
 
 - if include_threads
   - status.descendants.with_includes.with_counters.each do |status|
