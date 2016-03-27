@@ -38,8 +38,11 @@ module ApplicationHelper
 
   def linkify(status)
     auto_link(HTMLEntities.new.encode(status.text), link: :urls, html: { rel: 'nofollow noopener' }).gsub(Account::MENTION_RE) do |m|
-      account = account_from_mentions(Account::MENTION_RE.match(m)[1], status.mentions)
-      "#{m.split('@').first}<a href=\"#{url_for_target(account)}\" class=\"mention\">@<span>#{account.acct}</span></a>"
+      if account = account_from_mentions(Account::MENTION_RE.match(m)[1], status.mentions)
+        "#{m.split('@').first}<a href=\"#{url_for_target(account)}\" class=\"mention\">@<span>#{account.acct}</span></a>"
+      else
+        m
+      end
     end.html_safe
   end
 

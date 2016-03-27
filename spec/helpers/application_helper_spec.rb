@@ -44,6 +44,11 @@ RSpec.describe ApplicationHelper, type: :helper do
       status.mentions.create(account: alice)
       expect(helper.linkify(status)).to match('<a href="http://test.host/users/alice" class="mention">@<span>alice</span></a>')
     end
+
+    it 'leaves mention of unresolvable user alone' do
+      status = Fabricate(:status, text: 'Hello @foo', account: bob)
+      expect(helper.linkify(status)).to match('Hello @foo')
+    end
   end
 
   describe '#account_from_mentions' do
