@@ -10,28 +10,28 @@ RSpec.describe Api::AccountsController, type: :controller do
 
   describe 'GET #show' do
     it 'returns http success' do
-      get :show, id: user.account.id
+      get :show, params: { id: user.account.id }
       expect(response).to have_http_status(:success)
     end
   end
 
   describe 'GET #statuses' do
     it 'returns http success' do
-      get :statuses, id: user.account.id
+      get :statuses, params: { id: user.account.id }
       expect(response).to have_http_status(:success)
     end
   end
 
   describe 'GET #followers' do
     it 'returns http success' do
-      get :followers, id: user.account.id
+      get :followers, params: { id: user.account.id }
       expect(response).to have_http_status(:success)
     end
   end
 
   describe 'GET #following' do
     it 'returns http success' do
-      get :following, id: user.account.id
+      get :following, params: { id: user.account.id }
       expect(response).to have_http_status(:success)
     end
   end
@@ -40,7 +40,7 @@ RSpec.describe Api::AccountsController, type: :controller do
     let(:other_account) { Fabricate(:account, username: 'bob') }
 
     before do
-      post :follow, id: other_account.id
+      post :follow, params: { id: other_account.id }
     end
 
     it 'returns http success' do
@@ -57,7 +57,7 @@ RSpec.describe Api::AccountsController, type: :controller do
 
     before do
       user.account.follow!(other_account)
-      post :unfollow, id: other_account.id
+      post :unfollow, params: { id: other_account.id }
     end
 
     it 'returns http success' do

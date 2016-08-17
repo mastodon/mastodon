@@ -12,7 +12,7 @@ RSpec.describe Api::StatusesController, type: :controller do
     let(:status) { Fabricate(:status, account: user.account) }
 
     it 'returns http success' do
-      get :show, id: status.id
+      get :show, params: { id: status.id }
       expect(response).to have_http_status(:success)
     end
   end

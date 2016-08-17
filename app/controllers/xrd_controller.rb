@@ -1,5 +1,5 @@
 class XrdController < ApplicationController
-  before_filter :set_format
+  before_action :set_format
 
   def host_meta
     @webfinger_template = "#{webfinger_url}?resource={uri}"
@@ -10,7 +10,7 @@ class XrdController < ApplicationController
     @canonical_account_uri = "acct:#{@account.username}@#{Rails.configuration.x.local_domain}"
     @magic_key = pem_to_magic_key(@account.keypair.public_key)
   rescue ActiveRecord::RecordNotFound
-    render nothing: true, status: 404
+    head 404
   end
 
   private

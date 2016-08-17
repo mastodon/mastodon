@@ -11,8 +11,8 @@ class Auth::RegistrationsController < Devise::RegistrationsController
   end
 
   def configure_sign_up_params
-    devise_parameter_sanitizer.for(:sign_up) do |u|
-      u.permit(:email, :password, :password_confirmation, account_attributes: [:username])
+    devise_parameter_sanitizer.permit(:sign_up) do |u|
+      u.permit({ account_attributes: [:username] }, :email, :password, :password_confirmation)
     end
   end
 

@@ -1,4 +1,4 @@
-class Mention < ActiveRecord::Base
+class Mention < ApplicationRecord
   belongs_to :account, inverse_of: :mentions
   belongs_to :status
 

@@ -5,26 +5,26 @@ RSpec.describe AccountsController, type: :controller do
 
   describe 'GET #show' do
     it 'returns http success' do
-      get :show, username: alice.username
+      get :show, params: { username: alice.username }
       expect(response).to have_http_status(:success)
     end
 
     it 'returns http success with Atom' do
-      get :show, username: alice.username, format: 'atom'
+      get :show, params: { username: alice.username }, format: 'atom'
       expect(response).to have_http_status(:success)
     end
   end
 
   describe 'GET #followers' do
     it 'returns http success' do
-      get :followers, username: alice.username
+      get :followers, params: { username: alice.username }
       expect(response).to have_http_status(:success)
     end
   end
 
   describe 'GET #following' do
     it 'returns http success' do
-      get :following, username: alice.username
+      get :following, params: { username: alice.username }
       expect(response).to have_http_status(:success)
     end
   end

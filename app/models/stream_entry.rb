@@ -1,4 +1,4 @@
-class StreamEntry < ActiveRecord::Base
+class StreamEntry < ApplicationRecord
   include Paginable
 
   belongs_to :account, inverse_of: :stream_entries

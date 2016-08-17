@@ -18,7 +18,7 @@ RSpec.describe Api::FollowsController, type: :controller do
       stub_request(:post, "https://quitter.no/main/salmon/user/7477").to_return(:status => 200, :body => "", :headers => {})
       stub_request(:post, "https://pubsubhubbub.superfeedr.com/").to_return(:status => 200, :body => "", :headers => {})
 
-      post :create, uri: 'gargron@quitter.no'
+      post :create, params: { uri: 'gargron@quitter.no' }
     end
 
     it 'returns http success' do

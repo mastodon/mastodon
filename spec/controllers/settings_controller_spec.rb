@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe SettingsController, type: :controller do
 
   before do
-    sign_in :user, Fabricate(:user)
+    sign_in Fabricate(:user), scope: :user
   end
 
   describe "GET #show" do

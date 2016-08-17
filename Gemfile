@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '4.2.5.2'
+gem 'rails', '5.0.0.1'
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.1.0'
@@ -15,7 +15,6 @@ gem 'pg'
 gem 'dotenv-rails'
 gem 'font-awesome-rails'
 
-gem 'paranoia', '~> 2.0'
 gem 'paperclip', '~> 4.3'
 
 gem 'http'
@@ -34,15 +33,14 @@ gem 'fast_blank'
 gem 'htmlentities'
 gem 'onebox'
 gem 'simple_form'
-gem 'will_paginate', '~> 3.0.6'
+gem 'will_paginate'
 gem 'rack-attack'
-gem 'turbolinks', '~> 5.0.0.beta'
+gem 'turbolinks'
 gem 'sidekiq'
-gem 'sinatra', :require => nil
+gem 'sinatra', require: nil, github: 'sinatra'
 
 group :development, :test do
   gem 'rspec-rails'
-  gem 'quiet_assets'
   gem 'pry-rails'
   gem 'fuubar'
   gem 'fabrication'
@@ -55,7 +53,6 @@ group :test do
 end
 
 group :development do
-  gem 'web-console', '~> 2.0'
   gem 'rubocop', require: false
   gem 'better_errors'
   gem 'binding_of_caller'

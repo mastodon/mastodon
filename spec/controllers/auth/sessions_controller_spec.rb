@@ -17,7 +17,7 @@ RSpec.describe Auth::SessionsController, type: :controller do
 
     before do
       request.env["devise.mapping"] = Devise.mappings[:user]
-      post :create, user: { email: user.email, password: user.password }
+      post :create, params: { user: { email: user.email, password: user.password } }
     end
 
     it 'redirects to home page' do

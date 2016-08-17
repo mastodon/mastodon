@@ -1,4 +1,4 @@
-class Favourite < ActiveRecord::Base
+class Favourite < ApplicationRecord
   include Streamable
 
   belongs_to :account, inverse_of: :favourites

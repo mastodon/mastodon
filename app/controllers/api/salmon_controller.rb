@@ -4,7 +4,7 @@ class Api::SalmonController < ApiController
 
   def update
     ProcessInteractionService.new.(request.body.read, @account)
-    render nothing: true, status: 201
+    head 201
   end
 
   private

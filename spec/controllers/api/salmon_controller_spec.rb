@@ -13,7 +13,7 @@ RSpec.describe Api::SalmonController, type: :controller do
   describe 'POST #update' do
     before do
       request.env['RAW_POST_DATA'] = File.read(File.join(Rails.root, 'spec', 'fixtures', 'salmon', 'mention.xml'))
-      post :update, id: account.id
+      post :update, params: { id: account.id }
     end
 
     it 'returns http success' do

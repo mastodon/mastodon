@@ -1,4 +1,4 @@
-class Follow < ActiveRecord::Base
+class Follow < ApplicationRecord
   include Streamable
 
   belongs_to :account

@@ -1,10 +1,10 @@
-class Account < ActiveRecord::Base
+class Account < ApplicationRecord
   include Targetable
 
   # Local users
   has_one :user, inverse_of: :account
-  validates :username, uniqueness: { scope: :domain, case_sensitive: false }, if:     'local?'
-  validates :username, uniqueness: { scope: :domain, case_sensitive: true },  unless: 'local?'
+  validates :username, presence: true, uniqueness: { scope: :domain, case_sensitive: false }, if:     'local?'
+  validates :username, presence: true, uniqueness: { scope: :domain, case_sensitive: true },  unless: 'local?'
 
   # Avatar upload
   has_attached_file :avatar, styles: { large: '300x300#', medium: '96x96#', small: '48x48#' }, default_url: 'avatars/missing.png'

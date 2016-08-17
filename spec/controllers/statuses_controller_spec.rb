@@ -4,13 +4,13 @@ RSpec.describe StatusesController, type: :controller do
   let(:user) { Fabricate(:user) }
 
   before do
-    sign_in :user, user
+    sign_in user, scope: :user
   end
 
   describe 'POST #create' do
     before do
       stub_request(:post, "https://pubsubhubbub.superfeedr.com/").to_return(:status => 200, :body => "", :headers => {})
-      post :create, status: { text: 'Hello world' }
+      post :create, params: { status: { text: 'Hello world' } }
     end
 
     it 'redirects back to homepage' do

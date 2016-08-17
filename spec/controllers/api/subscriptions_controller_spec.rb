@@ -5,7 +5,7 @@ RSpec.describe Api::SubscriptionsController, type: :controller do
 
   describe 'GET #show' do
     before do
-      get :show, :id => account.id, 'hub.topic' => 'topic_url', 'hub.verify_token' => 123, 'hub.challenge' => '456'
+      get :show, params: { :id => account.id, 'hub.topic' => 'topic_url', 'hub.verify_token' => 123, 'hub.challenge' => '456' }
     end
 
     it 'returns http success' do
@@ -26,7 +26,7 @@ RSpec.describe Api::SubscriptionsController, type: :controller do
       request.env['HTTP_X_HUB_SIGNATURE'] = "sha1=#{OpenSSL::HMAC.hexdigest('sha1', 'abc', feed)}"
       request.env['RAW_POST_DATA'] = feed
 
-      post :update, id: account.id
+      post :update, params: { id: account.id }
     end
 
     it 'returns http created' do
