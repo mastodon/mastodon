@@ -9,4 +9,10 @@ class ApplicationController < ActionController::Base
       Rack::MiniProfiler.authorize_request
     end
   end
+
+  protected
+
+  def current_account
+    current_user.try(:account)
+  end
 end

@@ -54,6 +54,10 @@ class FanOutOnWriteService < BaseService
       def current_user
         @account.user
       end
+
+      def current_account
+        @account
+      end
     end
 
     Rabl::Renderer.new('api/statuses/show', status,  view_path: 'app/views', format: :json, scope: rabl_scope.new(receiver)).render

@@ -6,8 +6,8 @@ node(:content)          { |status| content_for_status(status) }
 node(:url)              { |status| url_for_target(status) }
 node(:reblogs_count)    { |status| status.reblogs_count }
 node(:favourites_count) { |status| status.favourites_count }
-node(:favourited)       { |status| current_user.account.favourited?(status) }
-node(:reblogged)        { |status| current_user.account.reblogged?(status) }
+node(:favourited)       { |status| current_account.favourited?(status) }
+node(:reblogged)        { |status| current_account.reblogged?(status) }
 
 child :reblog => :reblog do
   extends('api/statuses/show')

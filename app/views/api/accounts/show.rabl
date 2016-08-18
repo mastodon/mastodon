@@ -7,4 +7,4 @@ node(:avatar)          { |account| asset_url(account.avatar.url(:large, false)) 
 node(:followers_count) { |account| account.followers.count }
 node(:following_count) { |account| account.following.count }
 node(:statuses_count)  { |account| account.statuses.count  }
-node(:following)       { |account| current_user.account.following?(account) }
+node(:following)       { |account| current_account.following?(account) }
