@@ -80,6 +80,4 @@ Rails.application.configure do
   }
 
   config.action_mailer.delivery_method = :smtp
-
-  config.action_cable.allowed_request_origins = ["http#{config.x.use_https ? 's' : ''}://#{config.x.local_domain}"]
 end
