@@ -8,7 +8,7 @@ class PrecomputeFeedService < BaseService
 
     Status.send("as_#{type}_timeline", account).order('created_at desc').limit(FeedManager::MAX_ITEMS).each do |status|
       next if type == :home && FeedManager.filter_status?(status, account)
-      redis.zadd(FeedManager.key(type, receiver_id), status.id, status.id)
+      redis.zadd(FeedManager.key(type, account.id), status.id, status.id)
       instant_return << status unless instant_return.size > limit
     end
 

@@ -35,7 +35,6 @@ gem 'onebox'
 gem 'simple_form'
 gem 'will_paginate'
 gem 'rack-attack'
-gem 'turbolinks'
 gem 'sidekiq'
 gem 'sinatra', require: nil, github: 'sinatra'
 
@@ -66,5 +65,5 @@ group :production do
 end
 
 group :development, :production do
-  gem 'rack-mini-profiler', require: false
+  gem 'rack-mini-profiler'
 end
