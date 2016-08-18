@@ -3,11 +3,11 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
-  force_ssl if: "ENV['LOCAL_HTTPS'] == 'true'"
+  force_ssl if: "Rails.env.production? && ENV['LOCAL_HTTPS'] == 'true'"
 
   # Profiling
   before_action do
-    if (current_user && current_user.admin?) || Rails.env == 'development'
+    if (current_user && current_user.admin?) || Rails.env.development?
       Rack::MiniProfiler.authorize_request
     end
   end

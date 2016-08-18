@@ -4,6 +4,4 @@ Rails.application.configure do
   config.x.use_https    = ENV['LOCAL_HTTPS'] == 'true'
 
   config.action_mailer.default_url_options = { host: config.x.local_domain, protocol: config.x.use_https ? 'https://' : 'http://' }
-
-  config.action_cable.allowed_request_origins = ["http#{config.x.use_https ? 's' : ''}://#{config.x.local_domain}"]
 end

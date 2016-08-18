@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Api::SalmonController, type: :controller do
-  let(:account) { Fabricate(:account, username: 'catsrgr8', user: Fabricate(:user)) }
+  let(:account) { Fabricate(:user, account: Fabricate(:account, username: 'catsrgr8')).account }
 
   before do
     stub_request(:get, "https://quitter.no/.well-known/host-meta").to_return(request_fixture('.host-meta.txt'))
@@ -14,6 +14,10 @@ RSpec.describe Api::SalmonController, type: :controller do
     before do
       request.env['RAW_POST_DATA'] = File.read(File.join(Rails.root, 'spec', 'fixtures', 'salmon', 'mention.xml'))
       post :update, params: { id: account.id }
+    end
+
+    it 'contains XML in the request body' do
+      expect(request.body.read).to be_a String
     end
 
     it 'returns http success' do
