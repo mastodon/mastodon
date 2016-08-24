@@ -9,7 +9,7 @@ export default function statuses(state = initialState, action) {
       return state.set(action.timeline, Immutable.fromJS(action.statuses));
     case ADD_STATUS:
       return state.update(action.timeline, function (list) {
-        list.unshift(Immutable.fromJS(action.status));
+        return list.unshift(Immutable.fromJS(action.status));
       });
     default:
       return state;
