@@ -2,15 +2,17 @@ FROM ruby:2.2.4
 
 ENV RAILS_ENV=production
 
-RUN apt-get update -qq && apt-get install -y build-essential libpq-dev && rm -rf /var/lib/apt/lists/*
+RUN apt-get update -qq && apt-get install -y build-essential libpq-dev libxml2-dev libxslt1-dev nodejs nodejs-legacy npm && rm -rf /var/lib/apt/lists/*
 RUN mkdir /mastodon
 
 WORKDIR /mastodon
 
 ADD Gemfile /mastodon/Gemfile
 ADD Gemfile.lock /mastodon/Gemfile.lock
+ADD package.json /mastodon/package.json
 
-RUN bundle install --deployment --without test --without development
+RUN bundle install --deployment --without test development
+RUN npm install
 
 ADD . /mastodon
 
