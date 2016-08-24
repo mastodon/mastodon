@@ -9,5 +9,5 @@
     = javascript_include_tag 'application'
     = csrf_meta_tags
     = yield :header_tags
-  %body
+  %body{ class: @body_classes }
     = content_for?(:content) ? yield(:content) : yield

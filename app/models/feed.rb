@@ -4,7 +4,7 @@ class Feed
     @account = account
   end
 
-  def get(limit, max_id)
+  def get(limit, max_id = nil)
     max_id     = '+inf' if max_id.nil?
     unhydrated = redis.zrevrangebyscore(key, "(#{max_id}", '-inf', limit: [0, limit])
     status_map = Hash.new

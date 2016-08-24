@@ -1,10 +1,1 @@
-= simple_form_for Status.new, url: statuses_path, method: :post do |f|
-  = f.input :text, required: true, autofocus: true, label: false, placeholder: 'What are you up to?'
-
-  .form-actions
-    = f.button :submit, 'Post update'
-
-- content_for :raw_content do
-  .activity-stream.activity-stream-embedded
-    - @timeline.each do |status|
-      = render partial: 'stream_entries/status', locals: { status: status }
+= react_component 'Root', { timelines: { home: render(file: 'api/statuses/home', locals: { statuses: @home }, formats: :json), mentions: render(file: 'api/statuses/mentions', locals: { statuses: @mentions }, formats: :json) }}, class: 'app-holder', prerender: false

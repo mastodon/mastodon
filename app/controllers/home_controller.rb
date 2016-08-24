@@ -1,9 +1,9 @@
 class HomeController < ApplicationController
-  layout 'dashboard'
-
   before_action :authenticate_user!
 
   def index
-    @timeline = Feed.new(:home, current_user.account).get(10, params[:max_id])
+    @body_classes = 'app-body'
+    @home         = Feed.new(:home, current_user.account).get(20)
+    @mentions     = Feed.new(:mentions, current_user.account).get(20)
   end
 end

@@ -1,6 +1,4 @@
 class StatusesController < ApplicationController
-  layout 'dashboard'
-
   before_action :authenticate_user!
 
   def create

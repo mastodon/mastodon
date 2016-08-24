@@ -80,4 +80,6 @@ Rails.application.configure do
   }
 
   config.action_mailer.delivery_method = :smtp
+
+  config.react.variant = :production
 end

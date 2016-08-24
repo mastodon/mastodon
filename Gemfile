@@ -38,6 +38,9 @@ gem 'rack-attack'
 gem 'sidekiq'
 gem 'sinatra', require: nil, github: 'sinatra'
 
+gem 'react-rails'
+gem 'browserify-rails'
+
 group :development, :test do
   gem 'rspec-rails'
   gem 'pry-rails'

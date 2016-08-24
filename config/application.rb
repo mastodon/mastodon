@@ -28,12 +28,14 @@ module Mastodon
     config.active_job.queue_adapter = :sidekiq
 
     config.to_prepare do
-      Doorkeeper::ApplicationsController.layout           'dashboard'
-      Doorkeeper::AuthorizedApplicationsController.layout 'dashboard'
+      # Doorkeeper::ApplicationsController.layout           'dashboard'
+      # Doorkeeper::AuthorizedApplicationsController.layout 'dashboard'
       Doorkeeper::AuthorizationsController.layout         'auth'
     end
 
     config.middleware.use Rack::Attack
     config.middleware.use Rack::Deflater
+
+    config.browserify_rails.commandline_options = "--transform [ babelify --presets [ es2015 react ] ] --extension=\".jsx\""
   end
 end
