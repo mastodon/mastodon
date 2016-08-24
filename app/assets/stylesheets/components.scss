@@ -1,0 +1,20 @@
+.status__content {
+  a {
+    color: #2b90d9;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+
+    &.mention {
+      &:hover {
+        text-decoration: none;
+
+        span {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+}
