@@ -16,9 +16,14 @@ rvm:
 services:
   - redis-server
 
-bundler_args: --without development --retry=3 --jobs=3
+bundler_args: --without development production --retry=3 --jobs=3
+
+before_install:
+  - sudo apt-get -qq update
+  - sudo apt-get install -y nodejs nodejs-legacy npm
 
 before_script:
+  - npm install
   - bundle exec rake db:create db:migrate
 
 script: bundle exec rspec
