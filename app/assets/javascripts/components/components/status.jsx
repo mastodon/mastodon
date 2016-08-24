@@ -6,11 +6,12 @@ const Status = React.createClass({
   },
 
   render: function() {
-    console.log(this.props.status.toJS());
+    var content = { __html: this.props.status.get('content') };
 
     return (
-      <div style={{ height: '100px' }}>
-        {this.props.status.getIn(['account', 'username'])}: {this.props.status.get('content')}
+      <div style={{ padding: '5px' }}>
+        <div><strong>{this.props.status.getIn(['account', 'username'])}</strong></div>
+        <div dangerouslySetInnerHTML={content} />
       </div>
     );
   }

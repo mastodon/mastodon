@@ -60,13 +60,8 @@ group :development do
   gem 'binding_of_caller'
   gem 'letter_opener'
   gem 'bullet'
-  gem 'memory_profiler'
 end
 
 group :production do
   gem 'rails_12factor'
-end
-
-group :development, :production do
-  gem 'rack-mini-profiler'
 end

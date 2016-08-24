@@ -162,7 +162,6 @@ GEM
       nokogiri (>= 1.5.9)
     mail (2.6.4)
       mime-types (>= 1.16, < 4)
-    memory_profiler (0.9.6)
     method_source (0.8.2)
     mime-types (3.1)
       mime-types-data (~> 3.2015)
@@ -214,8 +213,6 @@ GEM
     rack (2.0.1)
     rack-attack (5.0.1)
       rack
-    rack-mini-profiler (0.10.1)
-      rack (>= 1.2.0)
     rack-test (0.6.3)
       rack (>= 1.0)
     rails (5.0.0.1)
@@ -380,7 +377,6 @@ DEPENDENCIES
   jbuilder (~> 2.0)
   jquery-rails
   letter_opener
-  memory_profiler
   nokogiri
   oj
   onebox
@@ -391,7 +387,6 @@ DEPENDENCIES
   puma
   rabl
   rack-attack
-  rack-mini-profiler
   rails (= 5.0.0.1)
   rails_12factor
   rails_autolink
