@@ -13,7 +13,7 @@ const Status = React.createClass({
     var status  = this.props.status;
 
     return (
-      <div style={{ padding: '8px 10px', display: 'flex', flexDirection: 'row', borderBottom: '1px solid #363c4b' }}>
+      <div style={{ padding: '8px 10px', display: 'flex', flexDirection: 'row', borderBottom: '1px solid #363c4b', cursor: 'pointer' }}>
         <Avatar src={status.getIn(['account', 'avatar'])} />
 
         <div style={{ flex: '1 1 auto', marginLeft: '10px' }}>

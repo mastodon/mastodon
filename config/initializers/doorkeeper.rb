@@ -4,7 +4,7 @@ Doorkeeper.configure do
 
   # This block will be called to check whether the resource owner is authenticated or not.
   resource_owner_authenticator do
-    current_user || redirect_to(new_user_session_url)
+    current_user || warden.authenticate!(scope: :user)
   end
 
   resource_owner_from_credentials do |routes|

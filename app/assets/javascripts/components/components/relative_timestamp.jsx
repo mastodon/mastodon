@@ -12,7 +12,7 @@ moment.updateLocale('en', {
     d:  "a day",
     dd: "%dd",
     M:  "a month",
-    MM: "%dm",
+    MM: "%dmo",
     y:  "a year",
     yy: "%dy"
   }

@@ -11,7 +11,7 @@ const DisplayName = React.createClass({
     var url         = this.props.account.get('url');
 
     return (
-      <a href={url} style={{ color: '#616b86', textDecoration: 'none' }}>
+      <a href={url} style={{ display: 'inline-block', color: '#616b86', textDecoration: 'none', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', width: '190px' }}>
         <strong style={{ fontWeight: 'bold', color: '#fff' }}>{displayName}</strong> <span>{acct}</span>
       </a>
     );

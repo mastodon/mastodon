@@ -1,5 +1,8 @@
+import fetch from 'isomorphic-fetch'
+
 export const SET_TIMELINE = 'SET_TIMELINE';
 export const ADD_STATUS   = 'ADD_STATUS';
+export const PUBLISH      = 'PUBLISH';
 
 export function setTimeline(timeline, statuses) {
   return {
@@ -14,5 +17,17 @@ export function addStatus(timeline, status) {
     type: ADD_STATUS,
     timeline: timeline,
     status: status
+  };
+}
+
+export function publish(text, in_reply_to_id) {
+  return function (dispatch) {
+    return fetch('/api/statuses', {
+      method: 'POST'
+    }).then(function (response) {
+      return response.json();
+    }).then(function (json) {
+      console.log(json);
+    });
   };
 }
