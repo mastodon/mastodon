@@ -4,7 +4,7 @@ Doorkeeper.configure do
 
   # This block will be called to check whether the resource owner is authenticated or not.
   resource_owner_authenticator do
-    current_user || warden.authenticate!(scope: :user)
+    current_user || redirect_to(new_user_session_url)
   end
 
   resource_owner_from_credentials do |routes|
@@ -100,9 +100,9 @@ Doorkeeper.configure do
   # Under some circumstances you might want to have applications auto-approved,
   # so that the user skips the authorization step.
   # For example if dealing with a trusted application.
-  # skip_authorization do |resource_owner, client|
-  #   client.superapp? or resource_owner.admin?
-  # end
+  skip_authorization do |resource_owner, client|
+    client.superapp?
+  end
 
   # WWW-Authenticate Realm (default "Doorkeeper").
   # realm "Doorkeeper"

@@ -26,6 +26,7 @@ const ComposerDrawer = React.createClass({
 
   handleSubmit () {
     this.props.onSubmit(this.state.text, null);
+    this.setState({ text: '' });
   },
 
   render () {

@@ -1,1 +1,1 @@
-= react_component 'Root', { timelines: { home: render(file: 'api/statuses/home', locals: { statuses: @home }, formats: :json), mentions: render(file: 'api/statuses/mentions', locals: { statuses: @mentions }, formats: :json) }}, class: 'app-holder', prerender: false
+= react_component 'Root', { token: @token, timelines: { home: render(file: 'api/statuses/home', locals: { statuses: @home }, formats: :json), mentions: render(file: 'api/statuses/mentions', locals: { statuses: @mentions }, formats: :json) }}, class: 'app-holder', prerender: false

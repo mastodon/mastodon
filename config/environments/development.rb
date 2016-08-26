@@ -62,6 +62,8 @@ Rails.application.configure do
     Bullet.enable = true
     Bullet.bullet_logger = true
     Bullet.rails_logger = true
+
+    Bullet.add_whitelist type: :n_plus_one_query, class_name: 'User', association: :account
   end
 
   config.react.variant = :development

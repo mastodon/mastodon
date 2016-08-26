@@ -9,9 +9,9 @@ WORKDIR /mastodon
 
 ADD Gemfile /mastodon/Gemfile
 ADD Gemfile.lock /mastodon/Gemfile.lock
-ADD package.json /mastodon/package.json
-
 RUN bundle install --deployment --without test development
+
+ADD package.json /mastodon/package.json
 RUN npm install
 
 ADD . /mastodon
