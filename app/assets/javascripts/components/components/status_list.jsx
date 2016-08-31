@@ -15,7 +15,7 @@ const StatusList = React.createClass({
       <div style={{ overflowY: 'scroll', flex: '1 1 auto' }}>
         <div>
           {this.props.statuses.map((status) => {
-            return <Status key={status.get('id')} status={status} />;
+            return <Status key={status.get('id')} status={status} onReply={this.props.onReply} />;
           })}
         </div>
       </div>

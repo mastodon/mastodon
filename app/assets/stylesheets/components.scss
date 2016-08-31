@@ -1,4 +1,38 @@
-.status__content {
+.button {
+  background-color: #2b90d9;
+
+  &:hover {
+    background-color: #489fde;
+  }
+
+  &:disabled {
+    background-color: #9baec8;
+  }
+}
+
+.icon-button {
+  color: #616b86;
+  cursor: pointer;
+
+  &:hover {
+    color: #717b98;
+  }
+
+  &.disabled {
+    color: #535b72;
+    cursor: default;
+  }
+}
+
+.compose-drawer__textarea {
+  background: #fff;
+
+  &:disabled {
+    background: #d9e1e8;
+  }
+}
+
+.status__content, .reply-indicator__content {
   font-size: 15px;
   line-height: 20px;
   white-space: pre-wrap;
@@ -22,5 +56,32 @@
         }
       }
     }
+  }
+}
+
+.reply-indicator__content {
+  color: #282c37;
+  font-size: 14px;
+
+  a {
+    color: #535b72;
+  }
+}
+
+.status__display-name, .status__relative-time {
+  text-decoration: none;
+}
+
+.status__display-name, .reply-indicator__display-name {
+  &:hover {
+    strong {
+      text-decoration: underline;
+    }
+  }
+}
+
+.status__relative-time {
+  &:hover {
+    text-decoration: underline;
   }
 }

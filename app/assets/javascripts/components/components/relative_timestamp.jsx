@@ -48,7 +48,7 @@ const RelativeTimestamp = React.createClass({
 
   render () {
     return (
-      <span style={{ color: '#616b86' }}>
+      <span>
         {this.state.text}
       </span>
     );

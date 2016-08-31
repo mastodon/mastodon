@@ -1,14 +1,18 @@
-import CharacterCounter from './character_counter';
-import Button           from './button';
-import PureRenderMixin  from 'react-addons-pure-render-mixin';
+import CharacterCounter   from './character_counter';
+import Button             from './button';
+import PureRenderMixin    from 'react-addons-pure-render-mixin';
+import ImmutablePropTypes from 'react-immutable-proptypes';
+import ReplyIndicator     from './reply_indicator';
 
 const ComposerDrawer = React.createClass({
 
   propTypes: {
     text: React.PropTypes.string.isRequired,
-    isSubmitting: React.PropTypes.boolean,
+    is_submitting: React.PropTypes.bool,
+    in_reply_to: ImmutablePropTypes.map,
     onChange: React.PropTypes.func.isRequired,
-    onSubmit: React.PropTypes.func.isRequired
+    onSubmit: React.PropTypes.func.isRequired,
+    onCancelReply: React.PropTypes.func.isRequired
   },
 
   mixins: [PureRenderMixin],
@@ -28,9 +32,17 @@ const ComposerDrawer = React.createClass({
   },
 
   render () {
+    let replyArea = '';
+
+    if (this.props.in_reply_to) {
+      replyArea = <ReplyIndicator status={this.props.in_reply_to} onCancel={this.props.onCancelReply} />;
+    }
+
     return (
       <div style={{ width: '280px', boxSizing: 'border-box', background: '#454b5e', margin: '10px', marginRight: '0', padding: '10px' }}>
-        <textarea disabled={this.props.isSubmitting} placeholder='What is on your mind?' value={this.props.text} onKeyUp={this.handleKeyUp} onChange={this.handleChange} style={{ display: 'block', boxSizing: 'border-box', width: '100%', height: '100px', background: '#fff', resize: 'none', border: 'none', color: '#282c37', padding: '10px', fontFamily: 'Roboto', fontSize: '14px' }} />
+        {replyArea}
+
+        <textarea disabled={this.props.isSubmitting} placeholder='What is on your mind?' value={this.props.text} onKeyUp={this.handleKeyUp} onChange={this.handleChange} className='compose-drawer__textarea' style={{ display: 'block', boxSizing: 'border-box', width: '100%', height: '100px', resize: 'none', border: 'none', color: '#282c37', padding: '10px', fontFamily: 'Roboto', fontSize: '14px', margin: '0' }} />
 
         <div style={{ marginTop: '10px', overflow: 'hidden' }}>
           <div style={{ float: 'right' }}><Button text='Publish' onClick={this.handleSubmit} disabled={this.props.isSubmitting} /></div>

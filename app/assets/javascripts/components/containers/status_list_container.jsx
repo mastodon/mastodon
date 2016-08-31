@@ -1,5 +1,6 @@
-import { connect } from 'react-redux';
-import StatusList  from '../components/status_list';
+import { connect }      from 'react-redux';
+import StatusList       from '../components/status_list';
+import { replyCompose } from '../actions/compose';
 
 const mapStateToProps = function (state, props) {
   return {
@@ -7,4 +8,12 @@ const mapStateToProps = function (state, props) {
   };
 };
 
-export default connect(mapStateToProps)(StatusList);
+const mapDispatchToProps = function (dispatch) {
+  return {
+    onReply: function (status) {
+      dispatch(replyCompose(status));
+    }
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(StatusList);

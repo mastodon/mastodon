@@ -3,15 +3,16 @@ import PureRenderMixin from 'react-addons-pure-render-mixin';
 const Avatar = React.createClass({
 
   propTypes: {
-    src: React.PropTypes.string.isRequired
+    src: React.PropTypes.string.isRequired,
+    size: React.PropTypes.number.isRequired
   },
 
   mixins: [PureRenderMixin],
 
   render () {
     return (
-      <div style={{ width: '48px', height: '48px', flex: '0 0 auto' }}>
-        <img src={this.props.src} width={48} height={48} alt='' style={{ display: 'block', borderRadius: '4px' }} />
+      <div style={{ width: `${this.props.size}px`, height: `${this.props.size}px` }}>
+        <img src={this.props.src} width={this.props.size} height={this.props.size} alt='' style={{ display: 'block', borderRadius: '4px' }} />
       </div>
     );
   }
