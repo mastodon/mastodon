@@ -21,7 +21,7 @@ const Status = React.createClass({
         <Avatar src={status.getIn(['account', 'avatar'])} />
 
         <div style={{ flex: '1 1 auto', marginLeft: '10px' }}>
-          <div style={{ overflow: 'hidden' }}>
+          <div style={{ overflow: 'hidden', fontSize: '15px' }}>
             <div style={{ float: 'right' }}>
               <a href={status.get('url')} style={{ textDecoration: 'none' }}><RelativeTimestamp timestamp={status.get('created_at')} /></a>
             </div>
@@ -29,7 +29,7 @@ const Status = React.createClass({
             <DisplayName account={status.get('account')} />
           </div>
 
-          <div className='status__content' dangerouslySetInnerHTML={content} style={{ fontSize: '14px' }} />
+          <div className='status__content' dangerouslySetInnerHTML={content} />
         </div>
       </div>
     );

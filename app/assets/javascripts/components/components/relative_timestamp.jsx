@@ -4,17 +4,17 @@ import PureRenderMixin from 'react-addons-pure-render-mixin';
 moment.updateLocale('en', {
   relativeTime : {
     future: "in %s",
-    past:   "%s ago",
-    s:  "s",
-    m:  "a minute",
+    past:   "%s",
+    s:  "%ds",
+    m:  "1m",
     mm: "%dm",
-    h:  "an hour",
+    h:  "1h",
     hh: "%dh",
-    d:  "a day",
+    d:  "1d",
     dd: "%dd",
-    M:  "a month",
+    M:  "1mo",
     MM: "%dmo",
-    y:  "a year",
+    y:  "1y",
     yy: "%dy"
   }
 });

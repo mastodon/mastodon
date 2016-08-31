@@ -29,7 +29,7 @@ const ComposerDrawer = React.createClass({
 
   render () {
     return (
-      <div style={{ width: '380px', boxSizing: 'border-box', background: '#454b5e', margin: '10px', marginRight: '0', padding: '10px' }}>
+      <div style={{ width: '280px', boxSizing: 'border-box', background: '#454b5e', margin: '10px', marginRight: '0', padding: '10px' }}>
         <textarea disabled={this.props.isSubmitting} placeholder='What is on your mind?' value={this.props.text} onKeyUp={this.handleKeyUp} onChange={this.handleChange} style={{ display: 'block', boxSizing: 'border-box', width: '100%', height: '100px', background: '#fff', resize: 'none', border: 'none', color: '#282c37', padding: '10px', fontFamily: 'Roboto', fontSize: '14px' }} />
 
         <div style={{ marginTop: '10px', overflow: 'hidden' }}>
