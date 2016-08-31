@@ -23,7 +23,7 @@ export default function compose(state = initialState, action) {
       return state.set('is_submitting', true);
     case constants.COMPOSE_SUBMIT_SUCCESS:
       return state.withMutations(map => {
-        map.set('text', '').set('is_submitting', false),set('in_reply_to', null);
+        map.set('text', '').set('is_submitting', false).set('in_reply_to', null);
       });
     case constants.COMPOSE_SUBMIT_FAIL:
       return state.set('is_submitting', false);
