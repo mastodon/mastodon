@@ -42,10 +42,10 @@ const ComposerDrawer = React.createClass({
       <div style={{ width: '280px', boxSizing: 'border-box', background: '#454b5e', margin: '10px', marginRight: '0', padding: '10px' }}>
         {replyArea}
 
-        <textarea disabled={this.props.isSubmitting} placeholder='What is on your mind?' value={this.props.text} onKeyUp={this.handleKeyUp} onChange={this.handleChange} className='compose-drawer__textarea' style={{ display: 'block', boxSizing: 'border-box', width: '100%', height: '100px', resize: 'none', border: 'none', color: '#282c37', padding: '10px', fontFamily: 'Roboto', fontSize: '14px', margin: '0' }} />
+        <textarea disabled={this.props.is_submitting} placeholder='What is on your mind?' value={this.props.text} onKeyUp={this.handleKeyUp} onChange={this.handleChange} className='compose-drawer__textarea' style={{ display: 'block', boxSizing: 'border-box', width: '100%', height: '100px', resize: 'none', border: 'none', color: '#282c37', padding: '10px', fontFamily: 'Roboto', fontSize: '14px', margin: '0' }} />
 
         <div style={{ marginTop: '10px', overflow: 'hidden' }}>
-          <div style={{ float: 'right' }}><Button text='Publish' onClick={this.handleSubmit} disabled={this.props.isSubmitting} /></div>
+          <div style={{ float: 'right' }}><Button text='Publish' onClick={this.handleSubmit} disabled={this.props.is_submitting} /></div>
           <div style={{ float: 'right', marginRight: '16px', lineHeight: '36px' }}><CharacterCounter text={this.props.text} /></div>
         </div>
       </div>
