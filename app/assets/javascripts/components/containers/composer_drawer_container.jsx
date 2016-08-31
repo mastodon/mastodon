@@ -1,15 +1,22 @@
-import { connect }    from 'react-redux';
-import ComposerDrawer from '../components/composer_drawer';
-import { publish }    from '../actions/statuses';
+import { connect }                      from 'react-redux';
+import ComposerDrawer                   from '../components/composer_drawer';
+import { changeCompose, submitCompose } from '../actions/compose';
 
 const mapStateToProps = function (state, props) {
-  return {};
+  return {
+    text: state.getIn(['compose', 'text']),
+    isSubmitting: state.getIn(['compose', 'isSubmitting'])
+  };
 };
 
 const mapDispatchToProps = function (dispatch) {
   return {
-    onSubmit: function (text, in_reply_to_id) {
-      dispatch(publish(text, in_reply_to_id));
+    onChange: function (text) {
+      dispatch(changeCompose(text));
+    },
+
+    onSubmit: function () {
+      dispatch(submitCompose());
     }
   }
 };

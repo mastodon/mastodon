@@ -1,8 +1,8 @@
-export const SET_ACCESS_TOKEN = 'SET_ACCESS_TOKEN';
+export const ACCESS_TOKEN_SET = 'ACCESS_TOKEN_SET';
 
 export function setAccessToken(token) {
   return {
-    type: SET_ACCESS_TOKEN,
+    type: ACCESS_TOKEN_SET,
     token: token
   };
 }

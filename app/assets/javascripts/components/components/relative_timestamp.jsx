@@ -1,4 +1,5 @@
-import moment from 'moment';
+import moment          from 'moment';
+import PureRenderMixin from 'react-addons-pure-render-mixin';
 
 moment.updateLocale('en', {
   relativeTime : {
@@ -19,6 +20,7 @@ moment.updateLocale('en', {
 });
 
 const RelativeTimestamp = React.createClass({
+
   getInitialState () {
     return {
       text: ''
@@ -28,6 +30,8 @@ const RelativeTimestamp = React.createClass({
   propTypes: {
     timestamp: React.PropTypes.string.isRequired
   },
+
+  mixins: [PureRenderMixin],
 
   componentWillMount () {
     this._updateMomentText();

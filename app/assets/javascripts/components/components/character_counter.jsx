@@ -1,7 +1,12 @@
+import PureRenderMixin from 'react-addons-pure-render-mixin';
+
 const CharacterCounter = React.createClass({
+
   propTypes: {
     text: React.PropTypes.string.isRequired
   },
+
+  mixins: [PureRenderMixin],
 
   render () {
     return (

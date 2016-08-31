@@ -1,12 +1,16 @@
 import Status             from './status';
 import ImmutablePropTypes from 'react-immutable-proptypes';
+import PureRenderMixin    from 'react-addons-pure-render-mixin';
 
 const StatusList = React.createClass({
+
   propTypes: {
     statuses: ImmutablePropTypes.list.isRequired
   },
 
-  render: function() {
+  mixins: [PureRenderMixin],
+
+  render () {
     return (
       <div style={{ overflowY: 'scroll', flex: '1 1 auto' }}>
         <div>
@@ -17,6 +21,7 @@ const StatusList = React.createClass({
       </div>
     );
   }
+
 });
 
 export default StatusList;

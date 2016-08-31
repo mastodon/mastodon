@@ -1,8 +1,11 @@
-import Column from './column';
+import Column          from './column';
+import PureRenderMixin from 'react-addons-pure-render-mixin';
 
 const ColumnsArea = React.createClass({
 
-  render: function() {
+  mixins: [PureRenderMixin],
+
+  render () {
     return (
       <div style={{ display: 'flex', flexDirection: 'row', flex: '1' }}>
         <Column type='home' />
@@ -10,6 +13,7 @@ const ColumnsArea = React.createClass({
       </div>
     );
   }
+
 });
 
 export default ColumnsArea;

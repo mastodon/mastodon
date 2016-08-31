@@ -1,9 +1,9 @@
-import { Provider }               from 'react-redux';
-import configureStore             from '../store/configureStore';
-import Frontend                   from '../components/frontend';
-import { setTimeline, addStatus } from '../actions/statuses';
-import { setAccessToken }         from '../actions/meta';
-import PureRenderMixin            from 'react-addons-pure-render-mixin';
+import { Provider }                    from 'react-redux';
+import configureStore                  from '../store/configureStore';
+import Frontend                        from '../components/frontend';
+import { setTimeline, updateTimeline } from '../actions/timelines';
+import { setAccessToken }              from '../actions/meta';
+import PureRenderMixin                 from 'react-addons-pure-render-mixin';
 
 const store = configureStore();
 
@@ -11,7 +11,7 @@ const Root = React.createClass({
 
   propTypes: {
     token: React.PropTypes.string.isRequired,
-    timelines: React.PropTypes.array
+    timelines: React.PropTypes.object
   },
 
   mixins: [PureRenderMixin],
@@ -32,13 +32,13 @@ const Root = React.createClass({
         disconnected: function() {},
 
         received: function(data) {
-          return store.dispatch(addStatus(data.timeline, JSON.parse(data.message)));
+          return store.dispatch(updateTimeline(data.timeline, JSON.parse(data.message)));
         }
       });
     }
   },
 
-  render() {
+  render () {
     return (
       <Provider store={store}>
         <Frontend />

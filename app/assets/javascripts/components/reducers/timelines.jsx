@@ -1,13 +1,13 @@
-import { SET_TIMELINE, ADD_STATUS } from '../actions/statuses';
-import Immutable                    from 'immutable';
+import { TIMELINE_SET, TIMELINE_UPDATE } from '../actions/timelines';
+import Immutable                         from 'immutable';
 
 const initialState = Immutable.Map();
 
-export default function statuses(state = initialState, action) {
+export default function timelines(state = initialState, action) {
   switch(action.type) {
-    case SET_TIMELINE:
+    case TIMELINE_SET:
       return state.set(action.timeline, Immutable.fromJS(action.statuses));
-    case ADD_STATUS:
+    case TIMELINE_UPDATE:
       return state.update(action.timeline, function (list) {
         return list.unshift(Immutable.fromJS(action.status));
       });

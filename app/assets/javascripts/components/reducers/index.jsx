@@ -1,8 +1,10 @@
 import { combineReducers } from 'redux-immutable';
-import statuses            from './statuses';
+import timelines           from './timelines';
 import meta                from './meta';
+import compose             from './compose';
 
 export default combineReducers({
-  statuses,
-  meta
+  timelines,
+  meta,
+  compose
 });

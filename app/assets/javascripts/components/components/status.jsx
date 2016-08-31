@@ -2,11 +2,15 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import Avatar             from './avatar';
 import DisplayName        from './display_name';
 import RelativeTimestamp  from './relative_timestamp';
+import PureRenderMixin    from 'react-addons-pure-render-mixin';
 
 const Status = React.createClass({
+
   propTypes: {
     status: ImmutablePropTypes.map.isRequired
   },
+
+  mixins: [PureRenderMixin],
 
   render () {
     var content = { __html: this.props.status.get('content') };
@@ -30,6 +34,7 @@ const Status = React.createClass({
       </div>
     );
   }
+
 });
 
 export default Status;

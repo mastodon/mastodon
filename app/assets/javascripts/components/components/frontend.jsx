@@ -1,18 +1,20 @@
-import NavBar                  from './nav_bar';
 import ColumnsArea             from './columns_area';
 import ComposerDrawerContainer from '../containers/composer_drawer_container';
+import PureRenderMixin         from 'react-addons-pure-render-mixin';
 
 const Frontend = React.createClass({
 
-  render: function() {
+  mixins: [PureRenderMixin],
+
+  render () {
     return (
       <div style={{ flex: '0 0 auto', display: 'flex', width: '100%', height: '100%', background: '#1a1c23' }}>
-        <NavBar />
         <ComposerDrawerContainer />
         <ColumnsArea />
       </div>
     );
   }
+
 });
 
 export default Frontend;

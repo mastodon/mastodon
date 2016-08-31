@@ -1,8 +1,12 @@
+import PureRenderMixin from 'react-addons-pure-render-mixin';
+
 const Avatar = React.createClass({
 
   propTypes: {
     src: React.PropTypes.string.isRequired
   },
+
+  mixins: [PureRenderMixin],
 
   render () {
     return (
