@@ -2,6 +2,7 @@ import PureRenderMixin    from 'react-addons-pure-render-mixin';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import Avatar             from './avatar';
 import IconButton         from './icon_button';
+import DisplayName        from './display_name';
 
 const ReplyIndicator = React.createClass({
 
@@ -26,7 +27,7 @@ const ReplyIndicator = React.createClass({
 
           <a href={this.props.status.getIn(['account', 'url'])} className='reply-indicator__display-name' style={{ display: 'block', maxWidth: '100%', paddingRight: '25px', color: '#282c37', textDecoration: 'none', overflow: 'hidden', lineHeight: '24px' }}>
             <div style={{ float: 'left', marginRight: '5px' }}><Avatar size={24} src={this.props.status.getIn(['account', 'avatar'])} /></div>
-            <strong style={{ fontWeight: '500' }}>{this.props.status.getIn(['account', 'display_name'])}</strong> <span>@{this.props.status.getIn(['account', 'acct'])}</span>
+            <DisplayName account={this.props.status.get('account')} />
           </a>
         </div>
 

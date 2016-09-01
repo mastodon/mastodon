@@ -15,7 +15,9 @@ export function reblog(status) {
     dispatch(reblogRequest(status));
 
     api(getState).post(`/api/statuses/${status.get('id')}/reblog`).then(function (response) {
-      dispatch(reblogSuccess(status, response.data));
+      // The reblog API method returns a new status wrapped around the original. In this case we are only
+      // interested in how the original is modified, hence passing it skipping the wrapper
+      dispatch(reblogSuccess(status, response.data.reblog));
     }).catch(function (error) {
       dispatch(reblogFail(status, error));
     });

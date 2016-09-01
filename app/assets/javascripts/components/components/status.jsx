@@ -3,6 +3,7 @@ import Avatar             from './avatar';
 import RelativeTimestamp  from './relative_timestamp';
 import PureRenderMixin    from 'react-addons-pure-render-mixin';
 import IconButton         from './icon_button';
+import DisplayName        from './display_name';
 
 const Status = React.createClass({
 
@@ -29,7 +30,20 @@ const Status = React.createClass({
 
   render () {
     var content = { __html: this.props.status.get('content') };
-    var status  = this.props.status;
+    var { status, ...other } = this.props;
+
+    if (status.get('reblog') !== null) {
+      return (
+        <div>
+          <div style={{ marginLeft: '68px', color: '#616b86', padding: '8px 0', paddingBottom: '2px', fontSize: '14px', position: 'relative' }}>
+            <div style={{ position: 'absolute', 'left': '-26px'}}><i className='fa fa-fw fa-retweet'></i></div>
+            <a href={status.getIn(['account', 'url'])} style={{ color: '#616b86' }}>{status.getIn(['account', 'display_name'])}</a> reblogged
+          </div>
+
+          <Status {...other} status={status.get('reblog')} />
+        </div>
+      );
+    }
 
     return (
       <div style={{ padding: '8px 10px', paddingLeft: '68px', position: 'relative', minHeight: '48px', borderBottom: '1px solid #363c4b', cursor: 'pointer' }}>
@@ -43,9 +57,7 @@ const Status = React.createClass({
               <Avatar src={status.getIn(['account', 'avatar'])} size={48} />
             </div>
 
-            <span style={{ display: 'block', maxWidth: '100%', overflow: 'hidden', whiteSpace: 'nowrap', textOverflow: 'ellipsis' }}>
-              <strong style={{ fontWeight: 'bold', color: '#fff' }}>{status.getIn(['account', 'display_name'])}</strong> <span style={{ fontSize: '14px' }}>@{status.getIn(['account', 'acct'])}</span>
-            </span>
+            <DisplayName account={status.get('account')} />
           </a>
         </div>
 
