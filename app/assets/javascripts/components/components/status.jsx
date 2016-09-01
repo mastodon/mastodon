@@ -24,7 +24,7 @@ const Status = React.createClass({
     return (
       <div style={{ padding: '8px 10px', paddingLeft: '68px', position: 'relative', minHeight: '48px', borderBottom: '1px solid #363c4b', cursor: 'pointer' }}>
         <div style={{ fontSize: '15px' }}>
-          <div style={{ float: 'right' }}>
+          <div style={{ float: 'right', fontSize: '14px' }}>
             <a href={status.get('url')} className='status__relative-time' style={{ color: '#616b86' }}><RelativeTimestamp timestamp={status.get('created_at')} /></a>
           </div>
 
@@ -33,8 +33,8 @@ const Status = React.createClass({
               <Avatar src={status.getIn(['account', 'avatar'])} size={48} />
             </div>
 
-            <span style={{ display: 'inline-block', maxWidth: '100%', overflow: 'hidden', whiteSpace: 'nowrap', textOverflow: 'ellipsis' }}>
-              <strong style={{ fontWeight: 'bold', color: '#fff' }}>{status.getIn(['account', 'display_name'])}</strong> <span>@{status.getIn(['account', 'acct'])}</span>
+            <span style={{ display: 'block', maxWidth: '100%', overflow: 'hidden', whiteSpace: 'nowrap', textOverflow: 'ellipsis' }}>
+              <strong style={{ fontWeight: 'bold', color: '#fff' }}>{status.getIn(['account', 'display_name'])}</strong> <span style={{ fontSize: '14px' }}>@{status.getIn(['account', 'acct'])}</span>
             </span>
           </a>
         </div>
