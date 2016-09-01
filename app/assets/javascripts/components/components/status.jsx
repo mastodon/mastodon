@@ -34,10 +34,10 @@ const Status = React.createClass({
 
     if (status.get('reblog') !== null) {
       return (
-        <div>
+        <div style={{ cursor: 'pointer' }}>
           <div style={{ marginLeft: '68px', color: '#616b86', padding: '8px 0', paddingBottom: '2px', fontSize: '14px', position: 'relative' }}>
             <div style={{ position: 'absolute', 'left': '-26px'}}><i className='fa fa-fw fa-retweet'></i></div>
-            <a href={status.getIn(['account', 'url'])} style={{ color: '#616b86' }}>{status.getIn(['account', 'display_name'])}</a> reblogged
+            <a href={status.getIn(['account', 'url'])} className='status__display-name'><strong style={{ color: '#616b86'}}>{status.getIn(['account', 'display_name'])}</strong></a> reblogged
           </div>
 
           <Status {...other} status={status.get('reblog')} />
