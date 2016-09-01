@@ -1,6 +1,7 @@
-import { connect }      from 'react-redux';
-import StatusList       from '../components/status_list';
-import { replyCompose } from '../actions/compose';
+import { connect }           from 'react-redux';
+import StatusList            from '../components/status_list';
+import { replyCompose }      from '../actions/compose';
+import { reblog, favourite } from '../actions/interactions';
 
 const mapStateToProps = function (state, props) {
   return {
@@ -12,6 +13,14 @@ const mapDispatchToProps = function (dispatch) {
   return {
     onReply: function (status) {
       dispatch(replyCompose(status));
+    },
+
+    onFavourite: function (status) {
+      dispatch(favourite(status));
+    },
+
+    onReblog: function (status) {
+      dispatch(reblog(status));
     }
   };
 };

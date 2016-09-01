@@ -4,6 +4,8 @@ class Favourite < ApplicationRecord
   belongs_to :account, inverse_of: :favourites
   belongs_to :status,  inverse_of: :favourites
 
+  validates :status_id, uniqueness: { scope: :account_id }
+
   def verb
     :favorite
   end

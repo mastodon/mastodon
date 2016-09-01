@@ -8,13 +8,23 @@ const Status = React.createClass({
 
   propTypes: {
     status: ImmutablePropTypes.map.isRequired,
-    onReply: React.PropTypes.func
+    onReply: React.PropTypes.func,
+    onFavourite: React.PropTypes.func,
+    onReblog: React.PropTypes.func
   },
 
   mixins: [PureRenderMixin],
 
   handleReplyClick () {
     this.props.onReply(this.props.status);
+  },
+
+  handleFavouriteClick () {
+    this.props.onFavourite(this.props.status);
+  },
+
+  handleReblogClick () {
+    this.props.onReblog(this.props.status);
   },
 
   render () {
@@ -43,8 +53,8 @@ const Status = React.createClass({
 
         <div style={{ marginTop: '10px', overflow: 'hidden' }}>
           <div style={{ float: 'left', marginRight: '10px'}}><IconButton title='Reply' icon='reply' onClick={this.handleReplyClick} /></div>
-          <div style={{ float: 'left', marginRight: '10px'}}><IconButton title='Reblog' icon='retweet' /></div>
-          <div style={{ float: 'left'}}><IconButton title='Favourite' icon='star' /></div>
+          <div style={{ float: 'left', marginRight: '10px'}}><IconButton active={status.get('reblogged')} title='Reblog' icon='retweet' onClick={this.handleReblogClick} /></div>
+          <div style={{ float: 'left'}}><IconButton active={status.get('favourited')} title='Favourite' icon='star' onClick={this.handleFavouriteClick} /></div>
         </div>
       </div>
     );

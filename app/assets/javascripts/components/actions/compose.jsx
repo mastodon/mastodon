@@ -49,9 +49,10 @@ export function submitComposeRequest() {
   };
 }
 
-export function submitComposeSuccess(response) {
+export function submitComposeSuccess(status) {
   return {
-    type: COMPOSE_SUBMIT_SUCCESS
+    type: COMPOSE_SUBMIT_SUCCESS,
+    status: status
   };
 }
 

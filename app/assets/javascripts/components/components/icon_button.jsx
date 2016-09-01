@@ -6,12 +6,14 @@ const IconButton = React.createClass({
     title: React.PropTypes.string.isRequired,
     icon: React.PropTypes.string.isRequired,
     onClick: React.PropTypes.func.isRequired,
-    size: React.PropTypes.number
+    size: React.PropTypes.number,
+    active: React.PropTypes.bool
   },
 
   getDefaultProps () {
     return {
-      size: 18
+      size: 18,
+      active: false
     };
   },
 
@@ -24,7 +26,7 @@ const IconButton = React.createClass({
 
   render () {
     return (
-      <a href='#' title={this.props.title} className='icon-button' onClick={this.handleClick} style={{ display: 'inline-block', fontSize: `${this.props.size}px`, width: `${this.props.size}px`, height: `${this.props.size}px`, lineHeight: `${this.props.size}px`}}>
+      <a href='#' title={this.props.title} className={`icon-button ${this.props.active ? 'active' : ''}`} onClick={this.handleClick} style={{ display: 'inline-block', fontSize: `${this.props.size}px`, width: `${this.props.size}px`, height: `${this.props.size}px`, lineHeight: `${this.props.size}px`}}>
         <i className={`fa fa-fw fa-${this.props.icon}`}></i>
       </a>
     );
