@@ -9,7 +9,18 @@ Mastodon
 
 Mastodon is a federated microblogging engine. An alternative implementation of the GNU Social project. Based on ActivityStreams, Webfinger, PubsubHubbub and Salmon.
 
-**Current status of the project is early development. Documentation &co will be added later**
+Focus of the project on a clean REST API and a good user interface. Ruby on Rails is used for the back-end, while React.js and Redux are used for the dynamic front-end. A static front-end for public resources (profiles and statuses) is also provided.
+
+If you would like, you can [support the development of this project on Patreon][patreon].
+
+[patreon]: https://www.patreon.com/user?u=619786
+
+**Current status of the project is early development**
+
+## Resources
+
+- [API overview](https://github.com/Gargron/mastodon/wiki/API)
+- [How to use the API via cURL/oAuth](https://github.com/Gargron/mastodon/wiki/Testing-with-cURL)
 
 ## Status
 
@@ -23,6 +34,7 @@ Mastodon is a federated microblogging engine. An alternative implementation of t
 - OAuth2 provider system for the API
 - Upload header image for profile page
 - Deleting statuses, deletion propagation
+- Real-time timelines via Websockets
 
 ## Configuration
 
