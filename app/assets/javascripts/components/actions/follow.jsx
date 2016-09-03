@@ -6,41 +6,41 @@ export const FOLLOW_SUBMIT_REQUEST = 'FOLLOW_SUBMIT_REQUEST';
 export const FOLLOW_SUBMIT_SUCCESS = 'FOLLOW_SUBMIT_SUCCESS';
 export const FOLLOW_SUBMIT_FAIL    = 'FOLLOW_SUBMIT_FAIL';
 
-export function followChange(text) {
+export function changeFollow(text) {
   return {
     type: FOLLOW_CHANGE,
     text: text
   };
 }
 
-export function followSubmit() {
+export function submitFollow() {
   return function (dispatch, getState) {
-    dispatch(followSubmitRequest());
+    dispatch(submitFollowRequest());
 
     api(getState).post('/api/follows', {
       uri: getState().getIn(['follow', 'text'])
     }).then(function (response) {
-      dispatch(followSubmitSuccess(response.data));
+      dispatch(submitFollowSuccess(response.data));
     }).catch(function (error) {
-      dispatch(followSubmitFail(error));
+      dispatch(submitFollowFail(error));
     });
   };
 }
 
-export function followSubmitRequest() {
+export function submitFollowRequest() {
   return {
     type: FOLLOW_SUBMIT_REQUEST
   };
 }
 
-export function followSubmitSuccess(account) {
+export function submitFollowSuccess(account) {
   return {
     type: FOLLOW_SUBMIT_SUCCESS,
     account: account
   };
 }
 
-export function followSubmitFail(error) {
+export function submitFollowFail(error) {
   return {
     type: FOLLOW_SUBMIT_FAIL,
     error: error

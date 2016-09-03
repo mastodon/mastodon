@@ -59,11 +59,11 @@ class Account < ApplicationRecord
   end
 
   def favourited?(status)
-    (status.reblog? ? status.reblog : status).favourites.where(account: self).count == 1
+    (status.reblog? ? status.reblog : status).favourites.where(account: self).count > 0
   end
 
   def reblogged?(status)
-    (status.reblog? ? status.reblog : status).reblogs.where(account: self).count == 1
+    (status.reblog? ? status.reblog : status).reblogs.where(account: self).count > 0
   end
 
   def keypair

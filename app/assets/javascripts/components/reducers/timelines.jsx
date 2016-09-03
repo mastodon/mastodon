@@ -9,6 +9,8 @@ function updateMatchingStatuses(state, needle, callback) {
     return list.map(function (status) {
       if (status.get('id') === needle.get('id')) {
         return callback(status);
+      } else if (status.getIn(['reblog', 'id'], null) === needle.get('id')) {
+        return status.set('reblog', callback(status.get('reblog')));
       }
 
       return status;

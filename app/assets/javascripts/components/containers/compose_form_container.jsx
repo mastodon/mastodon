@@ -1,5 +1,5 @@
 import { connect }                                          from 'react-redux';
-import ComposerDrawer                                       from '../components/composer_drawer';
+import ComposeForm                                          from '../components/compose_form';
 import { changeCompose, submitCompose, cancelReplyCompose } from '../actions/compose';
 
 const mapStateToProps = function (state, props) {
@@ -26,4 +26,4 @@ const mapDispatchToProps = function (dispatch) {
   }
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(ComposerDrawer);
+export default connect(mapStateToProps, mapDispatchToProps)(ComposeForm);
