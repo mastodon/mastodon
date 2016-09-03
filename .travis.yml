@@ -18,6 +18,9 @@ services:
 
 bundler_args: --without development production --retry=3 --jobs=3
 
+install:
+  - npm install -g npm@2
+
 before_script:
   - npm install
   - bundle exec rake db:create db:migrate
