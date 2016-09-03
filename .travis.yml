@@ -20,9 +20,10 @@ bundler_args: --without development production --retry=3 --jobs=3
 
 install:
   - npm install -g npm@2
+  - npm install
+  - bundle install
 
 before_script:
-  - npm install
-  - bundle exec rake db:create db:migrate
+  - bundle exec rails db:create db:migrate
 
 script: bundle exec rspec
