@@ -1,7 +1,7 @@
 # Be sure to restart your server when you modify this file. Action Cable runs in a loop that does not support auto reloading.
 class TimelineChannel < ApplicationCable::Channel
   def subscribed
-    stream_from "timeline:#{current_user.id}"
+    stream_from "timeline:#{current_user.account_id}"
   end
 
   def unsubscribed
