@@ -30,7 +30,7 @@ module ApplicationHelper
     if domain == Rails.configuration.x.local_domain
       account = Account.find_local(username)
     else
-      account = Account.find_by(username: username, domain: domain)
+      account = Account.find_remote(username, domain)
     end
 
     account

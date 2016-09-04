@@ -10,7 +10,7 @@ class FollowRemoteAccountService < BaseService
 
     return Account.find_local(username) if domain == Rails.configuration.x.local_domain
 
-    account = Account.find_by(username: username, domain: domain)
+    account = Account.find_remote(username, domain)
 
     if account.nil?
       account = Account.new(username: username, domain: domain)
