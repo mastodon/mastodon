@@ -2,31 +2,57 @@ import { TIMELINE_SET, TIMELINE_UPDATE }    from '../actions/timelines';
 import { REBLOG_SUCCESS, FAVOURITE_SUCCESS } from '../actions/interactions';
 import Immutable                            from 'immutable';
 
-const initialState = Immutable.Map();
+const initialState = Immutable.Map({
+  home: Immutable.List(),
+  mentions: Immutable.List(),
+  statuses: Immutable.Map(),
+  accounts: Immutable.Map()
+});
 
-function updateMatchingStatuses(state, needle, callback) {
-  return state.map(function (list) {
-    return list.map(function (status) {
-      if (status.get('id') === needle.get('id')) {
-        return callback(status);
-      } else if (status.getIn(['reblog', 'id'], null) === needle.get('id')) {
-        return status.set('reblog', callback(status.get('reblog')));
-      }
+function statusToMaps(state, status) {
+  // Separate account
+  let account = status.get('account');
+  status = status.set('account', account.get('id'));
 
-      return status;
-    });
+  // Separate reblog, repeat for reblog
+  let reblog = status.get('reblog');
+
+  if (reblog !== null) {
+    status = status.set('reblog', reblog.get('id'));
+    state  = statusToMaps(state, reblog);
+  }
+
+  return state.withMutations(map => {
+    map.setIn(['accounts', account.get('id')], account);
+    map.setIn(['statuses', status.get('id')], status);
   });
+};
+
+function timelineToMaps(state, timeline, statuses) {
+  statuses.forEach((status, i) => {
+    state = statusToMaps(state, status);
+    state = state.setIn([timeline, i], status.get('id'));
+  });
+
+  return state;
+};
+
+function updateTimelineWithMaps(state, timeline, status) {
+  state = statusToMaps(state, status);
+  state = state.update(timeline, list => list.unshift(status.get('id')));
+
+  return state;
 };
 
 export default function timelines(state = initialState, action) {
   switch(action.type) {
     case TIMELINE_SET:
-      return state.set(action.timeline, Immutable.fromJS(action.statuses));
+      return timelineToMaps(state, action.timeline, Immutable.fromJS(action.statuses));
     case TIMELINE_UPDATE:
-      return state.update(action.timeline, list => list.unshift(Immutable.fromJS(action.status)));
+      return updateTimelineWithMaps(state, action.timeline,Immutable.fromJS(action.status));
     case REBLOG_SUCCESS:
     case FAVOURITE_SUCCESS:
-      return updateMatchingStatuses(state, action.status, () => Immutable.fromJS(action.response));
+      return statusToMaps(state, Immutable.fromJS(action.response));
     default:
       return state;
   }

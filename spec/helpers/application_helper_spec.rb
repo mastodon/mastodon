@@ -1,11 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe ApplicationHelper, type: :helper do
-  let(:local_domain) { 'local.tld' }
-
-  before do
-    Rails.configuration.x.local_domain = local_domain
-  end
+  let(:local_domain) { Rails.configuration.x.local_domain }
 
   describe '#unique_tag' do
     it 'returns a string' do
