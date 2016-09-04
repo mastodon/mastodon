@@ -12,12 +12,12 @@ class Api::StatusesController < ApiController
   end
 
   def reblog
-    @status = ReblogService.new.(current_user.account, Status.find(params[:id]))
+    @status = ReblogService.new.(current_user.account, Status.find(params[:id])).reload
     render action: :show
   end
 
   def favourite
-    @status = FavouriteService.new.(current_user.account, Status.find(params[:id])).status
+    @status = FavouriteService.new.(current_user.account, Status.find(params[:id])).status.reload
     render action: :show
   end
 
