@@ -91,7 +91,7 @@ class ProcessFeedService < BaseService
   end
 
   def delete_post!(status)
-    status.destroy!
+    RemoveStatusService.new.(status)
   end
 
   def find_original_status(_xml, id)

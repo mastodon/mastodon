@@ -32,6 +32,8 @@ class ProcessInteractionService < BaseService
         add_post!(body, account) if mentions_account?(xml, target_account)
       when :share
         add_post!(body, account) unless status(xml).nil?
+      when :delete
+        delete_post!(xml, account)
       end
     end
   end
@@ -60,6 +62,16 @@ class ProcessInteractionService < BaseService
 
   def unfollow!(account, target_account)
     account.unfollow!(target_account)
+  end
+
+  def delete_post!(xml, account)
+    status = Status.find(activity_id(xml))
+
+    return if status.nil?
+
+    if account.id == status.account_id
+      RemoveStatusService.new.(status)
+    end
   end
 
   def favourite!(xml, from_account)
