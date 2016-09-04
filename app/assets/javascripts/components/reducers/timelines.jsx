@@ -1,10 +1,10 @@
-import { TIMELINE_SET, TIMELINE_UPDATE }    from '../actions/timelines';
-import { REBLOG_SUCCESS, FAVOURITE_SUCCESS } from '../actions/interactions';
-import Immutable                            from 'immutable';
+import { TIMELINE_SET, TIMELINE_UPDATE, TIMELINE_DELETE } from '../actions/timelines';
+import { REBLOG_SUCCESS, FAVOURITE_SUCCESS }              from '../actions/interactions';
+import Immutable                                          from 'immutable';
 
 const initialState = Immutable.Map({
-  home: Immutable.List(),
-  mentions: Immutable.List(),
+  home: Immutable.List([]),
+  mentions: Immutable.List([]),
   statuses: Immutable.Map(),
   accounts: Immutable.Map()
 });
@@ -44,12 +44,22 @@ function updateTimelineWithMaps(state, timeline, status) {
   return state;
 };
 
+function deleteStatus(state, id) {
+  ['home', 'mentions'].forEach(function (timeline) {
+    state = state.update(timeline, list => list.filterNot(item => item === id));
+  });
+
+  return state.deleteIn(['statuses', id]);
+};
+
 export default function timelines(state = initialState, action) {
   switch(action.type) {
     case TIMELINE_SET:
       return timelineToMaps(state, action.timeline, Immutable.fromJS(action.statuses));
     case TIMELINE_UPDATE:
-      return updateTimelineWithMaps(state, action.timeline,Immutable.fromJS(action.status));
+      return updateTimelineWithMaps(state, action.timeline, Immutable.fromJS(action.status));
+    case TIMELINE_DELETE:
+      return deleteStatus(state, action.id);
     case REBLOG_SUCCESS:
     case FAVOURITE_SUCCESS:
       return statusToMaps(state, Immutable.fromJS(action.response));

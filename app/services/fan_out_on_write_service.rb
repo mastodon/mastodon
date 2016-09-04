@@ -31,7 +31,7 @@ class FanOutOnWriteService < BaseService
   def push(type, receiver, status)
     redis.zadd(FeedManager.key(type, receiver.id), status.id, status.id)
     trim(type, receiver)
-    ActionCable.server.broadcast("timeline:#{receiver.id}", timeline: type, message: inline_render(receiver, status))
+    ActionCable.server.broadcast("timeline:#{receiver.id}", type: 'update', timeline: type, message: inline_render(receiver, status))
   end
 
   def trim(type, receiver)
