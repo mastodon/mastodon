@@ -8,7 +8,7 @@ class ProcessMentionsService < BaseService
 
     status.text.scan(Account::MENTION_RE).each do |match|
       username, domain  = match.first.split('@')
-      mentioned_account = Account.find_by(username: username, domain: domain)
+      mentioned_account = Account.find_remote(username, domain)
 
       if mentioned_account.nil? && !domain.nil?
         mentioned_account = follow_remote_account_service.("#{match.first}")

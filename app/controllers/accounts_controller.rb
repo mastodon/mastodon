@@ -29,7 +29,7 @@ class AccountsController < ApplicationController
   private
 
   def set_account
-    @account = Account.find_by!(username: params[:username], domain: nil)
+    @account = Account.find_local!(params[:username])
   end
 
   def set_webfinger_header

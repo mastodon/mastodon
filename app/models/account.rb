@@ -96,12 +96,22 @@ class Account < ApplicationRecord
   end
 
   def self.find_local!(username)
+    self.find_remote!(username, nil)
+  end
+
+  def self.find_remote!(username, domain)
     table = self.arel_table
-    self.where(table[:username].matches(username)).where(domain: nil).take!
+    self.where(table[:username].matches(username)).where(domain: domain).take!
   end
 
   def self.find_local(username)
     self.find_local!(username)
+  rescue ActiveRecord::RecordNotFound
+    nil
+  end
+
+  def self.find_remote(username, domain)
+    self.find_remote!(username, domain)
   rescue ActiveRecord::RecordNotFound
     nil
   end

@@ -16,7 +16,7 @@ class StreamEntriesController < ApplicationController
   private
 
   def set_account
-    @account = Account.find_by!(username: params[:account_username], domain: nil)
+    @account = Account.find_local!(params[:account_username])
   end
 
   def set_stream_entry
