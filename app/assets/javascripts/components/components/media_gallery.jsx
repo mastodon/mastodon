@@ -16,16 +16,54 @@ const MediaGallery = React.createClass({
     children = children.map((attachment, i) => {
       let width  = 50;
       let height = 100;
+      let top    = 'auto';
+      let left   = 'auto';
+      let bottom = 'auto';
+      let right  = 'auto';
 
-      if (size == 4 || (size === 3 && i > 0)) {
+      if (size === 4 || (size === 3 && i > 0)) {
         height = 50;
       }
 
-      return <a key={attachment.get('id')} href={attachment.get('url')} style={{ boxSizing: 'border-box', position: 'relative', float: 'left', textDecoration: 'none', border: 'none', display: 'block', width: `${width}%`, height: `${height}%`, background: `url(${attachment.get('preview_url')}) no-repeat`, backgroundSize: 'cover', cursor: 'zoom-in' }} />;
+      if (size === 2) {
+        if (i === 0) {
+          right = '2px';
+        } else {
+          left = '2px';
+        }
+      } else if (size === 3) {
+        if (i === 0) {
+          right = '2px';
+        } else if (i > 0) {
+          left = '2px';
+        }
+
+        if (i === 1) {
+          bottom = '2px';
+        } else if (i > 1) {
+          top = '2px';
+        }
+      } else if (size === 4) {
+        if (i === 0 || i === 2) {
+          right = '2px';
+        }
+
+        if (i === 1 || i === 3) {
+          left = '2px';
+        }
+
+        if (i < 2) {
+          bottom = '2px';
+        } else {
+          top = '2px';
+        }
+      }
+
+      return <a key={attachment.get('id')} href={attachment.get('url')} style={{ boxSizing: 'border-box', position: 'relative', left: left, top: top, right: right, bottom: bottom, float: 'left', textDecoration: 'none', border: 'none', display: 'block', width: `${width}%`, height: `${height}%`, background: `url(${attachment.get('preview_url')}) no-repeat center`, backgroundSize: 'cover', cursor: 'zoom-in' }} />;
     });
 
     return (
-      <div style={{ marginTop: '8px', overflow: 'hidden', width: '100%', height: '110px', boxSizing: 'border-box', padding: '4px' }}>
+      <div style={{ marginTop: '8px', overflow: 'hidden', width: '100%', height: '110px', boxSizing: 'border-box' }}>
         {children}
       </div>
     );
