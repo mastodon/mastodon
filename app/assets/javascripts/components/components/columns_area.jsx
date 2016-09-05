@@ -8,8 +8,8 @@ const ColumnsArea = React.createClass({
   render () {
     return (
       <div style={{ display: 'flex', flexDirection: 'row', flex: '1' }}>
-        <Column type='home' />
-        <Column type='mentions' />
+        <Column icon='home' type='home' />
+        <Column icon='at' type='mentions' />
       </div>
     );
   }
