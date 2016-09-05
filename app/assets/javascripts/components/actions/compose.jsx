@@ -34,7 +34,7 @@ export function submitCompose() {
 
     api(getState).post('/api/statuses', {
       status: getState().getIn(['compose', 'text'], ''),
-      in_reply_to_id: getState().getIn(['compose', 'in_reply_to', 'id'], null)
+      in_reply_to_id: getState().getIn(['compose', 'in_reply_to'], null)
     }).then(function (response) {
       dispatch(submitComposeSuccess(response.data));
     }).catch(function (error) {
