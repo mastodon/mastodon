@@ -12,10 +12,6 @@ class MediaAttachment < ApplicationRecord
   end
 
   def file_remote_url=(url)
-    unless self[:file_remote_url] == url
-      self.file = URI.parse(url)
-    end
-
-    self[:file_remote_url] = url
+    self.file = URI.parse(url)
   end
 end
