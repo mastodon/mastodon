@@ -38,6 +38,7 @@ class ProcessFeedService < BaseService
     # If we added a status, go through accounts it mentions and create respective relations
     unless status.new_record?
       record_remote_mentions(status, entry.xpath('./xmlns:link[@rel="mentioned"]'))
+      process_attachments(entry, status)
       DistributionWorker.perform_async(status.id)
     end
   end
@@ -65,6 +66,16 @@ class ProcessFeedService < BaseService
         # We could technically open the URL, look for LRDD tags, get webfinger that way,
         # finally acquire the acct:username@domain form, and then check DB
       end
+    end
+  end
+
+  def process_attachments(entry, status)
+    entry.xpath('./xmlns:link[@rel="enclosure"]').each do |enclosure_link|
+      next if enclosure_link.attribute('href').nil?
+
+      media = MediaAttachment.new(account: status.account, status: status, remote_url: enclosure_link.attribute('href').value)
+      media.file_remote_url = enclosure_link.attribute('href').value
+      media.save
     end
   end
 
