@@ -6,7 +6,7 @@ const Drawer = React.createClass({
 
   render () {
     return (
-      <div style={{ width: '280px', flex: '0', boxSizing: 'border-box', background: '#454b5e', margin: '10px', marginRight: '0', padding: '0', display: 'flex', flexDirection: 'column' }}>
+      <div style={{ width: '280px', flex: '0 0 auto', boxSizing: 'border-box', background: '#454b5e', margin: '10px', marginRight: '0', padding: '0', display: 'flex', flexDirection: 'column' }}>
         {this.props.children}
       </div>
     );
