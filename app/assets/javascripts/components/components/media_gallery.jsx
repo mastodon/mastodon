@@ -14,23 +14,18 @@ const MediaGallery = React.createClass({
     var size     = children.size;
 
     children = children.map((attachment, i) => {
-      let width       = 142;
-      let height      = 110;
-      let marginRight = 0;
+      let width  = 50;
+      let height = 100;
 
       if (size == 4 || (size === 3 && i > 0)) {
-        height = 52.5;
+        height = 50;
       }
 
-      if ((size === 3 && i === 0) || (size === 4 && i % 2 === 0)) {
-        marginRight = 5;
-      }
-
-      return <a key={attachment.get('id')} href={attachment.get('url')} style={{ position: 'relative', float: 'left', marginRight: `${marginRight}px`, marginBottom: '5px', textDecoration: 'none', border: 'none', display: 'block', width: `${width}px`, height: `${height}px`, background: `url(${attachment.get('preview_url')}) no-repeat`, backgroundSize: 'cover', cursor: 'zoom-in' }} />;
+      return <a key={attachment.get('id')} href={attachment.get('url')} style={{ boxSizing: 'border-box', position: 'relative', float: 'left', textDecoration: 'none', border: 'none', display: 'block', width: `${width}%`, height: `${height}%`, background: `url(${attachment.get('preview_url')}) no-repeat`, backgroundSize: 'cover', cursor: 'zoom-in' }} />;
     });
 
     return (
-      <div style={{ marginTop: '8px', overflow: 'hidden', marginBottom: '-5px' }}>
+      <div style={{ marginTop: '8px', overflow: 'hidden', width: '100%', height: '110px', boxSizing: 'border-box', padding: '4px' }}>
         {children}
       </div>
     );
