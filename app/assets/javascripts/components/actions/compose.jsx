@@ -15,10 +15,10 @@ export function changeCompose(text) {
   };
 }
 
-export function replyCompose(payload) {
+export function replyCompose(status) {
   return {
     type: COMPOSE_REPLY,
-    payload: payload
+    status: status
   };
 }
 
