@@ -4,6 +4,7 @@ import RelativeTimestamp  from './relative_timestamp';
 import PureRenderMixin    from 'react-addons-pure-render-mixin';
 import IconButton         from './icon_button';
 import DisplayName        from './display_name';
+import MediaGallery       from './media_gallery';
 
 const Status = React.createClass({
 
@@ -30,6 +31,8 @@ const Status = React.createClass({
 
   render () {
     var content = { __html: this.props.status.get('content') };
+    var media   = '';
+
     var { status, ...other } = this.props;
 
     if (status.get('reblog') !== null) {
@@ -43,6 +46,10 @@ const Status = React.createClass({
           <Status {...other} status={status.get('reblog')} />
         </div>
       );
+    }
+
+    if (status.get('media_attachments').size > 0) {
+      media = <MediaGallery media={status.get('media_attachments')} />;
     }
 
     return (
@@ -62,6 +69,8 @@ const Status = React.createClass({
         </div>
 
         <div className='status__content' dangerouslySetInnerHTML={content} />
+
+        {media}
 
         <div style={{ marginTop: '10px', overflow: 'hidden' }}>
           <div style={{ float: 'left', marginRight: '10px'}}><IconButton title='Reply' icon='reply' onClick={this.handleReplyClick} /></div>

@@ -18,7 +18,7 @@ child :account do
 end
 
 child :media_attachments, object_root: false do
-  attribute :remote_url
+  attributes :id, :remote_url
 
   node(:url) { |media| full_asset_url(media.file.url) }
   node(:preview_url) { |media| full_asset_url(media.file.url(:small)) }
