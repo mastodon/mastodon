@@ -17,6 +17,9 @@ child :account do
   extends('api/accounts/show')
 end
 
-child :media_attachments do
+child :media_attachments, object_root: false do
+  attribute :remote_url
+
   node(:url) { |media| full_asset_url(media.file.url) }
+  node(:preview_url) { |media| full_asset_url(media.file.url(:small)) }
 end
