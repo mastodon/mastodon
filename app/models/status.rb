@@ -11,6 +11,7 @@ class Status < ApplicationRecord
   has_many :reblogs, foreign_key: 'reblog_of_id', class_name: 'Status', inverse_of: :reblog, dependent: :destroy
   has_many :replies, foreign_key: 'in_reply_to_id', class_name: 'Status', inverse_of: :thread
   has_many :mentions, dependent: :destroy
+  has_many :media_attachments, dependent: :destroy
 
   validates :account, presence: true
   validates :uri, uniqueness: true, unless: 'local?'

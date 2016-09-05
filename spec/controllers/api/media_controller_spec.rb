@@ -1,0 +1,34 @@
+require 'rails_helper'
+
+RSpec.describe Api::MediaController, type: :controller do
+  render_views
+
+  let(:user)  { Fabricate(:user, account: Fabricate(:account, username: 'alice')) }
+  let(:token) { double acceptable?: true, resource_owner_id: user.id }
+
+  before do
+    allow(controller).to receive(:doorkeeper_token) { token }
+  end
+
+  describe 'POST #create' do
+    before do
+      post :create, params: { file: fixture_file_upload('files/attachment.jpg', 'image/jpeg') }
+    end
+
+    it 'returns http success' do
+      expect(response).to have_http_status(:success)
+    end
+
+    it 'creates a media attachment' do
+      expect(MediaAttachment.first).to_not be_nil
+    end
+
+    it 'uploads a file' do
+      expect(MediaAttachment.first).to have_attached_file(:file)
+    end
+
+    it 'returns media ID in JSON' do
+      expect(body_as_json[:id]).to eq MediaAttachment.first.id
+    end
+  end
+end

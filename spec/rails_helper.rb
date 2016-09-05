@@ -6,6 +6,7 @@ abort("The Rails environment is running in production mode!") if Rails.env.produ
 require 'spec_helper'
 require 'rspec/rails'
 require 'webmock/rspec'
+require 'paperclip/matchers'
 
 ActiveRecord::Migration.maintain_test_schema!
 WebMock.disable_net_connect!
@@ -19,6 +20,7 @@ RSpec.configure do |config|
 
   config.include Devise::Test::ControllerHelpers, type: :controller
   config.include Devise::TestHelpers, type: :view
+  config.include Paperclip::Shoulda::Matchers
 end
 
 RSpec::Sidekiq.configure do |config|

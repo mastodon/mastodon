@@ -31,6 +31,8 @@ class Account < ApplicationRecord
   has_many :following, through: :active_relationships,  source: :target_account
   has_many :followers, through: :passive_relationships, source: :account
 
+  has_many :media_attachments, dependent: :destroy
+
   MENTION_RE = /(?:^|\s|\.)@([a-z0-9_]+(?:@[a-z0-9\.\-]+)?)/i
 
   def follow!(other_account)

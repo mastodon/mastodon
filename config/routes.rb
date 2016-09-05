@@ -54,6 +54,7 @@ Rails.application.routes.draw do
     end
 
     resources :follows,  only: [:create]
+    resources :media,    only: [:create]
 
     resources :accounts, only: [:show] do
       collection do

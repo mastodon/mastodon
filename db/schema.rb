@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160826155805) do
+ActiveRecord::Schema.define(version: 20160905150353) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -57,6 +57,19 @@ ActiveRecord::Schema.define(version: 20160826155805) do
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
     t.index ["account_id", "target_account_id"], name: "index_follows_on_account_id_and_target_account_id", unique: true, using: :btree
+  end
+
+  create_table "media_attachments", force: :cascade do |t|
+    t.integer  "status_id"
+    t.string   "file_file_name"
+    t.string   "file_content_type"
+    t.integer  "file_file_size"
+    t.datetime "file_updated_at"
+    t.string   "remote_url",        default: "", null: false
+    t.integer  "account_id"
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+    t.index ["status_id"], name: "index_media_attachments_on_status_id", using: :btree
   end
 
   create_table "mentions", force: :cascade do |t|

@@ -64,7 +64,7 @@ RSpec.describe Api::StatusesController, type: :controller do
     end
 
     it 'return json with updated attributes' do
-      hash_body = JSON.parse(response.body).with_indifferent_access
+      hash_body = body_as_json
 
       expect(hash_body[:reblog][:id]).to eq status.id
       expect(hash_body[:reblog][:reblogs_count]).to eq 1
@@ -92,7 +92,7 @@ RSpec.describe Api::StatusesController, type: :controller do
     end
 
     it 'return json with updated attributes' do
-      hash_body = JSON.parse(response.body).with_indifferent_access
+      hash_body = body_as_json
 
       expect(hash_body[:id]).to eq status.id
       expect(hash_body[:favourites_count]).to eq 1
