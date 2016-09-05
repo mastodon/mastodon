@@ -174,6 +174,10 @@ RSpec.describe AtomBuilderHelper, type: :helper do
     end
   end
 
+  describe '#link_enclosure' do
+    pending
+  end
+
   describe '#logo' do
     it 'creates a logo' do
       expect(used_in_builder { |xml| helper.logo(xml, 1) }).to match '<logo>1</logo>'

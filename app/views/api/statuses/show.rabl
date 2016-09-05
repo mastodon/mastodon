@@ -16,3 +16,7 @@ end
 child :account do
   extends('api/accounts/show')
 end
+
+child :media_attachments do
+  node(:url) { |media| full_asset_url(media.file.url) }
+end

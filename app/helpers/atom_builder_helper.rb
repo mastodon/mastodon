@@ -125,6 +125,10 @@ module AtomBuilderHelper
     xml.link(rel: 'mentioned', href: uri_for_target(account))
   end
 
+  def link_enclosure(xml, media)
+    xml.link(rel: 'enclosure', href: full_asset_url(media.file.url), type: media.file_content_type, length: media.file_size)
+  end
+
   def link_avatar(xml, account)
     single_link_avatar(xml, account, :large,  300)
     single_link_avatar(xml, account, :medium, 96)
@@ -204,6 +208,12 @@ module AtomBuilderHelper
 
     stream_entry.mentions.each do |mentioned|
       link_mention xml, mentioned
+    end
+
+    if stream_entry.activity.is_a?(Status)
+      stream_entry.activity.media_attachments.each do |media|
+        link_enclosure xml, media
+      end
     end
   end
 
