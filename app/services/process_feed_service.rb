@@ -36,9 +36,13 @@ class ProcessFeedService < BaseService
     end
 
     # If we added a status, go through accounts it mentions and create respective relations
+    # Also record all media attachments for the status and for the reblogged status if present
     unless status.new_record?
       record_remote_mentions(status, entry.xpath('./xmlns:link[@rel="mentioned"]'))
+      
       process_attachments(entry, status)
+      process_attachments(entry.xpath('./activity:object'), status.reblog) if status.reblog?
+      
       DistributionWorker.perform_async(status.id)
     end
   end
