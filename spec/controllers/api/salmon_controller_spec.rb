@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe Api::SalmonController, type: :controller do
+  render_views
+
   let(:account) { Fabricate(:user, account: Fabricate(:account, username: 'catsrgr8')).account }
 
   before do

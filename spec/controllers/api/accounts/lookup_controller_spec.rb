@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe Api::Accounts::LookupController, type: :controller do
+  render_views
+
   let(:user)  { Fabricate(:user, account: Fabricate(:account, username: 'alice')) }
   let(:token) { double acceptable?: true, resource_owner_id: user.id }
 

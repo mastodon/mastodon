@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe StreamEntriesController, type: :controller do
+  render_views
+
   let(:alice)  { Fabricate(:account, username: 'alice') }
   let(:status) { Fabricate(:status, account: alice) }
 

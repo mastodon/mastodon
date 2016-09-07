@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe XrdController, type: :controller do
+  render_views
+
   describe 'GET #host_meta' do
     it 'returns http success' do
       get :host_meta
