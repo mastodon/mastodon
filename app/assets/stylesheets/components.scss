@@ -8,6 +8,18 @@
   &:disabled {
     background-color: #9baec8;
   }
+
+  &.button-secondary {
+    background-color: #282c37;
+
+    &:hover {
+      background-color: #282c37;
+    }
+
+    &:disabled {
+      background-color: #9baec8;
+    }
+  }
 }
 
 .icon-button {
@@ -39,7 +51,6 @@
 .status__content, .reply-indicator__content {
   font-size: 15px;
   line-height: 20px;
-  white-space: pre-wrap;
   word-wrap: break-word;
   font-weight: 300;
 
@@ -94,4 +105,8 @@
   &:hover {
     text-decoration: underline;
   }
+}
+
+.transparent-background {
+  background: image-url('void.png');
 }

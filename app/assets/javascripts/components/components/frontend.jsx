@@ -2,6 +2,7 @@ import ColumnsArea          from './columns_area';
 import Drawer               from './drawer';
 import ComposeFormContainer from '../containers/compose_form_container';
 import FollowFormContainer  from '../containers/follow_form_container';
+import UploadFormContainer  from '../containers/upload_form_container';
 import PureRenderMixin      from 'react-addons-pure-render-mixin';
 
 const Frontend = React.createClass({
@@ -14,6 +15,7 @@ const Frontend = React.createClass({
         <Drawer>
           <div style={{ flex: '1 1 auto' }}>
             <ComposeFormContainer />
+            <UploadFormContainer />
           </div>
 
           <FollowFormContainer />

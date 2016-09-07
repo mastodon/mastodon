@@ -19,7 +19,7 @@ class PostStatusService < BaseService
   def attach_media(status, media_ids)
     return if media_ids.nil? || !media_ids.is_a?(Enumerable)
 
-    media = MediaAttachment.where(status_id: nil).where(id: media_ids.take(2).map { |id| id.to_i })
+    media = MediaAttachment.where(status_id: nil).where(id: media_ids.take(4).map { |id| id.to_i })
     media.update(status_id: status.id)
   end
 
