@@ -59,7 +59,7 @@ const MediaGallery = React.createClass({
         }
       }
 
-      return <a key={attachment.get('id')} href={attachment.get('url')} style={{ boxSizing: 'border-box', position: 'relative', left: left, top: top, right: right, bottom: bottom, float: 'left', textDecoration: 'none', border: 'none', display: 'block', width: `${width}%`, height: `${height}%`, background: `url(${attachment.get('preview_url')}) no-repeat center`, backgroundSize: 'cover', cursor: 'zoom-in' }} />;
+      return <a key={attachment.get('id')} href={attachment.get('url')} target='_blank' style={{ boxSizing: 'border-box', position: 'relative', left: left, top: top, right: right, bottom: bottom, float: 'left', textDecoration: 'none', border: 'none', display: 'block', width: `${width}%`, height: `${height}%`, background: `url(${attachment.get('preview_url')}) no-repeat center`, backgroundSize: 'cover', cursor: 'zoom-in' }} />;
     });
 
     return (

@@ -38,6 +38,10 @@
 
       .content= content_for_status(proper_status(status))
 
+      %ul.media-attachments
+        - status.media_attachments.each do |media|
+          %li.transparent-background= link_to '', media.file.url, style: "background-image: url(#{media.file.url(:small)})", target: '_blank'
+
 - if include_threads
   - status.descendants.with_includes.with_counters.each do |status|
     = render partial: 'status', locals: { status: status, is_successor: true }

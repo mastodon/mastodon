@@ -158,7 +158,7 @@
     font-size: 14px;
     padding: 0 10px;
     padding-left: 8px;
-    padding-bottom: 25px;
+    padding-bottom: 15px;
     color: #282c37;
 
     a {
@@ -187,6 +187,35 @@
 
     &:hover {
       text-decoration: underline;
+    }
+  }
+
+  .media-attachments {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: block;
+    overflow: hidden;
+    padding-left: 10px;
+
+    li {
+      display: block;
+      float: left;
+      width: 120px;
+      height: 100px;
+      border-radius: 4px;
+      margin-right: 4px;
+      margin-bottom: 25px;
+
+      a {
+        display: block;
+        width: 120px;
+        height: 100px;
+        border-radius: 4px;
+        background-position: center;
+        background-repeat: none;
+        background-size: cover;
+      }
     }
   }
 }
