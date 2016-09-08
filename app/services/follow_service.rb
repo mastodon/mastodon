@@ -8,7 +8,13 @@ class FollowService < BaseService
     return nil if target_account.nil?
 
     follow = source_account.follow!(target_account)
-    NotificationWorker.perform_async(follow.stream_entry.id, target_account.id)
+
+    if target_account.local?
+      NotificationMailer.follow(target_account, source_account).deliver_later
+    else
+      NotificationWorker.perform_async(follow.stream_entry.id, target_account.id)
+    end
+
     source_account.ping!(account_url(source_account, format: 'atom'), [Rails.configuration.x.hub_url])
     follow
   end

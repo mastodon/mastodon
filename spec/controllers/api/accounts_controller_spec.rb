@@ -7,6 +7,7 @@ RSpec.describe Api::AccountsController, type: :controller do
   let(:token) { double acceptable?: true, resource_owner_id: user.id }
 
   before do
+    stub_request(:post, "https://pubsubhubbub.superfeedr.com/").to_return(:status => 200, :body => "", :headers => {})
     allow(controller).to receive(:doorkeeper_token) { token }
   end
 
@@ -39,7 +40,7 @@ RSpec.describe Api::AccountsController, type: :controller do
   end
 
   describe 'POST #follow' do
-    let(:other_account) { Fabricate(:account, username: 'bob') }
+    let(:other_account) { Fabricate(:user, email: 'bob@example.com', account: Fabricate(:account, username: 'bob')).account }
 
     before do
       post :follow, params: { id: other_account.id }
@@ -55,7 +56,7 @@ RSpec.describe Api::AccountsController, type: :controller do
   end
 
   describe 'POST #unfollow' do
-    let(:other_account) { Fabricate(:account, username: 'bob') }
+    let(:other_account) { Fabricate(:user, email: 'bob@example.com', account: Fabricate(:account, username: 'bob')).account }
 
     before do
       user.account.follow!(other_account)

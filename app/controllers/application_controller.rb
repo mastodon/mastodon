@@ -7,7 +7,20 @@ class ApplicationController < ActionController::Base
 
   helper_method :current_account
 
+  rescue_from ActionController::RoutingError, with: :not_found
+  rescue_from ActiveRecord::RecordNotFound, with: :not_found
+
+  def raise_not_found
+    raise ActionController::RoutingError.new("No route matches #{params[:unmatched_route]}")
+  end
+
   protected
+
+  def not_found
+    respond_to do |format|
+      format.any { head 404 }
+    end
+  end
 
   def current_account
     current_user.try(:account)
