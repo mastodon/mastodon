@@ -4,9 +4,15 @@ class StreamEntry < ApplicationRecord
   belongs_to :account, inverse_of: :stream_entries
   belongs_to :activity, polymorphic: true
 
+  belongs_to :status,    foreign_type: 'Status',    foreign_key: 'activity_id'
+  belongs_to :follow,    foreign_type: 'Follow',    foreign_key: 'activity_id'
+  belongs_to :favourite, foreign_type: 'Favourite', foreign_key: 'activity_id'
+
   validates :account, :activity, presence: true
 
-  scope :with_includes, -> { includes(:activity) }
+  STATUS_INCLUDES = [:account, :stream_entry, :media_attachments, mentions: :account, reblog: [:stream_entry, :account, mentions: :account], thread: [:stream_entry, :account]]
+
+  scope :with_includes, -> { includes(:account, status: STATUS_INCLUDES, favourite: [:account, :stream_entry, status: STATUS_INCLUDES], follow: [:target_account, :stream_entry]) }
 
   def object_type
     orphaned? ? :activity : (targeted? ? :activity : self.activity.object_type)
@@ -42,6 +48,10 @@ class StreamEntry < ApplicationRecord
 
   def mentions
     self.activity.respond_to?(:mentions) ? self.activity.mentions.map { |x| x.account } : []
+  end
+
+  def activity
+    self.send(self.activity_type.downcase.to_sym)
   end
 
   private

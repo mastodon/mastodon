@@ -6,14 +6,21 @@ class AccountsController < ApplicationController
 
   def show
     respond_to do |format|
-      format.html { @statuses = @account.statuses.order('id desc').with_includes.with_counters.paginate(page: params[:page], per_page: 10)}
+      format.html do
+        @statuses   = @account.statuses.order('id desc').with_includes.with_counters.paginate(page: params[:page], per_page: 10)
+
+        if user_signed_in?
+          status_ids  = @statuses.collect { |s| [s.id, s.reblog_of_id] }.flatten.uniq
+          @favourited = Favourite.where(status_id: status_ids).where(account_id: current_user.account_id).map { |f| [f.status_id, true] }.to_h
+          @reblogged  = Status.where(reblog_of_id: status_ids).where(account_id: current_user.account_id).map { |s| [s.reblog_of_id, true] }.to_h
+        else
+          @favourited = {}
+          @reblogged  = {}
+        end
+      end
 
       format.atom do
         @entries = @account.stream_entries.order('id desc').with_includes.paginate_by_max_id(20, params[:max_id] || nil)
-
-        ActiveRecord::Associations::Preloader.new.preload(@entries.select { |a| a.activity_type == 'Status' }, activity: [:mentions, :media_attachments, reblog: :account, thread: :account])
-        ActiveRecord::Associations::Preloader.new.preload(@entries.select { |a| a.activity_type == 'Favourite' }, activity: [:account, :status])
-        ActiveRecord::Associations::Preloader.new.preload(@entries.select { |a| a.activity_type == 'Follow' }, activity: :target_account)
       end
     end
   end

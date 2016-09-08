@@ -22,23 +22,26 @@ module ApplicationHelper
 
   def account_from_mentions(search_string, mentions)
     mentions.each { |x| return x.account if x.account.acct.eql?(search_string) }
+    nil
 
     # If that was unsuccessful, try fetching user from db separately
     # But this shouldn't ever happen if the mentions were created correctly!
-    username, domain = search_string.split('@')
+    # username, domain = search_string.split('@')
 
-    if domain == Rails.configuration.x.local_domain
-      account = Account.find_local(username)
-    else
-      account = Account.find_remote(username, domain)
-    end
+    # if domain == Rails.configuration.x.local_domain
+    #   account = Account.find_local(username)
+    # else
+    #   account = Account.find_remote(username, domain)
+    # end
 
-    account
+    # account
   end
 
   def linkify(status)
     auto_link(HTMLEntities.new.encode(status.text), link: :urls, html: { rel: 'nofollow noopener' }).gsub(Account::MENTION_RE) do |m|
-      if account = account_from_mentions(Account::MENTION_RE.match(m)[1], status.mentions)
+      account = account_from_mentions(Account::MENTION_RE.match(m)[1], status.mentions)
+
+      unless account.nil?
         "#{m.split('@').first}<a href=\"#{url_for_target(account)}\" class=\"mention\">@<span>#{account.acct}</span></a>"
       else
         m

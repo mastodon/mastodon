@@ -59,9 +59,9 @@ Rails.application.configure do
   config.action_mailer.delivery_method = :letter_opener
 
   config.after_initialize do
-    Bullet.enable = true
+    Bullet.enable        = true
     Bullet.bullet_logger = true
-    Bullet.rails_logger = true
+    Bullet.rails_logger  = false
 
     Bullet.add_whitelist type: :n_plus_one_query, class_name: 'User', association: :account
   end
@@ -71,3 +71,5 @@ end
 
 require 'sidekiq/testing'
 Sidekiq::Testing.inline!
+
+ActiveRecordQueryTrace.enabled = true

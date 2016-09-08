@@ -60,6 +60,7 @@ group :development do
   gem 'binding_of_caller'
   gem 'letter_opener'
   gem 'bullet'
+  gem 'active_record_query_trace'
 end
 
 group :production do

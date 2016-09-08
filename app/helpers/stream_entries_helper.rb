@@ -21,11 +21,11 @@ module StreamEntriesHelper
   end
 
   def reblogged_by_me_class(status)
-    user_signed_in? && current_user.account.reblogged?(status) ? 'reblogged' : ''
+    user_signed_in? && @reblogged.has_key?(status.id) ? 'reblogged' : ''
   end
 
   def favourited_by_me_class(status)
-    user_signed_in? && current_user.account.favourited?(status) ? 'favourited' : ''
+    user_signed_in? && @favourited.has_key?(status.id) ? 'favourited' : ''
   end
 
   def proper_status(status)
