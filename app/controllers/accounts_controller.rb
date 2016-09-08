@@ -11,8 +11,8 @@ class AccountsController < ApplicationController
 
         if user_signed_in?
           status_ids  = @statuses.collect { |s| [s.id, s.reblog_of_id] }.flatten.uniq
-          @favourited = Favourite.where(status_id: status_ids).where(account_id: current_user.account_id).map { |f| [f.status_id, true] }.to_h
-          @reblogged  = Status.where(reblog_of_id: status_ids).where(account_id: current_user.account_id).map { |s| [s.reblog_of_id, true] }.to_h
+          @favourited = Status.favourites_map(status_ids, current_user.account_id)
+          @reblogged  = Status.reblogs_map(status_ids, current_user.account_id)
         else
           @favourited = {}
           @reblogged  = {}

@@ -75,4 +75,12 @@ class Status < ApplicationRecord
   def self.as_mentions_timeline(account)
     self.where(id: Mention.where(account: account).pluck(:status_id)).with_includes.with_counters
   end
+
+  def self.favourites_map(status_ids, account_id)
+    Favourite.where(status_id: status_ids).where(account_id: account_id).map { |f| [f.status_id, true] }.to_h
+  end
+
+  def self.reblogs_map(status_ids, account_id)
+    self.where(reblog_of_id: status_ids).where(account_id: account_id).map { |s| [s.reblog_of_id, true] }.to_h
+  end
 end
