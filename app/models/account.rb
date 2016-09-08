@@ -7,7 +7,7 @@ class Account < ApplicationRecord
   validates :username, presence: true, uniqueness: { scope: :domain, case_sensitive: true },  unless: 'local?'
 
   # Avatar upload
-  has_attached_file :avatar, styles: { large: '300x300#', medium: '96x96#', small: '48x48#' }, default_url: 'avatars/missing.png'
+  has_attached_file :avatar, styles: { large: '300x300#', medium: '96x96#', small: '48x48#' }
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
 
   # Header upload

@@ -170,7 +170,7 @@ RSpec.describe AtomBuilderHelper, type: :helper do
     let(:account) { Fabricate(:account, username: 'alice') }
 
     it 'creates a link' do
-      expect(used_with_namespaces { |xml| helper.link_avatar(xml, account) }).to match '<link rel="avatar" type="" media:width="300" media:height="300" href="http://test.host/assets/avatars/missing.png"/>'
+      expect(used_with_namespaces { |xml| helper.link_avatar(xml, account) }).to match '<link rel="avatar" type="" media:width="300" media:height="300" href="http://test.host/avatars/large/missing.png"/>'
     end
   end
 
