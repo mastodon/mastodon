@@ -155,7 +155,7 @@ module AtomBuilderHelper
 
   def include_author(xml, account)
     object_type      xml, :person
-    uri              xml, url_for_target(account)
+    uri              xml, uri_for_target(account)
     name             xml, account.username
     email            xml, account.local? ? "#{account.acct}@#{Rails.configuration.x.local_domain}" : account.acct
     summary          xml, account.note
