@@ -16,7 +16,7 @@ module AtomBuilderHelper
   end
 
   def unique_id(xml, date, id, type)
-    xml.id_ unique_tag(date, id, type)
+    xml.id_ TagManager.instance.unique_tag(date, id, type)
   end
 
   def simple_id(xml, id)
@@ -97,32 +97,8 @@ module AtomBuilderHelper
     xml['thr'].send('in-reply-to', { ref: uri, href: url, type: 'text/html' })
   end
 
-  def uri_for_target(target)
-    if target.local?
-      if target.object_type == :person
-        account_url(target)
-      else
-        unique_tag(target.stream_entry.created_at, target.stream_entry.activity_id, target.stream_entry.activity_type)
-      end
-    else
-      target.uri
-    end
-  end
-
-  def url_for_target(target)
-    if target.local?
-      if target.object_type == :person
-        account_url(target)
-      else
-        account_stream_entry_url(target.account, target.stream_entry)
-      end
-    else
-      target.url
-    end
-  end
-
   def link_mention(xml, account)
-    xml.link(rel: 'mentioned', href: uri_for_target(account))
+    xml.link(rel: 'mentioned', href: TagManager.instance.uri_for(account))
   end
 
   def link_enclosure(xml, media)
@@ -145,7 +121,7 @@ module AtomBuilderHelper
 
   def conditionally_formatted(activity)
     if activity.is_a?(Status)
-      content_for_status(activity.reblog? ? activity.reblog : activity)
+      Formatter.instance.format(activity.reblog? ? activity.reblog : activity)
     elsif activity.nil?
       nil
     else
@@ -155,11 +131,11 @@ module AtomBuilderHelper
 
   def include_author(xml, account)
     object_type      xml, :person
-    uri              xml, uri_for_target(account)
+    uri              xml, TagManager.instance.uri_for(account)
     name             xml, account.username
     email            xml, account.local? ? "#{account.acct}@#{Rails.configuration.x.local_domain}" : account.acct
     summary          xml, account.note
-    link_alternate   xml, url_for_target(account)
+    link_alternate   xml, TagManager.instance.url_for(account)
     link_avatar      xml, account
     portable_contact xml, account
   end
@@ -176,7 +152,7 @@ module AtomBuilderHelper
 
     # Comments need thread element
     if stream_entry.threaded?
-      in_reply_to xml, uri_for_target(stream_entry.thread), url_for_target(stream_entry.thread)
+      in_reply_to xml, TagManager.instance.uri_for(stream_entry.thread), TagManager.instance.url_for(stream_entry.thread)
     end
 
     if stream_entry.targeted?
@@ -185,9 +161,9 @@ module AtomBuilderHelper
           include_author xml, stream_entry.target
         else
           object_type    xml, stream_entry.target.object_type
-          simple_id      xml, uri_for_target(stream_entry.target)
+          simple_id      xml, TagManager.instance.uri_for(stream_entry.target)
           title          xml, stream_entry.target.title
-          link_alternate xml, url_for_target(stream_entry.target)
+          link_alternate xml, TagManager.instance.url_for(stream_entry.target)
         end
 
         # Statuses have content and author

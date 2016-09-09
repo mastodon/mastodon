@@ -10,7 +10,7 @@ Nokogiri::XML::Builder.new do |xml|
       include_author xml, @account
     end
 
-    link_alternate xml, url_for_target(@account)
+    link_alternate xml, TagManager.instance.url_for(@account)
     link_self      xml, account_url(@account, format: 'atom')
     link_hub       xml, Rails.configuration.x.hub_url
     link_salmon    xml, api_salmon_url(@account.id)

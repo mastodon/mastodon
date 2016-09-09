@@ -20,7 +20,7 @@ RSpec.describe AtomBuilderHelper, type: :helper do
   describe '#unique_id' do
     it 'creates an id' do
       time = Time.now
-      expect(used_in_builder { |xml| helper.unique_id(xml, time, 1, 'Status') }).to match "<id>#{helper.unique_tag(time, 1, 'Status')}</id>"
+      expect(used_in_builder { |xml| helper.unique_id(xml, time, 1, 'Status') }).to match "<id>#{TagManager.instance.unique_tag(time, 1, 'Status')}</id>"
     end
   end
 
@@ -146,16 +146,8 @@ RSpec.describe AtomBuilderHelper, type: :helper do
     let(:account) { Fabricate(:account, username: 'alice') }
 
     it 'creates a link' do
-      expect(used_in_builder { |xml| helper.link_mention(xml, account) }).to match '<link rel="mentioned" href="http://test.host/users/alice"/>'
+      expect(used_in_builder { |xml| helper.link_mention(xml, account) }).to match '<link rel="mentioned" href="https://cb6e6126.ngrok.io/users/alice"/>'
     end
-  end
-
-  describe '#disambiguate_uri' do
-    pending
-  end
-
-  describe '#disambiguate_url' do
-    pending
   end
 
   describe '#include_author' do

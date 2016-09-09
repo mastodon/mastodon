@@ -45,7 +45,7 @@ class ProcessInteractionService < BaseService
   end
 
   def mentions_account?(xml, account)
-    xml.xpath('/xmlns:entry/xmlns:link[@rel="mentioned"]').each { |mention_link| return true if mention_link.attribute('href').value == url_for_target(account) }
+    xml.xpath('/xmlns:entry/xmlns:link[@rel="mentioned"]').each { |mention_link| return true if mention_link.attribute('href').value == TagManager.instance.url_for(account) }
     false
   end
 
@@ -85,7 +85,7 @@ class ProcessInteractionService < BaseService
   end
 
   def status(xml)
-    Status.find(unique_tag_to_local_id(activity_id(xml), 'Status'))
+    Status.find(TagManager.instance.unique_tag_to_local_id(activity_id(xml), 'Status'))
   end
 
   def activity_id(xml)

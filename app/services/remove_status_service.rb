@@ -44,7 +44,7 @@ class RemoveStatusService < BaseService
   end
 
   def unpush(type, receiver, status)
-    redis.zremrangebyscore(FeedManager.key(type, receiver.id), status.id, status.id)
+    redis.zremrangebyscore(FeedManager.instance.key(type, receiver.id), status.id, status.id)
     ActionCable.server.broadcast("timeline:#{receiver.id}", type: 'delete', id: status.id)
   end
 

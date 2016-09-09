@@ -12,7 +12,7 @@
     .pre-header
       %i.fa.fa-retweet
       Shared by
-      = link_to display_name(status.account), url_for_target(status.account), class: 'name'
+      = link_to display_name(status.account), TagManager.instance.url_for(status.account), class: 'name'
 
   .entry__container
     .avatar
@@ -21,10 +21,10 @@
     .entry__container__container
       .header
         .header__left
-          = link_to url_for_target(proper_status(status).account), class: 'name' do
+          = link_to TagManager.instance.url_for(proper_status(status).account), class: 'name' do
             %strong= display_name(proper_status(status).account)
             = "@#{proper_status(status).account.acct}"
-          = link_to url_for_target(proper_status(status)), class: 'time' do
+          = link_to TagManager.instance.url_for(proper_status(status)), class: 'time' do
             %span{ title: proper_status(status).created_at }
               = relative_time(proper_status(status).created_at)
 
@@ -36,7 +36,7 @@
             %i.fa.fa-star
             %span.counter-number= proper_status(status).favourites_count
 
-      .content= content_for_status(proper_status(status))
+      .content= Formatter.instance.format(proper_status(status))
 
       %ul.media-attachments
         - status.media_attachments.each do |media|

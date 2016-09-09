@@ -4,4 +4,4 @@ You were mentioned by <%= @status.account.acct %> in:
 
 <%= strip_tags(@status.content) %>
 
-<%= url_for_target(@status) %>
+<%= TagManager.instance.url_for(@status) %>

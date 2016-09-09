@@ -112,6 +112,10 @@ RSpec.describe Account, type: :model do
     pending
   end
 
+  describe '.find_remote' do
+    pending
+  end
+
   describe 'MENTION_RE' do
     subject { Account::MENTION_RE }
 

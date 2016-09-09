@@ -15,7 +15,7 @@ class FanOutOnWriteService < BaseService
 
   def deliver_to_followers(status)
     status.account.followers.each do |follower|
-      next if !follower.local? || FeedManager.filter_status?(status, follower)
+      next if !follower.local? || FeedManager.instance.filter_status?(status, follower)
       push(:home, follower, status)
     end
   end
@@ -29,16 +29,16 @@ class FanOutOnWriteService < BaseService
   end
 
   def push(type, receiver, status)
-    redis.zadd(FeedManager.key(type, receiver.id), status.id, status.id)
+    redis.zadd(FeedManager.instance.key(type, receiver.id), status.id, status.id)
     trim(type, receiver)
     ActionCable.server.broadcast("timeline:#{receiver.id}", type: 'update', timeline: type, message: inline_render(receiver, status))
   end
 
   def trim(type, receiver)
-    return unless redis.zcard(FeedManager.key(type, receiver.id)) > FeedManager::MAX_ITEMS
+    return unless redis.zcard(FeedManager.instance.key(type, receiver.id)) > FeedManager::MAX_ITEMS
 
-    last = redis.zrevrange(FeedManager.key(type, receiver.id), FeedManager::MAX_ITEMS - 1, FeedManager::MAX_ITEMS - 1)
-    redis.zremrangebyscore(FeedManager.key(type, receiver.id), '-inf', "(#{last.last}")
+    last = redis.zrevrange(FeedManager.instance.key(type, receiver.id), FeedManager::MAX_ITEMS - 1, FeedManager::MAX_ITEMS - 1)
+    redis.zremrangebyscore(FeedManager.instance.key(type, receiver.id), '-inf', "(#{last.last}")
   end
 
   def redis

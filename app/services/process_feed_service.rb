@@ -39,10 +39,10 @@ class ProcessFeedService < BaseService
     # Also record all media attachments for the status and for the reblogged status if present
     unless status.new_record?
       record_remote_mentions(status, entry.xpath('./xmlns:link[@rel="mentioned"]'))
-      
+
       process_attachments(entry, status)
       process_attachments(entry.xpath('./activity:object'), status.reblog) if status.reblog?
-      
+
       DistributionWorker.perform_async(status.id)
     end
   end
@@ -112,8 +112,8 @@ class ProcessFeedService < BaseService
   def find_original_status(_xml, id)
     return nil if id.nil?
 
-    if local_id?(id)
-      Status.find(unique_tag_to_local_id(id, 'Status'))
+    if TagManager.instance.local_id?(id)
+      Status.find(TagManager.instance.unique_tag_to_local_id(id, 'Status'))
     else
       Status.find_by(uri: id)
     end

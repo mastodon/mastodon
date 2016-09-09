@@ -21,7 +21,7 @@ class Feed
   private
 
   def key
-    FeedManager.key(@type, @account.id)
+    FeedManager.instance.key(@type, @account.id)
   end
 
   def redis

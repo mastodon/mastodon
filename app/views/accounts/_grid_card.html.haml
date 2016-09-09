@@ -2,7 +2,7 @@
   .account-grid-card__header
     .avatar= image_tag account.avatar.url(:medium)
     .name
-      = link_to url_for_target(account) do
+      = link_to TagManager.instance.url_for(account) do
         %span.display_name= display_name(account)
         %span.username= "@#{account.acct}"
   %p.note= truncate(strip_tags(account.note), length: 150)
