@@ -18,7 +18,7 @@ export function updateTimeline(timeline, status) {
   };
 }
 
-export function deleteFromTimeline(id) {
+export function deleteFromTimelines(id) {
   return {
     type: TIMELINE_DELETE,
     id: id
