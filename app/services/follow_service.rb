@@ -15,11 +15,26 @@ class FollowService < BaseService
       NotificationWorker.perform_async(follow.stream_entry.id, target_account.id)
     end
 
+    merge_into_timeline(target_account, source_account)
     source_account.ping!(account_url(source_account, format: 'atom'), [Rails.configuration.x.hub_url])
     follow
   end
 
   private
+
+  def merge_into_timeline(from_account, into_account)
+    timeline_key = FeedManager.instance.key(:home, into_account.id)
+
+    from_account.statuses.find_each do |status|
+      redis.zadd(timeline_key, status.id, status.id)
+    end
+
+    FeedManager.instance.trim(:home, into_account.id)
+  end
+
+  def redis
+    $redis
+  end
 
   def follow_remote_account_service
     @follow_remote_account_service ||= FollowRemoteAccountService.new

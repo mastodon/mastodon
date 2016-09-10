@@ -4,8 +4,12 @@ import Frontend                                             from '../components/
 import { setTimeline, updateTimeline, deleteFromTimelines } from '../actions/timelines';
 import { setAccessToken }                                   from '../actions/meta';
 import PureRenderMixin                                      from 'react-addons-pure-render-mixin';
+import { Router, Route, createMemoryHistory }               from 'react-router';
+import AccountRoute                                         from '../routes/account_route';
+import StatusRoute                                          from '../routes/status_route';
 
-const store = configureStore();
+const store   = configureStore();
+const history = createMemoryHistory();
 
 const Root = React.createClass({
 
@@ -45,7 +49,12 @@ const Root = React.createClass({
   render () {
     return (
       <Provider store={store}>
-        <Frontend />
+        <Router history={history}>
+          <Route path="/" component={Frontend}>
+            <Route path="/accounts/:account_id" component={AccountRoute} />
+            <Route path="/statuses/:status_id" component={StatusRoute} />
+          </Route>
+        </Router>
       </Provider>
     );
   }

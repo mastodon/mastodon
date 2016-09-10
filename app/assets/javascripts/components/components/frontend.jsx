@@ -1,8 +1,10 @@
 import ColumnsArea          from './columns_area';
+import Column               from './column';
 import Drawer               from './drawer';
 import ComposeFormContainer from '../containers/compose_form_container';
 import FollowFormContainer  from '../containers/follow_form_container';
 import UploadFormContainer  from '../containers/upload_form_container';
+import StatusListContainer  from '../containers/status_list_container';
 import PureRenderMixin      from 'react-addons-pure-render-mixin';
 
 const Frontend = React.createClass({
@@ -21,7 +23,15 @@ const Frontend = React.createClass({
           <FollowFormContainer />
         </Drawer>
 
-        <ColumnsArea />
+        <ColumnsArea>
+          <Column icon='home' heading='Home'>
+            <StatusListContainer type='home' />
+          </Column>
+
+          <Column icon='at' heading='Mentions'>
+            <StatusListContainer type='mentions' />
+          </Column>
+        </ColumnsArea>
       </div>
     );
   }

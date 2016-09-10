@@ -1,4 +1,3 @@
-import Column          from './column';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 
 const ColumnsArea = React.createClass({
@@ -8,8 +7,7 @@ const ColumnsArea = React.createClass({
   render () {
     return (
       <div style={{ display: 'flex', flexDirection: 'row', flex: '1' }}>
-        <Column icon='home' type='home' />
-        <Column icon='at' type='mentions' />
+        {this.props.children}
       </div>
     );
   }
