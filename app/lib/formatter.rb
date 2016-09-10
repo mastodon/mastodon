@@ -37,8 +37,7 @@ class Formatter
       acct    = Account::MENTION_RE.match(match)[1]
       mention = mentions.find { |mention| mention.account.acct.eql?(acct) }
 
-      return match if mention.nil?
-      mention_html(match, mention.account)
+      mention.nil? ? match : mention_html(match, mention.account)
     end
   end
 
