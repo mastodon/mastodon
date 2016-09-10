@@ -3,16 +3,18 @@ class Account < ApplicationRecord
 
   # Local users
   has_one :user, inverse_of: :account
-  validates :username, presence: true, uniqueness: { scope: :domain, case_sensitive: false }, if:     'local?'
-  validates :username, presence: true, uniqueness: { scope: :domain, case_sensitive: true },  unless: 'local?'
+  validates :username, presence: true, format: { with: /\A[a-z0-9_]+\z/i, message: 'only letters, numbers and underscores' }, uniqueness: { scope: :domain, case_sensitive: false }, if: 'local?'
+  validates :username, presence: true, uniqueness: { scope: :domain, case_sensitive: true }, unless: 'local?'
 
   # Avatar upload
   has_attached_file :avatar, styles: { large: '300x300#', medium: '96x96#', small: '48x48#' }
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
+  validates_attachment_size :avatar, less_than: 2.megabytes
 
   # Header upload
   has_attached_file :header, styles: { medium: '700x335#' }
   validates_attachment_content_type :header, content_type: /\Aimage\/.*\Z/
+  validates_attachment_size :header, less_than: 2.megabytes
 
   # Local user profile validations
   validates :display_name, length: { maximum: 30 }, if: 'local?'

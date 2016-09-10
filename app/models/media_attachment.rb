@@ -4,6 +4,7 @@ class MediaAttachment < ApplicationRecord
 
   has_attached_file :file, styles: { small: '510x680>' }
   validates_attachment_content_type :file, content_type: /\Aimage\/.*\z/
+  validates_attachment_size :file, less_than: 4.megabytes
 
   validates :account, presence: true
 
