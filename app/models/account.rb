@@ -35,7 +35,7 @@ class Account < ApplicationRecord
 
   has_many :media_attachments, dependent: :destroy
 
-  MENTION_RE = /(?:^|\s|\.)@([a-z0-9_]+(?:@[a-z0-9\.\-]+)?)/i
+  MENTION_RE = /(?:^|\s|\.|>)@([a-z0-9_]+(?:@[a-z0-9\.\-]+)?)/i
 
   def follow!(other_account)
     self.active_relationships.where(target_account: other_account).first_or_create!(target_account: other_account)
