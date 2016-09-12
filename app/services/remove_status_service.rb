@@ -34,7 +34,7 @@ class RemoveStatusService < BaseService
   end
 
   def send_delete_salmon(account, status)
-    # TODO
+    SendInteractionService.new.(status.stream_entry, account)
   end
 
   def remove_reblogs(status)
@@ -45,7 +45,7 @@ class RemoveStatusService < BaseService
 
   def unpush(type, receiver, status)
     redis.zremrangebyscore(FeedManager.instance.key(type, receiver.id), status.id, status.id)
-    ActionCable.server.broadcast("timeline:#{receiver.id}", type: 'delete', id: status.id)
+    FeedManager.instance.broadcast(receiver.id, type: 'delete', id: status.id)
   end
 
   def redis
