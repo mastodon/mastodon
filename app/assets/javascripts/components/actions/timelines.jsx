@@ -14,7 +14,7 @@ export function setTimeline(timeline, statuses) {
     timeline: timeline,
     statuses: statuses
   };
-}
+};
 
 export function updateTimeline(timeline, status) {
   return {
@@ -22,21 +22,21 @@ export function updateTimeline(timeline, status) {
     timeline: timeline,
     status: status
   };
-}
+};
 
 export function deleteFromTimelines(id) {
   return {
     type: TIMELINE_DELETE,
     id: id
   };
-}
+};
 
 export function refreshTimelineRequest(timeline) {
   return {
     type: TIMELINE_REFRESH_REQUEST,
     timeline: timeline
   };
-}
+};
 
 export function refreshTimeline(timeline) {
   return function (dispatch, getState) {
@@ -48,13 +48,13 @@ export function refreshTimeline(timeline) {
       dispatch(refreshTimelineFail(timeline, error));
     });
   };
-}
+};
 
 export function refreshTimelineSuccess(timeline, statuses) {
   return function (dispatch) {
     dispatch(setTimeline(timeline, statuses));
   };
-}
+};
 
 export function refreshTimelineFail(timeline, error) {
   return {
@@ -62,4 +62,4 @@ export function refreshTimelineFail(timeline, error) {
     timeline: timeline,
     error: error
   };
-}
+};

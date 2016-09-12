@@ -19,20 +19,20 @@ export function changeCompose(text) {
     type: COMPOSE_CHANGE,
     text: text
   };
-}
+};
 
 export function replyCompose(status) {
   return {
     type: COMPOSE_REPLY,
     status: status
   };
-}
+};
 
 export function cancelReplyCompose() {
   return {
     type: COMPOSE_REPLY_CANCEL
   };
-}
+};
 
 export function submitCompose() {
   return function (dispatch, getState) {
@@ -48,27 +48,27 @@ export function submitCompose() {
       dispatch(submitComposeFail(error));
     });
   };
-}
+};
 
 export function submitComposeRequest() {
   return {
     type: COMPOSE_SUBMIT_REQUEST
   };
-}
+};
 
 export function submitComposeSuccess(status) {
   return {
     type: COMPOSE_SUBMIT_SUCCESS,
     status: status
   };
-}
+};
 
 export function submitComposeFail(error) {
   return {
     type: COMPOSE_SUBMIT_FAIL,
     error: error
   };
-}
+};
 
 export function uploadCompose(files) {
   return function (dispatch, getState) {
@@ -87,13 +87,13 @@ export function uploadCompose(files) {
       dispatch(uploadComposeFail(error));
     });
   };
-}
+};
 
 export function uploadComposeRequest() {
   return {
     type: COMPOSE_UPLOAD_REQUEST
   };
-}
+};
 
 export function uploadComposeProgress(loaded, total) {
   return {
@@ -101,25 +101,25 @@ export function uploadComposeProgress(loaded, total) {
     loaded: loaded,
     total: total
   };
-}
+};
 
 export function uploadComposeSuccess(media) {
   return {
     type: COMPOSE_UPLOAD_SUCCESS,
     media: media
   };
-}
+};
 
 export function uploadComposeFail(error) {
   return {
     type: COMPOSE_UPLOAD_FAIL,
     error: error
   };
-}
+};
 
 export function undoUploadCompose(media_id) {
   return {
     type: COMPOSE_UPLOAD_UNDO,
     media_id: media_id
   };
-}
+};

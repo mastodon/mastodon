@@ -5,4 +5,4 @@ export function setAccessToken(token) {
     type: ACCESS_TOKEN_SET,
     token: token
   };
-}
+};

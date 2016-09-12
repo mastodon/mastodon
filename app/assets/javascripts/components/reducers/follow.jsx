@@ -21,4 +21,4 @@ export default function compose(state = initialState, action) {
     default:
       return state;
   }
-}
+};

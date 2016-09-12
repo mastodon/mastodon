@@ -3,6 +3,10 @@ class Api::FollowsController < ApiController
   respond_to    :json
 
   def create
+    if params[:uri].blank?
+      raise ActiveRecord::RecordNotFound
+    end
+
     @follow = FollowService.new.(current_user.account, params[:uri])
     render action: :show
   end

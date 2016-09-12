@@ -11,7 +11,7 @@ export function changeFollow(text) {
     type: FOLLOW_CHANGE,
     text: text
   };
-}
+};
 
 export function submitFollow() {
   return function (dispatch, getState) {
@@ -25,24 +25,24 @@ export function submitFollow() {
       dispatch(submitFollowFail(error));
     });
   };
-}
+};
 
 export function submitFollowRequest() {
   return {
     type: FOLLOW_SUBMIT_REQUEST
   };
-}
+};
 
 export function submitFollowSuccess(account) {
   return {
     type: FOLLOW_SUBMIT_SUCCESS,
     account: account
   };
-}
+};
 
 export function submitFollowFail(error) {
   return {
     type: FOLLOW_SUBMIT_FAIL,
     error: error
   };
-}
+};

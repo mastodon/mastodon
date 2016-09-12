@@ -22,14 +22,14 @@ export function reblog(status) {
       dispatch(reblogFail(status, error));
     });
   };
-}
+};
 
 export function reblogRequest(status) {
   return {
     type: REBLOG_REQUEST,
     status: status
   };
-}
+};
 
 export function reblogSuccess(status, response) {
   return {
@@ -37,7 +37,7 @@ export function reblogSuccess(status, response) {
     status: status,
     response: response
   };
-}
+};
 
 export function reblogFail(status, error) {
   return {
@@ -45,7 +45,7 @@ export function reblogFail(status, error) {
     status: status,
     error: error
   };
-}
+};
 
 export function favourite(status) {
   return function (dispatch, getState) {
@@ -57,14 +57,14 @@ export function favourite(status) {
       dispatch(favouriteFail(status, error));
     });
   };
-}
+};
 
 export function favouriteRequest(status) {
   return {
     type: FAVOURITE_REQUEST,
     status: status
   };
-}
+};
 
 export function favouriteSuccess(status, response) {
   return {
@@ -72,7 +72,7 @@ export function favouriteSuccess(status, response) {
     status: status,
     response: response
   };
-}
+};
 
 export function favouriteFail(status, error) {
   return {
@@ -80,4 +80,4 @@ export function favouriteFail(status, error) {
     status: status,
     error: error
   };
-}
+};
