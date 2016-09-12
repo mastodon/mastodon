@@ -2,7 +2,7 @@ FROM ruby:2.2.4
 
 ENV RAILS_ENV=production
 
-RUN apt-get update -qq && apt-get install -y build-essential libpq-dev libxml2-dev libxslt1-dev nodejs nodejs-legacy npm ffmpeg && rm -rf /var/lib/apt/lists/*
+RUN apt-get update -qq && apt-get install -y build-essential libpq-dev libxml2-dev libxslt1-dev nodejs nodejs-legacy npm libav-tools && rm -rf /var/lib/apt/lists/*
 RUN mkdir /mastodon
 
 WORKDIR /mastodon
