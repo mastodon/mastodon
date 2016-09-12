@@ -35,7 +35,7 @@ class Formatter
   def link_mentions(html, mentions)
     html.gsub(Account::MENTION_RE) do |match|
       acct    = Account::MENTION_RE.match(match)[1]
-      mention = mentions.find { |mention| mention.account.acct.eql?(acct) }
+      mention = mentions.find { |item| item.account.acct.eql?(acct) }
 
       mention.nil? ? match : mention_html(match, mention.account)
     end

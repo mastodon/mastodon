@@ -1,13 +1,13 @@
 GIT
-  remote: git://github.com/sinatra/sinatra.git
-  revision: 6b5a0ef3a4598366138fefe3f2b696ddeb371f3c
+  remote: https://github.com/sinatra/sinatra.git
+  revision: 1b0edc0aeaaf4839cadfcec1b21da86e6af1d4c0
   specs:
-    rack-protection (2.0.0)
+    rack-protection (2.0.0.beta2)
       rack
-    sinatra (2.0.0.pre.alpha)
-      mustermann (~> 0.4)
+    sinatra (2.0.0.beta2)
+      mustermann (= 1.0.0.beta2)
       rack (~> 2.0)
-      rack-protection (~> 2.0)
+      rack-protection (= 2.0.0.beta2)
       tilt (~> 2.0)
 
 GEM
@@ -54,6 +54,8 @@ GEM
     addressable (2.4.0)
     arel (7.1.1)
     ast (2.3.0)
+    av (0.9.0)
+      cocaine (~> 0.5.3)
     babel-source (5.8.35)
     babel-transpiler (0.7.0)
       babel-source (>= 4.0, < 6)
@@ -174,22 +176,13 @@ GEM
     mimemagic (0.3.0)
     mini_portile2 (2.1.0)
     minitest (5.9.0)
-    moneta (0.8.0)
     multi_json (1.12.1)
-    mustache (1.0.3)
-    mustermann (0.4.0)
-      tool (~> 0.2)
+    mustermann (1.0.0.beta2)
     nio4r (1.2.1)
     nokogiri (1.6.8)
       mini_portile2 (~> 2.1.0)
       pkg-config (~> 1.1.7)
     oj (2.17.3)
-    onebox (1.5.48)
-      htmlentities (~> 4.3.4)
-      moneta (~> 0.8)
-      multi_json (~> 1.11)
-      mustache
-      nokogiri (~> 1.6.6)
     orm_adapter (0.5.0)
     ostatus2 (0.1.1)
       addressable (~> 2.4)
@@ -201,6 +194,9 @@ GEM
       cocaine (~> 0.5.5)
       mime-types
       mimemagic (= 0.3.0)
+    paperclip-av-transcoder (0.6.4)
+      av (~> 0.9.0)
+      paperclip (>= 2.5.2)
     parser (2.3.1.2)
       ast (~> 2.2)
     pg (0.18.4)
@@ -336,7 +332,6 @@ GEM
     thor (0.19.1)
     thread_safe (0.3.5)
     tilt (2.0.5)
-    tool (0.2.3)
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
     uglifier (3.0.1)
@@ -386,9 +381,9 @@ DEPENDENCIES
   lograge
   nokogiri
   oj
-  onebox
   ostatus2
   paperclip (~> 4.3)
+  paperclip-av-transcoder
   pg
   pry-rails
   puma
@@ -414,4 +409,4 @@ DEPENDENCIES
   will_paginate
 
 BUNDLED WITH
-   1.12.5
+   1.13.0

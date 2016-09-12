@@ -1,12 +1,12 @@
-import { Provider }                                         from 'react-redux';
-import configureStore                                       from '../store/configureStore';
-import Frontend                                             from '../components/frontend';
-import { setTimeline, updateTimeline, deleteFromTimelines } from '../actions/timelines';
-import { setAccessToken }                                   from '../actions/meta';
-import PureRenderMixin                                      from 'react-addons-pure-render-mixin';
-import { Router, Route, createMemoryHistory }               from 'react-router';
-import AccountRoute                                         from '../routes/account_route';
-import StatusRoute                                          from '../routes/status_route';
+import { Provider }                                                          from 'react-redux';
+import configureStore                                                        from '../store/configureStore';
+import Frontend                                                              from '../components/frontend';
+import { setTimeline, updateTimeline, deleteFromTimelines, refreshTimeline } from '../actions/timelines';
+import { setAccessToken }                                                    from '../actions/meta';
+import PureRenderMixin                                                       from 'react-addons-pure-render-mixin';
+import { Router, Route, createMemoryHistory }                                from 'react-router';
+import AccountRoute                                                          from '../routes/account_route';
+import StatusRoute                                                           from '../routes/status_route';
 
 const store   = configureStore();
 const history = createMemoryHistory();
@@ -36,10 +36,14 @@ const Root = React.createClass({
         disconnected: function() {},
 
         received: function(data) {
-          if (data.type === 'update') {
-            return store.dispatch(updateTimeline(data.timeline, JSON.parse(data.message)));
-          } else if (data.type === 'delete') {
-            return store.dispatch(deleteFromTimelines(data.id));
+          switch(data.type) {
+            case 'update':
+              return store.dispatch(updateTimeline(data.timeline, JSON.parse(data.message)));
+            case 'delete':
+              return store.dispatch(deleteFromTimelines(data.id));
+            case 'merge':
+            case 'unmerge':
+              return store.dispatch(refreshTimeline('home'));
           }
         }
       });

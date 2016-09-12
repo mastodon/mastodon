@@ -11,7 +11,7 @@ const Avatar = React.createClass({
 
   render () {
     return (
-      <div style={{ width: `${this.props.size}px`, height: `${this.props.size}px` }}>
+      <div style={{ width: `${this.props.size}px`, height: `${this.props.size}px`, borderRadius: '4px', overflow: 'hidden' }} className='transparent-background'>
         <img src={this.props.src} width={this.props.size} height={this.props.size} alt='' style={{ display: 'block', borderRadius: '4px' }} />
       </div>
     );

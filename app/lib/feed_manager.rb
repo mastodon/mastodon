@@ -17,7 +17,11 @@ class FeedManager
   def push(timeline_type, account, status)
     redis.zadd(key(timeline_type, account.id), status.id, status.id)
     trim(timeline_type, account.id)
-    ActionCable.server.broadcast("timeline:#{account.id}", type: 'update', timeline: timeline_type, message: inline_render(account, status))
+    broadcast(account.id, type: 'update', timeline: timeline_type, message: inline_render(account, status))
+  end
+
+  def broadcast(account_id, options = {})
+    ActionCable.server.broadcast("timeline:#{account_id}", options)
   end
 
   def trim(type, account_id)

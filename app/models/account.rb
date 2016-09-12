@@ -1,6 +1,9 @@
 class Account < ApplicationRecord
   include Targetable
 
+  MENTION_RE = /(?:^|\s|\.|>)@([a-z0-9_]+(?:@[a-z0-9\.\-]+)?)/i
+  IMAGE_MIME_TYPES = ['image/jpeg', 'image/png', 'image/gif']
+
   # Local users
   has_one :user, inverse_of: :account
   validates :username, presence: true, format: { with: /\A[a-z0-9_]+\z/i, message: 'only letters, numbers and underscores' }, uniqueness: { scope: :domain, case_sensitive: false }, if: 'local?'
@@ -8,12 +11,12 @@ class Account < ApplicationRecord
 
   # Avatar upload
   has_attached_file :avatar, styles: { large: '300x300#', medium: '96x96#', small: '48x48#' }
-  validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
+  validates_attachment_content_type :avatar, content_type: IMAGE_MIME_TYPES
   validates_attachment_size :avatar, less_than: 2.megabytes
 
   # Header upload
   has_attached_file :header, styles: { medium: '700x335#' }
-  validates_attachment_content_type :header, content_type: /\Aimage\/.*\Z/
+  validates_attachment_content_type :header, content_type: IMAGE_MIME_TYPES
   validates_attachment_size :header, less_than: 2.megabytes
 
   # Local user profile validations
@@ -34,8 +37,6 @@ class Account < ApplicationRecord
   has_many :followers, through: :passive_relationships, source: :account
 
   has_many :media_attachments, dependent: :destroy
-
-  MENTION_RE = /(?:^|\s|\.|>)@([a-z0-9_]+(?:@[a-z0-9\.\-]+)?)/i
 
   def follow!(other_account)
     self.active_relationships.where(target_account: other_account).first_or_create!(target_account: other_account)

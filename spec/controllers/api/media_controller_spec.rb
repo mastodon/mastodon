@@ -11,24 +11,48 @@ RSpec.describe Api::MediaController, type: :controller do
   end
 
   describe 'POST #create' do
-    before do
-      post :create, params: { file: fixture_file_upload('files/attachment.jpg', 'image/jpeg') }
+    context 'image/jpeg' do
+      before do
+        post :create, params: { file: fixture_file_upload('files/attachment.jpg', 'image/jpeg') }
+      end
+
+      it 'returns http success' do
+        expect(response).to have_http_status(:success)
+      end
+
+      it 'creates a media attachment' do
+        expect(MediaAttachment.first).to_not be_nil
+      end
+
+      it 'uploads a file' do
+        expect(MediaAttachment.first).to have_attached_file(:file)
+      end
+
+      it 'returns media ID in JSON' do
+        expect(body_as_json[:id]).to eq MediaAttachment.first.id
+      end
     end
 
-    it 'returns http success' do
-      expect(response).to have_http_status(:success)
-    end
+    context 'video/webm' do
+      before do
+        post :create, params: { file: fixture_file_upload('files/attachment.webm', 'video/webm') }
+      end
 
-    it 'creates a media attachment' do
-      expect(MediaAttachment.first).to_not be_nil
-    end
+      xit 'returns http success' do
+        expect(response).to have_http_status(:success)
+      end
 
-    it 'uploads a file' do
-      expect(MediaAttachment.first).to have_attached_file(:file)
-    end
+      xit 'creates a media attachment' do
+        expect(MediaAttachment.first).to_not be_nil
+      end
 
-    it 'returns media ID in JSON' do
-      expect(body_as_json[:id]).to eq MediaAttachment.first.id
+      xit 'uploads a file' do
+        expect(MediaAttachment.first).to have_attached_file(:file)
+      end
+
+      xit 'returns media ID in JSON' do
+        expect(body_as_json[:id]).to eq MediaAttachment.first.id
+      end
     end
   end
 end
