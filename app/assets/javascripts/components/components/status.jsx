@@ -5,11 +5,13 @@ import PureRenderMixin    from 'react-addons-pure-render-mixin';
 import IconButton         from './icon_button';
 import DisplayName        from './display_name';
 import MediaGallery       from './media_gallery';
+import { hashHistory }    from 'react-router';
 
 const Status = React.createClass({
 
   propTypes: {
     status: ImmutablePropTypes.map.isRequired,
+    wrapped: React.PropTypes.bool,
     onReply: React.PropTypes.func,
     onFavourite: React.PropTypes.func,
     onReblog: React.PropTypes.func
@@ -29,6 +31,10 @@ const Status = React.createClass({
     this.props.onReblog(this.props.status);
   },
 
+  handleClick () {
+    hashHistory.push(`/statuses/${this.props.status.get('id')}`);
+  },
+
   render () {
     var content = { __html: this.props.status.get('content') };
     var media   = '';
@@ -37,13 +43,13 @@ const Status = React.createClass({
 
     if (status.get('reblog') !== null) {
       return (
-        <div style={{ cursor: 'pointer' }}>
+        <div style={{ cursor: 'pointer' }} onClick={this.handleClick}>
           <div style={{ marginLeft: '68px', color: '#616b86', padding: '8px 0', paddingBottom: '2px', fontSize: '14px', position: 'relative' }}>
             <div style={{ position: 'absolute', 'left': '-26px'}}><i className='fa fa-fw fa-retweet'></i></div>
             <a href={status.getIn(['account', 'url'])} className='status__display-name'><strong style={{ color: '#616b86'}}>{status.getIn(['account', 'display_name'])}</strong></a> reblogged
           </div>
 
-          <Status {...other} status={status.get('reblog')} />
+          <Status {...other} wrapped={true} status={status.get('reblog')} />
         </div>
       );
     }
@@ -53,7 +59,7 @@ const Status = React.createClass({
     }
 
     return (
-      <div style={{ padding: '8px 10px', paddingLeft: '68px', position: 'relative', minHeight: '48px', borderBottom: '1px solid #363c4b', cursor: 'pointer' }}>
+      <div style={{ padding: '8px 10px', paddingLeft: '68px', position: 'relative', minHeight: '48px', borderBottom: '1px solid #363c4b', cursor: 'pointer' }} onClick={this.handleClick}>
         <div style={{ fontSize: '15px' }}>
           <div style={{ float: 'right', fontSize: '14px' }}>
             <a href={status.get('url')} className='status__relative-time' style={{ color: '#616b86' }}><RelativeTimestamp timestamp={status.get('created_at')} /></a>

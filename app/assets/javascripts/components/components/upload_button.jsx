@@ -27,7 +27,7 @@ const UploadButton = React.createClass({
           <i className='fa fa-fw fa-photo' /> Add images
         </Button>
 
-        <input ref='fileElement' type='file' onChange={this.handleChange} disabled={this.props.disabled} style={{ display: 'none' }} />
+        <input ref='fileElement' type='file' multiple={false} onChange={this.handleChange} disabled={this.props.disabled} style={{ display: 'none' }} />
       </div>
     );
   }

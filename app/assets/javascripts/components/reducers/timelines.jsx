@@ -1,12 +1,14 @@
 import { TIMELINE_SET, TIMELINE_UPDATE, TIMELINE_DELETE } from '../actions/timelines';
 import { REBLOG_SUCCESS, FAVOURITE_SUCCESS }              from '../actions/interactions';
+import { ACCOUNT_SET_SELF }                               from '../actions/accounts';
 import Immutable                                          from 'immutable';
 
 const initialState = Immutable.Map({
   home: Immutable.List([]),
   mentions: Immutable.List([]),
   statuses: Immutable.Map(),
-  accounts: Immutable.Map()
+  accounts: Immutable.Map(),
+  me: null
 });
 
 function statusToMaps(state, status) {
@@ -63,6 +65,11 @@ export default function timelines(state = initialState, action) {
     case REBLOG_SUCCESS:
     case FAVOURITE_SUCCESS:
       return statusToMaps(state, Immutable.fromJS(action.response));
+    case ACCOUNT_SET_SELF:
+      return state.withMutations(map => {
+        map.setIn(['accounts', action.account.id], Immutable.fromJS(action.account));
+        map.set('me', action.account.id);
+      });
     default:
       return state;
   }

@@ -1,10 +1,13 @@
 import ImmutablePropTypes from 'react-immutable-proptypes';
+import PureRenderMixin    from 'react-addons-pure-render-mixin';
 
 const DisplayName = React.createClass({
 
   propTypes: {
     account: ImmutablePropTypes.map.isRequired
   },
+
+  mixins: [PureRenderMixin],
 
   render () {
     let displayName = this.props.account.get('display_name');
