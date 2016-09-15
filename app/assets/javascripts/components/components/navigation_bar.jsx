@@ -15,7 +15,7 @@ const NavigationBar = React.createClass({
   render () {
     return (
       <div style={{ padding: '10px', display: 'flex', cursor: 'default' }}>
-        <Avatar src={this.props.account.get('avatar')} size={40} />
+        <Link to={`/accounts/${this.props.account.get('id')}`} style={{ textDecoration: 'none' }}><Avatar src={this.props.account.get('avatar')} size={40} /></Link>
 
         <div style={{ flex: '1 1 auto', marginLeft: '8px' }}>
           <strong style={{ fontWeight: '500', display: 'block' }}>{this.props.account.get('acct')}</strong>

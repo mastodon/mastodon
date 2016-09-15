@@ -47,6 +47,8 @@ Rails.application.routes.draw do
       end
 
       member do
+        get :context
+
         post :reblog
         post :favourite
       end

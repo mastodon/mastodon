@@ -6,6 +6,10 @@ import { setAccessToken }                                                    fro
 import { setAccountSelf }                                                    from '../actions/accounts';
 import PureRenderMixin                                                       from 'react-addons-pure-render-mixin';
 import { Router, Route, hashHistory }                                        from 'react-router';
+import Account                                                               from '../features/account';
+import Settings                                                              from '../features/settings';
+import Status                                                                from '../features/status';
+import Subscriptions                                                         from '../features/subscriptions';
 
 const store = configureStore();
 
@@ -55,10 +59,10 @@ const Root = React.createClass({
       <Provider store={store}>
         <Router history={hashHistory}>
           <Route path='/' component={Frontend}>
-            <Route path='/settings' component={null} />
-            <Route path='/subscriptions' component={null} />
-            <Route path='/statuses/:statusId' component={null} />
-            <Route path='/accounts/:accountId' component={null} />
+            <Route path='/settings' component={Settings} />
+            <Route path='/subscriptions' component={Subscriptions} />
+            <Route path='/statuses/:statusId' component={Status} />
+            <Route path='/accounts/:accountId' component={Account} />
           </Route>
         </Router>
       </Provider>

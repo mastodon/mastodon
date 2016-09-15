@@ -1,6 +1,7 @@
 import { TIMELINE_SET, TIMELINE_UPDATE, TIMELINE_DELETE } from '../actions/timelines';
 import { REBLOG_SUCCESS, FAVOURITE_SUCCESS }              from '../actions/interactions';
-import { ACCOUNT_SET_SELF }                               from '../actions/accounts';
+import { ACCOUNT_SET_SELF, ACCOUNT_FETCH_SUCCESS }        from '../actions/accounts';
+import { STATUS_FETCH_SUCCESS }                           from '../actions/statuses';
 import Immutable                                          from 'immutable';
 
 const initialState = Immutable.Map({
@@ -8,7 +9,9 @@ const initialState = Immutable.Map({
   mentions: Immutable.List([]),
   statuses: Immutable.Map(),
   accounts: Immutable.Map(),
-  me: null
+  me: null,
+  ancestors: Immutable.Map(),
+  descendants: Immutable.Map()
 });
 
 function statusToMaps(state, status) {
@@ -54,6 +57,29 @@ function deleteStatus(state, id) {
   return state.deleteIn(['statuses', id]);
 };
 
+function accountToMaps(state, account) {
+  return state.setIn(['accounts', account.get('id')], account);
+};
+
+function contextToMaps(state, status, ancestors, descendants) {
+  state = statusToMaps(state, status);
+
+  let ancestorsIds = ancestors.map(ancestor => {
+    state = statusToMaps(state, ancestor);
+    return ancestor.get('id');
+  });
+
+  let descendantsIds = descendants.map(descendant => {
+    state = statusToMaps(state, descendant);
+    return descendant.get('id');
+  });
+
+  return state.withMutations(map => {
+    map.setIn(['ancestors', status.get('id')], ancestorsIds);
+    map.setIn(['descendants', status.get('id')], descendantsIds);
+  });
+};
+
 export default function timelines(state = initialState, action) {
   switch(action.type) {
     case TIMELINE_SET:
@@ -70,6 +96,10 @@ export default function timelines(state = initialState, action) {
         map.setIn(['accounts', action.account.id], Immutable.fromJS(action.account));
         map.set('me', action.account.id);
       });
+    case ACCOUNT_FETCH_SUCCESS:
+      return accountToMaps(state, Immutable.fromJS(action.account));
+    case STATUS_FETCH_SUCCESS:
+      return contextToMaps(state, Immutable.fromJS(action.status), Immutable.fromJS(action.context.ancestors), Immutable.fromJS(action.context.descendants));
     default:
       return state;
   }
