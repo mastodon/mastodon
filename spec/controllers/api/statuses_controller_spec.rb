@@ -20,6 +20,19 @@ RSpec.describe Api::StatusesController, type: :controller do
     end
   end
 
+  describe 'GET #context' do
+    let(:status) { Fabricate(:status, account: user.account) }
+
+    before do
+      Fabricate(:status, account: user.account, thread: status)
+    end
+
+    it 'returns http success' do
+      get :context, params: { id: status.id }
+      expect(response).to have_http_status(:success)
+    end
+  end
+
   describe 'GET #home' do
     it 'returns http success' do
       get :home
