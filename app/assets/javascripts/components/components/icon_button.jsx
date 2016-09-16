@@ -22,6 +22,7 @@ const IconButton = React.createClass({
   handleClick (e) {
     e.preventDefault();
     this.props.onClick();
+    e.stopPropagation();
   },
 
   render () {
