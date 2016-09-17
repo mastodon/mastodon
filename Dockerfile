@@ -2,7 +2,8 @@ FROM ruby:2.2.4
 
 ENV RAILS_ENV=production
 
-RUN apt-get update -qq && apt-get install -y build-essential libpq-dev libxml2-dev libxslt1-dev nodejs nodejs-legacy npm libav-tools && rm -rf /var/lib/apt/lists/*
+RUN echo 'deb http://httpredir.debian.org/debian jessie-backports main contrib non-free' >> /etc/apt/sources.list
+RUN apt-get update -qq && apt-get install -y build-essential libpq-dev libxml2-dev libxslt1-dev nodejs nodejs-legacy npm ffpmeg && rm -rf /var/lib/apt/lists/*
 RUN mkdir /mastodon
 
 WORKDIR /mastodon
