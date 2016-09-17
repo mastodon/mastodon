@@ -40,8 +40,9 @@ const Status = React.createClass({
     if (e.button === 0) {
       e.preventDefault();
       hashHistory.push(`/accounts/${id}`);
-      e.stopPropagation();
     }
+
+    e.stopPropagation();
   },
 
   render () {

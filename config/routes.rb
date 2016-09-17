@@ -30,6 +30,7 @@ Rails.application.routes.draw do
   end
 
   resource  :settings, only: [:show, :update]
+  resources :media, only: [:show]
 
   namespace :api do
     # PubSubHubbub

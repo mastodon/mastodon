@@ -25,9 +25,11 @@ const UploadForm = React.createClass({
       );
     }.bind(this));
 
+    const noMoreAllowed = (this.props.media.some(m => m.get('type') === 'video')) || (this.props.media.size > 3);
+
     return (
       <div style={{ marginBottom: '20px', padding: '10px', paddingTop: '0' }}>
-        <UploadButton onSelectFile={this.props.onSelectFile} disabled={this.props.is_uploading || this.props.media.size > 3} />
+        <UploadButton onSelectFile={this.props.onSelectFile} disabled={this.props.is_uploading || noMoreAllowed } />
 
         <div style={{ marginTop: '10px', overflow: 'hidden' }}>
           {uploads}

@@ -4,6 +4,8 @@ import ImmutablePropTypes       from 'react-immutable-proptypes';
 import { fetchStatus }          from '../../actions/statuses';
 import Immutable                from 'immutable';
 import EmbeddedStatus           from '../../components/status';
+import { favourite, reblog }    from '../../actions/interactions';
+import { replyCompose }         from '../../actions/compose';
 
 function selectStatus(state, id) {
   let status = state.getIn(['timelines', 'statuses', id]);
@@ -49,8 +51,20 @@ const Status = React.createClass({
     }
   },
 
+  handleFavouriteClick (status) {
+    this.props.dispatch(favourite(status));
+  },
+
+  handleReplyClick (status) {
+    this.props.dispatch(replyCompose(status));
+  },
+
+  handleReblogClick (status) {
+    this.props.dispatch(reblog(status));
+  },
+
   renderChildren (list) {
-    return list.map(s => <EmbeddedStatus status={s} key={s.get('id')} />);
+    return list.map(s => <EmbeddedStatus status={s} key={s.get('id')} onReply={this.handleReplyClick} onFavourite={this.handleFavouriteClick} onReblog={this.handleReblogClick} />);
   },
 
   render () {
@@ -63,7 +77,7 @@ const Status = React.createClass({
     return (
       <div>
         {this.renderChildren(ancestors)}
-        <EmbeddedStatus status={status} />
+        <EmbeddedStatus status={status} onReply={this.handleReplyClick} onFavourite={this.handleFavouriteClick} onReblog={this.handleReblogClick} />
         {this.renderChildren(descendants)}
       </div>
     );
