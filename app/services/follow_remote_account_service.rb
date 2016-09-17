@@ -31,9 +31,12 @@ class FollowRemoteAccountService < BaseService
     feed = get_feed(account.remote_url)
     hubs = feed.xpath('//xmlns:link[@rel="hub"]')
 
-    if hubs.empty? || hubs.first.attribute('href').nil? || feed.at_xpath('/xmlns:feed/xmlns:author/xmlns:uri').nil?
-      Rails.logger.debug "Cannot find PuSH hub or author for #{uri}"
-      return nil
+    if hubs.empty? || hubs.first.attribute('href').nil?
+      raise Goldfinger::Error, "No PubSubHubbub hubs found"
+    end
+
+    if feed.at_xpath('/xmlns:feed/xmlns:author/xmlns:uri').nil?
+      raise Goldfinger::Error, "No author URI found"
     end
 
     account.uri     = feed.at_xpath('/xmlns:feed/xmlns:author/xmlns:uri').content
@@ -53,9 +56,6 @@ class FollowRemoteAccountService < BaseService
     end
 
     return account
-  rescue Goldfinger::Error, HTTP::Error
-    Rails.logger.debug "Error while fetching data for #{uri}"
-    nil
   end
 
   private
@@ -88,4 +88,10 @@ class FollowRemoteAccountService < BaseService
   def http_client
     HTTP
   end
+end
+
+class NoAuthorFeedError < StandardError
+end
+
+class NoHubError < StandardError
 end
