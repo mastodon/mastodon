@@ -13,8 +13,10 @@ class FollowRemoteAccountService < BaseService
     account = Account.find_remote(username, domain)
 
     if account.nil?
+      Rails.logger.debug "Creating new remote account for #{uri}"
       account = Account.new(username: username, domain: domain)
     elsif account.subscribed?
+      Rails.logger.debug "Already subscribed to remote account #{uri}"
       return account
     end
 
@@ -29,7 +31,10 @@ class FollowRemoteAccountService < BaseService
     feed = get_feed(account.remote_url)
     hubs = feed.xpath('//xmlns:link[@rel="hub"]')
 
-    return nil if hubs.empty? || hubs.first.attribute('href').nil? || feed.at_xpath('/xmlns:feed/xmlns:author/xmlns:uri').nil?
+    if hubs.empty? || hubs.first.attribute('href').nil? || feed.at_xpath('/xmlns:feed/xmlns:author/xmlns:uri').nil?
+      Rails.logger.debug "Cannot find PuSH hub or author for #{uri}"
+      return nil
+    end
 
     account.uri     = feed.at_xpath('/xmlns:feed/xmlns:author/xmlns:uri').content
     account.hub_url = hubs.first.attribute('href').value
@@ -49,6 +54,7 @@ class FollowRemoteAccountService < BaseService
 
     return account
   rescue Goldfinger::Error, HTTP::Error
+    Rails.logger.debug "Error while fetching data for #{uri}"
     nil
   end
 

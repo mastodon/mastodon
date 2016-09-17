@@ -1,2 +1,2 @@
-object @follow.target_account
+object @account
 extends('api/accounts/show')

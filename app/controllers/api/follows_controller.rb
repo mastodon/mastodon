@@ -7,7 +7,7 @@ class Api::FollowsController < ApiController
       raise ActiveRecord::RecordNotFound
     end
 
-    @follow = FollowService.new.(current_user.account, params[:uri])
+    @account = FollowService.new.(current_user.account, params[:uri]).try(:target_account)
     render action: :show
   end
 end

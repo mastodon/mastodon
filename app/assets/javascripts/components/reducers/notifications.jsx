@@ -7,6 +7,23 @@ import Immutable                                    from 'immutable';
 
 const initialState = Immutable.List();
 
+function notificationFromError(state, error) {
+  let n = Immutable.Map({
+    message: ''
+  });
+
+  if (error.response) {
+    n = n.withMutations(map => {
+      map.set('message', error.response.statusText);
+      map.set('title', `${error.response.status}`);
+    });
+  } else {
+    n = n.set('message', `${error}`);
+  }
+
+  return state.push(n);
+};
+
 export default function meta(state = initialState, action) {
   switch(action.type) {
     case COMPOSE_SUBMIT_FAIL:
@@ -15,10 +32,7 @@ export default function meta(state = initialState, action) {
     case REBLOG_FAIL:
     case FAVOURITE_FAIL:
     case TIMELINE_REFRESH_FAIL:
-      return state.push(Immutable.fromJS({
-        message: action.error.response.statusText,
-        title: `${action.error.response.status}`
-      }));
+      return notificationFromError(state, action.error);
     case NOTIFICATION_DISMISS:
       return state.clear();
     default:
