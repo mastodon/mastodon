@@ -127,10 +127,11 @@ class ProcessFeedService < BaseService
 
     if account.nil?
       account = follow_remote_account_service.("#{username}@#{domain}", false)
-      return nil if account.nil?
     end
 
     Status.new(account: account, uri: target_id(xml), text: target_content(xml), url: target_url(xml))
+  rescue Goldfinger::Error, HTTP::Error
+    nil
   end
 
   def published(xml)

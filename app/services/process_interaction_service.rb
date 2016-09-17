@@ -15,7 +15,6 @@ class ProcessInteractionService < BaseService
 
     if account.nil?
       account = follow_remote_account_service.("#{username}@#{domain}", false)
-      return if account.nil?
     end
 
     if salmon.verify(envelope, account.keypair)
@@ -36,6 +35,8 @@ class ProcessInteractionService < BaseService
         delete_post!(xml, account)
       end
     end
+  rescue Goldfinger::Error, HTTP::Error
+    nil
   end
 
   private
