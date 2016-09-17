@@ -5,6 +5,7 @@ import PureRenderMixin    from 'react-addons-pure-render-mixin';
 import IconButton         from './icon_button';
 import DisplayName        from './display_name';
 import MediaGallery       from './media_gallery';
+import VideoPlayer        from './video_player';
 import { hashHistory }    from 'react-router';
 
 const Status = React.createClass({
@@ -65,7 +66,11 @@ const Status = React.createClass({
     }
 
     if (status.get('media_attachments').size > 0) {
-      media = <MediaGallery media={status.get('media_attachments')} />;
+      if (status.getIn(['media_attachments', 0, 'type']) === 'video') {
+        media = <VideoPlayer media={status.getIn(['media_attachments', 0])} />;
+      } else {
+        media = <MediaGallery media={status.get('media_attachments')} />;
+      }
     }
 
     return (
