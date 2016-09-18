@@ -129,7 +129,8 @@ class ProcessFeedService < BaseService
       account = follow_remote_account_service.("#{username}@#{domain}", false)
     end
 
-    Status.new(account: account, uri: target_id(xml), text: target_content(xml), url: target_url(xml))
+    status = Status.new(account: account, uri: target_id(xml), text: target_content(xml), url: target_url(xml), created_at: published(xml), updated_at: updated(xml))
+    status.thread = find_original_status(xml, thread_id(xml))
   rescue Goldfinger::Error, HTTP::Error
     nil
   end

@@ -15,7 +15,7 @@ class Api::AccountsController < ApiController
   end
 
   def statuses
-    @statuses = @account.statuses.with_includes.with_counters.paginate_by_max_id(20, params[:max_id] || nil)
+    @statuses = @account.statuses.with_includes.with_counters.paginate_by_max_id(20, params[:max_id] || nil).to_a
   end
 
   def follow

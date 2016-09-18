@@ -8,8 +8,8 @@ class Api::StatusesController < ApiController
 
   def context
     @status      = Status.find(params[:id])
-    @ancestors   = @status.ancestors.with_includes.with_counters
-    @descendants = @status.descendants.with_includes.with_counters
+    @ancestors   = @status.ancestors.with_includes.with_counters.to_a
+    @descendants = @status.descendants.with_includes.with_counters.to_a
   end
 
   def create
@@ -28,10 +28,10 @@ class Api::StatusesController < ApiController
   end
 
   def home
-    @statuses = Feed.new(:home, current_user.account).get(20, params[:max_id])
+    @statuses = Feed.new(:home, current_user.account).get(20, params[:max_id]).to_a
   end
 
   def mentions
-    @statuses = Feed.new(:mentions, current_user.account).get(20, params[:max_id])
+    @statuses = Feed.new(:mentions, current_user.account).get(20, params[:max_id]).to_a
   end
 end
