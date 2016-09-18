@@ -1,15 +1,25 @@
-import { connect }                                      from 'react-redux';
-import PureRenderMixin                                  from 'react-addons-pure-render-mixin';
-import ImmutablePropTypes                               from 'react-immutable-proptypes';
-import { fetchAccount, followAccount, unfollowAccount } from '../../actions/accounts';
-import Button                                           from '../../components/button';
+import { connect }                                                            from 'react-redux';
+import PureRenderMixin                                                        from 'react-addons-pure-render-mixin';
+import ImmutablePropTypes                                                     from 'react-immutable-proptypes';
+import { fetchAccount, followAccount, unfollowAccount, fetchAccountTimeline } from '../../actions/accounts';
+import { replyCompose }                                                       from '../../actions/compose';
+import { favourite, reblog }                                                  from '../../actions/interactions';
+import Header                                                                 from './components/header';
+import { selectStatus }                                                       from '../../reducers/timelines';
+import StatusList                                                             from '../../components/status_list';
+import Immutable                                                              from 'immutable';
 
 function selectAccount(state, id) {
   return state.getIn(['timelines', 'accounts', id], null);
-}
+};
+
+function selectStatuses(state, accountId) {
+  return state.getIn(['timelines', 'accounts_timelines', accountId], Immutable.List()).map(id => selectStatus(state, id)).filterNot(status => status === null);
+};
 
 const mapStateToProps = (state, props) => ({
-  account: selectAccount(state, Number(props.params.accountId))
+  account: selectAccount(state, Number(props.params.accountId)),
+  statuses: selectStatuses(state, Number(props.params.accountId))
 });
 
 const Account = React.createClass({
@@ -17,59 +27,55 @@ const Account = React.createClass({
   propTypes: {
     params: React.PropTypes.object.isRequired,
     dispatch: React.PropTypes.func.isRequired,
-    account: ImmutablePropTypes.map
+    account: ImmutablePropTypes.map,
+    statuses: ImmutablePropTypes.list
   },
 
   mixins: [PureRenderMixin],
 
   componentWillMount () {
-    this.props.dispatch(fetchAccount(this.props.params.accountId));
+    this.props.dispatch(fetchAccount(Number(this.props.params.accountId)));
+    this.props.dispatch(fetchAccountTimeline(Number(this.props.params.accountId)));
   },
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.params.accountId !== this.props.params.accountId && nextProps.params.accountId) {
       this.props.dispatch(fetchAccount(nextProps.params.accountId));
+      this.props.dispatch(fetchAccountTimeline(nextProps.params.accountId));
     }
   },
 
-  handleFollowClick () {
+  handleFollow () {
     this.props.dispatch(followAccount(this.props.account.get('id')));
   },
 
-  handleUnfollowClick () {
+  handleUnfollow () {
     this.props.dispatch(unfollowAccount(this.props.account.get('id')));
   },
 
+  handleReply (status) {
+    this.props.dispatch(replyCompose(status));
+  },
+
+  handleReblog (status) {
+    this.props.dispatch(reblog(status));
+  },
+
+  handleFavourite (status) {
+    this.props.dispatch(favourite(status));
+  },
+
   render () {
-    const { account } = this.props;
-    let action;
+    const { account, statuses } = this.props;
 
     if (account === null) {
       return <div>Loading {this.props.params.accountId}...</div>;
     }
 
-    if (account.get('following')) {
-      action = <Button text='Unfollow' onClick={this.handleUnfollowClick} />;
-    } else {
-      action = <Button text='Follow' onClick={this.handleFollowClick} />
-    }
-
     return (
-      <div>
-        <p>
-          {account.get('display_name')}
-          {account.get('acct')}
-        </p>
-
-        {account.get('url')}
-
-        <p>{account.get('note')}</p>
-
-        {account.get('followers_count')} followers<br />
-        {account.get('following_count')} following<br />
-        {account.get('statuses_count')} posts
-
-        <p>{action}</p>
+      <div style={{ display: 'flex', flexDirection: 'column', 'flex': '0 0 auto', height: '100%' }}>
+        <Header account={account} onFollow={this.handleFollow} onUnfollow={this.handleUnfollow} />
+        <StatusList statuses={statuses} onReply={this.handleReply} onReblog={this.handleReblog} onFavourite={this.handleFavourite} />
       </div>
     );
   }

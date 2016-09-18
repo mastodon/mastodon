@@ -1,19 +1,57 @@
 import ColumnHeader    from './column_header';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 
+const easingOutQuint = (x, t, b, c, d) => c*((t=t/d-1)*t*t*t*t + 1) + b;
+
+const scrollTop = (node) => {
+  const startTime = Date.now();
+  const offset    = node.scrollTop;
+  const targetY   = -offset;
+  const duration  = 1000;
+  let interrupt   = false;
+
+  const step = () => {
+    const elapsed    = Date.now() - startTime;
+    const percentage = elapsed / duration;
+
+    if (percentage > 1 || interrupt) {
+      return;
+    }
+
+    node.scrollTo(0, easingOutQuint(0, elapsed, offset, targetY, duration));
+    requestAnimationFrame(step);
+  };
+
+  step();
+
+  return () => {
+    interrupt = true;
+  };
+};
+
+
 const Column = React.createClass({
 
   propTypes: {
     heading: React.PropTypes.string,
-    icon: React.PropTypes.string,
-    fluid: React.PropTypes.bool
+    icon: React.PropTypes.string
   },
 
   mixins: [PureRenderMixin],
 
   handleHeaderClick () {
     let node = ReactDOM.findDOMNode(this);
-    node.querySelector('.scrollable').scrollTo(0, 0);
+    this._interruptScrollAnimation = scrollTop(node.querySelector('.scrollable'));
+  },
+
+  handleWheel () {
+    if (typeof this._interruptScrollAnimation !== 'undefined') {
+      this._interruptScrollAnimation();
+    }
+  },
+
+  handleScroll () {
+    // todo
   },
 
   render () {
@@ -25,14 +63,8 @@ const Column = React.createClass({
 
     const style = { width: '350px', flex: '0 0 auto', background: '#282c37', margin: '10px', marginRight: '0', display: 'flex', flexDirection: 'column' };
 
-    if (this.props.fluid) {
-      style.width      = 'auto';
-      style.flex       = '1 1 auto';
-      style.background = '#21242d';
-    }
-
     return (
-      <div style={style}>
+      <div style={style} onWheel={this.handleWheel} onScroll={this.handleScroll}>
         {header}
         {this.props.children}
       </div>

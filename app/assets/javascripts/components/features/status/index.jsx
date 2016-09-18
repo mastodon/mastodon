@@ -6,21 +6,10 @@ import Immutable                from 'immutable';
 import EmbeddedStatus           from '../../components/status';
 import { favourite, reblog }    from '../../actions/interactions';
 import { replyCompose }         from '../../actions/compose';
-
-function selectStatus(state, id) {
-  let status = state.getIn(['timelines', 'statuses', id]);
-
-  status = status.set('account', state.getIn(['timelines', 'accounts', status.get('account')]));
-
-  if (status.get('reblog') !== null) {
-    status = status.set('reblog', selectStatus(state, status.get('reblog')));
-  }
-
-  return status;
-};
+import { selectStatus }         from '../../reducers/timelines';
 
 function selectStatuses(state, ids) {
-  return ids.map(id => selectStatus(state, id));
+  return ids.map(id => selectStatus(state, id)).filterNot(status => status === null);
 };
 
 const mapStateToProps = (state, props) => ({

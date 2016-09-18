@@ -35,7 +35,7 @@ const Frontend = React.createClass({
             <StatusListContainer type='mentions' />
           </Column>
 
-          <Column fluid={true}>
+          <Column>
             {this.props.children}
           </Column>
         </ColumnsArea>

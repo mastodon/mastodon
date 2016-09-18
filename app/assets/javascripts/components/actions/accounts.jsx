@@ -14,6 +14,10 @@ export const ACCOUNT_UNFOLLOW_REQUEST = 'ACCOUNT_UNFOLLOW_REQUEST';
 export const ACCOUNT_UNFOLLOW_SUCCESS = 'ACCOUNT_UNFOLLOW_SUCCESS';
 export const ACCOUNT_UNFOLLOW_FAIL    = 'ACCOUNT_UNFOLLOW_FAIL';
 
+export const ACCOUNT_TIMELINE_FETCH_REQUEST = 'ACCOUNT_TIMELINE_FETCH_REQUEST';
+export const ACCOUNT_TIMELINE_FETCH_SUCCESS = 'ACCOUNT_TIMELINE_FETCH_SUCCESS';
+export const ACCOUNT_TIMELINE_FETCH_FAIL    = 'ACCOUNT_TIMELINE_FETCH_FAIL';
+
 export function setAccountSelf(account) {
   return {
     type: ACCOUNT_SET_SELF,
@@ -29,6 +33,18 @@ export function fetchAccount(id) {
       dispatch(fetchAccountSuccess(response.data));
     }).catch(error => {
       dispatch(fetchAccountFail(id, error));
+    });
+  };
+};
+
+export function fetchAccountTimeline(id) {
+  return (dispatch, getState) => {
+    dispatch(fetchAccountTimelineRequest(id));
+
+    api(getState).get(`/api/accounts/${id}/statuses`).then(response => {
+      dispatch(fetchAccountTimelineSuccess(id, response.data));
+    }).catch(error => {
+      dispatch(fetchAccountTimelineFail(id, error));
     });
   };
 };
@@ -117,6 +133,29 @@ export function unfollowAccountSuccess(account) {
 export function unfollowAccountFail(error) {
   return {
     type: ACCOUNT_UNFOLLOW_FAIL,
+    error: error
+  };
+};
+
+export function fetchAccountTimelineRequest(id) {
+  return {
+    type: ACCOUNT_TIMELINE_FETCH_REQUEST,
+    id: id
+  };
+};
+
+export function fetchAccountTimelineSuccess(id, statuses) {
+  return {
+    type: ACCOUNT_TIMELINE_FETCH_SUCCESS,
+    id: id,
+    statuses: statuses
+  };
+};
+
+export function fetchAccountTimelineFail(id, error) {
+  return {
+    type: ACCOUNT_TIMELINE_FETCH_FAIL,
+    id: id,
     error: error
   };
 };
