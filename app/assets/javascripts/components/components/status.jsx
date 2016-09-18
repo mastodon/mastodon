@@ -69,7 +69,7 @@ const Status = React.createClass({
       if (status.getIn(['media_attachments', 0, 'type']) === 'video') {
         media = <VideoPlayer media={status.getIn(['media_attachments', 0])} />;
       } else {
-        media = <MediaGallery media={status.get('media_attachments')} />;
+        media = <MediaGallery media={status.get('media_attachments')} height={110} />;
       }
     }
 

@@ -4,7 +4,8 @@ import PureRenderMixin    from 'react-addons-pure-render-mixin';
 const MediaGallery = React.createClass({
 
   propTypes: {
-    media: ImmutablePropTypes.list.isRequired
+    media: ImmutablePropTypes.list.isRequired,
+    height: React.PropTypes.number.isRequired
   },
 
   mixins: [PureRenderMixin],
@@ -63,7 +64,7 @@ const MediaGallery = React.createClass({
     });
 
     return (
-      <div style={{ marginTop: '8px', overflow: 'hidden', width: '100%', height: '110px', boxSizing: 'border-box' }}>
+      <div style={{ marginTop: '8px', overflow: 'hidden', width: '100%', height: `${this.props.height}px`, boxSizing: 'border-box' }}>
         {children}
       </div>
     );
