@@ -40,8 +40,8 @@ const Account = React.createClass({
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.params.accountId !== this.props.params.accountId && nextProps.params.accountId) {
-      this.props.dispatch(fetchAccount(nextProps.params.accountId));
-      this.props.dispatch(fetchAccountTimeline(nextProps.params.accountId));
+      this.props.dispatch(fetchAccount(Number(nextProps.params.accountId)));
+      this.props.dispatch(fetchAccountTimeline(Number(nextProps.params.accountId)));
     }
   },
 
