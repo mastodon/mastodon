@@ -28,7 +28,23 @@ function statusToMaps(state, status) {
     state  = statusToMaps(state, reblog);
   }
 
+  // Replies
+  if (status.get('in_reply_to_id')) {
+    state = state.updateIn(['descendants', status.get('in_reply_to_id')], set => {
+      if (!Immutable.OrderedSet.isOrderedSet(set)) {
+        return Immutable.OrderedSet([status.get('id')]);
+      } else {
+        return set.add(status.get('id'));
+      }
+    });
+  }
+
   return state.withMutations(map => {
+    if (status.get('in_reply_to_id')) {
+      map.updateIn(['descendants', status.get('in_reply_to_id')], Immutable.OrderedSet(), set => set.add(status.get('id')));
+      map.updateIn(['ancestors', status.get('id')], Immutable.OrderedSet(), set => set.add(status.get('in_reply_to_id')));
+    }
+
     map.setIn(['accounts', account.get('id')], account);
     map.setIn(['statuses', status.get('id')], status);
   });
@@ -68,12 +84,12 @@ function contextToMaps(state, status, ancestors, descendants) {
   let ancestorsIds = ancestors.map(ancestor => {
     state = statusToMaps(state, ancestor);
     return ancestor.get('id');
-  });
+  }).toOrderedSet();
 
   let descendantsIds = descendants.map(descendant => {
     state = statusToMaps(state, descendant);
     return descendant.get('id');
-  });
+  }).toOrderedSet();
 
   return state.withMutations(map => {
     map.setIn(['ancestors', status.get('id')], ancestorsIds);
