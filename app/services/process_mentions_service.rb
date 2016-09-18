@@ -14,6 +14,7 @@ class ProcessMentionsService < BaseService
         begin
           mentioned_account = follow_remote_account_service.("#{match.first}")
         rescue Goldfinger::Error, HTTP::Error
+          mentioned_account = nil
         end
       end
 
