@@ -1,11 +1,9 @@
 import api from '../api'
 
-export const REBLOG         = 'REBLOG';
 export const REBLOG_REQUEST = 'REBLOG_REQUEST';
 export const REBLOG_SUCCESS = 'REBLOG_SUCCESS';
 export const REBLOG_FAIL    = 'REBLOG_FAIL';
 
-export const FAVOURITE         = 'FAVOURITE';
 export const FAVOURITE_REQUEST = 'FAVOURITE_REQUEST';
 export const FAVOURITE_SUCCESS = 'FAVOURITE_SUCCESS';
 export const FAVOURITE_FAIL    = 'FAVOURITE_FAIL';

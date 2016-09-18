@@ -1,7 +1,6 @@
 import api from '../api'
 
 export const FOLLOW_CHANGE         = 'FOLLOW_CHANGE';
-export const FOLLOW_SUBMIT         = 'FOLLOW_SUBMIT';
 export const FOLLOW_SUBMIT_REQUEST = 'FOLLOW_SUBMIT_REQUEST';
 export const FOLLOW_SUBMIT_SUCCESS = 'FOLLOW_SUBMIT_SUCCESS';
 export const FOLLOW_SUBMIT_FAIL    = 'FOLLOW_SUBMIT_FAIL';
