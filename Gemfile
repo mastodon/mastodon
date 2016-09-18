@@ -36,7 +36,6 @@ gem 'simple_form'
 gem 'will_paginate'
 gem 'rack-attack'
 gem 'sidekiq'
-gem 'sinatra', require: nil, git: 'https://github.com/sinatra/sinatra.git'
 
 gem 'react-rails'
 gem 'browserify-rails'
