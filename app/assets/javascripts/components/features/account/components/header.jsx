@@ -17,7 +17,7 @@ const Header = React.createClass({
 
     return (
       <div style={{ flex: '0 0 auto', background: '#2f3441', textAlign: 'center', backgroundImage: `url(${account.get('header')})`, backgroundSize: 'cover' }}>
-        <div style={{ background: 'rgba(47, 52, 65, 0.6)', padding: '30px 10px' }}>
+        <div style={{ background: 'rgba(47, 52, 65, 0.8)', padding: '30px 10px' }}>
           <div style={{ width: '90px', margin: '0 auto', marginBottom: '15px', borderRadius: '90px', overflow: 'hidden' }} className='transparent-background'>
             <img src={account.get('avatar')} alt='' style={{ display: 'block', width: '90px', height: '90px', borderRadius: '90px' }} />
           </div>

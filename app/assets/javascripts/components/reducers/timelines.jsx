@@ -101,6 +101,7 @@ function accountTimelineToMaps(state, accountId, statuses) {
 function updateTimelineWithMaps(state, timeline, status) {
   state = statusToMaps(state, status);
   state = state.update(timeline, list => list.unshift(status.get('id')));
+  state = state.updateIn(['accounts_timelines', status.getIn(['account', 'id'])], Immutable.List(), list => list.unshift(status.get('id')));
 
   return state;
 };
