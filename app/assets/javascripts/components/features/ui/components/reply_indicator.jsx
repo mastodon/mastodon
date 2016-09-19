@@ -1,8 +1,8 @@
 import PureRenderMixin    from 'react-addons-pure-render-mixin';
 import ImmutablePropTypes from 'react-immutable-proptypes';
-import Avatar             from './avatar';
-import IconButton         from './icon_button';
-import DisplayName        from './display_name';
+import Avatar             from '../../../components/avatar';
+import IconButton         from '../../../components/icon_button';
+import DisplayName        from '../../../components/display_name';
 
 const ReplyIndicator = React.createClass({
 

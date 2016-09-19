@@ -1,8 +1,8 @@
 import { connect }           from 'react-redux';
-import StatusList            from '../components/status_list';
-import { replyCompose }      from '../actions/compose';
-import { reblog, favourite } from '../actions/interactions';
-import { selectStatus }      from '../reducers/timelines';
+import StatusList            from '../../../components/status_list';
+import { replyCompose }      from '../../../actions/compose';
+import { reblog, favourite } from '../../../actions/interactions';
+import { selectStatus }      from '../../../reducers/timelines';
 
 const mapStateToProps = function (state, props) {
   return {

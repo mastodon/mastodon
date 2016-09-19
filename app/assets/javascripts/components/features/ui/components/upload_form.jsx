@@ -1,7 +1,7 @@
 import PureRenderMixin    from 'react-addons-pure-render-mixin';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import UploadButton       from './upload_button';
-import IconButton         from './icon_button';
+import IconButton         from '../../../components/icon_button';
 
 const UploadForm = React.createClass({
 

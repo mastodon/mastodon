@@ -1,6 +1,6 @@
 import { connect }                          from 'react-redux';
 import UploadForm                           from '../components/upload_form';
-import { uploadCompose, undoUploadCompose } from '../actions/compose';
+import { uploadCompose, undoUploadCompose } from '../../../actions/compose';
 
 const mapStateToProps = function (state, props) {
   return {

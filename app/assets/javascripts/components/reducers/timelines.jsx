@@ -45,7 +45,7 @@ export function selectStatus(state, id) {
   return status;
 };
 
-function statusToMaps(state, status) {
+function normalizeStatus(state, status) {
   // Separate account
   let account = status.get('account');
   status = status.set('account', account.get('id'));
@@ -55,7 +55,7 @@ function statusToMaps(state, status) {
 
   if (reblog !== null) {
     status = status.set('reblog', reblog.get('id'));
-    state  = statusToMaps(state, reblog);
+    state  = normalizeStatus(state, reblog);
   }
 
   // Replies
@@ -80,26 +80,26 @@ function statusToMaps(state, status) {
   });
 };
 
-function timelineToMaps(state, timeline, statuses) {
+function normalizeTimeline(state, timeline, statuses) {
   statuses.forEach((status, i) => {
-    state = statusToMaps(state, status);
+    state = normalizeStatus(state, status);
     state = state.setIn([timeline, i], status.get('id'));
   });
 
   return state;
 };
 
-function accountTimelineToMaps(state, accountId, statuses) {
+function normalizeAccountTimeline(state, accountId, statuses) {
   statuses.forEach((status, i) => {
-    state = statusToMaps(state, status);
+    state = normalizeStatus(state, status);
     state = state.updateIn(['accounts_timelines', accountId], Immutable.List(), list => list.set(i, status.get('id')));
   });
 
   return state;
 };
 
-function updateTimelineWithMaps(state, timeline, status) {
-  state = statusToMaps(state, status);
+function updateTimeline(state, timeline, status) {
+  state = normalizeStatus(state, status);
   state = state.update(timeline, list => list.unshift(status.get('id')));
   state = state.updateIn(['accounts_timelines', status.getIn(['account', 'id'])], Immutable.List(), list => list.unshift(status.get('id')));
 
@@ -114,20 +114,20 @@ function deleteStatus(state, id) {
   return state.deleteIn(['statuses', id]);
 };
 
-function accountToMaps(state, account) {
+function normalizeAccount(state, account) {
   return state.setIn(['accounts', account.get('id')], account);
 };
 
-function contextToMaps(state, status, ancestors, descendants) {
-  state = statusToMaps(state, status);
+function normalizeContext(state, status, ancestors, descendants) {
+  state = normalizeStatus(state, status);
 
   let ancestorsIds = ancestors.map(ancestor => {
-    state = statusToMaps(state, ancestor);
+    state = normalizeStatus(state, ancestor);
     return ancestor.get('id');
   }).toOrderedSet();
 
   let descendantsIds = descendants.map(descendant => {
-    state = statusToMaps(state, descendant);
+    state = normalizeStatus(state, descendant);
     return descendant.get('id');
   }).toOrderedSet();
 
@@ -140,14 +140,14 @@ function contextToMaps(state, status, ancestors, descendants) {
 export default function timelines(state = initialState, action) {
   switch(action.type) {
     case TIMELINE_SET:
-      return timelineToMaps(state, action.timeline, Immutable.fromJS(action.statuses));
+      return normalizeTimeline(state, action.timeline, Immutable.fromJS(action.statuses));
     case TIMELINE_UPDATE:
-      return updateTimelineWithMaps(state, action.timeline, Immutable.fromJS(action.status));
+      return updateTimeline(state, action.timeline, Immutable.fromJS(action.status));
     case TIMELINE_DELETE:
       return deleteStatus(state, action.id);
     case REBLOG_SUCCESS:
     case FAVOURITE_SUCCESS:
-      return statusToMaps(state, Immutable.fromJS(action.response));
+      return normalizeStatus(state, Immutable.fromJS(action.response));
     case ACCOUNT_SET_SELF:
       return state.withMutations(map => {
         map.setIn(['accounts', action.account.id], Immutable.fromJS(action.account));
@@ -157,11 +157,11 @@ export default function timelines(state = initialState, action) {
     case FOLLOW_SUBMIT_SUCCESS:
     case ACCOUNT_FOLLOW_SUCCESS:
     case ACCOUNT_UNFOLLOW_SUCCESS:
-      return accountToMaps(state, Immutable.fromJS(action.account));
+      return normalizeAccount(state, Immutable.fromJS(action.account));
     case STATUS_FETCH_SUCCESS:
-      return contextToMaps(state, Immutable.fromJS(action.status), Immutable.fromJS(action.context.ancestors), Immutable.fromJS(action.context.descendants));
+      return normalizeContext(state, Immutable.fromJS(action.status), Immutable.fromJS(action.context.ancestors), Immutable.fromJS(action.context.descendants));
     case ACCOUNT_TIMELINE_FETCH_SUCCESS:
-      return accountTimelineToMaps(state, action.id, Immutable.fromJS(action.statuses));
+      return normalizeAccountTimeline(state, action.id, Immutable.fromJS(action.statuses));
     default:
       return state;
   }

@@ -1,6 +1,6 @@
 import { connect }                    from 'react-redux';
 import FollowForm                     from '../components/follow_form';
-import { changeFollow, submitFollow } from '../actions/follow';
+import { changeFollow, submitFollow } from '../../../actions/follow';
 
 const mapStateToProps = function (state, props) {
   return {

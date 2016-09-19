@@ -1,6 +1,6 @@
 import { connect }             from 'react-redux';
 import { NotificationStack }   from 'react-notification';
-import { dismissNotification } from '../actions/notifications';
+import { dismissNotification } from '../../../actions/notifications';
 
 const mapStateToProps = (state, props) => {
   return {

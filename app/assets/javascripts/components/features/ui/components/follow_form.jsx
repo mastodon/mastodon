@@ -1,4 +1,4 @@
-import IconButton      from './icon_button';
+import IconButton      from '../../../components/icon_button';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 
 const FollowForm = React.createClass({

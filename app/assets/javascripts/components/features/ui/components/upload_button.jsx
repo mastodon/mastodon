@@ -1,5 +1,5 @@
 import PureRenderMixin from 'react-addons-pure-render-mixin';
-import Button          from './button';
+import Button          from '../../../components/button';
 
 const UploadButton = React.createClass({
 

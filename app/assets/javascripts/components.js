@@ -6,4 +6,4 @@ window.ReactDOM = require('react-dom');
 
 //= require_tree ./components
 
-window.Root = require('./components/containers/root');
+window.Mastodon = require('./components/containers/mastodon');

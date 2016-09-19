@@ -1,5 +1,5 @@
 import CharacterCounter   from './character_counter';
-import Button             from './button';
+import Button             from '../../../components/button';
 import PureRenderMixin    from 'react-addons-pure-render-mixin';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ReplyIndicator     from './reply_indicator';

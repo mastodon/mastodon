@@ -24,7 +24,7 @@ function notificationFromError(state, error) {
   return state.push(n);
 };
 
-export default function meta(state = initialState, action) {
+export default function notifications(state = initialState, action) {
   switch(action.type) {
     case COMPOSE_SUBMIT_FAIL:
     case COMPOSE_UPLOAD_FAIL:

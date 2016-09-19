@@ -31,12 +31,12 @@ const Status = React.createClass({
   mixins: [PureRenderMixin],
 
   componentWillMount () {
-    this.props.dispatch(fetchStatus(this.props.params.statusId));
+    this.props.dispatch(fetchStatus(Number(this.props.params.statusId)));
   },
 
   componentWillReceiveProps (nextProps) {
     if (nextProps.params.statusId !== this.props.params.statusId && nextProps.params.statusId) {
-      this.props.dispatch(fetchStatus(nextProps.params.statusId));
+      this.props.dispatch(fetchStatus(Number(nextProps.params.statusId)));
     }
   },
 

@@ -1,6 +1,5 @@
 import { Provider }                                                          from 'react-redux';
 import configureStore                                                        from '../store/configureStore';
-import Frontend                                                              from '../components/frontend';
 import { setTimeline, updateTimeline, deleteFromTimelines, refreshTimeline } from '../actions/timelines';
 import { setAccessToken }                                                    from '../actions/meta';
 import { setAccountSelf }                                                    from '../actions/accounts';
@@ -10,10 +9,11 @@ import Account                                                               fro
 import Settings                                                              from '../features/settings';
 import Status                                                                from '../features/status';
 import Subscriptions                                                         from '../features/subscriptions';
+import UI                                                                    from '../features/ui';
 
 const store = configureStore();
 
-const Root = React.createClass({
+const Mastodon = React.createClass({
 
   propTypes: {
     token: React.PropTypes.string.isRequired,
@@ -58,7 +58,7 @@ const Root = React.createClass({
     return (
       <Provider store={store}>
         <Router history={hashHistory}>
-          <Route path='/' component={Frontend}>
+          <Route path='/' component={UI}>
             <Route path='/settings' component={Settings} />
             <Route path='/subscriptions' component={Subscriptions} />
             <Route path='/statuses/:statusId' component={Status} />
@@ -71,4 +71,4 @@ const Root = React.createClass({
 
 });
 
-export default Root;
+export default Mastodon;

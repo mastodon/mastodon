@@ -1,6 +1,6 @@
 import { connect }                                          from 'react-redux';
 import ComposeForm                                          from '../components/compose_form';
-import { changeCompose, submitCompose, cancelReplyCompose } from '../actions/compose';
+import { changeCompose, submitCompose, cancelReplyCompose } from '../../../actions/compose';
 
 function selectStatus(state) {
   let statusId = state.getIn(['compose', 'in_reply_to'], null);
