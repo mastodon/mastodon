@@ -10,26 +10,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160905150353) do
+ActiveRecord::Schema.define(version: 20160919221059) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "accounts", force: :cascade do |t|
-    t.string   "username",            default: "", null: false
+    t.string   "username",                default: "", null: false
     t.string   "domain"
-    t.string   "verify_token",        default: "", null: false
-    t.string   "secret",              default: "", null: false
+    t.string   "verify_token",            default: "", null: false
+    t.string   "secret",                  default: "", null: false
     t.text     "private_key"
-    t.text     "public_key",          default: "", null: false
-    t.string   "remote_url",          default: "", null: false
-    t.string   "salmon_url",          default: "", null: false
-    t.string   "hub_url",             default: "", null: false
-    t.datetime "created_at",                       null: false
-    t.datetime "updated_at",                       null: false
-    t.text     "note",                default: "", null: false
-    t.string   "display_name",        default: "", null: false
-    t.string   "uri",                 default: "", null: false
+    t.text     "public_key",              default: "", null: false
+    t.string   "remote_url",              default: "", null: false
+    t.string   "salmon_url",              default: "", null: false
+    t.string   "hub_url",                 default: "", null: false
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
+    t.text     "note",                    default: "", null: false
+    t.string   "display_name",            default: "", null: false
+    t.string   "uri",                     default: "", null: false
     t.string   "url"
     t.string   "avatar_file_name"
     t.string   "avatar_content_type"
@@ -40,6 +40,7 @@ ActiveRecord::Schema.define(version: 20160905150353) do
     t.integer  "header_file_size"
     t.datetime "header_updated_at"
     t.string   "avatar_remote_url"
+    t.datetime "subscription_expires_at"
     t.index ["username", "domain"], name: "index_accounts_on_username_and_domain", unique: true, using: :btree
   end
 

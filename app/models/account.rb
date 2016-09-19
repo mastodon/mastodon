@@ -38,6 +38,12 @@ class Account < ApplicationRecord
 
   has_many :media_attachments, dependent: :destroy
 
+  scope :remote, -> { where.not(domain: nil) }
+  scope :local, -> { where(domain: nil) }
+  scope :without_followers, -> { where('(select count(f.id) from follows as f where f.target_account_id = accounts.id) = 0') }
+  scope :with_followers, -> { where('(select count(f.id) from follows as f where f.target_account_id = accounts.id) > 0') }
+  scope :expiring, -> (time) { where(subscription_expires_at: nil).or(where('subscription_expires_at < ?', time)).remote.with_followers }
+
   def follow!(other_account)
     self.active_relationships.where(target_account: other_account).first_or_create!(target_account: other_account)
   end

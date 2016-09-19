@@ -106,7 +106,7 @@ class ProcessFeedService < BaseService
   end
 
   def delete_post!(status)
-    RemoveStatusService.new.(status)
+    remove_status_service.(status)
   end
 
   def find_original_status(_xml, id)
@@ -126,7 +126,7 @@ class ProcessFeedService < BaseService
     account  = Account.find_by(username: username, domain: domain)
 
     if account.nil?
-      account = follow_remote_account_service.("#{username}@#{domain}", false)
+      account = follow_remote_account_service.("#{username}@#{domain}")
     end
 
     status = Status.new(account: account, uri: target_id(xml), text: target_content(xml), url: target_url(xml), created_at: published(xml), updated_at: updated(xml))
@@ -195,5 +195,9 @@ class ProcessFeedService < BaseService
 
   def update_remote_profile_service
     @update_remote_profile_service ||= UpdateRemoteProfileService.new
+  end
+
+  def remove_status_service
+    @remove_status_service ||= RemoveStatusService.new
   end
 end

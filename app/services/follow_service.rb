@@ -12,6 +12,7 @@ class FollowService < BaseService
     if target_account.local?
       NotificationMailer.follow(target_account, source_account).deliver_later
     else
+      subscribe_service.(target_account)
       NotificationWorker.perform_async(follow.stream_entry.id, target_account.id)
     end
 
@@ -39,5 +40,9 @@ class FollowService < BaseService
 
   def follow_remote_account_service
     @follow_remote_account_service ||= FollowRemoteAccountService.new
+  end
+
+  def subscribe_service
+    @subscribe_service ||= SubscribeService.new
   end
 end

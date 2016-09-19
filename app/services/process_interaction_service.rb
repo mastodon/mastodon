@@ -14,7 +14,7 @@ class ProcessInteractionService < BaseService
     account  = Account.find_by(username: username, domain: domain)
 
     if account.nil?
-      account = follow_remote_account_service.("#{username}@#{domain}", false)
+      account = follow_remote_account_service.("#{username}@#{domain}")
     end
 
     if salmon.verify(envelope, account.keypair)
@@ -71,7 +71,7 @@ class ProcessInteractionService < BaseService
     return if status.nil?
 
     if account.id == status.account_id
-      RemoveStatusService.new.(status)
+      remove_status_service.(status)
     end
   end
 
@@ -107,5 +107,9 @@ class ProcessInteractionService < BaseService
 
   def update_remote_profile_service
     @update_remote_profile_service ||= UpdateRemoteProfileService.new
+  end
+
+  def remove_status_service
+    @remove_status_service ||= RemoveStatusService.new
   end
 end

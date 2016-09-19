@@ -3,22 +3,18 @@ class FollowRemoteAccountService < BaseService
   # When creating, look up the user's webfinger and fetch all
   # important information from their feed
   # @param [String] uri User URI in the form of username@domain
-  # @param [Boolean] subscribe Whether to initiate a PubSubHubbub subscription
   # @return [Account]
-  def call(uri, subscribe = true)
+  def call(uri)
     username, domain = uri.split('@')
 
     return Account.find_local(username) if domain == Rails.configuration.x.local_domain || domain.nil?
 
     account = Account.find_remote(username, domain)
 
-    if account.nil?
-      Rails.logger.debug "Creating new remote account for #{uri}"
-      account = Account.new(username: username, domain: domain)
-    elsif account.subscribed?
-      Rails.logger.debug "Already subscribed to remote account #{uri}"
-      return account
-    end
+    return account unless account.nil?
+
+    Rails.logger.debug "Creating new remote account for #{uri}"
+    account = Account.new(username: username, domain: domain)
 
     data = Goldfinger.finger("acct:#{uri}")
 
@@ -44,16 +40,6 @@ class FollowRemoteAccountService < BaseService
 
     get_profile(feed, account)
     account.save!
-
-    if subscribe
-      account.secret       = SecureRandom.hex
-      account.verify_token = SecureRandom.hex
-
-      subscription = account.subscription(api_subscription_url(account.id))
-      subscription.subscribe
-
-      account.save!
-    end
 
     return account
   end
@@ -90,8 +76,3 @@ class FollowRemoteAccountService < BaseService
   end
 end
 
-class NoAuthorFeedError < StandardError
-end
-
-class NoHubError < StandardError
-end

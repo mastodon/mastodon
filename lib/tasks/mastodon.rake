@@ -11,9 +11,16 @@ namespace :mastodon do
   namespace :push do
     desc 'Unsubscribes from PuSH updates of feeds nobody follows locally'
     task clear: :environment do
-      Account.where('(select count(f.id) from follows as f where f.target_account_id = accounts.id) = 0').where.not(domain: nil).find_each do |a|
+      Account.remote.without_followers.find_each do |a|
         a.subscription('').unsubscribe
-        a.update!(verify_token: '', secret: '')
+        a.update!(verify_token: '', secret: '', subscription_expires_at: nil)
+      end
+    end
+
+    desc 'Re-subscribes to soon expiring PuSH subscriptions'
+    task refresh: :environment do
+      Account.expiring(1.day.from_now).find_each do |a|
+        SubscribeService.new.(a)
       end
     end
   end
