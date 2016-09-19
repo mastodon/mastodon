@@ -82,7 +82,7 @@ class Account < ApplicationRecord
   end
 
   def subscription(webhook_url)
-    @subscription ||= OStatus2::Subscription.new(self.remote_url, secret: self.secret, token: self.verify_token, webhook: webhook_url, hub: self.hub_url)
+    OStatus2::Subscription.new(self.remote_url, secret: self.secret, token: self.verify_token, webhook: webhook_url, hub: self.hub_url)
   end
 
   def ping!(atom_url, hubs)

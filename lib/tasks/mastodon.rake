@@ -12,7 +12,11 @@ namespace :mastodon do
     desc 'Unsubscribes from PuSH updates of feeds nobody follows locally'
     task clear: :environment do
       Account.remote.without_followers.find_each do |a|
+        Rails.logger.debug "PuSH unsubscribing from #{a.acct}"
         a.subscription('').unsubscribe
+      rescue HTTP::Error, OpenSSL::SSL::SSLError
+        Rails.logger.debug "PuSH unsubscribing from #{a.acct} failed due to an HTTP or SSL error"
+      ensure
         a.update!(verify_token: '', secret: '', subscription_expires_at: nil)
       end
     end
@@ -20,6 +24,7 @@ namespace :mastodon do
     desc 'Re-subscribes to soon expiring PuSH subscriptions'
     task refresh: :environment do
       Account.expiring(1.day.from_now).find_each do |a|
+        Rails.logger.debug "PuSH re-subscribing to #{a.acct}"
         SubscribeService.new.(a)
       end
     end
