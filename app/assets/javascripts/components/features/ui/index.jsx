@@ -8,7 +8,7 @@ import StatusListContainer    from './containers/status_list_container';
 import NotificationsContainer from './containers/notifications_container';
 import NavigationContainer    from './containers/navigation_container';
 import PureRenderMixin        from 'react-addons-pure-render-mixin';
-import LoadingBar             from 'react-redux-loading-bar';
+import LoadingBarContainer    from './containers/loading_bar_container';
 
 const UI = React.createClass({
 
@@ -46,7 +46,7 @@ const UI = React.createClass({
         </ColumnsArea>
 
         <NotificationsContainer />
-        <LoadingBar style={{ backgroundColor: '#2b90d9', left: '0', top: '0' }} />
+        <LoadingBarContainer style={{ backgroundColor: '#2b90d9', left: '0', top: '0' }} />
       </div>
     );
   }
