@@ -2,7 +2,7 @@ class AccountsController < ApplicationController
   layout 'public'
 
   before_action :set_account
-  before_action :set_webfinger_header
+  before_action :set_link_headers
 
   def show
     respond_to do |format|
@@ -39,8 +39,11 @@ class AccountsController < ApplicationController
     @account = Account.find_local!(params[:username])
   end
 
-  def set_webfinger_header
-    response.headers['Link'] = "<#{webfinger_account_url}>; rel=\"lrdd\"; type=\"application/xrd+xml\""
+  def set_link_headers
+    response.headers['Link'] = LinkHeader.new([
+      [webfinger_account_url, [['rel', 'lrdd'], ['type', 'application/xrd+xml']]],
+      [account_url(@account, format: 'atom'), [['rel', 'alternate'], ['type', 'application/atom+xml']]]
+    ])
   end
 
   def webfinger_account_url

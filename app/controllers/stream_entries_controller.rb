@@ -3,6 +3,7 @@ class StreamEntriesController < ApplicationController
 
   before_action :set_account
   before_action :set_stream_entry
+  before_action :set_link_headers
 
   def show
     @type = @stream_entry.activity_type.downcase
@@ -31,6 +32,12 @@ class StreamEntriesController < ApplicationController
 
   def set_account
     @account = Account.find_local!(params[:account_username])
+  end
+
+  def set_link_headers
+    response.headers['Link'] = LinkHeader.new([
+      [account_stream_entry_url(@account, @stream_entry, format: 'atom'), [['rel', 'alternate'], ['type', 'application/atom+xml']]]
+    ])
   end
 
   def set_stream_entry

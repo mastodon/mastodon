@@ -72,7 +72,7 @@ class FollowRemoteAccountService < BaseService
   end
 
   def http_client
-    HTTP
+    HTTP.timeout(:per_operation, write: 20, connect: 20, read: 50)
   end
 end
 

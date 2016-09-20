@@ -2,10 +2,11 @@ class ProcessFeedService < BaseService
   # Create local statuses from an Atom feed
   # @param [String] body Atom feed
   # @param [Account] account Account this feed belongs to
+  # @return [Enumerable] created statuses
   def call(body, account)
     xml = Nokogiri::XML(body)
     update_remote_profile_service.(xml.at_xpath('/xmlns:feed/xmlns:author'), account) unless xml.at_xpath('/xmlns:feed').nil?
-    xml.xpath('//xmlns:entry').each { |entry| process_entry(account, entry) }
+    xml.xpath('//xmlns:entry').reverse_each.map { |entry| process_entry(account, entry) }.compact
   end
 
   private
@@ -45,6 +46,8 @@ class ProcessFeedService < BaseService
 
       DistributionWorker.perform_async(status.id)
     end
+
+    return status
   end
 
   def record_remote_mentions(status, links)
@@ -103,6 +106,10 @@ class ProcessFeedService < BaseService
   def add_reply!(entry, status)
     status.thread = find_original_status(entry, thread_id(entry))
     status.save!
+
+    if status.thread.nil? && !thread_href(entry).nil?
+      ThreadResolveWorker.perform_async(status.id, thread_href(entry))
+    end
   end
 
   def delete_post!(status)
@@ -131,6 +138,13 @@ class ProcessFeedService < BaseService
 
     status = Status.new(account: account, uri: target_id(xml), text: target_content(xml), url: target_url(xml), created_at: published(xml), updated_at: updated(xml))
     status.thread = find_original_status(xml, thread_id(xml))
+    status.save
+
+    if status.saved? && status.thread.nil? && !thread_href(xml).nil?
+      ThreadResolveWorker.perform_async(status.id, thread_href(xml))
+    end
+
+    status
   rescue Goldfinger::Error, HTTP::Error
     nil
   end
@@ -149,6 +163,12 @@ class ProcessFeedService < BaseService
 
   def thread_id(xml)
     xml.at_xpath('./thr:in-reply-to').attribute('ref').value
+  rescue
+    nil
+  end
+
+  def thread_href(xml)
+    xml.at_xpath('./thr:in-reply-to').attribute('href').value
   rescue
     nil
   end

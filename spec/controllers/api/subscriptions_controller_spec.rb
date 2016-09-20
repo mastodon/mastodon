@@ -24,6 +24,14 @@ RSpec.describe Api::SubscriptionsController, type: :controller do
 
     before do
       stub_request(:get, "https://quitter.no/avatar/7477-300-20160211190340.png").to_return(request_fixture('avatar.txt'))
+      stub_request(:head, "https://quitter.no/notice/1269244").to_return(status: 404)
+      stub_request(:head, "https://quitter.no/notice/1265331").to_return(status: 404)
+      stub_request(:head, "https://community.highlandarrow.com/notice/54411").to_return(status: 404)
+      stub_request(:head, "https://community.highlandarrow.com/notice/53857").to_return(status: 404)
+      stub_request(:head, "https://community.highlandarrow.com/notice/51852").to_return(status: 404)
+      stub_request(:head, "https://social.umeahackerspace.se/notice/424348").to_return(status: 404)
+      stub_request(:head, "https://community.highlandarrow.com/notice/50467").to_return(status: 404)
+      stub_request(:head, "https://quitter.no/notice/1243309").to_return(status: 404)
 
       request.env['HTTP_X_HUB_SIGNATURE'] = "sha1=#{OpenSSL::HMAC.hexdigest('sha1', 'abc', feed)}"
       request.env['RAW_POST_DATA'] = feed
