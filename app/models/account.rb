@@ -66,7 +66,7 @@ class Account < ApplicationRecord
   end
 
   def subscribed?
-    !(self.secret.blank? || self.verify_token.blank?)
+    !self.subscription_expires_at.nil?
   end
 
   def favourited?(status)
@@ -82,7 +82,7 @@ class Account < ApplicationRecord
   end
 
   def subscription(webhook_url)
-    OStatus2::Subscription.new(self.remote_url, secret: self.secret, token: self.verify_token, webhook: webhook_url, hub: self.hub_url)
+    OStatus2::Subscription.new(self.remote_url, secret: self.secret, lease_seconds: 86400 * 30, webhook: webhook_url, hub: self.hub_url)
   end
 
   def ping!(atom_url, hubs)

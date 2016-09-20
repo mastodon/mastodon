@@ -66,14 +66,12 @@ RSpec.describe Account, type: :model do
   end
 
   describe '#subscribed?' do
-    it 'returns false when no secrets and tokens have been set' do
+    it 'returns false when no subscription expiration information is present' do
       expect(subject.subscribed?).to be false
     end
 
-    it 'returns true when the secret and token have been set' do
-      subject.secret       = 'a'
-      subject.verify_token = 'b'
-
+    it 'returns true when subscription expiration has been set' do
+      subject.subscription_expires_at = 30.days.from_now
       expect(subject.subscribed?).to be true
     end
   end

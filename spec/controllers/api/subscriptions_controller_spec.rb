@@ -3,11 +3,11 @@ require 'rails_helper'
 RSpec.describe Api::SubscriptionsController, type: :controller do
   render_views
 
-  let(:account) { Fabricate(:account, username: 'gargron', domain: 'quitter.no', verify_token: '123', remote_url: 'topic_url', secret: 'abc') }
+  let(:account) { Fabricate(:account, username: 'gargron', domain: 'quitter.no', remote_url: 'topic_url', secret: 'abc') }
 
   describe 'GET #show' do
     before do
-      get :show, params: { :id => account.id, 'hub.topic' => 'topic_url', 'hub.verify_token' => 123, 'hub.challenge' => '456' }
+      get :show, params: { :id => account.id, 'hub.topic' => 'topic_url', 'hub.challenge' => '456', 'hub.lease_seconds' => "#{86400 * 30}" }
     end
 
     it 'returns http success' do

@@ -13,12 +13,13 @@ namespace :mastodon do
     task clear: :environment do
       Account.remote.without_followers.find_each do |a|
         Rails.logger.debug "PuSH unsubscribing from #{a.acct}"
+
         begin
           a.subscription('').unsubscribe
         rescue HTTP::Error, OpenSSL::SSL::SSLError
           Rails.logger.debug "PuSH unsubscribing from #{a.acct} failed due to an HTTP or SSL error"
         ensure
-          a.update!(verify_token: '', secret: '', subscription_expires_at: nil)
+          a.update!(secret: '', subscription_expires_at: nil)
         end
       end
     end
