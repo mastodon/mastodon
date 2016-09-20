@@ -4,8 +4,7 @@ class Api::SubscriptionsController < ApiController
 
   def show
     if @account.subscription(api_subscription_url(@account.id)).valid?(params['hub.topic'])
-      Rails.logger.debug "PuSH confirmation: #{params.inspect}"
-      @account.update(subscription_expires_at: Time.now + (params['hub.lease_seconds'].to_i).seconds)
+      @account.update(subscription_expires_at: Time.now + ((params['hub.lease_seconds'] || 86400).to_i).seconds)
       render plain: HTMLEntities.new.encode(params['hub.challenge']), status: 200
     else
       head 404
