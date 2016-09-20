@@ -1,15 +1,20 @@
-import { Provider }                                                          from 'react-redux';
-import configureStore                                                        from '../store/configureStore';
-import { setTimeline, updateTimeline, deleteFromTimelines, refreshTimeline } from '../actions/timelines';
-import { setAccessToken }                                                    from '../actions/meta';
-import { setAccountSelf }                                                    from '../actions/accounts';
-import PureRenderMixin                                                       from 'react-addons-pure-render-mixin';
-import { Router, Route, hashHistory }                                        from 'react-router';
-import Account                                                               from '../features/account';
-import Settings                                                              from '../features/settings';
-import Status                                                                from '../features/status';
-import Subscriptions                                                         from '../features/subscriptions';
-import UI                                                                    from '../features/ui';
+import { Provider }                   from 'react-redux';
+import configureStore                 from '../store/configureStore';
+import {
+  refreshTimelineSuccess,
+  updateTimeline,
+  deleteFromTimelines,
+  refreshTimeline
+}                                     from '../actions/timelines';
+import { setAccessToken }             from '../actions/meta';
+import { setAccountSelf }             from '../actions/accounts';
+import PureRenderMixin                from 'react-addons-pure-render-mixin';
+import { Router, Route, hashHistory } from 'react-router';
+import Account                        from '../features/account';
+import Settings                       from '../features/settings';
+import Status                         from '../features/status';
+import Subscriptions                  from '../features/subscriptions';
+import UI                             from '../features/ui';
 
 const store = configureStore();
 
@@ -29,7 +34,7 @@ const Mastodon = React.createClass({
 
     for (var timelineType in this.props.timelines) {
       if (this.props.timelines.hasOwnProperty(timelineType)) {
-        store.dispatch(setTimeline(timelineType, JSON.parse(this.props.timelines[timelineType])));
+        store.dispatch(refreshTimelineSuccess(timelineType, JSON.parse(this.props.timelines[timelineType])));
       }
     }
 

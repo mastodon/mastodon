@@ -1,6 +1,5 @@
 import api from '../api'
 
-export const TIMELINE_SET     = 'TIMELINE_SET';
 export const TIMELINE_UPDATE  = 'TIMELINE_UPDATE';
 export const TIMELINE_DELETE  = 'TIMELINE_DELETE';
 
@@ -12,9 +11,9 @@ export const TIMELINE_EXPAND_REQUEST = 'TIMELINE_EXPAND_REQUEST';
 export const TIMELINE_EXPAND_SUCCESS = 'TIMELINE_EXPAND_SUCCESS';
 export const TIMELINE_EXPAND_FAIL    = 'TIMELINE_EXPAND_FAIL';
 
-export function setTimeline(timeline, statuses) {
+export function refreshTimelineSuccess(timeline, statuses) {
   return {
-    type: TIMELINE_SET,
+    type: TIMELINE_REFRESH_SUCCESS,
     timeline: timeline,
     statuses: statuses
   };
@@ -51,12 +50,6 @@ export function refreshTimeline(timeline) {
     }).catch(function (error) {
       dispatch(refreshTimelineFail(timeline, error));
     });
-  };
-};
-
-export function refreshTimelineSuccess(timeline, statuses) {
-  return function (dispatch) {
-    dispatch(setTimeline(timeline, statuses));
   };
 };
 

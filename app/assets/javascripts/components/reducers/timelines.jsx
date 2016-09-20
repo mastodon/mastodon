@@ -1,5 +1,5 @@
 import {
-  TIMELINE_SET,
+  TIMELINE_REFRESH_SUCCESS,
   TIMELINE_UPDATE,
   TIMELINE_DELETE
 }                                from '../actions/timelines';
@@ -139,7 +139,7 @@ function normalizeContext(state, status, ancestors, descendants) {
 
 export default function timelines(state = initialState, action) {
   switch(action.type) {
-    case TIMELINE_SET:
+    case TIMELINE_REFRESH_SUCCESS:
       return normalizeTimeline(state, action.timeline, Immutable.fromJS(action.statuses));
     case TIMELINE_UPDATE:
       return updateTimeline(state, action.timeline, Immutable.fromJS(action.status));
