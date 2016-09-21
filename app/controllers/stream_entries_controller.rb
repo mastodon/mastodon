@@ -9,8 +9,8 @@ class StreamEntriesController < ApplicationController
     @type = @stream_entry.activity_type.downcase
 
     if @stream_entry.activity_type == 'Status'
-      @ancestors   = @stream_entry.activity.ancestors.with_includes.with_counters
-      @descendants = @stream_entry.activity.descendants.with_includes.with_counters
+      @ancestors   = @stream_entry.activity.ancestors
+      @descendants = @stream_entry.activity.descendants
 
       if user_signed_in?
         status_ids  = [@stream_entry.activity_id] + @ancestors.map { |s| s.id } + @descendants.map { |s| s.id }

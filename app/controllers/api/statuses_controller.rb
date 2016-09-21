@@ -8,8 +8,8 @@ class Api::StatusesController < ApiController
 
   def context
     @status      = Status.find(params[:id])
-    @ancestors   = @status.ancestors.with_includes.with_counters.to_a
-    @descendants = @status.descendants.with_includes.with_counters.to_a
+    @ancestors   = @status.ancestors
+    @descendants = @status.descendants
   end
 
   def create
