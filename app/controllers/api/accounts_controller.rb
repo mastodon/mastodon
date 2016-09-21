@@ -28,6 +28,14 @@ class Api::AccountsController < ApiController
     render action: :show
   end
 
+  def relationships
+    ids = params[:id].is_a?(Enumerable) ? params[:id].map { |id| id.to_i } : [params[:id].to_i]
+    @accounts    = Account.find(ids)
+    @following   = Account.following_map(ids, current_user.account_id)
+    @followed_by = Account.followed_by_map(ids, current_user.account_id)
+    @blocking    = {}
+  end
+
   private
 
   def set_account

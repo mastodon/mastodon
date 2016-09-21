@@ -8,4 +8,3 @@ node(:header)          { |account| full_asset_url(account.header.url(:medium, fa
 node(:followers_count) { |account| account.followers.count }
 node(:following_count) { |account| account.following.count }
 node(:statuses_count)  { |account| account.statuses.count  }
-node(:following)       { |account| current_account.following?(account) }

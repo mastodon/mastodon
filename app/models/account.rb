@@ -127,6 +127,14 @@ class Account < ApplicationRecord
     nil
   end
 
+  def self.following_map(target_account_ids, account_id)
+    Follow.where(target_account_id: target_account_ids).where(account_id: account_id).map { |f| [f.target_account_id, true] }.to_h
+  end
+
+  def self.followed_by_map(target_account_ids, account_id)
+    Follow.where(account_id: target_account_ids).where(target_account_id: account_id).map { |f| [f.account_id, true] }.to_h
+  end
+
   before_create do
     if local?
       keypair = OpenSSL::PKey::RSA.new(Rails.env.test? ? 1024 : 2048)

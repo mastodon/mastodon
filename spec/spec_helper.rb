@@ -23,5 +23,5 @@ def body_as_json
 end
 
 def json_str_to_hash(str)
-  JSON.parse(str).with_indifferent_access
+  JSON.parse(str, symbolize_names: true)
 end

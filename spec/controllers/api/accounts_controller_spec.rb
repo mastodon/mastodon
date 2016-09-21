@@ -71,4 +71,46 @@ RSpec.describe Api::AccountsController, type: :controller do
       expect(user.account.following?(other_account)).to be false
     end
   end
+
+  describe 'GET #relationships' do
+    let(:simon) { Fabricate(:user, email: 'simon@example.com', account: Fabricate(:account, username: 'simon')).account }
+    let(:lewis) { Fabricate(:user, email: 'lewis@example.com', account: Fabricate(:account, username: 'lewis')).account }
+
+    before do
+      user.account.follow!(simon)
+      lewis.follow!(user.account)
+    end
+
+    context 'provided only one ID' do
+      before do
+        get :relationships, params: { id: simon.id }
+      end
+
+      it 'returns http success' do
+        expect(response).to have_http_status(:success)
+      end
+
+      it 'returns JSON with correct data' do
+        json = body_as_json
+
+        expect(json).to be_a Enumerable
+        expect(json.first[:following]).to be true
+        expect(json.first[:followed_by]).to be false
+      end
+    end
+
+    context 'provided multiple IDs' do
+      before do
+        get :relationships, params: { id: [simon.id, lewis.id] }
+      end
+
+      it 'returns http success' do
+        expect(response).to have_http_status(:success)
+      end
+
+      xit 'returns JSON with correct data' do
+        # todo
+      end
+    end
+  end
 end

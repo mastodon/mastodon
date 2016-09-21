@@ -2,13 +2,14 @@ import { COMPOSE_SUBMIT_FAIL, COMPOSE_UPLOAD_FAIL } from '../actions/compose';
 import { FOLLOW_SUBMIT_FAIL }                       from '../actions/follow';
 import { REBLOG_FAIL, FAVOURITE_FAIL }              from '../actions/interactions';
 import { TIMELINE_REFRESH_FAIL }                    from '../actions/timelines';
-import { NOTIFICATION_DISMISS }                     from '../actions/notifications';
+import { NOTIFICATION_DISMISS, NOTIFICATION_CLEAR } from '../actions/notifications';
 import Immutable                                    from 'immutable';
 
 const initialState = Immutable.List();
 
 function notificationFromError(state, error) {
   let n = Immutable.Map({
+    key: state.size > 0 ? state.last().get('key') + 1 : 0,
     message: ''
   });
 
@@ -34,6 +35,8 @@ export default function notifications(state = initialState, action) {
     case TIMELINE_REFRESH_FAIL:
       return notificationFromError(state, action.error);
     case NOTIFICATION_DISMISS:
+      return state.filterNot(item => item.get('key') === action.notification.key);
+    case NOTIFICATION_CLEAR:
       return state.clear();
     default:
       return state;

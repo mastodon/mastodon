@@ -59,6 +59,10 @@ Rails.application.routes.draw do
     resources :media,    only: [:create]
 
     resources :accounts, only: [:show] do
+      collection do
+        get :relationships
+      end
+
       member do
         get :statuses
         get :followers
