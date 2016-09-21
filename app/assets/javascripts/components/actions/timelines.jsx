@@ -60,3 +60,40 @@ export function refreshTimelineFail(timeline, error) {
     error: error
   };
 };
+
+export function expandTimeline(timeline) {
+  return (dispatch, getState) => {
+    const lastId = getState().getIn(['timelines', timeline]).last();
+
+    dispatch(expandTimelineRequest(timeline));
+
+    api(getState).get(`/api/statuses/${timeline}?max_id=${lastId}`).then(response => {
+      dispatch(expandTimelineSuccess(timeline, response.data));
+    }).catch(error => {
+      dispatch(expandTimelineFail(timeline, error));
+    });
+  };
+};
+
+export function expandTimelineRequest(timeline) {
+  return {
+    type: TIMELINE_EXPAND_REQUEST,
+    timeline: timeline
+  };
+};
+
+export function expandTimelineSuccess(timeline, statuses) {
+  return {
+    type: TIMELINE_EXPAND_SUCCESS,
+    timeline: timeline,
+    statuses: statuses
+  };
+};
+
+export function expandTimelineFail(timeline, error) {
+  return {
+    type: TIMELINE_EXPAND_FAIL,
+    timeline: timeline,
+    error: error
+  };
+};

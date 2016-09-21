@@ -1,7 +1,8 @@
 import {
   TIMELINE_REFRESH_SUCCESS,
   TIMELINE_UPDATE,
-  TIMELINE_DELETE
+  TIMELINE_DELETE,
+  TIMELINE_EXPAND_SUCCESS
 }                                from '../actions/timelines';
 import {
   REBLOG_SUCCESS,
@@ -89,6 +90,17 @@ function normalizeTimeline(state, timeline, statuses) {
   return state;
 };
 
+function appendNormalizedTimeline(state, timeline, statuses) {
+  let moreIds = Immutable.List();
+
+  statuses.forEach((status, i) => {
+    state   = normalizeStatus(state, status);
+    moreIds = moreIds.set(i, status.get('id'));
+  });
+
+  return state.update(timeline, list => list.push(...moreIds));
+};
+
 function normalizeAccountTimeline(state, accountId, statuses) {
   statuses.forEach((status, i) => {
     state = normalizeStatus(state, status);
@@ -141,6 +153,8 @@ export default function timelines(state = initialState, action) {
   switch(action.type) {
     case TIMELINE_REFRESH_SUCCESS:
       return normalizeTimeline(state, action.timeline, Immutable.fromJS(action.statuses));
+    case TIMELINE_EXPAND_SUCCESS:
+      return appendNormalizedTimeline(state, action.timeline, Immutable.fromJS(action.statuses));
     case TIMELINE_UPDATE:
       return updateTimeline(state, action.timeline, Immutable.fromJS(action.status));
     case TIMELINE_DELETE:

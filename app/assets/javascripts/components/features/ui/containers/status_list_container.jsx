@@ -2,6 +2,7 @@ import { connect }           from 'react-redux';
 import StatusList            from '../../../components/status_list';
 import { replyCompose }      from '../../../actions/compose';
 import { reblog, favourite } from '../../../actions/interactions';
+import { expandTimeline }    from '../../../actions/timelines';
 import { selectStatus }      from '../../../reducers/timelines';
 
 const mapStateToProps = function (state, props) {
@@ -10,7 +11,7 @@ const mapStateToProps = function (state, props) {
   };
 };
 
-const mapDispatchToProps = function (dispatch) {
+const mapDispatchToProps = function (dispatch, props) {
   return {
     onReply: function (status) {
       dispatch(replyCompose(status));
@@ -22,6 +23,10 @@ const mapDispatchToProps = function (dispatch) {
 
     onReblog: function (status) {
       dispatch(reblog(status));
+    },
+
+    onScrollToBottom: function () {
+      dispatch(expandTimeline(props.type));
     }
   };
 };
