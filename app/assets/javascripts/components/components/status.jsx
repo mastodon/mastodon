@@ -6,9 +6,13 @@ import IconButton         from './icon_button';
 import DisplayName        from './display_name';
 import MediaGallery       from './media_gallery';
 import VideoPlayer        from './video_player';
-import { hashHistory }    from 'react-router';
+import StatusContent      from './status_content';
 
 const Status = React.createClass({
+
+  contextTypes: {
+    router: React.PropTypes.object
+  },
 
   propTypes: {
     status: ImmutablePropTypes.map.isRequired,
@@ -34,20 +38,19 @@ const Status = React.createClass({
 
   handleClick () {
     const { status } = this.props;
-    hashHistory.push(`/statuses/${status.getIn(['reblog', 'id'], status.get('id'))}`);
+    this.context.router.push(`/statuses/${status.getIn(['reblog', 'id'], status.get('id'))}`);
   },
 
   handleAccountClick (id, e) {
     if (e.button === 0) {
       e.preventDefault();
-      hashHistory.push(`/accounts/${id}`);
+      this.context.router.push(`/accounts/${id}`);
     }
 
     e.stopPropagation();
   },
 
   render () {
-    var content = { __html: this.props.status.get('content') };
     var media   = '';
 
     var { status, ...other } = this.props;
@@ -89,7 +92,7 @@ const Status = React.createClass({
           </a>
         </div>
 
-        <div className='status__content' dangerouslySetInnerHTML={content} />
+        <StatusContent status={status} />
 
         {media}
 
