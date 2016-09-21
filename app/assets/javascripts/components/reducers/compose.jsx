@@ -23,6 +23,10 @@ const initialState = Immutable.Map({
   media_attachments: Immutable.List([])
 });
 
+function statusToTextMentions(status) {
+  return Immutable.OrderedSet([`@${status.getIn(['account', 'acct'])} `]).union(status.get('mentions').map(mention => `@${mention.get('acct')} `)).join('');
+};
+
 export default function compose(state = initialState, action) {
   switch(action.type) {
     case COMPOSE_CHANGE:
@@ -30,7 +34,7 @@ export default function compose(state = initialState, action) {
     case COMPOSE_REPLY:
       return state.withMutations(map => {
         map.set('in_reply_to', action.status.get('id'));
-        map.set('text', `@${action.status.getIn(['account', 'acct'])} `);
+        map.set('text', statusToTextMentions(action.status));
       });
     case COMPOSE_REPLY_CANCEL:
       return state.withMutations(map => {

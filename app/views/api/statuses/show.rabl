@@ -20,6 +20,12 @@ end
 child :media_attachments, object_root: false do
   attributes :id, :remote_url, :type
 
-  node(:url) { |media| full_asset_url(media.file.url) }
+  node(:url)         { |media| full_asset_url(media.file.url) }
   node(:preview_url) { |media| full_asset_url(media.file.url(:small)) }
+end
+
+child :mentions, object_root: false do
+  node(:url)  { |mention| TagManager.instance.url_for(mention.account) }
+  node(:acct) { |mention| mention.account.acct }
+  node(:id)   { |mention| mention.account_id }
 end

@@ -32,6 +32,12 @@ const ComposeForm = React.createClass({
     this.props.onSubmit();
   },
 
+  componentDidUpdate (prevProps) {
+    if (prevProps.text !== this.props.text || prevProps.in_reply_to !== this.props.in_reply_to) {
+      this.refs.textarea.focus();
+    }
+  },
+
   render () {
     let replyArea = '';
 
@@ -43,7 +49,7 @@ const ComposeForm = React.createClass({
       <div style={{ padding: '10px' }}>
         {replyArea}
 
-        <textarea disabled={this.props.is_submitting} placeholder='What is on your mind?' value={this.props.text} onKeyUp={this.handleKeyUp} onChange={this.handleChange} className='compose-form__textarea' style={{ display: 'block', boxSizing: 'border-box', width: '100%', height: '100px', resize: 'none', border: 'none', color: '#282c37', padding: '10px', fontFamily: 'Roboto', fontSize: '14px', margin: '0' }} />
+        <textarea ref='textarea' disabled={this.props.is_submitting} placeholder='What is on your mind?' value={this.props.text} onKeyUp={this.handleKeyUp} onChange={this.handleChange} className='compose-form__textarea' style={{ display: 'block', boxSizing: 'border-box', width: '100%', height: '100px', resize: 'none', border: 'none', color: '#282c37', padding: '10px', fontFamily: 'Roboto', fontSize: '14px', margin: '0' }} />
 
         <div style={{ marginTop: '10px', overflow: 'hidden' }}>
           <div style={{ float: 'right' }}><Button text='Publish' onClick={this.handleSubmit} disabled={this.props.is_submitting} /></div>
