@@ -7,7 +7,7 @@ Mastodon
 [travis]: https://travis-ci.org/Gargron/mastodon
 [code_climate]: https://codeclimate.com/github/Gargron/mastodon
 
-Mastodon is a federated microblogging engine. An alternative implementation of the GNU Social project. Based on ActivityStreams, Webfinger, PubsubHubbub and Salmon.
+Mastodon is a federated microblogging engine. An alternative implementation of the GNU social project. Based on ActivityStreams, Webfinger, PubsubHubbub and Salmon.
 
 Focus of the project on a clean REST API and a good user interface. Ruby on Rails is used for the back-end, while React.js and Redux are used for the dynamic front-end. A static front-end for public resources (profiles and statuses) is also provided.
 
@@ -22,19 +22,22 @@ If you would like, you can [support the development of this project on Patreon][
 - [API overview](https://github.com/Gargron/mastodon/wiki/API)
 - [How to use the API via cURL/oAuth](https://github.com/Gargron/mastodon/wiki/Testing-with-cURL)
 
-## Status
+## Features
 
-- GNU Social users can follow Mastodon users
-- Mastodon users can follow GNU Social users
-- Retweets, favourites, mentions, replies work in both directions
-- Public pages for profiles and single statuses
-- Sign up, login, forgotten passwords and changing password
-- Mentions and URLs converted to links in statuses
-- REST API, including home and mention timelines
-- OAuth2 provider system for the API
-- Upload header image for profile page
-- Deleting statuses, deletion propagation
-- Real-time timelines via Websockets
+- **Fully interoperable with GNU social and any OStatus platform**  
+  Whatever implements Atom feeds, ActivityStreams, Salmon, PubSubHubbub and Webfinger is part of the network
+- **Real-time timeline updates**  
+  See the updates of people you're following appear in real-time in the UI via WebSockets
+- **Federated thread resolving**  
+  If someone you follow replies to a user unknown to the server, the server fetches the full thread so you can view it without leaving the UI
+- **Media attachments like images and WebM**  
+  Upload and view images and WebM videos attached to the updates
+- **OAuth2 and a straightforward REST API**  
+  Mastodon acts as an OAuth2 provider so 3rd party apps can use the API, which is RESTful and simple
+- **Background processing for long-running tasks**  
+  Mastodon tries to be as fast and responsive as possible, so all long-running tasks that can be delegated to background processing, are
+- **Deployable via Docker**  
+  You don't need to mess with dependencies and configuration if you want to try Mastodon, if you have Docker and Docker Compose the deployment is extremely easy
 
 ## Configuration
 
