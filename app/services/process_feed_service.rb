@@ -80,6 +80,10 @@ class ProcessFeedService < BaseService
     entry.xpath('./xmlns:link[@rel="enclosure"]').each do |enclosure_link|
       next if enclosure_link.attribute('href').nil?
 
+      media = MediaAttachment.where(status: status, remote_url: enclosure_link.attribute('href').value).first
+
+      next unless media.nil?
+      
       media = MediaAttachment.new(account: status.account, status: status, remote_url: enclosure_link.attribute('href').value)
       media.file_remote_url = enclosure_link.attribute('href').value
       media.save
