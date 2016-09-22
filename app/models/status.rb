@@ -89,4 +89,8 @@ class Status < ApplicationRecord
   def self.reblogs_map(status_ids, account_id)
     self.where(reblog_of_id: status_ids).where(account_id: account_id).map { |s| [s.reblog_of_id, true] }.to_h
   end
+
+  before_validation do
+    self.text.strip!
+  end
 end

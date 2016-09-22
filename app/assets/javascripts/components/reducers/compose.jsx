@@ -27,6 +27,32 @@ function statusToTextMentions(status) {
   return Immutable.OrderedSet([`@${status.getIn(['account', 'acct'])} `]).union(status.get('mentions').map(mention => `@${mention.get('acct')} `)).join('');
 };
 
+function clearAll(state) {
+  return state.withMutations(map => {
+    map.set('text', '');
+    map.set('is_submitting', false);
+    map.set('in_reply_to', null);
+    map.update('media_attachments', list => list.clear());
+  });
+};
+
+function appendMedia(state, media) {
+  return state.withMutations(map => {
+    map.update('media_attachments', list => list.push(media));
+    map.set('is_uploading', false);
+    map.update('text', oldText => `${oldText} ${media.get('text_url')}`.trim());
+  });
+};
+
+function removeMedia(state, mediaId) {
+  const media = state.get('media_attachments').find(item => item.get('id') === mediaId);
+
+  return state.withMutations(map => {
+    map.update('media_attachments', list => list.filterNot(item => item.get('id') === mediaId));
+    map.update('text', text => text.replace(media.get('text_url'), '').trim());
+  });
+};
+
 export default function compose(state = initialState, action) {
   switch(action.type) {
     case COMPOSE_CHANGE:
@@ -44,25 +70,17 @@ export default function compose(state = initialState, action) {
     case COMPOSE_SUBMIT_REQUEST:
       return state.set('is_submitting', true);
     case COMPOSE_SUBMIT_SUCCESS:
-      return state.withMutations(map => {
-        map.set('text', '');
-        map.set('is_submitting', false);
-        map.set('in_reply_to', null);
-        map.update('media_attachments', list => list.clear());
-      });
+      return clearAll(state);
     case COMPOSE_SUBMIT_FAIL:
       return state.set('is_submitting', false);
     case COMPOSE_UPLOAD_REQUEST:
       return state.set('is_uploading', true);
     case COMPOSE_UPLOAD_SUCCESS:
-      return state.withMutations(map => {
-        map.update('media_attachments', list => list.push(Immutable.fromJS(action.media)));
-        map.set('is_uploading', false);
-      });
+      return appendMedia(state, Immutable.fromJS(action.media));
     case COMPOSE_UPLOAD_FAIL:
       return state.set('is_uploading', false);
     case COMPOSE_UPLOAD_UNDO:
-      return state.update('media_attachments', list => list.filterNot(item => item.get('id') === action.media_id));
+      return removeMedia(state, action.media_id);
     case COMPOSE_UPLOAD_PROGRESS:
       return state.set('progress', Math.round((action.loaded / action.total) * 100));
     case TIMELINE_DELETE:

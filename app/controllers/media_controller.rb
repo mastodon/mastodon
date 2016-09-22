@@ -2,7 +2,7 @@ class MediaController < ApplicationController
   before_action :set_media_attachment
 
   def show
-    redirect TagManager.instance.url_for(@media_attachment.status)
+    redirect_to TagManager.instance.url_for(@media_attachment.status)
   end
 
   private
