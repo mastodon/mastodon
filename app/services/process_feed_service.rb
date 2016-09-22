@@ -69,9 +69,12 @@ class ProcessFeedService < BaseService
         end
       else
         # What to do about remote user?
-        # Are we supposed to do a search in the database by URL?
-        # We could technically open the URL, look for LRDD tags, get webfinger that way,
-        # finally acquire the acct:username@domain form, and then check DB
+        # This is kinda dodgy because URLs could change, we don't index them
+        mentioned_account = Account.find_by(url: href.to_s)
+
+        unless mentioned_account.nil?
+          mentioned_account.mentions.where(status: status).first_or_create(status: status)
+        end
       end
     end
   end

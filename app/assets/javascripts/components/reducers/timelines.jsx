@@ -28,7 +28,8 @@ const initialState = Immutable.Map({
   accounts_timelines: Immutable.Map(),
   me: null,
   ancestors: Immutable.Map(),
-  descendants: Immutable.Map()
+  descendants: Immutable.Map(),
+  relationships: Immutable.Map()
 });
 
 export function selectStatus(state, id) {
@@ -142,6 +143,11 @@ function normalizeAccount(state, account) {
   return state.setIn(['accounts', account.get('id')], account);
 };
 
+function setSelf(state, account) {
+  state = normalizeAccount(state, account);
+  return state.set('me', account.get('id'));
+};
+
 function normalizeContext(state, status, ancestors, descendants) {
   state = normalizeStatus(state, status);
 
@@ -175,10 +181,7 @@ export default function timelines(state = initialState, action) {
     case FAVOURITE_SUCCESS:
       return normalizeStatus(state, Immutable.fromJS(action.response));
     case ACCOUNT_SET_SELF:
-      return state.withMutations(map => {
-        map.setIn(['accounts', action.account.id], Immutable.fromJS(action.account));
-        map.set('me', action.account.id);
-      });
+      return setSelf(state, Immutable.fromJS(action.account));
     case ACCOUNT_FETCH_SUCCESS:
     case FOLLOW_SUBMIT_SUCCESS:
     case ACCOUNT_FOLLOW_SUCCESS:
