@@ -10,7 +10,8 @@ import {
   ACCOUNT_FETCH_FAIL,
   ACCOUNT_FOLLOW_FAIL,
   ACCOUNT_UNFOLLOW_FAIL,
-  ACCOUNT_TIMELINE_FETCH_FAIL
+  ACCOUNT_TIMELINE_FETCH_FAIL,
+  ACCOUNT_TIMELINE_EXPAND_FAIL
 }                                                   from '../actions/accounts';
 import { STATUS_FETCH_FAIL }                        from '../actions/statuses';
 import Immutable                                    from 'immutable';
@@ -48,6 +49,7 @@ export default function notifications(state = initialState, action) {
     case ACCOUNT_FOLLOW_FAIL:
     case ACCOUNT_UNFOLLOW_FAIL:
     case ACCOUNT_TIMELINE_FETCH_FAIL:
+    case ACCOUNT_TIMELINE_EXPAND_FAIL:
     case STATUS_FETCH_FAIL:
       return notificationFromError(state, action.error);
     case NOTIFICATION_DISMISS:

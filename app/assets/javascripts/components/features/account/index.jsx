@@ -1,13 +1,19 @@
-import { connect }                                                            from 'react-redux';
-import PureRenderMixin                                                        from 'react-addons-pure-render-mixin';
-import ImmutablePropTypes                                                     from 'react-immutable-proptypes';
-import { fetchAccount, followAccount, unfollowAccount, fetchAccountTimeline } from '../../actions/accounts';
-import { replyCompose }                                                       from '../../actions/compose';
-import { favourite, reblog }                                                  from '../../actions/interactions';
-import Header                                                                 from './components/header';
-import { selectStatus }                                                       from '../../reducers/timelines';
-import StatusList                                                             from '../../components/status_list';
-import Immutable                                                              from 'immutable';
+import { connect }           from 'react-redux';
+import PureRenderMixin       from 'react-addons-pure-render-mixin';
+import ImmutablePropTypes    from 'react-immutable-proptypes';
+import {
+  fetchAccount,
+  followAccount,
+  unfollowAccount,
+  fetchAccountTimeline,
+  expandAccountTimeline
+}                            from '../../actions/accounts';
+import { replyCompose }      from '../../actions/compose';
+import { favourite, reblog } from '../../actions/interactions';
+import Header                from './components/header';
+import { selectStatus }      from '../../reducers/timelines';
+import StatusList            from '../../components/status_list';
+import Immutable             from 'immutable';
 
 function selectAccount(state, id) {
   return state.getIn(['timelines', 'accounts', id], null);
@@ -65,6 +71,10 @@ const Account = React.createClass({
     this.props.dispatch(favourite(status));
   },
 
+  handleScrollToBottom () {
+    this.props.dispatch(expandAccountTimeline(this.props.account.get('id')));
+  },
+
   render () {
     const { account, statuses } = this.props;
 
@@ -75,7 +85,7 @@ const Account = React.createClass({
     return (
       <div style={{ display: 'flex', flexDirection: 'column', 'flex': '0 0 auto', height: '100%' }}>
         <Header account={account} onFollow={this.handleFollow} onUnfollow={this.handleUnfollow} />
-        <StatusList statuses={statuses} onReply={this.handleReply} onReblog={this.handleReblog} onFavourite={this.handleFavourite} />
+        <StatusList statuses={statuses} onScrollToBottom={this.handleScrollToBottom} onReply={this.handleReply} onReblog={this.handleReblog} onFavourite={this.handleFavourite} />
       </div>
     );
   }

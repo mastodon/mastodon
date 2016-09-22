@@ -13,7 +13,8 @@ import {
   ACCOUNT_FETCH_SUCCESS,
   ACCOUNT_FOLLOW_SUCCESS,
   ACCOUNT_UNFOLLOW_SUCCESS,
-  ACCOUNT_TIMELINE_FETCH_SUCCESS
+  ACCOUNT_TIMELINE_FETCH_SUCCESS,
+  ACCOUNT_TIMELINE_EXPAND_SUCCESS
 }                                from '../actions/accounts';
 import { STATUS_FETCH_SUCCESS }  from '../actions/statuses';
 import { FOLLOW_SUBMIT_SUCCESS } from '../actions/follow';
@@ -110,6 +111,17 @@ function normalizeAccountTimeline(state, accountId, statuses) {
   return state;
 };
 
+function appendNormalizedAccountTimeline(state, accountId, statuses) {
+  let moreIds = Immutable.List();
+
+  statuses.forEach((status, i) => {
+    state   = normalizeStatus(state, status);
+    moreIds = moreIds.set(i, status.get('id'));
+  });
+
+  return state.updateIn(['accounts_timelines', accountId], Immutable.List(), list => list.push(...moreIds));
+};
+
 function updateTimeline(state, timeline, status) {
   state = normalizeStatus(state, status);
   state = state.update(timeline, list => list.unshift(status.get('id')));
@@ -176,6 +188,8 @@ export default function timelines(state = initialState, action) {
       return normalizeContext(state, Immutable.fromJS(action.status), Immutable.fromJS(action.context.ancestors), Immutable.fromJS(action.context.descendants));
     case ACCOUNT_TIMELINE_FETCH_SUCCESS:
       return normalizeAccountTimeline(state, action.id, Immutable.fromJS(action.statuses));
+    case ACCOUNT_TIMELINE_EXPAND_SUCCESS:
+      return appendNormalizedAccountTimeline(state, action.id, Immutable.fromJS(action.statuses));
     default:
       return state;
   }

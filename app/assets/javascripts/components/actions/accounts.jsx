@@ -1,4 +1,5 @@
-import api from '../api'
+import api   from '../api'
+import axios from 'axios';
 
 export const ACCOUNT_SET_SELF = 'ACCOUNT_SET_SELF';
 
@@ -18,6 +19,10 @@ export const ACCOUNT_TIMELINE_FETCH_REQUEST = 'ACCOUNT_TIMELINE_FETCH_REQUEST';
 export const ACCOUNT_TIMELINE_FETCH_SUCCESS = 'ACCOUNT_TIMELINE_FETCH_SUCCESS';
 export const ACCOUNT_TIMELINE_FETCH_FAIL    = 'ACCOUNT_TIMELINE_FETCH_FAIL';
 
+export const ACCOUNT_TIMELINE_EXPAND_REQUEST = 'ACCOUNT_TIMELINE_EXPAND_REQUEST';
+export const ACCOUNT_TIMELINE_EXPAND_SUCCESS = 'ACCOUNT_TIMELINE_EXPAND_SUCCESS';
+export const ACCOUNT_TIMELINE_EXPAND_FAIL    = 'ACCOUNT_TIMELINE_EXPAND_FAIL';
+
 export function setAccountSelf(account) {
   return {
     type: ACCOUNT_SET_SELF,
@@ -27,10 +32,12 @@ export function setAccountSelf(account) {
 
 export function fetchAccount(id) {
   return (dispatch, getState) => {
+    const boundApi = api(getState);
+
     dispatch(fetchAccountRequest(id));
 
-    api(getState).get(`/api/accounts/${id}`).then(response => {
-      dispatch(fetchAccountSuccess(response.data));
+    axios.all([boundApi.get(`/api/accounts/${id}`), boundApi.get(`/api/accounts/relationships?id=${id}`)]).then(values => {
+      dispatch(fetchAccountSuccess(values[0].data, values[1].data[0]));
     }).catch(error => {
       dispatch(fetchAccountFail(id, error));
     });
@@ -49,6 +56,20 @@ export function fetchAccountTimeline(id) {
   };
 };
 
+export function expandAccountTimeline(id) {
+  return (dispatch, getState) => {
+    const lastId = getState().getIn(['timelines', 'accounts_timelines', id]).last();
+
+    dispatch(expandAccountTimelineRequest(id));
+
+    api(getState).get(`/api/accounts/${id}/statuses?max_id=${lastId}`).then(response => {
+      dispatch(expandAccountTimelineSuccess(id, response.data));
+    }).catch(error => {
+      dispatch(expandAccountTimelineFail(id, error));
+    });
+  };
+};
+
 export function fetchAccountRequest(id) {
   return {
     type: ACCOUNT_FETCH_REQUEST,
@@ -56,10 +77,11 @@ export function fetchAccountRequest(id) {
   };
 };
 
-export function fetchAccountSuccess(account) {
+export function fetchAccountSuccess(account, relationship) {
   return {
     type: ACCOUNT_FETCH_SUCCESS,
-    account: account
+    account: account,
+    relationship: relationship
   };
 };
 
@@ -155,6 +177,29 @@ export function fetchAccountTimelineSuccess(id, statuses) {
 export function fetchAccountTimelineFail(id, error) {
   return {
     type: ACCOUNT_TIMELINE_FETCH_FAIL,
+    id: id,
+    error: error
+  };
+};
+
+export function expandAccountTimelineRequest(id) {
+  return {
+    type: ACCOUNT_TIMELINE_EXPAND_REQUEST,
+    id: id
+  };
+};
+
+export function expandAccountTimelineSuccess(id, statuses) {
+  return {
+    type: ACCOUNT_TIMELINE_EXPAND_SUCCESS,
+    id: id,
+    statuses: statuses
+  };
+};
+
+export function expandAccountTimelineFail(id, error) {
+  return {
+    type: ACCOUNT_TIMELINE_EXPAND_FAIL,
     id: id,
     error: error
   };
