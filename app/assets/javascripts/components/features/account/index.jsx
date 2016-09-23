@@ -11,13 +11,13 @@ import {
 import { replyCompose }      from '../../actions/compose';
 import { favourite, reblog } from '../../actions/interactions';
 import Header                from './components/header';
-import { selectStatus }      from '../../reducers/timelines';
+import {
+  selectStatus,
+  selectAccount
+}                            from '../../reducers/timelines';
 import StatusList            from '../../components/status_list';
 import Immutable             from 'immutable';
-
-function selectAccount(state, id) {
-  return state.getIn(['timelines', 'accounts', id], null);
-};
+import ActionBar             from './components/action_bar';
 
 function selectStatuses(state, accountId) {
   return state.getIn(['timelines', 'accounts_timelines', accountId], Immutable.List()).map(id => selectStatus(state, id)).filterNot(status => status === null);
@@ -25,7 +25,8 @@ function selectStatuses(state, accountId) {
 
 const mapStateToProps = (state, props) => ({
   account: selectAccount(state, Number(props.params.accountId)),
-  statuses: selectStatuses(state, Number(props.params.accountId))
+  statuses: selectStatuses(state, Number(props.params.accountId)),
+  me: state.getIn(['timelines', 'me'])
 });
 
 const Account = React.createClass({
@@ -76,7 +77,7 @@ const Account = React.createClass({
   },
 
   render () {
-    const { account, statuses } = this.props;
+    const { account, statuses, me } = this.props;
 
     if (account === null) {
       return <div>Loading {this.props.params.accountId}...</div>;
@@ -84,7 +85,8 @@ const Account = React.createClass({
 
     return (
       <div style={{ display: 'flex', flexDirection: 'column', 'flex': '0 0 auto', height: '100%' }}>
-        <Header account={account} onFollow={this.handleFollow} onUnfollow={this.handleUnfollow} />
+        <Header account={account} />
+        <ActionBar account={account} me={me} onFollow={this.handleFollow} onUnfollow={this.handleUnfollow} />
         <StatusList statuses={statuses} onScrollToBottom={this.handleScrollToBottom} onReply={this.handleReply} onReblog={this.handleReblog} onFavourite={this.handleFavourite} />
       </div>
     );

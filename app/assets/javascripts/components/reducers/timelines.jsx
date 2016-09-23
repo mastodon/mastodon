@@ -39,13 +39,23 @@ export function selectStatus(state, id) {
     return null;
   }
 
-  status = status.set('account', state.getIn(['timelines', 'accounts', status.get('account')]));
+  status = status.set('account', selectAccount(state, status.get('account')));
 
   if (status.get('reblog') !== null) {
     status = status.set('reblog', selectStatus(state, status.get('reblog')));
   }
 
   return status;
+};
+
+export function selectAccount(state, id) {
+  let account = state.getIn(['timelines', 'accounts', id], null);
+
+  if (account === null) {
+    return null;
+  }
+
+  return account.set('relationship', state.getIn(['timelines', 'relationships', id]));
 };
 
 function normalizeStatus(state, status) {
@@ -139,8 +149,16 @@ function deleteStatus(state, id) {
   return state.deleteIn(['statuses', id]);
 };
 
-function normalizeAccount(state, account) {
+function normalizeAccount(state, account, relationship) {
+  if (relationship) {
+    state = normalizeRelationship(state, relationship);
+  }
+  
   return state.setIn(['accounts', account.get('id')], account);
+};
+
+function normalizeRelationship(state, relationship) {
+  return state.setIn(['relationships', relationship.get('id')], relationship);
 };
 
 function setSelf(state, account) {
@@ -184,9 +202,10 @@ export default function timelines(state = initialState, action) {
       return setSelf(state, Immutable.fromJS(action.account));
     case ACCOUNT_FETCH_SUCCESS:
     case FOLLOW_SUBMIT_SUCCESS:
+      return normalizeAccount(state, Immutable.fromJS(action.account), Immutable.fromJS(action.relationship));
     case ACCOUNT_FOLLOW_SUCCESS:
     case ACCOUNT_UNFOLLOW_SUCCESS:
-      return normalizeAccount(state, Immutable.fromJS(action.account));
+      return normalizeRelationship(state, Immutable.fromJS(action.relationship));
     case STATUS_FETCH_SUCCESS:
       return normalizeContext(state, Immutable.fromJS(action.status), Immutable.fromJS(action.context.ancestors), Immutable.fromJS(action.context.descendants));
     case ACCOUNT_TIMELINE_FETCH_SUCCESS:

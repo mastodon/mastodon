@@ -1,13 +1,10 @@
 import PureRenderMixin    from 'react-addons-pure-render-mixin';
 import ImmutablePropTypes from 'react-immutable-proptypes';
-import Button             from '../../../components/button';
 
 const Header = React.createClass({
 
   propTypes: {
-    account: ImmutablePropTypes.map.isRequired,
-    onFollow: React.PropTypes.func.isRequired,
-    onUnfollow: React.PropTypes.func.isRequired
+    account: ImmutablePropTypes.map.isRequired
   },
 
   mixins: [PureRenderMixin],

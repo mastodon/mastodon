@@ -124,10 +124,10 @@ export function followAccountRequest(id) {
   };
 };
 
-export function followAccountSuccess(account) {
+export function followAccountSuccess(relationship) {
   return {
     type: ACCOUNT_FOLLOW_SUCCESS,
-    account: account
+    relationship: relationship
   };
 };
 
@@ -145,10 +145,10 @@ export function unfollowAccountRequest(id) {
   };
 };
 
-export function unfollowAccountSuccess(account) {
+export function unfollowAccountSuccess(relationship) {
   return {
     type: ACCOUNT_UNFOLLOW_SUCCESS,
-    account: account
+    relationship: relationship
   };
 };
 

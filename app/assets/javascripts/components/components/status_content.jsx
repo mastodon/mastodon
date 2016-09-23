@@ -14,20 +14,33 @@ const StatusContent = React.createClass({
   mixins: [PureRenderMixin],
 
   componentDidMount () {
-    const node = ReactDOM.findDOMNode(this);
+    const node  = ReactDOM.findDOMNode(this);
+    const links = node.querySelectorAll('a');
 
-    this.props.status.get('mentions').forEach(mention => {
-      const links = node.querySelector(`a[href="${mention.get('url')}"]`);
-      links.addEventListener('click', this.onLinkClick.bind(this, mention));
-    });
+    for (var i = 0; i < links.length; ++i) {
+      let link    = links[i];
+      let mention = this.props.status.get('mentions').find(item => link.href === item.get('url'));
+
+      if (mention) {
+        link.addEventListener('click', this.onMentionClick.bind(this, mention));
+      } else {
+        link.setAttribute('target', '_blank');
+        link.setAttribute('rel', 'noopener');
+        link.addEventListener('click', this.onNormalClick);
+      }
+    }
   },
 
-  onLinkClick (mention, e) {
+  onMentionClick (mention, e) {
     if (e.button === 0) {
       e.preventDefault();
       this.context.router.push(`/accounts/${mention.get('id')}`);
     }
     
+    e.stopPropagation();
+  },
+
+  onNormalClick (e) {
     e.stopPropagation();
   },
 

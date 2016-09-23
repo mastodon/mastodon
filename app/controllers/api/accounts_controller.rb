@@ -1,6 +1,6 @@
 class Api::AccountsController < ApiController
-  before_action :set_account
   before_action :doorkeeper_authorize!
+  before_action :set_account
   respond_to    :json
 
   def show
@@ -20,12 +20,14 @@ class Api::AccountsController < ApiController
 
   def follow
     @follow = FollowService.new.(current_user.account, @account.acct)
-    render action: :show
+    set_relationship
+    render action: :relationship
   end
 
   def unfollow
     @unfollow = UnfollowService.new.(current_user.account, @account)
-    render action: :show
+    set_relationship
+    render action: :relationship
   end
 
   def relationships
@@ -40,5 +42,11 @@ class Api::AccountsController < ApiController
 
   def set_account
     @account = Account.find(params[:id])
+  end
+
+  def set_relationship
+    @following   = Account.following_map([@account.id], current_user.account_id)
+    @followed_by = Account.followed_by_map([@account.id], current_user.account_id)
+    @blocking    = {}
   end
 end
