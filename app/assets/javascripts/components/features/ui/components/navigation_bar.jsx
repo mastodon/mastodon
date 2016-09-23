@@ -19,7 +19,7 @@ const NavigationBar = React.createClass({
 
         <div style={{ flex: '1 1 auto', marginLeft: '8px' }}>
           <strong style={{ fontWeight: '500', display: 'block' }}>{this.props.account.get('acct')}</strong>
-          <Link to='/settings' style={{ color: '#9baec8', textDecoration: 'none' }}>Settings <i className='fa fa fa-cog' /></Link>
+          <a href='/settings' style={{ color: '#9baec8', textDecoration: 'none' }}>Settings <i className='fa fa fa-cog' /></a>
         </div>
       </div>
     );

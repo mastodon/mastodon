@@ -29,14 +29,13 @@ const ActionBar = React.createClass({
       }
 
       if (account.getIn(['relationship', 'followed_by'])) {
-        followBack = 'Follows you';
+        followBack = 'Follows you!';
       }
     }
 
     return (
       <div style={{ borderTop: '1px solid #363c4b', borderBottom: '1px solid #363c4b', padding: '10px', lineHeight: '36px' }}>
-        {actionButton}
-        {followBack}
+        {actionButton} {followBack}
       </div>
     );
   },
