@@ -61,7 +61,7 @@ const Column = React.createClass({
       header = <ColumnHeader icon={this.props.icon} type={this.props.heading} onClick={this.handleHeaderClick} />;
     }
 
-    const style = { width: '350px', flex: '0 0 auto', background: '#282c37', margin: '10px', marginRight: '0', display: 'flex', flexDirection: 'column' };
+    const style = { width: '350px', flex: '0 0 auto', background: '#282c37', margin: '10px', marginRight: '0', marginBottom: '0', display: 'flex', flexDirection: 'column' };
 
     return (
       <div style={style} onWheel={this.handleWheel} onScroll={this.handleScroll}>

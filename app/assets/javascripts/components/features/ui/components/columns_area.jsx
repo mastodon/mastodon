@@ -6,7 +6,7 @@ const ColumnsArea = React.createClass({
 
   render () {
     return (
-      <div style={{ display: 'flex', flexDirection: 'row', flex: '1', marginRight: '10px' }}>
+      <div style={{ display: 'flex', flexDirection: 'row', flex: '1', marginRight: '10px', marginBottom: '10px', overflowX: 'auto' }}>
         {this.props.children}
       </div>
     );
