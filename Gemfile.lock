@@ -110,21 +110,17 @@ GEM
       addressable (~> 2.4)
       http (~> 1.0)
       nokogiri (~> 1.6)
-    haml (4.0.7)
+    hamlit (2.7.2)
+      temple (~> 0.7.6)
+      thor
       tilt
-    haml-rails (0.9.0)
+    hamlit-rails (0.1.0)
       actionpack (>= 4.0.1)
       activesupport (>= 4.0.1)
-      haml (>= 4.0.6, < 5.0)
-      html2haml (>= 1.0.1)
+      hamlit (>= 1.2.0)
       railties (>= 4.0.1)
     hashdiff (0.3.0)
     hiredis (0.6.1)
-    html2haml (2.0.0)
-      erubis (~> 2.7.0)
-      haml (~> 4.0.0)
-      nokogiri (~> 1.6.0)
-      ruby_parser (~> 3.5)
     htmlentities (4.3.4)
     http (1.0.4)
       addressable (~> 2.3)
@@ -282,8 +278,6 @@ GEM
       ruby-progressbar (~> 1.7)
       unicode-display_width (~> 1.0, >= 1.0.1)
     ruby-progressbar (1.8.1)
-    ruby_parser (3.8.2)
-      sexp_processor (~> 4.1)
     safe_yaml (1.0.4)
     sass (3.4.22)
     sass-rails (5.0.6)
@@ -295,7 +289,6 @@ GEM
     sdoc (0.4.1)
       json (~> 1.7, >= 1.7.7)
       rdoc (~> 4.0)
-    sexp_processor (4.7.0)
     sidekiq (4.2.1)
       concurrent-ruby (~> 1.0)
       connection_pool (~> 2.2, >= 2.2.0)
@@ -317,6 +310,7 @@ GEM
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
+    temple (0.7.7)
     therubyracer (0.12.2)
       libv8 (~> 3.16.14.0)
       ref
@@ -362,7 +356,7 @@ DEPENDENCIES
   font-awesome-rails
   fuubar
   goldfinger
-  haml-rails
+  hamlit-rails
   hiredis
   htmlentities
   http

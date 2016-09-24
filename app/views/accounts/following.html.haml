@@ -6,10 +6,9 @@
 = render partial: 'header'
 
 .accounts-grid
-  - @following.each do |f|
-    = render partial: 'grid_card', locals: { account: f }
-
   - if @following.empty?
     = render partial: 'nothing_here'
+  - else
+    = render partial: 'grid_card', collection: @following, as: :account
 
 = will_paginate @following, pagination_options
