@@ -4,8 +4,7 @@
 - centered          = include_threads && !is_predecessor && !is_successor
 
 - if status.reply? && include_threads
-  - @ancestors.each do |status|
-    = render partial: 'status', locals: { status: status, is_predecessor: true }
+  = render partial: 'status', collection: @ancestors, as: :status, locals: { is_predecessor: true }
 
 .entry{ class: entry_classes(status, is_predecessor, is_successor, include_threads) }
   - if status.reblog?
@@ -43,5 +42,4 @@
           %li.transparent-background= link_to '', media.file.url, style: "background-image: url(#{media.file.url(:small)})", target: '_blank'
 
 - if include_threads
-  - @descendants.each do |status|
-    = render partial: 'status', locals: { status: status, is_successor: true }
+  = render partial: 'status', collection: @descendants, as: :status, locals: { is_successor: true }
