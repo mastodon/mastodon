@@ -25,7 +25,7 @@ module Streamable
     end
 
     after_create do
-      self.account.stream_entries.create!(activity: self)
+      self.account.stream_entries.create!(activity: self) if self.account.local?
     end
   end
 end
