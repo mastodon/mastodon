@@ -14,4 +14,3 @@
 //= require jquery_ujs
 //= require components
 //= require cable
-//= require mastodon-logo

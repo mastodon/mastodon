@@ -1,1 +1,4 @@
+- content_for :header_tags do
+  = javascript_include_tag 'application'
+
 = react_component 'Mastodon', default_props, class: 'app-holder', prerender: false
