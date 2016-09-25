@@ -1,12 +1,14 @@
-import { connect }              from 'react-redux';
-import PureRenderMixin          from 'react-addons-pure-render-mixin';
-import ImmutablePropTypes       from 'react-immutable-proptypes';
-import { fetchStatus }          from '../../actions/statuses';
-import Immutable                from 'immutable';
-import EmbeddedStatus           from '../../components/status';
-import { favourite, reblog }    from '../../actions/interactions';
-import { replyCompose }         from '../../actions/compose';
-import { selectStatus }         from '../../reducers/timelines';
+import { connect }           from 'react-redux';
+import PureRenderMixin       from 'react-addons-pure-render-mixin';
+import ImmutablePropTypes    from 'react-immutable-proptypes';
+import { fetchStatus }       from '../../actions/statuses';
+import Immutable             from 'immutable';
+import EmbeddedStatus        from '../../components/status';
+import DetailedStatus        from './components/detailed_status';
+import ActionBar             from './components/action_bar';
+import { favourite, reblog } from '../../actions/interactions';
+import { replyCompose }      from '../../actions/compose';
+import { selectStatus }      from '../../reducers/timelines';
 
 function selectStatuses(state, ids) {
   return ids.map(id => selectStatus(state, id)).filterNot(status => status === null);
@@ -69,7 +71,8 @@ const Status = React.createClass({
       <div style={{ overflowY: 'scroll', flex: '1 1 auto' }} className='scrollable'>
         <div>{this.renderChildren(ancestors)}</div>
 
-        <EmbeddedStatus status={status} onReply={this.handleReplyClick} onFavourite={this.handleFavouriteClick} onReblog={this.handleReblogClick} />
+        <DetailedStatus status={status} />
+        <ActionBar status={status} onReply={this.handleReplyClick} onFavourite={this.handleFavouriteClick} onReblog={this.handleReblogClick} />
 
         <div>{this.renderChildren(descendants)}</div>
       </div>

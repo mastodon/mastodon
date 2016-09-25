@@ -80,7 +80,7 @@ const Status = React.createClass({
       <div style={{ padding: '8px 10px', paddingLeft: '68px', position: 'relative', minHeight: '48px', borderBottom: '1px solid #363c4b', cursor: 'pointer' }} onClick={this.handleClick}>
         <div style={{ fontSize: '15px' }}>
           <div style={{ float: 'right', fontSize: '14px' }}>
-            <a href={status.get('url')} className='status__relative-time' style={{ color: '#616b86' }}><RelativeTimestamp timestamp={status.get('created_at')} /></a>
+            <a href={status.get('url')} className='status__relative-time' style={{ color: '#616b86' }} target='_blank' rel='noopener'><RelativeTimestamp timestamp={status.get('created_at')} /></a>
           </div>
 
           <a onClick={this.handleAccountClick.bind(this, status.getIn(['account', 'id']))} href={status.getIn(['account', 'url'])} className='status__display-name' style={{ display: 'block', maxWidth: '100%', paddingRight: '25px', color: '#616b86' }}>
