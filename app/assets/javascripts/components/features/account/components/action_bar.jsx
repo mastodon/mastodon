@@ -16,11 +16,11 @@ const ActionBar = React.createClass({
   render () {
     const { account, me } = this.props;
     
-    let followBack   = '';
+    let infoText     = '';
     let actionButton = '';
 
     if (account.get('id') === me) {
-      actionButton = 'This is you!';
+      infoText = 'This is you!';
     } else {
       if (account.getIn(['relationship', 'following'])) {
         actionButton = <Button text='Unfollow' onClick={this.props.onUnfollow} />
@@ -29,13 +29,13 @@ const ActionBar = React.createClass({
       }
 
       if (account.getIn(['relationship', 'followed_by'])) {
-        followBack = 'Follows you!';
+        infoText = 'Follows you!';
       }
     }
 
     return (
       <div style={{ borderTop: '1px solid #363c4b', borderBottom: '1px solid #363c4b', padding: '10px', lineHeight: '36px' }}>
-        {actionButton} {followBack}
+        {actionButton} <span style={{ color: '#616b86', fontWeight: '500', textTransform: 'uppercase' }}>{infoText}</span>
       </div>
     );
   },

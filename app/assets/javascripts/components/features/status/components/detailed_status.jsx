@@ -30,6 +30,15 @@ const DetailedStatus = React.createClass({
 
   render () {
     const status = this.props.status.get('reblog') ? this.props.status.get('reblog') : this.props.status;
+    let media    = '';
+
+    if (status.get('media_attachments').size > 0) {
+      if (status.getIn(['media_attachments', 0, 'type']) === 'video') {
+        media = <VideoPlayer media={status.getIn(['media_attachments', 0])} width={317} height={178} />;
+      } else {
+        media = <MediaGallery media={status.get('media_attachments')} height={300} />;
+      }
+    }
 
     return (
       <div style={{ background: '#2f3441', padding: '14px 10px' }} className='detailed-status'>
@@ -39,6 +48,8 @@ const DetailedStatus = React.createClass({
         </a>
 
         <StatusContent status={status} />
+
+        {media}
 
         <div style={{ marginTop: '15px', color: '#616b86', fontSize: '14px', lineHeight: '18px' }}>
           <a className='detailed-status__datetime' style={{ color: 'inherit' }} href={status.get('url')} target='_blank' rel='noopener'>{moment(status.get('created_at')).format('HH:mm, DD MMM Y')}</a> · <i className='fa fa-retweet' /><span style={{ fontWeight: '500', fontSize: '12px', marginLeft: '6px', display: 'inline-block' }}>{status.get('reblogs_count')}</span> · <i className='fa fa-star' /><span style={{ fontWeight: '500', fontSize: '12px', marginLeft: '6px', display: 'inline-block' }}>{status.get('favourites_count')}</span>
