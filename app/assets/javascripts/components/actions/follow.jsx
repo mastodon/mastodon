@@ -12,7 +12,7 @@ export function changeFollow(text) {
   };
 };
 
-export function submitFollow() {
+export function submitFollow(router) {
   return function (dispatch, getState) {
     dispatch(submitFollowRequest());
 
@@ -20,6 +20,7 @@ export function submitFollow() {
       uri: getState().getIn(['follow', 'text'])
     }).then(function (response) {
       dispatch(submitFollowSuccess(response.data));
+      router.push(`/accounts/${response.data.id}`);
     }).catch(function (error) {
       dispatch(submitFollowFail(error));
     });

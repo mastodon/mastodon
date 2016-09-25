@@ -22,6 +22,10 @@ const MediaGallery = React.createClass({
       let bottom = 'auto';
       let right  = 'auto';
 
+      if (size === 1) {
+        width = 100;
+      }
+      
       if (size === 4 || (size === 3 && i > 0)) {
         height = 50;
       }

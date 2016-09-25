@@ -15,8 +15,8 @@ const mapDispatchToProps = function (dispatch) {
       dispatch(changeFollow(text));
     },
 
-    onSubmit: function () {
-      dispatch(submitFollow());
+    onSubmit: function (router) {
+      dispatch(submitFollow(router));
     }
   }
 };

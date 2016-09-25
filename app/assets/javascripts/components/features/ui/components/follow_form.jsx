@@ -3,6 +3,10 @@ import PureRenderMixin from 'react-addons-pure-render-mixin';
 
 const FollowForm = React.createClass({
 
+  contextTypes: {
+    router: React.PropTypes.object
+  },
+
   propTypes: {
     text: React.PropTypes.string.isRequired,
     is_submitting: React.PropTypes.bool,
@@ -18,12 +22,12 @@ const FollowForm = React.createClass({
 
   handleKeyUp (e) {
     if (e.keyCode === 13) {
-      this.props.onSubmit();
+      this.handleSubmit();
     }
   },
 
   handleSubmit () {
-    this.props.onSubmit();
+    this.props.onSubmit(this.context.router);
   },
 
   render () {

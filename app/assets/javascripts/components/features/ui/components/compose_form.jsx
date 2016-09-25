@@ -53,7 +53,7 @@ const ComposeForm = React.createClass({
 
         <div style={{ marginTop: '10px', overflow: 'hidden' }}>
           <div style={{ float: 'right' }}><Button text='Publish' onClick={this.handleSubmit} disabled={this.props.is_submitting} /></div>
-          <div style={{ float: 'right', marginRight: '16px', lineHeight: '36px' }}><CharacterCounter text={this.props.text} /></div>
+          <div style={{ float: 'right', marginRight: '16px', lineHeight: '36px' }}><CharacterCounter max={500} text={this.props.text} /></div>
         </div>
       </div>
     );
