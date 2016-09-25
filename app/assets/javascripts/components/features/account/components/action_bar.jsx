@@ -34,8 +34,8 @@ const ActionBar = React.createClass({
     }
 
     return (
-      <div style={{ borderTop: '1px solid #363c4b', borderBottom: '1px solid #363c4b', padding: '10px', lineHeight: '36px' }}>
-        {actionButton} <span style={{ color: '#616b86', fontWeight: '500', textTransform: 'uppercase' }}>{infoText}</span>
+      <div style={{ borderTop: '1px solid #363c4b', borderBottom: '1px solid #363c4b', padding: '10px', lineHeight: '36px', overflow: 'hidden', flex: '0 0 auto' }}>
+        {actionButton} <span style={{ color: '#616b86', fontWeight: '500', textTransform: 'uppercase', float: 'right', display: 'block' }}>{infoText}</span>
       </div>
     );
   },

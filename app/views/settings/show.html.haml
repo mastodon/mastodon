@@ -1,14 +1,17 @@
 - content_for :page_title do
   Edit profile
 
-= simple_form_for @account, url: settings_path, method: :put do |f|
-  = f.error_notification
+= form_for @account, url: settings_path, html: { method: :put } do |f|
+  .field
+    = f.text_field :display_name, placeholder: 'Display name'
+  .field
+    = f.text_area :note, placeholder: 'Bio'
+  .file-field
+    = f.label :avatar
+    = f.file_field :avatar
+  .file-field
+    = f.label :header
+    = f.file_field :header
 
-  .form-inputs
-    = f.input :display_name
-    = f.input :note
-    = f.input :avatar
-    = f.input :header
-
-  .form-actions
-    = f.button :submit, 'Save changes'
+  .actions
+    = f.button 'Save changes', type: :submit 

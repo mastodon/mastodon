@@ -1,4 +1,6 @@
 class SettingsController < ApplicationController
+  layout 'auth'
+  
   before_action :authenticate_user!
   before_action :set_account
 

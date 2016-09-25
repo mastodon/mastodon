@@ -127,7 +127,23 @@ body {
     margin-bottom: 15px;
   }
 
-  input[type=text], input[type=email], input[type=password] {
+  .file-field {
+    padding: 15px 0;
+
+    label {
+      font-family: 'Roboto';
+      font-size: 16px;
+      color: #fff;
+      width: 100px;
+      display: inline-block;
+    }
+
+    input[type=file] {
+      width: 280px;
+    }
+  }
+
+  input[type=text], input[type=email], input[type=password], textarea {
     background: transparent;
     border: 0;
     border-bottom: 2px solid #9baec8;
@@ -137,6 +153,7 @@ body {
     display: block;
     width: 100%;
     outline: 0;
+    font-family: 'Roboto';
 
     &:invalid {
       box-shadow: none;
