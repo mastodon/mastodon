@@ -10,9 +10,10 @@ import {
   COMPOSE_UPLOAD_FAIL,
   COMPOSE_UPLOAD_UNDO,
   COMPOSE_UPLOAD_PROGRESS
-}                          from '../actions/compose';
-import { TIMELINE_DELETE } from '../actions/timelines';
-import Immutable           from 'immutable';
+}                           from '../actions/compose';
+import { TIMELINE_DELETE }  from '../actions/timelines';
+import { ACCOUNT_SET_SELF } from '../actions/accounts';
+import Immutable            from 'immutable';
 
 const initialState = Immutable.Map({
   text: '',
@@ -20,11 +21,19 @@ const initialState = Immutable.Map({
   is_submitting: false,
   is_uploading: false,
   progress: 0,
-  media_attachments: Immutable.List([])
+  media_attachments: Immutable.List([]),
+  me: null
 });
 
-function statusToTextMentions(status) {
-  return Immutable.OrderedSet([`@${status.getIn(['account', 'acct'])} `]).union(status.get('mentions').map(mention => `@${mention.get('acct')} `)).join('');
+function statusToTextMentions(state, status) {
+  let set = Immutable.OrderedSet([]);
+  let me  = state.get('me');
+
+  if (status.getIn(['account', 'id']) !== me) {
+    set = set.add(`@${status.getIn(['account', 'acct'])} `);
+  }
+  
+  return set.union(status.get('mentions').filterNot(mention => mention.get('id') === me).map(mention => `@${mention.get('acct')} `)).join('');
 };
 
 function clearAll(state) {
@@ -60,7 +69,7 @@ export default function compose(state = initialState, action) {
     case COMPOSE_REPLY:
       return state.withMutations(map => {
         map.set('in_reply_to', action.status.get('id'));
-        map.set('text', statusToTextMentions(action.status));
+        map.set('text', statusToTextMentions(state, action.status));
       });
     case COMPOSE_REPLY_CANCEL:
       return state.withMutations(map => {
@@ -89,6 +98,8 @@ export default function compose(state = initialState, action) {
       } else {
         return state;
       }
+    case ACCOUNT_SET_SELF:
+      return state.set('me', action.account.id);
     default:
       return state;
   }
