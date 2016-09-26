@@ -27,4 +27,8 @@ class ApiController < ApplicationController
   def current_user
     super || current_resource_owner
   end
+
+  def render_empty
+    render json: {}, status: 200
+  end
 end

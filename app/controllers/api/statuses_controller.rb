@@ -17,13 +17,30 @@ class Api::StatusesController < ApiController
     render action: :show
   end
 
+  def destroy
+    @status = Status.where(account_id: current_user.account).find(params[:id])
+    RemoveStatusService.new.(@status)
+    render_empty
+  end
+
   def reblog
     @status = ReblogService.new.(current_user.account, Status.find(params[:id])).reload
     render action: :show
   end
 
+  def unreblog
+    RemoveStatusService.new.(Status.where(account_id: current_user.account, reblog_of_id: params[:id]).first!)
+    @status = Status.find(params[:id])
+    render action: :show
+  end
+
   def favourite
     @status = FavouriteService.new.(current_user.account, Status.find(params[:id])).status.reload
+    render action: :show
+  end
+
+  def unfavourite
+    @status = UnfavouriteService.new.(current_user.account, Status.find(params[:id])).status.reload
     render action: :show
   end
 

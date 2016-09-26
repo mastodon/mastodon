@@ -22,6 +22,16 @@ export function reblog(status) {
   };
 };
 
+export function unreblog(status) {
+  return (dispatch, getState) => {
+    api(getState).post(`/api/statuses/${status.get('id')}/unreblog`).then(response => {
+      //
+    }).catch(error => {
+      //
+    });
+  };
+};
+
 export function reblogRequest(status) {
   return {
     type: REBLOG_REQUEST,
@@ -53,6 +63,16 @@ export function favourite(status) {
       dispatch(favouriteSuccess(status, response.data));
     }).catch(function (error) {
       dispatch(favouriteFail(status, error));
+    });
+  };
+};
+
+export function unfavourite(status) {
+  return (dispatch, getState) => {
+    api(getState).post(`/api/statuses/${status.get('id')}/unfavourite`).then(response => {
+      //
+    }).catch(error => {
+      //
     });
   };
 };

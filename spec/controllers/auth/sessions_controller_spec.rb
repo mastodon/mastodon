@@ -20,7 +20,7 @@ RSpec.describe Auth::SessionsController, type: :controller do
       post :create, params: { user: { email: user.email, password: user.password } }
     end
 
-    it 'redirects to home page' do
+    it 'redirects to home' do
       expect(response).to redirect_to(root_path)
     end
 

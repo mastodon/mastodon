@@ -59,7 +59,7 @@ table {
 
 body {
   font-family: 'Roboto', sans-serif;
-  background: #282c37 image-url('background-photo.jpeg');
+  background: #282c37 image-url('background-photo.jpg');
   background-size: cover;
   background-attachment: fixed;
   font-size: 13px;
@@ -104,10 +104,29 @@ body {
     font-size: 48px;
     font-weight: 500;
 
+    img {
+      display: block;
+      margin: 20px auto;
+      width: 180px;
+      height: 180px;
+    }
+
     a {
       color: inherit;
       text-decoration: none;
       outline: 0;
+
+      img {
+        opacity: 0.8;
+        transition: all 0.8s ease;
+      }
+
+      &:hover {
+        img {
+          opacity: 1;
+          transition-duration: 0.2s;
+        }
+      }
     }
 
     small {
@@ -309,67 +328,6 @@ body {
       &:hover {
         text-decoration: none;
       }
-    }
-  }
-}
-
-.turbolinks-progress-bar {
-  background-color: #2b90d9;
-}
-
-.mastodon {
-  $head: #282c37;
-  $tusk: #d9e1e8;
-  $backdrop: #2b90d9;
-  $highlight: 18%;
-
-  .mastodon-backdrop {
-    fill: $backdrop;
-  }
-
-  #mastodon-ear {
-    fill: lighten($head, 5%);
-
-    &:hover, &.highlight {
-      fill: lighten($head, $highlight);
-    }
-  }
-
-  #mastodon-head-backdrop {
-    fill: darken($head, 5%);
-
-    &:hover, &.highlight {
-      fill: darken($head, 5%);
-    }
-  }
-
-  #mastodon-nose, #mastodon-cheek, #mastodon-forehead, #mastodon-backhead {
-    fill: $head;
-
-    &:hover, &.highlight {
-      fill: lighten($head, $highlight);
-    }
-  }
-
-  #mastodon-tusk-front {
-    fill: lighten($tusk, 5%);
-  }
-
-  #mastodon-tusk-back {
-    fill: $tusk;
-
-    &:hover, &.highlight {
-      fill: lighten($tusk, $highlight);
-    }
-  }
-
-  .mastodon-shape {
-    transition: all 0.8s ease;
-    stroke: transparent;
-    stroke-width: 0px;
-
-    &:hover, &.highlight {
-      transition-duration: 0.2s;
     }
   }
 }

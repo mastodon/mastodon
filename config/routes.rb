@@ -7,9 +7,7 @@ Rails.application.routes.draw do
     mount Sidekiq::Web => '/sidekiq'
   end
 
-  use_doorkeeper do
-    controllers applications: 'oauth/applications'
-  end
+  use_doorkeeper
 
   get '.well-known/host-meta', to: 'xrd#host_meta', as: :host_meta
   get '.well-known/webfinger', to: 'xrd#webfinger', as: :webfinger
@@ -31,7 +29,7 @@ Rails.application.routes.draw do
 
   resource  :settings, only: [:show, :update]
   resources :media, only: [:show]
-
+  
   namespace :api do
     # PubSubHubbub
     resources :subscriptions, only: [:show]
@@ -41,7 +39,7 @@ Rails.application.routes.draw do
     post '/salmon/:id', to: 'salmon#update', as: :salmon
 
     # JSON / REST API
-    resources :statuses, only: [:create, :show] do
+    resources :statuses, only: [:create, :show, :destroy] do
       collection do
         get :home
         get :mentions
@@ -51,13 +49,16 @@ Rails.application.routes.draw do
         get :context
 
         post :reblog
+        post :unreblog
         post :favourite
+        post :unfavourite
       end
     end
 
     resources :follows,  only: [:create]
     resources :media,    only: [:create]
-
+    resources :apps,     only: [:create]
+    
     resources :accounts, only: [:show] do
       collection do
         get :relationships

@@ -1,0 +1,2 @@
+module Api::AppsHelper
+end

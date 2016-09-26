@@ -7,7 +7,7 @@ class HomeController < ApplicationController
     @mentions     = Feed.new(:mentions, current_user.account).get(20)
     @token        = find_or_create_access_token.token
   end
-
+  
   private
 
   def find_or_create_access_token
