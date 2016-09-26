@@ -57,7 +57,11 @@ class ProcessFeedService < BaseService
     # and tidier
 
     links.each do |mention_link|
-      href = Addressable::URI.parse(mention_link.attribute('href').value)
+      href_val = mention_link.attribute('href').value
+
+      next if href_val == 'http://activityschema.org/collection/public'
+      
+      href = Addressable::URI.parse(href_val)
 
       if href.host == Rails.configuration.x.local_domain
         # A local user is mentioned
@@ -71,6 +75,10 @@ class ProcessFeedService < BaseService
         # What to do about remote user?
         # This is kinda dodgy because URLs could change, we don't index them
         mentioned_account = Account.find_by(url: href.to_s)
+
+        if mentioned_account.nil?
+          mentioned_account = FetchRemoteAccountService.new.(href)
+        end
 
         unless mentioned_account.nil?
           mentioned_account.mentions.where(status: status).first_or_create(status: status)

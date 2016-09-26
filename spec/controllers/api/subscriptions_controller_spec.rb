@@ -32,7 +32,12 @@ RSpec.describe Api::SubscriptionsController, type: :controller do
       stub_request(:head, "https://social.umeahackerspace.se/notice/424348").to_return(status: 404)
       stub_request(:head, "https://community.highlandarrow.com/notice/50467").to_return(status: 404)
       stub_request(:head, "https://quitter.no/notice/1243309").to_return(status: 404)
-
+      stub_request(:head, "https://quitter.no/user/7477").to_return(status: 404)
+      stub_request(:head, "https://community.highlandarrow.com/user/1").to_return(status: 404)
+      stub_request(:head, "https://social.umeahackerspace.se/user/2").to_return(status: 404)
+      stub_request(:head, "https://gs.kawa-kun.com/user/2").to_return(status: 404)
+      stub_request(:head, "https://mastodon.social/users/Gargron").to_return(status: 404)
+      
       request.env['HTTP_X_HUB_SIGNATURE'] = "sha1=#{OpenSSL::HMAC.hexdigest('sha1', 'abc', feed)}"
       request.env['RAW_POST_DATA'] = feed
 

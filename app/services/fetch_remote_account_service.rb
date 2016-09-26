@@ -1,4 +1,4 @@
-class FetchRemoteStatusService < BaseService
+class FetchRemoteAccountService < BaseService
   def call(url)
     atom_url, body = FetchAtomService.new.(url)
 
@@ -9,19 +9,6 @@ class FetchRemoteStatusService < BaseService
   private
 
   def process_atom(url, body)
-    Rails.logger.debug "Processing Atom for remote status"
-
-    xml     = Nokogiri::XML(body)
-    account = extract_author(url, xml)
-
-    return nil if account.nil?
-
-    statuses = ProcessFeedService.new.(body, account)
-
-    return statuses.first
-  end
-
-  def extract_author(url, xml)
     url_parts = Addressable::URI.parse(url)
     username  = xml.at_xpath('//xmlns:author/xmlns:name').try(:content)
     domain    = url_parts.host
