@@ -9,6 +9,7 @@ class FetchRemoteAccountService < BaseService
   private
 
   def process_atom(url, body)
+    xml       = Nokogiri::XML(body)
     url_parts = Addressable::URI.parse(url)
     username  = xml.at_xpath('//xmlns:author/xmlns:name').try(:content)
     domain    = url_parts.host

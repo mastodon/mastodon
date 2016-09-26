@@ -8,7 +8,7 @@ class FetchAtomService < BaseService
     if response.mime_type == 'application/atom+xml'
       return [url, fetch(url)]
     elsif !response['Link'].blank?
-      return process_headers(response)
+      return process_headers(url, response)
     else
       return process_html(fetch(url))
     end
@@ -26,13 +26,13 @@ class FetchAtomService < BaseService
     return [alternate_link['href'], fetch(alternate_link['href'])]
   end
 
-  def process_headers(response)
+  def process_headers(url, response)
     Rails.logger.debug "Processing link header"
 
     link_header    = LinkHeader.parse(response['Link'])
     alternate_link = link_header.find_link(['rel', 'alternate'], ['type', 'application/atom+xml'])
 
-    return nil if alternate_link.nil?
+    return process_html(fetch(url)) if alternate_link.nil?
     return [alternate_link.href, fetch(alternate_link.href)]
   end
 
@@ -41,6 +41,6 @@ class FetchAtomService < BaseService
   end
 
   def http_client
-    HTTP.timeout(:per_operation, write: 20, connect: 20, read: 50)
+    HTTP.timeout(:per_operation, write: 20, connect: 20, read: 50).follow
   end
 end
