@@ -7,6 +7,7 @@ const mapStateToProps = function (state, props) {
   return {
     text: state.getIn(['compose', 'text']),
     is_submitting: state.getIn(['compose', 'is_submitting']),
+    is_uploading: state.getIn(['compose', 'is_uploading']),
     in_reply_to: selectStatus(state, state.getIn(['compose', 'in_reply_to']))
   };
 };

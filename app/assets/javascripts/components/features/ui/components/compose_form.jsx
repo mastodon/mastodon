@@ -10,6 +10,7 @@ const ComposeForm = React.createClass({
   propTypes: {
     text: React.PropTypes.string.isRequired,
     is_submitting: React.PropTypes.bool,
+    is_uploading: React.PropTypes.bool,
     in_reply_to: ImmutablePropTypes.map,
     onChange: React.PropTypes.func.isRequired,
     onSubmit: React.PropTypes.func.isRequired,
@@ -39,7 +40,8 @@ const ComposeForm = React.createClass({
   },
 
   render () {
-    let replyArea = '';
+    let replyArea  = '';
+    const disabled = this.props.is_submitting || this.props.is_uploading;
 
     if (this.props.in_reply_to) {
       replyArea = <ReplyIndicator status={this.props.in_reply_to} onCancel={this.props.onCancelReply} />;
@@ -49,10 +51,10 @@ const ComposeForm = React.createClass({
       <div style={{ padding: '10px' }}>
         {replyArea}
 
-        <textarea ref='textarea' disabled={this.props.is_submitting} placeholder='What is on your mind?' value={this.props.text} onKeyUp={this.handleKeyUp} onChange={this.handleChange} className='compose-form__textarea' style={{ display: 'block', boxSizing: 'border-box', width: '100%', height: '100px', resize: 'none', border: 'none', color: '#282c37', padding: '10px', fontFamily: 'Roboto', fontSize: '14px', margin: '0' }} />
+        <textarea ref='textarea' disabled={disabled} placeholder='What is on your mind?' value={this.props.text} onKeyUp={this.handleKeyUp} onChange={this.handleChange} className='compose-form__textarea' style={{ display: 'block', boxSizing: 'border-box', width: '100%', height: '100px', resize: 'none', border: 'none', color: '#282c37', padding: '10px', fontFamily: 'Roboto', fontSize: '14px', margin: '0' }} />
 
         <div style={{ marginTop: '10px', overflow: 'hidden' }}>
-          <div style={{ float: 'right' }}><Button text='Publish' onClick={this.handleSubmit} disabled={this.props.is_submitting} /></div>
+          <div style={{ float: 'right' }}><Button text='Publish' onClick={this.handleSubmit} disabled={disabled} /></div>
           <div style={{ float: 'right', marginRight: '16px', lineHeight: '36px' }}><CharacterCounter max={500} text={this.props.text} /></div>
         </div>
       </div>
