@@ -9,9 +9,10 @@ class FeedManager
     "feed:#{type}:#{id}"
   end
 
+  # Filter status out of the home feed if it is a reply to someone the user doesn't follow
   def filter_status?(status, follower)
     replied_to_user = status.reply? ? status.thread.account : nil
-    (status.reply? && !(follower.id = replied_to_user.id || follower.following?(replied_to_user)))
+    (status.reply? && !(follower.id == replied_to_user.id || replied_to_user.id == status.account_id || follower.following?(replied_to_user)))
   end
 
   def push(timeline_type, account, status)
