@@ -16,7 +16,7 @@ export function submitFollow(router) {
   return function (dispatch, getState) {
     dispatch(submitFollowRequest());
 
-    api(getState).post('/api/follows', {
+    api(getState).post('/api/v1/follows', {
       uri: getState().getIn(['follow', 'text'])
     }).then(function (response) {
       dispatch(submitFollowSuccess(response.data));

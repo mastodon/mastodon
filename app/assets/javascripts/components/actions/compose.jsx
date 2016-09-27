@@ -36,7 +36,7 @@ export function submitCompose() {
   return function (dispatch, getState) {
     dispatch(submitComposeRequest());
 
-    api(getState).post('/api/statuses', {
+    api(getState).post('/api/v1/statuses', {
       status: getState().getIn(['compose', 'text'], ''),
       in_reply_to_id: getState().getIn(['compose', 'in_reply_to'], null),
       media_ids: getState().getIn(['compose', 'media_attachments']).map(item => item.get('id'))
@@ -75,7 +75,7 @@ export function uploadCompose(files) {
     let data = new FormData();
     data.append('file', files[0]);
 
-    api(getState).post('/api/media', data, {
+    api(getState).post('/api/v1/media', data, {
       onUploadProgress: function (e) {
         dispatch(uploadComposeProgress(e.loaded, e.total));
       }

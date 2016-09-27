@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Api::AppsController, type: :controller do
+RSpec.describe Api::V1::AppsController, type: :controller do
   render_views
 
   describe 'POST #create' do

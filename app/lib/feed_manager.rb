@@ -54,6 +54,6 @@ class FeedManager
       end
     end
 
-    Rabl::Renderer.new('api/statuses/show', status,  view_path: 'app/views', format: :json, scope: rabl_scope.new(target_account)).render
+    Rabl::Renderer.new('api/v1/statuses/show', status, view_path: 'app/views', format: :json, scope: rabl_scope.new(target_account)).render
   end
 end

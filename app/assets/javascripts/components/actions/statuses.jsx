@@ -18,7 +18,7 @@ export function fetchStatus(id) {
 
     dispatch(fetchStatusRequest(id));
 
-    axios.all([boundApi.get(`/api/statuses/${id}`), boundApi.get(`/api/statuses/${id}/context`)]).then(values => {
+    axios.all([boundApi.get(`/api/v1/statuses/${id}`), boundApi.get(`/api/v1/statuses/${id}/context`)]).then(values => {
       dispatch(fetchStatusSuccess(values[0].data, values[1].data));
     }).catch(error => {
       dispatch(fetchStatusFail(id, error));

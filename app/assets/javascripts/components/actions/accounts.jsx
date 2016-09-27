@@ -36,7 +36,7 @@ export function fetchAccount(id) {
 
     dispatch(fetchAccountRequest(id));
 
-    axios.all([boundApi.get(`/api/accounts/${id}`), boundApi.get(`/api/accounts/relationships?id=${id}`)]).then(values => {
+    axios.all([boundApi.get(`/api/v1/accounts/${id}`), boundApi.get(`/api/v1/accounts/relationships?id=${id}`)]).then(values => {
       dispatch(fetchAccountSuccess(values[0].data, values[1].data[0]));
     }).catch(error => {
       dispatch(fetchAccountFail(id, error));
@@ -48,7 +48,7 @@ export function fetchAccountTimeline(id) {
   return (dispatch, getState) => {
     dispatch(fetchAccountTimelineRequest(id));
 
-    api(getState).get(`/api/accounts/${id}/statuses`).then(response => {
+    api(getState).get(`/api/v1/accounts/${id}/statuses`).then(response => {
       dispatch(fetchAccountTimelineSuccess(id, response.data));
     }).catch(error => {
       dispatch(fetchAccountTimelineFail(id, error));
@@ -62,7 +62,7 @@ export function expandAccountTimeline(id) {
 
     dispatch(expandAccountTimelineRequest(id));
 
-    api(getState).get(`/api/accounts/${id}/statuses?max_id=${lastId}`).then(response => {
+    api(getState).get(`/api/v1/accounts/${id}/statuses?max_id=${lastId}`).then(response => {
       dispatch(expandAccountTimelineSuccess(id, response.data));
     }).catch(error => {
       dispatch(expandAccountTimelineFail(id, error));
@@ -97,7 +97,7 @@ export function followAccount(id) {
   return (dispatch, getState) => {
     dispatch(followAccountRequest(id));
 
-    api(getState).post(`/api/accounts/${id}/follow`).then(response => {
+    api(getState).post(`/api/v1/accounts/${id}/follow`).then(response => {
       dispatch(followAccountSuccess(response.data));
     }).catch(error => {
       dispatch(followAccountFail(error));
@@ -109,7 +109,7 @@ export function unfollowAccount(id) {
   return (dispatch, getState) => {
     dispatch(unfollowAccountRequest(id));
 
-    api(getState).post(`/api/accounts/${id}/unfollow`).then(response => {
+    api(getState).post(`/api/v1/accounts/${id}/unfollow`).then(response => {
       dispatch(unfollowAccountSuccess(response.data));
     }).catch(error => {
       dispatch(unfollowAccountFail(error));

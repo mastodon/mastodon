@@ -12,7 +12,7 @@ export function reblog(status) {
   return function (dispatch, getState) {
     dispatch(reblogRequest(status));
 
-    api(getState).post(`/api/statuses/${status.get('id')}/reblog`).then(function (response) {
+    api(getState).post(`/api/v1/statuses/${status.get('id')}/reblog`).then(function (response) {
       // The reblog API method returns a new status wrapped around the original. In this case we are only
       // interested in how the original is modified, hence passing it skipping the wrapper
       dispatch(reblogSuccess(status, response.data.reblog));
@@ -24,7 +24,7 @@ export function reblog(status) {
 
 export function unreblog(status) {
   return (dispatch, getState) => {
-    api(getState).post(`/api/statuses/${status.get('id')}/unreblog`).then(response => {
+    api(getState).post(`/api/v1/statuses/${status.get('id')}/unreblog`).then(response => {
       //
     }).catch(error => {
       //
@@ -59,7 +59,7 @@ export function favourite(status) {
   return function (dispatch, getState) {
     dispatch(favouriteRequest(status));
 
-    api(getState).post(`/api/statuses/${status.get('id')}/favourite`).then(function (response) {
+    api(getState).post(`/api/v1/statuses/${status.get('id')}/favourite`).then(function (response) {
       dispatch(favouriteSuccess(status, response.data));
     }).catch(function (error) {
       dispatch(favouriteFail(status, error));
@@ -69,7 +69,7 @@ export function favourite(status) {
 
 export function unfavourite(status) {
   return (dispatch, getState) => {
-    api(getState).post(`/api/statuses/${status.get('id')}/unfavourite`).then(response => {
+    api(getState).post(`/api/v1/statuses/${status.get('id')}/unfavourite`).then(response => {
       //
     }).catch(error => {
       //

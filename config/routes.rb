@@ -39,38 +39,40 @@ Rails.application.routes.draw do
     post '/salmon/:id', to: 'salmon#update', as: :salmon
 
     # JSON / REST API
-    resources :statuses, only: [:create, :show, :destroy] do
-      collection do
-        get :home
-        get :mentions
+    namespace :v1 do
+      resources :statuses, only: [:create, :show, :destroy] do
+        collection do
+          get :home
+          get :mentions
+        end
+
+        member do
+          get :context
+
+          post :reblog
+          post :unreblog
+          post :favourite
+          post :unfavourite
+        end
       end
 
-      member do
-        get :context
+      resources :follows,  only: [:create]
+      resources :media,    only: [:create]
+      resources :apps,     only: [:create]
+      
+      resources :accounts, only: [:show] do
+        collection do
+          get :relationships
+        end
 
-        post :reblog
-        post :unreblog
-        post :favourite
-        post :unfavourite
-      end
-    end
+        member do
+          get :statuses
+          get :followers
+          get :following
 
-    resources :follows,  only: [:create]
-    resources :media,    only: [:create]
-    resources :apps,     only: [:create]
-    
-    resources :accounts, only: [:show] do
-      collection do
-        get :relationships
-      end
-
-      member do
-        get :statuses
-        get :followers
-        get :following
-
-        post :follow
-        post :unfollow
+          post :follow
+          post :unfollow
+        end
       end
     end
   end

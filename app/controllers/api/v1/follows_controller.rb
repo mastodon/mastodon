@@ -1,4 +1,4 @@
-class Api::FollowsController < ApiController
+class Api::V1::FollowsController < ApiController
   before_action :doorkeeper_authorize!
   respond_to    :json
 

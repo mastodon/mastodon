@@ -10,11 +10,11 @@ node(:favourited)       { |status| current_account.favourited?(status) }
 node(:reblogged)        { |status| current_account.reblogged?(status) }
 
 child :reblog => :reblog do
-  extends('api/statuses/show')
+  extends('api/v1/statuses/show')
 end
 
 child :account do
-  extends('api/accounts/show')
+  extends('api/v1/accounts/show')
 end
 
 child :media_attachments, object_root: false do

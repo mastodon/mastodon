@@ -1,4 +1,4 @@
-class Api::AccountsController < ApiController
+class Api::V1::AccountsController < ApiController
   before_action :doorkeeper_authorize!
   before_action :set_account
   respond_to    :json
