@@ -29,7 +29,7 @@ class FetchAtomService < BaseService
   def process_headers(url, response)
     Rails.logger.debug "Processing link header"
 
-    link_header    = LinkHeader.parse(response['Link'])
+    link_header    = LinkHeader.parse(response['Link'].is_a?(Array) ? response['Link'].first : response['Link'])
     alternate_link = link_header.find_link(['rel', 'alternate'], ['type', 'application/atom+xml'])
 
     return process_html(fetch(url)) if alternate_link.nil?
