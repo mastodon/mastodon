@@ -77,6 +77,8 @@ Rails.application.routes.draw do
     end
   end
 
+  get :about, to: 'about#index'
+  
   root 'home#index'
 
   match '*unmatched_route', via: :all, to: 'application#raise_not_found'
