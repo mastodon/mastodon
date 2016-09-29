@@ -1,6 +1,6 @@
 class FetchRemoteAccountService < BaseService
   def call(url)
-    atom_url, body = FetchAtomService.new.(url)
+    atom_url, body = FetchAtomService.new.call(url)
 
     return nil if atom_url.nil?
     return process_atom(atom_url, body)
@@ -18,6 +18,6 @@ class FetchRemoteAccountService < BaseService
 
     Rails.logger.debug "Going to webfinger #{username}@#{domain}"
 
-    return FollowRemoteAccountService.new.("#{username}@#{domain}")
+    return FollowRemoteAccountService.new.call("#{username}@#{domain}")
   end
 end

@@ -3,7 +3,7 @@ class ThreadResolveWorker
 
   def perform(child_status_id, parent_url)
     child_status  = Status.find(child_status_id)
-    parent_status = FetchRemoteStatusService.new.(parent_url)
+    parent_status = FetchRemoteStatusService.new.call(parent_url)
 
     unless parent_status.nil?
       child_status.thread = parent_status

@@ -4,7 +4,7 @@ class Api::SubscriptionsController < ApiController
 
   def show
     if @account.subscription(api_subscription_url(@account.id)).valid?(params['hub.topic'])
-      @account.update(subscription_expires_at: Time.now + ((params['hub.lease_seconds'] || 86400).to_i).seconds)
+      @account.update(subscription_expires_at: Time.now.utc + (params['hub.lease_seconds'] || 86_400).to_i.seconds)
       render plain: HTMLEntities.new.encode(params['hub.challenge']), status: 200
     else
       head 404
@@ -15,7 +15,7 @@ class Api::SubscriptionsController < ApiController
     body = request.body.read
 
     if @account.subscription(api_subscription_url(@account.id)).verify(body, request.headers['HTTP_X_HUB_SIGNATURE'])
-      ProcessFeedService.new.(body, @account)
+      ProcessFeedService.new.call(body, @account)
       head 201
     else
       head 202

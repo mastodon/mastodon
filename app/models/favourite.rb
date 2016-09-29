@@ -11,7 +11,7 @@ class Favourite < ApplicationRecord
   end
 
   def title
-    "#{self.account.acct} favourited a status by #{self.status.account.acct}"
+    "#{account.acct} favourited a status by #{status.account.acct}"
   end
 
   def object_type
@@ -19,7 +19,7 @@ class Favourite < ApplicationRecord
   end
 
   def thread
-    self.status
+    status
   end
 
   def target

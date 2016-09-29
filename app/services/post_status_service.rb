@@ -8,7 +8,7 @@ class PostStatusService < BaseService
   def call(account, text, in_reply_to = nil, media_ids = nil)
     status = account.statuses.create!(text: text, thread: in_reply_to)
     attach_media(status, media_ids)
-    process_mentions_service.(status)
+    process_mentions_service.call(status)
     DistributionWorker.perform_async(status.id)
     account.ping!(account_url(account, format: 'atom'), [Rails.configuration.x.hub_url])
     status
@@ -19,7 +19,7 @@ class PostStatusService < BaseService
   def attach_media(status, media_ids)
     return if media_ids.nil? || !media_ids.is_a?(Enumerable)
 
-    media = MediaAttachment.where(status_id: nil).where(id: media_ids.take(4).map { |id| id.to_i })
+    media = MediaAttachment.where(status_id: nil).where(id: media_ids.take(4).map(&:to_i))
     media.update(status_id: status.id)
   end
 

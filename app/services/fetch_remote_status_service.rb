@@ -1,6 +1,6 @@
 class FetchRemoteStatusService < BaseService
   def call(url)
-    atom_url, body = FetchAtomService.new.(url)
+    atom_url, body = FetchAtomService.new.call(url)
 
     return nil if atom_url.nil?
     return process_atom(atom_url, body)
@@ -9,14 +9,14 @@ class FetchRemoteStatusService < BaseService
   private
 
   def process_atom(url, body)
-    Rails.logger.debug "Processing Atom for remote status"
+    Rails.logger.debug 'Processing Atom for remote status'
 
     xml     = Nokogiri::XML(body)
     account = extract_author(url, xml)
 
     return nil if account.nil?
 
-    statuses = ProcessFeedService.new.(body, account)
+    statuses = ProcessFeedService.new.call(body, account)
 
     return statuses.first
   end
@@ -30,6 +30,6 @@ class FetchRemoteStatusService < BaseService
 
     Rails.logger.debug "Going to webfinger #{username}@#{domain}"
 
-    return FollowRemoteAccountService.new.("#{username}@#{domain}")
+    return FollowRemoteAccountService.new.call("#{username}@#{domain}")
   end
 end

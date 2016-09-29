@@ -28,11 +28,11 @@ class FollowRemoteAccountService < BaseService
     hubs = feed.xpath('//xmlns:link[@rel="hub"]')
 
     if hubs.empty? || hubs.first.attribute('href').nil?
-      raise Goldfinger::Error, "No PubSubHubbub hubs found"
+      raise Goldfinger::Error, 'No PubSubHubbub hubs found'
     end
 
     if feed.at_xpath('/xmlns:feed/xmlns:author/xmlns:uri').nil?
-      raise Goldfinger::Error, "No author URI found"
+      raise Goldfinger::Error, 'No author URI found'
     end
 
     account.uri     = feed.at_xpath('/xmlns:feed/xmlns:author/xmlns:uri').content
@@ -53,12 +53,12 @@ class FollowRemoteAccountService < BaseService
 
   def get_profile(xml, account)
     author = xml.at_xpath('/xmlns:feed/xmlns:author')
-    update_remote_profile_service.(author, account)
+    update_remote_profile_service.call(author, account)
   end
 
   def magic_key_to_pem(magic_key)
     _, modulus, exponent = magic_key.split('.')
-    modulus, exponent = [modulus, exponent].map { |n| Base64.urlsafe_decode64(n).bytes.inject(0) { |num, byte| (num << 8) | byte } }
+    modulus, exponent = [modulus, exponent].map { |n| Base64.urlsafe_decode64(n).bytes.inject(0) { |a, e| (a << 8) | e } }
 
     key   = OpenSSL::PKey::RSA.new
     key.n = modulus
@@ -75,4 +75,3 @@ class FollowRemoteAccountService < BaseService
     HTTP.timeout(:per_operation, write: 20, connect: 20, read: 50)
   end
 end
-

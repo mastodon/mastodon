@@ -17,15 +17,15 @@ module StreamEntriesHelper
   end
 
   def relative_time(date)
-    date < 5.days.ago ? date.strftime("%d.%m.%Y") : "#{time_ago_in_words(date)} ago"
+    date < 5.days.ago ? date.strftime('%d.%m.%Y') : "#{time_ago_in_words(date)} ago"
   end
 
   def reblogged_by_me_class(status)
-    user_signed_in? && @reblogged.has_key?(status.id) ? 'reblogged' : ''
+    user_signed_in? && @reblogged.key?(status.id) ? 'reblogged' : ''
   end
 
   def favourited_by_me_class(status)
-    user_signed_in? && @favourited.has_key?(status.id) ? 'favourited' : ''
+    user_signed_in? && @favourited.key?(status.id) ? 'favourited' : ''
   end
 
   def proper_status(status)

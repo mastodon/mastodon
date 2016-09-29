@@ -5,7 +5,7 @@ class ProcessFeedService < BaseService
   # @return [Enumerable] created statuses
   def call(body, account)
     xml = Nokogiri::XML(body)
-    update_remote_profile_service.(xml.at_xpath('/xmlns:feed/xmlns:author'), account) unless xml.at_xpath('/xmlns:feed').nil?
+    update_remote_profile_service.call(xml.at_xpath('/xmlns:feed/xmlns:author'), account) unless xml.at_xpath('/xmlns:feed').nil?
     xml.xpath('//xmlns:entry').reverse_each.map { |entry| process_entry(account, entry) }.compact
   end
 
@@ -60,7 +60,7 @@ class ProcessFeedService < BaseService
       href_val = mention_link.attribute('href').value
 
       next if href_val == 'http://activityschema.org/collection/public'
-      
+
       href = Addressable::URI.parse(href_val)
 
       if href.host == Rails.configuration.x.local_domain
@@ -77,7 +77,7 @@ class ProcessFeedService < BaseService
         mentioned_account = Account.find_by(url: href.to_s)
 
         if mentioned_account.nil?
-          mentioned_account = FetchRemoteAccountService.new.(href)
+          mentioned_account = FetchRemoteAccountService.new.call(href)
         end
 
         unless mentioned_account.nil?
@@ -94,7 +94,7 @@ class ProcessFeedService < BaseService
       media = MediaAttachment.where(status: status, remote_url: enclosure_link.attribute('href').value).first
 
       next unless media.nil?
-      
+
       media = MediaAttachment.new(account: status.account, status: status, remote_url: enclosure_link.attribute('href').value)
       media.file_remote_url = enclosure_link.attribute('href').value
       media.save
@@ -128,7 +128,7 @@ class ProcessFeedService < BaseService
   end
 
   def delete_post!(status)
-    remove_status_service.(status)
+    remove_status_service.call(status)
   end
 
   def find_original_status(_xml, id)
@@ -148,7 +148,7 @@ class ProcessFeedService < BaseService
     account  = Account.find_by(username: username, domain: domain)
 
     if account.nil?
-      account = follow_remote_account_service.("#{username}@#{domain}")
+      account = follow_remote_account_service.call("#{username}@#{domain}")
     end
 
     status = Status.new(account: account, uri: target_id(xml), text: target_content(xml), url: target_url(xml), created_at: published(xml), updated_at: updated(xml))

@@ -13,7 +13,7 @@ class StreamEntriesController < ApplicationController
       @descendants = @stream_entry.activity.descendants
 
       if user_signed_in?
-        status_ids  = [@stream_entry.activity_id] + @ancestors.map { |s| s.id } + @descendants.map { |s| s.id }
+        status_ids  = [@stream_entry.activity_id] + @ancestors.map(&:id) + @descendants.map(&:id)
         @favourited = Status.favourites_map(status_ids, current_user.account_id)
         @reblogged  = Status.reblogs_map(status_ids, current_user.account_id)
       else

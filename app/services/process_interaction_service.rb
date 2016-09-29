@@ -14,11 +14,11 @@ class ProcessInteractionService < BaseService
     account  = Account.find_by(username: username, domain: domain)
 
     if account.nil?
-      account = follow_remote_account_service.("#{username}@#{domain}")
+      account = follow_remote_account_service.call("#{username}@#{domain}")
     end
 
     if salmon.verify(envelope, account.keypair)
-      update_remote_profile_service.(xml.at_xpath('/xmlns:entry/xmlns:author'), account)
+      update_remote_profile_service.call(xml.at_xpath('/xmlns:entry/xmlns:author'), account)
 
       case verb(xml)
       when :follow
@@ -71,7 +71,7 @@ class ProcessInteractionService < BaseService
     return if status.nil?
 
     if account.id == status.account_id
-      remove_status_service.(status)
+      remove_status_service.call(status)
     end
   end
 
@@ -82,7 +82,7 @@ class ProcessInteractionService < BaseService
   end
 
   def add_post!(body, account)
-    process_feed_service.(body, account)
+    process_feed_service.call(body, account)
   end
 
   def status(xml)

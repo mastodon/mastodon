@@ -10,16 +10,16 @@ class StreamEntry < ApplicationRecord
 
   validates :account, :activity, presence: true
 
-  STATUS_INCLUDES = [:account, :stream_entry, :media_attachments, mentions: :account, reblog: [:stream_entry, :account, mentions: :account], thread: [:stream_entry, :account]]
+  STATUS_INCLUDES = [:account, :stream_entry, :media_attachments, mentions: :account, reblog: [:stream_entry, :account, mentions: :account], thread: [:stream_entry, :account]].freeze
 
   scope :with_includes, -> { includes(:account, status: STATUS_INCLUDES, favourite: [:account, :stream_entry, status: STATUS_INCLUDES], follow: [:target_account, :stream_entry]) }
 
   def object_type
-    orphaned? ? :activity : (targeted? ? :activity : self.activity.object_type)
+    orphaned? ? :activity : (targeted? ? :activity : activity.object_type)
   end
 
   def verb
-    orphaned? ? :delete : self.activity.verb
+    orphaned? ? :delete : activity.verb
   end
 
   def targeted?
@@ -27,15 +27,15 @@ class StreamEntry < ApplicationRecord
   end
 
   def target
-    orphaned? ? nil : self.activity.target
+    orphaned? ? nil : activity.target
   end
 
   def title
-    orphaned? ? nil : self.activity.title
+    orphaned? ? nil : activity.title
   end
 
   def content
-    orphaned? ? nil : self.activity.content
+    orphaned? ? nil : activity.content
   end
 
   def threaded?
@@ -43,20 +43,20 @@ class StreamEntry < ApplicationRecord
   end
 
   def thread
-    orphaned? ? nil : self.activity.thread
+    orphaned? ? nil : activity.thread
   end
 
   def mentions
-    self.activity.respond_to?(:mentions) ? self.activity.mentions.map { |x| x.account } : []
+    activity.respond_to?(:mentions) ? activity.mentions.map { |x| x.account } : []
   end
 
   def activity
-    self.send(self.activity_type.downcase.to_sym)
+    send(activity_type.downcase.to_sym)
   end
 
   private
 
   def orphaned?
-    self.activity.nil?
+    activity.nil?
   end
 end

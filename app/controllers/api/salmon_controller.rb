@@ -3,7 +3,7 @@ class Api::SalmonController < ApiController
   respond_to :txt
 
   def update
-    ProcessInteractionService.new.(request.body.read, @account)
+    ProcessInteractionService.new.call(request.body.read, @account)
     head 201
   end
 

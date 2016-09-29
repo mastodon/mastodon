@@ -2,7 +2,7 @@ class Account < ApplicationRecord
   include Targetable
 
   MENTION_RE = /(?:^|\s|\.|>)@([a-z0-9_]+(?:@[a-z0-9\.\-]+)?)/i
-  IMAGE_MIME_TYPES = ['image/jpeg', 'image/png', 'image/gif']
+  IMAGE_MIME_TYPES = ['image/jpeg', 'image/png', 'image/gif'].freeze
 
   # Local users
   has_one :user, inverse_of: :account
@@ -45,11 +45,11 @@ class Account < ApplicationRecord
   scope :expiring, -> (time) { where(subscription_expires_at: nil).or(where('subscription_expires_at < ?', time)).remote.with_followers }
 
   def follow!(other_account)
-    self.active_relationships.where(target_account: other_account).first_or_create!(target_account: other_account)
+    active_relationships.where(target_account: other_account).first_or_create!(target_account: other_account)
   end
 
   def unfollow!(other_account)
-    follow = self.active_relationships.find_by(target_account: other_account)
+    follow = active_relationships.find_by(target_account: other_account)
     follow.destroy unless follow.nil?
   end
 
@@ -58,15 +58,15 @@ class Account < ApplicationRecord
   end
 
   def local?
-    self.domain.nil?
+    domain.nil?
   end
 
   def acct
-    local? ? self.username : "#{self.username}@#{self.domain}"
+    local? ? username : "#{username}@#{domain}"
   end
 
   def subscribed?
-    !self.subscription_expires_at.nil?
+    !subscription_expires_at.nil?
   end
 
   def favourited?(status)
@@ -78,11 +78,11 @@ class Account < ApplicationRecord
   end
 
   def keypair
-    self.private_key.nil? ? OpenSSL::PKey::RSA.new(self.public_key) : OpenSSL::PKey::RSA.new(self.private_key)
+    private_key.nil? ? OpenSSL::PKey::RSA.new(public_key) : OpenSSL::PKey::RSA.new(private_key)
   end
 
   def subscription(webhook_url)
-    OStatus2::Subscription.new(self.remote_url, secret: self.secret, lease_seconds: 86400 * 30, webhook: webhook_url, hub: self.hub_url)
+    OStatus2::Subscription.new(remote_url, secret: secret, lease_seconds: 86_400 * 30, webhook: webhook_url, hub: hub_url)
   end
 
   def ping!(atom_url, hubs)
@@ -91,10 +91,7 @@ class Account < ApplicationRecord
   end
 
   def avatar_remote_url=(url)
-    unless self[:avatar_remote_url] == url
-      self.avatar = URI.parse(url)
-    end
-
+    self.avatar = URI.parse(url) unless self[:avatar_remote_url] == url
     self[:avatar_remote_url] = url
   end
 
@@ -103,26 +100,25 @@ class Account < ApplicationRecord
   end
 
   def to_param
-    self.username
+    username
   end
 
   def self.find_local!(username)
-    self.find_remote!(username, nil)
+    find_remote!(username, nil)
   end
 
   def self.find_remote!(username, domain)
-    table = self.arel_table
-    self.where(table[:username].matches(username)).where(domain: domain).take!
+    where(arel_table[:username].matches(username)).where(domain: domain).take!
   end
 
   def self.find_local(username)
-    self.find_local!(username)
+    find_local!(username)
   rescue ActiveRecord::RecordNotFound
     nil
   end
 
   def self.find_remote(username, domain)
-    self.find_remote!(username, domain)
+    find_remote!(username, domain)
   rescue ActiveRecord::RecordNotFound
     nil
   end

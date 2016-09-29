@@ -1,13 +1,13 @@
 class Auth::RegistrationsController < Devise::RegistrationsController
   layout 'auth'
 
-  before_filter :configure_sign_up_params, only: [:create]
+  before_action :configure_sign_up_params, only: [:create]
 
   protected
 
   def build_resource(hash = nil)
     super(hash)
-    self.resource.build_account if self.resource.account.nil?
+    resource.build_account if resource.account.nil?
   end
 
   def configure_sign_up_params

@@ -8,11 +8,11 @@ class Follow < ApplicationRecord
   validates :account_id, uniqueness: { scope: :target_account_id }
 
   def verb
-    self.destroyed? ? :unfollow : :follow
+    destroyed? ? :unfollow : :follow
   end
 
   def target
-    self.target_account
+    target_account
   end
 
   def object_type
@@ -20,6 +20,6 @@ class Follow < ApplicationRecord
   end
 
   def title
-    self.destroyed? ? "#{self.account.acct} is no longer following #{self.target_account.acct}" : "#{self.account.acct} started following #{self.target_account.acct}"
+    destroyed? ? "#{account.acct} is no longer following #{target_account.acct}" : "#{account.acct} started following #{target_account.acct}"
   end
 end

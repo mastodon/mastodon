@@ -17,7 +17,7 @@ class FetchAtomService < BaseService
   private
 
   def process_html(body)
-    Rails.logger.debug "Processing HTML"
+    Rails.logger.debug 'Processing HTML'
 
     page = Nokogiri::HTML(body)
     alternate_link = page.xpath('//link[@rel="alternate"]').find { |link| link['type'] == 'application/atom+xml' }
@@ -27,7 +27,7 @@ class FetchAtomService < BaseService
   end
 
   def process_headers(url, response)
-    Rails.logger.debug "Processing link header"
+    Rails.logger.debug 'Processing link header'
 
     link_header    = LinkHeader.parse(response['Link'].is_a?(Array) ? response['Link'].first : response['Link'])
     alternate_link = link_header.find_link(['rel', 'alternate'], ['type', 'application/atom+xml'])

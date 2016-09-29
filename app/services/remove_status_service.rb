@@ -39,7 +39,7 @@ class RemoveStatusService < BaseService
 
   def remove_reblogs(status)
     status.reblogs.each do |reblog|
-      RemoveStatusService.new.(reblog)
+      RemoveStatusService.new.call(reblog)
     end
   end
 
