@@ -2,11 +2,11 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import Avatar             from './avatar';
 import RelativeTimestamp  from './relative_timestamp';
 import PureRenderMixin    from 'react-addons-pure-render-mixin';
-import IconButton         from './icon_button';
 import DisplayName        from './display_name';
 import MediaGallery       from './media_gallery';
 import VideoPlayer        from './video_player';
 import StatusContent      from './status_content';
+import StatusActionBar    from './status_action_bar';
 
 const Status = React.createClass({
 
@@ -19,22 +19,12 @@ const Status = React.createClass({
     wrapped: React.PropTypes.bool,
     onReply: React.PropTypes.func,
     onFavourite: React.PropTypes.func,
-    onReblog: React.PropTypes.func
+    onReblog: React.PropTypes.func,
+    onDelete: React.PropTypes.func,
+    me: React.PropTypes.number
   },
 
   mixins: [PureRenderMixin],
-
-  handleReplyClick () {
-    this.props.onReply(this.props.status);
-  },
-
-  handleFavouriteClick () {
-    this.props.onFavourite(this.props.status);
-  },
-
-  handleReblogClick () {
-    this.props.onReblog(this.props.status);
-  },
 
   handleClick () {
     const { status } = this.props;
@@ -96,11 +86,7 @@ const Status = React.createClass({
 
         {media}
 
-        <div style={{ marginTop: '10px', overflow: 'hidden' }}>
-          <div style={{ float: 'left', marginRight: '10px'}}><IconButton title='Reply' icon='reply' onClick={this.handleReplyClick} /></div>
-          <div style={{ float: 'left', marginRight: '10px'}}><IconButton active={status.get('reblogged')} title='Reblog' icon='retweet' onClick={this.handleReblogClick} /></div>
-          <div style={{ float: 'left'}}><IconButton active={status.get('favourited')} title='Favourite' icon='star' onClick={this.handleFavouriteClick} /></div>
-        </div>
+        <StatusActionBar {...this.props} />
       </div>
     );
   }

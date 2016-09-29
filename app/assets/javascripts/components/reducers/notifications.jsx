@@ -13,7 +13,10 @@ import {
   ACCOUNT_TIMELINE_FETCH_FAIL,
   ACCOUNT_TIMELINE_EXPAND_FAIL
 }                                                   from '../actions/accounts';
-import { STATUS_FETCH_FAIL }                        from '../actions/statuses';
+import {
+  STATUS_FETCH_FAIL,
+  STATUS_DELETE_FAIL
+}                                                   from '../actions/statuses';
 import Immutable                                    from 'immutable';
 
 const initialState = Immutable.List();
@@ -51,6 +54,7 @@ export default function notifications(state = initialState, action) {
     case ACCOUNT_TIMELINE_FETCH_FAIL:
     case ACCOUNT_TIMELINE_EXPAND_FAIL:
     case STATUS_FETCH_FAIL:
+    case STATUS_DELETE_FAIL:
       return notificationFromError(state, action.error);
     case NOTIFICATION_DISMISS:
       return state.filterNot(item => item.get('key') === action.notification.key);

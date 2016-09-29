@@ -1,4 +1,4 @@
-class Api::V1::AppsController < ApplicationController
+class Api::V1::AppsController < ApiController
   respond_to :json
 
   def create

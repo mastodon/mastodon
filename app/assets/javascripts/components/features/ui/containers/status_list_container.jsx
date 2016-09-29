@@ -4,29 +4,35 @@ import { replyCompose }      from '../../../actions/compose';
 import { reblog, favourite } from '../../../actions/interactions';
 import { expandTimeline }    from '../../../actions/timelines';
 import { selectStatus }      from '../../../reducers/timelines';
+import { deleteStatus }      from '../../../actions/statuses';
 
 const mapStateToProps = function (state, props) {
   return {
-    statuses: state.getIn(['timelines', props.type]).map(id => selectStatus(state, id))
+    statuses: state.getIn(['timelines', props.type]).map(id => selectStatus(state, id)),
+    me: state.getIn(['timelines', 'me'])
   };
 };
 
 const mapDispatchToProps = function (dispatch, props) {
   return {
-    onReply: function (status) {
+    onReply (status) {
       dispatch(replyCompose(status));
     },
 
-    onFavourite: function (status) {
+    onFavourite (status) {
       dispatch(favourite(status));
     },
 
-    onReblog: function (status) {
+    onReblog (status) {
       dispatch(reblog(status));
     },
 
-    onScrollToBottom: function () {
+    onScrollToBottom () {
       dispatch(expandTimeline(props.type));
+    },
+
+    onDelete (status) {
+      dispatch(deleteStatus(status.get('id')));
     }
   };
 };

@@ -156,3 +156,64 @@
 .transparent-background {
   background: image-url('void.png');
 }
+
+.dropdown {
+  display: inline-block;
+}
+
+.dropdown__content {
+  display: none;
+  position: absolute;
+}
+
+.dropdown--active .dropdown__content {
+  display: block;
+  z-index: 9999;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
+
+  &:before {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 4.5px 7.8px 4.5px;
+    border-color: transparent transparent #d9e1e8 transparent;
+    top: -7px;
+    left: 8px;
+  }
+
+  ul {
+    list-style: none;
+  }
+
+  li {
+    &:first-child a {
+      border-radius: 4px 4px 0 0;
+    }
+
+    &:last-child a {
+      border-radius: 0 0 4px 4px;
+    }
+
+    &:first-child:last-child a {
+      border-radius: 4px;
+    }
+  }
+
+  a {
+    font-size: 13px;
+    display: block;
+    padding: 6px 16px;
+    width: 120px;
+    text-decoration: none;
+    background: #d9e1e8;
+    color: #282c37;
+
+    &:hover {
+      background: #2b90d9;
+      color: #d9e1e8;
+    }
+  }
+}

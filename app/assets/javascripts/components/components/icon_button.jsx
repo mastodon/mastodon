@@ -26,8 +26,16 @@ const IconButton = React.createClass({
   },
 
   render () {
+    const style = {
+      display: 'inline-block',
+      fontSize: `${this.props.size}px`,
+      width: `${this.props.size}px`,
+      height: `${this.props.size}px`,
+      lineHeight: `${this.props.size}px`
+    };
+
     return (
-      <a href='#' title={this.props.title} className={`icon-button ${this.props.active ? 'active' : ''}`} onClick={this.handleClick} style={{ display: 'inline-block', fontSize: `${this.props.size}px`, width: `${this.props.size}px`, height: `${this.props.size}px`, lineHeight: `${this.props.size}px`}}>
+      <a href='#' title={this.props.title} className={`icon-button ${this.props.active ? 'active' : ''}`} onClick={this.handleClick} style={style}>
         <i className={`fa fa-fw fa-${this.props.icon}`}></i>
       </a>
     );

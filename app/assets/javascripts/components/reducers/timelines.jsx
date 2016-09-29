@@ -16,7 +16,10 @@ import {
   ACCOUNT_TIMELINE_FETCH_SUCCESS,
   ACCOUNT_TIMELINE_EXPAND_SUCCESS
 }                                from '../actions/accounts';
-import { STATUS_FETCH_SUCCESS }  from '../actions/statuses';
+import {
+  STATUS_FETCH_SUCCESS,
+  STATUS_DELETE_SUCCESS
+}                                from '../actions/statuses';
 import { FOLLOW_SUBMIT_SUCCESS } from '../actions/follow';
 import Immutable                 from 'immutable';
 
@@ -142,10 +145,28 @@ function updateTimeline(state, timeline, status) {
 };
 
 function deleteStatus(state, id) {
+  const status = state.getIn(['statuses', id]);
+
+  if (!status) {
+    return state;
+  }
+
+  // Remove references from timelines
   ['home', 'mentions'].forEach(function (timeline) {
     state = state.update(timeline, list => list.filterNot(item => item === id));
   });
 
+  // Remove references from account timelines
+  state = state.updateIn(['accounts_timelines', status.get('account')], Immutable.List(), list => list.filterNot(item => item === id));
+
+  // Remove reblogs of deleted status
+  const references = state.get('statuses').filter(item => item.get('reblog') === id);
+
+  references.forEach(referencingId => {
+    state = deleteStatus(state, referencingId);
+  });
+
+  // Remove normalized status
   return state.deleteIn(['statuses', id]);
 };
 
@@ -153,7 +174,7 @@ function normalizeAccount(state, account, relationship) {
   if (relationship) {
     state = normalizeRelationship(state, relationship);
   }
-  
+
   return state.setIn(['accounts', account.get('id')], account);
 };
 
@@ -194,6 +215,7 @@ export default function timelines(state = initialState, action) {
     case TIMELINE_UPDATE:
       return updateTimeline(state, action.timeline, Immutable.fromJS(action.status));
     case TIMELINE_DELETE:
+    case STATUS_DELETE_SUCCESS:
       return deleteStatus(state, action.id);
     case REBLOG_SUCCESS:
     case FAVOURITE_SUCCESS:

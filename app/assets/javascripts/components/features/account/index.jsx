@@ -8,6 +8,7 @@ import {
   fetchAccountTimeline,
   expandAccountTimeline
 }                            from '../../actions/accounts';
+import { deleteStatus }      from '../../actions/statuses';
 import { replyCompose }      from '../../actions/compose';
 import { favourite, reblog } from '../../actions/interactions';
 import Header                from './components/header';
@@ -72,6 +73,10 @@ const Account = React.createClass({
     this.props.dispatch(favourite(status));
   },
 
+  handleDelete (status) {
+    this.props.dispatch(deleteStatus(status.get('id')));
+  },
+
   handleScrollToBottom () {
     this.props.dispatch(expandAccountTimeline(this.props.account.get('id')));
   },
@@ -87,7 +92,7 @@ const Account = React.createClass({
       <div style={{ display: 'flex', flexDirection: 'column', 'flex': '0 0 auto', height: '100%' }}>
         <Header account={account} />
         <ActionBar account={account} me={me} onFollow={this.handleFollow} onUnfollow={this.handleUnfollow} />
-        <StatusList statuses={statuses} onScrollToBottom={this.handleScrollToBottom} onReply={this.handleReply} onReblog={this.handleReblog} onFavourite={this.handleFavourite} />
+        <StatusList statuses={statuses} me={me} onScrollToBottom={this.handleScrollToBottom} onReply={this.handleReply} onReblog={this.handleReblog} onFavourite={this.handleFavourite} />
       </div>
     );
   }

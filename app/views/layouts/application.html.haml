@@ -1,12 +1,19 @@
 !!! 5
 %html
   %head
-    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %meta{:content => 'text/html; charset=UTF-8', 'http-equiv' => 'Content-Type'}/
+    %meta{:charset => 'utf-8'}/
+    %meta{:name => 'viewport', :content => 'width=device-width, initial-scale=1'}/
+    %meta{'http-equiv' => 'X-UA-Compatible', :content => 'IE=edge'}/
+
     %title
       = "#{yield(:page_title)} - " if content_for?(:page_title)
       Mastodon
+
     = stylesheet_link_tag    'application', media: 'all'
     = csrf_meta_tags
+
     = yield :header_tags
+
   %body{ class: @body_classes }
     = content_for?(:content) ? yield(:content) : yield

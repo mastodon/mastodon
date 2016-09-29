@@ -9,7 +9,9 @@ const StatusList = React.createClass({
     onReply: React.PropTypes.func,
     onReblog: React.PropTypes.func,
     onFavourite: React.PropTypes.func,
-    onScrollToBottom: React.PropTypes.func
+    onDelete: React.PropTypes.func,
+    onScrollToBottom: React.PropTypes.func,
+    me: React.PropTypes.number
   },
 
   mixins: [PureRenderMixin],
@@ -23,11 +25,13 @@ const StatusList = React.createClass({
   },
 
   render () {
+    const { statuses, onScrollToBottom, ...other } = this.props;
+
     return (
       <div style={{ overflowY: 'scroll', flex: '1 1 auto' }} className='scrollable' onScroll={this.handleScroll}>
         <div>
-          {this.props.statuses.map((status) => {
-            return <Status key={status.get('id')} status={status} onReply={this.props.onReply} onReblog={this.props.onReblog} onFavourite={this.props.onFavourite} />;
+          {statuses.map((status) => {
+            return <Status key={status.get('id')} {...other} status={status} />;
           })}
         </div>
       </div>
