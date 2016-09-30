@@ -2,8 +2,8 @@ class ApiController < ApplicationController
   protect_from_forgery with: :null_session
   skip_before_action :verify_authenticity_token
 
-  rescue_from ActiveRecord::RecordInvalid do
-    render json: { error: 'Record invalid' }, status: 422
+  rescue_from ActiveRecord::RecordInvalid do |e|
+    render json: { error: e.to_s }, status: 422
   end
 
   rescue_from ActiveRecord::RecordNotFound do
