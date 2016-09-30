@@ -5,7 +5,7 @@ RSpec.describe Api::V1::AppsController, type: :controller do
 
   describe 'POST #create' do
     before do
-      post :create, params: { name: 'Test app', redirect_uri: 'urn:ietf:wg:oauth:2.0:oob' }
+      post :create, params: { client_name: 'Test app', redirect_uris: 'urn:ietf:wg:oauth:2.0:oob' }
     end
 
     it 'returns http success' do
