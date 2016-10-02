@@ -31,5 +31,9 @@ module Mastodon
     config.middleware.use Rack::Deflater
 
     config.browserify_rails.commandline_options = "--transform [ babelify --presets [ es2015 react ] ] --extension=\".jsx\""
+
+    config.to_prepare do
+      Doorkeeper::AuthorizationsController.layout 'auth'
+    end
   end
 end

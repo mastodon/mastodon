@@ -153,9 +153,8 @@ class ProcessFeedService < BaseService
 
     status = Status.new(account: account, uri: target_id(xml), text: target_content(xml), url: target_url(xml), created_at: published(xml), updated_at: updated(xml))
     status.thread = find_original_status(xml, thread_id(xml))
-    status.save
 
-    if status.saved? && status.thread.nil? && !thread_href(xml).nil?
+    if status.save && status.thread.nil? && !thread_href(xml).nil?
       ThreadResolveWorker.perform_async(status.id, thread_href(xml))
     end
 
