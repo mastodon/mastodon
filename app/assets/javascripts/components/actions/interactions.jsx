@@ -8,6 +8,14 @@ export const FAVOURITE_REQUEST = 'FAVOURITE_REQUEST';
 export const FAVOURITE_SUCCESS = 'FAVOURITE_SUCCESS';
 export const FAVOURITE_FAIL    = 'FAVOURITE_FAIL';
 
+export const UNREBLOG_REQUEST = 'UNREBLOG_REQUEST';
+export const UNREBLOG_SUCCESS = 'UNREBLOG_SUCCESS';
+export const UNREBLOG_FAIL    = 'UNREBLOG_FAIL';
+
+export const UNFAVOURITE_REQUEST = 'UNFAVOURITE_REQUEST';
+export const UNFAVOURITE_SUCCESS = 'UNFAVOURITE_SUCCESS';
+export const UNFAVOURITE_FAIL    = 'UNFAVOURITE_FAIL';
+
 export function reblog(status) {
   return function (dispatch, getState) {
     dispatch(reblogRequest(status));
@@ -24,10 +32,12 @@ export function reblog(status) {
 
 export function unreblog(status) {
   return (dispatch, getState) => {
+    dispatch(unreblogRequest(status));
+
     api(getState).post(`/api/v1/statuses/${status.get('id')}/unreblog`).then(response => {
-      //
+      dispatch(unreblogSuccess(status, response.data));
     }).catch(error => {
-      //
+      dispatch(unreblogFail(status, error));
     });
   };
 };
@@ -55,6 +65,29 @@ export function reblogFail(status, error) {
   };
 };
 
+export function unreblogRequest(status) {
+  return {
+    type: UNREBLOG_REQUEST,
+    status: status
+  };
+};
+
+export function unreblogSuccess(status, response) {
+  return {
+    type: UNREBLOG_SUCCESS,
+    status: status,
+    response: response
+  };
+};
+
+export function unreblogFail(status, error) {
+  return {
+    type: UNREBLOG_FAIL,
+    status: status,
+    error: error
+  };
+};
+
 export function favourite(status) {
   return function (dispatch, getState) {
     dispatch(favouriteRequest(status));
@@ -69,10 +102,12 @@ export function favourite(status) {
 
 export function unfavourite(status) {
   return (dispatch, getState) => {
+    dispatch(unfavouriteRequest(status));
+
     api(getState).post(`/api/v1/statuses/${status.get('id')}/unfavourite`).then(response => {
-      //
+      dispatch(unfavouriteSuccess(status, response.data));
     }).catch(error => {
-      //
+      dispatch(unfavouriteFail(status, error));
     });
   };
 };
@@ -95,6 +130,29 @@ export function favouriteSuccess(status, response) {
 export function favouriteFail(status, error) {
   return {
     type: FAVOURITE_FAIL,
+    status: status,
+    error: error
+  };
+};
+
+export function unfavouriteRequest(status) {
+  return {
+    type: UNFAVOURITE_REQUEST,
+    status: status
+  };
+};
+
+export function unfavouriteSuccess(status, response) {
+  return {
+    type: UNFAVOURITE_SUCCESS,
+    status: status,
+    response: response
+  };
+};
+
+export function unfavouriteFail(status, error) {
+  return {
+    type: UNFAVOURITE_FAIL,
     status: status,
     error: error
   };

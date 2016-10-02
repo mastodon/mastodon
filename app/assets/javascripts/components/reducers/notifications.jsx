@@ -1,6 +1,11 @@
 import { COMPOSE_SUBMIT_FAIL, COMPOSE_UPLOAD_FAIL } from '../actions/compose';
 import { FOLLOW_SUBMIT_FAIL }                       from '../actions/follow';
-import { REBLOG_FAIL, FAVOURITE_FAIL }              from '../actions/interactions';
+import {
+  REBLOG_FAIL,
+  UNREBLOG_FAIL,
+  FAVOURITE_FAIL,
+  UNFAVOURITE_FAIL
+}                                                   from '../actions/interactions';
 import {
   TIMELINE_REFRESH_FAIL,
   TIMELINE_EXPAND_FAIL
@@ -55,6 +60,8 @@ export default function notifications(state = initialState, action) {
     case ACCOUNT_TIMELINE_EXPAND_FAIL:
     case STATUS_FETCH_FAIL:
     case STATUS_DELETE_FAIL:
+    case UNREBLOG_FAIL:
+    case UNFAVOURITE_FAIL:
       return notificationFromError(state, action.error);
     case NOTIFICATION_DISMISS:
       return state.filterNot(item => item.get('key') === action.notification.key);

@@ -1,7 +1,12 @@
 import { connect }           from 'react-redux';
 import StatusList            from '../../../components/status_list';
 import { replyCompose }      from '../../../actions/compose';
-import { reblog, favourite } from '../../../actions/interactions';
+import {
+  reblog,
+  favourite,
+  unreblog,
+  unfavourite
+}                            from '../../../actions/interactions';
 import { expandTimeline }    from '../../../actions/timelines';
 import { selectStatus }      from '../../../reducers/timelines';
 import { deleteStatus }      from '../../../actions/statuses';
@@ -20,11 +25,19 @@ const mapDispatchToProps = function (dispatch, props) {
     },
 
     onFavourite (status) {
-      dispatch(favourite(status));
+      if (status.get('favourited')) {
+        dispatch(unfavourite(status));
+      } else {
+        dispatch(favourite(status));
+      }
     },
 
     onReblog (status) {
-      dispatch(reblog(status));
+      if (status.get('reblogged')) {
+        dispatch(unreblog(status));
+      } else {
+        dispatch(reblog(status));
+      }
     },
 
     onScrollToBottom () {

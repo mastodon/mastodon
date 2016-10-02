@@ -7,25 +7,24 @@ const ActionBar = React.createClass({
   propTypes: {
     account: ImmutablePropTypes.map.isRequired,
     me: React.PropTypes.number.isRequired,
-    onFollow: React.PropTypes.func.isRequired,
-    onUnfollow: React.PropTypes.func.isRequired
+    onFollow: React.PropTypes.func.isRequired
   },
 
   mixins: [PureRenderMixin],
 
   render () {
     const { account, me } = this.props;
-    
+
     let infoText     = '';
-    let actionButton = '';
+    let buttonText   = '';
 
     if (account.get('id') === me) {
-      infoText = 'This is you!';
+      buttonText = 'This is you!';
     } else {
       if (account.getIn(['relationship', 'following'])) {
-        actionButton = <Button text='Unfollow' onClick={this.props.onUnfollow} />
+        buttonText = 'Unfollow';
       } else {
-        actionButton = <Button text='Follow' onClick={this.props.onFollow} />
+        buttonText = 'Follow';
       }
 
       if (account.getIn(['relationship', 'followed_by'])) {
@@ -35,7 +34,7 @@ const ActionBar = React.createClass({
 
     return (
       <div style={{ borderTop: '1px solid #363c4b', borderBottom: '1px solid #363c4b', padding: '10px', lineHeight: '36px', overflow: 'hidden', flex: '0 0 auto' }}>
-        {actionButton} <span style={{ color: '#616b86', fontWeight: '500', textTransform: 'uppercase', float: 'right', display: 'block' }}>{infoText}</span>
+        <Button text={buttonText} onClick={this.props.onFollow} disabled={account.get('id') === me} /> <span style={{ color: '#616b86', fontWeight: '500', textTransform: 'uppercase', float: 'right', display: 'block' }}>{infoText}</span>
       </div>
     );
   },

@@ -10,7 +10,12 @@ import {
 }                            from '../../actions/accounts';
 import { deleteStatus }      from '../../actions/statuses';
 import { replyCompose }      from '../../actions/compose';
-import { favourite, reblog } from '../../actions/interactions';
+import {
+  favourite,
+  reblog,
+  unreblog,
+  unfavourite
+}                            from '../../actions/interactions';
 import Header                from './components/header';
 import {
   selectStatus,
@@ -54,11 +59,11 @@ const Account = React.createClass({
   },
 
   handleFollow () {
-    this.props.dispatch(followAccount(this.props.account.get('id')));
-  },
-
-  handleUnfollow () {
-    this.props.dispatch(unfollowAccount(this.props.account.get('id')));
+    if (this.props.account.getIn(['relationship', 'following'])) {
+      this.props.dispatch(unfollowAccount(this.props.account.get('id')));
+    } else {
+      this.props.dispatch(followAccount(this.props.account.get('id')));
+    }
   },
 
   handleReply (status) {
@@ -66,11 +71,19 @@ const Account = React.createClass({
   },
 
   handleReblog (status) {
-    this.props.dispatch(reblog(status));
+    if (status.get('reblogged')) {
+      this.props.dispatch(unreblog(status));
+    } else {
+      this.props.dispatch(reblog(status));
+    }
   },
 
   handleFavourite (status) {
-    this.props.dispatch(favourite(status));
+    if (status.get('favourited')) {
+      this.props.dispatch(unfavourite(status));
+    } else {
+      this.props.dispatch(favourite(status));
+    }
   },
 
   handleDelete (status) {

@@ -6,7 +6,9 @@ import {
 }                                from '../actions/timelines';
 import {
   REBLOG_SUCCESS,
-  FAVOURITE_SUCCESS
+  UNREBLOG_SUCCESS,
+  FAVOURITE_SUCCESS,
+  UNFAVOURITE_SUCCESS
 }                                from '../actions/interactions';
 import {
   ACCOUNT_SET_SELF,
@@ -219,6 +221,8 @@ export default function timelines(state = initialState, action) {
       return deleteStatus(state, action.id);
     case REBLOG_SUCCESS:
     case FAVOURITE_SUCCESS:
+    case UNREBLOG_SUCCESS:
+    case UNFAVOURITE_SUCCESS:
       return normalizeStatus(state, Immutable.fromJS(action.response));
     case ACCOUNT_SET_SELF:
       return setSelf(state, Immutable.fromJS(action.account));
