@@ -2,6 +2,4 @@
 
 You were mentioned by <%= @status.account.acct %> in:
 
-<%= strip_tags(@status.content) %>
-
-<%= TagManager.instance.url_for(@status) %>
+<%= render partial: 'status' %>
