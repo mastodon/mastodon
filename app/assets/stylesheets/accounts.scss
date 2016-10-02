@@ -8,6 +8,11 @@
   overflow: hidden;
   position: relative;
 
+  @media screen and (max-width: 700px) {
+    border-radius: 0;
+    box-shadow: none;
+  }
+
   &:after {
     background: rgba(0, 0, 0, 0.5);
     display: block;
@@ -191,6 +196,11 @@
   padding: 20px 10px;
   padding-bottom: 10px;
   overflow: hidden;
+
+  @media screen and (max-width: 700px) {
+    border-radius: 0;
+    box-shadow: none;
+  }
 
   .account-grid-card {
     box-sizing: border-box;

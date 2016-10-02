@@ -23,17 +23,11 @@
           = link_to TagManager.instance.url_for(proper_status(status).account), class: 'name' do
             %strong= display_name(proper_status(status).account)
             = "@#{proper_status(status).account.acct}"
+
+        .header__right
           = link_to TagManager.instance.url_for(proper_status(status)), class: 'time' do
             %span{ title: proper_status(status).created_at }
               = relative_time(proper_status(status).created_at)
-
-        .header__right
-          .counter-btn{ class: reblogged_by_me_class(proper_status(status)) }
-            %i.fa.fa-retweet
-            %span.counter-number= proper_status(status).reblogs_count
-          .counter-btn{ class: favourited_by_me_class(proper_status(status)) }
-            %i.fa.fa-star
-            %span.counter-number= proper_status(status).favourites_count
 
       .content= Formatter.instance.format(proper_status(status))
 

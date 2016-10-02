@@ -14,9 +14,7 @@ class Favourite < ApplicationRecord
     "#{account.acct} favourited a status by #{status.account.acct}"
   end
 
-  def object_type
-    target.object_type
-  end
+  delegate :object_type, to: :target
 
   def thread
     status

@@ -69,6 +69,7 @@ body {
   padding-bottom: 140px;
   text-rendering: optimizelegibility;
   font-feature-settings: "kern";
+  min-width: 380px;
 
   &.app-body {
     position: fixed;
@@ -90,6 +91,11 @@ body {
   width: 700px;
   margin: 0 auto;
   margin-top: 40px;
+
+  @media screen and (max-width: 700px) {
+    width: 100%;
+    margin: 0;
+  }
 }
 
 .logo-container {
@@ -141,6 +147,7 @@ body {
 .form-container {
   width: 400px;
   margin: 0 auto;
+  padding: 20px;
 
   .field {
     margin-bottom: 15px;

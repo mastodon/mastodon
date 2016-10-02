@@ -56,11 +56,18 @@
     }
   }
 
-  &.activity-stream-embedded {
+  @media screen and (max-width: 700px) {
+    border-radius: 0;
     box-shadow: none;
 
-    .entry {
-      border-radius: 0;
+    &.activity-stream-headless {
+      .entry:first-child {
+        border-radius: 0;
+
+        &:last-child {
+          border-radius: 0;
+        }
+      }
     }
   }
 
@@ -76,7 +83,7 @@
       width: 56px;
       height: 56px;
       display: block;
-      border-radius: 56px;
+      border-radius: 4px;
     }
   }
 
@@ -96,27 +103,7 @@
     }
 
     .header__right {
-      .counter-btn {
-        color: #d9e1e8;
-        display: inline-block;
-        padding: 0 10px;
-        cursor: default;
 
-        .counter-number {
-          font-weight: 500;
-          display: inline-block;
-          margin-left: 3px;
-          font-size: 12px;
-        }
-
-        &.reblogged {
-          color: #2b90d9;
-        }
-
-        &.favourited {
-          color: #df405a;
-        }
-      }
     }
 
     .name {

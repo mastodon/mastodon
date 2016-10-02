@@ -11,8 +11,4 @@ class User < ApplicationRecord
   scope :prolific, -> { joins('inner join statuses on statuses.account_id = users.account_id').select('users.*, count(statuses.id) as statuses_count').group('users.id').order('statuses_count desc') }
   scope :recent,   -> { order('created_at desc') }
   scope :admins,   -> { where(admin: true) }
-
-  def admin?
-    admin
-  end
 end
