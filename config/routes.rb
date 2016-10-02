@@ -29,7 +29,7 @@ Rails.application.routes.draw do
 
   resource  :settings, only: [:show, :update]
   resources :media, only: [:show]
-  
+
   namespace :api do
     # PubSubHubbub
     resources :subscriptions, only: [:show]
@@ -59,10 +59,11 @@ Rails.application.routes.draw do
       resources :follows,  only: [:create]
       resources :media,    only: [:create]
       resources :apps,     only: [:create]
-      
+
       resources :accounts, only: [:show] do
         collection do
           get :relationships
+          get :verify_credentials
         end
 
         member do
@@ -78,7 +79,7 @@ Rails.application.routes.draw do
   end
 
   get :about, to: 'about#index'
-  
+
   root 'home#index'
 
   match '*unmatched_route', via: :all, to: 'application#raise_not_found'

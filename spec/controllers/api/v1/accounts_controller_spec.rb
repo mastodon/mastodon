@@ -18,6 +18,13 @@ RSpec.describe Api::V1::AccountsController, type: :controller do
     end
   end
 
+  describe 'GET #verify_credentials' do
+    it 'returns http success' do
+      get :verify_credentials
+      expect(response).to have_http_status(:success)
+    end
+  end
+
   describe 'GET #statuses' do
     it 'returns http success' do
       get :statuses, params: { id: user.account.id }

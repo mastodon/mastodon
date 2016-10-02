@@ -1,9 +1,14 @@
 class Api::V1::AccountsController < ApiController
   before_action :doorkeeper_authorize!
-  before_action :set_account
+  before_action :set_account, except: :verify_credentials
   respond_to    :json
 
   def show
+  end
+
+  def verify_credentials
+    @account = current_user.account
+    render action: :show
   end
 
   def following
