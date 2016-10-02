@@ -9,10 +9,12 @@ class FeedManager
     "feed:#{type}:#{id}"
   end
 
-  # Filter status out of the home feed if it is a reply to someone the user doesn't follow
-  def filter_status?(status, follower)
-    replied_to_user = status.reply? ? status.thread.account : nil
-    (status.reply? && !(follower.id == replied_to_user.id || replied_to_user.id == status.account_id || follower.following?(replied_to_user)))
+  def filter?(timeline_type, status, receiver)
+    if timeline_type == :home
+      filter_from_home?(status, receiver)
+    else
+      filter_from_mentions?(status, receiver)
+    end
   end
 
   def push(timeline_type, account, status)
@@ -35,6 +37,16 @@ class FeedManager
 
   def redis
     $redis
+  end
+
+  # Filter status out of the home feed if it is a reply to someone the user doesn't follow
+  def filter_from_home?(status, follower)
+    replied_to_user = status.reply? ? status.thread.account : nil
+    (status.reply? && !(follower.id == replied_to_user.id || replied_to_user.id == status.account_id || follower.following?(replied_to_user)))
+  end
+
+  def filter_from_mentions?(status, follower)
+    false
   end
 
   def inline_render(target_account, status)

@@ -15,7 +15,7 @@ class FanOutOnWriteService < BaseService
 
   def deliver_to_followers(status)
     status.account.followers.each do |follower|
-      next if !follower.local? || FeedManager.instance.filter_status?(status, follower)
+      next if !follower.local? || FeedManager.instance.filter?(:home, status, follower)
       FeedManager.instance.push(:home, follower, status)
     end
   end
@@ -23,7 +23,7 @@ class FanOutOnWriteService < BaseService
   def deliver_to_mentioned(status)
     status.mentions.each do |mention|
       mentioned_account = mention.account
-      next if !mentioned_account.local? || mentioned_account.id == status.account_id
+      next if !mentioned_account.local? || mentioned_account.id == status.account_id || FeedManager.instance.filter?(:mentions, status, mentioned_account)
       FeedManager.instance.push(:mentions, mentioned_account, status)
     end
   end

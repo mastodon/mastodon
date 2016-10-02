@@ -9,12 +9,12 @@ RSpec.describe FeedManager do
     end
   end
 
-  describe '#filter_status?' do
+  describe '#filter?' do
     let(:followee) { Fabricate(:account, username: 'alice') }
     let(:status)   { Fabricate(:status, text: 'Hello world', account: followee) }
     let(:follower) { Fabricate(:account, username: 'bob') }
 
-    subject { FeedManager.instance.filter_status?(status, follower) }
+    subject { FeedManager.instance.filter?(:home, status, follower) }
 
     it 'returns a boolean value' do
       expect(subject).to be false
