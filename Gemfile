@@ -19,6 +19,7 @@ gem 'paperclip', '~> 4.3'
 gem 'paperclip-av-transcoder'
 
 gem 'http'
+gem 'httplog'
 gem 'addressable'
 gem 'nokogiri'
 gem 'link_header'

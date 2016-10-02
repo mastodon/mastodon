@@ -74,6 +74,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.10.0)
+    colorize (0.8.1)
     concurrent-ruby (1.0.2)
     connection_pool (2.2.0)
     crack (0.4.3)
@@ -131,6 +132,8 @@ GEM
       domain_name (~> 0.5)
     http-form_data (1.0.1)
     http_parser.rb (0.6.0)
+    httplog (0.3.2)
+      colorize
     i18n (0.7.0)
     jbuilder (2.6.0)
       activesupport (>= 3.0.0, < 5.1)
@@ -360,6 +363,7 @@ DEPENDENCIES
   hiredis
   htmlentities
   http
+  httplog
   jbuilder (~> 2.0)
   jquery-rails
   letter_opener
