@@ -40,7 +40,7 @@ class Api::V1::AccountsController < ApiController
     @accounts    = Account.find(ids)
     @following   = Account.following_map(ids, current_user.account_id)
     @followed_by = Account.followed_by_map(ids, current_user.account_id)
-    @blocking    = {}
+    @blocking    = Account.blocking_map(ids, current_user.account_id)
   end
 
   private
@@ -52,6 +52,6 @@ class Api::V1::AccountsController < ApiController
   def set_relationship
     @following   = Account.following_map([@account.id], current_user.account_id)
     @followed_by = Account.followed_by_map([@account.id], current_user.account_id)
-    @blocking    = {}
+    @blocking    = Account.blocking_map([@account.id], current_user.account_id)
   end
 end

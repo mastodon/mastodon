@@ -52,9 +52,18 @@ class Account < ApplicationRecord
     active_relationships.where(target_account: other_account).first_or_create!(target_account: other_account)
   end
 
+  def block!(other_account)
+    block_relationships.where(target_account: other_account).first_or_create!(target_account: other_account)
+  end
+
   def unfollow!(other_account)
     follow = active_relationships.find_by(target_account: other_account)
     follow.destroy unless follow.nil?
+  end
+
+  def unblock!(other_account)
+    block = block_relationships.find_by(target_account: other_account)
+    block.destroy unless block.nil?
   end
 
   def following?(other_account)
@@ -137,6 +146,10 @@ class Account < ApplicationRecord
 
   def self.followed_by_map(target_account_ids, account_id)
     Follow.where(account_id: target_account_ids).where(target_account_id: account_id).map { |f| [f.account_id, true] }.to_h
+  end
+
+  def self.blocking_map(target_account_ids, account_id)
+    Block.where(target_account_id: target_account_ids).where(account_id: account_id).map { |b| [b.target_account_id, true] }.to_h
   end
 
   before_create do
