@@ -58,7 +58,7 @@ class ProcessInteractionService < BaseService
 
   def follow!(account, target_account)
     account.follow!(target_account)
-    NotificationMailer.follow(target_account, account).deliver_later
+    NotificationMailer.follow(target_account, account).deliver_later unless target_account.blocking?(account)
   end
 
   def unfollow!(account, target_account)
@@ -78,7 +78,7 @@ class ProcessInteractionService < BaseService
   def favourite!(xml, from_account)
     current_status = status(xml)
     current_status.favourites.where(account: from_account).first_or_create!(account: from_account)
-    NotificationMailer.favourite(current_status, from_account).deliver_later
+    NotificationMailer.favourite(current_status, from_account).deliver_later unless current_status.account.blocking?(from_account)
   end
 
   def add_post!(body, account)

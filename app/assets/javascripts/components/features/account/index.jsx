@@ -5,6 +5,8 @@ import {
   fetchAccount,
   followAccount,
   unfollowAccount,
+  blockAccount,
+  unblockAccount,
   fetchAccountTimeline,
   expandAccountTimeline
 }                            from '../../actions/accounts';
@@ -66,6 +68,14 @@ const Account = React.createClass({
     }
   },
 
+  handleBlock () {
+    if (this.props.account.getIn(['relationship', 'blocking'])) {
+      this.props.dispatch(unblockAccount(this.props.account.get('id')));
+    } else {
+      this.props.dispatch(blockAccount(this.props.account.get('id')));
+    }
+  },
+
   handleReply (status) {
     this.props.dispatch(replyCompose(status));
   },
@@ -104,7 +114,7 @@ const Account = React.createClass({
     return (
       <div style={{ display: 'flex', flexDirection: 'column', 'flex': '0 0 auto', height: '100%' }}>
         <Header account={account} />
-        <ActionBar account={account} me={me} onFollow={this.handleFollow} onUnfollow={this.handleUnfollow} />
+        <ActionBar account={account} me={me} onFollow={this.handleFollow} onBlock={this.handleBlock} />
         <StatusList statuses={statuses} me={me} onScrollToBottom={this.handleScrollToBottom} onReply={this.handleReply} onReblog={this.handleReblog} onFavourite={this.handleFavourite} />
       </div>
     );

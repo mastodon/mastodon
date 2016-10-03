@@ -15,6 +15,8 @@ import {
   ACCOUNT_FETCH_SUCCESS,
   ACCOUNT_FOLLOW_SUCCESS,
   ACCOUNT_UNFOLLOW_SUCCESS,
+  ACCOUNT_BLOCK_SUCCESS,
+  ACCOUNT_UNBLOCK_SUCCESS,
   ACCOUNT_TIMELINE_FETCH_SUCCESS,
   ACCOUNT_TIMELINE_EXPAND_SUCCESS
 }                                from '../actions/accounts';
@@ -231,6 +233,8 @@ export default function timelines(state = initialState, action) {
       return normalizeAccount(state, Immutable.fromJS(action.account), Immutable.fromJS(action.relationship));
     case ACCOUNT_FOLLOW_SUCCESS:
     case ACCOUNT_UNFOLLOW_SUCCESS:
+    case ACCOUNT_UNBLOCK_SUCCESS:
+    case ACCOUNT_BLOCK_SUCCESS:
       return normalizeRelationship(state, Immutable.fromJS(action.relationship));
     case STATUS_FETCH_SUCCESS:
       return normalizeContext(state, Immutable.fromJS(action.status), Immutable.fromJS(action.context.ancestors), Immutable.fromJS(action.context.descendants));

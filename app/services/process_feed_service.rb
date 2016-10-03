@@ -69,7 +69,7 @@ class ProcessFeedService < BaseService
 
         unless mentioned_account.nil?
           mentioned_account.mentions.where(status: status).first_or_create(status: status)
-          NotificationMailer.mention(mentioned_account, status).deliver_later
+          NotificationMailer.mention(mentioned_account, status).deliver_later unless mentioned_account.blocking?(status.account)
         end
       else
         # What to do about remote user?
@@ -114,7 +114,7 @@ class ProcessFeedService < BaseService
 
     if !status.reblog.nil?
       status.save!
-      NotificationMailer.reblog(status.reblog, status.account).deliver_later if status.reblog.local?
+      NotificationMailer.reblog(status.reblog, status.account).deliver_later if status.reblog.local? && !status.reblog.account.blocking?(status.account)
     end
   end
 

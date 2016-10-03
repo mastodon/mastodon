@@ -7,7 +7,8 @@ const ActionBar = React.createClass({
   propTypes: {
     account: ImmutablePropTypes.map.isRequired,
     me: React.PropTypes.number.isRequired,
-    onFollow: React.PropTypes.func.isRequired
+    onFollow: React.PropTypes.func.isRequired,
+    onBlock: React.PropTypes.func.isRequired
   },
 
   mixins: [PureRenderMixin],
@@ -16,25 +17,46 @@ const ActionBar = React.createClass({
     const { account, me } = this.props;
 
     let infoText     = '';
+    let follow       = '';
     let buttonText   = '';
+    let block        = '';
+    let disabled     = false;
 
     if (account.get('id') === me) {
       buttonText = 'This is you!';
+      disabled   = true;
     } else {
-      if (account.getIn(['relationship', 'following'])) {
-        buttonText = 'Unfollow';
+      let blockText = '';
+
+      if (account.getIn(['relationship', 'blocking'])) {
+        buttonText = 'Blocked';
+        disabled   = true;
+        blockText  = 'Unblock';
       } else {
-        buttonText = 'Follow';
+        if (account.getIn(['relationship', 'following'])) {
+          buttonText = 'Unfollow';
+        } else {
+          buttonText = 'Follow';
+        }
+
+        if (account.getIn(['relationship', 'followed_by'])) {
+          infoText = 'Follows you!';
+        }
+
+        blockText = 'Block';
       }
 
-      if (account.getIn(['relationship', 'followed_by'])) {
-        infoText = 'Follows you!';
-      }
+      block = <Button text={blockText} onClick={this.props.onBlock} />;
+    }
+
+    if (!account.getIn(['relationship', 'blocking'])) {
+      follow = <Button text={buttonText} onClick={this.props.onFollow} disabled={disabled} />;
     }
 
     return (
       <div style={{ borderTop: '1px solid #363c4b', borderBottom: '1px solid #363c4b', padding: '10px', lineHeight: '36px', overflow: 'hidden', flex: '0 0 auto' }}>
-        <Button text={buttonText} onClick={this.props.onFollow} disabled={account.get('id') === me} /> <span style={{ color: '#616b86', fontWeight: '500', textTransform: 'uppercase', float: 'right', display: 'block' }}>{infoText}</span>
+        {follow} {block}
+        <span style={{ color: '#616b86', fontWeight: '500', textTransform: 'uppercase', float: 'right', display: 'block' }}>{infoText}</span>
       </div>
     );
   },

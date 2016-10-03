@@ -9,7 +9,7 @@ class ReblogService < BaseService
     account.ping!(account_url(account, format: 'atom'), [Rails.configuration.x.hub_url])
 
     if reblogged_status.local?
-      NotificationMailer.reblog(reblogged_status, account).deliver_later
+      NotificationMailer.reblog(reblogged_status, account).deliver_later unless reblogged_status.account.blocking?(account)
     else
       NotificationWorker.perform_async(reblog.stream_entry.id, reblogged_status.account_id)
     end

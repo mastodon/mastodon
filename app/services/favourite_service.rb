@@ -8,7 +8,7 @@ class FavouriteService < BaseService
     account.ping!(account_url(account, format: 'atom'), [Rails.configuration.x.hub_url])
 
     if status.local?
-      NotificationMailer.favourite(status, account).deliver_later
+      NotificationMailer.favourite(status, account).deliver_later unless status.account.blocking?(account)
     else
       NotificationWorker.perform_async(favourite.stream_entry.id, status.account_id)
     end

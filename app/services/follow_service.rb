@@ -10,7 +10,7 @@ class FollowService < BaseService
     follow = source_account.follow!(target_account)
 
     if target_account.local?
-      NotificationMailer.follow(target_account, source_account).deliver_later
+      NotificationMailer.follow(target_account, source_account).deliver_later unless target_account.blocking?(source_account)
     else
       subscribe_service.call(target_account)
       NotificationWorker.perform_async(follow.stream_entry.id, target_account.id)

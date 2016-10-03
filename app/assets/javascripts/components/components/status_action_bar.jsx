@@ -41,6 +41,8 @@ const StatusActionBar = React.createClass({
           <li><a href='#' onClick={this.handleDeleteClick}>Delete</a></li>
         </ul>
       );
+    } else {
+      menu = <ul />;
     }
 
     return (

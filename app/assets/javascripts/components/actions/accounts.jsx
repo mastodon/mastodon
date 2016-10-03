@@ -15,6 +15,14 @@ export const ACCOUNT_UNFOLLOW_REQUEST = 'ACCOUNT_UNFOLLOW_REQUEST';
 export const ACCOUNT_UNFOLLOW_SUCCESS = 'ACCOUNT_UNFOLLOW_SUCCESS';
 export const ACCOUNT_UNFOLLOW_FAIL    = 'ACCOUNT_UNFOLLOW_FAIL';
 
+export const ACCOUNT_BLOCK_REQUEST = 'ACCOUNT_BLOCK_REQUEST';
+export const ACCOUNT_BLOCK_SUCCESS = 'ACCOUNT_BLOCK_SUCCESS';
+export const ACCOUNT_BLOCK_FAIL    = 'ACCOUNT_BLOCK_FAIL';
+
+export const ACCOUNT_UNBLOCK_REQUEST = 'ACCOUNT_UNBLOCK_REQUEST';
+export const ACCOUNT_UNBLOCK_SUCCESS = 'ACCOUNT_UNBLOCK_SUCCESS';
+export const ACCOUNT_UNBLOCK_FAIL    = 'ACCOUNT_UNBLOCK_FAIL';
+
 export const ACCOUNT_TIMELINE_FETCH_REQUEST = 'ACCOUNT_TIMELINE_FETCH_REQUEST';
 export const ACCOUNT_TIMELINE_FETCH_SUCCESS = 'ACCOUNT_TIMELINE_FETCH_SUCCESS';
 export const ACCOUNT_TIMELINE_FETCH_FAIL    = 'ACCOUNT_TIMELINE_FETCH_FAIL';
@@ -201,6 +209,72 @@ export function expandAccountTimelineFail(id, error) {
   return {
     type: ACCOUNT_TIMELINE_EXPAND_FAIL,
     id: id,
+    error: error
+  };
+};
+
+export function blockAccount(id) {
+  return (dispatch, getState) => {
+    dispatch(blockAccountRequest(id));
+
+    api(getState).post(`/api/v1/accounts/${id}/block`).then(response => {
+      dispatch(blockAccountSuccess(response.data));
+    }).catch(error => {
+      dispatch(blockAccountFail(id, error));
+    });
+  };
+};
+
+export function unblockAccount(id) {
+  return (dispatch, getState) => {
+    dispatch(unblockAccountRequest(id));
+
+    api(getState).post(`/api/v1/accounts/${id}/unblock`).then(response => {
+      dispatch(unblockAccountSuccess(response.data));
+    }).catch(error => {
+      dispatch(unblockAccountFail(id, error));
+    });
+  };
+};
+
+export function blockAccountRequest(id) {
+  return {
+    type: ACCOUNT_BLOCK_REQUEST,
+    id: id
+  };
+};
+
+export function blockAccountSuccess(relationship) {
+  return {
+    type: ACCOUNT_BLOCK_SUCCESS,
+    relationship: relationship
+  };
+};
+
+export function blockAccountFail(error) {
+  return {
+    type: ACCOUNT_BLOCK_FAIL,
+    error: error
+  };
+};
+
+export function unblockAccountRequest(id) {
+  return {
+    type: ACCOUNT_UNBLOCK_REQUEST,
+    id: id
+  };
+};
+
+export function unblockAccountSuccess(relationship) {
+  return {
+    type: ACCOUNT_UNBLOCK_SUCCESS,
+    relationship: relationship
+  };
+};
+
+export function unblockAccountFail(error) {
+  return {
+    type: ACCOUNT_UNBLOCK_FAIL,
     error: error
   };
 };

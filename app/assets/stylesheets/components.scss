@@ -170,7 +170,6 @@
 .dropdown--active .dropdown__content {
   display: block;
   z-index: 9999;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
 
   &:before {
     content: "";
@@ -187,20 +186,11 @@
 
   ul {
     list-style: none;
-  }
-
-  li {
-    &:first-child a {
-      border-radius: 4px 4px 0 0;
-    }
-
-    &:last-child a {
-      border-radius: 0 0 4px 4px;
-    }
-
-    &:first-child:last-child a {
-      border-radius: 4px;
-    }
+    background: #d9e1e8;
+    padding: 4px 0;
+    border-radius: 4px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
+    min-width: 100px;
   }
 
   a {
