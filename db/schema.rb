@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161003142332) do
+ActiveRecord::Schema.define(version: 20161003145426) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,6 +41,14 @@ ActiveRecord::Schema.define(version: 20161003142332) do
     t.string   "avatar_remote_url"
     t.datetime "subscription_expires_at"
     t.index ["username", "domain"], name: "index_accounts_on_username_and_domain", unique: true, using: :btree
+  end
+
+  create_table "blocks", force: :cascade do |t|
+    t.integer  "account_id",        null: false
+    t.integer  "target_account_id", null: false
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+    t.index ["account_id", "target_account_id"], name: "index_blocks_on_account_id_and_target_account_id", unique: true, using: :btree
   end
 
   create_table "favourites", force: :cascade do |t|

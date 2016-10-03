@@ -40,13 +40,13 @@ class FeedManager
   end
 
   # Filter status out of the home feed if it is a reply to someone the user doesn't follow
-  def filter_from_home?(status, follower)
+  def filter_from_home?(status, receiver)
     replied_to_user = status.reply? ? status.thread.account : nil
-    (status.reply? && !(follower.id == replied_to_user.id || replied_to_user.id == status.account_id || follower.following?(replied_to_user)))
+    (status.reply? && !(receiver.id == replied_to_user.id || replied_to_user.id == status.account_id || receiver.following?(replied_to_user)))
   end
 
-  def filter_from_mentions?(status, follower)
-    false
+  def filter_from_mentions?(status, receiver)
+    receiver.blocking?(status.account) || (status.reblog? && receiver.blocking?(status.reblog.account))
   end
 
   def inline_render(target_account, status)

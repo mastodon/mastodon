@@ -1,0 +1,3 @@
+Fabricator(:block) do
+
+end

@@ -47,7 +47,7 @@ class StreamEntry < ApplicationRecord
   end
 
   def mentions
-    activity.respond_to?(:mentions) ? activity.mentions.map { |x| x.account } : []
+    activity.respond_to?(:mentions) ? activity.mentions.map(&:account) : []
   end
 
   def activity
