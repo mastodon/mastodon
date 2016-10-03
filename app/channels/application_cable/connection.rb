@@ -16,6 +16,8 @@ module ApplicationCable
       else
         reject_unauthorized_connection
       end
+    rescue :warden
+      reject_unauthorized_connection
     end
   end
 end
