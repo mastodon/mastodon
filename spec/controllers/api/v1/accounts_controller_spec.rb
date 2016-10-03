@@ -79,6 +79,44 @@ RSpec.describe Api::V1::AccountsController, type: :controller do
     end
   end
 
+  describe 'POST #block' do
+    let(:other_account) { Fabricate(:user, email: 'bob@example.com', account: Fabricate(:account, username: 'bob')).account }
+
+    before do
+      user.account.follow!(other_account)
+      post :block, params: { id: other_account.id }
+    end
+
+    it 'returns http success' do
+      expect(response).to have_http_status(:success)
+    end
+
+    it 'removes the following relation between user and target user' do
+      expect(user.account.following?(other_account)).to be false
+    end
+
+    it 'creates a blocking relation' do
+      expect(user.account.blocking?(other_account)).to be true
+    end
+  end
+
+  describe 'POST #unblock' do
+    let(:other_account) { Fabricate(:user, email: 'bob@example.com', account: Fabricate(:account, username: 'bob')).account }
+
+    before do
+      user.account.block!(other_account)
+      post :unblock, params: { id: other_account.id }
+    end
+
+    it 'returns http success' do
+      expect(response).to have_http_status(:success)
+    end
+
+    it 'removes the blocking relation between user and target user' do
+      expect(user.account.blocking?(other_account)).to be false
+    end
+  end
+
   describe 'GET #relationships' do
     let(:simon) { Fabricate(:user, email: 'simon@example.com', account: Fabricate(:account, username: 'simon')).account }
     let(:lewis) { Fabricate(:user, email: 'lewis@example.com', account: Fabricate(:account, username: 'lewis')).account }

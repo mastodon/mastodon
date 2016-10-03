@@ -24,13 +24,25 @@ class Api::V1::AccountsController < ApiController
   end
 
   def follow
-    @follow = FollowService.new.call(current_user.account, @account.acct)
+    FollowService.new.call(current_user.account, @account.acct)
+    set_relationship
+    render action: :relationship
+  end
+
+  def block
+    BlockService.new.call(current_user.account, @account)
     set_relationship
     render action: :relationship
   end
 
   def unfollow
-    @unfollow = UnfollowService.new.call(current_user.account, @account)
+    UnfollowService.new.call(current_user.account, @account)
+    set_relationship
+    render action: :relationship
+  end
+
+  def unblock
+    UnblockService.new.call(current_user.account, @account)
     set_relationship
     render action: :relationship
   end

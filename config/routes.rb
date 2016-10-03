@@ -74,6 +74,8 @@ Rails.application.routes.draw do
 
           post :follow
           post :unfollow
+          post :block
+          post :unblock
         end
       end
     end

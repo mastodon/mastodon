@@ -40,11 +40,15 @@ const Mastodon = React.createClass({
 
     if (typeof App !== 'undefined') {
       App.timeline = App.cable.subscriptions.create("TimelineChannel", {
-        connected: function() {},
+        connected () {
 
-        disconnected: function() {},
+        },
 
-        received: function(data) {
+        disconnected () {
+
+        },
+
+        received (data) {
           switch(data.type) {
             case 'update':
               return store.dispatch(updateTimeline(data.timeline, JSON.parse(data.message)));
@@ -53,6 +57,8 @@ const Mastodon = React.createClass({
             case 'merge':
             case 'unmerge':
               return store.dispatch(refreshTimeline('home'));
+            case 'block':
+              return store.dispatch(refreshTimeline('mentions'));
           }
         }
       });

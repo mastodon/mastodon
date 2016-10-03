@@ -26,7 +26,7 @@ const StatusContent = React.createClass({
       } else {
         link.setAttribute('target', '_blank');
         link.setAttribute('rel', 'noopener');
-        link.addEventListener('click', this.onNormalClick);
+        link.addEventListener('click', this.onNormalClick.bind(this));
       }
     }
   },
@@ -36,7 +36,7 @@ const StatusContent = React.createClass({
       e.preventDefault();
       this.context.router.push(`/accounts/${mention.get('id')}`);
     }
-    
+
     e.stopPropagation();
   },
 

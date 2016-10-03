@@ -13,7 +13,7 @@ class UnfollowService < BaseService
   def unmerge_from_timeline(from_account, into_account)
     timeline_key = FeedManager.instance.key(:home, into_account.id)
 
-    from_account.statuses.find_each do |status|
+    from_account.statuses.select('id').find_each do |status|
       redis.zrem(timeline_key, status.id)
     end
 
