@@ -1,9 +1,0 @@
-= simple_form_for application, url: doorkeeper_submit_path(application) do |f|
-  = f.error_notification
-
-  .form-inputs
-    = f.input :name
-    = f.input :redirect_uri, hint: t('doorkeeper.applications.help.redirect_uri')
-    = f.input :scopes, hint: t('doorkeeper.applications.help.scopes')
-  .form-actions
-    = f.button :submit, 'Save'
