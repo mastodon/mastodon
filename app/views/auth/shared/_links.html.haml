@@ -13,7 +13,3 @@
 
   - if devise_mapping.lockable? && resource_class.unlock_strategy_enabled?(:email) && controller_name != 'unlocks'
     %li= link_to "Didn't receive unlock instructions?", new_unlock_path(resource_name)
-
-  - if devise_mapping.omniauthable?
-    - resource_class.omniauth_providers.each do |provider|
-      %li= link_to "Sign in with #{OmniAuth::Utils.camelize(provider)}", omniauth_authorize_path(resource_name, provider)

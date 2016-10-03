@@ -104,6 +104,7 @@ body {
 .logo-container {
   max-width: 400px;
   margin: 100px auto;
+  margin-bottom: 0;
   cursor: default;
 
   @media screen and (max-width: 360px) {
@@ -274,6 +275,13 @@ body {
         }
       }
     }
+  }
+
+  .flash-message {
+    text-align: center;
+    font-size: 14px;
+    margin-bottom: 30px;
+    font-weight: 500;
   }
 
   .form-footer {

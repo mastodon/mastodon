@@ -7,6 +7,12 @@
           %small= Rails.configuration.x.local_domain
 
     .form-container
+      - if flash[:notice]
+        .flash-message.notice= flash[:notice]
+
+      - if flash[:alert]
+        .flash-message.alert= flash[:alert]
+
       = yield
 
 = render template: "layouts/application"
