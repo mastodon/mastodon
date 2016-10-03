@@ -6,8 +6,6 @@ class User < ApplicationRecord
 
   validates :account, presence: true
 
-  has_many :oauth_applications, class_name: 'Doorkeeper::Application', as: :owner
-
   scope :prolific, -> { joins('inner join statuses on statuses.account_id = users.account_id').select('users.*, count(statuses.id) as statuses_count').group('users.id').order('statuses_count desc') }
   scope :recent,   -> { order('created_at desc') }
   scope :admins,   -> { where(admin: true) }

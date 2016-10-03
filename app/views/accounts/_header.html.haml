@@ -4,17 +4,19 @@
     = display_name(@account)
     %small= "@#{@account.username}"
   .details
-    .counter{ class: active_nav_class(account_url(@account)) }
-      = link_to account_url(@account) do
-        %span.counter-label Posts
-        %span.counter-number= @account.statuses.count
-    .counter{ class: active_nav_class(following_account_url(@account)) }
-      = link_to following_account_url(@account) do
-        %span.counter-label Following
-        %span.counter-number= @account.following.count
-    .counter{ class: active_nav_class(followers_account_url(@account)) }
-      = link_to followers_account_url(@account) do
-        %span.counter-label Followers
-        %span.counter-number= @account.followers.count
     .bio
       %p= @account.note
+
+    .details-counters
+      .counter{ class: active_nav_class(account_url(@account)) }
+        = link_to account_url(@account) do
+          %span.counter-label Posts
+          %span.counter-number= @account.statuses.count
+      .counter{ class: active_nav_class(following_account_url(@account)) }
+        = link_to following_account_url(@account) do
+          %span.counter-label Following
+          %span.counter-number= @account.following.count
+      .counter{ class: active_nav_class(followers_account_url(@account)) }
+        = link_to followers_account_url(@account) do
+          %span.counter-label Followers
+          %span.counter-number= @account.followers.count

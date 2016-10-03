@@ -3,7 +3,7 @@
 
 .about-body {
   .wrapper {
-    width: 600px;
+    max-width: 600px;
     margin: 0 auto;
     color: #9baec8;
     padding-top: 200px;
@@ -37,5 +37,11 @@
     color: #282c37;
     font: 16px/16px 'Montserrat', sans-serif;
     font-weight: 300;
+  }
+
+  @media screen and (max-width: 360px) {
+    .wrapper {
+      padding: 20px;
+    }
   }
 }

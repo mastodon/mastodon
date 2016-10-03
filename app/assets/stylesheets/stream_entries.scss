@@ -60,14 +60,24 @@
     border-radius: 0;
     box-shadow: none;
 
-    &.activity-stream-headless {
-      .entry:first-child {
+    .entry {
+      &:last-child {
+        border-radius: 0;
+      }
+
+      &:first-child {
         border-radius: 0;
 
         &:last-child {
           border-radius: 0;
         }
       }
+    }
+  }
+
+  @media screen and (max-width: 360px) {
+    .avatar {
+      display: none;
     }
   }
 
@@ -192,6 +202,7 @@
     display: block;
     overflow: hidden;
     padding-left: 10px;
+    margin-bottom: 21px;
 
     li {
       display: block;
@@ -200,7 +211,7 @@
       height: 100px;
       border-radius: 4px;
       margin-right: 4px;
-      margin-bottom: 25px;
+      margin-bottom: 4px;
 
       a {
         display: block;

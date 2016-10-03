@@ -69,13 +69,16 @@ body {
   padding-bottom: 140px;
   text-rendering: optimizelegibility;
   font-feature-settings: "kern";
-  min-width: 380px;
 
   &.app-body {
     position: fixed;
     width: 100%;
     height: 100%;
     padding: 0;
+  }
+
+  @media screen and (max-width: 360px) {
+    padding-bottom: 0;
   }
 }
 
@@ -99,9 +102,13 @@ body {
 }
 
 .logo-container {
-  width: 400px;
+  max-width: 400px;
   margin: 100px auto;
   cursor: default;
+
+  @media screen and (max-width: 360px) {
+    margin: 30px auto;
+  }
 
   h1 {
     display: block;
@@ -145,7 +152,7 @@ body {
 }
 
 .form-container {
-  width: 400px;
+  max-width: 400px;
   margin: 0 auto;
   padding: 20px;
 
@@ -321,6 +328,11 @@ body {
     font-size: 12px;
     font-weight: 400;
     font-family: 'Roboto Mono', monospace;
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
   }
 
   .powered-by {

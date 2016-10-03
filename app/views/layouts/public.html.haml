@@ -1,7 +1,7 @@
 - content_for :content do
   .container= yield
   .footer
-    %span.domain= Rails.configuration.x.local_domain
+    %span.domain= link_to Rails.configuration.x.local_domain, root_path
     %span.powered-by
       \//
       powered by

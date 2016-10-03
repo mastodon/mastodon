@@ -63,6 +63,13 @@
     margin-top: 30px;
     position: relative;
     z-index: 2;
+    flex-direction: row;
+  }
+
+  .details-counters {
+    display: flex;
+    flex-direction: row;
+    order: 0;
   }
 
   .counter {
@@ -129,6 +136,26 @@
     line-height: 18px;
     padding: 5px 10px;
     color: #d9e1e8;
+    order: 1;
+  }
+
+  @media screen and (max-width: 360px) {
+    .details {
+      display: block;
+    }
+
+    .bio {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .counter {
+      flex: 1 1 auto;
+    }
+
+    .counter:last-child {
+      border-right: none;
+    }
   }
 }
 
@@ -185,6 +212,18 @@
   .disabled {
     cursor: default;
     color: lighten(#282c37, 10%);
+  }
+
+  @media screen and (max-width: 360px) {
+    padding: 30px 20px;
+
+    a, .current, .next_page, .previous_page, .gap {
+      display: none;
+    }
+
+    .next_page, .previous_page {
+      display: inline-block;
+    }
   }
 }
 
