@@ -18,6 +18,10 @@ class ApiController < ApplicationController
     render json: { error: 'Remote data could not be fetched' }, status: 503
   end
 
+  rescue_from OpenSSL::SSL::SSLError do
+    render json: { error: 'Remote SSL certificate could not be verified' }, status: 503
+  end
+
   protected
 
   def current_resource_owner

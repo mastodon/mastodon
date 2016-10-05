@@ -30,6 +30,12 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def gone
+    respond_to do |format|
+      format.any { head 410 }
+    end
+  end
+
   def current_account
     current_user.try(:account)
   end

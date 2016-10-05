@@ -8,13 +8,16 @@ class StreamEntriesController < ApplicationController
   def show
     @type = @stream_entry.activity_type.downcase
 
-    if @stream_entry.activity_type == 'Status'
-      @ancestors   = @stream_entry.activity.ancestors
-      @descendants = @stream_entry.activity.descendants
-    end
-
     respond_to do |format|
-      format.html
+      format.html do
+        return gone if @stream_entry.activity.nil?
+
+        if @stream_entry.activity_type == 'Status'
+          @ancestors   = @stream_entry.activity.ancestors
+          @descendants = @stream_entry.activity.descendants
+        end
+      end
+
       format.atom
     end
   end

@@ -85,4 +85,6 @@ Rails.application.configure do
   config.action_mailer.delivery_method = :smtp
 
   config.react.variant = :production
+
+  config.active_record.logger = nil
 end

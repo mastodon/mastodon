@@ -12,6 +12,9 @@ class FetchAtomService < BaseService
     else
       return process_html(fetch(url))
     end
+
+  rescue OpenSSL::SSL::SSLError => e
+    Rails.logger.debug "SSL error: #{e}"
   end
 
   private
