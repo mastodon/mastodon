@@ -70,13 +70,26 @@ And finally
 
 As usual, the first thing you would need to do would be to run migrations:
 
-    docker-compose run web rails db:migrate
+    docker-compose run --rm web rails db:migrate
 
 And since the instance running in the container will be running in production mode, you need to pre-compile assets:
 
-    docker-compose run web rails assets:precompile
+    docker-compose run --rm web rails assets:precompile
 
 The container has two volumes, for the assets and for user uploads. The default docker-compose.yml maps them to the repository's `public/assets` and `public/system` directories, you may wish to put them somewhere else. Likewise, the PostgreSQL and Redis images have data containers that you may wish to map somewhere where you know how to find them and back them up.
+
+**Note**: The `--rm` option for docker-compose will remove the container that is created to run a one-off command after it completes. As data is stored in volumes it is not affected by that container clean-up.
+
+### Tasks
+
+- `rake mastodon:media:clear` removes uploads that have not been attached to any status after a while, you would want to run this from a periodic cronjob
+- `rake mastodon:push:clear` unsubscribes from PuSH notifications for remote users that have no local followers. You may not want to actually do that, to keep a fuller footprint of the fediverse or in case your users will soon re-follow
+- `rake mastodon:push:refresh` re-subscribes PuSH for expiring remote users, this should be run periodically from a cronjob and quite often as the expiration time depends on the particular hub of the remote user
+- `rake mastodon:feeds:clear` removes all timelines, which forces them to be re-built on the fly next time a user tries to fetch their home/mentions timeline. Only for troubleshooting
+
+Running any of these tasks via docker-compose would look like this:
+
+    docker-compose run --rm web rake mastodon:media:clear
 
 ### Updating
 
