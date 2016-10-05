@@ -17,7 +17,7 @@ class FollowService < BaseService
     end
 
     merge_into_timeline(target_account, source_account)
-    source_account.ping!(account_url(source_account, format: 'atom'), [Rails.configuration.x.hub_url])
+    HubPingWorker.perform_async(source_account.id)
     follow
   end
 

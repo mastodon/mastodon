@@ -6,7 +6,7 @@ class ReblogService < BaseService
   def call(account, reblogged_status)
     reblog = account.statuses.create!(reblog: reblogged_status, text: '')
     DistributionWorker.perform_async(reblog.id)
-    account.ping!(account_url(account, format: 'atom'), [Rails.configuration.x.hub_url])
+    HubPingWorker.perform_async(account.id)
 
     if reblogged_status.local?
       NotificationMailer.reblog(reblogged_status, account).deliver_later unless reblogged_status.account.blocking?(account)

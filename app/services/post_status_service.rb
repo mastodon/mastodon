@@ -10,7 +10,7 @@ class PostStatusService < BaseService
     attach_media(status, media_ids)
     process_mentions_service.call(status)
     DistributionWorker.perform_async(status.id)
-    account.ping!(account_url(account, format: 'atom'), [Rails.configuration.x.hub_url])
+    HubPingWorker.perform_async(account.id)
     status
   end
 

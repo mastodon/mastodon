@@ -5,7 +5,7 @@ class FavouriteService < BaseService
   # @return [Favourite]
   def call(account, status)
     favourite = Favourite.create!(account: account, status: status)
-    account.ping!(account_url(account, format: 'atom'), [Rails.configuration.x.hub_url])
+    HubPingWorker.perform_async(account.id)
 
     if status.local?
       NotificationMailer.favourite(status, account).deliver_later unless status.account.blocking?(account)
