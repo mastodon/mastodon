@@ -34,5 +34,4 @@ class FetchRemoteStatusService < BaseService
   rescue Nokogiri::XML::XPath::SyntaxError
     Rails.logger.debug "Invalid XML or missing namespace"
   end
-  end
 end
