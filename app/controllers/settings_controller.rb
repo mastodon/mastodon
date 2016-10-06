@@ -9,7 +9,7 @@ class SettingsController < ApplicationController
 
   def update
     if @account.update(account_params)
-      redirect_to settings_path
+      redirect_to settings_path, notice: 'Changes successfully saved!'
     else
       render action: :show
     end
