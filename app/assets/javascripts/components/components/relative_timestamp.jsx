@@ -35,7 +35,7 @@ const RelativeTimestamp = React.createClass({
 
   componentWillMount () {
     this._updateMomentText();
-    this.interval = setInterval(this._updateMomentText, 6000);
+    this.interval = setInterval(this._updateMomentText, 60000);
   },
 
   componentWillUnmount () {

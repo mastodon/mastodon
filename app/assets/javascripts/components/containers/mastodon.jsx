@@ -1,20 +1,24 @@
-import { Provider }                   from 'react-redux';
-import configureStore                 from '../store/configureStore';
+import { Provider }       from 'react-redux';
+import configureStore     from '../store/configureStore';
 import {
   refreshTimelineSuccess,
   updateTimeline,
   deleteFromTimelines,
   refreshTimeline
-}                                     from '../actions/timelines';
-import { setAccessToken }             from '../actions/meta';
-import { setAccountSelf }             from '../actions/accounts';
-import PureRenderMixin                from 'react-addons-pure-render-mixin';
-import { Router, Route, hashHistory } from 'react-router';
-import Account                        from '../features/account';
-import Settings                       from '../features/settings';
-import Status                         from '../features/status';
-import Subscriptions                  from '../features/subscriptions';
-import UI                             from '../features/ui';
+}                         from '../actions/timelines';
+import { setAccessToken } from '../actions/meta';
+import { setAccountSelf } from '../actions/accounts';
+import PureRenderMixin    from 'react-addons-pure-render-mixin';
+import {
+  Router,
+  Route,
+  hashHistory,
+  IndexRoute
+}                         from 'react-router';
+import Account            from '../features/account';
+import Status             from '../features/status';
+import GettingStarted     from '../features/getting_started';
+import UI                 from '../features/ui';
 
 const store = configureStore();
 
@@ -70,8 +74,7 @@ const Mastodon = React.createClass({
       <Provider store={store}>
         <Router history={hashHistory}>
           <Route path='/' component={UI}>
-            <Route path='/settings' component={Settings} />
-            <Route path='/subscriptions' component={Subscriptions} />
+            <IndexRoute component={GettingStarted} />
             <Route path='/statuses/:statusId' component={Status} />
             <Route path='/accounts/:accountId' component={Account} />
           </Route>

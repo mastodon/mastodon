@@ -4,6 +4,7 @@ import ImmutablePropTypes    from 'react-immutable-proptypes';
 import { fetchStatus }       from '../../actions/statuses';
 import Immutable             from 'immutable';
 import EmbeddedStatus        from '../../components/status';
+import LoadingIndicator      from '../../components/loading_indicator';
 import DetailedStatus        from './components/detailed_status';
 import ActionBar             from './components/action_bar';
 import { favourite, reblog } from '../../actions/interactions';
@@ -63,7 +64,7 @@ const Status = React.createClass({
     const { status, ancestors, descendants, me } = this.props;
 
     if (status === null) {
-      return <div>Loading {this.props.params.statusId}...</div>;
+      return <LoadingIndicator />;
     }
 
     const account = status.get('account');

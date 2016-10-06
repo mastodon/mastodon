@@ -24,6 +24,7 @@ import {
   selectAccount
 }                            from '../../reducers/timelines';
 import StatusList            from '../../components/status_list';
+import LoadingIndicator      from '../../components/loading_indicator';
 import Immutable             from 'immutable';
 import ActionBar             from './components/action_bar';
 
@@ -108,7 +109,7 @@ const Account = React.createClass({
     const { account, statuses, me } = this.props;
 
     if (account === null) {
-      return <div>Loading {this.props.params.accountId}...</div>;
+      return <LoadingIndicator />;
     }
 
     return (
