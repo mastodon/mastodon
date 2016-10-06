@@ -16,6 +16,16 @@ class AccountsController < ApplicationController
     end
   end
 
+  def follow
+    FollowService.new.call(current_user.account, @account.acct)
+    redirect_to account_path(@account)
+  end
+
+  def unfollow
+    UnfollowService.new.call(current_user.account, @account)
+    redirect_to account_path(@account)
+  end
+
   def followers
     @followers = @account.followers.order('follows.created_at desc').paginate(page: params[:page], per_page: 6)
   end

@@ -1,3 +1,6 @@
+- content_for :header_tags do
+  = javascript_include_tag 'application_public'
+
 - content_for :content do
   .container= yield
   .footer
