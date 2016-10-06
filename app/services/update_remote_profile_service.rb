@@ -1,5 +1,7 @@
 class UpdateRemoteProfileService < BaseService
   def call(author_xml, account)
+    return if author_xml.nil?
+
     if author_xml.at_xpath('./poco:displayName').nil?
       account.display_name = account.username
     else
