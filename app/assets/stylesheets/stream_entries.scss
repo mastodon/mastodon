@@ -46,13 +46,11 @@
     }
   }
 
-  &.activity-stream-headless {
-    .entry:first-child {
-      border-radius: 4px 4px 0 0;
+  .entry:first-child {
+    border-radius: 4px 4px 0 0;
 
-      &:last-child {
-        border-radius: 4px;
-      }
+    &:last-child {
+      border-radius: 4px;
     }
   }
 
@@ -72,12 +70,6 @@
           border-radius: 0;
         }
       }
-    }
-  }
-
-  @media screen and (max-width: 360px) {
-    .avatar {
-      display: none;
     }
   }
 
@@ -225,6 +217,16 @@
         background-repeat: none;
         background-size: cover;
       }
+    }
+  }
+
+  @media screen and (max-width: 360px) {
+    .avatar {
+      display: none;
+    }
+
+    .entry__container__container {
+      margin-left: 7px;
     }
   }
 }
