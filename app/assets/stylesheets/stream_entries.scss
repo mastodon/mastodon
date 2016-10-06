@@ -82,12 +82,13 @@
   }
 
   .entry__container {
-    display: flex;
+    overflow: hidden;
   }
 
   .avatar {
     width: 56px;
     padding: 15px;
+    float: left;
 
     img {
       width: 56px;
@@ -98,7 +99,7 @@
   }
 
   .entry__container__container {
-    flex-grow: 1;
+    margin-left: 86px;
   }
 
   .header {
@@ -153,10 +154,12 @@
 
   .content {
     font-size: 14px;
-    padding: 0 10px;
+    padding: 0 15px;
     padding-left: 8px;
     padding-bottom: 15px;
     color: #282c37;
+    word-wrap: break-word;
+    overflow: hidden;
 
     p {
       margin-bottom: 18px;
