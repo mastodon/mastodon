@@ -17,7 +17,8 @@ function selectStatuses(state, ids) {
 const mapStateToProps = (state, props) => ({
   status: selectStatus(state, Number(props.params.statusId)),
   ancestors: selectStatuses(state, state.getIn(['timelines', 'ancestors', Number(props.params.statusId)], Immutable.OrderedSet())),
-  descendants: selectStatuses(state, state.getIn(['timelines', 'descendants', Number(props.params.statusId)], Immutable.OrderedSet()))
+  descendants: selectStatuses(state, state.getIn(['timelines', 'descendants', Number(props.params.statusId)], Immutable.OrderedSet())),
+  me: state.getIn(['timelines', 'me'])
 });
 
 const Status = React.createClass({
@@ -55,11 +56,11 @@ const Status = React.createClass({
   },
 
   renderChildren (list) {
-    return list.map(s => <EmbeddedStatus status={s} key={s.get('id')} onReply={this.handleReplyClick} onFavourite={this.handleFavouriteClick} onReblog={this.handleReblogClick} />);
+    return list.map(s => <EmbeddedStatus status={s} me={this.props.me} key={s.get('id')} onReply={this.handleReplyClick} onFavourite={this.handleFavouriteClick} onReblog={this.handleReblogClick} />);
   },
 
   render () {
-    const { status, ancestors, descendants } = this.props;
+    const { status, ancestors, descendants, me } = this.props;
 
     if (status === null) {
       return <div>Loading {this.props.params.statusId}...</div>;
@@ -71,7 +72,7 @@ const Status = React.createClass({
       <div style={{ overflowY: 'scroll', flex: '1 1 auto' }} className='scrollable'>
         <div>{this.renderChildren(ancestors)}</div>
 
-        <DetailedStatus status={status} />
+        <DetailedStatus status={status} me={me} />
         <ActionBar status={status} onReply={this.handleReplyClick} onFavourite={this.handleFavouriteClick} onReblog={this.handleReblogClick} />
 
         <div>{this.renderChildren(descendants)}</div>
