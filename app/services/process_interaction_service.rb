@@ -35,7 +35,7 @@ class ProcessInteractionService < BaseService
         delete_post!(xml, account)
       end
     end
-  rescue Goldfinger::Error, HTTP::Error
+  rescue Goldfinger::Error, HTTP::Error, OStatus2::BadSalmonError
     nil
   end
 
