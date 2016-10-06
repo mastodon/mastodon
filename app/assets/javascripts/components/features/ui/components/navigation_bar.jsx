@@ -17,9 +17,9 @@ const NavigationBar = React.createClass({
       <div style={{ padding: '10px', display: 'flex', cursor: 'default' }}>
         <Link to={`/accounts/${this.props.account.get('id')}`} style={{ textDecoration: 'none' }}><Avatar src={this.props.account.get('avatar')} size={40} /></Link>
 
-        <div style={{ flex: '1 1 auto', marginLeft: '8px' }}>
-          <strong style={{ fontWeight: '500', display: 'block' }}>{this.props.account.get('acct')}</strong>
-          <a href='/settings' style={{ color: '#9baec8', textDecoration: 'none' }}>Settings <i className='fa fa fa-cog' /></a>
+        <div style={{ flex: '1 1 auto', marginLeft: '8px', color: '#9baec8' }}>
+          <strong style={{ fontWeight: '500', display: 'block', color: '#fff' }}>{this.props.account.get('acct')}</strong>
+          <a href='/settings' style={{ color: 'inherit', textDecoration: 'none' }}>Settings</a> · <a href='/auth/sign_out' data-method='delete' style={{ color: 'inherit', textDecoration: 'none' }}>Logout</a>
         </div>
       </div>
     );
