@@ -18,7 +18,7 @@ const scrollTop = (node) => {
       return;
     }
 
-    node.scrollTo(0, easingOutQuint(0, elapsed, offset, targetY, duration));
+    node.scrollTop = easingOutQuint(0, elapsed, offset, targetY, duration);
     requestAnimationFrame(step);
   };
 
