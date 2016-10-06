@@ -46,11 +46,17 @@ const Status = React.createClass({
     var { status, ...other } = this.props;
 
     if (status.get('reblog') !== null) {
+      let displayName = status.getIn(['account', 'display_name']);
+
+      if (displayName.length === 0) {
+        displayName = status.getIn(['account', 'username']);
+      }
+
       return (
         <div style={{ cursor: 'pointer' }} onClick={this.handleClick}>
           <div style={{ marginLeft: '68px', color: '#616b86', padding: '8px 0', paddingBottom: '2px', fontSize: '14px', position: 'relative' }}>
             <div style={{ position: 'absolute', 'left': '-26px'}}><i className='fa fa-fw fa-retweet'></i></div>
-            <a onClick={this.handleAccountClick.bind(this, status.getIn(['account', 'id']))} href={status.getIn(['account', 'url'])} className='status__display-name'><strong style={{ color: '#616b86'}}>{status.getIn(['account', 'display_name'])}</strong></a> reblogged
+            <a onClick={this.handleAccountClick.bind(this, status.getIn(['account', 'id']))} href={status.getIn(['account', 'url'])} className='status__display-name'><strong style={{ color: '#616b86'}}>{displayName}</strong></a> reblogged
           </div>
 
           <Status {...other} wrapped={true} status={status.get('reblog')} />
