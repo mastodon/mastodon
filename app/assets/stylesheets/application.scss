@@ -57,6 +57,43 @@ table {
   border-spacing: 0;
 }
 
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #42495b;
+  border: 0px none #ffffff;
+  border-radius: 50px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #525a70;
+}
+
+::-webkit-scrollbar-thumb:active {
+  background: #42495b;
+}
+
+::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+  border: 0px none #ffffff;
+  border-radius: 50px;
+}
+
+::-webkit-scrollbar-track:hover {
+  background: #282c37;
+}
+
+::-webkit-scrollbar-track:active {
+  background: #282c37;
+}
+
+::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
 body {
   font-family: 'Roboto', sans-serif;
   background: #282c37 image-url('background-photo.jpeg');
