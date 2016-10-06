@@ -63,7 +63,7 @@ class ProcessFeedService < BaseService
 
       href = Addressable::URI.parse(href_val)
 
-      if href.host == Rails.configuration.x.local_domain
+      if TagManager.instance.local_domain?(href.host)
         # A local user is mentioned
         mentioned_account = Account.find_local(href.path.gsub('/users/', ''))
 

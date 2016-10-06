@@ -17,6 +17,10 @@ class TagManager
     id.start_with?("tag:#{Rails.configuration.x.local_domain}")
   end
 
+  def local_domain?(domain)
+    domain.nil? || domain.gsub(/[\/]/, '') == Rails.configuration.x.local_domain
+  end
+
   def uri_for(target)
     return target.uri if target.respond_to?(:local?) && !target.local?
 

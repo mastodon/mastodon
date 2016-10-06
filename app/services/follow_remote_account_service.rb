@@ -7,7 +7,7 @@ class FollowRemoteAccountService < BaseService
   def call(uri)
     username, domain = uri.split('@')
 
-    return Account.find_local(username) if domain == Rails.configuration.x.local_domain || domain.nil?
+    return Account.find_local(username) if TagManager.instance.local_domain?(domain)
 
     account = Account.find_remote(username, domain)
 
