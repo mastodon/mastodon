@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
   rescue_from ActionController::RoutingError, with: :not_found
   rescue_from ActiveRecord::RecordNotFound, with: :not_found
 
-  before_action :store_current_location, unless: :devise_controller?
+  before_action :store_current_location, except: :raise_not_found, unless: :devise_controller?
 
   def raise_not_found
     raise ActionController::RoutingError, "No route matches #{params[:unmatched_route]}"
