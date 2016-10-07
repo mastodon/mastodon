@@ -28,7 +28,7 @@ export const getStatus = createSelector([getStatusBase, getStatuses, getAccounts
 const getAccountTimelineIds = (state, id) => state.getIn(['timelines', 'accounts_timelines', id], Immutable.List());
 
 const assembleStatus = (id, statuses, accounts) => {
-  let status = statuses.get(id);
+  let status = statuses.get(id, null);
 
   if (status === null) {
     return null;
