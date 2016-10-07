@@ -4,6 +4,7 @@ ENV RAILS_ENV=production
 
 RUN echo 'deb http://httpredir.debian.org/debian jessie-backports main contrib non-free' >> /etc/apt/sources.list
 RUN apt-get update -qq && apt-get install -y build-essential libpq-dev libxml2-dev libxslt1-dev nodejs nodejs-legacy npm ffmpeg && rm -rf /var/lib/apt/lists/*
+RUN npm install -g npm@3
 RUN mkdir /mastodon
 
 WORKDIR /mastodon
