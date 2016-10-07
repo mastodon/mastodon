@@ -4,14 +4,10 @@ import {
   dismissNotification,
   clearNotifications
 }                              from '../../../actions/notifications';
+import { getNotifications }    from '../../../selectors';
 
 const mapStateToProps = (state, props) => ({
-  notifications: state.get('notifications').map((item, i) => ({
-    message: item.get('message'),
-    title: item.get('title'),
-    key: item.get('key'),
-    dismissAfter: 5000
-  })).toJS()
+  notifications: getNotifications(state)
 });
 
 const mapDispatchToProps = (dispatch) => {

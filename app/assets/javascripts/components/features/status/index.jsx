@@ -10,16 +10,16 @@ import ActionBar             from './components/action_bar';
 import Column                from '../ui/components/column';
 import { favourite, reblog } from '../../actions/interactions';
 import { replyCompose }      from '../../actions/compose';
-import { selectStatus }      from '../../reducers/timelines';
-
-function selectStatuses(state, ids) {
-  return ids.map(id => selectStatus(state, id)).filterNot(status => status === null);
-};
+import {
+  getStatus,
+  getStatusAncestors,
+  getStatusDescendants
+}                            from '../../selectors';
 
 const mapStateToProps = (state, props) => ({
-  status: selectStatus(state, Number(props.params.statusId)),
-  ancestors: selectStatuses(state, state.getIn(['timelines', 'ancestors', Number(props.params.statusId)], Immutable.OrderedSet())),
-  descendants: selectStatuses(state, state.getIn(['timelines', 'descendants', Number(props.params.statusId)], Immutable.OrderedSet())),
+  status: getStatus(state, Number(props.params.statusId)),
+  ancestors: getStatusAncestors(state, Number(props.params.statusId)),
+  descendants: getStatusDescendants(state, Number(props.params.statusId)),
   me: state.getIn(['timelines', 'me'])
 });
 

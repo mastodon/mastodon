@@ -3,6 +3,7 @@
 
 window.React    = require('react');
 window.ReactDOM = require('react-dom');
+window.Perf     = require('react-addons-perf');
 
 //= require_tree ./components
 

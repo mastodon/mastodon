@@ -40,32 +40,6 @@ const initialState = Immutable.Map({
   relationships: Immutable.Map()
 });
 
-export function selectStatus(state, id) {
-  let status = state.getIn(['timelines', 'statuses', id], null);
-
-  if (status === null) {
-    return null;
-  }
-
-  status = status.set('account', selectAccount(state, status.get('account')));
-
-  if (status.get('reblog') !== null) {
-    status = status.set('reblog', selectStatus(state, status.get('reblog')));
-  }
-
-  return status;
-};
-
-export function selectAccount(state, id) {
-  let account = state.getIn(['timelines', 'accounts', id], null);
-
-  if (account === null) {
-    return null;
-  }
-
-  return account.set('relationship', state.getIn(['timelines', 'relationships', id]));
-};
-
 function normalizeStatus(state, status) {
   // Separate account
   let account = status.get('account');

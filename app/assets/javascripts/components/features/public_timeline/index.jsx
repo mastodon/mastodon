@@ -1,32 +1,34 @@
-import { connect }        from 'react-redux';
-import PureRenderMixin    from 'react-addons-pure-render-mixin';
-import ImmutablePropTypes from 'react-immutable-proptypes';
-import StatusList         from '../../components/status_list';
-import Column             from '../ui/components/column';
-import Immutable          from 'immutable';
-import { selectStatus }   from '../../reducers/timelines';
+import { connect }         from 'react-redux';
+import PureRenderMixin     from 'react-addons-pure-render-mixin';
+import ImmutablePropTypes  from 'react-immutable-proptypes';
+import StatusList          from '../../components/status_list';
+import Column              from '../ui/components/column';
+import Immutable           from 'immutable';
+import { makeGetTimeline } from '../../selectors';
 import {
   updateTimeline,
   refreshTimeline,
   expandTimeline
-}                         from '../../actions/timelines';
-import { deleteStatus }   from '../../actions/statuses';
-import { replyCompose }   from '../../actions/compose';
+}                          from '../../actions/timelines';
+import { deleteStatus }    from '../../actions/statuses';
+import { replyCompose }    from '../../actions/compose';
 import {
   favourite,
   reblog,
   unreblog,
   unfavourite
-}                         from '../../actions/interactions';
+}                          from '../../actions/interactions';
 
-function selectStatuses(state) {
-  return state.getIn(['timelines', 'public'], Immutable.List()).map(id => selectStatus(state, id)).filterNot(status => status === null);
+const makeMapStateToProps = () => {
+  const getTimeline = makeGetTimeline();
+
+  const mapStateToProps = (state) => ({
+    statuses: getTimeline(state, 'public'),
+    me: state.getIn(['timelines', 'me'])
+  });
+
+  return mapStateToProps;
 };
-
-const mapStateToProps = (state) => ({
-  statuses: selectStatuses(state),
-  me: state.getIn(['timelines', 'me'])
-});
 
 const PublicTimeline = React.createClass({
 
@@ -100,4 +102,4 @@ const PublicTimeline = React.createClass({
 
 });
 
-export default connect(mapStateToProps)(PublicTimeline);
+export default connect(makeMapStateToProps)(PublicTimeline);

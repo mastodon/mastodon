@@ -20,22 +20,18 @@ import {
 }                            from '../../actions/interactions';
 import Header                from './components/header';
 import {
-  selectStatus,
-  selectAccount
-}                            from '../../reducers/timelines';
+  getAccountTimeline,
+  getAccount
+}                            from '../../selectors';
 import StatusList            from '../../components/status_list';
 import LoadingIndicator      from '../../components/loading_indicator';
 import Immutable             from 'immutable';
 import ActionBar             from './components/action_bar';
 import Column                from '../ui/components/column';
 
-function selectStatuses(state, accountId) {
-  return state.getIn(['timelines', 'accounts_timelines', accountId], Immutable.List([])).map(id => selectStatus(state, id)).filterNot(status => status === null);
-};
-
 const mapStateToProps = (state, props) => ({
-  account: selectAccount(state, Number(props.params.accountId)),
-  statuses: selectStatuses(state, Number(props.params.accountId)),
+  account: getAccount(state, Number(props.params.accountId)),
+  statuses: getAccountTimeline(state, Number(props.params.accountId)),
   me: state.getIn(['timelines', 'me'])
 });
 

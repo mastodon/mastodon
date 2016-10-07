@@ -28,7 +28,7 @@ const StatusList = React.createClass({
     const { statuses, onScrollToBottom, ...other } = this.props;
 
     return (
-      <div style={{ overflowY: 'scroll', flex: '1 1 auto' }} className='scrollable' onScroll={this.handleScroll}>
+      <div style={{ overflowY: 'scroll', flex: '1 1 auto', overflowX: 'hidden' }} className='scrollable' onScroll={this.handleScroll}>
         <div>
           {statuses.map((status) => {
             return <Status key={status.get('id')} {...other} status={status} />;

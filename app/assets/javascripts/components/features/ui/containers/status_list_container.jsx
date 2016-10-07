@@ -8,14 +8,18 @@ import {
   unfavourite
 }                            from '../../../actions/interactions';
 import { expandTimeline }    from '../../../actions/timelines';
-import { selectStatus }      from '../../../reducers/timelines';
+import { makeGetTimeline }   from '../../../selectors';
 import { deleteStatus }      from '../../../actions/statuses';
 
-const mapStateToProps = function (state, props) {
-  return {
-    statuses: state.getIn(['timelines', props.type]).map(id => selectStatus(state, id)),
+const makeMapStateToProps = () => {
+  const getTimeline = makeGetTimeline();
+
+  const mapStateToProps = (state, props) => ({
+    statuses: getTimeline(state, props.type),
     me: state.getIn(['timelines', 'me'])
-  };
+  });
+
+  return mapStateToProps;
 };
 
 const mapDispatchToProps = function (dispatch, props) {
@@ -50,4 +54,4 @@ const mapDispatchToProps = function (dispatch, props) {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(StatusList);
+export default connect(makeMapStateToProps, mapDispatchToProps)(StatusList);
