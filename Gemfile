@@ -38,6 +38,7 @@ gem 'simple_form'
 gem 'will_paginate'
 gem 'rack-attack'
 gem 'sidekiq'
+gem 'ledermann-rails-settings'
 
 gem 'react-rails'
 gem 'browserify-rails'
