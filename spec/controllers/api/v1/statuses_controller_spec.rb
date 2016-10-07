@@ -47,6 +47,13 @@ RSpec.describe Api::V1::StatusesController, type: :controller do
     end
   end
 
+  describe 'GET #public' do
+    it 'returns http success' do
+      get :public
+      expect(response).to have_http_status(:success)
+    end
+  end
+
   describe 'POST #create' do
     before do
       post :create, params: { status: 'Hello world' }

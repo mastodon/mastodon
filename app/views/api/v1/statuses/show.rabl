@@ -6,8 +6,8 @@ node(:content)          { |status| Formatter.instance.format(status) }
 node(:url)              { |status| TagManager.instance.url_for(status) }
 node(:reblogs_count)    { |status| status.reblogs_count }
 node(:favourites_count) { |status| status.favourites_count }
-node(:favourited)       { |status| current_account.favourited?(status) }
-node(:reblogged)        { |status| current_account.reblogged?(status) }
+node(:favourited, if: proc { !current_account.nil? }) { |status| current_account.favourited?(status) }
+node(:reblogged,  if: proc { !current_account.nil? }) { |status| current_account.reblogged?(status) }
 
 child :reblog => :reblog do
   extends('api/v1/statuses/show')

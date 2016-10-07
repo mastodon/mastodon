@@ -26,7 +26,7 @@ const StatusContent = React.createClass({
       } else {
         link.setAttribute('target', '_blank');
         link.setAttribute('rel', 'noopener');
-        link.addEventListener('click', this.onNormalClick.bind(this));
+        link.addEventListener('click', this.onNormalClick);
       }
     }
   },

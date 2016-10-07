@@ -48,6 +48,7 @@ Rails.application.routes.draw do
         collection do
           get :home
           get :mentions
+          get :public
         end
 
         member do

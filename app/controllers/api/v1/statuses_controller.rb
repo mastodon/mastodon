@@ -46,9 +46,16 @@ class Api::V1::StatusesController < ApiController
 
   def home
     @statuses = Feed.new(:home, current_user.account).get(20, params[:max_id], params[:since_id]).to_a
+    render action: :index
   end
 
   def mentions
     @statuses = Feed.new(:mentions, current_user.account).get(20, params[:max_id], params[:since_id]).to_a
+    render action: :index
+  end
+
+  def public
+    @statuses = Status.with_includes.with_counters.order('id desc').paginate_by_max_id(20, params[:max_id], params[:since_id]).to_a
+    render action: :index
   end
 end

@@ -5,6 +5,7 @@ class FanOutOnWriteService < BaseService
     deliver_to_self(status) if status.account.local?
     deliver_to_followers(status)
     deliver_to_mentioned(status)
+    deliver_to_public(status)
   end
 
   private
@@ -26,5 +27,9 @@ class FanOutOnWriteService < BaseService
       next if !mentioned_account.local? || mentioned_account.id == status.account_id || FeedManager.instance.filter?(:mentions, status, mentioned_account)
       FeedManager.instance.push(:mentions, mentioned_account, status)
     end
+  end
+
+  def deliver_to_public(status)
+    FeedManager.instance.broadcast(:public, id: status.id)
   end
 end

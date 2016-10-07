@@ -18,6 +18,7 @@ import {
 import Account            from '../features/account';
 import Status             from '../features/status';
 import GettingStarted     from '../features/getting_started';
+import PublicTimeline     from '../features/public_timeline';
 import UI                 from '../features/ui';
 
 const store = configureStore();
@@ -43,14 +44,7 @@ const Mastodon = React.createClass({
     }
 
     if (typeof App !== 'undefined') {
-      App.timeline = App.cable.subscriptions.create("TimelineChannel", {
-        connected () {
-
-        },
-
-        disconnected () {
-
-        },
+      this.subscription = App.cable.subscriptions.create('TimelineChannel', {
 
         received (data) {
           switch(data.type) {
@@ -65,7 +59,14 @@ const Mastodon = React.createClass({
               return store.dispatch(refreshTimeline('mentions'));
           }
         }
+
       });
+    }
+  },
+
+  componentWillUnmount () {
+    if (typeof this.subscription !== 'undefined') {
+      this.subscription.unsubscribe();
     }
   },
 
@@ -75,6 +76,7 @@ const Mastodon = React.createClass({
         <Router history={hashHistory}>
           <Route path='/' component={UI}>
             <IndexRoute component={GettingStarted} />
+            <Route path='/statuses/all' component={PublicTimeline} />
             <Route path='/statuses/:statusId' component={Status} />
             <Route path='/accounts/:accountId' component={Account} />
           </Route>

@@ -27,9 +27,10 @@ import StatusList            from '../../components/status_list';
 import LoadingIndicator      from '../../components/loading_indicator';
 import Immutable             from 'immutable';
 import ActionBar             from './components/action_bar';
+import Column                from '../ui/components/column';
 
 function selectStatuses(state, accountId) {
-  return state.getIn(['timelines', 'accounts_timelines', accountId], Immutable.List()).map(id => selectStatus(state, id)).filterNot(status => status === null);
+  return state.getIn(['timelines', 'accounts_timelines', accountId], Immutable.List([])).map(id => selectStatus(state, id)).filterNot(status => status === null);
 };
 
 const mapStateToProps = (state, props) => ({
@@ -109,15 +110,21 @@ const Account = React.createClass({
     const { account, statuses, me } = this.props;
 
     if (account === null) {
-      return <LoadingIndicator />;
+      return (
+        <Column>
+          <LoadingIndicator />
+        </Column>
+      );
     }
 
     return (
-      <div style={{ display: 'flex', flexDirection: 'column', 'flex': '0 0 auto', height: '100%' }}>
-        <Header account={account} />
-        <ActionBar account={account} me={me} onFollow={this.handleFollow} onBlock={this.handleBlock} />
-        <StatusList statuses={statuses} me={me} onScrollToBottom={this.handleScrollToBottom} onReply={this.handleReply} onReblog={this.handleReblog} onFavourite={this.handleFavourite} />
-      </div>
+      <Column>
+        <div style={{ display: 'flex', flexDirection: 'column', 'flex': '0 0 auto', height: '100%' }}>
+          <Header account={account} />
+          <ActionBar account={account} me={me} onFollow={this.handleFollow} onBlock={this.handleBlock} />
+          <StatusList statuses={statuses} me={me} onScrollToBottom={this.handleScrollToBottom} onReply={this.handleReply} onReblog={this.handleReblog} onFavourite={this.handleFavourite} onDelete={this.handleDelete} />
+        </div>
+      </Column>
     );
   }
 

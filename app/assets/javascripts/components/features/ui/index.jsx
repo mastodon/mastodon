@@ -40,9 +40,7 @@ const UI = React.createClass({
             <StatusListContainer type='mentions' />
           </Column>
 
-          <Column>
-            {this.props.children}
-          </Column>
+          {this.props.children}
         </ColumnsArea>
 
         <NotificationsContainer />

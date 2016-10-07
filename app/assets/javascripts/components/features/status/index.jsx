@@ -7,6 +7,7 @@ import EmbeddedStatus        from '../../components/status';
 import LoadingIndicator      from '../../components/loading_indicator';
 import DetailedStatus        from './components/detailed_status';
 import ActionBar             from './components/action_bar';
+import Column                from '../ui/components/column';
 import { favourite, reblog } from '../../actions/interactions';
 import { replyCompose }      from '../../actions/compose';
 import { selectStatus }      from '../../reducers/timelines';
@@ -64,20 +65,26 @@ const Status = React.createClass({
     const { status, ancestors, descendants, me } = this.props;
 
     if (status === null) {
-      return <LoadingIndicator />;
+      return (
+        <Column>
+          <LoadingIndicator />
+        </Column>
+      );
     }
 
     const account = status.get('account');
 
     return (
-      <div style={{ overflowY: 'scroll', flex: '1 1 auto' }} className='scrollable'>
-        <div>{this.renderChildren(ancestors)}</div>
+      <Column>
+        <div style={{ overflowY: 'scroll', flex: '1 1 auto' }} className='scrollable'>
+          <div>{this.renderChildren(ancestors)}</div>
 
-        <DetailedStatus status={status} me={me} />
-        <ActionBar status={status} onReply={this.handleReplyClick} onFavourite={this.handleFavouriteClick} onReblog={this.handleReblogClick} />
+          <DetailedStatus status={status} me={me} />
+          <ActionBar status={status} onReply={this.handleReplyClick} onFavourite={this.handleFavouriteClick} onReblog={this.handleReblogClick} />
 
-        <div>{this.renderChildren(descendants)}</div>
-      </div>
+          <div>{this.renderChildren(descendants)}</div>
+        </div>
+      </Column>
     );
   }
 

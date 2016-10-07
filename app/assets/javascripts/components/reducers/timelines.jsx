@@ -30,6 +30,7 @@ import Immutable                 from 'immutable';
 const initialState = Immutable.Map({
   home: Immutable.List([]),
   mentions: Immutable.List([]),
+  public: Immutable.List([]),
   statuses: Immutable.Map(),
   accounts: Immutable.Map(),
   accounts_timelines: Immutable.Map(),
@@ -110,7 +111,7 @@ function normalizeTimeline(state, timeline, statuses) {
 };
 
 function appendNormalizedTimeline(state, timeline, statuses) {
-  let moreIds = Immutable.List();
+  let moreIds = Immutable.List([]);
 
   statuses.forEach((status, i) => {
     state   = normalizeStatus(state, status);
@@ -121,29 +122,33 @@ function appendNormalizedTimeline(state, timeline, statuses) {
 };
 
 function normalizeAccountTimeline(state, accountId, statuses) {
+  state = state.updateIn(['accounts_timelines', accountId], Immutable.List([]), list => {
+    return (list.size > 0) ? list.clear() : list;
+  });
+
   statuses.forEach((status, i) => {
     state = normalizeStatus(state, status);
-    state = state.updateIn(['accounts_timelines', accountId], Immutable.List(), list => list.set(i, status.get('id')));
+    state = state.updateIn(['accounts_timelines', accountId], Immutable.List([]), list => list.set(i, status.get('id')));
   });
 
   return state;
 };
 
 function appendNormalizedAccountTimeline(state, accountId, statuses) {
-  let moreIds = Immutable.List();
+  let moreIds = Immutable.List([]);
 
   statuses.forEach((status, i) => {
     state   = normalizeStatus(state, status);
     moreIds = moreIds.set(i, status.get('id'));
   });
 
-  return state.updateIn(['accounts_timelines', accountId], Immutable.List(), list => list.push(...moreIds));
+  return state.updateIn(['accounts_timelines', accountId], Immutable.List([]), list => list.push(...moreIds));
 };
 
 function updateTimeline(state, timeline, status) {
   state = normalizeStatus(state, status);
   state = state.update(timeline, list => list.unshift(status.get('id')));
-  state = state.updateIn(['accounts_timelines', status.getIn(['account', 'id'])], Immutable.List(), list => list.unshift(status.get('id')));
+  state = state.updateIn(['accounts_timelines', status.getIn(['account', 'id'])], Immutable.List([]), list => (list.includes(status.get('id')) ? list : list.unshift(status.get('id'))));
 
   return state;
 };
@@ -161,7 +166,7 @@ function deleteStatus(state, id) {
   });
 
   // Remove references from account timelines
-  state = state.updateIn(['accounts_timelines', status.get('account')], Immutable.List(), list => list.filterNot(item => item === id));
+  state = state.updateIn(['accounts_timelines', status.get('account')], Immutable.List([]), list => list.filterNot(item => item === id));
 
   // Remove reblogs of deleted status
   const references = state.get('statuses').filter(item => item.get('reblog') === id);
