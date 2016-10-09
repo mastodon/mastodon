@@ -8,6 +8,7 @@ class FollowRemoteAccountService < BaseService
     username, domain = uri.split('@')
 
     return Account.find_local(username) if TagManager.instance.local_domain?(domain)
+    return nil if DomainBlock.blocked?(domain)
 
     account = Account.find_remote(username, domain)
 

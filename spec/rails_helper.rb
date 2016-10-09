@@ -30,3 +30,7 @@ end
 def request_fixture(name)
   File.read(File.join(Rails.root, 'spec', 'fixtures', 'requests', name))
 end
+
+def attachment_fixture(name)
+  File.open(File.join(Rails.root, 'spec', 'fixtures', 'files', name))
+end

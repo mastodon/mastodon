@@ -13,8 +13,9 @@ class Api::SubscriptionsController < ApiController
 
   def update
     body = request.body.read
+    subscription = @account.subscription(api_subscription_url(@account.id))
 
-    if @account.subscription(api_subscription_url(@account.id)).verify(body, request.headers['HTTP_X_HUB_SIGNATURE'])
+    if subscription.verify(body, request.headers['HTTP_X_HUB_SIGNATURE'])
       ProcessFeedService.new.call(body, @account)
       head 201
     else
