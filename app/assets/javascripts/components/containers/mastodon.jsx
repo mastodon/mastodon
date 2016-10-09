@@ -20,6 +20,7 @@ import Status             from '../features/status';
 import GettingStarted     from '../features/getting_started';
 import PublicTimeline     from '../features/public_timeline';
 import UI                 from '../features/ui';
+import AccountTimeline    from '../features/account_timeline';
 
 const store = configureStore();
 
@@ -78,7 +79,9 @@ const Mastodon = React.createClass({
             <IndexRoute component={GettingStarted} />
             <Route path='/statuses/all' component={PublicTimeline} />
             <Route path='/statuses/:statusId' component={Status} />
-            <Route path='/accounts/:accountId' component={Account} />
+            <Route path='/accounts/:accountId' component={Account}>
+              <IndexRoute component={AccountTimeline} />
+            </Route>
           </Route>
         </Router>
       </Provider>
