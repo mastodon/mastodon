@@ -18,6 +18,8 @@ class Status < ApplicationRecord
   validates :text, presence: true, length: { maximum: 500 }, if: proc { |s| s.local? && !s.reblog? }
   validates :reblog, uniqueness: { scope: :account, message: 'of status already exists' }, if: 'reblog?'
 
+  default_scope { order('id desc') }
+
   scope :with_counters, -> { select('statuses.*, (select count(r.id) from statuses as r where r.reblog_of_id = statuses.id) as reblogs_count, (select count(f.id) from favourites as f where f.status_id = statuses.id) as favourites_count') }
   scope :with_includes, -> { includes(:account, :media_attachments, :stream_entry, mentions: :account, reblog: [:account, mentions: :account], thread: :account) }
 
@@ -81,6 +83,10 @@ class Status < ApplicationRecord
 
   def self.as_mentions_timeline(account)
     where(id: Mention.where(account: account).pluck(:status_id)).with_includes.with_counters
+  end
+
+  def self.as_public_timeline(account)
+    where.not(account_id: account.blocking).with_includes.with_counters
   end
 
   def self.favourites_map(status_ids, account_id)

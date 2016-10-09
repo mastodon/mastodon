@@ -55,7 +55,7 @@ class Api::V1::StatusesController < ApiController
   end
 
   def public
-    @statuses = Status.with_includes.with_counters.order('id desc').paginate_by_max_id(20, params[:max_id], params[:since_id]).to_a
+    @statuses = Status.as_public_timeline(current_user.account).paginate_by_max_id(20, params[:max_id], params[:since_id]).to_a
     render action: :index
   end
 end
