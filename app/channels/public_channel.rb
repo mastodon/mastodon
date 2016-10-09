@@ -5,7 +5,7 @@ class PublicChannel < ApplicationCable::Channel
       message = ActiveSupport::JSON.decode(encoded_message)
 
       status = Status.find_by(id: message['id'])
-      next if status.nil?
+      next if status.nil? || current_user.account.blocking?(status.account) || (status.reblog? && current_user.account.blocking?(status.reblog.account))
 
       message['message'] = FeedManager.instance.inline_render(current_user.account, status)
 
