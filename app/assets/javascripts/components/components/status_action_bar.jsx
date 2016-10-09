@@ -1,7 +1,7 @@
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import PureRenderMixin    from 'react-addons-pure-render-mixin';
 import IconButton         from './icon_button';
-import Dropdown, { DropdownTrigger, DropdownContent } from 'react-simple-dropdown';
+import DropdownMenu       from './dropdown_menu';
 
 const StatusActionBar = React.createClass({
   propTypes: {
@@ -26,23 +26,16 @@ const StatusActionBar = React.createClass({
     this.props.onReblog(this.props.status);
   },
 
-  handleDeleteClick(e) {
-    e.preventDefault();
+  handleDeleteClick () {
     this.props.onDelete(this.props.status);
   },
 
   render () {
     const { status, me } = this.props;
-    let menu = '';
+    let menu = [];
 
     if (status.getIn(['account', 'id']) === me) {
-      menu = (
-        <ul>
-          <li><a href='#' onClick={this.handleDeleteClick}>Delete</a></li>
-        </ul>
-      );
-    } else {
-      menu = <ul />;
+      menu.push({ text: 'Delete', action: this.handleDeleteClick });
     }
 
     return (
@@ -52,13 +45,7 @@ const StatusActionBar = React.createClass({
         <div style={{ float: 'left', marginRight: '18px'}}><IconButton active={status.get('favourited')} title='Favourite' icon='star' onClick={this.handleFavouriteClick} /></div>
 
         <div onClick={e => e.stopPropagation()} style={{ width: '18px', height: '18px', float: 'left' }}>
-          <Dropdown>
-            <DropdownTrigger className='icon-button' style={{ fontSize: '18px', lineHeight: '18px', width: '18px', height: '18px' }}>
-              <i className='fa fa-fw fa-ellipsis-h' />
-            </DropdownTrigger>
-
-            <DropdownContent>{menu}</DropdownContent>
-          </Dropdown>
+          <DropdownMenu items={menu} icon='ellipsis-h' size={18} />
         </div>
       </div>
     );

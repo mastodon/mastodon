@@ -75,7 +75,7 @@ const Account = React.createClass({
     return (
       <Column>
         <div style={{ display: 'flex', flexDirection: 'column', 'flex': '0 0 auto', height: '100%' }}>
-          <Header account={account} />
+          <Header account={account} me={me} />
 
           <ActionBar account={account} me={me} onFollow={this.handleFollow} onBlock={this.handleBlock} />
 

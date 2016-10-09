@@ -10,6 +10,7 @@ import ActionBar             from './components/action_bar';
 import Column                from '../ui/components/column';
 import { favourite, reblog } from '../../actions/interactions';
 import { replyCompose }      from '../../actions/compose';
+import { deleteStatus }      from '../../actions/statuses';
 import {
   getStatus,
   getStatusAncestors,
@@ -57,8 +58,12 @@ const Status = React.createClass({
     this.props.dispatch(reblog(status));
   },
 
+  handleDeleteClick (status) {
+    this.props.dispatch(deleteStatus(status.get('id')));
+  },
+
   renderChildren (list) {
-    return list.map(s => <EmbeddedStatus status={s} me={this.props.me} key={s.get('id')} onReply={this.handleReplyClick} onFavourite={this.handleFavouriteClick} onReblog={this.handleReblogClick} />);
+    return list.map(s => <EmbeddedStatus status={s} me={this.props.me} key={s.get('id')} onReply={this.handleReplyClick} onFavourite={this.handleFavouriteClick} onReblog={this.handleReblogClick} onDelete={this.handleDeleteClick} />);
   },
 
   render () {
@@ -80,7 +85,7 @@ const Status = React.createClass({
           <div>{this.renderChildren(ancestors)}</div>
 
           <DetailedStatus status={status} me={me} />
-          <ActionBar status={status} onReply={this.handleReplyClick} onFavourite={this.handleFavouriteClick} onReblog={this.handleReblogClick} />
+          <ActionBar status={status} me={me} onReply={this.handleReplyClick} onFavourite={this.handleFavouriteClick} onReblog={this.handleReblogClick} onDelete={this.handleDeleteClick} />
 
           <div>{this.renderChildren(descendants)}</div>
         </div>
