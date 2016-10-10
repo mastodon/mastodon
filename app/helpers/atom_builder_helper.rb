@@ -149,6 +149,7 @@ module AtomBuilderHelper
     verb           xml, stream_entry.verb
     link_self      xml, account_stream_entry_url(stream_entry.account, stream_entry, format: 'atom')
     link_alternate xml, account_stream_entry_url(stream_entry.account, stream_entry)
+    object_type    xml, stream_entry.object_type
 
     # Comments need thread element
     if stream_entry.threaded?
@@ -167,7 +168,7 @@ module AtomBuilderHelper
         end
 
         # Statuses have content and author
-        if [:note, :comment].include? stream_entry.target.object_type
+        if stream_entry.target.is_a?(Status)
           content      xml, conditionally_formatted(stream_entry.target)
           verb         xml, stream_entry.target.verb
           published_at xml, stream_entry.target.created_at
@@ -176,10 +177,16 @@ module AtomBuilderHelper
           author(xml) do
             include_author xml, stream_entry.target.account
           end
+
+          stream_entry.target.mentions.each do |mentioned|
+            link_mention xml, mentioned
+          end
+
+          stream_entry.target.media_attachments.each do |media|
+            link_enclosure xml, media
+          end
         end
       end
-    else
-      object_type xml, stream_entry.object_type
     end
 
     stream_entry.mentions.each do |mentioned|
