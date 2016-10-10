@@ -214,7 +214,7 @@ class ProcessFeedService < BaseService
   def object_type(xml)
     xml.at_xpath('./activity:object-type').content.gsub('http://activitystrea.ms/schema/1.0/', '').to_sym
   rescue
-    :note
+    :activity
   end
 
   def verb(xml)

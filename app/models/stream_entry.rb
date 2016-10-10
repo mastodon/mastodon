@@ -39,7 +39,7 @@ class StreamEntry < ApplicationRecord
   end
 
   def threaded?
-    verb == :favorite || object_type == :comment
+    (verb == :favorite || object_type == :comment) && !thread.nil?
   end
 
   def thread
