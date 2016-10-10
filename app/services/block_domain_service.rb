@@ -4,7 +4,7 @@ class BlockDomainService < BaseService
 
     Account.where(domain: domain).find_each do |account|
       if account.subscribed?
-        account.subscription('').unsubscribe
+        account.subscription(api_subscription_url(account.id)).unsubscribe
       end
 
       account.destroy!

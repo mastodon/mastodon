@@ -11,11 +11,13 @@ namespace :mastodon do
   namespace :push do
     desc 'Unsubscribes from PuSH updates of feeds nobody follows locally'
     task clear: :environment do
+      include RoutingHelper
+
       Account.remote.without_followers.find_each do |a|
         Rails.logger.debug "PuSH unsubscribing from #{a.acct}"
 
         begin
-          a.subscription('').unsubscribe
+          a.subscription(api_subscription_url(a.id)).unsubscribe
         rescue HTTP::Error, OpenSSL::SSL::SSLError
           Rails.logger.debug "PuSH unsubscribing from #{a.acct} failed due to an HTTP or SSL error"
         ensure
