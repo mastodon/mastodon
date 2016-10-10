@@ -178,8 +178,8 @@ module AtomBuilderHelper
             include_author xml, stream_entry.target.account
           end
 
-          stream_entry.target.mentions.each do |mentioned|
-            link_mention xml, mentioned
+          stream_entry.target.mentions.each do |mention|
+            link_mention xml, mention.account
           end
 
           stream_entry.target.media_attachments.each do |media|
