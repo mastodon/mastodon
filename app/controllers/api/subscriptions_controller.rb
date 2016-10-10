@@ -15,6 +15,8 @@ class Api::SubscriptionsController < ApiController
     body = request.body.read
     subscription = @account.subscription(api_subscription_url(@account.id))
 
+    Rails.logger.debug body
+
     if subscription.verify(body, request.headers['HTTP_X_HUB_SIGNATURE'])
       ProcessFeedService.new.call(body, @account)
       head 201
