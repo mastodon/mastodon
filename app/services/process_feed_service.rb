@@ -48,9 +48,8 @@ class ProcessFeedService < BaseService
       process_attachments(entry.xpath('./activity:object'), status.reblog) if status.reblog?
 
       DistributionWorker.perform_async(status.id)
+      return status
     end
-
-    return status
   end
 
   def record_remote_mentions(status, links)
