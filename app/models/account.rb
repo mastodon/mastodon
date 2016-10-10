@@ -125,7 +125,7 @@ class Account < ApplicationRecord
   end
 
   def self.find_remote!(username, domain)
-    where(arel_table[:username].matches(username)).where(domain: domain).take!
+    where(arel_table[:username].matches(username)).where(domain.nil? ? { domain: nil } : arel_table[:domain].matches(domain)).take!
   end
 
   def self.find_local(username)

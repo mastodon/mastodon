@@ -18,7 +18,7 @@ class TagManager
   end
 
   def local_domain?(domain)
-    domain.nil? || domain.gsub(/[\/]/, '') == Rails.configuration.x.local_domain
+    domain.nil? || domain.gsub(/[\/]/, '').downcase == Rails.configuration.x.local_domain.downcase
   end
 
   def uri_for(target)
