@@ -175,7 +175,7 @@ class ProcessFeedService < BaseService
   end
 
   def content(xml)
-    xml.at_xpath('./xmlns:content').content
+    xml.at_xpath('./xmlns:content').try(:content)
   end
 
   def thread_id(xml)
