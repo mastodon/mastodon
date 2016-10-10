@@ -147,7 +147,7 @@ class ProcessFeedService < BaseService
     username = xml.at_xpath('./activity:object/xmlns:author/xmlns:name').content
     url      = xml.at_xpath('./activity:object/xmlns:author/xmlns:uri').content
     domain   = Addressable::URI.parse(url).host
-    account  = Account.find_by(username: username, domain: domain)
+    account  = Account.find_remote(username, domain)
 
     if account.nil?
       account = follow_remote_account_service.call("#{username}@#{domain}")
