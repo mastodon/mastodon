@@ -1,4 +1,6 @@
 class ProcessInteractionService < BaseService
+  ACTIVITY_NS = 'http://activitystrea.ms/spec/1.0/'.freeze
+
   # Record locally the remote interaction with our user
   # @param [String] envelope Salmon envelope
   # @param [Account] target_account Account the Salmon was addressed to
@@ -53,7 +55,7 @@ class ProcessInteractionService < BaseService
   end
 
   def verb(xml)
-    xml.at_xpath('//activity:verb').content.gsub('http://activitystrea.ms/schema/1.0/', '').gsub('http://ostatus.org/schema/1.0/', '').to_sym
+    xml.at_xpath('//activity:verb', activity: ACTIVITY_NS).content.gsub('http://activitystrea.ms/schema/1.0/', '').gsub('http://ostatus.org/schema/1.0/', '').to_sym
   rescue
     :post
   end
@@ -92,7 +94,7 @@ class ProcessInteractionService < BaseService
   end
 
   def activity_id(xml)
-    xml.at_xpath('//activity:object/xmlns:id').content
+    xml.at_xpath('//activity:object/xmlns:id', activity: ACTIVITY_NS).content
   end
 
   def salmon

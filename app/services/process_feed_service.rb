@@ -1,4 +1,7 @@
 class ProcessFeedService < BaseService
+  ACTIVITY_NS = 'http://activitystrea.ms/spec/1.0/'.freeze
+  THREAD_NS   = 'http://purl.org/syndication/thread/1.0'.freeze
+
   # Create local statuses from an Atom feed
   # @param [String] body Atom feed
   # @param [Account] account Account this feed belongs to
@@ -42,10 +45,10 @@ class ProcessFeedService < BaseService
     # Also record all media attachments for the status and for the reblogged status if present
     unless status.new_record?
       record_remote_mentions(status, entry.xpath('./xmlns:link[@rel="mentioned"]'))
-      record_remote_mentions(status.reblog, entry.xpath('./activity:object/xmlns:link[@rel="mentioned"]')) if status.reblog?
+      record_remote_mentions(status.reblog, entry.xpath('./activity:object/xmlns:link[@rel="mentioned"]', activity: ACTIVITY_NS)) if status.reblog?
 
       process_attachments(entry, status)
-      process_attachments(entry.xpath('./activity:object'), status.reblog) if status.reblog?
+      process_attachments(entry.xpath('./activity:object', activity: ACTIVITY_NS), status.reblog) if status.reblog?
 
       DistributionWorker.perform_async(status.id)
       return status
@@ -144,8 +147,8 @@ class ProcessFeedService < BaseService
   end
 
   def fetch_remote_status(xml)
-    username = xml.at_xpath('./activity:object/xmlns:author/xmlns:name').content
-    url      = xml.at_xpath('./activity:object/xmlns:author/xmlns:uri').content
+    username = xml.at_xpath('./activity:object/xmlns:author/xmlns:name', activity: ACTIVITY_NS).content
+    url      = xml.at_xpath('./activity:object/xmlns:author/xmlns:uri', activity: ACTIVITY_NS).content
     domain   = Addressable::URI.parse(url).host
     account  = Account.find_remote(username, domain)
 
@@ -178,19 +181,19 @@ class ProcessFeedService < BaseService
   end
 
   def thread_id(xml)
-    xml.at_xpath('./thr:in-reply-to').attribute('ref').value
+    xml.at_xpath('./thr:in-reply-to', thr: THREAD_NS).attribute('ref').value
   rescue
     nil
   end
 
   def thread_href(xml)
-    xml.at_xpath('./thr:in-reply-to').attribute('href').value
+    xml.at_xpath('./thr:in-reply-to', thr: THREAD_NS).attribute('href').value
   rescue
     nil
   end
 
   def target_id(xml)
-    xml.at_xpath('.//activity:object/xmlns:id').content
+    xml.at_xpath('.//activity:object/xmlns:id', activity: ACTIVITY_NS).content
   rescue
     nil
   end
@@ -206,21 +209,21 @@ class ProcessFeedService < BaseService
   end
 
   def target_content(xml)
-    xml.at_xpath('.//activity:object/xmlns:content').content
+    xml.at_xpath('.//activity:object/xmlns:content', activity: ACTIVITY_NS).content
   end
 
   def target_url(xml)
-    xml.at_xpath('.//activity:object/xmlns:link[@rel="alternate"]').attribute('href').value
+    xml.at_xpath('.//activity:object/xmlns:link[@rel="alternate"]', activity: ACTIVITY_NS).attribute('href').value
   end
 
   def object_type(xml)
-    xml.at_xpath('./activity:object-type').content.gsub('http://activitystrea.ms/schema/1.0/', '').to_sym
+    xml.at_xpath('./activity:object-type', activity: ACTIVITY_NS).content.gsub('http://activitystrea.ms/schema/1.0/', '').gsub('http://ostatus.org/schema/1.0/', '').to_sym
   rescue
     :activity
   end
 
   def verb(xml)
-    xml.at_xpath('./activity:verb').content.gsub('http://activitystrea.ms/schema/1.0/', '').to_sym
+    xml.at_xpath('./activity:verb', activity: ACTIVITY_NS).content.gsub('http://activitystrea.ms/schema/1.0/', '').gsub('http://ostatus.org/schema/1.0/', '').to_sym
   rescue
     :post
   end
