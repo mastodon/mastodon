@@ -1,7 +1,7 @@
 {
   "name": "mastodon",
   "scripts": {
-    "test": "mocha --compilers js:babel-register ./spec/javascript/components/*.test.jsx"
+    "test": "mocha --require ./spec/javascript/setup.js --compilers js:babel-register ./spec/javascript/components/*.test.jsx"
   },
   "devDependencies": {
     "axios": "^0.14.0",
@@ -16,6 +16,7 @@
     "enzyme": "^2.4.1",
     "es6-promise": "^3.2.1",
     "immutable": "^3.8.1",
+    "jsdom": "^9.6.0",
     "mocha": "^3.1.1",
     "moment": "^2.14.1",
     "react": "^15.3.2",

@@ -1,7 +1,5 @@
 import { expect } from 'chai';
 import { shallow } from 'enzyme';
-import React from 'react';
-global.React = React;
 
 import LoadingIndicator from '../../../app/assets/javascripts/components/components/loading_indicator'
 
