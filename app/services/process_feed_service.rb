@@ -45,7 +45,7 @@ class ProcessFeedService < BaseService
     # Also record all media attachments for the status and for the reblogged status if present
     unless status.new_record?
       record_remote_mentions(status, entry.xpath('./xmlns:link[@rel="mentioned"]'))
-      record_remote_mentions(status.reblog, entry.xpath('./activity:object/xmlns:link[@rel="mentioned"]', activity: ACTIVITY_NS)) if status.reblog?
+      record_remote_mentions(status.reblog, entry.at_xpath('./activity:object', activity: ACTIVITY_NS).xpath('./xmlns:link[@rel="mentioned"]')) if status.reblog?
 
       process_attachments(entry, status)
       process_attachments(entry.xpath('./activity:object', activity: ACTIVITY_NS), status.reblog) if status.reblog?
@@ -147,8 +147,8 @@ class ProcessFeedService < BaseService
   end
 
   def fetch_remote_status(xml)
-    username = xml.at_xpath('./activity:object/xmlns:author/xmlns:name', activity: ACTIVITY_NS).content
-    url      = xml.at_xpath('./activity:object/xmlns:author/xmlns:uri', activity: ACTIVITY_NS).content
+    username = xml.at_xpath('./activity:object', activity: ACTIVITY_NS).at_xpath('./xmlns:author/xmlns:name').content
+    url      = xml.at_xpath('./activity:object', activity: ACTIVITY_NS).at_xpath('./xmlns:author/xmlns:uri').content
     domain   = Addressable::URI.parse(url).host
     account  = Account.find_remote(username, domain)
 
@@ -193,7 +193,7 @@ class ProcessFeedService < BaseService
   end
 
   def target_id(xml)
-    xml.at_xpath('.//activity:object/xmlns:id', activity: ACTIVITY_NS).content
+    xml.at_xpath('.//activity:object', activity: ACTIVITY_NS).at_xpath('./xmlns:id').content
   rescue
     nil
   end
@@ -209,11 +209,11 @@ class ProcessFeedService < BaseService
   end
 
   def target_content(xml)
-    xml.at_xpath('.//activity:object/xmlns:content', activity: ACTIVITY_NS).content
+    xml.at_xpath('.//activity:object', activity: ACTIVITY_NS).at_xpath('./xmlns:content').content
   end
 
   def target_url(xml)
-    xml.at_xpath('.//activity:object/xmlns:link[@rel="alternate"]', activity: ACTIVITY_NS).attribute('href').value
+    xml.at_xpath('.//activity:object').at_xpath('./xmlns:link[@rel="alternate"]', activity: ACTIVITY_NS).attribute('href').value
   end
 
   def object_type(xml)
