@@ -51,7 +51,7 @@ private
         small: {
           convert_options: {
             output: {
-              vf: 'scale="min(510\, iw):min(680\, ih)":force_original_aspect_ratio=decrease'
+              vf: 'scale=\'min(510\, iw):min(680\, ih)\':force_original_aspect_ratio=decrease'
             }
           },
           format: 'png',
