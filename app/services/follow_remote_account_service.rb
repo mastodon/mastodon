@@ -1,4 +1,6 @@
 class FollowRemoteAccountService < BaseService
+  include OStatus2::MagicKey
+
   # Find or create a local account for a remote user.
   # When creating, look up the user's webfinger and fetch all
   # important information from their feed
@@ -55,17 +57,6 @@ class FollowRemoteAccountService < BaseService
   def get_profile(xml, account)
     author = xml.at_xpath('/xmlns:feed/xmlns:author')
     update_remote_profile_service.call(author, account)
-  end
-
-  def magic_key_to_pem(magic_key)
-    _, modulus, exponent = magic_key.split('.')
-    modulus, exponent = [modulus, exponent].map { |n| Base64.urlsafe_decode64(n).bytes.inject(0) { |a, e| (a << 8) | e } }
-
-    key   = OpenSSL::PKey::RSA.new
-    key.n = modulus
-    key.e = exponent
-
-    key.to_pem
   end
 
   def update_remote_profile_service
