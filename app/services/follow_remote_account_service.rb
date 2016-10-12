@@ -1,6 +1,8 @@
 class FollowRemoteAccountService < BaseService
   include OStatus2::MagicKey
 
+  DFRN_NS = 'http://purl.org/macgirvin/dfrn/1.0'.freeze
+
   # Find or create a local account for a remote user.
   # When creating, look up the user's webfinger and fetch all
   # important information from their feed
@@ -27,21 +29,13 @@ class FollowRemoteAccountService < BaseService
     account.public_key  = magic_key_to_pem(data.link('magic-public-key').href)
     account.private_key = nil
 
-    feed = get_feed(account.remote_url)
-    hubs = feed.xpath('//xmlns:link[@rel="hub"]')
+    xml  = get_feed(account.remote_url)
+    hubs = get_hubs(xml)
 
-    if hubs.empty? || hubs.first.attribute('href').nil?
-      raise Goldfinger::Error, 'No PubSubHubbub hubs found'
-    end
-
-    if feed.at_xpath('/xmlns:feed/xmlns:author/xmlns:uri').nil?
-      raise Goldfinger::Error, 'No author URI found'
-    end
-
-    account.uri     = feed.at_xpath('/xmlns:feed/xmlns:author/xmlns:uri').content
+    account.uri     = get_account_uri(xml)
     account.hub_url = hubs.first.attribute('href').value
 
-    get_profile(feed, account)
+    get_profile(xml, account)
     account.save!
 
     return account
@@ -54,8 +48,26 @@ class FollowRemoteAccountService < BaseService
     Nokogiri::XML(response)
   end
 
+  def get_hubs(xml)
+    hubs = xml.xpath('//xmlns:link[@rel="hub"]')
+    raise Goldfinger::Error, 'No PubSubHubbub hubs found' if hubs.empty? || hubs.first.attribute('href').nil?
+    hubs
+  end
+
+  def get_account_uri(xml)
+    author_uri = xml.at_xpath('/xmlns:feed/xmlns:author/xmlns:uri')
+
+    if author_uri.nil?
+      owner = xml.at_xpath('/xmlns:feed').at_xpath('./dfrn:owner', dfrn: DFRN_NS)
+      author_uri = owner.at_xpath('./xmlns:uri') unless owner.nil?
+    end
+
+    raise Goldfinger::Error, 'Author URI could not be found' if author_uri.nil?
+    author_uri.content
+  end
+
   def get_profile(xml, account)
-    author = xml.at_xpath('/xmlns:feed/xmlns:author')
+    author = xml.at_xpath('/xmlns:feed/xmlns:author') || xml.at_xpath('/xmlns:feed').at_xpath('./dfrn:owner', dfrn: DFRN_NS)
     update_remote_profile_service.call(author, account)
   end
 
