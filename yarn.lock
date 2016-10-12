@@ -1541,6 +1541,10 @@ css-loader@0.25.0:
     postcss-modules-values "^1.1.0"
     source-list-map "^0.1.4"
 
+css-mediaquery@^0.1.2:
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/css-mediaquery/-/css-mediaquery-0.1.2.tgz#6a2c37344928618631c54bd33cedd301da18bea0"
+
 css-select@~1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/css-select/-/css-select-1.2.0.tgz#2b3a110539c5355f1cd8d314623e870b121ec858"
@@ -2359,6 +2363,10 @@ https-browserify@0.0.0:
   version "0.0.0"
   resolved "https://registry.yarnpkg.com/https-browserify/-/https-browserify-0.0.0.tgz#b3ffdfe734b2a3d4a9efd58e8654c91fce86eafd"
 
+hyphenate-style-name@^1.0.0:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/hyphenate-style-name/-/hyphenate-style-name-1.0.1.tgz#bc49b9446e02b4570641afdd29c1ce7609d1b9cc"
+
 iconv-lite@^0.4.13, iconv-lite@~0.4.13:
   version "0.4.13"
   resolved "https://registry.yarnpkg.com/iconv-lite/-/iconv-lite-0.4.13.tgz#1f88aba4ab0b1508e8312acc39345f36e992e2f2"
@@ -2927,6 +2935,12 @@ mantra-core@^1.6.1:
     babel-runtime "6.x.x"
     react-komposer "^1.9.0"
     react-simple-di "^1.2.0"
+
+matchmedia@^0.1.2:
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/matchmedia/-/matchmedia-0.1.2.tgz#cfd47f2bf68fbc7f5ea1bd3a3cf1715ecba3c1bd"
+  dependencies:
+    css-mediaquery "^0.1.2"
 
 math-expression-evaluator@^1.2.14:
   version "1.2.14"
@@ -3822,6 +3836,14 @@ react-redux@^5.0.0-beta.3:
     lodash "^4.2.0"
     lodash-es "^4.2.0"
     loose-envify "^1.1.0"
+
+react-responsive:
+  version "1.1.5"
+  resolved "https://registry.yarnpkg.com/react-responsive/-/react-responsive-1.1.5.tgz#a7019a28817dcb601ef31d10d72f798a0d710a17"
+  dependencies:
+    hyphenate-style-name "^1.0.0"
+    matchmedia "^0.1.2"
+    object-assign "^4.0.1"
 
 react-router@^2.8.0:
   version "2.8.1"

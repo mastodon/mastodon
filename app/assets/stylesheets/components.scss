@@ -227,3 +227,31 @@
     margin-bottom: 20px;
   }
 }
+
+.columns-area {
+  margin: 10px;
+  margin-left: 0;
+}
+
+.column {
+  width: 330px;
+}
+
+.drawer {
+  width: 280px;
+}
+
+.column, .drawer {
+  margin-left: 10px;
+}
+
+@media screen and (max-width: 1024px) {
+  .column, .drawer {
+    width: 100%;
+    margin: 0;
+  }
+
+  .columns-area {
+    margin: 10px;
+  }
+}

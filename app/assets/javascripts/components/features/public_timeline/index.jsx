@@ -1,42 +1,13 @@
 import { connect }         from 'react-redux';
 import PureRenderMixin     from 'react-addons-pure-render-mixin';
-import ImmutablePropTypes  from 'react-immutable-proptypes';
-import StatusList          from '../../components/status_list';
+import StatusListContainer from '../ui/containers/status_list_container';
 import Column              from '../ui/components/column';
-import Immutable           from 'immutable';
-import { makeGetTimeline } from '../../selectors';
 import {
-  updateTimeline,
   refreshTimeline,
-  expandTimeline
+  updateTimeline
 }                          from '../../actions/timelines';
-import { deleteStatus }    from '../../actions/statuses';
-import { replyCompose }    from '../../actions/compose';
-import {
-  favourite,
-  reblog,
-  unreblog,
-  unfavourite
-}                          from '../../actions/interactions';
-
-const makeMapStateToProps = () => {
-  const getTimeline = makeGetTimeline();
-
-  const mapStateToProps = (state) => ({
-    statuses: getTimeline(state, 'public'),
-    me: state.getIn(['timelines', 'me'])
-  });
-
-  return mapStateToProps;
-};
 
 const PublicTimeline = React.createClass({
-
-  propTypes: {
-    statuses: ImmutablePropTypes.list.isRequired,
-    me: React.PropTypes.number.isRequired,
-    dispatch: React.PropTypes.func.isRequired
-  },
 
   mixins: [PureRenderMixin],
 
@@ -62,44 +33,14 @@ const PublicTimeline = React.createClass({
     }
   },
 
-  handleReply (status) {
-    this.props.dispatch(replyCompose(status));
-  },
-
-  handleReblog (status) {
-    if (status.get('reblogged')) {
-      this.props.dispatch(unreblog(status));
-    } else {
-      this.props.dispatch(reblog(status));
-    }
-  },
-
-  handleFavourite (status) {
-    if (status.get('favourited')) {
-      this.props.dispatch(unfavourite(status));
-    } else {
-      this.props.dispatch(favourite(status));
-    }
-  },
-
-  handleDelete (status) {
-    this.props.dispatch(deleteStatus(status.get('id')));
-  },
-
-  handleScrollToBottom () {
-    this.props.dispatch(expandTimeline('public'));
-  },
-
   render () {
-    const { statuses, me } = this.props;
-
     return (
       <Column icon='globe' heading='Public'>
-        <StatusList statuses={statuses} me={me} onScrollToBottom={this.handleScrollToBottom} onReply={this.handleReply} onReblog={this.handleReblog} onFavourite={this.handleFavourite} onDelete={this.handleDelete} />
+        <StatusListContainer type='public' />
       </Column>
     );
   },
 
 });
 
-export default connect(makeMapStateToProps)(PublicTimeline);
+export default connect()(PublicTimeline);

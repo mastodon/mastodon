@@ -15,12 +15,15 @@ import {
   hashHistory,
   IndexRoute
 }                         from 'react-router';
+import UI                 from '../features/ui';
 import Account            from '../features/account';
 import Status             from '../features/status';
 import GettingStarted     from '../features/getting_started';
 import PublicTimeline     from '../features/public_timeline';
-import UI                 from '../features/ui';
 import AccountTimeline    from '../features/account_timeline';
+import HomeTimeline       from '../features/home_timeline';
+import MentionsTimeline   from '../features/mentions_timeline';
+import Compose            from '../features/compose';
 
 const store = configureStore();
 
@@ -77,6 +80,9 @@ const Mastodon = React.createClass({
         <Router history={hashHistory}>
           <Route path='/' component={UI}>
             <IndexRoute component={GettingStarted} />
+            <Route path='/statuses/new' component={Compose} />
+            <Route path='/statuses/home' component={HomeTimeline} />
+            <Route path='/statuses/mentions' component={MentionsTimeline} />
             <Route path='/statuses/all' component={PublicTimeline} />
             <Route path='/statuses/:statusId' component={Status} />
             <Route path='/accounts/:accountId' component={Account}>

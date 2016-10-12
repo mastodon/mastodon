@@ -1,12 +1,20 @@
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 
+const style = {
+  display: 'flex',
+  flex: '1 1 auto',
+  flexDirection: 'row',
+  justifyContent: 'flex-start',
+  overflowX: 'auto'
+};
+
 const ColumnsArea = React.createClass({
 
   mixins: [PureRenderMixin],
 
   render () {
     return (
-      <div style={{ display: 'flex', flexDirection: 'row', flex: '1', justifyContent: 'flex-start', marginRight: '10px', marginBottom: '10px', overflowX: 'auto' }}>
+      <div className='columns-area' style={style}>
         {this.props.children}
       </div>
     );
