@@ -19,6 +19,8 @@ class FetchRemoteAccountService < BaseService
     Rails.logger.debug "Going to webfinger #{username}@#{domain}"
 
     return FollowRemoteAccountService.new.call("#{username}@#{domain}")
+  rescue TypeError => e
+    Rails.logger.debug "Unparseable URL given: #{url}"
   rescue Nokogiri::XML::XPath::SyntaxError
     Rails.logger.debug "Invalid XML or missing namespace"
   end

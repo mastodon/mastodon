@@ -100,9 +100,14 @@ class ProcessFeedService < BaseService
 
       next unless media.nil?
 
-      media = MediaAttachment.new(account: status.account, status: status, remote_url: enclosure_link.attribute('href').value)
-      media.file_remote_url = enclosure_link.attribute('href').value
-      media.save
+      begin
+        media = MediaAttachment.new(account: status.account, status: status, remote_url: enclosure_link.attribute('href').value)
+        media.file_remote_url = enclosure_link.attribute('href').value
+        media.save
+      rescue Paperclip::Errors::NotIdentifiedByImageMagickError
+        Rails.logger.debug "Error saving attachment from #{enclosure_link.attribute('href').value}"
+        next
+      end
     end
   end
 
@@ -213,7 +218,7 @@ class ProcessFeedService < BaseService
   end
 
   def target_url(xml)
-    xml.at_xpath('.//activity:object').at_xpath('./xmlns:link[@rel="alternate"]', activity: ACTIVITY_NS).attribute('href').value
+    xml.at_xpath('.//activity:object', activity: ACTIVITY_NS).at_xpath('./xmlns:link[@rel="alternate"]').attribute('href').value
   end
 
   def object_type(xml)
