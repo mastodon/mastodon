@@ -3,7 +3,6 @@ import PureRenderMixin from 'react-addons-pure-render-mixin';
 const style = {
   display: 'flex',
   flex: '1 1 auto',
-  flexDirection: 'row',
   justifyContent: 'flex-start',
   overflowX: 'auto'
 };

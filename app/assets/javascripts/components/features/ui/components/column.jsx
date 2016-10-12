@@ -30,9 +30,7 @@ const scrollTop = (node) => {
 };
 
 const style = {
-  height: '100%',
   boxSizing: 'border-box',
-  flex: '0 0 auto',
   background: '#282c37',
   display: 'flex',
   flexDirection: 'column'

@@ -231,6 +231,7 @@
 .columns-area {
   margin: 10px;
   margin-left: 0;
+  flex-direction: row;
 }
 
 .column {
@@ -243,15 +244,19 @@
 
 .column, .drawer {
   margin-left: 10px;
+  flex: 0 0 auto;
+  overflow: hidden;
 }
 
 @media screen and (max-width: 1024px) {
   .column, .drawer {
     width: 100%;
     margin: 0;
+    flex: 1 1 100%;
   }
 
   .columns-area {
     margin: 10px;
+    flex-direction: column;
   }
 }
