@@ -1,6 +1,6 @@
 class MediaAttachment < ApplicationRecord
   IMAGE_MIME_TYPES = ['image/jpeg', 'image/png', 'image/gif'].freeze
-  VIDEO_MIME_TYPES = ['video/webm'].freeze
+  VIDEO_MIME_TYPES = ['video/webm', 'video/mp4'].freeze
 
   belongs_to :account, inverse_of: :media_attachments
   belongs_to :status,  inverse_of: :media_attachments
@@ -43,14 +43,19 @@ private
       }
     else
       {
-        small: {
-        convert_options: {
-          output: {
-            vf: 'scale="min(510\, iw):min(680\, ih)":force_original_aspect_ratio=decrease'
-          }
+        original: {
+          convert_options: {},
+          format: 'webm'
         },
-        format: 'png',
-        time: 1
+
+        small: {
+          convert_options: {
+            output: {
+              vf: 'scale="min(510\, iw):min(680\, ih)":force_original_aspect_ratio=decrease'
+            }
+          },
+          format: 'png',
+          time: 1
         }
       }
     end
