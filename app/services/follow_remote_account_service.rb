@@ -23,6 +23,8 @@ class FollowRemoteAccountService < BaseService
 
     data = Goldfinger.finger("acct:#{uri}")
 
+    raise Goldfinger::Error, 'Missing resource links' if data.link('http://schemas.google.com/g/2010#updates-from').nil? || data.link('salmon').nil? || data.link('http://webfinger.net/rel/profile-page').nil? || data.link('magic-public-key').nil?
+
     account.remote_url  = data.link('http://schemas.google.com/g/2010#updates-from').href
     account.salmon_url  = data.link('salmon').href
     account.url         = data.link('http://webfinger.net/rel/profile-page').href
