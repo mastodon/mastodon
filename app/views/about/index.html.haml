@@ -1,3 +1,6 @@
+- content_for :page_title do
+  = Rails.configuration.x.local_domain
+
 .wrapper
   %h1
     = image_tag 'logo.png'
@@ -16,4 +19,5 @@
     is a Mastodon instance.
 
   .actions
-    = link_to 'Get started', new_user_session_path, class: 'button'
+    = link_to 'Get started', new_user_registration_path, class: 'button'
+    = link_to 'Log in', new_user_session_path, class: 'button'

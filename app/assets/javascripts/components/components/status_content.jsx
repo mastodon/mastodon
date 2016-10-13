@@ -22,11 +22,11 @@ const StatusContent = React.createClass({
       let mention = this.props.status.get('mentions').find(item => link.href === item.get('url'));
 
       if (mention) {
-        link.addEventListener('click', this.onMentionClick.bind(this, mention));
+        link.addEventListener('click', this.onMentionClick.bind(this, mention), false);
       } else {
         link.setAttribute('target', '_blank');
         link.setAttribute('rel', 'noopener');
-        link.addEventListener('click', this.onNormalClick);
+        link.addEventListener('click', this.onNormalClick, false);
       }
     }
   },

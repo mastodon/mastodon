@@ -1,3 +1,6 @@
+- content_for :page_title do
+  Log in
+
 = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
   .field
     = f.email_field :email, autofocus: true, placeholder: 'E-mail address', required: true
