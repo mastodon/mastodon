@@ -17,6 +17,6 @@ class Auth::RegistrationsController < Devise::RegistrationsController
   end
 
   def after_sign_up_path_for(_resource)
-    root_path
+    new_user_session_path
   end
 end

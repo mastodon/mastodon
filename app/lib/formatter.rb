@@ -29,7 +29,9 @@ class Formatter
   end
 
   def link_urls(html)
-    auto_link(html, link: :urls, html: { rel: 'nofollow noopener' })
+    auto_link(html, link: :urls, html: { rel: 'nofollow noopener' }) do |text|
+      truncate(text.gsub(/\Ahttps?:\/\/(www\.)?/, ''), length: 30)
+    end
   end
 
   def link_mentions(html, mentions)
