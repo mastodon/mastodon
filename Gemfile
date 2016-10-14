@@ -39,6 +39,7 @@ gem 'will_paginate'
 gem 'rack-attack'
 gem 'sidekiq'
 gem 'ledermann-rails-settings'
+gem 'neography'
 
 gem 'react-rails'
 gem 'browserify-rails'

@@ -22,4 +22,28 @@ class Follow < ApplicationRecord
   def title
     destroyed? ? "#{account.acct} is no longer following #{target_account.acct}" : "#{account.acct} started following #{target_account.acct}"
   end
+
+  after_create  :add_to_graph
+  after_destroy :remove_from_graph
+
+  private
+
+  def add_to_graph
+    neo = Neography::Rest.new
+
+    a = neo.create_unique_node('account_index', 'Account', account_id.to_s, account_id: account_id)
+    b = neo.create_unique_node('account_index', 'Account', target_account_id.to_s, account_id: target_account_id)
+
+    neo.create_unique_relationship('follow_index', 'Follow', id.to_s, 'follows', a, b)
+  rescue Neography::NeographyError => e
+    Rails.logger.error e
+  end
+
+  def remove_from_graph
+    neo = Neography::Rest.new
+    rel = neo.get_relationship_index('follow_index', 'Follow', id.to_s)
+    neo.delete_relationship(rel)
+  rescue Neography::NeographyError => e
+    Rails.logger.error e
+  end
 end
