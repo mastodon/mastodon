@@ -31,7 +31,11 @@ Rails.application.routes.draw do
     end
   end
 
-  resource  :settings, only: [:show, :update]
+  namespace :settings do
+    resource :profile, only: [:show, :update]
+    resource :preferences, only: [:show, :update]
+  end
+
   resources :media, only: [:show]
 
   namespace :api do

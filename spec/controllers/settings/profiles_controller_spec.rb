@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe SettingsController, type: :controller do
+RSpec.describe Settings::ProfilesController, type: :controller do
 
   before do
     sign_in Fabricate(:user), scope: :user

@@ -10,5 +10,8 @@
     = f.password_field :password_confirmation, autocomplete: "off", placeholder: 'Confirm new password'
   .field
     = f.password_field :current_password, autocomplete: "off", placeholder: 'Current password'
+
   .actions
     = f.button "Save changes", type: 'submit'
+
+.form-footer= render "settings/shared/links"

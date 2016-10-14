@@ -1,7 +1,7 @@
 - content_for :page_title do
   Edit profile
 
-= form_for @account, url: settings_path, html: { method: :put } do |f|
+= form_for @account, url: settings_profile_path, html: { method: :put } do |f|
   .field
     = f.text_field :display_name, placeholder: 'Display name'
   .field
@@ -14,4 +14,6 @@
     = f.file_field :header
 
   .actions
-    = f.button 'Save changes', type: :submit 
+    = f.button 'Save changes', type: :submit
+
+.form-footer= render "settings/shared/links"

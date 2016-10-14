@@ -214,6 +214,25 @@ body {
     }
   }
 
+  .fields-group {
+    margin-bottom: 25px;
+  }
+
+  .boolean-field {
+    margin-bottom: 5px;
+
+    label {
+      font-family: 'Roboto';
+      font-size: 14px;
+      color: #9baec8;
+    }
+
+    input[type=checkbox] {
+      display: inline-block;
+      margin-bottom: -13px;
+    }
+  }
+
   input[type=text], input[type=email], input[type=password], textarea {
     background: transparent;
     border: 0;

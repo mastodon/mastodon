@@ -1,0 +1,22 @@
+- content_for :page_title do
+  Preferences
+
+= form_for current_user, url: settings_preferences_path, html: { method: :put } do |f|
+  = f.fields_for :notification_emails, current_user.settings(:notification_emails) do |ff|
+    .boolean-field
+      = ff.check_box :follow
+      = ff.label :follow, 'Send e-mail when someone follows you'
+    .boolean-field
+      = ff.check_box :reblog
+      = ff.label :reblog, 'Send e-mail when someone reblogs your status'
+    .boolean-field
+      = ff.check_box :favourite
+      = ff.label :favourite, 'Send e-mail when someone favourites your status'
+    .boolean-field
+      = ff.check_box :mention
+      = ff.label :mention, 'Send e-mail when someone mentions you'
+
+  .actions
+    = f.button 'Save changes', type: :submit
+
+.form-footer= render "settings/shared/links"
