@@ -34,7 +34,7 @@ class RemoveStatusService < BaseService
   end
 
   def send_delete_salmon(account, status)
-    NotificationWorker.perform_async(status.stream_entry_id, account.id)
+    NotificationWorker.perform_async(status.stream_entry.id, account.id)
   end
 
   def remove_reblogs(status)
