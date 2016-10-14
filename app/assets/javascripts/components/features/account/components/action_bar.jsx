@@ -19,7 +19,7 @@ const ActionBar = React.createClass({
     let menu = [];
 
     if (account.get('id') === me) {
-
+      menu.push({ text: 'Edit profile', href: '/settings/profile' });
     } else if (account.getIn(['relationship', 'blocking'])) {
       menu.push({ text: 'Unblock', action: this.props.onBlock });
     } else if (account.getIn(['relationship', 'following'])) {

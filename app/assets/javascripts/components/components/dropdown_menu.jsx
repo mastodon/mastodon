@@ -9,7 +9,12 @@ const DropdownMenu = ({ icon, items, size }) => {
 
       <DropdownContent style={{ lineHeight: '18px' }}>
         <ul>
-          {items.map(({ text, action }, i) => <li key={i}><a href='#' onClick={e => { e.preventDefault(); action(); }}>{text}</a></li>)}
+          {items.map(({ text, action, href = '#' }, i) => <li key={i}><a href={href} target='_blank' rel='noopener' onClick={e => {
+            if (typeof action === 'function') {
+              e.preventDefault();
+              action();
+            }
+          }}>{text}</a></li>)}
         </ul>
       </DropdownContent>
     </Dropdown>
