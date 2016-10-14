@@ -56,6 +56,8 @@ class ProcessFeedService < BaseService
   end
 
   def record_remote_mentions(status, links)
+    return if status.local?
+
     # Here we have to do a reverse lookup of local accounts by their URL!
     # It's not pretty at all! I really wish all these protocols sticked to
     # using acct:username@domain only! It would make things so much easier
@@ -93,6 +95,8 @@ class ProcessFeedService < BaseService
   end
 
   def process_attachments(entry, status)
+    return if status.local?
+
     entry.xpath('./xmlns:link[@rel="enclosure"]').each do |enclosure_link|
       next if enclosure_link.attribute('href').nil?
 
