@@ -26,6 +26,10 @@ class Follow < ApplicationRecord
   after_create  :add_to_graph
   after_destroy :remove_from_graph
 
+  def sync!
+    add_to_graph
+  end
+
   private
 
   def add_to_graph

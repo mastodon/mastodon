@@ -4,6 +4,10 @@ services:
     image: postgres
   redis:
     image: redis
+  neo4j:
+    image: neo4j
+    environment:
+      - NEO4J_AUTH=none
   app:
     build: .
     env_file: .env.production
@@ -15,6 +19,7 @@ services:
     depends_on:
       - db
       - redis
+      - neo4j
     volumes:
       - ./public/assets:/mastodon/public/assets
       - ./public/system:/mastodon/public/system
@@ -24,5 +29,6 @@ services:
     depends_on:
       - db
       - redis
+      - neo4j
     volumes:
       - ./public/system:/mastodon/public/system
