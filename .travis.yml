@@ -26,6 +26,7 @@ services:
 bundler_args: --without development production --retry=3 --jobs=3
 
 install:
+  - nvm ls
   - rm -rf ~/.nvm && git clone https://github.com/creationix/nvm.git ~/.nvm && (cd ~/.nvm && git checkout `git describe --abbrev=0 --tags --match "v[0-9]*" origin`) && source ~/.nvm/nvm.sh
   - nvm install $TRAVIS_NODE_VERSION
   - npm install -g npm@3
