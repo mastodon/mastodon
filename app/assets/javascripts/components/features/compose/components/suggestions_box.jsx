@@ -30,11 +30,15 @@ const itemStyle = {
 
 const displayNameStyle = {
   display: 'block',
-  fontWeight: '500'
+  fontWeight: '500',
+  overflow: 'hidden',
+  textOverflow: 'ellipsis'
 };
 
 const acctStyle = {
-  display: 'block'
+  display: 'block',
+  overflow: 'hidden',
+  textOverflow: 'ellipsis'
 };
 
 const SuggestionsBox = React.createClass({
@@ -46,7 +50,7 @@ const SuggestionsBox = React.createClass({
   mixins: [PureRenderMixin],
 
   render () {
-    const accounts = this.props.accounts.take(2);
+    const accounts = this.props.accounts.take(3);
 
     return (
       <div style={outerStyle}>
