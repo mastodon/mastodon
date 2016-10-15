@@ -1,6 +1,6 @@
 class Api::V1::AccountsController < ApiController
   before_action :doorkeeper_authorize!
-  before_action :set_account, except: :verify_credentials
+  before_action :set_account, except: [:verify_credentials, :suggestions]
   respond_to    :json
 
   def show
@@ -17,6 +17,10 @@ class Api::V1::AccountsController < ApiController
 
   def followers
     @followers = @account.followers
+  end
+
+  def suggestions
+    @accounts = FollowSuggestion.get(current_user.account_id)
   end
 
   def statuses
