@@ -52,6 +52,10 @@ const SuggestionsBox = React.createClass({
   render () {
     const accounts = this.props.accounts.take(3);
 
+    if (account.size === 0) {
+      return <div />;
+    }
+
     return (
       <div style={outerStyle}>
         <strong style={headerStyle}>Who to follow</strong>

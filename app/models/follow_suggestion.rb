@@ -7,7 +7,7 @@ START a=node:account_index(Account={id})
 MATCH (a)-[:follows]->(b)-[:follows]->(c)
 WHERE a <> c
 AND NOT (a)-[:follows]->(c)
-RETURN DISTINCT c.account_id
+RETURN DISTINCT c.account_id, c.nodeRank
 ORDER BY c.nodeRank
 LIMIT {limit}
 END
