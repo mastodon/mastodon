@@ -25,6 +25,7 @@ import {
   STATUS_DELETE_SUCCESS
 }                                from '../actions/statuses';
 import { FOLLOW_SUBMIT_SUCCESS } from '../actions/follow';
+import { SUGGESTIONS_FETCH_SUCCESS } from '../actions/suggestions';
 import Immutable                 from 'immutable';
 
 const initialState = Immutable.Map({
@@ -37,7 +38,8 @@ const initialState = Immutable.Map({
   me: null,
   ancestors: Immutable.Map(),
   descendants: Immutable.Map(),
-  relationships: Immutable.Map()
+  relationships: Immutable.Map(),
+  suggestions: Immutable.List([])
 });
 
 function normalizeStatus(state, status) {
@@ -189,6 +191,14 @@ function normalizeContext(state, status, ancestors, descendants) {
   });
 };
 
+function normalizeSuggestions(state, accounts) {
+  accounts.forEach(account => {
+    state = state.setIn(['accounts', account.get('id')], account);
+  });
+
+  return state.set('suggestions', accounts.map(account => account.get('id')));
+};
+
 export default function timelines(state = initialState, action) {
   switch(action.type) {
     case TIMELINE_REFRESH_SUCCESS:
@@ -221,6 +231,8 @@ export default function timelines(state = initialState, action) {
       return normalizeAccountTimeline(state, action.id, Immutable.fromJS(action.statuses));
     case ACCOUNT_TIMELINE_EXPAND_SUCCESS:
       return appendNormalizedAccountTimeline(state, action.id, Immutable.fromJS(action.statuses));
+    case SUGGESTIONS_FETCH_SUCCESS:
+      return normalizeSuggestions(state, Immutable.fromJS(action.suggestions));
     default:
       return state;
   }

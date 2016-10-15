@@ -35,7 +35,7 @@ class Follow < ApplicationRecord
     b = neo.create_unique_node('account_index', 'Account', target_account_id.to_s, account_id: target_account_id)
 
     neo.create_unique_relationship('follow_index', 'Follow', id.to_s, 'follows', a, b)
-  rescue Neography::NeographyError => e
+  rescue Neography::NeographyError, Excon::Error::Socket => e
     Rails.logger.error e
   end
 
@@ -43,7 +43,7 @@ class Follow < ApplicationRecord
     neo = Neography::Rest.new
     rel = neo.get_relationship_index('follow_index', 'Follow', id.to_s)
     neo.delete_relationship(rel)
-  rescue Neography::NeographyError => e
+  rescue Neography::NeographyError, Excon::Error::Socket => e
     Rails.logger.error e
   end
 end
