@@ -52,7 +52,7 @@ const SuggestionsBox = React.createClass({
   render () {
     const accounts = this.props.accounts.take(3);
 
-    if (account.size === 0) {
+    if (accounts.size === 0) {
       return <div />;
     }
 
