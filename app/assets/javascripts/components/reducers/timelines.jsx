@@ -164,6 +164,10 @@ function normalizeAccount(state, account, relationship) {
 };
 
 function normalizeRelationship(state, relationship) {
+  if (state.get('suggestions').includes(relationship.get('id')) && (relationship.get('following') || relationship.get('blocking'))) {
+    state = state.update('suggestions', list => list.filterNot(id => id === relationship.get('id')));
+  }
+
   return state.setIn(['relationships', relationship.get('id')], relationship);
 };
 

@@ -9,7 +9,7 @@ require 'webmock/rspec'
 require 'paperclip/matchers'
 
 ActiveRecord::Migration.maintain_test_schema!
-WebMock.disable_net_connect!
+WebMock.disable_net_connect!(allow: 'localhost:7575')
 Sidekiq::Testing.inline!
 
 RSpec.configure do |config|

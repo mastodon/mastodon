@@ -6,6 +6,8 @@ env:
     - LOCAL_DOMAIN=cb6e6126.ngrok.io
     - LOCAL_HTTPS=true
     - RAILS_ENV=test
+    - NEO4J_HOST=localhost
+    - NEO4J_PORT=7575
 
 addons:
   postgresql: 9.4
@@ -20,8 +22,9 @@ bundler_args: --without development production --retry=3 --jobs=3
 
 install:
   - npm install -g npm@3
-  - npm install
+  - npm install -g yarn
   - bundle install
+  - yarn install
 
 before_script:
   - bundle exec rails db:create db:migrate
