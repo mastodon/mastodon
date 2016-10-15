@@ -8,6 +8,7 @@ env:
     - RAILS_ENV=test
     - NEO4J_HOST=localhost
     - NEO4J_PORT=7575
+    - TRAVIS_NODE_VERSION="4"
 
 addons:
   postgresql: 9.4
@@ -21,6 +22,7 @@ services:
 bundler_args: --without development production --retry=3 --jobs=3
 
 install:
+  - rm -rf ~/.nvm && git clone https://github.com/creationix/nvm.git ~/.nvm && (cd ~/.nvm && git checkout `git describe --abbrev=0 --tags`) && source ~/.nvm/nvm.sh && nvm install $TRAVIS_NODE_VERSION
   - npm install -g npm@3
   - npm install -g yarn
   - bundle install
@@ -29,4 +31,6 @@ install:
 before_script:
   - bundle exec rails db:create db:migrate
 
-script: bundle exec rspec
+script:
+  - bundle exec rspec
+  - npm test
