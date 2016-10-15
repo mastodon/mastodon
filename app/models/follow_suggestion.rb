@@ -14,7 +14,7 @@ END
 
     results = neo.execute_query(query, id: for_account_id, limit: limit)
 
-    return fallback(for_account_id, limit) if results.empty?
+    return fallback(for_account_id, limit) if results.empty? || results['data'].empty?
 
     map_to_accounts(for_account_id, results)
   rescue Neography::NeographyError, Excon::Error::Socket => e
@@ -36,7 +36,7 @@ END
   end
 
   def self.map_to_accounts(for_account_id, results)
-    return [] if results.empty?
+    return [] if results.empty? || results['data'].empty?
 
     account_ids  = results['data'].map(&:first)
     blocked_ids  = Block.where(account_id: for_account_id).pluck(:target_account_id)
