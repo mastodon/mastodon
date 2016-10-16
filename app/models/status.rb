@@ -86,7 +86,7 @@ class Status < ApplicationRecord
   end
 
   def self.as_public_timeline(account)
-    joins('LEFT OUTER JOIN statuses AS reblogs ON reblogs.id = statuses.reblog_of_id').where('reblogs.account_id NOT IN (SELECT target_account_id FROM blocks WHERE account_id = ?) AND statuses.account_id NOT IN (SELECT target_account_id FROM blocks WHERE account_id = ?)', account.id, account.id).with_includes.with_counters
+    joins('LEFT OUTER JOIN statuses AS reblogs ON statuses.reblog_of_id = reblogs.id').where('(reblogs.account_id IS NULL OR reblogs.account_id NOT IN (SELECT target_account_id FROM blocks WHERE account_id = ?)) AND statuses.account_id NOT IN (SELECT target_account_id FROM blocks WHERE account_id = ?)', account.id, account.id).with_includes.with_counters
   end
 
   def self.favourites_map(status_ids, account_id)
