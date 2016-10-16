@@ -5,7 +5,8 @@ const style = {
   background: '#454b5e',
   padding: '0',
   display: 'flex',
-  flexDirection: 'column'
+  flexDirection: 'column',
+  overflowY: 'auto'
 };
 
 const Drawer = React.createClass({
