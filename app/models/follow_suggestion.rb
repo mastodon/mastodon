@@ -14,9 +14,17 @@ END
 
     results = neo.execute_query(query, id: for_account_id, limit: limit)
 
-    return fallback(for_account_id, limit) if results.empty? || results['data'].empty?
+    if results.empty?
+      results = fallback(for_account_id, limit)
+    elsif results['data'].size < limit
+      results['data'] = (results['data'] + fallback(for_account_id, limit - results['data'].size)['data']).uniq
+    end
 
-    map_to_accounts(for_account_id, results)
+    account_ids  = results['data'].map(&:first)
+    blocked_ids  = Block.where(account_id: for_account_id).pluck(:target_account_id)
+    accounts_map = Account.where(id: account_ids - blocked_ids).map { |a| [a.id, a] }.to_h
+
+    account_ids.map { |id| accounts_map[id] }.compact
   rescue Neography::NeographyError, Excon::Error::Socket => e
     Rails.logger.error e
     return []
@@ -25,23 +33,18 @@ END
   private
 
   def self.fallback(for_account_id, limit)
-    neo     = Neography::Rest.new
-    query   = 'MATCH (a) WHERE a.account_id <> {id} RETURN a.account_id ORDER BY a.nodeRank DESC LIMIT {limit}'
-    results = neo.execute_query(query, id: for_account_id, limit: limit)
+    neo = Neography::Rest.new
 
-    map_to_accounts(for_account_id, results)
-  rescue Neography::NeographyError, Excon::Error::Socket => e
-    Rails.logger.error e
-    return []
-  end
+    query = <<END
+START a=node:account_index(Account={id})
+MATCH (b)
+WHERE a <> b
+AND NOT (a)-[:follows]->(b)
+RETURN b.account_id
+ORDER BY b.nodeRank DESC
+LIMIT {limit}
+END
 
-  def self.map_to_accounts(for_account_id, results)
-    return [] if results.empty? || results['data'].empty?
-
-    account_ids  = results['data'].map(&:first)
-    blocked_ids  = Block.where(account_id: for_account_id).pluck(:target_account_id)
-    accounts_map = Account.where(id: account_ids - blocked_ids).map { |a| [a.id, a] }.to_h
-
-    account_ids.map { |id| accounts_map[id] }.compact
+    neo.execute_query(query, id: for_account_id, limit: limit)
   end
 end

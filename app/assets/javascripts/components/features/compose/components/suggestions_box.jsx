@@ -6,7 +6,8 @@ import { Link }           from 'react-router';
 
 const outerStyle = {
   marginBottom: '10px',
-  borderTop: '1px solid #616b86'
+  borderTop: '1px solid #616b86',
+  position: 'relative'
 };
 
 const headerStyle = {
@@ -41,26 +42,64 @@ const acctStyle = {
   textOverflow: 'ellipsis'
 };
 
+const nextStyle = {
+  fontWeight: '400',
+  color: '#2b90d9'
+};
+
 const SuggestionsBox = React.createClass({
 
   propTypes: {
-    accounts: ImmutablePropTypes.list.isRequired
+    accounts: ImmutablePropTypes.list.isRequired,
+    perWindow: React.PropTypes.number
+  },
+
+  getInitialState () {
+    return {
+      index: 0
+    };
+  },
+
+  getDefaultProps () {
+    return {
+      perWindow: 2
+    };
   },
 
   mixins: [PureRenderMixin],
 
+  handleNextClick (e) {
+    e.preventDefault();
+
+    let newIndex = this.state.index + 1;
+
+    if (this.props.accounts.skip(this.props.perWindow * newIndex).size === 0) {
+      newIndex = 0;
+    }
+
+    this.setState({ index: newIndex });
+  },
+
   render () {
-    const accounts = this.props.accounts.take(3);
+    const { accounts, perWindow } = this.props;
 
     if (accounts.size === 0) {
       return <div />;
     }
 
+    let nextLink = '';
+
+    if (accounts.size > perWindow) {
+      nextLink = <a href='#' style={nextStyle} onClick={this.handleNextClick}>Next</a>;
+    }
+
     return (
       <div style={outerStyle}>
-        <strong style={headerStyle}>Who to follow</strong>
+        <strong style={headerStyle}>
+          Who to follow {nextLink}
+        </strong>
 
-        {accounts.map(account => {
+        {accounts.skip(perWindow * this.state.index).take(perWindow).map(account => {
           let displayName = account.get('display_name');
 
           if (displayName.length === 0) {
