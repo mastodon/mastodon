@@ -1,5 +1,5 @@
 class FollowSuggestion
-  def self.get(for_account_id, limit = 6)
+  def self.get(for_account_id, limit = 10)
     neo = Neography::Rest.new
 
     query = <<END
@@ -14,7 +14,7 @@ END
 
     results = neo.execute_query(query, id: for_account_id, limit: limit)
 
-    if results.empty?
+    if results.empty? || results['data'].empty?
       results = fallback(for_account_id, limit)
     elsif results['data'].size < limit
       results['data'] = (results['data'] + fallback(for_account_id, limit - results['data'].size)['data']).uniq
