@@ -123,7 +123,18 @@ function appendNormalizedAccountTimeline(state, accountId, statuses) {
 
 function updateTimeline(state, timeline, status) {
   state = normalizeStatus(state, status);
-  state = state.update(timeline, list => list.unshift(status.get('id')));
+
+  state = state.update(timeline, list => {
+    const reblogOfId = status.getIn(['reblog', 'id'], null);
+
+    if (reblogOfId !== null) {
+      const otherReblogs = state.get('statuses').filter(item => item.get('reblog') === reblogOfId).map((_, itemId) => itemId);
+      list = list.filterNot(itemId => itemId === reblogOfId || otherReblogs.includes(itemId));
+    }
+
+    return list.unshift(status.get('id'));
+  });
+
   state = state.updateIn(['accounts_timelines', status.getIn(['account', 'id'])], Immutable.List([]), list => (list.includes(status.get('id')) ? list : list.unshift(status.get('id'))));
 
   return state;
