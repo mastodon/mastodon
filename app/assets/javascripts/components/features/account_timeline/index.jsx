@@ -66,7 +66,7 @@ const AccountTimeline = React.createClass({
   },
 
   handleScrollToBottom () {
-    this.props.dispatch(expandAccountTimeline(this.props.account.get('id')));
+    this.props.dispatch(expandAccountTimeline(Number(this.props.params.accountId)));
   },
 
   render () {

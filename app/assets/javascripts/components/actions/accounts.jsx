@@ -1,5 +1,6 @@
-import api   from '../api'
-import axios from 'axios';
+import api       from '../api'
+import axios     from 'axios';
+import Immutable from 'immutable';
 
 export const ACCOUNT_SET_SELF = 'ACCOUNT_SET_SELF';
 
@@ -66,7 +67,7 @@ export function fetchAccountTimeline(id) {
 
 export function expandAccountTimeline(id) {
   return (dispatch, getState) => {
-    const lastId = getState().getIn(['timelines', 'accounts_timelines', id]).last();
+    const lastId = getState().getIn(['timelines', 'accounts_timelines', id], Immutable.List()).last();
 
     dispatch(expandAccountTimelineRequest(id));
 
