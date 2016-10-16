@@ -9,6 +9,10 @@ import {
 
 const PublicTimeline = React.createClass({
 
+  propTypes: {
+    dispatch: React.PropTypes.func.isRequired
+  },
+
   mixins: [PureRenderMixin],
 
   componentWillMount () {

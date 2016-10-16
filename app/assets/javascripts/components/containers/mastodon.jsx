@@ -41,12 +41,6 @@ const Mastodon = React.createClass({
     store.dispatch(setAccessToken(this.props.token));
     store.dispatch(setAccountSelf(JSON.parse(this.props.account)));
 
-    for (var timelineType in this.props.timelines) {
-      if (this.props.timelines.hasOwnProperty(timelineType)) {
-        store.dispatch(refreshTimelineSuccess(timelineType, JSON.parse(this.props.timelines[timelineType])));
-      }
-    }
-
     if (typeof App !== 'undefined') {
       this.subscription = App.cable.subscriptions.create('TimelineChannel', {
 
