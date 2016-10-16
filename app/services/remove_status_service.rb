@@ -34,6 +34,7 @@ class RemoveStatusService < BaseService
   end
 
   def send_delete_salmon(account, status)
+    return unless status.local?
     NotificationWorker.perform_async(status.stream_entry.id, account.id)
   end
 
