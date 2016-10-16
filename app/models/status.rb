@@ -2,7 +2,7 @@ class Status < ApplicationRecord
   include Paginable
   include Streamable
 
-  belongs_to :account, inverse_of: :statuses
+  belongs_to :account, -> { with_counters }, inverse_of: :statuses
 
   belongs_to :thread, foreign_key: 'in_reply_to_id', class_name: 'Status', inverse_of: :replies
   belongs_to :reblog, foreign_key: 'reblog_of_id', class_name: 'Status', inverse_of: :reblogs
@@ -90,11 +90,11 @@ class Status < ApplicationRecord
   end
 
   def self.favourites_map(status_ids, account_id)
-    Favourite.where(status_id: status_ids).where(account_id: account_id).map { |f| [f.status_id, true] }.to_h
+    Favourite.select('status_id').where(status_id: status_ids).where(account_id: account_id).map { |f| [f.status_id, true] }.to_h
   end
 
   def self.reblogs_map(status_ids, account_id)
-    where(reblog_of_id: status_ids).where(account_id: account_id).map { |s| [s.reblog_of_id, true] }.to_h
+    select('reblog_of_id').where(reblog_of_id: status_ids).where(account_id: account_id).map { |s| [s.reblog_of_id, true] }.to_h
   end
 
   before_validation do

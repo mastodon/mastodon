@@ -25,6 +25,7 @@ class Api::V1::AccountsController < ApiController
 
   def statuses
     @statuses = @account.statuses.with_includes.with_counters.paginate_by_max_id(20, params[:max_id], params[:since_id]).to_a
+    set_maps(@statuses)
   end
 
   def follow
@@ -53,7 +54,7 @@ class Api::V1::AccountsController < ApiController
 
   def relationships
     ids = params[:id].is_a?(Enumerable) ? params[:id].map(&:to_i) : [params[:id].to_i]
-    @accounts    = Account.find(ids)
+    @accounts    = Account.where(id: ids).select('id')
     @following   = Account.following_map(ids, current_user.account_id)
     @followed_by = Account.followed_by_map(ids, current_user.account_id)
     @blocking    = Account.blocking_map(ids, current_user.account_id)

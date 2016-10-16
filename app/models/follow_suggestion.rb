@@ -22,7 +22,7 @@ END
 
     account_ids  = results['data'].map(&:first)
     blocked_ids  = Block.where(account_id: for_account_id).pluck(:target_account_id)
-    accounts_map = Account.where(id: account_ids - blocked_ids).map { |a| [a.id, a] }.to_h
+    accounts_map = Account.where(id: account_ids - blocked_ids).with_counters.map { |a| [a.id, a] }.to_h
 
     account_ids.map { |id| accounts_map[id] }.compact
   rescue Neography::NeographyError, Excon::Error::Socket => e

@@ -48,6 +48,8 @@ class Account < ApplicationRecord
   scope :with_followers, -> { where('(select count(f.id) from follows as f where f.target_account_id = accounts.id) > 0') }
   scope :expiring, -> (time) { where(subscription_expires_at: nil).or(where('subscription_expires_at < ?', time)).remote.with_followers }
 
+  scope :with_counters, -> { select('accounts.*, (select count(f.id) from follows as f where f.target_account_id = accounts.id) as followers_count, (select count(f.id) from follows as f where f.account_id = accounts.id) as following_count, (select count(s.id) from statuses as s where s.account_id = accounts.id) as statuses_count') }
+
   def follow!(other_account)
     active_relationships.where(target_account: other_account).first_or_create!(target_account: other_account)
   end

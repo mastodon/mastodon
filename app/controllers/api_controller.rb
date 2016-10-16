@@ -35,4 +35,10 @@ class ApiController < ApplicationController
   def render_empty
     render json: {}, status: 200
   end
+
+  def set_maps(statuses)
+    status_ids      = statuses.flat_map { |s| [s.id, s.reblog_of_id] }.compact
+    @reblogs_map    = Status.reblogs_map(status_ids, current_user.account)
+    @favourites_map = Status.favourites_map(status_ids, current_user.account)
+  end
 end
