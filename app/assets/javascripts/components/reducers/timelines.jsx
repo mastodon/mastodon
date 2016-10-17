@@ -78,12 +78,14 @@ function normalizeStatus(state, status) {
 };
 
 function normalizeTimeline(state, timeline, statuses) {
+  let ids = Immutable.List([]);
+
   statuses.forEach((status, i) => {
     state = normalizeStatus(state, status);
-    state = state.setIn([timeline, i], status.get('id'));
+    ids   = ids.set(i, status.get('id'));
   });
 
-  return state;
+  return state.set(timeline, ids);
 };
 
 function appendNormalizedTimeline(state, timeline, statuses) {
