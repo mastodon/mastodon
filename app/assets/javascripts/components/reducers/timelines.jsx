@@ -48,7 +48,7 @@ function normalizeStatus(state, status) {
   status = status.set('account', account.get('id'));
 
   // Separate reblog, repeat for reblog
-  let reblog = status.get('reblog');
+  let reblog = status.get('reblog', null);
 
   if (reblog !== null) {
     status = status.set('reblog', reblog.get('id'));

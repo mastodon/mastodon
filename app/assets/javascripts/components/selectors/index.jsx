@@ -45,6 +45,8 @@ const assembleStatus = (id, statuses, accounts) => {
     }
   }
 
+  console.log(reblog);
+
   return status.set('reblog', reblog).set('account', accounts.get(status.get('account')));
 };
 
