@@ -30,6 +30,7 @@ module Mastodon
     config.middleware.use Rack::Attack
     config.middleware.use Rack::Deflater
 
+    config.browserify_rails.source_map_environments += %w[development production]
     config.browserify_rails.commandline_options = "--transform [ babelify --presets [ es2015 react ] ] --extension=\".jsx\""
 
     config.to_prepare do
