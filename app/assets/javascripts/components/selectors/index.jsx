@@ -38,7 +38,7 @@ const assembleStatus = (id, statuses, accounts) => {
   if (status.get('reblog', null) !== null) {
     reblog = statuses.get(status.get('reblog'), null);
 
-    if (reblog !== null) {
+    if (Immutable.Map.isMap(reblog)) {
       reblog = reblog.set('account', accounts.get(reblog.get('account')));
     } else {
       return null;
