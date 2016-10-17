@@ -129,7 +129,7 @@ function updateTimeline(state, timeline, status) {
 
     if (reblogOfId !== null) {
       const otherReblogs = state.get('statuses').filter(item => item.get('reblog') === reblogOfId).map((_, itemId) => itemId);
-      list = list.filterNot(itemId => itemId === reblogOfId || otherReblogs.includes(itemId));
+      list = list.filterNot(itemId => (itemId === reblogOfId || otherReblogs.includes(itemId)));
     }
 
     return list.unshift(status.get('id'));
