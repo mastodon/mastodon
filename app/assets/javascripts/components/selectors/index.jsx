@@ -45,7 +45,7 @@ const assembleStatus = (id, statuses, accounts) => {
     }
   }
 
-  console.log('assembly for status', id, reblog.toJS());
+  console.log('assembly for status', id, Immutable.Map.isMap(reblog) ? reblog.toJS() : reblog);
 
   return status.set('reblog', reblog).set('account', accounts.get(status.get('account')));
 };
