@@ -41,11 +41,12 @@ const Status = React.createClass({
   },
 
   render () {
-    var media   = '';
+    let media = '';
+    let { status, ...other } = this.props;
 
-    var { status, ...other } = this.props;
+    if (status.get('reblog', null) !== null) {
+      console.log(status.get('id'), status.get('reblog'));
 
-    if (status.get('reblog') !== null) {
       let displayName = status.getIn(['account', 'display_name']);
 
       if (displayName.length === 0) {
