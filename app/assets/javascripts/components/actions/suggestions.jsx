@@ -11,6 +11,7 @@ export function fetchSuggestions() {
     api(getState).get('/api/v1/accounts/suggestions').then(response => {
       dispatch(fetchSuggestionsSuccess(response.data));
     }).catch(error => {
+      console.error(error);
       dispatch(fetchSuggestionsFail(error));
     });
   };

@@ -48,6 +48,7 @@ export function refreshTimeline(timeline) {
     api(getState).get(`/api/v1/statuses/${timeline}`).then(function (response) {
       dispatch(refreshTimelineSuccess(timeline, response.data));
     }).catch(function (error) {
+      console.error(error);
       dispatch(refreshTimelineFail(timeline, error));
     });
   };
@@ -70,6 +71,7 @@ export function expandTimeline(timeline) {
     api(getState).get(`/api/v1/statuses/${timeline}?max_id=${lastId}`).then(response => {
       dispatch(expandTimelineSuccess(timeline, response.data));
     }).catch(error => {
+      console.error(error);
       dispatch(expandTimelineFail(timeline, error));
     });
   };

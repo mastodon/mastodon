@@ -43,6 +43,7 @@ export function submitCompose() {
     }).then(function (response) {
       dispatch(submitComposeSuccess(response.data));
     }).catch(function (error) {
+      console.error(error);
       dispatch(submitComposeFail(error));
     });
   };
@@ -82,6 +83,7 @@ export function uploadCompose(files) {
     }).then(function (response) {
       dispatch(uploadComposeSuccess(response.data));
     }).catch(function (error) {
+      console.error(error);
       dispatch(uploadComposeFail(error));
     });
   };

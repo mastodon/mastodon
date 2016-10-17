@@ -48,6 +48,7 @@ export function fetchAccount(id) {
     axios.all([boundApi.get(`/api/v1/accounts/${id}`), boundApi.get(`/api/v1/accounts/relationships?id=${id}`)]).then(values => {
       dispatch(fetchAccountSuccess(values[0].data, values[1].data[0]));
     }).catch(error => {
+      console.error(error);
       dispatch(fetchAccountFail(id, error));
     });
   };
@@ -60,6 +61,7 @@ export function fetchAccountTimeline(id) {
     api(getState).get(`/api/v1/accounts/${id}/statuses`).then(response => {
       dispatch(fetchAccountTimelineSuccess(id, response.data));
     }).catch(error => {
+      console.error(error);
       dispatch(fetchAccountTimelineFail(id, error));
     });
   };
@@ -74,6 +76,7 @@ export function expandAccountTimeline(id) {
     api(getState).get(`/api/v1/accounts/${id}/statuses?max_id=${lastId}`).then(response => {
       dispatch(expandAccountTimelineSuccess(id, response.data));
     }).catch(error => {
+      console.error(error);
       dispatch(expandAccountTimelineFail(id, error));
     });
   };
@@ -109,6 +112,7 @@ export function followAccount(id) {
     api(getState).post(`/api/v1/accounts/${id}/follow`).then(response => {
       dispatch(followAccountSuccess(response.data));
     }).catch(error => {
+      console.error(error);
       dispatch(followAccountFail(error));
     });
   };
@@ -121,6 +125,7 @@ export function unfollowAccount(id) {
     api(getState).post(`/api/v1/accounts/${id}/unfollow`).then(response => {
       dispatch(unfollowAccountSuccess(response.data));
     }).catch(error => {
+      console.error(error);
       dispatch(unfollowAccountFail(error));
     });
   }
@@ -221,6 +226,7 @@ export function blockAccount(id) {
     api(getState).post(`/api/v1/accounts/${id}/block`).then(response => {
       dispatch(blockAccountSuccess(response.data));
     }).catch(error => {
+      console.error(error);
       dispatch(blockAccountFail(id, error));
     });
   };
@@ -233,6 +239,7 @@ export function unblockAccount(id) {
     api(getState).post(`/api/v1/accounts/${id}/unblock`).then(response => {
       dispatch(unblockAccountSuccess(response.data));
     }).catch(error => {
+      console.error(error);
       dispatch(unblockAccountFail(id, error));
     });
   };
