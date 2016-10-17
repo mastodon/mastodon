@@ -38,14 +38,14 @@ const assembleStatus = (id, statuses, accounts) => {
   if (status.get('reblog', null) !== null) {
     reblog = statuses.get(status.get('reblog'), null);
 
-    if (Immutable.Map.isMap(reblog)) {
+    if (reblog !== null) {
       reblog = reblog.set('account', accounts.get(reblog.get('account')));
     } else {
       return null;
     }
   }
 
-  console.log(reblog);
+  console.log('assembly for status', id, reblog.toJS());
 
   return status.set('reblog', reblog).set('account', accounts.get(status.get('account')));
 };
