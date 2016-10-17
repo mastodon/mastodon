@@ -158,11 +158,12 @@ module AtomBuilderHelper
 
     if stream_entry.targeted?
       target(xml) do
+        simple_id xml, TagManager.instance.uri_for(stream_entry.target)
+
         if stream_entry.target.object_type == :person
           include_author xml, stream_entry.target
         else
           object_type    xml, stream_entry.target.object_type
-          simple_id      xml, TagManager.instance.uri_for(stream_entry.target)
           title          xml, stream_entry.target.title
           link_alternate xml, TagManager.instance.url_for(stream_entry.target)
         end
