@@ -45,8 +45,6 @@ const Status = React.createClass({
 
     var { status, ...other } = this.props;
 
-    console.log(status, this.props);
-
     if (status.get('reblog') !== null) {
       let displayName = status.getIn(['account', 'display_name']);
 

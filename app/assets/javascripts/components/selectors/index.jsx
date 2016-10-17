@@ -29,15 +29,20 @@ const getAccountTimelineIds = (state, id) => state.getIn(['timelines', 'accounts
 
 const assembleStatus = (id, statuses, accounts) => {
   let status = statuses.get(id, null);
+  let reblog = null;
 
   if (status === null) {
     return null;
   }
 
-  let reblog = statuses.get(status.get('reblog'), null);
+  if (status.get('reblog', null) !== null) {
+    reblog = statuses.get(status.get('reblog'), null);
 
-  if (reblog !== null) {
-    reblog = reblog.set('account', accounts.get(reblog.get('account')));
+    if (reblog !== null) {
+      reblog = reblog.set('account', accounts.get(reblog.get('account')));
+    } else {
+      return null;
+    }
   }
 
   return status.set('reblog', reblog).set('account', accounts.get(status.get('account')));
