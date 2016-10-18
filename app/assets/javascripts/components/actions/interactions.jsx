@@ -25,7 +25,6 @@ export function reblog(status) {
       // interested in how the original is modified, hence passing it skipping the wrapper
       dispatch(reblogSuccess(status, response.data.reblog));
     }).catch(function (error) {
-      console.error(error);
       dispatch(reblogFail(status, error));
     });
   };
@@ -38,7 +37,6 @@ export function unreblog(status) {
     api(getState).post(`/api/v1/statuses/${status.get('id')}/unreblog`).then(response => {
       dispatch(unreblogSuccess(status, response.data));
     }).catch(error => {
-      console.error(error);
       dispatch(unreblogFail(status, error));
     });
   };
@@ -97,7 +95,6 @@ export function favourite(status) {
     api(getState).post(`/api/v1/statuses/${status.get('id')}/favourite`).then(function (response) {
       dispatch(favouriteSuccess(status, response.data));
     }).catch(function (error) {
-      console.error(error);
       dispatch(favouriteFail(status, error));
     });
   };
@@ -110,7 +107,6 @@ export function unfavourite(status) {
     api(getState).post(`/api/v1/statuses/${status.get('id')}/unfavourite`).then(response => {
       dispatch(unfavouriteSuccess(status, response.data));
     }).catch(error => {
-      console.error(error);
       dispatch(unfavouriteFail(status, error));
     });
   };

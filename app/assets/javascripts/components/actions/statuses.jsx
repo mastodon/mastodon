@@ -25,7 +25,6 @@ export function fetchStatus(id) {
     axios.all([boundApi.get(`/api/v1/statuses/${id}`), boundApi.get(`/api/v1/statuses/${id}/context`)]).then(values => {
       dispatch(fetchStatusSuccess(values[0].data, values[1].data));
     }).catch(error => {
-      console.error(error);
       dispatch(fetchStatusFail(id, error));
     });
   };
@@ -54,7 +53,6 @@ export function deleteStatus(id) {
     api(getState).delete(`/api/v1/statuses/${id}`).then(response => {
       dispatch(deleteStatusSuccess(id));
     }).catch(error => {
-      console.error(error);
       dispatch(deleteStatusFail(id, error));
     });
   };

@@ -22,7 +22,6 @@ export function submitFollow(router) {
       dispatch(submitFollowSuccess(response.data));
       router.push(`/accounts/${response.data.id}`);
     }).catch(function (error) {
-      console.error(error);
       dispatch(submitFollowFail(error));
     });
   };
