@@ -5,6 +5,8 @@
   = devise_error_messages!
 
   .field
+    = f.email_field :email, placeholder: 'E-mail address'
+  .field
     = f.password_field :password, autocomplete: "off", placeholder: 'New password'
   .field
     = f.password_field :password_confirmation, autocomplete: "off", placeholder: 'Confirm new password'

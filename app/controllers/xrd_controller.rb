@@ -1,4 +1,6 @@
 class XrdController < ApplicationController
+  before_action :set_default_format
+
   def host_meta
     @webfinger_template = "#{webfinger_url}?resource={uri}"
 
@@ -21,6 +23,10 @@ class XrdController < ApplicationController
   end
 
   private
+
+  def set_default_format
+    request.format = 'json' if request.headers["HTTP_ACCEPT"].nil? && params[:format].nil?
+  end
 
   def username_from_resource
     if resource_param.start_with?('acct:') || resource_param.include?('@')
