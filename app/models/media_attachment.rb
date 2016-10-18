@@ -43,11 +43,6 @@ private
       }
     else
       {
-        original: {
-          convert_options: {},
-          format: 'webm'
-        },
-
         small: {
           convert_options: {
             output: {
