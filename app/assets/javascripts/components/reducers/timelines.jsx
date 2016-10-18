@@ -85,7 +85,7 @@ function normalizeTimeline(state, timeline, statuses) {
     ids   = ids.set(i, status.get('id'));
   });
 
-  return state.set(timeline, ids);
+  return state.update(timeline, list => list.unshift(...ids));
 };
 
 function appendNormalizedTimeline(state, timeline, statuses) {
@@ -100,16 +100,14 @@ function appendNormalizedTimeline(state, timeline, statuses) {
 };
 
 function normalizeAccountTimeline(state, accountId, statuses) {
-  state = state.updateIn(['accounts_timelines', accountId], Immutable.List([]), list => {
-    return (list.size > 0) ? list.clear() : list;
-  });
+  let ids = Immutable.List([]);
 
   statuses.forEach((status, i) => {
     state = normalizeStatus(state, status);
-    state = state.updateIn(['accounts_timelines', accountId], Immutable.List([]), list => list.set(i, status.get('id')));
+    ids   = ids.set(i, status.get('id'));
   });
 
-  return state;
+  return state.updateIn(['accounts_timelines', accountId], Immutable.List([]), list => list.unshift(...ids));
 };
 
 function appendNormalizedAccountTimeline(state, accountId, statuses) {
@@ -137,7 +135,7 @@ function updateTimeline(state, timeline, status) {
     return list.unshift(status.get('id'));
   });
 
-  state = state.updateIn(['accounts_timelines', status.getIn(['account', 'id'])], Immutable.List([]), list => (list.includes(status.get('id')) ? list : list.unshift(status.get('id'))));
+  //state = state.updateIn(['accounts_timelines', status.getIn(['account', 'id'])], Immutable.List([]), list => (list.includes(status.get('id')) ? list : list.unshift(status.get('id'))));
 
   return state;
 };

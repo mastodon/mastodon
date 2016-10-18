@@ -19,7 +19,7 @@ const HomeTimeline = React.createClass({
   render () {
     return (
       <Column icon='home' heading='Home'>
-        <StatusListContainer type='home' />
+        <StatusListContainer {...this.props} type='home' />
       </Column>
     );
   },

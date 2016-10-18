@@ -1,6 +1,7 @@
-import Status             from './status';
-import ImmutablePropTypes from 'react-immutable-proptypes';
-import PureRenderMixin    from 'react-addons-pure-render-mixin';
+import Status              from './status';
+import ImmutablePropTypes  from 'react-immutable-proptypes';
+import PureRenderMixin     from 'react-addons-pure-render-mixin';
+import { ScrollContainer } from 'react-router-scroll';
 
 const StatusList = React.createClass({
 
@@ -11,7 +12,14 @@ const StatusList = React.createClass({
     onFavourite: React.PropTypes.func,
     onDelete: React.PropTypes.func,
     onScrollToBottom: React.PropTypes.func,
+    trackScroll: React.PropTypes.bool,
     me: React.PropTypes.number
+  },
+
+  getDefaultProps () {
+    return {
+      trackScroll: true
+    };
   },
 
   mixins: [PureRenderMixin],
@@ -25,9 +33,9 @@ const StatusList = React.createClass({
   },
 
   render () {
-    const { statuses, onScrollToBottom, ...other } = this.props;
+    const { statuses, onScrollToBottom, trackScroll, ...other } = this.props;
 
-    return (
+    const scrollableArea = (
       <div style={{ overflowY: 'scroll', flex: '1 1 auto', overflowX: 'hidden' }} className='scrollable' onScroll={this.handleScroll}>
         <div>
           {statuses.map((status) => {
@@ -36,6 +44,16 @@ const StatusList = React.createClass({
         </div>
       </div>
     );
+
+    if (trackScroll) {
+      return (
+        <ScrollContainer scrollKey='status-list'>
+          {scrollableArea}
+        </ScrollContainer>
+      );
+    } else {
+      return scrollableArea;
+    }
   }
 
 });

@@ -45,7 +45,16 @@ export function refreshTimeline(timeline) {
   return function (dispatch, getState) {
     dispatch(refreshTimelineRequest(timeline));
 
-    api(getState).get(`/api/v1/statuses/${timeline}`).then(function (response) {
+    const ids      = getState().getIn(['timelines', timeline]);
+    const newestId = ids.size > 0 ? ids.first() : null;
+
+    let params = '';
+
+    if (newestId !== null) {
+      params = `?since_id=${newestId}`;
+    }
+
+    api(getState).get(`/api/v1/statuses/${timeline}${params}`).then(function (response) {
       dispatch(refreshTimelineSuccess(timeline, response.data));
     }).catch(function (error) {
       dispatch(refreshTimelineFail(timeline, error));

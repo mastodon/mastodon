@@ -10,11 +10,13 @@ import { setAccessToken } from '../actions/meta';
 import { setAccountSelf } from '../actions/accounts';
 import PureRenderMixin    from 'react-addons-pure-render-mixin';
 import {
+  applyRouterMiddleware,
   Router,
   Route,
   hashHistory,
   IndexRoute
 }                         from 'react-router';
+import { useScroll }      from 'react-router-scroll';
 import UI                 from '../features/ui';
 import Account            from '../features/account';
 import Status             from '../features/status';
@@ -71,7 +73,7 @@ const Mastodon = React.createClass({
   render () {
     return (
       <Provider store={store}>
-        <Router history={hashHistory}>
+        <Router history={hashHistory} render={applyRouterMiddleware(useScroll())}>
           <Route path='/' component={UI}>
             <IndexRoute component={GettingStarted} />
             <Route path='/statuses/new' component={Compose} />

@@ -1743,6 +1743,10 @@ diffie-hellman@^5.0.0:
     miller-rabin "^4.0.0"
     randombytes "^2.0.0"
 
+dom-helpers@^2.4.0:
+  version "2.4.0"
+  resolved "https://registry.yarnpkg.com/dom-helpers/-/dom-helpers-2.4.0.tgz#9bb4b245f637367b1fa670274272aa28fe06c367"
+
 dom-serializer@~0.1.0, dom-serializer@0:
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/dom-serializer/-/dom-serializer-0.1.0.tgz#073c697546ce0780ce23be4a28e293e40bc30c82"
@@ -3892,6 +3896,14 @@ react-responsive:
     matchmedia "^0.1.2"
     object-assign "^4.0.1"
 
+react-router-scroll:
+  version "0.3.2"
+  resolved "https://registry.yarnpkg.com/react-router-scroll/-/react-router-scroll-0.3.2.tgz#ba8b1d01b3681dc5a68d72865d35c10e84065e52"
+  dependencies:
+    history "^2.1.2"
+    scroll-behavior "^0.8.0"
+    warning "^3.0.0"
+
 react-router@^2.8.0:
   version "2.8.1"
   resolved "https://registry.yarnpkg.com/react-router/-/react-router-2.8.1.tgz#73e9491f6ceb316d0f779829081863e378ee4ed7"
@@ -4146,6 +4158,13 @@ samsam@1.1.2:
 sax@^1.1.4, sax@~1.2.1:
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/sax/-/sax-1.2.1.tgz#7b8e656190b228e81a66aea748480d828cd2d37a"
+
+scroll-behavior@^0.8.0:
+  version "0.8.2"
+  resolved "https://registry.yarnpkg.com/scroll-behavior/-/scroll-behavior-0.8.2.tgz#ace13e40b001d8d4d007aec0e7fb668cf9043546"
+  dependencies:
+    dom-helpers "^2.4.0"
+    invariant "^2.2.1"
 
 semver@~5.3.0:
   version "5.3.0"

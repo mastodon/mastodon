@@ -28,8 +28,8 @@ const UI = React.createClass({
         <MediaQuery minWidth={layoutBreakpoint}>
           <ColumnsArea>
             <Compose />
-            <HomeTimeline />
-            <MentionsTimeline />
+            <HomeTimeline trackScroll={false} />
+            <MentionsTimeline trackScroll={false} />
             {this.props.children}
           </ColumnsArea>
         </MediaQuery>

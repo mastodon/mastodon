@@ -19,7 +19,7 @@ const MentionsTimeline = React.createClass({
   render () {
     return (
       <Column icon='at' heading='Mentions'>
-        <StatusListContainer type='mentions' />
+        <StatusListContainer {...this.props} type='mentions' />
       </Column>
     );
   },

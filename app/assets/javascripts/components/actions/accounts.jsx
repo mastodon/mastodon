@@ -57,7 +57,16 @@ export function fetchAccountTimeline(id) {
   return (dispatch, getState) => {
     dispatch(fetchAccountTimelineRequest(id));
 
-    api(getState).get(`/api/v1/accounts/${id}/statuses`).then(response => {
+    const ids      = getState().getIn(['timelines', 'accounts_timelines', id], Immutable.List());
+    const newestId = ids.size > 0 ? ids.first() : null;
+
+    let params = '';
+
+    if (newestId !== null) {
+      params = `?since_id=${newestId}`;
+    }
+
+    api(getState).get(`/api/v1/accounts/${id}/statuses${params}`).then(response => {
       dispatch(fetchAccountTimelineSuccess(id, response.data));
     }).catch(error => {
       dispatch(fetchAccountTimelineFail(id, error));
