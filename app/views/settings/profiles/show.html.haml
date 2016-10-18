@@ -1,19 +1,15 @@
 - content_for :page_title do
   Edit profile
 
-= form_for @account, url: settings_profile_path, html: { method: :put } do |f|
-  .field
-    = f.text_field :display_name, placeholder: 'Display name'
-  .field
-    = f.text_area :note, placeholder: 'Bio'
-  .file-field
-    = f.label :avatar
-    = f.file_field :avatar
-  .file-field
-    = f.label :header
-    = f.file_field :header
+= simple_form_for @account, url: settings_profile_path, html: { method: :put } do |f|
+  = render 'shared/error_messages', object: @account
+
+  = f.input :display_name, placeholder: 'Display name'
+  = f.input :note, placeholder: 'Bio'
+  = f.input :avatar, wrapper: :with_label
+  = f.input :header, wrapper: :with_label
 
   .actions
-    = f.button 'Save changes', type: :submit
+    = f.button :button, 'Save changes', type: :submit
 
 .form-footer= render "settings/shared/links"

@@ -40,7 +40,7 @@ SimpleForm.setup do |config|
     b.optional :readonly
 
     ## Inputs
-    b.use :label_input
+    b.use :input
     b.use :hint,  wrap_with: { tag: :span, class: :hint }
     b.use :error, wrap_with: { tag: :span, class: :error }
 
@@ -49,6 +49,14 @@ SimpleForm.setup do |config|
     # use the component :full_error, like:
     #
     # b.use :full_error, wrap_with: { tag: :span, class: :error }
+  end
+
+  config.wrappers :with_label, class: :input,
+    hint_class: :field_with_hint, error_class: :field_with_errors do |b|
+    b.use :html5
+    b.use :hint,  wrap_with: { tag: :span, class: :hint }
+    b.use :error, wrap_with: { tag: :span, class: :error }
+    b.use :label_input
   end
 
   # The default wrapper to be used by the FormBuilder.

@@ -12,3 +12,6 @@ com.graphaware.module.NR.maxTopRankNodes=10\n\
 com.graphaware.module.NR.dampingFactor=0.85\n\
 com.graphaware.module.NR.propertyKey=nodeRank\n'\
   >> /var/lib/neo4j/conf/neo4j.conf
+RUN echo 'com.graphaware.runtime.stats.disabled=true\n\
+com.graphaware.server.stats.disabled=true\n'\
+  >> /var/lib/neo4j/conf/neo4j.conf

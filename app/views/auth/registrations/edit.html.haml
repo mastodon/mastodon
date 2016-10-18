@@ -1,19 +1,15 @@
 - content_for :page_title do
   Change password
 
-= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
-  = devise_error_messages!
+= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
+  = render 'shared/error_messages', object: resource
 
-  .field
-    = f.email_field :email, placeholder: 'E-mail address'
-  .field
-    = f.password_field :password, autocomplete: "off", placeholder: 'New password'
-  .field
-    = f.password_field :password_confirmation, autocomplete: "off", placeholder: 'Confirm new password'
-  .field
-    = f.password_field :current_password, autocomplete: "off", placeholder: 'Current password'
+  = f.input :email, placeholder: 'E-mail address'
+  = f.input :password, autocomplete: "off", placeholder: 'New password'
+  = f.input :password_confirmation, autocomplete: "off", placeholder: 'Confirm new password'
+  = f.input :current_password, autocomplete: "off", placeholder: 'Current password'
 
   .actions
-    = f.button "Save changes", type: 'submit'
+    = f.button :button, "Save changes", type: :submit
 
 .form-footer= render "settings/shared/links"

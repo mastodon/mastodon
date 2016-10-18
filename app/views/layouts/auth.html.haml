@@ -4,14 +4,15 @@
       %h1
         = link_to root_path do
           = image_tag 'logo.png'
-          %small= Rails.configuration.x.local_domain
 
     .form-container
       - if flash[:notice]
-        .flash-message.notice= flash[:notice]
+        .flash-message.notice
+          %strong= flash[:notice]
 
       - if flash[:alert]
-        .flash-message.alert= flash[:alert]
+        .flash-message.alert
+          %strong= flash[:alert]
 
       = yield
 
