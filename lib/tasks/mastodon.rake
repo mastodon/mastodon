@@ -13,7 +13,7 @@ namespace :mastodon do
     task clear: :environment do
       include RoutingHelper
 
-      Account.remote.without_followers.find_each do |a|
+      Account.remote.without_followers.where.not(subscription_expires_at: nil).find_each do |a|
         Rails.logger.debug "PuSH unsubscribing from #{a.acct}"
 
         begin
