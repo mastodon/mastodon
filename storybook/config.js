@@ -11,6 +11,7 @@ window.React     = React;
 function loadStories () {
   require('./stories/loading_indicator.story.jsx');
   require('./stories/button.story.jsx');
+  require('./stories/tabs_bar.story.jsx');
 }
 
 configure(loadStories, module);

@@ -1,27 +1,29 @@
 class XrdController < ApplicationController
-  before_action :set_format
-
   def host_meta
     @webfinger_template = "#{webfinger_url}?resource={uri}"
+
+    respond_to do |format|
+      format.xml { render content_type: 'application/xrd+xml' }
+    end
   end
 
   def webfinger
     @account = Account.find_local!(username_from_resource)
     @canonical_account_uri = "acct:#{@account.username}@#{Rails.configuration.x.local_domain}"
     @magic_key = pem_to_magic_key(@account.keypair.public_key)
+
+    respond_to do |format|
+      format.xml  { render content_type: 'application/xrd+xml' }
+      format.json { render content_type: 'application/jrd+json' }
+    end
   rescue ActiveRecord::RecordNotFound
     head 404
   end
 
   private
 
-  def set_format
-    request.format = 'xml'
-    response.headers['Content-Type'] = 'application/xrd+xml'
-  end
-
   def username_from_resource
-    if resource_param.start_with?('acct:')
+    if resource_param.start_with?('acct:') || resource_param.include?('@')
       resource_param.split('@').first.gsub('acct:', '')
     else
       url = Addressable::URI.parse(resource_param)
