@@ -54,9 +54,9 @@ const Mastodon = React.createClass({
               return store.dispatch(deleteFromTimelines(data.id));
             case 'merge':
             case 'unmerge':
-              return store.dispatch(refreshTimeline('home'));
+              return store.dispatch(refreshTimeline('home', true));
             case 'block':
-              return store.dispatch(refreshTimeline('mentions'));
+              return store.dispatch(refreshTimeline('mentions', true));
           }
         }
 

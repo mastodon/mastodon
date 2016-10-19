@@ -11,11 +11,12 @@ export const TIMELINE_EXPAND_REQUEST = 'TIMELINE_EXPAND_REQUEST';
 export const TIMELINE_EXPAND_SUCCESS = 'TIMELINE_EXPAND_SUCCESS';
 export const TIMELINE_EXPAND_FAIL    = 'TIMELINE_EXPAND_FAIL';
 
-export function refreshTimelineSuccess(timeline, statuses) {
+export function refreshTimelineSuccess(timeline, statuses, replace) {
   return {
     type: TIMELINE_REFRESH_SUCCESS,
     timeline: timeline,
-    statuses: statuses
+    statuses: statuses,
+    replace: replace
   };
 };
 
@@ -41,7 +42,7 @@ export function refreshTimelineRequest(timeline) {
   };
 };
 
-export function refreshTimeline(timeline) {
+export function refreshTimeline(timeline, replace = false) {
   return function (dispatch, getState) {
     dispatch(refreshTimelineRequest(timeline));
 
@@ -50,12 +51,12 @@ export function refreshTimeline(timeline) {
 
     let params = '';
 
-    if (newestId !== null) {
+    if (newestId !== null && !replace) {
       params = `?since_id=${newestId}`;
     }
 
     api(getState).get(`/api/v1/statuses/${timeline}${params}`).then(function (response) {
-      dispatch(refreshTimelineSuccess(timeline, response.data));
+      dispatch(refreshTimelineSuccess(timeline, response.data, replace));
     }).catch(function (error) {
       dispatch(refreshTimelineFail(timeline, error));
     });

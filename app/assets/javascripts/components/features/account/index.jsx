@@ -18,6 +18,7 @@ import {
 import LoadingIndicator      from '../../components/loading_indicator';
 import ActionBar             from './components/action_bar';
 import Column                from '../ui/components/column';
+import ColumnBackButton      from '../../components/column_back_button';
 
 const mapStateToProps = (state, props) => ({
   account: getAccount(state, Number(props.params.accountId)),
@@ -74,6 +75,7 @@ const Account = React.createClass({
 
     return (
       <Column>
+        <ColumnBackButton />
         <Header account={account} me={me} />
 
         <ActionBar account={account} me={me} onFollow={this.handleFollow} onBlock={this.handleBlock} />
