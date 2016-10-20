@@ -33,5 +33,6 @@ class FetchRemoteStatusService < BaseService
     return FollowRemoteAccountService.new.call("#{username}@#{domain}")
   rescue Nokogiri::XML::XPath::SyntaxError
     Rails.logger.debug "Invalid XML or missing namespace"
+    nil
   end
 end
