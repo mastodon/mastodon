@@ -5,15 +5,23 @@ import Immutable  from 'immutable';
 import DisplayName from '../../../app/assets/javascripts/components/components/display_name'
 
 describe('<DisplayName />', () => {
-  const account = Immutable.fromJS({
-    username: 'bar',
-    acct: 'bar@baz',
-    display_name: 'Foo'
+  it('renders display name + account name', () => {
+    const account = Immutable.fromJS({
+      username: 'bar',
+      acct: 'bar@baz',
+      display_name: 'Foo'
+    });
+    const wrapper = render(<DisplayName account={account} />);
+    expect(wrapper).to.have.text('Foo @bar@baz');
   });
 
-  const wrapper = render(<DisplayName account={account} />);
-
-  it('renders display name', () => {
-    expect(wrapper.text()).to.match(/Foo @bar@baz/);
+  it('renders the username + account name if display name is empty', () => {
+    const account = Immutable.fromJS({
+      username: 'bar',
+      acct: 'bar@baz',
+      display_name: ''
+    });
+    const wrapper = render(<DisplayName account={account} />);
+    expect(wrapper).to.have.text('bar @bar@baz');
   });
 });
