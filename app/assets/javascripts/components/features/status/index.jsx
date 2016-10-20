@@ -16,6 +16,8 @@ import {
   getStatusAncestors,
   getStatusDescendants
 }                            from '../../selectors';
+import { ScrollContainer }   from 'react-router-scroll';
+import ColumnBackButton      from '../../components/column_back_button';
 
 const mapStateToProps = (state, props) => ({
   status: getStatus(state, Number(props.params.statusId)),
@@ -81,14 +83,18 @@ const Status = React.createClass({
 
     return (
       <Column>
-        <div style={{ overflowY: 'scroll', flex: '1 1 auto' }} className='scrollable'>
-          <div>{this.renderChildren(ancestors)}</div>
+        <ColumnBackButton />
 
-          <DetailedStatus status={status} me={me} />
-          <ActionBar status={status} me={me} onReply={this.handleReplyClick} onFavourite={this.handleFavouriteClick} onReblog={this.handleReblogClick} onDelete={this.handleDeleteClick} />
+        <ScrollContainer scrollKey='thread'>
+          <div style={{ overflowY: 'scroll', flex: '1 1 auto' }} className='scrollable'>
+            <div>{this.renderChildren(ancestors)}</div>
 
-          <div>{this.renderChildren(descendants)}</div>
-        </div>
+            <DetailedStatus status={status} me={me} />
+            <ActionBar status={status} me={me} onReply={this.handleReplyClick} onFavourite={this.handleFavouriteClick} onReblog={this.handleReblogClick} onDelete={this.handleDeleteClick} />
+
+            <div>{this.renderChildren(descendants)}</div>
+          </div>
+        </ScrollContainer>
       </Column>
     );
   }

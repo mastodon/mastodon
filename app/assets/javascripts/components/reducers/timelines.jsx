@@ -77,7 +77,7 @@ function normalizeStatus(state, status) {
   });
 };
 
-function normalizeTimeline(state, timeline, statuses) {
+function normalizeTimeline(state, timeline, statuses, replace = false) {
   let ids = Immutable.List([]);
 
   statuses.forEach((status, i) => {
@@ -85,7 +85,7 @@ function normalizeTimeline(state, timeline, statuses) {
     ids   = ids.set(i, status.get('id'));
   });
 
-  return state.update(timeline, list => list.unshift(...ids));
+  return state.update(timeline, list => (replace ? ids : list.unshift(...ids)));
 };
 
 function appendNormalizedTimeline(state, timeline, statuses) {
@@ -99,7 +99,7 @@ function appendNormalizedTimeline(state, timeline, statuses) {
   return state.update(timeline, list => list.push(...moreIds));
 };
 
-function normalizeAccountTimeline(state, accountId, statuses) {
+function normalizeAccountTimeline(state, accountId, statuses, replace = false) {
   let ids = Immutable.List([]);
 
   statuses.forEach((status, i) => {
@@ -107,7 +107,7 @@ function normalizeAccountTimeline(state, accountId, statuses) {
     ids   = ids.set(i, status.get('id'));
   });
 
-  return state.updateIn(['accounts_timelines', accountId], Immutable.List([]), list => list.unshift(...ids));
+  return state.updateIn(['accounts_timelines', accountId], Immutable.List([]), list => (replace ? ids : list.unshift(...ids)));
 };
 
 function appendNormalizedAccountTimeline(state, accountId, statuses) {
@@ -217,7 +217,7 @@ function normalizeSuggestions(state, accounts) {
 export default function timelines(state = initialState, action) {
   switch(action.type) {
     case TIMELINE_REFRESH_SUCCESS:
-      return normalizeTimeline(state, action.timeline, Immutable.fromJS(action.statuses));
+      return normalizeTimeline(state, action.timeline, Immutable.fromJS(action.statuses), action.replace);
     case TIMELINE_EXPAND_SUCCESS:
       return appendNormalizedTimeline(state, action.timeline, Immutable.fromJS(action.statuses));
     case TIMELINE_UPDATE:
@@ -243,7 +243,7 @@ export default function timelines(state = initialState, action) {
     case STATUS_FETCH_SUCCESS:
       return normalizeContext(state, Immutable.fromJS(action.status), Immutable.fromJS(action.context.ancestors), Immutable.fromJS(action.context.descendants));
     case ACCOUNT_TIMELINE_FETCH_SUCCESS:
-      return normalizeAccountTimeline(state, action.id, Immutable.fromJS(action.statuses));
+      return normalizeAccountTimeline(state, action.id, Immutable.fromJS(action.statuses), action.replace);
     case ACCOUNT_TIMELINE_EXPAND_SUCCESS:
       return appendNormalizedAccountTimeline(state, action.id, Immutable.fromJS(action.statuses));
     case SUGGESTIONS_FETCH_SUCCESS:

@@ -53,7 +53,7 @@ export function fetchAccount(id) {
   };
 };
 
-export function fetchAccountTimeline(id) {
+export function fetchAccountTimeline(id, replace = false) {
   return (dispatch, getState) => {
     dispatch(fetchAccountTimelineRequest(id));
 
@@ -62,12 +62,12 @@ export function fetchAccountTimeline(id) {
 
     let params = '';
 
-    if (newestId !== null) {
+    if (newestId !== null && !replace) {
       params = `?since_id=${newestId}`;
     }
 
     api(getState).get(`/api/v1/accounts/${id}/statuses${params}`).then(response => {
-      dispatch(fetchAccountTimelineSuccess(id, response.data));
+      dispatch(fetchAccountTimelineSuccess(id, response.data, replace));
     }).catch(error => {
       dispatch(fetchAccountTimelineFail(id, error));
     });
@@ -184,11 +184,12 @@ export function fetchAccountTimelineRequest(id) {
   };
 };
 
-export function fetchAccountTimelineSuccess(id, statuses) {
+export function fetchAccountTimelineSuccess(id, statuses, replace) {
   return {
     type: ACCOUNT_TIMELINE_FETCH_SUCCESS,
     id: id,
-    statuses: statuses
+    statuses: statuses,
+    replace: replace
   };
 };
 
