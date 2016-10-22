@@ -1,14 +1,60 @@
 Rails:
   Enabled: true
 
-Metrics/LineLength:
-  Enabled: false
-
 Style/PerlBackrefs:
   AutoCorrect: false
 
 Style/ClassAndModuleChildren:
   Enabled: false
 
-Documentation:
+Metrics/BlockNesting:
+  Max: 2
+
+Metrics/LineLength:
+  AllowURI: true
   Enabled: false
+
+Metrics/MethodLength:
+  CountComments: false
+  Max: 10
+
+Metrics/ModuleLength:
+  Max: 100
+
+Metrics/ParameterLists:
+  Max: 4
+  CountKeywordArgs: true
+
+Style/AccessModifierIndentation:
+  EnforcedStyle: indent
+
+Style/CollectionMethods:
+  Enabled: true
+  PreferredMethods:
+    find_all: 'select'
+
+Style/Documentation:
+  Enabled: false
+
+Style/DoubleNegation:
+  Enabled: false
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Style/SpaceInsideHashLiteralBraces:
+  EnforcedStyle: space
+
+Style/TrailingCommaInLiteral:
+  EnforcedStyleForMultiline: 'comma'
+
+Style/RegexpLiteral:
+  Enabled: false
+
+AllCops:
+  TargetRubyVersion: 2.2
+  Exclude:
+  - 'spec/**/*'
+  - 'db/**/*'
+  - 'app/views/**/*'
+  - 'config/**/*'

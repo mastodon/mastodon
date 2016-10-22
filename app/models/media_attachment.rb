@@ -34,7 +34,8 @@ class MediaAttachment < ApplicationRecord
     image? ? 'image' : 'video'
   end
 
-private
+  private
+
   def self.file_styles(f)
     if f.instance.image?
       {

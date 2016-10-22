@@ -2,9 +2,7 @@ namespace :mastodon do
   namespace :media do
     desc 'Removes media attachments that have not been assigned to any status for longer than a day'
     task clear: :environment do
-      MediaAttachment.where(status_id: nil).where('created_at < ?', 1.day.ago).find_each do |m|
-        m.destroy
-      end
+      MediaAttachment.where(status_id: nil).where('created_at < ?', 1.day.ago).find_each(&:destroy)
     end
   end
 

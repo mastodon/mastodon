@@ -15,6 +15,10 @@ en:
               secured_uri: 'must be an HTTPS/SSL URI.'
 
   doorkeeper:
+    scopes:
+      read: read your account's data
+      write: post on your behalf
+      follow: follow, block, unblock and unfollow accounts
     applications:
       confirmations:
         destroy: 'Are you sure?'

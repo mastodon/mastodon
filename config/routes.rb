@@ -7,7 +7,9 @@ Rails.application.routes.draw do
     mount Sidekiq::Web => '/sidekiq'
   end
 
-  use_doorkeeper
+  use_doorkeeper do
+    controllers authorizations: 'oauth/authorizations'
+  end
 
   get '.well-known/host-meta', to: 'xrd#host_meta', as: :host_meta
   get '.well-known/webfinger', to: 'xrd#webfinger', as: :webfinger

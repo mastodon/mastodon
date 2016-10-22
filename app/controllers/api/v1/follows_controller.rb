@@ -1,5 +1,5 @@
 class Api::V1::FollowsController < ApiController
-  before_action :doorkeeper_authorize!
+  before_action -> { doorkeeper_authorize! :follow }
   respond_to    :json
 
   def create

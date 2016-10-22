@@ -1,7 +1,7 @@
 # Be sure to restart your server when you modify this file. Action Cable runs in a loop that does not support auto reloading.
 class PublicChannel < ApplicationCable::Channel
   def subscribed
-    stream_from 'timeline:public', -> (encoded_message) do
+    stream_from 'timeline:public', lambda do |encoded_message|
       message = ActiveSupport::JSON.decode(encoded_message)
 
       status = Status.find_by(id: message['id'])

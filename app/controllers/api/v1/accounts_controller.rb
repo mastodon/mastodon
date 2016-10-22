@@ -1,5 +1,7 @@
 class Api::V1::AccountsController < ApiController
-  before_action :doorkeeper_authorize!
+  before_action -> { doorkeeper_authorize! :read }, except: [:follow, :unfollow, :block, :unblock]
+  before_action -> { doorkeeper_authorize! :follow }, only: [:follow, :unfollow, :block, :unblock]
+
   before_action :set_account, except: [:verify_credentials, :suggestions]
   respond_to    :json
 

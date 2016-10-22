@@ -1,5 +1,7 @@
 class Api::V1::StatusesController < ApiController
-  before_action :doorkeeper_authorize!
+  before_action -> { doorkeeper_authorize! :read }, except: [:create, :destroy, :reblog, :unreblog, :favourite, :unfavourite]
+  before_action -> { doorkeeper_authorize! :write }, only:  [:create, :destroy, :reblog, :unreblog, :favourite, :unfavourite]
+
   respond_to    :json
 
   def show
