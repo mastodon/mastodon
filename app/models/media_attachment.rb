@@ -34,26 +34,28 @@ class MediaAttachment < ApplicationRecord
     image? ? 'image' : 'video'
   end
 
-  private
+  class << self
+    private
 
-  def self.file_styles(f)
-    if f.instance.image?
-      {
-        original: '100%',
-        small: '510x680>'
-      }
-    else
-      {
-        small: {
-          convert_options: {
-            output: {
-              vf: 'scale=\'min(510\, iw):min(680\, ih)\':force_original_aspect_ratio=decrease'
-            }
-          },
-          format: 'png',
-          time: 1
+    def file_styles(f)
+      if f.instance.image?
+        {
+          original: '100%',
+          small: '510x680>'
         }
-      }
+      else
+        {
+          small: {
+            convert_options: {
+              output: {
+                vf: 'scale=\'min(510\, iw):min(680\, ih)\':force_original_aspect_ratio=decrease'
+              }
+            },
+            format: 'png',
+            time: 1
+          }
+        }
+      end
     end
   end
 end

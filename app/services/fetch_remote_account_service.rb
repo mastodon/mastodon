@@ -19,7 +19,7 @@ class FetchRemoteAccountService < BaseService
     Rails.logger.debug "Going to webfinger #{username}@#{domain}"
 
     return FollowRemoteAccountService.new.call("#{username}@#{domain}")
-  rescue TypeError => e
+  rescue TypeError
     Rails.logger.debug "Unparseable URL given: #{url}"
     nil
   rescue Nokogiri::XML::XPath::SyntaxError
