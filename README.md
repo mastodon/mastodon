@@ -7,7 +7,9 @@ Mastodon
 [travis]: https://travis-ci.org/Gargron/mastodon
 [code_climate]: https://codeclimate.com/github/Gargron/mastodon
 
-Mastodon is a federated microblogging engine. An alternative implementation of the GNU social project. Based on ActivityStreams, Webfinger, PubsubHubbub and Salmon.
+Mastodon is a free, open-source social network server. A decentralized alternative to commercial platforms, it avoids the risks of a single company monopolizing your communication. Anyone can run Mastodon and participate in the social network seamlessly. 
+
+An alternative implementation of the GNU social project. Based on ActivityStreams, Webfinger, PubsubHubbub and Salmon.
 
 Click on the screenshot to watch a demo of the UI:
 
@@ -21,10 +23,10 @@ If you would like, you can [support the development of this project on Patreon][
 
 [patreon]: https://www.patreon.com/user?u=619786
 
-**Current status of the project is early development**
-
 ## Resources
 
+- [List of Mastodon instances](https://github.com/Gargron/mastodon/wiki/List-of-Mastodon-instances)
+- [Use this tool to find Twitter friends on Mastodon](https://mastodon-bridge.herokuapp.com)
 - [API overview](https://github.com/Gargron/mastodon/wiki/API)
 - [How to use the API via cURL/oAuth](https://github.com/Gargron/mastodon/wiki/Testing-with-cURL)
 
