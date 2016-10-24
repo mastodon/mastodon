@@ -2,6 +2,7 @@ import {
   COMPOSE_CHANGE,
   COMPOSE_REPLY,
   COMPOSE_REPLY_CANCEL,
+  COMPOSE_MENTION,
   COMPOSE_SUBMIT_REQUEST,
   COMPOSE_SUBMIT_SUCCESS,
   COMPOSE_SUBMIT_FAIL,
@@ -32,7 +33,7 @@ function statusToTextMentions(state, status) {
   if (status.getIn(['account', 'id']) !== me) {
     set = set.add(`@${status.getIn(['account', 'acct'])} `);
   }
-  
+
   return set.union(status.get('mentions').filterNot(mention => mention.get('id') === me).map(mention => `@${mention.get('acct')} `)).join('');
 };
 
@@ -92,6 +93,8 @@ export default function compose(state = initialState, action) {
       return removeMedia(state, action.media_id);
     case COMPOSE_UPLOAD_PROGRESS:
       return state.set('progress', Math.round((action.loaded / action.total) * 100));
+    case COMPOSE_MENTION:
+      return state.update('text', text => `${text}@${action.account.get('acct')} `);
     case TIMELINE_DELETE:
       if (action.id === state.get('in_reply_to')) {
         return state.set('in_reply_to', null);

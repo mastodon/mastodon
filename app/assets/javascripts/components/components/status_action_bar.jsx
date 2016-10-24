@@ -9,7 +9,8 @@ const StatusActionBar = React.createClass({
     onReply: React.PropTypes.func,
     onFavourite: React.PropTypes.func,
     onReblog: React.PropTypes.func,
-    onDelete: React.PropTypes.func
+    onDelete: React.PropTypes.func,
+    onMention: React.PropTypes.func
   },
 
   mixins: [PureRenderMixin],
@@ -30,12 +31,18 @@ const StatusActionBar = React.createClass({
     this.props.onDelete(this.props.status);
   },
 
+  handleMentionClick () {
+    this.props.onMention(this.props.status.get('account'));
+  },
+
   render () {
     const { status, me } = this.props;
     let menu = [];
 
     if (status.getIn(['account', 'id']) === me) {
       menu.push({ text: 'Delete', action: this.handleDeleteClick });
+    } else {
+      menu.push({ text: 'Mention', action: this.handleMentionClick });
     }
 
     return (

@@ -9,22 +9,32 @@ import DetailedStatus        from './components/detailed_status';
 import ActionBar             from './components/action_bar';
 import Column                from '../ui/components/column';
 import { favourite, reblog } from '../../actions/interactions';
-import { replyCompose }      from '../../actions/compose';
+import {
+  replyCompose,
+  mentionCompose
+}                            from '../../actions/compose';
 import { deleteStatus }      from '../../actions/statuses';
 import {
-  getStatus,
+  makeGetStatus,
   getStatusAncestors,
   getStatusDescendants
 }                            from '../../selectors';
 import { ScrollContainer }   from 'react-router-scroll';
 import ColumnBackButton      from '../../components/column_back_button';
+import StatusContainer       from '../../containers/status_container';
 
-const mapStateToProps = (state, props) => ({
-  status: getStatus(state, Number(props.params.statusId)),
-  ancestors: getStatusAncestors(state, Number(props.params.statusId)),
-  descendants: getStatusDescendants(state, Number(props.params.statusId)),
-  me: state.getIn(['timelines', 'me'])
-});
+const makeMapStateToProps = () => {
+  const getStatus = makeGetStatus();
+
+  const mapStateToProps = (state, props) => ({
+    status: getStatus(state, Number(props.params.statusId)),
+    ancestorsIds: state.getIn(['timelines', 'ancestors', Number(props.params.statusId)]),
+    descendantsIds: state.getIn(['timelines', 'descendants', Number(props.params.statusId)]),
+    me: state.getIn(['timelines', 'me'])
+  });
+
+  return mapStateToProps;
+};
 
 const Status = React.createClass({
 
@@ -32,8 +42,8 @@ const Status = React.createClass({
     params: React.PropTypes.object.isRequired,
     dispatch: React.PropTypes.func.isRequired,
     status: ImmutablePropTypes.map,
-    ancestors: ImmutablePropTypes.orderedSet.isRequired,
-    descendants: ImmutablePropTypes.orderedSet.isRequired
+    ancestorsIds: ImmutablePropTypes.orderedSet,
+    descendantsIds: ImmutablePropTypes.orderedSet
   },
 
   mixins: [PureRenderMixin],
@@ -64,12 +74,17 @@ const Status = React.createClass({
     this.props.dispatch(deleteStatus(status.get('id')));
   },
 
+  handleMentionClick (account) {
+    this.props.dispatch(mentionCompose(account));
+  },
+
   renderChildren (list) {
-    return list.map(s => <EmbeddedStatus status={s} me={this.props.me} key={s.get('id')} onReply={this.handleReplyClick} onFavourite={this.handleFavouriteClick} onReblog={this.handleReblogClick} onDelete={this.handleDeleteClick} />);
+    return list.map(id => <StatusContainer key={id} id={id} />);
   },
 
   render () {
-    const { status, ancestors, descendants, me } = this.props;
+    let ancestors, descendants;
+    const { status, ancestorsIds, descendantsIds, me } = this.props;
 
     if (status === null) {
       return (
@@ -81,18 +96,26 @@ const Status = React.createClass({
 
     const account = status.get('account');
 
+    if (ancestorsIds) {
+      ancestors = <div>{this.renderChildren(ancestorsIds)}</div>;
+    }
+
+    if (descendantsIds) {
+      descendants = <div>{this.renderChildren(descendantsIds)}</div>;
+    }
+
     return (
       <Column>
         <ColumnBackButton />
 
         <ScrollContainer scrollKey='thread'>
           <div style={{ overflowY: 'scroll', flex: '1 1 auto' }} className='scrollable'>
-            <div>{this.renderChildren(ancestors)}</div>
+            {ancestors}
 
             <DetailedStatus status={status} me={me} />
-            <ActionBar status={status} me={me} onReply={this.handleReplyClick} onFavourite={this.handleFavouriteClick} onReblog={this.handleReblogClick} onDelete={this.handleDeleteClick} />
+            <ActionBar status={status} me={me} onReply={this.handleReplyClick} onFavourite={this.handleFavouriteClick} onReblog={this.handleReblogClick} onDelete={this.handleDeleteClick} onMention={this.handleMentionClick} />
 
-            <div>{this.renderChildren(descendants)}</div>
+            {descendants}
           </div>
         </ScrollContainer>
       </Column>
@@ -101,4 +124,4 @@ const Status = React.createClass({
 
 });
 
-export default connect(mapStateToProps)(Status);
+export default connect(makeMapStateToProps)(Status);

@@ -1,15 +1,21 @@
 import { connect }                                          from 'react-redux';
 import ComposeForm                                          from '../components/compose_form';
 import { changeCompose, submitCompose, cancelReplyCompose } from '../../../actions/compose';
-import { getStatus }                                        from '../../../selectors';
+import { makeGetStatus }                                    from '../../../selectors';
 
-const mapStateToProps = function (state, props) {
-  return {
-    text: state.getIn(['compose', 'text']),
-    is_submitting: state.getIn(['compose', 'is_submitting']),
-    is_uploading: state.getIn(['compose', 'is_uploading']),
-    in_reply_to: getStatus(state, state.getIn(['compose', 'in_reply_to']))
+const makeMapStateToProps = () => {
+  const getStatus = makeGetStatus();
+
+  const mapStateToProps = function (state, props) {
+    return {
+      text: state.getIn(['compose', 'text']),
+      is_submitting: state.getIn(['compose', 'is_submitting']),
+      is_uploading: state.getIn(['compose', 'is_uploading']),
+      in_reply_to: getStatus(state, state.getIn(['compose', 'in_reply_to']))
+    };
   };
+
+  return mapStateToProps;
 };
 
 const mapDispatchToProps = function (dispatch) {
@@ -28,4 +34,4 @@ const mapDispatchToProps = function (dispatch) {
   }
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(ComposeForm);
+export default connect(makeMapStateToProps, mapDispatchToProps)(ComposeForm);

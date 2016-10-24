@@ -17,15 +17,15 @@ export const getAccount = createSelector([getAccountBase, getAccountRelationship
 
 const getStatusBase = (state, id) => state.getIn(['timelines', 'statuses', id], null);
 
-export const getStatus = createSelector([getStatusBase, getStatuses, getAccounts], (base, statuses, accounts) => {
-  if (base === null) {
-    return null;
-  }
+export const makeGetStatus = () => {
+  return createSelector([getStatusBase, getStatuses, getAccounts], (base, statuses, accounts) => {
+    if (base === null) {
+      return null;
+    }
 
-  return assembleStatus(base.get('id'), statuses, accounts);
-});
-
-const getAccountTimelineIds = (state, id) => state.getIn(['timelines', 'accounts_timelines', id], Immutable.List());
+    return assembleStatus(base.get('id'), statuses, accounts);
+  });
+};
 
 const assembleStatus = (id, statuses, accounts) => {
   let status = statuses.get(id, null);
@@ -47,26 +47,6 @@ const assembleStatus = (id, statuses, accounts) => {
 
   return status.set('reblog', reblog).set('account', accounts.get(status.get('account')));
 };
-
-const assembleStatusList = (ids, statuses, accounts) => {
-  return ids.map(statusId => assembleStatus(statusId, statuses, accounts)).filterNot(status => status === null);
-};
-
-export const getAccountTimeline = createSelector([getAccountTimelineIds, getStatuses, getAccounts], assembleStatusList);
-
-const getTimelineIds = (state, timelineType) => state.getIn(['timelines', timelineType]);
-
-export const makeGetTimeline = () => {
-  return createSelector([getTimelineIds, getStatuses, getAccounts], assembleStatusList);
-};
-
-const getStatusAncestorsIds = (state, id) => state.getIn(['timelines', 'ancestors', id], Immutable.OrderedSet());
-
-export const getStatusAncestors = createSelector([getStatusAncestorsIds, getStatuses, getAccounts], assembleStatusList);
-
-const getStatusDescendantsIds = (state, id) => state.getIn(['timelines', 'descendants', id], Immutable.OrderedSet());
-
-export const getStatusDescendants = createSelector([getStatusDescendantsIds, getStatuses, getAccounts], assembleStatusList);
 
 const getNotificationsBase = state => state.get('notifications');
 

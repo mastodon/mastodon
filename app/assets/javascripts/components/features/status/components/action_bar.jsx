@@ -11,6 +11,7 @@ const ActionBar = React.createClass({
     onReblog: React.PropTypes.func.isRequired,
     onFavourite: React.PropTypes.func.isRequired,
     onDelete: React.PropTypes.func.isRequired,
+    onMention: React.PropTypes.func.isRequired,
     me: React.PropTypes.number.isRequired
   },
 
@@ -23,6 +24,8 @@ const ActionBar = React.createClass({
 
     if (me === status.getIn(['account', 'id'])) {
       menu.push({ text: 'Delete', action: () => this.props.onDelete(status) });
+    } else {
+      menu.push({ text: 'Mention', action: () => this.props.onMention(status.get('account')) });
     }
 
     return (
