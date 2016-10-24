@@ -14,7 +14,8 @@ const DetailedStatus = React.createClass({
   },
 
   propTypes: {
-    status: ImmutablePropTypes.map.isRequired
+    status: ImmutablePropTypes.map.isRequired,
+    onOpenMedia: React.PropTypes.func.isRequired
   },
 
   mixins: [PureRenderMixin],
@@ -36,7 +37,7 @@ const DetailedStatus = React.createClass({
       if (status.getIn(['media_attachments', 0, 'type']) === 'video') {
         media = <VideoPlayer media={status.getIn(['media_attachments', 0])} width={317} height={178} />;
       } else {
-        media = <MediaGallery media={status.get('media_attachments')} height={300} />;
+        media = <MediaGallery media={status.get('media_attachments')} height={300} onOpenMedia={this.props.onOpenMedia} />;
       }
     }
 

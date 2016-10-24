@@ -7,6 +7,7 @@ import MentionsTimeline       from '../mentions_timeline';
 import Compose                from '../compose';
 import MediaQuery             from 'react-responsive';
 import TabsBar                from './components/tabs_bar';
+import ModalContainer         from './containers/modal_container';
 
 const UI = React.createClass({
 
@@ -36,6 +37,7 @@ const UI = React.createClass({
 
         <NotificationsContainer />
         <LoadingBarContainer style={{ backgroundColor: '#2b90d9', left: '0', top: '0' }} />
+        <ModalContainer />
       </div>
     );
   }

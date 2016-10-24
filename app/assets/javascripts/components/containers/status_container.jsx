@@ -12,6 +12,7 @@ import {
   unfavourite
 }                        from '../actions/interactions';
 import { deleteStatus }  from '../actions/statuses';
+import { openMedia }     from '../actions/modal';
 
 const makeMapStateToProps = () => {
   const getStatus = makeGetStatus();
@@ -52,6 +53,10 @@ const mapDispatchToProps = (dispatch) => ({
 
   onMention (account) {
     dispatch(mentionCompose(account));
+  },
+
+  onOpenMedia (url) {
+    dispatch(openMedia(url));
   }
 
 });

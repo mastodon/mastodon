@@ -21,6 +21,7 @@ const Status = React.createClass({
     onFavourite: React.PropTypes.func,
     onReblog: React.PropTypes.func,
     onDelete: React.PropTypes.func,
+    onOpenMedia: React.PropTypes.func,
     me: React.PropTypes.number
   },
 
@@ -67,7 +68,7 @@ const Status = React.createClass({
       if (status.getIn(['media_attachments', 0, 'type']) === 'video') {
         media = <VideoPlayer media={status.getIn(['media_attachments', 0])} />;
       } else {
-        media = <MediaGallery media={status.get('media_attachments')} height={110} />;
+        media = <MediaGallery media={status.get('media_attachments')} height={110} onOpenMedia={this.props.onOpenMedia} />;
       }
     }
 

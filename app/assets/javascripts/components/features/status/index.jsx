@@ -22,6 +22,7 @@ import {
 import { ScrollContainer }   from 'react-router-scroll';
 import ColumnBackButton      from '../../components/column_back_button';
 import StatusContainer       from '../../containers/status_container';
+import { openMedia }         from '../../actions/modal';
 
 const makeMapStateToProps = () => {
   const getStatus = makeGetStatus();
@@ -78,6 +79,10 @@ const Status = React.createClass({
     this.props.dispatch(mentionCompose(account));
   },
 
+  handleOpenMedia (url) {
+    this.props.dispatch(openMedia(url));
+  },
+
   renderChildren (list) {
     return list.map(id => <StatusContainer key={id} id={id} />);
   },
@@ -112,7 +117,7 @@ const Status = React.createClass({
           <div style={{ overflowY: 'scroll', flex: '1 1 auto' }} className='scrollable'>
             {ancestors}
 
-            <DetailedStatus status={status} me={me} />
+            <DetailedStatus status={status} me={me} onOpenMedia={this.handleOpenMedia} />
             <ActionBar status={status} me={me} onReply={this.handleReplyClick} onFavourite={this.handleFavouriteClick} onReblog={this.handleReblogClick} onDelete={this.handleDeleteClick} onMention={this.handleMentionClick} />
 
             {descendants}

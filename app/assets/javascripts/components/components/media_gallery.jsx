@@ -5,10 +5,20 @@ const MediaGallery = React.createClass({
 
   propTypes: {
     media: ImmutablePropTypes.list.isRequired,
-    height: React.PropTypes.number.isRequired
+    height: React.PropTypes.number.isRequired,
+    onOpenMedia: React.PropTypes.func.isRequired
   },
 
   mixins: [PureRenderMixin],
+
+  handleClick (url, e) {
+    if (e.button === 0) {
+      e.preventDefault();
+      this.props.onOpenMedia(url);
+    }
+
+    e.stopPropagation();
+  },
 
   render () {
     var children = this.props.media.take(4);
@@ -25,7 +35,7 @@ const MediaGallery = React.createClass({
       if (size === 1) {
         width = 100;
       }
-      
+
       if (size === 4 || (size === 3 && i > 0)) {
         height = 50;
       }
@@ -64,7 +74,11 @@ const MediaGallery = React.createClass({
         }
       }
 
-      return <a key={attachment.get('id')} href={attachment.get('url')} target='_blank' style={{ boxSizing: 'border-box', position: 'relative', left: left, top: top, right: right, bottom: bottom, float: 'left', textDecoration: 'none', border: 'none', display: 'block', width: `${width}%`, height: `${height}%`, background: `url(${attachment.get('preview_url')}) no-repeat center`, backgroundSize: 'cover', cursor: 'zoom-in' }} />;
+      return (
+        <div key={attachment.get('id')} style={{ boxSizing: 'border-box', position: 'relative', left: left, top: top, right: right, bottom: bottom, float: 'left', border: 'none', display: 'block', width: `${width}%`, height: `${height}%` }}>
+          <a href={attachment.get('url')} onClick={this.handleClick.bind(this, attachment.get('url'))} target='_blank' style={{ display: 'block', width: '100%', height: '100%', background: `url(${attachment.get('preview_url')}) no-repeat center`, textDecoration: 'none', backgroundSize: 'cover', cursor: 'zoom-in' }} />
+        </div>
+      );
     });
 
     return (
