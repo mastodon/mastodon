@@ -45,6 +45,10 @@ const Status = React.createClass({
     let media = '';
     let { status, ...other } = this.props;
 
+    if (status === null) {
+      return <div />;
+    }
+
     if (status.get('reblog', null) !== null && typeof status.get('reblog') === 'object') {
       let displayName = status.getIn(['account', 'display_name']);
 
