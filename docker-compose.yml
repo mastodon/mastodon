@@ -1,14 +1,18 @@
 version: '2'
 services:
   db:
+    restart: always
     image: postgres
   redis:
+    restart: always
     image: redis
   neo4j:
+    restart: always
     build:
       context: .
       dockerfile: Dockerfile.neo4j
   web:
+    restart: always
     build:
       context: .
       dockerfile: Dockerfile.app
@@ -24,6 +28,7 @@ services:
       - ./public/assets:/mastodon/public/assets
       - ./public/system:/mastodon/public/system
   sidekiq:
+    restart: always
     build:
       context: .
       dockerfile: Dockerfile.app
