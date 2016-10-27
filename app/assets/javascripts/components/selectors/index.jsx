@@ -7,13 +7,15 @@ const getAccounts = state => state.getIn(['timelines', 'accounts']);
 const getAccountBase         = (state, id) => state.getIn(['timelines', 'accounts', id], null);
 const getAccountRelationship = (state, id) => state.getIn(['timelines', 'relationships', id]);
 
-export const getAccount = createSelector([getAccountBase, getAccountRelationship], (base, relationship) => {
-  if (base === null) {
-    return null;
-  }
+export const makeGetAccount = () => {
+  return createSelector([getAccountBase, getAccountRelationship], (base, relationship) => {
+    if (base === null) {
+      return null;
+    }
 
-  return base.set('relationship', relationship);
-});
+    return base.set('relationship', relationship);
+  });
+};
 
 const getStatusBase = (state, id) => state.getIn(['timelines', 'statuses', id], null);
 
@@ -65,7 +67,7 @@ export const getNotifications = createSelector([getNotificationsBase], (base) =>
   return arr;
 });
 
-const getSuggestionsBase = (state) => state.getIn(['timelines', 'suggestions']);
+const getSuggestionsBase = (state) => state.get('suggestions');
 
 export const getSuggestions = createSelector([getSuggestionsBase, getAccounts], (base, accounts) => {
   return base.map(accountId => accounts.get(accountId));

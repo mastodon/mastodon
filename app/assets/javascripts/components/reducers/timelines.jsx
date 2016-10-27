@@ -18,7 +18,9 @@ import {
   ACCOUNT_BLOCK_SUCCESS,
   ACCOUNT_UNBLOCK_SUCCESS,
   ACCOUNT_TIMELINE_FETCH_SUCCESS,
-  ACCOUNT_TIMELINE_EXPAND_SUCCESS
+  ACCOUNT_TIMELINE_EXPAND_SUCCESS,
+  FOLLOWERS_FETCH_SUCCESS,
+  FOLLOWING_FETCH_SUCCESS
 }                                from '../actions/accounts';
 import {
   STATUS_FETCH_SUCCESS,
@@ -206,12 +208,12 @@ function normalizeContext(state, status, ancestors, descendants) {
   });
 };
 
-function normalizeSuggestions(state, accounts) {
+function normalizeAccounts(state, accounts) {
   accounts.forEach(account => {
     state = state.setIn(['accounts', account.get('id')], account);
   });
 
-  return state.set('suggestions', accounts.map(account => account.get('id')));
+  return state;
 };
 
 export default function timelines(state = initialState, action) {
@@ -247,7 +249,9 @@ export default function timelines(state = initialState, action) {
     case ACCOUNT_TIMELINE_EXPAND_SUCCESS:
       return appendNormalizedAccountTimeline(state, action.id, Immutable.fromJS(action.statuses));
     case SUGGESTIONS_FETCH_SUCCESS:
-      return normalizeSuggestions(state, Immutable.fromJS(action.suggestions));
+    case FOLLOWERS_FETCH_SUCCESS:
+    case FOLLOWING_FETCH_SUCCESS:
+      return normalizeAccounts(state, Immutable.fromJS(action.accounts));
     default:
       return state;
   }

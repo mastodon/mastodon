@@ -22,10 +22,10 @@ export function fetchSuggestionsRequest() {
   };
 };
 
-export function fetchSuggestionsSuccess(suggestions) {
+export function fetchSuggestionsSuccess(accounts) {
   return {
     type: SUGGESTIONS_FETCH_SUCCESS,
-    suggestions: suggestions
+    accounts: accounts
   };
 };
 

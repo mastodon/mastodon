@@ -26,6 +26,8 @@ import AccountTimeline    from '../features/account_timeline';
 import HomeTimeline       from '../features/home_timeline';
 import MentionsTimeline   from '../features/mentions_timeline';
 import Compose            from '../features/compose';
+import Followers          from '../features/followers';
+import Following          from '../features/following';
 
 const store = configureStore();
 
@@ -83,6 +85,8 @@ const Mastodon = React.createClass({
             <Route path='/statuses/:statusId' component={Status} />
             <Route path='/accounts/:accountId' component={Account}>
               <IndexRoute component={AccountTimeline} />
+              <Route path='/accounts/:accountId/followers' component={Followers} />
+              <Route path='/accounts/:accountId/following' component={Following} />
             </Route>
           </Route>
         </Router>

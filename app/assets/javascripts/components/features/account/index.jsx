@@ -14,17 +14,23 @@ import { mentionCompose }    from '../../actions/compose';
 import Header                from './components/header';
 import {
   getAccountTimeline,
-  getAccount
+  makeGetAccount
 }                            from '../../selectors';
 import LoadingIndicator      from '../../components/loading_indicator';
 import ActionBar             from './components/action_bar';
 import Column                from '../ui/components/column';
 import ColumnBackButton      from '../../components/column_back_button';
 
-const mapStateToProps = (state, props) => ({
-  account: getAccount(state, Number(props.params.accountId)),
-  me: state.getIn(['timelines', 'me'])
-});
+const makeMapStateToProps = () => {
+  const getAccount = makeGetAccount();
+
+  const mapStateToProps = (state, props) => ({
+    account: getAccount(state, Number(props.params.accountId)),
+    me: state.getIn(['timelines', 'me'])
+  });
+
+  return mapStateToProps;
+};
 
 const Account = React.createClass({
 
@@ -92,4 +98,4 @@ const Account = React.createClass({
 
 });
 
-export default connect(mapStateToProps)(Account);
+export default connect(makeMapStateToProps)(Account);

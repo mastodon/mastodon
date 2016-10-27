@@ -1,7 +1,6 @@
 import PureRenderMixin    from 'react-addons-pure-render-mixin';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import Avatar             from '../../../components/avatar';
-import DisplayName        from '../../../components/display_name';
 import { Link }           from 'react-router';
 
 const outerStyle = {

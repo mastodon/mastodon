@@ -6,6 +6,8 @@ import follow                from './follow';
 import notifications         from './notifications';
 import { loadingBarReducer } from 'react-redux-loading-bar';
 import modal                 from './modal';
+import user_lists            from './user_lists';
+import suggestions           from './suggestions';
 
 export default combineReducers({
   timelines,
@@ -15,4 +17,6 @@ export default combineReducers({
   notifications,
   loadingBar: loadingBarReducer,
   modal,
+  user_lists,
+  suggestions
 });

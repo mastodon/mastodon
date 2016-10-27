@@ -32,6 +32,14 @@ export const ACCOUNT_TIMELINE_EXPAND_REQUEST = 'ACCOUNT_TIMELINE_EXPAND_REQUEST'
 export const ACCOUNT_TIMELINE_EXPAND_SUCCESS = 'ACCOUNT_TIMELINE_EXPAND_SUCCESS';
 export const ACCOUNT_TIMELINE_EXPAND_FAIL    = 'ACCOUNT_TIMELINE_EXPAND_FAIL';
 
+export const FOLLOWERS_FETCH_REQUEST = 'FOLLOWERS_FETCH_REQUEST';
+export const FOLLOWERS_FETCH_SUCCESS = 'FOLLOWERS_FETCH_SUCCESS';
+export const FOLLOWERS_FETCH_FAIL    = 'FOLLOWERS_FETCH_FAIL';
+
+export const FOLLOWING_FETCH_REQUEST = 'FOLLOWING_FETCH_REQUEST';
+export const FOLLOWING_FETCH_SUCCESS = 'FOLLOWING_FETCH_SUCCESS';
+export const FOLLOWING_FETCH_FAIL    = 'FOLLOWING_FETCH_FAIL';
+
 export function setAccountSelf(account) {
   return {
     type: ACCOUNT_SET_SELF,
@@ -286,6 +294,76 @@ export function unblockAccountSuccess(relationship) {
 export function unblockAccountFail(error) {
   return {
     type: ACCOUNT_UNBLOCK_FAIL,
+    error: error
+  };
+};
+
+export function fetchFollowers(id) {
+  return (dispatch, getState) => {
+    dispatch(fetchFollowersRequest(id));
+
+    api(getState).get(`/api/v1/accounts/${id}/followers`).then(response => {
+      dispatch(fetchFollowersSuccess(id, response.data));
+    }).catch(error => {
+      dispatch(fetchFollowersFail(id, error));
+    });
+  };
+};
+
+export function fetchFollowersRequest(id) {
+  return {
+    type: FOLLOWERS_FETCH_REQUEST,
+    id: id
+  };
+};
+
+export function fetchFollowersSuccess(id, accounts) {
+  return {
+    type: FOLLOWERS_FETCH_SUCCESS,
+    id: id,
+    accounts: accounts
+  };
+};
+
+export function fetchFollowersFail(id, error) {
+  return {
+    type: FOLLOWERS_FETCH_FAIL,
+    id: id,
+    error: error
+  };
+};
+
+export function fetchFollowing(id) {
+  return (dispatch, getState) => {
+    dispatch(fetchFollowingRequest(id));
+
+    api(getState).get(`/api/v1/accounts/${id}/following`).then(response => {
+      dispatch(fetchFollowingSuccess(id, response.data));
+    }).catch(error => {
+      dispatch(fetchFollowingFail(id, error));
+    });
+  };
+};
+
+export function fetchFollowingRequest(id) {
+  return {
+    type: FOLLOWING_FETCH_REQUEST,
+    id: id
+  };
+};
+
+export function fetchFollowingSuccess(id, accounts) {
+  return {
+    type: FOLLOWING_FETCH_SUCCESS,
+    id: id,
+    accounts: accounts
+  };
+};
+
+export function fetchFollowingFail(id, error) {
+  return {
+    type: FOLLOWING_FETCH_FAIL,
+    id: id,
     error: error
   };
 };

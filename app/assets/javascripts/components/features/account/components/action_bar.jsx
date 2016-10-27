@@ -1,6 +1,27 @@
 import PureRenderMixin    from 'react-addons-pure-render-mixin';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import DropdownMenu       from '../../../components/dropdown_menu';
+import { Link }           from 'react-router';
+
+const outerStyle = {
+  borderTop: '1px solid #363c4b',
+  borderBottom: '1px solid #363c4b',
+  lineHeight: '36px',
+  overflow: 'hidden',
+  flex: '0 0 auto',
+  display: 'flex'
+};
+
+const outerDropdownStyle = {
+  padding: '10px',
+  flex: '1 1 auto'
+};
+
+const outerLinksStyle = {
+  flex: '1 1 auto',
+  display: 'flex',
+  lineHeight: '18px'
+};
 
 const ActionBar = React.createClass({
 
@@ -34,26 +55,26 @@ const ActionBar = React.createClass({
     }
 
     return (
-      <div style={{ borderTop: '1px solid #363c4b', borderBottom: '1px solid #363c4b', lineHeight: '36px', overflow: 'hidden', flex: '0 0 auto', display: 'flex' }}>
-        <div style={{ padding: '10px', flex: '1 1 auto' }}>
+      <div style={outerStyle}>
+        <div style={outerDropdownStyle}>
           <DropdownMenu items={menu} icon='bars' size={24} />
         </div>
 
-        <div style={{ flex: '1 1 auto', display: 'flex', lineHeight: '18px' }}>
-          <div style={{ overflow: 'hidden', width: '80px', borderLeft: '1px solid #363c4b', padding: '10px', paddingRight: '5px' }}>
+        <div style={outerLinksStyle}>
+          <Link to={`/accounts/${account.get('id')}`} style={{ textDecoration: 'none', overflow: 'hidden', width: '80px', borderLeft: '1px solid #363c4b', padding: '10px', paddingRight: '5px' }}>
             <span style={{ display: 'block', textTransform: 'uppercase', fontSize: '11px', color: '#616b86' }}>Posts</span>
             <span style={{ display: 'block', fontSize: '15px', fontWeight: '500', color: '#fff' }}>{account.get('statuses_count')}</span>
-          </div>
+          </Link>
 
-          <div style={{ overflow: 'hidden', width: '80px', borderLeft: '1px solid #363c4b', padding: '10px 5px' }}>
+          <Link to={`/accounts/${account.get('id')}/following`} style={{ textDecoration: 'none', overflow: 'hidden', width: '80px', borderLeft: '1px solid #363c4b', padding: '10px 5px' }}>
             <span style={{ display: 'block', textTransform: 'uppercase', fontSize: '11px', color: '#616b86' }}>Follows</span>
             <span style={{ display: 'block', fontSize: '15px', fontWeight: '500', color: '#fff' }}>{account.get('following_count')}</span>
-          </div>
+          </Link>
 
-          <div style={{ overflow: 'hidden', width: '80px', padding: '10px 5px', borderLeft: '1px solid #363c4b' }}>
+          <Link to={`/accounts/${account.get('id')}/followers`} style={{ textDecoration: 'none', overflow: 'hidden', width: '80px', padding: '10px 5px', borderLeft: '1px solid #363c4b' }}>
             <span style={{ display: 'block', textTransform: 'uppercase', fontSize: '11px', color: '#616b86' }}>Followers</span>
             <span style={{ display: 'block', fontSize: '15px', fontWeight: '500', color: '#fff' }}>{account.get('followers_count')}</span>
-          </div>
+          </Link>
         </div>
       </div>
     );
