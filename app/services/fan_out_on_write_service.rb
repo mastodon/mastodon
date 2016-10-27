@@ -30,6 +30,7 @@ class FanOutOnWriteService < BaseService
   end
 
   def deliver_to_public(status)
+    return if status.account.silenced?
     FeedManager.instance.broadcast(:public, id: status.id)
   end
 end
