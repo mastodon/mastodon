@@ -1,9 +1,8 @@
 import { connect }           from 'react-redux';
-import { getSuggestions }    from '../../../selectors';
 import SuggestionsBox        from '../components/suggestions_box';
 
 const mapStateToProps = (state) => ({
-  accounts: getSuggestions(state)
+  accountIds: state.get('suggestions')
 });
 
 export default connect(mapStateToProps)(SuggestionsBox);

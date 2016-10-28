@@ -66,9 +66,3 @@ export const getNotifications = createSelector([getNotificationsBase], (base) =>
 
   return arr;
 });
-
-const getSuggestionsBase = (state) => state.get('suggestions');
-
-export const getSuggestions = createSelector([getSuggestionsBase, getAccounts], (base, accounts) => {
-  return base.map(accountId => accounts.get(accountId));
-});

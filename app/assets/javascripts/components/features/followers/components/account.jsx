@@ -38,6 +38,12 @@ const Account = React.createClass({
     withNote: React.PropTypes.bool
   },
 
+  getDefaultProps () {
+    return {
+      withNote: true
+    };
+  },
+
   mixins: [PureRenderMixin],
 
   handleFollow () {
@@ -45,7 +51,7 @@ const Account = React.createClass({
   },
 
   render () {
-    const { account, me } = this.props;
+    const { account, me, withNote } = this.props;
 
     if (!account) {
       return <div />;
@@ -53,7 +59,7 @@ const Account = React.createClass({
 
     let note, buttons;
 
-    if (account.get('note').length > 0) {
+    if (account.get('note').length > 0 && withNote) {
       note = <div style={noteStyle}>{account.get('note')}</div>;
     }
 

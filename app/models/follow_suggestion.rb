@@ -38,6 +38,7 @@ END
 
       query = <<END
 MATCH (b)
+WHERE b.account_id <> {id}
 RETURN b.account_id
 ORDER BY b.nodeRank DESC
 LIMIT {limit}
