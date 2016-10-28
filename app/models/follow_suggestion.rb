@@ -4,8 +4,7 @@ class FollowSuggestion
       neo = Neography::Rest.new
 
       query = <<END
-START a=node:account_index(Account={id})
-MATCH (a)-[:follows]->(b)-[:follows]->(c)
+MATCH (a {account_id: {id}})-[:follows]->(b)-[:follows]->(c)
 WHERE a <> c
 AND NOT (a)-[:follows]->(c)
 RETURN DISTINCT c.account_id, count(b), c.nodeRank
@@ -37,8 +36,11 @@ END
       neo = Neography::Rest.new
 
       query = <<END
+OPTIONAL MATCH (a {account_id: {id}})
+WITH a
 MATCH (b)
-WHERE b.account_id <> {id}
+WHERE b <> a
+AND NOT (a)-[:follows]->(b)
 RETURN b.account_id
 ORDER BY b.nodeRank DESC
 LIMIT {limit}
