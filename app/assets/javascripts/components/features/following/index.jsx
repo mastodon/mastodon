@@ -40,7 +40,7 @@ const Following = React.createClass({
     return (
       <ScrollContainer scrollKey='following'>
         <div style={{ overflowY: 'scroll', flex: '1 1 auto', overflowX: 'hidden' }} className='scrollable'>
-          {accountIds.map(id => <AccountContainer key={id} id={id} />)}
+          {accountIds.map(id => <AccountContainer key={id} id={id} withNote={false} />)}
         </div>
       </ScrollContainer>
     );
