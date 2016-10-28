@@ -109,7 +109,7 @@ const SuggestionsBox = React.createClass({
             <Link key={account.get('id')} style={itemStyle} to={`/accounts/${account.get('id')}`}>
               <div style={{ float: 'left', marginRight: '10px' }}><Avatar src={account.get('avatar')} size={36} /></div>
               <strong style={displayNameStyle}>{displayName}</strong>
-              <span style={acctStyle}>{account.get('acct')}</span>
+              <span style={acctStyle}>@{account.get('acct')}</span>
             </Link>
           )
         })}

@@ -20,7 +20,8 @@ import {
   ACCOUNT_TIMELINE_FETCH_SUCCESS,
   ACCOUNT_TIMELINE_EXPAND_SUCCESS,
   FOLLOWERS_FETCH_SUCCESS,
-  FOLLOWING_FETCH_SUCCESS
+  FOLLOWING_FETCH_SUCCESS,
+  RELATIONSHIPS_FETCH_SUCCESS
 }                                from '../actions/accounts';
 import {
   STATUS_FETCH_SUCCESS,
@@ -184,6 +185,14 @@ function normalizeRelationship(state, relationship) {
   return state.setIn(['relationships', relationship.get('id')], relationship);
 };
 
+function normalizeRelationships(state, relationships) {
+  relationships.forEach(relationship => {
+    state = normalizeRelationship(state, relationship);
+  });
+
+  return state;
+};
+
 function setSelf(state, account) {
   state = normalizeAccount(state, account);
   return state.set('me', account.get('id'));
@@ -252,6 +261,8 @@ export default function timelines(state = initialState, action) {
     case FOLLOWERS_FETCH_SUCCESS:
     case FOLLOWING_FETCH_SUCCESS:
       return normalizeAccounts(state, Immutable.fromJS(action.accounts));
+    case RELATIONSHIPS_FETCH_SUCCESS:
+      return normalizeRelationships(state, Immutable.fromJS(action.relationships));
     default:
       return state;
   }

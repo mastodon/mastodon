@@ -117,21 +117,27 @@
   }
 }
 
-.status__display-name, .status__relative-time, .detailed-status__display-name, .detailed-status__datetime {
+.status__display-name, .status__relative-time, .detailed-status__display-name, .detailed-status__datetime, .account__display-name {
   text-decoration: none;
 }
 
-.status__display-name {
+.status__display-name, .account__display-name {
   strong {
     color: #fff;
   }
 }
 
-.status__display-name, .reply-indicator__display-name, .detailed-status__display-name {
+.status__display-name, .reply-indicator__display-name, .detailed-status__display-name, .account__display-name {
   &:hover {
     strong {
       text-decoration: underline;
     }
+  }
+}
+
+.account__display-name {
+  strong {
+    display: block;
   }
 }
 

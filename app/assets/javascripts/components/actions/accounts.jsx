@@ -40,6 +40,10 @@ export const FOLLOWING_FETCH_REQUEST = 'FOLLOWING_FETCH_REQUEST';
 export const FOLLOWING_FETCH_SUCCESS = 'FOLLOWING_FETCH_SUCCESS';
 export const FOLLOWING_FETCH_FAIL    = 'FOLLOWING_FETCH_FAIL';
 
+export const RELATIONSHIPS_FETCH_REQUEST = 'RELATIONSHIPS_FETCH_REQUEST';
+export const RELATIONSHIPS_FETCH_SUCCESS = 'RELATIONSHIPS_FETCH_SUCCESS';
+export const RELATIONSHIPS_FETCH_FAIL    = 'RELATIONSHIPS_FETCH_FAIL';
+
 export function setAccountSelf(account) {
   return {
     type: ACCOUNT_SET_SELF,
@@ -304,6 +308,7 @@ export function fetchFollowers(id) {
 
     api(getState).get(`/api/v1/accounts/${id}/followers`).then(response => {
       dispatch(fetchFollowersSuccess(id, response.data));
+      dispatch(fetchRelationships(response.data.map(item => item.id)));
     }).catch(error => {
       dispatch(fetchFollowersFail(id, error));
     });
@@ -339,6 +344,7 @@ export function fetchFollowing(id) {
 
     api(getState).get(`/api/v1/accounts/${id}/following`).then(response => {
       dispatch(fetchFollowingSuccess(id, response.data));
+      dispatch(fetchRelationships(response.data.map(item => item.id)));
     }).catch(error => {
       dispatch(fetchFollowingFail(id, error));
     });
@@ -364,6 +370,39 @@ export function fetchFollowingFail(id, error) {
   return {
     type: FOLLOWING_FETCH_FAIL,
     id: id,
+    error: error
+  };
+};
+
+export function fetchRelationships(account_ids) {
+  return (dispatch, getState) => {
+    dispatch(fetchRelationshipsRequest(account_ids));
+
+    api(getState).get(`/api/v1/accounts/relationships?${account_ids.map(id => `id[]=${id}`).join('&')}`).then(response => {
+      dispatch(fetchRelationshipsSuccess(response.data));
+    }).catch(error => {
+      dispatch(fetchRelationshipsFail(error));
+    });
+  };
+};
+
+export function fetchRelationshipsRequest(ids) {
+  return {
+    type: RELATIONSHIPS_FETCH_REQUEST,
+    ids: ids
+  };
+};
+
+export function fetchRelationshipsSuccess(relationships) {
+  return {
+    type: RELATIONSHIPS_FETCH_SUCCESS,
+    relationships: relationships
+  };
+};
+
+export function fetchRelationshipsFail(error) {
+  return {
+    type: RELATIONSHIPS_FETCH_FAIL,
     error: error
   };
 };
