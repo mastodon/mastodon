@@ -82,6 +82,7 @@ Rails.application.routes.draw do
           get :statuses
           get :followers
           get :following
+          get :common_followers
 
           post :follow
           post :unfollow

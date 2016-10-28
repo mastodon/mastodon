@@ -14,15 +14,23 @@ class Api::V1::AccountsController < ApiController
   end
 
   def following
-    @following = @account.following
+    @accounts = @account.following
+    render action: :index
   end
 
   def followers
-    @followers = @account.followers
+    @accounts = @account.followers
+    render action: :index
+  end
+
+  def common_followers
+    @accounts = @account.common_followers_with(current_user.account)
+    render action: :index
   end
 
   def suggestions
     @accounts = FollowSuggestion.get(current_user.account_id)
+    render action: :index
   end
 
   def statuses

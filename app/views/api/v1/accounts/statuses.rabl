@@ -1,2 +1,2 @@
 collection @statuses
-extends('api/v1/statuses/show')
+extends 'api/v1/statuses/show'

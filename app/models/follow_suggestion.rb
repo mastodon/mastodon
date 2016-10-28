@@ -36,11 +36,7 @@ END
       neo = Neography::Rest.new
 
       query = <<END
-OPTIONAL MATCH (a {account_id: {id}})
-WITH a
 MATCH (b)
-WHERE b <> a
-AND NOT (a)-[:follows]->(b)
 RETURN b.account_id
 ORDER BY b.nodeRank DESC
 LIMIT {limit}
