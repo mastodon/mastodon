@@ -11,10 +11,10 @@ import {
   COMPOSE_UPLOAD_FAIL,
   COMPOSE_UPLOAD_UNDO,
   COMPOSE_UPLOAD_PROGRESS
-}                           from '../actions/compose';
-import { TIMELINE_DELETE }  from '../actions/timelines';
+} from '../actions/compose';
+import { TIMELINE_DELETE } from '../actions/timelines';
 import { ACCOUNT_SET_SELF } from '../actions/accounts';
-import Immutable            from 'immutable';
+import Immutable from 'immutable';
 
 const initialState = Immutable.Map({
   text: '',

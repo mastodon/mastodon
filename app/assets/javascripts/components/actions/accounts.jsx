@@ -1,5 +1,4 @@
 import api       from '../api'
-import axios     from 'axios';
 import Immutable from 'immutable';
 
 export const ACCOUNT_SET_SELF = 'ACCOUNT_SET_SELF';
@@ -53,12 +52,11 @@ export function setAccountSelf(account) {
 
 export function fetchAccount(id) {
   return (dispatch, getState) => {
-    const boundApi = api(getState);
-
     dispatch(fetchAccountRequest(id));
 
-    axios.all([boundApi.get(`/api/v1/accounts/${id}`), boundApi.get(`/api/v1/accounts/relationships?id=${id}`)]).then(values => {
-      dispatch(fetchAccountSuccess(values[0].data, values[1].data[0]));
+    api(getState).get(`/api/v1/accounts/${id}`).then(response => {
+      dispatch(fetchAccountSuccess(response.data));
+      dispatch(fetchRelationships([id]));
     }).catch(error => {
       dispatch(fetchAccountFail(id, error));
     });
@@ -107,11 +105,10 @@ export function fetchAccountRequest(id) {
   };
 };
 
-export function fetchAccountSuccess(account, relationship) {
+export function fetchAccountSuccess(account) {
   return {
     type: ACCOUNT_FETCH_SUCCESS,
-    account: account,
-    relationship: relationship
+    account: account
   };
 };
 

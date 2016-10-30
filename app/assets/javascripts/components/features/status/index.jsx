@@ -31,7 +31,7 @@ const makeMapStateToProps = () => {
     status: getStatus(state, Number(props.params.statusId)),
     ancestorsIds: state.getIn(['timelines', 'ancestors', Number(props.params.statusId)]),
     descendantsIds: state.getIn(['timelines', 'descendants', Number(props.params.statusId)]),
-    me: state.getIn(['timelines', 'me'])
+    me: state.getIn(['meta', 'me'])
   });
 
   return mapStateToProps;
@@ -43,8 +43,8 @@ const Status = React.createClass({
     params: React.PropTypes.object.isRequired,
     dispatch: React.PropTypes.func.isRequired,
     status: ImmutablePropTypes.map,
-    ancestorsIds: ImmutablePropTypes.orderedSet,
-    descendantsIds: ImmutablePropTypes.orderedSet
+    ancestorsIds: ImmutablePropTypes.list,
+    descendantsIds: ImmutablePropTypes.list
   },
 
   mixins: [PureRenderMixin],
@@ -101,11 +101,11 @@ const Status = React.createClass({
 
     const account = status.get('account');
 
-    if (ancestorsIds) {
+    if (ancestorsIds && ancestorsIds.size > 0) {
       ancestors = <div>{this.renderChildren(ancestorsIds)}</div>;
     }
 
-    if (descendantsIds) {
+    if (descendantsIds && descendantsIds.size > 0) {
       descendants = <div>{this.renderChildren(descendantsIds)}</div>;
     }
 

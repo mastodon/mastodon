@@ -21,17 +21,29 @@ export function refreshTimelineSuccess(timeline, statuses, replace) {
 };
 
 export function updateTimeline(timeline, status) {
-  return {
-    type: TIMELINE_UPDATE,
-    timeline: timeline,
-    status: status
+  return (dispatch, getState) => {
+    const references = status.reblog ? getState().get('statuses').filter((item, itemId) => (itemId === status.reblog.id || item.get('reblog') === status.reblog.id)).map((_, itemId) => itemId) : [];
+
+    dispatch({
+      type: TIMELINE_UPDATE,
+      timeline,
+      status,
+      references
+    });
   };
 };
 
 export function deleteFromTimelines(id) {
-  return {
-    type: TIMELINE_DELETE,
-    id: id
+  return (dispatch, getState) => {
+    const accountId  = getState().getIn(['statuses', id, 'account']);
+    const references = getState().get('statuses').filter(status => status.get('reblog') === id).map(status => [status.get('id'), status.get('account')]);
+
+    dispatch({
+      type: TIMELINE_DELETE,
+      id,
+      accountId,
+      references
+    });
   };
 };
 

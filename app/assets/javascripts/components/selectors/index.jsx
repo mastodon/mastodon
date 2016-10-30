@@ -1,11 +1,11 @@
 import { createSelector } from 'reselect'
 import Immutable          from 'immutable';
 
-const getStatuses = state => state.getIn(['timelines', 'statuses']);
-const getAccounts = state => state.getIn(['timelines', 'accounts']);
+const getStatuses = state => state.get('statuses');
+const getAccounts = state => state.get('accounts');
 
-const getAccountBase         = (state, id) => state.getIn(['timelines', 'accounts', id], null);
-const getAccountRelationship = (state, id) => state.getIn(['timelines', 'relationships', id]);
+const getAccountBase         = (state, id) => state.getIn(['accounts', id], null);
+const getAccountRelationship = (state, id) => state.getIn(['relationships', id]);
 
 export const makeGetAccount = () => {
   return createSelector([getAccountBase, getAccountRelationship], (base, relationship) => {
@@ -17,7 +17,7 @@ export const makeGetAccount = () => {
   });
 };
 
-const getStatusBase = (state, id) => state.getIn(['timelines', 'statuses', id], null);
+const getStatusBase = (state, id) => state.getIn(['statuses', id], null);
 
 export const makeGetStatus = () => {
   return createSelector([getStatusBase, getStatuses, getAccounts], (base, statuses, accounts) => {

@@ -15,7 +15,7 @@ const Status = React.createClass({
   },
 
   propTypes: {
-    status: ImmutablePropTypes.map.isRequired,
+    status: ImmutablePropTypes.map,
     wrapped: React.PropTypes.bool,
     onReply: React.PropTypes.func,
     onFavourite: React.PropTypes.func,

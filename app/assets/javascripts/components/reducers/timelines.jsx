@@ -3,85 +3,52 @@ import {
   TIMELINE_UPDATE,
   TIMELINE_DELETE,
   TIMELINE_EXPAND_SUCCESS
-}                                from '../actions/timelines';
+} from '../actions/timelines';
 import {
   REBLOG_SUCCESS,
   UNREBLOG_SUCCESS,
   FAVOURITE_SUCCESS,
   UNFAVOURITE_SUCCESS
-}                                from '../actions/interactions';
+} from '../actions/interactions';
 import {
-  ACCOUNT_SET_SELF,
   ACCOUNT_FETCH_SUCCESS,
-  ACCOUNT_FOLLOW_SUCCESS,
-  ACCOUNT_UNFOLLOW_SUCCESS,
-  ACCOUNT_BLOCK_SUCCESS,
-  ACCOUNT_UNBLOCK_SUCCESS,
   ACCOUNT_TIMELINE_FETCH_SUCCESS,
-  ACCOUNT_TIMELINE_EXPAND_SUCCESS,
-  FOLLOWERS_FETCH_SUCCESS,
-  FOLLOWING_FETCH_SUCCESS,
-  RELATIONSHIPS_FETCH_SUCCESS
-}                                from '../actions/accounts';
+  ACCOUNT_TIMELINE_EXPAND_SUCCESS
+} from '../actions/accounts';
 import {
   STATUS_FETCH_SUCCESS,
-  STATUS_DELETE_SUCCESS
-}                                from '../actions/statuses';
-import { FOLLOW_SUBMIT_SUCCESS } from '../actions/follow';
-import { SUGGESTIONS_FETCH_SUCCESS } from '../actions/suggestions';
-import Immutable                 from 'immutable';
+  CONTEXT_FETCH_SUCCESS
+} from '../actions/statuses';
+import Immutable from 'immutable';
 
 const initialState = Immutable.Map({
-  home: Immutable.List([]),
-  mentions: Immutable.List([]),
-  public: Immutable.List([]),
-  statuses: Immutable.Map(),
-  accounts: Immutable.Map(),
+  home: Immutable.List(),
+  mentions: Immutable.List(),
+  public: Immutable.List(),
   accounts_timelines: Immutable.Map(),
-  me: null,
   ancestors: Immutable.Map(),
-  descendants: Immutable.Map(),
-  relationships: Immutable.Map(),
-  suggestions: Immutable.List([])
+  descendants: Immutable.Map()
 });
 
-function normalizeStatus(state, status) {
-  // Separate account
-  let account = status.get('account');
-  status = status.set('account', account.get('id'));
+const normalizeStatus = (state, status) => {
+  const replyToId = status.get('in_reply_to_id');
+  const id        = status.get('id');
 
-  // Separate reblog, repeat for reblog
-  let reblog = status.get('reblog', null);
-
-  if (reblog !== null) {
-    status = status.set('reblog', reblog.get('id'));
-    state  = normalizeStatus(state, reblog);
-  }
-
-  // Replies
-  if (status.get('in_reply_to_id')) {
-    state = state.updateIn(['descendants', status.get('in_reply_to_id')], set => {
-      if (!Immutable.OrderedSet.isOrderedSet(set)) {
-        return Immutable.OrderedSet([status.get('id')]);
-      } else {
-        return set.add(status.get('id'));
-      }
-    });
-  }
-
-  return state.withMutations(map => {
-    if (status.get('in_reply_to_id')) {
-      map.updateIn(['descendants', status.get('in_reply_to_id')], Immutable.OrderedSet(), set => set.add(status.get('id')));
-      map.updateIn(['ancestors', status.get('id')], Immutable.OrderedSet(), set => set.add(status.get('in_reply_to_id')));
+  if (replyToId) {
+    if (!state.getIn(['descendants', replyToId], Immutable.List()).includes(id)) {
+      state = state.updateIn(['descendants', replyToId], Immutable.List(), set => set.push(id));
     }
 
-    map.setIn(['accounts', account.get('id')], account);
-    map.setIn(['statuses', status.get('id')], status);
-  });
+    if (!state.getIn(['ancestors', id], Immutable.List()).includes(replyToId)) {
+      state = state.updateIn(['ancestors', id], Immutable.List(), set => set.push(replyToId));
+    }
+  }
+
+  return state;
 };
 
-function normalizeTimeline(state, timeline, statuses, replace = false) {
-  let ids = Immutable.List([]);
+const normalizeTimeline = (state, timeline, statuses, replace = false) => {
+  let ids = Immutable.List();
 
   statuses.forEach((status, i) => {
     state = normalizeStatus(state, status);
@@ -91,8 +58,8 @@ function normalizeTimeline(state, timeline, statuses, replace = false) {
   return state.update(timeline, list => (replace ? ids : list.unshift(...ids)));
 };
 
-function appendNormalizedTimeline(state, timeline, statuses) {
-  let moreIds = Immutable.List([]);
+const appendNormalizedTimeline = (state, timeline, statuses) => {
+  let moreIds = Immutable.List();
 
   statuses.forEach((status, i) => {
     state   = normalizeStatus(state, status);
@@ -102,8 +69,8 @@ function appendNormalizedTimeline(state, timeline, statuses) {
   return state.update(timeline, list => list.push(...moreIds));
 };
 
-function normalizeAccountTimeline(state, accountId, statuses, replace = false) {
-  let ids = Immutable.List([]);
+const normalizeAccountTimeline = (state, accountId, statuses, replace = false) => {
+  let ids = Immutable.List();
 
   statuses.forEach((status, i) => {
     state = normalizeStatus(state, status);
@@ -113,7 +80,7 @@ function normalizeAccountTimeline(state, accountId, statuses, replace = false) {
   return state.updateIn(['accounts_timelines', accountId], Immutable.List([]), list => (replace ? ids : list.unshift(...ids)));
 };
 
-function appendNormalizedAccountTimeline(state, accountId, statuses) {
+const appendNormalizedAccountTimeline = (state, accountId, statuses) => {
   let moreIds = Immutable.List([]);
 
   statuses.forEach((status, i) => {
@@ -124,105 +91,58 @@ function appendNormalizedAccountTimeline(state, accountId, statuses) {
   return state.updateIn(['accounts_timelines', accountId], Immutable.List([]), list => list.push(...moreIds));
 };
 
-function updateTimeline(state, timeline, status) {
+const updateTimeline = (state, timeline, status, references) => {
   state = normalizeStatus(state, status);
 
   state = state.update(timeline, list => {
     const reblogOfId = status.getIn(['reblog', 'id'], null);
 
     if (reblogOfId !== null) {
-      const otherReblogs = state.get('statuses').filter(item => item.get('reblog') === reblogOfId).map((_, itemId) => itemId);
-      list = list.filterNot(itemId => (itemId === reblogOfId || otherReblogs.includes(itemId)));
+      list = list.filterNot(itemId => references.includes(itemId));
     }
 
     return list.unshift(status.get('id'));
   });
 
-  //state = state.updateIn(['accounts_timelines', status.getIn(['account', 'id'])], Immutable.List([]), list => (list.includes(status.get('id')) ? list : list.unshift(status.get('id'))));
-
   return state;
 };
 
-function deleteStatus(state, id) {
-  const status = state.getIn(['statuses', id]);
-
-  if (!status) {
-    return state;
-  }
-
+const deleteStatus = (state, id, accountId, references) => {
   // Remove references from timelines
-  ['home', 'mentions'].forEach(function (timeline) {
+  ['home', 'mentions', 'public'].forEach(function (timeline) {
     state = state.update(timeline, list => list.filterNot(item => item === id));
   });
 
   // Remove references from account timelines
-  state = state.updateIn(['accounts_timelines', status.get('account')], Immutable.List([]), list => list.filterNot(item => item === id));
+  state = state.updateIn(['accounts_timelines', accountId], Immutable.List([]), list => list.filterNot(item => item === id));
+
+  // Remove references from context
+  state.getIn(['descendants', id], Immutable.List()).forEach(descendantId => {
+    state = state.updateIn(['ancestors', descendantId], Immutable.List(), list => list.filterNot(itemId => itemId === id));
+  });
+
+  state.getIn(['ancestors', id], Immutable.List()).forEach(ancestorId => {
+    state = state.updateIn(['descendants', ancestorId], Immutable.List(), list => list.filterNot(itemId => itemId === id));
+  });
+
+  state = state.deleteIn(['descendants', id]).deleteIn(['ancestors', id]);
 
   // Remove reblogs of deleted status
-  const references = state.get('statuses').filter(item => item.get('reblog') === id);
-
-  references.forEach(referencingId => {
-    state = deleteStatus(state, referencingId);
-  });
-
-  // Remove normalized status
-  return state.deleteIn(['statuses', id]);
-};
-
-function normalizeAccount(state, account, relationship) {
-  if (relationship) {
-    state = normalizeRelationship(state, relationship);
-  }
-
-  return state.setIn(['accounts', account.get('id')], account);
-};
-
-function normalizeRelationship(state, relationship) {
-  if (state.get('suggestions').includes(relationship.get('id')) && (relationship.get('following') || relationship.get('blocking'))) {
-    state = state.update('suggestions', list => list.filterNot(id => id === relationship.get('id')));
-  }
-
-  return state.setIn(['relationships', relationship.get('id')], relationship);
-};
-
-function normalizeRelationships(state, relationships) {
-  relationships.forEach(relationship => {
-    state = normalizeRelationship(state, relationship);
+  references.forEach(ref => {
+    state = deleteStatus(state, ref[0], ref[1], []);
   });
 
   return state;
 };
 
-function setSelf(state, account) {
-  state = normalizeAccount(state, account);
-  return state.set('me', account.get('id'));
-};
-
-function normalizeContext(state, status, ancestors, descendants) {
-  state = normalizeStatus(state, status);
-
-  let ancestorsIds = ancestors.map(ancestor => {
-    state = normalizeStatus(state, ancestor);
-    return ancestor.get('id');
-  }).toOrderedSet();
-
-  let descendantsIds = descendants.map(descendant => {
-    state = normalizeStatus(state, descendant);
-    return descendant.get('id');
-  }).toOrderedSet();
+const normalizeContext = (state, id, ancestors, descendants) => {
+  const ancestorsIds   = ancestors.map(ancestor => ancestor.get('id'));
+  const descendantsIds = descendants.map(descendant => descendant.get('id'));
 
   return state.withMutations(map => {
-    map.setIn(['ancestors', status.get('id')], ancestorsIds);
-    map.setIn(['descendants', status.get('id')], descendantsIds);
+    map.setIn(['ancestors', id], ancestorsIds);
+    map.setIn(['descendants', id], descendantsIds);
   });
-};
-
-function normalizeAccounts(state, accounts) {
-  accounts.forEach(account => {
-    state = state.setIn(['accounts', account.get('id')], account);
-  });
-
-  return state;
 };
 
 export default function timelines(state = initialState, action) {
@@ -232,37 +152,15 @@ export default function timelines(state = initialState, action) {
     case TIMELINE_EXPAND_SUCCESS:
       return appendNormalizedTimeline(state, action.timeline, Immutable.fromJS(action.statuses));
     case TIMELINE_UPDATE:
-      return updateTimeline(state, action.timeline, Immutable.fromJS(action.status));
+      return updateTimeline(state, action.timeline, Immutable.fromJS(action.status), action.references);
     case TIMELINE_DELETE:
-    case STATUS_DELETE_SUCCESS:
-      return deleteStatus(state, action.id);
-    case REBLOG_SUCCESS:
-    case FAVOURITE_SUCCESS:
-    case UNREBLOG_SUCCESS:
-    case UNFAVOURITE_SUCCESS:
-      return normalizeStatus(state, Immutable.fromJS(action.response));
-    case ACCOUNT_SET_SELF:
-      return setSelf(state, Immutable.fromJS(action.account));
-    case ACCOUNT_FETCH_SUCCESS:
-    case FOLLOW_SUBMIT_SUCCESS:
-      return normalizeAccount(state, Immutable.fromJS(action.account), Immutable.fromJS(action.relationship));
-    case ACCOUNT_FOLLOW_SUCCESS:
-    case ACCOUNT_UNFOLLOW_SUCCESS:
-    case ACCOUNT_UNBLOCK_SUCCESS:
-    case ACCOUNT_BLOCK_SUCCESS:
-      return normalizeRelationship(state, Immutable.fromJS(action.relationship));
-    case STATUS_FETCH_SUCCESS:
-      return normalizeContext(state, Immutable.fromJS(action.status), Immutable.fromJS(action.context.ancestors), Immutable.fromJS(action.context.descendants));
+      return deleteStatus(state, action.id, action.accountId, action.references);
+    case CONTEXT_FETCH_SUCCESS:
+      return normalizeContext(state, action.id, Immutable.fromJS(action.ancestors), Immutable.fromJS(action.descendants));
     case ACCOUNT_TIMELINE_FETCH_SUCCESS:
       return normalizeAccountTimeline(state, action.id, Immutable.fromJS(action.statuses), action.replace);
     case ACCOUNT_TIMELINE_EXPAND_SUCCESS:
       return appendNormalizedAccountTimeline(state, action.id, Immutable.fromJS(action.statuses));
-    case SUGGESTIONS_FETCH_SUCCESS:
-    case FOLLOWERS_FETCH_SUCCESS:
-    case FOLLOWING_FETCH_SUCCESS:
-      return normalizeAccounts(state, Immutable.fromJS(action.accounts));
-    case RELATIONSHIPS_FETCH_SUCCESS:
-      return normalizeRelationships(state, Immutable.fromJS(action.relationships));
     default:
       return state;
   }

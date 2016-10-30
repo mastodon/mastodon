@@ -26,7 +26,7 @@ const makeMapStateToProps = () => {
 
   const mapStateToProps = (state, props) => ({
     account: getAccount(state, Number(props.params.accountId)),
-    me: state.getIn(['timelines', 'me'])
+    me: state.getIn(['meta', 'me'])
   });
 
   return mapStateToProps;

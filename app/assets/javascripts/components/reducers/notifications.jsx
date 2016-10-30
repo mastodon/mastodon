@@ -2,8 +2,8 @@ import {
   NOTIFICATION_SHOW,
   NOTIFICATION_DISMISS,
   NOTIFICATION_CLEAR
-}                            from '../actions/notifications';
-import Immutable             from 'immutable';
+} from '../actions/notifications';
+import Immutable from 'immutable';
 
 const initialState = Immutable.List([]);
 

@@ -10,7 +10,7 @@ import LoadingIndicator       from '../../components/loading_indicator';
 
 const mapStateToProps = (state, props) => ({
   statusIds: state.getIn(['timelines', 'accounts_timelines', Number(props.params.accountId)]),
-  me: state.getIn(['timelines', 'me'])
+  me: state.getIn(['meta', 'me'])
 });
 
 const AccountTimeline = React.createClass({

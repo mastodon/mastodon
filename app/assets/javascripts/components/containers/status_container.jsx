@@ -19,7 +19,7 @@ const makeMapStateToProps = () => {
 
   const mapStateToProps = (state, props) => ({
     status: getStatus(state, props.id),
-    me: state.getIn(['timelines', 'me'])
+    me: state.getIn(['meta', 'me'])
   });
 
   return mapStateToProps;

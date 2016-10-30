@@ -3,7 +3,7 @@ import {
   FOLLOW_SUBMIT_REQUEST,
   FOLLOW_SUBMIT_SUCCESS,
   FOLLOW_SUBMIT_FAIL
-}                from '../actions/follow';
+} from '../actions/follow';
 import Immutable from 'immutable';
 
 const initialState = Immutable.Map({
