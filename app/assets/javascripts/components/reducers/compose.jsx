@@ -10,7 +10,9 @@ import {
   COMPOSE_UPLOAD_SUCCESS,
   COMPOSE_UPLOAD_FAIL,
   COMPOSE_UPLOAD_UNDO,
-  COMPOSE_UPLOAD_PROGRESS
+  COMPOSE_UPLOAD_PROGRESS,
+  COMPOSE_SUGGESTIONS_CLEAR,
+  COMPOSE_SUGGESTIONS_READY
 } from '../actions/compose';
 import { TIMELINE_DELETE } from '../actions/timelines';
 import { ACCOUNT_SET_SELF } from '../actions/accounts';
@@ -22,7 +24,8 @@ const initialState = Immutable.Map({
   is_submitting: false,
   is_uploading: false,
   progress: 0,
-  media_attachments: Immutable.List([]),
+  media_attachments: Immutable.List(),
+  suggestions: [],
   me: null
 });
 
@@ -95,6 +98,10 @@ export default function compose(state = initialState, action) {
       return state.set('progress', Math.round((action.loaded / action.total) * 100));
     case COMPOSE_MENTION:
       return state.update('text', text => `${text}@${action.account.get('acct')} `);
+    case COMPOSE_SUGGESTIONS_CLEAR:
+      return state.set('suggestions', []);
+    case COMPOSE_SUGGESTIONS_READY:
+      return state.set('suggestions', action.accounts);
     case TIMELINE_DELETE:
       if (action.id === state.get('in_reply_to')) {
         return state.set('in_reply_to', null);

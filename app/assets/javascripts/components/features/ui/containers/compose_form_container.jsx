@@ -1,7 +1,13 @@
-import { connect }                                          from 'react-redux';
-import ComposeForm                                          from '../components/compose_form';
-import { changeCompose, submitCompose, cancelReplyCompose } from '../../../actions/compose';
-import { makeGetStatus }                                    from '../../../selectors';
+import { connect } from 'react-redux';
+import ComposeForm from '../components/compose_form';
+import {
+  changeCompose,
+  submitCompose,
+  cancelReplyCompose,
+  clearComposeSuggestions,
+  fetchComposeSuggestions
+} from '../../../actions/compose';
+import { makeGetStatus } from '../../../selectors';
 
 const makeMapStateToProps = () => {
   const getStatus = makeGetStatus();
@@ -9,6 +15,7 @@ const makeMapStateToProps = () => {
   const mapStateToProps = function (state, props) {
     return {
       text: state.getIn(['compose', 'text']),
+      suggestions: state.getIn(['compose', 'suggestions']),
       is_submitting: state.getIn(['compose', 'is_submitting']),
       is_uploading: state.getIn(['compose', 'is_uploading']),
       in_reply_to: getStatus(state, state.getIn(['compose', 'in_reply_to']))
@@ -20,16 +27,24 @@ const makeMapStateToProps = () => {
 
 const mapDispatchToProps = function (dispatch) {
   return {
-    onChange: function (text) {
+    onChange (text) {
       dispatch(changeCompose(text));
     },
 
-    onSubmit: function () {
+    onSubmit () {
       dispatch(submitCompose());
     },
 
-    onCancelReply: function () {
+    onCancelReply () {
       dispatch(cancelReplyCompose());
+    },
+
+    onClearSuggestions () {
+      dispatch(clearComposeSuggestions());
+    },
+
+    onFetchSuggestions (token) {
+      dispatch(fetchComposeSuggestions(token));
     }
   }
 };

@@ -266,3 +266,31 @@
     flex-direction: column;
   }
 }
+
+.react-autosuggest__container {
+  position: relative;
+}
+
+.react-autosuggest__suggestions-container {
+  position: absolute;
+  top: 100%;
+  width: 100%;
+  z-index: 99;
+}
+
+.react-autosuggest__suggestions-list {
+  background: #9baec8;
+  color: #282c37;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  font-size: 14px;
+}
+
+.react-autosuggest__suggestion {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.react-autosuggest__suggestion--focused {
+  background: #2b90d9;
+  color: #fff;
+}

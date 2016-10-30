@@ -13,6 +13,9 @@ export const COMPOSE_UPLOAD_FAIL     = 'COMPOSE_UPLOAD_FAIL';
 export const COMPOSE_UPLOAD_PROGRESS = 'COMPOSE_UPLOAD_PROGRESS';
 export const COMPOSE_UPLOAD_UNDO     = 'COMPOSE_UPLOAD_UNDO';
 
+export const COMPOSE_SUGGESTIONS_CLEAR = 'COMPOSE_SUGGESTIONS_CLEAR';
+export const COMPOSE_SUGGESTIONS_READY = 'COMPOSE_SUGGESTIONS_READY';
+
 export function changeCompose(text) {
   return {
     type: COMPOSE_CHANGE,
@@ -127,5 +130,29 @@ export function undoUploadCompose(media_id) {
   return {
     type: COMPOSE_UPLOAD_UNDO,
     media_id: media_id
+  };
+};
+
+export function clearComposeSuggestions() {
+  return {
+    type: COMPOSE_SUGGESTIONS_CLEAR
+  };
+};
+
+export function fetchComposeSuggestions(token) {
+  return (dispatch, getState) => {
+    const loadedCandidates = getState().get('accounts').filter(item => item.get('acct').toLowerCase().slice(0, token.length) === token).map(item => ({
+      label: item.get('acct'),
+      completion: item.get('acct').slice(0, token.length)
+    })).toList().toJS();
+
+    dispatch(readyComposeSuggestions(loadedCandidates));
+  };
+};
+
+export function readyComposeSuggestions(accounts) {
+  return {
+    type: COMPOSE_SUGGESTIONS_READY,
+    accounts
   };
 };
