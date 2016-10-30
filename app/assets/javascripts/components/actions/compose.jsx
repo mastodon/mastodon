@@ -143,7 +143,7 @@ export function fetchComposeSuggestions(token) {
   return (dispatch, getState) => {
     const loadedCandidates = getState().get('accounts').filter(item => item.get('acct').toLowerCase().slice(0, token.length) === token).map(item => ({
       label: item.get('acct'),
-      completion: item.get('acct').slice(0, token.length)
+      completion: item.get('acct').slice(token.length)
     })).toList().toJS();
 
     dispatch(readyComposeSuggestions(loadedCandidates));

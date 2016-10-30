@@ -31,10 +31,10 @@ const getTokenForSuggestions = (str, caretPosition) => {
   }
 };
 
-const getSuggestionValue = suggestion => suggestion;
+const getSuggestionValue = suggestion => suggestion.completion;
 
 const renderSuggestion = suggestion => (
-  <span>{suggestion}</span>
+  <span>{suggestion.label}</span>
 );
 
 const textareaStyle = {
