@@ -53,11 +53,12 @@ export default function statuses(state = initialState, action) {
   switch(action.type) {
     case TIMELINE_UPDATE:
     case STATUS_FETCH_SUCCESS:
+      return normalizeStatus(state, Immutable.fromJS(action.status));
     case REBLOG_SUCCESS:
     case UNREBLOG_SUCCESS:
     case FAVOURITE_SUCCESS:
     case UNFAVOURITE_SUCCESS:
-      return normalizeStatus(state, Immutable.fromJS(action.status));
+      return normalizeStatus(state, Immutable.fromJS(action.response));
     case TIMELINE_REFRESH_SUCCESS:
     case TIMELINE_EXPAND_SUCCESS:
     case ACCOUNT_TIMELINE_FETCH_SUCCESS:
