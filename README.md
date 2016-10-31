@@ -13,7 +13,7 @@ An alternative implementation of the GNU social project. Based on ActivityStream
 
 Click on the screenshot to watch a demo of the UI:
 
-[![Screenshot](https://i.imgur.com/hzWZdYT.png)][youtube_demo]
+[![Screenshot](https://i.imgur.com/pNieDFp.png)][youtube_demo]
 
 [youtube_demo]: https://www.youtube.com/watch?v=YO1jQ8_rAMU
 
