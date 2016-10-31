@@ -19,7 +19,10 @@ import {
   TIMELINE_UPDATE,
   TIMELINE_EXPAND_SUCCESS
 } from '../actions/timelines';
-import { STATUS_FETCH_SUCCESS } from '../actions/statuses';
+import {
+  STATUS_FETCH_SUCCESS,
+  CONTEXT_FETCH_SUCCESS
+} from '../actions/statuses';
 import Immutable from 'immutable';
 
 const normalizeAccount = (state, account) => state.set(account.get('id'), account);
@@ -66,6 +69,7 @@ export default function accounts(state = initialState, action) {
     case TIMELINE_EXPAND_SUCCESS:
     case ACCOUNT_TIMELINE_FETCH_SUCCESS:
     case ACCOUNT_TIMELINE_EXPAND_SUCCESS:
+    case CONTEXT_FETCH_SUCCESS:
       return normalizeAccountsFromStatuses(state, Immutable.fromJS(action.statuses));
     case TIMELINE_UPDATE:
     case REBLOG_SUCCESS:
