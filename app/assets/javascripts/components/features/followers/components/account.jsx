@@ -64,9 +64,11 @@ const Account = React.createClass({
     }
 
     if (account.get('id') !== me) {
+      const following = account.getIn(['relationship', 'following']);
+
       buttons = (
         <div style={buttonsStyle}>
-          <IconButton icon='user-plus' title='Follow' onClick={this.handleFollow} active={account.getIn(['relationship', 'following'])} />
+          <IconButton icon={following ? 'user-times' : 'user-plus'} title='Follow' onClick={this.handleFollow} active={following} />
         </div>
       );
     }

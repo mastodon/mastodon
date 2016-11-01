@@ -25,10 +25,46 @@
     }
   }
 
-  p {
+  h2 {
+    font: 24px/28px 'Judson', sans-serif;
+    font-weight: 300;
+    margin-bottom: 20px;
+    color: #fff;
+  }
+
+  h3 {
+    font: 20px/28px 'Judson', sans-serif;
+    font-weight: 300;
+    margin-bottom: 20px;
+    color: #d9e1e8;
+  }
+
+  ul, ol {
+    list-style: inherit;
+    margin-left: 20px;
+
+    &[type='a'] {
+      list-style-type: lower-alpha;
+    }
+
+    &[type='i'] {
+      list-style-type: lower-roman;
+    }
+  }
+
+  li > ol, li > ul {
+    margin-top: 20px;
+  }
+
+  p, li {
     font: 20px/28px 'Judson', sans-serif;
     font-weight: 300;
     margin-bottom: 26px;
+
+    a {
+      color: #2b90d9;
+      text-decoration: underline;
+    }
   }
 
   em {

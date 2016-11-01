@@ -94,6 +94,7 @@ Rails.application.routes.draw do
   end
 
   get :about, to: 'about#index'
+  get :terms, to: 'about#terms'
 
   root 'home#index'
 
