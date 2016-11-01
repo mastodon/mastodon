@@ -18,6 +18,11 @@
     %em= Rails.configuration.x.local_domain
     is a Mastodon instance.
 
+  .screenshot= image_tag 'screenshot.png'
+
   .actions
+    .info
+      = link_to 'Source code', 'https://github.com/Gargron/mastodon'
+
     = link_to 'Get started', new_user_registration_path, class: 'button'
     = link_to 'Log in', new_user_session_path, class: 'button'

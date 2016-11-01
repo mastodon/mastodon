@@ -112,6 +112,8 @@ class Account < ApplicationRecord
   def avatar_remote_url=(url)
     self.avatar = URI.parse(url) unless self[:avatar_remote_url] == url
     self[:avatar_remote_url] = url
+  rescue OpenURI::HTTPError
+    #
   end
 
   def object_type

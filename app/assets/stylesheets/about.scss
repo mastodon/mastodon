@@ -6,7 +6,8 @@
     max-width: 600px;
     margin: 0 auto;
     color: #9baec8;
-    padding-top: 200px;
+    padding-top: 50px;
+    padding-bottom: 50px;
   }
 
   h1 {
@@ -37,6 +38,32 @@
     color: #282c37;
     font: 16px/16px 'Montserrat', sans-serif;
     font-weight: 300;
+  }
+
+  .screenshot {
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
+    margin-bottom: 26px;
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+  }
+
+  .actions {
+    overflow: hidden;
+
+    .info {
+      float: right;
+      text-align: right;
+      line-height: 36px;
+
+      a {
+        color: #9baec8;
+        text-decoration: underline;
+      }
+    }
   }
 
   @media screen and (max-width: 360px) {

@@ -20,6 +20,8 @@ class MediaAttachment < ApplicationRecord
 
   def file_remote_url=(url)
     self.file = URI.parse(url)
+  rescue OpenURI::HTTPError
+    #
   end
 
   def image?
