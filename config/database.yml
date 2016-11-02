@@ -1,6 +1,6 @@
 default: &default
   adapter: postgresql
-  pool: 17
+  pool: <%= ENV["DB_POOL"] || ENV['RAILS_MAX_THREADS'] || 5 %>
   timeout: 5000
   encoding: unicode
 
