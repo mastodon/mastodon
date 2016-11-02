@@ -35,9 +35,9 @@ const IconButton = React.createClass({
     };
 
     return (
-      <a href='#' title={this.props.title} className={`icon-button ${this.props.active ? 'active' : ''}`} onClick={this.handleClick} style={style}>
-        <i className={`fa fa-fw fa-${this.props.icon}`}></i>
-      </a>
+      <button aria-label={this.props.title} title={this.props.title} className={`icon-button ${this.props.active ? 'active' : ''}`} onClick={this.handleClick} style={style}>
+        <i className={`fa fa-fw fa-${this.props.icon}`} aria-hidden='true'></i>
+      </button>
     );
   }
 
