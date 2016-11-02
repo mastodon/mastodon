@@ -36,5 +36,9 @@ module Mastodon
     config.to_prepare do
       Doorkeeper::AuthorizationsController.layout 'auth'
     end
+
+    config.action_dispatch.default_headers = {
+      'X-Frame-Options' => 'DENY'
+    }
   end
 end
