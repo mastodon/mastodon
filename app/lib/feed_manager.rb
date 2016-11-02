@@ -61,7 +61,7 @@ class FeedManager
 
   # Filter status out of the home feed if it is a reply to someone the user doesn't follow
   def filter_from_home?(status, receiver)
-    replied_to_user = status.reply? ? status.thread.account : nil
+    replied_to_user = status.reply? ? status.thread.try(:account) : nil
     (status.reply? && !(receiver.id == replied_to_user.id || replied_to_user.id == status.account_id || receiver.following?(replied_to_user))) || (status.reblog? && receiver.blocking?(status.reblog.account))
   end
 

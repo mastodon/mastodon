@@ -28,15 +28,19 @@ const IconButton = React.createClass({
   render () {
     const style = {
       display: 'inline-block',
+      border: 'none',
+      padding: '0',
+      background: 'transparent',
       fontSize: `${this.props.size}px`,
-      width: `${this.props.size}px`,
+      width: `${this.props.size * 1.28571429}px`,
       height: `${this.props.size}px`,
-      lineHeight: `${this.props.size}px`
+      lineHeight: `${this.props.size}px`,
+      cursor: 'pointer'
     };
 
     return (
       <button aria-label={this.props.title} title={this.props.title} className={`icon-button ${this.props.active ? 'active' : ''}`} onClick={this.handleClick} style={style}>
-        <i className={`fa fa-fw fa-${this.props.icon}`} aria-hidden='true'></i>
+        <i className={`fa fa-fw fa-${this.props.icon}`} aria-hidden='true' />
       </button>
     );
   }
