@@ -256,6 +256,22 @@ GEM
       railties (>= 3.2)
       tilt
     redis (3.3.1)
+    redis-actionpack (5.0.0)
+      actionpack (>= 4.0.0, < 6)
+      redis-rack (~> 2.0.0.pre)
+      redis-store (~> 1.2.0.pre)
+    redis-activesupport (5.0.1)
+      activesupport (>= 3, < 6)
+      redis-store (~> 1.2.0)
+    redis-rack (2.0.0)
+      rack (~> 2.0)
+      redis-store (~> 1.2.0)
+    redis-rails (5.0.1)
+      redis-actionpack (~> 5.0.0)
+      redis-activesupport (~> 5.0.0)
+      redis-store (~> 1.2.0)
+    redis-store (1.2.0)
+      redis (>= 2.2)
     ref (2.0.0)
     responders (2.3.0)
       railties (>= 4.2.0, < 5.1)
@@ -396,6 +412,7 @@ DEPENDENCIES
   rails_autolink
   react-rails
   redis (~> 3.2)
+  redis-rails
   rspec-rails
   rspec-sidekiq
   rubocop
