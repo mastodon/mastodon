@@ -9,6 +9,6 @@
   - if @following.empty?
     = render partial: 'nothing_here'
   - else
-    = render partial: 'grid_card', collection: @following, as: :account
+    = render partial: 'grid_card', collection: @following, as: :account, cached: true
 
 = will_paginate @following, pagination_options

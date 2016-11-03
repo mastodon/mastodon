@@ -2,7 +2,7 @@ class Favourite < ApplicationRecord
   include Streamable
 
   belongs_to :account, inverse_of: :favourites
-  belongs_to :status,  inverse_of: :favourites
+  belongs_to :status,  inverse_of: :favourites, touch: true
 
   validates :status_id, uniqueness: { scope: :account_id }
 
