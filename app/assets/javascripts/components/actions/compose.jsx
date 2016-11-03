@@ -1,5 +1,7 @@
 import api from '../api'
 
+import { updateTimeline } from './timelines';
+
 export const COMPOSE_CHANGE          = 'COMPOSE_CHANGE';
 export const COMPOSE_SUBMIT_REQUEST  = 'COMPOSE_SUBMIT_REQUEST';
 export const COMPOSE_SUBMIT_SUCCESS  = 'COMPOSE_SUBMIT_SUCCESS';
@@ -66,9 +68,13 @@ export function submitComposeRequest() {
 };
 
 export function submitComposeSuccess(status) {
-  return {
-    type: COMPOSE_SUBMIT_SUCCESS,
-    status: status
+  return (dispatch, getState) => {
+    dispatch({
+      type: COMPOSE_SUBMIT_SUCCESS,
+      status: status
+    });
+
+    dispatch(updateTimeline('home', status));
   };
 };
 

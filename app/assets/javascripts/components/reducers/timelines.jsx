@@ -95,6 +95,10 @@ const updateTimeline = (state, timeline, status, references) => {
   state = normalizeStatus(state, status);
 
   state = state.update(timeline, list => {
+    if (list.includes(status.get('id'))) {
+      return list;
+    }
+
     const reblogOfId = status.getIn(['reblog', 'id'], null);
 
     if (reblogOfId !== null) {
