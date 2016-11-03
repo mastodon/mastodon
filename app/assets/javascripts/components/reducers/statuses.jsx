@@ -21,14 +21,14 @@ import {
 import Immutable from 'immutable';
 
 const normalizeStatus = (state, status) => {
-  status = status.set('account', status.getIn(['account', 'id']));
+  status.account = status.account.id;
 
-  if (status.getIn(['reblog', 'id'])) {
-    state  = normalizeStatus(state, status.get('reblog'));
-    status = status.set('reblog', status.getIn(['reblog', 'id']));
+  if (status.reblog && status.reblog.id) {
+    state         = normalizeStatus(state, status.reblog);
+    status.reblog = status.reblog.id;
   }
 
-  return state.set(status.get('id'), status);
+  return state.set(status.id, Immutable.fromJS(status));
 };
 
 const normalizeStatuses = (state, statuses) => {
@@ -53,18 +53,18 @@ export default function statuses(state = initialState, action) {
   switch(action.type) {
     case TIMELINE_UPDATE:
     case STATUS_FETCH_SUCCESS:
-      return normalizeStatus(state, Immutable.fromJS(action.status));
+      return normalizeStatus(state, action.status);
     case REBLOG_SUCCESS:
     case UNREBLOG_SUCCESS:
     case FAVOURITE_SUCCESS:
     case UNFAVOURITE_SUCCESS:
-      return normalizeStatus(state, Immutable.fromJS(action.response));
+      return normalizeStatus(state, action.response);
     case TIMELINE_REFRESH_SUCCESS:
     case TIMELINE_EXPAND_SUCCESS:
     case ACCOUNT_TIMELINE_FETCH_SUCCESS:
     case ACCOUNT_TIMELINE_EXPAND_SUCCESS:
     case CONTEXT_FETCH_SUCCESS:
-      return normalizeStatuses(state, Immutable.fromJS(action.statuses));
+      return normalizeStatuses(state, action.statuses);
     case TIMELINE_DELETE:
       return deleteStatus(state, action.id, action.references);
     default:

@@ -25,7 +25,7 @@ import {
 } from '../actions/statuses';
 import Immutable from 'immutable';
 
-const normalizeAccount = (state, account) => state.set(account.get('id'), account);
+const normalizeAccount = (state, account) => state.set(account.id, Immutable.fromJS(account));
 
 const normalizeAccounts = (state, accounts) => {
   accounts.forEach(account => {
@@ -36,10 +36,10 @@ const normalizeAccounts = (state, accounts) => {
 };
 
 const normalizeAccountFromStatus = (state, status) => {
-  state = normalizeAccount(state, status.get('account'));
+  state = normalizeAccount(state, status.account);
 
-  if (status.getIn(['reblog', 'account'])) {
-    state = normalizeAccount(state, status.getIn(['reblog', 'account']));
+  if (status.reblog && status.reblog.account) {
+    state = normalizeAccount(state, status.reblog.account);
   }
 
   return state;
@@ -60,24 +60,24 @@ export default function accounts(state = initialState, action) {
     case ACCOUNT_SET_SELF:
     case ACCOUNT_FETCH_SUCCESS:
     case FOLLOW_SUBMIT_SUCCESS:
-      return normalizeAccount(state, Immutable.fromJS(action.account));
+      return normalizeAccount(state, action.account);
     case SUGGESTIONS_FETCH_SUCCESS:
     case FOLLOWERS_FETCH_SUCCESS:
     case FOLLOWING_FETCH_SUCCESS:
-      return normalizeAccounts(state, Immutable.fromJS(action.accounts));
+      return normalizeAccounts(state, action.accounts);
     case TIMELINE_REFRESH_SUCCESS:
     case TIMELINE_EXPAND_SUCCESS:
     case ACCOUNT_TIMELINE_FETCH_SUCCESS:
     case ACCOUNT_TIMELINE_EXPAND_SUCCESS:
     case CONTEXT_FETCH_SUCCESS:
-      return normalizeAccountsFromStatuses(state, Immutable.fromJS(action.statuses));
+      return normalizeAccountsFromStatuses(state, action.statuses);
     case TIMELINE_UPDATE:
     case REBLOG_SUCCESS:
     case FAVOURITE_SUCCESS:
     case UNREBLOG_SUCCESS:
     case UNFAVOURITE_SUCCESS:
     case STATUS_FETCH_SUCCESS:
-      return normalizeAccountFromStatus(state, Immutable.fromJS(action.status));
+      return normalizeAccountFromStatus(state, action.status);
     default:
       return state;
   }

@@ -7,7 +7,7 @@ import {
 } from '../actions/accounts';
 import Immutable from 'immutable';
 
-const normalizeRelationship = (state, relationship) => state.set(relationship.get('id'), relationship);
+const normalizeRelationship = (state, relationship) => state.set(relationship.id, Immutable.fromJS(relationship));
 
 const normalizeRelationships = (state, relationships) => {
   relationships.forEach(relationship => {
@@ -25,9 +25,9 @@ export default function relationships(state = initialState, action) {
     case ACCOUNT_UNFOLLOW_SUCCESS:
     case ACCOUNT_BLOCK_SUCCESS:
     case ACCOUNT_UNBLOCK_SUCCESS:
-      return normalizeRelationship(state, Immutable.fromJS(action.relationship));
+      return normalizeRelationship(state, action.relationship);
     case RELATIONSHIPS_FETCH_SUCCESS:
-      return normalizeRelationships(state, Immutable.fromJS(action.relationships));
+      return normalizeRelationships(state, action.relationships);
     default:
       return state;
   }

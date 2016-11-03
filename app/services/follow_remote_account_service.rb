@@ -15,15 +15,24 @@ class FollowRemoteAccountService < BaseService
     return nil if DomainBlock.blocked?(domain)
 
     account = Account.find_remote(username, domain)
-
     return account unless account.nil?
 
-    Rails.logger.debug "Creating new remote account for #{uri}"
+    Rails.logger.debug "Looking up webfinger for #{uri}"
+
     account = Account.new(username: username, domain: domain)
 
     data = Goldfinger.finger("acct:#{uri}")
 
     raise Goldfinger::Error, 'Missing resource links' if data.link('http://schemas.google.com/g/2010#updates-from').nil? || data.link('salmon').nil? || data.link('http://webfinger.net/rel/profile-page').nil? || data.link('magic-public-key').nil?
+
+    confirmed_username, confirmed_domain = data.subject.gsub(/\Aacct:/, '').split('@')
+
+    return Account.find_local(confirmed_username) if TagManager.instance.local_domain?(confirmed_domain)
+
+    confirmed_account = Account.find_remote(confirmed_username, confirmed_domain)
+    return confirmed_account unless confirmed_account.nil?
+
+    Rails.logger.debug "Creating new remote account for #{uri}"
 
     account.remote_url  = data.link('http://schemas.google.com/g/2010#updates-from').href
     account.salmon_url  = data.link('salmon').href
