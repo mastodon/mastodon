@@ -1,4 +1,3 @@
-cache
 attributes :id, :created_at, :in_reply_to_id
 
 node(:uri)              { |status| TagManager.instance.uri_for(status) }
