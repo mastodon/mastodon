@@ -2,8 +2,8 @@
   Log in
 
 = simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-  = f.input :email, autofocus: true, placeholder: 'E-mail address', required: true
-  = f.input :password, placeholder: 'Password', required: true
+  = f.input :email, autofocus: true, placeholder: 'E-mail address', required: true, input_html: { 'aria-label' => 'E-mail address' }
+  = f.input :password, placeholder: 'Password', required: true, input_html: { 'aria-label' => 'Password' }
 
   .actions
     = f.button :button, "Log in", type: :submit

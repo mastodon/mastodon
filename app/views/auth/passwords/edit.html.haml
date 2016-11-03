@@ -5,8 +5,8 @@
   = render 'shared/error_messages', object: resource
   = f.input :reset_password_token, as: :hidden
 
-  = f.input :password, autofocus: true, autocomplete: "off", placeholder: 'New password'
-  = f.input :password_confirmation, autocomplete: "off", placeholder: 'Confirm new password'
+  = f.input :password, autofocus: true, autocomplete: "off", placeholder: 'New password', input_html: { 'aria-label' => 'New password' }
+  = f.input :password_confirmation, autocomplete: "off", placeholder: 'Confirm new password', input_html: { 'aria-label' => 'Confirm new password' }
 
   .actions
     = f.button :button, "Change my password", type: :submit

@@ -5,11 +5,11 @@
   = render 'shared/error_messages', object: resource
 
   = f.simple_fields_for :account do |ff|
-    = ff.input :username, autofocus: true, placeholder: 'Username', required: true
+    = ff.input :username, autofocus: true, placeholder: 'Username', required: true, input_html: { 'aria-label' => 'Username' }
 
-  = f.input :email, placeholder: 'E-mail address', required: true
-  = f.input :password, autocomplete: "off", placeholder: 'Password', required: true
-  = f.input :password_confirmation, autocomplete: "off", placeholder: 'Confirm password', required: true
+  = f.input :email, placeholder: 'E-mail address', required: true, input_html: { 'aria-label' => 'E-mail address' }
+  = f.input :password, autocomplete: "off", placeholder: 'Password', required: true, input_html: { 'aria-label' => 'Password' }
+  = f.input :password_confirmation, autocomplete: "off", placeholder: 'Confirm password', required: true, input_html: { 'aria-label' => 'Confirm password' }
 
   .actions
     = f.button :button, "Sign up", type: :submit

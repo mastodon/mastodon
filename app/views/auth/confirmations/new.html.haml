@@ -4,7 +4,7 @@
 = simple_form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f|
   = render 'shared/error_messages', object: resource
 
-  = f.input :email, autofocus: true, required: true, placeholder: 'E-mail address'
+  = f.input :email, autofocus: true, required: true, placeholder: 'E-mail address', input_html: { 'aria-label' => 'E-mail address' }
 
   .actions
     = f.button :button, "Resend confirmation instructions", type: :submit
