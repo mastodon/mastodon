@@ -1,5 +1,5 @@
 object @account
-cache false
+
 attribute :id
 node(:following)   { |account| @following[account.id]   || false }
 node(:followed_by) { |account| @followed_by[account.id] || false }

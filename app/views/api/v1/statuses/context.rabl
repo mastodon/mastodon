@@ -1,5 +1,4 @@
 object @context
-cache false
 
 node :ancestors do |context|
   partial 'api/v1/statuses/index', object: context.ancestors

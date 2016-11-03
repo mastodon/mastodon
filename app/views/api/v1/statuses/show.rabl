@@ -1,5 +1,5 @@
 object @status
-cache false
+cache
 
 extends 'api/v1/statuses/_show'
 
