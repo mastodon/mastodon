@@ -55,6 +55,7 @@ export function submitCompose() {
       media_ids: getState().getIn(['compose', 'media_attachments']).map(item => item.get('id'))
     }).then(function (response) {
       dispatch(submitComposeSuccess(response.data));
+      dispatch(updateTimeline('home', response.data));
     }).catch(function (error) {
       dispatch(submitComposeFail(error));
     });
@@ -68,13 +69,9 @@ export function submitComposeRequest() {
 };
 
 export function submitComposeSuccess(status) {
-  return (dispatch, getState) => {
-    dispatch({
-      type: COMPOSE_SUBMIT_SUCCESS,
-      status: status
-    });
-
-    dispatch(updateTimeline('home', status));
+  return {
+    type: COMPOSE_SUBMIT_SUCCESS,
+    status: status
   };
 };
 

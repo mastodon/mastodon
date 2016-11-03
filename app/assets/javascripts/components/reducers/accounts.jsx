@@ -71,11 +71,12 @@ export default function accounts(state = initialState, action) {
     case ACCOUNT_TIMELINE_EXPAND_SUCCESS:
     case CONTEXT_FETCH_SUCCESS:
       return normalizeAccountsFromStatuses(state, action.statuses);
-    case TIMELINE_UPDATE:
     case REBLOG_SUCCESS:
     case FAVOURITE_SUCCESS:
     case UNREBLOG_SUCCESS:
     case UNFAVOURITE_SUCCESS:
+      return normalizeAccountFromStatus(state, action.response);
+    case TIMELINE_UPDATE:
     case STATUS_FETCH_SUCCESS:
       return normalizeAccountFromStatus(state, action.status);
     default:

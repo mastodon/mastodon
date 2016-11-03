@@ -132,7 +132,6 @@ const ComposeForm = React.createClass({
 
     const inputProps = {
       placeholder: 'What is on your mind?',
-      arialabel: 'What is on your mind?',
       value: this.props.text,
       onKeyUp: this.handleKeyUp,
       onChange: this.handleChange,
