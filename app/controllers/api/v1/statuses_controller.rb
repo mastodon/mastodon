@@ -2,16 +2,26 @@ class Api::V1::StatusesController < ApiController
   before_action -> { doorkeeper_authorize! :read }, except: [:create, :destroy, :reblog, :unreblog, :favourite, :unfavourite]
   before_action -> { doorkeeper_authorize! :write }, only:  [:create, :destroy, :reblog, :unreblog, :favourite, :unfavourite]
 
-  respond_to    :json
+  before_action :set_status, only: [:show, :context, :reblogged_by, :favourited_by]
+
+  respond_to :json
 
   def show
-    @status = Status.find(params[:id])
   end
 
   def context
-    @status  = Status.find(params[:id])
     @context = OpenStruct.new({ ancestors: @status.ancestors, descendants: @status.descendants })
     set_maps([@status] + @context[:ancestors] + @context[:descendants])
+  end
+
+  def reblogged_by
+    @accounts = @status.reblogs.includes(:account).limit(40).map(&:account)
+    render action: :accounts
+  end
+
+  def favourited_by
+    @accounts = @status.favourites.includes(:account).limit(40).map(&:account)
+    render action: :accounts
   end
 
   def create
@@ -62,5 +72,11 @@ class Api::V1::StatusesController < ApiController
     @statuses = Status.as_public_timeline(current_user.account).paginate_by_max_id(20, params[:max_id], params[:since_id]).to_a
     set_maps(@statuses)
     render action: :index
+  end
+
+  private
+
+  def set_status
+    @status = Status.find(params[:id])
   end
 end

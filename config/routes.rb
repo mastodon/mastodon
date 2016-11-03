@@ -59,6 +59,8 @@ Rails.application.routes.draw do
 
         member do
           get :context
+          get :reblogged_by
+          get :favourited_by
 
           post :reblog
           post :unreblog
