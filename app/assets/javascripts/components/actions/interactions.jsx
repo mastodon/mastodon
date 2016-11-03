@@ -16,6 +16,10 @@ export const UNFAVOURITE_REQUEST = 'UNFAVOURITE_REQUEST';
 export const UNFAVOURITE_SUCCESS = 'UNFAVOURITE_SUCCESS';
 export const UNFAVOURITE_FAIL    = 'UNFAVOURITE_FAIL';
 
+export const REBLOGS_FETCH_REQUEST = 'REBLOGS_FETCH_REQUEST';
+export const REBLOGS_FETCH_SUCCESS = 'REBLOGS_FETCH_SUCCESS';
+export const REBLOGS_FETCH_FAIL    = 'REBLOGS_FETCH_FAIL';
+
 export function reblog(status) {
   return function (dispatch, getState) {
     dispatch(reblogRequest(status));
@@ -155,5 +159,39 @@ export function unfavouriteFail(status, error) {
     type: UNFAVOURITE_FAIL,
     status: status,
     error: error
+  };
+};
+
+export function fetchReblogs(id) {
+  return (dispatch, getState) => {
+    dispatch(fetchReblogsRequest(id));
+
+    api(getState).get(`/api/v1/statuses/${id}/reblogged_by`).then(response => {
+      dispatch(fetchReblogsSuccess(id, response.data));
+    }).catch(error => {
+      dispatch(fetchReblogsFail(id, error));
+    });
+  };
+};
+
+export function fetchReblogsRequest(id) {
+  return {
+    type: REBLOGS_FETCH_REQUEST,
+    id
+  };
+};
+
+export function fetchReblogsSuccess(id, accounts) {
+  return {
+    type: REBLOGS_FETCH_SUCCESS,
+    id,
+    accounts
+  };
+};
+
+export function fetchReblogsFail(id, error) {
+  return {
+    type: REBLOGS_FETCH_FAIL,
+    error
   };
 };

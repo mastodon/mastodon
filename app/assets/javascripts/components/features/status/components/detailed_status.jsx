@@ -6,6 +6,7 @@ import StatusContent      from '../../../components/status_content';
 import MediaGallery       from '../../../components/media_gallery';
 import VideoPlayer        from '../../../components/video_player';
 import moment             from 'moment';
+import { Link }           from 'react-router';
 
 const DetailedStatus = React.createClass({
 
@@ -53,7 +54,7 @@ const DetailedStatus = React.createClass({
         {media}
 
         <div style={{ marginTop: '15px', color: '#616b86', fontSize: '14px', lineHeight: '18px' }}>
-          <a className='detailed-status__datetime' style={{ color: 'inherit' }} href={status.get('url')} target='_blank' rel='noopener'>{moment(status.get('created_at')).format('HH:mm, DD MMM Y')}</a> · <i className='fa fa-retweet' /><span style={{ fontWeight: '500', fontSize: '12px', marginLeft: '6px', display: 'inline-block' }}>{status.get('reblogs_count')}</span> · <i className='fa fa-star' /><span style={{ fontWeight: '500', fontSize: '12px', marginLeft: '6px', display: 'inline-block' }}>{status.get('favourites_count')}</span>
+          <a className='detailed-status__datetime' style={{ color: 'inherit' }} href={status.get('url')} target='_blank' rel='noopener'>{moment(status.get('created_at')).format('HH:mm, DD MMM Y')}</a> · <Link to={`/statuses/${status.get('id')}/reblogs`} style={{ color: 'inherit', textDecoration: 'none' }}><i className='fa fa-retweet' /><span style={{ fontWeight: '500', fontSize: '12px', marginLeft: '6px', display: 'inline-block' }}>{status.get('reblogs_count')}</span></Link> · <i className='fa fa-star' /><span style={{ fontWeight: '500', fontSize: '12px', marginLeft: '6px', display: 'inline-block' }}>{status.get('favourites_count')}</span>
         </div>
       </div>
     );

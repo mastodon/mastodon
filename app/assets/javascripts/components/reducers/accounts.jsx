@@ -12,7 +12,8 @@ import {
   REBLOG_SUCCESS,
   UNREBLOG_SUCCESS,
   FAVOURITE_SUCCESS,
-  UNFAVOURITE_SUCCESS
+  UNFAVOURITE_SUCCESS,
+  REBLOGS_FETCH_SUCCESS
 } from '../actions/interactions';
 import {
   TIMELINE_REFRESH_SUCCESS,
@@ -64,6 +65,7 @@ export default function accounts(state = initialState, action) {
     case SUGGESTIONS_FETCH_SUCCESS:
     case FOLLOWERS_FETCH_SUCCESS:
     case FOLLOWING_FETCH_SUCCESS:
+    case REBLOGS_FETCH_SUCCESS:
       return normalizeAccounts(state, action.accounts);
     case TIMELINE_REFRESH_SUCCESS:
     case TIMELINE_EXPAND_SUCCESS:
