@@ -1,5 +1,5 @@
 object @account
-cache @account
+cache false
 
 attributes :id, :username, :acct, :display_name, :note
 

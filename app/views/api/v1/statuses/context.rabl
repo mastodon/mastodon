@@ -1,13 +1,10 @@
-object false
+object @context
+cache false
 
-node :ancestors do
-  @ancestors.map do |status|
-    partial('api/v1/statuses/show', object: status)
-  end
+node :ancestors do |context|
+  partial 'api/v1/statuses/index', object: context.ancestors
 end
 
-node :descendants do
-  @descendants.map do |status|
-    partial('api/v1/statuses/show', object: status)
-  end
+node :descendants do |context|
+  partial 'api/v1/statuses/index', object: context.descendants
 end

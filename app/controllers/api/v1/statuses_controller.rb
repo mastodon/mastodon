@@ -9,10 +9,9 @@ class Api::V1::StatusesController < ApiController
   end
 
   def context
-    @status      = Status.find(params[:id])
-    @ancestors   = @status.ancestors
-    @descendants = @status.descendants
-    set_maps([@status] + @ancestors + @descendants)
+    @status  = Status.find(params[:id])
+    @context = OpenStruct.new({ ancestors: @status.ancestors, descendants: @status.descendants })
+    set_maps([@status] + @context[:ancestors] + @context[:descendants])
   end
 
   def create
