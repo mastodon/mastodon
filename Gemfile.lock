@@ -197,6 +197,8 @@ GEM
     parser (2.3.1.2)
       ast (~> 2.2)
     pg (0.18.4)
+    pghero (1.6.2)
+      activerecord
     powerpack (0.1.1)
     pry (0.10.4)
       coderay (~> 1.1.0)
@@ -403,6 +405,7 @@ DEPENDENCIES
   paperclip (~> 4.3)
   paperclip-av-transcoder
   pg
+  pghero
   pry-rails
   puma
   rabl

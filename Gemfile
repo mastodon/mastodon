@@ -12,6 +12,7 @@ gem 'puma'
 
 gem 'hamlit-rails'
 gem 'pg'
+gem 'pghero'
 gem 'dotenv-rails'
 gem 'font-awesome-rails'
 
