@@ -199,3 +199,37 @@ export function fetchReblogsFail(id, error) {
     error
   };
 };
+
+export function fetchFavourites(id) {
+  return (dispatch, getState) => {
+    dispatch(fetchFavouritesRequest(id));
+
+    api(getState).get(`/api/v1/statuses/${id}/favourited_by`).then(response => {
+      dispatch(fetchFavouritesSuccess(id, response.data));
+    }).catch(error => {
+      dispatch(fetchFavouritesFail(id, error));
+    });
+  };
+};
+
+export function fetchFavouritesRequest(id) {
+  return {
+    type: FAVOURITES_FETCH_REQUEST,
+    id
+  };
+};
+
+export function fetchFavouritesSuccess(id, accounts) {
+  return {
+    type: FAVOURITES_FETCH_SUCCESS,
+    id,
+    accounts
+  };
+};
+
+export function fetchFavouritesFail(id, error) {
+  return {
+    type: FAVOURITES_FETCH_FAIL,
+    error
+  };
+};

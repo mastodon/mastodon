@@ -29,6 +29,7 @@ import Compose            from '../features/compose';
 import Followers          from '../features/followers';
 import Following          from '../features/following';
 import Reblogs            from '../features/reblogs';
+import Favourites         from '../features/favourites';
 
 const store = configureStore();
 
@@ -80,11 +81,15 @@ const Mastodon = React.createClass({
           <Route path='/' component={UI}>
             <IndexRoute component={GettingStarted} />
             <Route path='/statuses/new' component={Compose} />
+
             <Route path='/statuses/home' component={HomeTimeline} />
             <Route path='/statuses/mentions' component={MentionsTimeline} />
             <Route path='/statuses/all' component={PublicTimeline} />
+
             <Route path='/statuses/:statusId' component={Status} />
             <Route path='/statuses/:statusId/reblogs' component={Reblogs} />
+            <Route path='/statuses/:statusId/favourites' component={Favourites} />
+
             <Route path='/accounts/:accountId' component={Account}>
               <IndexRoute component={AccountTimeline} />
               <Route path='/accounts/:accountId/followers' component={Followers} />
