@@ -14,6 +14,7 @@ class Formatter
     html = simple_format(html, sanitize: false)
     html = link_urls(html)
     html = link_mentions(html, status.mentions)
+    html = link_hashtags(html)
 
     html.html_safe
   end
@@ -41,6 +42,17 @@ class Formatter
 
       mention.nil? ? match : mention_html(match, mention.account)
     end
+  end
+
+  def link_hashtags(html)
+    html.gsub(Tag::HASHTAG_RE) do |match|
+      hashtag_html(match)
+    end
+  end
+
+  def hashtag_html(match)
+    prefix, affix = match.split('#')
+    "#{prefix}<a href=\"#\" class=\"mention hashtag\">#<span>#{affix}</span></a>"
   end
 
   def mention_html(match, account)

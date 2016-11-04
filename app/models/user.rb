@@ -7,7 +7,7 @@ class User < ApplicationRecord
   validates :account, presence: true
 
   scope :prolific, -> { joins('inner join statuses on statuses.account_id = users.account_id').select('users.*, count(statuses.id) as statuses_count').group('users.id').order('statuses_count desc') }
-  scope :recent,   -> { order('created_at desc') }
+  scope :recent,   -> { order('id desc') }
   scope :admins,   -> { where(admin: true) }
 
   has_settings do |s|

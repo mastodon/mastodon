@@ -33,12 +33,12 @@ class Account < ApplicationRecord
   has_many :active_relationships,  class_name: 'Follow', foreign_key: 'account_id',        dependent: :destroy
   has_many :passive_relationships, class_name: 'Follow', foreign_key: 'target_account_id', dependent: :destroy
 
-  has_many :following, -> { order('follows.created_at desc') }, through: :active_relationships,  source: :target_account
-  has_many :followers, -> { order('follows.created_at desc') }, through: :passive_relationships, source: :account
+  has_many :following, -> { order('follows.id desc') }, through: :active_relationships,  source: :target_account
+  has_many :followers, -> { order('follows.id desc') }, through: :passive_relationships, source: :account
 
   # Block relationships
   has_many :block_relationships, class_name: 'Block', foreign_key: 'account_id', dependent: :destroy
-  has_many :blocking, -> { order('blocks.created_at desc') }, through: :block_relationships, source: :target_account
+  has_many :blocking, -> { order('blocks.id desc') }, through: :block_relationships, source: :target_account
 
   has_many :media_attachments, dependent: :destroy
 

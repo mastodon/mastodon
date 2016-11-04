@@ -77,6 +77,14 @@ class Status < ApplicationRecord
     ids.map { |id| statuses[id].first }
   end
 
+  def reblogged_by(limit)
+    Account.where(id: reblogs.limit(limit).pluck(:account_id)).with_counters
+  end
+
+  def favourited_by(limit)
+    Account.where(id: favourites.limit(limit).pluck(:account_id)).with_counters
+  end
+
   def self.as_home_timeline(account)
     where(account: [account] + account.following).with_includes.with_counters
   end

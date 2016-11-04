@@ -14,12 +14,12 @@ class Api::V1::AccountsController < ApiController
   end
 
   def following
-    @accounts = @account.following.limit(40)
+    @accounts = @account.following.with_counters.limit(40)
     render action: :index
   end
 
   def followers
-    @accounts = @account.followers.limit(40)
+    @accounts = @account.followers.with_counters.limit(40)
     render action: :index
   end
 

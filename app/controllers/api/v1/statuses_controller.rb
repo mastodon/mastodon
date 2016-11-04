@@ -15,12 +15,12 @@ class Api::V1::StatusesController < ApiController
   end
 
   def reblogged_by
-    @accounts = @status.reblogs.includes(:account).limit(40).map(&:account)
+    @accounts = @status.reblogged_by(40)
     render action: :accounts
   end
 
   def favourited_by
-    @accounts = @status.favourites.includes(:account).limit(40).map(&:account)
+    @accounts = @status.favourited_by(40)
     render action: :accounts
   end
 
