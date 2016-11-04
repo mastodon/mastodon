@@ -47,7 +47,7 @@ const StatusList = React.createClass({
     const { statusIds, onScrollToBottom, trackScroll } = this.props;
 
     const scrollableArea = (
-      <div style={{ overflowY: 'scroll', flex: '1 1 auto', overflowX: 'hidden' }} className='scrollable' onScroll={this.handleScroll}>
+      <div className='scrollable' onScroll={this.handleScroll}>
         <div>
           {statusIds.map((statusId) => {
             return <StatusContainer key={statusId} id={statusId} now={this.state.now} />;

@@ -114,7 +114,7 @@ const Status = React.createClass({
         <ColumnBackButton />
 
         <ScrollContainer scrollKey='thread'>
-          <div style={{ overflowY: 'scroll', flex: '1 1 auto' }} className='scrollable'>
+          <div className='scrollable'>
             {ancestors}
 
             <DetailedStatus status={status} me={me} onOpenMedia={this.handleOpenMedia} />

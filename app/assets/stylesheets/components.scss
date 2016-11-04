@@ -295,3 +295,10 @@
   background: #2b90d9;
   color: #fff;
 }
+
+.scrollable {
+  overflow-y: scroll;
+  overflow-x: hidden;
+  flex: 1 1 auto;
+  -webkit-overflow-scrolling: touch;
+}
