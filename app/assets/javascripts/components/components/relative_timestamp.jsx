@@ -21,35 +21,28 @@ moment.updateLocale('en', {
 
 const RelativeTimestamp = React.createClass({
 
-  getInitialState () {
-    return {
-      text: ''
-    };
-  },
-
   propTypes: {
-    timestamp: React.PropTypes.string.isRequired
+    timestamp: React.PropTypes.string.isRequired,
+    now: React.PropTypes.any
   },
 
   mixins: [PureRenderMixin],
 
-  componentWillMount () {
-    this._updateMomentText();
-    this.interval = setInterval(this._updateMomentText, 60000);
-  },
-
-  componentWillUnmount () {
-    clearInterval(this.interval);
-  },
-
-  _updateMomentText () {
-    this.setState({ text: moment(this.props.timestamp).fromNow() });
-  },
-
   render () {
+    const timestamp = moment(this.props.timestamp);
+    const now       = this.props.now;
+
+    let string = '';
+
+    if (timestamp.isAfter(now)) {
+      string = 'Just now';
+    } else {
+      string = timestamp.from(now);
+    }
+
     return (
       <span>
-        {this.state.text}
+        {string}
       </span>
     );
   }

@@ -20,6 +20,10 @@ export const REBLOGS_FETCH_REQUEST = 'REBLOGS_FETCH_REQUEST';
 export const REBLOGS_FETCH_SUCCESS = 'REBLOGS_FETCH_SUCCESS';
 export const REBLOGS_FETCH_FAIL    = 'REBLOGS_FETCH_FAIL';
 
+export const FAVOURITES_FETCH_REQUEST = 'FAVOURITES_FETCH_REQUEST';
+export const FAVOURITES_FETCH_SUCCESS = 'FAVOURITES_FETCH_SUCCESS';
+export const FAVOURITES_FETCH_FAIL    = 'FAVOURITES_FETCH_FAIL';
+
 export function reblog(status) {
   return function (dispatch, getState) {
     dispatch(reblogRequest(status));
