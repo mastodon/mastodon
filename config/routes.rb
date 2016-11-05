@@ -1,6 +1,8 @@
 require 'sidekiq/web'
 
 Rails.application.routes.draw do
+  get 'tags/show'
+
   mount ActionCable.server => '/cable'
 
   authenticate :user, lambda { |u| u.admin? } do
@@ -40,6 +42,7 @@ Rails.application.routes.draw do
   end
 
   resources :media, only: [:show]
+  resources :tags,  only: [:show]
 
   namespace :api do
     # PubSubHubbub
@@ -56,6 +59,7 @@ Rails.application.routes.draw do
           get :home
           get :mentions
           get :public
+          get '/tag/:id', action: :tag
         end
 
         member do

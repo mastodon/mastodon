@@ -23,11 +23,14 @@ const StatusContent = React.createClass({
 
       if (mention) {
         link.addEventListener('click', this.onMentionClick.bind(this, mention), false);
+      } else if (link.text[0] === '#' || (link.previousSibling && link.previousSibling.text === '#')) {
+        link.addEventListener('click', this.onHashtagClick.bind(this, link.text), false);
       } else {
         link.setAttribute('target', '_blank');
         link.setAttribute('rel', 'noopener');
-        link.addEventListener('click', this.onNormalClick, false);
       }
+
+      link.addEventListener('click', this.onNormalClick, false);
     }
   },
 
@@ -36,8 +39,15 @@ const StatusContent = React.createClass({
       e.preventDefault();
       this.context.router.push(`/accounts/${mention.get('id')}`);
     }
+  },
 
-    e.stopPropagation();
+  onHashtagClick (hashtag, e) {
+    hashtag = hashtag.replace(/^#/, '').toLowerCase();
+
+    if (e.button === 0) {
+      e.preventDefault();
+      this.context.router.push(`/statuses/tag/${hashtag}`);
+    }
   },
 
   onNormalClick (e) {

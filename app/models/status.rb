@@ -12,6 +12,7 @@ class Status < ApplicationRecord
   has_many :replies, foreign_key: 'in_reply_to_id', class_name: 'Status', inverse_of: :thread
   has_many :mentions, dependent: :destroy
   has_many :media_attachments, dependent: :destroy
+  has_and_belongs_to_many :tags
 
   validates :account, presence: true
   validates :uri, uniqueness: true, unless: 'local?'
@@ -21,7 +22,7 @@ class Status < ApplicationRecord
   default_scope { order('id desc') }
 
   scope :with_counters, -> { select('statuses.*, (select count(r.id) from statuses as r where r.reblog_of_id = statuses.id) as reblogs_count, (select count(f.id) from favourites as f where f.status_id = statuses.id) as favourites_count') }
-  scope :with_includes, -> { includes(:account, :media_attachments, :stream_entry, mentions: :account, reblog: [:account, mentions: :account], thread: :account) }
+  scope :with_includes, -> { includes(:account, :media_attachments, :tags, :stream_entry, mentions: :account, reblog: [:account, mentions: :account], thread: :account) }
 
   def local?
     uri.nil?
@@ -85,29 +86,41 @@ class Status < ApplicationRecord
     Account.where(id: favourites.limit(limit).pluck(:account_id)).with_counters
   end
 
-  def self.as_home_timeline(account)
-    where(account: [account] + account.following).with_includes.with_counters
-  end
+  class << self
+    def as_home_timeline(account)
+      where(account: [account] + account.following).with_includes.with_counters
+    end
 
-  def self.as_mentions_timeline(account)
-    where(id: Mention.where(account: account).pluck(:status_id)).with_includes.with_counters
-  end
+    def as_mentions_timeline(account)
+      where(id: Mention.where(account: account).pluck(:status_id)).with_includes.with_counters
+    end
 
-  def self.as_public_timeline(account)
-    joins('LEFT OUTER JOIN statuses AS reblogs ON statuses.reblog_of_id = reblogs.id')
-      .joins('LEFT OUTER JOIN accounts ON statuses.account_id = accounts.id')
-      .where('accounts.silenced = FALSE')
-      .where('(reblogs.account_id IS NULL OR reblogs.account_id NOT IN (SELECT target_account_id FROM blocks WHERE account_id = ?)) AND statuses.account_id NOT IN (SELECT target_account_id FROM blocks WHERE account_id = ?)', account.id, account.id)
-      .with_includes
-      .with_counters
-  end
+    def as_public_timeline(account)
+      joins('LEFT OUTER JOIN statuses AS reblogs ON statuses.reblog_of_id = reblogs.id')
+        .joins('LEFT OUTER JOIN accounts ON statuses.account_id = accounts.id')
+        .where('accounts.silenced = FALSE')
+        .where('(reblogs.account_id IS NULL OR reblogs.account_id NOT IN (SELECT target_account_id FROM blocks WHERE account_id = ?)) AND statuses.account_id NOT IN (SELECT target_account_id FROM blocks WHERE account_id = ?)', account.id, account.id)
+        .with_includes
+        .with_counters
+    end
 
-  def self.favourites_map(status_ids, account_id)
-    Favourite.select('status_id').where(status_id: status_ids).where(account_id: account_id).map { |f| [f.status_id, true] }.to_h
-  end
+    def as_tag_timeline(tag, account)
+      tag.statuses
+        .joins('LEFT OUTER JOIN statuses AS reblogs ON statuses.reblog_of_id = reblogs.id')
+        .joins('LEFT OUTER JOIN accounts ON statuses.account_id = accounts.id')
+        .where('accounts.silenced = FALSE')
+        .where('(reblogs.account_id IS NULL OR reblogs.account_id NOT IN (SELECT target_account_id FROM blocks WHERE account_id = ?)) AND statuses.account_id NOT IN (SELECT target_account_id FROM blocks WHERE account_id = ?)', account.id, account.id)
+        .with_includes
+        .with_counters
+    end
 
-  def self.reblogs_map(status_ids, account_id)
-    select('reblog_of_id').where(reblog_of_id: status_ids).where(account_id: account_id).map { |s| [s.reblog_of_id, true] }.to_h
+    def favourites_map(status_ids, account_id)
+      Favourite.select('status_id').where(status_id: status_ids).where(account_id: account_id).map { |f| [f.status_id, true] }.to_h
+    end
+
+    def reblogs_map(status_ids, account_id)
+      select('reblog_of_id').where(reblog_of_id: status_ids).where(account_id: account_id).map { |s| [s.reblog_of_id, true] }.to_h
+    end
   end
 
   before_validation do

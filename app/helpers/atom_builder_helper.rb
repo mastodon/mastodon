@@ -47,6 +47,10 @@ module AtomBuilderHelper
     xml.author(&block)
   end
 
+  def category(xml, tag)
+    xml.category(term: tag.name)
+  end
+
   def target(xml, &block)
     xml['activity'].object(&block)
   end
@@ -186,6 +190,10 @@ module AtomBuilderHelper
           stream_entry.target.media_attachments.each do |media|
             link_enclosure xml, media
           end
+
+          stream_entry.target.tags.each do |tag|
+            category xml, tag
+          end
         end
       end
     end
@@ -197,6 +205,10 @@ module AtomBuilderHelper
     if stream_entry.activity.is_a?(Status)
       stream_entry.activity.media_attachments.each do |media|
         link_enclosure xml, media
+      end
+
+      stream_entry.activity.tags.each do |tag|
+        category xml, tag
       end
     end
   end

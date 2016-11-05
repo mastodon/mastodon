@@ -17,3 +17,7 @@ end
 child :mentions, object_root: false do
   extends 'api/v1/statuses/_mention'
 end
+
+child :tags, object_root: false do
+  extends 'api/v1/statuses/_tags'
+end

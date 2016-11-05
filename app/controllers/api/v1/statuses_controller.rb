@@ -74,6 +74,19 @@ class Api::V1::StatusesController < ApiController
     render action: :index
   end
 
+  def tag
+    @tag = Tag.find_by(name: params[:id].downcase)
+
+    if @tag.nil?
+      @statuses = []
+    else
+      @statuses = Status.as_tag_timeline(@tag, current_user.account).paginate_by_max_id(20, params[:max_id], params[:since_id]).to_a
+      set_maps(@statuses)
+    end
+
+    render action: :index
+  end
+
   private
 
   def set_status

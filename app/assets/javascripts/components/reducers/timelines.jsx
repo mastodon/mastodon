@@ -25,6 +25,7 @@ const initialState = Immutable.Map({
   home: Immutable.List(),
   mentions: Immutable.List(),
   public: Immutable.List(),
+  tag: Immutable.List(),
   accounts_timelines: Immutable.Map(),
   ancestors: Immutable.Map(),
   descendants: Immutable.Map()
@@ -55,7 +56,7 @@ const normalizeTimeline = (state, timeline, statuses, replace = false) => {
     ids   = ids.set(i, status.get('id'));
   });
 
-  return state.update(timeline, list => (replace ? ids : list.unshift(...ids)));
+  return state.update(timeline, Immutable.List(), list => (replace ? ids : list.unshift(...ids)));
 };
 
 const appendNormalizedTimeline = (state, timeline, statuses) => {
@@ -66,7 +67,7 @@ const appendNormalizedTimeline = (state, timeline, statuses) => {
     moreIds = moreIds.set(i, status.get('id'));
   });
 
-  return state.update(timeline, list => list.push(...moreIds));
+  return state.update(timeline, Immutable.List(), list => list.push(...moreIds));
 };
 
 const normalizeAccountTimeline = (state, accountId, statuses, replace = false) => {
@@ -94,7 +95,7 @@ const appendNormalizedAccountTimeline = (state, accountId, statuses) => {
 const updateTimeline = (state, timeline, status, references) => {
   state = normalizeStatus(state, status);
 
-  state = state.update(timeline, list => {
+  state = state.update(timeline, Immutable.List(), list => {
     if (list.includes(status.get('id'))) {
       return list;
     }
@@ -113,7 +114,7 @@ const updateTimeline = (state, timeline, status, references) => {
 
 const deleteStatus = (state, id, accountId, references) => {
   // Remove references from timelines
-  ['home', 'mentions', 'public'].forEach(function (timeline) {
+  ['home', 'mentions', 'public', 'tag'].forEach(function (timeline) {
     state = state.update(timeline, list => list.filterNot(item => item === id));
   });
 

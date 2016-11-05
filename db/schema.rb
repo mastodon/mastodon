@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161104173623) do
+ActiveRecord::Schema.define(version: 20161105130633) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -158,6 +158,13 @@ ActiveRecord::Schema.define(version: 20161104173623) do
     t.index ["in_reply_to_id"], name: "index_statuses_on_in_reply_to_id", using: :btree
     t.index ["reblog_of_id"], name: "index_statuses_on_reblog_of_id", using: :btree
     t.index ["uri"], name: "index_statuses_on_uri", unique: true, using: :btree
+  end
+
+  create_table "statuses_tags", id: false, force: :cascade do |t|
+    t.integer "status_id", null: false
+    t.integer "tag_id",    null: false
+    t.index ["tag_id", "status_id"], name: "index_statuses_tags_on_tag_id_and_status_id", unique: true, using: :btree
+    t.index ["tag_id"], name: "index_statuses_tags_on_tag_id", using: :btree
   end
 
   create_table "stream_entries", force: :cascade do |t|

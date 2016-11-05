@@ -47,6 +47,12 @@ class ProcessFeedService < BaseService
       record_remote_mentions(status, entry.xpath('./xmlns:link[@rel="mentioned"]'))
       record_remote_mentions(status.reblog, entry.at_xpath('./activity:object', activity: ACTIVITY_NS).xpath('./xmlns:link[@rel="mentioned"]')) if status.reblog?
 
+      if status.reblog?
+        ProcessHashtagsService.new.call(status.reblog, entry.at_xpath('./activity:object', activity: ACTIVITY_NS).xpath('./xmlns:category').map { |category| category['term'] })
+      else
+        ProcessHashtagsService.new.call(status, entry.xpath('./xmlns:category').map { |category| category['term'] })
+      end
+
       process_attachments(entry, status)
       process_attachments(entry.xpath('./activity:object', activity: ACTIVITY_NS), status.reblog) if status.reblog?
 

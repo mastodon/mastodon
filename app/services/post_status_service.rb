@@ -9,6 +9,7 @@ class PostStatusService < BaseService
     status = account.statuses.create!(text: text, thread: in_reply_to)
     attach_media(status, media_ids)
     process_mentions_service.call(status)
+    process_hashtags_service.call(status)
     DistributionWorker.perform_async(status.id)
     HubPingWorker.perform_async(account.id)
     status
@@ -25,5 +26,9 @@ class PostStatusService < BaseService
 
   def process_mentions_service
     @process_mentions_service ||= ProcessMentionsService.new
+  end
+
+  def process_hashtags_service
+    @process_hashtags_service ||= ProcessHashtagsService.new
   end
 end

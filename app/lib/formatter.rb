@@ -2,6 +2,7 @@ require 'singleton'
 
 class Formatter
   include Singleton
+  include RoutingHelper
 
   include ActionView::Helpers::TextHelper
   include ActionView::Helpers::SanitizeHelper
@@ -52,7 +53,7 @@ class Formatter
 
   def hashtag_html(match)
     prefix, affix = match.split('#')
-    "#{prefix}<a href=\"#\" class=\"mention hashtag\">#<span>#{affix}</span></a>"
+    "#{prefix}<a href=\"#{tag_url(affix.downcase)}\" class=\"mention hashtag\">#<span>#{affix}</span></a>"
   end
 
   def mention_html(match, account)

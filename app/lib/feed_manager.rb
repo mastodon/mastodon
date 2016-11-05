@@ -23,8 +23,8 @@ class FeedManager
     broadcast(account.id, type: 'update', timeline: timeline_type, message: inline_render(account, status))
   end
 
-  def broadcast(account_id, options = {})
-    ActionCable.server.broadcast("timeline:#{account_id}", options)
+  def broadcast(timeline_id, options = {})
+    ActionCable.server.broadcast("timeline:#{timeline_id}", options)
   end
 
   def trim(type, account_id)

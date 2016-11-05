@@ -10,7 +10,7 @@ class StreamEntry < ApplicationRecord
 
   validates :account, :activity, presence: true
 
-  STATUS_INCLUDES = [:account, :stream_entry, :media_attachments, mentions: :account, reblog: [:stream_entry, :account, mentions: :account], thread: [:stream_entry, :account]].freeze
+  STATUS_INCLUDES = [:account, :stream_entry, :media_attachments, :tags, mentions: :account, reblog: [:stream_entry, :account, mentions: :account], thread: [:stream_entry, :account]].freeze
 
   scope :with_includes, -> { includes(:account, status: STATUS_INCLUDES, favourite: [:account, :stream_entry, status: STATUS_INCLUDES], follow: [:target_account, :stream_entry]) }
 

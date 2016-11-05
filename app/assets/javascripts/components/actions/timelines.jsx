@@ -1,4 +1,5 @@
 import api from '../api'
+import Immutable from 'immutable';
 
 export const TIMELINE_UPDATE  = 'TIMELINE_UPDATE';
 export const TIMELINE_DELETE  = 'TIMELINE_DELETE';
@@ -54,20 +55,25 @@ export function refreshTimelineRequest(timeline) {
   };
 };
 
-export function refreshTimeline(timeline, replace = false) {
+export function refreshTimeline(timeline, replace = false, id = null) {
   return function (dispatch, getState) {
     dispatch(refreshTimelineRequest(timeline));
 
-    const ids      = getState().getIn(['timelines', timeline]);
+    const ids      = getState().getIn(['timelines', timeline], Immutable.List());
     const newestId = ids.size > 0 ? ids.first() : null;
 
     let params = '';
+    let path   = timeline;
 
     if (newestId !== null && !replace) {
       params = `?since_id=${newestId}`;
     }
 
-    api(getState).get(`/api/v1/statuses/${timeline}${params}`).then(function (response) {
+    if (id) {
+      path = `${path}/${id}`
+    }
+
+    api(getState).get(`/api/v1/statuses/${path}${params}`).then(function (response) {
       dispatch(refreshTimelineSuccess(timeline, response.data, replace));
     }).catch(function (error) {
       dispatch(refreshTimelineFail(timeline, error));
@@ -83,13 +89,19 @@ export function refreshTimelineFail(timeline, error) {
   };
 };
 
-export function expandTimeline(timeline) {
+export function expandTimeline(timeline, id = null) {
   return (dispatch, getState) => {
-    const lastId = getState().getIn(['timelines', timeline]).last();
+    const lastId = getState().getIn(['timelines', timeline], Immutable.List()).last();
 
     dispatch(expandTimelineRequest(timeline));
 
-    api(getState).get(`/api/v1/statuses/${timeline}?max_id=${lastId}`).then(response => {
+    let path = timeline;
+
+    if (id) {
+      path = `${path}/${id}`
+    }
+
+    api(getState).get(`/api/v1/statuses/${path}?max_id=${lastId}`).then(response => {
       dispatch(expandTimelineSuccess(timeline, response.data));
     }).catch(error => {
       dispatch(expandTimelineFail(timeline, error));
