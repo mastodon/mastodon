@@ -1,0 +1,8 @@
+- if @statuses.empty?
+  .accounts-grid
+    = render partial: 'accounts/nothing_here'
+- else
+  .activity-stream
+    = render partial: 'stream_entries/status', collection: @statuses, as: :status, cached: true
+
+= will_paginate @statuses, pagination_options
