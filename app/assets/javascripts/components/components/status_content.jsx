@@ -23,7 +23,7 @@ const StatusContent = React.createClass({
 
       if (mention) {
         link.addEventListener('click', this.onMentionClick.bind(this, mention), false);
-      } else if (link.text[0] === '#' || (link.previousSibling && link.previousSibling.text[link.previousSibling.text.length - 1] === '#')) {
+      } else if (link.text[0] === '#' || (link.previousSibling && link.previousSibling.text && link.previousSibling.text[link.previousSibling.text.length - 1] === '#')) {
         link.addEventListener('click', this.onHashtagClick.bind(this, link.text), false);
       } else {
         link.setAttribute('target', '_blank');
