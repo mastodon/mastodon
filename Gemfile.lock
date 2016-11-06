@@ -44,12 +44,11 @@ GEM
     ast (2.3.0)
     av (0.9.0)
       cocaine (~> 0.5.3)
-    aws-sdk (2.6.18)
-      aws-sdk-resources (= 2.6.18)
-    aws-sdk-core (2.6.18)
-      jmespath (~> 1.0)
-    aws-sdk-resources (2.6.18)
-      aws-sdk-core (= 2.6.18)
+    aws-sdk (1.66.0)
+      aws-sdk-v1 (= 1.66.0)
+    aws-sdk-v1 (1.66.0)
+      json (~> 1.4)
+      nokogiri (>= 1.4.4)
     babel-source (5.8.35)
     babel-transpiler (0.7.0)
       babel-source (>= 4.0, < 6)
@@ -145,7 +144,6 @@ GEM
     jbuilder (2.6.0)
       activesupport (>= 3.0.0, < 5.1)
       multi_json (~> 1.2)
-    jmespath (1.3.1)
     jquery-rails (4.1.1)
       rails-dom-testing (>= 1, < 3)
       railties (>= 4.2.0)
@@ -381,7 +379,7 @@ PLATFORMS
 DEPENDENCIES
   active_record_query_trace
   addressable
-  aws-sdk (~> 2.3)
+  aws-sdk (< 2.0)
   better_errors
   binding_of_caller
   browserify-rails
