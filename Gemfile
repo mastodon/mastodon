@@ -18,6 +18,7 @@ gem 'font-awesome-rails'
 
 gem 'paperclip', '~> 4.3'
 gem 'paperclip-av-transcoder'
+gem 'aws-sdk', '~> 2.3'
 
 gem 'http'
 gem 'httplog'
