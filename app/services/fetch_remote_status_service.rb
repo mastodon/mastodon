@@ -9,7 +9,7 @@ class FetchRemoteStatusService < BaseService
   private
 
   def process_atom(url, body)
-    Rails.logger.debug 'Processing Atom for remote status'
+    Rails.logger.debug "Processing Atom for remote status at #{url}"
 
     xml     = Nokogiri::XML(body)
     account = extract_author(url, xml)
