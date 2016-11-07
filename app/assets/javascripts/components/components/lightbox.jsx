@@ -8,7 +8,9 @@ const overlayStyle = {
   height: '100%',
   justifyContent: 'center',
   alignContent: 'center',
-  background: 'rgba(0, 0, 0, 0.5)'
+  background: 'rgba(0, 0, 0, 0.5)',
+  display: 'flex',
+  zIndex: '9999'
 };
 
 const dialogStyle = {
@@ -27,13 +29,20 @@ const closeStyle = {
   right: '4px'
 };
 
-const Lightbox = ({ isVisible, onOverlayClicked, onCloseClicked, children }) =>
-  <div className='lightbox' style={{ ...overlayStyle, display: isVisible ? 'flex' : 'none' }} onClick={onOverlayClicked}>
-    <div style={dialogStyle}>
-      <IconButton title='Close' icon='times' onClick={onCloseClicked} size={16} style={closeStyle} />
-      {children}
+const Lightbox = ({ isVisible, onOverlayClicked, onCloseClicked, children }) => {
+  if (!isVisible) {
+    return <div />;
+  }
+
+  return (
+    <div className='lightbox' style={overlayStyle} onClick={onOverlayClicked}>
+      <div style={dialogStyle}>
+        <IconButton title='Close' icon='times' onClick={onCloseClicked} size={16} style={closeStyle} />
+        {children}
+      </div>
     </div>
-  </div>
+  );
+};
 
 Lightbox.propTypes = {
   isVisible: React.PropTypes.bool,
