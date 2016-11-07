@@ -38,8 +38,20 @@ const StatusList = React.createClass({
   handleScroll (e) {
     const { scrollTop, scrollHeight, clientHeight } = e.target;
 
+    this._oldScrollPosition = scrollHeight - scrollTop;
+
     if (scrollTop === scrollHeight - clientHeight) {
       this.props.onScrollToBottom();
+    }
+  },
+
+  componentDidUpdate (prevProps) {
+    if (prevProps.statusIds.size < this.props.statusIds.size && this._oldScrollPosition) {
+      const node = ReactDOM.findDOMNode(this);
+
+      if (node.scrollTop > 0) {
+        node.scrollTop = node.scrollHeight - this._oldScrollPosition;
+      }
     }
   },
 
