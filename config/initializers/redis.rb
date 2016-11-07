@@ -1,1 +1,5 @@
-$redis = Redis.new(host: ENV['REDIS_HOST'] || 'localhost', port: ENV['REDIS_PORT'] || 6379, driver: :hiredis)
+$redis = Redis.new({
+  host: ENV.fetch('REDIS_HOST') { 'localhost' },
+  port: ENV.fetch('REDIS_PORT') { 6379 },
+  driver: :hiredis
+})

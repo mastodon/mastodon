@@ -56,6 +56,7 @@ class ProcessFeedService < BaseService
       process_attachments(entry, status)
       process_attachments(entry.xpath('./activity:object', activity: ACTIVITY_NS), status.reblog) if status.reblog?
 
+      Rails.logger.debug "Queuing remote status #{status.id} for distribution"
       DistributionWorker.perform_async(status.id)
       return status
     end

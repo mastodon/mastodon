@@ -12,8 +12,10 @@ class FeedManager
   def filter?(timeline_type, status, receiver)
     if timeline_type == :home
       filter_from_home?(status, receiver)
-    else
+    elsif timeline_type == :mentions
       filter_from_mentions?(status, receiver)
+    else
+      false
     end
   end
 
@@ -59,13 +61,23 @@ class FeedManager
     $redis
   end
 
-  # Filter status out of the home feed if it is a reply to someone the user doesn't follow
   def filter_from_home?(status, receiver)
-    replied_to_user = status.reply? ? status.thread.try(:account) : nil
-    (status.reply? && !(receiver.id == replied_to_user.id || replied_to_user.id == status.account_id || receiver.following?(replied_to_user))) || (status.reblog? && receiver.blocking?(status.reblog.account))
+    should_filter = false
+
+    if status.reply? && !status.thread.account.nil?                                     # Filter out if it's a reply
+      should_filter = !receiver.following?(status.thread.account)                       # and I'm not following the person it's a reply to
+      should_filter = should_filter && !(receiver.id == status.thread.account_id)       # and it's not a reply to me
+      should_filter = should_filter && !(status.account_id == status.thread.account_id) # and it's not a self-reply
+    elsif status.reblog?                                                                # Filter out a reblog
+      should_filter = receiver.blocking?(status.reblog.account)                         # if I'm blocking the reblogged person
+    end
+
+    should_filter
   end
 
   def filter_from_mentions?(status, receiver)
-    receiver.blocking?(status.account)
+    should_filter = false
+    should_filter = receiver.blocking?(status.account) # Filter if it's from someone I blocked
+    should_filter
   end
 end
