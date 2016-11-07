@@ -46,7 +46,7 @@ const StatusList = React.createClass({
   },
 
   componentDidUpdate (prevProps) {
-    if (prevProps.statusIds.size < this.props.statusIds.size && this._oldScrollPosition) {
+    if (prevProps.statusIds.size < this.props.statusIds.size && prevProps.statusIds.first() !== this.props.statusIds.first() && this._oldScrollPosition) {
       const node = ReactDOM.findDOMNode(this);
 
       if (node.scrollTop > 0) {
