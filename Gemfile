@@ -45,6 +45,7 @@ gem 'neography'
 
 gem 'react-rails'
 gem 'browserify-rails'
+gem 'autoprefixer-rails'
 
 group :development, :test do
   gem 'rspec-rails'

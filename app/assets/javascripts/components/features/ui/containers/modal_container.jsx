@@ -1,6 +1,6 @@
 import { connect }           from 'react-redux';
-import { SkyLightStateless } from 'react-skylight';
 import { closeModal }        from '../../../actions/modal';
+import Lightbox              from '../../../components/lightbox';
 
 const mapStateToProps = state => ({
   url: state.getIn(['modal', 'url']),
@@ -17,30 +17,11 @@ const mapDispatchToProps = dispatch => ({
   }
 });
 
-const styles = {
-  overlayStyles: {
-
-  },
-
-  dialogStyles: {
-    width: '600px',
-    color: '#282c37',
-    fontSize: '16px',
-    lineHeight: '37px',
-    marginTop: '-300px',
-    left: '0',
-    right: '0',
-    marginLeft: 'auto',
-    marginRight: 'auto',
-    height: 'auto'
-  },
-
-  imageStyle: {
-    display: 'block',
-    maxWidth: '100%',
-    height: 'auto',
-    margin: '0 auto'
-  }
+const imageStyle = {
+  display: 'block',
+  maxWidth: '100%',
+  height: 'auto',
+  margin: '0 auto'
 };
 
 const Modal = React.createClass({
@@ -56,9 +37,9 @@ const Modal = React.createClass({
     const { url, ...other } = this.props;
 
     return (
-      <SkyLightStateless {...other} dialogStyles={styles.dialogStyles} overlayStyles={styles.overlayStyles}>
-        <img src={url} style={styles.imageStyle} />
-      </SkyLightStateless>
+      <Lightbox {...other}>
+        <img src={url} style={imageStyle} />
+      </Lightbox>
     );
   }
 

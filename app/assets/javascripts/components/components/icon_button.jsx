@@ -35,7 +35,8 @@ const IconButton = React.createClass({
       width: `${this.props.size * 1.28571429}px`,
       height: `${this.props.size}px`,
       lineHeight: `${this.props.size}px`,
-      cursor: 'pointer'
+      cursor: 'pointer',
+      ...this.props.style
     };
 
     return (
