@@ -8,7 +8,7 @@ class Formatter
   include ActionView::Helpers::SanitizeHelper
 
   def format(status)
-    return reformat(status) unless status.local?
+    return reformat(status.content) unless status.local?
 
     html = status.text
     html = encode(html)
@@ -20,8 +20,17 @@ class Formatter
     html.html_safe
   end
 
-  def reformat(status)
-    sanitize(status.content, tags: %w(a br p), attributes: %w(href rel))
+  def reformat(html)
+    sanitize(html, tags: %w(a br p), attributes: %w(href rel))
+  end
+
+  def simplified_format(account)
+    return reformat(account.note) unless account.local?
+
+    html = encode(account.note)
+    html = link_urls(html)
+
+    html.html_safe
   end
 
   private

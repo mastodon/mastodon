@@ -118,6 +118,29 @@
   }
 }
 
+.account__header__content {
+  word-wrap: break-word;
+  font-weight: 300;
+  overflow: hidden;
+
+  p {
+    margin-bottom: 20px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  a {
+    color: inherit;
+    text-decoration: underline;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
+}
+
 .status__display-name, .status__relative-time, .detailed-status__display-name, .detailed-status__datetime, .account__display-name {
   text-decoration: none;
 }

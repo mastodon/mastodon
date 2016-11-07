@@ -12,7 +12,7 @@
     %small= "@#{@account.username}"
   .details
     .bio
-      %p= @account.note
+      .account__header__content= Formatter.instance.simplified_format(@account)
 
     .details-counters
       .counter{ class: active_nav_class(account_url(@account)) }

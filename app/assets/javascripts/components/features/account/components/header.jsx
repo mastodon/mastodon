@@ -24,6 +24,8 @@ const Header = React.createClass({
       info = <span style={{ position: 'absolute', top: '10px', right: '10px', opacity: '0.7', display: 'inline-block', verticalAlign: 'top', background: 'rgba(0, 0, 0, 0.4)', color: '#fff', textTransform: 'uppercase', fontSize: '11px', fontWeight: '500', padding: '4px', borderRadius: '4px' }}>Follows you</span>
     }
 
+    const content = { __html: account.get('note') };
+
     return (
       <div style={{ flex: '0 0 auto', background: '#2f3441', textAlign: 'center', backgroundImage: `url(${account.get('header')})`, backgroundSize: 'cover', position: 'relative' }}>
         <div style={{ background: 'rgba(47, 52, 65, 0.8)', padding: '20px 10px' }}>
@@ -36,7 +38,7 @@ const Header = React.createClass({
           </a>
 
           <span style={{ fontSize: '14px', fontWeight: '400', display: 'block', color: '#2b90d9', marginBottom: '10px' }}>@{account.get('acct')}</span>
-          <p style={{ color: '#616b86', fontSize: '14px' }}>{account.get('note')}</p>
+          <div style={{ color: '#616b86', fontSize: '14px' }} className='account__header__content' dangerouslySetInnerHTML={content} />
 
           {info}
         </div>

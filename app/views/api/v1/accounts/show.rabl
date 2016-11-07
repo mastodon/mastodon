@@ -1,7 +1,8 @@
 object @account
 
-attributes :id, :username, :acct, :display_name, :note
+attributes :id, :username, :acct, :display_name
 
+node(:note)            { |account| Formatter.instance.simplified_format(account) }
 node(:url)             { |account| TagManager.instance.url_for(account) }
 node(:avatar)          { |account| full_asset_url(account.avatar.url(:large, false)) }
 node(:header)          { |account| full_asset_url(account.header.url(:medium, false)) }
