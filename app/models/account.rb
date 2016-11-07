@@ -1,7 +1,7 @@
 class Account < ApplicationRecord
   include Targetable
 
-  MENTION_RE = /(?:^|[\s\.>*+])@([a-z0-9_]+(?:@[a-z0-9\.\-]+)?)/i
+  MENTION_RE = /(?:^|[^\/\w])@([a-z0-9_]+(?:@[a-z0-9\.\-]+)?)/i
   IMAGE_MIME_TYPES = ['image/jpeg', 'image/png', 'image/gif'].freeze
 
   # Local users
