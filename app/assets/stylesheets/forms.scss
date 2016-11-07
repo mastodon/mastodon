@@ -52,9 +52,11 @@ code {
 
   input[type=text], input[type=email], input[type=password], textarea {
     background: transparent;
+    box-sizing: border-box;
     border: 0;
     border-bottom: 2px solid #9baec8;
-    padding: 7px 0;
+    border-radius: 2px 2px 0 0;
+    padding: 7px 4px;
     font-size: 16px;
     color: #fff;
     display: block;
@@ -76,6 +78,7 @@ code {
 
     &:active, &:focus {
       border-bottom-color: #2b90d9;
+      background: rgba(0, 0, 0, 0.1);
     }
   }
 
