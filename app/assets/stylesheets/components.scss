@@ -71,12 +71,28 @@
   }
 }
 
+.emojione {
+  display: inline-block;
+  font-size: inherit;
+  vertical-align: middle;
+  margin: -.2ex .15em .2ex;
+
+  img {
+    width: auto;
+  }
+}
+
 .status__content, .reply-indicator__content {
   font-size: 15px;
   line-height: 20px;
   word-wrap: break-word;
   font-weight: 300;
   overflow: hidden;
+
+  .emojione {
+    width: 18px;
+    height: 18px;
+  }
 
   p {
     margin-bottom: 20px;
@@ -110,6 +126,11 @@
   .status__content {
     font-size: 19px;
     line-height: 24px;
+
+    .emojione {
+      width: 22px;
+      height: 22px;
+    }
   }
 }
 
