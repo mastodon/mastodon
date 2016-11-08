@@ -175,8 +175,7 @@ class ProcessFeedService < BaseService
 
     def url(xml = @xml)
       link = xml.at_xpath('./xmlns:link[@rel="alternate"]')
-      link['href'] unless link.nil?
-      nil
+      link.nil? ? nil : link['href']
     end
 
     def content(xml = @xml)

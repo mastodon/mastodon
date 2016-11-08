@@ -3,6 +3,11 @@ class FetchAtomService < BaseService
     response = http_client.head(url)
 
     Rails.logger.debug "Remote status HEAD request returned code #{response.code}"
+
+    response = http_client.get(url) if response.code == 405
+
+    Rails.logger.debug "Remote status GET request returned code #{response.code}"
+
     return nil if response.code != 200
 
     if response.mime_type == 'application/atom+xml'
