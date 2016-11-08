@@ -42,7 +42,7 @@ class ProcessFeedService < BaseService
       status = status_from_xml(@xml)
 
       if verb == :share
-        original_status = status_from_xml(xml.at_xpath('.//activity:object', activity: ACTIVITY_NS))
+        original_status = status_from_xml(@xml.at_xpath('.//activity:object', activity: ACTIVITY_NS))
         status.reblog   = original_status
       end
 
