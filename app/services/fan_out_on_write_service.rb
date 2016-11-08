@@ -33,7 +33,7 @@ class FanOutOnWriteService < BaseService
 
     status.mentions.includes(:account).each do |mention|
       mentioned_account = mention.account
-      next if !mentioned_account.local? || mentioned_account.id == status.account_id || FeedManager.instance.filter?(:mentions, status, mentioned_account)
+      next if !mentioned_account.local? || FeedManager.instance.filter?(:mentions, status, mentioned_account)
       FeedManager.instance.push(:mentions, mentioned_account, status)
     end
   end

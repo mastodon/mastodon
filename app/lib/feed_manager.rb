@@ -76,8 +76,8 @@ class FeedManager
   end
 
   def filter_from_mentions?(status, receiver)
-    should_filter = false
-    should_filter = receiver.blocking?(status.account) # Filter if it's from someone I blocked
+    should_filter = receiver.id == status.account_id                    # Filter if I'm mentioning myself
+    should_filter = should_filter || receiver.blocking?(status.account) # or it's from someone I blocked
     should_filter
   end
 end
