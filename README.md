@@ -7,7 +7,7 @@ Mastodon
 [travis]: https://travis-ci.org/Gargron/mastodon
 [code_climate]: https://codeclimate.com/github/Gargron/mastodon
 
-Mastodon is a free, open-source social network server. A decentralized alternative to commercial platforms, it avoids the risks of a single company monopolizing your communication. Anyone can run Mastodon and participate in the social network seamlessly. 
+Mastodon is a free, open-source social network server. A decentralized alternative to commercial platforms, it avoids the risks of a single company monopolizing your communication. Anyone can run Mastodon and participate in the social network seamlessly.
 
 An alternative implementation of the GNU social project. Based on ActivityStreams, Webfinger, PubsubHubbub and Salmon.
 
@@ -29,6 +29,7 @@ If you would like, you can [support the development of this project on Patreon][
 - [Use this tool to find Twitter friends on Mastodon](https://mastodon-bridge.herokuapp.com)
 - [API overview](https://github.com/Gargron/mastodon/wiki/API)
 - [How to use the API via cURL/oAuth](https://github.com/Gargron/mastodon/wiki/Testing-with-cURL)
+- [Frequently Asked Questions](https://github.com/Gargron/mastodon/wiki/FAQ)
 
 ## Features
 
@@ -115,3 +116,10 @@ Which will re-create the updated containers, leaving databases and data as is. D
 ### Contributing
 
 You can open issues for bugs you've found or features you think are missing. You can also submit pull requests to this repository. This section may be updated with more details in the future.
+
+### Extra credits
+
+- The [Emoji One](https://github.com/Ranks/emojione) pack has been used for the emojis
+- The error page image courtesy of [Dopatwo](https://www.youtube.com/user/dopatwo)
+
+![Mastodon error image](https://mastodon.social/oops.png)
