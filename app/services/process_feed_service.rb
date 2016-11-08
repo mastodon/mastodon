@@ -44,6 +44,11 @@ class ProcessFeedService < BaseService
       if verb == :share
         original_status = status_from_xml(@xml.at_xpath('.//activity:object', activity: ACTIVITY_NS))
         status.reblog   = original_status
+
+        if original_status.nil?
+          status.destroy
+          return nil
+        end
       end
 
       status.save!
@@ -68,15 +73,22 @@ class ProcessFeedService < BaseService
       status = find_status(id(entry))
       return status unless status.nil?
 
+      begin
+        account = account?(entry) ? find_or_resolve_account(acct(entry)) : @account
+      rescue Goldfinger::Error
+        return nil
+      end
+
       status = Status.create!({
         uri: id(entry),
         url: url(entry),
-        account: account?(entry) ? find_or_resolve_account(acct(entry)) : @account,
+        account: account,
         text: content(entry),
         created_at: published(entry),
       })
 
       if thread?(entry)
+        Rails.logger.debug "Trying to attach #{status.id} (#{id(entry)}) to #{thread(entry).first}"
         status.thread = find_or_resolve_status(status, *thread(entry))
       end
 
@@ -136,7 +148,7 @@ class ProcessFeedService < BaseService
     end
 
     def hashtags_from_xml(parent, xml)
-      tags = xml.xpath('./xmlns:category').map { |category| category['term'] }
+      tags = xml.xpath('./xmlns:category').map { |category| category['term'] }.select { |t| !t.blank? }
       ProcessHashtagsService.new.call(parent, tags)
     end
 
