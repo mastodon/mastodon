@@ -95,23 +95,29 @@ class Status < ApplicationRecord
       where(id: Mention.where(account: account).pluck(:status_id)).with_includes.with_counters
     end
 
-    def as_public_timeline(account)
-      joins('LEFT OUTER JOIN statuses AS reblogs ON statuses.reblog_of_id = reblogs.id')
+    def as_public_timeline(account = nil)
+      query = joins('LEFT OUTER JOIN statuses AS reblogs ON statuses.reblog_of_id = reblogs.id')
         .joins('LEFT OUTER JOIN accounts ON statuses.account_id = accounts.id')
         .where('accounts.silenced = FALSE')
-        .where('(reblogs.account_id IS NULL OR reblogs.account_id NOT IN (SELECT target_account_id FROM blocks WHERE account_id = ?)) AND statuses.account_id NOT IN (SELECT target_account_id FROM blocks WHERE account_id = ?)', account.id, account.id)
-        .with_includes
-        .with_counters
+
+      unless account.nil?
+        query = query.where('(reblogs.account_id IS NULL OR reblogs.account_id NOT IN (SELECT target_account_id FROM blocks WHERE account_id = ?)) AND statuses.account_id NOT IN (SELECT target_account_id FROM blocks WHERE account_id = ?)', account.id, account.id)
+      end
+
+      query.with_includes.with_counters
     end
 
-    def as_tag_timeline(tag, account)
-      tag.statuses
+    def as_tag_timeline(tag, account = nil)
+      query = tag.statuses
         .joins('LEFT OUTER JOIN statuses AS reblogs ON statuses.reblog_of_id = reblogs.id')
         .joins('LEFT OUTER JOIN accounts ON statuses.account_id = accounts.id')
         .where('accounts.silenced = FALSE')
-        .where('(reblogs.account_id IS NULL OR reblogs.account_id NOT IN (SELECT target_account_id FROM blocks WHERE account_id = ?)) AND statuses.account_id NOT IN (SELECT target_account_id FROM blocks WHERE account_id = ?)', account.id, account.id)
-        .with_includes
-        .with_counters
+
+      unless account.nil?
+        query = query.where('(reblogs.account_id IS NULL OR reblogs.account_id NOT IN (SELECT target_account_id FROM blocks WHERE account_id = ?)) AND statuses.account_id NOT IN (SELECT target_account_id FROM blocks WHERE account_id = ?)', account.id, account.id)
+      end
+
+      query.with_includes.with_counters
     end
 
     def favourites_map(status_ids, account_id)

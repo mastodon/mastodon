@@ -1,8 +1,8 @@
 class Api::V1::StatusesController < ApiController
   before_action -> { doorkeeper_authorize! :read }, except: [:create, :destroy, :reblog, :unreblog, :favourite, :unfavourite]
   before_action -> { doorkeeper_authorize! :write }, only:  [:create, :destroy, :reblog, :unreblog, :favourite, :unfavourite]
-
-  before_action :set_status, only: [:show, :context, :reblogged_by, :favourited_by]
+  before_action :require_user!, except: [:show, :context, :reblogged_by, :favourited_by]
+  before_action :set_status, only:      [:show, :context, :reblogged_by, :favourited_by]
 
   respond_to :json
 
@@ -54,37 +54,6 @@ class Api::V1::StatusesController < ApiController
   def unfavourite
     @status = UnfavouriteService.new.call(current_user.account, Status.find(params[:id])).status.reload
     render action: :show
-  end
-
-  def home
-    @statuses = Feed.new(:home, current_user.account).get(20, params[:max_id], params[:since_id]).to_a
-    set_maps(@statuses)
-    render action: :index
-  end
-
-  def mentions
-    @statuses = Feed.new(:mentions, current_user.account).get(20, params[:max_id], params[:since_id]).to_a
-    set_maps(@statuses)
-    render action: :index
-  end
-
-  def public
-    @statuses = Status.as_public_timeline(current_user.account).paginate_by_max_id(20, params[:max_id], params[:since_id]).to_a
-    set_maps(@statuses)
-    render action: :index
-  end
-
-  def tag
-    @tag = Tag.find_by(name: params[:id].downcase)
-
-    if @tag.nil?
-      @statuses = []
-    else
-      @statuses = Status.as_tag_timeline(@tag, current_user.account).paginate_by_max_id(20, params[:max_id], params[:since_id]).to_a
-      set_maps(@statuses)
-    end
-
-    render action: :index
   end
 
   private

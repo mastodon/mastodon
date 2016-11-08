@@ -1,5 +1,7 @@
 class Api::V1::MediaController < ApiController
   before_action -> { doorkeeper_authorize! :write }
+  before_action :require_user!
+
   respond_to    :json
 
   def create

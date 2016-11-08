@@ -60,6 +60,14 @@ class ApiController < ApplicationController
 
   def current_user
     super || current_resource_owner
+  rescue ActiveRecord::RecordNotFound
+    nil
+  end
+
+  def require_user!
+    current_resource_owner
+  rescue ActiveRecord::RecordNotFound
+    render json: { error: 'This method requires an authenticated user' }, status: 422
   end
 
   def render_empty
@@ -67,8 +75,14 @@ class ApiController < ApplicationController
   end
 
   def set_maps(statuses)
+    if current_account.nil?
+      @reblogs_map    = {}
+      @favourites_map = {}
+      return
+    end
+
     status_ids      = statuses.flat_map { |s| [s.id, s.reblog_of_id] }.compact.uniq
-    @reblogs_map    = Status.reblogs_map(status_ids, current_user.account)
-    @favourites_map = Status.favourites_map(status_ids, current_user.account)
+    @reblogs_map    = Status.reblogs_map(status_ids, current_account)
+    @favourites_map = Status.favourites_map(status_ids, current_account)
   end
 end

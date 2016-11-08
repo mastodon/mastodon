@@ -55,13 +55,6 @@ Rails.application.routes.draw do
     # JSON / REST API
     namespace :v1 do
       resources :statuses, only: [:create, :show, :destroy] do
-        collection do
-          get :home
-          get :mentions
-          get :public
-          get '/tag/:id', action: :tag
-        end
-
         member do
           get :context
           get :reblogged_by
@@ -71,6 +64,15 @@ Rails.application.routes.draw do
           post :unreblog
           post :favourite
           post :unfavourite
+        end
+      end
+
+      resources :timelines, only: [] do
+        collection do
+          get :home
+          get :mentions
+          get :public
+          get '/tag/:id', action: :tag
         end
       end
 

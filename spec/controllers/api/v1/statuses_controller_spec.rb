@@ -59,38 +59,6 @@ RSpec.describe Api::V1::StatusesController, type: :controller do
     end
   end
 
-  describe 'GET #home' do
-    it 'returns http success' do
-      get :home
-      expect(response).to have_http_status(:success)
-    end
-  end
-
-  describe 'GET #mentions' do
-    it 'returns http success' do
-      get :mentions
-      expect(response).to have_http_status(:success)
-    end
-  end
-
-  describe 'GET #public' do
-    it 'returns http success' do
-      get :public
-      expect(response).to have_http_status(:success)
-    end
-  end
-
-  describe 'GET #tag' do
-    before do
-      post :create, params: { status: 'It is a #test' }
-    end
-
-    it 'returns http success' do
-      get :tag, params: { id: 'test' }
-      expect(response).to have_http_status(:success)
-    end
-  end
-
   describe 'POST #create' do
     before do
       post :create, params: { status: 'Hello world' }

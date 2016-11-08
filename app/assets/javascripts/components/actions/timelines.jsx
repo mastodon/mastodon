@@ -73,7 +73,7 @@ export function refreshTimeline(timeline, replace = false, id = null) {
       path = `${path}/${id}`
     }
 
-    api(getState).get(`/api/v1/statuses/${path}${params}`).then(function (response) {
+    api(getState).get(`/api/v1/timelines/${path}${params}`).then(function (response) {
       dispatch(refreshTimelineSuccess(timeline, response.data, replace));
     }).catch(function (error) {
       dispatch(refreshTimelineFail(timeline, error));
@@ -101,7 +101,7 @@ export function expandTimeline(timeline, id = null) {
       path = `${path}/${id}`
     }
 
-    api(getState).get(`/api/v1/statuses/${path}?max_id=${lastId}`).then(response => {
+    api(getState).get(`/api/v1/timelines/${path}?max_id=${lastId}`).then(response => {
       dispatch(expandTimelineSuccess(timeline, response.data));
     }).catch(error => {
       dispatch(expandTimelineFail(timeline, error));
