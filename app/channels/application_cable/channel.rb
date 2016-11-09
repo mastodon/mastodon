@@ -14,7 +14,7 @@ module ApplicationCable
     end
 
     def filter?(status)
-      !status.nil? && (current_user.account.blocking?(status.account) || (status.reblog? && current_user.account.blocking?(status.reblog.account)))
+      !status.nil? && FeedManager.instance.filter?(:public, status, current_user.account)
     end
   end
 end

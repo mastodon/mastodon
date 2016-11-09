@@ -88,12 +88,10 @@ class Status < ApplicationRecord
     end
 
     def as_public_timeline(account = nil)
-      query = joins('LEFT OUTER JOIN statuses AS reblogs ON statuses.reblog_of_id = reblogs.id')
-        .joins('LEFT OUTER JOIN accounts ON statuses.account_id = accounts.id')
-        .where('accounts.silenced = FALSE')
+      query = joins('LEFT OUTER JOIN accounts ON statuses.account_id = accounts.id').where('accounts.silenced = FALSE')
 
       unless account.nil?
-        query = query.where('(reblogs.account_id IS NULL OR reblogs.account_id NOT IN (SELECT target_account_id FROM blocks WHERE account_id = ?)) AND statuses.account_id NOT IN (SELECT target_account_id FROM blocks WHERE account_id = ?)', account.id, account.id)
+        query = filter_timeline(query, account)
       end
 
       query.with_includes.with_counters
@@ -101,12 +99,11 @@ class Status < ApplicationRecord
 
     def as_tag_timeline(tag, account = nil)
       query = tag.statuses
-        .joins('LEFT OUTER JOIN statuses AS reblogs ON statuses.reblog_of_id = reblogs.id')
         .joins('LEFT OUTER JOIN accounts ON statuses.account_id = accounts.id')
         .where('accounts.silenced = FALSE')
 
       unless account.nil?
-        query = query.where('(reblogs.account_id IS NULL OR reblogs.account_id NOT IN (SELECT target_account_id FROM blocks WHERE account_id = ?)) AND statuses.account_id NOT IN (SELECT target_account_id FROM blocks WHERE account_id = ?)', account.id, account.id)
+        query = filter_timeline(query, account)
       end
 
       query.with_includes.with_counters
@@ -118,6 +115,19 @@ class Status < ApplicationRecord
 
     def reblogs_map(status_ids, account_id)
       select('reblog_of_id').where(reblog_of_id: status_ids).where(account_id: account_id).map { |s| [s.reblog_of_id, true] }.to_h
+    end
+
+    private
+
+    def filter_timeline(query, account)
+      blocked = Block.where(account: account).pluck(:target_account_id)
+
+      query
+        .joins('LEFT OUTER JOIN statuses AS parents ON statuses.in_reply_to_id = parents.id')
+        .joins('LEFT OUTER JOIN statuses AS reblogs ON statuses.reblog_of_id = reblogs.id')
+        .where('parents.account_id NOT IN (?)', blocked)
+        .where('statuses.account_id NOT IN (?)', blocked)
+        .where('(reblogs.id IS NULL OR reblogs.account_id NOT IN (?))', blocked)
     end
   end
 

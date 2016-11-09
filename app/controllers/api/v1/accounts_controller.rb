@@ -16,7 +16,7 @@ class Api::V1::AccountsController < ApiController
 
   def following
     results   = Follow.where(account: @account).paginate_by_max_id(DEFAULT_ACCOUNTS_LIMIT, params[:max_id], params[:since_id])
-    @accounts = Account.where(id: results.map(&:account_id)).with_counters.to_a
+    @accounts = Account.where(id: results.map(&:target_account_id)).with_counters.to_a
 
     next_path = following_api_v1_account_url(max_id: results.last.id)    if results.size == DEFAULT_ACCOUNTS_LIMIT
     prev_path = following_api_v1_account_url(since_id: results.first.id) if results.size > 0

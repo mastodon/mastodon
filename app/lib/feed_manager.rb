@@ -14,6 +14,8 @@ class FeedManager
       filter_from_home?(status, receiver)
     elsif timeline_type == :mentions
       filter_from_mentions?(status, receiver)
+    elsif timeline_type == :public
+      filter_from_public?(status, receiver)
     else
       false
     end
@@ -78,6 +80,18 @@ class FeedManager
   def filter_from_mentions?(status, receiver)
     should_filter = receiver.id == status.account_id                    # Filter if I'm mentioning myself
     should_filter = should_filter || receiver.blocking?(status.account) # or it's from someone I blocked
+    should_filter
+  end
+
+  def filter_from_public?(status, receiver)
+    should_filter = receiver.blocking?(status.account)
+
+    if status.reply? && !status.thread.account.nil?
+      should_filter = should_filter || receiver.blocking?(status.thread.account)
+    elsif status.reblog?
+      should_filter = should_filter || receiver.blocking?(status.reblog.account)
+    end
+
     should_filter
   end
 end
