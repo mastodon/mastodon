@@ -1,4 +1,7 @@
 class ApiController < ApplicationController
+  DEFAULT_STATUSES_LIMIT = 20
+  DEFAULT_ACCOUNTS_LIMIT = 40
+
   protect_from_forgery with: :null_session
 
   skip_before_action :verify_authenticity_token
@@ -52,6 +55,13 @@ class ApiController < ApplicationController
     response.headers['Access-Control-Allow-Methods']  = 'POST, PUT, DELETE, GET, OPTIONS'
     response.headers['Access-Control-Request-Method'] = '*'
     response.headers['Access-Control-Allow-Headers']  = 'Origin, X-Requested-With, Content-Type, Accept, Authorization'
+  end
+
+  def set_pagination_headers(next_path = nil, prev_path = nil)
+    links = []
+    links << [next_path, [['rel', 'next']]] if next_path
+    links << [prev_path, [['rel', 'prev']]] if prev_path
+    response.headers['Link'] = LinkHeader.new(links)
   end
 
   def current_resource_owner

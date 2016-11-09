@@ -4,7 +4,7 @@ class Api::V1::AccountsController < ApiController
   before_action :require_user!, except: [:show, :following, :followers, :statuses]
   before_action :set_account, except: [:verify_credentials, :suggestions]
 
-  respond_to    :json
+  respond_to :json
 
   def show
   end
@@ -15,12 +15,26 @@ class Api::V1::AccountsController < ApiController
   end
 
   def following
-    @accounts = @account.following.with_counters.limit(40)
+    results   = Follow.where(account: @account).paginate_by_max_id(DEFAULT_ACCOUNTS_LIMIT, params[:max_id], params[:since_id])
+    @accounts = Account.where(id: results.map(&:account_id)).with_counters.to_a
+
+    next_path = following_api_v1_account_url(max_id: results.last.id)    if results.size == DEFAULT_ACCOUNTS_LIMIT
+    prev_path = following_api_v1_account_url(since_id: results.first.id) if results.size > 0
+
+    set_pagination_headers(next_path, prev_path)
+
     render action: :index
   end
 
   def followers
-    @accounts = @account.followers.with_counters.limit(40)
+    results   = Follow.where(target_account: @account).paginate_by_max_id(DEFAULT_ACCOUNTS_LIMIT, params[:max_id], params[:since_id])
+    @accounts = Account.where(id: results.map(&:account_id)).with_counters.to_a
+
+    next_path = following_api_v1_account_url(max_id: results.last.id)    if results.size == DEFAULT_ACCOUNTS_LIMIT
+    prev_path = following_api_v1_account_url(since_id: results.first.id) if results.size > 0
+
+    set_pagination_headers(next_path, prev_path)
+
     render action: :index
   end
 
@@ -35,8 +49,14 @@ class Api::V1::AccountsController < ApiController
   end
 
   def statuses
-    @statuses = @account.statuses.with_includes.with_counters.paginate_by_max_id(20, params[:max_id], params[:since_id]).to_a
+    @statuses = @account.statuses.with_includes.with_counters.paginate_by_max_id(DEFAULT_STATUSES_LIMIT, params[:max_id], params[:since_id]).to_a
+
     set_maps(@statuses)
+
+    next_path = statuses_api_v1_account_url(max_id: @statuses.last.id)    if @statuses.size == DEFAULT_STATUSES_LIMIT
+    prev_path = statuses_api_v1_account_url(since_id: @statuses.first.id) if @statuses.size > 0
+
+    set_pagination_headers(next_path, prev_path)
   end
 
   def follow

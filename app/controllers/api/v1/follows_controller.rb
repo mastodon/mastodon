@@ -2,7 +2,7 @@ class Api::V1::FollowsController < ApiController
   before_action -> { doorkeeper_authorize! :follow }
   before_action :require_user!
 
-  respond_to    :json
+  respond_to :json
 
   def create
     raise ActiveRecord::RecordNotFound if params[:uri].blank?

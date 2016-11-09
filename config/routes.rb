@@ -67,14 +67,10 @@ Rails.application.routes.draw do
         end
       end
 
-      resources :timelines, only: [] do
-        collection do
-          get :home
-          get :mentions
-          get :public
-          get '/tag/:id', action: :tag
-        end
-      end
+      get '/timelines/home',     to: 'timelines#home', as: :home_timeline
+      get '/timelines/mentions', to: 'timelines#mentions', as: :mentions_timeline
+      get '/timelines/public',   to: 'timelines#public', as: :public_timeline
+      get '/timelines/tag/:id',  to: 'timelines#tag', as: :hashtag_timeline
 
       resources :follows,  only: [:create]
       resources :media,    only: [:create]

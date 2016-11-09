@@ -133,36 +133,38 @@ class Account < ApplicationRecord
     []
   end
 
-  def self.find_local!(username)
-    find_remote!(username, nil)
-  end
+  class << self
+    def find_local!(username)
+      find_remote!(username, nil)
+    end
 
-  def self.find_remote!(username, domain)
-    where(arel_table[:username].matches(username)).where(domain.nil? ? { domain: nil } : arel_table[:domain].matches(domain)).take!
-  end
+    def find_remote!(username, domain)
+      where(arel_table[:username].matches(username)).where(domain.nil? ? { domain: nil } : arel_table[:domain].matches(domain)).take!
+    end
 
-  def self.find_local(username)
-    find_local!(username)
-  rescue ActiveRecord::RecordNotFound
-    nil
-  end
+    def find_local(username)
+      find_local!(username)
+    rescue ActiveRecord::RecordNotFound
+      nil
+    end
 
-  def self.find_remote(username, domain)
-    find_remote!(username, domain)
-  rescue ActiveRecord::RecordNotFound
-    nil
-  end
+    def find_remote(username, domain)
+      find_remote!(username, domain)
+    rescue ActiveRecord::RecordNotFound
+      nil
+    end
 
-  def self.following_map(target_account_ids, account_id)
-    Follow.where(target_account_id: target_account_ids).where(account_id: account_id).map { |f| [f.target_account_id, true] }.to_h
-  end
+    def following_map(target_account_ids, account_id)
+      Follow.where(target_account_id: target_account_ids).where(account_id: account_id).map { |f| [f.target_account_id, true] }.to_h
+    end
 
-  def self.followed_by_map(target_account_ids, account_id)
-    Follow.where(account_id: target_account_ids).where(target_account_id: account_id).map { |f| [f.account_id, true] }.to_h
-  end
+    def followed_by_map(target_account_ids, account_id)
+      Follow.where(account_id: target_account_ids).where(target_account_id: account_id).map { |f| [f.account_id, true] }.to_h
+    end
 
-  def self.blocking_map(target_account_ids, account_id)
-    Block.where(target_account_id: target_account_ids).where(account_id: account_id).map { |b| [b.target_account_id, true] }.to_h
+    def blocking_map(target_account_ids, account_id)
+      Block.where(target_account_id: target_account_ids).where(account_id: account_id).map { |b| [b.target_account_id, true] }.to_h
+    end
   end
 
   before_create do

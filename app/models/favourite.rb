@@ -1,4 +1,5 @@
 class Favourite < ApplicationRecord
+  include Paginable
   include Streamable
 
   belongs_to :account, inverse_of: :favourites

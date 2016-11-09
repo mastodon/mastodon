@@ -1,4 +1,5 @@
 class Follow < ApplicationRecord
+  include Paginable
   include Streamable
 
   belongs_to :account

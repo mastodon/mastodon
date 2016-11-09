@@ -15,12 +15,26 @@ class Api::V1::StatusesController < ApiController
   end
 
   def reblogged_by
-    @accounts = @status.reblogged_by(40)
+    results   = @status.reblogs.paginate_by_max_id(DEFAULT_ACCOUNTS_LIMIT, params[:max_id], params[:since_id])
+    @accounts = Account.where(id: results.map(&:account_id)).with_counters.to_a
+
+    next_path = reblogged_by_api_v1_status_url(max_id: results.last.id)    if results.size == DEFAULT_ACCOUNTS_LIMIT
+    prev_path = reblogged_by_api_v1_status_url(since_id: results.first.id) if results.size > 0
+
+    set_pagination_headers(next_path, prev_path)
+
     render action: :accounts
   end
 
   def favourited_by
-    @accounts = @status.favourited_by(40)
+    results   = @status.favourites.paginate_by_max_id(DEFAULT_ACCOUNTS_LIMIT, params[:max_id], params[:since_id])
+    @accounts = Account.where(id: results.map(&:account_id)).with_counters.to_a
+
+    next_path = favourited_by_api_v1_status_url(max_id: results.last.id)    if results.size == DEFAULT_ACCOUNTS_LIMIT
+    prev_path = favourited_by_api_v1_status_url(since_id: results.first.id) if results.size > 0
+
+    set_pagination_headers(next_path, prev_path)
+
     render action: :accounts
   end
 
