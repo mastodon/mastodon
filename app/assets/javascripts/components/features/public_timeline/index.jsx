@@ -1,11 +1,12 @@
-import { connect }         from 'react-redux';
-import PureRenderMixin     from 'react-addons-pure-render-mixin';
+import { connect } from 'react-redux';
+import PureRenderMixin from 'react-addons-pure-render-mixin';
 import StatusListContainer from '../ui/containers/status_list_container';
-import Column              from '../ui/components/column';
+import Column from '../ui/components/column';
 import {
   refreshTimeline,
-  updateTimeline
-}                          from '../../actions/timelines';
+  updateTimeline,
+  deleteFromTimelines
+} from '../../actions/timelines';
 
 const PublicTimeline = React.createClass({
 
@@ -24,7 +25,12 @@ const PublicTimeline = React.createClass({
       this.subscription = App.cable.subscriptions.create('PublicChannel', {
 
         received (data) {
-          dispatch(updateTimeline('public', JSON.parse(data.message)));
+          switch(data.type) {
+            case 'update':
+              return dispatch(updateTimeline('public', JSON.parse(data.message)));
+            case 'delete':
+              return dispatch(deleteFromTimelines(data.id));
+          }
         }
 
       });

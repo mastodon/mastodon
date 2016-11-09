@@ -42,12 +42,12 @@ class FanOutOnWriteService < BaseService
     Rails.logger.debug "Delivering status #{status.id} to hashtags"
 
     status.tags.find_each do |tag|
-      FeedManager.instance.broadcast("hashtag:#{tag.name}", id: status.id)
+      FeedManager.instance.broadcast("hashtag:#{tag.name}", type: 'update', id: status.id)
     end
   end
 
   def deliver_to_public(status)
     Rails.logger.debug "Delivering status #{status.id} to public timeline"
-    FeedManager.instance.broadcast(:public, id: status.id)
+    FeedManager.instance.broadcast(:public, type: 'update', id: status.id)
   end
 end

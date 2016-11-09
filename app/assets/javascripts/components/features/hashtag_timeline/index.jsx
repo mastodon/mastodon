@@ -4,7 +4,8 @@ import StatusListContainer from '../ui/containers/status_list_container';
 import Column from '../ui/components/column';
 import {
   refreshTimeline,
-  updateTimeline
+  updateTimeline,
+  deleteFromTimelines
 } from '../../actions/timelines';
 
 const HashtagTimeline = React.createClass({
@@ -24,7 +25,12 @@ const HashtagTimeline = React.createClass({
       }, {
 
         received (data) {
-          dispatch(updateTimeline('tag', JSON.parse(data.message)));
+          switch(data.type) {
+            case 'update':
+              return dispatch(updateTimeline('tag', JSON.parse(data.message)));
+            case 'delete':
+              return dispatch(deleteFromTimelines(data.id));
+          }
         }
 
       });
