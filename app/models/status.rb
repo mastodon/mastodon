@@ -121,6 +121,7 @@ class Status < ApplicationRecord
 
     def filter_timeline(query, account)
       blocked = Block.where(account: account).pluck(:target_account_id)
+      return query if blocked.empty?
 
       query
         .joins('LEFT OUTER JOIN statuses AS parents ON statuses.in_reply_to_id = parents.id')

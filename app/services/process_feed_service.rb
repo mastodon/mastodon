@@ -48,6 +48,8 @@ class ProcessFeedService < BaseService
         if original_status.nil?
           status.destroy
           return nil
+        elsif original_status.reblog?
+          status.reblog = original_status.reblog
         end
       end
 
@@ -73,10 +75,17 @@ class ProcessFeedService < BaseService
       status = find_status(id(entry))
       return status unless status.nil?
 
-      begin
-        account = account?(entry) ? find_or_resolve_account(acct(entry)) : @account
-      rescue Goldfinger::Error
-        return nil
+      # If status embeds an author, find that author
+      # If that author cannot be found, don't record the status (do not misattribute)
+      if account?(entry)
+        begin
+          account = find_or_resolve_account(acct(entry))
+          return nil if account.nil?
+        rescue Goldfinger::Error
+          return nil
+        end
+      else
+        account = @account
       end
 
       status = Status.create!({
