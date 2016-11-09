@@ -7,7 +7,6 @@ class ApiController < ApplicationController
   skip_before_action :verify_authenticity_token
 
   before_action :set_rate_limit_headers
-  before_action :set_cors_headers
 
   rescue_from ActiveRecord::RecordInvalid do |e|
     render json: { error: e.to_s }, status: 422
@@ -48,13 +47,6 @@ class ApiController < ApplicationController
     response.headers['X-RateLimit-Limit']     = match_data[:limit].to_s
     response.headers['X-RateLimit-Remaining'] = (match_data[:limit] - match_data[:count]).to_s
     response.headers['X-RateLimit-Reset']     = (now + (match_data[:period] - now.to_i % match_data[:period])).to_s
-  end
-
-  def set_cors_headers
-    response.headers['Access-Control-Allow-Origin']   = '*'
-    response.headers['Access-Control-Allow-Methods']  = 'POST, PUT, DELETE, GET, OPTIONS'
-    response.headers['Access-Control-Request-Method'] = '*'
-    response.headers['Access-Control-Allow-Headers']  = 'Origin, X-Requested-With, Content-Type, Accept, Authorization'
   end
 
   def set_pagination_headers(next_path = nil, prev_path = nil)

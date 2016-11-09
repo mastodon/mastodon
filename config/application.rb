@@ -27,6 +27,15 @@ module Mastodon
 
     config.active_job.queue_adapter = :sidekiq
 
+    config.middleware.insert_before 0, Rack::Cors do
+      allow do
+        origins  '*'
+
+        resource '/api/*',       :headers => :any, :methods => [:post, :put, :delete, :get, :options], credentials: false
+        resource '/oauth/token', :headers => :any, :methods => [:post], credentials: false
+      end
+    end
+
     config.middleware.use Rack::Attack
     config.middleware.use Rack::Deflater
 
@@ -38,9 +47,9 @@ module Mastodon
     end
 
     config.action_dispatch.default_headers = {
-      'X-Frame-Options' => 'DENY',
+      'X-Frame-Options'        => 'DENY',
       'X-Content-Type-Options' => 'nosniff',
-      'X-XSS-Protection' => '1; mode=block'
+      'X-XSS-Protection'       => '1; mode=block'
     }
   end
 end
