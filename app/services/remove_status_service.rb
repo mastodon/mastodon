@@ -4,6 +4,8 @@ class RemoveStatusService < BaseService
     remove_from_followers(status)
     remove_from_mentioned(status)
     remove_reblogs(status)
+    remove_from_hashtags(status)
+    remove_from_public(status)
 
     status.destroy!
   end
@@ -47,6 +49,16 @@ class RemoveStatusService < BaseService
   def unpush(type, receiver, status)
     redis.zremrangebyscore(FeedManager.instance.key(type, receiver.id), status.id, status.id)
     FeedManager.instance.broadcast(receiver.id, type: 'delete', id: status.id)
+  end
+
+  def remove_from_hashtags(status)
+    status.tags.each do |tag|
+      FeedManager.instance.broadcast("hashtag:#{tag.name}", type: 'delete', id: status.id)
+    end
+  end
+
+  def remove_from_public(status)
+    FeedManager.instance.broadcast(:public, type: 'delete', id: status.id)
   end
 
   def redis

@@ -4,14 +4,17 @@ module ApplicationCable
 
     def hydrate_status(encoded_message)
       message = ActiveSupport::JSON.decode(encoded_message)
-      status  = Status.find_by(id: message['id'])
+
+      return [nil, message] if message['type'] == 'delete'
+
+      status             = Status.find_by(id: message['id'])
       message['message'] = FeedManager.instance.inline_render(current_user.account, status)
 
       [status, message]
     end
 
     def filter?(status)
-      status.nil? || current_user.account.blocking?(status.account) || (status.reblog? && current_user.account.blocking?(status.reblog.account))
+      !status.nil? && (current_user.account.blocking?(status.account) || (status.reblog? && current_user.account.blocking?(status.reblog.account)))
     end
   end
 end
