@@ -7,7 +7,9 @@ const IconButton = React.createClass({
     icon: React.PropTypes.string.isRequired,
     onClick: React.PropTypes.func.isRequired,
     size: React.PropTypes.number,
-    active: React.PropTypes.bool
+    active: React.PropTypes.bool,
+    style: React.PropTypes.object,
+    activeStyle: React.PropTypes.object
   },
 
   getDefaultProps () {
@@ -26,7 +28,7 @@ const IconButton = React.createClass({
   },
 
   render () {
-    const style = {
+    let style = {
       display: 'inline-block',
       border: 'none',
       padding: '0',
@@ -38,6 +40,10 @@ const IconButton = React.createClass({
       cursor: 'pointer',
       ...this.props.style
     };
+
+    if (this.props.active) {
+      style = { ...style, ...this.props.activeStyle };
+    }
 
     return (
       <button aria-label={this.props.title} title={this.props.title} className={`icon-button ${this.props.active ? 'active' : ''}`} onClick={this.handleClick} style={style}>

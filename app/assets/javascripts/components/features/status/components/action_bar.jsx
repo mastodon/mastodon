@@ -17,22 +17,42 @@ const ActionBar = React.createClass({
 
   mixins: [PureRenderMixin],
 
+  handleReplyClick () {
+    this.props.onReply(status);
+  },
+
+  handleReblogClick () {
+    this.props.onReblog(status);
+  },
+
+  handleFavouriteClick () {
+    this.props.onFavourite(status);
+  },
+
+  handleDeleteClick () {
+    this.props.onDelete(status);
+  },
+
+  handleMentionClick () {
+    this.props.onMention(status.get('account'));
+  },
+
   render () {
     const { status, me } = this.props;
 
     let menu = [];
 
     if (me === status.getIn(['account', 'id'])) {
-      menu.push({ text: 'Delete', action: () => this.props.onDelete(status) });
+      menu.push({ text: 'Delete', action: this.handleDeleteClick });
     } else {
-      menu.push({ text: 'Mention', action: () => this.props.onMention(status.get('account')) });
+      menu.push({ text: 'Mention', action: this.handleMentionClick });
     }
 
     return (
       <div style={{ background: '#2f3441', display: 'flex', flexDirection: 'row', borderTop: '1px solid #363c4b', borderBottom: '1px solid #363c4b', padding: '10px 0' }}>
-        <div style={{ flex: '1 1 auto', textAlign: 'center' }}><IconButton title='Reply' icon='reply' onClick={() => this.props.onReply(status)} /></div>
-        <div style={{ flex: '1 1 auto', textAlign: 'center' }}><IconButton active={status.get('reblogged')} title='Reblog' icon='retweet' onClick={() => this.props.onReblog(status)} /></div>
-        <div style={{ flex: '1 1 auto', textAlign: 'center' }}><IconButton active={status.get('favourited')} title='Favourite' icon='star' onClick={() => this.props.onFavourite(status)} /></div>
+        <div style={{ flex: '1 1 auto', textAlign: 'center' }}><IconButton title='Reply' icon='reply' onClick={this.handleReplyClick} /></div>
+        <div style={{ flex: '1 1 auto', textAlign: 'center' }}><IconButton active={status.get('reblogged')} title='Reblog' icon='retweet' onClick={this.handleReblogClick} /></div>
+        <div style={{ flex: '1 1 auto', textAlign: 'center' }}><IconButton active={status.get('favourited')} title='Favourite' icon='star' onClick={this.handleFavouriteClick}  activeStyle={{ color: '#ca8f04' }} /></div>
         <div style={{ flex: '1 1 auto', textAlign: 'center' }}><DropdownMenu size={18} icon='ellipsis-h' items={menu} /></div>
       </div>
     );
