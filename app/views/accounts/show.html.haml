@@ -12,6 +12,6 @@
     = render partial: 'nothing_here'
 - else
   .activity-stream
-    = render partial: 'stream_entries/status', collection: @statuses, as: :status, cached: true
+    = render partial: 'stream_entries/status', collection: @statuses, as: :status
 
 = will_paginate @statuses, pagination_options

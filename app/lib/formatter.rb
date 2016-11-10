@@ -66,6 +66,6 @@ class Formatter
   end
 
   def mention_html(match, account)
-    "#{match.split('@').first}<a href=\"#{TagManager.instance.url_for(account)}\" class=\"mention\">@<span>#{account.username}</span></a>"
+    "#{match.split('@').first}<a href=\"#{TagManager.instance.url_for(account)}\" class=\"h-card u-url p-nickname mention\">@<span>#{account.username}</span></a>"
   end
 end
