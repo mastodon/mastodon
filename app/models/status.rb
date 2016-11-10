@@ -126,8 +126,8 @@ class Status < ApplicationRecord
       query
         .joins('LEFT OUTER JOIN statuses AS parents ON statuses.in_reply_to_id = parents.id')
         .joins('LEFT OUTER JOIN statuses AS reblogs ON statuses.reblog_of_id = reblogs.id')
-        .where('parents.account_id NOT IN (?)', blocked)
         .where('statuses.account_id NOT IN (?)', blocked)
+        .where('(parents.id IS NULL OR parents.account_id NOT IN (?))', blocked)
         .where('(reblogs.id IS NULL OR reblogs.account_id NOT IN (?))', blocked)
     end
   end
