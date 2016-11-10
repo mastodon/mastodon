@@ -13,7 +13,8 @@ const StatusContent = React.createClass({
   },
 
   propTypes: {
-    status: ImmutablePropTypes.map.isRequired
+    status: ImmutablePropTypes.map.isRequired,
+    onClick: React.PropTypes.func
   },
 
   mixins: [PureRenderMixin],
@@ -61,7 +62,7 @@ const StatusContent = React.createClass({
 
   render () {
     const content = { __html: emojione.unicodeToImage(this.props.status.get('content')) };
-    return <div className='status__content' dangerouslySetInnerHTML={content} />;
+    return <div className='status__content' style={{ cursor: 'pointer' }} dangerouslySetInnerHTML={content} onClick={this.props.onClick} />;
   },
 
 });

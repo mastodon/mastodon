@@ -28,7 +28,7 @@ const ColumnBackButton = React.createClass({
 
   render () {
     return (
-      <div onClick={this.handleClick} style={outerStyle}>
+      <div onClick={this.handleClick} style={outerStyle} className='column-back-button'>
         <i className='fa fa-fw fa-chevron-left' style={iconStyle} />
         Back
       </div>

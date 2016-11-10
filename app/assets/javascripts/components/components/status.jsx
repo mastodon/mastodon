@@ -58,7 +58,7 @@ const Status = React.createClass({
       }
 
       return (
-        <div style={{ cursor: 'pointer' }} onClick={this.handleClick}>
+        <div style={{ cursor: 'default' }}>
           <div style={{ marginLeft: '68px', color: '#616b86', padding: '8px 0', paddingBottom: '2px', fontSize: '14px', position: 'relative' }}>
             <div style={{ position: 'absolute', 'left': '-26px'}}><i className='fa fa-fw fa-retweet'></i></div>
             <a onClick={this.handleAccountClick.bind(this, status.getIn(['account', 'id']))} href={status.getIn(['account', 'url'])} className='status__display-name'><strong style={{ color: '#616b86'}}>{displayName}</strong></a> reblogged
@@ -78,7 +78,7 @@ const Status = React.createClass({
     }
 
     return (
-      <div style={{ padding: '8px 10px', paddingLeft: '68px', position: 'relative', minHeight: '48px', borderBottom: '1px solid #363c4b', cursor: 'pointer' }} onClick={this.handleClick}>
+      <div style={{ padding: '8px 10px', paddingLeft: '68px', position: 'relative', minHeight: '48px', borderBottom: '1px solid #363c4b', cursor: 'default' }}>
         <div style={{ fontSize: '15px' }}>
           <div style={{ float: 'right', fontSize: '14px' }}>
             <a href={status.get('url')} className='status__relative-time' style={{ color: '#616b86' }} target='_blank' rel='noopener'><RelativeTimestamp timestamp={status.get('created_at')} now={now} /></a>
@@ -93,7 +93,7 @@ const Status = React.createClass({
           </a>
         </div>
 
-        <StatusContent status={status} />
+        <StatusContent status={status} onClick={this.handleClick} />
 
         {media}
 

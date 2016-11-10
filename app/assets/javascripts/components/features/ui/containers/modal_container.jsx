@@ -19,9 +19,8 @@ const mapDispatchToProps = dispatch => ({
 
 const imageStyle = {
   display: 'block',
-  maxWidth: '100%',
-  height: 'auto',
-  margin: '0 auto'
+  maxWidth: '80vw',
+  maxHeight: '80vh'
 };
 
 const Modal = React.createClass({

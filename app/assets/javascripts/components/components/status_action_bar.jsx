@@ -51,7 +51,7 @@ const StatusActionBar = React.createClass({
         <div style={{ float: 'left', marginRight: '18px'}}><IconButton active={status.get('reblogged')} title='Reblog' icon='retweet' onClick={this.handleReblogClick} /></div>
         <div style={{ float: 'left', marginRight: '18px'}}><IconButton active={status.get('favourited')} title='Favourite' icon='star' onClick={this.handleFavouriteClick} activeStyle={{ color: '#ca8f04' }} /></div>
 
-        <div onClick={e => e.stopPropagation()} style={{ width: '18px', height: '18px', float: 'left' }}>
+        <div style={{ width: '18px', height: '18px', float: 'left' }}>
           <DropdownMenu items={menu} icon='ellipsis-h' size={18} />
         </div>
       </div>

@@ -7,7 +7,7 @@ const DropdownMenu = ({ icon, items, size }) => {
         <i className={`fa fa-fw fa-${icon}`} style={{ verticalAlign: 'middle' }} />
       </DropdownTrigger>
 
-      <DropdownContent style={{ lineHeight: '18px' }}>
+      <DropdownContent style={{ lineHeight: '18px', textAlign: 'left' }}>
         <ul>
           {items.map(({ text, action, href = '#' }, i) => <li key={i}><a href={href} target='_blank' rel='noopener' onClick={e => {
             if (typeof action === 'function') {

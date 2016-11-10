@@ -18,23 +18,23 @@ const ActionBar = React.createClass({
   mixins: [PureRenderMixin],
 
   handleReplyClick () {
-    this.props.onReply(status);
+    this.props.onReply(this.props.status);
   },
 
   handleReblogClick () {
-    this.props.onReblog(status);
+    this.props.onReblog(this.props.status);
   },
 
   handleFavouriteClick () {
-    this.props.onFavourite(status);
+    this.props.onFavourite(this.props.status);
   },
 
   handleDeleteClick () {
-    this.props.onDelete(status);
+    this.props.onDelete(this.props.status);
   },
 
   handleMentionClick () {
-    this.props.onMention(status.get('account'));
+    this.props.onMention(this.props.status.get('account'));
   },
 
   render () {

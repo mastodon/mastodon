@@ -1,4 +1,6 @@
+import PureRenderMixin from 'react-addons-pure-render-mixin';
 import IconButton from './icon_button';
+import { Motion, spring } from 'react-motion';
 
 const overlayStyle = {
   position: 'fixed',
@@ -6,19 +8,17 @@ const overlayStyle = {
   left: '0',
   width: '100%',
   height: '100%',
-  justifyContent: 'center',
-  alignContent: 'center',
   background: 'rgba(0, 0, 0, 0.5)',
   display: 'flex',
+  justifyContent: 'center',
+  alignContent: 'center',
+  flexDirection: 'row',
   zIndex: '9999'
 };
 
 const dialogStyle = {
   color: '#282c37',
-  background: '#d9e1e8',
-  borderRadius: '4px',
-  boxShadow: '0 0 15px rgba(0, 0, 0, 0.4)',
-  padding: '10px',
+  boxShadow: '0 0 30px rgba(0, 0, 0, 0.8)',
   margin: 'auto',
   position: 'relative'
 };
@@ -29,25 +29,33 @@ const closeStyle = {
   right: '4px'
 };
 
-const Lightbox = ({ isVisible, onOverlayClicked, onCloseClicked, children }) => {
-  if (!isVisible) {
-    return <div />;
+const Lightbox = React.createClass({
+
+  propTypes: {
+    isVisible: React.PropTypes.bool,
+    onOverlayClicked: React.PropTypes.func,
+    onCloseClicked: React.PropTypes.func
+  },
+
+  mixins: [PureRenderMixin],
+
+  render () {
+    const { isVisible, onOverlayClicked, onCloseClicked, children } = this.props;
+
+    return (
+      <div className='lightbox' style={{...overlayStyle, display: isVisible ? 'flex' : 'none'}} onClick={onOverlayClicked}>
+        <Motion defaultStyle={{ y: -200 }} style={{ y: spring(isVisible ? 0 : -200) }}>
+          {({ y }) =>
+            <div style={{...dialogStyle, transform: `translateY(${y}px)`}}>
+              <IconButton title='Close' icon='times' onClick={onCloseClicked} size={16} style={closeStyle} />
+              {children}
+            </div>
+          }
+        </Motion>
+      </div>
+    );
   }
 
-  return (
-    <div className='lightbox' style={overlayStyle} onClick={onOverlayClicked}>
-      <div style={dialogStyle}>
-        <IconButton title='Close' icon='times' onClick={onCloseClicked} size={16} style={closeStyle} />
-        {children}
-      </div>
-    </div>
-  );
-};
-
-Lightbox.propTypes = {
-  isVisible: React.PropTypes.bool,
-  onOverlayClicked: React.PropTypes.func,
-  onCloseClicked: React.PropTypes.func
-};
+});
 
 export default Lightbox;
