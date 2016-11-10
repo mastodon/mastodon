@@ -1,10 +1,19 @@
-import PureRenderMixin    from 'react-addons-pure-render-mixin';
+import PureRenderMixin from 'react-addons-pure-render-mixin';
 import ImmutablePropTypes from 'react-immutable-proptypes';
-import Avatar             from '../../../components/avatar';
-import IconButton         from '../../../components/icon_button';
-import DisplayName        from '../../../components/display_name';
+import Avatar from '../../../components/avatar';
+import IconButton from '../../../components/icon_button';
+import DisplayName from '../../../components/display_name';
+import emojione from 'emojione';
+
+emojione.imageType = 'png';
+emojione.sprites = false;
+emojione.imagePathPNG = '/emoji/';
 
 const ReplyIndicator = React.createClass({
+
+  contextTypes: {
+    router: React.PropTypes.object
+  },
 
   propTypes: {
     status: ImmutablePropTypes.map.isRequired,
@@ -17,15 +26,22 @@ const ReplyIndicator = React.createClass({
     this.props.onCancel();
   },
 
+  handleAccountClick (e) {
+    if (e.button === 0) {
+      e.preventDefault();
+      this.context.router.push(`/accounts/${this.props.status.getIn(['account', 'id'])}`);
+    }
+  },
+
   render () {
-    let content = { __html: this.props.status.get('content') };
+    let content = { __html: emojione.unicodeToImage(this.props.status.get('content')) };
 
     return (
       <div style={{ background: '#9baec8', padding: '10px' }}>
         <div style={{ overflow: 'hidden', marginBottom: '5px' }}>
           <div style={{ float: 'right', lineHeight: '24px' }}><IconButton title='Cancel' icon='times' onClick={this.handleClick} /></div>
 
-          <a href={this.props.status.getIn(['account', 'url'])} className='reply-indicator__display-name' style={{ display: 'block', maxWidth: '100%', paddingRight: '25px', color: '#282c37', textDecoration: 'none', overflow: 'hidden', lineHeight: '24px' }}>
+          <a href={this.props.status.getIn(['account', 'url'])} onClick={this.handleAccountClick} className='reply-indicator__display-name' style={{ display: 'block', maxWidth: '100%', paddingRight: '25px', color: '#282c37', textDecoration: 'none', overflow: 'hidden', lineHeight: '24px' }}>
             <div style={{ float: 'left', marginRight: '5px' }}><Avatar size={24} src={this.props.status.getIn(['account', 'avatar'])} /></div>
             <DisplayName account={this.props.status.get('account')} />
           </a>

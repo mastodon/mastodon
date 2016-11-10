@@ -38,8 +38,6 @@ const Status = React.createClass({
       e.preventDefault();
       this.context.router.push(`/accounts/${id}`);
     }
-
-    e.stopPropagation();
   },
 
   render () {
