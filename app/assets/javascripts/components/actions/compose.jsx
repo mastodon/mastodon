@@ -148,7 +148,8 @@ export function fetchComposeSuggestions(token) {
     api(getState).get('/api/v1/accounts/search', {
       params: {
         q: token,
-        resolve: false
+        resolve: false,
+        limit: 4
       }
     }).then(response => {
       dispatch(readyComposeSuggestions(token, response.data));

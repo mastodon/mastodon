@@ -92,7 +92,8 @@ class Api::V1::AccountsController < ApiController
   end
 
   def search
-    @accounts = SearchService.new.call(params[:q], params[:resolve] == 'true')
+    limit = params[:limit] ? [DEFAULT_ACCOUNTS_LIMIT, params[:limit].to_i].min : DEFAULT_ACCOUNTS_LIMIT
+    @accounts = SearchService.new.call(params[:q], limit, params[:resolve] == 'true')
     render action: :index
   end
 
