@@ -81,6 +81,7 @@ Rails.application.routes.draw do
           get :relationships
           get :verify_credentials
           get :suggestions
+          get :search
         end
 
         member do

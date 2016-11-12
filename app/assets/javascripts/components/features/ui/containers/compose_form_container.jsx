@@ -5,7 +5,8 @@ import {
   submitCompose,
   cancelReplyCompose,
   clearComposeSuggestions,
-  fetchComposeSuggestions
+  fetchComposeSuggestions,
+  selectComposeSuggestion
 } from '../../../actions/compose';
 import { makeGetStatus } from '../../../selectors';
 
@@ -15,7 +16,8 @@ const makeMapStateToProps = () => {
   const mapStateToProps = function (state, props) {
     return {
       text: state.getIn(['compose', 'text']),
-      suggestions: state.getIn(['compose', 'suggestions']),
+      suggestion_token: state.getIn(['compose', 'suggestion_token']),
+      suggestions: state.getIn(['compose', 'suggestions']).toJS(),
       is_submitting: state.getIn(['compose', 'is_submitting']),
       is_uploading: state.getIn(['compose', 'is_uploading']),
       in_reply_to: getStatus(state, state.getIn(['compose', 'in_reply_to']))
@@ -45,6 +47,10 @@ const mapDispatchToProps = function (dispatch) {
 
     onFetchSuggestions (token) {
       dispatch(fetchComposeSuggestions(token));
+    },
+
+    onSuggestionSelected (position, accountId) {
+      dispatch(selectComposeSuggestion(position, accountId));
     }
   }
 };

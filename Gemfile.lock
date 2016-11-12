@@ -203,6 +203,10 @@ GEM
     parser (2.3.1.2)
       ast (~> 2.2)
     pg (0.18.4)
+    pg_search (1.0.6)
+      activerecord (>= 3.1)
+      activesupport (>= 3.1)
+      arel
     pghero (1.6.2)
       activerecord
     powerpack (0.1.1)
@@ -410,6 +414,7 @@ DEPENDENCIES
   paperclip (~> 4.3)
   paperclip-av-transcoder
   pg
+  pg_search
   pghero
   pry-rails
   puma
@@ -435,4 +440,4 @@ DEPENDENCIES
   will_paginate
 
 BUNDLED WITH
-   1.13.0
+   1.13.6

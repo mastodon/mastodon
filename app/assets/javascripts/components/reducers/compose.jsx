@@ -12,7 +12,8 @@ import {
   COMPOSE_UPLOAD_UNDO,
   COMPOSE_UPLOAD_PROGRESS,
   COMPOSE_SUGGESTIONS_CLEAR,
-  COMPOSE_SUGGESTIONS_READY
+  COMPOSE_SUGGESTIONS_READY,
+  COMPOSE_SUGGESTION_SELECT
 } from '../actions/compose';
 import { TIMELINE_DELETE } from '../actions/timelines';
 import { ACCOUNT_SET_SELF } from '../actions/accounts';
@@ -25,7 +26,8 @@ const initialState = Immutable.Map({
   is_uploading: false,
   progress: 0,
   media_attachments: Immutable.List(),
-  suggestions: [],
+  suggestion_token: null,
+  suggestions: Immutable.List(),
   me: null
 });
 
@@ -66,6 +68,16 @@ function removeMedia(state, mediaId) {
   });
 };
 
+const insertSuggestion = (state, position, completion) => {
+  const token = state.get('suggestion_token');
+
+  return state.withMutations(map => {
+    map.update('text', oldText => `${oldText.slice(0, position - token.length)}${completion}${oldText.slice(position + token.length)}`);
+    map.set('suggestion_token', null);
+    map.update('suggestions', Immutable.List(), list => list.clear());
+  });
+};
+
 export default function compose(state = initialState, action) {
   switch(action.type) {
     case COMPOSE_CHANGE:
@@ -99,9 +111,11 @@ export default function compose(state = initialState, action) {
     case COMPOSE_MENTION:
       return state.update('text', text => `${text}@${action.account.get('acct')} `);
     case COMPOSE_SUGGESTIONS_CLEAR:
-      return state.set('suggestions', []);
+      return state.update('suggestions', Immutable.List(), list => list.clear()).set('suggestion_token', null);
     case COMPOSE_SUGGESTIONS_READY:
-      return state.set('suggestions', action.accounts);
+      return state.set('suggestions', Immutable.List(action.accounts.map(item => item.id))).set('suggestion_token', action.token);
+    case COMPOSE_SUGGESTION_SELECT:
+      return insertSuggestion(state, action.position, action.completion);
     case TIMELINE_DELETE:
       if (action.id === state.get('in_reply_to')) {
         return state.set('in_reply_to', null);

@@ -8,6 +8,7 @@ import {
 } from '../actions/accounts';
 import { FOLLOW_SUBMIT_SUCCESS } from '../actions/follow';
 import { SUGGESTIONS_FETCH_SUCCESS } from '../actions/suggestions';
+import { COMPOSE_SUGGESTIONS_READY } from '../actions/compose';
 import {
   REBLOG_SUCCESS,
   UNREBLOG_SUCCESS,
@@ -68,6 +69,7 @@ export default function accounts(state = initialState, action) {
     case FOLLOWING_FETCH_SUCCESS:
     case REBLOGS_FETCH_SUCCESS:
     case FAVOURITES_FETCH_SUCCESS:
+    case COMPOSE_SUGGESTIONS_READY:
       return normalizeAccounts(state, action.accounts);
     case TIMELINE_REFRESH_SUCCESS:
     case TIMELINE_EXPAND_SUCCESS:

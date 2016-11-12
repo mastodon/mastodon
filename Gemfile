@@ -42,6 +42,7 @@ gem 'rack-cors', require: 'rack/cors'
 gem 'sidekiq'
 gem 'ledermann-rails-settings'
 gem 'neography'
+gem 'pg_search'
 
 gem 'react-rails'
 gem 'browserify-rails'

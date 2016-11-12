@@ -2,7 +2,7 @@ class Api::V1::AccountsController < ApiController
   before_action -> { doorkeeper_authorize! :read }, except: [:follow, :unfollow, :block, :unblock]
   before_action -> { doorkeeper_authorize! :follow }, only: [:follow, :unfollow, :block, :unblock]
   before_action :require_user!, except: [:show, :following, :followers, :statuses]
-  before_action :set_account, except: [:verify_credentials, :suggestions]
+  before_action :set_account, except: [:verify_credentials, :suggestions, :search]
 
   respond_to :json
 
@@ -89,6 +89,11 @@ class Api::V1::AccountsController < ApiController
     @following   = Account.following_map(ids, current_user.account_id)
     @followed_by = Account.followed_by_map(ids, current_user.account_id)
     @blocking    = Account.blocking_map(ids, current_user.account_id)
+  end
+
+  def search
+    @accounts = SearchService.new.call(params[:q], params[:resolve] == 'true')
+    render action: :index
   end
 
   private

@@ -1,10 +1,11 @@
-import CharacterCounter   from './character_counter';
-import Button             from '../../../components/button';
-import PureRenderMixin    from 'react-addons-pure-render-mixin';
+import CharacterCounter from './character_counter';
+import Button from '../../../components/button';
+import PureRenderMixin from 'react-addons-pure-render-mixin';
 import ImmutablePropTypes from 'react-immutable-proptypes';
-import ReplyIndicator     from './reply_indicator';
-import UploadButton       from './upload_button';
-import Autosuggest        from 'react-autosuggest';
+import ReplyIndicator from './reply_indicator';
+import UploadButton from './upload_button';
+import Autosuggest from 'react-autosuggest';
+import AutosuggestAccountContainer from '../../compose/containers/autosuggest_account_container';
 
 const getTokenForSuggestions = (str, caretPosition) => {
   let word;
@@ -31,11 +32,8 @@ const getTokenForSuggestions = (str, caretPosition) => {
   }
 };
 
-const getSuggestionValue = suggestion => suggestion.completion;
-
-const renderSuggestion = suggestion => (
-  <span>{suggestion.label}</span>
-);
+const getSuggestionValue = suggestionId => suggestionId;
+const renderSuggestion   = suggestionId => <AutosuggestAccountContainer id={suggestionId} />;
 
 const textareaStyle = {
   display: 'block',
@@ -59,18 +57,26 @@ const ComposeForm = React.createClass({
 
   propTypes: {
     text: React.PropTypes.string.isRequired,
+    suggestion_token: React.PropTypes.string,
     suggestions: React.PropTypes.array,
     is_submitting: React.PropTypes.bool,
     is_uploading: React.PropTypes.bool,
     in_reply_to: ImmutablePropTypes.map,
     onChange: React.PropTypes.func.isRequired,
     onSubmit: React.PropTypes.func.isRequired,
-    onCancelReply: React.PropTypes.func.isRequired
+    onCancelReply: React.PropTypes.func.isRequired,
+    onClearSuggestions: React.PropTypes.func.isRequired,
+    onFetchSuggestions: React.PropTypes.func.isRequired,
+    onSuggestionSelected: React.PropTypes.func.isRequired
   },
 
   mixins: [PureRenderMixin],
 
   handleChange (e) {
+    if (typeof e.target.value === 'undefined' || typeof e.target.value === 'number') {
+      return;
+    }
+
     this.props.onChange(e.target.value);
   },
 
@@ -86,8 +92,7 @@ const ComposeForm = React.createClass({
 
   componentDidUpdate (prevProps) {
     if (prevProps.text !== this.props.text || prevProps.in_reply_to !== this.props.in_reply_to) {
-      const node     = ReactDOM.findDOMNode(this.refs.autosuggest);
-      const textarea = node.querySelector('textarea');
+      const textarea = this.autosuggest.input;
 
       if (textarea) {
         textarea.focus();
@@ -100,26 +105,29 @@ const ComposeForm = React.createClass({
   },
 
   onSuggestionsFetchRequested ({ value }) {
-    const node     = ReactDOM.findDOMNode(this.refs.autosuggest);
-    const textarea = node.querySelector('textarea');
+    const textarea = this.autosuggest.input;
 
     if (textarea) {
       const token = getTokenForSuggestions(value, textarea.selectionStart);
 
       if (token !== null) {
         this.props.onFetchSuggestions(token);
+      } else {
+        this.props.onClearSuggestions();
       }
     }
   },
 
-  onSuggestionSelected (e, { suggestionValue, method }) {
-    const node     = ReactDOM.findDOMNode(this.refs.autosuggest);
-    const textarea = node.querySelector('textarea');
+  onSuggestionSelected (e, { suggestionValue }) {
+    const textarea = this.autosuggest.input;
 
     if (textarea) {
-      const str = this.props.text;
-      this.props.onChange([str.slice(0, textarea.selectionStart), suggestionValue, str.slice(textarea.selectionStart)].join(''));
+      this.props.onSuggestionSelected(textarea.selectionStart, suggestionValue);
     }
+  },
+
+  setRef (c) {
+    this.autosuggest = c;
   },
 
   render () {
@@ -143,8 +151,9 @@ const ComposeForm = React.createClass({
         {replyArea}
 
         <Autosuggest
-          ref='autosuggest'
+          ref={this.setRef}
           suggestions={this.props.suggestions}
+          focusFirstSuggestion={true}
           onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
           onSuggestionsClearRequested={this.onSuggestionsClearRequested}
           onSuggestionSelected={this.onSuggestionSelected}

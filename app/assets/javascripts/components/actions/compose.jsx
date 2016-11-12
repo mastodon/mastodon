@@ -17,6 +17,7 @@ export const COMPOSE_UPLOAD_UNDO     = 'COMPOSE_UPLOAD_UNDO';
 
 export const COMPOSE_SUGGESTIONS_CLEAR = 'COMPOSE_SUGGESTIONS_CLEAR';
 export const COMPOSE_SUGGESTIONS_READY = 'COMPOSE_SUGGESTIONS_READY';
+export const COMPOSE_SUGGESTION_SELECT = 'COMPOSE_SUGGESTION_SELECT';
 
 export function changeCompose(text) {
   return {
@@ -144,18 +145,33 @@ export function clearComposeSuggestions() {
 
 export function fetchComposeSuggestions(token) {
   return (dispatch, getState) => {
-    const loadedCandidates = getState().get('accounts').filter(item => item.get('acct').toLowerCase().slice(0, token.length) === token).map(item => ({
-      label: item.get('acct'),
-      completion: item.get('acct').slice(token.length)
-    })).toList().toJS();
-
-    dispatch(readyComposeSuggestions(loadedCandidates));
+    api(getState).get('/api/v1/accounts/search', {
+      params: {
+        q: token,
+        resolve: false
+      }
+    }).then(response => {
+      dispatch(readyComposeSuggestions(token, response.data));
+    });
   };
 };
 
-export function readyComposeSuggestions(accounts) {
+export function readyComposeSuggestions(token, accounts) {
   return {
     type: COMPOSE_SUGGESTIONS_READY,
+    token,
     accounts
+  };
+};
+
+export function selectComposeSuggestion(position, accountId) {
+  return (dispatch, getState) => {
+    const completion = getState().getIn(['accounts', accountId, 'acct']);
+
+    dispatch({
+      type: COMPOSE_SUGGESTION_SELECT,
+      position,
+      completion
+    });
   };
 };

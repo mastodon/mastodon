@@ -1,5 +1,6 @@
 class Account < ApplicationRecord
   include Targetable
+  include PgSearch
 
   MENTION_RE = /(?:^|[^\/\w])@([a-z0-9_]+(?:@[a-z0-9\.\-]+)?)/i
   IMAGE_MIME_TYPES = ['image/jpeg', 'image/png', 'image/gif'].freeze
@@ -41,6 +42,8 @@ class Account < ApplicationRecord
   has_many :blocking, -> { order('blocks.id desc') }, through: :block_relationships, source: :target_account
 
   has_many :media_attachments, dependent: :destroy
+
+  pg_search_scope :search_for, against: %i(username domain), using: { tsearch: { prefix: true } }
 
   scope :remote, -> { where.not(domain: nil) }
   scope :local, -> { where(domain: nil) }
