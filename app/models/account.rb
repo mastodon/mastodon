@@ -43,7 +43,7 @@ class Account < ApplicationRecord
 
   has_many :media_attachments, dependent: :destroy
 
-  pg_search_scope :search_for, against: %i(username domain), using: { tsearch: { prefix: true } }
+  pg_search_scope :search_for, against: { username: 'A', domain: 'B' }, using: { tsearch: { prefix: true } }
 
   scope :remote, -> { where.not(domain: nil) }
   scope :local, -> { where(domain: nil) }
