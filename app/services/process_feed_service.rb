@@ -4,6 +4,7 @@ class ProcessFeedService < BaseService
 
   def call(body, account)
     xml = Nokogiri::XML(body)
+    xml.encoding = 'utf-8'
 
     update_author(xml, account)
     process_entries(xml, account)

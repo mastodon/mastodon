@@ -6,7 +6,9 @@ class ProcessInteractionService < BaseService
   # @param [Account] target_account Account the Salmon was addressed to
   def call(envelope, target_account)
     body = salmon.unpack(envelope)
-    xml  = Nokogiri::XML(body)
+
+    xml = Nokogiri::XML(body)
+    xml.encoding = 'utf-8'
 
     return unless contains_author?(xml)
 
