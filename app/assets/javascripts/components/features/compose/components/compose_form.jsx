@@ -7,6 +7,7 @@ import UploadButton from './upload_button';
 import Autosuggest from 'react-autosuggest';
 import AutosuggestAccountContainer from '../../compose/containers/autosuggest_account_container';
 import { debounce } from 'react-decoration';
+import UploadButtonContainer from '../containers/upload_button_container';
 
 const getTokenForSuggestions = (str, caretPosition) => {
   let word;
@@ -168,6 +169,7 @@ const ComposeForm = React.createClass({
         <div style={{ marginTop: '10px', overflow: 'hidden' }}>
           <div style={{ float: 'right' }}><Button text='Publish' onClick={this.handleSubmit} disabled={disabled} /></div>
           <div style={{ float: 'right', marginRight: '16px', lineHeight: '36px' }}><CharacterCounter max={500} text={this.props.text} /></div>
+          <UploadButtonContainer style={{ paddingTop: '4px' }} />
         </div>
       </div>
     );
