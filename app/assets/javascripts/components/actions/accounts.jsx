@@ -312,9 +312,9 @@ export function fetchFollowers(id) {
     dispatch(fetchFollowersRequest(id));
 
     api(getState).get(`/api/v1/accounts/${id}/followers`).then(response => {
-      const prev = getLinks(response).refs.find(link => link.rel === 'prev').uri;
+      const next = getLinks(response).refs.find(link => link.rel === 'next');
 
-      dispatch(fetchFollowersSuccess(id, response.data, prev));
+      dispatch(fetchFollowersSuccess(id, response.data, next ? next.uri : null));
       dispatch(fetchRelationships(response.data.map(item => item.id)));
     }).catch(error => {
       dispatch(fetchFollowersFail(id, error));
@@ -329,12 +329,12 @@ export function fetchFollowersRequest(id) {
   };
 };
 
-export function fetchFollowersSuccess(id, accounts, prev) {
+export function fetchFollowersSuccess(id, accounts, next) {
   return {
     type: FOLLOWERS_FETCH_SUCCESS,
     id,
     accounts,
-    prev
+    next
   };
 };
 
@@ -348,14 +348,18 @@ export function fetchFollowersFail(id, error) {
 
 export function expandFollowers(id) {
   return (dispatch, getState) => {
-    const url = getState().getIn(['user_lists', 'followers', id, 'prev']);
+    const url = getState().getIn(['user_lists', 'followers', id, 'next']);
+
+    if (url === null) {
+      return;
+    }
 
     dispatch(expandFollowersRequest(id));
 
     api(getState).get(url).then(response => {
-      const prev = getLinks(response).refs.find(link => link.rel === 'prev').uri;
+      const next = getLinks(response).refs.find(link => link.rel === 'next');
 
-      dispatch(expandFollowersSuccess(id, response.data, prev));
+      dispatch(expandFollowersSuccess(id, response.data, next ? next.uri : null));
       dispatch(fetchRelationships(response.data.map(item => item.id)));
     }).catch(error => {
       dispatch(expandFollowersFail(id, error));
@@ -370,12 +374,12 @@ export function expandFollowersRequest(id) {
   };
 };
 
-export function expandFollowersSuccess(id, accounts, prev) {
+export function expandFollowersSuccess(id, accounts, next) {
   return {
     type: FOLLOWERS_EXPAND_SUCCESS,
     id,
     accounts,
-    prev
+    next
   };
 };
 
@@ -392,7 +396,9 @@ export function fetchFollowing(id) {
     dispatch(fetchFollowingRequest(id));
 
     api(getState).get(`/api/v1/accounts/${id}/following`).then(response => {
-      dispatch(fetchFollowingSuccess(id, response.data));
+      const next = getLinks(response).refs.find(link => link.rel === 'next');
+
+      dispatch(fetchFollowingSuccess(id, response.data, next ? next.uri : null));
       dispatch(fetchRelationships(response.data.map(item => item.id)));
     }).catch(error => {
       dispatch(fetchFollowingFail(id, error));
@@ -425,14 +431,18 @@ export function fetchFollowingFail(id, error) {
 
 export function expandFollowing(id) {
   return (dispatch, getState) => {
-    const url = getState().getIn(['user_lists', 'following', id, 'prev']);
+    const url = getState().getIn(['user_lists', 'following', id, 'next']);
+
+    if (url === null) {
+      return;
+    }
 
     dispatch(expandFollowingRequest(id));
 
     api(getState).get(url).then(response => {
-      const prev = getLinks(response).refs.find(link => link.rel === 'prev').uri;
+      const next = getLinks(response).refs.find(link => link.rel === 'next');
 
-      dispatch(expandFollowingSuccess(id, response.data, prev));
+      dispatch(expandFollowingSuccess(id, response.data, next ? next.uri : null));
       dispatch(fetchRelationships(response.data.map(item => item.id)));
     }).catch(error => {
       dispatch(expandFollowingFail(id, error));
@@ -447,12 +457,12 @@ export function expandFollowingRequest(id) {
   };
 };
 
-export function expandFollowingSuccess(id, accounts, prev) {
+export function expandFollowingSuccess(id, accounts, next) {
   return {
     type: FOLLOWING_EXPAND_SUCCESS,
     id,
     accounts,
-    prev
+    next
   };
 };
 
