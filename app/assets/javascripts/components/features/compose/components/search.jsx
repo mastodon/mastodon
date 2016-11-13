@@ -88,7 +88,7 @@ const Search = React.createClass({
     if (suggestion.type === 'account') {
       this.context.router.push(`/accounts/${suggestion.id}`);
     } else {
-      this.context.router.push(`/statuses/tag/${suggestion.id}`);
+      this.context.router.push(`/timelines/tag/${suggestion.id}`);
     }
   },
 

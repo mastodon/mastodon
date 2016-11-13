@@ -1,12 +1,10 @@
 require 'sidekiq/web'
 
 Rails.application.routes.draw do
-  get 'tags/show'
-
   mount ActionCable.server => '/cable'
 
   authenticate :user, lambda { |u| u.admin? } do
-    mount Sidekiq::Web => '/sidekiq'
+    mount Sidekiq::Web, at: 'sidekiq'
     mount PgHero::Engine, at: 'pghero'
   end
 
@@ -98,6 +96,8 @@ Rails.application.routes.draw do
       end
     end
   end
+
+  get '/web/*any', to: 'home#index', as: :web
 
   get :about, to: 'about#index'
   get :terms, to: 'about#terms'

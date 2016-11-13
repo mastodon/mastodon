@@ -52,7 +52,7 @@ const StatusContent = React.createClass({
 
     if (e.button === 0) {
       e.preventDefault();
-      this.context.router.push(`/statuses/tag/${hashtag}`);
+      this.context.router.push(`/timelines/tag/${hashtag}`);
     }
   },
 

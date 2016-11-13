@@ -2,4 +2,4 @@
 
 <%= @account.acct %> is now following you!
 
-<%= TagManager.instance.url_for(@account) %>
+<%= web_url("accounts/#{@account.id}") %>

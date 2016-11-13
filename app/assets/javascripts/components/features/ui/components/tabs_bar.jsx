@@ -28,9 +28,9 @@ const TabsBar = () => {
   return (
     <div style={outerStyle}>
       <Link style={tabStyle} activeStyle={tabActiveStyle} to='/statuses/new'><i className='fa fa-fw fa-pencil' /> Compose</Link>
-      <Link style={tabStyle} activeStyle={tabActiveStyle} to='/statuses/home'><i className='fa fa-fw fa-home' /> Home</Link>
-      <Link style={tabStyle} activeStyle={tabActiveStyle} to='/statuses/mentions'><i className='fa fa-fw fa-at' /> Mentions</Link>
-      <Link style={tabStyle} activeStyle={tabActiveStyle} to='/statuses/all'><i className='fa fa-fw fa-globe' /> Public</Link>
+      <Link style={tabStyle} activeStyle={tabActiveStyle} to='/timelines/home'><i className='fa fa-fw fa-home' /> Home</Link>
+      <Link style={tabStyle} activeStyle={tabActiveStyle} to='/timelines/mentions'><i className='fa fa-fw fa-at' /> Mentions</Link>
+      <Link style={tabStyle} activeStyle={tabActiveStyle} to='/timelines/all'><i className='fa fa-fw fa-globe' /> Public</Link>
     </div>
   );
 };
