@@ -6,6 +6,7 @@ import ReplyIndicator from './reply_indicator';
 import UploadButton from './upload_button';
 import Autosuggest from 'react-autosuggest';
 import AutosuggestAccountContainer from '../../compose/containers/autosuggest_account_container';
+import { debounce } from 'react-decoration';
 
 const getTokenForSuggestions = (str, caretPosition) => {
   let word;
@@ -104,6 +105,7 @@ const ComposeForm = React.createClass({
     this.props.onClearSuggestions();
   },
 
+  @debounce(500)
   onSuggestionsFetchRequested ({ value }) {
     const textarea = this.autosuggest.input;
 

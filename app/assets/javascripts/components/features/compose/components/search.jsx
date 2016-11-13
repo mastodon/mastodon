@@ -2,6 +2,7 @@ import PureRenderMixin from 'react-addons-pure-render-mixin';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import Autosuggest from 'react-autosuggest';
 import AutosuggestAccountContainer from '../containers/autosuggest_account_container';
+import { debounce } from 'react-decoration';
 
 const getSuggestionValue = suggestion => suggestion.value;
 
@@ -77,6 +78,7 @@ const Search = React.createClass({
     this.props.onClear();
   },
 
+  @debounce(500)
   onSuggestionsFetchRequested ({ value }) {
     value = value.replace('#', '');
     this.props.onFetch(value.trim());
