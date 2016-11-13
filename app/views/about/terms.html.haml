@@ -2,68 +2,75 @@
   #{Rails.configuration.x.local_domain} Terms of Service and Privacy Policy
 
 .wrapper
-  %h2 #{Rails.configuration.x.local_domain} Terms of Service and Privacy Policy
-
-  %h3 1. Terms
-
-  %p
-    By accessing the website at #{link_to root_url}, you are agreeing to be bound by these terms of service, all applicable laws and regulations, and agree that you are responsible for compliance with any applicable local laws. If you do not agree with any of these terms, you are prohibited from using or accessing this site. The materials contained in this website are protected by applicable copyright and trademark law.
-
-  %h3 2. Use License
-
-  %ol{:type => "a"}
-    %li
-      Permission is granted to temporarily download one copy of the materials (information or software) on #{Rails.configuration.x.local_domain}'s website for personal, non-commercial transitory viewing only. This is the grant of a license, not a transfer of title, and under this license you may not:
-      %ol{:type => "i"}
-        %li modify or copy the materials;
-        %li use the materials for any commercial purpose, or for any public display (commercial or non-commercial);
-        %li attempt to decompile or reverse engineer any software contained on #{Rails.configuration.x.local_domain}'s website;
-        %li remove any copyright or other proprietary notations from the materials; or
-        %li transfer the materials to another person or "mirror" the materials on any other server.
-    %li This license shall automatically terminate if you violate any of these restrictions and may be terminated by #{Rails.configuration.x.local_domain} at any time. Upon terminating your viewing of these materials or upon the termination of this license, you must destroy any downloaded materials in your possession whether in electronic or printed format.
-
-  %h3 3. Disclaimer
-
-  %ol{:type => "a"}
-    %li The materials on #{Rails.configuration.x.local_domain}'s website are provided on an 'as is' basis. #{Rails.configuration.x.local_domain} makes no warranties, expressed or implied, and hereby disclaims and negates all other warranties including, without limitation, implied warranties or conditions of merchantability, fitness for a particular purpose, or non-infringement of intellectual property or other violation of rights.
-    %li Further, #{Rails.configuration.x.local_domain} does not warrant or make any representations concerning the accuracy, likely results, or reliability of the use of the materials on its website or otherwise relating to such materials or on any sites linked to this site.
-
-  %h3 4. Limitations
-
-  %p In no event shall #{Rails.configuration.x.local_domain} or its suppliers be liable for any damages (including, without limitation, damages for loss of data or profit, or due to business interruption) arising out of the use or inability to use the materials on #{Rails.configuration.x.local_domain}'s website, even if #{Rails.configuration.x.local_domain} or a #{Rails.configuration.x.local_domain} authorized representative has been notified orally or in writing of the possibility of such damage. Because some jurisdictions do not allow limitations on implied warranties, or limitations of liability for consequential or incidental damages, these limitations may not apply to you.
-
-  %h3 5. Accuracy of materials
-
-  %p The materials appearing on #{Rails.configuration.x.local_domain}'s website could include technical, typographical, or photographic errors. #{Rails.configuration.x.local_domain} does not warrant that any of the materials on its website are accurate, complete or current. #{Rails.configuration.x.local_domain} may make changes to the materials contained on its website at any time without notice. However #{Rails.configuration.x.local_domain} does not make any commitment to update the materials.
-
-  %h3 6. Links
-
-  %p #{Rails.configuration.x.local_domain} has not reviewed all of the sites linked to its website and is not responsible for the contents of any such linked site. The inclusion of any link does not imply endorsement by #{Rails.configuration.x.local_domain} of the site. Use of any such linked website is at the user's own risk.
-
-  %h3 7. Modifications
-
-  %p #{Rails.configuration.x.local_domain} may revise these terms of service for its website at any time without notice. By using this website you are agreeing to be bound by the then current version of these terms of service.
-
-  %h3 8. Governing Law
-
-  %p
-    These terms and conditions are governed by and construed in accordance with the laws of
-    = @state
-    and you irrevocably submit to the exclusive jurisdiction of the courts in that State or location.
-
   %h2 Privacy Policy
 
-  %p Your privacy is important to us.
+  %h3#collect What information do we collect?
 
-  %p It is #{Rails.configuration.x.local_domain}'s policy to respect your privacy regarding any information we may collect while operating our website. Accordingly, we have developed this privacy policy in order for you to understand how we collect, use, communicate, disclose and otherwise make use of personal information. We have outlined our privacy policy below.
+  %p We collect information from you when you register on our site and gather data when you participate in the forum by reading, writing, and evaluating the content shared here.
+
+  %p When registering on our site, you may be asked to enter your name and e-mail address. You may, however, visit our site without registering. Your e-mail address will be verified by an email containing a unique link. If that link is visited, we know that you control the e-mail address.
+
+  %p When registered and posting, we record the IP address that the post originated from. We also may retain server logs which include the IP address of every request to our server.
+
+  %h3#use What do we use your information for?
+
+  %p Any of the information we collect from you may be used in one of the following ways:
 
   %ul
-    %li We will collect personal information by lawful and fair means and, where appropriate, with the knowledge or consent of the individual concerned.
-    %li Before or at the time of collecting personal information, we will identify the purposes for which information is being collected.
-    %li We will collect and use personal information solely for fulfilling those purposes specified by us and for other ancillary purposes, unless we obtain the consent of the individual concerned or as required by law.
-    %li Personal data should be relevant to the purposes for which it is to be used, and, to the extent necessary for those purposes, should be accurate, complete, and up-to-date.
-    %li We will protect personal information by using reasonable security safeguards against loss or theft, as well as unauthorized access, disclosure, copying, use or modification.
-    %li We will make readily available to customers information about our policies and practices relating to the management of personal information.
-    %li We will only retain personal information for as long as necessary for the fulfilment of those purposes.
+    %li To personalize your experience &mdash; your information helps us to better respond to your individual needs.
+    %li To improve our site &mdash; we continually strive to improve our site offerings based on the information and feedback we receive from you.
+    %li To improve customer service &mdash; your information helps us to more effectively respond to your customer service requests and support needs.
+    %li To send periodic emails &mdash; The email address you provide may be used to send you information, notifications that you request about changes to topics or in response to your user name, respond to inquiries, and/or other requests or questions.
 
-  %p We are committed to conducting our business in accordance with these principles in order to ensure that the confidentiality of personal information is protected and maintained. #{Rails.configuration.x.local_domain} may change this privacy policy from time to time at #{Rails.configuration.x.local_domain}'s sole discretion.
+  %h3#protect How do we protect your information?
+
+  %p We implement a variety of security measures to maintain the safety of your personal information when you enter, submit, or access your personal information.
+
+  %h3#data-retention What is your data retention policy?
+
+  %p We will make a good faith effort to:
+
+  %ul
+    %li Retain server logs containing the IP address of all requests to this server no more than 90 days.
+    %li Retain the IP addresses associated with registered users and their posts no more than 5 years.
+
+  %h3#cookies Do we use cookies?
+
+  %p Yes. Cookies are small files that a site or its service provider transfers to your computer's hard drive through your Web browser (if you allow). These cookies enable the site to recognize your browser and, if you have a registered account, associate it with your registered account.
+
+  %p We use cookies to understand and save your preferences for future visits and compile aggregate data about site traffic and site interaction so that we can offer better site experiences and tools in the future. We may contract with third-party service providers to assist us in better understanding our site visitors. These service providers are not permitted to use the information collected on our behalf except to help us conduct and improve our business.
+
+  %h3#disclose Do we disclose any information to outside parties?
+
+  %p We do not sell, trade, or otherwise transfer to outside parties your personally identifiable information. This does not include trusted third parties who assist us in operating our site, conducting our business, or servicing you, so long as those parties agree to keep this information confidential. We may also release your information when we believe release is appropriate to comply with the law, enforce our site policies, or protect ours or others rights, property, or safety. However, non-personally identifiable visitor information may be provided to other parties for marketing, advertising, or other uses.
+
+  %h3#third-party Third party links
+
+  %p Occasionally, at our discretion, we may include or offer third party products or services on our site. These third party sites have separate and independent privacy policies. We therefore have no responsibility or liability for the content and activities of these linked sites. Nonetheless, we seek to protect the integrity of our site and welcome any feedback about these sites.
+
+  %h3#coppa Children's Online Privacy Protection Act Compliance
+
+  %p
+    Our site, products and services are all directed to people who are at least 13 years old or older. If this server is in the USA, and you are under the age of 13, per the requirements of COPPA
+    = surround '(', '),' do
+      = link_to 'Children\'s Online Privacy Protection Act', 'https://en.wikipedia.org/wiki/Children%27s_Online_Privacy_Protection_Act'
+    do not use this site.
+
+  %h3#online Online Privacy Policy Only
+
+  %p This online privacy policy applies only to information collected through our site and not to information collected offline.
+
+  %h3#consent Your Consent
+
+  %p By using our site, you consent to our web site privacy policy.
+
+  %h3#changes Changes to our Privacy Policy
+
+  %p If we decide to change our privacy policy, we will post those changes on this page.
+
+  %p This document is CC-BY-SA. It was last updated May 31, 2013.
+
+  %p
+    Originally adapted from the
+    = succeed '.' do
+      = link_to 'Discourse privacy policy', 'https://github.com/discourse/discourse'
