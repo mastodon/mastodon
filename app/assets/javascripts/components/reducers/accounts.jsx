@@ -6,7 +6,6 @@ import {
   ACCOUNT_TIMELINE_FETCH_SUCCESS,
   ACCOUNT_TIMELINE_EXPAND_SUCCESS
 } from '../actions/accounts';
-import { FOLLOW_SUBMIT_SUCCESS } from '../actions/follow';
 import { SUGGESTIONS_FETCH_SUCCESS } from '../actions/suggestions';
 import { COMPOSE_SUGGESTIONS_READY } from '../actions/compose';
 import {
@@ -63,7 +62,6 @@ export default function accounts(state = initialState, action) {
   switch(action.type) {
     case ACCOUNT_SET_SELF:
     case ACCOUNT_FETCH_SUCCESS:
-    case FOLLOW_SUBMIT_SUCCESS:
       return normalizeAccount(state, action.account);
     case SUGGESTIONS_FETCH_SUCCESS:
     case FOLLOWERS_FETCH_SUCCESS:
