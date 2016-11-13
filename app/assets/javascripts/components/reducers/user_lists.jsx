@@ -19,29 +19,29 @@ const initialState = Immutable.Map({
   favourited_by: Immutable.Map()
 });
 
-const normalizeList = (state, type, id, accounts, prev) => {
+const normalizeList = (state, type, id, accounts, next) => {
   return state.setIn([type, id], Immutable.Map({
-    prev,
+    next,
     items: Immutable.List(accounts.map(item => item.id))
   }));
 };
 
-const appendToList = (state, type, id, accounts, prev) => {
+const appendToList = (state, type, id, accounts, next) => {
   return state.updateIn([type, id], map => {
-    return map.set('prev', prev).update('items', list => list.push(...accounts.map(item => item.id)));
+    return map.set('next', next).update('items', list => list.push(...accounts.map(item => item.id)));
   });
 };
 
 export default function userLists(state = initialState, action) {
   switch(action.type) {
     case FOLLOWERS_FETCH_SUCCESS:
-      return normalizeList(state, 'followers', action.id, action.accounts, action.prev);
+      return normalizeList(state, 'followers', action.id, action.accounts, action.next);
     case FOLLOWERS_EXPAND_SUCCESS:
-      return appendToList(state, 'followers', action.id, action.accounts, action.prev);
+      return appendToList(state, 'followers', action.id, action.accounts, action.next);
     case FOLLOWING_FETCH_SUCCESS:
-      return normalizeList(state, 'following', action.id, action.accounts, action.prev);
+      return normalizeList(state, 'following', action.id, action.accounts, action.next);
     case FOLLOWING_EXPAND_SUCCESS:
-      return appendToList(state, 'following', action.id, action.accounts, action.prev);
+      return appendToList(state, 'following', action.id, action.accounts, action.next);
     case SUGGESTIONS_FETCH_SUCCESS:
       return state.set('suggestions', Immutable.List(action.accounts.map(item => item.id)));
     case REBLOGS_FETCH_SUCCESS:
