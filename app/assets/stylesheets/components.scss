@@ -325,12 +325,22 @@
   top: 100%;
   width: 100%;
   z-index: 99;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
+}
+
+.react-autosuggest__section-title {
+  background: #9baec8;
+  padding: 4px 10px;
+  font-weight: 500;
+  cursor: default;
+  color: #282c37;
+  text-transform: uppercase;
+  font-size: 11px;
 }
 
 .react-autosuggest__suggestions-list {
-  background: #9baec8;
+  background: #d9e1e8;
   color: #282c37;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
   font-size: 14px;
 }
 

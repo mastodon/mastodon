@@ -26,6 +26,7 @@ import {
   STATUS_FETCH_SUCCESS,
   CONTEXT_FETCH_SUCCESS
 } from '../actions/statuses';
+import { SEARCH_SUGGESTIONS_READY } from '../actions/search';
 import Immutable from 'immutable';
 
 const normalizeAccount = (state, account) => state.set(account.id, Immutable.fromJS(account));
@@ -70,6 +71,7 @@ export default function accounts(state = initialState, action) {
     case REBLOGS_FETCH_SUCCESS:
     case FAVOURITES_FETCH_SUCCESS:
     case COMPOSE_SUGGESTIONS_READY:
+    case SEARCH_SUGGESTIONS_READY:
       return normalizeAccounts(state, action.accounts);
     case TIMELINE_REFRESH_SUCCESS:
     case TIMELINE_EXPAND_SUCCESS:

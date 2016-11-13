@@ -10,6 +10,7 @@ import user_lists            from './user_lists';
 import accounts              from './accounts';
 import statuses              from './statuses';
 import relationships         from './relationships';
+import search                from './search';
 
 export default combineReducers({
   timelines,
@@ -22,5 +23,6 @@ export default combineReducers({
   user_lists,
   accounts,
   statuses,
-  relationships
+  relationships,
+  search
 });
