@@ -413,11 +413,12 @@ export function fetchFollowingRequest(id) {
   };
 };
 
-export function fetchFollowingSuccess(id, accounts) {
+export function fetchFollowingSuccess(id, accounts, next) {
   return {
     type: FOLLOWING_FETCH_SUCCESS,
     id,
-    accounts
+    accounts,
+    next
   };
 };
 
