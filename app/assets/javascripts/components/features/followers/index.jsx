@@ -1,13 +1,16 @@
-import { connect }            from 'react-redux';
-import PureRenderMixin        from 'react-addons-pure-render-mixin';
-import ImmutablePropTypes     from 'react-immutable-proptypes';
-import LoadingIndicator       from '../../components/loading_indicator';
-import { fetchFollowers }     from '../../actions/accounts';
-import { ScrollContainer }    from 'react-router-scroll';
-import AccountContainer       from './containers/account_container';
+import { connect } from 'react-redux';
+import PureRenderMixin from 'react-addons-pure-render-mixin';
+import ImmutablePropTypes from 'react-immutable-proptypes';
+import LoadingIndicator from '../../components/loading_indicator';
+import {
+  fetchFollowers,
+  expandFollowers
+} from '../../actions/accounts';
+import { ScrollContainer } from 'react-router-scroll';
+import AccountContainer from './containers/account_container';
 
 const mapStateToProps = (state, props) => ({
-  accountIds: state.getIn(['user_lists', 'followers', Number(props.params.accountId)])
+  accountIds: state.getIn(['user_lists', 'followers', Number(props.params.accountId), 'items'])
 });
 
 const Followers = React.createClass({
@@ -30,6 +33,14 @@ const Followers = React.createClass({
     }
   },
 
+  handleScroll (e) {
+    const { scrollTop, scrollHeight, clientHeight } = e.target;
+
+    if (scrollTop === scrollHeight - clientHeight) {
+      this.props.dispatch(expandFollowers(Number(this.props.params.accountId)));
+    }
+  },
+
   render () {
     const { accountIds } = this.props;
 
@@ -39,8 +50,10 @@ const Followers = React.createClass({
 
     return (
       <ScrollContainer scrollKey='followers'>
-        <div className='scrollable'>
-          {accountIds.map(id => <AccountContainer key={id} id={id} withNote={false} />)}
+        <div className='scrollable' onScroll={this.handleScroll}>
+          <div>
+            {accountIds.map(id => <AccountContainer key={id} id={id} withNote={false} />)}
+          </div>
         </div>
       </ScrollContainer>
     );

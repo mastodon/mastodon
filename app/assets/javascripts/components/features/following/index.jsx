@@ -1,13 +1,16 @@
-import { connect }            from 'react-redux';
-import PureRenderMixin        from 'react-addons-pure-render-mixin';
-import ImmutablePropTypes     from 'react-immutable-proptypes';
-import LoadingIndicator       from '../../components/loading_indicator';
-import { fetchFollowing }     from '../../actions/accounts';
-import { ScrollContainer }    from 'react-router-scroll';
-import AccountContainer       from '../followers/containers/account_container';
+import { connect } from 'react-redux';
+import PureRenderMixin from 'react-addons-pure-render-mixin';
+import ImmutablePropTypes from 'react-immutable-proptypes';
+import LoadingIndicator from '../../components/loading_indicator';
+import {
+  fetchFollowing,
+  expandFollowing
+} from '../../actions/accounts';
+import { ScrollContainer } from 'react-router-scroll';
+import AccountContainer from '../followers/containers/account_container';
 
 const mapStateToProps = (state, props) => ({
-  accountIds: state.getIn(['user_lists', 'following', Number(props.params.accountId)])
+  accountIds: state.getIn(['user_lists', 'following', Number(props.params.accountId), 'items'])
 });
 
 const Following = React.createClass({
@@ -30,6 +33,14 @@ const Following = React.createClass({
     }
   },
 
+  handleScroll (e) {
+    const { scrollTop, scrollHeight, clientHeight } = e.target;
+
+    if (scrollTop === scrollHeight - clientHeight) {
+      this.props.dispatch(expandFollowing(Number(this.props.params.accountId)));
+    }
+  },
+
   render () {
     const { accountIds } = this.props;
 
@@ -39,8 +50,10 @@ const Following = React.createClass({
 
     return (
       <ScrollContainer scrollKey='following'>
-        <div className='scrollable'>
-          {accountIds.map(id => <AccountContainer key={id} id={id} withNote={false} />)}
+        <div className='scrollable' onScroll={this.handleScroll}>
+          <div>
+            {accountIds.map(id => <AccountContainer key={id} id={id} withNote={false} />)}
+          </div>
         </div>
       </ScrollContainer>
     );

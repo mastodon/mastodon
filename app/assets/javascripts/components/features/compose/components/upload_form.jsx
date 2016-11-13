@@ -7,7 +7,6 @@ const UploadForm = React.createClass({
   propTypes: {
     media: ImmutablePropTypes.list.isRequired,
     is_uploading: React.PropTypes.bool,
-    onSelectFile: React.PropTypes.func.isRequired,
     onRemoveFile: React.PropTypes.func.isRequired
   },
 
