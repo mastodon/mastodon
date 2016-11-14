@@ -14,6 +14,7 @@ const tabStyle = {
   padding: '10px',
   color: '#fff',
   textDecoration: 'none',
+  textAlign: 'center',
   fontSize: '12px',
   fontWeight: '500',
   borderBottom: '2px solid #373b4a'
@@ -30,7 +31,7 @@ const TabsBar = () => {
       <Link style={tabStyle} activeStyle={tabActiveStyle} to='/statuses/new'><i className='fa fa-fw fa-pencil' /> Compose</Link>
       <Link style={tabStyle} activeStyle={tabActiveStyle} to='/timelines/home'><i className='fa fa-fw fa-home' /> Home</Link>
       <Link style={tabStyle} activeStyle={tabActiveStyle} to='/timelines/mentions'><i className='fa fa-fw fa-at' /> Mentions</Link>
-      <Link style={tabStyle} activeStyle={tabActiveStyle} to='/timelines/all'><i className='fa fa-fw fa-globe' /> Public</Link>
+      <Link style={tabStyle} activeStyle={tabActiveStyle} to='/timelines/public'><i className='fa fa-fw fa-globe' /> Public</Link>
     </div>
   );
 };
