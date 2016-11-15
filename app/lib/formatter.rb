@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'singleton'
 
 class Formatter
@@ -17,7 +19,7 @@ class Formatter
     html = link_mentions(html, status.mentions)
     html = link_hashtags(html)
 
-    html.html_safe
+    html.html_safe # rubocop:disable Rails/OutputSafety
   end
 
   def reformat(html)
@@ -30,7 +32,7 @@ class Formatter
     html = encode(account.note)
     html = link_urls(html)
 
-    html.html_safe
+    html.html_safe # rubocop:disable Rails/OutputSafety
   end
 
   private

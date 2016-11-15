@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 class FollowRemoteAccountService < BaseService
   include OStatus2::MagicKey
 
-  DFRN_NS = 'http://purl.org/macgirvin/dfrn/1.0'.freeze
+  DFRN_NS = 'http://purl.org/macgirvin/dfrn/1.0'
 
   # Find or create a local account for a remote user.
   # When creating, look up the user's webfinger and fetch all
@@ -49,7 +51,7 @@ class FollowRemoteAccountService < BaseService
     get_profile(xml, account)
     account.save!
 
-    return account
+    account
   end
 
   private

@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class ProcessInteractionService < BaseService
-  ACTIVITY_NS = 'http://activitystrea.ms/spec/1.0/'.freeze
+  ACTIVITY_NS = 'http://activitystrea.ms/spec/1.0/'
 
   # Record locally the remote interaction with our user
   # @param [String] envelope Salmon envelope
@@ -76,9 +78,7 @@ class ProcessInteractionService < BaseService
 
     return if status.nil?
 
-    if account.id == status.account_id
-      remove_status_service.call(status)
-    end
+    remove_status_service.call(status) if account.id == status.account_id
   end
 
   def favourite!(xml, from_account)

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class BlockDomainService < BaseService
   def call(domain)
     DomainBlock.find_or_create_by!(domain: domain)

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class PostStatusService < BaseService
   # Post a text status update, fetch and notify remote users mentioned
   # @param [Account] account Account from which to post

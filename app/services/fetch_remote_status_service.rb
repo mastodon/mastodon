@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 class FetchRemoteStatusService < BaseService
   def call(url)
     atom_url, body = FetchAtomService.new.call(url)
 
     return nil if atom_url.nil?
-    return process_atom(atom_url, body)
+    process_atom(atom_url, body)
   end
 
   private
@@ -20,7 +22,7 @@ class FetchRemoteStatusService < BaseService
 
     statuses = ProcessFeedService.new.call(body, account)
 
-    return statuses.first
+    statuses.first
   end
 
   def extract_author(url, xml)
@@ -34,7 +36,7 @@ class FetchRemoteStatusService < BaseService
 
     return FollowRemoteAccountService.new.call("#{username}@#{domain}")
   rescue Nokogiri::XML::XPath::SyntaxError
-    Rails.logger.debug "Invalid XML or missing namespace"
+    Rails.logger.debug 'Invalid XML or missing namespace'
     nil
   end
 end

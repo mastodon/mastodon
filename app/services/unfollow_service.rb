@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class UnfollowService < BaseService
   # Unfollow and notify the remote user
   # @param [Account] source_account Where to unfollow from
@@ -21,6 +23,6 @@ class UnfollowService < BaseService
   end
 
   def redis
-    $redis
+    Redis.current
   end
 end

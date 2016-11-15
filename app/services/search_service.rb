@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class SearchService < BaseService
   def call(query, limit, resolve = false)
     return if query.blank?
@@ -5,10 +7,10 @@ class SearchService < BaseService
     username, domain = query.split('@')
 
     results = if domain.nil?
-      Account.search_for(username)
-    else
-      Account.search_for("#{username} #{domain}")
-    end
+                Account.search_for(username)
+              else
+                Account.search_for("#{username} #{domain}")
+              end
 
     results = results.limit(limit).with_counters
 

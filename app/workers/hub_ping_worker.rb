@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class HubPingWorker
   include Sidekiq::Worker
   include RoutingHelper

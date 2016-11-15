@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class FavouriteService < BaseService
   # Favourite a status and notify remote user
   # @param [Account] account

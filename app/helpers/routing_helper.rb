@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module RoutingHelper
   extend ActiveSupport::Concern
   include Rails.application.routes.url_helpers

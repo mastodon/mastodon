@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Mention < ApplicationRecord
   belongs_to :account, inverse_of: :mentions
   belongs_to :status

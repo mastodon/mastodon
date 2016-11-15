@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ReblogService < BaseService
   # Reblog a status and notify its remote author
   # @param [Account] account Account to reblog from

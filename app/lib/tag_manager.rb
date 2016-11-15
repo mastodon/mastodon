@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'singleton'
 
 class TagManager
@@ -18,7 +20,7 @@ class TagManager
   end
 
   def local_domain?(domain)
-    domain.nil? || domain.gsub(/[\/]/, '').downcase == Rails.configuration.x.local_domain.downcase
+    domain.nil? || domain.gsub(/[\/]/, '').casecmp(Rails.configuration.x.local_domain).zero?
   end
 
   def uri_for(target)

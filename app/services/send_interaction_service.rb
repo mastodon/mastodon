@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class SendInteractionService < BaseService
   # Send an Atom representation of an interaction to a remote Salmon endpoint
   # @param [StreamEntry] stream_entry

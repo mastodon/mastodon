@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 namespace :mastodon do
   namespace :media do
     desc 'Removes media attachments that have not been assigned to any status for longer than a day'
@@ -28,7 +30,7 @@ namespace :mastodon do
     task refresh: :environment do
       Account.expiring(1.day.from_now).find_each do |a|
         Rails.logger.debug "PuSH re-subscribing to #{a.acct}"
-        SubscribeService.new.(a)
+        SubscribeService.new.call(a)
       end
     end
   end
@@ -36,7 +38,7 @@ namespace :mastodon do
   namespace :feeds do
     desc 'Clears all timelines so that they would be regenerated on next hit'
     task clear: :environment do
-      $redis.keys('feed:*').each { |key| $redis.del(key) }
+      Redis.current.keys('feed:*').each { |key| Redis.current.del(key) }
     end
   end
 

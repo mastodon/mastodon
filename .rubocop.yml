@@ -18,8 +18,28 @@ Metrics/MethodLength:
   CountComments: false
   Max: 10
 
-Metrics/ModuleLength:
+Metrics/AbcSize:
   Max: 100
+
+Metrics/BlockNesting:
+  Max: 3
+
+Metrics/ClassLength:
+  CountComments: false
+  Max: 200
+
+Metrics/CyclomaticComplexity:
+  Max: 15
+
+Metrics/MethodLength:
+  Max: 55
+
+Metrics/ModuleLength:
+  CountComments: false
+  Max: 200
+
+Metrics/PerceivedComplexity:
+  Max: 10
 
 Metrics/ParameterLists:
   Max: 4
@@ -37,10 +57,10 @@ Style/Documentation:
   Enabled: false
 
 Style/DoubleNegation:
-  Enabled: false
+  Enabled: true
 
 Style/FrozenStringLiteralComment:
-  Enabled: false
+  Enabled: true
 
 Style/SpaceInsideHashLiteralBraces:
   EnforcedStyle: space
@@ -51,10 +71,18 @@ Style/TrailingCommaInLiteral:
 Style/RegexpLiteral:
   Enabled: false
 
+Style/Lambda:
+  Enabled: false
+
+Rails/HasAndBelongsToMany:
+  Enabled: false
+
 AllCops:
-  TargetRubyVersion: 2.2
+  TargetRubyVersion: 2.3
   Exclude:
   - 'spec/**/*'
   - 'db/**/*'
   - 'app/views/**/*'
   - 'config/**/*'
+  - 'bin/*'
+  - 'Rakefile'

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class MediaAttachment < ApplicationRecord
   IMAGE_MIME_TYPES = ['image/jpeg', 'image/png', 'image/gif'].freeze
   VIDEO_MIME_TYPES = ['video/webm', 'video/mp4'].freeze
@@ -6,9 +8,9 @@ class MediaAttachment < ApplicationRecord
   belongs_to :status,  inverse_of: :media_attachments
 
   has_attached_file :file,
-    styles: -> (f) { file_styles f },
-    processors: -> (f) { f.video? ? [:transcoder] : [:thumbnail] },
-    convert_options: { all: "-strip" }
+                    styles: -> (f) { file_styles f },
+                    processors: -> (f) { f.video? ? [:transcoder] : [:thumbnail] },
+                    convert_options: { all: '-strip' }
   validates_attachment_content_type :file, content_type: IMAGE_MIME_TYPES + VIDEO_MIME_TYPES
   validates_attachment_size :file, less_than: 4.megabytes
 
@@ -20,8 +22,8 @@ class MediaAttachment < ApplicationRecord
 
   def file_remote_url=(url)
     self.file = URI.parse(url)
-  rescue OpenURI::HTTPError
-    #
+  rescue OpenURI::HTTPError => e
+    Rails.logger.debug "Error fetching remote attachment: #{e}"
   end
 
   def image?
@@ -43,19 +45,19 @@ class MediaAttachment < ApplicationRecord
       if f.instance.image?
         {
           original: '100%',
-          small: '510x680>'
+          small: '510x680>',
         }
       else
         {
           small: {
             convert_options: {
               output: {
-                vf: 'scale=\'min(510\, iw):min(680\, ih)\':force_original_aspect_ratio=decrease'
-              }
+                vf: 'scale=\'min(510\, iw):min(680\, ih)\':force_original_aspect_ratio=decrease',
+              },
             },
             format: 'png',
-            time: 1
-          }
+            time: 1,
+          },
         }
       end
     end

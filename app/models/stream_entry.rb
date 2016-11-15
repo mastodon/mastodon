@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class StreamEntry < ApplicationRecord
   include Paginable
 
@@ -15,7 +17,11 @@ class StreamEntry < ApplicationRecord
   scope :with_includes, -> { includes(:account, status: STATUS_INCLUDES, favourite: [:account, :stream_entry, status: STATUS_INCLUDES], follow: [:target_account, :stream_entry]) }
 
   def object_type
-    orphaned? ? :activity : (targeted? ? :activity : activity.object_type)
+    if orphaned?
+      :activity
+    else
+      targeted? ? :activity : activity.object_type
+    end
   end
 
   def verb

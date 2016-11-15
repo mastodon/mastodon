@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Status < ApplicationRecord
   include Paginable
   include Streamable
@@ -89,22 +91,17 @@ class Status < ApplicationRecord
 
     def as_public_timeline(account = nil)
       query = joins('LEFT OUTER JOIN accounts ON statuses.account_id = accounts.id').where('accounts.silenced = FALSE')
-
-      unless account.nil?
-        query = filter_timeline(query, account)
-      end
+      query = filter_timeline(query, account) unless account.nil?
 
       query.with_includes.with_counters
     end
 
     def as_tag_timeline(tag, account = nil)
       query = tag.statuses
-        .joins('LEFT OUTER JOIN accounts ON statuses.account_id = accounts.id')
-        .where('accounts.silenced = FALSE')
+                 .joins('LEFT OUTER JOIN accounts ON statuses.account_id = accounts.id')
+                 .where('accounts.silenced = FALSE')
 
-      unless account.nil?
-        query = filter_timeline(query, account)
-      end
+      query = filter_timeline(query, account) unless account.nil?
 
       query.with_includes.with_counters
     end

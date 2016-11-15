@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 class ProcessFeedService < BaseService
-  ACTIVITY_NS = 'http://activitystrea.ms/spec/1.0/'.freeze
-  THREAD_NS   = 'http://purl.org/syndication/thread/1.0'.freeze
+  ACTIVITY_NS = 'http://activitystrea.ms/spec/1.0/'
+  THREAD_NS   = 'http://purl.org/syndication/thread/1.0'
 
   def call(body, account)
     xml = Nokogiri::XML(body)
@@ -89,13 +91,13 @@ class ProcessFeedService < BaseService
         account = @account
       end
 
-      status = Status.create!({
+      status = Status.create!(
         uri: id(entry),
         url: url(entry),
         account: account,
         text: content(entry),
-        created_at: published(entry),
-      })
+        created_at: published(entry)
+      )
 
       if thread?(entry)
         Rails.logger.debug "Trying to attach #{status.id} (#{id(entry)}) to #{thread(entry).first}"

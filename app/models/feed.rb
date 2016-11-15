@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Feed
   def initialize(type, account)
     @type    = type
@@ -28,6 +30,6 @@ class Feed
   end
 
   def redis
-    $redis
+    Redis.current
   end
 end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class XrdController < ApplicationController
   before_action :set_default_format_json, only: :webfinger
   before_action :set_default_format_xml, only: :host_meta
@@ -26,11 +28,11 @@ class XrdController < ApplicationController
   private
 
   def set_default_format_xml
-    request.format = 'xml' if request.headers["HTTP_ACCEPT"].nil? && params[:format].nil?
+    request.format = 'xml' if request.headers['HTTP_ACCEPT'].nil? && params[:format].nil?
   end
 
   def set_default_format_json
-    request.format = 'json' if request.headers["HTTP_ACCEPT"].nil? && params[:format].nil?
+    request.format = 'json' if request.headers['HTTP_ACCEPT'].nil? && params[:format].nil?
   end
 
   def username_from_resource
@@ -44,14 +46,14 @@ class XrdController < ApplicationController
 
   def pem_to_magic_key(public_key)
     modulus, exponent = [public_key.n, public_key.e].map do |component|
-      result = ''
+      result = []
 
       until component.zero?
         result << [component % 256].pack('C')
         component >>= 8
       end
 
-      result.reverse!
+      result.reverse.join
     end
 
     (['RSA'] + [modulus, exponent].map { |n| Base64.urlsafe_encode64(n) }).join('.')

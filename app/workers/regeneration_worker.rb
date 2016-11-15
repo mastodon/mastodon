@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class RegenerationWorker
   include Sidekiq::Worker
 

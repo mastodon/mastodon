@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AccountsController < ApplicationController
   layout 'public'
 
@@ -41,10 +43,7 @@ class AccountsController < ApplicationController
   end
 
   def set_link_headers
-    response.headers['Link'] = LinkHeader.new([
-      [webfinger_account_url, [['rel', 'lrdd'], ['type', 'application/xrd+xml']]],
-      [account_url(@account, format: 'atom'), [['rel', 'alternate'], ['type', 'application/atom+xml']]]
-    ])
+    response.headers['Link'] = LinkHeader.new([[webfinger_account_url, [%w(rel lrdd), %w(type application/xrd+xml)]], [account_url(@account, format: 'atom'), [%w(rel alternate), %w(type application/atom+xml)]]])
   end
 
   def webfinger_account_url

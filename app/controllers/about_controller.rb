@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AboutController < ApplicationController
   before_action :set_body_classes
 

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class MediaController < ApplicationController
   before_action :set_media_attachment
 

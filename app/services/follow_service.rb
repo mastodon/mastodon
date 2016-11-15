@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class FollowService < BaseService
   # Follow a remote user, notify remote user about the follow
   # @param [Account] source_account From which to follow
@@ -35,7 +37,7 @@ class FollowService < BaseService
   end
 
   def redis
-    $redis
+    Redis.current
   end
 
   def follow_remote_account_service

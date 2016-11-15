@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Follow < ApplicationRecord
   include Paginable
   include Streamable

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Api::V1::MediaController < ApiController
   before_action -> { doorkeeper_authorize! :write }
   before_action :require_user!

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class RemoveStatusService < BaseService
   def call(status)
     remove_from_self(status) if status.account.local?
@@ -62,6 +64,6 @@ class RemoveStatusService < BaseService
   end
 
   def redis
-    $redis
+    Redis.current
   end
 end

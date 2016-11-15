@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Api::V1::AccountsController < ApiController
   before_action -> { doorkeeper_authorize! :read }, except: [:follow, :unfollow, :block, :unblock]
   before_action -> { doorkeeper_authorize! :follow }, only: [:follow, :unfollow, :block, :unblock]
@@ -20,7 +22,7 @@ class Api::V1::AccountsController < ApiController
     @accounts = results.map { |f| accounts[f.target_account_id] }
 
     next_path = following_api_v1_account_url(max_id: results.last.id)    if results.size == DEFAULT_ACCOUNTS_LIMIT
-    prev_path = following_api_v1_account_url(since_id: results.first.id) if results.size > 0
+    prev_path = following_api_v1_account_url(since_id: results.first.id) unless results.empty?
 
     set_pagination_headers(next_path, prev_path)
 
@@ -33,7 +35,7 @@ class Api::V1::AccountsController < ApiController
     @accounts = results.map { |f| accounts[f.account_id] }
 
     next_path = followers_api_v1_account_url(max_id: results.last.id)    if results.size == DEFAULT_ACCOUNTS_LIMIT
-    prev_path = followers_api_v1_account_url(since_id: results.first.id) if results.size > 0
+    prev_path = followers_api_v1_account_url(since_id: results.first.id) unless results.empty?
 
     set_pagination_headers(next_path, prev_path)
 
@@ -56,7 +58,7 @@ class Api::V1::AccountsController < ApiController
     set_maps(@statuses)
 
     next_path = statuses_api_v1_account_url(max_id: @statuses.last.id)    if @statuses.size == DEFAULT_STATUSES_LIMIT
-    prev_path = statuses_api_v1_account_url(since_id: @statuses.first.id) if @statuses.size > 0
+    prev_path = statuses_api_v1_account_url(since_id: @statuses.first.id) unless @statuses.empty?
 
     set_pagination_headers(next_path, prev_path)
   end

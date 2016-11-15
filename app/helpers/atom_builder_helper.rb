@@ -1,6 +1,12 @@
+# frozen_string_literal: true
+
 module AtomBuilderHelper
   def stream_updated_at
-    @account.stream_entries.last ? (@account.updated_at > @account.stream_entries.last.created_at ? @account.updated_at : @account.stream_entries.last.created_at) : @account.updated_at
+    if @account.stream_entries.last
+      (@account.updated_at > @account.stream_entries.last.created_at ? @account.updated_at : @account.stream_entries.last.created_at)
+    else
+      @account.updated_at
+    end
   end
 
   def entry(xml, is_root = false, &block)
@@ -98,7 +104,7 @@ module AtomBuilderHelper
   end
 
   def in_reply_to(xml, uri, url)
-    xml['thr'].send('in-reply-to', { ref: uri, href: url, type: 'text/html' })
+    xml['thr'].send('in-reply-to', ref: uri, href: url, type: 'text/html')
   end
 
   def link_mention(xml, account)

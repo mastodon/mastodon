@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class HashtagChannel < ApplicationCable::Channel
   def subscribed
     tag = params[:tag].downcase

@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 class FetchRemoteAccountService < BaseService
   def call(url)
     atom_url, body = FetchAtomService.new.call(url)
 
     return nil if atom_url.nil?
-    return process_atom(atom_url, body)
+    process_atom(atom_url, body)
   end
 
   private
@@ -25,7 +27,7 @@ class FetchRemoteAccountService < BaseService
     Rails.logger.debug "Unparseable URL given: #{url}"
     nil
   rescue Nokogiri::XML::XPath::SyntaxError
-    Rails.logger.debug "Invalid XML or missing namespace"
+    Rails.logger.debug 'Invalid XML or missing namespace'
     nil
   end
 end

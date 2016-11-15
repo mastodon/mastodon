@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class BlockService < BaseService
   def call(account, target_account)
     return if account.id == target_account.id
@@ -20,6 +22,6 @@ class BlockService < BaseService
   end
 
   def redis
-    $redis
+    Redis.current
   end
 end

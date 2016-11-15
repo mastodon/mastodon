@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ApiController < ApplicationController
   DEFAULT_STATUSES_LIMIT = 20
   DEFAULT_ACCOUNTS_LIMIT = 40
@@ -51,8 +53,8 @@ class ApiController < ApplicationController
 
   def set_pagination_headers(next_path = nil, prev_path = nil)
     links = []
-    links << [next_path, [['rel', 'next']]] if next_path
-    links << [prev_path, [['rel', 'prev']]] if prev_path
+    links << [next_path, [%w(rel next)]] if next_path
+    links << [prev_path, [%w(rel prev)]] if prev_path
     response.headers['Link'] = LinkHeader.new(links)
   end
 
@@ -76,7 +78,7 @@ class ApiController < ApplicationController
     render json: {}, status: 200
   end
 
-  def set_maps(statuses)
+  def set_maps(statuses) # rubocop:disable Style/AccessorMethodName
     if current_account.nil?
       @reblogs_map    = {}
       @favourites_map = {}

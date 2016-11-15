@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class FanOutOnWriteService < BaseService
   # Push a status into home and mentions feeds
   # @param [Status] status

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Account < ApplicationRecord
   include Targetable
   include PgSearch
@@ -92,11 +94,11 @@ class Account < ApplicationRecord
   end
 
   def favourited?(status)
-    (status.reblog? ? status.reblog : status).favourites.where(account: self).count > 0
+    (status.reblog? ? status.reblog : status).favourites.where(account: self).count.positive?
   end
 
   def reblogged?(status)
-    (status.reblog? ? status.reblog : status).reblogs.where(account: self).count > 0
+    (status.reblog? ? status.reblog : status).reblogs.where(account: self).count.positive?
   end
 
   def keypair
@@ -115,8 +117,8 @@ class Account < ApplicationRecord
   def avatar_remote_url=(url)
     self.avatar = URI.parse(url) unless self[:avatar_remote_url] == url
     self[:avatar_remote_url] = url
-  rescue OpenURI::HTTPError
-    #
+  rescue OpenURI::HTTPError => e
+    Rails.logger.debug "Error fetching remote avatar: #{e}"
   end
 
   def object_type

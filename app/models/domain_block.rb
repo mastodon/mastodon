@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class DomainBlock < ApplicationRecord
   validates :domain, presence: true, uniqueness: true
 

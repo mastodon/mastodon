@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ProcessMentionsService < BaseService
   # Scan status for mentions and fetch remote mentioned users, create
   # local mention pointers, send Salmon notifications to mentioned

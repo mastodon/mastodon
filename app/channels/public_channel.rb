@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class PublicChannel < ApplicationCable::Channel
   def subscribed
     stream_from 'timeline:public', lambda { |encoded_message|

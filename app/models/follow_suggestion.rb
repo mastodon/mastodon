@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class FollowSuggestion
   class << self
     def get(for_account_id, limit = 10)
