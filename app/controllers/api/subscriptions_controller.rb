@@ -16,7 +16,7 @@ class Api::SubscriptionsController < ApiController
     subscription = @account.subscription(api_subscription_url(@account.id))
 
     if subscription.verify(body, request.headers['HTTP_X_HUB_SIGNATURE'])
-      ProcessFeedService.new.call(body, @account)
+      ProcessingWorker.perform_async(@account.id, body.force_encoding('UTF-8'))
       head 201
     else
       head 202
