@@ -12,7 +12,7 @@ class Api::V1::StatusesController < ApiController
   end
 
   def context
-    @context = OpenStruct.new(ancestors: @status.ancestors, descendants: @status.descendants)
+    @context = OpenStruct.new(ancestors: @status.ancestors(current_account), descendants: @status.descendants(current_account))
     set_maps([@status] + @context[:ancestors] + @context[:descendants])
   end
 

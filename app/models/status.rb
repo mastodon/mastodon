@@ -66,18 +66,22 @@ class Status < ApplicationRecord
     attributes['favourites_count'] || favourites.count
   end
 
-  def ancestors
+  def ancestors(account = nil)
     ids      = (Status.find_by_sql(['WITH RECURSIVE search_tree(id, in_reply_to_id, path) AS (SELECT id, in_reply_to_id, ARRAY[id] FROM statuses WHERE id = ? UNION ALL SELECT statuses.id, statuses.in_reply_to_id, path || statuses.id FROM search_tree JOIN statuses ON statuses.id = search_tree.in_reply_to_id WHERE NOT statuses.id = ANY(path)) SELECT id FROM search_tree ORDER BY path DESC', id]) - [self]).pluck(:id)
     statuses = Status.where(id: ids).with_counters.with_includes.group_by(&:id)
+    results  = ids.map { |id| statuses[id].first }
+    results  = results.reject { |status| account.blocking?(status.account) } unless account.nil?
 
-    ids.map { |id| statuses[id].first }
+    results
   end
 
-  def descendants
+  def descendants(account = nil)
     ids      = (Status.find_by_sql(['WITH RECURSIVE search_tree(id, path) AS (SELECT id, ARRAY[id] FROM statuses WHERE id = ? UNION ALL SELECT statuses.id, path || statuses.id FROM search_tree JOIN statuses ON statuses.in_reply_to_id = search_tree.id WHERE NOT statuses.id = ANY(path)) SELECT id FROM search_tree ORDER BY path', id]) - [self]).pluck(:id)
     statuses = Status.where(id: ids).with_counters.with_includes.group_by(&:id)
+    results  = ids.map { |id| statuses[id].first }
+    results  = results.reject { |status| account.blocking?(status.account) } unless account.nil?
 
-    ids.map { |id| statuses[id].first }
+    results
   end
 
   class << self
