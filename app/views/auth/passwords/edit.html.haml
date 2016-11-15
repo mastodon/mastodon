@@ -1,14 +1,14 @@
 - content_for :page_title do
-  Set new password
+  = t('auth.set_new_password')
 
 = simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f|
   = render 'shared/error_messages', object: resource
   = f.input :reset_password_token, as: :hidden
 
-  = f.input :password, autofocus: true, autocomplete: "off", placeholder: 'New password', input_html: { 'aria-label' => 'New password' }
-  = f.input :password_confirmation, autocomplete: "off", placeholder: 'Confirm new password', input_html: { 'aria-label' => 'Confirm new password' }
+  = f.input :password, autofocus: true, autocomplete: "off", placeholder: t('simple_form.labels.defaults.new_password'), input_html: { 'aria-label' => t('simple_form.labels.defaults.new_password') }
+  = f.input :password_confirmation, autocomplete: "off", placeholder: t('simple_form.labels.defaults.confirm_new_password'), input_html: { 'aria-label' => t('simple_form.labels.defaults.confirm_new_password') }
 
   .actions
-    = f.button :button, "Change my password", type: :submit
+    = f.button :button, t('auth.set_new_password'), type: :submit
 
 .form-footer= render "devise/shared/links"

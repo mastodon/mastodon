@@ -1,6 +1,3 @@
 - if object.errors.any?
   .flash-message#error_explanation
-    %strong
-      Something isn't quite right yet! Please review
-      = pluralize(object.errors.count, 'error')
-      below:
+    %strong= t('generic.validation_errors', count: object.errors.count)

@@ -1,11 +1,11 @@
 - content_for :page_title do
-  Log in
+  = t('auth.login')
 
 = simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-  = f.input :email, autofocus: true, placeholder: 'E-mail address', required: true, input_html: { 'aria-label' => 'E-mail address' }
-  = f.input :password, placeholder: 'Password', required: true, input_html: { 'aria-label' => 'Password' }
+  = f.input :email, autofocus: true, placeholder: t('simple_form.labels.defaults.email'), required: true, input_html: { 'aria-label' => t('simple_form.labels.defaults.email') }
+  = f.input :password, placeholder: t('simple_form.labels.defaults.password'), required: true, input_html: { 'aria-label' => t('simple_form.labels.defaults.password') }
 
   .actions
-    = f.button :button, "Log in", type: :submit
+    = f.button :button, t('auth.login'), type: :submit
 
 .form-footer= render "auth/shared/links"

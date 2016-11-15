@@ -14,7 +14,7 @@
       = "#{yield(:page_title)} - " if content_for?(:page_title)
       Mastodon
 
-    = stylesheet_link_tag    'application', media: 'all'
+    = stylesheet_link_tag 'application', media: 'all'
     = csrf_meta_tags
 
     = yield :header_tags

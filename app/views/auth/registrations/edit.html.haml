@@ -1,15 +1,15 @@
 - content_for :page_title do
-  Change password
+  = t('auth.change_password')
 
 = simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
   = render 'shared/error_messages', object: resource
 
-  = f.input :email, placeholder: 'E-mail address', input_html: { 'aria-label' => 'E-mail address' }
-  = f.input :password, autocomplete: "off", placeholder: 'New password', input_html: { 'aria-label' => 'New password' }
-  = f.input :password_confirmation, autocomplete: "off", placeholder: 'Confirm new password', input_html: { 'aria-label' => 'Confirm new password' }
-  = f.input :current_password, autocomplete: "off", placeholder: 'Current password', input_html: { 'aria-label' => 'Current password' }
+  = f.input :email, placeholder: t('simple_form.labels.defaults.email'), input_html: { 'aria-label' => t('simple_form.labels.defaults.email') }
+  = f.input :password, autocomplete: "off", placeholder: t('simple_form.labels.defaults.new_password'), input_html: { 'aria-label' => t('simple_form.labels.defaults.new_password') }
+  = f.input :password_confirmation, autocomplete: "off", placeholder: t('simple_form.labels.defaults.confirm_new_password'), input_html: { 'aria-label' => t('simple_form.labels.defaults.confirm_new_password') }
+  = f.input :current_password, autocomplete: "off", placeholder: t('simple_form.labels.defaults.current_password'), input_html: { 'aria-label' => t('simple_form.labels.defaults.current_password') }
 
   .actions
-    = f.button :button, "Save changes", type: :submit
+    = f.button :button, t('generic.save_changes'), type: :submit
 
 .form-footer= render "settings/shared/links"

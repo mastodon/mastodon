@@ -5,15 +5,27 @@ en:
     required:
       text: 'required'
       mark: '*'
-      # You can uncomment the line below if you need to overwrite the whole required html.
-      # When using html, text and mark won't be used.
-      # html: '<abbr title="required">*</abbr>'
     error_notification:
       default_message: "Please review the problems below:"
-    # Examples
-    # labels:
-    #   defaults:
-    #     password: 'Password'
+
+    labels:
+      defaults:
+        email: E-mail address
+        password: Password
+        username: Username
+        confirm_password: Confirm password
+        new_password: New password
+        confirm_new_password: Confirm new password
+        current_password: Current password
+        display_name: Display name
+        note: Bio
+        avatar: Avatar
+        header: Header
+      notification_emails:
+        follow: Send e-mail when someone follows you
+        reblog: Send e-mail when someone reblogs your status
+        favourite: Send e-mail when someone favourites your status
+        mention: Send e-mail when someone mentions you
     #   user:
     #     new:
     #       email: 'E-mail to sign in.'

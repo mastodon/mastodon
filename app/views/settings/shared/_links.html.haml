@@ -1,7 +1,7 @@
 %ul.no-list
   - if controller_name != 'profiles'
-    %li= link_to "Edit profile", settings_profile_path
+    %li= link_to t('settings.edit_profile'), settings_profile_path
   - if controller_name != 'preferences'
-    %li= link_to "Preferences", settings_preferences_path
+    %li= link_to t('settings.preferences'), settings_preferences_path
   - if controller_name != 'registrations'
-    %li= link_to "Change password", edit_user_registration_path
+    %li= link_to t('auth.change_password'), edit_user_registration_path

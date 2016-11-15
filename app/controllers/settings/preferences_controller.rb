@@ -15,7 +15,7 @@ class Settings::PreferencesController < ApplicationController
     current_user.settings(:notification_emails).mention   = user_params[:notification_emails][:mention]   == '1'
 
     if current_user.save
-      redirect_to settings_preferences_path, notice: 'Changes successfully saved!'
+      redirect_to settings_preferences_path, notice: I18n.t('generic.changes_saved_msg')
     else
       render action: :show
     end

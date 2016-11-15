@@ -1,15 +1,15 @@
 - content_for :page_title do
-  Edit profile
+  = t('settings.edit_profile')
 
 = simple_form_for @account, url: settings_profile_path, html: { method: :put } do |f|
   = render 'shared/error_messages', object: @account
 
-  = f.input :display_name, placeholder: 'Display name'
-  = f.input :note, placeholder: 'Bio'
+  = f.input :display_name, placeholder: t('simple_form.labels.defaults.display_name')
+  = f.input :note, placeholder: t('simple_form.labels.defaults.note')
   = f.input :avatar, wrapper: :with_label
   = f.input :header, wrapper: :with_label
 
   .actions
-    = f.button :button, 'Save changes', type: :submit
+    = f.button :button, t('generic.save_changes'), type: :submit
 
 .form-footer= render "settings/shared/links"

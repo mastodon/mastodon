@@ -7,7 +7,6 @@ class AboutController < ApplicationController
   end
 
   def terms
-    @state = 'TBD'
   end
 
   private
