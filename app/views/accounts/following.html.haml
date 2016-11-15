@@ -1,7 +1,5 @@
 - content_for :page_title do
-  People whom
-  = display_name(@account)
-  follows
+  = t('accounts.people_followed_by', name: display_name(@account))
 
 = render partial: 'header'
 

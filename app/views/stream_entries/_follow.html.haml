@@ -1,5 +1,5 @@
 .entry.entry-follow
   .content
     %strong= link_to follow.account.acct, account_path(follow.account)
-    is now following
+    = t('stream_entries.is_now_following')
     %strong= link_to follow.target_account.acct, TagManager.instance.url_for(follow.target_account)

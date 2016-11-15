@@ -1,5 +1,5 @@
 <%= display_name(@me) %>,
 
-Your status was reblogged by <%= @account.acct %>:
+<%= t('notification_mailer.reblog.body', name: @account.acct) %>
 
 <%= render partial: 'status' %>

@@ -55,6 +55,7 @@ group :development, :test do
   gem 'pry-rails'
   gem 'fuubar'
   gem 'fabrication'
+  gem 'i18n-tasks', '~> 0.9.6'
 end
 
 group :test do

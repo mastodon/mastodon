@@ -2,9 +2,9 @@
   - if user_signed_in? && current_account.id != @account.id
     .controls
       - if current_account.following?(@account)
-        = link_to 'Unfollow', unfollow_account_path(@account), data: { method: :post }, class: 'button'
+        = link_to t('accounts.unfollow'), unfollow_account_path(@account), data: { method: :post }, class: 'button'
       - else
-        = link_to 'Follow', follow_account_path(@account), data: { method: :post }, class: 'button'
+        = link_to t('accounts.follow'), follow_account_path(@account), data: { method: :post }, class: 'button'
 
   .avatar= image_tag @account.avatar.url(:large)
   %h1.name
@@ -17,13 +17,13 @@
     .details-counters
       .counter{ class: active_nav_class(account_url(@account)) }
         = link_to account_url(@account) do
-          %span.counter-label Posts
+          %span.counter-label= t('accounts.posts')
           %span.counter-number= @account.statuses.count
       .counter{ class: active_nav_class(following_account_url(@account)) }
         = link_to following_account_url(@account) do
-          %span.counter-label Following
+          %span.counter-label= t('accounts.following')
           %span.counter-number= @account.following.count
       .counter{ class: active_nav_class(followers_account_url(@account)) }
         = link_to followers_account_url(@account) do
-          %span.counter-label Followers
+          %span.counter-label= t('accounts.followers')
           %span.counter-number= @account.followers.count

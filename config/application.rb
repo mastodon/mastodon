@@ -31,16 +31,16 @@ module Mastodon
       allow do
         origins  '*'
 
-        resource '/api/*',       :headers => :any, :methods => [:post, :put, :delete, :get, :options], credentials: false
-        resource '/oauth/token', :headers => :any, :methods => [:post], credentials: false
+        resource '/api/*',       headers: :any, methods: [:post, :put, :delete, :get, :options], credentials: false
+        resource '/oauth/token', headers: :any, methods: [:post], credentials: false
       end
     end
 
     config.middleware.use Rack::Attack
     config.middleware.use Rack::Deflater
 
-    config.browserify_rails.source_map_environments += %w[development production]
-    config.browserify_rails.commandline_options = "--transform [ babelify --presets [ es2015 react ] ] --extension=\".jsx\""
+    config.browserify_rails.source_map_environments += %w(development production)
+    config.browserify_rails.commandline_options = '--transform [ babelify --presets [ es2015 react ] ] --extension=".jsx"'
 
     config.to_prepare do
       Doorkeeper::AuthorizationsController.layout 'auth'
@@ -50,7 +50,7 @@ module Mastodon
       'Server'                 => 'Mastodon',
       'X-Frame-Options'        => 'DENY',
       'X-Content-Type-Options' => 'nosniff',
-      'X-XSS-Protection'       => '1; mode=block'
+      'X-XSS-Protection'       => '1; mode=block',
     }
   end
 end

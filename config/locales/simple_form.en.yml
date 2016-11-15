@@ -1,43 +1,28 @@
+---
 en:
   simple_form:
-    "yes": 'Yes'
-    "no": 'No'
-    required:
-      text: 'required'
-      mark: '*'
     error_notification:
-      default_message: "Please review the problems below:"
-
+      default_message: 'Please review the problems below:'
     labels:
       defaults:
-        email: E-mail address
-        password: Password
-        username: Username
-        confirm_password: Confirm password
-        new_password: New password
+        avatar: Avatar
         confirm_new_password: Confirm new password
+        confirm_password: Confirm password
         current_password: Current password
         display_name: Display name
-        note: Bio
-        avatar: Avatar
+        email: E-mail address
         header: Header
+        new_password: New password
+        note: Bio
+        password: Password
+        username: Username
       notification_emails:
-        follow: Send e-mail when someone follows you
-        reblog: Send e-mail when someone reblogs your status
         favourite: Send e-mail when someone favourites your status
+        follow: Send e-mail when someone follows you
         mention: Send e-mail when someone mentions you
-    #   user:
-    #     new:
-    #       email: 'E-mail to sign in.'
-    #     edit:
-    #       email: 'E-mail.'
-    # hints:
-    #   defaults:
-    #     username: 'User name to sign in.'
-    #     password: 'No special characters, please.'
-    # include_blanks:
-    #   defaults:
-    #     age: 'Rather not say'
-    # prompts:
-    #   defaults:
-    #     age: 'Select your age'
+        reblog: Send e-mail when someone reblogs your status
+    'no': 'No'
+    required:
+      mark: "*"
+      text: required
+    'yes': 'Yes'

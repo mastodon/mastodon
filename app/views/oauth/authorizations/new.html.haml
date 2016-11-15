@@ -1,11 +1,11 @@
+- content_for :page_title do
+  = t('doorkeeper.authorizations.new.title')
+
 .oauth-prompt
-  %h2
-    Application
-    %strong=@pre_auth.client.name
-    requests access to your account
+  %h2= t('doorkeeper.authorizations.new.prompt', name: @pre_auth.client.name)
 
   %p
-    It will be able to
+    = t('doorkeeper.authorizations.new.able_to')
     = @pre_auth.scopes.map { |scope| t(scope, scope: [:doorkeeper, :scopes]) }.map { |s| "<strong>#{s}</strong>"}.to_sentence.html_safe
 
 = form_tag oauth_authorization_path, method: :post, class: 'simple_form' do

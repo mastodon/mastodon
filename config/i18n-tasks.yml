@@ -1,0 +1,43 @@
+# i18n-tasks finds and manages missing and unused translations: https://github.com/glebm/i18n-tasks
+
+# The "main" locale.
+base_locale: en
+data:
+  read:
+    - config/locales/%{locale}.yml
+    - config/locales/**/*.%{locale}.yml
+
+  write:
+    - ['{devise, simple_form, doorkeeper}.*', 'config/locales/\1.%{locale}.yml']
+    - config/locales/%{locale}.yml
+
+  yaml:
+    write:
+      line_width: -1
+
+search:
+  paths:
+   - app/
+
+  relative_roots:
+    - app/controllers
+    - app/helpers
+    - app/mailers
+    - app/views
+
+  exclude:
+    - app/assets/images
+    - app/assets/fonts
+    - app/assets/videos
+
+ignore_missing:
+  - '{devise,simple_form}.*'
+
+ignore_unused:
+  - 'activerecord.attributes.*'
+  - '{devise,will_paginate,doorkeeper}.*'
+  - 'simple_form.{yes,no}'
+  - 'simple_form.{placeholders,hints,labels}.*'
+  - 'simple_form.{error_notification,required}.:'
+  - 'errors.messages.*'
+  - 'activerecord.errors.models.doorkeeper/*'

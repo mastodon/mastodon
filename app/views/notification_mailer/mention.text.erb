@@ -1,5 +1,5 @@
 <%= display_name(@me) %>,
 
-You were mentioned by <%= @status.account.acct %> in:
+<%= t('notification_mailer.mention.body', name: @status.account.acct) %>
 
 <%= render partial: 'status' %>

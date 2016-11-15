@@ -8,7 +8,7 @@ class NotificationMailer < ApplicationMailer
     @status = status
 
     return unless @me.user.settings(:notification_emails).mention
-    mail to: @me.user.email, subject: "You were mentioned by #{@status.account.acct}"
+    mail to: @me.user.email, subject: I18n.t('notification_mailer.mention.subject', name: @status.account.acct)
   end
 
   def follow(followed_account, follower)
@@ -16,7 +16,7 @@ class NotificationMailer < ApplicationMailer
     @account = follower
 
     return unless @me.user.settings(:notification_emails).follow
-    mail to: @me.user.email, subject: "#{@account.acct} is now following you"
+    mail to: @me.user.email, subject: I18n.t('notification_mailer.follow.subject', name: @account.acct)
   end
 
   def favourite(target_status, from_account)
@@ -25,7 +25,7 @@ class NotificationMailer < ApplicationMailer
     @status  = target_status
 
     return unless @me.user.settings(:notification_emails).favourite
-    mail to: @me.user.email, subject: "#{@account.acct} favourited your status"
+    mail to: @me.user.email, subject: I18n.t('notification_mailer.favourite.subject', name: @account.acct)
   end
 
   def reblog(target_status, from_account)
@@ -34,6 +34,6 @@ class NotificationMailer < ApplicationMailer
     @status  = target_status
 
     return unless @me.user.settings(:notification_emails).reblog
-    mail to: @me.user.email, subject: "#{@account.acct} reblogged your status"
+    mail to: @me.user.email, subject: I18n.t('notification_mailer.reblog.subject', name: @account.acct)
   end
 end
