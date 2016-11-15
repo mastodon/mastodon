@@ -76,6 +76,8 @@
   font-size: inherit;
   vertical-align: middle;
   margin: -.2ex .15em .2ex;
+  width: 16px;
+  height: 16px;
 
   img {
     width: auto;
@@ -163,6 +165,13 @@
     &:hover {
       text-decoration: none;
     }
+  }
+}
+
+.account__header__display-name {
+  .emojione {
+    width: 25px;
+    height: 25px;
   }
 }
 

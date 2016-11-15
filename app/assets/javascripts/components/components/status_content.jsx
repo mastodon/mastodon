@@ -1,10 +1,6 @@
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
-import emojione from 'emojione';
-
-emojione.imageType = 'png';
-emojione.sprites = false;
-emojione.imagePathPNG = '/emoji/';
+import emojify from '../emoji';
 
 const StatusContent = React.createClass({
 
@@ -61,7 +57,7 @@ const StatusContent = React.createClass({
   },
 
   render () {
-    const content = { __html: emojione.unicodeToImage(this.props.status.get('content')) };
+    const content = { __html: emojify(this.props.status.get('content')) };
     return <div className='status__content' style={{ cursor: 'pointer' }} dangerouslySetInnerHTML={content} onClick={this.props.onClick} />;
   },
 
