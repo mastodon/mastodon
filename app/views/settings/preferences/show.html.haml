@@ -4,6 +4,8 @@
 = simple_form_for current_user, url: settings_preferences_path, html: { method: :put } do |f|
   = render 'shared/error_messages', object: current_user
 
+  = f.input :locale, collection: I18n.available_locales, wrapper: :with_label, include_blank: false
+
   = f.simple_fields_for :notification_emails, current_user.settings(:notification_emails) do |ff|
     = ff.input :follow, as: :boolean, wrapper: :with_label
     = ff.input :reblog, as: :boolean, wrapper: :with_label

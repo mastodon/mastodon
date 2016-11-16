@@ -8,7 +8,10 @@ class NotificationMailer < ApplicationMailer
     @status = status
 
     return unless @me.user.settings(:notification_emails).mention
-    mail to: @me.user.email, subject: I18n.t('notification_mailer.mention.subject', name: @status.account.acct)
+
+    I18n.with_locale(@me.user.locale || I18n.default_locale) do
+      mail to: @me.user.email, subject: I18n.t('notification_mailer.mention.subject', name: @status.account.acct)
+    end
   end
 
   def follow(followed_account, follower)
@@ -16,7 +19,10 @@ class NotificationMailer < ApplicationMailer
     @account = follower
 
     return unless @me.user.settings(:notification_emails).follow
-    mail to: @me.user.email, subject: I18n.t('notification_mailer.follow.subject', name: @account.acct)
+
+    I18n.with_locale(@me.user.locale || I18n.default_locale) do
+      mail to: @me.user.email, subject: I18n.t('notification_mailer.follow.subject', name: @account.acct)
+    end
   end
 
   def favourite(target_status, from_account)
@@ -25,7 +31,10 @@ class NotificationMailer < ApplicationMailer
     @status  = target_status
 
     return unless @me.user.settings(:notification_emails).favourite
-    mail to: @me.user.email, subject: I18n.t('notification_mailer.favourite.subject', name: @account.acct)
+
+    I18n.with_locale(@me.user.locale || I18n.default_locale) do
+      mail to: @me.user.email, subject: I18n.t('notification_mailer.favourite.subject', name: @account.acct)
+    end
   end
 
   def reblog(target_status, from_account)
@@ -34,6 +43,9 @@ class NotificationMailer < ApplicationMailer
     @status  = target_status
 
     return unless @me.user.settings(:notification_emails).reblog
-    mail to: @me.user.email, subject: I18n.t('notification_mailer.reblog.subject', name: @account.acct)
+
+    I18n.with_locale(@me.user.locale || I18n.default_locale) do
+      mail to: @me.user.email, subject: I18n.t('notification_mailer.reblog.subject', name: @account.acct)
+    end
   end
 end

@@ -7,6 +7,7 @@ class User < ApplicationRecord
   accepts_nested_attributes_for :account
 
   validates :account, presence: true
+  validates :locale, inclusion: I18n.available_locales.map(&:to_s), unless: 'locale.nil?'
 
   scope :prolific, -> { joins('inner join statuses on statuses.account_id = users.account_id').select('users.*, count(statuses.id) as statuses_count').group('users.id').order('statuses_count desc') }
   scope :recent,   -> { order('id desc') }

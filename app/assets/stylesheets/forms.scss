@@ -14,20 +14,23 @@ code {
     margin-bottom: 15px;
   }
 
-  .input.file {
+  .input.file, .input.select {
     padding: 15px 0;
     margin-bottom: 0;
+    display: flex;
 
     label {
       font-family: 'Roboto';
       font-size: 16px;
       color: #fff;
       width: 100px;
-      display: inline-block;
+      display: block;
+      flex: 0 0 auto;
+      padding-top: 5px;
     }
 
-    input[type=file] {
-      width: 280px;
+    input[type=file], select {
+      flex: 1 1 auto;
     }
   }
 
@@ -42,11 +45,14 @@ code {
       font-family: 'Roboto';
       font-size: 14px;
       color: #9baec8;
+      display: block;
     }
 
     input[type=checkbox] {
       display: inline-block;
-      margin-bottom: -13px;
+      position: relative;
+      top: 3px;
+      margin-right: 8px;
     }
   }
 

@@ -13,6 +13,7 @@ class ApplicationController < ActionController::Base
   rescue_from ActiveRecord::RecordNotFound, with: :not_found
 
   before_action :store_current_location, except: :raise_not_found, unless: :devise_controller?
+  before_action :set_locale, if: 'user_signed_in?'
 
   def raise_not_found
     raise ActionController::RoutingError, "No route matches #{params[:unmatched_route]}"
@@ -22,6 +23,12 @@ class ApplicationController < ActionController::Base
 
   def store_current_location
     store_location_for(:user, request.url)
+  end
+
+  def set_locale
+    I18n.locale = current_user.locale || I18n.default_locale
+  rescue I18n::InvalidLocale
+    I18n.locale = I18n.default_locale
   end
 
   protected
