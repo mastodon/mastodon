@@ -8,6 +8,7 @@ import Autosuggest from 'react-autosuggest';
 import AutosuggestAccountContainer from '../../compose/containers/autosuggest_account_container';
 import { debounce } from 'react-decoration';
 import UploadButtonContainer from '../containers/upload_button_container';
+import { injectIntl } from 'react-intl';
 
 const getTokenForSuggestions = (str, caretPosition) => {
   let word;
@@ -134,6 +135,7 @@ const ComposeForm = React.createClass({
   },
 
   render () {
+    const { intl } = this.props;
     let replyArea  = '';
     const disabled = this.props.is_submitting || this.props.is_uploading;
 
@@ -142,7 +144,7 @@ const ComposeForm = React.createClass({
     }
 
     const inputProps = {
-      placeholder: 'What is on your mind?',
+      placeholder: intl.formatMessage({ id: 'compose_form.placeholder', defaultMessage: 'What is on your mind?' }),
       value: this.props.text,
       onKeyUp: this.handleKeyUp,
       onChange: this.handleChange,
@@ -167,7 +169,7 @@ const ComposeForm = React.createClass({
         />
 
         <div style={{ marginTop: '10px', overflow: 'hidden' }}>
-          <div style={{ float: 'right' }}><Button text='Publish' onClick={this.handleSubmit} disabled={disabled} /></div>
+          <div style={{ float: 'right' }}><Button text={intl.formatMessage({ id: 'compose_form.publish', defaultMessage: 'Publish' })} onClick={this.handleSubmit} disabled={disabled} /></div>
           <div style={{ float: 'right', marginRight: '16px', lineHeight: '36px' }}><CharacterCounter max={500} text={this.props.text} /></div>
           <UploadButtonContainer style={{ paddingTop: '4px' }} />
         </div>
@@ -177,4 +179,4 @@ const ComposeForm = React.createClass({
 
 });
 
-export default ComposeForm;
+export default injectIntl(ComposeForm);

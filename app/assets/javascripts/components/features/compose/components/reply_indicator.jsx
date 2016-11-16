@@ -3,11 +3,8 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import Avatar from '../../../components/avatar';
 import IconButton from '../../../components/icon_button';
 import DisplayName from '../../../components/display_name';
-import emojione from 'emojione';
-
-emojione.imageType = 'png';
-emojione.sprites = false;
-emojione.imagePathPNG = '/emoji/';
+import emojify from '../../../emoji';
+import { injectIntl } from 'react-intl';
 
 const ReplyIndicator = React.createClass({
 
@@ -34,12 +31,13 @@ const ReplyIndicator = React.createClass({
   },
 
   render () {
-    let content = { __html: emojione.unicodeToImage(this.props.status.get('content')) };
+    const { intl } = this.props;
+    const content  = { __html: emojify(this.props.status.get('content')) };
 
     return (
       <div style={{ background: '#9baec8', padding: '10px' }}>
         <div style={{ overflow: 'hidden', marginBottom: '5px' }}>
-          <div style={{ float: 'right', lineHeight: '24px' }}><IconButton title='Cancel' icon='times' onClick={this.handleClick} /></div>
+          <div style={{ float: 'right', lineHeight: '24px' }}><IconButton title={intl.formatMessage({ id: 'reply_indicator.cancel', defaultMessage: 'Cancel' })} icon='times' onClick={this.handleClick} /></div>
 
           <a href={this.props.status.getIn(['account', 'url'])} onClick={this.handleAccountClick} className='reply-indicator__display-name' style={{ display: 'block', maxWidth: '100%', paddingRight: '25px', color: '#282c37', textDecoration: 'none', overflow: 'hidden', lineHeight: '24px' }}>
             <div style={{ float: 'left', marginRight: '5px' }}><Avatar size={24} src={this.props.status.getIn(['account', 'avatar'])} /></div>
@@ -54,4 +52,4 @@ const ReplyIndicator = React.createClass({
 
 });
 
-export default ReplyIndicator;
+export default injectIntl(ReplyIndicator);

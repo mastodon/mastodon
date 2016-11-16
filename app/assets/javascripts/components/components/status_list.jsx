@@ -3,7 +3,6 @@ import ImmutablePropTypes  from 'react-immutable-proptypes';
 import PureRenderMixin     from 'react-addons-pure-render-mixin';
 import { ScrollContainer } from 'react-router-scroll';
 import StatusContainer     from '../containers/status_container';
-import moment              from 'moment';
 
 const StatusList = React.createClass({
 
@@ -21,14 +20,14 @@ const StatusList = React.createClass({
 
   getInitialState () {
     return {
-      now: moment()
+      now: new Date()
     };
   },
 
   mixins: [PureRenderMixin],
 
   componentDidMount () {
-    this._interval = setInterval(() => this.setState({ now: moment() }), 60000);
+    this._interval = setInterval(() => this.setState({ now: new Date() }), 60000);
   },
 
   componentWillUnmount () {

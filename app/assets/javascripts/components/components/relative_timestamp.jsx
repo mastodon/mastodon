@@ -1,52 +1,24 @@
-import moment          from 'moment';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
+import {
+  FormattedMessage,
+  FormattedDate,
+  FormattedRelative
+} from 'react-intl';
 
-moment.updateLocale('en', {
-  relativeTime : {
-    future: "in %s",
-    past:   "%s",
-    s:  "%ds",
-    m:  "1m",
-    mm: "%dm",
-    h:  "1h",
-    hh: "%dh",
-    d:  "1d",
-    dd: "%dd",
-    M:  "1mo",
-    MM: "%dmo",
-    y:  "1y",
-    yy: "%dy"
+const RelativeTimestamp = ({ timestamp, now }) => {
+  const diff = (new Date(now)) - (new Date(timestamp));
+
+  if (diff < 0) {
+    return <FormattedMessage id='relative_time.just_now' defaultMessage='Just now' />
+  } else if (diff > (3600 * 24 * 7 * 1000)) {
+    return <FormattedDate value={timestamp} />
+  } else {
+    return <FormattedRelative value={timestamp} initialNow={now} updateInterval={0} />
   }
-});
+};
 
-const RelativeTimestamp = React.createClass({
-
-  propTypes: {
-    timestamp: React.PropTypes.string.isRequired,
-    now: React.PropTypes.any
-  },
-
-  mixins: [PureRenderMixin],
-
-  render () {
-    const timestamp = moment(this.props.timestamp);
-    const now       = this.props.now;
-
-    let string = '';
-
-    if (timestamp.isAfter(now)) {
-      string = 'Just now';
-    } else {
-      string = timestamp.from(now);
-    }
-
-    return (
-      <span>
-        {string}
-      </span>
-    );
-  }
-
-});
+RelativeTimestamp.propTypes = {
+  timestamp: React.PropTypes.string.isRequired,
+  now: React.PropTypes.any
+};
 
 export default RelativeTimestamp;

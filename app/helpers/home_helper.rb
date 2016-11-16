@@ -5,6 +5,7 @@ module HomeHelper
     {
       token: @token,
       account: render(file: 'api/v1/accounts/show', locals: { account: current_user.account }, formats: :json),
+      locale: I18n.locale,
     }
   end
 end

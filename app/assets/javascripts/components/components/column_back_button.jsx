@@ -1,4 +1,5 @@
 import PureRenderMixin from 'react-addons-pure-render-mixin';
+import { FormattedMessage } from 'react-intl';
 
 const outerStyle = {
   padding: '15px',
@@ -30,7 +31,7 @@ const ColumnBackButton = React.createClass({
     return (
       <div onClick={this.handleClick} style={outerStyle} className='column-back-button'>
         <i className='fa fa-fw fa-chevron-left' style={iconStyle} />
-        Back
+        <FormattedMessage id='column_back_button.label' defaultMessage='Back' />
       </div>
     );
   }

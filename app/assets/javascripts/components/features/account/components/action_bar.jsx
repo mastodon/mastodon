@@ -1,7 +1,8 @@
-import PureRenderMixin    from 'react-addons-pure-render-mixin';
+import PureRenderMixin from 'react-addons-pure-render-mixin';
 import ImmutablePropTypes from 'react-immutable-proptypes';
-import DropdownMenu       from '../../../components/dropdown_menu';
-import { Link }           from 'react-router';
+import DropdownMenu from '../../../components/dropdown_menu';
+import { Link } from 'react-router';
+import { injectIntl, FormattedMessage, FormattedNumber } from 'react-intl';
 
 const outerStyle = {
   borderTop: '1px solid #363c4b',
@@ -36,22 +37,22 @@ const ActionBar = React.createClass({
   mixins: [PureRenderMixin],
 
   render () {
-    const { account, me } = this.props;
+    const { account, me, intl } = this.props;
 
     let menu = [];
 
-    menu.push({ text: 'Mention', action: this.props.onMention });
+    menu.push({ text: intl.formatMessage({ id: 'account.mention', defaultMessage: 'Mention' }), action: this.props.onMention });
 
     if (account.get('id') === me) {
-      menu.push({ text: 'Edit profile', href: '/settings/profile' });
+      menu.push({ text: intl.formatMessage({ id: 'account.edit_profile', defaultMessage: 'Edit profile' }), href: '/settings/profile' });
     } else if (account.getIn(['relationship', 'blocking'])) {
-      menu.push({ text: 'Unblock', action: this.props.onBlock });
+      menu.push({ text: intl.formatMessage({ id: 'account.unblock', defaultMessage: 'Unblock' }), action: this.props.onBlock });
     } else if (account.getIn(['relationship', 'following'])) {
-      menu.push({ text: 'Unfollow', action: this.props.onFollow });
-      menu.push({ text: 'Block', action: this.props.onBlock });
+      menu.push({ text: intl.formatMessage({ id: 'account.unfollow', defaultMessage: 'Unfollow' }), action: this.props.onFollow });
+      menu.push({ text: intl.formatMessage({ id: 'account.block', defaultMessage: 'Block' }), action: this.props.onBlock });
     } else {
-      menu.push({ text: 'Follow', action: this.props.onFollow });
-      menu.push({ text: 'Block', action: this.props.onBlock });
+      menu.push({ text: intl.formatMessage({ id: 'account.follow', defaultMessage: 'Follow' }), action: this.props.onFollow });
+      menu.push({ text: intl.formatMessage({ id: 'account.block', defaultMessage: 'Block' }), action: this.props.onBlock });
     }
 
     return (
@@ -62,24 +63,24 @@ const ActionBar = React.createClass({
 
         <div style={outerLinksStyle}>
           <Link to={`/accounts/${account.get('id')}`} style={{ textDecoration: 'none', overflow: 'hidden', width: '80px', borderLeft: '1px solid #363c4b', padding: '10px', paddingRight: '5px' }}>
-            <span style={{ display: 'block', textTransform: 'uppercase', fontSize: '11px', color: '#616b86' }}>Posts</span>
-            <span style={{ display: 'block', fontSize: '15px', fontWeight: '500', color: '#fff' }}>{account.get('statuses_count')}</span>
+            <span style={{ display: 'block', textTransform: 'uppercase', fontSize: '11px', color: '#616b86' }}><FormattedMessage id='account.posts' defaultMessage='Posts' /></span>
+            <span style={{ display: 'block', fontSize: '15px', fontWeight: '500', color: '#fff' }}><FormattedNumber value={account.get('statuses_count')} /></span>
           </Link>
 
           <Link to={`/accounts/${account.get('id')}/following`} style={{ textDecoration: 'none', overflow: 'hidden', width: '80px', borderLeft: '1px solid #363c4b', padding: '10px 5px' }}>
-            <span style={{ display: 'block', textTransform: 'uppercase', fontSize: '11px', color: '#616b86' }}>Follows</span>
-            <span style={{ display: 'block', fontSize: '15px', fontWeight: '500', color: '#fff' }}>{account.get('following_count')}</span>
+            <span style={{ display: 'block', textTransform: 'uppercase', fontSize: '11px', color: '#616b86' }}><FormattedMessage id='account.follows' defaultMessage='Follows' /></span>
+            <span style={{ display: 'block', fontSize: '15px', fontWeight: '500', color: '#fff' }}><FormattedNumber value={account.get('following_count')} /></span>
           </Link>
 
           <Link to={`/accounts/${account.get('id')}/followers`} style={{ textDecoration: 'none', overflow: 'hidden', width: '80px', padding: '10px 5px', borderLeft: '1px solid #363c4b' }}>
-            <span style={{ display: 'block', textTransform: 'uppercase', fontSize: '11px', color: '#616b86' }}>Followers</span>
-            <span style={{ display: 'block', fontSize: '15px', fontWeight: '500', color: '#fff' }}>{account.get('followers_count')}</span>
+            <span style={{ display: 'block', textTransform: 'uppercase', fontSize: '11px', color: '#616b86' }}><FormattedMessage id='account.followers' defaultMessage='Followers' /></span>
+            <span style={{ display: 'block', fontSize: '15px', fontWeight: '500', color: '#fff' }}><FormattedNumber value={account.get('followers_count')} /></span>
           </Link>
         </div>
       </div>
     );
-  },
+  }
 
 });
 
-export default ActionBar;
+export default injectIntl(ActionBar);

@@ -1,9 +1,10 @@
-import PureRenderMixin    from 'react-addons-pure-render-mixin';
+import PureRenderMixin from 'react-addons-pure-render-mixin';
 import ImmutablePropTypes from 'react-immutable-proptypes';
-import Avatar             from '../../../components/avatar';
-import DisplayName        from '../../../components/display_name';
-import { Link }           from 'react-router';
-import IconButton         from '../../../components/icon_button';
+import Avatar from '../../../components/avatar';
+import DisplayName from '../../../components/display_name';
+import { Link } from 'react-router';
+import IconButton from '../../../components/icon_button';
+import { injectIntl } from 'react-intl';
 
 const outerStyle = {
   padding: '10px',
@@ -51,7 +52,7 @@ const Account = React.createClass({
   },
 
   render () {
-    const { account, me, withNote } = this.props;
+    const { account, me, withNote, intl } = this.props;
 
     if (!account) {
       return <div />;
@@ -68,7 +69,7 @@ const Account = React.createClass({
 
       buttons = (
         <div style={buttonsStyle}>
-          <IconButton icon={following ? 'user-times' : 'user-plus'} title='Follow' onClick={this.handleFollow} active={following} />
+          <IconButton icon={following ? 'user-times' : 'user-plus'} title={intl.formatMessage({ id: 'account.follow', defaultMessage: 'Follow' })} onClick={this.handleFollow} active={following} />
         </div>
       );
     }
@@ -91,4 +92,4 @@ const Account = React.createClass({
 
 });
 
-export default Account;
+export default injectIntl(Account);

@@ -1,6 +1,7 @@
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import IconButton from './icon_button';
 import { Motion, spring } from 'react-motion';
+import { injectIntl } from 'react-intl';
 
 const overlayStyle = {
   position: 'fixed',
@@ -40,14 +41,14 @@ const Lightbox = React.createClass({
   mixins: [PureRenderMixin],
 
   render () {
-    const { isVisible, onOverlayClicked, onCloseClicked, children } = this.props;
+    const { intl, isVisible, onOverlayClicked, onCloseClicked, children } = this.props;
 
     return (
       <div className='lightbox' style={{...overlayStyle, display: isVisible ? 'flex' : 'none'}} onClick={onOverlayClicked}>
         <Motion defaultStyle={{ y: -200 }} style={{ y: spring(isVisible ? 0 : -200) }}>
           {({ y }) =>
             <div style={{...dialogStyle, transform: `translateY(${y}px)`}}>
-              <IconButton title='Close' icon='times' onClick={onCloseClicked} size={16} style={closeStyle} />
+              <IconButton title={intl.formatMessage({ id: 'lightbox.close', defaultMessage: 'Close' })} icon='times' onClick={onCloseClicked} size={16} style={closeStyle} />
               {children}
             </div>
           }
@@ -58,4 +59,4 @@ const Lightbox = React.createClass({
 
 });
 
-export default Lightbox;
+export default injectIntl(Lightbox);

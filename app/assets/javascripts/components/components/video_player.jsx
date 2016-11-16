@@ -1,6 +1,7 @@
 import ImmutablePropTypes from 'react-immutable-proptypes';
-import PureRenderMixin    from 'react-addons-pure-render-mixin';
-import IconButton         from './icon_button';
+import PureRenderMixin from 'react-addons-pure-render-mixin';
+import IconButton from './icon_button';
+import { injectIntl } from 'react-intl';
 
 const videoStyle = {
   position: 'relative',
@@ -59,14 +60,16 @@ const VideoPlayer = React.createClass({
   },
 
   render () {
+    const { media, intl, width, height } = this.props;
+
     return (
-      <div style={{ cursor: 'default', marginTop: '8px', overflow: 'hidden', width: `${this.props.width}px`, height: `${this.props.height}px`, boxSizing: 'border-box', background: '#000', position: 'relative' }}>
-        <div style={muteStyle}><IconButton title='Toggle sound' icon={this.state.muted ? 'volume-up' : 'volume-off'} onClick={this.handleClick} /></div>
-        <video src={this.props.media.get('url')} autoPlay='true' loop={true} muted={this.state.muted} style={videoStyle} onClick={this.handleVideoClick} />
+      <div style={{ cursor: 'default', marginTop: '8px', overflow: 'hidden', width: `${width}px`, height: `${height}px`, boxSizing: 'border-box', background: '#000', position: 'relative' }}>
+        <div style={muteStyle}><IconButton title={intl.formatMessage({ id: 'video_player.toggle_sound', defaultMessage: 'Toggle sound' })} icon={this.state.muted ? 'volume-up' : 'volume-off'} onClick={this.handleClick} /></div>
+        <video src={media.get('url')} autoPlay='true' loop={true} muted={this.state.muted} style={videoStyle} onClick={this.handleVideoClick} />
       </div>
     );
   }
 
 });
 
-export default VideoPlayer;
+export default injectIntl(VideoPlayer);

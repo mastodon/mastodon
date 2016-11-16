@@ -1,6 +1,7 @@
-import PureRenderMixin    from 'react-addons-pure-render-mixin';
+import PureRenderMixin from 'react-addons-pure-render-mixin';
 import ImmutablePropTypes from 'react-immutable-proptypes';
-import IconButton         from '../../../components/icon_button';
+import IconButton from '../../../components/icon_button';
+import { injectIntl } from 'react-intl';
 
 const UploadForm = React.createClass({
 
@@ -13,10 +14,12 @@ const UploadForm = React.createClass({
   mixins: [PureRenderMixin],
 
   render () {
+    const { intl } = this.props;
+
     const uploads = this.props.media.map(attachment => (
       <div key={attachment.get('id')} style={{ borderRadius: '4px', marginBottom: '10px' }} className='transparent-background'>
         <div style={{ width: '100%', height: '100px', borderRadius: '4px', background: `url(${attachment.get('preview_url')}) no-repeat center`, backgroundSize: 'cover' }}>
-          <IconButton icon='times' title='Undo' size={36} onClick={this.props.onRemoveFile.bind(this, attachment.get('id'))} />
+          <IconButton icon='times' title={intl.formatMessage({ id: 'upload_form.undo', defaultMessage: 'Undo' })} size={36} onClick={this.props.onRemoveFile.bind(this, attachment.get('id'))} />
         </div>
       </div>
     ));
@@ -30,4 +33,4 @@ const UploadForm = React.createClass({
 
 });
 
-export default UploadForm;
+export default injectIntl(UploadForm);

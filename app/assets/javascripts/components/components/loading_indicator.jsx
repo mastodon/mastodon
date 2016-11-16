@@ -1,3 +1,5 @@
+import { FormattedMessage } from 'react-intl';
+
 const LoadingIndicator = () => {
   const style = {
     textAlign: 'center',
@@ -7,7 +9,7 @@ const LoadingIndicator = () => {
     paddingTop: '120px'
   };
 
-  return <div style={style}>Loading...</div>;
+  return <div style={style}><FormattedMessage id='loading_indicator.label' defaultMessage='Loading...' /></div>;
 };
 
 export default LoadingIndicator;

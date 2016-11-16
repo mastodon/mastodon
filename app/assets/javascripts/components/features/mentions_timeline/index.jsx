@@ -1,8 +1,9 @@
 import { connect }         from 'react-redux';
-import PureRenderMixin     from 'react-addons-pure-render-mixin';
+import PureRenderMixin from 'react-addons-pure-render-mixin';
 import StatusListContainer from '../ui/containers/status_list_container';
-import Column              from '../ui/components/column';
+import Column from '../ui/components/column';
 import { refreshTimeline } from '../../actions/timelines';
+import { injectIntl } from 'react-intl';
 
 const MentionsTimeline = React.createClass({
 
@@ -17,8 +18,10 @@ const MentionsTimeline = React.createClass({
   },
 
   render () {
+    const { intl } = this.props;
+
     return (
-      <Column icon='at' heading='Mentions'>
+      <Column icon='at' heading={intl.formatMessage({ id: 'column.mentions', defaultMessage: 'Mentions' })}>
         <StatusListContainer {...this.props} type='mentions' />
       </Column>
     );
@@ -26,4 +29,4 @@ const MentionsTimeline = React.createClass({
 
 });
 
-export default connect()(MentionsTimeline);
+export default connect()(injectIntl(MentionsTimeline));

@@ -3,6 +3,7 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import Autosuggest from 'react-autosuggest';
 import AutosuggestAccountContainer from '../containers/autosuggest_account_container';
 import { debounce } from 'react-decoration';
+import { injectIntl } from 'react-intl';
 
 const getSuggestionValue = suggestion => suggestion.value;
 
@@ -94,7 +95,7 @@ const Search = React.createClass({
 
   render () {
     const inputProps = {
-      placeholder: 'Search',
+      placeholder: this.props.intl.formatMessage({ id: 'search.placeholder', defaultMessage: 'Search' }),
       value: this.props.value,
       onChange: this.onChange,
       style: inputStyle
@@ -125,4 +126,4 @@ const Search = React.createClass({
 
 });
 
-export default Search;
+export default injectIntl(Search);

@@ -32,6 +32,7 @@ import Following from '../features/following';
 import Reblogs from '../features/reblogs';
 import Favourites from '../features/favourites';
 import HashtagTimeline from '../features/hashtag_timeline';
+import { IntlProvider } from 'react-intl';
 
 const store = configureStore();
 
@@ -44,7 +45,8 @@ const Mastodon = React.createClass({
   propTypes: {
     token: React.PropTypes.string.isRequired,
     timelines: React.PropTypes.object,
-    account: React.PropTypes.string
+    account: React.PropTypes.string,
+    locale: React.PropTypes.string.isRequired
   },
 
   mixins: [PureRenderMixin],
@@ -81,30 +83,34 @@ const Mastodon = React.createClass({
   },
 
   render () {
+    const { locale } = this.props;
+
     return (
-      <Provider store={store}>
-        <Router history={browserHistory} render={applyRouterMiddleware(useScroll())}>
-          <Route path='/' component={UI}>
-            <IndexRoute component={GettingStarted} />
+      <IntlProvider locale={locale}>
+        <Provider store={store}>
+          <Router history={browserHistory} render={applyRouterMiddleware(useScroll())}>
+            <Route path='/' component={UI}>
+              <IndexRoute component={GettingStarted} />
 
-            <Route path='timelines/home' component={HomeTimeline} />
-            <Route path='timelines/mentions' component={MentionsTimeline} />
-            <Route path='timelines/public' component={PublicTimeline} />
-            <Route path='timelines/tag/:id' component={HashtagTimeline} />
+              <Route path='timelines/home' component={HomeTimeline} />
+              <Route path='timelines/mentions' component={MentionsTimeline} />
+              <Route path='timelines/public' component={PublicTimeline} />
+              <Route path='timelines/tag/:id' component={HashtagTimeline} />
 
-            <Route path='statuses/new' component={Compose} />
-            <Route path='statuses/:statusId' component={Status} />
-            <Route path='statuses/:statusId/reblogs' component={Reblogs} />
-            <Route path='statuses/:statusId/favourites' component={Favourites} />
+              <Route path='statuses/new' component={Compose} />
+              <Route path='statuses/:statusId' component={Status} />
+              <Route path='statuses/:statusId/reblogs' component={Reblogs} />
+              <Route path='statuses/:statusId/favourites' component={Favourites} />
 
-            <Route path='accounts/:accountId' component={Account}>
-              <IndexRoute component={AccountTimeline} />
-              <Route path='followers' component={Followers} />
-              <Route path='following' component={Following} />
+              <Route path='accounts/:accountId' component={Account}>
+                <IndexRoute component={AccountTimeline} />
+                <Route path='followers' component={Followers} />
+                <Route path='following' component={Following} />
+              </Route>
             </Route>
-          </Route>
-        </Router>
-      </Provider>
+          </Router>
+        </Provider>
+      </IntlProvider>
     );
   }
 

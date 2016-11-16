@@ -1,6 +1,7 @@
-import PureRenderMixin    from 'react-addons-pure-render-mixin';
+import PureRenderMixin from 'react-addons-pure-render-mixin';
 import ImmutablePropTypes from 'react-immutable-proptypes';
-import AccountContainer   from '../../followers/containers/account_container';
+import AccountContainer from '../../followers/containers/account_container';
+import { FormattedMessage } from 'react-intl';
 
 const outerStyle = {
   position: 'relative'
@@ -66,13 +67,13 @@ const SuggestionsBox = React.createClass({
     let nextLink = '';
 
     if (accountIds.size > perWindow) {
-      nextLink = <a href='#' style={nextStyle} onClick={this.handleNextClick}>Refresh</a>;
+      nextLink = <a href='#' style={nextStyle} onClick={this.handleNextClick}><FormattedMessage id='suggestions_box.refresh' defaultMessage='Refresh' /></a>;
     }
 
     return (
       <div style={outerStyle}>
         <strong style={headerStyle}>
-          Who to follow {nextLink}
+          <FormattedMessage id='suggestions_box.who_to_follow' defaultMessage='Who to follow' /> {nextLink}
         </strong>
 
         {accountIds.skip(perWindow * this.state.index).take(perWindow).map(accountId => <AccountContainer key={accountId} id={accountId} withNote={false} />)}

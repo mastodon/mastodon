@@ -1,12 +1,12 @@
-import { connect }            from 'react-redux';
-import PureRenderMixin        from 'react-addons-pure-render-mixin';
-import ImmutablePropTypes     from 'react-immutable-proptypes';
+import { connect } from 'react-redux';
+import PureRenderMixin from 'react-addons-pure-render-mixin';
+import ImmutablePropTypes from 'react-immutable-proptypes';
 import {
   fetchAccountTimeline,
   expandAccountTimeline
-}                             from '../../actions/accounts';
-import StatusList             from '../../components/status_list';
-import LoadingIndicator       from '../../components/loading_indicator';
+} from '../../actions/accounts';
+import StatusList from '../../components/status_list';
+import LoadingIndicator from '../../components/loading_indicator';
 
 const mapStateToProps = (state, props) => ({
   statusIds: state.getIn(['timelines', 'accounts_timelines', Number(props.params.accountId)]),
