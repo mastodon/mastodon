@@ -20,14 +20,14 @@ const StatusList = React.createClass({
 
   getInitialState () {
     return {
-      now: new Date()
+      now: (new Date()).toString()
     };
   },
 
   mixins: [PureRenderMixin],
 
   componentDidMount () {
-    this._interval = setInterval(() => this.setState({ now: new Date() }), 60000);
+    this._interval = setInterval(() => this.setState({ now: (new Date()).toString() }), 60000);
   },
 
   componentWillUnmount () {
