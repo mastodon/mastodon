@@ -12,10 +12,10 @@ Devise.setup do |config|
   # Configure the e-mail address which will be shown in Devise::Mailer,
   # note that it will be overwritten if you use your own mailer class
   # with default "from" parameter.
-  config.mailer_sender = ENV['SMTP_FROM_ADDRESS'] || 'notifications@localhost'
+  # config.mailer_sender = ENV['SMTP_FROM_ADDRESS'] || 'notifications@localhost'
 
   # Configure the class responsible to send e-mails.
-  # config.mailer = 'Devise::Mailer'
+  config.mailer = 'UserMailer'
 
   # ==> ORM configuration
   # Load and configure the ORM. Supports :active_record (default) and
@@ -102,7 +102,7 @@ Devise.setup do |config|
   # config.pepper = '104d16705f794923e77c5e5167b52452d00646dc952a2d30b541c24086e647012c7b9625f253c51912e455981e503446772973d5f1638631196c819d7137fad4'
 
   # Send a notification email when the user's password is changed
-  # config.send_password_change_notification = false
+  config.send_password_change_notification = true
 
   # ==> Configuration for :confirmable
   # A period that the user is allowed to access the website even without
