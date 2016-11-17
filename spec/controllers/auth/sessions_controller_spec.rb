@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe Auth::SessionsController, type: :controller do
+  render_views
+
   describe 'GET #new' do
     before do
       request.env["devise.mapping"] = Devise.mappings[:user]
