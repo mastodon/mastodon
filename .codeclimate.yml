@@ -1,0 +1,18 @@
+engines:
+ duplication:
+   enabled: true
+   config:
+     languages:
+     - ruby
+     - javascript
+ rubocop:
+   enabled: true
+ eslint:
+   enabled: true
+ratings:
+ paths:
+ - "**.rb"
+ - "**.js"
+exclude_paths:
+- spec/
+- vendor/asset
