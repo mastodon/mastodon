@@ -18,21 +18,7 @@ const StatusList = React.createClass({
     };
   },
 
-  getInitialState () {
-    return {
-      now: (new Date()).toString()
-    };
-  },
-
   mixins: [PureRenderMixin],
-
-  componentDidMount () {
-    this._interval = setInterval(() => this.setState({ now: (new Date()).toString() }), 60000);
-  },
-
-  componentWillUnmount () {
-    clearInterval(this._interval);
-  },
 
   handleScroll (e) {
     const { scrollTop, scrollHeight, clientHeight } = e.target;
@@ -61,7 +47,7 @@ const StatusList = React.createClass({
       <div className='scrollable' onScroll={this.handleScroll}>
         <div>
           {statusIds.map((statusId) => {
-            return <StatusContainer key={statusId} id={statusId} now={this.state.now} />;
+            return <StatusContainer key={statusId} id={statusId} />;
           })}
         </div>
       </div>

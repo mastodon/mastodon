@@ -32,13 +32,16 @@ import Following from '../features/following';
 import Reblogs from '../features/reblogs';
 import Favourites from '../features/favourites';
 import HashtagTimeline from '../features/hashtag_timeline';
-import { IntlProvider } from 'react-intl';
+import { IntlProvider, addLocaleData } from 'react-intl';
+import en from 'react-intl/locale-data/en';
 
 const store = configureStore();
 
 const browserHistory = useRouterHistory(createBrowserHistory)({
   basename: '/web'
 });
+
+addLocaleData([...en]);
 
 const Mastodon = React.createClass({
 
