@@ -1,0 +1,59 @@
+---
+en:
+  about:
+    about_instance: "<em>%{instance}</em> es una instancia de Mastodon."
+    about_mastodon: Mastodon es un servidor de red social <em>libre y de código abierto</em>. Una alternativa <em>descentralizada</em> a plataformas comerciales, que evita el riesgo de que una única compañía monopolice tu comunicación. Cualquiera puede ejecutar Mastodon y participar sin problemas en la <em>red social</em>.
+    get_started: Comenzar
+    source_code: Código fuente
+    terms: Términos de uso
+  accounts:
+    follow: Seguir
+    followers: Seguidores
+    following: Siguiendo
+    nothing_here: ¡No hay nada aquí!
+    people_followed_by: Usuarios a quien %{name} sigue
+    people_who_follow: Usuarios que siguen a %{name}
+    posts: Publicaciones
+    unfollow: Dejar de seguir
+  application_mailer:
+    signature: Notificaciones de Mastodon desde %{instance}
+  auth:
+    change_password: Cambiar contraseña
+    didnt_get_confirmation: ¿No recibió instrucciones de confirmación?
+    forgot_password: ¿Olvidó su contraseña?
+    login: Iniciar sesión
+    register: Registrarse
+    resend_confirmation: Resend confirmation instructions
+    reset_password: Reset password
+    set_new_password: Set new password
+  generic:
+    changes_saved_msg: Changes successfully saved!
+    powered_by: powered by %{link}
+    save_changes: Save changes
+    validation_errors:
+      one: Something isn't quite right yet! Please review the error below
+      other: Something isn't quite right yet! Please review %{count} errors below
+  notification_mailer:
+    favourite:
+      body: 'Your status was favourited by %{name}:'
+      subject: "%{name} favourited your status"
+    follow:
+      body: "%{name} is now following you!"
+      subject: "%{name} is now following you"
+    mention:
+      body: 'You were mentioned by %{name} in:'
+      subject: You were mentioned by %{name}
+    reblog:
+      body: 'Your status was reblogged by %{name}:'
+      subject: "%{name} reblogged your status"
+  pagination:
+    next: Next
+    prev: Prev
+  settings:
+    edit_profile: Edit profile
+    preferences: Preferences
+  stream_entries:
+    favourited: favourited a post by
+    is_now_following: is now following
+  will_paginate:
+    page_gap: "&hellip;"
