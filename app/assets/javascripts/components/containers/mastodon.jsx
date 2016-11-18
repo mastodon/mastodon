@@ -35,6 +35,7 @@ import HashtagTimeline from '../features/hashtag_timeline';
 import { IntlProvider, addLocaleData } from 'react-intl';
 import en from 'react-intl/locale-data/en';
 import de from 'react-intl/locale-data/de';
+import es from 'react-intl/locale-data/es';
 import getMessagesForLocale from '../locales';
 
 const store = configureStore();
@@ -43,7 +44,7 @@ const browserHistory = useRouterHistory(createBrowserHistory)({
   basename: '/web'
 });
 
-addLocaleData([...en, ...de]);
+addLocaleData([...en, ...de, ...es]);
 
 const Mastodon = React.createClass({
 
