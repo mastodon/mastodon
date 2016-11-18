@@ -2,7 +2,7 @@
   = t('doorkeeper.authorizations.new.title')
 
 .oauth-prompt
-  %h2= t('doorkeeper.authorizations.new.prompt', name: @pre_auth.client.name)
+  %h2= t('doorkeeper.authorizations.new.prompt', client_name: @pre_auth.client.name)
 
   %p
     = t('doorkeeper.authorizations.new.able_to')

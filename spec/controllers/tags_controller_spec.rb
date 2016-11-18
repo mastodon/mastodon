@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe TagsController, type: :controller do
+  render_views
 
   describe 'GET #show' do
     before do
@@ -12,5 +13,4 @@ RSpec.describe TagsController, type: :controller do
       expect(response).to have_http_status(:success)
     end
   end
-
 end

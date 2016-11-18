@@ -19,15 +19,15 @@ RSpec.describe FanOutOnWriteService do
   end
 
   it 'delivers status to home timeline' do
-    expect(Feed.new(:home, author).get(1).map(&:id)).to include status.id
+    expect(Feed.new(:home, author).get(10).map(&:id)).to include status.id
   end
 
   it 'delivers status to local followers' do
-    expect(Feed.new(:home, follower).get(1).map(&:id)).to include status.id
+    expect(Feed.new(:home, follower).get(10).map(&:id)).to include status.id
   end
 
   it 'delivers status to mentioned users' do
-    expect(Feed.new(:mentions, alice).get(1).map(&:id)).to include status.id
+    expect(Feed.new(:mentions, alice).get(10).map(&:id)).to include status.id
   end
 
   it 'delivers status to hashtag' do
