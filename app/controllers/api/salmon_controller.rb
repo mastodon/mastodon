@@ -10,7 +10,7 @@ class Api::SalmonController < ApiController
     if body.nil?
       head 200
     else
-      ProcessInteractionService.new.call(body, @account)
+      SalmonWorker.perform_async(@account.id, body.force_encoding('UTF-8'))
       head 201
     end
   end
