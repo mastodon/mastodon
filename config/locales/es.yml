@@ -1,0 +1,59 @@
+---
+en:
+  about:
+    about_instance: "<em>%{instance}</em> es una instancia de Mastodon."
+    about_mastodon: Mastodon es un servidor de red social <em>libre y de código abierto</em>. Una alternativa <em>descentralizada</em> a plataformas comerciales, que evita el riesgo de que una única compañía monopolice tu comunicación. Cualquiera puede ejecutar Mastodon y participar sin problemas en la <em>red social</em>.
+    get_started: Comenzar
+    source_code: Código fuente
+    terms: Términos de uso
+  accounts:
+    follow: Seguir
+    followers: Seguidores
+    following: Siguiendo
+    nothing_here: ¡No hay nada aquí!
+    people_followed_by: Usuarios a quien %{name} sigue
+    people_who_follow: Usuarios que siguen a %{name}
+    posts: Publicaciones
+    unfollow: Dejar de seguir
+  application_mailer:
+    signature: Notificaciones de Mastodon desde %{instance}
+  auth:
+    change_password: Cambiar contraseña
+    didnt_get_confirmation: ¿No recibió instrucciones de confirmación?
+    forgot_password: ¿Olvidó su contraseña?
+    login: Iniciar sesión
+    register: Registrarse
+    resend_confirmation: Volver a enviar las instrucciones de confirmación
+    reset_password: Restablecer contraseña
+    set_new_password: Establecer nueva contraseña
+  generic:
+    changes_saved_msg: ¡Cambios guardados con éxito!
+    powered_by: powered by %{link}
+    save_changes: Guardar cambios
+    validation_errors:
+      one: ¡Algo no está todavía bien! Por favor, revise el error más abajo
+      other: ¡Algo no está todavía bien! Por favor, revise %{count} errores más abajo
+  notification_mailer:
+    favourite:
+      body: 'Su estado fue marcado como favorito por %{name}:'
+      subject: "%{name} marcó como favorito su estado"
+    follow:
+      body: "¡%{name} le está ahora siguiendo!"
+      subject: "%{name} le esta ahora siguiendo"
+    mention:
+      body: 'Fue mencionado por %{name} en:'
+      subject: Fue mencionado por %{name}
+    reblog:
+      body: 'Su estado fue vuelto a publicar por %{name}:'
+      subject: "%{name} volvió a publicar su estado"
+  pagination:
+    next: Próximo
+    prev: Anterior
+  settings:
+    edit_profile: Editar perfil
+    preferences: Preferencias
+  stream_entries:
+    favourited: marcado como favorito por
+    is_now_following: está ahora siguiendo
+  will_paginate:
+    page_gap: "&hellip;"
