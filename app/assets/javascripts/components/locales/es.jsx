@@ -1,4 +1,4 @@
-const en = {
+const es = {
   "column_back_button.label": "Atrás",
   "lightbox.close": "Cerrar",
   "loading_indicator.label": "Cargando...",
@@ -9,7 +9,7 @@ const en = {
   "status.favourite": "Favourito",
   "status.reblogged_by": "{name} republicado",
   "video_player.toggle_sound": "Act/Desac. sonido",
-  "account.mention": "Mención
+  "account.mention": "Mención",
   "account.edit_profile": "Editar perfil",
   "account.unblock": "Desbloquear",
   "account.unfollow": "Dejar de seguir",
@@ -46,4 +46,4 @@ const en = {
   "upload_form.undo": "Deshacer"
 };
 
-export default en;
+export default es;
