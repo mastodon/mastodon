@@ -22,8 +22,6 @@ class MediaAttachment < ApplicationRecord
 
   def file_remote_url=(url)
     self.file = URI.parse(url)
-  rescue OpenURI::HTTPError => e
-    Rails.logger.debug "Error fetching remote attachment: #{e}"
   end
 
   def image?
