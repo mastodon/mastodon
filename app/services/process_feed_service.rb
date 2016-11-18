@@ -36,6 +36,9 @@ class ProcessFeedService < BaseService
       when :delete
         return delete_status
       end
+    rescue ActiveRecord::RecordInvalid => e
+      Rails.logger.debug "Nothing was saved for #{id} because: #{e}"
+      nil
     end
 
     private
