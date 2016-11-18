@@ -19,6 +19,7 @@ class Status < ApplicationRecord
   validates :account, presence: true
   validates :uri, uniqueness: true, unless: 'local?'
   validates :text, presence: true, length: { maximum: 500 }, if: proc { |s| s.local? && !s.reblog? }
+  validates :text, presence: true, if: proc { |s| !s.local? && !s.reblog? }
   validates :reblog, uniqueness: { scope: :account, message: 'of status already exists' }, if: 'reblog?'
 
   default_scope { order('id desc') }
