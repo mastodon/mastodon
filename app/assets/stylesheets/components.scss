@@ -183,6 +183,12 @@
   strong {
     color: #fff;
   }
+
+  &.muted {
+    .emojione {
+      opacity: 0.5;
+    }
+  }
 }
 
 .status__display-name, .reply-indicator__display-name, .detailed-status__display-name, .account__display-name {

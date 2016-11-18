@@ -8,6 +8,8 @@ import VideoPlayer from './video_player';
 import StatusContent from './status_content';
 import StatusActionBar from './status_action_bar';
 import { FormattedMessage } from 'react-intl';
+import emojify from '../emoji';
+import escapeTextContentForBrowser from 'react/lib/escapeTextContentForBrowser';
 
 const Status = React.createClass({
 
@@ -56,11 +58,13 @@ const Status = React.createClass({
         displayName = status.getIn(['account', 'username']);
       }
 
+      const displayNameHTML = { __html: emojify(escapeTextContentForBrowser(displayName)) };
+
       return (
         <div style={{ cursor: 'default' }}>
           <div style={{ marginLeft: '68px', color: '#616b86', padding: '8px 0', paddingBottom: '2px', fontSize: '14px', position: 'relative' }}>
             <div style={{ position: 'absolute', 'left': '-26px'}}><i className='fa fa-fw fa-retweet'></i></div>
-            <FormattedMessage id='status.reblogged_by' defaultMessage='{name} reblogged' values={{ name: <a onClick={this.handleAccountClick.bind(this, status.getIn(['account', 'id']))} href={status.getIn(['account', 'url'])} className='status__display-name'><strong style={{ color: '#616b86'}}>{displayName}</strong></a> }} />
+            <FormattedMessage id='status.reblogged_by' defaultMessage='{name} reblogged' values={{ name: <a onClick={this.handleAccountClick.bind(this, status.getIn(['account', 'id']))} href={status.getIn(['account', 'url'])} className='status__display-name muted'><strong style={{ color: '#616b86'}} dangerouslySetInnerHTML={displayNameHTML} /></a> }} />
           </div>
 
           <Status {...other} wrapped={true} status={status.get('reblog')} />
