@@ -8,7 +8,12 @@ import Autosuggest from 'react-autosuggest';
 import AutosuggestAccountContainer from '../../compose/containers/autosuggest_account_container';
 import { debounce } from 'react-decoration';
 import UploadButtonContainer from '../containers/upload_button_container';
-import { injectIntl } from 'react-intl';
+import { defineMessages, injectIntl } from 'react-intl';
+
+const messages = defineMessages({
+  placeholder: { id: 'compose_form.placeholder', defaultMessage: 'What is on your mind?' },
+  publish: { id: 'compose_form.publish', defaultMessage: 'Publish' }
+});
 
 const getTokenForSuggestions = (str, caretPosition) => {
   let word;
@@ -53,7 +58,7 @@ const textareaStyle = {
 };
 
 const renderInputComponent = inputProps => (
-  <textarea {...inputProps} placeholder='What is on your mind?'  className='compose-form__textarea' style={textareaStyle} />
+  <textarea {...inputProps} className='compose-form__textarea' style={textareaStyle} />
 );
 
 const ComposeForm = React.createClass({
@@ -144,7 +149,7 @@ const ComposeForm = React.createClass({
     }
 
     const inputProps = {
-      placeholder: intl.formatMessage({ id: 'compose_form.placeholder', defaultMessage: 'What is on your mind?' }),
+      placeholder: intl.formatMessage(messages.placeholder),
       value: this.props.text,
       onKeyUp: this.handleKeyUp,
       onChange: this.handleChange,
@@ -169,7 +174,7 @@ const ComposeForm = React.createClass({
         />
 
         <div style={{ marginTop: '10px', overflow: 'hidden' }}>
-          <div style={{ float: 'right' }}><Button text={intl.formatMessage({ id: 'compose_form.publish', defaultMessage: 'Publish' })} onClick={this.handleSubmit} disabled={disabled} /></div>
+          <div style={{ float: 'right' }}><Button text={intl.formatMessage(messages.publish)} onClick={this.handleSubmit} disabled={disabled} /></div>
           <div style={{ float: 'right', marginRight: '16px', lineHeight: '36px' }}><CharacterCounter max={500} text={this.props.text} /></div>
           <UploadButtonContainer style={{ paddingTop: '4px' }} />
         </div>

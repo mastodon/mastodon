@@ -14,7 +14,7 @@ const initialState = Immutable.Map({
 const normalizeSuggestions = (state, value, accounts) => {
   let newSuggestions = [
     {
-      title: 'Account',
+      title: 'account',
       items: accounts.map(item => ({
         type: 'account',
         id: item.id,
@@ -25,7 +25,7 @@ const normalizeSuggestions = (state, value, accounts) => {
 
   if (value.indexOf('@') === -1) {
     newSuggestions.push({
-      title: 'Hashtag',
+      title: 'hashtag',
       items: [
         {
           type: 'hashtag',

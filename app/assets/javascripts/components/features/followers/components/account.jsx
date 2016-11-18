@@ -4,7 +4,11 @@ import Avatar from '../../../components/avatar';
 import DisplayName from '../../../components/display_name';
 import { Link } from 'react-router';
 import IconButton from '../../../components/icon_button';
-import { injectIntl } from 'react-intl';
+import { defineMessages, injectIntl } from 'react-intl';
+
+const messages = defineMessages({
+  follow: { id: 'account.follow', defaultMessage: 'Follow' }
+});
 
 const outerStyle = {
   padding: '10px',
@@ -69,7 +73,7 @@ const Account = React.createClass({
 
       buttons = (
         <div style={buttonsStyle}>
-          <IconButton icon={following ? 'user-times' : 'user-plus'} title={intl.formatMessage({ id: 'account.follow', defaultMessage: 'Follow' })} onClick={this.handleFollow} active={following} />
+          <IconButton icon={following ? 'user-times' : 'user-plus'} title={intl.formatMessage(messages.follow)} onClick={this.handleFollow} active={following} />
         </div>
       );
     }

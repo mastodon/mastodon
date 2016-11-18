@@ -1,6 +1,10 @@
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import IconButton from '../../../components/icon_button';
-import { injectIntl } from 'react-intl';
+import { defineMessages, injectIntl } from 'react-intl';
+
+const messages = defineMessages({
+  upload: { id: 'upload_button.label', defaultMessage: 'Add media' }
+});
 
 const UploadButton = React.createClass({
 
@@ -31,7 +35,7 @@ const UploadButton = React.createClass({
 
     return (
       <div style={this.props.style}>
-        <IconButton icon='photo' title={intl.formatMessage({ id: 'upload_button.label', defaultMessage: 'Add media' })} disabled={this.props.disabled} onClick={this.handleClick} size={24} />
+        <IconButton icon='photo' title={intl.formatMessage(messages.upload)} disabled={this.props.disabled} onClick={this.handleClick} size={24} />
         <input ref={this.setRef} type='file' multiple={false} onChange={this.handleChange} disabled={this.props.disabled} style={{ display: 'none' }} />
       </div>
     );

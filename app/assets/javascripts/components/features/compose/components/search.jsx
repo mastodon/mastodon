@@ -3,7 +3,11 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import Autosuggest from 'react-autosuggest';
 import AutosuggestAccountContainer from '../containers/autosuggest_account_container';
 import { debounce } from 'react-decoration';
-import { injectIntl } from 'react-intl';
+import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
+
+const messages = defineMessages({
+  placeholder: { id: 'search.placeholder', defaultMessage: 'Search' }
+});
 
 const getSuggestionValue = suggestion => suggestion.value;
 
@@ -16,7 +20,7 @@ const renderSuggestion = suggestion => {
 };
 
 const renderSectionTitle = section => (
-  <strong>{section.title}</strong>
+  <strong><FormattedMessage id={`search.${section.title}`} defaultMessage={section.title} /></strong>
 );
 
 const getSectionSuggestions = section => section.items;
@@ -95,7 +99,7 @@ const Search = React.createClass({
 
   render () {
     const inputProps = {
-      placeholder: this.props.intl.formatMessage({ id: 'search.placeholder', defaultMessage: 'Search' }),
+      placeholder: this.props.intl.formatMessage(messages.placeholder),
       value: this.props.value,
       onChange: this.onChange,
       style: inputStyle

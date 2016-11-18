@@ -3,7 +3,11 @@ import PureRenderMixin from 'react-addons-pure-render-mixin';
 import StatusListContainer from '../ui/containers/status_list_container';
 import Column from '../ui/components/column';
 import { refreshTimeline } from '../../actions/timelines';
-import { injectIntl } from 'react-intl';
+import { defineMessages, injectIntl } from 'react-intl';
+
+const messages = defineMessages({
+  title: { id: 'column.home', defaultMessage: 'Home' }
+});
 
 const HomeTimeline = React.createClass({
 
@@ -21,7 +25,7 @@ const HomeTimeline = React.createClass({
     const { intl } = this.props;
 
     return (
-      <Column icon='home' heading={intl.formatMessage({ id: 'column.home', defaultMessage: 'Home' })}>
+      <Column icon='home' heading={intl.formatMessage(messages.title)}>
         <StatusListContainer {...this.props} type='home' />
       </Column>
     );

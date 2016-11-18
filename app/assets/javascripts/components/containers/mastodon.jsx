@@ -34,6 +34,8 @@ import Favourites from '../features/favourites';
 import HashtagTimeline from '../features/hashtag_timeline';
 import { IntlProvider, addLocaleData } from 'react-intl';
 import en from 'react-intl/locale-data/en';
+import de from 'react-intl/locale-data/de';
+import getMessagesForLocale from '../locales';
 
 const store = configureStore();
 
@@ -41,7 +43,7 @@ const browserHistory = useRouterHistory(createBrowserHistory)({
   basename: '/web'
 });
 
-addLocaleData([...en]);
+addLocaleData([...en, ...de]);
 
 const Mastodon = React.createClass({
 
@@ -89,7 +91,7 @@ const Mastodon = React.createClass({
     const { locale } = this.props;
 
     return (
-      <IntlProvider locale={locale}>
+      <IntlProvider locale={locale} messages={getMessagesForLocale(locale)}>
         <Provider store={store}>
           <Router history={browserHistory} render={applyRouterMiddleware(useScroll())}>
             <Route path='/' component={UI}>

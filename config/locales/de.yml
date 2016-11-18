@@ -1,0 +1,59 @@
+---
+de:
+  about:
+    about_instance: "<em>%{instance}</em> ist eine Instanz von Mastodon."
+    about_mastodon: Mastodon ist ein <em>freier, quelloffener</em> soziales Netzwerkserver. Eine <em>dezentralisierte</em> Alternative zu kommerziellen Plattformen, verhindert es die Risiken, die entstehen, wenn eine einzelne Firma deine Kommunikation monopolisiert. Jeder kann Mastodon verwenden und ganz einfach am <em>sozialen Netzwerk</em> teilnehmen.
+    get_started: Erste Schritte
+    source_code: Quellcode
+    terms: AGB
+  accounts:
+    follow: Folgen
+    followers: Folger
+    following: Folgt
+    nothing_here: Hier gibt es nichts!
+    people_followed_by: Nutzer, denen %{name} folgt
+    people_who_follow: Nutzer, die %{name} folgen
+    posts: Beiträge
+    unfollow: Entfolgen
+  application_mailer:
+    signature: Mastodon-Benachrichtigungen von %{instance}
+  auth:
+    change_password: Passwort ändern
+    didnt_get_confirmation: Keine Bestätigung bekommen?
+    forgot_password: Passwort vergessen?
+    login: Anmelden
+    register: Registrieren
+    resend_confirmation: Bestätigung nochmal versenden
+    reset_password: Passwort zurücksetzen
+    set_new_password: Neues Passwort setzen
+  generic:
+    changes_saved_msg: Änderungen gespeichert!
+    powered_by: angetrieben von %{link}
+    save_changes: Änderungen speichern
+    validation_errors:
+      one: Etwas ist noch nicht ganz richtig! Bitte korrigiere den Fehler
+      other: Etwas ist noch nicht ganz richtig! Bitte korrigiere %{count} Fehler
+  notification_mailer:
+    favourite:
+      body: "Dein Beitrag wurde von %{name} favorisiert:"
+      subject: "%{name} hat deinen Beitrag favorisiert"
+    follow:
+      body: "%{name} folgt dir jetzt!"
+      subject: "%{name} folgt dir nun"
+    mention:
+      body: "%{name} hat dich erwähnt:"
+      subject: "%{name} hat dich erwähnt"
+    reblog:
+      body: "Dein Beitrag wurde von %{name} geteilt:"
+      subject: "%{name} teilte deinen Beitrag"
+  pagination:
+    next: Vorwärts
+    prev: Zurück
+  settings:
+    edit_profile: Profil bearbeiten
+    preferences: Einstellungen
+  stream_entries:
+    favourited: favorisierte einen Beitrag von
+    is_now_following: folgt nun
+  will_paginate:
+    page_gap: "&hellip;"

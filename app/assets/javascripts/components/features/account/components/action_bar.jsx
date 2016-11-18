@@ -2,7 +2,17 @@ import PureRenderMixin from 'react-addons-pure-render-mixin';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import DropdownMenu from '../../../components/dropdown_menu';
 import { Link } from 'react-router';
-import { injectIntl, FormattedMessage, FormattedNumber } from 'react-intl';
+import { defineMessages, injectIntl, FormattedMessage, FormattedNumber } from 'react-intl';
+
+const messages = defineMessages({
+  mention: { id: 'account.mention', defaultMessage: 'Mention' },
+  edit_profile: { id: 'account.edit_profile', defaultMessage: 'Edit profile' },
+  unblock: { id: 'account.unblock', defaultMessage: 'Unblock' },
+  unfollow: { id: 'account.unfollow', defaultMessage: 'Unfollow' },
+  block: { id: 'account.block', defaultMessage: 'Block' },
+  follow: { id: 'account.follow', defaultMessage: 'Follow' },
+  block: { id: 'account.block', defaultMessage: 'Block' }
+});
 
 const outerStyle = {
   borderTop: '1px solid #363c4b',
@@ -41,18 +51,18 @@ const ActionBar = React.createClass({
 
     let menu = [];
 
-    menu.push({ text: intl.formatMessage({ id: 'account.mention', defaultMessage: 'Mention' }), action: this.props.onMention });
+    menu.push({ text: intl.formatMessage(messages.mention), action: this.props.onMention });
 
     if (account.get('id') === me) {
-      menu.push({ text: intl.formatMessage({ id: 'account.edit_profile', defaultMessage: 'Edit profile' }), href: '/settings/profile' });
+      menu.push({ text: intl.formatMessage(messages.edit_profile), href: '/settings/profile' });
     } else if (account.getIn(['relationship', 'blocking'])) {
-      menu.push({ text: intl.formatMessage({ id: 'account.unblock', defaultMessage: 'Unblock' }), action: this.props.onBlock });
+      menu.push({ text: intl.formatMessage(messages.unblock), action: this.props.onBlock });
     } else if (account.getIn(['relationship', 'following'])) {
-      menu.push({ text: intl.formatMessage({ id: 'account.unfollow', defaultMessage: 'Unfollow' }), action: this.props.onFollow });
-      menu.push({ text: intl.formatMessage({ id: 'account.block', defaultMessage: 'Block' }), action: this.props.onBlock });
+      menu.push({ text: intl.formatMessage(messages.unfollow), action: this.props.onFollow });
+      menu.push({ text: intl.formatMessage(messages.block), action: this.props.onBlock });
     } else {
-      menu.push({ text: intl.formatMessage({ id: 'account.follow', defaultMessage: 'Follow' }), action: this.props.onFollow });
-      menu.push({ text: intl.formatMessage({ id: 'account.block', defaultMessage: 'Block' }), action: this.props.onBlock });
+      menu.push({ text: intl.formatMessage(messages.follow), action: this.props.onFollow });
+      menu.push({ text: intl.formatMessage(messages.block), action: this.props.onBlock });
     }
 
     return (

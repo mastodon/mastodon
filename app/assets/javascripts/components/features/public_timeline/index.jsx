@@ -7,7 +7,11 @@ import {
   updateTimeline,
   deleteFromTimelines
 } from '../../actions/timelines';
-import { injectIntl } from 'react-intl';
+import { defineMessages, injectIntl } from 'react-intl';
+
+const messages = defineMessages({
+  title: { id: 'column.public', defaultMessage: 'Public' }
+});
 
 const PublicTimeline = React.createClass({
 
@@ -48,7 +52,7 @@ const PublicTimeline = React.createClass({
     const { intl } = this.props;
 
     return (
-      <Column icon='globe' heading={intl.formatMessage({ id: 'column.public', defaultMessage: 'Public' })}>
+      <Column icon='globe' heading={intl.formatMessage(messages.title)}>
         <StatusListContainer type='public' />
       </Column>
     );

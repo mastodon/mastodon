@@ -2,7 +2,15 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import IconButton from './icon_button';
 import DropdownMenu from './dropdown_menu';
-import { injectIntl } from 'react-intl';
+import { defineMessages, injectIntl } from 'react-intl';
+
+const messages = defineMessages({
+  delete: { id: 'status.delete', defaultMessage: 'Delete' },
+  mention: { id: 'status.mention', defaultMessage: 'Mention' },
+  reply: { id: 'status.reply', defaultMessage: 'Reply' },
+  reblog: { id: 'status.reblog', defaultMessage: 'Reblog' },
+  favourite: { id: 'status.favourite', defaultMessage: 'Favourite' }
+});
 
 const StatusActionBar = React.createClass({
   propTypes: {
@@ -41,16 +49,16 @@ const StatusActionBar = React.createClass({
     let menu = [];
 
     if (status.getIn(['account', 'id']) === me) {
-      menu.push({ text: intl.formatMessage({ id: 'status.delete', defaultMessage: 'Delete' }), action: this.handleDeleteClick });
+      menu.push({ text: intl.formatMessage(messages.delete), action: this.handleDeleteClick });
     } else {
-      menu.push({ text: intl.formatMessage({ id: 'status.mention', defaultMessage: 'Mention' }), action: this.handleMentionClick });
+      menu.push({ text: intl.formatMessage(messages.mention), action: this.handleMentionClick });
     }
 
     return (
       <div style={{ marginTop: '10px', overflow: 'hidden' }}>
-        <div style={{ float: 'left', marginRight: '18px'}}><IconButton title={intl.formatMessage({ id: 'status.reply', defaultMessage: 'Reply' })} icon='reply' onClick={this.handleReplyClick} /></div>
-        <div style={{ float: 'left', marginRight: '18px'}}><IconButton active={status.get('reblogged')} title={intl.formatMessage({ id: 'status.reblog', defaultMessage: 'Reblog' })} icon='retweet' onClick={this.handleReblogClick} /></div>
-        <div style={{ float: 'left', marginRight: '18px'}}><IconButton active={status.get('favourited')} title={intl.formatMessage({ id: 'status.favourite', defaultMessage: 'Favourite' })} icon='star' onClick={this.handleFavouriteClick} activeStyle={{ color: '#ca8f04' }} /></div>
+        <div style={{ float: 'left', marginRight: '18px'}}><IconButton title={intl.formatMessage(messages.reply)} icon='reply' onClick={this.handleReplyClick} /></div>
+        <div style={{ float: 'left', marginRight: '18px'}}><IconButton active={status.get('reblogged')} title={intl.formatMessage(messages.reblog)} icon='retweet' onClick={this.handleReblogClick} /></div>
+        <div style={{ float: 'left', marginRight: '18px'}}><IconButton active={status.get('favourited')} title={intl.formatMessage(messages.favourite)} icon='star' onClick={this.handleFavouriteClick} activeStyle={{ color: '#ca8f04' }} /></div>
 
         <div style={{ width: '18px', height: '18px', float: 'left' }}>
           <DropdownMenu items={menu} icon='ellipsis-h' size={18} />
