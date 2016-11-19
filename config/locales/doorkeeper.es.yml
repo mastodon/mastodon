@@ -1,0 +1,112 @@
+---
+es:
+  activerecord:
+    attributes:
+      doorkeeper/application:
+        name: Nombre
+        redirect_uri: Redirección URI
+    errors:
+      models:
+        doorkeeper/application:
+          attributes:
+            redirect_uri:
+              fragment_present: no puede contener un fragmento.
+              invalid_uri: debe ser una URI válida.
+              relative_uri: debe ser uns URI absoluta.
+              secured_uri: debe ser una URI HTTPS/SSL.
+  doorkeeper:
+    applications:
+      buttons:
+        authorize: Autorizar
+        cancel: Cancelar
+        destroy: Destruir
+        edit: Editar
+        submit: Enviar
+      confirmations:
+        destroy: ¿Está seguro?
+      edit:
+        title: Editar aplicación
+      form:
+        error: ¡Uuups! Compruebe su formulario de posibles errores
+      help:
+        native_redirect_uri: Utilice %{native_redirect_uri} para pruebas locales
+        redirect_uri: Utilice una línea por URI
+        scopes: Separe los ámbitos con espacios. Déjelo en blanco para utilizar los ámbitos por defecto.
+      index:
+        callback_url: Callback URL
+        name: Nombre
+        new: Nueva aplicación
+        title: Sus aplicaciones
+      new:
+        title: Nueva aplicación
+      show:
+        actions: Acciones
+        application_id: Id de aplicación
+        callback_urls: Callback urls
+        scopes: Ámbitos
+        secret: Secreto
+        title: 'Aplicación: %{name}'
+    authorizations:
+      buttons:
+        authorize: Autorizar
+        deny: Denegar
+      error:
+        title: Ha ocurrido un error
+      new:
+        able_to: Será capaz de
+        prompt: La aplicación %{client_name} solicita acceder a su cuenta
+        title: Se requiere autorización
+      show:
+        title: Código de autorizaciónAuthorization code
+    authorized_applications:
+      buttons:
+        revoke: Revocar
+      confirmations:
+        revoke: ¿Está seguro?
+      index:
+        application: Aplicación
+        created_at: Creado el
+        date_format: "%A-%m-%d %H:%M:%S"
+        title: Sus aplicaciones autorizadas
+    errors:
+      messages:
+        access_denied: El propietario del recurso o servidor de autorización denegó la petición.
+        credential_flow_not_configured: Las credenciales de contraseña del propietario del recurso falló debido a que Doorkeeper.configure.resource_owner_from_credentials está sin configurar.
+        invalid_client: La autentificación del cliente falló debido a un cliente desconocido, no hay incluido autentificación del cliente, o método de autentificación no confirmado.
+        invalid_grant: La concesión de autorización ofrecida es inválida, expiró, se revocó, no coincide con la URI de redirección utilizada en la petición de autorización, o fue emitida para otro cliente.
+        invalid_redirect_uri: La URI de redicrección incluida no es válida.
+        invalid_request: En la petición falta un parámetro necesario, incluye un valor de parámetro no soportado o tiene otro tipo de de formato incorrecto.
+        invalid_resource_owner: Las credeciales del propietario del recurso proporcionado no son válidas, o el propietario del recurso no puede ser encontrado
+        invalid_scope: El ámbito pedido es inválido, desconocido o erróneo.
+        invalid_token:
+          expired: El identificador de acceso expiró
+          revoked: El identificador de acceso fue revocado
+          unknown: El identificador de acceso es inválido
+        resource_owner_authenticator_not_configured: El propietario del recurso falló debido a que Doorkeeper.configure.resource_owner_authenticator está sin configurar.
+        server_error: El servidor de la autorización entontró una condición inesperada que le impidió cumplir con la solicitud.
+        temporarily_unavailable: El servidor de la autorización es actualmente incapaz de manejar la petición debido a una sobrecarga temporal o un trabajo de mantenimiento del servidor.
+        unauthorized_client: El cliente no está autorizado a realizar esta petición utilizando este método.
+        unsupported_grant_type: El tipo de concesión de autorización no está soportado por el servidor de autorización.
+        unsupported_response_type: El servidor de autorización no soporta este tipo de respuesta.
+    flash:
+      applications:
+        create:
+          notice: Aplicación creada.
+        destroy:
+          notice: Aplicación eliminada.
+        update:
+          notice: Aplicación actualizada.
+      authorized_applications:
+        destroy:
+          notice: Aplicación revocada.
+    layouts:
+      admin:
+        nav:
+          applications: Aplicaciones
+          oauth2_provider: Proveedor OAuth2
+      application:
+        title: OAuth autorización requerida
+    scopes:
+      follow: seguir, bloquear, desbloquear y dejar de seguir cuentas
+      read: leer los datos de tu cuenta
+      write: publicar en tu nombre
