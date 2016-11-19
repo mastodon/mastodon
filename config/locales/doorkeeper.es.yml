@@ -4,16 +4,16 @@ es:
     attributes:
       doorkeeper/application:
         name: Nombre
-        redirect_uri: Redirección URI
+        redirect_uri: URI para redirección
     errors:
       models:
         doorkeeper/application:
           attributes:
             redirect_uri:
               fragment_present: no puede contener un fragmento.
-              invalid_uri: debe ser una URI válida.
-              relative_uri: debe ser uns URI absoluta.
-              secured_uri: debe ser una URI HTTPS/SSL.
+              invalid_uri: debe ser un URI válido.
+              relative_uri: debe ser una URI absoluta.
+              secured_uri: debe ser un URI HTTPS/SSL.
   doorkeeper:
     applications:
       buttons:
@@ -27,7 +27,7 @@ es:
       edit:
         title: Editar aplicación
       form:
-        error: ¡Uuups! Compruebe su formulario de posibles errores
+        error: ¡Uuups! Compruebe su formulario
       help:
         native_redirect_uri: Utilice %{native_redirect_uri} para pruebas locales
         redirect_uri: Utilice una línea por URI
@@ -57,7 +57,7 @@ es:
         prompt: La aplicación %{client_name} solicita acceder a su cuenta
         title: Se requiere autorización
       show:
-        title: Código de autorizaciónAuthorization code
+        title: Código de autorización
     authorized_applications:
       buttons:
         revoke: Revocar
@@ -74,8 +74,8 @@ es:
         credential_flow_not_configured: Las credenciales de contraseña del propietario del recurso falló debido a que Doorkeeper.configure.resource_owner_from_credentials está sin configurar.
         invalid_client: La autentificación del cliente falló debido a un cliente desconocido, no hay incluido autentificación del cliente, o método de autentificación no confirmado.
         invalid_grant: La concesión de autorización ofrecida es inválida, expiró, se revocó, no coincide con la URI de redirección utilizada en la petición de autorización, o fue emitida para otro cliente.
-        invalid_redirect_uri: La URI de redicrección incluida no es válida.
-        invalid_request: En la petición falta un parámetro necesario, incluye un valor de parámetro no soportado o tiene otro tipo de de formato incorrecto.
+        invalid_redirect_uri: La URI de redirección incluida no es válida.
+        invalid_request: En la petición falta un parámetro necesario, incluye un valor de parámetro no soportado o tiene otro tipo de formato incorrecto.
         invalid_resource_owner: Las credeciales del propietario del recurso proporcionado no son válidas, o el propietario del recurso no puede ser encontrado
         invalid_scope: El ámbito pedido es inválido, desconocido o erróneo.
         invalid_token:
