@@ -7,7 +7,8 @@ RSpec.describe NotificationMailer, type: :mailer do
   let(:own_status)     { Fabricate(:status, account: receiver.account) }
 
   describe "mention" do
-    let(:mail) { NotificationMailer.mention(receiver.account, foreign_status) }
+    let(:mention) { Mention.create!(account: receiver.account, status: foreign_status) }
+    let(:mail) { NotificationMailer.mention(receiver.account, Notification.create!(account: receiver.account, activity: mention)) }
 
     it "renders the headers" do
       expect(mail.subject).to eq("You were mentioned by bob")
@@ -20,7 +21,8 @@ RSpec.describe NotificationMailer, type: :mailer do
   end
 
   describe "follow" do
-    let(:mail) { NotificationMailer.follow(receiver.account, sender) }
+    let(:follow) { sender.follow!(receiver.account) }
+    let(:mail) { NotificationMailer.follow(receiver.account, Notification.create!(account: receiver.account, activity: follow)) }
 
     it "renders the headers" do
       expect(mail.subject).to eq("bob is now following you")
@@ -33,7 +35,8 @@ RSpec.describe NotificationMailer, type: :mailer do
   end
 
   describe "favourite" do
-    let(:mail) { NotificationMailer.favourite(own_status, sender) }
+    let(:favourite) { Favourite.create!(account: sender, status: own_status) }
+    let(:mail) { NotificationMailer.favourite(own_status.account, Notification.create!(account: receiver.account, activity: favourite)) }
 
     it "renders the headers" do
       expect(mail.subject).to eq("bob favourited your status")
@@ -46,7 +49,8 @@ RSpec.describe NotificationMailer, type: :mailer do
   end
 
   describe "reblog" do
-    let(:mail) { NotificationMailer.reblog(own_status, sender) }
+    let(:reblog) { Status.create!(account: sender, reblog: own_status) }
+    let(:mail) { NotificationMailer.reblog(own_status.account, Notification.create!(account: receiver.account, activity: reblog)) }
 
     it "renders the headers" do
       expect(mail.subject).to eq("bob reblogged your status")

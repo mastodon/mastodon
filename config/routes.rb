@@ -74,6 +74,8 @@ Rails.application.routes.draw do
       resources :media,    only: [:create]
       resources :apps,     only: [:create]
 
+      resources :notifications, only: [:index]
+
       resources :accounts, only: [:show] do
         collection do
           get :relationships

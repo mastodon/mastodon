@@ -10,7 +10,7 @@ module ApplicationCable
       return [nil, message] if message['type'] == 'delete'
 
       status             = Status.find_by(id: message['id'])
-      message['message'] = FeedManager.instance.inline_render(current_user.account, status)
+      message['message'] = FeedManager.instance.inline_render(current_user.account, 'api/v1/statuses/show', status)
 
       [status, message]
     end

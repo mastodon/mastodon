@@ -29,7 +29,7 @@ class ProcessMentionsService < BaseService
       mentioned_account = mention.account
 
       if mentioned_account.local?
-        NotificationMailer.mention(mentioned_account, status).deliver_later unless mentioned_account.blocking?(status.account)
+        NotifyService.new.call(mentioned_account, mention)
       else
         NotificationWorker.perform_async(status.stream_entry.id, mentioned_account.id)
       end

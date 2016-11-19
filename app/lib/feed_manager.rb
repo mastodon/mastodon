@@ -26,7 +26,7 @@ class FeedManager
   def push(timeline_type, account, status)
     redis.zadd(key(timeline_type, account.id), status.id, status.reblog? ? status.reblog_of_id : status.id)
     trim(timeline_type, account.id)
-    broadcast(account.id, type: 'update', timeline: timeline_type, message: inline_render(account, status))
+    broadcast(account.id, type: 'update', timeline: timeline_type, message: inline_render(account, 'api/v1/statuses/show', status))
   end
 
   def broadcast(timeline_id, options = {})
@@ -39,7 +39,7 @@ class FeedManager
     redis.zremrangebyscore(key(type, account_id), '-inf', "(#{last.last}")
   end
 
-  def inline_render(target_account, status)
+  def inline_render(target_account, template, object)
     rabl_scope = Class.new do
       include RoutingHelper
 
@@ -56,7 +56,7 @@ class FeedManager
       end
     end
 
-    Rabl::Renderer.new('api/v1/statuses/show', status, view_path: 'app/views', format: :json, scope: rabl_scope.new(target_account)).render
+    Rabl::Renderer.new(template, object, view_path: 'app/views', format: :json, scope: rabl_scope.new(target_account)).render
   end
 
   private

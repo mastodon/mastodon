@@ -10,7 +10,7 @@ class FavouriteService < BaseService
     HubPingWorker.perform_async(account.id)
 
     if status.local?
-      NotificationMailer.favourite(status, account).deliver_later unless status.account.blocking?(account)
+      NotifyService.new.call(status.account, favourite)
     else
       NotificationWorker.perform_async(favourite.stream_entry.id, status.account_id)
     end

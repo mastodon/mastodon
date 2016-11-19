@@ -11,7 +11,7 @@ class ReblogService < BaseService
     HubPingWorker.perform_async(account.id)
 
     if reblogged_status.local?
-      NotificationMailer.reblog(reblogged_status, account).deliver_later unless reblogged_status.account.blocking?(account)
+      NotifyService.new.call(reblogged_status.account, reblog)
     else
       NotificationWorker.perform_async(reblog.stream_entry.id, reblogged_status.account_id)
     end

@@ -150,12 +150,10 @@ class ProcessFeedService < BaseService
 
         next if mentioned_account.nil? || processed_account_ids.include?(mentioned_account.id)
 
-        if mentioned_account.local?
-          # Send notifications
-          NotificationMailer.mention(mentioned_account, parent).deliver_later unless mentioned_account.blocking?(parent.account)
-        end
+        mention = mentioned_account.mentions.where(status: parent).first_or_create(status: parent)
 
-        mentioned_account.mentions.where(status: parent).first_or_create(status: parent)
+        # Notify local user
+        NotifyService.new.call(mentioned_account, mention) if mentioned_account.local?
 
         # So we can skip duplicate mentions
         processed_account_ids << mentioned_account.id
