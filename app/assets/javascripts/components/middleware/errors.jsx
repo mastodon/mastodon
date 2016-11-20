@@ -1,4 +1,4 @@
-import { showNotification } from '../actions/notifications';
+import { showAlert } from '../actions/alerts';
 
 const defaultFailSuffix = 'FAIL';
 
@@ -18,10 +18,10 @@ export default function errorsMiddleware() {
             message = data.error;
           }
 
-          dispatch(showNotification(title, message));
+          dispatch(showAlert(title, message));
         } else {
           console.error(action.error);
-          dispatch(showNotification('Oops!', 'An unexpected error occurred. Inspect the console for more details'));
+          dispatch(showAlert('Oops!', 'An unexpected error occurred. Inspect the console for more details'));
         }
       }
     }

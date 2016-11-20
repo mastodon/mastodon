@@ -2,7 +2,13 @@ import axios from 'axios';
 import LinkHeader from 'http-link-header';
 
 export const getLinks = response => {
-  return LinkHeader.parse(response.headers.link);
+  const value = response.headers.link;
+
+  if (!value) {
+    return { refs: [] };
+  }
+
+  return LinkHeader.parse(value);
 };
 
 export default getState => axios.create({

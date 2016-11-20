@@ -1,5 +1,5 @@
 import { createSelector } from 'reselect'
-import Immutable          from 'immutable';
+import Immutable from 'immutable';
 
 const getStatuses = state => state.get('statuses');
 const getAccounts = state => state.get('accounts');
@@ -50,9 +50,9 @@ const assembleStatus = (id, statuses, accounts) => {
   return status.set('reblog', reblog).set('account', accounts.get(status.get('account')));
 };
 
-const getNotificationsBase = state => state.get('notifications');
+const getAlertsBase = state => state.get('alerts');
 
-export const getNotifications = createSelector([getNotificationsBase], (base) => {
+export const getAlerts = createSelector([getAlertsBase], (base) => {
   let arr = [];
 
   base.forEach(item => {
@@ -66,3 +66,12 @@ export const getNotifications = createSelector([getNotificationsBase], (base) =>
 
   return arr;
 });
+
+export const makeGetNotification = () => {
+  return createSelector([
+    (_, base)             => base,
+    (state, _, accountId) => state.getIn(['accounts', accountId])
+  ], (base, account) => {
+    return base.set('account', account);
+  });
+};

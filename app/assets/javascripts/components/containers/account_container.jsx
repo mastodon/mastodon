@@ -1,10 +1,10 @@
-import { connect }            from 'react-redux';
-import { makeGetAccount }     from '../../../selectors';
-import Account                from '../components/account';
+import { connect } from 'react-redux';
+import { makeGetAccount } from '../selectors';
+import Account from '../components/account';
 import {
   followAccount,
   unfollowAccount
-}                             from '../../../actions/accounts';
+} from '../actions/accounts';
 
 const makeMapStateToProps = () => {
   const getAccount = makeGetAccount();

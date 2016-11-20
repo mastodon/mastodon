@@ -27,10 +27,12 @@ const en = {
   "column.home": "Home",
   "column.mentions": "Mentions",
   "column.public": "Public",
+  "column.notifications": "Notifications",
   "tabs_bar.compose": "Compose",
   "tabs_bar.home": "Home",
   "tabs_bar.mentions": "Mentions",
   "tabs_bar.public": "Public",
+  "tabs_bar.notifications": "Notifications",
   "compose_form.placeholder": "What is on your mind?",
   "compose_form.publish": "Publish",
   "navigation_bar.settings": "Settings",
@@ -43,7 +45,11 @@ const en = {
   "suggestions_box.who_to_follow": "Who to follow",
   "suggestions_box.refresh": "Refresh",
   "upload_button.label": "Add media",
-  "upload_form.undo": "Undo"
+  "upload_form.undo": "Undo",
+  "notification.follow": "{name} followed you",
+  "notification.favourite": "{name} favourited your status",
+  "notification.reblog": "{name} reblogged your status",
+  "notification.mention": "{name} mentioned you"
 };
 
 export default en;

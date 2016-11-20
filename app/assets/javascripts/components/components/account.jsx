@@ -1,9 +1,9 @@
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import ImmutablePropTypes from 'react-immutable-proptypes';
-import Avatar from '../../../components/avatar';
-import DisplayName from '../../../components/display_name';
+import Avatar from './avatar';
+import DisplayName from './display_name';
 import { Link } from 'react-router';
-import IconButton from '../../../components/icon_button';
+import IconButton from './icon_button';
 import { defineMessages, injectIntl } from 'react-intl';
 
 const messages = defineMessages({

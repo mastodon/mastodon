@@ -11,6 +11,15 @@ import { FormattedMessage } from 'react-intl';
 import emojify from '../emoji';
 import escapeTextContentForBrowser from 'react/lib/escapeTextContentForBrowser';
 
+const outerStyle = {
+  padding: '8px 10px',
+  paddingLeft: '68px',
+  position: 'relative',
+  minHeight: '48px',
+  borderBottom: '1px solid #363c4b',
+  cursor: 'default'
+};
+
 const Status = React.createClass({
 
   contextTypes: {
@@ -26,7 +35,7 @@ const Status = React.createClass({
     onDelete: React.PropTypes.func,
     onOpenMedia: React.PropTypes.func,
     me: React.PropTypes.number,
-    now: React.PropTypes.any
+    muted: React.PropTypes.bool
   },
 
   mixins: [PureRenderMixin],
@@ -81,14 +90,14 @@ const Status = React.createClass({
     }
 
     return (
-      <div style={{ padding: '8px 10px', paddingLeft: '68px', position: 'relative', minHeight: '48px', borderBottom: '1px solid #363c4b', cursor: 'default' }}>
+      <div className={this.props.muted ? 'muted' : ''} style={outerStyle}>
         <div style={{ fontSize: '15px' }}>
           <div style={{ float: 'right', fontSize: '14px' }}>
             <a href={status.get('url')} className='status__relative-time' style={{ color: '#616b86' }} target='_blank' rel='noopener'><RelativeTimestamp timestamp={status.get('created_at')} now={now} /></a>
           </div>
 
           <a onClick={this.handleAccountClick.bind(this, status.getIn(['account', 'id']))} href={status.getIn(['account', 'url'])} className='status__display-name' style={{ display: 'block', maxWidth: '100%', paddingRight: '25px', color: '#616b86' }}>
-            <div style={{ position: 'absolute', left: '10px', top: '10px', width: '48px', height: '48px' }}>
+            <div className='status__avatar' style={{ position: 'absolute', left: '10px', top: '10px', width: '48px', height: '48px' }}>
               <Avatar src={status.getIn(['account', 'avatar'])} size={48} />
             </div>
 

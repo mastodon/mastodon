@@ -18,9 +18,18 @@ import {
   ACCOUNT_TIMELINE_FETCH_SUCCESS,
   ACCOUNT_TIMELINE_EXPAND_SUCCESS
 } from '../actions/accounts';
+import {
+  NOTIFICATIONS_UPDATE,
+  NOTIFICATIONS_REFRESH_SUCCESS,
+  NOTIFICATIONS_EXPAND_SUCCESS
+} from '../actions/notifications';
 import Immutable from 'immutable';
 
 const normalizeStatus = (state, status) => {
+  if (!status) {
+    return state;
+  }
+
   status.account = status.account.id;
 
   if (status.reblog && status.reblog.id) {
@@ -53,6 +62,7 @@ export default function statuses(state = initialState, action) {
   switch(action.type) {
     case TIMELINE_UPDATE:
     case STATUS_FETCH_SUCCESS:
+    case NOTIFICATIONS_UPDATE:
       return normalizeStatus(state, action.status);
     case REBLOG_SUCCESS:
     case UNREBLOG_SUCCESS:
@@ -64,6 +74,8 @@ export default function statuses(state = initialState, action) {
     case ACCOUNT_TIMELINE_FETCH_SUCCESS:
     case ACCOUNT_TIMELINE_EXPAND_SUCCESS:
     case CONTEXT_FETCH_SUCCESS:
+    case NOTIFICATIONS_REFRESH_SUCCESS:
+    case NOTIFICATIONS_EXPAND_SUCCESS:
       return normalizeStatuses(state, action.statuses);
     case TIMELINE_DELETE:
       return deleteStatus(state, action.id, action.references);

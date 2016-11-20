@@ -102,6 +102,7 @@ ActiveRecord::Schema.define(version: 20161119211120) do
     t.string   "activity_type"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
+    t.index ["account_id", "activity_id", "activity_type"], name: "account_activity", unique: true, using: :btree
     t.index ["account_id"], name: "index_notifications_on_account_id", using: :btree
   end
 

@@ -28,6 +28,11 @@ import {
   CONTEXT_FETCH_SUCCESS
 } from '../actions/statuses';
 import { SEARCH_SUGGESTIONS_READY } from '../actions/search';
+import {
+  NOTIFICATIONS_UPDATE,
+  NOTIFICATIONS_REFRESH_SUCCESS,
+  NOTIFICATIONS_EXPAND_SUCCESS
+} from '../actions/notifications';
 import Immutable from 'immutable';
 
 const normalizeAccount = (state, account) => state.set(account.id, Immutable.fromJS(account));
@@ -64,6 +69,7 @@ export default function accounts(state = initialState, action) {
   switch(action.type) {
     case ACCOUNT_SET_SELF:
     case ACCOUNT_FETCH_SUCCESS:
+    case NOTIFICATIONS_UPDATE:
       return normalizeAccount(state, action.account);
     case SUGGESTIONS_FETCH_SUCCESS:
     case FOLLOWERS_FETCH_SUCCESS:
@@ -74,6 +80,8 @@ export default function accounts(state = initialState, action) {
     case FAVOURITES_FETCH_SUCCESS:
     case COMPOSE_SUGGESTIONS_READY:
     case SEARCH_SUGGESTIONS_READY:
+    case NOTIFICATIONS_REFRESH_SUCCESS:
+    case NOTIFICATIONS_EXPAND_SUCCESS:
       return normalizeAccounts(state, action.accounts);
     case TIMELINE_REFRESH_SUCCESS:
     case TIMELINE_EXPAND_SUCCESS:

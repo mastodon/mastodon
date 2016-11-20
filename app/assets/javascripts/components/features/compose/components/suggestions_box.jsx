@@ -1,6 +1,6 @@
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import ImmutablePropTypes from 'react-immutable-proptypes';
-import AccountContainer from '../../followers/containers/account_container';
+import AccountContainer from '../../../containers/account_container';
 import { FormattedMessage } from 'react-intl';
 
 const outerStyle = {

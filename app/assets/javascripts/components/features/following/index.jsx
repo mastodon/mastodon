@@ -7,7 +7,7 @@ import {
   expandFollowing
 } from '../../actions/accounts';
 import { ScrollContainer } from 'react-router-scroll';
-import AccountContainer from '../followers/containers/account_container';
+import AccountContainer from '../../containers/account_container';
 
 const mapStateToProps = (state, props) => ({
   accountIds: state.getIn(['user_lists', 'following', Number(props.params.accountId), 'items'])

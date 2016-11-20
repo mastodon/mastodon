@@ -26,10 +26,12 @@ const en = {
   "column.home": "Home",
   "column.mentions": "Erwähnungen",
   "column.public": "Gesamtes Bekanntes Netz",
+  "column.notifications": "Mitteilungen",
   "tabs_bar.compose": "Schreiben",
   "tabs_bar.home": "Home",
   "tabs_bar.mentions": "Erwähnungen",
   "tabs_bar.public": "Gesamtes Netz",
+  "tabs_bar.notifications": "Mitteilungen",
   "compose_form.placeholder": "Worüber möchstest du schreiben?",
   "compose_form.publish": "Veröffentlichen",
   "navigation_bar.settings": "Einstellungen",
@@ -42,7 +44,11 @@ const en = {
   "suggestions_box.who_to_follow": "Wem folgen",
   "suggestions_box.refresh": "Aktualisieren",
   "upload_button.label": "Media-Datei anfügen",
-  "upload_form.undo": "Entfernen"
+  "upload_form.undo": "Entfernen",
+  "notification.follow": "{name} folgt dir",
+  "notification.favourite": "{name} favorisierte deinen Status",
+  "notification.reblog": "{name} teilte deinen Status",
+  "notification.mention": "{name} erwähnte dich"
 };
 
 export default en;

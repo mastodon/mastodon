@@ -219,6 +219,30 @@
   }
 }
 
+.muted {
+  .status__content p, .status__content a {
+    color: #616b86;
+  }
+
+  .status__display-name strong {
+    color: #616b86;
+  }
+
+  .status__avatar {
+    opacity: 0.5;
+  }
+}
+
+.notification__display-name {
+  color: inherit;
+  text-decoration: none;
+
+  &:hover {
+    color: #fff;
+    text-decoration: underline;
+  }
+}
+
 .status__relative-time, .detailed-status__datetime {
   &:hover {
     text-decoration: underline;

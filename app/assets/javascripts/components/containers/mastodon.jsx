@@ -6,6 +6,7 @@ import {
   deleteFromTimelines,
   refreshTimeline
 } from '../actions/timelines';
+import { updateNotifications } from '../actions/notifications';
 import { setAccessToken } from '../actions/meta';
 import { setAccountSelf } from '../actions/accounts';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
@@ -32,6 +33,7 @@ import Following from '../features/following';
 import Reblogs from '../features/reblogs';
 import Favourites from '../features/favourites';
 import HashtagTimeline from '../features/hashtag_timeline';
+import Notifications from '../features/notifications';
 import { IntlProvider, addLocaleData } from 'react-intl';
 import en from 'react-intl/locale-data/en';
 import de from 'react-intl/locale-data/de';
@@ -75,10 +77,17 @@ const Mastodon = React.createClass({
               return store.dispatch(refreshTimeline('home', true));
             case 'block':
               return store.dispatch(refreshTimeline('mentions', true));
+            case 'notification':
+              return store.dispatch(updateNotifications(JSON.parse(data.message)));
           }
         }
 
       });
+    }
+
+    // Desktop notifications
+    if (Notification.permission === 'default') {
+      Notification.requestPermission();
     }
   },
 
@@ -102,6 +111,8 @@ const Mastodon = React.createClass({
               <Route path='timelines/mentions' component={MentionsTimeline} />
               <Route path='timelines/public' component={PublicTimeline} />
               <Route path='timelines/tag/:id' component={HashtagTimeline} />
+
+              <Route path='notifications' component={Notifications} />
 
               <Route path='statuses/new' component={Compose} />
               <Route path='statuses/:statusId' component={Status} />

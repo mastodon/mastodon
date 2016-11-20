@@ -27,10 +27,12 @@ const es = {
   "column.home": "Inicio",
   "column.mentions": "Menciones",
   "column.public": "Historia pública",
+  "column.notifications": "Notificaciones",
   "tabs_bar.compose": "Redactar",
   "tabs_bar.home": "Inicio",
   "tabs_bar.mentions": "Menciones",
   "tabs_bar.public": "Público",
+  "tabs_bar.notifications": "Notificaciones",
   "compose_form.placeholder": "¿En qué estás pensando?",
   "compose_form.publish": "Publicar",
   "navigation_bar.settings": "Ajustes",
@@ -43,7 +45,11 @@ const es = {
   "suggestions_box.who_to_follow": "A quién seguir",
   "suggestions_box.refresh": "Refrescar",
   "upload_button.label": "Añadir medio",
-  "upload_form.undo": "Deshacer"
+  "upload_form.undo": "Deshacer",
+  "notification.follow": "{name} le esta ahora siguiendo",
+  "notification.favourite": "{name} marcó como favorito su estado",
+  "notification.reblog": "{name} volvió a publicar su estado",
+  "notification.mention": "Fue mencionado por {name}"
 };
 
 export default es;
