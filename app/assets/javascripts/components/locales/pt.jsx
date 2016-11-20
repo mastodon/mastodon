@@ -7,7 +7,7 @@ const pt = {
   "status.reply": "Responder",
   "status.reblog": "Reblogar",
   "status.favourite": "Favoritar",
-  "status.reblogged_by": "{name} reblogado",
+  "status.reblogged_by": "{name} reblogou",
   "video_player.toggle_sound": "Alterar som",
   "account.mention": "Menção",
   "account.edit_profile": "Editar perfil",
