@@ -7,6 +7,8 @@ class Favourite < ApplicationRecord
   belongs_to :account, inverse_of: :favourites
   belongs_to :status,  inverse_of: :favourites, touch: true
 
+  has_one :notification, as: :activity, dependent: :destroy
+
   validates :status_id, uniqueness: { scope: :account_id }
 
   def verb

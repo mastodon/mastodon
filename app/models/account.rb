@@ -31,6 +31,7 @@ class Account < ApplicationRecord
   has_many :statuses, inverse_of: :account, dependent: :destroy
   has_many :favourites, inverse_of: :account, dependent: :destroy
   has_many :mentions, inverse_of: :account, dependent: :destroy
+  has_many :notifications, inverse_of: :account, dependent: :destroy
 
   # Follow relations
   has_many :active_relationships,  class_name: 'Follow', foreign_key: 'account_id',        dependent: :destroy

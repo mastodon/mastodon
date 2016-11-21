@@ -16,6 +16,8 @@ class Status < ApplicationRecord
   has_many :media_attachments, dependent: :destroy
   has_and_belongs_to_many :tags
 
+  has_one :notification, as: :activity, dependent: :destroy
+
   validates :account, presence: true
   validates :uri, uniqueness: true, unless: 'local?'
   validates :text, presence: true, length: { maximum: 500 }, if: proc { |s| s.local? && !s.reblog? }
