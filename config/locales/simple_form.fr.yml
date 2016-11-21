@@ -1,27 +1,27 @@
 ---
-en:
+fr:
   simple_form:
     labels:
       defaults:
-        avatar: Avatar
-        confirm_new_password: Confirm new password
-        confirm_password: Confirm password
-        current_password: Current password
-        display_name: Display name
-        email: E-mail address
-        header: Header
-        locale: Language
-        new_password: New password
-        note: Bio
-        password: Password
-        username: Username
+        avatar: "Image de profil"
+        confirm_new_password: "Confirmez le nouveau mot de passe"
+        confirm_password: "Confirmez le mot de passe"
+        current_password: "Mot de passe actuel"
+        display_name: "Nom public"
+        email: "Adresse courriel"
+        header: "Image d’en-tête"
+        locale: "Langue"
+        new_password: "Nouveau mot de passe"
+        note: "Présentation"
+        password: "Mot de passe"
+        username: "Nom d’utilisateur"
       notification_emails:
-        favourite: Send e-mail when someone favourites your status
-        follow: Send e-mail when someone follows you
-        mention: Send e-mail when someone mentions you
-        reblog: Send e-mail when someone reblogs your status
-    'no': 'No'
+        favourite: "M’envoyer un courriel lorsque quelqu’un ajoute un de mes statuts à ses favoris"
+        follow: "M’envoyer un courriel lorsque quelqu’un s’abonne à mes statuts"
+        mention: "M’envoyer un courriel lorsque quelqu’un me mentionne"
+        reblog: "M’envoyer un courriel lorsque quelqu’un partage un de mes statuts"
+    'no': "Non"
     required:
       mark: "*"
-      text: required
-    'yes': 'Yes'
+      text: "Champs requis"
+    'yes': "Oui"
