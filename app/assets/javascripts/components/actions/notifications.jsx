@@ -34,10 +34,12 @@ export function updateNotifications(notification, intlMessages, intlLocale) {
     fetchRelatedRelationships(dispatch, [notification]);
 
     // Desktop notifications
-    const title = new IntlMessageFormat(intlMessages[`notification.${notification.type}`], intlLocale).format({ name: notification.account.display_name.length > 0 ? notification.account.display_name : notification.account.username });
-    const body  = $('<p>').html(notification.status ? notification.status.content : '').text();
+    if (typeof window.Notification !== 'undefined') {
+      const title = new IntlMessageFormat(intlMessages[`notification.${notification.type}`], intlLocale).format({ name: notification.account.display_name.length > 0 ? notification.account.display_name : notification.account.username });
+      const body  = $('<p>').html(notification.status ? notification.status.content : '').text();
 
-    new Notification(title, { body, icon: notification.account.avatar });
+      new Notification(title, { body, icon: notification.account.avatar });
+    }
   };
 };
 

@@ -88,7 +88,7 @@ const Mastodon = React.createClass({
     }
 
     // Desktop notifications
-    if (Notification.permission === 'default') {
+    if (typeof window.Notification !== 'undefined' && Notification.permission === 'default') {
       Notification.requestPermission();
     }
   },
