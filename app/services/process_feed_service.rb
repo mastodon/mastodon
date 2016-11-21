@@ -60,6 +60,8 @@ class ProcessFeedService < BaseService
       end
 
       status.save!
+
+      NotifyService.new.call(status.reblog.account, status) if status.reblog?
       Rails.logger.debug "Queuing remote status #{status.id} (#{id}) for distribution"
       DistributionWorker.perform_async(status.id)
       status
