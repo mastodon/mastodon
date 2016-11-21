@@ -1,4 +1,6 @@
 import {
+  COMPOSE_MOUNT,
+  COMPOSE_UNMOUNT,
   COMPOSE_CHANGE,
   COMPOSE_REPLY,
   COMPOSE_REPLY_CANCEL,
@@ -20,6 +22,7 @@ import { ACCOUNT_SET_SELF } from '../actions/accounts';
 import Immutable from 'immutable';
 
 const initialState = Immutable.Map({
+  mounted: false,
   text: '',
   in_reply_to: null,
   is_submitting: false,
@@ -80,6 +83,10 @@ const insertSuggestion = (state, position, completion) => {
 
 export default function compose(state = initialState, action) {
   switch(action.type) {
+    case COMPOSE_MOUNT:
+      return state.set('mounted', true);
+    case COMPOSE_UNMOUNT:
+      return state.set('mounted', false);
     case COMPOSE_CHANGE:
       return state.set('text', action.text);
     case COMPOSE_REPLY:

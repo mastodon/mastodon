@@ -61,8 +61,8 @@ const makeMapStateToPropsLast = () => {
 
 const mapDispatchToProps = (dispatch) => ({
 
-  onReply (status) {
-    dispatch(replyCompose(status));
+  onReply (status, router) {
+    dispatch(replyCompose(status, router));
   },
 
   onReblog (status) {

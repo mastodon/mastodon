@@ -13,6 +13,11 @@ const messages = defineMessages({
 });
 
 const StatusActionBar = React.createClass({
+
+  contextTypes: {
+    router: React.PropTypes.object
+  },
+
   propTypes: {
     status: ImmutablePropTypes.map.isRequired,
     onReply: React.PropTypes.func,
@@ -25,7 +30,7 @@ const StatusActionBar = React.createClass({
   mixins: [PureRenderMixin],
 
   handleReplyClick () {
-    this.props.onReply(this.props.status);
+    this.props.onReply(this.props.status, this.context.router);
   },
 
   handleFavouriteClick () {

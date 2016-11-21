@@ -38,6 +38,9 @@ const makeMapStateToProps = () => {
 };
 
 const Status = React.createClass({
+  contextTypes: {
+    router: React.PropTypes.object
+  },
 
   propTypes: {
     params: React.PropTypes.object.isRequired,
@@ -64,7 +67,7 @@ const Status = React.createClass({
   },
 
   handleReplyClick (status) {
-    this.props.dispatch(replyCompose(status));
+    this.props.dispatch(replyCompose(status, this.context.router));
   },
 
   handleReblogClick (status) {

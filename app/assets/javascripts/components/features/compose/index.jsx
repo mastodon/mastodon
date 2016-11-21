@@ -1,12 +1,13 @@
-import Drawer               from './components/drawer';
+import Drawer from './components/drawer';
 import ComposeFormContainer from './containers/compose_form_container';
-import UploadFormContainer  from './containers/upload_form_container';
-import NavigationContainer  from './containers/navigation_container';
-import PureRenderMixin      from 'react-addons-pure-render-mixin';
+import UploadFormContainer from './containers/upload_form_container';
+import NavigationContainer from './containers/navigation_container';
+import PureRenderMixin from 'react-addons-pure-render-mixin';
 import SuggestionsContainer from './containers/suggestions_container';
-import SearchContainer      from './containers/search_container';
+import SearchContainer from './containers/search_container';
 import { fetchSuggestions } from '../../actions/suggestions';
-import { connect }          from 'react-redux';
+import { connect } from 'react-redux';
+import { mountCompose, unmountCompose } from '../../actions/compose';
 
 const Compose = React.createClass({
 
@@ -17,7 +18,12 @@ const Compose = React.createClass({
   mixins: [PureRenderMixin],
 
   componentDidMount () {
+    this.props.dispatch(mountCompose());
     this.props.dispatch(fetchSuggestions());
+  },
+
+  componentWillUnmount () {
+    this.props.dispatch(unmountCompose());
   },
 
   render () {

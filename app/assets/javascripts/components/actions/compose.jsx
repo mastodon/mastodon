@@ -19,6 +19,9 @@ export const COMPOSE_SUGGESTIONS_CLEAR = 'COMPOSE_SUGGESTIONS_CLEAR';
 export const COMPOSE_SUGGESTIONS_READY = 'COMPOSE_SUGGESTIONS_READY';
 export const COMPOSE_SUGGESTION_SELECT = 'COMPOSE_SUGGESTION_SELECT';
 
+export const COMPOSE_MOUNT   = 'COMPOSE_MOUNT';
+export const COMPOSE_UNMOUNT = 'COMPOSE_UNMOUNT';
+
 export function changeCompose(text) {
   return {
     type: COMPOSE_CHANGE,
@@ -26,10 +29,16 @@ export function changeCompose(text) {
   };
 };
 
-export function replyCompose(status) {
-  return {
-    type: COMPOSE_REPLY,
-    status: status
+export function replyCompose(status, router) {
+  return (dispatch, getState) => {
+    dispatch({
+      type: COMPOSE_REPLY,
+      status: status
+    });
+
+    if (!getState().getIn(['compose', 'mounted'])) {
+      router.push('/statuses/new');
+    }
   };
 };
 
@@ -174,5 +183,17 @@ export function selectComposeSuggestion(position, accountId) {
       position,
       completion
     });
+  };
+};
+
+export function mountCompose() {
+  return {
+    type: COMPOSE_MOUNT
+  };
+};
+
+export function unmountCompose() {
+  return {
+    type: COMPOSE_UNMOUNT
   };
 };
