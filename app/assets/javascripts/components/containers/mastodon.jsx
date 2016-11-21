@@ -60,8 +60,10 @@ const Mastodon = React.createClass({
   mixins: [PureRenderMixin],
 
   componentWillMount() {
-    store.dispatch(setAccessToken(this.props.token));
-    store.dispatch(setAccountSelf(JSON.parse(this.props.account)));
+    const { token, account, locale } = this.props;
+
+    store.dispatch(setAccessToken(token));
+    store.dispatch(setAccountSelf(JSON.parse(account)));
 
     if (typeof App !== 'undefined') {
       this.subscription = App.cable.subscriptions.create('TimelineChannel', {
@@ -78,7 +80,7 @@ const Mastodon = React.createClass({
             case 'block':
               return store.dispatch(refreshTimeline('mentions', true));
             case 'notification':
-              return store.dispatch(updateNotifications(JSON.parse(data.message)));
+              return store.dispatch(updateNotifications(JSON.parse(data.message), getMessagesForLocale(locale), locale));
           }
         }
 

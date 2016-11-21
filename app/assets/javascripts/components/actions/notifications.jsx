@@ -1,5 +1,6 @@
 import api, { getLinks } from '../api'
 import Immutable from 'immutable';
+import IntlMessageFormat from 'intl-messageformat';
 
 import { fetchRelationships } from './accounts';
 
@@ -21,7 +22,7 @@ const fetchRelatedRelationships = (dispatch, notifications) => {
   }
 };
 
-export function updateNotifications(notification) {
+export function updateNotifications(notification, intlMessages, intlLocale) {
   return dispatch => {
     dispatch({
       type: NOTIFICATIONS_UPDATE,
@@ -31,6 +32,12 @@ export function updateNotifications(notification) {
     });
 
     fetchRelatedRelationships(dispatch, [notification]);
+
+    // Desktop notifications
+    const title = new IntlMessageFormat(intlMessages[`notification.${notification.type}`], intlLocale).format({ name: notification.account.display_name.length > 0 ? notification.account.display_name : notification.account.username });
+    const body  = $('<p>').html(notification.status ? notification.status.content : '').text();
+
+    new Notification(title, { body });
   };
 };
 
