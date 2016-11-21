@@ -14,10 +14,27 @@ class NotifyService < BaseService
 
   private
 
+  def blocked_mention?
+    FeedManager.instance.filter?(:mentions, @notification.mention.status, @recipient)
+  end
+
+  def blocked_favourite?
+    false
+  end
+
+  def blocked_follow?
+    false
+  end
+
+  def blocked_reblog?
+    false
+  end
+
   def blocked?
-    blocked = false
+    blocked   = false
     blocked ||= @recipient.id == @notification.from_account.id
     blocked ||= @recipient.blocking?(@notification.from_account)
+    blocked ||= send("blocked_#{@notification.type}?")
     blocked
   end
 
