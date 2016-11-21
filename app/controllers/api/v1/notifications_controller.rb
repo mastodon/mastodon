@@ -8,8 +8,11 @@ class Api::V1::NotificationsController < ApiController
 
   def index
     @notifications = Notification.where(account: current_account).with_includes.paginate_by_max_id(20, params[:max_id], params[:since_id])
+    statuses       = @notifications.select { |n| !n.target_status.nil? }.map(&:target_status)
 
-    set_maps(@notifications.select { |n| !n.target_status.nil? }.map(&:target_status))
+    set_maps(statuses)
+    set_counters_maps(statuses)
+    set_account_counters_maps(@notifications.map(&:from_account))
 
     next_path = api_v1_notifications_url(max_id: @notifications.last.id)    if @notifications.size == 20
     prev_path = api_v1_notifications_url(since_id: @notifications.first.id) unless @notifications.empty?
