@@ -30,8 +30,8 @@ class ApiController < ApplicationController
     render json: { error: 'Remote SSL certificate could not be verified' }, status: 503
   end
 
-  def doorkeeper_unauthorized_render_options(*)
-    { json: { error: 'Not authorized' } }
+  def doorkeeper_unauthorized_render_options(error: nil)
+    { json: { error: (error.try(:description) || 'Not authorized') } }
   end
 
   def doorkeeper_forbidden_render_options(*)
