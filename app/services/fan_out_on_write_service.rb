@@ -24,8 +24,8 @@ class FanOutOnWriteService < BaseService
   def deliver_to_followers(status)
     Rails.logger.debug "Delivering status #{status.id} to followers"
 
-    status.account.followers.find_each do |follower|
-      next if !follower.local? || FeedManager.instance.filter?(:home, status, follower)
+    status.account.followers.where(domain: nil).find_each do |follower|
+      next if FeedManager.instance.filter?(:home, status, follower)
       FeedManager.instance.push(:home, follower, status)
     end
   end
