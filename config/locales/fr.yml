@@ -1,0 +1,59 @@
+---
+en:
+  about:
+    about_instance: "<em>%{instance}</em> is a Mastodon instance."
+    about_mastodon: Mastodon is a <em>free, open-source</em> social network server. A <em>decentralized</em> alternative to commercial platforms, it avoids the risks of a single company monopolizing your communication. Anyone can run Mastodon and participate in the <em>social network</em> seamlessly.
+    get_started: Get started
+    source_code: Source code
+    terms: Terms
+  accounts:
+    follow: Follow
+    followers: Followers
+    following: Following
+    nothing_here: There is nothing here!
+    people_followed_by: People whom %{name} follows
+    people_who_follow: People who follow %{name}
+    posts: Posts
+    unfollow: Unfollow
+  application_mailer:
+    signature: Mastodon notifications from %{instance}
+  auth:
+    change_password: Change password
+    didnt_get_confirmation: Didn't receive confirmation instructions?
+    forgot_password: Forgot your password?
+    login: Log in
+    register: Sign up
+    resend_confirmation: Resend confirmation instructions
+    reset_password: Reset password
+    set_new_password: Set new password
+  generic:
+    changes_saved_msg: Changes successfully saved!
+    powered_by: powered by %{link}
+    save_changes: Save changes
+    validation_errors:
+      one: Something isn't quite right yet! Please review the error below
+      other: Something isn't quite right yet! Please review %{count} errors below
+  notification_mailer:
+    favourite:
+      body: 'Your status was favourited by %{name}:'
+      subject: "%{name} favourited your status"
+    follow:
+      body: "%{name} is now following you!"
+      subject: "%{name} is now following you"
+    mention:
+      body: 'You were mentioned by %{name} in:'
+      subject: You were mentioned by %{name}
+    reblog:
+      body: 'Your status was reblogged by %{name}:'
+      subject: "%{name} reblogged your status"
+  pagination:
+    next: Next
+    prev: Prev
+  settings:
+    edit_profile: Edit profile
+    preferences: Preferences
+  stream_entries:
+    favourited: favourited a post by
+    is_now_following: is now following
+  will_paginate:
+    page_gap: "&hellip;"
