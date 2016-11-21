@@ -11,9 +11,13 @@ class Notification < ApplicationRecord
   belongs_to :follow,    foreign_type: 'Follow',    foreign_key: 'activity_id'
   belongs_to :favourite, foreign_type: 'Favourite', foreign_key: 'activity_id'
 
-  STATUS_INCLUDES = [:account, :media_attachments, mentions: :account, reblog: [:account, mentions: :account]].freeze
+  STATUS_INCLUDES = [:account, :stream_entry, :media_attachments, :tags, mentions: :account, reblog: [:stream_entry, :account, :media_attachments, :tags, mentions: :account]].freeze
 
   scope :with_includes, -> { includes(status: STATUS_INCLUDES, mention: [status: STATUS_INCLUDES], favourite: [:account, status: STATUS_INCLUDES], follow: :account) }
+
+  def activity
+    send(activity_type.downcase)
+  end
 
   def type
     case activity_type
