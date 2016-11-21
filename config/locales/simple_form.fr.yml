@@ -1,0 +1,27 @@
+---
+en:
+  simple_form:
+    labels:
+      defaults:
+        avatar: Avatar
+        confirm_new_password: Confirm new password
+        confirm_password: Confirm password
+        current_password: Current password
+        display_name: Display name
+        email: E-mail address
+        header: Header
+        locale: Language
+        new_password: New password
+        note: Bio
+        password: Password
+        username: Username
+      notification_emails:
+        favourite: Send e-mail when someone favourites your status
+        follow: Send e-mail when someone follows you
+        mention: Send e-mail when someone mentions you
+        reblog: Send e-mail when someone reblogs your status
+    'no': 'No'
+    required:
+      mark: "*"
+      text: required
+    'yes': 'Yes'
