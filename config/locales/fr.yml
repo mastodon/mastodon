@@ -1,59 +1,59 @@
 ---
-en:
+fr:
   about:
-    about_instance: "<em>%{instance}</em> is a Mastodon instance."
-    about_mastodon: Mastodon is a <em>free, open-source</em> social network server. A <em>decentralized</em> alternative to commercial platforms, it avoids the risks of a single company monopolizing your communication. Anyone can run Mastodon and participate in the <em>social network</em> seamlessly.
-    get_started: Get started
-    source_code: Source code
-    terms: Terms
+    about_instance: "<em>%{instance}</em> est une instance de Mastodon."
+    about_mastodon: "Mastodon est un serveur <em>libre</em> de réseautage social. Alternative <em>décentralisée</em> aux plateformes commerciales, la monopolisation de vos communications par une entreprise unique est évitée. Tout un chacun peut faire tourner Mastodon et participer au <em>réseau social</em> de manière transparente."
+    get_started: "Rejoindre le réseau"
+    source_code: "Code source"
+    terms: "Conditions d’utilisation"
   accounts:
-    follow: Follow
-    followers: Followers
-    following: Following
-    nothing_here: There is nothing here!
-    people_followed_by: People whom %{name} follows
-    people_who_follow: People who follow %{name}
-    posts: Posts
-    unfollow: Unfollow
+    follow: "S’abonner"
+    followers: "Abonnés"
+    following: "Abonnements"
+    nothing_here: "Rien à voir ici&nbsp;!"
+    people_followed_by: "Personnes suivies par %{name}"
+    people_who_follow: "Personnes qui suivent %{name}"
+    posts: "Statuts"
+    unfollow: "Se désabonner"
   application_mailer:
-    signature: Mastodon notifications from %{instance}
+    signature: "Notifications de Mastodon depuis %{instance}"
   auth:
-    change_password: Change password
-    didnt_get_confirmation: Didn't receive confirmation instructions?
-    forgot_password: Forgot your password?
-    login: Log in
-    register: Sign up
-    resend_confirmation: Resend confirmation instructions
-    reset_password: Reset password
-    set_new_password: Set new password
+    change_password: "Changer de mot de passe"
+    didnt_get_confirmation: "Vous n’avez pas reçu les consignes de confirmation&nbsp;?"
+    forgot_password: "Mode passe oublié&nbsp;?"
+    login: "Se connecter"
+    register: "S’inscrire"
+    resend_confirmation: "Envoyer à nouveau les consignes de confirmation"
+    reset_password: "Réinitialiser le mot de passe"
+    set_new_password: "Établir le nouveau mot de passe"
   generic:
-    changes_saved_msg: Changes successfully saved!
-    powered_by: powered by %{link}
-    save_changes: Save changes
+    changes_saved_msg: "Les modifications sont enregistrées avec succès&nbsp;!"
+    powered_by: "propulsée par %{link}"
+    save_changes: "Enregistrer les modifications"
     validation_errors:
-      one: Something isn't quite right yet! Please review the error below
-      other: Something isn't quite right yet! Please review %{count} errors below
+      one: "Il y a quelque chose qui ne va pas&nbsp;! Vérifiez l’erreur ci-dessous"
+      other: "Il y a quelques choses qui ne vont pas&nbsp;! Vérifiez les erreurs ci-dessous"
   notification_mailer:
     favourite:
-      body: 'Your status was favourited by %{name}:'
-      subject: "%{name} favourited your status"
+      body: "%{name} a ajouté votre statut à ses favoris&nbsp;:"
+      subject: "%{name} a ajouté votre statut à ses favoris"
     follow:
-      body: "%{name} is now following you!"
-      subject: "%{name} is now following you"
+      body: "%{name} s’est abonné⋅e à vos statuts&nbsp;!"
+      subject: "%{name} s’est abonné⋅e à vos statuts"
     mention:
-      body: 'You were mentioned by %{name} in:'
-      subject: You were mentioned by %{name}
+      body: "%{name} vous a mentionné⋅e dans&nbsp;:"
+      subject: "%{name} vous a mentionné⋅e"
     reblog:
-      body: 'Your status was reblogged by %{name}:'
-      subject: "%{name} reblogged your status"
+      body: "%{name} a partagé votre statut&nbsp;:"
+      subject: "%{name} a partagé votre statut"
   pagination:
-    next: Next
-    prev: Prev
+    next: "Suivant"
+    prev: "Précédent"
   settings:
-    edit_profile: Edit profile
-    preferences: Preferences
+    edit_profile: "Modifier le profil"
+    preferences: "Préférences"
   stream_entries:
-    favourited: favourited a post by
-    is_now_following: is now following
+    favourited: "a ajouté à ses favoris un statut de"
+    is_now_following: "s’est abonné⋅e à"
   will_paginate:
     page_gap: "&hellip;"
