@@ -22,7 +22,8 @@ const Notifications = React.createClass({
 
   propTypes: {
     notifications: ImmutablePropTypes.list.isRequired,
-    dispatch: React.PropTypes.func.isRequired
+    dispatch: React.PropTypes.func.isRequired,
+    trackScroll: React.PropTypes.bool
   },
 
   mixins: [PureRenderMixin],
@@ -41,19 +42,31 @@ const Notifications = React.createClass({
   },
 
   render () {
-    const { intl, notifications } = this.props;
+    const { intl, notifications, trackScroll } = this.props;
 
-    return (
-      <Column icon='bell' heading={intl.formatMessage(messages.title)}>
-        <ScrollContainer scrollKey='notifications'>
-          <div className='scrollable' onScroll={this.handleScroll}>
-            <div>
-              {notifications.map(item => <NotificationContainer key={item.get('id')} notification={item} accountId={item.get('account')} />)}
-            </div>
-          </div>
-        </ScrollContainer>
-      </Column>
+    const scrollableArea = (
+      <div className='scrollable' onScroll={this.handleScroll}>
+        <div>
+          {notifications.map(item => <NotificationContainer key={item.get('id')} notification={item} accountId={item.get('account')} />)}
+        </div>
+      </div>
     );
+
+    if (trackScroll) {
+      return (
+        <Column icon='bell' heading={intl.formatMessage(messages.title)}>
+          <ScrollContainer scrollKey='notifications'>
+            {scrollableArea}
+          </ScrollContainer>
+        </Column>
+      );
+    } else {
+      return (
+        <Column icon='bell' heading={intl.formatMessage(messages.title)}>
+          {scrollableArea}
+        </Column>
+      );
+    }
   }
 
 });

@@ -31,7 +31,7 @@ const TabsBar = () => {
     <div style={outerStyle}>
       <Link style={tabStyle} activeStyle={tabActiveStyle} to='/statuses/new'><i className='fa fa-fw fa-pencil' /> <FormattedMessage id='tabs_bar.compose' defaultMessage='Compose' /></Link>
       <Link style={tabStyle} activeStyle={tabActiveStyle} to='/timelines/home'><i className='fa fa-fw fa-home' /> <FormattedMessage id='tabs_bar.home' defaultMessage='Home' /></Link>
-      <Link style={tabStyle} activeStyle={tabActiveStyle} to='/timelines/mentions'><i className='fa fa-fw fa-at' /> <FormattedMessage id='tabs_bar.mentions' defaultMessage='Mentions' /></Link>
+      <Link style={tabStyle} activeStyle={tabActiveStyle} to='/notifications'><i className='fa fa-fw fa-bell' /> <FormattedMessage id='tabs_bar.notifications' defaultMessage='Notifications' /></Link>
       <Link style={tabStyle} activeStyle={tabActiveStyle} to='/timelines/public'><i className='fa fa-fw fa-globe' /> <FormattedMessage id='tabs_bar.public' defaultMessage='Public' /></Link>
     </div>
   );

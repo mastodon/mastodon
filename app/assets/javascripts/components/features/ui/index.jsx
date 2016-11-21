@@ -1,13 +1,14 @@
-import ColumnsArea            from './components/columns_area';
+import ColumnsArea from './components/columns_area';
 import NotificationsContainer from './containers/notifications_container';
-import PureRenderMixin        from 'react-addons-pure-render-mixin';
-import LoadingBarContainer    from './containers/loading_bar_container';
-import HomeTimeline           from '../home_timeline';
-import MentionsTimeline       from '../mentions_timeline';
-import Compose                from '../compose';
-import MediaQuery             from 'react-responsive';
-import TabsBar                from './components/tabs_bar';
-import ModalContainer         from './containers/modal_container';
+import PureRenderMixin from 'react-addons-pure-render-mixin';
+import LoadingBarContainer from './containers/loading_bar_container';
+import HomeTimeline from '../home_timeline';
+import MentionsTimeline from '../mentions_timeline';
+import Compose from '../compose';
+import MediaQuery from 'react-responsive';
+import TabsBar from './components/tabs_bar';
+import ModalContainer from './containers/modal_container';
+import Notifications from '../notifications';
 
 const UI = React.createClass({
 
@@ -26,11 +27,11 @@ const UI = React.createClass({
           {this.props.children}
         </MediaQuery>
 
-        <MediaQuery minWidth={layoutBreakpoint}>
+        <MediaQuery minWidth={layoutBreakpoint + 1}>
           <ColumnsArea>
             <Compose />
             <HomeTimeline trackScroll={false} />
-            <MentionsTimeline trackScroll={false} />
+            <Notifications trackScroll={false} />
             {this.props.children}
           </ColumnsArea>
         </MediaQuery>
