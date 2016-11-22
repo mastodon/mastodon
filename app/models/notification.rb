@@ -11,6 +11,8 @@ class Notification < ApplicationRecord
   belongs_to :follow,    foreign_type: 'Follow',    foreign_key: 'activity_id'
   belongs_to :favourite, foreign_type: 'Favourite', foreign_key: 'activity_id'
 
+  validates :account_id, uniqueness: { scope: [:activity_type, :activity_id] }
+
   STATUS_INCLUDES = [:account, :stream_entry, :media_attachments, :tags, mentions: :account, reblog: [:stream_entry, :account, :media_attachments, :tags, mentions: :account]].freeze
 
   scope :with_includes, -> { includes(status: STATUS_INCLUDES, mention: [status: STATUS_INCLUDES], favourite: [:account, status: STATUS_INCLUDES], follow: :account) }

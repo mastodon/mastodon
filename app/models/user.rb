@@ -16,4 +16,8 @@ class User < ApplicationRecord
   has_settings do |s|
     s.key :notification_emails, defaults: { follow: true, reblog: true, favourite: true, mention: true }
   end
+
+  def send_devise_notification(notification, *args)
+    devise_mailer.send(notification, self, *args).deliver_later
+  end
 end

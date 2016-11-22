@@ -10,6 +10,8 @@ class NotifyService < BaseService
 
     create_notification
     send_email if email_enabled?
+  rescue ActiveRecord::RecordInvalid
+    return
   end
 
   private

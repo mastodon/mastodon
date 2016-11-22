@@ -54,7 +54,7 @@ class Api::V1::StatusesController < ApiController
   end
 
   def reblog
-    @status = ReblogService.new.call(current_user.account, Status.find(params[:id])).reload
+    @status = ReblogService.new.call(current_user.account, Status.find(params[:id]))
     render action: :show
   end
 
