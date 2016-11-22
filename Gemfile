@@ -50,6 +50,11 @@ gem 'react-rails'
 gem 'browserify-rails'
 gem 'autoprefixer-rails'
 
+gem 'rack-mini-profiler', require: false
+gem 'flamegraph'
+gem 'stackprof'
+gem 'memory_profiler'
+
 group :development, :test do
   gem 'rspec-rails'
   gem 'pry-rails'

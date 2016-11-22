@@ -12,7 +12,7 @@ class SearchService < BaseService
                 Account.search_for("#{username} #{domain}")
               end
 
-    results = results.limit(limit).with_counters
+    results = results.limit(limit)
 
     if resolve && results.empty? && !domain.nil?
       results = [FollowRemoteAccountService.new.call("#{username}@#{domain}")]
