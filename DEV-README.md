@@ -19,14 +19,6 @@ Once you're at a prompt in a working copy of Mastodon:
 
 * Make sure you have set up the Ruby Dev Kit as per instructions on their GitHub
 * Change the `postgres` user password to an empty string with `ALTER USER postgres PASSWORD '';`.  You can do this from pgAdmin after installing Postgres
-* `bundle install`
-  * If you don't have Bundler, try the following:
-  * `gem install bundler`
-  * If you get HTTPS errors installing Bundler, try the following:
-  * Download `https://curl.haxx.se/ca/cacert.pem` and save as `C:\Ruby23-x64\cacert.pem`
-  * If using Git for Windows, run `export SSL_CERT_FILE='C:\Ruby23-x64\cacert.pem'`
-  * If using Command Prompt, run `set SSL_CERT_FILE=C:\Ruby23-x64\cacert.pem`
-  * Then `gem install bundler` again
 * Run the following commands, changing out `set` for `export` if running from Git bash:
 
 ```
@@ -58,6 +50,14 @@ set SMTP_FROM_ADDRESS=notifications@example.com
 * Replace `gem 'pg'` with `gem 'pg', '~> 0.19.0'` in Gemfile
 * Replace all instances of `0.18.4` with `0.19.0` in Gemfile.lock
 * Add `gem 'tzinfo-data'` to Gemfile
+* `bundle install`
+  * If you don't have Bundler, try the following:
+  * `gem install bundler`
+  * If you get HTTPS errors installing Bundler, try the following:
+  * Download `https://curl.haxx.se/ca/cacert.pem` and save as `C:\Ruby23-x64\cacert.pem`
+  * If using Git for Windows, run `export SSL_CERT_FILE='C:\Ruby23-x64\cacert.pem'`
+  * If using Command Prompt, run `set SSL_CERT_FILE=C:\Ruby23-x64\cacert.pem`
+  * Then `gem install bundler` again
 * Run `rails db:migrate`
 
 **TODO** Figure out why `rails db:migrate` bails with:
