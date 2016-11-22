@@ -51,6 +51,6 @@ class ApplicationController < ActionController::Base
   end
 
   def current_account
-    current_user.try(:account)
+    @account ||= current_user.try(:account)
   end
 end

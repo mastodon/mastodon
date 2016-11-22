@@ -16,7 +16,7 @@ class Feed
       RegenerationWorker.perform_async(@account.id, @type)
       @statuses = Status.send("as_#{@type}_timeline", @account).paginate_by_max_id(limit, nil, nil)
     else
-      status_map = Status.where(id: unhydrated).with_includes.with_counters.map { |status| [status.id, status] }.to_h
+      status_map = Status.where(id: unhydrated).with_includes.map { |status| [status.id, status] }.to_h
       @statuses = unhydrated.map { |id| status_map[id] }.compact
     end
 

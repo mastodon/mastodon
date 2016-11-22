@@ -4,7 +4,7 @@ class Status < ApplicationRecord
   include Paginable
   include Streamable
 
-  belongs_to :account, -> { with_counters }, inverse_of: :statuses
+  belongs_to :account, inverse_of: :statuses
 
   belongs_to :thread, foreign_key: 'in_reply_to_id', class_name: 'Status', inverse_of: :replies
   belongs_to :reblog, foreign_key: 'reblog_of_id', class_name: 'Status', inverse_of: :reblogs, touch: true
@@ -27,7 +27,7 @@ class Status < ApplicationRecord
   default_scope { order('id desc') }
 
   scope :with_counters, -> { select('statuses.*, (select count(r.id) from statuses as r where r.reblog_of_id = statuses.id) as reblogs_count, (select count(f.id) from favourites as f where f.status_id = statuses.id) as favourites_count') }
-  scope :with_includes, -> { includes(:account, :media_attachments, :tags, :stream_entry, mentions: :account, reblog: [:account, mentions: :account], thread: :account) }
+  scope :with_includes, -> { includes(:account, :media_attachments, :tags, :stream_entry, mentions: :account, reblog: [:account, :stream_entry, :tags, mentions: :account], thread: :account) }
 
   def local?
     uri.nil?
