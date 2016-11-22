@@ -20,12 +20,12 @@ const fr = {
   "account.followers": "Abonnés",
   "account.follows_you": "Vous suit",
   "getting_started.heading": "Pour commencer",
-  "getting_started.about_addressing": "Vous pouvez vous abonner aux statuts de quelqu’un en entrant dans le champs en haut de la colonne de gauche leur nom d’utilisateur et le nom de domaine de leur instance, séparés par un @ à la manière d’une adresse courriel.",
+  "getting_started.about_addressing": "Vous pouvez vous abonner aux statuts de quelqu’un en entrant dans le champs de recherche leur nom d’utilisateur et le domaine de leur instance, séparés par un @ à la manière d’une adresse courriel.",
   "getting_started.about_shortcuts": "Si cette personne utilise la même instance que vous, le nom d’utilisateur suffit. C’est le même principe pour mentionner quelqu’un dans vos statuts.",
   "getting_started.about_developer": "Pour s’abonner au développeur de ce projet, c’est Gargron@mastodon.social",
   "column.home": "Accueil",
   "column.mentions": "Mentions",
-  "column.public": "Public",
+  "column.public": "Fil public",
   "column.notifications": "Notifications",
   "tabs_bar.compose": "Composer",
   "tabs_bar.home": "Accueil",
@@ -35,7 +35,7 @@ const fr = {
   "compose_form.placeholder": "Qu’avez vous en tête&nbsp;?",
   "compose_form.publish": "Publier",
   "navigation_bar.settings": "Paramètres",
-  "navigation_bar.public_timeline": "Fil public",
+  "navigation_bar.public_timeline": "Public",
   "navigation_bar.logout": "Se déconnecter",
   "reply_indicator.cancel": "Annuler",
   "search.placeholder": "Chercher",
@@ -48,7 +48,7 @@ const fr = {
   "notification.follow": "{name} s’est abonné⋅e à vos statuts",
   "notification.favourite": "{name} a ajouté votre statut à ses favoris",
   "notification.reblog": "{name} a partagé votre statut",
-  "notification.mention": "{name} vous a mentionné"
+  "notification.mention": "{name} vous a mentionné⋅e"
 };
 
 export default fr;
