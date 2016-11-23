@@ -12,7 +12,7 @@ const outerStyle = {
 const tabStyle = {
   display: 'block',
   flex: '1 1 auto',
-  padding: '10px',
+  padding: '5px',
   color: '#fff',
   textDecoration: 'none',
   textAlign: 'center',
