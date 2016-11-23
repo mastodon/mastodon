@@ -20,7 +20,18 @@ class Settings::ProfilesController < ApplicationController
   private
 
   def account_params
-    params.require(:account).permit(:display_name, :note, :avatar, :header, :silenced)
+    p = params.require(:account).permit(:display_name, :note, :avatar, :header, :silenced)
+    if p[:avatar]
+        avatar = p[:avatar]
+        # Change so Paperclip won't expose the actual filename
+        avatar.original_filename = "media" + File.extname(avatar.original_filename)
+    end
+    if p[:header]
+        header = p[:header]
+        # Change so Paperclip won't expose the actual filename
+        header.original_filename = "media" + File.extname(header.original_filename)
+    end
+    p
   end
 
   def set_account
