@@ -87,9 +87,8 @@ const Account = React.createClass({
     return (
       <Column>
         <ColumnBackButton />
-        <Header account={account} me={me} />
-
-        <ActionBar account={account} me={me} onFollow={this.handleFollow} onBlock={this.handleBlock} onMention={this.handleMention} />
+        <Header account={account} me={me} onFollow={this.handleFollow} />
+        <ActionBar account={account} me={me} onBlock={this.handleBlock} onMention={this.handleMention} />
 
         {this.props.children}
       </Column>

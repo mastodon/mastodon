@@ -1,7 +1,11 @@
 import {
+  REBLOG_REQUEST,
   REBLOG_SUCCESS,
+  REBLOG_FAIL,
   UNREBLOG_SUCCESS,
+  FAVOURITE_REQUEST,
   FAVOURITE_SUCCESS,
+  FAVOURITE_FAIL,
   UNFAVOURITE_SUCCESS
 } from '../actions/interactions';
 import {
@@ -82,6 +86,14 @@ export default function statuses(state = initialState, action) {
     case FAVOURITE_SUCCESS:
     case UNFAVOURITE_SUCCESS:
       return normalizeStatus(state, action.response);
+    case FAVOURITE_REQUEST:
+      return state.setIn([action.status.get('id'), 'favourited'], true);
+    case FAVOURITE_FAIL:
+      return state.setIn([action.status.get('id'), 'favourited'], false);
+    case REBLOG_REQUEST:
+      return state.setIn([action.status.get('id'), 'reblogged'], true);
+    case REBLOG_FAIL:
+      return state.setIn([action.status.get('id'), 'reblogged'], false);
     case TIMELINE_REFRESH_SUCCESS:
     case TIMELINE_EXPAND_SUCCESS:
     case ACCOUNT_TIMELINE_FETCH_SUCCESS:

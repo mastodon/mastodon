@@ -7,7 +7,14 @@ const Button = React.createClass({
     onClick: React.PropTypes.func,
     disabled: React.PropTypes.bool,
     block: React.PropTypes.bool,
-    secondary: React.PropTypes.bool
+    secondary: React.PropTypes.bool,
+    size: React.PropTypes.number,
+  },
+
+  getDefaultProps () {
+    return {
+      size: 36
+    };
   },
 
   mixins: [PureRenderMixin],
@@ -32,16 +39,16 @@ const Button = React.createClass({
       fontWeight: '500',
       letterSpacing: '0',
       textTransform: 'uppercase',
-      padding: '0 16px',
-      height: '36px',
+      padding: `0 ${this.props.size / 2.25}px`,
+      height: `${this.props.size}px`,
       cursor: 'pointer',
-      lineHeight: '36px',
+      lineHeight: `${this.props.size}px`,
       borderRadius: '4px',
       textDecoration: 'none'
     };
-    
+
     return (
-      <button className={`button ${this.props.secondary ? 'button-secondary' : ''}`} disabled={this.props.disabled} onClick={this.handleClick} style={style}>
+      <button className={`button ${this.props.secondary ? 'button-secondary' : ''}`} disabled={this.props.disabled} onClick={this.handleClick} style={{ ...style, ...this.props.style }}>
         {this.props.text || this.props.children}
       </button>
     );
