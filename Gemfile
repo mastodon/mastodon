@@ -2,7 +2,7 @@
 
 source 'https://rubygems.org'
 
-gem 'rails', '5.0.0.1'
+gem 'rails', git: 'https://github.com/rails/rails.git', branch: '5-0-stable'
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.1.0'
@@ -49,6 +49,11 @@ gem 'pg_search'
 gem 'react-rails'
 gem 'browserify-rails'
 gem 'autoprefixer-rails'
+
+gem 'rack-mini-profiler', require: false
+gem 'flamegraph'
+gem 'stackprof'
+gem 'memory_profiler'
 
 group :development, :test do
   gem 'rspec-rails'

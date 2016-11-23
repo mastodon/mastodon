@@ -43,13 +43,15 @@ const Lightbox = React.createClass({
   render () {
     const { intl, isVisible, onOverlayClicked, onCloseClicked, children } = this.props;
 
+    const content = isVisible ? children : <div />;
+
     return (
       <div className='lightbox' style={{...overlayStyle, display: isVisible ? 'flex' : 'none'}} onClick={onOverlayClicked}>
         <Motion defaultStyle={{ y: -200 }} style={{ y: spring(isVisible ? 0 : -200) }}>
           {({ y }) =>
             <div style={{...dialogStyle, transform: `translateY(${y}px)`}}>
               <IconButton title={intl.formatMessage({ id: 'lightbox.close', defaultMessage: 'Close' })} icon='times' onClick={onCloseClicked} size={16} style={closeStyle} />
-              {children}
+              {content}
             </div>
           }
         </Motion>

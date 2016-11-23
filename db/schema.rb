@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161119211120) do
+ActiveRecord::Schema.define(version: 20161122163057) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -103,7 +103,6 @@ ActiveRecord::Schema.define(version: 20161119211120) do
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
     t.index ["account_id", "activity_id", "activity_type"], name: "account_activity", unique: true, using: :btree
-    t.index ["account_id"], name: "index_notifications_on_account_id", using: :btree
   end
 
   create_table "oauth_access_grants", force: :cascade do |t|
@@ -152,7 +151,6 @@ ActiveRecord::Schema.define(version: 20161119211120) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.index ["target_type", "target_id", "var"], name: "index_settings_on_target_type_and_target_id_and_var", unique: true, using: :btree
-    t.index ["target_type", "target_id"], name: "index_settings_on_target_type_and_target_id", using: :btree
   end
 
   create_table "statuses", force: :cascade do |t|
@@ -174,7 +172,6 @@ ActiveRecord::Schema.define(version: 20161119211120) do
     t.integer "status_id", null: false
     t.integer "tag_id",    null: false
     t.index ["tag_id", "status_id"], name: "index_statuses_tags_on_tag_id_and_status_id", unique: true, using: :btree
-    t.index ["tag_id"], name: "index_statuses_tags_on_tag_id", using: :btree
   end
 
   create_table "stream_entries", force: :cascade do |t|

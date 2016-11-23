@@ -34,7 +34,7 @@ const en = {
   "tabs_bar.public": "Public",
   "tabs_bar.notifications": "Notifications",
   "compose_form.placeholder": "What is on your mind?",
-  "compose_form.publish": "Publish",
+  "compose_form.publish": "Toot",
   "navigation_bar.settings": "Settings",
   "navigation_bar.public_timeline": "Public timeline",
   "navigation_bar.logout": "Logout",

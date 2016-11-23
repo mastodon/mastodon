@@ -4,7 +4,7 @@ class Status < ApplicationRecord
   include Paginable
   include Streamable
 
-  belongs_to :account, -> { with_counters }, inverse_of: :statuses
+  belongs_to :account, inverse_of: :statuses
 
   belongs_to :thread, foreign_key: 'in_reply_to_id', class_name: 'Status', inverse_of: :replies
   belongs_to :reblog, foreign_key: 'reblog_of_id', class_name: 'Status', inverse_of: :reblogs, touch: true
@@ -27,7 +27,7 @@ class Status < ApplicationRecord
   default_scope { order('id desc') }
 
   scope :with_counters, -> { select('statuses.*, (select count(r.id) from statuses as r where r.reblog_of_id = statuses.id) as reblogs_count, (select count(f.id) from favourites as f where f.status_id = statuses.id) as favourites_count') }
-  scope :with_includes, -> { includes(:account, :media_attachments, :tags, :stream_entry, mentions: :account, reblog: [:account, mentions: :account], thread: :account) }
+  scope :with_includes, -> { includes(:account, :media_attachments, :tags, :stream_entry, mentions: :account, reblog: [:account, :stream_entry, :tags, :media_attachments, mentions: :account], thread: :account) }
 
   def local?
     uri.nil?
@@ -71,7 +71,7 @@ class Status < ApplicationRecord
 
   def ancestors(account = nil)
     ids      = (Status.find_by_sql(['WITH RECURSIVE search_tree(id, in_reply_to_id, path) AS (SELECT id, in_reply_to_id, ARRAY[id] FROM statuses WHERE id = ? UNION ALL SELECT statuses.id, statuses.in_reply_to_id, path || statuses.id FROM search_tree JOIN statuses ON statuses.id = search_tree.in_reply_to_id WHERE NOT statuses.id = ANY(path)) SELECT id FROM search_tree ORDER BY path DESC', id]) - [self]).pluck(:id)
-    statuses = Status.where(id: ids).with_counters.with_includes.group_by(&:id)
+    statuses = Status.where(id: ids).with_includes.group_by(&:id)
     results  = ids.map { |id| statuses[id].first }
     results  = results.reject { |status| account.blocking?(status.account) } unless account.nil?
 
@@ -80,7 +80,7 @@ class Status < ApplicationRecord
 
   def descendants(account = nil)
     ids      = (Status.find_by_sql(['WITH RECURSIVE search_tree(id, path) AS (SELECT id, ARRAY[id] FROM statuses WHERE id = ? UNION ALL SELECT statuses.id, path || statuses.id FROM search_tree JOIN statuses ON statuses.in_reply_to_id = search_tree.id WHERE NOT statuses.id = ANY(path)) SELECT id FROM search_tree ORDER BY path', id]) - [self]).pluck(:id)
-    statuses = Status.where(id: ids).with_counters.with_includes.group_by(&:id)
+    statuses = Status.where(id: ids).with_includes.group_by(&:id)
     results  = ids.map { |id| statuses[id].first }
     results  = results.reject { |status| account.blocking?(status.account) } unless account.nil?
 
@@ -89,28 +89,25 @@ class Status < ApplicationRecord
 
   class << self
     def as_home_timeline(account)
-      where(account: [account] + account.following).with_includes.with_counters
+      where(account: [account] + account.following).with_includes
     end
 
     def as_mentions_timeline(account)
-      where(id: Mention.where(account: account).pluck(:status_id)).with_includes.with_counters
+      where(id: Mention.where(account: account).pluck(:status_id)).with_includes
     end
 
     def as_public_timeline(account = nil)
       query = joins('LEFT OUTER JOIN accounts ON statuses.account_id = accounts.id').where('accounts.silenced = FALSE')
       query = filter_timeline(query, account) unless account.nil?
-
-      query.with_includes.with_counters
+      query
     end
 
     def as_tag_timeline(tag, account = nil)
       query = tag.statuses
                  .joins('LEFT OUTER JOIN accounts ON statuses.account_id = accounts.id')
                  .where('accounts.silenced = FALSE')
-
       query = filter_timeline(query, account) unless account.nil?
-
-      query.with_includes.with_counters
+      query
     end
 
     def favourites_map(status_ids, account_id)

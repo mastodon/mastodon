@@ -18,8 +18,10 @@ class Api::V1::AccountsController < ApiController
 
   def following
     results   = Follow.where(account: @account).paginate_by_max_id(DEFAULT_ACCOUNTS_LIMIT, params[:max_id], params[:since_id])
-    accounts  = Account.where(id: results.map(&:target_account_id)).with_counters.map { |a| [a.id, a] }.to_h
+    accounts  = Account.where(id: results.map(&:target_account_id)).map { |a| [a.id, a] }.to_h
     @accounts = results.map { |f| accounts[f.target_account_id] }
+
+    set_account_counters_maps(@accounts)
 
     next_path = following_api_v1_account_url(max_id: results.last.id)    if results.size == DEFAULT_ACCOUNTS_LIMIT
     prev_path = following_api_v1_account_url(since_id: results.first.id) unless results.empty?
@@ -31,8 +33,10 @@ class Api::V1::AccountsController < ApiController
 
   def followers
     results   = Follow.where(target_account: @account).paginate_by_max_id(DEFAULT_ACCOUNTS_LIMIT, params[:max_id], params[:since_id])
-    accounts  = Account.where(id: results.map(&:account_id)).with_counters.map { |a| [a.id, a] }.to_h
+    accounts  = Account.where(id: results.map(&:account_id)).map { |a| [a.id, a] }.to_h
     @accounts = results.map { |f| accounts[f.account_id] }
+
+    set_account_counters_maps(@accounts)
 
     next_path = followers_api_v1_account_url(max_id: results.last.id)    if results.size == DEFAULT_ACCOUNTS_LIMIT
     prev_path = followers_api_v1_account_url(since_id: results.first.id) unless results.empty?
@@ -53,9 +57,10 @@ class Api::V1::AccountsController < ApiController
   end
 
   def statuses
-    @statuses = @account.statuses.with_includes.with_counters.paginate_by_max_id(DEFAULT_STATUSES_LIMIT, params[:max_id], params[:since_id]).to_a
+    @statuses = @account.statuses.with_includes.paginate_by_max_id(DEFAULT_STATUSES_LIMIT, params[:max_id], params[:since_id]).to_a
 
     set_maps(@statuses)
+    set_counters_maps(@statuses)
 
     next_path = statuses_api_v1_account_url(max_id: @statuses.last.id)    if @statuses.size == DEFAULT_STATUSES_LIMIT
     prev_path = statuses_api_v1_account_url(since_id: @statuses.first.id) unless @statuses.empty?
@@ -98,6 +103,9 @@ class Api::V1::AccountsController < ApiController
   def search
     limit = params[:limit] ? [DEFAULT_ACCOUNTS_LIMIT, params[:limit].to_i].min : DEFAULT_ACCOUNTS_LIMIT
     @accounts = SearchService.new.call(params[:q], limit, params[:resolve] == 'true')
+
+    set_account_counters_maps(@accounts)
+
     render action: :index
   end
 
