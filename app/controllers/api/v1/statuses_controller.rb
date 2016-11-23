@@ -9,6 +9,8 @@ class Api::V1::StatusesController < ApiController
   respond_to :json
 
   def show
+    cached  = Rails.cache.read(@status.cache_key)
+    @status = cached unless cached.nil?
   end
 
   def context
