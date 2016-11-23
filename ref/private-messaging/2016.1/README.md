@@ -40,7 +40,12 @@ inclusion would be:
     <poco:preferredUsername>hq</poco:preferredUsername>
     <poco:displayName>June</poco:displayName>
     <poco:note>game developer - she/her - @hachque (Twitter) - https://www.redpointgames.com.au/ </poco:note>
+
+
+    <!-- public key URI element -->
     <pm:publicKeyUri>https://mastodon.social/users/hq.pem</pm:publicKeyUri>
+
+
   </author>
   <link rel="alternate" type="text/html" href="https://mastodon.social/users/hq"/>
   <link rel="self" type="application/atom+xml" href="https://mastodon.social/users/hq.atom"/>
