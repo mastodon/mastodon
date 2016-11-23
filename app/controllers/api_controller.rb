@@ -59,11 +59,11 @@ class ApiController < ApplicationController
   end
 
   def current_resource_owner
-    @user ||= User.find(doorkeeper_token.resource_owner_id) if doorkeeper_token
+    @current_user ||= User.find(doorkeeper_token.resource_owner_id) if doorkeeper_token
   end
 
   def current_user
-    @user ||= super || current_resource_owner
+    super || current_resource_owner
   rescue ActiveRecord::RecordNotFound
     nil
   end
