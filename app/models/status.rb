@@ -27,7 +27,7 @@ class Status < ApplicationRecord
   default_scope { order('id desc') }
 
   scope :with_counters, -> { select('statuses.*, (select count(r.id) from statuses as r where r.reblog_of_id = statuses.id) as reblogs_count, (select count(f.id) from favourites as f where f.status_id = statuses.id) as favourites_count') }
-  scope :with_includes, -> { includes(:account, :media_attachments, :tags, :stream_entry, mentions: :account, reblog: [:account, :stream_entry, :tags, mentions: :account], thread: :account) }
+  scope :with_includes, -> { includes(:account, :media_attachments, :tags, :stream_entry, mentions: :account, reblog: [:account, :stream_entry, :tags, :media_attachments, mentions: :account], thread: :account) }
 
   def local?
     uri.nil?
@@ -89,28 +89,25 @@ class Status < ApplicationRecord
 
   class << self
     def as_home_timeline(account)
-      where(account: [account] + account.following).with_includes.with_counters
+      where(account: [account] + account.following).with_includes
     end
 
     def as_mentions_timeline(account)
-      where(id: Mention.where(account: account).pluck(:status_id)).with_includes.with_counters
+      where(id: Mention.where(account: account).pluck(:status_id)).with_includes
     end
 
     def as_public_timeline(account = nil)
       query = joins('LEFT OUTER JOIN accounts ON statuses.account_id = accounts.id').where('accounts.silenced = FALSE')
       query = filter_timeline(query, account) unless account.nil?
-
-      query.with_includes.with_counters
+      query
     end
 
     def as_tag_timeline(tag, account = nil)
       query = tag.statuses
                  .joins('LEFT OUTER JOIN accounts ON statuses.account_id = accounts.id')
                  .where('accounts.silenced = FALSE')
-
       query = filter_timeline(query, account) unless account.nil?
-
-      query.with_includes.with_counters
+      query
     end
 
     def favourites_map(status_ids, account_id)
