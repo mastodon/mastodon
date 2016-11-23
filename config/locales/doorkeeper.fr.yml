@@ -31,7 +31,7 @@ fr:
       help:
         native_redirect_uri: Utiliser %{native_redirect_uri} pour les tests locaux
         redirect_uri: Utiliser une ligne par URL
-        scopes:
+        scopes: Séparer les portées avec des espaces. Laisser vide pour utiliser les portées par défaut.
       index:
         callback_url: URL de retour d'appel
         name: Nom
@@ -43,7 +43,7 @@ fr:
         actions: Actions
         application_id: ID de l'application
         callback_urls: URL du retour d'appel
-        scopes:
+        scopes: Portées
         secret: Secret
         title: 'Application : %{name}'
     authorizations:
@@ -77,7 +77,7 @@ fr:
         invalid_redirect_uri: L'URL de redirection n'est pas valide.
         invalid_request: La demande manque un paramètre requis, inclut une valeur de paramètre non prise en charge, ou est autrement mal formée.
         invalid_resource_owner: Les identifiants fournis du propriétaire de la ressource ne sont pas valides, ou le propriétaire de la ressource ne peut être trouvé
-        invalid_scope: Le scope demandé n'est pas valide, est inconnu, ou est mal formé.
+        invalid_scope: La portée demandée n'est pas valide, est inconnue, ou est mal formée.
         invalid_token:
           expired: Le jeton d'accès a expiré
           revoked: Le jeton d'accès a été annulé
@@ -107,6 +107,6 @@ fr:
       application:
         title: Autorisation OAuth requise
     scopes:
-      follow:
-      read:
-      write:
+      follow: s’abonner, se désabonner, bloquer, et débloquer des comptes
+      read: lire les données de votre compte  
+      write: poster en tant que vous

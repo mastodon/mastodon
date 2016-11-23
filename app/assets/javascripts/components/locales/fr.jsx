@@ -33,7 +33,7 @@ const fr = {
   "tabs_bar.public": "Public",
   "tabs_bar.notifications": "Notifications",
   "compose_form.placeholder": "Qu’avez vous en tête&nbsp;?",
-  "compose_form.publish": "Publier",
+  "compose_form.publish": "Pouet",
   "navigation_bar.settings": "Paramètres",
   "navigation_bar.public_timeline": "Public",
   "navigation_bar.logout": "Se déconnecter",
