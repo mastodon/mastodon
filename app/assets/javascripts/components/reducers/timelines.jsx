@@ -13,7 +13,8 @@ import {
 import {
   ACCOUNT_FETCH_SUCCESS,
   ACCOUNT_TIMELINE_FETCH_SUCCESS,
-  ACCOUNT_TIMELINE_EXPAND_SUCCESS
+  ACCOUNT_TIMELINE_EXPAND_SUCCESS,
+  ACCOUNT_BLOCK_SUCCESS
 } from '../actions/accounts';
 import {
   STATUS_FETCH_SUCCESS,
@@ -140,6 +141,21 @@ const deleteStatus = (state, id, accountId, references) => {
   return state;
 };
 
+const filterTimelines = (state, relationship, statuses) => {
+  let references;
+
+  statuses.forEach(status => {
+    if (status.get('account') !== relationship.id) {
+      return;
+    }
+
+    references = statuses.filter(item => item.get('reblog') === status.get('id')).map(item => [item.get('id'), item.get('account')]);
+    state = deleteStatus(state, status.get('id'), status.get('account'), references);
+  });
+
+  return state;
+};
+
 const normalizeContext = (state, id, ancestors, descendants) => {
   const ancestorsIds   = ancestors.map(ancestor => ancestor.get('id'));
   const descendantsIds = descendants.map(descendant => descendant.get('id'));
@@ -166,6 +182,8 @@ export default function timelines(state = initialState, action) {
       return normalizeAccountTimeline(state, action.id, Immutable.fromJS(action.statuses), action.replace);
     case ACCOUNT_TIMELINE_EXPAND_SUCCESS:
       return appendNormalizedAccountTimeline(state, action.id, Immutable.fromJS(action.statuses));
+    case ACCOUNT_BLOCK_SUCCESS:
+      return filterTimelines(state, action.relationship, action.statuses);
     default:
       return state;
   }

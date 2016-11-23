@@ -16,7 +16,8 @@ import {
 } from '../actions/timelines';
 import {
   ACCOUNT_TIMELINE_FETCH_SUCCESS,
-  ACCOUNT_TIMELINE_EXPAND_SUCCESS
+  ACCOUNT_TIMELINE_EXPAND_SUCCESS,
+  ACCOUNT_BLOCK_SUCCESS
 } from '../actions/accounts';
 import {
   NOTIFICATIONS_UPDATE,
@@ -56,6 +57,18 @@ const deleteStatus = (state, id, references) => {
   return state.delete(id);
 };
 
+const filterStatuses = (state, relationship) => {
+  state.forEach(status => {
+    if (status.get('account') !== relationship.id) {
+      return;
+    }
+
+    state = deleteStatus(state, status.get('id'), state.filter(item => item.get('reblog') === status.get('id')));
+  });
+
+  return state;
+};
+
 const initialState = Immutable.Map();
 
 export default function statuses(state = initialState, action) {
@@ -79,6 +92,8 @@ export default function statuses(state = initialState, action) {
       return normalizeStatuses(state, action.statuses);
     case TIMELINE_DELETE:
       return deleteStatus(state, action.id, action.references);
+    case ACCOUNT_BLOCK_SUCCESS:
+      return filterStatuses(state, action.relationship);
     default:
       return state;
   }

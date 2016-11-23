@@ -34,6 +34,7 @@ const Status = React.createClass({
     onReblog: React.PropTypes.func,
     onDelete: React.PropTypes.func,
     onOpenMedia: React.PropTypes.func,
+    onBlock: React.PropTypes.func,
     me: React.PropTypes.number,
     muted: React.PropTypes.bool
   },

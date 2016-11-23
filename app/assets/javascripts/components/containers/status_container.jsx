@@ -1,18 +1,19 @@
-import { connect }       from 'react-redux';
-import Status            from '../components/status';
+import { connect } from 'react-redux';
+import Status from '../components/status';
 import { makeGetStatus } from '../selectors';
 import {
   replyCompose,
   mentionCompose
-}                        from '../actions/compose';
+} from '../actions/compose';
 import {
   reblog,
   favourite,
   unreblog,
   unfavourite
-}                        from '../actions/interactions';
-import { deleteStatus }  from '../actions/statuses';
-import { openMedia }     from '../actions/modal';
+} from '../actions/interactions';
+import { blockAccount } from '../actions/accounts';
+import { deleteStatus } from '../actions/statuses';
+import { openMedia } from '../actions/modal';
 import { createSelector } from 'reselect'
 
 const mapStateToProps = (state, props) => ({
@@ -91,6 +92,10 @@ const mapDispatchToProps = (dispatch) => ({
 
   onOpenMedia (url) {
     dispatch(openMedia(url));
+  },
+
+  onBlock (account) {
+    dispatch(blockAccount(account.get('id')));
   }
 
 });

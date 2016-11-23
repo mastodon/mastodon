@@ -8,7 +8,7 @@ import Autosuggest from 'react-autosuggest';
 import AutosuggestAccountContainer from '../../compose/containers/autosuggest_account_container';
 import { debounce } from 'react-decoration';
 import UploadButtonContainer from '../containers/upload_button_container';
-import { defineMessages, injectIntl } from 'react-intl';
+import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import Toggle from 'react-toggle';
 
 const messages = defineMessages({
@@ -188,7 +188,7 @@ const ComposeForm = React.createClass({
 
         <label style={{ display: 'block', lineHeight: '24px', verticalAlign: 'middle', marginTop: '10px', borderTop: '1px solid #616b86', paddingTop: '10px' }}>
           <Toggle checked={this.props.sensitive} onChange={this.handleChangeSensitivity} />
-          <span style={{ display: 'inline-block', verticalAlign: 'middle', marginBottom: '14px', marginLeft: '8px', color: '#9baec8' }}>Sensitive content</span>
+          <span style={{ display: 'inline-block', verticalAlign: 'middle', marginBottom: '14px', marginLeft: '8px', color: '#9baec8' }}><FormattedMessage id='compose_form.sensitive' defaultMessage='Mark content as sensitive' /></span>
         </label>
       </div>
     );
