@@ -6,6 +6,10 @@ class Settings::ProfilesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_account
 
+  include ObfuscateFilename
+  obfuscate_filename [:account, :avatar]
+  obfuscate_filename [:account, :header]
+
   def show
   end
 
@@ -20,18 +24,7 @@ class Settings::ProfilesController < ApplicationController
   private
 
   def account_params
-    p = params.require(:account).permit(:display_name, :note, :avatar, :header, :silenced)
-    if p[:avatar]
-        avatar = p[:avatar]
-        # Change so Paperclip won't expose the actual filename
-        avatar.original_filename = "media" + File.extname(avatar.original_filename)
-    end
-    if p[:header]
-        header = p[:header]
-        # Change so Paperclip won't expose the actual filename
-        header.original_filename = "media" + File.extname(header.original_filename)
-    end
-    p
+    params.require(:account).permit(:display_name, :note, :avatar, :header, :silenced)
   end
 
   def set_account
