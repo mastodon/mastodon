@@ -37,7 +37,7 @@
                   <xs:complexType>
                     <xs:simpleContent>
                       <xs:extension base="xs:base64Binary">
-                        <xs:attribute name="encoding" type="xs:string" use="required" />
+                        <xs:attribute name="format" type="xs:string" use="required" />
                       </xs:extension>
                     </xs:simpleContent>
                   </xs:complexType>
