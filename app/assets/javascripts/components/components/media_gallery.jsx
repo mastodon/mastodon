@@ -14,16 +14,20 @@ const spoilerStyle = {
   color: '#fff',
   textAlign: 'center',
   height: '100%',
-  cursor: 'pointer'
+  cursor: 'pointer',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  flexDirection: 'column'
 };
 
 const spoilerSpanStyle = {
   display: 'block',
   fontSize: '14px',
-  paddingTop: '45%'
 };
 
 const spoilerSubSpanStyle = {
+  display: 'block',
   fontSize: '11px',
   fontWeight: '500'
 };

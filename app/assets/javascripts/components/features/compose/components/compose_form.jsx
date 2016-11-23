@@ -9,6 +9,7 @@ import AutosuggestAccountContainer from '../../compose/containers/autosuggest_ac
 import { debounce } from 'react-decoration';
 import UploadButtonContainer from '../containers/upload_button_container';
 import { defineMessages, injectIntl } from 'react-intl';
+import Toggle from 'react-toggle';
 
 const messages = defineMessages({
   placeholder: { id: 'compose_form.placeholder', defaultMessage: 'What is on your mind?' },
@@ -67,6 +68,7 @@ const ComposeForm = React.createClass({
     text: React.PropTypes.string.isRequired,
     suggestion_token: React.PropTypes.string,
     suggestions: React.PropTypes.array,
+    sensitive: React.PropTypes.bool,
     is_submitting: React.PropTypes.bool,
     is_uploading: React.PropTypes.bool,
     in_reply_to: ImmutablePropTypes.map,
@@ -75,7 +77,8 @@ const ComposeForm = React.createClass({
     onCancelReply: React.PropTypes.func.isRequired,
     onClearSuggestions: React.PropTypes.func.isRequired,
     onFetchSuggestions: React.PropTypes.func.isRequired,
-    onSuggestionSelected: React.PropTypes.func.isRequired
+    onSuggestionSelected: React.PropTypes.func.isRequired,
+    onChangeSensitivity: React.PropTypes.func.isRequired
   },
 
   mixins: [PureRenderMixin],
@@ -139,6 +142,10 @@ const ComposeForm = React.createClass({
     this.autosuggest = c;
   },
 
+  handleChangeSensitivity (e) {
+    this.props.onChangeSensitivity(e.target.checked);
+  },
+
   render () {
     const { intl } = this.props;
     let replyArea  = '';
@@ -178,6 +185,11 @@ const ComposeForm = React.createClass({
           <div style={{ float: 'right', marginRight: '16px', lineHeight: '36px' }}><CharacterCounter max={500} text={this.props.text} /></div>
           <UploadButtonContainer style={{ paddingTop: '4px' }} />
         </div>
+
+        <label style={{ display: 'block', lineHeight: '24px', verticalAlign: 'middle', marginTop: '10px', borderTop: '1px solid #616b86', paddingTop: '10px' }}>
+          <Toggle checked={this.props.sensitive} onChange={this.handleChangeSensitivity} />
+          <span style={{ display: 'inline-block', verticalAlign: 'middle', marginBottom: '14px', marginLeft: '8px', color: '#9baec8' }}>Sensitive content</span>
+        </label>
       </div>
     );
   }
