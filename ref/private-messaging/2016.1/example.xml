@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root
+  xmlns:pm="https://raw.githubusercontent.com/Gargron/mastodon/master/ref/private-messaging/2016.1/schema.xsd"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="https://raw.githubusercontent.com/Gargron/mastodon/master/ref/private-messaging/2016.1/schema.xsd schema.xsd">
+
+  <!--
+    Example for an element within a Person Activity Stream object.
+  -->
+  <pm:publicKeyUri>https://mastodon.social/users/hq.pem</pm:publicKeyUri>
+  
+  <!--
+    Example for tags to extend an <entry> object.
+  -->
+  <entry>
+    <pm:private>
+      <pm:encryptedContentBase64 encoding="utf-8">
+        <!--
+        the content is encrypted with a symmetric key (a new symmetric key is generated for each private message).  the symmetric key is
+        then encrypted for each recipient using their public key
+        -->
+        dGhlIGNvbnRlbnQgaXMgZW5jcnlwdGVkIHdpdGggYSBzeW1tZXRyaWMga2V5IChhIG5ldyBzeW1tZXRyaWMga2V5IGlzIGdlbmVyYXRlZCBmb3IgZWFjaCBwcml2YXRlIG1lc3NhZ2UpLiAgdGhlIHN5bW1ldHJpYyBrZXkgaXMgdGhlbiBlbmNyeXB0ZWQgZm9yIGVhY2ggcmVjaXBpZW50IHVzaW5nIHRoZWlyIHB1YmxpYyBrZXk=
+      </pm:encryptedContentBase64>
+      <pm:recipient>
+        <pm:canonicalUri>https://mastodon.social/users/user1.atom</pm:canonicalUri>
+        <pm:publicKeyUri>https://mastodon.social/users/user1.pem</pm:publicKeyUri>
+        <pm:encryptedSymmetricKey encoding="utf-8">
+          <!--
+          the symmetric key used to encrypt the actual content would be encrypted with the user's public key, and then included here in a base-64 format
+          -->
+          dGhlIHN5bW1ldHJpYyBrZXkgdXNlZCB0byBlbmNyeXB0IHRoZSBhY3R1YWwgY29udGVudCB3b3VsZCBiZSBlbmNyeXB0ZWQgd2l0aCB0aGUgdXNlcidzIHB1YmxpYyBrZXksIGFuZCB0aGVuIGluY2x1ZGVkIGhlcmUgaW4gYSBiYXNlLTY0IGZvcm1hdA==
+        </pm:encryptedSymmetricKey>
+      </pm:recipient>
+      <pm:recipient>
+        <pm:canonicalUri>https://mastodon.social/users/user2.atom</pm:canonicalUri>
+        <pm:publicKeyUri>https://mastodon.social/users/user2.pem</pm:publicKeyUri>
+        <pm:encryptedSymmetricKey encoding="utf-8">
+          <!--
+          the symmetric key used to encrypt the actual content would be encrypted with the user's public key, and then included here in a base-64 format
+          -->
+          dGhlIHN5bW1ldHJpYyBrZXkgdXNlZCB0byBlbmNyeXB0IHRoZSBhY3R1YWwgY29udGVudCB3b3VsZCBiZSBlbmNyeXB0ZWQgd2l0aCB0aGUgdXNlcidzIHB1YmxpYyBrZXksIGFuZCB0aGVuIGluY2x1ZGVkIGhlcmUgaW4gYSBiYXNlLTY0IGZvcm1hdA==
+        </pm:encryptedSymmetricKey>
+      </pm:recipient>
+    </pm:private>
+  </entry>
+  
+</root>
