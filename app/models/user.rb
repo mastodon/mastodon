@@ -14,7 +14,7 @@ class User < ApplicationRecord
   scope :admins,   -> { where(admin: true) }
 
   has_settings do |s|
-    s.key :notification_emails, defaults: { follow: true, reblog: true, favourite: true, mention: true }
+    s.key :notification_emails, defaults: { follow: false, reblog: false, favourite: false, mention: false }
   end
 
   def send_devise_notification(notification, *args)
