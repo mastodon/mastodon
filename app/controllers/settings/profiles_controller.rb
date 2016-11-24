@@ -6,6 +6,10 @@ class Settings::ProfilesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_account
 
+  include ObfuscateFilename
+  obfuscate_filename [:account, :avatar]
+  obfuscate_filename [:account, :header]
+
   def show
   end
 

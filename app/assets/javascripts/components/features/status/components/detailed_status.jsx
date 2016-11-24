@@ -36,9 +36,9 @@ const DetailedStatus = React.createClass({
 
     if (status.get('media_attachments').size > 0) {
       if (status.getIn(['media_attachments', 0, 'type']) === 'video') {
-        media = <VideoPlayer media={status.getIn(['media_attachments', 0])} width={317} height={178} />;
+        media = <VideoPlayer sensitive={status.get('sensitive')} media={status.getIn(['media_attachments', 0])} width={317} height={178} />;
       } else {
-        media = <MediaGallery media={status.get('media_attachments')} height={300} onOpenMedia={this.props.onOpenMedia} />;
+        media = <MediaGallery sensitive={status.get('sensitive')} media={status.get('media_attachments')} height={300} onOpenMedia={this.props.onOpenMedia} />;
       }
     }
 

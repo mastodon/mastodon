@@ -1335,7 +1335,7 @@ clap@^1.0.9:
   dependencies:
     chalk "^1.1.3"
 
-classnames@^2.1.2, classnames@^2.2.3:
+classnames@^2.1.2, classnames@^2.2.3, classnames@~2.2:
   version "2.2.5"
   resolved "https://registry.yarnpkg.com/classnames/-/classnames-2.2.5.tgz#fb3801d453467649ef3603c7d61a02bd129bde6d"
 
@@ -3841,7 +3841,7 @@ react-addons-perf@^15.3.2:
   version "15.3.2"
   resolved "https://registry.yarnpkg.com/react-addons-perf/-/react-addons-perf-15.3.2.tgz#bbdbebe8649f936f9636a5750ac145bf5c620213"
 
-react-addons-pure-render-mixin@^15.3.1:
+react-addons-pure-render-mixin@>=0.14.0, react-addons-pure-render-mixin@^15.3.1:
   version "15.3.2"
   resolved "https://registry.yarnpkg.com/react-addons-pure-render-mixin/-/react-addons-pure-render-mixin-15.3.2.tgz#c5f54764667ead26e6cdf7178b6c8dbbd8463ec2"
 
@@ -4021,6 +4021,13 @@ react-themeable@^1.1.0:
   resolved "https://registry.yarnpkg.com/react-themeable/-/react-themeable-1.1.0.tgz#7d4466dd9b2b5fa75058727825e9f152ba379a0e"
   dependencies:
     object-assign "^3.0.0"
+
+react-toggle@^2.1.1:
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/react-toggle/-/react-toggle-2.1.1.tgz#80600a64417a1acc8aaa4c1477f7fbdb88b988fb"
+  dependencies:
+    classnames "~2.2"
+    react-addons-pure-render-mixin ">=0.14.0"
 
 react@^15.3.2:
   version "15.3.2"

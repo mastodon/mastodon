@@ -7,6 +7,7 @@ import { defineMessages, injectIntl } from 'react-intl';
 const messages = defineMessages({
   delete: { id: 'status.delete', defaultMessage: 'Delete' },
   mention: { id: 'status.mention', defaultMessage: 'Mention' },
+  block: { id: 'account.block', defaultMessage: 'Block' },
   reply: { id: 'status.reply', defaultMessage: 'Reply' },
   reblog: { id: 'status.reblog', defaultMessage: 'Reblog' },
   favourite: { id: 'status.favourite', defaultMessage: 'Favourite' }
@@ -24,7 +25,8 @@ const StatusActionBar = React.createClass({
     onFavourite: React.PropTypes.func,
     onReblog: React.PropTypes.func,
     onDelete: React.PropTypes.func,
-    onMention: React.PropTypes.func
+    onMention: React.PropTypes.func,
+    onBlock: React.PropTypes.func
   },
 
   mixins: [PureRenderMixin],
@@ -49,6 +51,10 @@ const StatusActionBar = React.createClass({
     this.props.onMention(this.props.status.get('account'));
   },
 
+  handleBlockClick () {
+    this.props.onBlock(this.props.status.get('account'));
+  },
+
   render () {
     const { status, me, intl } = this.props;
     let menu = [];
@@ -57,6 +63,7 @@ const StatusActionBar = React.createClass({
       menu.push({ text: intl.formatMessage(messages.delete), action: this.handleDeleteClick });
     } else {
       menu.push({ text: intl.formatMessage(messages.mention), action: this.handleMentionClick });
+      menu.push({ text: intl.formatMessage(messages.block), action: this.handleBlockClick });
     }
 
     return (

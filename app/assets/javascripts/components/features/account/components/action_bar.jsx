@@ -58,10 +58,8 @@ const ActionBar = React.createClass({
     } else if (account.getIn(['relationship', 'blocking'])) {
       menu.push({ text: intl.formatMessage(messages.unblock), action: this.props.onBlock });
     } else if (account.getIn(['relationship', 'following'])) {
-      menu.push({ text: intl.formatMessage(messages.unfollow), action: this.props.onFollow });
       menu.push({ text: intl.formatMessage(messages.block), action: this.props.onBlock });
     } else {
-      menu.push({ text: intl.formatMessage(messages.follow), action: this.props.onFollow });
       menu.push({ text: intl.formatMessage(messages.block), action: this.props.onBlock });
     }
 

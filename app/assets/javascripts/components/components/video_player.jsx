@@ -1,7 +1,7 @@
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import IconButton from './icon_button';
-import { defineMessages, injectIntl } from 'react-intl';
+import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 
 const messages = defineMessages({
   toggle_sound: { id: 'video_player.toggle_sound', defaultMessage: 'Toggle sound' }
@@ -25,6 +25,30 @@ const muteStyle = {
   zIndex: '5'
 };
 
+const spoilerStyle = {
+  marginTop: '8px',
+  background: '#000',
+  color: '#fff',
+  textAlign: 'center',
+  height: '100%',
+  cursor: 'pointer',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  flexDirection: 'column'
+};
+
+const spoilerSpanStyle = {
+  display: 'block',
+  fontSize: '14px'
+};
+
+const spoilerSubSpanStyle = {
+  display: 'block',
+  fontSize: '11px',
+  fontWeight: '500'
+};
+
 const VideoPlayer = React.createClass({
   propTypes: {
     media: ImmutablePropTypes.map.isRequired,
@@ -41,6 +65,7 @@ const VideoPlayer = React.createClass({
 
   getInitialState () {
     return {
+      visible: false,
       muted: true
     };
   },
@@ -63,8 +88,21 @@ const VideoPlayer = React.createClass({
     }
   },
 
+  handleOpen () {
+    this.setState({ visible: true });
+  },
+
   render () {
-    const { media, intl, width, height } = this.props;
+    const { media, intl, width, height, sensitive } = this.props;
+
+    if (sensitive && !this.state.visible) {
+      return (
+        <div style={{...spoilerStyle, width: `${width}px`, height: `${height}px` }} onClick={this.handleOpen}>
+          <span style={spoilerSpanStyle}><FormattedMessage id='status.sensitive_warning' defaultMessage='Sensitive content' /></span>
+          <span style={spoilerSubSpanStyle}><FormattedMessage id='status.sensitive_toggle' defaultMessage='Click to view' /></span>
+        </div>
+      );
+    }
 
     return (
       <div style={{ cursor: 'default', marginTop: '8px', overflow: 'hidden', width: `${width}px`, height: `${height}px`, boxSizing: 'border-box', background: '#000', position: 'relative' }}>

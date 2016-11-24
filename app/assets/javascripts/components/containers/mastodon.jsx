@@ -75,11 +75,6 @@ const Mastodon = React.createClass({
               return store.dispatch(updateTimeline(data.timeline, JSON.parse(data.message)));
             case 'delete':
               return store.dispatch(deleteFromTimelines(data.id));
-            case 'merge':
-            case 'unmerge':
-              return store.dispatch(refreshTimeline('home', true));
-            case 'block':
-              return store.dispatch(refreshTimeline('mentions', true));
             case 'notification':
               return store.dispatch(updateNotifications(JSON.parse(data.message), getMessagesForLocale(locale), locale));
           }

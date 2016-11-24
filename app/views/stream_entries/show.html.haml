@@ -1,5 +1,8 @@
 - content_for :header_tags do
   %link{ rel: 'alternate', type: 'application/atom+xml', href: account_stream_entry_url(@account, @stream_entry, format: 'atom') }/
+  %meta{ name: 'og:site_name', content: 'Mastodon' }/
+  %meta{ name: 'og:type', content: 'article' }/
+  %meta{ name: 'og:article:author', content: @account.username }/
 
 .activity-stream.activity-stream-headless
   = render partial: @type, locals: { @type.to_sym => @stream_entry.activity, include_threads: true }

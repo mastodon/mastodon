@@ -246,7 +246,8 @@ export function blockAccount(id) {
     dispatch(blockAccountRequest(id));
 
     api(getState).post(`/api/v1/accounts/${id}/block`).then(response => {
-      dispatch(blockAccountSuccess(response.data));
+      // Pass in entire statuses map so we can use it to filter stuff in different parts of the reducers
+      dispatch(blockAccountSuccess(response.data, getState().get('statuses')));
     }).catch(error => {
       dispatch(blockAccountFail(id, error));
     });
@@ -272,10 +273,11 @@ export function blockAccountRequest(id) {
   };
 };
 
-export function blockAccountSuccess(relationship) {
+export function blockAccountSuccess(relationship, statuses) {
   return {
     type: ACCOUNT_BLOCK_SUCCESS,
-    relationship
+    relationship,
+    statuses
   };
 };
 

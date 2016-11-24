@@ -33,7 +33,6 @@ class FollowService < BaseService
     end
 
     FeedManager.instance.trim(:home, into_account.id)
-    FeedManager.instance.broadcast(into_account.id, type: 'merge')
   end
 
   def redis

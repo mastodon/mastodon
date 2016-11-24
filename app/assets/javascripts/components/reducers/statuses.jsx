@@ -1,7 +1,11 @@
 import {
+  REBLOG_REQUEST,
   REBLOG_SUCCESS,
+  REBLOG_FAIL,
   UNREBLOG_SUCCESS,
+  FAVOURITE_REQUEST,
   FAVOURITE_SUCCESS,
+  FAVOURITE_FAIL,
   UNFAVOURITE_SUCCESS
 } from '../actions/interactions';
 import {
@@ -16,7 +20,8 @@ import {
 } from '../actions/timelines';
 import {
   ACCOUNT_TIMELINE_FETCH_SUCCESS,
-  ACCOUNT_TIMELINE_EXPAND_SUCCESS
+  ACCOUNT_TIMELINE_EXPAND_SUCCESS,
+  ACCOUNT_BLOCK_SUCCESS
 } from '../actions/accounts';
 import {
   NOTIFICATIONS_UPDATE,
@@ -56,6 +61,18 @@ const deleteStatus = (state, id, references) => {
   return state.delete(id);
 };
 
+const filterStatuses = (state, relationship) => {
+  state.forEach(status => {
+    if (status.get('account') !== relationship.id) {
+      return;
+    }
+
+    state = deleteStatus(state, status.get('id'), state.filter(item => item.get('reblog') === status.get('id')));
+  });
+
+  return state;
+};
+
 const initialState = Immutable.Map();
 
 export default function statuses(state = initialState, action) {
@@ -69,6 +86,14 @@ export default function statuses(state = initialState, action) {
     case FAVOURITE_SUCCESS:
     case UNFAVOURITE_SUCCESS:
       return normalizeStatus(state, action.response);
+    case FAVOURITE_REQUEST:
+      return state.setIn([action.status.get('id'), 'favourited'], true);
+    case FAVOURITE_FAIL:
+      return state.setIn([action.status.get('id'), 'favourited'], false);
+    case REBLOG_REQUEST:
+      return state.setIn([action.status.get('id'), 'reblogged'], true);
+    case REBLOG_FAIL:
+      return state.setIn([action.status.get('id'), 'reblogged'], false);
     case TIMELINE_REFRESH_SUCCESS:
     case TIMELINE_EXPAND_SUCCESS:
     case ACCOUNT_TIMELINE_FETCH_SUCCESS:
@@ -79,6 +104,8 @@ export default function statuses(state = initialState, action) {
       return normalizeStatuses(state, action.statuses);
     case TIMELINE_DELETE:
       return deleteStatus(state, action.id, action.references);
+    case ACCOUNT_BLOCK_SUCCESS:
+      return filterStatuses(state, action.relationship);
     default:
       return state;
   }
