@@ -8,7 +8,6 @@ import {
   ACCOUNT_TIMELINE_FETCH_SUCCESS,
   ACCOUNT_TIMELINE_EXPAND_SUCCESS
 } from '../actions/accounts';
-import { SUGGESTIONS_FETCH_SUCCESS } from '../actions/suggestions';
 import { COMPOSE_SUGGESTIONS_READY } from '../actions/compose';
 import {
   REBLOG_SUCCESS,
