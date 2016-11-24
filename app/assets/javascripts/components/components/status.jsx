@@ -82,7 +82,7 @@ const Status = React.createClass({
       );
     }
 
-    if (status.get('media_attachments').size > 0) {
+    if (status.get('media_attachments').size > 0 && !this.props.muted) {
       if (status.getIn(['media_attachments', 0, 'type']) === 'video') {
         media = <VideoPlayer media={status.getIn(['media_attachments', 0])} sensitive={status.get('sensitive')} />;
       } else {
