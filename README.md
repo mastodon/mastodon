@@ -85,7 +85,7 @@ The container has two volumes, for the assets and for user uploads. The default 
 
 **Note**: The `--rm` option for docker-compose will remove the container that is created to run a one-off command after it completes. As data is stored in volumes it is not affected by that container clean-up.
 
-### Tasks
+# Tasks
 
 - `rake mastodon:media:clear` removes uploads that have not been attached to any status after a while, you would want to run this from a periodic cronjob
 - `rake mastodon:push:clear` unsubscribes from PuSH notifications for remote users that have no local followers. You may not want to actually do that, to keep a fuller footprint of the fediverse or in case your users will soon re-follow
@@ -97,7 +97,7 @@ Running any of these tasks via docker-compose would look like this:
 
     docker-compose run --rm web rake mastodon:media:clear
 
-### Updating
+# Updating
 
 This approach makes updating to the latest version a real breeze.
 
