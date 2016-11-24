@@ -130,15 +130,6 @@ class Account < ApplicationRecord
     username
   end
 
-  def common_followers_with(other_account)
-    results  = Neography::Rest.new.execute_query('MATCH (a {account_id: {a_id}})-[:follows]->(b)-[:follows]->(c {account_id: {c_id}}) RETURN b.account_id', a_id: id, c_id: other_account.id)
-    ids      = results['data'].map(&:first)
-    accounts = Account.where(id: ids).with_counters.limit(20).map { |a| [a.id, a] }.to_h
-    ids.map { |id| accounts[id] }.compact
-  rescue Neography::NeographyError, Excon::Error::Socket
-    []
-  end
-
   class << self
     def find_local!(username)
       find_remote!(username, nil)

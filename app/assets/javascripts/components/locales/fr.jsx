@@ -41,8 +41,6 @@ const fr = {
   "search.placeholder": "Chercher",
   "search.account": "Compte",
   "search.hashtag": "Mot-clé",
-  "suggestions_box.who_to_follow": "Suggestions",
-  "suggestions_box.refresh": "Rafraîchir",
   "upload_button.label": "Joindre un média",
   "upload_form.undo": "Annuler",
   "notification.follow": "{name} s’est abonné⋅e à vos statuts",

@@ -80,7 +80,6 @@ Rails.application.routes.draw do
         collection do
           get :relationships
           get :verify_credentials
-          get :suggestions
           get :search
         end
 
@@ -88,7 +87,6 @@ Rails.application.routes.draw do
           get :statuses
           get :followers
           get :following
-          get :common_followers
 
           post :follow
           post :unfollow
