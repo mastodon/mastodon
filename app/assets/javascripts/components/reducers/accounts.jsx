@@ -70,7 +70,6 @@ export default function accounts(state = initialState, action) {
     case ACCOUNT_FETCH_SUCCESS:
     case NOTIFICATIONS_UPDATE:
       return normalizeAccount(state, action.account);
-    case SUGGESTIONS_FETCH_SUCCESS:
     case FOLLOWERS_FETCH_SUCCESS:
     case FOLLOWERS_EXPAND_SUCCESS:
     case FOLLOWING_FETCH_SUCCESS:
