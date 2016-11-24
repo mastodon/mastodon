@@ -9,6 +9,8 @@ class Api::V1::StatusesController < ApiController
   respond_to :json
 
   def show
+    cached  = Rails.cache.read(@status.cache_key)
+    @status = cached unless cached.nil?
   end
 
   def context
@@ -50,7 +52,7 @@ class Api::V1::StatusesController < ApiController
   end
 
   def create
-    @status = PostStatusService.new.call(current_user.account, params[:status], params[:in_reply_to_id].blank? ? nil : Status.find(params[:in_reply_to_id]), params[:media_ids])
+    @status = PostStatusService.new.call(current_user.account, params[:status], params[:in_reply_to_id].blank? ? nil : Status.find(params[:in_reply_to_id]), media_ids: params[:media_ids], sensitive: params[:sensitive])
     render action: :show
   end
 

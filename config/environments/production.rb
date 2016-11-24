@@ -50,7 +50,8 @@ Rails.application.configure do
     host: ENV.fetch('REDIS_HOST') { 'localhost' },
     port: ENV.fetch('REDIS_PORT') { 6379 },
     db: 0,
-    namespace: 'cache'
+    namespace: 'cache',
+    expires_in: 20.minutes
   }
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server.

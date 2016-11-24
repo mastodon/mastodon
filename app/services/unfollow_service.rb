@@ -17,9 +17,8 @@ class UnfollowService < BaseService
 
     from_account.statuses.select('id').find_each do |status|
       redis.zrem(timeline_key, status.id)
+      redis.zremrangebyscore(timeline_key, status.id, status.id)
     end
-
-    FeedManager.instance.broadcast(into_account.id, type: 'unmerge')
   end
 
   def redis

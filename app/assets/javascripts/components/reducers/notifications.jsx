@@ -3,6 +3,7 @@ import {
   NOTIFICATIONS_REFRESH_SUCCESS,
   NOTIFICATIONS_EXPAND_SUCCESS
 } from '../actions/notifications';
+import { ACCOUNT_BLOCK_SUCCESS } from '../actions/accounts';
 import Immutable from 'immutable';
 
 const initialState = Immutable.Map({
@@ -43,6 +44,10 @@ const appendNormalizedNotifications = (state, notifications, next) => {
   return state.update('items', list => list.push(...items)).set('next', next);
 };
 
+const filterNotifications = (state, relationship) => {
+  return state.update('items', list => list.filterNot(item => item.get('account') === relationship.id));
+};
+
 export default function notifications(state = initialState, action) {
   switch(action.type) {
     case NOTIFICATIONS_UPDATE:
@@ -51,6 +56,8 @@ export default function notifications(state = initialState, action) {
       return normalizeNotifications(state, action.notifications, action.next);
     case NOTIFICATIONS_EXPAND_SUCCESS:
       return appendNormalizedNotifications(state, action.notifications, action.next);
+    case ACCOUNT_BLOCK_SUCCESS:
+      return filterNotifications(state, action.relationship);
     default:
       return state;
   }
