@@ -11,7 +11,7 @@ class Rack::Attack
     headers = {
       'X-RateLimit-Limit'     => match_data[:limit].to_s,
       'X-RateLimit-Remaining' => '0',
-      'X-RateLimit-Reset'     => (now + (match_data[:period] - now.to_i % match_data[:period])).to_s
+      'X-RateLimit-Reset'     => (now + (match_data[:period] - now.to_i % match_data[:period])).iso8601(6)
     }
 
     [429, headers, [{ error: 'Throttled' }.to_json]]
