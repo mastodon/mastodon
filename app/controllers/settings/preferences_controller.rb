@@ -14,7 +14,10 @@ class Settings::PreferencesController < ApplicationController
     current_user.settings(:notification_emails).favourite = user_params[:notification_emails][:favourite] == '1'
     current_user.settings(:notification_emails).mention   = user_params[:notification_emails][:mention]   == '1'
 
-    if current_user.update(user_params.except(:notification_emails))
+    current_user.settings(:interactions).must_be_follower  = user_params[:interactions][:must_be_follower]  == '1'
+    current_user.settings(:interactions).must_be_following = user_params[:interactions][:must_be_following] == '1'
+
+    if current_user.update(user_params.except(:notification_emails, :interactions))
       redirect_to settings_preferences_path, notice: I18n.t('generic.changes_saved_msg')
     else
       render action: :show
@@ -24,6 +27,6 @@ class Settings::PreferencesController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:locale, notification_emails: [:follow, :reblog, :favourite, :mention])
+    params.require(:user).permit(:locale, notification_emails: [:follow, :reblog, :favourite, :mention], interactions: [:must_be_follower, :must_be_following])
   end
 end

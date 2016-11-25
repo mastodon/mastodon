@@ -66,12 +66,12 @@ class Account < ApplicationRecord
 
   def unfollow!(other_account)
     follow = active_relationships.find_by(target_account: other_account)
-    follow.destroy unless follow.nil?
+    follow&.destroy
   end
 
   def unblock!(other_account)
     block = block_relationships.find_by(target_account: other_account)
-    block.destroy unless block.nil?
+    block&.destroy
   end
 
   def following?(other_account)

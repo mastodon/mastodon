@@ -36,6 +36,8 @@ class NotifyService < BaseService
     blocked   = false
     blocked ||= @recipient.id == @notification.from_account.id
     blocked ||= @recipient.blocking?(@notification.from_account)
+    blocked ||= (@recipient.user.settings(:interactions).must_be_follower  && !@notification.from_account.following?(@recipient))
+    blocked ||= (@recipient.user.settings(:interactions).must_be_following && !@recipient.following?(@notification.from_account))
     blocked ||= send("blocked_#{@notification.type}?")
     blocked
   end
