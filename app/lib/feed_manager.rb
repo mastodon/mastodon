@@ -84,7 +84,7 @@ class FeedManager
   def filter_from_mentions?(status, receiver)
     should_filter   = receiver.id == status.account_id                      # Filter if I'm mentioning myself
     should_filter ||= receiver.blocking?(status.account)                    # or it's from someone I blocked
-    should_filter ||= receiver.blocking?(status.mentions.map(&:account_id)) # or if it mentions someone I blocked
+    should_filter ||= receiver.blocking?(status.mentions.includes(:account).map(&:account)) # or if it mentions someone I blocked
 
     if status.reply? && !status.thread.account.nil?                         # or it's a reply
       should_filter ||= receiver.blocking?(status.thread.account)           # to a user I blocked
@@ -95,7 +95,7 @@ class FeedManager
 
   def filter_from_public?(status, receiver)
     should_filter   = receiver.blocking?(status.account)
-    should_filter ||= receiver.blocking?(status.mentions.map(&:account_id))
+    should_filter ||= receiver.blocking?(status.mentions.includes(:account).map(&:account))
 
     if status.reply? && !status.thread.account.nil?
       should_filter ||= receiver.blocking?(status.thread.account)
