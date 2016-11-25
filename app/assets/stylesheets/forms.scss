@@ -48,11 +48,16 @@ code {
       display: block;
     }
 
-    input[type=checkbox] {
-      display: inline-block;
+    label.checkbox {
       position: relative;
-      top: 3px;
-      margin-right: 8px;
+	    padding-left: 25px;
+    }
+
+    input[type=checkbox] {
+	    position: absolute;
+	    left: 0;
+      top: 1px;
+      margin: 0;
     }
   }
 

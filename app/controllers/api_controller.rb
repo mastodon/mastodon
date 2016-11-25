@@ -48,7 +48,7 @@ class ApiController < ApplicationController
 
     response.headers['X-RateLimit-Limit']     = match_data[:limit].to_s
     response.headers['X-RateLimit-Remaining'] = (match_data[:limit] - match_data[:count]).to_s
-    response.headers['X-RateLimit-Reset']     = (now + (match_data[:period] - now.to_i % match_data[:period])).to_s
+    response.headers['X-RateLimit-Reset']     = (now + (match_data[:period] - now.to_i % match_data[:period])).iso8601(6)
   end
 
   def set_pagination_headers(next_path = nil, prev_path = nil)
