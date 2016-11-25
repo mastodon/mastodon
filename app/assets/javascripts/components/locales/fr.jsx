@@ -47,9 +47,9 @@ const fr = {
   "upload_button.label": "Joindre un média",
   "upload_form.undo": "Annuler",
   "notification.follow": "{name} vous suit.",
-  "notification.favourite": "{name} a ajouté à ses favoris",
-  "notification.reblog": "{name} a partagé votre statut",
-  "notification.mention": "{name} vous a mentionné⋅e"
+  "notification.favourite": "{name} a ajouté à ses favoris :",
+  "notification.reblog": "{name} a partagé votre statut :",
+  "notification.mention": "{name} vous a mentionné⋅e :"
 };
 
 export default fr;
