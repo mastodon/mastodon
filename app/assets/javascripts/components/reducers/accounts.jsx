@@ -8,7 +8,6 @@ import {
   ACCOUNT_TIMELINE_FETCH_SUCCESS,
   ACCOUNT_TIMELINE_EXPAND_SUCCESS
 } from '../actions/accounts';
-import { SUGGESTIONS_FETCH_SUCCESS } from '../actions/suggestions';
 import { COMPOSE_SUGGESTIONS_READY } from '../actions/compose';
 import {
   REBLOG_SUCCESS,
@@ -71,7 +70,6 @@ export default function accounts(state = initialState, action) {
     case ACCOUNT_FETCH_SUCCESS:
     case NOTIFICATIONS_UPDATE:
       return normalizeAccount(state, action.account);
-    case SUGGESTIONS_FETCH_SUCCESS:
     case FOLLOWERS_FETCH_SUCCESS:
     case FOLLOWERS_EXPAND_SUCCESS:
     case FOLLOWING_FETCH_SUCCESS:

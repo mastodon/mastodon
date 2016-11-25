@@ -42,8 +42,6 @@ const es = {
   "search.placeholder": "Buscar",
   "search.account": "Cuenta",
   "search.hashtag": "Etiqueta",
-  "suggestions_box.who_to_follow": "A quién seguir",
-  "suggestions_box.refresh": "Refrescar",
   "upload_button.label": "Añadir medio",
   "upload_form.undo": "Deshacer",
   "notification.follow": "{name} le esta ahora siguiendo",

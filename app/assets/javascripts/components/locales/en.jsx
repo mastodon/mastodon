@@ -45,8 +45,6 @@ const en = {
   "search.placeholder": "Search",
   "search.account": "Account",
   "search.hashtag": "Hashtag",
-  "suggestions_box.who_to_follow": "Who to follow",
-  "suggestions_box.refresh": "Refresh",
   "upload_button.label": "Add media",
   "upload_form.undo": "Undo",
   "notification.follow": "{name} followed you",

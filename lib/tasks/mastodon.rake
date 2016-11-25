@@ -49,11 +49,4 @@ namespace :mastodon do
       Redis.current.keys('feed:*').each { |key| Redis.current.del(key) }
     end
   end
-
-  namespace :graphs do
-    desc 'Syncs all follow relationships to Neo4J'
-    task sync: :environment do
-      Follow.find_each(&:sync!)
-    end
-  end
 end
