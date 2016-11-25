@@ -60,8 +60,6 @@ Consult the example configuration file, `.env.production.sample` for the full li
 
 - PostgreSQL
 - Redis
-- Neo4J (optional)
-  - GraphAware NodeRank
 
 ## Running with Docker and Docker-Compose
 
