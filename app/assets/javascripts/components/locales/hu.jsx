@@ -35,7 +35,7 @@ const hu = {
   "tabs_bar.public": "Nyilvános",
   "tabs_bar.notifications": "Notifications",
   "compose_form.placeholder": "Mire gondolsz?",
-  "compose_form.publish": "Toot",
+  "compose_form.publish": "Tülk!",
   "compose_form.sensitive": "Tartalom érzékenynek jelölése",
   "navigation_bar.settings": "Beállítások",
   "navigation_bar.public_timeline": "Nyilvános időfolyam",

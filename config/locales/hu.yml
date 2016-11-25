@@ -1,0 +1,59 @@
+---
+en:
+  about:
+    about_instance: "<em>%{instance}</em> egy Mastodon másolat."
+    about_mastodon: Mastodon egy <em>szabad, nyílt forráskódú</em> szociális hálózati kiszolgálo. Egy <em>központosítatlan</em> alternatíva a kereskedelmi platformokra, elkerüli a kommunikációd monopolizációját veszélyét. Bárki futtathatja a Mastodon-t és részt vehet a <em>szociális hálózatban</em>.
+    get_started: Első lépések
+    source_code: Forráskód
+    terms: Feltételek
+  accounts:
+    follow: Követés
+    followers: Követők
+    following: Követed őket
+    nothing_here: Nincs itt semmi!
+    people_followed_by: "%{name} követett személyei"
+    people_who_follow: "%{name} követői"
+    posts: Bejegyzések
+    unfollow: Követés abbahagyása
+  application_mailer:
+    signature: "%{instance} Mastodon értesítései"
+  auth:
+    change_password: Jelszó változtatása
+    didnt_get_confirmation: Nem kaptad meg a megerősítési lépéseket?
+    forgot_password: Elfelejtetted a jelszavad?
+    login: Belépés
+    register: Regisztráció
+    resend_confirmation: Megerősítési lépések újraküldése
+    reset_password: Jelszó visszaállítása
+    set_new_password: Új jelszó beállítása
+  generic:
+    changes_saved_msg: Változások sikeresen elmentve!
+    powered_by: powered by %{link}
+    save_changes: Változások mentése
+    validation_errors:
+      one: Valami nincs rendjén! Kérlek tekintsd meg a hibát alant
+      other: Valami nincs rendjén! Kérlek tekintsd meg a %{count} darab hibát alant.
+  notification_mailer:
+    favourite:
+      body: 'Az állapotodat kedvencnek jelölte %{name}:'
+      subject: "%{name} kedvencnek jelölte az állapotod"
+    follow:
+      body: "%{name} mostantól követ téged!"
+      subject: "%{name} mostantól követ téged"
+    mention:
+      body: '%{name} megemlített téged:'
+      subject: "%{name} megemlített téged"
+    reblog:
+      body: 'Az állapotod reblogolta %{name}:'
+      subject: "%{name} reblogolta az állapotod"
+  pagination:
+    next: Következő
+    prev: Előző
+  settings:
+    edit_profile: Profil szerkesztése
+    preferences: Beállítások
+  stream_entries:
+    favourited: kedvencnek jelölték a bejegyzésedet 
+    is_now_following: mostantól követ
+  will_paginate:
+    page_gap: "&hellip;"
