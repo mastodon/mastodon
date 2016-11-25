@@ -39,6 +39,6 @@ class Api::V1::NotificationsController < ApiController
       end
     end
 
-    raw.map { |notification| cached_keys_with_value[notification.cache_key] || uncached[notification.id] }
+    raw.map { |notification| cached_keys_with_value[notification.cache_key] || uncached[notification.id] }.compact
   end
 end

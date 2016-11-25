@@ -87,6 +87,6 @@ class Api::V1::TimelinesController < ApiController
       end
     end
 
-    raw.map { |status| cached_keys_with_value[status.cache_key] || uncached[status.id] }
+    raw.map { |status| cached_keys_with_value[status.cache_key] || uncached[status.id] }.compact
   end
 end
