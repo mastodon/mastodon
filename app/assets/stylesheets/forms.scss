@@ -47,12 +47,16 @@ code {
       color: #9baec8;
       display: block;
     }
+    
+    label.checkbox {
+      position: relative;
+	    padding-left: 25px;
+    }
 
     input[type=checkbox] {
-      display: inline-block;
-      position: relative;
-      top: 3px;
-      margin-right: 8px;
+	    position: absolute;
+	    left: 0;
+      top: 0;
     }
   }
 
