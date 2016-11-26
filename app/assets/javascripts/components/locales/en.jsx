@@ -5,7 +5,7 @@ const en = {
   "status.mention": "Mention",
   "status.delete": "Delete",
   "status.reply": "Reply",
-  "status.reblog": "Boost",
+  "status.reblog": "Boop",
   "status.favourite": "Favourite",
   "status.reblogged_by": "{name} boosted",
   "status.sensitive_warning": "Sensitive content",
