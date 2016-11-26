@@ -2,9 +2,9 @@
 
 class SearchService < BaseService
   def call(query, limit, resolve = false)
-    return if query.blank?
+    return if query.blank? || query.start_with?('#')
 
-    username, domain = query.split('@')
+    username, domain = query.gsub(/\A@/, '').split('@')
 
     results = if domain.nil?
                 Account.search_for(username)
