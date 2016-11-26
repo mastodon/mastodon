@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe UpdateRemoteProfileService do
-  let(:xml) { Nokogiri::XML(File.read(File.join(Rails.root, 'spec', 'fixtures', 'push', 'feed.atom'))).at_xpath('//xmlns:author') }
+  let(:xml) { Nokogiri::XML(File.read(File.join(Rails.root, 'spec', 'fixtures', 'push', 'feed.atom'))).at_xpath('//xmlns:feed') }
 
   subject { UpdateRemoteProfileService.new }
 
@@ -13,7 +13,7 @@ RSpec.describe UpdateRemoteProfileService do
     let(:remote_account) { Fabricate(:account, username: 'bob', domain: 'example.com') }
 
     before do
-      subject.(xml, remote_account)
+      subject.call(xml, remote_account)
     end
 
     it 'downloads new avatar' do
@@ -34,10 +34,10 @@ RSpec.describe UpdateRemoteProfileService do
   end
 
   context 'with unchanged details' do
-    let(:remote_account) { Fabricate(:account, username: 'bob', domain: 'example.com',display_name: 'ＤＩＧＩＴＡＬ ＣＡＴ', note: 'Software engineer, free time musician and ＤＩＧＩＴＡＬ ＳＰＯＲＴＳ enthusiast. Likes cats. Warning: May contain memes', avatar_remote_url: 'https://quitter.no/avatar/7477-300-20160211190340.png') }
+    let(:remote_account) { Fabricate(:account, username: 'bob', domain: 'example.com', display_name: 'ＤＩＧＩＴＡＬ ＣＡＴ', note: 'Software engineer, free time musician and ＤＩＧＩＴＡＬ ＳＰＯＲＴＳ enthusiast. Likes cats. Warning: May contain memes', avatar_remote_url: 'https://quitter.no/avatar/7477-300-20160211190340.png') }
 
     before do
-      subject.(xml, remote_account)
+      subject.call(xml, remote_account)
     end
 
     it 'does not re-download avatar' do

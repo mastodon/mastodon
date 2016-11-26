@@ -26,7 +26,7 @@ class ProcessInteractionService < BaseService
     end
 
     if salmon.verify(envelope, account.keypair)
-      update_remote_profile_service.call(xml.at_xpath('/xmlns:entry/xmlns:author'), account)
+      update_remote_profile_service.call(xml.at_xpath('/xmlns:entry'), account, true)
 
       case verb(xml)
       when :follow

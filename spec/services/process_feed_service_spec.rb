@@ -7,6 +7,7 @@ RSpec.describe ProcessFeedService do
   subject { ProcessFeedService.new }
 
   before do
+    stub_request(:post, "https://pubsubhubbub.superfeedr.com/").to_return(:status => 200, :body => "", :headers => {})
     stub_request(:get, "http://kickass.zone/system/accounts/avatars/000/000/001/large/eris.png").to_return(request_fixture('avatar.txt'))
     stub_request(:get, "http://kickass.zone/system/media_attachments/files/000/000/002/original/morpheus_linux.jpg?1476059910").to_return(request_fixture('attachment1.txt'))
     stub_request(:get, "http://kickass.zone/system/media_attachments/files/000/000/003/original/gizmo.jpg?1476060065").to_return(request_fixture('attachment2.txt'))

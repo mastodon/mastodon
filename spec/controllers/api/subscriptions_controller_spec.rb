@@ -23,6 +23,7 @@ RSpec.describe Api::SubscriptionsController, type: :controller do
     let(:feed) { File.read(File.join(Rails.root, 'spec', 'fixtures', 'push', 'feed.atom')) }
 
     before do
+      stub_request(:post, "https://quitter.no/main/push/hub").to_return(:status => 200, :body => "", :headers => {})
       stub_request(:get, "https://quitter.no/avatar/7477-300-20160211190340.png").to_return(request_fixture('avatar.txt'))
       stub_request(:head, "https://quitter.no/notice/1269244").to_return(status: 404)
       stub_request(:head, "https://quitter.no/notice/1265331").to_return(status: 404)
@@ -37,7 +38,7 @@ RSpec.describe Api::SubscriptionsController, type: :controller do
       stub_request(:head, "https://social.umeahackerspace.se/user/2").to_return(status: 404)
       stub_request(:head, "https://gs.kawa-kun.com/user/2").to_return(status: 404)
       stub_request(:head, "https://mastodon.social/users/Gargron").to_return(status: 404)
-      
+
       request.env['HTTP_X_HUB_SIGNATURE'] = "sha1=#{OpenSSL::HMAC.hexdigest('sha1', 'abc', feed)}"
       request.env['RAW_POST_DATA'] = feed
 
