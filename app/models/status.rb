@@ -97,7 +97,10 @@ class Status < ApplicationRecord
     end
 
     def as_public_timeline(account = nil)
-      query = joins('LEFT OUTER JOIN accounts ON statuses.account_id = accounts.id').where('accounts.silenced = FALSE')
+      query = joins('LEFT OUTER JOIN accounts ON statuses.account_id = accounts.id')
+              .where('accounts.silenced = FALSE')
+              .where('statuses.in_reply_to_id IS NULL')
+              .where('statuses.reblog_of_id IS NULL')
       query = filter_timeline(query, account) unless account.nil?
       query
     end
@@ -106,6 +109,8 @@ class Status < ApplicationRecord
       query = tag.statuses
                  .joins('LEFT OUTER JOIN accounts ON statuses.account_id = accounts.id')
                  .where('accounts.silenced = FALSE')
+                 .where('statuses.in_reply_to_id IS NULL')
+                 .where('statuses.reblog_of_id IS NULL')
       query = filter_timeline(query, account) unless account.nil?
       query
     end
@@ -123,13 +128,7 @@ class Status < ApplicationRecord
     def filter_timeline(query, account)
       blocked = Block.where(account: account).pluck(:target_account_id)
       return query if blocked.empty?
-
-      query
-        .joins('LEFT OUTER JOIN statuses AS parents ON statuses.in_reply_to_id = parents.id')
-        .joins('LEFT OUTER JOIN statuses AS reblogs ON statuses.reblog_of_id = reblogs.id')
-        .where('statuses.account_id NOT IN (?)', blocked)
-        .where('(parents.id IS NULL OR parents.account_id NOT IN (?))', blocked)
-        .where('(reblogs.id IS NULL OR reblogs.account_id NOT IN (?))', blocked)
+      query.where('statuses.account_id NOT IN (?)', blocked)
     end
   end
 

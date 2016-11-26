@@ -116,7 +116,11 @@ class Account < ApplicationRecord
   end
 
   def avatar_remote_url=(url)
-    self.avatar = URI.parse(url) unless self[:avatar_remote_url] == url
+    parsed_url = URI.parse(url)
+
+    return if !%w(http https).include?(parsed_url.scheme) || self[:avatar_remote_url] == url
+
+    self.avatar              = parsed_url
     self[:avatar_remote_url] = url
   rescue OpenURI::HTTPError => e
     Rails.logger.debug "Error fetching remote avatar: #{e}"
