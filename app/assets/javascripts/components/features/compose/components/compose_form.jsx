@@ -3,6 +3,7 @@ import Button from '../../../components/button';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ReplyIndicator from './reply_indicator';
+import PrivateMessageIndicator from './private_message_indicator';
 import UploadButton from './upload_button';
 import Autosuggest from 'react-autosuggest';
 import AutosuggestAccountContainer from '../../compose/containers/autosuggest_account_container';
@@ -72,9 +73,11 @@ const ComposeForm = React.createClass({
     is_submitting: React.PropTypes.bool,
     is_uploading: React.PropTypes.bool,
     in_reply_to: ImmutablePropTypes.map,
+    private_message_to: ImmutablePropTypes.map,
     onChange: React.PropTypes.func.isRequired,
     onSubmit: React.PropTypes.func.isRequired,
     onCancelReply: React.PropTypes.func.isRequired,
+    onCancelPrivateMessage: React.PropTypes.func.isRequired,
     onClearSuggestions: React.PropTypes.func.isRequired,
     onFetchSuggestions: React.PropTypes.func.isRequired,
     onSuggestionSelected: React.PropTypes.func.isRequired,
@@ -102,7 +105,7 @@ const ComposeForm = React.createClass({
   },
 
   componentDidUpdate (prevProps) {
-    if (prevProps.text !== this.props.text || prevProps.in_reply_to !== this.props.in_reply_to) {
+    if (prevProps.text !== this.props.text || prevProps.in_reply_to !== this.props.in_reply_to || prevProps.private_message_to !== this.props.private_message_to) {
       const textarea = this.autosuggest.input;
 
       if (textarea) {
@@ -149,10 +152,13 @@ const ComposeForm = React.createClass({
   render () {
     const { intl } = this.props;
     let replyArea  = '';
+    let messageToArea = '';
     const disabled = this.props.is_submitting || this.props.is_uploading;
 
     if (this.props.in_reply_to) {
       replyArea = <ReplyIndicator status={this.props.in_reply_to} onCancel={this.props.onCancelReply} />;
+    } else if (this.props.private_message_to) {
+      messageToArea = <PrivateMessageIndicator recipient={this.props.private_message_to} onCancel={this.props.onCancelPrivateMessage} />;
     }
 
     const inputProps = {
@@ -166,6 +172,7 @@ const ComposeForm = React.createClass({
     return (
       <div style={{ padding: '10px' }}>
         {replyArea}
+        {messageToArea}
 
         <Autosuggest
           ref={this.setRef}

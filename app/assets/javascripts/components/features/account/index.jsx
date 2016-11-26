@@ -10,7 +10,10 @@ import {
   fetchAccountTimeline,
   expandAccountTimeline
 }                            from '../../actions/accounts';
-import { mentionCompose }    from '../../actions/compose';
+import { 
+  mentionCompose,
+  privateMessageCompose
+}                            from '../../actions/compose';
 import Header                from './components/header';
 import {
   getAccountTimeline,
@@ -73,6 +76,11 @@ const Account = React.createClass({
     this.props.dispatch(mentionCompose(this.props.account));
   },
 
+  handleMessage () {
+    console.log('handleMessage');
+    this.props.dispatch(privateMessageCompose(this.props.account));
+  },
+
   render () {
     const { account, me } = this.props;
 
@@ -88,7 +96,7 @@ const Account = React.createClass({
       <Column>
         <ColumnBackButton />
         <Header account={account} me={me} onFollow={this.handleFollow} />
-        <ActionBar account={account} me={me} onBlock={this.handleBlock} onMention={this.handleMention} />
+        <ActionBar account={account} me={me} onBlock={this.handleBlock} onMention={this.handleMention} onMessage={this.handleMessage} />
 
         {this.props.children}
       </Column>

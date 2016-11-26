@@ -9,8 +9,17 @@ class PostStatusService < BaseService
   # @option [Boolean] :sensitive
   # @option [Enumerable] :media_ids Optional array of media IDs to attach
   # @return [Status]
-  def call(account, text, in_reply_to = nil, options = {})
-    status = account.statuses.create!(text: text, thread: in_reply_to, sensitive: options[:sensitive])
+  def call(account, text, in_reply_to = nil, private_message_recipient = nil, options = {})
+    if private_message_recipient != nil
+      # Ensure that we don't accidentally leak private message through any API, by using
+      # a dedicated colun in the table to store the private message.  For any code that
+      # reads the text column (and for any other instances in the federation that don't
+      # support private messaging), they'll just see "This is a private message" as the
+      # content of the post.
+      status = account.statuses.create!(private_text: text, text: 'This is a private message', thread: in_reply_to, private_recipient: private_message_recipient, sensitive: options[:sensitive])
+    else
+      status = account.statuses.create!(text: text, thread: in_reply_to, sensitive: options[:sensitive])
+    end
     attach_media(status, options[:media_ids])
     process_mentions_service.call(status)
     process_hashtags_service.call(status)

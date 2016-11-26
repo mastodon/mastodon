@@ -11,15 +11,6 @@ import { FormattedMessage } from 'react-intl';
 import emojify from '../emoji';
 import escapeTextContentForBrowser from 'react/lib/escapeTextContentForBrowser';
 
-const outerStyle = {
-  padding: '8px 10px',
-  paddingLeft: '68px',
-  position: 'relative',
-  minHeight: '48px',
-  borderBottom: '1px solid #363c4b',
-  cursor: 'default'
-};
-
 const Status = React.createClass({
 
   contextTypes: {
@@ -88,6 +79,19 @@ const Status = React.createClass({
       } else {
         media = <MediaGallery media={status.get('media_attachments')} sensitive={status.get('sensitive')} height={110} onOpenMedia={this.props.onOpenMedia} />;
       }
+    }
+
+    let outerStyle = {
+      padding: '8px 10px',
+      paddingLeft: '68px',
+      position: 'relative',
+      minHeight: '48px',
+      borderBottom: '1px solid #363c4b',
+      cursor: 'default'
+    };
+
+    if (status.get('is_private')) {
+      outerStyle.background = 'rgb(75, 64, 60)';
     }
 
     return (

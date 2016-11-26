@@ -6,12 +6,12 @@ import { defineMessages, injectIntl, FormattedMessage, FormattedNumber } from 'r
 
 const messages = defineMessages({
   mention: { id: 'account.mention', defaultMessage: 'Mention' },
+  message: { id: 'account.message', defaultMessage: 'Message' },
   edit_profile: { id: 'account.edit_profile', defaultMessage: 'Edit profile' },
   unblock: { id: 'account.unblock', defaultMessage: 'Unblock' },
   unfollow: { id: 'account.unfollow', defaultMessage: 'Unfollow' },
   block: { id: 'account.block', defaultMessage: 'Block' },
-  follow: { id: 'account.follow', defaultMessage: 'Follow' },
-  block: { id: 'account.block', defaultMessage: 'Block' }
+  follow: { id: 'account.follow', defaultMessage: 'Follow' }
 });
 
 const outerStyle = {
@@ -41,7 +41,8 @@ const ActionBar = React.createClass({
     me: React.PropTypes.number.isRequired,
     onFollow: React.PropTypes.func.isRequired,
     onBlock: React.PropTypes.func.isRequired,
-    onMention: React.PropTypes.func.isRequired
+    onMention: React.PropTypes.func.isRequired,
+    onMessage: React.PropTypes.func.isRequired
   },
 
   mixins: [PureRenderMixin],
@@ -52,6 +53,7 @@ const ActionBar = React.createClass({
     let menu = [];
 
     menu.push({ text: intl.formatMessage(messages.mention), action: this.props.onMention });
+    menu.push({ text: intl.formatMessage(messages.message), action: this.props.onMessage });
 
     if (account.get('id') === me) {
       menu.push({ text: intl.formatMessage(messages.edit_profile), href: '/settings/profile' });

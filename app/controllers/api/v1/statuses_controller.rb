@@ -52,7 +52,7 @@ class Api::V1::StatusesController < ApiController
   end
 
   def create
-    @status = PostStatusService.new.call(current_user.account, params[:status], params[:in_reply_to_id].blank? ? nil : Status.find(params[:in_reply_to_id]), media_ids: params[:media_ids], sensitive: params[:sensitive])
+    @status = PostStatusService.new.call(current_user.account, params[:status], params[:in_reply_to_id].blank? ? nil : Status.find(params[:in_reply_to_id]), params[:private_message_recipient_id].blank? ? nil : Account.find(params[:private_message_recipient_id]), media_ids: params[:media_ids], sensitive: params[:sensitive])
     render action: :show
   end
 

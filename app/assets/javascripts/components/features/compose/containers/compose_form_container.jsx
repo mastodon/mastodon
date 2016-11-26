@@ -4,6 +4,7 @@ import {
   changeCompose,
   submitCompose,
   cancelReplyCompose,
+  cancelPrivateMessageCompose,
   clearComposeSuggestions,
   fetchComposeSuggestions,
   selectComposeSuggestion,
@@ -22,7 +23,8 @@ const makeMapStateToProps = () => {
       sensitive: state.getIn(['compose', 'sensitive']),
       is_submitting: state.getIn(['compose', 'is_submitting']),
       is_uploading: state.getIn(['compose', 'is_uploading']),
-      in_reply_to: getStatus(state, state.getIn(['compose', 'in_reply_to']))
+      in_reply_to: getStatus(state, state.getIn(['compose', 'in_reply_to'])),
+      private_message_to: state.getIn(['compose', 'private_message_to'])
     };
   };
 
@@ -41,6 +43,10 @@ const mapDispatchToProps = function (dispatch) {
 
     onCancelReply () {
       dispatch(cancelReplyCompose());
+    },
+
+    onCancelPrivateMessage () {
+      dispatch(cancelPrivateMessageCompose());
     },
 
     onClearSuggestions () {
