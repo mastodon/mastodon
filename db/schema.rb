@@ -10,10 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161123093447) do
+ActiveRecord::Schema.define(version: 20161127131100) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+  enable_extension "adminpack"
 
   create_table "accounts", force: :cascade do |t|
     t.string   "username",                default: "",    null: false
@@ -96,6 +97,14 @@ ActiveRecord::Schema.define(version: 20161123093447) do
     t.index ["account_id", "status_id"], name: "index_mentions_on_account_id_and_status_id", unique: true, using: :btree
   end
 
+  create_table "messages", force: :cascade do |t|
+    t.integer  "account_id",                        null: false
+    t.integer  "private_recipient_id",              null: false
+    t.text     "text",                 default: "", null: false
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
+  end
+
   create_table "notifications", force: :cascade do |t|
     t.integer  "account_id"
     t.integer  "activity_id"
@@ -155,14 +164,16 @@ ActiveRecord::Schema.define(version: 20161123093447) do
 
   create_table "statuses", force: :cascade do |t|
     t.string   "uri"
-    t.integer  "account_id",                     null: false
-    t.text     "text",           default: "",    null: false
-    t.datetime "created_at",                     null: false
-    t.datetime "updated_at",                     null: false
+    t.integer  "account_id",                           null: false
+    t.text     "text",                 default: "",    null: false
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
     t.integer  "in_reply_to_id"
     t.integer  "reblog_of_id"
     t.string   "url"
-    t.boolean  "sensitive",      default: false
+    t.integer  "private_recipient_id"
+    t.text     "private_text",         default: "",    null: false
+    t.boolean  "sensitive",            default: false
     t.index ["account_id"], name: "index_statuses_on_account_id", using: :btree
     t.index ["in_reply_to_id"], name: "index_statuses_on_in_reply_to_id", using: :btree
     t.index ["reblog_of_id"], name: "index_statuses_on_reblog_of_id", using: :btree

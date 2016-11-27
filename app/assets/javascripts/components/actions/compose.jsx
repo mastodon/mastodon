@@ -2,18 +2,20 @@ import api from '../api'
 
 import { updateTimeline } from './timelines';
 
-export const COMPOSE_CHANGE          = 'COMPOSE_CHANGE';
-export const COMPOSE_SUBMIT_REQUEST  = 'COMPOSE_SUBMIT_REQUEST';
-export const COMPOSE_SUBMIT_SUCCESS  = 'COMPOSE_SUBMIT_SUCCESS';
-export const COMPOSE_SUBMIT_FAIL     = 'COMPOSE_SUBMIT_FAIL';
-export const COMPOSE_REPLY           = 'COMPOSE_REPLY';
-export const COMPOSE_REPLY_CANCEL    = 'COMPOSE_REPLY_CANCEL';
-export const COMPOSE_MENTION         = 'COMPOSE_MENTION';
-export const COMPOSE_UPLOAD_REQUEST  = 'COMPOSE_UPLOAD_REQUEST';
-export const COMPOSE_UPLOAD_SUCCESS  = 'COMPOSE_UPLOAD_SUCCESS';
-export const COMPOSE_UPLOAD_FAIL     = 'COMPOSE_UPLOAD_FAIL';
-export const COMPOSE_UPLOAD_PROGRESS = 'COMPOSE_UPLOAD_PROGRESS';
-export const COMPOSE_UPLOAD_UNDO     = 'COMPOSE_UPLOAD_UNDO';
+export const COMPOSE_CHANGE                 = 'COMPOSE_CHANGE';
+export const COMPOSE_SUBMIT_REQUEST         = 'COMPOSE_SUBMIT_REQUEST';
+export const COMPOSE_SUBMIT_SUCCESS         = 'COMPOSE_SUBMIT_SUCCESS';
+export const COMPOSE_SUBMIT_FAIL            = 'COMPOSE_SUBMIT_FAIL';
+export const COMPOSE_REPLY                  = 'COMPOSE_REPLY';
+export const COMPOSE_REPLY_CANCEL           = 'COMPOSE_REPLY_CANCEL';
+export const COMPOSE_PRIVATE_MESSAGE        = 'COMPOSE_PRIVATE_MESSAGE';
+export const COMPOSE_PRIVATE_MESSAGE_CANCEL = 'COMPOSE_PRIVATE_MESSAGE_CANCEL';
+export const COMPOSE_MENTION                = 'COMPOSE_MENTION';
+export const COMPOSE_UPLOAD_REQUEST         = 'COMPOSE_UPLOAD_REQUEST';
+export const COMPOSE_UPLOAD_SUCCESS         = 'COMPOSE_UPLOAD_SUCCESS';
+export const COMPOSE_UPLOAD_FAIL            = 'COMPOSE_UPLOAD_FAIL';
+export const COMPOSE_UPLOAD_PROGRESS        = 'COMPOSE_UPLOAD_PROGRESS';
+export const COMPOSE_UPLOAD_UNDO            = 'COMPOSE_UPLOAD_UNDO';
 
 export const COMPOSE_SUGGESTIONS_CLEAR = 'COMPOSE_SUGGESTIONS_CLEAR';
 export const COMPOSE_SUGGESTIONS_READY = 'COMPOSE_SUGGESTIONS_READY';
@@ -50,6 +52,20 @@ export function cancelReplyCompose() {
   };
 };
 
+export function privateMessageCompose(recipient) {
+  console.log('privateMessageCompose');
+  return {
+    type: COMPOSE_PRIVATE_MESSAGE,
+    recipient: recipient
+  };
+};
+
+export function cancelPrivateMessageCompose() {
+  return {
+    type: COMPOSE_PRIVATE_MESSAGE_CANCEL
+  };
+};
+
 export function mentionCompose(account) {
   return {
     type: COMPOSE_MENTION,
@@ -64,6 +80,7 @@ export function submitCompose() {
     api(getState).post('/api/v1/statuses', {
       status: getState().getIn(['compose', 'text'], ''),
       in_reply_to_id: getState().getIn(['compose', 'in_reply_to'], null),
+      private_message_recipient_id: getState().getIn(['compose', 'private_message_to', 'id'], null),
       media_ids: getState().getIn(['compose', 'media_attachments']).map(item => item.get('id')),
       sensitive: getState().getIn(['compose', 'sensitive'])
     }).then(function (response) {

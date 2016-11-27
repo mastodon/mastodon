@@ -9,10 +9,10 @@ class Formatter
   include ActionView::Helpers::TextHelper
   include ActionView::Helpers::SanitizeHelper
 
-  def format(status)
-    return reformat(status.content) unless status.local?
+  def format(status, is_private = false)
+    return reformat(is_private ? status.private_text : status.content) unless status.local?
 
-    html = status.text
+    html = is_private ? status.private_text : status.text
     html = encode(html)
     html = simple_format(html, sanitize: false)
     html = link_urls(html)

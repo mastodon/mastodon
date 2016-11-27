@@ -1,4 +1,4 @@
-attributes :id, :created_at, :in_reply_to_id, :sensitive
+attributes :id, :created_at, :in_reply_to_id, :is_private, :sensitive
 
 node(:uri)              { |status| TagManager.instance.uri_for(status) }
 node(:content)          { |status| Formatter.instance.format(status) }

@@ -4,6 +4,8 @@ import {
   COMPOSE_CHANGE,
   COMPOSE_REPLY,
   COMPOSE_REPLY_CANCEL,
+  COMPOSE_PRIVATE_MESSAGE,
+  COMPOSE_PRIVATE_MESSAGE_CANCEL,
   COMPOSE_MENTION,
   COMPOSE_SUBMIT_REQUEST,
   COMPOSE_SUBMIT_SUCCESS,
@@ -27,6 +29,7 @@ const initialState = Immutable.Map({
   sensitive: false,
   text: '',
   in_reply_to: null,
+  private_message_to: null,
   is_submitting: false,
   is_uploading: false,
   progress: 0,
@@ -121,6 +124,16 @@ export default function compose(state = initialState, action) {
       return state.set('progress', Math.round((action.loaded / action.total) * 100));
     case COMPOSE_MENTION:
       return state.update('text', text => `${text}@${action.account.get('acct')} `);
+    case COMPOSE_PRIVATE_MESSAGE:
+      console.log('COMPOSE_PRIVATE_MESSAGE');
+      return state.withMutations(map => {
+        map.set('private_message_to', action.recipient);
+      });
+    case COMPOSE_PRIVATE_MESSAGE_CANCEL:
+      return state.withMutations(map => {
+        map.set('private_message_to', null);
+        map.set('text', '');
+      });
     case COMPOSE_SUGGESTIONS_CLEAR:
       return state.update('suggestions', Immutable.List(), list => list.clear()).set('suggestion_token', null);
     case COMPOSE_SUGGESTIONS_READY:

@@ -57,7 +57,24 @@ const StatusContent = React.createClass({
   },
 
   render () {
-    const content = { __html: emojify(this.props.status.get('content')) };
+    let _content = null;
+    if (this.props.status.get('is_private')) {
+      _content = this.props.status.get('private_content');
+      if (_content == null) {
+        // User doesn't have access to view this status.
+        _content = this.props.status.get('content');
+      } else {
+        // Prepend the recipient account handle so it's visible in the UI
+        _content = 
+          '<a href="' + this.props.status.getIn(['private_recipient', 'url']) + 
+          '" className="h-card u-url p-nickname mention">@<span>' + 
+          this.props.status.getIn(['private_recipient', 'username']) + 
+          '</span></a> ' + _content;
+      }
+    } else {
+      _content = this.props.status.get('content');
+    }
+    const content = { __html: emojify(_content) };
     return <div className='status__content' style={{ cursor: 'pointer' }} dangerouslySetInnerHTML={content} onClick={this.props.onClick} />;
   },
 
