@@ -5,8 +5,8 @@ const en = {
   "status.mention": "Mention",
   "status.delete": "Delete",
   "status.reply": "Reply",
-  "status.reblog": "Boop",
-  "status.favourite": "Favourite",
+  "status.reblog": "Boost",
+  "status.favourite": "Boop",
   "status.reblogged_by": "{name} boosted",
   "status.sensitive_warning": "Sensitive content",
   "status.sensitive_toggle": "Click to view",
@@ -48,7 +48,7 @@ const en = {
   "upload_button.label": "Add media",
   "upload_form.undo": "Undo",
   "notification.follow": "{name} followed you",
-  "notification.favourite": "{name} favourited your status",
+  "notification.favourite": "{name} booped your status",
   "notification.reblog": "{name} boosted your status",
   "notification.mention": "{name} mentioned you"
 };
