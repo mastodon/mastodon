@@ -29,7 +29,19 @@ const Modal = React.createClass({
     url: React.PropTypes.string,
     isVisible: React.PropTypes.bool,
     onCloseClicked: React.PropTypes.func,
-    onOverlayClicked: React.PropTypes.func
+    onOverlayClicked: React.PropTypes.func,
+    registerOnKeyDownHandler: React.PropTypes.func
+  },
+
+  componentDidMount() {
+    this.props.registerOnKeyDownHandler(this.onKeyDown);
+  },
+
+  onKeyDown (e) {
+    if (e.keyCode == 27 /* Escape key */) {
+      this.props.onCloseClicked();
+      e.preventDefault();
+    }
   },
 
   render () {
