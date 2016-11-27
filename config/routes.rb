@@ -76,6 +76,14 @@ Rails.application.routes.draw do
 
       resources :notifications, only: [:index]
 
+      resources :domains, only: [] do
+        collection do
+          get :blocks
+          post :block
+          post :unblock
+        end
+      end
+
       resources :accounts, only: [:show] do
         collection do
           get :relationships
