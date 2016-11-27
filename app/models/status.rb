@@ -16,8 +16,6 @@ class Status < ApplicationRecord
   has_many :media_attachments, dependent: :destroy
   has_and_belongs_to_many :tags
 
-  belongs_to :private_recipient, foreign_key: 'private_recipient_id', class_name: 'Account', optional: true
-
   has_one :notification, as: :activity, dependent: :destroy
 
   validates :account, presence: true
@@ -61,10 +59,6 @@ class Status < ApplicationRecord
 
   def title
     content
-  end
-
-  def is_private
-    !private_recipient_id.nil?
   end
 
   def reblogs_count

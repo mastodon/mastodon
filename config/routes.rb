@@ -76,6 +76,8 @@ Rails.application.routes.draw do
 
       resources :notifications, only: [:index]
 
+      resources :messages, only: [:index, :create, :destroy]
+
       resources :accounts, only: [:show] do
         collection do
           get :relationships

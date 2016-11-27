@@ -7,11 +7,9 @@ export REDIS_HOST=localhost
 export REDIS_PORT=6379
 export DB_HOST=localhost
 export DB_USER=postgres
-export DB_NAME=postgres
+export DB_DEV_NAME=postgres
 export DB_PASS=postgres
 export DB_PORT=5432
-export NEO4J_HOST=localhost
-export NEO4J_PORT=7474
 
 # Federation
 export LOCAL_DOMAIN=localhost
@@ -34,9 +32,8 @@ export SMTP_LOGIN=
 export SMTP_PASSWORD=
 export SMTP_FROM_ADDRESS=notifications@example.com
 
-# Set us in production mode so that the configuration uses
-# the DB_HOST variables.
-export RAILS_ENV=production
+# Set the rails environment to development.
+export RAILS_ENV=development
 
 # Install dependencies
 #bundle install
@@ -45,7 +42,7 @@ export RAILS_ENV=production
 rails db:migrate
 
 # Compile assets
-rails assets:precompile
+#rails assets:precompile
 
 # Run web server
 rails server
