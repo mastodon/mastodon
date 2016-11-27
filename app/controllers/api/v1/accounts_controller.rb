@@ -85,10 +85,11 @@ class Api::V1::AccountsController < ApiController
 
   def relationships
     ids = params[:id].is_a?(Enumerable) ? params[:id].map(&:to_i) : [params[:id].to_i]
-    @accounts    = Account.where(id: ids).select('id')
+    @accounts    = Account.where(id: ids).select('id, domain')
     @following   = Account.following_map(ids, current_user.account_id)
     @followed_by = Account.followed_by_map(ids, current_user.account_id)
     @blocking    = Account.blocking_map(ids, current_user.account_id)
+    @blocking_domain = Account.blocking_domains_map(Account.where(id: ids).select('domain'), current_user.account_id)
   end
 
   def search
@@ -110,6 +111,7 @@ class Api::V1::AccountsController < ApiController
     @following   = Account.following_map([@account.id], current_user.account_id)
     @followed_by = Account.followed_by_map([@account.id], current_user.account_id)
     @blocking    = Account.blocking_map([@account.id], current_user.account_id)
+    @blocking_domain = Account.blocking_domains_map([@account.domain], current_user.account_id)
   end
 
   def cache(raw)

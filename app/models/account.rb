@@ -43,6 +43,8 @@ class Account < ApplicationRecord
   # Block relationships
   has_many :block_relationships, class_name: 'Block', foreign_key: 'account_id', dependent: :destroy
   has_many :blocking, -> { order('blocks.id desc') }, through: :block_relationships, source: :target_account
+  has_many :block_domain_relationships, class_name: 'AccountDomainBlock', foreign_key: 'account_id', dependent: :destroy
+  has_many :blocked_domains, -> { order('account_domain_blocks.id desc') }, through: :block_domain_relationships, source: :domain
 
   has_many :media_attachments, dependent: :destroy
 
@@ -64,6 +66,10 @@ class Account < ApplicationRecord
     block_relationships.where(target_account: other_account).first_or_create!(target_account: other_account)
   end
 
+  def block_domain!(domain)
+    block_domain_relationships.where(domain: domain).first_or_create!(domain: domain)
+  end
+
   def unfollow!(other_account)
     follow = active_relationships.find_by(target_account: other_account)
     follow&.destroy
@@ -71,6 +77,11 @@ class Account < ApplicationRecord
 
   def unblock!(other_account)
     block = block_relationships.find_by(target_account: other_account)
+    block&.destroy
+  end
+
+  def unblock_domain!(domain)
+    block = block_domain_relationships.find_by(domain: domain)
     block&.destroy
   end
 
@@ -165,6 +176,10 @@ class Account < ApplicationRecord
 
     def blocking_map(target_account_ids, account_id)
       Block.where(target_account_id: target_account_ids).where(account_id: account_id).map { |b| [b.target_account_id, true] }.to_h
+    end
+
+    def blocking_domains_map(domains, account_id)
+      AccountDomainBlock.where(domain: domains).where(account_id: account_id).map { |d| [d.domain, true] }.to_h
     end
   end
 

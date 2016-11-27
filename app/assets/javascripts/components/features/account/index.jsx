@@ -10,6 +10,10 @@ import {
   fetchAccountTimeline,
   expandAccountTimeline
 }                            from '../../actions/accounts';
+import {
+  blockDomain,
+  unblockDomain
+}                            from '../../actions/domains';
 import { mentionCompose }    from '../../actions/compose';
 import Header                from './components/header';
 import {
@@ -69,6 +73,24 @@ const Account = React.createClass({
     }
   },
 
+  handleBlockDomain () {
+    let domain = null;
+    const acct = this.props.account.get('acct');
+    if (acct.indexOf('@') == -1) {
+      // same domain as current user... ?
+      // we should not hit here because the UI should not show the option.
+      return;
+    }
+
+    domain = acct.substring(acct.indexOf('@') + 1);
+
+    if (this.props.account.getIn(['relationship', 'blocking_domain'])) {
+      this.props.dispatch(unblockDomain(domain));
+    } else {
+      this.props.dispatch(blockDomain(domain));
+    }
+  },
+
   handleMention () {
     this.props.dispatch(mentionCompose(this.props.account));
   },
@@ -88,7 +110,7 @@ const Account = React.createClass({
       <Column>
         <ColumnBackButton />
         <Header account={account} me={me} onFollow={this.handleFollow} />
-        <ActionBar account={account} me={me} onBlock={this.handleBlock} onMention={this.handleMention} />
+        <ActionBar account={account} me={me} onBlock={this.handleBlock} onBlockDomain={this.handleBlockDomain} onMention={this.handleMention} />
 
         {this.props.children}
       </Column>

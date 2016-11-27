@@ -8,10 +8,11 @@ const messages = defineMessages({
   mention: { id: 'account.mention', defaultMessage: 'Mention' },
   edit_profile: { id: 'account.edit_profile', defaultMessage: 'Edit profile' },
   unblock: { id: 'account.unblock', defaultMessage: 'Unblock' },
+  unblock_domain: { id: 'account.unblock_domain', defaultMessage: 'Unblock domain' },
   unfollow: { id: 'account.unfollow', defaultMessage: 'Unfollow' },
-  block: { id: 'account.block', defaultMessage: 'Block' },
+  block: { id: 'account.block', defaultMessage: 'Block user' },
+  block_domain: { id: 'account.block_domain', defaultMessage: 'Block domain' },
   follow: { id: 'account.follow', defaultMessage: 'Follow' },
-  block: { id: 'account.block', defaultMessage: 'Block' }
 });
 
 const outerStyle = {
@@ -41,6 +42,7 @@ const ActionBar = React.createClass({
     me: React.PropTypes.number.isRequired,
     onFollow: React.PropTypes.func.isRequired,
     onBlock: React.PropTypes.func.isRequired,
+    onBlockDomain: React.PropTypes.func.isRequired,
     onMention: React.PropTypes.func.isRequired
   },
 
@@ -55,12 +57,20 @@ const ActionBar = React.createClass({
 
     if (account.get('id') === me) {
       menu.push({ text: intl.formatMessage(messages.edit_profile), href: '/settings/profile' });
+    } else if (account.getIn(['relationship', 'blocking_domain'])) {
+      // Do not show per account block / unblock if the whole domain is filtered.
     } else if (account.getIn(['relationship', 'blocking'])) {
       menu.push({ text: intl.formatMessage(messages.unblock), action: this.props.onBlock });
     } else if (account.getIn(['relationship', 'following'])) {
       menu.push({ text: intl.formatMessage(messages.block), action: this.props.onBlock });
     } else {
       menu.push({ text: intl.formatMessage(messages.block), action: this.props.onBlock });
+    }
+
+    if (account.getIn(['relationship', 'blocking_domain'])) {
+      menu.push({ text: intl.formatMessage(messages.unblock_domain), action: this.props.onBlockDomain });
+    } else if (account.get('acct').indexOf('@') != -1 /* Is this account from an external instance? */) {
+      menu.push({ text: intl.formatMessage(messages.block_domain), action: this.props.onBlockDomain });
     }
 
     return (
