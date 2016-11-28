@@ -5,6 +5,8 @@ class UpdateRemoteProfileService < BaseService
   DFRN_NS = 'http://purl.org/macgirvin/dfrn/1.0'
 
   def call(xml, account, resubscribe = false)
+    return if xml.nil?
+
     author_xml = xml.at_xpath('./xmlns:author') || xml.at_xpath('./dfrn:owner', dfrn: DFRN_NS)
     hub_link   = xml.at_xpath('./xmlns:link[@rel="hub"]')
 

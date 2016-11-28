@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Subscription < ApplicationRecord
-  MIN_EXPIRATION = 3600 * 24
+  MIN_EXPIRATION = 3600 * 24 * 7
   MAX_EXPIRATION = 3600 * 24 * 30
 
   belongs_to :account
