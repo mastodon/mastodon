@@ -44,6 +44,10 @@ Rails.application.routes.draw do
   resources :media, only: [:show]
   resources :tags,  only: [:show]
 
+  namespace :admin do
+    resources :pubsubhubbub, only: [:index]
+  end
+
   namespace :api do
     # PubSubHubbub outgoing subscriptions
     resources :subscriptions, only: [:show]

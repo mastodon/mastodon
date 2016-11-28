@@ -31,6 +31,10 @@ class ApplicationController < ActionController::Base
     I18n.locale = I18n.default_locale
   end
 
+  def require_admin!
+    redirect_to root_path unless current_user&.admin?
+  end
+
   protected
 
   def not_found

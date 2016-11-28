@@ -1,0 +1,25 @@
+.table {
+  width: 100%;
+  max-width: 100%;
+  border-spacing: 0;
+  border-collapse: collapse;
+
+  th, td {
+    padding: 8px;
+    line-height: 1.42857143;
+    vertical-align: top;
+    border-top: 1px solid #ddd;
+    text-align: left;
+  }
+
+  & > thead > tr > th {
+    vertical-align: bottom;
+    border-bottom: 2px solid #ddd;
+    border-top: 0;
+    font-weight: 500;
+  }
+}
+
+samp {
+  font-family: 'Roboto Mono', monospace;
+}
