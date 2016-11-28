@@ -16,6 +16,8 @@ class MediaAttachment < ApplicationRecord
 
   validates :account, presence: true
 
+  default_scope { order('id asc') }
+
   def local?
     remote_url.blank?
   end
