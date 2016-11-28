@@ -5,7 +5,9 @@ module SettingsHelper
     en: 'English',
     de: 'Deutsch',
     es: 'Español',
+    pt: 'Português',
     fr: 'Français',
+    hu: 'Magyar',
   }.freeze
 
   def human_locale(locale)
