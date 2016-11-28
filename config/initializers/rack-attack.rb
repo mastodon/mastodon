@@ -1,7 +1,7 @@
 class Rack::Attack
   # Rate limits for the API
   throttle('api', limit: 150, period: 5.minutes) do |req|
-    req.ip if req.path.match(/\A\/api\//)
+    req.ip if req.path.match(/\A\/api\/v/)
   end
 
   self.throttled_response = lambda do |env|
