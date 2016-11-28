@@ -6,6 +6,6 @@ class Admin::PubsubhubbubController < ApplicationController
   layout 'public'
 
   def index
-    @subscriptions = Subscription.includes(:account).paginate(page: params[:page], per_page: 40)
+    @subscriptions = Subscription.order('id desc').includes(:account).paginate(page: params[:page], per_page: 40)
   end
 end

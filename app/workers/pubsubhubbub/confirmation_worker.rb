@@ -10,6 +10,7 @@ class Pubsubhubbub::ConfirmationWorker
 
     subscription.secret        = secret
     subscription.lease_seconds = lease_seconds
+    subscription.confirmed     = true
 
     response = HTTP.headers(user_agent: 'Mastodon/PubSubHubbub')
                    .timeout(:per_operation, write: 20, connect: 20, read: 50)
