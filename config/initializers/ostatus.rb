@@ -14,8 +14,3 @@ Rails.application.configure do
     config.action_cable.allowed_request_origins = ["http#{https ? 's' : ''}://#{host}"]
   end
 end
-
-ApplicationController.renderer.defaults.merge!(
-  http_host: host,
-  https: https
-)
