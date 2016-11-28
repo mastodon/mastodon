@@ -74,7 +74,7 @@ class ProcessInteractionService < BaseService
   end
 
   def delete_post!(xml, account)
-    status = Status.find(activity_id(xml))
+    status = Status.find(xml.at_xpath('//xmlns:id').content)
 
     return if status.nil?
 
