@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Pubsubhubbub::SubscribeService < BaseService
+class Pubsubhubbub::UnsubscribeService < BaseService
   def call(account, callback)
     return ['Invalid topic URL', 422] if account.nil?
 
