@@ -20,9 +20,13 @@ class Pubsubhubbub::ConfirmationWorker
                           'hub.lease_seconds' => subscription.lease_seconds,
                         })
 
-    if mode == 'subscribe' && response.body.to_s == challenge
+    body = response.body.to_s
+
+    Rails.logger.debug "Confirming PuSH subscription for #{subscription.callback_url} with challenge #{challenge}: #{body}"
+
+    if mode == 'subscribe' && body == challenge
       subscription.save!
-    elsif (mode == 'unsubscribe' && response.body.to_s == challenge) || !subscription.confirmed?
+    elsif (mode == 'unsubscribe' && body == challenge) || !subscription.confirmed?
       subscription.destroy!
     end
   end
