@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 require 'sidekiq/web'
 
 Rails.application.routes.draw do
-  mount ActionCable.server => '/cable'
+  mount ActionCable.server, at: 'cable'
 
   authenticate :user, lambda { |u| u.admin? } do
     mount Sidekiq::Web, at: 'sidekiq'
@@ -19,7 +21,7 @@ Rails.application.routes.draw do
     sessions:           'auth/sessions',
     registrations:      'auth/registrations',
     passwords:          'auth/passwords',
-    confirmations:      'auth/confirmations'
+    confirmations:      'auth/confirmations',
   }
 
   resources :accounts, path: 'users', only: [:show], param: :username do
@@ -43,9 +45,12 @@ Rails.application.routes.draw do
   resources :tags,  only: [:show]
 
   namespace :api do
-    # PubSubHubbub
+    # PubSubHubbub outgoing subscriptions
     resources :subscriptions, only: [:show]
     post '/subscriptions/:id', to: 'subscriptions#update'
+
+    # PubSubHubbub incoming subscriptions
+    post '/push', to: 'push#update', as: :push
 
     # Salmon
     post '/salmon/:id', to: 'salmon#update', as: :salmon

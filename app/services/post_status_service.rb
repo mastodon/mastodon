@@ -14,8 +14,11 @@ class PostStatusService < BaseService
     attach_media(status, options[:media_ids])
     process_mentions_service.call(status)
     process_hashtags_service.call(status)
+
     DistributionWorker.perform_async(status.id)
     HubPingWorker.perform_async(account.id)
+    Pubsubhubbub::DistributionWorker.perform_async(status.stream_entry.id)
+
     status
   end
 

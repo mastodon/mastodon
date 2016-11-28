@@ -44,7 +44,11 @@ class Account < ApplicationRecord
   has_many :block_relationships, class_name: 'Block', foreign_key: 'account_id', dependent: :destroy
   has_many :blocking, -> { order('blocks.id desc') }, through: :block_relationships, source: :target_account
 
+  # Media
   has_many :media_attachments, dependent: :destroy
+
+  # PuSH subscriptions
+  has_many :subscriptions, dependent: :destroy
 
   pg_search_scope :search_for, against: { username: 'A', domain: 'B' }, using: { tsearch: { prefix: true } }
 

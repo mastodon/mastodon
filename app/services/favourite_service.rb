@@ -7,7 +7,9 @@ class FavouriteService < BaseService
   # @return [Favourite]
   def call(account, status)
     favourite = Favourite.create!(account: account, status: status)
+
     HubPingWorker.perform_async(account.id)
+    Pubsubhubbub::DistributionWorker.perform_async(favourite.stream_entry.id)
 
     if status.local?
       NotifyService.new.call(status.account, favourite)

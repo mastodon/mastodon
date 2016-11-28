@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161123093447) do
+ActiveRecord::Schema.define(version: 20161128103007) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -143,6 +143,19 @@ ActiveRecord::Schema.define(version: 20161123093447) do
     t.index ["uid"], name: "index_oauth_applications_on_uid", unique: true, using: :btree
   end
 
+  create_table "pubsubhubbub_subscriptions", force: :cascade do |t|
+    t.string   "topic",      default: "",    null: false
+    t.string   "callback",   default: "",    null: false
+    t.string   "mode",       default: "",    null: false
+    t.string   "challenge",  default: "",    null: false
+    t.string   "secret"
+    t.boolean  "confirmed",  default: false, null: false
+    t.datetime "expires_at",                 null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.index ["topic", "callback"], name: "index_pubsubhubbub_subscriptions_on_topic_and_callback", unique: true, using: :btree
+  end
+
   create_table "settings", force: :cascade do |t|
     t.string   "var",         null: false
     t.text     "value"
@@ -183,6 +196,17 @@ ActiveRecord::Schema.define(version: 20161123093447) do
     t.datetime "updated_at",    null: false
     t.index ["account_id"], name: "index_stream_entries_on_account_id", using: :btree
     t.index ["activity_id", "activity_type"], name: "index_stream_entries_on_activity_id_and_activity_type", using: :btree
+  end
+
+  create_table "subscriptions", force: :cascade do |t|
+    t.string   "callback_url", default: "",    null: false
+    t.string   "secret"
+    t.datetime "expires_at"
+    t.boolean  "confirmed",    default: false, null: false
+    t.integer  "account_id",                   null: false
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+    t.index ["callback_url", "account_id"], name: "index_subscriptions_on_callback_url_and_account_id", unique: true, using: :btree
   end
 
   create_table "tags", force: :cascade do |t|
