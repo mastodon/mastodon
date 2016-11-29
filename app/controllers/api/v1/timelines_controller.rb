@@ -8,6 +8,7 @@ class Api::V1::TimelinesController < ApiController
 
   def home
     @statuses = Feed.new(:home, current_account).get(DEFAULT_STATUSES_LIMIT, params[:max_id], params[:since_id]).to_a
+    @statuses = cache_collection(@statuses)
 
     set_maps(@statuses)
     set_counters_maps(@statuses)
@@ -23,6 +24,7 @@ class Api::V1::TimelinesController < ApiController
 
   def mentions
     @statuses = Feed.new(:mentions, current_account).get(DEFAULT_STATUSES_LIMIT, params[:max_id], params[:since_id]).to_a
+    @statuses = cache_collection(@statuses)
 
     set_maps(@statuses)
     set_counters_maps(@statuses)
@@ -38,7 +40,7 @@ class Api::V1::TimelinesController < ApiController
 
   def public
     @statuses = Status.as_public_timeline(current_account).paginate_by_max_id(DEFAULT_STATUSES_LIMIT, params[:max_id], params[:since_id]).to_a
-    @statuses = cache(@statuses)
+    @statuses = cache_collection(@statuses)
 
     set_maps(@statuses)
     set_counters_maps(@statuses)
@@ -55,7 +57,7 @@ class Api::V1::TimelinesController < ApiController
   def tag
     @tag      = Tag.find_by(name: params[:id].downcase)
     @statuses = @tag.nil? ? [] : Status.as_tag_timeline(@tag, current_account).paginate_by_max_id(DEFAULT_STATUSES_LIMIT, params[:max_id], params[:since_id]).to_a
-    @statuses = cache(@statuses)
+    @statuses = cache_collection(@statuses)
 
     set_maps(@statuses)
     set_counters_maps(@statuses)
@@ -71,22 +73,7 @@ class Api::V1::TimelinesController < ApiController
 
   private
 
-  def cache(raw)
-    uncached_ids           = []
-    cached_keys_with_value = Rails.cache.read_multi(*raw.map(&:cache_key))
-
-    raw.each do |status|
-      uncached_ids << status.id unless cached_keys_with_value.key?(status.cache_key)
-    end
-
-    unless uncached_ids.empty?
-      uncached = Status.where(id: uncached_ids).with_includes.map { |s| [s.id, s] }.to_h
-
-      uncached.values.each do |status|
-        Rails.cache.write(status.cache_key, status)
-      end
-    end
-
-    raw.map { |status| cached_keys_with_value[status.cache_key] || uncached[status.id] }.compact
+  def cache_collection(raw)
+    super(raw, Status)
   end
 end

@@ -52,4 +52,23 @@ class ApplicationController < ActionController::Base
   def current_account
     @current_account ||= current_user.try(:account)
   end
+
+  def cache_collection(raw, klass)
+    uncached_ids           = []
+    cached_keys_with_value = Rails.cache.read_multi(*raw.map(&:cache_key))
+
+    raw.each do |item|
+      uncached_ids << item.id unless cached_keys_with_value.key?(item.cache_key)
+    end
+
+    unless uncached_ids.empty?
+      uncached = klass.where(id: uncached_ids).with_includes.map { |item| [item.id, item] }.to_h
+
+      uncached.values.each do |item|
+        Rails.cache.write(item.cache_key, item)
+      end
+    end
+
+    raw.map { |item| cached_keys_with_value[item.cache_key] || uncached[item.id] }.compact
+  end
 end

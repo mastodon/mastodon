@@ -48,7 +48,7 @@ class Api::V1::AccountsController < ApiController
 
   def statuses
     @statuses = @account.statuses.paginate_by_max_id(DEFAULT_STATUSES_LIMIT, params[:max_id], params[:since_id]).to_a
-    @statuses = cache(@statuses)
+    @statuses = cache_collection(@statuses, Status)
 
     set_maps(@statuses)
     set_counters_maps(@statuses)
@@ -110,24 +110,5 @@ class Api::V1::AccountsController < ApiController
     @following   = Account.following_map([@account.id], current_user.account_id)
     @followed_by = Account.followed_by_map([@account.id], current_user.account_id)
     @blocking    = Account.blocking_map([@account.id], current_user.account_id)
-  end
-
-  def cache(raw)
-    uncached_ids           = []
-    cached_keys_with_value = Rails.cache.read_multi(*raw.map(&:cache_key))
-
-    raw.each do |status|
-      uncached_ids << status.id unless cached_keys_with_value.key?(status.cache_key)
-    end
-
-    unless uncached_ids.empty?
-      uncached = Status.where(id: uncached_ids).with_includes.map { |s| [s.id, s] }.to_h
-
-      uncached.values.each do |status|
-        Rails.cache.write(status.cache_key, status)
-      end
-    end
-
-    raw.map { |status| cached_keys_with_value[status.cache_key] || uncached[status.id] }.compact
   end
 end

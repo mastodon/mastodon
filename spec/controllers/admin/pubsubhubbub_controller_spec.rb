@@ -4,7 +4,7 @@ require 'rails_helper'
 RSpec.describe Admin::PubsubhubbubController, type: :controller do
   describe 'GET #index' do
     before do
-      sign_in :user, Fabricate(:user, admin: true)
+      sign_in Fabricate(:user, admin: true), scope: :user
     end
 
     it 'returns http success' do
