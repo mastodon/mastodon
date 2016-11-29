@@ -31,8 +31,10 @@ const pt = {
   "tabs_bar.home": "Home",
   "tabs_bar.mentions": "Menções",
   "tabs_bar.public": "Público",
+  "tabs_bar.notifications": "Notificações",
   "compose_form.placeholder": "Que estás pensando?",
   "compose_form.publish": "Pustar",
+  "compose_form.sensitive": "Marcar conteúdo como sensível",
   "navigation_bar.settings": "Configurações",
   "navigation_bar.public_timeline": "Timeline Pública",
   "navigation_bar.logout": "Logout",
@@ -41,7 +43,11 @@ const pt = {
   "search.account": "Conta",
   "search.hashtag": "Hashtag",
   "upload_button.label": "Adicionar media",
-  "upload_form.undo": "Desfazer"
+  "upload_form.undo": "Desfazer",
+  "notification.follow": "{name} seguiu você",
+  "notification.favourite": "{name} favoritou  seu post",
+  "notification.reblog": "{name} reblogou o seu post",
+  "notification.mention": "{name} mecionou você"
 };
 
 export default pt;
