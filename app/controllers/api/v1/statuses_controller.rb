@@ -58,7 +58,7 @@ class Api::V1::StatusesController < ApiController
 
   def destroy
     @status = Status.where(account_id: current_user.account).find(params[:id])
-    RemoveStatusService.new.call(@status)
+    RemovalWorker.perform_async(@status.id)
     render_empty
   end
 
@@ -68,8 +68,12 @@ class Api::V1::StatusesController < ApiController
   end
 
   def unreblog
-    RemoveStatusService.new.call(Status.where(account_id: current_user.account, reblog_of_id: params[:id]).first!)
-    @status = Status.find(params[:id])
+    reblog         = Status.where(account_id: current_user.account, reblog_of_id: params[:id]).first!
+    @status        = reblog.reblog
+    @reblogged_map = { @status.id => false }
+
+    RemovalWorker.perform_async(reblog.id)
+    
     render action: :show
   end
 
