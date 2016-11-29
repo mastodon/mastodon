@@ -11,8 +11,10 @@ class RemoveStatusService < BaseService
 
     status.destroy!
 
-    HubPingWorker.perform_async(status.account.id)
-    Pubsubhubbub::DistributionWorker.perform_async(status.stream_entry.id)
+    if status.account.local?
+      HubPingWorker.perform_async(status.account.id)
+      Pubsubhubbub::DistributionWorker.perform_async(status.stream_entry.id)
+    end
   end
 
   private
