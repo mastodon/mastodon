@@ -15,6 +15,7 @@ class User < ApplicationRecord
 
   has_settings do |s|
     s.key :notification_emails, defaults: { follow: false, reblog: false, favourite: false, mention: false }
+    s.key :interactions, defaults: { must_be_follower: false, must_be_following: false }
   end
 
   def send_devise_notification(notification, *args)

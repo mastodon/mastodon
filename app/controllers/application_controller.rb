@@ -14,7 +14,6 @@ class ApplicationController < ActionController::Base
 
   before_action :store_current_location, except: :raise_not_found, unless: :devise_controller?
   before_action :set_locale
-  before_action :check_rack_mini_profiler
 
   def raise_not_found
     raise ActionController::RoutingError, "No route matches #{params[:unmatched_route]}"
@@ -32,8 +31,8 @@ class ApplicationController < ActionController::Base
     I18n.locale = I18n.default_locale
   end
 
-  def check_rack_mini_profiler
-    Rack::MiniProfiler.authorize_request if current_user && current_user.admin?
+  def require_admin!
+    redirect_to root_path unless current_user&.admin?
   end
 
   protected

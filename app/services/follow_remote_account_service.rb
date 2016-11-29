@@ -80,8 +80,7 @@ class FollowRemoteAccountService < BaseService
   end
 
   def get_profile(xml, account)
-    author = xml.at_xpath('/xmlns:feed/xmlns:author') || xml.at_xpath('/xmlns:feed').at_xpath('./dfrn:owner', dfrn: DFRN_NS)
-    update_remote_profile_service.call(author, account)
+    update_remote_profile_service.call(xml.at_xpath('/xmlns:feed'), account)
   end
 
   def update_remote_profile_service

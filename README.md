@@ -60,8 +60,6 @@ Consult the example configuration file, `.env.production.sample` for the full li
 
 - PostgreSQL
 - Redis
-- Neo4J (optional)
-  - GraphAware NodeRank
 
 ## Running with Docker and Docker-Compose
 
@@ -90,8 +88,8 @@ The container has two volumes, for the assets and for user uploads. The default 
 - `rake mastodon:media:clear` removes uploads that have not been attached to any status after a while, you would want to run this from a periodic cronjob
 - `rake mastodon:push:clear` unsubscribes from PuSH notifications for remote users that have no local followers. You may not want to actually do that, to keep a fuller footprint of the fediverse or in case your users will soon re-follow
 - `rake mastodon:push:refresh` re-subscribes PuSH for expiring remote users, this should be run periodically from a cronjob and quite often as the expiration time depends on the particular hub of the remote user
-- `rake mastodon:feeds:clear` removes all timelines, which forces them to be re-built on the fly next time a user tries to fetch their home/mentions timeline. Only for troubleshooting
-- `rake mastodon:graphs:sync` re-imports all follow relationships into Neo4J. Only for troubleshooting
+- `rake mastodon:feeds:clear_all` removes all timelines, which forces them to be re-built on the fly next time a user tries to fetch their home/mentions timeline. Only for troubleshooting
+- `rake mastodon:feeds:clear` removes timelines of users who haven't signed in lately, which allows to save RAM and improve message distribution. This is required to be run periodically so that when they login again the regeneration process will trigger
 
 Running any of these tasks via docker-compose would look like this:
 
@@ -116,6 +114,8 @@ Which will re-create the updated containers, leaving databases and data as is. D
 ### Contributing
 
 You can open issues for bugs you've found or features you think are missing. You can also submit pull requests to this repository. This section may be updated with more details in the future.
+
+**IRC channel**: #mastodon on irc.freenode.net
 
 ### Extra credits
 

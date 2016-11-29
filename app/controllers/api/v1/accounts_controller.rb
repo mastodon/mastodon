@@ -46,16 +46,6 @@ class Api::V1::AccountsController < ApiController
     render action: :index
   end
 
-  def common_followers
-    @accounts = @account.common_followers_with(current_user.account)
-    render action: :index
-  end
-
-  def suggestions
-    @accounts = FollowSuggestion.get(current_user.account_id)
-    render action: :index
-  end
-
   def statuses
     @statuses = @account.statuses.paginate_by_max_id(DEFAULT_STATUSES_LIMIT, params[:max_id], params[:since_id]).to_a
     @statuses = cache(@statuses)
@@ -138,6 +128,6 @@ class Api::V1::AccountsController < ApiController
       end
     end
 
-    raw.map { |status| cached_keys_with_value[status.cache_key] || uncached[status.id] }
+    raw.map { |status| cached_keys_with_value[status.cache_key] || uncached[status.id] }.compact
   end
 end

@@ -41,19 +41,14 @@ gem 'simple_form'
 gem 'will_paginate'
 gem 'rack-attack'
 gem 'rack-cors', require: 'rack/cors'
+gem 'rack-timeout-puma'
 gem 'sidekiq'
 gem 'ledermann-rails-settings'
-gem 'neography'
 gem 'pg_search'
 
 gem 'react-rails'
 gem 'browserify-rails'
 gem 'autoprefixer-rails'
-
-gem 'rack-mini-profiler', require: false
-gem 'flamegraph'
-gem 'stackprof'
-gem 'memory_profiler'
 
 group :development, :test do
   gem 'rspec-rails'

@@ -5,9 +5,9 @@ const en = {
   "status.mention": "Mention",
   "status.delete": "Delete",
   "status.reply": "Reply",
-  "status.reblog": "Reblog",
+  "status.reblog": "Boost",
   "status.favourite": "Favourite",
-  "status.reblogged_by": "{name} reblogged",
+  "status.reblogged_by": "{name} boosted",
   "status.sensitive_warning": "Sensitive content",
   "status.sensitive_toggle": "Click to view",
   "video_player.toggle_sound": "Toggle sound",
@@ -45,13 +45,11 @@ const en = {
   "search.placeholder": "Search",
   "search.account": "Account",
   "search.hashtag": "Hashtag",
-  "suggestions_box.who_to_follow": "Who to follow",
-  "suggestions_box.refresh": "Refresh",
   "upload_button.label": "Add media",
   "upload_form.undo": "Undo",
   "notification.follow": "{name} followed you",
   "notification.favourite": "{name} favourited your status",
-  "notification.reblog": "{name} reblogged your status",
+  "notification.reblog": "{name} boosted your status",
   "notification.mention": "{name} mentioned you"
 };
 

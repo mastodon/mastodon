@@ -36,16 +36,17 @@ namespace :mastodon do
   end
 
   namespace :feeds do
-    desc 'Clears all timelines so that they would be regenerated on next hit'
+    desc 'Clear timelines of inactive users'
     task clear: :environment do
-      Redis.current.keys('feed:*').each { |key| Redis.current.del(key) }
+      User.where('current_sign_in_at < ?', 14.days.ago).find_each do |user|
+        Redis.current.del(FeedManager.instance.key(:home, user.account_id))
+        Redis.current.del(FeedManager.instance.key(:mentions, user.account_id))
+      end
     end
-  end
 
-  namespace :graphs do
-    desc 'Syncs all follow relationships to Neo4J'
-    task sync: :environment do
-      Follow.find_each(&:sync!)
+    desc 'Clears all timelines so that they would be regenerated on next hit'
+    task clear_all: :environment do
+      Redis.current.keys('feed:*').each { |key| Redis.current.del(key) }
     end
   end
 end

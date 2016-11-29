@@ -39,6 +39,8 @@ import en from 'react-intl/locale-data/en';
 import de from 'react-intl/locale-data/de';
 import es from 'react-intl/locale-data/es';
 import fr from 'react-intl/locale-data/fr';
+import pt from 'react-intl/locale-data/pt';
+import hu from 'react-intl/locale-data/hu';
 import getMessagesForLocale from '../locales';
 
 const store = configureStore();
@@ -47,7 +49,7 @@ const browserHistory = useRouterHistory(createBrowserHistory)({
   basename: '/web'
 });
 
-addLocaleData([...en, ...de, ...es, ...fr]);
+addLocaleData([...en, ...de, ...es, ...fr, ...pt, ...hu]);
 
 const Mastodon = React.createClass({
 

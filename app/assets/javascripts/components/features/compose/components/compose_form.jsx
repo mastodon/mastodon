@@ -55,7 +55,8 @@ const textareaStyle = {
   padding: '10px',
   fontFamily: 'Roboto',
   fontSize: '14px',
-  margin: '0'
+  margin: '0',
+  resize: 'vertical'
 };
 
 const renderInputComponent = inputProps => (

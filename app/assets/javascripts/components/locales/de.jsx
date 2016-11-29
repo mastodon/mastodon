@@ -41,8 +41,6 @@ const en = {
   "search.placeholder": "Suche",
   "search.account": "Konto",
   "search.hashtag": "Hashtag",
-  "suggestions_box.who_to_follow": "Wem folgen",
-  "suggestions_box.refresh": "Aktualisieren",
   "upload_button.label": "Media-Datei anfügen",
   "upload_form.undo": "Entfernen",
   "notification.follow": "{name} folgt dir",

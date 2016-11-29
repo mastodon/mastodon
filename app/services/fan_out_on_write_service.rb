@@ -24,7 +24,7 @@ class FanOutOnWriteService < BaseService
   def deliver_to_followers(status)
     Rails.logger.debug "Delivering status #{status.id} to followers"
 
-    status.account.followers.where(domain: nil).find_each do |follower|
+    status.account.followers.where(domain: nil).joins(:user).where('users.current_sign_in_at > ?', 14.days.ago).find_each do |follower|
       next if FeedManager.instance.filter?(:home, status, follower)
       FeedManager.instance.push(:home, follower, status)
     end
@@ -41,14 +41,17 @@ class FanOutOnWriteService < BaseService
   end
 
   def deliver_to_hashtags(status)
-    Rails.logger.debug "Delivering status #{status.id} to hashtags"
+    return if status.reblog? || status.reply?
 
+    Rails.logger.debug "Delivering status #{status.id} to hashtags"
     status.tags.find_each do |tag|
       FeedManager.instance.broadcast("hashtag:#{tag.name}", type: 'update', id: status.id)
     end
   end
 
   def deliver_to_public(status)
+    return if status.reblog? || status.reply?
+
     Rails.logger.debug "Delivering status #{status.id} to public timeline"
     FeedManager.instance.broadcast(:public, type: 'update', id: status.id)
   end

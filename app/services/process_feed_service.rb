@@ -16,7 +16,7 @@ class ProcessFeedService < BaseService
 
   def update_author(xml, account)
     return if xml.at_xpath('/xmlns:feed').nil?
-    UpdateRemoteProfileService.new.call(xml.at_xpath('/xmlns:feed/xmlns:author'), account)
+    UpdateRemoteProfileService.new.call(xml.at_xpath('/xmlns:feed'), account, true)
   end
 
   def process_entries(xml, account)

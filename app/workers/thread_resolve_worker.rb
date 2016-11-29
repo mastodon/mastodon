@@ -7,9 +7,9 @@ class ThreadResolveWorker
     child_status  = Status.find(child_status_id)
     parent_status = FetchRemoteStatusService.new.call(parent_url)
 
-    unless parent_status.nil?
-      child_status.thread = parent_status
-      child_status.save!
-    end
+    return if parent_status.nil?
+
+    child_status.thread = parent_status
+    child_status.save!
   end
 end

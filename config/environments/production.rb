@@ -13,7 +13,7 @@ Rails.application.configure do
   # Full error reports are disabled and caching is turned on.
   config.consider_all_requests_local       = false
   config.action_controller.perform_caching = true
-  config.action_controller.asset_host      = ENV['CDN_HOST']
+  config.action_controller.asset_host      = ENV['CDN_HOST'] if ENV.key?('CDN_HOST')
 
   # Disable serving static files from the `/public` folder by default since
   # Apache or NGINX already handles this.
@@ -30,7 +30,7 @@ Rails.application.configure do
 
   # Specifies the header that your server uses for sending files.
   # config.action_dispatch.x_sendfile_header = 'X-Sendfile' # for Apache
-  # config.action_dispatch.x_sendfile_header = 'X-Accel-Redirect' # for NGINX
+  config.action_dispatch.x_sendfile_header = 'X-Accel-Redirect' # for NGINX
 
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
   config.force_ssl = false
@@ -50,7 +50,8 @@ Rails.application.configure do
     host: ENV.fetch('REDIS_HOST') { 'localhost' },
     port: ENV.fetch('REDIS_PORT') { 6379 },
     db: 0,
-    namespace: 'cache'
+    namespace: 'cache',
+    expires_in: 20.minutes
   }
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server.

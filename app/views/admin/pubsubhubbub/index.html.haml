@@ -1,0 +1,20 @@
+%table.table
+  %thead
+    %tr
+      %th Topic
+      %th Callback URL
+      %th Confirmed
+      %th Expires in
+  %tbody
+    - @subscriptions.each do |subscription|
+      %tr
+        %td
+          %samp= subscription.account.acct
+        %td
+          %samp= subscription.callback_url
+        %td
+          - if subscription.confirmed?
+            %i.fa.fa-check
+        %td= distance_of_time_in_words(Time.now, subscription.expires_at)
+
+= will_paginate @subscriptions, pagination_options

@@ -40,8 +40,6 @@ const pt = {
   "search.placeholder": "Busca",
   "search.account": "Conta",
   "search.hashtag": "Hashtag",
-  "suggestions_box.who_to_follow": "Quem seguir",
-  "suggestions_box.refresh": "Recarregar",
   "upload_button.label": "Adicionar media",
   "upload_form.undo": "Desfazer"
 };

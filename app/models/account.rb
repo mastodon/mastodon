@@ -44,7 +44,11 @@ class Account < ApplicationRecord
   has_many :block_relationships, class_name: 'Block', foreign_key: 'account_id', dependent: :destroy
   has_many :blocking, -> { order('blocks.id desc') }, through: :block_relationships, source: :target_account
 
+  # Media
   has_many :media_attachments, dependent: :destroy
+
+  # PuSH subscriptions
+  has_many :subscriptions, dependent: :destroy
 
   pg_search_scope :search_for, against: { username: 'A', domain: 'B' }, using: { tsearch: { prefix: true } }
 
@@ -66,12 +70,12 @@ class Account < ApplicationRecord
 
   def unfollow!(other_account)
     follow = active_relationships.find_by(target_account: other_account)
-    follow.destroy unless follow.nil?
+    follow&.destroy
   end
 
   def unblock!(other_account)
     block = block_relationships.find_by(target_account: other_account)
-    block.destroy unless block.nil?
+    block&.destroy
   end
 
   def following?(other_account)
@@ -116,7 +120,11 @@ class Account < ApplicationRecord
   end
 
   def avatar_remote_url=(url)
-    self.avatar = URI.parse(url) unless self[:avatar_remote_url] == url
+    parsed_url = URI.parse(url)
+
+    return if !%w(http https).include?(parsed_url.scheme) || self[:avatar_remote_url] == url
+
+    self.avatar              = parsed_url
     self[:avatar_remote_url] = url
   rescue OpenURI::HTTPError => e
     Rails.logger.debug "Error fetching remote avatar: #{e}"
@@ -128,15 +136,6 @@ class Account < ApplicationRecord
 
   def to_param
     username
-  end
-
-  def common_followers_with(other_account)
-    results  = Neography::Rest.new.execute_query('MATCH (a {account_id: {a_id}})-[:follows]->(b)-[:follows]->(c {account_id: {c_id}}) RETURN b.account_id', a_id: id, c_id: other_account.id)
-    ids      = results['data'].map(&:first)
-    accounts = Account.where(id: ids).with_counters.limit(20).map { |a| [a.id, a] }.to_h
-    ids.map { |id| accounts[id] }.compact
-  rescue Neography::NeographyError, Excon::Error::Socket
-    []
   end
 
   class << self
