@@ -24,37 +24,37 @@ pt:
     forgot_password: Esqueceu a password?
     login: Entrar
     register: Registar
-    resend_confirmation: Resend confirmation instructions
+    resend_confirmation: Reenviar instruções de confirmação
     reset_password: Reset password
-    set_new_password: Set new password
+    set_new_password: Editar password
   generic:
-    changes_saved_msg: Changes successfully saved!
+    changes_saved_msg: Mudanças guardadas!
     powered_by: powered by %{link}
-    save_changes: Save changes
+    save_changes: Guardar alterações
     validation_errors:
-      one: Something isn't quite right yet! Please review the error below
-      other: Something isn't quite right yet! Please review %{count} errors below
+      one: Algo não está correto. Por favor reveja o erro abaixo
+      other: Algo não está correto. Por favor reveja os %{count} erros abaixo
   notification_mailer:
     favourite:
-      body: 'Your status was favourited by %{name}:'
-      subject: "%{name} favourited your status"
+      body: 'O seu post foi favoritado por %{name}:'
+      subject: "%{name} favouritou o seu post"
     follow:
-      body: "%{name} is now following you!"
-      subject: "%{name} is now following you"
+      body: "%{name} seguiu você!"
+      subject: "%{name} segue você"
     mention:
-      body: 'You were mentioned by %{name} in:'
-      subject: You were mentioned by %{name}
+      body: 'Você foi mencionado por %{name} em:'
+      subject: Foi mencionado por %{name}
     reblog:
-      body: 'Your status was reblogged by %{name}:'
-      subject: "%{name} reblogged your status"
+      body: 'O seu post foi reblogado por %{name}:'
+      subject: "%{name} reblogou o seu post"
   pagination:
     next: Next
     prev: Prev
   settings:
-    edit_profile: Edit profile
-    preferences: Preferences
+    edit_profile: Editar perfil
+    preferences: Preferências
   stream_entries:
-    favourited: favourited a post by
-    is_now_following: is now following
+    favourited: favoritou um post por
+    is_now_following: agora segue
   will_paginate:
     page_gap: "&hellip;"
