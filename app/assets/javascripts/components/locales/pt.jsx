@@ -18,7 +18,7 @@ const pt = {
   "account.block": "Bloquear",
   "account.posts": "Posts",
   "account.follows": "Segue",
-  "account.followers": "Seguidoress",
+  "account.followers": "Seguidores",
   "account.follows_you": "Segue você",
   "getting_started.heading": "Primeiros passos",
   "getting_started.about_addressing": "Podes seguir pessoas se sabes o nome de usuário deles e o domínio em que estão entrando um endereço similar a e-mail no campo no topo da barra lateral.",
