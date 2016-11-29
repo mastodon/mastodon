@@ -17,9 +17,9 @@ gem 'pghero'
 gem 'dotenv-rails'
 gem 'font-awesome-rails'
 
-gem 'paperclip', '~> 4.3'
+gem 'paperclip', '~> 5.0'
 gem 'paperclip-av-transcoder'
-gem 'aws-sdk', '< 2.0'
+gem 'aws-sdk', '>= 2.0'
 
 gem 'http'
 gem 'httplog'

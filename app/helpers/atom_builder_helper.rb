@@ -116,9 +116,9 @@ module AtomBuilderHelper
   end
 
   def link_avatar(xml, account)
-    single_link_avatar(xml, account, :large,  300)
-    single_link_avatar(xml, account, :medium, 96)
-    single_link_avatar(xml, account, :small,  48)
+    single_link_avatar(xml, account, :large, 300)
+    # single_link_avatar(xml, account, :medium, 96)
+    # single_link_avatar(xml, account, :small,  48)
   end
 
   def logo(xml, url)
