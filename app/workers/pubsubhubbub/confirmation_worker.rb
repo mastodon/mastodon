@@ -4,6 +4,8 @@ class Pubsubhubbub::ConfirmationWorker
   include Sidekiq::Worker
   include RoutingHelper
 
+  sidekiq_options queue: 'push'
+
   def perform(subscription_id, mode, secret = nil, lease_seconds = nil)
     subscription = Subscription.find(subscription_id)
     challenge    = SecureRandom.hex

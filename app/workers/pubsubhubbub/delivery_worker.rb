@@ -4,6 +4,8 @@ class Pubsubhubbub::DeliveryWorker
   include Sidekiq::Worker
   include RoutingHelper
 
+  sidekiq_options queue: 'push'
+
   def perform(subscription_id, payload)
     subscription = Subscription.find(subscription_id)
     headers      = {}

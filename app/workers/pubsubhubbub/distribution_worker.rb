@@ -3,6 +3,8 @@
 class Pubsubhubbub::DistributionWorker
   include Sidekiq::Worker
 
+  sidekiq_options queue: 'push'
+
   def perform(stream_entry_id)
     stream_entry = StreamEntry.find(stream_entry_id)
     account      = stream_entry.account

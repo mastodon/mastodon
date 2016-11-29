@@ -257,6 +257,9 @@ GEM
       rack
     rack-test (0.6.3)
       rack (>= 1.0)
+    rack-timeout (0.4.2)
+    rack-timeout-puma (0.0.1)
+      rack-timeout (~> 0.2, >= 0.2.0)
     rails-dom-testing (2.0.1)
       activesupport (>= 4.2.0, < 6.0)
       nokogiri (~> 1.6.0)
@@ -438,6 +441,7 @@ DEPENDENCIES
   rabl
   rack-attack
   rack-cors
+  rack-timeout-puma
   rails!
   rails_12factor
   rails_autolink
