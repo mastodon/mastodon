@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module ObfuscateFilename
   extend ActiveSupport::Concern
 
@@ -11,6 +12,6 @@ module ObfuscateFilename
     file = params.dig(*path)
     return if file.nil?
 
-    file.original_filename = "media" + File.extname(file.original_filename)
+    file.original_filename = 'media' + File.extname(file.original_filename)
   end
 end

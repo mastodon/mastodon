@@ -70,6 +70,7 @@ const ComposeForm = React.createClass({
     suggestion_token: React.PropTypes.string,
     suggestions: React.PropTypes.array,
     sensitive: React.PropTypes.bool,
+    unlisted: React.PropTypes.bool,
     is_submitting: React.PropTypes.bool,
     is_uploading: React.PropTypes.bool,
     in_reply_to: ImmutablePropTypes.map,
@@ -79,7 +80,8 @@ const ComposeForm = React.createClass({
     onClearSuggestions: React.PropTypes.func.isRequired,
     onFetchSuggestions: React.PropTypes.func.isRequired,
     onSuggestionSelected: React.PropTypes.func.isRequired,
-    onChangeSensitivity: React.PropTypes.func.isRequired
+    onChangeSensitivity: React.PropTypes.func.isRequired,
+    onChangeVisibility: React.PropTypes.func.isRequired
   },
 
   mixins: [PureRenderMixin],
@@ -147,6 +149,10 @@ const ComposeForm = React.createClass({
     this.props.onChangeSensitivity(e.target.checked);
   },
 
+  handleChangeVisibility (e) {
+    this.props.onChangeVisibility(e.target.checked);
+  },
+
   render () {
     const { intl } = this.props;
     let replyArea  = '';
@@ -187,7 +193,12 @@ const ComposeForm = React.createClass({
           <UploadButtonContainer style={{ paddingTop: '4px' }} />
         </div>
 
-        <label style={{ display: 'block', lineHeight: '24px', verticalAlign: 'middle', marginTop: '10px', borderTop: '1px solid #616b86', paddingTop: '10px' }}>
+        <label style={{ display: 'block', lineHeight: '24px', verticalAlign: 'middle', marginTop: '10px', borderTop: '1px solid #282c37', paddingTop: '10px' }}>
+          <Toggle checked={this.props.unlisted} onChange={this.handleChangeVisibility} />
+          <span style={{ display: 'inline-block', verticalAlign: 'middle', marginBottom: '14px', marginLeft: '8px', color: '#9baec8' }}><FormattedMessage id='compose_form.unlisted' defaultMessage='Unlisted mode' /></span>
+        </label>
+
+        <label style={{ display: 'block', lineHeight: '24px', verticalAlign: 'middle' }}>
           <Toggle checked={this.props.sensitive} onChange={this.handleChangeSensitivity} />
           <span style={{ display: 'inline-block', verticalAlign: 'middle', marginBottom: '14px', marginLeft: '8px', color: '#9baec8' }}><FormattedMessage id='compose_form.sensitive' defaultMessage='Mark content as sensitive' /></span>
         </label>

@@ -16,7 +16,8 @@ import {
   COMPOSE_SUGGESTIONS_CLEAR,
   COMPOSE_SUGGESTIONS_READY,
   COMPOSE_SUGGESTION_SELECT,
-  COMPOSE_SENSITIVITY_CHANGE
+  COMPOSE_SENSITIVITY_CHANGE,
+  COMPOSE_VISIBILITY_CHANGE
 } from '../actions/compose';
 import { TIMELINE_DELETE } from '../actions/timelines';
 import { ACCOUNT_SET_SELF } from '../actions/accounts';
@@ -25,6 +26,7 @@ import Immutable from 'immutable';
 const initialState = Immutable.Map({
   mounted: false,
   sensitive: false,
+  unlisted: false,
   text: '',
   in_reply_to: null,
   is_submitting: false,
@@ -91,6 +93,8 @@ export default function compose(state = initialState, action) {
       return state.set('mounted', false);
     case COMPOSE_SENSITIVITY_CHANGE:
       return state.set('sensitive', action.checked);
+    case COMPOSE_VISIBILITY_CHANGE:
+      return state.set('unlisted', action.checked);
     case COMPOSE_CHANGE:
       return state.set('text', action.text);
     case COMPOSE_REPLY:

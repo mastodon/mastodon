@@ -7,7 +7,8 @@ import {
   clearComposeSuggestions,
   fetchComposeSuggestions,
   selectComposeSuggestion,
-  changeComposeSensitivity
+  changeComposeSensitivity,
+  changeComposeVisibility
 } from '../../../actions/compose';
 import { makeGetStatus } from '../../../selectors';
 
@@ -20,6 +21,7 @@ const makeMapStateToProps = () => {
       suggestion_token: state.getIn(['compose', 'suggestion_token']),
       suggestions: state.getIn(['compose', 'suggestions']).toJS(),
       sensitive: state.getIn(['compose', 'sensitive']),
+      unlisted: state.getIn(['compose', 'unlisted']),
       is_submitting: state.getIn(['compose', 'is_submitting']),
       is_uploading: state.getIn(['compose', 'is_uploading']),
       in_reply_to: getStatus(state, state.getIn(['compose', 'in_reply_to']))
@@ -57,6 +59,10 @@ const mapDispatchToProps = function (dispatch) {
 
     onChangeSensitivity (checked) {
       dispatch(changeComposeSensitivity(checked));
+    },
+
+    onChangeVisibility (checked) {
+      dispatch(changeComposeVisibility(checked));
     }
   }
 };

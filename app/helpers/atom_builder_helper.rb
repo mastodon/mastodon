@@ -38,7 +38,7 @@ module AtomBuilderHelper
   end
 
   def verb(xml, verb)
-    xml['activity'].send('verb', "http://activitystrea.ms/schema/1.0/#{verb}")
+    xml['activity'].send('verb', TagManager::VERBS[verb])
   end
 
   def content(xml, content)
@@ -62,7 +62,7 @@ module AtomBuilderHelper
   end
 
   def object_type(xml, type)
-    xml['activity'].send('object-type', "http://activitystrea.ms/schema/1.0/#{type}")
+    xml['activity'].send('object-type', TagManager::TYPES[type])
   end
 
   def uri(xml, uri)
@@ -108,7 +108,7 @@ module AtomBuilderHelper
   end
 
   def link_mention(xml, account)
-    xml.link(rel: 'mentioned', href: TagManager.instance.uri_for(account))
+    xml.link(:rel => 'mentioned', :href => TagManager.instance.uri_for(account), 'ostatus:object-type' => TagManager::TYPES[:person])
   end
 
   def link_enclosure(xml, media)
@@ -137,6 +137,11 @@ module AtomBuilderHelper
     else
       activity.content
     end
+  end
+
+  def link_visibility(xml, item)
+    return unless item.respond_to?(:visibility) && item.public_visibility?
+    xml.link(:rel => 'mentioned', :href => TagManager::COLLECTIONS[:public], 'ostatus:object-type' => TagManager::TYPES[:collection])
   end
 
   def include_author(xml, account)
@@ -189,6 +194,8 @@ module AtomBuilderHelper
             include_author xml, stream_entry.target.account
           end
 
+          link_visibility xml, stream_entry.target
+
           stream_entry.target.mentions.each do |mention|
             link_mention xml, mention.account
           end
@@ -204,25 +211,34 @@ module AtomBuilderHelper
       end
     end
 
+    link_visibility xml, stream_entry.activity
+
     stream_entry.mentions.each do |mentioned|
       link_mention xml, mentioned
     end
 
-    if stream_entry.activity.is_a?(Status)
-      stream_entry.activity.media_attachments.each do |media|
-        link_enclosure xml, media
-      end
+    return unless stream_entry.activity.is_a?(Status)
 
-      stream_entry.activity.tags.each do |tag|
-        category xml, tag
-      end
+    stream_entry.activity.media_attachments.each do |media|
+      link_enclosure xml, media
+    end
+
+    stream_entry.activity.tags.each do |tag|
+      category xml, tag
     end
   end
 
   private
 
   def root_tag(xml, tag, &block)
-    xml.send(tag, { :xmlns => 'http://www.w3.org/2005/Atom', 'xmlns:thr' => 'http://purl.org/syndication/thread/1.0', 'xmlns:activity' => 'http://activitystrea.ms/spec/1.0/', 'xmlns:poco' => 'http://portablecontacts.net/spec/1.0', 'xmlns:media' => 'http://purl.org/syndication/atommedia' }, &block)
+    xml.send(tag, {
+               'xmlns'          => TagManager::XMLNS,
+               'xmlns:thr'      => TagManager::THR_XMLNS,
+               'xmlns:activity' => TagManager::AS_XMLNS,
+               'xmlns:poco'     => TagManager::POCO_XMLNS,
+               'xmlns:media'    => TagManager::MEDIA_XMLNS,
+               'xmlns:ostatus'  => TagManager::OS_XMLNS,
+             }, &block)
   end
 
   def single_link_avatar(xml, account, size, px)

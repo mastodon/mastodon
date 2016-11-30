@@ -23,6 +23,7 @@ export const COMPOSE_MOUNT   = 'COMPOSE_MOUNT';
 export const COMPOSE_UNMOUNT = 'COMPOSE_UNMOUNT';
 
 export const COMPOSE_SENSITIVITY_CHANGE = 'COMPOSE_SENSITIVITY_CHANGE';
+export const COMPOSE_VISIBILITY_CHANGE  = 'COMPOSE_VISIBILITY_CHANGE';
 
 export function changeCompose(text) {
   return {
@@ -65,7 +66,8 @@ export function submitCompose() {
       status: getState().getIn(['compose', 'text'], ''),
       in_reply_to_id: getState().getIn(['compose', 'in_reply_to'], null),
       media_ids: getState().getIn(['compose', 'media_attachments']).map(item => item.get('id')),
-      sensitive: getState().getIn(['compose', 'sensitive'])
+      sensitive: getState().getIn(['compose', 'sensitive']),
+      unlisted: getState().getIn(['compose', 'unlisted'])
     }).then(function (response) {
       dispatch(submitComposeSuccess(response.data));
       dispatch(updateTimeline('home', response.data));
@@ -204,6 +206,13 @@ export function unmountCompose() {
 export function changeComposeSensitivity(checked) {
   return {
     type: COMPOSE_SENSITIVITY_CHANGE,
+    checked
+  };
+};
+
+export function changeComposeVisibility(checked) {
+  return {
+    type: COMPOSE_VISIBILITY_CHANGE,
     checked
   };
 };

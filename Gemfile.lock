@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/rails/rails.git
-  revision: ecb394a31420f6fd1d0ab692c79f2dd44176e2c9
+  revision: c7a716aa5a692cae301d56b345faa5d79cbfc320
   branch: 5-0-stable
   specs:
     actioncable (5.0.0.1)
@@ -110,7 +110,7 @@ GEM
     coffee-script-source (1.10.0)
     colorize (0.8.1)
     concurrent-ruby (1.0.2)
-    connection_pool (2.2.0)
+    connection_pool (2.2.1)
     crack (0.4.3)
       safe_yaml (~> 1.0.0)
     debug_inspector (0.0.2)
@@ -287,7 +287,7 @@ GEM
       execjs
       railties (>= 3.2)
       tilt
-    redis (3.3.1)
+    redis (3.3.2)
     redis-actionpack (5.0.0)
       actionpack (>= 4.0.0, < 6)
       redis-rack (~> 2.0.0.pre)
@@ -348,10 +348,10 @@ GEM
     sdoc (0.4.1)
       json (~> 1.7, >= 1.7.7)
       rdoc (~> 4.0)
-    sidekiq (4.2.1)
+    sidekiq (4.2.7)
       concurrent-ruby (~> 1.0)
       connection_pool (~> 2.2, >= 2.2.0)
-      rack-protection (~> 1.5)
+      rack-protection (>= 1.5.0)
       redis (~> 3.2, >= 3.2.1)
     simple_form (3.2.1)
       actionpack (> 4, < 5.1)
@@ -374,7 +374,7 @@ GEM
       tins (~> 1.0)
     terminal-table (1.7.0)
       unicode-display_width (~> 1.1)
-    thor (0.19.1)
+    thor (0.19.4)
     thread (0.2.2)
     thread_safe (0.3.5)
     tilt (2.0.5)

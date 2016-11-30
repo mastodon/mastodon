@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 class ProcessInteractionService < BaseService
-  ACTIVITY_NS = 'http://activitystrea.ms/spec/1.0/'
-
   # Record locally the remote interaction with our user
   # @param [String] envelope Salmon envelope
   # @param [Account] target_account Account the Salmon was addressed to
@@ -14,8 +12,8 @@ class ProcessInteractionService < BaseService
 
     return unless contains_author?(xml)
 
-    username = xml.at_xpath('/xmlns:entry/xmlns:author/xmlns:name').content
-    url      = xml.at_xpath('/xmlns:entry/xmlns:author/xmlns:uri').content
+    username = xml.at_xpath('/xmlns:entry/xmlns:author/xmlns:name', xmlns: TagManager::XMLNS).content
+    url      = xml.at_xpath('/xmlns:entry/xmlns:author/xmlns:uri', xmlns: TagManager::XMLNS).content
     domain   = Addressable::URI.parse(url).host
     account  = Account.find_by(username: username, domain: domain)
 
@@ -26,7 +24,7 @@ class ProcessInteractionService < BaseService
     end
 
     if salmon.verify(envelope, account.keypair)
-      update_remote_profile_service.call(xml.at_xpath('/xmlns:entry'), account, true)
+      update_remote_profile_service.call(xml.at_xpath('/xmlns:entry', xmlns: TagManager::XMLNS), account, true)
 
       case verb(xml)
       when :follow
@@ -50,16 +48,17 @@ class ProcessInteractionService < BaseService
   private
 
   def contains_author?(xml)
-    !(xml.at_xpath('/xmlns:entry/xmlns:author/xmlns:name').nil? || xml.at_xpath('/xmlns:entry/xmlns:author/xmlns:uri').nil?)
+    !(xml.at_xpath('/xmlns:entry/xmlns:author/xmlns:name', xmlns: TagManager::XMLNS).nil? || xml.at_xpath('/xmlns:entry/xmlns:author/xmlns:uri', xmlns: TagManager::XMLNS).nil?)
   end
 
   def mentions_account?(xml, account)
-    xml.xpath('/xmlns:entry/xmlns:link[@rel="mentioned"]').each { |mention_link| return true if mention_link.attribute('href').value == TagManager.instance.url_for(account) }
+    xml.xpath('/xmlns:entry/xmlns:link[@rel="mentioned"]', xmlns: TagManager::XMLNS).each { |mention_link| return true if mention_link.attribute('href').value == TagManager.instance.url_for(account) }
     false
   end
 
   def verb(xml)
-    xml.at_xpath('//activity:verb', activity: ACTIVITY_NS).content.gsub('http://activitystrea.ms/schema/1.0/', '').gsub('http://ostatus.org/schema/1.0/', '').to_sym
+    raw = xml.at_xpath('//activity:verb', activity: TagManager::AS_XMLNS).content
+    TagManager::VERBS.key(raw)
   rescue
     :post
   end
@@ -74,7 +73,7 @@ class ProcessInteractionService < BaseService
   end
 
   def delete_post!(xml, account)
-    status = Status.find(xml.at_xpath('//xmlns:id').content)
+    status = Status.find(xml.at_xpath('//xmlns:id', xmlns: TagManager::XMLNS).content)
 
     return if status.nil?
 
@@ -96,7 +95,7 @@ class ProcessInteractionService < BaseService
   end
 
   def activity_id(xml)
-    xml.at_xpath('//activity:object', activity: ACTIVITY_NS).at_xpath('./xmlns:id').content
+    xml.at_xpath('//activity:object', activity: TagManager::AS_XMLNS).at_xpath('./xmlns:id', xmlns: TagManager::XMLNS).content
   end
 
   def salmon

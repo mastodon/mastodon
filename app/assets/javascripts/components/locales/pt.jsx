@@ -33,6 +33,8 @@ const pt = {
   "tabs_bar.public": "Público",
   "compose_form.placeholder": "Que estás pensando?",
   "compose_form.publish": "Publicar",
+  "compose_form.sensitive": null,
+  "compose_form.unlisted": null,
   "navigation_bar.settings": "Configurações",
   "navigation_bar.public_timeline": "Timeline Pública",
   "navigation_bar.logout": "Logout",

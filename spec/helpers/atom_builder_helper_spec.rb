@@ -13,7 +13,7 @@ RSpec.describe AtomBuilderHelper, type: :helper do
 
   describe '#feed' do
     it 'creates a feed' do
-      expect(used_in_builder { |xml| helper.feed(xml) }).to match '<feed xmlns="http://www.w3.org/2005/Atom" xmlns:thr="http://purl.org/syndication/thread/1.0" xmlns:activity="http://activitystrea.ms/spec/1.0/" xmlns:poco="http://portablecontacts.net/spec/1.0" xmlns:media="http://purl.org/syndication/atommedia"/>'
+      expect(used_in_builder { |xml| helper.feed(xml) }).to match '<feed xmlns="http://www.w3.org/2005/Atom" xmlns:thr="http://purl.org/syndication/thread/1.0" xmlns:activity="http://activitystrea.ms/spec/1.0/" xmlns:poco="http://portablecontacts.net/spec/1.0" xmlns:media="http://purl.org/syndication/atommedia" xmlns:ostatus="http://ostatus.org/schema/1.0"/>'
     end
   end
 
@@ -46,7 +46,7 @@ RSpec.describe AtomBuilderHelper, type: :helper do
 
   describe '#verb' do
     it 'creates an entry' do
-      expect(used_with_namespaces { |xml| helper.verb(xml, 'verb') }).to match '<activity:verb>http://activitystrea.ms/schema/1.0/verb</activity:verb>'
+      expect(used_with_namespaces { |xml| helper.verb(xml, :post) }).to match '<activity:verb>http://activitystrea.ms/schema/1.0/post</activity:verb>'
     end
   end
 
@@ -76,7 +76,7 @@ RSpec.describe AtomBuilderHelper, type: :helper do
 
   describe '#object_type' do
     it 'creates an object type' do
-      expect(used_with_namespaces { |xml| helper.object_type(xml, 'test') }).to match '<activity:object-type>http://activitystrea.ms/schema/1.0/test</activity:object-type>'
+      expect(used_with_namespaces { |xml| helper.object_type(xml, :person) }).to match '<activity:object-type>http://activitystrea.ms/schema/1.0/person</activity:object-type>'
     end
   end
 
@@ -146,7 +146,7 @@ RSpec.describe AtomBuilderHelper, type: :helper do
     let(:account) { Fabricate(:account, username: 'alice') }
 
     it 'creates a link' do
-      expect(used_in_builder { |xml| helper.link_mention(xml, account) }).to match '<link rel="mentioned" href="https://cb6e6126.ngrok.io/users/alice"/>'
+      expect(used_in_builder { |xml| helper.link_mention(xml, account) }).to match '<link rel="mentioned" href="https://cb6e6126.ngrok.io/users/alice" ostatus:object-type="http://activitystrea.ms/schema/1.0/person"/>'
     end
   end
 

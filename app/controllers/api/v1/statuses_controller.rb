@@ -52,7 +52,7 @@ class Api::V1::StatusesController < ApiController
   end
 
   def create
-    @status = PostStatusService.new.call(current_user.account, params[:status], params[:in_reply_to_id].blank? ? nil : Status.find(params[:in_reply_to_id]), media_ids: params[:media_ids], sensitive: params[:sensitive])
+    @status = PostStatusService.new.call(current_user.account, params[:status], params[:in_reply_to_id].blank? ? nil : Status.find(params[:in_reply_to_id]), media_ids: params[:media_ids], sensitive: params[:sensitive], unlisted: params[:unlisted])
     render action: :show
   end
 
@@ -73,7 +73,7 @@ class Api::V1::StatusesController < ApiController
     @reblogged_map = { @status.id => false }
 
     RemovalWorker.perform_async(reblog.id)
-    
+
     render action: :show
   end
 

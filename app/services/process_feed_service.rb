@@ -1,9 +1,6 @@
 # frozen_string_literal: true
 
 class ProcessFeedService < BaseService
-  ACTIVITY_NS = 'http://activitystrea.ms/spec/1.0/'
-  THREAD_NS   = 'http://purl.org/syndication/thread/1.0'
-
   def call(body, account)
     xml = Nokogiri::XML(body)
     xml.encoding = 'utf-8'
@@ -15,12 +12,12 @@ class ProcessFeedService < BaseService
   private
 
   def update_author(xml, account)
-    return if xml.at_xpath('/xmlns:feed').nil?
-    UpdateRemoteProfileService.new.call(xml.at_xpath('/xmlns:feed'), account, true)
+    return if xml.at_xpath('/xmlns:feed', xmlns: TagManager::XMLNS).nil?
+    UpdateRemoteProfileService.new.call(xml.at_xpath('/xmlns:feed', xmlns: TagManager::XMLNS), account, true)
   end
 
   def process_entries(xml, account)
-    xml.xpath('//xmlns:entry').reverse_each.map { |entry| ProcessEntry.new.call(entry, account) }.compact
+    xml.xpath('//xmlns:entry', xmlns: TagManager::XMLNS).reverse_each.map { |entry| ProcessEntry.new.call(entry, account) }.compact
   end
 
   class ProcessEntry
@@ -48,7 +45,7 @@ class ProcessFeedService < BaseService
       status = status_from_xml(@xml)
 
       if verb == :share
-        original_status = status_from_xml(@xml.at_xpath('.//activity:object', activity: ACTIVITY_NS))
+        original_status = status_from_xml(@xml.at_xpath('.//activity:object', activity: TagManager::AS_XMLNS))
         status.reblog   = original_status
 
         if original_status.nil?
@@ -138,9 +135,15 @@ class ProcessFeedService < BaseService
 
     def mentions_from_xml(parent, xml)
       processed_account_ids = []
+      public_visibility     = false
 
-      xml.xpath('./xmlns:link[@rel="mentioned"]').each do |link|
-        next if link['href'] == 'http://activityschema.org/collection/public'
+      xml.xpath('./xmlns:link[@rel="mentioned"]', xmlns: TagManager::XMLNS).each do |link|
+        if link['ostatus:object-type'] == TagManager::TYPES[:collection] && link['href'] == TagManager::COLLECTIONS[:public]
+          public_visibility = true
+          next
+        elsif link['ostatus:object-type'] == TagManager::TYPES[:group]
+          next
+        end
 
         url = Addressable::URI.parse(link['href'])
 
@@ -160,15 +163,18 @@ class ProcessFeedService < BaseService
         # So we can skip duplicate mentions
         processed_account_ids << mentioned_account.id
       end
+
+      parent.visibility = public_visibility ? :public : :unlisted
+      parent.save!
     end
 
     def hashtags_from_xml(parent, xml)
-      tags = xml.xpath('./xmlns:category').map { |category| category['term'] }.select { |t| !t.blank? }
+      tags = xml.xpath('./xmlns:category', xmlns: TagManager::XMLNS).map { |category| category['term'] }.select { |t| !t.blank? }
       ProcessHashtagsService.new.call(parent, tags)
     end
 
     def media_from_xml(parent, xml)
-      xml.xpath('./xmlns:link[@rel="enclosure"]').each do |link|
+      xml.xpath('./xmlns:link[@rel="enclosure"]', xmlns: TagManager::XMLNS).each do |link|
         next unless link['href']
 
         media = MediaAttachment.where(status: parent, remote_url: link['href']).first_or_initialize(account: parent.account, status: parent, remote_url: link['href'])
@@ -183,52 +189,52 @@ class ProcessFeedService < BaseService
     end
 
     def id(xml = @xml)
-      xml.at_xpath('./xmlns:id').content
+      xml.at_xpath('./xmlns:id', xmlns: TagManager::XMLNS).content
     end
 
     def verb(xml = @xml)
-      raw = xml.at_xpath('./activity:verb', activity: ACTIVITY_NS).content
-      raw.gsub('http://activitystrea.ms/schema/1.0/', '').gsub('http://ostatus.org/schema/1.0/', '').to_sym
+      raw = xml.at_xpath('./activity:verb', activity: TagManager::AS_XMLNS).content
+      TagManager::VERBS.key(raw)
     rescue
       :post
     end
 
     def type(xml = @xml)
-      raw = xml.at_xpath('./activity:object-type', activity: ACTIVITY_NS).content
-      raw.gsub('http://activitystrea.ms/schema/1.0/', '').gsub('http://ostatus.org/schema/1.0/', '').to_sym
+      raw = xml.at_xpath('./activity:object-type', activity: TagManager::AS_XMLNS).content
+      TagManager::TYPES.key(raw)
     rescue
       :activity
     end
 
     def url(xml = @xml)
-      link = xml.at_xpath('./xmlns:link[@rel="alternate"]')
+      link = xml.at_xpath('./xmlns:link[@rel="alternate"]', xmlns: TagManager::XMLNS)
       link.nil? ? nil : link['href']
     end
 
     def content(xml = @xml)
-      xml.at_xpath('./xmlns:content').content
+      xml.at_xpath('./xmlns:content', xmlns: TagManager::XMLNS).content
     end
 
     def published(xml = @xml)
-      xml.at_xpath('./xmlns:published').content
+      xml.at_xpath('./xmlns:published', xmlns: TagManager::XMLNS).content
     end
 
     def thread?(xml = @xml)
-      !xml.at_xpath('./thr:in-reply-to', thr: THREAD_NS).nil?
+      !xml.at_xpath('./thr:in-reply-to', thr: TagManager::THR_XMLNS).nil?
     end
 
     def thread(xml = @xml)
-      thr = xml.at_xpath('./thr:in-reply-to', thr: THREAD_NS)
+      thr = xml.at_xpath('./thr:in-reply-to', thr: TagManager::THR_XMLNS)
       [thr['ref'], thr['href']]
     end
 
     def account?(xml = @xml)
-      !xml.at_xpath('./xmlns:author').nil?
+      !xml.at_xpath('./xmlns:author', xmlns: TagManager::XMLNS).nil?
     end
 
     def acct(xml = @xml)
-      username = xml.at_xpath('./xmlns:author/xmlns:name').content
-      url      = xml.at_xpath('./xmlns:author/xmlns:uri').content
+      username = xml.at_xpath('./xmlns:author/xmlns:name', xmlns: TagManager::XMLNS).content
+      url      = xml.at_xpath('./xmlns:author/xmlns:uri', xmlns: TagManager::XMLNS).content
       domain   = Addressable::URI.parse(url).host
 
       "#{username}@#{domain}"

@@ -8,7 +8,7 @@ class FanOutOnWriteService < BaseService
     deliver_to_followers(status)
     deliver_to_mentioned(status)
 
-    return if status.account.silenced?
+    return if status.account.silenced? || !status.public_visibility?
 
     deliver_to_hashtags(status)
     deliver_to_public(status)

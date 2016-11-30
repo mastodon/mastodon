@@ -5,6 +5,8 @@ class Status < ApplicationRecord
   include Streamable
   include Cacheable
 
+  enum visibility: [:public, :unlisted], _suffix: :visibility
+
   belongs_to :account, inverse_of: :statuses
 
   belongs_to :thread, foreign_key: 'in_reply_to_id', class_name: 'Status', inverse_of: :replies
@@ -100,6 +102,7 @@ class Status < ApplicationRecord
 
     def as_public_timeline(account = nil)
       query = joins('LEFT OUTER JOIN accounts ON statuses.account_id = accounts.id')
+              .where(visibility: :public)
               .where('accounts.silenced = FALSE')
               .where('statuses.in_reply_to_id IS NULL')
               .where('statuses.reblog_of_id IS NULL')
@@ -110,6 +113,7 @@ class Status < ApplicationRecord
     def as_tag_timeline(tag, account = nil)
       query = tag.statuses
                  .joins('LEFT OUTER JOIN accounts ON statuses.account_id = accounts.id')
+                 .where(visibility: :public)
                  .where('accounts.silenced = FALSE')
                  .where('statuses.in_reply_to_id IS NULL')
                  .where('statuses.reblog_of_id IS NULL')

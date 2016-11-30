@@ -34,6 +34,8 @@ const en = {
   "tabs_bar.notifications": "Mitteilungen",
   "compose_form.placeholder": "Worüber möchstest du schreiben?",
   "compose_form.publish": "Veröffentlichen",
+  "compose_form.sensitive": "Medien als sensitiv markieren",
+  "compose_form.unlisted": "Öffentlich nicht auflisten",
   "navigation_bar.settings": "Einstellungen",
   "navigation_bar.public_timeline": "Öffentlich",
   "navigation_bar.logout": "Abmelden",
