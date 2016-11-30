@@ -2,6 +2,8 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import emojify from '../emoji';
 
+const hideContent = str => $('<p>').html(str).text().replace(/[^\s]/g, '█');
+
 const StatusContent = React.createClass({
 
   contextTypes: {
@@ -12,6 +14,12 @@ const StatusContent = React.createClass({
     status: ImmutablePropTypes.map.isRequired,
     onClick: React.PropTypes.func
   },
+
+  // getInitialState () {
+  //   return {
+  //     visible: false
+  //   };
+  // },
 
   mixins: [PureRenderMixin],
 
@@ -57,8 +65,12 @@ const StatusContent = React.createClass({
   },
 
   render () {
-    const content = { __html: emojify(this.props.status.get('content')) };
-    return <div className='status__content' style={{ cursor: 'pointer' }} dangerouslySetInnerHTML={content} onClick={this.props.onClick} />;
+    const { status, onClick } = this.props;
+
+    const hidden  = false; // (status.get('sensitive') && !this.state.visible);
+    const content = { __html: hidden ? hideContent(status.get('content')) : emojify(status.get('content')) };
+
+    return <div className='status__content' style={{ cursor: 'pointer', color: hidden ? '#616b86' : null }} dangerouslySetInnerHTML={content} onClick={onClick} />;
   },
 
 });
