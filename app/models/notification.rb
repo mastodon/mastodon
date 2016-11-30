@@ -2,6 +2,7 @@
 
 class Notification < ApplicationRecord
   include Paginable
+  include Cacheable
 
   belongs_to :account
   belongs_to :activity, polymorphic: true
@@ -15,7 +16,7 @@ class Notification < ApplicationRecord
 
   STATUS_INCLUDES = [:account, :stream_entry, :media_attachments, :tags, mentions: :account, reblog: [:stream_entry, :account, :media_attachments, :tags, mentions: :account]].freeze
 
-  scope :with_includes, -> { includes(status: STATUS_INCLUDES, mention: [status: STATUS_INCLUDES], favourite: [:account, status: STATUS_INCLUDES], follow: :account) }
+  cache_associated status: STATUS_INCLUDES, mention: [status: STATUS_INCLUDES], favourite: [:account, status: STATUS_INCLUDES], follow: :account
 
   def activity
     send(activity_type.downcase)
