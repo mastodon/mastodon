@@ -19,6 +19,8 @@ class Pubsubhubbub::DeliveryWorker
                    .post(subscription.callback_url, body: payload)
 
     raise "Delivery failed for #{subscription.callback_url}: HTTP #{response.code}" unless response.code > 199 && response.code < 300
+
+    subscription.touch(:last_successful_delivery_at)
   end
 
   private
