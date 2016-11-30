@@ -1,0 +1,60 @@
+---
+pt:
+  about:
+    about_instance: "<em>%{instance}</em> é uma instância de Mastodon."
+    about_mastodon: Mastodon é um servidor de rede social <em>grátis, e open-source</em>. Uma alternativa <em>descentralizada</em> 
+    ás plataformas comerciais, que evita o risco de uma única empresa monopolizar a sua comunicação. Qualquer um pode ter uma instância Mastodon e assim participar na <em>rede social federada</em> sem problemas.
+    get_started: Como começar
+    source_code: Source code
+    terms: Termos
+  accounts:
+    follow: Seguir
+    followers: Seguidores
+    following: Following
+    nothing_here: Não há nada aqui!
+    people_followed_by: Pessoas seguidas por %{name}
+    people_who_follow: Pessoas que seguem %{name}
+    posts: Posts
+    unfollow: Unfollow
+  application_mailer:
+    signature: notificações Mastodon de %{instance}
+  auth:
+    change_password: Mudar password
+    didnt_get_confirmation: Não recebeu instruções de confirmação?
+    forgot_password: Esqueceu a password?
+    login: Entrar
+    register: Registar
+    resend_confirmation: Reenviar instruções de confirmação
+    reset_password: Reset password
+    set_new_password: Editar password
+  generic:
+    changes_saved_msg: Mudanças guardadas!
+    powered_by: powered by %{link}
+    save_changes: Guardar alterações
+    validation_errors:
+      one: Algo não está correto. Por favor reveja o erro abaixo
+      other: Algo não está correto. Por favor reveja os %{count} erros abaixo
+  notification_mailer:
+    favourite:
+      body: 'O seu post foi favoritado por %{name}:'
+      subject: "%{name} favouritou o seu post"
+    follow:
+      body: "%{name} seguiu você!"
+      subject: "%{name} segue você"
+    mention:
+      body: 'Você foi mencionado por %{name} em:'
+      subject: Foi mencionado por %{name}
+    reblog:
+      body: 'O seu post foi reblogado por %{name}:'
+      subject: "%{name} reblogou o seu post"
+  pagination:
+    next: Next
+    prev: Prev
+  settings:
+    edit_profile: Editar perfil
+    preferences: Preferências
+  stream_entries:
+    favourited: favoritou um post por
+    is_now_following: agora segue
+  will_paginate:
+    page_gap: "&hellip;"
