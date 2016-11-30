@@ -46,6 +46,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :pubsubhubbub, only: [:index]
+    resources :accounts, only: [:index, :show]
   end
 
   namespace :api do

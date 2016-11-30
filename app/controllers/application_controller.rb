@@ -37,7 +37,7 @@ class ApplicationController < ActionController::Base
   end
 
   def set_user_activity
-    current_user.touch(:current_sign_in_at) if !current_user.nil? && current_user.current_sign_in_at < 24.hours.ago
+    current_user.touch(:current_sign_in_at) if !current_user.nil? && (current_user.current_sign_in_at.nil? || current_user.current_sign_in_at < 24.hours.ago)
   end
 
   protected
