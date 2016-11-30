@@ -60,6 +60,9 @@ Rails.application.routes.draw do
     # Salmon
     post '/salmon/:id', to: 'salmon#update', as: :salmon
 
+    # OEmbed
+    get '/oembed', to: 'oembed#show', as: :oembed
+
     # JSON / REST API
     namespace :v1 do
       resources :statuses, only: [:create, :show, :destroy] do
