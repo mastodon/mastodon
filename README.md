@@ -60,6 +60,7 @@ Consult the example configuration file, `.env.production.sample` for the full li
 
 - PostgreSQL
 - Redis
+- Nginx
 
 ## Running with Docker and Docker-Compose
 
@@ -82,6 +83,10 @@ And since the instance running in the container will be running in production mo
 The container has two volumes, for the assets and for user uploads. The default docker-compose.yml maps them to the repository's `public/assets` and `public/system` directories, you may wish to put them somewhere else. Likewise, the PostgreSQL and Redis images have data containers that you may wish to map somewhere where you know how to find them and back them up.
 
 **Note**: The `--rm` option for docker-compose will remove the container that is created to run a one-off command after it completes. As data is stored in volumes it is not affected by that container clean-up.
+
+### Static files and production
+
+You will also need to set up a static file server when running in production. See the [production guide](https://github.com/Gargron/mastodon/wiki/Production-guide) for a sample Nginx configuration and instructions.
 
 ### Tasks
 
