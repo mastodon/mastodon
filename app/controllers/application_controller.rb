@@ -14,6 +14,7 @@ class ApplicationController < ActionController::Base
 
   before_action :store_current_location, except: :raise_not_found, unless: :devise_controller?
   before_action :set_locale
+  before_action :set_user_activity
 
   def raise_not_found
     raise ActionController::RoutingError, "No route matches #{params[:unmatched_route]}"
@@ -33,6 +34,10 @@ class ApplicationController < ActionController::Base
 
   def require_admin!
     redirect_to root_path unless current_user&.admin?
+  end
+
+  def set_user_activity
+    current_user.touch(:current_sign_in_at) if !current_user.nil? && current_user.current_sign_in_at < 24.hours.ago
   end
 
   protected

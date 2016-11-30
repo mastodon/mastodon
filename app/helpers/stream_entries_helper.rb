@@ -6,7 +6,7 @@ module StreamEntriesHelper
   end
 
   def avatar_for_status_url(status)
-    status.reblog? ? status.reblog.account.avatar.url(:medium) : status.account.avatar.url(:medium)
+    status.reblog? ? status.reblog.account.avatar.url(:large) : status.account.avatar.url(:large)
   end
 
   def entry_classes(status, is_predecessor, is_successor, include_threads)
