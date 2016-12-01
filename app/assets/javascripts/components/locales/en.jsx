@@ -38,7 +38,7 @@ const en = {
   "compose_form.placeholder": "What is on your mind?",
   "compose_form.publish": "Toot",
   "compose_form.sensitive": "Mark content as sensitive",
-  "compose_form.unlisted": "Unlisted mode",
+  "compose_form.unlisted": "Do not show on public timeline",
   "navigation_bar.settings": "Settings",
   "navigation_bar.public_timeline": "Public timeline",
   "navigation_bar.logout": "Logout",
