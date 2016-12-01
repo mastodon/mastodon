@@ -9,7 +9,8 @@ class AccountsController < ApplicationController
   def show
     respond_to do |format|
       format.html do
-        @statuses = @account.statuses.order('id desc').with_includes.with_counters.paginate(page: params[:page], per_page: 10)
+        @statuses = @account.statuses.order('id desc').paginate_by_max_id(20, params[:max_id || nil])
+        @statuses = cache_collection(@statuses, Status)
       end
 
       format.atom do
@@ -29,11 +30,11 @@ class AccountsController < ApplicationController
   end
 
   def followers
-    @followers = @account.followers.order('follows.created_at desc').paginate(page: params[:page], per_page: 6)
+    @followers = @account.followers.order('follows.created_at desc').paginate(page: params[:page], per_page: 12)
   end
 
   def following
-    @following = @account.following.order('follows.created_at desc').paginate(page: params[:page], per_page: 6)
+    @following = @account.following.order('follows.created_at desc').paginate(page: params[:page], per_page: 12)
   end
 
   private

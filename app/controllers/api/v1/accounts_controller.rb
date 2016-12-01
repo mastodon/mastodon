@@ -47,7 +47,7 @@ class Api::V1::AccountsController < ApiController
   end
 
   def statuses
-    @statuses = @account.statuses.paginate_by_max_id(DEFAULT_STATUSES_LIMIT, params[:max_id], params[:since_id]).to_a
+    @statuses = @account.statuses.paginate_by_max_id(DEFAULT_STATUSES_LIMIT, params[:max_id], params[:since_id])
     @statuses = cache_collection(@statuses, Status)
 
     set_maps(@statuses)

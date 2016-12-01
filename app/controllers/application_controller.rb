@@ -61,6 +61,7 @@ class ApplicationController < ActionController::Base
   def cache_collection(raw, klass)
     return raw unless klass.respond_to?(:with_includes)
 
+    raw                    = raw.select(:id, :updated_at).to_a if raw.is_a?(ActiveRecord::Relation)
     uncached_ids           = []
     cached_keys_with_value = Rails.cache.read_multi(*raw.map(&:cache_key))
 
