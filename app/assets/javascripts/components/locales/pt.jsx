@@ -18,7 +18,7 @@ const pt = {
   "account.block": "Bloquear",
   "account.posts": "Posts",
   "account.follows": "Segue",
-  "account.followers": "Seguidoress",
+  "account.followers": "Seguidores",
   "account.follows_you": "Segue você",
   "getting_started.heading": "Primeiros passos",
   "getting_started.about_addressing": "Podes seguir pessoas se sabes o nome de usuário deles e o domínio em que estão entrando um endereço similar a e-mail no campo no topo da barra lateral.",
@@ -31,10 +31,10 @@ const pt = {
   "tabs_bar.home": "Home",
   "tabs_bar.mentions": "Menções",
   "tabs_bar.public": "Público",
+  "tabs_bar.notifications": "Notificações",
   "compose_form.placeholder": "Que estás pensando?",
   "compose_form.publish": "Publicar",
-  "compose_form.sensitive": null,
-  "compose_form.unlisted": null,
+  "compose_form.sensitive": "Marcar conteúdo como sensível",
   "navigation_bar.settings": "Configurações",
   "navigation_bar.public_timeline": "Timeline Pública",
   "navigation_bar.logout": "Logout",
@@ -43,7 +43,11 @@ const pt = {
   "search.account": "Conta",
   "search.hashtag": "Hashtag",
   "upload_button.label": "Adicionar media",
-  "upload_form.undo": "Desfazer"
+  "upload_form.undo": "Desfazer",
+  "notification.follow": "{name} seguiu você",
+  "notification.favourite": "{name} favoritou  seu post",
+  "notification.reblog": "{name} reblogou o seu post",
+  "notification.mention": "{name} mecionou você"
 };
 
 export default pt;
