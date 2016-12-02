@@ -7,7 +7,7 @@ class AddInReplyToAccountIdToStatuses < ActiveRecord::Migration[5.0]
         next if status.thread.nil?
 
         status.in_reply_to_account_id = status.thread.account_id
-        status.save!
+        status.save(validate: false)
       end
     end
   end
