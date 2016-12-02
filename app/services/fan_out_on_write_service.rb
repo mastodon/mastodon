@@ -8,7 +8,7 @@ class FanOutOnWriteService < BaseService
     deliver_to_followers(status)
     deliver_to_mentioned(status)
 
-    return if status.account.silenced? || !status.public_visibility?
+    return if status.account.silenced? || !status.public_visibility? || status.reblog? || (status.reply? && status.in_reply_to_account_id != status.account_id)
 
     deliver_to_hashtags(status)
     deliver_to_public(status)
@@ -41,8 +41,6 @@ class FanOutOnWriteService < BaseService
   end
 
   def deliver_to_hashtags(status)
-    return if status.reblog? || status.reply?
-
     Rails.logger.debug "Delivering status #{status.id} to hashtags"
     status.tags.find_each do |tag|
       FeedManager.instance.broadcast("hashtag:#{tag.name}", type: 'update', id: status.id)
@@ -50,8 +48,6 @@ class FanOutOnWriteService < BaseService
   end
 
   def deliver_to_public(status)
-    return if status.reblog? || status.reply?
-
     Rails.logger.debug "Delivering status #{status.id} to public timeline"
     FeedManager.instance.broadcast(:public, type: 'update', id: status.id)
   end

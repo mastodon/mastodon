@@ -105,7 +105,7 @@ class Status < ApplicationRecord
       query = joins('LEFT OUTER JOIN accounts ON statuses.account_id = accounts.id')
               .where(visibility: :public)
               .where('accounts.silenced = FALSE')
-              .where('statuses.in_reply_to_id IS NULL')
+              .where('(statuses.in_reply_to_id IS NULL OR statuses.in_reply_to_account_id = statuses.account_id)')
               .where('statuses.reblog_of_id IS NULL')
       query = filter_timeline(query, account) unless account.nil?
       query
@@ -116,7 +116,7 @@ class Status < ApplicationRecord
                  .joins('LEFT OUTER JOIN accounts ON statuses.account_id = accounts.id')
                  .where(visibility: :public)
                  .where('accounts.silenced = FALSE')
-                 .where('statuses.in_reply_to_id IS NULL')
+                 .where('(statuses.in_reply_to_id IS NULL OR statuses.in_reply_to_account_id = statuses.account_id)')
                  .where('statuses.reblog_of_id IS NULL')
       query = filter_timeline(query, account) unless account.nil?
       query
@@ -141,5 +141,6 @@ class Status < ApplicationRecord
 
   before_validation do
     text.strip!
+    self.in_reply_to_account_id = thread.account_id if reply?
   end
 end
