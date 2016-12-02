@@ -58,6 +58,8 @@ Consult the example configuration file, `.env.production.sample` for the full li
 
 ## Requirements
 
+- Ruby
+- Node.js
 - PostgreSQL
 - Redis
 - Nginx
@@ -83,10 +85,6 @@ And since the instance running in the container will be running in production mo
 The container has two volumes, for the assets and for user uploads. The default docker-compose.yml maps them to the repository's `public/assets` and `public/system` directories, you may wish to put them somewhere else. Likewise, the PostgreSQL and Redis images have data containers that you may wish to map somewhere where you know how to find them and back them up.
 
 **Note**: The `--rm` option for docker-compose will remove the container that is created to run a one-off command after it completes. As data is stored in volumes it is not affected by that container clean-up.
-
-### Static files and production
-
-You will also need to set up a static file server when running in production. See the [production guide](https://github.com/Gargron/mastodon/wiki/Production-guide) for a sample Nginx configuration and instructions.
 
 ### Tasks
 
@@ -116,13 +114,17 @@ And finally,
 
 Which will re-create the updated containers, leaving databases and data as is. Depending on what files have been updated, you might need to re-run migrations and asset compilation.
 
-### Contributing
+## Deployment without Docker
+
+Docker is great for quickly trying out software, but it has its drawbacks too. If you prefer to run Mastodon without using Docker, refer to the [production guide](https://github.com/Gargron/mastodon/wiki/Production-guide) for examples, configuration and instructions.
+
+## Contributing
 
 You can open issues for bugs you've found or features you think are missing. You can also submit pull requests to this repository. This section may be updated with more details in the future.
 
 **IRC channel**: #mastodon on irc.freenode.net
 
-### Extra credits
+## Extra credits
 
 - The [Emoji One](https://github.com/Ranks/emojione) pack has been used for the emojis
 - The error page image courtesy of [Dopatwo](https://www.youtube.com/user/dopatwo)
