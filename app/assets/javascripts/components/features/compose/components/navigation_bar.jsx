@@ -1,10 +1,11 @@
-import PureRenderMixin    from 'react-addons-pure-render-mixin';
+import PureRenderMixin from 'react-addons-pure-render-mixin';
 import ImmutablePropTypes from 'react-immutable-proptypes';
-import Avatar             from '../../../components/avatar';
+import Avatar from '../../../components/avatar';
 import IconButton from '../../../components/icon_button';
 import DisplayName from '../../../components/display_name';
-import { Link } from 'react-router';
+import Permalink from '../../../components/permalink';
 import { FormattedMessage } from 'react-intl';
+import { Link } from 'react-router';
 
 const NavigationBar = React.createClass({
   propTypes: {
@@ -16,7 +17,7 @@ const NavigationBar = React.createClass({
   render () {
     return (
       <div style={{ padding: '10px', display: 'flex', cursor: 'default' }}>
-        <Link to={`/accounts/${this.props.account.get('id')}`} style={{ textDecoration: 'none' }}><Avatar src={this.props.account.get('avatar')} size={40} /></Link>
+        <Permalink href={this.props.account.get('url')} to={`/accounts/${this.props.account.get('id')}`} style={{ textDecoration: 'none' }}><Avatar src={this.props.account.get('avatar')} size={40} /></Permalink>
 
         <div style={{ flex: '1 1 auto', marginLeft: '8px', color: '#9baec8' }}>
           <strong style={{ fontWeight: '500', display: 'block', color: '#fff' }}>{this.props.account.get('acct')}</strong>
