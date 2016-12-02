@@ -6,13 +6,16 @@ class SearchService < BaseService
 
     username, domain = query.gsub(/\A@/, '').split('@')
 
-    results = if domain.nil?
-                Account.search_for(username)
-              else
-                Account.search_for("#{username} #{domain}")
-              end
+    if domain.nil?
+      exact_match = Account.find_local(username)
+      results     = Account.search_for(username)
+    else
+      exact_match = Account.find_remote(username, domain)
+      results     = Account.search_for("#{username} #{domain}")
+    end
 
-    results = results.limit(limit)
+    results = results.limit(limit).to_a
+    results = [exact_match] + results.reject { |a| a.id == exact_match.id } if exact_match
 
     if resolve && results.empty? && !domain.nil?
       results = [FollowRemoteAccountService.new.call("#{username}@#{domain}")]

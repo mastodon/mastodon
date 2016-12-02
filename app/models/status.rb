@@ -29,7 +29,8 @@ class Status < ApplicationRecord
 
   default_scope { order('id desc') }
 
-  scope :with_counters, -> { select('statuses.*, (select count(r.id) from statuses as r where r.reblog_of_id = statuses.id) as reblogs_count, (select count(f.id) from favourites as f where f.status_id = statuses.id) as favourites_count') }
+  scope :remote, -> { where.not(uri: nil) }
+  scope :local, -> { where(uri: nil) }
 
   cache_associated :account, :media_attachments, :tags, :stream_entry, mentions: :account, reblog: [:account, :stream_entry, :tags, :media_attachments, mentions: :account], thread: :account
 

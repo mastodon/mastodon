@@ -50,15 +50,14 @@ class Account < ApplicationRecord
   # PuSH subscriptions
   has_many :subscriptions, dependent: :destroy
 
-  pg_search_scope :search_for, against: { username: 'A', domain: 'B' }, using: { tsearch: { prefix: true } }
+  pg_search_scope :search_for, against: { username: 'A', domain: 'B' },
+                               using: { tsearch: { prefix: true } }
 
   scope :remote, -> { where.not(domain: nil) }
   scope :local, -> { where(domain: nil) }
   scope :without_followers, -> { where('(select count(f.id) from follows as f where f.target_account_id = accounts.id) = 0') }
   scope :with_followers, -> { where('(select count(f.id) from follows as f where f.target_account_id = accounts.id) > 0') }
-  scope :expiring, -> (time) { where(subscription_expires_at: nil).or(where('subscription_expires_at < ?', time)).remote.with_followers }
-
-  scope :with_counters, -> { select('accounts.*, (select count(f.id) from follows as f where f.target_account_id = accounts.id) as followers_count, (select count(f.id) from follows as f where f.account_id = accounts.id) as following_count, (select count(s.id) from statuses as s where s.account_id = accounts.id) as statuses_count') }
+  scope :expiring, ->(time) { where(subscription_expires_at: nil).or(where('subscription_expires_at < ?', time)).remote.with_followers }
 
   def follow!(other_account)
     active_relationships.where(target_account: other_account).first_or_create!(target_account: other_account)
@@ -114,9 +113,15 @@ class Account < ApplicationRecord
     OStatus2::Subscription.new(remote_url, secret: secret, lease_seconds: 86_400 * 30, webhook: webhook_url, hub: hub_url)
   end
 
-  def ping!(atom_url, hubs)
-    return unless local? && !Rails.env.development?
-    OStatus2::Publication.new(atom_url, hubs).publish
+  def save_with_optional_avatar!
+    save!
+  rescue ActiveRecord::RecordInvalid => invalid
+    if invalid.record.errors[:avatar_file_size] || invalid[:avatar_content_type]
+      self.avatar = nil
+      retry
+    end
+
+    raise invalid
   end
 
   def avatar_remote_url=(url)

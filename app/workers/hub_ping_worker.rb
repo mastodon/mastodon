@@ -6,6 +6,7 @@ class HubPingWorker
 
   def perform(account_id)
     account = Account.find(account_id)
-    account.ping!(account_url(account, format: 'atom'), [Rails.configuration.x.hub_url])
+    return unless account.local?
+    OStatus2::Publication.new(account_url(account, format: 'atom'), [Rails.configuration.x.hub_url]).publish
   end
 end
