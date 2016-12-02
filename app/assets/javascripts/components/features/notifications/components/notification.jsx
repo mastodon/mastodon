@@ -6,11 +6,13 @@ import { FormattedMessage } from 'react-intl';
 import { Link } from 'react-router';
 
 const messageStyle = {
-  padding: '8px 10px',
+  marginLeft: '68px',
+  padding: '8px 0',
   paddingBottom: '0',
   cursor: 'default',
   color: '#d9e1e8',
-  fontSize: '15px'
+  fontSize: '15px',
+  position: 'relative'
 };
 
 const linkStyle = {
@@ -28,7 +30,14 @@ const Notification = React.createClass({
   renderFollow (account, link) {
     return (
       <div className='notification'>
-        <div style={messageStyle}><i className='fa fa-fw fa-user-plus' style={{ color: '#2b90d9' }} /> <FormattedMessage id='notification.follow' defaultMessage='{name} followed you' values={{ name: link }} /></div>
+        <div style={messageStyle}>
+          <div style={{ position: 'absolute', 'left': '-26px'}}>
+            <i className='fa fa-fw fa-user-plus' style={{ color: '#2b90d9' }} />
+          </div>
+
+          <FormattedMessage id='notification.follow' defaultMessage='{name} followed you' values={{ name: link }} />
+        </div>
+
         <AccountContainer id={account.get('id')} withNote={false} />
       </div>
     );
@@ -41,7 +50,14 @@ const Notification = React.createClass({
   renderFavourite (notification, link) {
     return (
       <div className='notification'>
-        <div style={messageStyle}><i className='fa fa-fw fa-star' style={{ color: '#ca8f04' }} /> <FormattedMessage id='notification.favourite' defaultMessage='{name} favourited your status' values={{ name: link }} /></div>
+        <div style={messageStyle}>
+          <div style={{ position: 'absolute', 'left': '-26px'}}>
+            <i className='fa fa-fw fa-star' style={{ color: '#ca8f04' }} />
+          </div>
+
+          <FormattedMessage id='notification.favourite' defaultMessage='{name} favourited your status' values={{ name: link }} />
+        </div>
+
         <StatusContainer id={notification.get('status')} muted={true} />
       </div>
     );
@@ -50,7 +66,14 @@ const Notification = React.createClass({
   renderReblog (notification, link) {
     return (
       <div className='notification'>
-        <div style={messageStyle}><i className='fa fa-fw fa-retweet' style={{ color: '#2b90d9' }} /> <FormattedMessage id='notification.reblog' defaultMessage='{name} reblogged your status' values={{ name: link }} /></div>
+        <div style={messageStyle}>
+          <div style={{ position: 'absolute', 'left': '-26px'}}>
+            <i className='fa fa-fw fa-retweet' style={{ color: '#2b90d9' }} />
+          </div>
+
+          <FormattedMessage id='notification.reblog' defaultMessage='{name} reblogged your status' values={{ name: link }} />
+        </div>
+
         <StatusContainer id={notification.get('status')} muted={true} />
       </div>
     );

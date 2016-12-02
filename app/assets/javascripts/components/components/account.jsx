@@ -31,7 +31,8 @@ const noteStyle = {
 };
 
 const buttonsStyle = {
-  padding: '10px'
+  padding: '10px',
+  height: '18px'
 };
 
 const Account = React.createClass({
@@ -68,25 +69,23 @@ const Account = React.createClass({
       note = <div style={noteStyle}>{account.get('note')}</div>;
     }
 
-    if (account.get('id') !== me) {
+    if (account.get('id') !== me && account.get('relationship', null) != null) {
       const following = account.getIn(['relationship', 'following']);
 
-      buttons = (
-        <div style={buttonsStyle}>
-          <IconButton icon={following ? 'user-times' : 'user-plus'} title={intl.formatMessage(messages.follow)} onClick={this.handleFollow} active={following} />
-        </div>
-      );
+      buttons = <IconButton icon={following ? 'user-times' : 'user-plus'} title={intl.formatMessage(messages.follow)} onClick={this.handleFollow} active={following} />;
     }
 
     return (
       <div style={outerStyle}>
         <div style={{ display: 'flex' }}>
           <Link key={account.get('id')} style={itemStyle} className='account__display-name' to={`/accounts/${account.get('id')}`}>
-            <div style={{ float: 'left', marginRight: '10px' }}><Avatar src={account.get('avatar')} size={36} /></div>
+            <div style={{ float: 'left', marginLeft: '12px', marginRight: '10px' }}><Avatar src={account.get('avatar')} size={36} /></div>
             <DisplayName account={account} />
           </Link>
 
-          {buttons}
+          <div style={buttonsStyle}>
+            {buttons}
+          </div>
         </div>
 
         {note}
