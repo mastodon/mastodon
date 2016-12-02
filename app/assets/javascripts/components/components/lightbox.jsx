@@ -40,6 +40,18 @@ const Lightbox = React.createClass({
 
   mixins: [PureRenderMixin],
 
+  componentDidMount () {
+    this._listener = window.addEventListener('keyup', e => {
+      if (e.key === 'Escape') {
+        this.props.onCloseClicked();
+      }
+    });
+  },
+
+  componentWillUnmount () {
+    window.removeEventListener(this._listener);
+  },
+
   render () {
     const { intl, isVisible, onOverlayClicked, onCloseClicked, children } = this.props;
 
