@@ -1,0 +1,112 @@
+---
+uk:
+  activerecord:
+    attributes:
+      doorkeeper/application:
+        name: Ім'я
+        redirect_uri: URI перенаправлення
+    errors:
+      models:
+        doorkeeper/application:
+          attributes:
+            redirect_uri:
+              fragment_present: не може містити фрагмент.
+              invalid_uri: повинен бути дійсний URI.
+              relative_uri: повинен бути абсолютний URI.
+              secured_uri: повинен бути HTTPS/SSL URI.
+  doorkeeper:
+    applications:
+      buttons:
+        authorize: Авторизувати
+        cancel: Відмінити
+        destroy: Знищити
+        edit: Редагувати
+        submit: Підтвердити
+      confirmations:
+        destroy: Ви впевнені?
+      edit:
+        title: Редагувати заявку
+      form:
+        error: От тобі маєш! Перевірь свою форму на помилки
+      help:
+        native_redirect_uri: Використовуйте %{native_redirect_uri} для локальних тестів
+        redirect_uri: Використовуйте одну стрічку на URI
+        scopes: Відділяйте області видимості пробілами. Залишайте порожніми, щоб використовувати області видимості за промовчуванням.
+      index:
+        callback_url: URL зворотнього виклику
+        name: Ім'я
+        new: Нова заявка
+        title: Ваші заявки
+      new:
+        title: Нова заявка
+      show:
+        actions: Дії
+        application_id: Номер заявки
+        callback_urls: URL зворотніх викликів
+        scopes: Області видимості
+        secret: Таємниця
+        title: 'Заявка: %{name}'
+    authorizations:
+      buttons:
+        authorize: Авторизувати
+        deny: Спростувати
+      error:
+        title: Сталася пимилка
+      new:
+        able_to: Це буде можливо
+        prompt: Заявка %{client_name} просить доступу до вашого облікового запису
+        title: Необхідна авторизація
+      show:
+        title: Код авторизації
+    authorized_applications:
+      buttons:
+        revoke: Відкликати
+      confirmations:
+        revoke: Ви впевнені?
+      index:
+        application: Заявка
+        created_at: Створена
+        date_format: "%d-%m-%Y %H:%M:%S"
+        title: Ваші авторизовані заявки
+    errors:
+      messages:
+        access_denied: Власник ресурсу або сервер авторизації відхилив запит.
+        credential_flow_not_configured: Не вдалося перевірити парольні дані власника ресурсу через неналаштовані Doorkeeper.configure.resource_owner_from_credentials.
+        invalid_client: Не вдалося аутентифікувати клієнта через те, що клієнт невідомий, аутентифікацію клієнта не включено або непідтримуваний метод автентифікації.
+        invalid_grant: Наданий санкціонований дозвіл недійсний, прострочений, анульований, не відповідає URI перенаправленню, що використовується в запиті авторизації, або був виданий іншому клієнту.
+        invalid_redirect_uri: Включений URI перенаправлення не є дійсним.
+        invalid_request: У запиті відсутній обов'язковий параметр, міститься непідтримуване значення параметра, або якимось чином пошкодже.
+        invalid_resource_owner: Надані облікові дані власника ресурсу не є дійсними, або власника ресурсу не можливо знайти
+        invalid_scope: Запитувана область є недійсною, невідомою, чи має неправильний формат.
+        invalid_token:
+          expired: Токен доступу прострочено
+          revoked: Токен доступу було відкликано
+          unknown: Токен доступу недійсний
+        resource_owner_authenticator_not_configured: Власника ресурсу знайти не вдалося через неналаштований Doorkeeper.configure.resource_owner_authenticator.
+        server_error: Сервер авторизації зіткнувся з непередбачуваною умовою, яка не дозволяє йому виконати запит.
+        temporarily_unavailable: Сервер авторизації в даний час не може обробити запит через тимчасове перевантаження або обслуговування сервера.
+        unauthorized_client: Клієнт не має права виконувати цей запит, використовуючи цей метод.
+        unsupported_grant_type: Тип санкціонованого дозволу не підтримується сервером авторизації.
+        unsupported_response_type: Сервер авторизації не підтримує цей тип відповіді.
+    flash:
+      applications:
+        create:
+          notice: Заявку створено.
+        destroy:
+          notice: Заявку видалено.
+        update:
+          notice: Заявку оновлено.
+      authorized_applications:
+        destroy:
+          notice: Заявку відкликано.
+    layouts:
+      admin:
+        nav:
+          applications: Заявки
+          oauth2_provider: OAuth2 Постачальник
+      application:
+        title: Необхідна OAuth авторизація
+    scopes:
+      follow: відслідковувати, блокувати, розблоковувати і не відслідковувати облікові записи
+      read: Читати дані вашого облікового запису
+      write: опіблукувати від вашого імені
