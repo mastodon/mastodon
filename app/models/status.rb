@@ -94,11 +94,11 @@ class Status < ApplicationRecord
 
   class << self
     def as_home_timeline(account)
-      where(account: [account] + account.following).with_includes
+      where(account: [account] + account.following)
     end
 
     def as_mentions_timeline(account)
-      where(id: Mention.where(account: account).pluck(:status_id)).with_includes
+      where(id: Mention.where(account: account).select(:status_id))
     end
 
     def as_public_timeline(account = nil)

@@ -13,8 +13,10 @@ RSpec.describe Admin::AccountsController, type: :controller do
   end
 
   describe 'GET #show' do
+    let(:account) { Fabricate(:account, username: 'bob') }
+
     it 'returns http success' do
-      get :show, params: { id: 1 }
+      get :show, params: { id: account.id }
       expect(response).to have_http_status(:success)
     end
   end

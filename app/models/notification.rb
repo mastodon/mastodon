@@ -17,10 +17,12 @@ class Notification < ApplicationRecord
 
   STATUS_INCLUDES = [:account, :stream_entry, :media_attachments, :tags, mentions: :account, reblog: [:stream_entry, :account, :media_attachments, :tags, mentions: :account]].freeze
 
+  scope :cache_ids, -> { select(:id, :updated_at, :activity_type, :activity_id) }
+
   cache_associated :from_account, status: STATUS_INCLUDES, mention: [status: STATUS_INCLUDES], favourite: [:account, status: STATUS_INCLUDES], follow: :account
 
-  def activity
-    send(activity_type.downcase)
+  def activity(eager_loaded = true)
+    eager_loaded ? send(activity_type.downcase) : super
   end
 
   def type
@@ -49,6 +51,20 @@ class Notification < ApplicationRecord
       cached_items.each do |item|
         item.from_account = accounts[item.from_account_id]
       end
+    end
+  end
+
+  after_initialize :set_from_account
+  before_validation :set_from_account
+
+  private
+
+  def set_from_account
+    case activity_type
+    when 'Status', 'Follow', 'Favourite'
+      self.from_account_id = activity(false)&.account_id
+    when 'Mention'
+      self.from_account_id = activity(false)&.status&.account_id
     end
   end
 end
