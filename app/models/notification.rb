@@ -5,6 +5,7 @@ class Notification < ApplicationRecord
   include Cacheable
 
   belongs_to :account
+  belongs_to :from_account, class_name: 'Account'
   belongs_to :activity, polymorphic: true
 
   belongs_to :mention,   foreign_type: 'Mention',   foreign_key: 'activity_id'
@@ -16,7 +17,7 @@ class Notification < ApplicationRecord
 
   STATUS_INCLUDES = [:account, :stream_entry, :media_attachments, :tags, mentions: :account, reblog: [:stream_entry, :account, :media_attachments, :tags, mentions: :account]].freeze
 
-  cache_associated status: STATUS_INCLUDES, mention: [status: STATUS_INCLUDES], favourite: [:account, status: STATUS_INCLUDES], follow: :account
+  cache_associated :from_account, status: STATUS_INCLUDES, mention: [status: STATUS_INCLUDES], favourite: [:account, status: STATUS_INCLUDES], follow: :account
 
   def activity
     send(activity_type.downcase)
@@ -31,21 +32,23 @@ class Notification < ApplicationRecord
     end
   end
 
-  def from_account
-    case type
-    when :mention
-      activity.status.account
-    when :follow, :favourite, :reblog
-      activity.account
-    end
-  end
-
   def target_status
     case type
     when :reblog
       activity.reblog
     when :favourite, :mention
       activity.status
+    end
+  end
+
+  class << self
+    def reload_stale_associations!(cached_items)
+      account_ids = cached_items.map(&:from_account_id).uniq
+      accounts    = Account.where(id: account_ids).map { |a| [a.id, a] }.to_h
+
+      cached_items.each do |item|
+        item.from_account = accounts[item.from_account_id]
+      end
     end
   end
 end

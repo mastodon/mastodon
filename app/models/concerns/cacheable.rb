@@ -11,5 +11,6 @@ module Cacheable
 
   included do
     scope :with_includes, -> { includes(@cache_associated) }
+    scope :cache_ids, -> { select(:id, :updated_at) }
   end
 end

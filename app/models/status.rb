@@ -130,6 +130,22 @@ class Status < ApplicationRecord
       select('reblog_of_id').where(reblog_of_id: status_ids).where(account_id: account_id).map { |s| [s.reblog_of_id, true] }.to_h
     end
 
+    def reload_stale_associations!(cached_items)
+      account_ids = []
+
+      cached_items.each do |item|
+        account_ids << item.account_id
+        account_ids << item.reblog.account_id if item.reblog?
+      end
+
+      accounts = Account.where(id: account_ids.uniq).map { |a| [a.id, a] }.to_h
+
+      cached_items.each do |item|
+        item.account = accounts[item.account_id]
+        item.reblog.account = accounts[item.reblog.account_id] if item.reblog?
+      end
+    end
+
     private
 
     def filter_timeline(query, account)

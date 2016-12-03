@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161202132159) do
+ActiveRecord::Schema.define(version: 20161203164520) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -100,8 +100,9 @@ ActiveRecord::Schema.define(version: 20161202132159) do
     t.integer  "account_id"
     t.integer  "activity_id"
     t.string   "activity_type"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+    t.integer  "from_account_id", default: 1, null: false
     t.index ["account_id", "activity_id", "activity_type"], name: "account_activity", unique: true, using: :btree
   end
 

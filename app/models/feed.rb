@@ -14,9 +14,9 @@ class Feed
     # If we're after most recent items and none are there, we need to precompute the feed
     if unhydrated.empty? && max_id == '+inf' && since_id == '-inf'
       RegenerationWorker.perform_async(@account.id, @type)
-      @statuses = Status.send("as_#{@type}_timeline", @account).paginate_by_max_id(limit, nil, nil)
+      @statuses = Status.send("as_#{@type}_timeline", @account).cache_ids.paginate_by_max_id(limit, nil, nil)
     else
-      status_map = Status.where(id: unhydrated).map { |s| [s.id, s] }.to_h
+      status_map = Status.where(id: unhydrated).cache_ids.map { |s| [s.id, s] }.to_h
       @statuses  = unhydrated.map { |id| status_map[id] }.compact
     end
 
