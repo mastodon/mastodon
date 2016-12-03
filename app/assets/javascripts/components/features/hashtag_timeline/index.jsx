@@ -47,13 +47,13 @@ const HashtagTimeline = React.createClass({
     const { dispatch } = this.props;
     const { id } = this.props.params;
 
-    dispatch(refreshTimeline('tag', true, id));
+    dispatch(refreshTimeline('tag', id));
     this._subscribe(dispatch, id);
   },
 
   componentWillReceiveProps (nextProps) {
     if (nextProps.params.id !== this.props.params.id) {
-      this.props.dispatch(refreshTimeline('tag', true, nextProps.params.id));
+      this.props.dispatch(refreshTimeline('tag', nextProps.params.id));
       this._unsubscribe();
       this._subscribe(this.props.dispatch, nextProps.params.id);
     }

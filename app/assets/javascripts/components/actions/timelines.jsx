@@ -12,12 +12,13 @@ export const TIMELINE_EXPAND_REQUEST = 'TIMELINE_EXPAND_REQUEST';
 export const TIMELINE_EXPAND_SUCCESS = 'TIMELINE_EXPAND_SUCCESS';
 export const TIMELINE_EXPAND_FAIL    = 'TIMELINE_EXPAND_FAIL';
 
-export function refreshTimelineSuccess(timeline, statuses, replace) {
+export const TIMELINE_SCROLL_TOP = 'TIMELINE_SCROLL_TOP';
+
+export function refreshTimelineSuccess(timeline, statuses) {
   return {
     type: TIMELINE_REFRESH_SUCCESS,
     timeline: timeline,
-    statuses: statuses,
-    replace: replace
+    statuses: statuses
   };
 };
 
@@ -48,24 +49,25 @@ export function deleteFromTimelines(id) {
   };
 };
 
-export function refreshTimelineRequest(timeline) {
+export function refreshTimelineRequest(timeline, id) {
   return {
     type: TIMELINE_REFRESH_REQUEST,
-    timeline: timeline
+    timeline,
+    id
   };
 };
 
-export function refreshTimeline(timeline, replace = false, id = null) {
+export function refreshTimeline(timeline, id = null) {
   return function (dispatch, getState) {
-    dispatch(refreshTimelineRequest(timeline));
+    dispatch(refreshTimelineRequest(timeline, id));
 
-    const ids      = getState().getIn(['timelines', timeline], Immutable.List());
+    const ids      = getState().getIn(['timelines', timeline, 'items'], Immutable.List());
     const newestId = ids.size > 0 ? ids.first() : null;
 
     let params = '';
     let path   = timeline;
 
-    if (newestId !== null && !replace) {
+    if (newestId !== null) {
       params = `?since_id=${newestId}`;
     }
 
@@ -74,7 +76,7 @@ export function refreshTimeline(timeline, replace = false, id = null) {
     }
 
     api(getState).get(`/api/v1/timelines/${path}${params}`).then(function (response) {
-      dispatch(refreshTimelineSuccess(timeline, response.data, replace));
+      dispatch(refreshTimelineSuccess(timeline, response.data));
     }).catch(function (error) {
       dispatch(refreshTimelineFail(timeline, error));
     });
@@ -84,14 +86,14 @@ export function refreshTimeline(timeline, replace = false, id = null) {
 export function refreshTimelineFail(timeline, error) {
   return {
     type: TIMELINE_REFRESH_FAIL,
-    timeline: timeline,
-    error: error
+    timeline,
+    error
   };
 };
 
 export function expandTimeline(timeline, id = null) {
   return (dispatch, getState) => {
-    const lastId = getState().getIn(['timelines', timeline], Immutable.List()).last();
+    const lastId = getState().getIn(['timelines', timeline, 'items'], Immutable.List()).last();
 
     dispatch(expandTimelineRequest(timeline));
 
@@ -112,22 +114,30 @@ export function expandTimeline(timeline, id = null) {
 export function expandTimelineRequest(timeline) {
   return {
     type: TIMELINE_EXPAND_REQUEST,
-    timeline: timeline
+    timeline
   };
 };
 
 export function expandTimelineSuccess(timeline, statuses) {
   return {
     type: TIMELINE_EXPAND_SUCCESS,
-    timeline: timeline,
-    statuses: statuses
+    timeline,
+    statuses
   };
 };
 
 export function expandTimelineFail(timeline, error) {
   return {
     type: TIMELINE_EXPAND_FAIL,
-    timeline: timeline,
-    error: error
+    timeline,
+    error
+  };
+};
+
+export function scrollTopTimeline(timeline, top) {
+  return {
+    type: TIMELINE_SCROLL_TOP,
+    timeline,
+    top
   };
 };

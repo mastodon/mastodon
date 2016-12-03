@@ -1,14 +1,16 @@
-import Status              from './status';
-import ImmutablePropTypes  from 'react-immutable-proptypes';
-import PureRenderMixin     from 'react-addons-pure-render-mixin';
+import Status from './status';
+import ImmutablePropTypes from 'react-immutable-proptypes';
+import PureRenderMixin from 'react-addons-pure-render-mixin';
 import { ScrollContainer } from 'react-router-scroll';
-import StatusContainer     from '../containers/status_container';
+import StatusContainer from '../containers/status_container';
 
 const StatusList = React.createClass({
 
   propTypes: {
     statusIds: ImmutablePropTypes.list.isRequired,
     onScrollToBottom: React.PropTypes.func,
+    onScrollToTop: React.PropTypes.func,
+    onScroll: React.PropTypes.func,
     trackScroll: React.PropTypes.bool
   },
 
@@ -27,6 +29,10 @@ const StatusList = React.createClass({
 
     if (scrollTop === scrollHeight - clientHeight) {
       this.props.onScrollToBottom();
+    } else if (scrollTop < 100) {
+      this.props.onScrollToTop();
+    } else {
+      this.props.onScroll();
     }
   },
 

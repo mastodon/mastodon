@@ -1,8 +1,10 @@
 import {
+  TIMELINE_REFRESH_REQUEST,
   TIMELINE_REFRESH_SUCCESS,
   TIMELINE_UPDATE,
   TIMELINE_DELETE,
-  TIMELINE_EXPAND_SUCCESS
+  TIMELINE_EXPAND_SUCCESS,
+  TIMELINE_SCROLL_TOP
 } from '../actions/timelines';
 import {
   REBLOG_SUCCESS,
@@ -23,10 +25,31 @@ import {
 import Immutable from 'immutable';
 
 const initialState = Immutable.Map({
-  home: Immutable.List(),
-  mentions: Immutable.List(),
-  public: Immutable.List(),
-  tag: Immutable.List(),
+  home: Immutable.Map({
+    loaded: false,
+    top: true,
+    items: Immutable.List()
+  }),
+
+  mentions: Immutable.Map({
+    loaded: false,
+    top: true,
+    items: Immutable.List()
+  }),
+
+  public: Immutable.Map({
+    loaded: false,
+    top: true,
+    items: Immutable.List()
+  }),
+
+  tag: Immutable.Map({
+    id: null,
+    loaded: false,
+    top: true,
+    items: Immutable.List()
+  }),
+
   accounts_timelines: Immutable.Map(),
   ancestors: Immutable.Map(),
   descendants: Immutable.Map()
@@ -50,14 +73,17 @@ const normalizeStatus = (state, status) => {
 };
 
 const normalizeTimeline = (state, timeline, statuses, replace = false) => {
-  let ids = Immutable.List();
+  let ids      = Immutable.List();
+  const loaded = state.getIn([timeline, 'loaded']);
 
   statuses.forEach((status, i) => {
     state = normalizeStatus(state, status);
     ids   = ids.set(i, status.get('id'));
   });
 
-  return state.update(timeline, Immutable.List(), list => (replace ? ids : list.unshift(...ids)));
+  state = state.setIn([timeline, 'loaded'], true);
+
+  return state.updateIn([timeline, 'items'], Immutable.List(), list => (loaded ? list.unshift(...ids) : list.push(...ids)));
 };
 
 const appendNormalizedTimeline = (state, timeline, statuses) => {
@@ -68,7 +94,7 @@ const appendNormalizedTimeline = (state, timeline, statuses) => {
     moreIds = moreIds.set(i, status.get('id'));
   });
 
-  return state.update(timeline, Immutable.List(), list => list.push(...moreIds));
+  return state.updateIn([timeline, 'items'], Immutable.List(), list => list.push(...moreIds));
 };
 
 const normalizeAccountTimeline = (state, accountId, statuses, replace = false) => {
@@ -94,9 +120,15 @@ const appendNormalizedAccountTimeline = (state, accountId, statuses) => {
 };
 
 const updateTimeline = (state, timeline, status, references) => {
+  const top = state.getIn([timeline, 'top']);
+
   state = normalizeStatus(state, status);
 
-  state = state.update(timeline, Immutable.List(), list => {
+  state = state.updateIn([timeline, 'items'], Immutable.List(), list => {
+    if (top && list.size > 40) {
+      list = list.take(20);
+    }
+
     if (list.includes(status.get('id'))) {
       return list;
     }
@@ -116,7 +148,7 @@ const updateTimeline = (state, timeline, status, references) => {
 const deleteStatus = (state, id, accountId, references) => {
   // Remove references from timelines
   ['home', 'mentions', 'public', 'tag'].forEach(function (timeline) {
-    state = state.update(timeline, list => list.filterNot(item => item === id));
+    state = state.updateIn([timeline, 'items'], list => list.filterNot(item => item === id));
   });
 
   // Remove references from account timelines
@@ -166,10 +198,23 @@ const normalizeContext = (state, id, ancestors, descendants) => {
   });
 };
 
+const resetTimeline = (state, timeline, id) => {
+  if (timeline === 'tag' && state.getIn([timeline, 'id']) !== id) {
+    state = state.update(timeline, map => map
+        .set('id', id)
+        .set('loaded', false)
+        .update('items', list => list.clear()));
+  }
+
+  return state;
+};
+
 export default function timelines(state = initialState, action) {
   switch(action.type) {
+    case TIMELINE_REFRESH_REQUEST:
+      return resetTimeline(state, action.timeline, action.id);
     case TIMELINE_REFRESH_SUCCESS:
-      return normalizeTimeline(state, action.timeline, Immutable.fromJS(action.statuses), action.replace);
+      return normalizeTimeline(state, action.timeline, Immutable.fromJS(action.statuses));
     case TIMELINE_EXPAND_SUCCESS:
       return appendNormalizedTimeline(state, action.timeline, Immutable.fromJS(action.statuses));
     case TIMELINE_UPDATE:
@@ -184,6 +229,8 @@ export default function timelines(state = initialState, action) {
       return appendNormalizedAccountTimeline(state, action.id, Immutable.fromJS(action.statuses));
     case ACCOUNT_BLOCK_SUCCESS:
       return filterTimelines(state, action.relationship, action.statuses);
+    case TIMELINE_SCROLL_TOP:
+      return state.setIn([action.timeline, 'top'], action.top);
     default:
       return state;
   }
