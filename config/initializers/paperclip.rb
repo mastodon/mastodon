@@ -7,7 +7,7 @@ if ENV['S3_ENABLED'] == 'true'
   Paperclip::Attachment.default_options[:s3_host_name] = "s3-#{ENV.fetch('S3_REGION')}.amazonaws.com"
   Paperclip::Attachment.default_options[:path]         = '/:class/:attachment/:id_partition/:style/:filename'
 
-  if ENV['S3_CLOUDFRONT_HOST'] == ''
+  unless ENV['S3_CLOUDFRONT_HOST'].blank?
     Paperclip::Attachment.default_options[:url]           = ':s3_alias_url'
     Paperclip::Attachment.default_options[:s3_host_alias] = ENV['S3_CLOUDFRONT_HOST']
   end
