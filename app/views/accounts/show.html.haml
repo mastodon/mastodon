@@ -14,4 +14,6 @@
   .activity-stream
     = render partial: 'stream_entries/status', collection: @statuses, as: :status
 
-= id_paginate account_url(@account), 20, @statuses
+.pagination
+  - if @statuses.size == 20
+    = link_to safe_join([t('pagination.next'), fa_icon('chevron-right')], ' '), account_url(@account, max_id: @statuses.last.id), class: 'next_page', rel: 'next'

@@ -9,12 +9,12 @@ class AccountsController < ApplicationController
   def show
     respond_to do |format|
       format.html do
-        @statuses = @account.statuses.order('id desc').paginate_by_max_id(20, params[:max_id || nil])
+        @statuses = @account.statuses.order('id desc').paginate_by_max_id(20, params[:max_id], params[:since_id])
         @statuses = cache_collection(@statuses, Status)
       end
 
       format.atom do
-        @entries = @account.stream_entries.order('id desc').with_includes.paginate_by_max_id(20, params[:max_id] || nil)
+        @entries = @account.stream_entries.order('id desc').with_includes.paginate_by_max_id(20, params[:max_id], params[:since_id])
       end
     end
   end
