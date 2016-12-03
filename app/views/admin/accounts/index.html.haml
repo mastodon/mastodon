@@ -1,0 +1,19 @@
+%table.table
+  %thead
+    %tr
+      %th Username
+      %th Domain
+      %th Subscribed
+  %tbody
+    - @accounts.each do |account|
+      %tr
+        %td= account.username
+        %td= account.domain
+        %th
+          - if account.local?
+            Local
+          - elsif account.subscribed?
+            %i.fa.fa-check
+          - else
+            %i.fa.fa-times
+= will_paginate @accounts, pagination_options
