@@ -1,0 +1,34 @@
+%table.table
+  %tbody
+    %tr
+      %th Username
+      %td= @account.username
+    %tr
+      %th Domain
+      %td= @account.domain
+    %tr
+      %th Display name
+      %td= @account.display_name
+
+    - if @account.local?
+      %tr
+        %th E-mail
+        %td= @account.user.email
+      %tr
+        %th Current IP
+        %td= @account.user.current_sign_in_ip
+    - else
+      %tr
+        %th Profile URL
+        %td= link_to @account.url
+      %tr
+        %th Feed URL
+        %td= link_to @account.remote_url
+
+= simple_form_for @account, url: admin_account_path(@account.id) do |f|
+  = render 'shared/error_messages', object: @account
+
+  = f.input :silenced, as: :boolean, wrapper: :with_label
+
+  .actions
+    = f.button :button, t('generic.save_changes'), type: :submit

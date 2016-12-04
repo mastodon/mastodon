@@ -3,6 +3,7 @@
   max-width: 100%;
   border-spacing: 0;
   border-collapse: collapse;
+  margin-bottom: 20px;
 
   th, td {
     padding: 8px;
@@ -18,8 +19,39 @@
     border-top: 0;
     font-weight: 500;
   }
+
+  & > tbody > tr > th {
+    font-weight: 500;
+  }
+
+  a {
+    color: #2b90d9;
+    text-decoration: underline;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
 }
 
 samp {
   font-family: 'Roboto Mono', monospace;
+}
+
+.filters {
+  list-style: none;
+  margin-bottom: 20px;
+
+  li {
+    display: inline-block;
+  }
+
+  a {
+    color: #2b90d9;
+    text-decoration: underline;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
 }

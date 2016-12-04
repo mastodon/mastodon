@@ -1,20 +1,36 @@
+%ul.filters
+  %li= link_to 'Local', admin_accounts_path(local: '1')
+  %li= link_to 'Remote', admin_accounts_path(remote: '1')
+  %li= link_to 'Silenced', admin_accounts_path(silenced: '1')
+  %li= link_to 'Most recent', admin_accounts_path(recent: '1')
+
 %table.table
   %thead
     %tr
       %th Username
       %th Domain
       %th Subscribed
+      %th Silenced
+      %th
   %tbody
     - @accounts.each do |account|
       %tr
         %td= account.username
-        %td= account.domain
-        %th
+        %td
+          - unless account.local?
+            = link_to account.domain, admin_accounts_path(by_domain: account.domain)
+        %td
           - if account.local?
             Local
           - elsif account.subscribed?
             %i.fa.fa-check
           - else
             %i.fa.fa-times
+        %td
+          - if account.silenced?
+            %i.fa.fa-check
+          - else
+            %i.fa.fa-times
+        %td= link_to 'Edit', admin_account_path(account.id)
 
 = will_paginate @accounts, pagination_options
