@@ -70,8 +70,13 @@ export function submitCompose() {
       unlisted: getState().getIn(['compose', 'unlisted'])
     }).then(function (response) {
       dispatch(submitComposeSuccess({ ...response.data }));
+
+      // To make the app more responsive, immediately get the status into the columns
       dispatch(updateTimeline('home', { ...response.data }));
-      dispatch(updateTimeline('public', { ...response.data }));
+
+      if (response.data.in_reply_to_id === null) {
+        dispatch(updateTimeline('public', { ...response.data }));
+      }
     }).catch(function (error) {
       dispatch(submitComposeFail(error));
     });
