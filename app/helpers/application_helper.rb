@@ -5,7 +5,7 @@ module ApplicationHelper
     current_page?(path) ? 'active' : ''
   end
 
-  def id_paginate(path, per_page, collection)
-  	# todo
+  def s3_expiry
+    Time.zone.now.beginning_of_day.since 25.hours
   end
 end

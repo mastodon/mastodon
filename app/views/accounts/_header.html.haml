@@ -1,4 +1,4 @@
-.card{ style: "background-image: url(#{@account.header.expiring_url(3600, :original)})" }
+.card{ style: "background-image: url(#{@account.header.expiring_url(s3_expiry, :original)})" }
   - if user_signed_in? && current_account.id != @account.id
     .controls
       - if current_account.following?(@account)
@@ -6,7 +6,7 @@
       - else
         = link_to t('accounts.follow'), follow_account_path(@account), data: { method: :post }, class: 'button'
 
-  .avatar= image_tag @account.avatar.expiring_url(3600, :original)
+  .avatar= image_tag @account.avatar.expiring_url(s3_expiry, :original)
   %h1.name
     = display_name(@account)
     %small= "@#{@account.username}"

@@ -7,7 +7,7 @@
   %meta{ name: 'og:title', content: "#{@account.username} on #{Rails.configuration.x.local_domain}" }/
   %meta{ name: 'og:article:author', content: @account.username }/
   %meta{ name: 'og:description', content: @stream_entry.activity.content }/
-  %meta{ name: 'og:image', content: @stream_entry.activity.is_a?(Status) && @stream_entry.activity.media_attachments.size > 0 ? full_asset_url(@stream_entry.activity.media_attachments.first.file.expiring_url(3600, :small)) : full_asset_url(@account.avatar.expiring_url(3600, :original)) }/
+  %meta{ name: 'og:image', content: @stream_entry.activity.is_a?(Status) && @stream_entry.activity.media_attachments.size > 0 ? full_asset_url(@stream_entry.activity.media_attachments.first.file.expiring_url(s3_expiry, :small)) : full_asset_url(@account.avatar.expiring_url(s3_expiry, :original)) }/
 
 .activity-stream.activity-stream-headless
   = render partial: @type, locals: { @type.to_sym => @stream_entry.activity, include_threads: true }
