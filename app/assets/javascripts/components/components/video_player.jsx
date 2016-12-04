@@ -53,7 +53,8 @@ const VideoPlayer = React.createClass({
   propTypes: {
     media: ImmutablePropTypes.map.isRequired,
     width: React.PropTypes.number,
-    height: React.PropTypes.number
+    height: React.PropTypes.number,
+    sensitive: React.PropTypes.bool
   },
 
   getDefaultProps () {
@@ -100,6 +101,12 @@ const VideoPlayer = React.createClass({
         <div style={{...spoilerStyle, width: `${width}px`, height: `${height}px` }} onClick={this.handleOpen}>
           <span style={spoilerSpanStyle}><FormattedMessage id='status.sensitive_warning' defaultMessage='Sensitive content' /></span>
           <span style={spoilerSubSpanStyle}><FormattedMessage id='status.sensitive_toggle' defaultMessage='Click to view' /></span>
+        </div>
+      );
+    } else if (!sensitive && !this.state.visible) {
+      return (
+        <div style={{ cursor: 'pointer', position: 'relative', marginTop: '8px', width: `${width}px`, height: `${height}px`, background: `url(${media.get('preview_url')}) no-repeat center`, backgroundSize: 'cover' }} onClick={this.handleOpen}>
+          <div style={{ position: 'absolute', top: '50%', left: '50%', fontSize: '36px', transform: 'translate(-50%, -50%)', padding: '5px', borderRadius: '100px', color: 'rgba(255, 255, 255, 0.8)' }}><i className='fa fa-play' /></div>
         </div>
       );
     }

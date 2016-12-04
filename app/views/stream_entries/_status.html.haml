@@ -34,7 +34,7 @@
       - if (status.reblog? ? status.reblog : status).media_attachments.size > 0
         %ul.media-attachments
           - (status.reblog? ? status.reblog : status).media_attachments.each do |media|
-            %li.transparent-background= link_to '', media.file.url, style: "background-image: url(#{media.file.url(:small)})", target: '_blank'
+            %li.transparent-background= link_to '', media.file.expiring_url(3600, :original), style: "background-image: url(#{media.file.expiring_url(3600, :small)})", target: '_blank'
 
 - if include_threads
   = render partial: 'status', collection: @descendants, as: :status, locals: { is_successor: true }

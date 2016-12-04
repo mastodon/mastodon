@@ -112,13 +112,11 @@ module AtomBuilderHelper
   end
 
   def link_enclosure(xml, media)
-    xml.link(rel: 'enclosure', href: full_asset_url(media.file.url), type: media.file_content_type, length: media.file_file_size)
+    xml.link(rel: 'enclosure', href: full_asset_url(media.file.url(:original, false)), type: media.file_content_type, length: media.file_file_size)
   end
 
   def link_avatar(xml, account)
-    single_link_avatar(xml, account, :large, 300)
-    # single_link_avatar(xml, account, :medium, 96)
-    # single_link_avatar(xml, account, :small,  48)
+    single_link_avatar(xml, account, :original, 120)
   end
 
   def logo(xml, url)

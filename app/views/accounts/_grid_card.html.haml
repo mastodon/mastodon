@@ -1,6 +1,6 @@
 .account-grid-card
   .account-grid-card__header
-    .avatar= image_tag account.avatar.url(:medium)
+    .avatar= image_tag account.avatar.expiring_url(3600, :original)
     .name
       = link_to TagManager.instance.url_for(account) do
         %span.display_name= display_name(account)

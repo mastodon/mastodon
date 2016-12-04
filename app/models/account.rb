@@ -13,12 +13,12 @@ class Account < ApplicationRecord
   validates :username, presence: true, uniqueness: { scope: :domain, case_sensitive: true }, unless: 'local?'
 
   # Avatar upload
-  has_attached_file :avatar, styles: { large: '300x300#' }, convert_options: { all: '-strip' }
+  has_attached_file :avatar, styles: { original: '120x120#' }, convert_options: { all: '-quality 80 -strip' }
   validates_attachment_content_type :avatar, content_type: IMAGE_MIME_TYPES
   validates_attachment_size :avatar, less_than: 2.megabytes
 
   # Header upload
-  has_attached_file :header, styles: { medium: '700x335#' }, convert_options: { all: '-strip' }
+  has_attached_file :header, styles: { original: '700x335#' }, convert_options: { all: '-quality 80 -strip' }
   validates_attachment_content_type :header, content_type: IMAGE_MIME_TYPES
   validates_attachment_size :header, less_than: 2.megabytes
 

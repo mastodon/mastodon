@@ -1,11 +1,13 @@
 if ENV['S3_ENABLED'] == 'true'
   Aws.eager_autoload!(services: %w(S3))
 
-  Paperclip::Attachment.default_options[:storage]      = :s3
-  Paperclip::Attachment.default_options[:s3_protocol]  = 'https'
-  Paperclip::Attachment.default_options[:url]          = ':s3_domain_url'
-  Paperclip::Attachment.default_options[:s3_host_name] = "s3-#{ENV.fetch('S3_REGION')}.amazonaws.com"
-  Paperclip::Attachment.default_options[:path]         = '/:class/:attachment/:id_partition/:style/:filename'
+  Paperclip::Attachment.default_options[:storage]        = :s3
+  Paperclip::Attachment.default_options[:s3_protocol]    = 'https'
+  Paperclip::Attachment.default_options[:url]            = ':s3_domain_url'
+  Paperclip::Attachment.default_options[:s3_host_name]   = "s3-#{ENV.fetch('S3_REGION')}.amazonaws.com"
+  Paperclip::Attachment.default_options[:path]           = '/:class/:attachment/:id_partition/:style/:filename'
+  Paperclip::Attachment.default_options[:s3_headers]     = { 'Cache-Control' => 'max-age=315576000', 'Expires' => 10.years.from_now.httpdate }
+  Paperclip::Attachment.default_options[:s3_permissions] = :private
 
   unless ENV['S3_CLOUDFRONT_HOST'].blank?
     Paperclip::Attachment.default_options[:url]           = ':s3_alias_url'
