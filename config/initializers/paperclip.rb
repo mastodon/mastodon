@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 if ENV['S3_ENABLED'] == 'true'
   Aws.eager_autoload!(services: %w(S3))
 
