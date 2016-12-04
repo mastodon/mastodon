@@ -5,4 +5,6 @@
   .activity-stream
     = render partial: 'stream_entries/status', collection: @statuses, as: :status, cached: true
 
-= id_paginate tag_path, 20, @statuses
+.pagination
+  - if @statuses.size == 20
+    = link_to safe_join([t('pagination.next'), fa_icon('chevron-right')], ' '), tag_url(@tag, max_id: @statuses.last.id), class: 'next_page', rel: 'next'
