@@ -69,9 +69,9 @@ export function submitCompose() {
       sensitive: getState().getIn(['compose', 'sensitive']),
       unlisted: getState().getIn(['compose', 'unlisted'])
     }).then(function (response) {
-      dispatch(submitComposeSuccess(response.data));
-      dispatch(updateTimeline('home', response.data));
-      dispatch(updateTimeline('public', response.data));
+      dispatch(submitComposeSuccess({ ...response.data }));
+      dispatch(updateTimeline('home', { ...response.data }));
+      dispatch(updateTimeline('public', { ...response.data }));
     }).catch(function (error) {
       dispatch(submitComposeFail(error));
     });
