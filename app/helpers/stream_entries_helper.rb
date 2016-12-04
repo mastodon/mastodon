@@ -6,7 +6,7 @@ module StreamEntriesHelper
   end
 
   def avatar_for_status_url(status)
-    status.reblog? ? status.reblog.account.avatar.expiring_url(s3_expiry, :original) : status.account.avatar.expiring_url(s3_expiry, :original)
+    status.reblog? ? status.reblog.account.avatar.url( :original) : status.account.avatar.url( :original)
   end
 
   def entry_classes(status, is_predecessor, is_successor, include_threads)
