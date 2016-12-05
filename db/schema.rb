@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161203164520) do
+ActiveRecord::Schema.define(version: 20161205214545) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,6 +41,7 @@ ActiveRecord::Schema.define(version: 20161203164520) do
     t.string   "avatar_remote_url"
     t.datetime "subscription_expires_at"
     t.boolean  "silenced",                default: false, null: false
+    t.boolean  "suspended",               default: false, null: false
     t.index ["username", "domain"], name: "index_accounts_on_username_and_domain", unique: true, using: :btree
   end
 

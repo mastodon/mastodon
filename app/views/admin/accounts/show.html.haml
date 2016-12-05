@@ -29,6 +29,7 @@
   = render 'shared/error_messages', object: @account
 
   = f.input :silenced, as: :boolean, wrapper: :with_label
+  = f.input :suspended, as: :boolean, wrapper: :with_label
 
   .actions
     = f.button :button, t('generic.save_changes'), type: :submit

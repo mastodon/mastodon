@@ -23,6 +23,8 @@ class ProcessInteractionService < BaseService
       account = follow_remote_account_service.call("#{username}@#{domain}")
     end
 
+    return if account.suspended?
+
     if salmon.verify(envelope, account.keypair)
       update_remote_profile_service.call(xml.at_xpath('/xmlns:entry', xmlns: TagManager::XMLNS), account, true)
 

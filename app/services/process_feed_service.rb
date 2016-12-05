@@ -93,6 +93,8 @@ class ProcessFeedService < BaseService
         account = @account
       end
 
+      return if account.suspended?
+
       status = Status.create!(
         uri: id(entry),
         url: url(entry),

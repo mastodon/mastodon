@@ -33,6 +33,6 @@ class Admin::AccountsController < ApplicationController
   end
 
   def account_params
-    params.require(:account).permit(:silenced)
+    params.require(:account).permit(:silenced, :suspended)
   end
 end

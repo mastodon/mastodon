@@ -104,22 +104,20 @@ class Status < ApplicationRecord
     def as_public_timeline(account = nil)
       query = joins('LEFT OUTER JOIN accounts ON statuses.account_id = accounts.id')
               .where(visibility: :public)
-              .where('accounts.silenced = FALSE')
               .where('(statuses.in_reply_to_id IS NULL OR statuses.in_reply_to_account_id = statuses.account_id)')
               .where('statuses.reblog_of_id IS NULL')
-      query = filter_timeline(query, account) unless account.nil?
-      query
+
+      account.nil? ? filter_timeline_default(query) : filter_timeline(query, account)
     end
 
     def as_tag_timeline(tag, account = nil)
       query = tag.statuses
                  .joins('LEFT OUTER JOIN accounts ON statuses.account_id = accounts.id')
                  .where(visibility: :public)
-                 .where('accounts.silenced = FALSE')
                  .where('(statuses.in_reply_to_id IS NULL OR statuses.in_reply_to_account_id = statuses.account_id)')
                  .where('statuses.reblog_of_id IS NULL')
-      query = filter_timeline(query, account) unless account.nil?
-      query
+
+      account.nil? ? filter_timeline_default(query) : filter_timeline(query, account)
     end
 
     def favourites_map(status_ids, account_id)
@@ -150,8 +148,13 @@ class Status < ApplicationRecord
 
     def filter_timeline(query, account)
       blocked = Block.where(account: account).pluck(:target_account_id)
-      return query if blocked.empty?
-      query.where('statuses.account_id NOT IN (?)', blocked)
+      query   = query.where('statuses.account_id NOT IN (?)', blocked) unless blocked.empty?
+      query   = query.where('accounts.silenced = TRUE') if account.silenced?
+      query
+    end
+
+    def filter_timeline_default(query)
+      query.where('accounts.silenced = FALSE')
     end
   end
 
