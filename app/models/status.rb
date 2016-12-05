@@ -107,7 +107,7 @@ class Status < ApplicationRecord
               .where('(statuses.in_reply_to_id IS NULL OR statuses.in_reply_to_account_id = statuses.account_id)')
               .where('statuses.reblog_of_id IS NULL')
 
-      account.nil? ? filter_timeline_default(query) : filter_timeline(query, account)
+      account.nil? ? filter_timeline_default(query) : filter_timeline_default(filter_timeline(query, account))
     end
 
     def as_tag_timeline(tag, account = nil)
@@ -117,7 +117,7 @@ class Status < ApplicationRecord
                  .where('(statuses.in_reply_to_id IS NULL OR statuses.in_reply_to_account_id = statuses.account_id)')
                  .where('statuses.reblog_of_id IS NULL')
 
-      account.nil? ? filter_timeline_default(query) : filter_timeline(query, account)
+      account.nil? ? filter_timeline_default(query) : filter_timeline_default(filter_timeline(query, account))
     end
 
     def favourites_map(status_ids, account_id)
