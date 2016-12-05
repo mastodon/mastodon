@@ -44,7 +44,7 @@ class MediaAttachment < ApplicationRecord
     def file_styles(f)
       if f.instance.image?
         {
-          original: '100%',
+          original: '1280x1280>',
           small: '510x680>',
         }
       else
