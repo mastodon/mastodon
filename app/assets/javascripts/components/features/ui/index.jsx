@@ -17,8 +17,20 @@ const UI = React.createClass({
   render () {
     const layoutBreakpoint = 1024;
 
+    let onKeyDownHandler = null;
+
+    const dispatchKeyDown = (e) => {
+      if (onKeyDownHandler != null) {
+        onKeyDownHandler(e);
+      }
+    };
+
+    const registerOnKeyDownHandler = (cb) => {
+      onKeyDownHandler = cb;
+    };
+
     return (
-      <div style={{ flex: '0 0 auto', display: 'flex', flexDirection: 'column', width: '100%', height: '100%', background: '#1a1c23' }}>
+      <div style={{ flex: '0 0 auto', display: 'flex', flexDirection: 'column', width: '100%', height: '100%', background: '#1a1c23' }} onKeyDown={dispatchKeyDown}>
         <MediaQuery maxWidth={layoutBreakpoint}>
           <TabsBar />
         </MediaQuery>
@@ -38,7 +50,7 @@ const UI = React.createClass({
 
         <NotificationsContainer />
         <LoadingBarContainer style={{ backgroundColor: '#2b90d9', left: '0', top: '0' }} />
-        <ModalContainer />
+        <ModalContainer registerOnKeyDownHandler={registerOnKeyDownHandler} />
       </div>
     );
   }
