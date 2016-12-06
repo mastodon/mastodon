@@ -7,13 +7,14 @@ class Admin::AccountsController < ApplicationController
   layout 'public'
 
   def index
-    @accounts = Account.order('domain ASC, username ASC').paginate(page: params[:page], per_page: 40)
+    @accounts = Account.alphabetic.paginate(page: params[:page], per_page: 40)
 
     @accounts = @accounts.local                             if params[:local].present?
     @accounts = @accounts.remote                            if params[:remote].present?
     @accounts = @accounts.where(domain: params[:by_domain]) if params[:by_domain].present?
-    @accounts = @accounts.where(silenced: true)             if params[:silenced].present?
-    @accounts = @accounts.reorder('id desc')                if params[:recent].present?
+    @accounts = @accounts.silenced                          if params[:silenced].present?
+    @accounts = @accounts.recent                            if params[:recent].present?
+    @accounts = @accounts.suspended                         if params[:suspended].present?
   end
 
   def show; end
@@ -24,6 +25,11 @@ class Admin::AccountsController < ApplicationController
     else
       render :show
     end
+  end
+
+  def suspend
+    Admin::SuspensionWorker.perform_async(@account.id)
+    redirect_to admin_accounts_path
   end
 
   private

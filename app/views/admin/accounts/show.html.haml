@@ -33,3 +33,5 @@
 
   .actions
     = f.button :button, t('generic.save_changes'), type: :submit
+
+= link_to 'Perform full suspension', suspend_admin_account_path(@account.id), method: :post, data: { confirm: 'Are you sure?' }, class: 'button'

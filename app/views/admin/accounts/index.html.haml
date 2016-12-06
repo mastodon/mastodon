@@ -2,6 +2,7 @@
   %li= link_to 'Local', admin_accounts_path(local: '1')
   %li= link_to 'Remote', admin_accounts_path(remote: '1')
   %li= link_to 'Silenced', admin_accounts_path(silenced: '1')
+  %li= link_to 'Suspended', admin_accounts_path(suspended: '1')
   %li= link_to 'Most recent', admin_accounts_path(recent: '1')
 
 %table.table
@@ -11,6 +12,7 @@
       %th Domain
       %th Subscribed
       %th Silenced
+      %th Suspended
       %th
   %tbody
     - @accounts.each do |account|
@@ -28,6 +30,11 @@
             %i.fa.fa-times
         %td
           - if account.silenced?
+            %i.fa.fa-check
+          - else
+            %i.fa.fa-times
+        %td
+          - if account.suspended?
             %i.fa.fa-check
           - else
             %i.fa.fa-times
