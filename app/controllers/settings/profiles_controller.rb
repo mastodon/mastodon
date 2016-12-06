@@ -10,8 +10,7 @@ class Settings::ProfilesController < ApplicationController
   obfuscate_filename [:account, :avatar]
   obfuscate_filename [:account, :header]
 
-  def show
-  end
+  def show; end
 
   def update
     if @account.update(account_params)

@@ -5,8 +5,7 @@ class Settings::PreferencesController < ApplicationController
 
   before_action :authenticate_user!
 
-  def show
-  end
+  def show; end
 
   def update
     current_user.settings(:notification_emails).follow    = user_params[:notification_emails][:follow]    == '1'

@@ -7,7 +7,7 @@ class FollowService < BaseService
   def call(source_account, uri)
     target_account = follow_remote_account_service.call(uri)
 
-    raise ActiveRecord::RecordNotFound if target_account.nil? || target_account.id == source_account.id
+    raise ActiveRecord::RecordNotFound if target_account.nil? || target_account.id == source_account.id || target_account.suspended?
 
     follow = source_account.follow!(target_account)
 

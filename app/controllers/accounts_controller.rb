@@ -5,6 +5,8 @@ class AccountsController < ApplicationController
 
   before_action :set_account
   before_action :set_link_headers
+  before_action :authenticate_user!, only: [:follow, :unfollow]
+  before_action :check_account_suspension
 
   def show
     respond_to do |format|
@@ -49,5 +51,9 @@ class AccountsController < ApplicationController
 
   def webfinger_account_url
     webfinger_url(resource: "acct:#{@account.acct}@#{Rails.configuration.x.local_domain}")
+  end
+
+  def check_account_suspension
+    head 410 if @account.suspended?
   end
 end

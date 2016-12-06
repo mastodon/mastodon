@@ -6,6 +6,7 @@ class StreamEntriesController < ApplicationController
   before_action :set_account
   before_action :set_stream_entry
   before_action :set_link_headers
+  before_action :check_account_suspension
 
   def show
     @type = @stream_entry.activity_type.downcase
@@ -36,5 +37,9 @@ class StreamEntriesController < ApplicationController
 
   def set_stream_entry
     @stream_entry = @account.stream_entries.find(params[:id])
+  end
+
+  def check_account_suspension
+    head 410 if @account.suspended?
   end
 end

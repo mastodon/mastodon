@@ -15,6 +15,7 @@ class ApplicationController < ActionController::Base
   before_action :store_current_location, except: :raise_not_found, unless: :devise_controller?
   before_action :set_locale
   before_action :set_user_activity
+  before_action :check_suspension, if: :user_signed_in?
 
   def raise_not_found
     raise ActionController::RoutingError, "No route matches #{params[:unmatched_route]}"
@@ -38,6 +39,10 @@ class ApplicationController < ActionController::Base
 
   def set_user_activity
     current_user.touch(:current_sign_in_at) if !current_user.nil? && (current_user.current_sign_in_at.nil? || current_user.current_sign_in_at < 24.hours.ago)
+  end
+
+  def check_suspension
+    head 403 if current_user.account.suspended?
   end
 
   protected
