@@ -355,6 +355,16 @@
   }
 }
 
+.tabs-bar {
+  display: flex;
+}
+
+@media screen and (min-width: 1025px) {
+  .tabs-bar {
+    display: none;
+  }
+}
+
 .react-autosuggest__container {
   position: relative;
 }

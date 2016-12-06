@@ -5,8 +5,7 @@ const outerStyle = {
   background: '#373b4a',
   margin: '10px',
   flex: '0 0 auto',
-  marginBottom: '0',
-  display: 'flex'
+  marginBottom: '0'
 };
 
 const tabStyle = {
@@ -28,7 +27,7 @@ const tabActiveStyle = {
 
 const TabsBar = () => {
   return (
-    <div style={outerStyle}>
+    <div className='tabs-bar' style={outerStyle}>
       <Link style={tabStyle} activeStyle={tabActiveStyle} to='/statuses/new'><i className='fa fa-fw fa-pencil' /> <FormattedMessage id='tabs_bar.compose' defaultMessage='Compose' /></Link>
       <Link style={tabStyle} activeStyle={tabActiveStyle} to='/timelines/home'><i className='fa fa-fw fa-home' /> <FormattedMessage id='tabs_bar.home' defaultMessage='Home' /></Link>
       <Link style={tabStyle} activeStyle={tabActiveStyle} to='/notifications'><i className='fa fa-fw fa-bell' /> <FormattedMessage id='tabs_bar.notifications' defaultMessage='Notifications' /></Link>
