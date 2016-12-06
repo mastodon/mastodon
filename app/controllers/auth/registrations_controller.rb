@@ -3,6 +3,7 @@
 class Auth::RegistrationsController < Devise::RegistrationsController
   layout 'auth'
 
+  before_action :check_single_user_mode
   before_action :configure_sign_up_params, only: [:create]
 
   protected
@@ -20,5 +21,9 @@ class Auth::RegistrationsController < Devise::RegistrationsController
 
   def after_sign_up_path_for(_resource)
     new_user_session_path
+  end
+
+  def check_single_user_mode
+    redirect_to root_path if Rails.configuration.x.single_user_mode
   end
 end

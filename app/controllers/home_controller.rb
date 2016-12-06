@@ -5,15 +5,13 @@ class HomeController < ApplicationController
 
   def index
     @body_classes = 'app-body'
-    @home         = Feed.new(:home, current_user.account).get(20)
-    @mentions     = Feed.new(:mentions, current_user.account).get(20)
     @token        = find_or_create_access_token.token
   end
 
   private
 
   def authenticate_user!
-    redirect_to about_path unless user_signed_in?
+    redirect_to(Rails.configuration.x.single_user_mode ? account_path(Account.first) : about_path) unless user_signed_in?
   end
 
   def find_or_create_access_token
