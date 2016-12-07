@@ -10,7 +10,7 @@ class MediaAttachment < ApplicationRecord
   has_attached_file :file,
                     styles: -> (f) { file_styles f },
                     processors: -> (f) { f.video? ? [:transcoder] : [:thumbnail] },
-                    convert_options: { all: '-quality 80 -strip' }
+                    convert_options: { all: '-quality 90 -strip' }
   validates_attachment_content_type :file, content_type: IMAGE_MIME_TYPES + VIDEO_MIME_TYPES
   validates_attachment_size :file, less_than: 4.megabytes
 
@@ -45,14 +45,14 @@ class MediaAttachment < ApplicationRecord
       if f.instance.image?
         {
           original: '1280x1280>',
-          small: '510x680>',
+          small: '250x250>',
         }
       else
         {
           small: {
             convert_options: {
               output: {
-                vf: 'scale=\'min(510\, iw):min(680\, ih)\':force_original_aspect_ratio=decrease',
+                vf: 'scale=\'min(250\, iw):min(250\, ih)\':force_original_aspect_ratio=decrease',
               },
             },
             format: 'png',
