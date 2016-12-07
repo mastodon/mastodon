@@ -1,0 +1,30 @@
+---
+uk:
+  simple_form:
+    labels:
+      defaults:
+        avatar: Аватар
+        confirm_new_password: Підтвердження нового паролю
+        confirm_password: Новий пароль
+        current_password: Поточний пароль
+        display_name: Ім'я
+        email: Поштова адреса
+        header: Заголовок
+        locale: Мова
+        new_password: Новий пароль
+        note: Біографія
+        password: Пароль
+        username: Ім'я користувача
+      interactions:
+        must_be_follower: Блокувати сповіщення від непідписаних людей
+        must_be_following: Блокувати сповіщення від людей, на яких ви не підписані
+      notification_emails:
+        favourite: Надсилати листа, коли комусь подобається Ваш статус
+        follow: Надсилати листа, коли хтось підписується на Вас
+        mention: Надсилати листа, коли хтось згадує Вас
+        reblog: Надсилати листа, коли хтось передмухує Ваш статус
+    'no': 'Ні'
+    required:
+      mark: "*"
+      text: обов'язкове
+'yes': 'Так'
