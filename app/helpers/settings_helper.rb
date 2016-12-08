@@ -8,6 +8,7 @@ module SettingsHelper
     pt: 'Português',
     fr: 'Français',
     hu: 'Magyar',
+    uk: 'Українська',
   }.freeze
 
   def human_locale(locale)
