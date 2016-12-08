@@ -1,25 +1,25 @@
 ---
 uk:
   about:
-    about_instance: "<em>%{instance}</em> є Mastodon екземпляром."
-    about_mastodon: Mastodon <em>вільний, з відкритим вихідним кодом</em> соціальний мережевий сервер. <em>Дицентралізована</em> альтернатива комерційних платформ, це дозволяє уникнути ризиків коли одна компанія монополізує ваше спілкування. Будь-який користувач може запустити Mastodon та без проблем брати участь в <em>соціальній мережі</em>.
+    about_instance: "<em>%{instance}</em> є інстанцією Mastodon."
+    about_mastodon: Mastodon <em> - це вільний</em> соціальний мережевий сервер <em> з відкритим вихідним кодом</em>. Він є <em>децентралізованою</em> альтернативою комерційним платформам, що дозволяє уникнути ризиків монополізації вашого спілкування однією компанією. Будь-який користувач може запустити Mastodon та без проблем брати участь в <em>соціальній мережі</em>.
     get_started: Почати
     source_code: Вихідний код
-    terms: Терміни
+    terms: Умови користування
   accounts:
     follow: Стежити
     followers: Відстежують
     following: Відстежую
-    nothing_here: Тут немає нічого!
-    people_followed_by: Люди чиє ім'я %{name} відстежують
-    people_who_follow: Люди котрі відстежують %{name}
+    nothing_here: Тут нічого немає!
+    people_followed_by: Люди, на яких підписаний(-а) %{name}
+    people_who_follow: Люди, які підписані на %{name}
     posts: Дописи
-    unfollow: Не відстежувати
+    unfollow: Відписатися
   application_mailer:
-    signature: Mastodon повідомлення від %{instance}
+    signature: Сповіщення Mastodon від %{instance}
   auth:
-    change_password: Зміна пароля
-    didnt_get_confirmation: Чи не отримували інструкції підтвердження?
+    change_password: Зміна паролю
+    didnt_get_confirmation: Ви не отримали інструкції з підтвердження?
     forgot_password: Забули свій пароль?
     login: Увійти
     register: Зареєструватися
@@ -35,25 +35,25 @@ uk:
       other: Щось поки не зовсім правильно! Будь ласка, ознайомтеся з %{count} помилками нижче
   notification_mailer:
     favourite:
-      body: 'Ваш статус доданий до обраного %{name}:'
-      subject: "Користувач %{name} додав до обраного ваш статус"
+      body: 'Ваш статус подобається %{name}:'
+      subject: "Користувачу %{name} сподобвся ваш статус"
     follow:
-      body: "%{name} тепер стежить за вами!"
-      subject: "%{name} тепер стежить за вами"
+      body: "%{name} тепер підписаний на вас!"
+      subject: "%{name} тепер підписаний на вас"
     mention:
       body: 'Ви були згадані %{name} в:'
       subject: Ви були згадані %{name}
     reblog:
-      body: 'Ваш статус було перевпорядкувано в блог %{name}:'
-      subject: "%{name} перевпорядкував в блог ваш статус"
+      body: 'Ваш статус було передмухнуто %{name}:'
+      subject: "%{name} передмухнув ваш статус"
   pagination:
     next: Наступний
     prev: Попередній
   settings:
     edit_profile: Редагувати профіль
-    preferences: Переваги
+    preferences: Налаштування
   stream_entries:
-    favourited: Допис додано до обраних
-    is_now_following: тепер відстужується
-  will_paginate:
+    favourited: сподобався допис від
+    is_now_following: тепер підписаний(-а) на
+    will_paginate:
     page_gap: "&hellip;"
