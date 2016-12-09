@@ -35,7 +35,7 @@ de:
       other: Etwas ist noch nicht ganz richtig! Bitte korrigiere %{count} Fehler
   notification_mailer:
     favourite:
-      body: "Dein Beitrag wurde von %{name} favorisiert:"
+      body: 'Dein Beitrag wurde von %{name} favorisiert:'
       subject: "%{name} hat deinen Beitrag favorisiert"
     follow:
       body: "%{name} folgt dir jetzt!"
@@ -44,7 +44,7 @@ de:
       body: "%{name} hat dich erwähnt:"
       subject: "%{name} hat dich erwähnt"
     reblog:
-      body: "Dein Beitrag wurde von %{name} geteilt:"
+      body: 'Dein Beitrag wurde von %{name} geteilt:'
       subject: "%{name} teilte deinen Beitrag"
   pagination:
     next: Vorwärts
@@ -55,5 +55,7 @@ de:
   stream_entries:
     favourited: favorisierte einen Beitrag von
     is_now_following: folgt nun
+  users:
+    invalid_email: Inkorrekte E-mail-Addresse
   will_paginate:
     page_gap: "&hellip;"

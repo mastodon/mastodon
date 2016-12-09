@@ -35,6 +35,7 @@ const pt = {
   "compose_form.placeholder": "Que estás pensando?",
   "compose_form.publish": "Publicar",
   "compose_form.sensitive": "Marcar conteúdo como sensível",
+  "compose_form.unlisted": "Modo não-listado",
   "navigation_bar.settings": "Configurações",
   "navigation_bar.public_timeline": "Timeline Pública",
   "navigation_bar.logout": "Logout",
