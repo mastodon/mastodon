@@ -5,9 +5,14 @@
   %meta{ property: 'og:site_name', content: 'Mastodon' }/
   %meta{ property: 'og:type', content: 'article' }/
   %meta{ property: 'og:title', content: "#{@account.username} on #{Rails.configuration.x.local_domain}" }/
-  %meta{ property: 'og:article:author', content: @account.username }/
   %meta{ property: 'og:description', content: @stream_entry.activity.content }/
-  %meta{ property: 'og:image', content: @stream_entry.activity.is_a?(Status) && @stream_entry.activity.media_attachments.size > 0 ? full_asset_url(@stream_entry.activity.media_attachments.first.file.url( :small)) : full_asset_url(@account.avatar.url(:original)) }/
+
+  - if @stream_entry.activity.is_a?(Status) && @stream_entry.activity.media_attachments.size > 0
+    %meta{ property: 'og:image', content: full_asset_url(@stream_entry.activity.media_attachments.first.file.url(:small)) }/
+  - else
+    %meta{ property: 'og:image', content: full_asset_url(@account.avatar.url(:original)) }/
+    %meta{ property: 'og:image:width', content: '120' }/
+    %meta{ property: 'og:image:height', content: '120' }/
 
 .activity-stream.activity-stream-headless
   = render partial: @type, locals: { @type.to_sym => @stream_entry.activity, include_threads: true }
