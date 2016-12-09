@@ -5,6 +5,12 @@
   %link{ rel: 'salmon', href: api_salmon_url(@account.id) }/
   %link{ rel: 'alternate', type: 'application/atom+xml', href: account_url(@account, format: 'atom') }/
 
+  %meta{ property: 'og:site_name', content: 'Mastodon' }/
+  %meta{ property: 'og:type', content: 'profile' }/
+  %meta{ property: 'og:title', content: "#{@account.username} on #{Rails.configuration.x.local_domain}" }/
+  %meta{ property: 'og:description', content: @account.note }/
+  %meta{ property: 'og:image', content: full_asset_url(@account.avatar.url(:original)) }/
+
 = render partial: 'header'
 
 - if @statuses.empty?
