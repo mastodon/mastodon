@@ -121,7 +121,8 @@ class ProcessFeedService < BaseService
 
     def find_or_resolve_status(parent, uri, url)
       status = find_status(uri)
-      ThreadResolveWorker.perform_async(parent.id, url) if status.nil?
+
+      ResolveThread.new.call(parent, url) if status.nil?
 
       status
     end
@@ -240,6 +241,17 @@ class ProcessFeedService < BaseService
       domain   = Addressable::URI.parse(url).host
 
       "#{username}@#{domain}"
+    end
+  end
+
+  class ResolveThread
+    def call(child_status, parent_url)
+      parent_status = FetchRemoteStatusService.new.call(parent_url)
+
+      return if parent_status.nil?
+
+      child_status.thread = parent_status
+      child_status.save!
     end
   end
 end
