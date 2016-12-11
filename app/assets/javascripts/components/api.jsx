@@ -17,6 +17,10 @@ export default getState => axios.create({
   },
 
   transformResponse: [function (data) {
-    return JSON.parse(data);
+    try {
+      return JSON.parse(data);
+    } catch(Exception) {
+      return data;
+    }
   }]
 });
