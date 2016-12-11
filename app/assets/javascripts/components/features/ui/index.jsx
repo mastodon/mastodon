@@ -9,6 +9,8 @@ import TabsBar from './components/tabs_bar';
 import ModalContainer from './containers/modal_container';
 import Notifications from '../notifications';
 import { debounce } from 'react-decoration';
+import { uploadCompose } from '../../actions/compose';
+import { connect } from 'react-redux';
 
 const UI = React.createClass({
 
@@ -25,12 +27,35 @@ const UI = React.createClass({
     this.setState({ width: window.innerWidth });
   },
 
+  handleDragOver (e) {
+    e.preventDefault();
+    e.stopPropagation();
+
+    e.dataTransfer.dropEffect = 'copy';
+
+    if (e.dataTransfer.effectAllowed === 'all' || e.dataTransfer.effectAllowed === 'uninitialized') {
+      //
+    }
+  },
+
+  handleDrop (e) {
+    e.preventDefault();
+
+    if (e.dataTransfer) {
+      this.props.dispatch(uploadCompose(e.dataTransfer.files));
+    }
+  },
+
   componentWillMount () {
     window.addEventListener('resize', this.handleResize, { passive: true });
+    window.addEventListener('dragover', this.handleDragOver);
+    window.addEventListener('drop', this.handleDrop);
   },
 
   componentWillUnmount () {
     window.removeEventListener('resize', this.handleResize);
+    window.removeEventListener('dragover', this.handleDragOver);
+    window.removeEventListener('drop', this.handleDrop);
   },
 
   render () {
@@ -70,4 +95,4 @@ const UI = React.createClass({
 
 });
 
-export default UI;
+export default connect()(UI);
