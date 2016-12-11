@@ -95,7 +95,7 @@ const ComposeForm = React.createClass({
   },
 
   handleKeyUp (e) {
-    if (e.keyCode === 13 && (e.ctrlKey || (e.metaKey && e.metaKey === '⌘-'))) {
+    if (e.keyCode === 13 && (e.ctrlKey || e.metaKey)) {
       this.props.onSubmit();
     }
   },
