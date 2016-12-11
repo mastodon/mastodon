@@ -10,7 +10,8 @@ const messages = defineMessages({
   block: { id: 'account.block', defaultMessage: 'Block' },
   reply: { id: 'status.reply', defaultMessage: 'Reply' },
   reblog: { id: 'status.reblog', defaultMessage: 'Reblog' },
-  favourite: { id: 'status.favourite', defaultMessage: 'Favourite' }
+  favourite: { id: 'status.favourite', defaultMessage: 'Favourite' },
+  open: { id: 'status.open', defaultMessage: 'Expand' }
 });
 
 const StatusActionBar = React.createClass({
@@ -55,9 +56,15 @@ const StatusActionBar = React.createClass({
     this.props.onBlock(this.props.status.get('account'));
   },
 
+  handleOpen () {
+    this.context.router.push(`/statuses/${this.props.status.get('id')}`);
+  },
+
   render () {
     const { status, me, intl } = this.props;
     let menu = [];
+
+    menu.push({ text: intl.formatMessage(messages.open), action: this.handleOpen });
 
     if (status.getIn(['account', 'id']) === me) {
       menu.push({ text: intl.formatMessage(messages.delete), action: this.handleDeleteClick });

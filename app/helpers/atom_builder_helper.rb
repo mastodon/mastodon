@@ -53,8 +53,8 @@ module AtomBuilderHelper
     xml.author(&block)
   end
 
-  def category(xml, tag)
-    xml.category(term: tag.name)
+  def category(xml, term)
+    xml.category(term: term)
   end
 
   def target(xml, &block)
@@ -203,8 +203,10 @@ module AtomBuilderHelper
           end
 
           stream_entry.target.tags.each do |tag|
-            category xml, tag
+            category xml, tag.name
           end
+
+          category(xml, 'nsfw') if stream_entry.target.sensitive?
         end
       end
     end
@@ -222,8 +224,10 @@ module AtomBuilderHelper
     end
 
     stream_entry.activity.tags.each do |tag|
-      category xml, tag
+      category xml, tag.name
     end
+
+    category(xml, 'nsfw') if stream_entry.activity.sensitive?
   end
 
   private
