@@ -7,7 +7,8 @@ import IconButton from './icon_button';
 import { defineMessages, injectIntl } from 'react-intl';
 
 const messages = defineMessages({
-  follow: { id: 'account.follow', defaultMessage: 'Follow' }
+  follow: { id: 'account.follow', defaultMessage: 'Follow' },
+  unfollow: { id: 'account.unfollow', defaultMessage: 'Unfollow' }
 });
 
 const outerStyle = {
@@ -72,7 +73,7 @@ const Account = React.createClass({
     if (account.get('id') !== me && account.get('relationship', null) != null) {
       const following = account.getIn(['relationship', 'following']);
 
-      buttons = <IconButton icon={following ? 'user-times' : 'user-plus'} title={intl.formatMessage(messages.follow)} onClick={this.handleFollow} active={following} />;
+      buttons = <IconButton icon={following ? 'user-times' : 'user-plus'} title={intl.formatMessage(following ? messages.unfollow : messages.follow)} onClick={this.handleFollow} active={following} />;
     }
 
     return (
