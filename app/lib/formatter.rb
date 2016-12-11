@@ -15,6 +15,7 @@ class Formatter
     html = status.text
     html = encode(html)
     html = simple_format(html, sanitize: false)
+    html = html.gsub(/\n/, '')
     html = link_urls(html)
     html = link_mentions(html, status.mentions)
     html = link_hashtags(html)
@@ -42,7 +43,7 @@ class Formatter
   end
 
   def link_urls(html)
-    auto_link(html, link: :urls, html: { rel: 'nofollow noopener' }) do |text|
+    auto_link(html, link: :urls, html: { rel: 'nofollow noopener', target: '_blank' }) do |text|
       truncate(text.gsub(/\Ahttps?:\/\/(www\.)?/, ''), length: 30)
     end
   end
