@@ -522,3 +522,11 @@
   left: 27px;
   border-color: #2b90d9;
 }
+
+.column-link {
+  background: #373b4a;
+
+  &:hover {
+    background: lighten(#373b4a, 5%);
+  }
+}
