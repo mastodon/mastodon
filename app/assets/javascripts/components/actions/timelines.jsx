@@ -67,7 +67,7 @@ export function refreshTimeline(timeline, id = null) {
     let params = '';
     let path   = timeline;
 
-    if (newestId !== null) {
+    if (newestId !== null && getState().getIn(['timelines', timeline, 'loaded'])) {
       params = `?since_id=${newestId}`;
     }
 

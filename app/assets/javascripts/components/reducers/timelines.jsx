@@ -83,7 +83,7 @@ const normalizeTimeline = (state, timeline, statuses, replace = false) => {
 
   state = state.setIn([timeline, 'loaded'], true);
 
-  return state.updateIn([timeline, 'items'], Immutable.List(), list => (loaded ? list.unshift(...ids) : list.push(...ids)));
+  return state.updateIn([timeline, 'items'], Immutable.List(), list => (loaded ? list.unshift(...ids) : ids));
 };
 
 const appendNormalizedTimeline = (state, timeline, statuses) => {

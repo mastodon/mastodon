@@ -39,7 +39,7 @@ const ActionBar = React.createClass({
   propTypes: {
     account: ImmutablePropTypes.map.isRequired,
     me: React.PropTypes.number.isRequired,
-    onFollow: React.PropTypes.func.isRequired,
+    onFollow: React.PropTypes.func,
     onBlock: React.PropTypes.func.isRequired,
     onMention: React.PropTypes.func.isRequired
   },
