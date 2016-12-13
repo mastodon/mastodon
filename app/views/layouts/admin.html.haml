@@ -1,0 +1,11 @@
+- content_for :content do
+  .admin-wrapper
+    .sidebar
+      = link_to root_path do
+        = image_tag 'logo.png', class: 'logo'
+
+      = render_navigation
+    .content
+      = yield
+
+= render template: "layouts/application"

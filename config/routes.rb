@@ -6,8 +6,8 @@ Rails.application.routes.draw do
   mount ActionCable.server, at: 'cable'
 
   authenticate :user, lambda { |u| u.admin? } do
-    mount Sidekiq::Web, at: 'sidekiq'
-    mount PgHero::Engine, at: 'pghero'
+    mount Sidekiq::Web, at: 'sidekiq', as: :sidekiq
+    mount PgHero::Engine, at: 'pghero', as: :pghero
   end
 
   use_doorkeeper do
@@ -46,6 +46,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :pubsubhubbub, only: [:index]
+    resources :domain_blocks, only: [:index, :create]
 
     resources :accounts, only: [:index, :show, :update] do
       member do

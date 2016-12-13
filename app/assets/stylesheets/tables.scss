@@ -7,21 +7,25 @@
 
   th, td {
     padding: 8px;
-    line-height: 1.42857143;
+    line-height: 18px;
     vertical-align: top;
-    border-top: 1px solid #ddd;
+    border-top: 1px solid #282c37;
     text-align: left;
   }
 
   & > thead > tr > th {
     vertical-align: bottom;
-    border-bottom: 2px solid #ddd;
+    border-bottom: 2px solid #282c37;
     border-top: 0;
     font-weight: 500;
   }
 
   & > tbody > tr > th {
     font-weight: 500;
+  }
+
+  & > tbody > tr:nth-child(odd) > td, & > tbody > tr:nth-child(odd) > th {
+    background: lighten(#1a1c23, 2%);
   }
 
   a {
@@ -38,20 +42,20 @@ samp {
   font-family: 'Roboto Mono', monospace;
 }
 
-.filters {
-  list-style: none;
-  margin-bottom: 20px;
+a.table-action-link {
+  text-decoration: none;
+  display: inline-block;
+  margin-right: 5px;
+  padding: 0 10px;
+  color: rgba(255, 255, 255, 0.7);
+  font-weight: 500;
 
-  li {
-    display: inline-block;
+  &:hover {
+    color: #fff;
   }
 
-  a {
-    color: #2b90d9;
-    text-decoration: underline;
-
-    &:hover {
-      text-decoration: none;
-    }
+  i.fa {
+    font-weight: 400;
+    margin-right: 5px;
   }
 }

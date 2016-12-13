@@ -26,6 +26,12 @@ const Notifications = React.createClass({
     trackScroll: React.PropTypes.bool
   },
 
+  getDefaultProps () {
+    return {
+      trackScroll: true
+    };
+  },
+
   mixins: [PureRenderMixin],
 
   componentWillMount () {

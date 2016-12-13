@@ -17,7 +17,7 @@ RSpec.describe Formatter do
     end
 
     it 'contains a link' do
-      expect(subject).to match('<a rel="nofollow noopener" href="http://google.com">google.com</a>')
+      expect(subject).to match('<a rel="nofollow noopener" target="_blank" href="http://google.com">google.com</a>')
     end
   end
 

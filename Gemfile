@@ -45,6 +45,7 @@ gem 'rack-timeout-puma'
 gem 'sidekiq'
 gem 'ledermann-rails-settings'
 gem 'pg_search'
+gem 'simple-navigation'
 
 gem 'react-rails'
 gem 'browserify-rails'

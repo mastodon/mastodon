@@ -1,9 +1,24 @@
-%ul.filters
-  %li= link_to 'Local', admin_accounts_path(local: '1')
-  %li= link_to 'Remote', admin_accounts_path(remote: '1')
-  %li= link_to 'Silenced', admin_accounts_path(silenced: '1')
-  %li= link_to 'Suspended', admin_accounts_path(suspended: '1')
-  %li= link_to 'Most recent', admin_accounts_path(recent: '1')
+- content_for :page_title do
+  Accounts
+
+.filters
+  .filter-subset
+    %strong Location
+    %ul
+      %li= filter_link_to 'All', local: nil, remote: nil
+      %li= filter_link_to 'Local', local: '1', remote: nil
+      %li= filter_link_to 'Remote', remote: '1', local: nil
+  .filter-subset
+    %strong Moderation
+    %ul
+      %li= filter_link_to 'All', silenced: nil, suspended: nil
+      %li= filter_link_to 'Silenced', silenced: '1'
+      %li= filter_link_to 'Suspended', suspended: '1'
+  .filter-subset
+    %strong Order
+    %ul
+      %li= filter_link_to 'Alphabetic', recent: nil
+      %li= filter_link_to 'Most recent', recent: '1'
 
 %table.table
   %thead
@@ -38,6 +53,9 @@
             %i.fa.fa-check
           - else
             %i.fa.fa-times
-        %td= link_to 'Edit', admin_account_path(account.id)
+        %td
+          = table_link_to 'circle', 'Open in web', web_path("accounts/#{account.id}")
+          = table_link_to 'globe', 'Open public', TagManager.instance.url_for(account)
+          = table_link_to 'pencil', 'Edit', admin_account_path(account.id)
 
 = will_paginate @accounts, pagination_options

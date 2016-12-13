@@ -1,0 +1,14 @@
+- content_for :page_title do
+  Domain Blocks
+
+%table.table
+  %thead
+    %tr
+      %th Domain
+  %tbody
+    - @blocks.each do |block|
+      %tr
+        %td
+          %samp= block.domain
+
+= will_paginate @blocks, pagination_options

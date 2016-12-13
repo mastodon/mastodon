@@ -4,7 +4,7 @@ class Admin::AccountsController < ApplicationController
   before_action :require_admin!
   before_action :set_account, except: :index
 
-  layout 'public'
+  layout 'admin'
 
   def index
     @accounts = Account.alphabetic.paginate(page: params[:page], per_page: 40)
