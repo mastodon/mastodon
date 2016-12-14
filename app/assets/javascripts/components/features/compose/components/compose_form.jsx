@@ -104,6 +104,7 @@ const ComposeForm = React.createClass({
           value={this.props.text}
           onChange={this.handleChange}
           suggestions={this.props.suggestions}
+          onKeyUp={this.handleKeyUp}
           onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
           onSuggestionsClearRequested={this.onSuggestionsClearRequested}
           onSuggestionSelected={this.onSuggestionSelected}
