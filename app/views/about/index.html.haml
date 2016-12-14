@@ -1,6 +1,15 @@
 - content_for :page_title do
   = Rails.configuration.x.local_domain
 
+- content_for :header_tags do
+  %meta{ property: 'og:site_name', content: 'Mastodon' }/
+  %meta{ property: 'og:type', content: 'website' }/
+  %meta{ property: 'og:title', content: Rails.configuration.x.local_domain }/
+  %meta{ property: 'og:description', content: "Mastodon is a free, open-source social network server. A decentralized alternative to commercial platforms, it avoids the risks of a single company monopolizing your communication. Anyone can run Mastodon and participate in the social network seamlessly" }/
+  %meta{ property: 'og:image', content: asset_url('mastodon.jpg') }/
+  %meta{ property: 'og:image:width', content: '1400' }/
+  %meta{ property: 'og:image:height', content: '1488' }/
+
 .wrapper
   %h1
     = image_tag 'logo.png'
