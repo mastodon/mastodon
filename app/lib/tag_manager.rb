@@ -11,7 +11,7 @@ class TagManager
     share:      'http://activitystrea.ms/schema/1.0/share',
     favorite:   'http://activitystrea.ms/schema/1.0/favorite',
     unfavorite: 'http://activitystrea.ms/schema/1.0/unfavorite',
-    delete:     'delete',
+    delete:     'http://activitystrea.ms/schema/1.0/delete',
     follow:     'http://activitystrea.ms/schema/1.0/follow',
     unfollow:   'http://ostatus.org/schema/1.0/unfollow',
   }.freeze
