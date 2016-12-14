@@ -1,3 +1,4 @@
+import { storiesOf } from '@kadira/storybook';
 import Button from '../../app/assets/javascripts/components/components/button.jsx'
 
 storiesOf('Button', module)

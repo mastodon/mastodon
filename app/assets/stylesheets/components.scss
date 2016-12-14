@@ -530,3 +530,43 @@
     background: lighten(#373b4a, 5%);
   }
 }
+
+.autosuggest-textarea {
+  position: relative;
+}
+
+.autosuggest-textarea__textarea {
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100px;
+  resize: none;
+  border: none;
+  color: #282c37;
+  padding: 10px;
+  font-family: 'Roboto';
+  font-size: 14px;
+  margin: 0;
+  resize: vertical;
+}
+
+.autosuggest-textarea__suggestions {
+  position: absolute;
+  top: 100%;
+  width: 100%;
+  z-index: 99;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
+  background: #d9e1e8;
+  color: #282c37;
+  font-size: 14px;
+}
+
+.autosuggest-textarea__suggestions__item {
+  padding: 10px;
+  cursor: pointer;
+
+  &.selected {
+    background: #2b90d9;
+    color: #fff;
+  }
+}

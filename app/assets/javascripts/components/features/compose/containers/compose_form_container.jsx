@@ -19,7 +19,7 @@ const makeMapStateToProps = () => {
     return {
       text: state.getIn(['compose', 'text']),
       suggestion_token: state.getIn(['compose', 'suggestion_token']),
-      suggestions: state.getIn(['compose', 'suggestions']).toJS(),
+      suggestions: state.getIn(['compose', 'suggestions']),
       sensitive: state.getIn(['compose', 'sensitive']),
       unlisted: state.getIn(['compose', 'unlisted']),
       is_submitting: state.getIn(['compose', 'is_submitting']),
@@ -53,8 +53,8 @@ const mapDispatchToProps = function (dispatch) {
       dispatch(fetchComposeSuggestions(token));
     },
 
-    onSuggestionSelected (position, accountId) {
-      dispatch(selectComposeSuggestion(position, accountId));
+    onSuggestionSelected (position, token, accountId) {
+      dispatch(selectComposeSuggestion(position, token, accountId));
     },
 
     onChangeSensitivity (checked) {

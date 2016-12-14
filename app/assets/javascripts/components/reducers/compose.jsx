@@ -75,11 +75,9 @@ function removeMedia(state, mediaId) {
   });
 };
 
-const insertSuggestion = (state, position, completion) => {
-  const token = state.get('suggestion_token');
-
+const insertSuggestion = (state, position, token, completion) => {
   return state.withMutations(map => {
-    map.update('text', oldText => `${oldText.slice(0, position - token.length)}${completion}${oldText.slice(position + token.length)}`);
+    map.update('text', oldText => `${oldText.slice(0, position)}${completion}${oldText.slice(position + token.length)}`);
     map.set('suggestion_token', null);
     map.update('suggestions', Immutable.List(), list => list.clear());
   });
@@ -130,7 +128,7 @@ export default function compose(state = initialState, action) {
     case COMPOSE_SUGGESTIONS_READY:
       return state.set('suggestions', Immutable.List(action.accounts.map(item => item.id))).set('suggestion_token', action.token);
     case COMPOSE_SUGGESTION_SELECT:
-      return insertSuggestion(state, action.position, action.completion);
+      return insertSuggestion(state, action.position, action.token, action.completion);
     case TIMELINE_DELETE:
       if (action.id === state.get('in_reply_to')) {
         return state.set('in_reply_to', null);

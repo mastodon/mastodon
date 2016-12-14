@@ -185,13 +185,14 @@ export function readyComposeSuggestions(token, accounts) {
   };
 };
 
-export function selectComposeSuggestion(position, accountId) {
+export function selectComposeSuggestion(position, token, accountId) {
   return (dispatch, getState) => {
     const completion = getState().getIn(['accounts', accountId, 'acct']);
 
     dispatch({
       type: COMPOSE_SUGGESTION_SELECT,
       position,
+      token,
       completion
     });
   };
