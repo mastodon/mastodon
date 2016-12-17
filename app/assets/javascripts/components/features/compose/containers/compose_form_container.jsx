@@ -8,6 +8,7 @@ import {
   fetchComposeSuggestions,
   selectComposeSuggestion,
   changeComposeSensitivity,
+  changeComposeRebloggability,
   changeComposeVisibility
 } from '../../../actions/compose';
 import { makeGetStatus } from '../../../selectors';
@@ -61,6 +62,10 @@ const mapDispatchToProps = function (dispatch) {
       dispatch(changeComposeSensitivity(checked));
     },
 
+    onChangeRebloggability (checked) {
+      dispatch(changeComposeRebloggability(checked));
+    },
+    
     onChangeVisibility (checked) {
       dispatch(changeComposeVisibility(checked));
     }
