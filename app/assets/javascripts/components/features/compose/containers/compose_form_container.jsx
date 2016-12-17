@@ -22,6 +22,7 @@ const makeMapStateToProps = () => {
       suggestion_token: state.getIn(['compose', 'suggestion_token']),
       suggestions: state.getIn(['compose', 'suggestions']),
       sensitive: state.getIn(['compose', 'sensitive']),
+      no_reblog: state.getIn(['compose', 'no_reblog']),
       unlisted: state.getIn(['compose', 'unlisted']),
       is_submitting: state.getIn(['compose', 'is_submitting']),
       is_uploading: state.getIn(['compose', 'is_uploading']),
