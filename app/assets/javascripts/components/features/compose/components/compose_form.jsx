@@ -23,6 +23,7 @@ const ComposeForm = React.createClass({
     suggestion_token: React.PropTypes.string,
     suggestions: ImmutablePropTypes.list,
     sensitive: React.PropTypes.bool,
+    no_reblog: React.PropTypes.bool,
     unlisted: React.PropTypes.bool,
     is_submitting: React.PropTypes.bool,
     is_uploading: React.PropTypes.bool,
@@ -124,6 +125,11 @@ const ComposeForm = React.createClass({
         <label style={{ display: 'block', lineHeight: '24px', verticalAlign: 'middle', marginTop: '10px', borderTop: '1px solid #282c37', paddingTop: '10px' }}>
           <Toggle checked={this.props.unlisted} onChange={this.handleChangeVisibility} />
           <span style={{ display: 'inline-block', verticalAlign: 'middle', marginBottom: '14px', marginLeft: '8px', color: '#9baec8' }}><FormattedMessage id='compose_form.unlisted' defaultMessage='Do not show on public timeline' /></span>
+        </label>
+        
+        <label style={{ display: 'block', lineHeight: '24px', verticalAlign: 'middle', marginTop: '10px', borderTop: '1px solid #282c37', paddingTop: '10px' }}>
+          <Toggle checked={this.props.no_reblog} onChange={this.handleChangeRebloggability} />
+          <span style={{ display: 'inline-block', verticalAlign: 'middle', marginBottom: '14px', marginLeft: '8px', color: '#9baec8' }}><FormattedMessage id='compose_form.unlisted' defaultMessage='Disable boosting on this instance' /></span>
         </label>
 
         <label style={{ display: 'block', lineHeight: '24px', verticalAlign: 'middle' }}>
