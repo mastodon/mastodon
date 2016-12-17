@@ -37,6 +37,7 @@ const uk = {
   "compose_form.placeholder": "Що у Вас на думці?",
   "compose_form.publish": "Дмухнути",
   "compose_form.sensitive": "Непристойний зміст",
+  "compose_form.no_reblog": null,
   "compose_form.unlisted": "Таємний режим",
   "navigation_bar.settings": "Налаштування",
   "navigation_bar.public_timeline": "Публічна стіна",
