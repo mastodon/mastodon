@@ -27,6 +27,7 @@ import Immutable from 'immutable';
 const initialState = Immutable.Map({
   mounted: false,
   sensitive: false,
+  no_reblog: false,
   unlisted: false,
   text: '',
   in_reply_to: null,
