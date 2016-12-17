@@ -23,6 +23,7 @@ export const COMPOSE_MOUNT   = 'COMPOSE_MOUNT';
 export const COMPOSE_UNMOUNT = 'COMPOSE_UNMOUNT';
 
 export const COMPOSE_SENSITIVITY_CHANGE = 'COMPOSE_SENSITIVITY_CHANGE';
+export const COMPOSE_REBLOGGABILITY_CHANGE = 'COMPOSE_REBLOGGABILITY_CHANGE';
 export const COMPOSE_VISIBILITY_CHANGE  = 'COMPOSE_VISIBILITY_CHANGE';
 
 export function changeCompose(text) {
@@ -216,6 +217,14 @@ export function changeComposeSensitivity(checked) {
     checked
   };
 };
+
+export function changeComposeRebloggability(checked) {
+  return {
+    type: COMPOSE_REBLOGGABILITY_CHANGE,
+    checked
+  };
+};
+
 
 export function changeComposeVisibility(checked) {
   return {
