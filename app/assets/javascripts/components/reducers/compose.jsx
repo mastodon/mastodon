@@ -17,6 +17,7 @@ import {
   COMPOSE_SUGGESTIONS_READY,
   COMPOSE_SUGGESTION_SELECT,
   COMPOSE_SENSITIVITY_CHANGE,
+  COMPOSE_REBLOGGABILITY_CHANGE,
   COMPOSE_VISIBILITY_CHANGE
 } from '../actions/compose';
 import { TIMELINE_DELETE } from '../actions/timelines';
@@ -91,6 +92,8 @@ export default function compose(state = initialState, action) {
       return state.set('mounted', false);
     case COMPOSE_SENSITIVITY_CHANGE:
       return state.set('sensitive', action.checked);
+    case COMPOSE_REBLOGGABILITY_CHANGE:
+      return state.set('no_reblog', action.checked);
     case COMPOSE_VISIBILITY_CHANGE:
       return state.set('unlisted', action.checked);
     case COMPOSE_CHANGE:
