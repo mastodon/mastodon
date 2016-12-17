@@ -37,6 +37,7 @@ const fr = {
   "compose_form.placeholder": "Qu’avez-vous en tête ?",
   "compose_form.publish": "Pouet",
   "compose_form.sensitive": "Marquer le contenu comme délicat",
+  "compose_form.no_reblog": null,
   "compose_form.unlisted": "Ne pas apparaître dans le fil public",
   "navigation_bar.settings": "Paramètres",
   "navigation_bar.public_timeline": "Public",
