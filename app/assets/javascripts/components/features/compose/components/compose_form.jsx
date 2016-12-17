@@ -34,6 +34,7 @@ const ComposeForm = React.createClass({
     onFetchSuggestions: React.PropTypes.func.isRequired,
     onSuggestionSelected: React.PropTypes.func.isRequired,
     onChangeSensitivity: React.PropTypes.func.isRequired,
+    onChangeRebloggability: React.PropTypes.func.isRequired,
     onChangeVisibility: React.PropTypes.func.isRequired
   },
 
@@ -70,6 +71,10 @@ const ComposeForm = React.createClass({
     this.props.onChangeSensitivity(e.target.checked);
   },
 
+  handleChangeRebloggability (e) {
+    this.props.onChangeRebloggability(e.target.checked);
+  },    
+    
   handleChangeVisibility (e) {
     this.props.onChangeVisibility(e.target.checked);
   },
