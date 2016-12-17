@@ -9,5 +9,6 @@ class ProcessHashtagsService < BaseService
     end
 
     status.update(sensitive: true) if tags.include?('nsfw')
+    status.update(no_reblog: true) if tags.include?('no_reblog')
   end
 end
