@@ -13,7 +13,6 @@ class RemoveStatusService < BaseService
 
     return unless status.account.local?
 
-    HubPingWorker.perform_async(status.account.id)
     Pubsubhubbub::DistributionWorker.perform_async(status.stream_entry.id)
   end
 

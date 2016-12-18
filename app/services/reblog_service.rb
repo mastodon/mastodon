@@ -9,7 +9,6 @@ class ReblogService < BaseService
     reblog = account.statuses.create!(reblog: reblogged_status, text: '')
 
     DistributionWorker.perform_async(reblog.id)
-    HubPingWorker.perform_async(account.id)
     Pubsubhubbub::DistributionWorker.perform_async(reblog.stream_entry.id)
 
     if reblogged_status.local?

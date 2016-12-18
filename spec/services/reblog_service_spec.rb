@@ -8,7 +8,6 @@ RSpec.describe ReblogService do
   subject { ReblogService.new }
 
   before do
-    stub_request(:post, Rails.configuration.x.hub_url)
     stub_request(:post, 'http://salmon.example.com')
 
     subject.(alice, status)
@@ -16,10 +15,6 @@ RSpec.describe ReblogService do
 
   it 'creates a reblog' do
     expect(status.reblogs.count).to eq 1
-  end
-
-  it 'pings PubSubHubbub hubs' do
-    expect(a_request(:post, Rails.configuration.x.hub_url)).to have_been_made
   end
 
   it 'sends a Salmon slap for a remote reblog' do

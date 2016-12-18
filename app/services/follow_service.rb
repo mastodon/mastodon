@@ -20,7 +20,6 @@ class FollowService < BaseService
 
     merge_into_timeline(target_account, source_account)
 
-    HubPingWorker.perform_async(source_account.id)
     Pubsubhubbub::DistributionWorker.perform_async(follow.stream_entry.id)
 
     follow

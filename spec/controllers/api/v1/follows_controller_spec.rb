@@ -18,7 +18,6 @@ RSpec.describe Api::V1::FollowsController, type: :controller do
       stub_request(:get,  "https://quitter.no/avatar/7477-300-20160211190340.png").to_return(request_fixture('avatar.txt'))
       stub_request(:post, "https://quitter.no/main/push/hub").to_return(:status => 200, :body => "", :headers => {})
       stub_request(:post, "https://quitter.no/main/salmon/user/7477").to_return(:status => 200, :body => "", :headers => {})
-      stub_request(:post, "https://pubsubhubbub.superfeedr.com/").to_return(:status => 200, :body => "", :headers => {})
 
       post :create, params: { uri: 'gargron@quitter.no' }
     end
@@ -37,10 +36,6 @@ RSpec.describe Api::V1::FollowsController, type: :controller do
 
     it 'sends a salmon slap to the remote user' do
       expect(a_request(:post, "https://quitter.no/main/salmon/user/7477")).to have_been_made
-    end
-
-    it 'notifies own hub' do
-      expect(a_request(:post, "https://pubsubhubbub.superfeedr.com/")).to have_been_made
     end
 
     it 'subscribes to remote hub' do

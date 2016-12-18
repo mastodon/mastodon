@@ -6,7 +6,6 @@ https = ENV['LOCAL_HTTPS'] == 'true'
 
 Rails.application.configure do
   config.x.local_domain = host
-  config.x.hub_url      = ENV.fetch('HUB_URL') { 'https://pubsubhubbub.superfeedr.com' }
   config.x.use_https    = https
   config.x.use_s3       = ENV['S3_ENABLED'] == 'true'
 

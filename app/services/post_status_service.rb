@@ -16,7 +16,6 @@ class PostStatusService < BaseService
     process_hashtags_service.call(status)
 
     DistributionWorker.perform_async(status.id)
-    HubPingWorker.perform_async(account.id)
     Pubsubhubbub::DistributionWorker.perform_async(status.stream_entry.id)
 
     status
