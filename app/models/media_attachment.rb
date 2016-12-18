@@ -45,14 +45,14 @@ class MediaAttachment < ApplicationRecord
       if f.instance.image?
         {
           original: '1280x1280>',
-          small: '250x250>',
+          small: '400x400>',
         }
       else
         {
           small: {
             convert_options: {
               output: {
-                vf: 'scale=\'min(250\, iw):min(250\, ih)\':force_original_aspect_ratio=decrease',
+                vf: 'scale=\'min(400\, iw):min(400\, ih)\':force_original_aspect_ratio=decrease',
               },
             },
             format: 'png',

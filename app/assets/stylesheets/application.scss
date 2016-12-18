@@ -114,6 +114,18 @@ body {
     padding: 0;
   }
 
+  &.embed {
+    background: transparent;
+    margin: 0;
+
+    .container {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+    }
+  }
+
   @media screen and (max-width: 360px) {
     padding-bottom: 0;
   }

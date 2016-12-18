@@ -1,0 +1,8 @@
+!!! 5
+%html{:lang => 'en'}
+  %head
+    %meta{:charset => 'utf-8'}/
+    = stylesheet_link_tag 'application', media: 'all'
+    = javascript_include_tag 'application_public'
+  %body.embed
+    = yield

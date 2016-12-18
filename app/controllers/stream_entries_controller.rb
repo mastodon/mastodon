@@ -25,6 +25,15 @@ class StreamEntriesController < ApplicationController
     end
   end
 
+  def embed
+    response.headers['X-Frame-Options'] = 'ALLOWALL'
+    @type = @stream_entry.activity_type.downcase
+
+    return gone if @stream_entry.activity.nil?
+
+    render layout: 'embedded'
+  end
+
   private
 
   def set_account

@@ -232,3 +232,24 @@
     }
   }
 }
+
+.embed {
+  .activity-stream {
+    border-radius: 4px;
+    box-shadow: none;
+
+    .entry {
+      &:last-child {
+        border-radius: 0 0 4px 4px;
+      }
+
+      &:first-child {
+        border-radius: 4px 4px 0 0;
+
+        &:last-child {
+          border-radius: 4px;
+        }
+      }
+    }
+  }
+}

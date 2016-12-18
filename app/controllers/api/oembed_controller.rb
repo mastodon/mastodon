@@ -5,8 +5,8 @@ class Api::OembedController < ApiController
 
   def show
     @stream_entry = stream_entry_from_url(params[:url])
-    @width        = [300, params[:maxwidth].to_i].min
-    @height       = [200, params[:maxheight].to_i].min
+    @width        = [300, params[:maxwidth].to_i].max
+    @height       = [200, params[:maxheight].to_i].max
   end
 
   private
