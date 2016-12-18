@@ -36,6 +36,7 @@ const es = {
   "compose_form.placeholder": "¿En qué estás pensando?",
   "compose_form.publish": "Publicar",
   "compose_form.sensitive": null,
+  "compose_form.no_reblog": null,
   "compose_form.unlisted": "No listado",
   "navigation_bar.settings": "Ajustes",
   "navigation_bar.public_timeline": "Público",

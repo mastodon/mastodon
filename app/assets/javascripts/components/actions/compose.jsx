@@ -23,6 +23,7 @@ export const COMPOSE_MOUNT   = 'COMPOSE_MOUNT';
 export const COMPOSE_UNMOUNT = 'COMPOSE_UNMOUNT';
 
 export const COMPOSE_SENSITIVITY_CHANGE = 'COMPOSE_SENSITIVITY_CHANGE';
+export const COMPOSE_REBLOGGABILITY_CHANGE = 'COMPOSE_REBLOGGABILITY_CHANGE';
 export const COMPOSE_VISIBILITY_CHANGE  = 'COMPOSE_VISIBILITY_CHANGE';
 
 export function changeCompose(text) {
@@ -67,6 +68,7 @@ export function submitCompose() {
       in_reply_to_id: getState().getIn(['compose', 'in_reply_to'], null),
       media_ids: getState().getIn(['compose', 'media_attachments']).map(item => item.get('id')),
       sensitive: getState().getIn(['compose', 'sensitive']),
+      no_reblog: getState().getIn(['compose', 'no_reblog']),
       unlisted: getState().getIn(['compose', 'unlisted'])
     }).then(function (response) {
       dispatch(submitComposeSuccess({ ...response.data }));
@@ -216,6 +218,14 @@ export function changeComposeSensitivity(checked) {
     checked
   };
 };
+
+export function changeComposeRebloggability(checked) {
+  return {
+    type: COMPOSE_REBLOGGABILITY_CHANGE,
+    checked
+  };
+};
+
 
 export function changeComposeVisibility(checked) {
   return {

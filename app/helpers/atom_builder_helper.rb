@@ -207,6 +207,7 @@ module AtomBuilderHelper
           end
 
           category(xml, 'nsfw') if stream_entry.target.sensitive?
+          category(xml, 'no_reblog') if stream_entry.target.no_reblog?
         end
       end
     end
@@ -228,6 +229,8 @@ module AtomBuilderHelper
     end
 
     category(xml, 'nsfw') if stream_entry.activity.sensitive?
+    category(xml, 'no_reblog') if stream_entry.activity.no_reblog?
+  
   end
 
   private
