@@ -26,6 +26,20 @@ en:
     resend_confirmation: Resend confirmation instructions
     reset_password: Reset password
     set_new_password: Set new password
+  datetime:
+    distance_in_words:
+      about_x_hours: "%{count}h"
+      about_x_months: "%{count}mo"
+      about_x_years: "%{count}y"
+      almost_x_years: "%{count}y"
+      half_a_minute: Just now
+      less_than_x_minutes: "%{count}m"
+      less_than_x_seconds: Just now
+      over_x_years: "%{count}y"
+      x_days: "%{count}d"
+      x_minutes: "%{count}m"
+      x_months: "%{count}mo"
+      x_seconds: "%{count}s"
   generic:
     changes_saved_msg: Changes successfully saved!
     powered_by: powered by %{link}
@@ -53,8 +67,13 @@ en:
     edit_profile: Edit profile
     preferences: Preferences
   stream_entries:
+    click_to_show: Click to show
     favourited: favourited a post by
     is_now_following: is now following
+    sensitive_content: Sensitive content
+  time:
+    formats:
+      default: "%b %d, %Y, %H:%M"
   users:
     invalid_email: The e-mail address is invalid
   will_paginate:

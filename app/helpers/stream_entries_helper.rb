@@ -5,6 +5,10 @@ module StreamEntriesHelper
     account.display_name.blank? ? account.username : account.display_name
   end
 
+  def acct(account)
+    "@#{account.acct}#{@external_links && account.local? ? "@#{Rails.configuration.x.local_domain}" : ''}"
+  end
+
   def avatar_for_status_url(status)
     status.reblog? ? status.reblog.account.avatar.url( :original) : status.account.avatar.url( :original)
   end

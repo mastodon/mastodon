@@ -1,7 +1,7 @@
 - include_threads ||= false
 - is_predecessor  ||= false
 - is_successor    ||= false
-- centered          = include_threads && !is_predecessor && !is_successor
+- centered        ||= include_threads && !is_predecessor && !is_successor
 
 - if status.reply? && include_threads
   = render partial: 'status', collection: @ancestors, as: :status, locals: { is_predecessor: true }
@@ -13,28 +13,7 @@
       Shared by
       = link_to display_name(status.account), TagManager.instance.url_for(status.account), class: 'name'
 
-  .entry__container
-    .avatar
-      = image_tag avatar_for_status_url(status)
-
-    .entry__container__container
-      .header
-        .header__left
-          = link_to TagManager.instance.url_for(proper_status(status).account), class: 'name' do
-            %strong= display_name(proper_status(status).account)
-            = "@#{proper_status(status).account.acct}"
-
-        .header__right
-          = link_to TagManager.instance.url_for(proper_status(status)), class: 'time' do
-            %span{ title: proper_status(status).created_at }
-              = relative_time(proper_status(status).created_at)
-
-      .content= Formatter.instance.format(proper_status(status))
-
-      - if (status.reblog? ? status.reblog : status).media_attachments.size > 0
-        %ul.media-attachments
-          - (status.reblog? ? status.reblog : status).media_attachments.each do |media|
-            %li.transparent-background= link_to '', media.file.url( :original), style: "background-image: url(#{media.file.url( :small)})", target: '_blank'
+  = render partial: centered ? 'stream_entries/detailed_status' : 'stream_entries/simple_status', locals: { status: proper_status(status) }
 
 - if include_threads
   = render partial: 'status', collection: @descendants, as: :status, locals: { is_successor: true }

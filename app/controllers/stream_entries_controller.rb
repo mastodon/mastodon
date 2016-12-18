@@ -9,8 +9,6 @@ class StreamEntriesController < ApplicationController
   before_action :check_account_suspension
 
   def show
-    @type = @stream_entry.activity_type.downcase
-
     respond_to do |format|
       format.html do
         return gone if @stream_entry.activity.nil?
@@ -27,7 +25,7 @@ class StreamEntriesController < ApplicationController
 
   def embed
     response.headers['X-Frame-Options'] = 'ALLOWALL'
-    @type = @stream_entry.activity_type.downcase
+    @external_links = true
 
     return gone if @stream_entry.activity.nil?
 
@@ -46,6 +44,7 @@ class StreamEntriesController < ApplicationController
 
   def set_stream_entry
     @stream_entry = @account.stream_entries.find(params[:id])
+    @type         = @stream_entry.activity_type.downcase
   end
 
   def check_account_suspension
