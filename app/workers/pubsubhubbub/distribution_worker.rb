@@ -14,5 +14,7 @@ class Pubsubhubbub::DistributionWorker
     Subscription.where(account: account).active.select('id').find_each do |subscription|
       Pubsubhubbub::DeliveryWorker.perform_async(subscription.id, payload)
     end
+  rescue ActiveRecord::RecordNotFound
+    true
   end
 end

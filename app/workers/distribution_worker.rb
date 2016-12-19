@@ -5,5 +5,7 @@ class DistributionWorker
 
   def perform(status_id)
     FanOutOnWriteService.new.call(Status.find(status_id))
+  rescue ActiveRecord::RecordNotFound
+    true
   end
 end
