@@ -83,7 +83,11 @@ class Api::V1::StatusesController < ApiController
   end
 
   def unfavourite
-    @status = UnfavouriteService.new.call(current_user.account, Status.find(params[:id])).status.reload
+    @status         = Status.find(params[:id])
+    @favourited_map = { @status.id => false }
+
+    UnfavouriteWorker.perform_async(current_user.account_id, @status.id)
+
     render action: :show
   end
 
