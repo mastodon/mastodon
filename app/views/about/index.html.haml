@@ -2,6 +2,7 @@
   = Rails.configuration.x.local_domain
 
 - content_for :header_tags do
+  = javascript_include_tag 'application_public'
   %meta{ property: 'og:site_name', content: 'Mastodon' }/
   %meta{ property: 'og:type', content: 'website' }/
   %meta{ property: 'og:title', content: Rails.configuration.x.local_domain }/
@@ -25,5 +26,5 @@
       = link_to t('about.terms'), terms_path
       = link_to t('about.source_code'), 'https://github.com/Gargron/mastodon'
 
-    = link_to t('about.get_started'), new_user_registration_path, class: 'button'
-    = link_to t('auth.login'), new_user_session_path, class: 'button'
+    = link_to t('about.get_started'), new_user_registration_path, class: 'button webapp-btn'
+    = link_to t('auth.login'), new_user_session_path, class: 'button webapp-btn'

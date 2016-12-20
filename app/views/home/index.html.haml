@@ -1,5 +1,4 @@
 - content_for :header_tags do
-  %meta{:name => "apple-mobile-web-app-capable", :content => "yes"}/
   = javascript_include_tag 'application'
 
 = react_component 'Mastodon', default_props, class: 'app-holder', prerender: false
