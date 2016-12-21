@@ -6,6 +6,8 @@ class ReblogService < BaseService
   # @param [Status] reblogged_status Status to be reblogged
   # @return [Status]
   def call(account, reblogged_status)
+    raise ActiveRecord::RecordInvalid if reblogged_status.private_visibility?
+
     reblog = account.statuses.create!(reblog: reblogged_status, text: '')
 
     DistributionWorker.perform_async(reblog.id)

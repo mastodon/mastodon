@@ -97,7 +97,7 @@ RSpec.describe Api::V1::StatusesController, type: :controller do
     end
 
     it 'updates the reblogs count' do
-      expect(status.reblogs_count).to eq 1
+      expect(status.reblogs.count).to eq 1
     end
 
     it 'updates the reblogged attribute' do
@@ -126,7 +126,7 @@ RSpec.describe Api::V1::StatusesController, type: :controller do
     end
 
     it 'updates the reblogs count' do
-      expect(status.reblogs_count).to eq 0
+      expect(status.reblogs.count).to eq 0
     end
 
     it 'updates the reblogged attribute' do
@@ -146,7 +146,7 @@ RSpec.describe Api::V1::StatusesController, type: :controller do
     end
 
     it 'updates the favourites count' do
-      expect(status.favourites_count).to eq 1
+      expect(status.favourites.count).to eq 1
     end
 
     it 'updates the favourited attribute' do
@@ -175,7 +175,7 @@ RSpec.describe Api::V1::StatusesController, type: :controller do
     end
 
     it 'updates the favourites count' do
-      expect(status.favourites_count).to eq 0
+      expect(status.favourites.count).to eq 0
     end
 
     it 'updates the favourited attribute' do

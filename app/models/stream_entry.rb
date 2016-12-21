@@ -9,6 +9,7 @@ class StreamEntry < ApplicationRecord
   belongs_to :status,    foreign_type: 'Status',    foreign_key: 'activity_id'
   belongs_to :follow,    foreign_type: 'Follow',    foreign_key: 'activity_id'
   belongs_to :favourite, foreign_type: 'Favourite', foreign_key: 'activity_id'
+  belongs_to :block,     foreign_type: 'Block',     foreign_key: 'activity_id'
 
   validates :account, :activity, presence: true
 
@@ -29,7 +30,7 @@ class StreamEntry < ApplicationRecord
   end
 
   def targeted?
-    [:follow, :share, :favorite].include? verb
+    [:follow, :unfollow, :block, :unblock, :share, :favorite].include? verb
   end
 
   def target
@@ -57,7 +58,7 @@ class StreamEntry < ApplicationRecord
   end
 
   def activity
-    send(activity_type.downcase.to_sym)
+    !new_record? ? send(activity_type.downcase) : super
   end
 
   private

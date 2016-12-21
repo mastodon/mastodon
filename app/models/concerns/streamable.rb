@@ -26,8 +26,12 @@ module Streamable
       super
     end
 
+    def hidden?
+      false
+    end
+
     after_create do
-      account.stream_entries.create!(activity: self) if account.local?
+      account.stream_entries.create!(activity: self, hidden: hidden?) if account.local?
     end
   end
 end

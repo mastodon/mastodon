@@ -8,8 +8,7 @@ class Api::V1::AccountsController < ApiController
 
   respond_to :json
 
-  def show
-  end
+  def show; end
 
   def verify_credentials
     @account = current_user.account
@@ -47,7 +46,7 @@ class Api::V1::AccountsController < ApiController
   end
 
   def statuses
-    @statuses = @account.statuses.paginate_by_max_id(DEFAULT_STATUSES_LIMIT, params[:max_id], params[:since_id])
+    @statuses = @account.statuses.permitted_for(@account, current_account).paginate_by_max_id(DEFAULT_STATUSES_LIMIT, params[:max_id], params[:since_id])
     @statuses = cache_collection(@statuses, Status)
 
     set_maps(@statuses)

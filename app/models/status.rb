@@ -5,7 +5,7 @@ class Status < ApplicationRecord
   include Streamable
   include Cacheable
 
-  enum visibility: [:public, :unlisted], _suffix: :visibility
+  enum visibility: [:public, :unlisted, :private], _suffix: :visibility
 
   belongs_to :account, inverse_of: :statuses
 
@@ -66,19 +66,19 @@ class Status < ApplicationRecord
     content
   end
 
-  def reblogs_count
-    attributes['reblogs_count'] || reblogs.count
+  def hidden?
+    private_visibility?
   end
 
-  def favourites_count
-    attributes['favourites_count'] || favourites.count
+  def permitted?(other_account = nil)
+    private_visibility? ? (account.id == other_account&.id || other_account&.following?(account)) : true
   end
 
   def ancestors(account = nil)
     ids      = (Status.find_by_sql(['WITH RECURSIVE search_tree(id, in_reply_to_id, path) AS (SELECT id, in_reply_to_id, ARRAY[id] FROM statuses WHERE id = ? UNION ALL SELECT statuses.id, statuses.in_reply_to_id, path || statuses.id FROM search_tree JOIN statuses ON statuses.id = search_tree.in_reply_to_id WHERE NOT statuses.id = ANY(path)) SELECT id FROM search_tree ORDER BY path DESC', id]) - [self]).pluck(:id)
     statuses = Status.where(id: ids).with_includes.group_by(&:id)
     results  = ids.map { |id| statuses[id].first }
-    results  = results.reject { |status| account.blocking?(status.account) } unless account.nil?
+    results  = results.reject { |status| filter_from_context?(status, account) }
 
     results
   end
@@ -87,7 +87,7 @@ class Status < ApplicationRecord
     ids      = (Status.find_by_sql(['WITH RECURSIVE search_tree(id, path) AS (SELECT id, ARRAY[id] FROM statuses WHERE id = ? UNION ALL SELECT statuses.id, path || statuses.id FROM search_tree JOIN statuses ON statuses.in_reply_to_id = search_tree.id WHERE NOT statuses.id = ANY(path)) SELECT id FROM search_tree ORDER BY path', id]) - [self]).pluck(:id)
     statuses = Status.where(id: ids).with_includes.group_by(&:id)
     results  = ids.map { |id| statuses[id].first }
-    results  = results.reject { |status| account.blocking?(status.account) } unless account.nil?
+    results  = results.reject { |status| filter_from_context?(status, account) }
 
     results
   end
@@ -128,6 +128,14 @@ class Status < ApplicationRecord
       select('reblog_of_id').where(reblog_of_id: status_ids).where(account_id: account_id).map { |s| [s.reblog_of_id, true] }.to_h
     end
 
+    def permitted_for(target_account, account)
+      if account&.id == target_account.id || account&.following?(target_account)
+        self
+      else
+        where.not(visibility: :private)
+      end
+    end
+
     def reload_stale_associations!(cached_items)
       account_ids = []
 
@@ -161,5 +169,12 @@ class Status < ApplicationRecord
   before_validation do
     text.strip!
     self.in_reply_to_account_id = thread.account_id if reply?
+    self.visibility             = :public if visibility.nil?
+  end
+
+  private
+
+  def filter_from_context?(status, account)
+    account&.blocking?(status.account) || !status.permitted?(account)
   end
 end

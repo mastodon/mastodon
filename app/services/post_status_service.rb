@@ -10,7 +10,7 @@ class PostStatusService < BaseService
   # @option [Enumerable] :media_ids Optional array of media IDs to attach
   # @return [Status]
   def call(account, text, in_reply_to = nil, options = {})
-    status = account.statuses.create!(text: text, thread: in_reply_to, sensitive: options[:sensitive], visibility: options[:unlisted] ? :unlisted : :public)
+    status = account.statuses.create!(text: text, thread: in_reply_to, sensitive: options[:sensitive], visibility: options[:visibility])
     attach_media(status, options[:media_ids])
     process_mentions_service.call(status)
     process_hashtags_service.call(status)

@@ -14,8 +14,8 @@ class StreamEntriesController < ApplicationController
         return gone if @stream_entry.activity.nil?
 
         if @stream_entry.activity_type == 'Status'
-          @ancestors   = @stream_entry.activity.ancestors
-          @descendants = @stream_entry.activity.descendants
+          @ancestors   = @stream_entry.activity.ancestors(current_account)
+          @descendants = @stream_entry.activity.descendants(current_account)
         end
       end
 
@@ -43,7 +43,7 @@ class StreamEntriesController < ApplicationController
   end
 
   def set_stream_entry
-    @stream_entry = @account.stream_entries.find(params[:id])
+    @stream_entry = @account.stream_entries.where(hidden: false).find(params[:id])
     @type         = @stream_entry.activity_type.downcase
   end
 
