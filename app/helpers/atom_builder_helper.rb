@@ -100,7 +100,7 @@ module AtomBuilderHelper
   def portable_contact(xml, account)
     xml['poco'].preferredUsername account.username
     xml['poco'].displayName(account.display_name) unless account.display_name.blank?
-    xml['poco'].note(account.note) unless account.note.blank?
+    xml['poco'].note(Formatter.instance.simplified_format(account)) unless account.note.blank?
   end
 
   def in_reply_to(xml, uri, url)
