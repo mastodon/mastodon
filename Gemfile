@@ -2,7 +2,7 @@
 
 source 'https://rubygems.org'
 
-gem 'rails', git: 'https://github.com/rails/rails.git', branch: '5-0-stable'
+gem 'rails', '~> 5.0.1.0'
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.1.0'
@@ -41,7 +41,6 @@ gem 'simple_form'
 gem 'will_paginate'
 gem 'rack-attack'
 gem 'rack-cors', require: 'rack/cors'
-gem 'rack-timeout-puma'
 gem 'sidekiq'
 gem 'ledermann-rails-settings'
 gem 'pg_search'
@@ -78,4 +77,5 @@ group :production do
   gem 'rails_12factor'
   gem 'lograge'
   gem 'redis-rails'
+  gem 'rack-timeout-puma'
 end
