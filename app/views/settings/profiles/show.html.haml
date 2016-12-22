@@ -4,11 +4,13 @@
 = simple_form_for @account, url: settings_profile_path, html: { method: :put } do |f|
   = render 'shared/error_messages', object: @account
 
-  = f.input :display_name, placeholder: t('simple_form.labels.defaults.display_name')
-  = f.input :note, placeholder: t('simple_form.labels.defaults.note')
-  = f.input :avatar, wrapper: :with_label
-  = f.input :header, wrapper: :with_label
-  = f.input :locked, as: :boolean, wrapper: :with_label
+  .fields-group
+    = f.input :display_name, placeholder: t('simple_form.labels.defaults.display_name')
+    = f.input :note, placeholder: t('simple_form.labels.defaults.note')
+    = f.input :avatar, wrapper: :with_label
+    = f.input :header, wrapper: :with_label
+
+  = f.input :locked, as: :boolean, wrapper: :with_label, hint: t('simple_form.hints.defaults.locked')
 
   .actions
     = f.button :button, t('generic.save_changes'), type: :submit

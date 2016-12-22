@@ -39,6 +39,16 @@ class FeedManager
     redis.zremrangebyscore(key(type, account_id), '-inf', "(#{last.last}")
   end
 
+  def merge_into_timeline(from_account, into_account)
+    timeline_key = key(:home, into_account.id)
+
+    from_account.statuses.limit(MAX_ITEMS).each do |status|
+      redis.zadd(timeline_key, status.id, status.id)
+    end
+
+    trim(:home, into_account.id)
+  end
+
   def inline_render(target_account, template, object)
     rabl_scope = Class.new do
       include RoutingHelper

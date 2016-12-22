@@ -8,6 +8,7 @@ import IconButton from '../../../components/icon_button';
 const messages = defineMessages({
   unfollow: { id: 'account.unfollow', defaultMessage: 'Unfollow' },
   follow: { id: 'account.follow', defaultMessage: 'Follow' },
+  requested: { id: 'account.requested', defaultMessage: 'Awaiting approval' }
 });
 
 const Header = React.createClass({
@@ -36,11 +37,19 @@ const Header = React.createClass({
     }
 
     if (me !== account.get('id')) {
-      actionBtn = (
-        <div style={{ position: 'absolute', top: '10px', left: '20px' }}>
-          <IconButton size={26} icon={account.getIn(['relationship', 'following']) ? 'user-times' : 'user-plus'} active={account.getIn(['relationship', 'following'])} title={intl.formatMessage(account.getIn(['relationship', 'following']) ? messages.unfollow : messages.follow)} onClick={this.props.onFollow} />
-        </div>
-      );
+      if (account.getIn(['relationship', 'requested'])) {
+        actionBtn = (
+          <div style={{ position: 'absolute', top: '10px', left: '20px' }}>
+            <IconButton size={26} disabled={true} icon='hourglass' title={intl.formatMessage(messages.requested)} />
+          </div>
+        );
+      } else {
+        actionBtn = (
+          <div style={{ position: 'absolute', top: '10px', left: '20px' }}>
+            <IconButton size={26} icon={account.getIn(['relationship', 'following']) ? 'user-times' : 'user-plus'} active={account.getIn(['relationship', 'following'])} title={intl.formatMessage(account.getIn(['relationship', 'following']) ? messages.unfollow : messages.follow)} onClick={this.props.onFollow} />
+          </div>
+        );
+      }
     }
 
     const content         = { __html: emojify(account.get('note')) };

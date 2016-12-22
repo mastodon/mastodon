@@ -14,6 +14,12 @@ code {
     margin-bottom: 15px;
   }
 
+  .hint {
+    display: block;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 12px;
+  }
+
   .input.file, .input.select {
     padding: 15px 0;
     margin-bottom: 0;
@@ -58,6 +64,10 @@ code {
 	    left: 0;
       top: 1px;
       margin: 0;
+    }
+
+    .hint {
+      padding-left: 25px;
     }
   }
 

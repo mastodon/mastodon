@@ -34,6 +34,8 @@ class Account < ApplicationRecord
   has_many :notifications, inverse_of: :account, dependent: :destroy
 
   # Follow relations
+  has_many :follow_requests, dependent: :destroy
+
   has_many :active_relationships,  class_name: 'Follow', foreign_key: 'account_id',        dependent: :destroy
   has_many :passive_relationships, class_name: 'Follow', foreign_key: 'target_account_id', dependent: :destroy
 
@@ -178,6 +180,10 @@ class Account < ApplicationRecord
 
     def blocking_map(target_account_ids, account_id)
       Block.where(target_account_id: target_account_ids).where(account_id: account_id).map { |b| [b.target_account_id, true] }.to_h
+    end
+
+    def requested_map(target_account_ids, account_id)
+      FollowRequest.where(target_account_id: target_account_ids).where(account_id: account_id).map { |r| [r.target_account_id, true] }.to_h
     end
   end
 

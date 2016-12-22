@@ -10,6 +10,20 @@ class FollowService < BaseService
     raise ActiveRecord::RecordNotFound if target_account.nil? || target_account.id == source_account.id || target_account.suspended?
     raise Mastodon::NotPermitted       if target_account.blocking?(source_account)
 
+    if target_account.locked?
+      request_follow(source_account, target_account)
+    else
+      direct_follow(source_account, target_account)
+    end
+  end
+
+  private
+
+  def request_follow(source_account, target_account)
+    FollowRequest.create!(account: source_account, target_account: target_account)
+  end
+
+  def direct_follow(source_account, target_account)
     follow = source_account.follow!(target_account)
 
     if target_account.local?
@@ -19,23 +33,10 @@ class FollowService < BaseService
       NotificationWorker.perform_async(follow.stream_entry.id, target_account.id)
     end
 
-    merge_into_timeline(target_account, source_account)
-
+    FeedManager.instance.merge_into_timeline(target_account, source_account)
     Pubsubhubbub::DistributionWorker.perform_async(follow.stream_entry.id)
 
     follow
-  end
-
-  private
-
-  def merge_into_timeline(from_account, into_account)
-    timeline_key = FeedManager.instance.key(:home, into_account.id)
-
-    from_account.statuses.find_each do |status|
-      redis.zadd(timeline_key, status.id, status.id)
-    end
-
-    FeedManager.instance.trim(:home, into_account.id)
   end
 
   def redis

@@ -43,8 +43,10 @@ class StreamEntriesController < ApplicationController
   end
 
   def set_stream_entry
-    @stream_entry = @account.stream_entries.where(hidden: false).find(params[:id])
+    @stream_entry = @account.stream_entries.find(params[:id])
     @type         = @stream_entry.activity_type.downcase
+
+    raise ActiveRecord::RecordNotFound if @stream_entry.hidden? && (@stream_entry.activity_type != 'Status' || (@stream_entry.activity_type == 'Status' && !@stream_entry.activity.permitted?(current_account)))
   end
 
   def check_account_suspension
