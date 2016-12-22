@@ -28,6 +28,8 @@ class ProcessMentionsService < BaseService
     status.mentions.each do |mention|
       mentioned_account = mention.account
 
+      next if status.private_visibility? && !mentioned_account.following?(status.account)
+
       if mentioned_account.local?
         NotifyService.new.call(mentioned_account, mention)
       else
