@@ -22,6 +22,7 @@ const en = {
   "account.follows": "Follows",
   "account.followers": "Followers",
   "account.follows_you": "Follows you",
+  "account.requested": "Awaiting approval",
   "getting_started.heading": "Getting started",
   "getting_started.about_addressing": "You can follow people if you know their username and the domain they are on by entering an e-mail-esque address into the search form.",
   "getting_started.about_shortcuts": "If the target user is on the same domain as you, just the username will work. The same rule applies to mentioning people in statuses.",

@@ -9,7 +9,7 @@ class UserMailer < Devise::Mailer
     @token    = token
 
     I18n.with_locale(@resource.locale || I18n.default_locale) do
-      mail to: @resource.email
+      mail to: @resource.unconfirmed_email.blank? ? @resource.email : @resource.unconfirmed_email
     end
   end
 
