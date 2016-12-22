@@ -28,4 +28,8 @@ class Favourite < ApplicationRecord
   def target
     thread
   end
+
+  before_validation do
+    self.status = status.reblog if status.reblog?
+  end
 end

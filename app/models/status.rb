@@ -160,6 +160,7 @@ class Status < ApplicationRecord
 
   before_validation do
     text.strip!
+    self.reblog = reblog.reblog if reblog? && reblog.reblog?
     self.in_reply_to_account_id = thread.account_id if reply?
   end
 end
