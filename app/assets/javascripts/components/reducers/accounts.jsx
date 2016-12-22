@@ -78,9 +78,10 @@ export default function accounts(state = initialState, action) {
     case FAVOURITES_FETCH_SUCCESS:
     case COMPOSE_SUGGESTIONS_READY:
     case SEARCH_SUGGESTIONS_READY:
+      return normalizeAccounts(state, action.accounts);
     case NOTIFICATIONS_REFRESH_SUCCESS:
     case NOTIFICATIONS_EXPAND_SUCCESS:
-      return normalizeAccounts(state, action.accounts);
+      return normalizeAccountsFromStatuses(normalizeAccounts(state, action.accounts), action.statuses);
     case TIMELINE_REFRESH_SUCCESS:
     case TIMELINE_EXPAND_SUCCESS:
     case ACCOUNT_TIMELINE_FETCH_SUCCESS:
