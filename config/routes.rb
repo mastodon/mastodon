@@ -48,6 +48,13 @@ Rails.application.routes.draw do
   resources :media, only: [:show]
   resources :tags,  only: [:show]
 
+  resources :follow_requests do
+    member do
+      post :authorize
+      post :reject
+    end
+  end
+
   namespace :admin do
     resources :pubsubhubbub, only: [:index]
     resources :domain_blocks, only: [:index, :create]

@@ -9,7 +9,7 @@ module Admin::AccountsHelper
     link_to text, filter_params(more_params), class: params.merge(more_params).compact == params.compact ? 'selected' : ''
   end
 
-  def table_link_to(icon, text, path)
-    link_to safe_join([fa_icon(icon), text]), path, class: 'table-action-link'
+  def table_link_to(icon, text, path, options = {})
+    link_to safe_join([fa_icon(icon), text]), path, options.merge(class: 'table-action-link')
   end
 end

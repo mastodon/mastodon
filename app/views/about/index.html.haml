@@ -2,7 +2,6 @@
   = Rails.configuration.x.local_domain
 
 - content_for :header_tags do
-  = javascript_include_tag 'application_public'
   %meta{ property: 'og:site_name', content: 'Mastodon' }/
   %meta{ property: 'og:type', content: 'website' }/
   %meta{ property: 'og:title', content: Rails.configuration.x.local_domain }/

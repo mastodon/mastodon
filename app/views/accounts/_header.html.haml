@@ -9,7 +9,9 @@
   .avatar= image_tag @account.avatar.url( :original)
   %h1.name
     = display_name(@account)
-    %small= "@#{@account.username}"
+    %small
+      = "@#{@account.username}"
+      = fa_icon('lock') if @account.locked?
   .details
     .bio
       .account__header__content= Formatter.instance.simplified_format(@account)

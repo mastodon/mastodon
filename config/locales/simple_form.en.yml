@@ -1,6 +1,9 @@
 ---
 en:
   simple_form:
+    hints:
+      defaults:
+        locked: Requires you to manually approve followers and defaults post privacy to followers-only
     labels:
       defaults:
         avatar: Avatar
@@ -11,11 +14,11 @@ en:
         email: E-mail address
         header: Header
         locale: Language
+        locked: Make account private
         new_password: New password
         note: Bio
         password: Password
         username: Username
-        locked: Make account private
       interactions:
         must_be_follower: Block notifications from non-followers
         must_be_following: Block notifications from people you don't follow
@@ -24,9 +27,6 @@ en:
         follow: Send e-mail when someone follows you
         mention: Send e-mail when someone mentions you
         reblog: Send e-mail when someone reblogs your status
-    hints:
-      defaults:
-        locked: Requires you to manually approve followers and defaults post privacy to followers-only
     'no': 'No'
     required:
       mark: "*"
