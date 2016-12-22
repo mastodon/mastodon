@@ -1,5 +1,5 @@
 .card{ style: "background-image: url(#{@account.header.url( :original)})" }
-  - if user_signed_in? && current_account.id != @account.id
+  - if user_signed_in? && current_account.id != @account.id && !current_account.requested?(@account)
     .controls
       - if current_account.following?(@account)
         = link_to t('accounts.unfollow'), unfollow_account_path(@account), data: { method: :post }, class: 'button'

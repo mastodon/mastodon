@@ -91,6 +91,10 @@ class Account < ApplicationRecord
     blocking.include?(other_account)
   end
 
+  def requested?(other_account)
+    follow_requests.where(target_account: other_account).exists?
+  end
+
   def local?
     domain.nil?
   end
