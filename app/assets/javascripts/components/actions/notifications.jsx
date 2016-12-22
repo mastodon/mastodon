@@ -76,7 +76,7 @@ export function refreshNotificationsSuccess(notifications, next) {
     type: NOTIFICATIONS_REFRESH_SUCCESS,
     notifications,
     accounts: notifications.map(item => item.account),
-    statuses: notifications.map(item => item.status),
+    statuses: notifications.map(item => item.status).filter(status => !!status),
     next
   };
 };
@@ -120,7 +120,7 @@ export function expandNotificationsSuccess(notifications, next) {
     type: NOTIFICATIONS_EXPAND_SUCCESS,
     notifications,
     accounts: notifications.map(item => item.account),
-    statuses: notifications.map(item => item.status),
+    statuses: notifications.map(item => item.status).filter(status => !!status),
     next
   };
 };
