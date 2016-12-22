@@ -26,7 +26,7 @@ import Immutable from 'immutable';
 const initialState = Immutable.Map({
   mounted: false,
   sensitive: false,
-  unlisted: false,
+  private: false,
   text: '',
   in_reply_to: null,
   is_submitting: false,
@@ -92,7 +92,7 @@ export default function compose(state = initialState, action) {
     case COMPOSE_SENSITIVITY_CHANGE:
       return state.set('sensitive', action.checked);
     case COMPOSE_VISIBILITY_CHANGE:
-      return state.set('unlisted', action.checked);
+      return state.set('private', action.checked);
     case COMPOSE_CHANGE:
       return state.set('text', action.text);
     case COMPOSE_REPLY:
@@ -136,7 +136,7 @@ export default function compose(state = initialState, action) {
         return state;
       }
     case ACCOUNT_SET_SELF:
-      return state.set('me', action.account.id);
+      return state.set('me', action.account.id).set('private', action.account.locked);
     default:
       return state;
   }
