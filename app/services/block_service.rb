@@ -5,7 +5,10 @@ class BlockService < BaseService
     return if account.id == target_account.id
 
     UnfollowService.new.call(account, target_account) if account.following?(target_account)
+    UnfollowService.new.call(target_account, account) if target_account.following?(account)
+
     account.block!(target_account)
+
     clear_timelines(account, target_account)
     clear_notifications(account, target_account)
   end
