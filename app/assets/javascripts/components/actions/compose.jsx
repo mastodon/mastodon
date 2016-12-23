@@ -24,6 +24,7 @@ export const COMPOSE_UNMOUNT = 'COMPOSE_UNMOUNT';
 
 export const COMPOSE_SENSITIVITY_CHANGE = 'COMPOSE_SENSITIVITY_CHANGE';
 export const COMPOSE_VISIBILITY_CHANGE  = 'COMPOSE_VISIBILITY_CHANGE';
+export const COMPOSE_VISIBILITY_CHANGE  = 'COMPOSE_LISTABILITY_CHANGE';
 
 export function changeCompose(text) {
   return {
@@ -218,6 +219,13 @@ export function changeComposeSensitivity(checked) {
 };
 
 export function changeComposeVisibility(checked) {
+  return {
+    type: COMPOSE_VISIBILITY_CHANGE,
+    checked
+  };
+};
+
+export function changeComposeListability(checked) {
   return {
     type: COMPOSE_VISIBILITY_CHANGE,
     checked
