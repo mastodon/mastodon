@@ -96,7 +96,7 @@ export default function compose(state = initialState, action) {
     case COMPOSE_VISIBILITY_CHANGE:
       return state.set('private', action.checked);
     case COMPOSE_LISTABILITY_CHANGE:
-      return state.set('private', action.checked);      
+      return state.set('unlisted', action.checked);      
     case COMPOSE_CHANGE:
       return state.set('text', action.text);
     case COMPOSE_REPLY:
