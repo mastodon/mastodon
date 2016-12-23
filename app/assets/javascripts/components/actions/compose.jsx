@@ -24,6 +24,7 @@ export const COMPOSE_UNMOUNT = 'COMPOSE_UNMOUNT';
 
 export const COMPOSE_SENSITIVITY_CHANGE = 'COMPOSE_SENSITIVITY_CHANGE';
 export const COMPOSE_VISIBILITY_CHANGE  = 'COMPOSE_VISIBILITY_CHANGE';
+export const COMPOSE_LISTABILITY_CHANGE  = 'COMPOSE_LISTABILITY_CHANGE';
 
 export function changeCompose(text) {
   return {
@@ -67,7 +68,7 @@ export function submitCompose() {
       in_reply_to_id: getState().getIn(['compose', 'in_reply_to'], null),
       media_ids: getState().getIn(['compose', 'media_attachments']).map(item => item.get('id')),
       sensitive: getState().getIn(['compose', 'sensitive']),
-      visibility: getState().getIn(['compose', 'private']) ? 'private' : 'public'
+      visibility: getState().getIn(['compose', 'private']) ? 'private' : (getState().getIn(['compose', 'unlisted']) ? 'unlisted' : 'public')
     }).then(function (response) {
       dispatch(submitComposeSuccess({ ...response.data }));
 
@@ -220,6 +221,13 @@ export function changeComposeSensitivity(checked) {
 export function changeComposeVisibility(checked) {
   return {
     type: COMPOSE_VISIBILITY_CHANGE,
+    checked
+  };
+};
+
+export function changeComposeListability(checked) {
+  return {
+    type: COMPOSE_LISTABILITY_CHANGE,
     checked
   };
 };

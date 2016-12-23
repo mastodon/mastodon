@@ -34,7 +34,8 @@ const ComposeForm = React.createClass({
     onFetchSuggestions: React.PropTypes.func.isRequired,
     onSuggestionSelected: React.PropTypes.func.isRequired,
     onChangeSensitivity: React.PropTypes.func.isRequired,
-    onChangeVisibility: React.PropTypes.func.isRequired
+    onChangeVisibility: React.PropTypes.func.isRequired,
+    onChangeListability: React.PropTypes.func.isRequired,
   },
 
   mixins: [PureRenderMixin],
@@ -72,6 +73,10 @@ const ComposeForm = React.createClass({
 
   handleChangeVisibility (e) {
     this.props.onChangeVisibility(e.target.checked);
+  },
+    
+  handleChangeListability (e) {
+    this.props.onChangeListability(e.target.checked);
   },
 
   componentDidUpdate (prevProps) {
@@ -120,6 +125,13 @@ const ComposeForm = React.createClass({
           <Toggle checked={this.props.private} onChange={this.handleChangeVisibility} />
           <span style={{ display: 'inline-block', verticalAlign: 'middle', marginBottom: '14px', marginLeft: '8px', color: '#9baec8' }}><FormattedMessage id='compose_form.private' defaultMessage='Mark as private' /></span>
         </label>
+        
+        <label style={{ display: 'block', lineHeight: '24px', verticalAlign: 'middle', marginTop: '10px', borderTop: '1px solid #282c37', paddingTop: '10px' }}>
+          <Toggle checked={this.props.private} onChange={this.handleChangeListability} />
+          <span style={{ display: 'inline-block', verticalAlign: 'middle', marginBottom: '14px', marginLeft: '8px', color: '#9baec8' }}><FormattedMessage id='compose_form.unlisted' defaultMessage='Do not display in public timeline' /></span>
+        </label>
+
+        <span style={{ display: 'block', verticalAlign: 'middle', marginTop: '10px', marginBottom: '10px', marginLeft: '8px', color: '#9baec8' }}><FormattedMessage id='compose_form.unlisted_caveat' defaultMessage='(Private posts will never display in public timeline.)' /></span>
 
         <label style={{ display: 'block', lineHeight: '24px', verticalAlign: 'middle' }}>
           <Toggle checked={this.props.sensitive} onChange={this.handleChangeSensitivity} />
