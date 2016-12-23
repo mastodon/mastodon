@@ -31,6 +31,7 @@ class Status < ApplicationRecord
 
   scope :remote, -> { where.not(uri: nil) }
   scope :local, -> { where(uri: nil) }
+  scope :permitted_for, ->(target_account, account) { account&.id == target_account.id || account&.following?(target_account) ? where('1=1') : where.not(visibility: :private) }
 
   cache_associated :account, :media_attachments, :tags, :stream_entry, mentions: :account, reblog: [:account, :stream_entry, :tags, :media_attachments, mentions: :account], thread: :account
 
@@ -126,14 +127,6 @@ class Status < ApplicationRecord
 
     def reblogs_map(status_ids, account_id)
       select('reblog_of_id').where(reblog_of_id: status_ids).where(account_id: account_id).map { |s| [s.reblog_of_id, true] }.to_h
-    end
-
-    def permitted_for(target_account, account)
-      if account&.id == target_account.id || account&.following?(target_account)
-        self
-      else
-        where.not(visibility: :private)
-      end
     end
 
     def reload_stale_associations!(cached_items)
