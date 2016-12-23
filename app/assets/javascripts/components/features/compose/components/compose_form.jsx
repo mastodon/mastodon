@@ -127,7 +127,7 @@ const ComposeForm = React.createClass({
         </label>
         
         <label style={{ display: 'block', lineHeight: '24px', verticalAlign: 'middle', marginTop: '10px', borderTop: '1px solid #282c37', paddingTop: '10px' }}>
-          <Toggle checked={this.props.unlisted} onChange={this.handleChangeListability} />
+          <Toggle checked={this.props.private} onChange={this.handleChangeListability} />
           <span style={{ display: 'inline-block', verticalAlign: 'middle', marginBottom: '14px', marginLeft: '8px', color: '#9baec8' }}><FormattedMessage id='compose_form.unlisted' defaultMessage='Do not display in public timeline' /></span>
         </label>
 
