@@ -130,6 +130,7 @@ const ComposeForm = React.createClass({
           <Toggle checked={this.props.unlisted} onChange={this.handleChangeListability} />
           <span style={{ display: 'inline-block', verticalAlign: 'middle', marginBottom: '14px', marginLeft: '8px', color: '#9baec8' }}><FormattedMessage id='compose_form.unlisted' defaultMessage='Do not display in public timeline' /></span>
         </label>
+        <FormattedMessage id='compose_form.unlisted_caveat' defaultMessage='(Private posts will never display on public timeline.)' />
 
         <label style={{ display: 'block', lineHeight: '24px', verticalAlign: 'middle' }}>
           <Toggle checked={this.props.sensitive} onChange={this.handleChangeSensitivity} />
