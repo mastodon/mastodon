@@ -68,7 +68,7 @@ export function submitCompose() {
       in_reply_to_id: getState().getIn(['compose', 'in_reply_to'], null),
       media_ids: getState().getIn(['compose', 'media_attachments']).map(item => item.get('id')),
       sensitive: getState().getIn(['compose', 'sensitive']),
-      visibility: getState().getIn(['compose', 'private']) ? 'private' : 'public'
+      visibility: getState().getIn(['compose', 'private']) ? 'private' : (getState().getIn(['compose', 'unlisted']) ? 'unlisted' : 'public')
     }).then(function (response) {
       dispatch(submitComposeSuccess({ ...response.data }));
 
@@ -227,7 +227,7 @@ export function changeComposeVisibility(checked) {
 
 export function changeComposeListability(checked) {
   return {
-    type: COMPOSE_VISIBILITY_CHANGE,
+    type: COMPOSE_LISTABILITY_CHANGE,
     checked
   };
 };
