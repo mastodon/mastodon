@@ -10,6 +10,7 @@ import { debounce } from 'react-decoration';
 import UploadButtonContainer from '../containers/upload_button_container';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import Toggle from 'react-toggle';
+import { Motion, spring } from 'react-motion';
 
 const messages = defineMessages({
   placeholder: { id: 'compose_form.placeholder', defaultMessage: 'What is on your mind?' },
@@ -24,9 +25,11 @@ const ComposeForm = React.createClass({
     suggestions: ImmutablePropTypes.list,
     sensitive: React.PropTypes.bool,
     unlisted: React.PropTypes.bool,
+    private: React.PropTypes.bool,
     is_submitting: React.PropTypes.bool,
     is_uploading: React.PropTypes.bool,
     in_reply_to: ImmutablePropTypes.map,
+    media_count: React.PropTypes.number,
     onChange: React.PropTypes.func.isRequired,
     onSubmit: React.PropTypes.func.isRequired,
     onCancelReply: React.PropTypes.func.isRequired,
@@ -34,7 +37,8 @@ const ComposeForm = React.createClass({
     onFetchSuggestions: React.PropTypes.func.isRequired,
     onSuggestionSelected: React.PropTypes.func.isRequired,
     onChangeSensitivity: React.PropTypes.func.isRequired,
-    onChangeVisibility: React.PropTypes.func.isRequired
+    onChangeVisibility: React.PropTypes.func.isRequired,
+    onChangeListability: React.PropTypes.func.isRequired,
   },
 
   mixins: [PureRenderMixin],
@@ -72,6 +76,10 @@ const ComposeForm = React.createClass({
 
   handleChangeVisibility (e) {
     this.props.onChangeVisibility(e.target.checked);
+  },
+
+  handleChangeListability (e) {
+    this.props.onChangeListability(e.target.checked);
   },
 
   componentDidUpdate (prevProps) {
@@ -121,10 +129,23 @@ const ComposeForm = React.createClass({
           <span style={{ display: 'inline-block', verticalAlign: 'middle', marginBottom: '14px', marginLeft: '8px', color: '#9baec8' }}><FormattedMessage id='compose_form.private' defaultMessage='Mark as private' /></span>
         </label>
 
-        <label style={{ display: 'block', lineHeight: '24px', verticalAlign: 'middle' }}>
-          <Toggle checked={this.props.sensitive} onChange={this.handleChangeSensitivity} />
-          <span style={{ display: 'inline-block', verticalAlign: 'middle', marginBottom: '14px', marginLeft: '8px', color: '#9baec8' }}><FormattedMessage id='compose_form.sensitive' defaultMessage='Mark content as sensitive' /></span>
-        </label>
+        <Motion defaultStyle={{ opacity: 100, height: 39.5 }} style={{ opacity: spring(this.props.private ? 0 : 100), height: spring(this.props.private ? 0 : 39.5) }}>
+          {({ opacity, height }) =>
+            <label style={{ display: 'block', lineHeight: '24px', verticalAlign: 'middle', height: `${height}px`, overflow: 'hidden', opacity: opacity / 100 }}>
+              <Toggle checked={this.props.unlisted} onChange={this.handleChangeListability} />
+              <span style={{ display: 'inline-block', verticalAlign: 'middle', marginBottom: '14px', marginLeft: '8px', color: '#9baec8' }}><FormattedMessage id='compose_form.unlisted' defaultMessage='Do not display in public timeline' /></span>
+            </label>
+          }
+        </Motion>
+
+        <Motion defaultStyle={{ opacity: 100, height: 39.5 }} style={{ opacity: spring(this.props.media_count === 0 ? 0 : 100), height: spring(this.props.media_count === 0 ? 0 : 39.5) }}>
+          {({ opacity, height }) =>
+            <label style={{ display: 'block', lineHeight: '24px', verticalAlign: 'middle', height: `${height}px`, overflow: 'hidden', opacity: opacity / 100 }}>
+              <Toggle checked={this.props.sensitive} onChange={this.handleChangeSensitivity} />
+              <span style={{ display: 'inline-block', verticalAlign: 'middle', marginBottom: '14px', marginLeft: '8px', color: '#9baec8' }}><FormattedMessage id='compose_form.sensitive' defaultMessage='Mark content as sensitive' /></span>
+            </label>
+          }
+        </Motion>
       </div>
     );
   }
