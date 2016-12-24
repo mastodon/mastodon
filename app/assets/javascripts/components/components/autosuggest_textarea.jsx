@@ -55,7 +55,7 @@ const AutosuggestTextarea = React.createClass({
     if (token != null && this.state.lastToken !== token) {
       this.setState({ lastToken: token, selectedSuggestion: 0, tokenStart });
       this.props.onSuggestionsFetchRequested(token);
-    } else if (token === null && this.state.lastToken != null) {
+    } else if (token === null) {
       this.setState({ lastToken: null });
       this.props.onSuggestionsClearRequested();
     }
@@ -107,6 +107,10 @@ const AutosuggestTextarea = React.createClass({
     }
   },
 
+  onBlur () {
+    this.setState({ suggestionsHidden: true });
+  },
+
   onSuggestionClick (suggestion, e) {
     e.preventDefault();
     this.props.onSuggestionSelected(this.state.tokenStart, this.state.lastToken, suggestion);
@@ -137,6 +141,7 @@ const AutosuggestTextarea = React.createClass({
           onChange={this.onChange}
           onKeyDown={this.onKeyDown}
           onKeyUp={onKeyUp}
+          onBlur={this.onBlur}
         />
 
         <div style={{ display: (suggestions.size > 0 && !suggestionsHidden) ? 'block' : 'none' }} className='autosuggest-textarea__suggestions'>

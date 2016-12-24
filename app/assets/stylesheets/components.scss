@@ -566,6 +566,10 @@
   padding: 10px;
   cursor: pointer;
 
+  &:hover {
+    background: darken(#d9e1e8, 10%);
+  }
+
   &.selected {
     background: #2b90d9;
     color: #fff;
