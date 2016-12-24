@@ -24,7 +24,7 @@ export const COMPOSE_UNMOUNT = 'COMPOSE_UNMOUNT';
 
 export const COMPOSE_SENSITIVITY_CHANGE = 'COMPOSE_SENSITIVITY_CHANGE';
 export const COMPOSE_VISIBILITY_CHANGE  = 'COMPOSE_VISIBILITY_CHANGE';
-export const COMPOSE_LISTABILITY_CHANGE  = 'COMPOSE_LISTABILITY_CHANGE';
+export const COMPOSE_LISTABILITY_CHANGE = 'COMPOSE_LISTABILITY_CHANGE';
 
 export function changeCompose(text) {
   return {
@@ -75,7 +75,7 @@ export function submitCompose() {
       // To make the app more responsive, immediately get the status into the columns
       dispatch(updateTimeline('home', { ...response.data }));
 
-      if (response.data.in_reply_to_id === null && !getState().getIn(['compose', 'private'])) {
+      if (response.data.in_reply_to_id === null && !getState().getIn(['compose', 'private']) && !getState().getIn(['compose', 'unlisted'])) {
         dispatch(updateTimeline('public', { ...response.data }));
       }
     }).catch(function (error) {
