@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class FollowRequest < ApplicationRecord
+  include Paginable
+
   belongs_to :account
   belongs_to :target_account, class_name: 'Account'
 
