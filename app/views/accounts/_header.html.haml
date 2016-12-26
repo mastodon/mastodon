@@ -20,12 +20,12 @@
       .counter{ class: active_nav_class(account_url(@account)) }
         = link_to account_url(@account) do
           %span.counter-label= t('accounts.posts')
-          %span.counter-number= @account.statuses.count
+          %span.counter-number= number_with_delimiter @account.statuses.count
       .counter{ class: active_nav_class(following_account_url(@account)) }
         = link_to following_account_url(@account) do
           %span.counter-label= t('accounts.following')
-          %span.counter-number= @account.following.count
+          %span.counter-number= number_with_delimiter @account.following.count
       .counter{ class: active_nav_class(followers_account_url(@account)) }
         = link_to followers_account_url(@account) do
           %span.counter-label= t('accounts.followers')
-          %span.counter-number= @account.followers.count
+          %span.counter-number= number_with_delimiter @account.followers.count

@@ -49,13 +49,13 @@ class ApplicationController < ActionController::Base
 
   def not_found
     respond_to do |format|
-      format.any { head 404 }
+      format.any  { head 404 }
     end
   end
 
   def gone
     respond_to do |format|
-      format.any { head 410 }
+      format.any  { head 410 }
     end
   end
 
