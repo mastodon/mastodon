@@ -1,0 +1,5 @@
+<%= display_name(@me) %>,
+
+<%= t('notification_mailer.follow_request.body', name: @account.acct) %>
+
+<%= web_url("follow_requests") %>

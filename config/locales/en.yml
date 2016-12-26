@@ -54,6 +54,9 @@ en:
     follow:
       body: "%{name} is now following you!"
       subject: "%{name} is now following you"
+    follow_request:
+      body: "%{name} has requested to follow you"
+      subject: 'Pending follower: %{name}'
     mention:
       body: 'You were mentioned by %{name} in:'
       subject: You were mentioned by %{name}

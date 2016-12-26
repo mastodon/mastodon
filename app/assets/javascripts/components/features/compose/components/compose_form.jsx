@@ -20,6 +20,7 @@ const messages = defineMessages({
 const ComposeForm = React.createClass({
 
   propTypes: {
+    intl: React.PropTypes.object.isRequired,
     text: React.PropTypes.string.isRequired,
     suggestion_token: React.PropTypes.string,
     suggestions: ImmutablePropTypes.list,
@@ -129,7 +130,7 @@ const ComposeForm = React.createClass({
           <span style={{ display: 'inline-block', verticalAlign: 'middle', marginBottom: '14px', marginLeft: '8px', color: '#9baec8' }}><FormattedMessage id='compose_form.private' defaultMessage='Mark as private' /></span>
         </label>
 
-        <Motion defaultStyle={{ opacity: 100, height: 39.5 }} style={{ opacity: spring(this.props.private ? 0 : 100), height: spring(this.props.private ? 0 : 39.5) }}>
+        <Motion defaultStyle={{ opacity: this.props.private ? 0 : 100, height: this.props.private ? 39.5 : 0 }} style={{ opacity: spring(this.props.private ? 0 : 100), height: spring(this.props.private ? 0 : 39.5) }}>
           {({ opacity, height }) =>
             <label style={{ display: 'block', lineHeight: '24px', verticalAlign: 'middle', height: `${height}px`, overflow: 'hidden', opacity: opacity / 100 }}>
               <Toggle checked={this.props.unlisted} onChange={this.handleChangeListability} />
@@ -138,7 +139,7 @@ const ComposeForm = React.createClass({
           }
         </Motion>
 
-        <Motion defaultStyle={{ opacity: 100, height: 39.5 }} style={{ opacity: spring(this.props.media_count === 0 ? 0 : 100), height: spring(this.props.media_count === 0 ? 0 : 39.5) }}>
+        <Motion defaultStyle={{ opacity: 0, height: 0 }} style={{ opacity: spring(this.props.media_count === 0 ? 0 : 100), height: spring(this.props.media_count === 0 ? 0 : 39.5) }}>
           {({ opacity, height }) =>
             <label style={{ display: 'block', lineHeight: '24px', verticalAlign: 'middle', height: `${height}px`, overflow: 'hidden', opacity: opacity / 100 }}>
               <Toggle checked={this.props.sensitive} onChange={this.handleChangeSensitivity} />

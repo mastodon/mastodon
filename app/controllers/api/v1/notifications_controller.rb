@@ -7,7 +7,7 @@ class Api::V1::NotificationsController < ApiController
   respond_to :json
 
   def index
-    @notifications = Notification.where(account: current_account).paginate_by_max_id(20, params[:max_id], params[:since_id])
+    @notifications = Notification.where(account: current_account).browserable.paginate_by_max_id(20, params[:max_id], params[:since_id])
     @notifications = cache_collection(@notifications, Notification)
     statuses       = @notifications.select { |n| !n.target_status.nil? }.map(&:target_status)
 

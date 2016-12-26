@@ -35,7 +35,7 @@ const AccountAuthorize = ({ intl, account, onAuthorize, onReject }) => {
   return (
     <div>
       <div style={outerStyle}>
-        <Permalink href={account.get('url')} className='detailed-status__display-name' style={{ display: 'block', overflow: 'hidden', marginBottom: '15px' }}>
+        <Permalink href={account.get('url')} to={`/accounts/${account.get('id')}`} className='detailed-status__display-name' style={{ display: 'block', overflow: 'hidden', marginBottom: '15px' }}>
           <div style={{ float: 'left', marginRight: '10px' }}><Avatar src={account.get('avatar')} size={48} /></div>
           <DisplayName account={account} />
         </Permalink>

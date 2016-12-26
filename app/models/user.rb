@@ -15,7 +15,7 @@ class User < ApplicationRecord
   scope :admins,   -> { where(admin: true) }
 
   has_settings do |s|
-    s.key :notification_emails, defaults: { follow: false, reblog: false, favourite: false, mention: false }
+    s.key :notification_emails, defaults: { follow: false, reblog: false, favourite: false, mention: false, follow_request: true }
     s.key :interactions, defaults: { must_be_follower: false, must_be_following: false }
   end
 
