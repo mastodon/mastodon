@@ -2,7 +2,10 @@ import {
   FOLLOWERS_FETCH_SUCCESS,
   FOLLOWERS_EXPAND_SUCCESS,
   FOLLOWING_FETCH_SUCCESS,
-  FOLLOWING_EXPAND_SUCCESS
+  FOLLOWING_EXPAND_SUCCESS,
+  FOLLOW_REQUESTS_FETCH_SUCCESS,
+  FOLLOW_REQUEST_AUTHORIZE_SUCCESS,
+  FOLLOW_REQUEST_REJECT_SUCCESS
 } from '../actions/accounts';
 import {
   REBLOGS_FETCH_SUCCESS,
@@ -14,7 +17,8 @@ const initialState = Immutable.Map({
   followers: Immutable.Map(),
   following: Immutable.Map(),
   reblogged_by: Immutable.Map(),
-  favourited_by: Immutable.Map()
+  favourited_by: Immutable.Map(),
+  follow_requests: Immutable.Map()
 });
 
 const normalizeList = (state, type, id, accounts, next) => {
@@ -44,6 +48,11 @@ export default function userLists(state = initialState, action) {
       return state.setIn(['reblogged_by', action.id], Immutable.List(action.accounts.map(item => item.id)));
     case FAVOURITES_FETCH_SUCCESS:
       return state.setIn(['favourited_by', action.id], Immutable.List(action.accounts.map(item => item.id)));
+    case FOLLOW_REQUESTS_FETCH_SUCCESS:
+      return state.setIn(['follow_requests', 'items'], Immutable.List(action.accounts.map(item => item.id))).setIn(['follow_requests', 'next'], action.next);
+    case FOLLOW_REQUEST_AUTHORIZE_SUCCESS:
+    case FOLLOW_REQUEST_REJECT_SUCCESS:
+      return state.updateIn(['follow_requests', 'items'], list => list.filterNot(item => item === action.id));
     default:
       return state;
   }

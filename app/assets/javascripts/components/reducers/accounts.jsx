@@ -6,7 +6,8 @@ import {
   FOLLOWING_FETCH_SUCCESS,
   FOLLOWING_EXPAND_SUCCESS,
   ACCOUNT_TIMELINE_FETCH_SUCCESS,
-  ACCOUNT_TIMELINE_EXPAND_SUCCESS
+  ACCOUNT_TIMELINE_EXPAND_SUCCESS,
+  FOLLOW_REQUESTS_FETCH_SUCCESS
 } from '../actions/accounts';
 import { COMPOSE_SUGGESTIONS_READY } from '../actions/compose';
 import {
@@ -78,6 +79,7 @@ export default function accounts(state = initialState, action) {
     case FAVOURITES_FETCH_SUCCESS:
     case COMPOSE_SUGGESTIONS_READY:
     case SEARCH_SUGGESTIONS_READY:
+    case FOLLOW_REQUESTS_FETCH_SUCCESS:
       return normalizeAccounts(state, action.accounts);
     case NOTIFICATIONS_REFRESH_SUCCESS:
     case NOTIFICATIONS_EXPAND_SUCCESS:

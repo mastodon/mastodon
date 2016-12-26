@@ -51,6 +51,22 @@ export const RELATIONSHIPS_FETCH_REQUEST = 'RELATIONSHIPS_FETCH_REQUEST';
 export const RELATIONSHIPS_FETCH_SUCCESS = 'RELATIONSHIPS_FETCH_SUCCESS';
 export const RELATIONSHIPS_FETCH_FAIL    = 'RELATIONSHIPS_FETCH_FAIL';
 
+export const FOLLOW_REQUESTS_FETCH_REQUEST = 'FOLLOW_REQUESTS_FETCH_REQUEST';
+export const FOLLOW_REQUESTS_FETCH_SUCCESS = 'FOLLOW_REQUESTS_FETCH_SUCCESS';
+export const FOLLOW_REQUESTS_FETCH_FAIL    = 'FOLLOW_REQUESTS_FETCH_FAIL';
+
+export const FOLLOW_REQUESTS_EXPAND_REQUEST = 'FOLLOW_REQUESTS_EXPAND_REQUEST';
+export const FOLLOW_REQUESTS_EXPAND_SUCCESS = 'FOLLOW_REQUESTS_EXPAND_SUCCESS';
+export const FOLLOW_REQUESTS_EXPAND_FAIL    = 'FOLLOW_REQUESTS_EXPAND_FAIL';
+
+export const FOLLOW_REQUEST_AUTHORIZE_REQUEST = 'FOLLOW_REQUEST_AUTHORIZE_REQUEST';
+export const FOLLOW_REQUEST_AUTHORIZE_SUCCESS = 'FOLLOW_REQUEST_AUTHORIZE_SUCCESS';
+export const FOLLOW_REQUEST_AUTHORIZE_FAIL    = 'FOLLOW_REQUEST_AUTHORIZE_FAIL';
+
+export const FOLLOW_REQUEST_REJECT_REQUEST = 'FOLLOW_REQUEST_REJECT_REQUEST';
+export const FOLLOW_REQUEST_REJECT_SUCCESS = 'FOLLOW_REQUEST_REJECT_SUCCESS';
+export const FOLLOW_REQUEST_REJECT_FAIL    = 'FOLLOW_REQUEST_REJECT_FAIL';
+
 export function setAccountSelf(account) {
   return {
     type: ACCOUNT_SET_SELF,
@@ -506,6 +522,143 @@ export function fetchRelationshipsSuccess(relationships) {
 export function fetchRelationshipsFail(error) {
   return {
     type: RELATIONSHIPS_FETCH_FAIL,
+    error
+  };
+};
+
+export function fetchFollowRequests() {
+  return (dispatch, getState) => {
+    dispatch(fetchFollowRequestsRequest());
+
+    api(getState).get('/api/v1/follow_requests').then(response => {
+      const next = getLinks(response).refs.find(link => link.rel === 'next');
+      dispatch(fetchFollowRequestsSuccess(response.data, next ? next.uri : null))
+    }).catch(error => dispatch(fetchFollowRequestsFail(error)));
+  };
+};
+
+export function fetchFollowRequestsRequest() {
+  return {
+    type: FOLLOW_REQUESTS_FETCH_REQUEST
+  };
+};
+
+export function fetchFollowRequestsSuccess(accounts, next) {
+  return {
+    type: FOLLOW_REQUESTS_FETCH_SUCCESS,
+    accounts,
+    next
+  };
+};
+
+export function fetchFollowRequestsFail(error) {
+  return {
+    type: FOLLOW_REQUESTS_FETCH_FAIL,
+    error
+  };
+};
+
+export function expandFollowRequests() {
+  return (dispatch, getState) => {
+    const url = getState().getIn(['user_lists', 'follow_requests', 'next']);
+
+    if (url === null) {
+      return;
+    }
+
+    dispatch(expandFollowRequestsRequest());
+
+    api(getState).get(url).then(response => {
+      const next = getLinks(response).refs.find(link => link.rel === 'next');
+      dispatch(expandFollowRequestsSuccess(response.data, next ? next.uri : null))
+    }).catch(error => dispatch(expandFollowRequestsFail(error)));
+  };
+};
+
+export function expandFollowRequestsRequest() {
+  return {
+    type: FOLLOW_REQUESTS_EXPAND_REQUEST
+  };
+};
+
+export function expandFollowRequestsSuccess(accounts, next) {
+  return {
+    type: FOLLOW_REQUESTS_EXPAND_SUCCESS,
+    accounts,
+    next
+  };
+};
+
+export function expandFollowRequestsFail(error) {
+  return {
+    type: FOLLOW_REQUESTS_EXPAND_FAIL,
+    error
+  };
+};
+
+export function authorizeFollowRequest(id) {
+  return (dispatch, getState) => {
+    dispatch(authorizeFollowRequestRequest(id));
+
+    api(getState)
+      .post(`/api/v1/follow_requests/${id}/authorize`)
+      .then(response => dispatch(authorizeFollowRequestSuccess(id)))
+      .catch(error => dispatch(authorizeFollowRequestFail(id, error)));
+  };
+};
+
+export function authorizeFollowRequestRequest(id) {
+  return {
+    type: FOLLOW_REQUEST_AUTHORIZE_REQUEST,
+    id
+  };
+};
+
+export function authorizeFollowRequestSuccess(id) {
+  return {
+    type: FOLLOW_REQUEST_AUTHORIZE_SUCCESS,
+    id
+  };
+};
+
+export function authorizeFollowRequestFail(id, error) {
+  return {
+    type: FOLLOW_REQUEST_AUTHORIZE_FAIL,
+    id,
+    error
+  };
+};
+
+
+export function rejectFollowRequest(id) {
+  return (dispatch, getState) => {
+    dispatch(rejectFollowRequestRequest(id));
+
+    api(getState)
+      .post(`/api/v1/follow_requests/${id}/reject`)
+      .then(response => dispatch(rejectFollowRequestSuccess(id)))
+      .catch(error => dispatch(rejectFollowRequestFail(id, error)));
+  };
+};
+
+export function rejectFollowRequestRequest(id) {
+  return {
+    type: FOLLOW_REQUEST_REJECT_REQUEST,
+    id
+  };
+};
+
+export function rejectFollowRequestSuccess(id) {
+  return {
+    type: FOLLOW_REQUEST_REJECT_SUCCESS,
+    id
+  };
+};
+
+export function rejectFollowRequestFail(id, error) {
+  return {
+    type: FOLLOW_REQUEST_REJECT_FAIL,
+    id,
     error
   };
 };

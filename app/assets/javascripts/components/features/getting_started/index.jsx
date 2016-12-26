@@ -7,7 +7,8 @@ import { connect } from 'react-redux';
 const messages = defineMessages({
   heading: { id: 'getting_started.heading', defaultMessage: 'Getting started' },
   public_timeline: { id: 'navigation_bar.public_timeline', defaultMessage: 'Public timeline' },
-  settings: { id: 'navigation_bar.settings', defaultMessage: 'Settings' }
+  settings: { id: 'navigation_bar.settings', defaultMessage: 'Settings' },
+  follow_requests: { id: 'navigation_bar.follow_requests', defaultMessage: 'Follow requests' }
 });
 
 const mapStateToProps = state => ({
@@ -32,6 +33,7 @@ const GettingStarted = ({ intl, me }) => {
         <div style={hamburgerStyle}><i className='fa fa-bars' /></div>
         <ColumnLink icon='globe' text={intl.formatMessage(messages.public_timeline)} to='/timelines/public' />
         <ColumnLink icon='cog' text={intl.formatMessage(messages.settings)} href='/settings/profile' />
+        <ColumnLink icon='users' text={intl.formatMessage(messages.follow_requests)} to='/follow_requests' />
       </div>
 
       <div className='static-content'>
@@ -41,6 +43,11 @@ const GettingStarted = ({ intl, me }) => {
       </div>
     </Column>
   );
+};
+
+GettingStarted.propTypes = {
+  intl: React.PropTypes.object.isRequired,
+  me: React.PropTypes.number
 };
 
 export default connect(mapStateToProps)(injectIntl(GettingStarted));
