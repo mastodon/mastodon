@@ -3,6 +3,7 @@ import ColumnLink from '../ui/components/column_link';
 import { Link } from 'react-router';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
+import ImmutablePropTypes from 'react-immutable-proptypes';
 
 const messages = defineMessages({
   heading: { id: 'getting_started.heading', defaultMessage: 'Getting started' },
@@ -12,7 +13,7 @@ const messages = defineMessages({
 });
 
 const mapStateToProps = state => ({
-  me: state.getIn(['meta', 'me'])
+  me: state.getIn(['accounts', state.getIn(['meta', 'me'])])
 });
 
 const hamburgerStyle = {
@@ -27,13 +28,19 @@ const hamburgerStyle = {
 };
 
 const GettingStarted = ({ intl, me }) => {
+  let followRequests = '';
+
+  if (me.get('locked')) {
+    followRequests = <ColumnLink icon='users' text={intl.formatMessage(messages.follow_requests)} to='/follow_requests' />;
+  }
+
   return (
     <Column icon='asterisk' heading={intl.formatMessage(messages.heading)}>
       <div style={{ position: 'relative' }}>
         <div style={hamburgerStyle}><i className='fa fa-bars' /></div>
         <ColumnLink icon='globe' text={intl.formatMessage(messages.public_timeline)} to='/timelines/public' />
         <ColumnLink icon='cog' text={intl.formatMessage(messages.settings)} href='/settings/profile' />
-        <ColumnLink icon='users' text={intl.formatMessage(messages.follow_requests)} to='/follow_requests' />
+        {followRequests}
       </div>
 
       <div className='static-content'>
@@ -47,7 +54,7 @@ const GettingStarted = ({ intl, me }) => {
 
 GettingStarted.propTypes = {
   intl: React.PropTypes.object.isRequired,
-  me: React.PropTypes.number
+  me: ImmutablePropTypes.map.isRequired
 };
 
 export default connect(mapStateToProps)(injectIntl(GettingStarted));
