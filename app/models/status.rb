@@ -31,7 +31,6 @@ class Status < ApplicationRecord
 
   scope :remote, -> { where.not(uri: nil) }
   scope :local, -> { where(uri: nil) }
-  scope :permitted_for, ->(target_account, account) { account&.id == target_account.id || account&.following?(target_account) ? where('1=1') : where.not(visibility: :private) }
 
   cache_associated :account, :media_attachments, :tags, :stream_entry, mentions: :account, reblog: [:account, :stream_entry, :tags, :media_attachments, mentions: :account], thread: :account
 
@@ -72,7 +71,7 @@ class Status < ApplicationRecord
   end
 
   def permitted?(other_account = nil)
-    private_visibility? ? (account.id == other_account&.id || other_account&.following?(account)) : true
+    private_visibility? ? (account.id == other_account&.id || other_account&.following?(account)) : other_account.nil? || !account.blocking?(other_account)
   end
 
   def ancestors(account = nil)
@@ -142,6 +141,16 @@ class Status < ApplicationRecord
       cached_items.each do |item|
         item.account = accounts[item.account_id]
         item.reblog.account = accounts[item.reblog.account_id] if item.reblog?
+      end
+    end
+
+    def permitted_for(target_account, account)
+      if account&.id == target_account.id || account&.following?(target_account)
+        where('1 = 1')
+      elsif !account.nil? && target_account.blocking?(account)
+        where('1 = 0')
+      else
+        where.not(visibility: :private)
       end
     end
 

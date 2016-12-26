@@ -30,7 +30,7 @@ class ProcessInteractionService < BaseService
 
       case verb(xml)
       when :follow
-        follow!(account, target_account) unless target_account.locked?
+        follow!(account, target_account) unless target_account.locked? || target_account.blocking?(account)
       when :unfollow
         unfollow!(account, target_account)
       when :favorite
