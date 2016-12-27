@@ -48,6 +48,8 @@ const GettingStarted = ({ intl, me }) => {
         <p><FormattedMessage id='getting_started.about_shortcuts' defaultMessage='If the target user is on the same domain as you, just the username will work. The same rule applies to mentioning people in statuses.' /></p>
         <p><FormattedMessage id='getting_started.about_developer' defaultMessage='The developer of this project can be followed as Gargron@mastodon.social' /></p>
       </div>
+
+      <div className='getting-started__illustration' />
     </Column>
   );
 };
