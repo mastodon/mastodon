@@ -29,6 +29,10 @@ class Favourite < ApplicationRecord
     thread
   end
 
+  def hidden?
+    status.private_visibility?
+  end
+
   before_validation do
     self.status = status.reblog if status.reblog?
   end
