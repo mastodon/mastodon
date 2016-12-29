@@ -2,7 +2,7 @@
 
 class SalmonWorker
   include Sidekiq::Worker
-  
+
   sidekiq_options backtrace: true
 
   def perform(account_id, body)

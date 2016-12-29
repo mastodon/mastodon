@@ -100,6 +100,7 @@ Rails.application.routes.draw do
       resources :follows,  only: [:create]
       resources :media,    only: [:create]
       resources :apps,     only: [:create]
+      resources :blocks,   only: [:index]
 
       resources :follow_requests, only: [:index] do
         member do

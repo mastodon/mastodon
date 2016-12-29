@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class Block < ApplicationRecord
+  include Paginable
   include Streamable
 
   belongs_to :account
