@@ -214,11 +214,13 @@ body {
 .footer {
   text-align: center;
   margin-top: 30px;
+  font-size: 12px;
+  color: darken(#d9e1e8, 25%);
 
   .domain {
-    font-size: 12px;
-    font-weight: 400;
-    font-family: 'Roboto Mono', monospace;
+    //font-size: 12px;
+    font-weight: 500;
+    //font-family: 'Roboto Mono', monospace;
 
     a {
       color: inherit;
@@ -227,13 +229,12 @@ body {
   }
 
   .powered-by {
-    font-size: 12px;
     font-weight: 400;
-    color: darken(#d9e1e8, 25%);
 
     a {
       color: inherit;
       text-decoration: underline;
+      font-weight: 500;
 
       &:hover {
         text-decoration: none;

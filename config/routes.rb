@@ -48,6 +48,10 @@ Rails.application.routes.draw do
   resources :media, only: [:show]
   resources :tags,  only: [:show]
 
+  # Remote follow
+  get  :authorize_follow, to: 'authorize_follow#new'
+  post :authorize_follow, to: 'authorize_follow#create'
+
   namespace :admin do
     resources :pubsubhubbub, only: [:index]
     resources :domain_blocks, only: [:index, :create]

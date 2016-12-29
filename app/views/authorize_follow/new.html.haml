@@ -1,0 +1,21 @@
+- content_for :page_title do
+  = t('authorize_follow.title', acct: @account.acct)
+
+.form-container
+  .follow-prompt
+    %h2= t('authorize_follow.prompt_html', self: current_account.username)
+
+    .account-card
+      .detailed-status__display-name
+        %div
+          = image_tag @account.avatar.url(:original), alt: '', width: 48, height: 48, class: 'avatar'
+
+        %span.display-name
+          %strong= display_name(@account)
+          %span= "@#{@account.acct}"
+
+      .account__header__content= Formatter.instance.simplified_format(@account)
+
+  = form_tag authorize_follow_path, method: :post, class: 'simple_form' do
+    = hidden_field_tag :acct, @account.acct
+    = button_tag t('authorize_follow.follow'), type: :submit
