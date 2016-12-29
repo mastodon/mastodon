@@ -14,7 +14,8 @@
           %strong= display_name(@account)
           %span= "@#{@account.acct}"
 
-      .account__header__content= Formatter.instance.simplified_format(@account)
+      - unless @account.note.blank?
+        .account__header__content= Formatter.instance.simplified_format(@account)
 
   = form_tag authorize_follow_path, method: :post, class: 'simple_form' do
     = hidden_field_tag :acct, @account.acct

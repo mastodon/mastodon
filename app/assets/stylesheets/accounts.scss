@@ -337,6 +337,10 @@
     overflow: hidden;
     margin-bottom: 15px;
 
+    &:last-child {
+      margin-bottom: 0;
+    }
+
     & > div {
       float: left;
       margin-right: 10px;
