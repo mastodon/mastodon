@@ -110,6 +110,7 @@ Rails.application.routes.draw do
       end
 
       resources :notifications, only: [:index]
+      resources :favourites,    only: [:index]
 
       resources :accounts, only: [:show] do
         collection do
