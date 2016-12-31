@@ -8,6 +8,7 @@ class Status < ApplicationRecord
   enum visibility: [:public, :unlisted, :private], _suffix: :visibility
 
   belongs_to :account, inverse_of: :statuses
+  belongs_to :in_reply_to_account, foreign_key: 'in_reply_to_account_id', class_name: 'Account'
 
   belongs_to :thread, foreign_key: 'in_reply_to_id', class_name: 'Status', inverse_of: :replies
   belongs_to :reblog, foreign_key: 'reblog_of_id', class_name: 'Status', inverse_of: :reblogs, touch: true
@@ -170,8 +171,9 @@ class Status < ApplicationRecord
 
   before_validation do
     text.strip!
-    self.reblog = reblog.reblog if reblog? && reblog.reblog?
-    self.in_reply_to_account_id = thread.account_id if reply?
+
+    self.reblog                 = reblog.reblog if reblog? && reblog.reblog?
+    self.in_reply_to_account_id = (thread.account_id == account_id && thread.reply? ? thread.in_reply_to_account_id : thread.account_id) if reply?
     self.visibility             = (account.locked? ? :private : :public) if visibility.nil?
   end
 

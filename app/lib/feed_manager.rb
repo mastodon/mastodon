@@ -78,15 +78,15 @@ class FeedManager
   def filter_from_home?(status, receiver)
     should_filter = false
 
-    if status.reply? && !status.thread.account.nil?                         # Filter out if it's a reply
-      should_filter   = !receiver.following?(status.thread.account)         # and I'm not following the person it's a reply to
-      should_filter &&= !(receiver.id == status.thread.account_id)          # and it's not a reply to me
-      should_filter &&= !(status.account_id == status.thread.account_id)    # and it's not a self-reply
-    elsif status.reblog?                                                    # Filter out a reblog
-      should_filter = receiver.blocking?(status.reblog.account)             # if I'm blocking the reblogged person
+    if status.reply? && !status.in_reply_to_account_id.nil?                   # Filter out if it's a reply
+      should_filter   = !receiver.following?(status.in_reply_to_account)      # and I'm not following the person it's a reply to
+      should_filter &&= !(receiver.id == status.in_reply_to_account_id)       # and it's not a reply to me
+      should_filter &&= !(status.account_id == status.in_reply_to_account_id) # and it's not a self-reply
+    elsif status.reblog?                                                      # Filter out a reblog
+      should_filter = receiver.blocking?(status.reblog.account)               # if I'm blocking the reblogged person
     end
 
-    should_filter ||= receiver.blocking?(status.mentions.map(&:account_id)) # or if it mentions someone I blocked
+    should_filter ||= receiver.blocking?(status.mentions.map(&:account_id))   # or if it mentions someone I blocked
 
     should_filter
   end
@@ -98,8 +98,8 @@ class FeedManager
     should_filter ||= (status.account.silenced? && !receiver.following?(status.account))    # of if the account is silenced and I'm not following them
     should_filter ||= (status.private_visibility? && !receiver.following?(status.account))  # or if the mentioned account is not permitted to see the private status
 
-    if status.reply? && !status.thread.account.nil?                                         # or it's a reply
-      should_filter ||= receiver.blocking?(status.thread.account)                           # to a user I blocked
+    if status.reply? && !status.in_reply_to_account_id.nil?                                 # or it's a reply
+      should_filter ||= receiver.blocking?(status.in_reply_to_account)                      # to a user I blocked
     end
 
     should_filter
@@ -109,8 +109,8 @@ class FeedManager
     should_filter   = receiver.blocking?(status.account)
     should_filter ||= receiver.blocking?(status.mentions.includes(:account).map(&:account))
 
-    if status.reply? && !status.thread.account.nil?
-      should_filter ||= receiver.blocking?(status.thread.account)
+    if status.reply? && !status.in_reply_to_account_id.nil?
+      should_filter ||= receiver.blocking?(status.in_reply_to_account)
     elsif status.reblog?
       should_filter ||= receiver.blocking?(status.reblog.account)
     end
