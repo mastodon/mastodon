@@ -14,6 +14,7 @@ en:
     people_followed_by: People whom %{name} follows
     people_who_follow: People who follow %{name}
     posts: Posts
+    remote_follow: Remote follow
     unfollow: Unfollow
   application_mailer:
     signature: Mastodon notifications from %{instance}
@@ -71,6 +72,11 @@ en:
   pagination:
     next: Next
     prev: Prev
+  remote_follow:
+    acct: Enter your username@domain you want to follow from
+    missing_resource: Could not find the required redirect URL for your account
+    proceed: Proceed to follow
+    prompt: 'You are going to follow:'
   settings:
     edit_profile: Edit profile
     preferences: Preferences

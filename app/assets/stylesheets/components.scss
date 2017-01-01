@@ -147,6 +147,12 @@
   }
 }
 
+@media screen and (max-height: 800px) {
+  .account__header__avatar, .account__header__content {
+    display: none;
+  }
+}
+
 .account__header__content {
   word-wrap: break-word;
   font-weight: 300;

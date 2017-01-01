@@ -31,6 +31,9 @@ Rails.application.routes.draw do
       end
     end
 
+    get :remote_follow,  to: 'remote_follow#new'
+    post :remote_follow, to: 'remote_follow#create'
+
     member do
       get :followers
       get :following
