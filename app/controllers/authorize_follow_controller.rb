@@ -6,7 +6,7 @@ class AuthorizeFollowController < ApplicationController
   before_action :authenticate_user!
 
   def new
-    uri = Addressable::URI.parse(params[:acct])
+    uri = Addressable::URI.parse(acct_param)
 
     if uri.path && %w(http https).include?(uri.scheme)
       set_account_from_url
@@ -18,7 +18,7 @@ class AuthorizeFollowController < ApplicationController
   end
 
   def create
-    @account = FollowService.new.call(current_account, params[:acct]).try(:target_account)
+    @account = FollowService.new.call(current_account, acct_param).try(:target_account)
 
     if @account.nil?
       render :error
@@ -32,10 +32,14 @@ class AuthorizeFollowController < ApplicationController
   private
 
   def set_account_from_url
-    @account = FetchRemoteAccountService.new.call(params[:acct])
+    @account = FetchRemoteAccountService.new.call(acct_param)
   end
 
   def set_account_from_acct
-    @account = FollowRemoteAccountService.new.call(params[:acct])
+    @account = FollowRemoteAccountService.new.call(acct_param)
+  end
+
+  def acct_param
+    params[:acct].gsub(/\Aacct:/, '')
   end
 end
