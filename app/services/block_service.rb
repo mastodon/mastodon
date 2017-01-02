@@ -7,10 +7,12 @@ class BlockService < BaseService
     UnfollowService.new.call(account, target_account) if account.following?(target_account)
     UnfollowService.new.call(target_account, account) if target_account.following?(account)
 
-    account.block!(target_account)
+    block = account.block!(target_account)
 
     clear_timelines(account, target_account)
     clear_notifications(account, target_account)
+
+    NotificationWorker.perform_async(block.stream_entry.id, target_account.id) unless target_account.local?
   end
 
   private
