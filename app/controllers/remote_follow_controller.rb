@@ -22,7 +22,7 @@ class RemoteFollowController < ApplicationController
         render(:new) && return
       end
 
-      redirect_to Addressable::Template.new(redirect_url_link.template).expand(uri: "acct:#{@account.username}@#{Rails.configuration.x.local_domain}").to_s
+      redirect_to Addressable::Template.new(redirect_url_link.template).expand(uri: "#{@account.username}@#{Rails.configuration.x.local_domain}").to_s
     else
       render :new
     end
