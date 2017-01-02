@@ -40,7 +40,8 @@ const Column = React.createClass({
 
   propTypes: {
     heading: React.PropTypes.string,
-    icon: React.PropTypes.string
+    icon: React.PropTypes.string,
+    children: React.PropTypes.node
   },
 
   mixins: [PureRenderMixin],

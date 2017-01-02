@@ -52,7 +52,13 @@ const en = {
   "notification.follow": "{name} followed you",
   "notification.favourite": "{name} favourited your status",
   "notification.reblog": "{name} boosted your status",
-  "notification.mention": "{name} mentioned you"
+  "notification.mention": "{name} mentioned you",
+  "notifications.column_settings.alert": "Desktop notifications",
+  "notifications.column_settings.show": "Show in column",
+  "notifications.column_settings.follow": "New followers:",
+  "notifications.column_settings.favourite": "Favourites:",
+  "notifications.column_settings.mention": "Mentions:",
+  "notifications.column_settings.reblog": "Boosts:",
 };
 
 export default en;
