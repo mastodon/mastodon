@@ -189,6 +189,7 @@ ActiveRecord::Schema.define(version: 20161222204147) do
     t.boolean  "sensitive",              default: false
     t.integer  "visibility",             default: 0,     null: false
     t.integer  "in_reply_to_account_id"
+    t.string   "conversation_uri"
     t.index ["account_id"], name: "index_statuses_on_account_id", using: :btree
     t.index ["in_reply_to_id"], name: "index_statuses_on_in_reply_to_id", using: :btree
     t.index ["reblog_of_id"], name: "index_statuses_on_reblog_of_id", using: :btree

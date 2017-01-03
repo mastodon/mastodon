@@ -30,7 +30,7 @@ class ProcessInteractionService < BaseService
 
       case verb(xml)
       when :follow
-        follow!(account, target_account) unless target_account.locked?
+        follow!(account, target_account) unless target_account.locked? || target_account.blocking?(account)
       when :unfollow
         unfollow!(account, target_account)
       when :favorite
@@ -41,6 +41,10 @@ class ProcessInteractionService < BaseService
         add_post!(body, account) unless status(xml).nil?
       when :delete
         delete_post!(xml, account)
+      when :block
+        reflect_block!(account, target_account)
+      when :unblock
+        reflect_unblock!(account, target_account)
       end
     end
   rescue Goldfinger::Error, HTTP::Error, OStatus2::BadSalmonError
@@ -72,6 +76,15 @@ class ProcessInteractionService < BaseService
 
   def unfollow!(account, target_account)
     account.unfollow!(target_account)
+  end
+
+  def reflect_block!(account, target_account)
+    UnfollowService.new.call(target_account, account) if target_account.following?(account)
+    account.block!(target_account)
+  end
+
+  def reflect_unblock!(account, target_account)
+    UnblockService.new.call(account, target_account)
   end
 
   def delete_post!(xml, account)

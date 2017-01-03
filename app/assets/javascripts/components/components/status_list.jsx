@@ -27,11 +27,11 @@ const StatusList = React.createClass({
 
     this._oldScrollPosition = scrollHeight - scrollTop;
 
-    if (scrollTop === scrollHeight - clientHeight) {
+    if (scrollTop === scrollHeight - clientHeight && this.props.onScrollToBottom) {
       this.props.onScrollToBottom();
-    } else if (scrollTop < 100) {
+    } else if (scrollTop < 100 && this.props.onScrollToTop) {
       this.props.onScrollToTop();
-    } else {
+    } else if (this.props.onScroll) {
       this.props.onScroll();
     }
   },

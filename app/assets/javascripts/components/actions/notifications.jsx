@@ -14,6 +14,8 @@ export const NOTIFICATIONS_EXPAND_REQUEST = 'NOTIFICATIONS_EXPAND_REQUEST';
 export const NOTIFICATIONS_EXPAND_SUCCESS = 'NOTIFICATIONS_EXPAND_SUCCESS';
 export const NOTIFICATIONS_EXPAND_FAIL    = 'NOTIFICATIONS_EXPAND_FAIL';
 
+export const NOTIFICATIONS_SETTING_CHANGE = 'NOTIFICATIONS_SETTING_CHANGE';
+
 const fetchRelatedRelationships = (dispatch, notifications) => {
   const accountIds = notifications.filter(item => item.type === 'follow').map(item => item.account.id);
 
@@ -23,7 +25,7 @@ const fetchRelatedRelationships = (dispatch, notifications) => {
 };
 
 export function updateNotifications(notification, intlMessages, intlLocale) {
-  return dispatch => {
+  return (dispatch, getState) => {
     dispatch({
       type: NOTIFICATIONS_UPDATE,
       notification,
@@ -34,7 +36,7 @@ export function updateNotifications(notification, intlMessages, intlLocale) {
     fetchRelatedRelationships(dispatch, [notification]);
 
     // Desktop notifications
-    if (typeof window.Notification !== 'undefined') {
+    if (typeof window.Notification !== 'undefined' && getState().getIn(['notifications', 'settings', 'alerts', notification.type], false)) {
       const title = new IntlMessageFormat(intlMessages[`notification.${notification.type}`], intlLocale).format({ name: notification.account.display_name.length > 0 ? notification.account.display_name : notification.account.username });
       const body  = $('<p>').html(notification.status ? notification.status.content : '').text();
 
@@ -129,5 +131,13 @@ export function expandNotificationsFail(error) {
   return {
     type: NOTIFICATIONS_EXPAND_FAIL,
     error
+  };
+};
+
+export function changeNotificationsSetting(key, checked) {
+  return {
+    type: NOTIFICATIONS_SETTING_CHANGE,
+    key,
+    checked
   };
 };

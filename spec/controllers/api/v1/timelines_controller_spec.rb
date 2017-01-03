@@ -6,7 +6,6 @@ RSpec.describe Api::V1::TimelinesController, type: :controller do
   let(:user)  { Fabricate(:user, account: Fabricate(:account, username: 'alice')) }
 
   before do
-    stub_request(:post, "https://pubsubhubbub.superfeedr.com/").to_return(:status => 200, :body => "", :headers => {})
     allow(controller).to receive(:doorkeeper_token) { token }
   end
 

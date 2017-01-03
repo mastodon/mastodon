@@ -14,9 +14,9 @@ class ReblogService < BaseService
     Pubsubhubbub::DistributionWorker.perform_async(reblog.stream_entry.id)
 
     if reblogged_status.local?
-      NotifyService.new.call(reblogged_status.account, reblog)
+      NotifyService.new.call(reblog.reblog.account, reblog)
     else
-      NotificationWorker.perform_async(reblog.stream_entry.id, reblogged_status.account_id)
+      NotificationWorker.perform_async(reblog.stream_entry.id, reblog.reblog.account_id)
     end
 
     reblog

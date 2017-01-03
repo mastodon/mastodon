@@ -8,6 +8,7 @@ import {
   deleteFromTimelines
 } from '../../actions/timelines';
 import { defineMessages, injectIntl } from 'react-intl';
+import ColumnBackButton from './components/column_back_button';
 
 const messages = defineMessages({
   title: { id: 'column.public', defaultMessage: 'Public' }
@@ -16,7 +17,8 @@ const messages = defineMessages({
 const PublicTimeline = React.createClass({
 
   propTypes: {
-    dispatch: React.PropTypes.func.isRequired
+    dispatch: React.PropTypes.func.isRequired,
+    intl: React.PropTypes.object.isRequired
   },
 
   mixins: [PureRenderMixin],
@@ -53,6 +55,7 @@ const PublicTimeline = React.createClass({
 
     return (
       <Column icon='globe' heading={intl.formatMessage(messages.title)}>
+        <ColumnBackButton />
         <StatusListContainer type='public' />
       </Column>
     );

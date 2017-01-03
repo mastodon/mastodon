@@ -8,6 +8,7 @@ class Status < ApplicationRecord
   enum visibility: [:public, :unlisted, :private], _suffix: :visibility
 
   belongs_to :account, inverse_of: :statuses
+  belongs_to :in_reply_to_account, foreign_key: 'in_reply_to_account_id', class_name: 'Account'
 
   belongs_to :thread, foreign_key: 'in_reply_to_id', class_name: 'Status', inverse_of: :replies
   belongs_to :reblog, foreign_key: 'reblog_of_id', class_name: 'Status', inverse_of: :reblogs, touch: true
@@ -31,7 +32,6 @@ class Status < ApplicationRecord
 
   scope :remote, -> { where.not(uri: nil) }
   scope :local, -> { where(uri: nil) }
-  scope :permitted_for, ->(target_account, account) { account&.id == target_account.id || account&.following?(target_account) ? where('1=1') : where.not(visibility: :private) }
 
   cache_associated :account, :media_attachments, :tags, :stream_entry, mentions: :account, reblog: [:account, :stream_entry, :tags, :media_attachments, mentions: :account], thread: :account
 
@@ -72,7 +72,7 @@ class Status < ApplicationRecord
   end
 
   def permitted?(other_account = nil)
-    private_visibility? ? (account.id == other_account&.id || other_account&.following?(account)) : true
+    private_visibility? ? (account.id == other_account&.id || other_account&.following?(account)) : other_account.nil? || !account.blocking?(other_account)
   end
 
   def ancestors(account = nil)
@@ -145,6 +145,16 @@ class Status < ApplicationRecord
       end
     end
 
+    def permitted_for(target_account, account)
+      if account&.id == target_account.id || account&.following?(target_account)
+        where('1 = 1')
+      elsif !account.nil? && target_account.blocking?(account)
+        where('1 = 0')
+      else
+        where.not(visibility: :private)
+      end
+    end
+
     private
 
     def filter_timeline(query, account)
@@ -161,8 +171,9 @@ class Status < ApplicationRecord
 
   before_validation do
     text.strip!
-    self.reblog = reblog.reblog if reblog? && reblog.reblog?
-    self.in_reply_to_account_id = thread.account_id if reply?
+
+    self.reblog                 = reblog.reblog if reblog? && reblog.reblog?
+    self.in_reply_to_account_id = (thread.account_id == account_id && thread.reply? ? thread.in_reply_to_account_id : thread.account_id) if reply?
     self.visibility             = (account.locked? ? :private : :public) if visibility.nil?
   end
 

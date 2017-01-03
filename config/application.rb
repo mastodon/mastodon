@@ -45,7 +45,7 @@ module Mastodon
     config.browserify_rails.commandline_options = '--transform [ babelify --presets [ es2015 react ] ] --extension=".jsx"'
 
     config.to_prepare do
-      Doorkeeper::AuthorizationsController.layout 'auth'
+      Doorkeeper::AuthorizationsController.layout 'public'
     end
 
     config.action_dispatch.default_headers = {

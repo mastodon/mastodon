@@ -1,6 +1,6 @@
 .account-grid-card
   .account-grid-card__header
-    .avatar= image_tag account.avatar.url( :original)
+    .avatar= image_tag account.avatar.url(:original)
     .name
       = link_to TagManager.instance.url_for(account) do
         %span.display_name= display_name(account)

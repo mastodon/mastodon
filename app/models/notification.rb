@@ -8,16 +8,18 @@ class Notification < ApplicationRecord
   belongs_to :from_account, class_name: 'Account'
   belongs_to :activity, polymorphic: true
 
-  belongs_to :mention,   foreign_type: 'Mention',   foreign_key: 'activity_id'
-  belongs_to :status,    foreign_type: 'Status',    foreign_key: 'activity_id'
-  belongs_to :follow,    foreign_type: 'Follow',    foreign_key: 'activity_id'
-  belongs_to :favourite, foreign_type: 'Favourite', foreign_key: 'activity_id'
+  belongs_to :mention,        foreign_type: 'Mention',       foreign_key: 'activity_id'
+  belongs_to :status,         foreign_type: 'Status',        foreign_key: 'activity_id'
+  belongs_to :follow,         foreign_type: 'Follow',        foreign_key: 'activity_id'
+  belongs_to :follow_request, foreign_type: 'FollowRequest', foreign_key: 'activity_id'
+  belongs_to :favourite,      foreign_type: 'Favourite',     foreign_key: 'activity_id'
 
   validates :account_id, uniqueness: { scope: [:activity_type, :activity_id] }
 
   STATUS_INCLUDES = [:account, :stream_entry, :media_attachments, :tags, mentions: :account, reblog: [:stream_entry, :account, :media_attachments, :tags, mentions: :account]].freeze
 
   scope :cache_ids, -> { select(:id, :updated_at, :activity_type, :activity_id) }
+  scope :browserable, -> { where.not(activity_type: ['FollowRequest']) }
 
   cache_associated :from_account, status: STATUS_INCLUDES, mention: [status: STATUS_INCLUDES], favourite: [:account, status: STATUS_INCLUDES], follow: :account
 
@@ -30,7 +32,7 @@ class Notification < ApplicationRecord
     when 'Status'
       :reblog
     else
-      activity_type.downcase.to_sym
+      activity_type.underscore.to_sym
     end
   end
 
@@ -41,6 +43,10 @@ class Notification < ApplicationRecord
     when :favourite, :mention
       activity.status
     end
+  end
+
+  def browserable?
+    type != :follow_request
   end
 
   class << self
@@ -61,7 +67,7 @@ class Notification < ApplicationRecord
 
   def set_from_account
     case activity_type
-    when 'Status', 'Follow', 'Favourite'
+    when 'Status', 'Follow', 'Favourite', 'FollowRequest'
       self.from_account_id = activity(false)&.account_id
     when 'Mention'
       self.from_account_id = activity(false)&.status&.account_id

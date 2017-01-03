@@ -31,6 +31,9 @@ Rails.application.routes.draw do
       end
     end
 
+    get :remote_follow,  to: 'remote_follow#new'
+    post :remote_follow, to: 'remote_follow#create'
+
     member do
       get :followers
       get :following
@@ -48,12 +51,9 @@ Rails.application.routes.draw do
   resources :media, only: [:show]
   resources :tags,  only: [:show]
 
-  resources :follow_requests do
-    member do
-      post :authorize
-      post :reject
-    end
-  end
+  # Remote follow
+  get  :authorize_follow, to: 'authorize_follow#new'
+  post :authorize_follow, to: 'authorize_follow#create'
 
   namespace :admin do
     resources :pubsubhubbub, only: [:index]
@@ -103,8 +103,17 @@ Rails.application.routes.draw do
       resources :follows,  only: [:create]
       resources :media,    only: [:create]
       resources :apps,     only: [:create]
+      resources :blocks,   only: [:index]
+
+      resources :follow_requests, only: [:index] do
+        member do
+          post :authorize
+          post :reject
+        end
+      end
 
       resources :notifications, only: [:index]
+      resources :favourites,    only: [:index]
 
       resources :accounts, only: [:show] do
         collection do

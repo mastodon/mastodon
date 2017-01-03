@@ -283,8 +283,6 @@
     }
 
     .name {
-      width: 333-20-60-15px;
-      float: left;
       padding-top: 10px;
 
       a {
@@ -325,4 +323,66 @@
   padding: 15px 0;
   padding-bottom: 25px;
   cursor: default;
+}
+
+.account-card {
+  padding: 14px 10px;
+  background: #fff;
+  border-radius: 4px;
+  text-align: left;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+
+  .detailed-status__display-name {
+    display: block;
+    overflow: hidden;
+    margin-bottom: 15px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    & > div {
+      float: left;
+      margin-right: 10px;
+      width: 48px;
+      height: 48px;
+    }
+
+    .avatar {
+      display: block;
+      border-radius: 4px;
+    }
+
+    .display-name {
+      display: block;
+      max-width: 100%;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      cursor: default;
+
+      strong {
+        font-weight: 500;
+        color: #282c37;
+      }
+
+      span {
+        font-size: 14px;
+        color: #9baec8;
+      }
+    }
+
+    &:hover {
+      .display-name {
+        strong {
+          text-decoration: none;
+        }
+      }
+    }
+  }
+
+  .account__header__content {
+    font-size: 14px;
+    color: #282c37;
+  }
 }

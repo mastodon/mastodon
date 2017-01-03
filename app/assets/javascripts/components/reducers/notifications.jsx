@@ -1,7 +1,8 @@
 import {
   NOTIFICATIONS_UPDATE,
   NOTIFICATIONS_REFRESH_SUCCESS,
-  NOTIFICATIONS_EXPAND_SUCCESS
+  NOTIFICATIONS_EXPAND_SUCCESS,
+  NOTIFICATIONS_SETTING_CHANGE
 } from '../actions/notifications';
 import { ACCOUNT_BLOCK_SUCCESS } from '../actions/accounts';
 import Immutable from 'immutable';
@@ -9,7 +10,23 @@ import Immutable from 'immutable';
 const initialState = Immutable.Map({
   items: Immutable.List(),
   next: null,
-  loaded: false
+  loaded: false,
+
+  settings: Immutable.Map({
+    alerts: Immutable.Map({
+      follow: true,
+      favourite: true,
+      reblog: true,
+      mention: true
+    }),
+
+    shows: Immutable.Map({
+      follow: true,
+      favourite: true,
+      reblog: true,
+      mention: true
+    })
+  })
 });
 
 const notificationToMap = notification => Immutable.Map({
@@ -58,6 +75,8 @@ export default function notifications(state = initialState, action) {
       return appendNormalizedNotifications(state, action.notifications, action.next);
     case ACCOUNT_BLOCK_SUCCESS:
       return filterNotifications(state, action.relationship);
+    case NOTIFICATIONS_SETTING_CHANGE:
+      return state.setIn(['settings', ...action.key], action.checked);
     default:
       return state;
   }

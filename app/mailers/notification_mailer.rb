@@ -40,4 +40,13 @@ class NotificationMailer < ApplicationMailer
       mail to: @me.user.email, subject: I18n.t('notification_mailer.reblog.subject', name: @account.acct)
     end
   end
+
+  def follow_request(recipient, notification)
+    @me      = recipient
+    @account = notification.from_account
+
+    I18n.with_locale(@me.user.locale || I18n.default_locale) do
+      mail to: @me.user.email, subject: I18n.t('notification_mailer.follow_request.subject', name: @account.acct)
+    end
+  end
 end

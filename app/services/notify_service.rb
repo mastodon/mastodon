@@ -32,6 +32,10 @@ class NotifyService < BaseService
     false
   end
 
+  def blocked_follow_request?
+    false
+  end
+
   def blocked?
     blocked   = @recipient.suspended?                                                                                             # Skip if the recipient account is suspended anyway
     blocked ||= @recipient.id == @notification.from_account.id                                                                    # Skip for interactions with self
@@ -45,6 +49,7 @@ class NotifyService < BaseService
 
   def create_notification
     @notification.save!
+    return unless @notification.browserable?
     FeedManager.instance.broadcast(@recipient.id, type: 'notification', message: FeedManager.instance.inline_render(@recipient, 'api/v1/notifications/show', @notification))
   end
 

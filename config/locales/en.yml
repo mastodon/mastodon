@@ -14,6 +14,7 @@ en:
     people_followed_by: People whom %{name} follows
     people_who_follow: People who follow %{name}
     posts: Posts
+    remote_follow: Remote follow
     unfollow: Unfollow
   application_mailer:
     signature: Mastodon notifications from %{instance}
@@ -26,6 +27,11 @@ en:
     resend_confirmation: Resend confirmation instructions
     reset_password: Reset password
     set_new_password: Set new password
+  authorize_follow:
+    error: Unfortunately, there was an error looking up the remote account
+    follow: Follow
+    prompt_html: 'You (<strong>%{self}</strong>) have requested to follow:'
+    title: Follow %{acct}
   datetime:
     distance_in_words:
       about_x_hours: "%{count}h"
@@ -40,10 +46,6 @@ en:
       x_minutes: "%{count}m"
       x_months: "%{count}mo"
       x_seconds: "%{count}s"
-  follow_requests:
-    authorize: Authorize
-    reject: Reject
-    title: Follow requests
   generic:
     changes_saved_msg: Changes successfully saved!
     powered_by: powered by %{link}
@@ -58,6 +60,9 @@ en:
     follow:
       body: "%{name} is now following you!"
       subject: "%{name} is now following you"
+    follow_request:
+      body: "%{name} has requested to follow you"
+      subject: 'Pending follower: %{name}'
     mention:
       body: 'You were mentioned by %{name} in:'
       subject: You were mentioned by %{name}
@@ -67,6 +72,11 @@ en:
   pagination:
     next: Next
     prev: Prev
+  remote_follow:
+    acct: Enter your username@domain you want to follow from
+    missing_resource: Could not find the required redirect URL for your account
+    proceed: Proceed to follow
+    prompt: 'You are going to follow:'
   settings:
     edit_profile: Edit profile
     preferences: Preferences

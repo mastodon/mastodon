@@ -5,8 +5,11 @@
         = link_to t('accounts.unfollow'), unfollow_account_path(@account), data: { method: :post }, class: 'button'
       - else
         = link_to t('accounts.follow'), follow_account_path(@account), data: { method: :post }, class: 'button'
-
-  .avatar= image_tag @account.avatar.url( :original)
+  - else
+    .controls
+      .remote-follow
+        = link_to t('accounts.remote_follow'), account_remote_follow_path(@account), class: 'button'
+  .avatar= image_tag @account.avatar.url(:original)
   %h1.name
     = display_name(@account)
     %small
@@ -20,12 +23,12 @@
       .counter{ class: active_nav_class(account_url(@account)) }
         = link_to account_url(@account) do
           %span.counter-label= t('accounts.posts')
-          %span.counter-number= @account.statuses.count
+          %span.counter-number= number_with_delimiter @account.statuses.count
       .counter{ class: active_nav_class(following_account_url(@account)) }
         = link_to following_account_url(@account) do
           %span.counter-label= t('accounts.following')
-          %span.counter-number= @account.following.count
+          %span.counter-number= number_with_delimiter @account.following.count
       .counter{ class: active_nav_class(followers_account_url(@account)) }
         = link_to followers_account_url(@account) do
           %span.counter-label= t('accounts.followers')
-          %span.counter-number= @account.followers.count
+          %span.counter-number= number_with_delimiter @account.followers.count

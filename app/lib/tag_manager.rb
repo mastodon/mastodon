@@ -14,6 +14,8 @@ class TagManager
     delete:     'http://activitystrea.ms/schema/1.0/delete',
     follow:     'http://activitystrea.ms/schema/1.0/follow',
     unfollow:   'http://ostatus.org/schema/1.0/unfollow',
+    block:      'http://mastodon.social/schema/1.0/block',
+    unblock:    'http://mastodon.social/schema/1.0/unblock',
   }.freeze
 
   TYPES = {
