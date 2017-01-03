@@ -27,6 +27,7 @@ const ComposeForm = React.createClass({
     sensitive: React.PropTypes.bool,
     unlisted: React.PropTypes.bool,
     private: React.PropTypes.bool,
+    fileDropDate: React.PropTypes.instanceOf(Date),
     is_submitting: React.PropTypes.bool,
     is_uploading: React.PropTypes.bool,
     in_reply_to: ImmutablePropTypes.map,
@@ -110,6 +111,7 @@ const ComposeForm = React.createClass({
           ref={this.setAutosuggestTextarea}
           placeholder={intl.formatMessage(messages.placeholder)}
           disabled={disabled}
+          fileDropDate={this.props.fileDropDate}
           value={this.props.text}
           onChange={this.handleChange}
           suggestions={this.props.suggestions}
