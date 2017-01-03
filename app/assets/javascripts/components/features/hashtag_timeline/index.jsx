@@ -7,6 +7,7 @@ import {
   updateTimeline,
   deleteFromTimelines
 } from '../../actions/timelines';
+import ColumnBackButton from '../public_timeline/components/column_back_button';
 
 const HashtagTimeline = React.createClass({
 
@@ -68,6 +69,7 @@ const HashtagTimeline = React.createClass({
 
     return (
       <Column icon='hashtag' heading={id}>
+        <ColumnBackButton />
         <StatusListContainer type='tag' id={id} />
       </Column>
     );
