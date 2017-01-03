@@ -30,6 +30,7 @@ const initialState = Immutable.Map({
   unlisted: false,
   private: false,
   text: '',
+  fileDropDate: null,
   in_reply_to: null,
   is_submitting: false,
   is_uploading: false,
@@ -116,7 +117,10 @@ export default function compose(state = initialState, action) {
     case COMPOSE_SUBMIT_FAIL:
       return state.set('is_submitting', false);
     case COMPOSE_UPLOAD_REQUEST:
-      return state.set('is_uploading', true);
+      return state.withMutations(map => {
+        map.set('is_uploading', true);
+        map.set('fileDropDate', new Date());
+      });
     case COMPOSE_UPLOAD_SUCCESS:
       return appendMedia(state, Immutable.fromJS(action.media));
     case COMPOSE_UPLOAD_FAIL:

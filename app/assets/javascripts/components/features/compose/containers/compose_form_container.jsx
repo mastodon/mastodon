@@ -24,6 +24,7 @@ const makeMapStateToProps = () => {
       sensitive: state.getIn(['compose', 'sensitive']),
       unlisted: state.getIn(['compose', 'unlisted']),
       private: state.getIn(['compose', 'private']),
+      fileDropDate: state.getIn(['compose', 'fileDropDate']),
       is_submitting: state.getIn(['compose', 'is_submitting']),
       is_uploading: state.getIn(['compose', 'is_uploading']),
       in_reply_to: getStatus(state, state.getIn(['compose', 'in_reply_to'])),
