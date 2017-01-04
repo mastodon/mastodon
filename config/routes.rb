@@ -136,7 +136,7 @@ Rails.application.routes.draw do
     end
   end
 
-  get '/web/*any', to: 'home#index', as: :web
+  get '/web/(*any)', to: 'home#index', as: :web
 
   get :about, to: 'about#index'
   get :terms, to: 'about#terms'
