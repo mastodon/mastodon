@@ -23,6 +23,10 @@ class Auth::RegistrationsController < Devise::RegistrationsController
     new_user_session_path
   end
 
+  def after_inactive_sign_up_path_for(_resource)
+    new_user_session_path
+  end
+
   def check_single_user_mode
     redirect_to root_path if Rails.configuration.x.single_user_mode
   end
