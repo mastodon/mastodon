@@ -608,12 +608,8 @@
   }
 }
 
-.getting-started__illustration {
-  width: 330px;
-  height: 235px;
-  background: image-url('mastodon-getting-started.png') no-repeat 0 0;
-  position: absolute;
-  pointer-events: none;
-  bottom: 0;
-  left: 0;
+.getting-started {
+  overflow-y: auto;
+  padding-bottom: 235px;
+  background: image-url('mastodon-getting-started.png') no-repeat 0 100% local;
 }

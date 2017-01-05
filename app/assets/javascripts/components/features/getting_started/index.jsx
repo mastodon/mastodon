@@ -43,13 +43,11 @@ const GettingStarted = ({ intl, me }) => {
         {followRequests}
       </div>
 
-      <div className='static-content'>
+      <div className='static-content getting-started'>
         <p><FormattedMessage id='getting_started.about_addressing' defaultMessage='You can follow people if you know their username and the domain they are on by entering an e-mail-esque address into the form at the top of the sidebar.' /></p>
         <p><FormattedMessage id='getting_started.about_shortcuts' defaultMessage='If the target user is on the same domain as you, just the username will work. The same rule applies to mentioning people in statuses.' /></p>
         <p><FormattedMessage id='getting_started.about_developer' defaultMessage='The developer of this project can be followed as Gargron@mastodon.social' /></p>
       </div>
-
-      <div className='getting-started__illustration' />
     </Column>
   );
 };
