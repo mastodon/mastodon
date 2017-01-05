@@ -86,6 +86,13 @@ const ComposeForm = React.createClass({
 
   componentDidUpdate (prevProps) {
     if (prevProps.in_reply_to !== this.props.in_reply_to) {
+      // If replying to zero or one users, places the cursor at the end of the textbox.
+      // If replying to more than one user, selects any usernames past the first;
+      // this provides a convenient shortcut to drop everyone else from the conversation.
+      let selectionStart = this.props.text.search(/\s/) + 1;
+      let selectionEnd = this.props.text.length;
+      this.autosuggestTextarea.textarea.setSelectionRange(selectionStart, selectionEnd);
+
       this.autosuggestTextarea.textarea.focus();
     }
   },
