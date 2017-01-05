@@ -331,9 +331,13 @@
 }
 
 .columns-area {
-  margin: 10px;
-  margin-left: 0;
   flex-direction: row;
+}
+
+@media screen and (min-width: 360px) {
+  .columns-area {
+    margin: 10px;
+  }
 }
 
 .column {
@@ -346,9 +350,18 @@
 }
 
 .column, .drawer {
-  margin-left: 10px;
+  margin-left: 5px;
+  margin-right: 5px;
   flex: 0 0 auto;
   overflow: hidden;
+}
+
+.column:first-child, .drawer:first-child {
+  margin-left: 0;
+}
+
+.column:last-child, .drawer:last-child {
+  margin-right: 0;
 }
 
 @media screen and (max-width: 1024px) {
@@ -359,13 +372,19 @@
   }
 
   .columns-area {
-    margin: 10px;
     flex-direction: column;
   }
 }
 
 .tabs-bar {
   display: flex;
+}
+
+@media screen and (min-width: 360px) {
+  .tabs-bar {
+    margin: 10px;
+    margin-bottom: 0;
+  }
 }
 
 @media screen and (min-width: 1025px) {
