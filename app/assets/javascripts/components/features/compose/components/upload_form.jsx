@@ -18,9 +18,13 @@ const UploadForm = React.createClass({
   mixins: [PureRenderMixin],
 
   render () {
-    const { intl } = this.props;
+    const { intl, media } = this.props;
 
-    const uploads = this.props.media.map(attachment => (
+    if (!media.size) {
+      return null;
+    }
+
+    const uploads = media.map(attachment => (
       <div key={attachment.get('id')} style={{ borderRadius: '4px', marginBottom: '10px' }} className='transparent-background'>
         <div style={{ width: '100%', height: '100px', borderRadius: '4px', background: `url(${attachment.get('preview_url')}) no-repeat center`, backgroundSize: 'cover' }}>
           <IconButton icon='times' title={intl.formatMessage(messages.undo)} size={36} onClick={this.props.onRemoveFile.bind(this, attachment.get('id'))} />
@@ -29,7 +33,7 @@ const UploadForm = React.createClass({
     ));
 
     return (
-      <div style={{ marginBottom: '20px', padding: '10px', overflow: 'hidden' }}>
+      <div style={{ marginBottom: '20px', padding: '10px', overflow: 'hidden', flexShrink: '0' }}>
         {uploads}
       </div>
     );
