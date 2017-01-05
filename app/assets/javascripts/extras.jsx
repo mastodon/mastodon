@@ -19,8 +19,6 @@ $(() => {
   });
 
   $('.webapp-btn').on('click', e => {
-    console.log(e);
-
     if (e.button === 0) {
       e.preventDefault();
       window.location.href = $(e.target).attr('href');
