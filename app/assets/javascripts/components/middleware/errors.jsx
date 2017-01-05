@@ -23,7 +23,7 @@ export default function errorsMiddleware() {
           dispatch(showAlert(title, message));
         } else {
           console.error(action.error);
-          dispatch(showAlert('Oops!', 'An unexpected error occurred. Inspect the console for more details'));
+          dispatch(showAlert('Oops!', 'An unexpected error occurred.'));
         }
       }
     }
