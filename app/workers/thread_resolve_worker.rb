@@ -3,6 +3,8 @@
 class ThreadResolveWorker
   include Sidekiq::Worker
 
+  sidekiq_options retry: false
+
   def perform(child_status_id, parent_url)
     child_status  = Status.find(child_status_id)
     parent_status = FetchRemoteStatusService.new.call(parent_url)

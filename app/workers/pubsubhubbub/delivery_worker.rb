@@ -4,7 +4,11 @@ class Pubsubhubbub::DeliveryWorker
   include Sidekiq::Worker
   include RoutingHelper
 
-  sidekiq_options queue: 'push', retry: 5
+  sidekiq_options queue: 'push', retry: 3, dead: false
+
+  sidekiq_retry_in do |count|
+    5 * (count + 1)
+  end
 
   def perform(subscription_id, payload)
     subscription = Subscription.find(subscription_id)
