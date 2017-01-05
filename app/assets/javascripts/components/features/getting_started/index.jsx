@@ -8,7 +8,7 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 const messages = defineMessages({
   heading: { id: 'getting_started.heading', defaultMessage: 'Getting started' },
   public_timeline: { id: 'navigation_bar.public_timeline', defaultMessage: 'Public timeline' },
-  settings: { id: 'navigation_bar.settings', defaultMessage: 'Settings' },
+  preferences: { id: 'navigation_bar.preferences', defaultMessage: 'Preferences' },
   follow_requests: { id: 'navigation_bar.follow_requests', defaultMessage: 'Follow requests' }
 });
 
@@ -39,7 +39,7 @@ const GettingStarted = ({ intl, me }) => {
       <div style={{ position: 'relative' }}>
         <div style={hamburgerStyle}><i className='fa fa-bars' /></div>
         <ColumnLink icon='globe' text={intl.formatMessage(messages.public_timeline)} to='/timelines/public' />
-        <ColumnLink icon='cog' text={intl.formatMessage(messages.settings)} href='/settings/profile' />
+        <ColumnLink icon='cog' text={intl.formatMessage(messages.preferences)} href='/settings/preferences' />
         {followRequests}
       </div>
 
