@@ -10,6 +10,7 @@ class MediaController < ApplicationController
   private
 
   def set_media_attachment
-    @media_attachment = MediaAttachment.where.not(status_id: nil).find(params[:id])
+    @media_attachment = MediaAttachment.where.not(status_id: nil).find_by!(shortcode: params[:id])
+    raise ActiveRecord::RecordNotFound unless @media_attachment.status.permitted?(current_account)
   end
 end
