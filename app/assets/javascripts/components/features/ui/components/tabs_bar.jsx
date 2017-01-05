@@ -3,15 +3,14 @@ import { FormattedMessage } from 'react-intl';
 
 const outerStyle = {
   background: '#373b4a',
-  margin: '10px',
   flex: '0 0 auto',
-  marginBottom: '0'
+  overflowY: 'auto'
 };
 
 const tabStyle = {
   display: 'block',
   flex: '1 1 auto',
-  padding: '10px',
+  padding: '10px 5px',
   color: '#fff',
   textDecoration: 'none',
   textAlign: 'center',
