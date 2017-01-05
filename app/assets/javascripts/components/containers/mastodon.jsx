@@ -16,6 +16,7 @@ import {
   useRouterHistory,
   Router,
   Route,
+  IndexRedirect,
   IndexRoute
 } from 'react-router';
 import { useScroll } from 'react-router-scroll';
@@ -107,8 +108,9 @@ const Mastodon = React.createClass({
         <Provider store={store}>
           <Router history={browserHistory} render={applyRouterMiddleware(useScroll())}>
             <Route path='/' component={UI}>
-              <IndexRoute component={GettingStarted} />
+              <IndexRedirect to="/getting_started" />
 
+              <Route path='getting_started' component={GettingStarted} />
               <Route path='timelines/home' component={HomeTimeline} />
               <Route path='timelines/mentions' component={MentionsTimeline} />
               <Route path='timelines/public' component={PublicTimeline} />

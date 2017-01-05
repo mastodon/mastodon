@@ -16,17 +16,6 @@ const mapStateToProps = state => ({
   me: state.getIn(['accounts', state.getIn(['meta', 'me'])])
 });
 
-const hamburgerStyle = {
-  background: '#373b4a',
-  color: '#fff',
-  fontSize: '16px',
-  padding: '15px',
-  position: 'absolute',
-  right: '0',
-  top: '-48px',
-  cursor: 'default'
-};
-
 const GettingStarted = ({ intl, me }) => {
   let followRequests = '';
 
@@ -37,7 +26,6 @@ const GettingStarted = ({ intl, me }) => {
   return (
     <Column icon='asterisk' heading={intl.formatMessage(messages.heading)}>
       <div style={{ position: 'relative' }}>
-        <div style={hamburgerStyle}><i className='fa fa-bars' /></div>
         <ColumnLink icon='globe' text={intl.formatMessage(messages.public_timeline)} to='/timelines/public' />
         <ColumnLink icon='cog' text={intl.formatMessage(messages.preferences)} href='/settings/preferences' />
         {followRequests}
