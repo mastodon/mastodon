@@ -26,7 +26,7 @@ code {
     display: flex;
 
     label {
-      font-family: 'Roboto';
+      font-family: inherit;
       font-size: 16px;
       color: #fff;
       width: 100px;
@@ -48,7 +48,7 @@ code {
     margin-bottom: 5px;
 
     label {
-      font-family: 'Roboto';
+      font-family: inherit;
       font-size: 14px;
       color: white;
       display: block;
@@ -83,7 +83,7 @@ code {
     display: block;
     width: 100%;
     outline: 0;
-    font-family: 'Roboto';
+    font-family: inherit;
 
     &:invalid {
       box-shadow: none;

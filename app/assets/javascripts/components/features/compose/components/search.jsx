@@ -38,7 +38,7 @@ const inputStyle = {
   border: 'none',
   padding: '10px',
   paddingRight: '30px',
-  fontFamily: 'Roboto',
+  fontFamily: 'inherit',
   background: '#282c37',
   color: '#9baec8',
   fontSize: '14px',

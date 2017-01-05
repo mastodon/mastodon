@@ -27,7 +27,7 @@ const Button = React.createClass({
 
   render () {
     const style = {
-      fontFamily: 'Roboto',
+      fontFamily: 'inherit',
       display: this.props.block ? 'block' : 'inline-block',
       width: this.props.block ? '100%' : 'auto',
       position: 'relative',
