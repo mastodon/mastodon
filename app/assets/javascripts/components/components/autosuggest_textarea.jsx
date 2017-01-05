@@ -38,7 +38,8 @@ const AutosuggestTextarea = React.createClass({
     onSuggestionsClearRequested: React.PropTypes.func.isRequired,
     onSuggestionsFetchRequested: React.PropTypes.func.isRequired,
     onChange: React.PropTypes.func.isRequired,
-    onKeyUp: React.PropTypes.func
+    onKeyUp: React.PropTypes.func,
+    onKeyDown: React.PropTypes.func
   },
 
   getInitialState () {
@@ -108,6 +109,12 @@ const AutosuggestTextarea = React.createClass({
 
         break;
     }
+
+    if (e.defaultPrevented || !this.props.onKeyDown) {
+      return;
+    }
+
+    this.props.onKeyDown(e);
   },
 
   onBlur () {
