@@ -49,7 +49,7 @@ const ComposeForm = React.createClass({
     this.props.onChange(e.target.value);
   },
 
-  handleKeyUp (e) {
+  handleKeyDown (e) {
     if (e.keyCode === 13 && (e.ctrlKey || e.metaKey)) {
       this.props.onSubmit();
     }
@@ -115,7 +115,7 @@ const ComposeForm = React.createClass({
           value={this.props.text}
           onChange={this.handleChange}
           suggestions={this.props.suggestions}
-          onKeyUp={this.handleKeyUp}
+          onKeyDown={this.handleKeyDown}
           onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
           onSuggestionsClearRequested={this.onSuggestionsClearRequested}
           onSuggestionSelected={this.onSuggestionSelected}
