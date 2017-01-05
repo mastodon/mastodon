@@ -71,7 +71,7 @@ const Notification = React.createClass({
             <i className='fa fa-fw fa-retweet' style={{ color: '#2b90d9' }} />
           </div>
 
-          <FormattedMessage id='notification.reblog' defaultMessage='{name} reblogged your status' values={{ name: link }} />
+          <FormattedMessage id='notification.reblog' defaultMessage='{name} boosted your status' values={{ name: link }} />
         </div>
 
         <StatusContainer id={notification.get('status')} muted={true} />
