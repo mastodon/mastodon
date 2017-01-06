@@ -14,6 +14,11 @@ import { connect } from 'react-redux';
 
 const UI = React.createClass({
 
+  propTypes: {
+    dispatch: React.PropTypes.func.isRequired,
+    children: React.PropTypes.node
+  },
+
   getInitialState () {
     return {
       width: window.innerWidth
@@ -41,7 +46,7 @@ const UI = React.createClass({
   handleDrop (e) {
     e.preventDefault();
 
-    if (e.dataTransfer) {
+    if (e.dataTransfer && e.dataTransfer.files.length === 1) {
       this.props.dispatch(uploadCompose(e.dataTransfer.files));
     }
   },
@@ -72,7 +77,7 @@ const UI = React.createClass({
     } else {
       mountedColumns = (
         <ColumnsArea>
-          <Compose />
+          <Compose withHeader={true} />
           <HomeTimeline trackScroll={false} />
           <Notifications trackScroll={false} />
           {this.props.children}

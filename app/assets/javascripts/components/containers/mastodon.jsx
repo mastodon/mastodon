@@ -9,7 +9,6 @@ import {
 import { updateNotifications } from '../actions/notifications';
 import { setAccessToken } from '../actions/meta';
 import { setAccountSelf } from '../actions/accounts';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
 import createBrowserHistory from 'history/lib/createBrowserHistory';
 import {
   applyRouterMiddleware,
@@ -63,8 +62,6 @@ const Mastodon = React.createClass({
     locale: React.PropTypes.string.isRequired
   },
 
-  mixins: [PureRenderMixin],
-
   componentWillMount() {
     const { token, account, locale } = this.props;
 
@@ -108,9 +105,9 @@ const Mastodon = React.createClass({
         <Provider store={store}>
           <Router history={browserHistory} render={applyRouterMiddleware(useScroll())}>
             <Route path='/' component={UI}>
-              <IndexRedirect to="/getting_started" />
+              <IndexRedirect to="/getting-started" />
 
-              <Route path='getting_started' component={GettingStarted} />
+              <Route path='getting-started' component={GettingStarted} />
               <Route path='timelines/home' component={HomeTimeline} />
               <Route path='timelines/mentions' component={MentionsTimeline} />
               <Route path='timelines/public' component={PublicTimeline} />

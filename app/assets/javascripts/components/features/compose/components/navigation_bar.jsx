@@ -21,7 +21,7 @@ const NavigationBar = React.createClass({
 
         <div style={{ flex: '1 1 auto', marginLeft: '8px', color: '#9baec8' }}>
           <strong style={{ fontWeight: '500', display: 'block', color: '#fff' }}>{this.props.account.get('acct')}</strong>
-          <a href='/settings/profile' style={{ color: 'inherit', textDecoration: 'none' }}><FormattedMessage id='navigation_bar.edit_profile' defaultMessage='Edit profile' /></a> · <a href='/auth/sign_out' data-method='delete' style={{ color: 'inherit', textDecoration: 'none' }}><FormattedMessage id='navigation_bar.logout' defaultMessage='Logout' /></a>
+          <a href='/settings/profile' style={{ color: 'inherit', textDecoration: 'none' }}><FormattedMessage id='navigation_bar.edit_profile' defaultMessage='Edit profile' /></a>
         </div>
       </div>
     );

@@ -349,6 +349,28 @@
   width: 280px;
 }
 
+.drawer__inner {
+  background: linear-gradient(rgba(69, 75, 94, 1), rgba(69, 75, 94, 0.65));
+}
+
+.drawer__header {
+  flex: 0 0 auto;
+  font-size: 16px;
+  background: darken(#454b5e, 5%);
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: row;
+
+  a {
+    transition: all 100ms ease-in;
+
+    &:hover {
+      background: darken(#454b5e, 10%);
+      transition: all 200ms ease-out;
+    }
+  }
+}
+
 .column, .drawer {
   margin-left: 5px;
   margin-right: 5px;

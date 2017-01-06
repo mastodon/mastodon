@@ -10,7 +10,8 @@ import { mountCompose, unmountCompose } from '../../actions/compose';
 const Compose = React.createClass({
 
   propTypes: {
-    dispatch: React.PropTypes.func.isRequired
+    dispatch: React.PropTypes.func.isRequired,
+    withHeader: React.PropTypes.bool
   },
 
   mixins: [PureRenderMixin],
@@ -25,7 +26,7 @@ const Compose = React.createClass({
 
   render () {
     return (
-      <Drawer>
+      <Drawer withHeader={this.props.withHeader}>
         <SearchContainer />
         <NavigationContainer />
         <ComposeFormContainer />
