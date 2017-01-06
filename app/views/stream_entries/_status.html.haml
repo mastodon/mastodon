@@ -3,7 +3,7 @@
 - is_successor    ||= false
 - centered        ||= include_threads && !is_predecessor && !is_successor
 
-%div{ class: [is_predecessor && 'u-in-reply-to h-cite', is_successor && 'u-comment h-cite', !is_predecessor && !is_successor && 'h-entry'] }
+%div{ class: [is_predecessor ? 'u-in-reply-to h-cite' : nil, is_successor ? 'u-comment h-cite' : nil, !is_predecessor && !is_successor ? 'h-entry' : nil].compact }
   - if status.reply? && include_threads
     = render partial: 'status', collection: @ancestors, as: :status, locals: { is_predecessor: true }
 
@@ -17,7 +17,7 @@
             %strong= display_name(status.account)
           = t('stream_entries.reblogged')
 
-    %div{ class: [status.reblog? && 'u-repost-of h-cite'] }
+    %div{ class: status.reblog? ? 'u-repost-of h-cite' : nil }
       = render partial: centered ? 'stream_entries/detailed_status' : 'stream_entries/simple_status', locals: { status: proper_status(status) }
 
   - if include_threads

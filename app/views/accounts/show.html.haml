@@ -15,8 +15,9 @@
   %meta{ property: 'twitter:card', content: 'summary' }/
 
 .h-feed
-  %data.p-name{ value: "#{@account.username} on #{Rails.configuration.x.local_domain}" }
-  = render partial: 'header', locals: {in_feed: true}
+  %data.p-name{ value: "#{@account.username} on #{Rails.configuration.x.local_domain}" }/
+
+  = render partial: 'header'
 
   - if @statuses.empty?
     .accounts-grid

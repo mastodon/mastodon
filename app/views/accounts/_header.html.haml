@@ -1,11 +1,11 @@
-.card.h-card{ class: [local_assigns[:in_feed] && 'p-author'], style: "background-image: url(#{@account.header.url( :original)})" }
+.card.h-card.p-author{ style: "background-image: url(#{@account.header.url( :original)})" }
   - if user_signed_in? && current_account.id != @account.id && !current_account.requested?(@account)
     .controls
       - if current_account.following?(@account)
         = link_to t('accounts.unfollow'), unfollow_account_path(@account), data: { method: :post }, class: 'button'
       - else
         = link_to t('accounts.follow'), follow_account_path(@account), data: { method: :post }, class: 'button'
-  - else
+  - elsif !user_signed_in?
     .controls
       .remote-follow
         = link_to t('accounts.remote_follow'), account_remote_follow_path(@account), class: 'button'
