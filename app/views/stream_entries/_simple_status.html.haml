@@ -1,17 +1,18 @@
 .status.light
   .status__header
     .status__meta
-      = link_to time_ago_in_words(status.created_at), TagManager.instance.url_for(status), class: 'status__relative-time', title: l(status.created_at), target: @external_links ? '_blank' : nil, rel: 'noopener'
+      = link_to time_ago_in_words(status.created_at), TagManager.instance.url_for(status), class: 'status__relative-time u-url u-uid', title: l(status.created_at), target: @external_links ? '_blank' : nil, rel: 'noopener'
+      %data.dt-published{ value: status.created_at.to_time.iso8601 }
 
-    = link_to TagManager.instance.url_for(status.account), class: 'status__display-name', target: @external_links ? '_blank' : nil, rel: 'noopener' do
+    = link_to TagManager.instance.url_for(status.account), class: 'status__display-name p-author h-card', target: @external_links ? '_blank' : nil, rel: 'noopener' do
       .status__avatar
         %div
-          = image_tag status.account.avatar(:original), width: 48, height: 48, alt: ''
+          = image_tag status.account.avatar(:original), width: 48, height: 48, alt: '', class: 'u-photo'
       %span.display-name
-        %strong= display_name(status.account)
-        %span= acct(status.account)
+        %strong.p-name= display_name(status.account)
+        %span.p-nickname= acct(status.account)
 
-  .status__content= Formatter.instance.format(status)
+  .status__content.e-content.p-name= Formatter.instance.format(status)
 
   - unless status.media_attachments.empty?
     .status__attachments
@@ -19,10 +20,10 @@
         = render partial: 'stream_entries/content_spoiler'
       - if status.media_attachments.first.video?
         .video-item
-          = link_to (status.media_attachments.first.remote_url.blank? ? status.media_attachments.first.file.url(:original) : status.media_attachments.first.remote_url), style: "background-image: url(#{status.media_attachments.first.file.url(:small)})", target: '_blank', rel: 'noopener' do
+          = link_to (status.media_attachments.first.remote_url.blank? ? status.media_attachments.first.file.url(:original) : status.media_attachments.first.remote_url), style: "background-image: url(#{status.media_attachments.first.file.url(:small)})", target: '_blank', rel: 'noopener', class: 'u-video' do
             .video-item__play
               = fa_icon('play')
       - else
         - status.media_attachments.each do |media|
           .media-item
-            = link_to '', (media.remote_url.blank? ? media.file.url(:original) : media.remote_url), style: "background-image: url(#{media.file.url(:original)})", target: '_blank', rel: 'noopener'
+            = link_to '', (media.remote_url.blank? ? media.file.url(:original) : media.remote_url), style: "background-image: url(#{media.file.url(:original)})", target: '_blank', rel: 'noopener', class: "u-#{media.video? ? 'video' : 'photo'}"

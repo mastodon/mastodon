@@ -1,30 +1,31 @@
 .detailed-status.light
-  = link_to TagManager.instance.url_for(status.account), class: 'detailed-status__display-name', target: @external_links ? '_blank' : nil, rel: 'noopener' do
+  = link_to TagManager.instance.url_for(status.account), class: 'detailed-status__display-name p-author h-card', target: @external_links ? '_blank' : nil, rel: 'noopener' do
     %div
       %div.avatar
-        = image_tag status.account.avatar.url(:original), width: 48, height: 48, alt: ''
+        = image_tag status.account.avatar.url(:original), width: 48, height: 48, alt: '', class: 'u-photo'
     %span.display-name
-      %strong= display_name(status.account)
-      %span= acct(status.account)
+      %strong.p-name= display_name(status.account)
+      %span.p-nickname= acct(status.account)
 
-  .status__content= Formatter.instance.format(status)
+  .status__content.e-content.p-name= Formatter.instance.format(status)
 
   - unless status.media_attachments.empty?
     - if status.media_attachments.first.video?
       .video-player
         - if status.sensitive?
           = render partial: 'stream_entries/content_spoiler'
-        %video{ src: status.media_attachments.first.file.url(:original), loop: true }
+        %video{ src: status.media_attachments.first.file.url(:original), loop: true, class: 'u-video' }
     - else
       .detailed-status__attachments
         - if status.sensitive?
           = render partial: 'stream_entries/content_spoiler'
         - status.media_attachments.each do |media|
           .media-item
-            = link_to '', (media.remote_url.blank? ? media.file.url(:original) : media.remote_url), style: "background-image: url(#{media.file.url(:original)})", target: '_blank', rel: 'noopener'
+            = link_to '', (media.remote_url.blank? ? media.file.url(:original) : media.remote_url), style: "background-image: url(#{media.file.url(:original)})", target: '_blank', rel: 'noopener', class: "u-#{media.video? ? 'video' : 'photo'}"
 
   %div.detailed-status__meta
-    = link_to TagManager.instance.url_for(status), class: 'detailed-status__datetime', target: @external_links ? '_blank' : nil, rel: 'noopener' do
+    %data.dt-published{ value: status.created_at.to_time.iso8601 }
+    = link_to TagManager.instance.url_for(status), class: 'detailed-status__datetime u-url u-uid', target: @external_links ? '_blank' : nil, rel: 'noopener' do
       %span= l(status.created_at)
     ·
     %span

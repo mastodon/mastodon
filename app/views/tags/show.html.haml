@@ -2,7 +2,7 @@
   .accounts-grid
     = render partial: 'accounts/nothing_here'
 - else
-  .activity-stream
+  .activity-stream.h-feed
     = render partial: 'stream_entries/status', collection: @statuses, as: :status, cached: true
 
 .pagination
