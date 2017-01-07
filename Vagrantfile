@@ -1,7 +1,8 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
-$script = <<SCRIPT
+$provision = <<SCRIPT
+
 cd /vagrant # This is where the host folder/repo is mounted
 
 # Add repo for Ruby 2.3 binaries
@@ -52,6 +53,15 @@ bundle exec rails assets:precompile
 
 SCRIPT
 
+$start = <<SCRIPT
+
+cd /vagrant
+export $(cat ".env.vagrant" | xargs)
+killall ruby2.3
+rails s -d -b 0.0.0.0
+
+SCRIPT
+
 VAGRANTFILE_API_VERSION = "2"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
@@ -72,15 +82,15 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   if defined?(VagrantPlugins::HostsUpdater)
     config.vm.network :private_network, ip: "192.168.42.42"
     config.hostsupdater.remove_on_suspend = false
-  else
-    # Otherwise, you can access the site at http://localhost:3000
-    config.vm.network :forwarded_port, guest: 80, host: 3000
   end
 
+  # Otherwise, you can access the site at http://localhost:3000
+  config.vm.network :forwarded_port, guest: 80, host: 3000
+
   # Full provisioning script, only runs on first 'vagrant up' or with 'vagrant provision'
-  config.vm.provision :shell, inline: $script, privileged: false
+  config.vm.provision :shell, inline: $provision, privileged: false
 
   # Start up script, runs on every 'vagrant up'
-  config.vm.provision :shell, inline: "cd /vagrant && rails s -d -b 0.0.0.0", run: 'always', privileged: false
+  config.vm.provision :shell, inline: $start, run: 'always', privileged: false
 
 end
