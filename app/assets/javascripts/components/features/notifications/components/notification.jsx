@@ -4,6 +4,8 @@ import StatusContainer from '../../../containers/status_container';
 import AccountContainer from '../../../containers/account_container';
 import { FormattedMessage } from 'react-intl';
 import Permalink from '../../../components/permalink';
+import emojify from '../../../emoji';
+import escapeTextContentForBrowser from 'react/lib/escapeTextContentForBrowser';
 
 const messageStyle = {
   marginLeft: '68px',
@@ -83,7 +85,8 @@ const Notification = React.createClass({
     const { notification } = this.props;
     const account          = notification.get('account');
     const displayName      = account.get('display_name').length > 0 ? account.get('display_name') : account.get('username');
-    const link             = <Permalink className='notification__display-name' style={linkStyle} href={account.get('url')} to={`/accounts/${account.get('id')}`}>{displayName}</Permalink>;
+    const displayNameHTML = { __html: emojify(escapeTextContentForBrowser(displayName)) };
+    const link             = <Permalink className='notification__display-name' style={linkStyle} href={account.get('url')} to={`/accounts/${account.get('id')}`} dangerouslySetInnerHTML={displayNameHTML} />;
 
     switch(notification.get('type')) {
       case 'follow':
