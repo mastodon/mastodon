@@ -47,7 +47,7 @@ const Drawer = ({ children, withHeader, intl }) => {
   if (withHeader) {
     header = (
       <div className='drawer__header'>
-        <Link title={intl.formatMessage(messages.start)} style={tabStyle} to='/getting-started'><i className='fa fa-fw fa-bars' /></Link>
+        <Link title={intl.formatMessage(messages.start)} style={tabStyle} to='/getting-started'><i className='fa fa-fw fa-asterisk' /></Link>
         <Link title={intl.formatMessage(messages.public)} style={tabStyle} to='/timelines/public'><i className='fa fa-fw fa-globe' /></Link>
         <a title={intl.formatMessage(messages.preferences)} style={tabStyle} href='/settings/preferences'><i className='fa fa-fw fa-cog' /></a>
         <a title={intl.formatMessage(messages.logout)} style={tabStyle} href='/auth/sign_out' data-method='delete'><i className='fa fa-fw fa-sign-out' /></a>
