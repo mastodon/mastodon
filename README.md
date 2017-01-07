@@ -139,12 +139,11 @@ Running `vagrant up` for the first time will run provisioning, which will:
 - Create a new VirtualBox virtual machine from that image
 - Run the provisioning script (located inside the Vagrantfile), which installs the system packages, Ruby gems, and JS modules required for Mastodon
 
-Once this has completed, the virtual machine will start a rails process. You can then access your development site at http://mastodon.dev (or at http://localhost:3000 if you haven't installed vagrants-hostupdater). Any changes you make should be reflected on the server instantly.
+Once this has completed, the virtual machine will start a rails process. You can then access your development site at http://mastodon.dev (or at http://localhost:3000 if you haven't installed vagrants-hostupdater). Any changes you make should be reflected on the server instantly. To set environment variables, copy `.env.production.sample` to `.env.vagrant` and make changes as required.
 
-When you are finished with your session, run `vagrant halt` to stop the VM. Next time, running `vagrant up` should boot the VM, and skip provsioning.
+When you are finished with your session, run `vagrant halt` to stop the VM. Next time, running `vagrant up` should boot the VM, and skip provisioning.
 
 If you no longer need your environment, or if things have gone terribly wrong, running `vagrant destroy` will delete the virtual machine (after which, running `vagrant up` will create a new one, and run provisioning).
-
 
 
 ## Contributing
