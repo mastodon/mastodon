@@ -117,6 +117,35 @@ Which will re-create the updated containers, leaving databases and data as is. D
 
 Docker is great for quickly trying out software, but it has its drawbacks too. If you prefer to run Mastodon without using Docker, refer to the [production guide](https://github.com/Gargron/mastodon/wiki/Production-guide) for examples, configuration and instructions.
 
+## Development with Vagrant
+
+A quick way to get a development environment up and running is with Vagrant. You will need recent versions of [Vagrant](https://www.vagrantup.com/) and [VirtualBox](https://www.virtualbox.org/) installed.
+
+Install the latest version for your operating systems, and then run:
+
+    vagrant plugin install vagrant-hostsupdater
+
+This is optional, but will update your 'hosts' file when you start the virtual machine, allowing you to access the site at http://mastodon.dev (instead of http://localhost:3000).
+
+To create and provision a new virtual machine for Mastodon development:
+
+    git clone git@github.com:Gargron/mastodon.git
+    cd mastodon
+    vagrant up
+
+Running `vagrant up` for the first time will run provisioning, which will:
+
+- Download the Ubuntu 14.04 base image, if there isn't already a copy on your machine
+- Create a new VirtualBox virtual machine from that image
+- Run the provisioning script (located inside the Vagrantfile), which installs the system packages, Ruby gems, and JS modules required for Mastodon
+
+Once this has completed, the virtual machine will start a rails process. You can then access your development site at http://mastodon.dev (or at http://localhost:3000 if you haven't installed vagrants-hostupdater). Any changes you make should be reflected on the server instantly. To set environment variables, copy `.env.production.sample` to `.env.vagrant` and make changes as required.
+
+When you are finished with your session, run `vagrant halt` to stop the VM. Next time, running `vagrant up` should boot the VM, and skip provisioning.
+
+If you no longer need your environment, or if things have gone terribly wrong, running `vagrant destroy` will delete the virtual machine (after which, running `vagrant up` will create a new one, and run provisioning).
+
+
 ## Contributing
 
 You can open issues for bugs you've found or features you think are missing. You can also submit pull requests to this repository. This section may be updated with more details in the future.
