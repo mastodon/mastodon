@@ -145,7 +145,12 @@ const updateTimeline = (state, timeline, status, references) => {
   return state;
 };
 
-const deleteStatus = (state, id, accountId, references) => {
+const deleteStatus = (state, id, accountId, references, reblogOf) => {
+  if (reblogOf) {
+    // If we are deleting a reblog, just replace reblog with its original
+    return state.updateIn(['home', 'items'], list => list.map(item => item === id ? reblogOf : item));
+  }
+
   // Remove references from timelines
   ['home', 'mentions', 'public', 'tag'].forEach(function (timeline) {
     state = state.updateIn([timeline, 'items'], list => list.filterNot(item => item === id));
@@ -220,7 +225,7 @@ export default function timelines(state = initialState, action) {
     case TIMELINE_UPDATE:
       return updateTimeline(state, action.timeline, Immutable.fromJS(action.status), action.references);
     case TIMELINE_DELETE:
-      return deleteStatus(state, action.id, action.accountId, action.references);
+      return deleteStatus(state, action.id, action.accountId, action.references, action.reblogOf);
     case CONTEXT_FETCH_SUCCESS:
       return normalizeContext(state, action.id, Immutable.fromJS(action.ancestors), Immutable.fromJS(action.descendants));
     case ACCOUNT_TIMELINE_FETCH_SUCCESS:

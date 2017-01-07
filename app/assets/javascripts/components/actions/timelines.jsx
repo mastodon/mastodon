@@ -39,12 +39,14 @@ export function deleteFromTimelines(id) {
   return (dispatch, getState) => {
     const accountId  = getState().getIn(['statuses', id, 'account']);
     const references = getState().get('statuses').filter(status => status.get('reblog') === id).map(status => [status.get('id'), status.get('account')]);
+    const reblogOf   = getState().getIn(['statuses', id, 'reblog'], null);
 
     dispatch({
       type: TIMELINE_DELETE,
       id,
       accountId,
-      references
+      references,
+      reblogOf
     });
   };
 };
