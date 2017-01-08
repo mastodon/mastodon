@@ -175,19 +175,23 @@ class Account < ApplicationRecord
     end
 
     def following_map(target_account_ids, account_id)
-      Follow.where(target_account_id: target_account_ids).where(account_id: account_id).map { |f| [f.target_account_id, true] }.to_h
+      follow_mapping(Follow.where(target_account_id: target_account_ids, account_id: account_id), :target_account_id)
     end
 
     def followed_by_map(target_account_ids, account_id)
-      Follow.where(account_id: target_account_ids).where(target_account_id: account_id).map { |f| [f.account_id, true] }.to_h
+      follow_mapping(Follow.where(account_id: target_account_ids, target_account_id: account_id), :account_id)
     end
 
     def blocking_map(target_account_ids, account_id)
-      Block.where(target_account_id: target_account_ids).where(account_id: account_id).map { |b| [b.target_account_id, true] }.to_h
+      follow_mapping(Block.where(target_account_id: target_account_ids, account_id: account_id), :target_account_id)
     end
 
     def requested_map(target_account_ids, account_id)
-      FollowRequest.where(target_account_id: target_account_ids).where(account_id: account_id).map { |r| [r.target_account_id, true] }.to_h
+      follow_mapping(FollowRequest.where(target_account_id: target_account_ids, account_id: account_id), :target_account_id)
+    end
+    
+    private def follow_mapping(query, field)
+      query.pluck(field).inject({}) { |mapping, id| mapping[id] = true }
     end
   end
 
