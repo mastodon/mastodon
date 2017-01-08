@@ -49,7 +49,7 @@ const StatusActionBar = React.createClass({
   },
 
   handleMentionClick () {
-    this.props.onMention(this.props.status.get('account'));
+    this.props.onMention(this.props.status.get('account'), this.context.router);
   },
 
   handleBlockClick () {
