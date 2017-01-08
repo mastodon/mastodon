@@ -1,11 +1,11 @@
 Mastodon
 ========
 
-[![Build Status](http://img.shields.io/travis/Gargron/goldfinger.svg)][travis]
-[![Code Climate](https://img.shields.io/codeclimate/github/Gargron/mastodon.svg)][code_climate]
+[![Build Status](http://img.shields.io/travis/tootsuite/mastodon.svg)][travis]
+[![Code Climate](https://img.shields.io/codeclimate/github/tootsuite/mastodon.svg)][code_climate]
 
-[travis]: https://travis-ci.org/Gargron/mastodon
-[code_climate]: https://codeclimate.com/github/Gargron/mastodon
+[travis]: https://travis-ci.org/tootsuite/mastodon
+[code_climate]: https://codeclimate.com/github/tootsuite/mastodon
 
 Mastodon is a free, open-source social network server. A decentralized alternative to commercial platforms, it avoids the risks of a single company monopolizing your communication. Anyone can run Mastodon and participate in the social network seamlessly.
 
