@@ -641,3 +641,12 @@
   background: image-url('mastodon-getting-started.png') no-repeat 0 100% local;
   height: 100%;
 }
+
+.dropdown__content.dropdown__left {
+  transform: translateX(-108px);
+
+  &::before {
+    right: 8px !important;
+    left: initial !important;
+  }
+}

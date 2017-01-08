@@ -80,7 +80,7 @@ const StatusActionBar = React.createClass({
         <div style={{ float: 'left', marginRight: '18px'}}><IconButton active={status.get('favourited')} title={intl.formatMessage(messages.favourite)} icon='star' onClick={this.handleFavouriteClick} activeStyle={{ color: '#ca8f04' }} /></div>
 
         <div style={{ width: '18px', height: '18px', float: 'left' }}>
-          <DropdownMenu items={menu} icon='ellipsis-h' size={18} />
+          <DropdownMenu items={menu} icon='ellipsis-h' size={18} direction="right" />
         </div>
       </div>
     );

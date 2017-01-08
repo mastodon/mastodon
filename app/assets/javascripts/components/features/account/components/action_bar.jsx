@@ -66,7 +66,7 @@ const ActionBar = React.createClass({
     return (
       <div style={outerStyle}>
         <div style={outerDropdownStyle}>
-          <DropdownMenu items={menu} icon='bars' size={24} />
+          <DropdownMenu items={menu} icon='bars' size={24} direction="right" />
         </div>
 
         <div style={outerLinksStyle}>
