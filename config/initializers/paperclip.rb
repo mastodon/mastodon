@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-Paperclip::Attachment.default_options[:read_timeout] = 60
+Paperclip.options[:read_timeout] = 60
 
 if ENV['S3_ENABLED'] == 'true'
   Aws.eager_autoload!(services: %w(S3))

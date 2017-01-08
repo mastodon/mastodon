@@ -190,8 +190,10 @@ class Account < ApplicationRecord
       follow_mapping(FollowRequest.where(target_account_id: target_account_ids, account_id: account_id), :target_account_id)
     end
     
-    private def follow_mapping(query, field)
-      query.pluck(field).inject({}) { |mapping, id| mapping[id] = true }
+    private
+
+    def follow_mapping(query, field)
+      query.pluck(field).inject({}) { |mapping, id| mapping[id] = true; mapping }
     end
   end
 
