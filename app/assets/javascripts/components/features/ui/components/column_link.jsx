@@ -13,10 +13,10 @@ const iconStyle = {
   marginRight: '5px'
 };
 
-const ColumnLink = ({ icon, text, to, href }) => {
+const ColumnLink = ({ icon, text, to, href, method }) => {
   if (href) {
     return (
-      <a href={href} style={outerStyle} className='column-link'>
+      <a href={href} style={outerStyle} className='column-link' data-method={method}>
         <i className={`fa fa-fw fa-${icon}`} style={iconStyle} />
         {text}
       </a>
