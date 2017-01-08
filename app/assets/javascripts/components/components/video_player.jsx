@@ -113,7 +113,7 @@ const VideoPlayer = React.createClass({
 
     return (
       <div style={{ cursor: 'default', marginTop: '8px', overflow: 'hidden', width: `${width}px`, height: `${height}px`, boxSizing: 'border-box', background: '#000', position: 'relative' }}>
-        <div style={muteStyle}><IconButton title={intl.formatMessage(messages.toggle_sound)} icon={this.state.muted ? 'volume-up' : 'volume-off'} onClick={this.handleClick} /></div>
+        <div style={muteStyle}><IconButton title={intl.formatMessage(messages.toggle_sound)} icon={this.state.muted ? 'volume-off' : 'volume-up'} onClick={this.handleClick} /></div>
         <video src={media.get('url')} autoPlay='true' loop={true} muted={this.state.muted} style={videoStyle} onClick={this.handleVideoClick} />
       </div>
     );
