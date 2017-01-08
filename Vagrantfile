@@ -5,6 +5,10 @@ $provision = <<SCRIPT
 
 cd /vagrant # This is where the host folder/repo is mounted
 
+# Add the yarn repo + yarn repo keys
+curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+sudo apt-add-repository 'deb https://dl.yarnpkg.com/debian/ stable main'
+
 # Add repo for Ruby 2.3 binaries
 sudo apt-add-repository ppa:brightbox/ruby-ng
 
@@ -33,6 +37,7 @@ sudo apt-get install \
   redis-tools \
   postgresql \
   postgresql-contrib \
+  yarn \
   -y
 
 # Set Ruby 2.3 as 'ruby'
