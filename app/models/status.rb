@@ -103,7 +103,7 @@ class Status < ApplicationRecord
     end
 
     def as_public_timeline(account = nil)
-      query = left_joins(:accounts)
+      query = left_outer_joins(:accounts)
               .where(visibility: :public)
               .where(reblog_of_id: nil)
               .where(
@@ -117,7 +117,7 @@ class Status < ApplicationRecord
 
     def as_tag_timeline(tag, account = nil)
       query = tag.statuses
-                 .left_joins(:accounts)
+                 .left_outer_joins(:accounts)
                  .where(visibility: :public)
                  .where(reblog_of_id: nil)
                  .where(
