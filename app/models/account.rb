@@ -62,8 +62,8 @@ class Account < ApplicationRecord
   scope :expiring, ->(time) { where(subscription_expires_at: nil).or(where('subscription_expires_at < ?', time)).remote.with_followers }
   scope :silenced, -> { where(silenced: true) }
   scope :suspended, -> { where(suspended: true) }
-  scope :recent, -> { reorder('id desc') }
-  scope :alphabetic, -> { order('domain ASC, username ASC') }
+  scope :recent, -> { reorder(id: :desc) }
+  scope :alphabetic, -> { order(domain: :asc, username: :asc) }
 
   def follow!(other_account)
     active_relationships.where(target_account: other_account).first_or_create!(target_account: other_account)
