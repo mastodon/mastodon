@@ -134,6 +134,10 @@ Rails.application.routes.draw do
         end
       end
     end
+
+    namespace :web do
+      resource :settings, only: [:update]
+    end
   end
 
   get '/web/(*any)', to: 'home#index', as: :web

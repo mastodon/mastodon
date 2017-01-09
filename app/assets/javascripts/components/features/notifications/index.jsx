@@ -18,7 +18,7 @@ const messages = defineMessages({
 });
 
 const getNotifications = createSelector([
-  state => Immutable.List(state.getIn(['notifications', 'settings', 'shows']).filter(item => !item).keys()),
+  state => Immutable.List(state.getIn(['settings', 'notifications', 'shows']).filter(item => !item).keys()),
   state => state.getIn(['notifications', 'items'])
 ], (excludedTypes, notifications) => notifications.filterNot(item => excludedTypes.includes(item.get('type'))));
 

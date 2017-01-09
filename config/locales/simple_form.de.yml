@@ -1,6 +1,9 @@
 ---
 de:
   simple_form:
+    hints:
+      defaults:
+        locked: Erlaubt dir, Folger zu überprüfen, bevor sie dir folgen können
     labels:
       defaults:
         avatar: Avatar
@@ -11,6 +14,7 @@ de:
         email: E-mail-Addresse
         header: Kopfbild
         locale: Sprache
+        locked: Gesperrter Profil
         new_password: Neues Passwort
         note: Über mich
         password: Passwort
@@ -21,6 +25,7 @@ de:
       notification_emails:
         favourite: E-mail senden, wenn jemand meinen Beitrag favorisiert
         follow: E-mail senden, wenn mir jemand folgt
+        follow_request: E-mail senden, wenn mir jemand folgen möchte
         mention: E-mail senden, wenn mich jemand erwähnt
         reblog: E-mail senden, wenn jemand meinen Beitrag teilt
     'no': Nein

@@ -104,7 +104,7 @@ class Account < ApplicationRecord
   end
 
   def subscribed?
-    subscription_expires_at
+    !subscription_expires_at.blank?
   end
 
   def favourited?(status)
@@ -189,7 +189,7 @@ class Account < ApplicationRecord
     def requested_map(target_account_ids, account_id)
       follow_mapping(FollowRequest.where(target_account_id: target_account_ids, account_id: account_id), :target_account_id)
     end
-    
+
     private
 
     def follow_mapping(query, field)

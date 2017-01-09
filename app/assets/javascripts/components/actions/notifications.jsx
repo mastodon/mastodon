@@ -14,8 +14,6 @@ export const NOTIFICATIONS_EXPAND_REQUEST = 'NOTIFICATIONS_EXPAND_REQUEST';
 export const NOTIFICATIONS_EXPAND_SUCCESS = 'NOTIFICATIONS_EXPAND_SUCCESS';
 export const NOTIFICATIONS_EXPAND_FAIL    = 'NOTIFICATIONS_EXPAND_FAIL';
 
-export const NOTIFICATIONS_SETTING_CHANGE = 'NOTIFICATIONS_SETTING_CHANGE';
-
 const fetchRelatedRelationships = (dispatch, notifications) => {
   const accountIds = notifications.filter(item => item.type === 'follow').map(item => item.account.id);
 
@@ -131,13 +129,5 @@ export function expandNotificationsFail(error) {
   return {
     type: NOTIFICATIONS_EXPAND_FAIL,
     error
-  };
-};
-
-export function changeNotificationsSetting(key, checked) {
-  return {
-    type: NOTIFICATIONS_SETTING_CHANGE,
-    key,
-    checked
   };
 };
