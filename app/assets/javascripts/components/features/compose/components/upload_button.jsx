@@ -11,7 +11,8 @@ const UploadButton = React.createClass({
   propTypes: {
     disabled: React.PropTypes.bool,
     onSelectFile: React.PropTypes.func.isRequired,
-    style: React.PropTypes.object
+    style: React.PropTypes.object,
+    key: React.PropTypes.number
   },
 
   mixins: [PureRenderMixin],
@@ -36,7 +37,7 @@ const UploadButton = React.createClass({
     return (
       <div style={this.props.style}>
         <IconButton icon='photo' title={intl.formatMessage(messages.upload)} disabled={this.props.disabled} onClick={this.handleClick} size={24} />
-        <input ref={this.setRef} type='file' multiple={false} onChange={this.handleChange} disabled={this.props.disabled} style={{ display: 'none' }} />
+        <input key={this.props.key} ref={this.setRef} type='file' multiple={false} onChange={this.handleChange} disabled={this.props.disabled} style={{ display: 'none' }} />
       </div>
     );
   }
