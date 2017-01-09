@@ -1,4 +1,22 @@
 - content_for :header_tags do
+  :javascript
+    window.INITIAL_STATE = {
+      "meta": {
+        "access_token": "#{@token}",
+        "locale": "#{I18n.locale}",
+        "me": #{current_account.id}
+      },
+
+      "compose": {
+        "me": #{current_account.id},
+        "private": #{current_account.locked?}
+      },
+
+      "accounts": {
+        #{current_account.id}: #{render(file: 'api/v1/accounts/show', locals: { account: current_user.account }, formats: :json)}
+      }
+    };
+
   = javascript_include_tag 'application'
 
 = react_component 'Mastodon', default_props, class: 'app-holder', prerender: false
