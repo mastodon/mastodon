@@ -15,6 +15,7 @@ import { blockAccount } from '../actions/accounts';
 import { deleteStatus } from '../actions/statuses';
 import { openMedia } from '../actions/modal';
 import { createSelector } from 'reselect'
+import { isMobile } from '../is_mobile'
 
 const mapStateToProps = (state, props) => ({
   statusBase: state.getIn(['statuses', props.id]),
@@ -86,8 +87,11 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(deleteStatus(status.get('id')));
   },
 
-  onMention (account) {
+  onMention (account, router) {
     dispatch(mentionCompose(account));
+    if (isMobile(window.innerWidth)) {
+      router.push('/statuses/new');
+    }
   },
 
   onOpenMedia (url) {
