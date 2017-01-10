@@ -6,7 +6,7 @@ class Api::Web::SettingsController < ApiController
   before_action :require_user!
 
   def update
-    setting      = Web::Setting.where(user: current_user).first_or_initialize(user: current_user)
+    setting      = ::Web::Setting.where(user: current_user).first_or_initialize(user: current_user)
     setting.data = params[:data]
     setting.save!
 

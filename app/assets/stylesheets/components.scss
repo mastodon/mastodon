@@ -650,3 +650,15 @@
     left: initial !important;
   }
 }
+
+.setting-text {
+  color: #9baec8;
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid #9baec8;
+
+  &:focus, &:active {
+    color: #fff;
+    border-bottom-color: #2b90d9;
+  }
+}

@@ -65,7 +65,13 @@ const en = {
   "notifications.column_settings.mention": "Erwähnungen:",
   "notifications.column_settings.reblog": "Geteilte Beiträge:",
   "follow_request.authorize": "Erlauben",
-  "follow_request.reject": "Ablehnen"
+  "follow_request.reject": "Ablehnen",
+  "home.column_settings.basic": "Einfach",
+  "home.column_settings.advanced": "Fortgeschritten",
+  "home.column_settings.show_reblogs": "Geteilte Beiträge anzeigen",
+  "home.column_settings.show_replies": "Antworten anzeigen",
+  "home.column_settings.filter_regex": "Filter durch reguläre Ausdrücke",
+  "missing_indicator.label": "Nicht gefunden"
 };
 
 export default en;
