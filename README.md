@@ -30,6 +30,7 @@ If you would like, you can [support the development of this project on Patreon][
 - [API overview](https://github.com/Gargron/mastodon/wiki/API)
 - [How to use the API via cURL/oAuth](https://github.com/Gargron/mastodon/wiki/Testing-with-cURL)
 - [Frequently Asked Questions](https://github.com/Gargron/mastodon/wiki/FAQ)
+- [List of apps](https://github.com/tootsuite/mastodon/wiki/Apps)
 
 ## Features
 
