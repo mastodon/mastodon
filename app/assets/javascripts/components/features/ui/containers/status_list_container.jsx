@@ -5,7 +5,7 @@ import Immutable from 'immutable';
 import { createSelector } from 'reselect';
 
 const getStatusIds = createSelector([
-  (state, { type }) => state.getIn(['settings', type]),
+  (state, { type }) => state.getIn(['settings', type], Immutable.Map()),
   (state, { type }) => state.getIn(['timelines', type, 'items'], Immutable.List()),
   (state)           => state.get('statuses')
 ], (columnSettings, statusIds, statuses) => statusIds.filter(id => {
