@@ -33,6 +33,7 @@ import Favourites from '../features/favourites';
 import HashtagTimeline from '../features/hashtag_timeline';
 import Notifications from '../features/notifications';
 import FollowRequests from '../features/follow_requests';
+import GenericNotFound from '../features/generic_not_found';
 import { IntlProvider, addLocaleData } from 'react-intl';
 import en from 'react-intl/locale-data/en';
 import de from 'react-intl/locale-data/de';
@@ -125,6 +126,7 @@ const Mastodon = React.createClass({
               </Route>
 
               <Route path='follow_requests' component={FollowRequests} />
+              <Route path='*' component={GenericNotFound} />
             </Route>
           </Router>
         </Provider>

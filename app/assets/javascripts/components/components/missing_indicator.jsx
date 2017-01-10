@@ -8,10 +8,10 @@ const style = {
   paddingTop: '120px'
 };
 
-const LoadingIndicator = () => (
+const MissingIndicator = () => (
   <div style={style}>
-    <FormattedMessage id='loading_indicator.label' defaultMessage='Loading...' />
+    <FormattedMessage id='missing_indicator.label' defaultMessage='Not found' />
   </div>
 );
 
-export default LoadingIndicator;
+export default MissingIndicator;
