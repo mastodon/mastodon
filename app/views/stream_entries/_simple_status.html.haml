@@ -9,10 +9,10 @@
         %div
           = image_tag status.account.avatar(:original), width: 48, height: 48, alt: '', class: 'u-photo'
       %span.display-name
-        %strong.p-name= display_name(status.account)
+        %strong.p-name.emojify= display_name(status.account)
         %span.p-nickname= acct(status.account)
 
-  .status__content.e-content.p-name= Formatter.instance.format(status)
+  .status__content.e-content.p-name.emojify= Formatter.instance.format(status)
 
   - unless status.media_attachments.empty?
     .status__attachments
