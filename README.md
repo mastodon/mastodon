@@ -25,11 +25,11 @@ If you would like, you can [support the development of this project on Patreon][
 
 ## Resources
 
-- [List of Mastodon instances](https://github.com/Gargron/mastodon/wiki/List-of-Mastodon-instances)
+- [List of Mastodon instances](https://github.com/tootsuite/mastodon/wiki/List-of-Mastodon-instances)
 - [Use this tool to find Twitter friends on Mastodon](https://mastodon-bridge.herokuapp.com)
-- [API overview](https://github.com/Gargron/mastodon/wiki/API)
-- [How to use the API via cURL/oAuth](https://github.com/Gargron/mastodon/wiki/Testing-with-cURL)
-- [Frequently Asked Questions](https://github.com/Gargron/mastodon/wiki/FAQ)
+- [API overview](https://github.com/tootsuite/mastodon/wiki/API)
+- [How to use the API via cURL/oAuth](https://github.com/tootsuite/mastodon/wiki/Testing-with-cURL)
+- [Frequently Asked Questions](https://github.com/tootsuite/mastodon/wiki/FAQ)
 - [List of apps](https://github.com/tootsuite/mastodon/wiki/Apps)
 
 ## Features
@@ -116,7 +116,7 @@ Which will re-create the updated containers, leaving databases and data as is. D
 
 ## Deployment without Docker
 
-Docker is great for quickly trying out software, but it has its drawbacks too. If you prefer to run Mastodon without using Docker, refer to the [production guide](https://github.com/Gargron/mastodon/wiki/Production-guide) for examples, configuration and instructions.
+Docker is great for quickly trying out software, but it has its drawbacks too. If you prefer to run Mastodon without using Docker, refer to the [production guide](https://github.com/tootsuite/mastodon/wiki/Production-guide) for examples, configuration and instructions.
 
 ## Development with Vagrant
 
@@ -130,7 +130,7 @@ This is optional, but will update your 'hosts' file when you start the virtual m
 
 To create and provision a new virtual machine for Mastodon development:
 
-    git clone git@github.com:Gargron/mastodon.git
+    git clone git@github.com:tootsuite/mastodon.git
     cd mastodon
     vagrant up
 
