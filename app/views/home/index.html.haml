@@ -1,6 +1,7 @@
 - content_for :header_tags do
+  %meta{name: 'initial-state', content: render(file: 'home/initial_state', formats: :json)}
   :javascript
-    window.INITIAL_STATE = #{render(file: 'home/initial_state', formats: :json)}
+    window.INITIAL_STATE = JSON.parse(document.querySelector('meta[name=initial-state]').content);
 
   = javascript_include_tag 'application'
 
