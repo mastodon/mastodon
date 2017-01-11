@@ -56,6 +56,8 @@ class ProcessFeedService < BaseService
         end
       end
 
+      return if status.nil?
+
       status.save!
 
       NotifyService.new.call(status.reblog.account, status) if status.reblog? && status.reblog.account.local?

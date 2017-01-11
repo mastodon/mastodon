@@ -4,7 +4,7 @@
     "test": "mocha --require ./spec/javascript/setup.js --compilers js:babel-register ./spec/javascript/components/*.test.jsx",
     "storybook": "start-storybook -p 9001 -c storybook"
   },
-  "devDependencies": {
+  "dependencies": {
     "@kadira/storybook": "^2.24.0",
     "axios": "^0.14.0",
     "babel-plugin-react-transform": "^2.0.2",
@@ -52,9 +52,7 @@
     "reselect": "^2.5.4",
     "sass-loader": "^4.0.2",
     "sinon": "^1.17.6",
-    "style-loader": "^0.13.1"
-  },
-  "dependencies": {
+    "style-loader": "^0.13.1",
     "webpack": "^1.14.0"
   }
 }

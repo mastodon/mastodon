@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 source 'https://rubygems.org'
+ruby '2.3.1'
 
 gem 'rails', '~> 5.0.1.0'
 gem 'sass-rails', '~> 5.0'
