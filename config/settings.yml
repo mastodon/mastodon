@@ -1,0 +1,23 @@
+# config/app.yml for rails-settings-cached
+defaults: &defaults
+  site_description: ''
+  site_contact_username: ''
+  site_contact_email: ''
+  notification_emails:
+    follow: false
+    reblog: false
+    favourite: false
+    mention: false
+    follow_request: true
+  interactions:
+    must_be_follower: false
+    must_be_following: false
+
+development:
+  <<: *defaults
+
+test:
+  <<: *defaults
+
+production:
+  <<: *defaults

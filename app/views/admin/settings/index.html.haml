@@ -1,0 +1,22 @@
+- content_for :page_title do
+  Site Settings
+
+%table.table
+  %colgroup
+    %col{ width: '35%' }/
+  %thead
+    %tr
+      %th Setting
+      %th Click to edit
+  %tbody
+    %tr
+      %td
+        %strong Site description
+        %br/
+        Displayed as a paragraph on the frontpage and used as a meta tag.
+        %br/
+        You can use HTML tags, in particular
+        %code= '<a>'
+        and
+        %code= '<em>'
+      %td= best_in_place @settings['site_description'], :value, as: :textarea, url: admin_setting_path(@settings['site_description'])

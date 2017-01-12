@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class User < ApplicationRecord
+  include RailsSettings::Extend
+
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable, :confirmable
 
   belongs_to :account, inverse_of: :user
@@ -13,11 +15,6 @@ class User < ApplicationRecord
   scope :prolific, -> { joins('inner join statuses on statuses.account_id = users.account_id').select('users.*, count(statuses.id) as statuses_count').group('users.id').order('statuses_count desc') }
   scope :recent,   -> { order('id desc') }
   scope :admins,   -> { where(admin: true) }
-
-  has_settings do |s|
-    s.key :notification_emails, defaults: { follow: false, reblog: false, favourite: false, mention: false, follow_request: true }
-    s.key :interactions, defaults: { must_be_follower: false, must_be_following: false }
-  end
 
   def send_devise_notification(notification, *args)
     devise_mailer.send(notification, self, *args).deliver_later

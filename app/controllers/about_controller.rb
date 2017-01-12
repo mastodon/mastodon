@@ -4,10 +4,10 @@ class AboutController < ApplicationController
   before_action :set_body_classes
 
   def index
+    @description = Setting.site_description
   end
 
-  def terms
-  end
+  def terms; end
 
   private
 

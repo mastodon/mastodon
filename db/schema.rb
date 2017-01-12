@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170109120109) do
+ActiveRecord::Schema.define(version: 20170112154826) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -238,13 +238,13 @@ ActiveRecord::Schema.define(version: 20170109120109) do
   end
 
   create_table "settings", force: :cascade do |t|
-    t.string   "var",         null: false
+    t.string   "var",        null: false
     t.text     "value"
-    t.string   "target_type", null: false
-    t.integer  "target_id",   null: false
+    t.string   "thing_type"
+    t.integer  "thing_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.index ["target_type", "target_id", "var"], name: "index_settings_on_target_type_and_target_id_and_var", unique: true, using: :btree
+    t.index ["thing_type", "thing_id", "var"], name: "index_settings_on_thing_type_and_thing_id_and_var", unique: true, using: :btree
   end
 
   create_table "statuses", force: :cascade do |t|

@@ -60,6 +60,9 @@ GEM
       babel-source (>= 4.0, < 6)
       execjs (~> 2.0)
     bcrypt (3.1.11)
+    best_in_place (3.0.3)
+      actionpack (>= 3.2)
+      railties (>= 3.2)
     better_errors (2.1.1)
       coderay (>= 1.0.0)
       erubis (>= 2.6.6)
@@ -172,8 +175,6 @@ GEM
     json (1.8.3)
     launchy (2.4.3)
       addressable (~> 2.3)
-    ledermann-rails-settings (2.4.2)
-      activerecord (>= 3.1)
     letter_opener (1.4.1)
       launchy (~> 2.2)
     link_header (0.0.8)
@@ -259,6 +260,8 @@ GEM
       nokogiri (~> 1.6.0)
     rails-html-sanitizer (1.0.3)
       loofah (~> 2.0)
+    rails-settings-cached (0.6.5)
+      rails (>= 4.2.0)
     rails_12factor (0.0.3)
       rails_serve_static_assets
       rails_stdout_logging
@@ -405,6 +408,7 @@ DEPENDENCIES
   addressable
   autoprefixer-rails
   aws-sdk (>= 2.0)
+  best_in_place (~> 3.0.1)
   better_errors
   binding_of_caller
   browserify-rails
@@ -426,7 +430,6 @@ DEPENDENCIES
   i18n-tasks (~> 0.9.6)
   jbuilder (~> 2.0)
   jquery-rails
-  ledermann-rails-settings
   letter_opener
   link_header
   lograge
@@ -445,6 +448,7 @@ DEPENDENCIES
   rack-cors
   rack-timeout-puma
   rails (~> 5.0.1.0)
+  rails-settings-cached
   rails_12factor
   rails_autolink
   react-rails
