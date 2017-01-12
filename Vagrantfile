@@ -9,9 +9,6 @@ cd /vagrant # This is where the host folder/repo is mounted
 curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
 sudo apt-add-repository 'deb https://dl.yarnpkg.com/debian/ stable main'
 
-# Add repo for Ruby 2.3 binaries
-sudo apt-add-repository ppa:brightbox/ruby-ng
-
 # Add repo for NodeJS
 curl -sL https://deb.nodesource.com/setup_4.x | sudo bash -
 
@@ -24,31 +21,43 @@ sudo apt-get install iptables-persistent -y
 # Add packages to build and run Mastodon
 sudo apt-get install \
   git-core \
-  ruby-build \
+  g++ \
   libpq-dev \
   libxml2-dev \
   libxslt1-dev \
   imagemagick \
   nodejs \
-  ruby2.3 \
-  ruby2.3-dev \
-  ruby-switch \
   redis-server \
   redis-tools \
   postgresql \
   postgresql-contrib \
   yarn \
+  libreadline-dev \
   -y
 
-# Set Ruby 2.3 as 'ruby'
-sudo ruby-switch --set ruby2.3
+# Install rbenv
+git clone https://github.com/rbenv/rbenv.git ~/.rbenv
+cd ~/.rbenv && src/configure && make -C src
+echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bash_profile
+echo 'eval "$(rbenv init -)"' >> ~/.bash_profile
+
+git clone https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build
+
+export PATH="$HOME/.rbenv/bin::$PATH"
+eval "$(rbenv init -)"
+
+echo "Compiling Ruby 2.3.1: warning, this takes a while!!!"
+rbenv install 2.3.1
+rbenv global 2.3.1
+
+cd /vagrant
 
 # Configure database
 sudo -u postgres createuser -U postgres vagrant -s
 sudo -u postgres createdb -U postgres mastodon_development
 
 # Install gems and node modules
-sudo gem install bundler
+gem install bundler
 bundle install
 yarn install
 
@@ -62,7 +71,6 @@ $start = <<SCRIPT
 
 cd /vagrant
 export $(cat ".env.vagrant" | xargs)
-killall ruby2.3
 rails s -d -b 0.0.0.0
 
 SCRIPT
