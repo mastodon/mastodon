@@ -1,6 +1,6 @@
 - content_for :header_tags do
   :javascript
-    window.INITIAL_STATE = #{render(file: 'home/initial_state', formats: :json)}
+    window.INITIAL_STATE = #{json_escape(render(file: 'home/initial_state', formats: :json))}
 
   = javascript_include_tag 'application'
 
