@@ -6,6 +6,11 @@ namespace :mastodon do
     task clear: :environment do
       MediaAttachment.where(status_id: nil).where('created_at < ?', 1.day.ago).find_each(&:destroy)
     end
+
+    desc 'Remove media attachments attributed to silenced accounts'
+    task remove_silenced: :environment do
+      MediaAttachment.where(account: Account.silenced).find_each(&:destroy)
+    end
   end
 
   namespace :push do
