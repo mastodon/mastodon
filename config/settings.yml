@@ -1,6 +1,7 @@
 # config/app.yml for rails-settings-cached
 defaults: &defaults
   site_description: ''
+  site_extended_description: ''
   site_contact_username: ''
   site_contact_email: ''
   notification_emails:
@@ -12,7 +13,6 @@ defaults: &defaults
   interactions:
     must_be_follower: false
     must_be_following: false
-
 development:
   <<: *defaults
 

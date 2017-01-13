@@ -143,9 +143,10 @@ Rails.application.routes.draw do
 
   get '/web/(*any)', to: 'home#index', as: :web
 
-  get :about, to: 'about#index'
-  get :terms, to: 'about#terms'
-
+  get '/about',      to: 'about#index'
+  get '/about/more', to: 'about#more'
+  get '/terms',      to: 'about#terms'
+  
   root 'home#index'
 
   match '*unmatched_route', via: :all, to: 'application#raise_not_found'

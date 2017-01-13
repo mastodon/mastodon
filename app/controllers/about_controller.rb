@@ -7,6 +7,12 @@ class AboutController < ApplicationController
     @description = Setting.site_description
   end
 
+  def more
+    @extended_description = Setting.site_extended_description
+    @contact_account      = Account.find_local(Setting.site_contact_username)
+    @contact_email        = Setting.site_contact_email
+  end
+
   def terms; end
 
   private

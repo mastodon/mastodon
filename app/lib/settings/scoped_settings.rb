@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Settings
   class ScopedSettings < ::Setting
     def self.for_thing(object)

@@ -9,10 +9,9 @@ class Setting < RailsSettings::Base
   end
 
   class << self
-
     def [](key)
       return super(key) unless rails_initialized?
-      
+
       val = Rails.cache.fetch(cache_key(key, @object)) do
         db_val = object(key)
 
@@ -25,7 +24,7 @@ class Setting < RailsSettings::Base
           default_settings[key]
         end
       end
-      
+
       val
     end
 

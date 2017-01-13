@@ -1,0 +1,8 @@
+- content_for :page_title do
+  #{Rails.configuration.x.local_domain}
+
+.wrapper
+  = @extended_description.html_safe
+
+  - if @contact_account
+    = render partial: 'authorize_follow/card', locals: { account: @contact_account }
