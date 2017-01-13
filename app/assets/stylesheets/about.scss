@@ -8,6 +8,10 @@
     color: #9baec8;
     padding-top: 50px;
     padding-bottom: 50px;
+
+    &.thicc {
+      max-width: 700px;
+    }
   }
 
   h1 {
@@ -145,7 +149,7 @@
 
     strong {
       font-weight: 500;
-      font-size: 48px;
+      font-size: 32px;
       line-height: 48px;
       color: #fff;
     }
@@ -215,7 +219,7 @@
 
   .sidebar {
     border-left: 1px solid lighten(#282c37, 10%);
-    width: 140px;
+    width: 180px;
     flex: 0 0 auto;
   }
 
