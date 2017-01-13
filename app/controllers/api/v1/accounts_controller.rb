@@ -96,7 +96,7 @@ class Api::V1::AccountsController < ApiController
     limit = params[:limit] ? [DEFAULT_ACCOUNTS_LIMIT, params[:limit].to_i].min : DEFAULT_ACCOUNTS_LIMIT
     @accounts = SearchService.new.call(params[:q], limit, params[:resolve] == 'true')
 
-    set_account_counters_maps(@accounts)
+    set_account_counters_maps(@accounts) unless @accounts.nil?
 
     render action: :index
   end
