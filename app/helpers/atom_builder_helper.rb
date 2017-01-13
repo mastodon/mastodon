@@ -207,6 +207,7 @@ module AtomBuilderHelper
           end
 
           category(xml, 'nsfw') if stream_entry.target.sensitive?
+          category(xml, 'spoiler') if stream_entry.target.spoiler?
         end
       end
     end
@@ -228,6 +229,7 @@ module AtomBuilderHelper
     end
 
     category(xml, 'nsfw') if stream_entry.activity.sensitive?
+    category(xml, 'spoiler') if stream_entry.activity.spoiler?
   end
 
   private

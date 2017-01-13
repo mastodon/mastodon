@@ -18,6 +18,12 @@ const StatusContent = React.createClass({
   componentDidMount () {
     const node  = ReactDOM.findDOMNode(this);
     const links = node.querySelectorAll('a');
+    const spoilers = node.querySelectorAll('.spoiler');
+
+    for (var i = 0; i < spoilers.length; ++i) {
+      let spoiler    = spoilers[i];
+      spoiler.addEventListener('click', this.onSpoilerClick.bind(this, spoiler), true);
+    }
 
     for (var i = 0; i < links.length; ++i) {
       let link    = links[i];
@@ -49,6 +55,18 @@ const StatusContent = React.createClass({
     if (e.button === 0) {
       e.preventDefault();
       this.context.router.push(`/timelines/tag/${hashtag}`);
+    }
+  },
+
+  onSpoilerClick (spoiler, e) {
+    if (e.button === 0) {
+      //only toggle if we're not clicking a visible link
+      var hasClass = $(spoiler).hasClass('spoiler-on');
+      if (hasClass || e.target === spoiler) {
+        e.stopPropagation();
+        e.preventDefault();
+        $(spoiler).siblings(".spoiler").andSelf().toggleClass('spoiler-on', !hasClass);
+      }
     }
   },
 

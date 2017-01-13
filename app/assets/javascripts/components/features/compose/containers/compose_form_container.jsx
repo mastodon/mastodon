@@ -8,6 +8,8 @@ import {
   fetchComposeSuggestions,
   selectComposeSuggestion,
   changeComposeSensitivity,
+  changeComposeSpoilerness,
+  changeComposeSpoilerText,
   changeComposeVisibility,
   changeComposeListability
 } from '../../../actions/compose';
@@ -22,6 +24,8 @@ const makeMapStateToProps = () => {
       suggestion_token: state.getIn(['compose', 'suggestion_token']),
       suggestions: state.getIn(['compose', 'suggestions']),
       sensitive: state.getIn(['compose', 'sensitive']),
+      spoiler: state.getIn(['compose', 'spoiler']),
+      spoiler_text: state.getIn(['compose', 'spoiler_text']),
       unlisted: state.getIn(['compose', 'unlisted']),
       private: state.getIn(['compose', 'private']),
       fileDropDate: state.getIn(['compose', 'fileDropDate']),
@@ -64,6 +68,14 @@ const mapDispatchToProps = function (dispatch) {
 
     onChangeSensitivity (checked) {
       dispatch(changeComposeSensitivity(checked));
+    },
+
+    onChangeSpoilerness (checked) {
+      dispatch(changeComposeSpoilerness(checked));
+    },
+
+    onChangeSpoilerText (checked) {
+      dispatch(changeComposeSpoilerText(checked));
     },
 
     onChangeVisibility (checked) {

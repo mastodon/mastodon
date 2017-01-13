@@ -17,6 +17,8 @@ import {
   COMPOSE_SUGGESTIONS_READY,
   COMPOSE_SUGGESTION_SELECT,
   COMPOSE_SENSITIVITY_CHANGE,
+  COMPOSE_SPOILERNESS_CHANGE,
+  COMPOSE_SPOILER_TEXT_CHANGE,
   COMPOSE_VISIBILITY_CHANGE,
   COMPOSE_LISTABILITY_CHANGE
 } from '../actions/compose';
@@ -27,6 +29,8 @@ import Immutable from 'immutable';
 const initialState = Immutable.Map({
   mounted: false,
   sensitive: false,
+  spoiler: false,
+  spoiler_text: '',
   unlisted: false,
   private: false,
   text: '',
@@ -56,6 +60,8 @@ function statusToTextMentions(state, status) {
 function clearAll(state) {
   return state.withMutations(map => {
     map.set('text', '');
+    map.set('spoiler', false);
+    map.set('spoiler_text', '');
     map.set('is_submitting', false);
     map.set('in_reply_to', null);
     map.update('media_attachments', list => list.clear());
@@ -98,6 +104,10 @@ export default function compose(state = initialState, action) {
       return state.set('mounted', false);
     case COMPOSE_SENSITIVITY_CHANGE:
       return state.set('sensitive', action.checked);
+    case COMPOSE_SPOILERNESS_CHANGE:
+      return state.set('spoiler', action.checked);
+    case COMPOSE_SPOILER_TEXT_CHANGE:
+      return state.set('spoiler_text', action.text);
     case COMPOSE_VISIBILITY_CHANGE:
       return state.set('private', action.checked);
     case COMPOSE_LISTABILITY_CHANGE:

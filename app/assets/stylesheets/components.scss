@@ -584,21 +584,20 @@
   }
 }
 
-.autosuggest-textarea {
+.autosuggest-textarea, .spoiler-input {
   position: relative;
 }
 
-.autosuggest-textarea__textarea {
+.autosuggest-textarea__textarea, .spoiler-input__input {
   display: block;
   box-sizing: border-box;
   width: 100%;
-  height: 100px;
   resize: none;
+  margin: 0;
   color: $color1;
   padding: 7px;
   font-family: inherit;
   font-size: 14px;
-  margin: 0;
   resize: vertical;
 
   border: 3px dashed transparent;
@@ -607,6 +606,10 @@
   &.file-drop {
     border-color: darken($color5, 33%);
   }
+}
+
+.autosuggest-textarea__textarea {
+  height: 100px;
 }
 
 .autosuggest-textarea__suggestions {
@@ -660,6 +663,39 @@
   &:focus, &:active {
     color: $color5;
     border-bottom-color: $color4;
+  }
+}
+
+.spoiler-helper {
+  margin-bottom: -20px !important;
+}
+
+.spoiler {
+  &::before {
+    margin-top: 20px;
+    display: block;
+    content: '';
+  }
+
+  display: inline;
+  cursor: pointer;
+  border-bottom: 1px dashed white;
+  .light & {
+    border-bottom: 1px dashed black;
+  }
+
+  &.spoiler-on {
+    &, & * {
+      color: transparent !important;
+    }
+    background: white;
+    .light & {
+      background: black;
+    }
+
+    .emojione {
+      opacity: 0;
+    }
   }
 }
 

@@ -9,5 +9,6 @@ class ProcessHashtagsService < BaseService
     end
 
     status.update(sensitive: true) if tags.include?('nsfw')
+    status.update(spoiler: true) if tags.include?('spoiler')
   end
 end
