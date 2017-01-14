@@ -29,7 +29,7 @@
       %span= l(status.created_at)
     ·
     - if status.application
-      = link_to status.application.website, class: 'detailed-status__application', target: @external_links ? '_blank' : nil, rel: 'noooper' do
+      = link_to status.application.website, class: 'detailed-status__application', target: @external_links ? '_blank' : nil, rel: 'noopener' do
         %span= status.application.name
       ·
     %span
