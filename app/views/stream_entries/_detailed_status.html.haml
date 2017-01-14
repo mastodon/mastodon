@@ -28,7 +28,7 @@
     = link_to TagManager.instance.url_for(status), class: 'detailed-status__datetime u-url u-uid', target: @external_links ? '_blank' : nil, rel: 'noopener' do
       %span= l(status.created_at)
     ·
-    = link_to status.application.website, class: 'detailed-status__application', target: @external_links ? '_blank' : nil, rel: 'noooper' do
+    = link_to status.application.website, class: 'detailed-status__application', target: @external_links ? '_blank' : nil, rel: 'noopener' do
       %span= status.application.name
     ·
     %span
