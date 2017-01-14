@@ -44,6 +44,8 @@ class ProcessFeedService < BaseService
       Rails.logger.debug "Creating remote status #{id}"
       status = status_from_xml(@xml)
 
+      return if status.nil?
+      
       if verb == :share
         original_status = status_from_xml(@xml.at_xpath('.//activity:object', activity: TagManager::AS_XMLNS))
         status.reblog   = original_status
@@ -55,8 +57,6 @@ class ProcessFeedService < BaseService
           status.reblog = original_status.reblog
         end
       end
-
-      return if status.nil?
 
       status.save!
 
