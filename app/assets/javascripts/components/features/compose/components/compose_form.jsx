@@ -139,7 +139,7 @@ const ComposeForm = React.createClass({
           <span style={{ display: 'inline-block', verticalAlign: 'middle', marginBottom: '14px', marginLeft: '8px', color: '#9baec8' }}><FormattedMessage id='compose_form.private' defaultMessage='Mark as private' /></span>
         </label>
 
-        <Motion defaultStyle={{ opacity: this.props.private ? 0 : 100, height: this.props.private ? 39.5 : 0 }} style={{ opacity: spring(this.props.private ? 0 : 100), height: spring(this.props.private ? 0 : 39.5) }}>
+        <Motion defaultStyle={{ opacity: (this.props.private || this.props.in_reply_to) ? 0 : 100, height: (this.props.private || this.props_in_reply_to) ? 39.5 : 0 }} style={{ opacity: spring((this.props.private || this.props.in_reply_to) ? 0 : 100), height: spring((this.props.private || this.props_in_reply_to) ? 0 : 39.5) }}>
           {({ opacity, height }) =>
             <label style={{ display: 'block', lineHeight: '24px', verticalAlign: 'middle', height: `${height}px`, overflow: 'hidden', opacity: opacity / 100 }}>
               <Toggle checked={this.props.unlisted} onChange={this.handleChangeListability} />
