@@ -662,3 +662,21 @@
     border-bottom-color: #2b90d9;
   }
 }
+
+button i.fa-retweet {
+  height: 19px;
+  width: 24px;
+  background: image-url('boost_sprite.png') no-repeat;
+  background-position: 0 0;
+  transition: background-position 0.9s steps(11);
+  transition-duration: 0s;
+
+  &::before {
+    display: none !important;
+  }
+}
+
+button.active i.fa-retweet {
+  transition-duration: 0.9s;
+  background-position: 0 -209px;
+}
