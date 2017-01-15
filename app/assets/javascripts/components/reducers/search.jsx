@@ -23,7 +23,7 @@ const normalizeSuggestions = (state, value, accounts) => {
     }
   ];
 
-  if (value.indexOf('@') === -1) {
+  if (value.indexOf('@') === -1 && value.indexOf(' ') === -1) {
     newSuggestions.push({
       title: 'hashtag',
       items: [
