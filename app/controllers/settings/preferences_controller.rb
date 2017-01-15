@@ -8,14 +8,18 @@ class Settings::PreferencesController < ApplicationController
   def show; end
 
   def update
-    current_user.settings(:notification_emails).follow         = user_params[:notification_emails][:follow]         == '1'
-    current_user.settings(:notification_emails).follow_request = user_params[:notification_emails][:follow_request] == '1'
-    current_user.settings(:notification_emails).reblog         = user_params[:notification_emails][:reblog]         == '1'
-    current_user.settings(:notification_emails).favourite      = user_params[:notification_emails][:favourite]      == '1'
-    current_user.settings(:notification_emails).mention        = user_params[:notification_emails][:mention]        == '1'
+    current_user.settings['notification_emails'] = {
+      follow:         user_params[:notification_emails][:follow]         == '1',
+      follow_request: user_params[:notification_emails][:follow_request] == '1',
+      reblog:         user_params[:notification_emails][:reblog]         == '1',
+      favourite:      user_params[:notification_emails][:favourite]      == '1',
+      mention:        user_params[:notification_emails][:mention]        == '1',
+    }
 
-    current_user.settings(:interactions).must_be_follower  = user_params[:interactions][:must_be_follower]  == '1'
-    current_user.settings(:interactions).must_be_following = user_params[:interactions][:must_be_following] == '1'
+    current_user.settings['interactions'] = {
+      must_be_follower:  user_params[:interactions][:must_be_follower]  == '1',
+      must_be_following: user_params[:interactions][:must_be_following] == '1',
+    }
 
     if current_user.update(user_params.except(:notification_emails, :interactions))
       redirect_to settings_preferences_path, notice: I18n.t('generic.changes_saved_msg')

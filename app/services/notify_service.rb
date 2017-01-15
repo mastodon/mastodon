@@ -37,13 +37,13 @@ class NotifyService < BaseService
   end
 
   def blocked?
-    blocked   = @recipient.suspended?                                                                                             # Skip if the recipient account is suspended anyway
-    blocked ||= @recipient.id == @notification.from_account.id                                                                    # Skip for interactions with self
-    blocked ||= @recipient.blocking?(@notification.from_account)                                                                  # Skip for blocked accounts
-    blocked ||= (@notification.from_account.silenced? && !@recipient.following?(@notification.from_account))                      # Hellban
-    blocked ||= (@recipient.user.settings(:interactions).must_be_follower  && !@notification.from_account.following?(@recipient)) # Options
-    blocked ||= (@recipient.user.settings(:interactions).must_be_following && !@recipient.following?(@notification.from_account)) # Options
-    blocked ||= send("blocked_#{@notification.type}?")                                                                            # Type-dependent filters
+    blocked   = @recipient.suspended?                                                                                              # Skip if the recipient account is suspended anyway
+    blocked ||= @recipient.id == @notification.from_account.id                                                                     # Skip for interactions with self
+    blocked ||= @recipient.blocking?(@notification.from_account)                                                                   # Skip for blocked accounts
+    blocked ||= (@notification.from_account.silenced? && !@recipient.following?(@notification.from_account))                       # Hellban
+    blocked ||= (@recipient.user.settings.interactions['must_be_follower']  && !@notification.from_account.following?(@recipient)) # Options
+    blocked ||= (@recipient.user.settings.interactions['must_be_following'] && !@recipient.following?(@notification.from_account)) # Options
+    blocked ||= send("blocked_#{@notification.type}?")                                                                             # Type-dependent filters
     blocked
   end
 
@@ -58,6 +58,6 @@ class NotifyService < BaseService
   end
 
   def email_enabled?
-    @recipient.user.settings(:notification_emails).send(@notification.type)
+    @recipient.user.settings.notification_emails[@notification.type]
   end
 end

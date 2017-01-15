@@ -58,6 +58,7 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :pubsubhubbub, only: [:index]
     resources :domain_blocks, only: [:index, :create]
+    resources :settings, only: [:index, :update]
 
     resources :accounts, only: [:index, :show, :update] do
       member do
@@ -134,13 +135,18 @@ Rails.application.routes.draw do
         end
       end
     end
+
+    namespace :web do
+      resource :settings, only: [:update]
+    end
   end
 
   get '/web/(*any)', to: 'home#index', as: :web
 
-  get :about, to: 'about#index'
-  get :terms, to: 'about#terms'
-
+  get '/about',      to: 'about#index'
+  get '/about/more', to: 'about#more'
+  get '/terms',      to: 'about#terms'
+  
   root 'home#index'
 
   match '*unmatched_route', via: :all, to: 'application#raise_not_found'

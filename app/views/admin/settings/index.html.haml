@@ -1,0 +1,36 @@
+- content_for :page_title do
+  Site Settings
+
+%table.table
+  %colgroup
+    %col{ width: '35%' }/
+  %thead
+    %tr
+      %th Setting
+      %th Click to edit
+  %tbody
+    %tr
+      %td{ rowspan: 2 }
+        %strong Contact information
+      %td= best_in_place @settings['site_contact_username'], :value, url: admin_setting_path(@settings['site_contact_username']), place_holder: 'Enter a username'
+    %tr
+      %td= best_in_place @settings['site_contact_email'], :value, url: admin_setting_path(@settings['site_contact_email']), place_holder: 'Enter a public e-mail address'
+    %tr
+      %td
+        %strong Site description
+        %br/
+        Displayed as a paragraph on the frontpage and used as a meta tag.
+        %br/
+        You can use HTML tags, in particular
+        %code= '<a>'
+        and
+        %code= '<em>'
+      %td= best_in_place @settings['site_description'], :value, as: :textarea, url: admin_setting_path(@settings['site_description'])
+    %tr
+      %td
+        %strong Extended site description
+        %br/
+        Displayed on extended information page
+        %br/
+        You can use HTML tags
+      %td= best_in_place @settings['site_extended_description'], :value, as: :textarea, url: admin_setting_path(@settings['site_extended_description'])

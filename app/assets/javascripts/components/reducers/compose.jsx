@@ -21,7 +21,7 @@ import {
   COMPOSE_LISTABILITY_CHANGE
 } from '../actions/compose';
 import { TIMELINE_DELETE } from '../actions/timelines';
-import { ACCOUNT_SET_SELF } from '../actions/accounts';
+import { STORE_HYDRATE } from '../actions/store';
 import Immutable from 'immutable';
 
 const initialState = Immutable.Map({
@@ -88,6 +88,8 @@ const insertSuggestion = (state, position, token, completion) => {
 
 export default function compose(state = initialState, action) {
   switch(action.type) {
+    case STORE_HYDRATE:
+      return state.merge(action.state.get('compose'));
     case COMPOSE_MOUNT:
       return state.set('mounted', true);
     case COMPOSE_UNMOUNT:
@@ -97,7 +99,7 @@ export default function compose(state = initialState, action) {
     case COMPOSE_VISIBILITY_CHANGE:
       return state.set('private', action.checked);
     case COMPOSE_LISTABILITY_CHANGE:
-      return state.set('unlisted', action.checked);      
+      return state.set('unlisted', action.checked);
     case COMPOSE_CHANGE:
       return state.set('text', action.text);
     case COMPOSE_REPLY:
@@ -143,8 +145,6 @@ export default function compose(state = initialState, action) {
       } else {
         return state;
       }
-    case ACCOUNT_SET_SELF:
-      return state.set('me', action.account.id).set('private', action.account.locked);
     default:
       return state;
   }

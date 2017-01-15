@@ -6,6 +6,10 @@ node(:url)              { |status| TagManager.instance.url_for(status) }
 node(:reblogs_count)    { |status| defined?(@reblogs_counts_map)    ? (@reblogs_counts_map[status.id]    || 0) : status.reblogs.count }
 node(:favourites_count) { |status| defined?(@favourites_counts_map) ? (@favourites_counts_map[status.id] || 0) : status.favourites.count }
 
+child :application do
+  extends 'api/v1/apps/show'
+end
+
 child :account do
   extends 'api/v1/accounts/show'
 end

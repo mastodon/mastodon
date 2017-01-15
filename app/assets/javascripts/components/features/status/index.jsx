@@ -23,6 +23,7 @@ import { ScrollContainer }   from 'react-router-scroll';
 import ColumnBackButton      from '../../components/column_back_button';
 import StatusContainer       from '../../containers/status_container';
 import { openMedia }         from '../../actions/modal';
+import { isMobile } from '../../is_mobile'
 
 const makeMapStateToProps = () => {
   const getStatus = makeGetStatus();
@@ -47,7 +48,8 @@ const Status = React.createClass({
     dispatch: React.PropTypes.func.isRequired,
     status: ImmutablePropTypes.map,
     ancestorsIds: ImmutablePropTypes.list,
-    descendantsIds: ImmutablePropTypes.list
+    descendantsIds: ImmutablePropTypes.list,
+    me: React.PropTypes.number
   },
 
   mixins: [PureRenderMixin],
@@ -80,6 +82,10 @@ const Status = React.createClass({
 
   handleMentionClick (account) {
     this.props.dispatch(mentionCompose(account));
+
+    if (isMobile(window.innerWidth)) {
+      this.context.router.push('/statuses/new');
+    }
   },
 
   handleOpenMedia (url) {

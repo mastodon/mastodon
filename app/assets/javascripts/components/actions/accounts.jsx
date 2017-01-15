@@ -1,8 +1,6 @@
 import api, { getLinks } from '../api'
 import Immutable from 'immutable';
 
-export const ACCOUNT_SET_SELF = 'ACCOUNT_SET_SELF';
-
 export const ACCOUNT_FETCH_REQUEST = 'ACCOUNT_FETCH_REQUEST';
 export const ACCOUNT_FETCH_SUCCESS = 'ACCOUNT_FETCH_SUCCESS';
 export const ACCOUNT_FETCH_FAIL    = 'ACCOUNT_FETCH_FAIL';
@@ -66,13 +64,6 @@ export const FOLLOW_REQUEST_AUTHORIZE_FAIL    = 'FOLLOW_REQUEST_AUTHORIZE_FAIL';
 export const FOLLOW_REQUEST_REJECT_REQUEST = 'FOLLOW_REQUEST_REJECT_REQUEST';
 export const FOLLOW_REQUEST_REJECT_SUCCESS = 'FOLLOW_REQUEST_REJECT_SUCCESS';
 export const FOLLOW_REQUEST_REJECT_FAIL    = 'FOLLOW_REQUEST_REJECT_FAIL';
-
-export function setAccountSelf(account) {
-  return {
-    type: ACCOUNT_SET_SELF,
-    account
-  };
-};
 
 export function fetchAccount(id) {
   return (dispatch, getState) => {

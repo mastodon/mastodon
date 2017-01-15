@@ -1,4 +1,5 @@
 import PureRenderMixin from 'react-addons-pure-render-mixin';
+import { Motion, spring } from 'react-motion';
 
 const IconButton = React.createClass({
 
@@ -10,14 +11,16 @@ const IconButton = React.createClass({
     active: React.PropTypes.bool,
     style: React.PropTypes.object,
     activeStyle: React.PropTypes.object,
-    disabled: React.PropTypes.bool
+    disabled: React.PropTypes.bool,
+    animate: React.PropTypes.bool
   },
 
   getDefaultProps () {
     return {
       size: 18,
       active: false,
-      disabled: false
+      disabled: false,
+      animate: false
     };
   },
 
@@ -49,9 +52,18 @@ const IconButton = React.createClass({
     }
 
     return (
-      <button aria-label={this.props.title} title={this.props.title} className={`icon-button ${this.props.active ? 'active' : ''} ${this.props.disabled ? 'disabled' : ''}`} onClick={this.handleClick} style={style}>
-        <i className={`fa fa-fw fa-${this.props.icon}`} aria-hidden='true' />
-      </button>
+      <Motion defaultStyle={{ rotate: this.props.active ? -360 : 0 }} style={{ rotate: this.props.animate ? spring(this.props.active ? -360 : 0, { stiffness: 120, damping: 7 }) : 0 }}>
+        {({ rotate }) =>
+          <button
+            aria-label={this.props.title}
+            title={this.props.title}
+            className={`icon-button ${this.props.active ? 'active' : ''} ${this.props.disabled ? 'disabled' : ''}`}
+            onClick={this.handleClick}
+            style={style}>
+            <i style={{ transform: `rotate(${rotate}deg)` }} className={`fa fa-fw fa-${this.props.icon}`} aria-hidden='true' />
+          </button>
+        }
+      </Motion>
     );
   }
 

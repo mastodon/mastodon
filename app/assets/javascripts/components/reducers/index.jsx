@@ -11,6 +11,7 @@ import statuses from './statuses';
 import relationships from './relationships';
 import search from './search';
 import notifications from './notifications';
+import settings from './settings';
 
 export default combineReducers({
   timelines,
@@ -24,5 +25,6 @@ export default combineReducers({
   statuses,
   relationships,
   search,
-  notifications
+  notifications,
+  settings
 });

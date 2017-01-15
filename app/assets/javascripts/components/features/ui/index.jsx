@@ -11,6 +11,7 @@ import Notifications from '../notifications';
 import { debounce } from 'react-decoration';
 import { uploadCompose } from '../../actions/compose';
 import { connect } from 'react-redux';
+import { isMobile } from '../../is_mobile'
 
 const UI = React.createClass({
 
@@ -64,11 +65,9 @@ const UI = React.createClass({
   },
 
   render () {
-    const layoutBreakpoint = 1024;
-
     let mountedColumns;
 
-    if (this.state.width <= layoutBreakpoint) {
+    if (isMobile(this.state.width)) {
       mountedColumns = (
         <ColumnsArea>
           {this.props.children}

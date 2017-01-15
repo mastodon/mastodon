@@ -7,8 +7,6 @@ import {
   refreshTimeline
 } from '../actions/timelines';
 import { updateNotifications } from '../actions/notifications';
-import { setAccessToken } from '../actions/meta';
-import { setAccountSelf } from '../actions/accounts';
 import createBrowserHistory from 'history/lib/createBrowserHistory';
 import {
   applyRouterMiddleware,
@@ -35,6 +33,7 @@ import Favourites from '../features/favourites';
 import HashtagTimeline from '../features/hashtag_timeline';
 import Notifications from '../features/notifications';
 import FollowRequests from '../features/follow_requests';
+import GenericNotFound from '../features/generic_not_found';
 import { IntlProvider, addLocaleData } from 'react-intl';
 import en from 'react-intl/locale-data/en';
 import de from 'react-intl/locale-data/de';
@@ -44,8 +43,11 @@ import pt from 'react-intl/locale-data/pt';
 import hu from 'react-intl/locale-data/hu';
 import uk from 'react-intl/locale-data/uk';
 import getMessagesForLocale from '../locales';
+import { hydrateStore } from '../actions/store';
 
 const store = configureStore();
+
+store.dispatch(hydrateStore(window.INITIAL_STATE));
 
 const browserHistory = useRouterHistory(createBrowserHistory)({
   basename: '/web'
@@ -56,29 +58,26 @@ addLocaleData([...en, ...de, ...es, ...fr, ...pt, ...hu, ...uk]);
 const Mastodon = React.createClass({
 
   propTypes: {
-    token: React.PropTypes.string.isRequired,
-    timelines: React.PropTypes.object,
-    account: React.PropTypes.string,
     locale: React.PropTypes.string.isRequired
   },
 
   componentWillMount() {
-    const { token, account, locale } = this.props;
-
-    store.dispatch(setAccessToken(token));
-    store.dispatch(setAccountSelf(JSON.parse(account)));
+    const { locale } = this.props;
 
     if (typeof App !== 'undefined') {
       this.subscription = App.cable.subscriptions.create('TimelineChannel', {
 
         received (data) {
           switch(data.type) {
-            case 'update':
-              return store.dispatch(updateTimeline(data.timeline, JSON.parse(data.message)));
-            case 'delete':
-              return store.dispatch(deleteFromTimelines(data.id));
-            case 'notification':
-              return store.dispatch(updateNotifications(JSON.parse(data.message), getMessagesForLocale(locale), locale));
+          case 'update':
+            store.dispatch(updateTimeline(data.timeline, JSON.parse(data.message)));
+            break;
+          case 'delete':
+            store.dispatch(deleteFromTimelines(data.id));
+            break;
+          case 'notification':
+            store.dispatch(updateNotifications(JSON.parse(data.message), getMessagesForLocale(locale), locale));
+            break;
           }
         }
 
@@ -127,6 +126,7 @@ const Mastodon = React.createClass({
               </Route>
 
               <Route path='follow_requests' component={FollowRequests} />
+              <Route path='*' component={GenericNotFound} />
             </Route>
           </Router>
         </Provider>

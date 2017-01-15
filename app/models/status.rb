@@ -7,6 +7,8 @@ class Status < ApplicationRecord
 
   enum visibility: [:public, :unlisted, :private], _suffix: :visibility
 
+  belongs_to :application, class_name: 'Doorkeeper::Application'
+
   belongs_to :account, inverse_of: :statuses
   belongs_to :in_reply_to_account, foreign_key: 'in_reply_to_account_id', class_name: 'Account'
 
@@ -33,7 +35,7 @@ class Status < ApplicationRecord
   scope :remote, -> { where.not(uri: nil) }
   scope :local, -> { where(uri: nil) }
 
-  cache_associated :account, :media_attachments, :tags, :stream_entry, mentions: :account, reblog: [:account, :stream_entry, :tags, :media_attachments, mentions: :account], thread: :account
+  cache_associated :account, :application, :media_attachments, :tags, :stream_entry, mentions: :account, reblog: [:account, :application, :stream_entry, :tags, :media_attachments, mentions: :account], thread: :account
 
   def local?
     uri.nil?

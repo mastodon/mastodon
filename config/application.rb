@@ -46,6 +46,7 @@ module Mastodon
 
     config.to_prepare do
       Doorkeeper::AuthorizationsController.layout 'public'
+      Doorkeeper::Application.send :include, ApplicationExtension
     end
 
     config.action_dispatch.default_headers = {

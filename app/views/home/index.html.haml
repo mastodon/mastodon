@@ -1,4 +1,7 @@
 - content_for :header_tags do
+  :javascript
+    window.INITIAL_STATE = #{json_escape(render(file: 'home/initial_state', formats: :json))}
+
   = javascript_include_tag 'application'
 
 = react_component 'Mastodon', default_props, class: 'app-holder', prerender: false
