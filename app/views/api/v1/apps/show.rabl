@@ -1,3 +1,3 @@
 object @application
 
-attributes :id, :name, :website
+attributes :name, :website

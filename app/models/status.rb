@@ -35,7 +35,7 @@ class Status < ApplicationRecord
   scope :remote, -> { where.not(uri: nil) }
   scope :local, -> { where(uri: nil) }
 
-  cache_associated :account, :media_attachments, :tags, :stream_entry, mentions: :account, reblog: [:account, :stream_entry, :tags, :media_attachments, mentions: :account], thread: :account
+  cache_associated :account, :application, :media_attachments, :tags, :stream_entry, mentions: :account, reblog: [:account, :application, :stream_entry, :tags, :media_attachments, mentions: :account], thread: :account
 
   def local?
     uri.nil?
