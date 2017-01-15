@@ -183,7 +183,7 @@
   }
 }
 
-.status__display-name, .status__relative-time, .detailed-status__display-name, .detailed-status__datetime, .account__display-name {
+.status__display-name, .status__relative-time, .detailed-status__display-name, .detailed-status__datetime, .detailed-status__application, .account__display-name {
   text-decoration: none;
 }
 
@@ -663,20 +663,21 @@
   }
 }
 
-button i.fa-retweet {
-  height: 19px;
-  width: 24px;
-  background: image-url('boost_sprite.png') no-repeat;
-  background-position: 0 0;
-  transition: background-position 0.9s steps(11);
-  transition-duration: 0s;
+// Commented out until sprite matches non-sprite icon visually
+// button i.fa-retweet {
+//   height: 19px;
+//   width: 24px;
+//   background: image-url('boost_sprite.png') no-repeat;
+//   background-position: 0 0;
+//   transition: background-position 0.9s steps(11);
+//   transition-duration: 0s;
 
-  &::before {
-    display: none !important;
-  }
-}
+//   &::before {
+//     display: none !important;
+//   }
+// }
 
-button.active i.fa-retweet {
-  transition-duration: 0.9s;
-  background-position: 0 -209px;
-}
+// button.active i.fa-retweet {
+//   transition-duration: 0.9s;
+//   background-position: 0 -209px;
+// }
