@@ -486,6 +486,10 @@ export function expandFollowingFail(id, error) {
 
 export function fetchRelationships(account_ids) {
   return (dispatch, getState) => {
+    if (account_ids.length === 0) {
+      return;
+    }
+
     dispatch(fetchRelationshipsRequest(account_ids));
 
     api(getState).get(`/api/v1/accounts/relationships?${account_ids.map(id => `id[]=${id}`).join('&')}`).then(response => {
