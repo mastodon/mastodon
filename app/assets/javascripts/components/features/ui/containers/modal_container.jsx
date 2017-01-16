@@ -1,6 +1,8 @@
-import { connect }           from 'react-redux';
-import { closeModal }        from '../../../actions/modal';
-import Lightbox              from '../../../components/lightbox';
+import { connect } from 'react-redux';
+import { closeModal } from '../../../actions/modal';
+import Lightbox from '../../../components/lightbox';
+import ImageLoader from 'react-imageloader';
+import LoadingIndicator from '../../../components/loading_indicator';
 
 const mapStateToProps = state => ({
   url: state.getIn(['modal', 'url']),
@@ -23,6 +25,8 @@ const imageStyle = {
   maxHeight: '80vh'
 };
 
+const preloader = () => <LoadingIndicator />;
+
 const Modal = React.createClass({
 
   propTypes: {
@@ -37,7 +41,11 @@ const Modal = React.createClass({
 
     return (
       <Lightbox {...other}>
-        <img src={url} style={imageStyle} />
+        <ImageLoader
+          src={url}
+          preloader={preloader}
+          imgProps={{ style: imageStyle }}
+        />
       </Lightbox>
     );
   }
