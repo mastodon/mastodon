@@ -1,12 +1,18 @@
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
-import { FormattedMessage } from 'react-intl';
+import IconButton from './icon_button';
+import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
+
+const messages = defineMessages({
+  toggle_visible: { id: 'media_gallery.toggle_visible', defaultMessage: 'Toggle visibility' }
+});
 
 const outerStyle = {
   marginTop: '8px',
   overflow: 'hidden',
   width: '100%',
-  boxSizing: 'border-box'
+  boxSizing: 'border-box',
+  position: 'relative'
 };
 
 const spoilerStyle = {
@@ -30,6 +36,13 @@ const spoilerSubSpanStyle = {
   display: 'block',
   fontSize: '11px',
   fontWeight: '500'
+};
+
+const spoilerButtonStyle = {
+  position: 'absolute',
+  top: '6px',
+  left: '8px',
+  zIndex: '100'
 };
 
 const MediaGallery = React.createClass({
@@ -59,11 +72,11 @@ const MediaGallery = React.createClass({
   },
 
   handleOpen () {
-    this.setState({ visible: true });
+    this.setState({ visible: !this.state.visible });
   },
 
   render () {
-    const { media, sensitive } = this.props;
+    const { media, intl, sensitive } = this.props;
 
     let children;
 
@@ -135,8 +148,19 @@ const MediaGallery = React.createClass({
       });
     }
 
+    let spoilerButton;
+
+    if (sensitive) {
+      spoilerButton = (
+        <div style={spoilerButtonStyle} >
+          <IconButton title={intl.formatMessage(messages.toggle_visible)} icon={this.state.visible ? 'eye' : 'eye-slash'} onClick={this.handleOpen} />
+        </div>
+      );
+    }
+    
     return (
       <div style={{ ...outerStyle, height: `${this.props.height}px` }}>
+        {spoilerButton}
         {children}
       </div>
     );
@@ -144,4 +168,4 @@ const MediaGallery = React.createClass({
 
 });
 
-export default MediaGallery;
+export default injectIntl(MediaGallery);
