@@ -28,7 +28,8 @@ const makeMapStateToProps = () => {
       is_submitting: state.getIn(['compose', 'is_submitting']),
       is_uploading: state.getIn(['compose', 'is_uploading']),
       in_reply_to: getStatus(state, state.getIn(['compose', 'in_reply_to'])),
-      media_count: state.getIn(['compose', 'media_attachments']).size
+      media_count: state.getIn(['compose', 'media_attachments']).size,
+      me: state.getIn(['compose', 'me'])
     };
   };
 

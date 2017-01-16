@@ -32,6 +32,7 @@ const ComposeForm = React.createClass({
     is_uploading: React.PropTypes.bool,
     in_reply_to: ImmutablePropTypes.map,
     media_count: React.PropTypes.number,
+    me: React.PropTypes.number,
     onChange: React.PropTypes.func.isRequired,
     onSubmit: React.PropTypes.func.isRequired,
     onCancelReply: React.PropTypes.func.isRequired,
@@ -110,6 +111,8 @@ const ComposeForm = React.createClass({
       replyArea = <ReplyIndicator status={this.props.in_reply_to} onCancel={this.props.onCancelReply} />;
     }
 
+    let reply_to_other = !!this.props.in_reply_to && (this.props.in_reply_to.getIn(['account', 'id']) !== this.props.me);
+
     return (
       <div style={{ padding: '10px' }}>
         {replyArea}
@@ -139,7 +142,7 @@ const ComposeForm = React.createClass({
           <span style={{ display: 'inline-block', verticalAlign: 'middle', marginBottom: '14px', marginLeft: '8px', color: '#9baec8' }}><FormattedMessage id='compose_form.private' defaultMessage='Mark as private' /></span>
         </label>
 
-        <Motion defaultStyle={{ opacity: (this.props.private || this.props.in_reply_to) ? 0 : 100, height: (this.props.private || this.props.in_reply_to) ? 39.5 : 0 }} style={{ opacity: spring((this.props.private || this.props.in_reply_to) ? 0 : 100), height: spring((this.props.private || this.props.in_reply_to) ? 0 : 39.5) }}>
+        <Motion defaultStyle={{ opacity: (this.props.private || reply_to_other) ? 0 : 100, height: (this.props.private || reply_to_other) ? 39.5 : 0 }} style={{ opacity: spring((this.props.private || reply_to_other) ? 0 : 100), height: spring((this.props.private || reply_to_other) ? 0 : 39.5) }}>
           {({ opacity, height }) =>
             <label style={{ display: 'block', lineHeight: '24px', verticalAlign: 'middle', height: `${height}px`, overflow: 'hidden', opacity: opacity / 100 }}>
               <Toggle checked={this.props.unlisted} onChange={this.handleChangeListability} />
