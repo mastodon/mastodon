@@ -38,7 +38,8 @@ const initialState = Immutable.Map({
   media_attachments: Immutable.List(),
   suggestion_token: null,
   suggestions: Immutable.List(),
-  me: null
+  me: null,
+  resetFileKey: Math.floor((Math.random() * 0x10000))
 });
 
 function statusToTextMentions(state, status) {
@@ -65,6 +66,7 @@ function appendMedia(state, media) {
   return state.withMutations(map => {
     map.update('media_attachments', list => list.push(media));
     map.set('is_uploading', false);
+    map.set('resetFileKey', Math.floor((Math.random() * 0x10000)));
     map.update('text', oldText => `${oldText} ${media.get('text_url')}`.trim());
   });
 };
