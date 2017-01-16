@@ -10,7 +10,8 @@ const messages = defineMessages({
   public_timeline: { id: 'navigation_bar.public_timeline', defaultMessage: 'Public timeline' },
   preferences: { id: 'navigation_bar.preferences', defaultMessage: 'Preferences' },
   follow_requests: { id: 'navigation_bar.follow_requests', defaultMessage: 'Follow requests' },
-  sign_out: { id: 'navigation_bar.logout', defaultMessage: 'Sign out' }
+  sign_out: { id: 'navigation_bar.logout', defaultMessage: 'Sign out' },
+  favourites: { id: 'navigation_bar.favourites', defaultMessage: 'Favourites' }
 });
 
 const mapStateToProps = state => ({
@@ -29,6 +30,7 @@ const GettingStarted = ({ intl, me }) => {
       <div style={{ position: 'relative' }}>
         <ColumnLink icon='globe' text={intl.formatMessage(messages.public_timeline)} to='/timelines/public' />
         <ColumnLink icon='cog' text={intl.formatMessage(messages.preferences)} href='/settings/preferences' />
+        <ColumnLink icon='star' text={intl.formatMessage(messages.favourites)} to='/favourites' />
         {followRequests}
         <ColumnLink icon='sign-out' text={intl.formatMessage(messages.sign_out)} href='/auth/sign_out' method='delete' />
       </div>

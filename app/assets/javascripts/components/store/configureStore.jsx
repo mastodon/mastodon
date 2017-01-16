@@ -1,7 +1,7 @@
 import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import appReducer from '../reducers';
-import { loadingBarMiddleware } from 'react-redux-loading-bar';
+import loadingBarMiddleware from '../middleware/loading_bar';
 import errorsMiddleware from '../middleware/errors';
 import Immutable from 'immutable';
 

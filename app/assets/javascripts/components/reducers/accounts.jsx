@@ -32,6 +32,10 @@ import {
   NOTIFICATIONS_REFRESH_SUCCESS,
   NOTIFICATIONS_EXPAND_SUCCESS
 } from '../actions/notifications';
+import {
+  FAVOURITED_STATUSES_FETCH_SUCCESS,
+  FAVOURITED_STATUSES_EXPAND_SUCCESS
+} from '../actions/favourites';
 import { STORE_HYDRATE } from '../actions/store';
 import Immutable from 'immutable';
 
@@ -90,6 +94,8 @@ export default function accounts(state = initialState, action) {
   case ACCOUNT_TIMELINE_FETCH_SUCCESS:
   case ACCOUNT_TIMELINE_EXPAND_SUCCESS:
   case CONTEXT_FETCH_SUCCESS:
+  case FAVOURITED_STATUSES_FETCH_SUCCESS:
+  case FAVOURITED_STATUSES_EXPAND_SUCCESS:
     return normalizeAccountsFromStatuses(state, action.statuses);
   case REBLOG_SUCCESS:
   case FAVOURITE_SUCCESS:

@@ -97,6 +97,11 @@ export function expandTimeline(timeline, id = null) {
   return (dispatch, getState) => {
     const lastId = getState().getIn(['timelines', timeline, 'items'], Immutable.List()).last();
 
+    if (!lastId) {
+      // If timeline is empty, don't try to load older posts since there are none
+      return;
+    }
+
     dispatch(expandTimelineRequest(timeline));
 
     let path = timeline;

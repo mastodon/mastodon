@@ -34,6 +34,7 @@ import HashtagTimeline from '../features/hashtag_timeline';
 import Notifications from '../features/notifications';
 import FollowRequests from '../features/follow_requests';
 import GenericNotFound from '../features/generic_not_found';
+import FavouritedStatuses from '../features/favourited_statuses';
 import { IntlProvider, addLocaleData } from 'react-intl';
 import en from 'react-intl/locale-data/en';
 import de from 'react-intl/locale-data/de';
@@ -113,6 +114,7 @@ const Mastodon = React.createClass({
               <Route path='timelines/tag/:id' component={HashtagTimeline} />
 
               <Route path='notifications' component={Notifications} />
+              <Route path='favourites' component={FavouritedStatuses} />
 
               <Route path='statuses/new' component={Compose} />
               <Route path='statuses/:statusId' component={Status} />

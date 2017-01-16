@@ -13,7 +13,7 @@ class Api::V1::FavouritesController < ApiController
     set_maps(@statuses)
     set_counters_maps(@statuses)
 
-    next_path = api_v1_favourites_url(max_id: results.last.id)    if results.size == DEFAULT_ACCOUNTS_LIMIT
+    next_path = api_v1_favourites_url(max_id: results.last.id)    if results.size == DEFAULT_STATUSES_LIMIT
     prev_path = api_v1_favourites_url(since_id: results.first.id) unless results.empty?
 
     set_pagination_headers(next_path, prev_path)

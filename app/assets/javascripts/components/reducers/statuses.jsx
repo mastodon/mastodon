@@ -28,6 +28,10 @@ import {
   NOTIFICATIONS_REFRESH_SUCCESS,
   NOTIFICATIONS_EXPAND_SUCCESS
 } from '../actions/notifications';
+import {
+  FAVOURITED_STATUSES_FETCH_SUCCESS,
+  FAVOURITED_STATUSES_EXPAND_SUCCESS
+} from '../actions/favourites';
 import Immutable from 'immutable';
 
 const normalizeStatus = (state, status) => {
@@ -77,36 +81,38 @@ const initialState = Immutable.Map();
 
 export default function statuses(state = initialState, action) {
   switch(action.type) {
-    case TIMELINE_UPDATE:
-    case STATUS_FETCH_SUCCESS:
-    case NOTIFICATIONS_UPDATE:
-      return normalizeStatus(state, action.status);
-    case REBLOG_SUCCESS:
-    case UNREBLOG_SUCCESS:
-    case FAVOURITE_SUCCESS:
-    case UNFAVOURITE_SUCCESS:
-      return normalizeStatus(state, action.response);
-    case FAVOURITE_REQUEST:
-      return state.setIn([action.status.get('id'), 'favourited'], true);
-    case FAVOURITE_FAIL:
-      return state.setIn([action.status.get('id'), 'favourited'], false);
-    case REBLOG_REQUEST:
-      return state.setIn([action.status.get('id'), 'reblogged'], true);
-    case REBLOG_FAIL:
-      return state.setIn([action.status.get('id'), 'reblogged'], false);
-    case TIMELINE_REFRESH_SUCCESS:
-    case TIMELINE_EXPAND_SUCCESS:
-    case ACCOUNT_TIMELINE_FETCH_SUCCESS:
-    case ACCOUNT_TIMELINE_EXPAND_SUCCESS:
-    case CONTEXT_FETCH_SUCCESS:
-    case NOTIFICATIONS_REFRESH_SUCCESS:
-    case NOTIFICATIONS_EXPAND_SUCCESS:
-      return normalizeStatuses(state, action.statuses);
-    case TIMELINE_DELETE:
-      return deleteStatus(state, action.id, action.references);
-    case ACCOUNT_BLOCK_SUCCESS:
-      return filterStatuses(state, action.relationship);
-    default:
-      return state;
+  case TIMELINE_UPDATE:
+  case STATUS_FETCH_SUCCESS:
+  case NOTIFICATIONS_UPDATE:
+    return normalizeStatus(state, action.status);
+  case REBLOG_SUCCESS:
+  case UNREBLOG_SUCCESS:
+  case FAVOURITE_SUCCESS:
+  case UNFAVOURITE_SUCCESS:
+    return normalizeStatus(state, action.response);
+  case FAVOURITE_REQUEST:
+    return state.setIn([action.status.get('id'), 'favourited'], true);
+  case FAVOURITE_FAIL:
+    return state.setIn([action.status.get('id'), 'favourited'], false);
+  case REBLOG_REQUEST:
+    return state.setIn([action.status.get('id'), 'reblogged'], true);
+  case REBLOG_FAIL:
+    return state.setIn([action.status.get('id'), 'reblogged'], false);
+  case TIMELINE_REFRESH_SUCCESS:
+  case TIMELINE_EXPAND_SUCCESS:
+  case ACCOUNT_TIMELINE_FETCH_SUCCESS:
+  case ACCOUNT_TIMELINE_EXPAND_SUCCESS:
+  case CONTEXT_FETCH_SUCCESS:
+  case NOTIFICATIONS_REFRESH_SUCCESS:
+  case NOTIFICATIONS_EXPAND_SUCCESS:
+  case FAVOURITED_STATUSES_FETCH_SUCCESS:
+  case FAVOURITED_STATUSES_EXPAND_SUCCESS:
+    return normalizeStatuses(state, action.statuses);
+  case TIMELINE_DELETE:
+    return deleteStatus(state, action.id, action.references);
+  case ACCOUNT_BLOCK_SUCCESS:
+    return filterStatuses(state, action.relationship);
+  default:
+    return state;
   }
 };

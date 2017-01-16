@@ -18,7 +18,8 @@ const AccountTimeline = React.createClass({
   propTypes: {
     params: React.PropTypes.object.isRequired,
     dispatch: React.PropTypes.func.isRequired,
-    statusIds: ImmutablePropTypes.list
+    statusIds: ImmutablePropTypes.list,
+    me: React.PropTypes.number.isRequired
   },
 
   mixins: [PureRenderMixin],
