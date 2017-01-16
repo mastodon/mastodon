@@ -3,7 +3,9 @@ import { makeGetAccount } from '../selectors';
 import Account from '../components/account';
 import {
   followAccount,
-  unfollowAccount
+  unfollowAccount,
+  blockAccount,
+  unblockAccount
 } from '../actions/accounts';
 
 const makeMapStateToProps = () => {
@@ -23,6 +25,14 @@ const mapDispatchToProps = (dispatch) => ({
       dispatch(unfollowAccount(account.get('id')));
     } else {
       dispatch(followAccount(account.get('id')));
+    }
+  },
+
+  onBlock (account) {
+    if (account.getIn(['relationship', 'blocking'])) {
+      dispatch(unblockAccount(account.get('id')));
+    } else {
+      dispatch(blockAccount(account.get('id')));
     }
   }
 });

@@ -126,7 +126,7 @@ class Account < ApplicationRecord
   def save_with_optional_avatar!
     save!
   rescue ActiveRecord::RecordInvalid => invalid
-    if invalid.record.errors[:avatar_file_size] || invalid[:avatar_content_type]
+    if invalid.record.errors[:avatar_file_size] || invalid.record.errors[:avatar_content_type]
       self.avatar = nil
       retry
     end

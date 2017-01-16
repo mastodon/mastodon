@@ -25,7 +25,17 @@ const imageStyle = {
   maxHeight: '80vh'
 };
 
-const preloader = () => <LoadingIndicator />;
+const loadingStyle = {
+  background: '#373b4a',
+  width: '400px',
+  paddingBottom: '120px'
+};
+
+const preloader = () => (
+  <div style={loadingStyle}>
+    <LoadingIndicator />
+  </div>
+);
 
 const Modal = React.createClass({
 
