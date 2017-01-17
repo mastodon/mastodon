@@ -24,15 +24,15 @@ const fetchRelatedRelationships = (dispatch, notifications) => {
 
 export function updateNotifications(notification, intlMessages, intlLocale) {
   return (dispatch, getState) => {
-    const showAlert = getState().getIn(['notifications', 'settings', 'alerts', notification.type], false);
-    const playSound = getState().getIn(['notifications', 'settings', 'sounds', notification.type], false);
+    const showAlert = getState().getIn(['notifications', 'settings', 'alerts', notification.type], true);
+    const playSound = getState().getIn(['notifications', 'settings', 'sounds', notification.type], true);
 
     dispatch({
       type: NOTIFICATIONS_UPDATE,
       notification,
       account: notification.account,
       status: notification.status,
-      meta: playSound ? { sound: 'boop' } : null
+      meta: playSound ? { sound: 'boop' } : undefined
     });
 
     fetchRelatedRelationships(dispatch, [notification]);
