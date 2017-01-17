@@ -36,15 +36,17 @@ const ColumnSettings = React.createClass({
 
     const alertStr = <FormattedMessage id='notifications.column_settings.alert' defaultMessage='Desktop notifications' />;
     const showStr  = <FormattedMessage id='notifications.column_settings.show' defaultMessage='Show in column' />;
+    const soundStr = <FormattedMessage id='notifications.column_settings.sound' defaultMessage='Play sound' />;
 
     return (
-      <ColumnCollapsable icon='sliders' fullHeight={458} onCollapse={onSave}>
+      <ColumnCollapsable icon='sliders' fullHeight={616} onCollapse={onSave}>
         <div style={outerStyle}>
           <span style={sectionStyle}><FormattedMessage id='notifications.column_settings.follow' defaultMessage='New followers:' /></span>
 
           <div style={rowStyle}>
             <SettingToggle settings={settings} settingKey={['alerts', 'follow']} onChange={onChange} label={alertStr} />
             <SettingToggle settings={settings} settingKey={['shows', 'follow']} onChange={onChange} label={showStr} />
+            <SettingToggle settings={settings} settingKey={['sounds', 'follow']} onChange={onChange} label={soundStr} />
           </div>
 
           <span style={sectionStyle}><FormattedMessage id='notifications.column_settings.favourite' defaultMessage='Favourites:' /></span>
@@ -52,6 +54,7 @@ const ColumnSettings = React.createClass({
           <div style={rowStyle}>
             <SettingToggle settings={settings} settingKey={['alerts', 'favourite']} onChange={onChange} label={alertStr} />
             <SettingToggle settings={settings} settingKey={['shows', 'favourite']} onChange={onChange} label={showStr} />
+            <SettingToggle settings={settings} settingKey={['sounds', 'favourite']} onChange={onChange} label={soundStr} />
           </div>
 
           <span style={sectionStyle}><FormattedMessage id='notifications.column_settings.mention' defaultMessage='Mentions:' /></span>
@@ -59,6 +62,7 @@ const ColumnSettings = React.createClass({
           <div style={rowStyle}>
             <SettingToggle settings={settings} settingKey={['alerts', 'mention']} onChange={onChange} label={alertStr} />
             <SettingToggle settings={settings} settingKey={['shows', 'mention']} onChange={onChange} label={showStr} />
+            <SettingToggle settings={settings} settingKey={['sounds', 'mention']} onChange={onChange} label={soundStr} />
           </div>
 
           <span style={sectionStyle}><FormattedMessage id='notifications.column_settings.reblog' defaultMessage='Boosts:' /></span>
@@ -66,6 +70,7 @@ const ColumnSettings = React.createClass({
           <div style={rowStyle}>
             <SettingToggle settings={settings} settingKey={['alerts', 'reblog']} onChange={onChange} label={alertStr} />
             <SettingToggle settings={settings} settingKey={['shows', 'reblog']} onChange={onChange} label={showStr} />
+            <SettingToggle settings={settings} settingKey={['sounds', 'reblog']} onChange={onChange} label={soundStr} />
           </div>
         </div>
       </ColumnCollapsable>

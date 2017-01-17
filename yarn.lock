@@ -2499,6 +2499,10 @@ hosted-git-info@^2.1.4:
   version "2.1.5"
   resolved "https://registry.yarnpkg.com/hosted-git-info/-/hosted-git-info-2.1.5.tgz#0ba81d90da2e25ab34a332e6ec77936e1598118b"
 
+howler@^1.1.28:
+  version "1.1.29"
+  resolved "https://registry.yarnpkg.com/howler/-/howler-1.1.29.tgz#9a3a7fa69e9b9d805c65ad98f66e35893a597b63"
+
 html-comment-regex@^1.1.0:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/html-comment-regex/-/html-comment-regex-1.1.1.tgz#668b93776eaae55ebde8f3ad464b307a4963625e"
@@ -4465,6 +4469,12 @@ redux-immutable@^3.0.8:
   resolved "https://registry.yarnpkg.com/redux-immutable/-/redux-immutable-3.0.8.tgz#df5a5d601c88227ba38f474cf82f7d00e56f8c14"
   dependencies:
     immutable "^3.7.6"
+
+redux-sounds@^1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/redux-sounds/-/redux-sounds-1.1.1.tgz#7a31052dbc617d419c53056215865762f44adb7e"
+  dependencies:
+    howler "^1.1.28"
 
 redux-thunk@^2.1.0:
   version "2.1.0"

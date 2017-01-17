@@ -24,17 +24,21 @@ const fetchRelatedRelationships = (dispatch, notifications) => {
 
 export function updateNotifications(notification, intlMessages, intlLocale) {
   return (dispatch, getState) => {
+    const showAlert = getState().getIn(['notifications', 'settings', 'alerts', notification.type], false);
+    const playSound = getState().getIn(['notifications', 'settings', 'sounds', notification.type], false);
+
     dispatch({
       type: NOTIFICATIONS_UPDATE,
       notification,
       account: notification.account,
-      status: notification.status
+      status: notification.status,
+      meta: playSound ? { sound: 'boop' } : null
     });
 
     fetchRelatedRelationships(dispatch, [notification]);
 
     // Desktop notifications
-    if (typeof window.Notification !== 'undefined' && getState().getIn(['notifications', 'settings', 'alerts', notification.type], false)) {
+    if (typeof window.Notification !== 'undefined' && showAlert) {
       const title = new IntlMessageFormat(intlMessages[`notification.${notification.type}`], intlLocale).format({ name: notification.account.display_name.length > 0 ? notification.account.display_name : notification.account.username });
       const body  = $('<p>').html(notification.status ? notification.status.content : '').text();
 

@@ -23,6 +23,13 @@ const initialState = Immutable.Map({
       favourite: true,
       reblog: true,
       mention: true
+    }),
+
+    sounds: Immutable.Map({
+      follow: true,
+      favourite: true,
+      reblog: true,
+      mention: true
     })
   })
 });
@@ -30,7 +37,7 @@ const initialState = Immutable.Map({
 export default function settings(state = initialState, action) {
   switch(action.type) {
   case STORE_HYDRATE:
-    return state.merge(action.state.get('settings'));
+    return state.mergeDeep(action.state.get('settings'));
   case SETTING_CHANGE:
     return state.setIn(action.key, action.value);
   default:
