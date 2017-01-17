@@ -40,6 +40,11 @@ preload_app!
 # cannot share connections between processes.
 #
 on_worker_boot do
+
+  if ENV["HEROKU"] #Spwan the workers from Puma, to only use one dyno
+    @sidekiq_pid ||= spawn('bundle exec sidekiq -q default -q mailers -q push')
+  end
+
   ActiveRecord::Base.establish_connection if defined?(ActiveRecord)
 end
 
