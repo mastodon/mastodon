@@ -104,4 +104,8 @@ Rails.application.configure do
   config.react.variant = :production
 
   config.active_record.logger = nil
+
+  config.to_prepare do
+    StatsD.backend = StatsD::Instrument::Backends::NullBackend if ENV['STATSD_ADDR'].blank?
+  end
 end
