@@ -46,6 +46,8 @@ class Account < ApplicationRecord
   has_many :block_relationships, class_name: 'Block', foreign_key: 'account_id', dependent: :destroy
   has_many :blocking, -> { order('blocks.id desc') }, through: :block_relationships, source: :target_account
 
+  has_many :domain_block_relationships, class_name: 'AccountDomainBlock', foreign_key: 'account_id', dependent: :destroy
+
   # Media
   has_many :media_attachments, dependent: :destroy
 
@@ -73,6 +75,10 @@ class Account < ApplicationRecord
     block_relationships.where(target_account: other_account).first_or_create!(target_account: other_account)
   end
 
+  def block_domain!(domain)
+    domain_block_relationships.where(target_domain: domain).first_or_create!(target_domain: domain)
+  end
+
   def unfollow!(other_account)
     follow = active_relationships.find_by(target_account: other_account)
     follow&.destroy
@@ -82,6 +88,11 @@ class Account < ApplicationRecord
     block = block_relationships.find_by(target_account: other_account)
     block&.destroy
   end
+  
+  def unblock_domain!(domain)
+    domain_block = domain_block_relationships.find_by(target_domain: domain)
+    domain_block&.destroy
+  end
 
   def following?(other_account)
     following.include?(other_account)
@@ -89,6 +100,10 @@ class Account < ApplicationRecord
 
   def blocking?(other_account)
     blocking.include?(other_account)
+  end
+
+  def blocking_domain?(domain)
+    domain_block_relationships.exists?(target_domain: domain)
   end
 
   def requested?(other_account)
