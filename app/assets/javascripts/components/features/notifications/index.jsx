@@ -2,10 +2,7 @@ import { connect } from 'react-redux';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import Column from '../ui/components/column';
-import {
-  refreshNotifications,
-  expandNotifications
-} from '../../actions/notifications';
+import { expandNotifications } from '../../actions/notifications';
 import NotificationContainer from './containers/notification_container';
 import { ScrollContainer } from 'react-router-scroll';
 import { defineMessages, injectIntl } from 'react-intl';
@@ -42,11 +39,6 @@ const Notifications = React.createClass({
   },
 
   mixins: [PureRenderMixin],
-
-  componentWillMount () {
-    const { dispatch } = this.props;
-    dispatch(refreshNotifications());
-  },
 
   handleScroll (e) {
     const { scrollTop, scrollHeight, clientHeight } = e.target;

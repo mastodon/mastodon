@@ -8,10 +8,12 @@ import Compose from '../compose';
 import TabsBar from './components/tabs_bar';
 import ModalContainer from './containers/modal_container';
 import Notifications from '../notifications';
+import { connect } from 'react-redux';
+import { isMobile } from '../../is_mobile';
 import { debounce } from 'react-decoration';
 import { uploadCompose } from '../../actions/compose';
-import { connect } from 'react-redux';
-import { isMobile } from '../../is_mobile'
+import { refreshTimeline } from '../../actions/timelines';
+import { refreshNotifications } from '../../actions/notifications';
 
 const UI = React.createClass({
 
@@ -56,6 +58,9 @@ const UI = React.createClass({
     window.addEventListener('resize', this.handleResize, { passive: true });
     window.addEventListener('dragover', this.handleDragOver);
     window.addEventListener('drop', this.handleDrop);
+
+    this.props.dispatch(refreshTimeline('home'));
+    this.props.dispatch(refreshNotifications());
   },
 
   componentWillUnmount () {
