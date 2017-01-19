@@ -508,21 +508,24 @@ export function fetchRelationships(account_ids) {
 export function fetchRelationshipsRequest(ids) {
   return {
     type: RELATIONSHIPS_FETCH_REQUEST,
-    ids
+    ids,
+    skipLoading: true
   };
 };
 
 export function fetchRelationshipsSuccess(relationships) {
   return {
     type: RELATIONSHIPS_FETCH_SUCCESS,
-    relationships
+    relationships,
+    skipLoading: true
   };
 };
 
 export function fetchRelationshipsFail(error) {
   return {
     type: RELATIONSHIPS_FETCH_FAIL,
-    error
+    error,
+    skipLoading: true
   };
 };
 
