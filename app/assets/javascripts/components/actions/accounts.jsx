@@ -80,21 +80,23 @@ export function fetchAccount(id) {
 
 export function fetchAccountTimeline(id, replace = false) {
   return (dispatch, getState) => {
-    dispatch(fetchAccountTimelineRequest(id));
-
     const ids      = getState().getIn(['timelines', 'accounts_timelines', id], Immutable.List());
     const newestId = ids.size > 0 ? ids.first() : null;
 
     let params = '';
+    let skipLoading = false;
 
     if (newestId !== null && !replace) {
-      params = `?since_id=${newestId}`;
+      params      = `?since_id=${newestId}`;
+      skipLoading = true;
     }
 
+    dispatch(fetchAccountTimelineRequest(id, skipLoading));
+
     api(getState).get(`/api/v1/accounts/${id}/statuses${params}`).then(response => {
-      dispatch(fetchAccountTimelineSuccess(id, response.data, replace));
+      dispatch(fetchAccountTimelineSuccess(id, response.data, replace, skipLoading));
     }).catch(error => {
-      dispatch(fetchAccountTimelineFail(id, error));
+      dispatch(fetchAccountTimelineFail(id, error, skipLoading));
     });
   };
 };
@@ -201,27 +203,30 @@ export function unfollowAccountFail(error) {
   };
 };
 
-export function fetchAccountTimelineRequest(id) {
+export function fetchAccountTimelineRequest(id, skipLoading) {
   return {
     type: ACCOUNT_TIMELINE_FETCH_REQUEST,
-    id
+    id,
+    skipLoading
   };
 };
 
-export function fetchAccountTimelineSuccess(id, statuses, replace) {
+export function fetchAccountTimelineSuccess(id, statuses, replace, skipLoading) {
   return {
     type: ACCOUNT_TIMELINE_FETCH_SUCCESS,
     id,
     statuses,
-    replace
+    replace,
+    skipLoading
   };
 };
 
-export function fetchAccountTimelineFail(id, error) {
+export function fetchAccountTimelineFail(id, error, skipLoading) {
   return {
     type: ACCOUNT_TIMELINE_FETCH_FAIL,
     id,
-    error
+    error,
+    skipLoading
   };
 };
 
