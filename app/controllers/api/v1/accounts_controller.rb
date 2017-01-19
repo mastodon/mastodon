@@ -85,7 +85,7 @@ class Api::V1::AccountsController < ApiController
   def relationships
     ids = params[:id].is_a?(Enumerable) ? params[:id].map(&:to_i) : [params[:id].to_i]
 
-    @accounts    = Account.where(id: ids).select('id')
+    @accounts    = Account.where(id: ids).select('id, domain')
     @following   = Account.following_map(ids, current_user.account_id)
     @followed_by = Account.followed_by_map(ids, current_user.account_id)
     @blocking    = Account.blocking_map(ids, current_user.account_id)
