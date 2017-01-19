@@ -106,6 +106,6 @@ Rails.application.configure do
   config.active_record.logger = nil
 
   config.to_prepare do
-    StatsD.backend = StatsD::Instrument::Backends::NullBackend if ENV['STATSD_ADDR'].blank?
+    StatsD.backend = StatsD::Instrument::Backends::NullBackend.new if ENV['STATSD_ADDR'].blank?
   end
 end

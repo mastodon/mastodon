@@ -126,7 +126,8 @@ class Account < ApplicationRecord
   def save_with_optional_avatar!
     save!
   rescue ActiveRecord::RecordInvalid
-    self.avatar = nil
+    self.avatar              = nil
+    self[:avatar_remote_url] = ''
     save!
   end
 

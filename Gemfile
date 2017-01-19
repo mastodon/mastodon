@@ -19,7 +19,7 @@ gem 'dotenv-rails'
 gem 'font-awesome-rails'
 gem 'best_in_place', '~> 3.0.1'
 
-gem 'paperclip', '~> 5.0'
+gem 'paperclip', '~> 5.1'
 gem 'paperclip-av-transcoder'
 gem 'aws-sdk', '>= 2.0'
 
