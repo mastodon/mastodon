@@ -370,6 +370,7 @@ GEM
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
+    statsd-instrument (2.1.2)
     temple (0.7.7)
     term-ansicolor (1.4.0)
       tins (~> 1.0)
@@ -463,6 +464,7 @@ DEPENDENCIES
   simple-navigation
   simple_form
   simplecov
+  statsd-instrument
   uglifier (>= 1.3.0)
   webmock
   will_paginate

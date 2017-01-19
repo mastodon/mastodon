@@ -47,6 +47,7 @@ gem 'sidekiq'
 gem 'rails-settings-cached'
 gem 'pg_search'
 gem 'simple-navigation'
+gem 'statsd-instrument'
 
 gem 'react-rails'
 gem 'browserify-rails'

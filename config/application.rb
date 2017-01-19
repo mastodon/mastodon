@@ -30,6 +30,8 @@ module Mastodon
 
     config.active_job.queue_adapter = :sidekiq
 
+    config.middleware.insert(0, 'StatsDMonitor')
+
     config.middleware.insert_before 0, Rack::Cors do
       allow do
         origins  '*'
