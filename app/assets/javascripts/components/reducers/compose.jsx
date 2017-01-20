@@ -82,7 +82,7 @@ function removeMedia(state, mediaId) {
 
 const insertSuggestion = (state, position, token, completion) => {
   return state.withMutations(map => {
-    map.update('text', oldText => `${oldText.slice(0, position)}${completion}${oldText.slice(position + token.length)}`);
+    map.update('text', oldText => `${oldText.slice(0, position)}${completion} ${oldText.slice(position + token.length)}`);
     map.set('suggestion_token', null);
     map.update('suggestions', Immutable.List(), list => list.clear());
   });
