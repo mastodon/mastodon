@@ -45,7 +45,7 @@ class ProcessFeedService < BaseService
       status = status_from_xml(@xml)
 
       return if status.nil?
-      
+
       if verb == :share
         original_status = status_from_xml(@xml.at_xpath('.//activity:object', activity: TagManager::AS_XMLNS))
         status.reblog   = original_status
@@ -61,6 +61,7 @@ class ProcessFeedService < BaseService
       status.save!
 
       NotifyService.new.call(status.reblog.account, status) if status.reblog? && status.reblog.account.local?
+      LinkCrawlWorker.perform_async(status.reblog? ? status.reblog_of_id : status.id)
       Rails.logger.debug "Queuing remote status #{status.id} (#{id}) for distribution"
       DistributionWorker.perform_async(status.id)
       status

@@ -14,16 +14,20 @@ const outerStyle = {
 };
 
 const contentStyle = {
-  flex: '2',
+  flex: '1 1 auto',
   padding: '8px',
-  paddingLeft: '14px'
+  paddingLeft: '14px',
+  overflow: 'hidden'
 };
 
 const titleStyle = {
   display: 'block',
   fontWeight: '500',
   marginBottom: '5px',
-  color: '#d9e1e8'
+  color: '#d9e1e8',
+  overflow: 'hidden',
+  textOverflow: 'ellipsis',
+  whiteSpace: 'nowrap'
 };
 
 const descriptionStyle = {
@@ -31,7 +35,7 @@ const descriptionStyle = {
 };
 
 const imageOuterStyle = {
-  flex: '1',
+  flex: '0 0 100px',
   background: '#373b4a'
 };
 
@@ -84,8 +88,8 @@ const Card = React.createClass({
         {image}
 
         <div style={contentStyle}>
-          <strong style={titleStyle}>{card.get('title')}</strong>
-          <p style={descriptionStyle}>{card.get('description')}</p>
+          <strong style={titleStyle} title={card.get('title')}>{card.get('title')}</strong>
+          <p style={descriptionStyle}>{card.get('description').substring(0, 50)}</p>
           <span style={hostStyle}>{getHostname(card.get('url'))}</span>
         </div>
       </a>
