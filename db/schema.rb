@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170114203041) do
+ActiveRecord::Schema.define(version: 20170119214911) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -155,6 +155,20 @@ ActiveRecord::Schema.define(version: 20170114203041) do
     t.boolean  "superapp",     default: false, null: false
     t.string   "website"
     t.index ["uid"], name: "index_oauth_applications_on_uid", unique: true, using: :btree
+  end
+
+  create_table "preview_cards", force: :cascade do |t|
+    t.integer  "status_id"
+    t.string   "url",                default: "", null: false
+    t.string   "title"
+    t.string   "description"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+    t.index ["status_id"], name: "index_preview_cards_on_status_id", unique: true, using: :btree
   end
 
   create_table "pubsubhubbub_subscriptions", force: :cascade do |t|

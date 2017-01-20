@@ -3,6 +3,7 @@ require_relative 'boot'
 require 'rails/all'
 
 require_relative '../app/lib/exceptions'
+require_relative '../lib/statsd_monitor'
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
@@ -30,7 +31,7 @@ module Mastodon
 
     config.active_job.queue_adapter = :sidekiq
 
-    config.middleware.insert(0, 'StatsDMonitor')
+    config.middleware.insert(0, ::StatsDMonitor)
 
     config.middleware.insert_before 0, Rack::Cors do
       allow do

@@ -48,6 +48,7 @@ gem 'rails-settings-cached'
 gem 'pg_search'
 gem 'simple-navigation'
 gem 'statsd-instrument'
+gem 'ruby-oembed', require: 'oembed'
 
 gem 'react-rails'
 gem 'browserify-rails'

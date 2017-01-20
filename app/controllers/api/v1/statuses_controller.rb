@@ -3,8 +3,8 @@
 class Api::V1::StatusesController < ApiController
   before_action -> { doorkeeper_authorize! :read }, except: [:create, :destroy, :reblog, :unreblog, :favourite, :unfavourite]
   before_action -> { doorkeeper_authorize! :write }, only:  [:create, :destroy, :reblog, :unreblog, :favourite, :unfavourite]
-  before_action :require_user!, except: [:show, :context, :reblogged_by, :favourited_by]
-  before_action :set_status, only:      [:show, :context, :reblogged_by, :favourited_by]
+  before_action :require_user!, except: [:show, :context, :card, :reblogged_by, :favourited_by]
+  before_action :set_status, only:      [:show, :context, :card, :reblogged_by, :favourited_by]
 
   respond_to :json
 
@@ -19,6 +19,10 @@ class Api::V1::StatusesController < ApiController
 
     set_maps(statuses)
     set_counters_maps(statuses)
+  end
+
+  def card
+    @card = PreviewCard.find_by!(status: @status)
   end
 
   def reblogged_by

@@ -1,6 +1,7 @@
 import api from '../api';
 
 import { deleteFromTimelines } from './timelines';
+import { fetchStatusCard } from './cards';
 
 export const STATUS_FETCH_REQUEST = 'STATUS_FETCH_REQUEST';
 export const STATUS_FETCH_SUCCESS = 'STATUS_FETCH_SUCCESS';
@@ -31,6 +32,7 @@ export function fetchStatus(id) {
     api(getState).get(`/api/v1/statuses/${id}`).then(response => {
       dispatch(fetchStatusSuccess(response.data, skipLoading));
       dispatch(fetchContext(id));
+      dispatch(fetchStatusCard(id));
     }).catch(error => {
       dispatch(fetchStatusFail(id, error, skipLoading));
     });

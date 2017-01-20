@@ -23,6 +23,7 @@ class Status < ApplicationRecord
   has_and_belongs_to_many :tags
 
   has_one :notification, as: :activity, dependent: :destroy
+  has_one :preview_card, dependent: :destroy
 
   validates :account, presence: true
   validates :uri, uniqueness: true, unless: 'local?'

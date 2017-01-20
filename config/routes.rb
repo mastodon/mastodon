@@ -86,6 +86,7 @@ Rails.application.routes.draw do
       resources :statuses, only: [:create, :show, :destroy] do
         member do
           get :context
+          get :card
           get :reblogged_by
           get :favourited_by
 
@@ -146,7 +147,7 @@ Rails.application.routes.draw do
   get '/about',      to: 'about#index'
   get '/about/more', to: 'about#more'
   get '/terms',      to: 'about#terms'
-  
+
   root 'home#index'
 
   match '*unmatched_route', via: :all, to: 'application#raise_not_found'
