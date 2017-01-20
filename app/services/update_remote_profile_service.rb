@@ -10,7 +10,7 @@ class UpdateRemoteProfileService < BaseService
     unless author_xml.nil?
       account.display_name      = author_xml.at_xpath('./poco:displayName', poco: TagManager::POCO_XMLNS).content unless author_xml.at_xpath('./poco:displayName', poco: TagManager::POCO_XMLNS).nil?
       account.note              = author_xml.at_xpath('./poco:note', poco: TagManager::POCO_XMLNS).content unless author_xml.at_xpath('./poco:note', poco: TagManager::POCO_XMLNS).nil?
-      account.avatar_remote_url = author_xml.at_xpath('./xmlns:link[@rel="avatar"]', xmlns: TagManager::XMLNS)['href'] unless author_xml.at_xpath('./xmlns:link[@rel="avatar"]', xmlns: TagManager::XMLNS).nil? || author_xml.at_xpath('./xmlns:link[@rel="avatar"]', xmlns: TagManager::XMLNS)['href'].blank?
+      account.avatar_remote_url = author_xml.at_xpath('./xmlns:link[@rel="avatar"]', xmlns: TagManager::XMLNS)['href'] unless author_xml.at_xpath('./xmlns:link[@rel="avatar"]', xmlns: TagManager::XMLNS).nil? || author_xml.at_xpath('./xmlns:link[@rel="avatar"]', xmlns: TagManager::XMLNS)['href'].blank? || account.suspended?
     end
 
     old_hub_url     = account.hub_url
