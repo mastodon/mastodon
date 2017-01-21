@@ -25,12 +25,11 @@ If you would like, you can [support the development of this project on Patreon][
 
 ## Resources
 
-- [List of Mastodon instances](https://github.com/tootsuite/mastodon/wiki/List-of-Mastodon-instances)
+- [List of Mastodon instances](docs/Using-Mastodon/List-of-Mastodon-instances.md)
 - [Use this tool to find Twitter friends on Mastodon](https://mastodon-bridge.herokuapp.com)
-- [API overview](https://github.com/tootsuite/mastodon/wiki/API)
-- [How to use the API via cURL/oAuth](https://github.com/tootsuite/mastodon/wiki/Testing-with-cURL)
-- [Frequently Asked Questions](https://github.com/tootsuite/mastodon/wiki/FAQ)
-- [List of apps](https://github.com/tootsuite/mastodon/wiki/Apps)
+- [API overview](docs/Using-the-API/API.md)
+- [Frequently Asked Questions](docs/Using-Mastodon/FAQ.md)
+- [List of apps](docs/Using-Mastodon/Apps.md)
 
 ## Features
 
@@ -116,7 +115,7 @@ Which will re-create the updated containers, leaving databases and data as is. D
 
 ## Deployment without Docker
 
-Docker is great for quickly trying out software, but it has its drawbacks too. If you prefer to run Mastodon without using Docker, refer to the [production guide](https://github.com/tootsuite/mastodon/wiki/Production-guide) for examples, configuration and instructions.
+Docker is great for quickly trying out software, but it has its drawbacks too. If you prefer to run Mastodon without using Docker, refer to the [production guide](docs/Running-Mastodon/Production-guide.md) for examples, configuration and instructions.
 
 ## Deployment on Heroku (experimental)
 
