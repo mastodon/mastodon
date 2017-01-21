@@ -3,6 +3,12 @@
 require 'sidekiq/web'
 
 Rails.application.routes.draw do
+
+  # Development-only routes
+  if Rails.env.development?
+    mount LetterOpenerWeb::Engine, at: "/letter_opener"
+  end
+
   mount ActionCable.server, at: 'cable'
 
   authenticate :user, lambda { |u| u.admin? } do
