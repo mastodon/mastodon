@@ -20,4 +20,8 @@ class Api::V1::NotificationsController < ApiController
 
     set_pagination_headers(next_path, prev_path)
   end
+
+  def show
+    @notification = Notification.where(account: current_account).find(params[:id])
+  end
 end

@@ -114,7 +114,7 @@ Rails.application.routes.draw do
         end
       end
 
-      resources :notifications, only: [:index]
+      resources :notifications, only: [:index, :show]
       resources :favourites,    only: [:index]
 
       resources :accounts, only: [:show] do
