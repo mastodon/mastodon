@@ -1,4 +1,7 @@
-# Contents
+API overview
+============
+
+## Contents
 
 - [Available libraries](#available-libraries)
 - [Notes](#notes)
@@ -22,21 +25,21 @@
   - Account
 - [Pagination](#pagination)
 
-# Available libraries
+## Available libraries
 
 - [For Ruby](https://github.com/tootsuite/mastodon-api)
 - [For Python](https://github.com/halcy/Mastodon.py)
 - [For JavaScript](https://github.com/Zatnosk/libodonjs)
 - [For JavaScript (Node.js)](https://github.com/jessicahayley/node-mastodon)
 
-# Notes
+## Notes
 
 When an array parameter is mentioned, the Rails convention of specifying array parameters in query strings is meant. For example, a ruby array like `foo = [1, 2, 3]` can be encoded in the params as `foo[]=1&foo[]=2&foo[]=3`. Square brackets can be indexed but can also be empty.
 
 When a file parameter is mentioned, a form-encoded upload is expected.
 
-# Methods
-## Posting a new status
+## Methods
+### Posting a new status
 
 **POST /api/v1/statuses**
 
@@ -58,7 +61,7 @@ Form data:
 
 Returns a media object with an ID that can be attached when creating a status (see above).
 
-## Retrieving a timeline
+### Retrieving a timeline
 
 **GET /api/v1/timelines/home**
 **GET /api/v1/timelines/mentions**
@@ -72,13 +75,13 @@ Query parameters:
 - `max_id` (optional): Skip statuses younger than ID (e.g. navigate backwards in time)
 - `since_id` (optional): Skip statuses older than ID (e.g. check for updates)
 
-## Notifications
+### Notifications
 
 **GET /api/v1/notifications**
 
 Returns notifications for the authenticated user. Each notification has an `id`, a `type` (mention, reblog, favourite, follow), an `account` which it came *from*, and in case of mention, reblog and favourite also a `status`.
 
-## Following a remote user
+### Following a remote user
 
 **POST /api/v1/follows**
 
@@ -88,7 +91,7 @@ Form data:
 
 Returns the local representation of the followed account.
 
-## Fetching data
+### Fetching data
 
 **GET /api/v1/statuses/:id**
 
@@ -139,64 +142,64 @@ Returns accounts blocked by authenticated user.
 
 Returns statuses favourited by authenticated user.
 
-## Deleting a status
+### Deleting a status
 
 **DELETE /api/v1/statuses/:id**
 
 Returns an empty object.
 
-## Reblogging a status
+### Reblogging a status
 
 **POST /api/v1/statuses/:id/reblog**
 
 Returns a new status that wraps around the reblogged one.
 
-## Unreblogging a status
+### Unreblogging a status
 
 **POST /api/v1/statuses/:id/unreblog**
 
 Returns the status that used to be reblogged.
 
-## Favouriting a status
+### Favouriting a status
 
 **POST /api/v1/statuses/:id/favourite**
 
 Returns the target status.
 
-## Unfavouriting a status
+### Unfavouriting a status
 
 **POST /api/v1/statuses/:id/unfavourite**
 
 Returns the target status.
 
-## Threads
+### Threads
 
 **GET /api/v1/statuses/:id/context**
 
 Returns `ancestors` and `descendants` of the status.
 
-## Who reblogged/favourited a status
+### Who reblogged/favourited a status
 
 **GET /api/v1/statuses/:id/reblogged_by**
 **GET /api/v1/statuses/:id/favourited_by**
 
 Returns list of accounts.
 
-## Following and unfollowing users
+### Following and unfollowing users
 
 **POST /api/v1/accounts/:id/follow**
 **POST /api/v1/accounts/:id/unfollow**
 
 Returns the updated relationship to the user.
 
-## Blocking and unblocking users
+### Blocking and unblocking users
 
 **POST /api/v1/accounts/:id/block**
 **POST /api/v1/accounts/:id/unblock**
 
 Returns the updated relationship to the user.
 
-## OAuth apps
+### OAuth apps
 
 **POST /api/v1/apps**
 
@@ -211,9 +214,9 @@ Creates a new OAuth app. Returns `id`, `client_id` and `client_secret` which can
 
 ___
 
-# Entities
+## Entities
 
-## Status
+### Status
 
 | Attribute           | Description |
 |---------------------|-------------|
@@ -256,7 +259,7 @@ Application:
 | `name`              | Name of the app |
 | `website`           | Homepage URL of the app |
 
-## Account
+### Account
 
 | Attribute         | Description |
 |-------------------|-------------|
@@ -272,6 +275,6 @@ Application:
 | `following_count` ||
 | `statuses_count`  ||
 
-# Pagination
+## Pagination
 
 API methods that return collections of items can return a `Link` header containing URLs for the `next` and `prev` pages. [Link header RFC](https://tools.ietf.org/html/rfc5988)

@@ -1,3 +1,6 @@
+OAuth details
+=============
+
 We use the [Doorkeeper gem for OAuth](https://github.com/doorkeeper-gem/doorkeeper/wiki), so you can refer to their docs on specifics of the end-points.
 
 The API is divided up into access scopes:

@@ -1,3 +1,6 @@
+Testing the API with cURL
+=========================
+
 Mastodon builds around the idea of being a server first, rather than a client itself. Similarly to how a XMPP chat server communicates with others and with its own clients, Mastodon takes care of federation to other networks, like other Mastodon or GNU Social instances. So Mastodon provides a REST API, and a 3rd-party app system for using it via OAuth2.
 
 You can get a client ID and client secret required for OAuth [via an API end-point](API.md#oauth-apps).
