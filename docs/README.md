@@ -16,7 +16,7 @@ Index
 
 ### Running Mastodon
 - [Production guide](Running-Mastodon/Production-guide.md)
-- [Development guide](Running-Mastodon/Contribution-guide.md)
+- [Development guide](Running-Mastodon/Development-guide.md)
 
 ### Contributing to Mastodon
 - [Sponsors](Contributing-to-Mastodon/Sponsors.md)
