@@ -121,43 +121,13 @@ Docker is great for quickly trying out software, but it has its drawbacks too. I
 
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
 
-Mastodon can theoretically run indefinitely on a free [Heroku](https://heroku.com) app. It should be noted this has limited testing and could have unpredictable results.
-
-1. Click the above button.
-2. Fill in the options requested.
-  * You can use a .herokuapp.com domain, which will be simple to set up, or you can use a custom domain. If you want a custom domain and HTTPS, you will need to upgrade to a paid plan (to use Heroku's SSL features), or set up [CloudFlare](https://cloudflare.com) who offer free "Flexible SSL" (note: CloudFlare have some undefined limits on WebSockets. So far, no one has reported hitting concurrent connection limits).
-  * You will want Amazon S3 for file storage. The only exception is for development purposes, where you may not care if files are not saaved. Follow a guide online for creating a free Amazon S3 bucket and Access Key, then enter the details.
-  * If you want your Mastodon to be able to send emails, configure SMTP settings here (or later). Consider using [Mailgun](https://mailgun.com) or similar, who offer free plans that should suit your interests.
-3. Deploy! The app should be set up, with a working web interface and database. You can change settings and manage versions from the Heroku dashboard.
+Mastodon can theoretically run indefinitely on a free [Heroku](https://heroku.com) app. [You can view a guide for deployment on Heroku here.](docs/Running-Mastodon/Heroku.md)
 
 ## Development with Vagrant
 
 A quick way to get a development environment up and running is with Vagrant. You will need recent versions of [Vagrant](https://www.vagrantup.com/) and [VirtualBox](https://www.virtualbox.org/) installed.
 
-Install the latest version for your operating systems, and then run:
-
-    vagrant plugin install vagrant-hostsupdater
-
-This is optional, but will update your 'hosts' file when you start the virtual machine, allowing you to access the site at http://mastodon.dev (instead of http://localhost:3000).
-
-To create and provision a new virtual machine for Mastodon development:
-
-    git clone git@github.com:tootsuite/mastodon.git
-    cd mastodon
-    vagrant up
-
-Running `vagrant up` for the first time will run provisioning, which will:
-
-- Download the Ubuntu 14.04 base image, if there isn't already a copy on your machine
-- Create a new VirtualBox virtual machine from that image
-- Run the provisioning script (located inside the Vagrantfile), which installs the system packages, Ruby gems, and JS modules required for Mastodon
-
-Once this has completed, the virtual machine will start a rails process. You can then access your development site at http://mastodon.dev (or at http://localhost:3000 if you haven't installed vagrants-hostupdater). Any changes you make should be reflected on the server instantly. To set environment variables, copy `.env.production.sample` to `.env.vagrant` and make changes as required.
-
-When you are finished with your session, run `vagrant halt` to stop the VM. Next time, running `vagrant up` should boot the VM, and skip provisioning.
-
-If you no longer need your environment, or if things have gone terribly wrong, running `vagrant destroy` will delete the virtual machine (after which, running `vagrant up` will create a new one, and run provisioning).
-
+[You can find the guide for setting up a Vagrant development environment here.](docs/Running-Mastodon/Vagrant.md)
 
 ## Contributing
 
