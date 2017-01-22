@@ -134,6 +134,13 @@ Rails.application.routes.draw do
           post :unblock
         end
       end
+      
+      resources :domains, only: [:index] do
+        collection do
+          post :block
+          post :unblock
+        end
+      end
     end
 
     namespace :web do
