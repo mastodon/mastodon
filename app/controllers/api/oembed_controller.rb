@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Api::OembedController < ApiController
+class Api::OEmbedController < ApiController
   respond_to :json
 
   def show
