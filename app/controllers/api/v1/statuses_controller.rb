@@ -22,7 +22,8 @@ class Api::V1::StatusesController < ApiController
   end
 
   def card
-    @card = PreviewCard.find_by!(status: @status)
+    @card = PreviewCard.find_by(status: @status)
+    render_empty if @card.nil?
   end
 
   def reblogged_by

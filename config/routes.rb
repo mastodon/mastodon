@@ -103,10 +103,11 @@ Rails.application.routes.draw do
       get '/timelines/public',   to: 'timelines#public', as: :public_timeline
       get '/timelines/tag/:id',  to: 'timelines#tag', as: :hashtag_timeline
 
-      resources :follows,  only: [:create]
-      resources :media,    only: [:create]
-      resources :apps,     only: [:create]
-      resources :blocks,   only: [:index]
+      resources :follows,    only: [:create]
+      resources :media,      only: [:create]
+      resources :apps,       only: [:create]
+      resources :blocks,     only: [:index]
+      resources :favourites, only: [:index]
 
       resources :follow_requests, only: [:index] do
         member do
@@ -115,8 +116,11 @@ Rails.application.routes.draw do
         end
       end
 
-      resources :notifications, only: [:index, :show]
-      resources :favourites,    only: [:index]
+      resources :notifications, only: [:index, :show] do
+        collection do
+          post :clear
+        end
+      end
 
       resources :accounts, only: [:show] do
         collection do

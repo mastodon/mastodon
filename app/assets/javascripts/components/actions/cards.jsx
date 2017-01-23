@@ -9,13 +9,12 @@ export function fetchStatusCard(id) {
     dispatch(fetchStatusCardRequest(id));
 
     api(getState).get(`/api/v1/statuses/${id}/card`).then(response => {
-      dispatch(fetchStatusCardSuccess(id, response.data));
-    }).catch(error => {
-      if (error.response.status === 404) {
-        // This is fine
+      if (response.data.length === 0) {
         return;
       }
 
+      dispatch(fetchStatusCardSuccess(id, response.data));
+    }).catch(error => {
       dispatch(fetchStatusCardFail(id, error));
     });
   };

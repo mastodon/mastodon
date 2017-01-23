@@ -24,4 +24,9 @@ class Api::V1::NotificationsController < ApiController
   def show
     @notification = Notification.where(account: current_account).find(params[:id])
   end
+
+  def clear
+    Notification.where(account: current_account).delete_all
+    render_empty
+  end
 end
