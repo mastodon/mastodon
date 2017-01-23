@@ -3,6 +3,7 @@ import { closeModal } from '../../../actions/modal';
 import Lightbox from '../../../components/lightbox';
 import ImageLoader from 'react-imageloader';
 import LoadingIndicator from '../../../components/loading_indicator';
+import PureRenderMixin from 'react-addons-pure-render-mixin';
 
 const mapStateToProps = state => ({
   url: state.getIn(['modal', 'url']),
@@ -45,6 +46,8 @@ const Modal = React.createClass({
     onCloseClicked: React.PropTypes.func,
     onOverlayClicked: React.PropTypes.func
   },
+
+  mixins: [PureRenderMixin],
 
   render () {
     const { url, ...other } = this.props;
