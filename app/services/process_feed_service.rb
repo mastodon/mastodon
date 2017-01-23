@@ -180,6 +180,8 @@ class ProcessFeedService < BaseService
     end
 
     def media_from_xml(parent, xml)
+      return if DomainBlock.find_by(domain: parent.account.domain)&.reject_media?
+
       xml.xpath('./xmlns:link[@rel="enclosure"]', xmlns: TagManager::XMLNS).each do |link|
         next unless link['href']
 
