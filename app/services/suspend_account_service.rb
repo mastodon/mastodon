@@ -18,7 +18,6 @@ class SuspendAccountService < BaseService
 
     @account.media_attachments.destroy_all
     @account.stream_entries.destroy_all
-    @account.mentions.destroy_all
     @account.notifications.destroy_all
     @account.favourites.destroy_all
     @account.active_relationships.destroy_all
