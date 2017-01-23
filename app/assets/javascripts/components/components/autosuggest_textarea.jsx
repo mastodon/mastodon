@@ -118,12 +118,19 @@ const AutosuggestTextarea = React.createClass({
   },
 
   onBlur () {
-    this.setState({ suggestionsHidden: true });
+    // If we hide the suggestions immediately, then this will prevent the
+    // onClick for the suggestions themselves from firing.
+    // Setting a short window for that to take place before hiding the
+    // suggestions ensures that can't happen.
+    setTimeout(() => {
+      this.setState({ suggestionsHidden: true });
+    }, 100);
   },
 
   onSuggestionClick (suggestion, e) {
     e.preventDefault();
     this.props.onSuggestionSelected(this.state.tokenStart, this.state.lastToken, suggestion);
+    this.textarea.focus();
   },
 
   componentWillReceiveProps (nextProps) {
