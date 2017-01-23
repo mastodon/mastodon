@@ -65,8 +65,13 @@ class Api::V1::AccountsController < ApiController
   end
 
   def block
-    BlockService.new.call(current_user.account, @account)
-    set_relationship
+    BlockWorker.perform_async(current_user.account_id, @account.id)
+
+    @following   = { @account.id => false }
+    @followed_by = { @account.id => false }
+    @blocking    = { @account.id => true }
+    @requested   = { @account.id => false }
+
     render action: :relationship
   end
 
