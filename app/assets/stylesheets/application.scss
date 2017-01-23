@@ -1,6 +1,7 @@
+@import 'variables';
 @import url(https://fonts.googleapis.com/css?family=Roboto:400,500,400italic);
 @import url(https://fonts.googleapis.com/css?family=Roboto+Mono:400,500);
-@import "font-awesome";
+@import 'font-awesome';
 
 /* http://meyerweb.com/eric/tools/css/reset/
    v2.0 | 20110126
@@ -63,31 +64,31 @@ table {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #42495b;
-  border: 0px none #ffffff;
+  background: lighten($color1, 4%);
+  border: 0px none $color5;
   border-radius: 50px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #525a70;
+  background: lighten($color1, 6%);
 }
 
 ::-webkit-scrollbar-thumb:active {
-  background: #42495b;
+  background: lighten($color1, 4%);
 }
 
 ::-webkit-scrollbar-track {
-  border: 0px none #ffffff;
+  border: 0px none $color5;
   border-radius: 0;
   background: rgba(0, 0, 0, 0.1);
 }
 
 ::-webkit-scrollbar-track:hover {
-  background: #282c37;
+  background: $color1;
 }
 
 ::-webkit-scrollbar-track:active {
-  background: #282c37;
+  background: $color1;
 }
 
 ::-webkit-scrollbar-corner {
@@ -96,13 +97,13 @@ table {
 
 body {
   font-family: 'Roboto', sans-serif;
-  background: #282c37 image-url('background-photo.jpeg');
+  background: $color1 image-url('background-photo.jpeg');
   background-size: cover;
   background-attachment: fixed;
   font-size: 13px;
   line-height: 18px;
   font-weight: 400;
-  color: #fff;
+  color: $color5;
   padding-bottom: 140px;
   text-rendering: optimizelegibility;
   font-feature-settings: "kern";
@@ -164,7 +165,7 @@ body {
   h1 {
     display: block;
     text-align: center;
-    color: #fff;
+    color: $color5;
     font-size: 48px;
     font-weight: 500;
 
@@ -215,12 +216,10 @@ body {
   text-align: center;
   margin-top: 30px;
   font-size: 12px;
-  color: darken(#d9e1e8, 25%);
+  color: darken($color2, 25%);
 
   .domain {
-    //font-size: 12px;
     font-weight: 500;
-    //font-family: 'Roboto Mono', monospace;
 
     a {
       color: inherit;
