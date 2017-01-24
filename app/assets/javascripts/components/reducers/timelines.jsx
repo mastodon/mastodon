@@ -1,10 +1,12 @@
 import {
   TIMELINE_REFRESH_REQUEST,
   TIMELINE_REFRESH_SUCCESS,
+  TIMELINE_REFRESH_FAIL,
   TIMELINE_UPDATE,
   TIMELINE_DELETE,
   TIMELINE_EXPAND_SUCCESS,
   TIMELINE_EXPAND_REQUEST,
+  TIMELINE_EXPAND_FAIL,
   TIMELINE_SCROLL_TOP
 } from '../actions/timelines';
 import {
@@ -16,8 +18,10 @@ import {
 import {
   ACCOUNT_TIMELINE_FETCH_REQUEST,
   ACCOUNT_TIMELINE_FETCH_SUCCESS,
+  ACCOUNT_TIMELINE_FETCH_FAIL,
   ACCOUNT_TIMELINE_EXPAND_REQUEST,
   ACCOUNT_TIMELINE_EXPAND_SUCCESS,
+  ACCOUNT_TIMELINE_EXPAND_FAIL,
   ACCOUNT_BLOCK_SUCCESS
 } from '../actions/accounts';
 import {
@@ -232,31 +236,37 @@ const resetTimeline = (state, timeline, id) => {
 
 export default function timelines(state = initialState, action) {
   switch(action.type) {
-    case TIMELINE_REFRESH_REQUEST:
-    case TIMELINE_EXPAND_REQUEST:
-      return resetTimeline(state, action.timeline, action.id);
-    case TIMELINE_REFRESH_SUCCESS:
-      return normalizeTimeline(state, action.timeline, Immutable.fromJS(action.statuses));
-    case TIMELINE_EXPAND_SUCCESS:
-      return appendNormalizedTimeline(state, action.timeline, Immutable.fromJS(action.statuses));
-    case TIMELINE_UPDATE:
-      return updateTimeline(state, action.timeline, Immutable.fromJS(action.status), action.references);
-    case TIMELINE_DELETE:
-      return deleteStatus(state, action.id, action.accountId, action.references, action.reblogOf);
-    case CONTEXT_FETCH_SUCCESS:
-      return normalizeContext(state, action.id, Immutable.fromJS(action.ancestors), Immutable.fromJS(action.descendants));
-    case ACCOUNT_TIMELINE_FETCH_REQUEST:
-    case ACCOUNT_TIMELINE_EXPAND_REQUEST:
-      return state.updateIn(['accounts_timelines', action.id], Immutable.Map(), map => map.set('isLoading', true));
-    case ACCOUNT_TIMELINE_FETCH_SUCCESS:
-      return normalizeAccountTimeline(state, action.id, Immutable.fromJS(action.statuses), action.replace);
-    case ACCOUNT_TIMELINE_EXPAND_SUCCESS:
-      return appendNormalizedAccountTimeline(state, action.id, Immutable.fromJS(action.statuses));
-    case ACCOUNT_BLOCK_SUCCESS:
-      return filterTimelines(state, action.relationship, action.statuses);
-    case TIMELINE_SCROLL_TOP:
-      return state.setIn([action.timeline, 'top'], action.top);
-    default:
-      return state;
+  case TIMELINE_REFRESH_REQUEST:
+  case TIMELINE_EXPAND_REQUEST:
+    return resetTimeline(state, action.timeline, action.id);
+  case TIMELINE_REFRESH_FAIL:
+  case TIMELINE_EXPAND_FAIL:
+    return state.setIn([action.timeline, 'isLoading'], false);
+  case TIMELINE_REFRESH_SUCCESS:
+    return normalizeTimeline(state, action.timeline, Immutable.fromJS(action.statuses));
+  case TIMELINE_EXPAND_SUCCESS:
+    return appendNormalizedTimeline(state, action.timeline, Immutable.fromJS(action.statuses));
+  case TIMELINE_UPDATE:
+    return updateTimeline(state, action.timeline, Immutable.fromJS(action.status), action.references);
+  case TIMELINE_DELETE:
+    return deleteStatus(state, action.id, action.accountId, action.references, action.reblogOf);
+  case CONTEXT_FETCH_SUCCESS:
+    return normalizeContext(state, action.id, Immutable.fromJS(action.ancestors), Immutable.fromJS(action.descendants));
+  case ACCOUNT_TIMELINE_FETCH_REQUEST:
+  case ACCOUNT_TIMELINE_EXPAND_REQUEST:
+    return state.updateIn(['accounts_timelines', action.id], Immutable.Map(), map => map.set('isLoading', true));
+  case ACCOUNT_TIMELINE_FETCH_FAIL:
+  case ACCOUNT_TIMELINE_EXPAND_FAIL:
+    return state.updateIn(['accounts_timelines', action.id], Immutable.Map(), map => map.set('isLoading', false));
+  case ACCOUNT_TIMELINE_FETCH_SUCCESS:
+    return normalizeAccountTimeline(state, action.id, Immutable.fromJS(action.statuses), action.replace);
+  case ACCOUNT_TIMELINE_EXPAND_SUCCESS:
+    return appendNormalizedAccountTimeline(state, action.id, Immutable.fromJS(action.statuses));
+  case ACCOUNT_BLOCK_SUCCESS:
+    return filterTimelines(state, action.relationship, action.statuses);
+  case TIMELINE_SCROLL_TOP:
+    return state.setIn([action.timeline, 'top'], action.top);
+  default:
+    return state;
   }
 };

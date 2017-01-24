@@ -63,6 +63,10 @@ export function refreshTimelineRequest(timeline, id, skipLoading) {
 
 export function refreshTimeline(timeline, id = null) {
   return function (dispatch, getState) {
+    if (getState().getIn(['timelines', timeline, 'isLoading'])) {
+      return;
+    }
+
     const ids      = getState().getIn(['timelines', timeline, 'items'], Immutable.List());
     const newestId = ids.size > 0 ? ids.first() : null;
 
@@ -102,8 +106,9 @@ export function expandTimeline(timeline, id = null) {
   return (dispatch, getState) => {
     const lastId = getState().getIn(['timelines', timeline, 'items'], Immutable.List()).last();
 
-    if (!lastId) {
+    if (!lastId || getState().getIn(['timelines', timeline, 'isLoading'])) {
       // If timeline is empty, don't try to load older posts since there are none
+      // Also if already loading
       return;
     }
 
