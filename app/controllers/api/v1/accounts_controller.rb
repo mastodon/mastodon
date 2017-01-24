@@ -65,7 +65,7 @@ class Api::V1::AccountsController < ApiController
   end
 
   def block
-    BlockWorker.perform_async(current_user.account_id, @account.id)
+    BlockService.new.call(current_user.account, @account)
 
     @following   = { @account.id => false }
     @followed_by = { @account.id => false }
