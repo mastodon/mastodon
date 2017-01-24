@@ -9,13 +9,11 @@ class Block < ApplicationRecord
 
   validates :account, :target_account, presence: true
   validates :account_id, uniqueness: { scope: :target_account_id }
+  
+  alias_attribute :target, :target_account
 
   def verb
     destroyed? ? :unblock : :block
-  end
-
-  def target
-    target_account
   end
 
   def object_type
