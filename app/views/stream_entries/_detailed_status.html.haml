@@ -7,7 +7,10 @@
       %strong.p-name.emojify= display_name(status.account)
       %span.p-nickname= acct(status.account)
 
-  .status__content.e-content.p-name.emojify= Formatter.instance.format(status)
+  .status__content.e-content.p-name.emojify<
+    - unless status.spoiler_text.blank?
+      %p= status.spoiler_text
+    = Formatter.instance.format(status)
 
   - unless status.media_attachments.empty?
     - if status.media_attachments.first.video?

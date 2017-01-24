@@ -1,6 +1,7 @@
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import emojify from '../emoji';
+import { FormattedMessage } from 'react-intl';
 
 const StatusContent = React.createClass({
 
@@ -13,17 +14,17 @@ const StatusContent = React.createClass({
     onClick: React.PropTypes.func
   },
 
+  getInitialState () {
+    return {
+      hidden: true
+    };
+  },
+
   mixins: [PureRenderMixin],
 
   componentDidMount () {
     const node  = ReactDOM.findDOMNode(this);
     const links = node.querySelectorAll('a');
-    const spoilers = node.querySelectorAll('.spoiler');
-
-    for (var i = 0; i < spoilers.length; ++i) {
-      let spoiler    = spoilers[i];
-      spoiler.addEventListener('click', this.onSpoilerClick.bind(this, spoiler), true);
-    }
 
     for (var i = 0; i < links.length; ++i) {
       let link    = links[i];
@@ -56,18 +57,6 @@ const StatusContent = React.createClass({
     }
   },
 
-  onSpoilerClick (spoiler, e) {
-    if (e.button === 0) {
-      //only toggle if we're not clicking a visible link
-      var hasClass = $(spoiler).hasClass('spoiler-on');
-      if (hasClass || e.target === spoiler) {
-        e.stopPropagation();
-        e.preventDefault();
-        $(spoiler).siblings(".spoiler").andSelf().toggleClass('spoiler-on', !hasClass);
-      }
-    }
-  },
-
   handleMouseDown (e) {
     this.startXY = [e.clientX, e.clientY];
   },
@@ -87,20 +76,40 @@ const StatusContent = React.createClass({
     this.startXY = null;
   },
 
+  handleSpoilerClick () {
+    this.setState({ hidden: !this.state.hidden });
+  },
+
   render () {
     const { status } = this.props;
+    const { hidden } = this.state;
 
     const content = { __html: emojify(status.get('content')) };
+    const spoilerContent = { __html: emojify(status.get('spoiler_text')) };
 
-    return (
-      <div
-        className='status__content'
-        style={{ cursor: 'pointer' }}
-        dangerouslySetInnerHTML={content}
-        onMouseDown={this.handleMouseDown}
-        onMouseUp={this.handleMouseUp}
-      />
-    );
+    if (status.get('spoiler_text').length > 0) {
+      const toggleText = hidden ? <FormattedMessage id='status.show_more' defaultMessage='Show more' /> : <FormattedMessage id='status.show_less' defaultMessage='Show less' />;
+
+      return (
+        <div className='status__content' style={{ cursor: 'pointer' }} onMouseDown={this.handleMouseDown} onMouseUp={this.handleMouseUp}>
+          <p>
+            <span dangerouslySetInnerHTML={spoilerContent} /> <a onClick={this.handleSpoilerClick}>{toggleText}</a>
+          </p>
+
+          <div style={{ display: hidden ? 'none' : 'block' }} dangerouslySetInnerHTML={content} />
+        </div>
+      );
+    } else {
+      return (
+        <div
+          className='status__content'
+          style={{ cursor: 'pointer' }}
+          onMouseDown={this.handleMouseDown}
+          onMouseUp={this.handleMouseUp}
+          dangerouslySetInnerHTML={content}
+        />
+      );
+    }
   },
 
 });

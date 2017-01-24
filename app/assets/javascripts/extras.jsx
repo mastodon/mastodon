@@ -14,16 +14,6 @@ $(() => {
     }
   });
 
-  $.each($('.spoiler'), (_, content) => {
-    $(content).on('click', e => {
-      var hasClass = $(content).hasClass('spoiler-on');
-      if (hasClass || e.target === content) {
-        e.preventDefault();
-        $(content).siblings(".spoiler").andSelf().toggleClass('spoiler-on', !hasClass);
-      }
-    });
-  });
-
   $('.media-spoiler').on('click', e => {
     $(e.target).hide();
   });

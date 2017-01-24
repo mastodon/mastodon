@@ -8,18 +8,16 @@ class PostStatusService < BaseService
   # @param [Hash] options
   # @option [Boolean] :sensitive
   # @option [String] :visibility
-  # @option [Boolean] :spoiler
   # @option [String] :spoiler_text
   # @option [Enumerable] :media_ids Optional array of media IDs to attach
   # @option [Doorkeeper::Application] :application
   # @return [Status]
   def call(account, text, in_reply_to = nil, options = {})
-    status = account.statuses.create!(text:        text,
-                                      thread:      in_reply_to,
-                                      sensitive:   options[:sensitive],
-                                      spoiler:   options[:spoiler],
-                                      spoiler_text:   options[:spoiler_text],
-                                      visibility:  options[:visibility],
+    status = account.statuses.create!(text: text,
+                                      thread: in_reply_to,
+                                      sensitive: options[:sensitive],
+                                      spoiler_text: options[:spoiler_text],
+                                      visibility: options[:visibility],
                                       application: options[:application])
 
     attach_media(status, options[:media_ids])

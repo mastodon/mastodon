@@ -28,9 +28,8 @@ class Status < ApplicationRecord
 
   validates :account, presence: true
   validates :uri, uniqueness: true, unless: 'local?'
-  validates :text, presence: true, if: proc { |s| s.local? && !s.reblog? }
+  validates :text, presence: true, unless: 'reblog?'
   validates_with StatusLengthValidator
-  validates :text, presence: true, if: proc { |s| !s.local? && !s.reblog? }
   validates :reblog, uniqueness: { scope: :account, message: 'of status already exists' }, if: 'reblog?'
 
   default_scope { order('id desc') }
@@ -176,6 +175,7 @@ class Status < ApplicationRecord
 
   before_validation do
     text.strip!
+    spoiler_text&.strip!
 
     self.reblog                 = reblog.reblog if reblog? && reblog.reblog?
     self.in_reply_to_account_id = (thread.account_id == account_id && thread.reply? ? thread.in_reply_to_account_id : thread.account_id) if reply?

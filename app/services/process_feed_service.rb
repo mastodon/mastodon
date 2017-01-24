@@ -103,6 +103,7 @@ class ProcessFeedService < BaseService
         url: url(entry),
         account: account,
         text: content(entry),
+        spoiler_text: content_warning(entry),
         created_at: published(entry)
       )
 
@@ -221,6 +222,10 @@ class ProcessFeedService < BaseService
 
     def content(xml = @xml)
       xml.at_xpath('./xmlns:content', xmlns: TagManager::XMLNS).content
+    end
+
+    def content_warning(xml = @xml)
+      xml.at_xpath('./xmlns:content', xmlns: TagManager::XMLNS)['warning']
     end
 
     def published(xml = @xml)

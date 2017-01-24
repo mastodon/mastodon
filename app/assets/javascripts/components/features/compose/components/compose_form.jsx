@@ -155,7 +155,7 @@ const ComposeForm = React.createClass({
 
         <div style={{ marginTop: '10px', overflow: 'hidden' }}>
           <div style={{ float: 'right' }}><Button text={intl.formatMessage(messages.publish)} onClick={this.handleSubmit} disabled={disabled} /></div>
-          <div style={{ float: 'right', marginRight: '16px', lineHeight: '36px' }}><CharacterCounter max={500} text={this.props.spoiler ? (this.props.spoiler_text + "\n" + this.props.text) : this.props.text} /></div>
+          <div style={{ float: 'right', marginRight: '16px', lineHeight: '36px' }}><CharacterCounter max={500} text={[this.props.spoiler_text, this.props.text].join('')} /></div>
           <UploadButtonContainer style={{ paddingTop: '4px' }} />
         </div>
 

@@ -14,15 +14,7 @@ class Formatter
 
     html = status.text
     html = encode(html)
-
-    if (status.spoiler?)
-      spoilerhtml = status.spoiler_text
-      spoilerhtml = encode(spoilerhtml)
-      html = wrap_spoilers(html, spoilerhtml)
-    else
-      html = simple_format(html, sanitize: false)
-    end
-
+    html = simple_format(html, {}, sanitize: false)
     html = html.gsub(/\n/, '')
     html = link_urls(html)
     html = link_mentions(html, status.mentions)
@@ -49,13 +41,6 @@ class Formatter
 
   def encode(html)
     HTMLEntities.new.encode(html)
-  end
-
-  def wrap_spoilers(html, spoilerhtml)
-    spoilerhtml = simple_format(spoilerhtml, {class: "spoiler-helper"}, {sanitize: false})
-    html = simple_format(html, {class: ["spoiler", "spoiler-on"]}, {sanitize: false})
-
-    spoilerhtml + html
   end
 
   def link_urls(html)

@@ -173,19 +173,6 @@ ActiveRecord::Schema.define(version: 20170123203248) do
     t.index ["status_id"], name: "index_preview_cards_on_status_id", unique: true, using: :btree
   end
 
-  create_table "pubsubhubbub_subscriptions", force: :cascade do |t|
-    t.string   "topic",      default: "",    null: false
-    t.string   "callback",   default: "",    null: false
-    t.string   "mode",       default: "",    null: false
-    t.string   "challenge",  default: "",    null: false
-    t.string   "secret"
-    t.boolean  "confirmed",  default: false, null: false
-    t.datetime "expires_at",                 null: false
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
-    t.index ["topic", "callback"], name: "index_pubsubhubbub_subscriptions_on_topic_and_callback", unique: true, using: :btree
-  end
-
   create_table "settings", force: :cascade do |t|
     t.string   "var",        null: false
     t.text     "value"
@@ -208,8 +195,6 @@ ActiveRecord::Schema.define(version: 20170123203248) do
     t.boolean  "sensitive",              default: false
     t.integer  "visibility",             default: 0,     null: false
     t.integer  "in_reply_to_account_id"
-    t.string   "conversation_uri"
-    t.boolean  "spoiler",                default: false
     t.text     "spoiler_text",           default: ""
     t.integer  "application_id"
     t.index ["account_id"], name: "index_statuses_on_account_id", using: :btree
