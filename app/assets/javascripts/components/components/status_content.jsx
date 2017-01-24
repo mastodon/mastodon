@@ -37,8 +37,6 @@ const StatusContent = React.createClass({
         link.setAttribute('target', '_blank');
         link.setAttribute('rel', 'noopener');
       }
-
-      link.addEventListener('click', this.onNormalClick, false);
     }
   },
 
@@ -70,16 +68,39 @@ const StatusContent = React.createClass({
     }
   },
 
-  onNormalClick (e) {
-    e.stopPropagation();
+  handleMouseDown (e) {
+    this.startXY = [e.clientX, e.clientY];
+  },
+
+  handleMouseUp (e) {
+    const [ startX, startY ] = this.startXY;
+    const [ deltaX, deltaY ] = [Math.abs(e.clientX - startX), Math.abs(e.clientY - startY)];
+
+    if (e.target.localName === 'a' || (e.target.parentNode && e.target.parentNode.localName === 'a')) {
+      return;
+    }
+
+    if (deltaX + deltaY < 5) {
+      this.props.onClick();
+    }
+
+    this.startXY = null;
   },
 
   render () {
-    const { status, onClick } = this.props;
+    const { status } = this.props;
 
     const content = { __html: emojify(status.get('content')) };
 
-    return <div className='status__content' style={{ cursor: 'pointer' }} dangerouslySetInnerHTML={content} onClick={onClick} />;
+    return (
+      <div
+        className='status__content'
+        style={{ cursor: 'pointer' }}
+        dangerouslySetInnerHTML={content}
+        onMouseDown={this.handleMouseDown}
+        onMouseUp={this.handleMouseUp}
+      />
+    );
   },
 
 });

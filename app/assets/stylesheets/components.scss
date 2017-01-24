@@ -60,6 +60,19 @@
   }
 }
 
+.invisible {
+  font-size: 0;
+  line-height: 0;
+  display: inline-block;
+  width: 0;
+}
+
+.ellipsis {
+  &:after {
+    content: "…";
+  }
+}
+
 .lightbox .icon-button {
   color: $color1;
 }
@@ -699,12 +712,14 @@
   }
 }
 
+@import 'boost';
+
+
 button i.fa-retweet {
   height: 19px;
   width: 22px;
-  background: image-url('boost_sprite.png') no-repeat;
   background-position: 0 0;
-  transition: background-position 0.9s steps(11);
+  transition: background-position 0.9s steps(10);
   transition-duration: 0s;
 
   &::before {
@@ -714,7 +729,7 @@ button i.fa-retweet {
 
 button.active i.fa-retweet {
   transition-duration: 0.9s;
-  background-position: 0 -209px;
+  background-position: 0 100%;
 }
 
 .status-card {

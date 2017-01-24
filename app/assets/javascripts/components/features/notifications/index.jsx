@@ -62,6 +62,7 @@ const Notifications = React.createClass({
     if (trackScroll) {
       return (
         <Column icon='bell' heading={intl.formatMessage(messages.title)}>
+          <ColumnSettingsContainer />
           <ScrollContainer scrollKey='notifications'>
             {scrollableArea}
           </ScrollContainer>

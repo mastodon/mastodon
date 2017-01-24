@@ -27,13 +27,13 @@ class Api::V1::StatusesController < ApiController
   end
 
   def reblogged_by
-    results   = @status.reblogs.paginate_by_max_id(DEFAULT_ACCOUNTS_LIMIT, params[:max_id], params[:since_id])
+    results   = @status.reblogs.paginate_by_max_id(limit_param(DEFAULT_ACCOUNTS_LIMIT), params[:max_id], params[:since_id])
     accounts  = Account.where(id: results.map(&:account_id)).map { |a| [a.id, a] }.to_h
     @accounts = results.map { |r| accounts[r.account_id] }
 
     set_account_counters_maps(@accounts)
 
-    next_path = reblogged_by_api_v1_status_url(max_id: results.last.id)    if results.size == DEFAULT_ACCOUNTS_LIMIT
+    next_path = reblogged_by_api_v1_status_url(max_id: results.last.id)    if results.size == limit_param(DEFAULT_ACCOUNTS_LIMIT)
     prev_path = reblogged_by_api_v1_status_url(since_id: results.first.id) unless results.empty?
 
     set_pagination_headers(next_path, prev_path)
@@ -42,13 +42,13 @@ class Api::V1::StatusesController < ApiController
   end
 
   def favourited_by
-    results   = @status.favourites.paginate_by_max_id(DEFAULT_ACCOUNTS_LIMIT, params[:max_id], params[:since_id])
+    results   = @status.favourites.paginate_by_max_id(limit_param(DEFAULT_ACCOUNTS_LIMIT), params[:max_id], params[:since_id])
     accounts  = Account.where(id: results.map(&:account_id)).map { |a| [a.id, a] }.to_h
     @accounts = results.map { |f| accounts[f.account_id] }
 
     set_account_counters_maps(@accounts)
 
-    next_path = favourited_by_api_v1_status_url(max_id: results.last.id)    if results.size == DEFAULT_ACCOUNTS_LIMIT
+    next_path = favourited_by_api_v1_status_url(max_id: results.last.id)    if results.size == limit_param(DEFAULT_ACCOUNTS_LIMIT)
     prev_path = favourited_by_api_v1_status_url(since_id: results.first.id) unless results.empty?
 
     set_pagination_headers(next_path, prev_path)
