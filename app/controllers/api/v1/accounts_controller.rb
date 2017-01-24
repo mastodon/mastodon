@@ -16,13 +16,13 @@ class Api::V1::AccountsController < ApiController
   end
 
   def following
-    results   = Follow.where(account: @account).paginate_by_max_id(DEFAULT_ACCOUNTS_LIMIT, params[:max_id], params[:since_id])
+    results   = Follow.where(account: @account).paginate_by_max_id(limit_param(DEFAULT_ACCOUNTS_LIMIT), params[:max_id], params[:since_id])
     accounts  = Account.where(id: results.map(&:target_account_id)).map { |a| [a.id, a] }.to_h
     @accounts = results.map { |f| accounts[f.target_account_id] }
 
     set_account_counters_maps(@accounts)
 
-    next_path = following_api_v1_account_url(max_id: results.last.id)    if results.size == DEFAULT_ACCOUNTS_LIMIT
+    next_path = following_api_v1_account_url(max_id: results.last.id)    if results.size == limit_param(DEFAULT_ACCOUNTS_LIMIT)
     prev_path = following_api_v1_account_url(since_id: results.first.id) unless results.empty?
 
     set_pagination_headers(next_path, prev_path)
@@ -31,13 +31,13 @@ class Api::V1::AccountsController < ApiController
   end
 
   def followers
-    results   = Follow.where(target_account: @account).paginate_by_max_id(DEFAULT_ACCOUNTS_LIMIT, params[:max_id], params[:since_id])
+    results   = Follow.where(target_account: @account).paginate_by_max_id(limit_param(DEFAULT_ACCOUNTS_LIMIT), params[:max_id], params[:since_id])
     accounts  = Account.where(id: results.map(&:account_id)).map { |a| [a.id, a] }.to_h
     @accounts = results.map { |f| accounts[f.account_id] }
 
     set_account_counters_maps(@accounts)
 
-    next_path = followers_api_v1_account_url(max_id: results.last.id)    if results.size == DEFAULT_ACCOUNTS_LIMIT
+    next_path = followers_api_v1_account_url(max_id: results.last.id)    if results.size == limit_param(DEFAULT_ACCOUNTS_LIMIT)
     prev_path = followers_api_v1_account_url(since_id: results.first.id) unless results.empty?
 
     set_pagination_headers(next_path, prev_path)
@@ -46,13 +46,13 @@ class Api::V1::AccountsController < ApiController
   end
 
   def statuses
-    @statuses = @account.statuses.permitted_for(@account, current_account).paginate_by_max_id(DEFAULT_STATUSES_LIMIT, params[:max_id], params[:since_id])
+    @statuses = @account.statuses.permitted_for(@account, current_account).paginate_by_max_id(limit_param(DEFAULT_STATUSES_LIMIT), params[:max_id], params[:since_id])
     @statuses = cache_collection(@statuses, Status)
 
     set_maps(@statuses)
     set_counters_maps(@statuses)
 
-    next_path = statuses_api_v1_account_url(max_id: @statuses.last.id)    if @statuses.size == DEFAULT_STATUSES_LIMIT
+    next_path = statuses_api_v1_account_url(max_id: @statuses.last.id)    if @statuses.size == limit_param(DEFAULT_STATUSES_LIMIT)
     prev_path = statuses_api_v1_account_url(since_id: @statuses.first.id) unless @statuses.empty?
 
     set_pagination_headers(next_path, prev_path)
@@ -98,8 +98,7 @@ class Api::V1::AccountsController < ApiController
   end
 
   def search
-    limit = params[:limit] ? [DEFAULT_ACCOUNTS_LIMIT, params[:limit].to_i].min : DEFAULT_ACCOUNTS_LIMIT
-    @accounts = SearchService.new.call(params[:q], limit, params[:resolve] == 'true')
+    @accounts = SearchService.new.call(params[:q], limit_param(DEFAULT_ACCOUNTS_LIMIT), params[:resolve] == 'true')
 
     set_account_counters_maps(@accounts) unless @accounts.nil?
 
