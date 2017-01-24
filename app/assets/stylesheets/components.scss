@@ -60,6 +60,17 @@
   }
 }
 
+.invisible {
+  font-size: 0;
+  line-height: 0;
+}
+
+.ellipsis {
+  &:after {
+    content: "…";
+  }
+}
+
 .lightbox .icon-button {
   color: $color1;
 }
