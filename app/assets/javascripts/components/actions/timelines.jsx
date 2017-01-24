@@ -115,7 +115,12 @@ export function expandTimeline(timeline, id = null) {
       path = `${path}/${id}`
     }
 
-    api(getState).get(`/api/v1/timelines/${path}?max_id=${lastId}`).then(response => {
+    api(getState).get(`/api/v1/timelines/${path}`, {
+      params: {
+        limit: 10,
+        max_id: lastId
+      }
+    }).then(response => {
       dispatch(expandTimelineSuccess(timeline, response.data));
     }).catch(error => {
       dispatch(expandTimelineFail(timeline, error));

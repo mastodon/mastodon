@@ -11,7 +11,8 @@ const StatusList = React.createClass({
     onScrollToBottom: React.PropTypes.func,
     onScrollToTop: React.PropTypes.func,
     onScroll: React.PropTypes.func,
-    trackScroll: React.PropTypes.bool
+    trackScroll: React.PropTypes.bool,
+    isLoading: React.PropTypes.bool
   },
 
   getDefaultProps () {
@@ -24,10 +25,10 @@ const StatusList = React.createClass({
 
   handleScroll (e) {
     const { scrollTop, scrollHeight, clientHeight } = e.target;
-
+    const offset = scrollHeight - scrollTop - clientHeight;
     this._oldScrollPosition = scrollHeight - scrollTop;
 
-    if (scrollTop === scrollHeight - clientHeight && this.props.onScrollToBottom) {
+    if (250 > offset && this.props.onScrollToBottom && !this.props.isLoading) {
       this.props.onScrollToBottom();
     } else if (scrollTop < 100 && this.props.onScrollToTop) {
       this.props.onScrollToTop();
@@ -36,21 +37,37 @@ const StatusList = React.createClass({
     }
   },
 
-  componentDidUpdate (prevProps) {
-    if (prevProps.statusIds.size < this.props.statusIds.size && prevProps.statusIds.first() !== this.props.statusIds.first() && this._oldScrollPosition) {
-      const node = ReactDOM.findDOMNode(this);
+  componentDidMount () {
+    this.attachScrollListener();
+  },
 
-      if (node.scrollTop > 0) {
-        node.scrollTop = node.scrollHeight - this._oldScrollPosition;
-      }
+  componentDidUpdate (prevProps) {
+    if (this.node.scrollTop > 0 && (prevProps.statusIds.size < this.props.statusIds.size && prevProps.statusIds.first() !== this.props.statusIds.first() && !!this._oldScrollPosition)) {
+      this.node.scrollTop = this.node.scrollHeight - this._oldScrollPosition;
     }
+  },
+
+  componentWillUnmount () {
+    this.detachScrollListener();
+  },
+
+  attachScrollListener () {
+    this.node.addEventListener('scroll', this.handleScroll);
+  },
+
+  detachScrollListener () {
+    this.node.removeEventListener('scroll', this.handleScroll);
+  },
+
+  setRef (c) {
+    this.node = c;
   },
 
   render () {
     const { statusIds, onScrollToBottom, trackScroll } = this.props;
 
     const scrollableArea = (
-      <div className='scrollable' onScroll={this.handleScroll}>
+      <div className='scrollable' ref={this.setRef}>
         <div>
           {statusIds.map((statusId) => {
             return <StatusContainer key={statusId} id={statusId} />;

@@ -80,7 +80,7 @@ export function fetchAccount(id) {
 
 export function fetchAccountTimeline(id, replace = false) {
   return (dispatch, getState) => {
-    const ids      = getState().getIn(['timelines', 'accounts_timelines', id], Immutable.List());
+    const ids      = getState().getIn(['timelines', 'accounts_timelines', id, 'items'], Immutable.List());
     const newestId = ids.size > 0 ? ids.first() : null;
 
     let params = '';
@@ -103,11 +103,16 @@ export function fetchAccountTimeline(id, replace = false) {
 
 export function expandAccountTimeline(id) {
   return (dispatch, getState) => {
-    const lastId = getState().getIn(['timelines', 'accounts_timelines', id], Immutable.List()).last();
+    const lastId = getState().getIn(['timelines', 'accounts_timelines', id, 'items'], Immutable.List()).last();
 
     dispatch(expandAccountTimelineRequest(id));
 
-    api(getState).get(`/api/v1/accounts/${id}/statuses?max_id=${lastId}`).then(response => {
+    api(getState).get(`/api/v1/accounts/${id}/statuses`, {
+      params: {
+        limit: 10,
+        max_id: lastId
+      }
+    }).then(response => {
       dispatch(expandAccountTimelineSuccess(id, response.data));
     }).catch(error => {
       dispatch(expandAccountTimelineFail(id, error));
