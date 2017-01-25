@@ -42,9 +42,8 @@ module AtomBuilderHelper
   end
 
   def content(xml, content, warning = nil)
-    extra = { type: 'html' }
-    extra[:warning] = warning unless warning.blank?
-    xml.content(extra, content) unless content.blank?
+    xml.summary(warning) unless warning.blank?
+    xml.content({ type: 'html' }, content) unless content.blank?
   end
 
   def title(xml, title)

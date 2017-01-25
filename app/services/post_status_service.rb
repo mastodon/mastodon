@@ -16,7 +16,7 @@ class PostStatusService < BaseService
     status = account.statuses.create!(text: text,
                                       thread: in_reply_to,
                                       sensitive: options[:sensitive],
-                                      spoiler_text: options[:spoiler_text],
+                                      spoiler_text: options[:spoiler_text] || '',
                                       visibility: options[:visibility],
                                       application: options[:application])
 

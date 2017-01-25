@@ -225,7 +225,7 @@ class ProcessFeedService < BaseService
     end
 
     def content_warning(xml = @xml)
-      xml.at_xpath('./xmlns:content', xmlns: TagManager::XMLNS)['warning']
+      xml.at_xpath('./xmlns:summary', xmlns: TagManager::XMLNS)&.content || ''
     end
 
     def published(xml = @xml)
