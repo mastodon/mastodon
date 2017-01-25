@@ -679,41 +679,7 @@
   }
 }
 
-.spoiler-helper {
-  margin-bottom: -20px !important;
-}
-
-.spoiler {
-  &::before {
-    margin-top: 20px;
-    display: block;
-    content: '';
-  }
-
-  display: inline;
-  cursor: pointer;
-  border-bottom: 1px dashed white;
-  .light & {
-    border-bottom: 1px dashed black;
-  }
-
-  &.spoiler-on {
-    &, & * {
-      color: transparent !important;
-    }
-    background: white;
-    .light & {
-      background: black;
-    }
-
-    .emojione {
-      opacity: 0;
-    }
-  }
-}
-
 @import 'boost';
-
 
 button i.fa-retweet {
   height: 19px;
