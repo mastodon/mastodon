@@ -1,0 +1,17 @@
+- content_for :page_title do
+  = t('settings.blocks')
+
+= form_tag(settings_blocks_path, method: "put", class: "simple_form") do
+  = label_tag :domain_blocklist, t('settings.forms.domain_blocklist'), class: "checklist_header"
+
+  - @domains.each_with_index do |domain, i|
+    .checklist_item
+      %input{:type => "hidden", :name => "domains[%d][name]" % i, :value => domain.name}
+      %input{:type => "hidden", :name => "domains[%d][state]" % i, :value => "false"}
+        = check_box_tag "domains[%d][state]" % i, "true", domain.blocked?
+      = label_tag("domains[%d][state]" % i, domain.name)
+
+  .actions
+    %button.btn{:name => "button", :type => "submit"}= t('generic.save_changes')
+
+.form-footer= render "settings/shared/links"

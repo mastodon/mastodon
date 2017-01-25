@@ -46,6 +46,7 @@ Rails.application.routes.draw do
   namespace :settings do
     resource :profile, only: [:show, :update]
     resource :preferences, only: [:show, :update]
+    resource :blocks, only: [:show, :update]
   end
 
   resources :media, only: [:show]

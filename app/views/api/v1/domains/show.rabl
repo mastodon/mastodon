@@ -1,3 +1,3 @@
 object @domain
 
-attributes :name, :blocked, :blocked_globally
+attributes :name, :blocked?, :blocked_globally?
