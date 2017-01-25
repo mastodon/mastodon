@@ -12,6 +12,6 @@ Some functionality in Mastodon required some additions to the protocols to enabl
 
 2. Statuses can be marked as containing sensitive (or not safe for work) media. This is symbolized by a `<category term="nsfw" />` on the Atom entry
 
-3. Statuses can have a content warning (used e.g. for warning about spoilers in the text). It is stored in the `warning` attribute on the `<content />` tag of the Atom entry
+3. Statuses can have a content warning (used e.g. for warning about spoilers in the text). It is stored in the `warning` attribute on the `<content />` tag of the Atom entry, e.g. `<content type="html" warning="This post talks about the ending to 6th sense">Lorem ipsum dolor sit amet</content>`
 
 4. Statuses that are intended to be listed publicly on e.g. "whole known network" or "public" timelines contain a `<link rel="mentioned" href="http://activityschema.org/collection/public" ostatus:object-type="http://activitystrea.ms/schema/1.0/collection"/>`. Conversely, statuses which do not contain that, are intended to be low key, unlisted
