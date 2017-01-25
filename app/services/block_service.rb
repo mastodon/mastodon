@@ -4,8 +4,7 @@ class BlockService < BaseService
   def call(account, target_account)
     return if account.id == target_account.id
 
-    UnfollowService.new.call(account, target_account) if account.following?(target_account)
-    UnfollowService.new.call(target_account, account) if target_account.following?(account)
+    break_follows(account, target_account)
 
     block = account.block!(target_account)
 
@@ -15,7 +14,12 @@ class BlockService < BaseService
     NotificationWorker.perform_async(block.stream_entry.id, target_account.id) unless target_account.local?
   end
 
-  private
+  protected
+
+  def break_follows(account, target_account)
+    UnfollowService.new.call(account, target_account) if account.following?(target_account)
+    UnfollowService.new.call(target_account, account) if target_account.following?(account)
+  end
 
   def clear_timelines(account, target_account)
     mentions_key = FeedManager.instance.key(:mentions, account.id)

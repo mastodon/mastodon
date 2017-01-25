@@ -74,7 +74,7 @@ class Status < ApplicationRecord
   end
 
   def permitted?(other_account = nil)
-    private_visibility? ? (account.id == other_account&.id || other_account&.following?(account)) : other_account.nil? || !account.blocking?(other_account)
+    private_visibility? ? (account.id == other_account&.id || other_account&.following?(account)) : other_account.nil? || !account.blocking_account_or_domain?(other_account)
   end
 
   def ancestors(account = nil)
@@ -150,7 +150,7 @@ class Status < ApplicationRecord
     def permitted_for(target_account, account)
       if account&.id == target_account.id || account&.following?(target_account)
         where('1 = 1')
-      elsif !account.nil? && target_account.blocking?(account)
+      elsif !account.nil? && target_account.blocking_account_or_domain?(account)
         where('1 = 0')
       else
         where.not(visibility: :private)
@@ -184,6 +184,6 @@ class Status < ApplicationRecord
   private
 
   def filter_from_context?(status, account)
-    account&.blocking?(status.account) || !status.permitted?(account)
+    account&.blocking_account_or_domain?(status.account) || !status.permitted?(account)
   end
 end

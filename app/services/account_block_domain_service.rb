@@ -1,7 +1,21 @@
 # frozen_string_literal: true
 
-class AccountBlockDomainService < BaseService
+class AccountBlockDomainService < BlockService
   def call(account, domain)
-    AccountDomainBlock.find_or_create_by!(account_id: account.id, target_domain: domain)
+    return if account.blocking_domain?(domain)
+    account.block_domain!(domain)
+
+    account.followers.where(domain: domain).each do |follower|
+      UnfollowService.new.call(follower, account)
+    end
+
+    account.following.where(domain: domain).each do |following|
+      UnfollowService.new.call(account, following)
+    end
+
+    Account.where(domain: domain).each do |target_account|
+      clear_timelines(account, target_account)
+      clear_notifications(account, target_account)
+    end
   end
 end

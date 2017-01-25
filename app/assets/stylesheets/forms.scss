@@ -18,9 +18,16 @@ code {
     font-size: 16px;
   }
   .checklist_item {
-    display: block;;
-    padding-left: 25px;
-    font-size: 14px
+    display: block;
+  }
+
+  .checklist_box {
+    font-size: 14px;
+    padding: 10px 25px;
+    margin-top: 10px;
+    height: 250px;
+    overflow-y: scroll;
+    background-color: rgba(0, 0, 0, 0.3);
   }
 
   .hint {

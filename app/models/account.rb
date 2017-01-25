@@ -88,7 +88,7 @@ class Account < ApplicationRecord
     block = block_relationships.find_by(target_account: other_account)
     block&.destroy
   end
-  
+
   def unblock_domain!(domain)
     domain_block = domain_block_relationships.find_by(target_domain: domain)
     domain_block&.destroy
@@ -104,6 +104,10 @@ class Account < ApplicationRecord
 
   def blocking_domain?(domain)
     domain_block_relationships.exists?(target_domain: domain)
+  end
+
+  def blocking_account_or_domain?(other_account)
+    blocking?(other_account) || blocking_domain?(other_account.domain)
   end
 
   def requested?(other_account)
