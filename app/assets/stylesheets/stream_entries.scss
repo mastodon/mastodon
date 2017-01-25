@@ -249,6 +249,7 @@
       padding: 5px;
       border-radius: 100px;
       color: rgba($color5, 0.8);
+      z-index: 1;
     }
   }
 
@@ -263,6 +264,7 @@
     flex-direction: column;
     text-align: center;
     transition: all 100ms linear;
+    z-index: 2;
 
     &:hover {
       background: darken($color3, 5%);

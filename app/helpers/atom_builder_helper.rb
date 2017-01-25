@@ -41,8 +41,10 @@ module AtomBuilderHelper
     xml['activity'].send('verb', TagManager::VERBS[verb])
   end
 
-  def content(xml, content)
-    xml.content({ type: 'html' }, content) unless content.blank?
+  def content(xml, content, warning = nil)
+    extra = { type: 'html' }
+    extra[:warning] = warning unless warning.blank?
+    xml.content(extra, content) unless content.blank?
   end
 
   def title(xml, title)
@@ -153,12 +155,20 @@ module AtomBuilderHelper
     portable_contact xml, account
   end
 
+  def rich_content(xml, activity)
+    if activity.is_a?(Status)
+      content xml, conditionally_formatted(activity), activity.spoiler_text
+    else
+      content xml, conditionally_formatted(activity)
+    end
+  end
+
   def include_entry(xml, stream_entry)
     unique_id      xml, stream_entry.created_at, stream_entry.activity_id, stream_entry.activity_type
     published_at   xml, stream_entry.created_at
     updated_at     xml, stream_entry.updated_at
     title          xml, stream_entry.title
-    content        xml, conditionally_formatted(stream_entry.activity)
+    rich_content   xml, stream_entry.activity
     verb           xml, stream_entry.verb
     link_self      xml, account_stream_entry_url(stream_entry.account, stream_entry, format: 'atom')
     link_alternate xml, account_stream_entry_url(stream_entry.account, stream_entry)

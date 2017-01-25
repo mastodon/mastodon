@@ -9,7 +9,7 @@ class FetchLinkCardService < BaseService
 
     response = http_client.get(url)
 
-    return if response.code != 200
+    return if response.code != 200 || response.mime_type != 'text/html'
 
     page = Nokogiri::HTML(response.to_s)
     card = PreviewCard.where(status: status).first_or_initialize(status: status, url: url)
@@ -17,6 +17,8 @@ class FetchLinkCardService < BaseService
     card.title       = meta_property(page, 'og:title') || page.at_xpath('//title')&.content
     card.description = meta_property(page, 'og:description') || meta_property(page, 'description')
     card.image       = URI.parse(meta_property(page, 'og:image')) if meta_property(page, 'og:image')
+
+    return if card.title.blank?
 
     card.save_with_optional_image!
   end
