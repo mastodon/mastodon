@@ -3,6 +3,17 @@ import PureRenderMixin from 'react-addons-pure-render-mixin';
 import emojify from '../emoji';
 import { FormattedMessage } from 'react-intl';
 
+const spoilerStyle = {
+  display: 'inline-block',
+  borderRadius: '2px',
+  color: '#363c4b',
+  fontWeight: '500',
+  fontSize: '11px',
+  padding: '0px 6px',
+  textTransform: 'uppercase',
+  lineHeight: 'inherit'
+};
+
 const StatusContent = React.createClass({
 
   contextTypes: {
@@ -86,16 +97,6 @@ const StatusContent = React.createClass({
 
     const content = { __html: emojify(status.get('content')) };
     const spoilerContent = { __html: emojify(status.get('spoiler_text', '')) };
-    const spoilerStyle = {
-      backgroundColor: '#616b86', 
-      borderRadius: '4px',
-      color: '#363c4b',
-      fontWeight: '500',
-      fontSize: '12px',
-      padding: '0 4px',
-      textTransform: 'uppercase'
-    };
-
 
     if (status.get('spoiler_text').length > 0) {
       const toggleText = hidden ? <FormattedMessage id='status.show_more' defaultMessage='Show more' /> : <FormattedMessage id='status.show_less' defaultMessage='Show less' />;
@@ -103,7 +104,7 @@ const StatusContent = React.createClass({
       return (
         <div className='status__content' style={{ cursor: 'pointer' }} onMouseDown={this.handleMouseDown} onMouseUp={this.handleMouseUp}>
           <p style={{ marginBottom: hidden ? '0px' : '' }} >
-            <span dangerouslySetInnerHTML={spoilerContent} /> <a style={spoilerStyle} onClick={this.handleSpoilerClick}>[{toggleText}]</a>
+            <span dangerouslySetInnerHTML={spoilerContent} /> <a className='status__content__spoiler-link' style={spoilerStyle} onClick={this.handleSpoilerClick}>{toggleText}</a>
           </p>
 
           <div style={{ display: hidden ? 'none' : 'block' }} dangerouslySetInnerHTML={content} />

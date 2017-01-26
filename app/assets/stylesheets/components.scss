@@ -137,6 +137,15 @@
       }
     }
   }
+
+  .status__content__spoiler-link {
+    background: lighten($color1, 26%);
+
+    &:hover {
+      background: lighten($color1, 29%);
+      text-decoration: none;
+    }
+  }
 }
 
 .detailed-status {

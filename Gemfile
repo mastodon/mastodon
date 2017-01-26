@@ -79,7 +79,7 @@ end
 
 group :production do
   gem 'rails_12factor'
-  gem 'lograge'
   gem 'redis-rails'
-  gem 'rack-timeout-puma'
+  gem 'lograge'
+  gem 'rack-timeout'
 end

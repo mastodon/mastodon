@@ -72,7 +72,7 @@ GEM
     browserify-rails (3.1.0)
       railties (>= 4.0.0, < 5.1)
       sprockets (>= 3.5.2)
-    builder (3.2.2)
+    builder (3.2.3)
     bullet (5.3.0)
       activesupport (>= 3.0.0)
       uniform_notifier (~> 1.10.0)
@@ -198,7 +198,7 @@ GEM
     minitest (5.10.1)
     multi_json (1.12.1)
     nio4r (1.2.1)
-    nokogiri (1.6.8.1)
+    nokogiri (1.7.0.1)
       mini_portile2 (~> 2.1.0)
     oj (2.17.3)
     orm_adapter (0.5.0)
@@ -244,8 +244,6 @@ GEM
     rack-test (0.6.3)
       rack (>= 1.0)
     rack-timeout (0.4.2)
-    rack-timeout-puma (0.0.1)
-      rack-timeout (~> 0.2, >= 0.2.0)
     rails (5.0.1)
       actioncable (= 5.0.1)
       actionmailer (= 5.0.1)
@@ -258,9 +256,9 @@ GEM
       bundler (>= 1.3.0, < 2.0)
       railties (= 5.0.1)
       sprockets-rails (>= 2.0.0)
-    rails-dom-testing (2.0.1)
+    rails-dom-testing (2.0.2)
       activesupport (>= 4.2.0, < 6.0)
-      nokogiri (~> 1.6.0)
+      nokogiri (~> 1.6)
     rails-html-sanitizer (1.0.3)
       loofah (~> 2.0)
     rails-settings-cached (0.6.5)
@@ -450,7 +448,7 @@ DEPENDENCIES
   rabl
   rack-attack
   rack-cors
-  rack-timeout-puma
+  rack-timeout
   rails (~> 5.0.1.0)
   rails-settings-cached
   rails_12factor
@@ -476,4 +474,4 @@ RUBY VERSION
    ruby 2.3.1p112
 
 BUNDLED WITH
-   1.13.7
+   1.14.3
