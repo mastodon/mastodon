@@ -88,10 +88,11 @@ const StatusContent = React.createClass({
     const spoilerContent = { __html: emojify(status.get('spoiler_text', '')) };
     const spoilerStyle = {
       backgroundColor: '#fff', 
-      borderRadius: '0 4px',
+      borderRadius: '4px',
       color: '#363c4b',
       fontWeight: '500',
       fontSize: '12px',
+      padding: '0 4px',
       textTransform: 'uppercase'
     };
 
