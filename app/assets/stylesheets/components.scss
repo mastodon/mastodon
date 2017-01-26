@@ -139,10 +139,10 @@
   }
 
   .status__content__spoiler-link {
-    background: lighten($color1, 26%);
+    background: lighten($color1, 30%);
 
     &:hover {
-      background: lighten($color1, 29%);
+      background: lighten($color1, 33%);
       text-decoration: none;
     }
   }
@@ -261,6 +261,15 @@
   .status__avatar {
     opacity: 0.5;
   }
+
+  .status__content__spoiler-link {
+    background: lighten($color1, 26%);
+
+    &:hover {
+      background: lighten($color1, 29%);
+      text-decoration: none;
+    }
+  }
 }
 
 .notification__display-name {
@@ -354,6 +363,7 @@
 
 .columns-area {
   flex-direction: row;
+  justify-content: flex-start;
 }
 
 @media screen and (min-width: 360px) {
@@ -369,6 +379,19 @@
 
 .drawer {
   width: 280px;
+}
+
+@media screen and (min-width: 2560px) {
+  .columns-area {
+    justify-content: center;
+  }
+
+  .column, .drawer {
+    width: 350px;
+    border-radius: 4px;
+    height: 90vh;
+    margin-top: 5vh;
+  }
 }
 
 .drawer__inner {
