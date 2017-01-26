@@ -20,7 +20,8 @@ const getNotifications = createSelector([
 ], (excludedTypes, notifications) => notifications.filterNot(item => excludedTypes.includes(item.get('type'))));
 
 const mapStateToProps = state => ({
-  notifications: getNotifications(state)
+  notifications: getNotifications(state),
+  isLoading: state.getIn(['notifications', 'isLoading'], true)
 });
 
 const Notifications = React.createClass({
@@ -29,7 +30,8 @@ const Notifications = React.createClass({
     notifications: ImmutablePropTypes.list.isRequired,
     dispatch: React.PropTypes.func.isRequired,
     trackScroll: React.PropTypes.bool,
-    intl: React.PropTypes.object.isRequired
+    intl: React.PropTypes.object.isRequired,
+    isLoading: React.PropTypes.bool
   },
 
   getDefaultProps () {
@@ -42,8 +44,9 @@ const Notifications = React.createClass({
 
   handleScroll (e) {
     const { scrollTop, scrollHeight, clientHeight } = e.target;
+    const offset = scrollHeight - scrollTop - clientHeight;
 
-    if (scrollTop === scrollHeight - clientHeight) {
+    if (250 > offset && !this.props.isLoading) {
       this.props.dispatch(expandNotifications());
     }
   },

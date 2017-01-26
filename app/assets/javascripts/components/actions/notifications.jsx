@@ -96,13 +96,17 @@ export function expandNotifications() {
   return (dispatch, getState) => {
     const url = getState().getIn(['notifications', 'next'], null);
 
-    if (url === null) {
+    if (url === null || getState().getIn(['notifications', 'isLoading'])) {
       return;
     }
 
     dispatch(expandNotificationsRequest());
 
-    api(getState).get(url).then(response => {
+    api(getState).get(url, {
+      params: {
+        limit: 5
+      }
+    }).then(response => {
       const next = getLinks(response).refs.find(link => link.rel === 'next');
 
       dispatch(expandNotificationsSuccess(response.data, next ? next.uri : null));
