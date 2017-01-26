@@ -15,10 +15,10 @@ module StreamEntriesHelper
 
   def entry_classes(status, is_predecessor, is_successor, include_threads)
     classes = ['entry']
-    classes << 'entry-reblog' if status.reblog?
-    classes << 'entry-predecessor' if is_predecessor
-    classes << 'entry-successor' if is_successor
-    classes << 'entry-center' if include_threads
+    classes << 'entry-reblog u-repost-of h-cite' if status.reblog?
+    classes << 'entry-predecessor u-in-reply-to h-cite' if is_predecessor
+    classes << 'entry-successor u-comment h-cite' if is_successor
+    classes << 'entry-center h-entry' if include_threads
     classes.join(' ')
   end
 

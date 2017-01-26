@@ -1,7 +1,7 @@
 import emojify from './components/emoji'
 
 $(() => {
-  $.each($('.entry .content, .entry .status__content, .status__display-name, .display-name, .name, .account__header__content'), (_, content) => {
+  $.each($('.emojify'), (_, content) => {
     const $content = $(content);
     $content.html(emojify($content.html()));
   });
@@ -19,8 +19,6 @@ $(() => {
   });
 
   $('.webapp-btn').on('click', e => {
-    console.log(e);
-
     if (e.button === 0) {
       e.preventDefault();
       window.location.href = $(e.target).attr('href');

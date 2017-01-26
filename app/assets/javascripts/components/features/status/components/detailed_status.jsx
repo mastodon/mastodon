@@ -7,6 +7,7 @@ import MediaGallery from '../../../components/media_gallery';
 import VideoPlayer from '../../../components/video_player';
 import { Link } from 'react-router';
 import { FormattedDate, FormattedNumber } from 'react-intl';
+import CardContainer from '../containers/card_container';
 
 const DetailedStatus = React.createClass({
 
@@ -32,7 +33,9 @@ const DetailedStatus = React.createClass({
 
   render () {
     const status = this.props.status.get('reblog') ? this.props.status.get('reblog') : this.props.status;
-    let media    = '';
+
+    let media           = '';
+    let applicationLink = '';
 
     if (status.get('media_attachments').size > 0) {
       if (status.getIn(['media_attachments', 0, 'type']) === 'video') {
@@ -40,6 +43,12 @@ const DetailedStatus = React.createClass({
       } else {
         media = <MediaGallery sensitive={status.get('sensitive')} media={status.get('media_attachments')} height={300} onOpenMedia={this.props.onOpenMedia} />;
       }
+    } else {
+      media = <CardContainer statusId={status.get('id')} />;
+    }
+
+    if (status.get('application')) {
+      applicationLink = <span> · <a className='detailed-status__application' style={{ color: 'inherit' }} href={status.getIn(['application', 'website'])} target='_blank' rel='nooopener'>{status.getIn(['application', 'name'])}</a></span>;
     }
 
     return (
@@ -54,7 +63,7 @@ const DetailedStatus = React.createClass({
         {media}
 
         <div style={{ marginTop: '15px', color: '#616b86', fontSize: '14px', lineHeight: '18px' }}>
-          <a className='detailed-status__datetime' style={{ color: 'inherit' }} href={status.get('url')} target='_blank' rel='noopener'><FormattedDate value={new Date(status.get('created_at'))} hour12={false} year='numeric' month='short' day='2-digit' hour='2-digit' minute='2-digit' /></a> · <Link to={`/statuses/${status.get('id')}/reblogs`} style={{ color: 'inherit', textDecoration: 'none' }}><i className='fa fa-retweet' /><span style={{ fontWeight: '500', fontSize: '12px', marginLeft: '6px', display: 'inline-block' }}><FormattedNumber value={status.get('reblogs_count')} /></span></Link> · <Link to={`/statuses/${status.get('id')}/favourites`} style={{ color: 'inherit', textDecoration: 'none' }}><i className='fa fa-star' /><span style={{ fontWeight: '500', fontSize: '12px', marginLeft: '6px', display: 'inline-block' }}><FormattedNumber value={status.get('favourites_count')} /></span></Link>
+          <a className='detailed-status__datetime' style={{ color: 'inherit' }} href={status.get('url')} target='_blank' rel='noopener'><FormattedDate value={new Date(status.get('created_at'))} hour12={false} year='numeric' month='short' day='2-digit' hour='2-digit' minute='2-digit' /></a>{applicationLink} · <Link to={`/statuses/${status.get('id')}/reblogs`} style={{ color: 'inherit', textDecoration: 'none' }}><i className='fa fa-retweet' /><span style={{ fontWeight: '500', fontSize: '12px', marginLeft: '6px', display: 'inline-block' }}><FormattedNumber value={status.get('reblogs_count')} /></span></Link> · <Link to={`/statuses/${status.get('id')}/favourites`} style={{ color: 'inherit', textDecoration: 'none' }}><i className='fa fa-star' /><span style={{ fontWeight: '500', fontSize: '12px', marginLeft: '6px', display: 'inline-block' }}><FormattedNumber value={status.get('favourites_count')} /></span></Link>
         </div>
       </div>
     );

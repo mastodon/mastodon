@@ -6,7 +6,9 @@ class ReblogService < BaseService
   # @param [Status] reblogged_status Status to be reblogged
   # @return [Status]
   def call(account, reblogged_status)
-    raise Mastodon::NotPermitted if reblogged_status.private_visibility?
+    reblogged_status = reblogged_status.reblog if reblogged_status.reblog?
+
+    raise Mastodon::NotPermitted if reblogged_status.private_visibility? || !reblogged_status.permitted?(account)
 
     reblog = account.statuses.create!(reblog: reblogged_status, text: '')
 

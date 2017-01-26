@@ -38,7 +38,8 @@ const AutosuggestTextarea = React.createClass({
     onSuggestionsClearRequested: React.PropTypes.func.isRequired,
     onSuggestionsFetchRequested: React.PropTypes.func.isRequired,
     onChange: React.PropTypes.func.isRequired,
-    onKeyUp: React.PropTypes.func
+    onKeyUp: React.PropTypes.func,
+    onKeyDown: React.PropTypes.func
   },
 
   getInitialState () {
@@ -108,15 +109,28 @@ const AutosuggestTextarea = React.createClass({
 
         break;
     }
+
+    if (e.defaultPrevented || !this.props.onKeyDown) {
+      return;
+    }
+
+    this.props.onKeyDown(e);
   },
 
   onBlur () {
-    this.setState({ suggestionsHidden: true });
+    // If we hide the suggestions immediately, then this will prevent the
+    // onClick for the suggestions themselves from firing.
+    // Setting a short window for that to take place before hiding the
+    // suggestions ensures that can't happen.
+    setTimeout(() => {
+      this.setState({ suggestionsHidden: true });
+    }, 100);
   },
 
   onSuggestionClick (suggestion, e) {
     e.preventDefault();
     this.props.onSuggestionSelected(this.state.tokenStart, this.state.lastToken, suggestion);
+    this.textarea.focus();
   },
 
   componentWillReceiveProps (nextProps) {

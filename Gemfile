@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 source 'https://rubygems.org'
+ruby '2.3.1'
 
 gem 'rails', '~> 5.0.1.0'
 gem 'sass-rails', '~> 5.0'
@@ -16,8 +17,9 @@ gem 'pg'
 gem 'pghero'
 gem 'dotenv-rails'
 gem 'font-awesome-rails'
+gem 'best_in_place', '~> 3.0.1'
 
-gem 'paperclip', '~> 5.0'
+gem 'paperclip', '~> 5.1'
 gem 'paperclip-av-transcoder'
 gem 'aws-sdk', '>= 2.0'
 
@@ -29,7 +31,6 @@ gem 'link_header'
 gem 'ostatus2'
 gem 'goldfinger'
 gem 'devise'
-gem 'rails_autolink'
 gem 'doorkeeper'
 gem 'rabl'
 gem 'oj'
@@ -42,9 +43,11 @@ gem 'will_paginate'
 gem 'rack-attack'
 gem 'rack-cors', require: 'rack/cors'
 gem 'sidekiq'
-gem 'ledermann-rails-settings'
+gem 'rails-settings-cached'
 gem 'pg_search'
 gem 'simple-navigation'
+gem 'statsd-instrument'
+gem 'ruby-oembed', require: 'oembed'
 
 gem 'react-rails'
 gem 'browserify-rails'
@@ -69,6 +72,7 @@ group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'letter_opener'
+  gem 'letter_opener_web'
   gem 'bullet'
   gem 'active_record_query_trace'
 end

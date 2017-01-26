@@ -1,27 +1,27 @@
-.card{ style: "background-image: url(#{@account.header.url( :original)})" }
+.card.h-card.p-author{ style: "background-image: url(#{@account.header.url( :original)})" }
   - if user_signed_in? && current_account.id != @account.id && !current_account.requested?(@account)
     .controls
       - if current_account.following?(@account)
         = link_to t('accounts.unfollow'), unfollow_account_path(@account), data: { method: :post }, class: 'button'
       - else
         = link_to t('accounts.follow'), follow_account_path(@account), data: { method: :post }, class: 'button'
-  - else
+  - elsif !user_signed_in?
     .controls
       .remote-follow
         = link_to t('accounts.remote_follow'), account_remote_follow_path(@account), class: 'button'
-  .avatar= image_tag @account.avatar.url(:original)
+  .avatar= image_tag @account.avatar.url(:original), class: 'u-photo'
   %h1.name
-    = display_name(@account)
+    %span.p-name.emojify= display_name(@account)
     %small
-      = "@#{@account.username}"
+      %span.p-nickname= "@#{@account.username}"
       = fa_icon('lock') if @account.locked?
   .details
     .bio
-      .account__header__content= Formatter.instance.simplified_format(@account)
+      .account__header__content.p-note.emojify= Formatter.instance.simplified_format(@account)
 
     .details-counters
       .counter{ class: active_nav_class(account_url(@account)) }
-        = link_to account_url(@account) do
+        = link_to account_url(@account), class: 'u-url u-uid' do
           %span.counter-label= t('accounts.posts')
           %span.counter-number= number_with_delimiter @account.statuses.count
       .counter{ class: active_nav_class(following_account_url(@account)) }

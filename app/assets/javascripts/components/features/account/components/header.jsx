@@ -71,8 +71,8 @@ const Header = React.createClass({
             <span style={{ display: 'inline-block', color: '#fff', fontSize: '20px', lineHeight: '27px', fontWeight: '500' }} className='account__header__display-name' dangerouslySetInnerHTML={displayNameHTML} />
           </a>
 
-          <span style={{ fontSize: '14px', fontWeight: '400', display: 'block', color: '#2b90d9', marginBottom: '10px' }}>@{account.get('acct')} {lockedIcon}</span>
-          <div style={{ color: '#616b86', fontSize: '14px' }} className='account__header__content' dangerouslySetInnerHTML={content} />
+          <span style={{ fontSize: '14px', fontWeight: '400', display: 'block', color: '#489fde', marginBottom: '10px' }}>@{account.get('acct')} {lockedIcon}</span>
+          <div style={{ color: '#d9e1e8', fontSize: '14px' }} className='account__header__content' dangerouslySetInnerHTML={content} />
 
           {info}
           {actionBtn}

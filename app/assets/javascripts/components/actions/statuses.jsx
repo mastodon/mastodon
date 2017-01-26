@@ -1,6 +1,7 @@
 import api from '../api';
 
 import { deleteFromTimelines } from './timelines';
+import { fetchStatusCard } from './cards';
 
 export const STATUS_FETCH_REQUEST = 'STATUS_FETCH_REQUEST';
 export const STATUS_FETCH_SUCCESS = 'STATUS_FETCH_SUCCESS';
@@ -14,39 +15,44 @@ export const CONTEXT_FETCH_REQUEST = 'CONTEXT_FETCH_REQUEST';
 export const CONTEXT_FETCH_SUCCESS = 'CONTEXT_FETCH_SUCCESS';
 export const CONTEXT_FETCH_FAIL    = 'CONTEXT_FETCH_FAIL';
 
-export function fetchStatusRequest(id) {
+export function fetchStatusRequest(id, skipLoading) {
   return {
     type: STATUS_FETCH_REQUEST,
-    id: id
+    id,
+    skipLoading
   };
 };
 
 export function fetchStatus(id) {
   return (dispatch, getState) => {
-    dispatch(fetchStatusRequest(id));
+    const skipLoading = getState().getIn(['statuses', id], null) !== null;
+
+    dispatch(fetchStatusRequest(id, skipLoading));
 
     api(getState).get(`/api/v1/statuses/${id}`).then(response => {
-      dispatch(fetchStatusSuccess(response.data));
+      dispatch(fetchStatusSuccess(response.data, skipLoading));
       dispatch(fetchContext(id));
+      dispatch(fetchStatusCard(id));
     }).catch(error => {
-      dispatch(fetchStatusFail(id, error));
+      dispatch(fetchStatusFail(id, error, skipLoading));
     });
   };
 };
 
-export function fetchStatusSuccess(status, context) {
+export function fetchStatusSuccess(status, skipLoading) {
   return {
     type: STATUS_FETCH_SUCCESS,
-    status: status,
-    context: context
+    status,
+    skipLoading
   };
 };
 
-export function fetchStatusFail(id, error) {
+export function fetchStatusFail(id, error, skipLoading) {
   return {
     type: STATUS_FETCH_FAIL,
-    id: id,
-    error: error
+    id,
+    error,
+    skipLoading
   };
 };
 

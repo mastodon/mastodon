@@ -39,9 +39,9 @@ class Notification < ApplicationRecord
   def target_status
     case type
     when :reblog
-      activity.reblog
+      activity&.reblog
     when :favourite, :mention
-      activity.status
+      activity&.status
     end
   end
 

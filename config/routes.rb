@@ -3,6 +3,7 @@
 require 'sidekiq/web'
 
 Rails.application.routes.draw do
+  mount LetterOpenerWeb::Engine, at: 'letter_opener' if Rails.env.development?
   mount ActionCable.server, at: 'cable'
 
   authenticate :user, lambda { |u| u.admin? } do
@@ -58,6 +59,7 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :pubsubhubbub, only: [:index]
     resources :domain_blocks, only: [:index, :create]
+    resources :settings, only: [:index, :update]
 
     resources :accounts, only: [:index, :show, :update] do
       member do
@@ -85,6 +87,7 @@ Rails.application.routes.draw do
       resources :statuses, only: [:create, :show, :destroy] do
         member do
           get :context
+          get :card
           get :reblogged_by
           get :favourited_by
 
@@ -100,10 +103,11 @@ Rails.application.routes.draw do
       get '/timelines/public',   to: 'timelines#public', as: :public_timeline
       get '/timelines/tag/:id',  to: 'timelines#tag', as: :hashtag_timeline
 
-      resources :follows,  only: [:create]
-      resources :media,    only: [:create]
-      resources :apps,     only: [:create]
-      resources :blocks,   only: [:index]
+      resources :follows,    only: [:create]
+      resources :media,      only: [:create]
+      resources :apps,       only: [:create]
+      resources :blocks,     only: [:index]
+      resources :favourites, only: [:index]
 
       resources :follow_requests, only: [:index] do
         member do
@@ -112,8 +116,11 @@ Rails.application.routes.draw do
         end
       end
 
-      resources :notifications, only: [:index]
-      resources :favourites,    only: [:index]
+      resources :notifications, only: [:index, :show] do
+        collection do
+          post :clear
+        end
+      end
 
       resources :accounts, only: [:show] do
         collection do
@@ -134,12 +141,17 @@ Rails.application.routes.draw do
         end
       end
     end
+
+    namespace :web do
+      resource :settings, only: [:update]
+    end
   end
 
-  get '/web/*any', to: 'home#index', as: :web
+  get '/web/(*any)', to: 'home#index', as: :web
 
-  get :about, to: 'about#index'
-  get :terms, to: 'about#terms'
+  get '/about',      to: 'about#index'
+  get '/about/more', to: 'about#more'
+  get '/terms',      to: 'about#terms'
 
   root 'home#index'
 

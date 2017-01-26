@@ -12,16 +12,20 @@
   %meta{ property: 'og:image', content: full_asset_url(@account.avatar.url(:original)) }/
   %meta{ property: 'og:image:width', content: '120' }/
   %meta{ property: 'og:image:height', content: '120' }/
+  %meta{ property: 'twitter:card', content: 'summary' }/
 
-= render partial: 'header'
+.h-feed
+  %data.p-name{ value: "#{@account.username} on #{Rails.configuration.x.local_domain}" }/
 
-- if @statuses.empty?
-  .accounts-grid
-    = render partial: 'nothing_here'
-- else
-  .activity-stream
-    = render partial: 'stream_entries/status', collection: @statuses, as: :status
+  = render partial: 'header'
 
-.pagination
-  - if @statuses.size == 20
-    = link_to safe_join([t('pagination.next'), fa_icon('chevron-right')], ' '), account_url(@account, max_id: @statuses.last.id), class: 'next_page', rel: 'next'
+  - if @statuses.empty?
+    .accounts-grid
+      = render partial: 'nothing_here'
+  - else
+    .activity-stream
+      = render partial: 'stream_entries/status', collection: @statuses, as: :status
+
+  .pagination
+    - if @statuses.size == 20
+      = link_to safe_join([t('pagination.next'), fa_icon('chevron-right')], ' '), account_url(@account, max_id: @statuses.last.id), class: 'next_page', rel: 'next'

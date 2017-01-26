@@ -8,11 +8,19 @@ import Compose from '../compose';
 import TabsBar from './components/tabs_bar';
 import ModalContainer from './containers/modal_container';
 import Notifications from '../notifications';
+import { connect } from 'react-redux';
+import { isMobile } from '../../is_mobile';
 import { debounce } from 'react-decoration';
 import { uploadCompose } from '../../actions/compose';
-import { connect } from 'react-redux';
+import { refreshTimeline } from '../../actions/timelines';
+import { refreshNotifications } from '../../actions/notifications';
 
 const UI = React.createClass({
+
+  propTypes: {
+    dispatch: React.PropTypes.func.isRequired,
+    children: React.PropTypes.node
+  },
 
   getInitialState () {
     return {
@@ -41,7 +49,7 @@ const UI = React.createClass({
   handleDrop (e) {
     e.preventDefault();
 
-    if (e.dataTransfer) {
+    if (e.dataTransfer && e.dataTransfer.files.length === 1) {
       this.props.dispatch(uploadCompose(e.dataTransfer.files));
     }
   },
@@ -50,6 +58,9 @@ const UI = React.createClass({
     window.addEventListener('resize', this.handleResize, { passive: true });
     window.addEventListener('dragover', this.handleDragOver);
     window.addEventListener('drop', this.handleDrop);
+
+    this.props.dispatch(refreshTimeline('home'));
+    this.props.dispatch(refreshNotifications());
   },
 
   componentWillUnmount () {
@@ -59,11 +70,9 @@ const UI = React.createClass({
   },
 
   render () {
-    const layoutBreakpoint = 1024;
-
     let mountedColumns;
 
-    if (this.state.width <= layoutBreakpoint) {
+    if (isMobile(this.state.width)) {
       mountedColumns = (
         <ColumnsArea>
           {this.props.children}
@@ -72,7 +81,7 @@ const UI = React.createClass({
     } else {
       mountedColumns = (
         <ColumnsArea>
-          <Compose />
+          <Compose withHeader={true} />
           <HomeTimeline trackScroll={false} />
           <Notifications trackScroll={false} />
           {this.props.children}

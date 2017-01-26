@@ -17,8 +17,6 @@ class ProcessInteractionService < BaseService
     domain   = Addressable::URI.parse(url).host
     account  = Account.find_by(username: username, domain: domain)
 
-    return if DomainBlock.blocked?(domain)
-
     if account.nil?
       account = follow_remote_account_service.call("#{username}@#{domain}")
     end

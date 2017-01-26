@@ -1,10 +1,10 @@
 .card {
-  background: #282c37;
+  background: $color1;
   background-size: cover;
   padding: 60px 0;
   padding-bottom: 0;
   border-radius: 4px 4px 0 0;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 15px rgba($color8, 0.2);
   overflow: hidden;
   position: relative;
 
@@ -14,7 +14,7 @@
   }
 
   &:after {
-    background: rgba(0, 0, 0, 0.5);
+    background: rgba($color8, 0.5);
     display: block;
     content: "";
     position: absolute;
@@ -29,7 +29,7 @@
     display: block;
     font-size: 20px;
     line-height: 18px * 1.5;
-    color: #fff;
+    color: $color5;
     font-weight: 500;
     text-align: center;
     position: relative;
@@ -38,7 +38,7 @@
     small {
       display: block;
       font-size: 14px;
-      color: #2b90d9;
+      color: $color4;
       font-weight: 400;
     }
   }
@@ -81,10 +81,10 @@
 
   .counter {
     width: 80px;
-    color: #9baec8;
+    color: $color3;
     padding: 0 10px;
     margin-bottom: 10px;
-    border-right: 1px solid #9baec8;
+    border-right: 1px solid $color3;
     cursor: default;
     position: relative;
 
@@ -99,14 +99,14 @@
       bottom: -10px;
       left: 0;
       width: 100%;
-      border-bottom: 4px solid #9baec8;
+      border-bottom: 4px solid $color3;
       opacity: 0.5;
       transition: all 0.8s ease;
     }
 
     &.active {
       &:after {
-        border-bottom: 4px solid #2b90d9;
+        border-bottom: 4px solid $color4;
         opacity: 1;
       }
     }
@@ -133,7 +133,7 @@
     .counter-number {
       font-weight: 500;
       font-size: 18px;
-      color: #fff;
+      color: $color5;
     }
   }
 
@@ -142,7 +142,7 @@
     font-size: 14px;
     line-height: 18px;
     padding: 5px 10px;
-    color: #d9e1e8;
+    color: $color2;
     order: 1;
   }
 
@@ -173,7 +173,7 @@
 
   a, .current, .next_page, .previous_page, .gap {
     font-size: 14px;
-    color: #fff;
+    color: $color5;
     font-weight: 500;
     display: inline-block;
     padding: 6px 10px;
@@ -181,9 +181,9 @@
   }
 
   .current {
-    background: #fff;
+    background: $color5;
     border-radius: 100px;
-    color: #282c37;
+    color: $color1;
     cursor: default;
   }
 
@@ -193,7 +193,7 @@
 
   .previous_page, .next_page {
     text-transform: uppercase;
-    color: #d9e1e8;
+    color: $color2;
   }
 
   .previous_page {
@@ -218,7 +218,7 @@
 
   .disabled {
     cursor: default;
-    color: lighten(#282c37, 10%);
+    color: lighten($color1, 10%);
   }
 
   @media screen and (max-width: 360px) {
@@ -236,8 +236,8 @@
 
 .accounts-grid {
   clear: both;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
-  background: #fff;
+  box-shadow: 0 0 15px rgba($color8, 0.2);
+  background: $color5;
   border-radius: 0 0 4px 4px;
   padding: 20px 10px;
   padding-bottom: 10px;
@@ -252,9 +252,9 @@
     box-sizing: border-box;
     width: 335px;
     float: left;
-    border: 1px solid #d9e1e8;
+    border: 1px solid $color2;
     border-radius: 4px;
-    color: #282c37;
+    color: $color1;
     height: 160px;
     margin-bottom: 10px;
 
@@ -265,7 +265,7 @@
     .account-grid-card__header {
       overflow: hidden;
       padding: 10px;
-      border-bottom: 1px solid #d9e1e8;
+      border-bottom: 1px solid $color2;
     }
 
     .avatar {
@@ -287,7 +287,7 @@
 
       a {
         display: block;
-        color: #282c37;
+        color: $color1;
         text-decoration: none;
 
         &:hover {
@@ -304,19 +304,19 @@
     }
 
     .username {
-      color: #2b90d9;
+      color: $color4;
     }
 
     .note {
       padding: 10px;
       padding-top: 15px;
-      color: #9baec8;
+      color: $color3;
     }
   }
 }
 
 .nothing-here {
-  color: #9baec8;
+  color: $color3;
   font-size: 14px;
   font-weight: 500;
   text-align: center;
@@ -327,10 +327,10 @@
 
 .account-card {
   padding: 14px 10px;
-  background: #fff;
+  background: $color5;
   border-radius: 4px;
   text-align: left;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 15px rgba($color8, 0.2);
 
   .detailed-status__display-name {
     display: block;
@@ -363,12 +363,12 @@
 
       strong {
         font-weight: 500;
-        color: #282c37;
+        color: $color1;
       }
 
       span {
         font-size: 14px;
-        color: #9baec8;
+        color: $color3;
       }
     }
 
@@ -383,6 +383,6 @@
 
   .account__header__content {
     font-size: 14px;
-    color: #282c37;
+    color: $color1;
   }
 }

@@ -11,6 +11,7 @@ class ApplicationController < ActionController::Base
 
   rescue_from ActionController::RoutingError, with: :not_found
   rescue_from ActiveRecord::RecordNotFound, with: :not_found
+  rescue_from ActionController::InvalidAuthenticityToken, with: :unprocessable_entity
 
   before_action :store_current_location, except: :raise_not_found, unless: :devise_controller?
   before_action :set_locale
@@ -50,12 +51,21 @@ class ApplicationController < ActionController::Base
   def not_found
     respond_to do |format|
       format.any  { head 404 }
+      format.html { render 'errors/404', layout: 'error' }
     end
   end
 
   def gone
     respond_to do |format|
       format.any  { head 410 }
+      format.html { render 'errors/410', layout: 'error' }
+    end
+  end
+
+  def unprocessable_entity
+    respond_to do |format|
+      format.any  { head 422 }
+      format.html { render 'errors/422', layout: 'error' }
     end
   end
 

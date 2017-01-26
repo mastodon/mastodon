@@ -8,7 +8,9 @@ import { defineMessages, injectIntl } from 'react-intl';
 
 const messages = defineMessages({
   follow: { id: 'account.follow', defaultMessage: 'Follow' },
-  unfollow: { id: 'account.unfollow', defaultMessage: 'Unfollow' }
+  unfollow: { id: 'account.unfollow', defaultMessage: 'Unfollow' },
+  requested: { id: 'account.requested', defaultMessage: 'Awaiting approval' },
+  unblock: { id: 'account.unblock', defaultMessage: 'Unblock' }
 });
 
 const outerStyle = {
@@ -42,7 +44,9 @@ const Account = React.createClass({
     account: ImmutablePropTypes.map.isRequired,
     me: React.PropTypes.number.isRequired,
     onFollow: React.PropTypes.func.isRequired,
-    withNote: React.PropTypes.bool
+    onBlock: React.PropTypes.func.isRequired,
+    withNote: React.PropTypes.bool,
+    intl: React.PropTypes.object.isRequired
   },
 
   getDefaultProps () {
@@ -55,6 +59,10 @@ const Account = React.createClass({
 
   handleFollow () {
     this.props.onFollow(this.props.account);
+  },
+
+  handleBlock () {
+    this.props.onBlock(this.props.account);
   },
 
   render () {
@@ -70,10 +78,18 @@ const Account = React.createClass({
       note = <div style={noteStyle}>{account.get('note')}</div>;
     }
 
-    if (account.get('id') !== me && account.get('relationship', null) != null) {
+    if (account.get('id') !== me && account.get('relationship', null) !== null) {
       const following = account.getIn(['relationship', 'following']);
+      const requested = account.getIn(['relationship', 'requested']);
+      const blocking  = account.getIn(['relationship', 'blocking']);
 
-      buttons = <IconButton icon={following ? 'user-times' : 'user-plus'} title={intl.formatMessage(following ? messages.unfollow : messages.follow)} onClick={this.handleFollow} active={following} />;
+      if (requested) {
+        buttons = <IconButton disabled={true} icon='hourglass' title={intl.formatMessage(messages.requested)} />
+      } else if (blocking) {
+        buttons = <IconButton active={true} icon='unlock-alt' title={intl.formatMessage(messages.unblock)} onClick={this.handleBlock} />;
+      } else {
+        buttons = <IconButton icon={following ? 'user-times' : 'user-plus'} title={intl.formatMessage(following ? messages.unfollow : messages.follow)} onClick={this.handleFollow} active={following} />;
+      }
     }
 
     return (

@@ -62,8 +62,8 @@ class Account < ApplicationRecord
   scope :expiring, ->(time) { where(subscription_expires_at: nil).or(where('subscription_expires_at < ?', time)).remote.with_followers }
   scope :silenced, -> { where(silenced: true) }
   scope :suspended, -> { where(suspended: true) }
-  scope :recent, -> { reorder('id desc') }
-  scope :alphabetic, -> { order('domain ASC, username ASC') }
+  scope :recent, -> { reorder(id: :desc) }
+  scope :alphabetic, -> { order(domain: :asc, username: :asc) }
 
   def follow!(other_account)
     active_relationships.where(target_account: other_account).first_or_create!(target_account: other_account)
@@ -104,7 +104,7 @@ class Account < ApplicationRecord
   end
 
   def subscribed?
-    !subscription_expires_at.nil?
+    !subscription_expires_at.blank?
   end
 
   def favourited?(status)
@@ -125,13 +125,10 @@ class Account < ApplicationRecord
 
   def save_with_optional_avatar!
     save!
-  rescue ActiveRecord::RecordInvalid => invalid
-    if invalid.record.errors[:avatar_file_size] || invalid[:avatar_content_type]
-      self.avatar = nil
-      retry
-    end
-
-    raise invalid
+  rescue ActiveRecord::RecordInvalid
+    self.avatar              = nil
+    self[:avatar_remote_url] = ''
+    save!
   end
 
   def avatar_remote_url=(url)
@@ -159,6 +156,7 @@ class Account < ApplicationRecord
     end
 
     def find_remote!(username, domain)
+      return if username.blank?
       where(arel_table[:username].matches(username.gsub(/[%_]/, '\\\\\0'))).where(domain.nil? ? { domain: nil } : arel_table[:domain].matches(domain.gsub(/[%_]/, '\\\\\0'))).take!
     end
 
@@ -175,19 +173,25 @@ class Account < ApplicationRecord
     end
 
     def following_map(target_account_ids, account_id)
-      Follow.where(target_account_id: target_account_ids).where(account_id: account_id).map { |f| [f.target_account_id, true] }.to_h
+      follow_mapping(Follow.where(target_account_id: target_account_ids, account_id: account_id), :target_account_id)
     end
 
     def followed_by_map(target_account_ids, account_id)
-      Follow.where(account_id: target_account_ids).where(target_account_id: account_id).map { |f| [f.account_id, true] }.to_h
+      follow_mapping(Follow.where(account_id: target_account_ids, target_account_id: account_id), :account_id)
     end
 
     def blocking_map(target_account_ids, account_id)
-      Block.where(target_account_id: target_account_ids).where(account_id: account_id).map { |b| [b.target_account_id, true] }.to_h
+      follow_mapping(Block.where(target_account_id: target_account_ids, account_id: account_id), :target_account_id)
     end
 
     def requested_map(target_account_ids, account_id)
-      FollowRequest.where(target_account_id: target_account_ids).where(account_id: account_id).map { |r| [r.target_account_id, true] }.to_h
+      follow_mapping(FollowRequest.where(target_account_id: target_account_ids, account_id: account_id), :target_account_id)
+    end
+
+    private
+
+    def follow_mapping(query, field)
+      query.pluck(field).inject({}) { |mapping, id| mapping[id] = true; mapping }
     end
   end
 

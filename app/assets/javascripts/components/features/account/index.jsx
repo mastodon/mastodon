@@ -20,6 +20,7 @@ import LoadingIndicator      from '../../components/loading_indicator';
 import ActionBar             from './components/action_bar';
 import Column                from '../ui/components/column';
 import ColumnBackButton      from '../../components/column_back_button';
+import { isMobile } from '../../is_mobile'
 
 const makeMapStateToProps = () => {
   const getAccount = makeGetAccount();
@@ -34,11 +35,16 @@ const makeMapStateToProps = () => {
 
 const Account = React.createClass({
 
+  contextTypes: {
+    router: React.PropTypes.object
+  },
+
   propTypes: {
     params: React.PropTypes.object.isRequired,
     dispatch: React.PropTypes.func.isRequired,
     account: ImmutablePropTypes.map,
-    me: React.PropTypes.number.isRequired
+    me: React.PropTypes.number.isRequired,
+    children: React.PropTypes.node
   },
 
   mixins: [PureRenderMixin],
@@ -71,6 +77,9 @@ const Account = React.createClass({
 
   handleMention () {
     this.props.dispatch(mentionCompose(this.props.account));
+    if (isMobile(window.innerWidth)) {
+      this.context.router.push('/statuses/new');
+    }
   },
 
   render () {

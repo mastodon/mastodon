@@ -154,6 +154,31 @@ RSpec.describe Account, type: :model do
     end
   end
 
+  describe '.following_map' do
+    it 'returns an hash' do
+      expect(Account.following_map([], 1)).to be_a Hash
+    end
+  end
+
+  describe '.followed_by_map' do
+    it 'returns an hash' do
+      expect(Account.followed_by_map([], 1)).to be_a Hash
+    end
+  end
+
+  describe '.blocking_map' do
+    it 'returns an hash' do
+      expect(Account.blocking_map([], 1)).to be_a Hash
+    end
+  end
+
+  describe '.requested_map' do
+    it 'returns an hash' do
+      expect(Account.requested_map([], 1)).to be_a Hash
+    end
+  end
+
+
   describe 'MENTION_RE' do
     subject { Account::MENTION_RE }
 

@@ -1,8 +1,6 @@
 import api, { getLinks } from '../api'
 import Immutable from 'immutable';
 
-export const ACCOUNT_SET_SELF = 'ACCOUNT_SET_SELF';
-
 export const ACCOUNT_FETCH_REQUEST = 'ACCOUNT_FETCH_REQUEST';
 export const ACCOUNT_FETCH_SUCCESS = 'ACCOUNT_FETCH_SUCCESS';
 export const ACCOUNT_FETCH_FAIL    = 'ACCOUNT_FETCH_FAIL';
@@ -67,13 +65,6 @@ export const FOLLOW_REQUEST_REJECT_REQUEST = 'FOLLOW_REQUEST_REJECT_REQUEST';
 export const FOLLOW_REQUEST_REJECT_SUCCESS = 'FOLLOW_REQUEST_REJECT_SUCCESS';
 export const FOLLOW_REQUEST_REJECT_FAIL    = 'FOLLOW_REQUEST_REJECT_FAIL';
 
-export function setAccountSelf(account) {
-  return {
-    type: ACCOUNT_SET_SELF,
-    account
-  };
-};
-
 export function fetchAccount(id) {
   return (dispatch, getState) => {
     dispatch(fetchAccountRequest(id));
@@ -89,32 +80,39 @@ export function fetchAccount(id) {
 
 export function fetchAccountTimeline(id, replace = false) {
   return (dispatch, getState) => {
-    dispatch(fetchAccountTimelineRequest(id));
-
-    const ids      = getState().getIn(['timelines', 'accounts_timelines', id], Immutable.List());
+    const ids      = getState().getIn(['timelines', 'accounts_timelines', id, 'items'], Immutable.List());
     const newestId = ids.size > 0 ? ids.first() : null;
 
     let params = '';
+    let skipLoading = false;
 
     if (newestId !== null && !replace) {
-      params = `?since_id=${newestId}`;
+      params      = `?since_id=${newestId}`;
+      skipLoading = true;
     }
 
+    dispatch(fetchAccountTimelineRequest(id, skipLoading));
+
     api(getState).get(`/api/v1/accounts/${id}/statuses${params}`).then(response => {
-      dispatch(fetchAccountTimelineSuccess(id, response.data, replace));
+      dispatch(fetchAccountTimelineSuccess(id, response.data, replace, skipLoading));
     }).catch(error => {
-      dispatch(fetchAccountTimelineFail(id, error));
+      dispatch(fetchAccountTimelineFail(id, error, skipLoading));
     });
   };
 };
 
 export function expandAccountTimeline(id) {
   return (dispatch, getState) => {
-    const lastId = getState().getIn(['timelines', 'accounts_timelines', id], Immutable.List()).last();
+    const lastId = getState().getIn(['timelines', 'accounts_timelines', id, 'items'], Immutable.List()).last();
 
     dispatch(expandAccountTimelineRequest(id));
 
-    api(getState).get(`/api/v1/accounts/${id}/statuses?max_id=${lastId}`).then(response => {
+    api(getState).get(`/api/v1/accounts/${id}/statuses`, {
+      params: {
+        limit: 10,
+        max_id: lastId
+      }
+    }).then(response => {
       dispatch(expandAccountTimelineSuccess(id, response.data));
     }).catch(error => {
       dispatch(expandAccountTimelineFail(id, error));
@@ -210,27 +208,30 @@ export function unfollowAccountFail(error) {
   };
 };
 
-export function fetchAccountTimelineRequest(id) {
+export function fetchAccountTimelineRequest(id, skipLoading) {
   return {
     type: ACCOUNT_TIMELINE_FETCH_REQUEST,
-    id
+    id,
+    skipLoading
   };
 };
 
-export function fetchAccountTimelineSuccess(id, statuses, replace) {
+export function fetchAccountTimelineSuccess(id, statuses, replace, skipLoading) {
   return {
     type: ACCOUNT_TIMELINE_FETCH_SUCCESS,
     id,
     statuses,
-    replace
+    replace,
+    skipLoading
   };
 };
 
-export function fetchAccountTimelineFail(id, error) {
+export function fetchAccountTimelineFail(id, error, skipLoading) {
   return {
     type: ACCOUNT_TIMELINE_FETCH_FAIL,
     id,
-    error
+    error,
+    skipLoading
   };
 };
 
@@ -495,6 +496,10 @@ export function expandFollowingFail(id, error) {
 
 export function fetchRelationships(account_ids) {
   return (dispatch, getState) => {
+    if (account_ids.length === 0) {
+      return;
+    }
+
     dispatch(fetchRelationshipsRequest(account_ids));
 
     api(getState).get(`/api/v1/accounts/relationships?${account_ids.map(id => `id[]=${id}`).join('&')}`).then(response => {
@@ -508,21 +513,24 @@ export function fetchRelationships(account_ids) {
 export function fetchRelationshipsRequest(ids) {
   return {
     type: RELATIONSHIPS_FETCH_REQUEST,
-    ids
+    ids,
+    skipLoading: true
   };
 };
 
 export function fetchRelationshipsSuccess(relationships) {
   return {
     type: RELATIONSHIPS_FETCH_SUCCESS,
-    relationships
+    relationships,
+    skipLoading: true
   };
 };
 
 export function fetchRelationshipsFail(error) {
   return {
     type: RELATIONSHIPS_FETCH_FAIL,
-    error
+    error,
+    skipLoading: true
   };
 };
 

@@ -2,10 +2,7 @@ import { connect } from 'react-redux';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import Column from '../ui/components/column';
-import {
-  refreshNotifications,
-  expandNotifications
-} from '../../actions/notifications';
+import { expandNotifications } from '../../actions/notifications';
 import NotificationContainer from './containers/notification_container';
 import { ScrollContainer } from 'react-router-scroll';
 import { defineMessages, injectIntl } from 'react-intl';
@@ -18,12 +15,13 @@ const messages = defineMessages({
 });
 
 const getNotifications = createSelector([
-  state => Immutable.List(state.getIn(['notifications', 'settings', 'shows']).filter(item => !item).keys()),
+  state => Immutable.List(state.getIn(['settings', 'notifications', 'shows']).filter(item => !item).keys()),
   state => state.getIn(['notifications', 'items'])
 ], (excludedTypes, notifications) => notifications.filterNot(item => excludedTypes.includes(item.get('type'))));
 
 const mapStateToProps = state => ({
-  notifications: getNotifications(state)
+  notifications: getNotifications(state),
+  isLoading: state.getIn(['notifications', 'isLoading'], true)
 });
 
 const Notifications = React.createClass({
@@ -32,7 +30,8 @@ const Notifications = React.createClass({
     notifications: ImmutablePropTypes.list.isRequired,
     dispatch: React.PropTypes.func.isRequired,
     trackScroll: React.PropTypes.bool,
-    intl: React.PropTypes.object.isRequired
+    intl: React.PropTypes.object.isRequired,
+    isLoading: React.PropTypes.bool
   },
 
   getDefaultProps () {
@@ -43,15 +42,11 @@ const Notifications = React.createClass({
 
   mixins: [PureRenderMixin],
 
-  componentWillMount () {
-    const { dispatch } = this.props;
-    dispatch(refreshNotifications());
-  },
-
   handleScroll (e) {
     const { scrollTop, scrollHeight, clientHeight } = e.target;
+    const offset = scrollHeight - scrollTop - clientHeight;
 
-    if (scrollTop === scrollHeight - clientHeight) {
+    if (250 > offset && !this.props.isLoading) {
       this.props.dispatch(expandNotifications());
     }
   },
@@ -70,6 +65,7 @@ const Notifications = React.createClass({
     if (trackScroll) {
       return (
         <Column icon='bell' heading={intl.formatMessage(messages.title)}>
+          <ColumnSettingsContainer />
           <ScrollContainer scrollKey='notifications'>
             {scrollableArea}
           </ScrollContainer>

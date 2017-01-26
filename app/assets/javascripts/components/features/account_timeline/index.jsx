@@ -9,7 +9,8 @@ import StatusList from '../../components/status_list';
 import LoadingIndicator from '../../components/loading_indicator';
 
 const mapStateToProps = (state, props) => ({
-  statusIds: state.getIn(['timelines', 'accounts_timelines', Number(props.params.accountId)]),
+  statusIds: state.getIn(['timelines', 'accounts_timelines', Number(props.params.accountId), 'items']),
+  isLoading: state.getIn(['timelines', 'accounts_timelines', Number(props.params.accountId), 'isLoading']),
   me: state.getIn(['meta', 'me'])
 });
 
@@ -18,7 +19,9 @@ const AccountTimeline = React.createClass({
   propTypes: {
     params: React.PropTypes.object.isRequired,
     dispatch: React.PropTypes.func.isRequired,
-    statusIds: ImmutablePropTypes.list
+    statusIds: ImmutablePropTypes.list,
+    isLoading: React.PropTypes.bool,
+    me: React.PropTypes.number.isRequired
   },
 
   mixins: [PureRenderMixin],
@@ -38,13 +41,13 @@ const AccountTimeline = React.createClass({
   },
 
   render () {
-    const { statusIds, me } = this.props;
+    const { statusIds, isLoading, me } = this.props;
 
     if (!statusIds) {
       return <LoadingIndicator />;
     }
 
-    return <StatusList statusIds={statusIds} me={me} onScrollToBottom={this.handleScrollToBottom} />
+    return <StatusList statusIds={statusIds} isLoading={isLoading} me={me} onScrollToBottom={this.handleScrollToBottom} />
   }
 
 });

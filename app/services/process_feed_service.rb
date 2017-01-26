@@ -44,6 +44,8 @@ class ProcessFeedService < BaseService
       Rails.logger.debug "Creating remote status #{id}"
       status = status_from_xml(@xml)
 
+      return if status.nil?
+
       if verb == :share
         original_status = status_from_xml(@xml.at_xpath('.//activity:object', activity: TagManager::AS_XMLNS))
         status.reblog   = original_status
@@ -59,6 +61,7 @@ class ProcessFeedService < BaseService
       status.save!
 
       NotifyService.new.call(status.reblog.account, status) if status.reblog? && status.reblog.account.local?
+      # LinkCrawlWorker.perform_async(status.reblog? ? status.reblog_of_id : status.id)
       Rails.logger.debug "Queuing remote status #{status.id} (#{id}) for distribution"
       DistributionWorker.perform_async(status.id)
       status
@@ -100,6 +103,7 @@ class ProcessFeedService < BaseService
         url: url(entry),
         account: account,
         text: content(entry),
+        spoiler_text: content_warning(entry),
         created_at: published(entry)
       )
 
@@ -177,6 +181,8 @@ class ProcessFeedService < BaseService
     end
 
     def media_from_xml(parent, xml)
+      return if DomainBlock.find_by(domain: parent.account.domain)&.reject_media?
+
       xml.xpath('./xmlns:link[@rel="enclosure"]', xmlns: TagManager::XMLNS).each do |link|
         next unless link['href']
 
@@ -216,6 +222,10 @@ class ProcessFeedService < BaseService
 
     def content(xml = @xml)
       xml.at_xpath('./xmlns:content', xmlns: TagManager::XMLNS).content
+    end
+
+    def content_warning(xml = @xml)
+      xml.at_xpath('./xmlns:summary', xmlns: TagManager::XMLNS)&.content || ''
     end
 
     def published(xml = @xml)

@@ -16,7 +16,7 @@ code {
 
   .hint {
     display: block;
-    color: rgba(255, 255, 255, 0.8);
+    color: rgba($color5, 0.8);
     font-size: 12px;
   }
 
@@ -26,9 +26,9 @@ code {
     display: flex;
 
     label {
-      font-family: 'Roboto';
+      font-family: inherit;
       font-size: 16px;
-      color: #fff;
+      color: $color5;
       width: 100px;
       display: block;
       flex: 0 0 auto;
@@ -48,7 +48,7 @@ code {
     margin-bottom: 5px;
 
     label {
-      font-family: 'Roboto';
+      font-family: inherit;
       font-size: 14px;
       color: white;
       display: block;
@@ -75,42 +75,42 @@ code {
     background: transparent;
     box-sizing: border-box;
     border: 0;
-    border-bottom: 2px solid #9baec8;
+    border-bottom: 2px solid $color3;
     border-radius: 2px 2px 0 0;
     padding: 7px 4px;
     font-size: 16px;
-    color: #fff;
+    color: $color5;
     display: block;
     width: 100%;
     outline: 0;
-    font-family: 'Roboto';
+    font-family: inherit;
 
     &:invalid {
       box-shadow: none;
     }
 
     &:focus:invalid {
-      border-bottom-color: #df405a;
+      border-bottom-color: $color6;
     }
 
     &:required:valid {
-      border-bottom-color: #79bd9a;
+      border-bottom-color: $color7;
     }
 
     &:active, &:focus {
-      border-bottom-color: #2b90d9;
-      background: rgba(0, 0, 0, 0.1);
+      border-bottom-color: $color4;
+      background: rgba($color8, 0.1);
     }
   }
 
   .input.field_with_errors {
     input[type=text], input[type=email], input[type=password] {
-      border-bottom-color: #df405a;
+      border-bottom-color: $color6;
     }
 
     .error {
       font-weight: 500;
-      color: #df405a;
+      color: $color6;
     }
   }
 
@@ -123,8 +123,8 @@ code {
     width: 100%;
     border: 0;
     border-radius: 4px;
-    background: #2b90d9;
-    color: #fff;
+    background: $color4;
+    color: $color5;
     font-size: 18px;
     padding: 10px;
     text-transform: uppercase;
@@ -134,36 +134,36 @@ code {
     margin-bottom: 10px;
 
     &:hover {
-      background-color: lighten(#2b90d9, 5%);
+      background-color: lighten($color4, 5%);
     }
 
     &:active, &:focus {
       position: relative;
       top: 1px;
-      background-color: darken(#2b90d9, 5%);
+      background-color: darken($color4, 5%);
     }
 
     &.negative {
-      background: #df405a;
+      background: $color6;
 
       &:hover {
-        background-color: lighten(#df405a, 5%);
+        background-color: lighten($color6, 5%);
       }
 
       &:active, &:focus {
-        background-color: darken(#df405a, 5%);
+        background-color: darken($color6, 5%);
       }
     }
   }
 }
 
 .flash-message {
-  background: #282c37;
-  color: #9baec8;
+  background: $color1;
+  color: $color3;
   border-radius: 4px;
   padding: 15px 10px;
   margin-bottom: 30px;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 5px rgba($color8, 0.2);
   text-align: center;
 
   strong {
@@ -188,7 +188,7 @@ code {
 .oauth-prompt, .follow-prompt {
   margin-bottom: 30px;
   text-align: center;
-  color: #9baec8;
+  color: $color3;
 
   h2 {
     font-size: 16px;
@@ -196,7 +196,7 @@ code {
   }
 
   strong {
-    color: #d9e1e8;
+    color: $color2;
     font-weight: 500;
   }
 }

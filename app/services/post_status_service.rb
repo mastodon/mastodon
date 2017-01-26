@@ -7,14 +7,24 @@ class PostStatusService < BaseService
   # @param [Status] in_reply_to Optional status to reply to
   # @param [Hash] options
   # @option [Boolean] :sensitive
+  # @option [String] :visibility
+  # @option [String] :spoiler_text
   # @option [Enumerable] :media_ids Optional array of media IDs to attach
+  # @option [Doorkeeper::Application] :application
   # @return [Status]
   def call(account, text, in_reply_to = nil, options = {})
-    status = account.statuses.create!(text: text, thread: in_reply_to, sensitive: options[:sensitive], visibility: options[:visibility])
+    status = account.statuses.create!(text: text,
+                                      thread: in_reply_to,
+                                      sensitive: options[:sensitive],
+                                      spoiler_text: options[:spoiler_text] || '',
+                                      visibility: options[:visibility],
+                                      application: options[:application])
+
     attach_media(status, options[:media_ids])
     process_mentions_service.call(status)
     process_hashtags_service.call(status)
 
+    LinkCrawlWorker.perform_async(status.id)
     DistributionWorker.perform_async(status.id)
     Pubsubhubbub::DistributionWorker.perform_async(status.stream_entry.id)
 

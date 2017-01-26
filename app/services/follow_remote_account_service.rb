@@ -14,7 +14,6 @@ class FollowRemoteAccountService < BaseService
     username, domain = uri.split('@')
 
     return Account.find_local(username) if TagManager.instance.local_domain?(domain)
-    return nil if DomainBlock.blocked?(domain)
 
     account = Account.find_remote(username, domain)
     return account unless account.nil?
@@ -36,11 +35,15 @@ class FollowRemoteAccountService < BaseService
 
     Rails.logger.debug "Creating new remote account for #{uri}"
 
+    domain_block = DomainBlock.find_by(domain: domain)
+
     account.remote_url  = data.link('http://schemas.google.com/g/2010#updates-from').href
     account.salmon_url  = data.link('salmon').href
     account.url         = data.link('http://webfinger.net/rel/profile-page').href
     account.public_key  = magic_key_to_pem(data.link('magic-public-key').href)
     account.private_key = nil
+    account.suspended   = true if domain_block && domain_block.suspend?
+    account.silenced    = true if domain_block && domain_block.silence?
 
     xml  = get_feed(account.remote_url)
     hubs = get_hubs(xml)

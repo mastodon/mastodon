@@ -7,21 +7,6 @@ class UnfollowService < BaseService
   def call(source_account, target_account)
     follow = source_account.unfollow!(target_account)
     NotificationWorker.perform_async(follow.stream_entry.id, target_account.id) unless target_account.local?
-    unmerge_from_timeline(target_account, source_account)
-  end
-
-  private
-
-  def unmerge_from_timeline(from_account, into_account)
-    timeline_key = FeedManager.instance.key(:home, into_account.id)
-
-    from_account.statuses.select('id').find_each do |status|
-      redis.zrem(timeline_key, status.id)
-      redis.zremrangebyscore(timeline_key, status.id, status.id)
-    end
-  end
-
-  def redis
-    Redis.current
+    UnmergeWorker.perform_async(target_account.id, source_account.id)
   end
 end

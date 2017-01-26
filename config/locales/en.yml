@@ -3,9 +3,19 @@ en:
   about:
     about_instance: "<em>%{instance}</em> is a Mastodon instance."
     about_mastodon: Mastodon is a <em>free, open-source</em> social network server. A <em>decentralized</em> alternative to commercial platforms, it avoids the risks of a single company monopolizing your communication. Anyone can run Mastodon and participate in the <em>social network</em> seamlessly.
+    business_email: 'Business e-mail:'
+    contact: Contact
+    domain_count_after: other instances
+    domain_count_before: Connected to
     get_started: Get started
+    learn_more: Learn more
+    links: Links
     source_code: Source code
+    status_count_after: statuses
+    status_count_before: Who authored
     terms: Terms
+    user_count_after: users
+    user_count_before: Home to
   accounts:
     follow: Follow
     followers: Followers
@@ -18,6 +28,8 @@ en:
     unfollow: Unfollow
   application_mailer:
     signature: Mastodon notifications from %{instance}
+  applications:
+    invalid_url: The provided URL is invalid
   auth:
     change_password: Change password
     didnt_get_confirmation: Didn't receive confirmation instructions?
@@ -67,8 +79,8 @@ en:
       body: 'You were mentioned by %{name} in:'
       subject: You were mentioned by %{name}
     reblog:
-      body: 'Your status was reblogged by %{name}:'
-      subject: "%{name} reblogged your status"
+      body: 'Your status was boosted by %{name}:'
+      subject: "%{name} boosted your status"
   pagination:
     next: Next
     prev: Prev
@@ -78,8 +90,11 @@ en:
     proceed: Proceed to follow
     prompt: 'You are going to follow:'
   settings:
+    back: Back to Mastodon
     edit_profile: Edit profile
     preferences: Preferences
+  statuses:
+    over_character_limit: character limit of %{max} exceeded
   stream_entries:
     click_to_show: Click to show
     favourited: favourited a post by

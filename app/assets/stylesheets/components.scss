@@ -1,12 +1,12 @@
 .button {
-  background-color: #2b90d9;
-  font-family: 'Roboto';
+  background-color: darken($color4, 3%);
+  font-family: inherit;
   display: inline-block;
   position: relative;
   box-sizing: border-box;
   text-align: center;
   border: 10px none;
-  color: #fff;
+  color: $color5;
   font-size: 14px;
   font-weight: 500;
   letter-spacing: 0;
@@ -19,56 +19,69 @@
   text-decoration: none;
 
   &:hover {
-    background-color: #489fde;
+    background-color: lighten($color4, 7%);
   }
 
   &:disabled {
-    background-color: #9baec8;
+    background-color: $color3;
     cursor: default;
   }
 
   &.button-secondary {
-    background-color: #282c37;
+    background-color: $color1;
 
     &:hover {
-      background-color: #282c37;
+      background-color: $color1;
     }
 
     &:disabled {
-      background-color: #9baec8;
+      background-color: $color3;
     }
   }
 }
 
 .icon-button {
-  color: #616b86;
+  color: lighten($color1, 26%);
   border: none;
   background: transparent;
   cursor: pointer;
 
   &:hover {
-    color: #717b98;
+    color: lighten($color1, 33%);
   }
 
   &.disabled {
-    color: #454b5e;
+    color: lighten($color1, 13%);
     cursor: default;
   }
 
   &.active {
-    color: #2b90d9;
+    color: $color4;
+  }
+}
+
+.invisible {
+  font-size: 0;
+  line-height: 0;
+  display: inline-block;
+  width: 0;
+}
+
+.ellipsis {
+  &:after {
+    content: "…";
   }
 }
 
 .lightbox .icon-button {
-  color: #282c37;
+  color: $color1;
 }
 
 .compose-form__textarea, .follow-form__input {
-  background: #fff;
+  background: $color5;
 
   &:disabled {
-    background: #d9e1e8;
+    background: $color2;
   }
 }
 
@@ -107,7 +120,7 @@
   }
 
   a {
-    color: #d9e1e8;
+    color: $color2;
     text-decoration: none;
 
     &:hover {
@@ -139,11 +152,11 @@
 }
 
 .reply-indicator__content {
-  color: #282c37;
+  color: $color1;
   font-size: 14px;
 
   a {
-    color: #535b72;
+    color: lighten($color1, 20%);
   }
 }
 
@@ -183,13 +196,13 @@
   }
 }
 
-.status__display-name, .status__relative-time, .detailed-status__display-name, .detailed-status__datetime, .account__display-name {
+.status__display-name, .status__relative-time, .detailed-status__display-name, .detailed-status__datetime, .detailed-status__application, .account__display-name {
   text-decoration: none;
 }
 
 .status__display-name, .account__display-name {
   strong {
-    color: #fff;
+    color: $color5;
   }
 
   &.muted {
@@ -214,7 +227,7 @@
 }
 
 .detailed-status__display-name {
-  color: #d9e1e8;
+  color: $color2;
   line-height: 24px;
 
   strong, span {
@@ -223,17 +236,17 @@
 
   strong {
     font-size: 16px;
-    color: #fff;
+    color: $color5;
   }
 }
 
 .muted {
   .status__content p, .status__content a {
-    color: #616b86;
+    color: lighten($color1, 26%);
   }
 
   .status__display-name strong {
-    color: #616b86;
+    color: lighten($color1, 26%);
   }
 
   .status__avatar {
@@ -246,7 +259,7 @@
   text-decoration: none;
 
   &:hover {
-    color: #fff;
+    color: $color5;
     text-decoration: underline;
   }
 }
@@ -282,17 +295,17 @@
     height: 0;
     border-style: solid;
     border-width: 0 4.5px 7.8px 4.5px;
-    border-color: transparent transparent #d9e1e8 transparent;
+    border-color: transparent transparent $color2 transparent;
     top: -7px;
     left: 8px;
   }
 
   ul {
     list-style: none;
-    background: #d9e1e8;
+    background: $color2;
     padding: 4px 0;
     border-radius: 4px;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 0 15px rgba($color8, 0.4);
     min-width: 100px;
   }
 
@@ -302,12 +315,12 @@
     padding: 6px 16px;
     width: 100px;
     text-decoration: none;
-    background: #d9e1e8;
-    color: #282c37;
+    background: $color2;
+    color: $color1;
 
     &:hover {
-      background: #2b90d9;
-      color: #d9e1e8;
+      background: $color4;
+      color: $color2;
     }
   }
 }
@@ -315,7 +328,7 @@
 .static-content {
   padding: 10px;
   padding-top: 20px;
-  color: #616b86;
+  color: lighten($color1, 26%);
 
   h1 {
     font-size: 16px;
@@ -331,9 +344,13 @@
 }
 
 .columns-area {
-  margin: 10px;
-  margin-left: 0;
   flex-direction: row;
+}
+
+@media screen and (min-width: 360px) {
+  .columns-area {
+    margin: 10px;
+  }
 }
 
 .column {
@@ -345,10 +362,41 @@
   width: 280px;
 }
 
+.drawer__inner {
+  background: linear-gradient(rgba(lighten($color1, 13%), 1), rgba(lighten($color1, 13%), 0.65));
+}
+
+.drawer__header {
+  flex: 0 0 auto;
+  font-size: 16px;
+  background: lighten($color1, 8%);
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: row;
+
+  a {
+    transition: all 100ms ease-in;
+
+    &:hover {
+      background: lighten($color1, 3%);
+      transition: all 200ms ease-out;
+    }
+  }
+}
+
 .column, .drawer {
-  margin-left: 10px;
+  margin-left: 5px;
+  margin-right: 5px;
   flex: 0 0 auto;
   overflow: hidden;
+}
+
+.column:first-child, .drawer:first-child {
+  margin-left: 0;
+}
+
+.column:last-child, .drawer:last-child {
+  margin-right: 0;
 }
 
 @media screen and (max-width: 1024px) {
@@ -359,13 +407,19 @@
   }
 
   .columns-area {
-    margin: 10px;
     flex-direction: column;
   }
 }
 
 .tabs-bar {
   display: flex;
+}
+
+@media screen and (min-width: 360px) {
+  .tabs-bar {
+    margin: 10px;
+    margin-bottom: 0;
+  }
 }
 
 @media screen and (min-width: 1025px) {
@@ -383,22 +437,22 @@
   top: 100%;
   width: 100%;
   z-index: 99;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 0 15px rgba($color8, 0.4);
 }
 
 .react-autosuggest__section-title {
-  background: #9baec8;
+  background: $color3;
   padding: 4px 10px;
   font-weight: 500;
   cursor: default;
-  color: #282c37;
+  color: $color1;
   text-transform: uppercase;
   font-size: 11px;
 }
 
 .react-autosuggest__suggestions-list {
-  background: #d9e1e8;
-  color: #282c37;
+  background: $color2;
+  color: $color1;
   font-size: 14px;
 }
 
@@ -408,8 +462,8 @@
 }
 
 .react-autosuggest__suggestion--focused {
-  background: #2b90d9;
-  color: #fff;
+  background: $color4;
+  color: $color5;
 }
 
 .scrollable {
@@ -417,6 +471,10 @@
   overflow-x: hidden;
   flex: 1 1 auto;
   -webkit-overflow-scrolling: touch;
+
+  &.optionally-scrollable {
+    overflow-y: auto;
+  }
 }
 
 .column-back-button {
@@ -433,7 +491,7 @@
   border: 0;
   padding: 0;
   user-select: none;
-  -webkit-tap-highlight-color: rgba(0,0,0,0);
+  -webkit-tap-highlight-color: rgba($color8, 0);
   -webkit-tap-highlight-color: transparent;
 }
 
@@ -459,20 +517,20 @@
   height: 24px;
   padding: 0;
   border-radius: 30px;
-  background-color: #282c37;
+  background-color: $color1;
   transition: all 0.2s ease;
 }
 
 .react-toggle:hover:not(.react-toggle--disabled) .react-toggle-track {
-  background-color: darken(#282c37, 10%);
+  background-color: darken($color1, 10%);
 }
 
 .react-toggle--checked .react-toggle-track {
-  background-color: #2b90d9;
+  background-color: $color4;
 }
 
 .react-toggle--checked:hover:not(.react-toggle--disabled) .react-toggle-track {
-  background-color: lighten(#2b90d9, 10%);
+  background-color: lighten($color4, 10%);
 }
 
 .react-toggle-track-check {
@@ -519,49 +577,52 @@
   left: 1px;
   width: 22px;
   height: 22px;
-  border: 1px solid #282c37;
+  border: 1px solid $color1;
   border-radius: 50%;
-  background-color: #FAFAFA;
+  background-color: darken($color5, 2%);
   box-sizing: border-box;
   transition: all 0.25s ease;
 }
 
 .react-toggle--checked .react-toggle-thumb {
   left: 27px;
-  border-color: #2b90d9;
+  border-color: $color4;
 }
 
 .column-link {
-  background: #373b4a;
+  background: lighten($color1, 6%);
 
   &:hover {
-    background: lighten(#373b4a, 5%);
+    background: lighten($color1, 11%);
   }
 }
 
-.autosuggest-textarea {
+.autosuggest-textarea, .spoiler-input {
   position: relative;
 }
 
-.autosuggest-textarea__textarea {
+.autosuggest-textarea__textarea, .spoiler-input__input {
   display: block;
   box-sizing: border-box;
   width: 100%;
-  height: 100px;
   resize: none;
-  color: #282c37;
-  padding: 7px;
-  font-family: 'Roboto';
-  font-size: 14px;
   margin: 0;
+  color: $color1;
+  padding: 7px;
+  font-family: inherit;
+  font-size: 14px;
   resize: vertical;
 
   border: 3px dashed transparent;
   transition: border-color 0.3s ease;
 
   &.file-drop {
-    border-color: #aaa;
+    border-color: darken($color5, 33%);
   }
+}
+
+.autosuggest-textarea__textarea {
+  height: 100px;
 }
 
 .autosuggest-textarea__suggestions {
@@ -569,9 +630,9 @@
   top: 100%;
   width: 100%;
   z-index: 99;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
-  background: #d9e1e8;
-  color: #282c37;
+  box-shadow: 0 0 15px rgba($color8, 0.4);
+  background: $color2;
+  color: $color1;
   font-size: 14px;
 }
 
@@ -580,21 +641,69 @@
   cursor: pointer;
 
   &:hover {
-    background: darken(#d9e1e8, 10%);
+    background: darken($color2, 10%);
   }
 
   &.selected {
-    background: #2b90d9;
-    color: #fff;
+    background: $color4;
+    color: $color5;
   }
 }
 
-.getting-started__illustration {
-  width: 330px;
-  height: 235px;
-  background: image-url('mastodon-getting-started.png') no-repeat 0 0;
-  position: absolute;
-  pointer-events: none;
-  bottom: 0;
-  left: 0;
+.getting-started {
+  box-sizing: border-box;
+  overflow-y: auto;
+  padding-bottom: 235px;
+  background: image-url('mastodon-getting-started.png') no-repeat 0 100% local;
+  height: 100%;
+
+  p {
+    color: $color2;
+  }
+}
+
+.dropdown__content.dropdown__left {
+  transform: translateX(-108px);
+
+  &::before {
+    right: 8px !important;
+    left: initial !important;
+  }
+}
+
+.setting-text {
+  color: $color3;
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid $color3;
+
+  &:focus, &:active {
+    color: $color5;
+    border-bottom-color: $color4;
+  }
+}
+
+@import 'boost';
+
+button i.fa-retweet {
+  height: 19px;
+  width: 22px;
+  background-position: 0 0;
+  transition: background-position 0.9s steps(10);
+  transition-duration: 0s;
+
+  &::before {
+    display: none !important;
+  }
+}
+
+button.active i.fa-retweet {
+  transition-duration: 0.9s;
+  background-position: 0 100%;
+}
+
+.status-card {
+  &:hover {
+    background: lighten($color1, 6%);
+  }
 }

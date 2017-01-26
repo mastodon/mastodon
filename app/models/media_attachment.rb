@@ -16,6 +16,7 @@ class MediaAttachment < ApplicationRecord
 
   validates :account, presence: true
 
+  scope :local, -> { where(remote_url: '') }
   default_scope { order('id asc') }
 
   def local?
@@ -37,6 +38,12 @@ class MediaAttachment < ApplicationRecord
   def type
     image? ? 'image' : 'video'
   end
+
+  def to_param
+    shortcode
+  end
+
+  before_create :set_shortcode
 
   class << self
     private
@@ -60,6 +67,17 @@ class MediaAttachment < ApplicationRecord
           },
         }
       end
+    end
+  end
+
+  private
+
+  def set_shortcode
+    return unless local?
+
+    loop do
+      self.shortcode = SecureRandom.urlsafe_base64(14)
+      break if MediaAttachment.find_by(shortcode: shortcode).nil?
     end
   end
 end

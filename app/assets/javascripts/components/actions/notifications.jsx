@@ -14,8 +14,6 @@ export const NOTIFICATIONS_EXPAND_REQUEST = 'NOTIFICATIONS_EXPAND_REQUEST';
 export const NOTIFICATIONS_EXPAND_SUCCESS = 'NOTIFICATIONS_EXPAND_SUCCESS';
 export const NOTIFICATIONS_EXPAND_FAIL    = 'NOTIFICATIONS_EXPAND_FAIL';
 
-export const NOTIFICATIONS_SETTING_CHANGE = 'NOTIFICATIONS_SETTING_CHANGE';
-
 const fetchRelatedRelationships = (dispatch, notifications) => {
   const accountIds = notifications.filter(item => item.type === 'follow').map(item => item.account.id);
 
@@ -26,21 +24,25 @@ const fetchRelatedRelationships = (dispatch, notifications) => {
 
 export function updateNotifications(notification, intlMessages, intlLocale) {
   return (dispatch, getState) => {
+    const showAlert = getState().getIn(['settings', 'notifications', 'alerts', notification.type], true);
+    const playSound = getState().getIn(['settings', 'notifications', 'sounds', notification.type], true);
+
     dispatch({
       type: NOTIFICATIONS_UPDATE,
       notification,
       account: notification.account,
-      status: notification.status
+      status: notification.status,
+      meta: playSound ? { sound: 'boop' } : undefined
     });
 
     fetchRelatedRelationships(dispatch, [notification]);
 
     // Desktop notifications
-    if (typeof window.Notification !== 'undefined' && getState().getIn(['notifications', 'settings', 'alerts', notification.type], false)) {
+    if (typeof window.Notification !== 'undefined' && showAlert) {
       const title = new IntlMessageFormat(intlMessages[`notification.${notification.type}`], intlLocale).format({ name: notification.account.display_name.length > 0 ? notification.account.display_name : notification.account.username });
       const body  = $('<p>').html(notification.status ? notification.status.content : '').text();
 
-      new Notification(title, { body, icon: notification.account.avatar });
+      new Notification(title, { body, icon: notification.account.avatar, tag: notification.id });
     }
   };
 };
@@ -94,13 +96,17 @@ export function expandNotifications() {
   return (dispatch, getState) => {
     const url = getState().getIn(['notifications', 'next'], null);
 
-    if (url === null) {
+    if (url === null || getState().getIn(['notifications', 'isLoading'])) {
       return;
     }
 
     dispatch(expandNotificationsRequest());
 
-    api(getState).get(url).then(response => {
+    api(getState).get(url, {
+      params: {
+        limit: 5
+      }
+    }).then(response => {
       const next = getLinks(response).refs.find(link => link.rel === 'next');
 
       dispatch(expandNotificationsSuccess(response.data, next ? next.uri : null));
@@ -131,13 +137,5 @@ export function expandNotificationsFail(error) {
   return {
     type: NOTIFICATIONS_EXPAND_FAIL,
     error
-  };
-};
-
-export function changeNotificationsSetting(key, checked) {
-  return {
-    type: NOTIFICATIONS_SETTING_CHANGE,
-    key,
-    checked
   };
 };

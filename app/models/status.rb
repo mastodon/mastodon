@@ -1,11 +1,14 @@
 # frozen_string_literal: true
 
 class Status < ApplicationRecord
+  include ActiveModel::Validations
   include Paginable
   include Streamable
   include Cacheable
 
   enum visibility: [:public, :unlisted, :private], _suffix: :visibility
+
+  belongs_to :application, class_name: 'Doorkeeper::Application'
 
   belongs_to :account, inverse_of: :statuses
   belongs_to :in_reply_to_account, foreign_key: 'in_reply_to_account_id', class_name: 'Account'
@@ -21,11 +24,12 @@ class Status < ApplicationRecord
   has_and_belongs_to_many :tags
 
   has_one :notification, as: :activity, dependent: :destroy
+  has_one :preview_card, dependent: :destroy
 
   validates :account, presence: true
   validates :uri, uniqueness: true, unless: 'local?'
-  validates :text, presence: true, length: { maximum: 500 }, if: proc { |s| s.local? && !s.reblog? }
-  validates :text, presence: true, if: proc { |s| !s.local? && !s.reblog? }
+  validates :text, presence: true, unless: 'reblog?'
+  validates_with StatusLengthValidator
   validates :reblog, uniqueness: { scope: :account, message: 'of status already exists' }, if: 'reblog?'
 
   default_scope { order('id desc') }
@@ -33,7 +37,7 @@ class Status < ApplicationRecord
   scope :remote, -> { where.not(uri: nil) }
   scope :local, -> { where(uri: nil) }
 
-  cache_associated :account, :media_attachments, :tags, :stream_entry, mentions: :account, reblog: [:account, :stream_entry, :tags, :media_attachments, mentions: :account], thread: :account
+  cache_associated :account, :application, :media_attachments, :tags, :stream_entry, mentions: :account, reblog: [:account, :application, :stream_entry, :tags, :media_attachments, mentions: :account], thread: :account
 
   def local?
     uri.nil?
@@ -171,6 +175,7 @@ class Status < ApplicationRecord
 
   before_validation do
     text.strip!
+    spoiler_text&.strip!
 
     self.reblog                 = reblog.reblog if reblog? && reblog.reblog?
     self.in_reply_to_account_id = (thread.account_id == account_id && thread.reply? ? thread.in_reply_to_account_id : thread.account_id) if reply?

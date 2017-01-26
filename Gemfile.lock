@@ -60,6 +60,9 @@ GEM
       babel-source (>= 4.0, < 6)
       execjs (~> 2.0)
     bcrypt (3.1.11)
+    best_in_place (3.0.3)
+      actionpack (>= 3.2)
+      railties (>= 3.2)
     better_errors (2.1.1)
       coderay (>= 1.0.0)
       erubis (>= 2.6.6)
@@ -73,8 +76,7 @@ GEM
     bullet (5.3.0)
       activesupport (>= 3.0.0)
       uniform_notifier (~> 1.10.0)
-    climate_control (0.0.3)
-      activesupport (>= 3.0)
+    climate_control (0.1.0)
     cocaine (0.5.8)
       climate_control (>= 0.0.3, < 1.0)
     coderay (1.1.1)
@@ -86,7 +88,7 @@ GEM
       execjs
     coffee-script-source (1.10.0)
     colorize (0.8.1)
-    concurrent-ruby (1.0.3)
+    concurrent-ruby (1.0.4)
     connection_pool (2.2.1)
     crack (0.4.3)
       safe_yaml (~> 1.0.0)
@@ -172,10 +174,12 @@ GEM
     json (1.8.3)
     launchy (2.4.3)
       addressable (~> 2.3)
-    ledermann-rails-settings (2.4.2)
-      activerecord (>= 3.1)
     letter_opener (1.4.1)
       launchy (~> 2.2)
+    letter_opener_web (1.3.0)
+      actionmailer (>= 3.2)
+      letter_opener (~> 1.0)
+      railties (>= 3.2)
     link_header (0.0.8)
     lograge (0.4.1)
       actionpack (>= 4, < 5.1)
@@ -259,11 +263,11 @@ GEM
       nokogiri (~> 1.6.0)
     rails-html-sanitizer (1.0.3)
       loofah (~> 2.0)
+    rails-settings-cached (0.6.5)
+      rails (>= 4.2.0)
     rails_12factor (0.0.3)
       rails_serve_static_assets
       rails_stdout_logging
-    rails_autolink (1.1.6)
-      rails (> 3.1)
     rails_serve_static_assets (0.0.5)
     rails_stdout_logging (0.0.5)
     railties (5.0.1)
@@ -332,6 +336,7 @@ GEM
       rainbow (>= 1.99.1, < 3.0)
       ruby-progressbar (~> 1.7)
       unicode-display_width (~> 1.0, >= 1.0.1)
+    ruby-oembed (0.10.1)
     ruby-progressbar (1.8.1)
     safe_yaml (1.0.4)
     sass (3.4.22)
@@ -367,6 +372,7 @@ GEM
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
+    statsd-instrument (2.1.2)
     temple (0.7.7)
     term-ansicolor (1.4.0)
       tins (~> 1.0)
@@ -405,6 +411,7 @@ DEPENDENCIES
   addressable
   autoprefixer-rails
   aws-sdk (>= 2.0)
+  best_in_place (~> 3.0.1)
   better_errors
   binding_of_caller
   browserify-rails
@@ -426,14 +433,14 @@ DEPENDENCIES
   i18n-tasks (~> 0.9.6)
   jbuilder (~> 2.0)
   jquery-rails
-  ledermann-rails-settings
   letter_opener
+  letter_opener_web
   link_header
   lograge
   nokogiri
   oj
   ostatus2
-  paperclip (~> 5.0)
+  paperclip (~> 5.1)
   paperclip-av-transcoder
   pg
   pg_search
@@ -445,23 +452,28 @@ DEPENDENCIES
   rack-cors
   rack-timeout-puma
   rails (~> 5.0.1.0)
+  rails-settings-cached
   rails_12factor
-  rails_autolink
   react-rails
   redis (~> 3.2)
   redis-rails
   rspec-rails
   rspec-sidekiq
   rubocop
+  ruby-oembed
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
   sidekiq
   simple-navigation
   simple_form
   simplecov
+  statsd-instrument
   uglifier (>= 1.3.0)
   webmock
   will_paginate
 
+RUBY VERSION
+   ruby 2.3.1p112
+
 BUNDLED WITH
-   1.13.6
+   1.13.7

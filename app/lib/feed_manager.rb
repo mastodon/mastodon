@@ -43,10 +43,20 @@ class FeedManager
     timeline_key = key(:home, into_account.id)
 
     from_account.statuses.limit(MAX_ITEMS).each do |status|
+      next if filter?(:home, status, into_account)
       redis.zadd(timeline_key, status.id, status.id)
     end
 
     trim(:home, into_account.id)
+  end
+
+  def unmerge_from_timeline(from_account, into_account)
+    timeline_key = key(:home, into_account.id)
+
+    from_account.statuses.select('id').find_each do |status|
+      redis.zrem(timeline_key, status.id)
+      redis.zremrangebyscore(timeline_key, status.id, status.id)
+    end
   end
 
   def inline_render(target_account, template, object)

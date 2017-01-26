@@ -20,8 +20,8 @@ RSpec.describe Auth::RegistrationsController, type: :controller do
       post :create, params: { user: { account_attributes: { username: 'test' }, email: 'test@example.com', password: '12345678', password_confirmation: '12345678' } }
     end
 
-    it 'redirects to home page' do
-      expect(response).to redirect_to root_path
+    it 'redirects to login page' do
+      expect(response).to redirect_to new_user_session_path
     end
 
     it 'creates user' do

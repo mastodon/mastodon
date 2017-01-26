@@ -38,7 +38,7 @@ class FollowService < BaseService
       NotificationWorker.perform_async(follow.stream_entry.id, target_account.id)
     end
 
-    FeedManager.instance.merge_into_timeline(target_account, source_account)
+    MergeWorker.perform_async(target_account.id, source_account.id)
     Pubsubhubbub::DistributionWorker.perform_async(follow.stream_entry.id)
 
     follow

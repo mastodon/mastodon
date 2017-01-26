@@ -11,6 +11,9 @@ import statuses from './statuses';
 import relationships from './relationships';
 import search from './search';
 import notifications from './notifications';
+import settings from './settings';
+import status_lists from './status_lists';
+import cards from './cards';
 
 export default combineReducers({
   timelines,
@@ -20,9 +23,12 @@ export default combineReducers({
   loadingBar: loadingBarReducer,
   modal,
   user_lists,
+  status_lists,
   accounts,
   statuses,
   relationships,
   search,
-  notifications
+  notifications,
+  settings,
+  cards
 });

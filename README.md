@@ -1,11 +1,11 @@
 Mastodon
 ========
 
-[![Build Status](http://img.shields.io/travis/Gargron/goldfinger.svg)][travis]
-[![Code Climate](https://img.shields.io/codeclimate/github/Gargron/mastodon.svg)][code_climate]
+[![Build Status](http://img.shields.io/travis/tootsuite/mastodon.svg)][travis]
+[![Code Climate](https://img.shields.io/codeclimate/github/tootsuite/mastodon.svg)][code_climate]
 
-[travis]: https://travis-ci.org/Gargron/mastodon
-[code_climate]: https://codeclimate.com/github/Gargron/mastodon
+[travis]: https://travis-ci.org/tootsuite/mastodon
+[code_climate]: https://codeclimate.com/github/tootsuite/mastodon
 
 Mastodon is a free, open-source social network server. A decentralized alternative to commercial platforms, it avoids the risks of a single company monopolizing your communication. Anyone can run Mastodon and participate in the social network seamlessly.
 
@@ -25,11 +25,11 @@ If you would like, you can [support the development of this project on Patreon][
 
 ## Resources
 
-- [List of Mastodon instances](https://github.com/Gargron/mastodon/wiki/List-of-Mastodon-instances)
+- [List of Mastodon instances](docs/Using-Mastodon/List-of-Mastodon-instances.md)
 - [Use this tool to find Twitter friends on Mastodon](https://mastodon-bridge.herokuapp.com)
-- [API overview](https://github.com/Gargron/mastodon/wiki/API)
-- [How to use the API via cURL/oAuth](https://github.com/Gargron/mastodon/wiki/Testing-with-cURL)
-- [Frequently Asked Questions](https://github.com/Gargron/mastodon/wiki/FAQ)
+- [API overview](docs/Using-the-API/API.md)
+- [Frequently Asked Questions](docs/Using-Mastodon/FAQ.md)
+- [List of apps](docs/Using-Mastodon/Apps.md)
 
 ## Features
 
@@ -115,7 +115,19 @@ Which will re-create the updated containers, leaving databases and data as is. D
 
 ## Deployment without Docker
 
-Docker is great for quickly trying out software, but it has its drawbacks too. If you prefer to run Mastodon without using Docker, refer to the [production guide](https://github.com/Gargron/mastodon/wiki/Production-guide) for examples, configuration and instructions.
+Docker is great for quickly trying out software, but it has its drawbacks too. If you prefer to run Mastodon without using Docker, refer to the [production guide](docs/Running-Mastodon/Production-guide.md) for examples, configuration and instructions.
+
+## Deployment on Heroku (experimental)
+
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
+
+Mastodon can theoretically run indefinitely on a free [Heroku](https://heroku.com) app. [You can view a guide for deployment on Heroku here.](docs/Running-Mastodon/Heroku.md)
+
+## Development with Vagrant
+
+A quick way to get a development environment up and running is with Vagrant. You will need recent versions of [Vagrant](https://www.vagrantup.com/) and [VirtualBox](https://www.virtualbox.org/) installed.
+
+[You can find the guide for setting up a Vagrant development environment here.](docs/Running-Mastodon/Vagrant.md)
 
 ## Contributing
 

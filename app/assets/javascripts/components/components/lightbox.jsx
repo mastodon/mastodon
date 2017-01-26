@@ -35,7 +35,9 @@ const Lightbox = React.createClass({
   propTypes: {
     isVisible: React.PropTypes.bool,
     onOverlayClicked: React.PropTypes.func,
-    onCloseClicked: React.PropTypes.func
+    onCloseClicked: React.PropTypes.func,
+    intl: React.PropTypes.object.isRequired,
+    children: React.PropTypes.node
   },
 
   mixins: [PureRenderMixin],
@@ -57,19 +59,17 @@ const Lightbox = React.createClass({
   render () {
     const { intl, isVisible, onOverlayClicked, onCloseClicked, children } = this.props;
 
-    const content = isVisible ? children : <div />;
-
     return (
-      <div className='lightbox' style={{...overlayStyle, display: isVisible ? 'flex' : 'none'}} onClick={onOverlayClicked}>
-        <Motion defaultStyle={{ y: -200 }} style={{ y: spring(isVisible ? 0 : -200) }}>
-          {({ y }) =>
-            <div style={{...dialogStyle, transform: `translateY(${y}px)`}}>
+      <Motion defaultStyle={{ backgroundOpacity: 0, opacity: 0, y: -400 }} style={{ backgroundOpacity: spring(isVisible ? 50 : 0), opacity: isVisible ? spring(200) : 0, y: spring(isVisible ? 0 : -400, { stiffness: 150, damping: 12 }) }}>
+        {({ backgroundOpacity, opacity, y }) =>
+          <div className='lightbox' style={{...overlayStyle, background: `rgba(0, 0, 0, ${backgroundOpacity / 100})`, display: Math.floor(backgroundOpacity) === 0 ? 'none' : 'flex'}} onClick={onOverlayClicked}>
+            <div style={{...dialogStyle, transform: `translateY(${y}px)`, opacity: opacity / 100 }}>
               <IconButton title={intl.formatMessage({ id: 'lightbox.close', defaultMessage: 'Close' })} icon='times' onClick={onCloseClicked} size={16} style={closeStyle} />
-              {content}
+              {children}
             </div>
-          }
-        </Motion>
-      </div>
+          </div>
+        }
+      </Motion>
     );
   }
 

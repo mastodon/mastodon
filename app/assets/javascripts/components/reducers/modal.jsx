@@ -8,14 +8,14 @@ const initialState = Immutable.Map({
 
 export default function modal(state = initialState, action) {
   switch(action.type) {
-    case MEDIA_OPEN:
-      return state.withMutations(map => {
-        map.set('url', action.url);
-        map.set('open', true);
-      });
-    case MODAL_CLOSE:
-      return state.set('open', false);
-    default:
-      return state;
+  case MEDIA_OPEN:
+    return state.withMutations(map => {
+      map.set('url', action.url);
+      map.set('open', true);
+    });
+  case MODAL_CLOSE:
+    return state.set('open', false);
+  default:
+    return state;
   }
 };

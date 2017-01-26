@@ -14,7 +14,7 @@ RSpec.describe BlockDomainService do
     bad_status2
     bad_attachment
 
-    subject.call('evil.org')
+    subject.call('evil.org', :suspend)
   end
 
   it 'creates a domain block' do
@@ -22,7 +22,7 @@ RSpec.describe BlockDomainService do
   end
 
   it 'removes remote accounts from that domain' do
-    expect(Account.find_remote('badguy666', 'evil.org')).to be_nil
+    expect(Account.find_remote('badguy666', 'evil.org').suspended?).to be true
   end
 
   it 'removes the remote accounts\'s statuses and media attachments' do

@@ -14,4 +14,8 @@ module SettingsHelper
   def human_locale(locale)
     HUMAN_LOCALES[locale]
   end
+
+  def hash_to_object(hash)
+    HashObject.new(hash)
+  end
 end

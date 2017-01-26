@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161222204147) do
+ActiveRecord::Schema.define(version: 20170125145934) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -55,9 +55,11 @@ ActiveRecord::Schema.define(version: 20161222204147) do
   end
 
   create_table "domain_blocks", force: :cascade do |t|
-    t.string   "domain",     default: "", null: false
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
+    t.string   "domain",       default: "", null: false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.integer  "severity",     default: 0
+    t.boolean  "reject_media"
     t.index ["domain"], name: "index_domain_blocks_on_domain", unique: true, using: :btree
   end
 
@@ -95,6 +97,8 @@ ActiveRecord::Schema.define(version: 20161222204147) do
     t.integer  "account_id"
     t.datetime "created_at",                     null: false
     t.datetime "updated_at",                     null: false
+    t.string   "shortcode"
+    t.index ["shortcode"], name: "index_media_attachments_on_shortcode", unique: true, using: :btree
     t.index ["status_id"], name: "index_media_attachments_on_status_id", using: :btree
   end
 
@@ -151,30 +155,32 @@ ActiveRecord::Schema.define(version: 20161222204147) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "superapp",     default: false, null: false
+    t.string   "website"
     t.index ["uid"], name: "index_oauth_applications_on_uid", unique: true, using: :btree
   end
 
-  create_table "pubsubhubbub_subscriptions", force: :cascade do |t|
-    t.string   "topic",      default: "",    null: false
-    t.string   "callback",   default: "",    null: false
-    t.string   "mode",       default: "",    null: false
-    t.string   "challenge",  default: "",    null: false
-    t.string   "secret"
-    t.boolean  "confirmed",  default: false, null: false
-    t.datetime "expires_at",                 null: false
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
-    t.index ["topic", "callback"], name: "index_pubsubhubbub_subscriptions_on_topic_and_callback", unique: true, using: :btree
+  create_table "preview_cards", force: :cascade do |t|
+    t.integer  "status_id"
+    t.string   "url",                default: "", null: false
+    t.string   "title"
+    t.string   "description"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+    t.index ["status_id"], name: "index_preview_cards_on_status_id", unique: true, using: :btree
   end
 
   create_table "settings", force: :cascade do |t|
-    t.string   "var",         null: false
+    t.string   "var",        null: false
     t.text     "value"
-    t.string   "target_type", null: false
-    t.integer  "target_id",   null: false
+    t.string   "thing_type"
+    t.integer  "thing_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.index ["target_type", "target_id", "var"], name: "index_settings_on_target_type_and_target_id_and_var", unique: true, using: :btree
+    t.index ["thing_type", "thing_id", "var"], name: "index_settings_on_thing_type_and_thing_id_and_var", unique: true, using: :btree
   end
 
   create_table "statuses", force: :cascade do |t|
@@ -189,7 +195,8 @@ ActiveRecord::Schema.define(version: 20161222204147) do
     t.boolean  "sensitive",              default: false
     t.integer  "visibility",             default: 0,     null: false
     t.integer  "in_reply_to_account_id"
-    t.string   "conversation_uri"
+    t.integer  "application_id"
+    t.text     "spoiler_text",           default: "",    null: false
     t.index ["account_id"], name: "index_statuses_on_account_id", using: :btree
     t.index ["in_reply_to_id"], name: "index_statuses_on_in_reply_to_id", using: :btree
     t.index ["reblog_of_id"], name: "index_statuses_on_reblog_of_id", using: :btree
@@ -256,6 +263,14 @@ ActiveRecord::Schema.define(version: 20161222204147) do
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+  end
+
+  create_table "web_settings", force: :cascade do |t|
+    t.integer  "user_id"
+    t.json     "data"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_web_settings_on_user_id", unique: true, using: :btree
   end
 
 end

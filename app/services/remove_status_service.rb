@@ -53,7 +53,12 @@ class RemoveStatusService < BaseService
   end
 
   def unpush(type, receiver, status)
-    redis.zremrangebyscore(FeedManager.instance.key(type, receiver.id), status.id, status.id)
+    if status.reblog?
+      redis.zadd(FeedManager.instance.key(type, receiver.id), status.reblog_of_id, status.reblog_of_id)
+    else
+      redis.zremrangebyscore(FeedManager.instance.key(type, receiver.id), status.id, status.id)
+    end
+
     FeedManager.instance.broadcast(receiver.id, type: 'delete', id: status.id)
   end
 

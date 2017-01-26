@@ -14,11 +14,12 @@ export const TIMELINE_EXPAND_FAIL    = 'TIMELINE_EXPAND_FAIL';
 
 export const TIMELINE_SCROLL_TOP = 'TIMELINE_SCROLL_TOP';
 
-export function refreshTimelineSuccess(timeline, statuses) {
+export function refreshTimelineSuccess(timeline, statuses, skipLoading) {
   return {
     type: TIMELINE_REFRESH_SUCCESS,
-    timeline: timeline,
-    statuses: statuses
+    timeline,
+    statuses,
+    skipLoading
   };
 };
 
@@ -39,61 +40,77 @@ export function deleteFromTimelines(id) {
   return (dispatch, getState) => {
     const accountId  = getState().getIn(['statuses', id, 'account']);
     const references = getState().get('statuses').filter(status => status.get('reblog') === id).map(status => [status.get('id'), status.get('account')]);
+    const reblogOf   = getState().getIn(['statuses', id, 'reblog'], null);
 
     dispatch({
       type: TIMELINE_DELETE,
       id,
       accountId,
-      references
+      references,
+      reblogOf
     });
   };
 };
 
-export function refreshTimelineRequest(timeline, id) {
+export function refreshTimelineRequest(timeline, id, skipLoading) {
   return {
     type: TIMELINE_REFRESH_REQUEST,
     timeline,
-    id
+    id,
+    skipLoading
   };
 };
 
 export function refreshTimeline(timeline, id = null) {
   return function (dispatch, getState) {
-    dispatch(refreshTimelineRequest(timeline, id));
+    if (getState().getIn(['timelines', timeline, 'isLoading'])) {
+      return;
+    }
 
     const ids      = getState().getIn(['timelines', timeline, 'items'], Immutable.List());
     const newestId = ids.size > 0 ? ids.first() : null;
 
-    let params = '';
-    let path   = timeline;
+    let params      = '';
+    let path        = timeline;
+    let skipLoading = false;
 
     if (newestId !== null && getState().getIn(['timelines', timeline, 'loaded'])) {
-      params = `?since_id=${newestId}`;
+      params      = `?since_id=${newestId}`;
+      skipLoading = true;
     }
 
     if (id) {
       path = `${path}/${id}`
     }
 
+    dispatch(refreshTimelineRequest(timeline, id, skipLoading));
+
     api(getState).get(`/api/v1/timelines/${path}${params}`).then(function (response) {
-      dispatch(refreshTimelineSuccess(timeline, response.data));
+      dispatch(refreshTimelineSuccess(timeline, response.data, skipLoading));
     }).catch(function (error) {
-      dispatch(refreshTimelineFail(timeline, error));
+      dispatch(refreshTimelineFail(timeline, error, skipLoading));
     });
   };
 };
 
-export function refreshTimelineFail(timeline, error) {
+export function refreshTimelineFail(timeline, error, skipLoading) {
   return {
     type: TIMELINE_REFRESH_FAIL,
     timeline,
-    error
+    error,
+    skipLoading
   };
 };
 
 export function expandTimeline(timeline, id = null) {
   return (dispatch, getState) => {
     const lastId = getState().getIn(['timelines', timeline, 'items'], Immutable.List()).last();
+
+    if (!lastId || getState().getIn(['timelines', timeline, 'isLoading'])) {
+      // If timeline is empty, don't try to load older posts since there are none
+      // Also if already loading
+      return;
+    }
 
     dispatch(expandTimelineRequest(timeline));
 
@@ -103,7 +120,12 @@ export function expandTimeline(timeline, id = null) {
       path = `${path}/${id}`
     }
 
-    api(getState).get(`/api/v1/timelines/${path}?max_id=${lastId}`).then(response => {
+    api(getState).get(`/api/v1/timelines/${path}`, {
+      params: {
+        limit: 10,
+        max_id: lastId
+      }
+    }).then(response => {
       dispatch(expandTimelineSuccess(timeline, response.data));
     }).catch(error => {
       dispatch(expandTimelineFail(timeline, error));

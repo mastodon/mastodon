@@ -49,7 +49,7 @@ const StatusActionBar = React.createClass({
   },
 
   handleMentionClick () {
-    this.props.onMention(this.props.status.get('account'));
+    this.props.onMention(this.props.status.get('account'), this.context.router);
   },
 
   handleBlockClick () {
@@ -77,10 +77,10 @@ const StatusActionBar = React.createClass({
       <div style={{ marginTop: '10px', overflow: 'hidden' }}>
         <div style={{ float: 'left', marginRight: '18px'}}><IconButton title={intl.formatMessage(messages.reply)} icon='reply' onClick={this.handleReplyClick} /></div>
         <div style={{ float: 'left', marginRight: '18px'}}><IconButton disabled={status.get('visibility') === 'private'} active={status.get('reblogged')} title={intl.formatMessage(messages.reblog)} icon={status.get('visibility') === 'private' ? 'lock' : 'retweet'} onClick={this.handleReblogClick} /></div>
-        <div style={{ float: 'left', marginRight: '18px'}}><IconButton active={status.get('favourited')} title={intl.formatMessage(messages.favourite)} icon='star' onClick={this.handleFavouriteClick} activeStyle={{ color: '#ca8f04' }} /></div>
+        <div style={{ float: 'left', marginRight: '18px'}}><IconButton animate={true} active={status.get('favourited')} title={intl.formatMessage(messages.favourite)} icon='star' onClick={this.handleFavouriteClick} activeStyle={{ color: '#ca8f04' }} /></div>
 
         <div style={{ width: '18px', height: '18px', float: 'left' }}>
-          <DropdownMenu items={menu} icon='ellipsis-h' size={18} />
+          <DropdownMenu items={menu} icon='ellipsis-h' size={18} direction="right" />
         </div>
       </div>
     );

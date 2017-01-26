@@ -1,12 +1,18 @@
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
-import { FormattedMessage } from 'react-intl';
+import IconButton from './icon_button';
+import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
+
+const messages = defineMessages({
+  toggle_visible: { id: 'media_gallery.toggle_visible', defaultMessage: 'Toggle visibility' }
+});
 
 const outerStyle = {
   marginTop: '8px',
   overflow: 'hidden',
   width: '100%',
-  boxSizing: 'border-box'
+  boxSizing: 'border-box',
+  position: 'relative'
 };
 
 const spoilerStyle = {
@@ -32,11 +38,18 @@ const spoilerSubSpanStyle = {
   fontWeight: '500'
 };
 
+const spoilerButtonStyle = {
+  position: 'absolute',
+  top: '6px',
+  left: '8px',
+  zIndex: '100'
+};
+
 const MediaGallery = React.createClass({
 
   getInitialState () {
     return {
-      visible: false
+      visible: !this.props.sensitive
     };
   },
 
@@ -59,21 +72,30 @@ const MediaGallery = React.createClass({
   },
 
   handleOpen () {
-    this.setState({ visible: true });
+    this.setState({ visible: !this.state.visible });
   },
 
   render () {
-    const { media, sensitive } = this.props;
+    const { media, intl, sensitive } = this.props;
 
     let children;
 
-    if (sensitive && !this.state.visible) {
-      children = (
-        <div style={spoilerStyle} onClick={this.handleOpen}>
-          <span style={spoilerSpanStyle}><FormattedMessage id='status.sensitive_warning' defaultMessage='Sensitive content' /></span>
-          <span style={spoilerSubSpanStyle}><FormattedMessage id='status.sensitive_toggle' defaultMessage='Click to view' /></span>
-        </div>
-      );
+    if (!this.state.visible) {
+      if (sensitive) {
+        children = (
+          <div style={spoilerStyle} onClick={this.handleOpen}>
+            <span style={spoilerSpanStyle}><FormattedMessage id='status.sensitive_warning' defaultMessage='Sensitive content' /></span>
+            <span style={spoilerSubSpanStyle}><FormattedMessage id='status.sensitive_toggle' defaultMessage='Click to view' /></span>
+          </div>
+        );
+      } else {
+        children = (
+          <div style={spoilerStyle} onClick={this.handleOpen}>
+            <span style={spoilerSpanStyle}><FormattedMessage id='status.media_hidden' defaultMessage='Media hidden' /></span>
+            <span style={spoilerSubSpanStyle}><FormattedMessage id='status.sensitive_toggle' defaultMessage='Click to view' /></span>
+          </div>
+        );
+      }
     } else {
       const size = media.take(4).size;
 
@@ -134,9 +156,12 @@ const MediaGallery = React.createClass({
         );
       });
     }
-
+    
     return (
       <div style={{ ...outerStyle, height: `${this.props.height}px` }}>
+        <div style={spoilerButtonStyle} >
+          <IconButton title={intl.formatMessage(messages.toggle_visible)} icon={this.state.visible ? 'eye' : 'eye-slash'} onClick={this.handleOpen} />
+        </div>
         {children}
       </div>
     );
@@ -144,4 +169,4 @@ const MediaGallery = React.createClass({
 
 });
 
-export default MediaGallery;
+export default injectIntl(MediaGallery);

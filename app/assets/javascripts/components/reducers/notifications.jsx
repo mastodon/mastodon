@@ -2,7 +2,10 @@ import {
   NOTIFICATIONS_UPDATE,
   NOTIFICATIONS_REFRESH_SUCCESS,
   NOTIFICATIONS_EXPAND_SUCCESS,
-  NOTIFICATIONS_SETTING_CHANGE
+  NOTIFICATIONS_REFRESH_REQUEST,
+  NOTIFICATIONS_EXPAND_REQUEST,
+  NOTIFICATIONS_REFRESH_FAIL,
+  NOTIFICATIONS_EXPAND_FAIL
 } from '../actions/notifications';
 import { ACCOUNT_BLOCK_SUCCESS } from '../actions/accounts';
 import Immutable from 'immutable';
@@ -11,22 +14,7 @@ const initialState = Immutable.Map({
   items: Immutable.List(),
   next: null,
   loaded: false,
-
-  settings: Immutable.Map({
-    alerts: Immutable.Map({
-      follow: true,
-      favourite: true,
-      reblog: true,
-      mention: true
-    }),
-
-    shows: Immutable.Map({
-      follow: true,
-      favourite: true,
-      reblog: true,
-      mention: true
-    })
-  })
+  isLoading: true
 });
 
 const notificationToMap = notification => Immutable.Map({
@@ -48,7 +36,11 @@ const normalizeNotifications = (state, notifications, next) => {
     items = items.set(i, notificationToMap(n));
   });
 
-  return state.update('items', list => loaded ? list.unshift(...items) : list.push(...items)).set('next', next).set('loaded', true);
+  return state
+    .update('items', list => loaded ? list.unshift(...items) : list.push(...items))
+    .set('next', next)
+    .set('loaded', true)
+    .set('isLoading', false);
 };
 
 const appendNormalizedNotifications = (state, notifications, next) => {
@@ -58,7 +50,10 @@ const appendNormalizedNotifications = (state, notifications, next) => {
     items = items.set(i, notificationToMap(n));
   });
 
-  return state.update('items', list => list.push(...items)).set('next', next);
+  return state
+    .update('items', list => list.push(...items))
+    .set('next', next)
+    .set('isLoading', false);
 };
 
 const filterNotifications = (state, relationship) => {
@@ -67,17 +62,20 @@ const filterNotifications = (state, relationship) => {
 
 export default function notifications(state = initialState, action) {
   switch(action.type) {
-    case NOTIFICATIONS_UPDATE:
-      return normalizeNotification(state, action.notification);
-    case NOTIFICATIONS_REFRESH_SUCCESS:
-      return normalizeNotifications(state, action.notifications, action.next);
-    case NOTIFICATIONS_EXPAND_SUCCESS:
-      return appendNormalizedNotifications(state, action.notifications, action.next);
-    case ACCOUNT_BLOCK_SUCCESS:
-      return filterNotifications(state, action.relationship);
-    case NOTIFICATIONS_SETTING_CHANGE:
-      return state.setIn(['settings', ...action.key], action.checked);
-    default:
-      return state;
+  case NOTIFICATIONS_REFRESH_REQUEST:
+  case NOTIFICATIONS_EXPAND_REQUEST:
+  case NOTIFICATIONS_REFRESH_FAIL:
+  case NOTIFICATIONS_EXPAND_FAIL:
+    return state.set('isLoading', true);
+  case NOTIFICATIONS_UPDATE:
+    return normalizeNotification(state, action.notification);
+  case NOTIFICATIONS_REFRESH_SUCCESS:
+    return normalizeNotifications(state, action.notifications, action.next);
+  case NOTIFICATIONS_EXPAND_SUCCESS:
+    return appendNormalizedNotifications(state, action.notifications, action.next);
+  case ACCOUNT_BLOCK_SUCCESS:
+    return filterNotifications(state, action.relationship);
+  default:
+    return state;
   }
 };
