@@ -88,12 +88,12 @@ const StatusContent = React.createClass({
     const spoilerContent = { __html: emojify(status.get('spoiler_text', '')) };
 
     if (status.get('spoiler_text').length > 0) {
-      const toggleText = hidden ? <FormattedMessage id='status.show_more' defaultMessage='[Show more]' /> : <FormattedMessage id='status.show_less' defaultMessage='[Show less]' />;
+      const toggleText = hidden ? <FormattedMessage id='status.show_more' defaultMessage='Show more' /> : <FormattedMessage id='status.show_less' defaultMessage='Show less' />;
 
       return (
         <div className='status__content' style={{ cursor: 'pointer' }} onMouseDown={this.handleMouseDown} onMouseUp={this.handleMouseUp}>
           <p style={{ marginBottom: hidden ? '0px' : '' }} >
-            <span dangerouslySetInnerHTML={spoilerContent} /> <a onClick={this.handleSpoilerClick}>{toggleText}</a>
+            <span dangerouslySetInnerHTML={spoilerContent} /> <a onClick={this.handleSpoilerClick}>[{toggleText}]</a>
           </p>
 
           <div style={{ display: hidden ? 'none' : 'block' }} dangerouslySetInnerHTML={content} />
