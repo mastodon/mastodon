@@ -69,7 +69,7 @@ const StatusContent = React.createClass({
       return;
     }
 
-    if (deltaX + deltaY < 5) {
+    if (deltaX + deltaY < 5 && e.button === 0) {
       this.props.onClick();
     }
 
