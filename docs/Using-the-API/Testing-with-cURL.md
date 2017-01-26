@@ -9,7 +9,9 @@ From these two, you will need to acquire an access token. It is possible to do u
 
     curl -X POST -d "client_id=CLIENT_ID_HERE&client_secret=CLIENT_SECRET_HERE&grant_type=password&username=YOUR_EMAIL&password=YOUR_PASSWORD" -Ss https://mastodon.social/oauth/token
 
-The response will be a JSON object containing the key `access_token`. Use that token in any API requests by setting a header like this:
+The `/oauth/token` path will attempt to login with the given credentials, and then retrieve the access token for the current user. If the login failed the response will be a 302 redirect to `/auth/sign_in`. Otherwise the response will be a JSON object containing the key `access_token`.
+
+Use that token in any API requests by setting a header like this:
 
     curl --header "Authorization: Bearer ACCESS_TOKEN_HERE" -sS https://mastodon.social/api/statuses/home
 
