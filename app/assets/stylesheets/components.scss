@@ -656,7 +656,10 @@
   padding-bottom: 235px;
   background: image-url('mastodon-getting-started.png') no-repeat 0 100% local;
   height: 100%;
-  p {font-color: $color2;}
+
+  p {
+    color: $color2;
+  }
 }
 
 .dropdown__content.dropdown__left {
