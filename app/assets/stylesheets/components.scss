@@ -707,3 +707,39 @@ button.active i.fa-retweet {
     background: lighten($color1, 6%);
   }
 }
+
+.spoiler__content {
+  background: rgba(255,255,255,0.1);
+  padding: 0.2em 0.5em;
+  margin: 0.6em 0.3em;
+
+  &, & a {
+    font-size: 13px;
+
+  }
+
+  .detailed-status & {
+    margin-top: 0;
+
+    &, & a {
+      font-size: 17px;
+    }
+  }
+
+  &::after {
+    content: '';
+    display: block;
+    clear: both;
+  }
+
+  a {
+    float: right;
+    padding-left: 1em;
+  }
+
+  .muted & {
+    &, & * {
+      color: lighten($color1, 42%);
+    }
+  }
+}
