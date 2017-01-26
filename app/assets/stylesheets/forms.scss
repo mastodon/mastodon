@@ -16,15 +16,26 @@ code {
 
   .checklist_header {
     font-size: 16px;
+    margin-bottom: 10px;
   }
   .checklist_item {
     display: block;
   }
 
-  .checklist_box {
+  .small {
+    width: 150px;
+    height: 36px;
+    padding: 5px;
+    font-size: 14px;
+    display: inline;
+  }
+
+  .checklist_outer {
+    margin-top: 10px;
+  }
+  .checklist_inner {
     font-size: 14px;
     padding: 10px 25px;
-    margin-top: 10px;
     height: 250px;
     overflow-y: scroll;
     background-color: rgba(0, 0, 0, 0.3);

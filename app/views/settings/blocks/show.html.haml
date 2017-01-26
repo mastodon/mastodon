@@ -3,13 +3,18 @@
 
 = form_tag(settings_blocks_path, method: "put", class: "simple_form") do
   = label_tag :domain_blocklist, t('settings.forms.domain_blocklist'), class: "checklist_header"
-  .checklist_box
-    - @domains.each_with_index do |domain, i|
-      .checklist_item
-        %input{:type => "hidden", :name => "domains[%d][name]" % i, :value => domain.name}
-        %input{:type => "hidden", :name => "domains[%d][state]" % i, :value => "false"}
-          = check_box_tag "domains[%d][state]" % i, "true", domain.blocked?
-        = label_tag("domains[%d][state]" % i, domain.name)
+  .checklist_outer
+
+    %button.btn.small{:id => "select_all", :type => "button"}= t("settings.forms.select_all")
+    %button.btn.small{:id => "deselect_all", :type => "button"}= t("settings.forms.deselect_all")
+
+    .checklist_inner
+      - @domains.each_with_index do |domain, i|
+        .checklist_item
+          %input{:type => "hidden", :name => "domains[%d][name]" % i, :value => domain.name}
+          %input{:type => "hidden", :name => "domains[%d][state]" % i, :value => "false"}
+            = check_box_tag "domains[%d][state]" % i, "true", domain.blocked?
+          = label_tag("domains[%d][state]" % i, domain.name)
 
   .actions
     %button.btn{:name => "button", :type => "submit"}= t('generic.save_changes')
