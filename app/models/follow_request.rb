@@ -13,7 +13,7 @@ class FollowRequest < ApplicationRecord
 
   def authorize!
     account.follow!(target_account)
-    FeedManager.instance.merge_into_timeline(target_account, account)
+    MergeWorker.perform_async(target_account.id, account.id)
     destroy!
   end
 
