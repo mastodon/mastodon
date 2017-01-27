@@ -1,1 +1,4 @@
-Rack::Timeout.timeout = 30 if Rails.env.production?
+if Rails.env.production?
+  Rack::Timeout.service_timeout = 15
+  Rack::Timeout::Logger.disable
+end

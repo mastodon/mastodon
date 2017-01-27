@@ -5,10 +5,12 @@
   %thead
     %tr
       %th Domain
+      %th Severity
   %tbody
     - @blocks.each do |block|
       %tr
         %td
           %samp= block.domain
+        %td= block.severity
 
 = will_paginate @blocks, pagination_options

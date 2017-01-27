@@ -6,7 +6,7 @@ class NotifyService < BaseService
     @activity     = activity
     @notification = Notification.new(account: @recipient, activity: @activity)
 
-    return if blocked?
+    return if blocked? || recipient.user.nil?
 
     create_notification
     send_email if email_enabled?

@@ -2,6 +2,10 @@ import {
   NOTIFICATIONS_UPDATE,
   NOTIFICATIONS_REFRESH_SUCCESS,
   NOTIFICATIONS_EXPAND_SUCCESS,
+  NOTIFICATIONS_REFRESH_REQUEST,
+  NOTIFICATIONS_EXPAND_REQUEST,
+  NOTIFICATIONS_REFRESH_FAIL,
+  NOTIFICATIONS_EXPAND_FAIL
 } from '../actions/notifications';
 import { ACCOUNT_BLOCK_SUCCESS } from '../actions/accounts';
 import Immutable from 'immutable';
@@ -9,7 +13,8 @@ import Immutable from 'immutable';
 const initialState = Immutable.Map({
   items: Immutable.List(),
   next: null,
-  loaded: false
+  loaded: false,
+  isLoading: true
 });
 
 const notificationToMap = notification => Immutable.Map({
@@ -31,7 +36,11 @@ const normalizeNotifications = (state, notifications, next) => {
     items = items.set(i, notificationToMap(n));
   });
 
-  return state.update('items', list => loaded ? list.unshift(...items) : list.push(...items)).set('next', next).set('loaded', true);
+  return state
+    .update('items', list => loaded ? list.unshift(...items) : list.push(...items))
+    .set('next', next)
+    .set('loaded', true)
+    .set('isLoading', false);
 };
 
 const appendNormalizedNotifications = (state, notifications, next) => {
@@ -41,7 +50,10 @@ const appendNormalizedNotifications = (state, notifications, next) => {
     items = items.set(i, notificationToMap(n));
   });
 
-  return state.update('items', list => list.push(...items)).set('next', next);
+  return state
+    .update('items', list => list.push(...items))
+    .set('next', next)
+    .set('isLoading', false);
 };
 
 const filterNotifications = (state, relationship) => {
@@ -50,6 +62,11 @@ const filterNotifications = (state, relationship) => {
 
 export default function notifications(state = initialState, action) {
   switch(action.type) {
+  case NOTIFICATIONS_REFRESH_REQUEST:
+  case NOTIFICATIONS_EXPAND_REQUEST:
+  case NOTIFICATIONS_REFRESH_FAIL:
+  case NOTIFICATIONS_EXPAND_FAIL:
+    return state.set('isLoading', true);
   case NOTIFICATIONS_UPDATE:
     return normalizeNotification(state, action.notification);
   case NOTIFICATIONS_REFRESH_SUCCESS:

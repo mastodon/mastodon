@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class AccountBlockDomainService < BlockService
+class AccountBlockDomainService < BaseService
   def call(account, domain)
     return if account.blocking_domain?(domain)
     account.block_domain!(domain)
@@ -14,8 +14,7 @@ class AccountBlockDomainService < BlockService
     end
 
     Account.where(domain: domain).each do |target_account|
-      clear_timelines(account, target_account)
-      clear_notifications(account, target_account)
+      BlockWorker.perform_async(account.id, target_account.id)
     end
   end
 end

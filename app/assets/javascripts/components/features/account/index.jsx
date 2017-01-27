@@ -43,7 +43,8 @@ const Account = React.createClass({
     params: React.PropTypes.object.isRequired,
     dispatch: React.PropTypes.func.isRequired,
     account: ImmutablePropTypes.map,
-    me: React.PropTypes.number.isRequired
+    me: React.PropTypes.number.isRequired,
+    children: React.PropTypes.node
   },
 
   mixins: [PureRenderMixin],

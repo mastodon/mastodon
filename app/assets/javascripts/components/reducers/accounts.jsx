@@ -6,7 +6,9 @@ import {
   FOLLOWING_EXPAND_SUCCESS,
   ACCOUNT_TIMELINE_FETCH_SUCCESS,
   ACCOUNT_TIMELINE_EXPAND_SUCCESS,
-  FOLLOW_REQUESTS_FETCH_SUCCESS
+  FOLLOW_REQUESTS_FETCH_SUCCESS,
+  ACCOUNT_FOLLOW_SUCCESS,
+  ACCOUNT_UNFOLLOW_SUCCESS
 } from '../actions/accounts';
 import { COMPOSE_SUGGESTIONS_READY } from '../actions/compose';
 import {
@@ -105,6 +107,10 @@ export default function accounts(state = initialState, action) {
   case TIMELINE_UPDATE:
   case STATUS_FETCH_SUCCESS:
     return normalizeAccountFromStatus(state, action.status);
+  case ACCOUNT_FOLLOW_SUCCESS:
+    return state.updateIn([action.relationship.id, 'followers_count'], num => num + 1);
+  case ACCOUNT_UNFOLLOW_SUCCESS:
+    return state.updateIn([action.relationship.id, 'followers_count'], num => Math.max(0, num - 1));
   default:
     return state;
   }

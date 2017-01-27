@@ -14,6 +14,7 @@ import { Motion, spring } from 'react-motion';
 
 const messages = defineMessages({
   placeholder: { id: 'compose_form.placeholder', defaultMessage: 'What is on your mind?' },
+  spoiler_placeholder: { id: 'compose_form.spoiler_placeholder', defaultMessage: 'Content warning' },
   publish: { id: 'compose_form.publish', defaultMessage: 'Publish' }
 });
 
@@ -25,6 +26,8 @@ const ComposeForm = React.createClass({
     suggestion_token: React.PropTypes.string,
     suggestions: ImmutablePropTypes.list,
     sensitive: React.PropTypes.bool,
+    spoiler: React.PropTypes.bool,
+    spoiler_text: React.PropTypes.string,
     unlisted: React.PropTypes.bool,
     private: React.PropTypes.bool,
     fileDropDate: React.PropTypes.instanceOf(Date),
@@ -40,6 +43,8 @@ const ComposeForm = React.createClass({
     onFetchSuggestions: React.PropTypes.func.isRequired,
     onSuggestionSelected: React.PropTypes.func.isRequired,
     onChangeSensitivity: React.PropTypes.func.isRequired,
+    onChangeSpoilerness: React.PropTypes.func.isRequired,
+    onChangeSpoilerText: React.PropTypes.func.isRequired,
     onChangeVisibility: React.PropTypes.func.isRequired,
     onChangeListability: React.PropTypes.func.isRequired,
   },
@@ -75,6 +80,15 @@ const ComposeForm = React.createClass({
 
   handleChangeSensitivity (e) {
     this.props.onChangeSensitivity(e.target.checked);
+  },
+
+  handleChangeSpoilerness (e) {
+    this.props.onChangeSpoilerness(e.target.checked);
+    this.props.onChangeSpoilerText('');
+  },
+
+  handleChangeSpoilerText (e) {
+    this.props.onChangeSpoilerText(e.target.value);
   },
 
   handleChangeVisibility (e) {
@@ -115,6 +129,14 @@ const ComposeForm = React.createClass({
 
     return (
       <div style={{ padding: '10px' }}>
+        <Motion defaultStyle={{ opacity: !this.props.spoiler ? 0 : 100, height: !this.props.spoiler ? 50 : 0 }} style={{ opacity: spring(!this.props.spoiler ? 0 : 100), height: spring(!this.props.spoiler ? 0 : 50) }}>
+          {({ opacity, height }) =>
+            <div className="spoiler-input" style={{ height: `${height}px`, overflow: 'hidden', opacity: opacity / 100 }}>
+              <input placeholder={intl.formatMessage(messages.spoiler_placeholder)} value={this.props.spoiler_text} onChange={this.handleChangeSpoilerText} type="text" className="spoiler-input__input" />
+            </div>
+          }
+        </Motion>
+
         {replyArea}
 
         <AutosuggestTextarea
@@ -133,13 +155,18 @@ const ComposeForm = React.createClass({
 
         <div style={{ marginTop: '10px', overflow: 'hidden' }}>
           <div style={{ float: 'right' }}><Button text={intl.formatMessage(messages.publish)} onClick={this.handleSubmit} disabled={disabled} /></div>
-          <div style={{ float: 'right', marginRight: '16px', lineHeight: '36px' }}><CharacterCounter max={500} text={this.props.text} /></div>
+          <div style={{ float: 'right', marginRight: '16px', lineHeight: '36px' }}><CharacterCounter max={500} text={[this.props.spoiler_text, this.props.text].join('')} /></div>
           <UploadButtonContainer style={{ paddingTop: '4px' }} />
         </div>
 
         <label style={{ display: 'block', lineHeight: '24px', verticalAlign: 'middle', marginTop: '10px', borderTop: '1px solid #282c37', paddingTop: '10px' }}>
           <Toggle checked={this.props.private} onChange={this.handleChangeVisibility} />
           <span style={{ display: 'inline-block', verticalAlign: 'middle', marginBottom: '14px', marginLeft: '8px', color: '#9baec8' }}><FormattedMessage id='compose_form.private' defaultMessage='Mark as private' /></span>
+        </label>
+
+        <label style={{ display: 'block', lineHeight: '24px', verticalAlign: 'middle' }}>
+          <Toggle checked={this.props.spoiler} onChange={this.handleChangeSpoilerness} />
+          <span style={{ display: 'inline-block', verticalAlign: 'middle', marginBottom: '14px', marginLeft: '8px', color: '#9baec8' }}><FormattedMessage id='compose_form.spoiler' defaultMessage='Hide behind content warning' /></span>
         </label>
 
         <Motion defaultStyle={{ opacity: (this.props.private || reply_to_other) ? 0 : 100, height: (this.props.private || reply_to_other) ? 39.5 : 0 }} style={{ opacity: spring((this.props.private || reply_to_other) ? 0 : 100), height: spring((this.props.private || reply_to_other) ? 0 : 39.5) }}>

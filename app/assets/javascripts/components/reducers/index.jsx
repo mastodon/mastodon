@@ -13,6 +13,7 @@ import search from './search';
 import notifications from './notifications';
 import settings from './settings';
 import status_lists from './status_lists';
+import cards from './cards';
 
 export default combineReducers({
   timelines,
@@ -28,5 +29,6 @@ export default combineReducers({
   relationships,
   search,
   notifications,
-  settings
+  settings,
+  cards
 });

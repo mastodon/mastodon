@@ -1,6 +1,18 @@
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import emojify from '../emoji';
+import { FormattedMessage } from 'react-intl';
+
+const spoilerStyle = {
+  display: 'inline-block',
+  borderRadius: '2px',
+  color: '#363c4b',
+  fontWeight: '500',
+  fontSize: '11px',
+  padding: '0px 6px',
+  textTransform: 'uppercase',
+  lineHeight: 'inherit'
+};
 
 const StatusContent = React.createClass({
 
@@ -11,6 +23,12 @@ const StatusContent = React.createClass({
   propTypes: {
     status: ImmutablePropTypes.map.isRequired,
     onClick: React.PropTypes.func
+  },
+
+  getInitialState () {
+    return {
+      hidden: true
+    };
   },
 
   mixins: [PureRenderMixin],
@@ -31,8 +49,6 @@ const StatusContent = React.createClass({
         link.setAttribute('target', '_blank');
         link.setAttribute('rel', 'noopener');
       }
-
-      link.addEventListener('click', this.onNormalClick, false);
     }
   },
 
@@ -52,16 +68,59 @@ const StatusContent = React.createClass({
     }
   },
 
-  onNormalClick (e) {
-    e.stopPropagation();
+  handleMouseDown (e) {
+    this.startXY = [e.clientX, e.clientY];
+  },
+
+  handleMouseUp (e) {
+    const [ startX, startY ] = this.startXY;
+    const [ deltaX, deltaY ] = [Math.abs(e.clientX - startX), Math.abs(e.clientY - startY)];
+
+    if (e.target.localName === 'a' || (e.target.parentNode && e.target.parentNode.localName === 'a')) {
+      return;
+    }
+
+    if (deltaX + deltaY < 5 && e.button === 0) {
+      this.props.onClick();
+    }
+
+    this.startXY = null;
+  },
+
+  handleSpoilerClick () {
+    this.setState({ hidden: !this.state.hidden });
   },
 
   render () {
-    const { status, onClick } = this.props;
+    const { status } = this.props;
+    const { hidden } = this.state;
 
     const content = { __html: emojify(status.get('content')) };
+    const spoilerContent = { __html: emojify(status.get('spoiler_text', '')) };
 
-    return <div className='status__content' style={{ cursor: 'pointer' }} dangerouslySetInnerHTML={content} onClick={onClick} />;
+    if (status.get('spoiler_text').length > 0) {
+      const toggleText = hidden ? <FormattedMessage id='status.show_more' defaultMessage='Show more' /> : <FormattedMessage id='status.show_less' defaultMessage='Show less' />;
+
+      return (
+        <div className='status__content' style={{ cursor: 'pointer' }} onMouseDown={this.handleMouseDown} onMouseUp={this.handleMouseUp}>
+          <p style={{ marginBottom: hidden ? '0px' : '' }} >
+            <span dangerouslySetInnerHTML={spoilerContent} /> <a className='status__content__spoiler-link' style={spoilerStyle} onClick={this.handleSpoilerClick}>{toggleText}</a>
+          </p>
+
+          <div style={{ display: hidden ? 'none' : 'block' }} dangerouslySetInnerHTML={content} />
+        </div>
+      );
+    } else {
+      return (
+        <div
+          className='status__content'
+          style={{ cursor: 'pointer' }}
+          onMouseDown={this.handleMouseDown}
+          onMouseUp={this.handleMouseUp}
+          dangerouslySetInnerHTML={content}
+        />
+      );
+    }
   },
 
 });

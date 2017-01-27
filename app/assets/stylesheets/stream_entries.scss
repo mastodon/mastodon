@@ -1,12 +1,12 @@
 .activity-stream {
   clear: both;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 15px rgba($color8, 0.2);
 
   .entry {
-    background: lighten(#d9e1e8, 8%);
+    background: lighten($color2, 8%);
 
     &, .detailed-status.light {
-      border-bottom: 1px solid #d9e1e8;
+      border-bottom: 1px solid $color2;
     }
 
     &:last-child {
@@ -43,7 +43,7 @@
         font-size: 14px;
 
         .status__relative-time {
-          color: #9baec8;
+          color: $color3;
         }
       }
     }
@@ -52,7 +52,7 @@
       display: block;
       max-width: 100%;
       padding-right: 25px;
-      color: #282c37;
+      color: $color1;
     }
 
     .status__avatar {
@@ -82,20 +82,20 @@
 
       strong {
         font-weight: 500;
-        color: #282c37;
+        color: $color1;
       }
 
       span {
         font-size: 14px;
-        color: #9baec8;
+        color: $color3;
       }
     }
 
     .status__content {
-      color: #282c37;
+      color: $color1;
 
       a {
-        color: #2b90d9;
+        color: $color4;
       }
     }
 
@@ -111,7 +111,7 @@
 
   .detailed-status.light {
     padding: 14px;
-    background: #fff;
+    background: $color5;
     cursor: default;
 
     .detailed-status__display-name {
@@ -133,12 +133,12 @@
 
         strong {
           font-weight: 500;
-          color: #282c37;
+          color: $color1;
         }
 
         span {
           font-size: 14px;
-          color: #9baec8;
+          color: $color3;
         }
       }
     }
@@ -154,16 +154,16 @@
     }
 
     .status__content {
-      color: #282c37;
+      color: $color1;
 
       a {
-        color: #2b90d9;
+        color: $color4;
       }
     }
 
     .detailed-status__meta {
       margin-top: 15px;
-      color: #9baec8;
+      color: $color3;
       font-size: 14px;
       line-height: 18px;
 
@@ -248,12 +248,13 @@
       transform: translate(-50%, -50%);
       padding: 5px;
       border-radius: 100px;
-      color: rgba(255, 255, 255, 0.8);
+      color: rgba($color5, 0.8);
+      z-index: 1;
     }
   }
 
   .media-spoiler {
-    background: #9baec8;
+    background: $color3;
     width: 100%;
     height: 100%;
     cursor: pointer;
@@ -263,9 +264,10 @@
     flex-direction: column;
     text-align: center;
     transition: all 100ms linear;
+    z-index: 2;
 
     &:hover {
-      background: darken(#9baec8, 5%);
+      background: darken($color3, 5%);
     }
 
     span {
@@ -287,7 +289,7 @@
     padding-left: (48px + 14px*2);
     padding-bottom: 0;
     margin-bottom: -4px;
-    color: #9baec8;
+    color: $color3;
     font-size: 14px;
     position: relative;
 
@@ -297,7 +299,7 @@
     }
 
     .status__display-name.muted strong {
-      color: #9baec8;
+      color: $color3;
     }
   }
 }

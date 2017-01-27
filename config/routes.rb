@@ -3,6 +3,7 @@
 require 'sidekiq/web'
 
 Rails.application.routes.draw do
+  mount LetterOpenerWeb::Engine, at: 'letter_opener' if Rails.env.development?
   mount ActionCable.server, at: 'cable'
 
   authenticate :user, lambda { |u| u.admin? } do
@@ -68,6 +69,8 @@ Rails.application.routes.draw do
     end
   end
 
+  get '/admin', to: redirect('/admin/settings', status: 302)
+
   namespace :api do
     # PubSubHubbub outgoing subscriptions
     resources :subscriptions, only: [:show]
@@ -87,6 +90,7 @@ Rails.application.routes.draw do
       resources :statuses, only: [:create, :show, :destroy] do
         member do
           get :context
+          get :card
           get :reblogged_by
           get :favourited_by
 
@@ -102,10 +106,11 @@ Rails.application.routes.draw do
       get '/timelines/public',   to: 'timelines#public', as: :public_timeline
       get '/timelines/tag/:id',  to: 'timelines#tag', as: :hashtag_timeline
 
-      resources :follows,  only: [:create]
-      resources :media,    only: [:create]
-      resources :apps,     only: [:create]
-      resources :blocks,   only: [:index]
+      resources :follows,    only: [:create]
+      resources :media,      only: [:create]
+      resources :apps,       only: [:create]
+      resources :blocks,     only: [:index]
+      resources :favourites, only: [:index]
 
       resources :follow_requests, only: [:index] do
         member do
@@ -114,8 +119,11 @@ Rails.application.routes.draw do
         end
       end
 
-      resources :notifications, only: [:index]
-      resources :favourites,    only: [:index]
+      resources :notifications, only: [:index, :show] do
+        collection do
+          post :clear
+        end
+      end
 
       resources :accounts, only: [:show] do
         collection do
@@ -154,7 +162,7 @@ Rails.application.routes.draw do
   get '/about',      to: 'about#index'
   get '/about/more', to: 'about#more'
   get '/terms',      to: 'about#terms'
-  
+
   root 'home#index'
 
   match '*unmatched_route', via: :all, to: 'application#raise_not_found'

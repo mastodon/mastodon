@@ -33,7 +33,8 @@ const getStatusIds = createSelector([
 }));
 
 const mapStateToProps = (state, props) => ({
-  statusIds: getStatusIds(state, props)
+  statusIds: getStatusIds(state, props),
+  isLoading: state.getIn(['timelines', props.type, 'isLoading'], true)
 });
 
 const mapDispatchToProps = (dispatch, { type, id }) => ({

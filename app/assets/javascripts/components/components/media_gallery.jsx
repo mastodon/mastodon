@@ -49,7 +49,7 @@ const MediaGallery = React.createClass({
 
   getInitialState () {
     return {
-      visible: false
+      visible: !this.props.sensitive
     };
   },
 
@@ -80,13 +80,22 @@ const MediaGallery = React.createClass({
 
     let children;
 
-    if (sensitive && !this.state.visible) {
-      children = (
-        <div style={spoilerStyle} onClick={this.handleOpen}>
-          <span style={spoilerSpanStyle}><FormattedMessage id='status.sensitive_warning' defaultMessage='Sensitive content' /></span>
-          <span style={spoilerSubSpanStyle}><FormattedMessage id='status.sensitive_toggle' defaultMessage='Click to view' /></span>
-        </div>
-      );
+    if (!this.state.visible) {
+      if (sensitive) {
+        children = (
+          <div style={spoilerStyle} onClick={this.handleOpen}>
+            <span style={spoilerSpanStyle}><FormattedMessage id='status.sensitive_warning' defaultMessage='Sensitive content' /></span>
+            <span style={spoilerSubSpanStyle}><FormattedMessage id='status.sensitive_toggle' defaultMessage='Click to view' /></span>
+          </div>
+        );
+      } else {
+        children = (
+          <div style={spoilerStyle} onClick={this.handleOpen}>
+            <span style={spoilerSpanStyle}><FormattedMessage id='status.media_hidden' defaultMessage='Media hidden' /></span>
+            <span style={spoilerSubSpanStyle}><FormattedMessage id='status.sensitive_toggle' defaultMessage='Click to view' /></span>
+          </div>
+        );
+      }
     } else {
       const size = media.take(4).size;
 
@@ -147,20 +156,12 @@ const MediaGallery = React.createClass({
         );
       });
     }
-
-    let spoilerButton;
-
-    if (sensitive) {
-      spoilerButton = (
-        <div style={spoilerButtonStyle} >
-          <IconButton title={intl.formatMessage(messages.toggle_visible)} icon={this.state.visible ? 'eye' : 'eye-slash'} onClick={this.handleOpen} />
-        </div>
-      );
-    }
     
     return (
       <div style={{ ...outerStyle, height: `${this.props.height}px` }}>
-        {spoilerButton}
+        <div style={spoilerButtonStyle} >
+          <IconButton title={intl.formatMessage(messages.toggle_visible)} icon={this.state.visible ? 'eye' : 'eye-slash'} onClick={this.handleOpen} />
+        </div>
         {children}
       </div>
     );

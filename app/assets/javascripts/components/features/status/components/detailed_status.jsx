@@ -7,6 +7,7 @@ import MediaGallery from '../../../components/media_gallery';
 import VideoPlayer from '../../../components/video_player';
 import { Link } from 'react-router';
 import { FormattedDate, FormattedNumber } from 'react-intl';
+import CardContainer from '../containers/card_container';
 
 const DetailedStatus = React.createClass({
 
@@ -42,6 +43,8 @@ const DetailedStatus = React.createClass({
       } else {
         media = <MediaGallery sensitive={status.get('sensitive')} media={status.get('media_attachments')} height={300} onOpenMedia={this.props.onOpenMedia} />;
       }
+    } else {
+      media = <CardContainer statusId={status.get('id')} />;
     }
 
     if (status.get('application')) {

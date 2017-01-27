@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class Status < ApplicationRecord
+  include ActiveModel::Validations
   include Paginable
   include Streamable
   include Cacheable
@@ -23,11 +24,12 @@ class Status < ApplicationRecord
   has_and_belongs_to_many :tags
 
   has_one :notification, as: :activity, dependent: :destroy
+  has_one :preview_card, dependent: :destroy
 
   validates :account, presence: true
   validates :uri, uniqueness: true, unless: 'local?'
-  validates :text, presence: true, length: { maximum: 500 }, if: proc { |s| s.local? && !s.reblog? }
-  validates :text, presence: true, if: proc { |s| !s.local? && !s.reblog? }
+  validates :text, presence: true, unless: 'reblog?'
+  validates_with StatusLengthValidator
   validates :reblog, uniqueness: { scope: :account, message: 'of status already exists' }, if: 'reblog?'
 
   default_scope { order('id desc') }
@@ -175,6 +177,7 @@ class Status < ApplicationRecord
 
   before_validation do
     text.strip!
+    spoiler_text&.strip!
 
     self.reblog                 = reblog.reblog if reblog? && reblog.reblog?
     self.in_reply_to_account_id = (thread.account_id == account_id && thread.reply? ? thread.in_reply_to_account_id : thread.account_id) if reply?

@@ -32,6 +32,9 @@ Rails.application.configure do
   # config.action_dispatch.x_sendfile_header = 'X-Sendfile' # for Apache
   config.action_dispatch.x_sendfile_header = 'X-Accel-Redirect' # for NGINX
 
+  # Allow to specify public IP of reverse proxy if it's needed
+  config.action_dispatch.trusted_proxies = [IPAddr.new(ENV['TRUSTED_PROXY_IP'])] unless ENV['TRUSTED_PROXY_IP'].blank?
+
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
   config.force_ssl = false
 
@@ -106,6 +109,6 @@ Rails.application.configure do
   config.active_record.logger = nil
 
   config.to_prepare do
-    StatsD.backend = StatsD::Instrument::Backends::NullBackend if ENV['STATSD_ADDR'].blank?
+    StatsD.backend = StatsD::Instrument::Backends::NullBackend.new if ENV['STATSD_ADDR'].blank?
   end
 end

@@ -39,9 +39,9 @@ class Notification < ApplicationRecord
   def target_status
     case type
     when :reblog
-      activity.reblog
+      activity&.reblog
     when :favourite, :mention
-      activity.status
+      activity&.status
     end
   end
 
@@ -66,6 +66,8 @@ class Notification < ApplicationRecord
   private
 
   def set_from_account
+    return unless new_record?
+
     case activity_type
     when 'Status', 'Follow', 'Favourite', 'FollowRequest'
       self.from_account_id = activity(false)&.account_id

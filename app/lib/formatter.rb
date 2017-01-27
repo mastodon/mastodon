@@ -14,7 +14,7 @@ class Formatter
 
     html = status.text
     html = encode(html)
-    html = simple_format(html, sanitize: false)
+    html = simple_format(html, {}, sanitize: false)
     html = html.gsub(/\n/, '')
     html = link_urls(html)
     html = link_mentions(html, status.mentions)
@@ -32,6 +32,7 @@ class Formatter
 
     html = encode(account.note)
     html = link_urls(html)
+    html = link_hashtags(html)
 
     html.html_safe # rubocop:disable Rails/OutputSafety
   end
@@ -43,8 +44,8 @@ class Formatter
   end
 
   def link_urls(html)
-    auto_link(html, link: :urls, html: { rel: 'nofollow noopener', target: '_blank' }) do |text|
-      truncate(text.gsub(/\Ahttps?:\/\/(www\.)?/, ''), length: 30)
+    html.gsub(URI.regexp(%w(http https))) do |match|
+      link_html(match)
     end
   end
 
@@ -61,6 +62,14 @@ class Formatter
     html.gsub(Tag::HASHTAG_RE) do |match|
       hashtag_html(match)
     end
+  end
+
+  def link_html(url)
+    prefix = url.match(/\Ahttps?:\/\/(www\.)?/).to_s
+    text   = url[prefix.length, 30]
+    suffix = url[prefix.length + 30..-1]
+
+    "<a rel=\"nofollow noopener\" target=\"_blank\" href=\"#{url}\"><span class=\"invisible\">#{prefix}</span><span class=\"ellipsis\">#{text}</span><span class=\"invisible\">#{suffix}</span></a>"
   end
 
   def hashtag_html(match)

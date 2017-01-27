@@ -4,7 +4,10 @@ import appReducer from '../reducers';
 import loadingBarMiddleware from '../middleware/loading_bar';
 import errorsMiddleware from '../middleware/errors';
 import soundsMiddleware from 'redux-sounds';
+import Howler from 'howler';
 import Immutable from 'immutable';
+
+Howler.mobileAutoEnable = false;
 
 const soundsData = {
   boop: '/sounds/boop.mp3'
