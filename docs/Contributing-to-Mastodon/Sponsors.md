@@ -29,3 +29,4 @@ These people make the development of Mastodon possible through [Patreon](https:/
 - [Jessica Hayley](https://mastodon.social/users/jayhay)
 - [Niels Roesen Abildgaard](http://hypesystem.dk/)
 - [Zatnosk](https://github.com/Zatnosk)
+- [Spex Bluefox](https://mastodon.social/users/Spex)
