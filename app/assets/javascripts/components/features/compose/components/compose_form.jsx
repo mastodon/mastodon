@@ -182,7 +182,7 @@ const ComposeForm = React.createClass({
           {({ opacity, height }) =>
             <label style={{ display: 'block', lineHeight: '24px', verticalAlign: 'middle', height: `${height}px`, overflow: 'hidden', opacity: opacity / 100 }}>
               <Toggle checked={this.props.sensitive} onChange={this.handleChangeSensitivity} />
-              <span style={{ display: 'inline-block', verticalAlign: 'middle', marginBottom: '14px', marginLeft: '8px', color: '#9baec8' }}><FormattedMessage id='compose_form.sensitive' defaultMessage='Mark content as sensitive' /></span>
+              <span style={{ display: 'inline-block', verticalAlign: 'middle', marginBottom: '14px', marginLeft: '8px', color: '#9baec8' }}><FormattedMessage id='compose_form.sensitive' defaultMessage='Hide text behind warning' /></span>
             </label>
           }
         </Motion>
