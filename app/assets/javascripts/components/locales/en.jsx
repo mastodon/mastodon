@@ -39,6 +39,7 @@ const en = {
   "compose_form.placeholder": "What is on your mind?",
   "compose_form.publish": "Toot",
   "compose_form.sensitive": "Mark media as sensitive",
+  "compose_form.spoiler": "Hide text behind warning",
   "compose_form.private": "Mark as private",
   "compose_form.unlisted": "Do not display in public timeline",
   "navigation_bar.edit_profile": "Edit profile",
