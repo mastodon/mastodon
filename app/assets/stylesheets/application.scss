@@ -110,6 +110,10 @@ body {
   font-feature-settings: "kern";
   text-size-adjust: none;
 
+  button:focus {
+      outline: none !important;
+  }
+
   &.app-body {
     position: fixed;
     width: 100%;
