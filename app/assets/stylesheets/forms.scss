@@ -7,6 +7,18 @@ code {
   max-width: 400px;
   padding: 20px;
   margin: 0 auto;
+
+  p {
+    font-size: 14px;
+    line-height: 18px;
+    color: $color2;
+    margin-bottom: 20px;
+
+    strong {
+      color: $color5;
+      font-weight: 500;
+    }
+  }
 }
 
 .simple_form {
@@ -118,7 +130,7 @@ code {
     margin-top: 30px;
   }
 
-  button {
+  button, .block-button {
     display: block;
     width: 100%;
     border: 0;
@@ -128,6 +140,9 @@ code {
     font-size: 18px;
     padding: 10px;
     text-transform: uppercase;
+    text-decoration: none;
+    text-align: center;
+    box-sizing: border-box;
     cursor: pointer;
     font-weight: 500;
     outline: 0;
@@ -176,7 +191,7 @@ code {
   text-align: center;
 
   a {
-    color: white;
+    color: $color5;
     text-decoration: none;
 
     &:hover {
@@ -198,5 +213,18 @@ code {
   strong {
     color: $color2;
     font-weight: 500;
+  }
+}
+
+.qr-code {
+  background: #fff;
+  padding: 4px;
+  margin-bottom: 20px;
+  box-shadow: 0 0 15px rgba($color8, 0.2);
+  display: inline-block;
+
+  svg {
+    display: block;
+    margin: 0;
   }
 }

@@ -5,6 +5,8 @@ class Auth::SessionsController < Devise::SessionsController
 
   layout 'auth'
 
+  before_action :configure_sign_in_params, only: [:create]
+
   def create
     super do |resource|
       remember_me(resource)
@@ -12,6 +14,10 @@ class Auth::SessionsController < Devise::SessionsController
   end
 
   protected
+
+  def configure_sign_in_params
+    devise_parameter_sanitizer.permit(:sign_in, keys: [:otp_attempt])
+  end
 
   def after_sign_in_path_for(_resource)
     last_url = stored_location_for(:user)

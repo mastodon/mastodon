@@ -47,6 +47,13 @@ Rails.application.routes.draw do
   namespace :settings do
     resource :profile, only: [:show, :update]
     resource :preferences, only: [:show, :update]
+
+    resource :two_factor_auth, only: [:show] do
+      member do
+        post :enable
+        post :disable
+      end
+    end
   end
 
   resources :media, only: [:show]

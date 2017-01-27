@@ -93,6 +93,7 @@ en:
     back: Back to Mastodon
     edit_profile: Edit profile
     preferences: Preferences
+    two_factor_auth: Two-factor Authentication
   statuses:
     over_character_limit: character limit of %{max} exceeded
   stream_entries:
@@ -104,6 +105,11 @@ en:
   time:
     formats:
       default: "%b %d, %Y, %H:%M"
+  two_factor_auth:
+    description_html: If you enable <strong>two-factor authentication</strong>, logging in will require you to be in possession of your phone, which will generate tokens for you to enter.
+    disable: Disable
+    enable: Enable
+    instructions_html: "<strong>Scan this QR code into Google Authenticator or a similiar app on your phone</strong>. From now on, that app will generate tokens that you will have to enter when logging in."
   users:
     invalid_email: The e-mail address is invalid
   will_paginate:
