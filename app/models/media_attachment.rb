@@ -12,7 +12,7 @@ class MediaAttachment < ApplicationRecord
                     processors: -> (f) { f.video? ? [:transcoder] : [:thumbnail] },
                     convert_options: { all: '-quality 90 -strip' }
   validates_attachment_content_type :file, content_type: IMAGE_MIME_TYPES + VIDEO_MIME_TYPES
-  validates_attachment_size :file, less_than: 4.megabytes
+  validates_attachment_size :file, less_than: 8.megabytes
 
   validates :account, presence: true
 

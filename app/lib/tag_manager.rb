@@ -56,6 +56,12 @@ class TagManager
     domain.nil? || domain.gsub(/[\/]/, '').casecmp(Rails.configuration.x.local_domain).zero?
   end
 
+  def local_url?(url)
+    uri    = Addressable::URI.parse(url)
+    domain = uri.host + (uri.port ? ":#{uri.port}" : '')
+    TagManager.instance.local_domain?(domain)
+  end
+
   def uri_for(target)
     return target.uri if target.respond_to?(:local?) && !target.local?
 

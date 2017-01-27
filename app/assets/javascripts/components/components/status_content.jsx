@@ -1,5 +1,6 @@
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
+import escapeTextContentForBrowser from 'react/lib/escapeTextContentForBrowser';
 import emojify from '../emoji';
 import { FormattedMessage } from 'react-intl';
 
@@ -96,7 +97,7 @@ const StatusContent = React.createClass({
     const { hidden } = this.state;
 
     const content = { __html: emojify(status.get('content')) };
-    const spoilerContent = { __html: emojify(status.get('spoiler_text', '')) };
+    const spoilerContent = { __html: emojify(escapeTextContentForBrowser(status.get('spoiler_text', ''))) };
 
     if (status.get('spoiler_text').length > 0) {
       const toggleText = hidden ? <FormattedMessage id='status.show_more' defaultMessage='Show more' /> : <FormattedMessage id='status.show_less' defaultMessage='Show less' />;
