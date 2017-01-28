@@ -108,6 +108,30 @@
   .simple_form {
     max-width: 400px;
   }
+
+  @media screen and (max-width: 600px) {
+    display: block;
+    overflow-y: auto;
+
+    .sidebar-wrapper, .content-wrapper {
+      flex: 0 0 auto;
+      height: auto;
+    }
+
+    .sidebar {
+      width: 100%;
+      padding: 10px 0;
+      height: auto;
+
+      .logo {
+        margin: 20px auto;
+      }
+    }
+
+    .content {
+      padding-top: 20px;
+    }
+  }
 }
 
 .filters {
