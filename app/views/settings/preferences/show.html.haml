@@ -4,14 +4,16 @@
 = simple_form_for current_user, url: settings_preferences_path, html: { method: :put } do |f|
   = render 'shared/error_messages', object: current_user
 
-  = f.input :locale, collection: I18n.available_locales, wrapper: :with_label, include_blank: false, label_method: lambda { |locale| human_locale(locale) }
+  .fields-group
+    = f.input :locale, collection: I18n.available_locales, wrapper: :with_label, include_blank: false, label_method: lambda { |locale| human_locale(locale) }
 
-  = f.simple_fields_for :notification_emails, hash_to_object(current_user.settings.notification_emails) do |ff|
-    = ff.input :follow, as: :boolean, wrapper: :with_label
-    = ff.input :follow_request, as: :boolean, wrapper: :with_label
-    = ff.input :reblog, as: :boolean, wrapper: :with_label
-    = ff.input :favourite, as: :boolean, wrapper: :with_label
-    = ff.input :mention, as: :boolean, wrapper: :with_label
+  .fields-group
+    = f.simple_fields_for :notification_emails, hash_to_object(current_user.settings.notification_emails) do |ff|
+      = ff.input :follow, as: :boolean, wrapper: :with_label
+      = ff.input :follow_request, as: :boolean, wrapper: :with_label
+      = ff.input :reblog, as: :boolean, wrapper: :with_label
+      = ff.input :favourite, as: :boolean, wrapper: :with_label
+      = ff.input :mention, as: :boolean, wrapper: :with_label
 
   = f.simple_fields_for :interactions, hash_to_object(current_user.settings.interactions) do |ff|
     = ff.input :must_be_follower, as: :boolean, wrapper: :with_label
@@ -19,5 +21,3 @@
 
   .actions
     = f.button :button, t('generic.save_changes'), type: :submit
-
-.form-footer= render "settings/shared/links"

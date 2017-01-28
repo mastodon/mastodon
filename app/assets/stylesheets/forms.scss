@@ -7,18 +7,6 @@ code {
   max-width: 400px;
   padding: 20px;
   margin: 0 auto;
-
-  p {
-    font-size: 14px;
-    line-height: 18px;
-    color: $color2;
-    margin-bottom: 20px;
-
-    strong {
-      color: $color5;
-      font-weight: 500;
-    }
-  }
 }
 
 .simple_form {
@@ -28,27 +16,34 @@ code {
 
   .hint {
     display: block;
-    color: rgba($color5, 0.8);
+    color: $color3;
     font-size: 12px;
+    margin-top: 4px;
+  }
+
+  .label_input {
+    display: flex;
+
+    label {
+      flex: 0 0 auto;
+      width: 100px;
+    }
+
+    input {
+      flex: 1 1 auto;
+    }
   }
 
   .input.file, .input.select {
     padding: 15px 0;
     margin-bottom: 0;
-    display: flex;
 
     label {
       font-family: inherit;
       font-size: 16px;
       color: $color5;
-      width: 100px;
       display: block;
-      flex: 0 0 auto;
       padding-top: 5px;
-    }
-
-    input[type=file], select {
-      flex: 1 1 auto;
     }
   }
 
@@ -64,6 +59,7 @@ code {
       font-size: 14px;
       color: white;
       display: block;
+      width: auto;
     }
 
     label.checkbox {
@@ -80,6 +76,7 @@ code {
 
     .hint {
       padding-left: 25px;
+      margin-left: 0;
     }
   }
 
@@ -116,13 +113,19 @@ code {
   }
 
   .input.field_with_errors {
+    label {
+      color: $color6;
+    }
+
     input[type=text], input[type=email], input[type=password] {
       border-bottom-color: $color6;
     }
 
     .error {
+      display: block;
       font-weight: 500;
       color: $color6;
+      margin-top: 4px;
     }
   }
 

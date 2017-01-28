@@ -46,6 +46,7 @@ module Mastodon
 
     config.to_prepare do
       Doorkeeper::AuthorizationsController.layout 'public'
+      Doorkeeper::AuthorizedApplicationsController.layout 'admin'
       Doorkeeper::Application.send :include, ApplicationExtension
     end
 

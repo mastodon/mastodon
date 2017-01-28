@@ -1,14 +1,17 @@
 - content_for :header_tags do
   = javascript_include_tag 'application_public'
-  
+
 - content_for :content do
   .admin-wrapper
-    .sidebar
-      = link_to root_path do
-        = image_tag 'logo.png', class: 'logo'
+    .sidebar-wrapper
+      .sidebar
+        = link_to root_path do
+          = image_tag 'logo.png', class: 'logo'
 
-      = render_navigation
-    .content
-      = yield
+        = render_navigation
+    .content-wrapper
+      .content
+        %h2= yield :page_title
+        = yield
 
-= render template: "layouts/application"
+= render template: "layouts/application", locals: { body_classes: 'admin' }

@@ -2,6 +2,7 @@
 
 class Auth::RegistrationsController < Devise::RegistrationsController
   layout 'auth'
+  layout 'admin', only: [:edit]
 
   before_action :check_single_user_mode
   before_action :configure_sign_up_params, only: [:create]

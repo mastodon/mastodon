@@ -54,8 +54,8 @@
           - else
             %i.fa.fa-times
         %td
-          = table_link_to 'circle', 'Open in web', web_path("accounts/#{account.id}")
-          = table_link_to 'globe', 'Open public', TagManager.instance.url_for(account)
+          = table_link_to 'circle', 'Web', web_path("accounts/#{account.id}")
+          = table_link_to 'globe', 'Public', TagManager.instance.url_for(account)
           = table_link_to 'pencil', 'Edit', admin_account_path(account.id)
 
 = will_paginate @accounts, pagination_options

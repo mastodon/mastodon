@@ -1,16 +1,20 @@
 .admin-wrapper {
-  width: 100%;
+  display: flex;
+  justify-content: center;
   height: 100%;
-  position: fixed;
-  background: darken($color1, 2%);
-  overflow-y: scroll;
+
+  .sidebar-wrapper {
+    flex: 1;
+    height: 100%;
+    background: $color1;
+    display: flex;
+    justify-content: flex-end;
+  }
 
   .sidebar {
     width: 240px;
-    position: fixed;
-    left: 0;
     height: 100%;
-    background: $color1;
+    padding: 20px 0;
 
     .logo {
       display: block;
@@ -21,6 +25,8 @@
 
     ul {
       list-style: none;
+      border-radius: 4px 0 0 4px;
+      overflow: hidden;
 
       a {
         display: block;
@@ -28,6 +34,7 @@
         color: rgba($color5, 0.7);
         text-decoration: none;
         transition: all 200ms linear;
+        border-radius: 4px 0 0 4px;
 
         i.fa {
           margin-right: 5px;
@@ -40,27 +47,72 @@
         }
 
         &.selected {
-          color: $color5;
-          background-color: $color4;
+          background: darken($color1, 2%);
+          border-radius: 4px 0 0 0;
+        }
+      }
 
-          &:hover {
-            background-color: lighten($color4, 5%);
+      ul {
+        background: darken($color1, 4%);
+        border-radius: 0 0 0 4px;
+
+        a {
+          border: 0;
+
+          &.selected {
+            color: $color5;
+            background-color: $color4;
+            border-bottom: 0;
+            border-radius: 0;
+
+            &:hover {
+              background-color: lighten($color4, 5%);
+            }
           }
         }
       }
     }
   }
 
+  .content-wrapper {
+    flex: 2;
+  }
+
   .content {
-    margin-left: 240px;
-    padding: 15px;
+    max-width: 700px;
+    padding: 20px 15px;
+    padding-top: 60px;
+    padding-left: 25px;
+
+    h2 {
+      color: $color2;
+      font-size: 24px;
+      line-height: 28px;
+      font-weight: 400;
+      margin-bottom: 40px;
+    }
+
+    p {
+      font-size: 14px;
+      line-height: 18px;
+      color: $color2;
+      margin-bottom: 20px;
+
+      strong {
+        color: $color5;
+        font-weight: 500;
+      }
+    }
+  }
+
+  .simple_form {
+    max-width: 400px;
   }
 }
 
 .filters {
   display: flex;
   margin-bottom: 20px;
-  padding-left: 8px;
 
   .filter-subset {
     flex: 0 0 auto;
