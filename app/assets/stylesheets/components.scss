@@ -288,8 +288,12 @@
   }
 }
 
-.transparent-background {
+.transparent-background, .imageloader {
   background: image-url('void.png');
+}
+
+.imageloader {
+  display: block;
 }
 
 .dropdown {
