@@ -10,6 +10,7 @@ class NotifyService < BaseService
 
     create_notification
     send_email if email_enabled?
+    send_push_notification
   rescue ActiveRecord::RecordInvalid
     return
   end
@@ -55,6 +56,10 @@ class NotifyService < BaseService
 
   def send_email
     NotificationMailer.send(@notification.type, @recipient, @notification).deliver_later
+  end
+
+  def send_push_notification
+    PushNotificationWorker.perform_async(@notification.id)
   end
 
   def email_enabled?

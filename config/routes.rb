@@ -118,6 +118,9 @@ Rails.application.routes.draw do
       resources :blocks,     only: [:index]
       resources :favourites, only: [:index]
 
+      post '/devices/register',   to: 'devices#register', as: :register_device
+      post '/devices/unregister', to: 'devices#unregister', as: :unregister_device
+
       resources :follow_requests, only: [:index] do
         member do
           post :authorize

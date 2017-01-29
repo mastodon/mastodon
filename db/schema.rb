@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170127165745) do
+ActiveRecord::Schema.define(version: 20170129000348) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -52,6 +52,15 @@ ActiveRecord::Schema.define(version: 20170127165745) do
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
     t.index ["account_id", "target_account_id"], name: "index_blocks_on_account_id_and_target_account_id", unique: true, using: :btree
+  end
+
+  create_table "devices", force: :cascade do |t|
+    t.integer  "account_id",                   null: false
+    t.string   "registration_id", default: "", null: false
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+    t.index ["account_id"], name: "index_devices_on_account_id", using: :btree
+    t.index ["registration_id"], name: "index_devices_on_registration_id", using: :btree
   end
 
   create_table "domain_blocks", force: :cascade do |t|
