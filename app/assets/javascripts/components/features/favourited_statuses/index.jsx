@@ -5,7 +5,7 @@ import LoadingIndicator from '../../components/loading_indicator';
 import { fetchFavouritedStatuses, expandFavouritedStatuses } from '../../actions/favourites';
 import Column from '../ui/components/column';
 import StatusList from '../../components/status_list';
-import ColumnBackButton from '../public_timeline/components/column_back_button';
+import ColumnBackButton from '../../components/column_back_button';
 import { defineMessages, injectIntl } from 'react-intl';
 
 const messages = defineMessages({
