@@ -50,6 +50,7 @@ Form data:
 - `media_ids` (optional): array of media IDs to attach to the status (maximum 4)
 - `sensitive` (optional): set this to mark the media of the status as NSFW
 - `visibility` (optional): either `private`, `unlisted` or `public`
+- `spoiler_text` (optional): text to be shown as a warning before the actual content
 
 Returns the new status.
 
@@ -258,6 +259,9 @@ ___
 | `favourites_count`  ||
 | `reblogged`         | Boolean for authenticated user |
 | `favourited`        | Boolean for authenticated user |
+| `sensitive`         | Boolean, true if media attachments should be hidden by default |
+| `spoiler_text`      | If not empty, warning text that should be displayed before the actual content |
+| `visibility`        | Either `public`, `unlisted` or `private` |
 | `media_attachments` | array of MediaAttachments |
 | `mentions`          | array of Mentions |
 | `application`       | Application from which the status was posted |
@@ -297,6 +301,7 @@ Application:
 | `url`             | URL of the user's profile page (can be remote) |
 | `avatar`          | URL to the avatar image |
 | `header`          | URL to the header image |
+| `locked`          | Boolean for when the account cannot be followed without waiting for approval first |
 | `followers_count` ||
 | `following_count` ||
 | `statuses_count`  ||
