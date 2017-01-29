@@ -81,6 +81,14 @@ Query parameters:
 
 Returns notifications for the authenticated user. Each notification has an `id`, a `type` (mention, reblog, favourite, follow), an `account` which it came *from*, and in case of mention, reblog and favourite also a `status`.
 
+**GET /api/v1/notifications/:id**
+
+Returns single notification.
+
+**POST /api/v1/notifications/clear**
+
+Clears all of user's notifications.
+
 ### Following a remote user
 
 **POST /api/v1/follows**
@@ -213,6 +221,22 @@ Form data:
 Creates a new OAuth app. Returns `id`, `client_id` and `client_secret` which can be used with [OAuth authentication in your 3rd party app](Testing-with-cURL.md).
 
 These values should be requested in the app itself from the API for each new app install + mastodon domain combo, and stored in the app for future requests.
+
+**POST /api/v1/devices/register**
+
+Form data:
+
+- `registration_id`: Device token (also called registration token/registration ID)
+
+Apps can use Firebase Cloud Messaging to receive push notifications from the instances, given that the instance admin has acquired a Firebase API key. More in [push notifications](Push-notifications.md). This method requires a user context, i.e. your app will receive notifications for the authorized user.
+
+**POST /api/v1/devices/unregister**
+
+Form data:
+
+- `registration_id`: Device token (also called registration token/registration ID)
+
+To remove the device from receiving push notifications for the user.
 
 ___
 
