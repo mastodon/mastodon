@@ -8,7 +8,7 @@ import {
   deleteFromTimelines
 } from '../../actions/timelines';
 import { defineMessages, injectIntl } from 'react-intl';
-import ColumnBackButton from './components/column_back_button';
+import ColumnBackButton from '../../components/column_back_button';
 
 const messages = defineMessages({
   title: { id: 'column.public', defaultMessage: 'Public' }

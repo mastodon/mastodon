@@ -7,7 +7,7 @@ import {
   updateTimeline,
   deleteFromTimelines
 } from '../../actions/timelines';
-import ColumnBackButton from '../public_timeline/components/column_back_button';
+import ColumnBackButton from '../../components/column_back_button';
 
 const HashtagTimeline = React.createClass({
 
