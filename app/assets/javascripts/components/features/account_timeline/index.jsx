@@ -7,6 +7,9 @@ import {
 } from '../../actions/accounts';
 import StatusList from '../../components/status_list';
 import LoadingIndicator from '../../components/loading_indicator';
+import Column from '../ui/components/column';
+import HeaderContainer from './containers/header_container';
+import ColumnBackButton from '../../components/column_back_button';
 
 const mapStateToProps = (state, props) => ({
   statusIds: state.getIn(['timelines', 'accounts_timelines', Number(props.params.accountId), 'items']),
@@ -44,10 +47,26 @@ const AccountTimeline = React.createClass({
     const { statusIds, isLoading, me } = this.props;
 
     if (!statusIds) {
-      return <LoadingIndicator />;
+      return (
+        <Column>
+          <LoadingIndicator />
+        </Column>
+      );
     }
 
-    return <StatusList statusIds={statusIds} isLoading={isLoading} me={me} onScrollToBottom={this.handleScrollToBottom} />
+    return (
+      <Column>
+        <ColumnBackButton />
+
+        <StatusList
+          prepend={<HeaderContainer accountId={this.props.params.accountId} />}
+          statusIds={statusIds}
+          isLoading={isLoading}
+          me={me}
+          onScrollToBottom={this.handleScrollToBottom}
+        />
+      </Column>
+    );
   }
 
 });

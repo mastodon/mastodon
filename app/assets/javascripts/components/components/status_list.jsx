@@ -13,7 +13,8 @@ const StatusList = React.createClass({
     onScrollToTop: React.PropTypes.func,
     onScroll: React.PropTypes.func,
     trackScroll: React.PropTypes.bool,
-    isLoading: React.PropTypes.bool
+    isLoading: React.PropTypes.bool,
+    prepend: React.PropTypes.node
   },
 
   getDefaultProps () {
@@ -70,7 +71,7 @@ const StatusList = React.createClass({
   },
 
   render () {
-    const { statusIds, onScrollToBottom, trackScroll, isLoading } = this.props;
+    const { statusIds, onScrollToBottom, trackScroll, isLoading, prepend } = this.props;
 
     let loadMore = '';
 
@@ -81,6 +82,8 @@ const StatusList = React.createClass({
     const scrollableArea = (
       <div className='scrollable' ref={this.setRef}>
         <div>
+          {prepend}
+
           {statusIds.map((statusId) => {
             return <StatusContainer key={statusId} id={statusId} />;
           })}

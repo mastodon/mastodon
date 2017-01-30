@@ -54,10 +54,16 @@ export function cancelReplyCompose() {
   };
 };
 
-export function mentionCompose(account) {
-  return {
-    type: COMPOSE_MENTION,
-    account: account
+export function mentionCompose(account, router) {
+  return (dispatch, getState) => {
+    dispatch({
+      type: COMPOSE_MENTION,
+      account: account
+    });
+
+    if (!getState().getIn(['compose', 'mounted'])) {
+      router.push('/statuses/new');
+    }
   };
 };
 

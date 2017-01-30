@@ -88,10 +88,7 @@ const mapDispatchToProps = (dispatch) => ({
   },
 
   onMention (account, router) {
-    dispatch(mentionCompose(account));
-    if (isMobile(window.innerWidth)) {
-      router.push('/statuses/new');
-    }
+    dispatch(mentionCompose(account, router));
   },
 
   onOpenMedia (url) {

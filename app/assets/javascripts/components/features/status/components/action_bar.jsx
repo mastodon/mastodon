@@ -14,6 +14,10 @@ const messages = defineMessages({
 
 const ActionBar = React.createClass({
 
+  contextTypes: {
+    router: React.PropTypes.object
+  },
+
   propTypes: {
     status: ImmutablePropTypes.map.isRequired,
     onReply: React.PropTypes.func.isRequired,
@@ -43,7 +47,7 @@ const ActionBar = React.createClass({
   },
 
   handleMentionClick () {
-    this.props.onMention(this.props.status.get('account'));
+    this.props.onMention(this.props.status.get('account'), this.context.router);
   },
 
   render () {

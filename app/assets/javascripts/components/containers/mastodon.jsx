@@ -18,7 +18,6 @@ import {
 } from 'react-router';
 import { useScroll } from 'react-router-scroll';
 import UI from '../features/ui';
-import Account from '../features/account';
 import Status from '../features/status';
 import GettingStarted from '../features/getting_started';
 import PublicTimeline from '../features/public_timeline';
@@ -121,11 +120,9 @@ const Mastodon = React.createClass({
               <Route path='statuses/:statusId/reblogs' component={Reblogs} />
               <Route path='statuses/:statusId/favourites' component={Favourites} />
 
-              <Route path='accounts/:accountId' component={Account}>
-                <IndexRoute component={AccountTimeline} />
-                <Route path='followers' component={Followers} />
-                <Route path='following' component={Following} />
-              </Route>
+              <Route path='accounts/:accountId' component={AccountTimeline} />
+              <Route path='accounts/:accountId/followers' component={Followers} />
+              <Route path='accounts/:accountId/following' component={Following} />
 
               <Route path='follow_requests' component={FollowRequests} />
               <Route path='*' component={GenericNotFound} />

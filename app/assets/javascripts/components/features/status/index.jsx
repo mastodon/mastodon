@@ -80,12 +80,8 @@ const Status = React.createClass({
     this.props.dispatch(deleteStatus(status.get('id')));
   },
 
-  handleMentionClick (account) {
-    this.props.dispatch(mentionCompose(account));
-
-    if (isMobile(window.innerWidth)) {
-      this.context.router.push('/statuses/new');
-    }
+  handleMentionClick (account, router) {
+    this.props.dispatch(mentionCompose(account, router));
   },
 
   handleOpenMedia (url) {
