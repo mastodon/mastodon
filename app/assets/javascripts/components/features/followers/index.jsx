@@ -3,6 +3,7 @@ import PureRenderMixin from 'react-addons-pure-render-mixin';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import LoadingIndicator from '../../components/loading_indicator';
 import {
+  fetchAccount,
   fetchFollowers,
   expandFollowers
 } from '../../actions/accounts';
@@ -28,11 +29,13 @@ const Followers = React.createClass({
   mixins: [PureRenderMixin],
 
   componentWillMount () {
+    this.props.dispatch(fetchAccount(Number(this.props.params.accountId)));
     this.props.dispatch(fetchFollowers(Number(this.props.params.accountId)));
   },
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.params.accountId !== this.props.params.accountId && nextProps.params.accountId) {
+      this.props.dispatch(fetchAccount(Number(nextProps.params.accountId)));
       this.props.dispatch(fetchFollowers(Number(nextProps.params.accountId)));
     }
   },

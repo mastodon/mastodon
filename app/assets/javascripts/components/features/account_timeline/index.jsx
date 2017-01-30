@@ -2,6 +2,7 @@ import { connect } from 'react-redux';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import {
+  fetchAccount,
   fetchAccountTimeline,
   expandAccountTimeline
 } from '../../actions/accounts';
@@ -30,11 +31,13 @@ const AccountTimeline = React.createClass({
   mixins: [PureRenderMixin],
 
   componentWillMount () {
+    this.props.dispatch(fetchAccount(Number(this.props.params.accountId)));
     this.props.dispatch(fetchAccountTimeline(Number(this.props.params.accountId)));
   },
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.params.accountId !== this.props.params.accountId && nextProps.params.accountId) {
+      this.props.dispatch(fetchAccount(Number(nextProps.params.accountId)));
       this.props.dispatch(fetchAccountTimeline(Number(nextProps.params.accountId)));
     }
   },
