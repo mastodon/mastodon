@@ -78,6 +78,11 @@ group :development do
   gem 'letter_opener_web'
   gem 'bullet'
   gem 'active_record_query_trace'
+
+  gem 'capistrano'
+  gem 'capistrano-rails'
+  gem 'capistrano-rbenv'
+  gem 'capistrano-yarn'
 end
 
 group :production do
