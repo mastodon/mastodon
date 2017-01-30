@@ -7,7 +7,7 @@ import {
   updateTimeline,
   deleteFromTimelines
 } from '../../actions/timelines';
-import ColumnBackButton from '../public_timeline/components/column_back_button';
+import ColumnBackButtonSlim from '../../components/column_back_button_slim';
 
 const HashtagTimeline = React.createClass({
 
@@ -27,10 +27,10 @@ const HashtagTimeline = React.createClass({
 
         received (data) {
           switch(data.type) {
-            case 'update':
-              return dispatch(updateTimeline('tag', JSON.parse(data.message)));
-            case 'delete':
-              return dispatch(deleteFromTimelines(data.id));
+          case 'update':
+            return dispatch(updateTimeline('tag', JSON.parse(data.message)));
+          case 'delete':
+            return dispatch(deleteFromTimelines(data.id));
           }
         }
 
@@ -69,7 +69,7 @@ const HashtagTimeline = React.createClass({
 
     return (
       <Column icon='hashtag' heading={id}>
-        <ColumnBackButton />
+        <ColumnBackButtonSlim />
         <StatusListContainer type='tag' id={id} />
       </Column>
     );

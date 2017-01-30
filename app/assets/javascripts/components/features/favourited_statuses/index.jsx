@@ -5,7 +5,7 @@ import LoadingIndicator from '../../components/loading_indicator';
 import { fetchFavouritedStatuses, expandFavouritedStatuses } from '../../actions/favourites';
 import Column from '../ui/components/column';
 import StatusList from '../../components/status_list';
-import ColumnBackButton from '../public_timeline/components/column_back_button';
+import ColumnBackButtonSlim from '../../components/column_back_button_slim';
 import { defineMessages, injectIntl } from 'react-intl';
 
 const messages = defineMessages({
@@ -52,7 +52,7 @@ const Favourites = React.createClass({
 
     return (
       <Column icon='star' heading={intl.formatMessage(messages.heading)}>
-        <ColumnBackButton />
+        <ColumnBackButtonSlim />
         <StatusList statusIds={statusIds} me={me} onScrollToBottom={this.handleScrollToBottom} />
       </Column>
     );

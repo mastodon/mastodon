@@ -4,6 +4,7 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import LoadingIndicator from '../../components/loading_indicator';
 import { ScrollContainer } from 'react-router-scroll';
 import Column from '../ui/components/column';
+import ColumnBackButtonSlim from '../../components/column_back_button_slim';
 import AccountAuthorizeContainer from './containers/account_authorize_container';
 import { fetchFollowRequests, expandFollowRequests } from '../../actions/accounts';
 import { defineMessages, injectIntl } from 'react-intl';
@@ -51,6 +52,7 @@ const FollowRequests = React.createClass({
 
     return (
       <Column icon='users' heading={intl.formatMessage(messages.heading)}>
+        <ColumnBackButtonSlim />
         <ScrollContainer scrollKey='follow_requests'>
           <div className='scrollable' onScroll={this.handleScroll}>
             {accountIds.map(id =>

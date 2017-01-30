@@ -8,7 +8,7 @@ import {
   deleteFromTimelines
 } from '../../actions/timelines';
 import { defineMessages, injectIntl } from 'react-intl';
-import ColumnBackButton from './components/column_back_button';
+import ColumnBackButtonSlim from '../../components/column_back_button_slim';
 
 const messages = defineMessages({
   title: { id: 'column.public', defaultMessage: 'Public' }
@@ -33,10 +33,10 @@ const PublicTimeline = React.createClass({
 
         received (data) {
           switch(data.type) {
-            case 'update':
-              return dispatch(updateTimeline('public', JSON.parse(data.message)));
-            case 'delete':
-              return dispatch(deleteFromTimelines(data.id));
+          case 'update':
+            return dispatch(updateTimeline('public', JSON.parse(data.message)));
+          case 'delete':
+            return dispatch(deleteFromTimelines(data.id));
           }
         }
 
@@ -55,7 +55,7 @@ const PublicTimeline = React.createClass({
 
     return (
       <Column icon='globe' heading={intl.formatMessage(messages.title)}>
-        <ColumnBackButton />
+        <ColumnBackButtonSlim />
         <StatusListContainer type='public' />
       </Column>
     );
