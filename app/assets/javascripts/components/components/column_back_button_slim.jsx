@@ -18,7 +18,7 @@ const iconStyle = {
   marginRight: '5px'
 };
 
-const ColumnBackButton = React.createClass({
+const ColumnBackButtonSlim = React.createClass({
 
   contextTypes: {
     router: React.PropTypes.object
@@ -43,4 +43,4 @@ const ColumnBackButton = React.createClass({
 
 });
 
-export default ColumnBackButton;
+export default ColumnBackButtonSlim;
