@@ -9,6 +9,7 @@ import { defineMessages, injectIntl } from 'react-intl';
 import ColumnSettingsContainer from './containers/column_settings_container';
 import { createSelector } from 'reselect';
 import Immutable from 'immutable';
+import LoadMore from '../../components/load_more';
 
 const messages = defineMessages({
   title: { id: 'column.notifications', defaultMessage: 'Notifications' }
@@ -45,19 +46,42 @@ const Notifications = React.createClass({
   handleScroll (e) {
     const { scrollTop, scrollHeight, clientHeight } = e.target;
     const offset = scrollHeight - scrollTop - clientHeight;
+    this._oldScrollPosition = scrollHeight - scrollTop;
 
     if (250 > offset && !this.props.isLoading) {
       this.props.dispatch(expandNotifications());
     }
   },
 
+  componentDidUpdate (prevProps) {
+    if (this.node.scrollTop > 0 && (prevProps.notifications.size < this.props.notifications.size && prevProps.notifications.first() !== this.props.notifications.first() && !!this._oldScrollPosition)) {
+      this.node.scrollTop = this.node.scrollHeight - this._oldScrollPosition;
+    }
+  },
+
+  handleLoadMore (e) {
+    e.preventDefault();
+    this.props.dispatch(expandNotifications());
+  },
+
+  setRef (c) {
+    this.node = c;
+  },
+
   render () {
-    const { intl, notifications, trackScroll } = this.props;
+    const { intl, notifications, trackScroll, isLoading } = this.props;
+
+    let loadMore = '';
+
+    if (!isLoading && notifications.size > 0) {
+      loadMore = <LoadMore onClick={this.handleLoadMore} />;
+    }
 
     const scrollableArea = (
-      <div className='scrollable' onScroll={this.handleScroll}>
+      <div className='scrollable' onScroll={this.handleScroll} ref={this.setRef}>
         <div>
           {notifications.map(item => <NotificationContainer key={item.get('id')} notification={item} accountId={item.get('account')} />)}
+          {loadMore}
         </div>
       </div>
     );

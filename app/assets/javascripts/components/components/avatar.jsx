@@ -131,8 +131,8 @@ const Avatar = React.createClass({
 
     return (
       <div onMouseEnter={this.handleMouseEnter} onMouseLeave={this.handleMouseLeave} style={{ ...this.props.style, width: `${this.props.size}px`, height: `${this.props.size}px`, position: 'relative' }}>
-        <img ref={this.setImageRef} onLoad={this.handleLoad} src={this.props.src} width={this.props.size} height={this.props.size} alt='' style={{ position: 'absolute', top: '0', left: '0', visibility: hovering ? 'visible' : 'hidden', borderRadius: '4px' }} />
-        <canvas ref={this.setCanvasRef} style={{ borderRadius: '4px', width: this.props.size, height: this.props.size, visibility: hovering ? 'hidden' : 'visible' }} />
+        <img ref={this.setImageRef} onLoad={this.handleLoad} src={this.props.src} width={this.props.size} height={this.props.size} alt='' style={{ position: 'absolute', top: '0', left: '0', opacity: hovering ? '1' : '0', borderRadius: '4px' }} />
+        <canvas ref={this.setCanvasRef} style={{ borderRadius: '4px', width: this.props.size, height: this.props.size, opacity: hovering ? '0' : '1' }} />
       </div>
     );
   }

@@ -3,6 +3,7 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import { ScrollContainer } from 'react-router-scroll';
 import StatusContainer from '../containers/status_container';
+import LoadMore from './load_more';
 
 const StatusList = React.createClass({
 
@@ -63,8 +64,19 @@ const StatusList = React.createClass({
     this.node = c;
   },
 
+  handleLoadMore (e) {
+    e.preventDefault();
+    this.props.onScrollToBottom();
+  },
+
   render () {
-    const { statusIds, onScrollToBottom, trackScroll } = this.props;
+    const { statusIds, onScrollToBottom, trackScroll, isLoading } = this.props;
+
+    let loadMore = '';
+
+    if (!isLoading && statusIds.size > 0) {
+      loadMore = <LoadMore onClick={this.handleLoadMore} />;
+    }
 
     const scrollableArea = (
       <div className='scrollable' ref={this.setRef}>
@@ -72,6 +84,8 @@ const StatusList = React.createClass({
           {statusIds.map((statusId) => {
             return <StatusContainer key={statusId} id={statusId} />;
           })}
+
+          {loadMore}
         </div>
       </div>
     );
