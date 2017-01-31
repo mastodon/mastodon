@@ -11,9 +11,10 @@ import LoadingIndicator from '../../components/loading_indicator';
 import Column from '../ui/components/column';
 import HeaderContainer from './containers/header_container';
 import ColumnBackButton from '../../components/column_back_button';
+import Immutable from 'immutable';
 
 const mapStateToProps = (state, props) => ({
-  statusIds: state.getIn(['timelines', 'accounts_timelines', Number(props.params.accountId), 'items']),
+  statusIds: state.getIn(['timelines', 'accounts_timelines', Number(props.params.accountId), 'items'], Immutable.List()),
   isLoading: state.getIn(['timelines', 'accounts_timelines', Number(props.params.accountId), 'isLoading']),
   me: state.getIn(['meta', 'me'])
 });
@@ -49,7 +50,7 @@ const AccountTimeline = React.createClass({
   render () {
     const { statusIds, isLoading, me } = this.props;
 
-    if (!statusIds) {
+    if (!statusIds && isLoading) {
       return (
         <Column>
           <LoadingIndicator />

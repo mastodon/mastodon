@@ -67,6 +67,7 @@ const Followers = React.createClass({
     return (
       <Column>
         <ColumnBackButton />
+
         <ScrollContainer scrollKey='followers'>
           <div className='scrollable' onScroll={this.handleScroll}>
             <div>

@@ -119,7 +119,6 @@ class Status < ApplicationRecord
       query = tag.statuses
                  .joins('LEFT OUTER JOIN accounts ON statuses.account_id = accounts.id')
                  .where(visibility: :public)
-                 .where('(statuses.in_reply_to_id IS NULL OR statuses.in_reply_to_account_id = statuses.account_id)')
                  .where('statuses.reblog_of_id IS NULL')
 
       account.nil? ? filter_timeline_default(query) : filter_timeline_default(filter_timeline(query, account))
