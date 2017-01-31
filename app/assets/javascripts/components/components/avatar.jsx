@@ -91,7 +91,14 @@ const Avatar = React.createClass({
   propTypes: {
     src: React.PropTypes.string.isRequired,
     size: React.PropTypes.number.isRequired,
-    style: React.PropTypes.object
+    style: React.PropTypes.object,
+    animated: React.PropTypes.bool
+  },
+
+  getDefaultProps () {
+    return {
+      animated: true
+    };
   },
 
   getInitialState () {
@@ -129,9 +136,17 @@ const Avatar = React.createClass({
   render () {
     const { hovering } = this.state;
 
+    if (this.props.animated) {
+      return (
+        <div style={{ ...this.props.style, width: `${this.props.size}px`, height: `${this.props.size}px` }}>
+          <img src={this.props.src} width={this.props.size} height={this.props.size} alt='' style={{ borderRadius: '4px' }} />
+        </div>
+      );
+    }
+
     return (
       <div onMouseEnter={this.handleMouseEnter} onMouseLeave={this.handleMouseLeave} style={{ ...this.props.style, width: `${this.props.size}px`, height: `${this.props.size}px`, position: 'relative' }}>
-        <img ref={this.setImageRef} crossOrigin='anonymous' onLoad={this.handleLoad} src={this.props.src} width={this.props.size} height={this.props.size} alt='' style={{ position: 'absolute', top: '0', left: '0', opacity: hovering ? '1' : '0', borderRadius: '4px' }} />
+        <img ref={this.setImageRef} onLoad={this.handleLoad} src={this.props.src} width={this.props.size} height={this.props.size} alt='' style={{ position: 'absolute', top: '0', left: '0', opacity: hovering ? '1' : '0', borderRadius: '4px' }} />
         <canvas ref={this.setCanvasRef} style={{ borderRadius: '4px', width: this.props.size, height: this.props.size, opacity: hovering ? '0' : '1' }} />
       </div>
     );
