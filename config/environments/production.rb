@@ -40,7 +40,7 @@ Rails.application.configure do
 
   # Use the lowest log level to ensure availability of diagnostic information
   # when problems arise.
-  config.log_level = :debug
+  config.log_level = :info
 
   # Prepend all log lines with the following tags.
   config.log_tags = [ :request_id ]
@@ -105,8 +105,6 @@ Rails.application.configure do
   config.action_mailer.delivery_method = :smtp
 
   config.react.variant = :production
-
-  config.active_record.logger = nil
 
   config.to_prepare do
     StatsD.backend = StatsD::Instrument::Backends::NullBackend.new if ENV['STATSD_ADDR'].blank?
