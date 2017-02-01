@@ -36,7 +36,6 @@ namespace :mastodon do
     task clear: :environment do
       User.where('current_sign_in_at < ?', 14.days.ago).find_each do |user|
         Redis.current.del(FeedManager.instance.key(:home, user.account_id))
-        Redis.current.del(FeedManager.instance.key(:mentions, user.account_id))
       end
     end
 

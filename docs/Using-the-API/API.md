@@ -65,7 +65,6 @@ Returns a media object with an ID that can be attached when creating a status (s
 ### Retrieving a timeline
 
 **GET /api/v1/timelines/home**
-**GET /api/v1/timelines/mentions**
 **GET /api/v1/timelines/public**
 **GET /api/v1/timelines/tag/:hashtag**
 

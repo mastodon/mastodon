@@ -32,11 +32,13 @@ const PublicTimeline = React.createClass({
       this.subscription = App.cable.subscriptions.create('PublicChannel', {
 
         received (data) {
-          switch(data.type) {
+          switch(data.event) {
           case 'update':
-            return dispatch(updateTimeline('public', JSON.parse(data.message)));
+            dispatch(updateTimeline('public', JSON.parse(data.payload)));
+            break;
           case 'delete':
-            return dispatch(deleteFromTimelines(data.id));
+            dispatch(deleteFromTimelines(data.payload));
+            break;
           }
         }
 

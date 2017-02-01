@@ -26,11 +26,13 @@ const HashtagTimeline = React.createClass({
       }, {
 
         received (data) {
-          switch(data.type) {
+          switch(data.event) {
           case 'update':
-            return dispatch(updateTimeline('tag', JSON.parse(data.message)));
+            dispatch(updateTimeline('tag', JSON.parse(data.payload)));
+            break;
           case 'delete':
-            return dispatch(deleteFromTimelines(data.id));
+            dispatch(deleteFromTimelines(data.payload));
+            break;
           }
         }
 

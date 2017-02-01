@@ -7,10 +7,10 @@ module ApplicationCable
     def hydrate_status(encoded_message)
       message = ActiveSupport::JSON.decode(encoded_message)
 
-      return [nil, message] if message['type'] == 'delete'
+      return [nil, message] if message['event'] == 'delete'
 
-      status             = Status.find_by(id: message['id'])
-      message['message'] = FeedManager.instance.inline_render(current_user.account, 'api/v1/statuses/show', status)
+      status             = Status.find_by(id: message['payload'])
+      message['payload'] = FeedManager.instance.inline_render(current_user.account, 'api/v1/statuses/show', status)
 
       [status, message]
     end

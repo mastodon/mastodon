@@ -102,10 +102,6 @@ class Status < ApplicationRecord
       where(account: [account] + account.following)
     end
 
-    def as_mentions_timeline(account)
-      where(id: Mention.where(account: account).select(:status_id))
-    end
-
     def as_public_timeline(account = nil)
       query = joins('LEFT OUTER JOIN accounts ON statuses.account_id = accounts.id')
               .where(visibility: :public)

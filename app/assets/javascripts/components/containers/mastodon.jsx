@@ -23,7 +23,6 @@ import GettingStarted from '../features/getting_started';
 import PublicTimeline from '../features/public_timeline';
 import AccountTimeline from '../features/account_timeline';
 import HomeTimeline from '../features/home_timeline';
-import MentionsTimeline from '../features/mentions_timeline';
 import Compose from '../features/compose';
 import Followers from '../features/followers';
 import Following from '../features/following';
@@ -68,15 +67,15 @@ const Mastodon = React.createClass({
       this.subscription = App.cable.subscriptions.create('TimelineChannel', {
 
         received (data) {
-          switch(data.type) {
+          switch(data.event) {
           case 'update':
-            store.dispatch(updateTimeline(data.timeline, JSON.parse(data.message)));
+            store.dispatch(updateTimeline('home', JSON.parse(data.payload)));
             break;
           case 'delete':
-            store.dispatch(deleteFromTimelines(data.id));
+            store.dispatch(deleteFromTimelines(data.payload));
             break;
           case 'notification':
-            store.dispatch(updateNotifications(JSON.parse(data.message), getMessagesForLocale(locale), locale));
+            store.dispatch(updateNotifications(JSON.parse(data.payload), getMessagesForLocale(locale), locale));
             break;
           }
         }
@@ -108,7 +107,6 @@ const Mastodon = React.createClass({
 
               <Route path='getting-started' component={GettingStarted} />
               <Route path='timelines/home' component={HomeTimeline} />
-              <Route path='timelines/mentions' component={MentionsTimeline} />
               <Route path='timelines/public' component={PublicTimeline} />
               <Route path='timelines/tag/:id' component={HashtagTimeline} />
 

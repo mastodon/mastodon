@@ -51,7 +51,7 @@ class NotifyService < BaseService
   def create_notification
     @notification.save!
     return unless @notification.browserable?
-    FeedManager.instance.broadcast(@recipient.id, type: 'notification', message: FeedManager.instance.inline_render(@recipient, 'api/v1/notifications/show', @notification))
+    FeedManager.instance.broadcast(@recipient.id, event: 'notification', payload: FeedManager.instance.inline_render(@recipient, 'api/v1/notifications/show', @notification))
   end
 
   def send_email

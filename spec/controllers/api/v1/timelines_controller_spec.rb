@@ -19,13 +19,6 @@ RSpec.describe Api::V1::TimelinesController, type: :controller do
       end
     end
 
-    describe 'GET #mentions' do
-      it 'returns http success' do
-        get :mentions
-        expect(response).to have_http_status(:success)
-      end
-    end
-
     describe 'GET #public' do
       it 'returns http success' do
         get :public
@@ -51,13 +44,6 @@ RSpec.describe Api::V1::TimelinesController, type: :controller do
     describe 'GET #home' do
       it 'returns http unprocessable entity' do
         get :home
-        expect(response).to have_http_status(:unprocessable_entity)
-      end
-    end
-
-    describe 'GET #mentions' do
-      it 'returns http unprocessable entity' do
-        get :mentions
         expect(response).to have_http_status(:unprocessable_entity)
       end
     end

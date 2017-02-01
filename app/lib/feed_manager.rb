@@ -26,7 +26,7 @@ class FeedManager
   def push(timeline_type, account, status)
     redis.zadd(key(timeline_type, account.id), status.id, status.reblog? ? status.reblog_of_id : status.id)
     trim(timeline_type, account.id)
-    broadcast(account.id, type: 'update', timeline: timeline_type, message: inline_render(account, 'api/v1/statuses/show', status))
+    broadcast(account.id, event: 'update', payload: inline_render(account, 'api/v1/statuses/show', status))
   end
 
   def broadcast(timeline_id, options = {})

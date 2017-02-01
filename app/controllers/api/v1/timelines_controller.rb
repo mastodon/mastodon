@@ -22,22 +22,6 @@ class Api::V1::TimelinesController < ApiController
     render action: :index
   end
 
-  def mentions
-    @statuses = Feed.new(:mentions, current_account).get(limit_param(DEFAULT_STATUSES_LIMIT), params[:max_id], params[:since_id])
-    @statuses = cache_collection(@statuses)
-
-    set_maps(@statuses)
-    set_counters_maps(@statuses)
-    set_account_counters_maps(@statuses.flat_map { |s| [s.account, s.reblog? ? s.reblog.account : nil] }.compact.uniq)
-
-    next_path = api_v1_mentions_timeline_url(max_id: @statuses.last.id)    if @statuses.size == limit_param(DEFAULT_STATUSES_LIMIT)
-    prev_path = api_v1_mentions_timeline_url(since_id: @statuses.first.id) unless @statuses.empty?
-
-    set_pagination_headers(next_path, prev_path)
-
-    render action: :index
-  end
-
   def public
     @statuses = Status.as_public_timeline(current_account).paginate_by_max_id(limit_param(DEFAULT_STATUSES_LIMIT), params[:max_id], params[:since_id])
     @statuses = cache_collection(@statuses)

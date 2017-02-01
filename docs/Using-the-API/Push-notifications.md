@@ -1,6 +1,8 @@
 Push notifications
 ==================
 
+**Note: This push notification design turned out to not be fully operational on the side of Firebase. A different approach is in consideration**
+
 Mastodon can communicate with the Firebase Cloud Messaging API to send push notifications to apps on users' devices. For this to work, these conditions must be met:
 
 * Responsibility of an instance owner: `FCM_API_KEY` set on the instance. This can be obtained on the Firebase dashboard, in project settings, under Cloud Messaging, as "server key"
