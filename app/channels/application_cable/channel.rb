@@ -5,12 +5,12 @@ module ApplicationCable
     protected
 
     def hydrate_status(encoded_message)
-      message = ActiveSupport::JSON.decode(encoded_message)
+      message = OJ.load(encoded_message)
 
       return [nil, message] if message['event'] == 'delete'
 
-      status             = Status.find_by(id: message['payload'])
-      message['payload'] = FeedManager.instance.inline_render(current_user.account, 'api/v1/statuses/show', status)
+      status_json = OJ.load(message['payload'])
+      status      = Status.find(status_json['id'])
 
       [status, message]
     end
