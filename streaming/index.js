@@ -45,7 +45,7 @@ const authenticationMiddleware = (req, res, next) => {
       return next(err)
     }
 
-    client.query('SELECT oauth_access_tokens.resource_owner_id, users.account_id FROM oauth_access_tokens INNER JOIN users ON oauth_access_tokens.resource_owner_id = users.id WHERE token = $1 LIMIT 1', [token], (err, result) => {
+    client.query('SELECT oauth_access_tokens.resource_owner_id, users.account_id FROM oauth_access_tokens INNER JOIN users ON oauth_access_tokens.resource_owner_id = users.id WHERE oauth_access_tokens.token = $1 LIMIT 1', [token], (err, result) => {
       done()
 
       if (err) {
@@ -115,8 +115,13 @@ const streamFrom = (id, req, res, needsFiltering = false) => {
     }
   })
 
-  // Heartbeat to keep connection alive
-  setInterval(() => res.write(':thump\n'), 15000)
+  const heartbeat = setInterval(() => res.write(':thump\n'), 15000)
+
+  req.on('close', () => {
+    log.verbose(`Ending stream from ${id} for ${req.accountId}`)
+    clearInterval(heartbeat)
+    redisClient.quit()
+  })
 
   redisClient.subscribe(id)
 }
