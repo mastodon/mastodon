@@ -33,3 +33,5 @@ These people make the development of Mastodon possible through [Patreon](https:/
 - [Niels Roesen Abildgaard](http://hypesystem.dk/)
 - [Zatnosk](https://github.com/Zatnosk)
 - [Spex Bluefox](https://mastodon.social/users/Spex)
+- [Sam Waldie](https://mastodon.social/users/denjin)
+- [J. C. Holder](http://jcholder.com/)
