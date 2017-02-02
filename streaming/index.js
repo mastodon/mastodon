@@ -44,7 +44,6 @@ const authenticationMiddleware = (req, res, next) => {
 
   pgPool.connect((err, client, done) => {
     if (err) {
-      log.error(err)
       return next(err)
     }
 
@@ -52,7 +51,6 @@ const authenticationMiddleware = (req, res, next) => {
       done()
 
       if (err) {
-        log.error(err)
         return next(err)
       }
 
@@ -71,9 +69,12 @@ const authenticationMiddleware = (req, res, next) => {
 }
 
 const errorMiddleware = (err, req, res, next) => {
+  log.error(err)
   res.writeHead(err.statusCode || 500, { 'Content-Type': 'application/json' })
   res.end(JSON.stringify({ error: err.statusCode ? `${err}` : 'An unexpected error occured' }))
 }
+
+const placeholders = (arr, shift = 0) => arr.map((_, i) => `$${i + 1 + shift}`).join(', ');
 
 const streamFrom = (id, req, res, needsFiltering = false) => {
   log.verbose(`Starting stream from ${id} for ${req.accountId}`)
@@ -100,9 +101,9 @@ const streamFrom = (id, req, res, needsFiltering = false) => {
         }
 
         const unpackedPayload  = JSON.parse(payload)
-        const targetAccountIds = [unpackedPayload.account.id] + unpackedPayload.mentions.map(item => item.id) + (unpackedPayload.reblog ? unpackedPayload.reblog.account.id : [])
+        const targetAccountIds = [unpackedPayload.account.id].concat(unpackedPayload.mentions.map(item => item.id)).concat(unpackedPayload.reblog ? [unpackedPayload.reblog.account.id] : [])
 
-        client.query('SELECT target_account_id FROM blocks WHERE account_id = $1 AND target_account_id IN ($2)', [req.accountId, targetAccountIds], (err, result) => {
+        client.query(`SELECT target_account_id FROM blocks WHERE account_id = $1 AND target_account_id IN (${placeholders(targetAccountIds, 1)})`, [req.accountId].concat(targetAccountIds), (err, result) => {
           done()
 
           if (err) {
