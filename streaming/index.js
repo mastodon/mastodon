@@ -90,7 +90,9 @@ const streamFrom = (id, req, res, needsFiltering = false) => {
   redisClient.on('message', (channel, message) => {
     const { event, payload } = JSON.parse(message)
 
-    if (needsFiltering) {
+    // Only messages that may require filtering are statuses, since notifications
+    // are already personalized and deletes do not matter
+    if (needsFiltering && event === 'update') {
       pgPool.connect((err, client, done) => {
         if (err) {
           log.error(err)

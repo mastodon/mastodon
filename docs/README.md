@@ -10,6 +10,7 @@ Index
 
 ### Using the API
 - [API documentation](Using-the-API/API.md)
+- [Streaming API documentation](Using-the-API/Streaming-API.md)
 - [Testing the API with cURL](Using-the-API/Testing-with-cURL.md)
 - [OAuth details](Using-the-API/OAuth-details.md)
 - [Tips for app developers](Using-the-API/Tips-for-app-developers.md)
