@@ -10,7 +10,7 @@ These people make the development of Mastodon possible through [Patreon](https:/
 - [Jimmy Tidey](https://mastodon.social/users/jimmytidey)
 - [Kurtis Rainbolt-Greene](https://mastodon.social/users/krainboltgreene)
 - [Kit Redgrave](https://socially.constructed.space/users/KitRedgrave)
-- [Zeiphner](#TODO)
+- [Zeiphner](https://mastodon.social/users/Zeipher)
 - [Effy Elden](https://toot.zone/users/effy)
 - [Zoë Quinn](https://mastodon.social/users/zoequinn)
 
