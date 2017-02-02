@@ -30,7 +30,6 @@ Authenticator](https://play.google.com/store/apps/details?id=com.google.android.
 
 __Recommended Application:__ iPhone: [Authenticator by Matt
 Ruben](https://itunes.apple.com/us/app/authenticator/id766157276?mt=8)
-Authenticator](https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2)
 
 4. Download the above application on your phone
 5. Open the "Authenticator" app
