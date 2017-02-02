@@ -4,7 +4,11 @@ import redis from 'redis'
 import pg from 'pg'
 import log from 'npmlog'
 
-dotenv.config()
+const env = process.env.NODE_ENV || 'development'
+
+dotenv.config({
+  path: env === 'production' ? '.env.production' : '.env'
+})
 
 const pgConfigs = {
   development: {
@@ -24,7 +28,6 @@ const pgConfigs = {
 }
 
 const app = express()
-const env = process.env.NODE_ENV || 'development'
 const pgPool = new pg.Pool(pgConfigs[env])
 
 const authenticationMiddleware = (req, res, next) => {
