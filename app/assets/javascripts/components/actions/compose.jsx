@@ -119,10 +119,7 @@ export function uploadCompose(files) {
 
     let data = new FormData();
     data.append('file', files[0]);
-    data.append('media_ids', getState().getIn(
-      ['compose', 'media_attachments']
-    ).map(item => item.get('id')));
-    
+
     api(getState).post('/api/v1/media', data, {
       onUploadProgress: function (e) {
         dispatch(uploadComposeProgress(e.loaded, e.total));

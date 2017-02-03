@@ -35,8 +35,14 @@ class PostStatusService < BaseService
 
   def attach_media(status, media_ids)
     return if media_ids.nil? || !media_ids.is_a?(Enumerable)
-
     media = MediaAttachment.where(status_id: nil).where(id: media_ids.take(4).map(&:to_i))
+    if media.length > 1
+      media.each do |m|
+        if m.video?
+          raise Mastodon::NotPermitted, 'Cannot attach a video to a toot that already contains images'
+        end
+      end
+    end
     media.update(status_id: status.id)
   end
 
