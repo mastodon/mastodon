@@ -43,6 +43,7 @@ import hu from 'react-intl/locale-data/hu';
 import uk from 'react-intl/locale-data/uk';
 import getMessagesForLocale from '../locales';
 import { hydrateStore } from '../actions/store';
+import createStream from '../stream';
 
 const store = configureStore();
 
@@ -60,28 +61,27 @@ const Mastodon = React.createClass({
     locale: React.PropTypes.string.isRequired
   },
 
-  componentWillMount() {
-    const { locale } = this.props;
+  componentDidMount() {
+    const { locale }  = this.props;
+    const accessToken = store.getState().getIn(['meta', 'access_token']);
 
-    if (typeof App !== 'undefined') {
-      this.subscription = App.cable.subscriptions.create('TimelineChannel', {
+    this.subscription = createStream(accessToken, 'user', {
 
-        received (data) {
-          switch(data.event) {
-          case 'update':
-            store.dispatch(updateTimeline('home', JSON.parse(data.payload)));
-            break;
-          case 'delete':
-            store.dispatch(deleteFromTimelines(data.payload));
-            break;
-          case 'notification':
-            store.dispatch(updateNotifications(JSON.parse(data.payload), getMessagesForLocale(locale), locale));
-            break;
-          }
+      received (data) {
+        switch(data.event) {
+        case 'update':
+          store.dispatch(updateTimeline('home', JSON.parse(data.payload)));
+          break;
+        case 'delete':
+          store.dispatch(deleteFromTimelines(data.payload));
+          break;
+        case 'notification':
+          store.dispatch(updateNotifications(JSON.parse(data.payload), getMessagesForLocale(locale), locale));
+          break;
         }
+      }
 
-      });
-    }
+    });
 
     // Desktop notifications
     if (typeof window.Notification !== 'undefined' && Notification.permission === 'default') {
@@ -91,7 +91,8 @@ const Mastodon = React.createClass({
 
   componentWillUnmount () {
     if (typeof this.subscription !== 'undefined') {
-      this.subscription.unsubscribe();
+      this.subscription.close();
+      this.subscription = null;
     }
   },
 

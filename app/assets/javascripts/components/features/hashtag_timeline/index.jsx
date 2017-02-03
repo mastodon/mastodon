@@ -8,45 +8,49 @@ import {
   deleteFromTimelines
 } from '../../actions/timelines';
 import ColumnBackButtonSlim from '../../components/column_back_button_slim';
+import createStream from '../../stream';
+
+const mapStateToProps = state => ({
+  accessToken: state.getIn(['meta', 'access_token'])
+});
 
 const HashtagTimeline = React.createClass({
 
   propTypes: {
     params: React.PropTypes.object.isRequired,
-    dispatch: React.PropTypes.func.isRequired
+    dispatch: React.PropTypes.func.isRequired,
+    accessToken: React.PropTypes.string.isRequired
   },
 
   mixins: [PureRenderMixin],
 
   _subscribe (dispatch, id) {
-    if (typeof App !== 'undefined') {
-      this.subscription = App.cable.subscriptions.create({
-        channel: 'HashtagChannel',
-        tag: id
-      }, {
+    const { accessToken } = this.props;
 
-        received (data) {
-          switch(data.event) {
-          case 'update':
-            dispatch(updateTimeline('tag', JSON.parse(data.payload)));
-            break;
-          case 'delete':
-            dispatch(deleteFromTimelines(data.payload));
-            break;
-          }
+    this.subscription = createStream(accessToken, `hashtag&tag=${id}`, {
+
+      received (data) {
+        switch(data.event) {
+        case 'update':
+          dispatch(updateTimeline('tag', JSON.parse(data.payload)));
+          break;
+        case 'delete':
+          dispatch(deleteFromTimelines(data.payload));
+          break;
         }
+      }
 
-      });
-    }
+    });
   },
 
   _unsubscribe () {
     if (typeof this.subscription !== 'undefined') {
-      this.subscription.unsubscribe();
+      this.subscription.close();
+      this.subscription = null;
     }
   },
 
-  componentWillMount () {
+  componentDidMount () {
     const { dispatch } = this.props;
     const { id } = this.props.params;
 
@@ -79,4 +83,4 @@ const HashtagTimeline = React.createClass({
 
 });
 
-export default connect()(HashtagTimeline);
+export default connect(mapStateToProps)(HashtagTimeline);

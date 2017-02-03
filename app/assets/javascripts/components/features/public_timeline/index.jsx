@@ -9,46 +9,51 @@ import {
 } from '../../actions/timelines';
 import { defineMessages, injectIntl } from 'react-intl';
 import ColumnBackButtonSlim from '../../components/column_back_button_slim';
+import createStream from '../../stream';
 
 const messages = defineMessages({
   title: { id: 'column.public', defaultMessage: 'Public' }
+});
+
+const mapStateToProps = state => ({
+  accessToken: state.getIn(['meta', 'access_token'])
 });
 
 const PublicTimeline = React.createClass({
 
   propTypes: {
     dispatch: React.PropTypes.func.isRequired,
-    intl: React.PropTypes.object.isRequired
+    intl: React.PropTypes.object.isRequired,
+    accessToken: React.PropTypes.string.isRequired
   },
 
   mixins: [PureRenderMixin],
 
-  componentWillMount () {
-    const { dispatch } = this.props;
+  componentDidMount () {
+    const { dispatch, accessToken } = this.props;
 
     dispatch(refreshTimeline('public'));
 
-    if (typeof App !== 'undefined') {
-      this.subscription = App.cable.subscriptions.create('PublicChannel', {
+    this.subscription = createStream(accessToken, 'public', {
 
-        received (data) {
-          switch(data.event) {
-          case 'update':
-            dispatch(updateTimeline('public', JSON.parse(data.payload)));
-            break;
-          case 'delete':
-            dispatch(deleteFromTimelines(data.payload));
-            break;
-          }
+      received (data) {
+        switch(data.event) {
+        case 'update':
+          dispatch(updateTimeline('public', JSON.parse(data.payload)));
+          break;
+        case 'delete':
+          dispatch(deleteFromTimelines(data.payload));
+          break;
         }
+      }
 
-      });
-    }
+    });
   },
 
   componentWillUnmount () {
     if (typeof this.subscription !== 'undefined') {
-      this.subscription.unsubscribe();
+      this.subscription.close();
+      this.subscription = null;
     }
   },
 
@@ -65,4 +70,4 @@ const PublicTimeline = React.createClass({
 
 });
 
-export default connect()(injectIntl(PublicTimeline));
+export default connect(mapStateToProps)(injectIntl(PublicTimeline));
