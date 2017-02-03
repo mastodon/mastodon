@@ -30,11 +30,23 @@ const pgConfigs = {
 const app = express()
 const pgPool = new pg.Pool(pgConfigs[env])
 
+const allowCrossDomain = (req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*')
+  res.header('Access-Control-Allow-Headers', 'Authorization, Accept, Cache-Control')
+  res.header('Access-Control-Allow-Methods', 'GET, OPTIONS')
+
+  next()
+}
+
 const authenticationMiddleware = (req, res, next) => {
+  if (req.method === 'OPTIONS') {
+    return next()
+  }
+
   const authorization = req.get('Authorization')
 
   if (!authorization) {
-    err = new Error('Missing access token')
+    const err = new Error('Missing access token')
     err.statusCode = 401
 
     return next(err)
@@ -136,6 +148,7 @@ const streamFrom = (id, req, res, needsFiltering = false) => {
   redisClient.subscribe(id)
 }
 
+app.use(allowCrossDomain)
 app.use(authenticationMiddleware)
 app.use(errorMiddleware)
 
