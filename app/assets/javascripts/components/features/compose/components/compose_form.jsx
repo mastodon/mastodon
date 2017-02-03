@@ -160,13 +160,13 @@ const ComposeForm = React.createClass({
         </div>
 
         <label style={{ display: 'block', lineHeight: '24px', verticalAlign: 'middle', marginTop: '10px', borderTop: '1px solid #282c37', paddingTop: '10px' }}>
-          <Toggle checked={this.props.private} onChange={this.handleChangeVisibility} />
-          <span style={{ display: 'inline-block', verticalAlign: 'middle', marginBottom: '14px', marginLeft: '8px', color: '#9baec8' }}><FormattedMessage id='compose_form.private' defaultMessage='Mark as private' /></span>
+          <Toggle checked={this.props.spoiler} onChange={this.handleChangeSpoilerness} />
+          <span style={{ display: 'inline-block', verticalAlign: 'top', marginLeft: '8px', color: '#9baec8' }}><FormattedMessage id='compose_form.spoiler' defaultMessage='Hide text behind warning' /></span>
         </label>
 
-        <label style={{ display: 'block', lineHeight: '24px', verticalAlign: 'middle' }}>
-          <Toggle checked={this.props.spoiler} onChange={this.handleChangeSpoilerness} />
-          <span style={{ display: 'inline-block', verticalAlign: 'middle', marginBottom: '14px', marginLeft: '8px', color: '#9baec8' }}><FormattedMessage id='compose_form.spoiler' defaultMessage='Hide text behind warning' /></span>
+        <label style={{ display: 'block', lineHeight: '24px', verticalAlign: 'middle', borderTop: '1px solid #282c37', paddingTop: '10px' }}>
+          <Toggle checked={this.props.private} onChange={this.handleChangeVisibility} />
+          <span style={{ display: 'inline-block', verticalAlign: 'middle', marginBottom: '14px', marginLeft: '8px', color: '#9baec8' }}><FormattedMessage id='compose_form.private' defaultMessage='Mark as private' /></span>
         </label>
 
         <Motion defaultStyle={{ opacity: (this.props.private || reply_to_other) ? 0 : 100, height: (this.props.private || reply_to_other) ? 39.5 : 0 }} style={{ opacity: spring((this.props.private || reply_to_other) ? 0 : 100), height: spring((this.props.private || reply_to_other) ? 0 : 39.5) }}>
