@@ -154,9 +154,7 @@ Rails.application.routes.draw do
     end
 
     namespace :activitypub do
-      resources :accounts do
-        get '/:id', to: 'accounts#show'
-      end
+      resources :accounts, only: [:show]
     end
 
     namespace :web do
