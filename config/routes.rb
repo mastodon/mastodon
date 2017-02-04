@@ -153,6 +153,12 @@ Rails.application.routes.draw do
       end
     end
 
+    namespace :activitypub do
+      resources :accounts do
+        get '/:id', to: 'accounts#show'
+      end
+    end
+
     namespace :web do
       resource :settings, only: [:update]
     end
