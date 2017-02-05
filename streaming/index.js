@@ -101,7 +101,15 @@ const streamFrom = (redisClient, id, req, output, needsFiltering = false) => {
   log.verbose(`Starting stream from ${id} for ${req.accountId}`)
 
   redisClient.on('message', (channel, message) => {
-    const { event, payload } = JSON.parse(message)
+    const { event, payload, queued_at } = JSON.parse(message)
+
+    const transmit = () => {
+      const now   = new Date().getTime()
+      const delta = now - queued_at;
+
+      log.silly(`Transmitting for ${req.accountId}: ${event} ${payload} Delay: ${delta}ms`)
+      output(event, payload)
+    }
 
     // Only messages that may require filtering are statuses, since notifications
     // are already personalized and deletes do not matter
@@ -127,13 +135,11 @@ const streamFrom = (redisClient, id, req, output, needsFiltering = false) => {
             return
           }
 
-          log.silly(`Transmitting for ${req.accountId}: ${event} ${payload}`)
-          output(event, payload)
+          transmit()
         })
       })
     } else {
-      log.silly(`Transmitting for ${req.accountId}: ${event} ${payload}`)
-      output(event, payload)
+      transmit()
     }
   })
 

@@ -30,6 +30,7 @@ class FeedManager
   end
 
   def broadcast(timeline_id, options = {})
+    options[:queued_at] = (Time.now.to_f * 1000.0).to_i
     ActionCable.server.broadcast("timeline:#{timeline_id}", options)
   end
 

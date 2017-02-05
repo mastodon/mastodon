@@ -123,7 +123,7 @@ const Modal = React.createClass({
     window.addEventListener('keyup', this._listener);
   },
 
-  componentDidUnmount () {
+  componentWillUnmount () {
     window.removeEventListener('keyup', this._listener);
   },
 
