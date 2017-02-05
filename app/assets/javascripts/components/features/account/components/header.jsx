@@ -44,7 +44,7 @@ const Header = React.createClass({
             <IconButton size={26} disabled={true} icon='hourglass' title={intl.formatMessage(messages.requested)} />
           </div>
         );
-      } else {
+      } else if (!account.getIn(['relationship', 'blocking'])) {
         actionBtn = (
           <div style={{ position: 'absolute', top: '10px', left: '20px' }}>
             <IconButton size={26} icon={account.getIn(['relationship', 'following']) ? 'user-times' : 'user-plus'} active={account.getIn(['relationship', 'following'])} title={intl.formatMessage(account.getIn(['relationship', 'following']) ? messages.unfollow : messages.follow)} onClick={this.props.onFollow} />

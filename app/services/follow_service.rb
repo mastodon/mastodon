@@ -8,7 +8,7 @@ class FollowService < BaseService
     target_account = follow_remote_account_service.call(uri)
 
     raise ActiveRecord::RecordNotFound if target_account.nil? || target_account.id == source_account.id || target_account.suspended?
-    raise Mastodon::NotPermitted       if target_account.blocking?(source_account)
+    raise Mastodon::NotPermitted       if target_account.blocking?(source_account) || source_account.blocking?(target_account)
 
     if target_account.locked?
       request_follow(source_account, target_account)
