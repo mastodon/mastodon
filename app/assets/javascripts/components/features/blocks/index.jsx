@@ -10,7 +10,7 @@ import { fetchBlocks, expandBlocks } from '../../actions/blocks';
 import { defineMessages, injectIntl } from 'react-intl';
 
 const messages = defineMessages({
-  heading: { id: 'column.blocks', defaultMessage: 'Blocked' }
+  heading: { id: 'column.blocks', defaultMessage: 'Blocked users' }
 });
 
 const mapStateToProps = state => ({
