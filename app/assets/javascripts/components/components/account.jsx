@@ -51,7 +51,7 @@ const Account = React.createClass({
 
   getDefaultProps () {
     return {
-      withNote: true
+      withNote: false
     };
   },
 
