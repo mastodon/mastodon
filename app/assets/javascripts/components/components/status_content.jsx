@@ -3,6 +3,7 @@ import PureRenderMixin from 'react-addons-pure-render-mixin';
 import escapeTextContentForBrowser from 'react/lib/escapeTextContentForBrowser';
 import emojify from '../emoji';
 import { FormattedMessage } from 'react-intl';
+import Permalink from './permalink';
 
 const spoilerStyle = {
   display: 'inline-block',
@@ -96,16 +97,24 @@ const StatusContent = React.createClass({
     const { status } = this.props;
     const { hidden } = this.state;
 
+
     const content = { __html: emojify(status.get('content')) };
     const spoilerContent = { __html: emojify(escapeTextContentForBrowser(status.get('spoiler_text', ''))) };
 
     if (status.get('spoiler_text').length > 0) {
+      const mentionLinks = status.get('mentions').map(item => (
+        <Permalink to={`/accounts/${item.get('id')}`} href={item.get('url')} key={item.get('id')} className='mention'>
+          @<span>{item.get('username')}</span>
+        </Permalink>
+      )).reduce((aggregate, item) => [...aggregate, item, ' '], [])
+
       const toggleText = hidden ? <FormattedMessage id='status.show_more' defaultMessage='Show more' /> : <FormattedMessage id='status.show_less' defaultMessage='Show less' />;
 
       return (
         <div className='status__content' style={{ cursor: 'pointer' }} onMouseDown={this.handleMouseDown} onMouseUp={this.handleMouseUp}>
           <p style={{ marginBottom: hidden ? '0px' : '' }} >
-            <span dangerouslySetInnerHTML={spoilerContent} /> <a className='status__content__spoiler-link' style={spoilerStyle} onClick={this.handleSpoilerClick}>{toggleText}</a>
+            {mentionLinks}
+            <span dangerouslySetInnerHTML={spoilerContent} />  <a className='status__content__spoiler-link' style={spoilerStyle} onClick={this.handleSpoilerClick}>{toggleText}</a>
           </p>
 
           <div style={{ display: hidden ? 'none' : 'block' }} dangerouslySetInnerHTML={content} />
