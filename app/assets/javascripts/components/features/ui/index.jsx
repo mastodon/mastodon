@@ -13,6 +13,8 @@ import { debounce } from 'react-decoration';
 import { uploadCompose } from '../../actions/compose';
 import { refreshTimeline } from '../../actions/timelines';
 import { refreshNotifications } from '../../actions/notifications';
+import { DragDropContext } from 'react-dnd';
+import HTML5Backend from 'react-dnd-html5-backend';
 
 const UI = React.createClass({
 
@@ -103,4 +105,4 @@ const UI = React.createClass({
 
 });
 
-export default connect()(UI);
+export default connect()(DragDropContext(HTML5Backend)(UI));

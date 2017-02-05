@@ -1,5 +1,6 @@
-import ColumnHeader    from './column_header';
+import ColumnHeader from './column_header';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
+import { DragSource } from 'react-dnd';
 
 const easingOutQuint = (x, t, b, c, d) => c*((t=t/d-1)*t*t*t*t + 1) + b;
 
@@ -36,9 +37,22 @@ const style = {
   flexDirection: 'column'
 };
 
+const columnSource = {
+  beginDrag (props) {
+    return {};
+  }
+};
+
+const collect = (connect, monitor) => ({
+  connectDragSource: connect.dragSource(),
+  isDragging: monitor.isDragging()
+});
+
 const Column = React.createClass({
 
   propTypes: {
+    connectDragSource: React.PropTypes.func.isRequired,
+    isDragging: React.PropTypes.bool.isRequired,
     heading: React.PropTypes.string,
     icon: React.PropTypes.string,
     children: React.PropTypes.node
@@ -58,20 +72,22 @@ const Column = React.createClass({
   },
 
   render () {
+    const { heading, icon, children, connectDragSource, isDragging } = this.props;
+
     let header = '';
 
-    if (this.props.heading) {
-      header = <ColumnHeader icon={this.props.icon} type={this.props.heading} onClick={this.handleHeaderClick} />;
+    if (heading) {
+      header = <ColumnHeader icon={icon} type={heading} onClick={this.handleHeaderClick} />;
     }
 
-    return (
-      <div className='column' style={style} onWheel={this.handleWheel}>
+    return connectDragSource(
+      <div className='column' style={{...style, opacity: isDragging ? '0.5' : '1' }} onWheel={this.handleWheel}>
         {header}
-        {this.props.children}
+        {children}
       </div>
     );
   }
 
 });
 
-export default Column;
+export default DragSource('column', columnSource, collect)(Column);
