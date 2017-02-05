@@ -47,7 +47,7 @@ const ColumnCollapsable = React.createClass({
 
         <Motion defaultStyle={{ opacity: 0, height: 0 }} style={{ opacity: spring(collapsed ? 0 : 100), height: spring(collapsed ? 0 : fullHeight, collapsed ? undefined : { stiffness: 150, damping: 9 }) }}>
           {({ opacity, height }) =>
-            <div style={{ overflow: 'hidden', height: `${height}px`, opacity: opacity / 100 }}>
+            <div style={{ overflow: height === fullHeight ? 'auto' : 'hidden', height: `${height}px`, opacity: opacity / 100, maxHeight: '70vh' }}>
               {children}
             </div>
           }
