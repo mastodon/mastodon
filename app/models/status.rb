@@ -14,7 +14,7 @@ class Status < ApplicationRecord
   belongs_to :in_reply_to_account, foreign_key: 'in_reply_to_account_id', class_name: 'Account'
 
   belongs_to :thread, foreign_key: 'in_reply_to_id', class_name: 'Status', inverse_of: :replies
-  belongs_to :reblog, foreign_key: 'reblog_of_id', class_name: 'Status', inverse_of: :reblogs, touch: true
+  belongs_to :reblog, foreign_key: 'reblog_of_id', class_name: 'Status', inverse_of: :reblogs
 
   has_many :favourites, inverse_of: :status, dependent: :destroy
   has_many :reblogs, foreign_key: 'reblog_of_id', class_name: 'Status', inverse_of: :reblog, dependent: :destroy
@@ -81,7 +81,7 @@ class Status < ApplicationRecord
 
   def ancestors(account = nil)
     ids      = (Status.find_by_sql(['WITH RECURSIVE search_tree(id, in_reply_to_id, path) AS (SELECT id, in_reply_to_id, ARRAY[id] FROM statuses WHERE id = ? UNION ALL SELECT statuses.id, statuses.in_reply_to_id, path || statuses.id FROM search_tree JOIN statuses ON statuses.id = search_tree.in_reply_to_id WHERE NOT statuses.id = ANY(path)) SELECT id FROM search_tree ORDER BY path DESC', id]) - [self]).pluck(:id)
-    statuses = Status.where(id: ids).with_includes.group_by(&:id)
+    statuses = Status.where(id: ids).group_by(&:id)
     results  = ids.map { |id| statuses[id].first }
     results  = results.reject { |status| filter_from_context?(status, account) }
 
@@ -90,7 +90,7 @@ class Status < ApplicationRecord
 
   def descendants(account = nil)
     ids      = (Status.find_by_sql(['WITH RECURSIVE search_tree(id, path) AS (SELECT id, ARRAY[id] FROM statuses WHERE id = ? UNION ALL SELECT statuses.id, path || statuses.id FROM search_tree JOIN statuses ON statuses.in_reply_to_id = search_tree.id WHERE NOT statuses.id = ANY(path)) SELECT id FROM search_tree ORDER BY path', id]) - [self]).pluck(:id)
-    statuses = Status.where(id: ids).with_includes.group_by(&:id)
+    statuses = Status.where(id: ids).group_by(&:id)
     results  = ids.map { |id| statuses[id].first }
     results  = results.reject { |status| filter_from_context?(status, account) }
 
@@ -180,6 +180,6 @@ class Status < ApplicationRecord
   private
 
   def filter_from_context?(status, account)
-    account&.blocking?(status.account) || !status.permitted?(account)
+    account&.blocking?(status.account_id) || !status.permitted?(account)
   end
 end
