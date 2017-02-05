@@ -50,7 +50,6 @@ gem 'pg_search'
 gem 'simple-navigation'
 gem 'statsd-instrument'
 gem 'ruby-oembed', require: 'oembed'
-gem 'fcm'
 
 gem 'react-rails'
 gem 'browserify-rails'
