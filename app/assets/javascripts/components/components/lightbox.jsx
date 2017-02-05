@@ -44,7 +44,7 @@ const Lightbox = React.createClass({
 
   componentDidMount () {
     this._listener = e => {
-      if (e.key === 'Escape') {
+      if (this.props.isVisible && e.key === 'Escape') {
         this.props.onCloseClicked();
       }
     };

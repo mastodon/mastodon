@@ -104,6 +104,29 @@ const Modal = React.createClass({
     this.props.onPrevClicked();
   },
 
+  componentDidMount () {
+    this._listener = e => {
+      if (!this.props.isVisible) {
+        return;
+      }
+
+      switch(e.key) {
+      case 'ArrowLeft':
+        this.props.onPrevClicked();
+        break;
+      case 'ArrowRight':
+        this.props.onNextClicked();
+        break;
+      }
+    };
+
+    window.addEventListener('keyup', this._listener);
+  },
+
+  componentDidUnmount () {
+    window.removeEventListener('keyup', this._listener);
+  },
+
   render () {
     const { media, index, ...other } = this.props;
 
