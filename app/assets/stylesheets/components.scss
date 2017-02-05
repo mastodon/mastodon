@@ -125,6 +125,10 @@
 
     &:hover {
       text-decoration: underline;
+
+      .fa {
+        color: lighten($color1, 40%);
+      }
     }
 
     &.mention {
@@ -135,6 +139,10 @@
           text-decoration: underline;
         }
       }
+    }
+
+    .fa {
+      color: lighten($color1, 30%);
     }
   }
 
