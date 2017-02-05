@@ -91,8 +91,8 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(mentionCompose(account, router));
   },
 
-  onOpenMedia (url) {
-    dispatch(openMedia(url));
+  onOpenMedia (media, index) {
+    dispatch(openMedia(media, index));
   },
 
   onBlock (account) {

@@ -84,8 +84,8 @@ const Status = React.createClass({
     this.props.dispatch(mentionCompose(account, router));
   },
 
-  handleOpenMedia (url) {
-    this.props.dispatch(openMedia(url));
+  handleOpenMedia (media, index) {
+    this.props.dispatch(openMedia(media, index));
   },
 
   renderChildren (list) {

@@ -57,15 +57,16 @@ const MediaGallery = React.createClass({
     sensitive: React.PropTypes.bool,
     media: ImmutablePropTypes.list.isRequired,
     height: React.PropTypes.number.isRequired,
-    onOpenMedia: React.PropTypes.func.isRequired
+    onOpenMedia: React.PropTypes.func.isRequired,
+    intl: React.PropTypes.object.isRequired
   },
 
   mixins: [PureRenderMixin],
 
-  handleClick (url, e) {
+  handleClick (index, e) {
     if (e.button === 0) {
       e.preventDefault();
-      this.props.onOpenMedia(url);
+      this.props.onOpenMedia(this.props.media, index);
     }
 
     e.stopPropagation();
@@ -151,12 +152,12 @@ const MediaGallery = React.createClass({
 
         return (
           <div key={attachment.get('id')} style={{ boxSizing: 'border-box', position: 'relative', left: left, top: top, right: right, bottom: bottom, float: 'left', border: 'none', display: 'block', width: `${width}%`, height: `${height}%` }}>
-            <a href={attachment.get('remote_url') ? attachment.get('remote_url') : attachment.get('url')} onClick={this.handleClick.bind(this, attachment.get('url'))} target='_blank' style={{ display: 'block', width: '100%', height: '100%', background: `url(${attachment.get('preview_url')}) no-repeat center`, textDecoration: 'none', backgroundSize: 'cover', cursor: 'zoom-in' }} />
+            <a href={attachment.get('remote_url') ? attachment.get('remote_url') : attachment.get('url')} onClick={this.handleClick.bind(this, i)} target='_blank' style={{ display: 'block', width: '100%', height: '100%', background: `url(${attachment.get('preview_url')}) no-repeat center`, textDecoration: 'none', backgroundSize: 'cover', cursor: 'zoom-in' }} />
           </div>
         );
       });
     }
-    
+
     return (
       <div style={{ ...outerStyle, height: `${this.props.height}px` }}>
         <div style={spoilerButtonStyle} >

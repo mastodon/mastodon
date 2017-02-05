@@ -56,6 +56,10 @@ const Lightbox = React.createClass({
     window.removeEventListener('keyup', this._listener);
   },
 
+  stopPropagation (e) {
+    e.stopPropagation();
+  },
+
   render () {
     const { intl, isVisible, onOverlayClicked, onCloseClicked, children } = this.props;
 
@@ -63,7 +67,7 @@ const Lightbox = React.createClass({
       <Motion defaultStyle={{ backgroundOpacity: 0, opacity: 0, y: -400 }} style={{ backgroundOpacity: spring(isVisible ? 50 : 0), opacity: isVisible ? spring(200) : 0, y: spring(isVisible ? 0 : -400, { stiffness: 150, damping: 12 }) }}>
         {({ backgroundOpacity, opacity, y }) =>
           <div className='lightbox' style={{...overlayStyle, background: `rgba(0, 0, 0, ${backgroundOpacity / 100})`, display: Math.floor(backgroundOpacity) === 0 ? 'none' : 'flex'}} onClick={onOverlayClicked}>
-            <div style={{...dialogStyle, transform: `translateY(${y}px)`, opacity: opacity / 100 }}>
+            <div style={{...dialogStyle, transform: `translateY(${y}px)`, opacity: opacity / 100 }} onClick={this.stopPropagation}>
               <IconButton title={intl.formatMessage({ id: 'lightbox.close', defaultMessage: 'Close' })} icon='times' onClick={onCloseClicked} size={16} style={closeStyle} />
               {children}
             </div>
