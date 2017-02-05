@@ -97,11 +97,12 @@ const StatusContent = React.createClass({
     const { status } = this.props;
     const { hidden } = this.state;
 
-
     const content = { __html: emojify(status.get('content')) };
     const spoilerContent = { __html: emojify(escapeTextContentForBrowser(status.get('spoiler_text', ''))) };
 
     if (status.get('spoiler_text').length > 0) {
+      let mentionsPlaceholder = '';
+
       const mentionLinks = status.get('mentions').map(item => (
         <Permalink to={`/accounts/${item.get('id')}`} href={item.get('url')} key={item.get('id')} className='mention'>
           @<span>{item.get('username')}</span>
@@ -110,12 +111,17 @@ const StatusContent = React.createClass({
 
       const toggleText = hidden ? <FormattedMessage id='status.show_more' defaultMessage='Show more' /> : <FormattedMessage id='status.show_less' defaultMessage='Show less' />;
 
+      if (hidden) {
+        mentionsPlaceholder = <div>{mentionLinks}</div>;
+      }
+
       return (
         <div className='status__content' style={{ cursor: 'pointer' }} onMouseDown={this.handleMouseDown} onMouseUp={this.handleMouseUp}>
-          <p style={{ marginBottom: hidden ? '0px' : '' }} >
-            {mentionLinks}
+          <p style={{ marginBottom: hidden && mentionLinks.size === 0 ? '0px' : '' }} >
             <span dangerouslySetInnerHTML={spoilerContent} />  <a className='status__content__spoiler-link' style={spoilerStyle} onClick={this.handleSpoilerClick}>{toggleText}</a>
           </p>
+
+          {mentionsPlaceholder}
 
           <div style={{ display: hidden ? 'none' : 'block' }} dangerouslySetInnerHTML={content} />
         </div>
