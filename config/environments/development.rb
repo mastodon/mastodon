@@ -20,11 +20,12 @@ Rails.application.configure do
       host: ENV['REDIS_HOST'] || 'localhost',
       port: ENV['REDIS_PORT'] || 6379,
       db: 0,
-      namespace: 'cache'
+      namespace: 'cache',
+      expires_in: 1.minute,
     }
 
     config.public_file_server.headers = {
-      'Cache-Control' => 'public, max-age=172800'
+      'Cache-Control' => 'public, max-age=172800',
     }
   else
     config.action_controller.perform_caching = false
