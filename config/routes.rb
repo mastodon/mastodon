@@ -153,10 +153,6 @@ Rails.application.routes.draw do
       end
     end
 
-    namespace :activitypub do
-      resources :accounts, only: [:show]
-    end
-
     namespace :web do
       resource :settings, only: [:update]
     end

@@ -4,7 +4,6 @@
 - content_for :header_tags do
   %link{ rel: 'salmon', href: api_salmon_url(@account.id) }/
   %link{ rel: 'alternate', type: 'application/atom+xml', href: account_url(@account, format: 'atom') }/
-  %link{ rel: 'alternate', type: 'application/ld+json; profile="https://www.w3.org/ns/activitystreams#"', href: "http://mastodon.dev/api/v1/activitypub/accounts/#{@account.username}" }/
 
   %meta{ property: 'og:site_name', content: 'Mastodon' }/
   %meta{ property: 'og:type', content: 'profile' }/
