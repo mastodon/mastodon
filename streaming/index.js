@@ -212,9 +212,19 @@ app.get('/api/v1/streaming/public', (req, res) => {
   streamFrom(redisClient, 'timeline:public', req, streamToHttp(req, res, redisClient), true)
 })
 
+app.get('/api/v1/streaming/public/local', (req, res) => {
+  const redisClient = getRedisClient()
+  streamFrom(redisClient, 'timeline:public:local', req, streamToHttp(req, res, redisClient), true)
+})
+
 app.get('/api/v1/streaming/hashtag', (req, res) => {
   const redisClient = getRedisClient()
   streamFrom(redisClient, `timeline:hashtag:${req.params.tag}`, req, streamToHttp(req, res, redisClient), true)
+})
+
+app.get('/api/v1/streaming/hashtag/local', (req, res) => {
+  const redisClient = getRedisClient()
+  streamFrom(redisClient, `timeline:hashtag:${req.params.tag}:local`, req, streamToHttp(req, res, redisClient), true)
 })
 
 wss.on('connection', ws => {
@@ -238,8 +248,14 @@ wss.on('connection', ws => {
     case 'public':
       streamFrom(redisClient, 'timeline:public', req, streamToWs(req, ws, redisClient), true)
       break;
+    case 'public:local':
+      streamFrom(redisClient, 'timeline:public:local', req, streamToWs(req, ws, redisClient), true)
+      break;
     case 'hashtag':
       streamFrom(redisClient, `timeline:hashtag:${location.query.tag}`, req, streamToWs(req, ws, redisClient), true)
+      break;
+    case 'hashtag:local':
+      streamFrom(redisClient, `timeline:hashtag:${location.query.tag}:local`, req, streamToWs(req, ws, redisClient), true)
       break;
     default:
       ws.close()
