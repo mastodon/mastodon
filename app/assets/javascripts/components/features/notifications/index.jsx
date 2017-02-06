@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import Column from '../ui/components/column';
-import { expandNotifications } from '../../actions/notifications';
+import { expandNotifications, clearNotifications } from '../../actions/notifications';
 import NotificationContainer from './containers/notification_container';
 import { ScrollContainer } from 'react-router-scroll';
 import { defineMessages, injectIntl } from 'react-intl';
@@ -10,6 +10,7 @@ import ColumnSettingsContainer from './containers/column_settings_container';
 import { createSelector } from 'reselect';
 import Immutable from 'immutable';
 import LoadMore from '../../components/load_more';
+import ClearColumnButton from './components/clear_column_button';
 
 const messages = defineMessages({
   title: { id: 'column.notifications', defaultMessage: 'Notifications' }
@@ -64,6 +65,10 @@ const Notifications = React.createClass({
     this.props.dispatch(expandNotifications());
   },
 
+  handleClear () {
+    this.props.dispatch(clearNotifications());
+  },
+
   setRef (c) {
     this.node = c;
   },
@@ -90,6 +95,7 @@ const Notifications = React.createClass({
       return (
         <Column icon='bell' heading={intl.formatMessage(messages.title)}>
           <ColumnSettingsContainer />
+          <ClearColumnButton onClick={this.handleClear} />
           <ScrollContainer scrollKey='notifications'>
             {scrollableArea}
           </ScrollContainer>
@@ -99,6 +105,7 @@ const Notifications = React.createClass({
       return (
         <Column icon='bell' heading={intl.formatMessage(messages.title)}>
           <ColumnSettingsContainer />
+          <ClearColumnButton onClick={this.handleClear} />
           {scrollableArea}
         </Column>
       );

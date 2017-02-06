@@ -5,7 +5,8 @@ import {
   NOTIFICATIONS_REFRESH_REQUEST,
   NOTIFICATIONS_EXPAND_REQUEST,
   NOTIFICATIONS_REFRESH_FAIL,
-  NOTIFICATIONS_EXPAND_FAIL
+  NOTIFICATIONS_EXPAND_FAIL,
+  NOTIFICATIONS_CLEAR
 } from '../actions/notifications';
 import { ACCOUNT_BLOCK_SUCCESS } from '../actions/accounts';
 import Immutable from 'immutable';
@@ -75,6 +76,8 @@ export default function notifications(state = initialState, action) {
     return appendNormalizedNotifications(state, action.notifications, action.next);
   case ACCOUNT_BLOCK_SUCCESS:
     return filterNotifications(state, action.relationship);
+  case NOTIFICATIONS_CLEAR:
+    return state.set('items', Immutable.List()).set('next', null);
   default:
     return state;
   }

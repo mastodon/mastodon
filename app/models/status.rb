@@ -161,7 +161,7 @@ class Status < ApplicationRecord
     private
 
     def filter_timeline(query, account)
-      blocked = Block.where(account: account).pluck(:target_account_id)
+      blocked = Block.where(account: account).pluck(:target_account_id) + Block.where(target_account: account).pluck(:account_id)
       query   = query.where('statuses.account_id NOT IN (?)', blocked) unless blocked.empty?
       query   = query.where('accounts.silenced = TRUE') if account.silenced?
       query

@@ -32,6 +32,14 @@
   }
 }
 
+.column-icon {
+  color: $color3;
+
+  &:hover {
+    color: lighten($color3, 7%);
+  }
+}
+
 .icon-button {
   color: lighten($color1, 26%);
   border: none;
