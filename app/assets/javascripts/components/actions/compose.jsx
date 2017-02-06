@@ -84,7 +84,7 @@ export function submitCompose() {
       // To make the app more responsive, immediately get the status into the columns
       dispatch(updateTimeline('home', { ...response.data }));
 
-      if (response.data.in_reply_to_id === null && !getState().getIn(['compose', 'private']) && !getState().getIn(['compose', 'unlisted'])) {
+      if (response.data.in_reply_to_id === null && response.data.visibility === 'public') {
         dispatch(updateTimeline('public', { ...response.data }));
       }
     }).catch(function (error) {

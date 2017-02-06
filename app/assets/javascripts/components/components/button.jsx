@@ -3,7 +3,7 @@ import PureRenderMixin from 'react-addons-pure-render-mixin';
 const Button = React.createClass({
 
   propTypes: {
-    text: React.PropTypes.string,
+    text: React.PropTypes.node,
     onClick: React.PropTypes.func,
     disabled: React.PropTypes.bool,
     block: React.PropTypes.bool,
