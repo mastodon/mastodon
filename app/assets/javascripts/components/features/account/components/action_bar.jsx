@@ -9,7 +9,9 @@ const messages = defineMessages({
   edit_profile: { id: 'account.edit_profile', defaultMessage: 'Edit profile' },
   unblock: { id: 'account.unblock', defaultMessage: 'Unblock @{name}' },
   unfollow: { id: 'account.unfollow', defaultMessage: 'Unfollow' },
+  unmute: { id: 'account.unmute', defaultMessage: 'Unmute' },
   block: { id: 'account.block', defaultMessage: 'Block @{name}' },
+  mute: { id: 'account.mute', defaultMessage: 'Mute' },
   follow: { id: 'account.follow', defaultMessage: 'Follow' },
   report: { id: 'account.report', defaultMessage: 'Report @{name}' },
   disclaimer: { id: 'account.disclaimer', defaultMessage: 'This user is from another instance. This number may be larger.' }
@@ -35,6 +37,7 @@ const ActionBar = React.createClass({
     onBlock: React.PropTypes.func.isRequired,
     onMention: React.PropTypes.func.isRequired,
     onReport: React.PropTypes.func.isRequired,
+    onMute: React.PropTypes.func.isRequired,
     intl: React.PropTypes.object.isRequired
   },
 
@@ -65,6 +68,12 @@ const ActionBar = React.createClass({
 
     if (account.get('acct') !== account.get('username')) {
       extraInfo = <abbr title={intl.formatMessage(messages.disclaimer)}>*</abbr>;
+    }
+
+    if (account.getIn(['relationship', 'muting'])) {
+      menu.push({ text: intl.formatMessage(messages.unmute), action: this.props.onMute });
+    } else {
+      menu.push({ text: intl.formatMessage(messages.mute), action: this.props.onMute });
     }
 
     return (

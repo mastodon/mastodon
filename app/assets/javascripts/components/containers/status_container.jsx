@@ -11,7 +11,10 @@ import {
   unreblog,
   unfavourite
 } from '../actions/interactions';
-import { blockAccount } from '../actions/accounts';
+import {
+  blockAccount,
+  muteAccount
+} from '../actions/accounts';
 import { deleteStatus } from '../actions/statuses';
 import { initReport } from '../actions/reports';
 import { openMedia } from '../actions/modal';
@@ -69,7 +72,11 @@ const mapDispatchToProps = (dispatch) => ({
 
   onReport (status) {
     dispatch(initReport(status.get('account'), status));
-  }
+  },
+
+  onMute (account) {
+    dispatch(muteAccount(account.get('id')));
+  },
 
 });
 

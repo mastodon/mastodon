@@ -127,6 +127,7 @@ Rails.application.routes.draw do
       resources :media,      only: [:create]
       resources :apps,       only: [:create]
       resources :blocks,     only: [:index]
+      resources :mutes,      only: [:index]
       resources :favourites, only: [:index]
       resources :reports,    only: [:index, :create]
 
@@ -160,6 +161,8 @@ Rails.application.routes.draw do
           post :unfollow
           post :block
           post :unblock
+          post :mute
+          post :unmute
         end
       end
     end
