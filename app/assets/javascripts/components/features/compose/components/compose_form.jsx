@@ -117,15 +117,22 @@ const ComposeForm = React.createClass({
   },
 
   render () {
-    const { intl } = this.props;
-    let replyArea  = '';
-    const disabled = this.props.is_submitting || this.props.is_uploading;
+    const { intl }  = this.props;
+    let replyArea   = '';
+    let publishText = '';
+    const disabled  = this.props.is_submitting || this.props.is_uploading;
 
     if (this.props.in_reply_to) {
       replyArea = <ReplyIndicator status={this.props.in_reply_to} onCancel={this.props.onCancelReply} />;
     }
 
     let reply_to_other = !!this.props.in_reply_to && (this.props.in_reply_to.getIn(['account', 'id']) !== this.props.me);
+
+    if (this.props.private) {
+      publishText = <span><i className='fa fa-lock' /> {intl.formatMessage(messages.publish)}</span>;
+    } else {
+      publishText = intl.formatMessage(messages.publish) + (!this.props.unlisted ? '!' : '');
+    }
 
     return (
       <div style={{ padding: '10px' }}>
@@ -154,7 +161,7 @@ const ComposeForm = React.createClass({
         />
 
         <div style={{ marginTop: '10px', overflow: 'hidden' }}>
-          <div style={{ float: 'right' }}><Button text={intl.formatMessage(messages.publish)} onClick={this.handleSubmit} disabled={disabled} /></div>
+          <div style={{ float: 'right' }}><Button text={publishText} onClick={this.handleSubmit} disabled={disabled} /></div>
           <div style={{ float: 'right', marginRight: '16px', lineHeight: '36px' }}><CharacterCounter max={500} text={[this.props.spoiler_text, this.props.text].join('')} /></div>
           <UploadButtonContainer style={{ paddingTop: '4px' }} />
         </div>

@@ -23,7 +23,7 @@ class Api::V1::TimelinesController < ApiController
   end
 
   def public
-    @statuses = Status.as_public_timeline(current_account).paginate_by_max_id(limit_param(DEFAULT_STATUSES_LIMIT), params[:max_id], params[:since_id])
+    @statuses = Status.as_public_timeline(current_account, params[:local]).paginate_by_max_id(limit_param(DEFAULT_STATUSES_LIMIT), params[:max_id], params[:since_id])
     @statuses = cache_collection(@statuses)
 
     set_maps(@statuses)
@@ -40,7 +40,7 @@ class Api::V1::TimelinesController < ApiController
 
   def tag
     @tag      = Tag.find_by(name: params[:id].downcase)
-    @statuses = @tag.nil? ? [] : Status.as_tag_timeline(@tag, current_account).paginate_by_max_id(limit_param(DEFAULT_STATUSES_LIMIT), params[:max_id], params[:since_id])
+    @statuses = @tag.nil? ? [] : Status.as_tag_timeline(@tag, current_account, params[:local]).paginate_by_max_id(limit_param(DEFAULT_STATUSES_LIMIT), params[:max_id], params[:since_id])
     @statuses = cache_collection(@statuses)
 
     set_maps(@statuses)

@@ -43,6 +43,7 @@ const initialState = Immutable.Map({
   suggestion_token: null,
   suggestions: Immutable.List(),
   me: null,
+  default_privacy: 'public',
   resetFileKey: Math.floor((Math.random() * 0x10000))
 });
 
@@ -64,6 +65,8 @@ function clearAll(state) {
     map.set('spoiler_text', '');
     map.set('is_submitting', false);
     map.set('in_reply_to', null);
+    map.set('unlisted', state.get('default_privacy') === 'unlisted');
+    map.set('private', state.get('default_privacy') === 'private');
     map.update('media_attachments', list => list.clear());
   });
 };
@@ -97,7 +100,7 @@ const insertSuggestion = (state, position, token, completion) => {
 export default function compose(state = initialState, action) {
   switch(action.type) {
   case STORE_HYDRATE:
-    return state.merge(action.state.get('compose'));
+    return clearAll(state.merge(action.state.get('compose')));
   case COMPOSE_MOUNT:
     return state.set('mounted', true);
   case COMPOSE_UNMOUNT:

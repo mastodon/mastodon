@@ -21,4 +21,8 @@ class User < ApplicationRecord
   def send_devise_notification(notification, *args)
     devise_mailer.send(notification, self, *args).deliver_later
   end
+
+  def setting_default_privacy
+    settings.default_privacy || (account.locked? ? 'private' : 'public')
+  end
 end

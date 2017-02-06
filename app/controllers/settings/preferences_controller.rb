@@ -21,7 +21,9 @@ class Settings::PreferencesController < ApplicationController
       must_be_following: user_params[:interactions][:must_be_following] == '1',
     }
 
-    if current_user.update(user_params.except(:notification_emails, :interactions))
+    current_user.settings['default_privacy'] = user_params[:settings][:default_privacy]
+
+    if current_user.update(user_params.except(:notification_emails, :interactions, :settings))
       redirect_to settings_preferences_path, notice: I18n.t('generic.changes_saved_msg')
     else
       render action: :show
@@ -31,6 +33,6 @@ class Settings::PreferencesController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:locale, notification_emails: [:follow, :follow_request, :reblog, :favourite, :mention], interactions: [:must_be_follower, :must_be_following])
+    params.require(:user).permit(:locale, settings: [:default_privacy], notification_emails: [:follow, :follow_request, :reblog, :favourite, :mention], interactions: [:must_be_follower, :must_be_following])
   end
 end

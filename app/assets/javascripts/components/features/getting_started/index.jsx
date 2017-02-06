@@ -12,7 +12,8 @@ const messages = defineMessages({
   follow_requests: { id: 'navigation_bar.follow_requests', defaultMessage: 'Follow requests' },
   sign_out: { id: 'navigation_bar.logout', defaultMessage: 'Sign out' },
   favourites: { id: 'navigation_bar.favourites', defaultMessage: 'Favourites' },
-  blocks: { id: 'navigation_bar.blocks', defaultMessage: 'Blocked users' }
+  blocks: { id: 'navigation_bar.blocks', defaultMessage: 'Blocked users' },
+  info: { id: 'navigation_bar.info', defaultMessage: 'Extended information' }
 });
 
 const mapStateToProps = state => ({
@@ -34,6 +35,7 @@ const GettingStarted = ({ intl, me }) => {
         <ColumnLink icon='star' text={intl.formatMessage(messages.favourites)} to='/favourites' />
         {followRequests}
         <ColumnLink icon='users' text={intl.formatMessage(messages.blocks)} to='/blocks' />
+        <ColumnLink icon='book' text={intl.formatMessage(messages.info)} href='/about/more' />
         <ColumnLink icon='sign-out' text={intl.formatMessage(messages.sign_out)} href='/auth/sign_out' method='delete' />
       </div>
 
