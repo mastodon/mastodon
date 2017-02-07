@@ -1,4 +1,4 @@
-extends 'activitypub/types/person.rabl'
+extends 'activitypub/types/person.activitystreams2.rabl'
 
 object @account
 
