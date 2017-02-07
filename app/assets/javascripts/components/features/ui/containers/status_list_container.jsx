@@ -7,8 +7,9 @@ import { createSelector } from 'reselect';
 const getStatusIds = createSelector([
   (state, { type }) => state.getIn(['settings', type], Immutable.Map()),
   (state, { type }) => state.getIn(['timelines', type, 'items'], Immutable.List()),
-  (state)           => state.get('statuses')
-], (columnSettings, statusIds, statuses) => statusIds.filter(id => {
+  (state)           => state.get('statuses'),
+  (state)           => state.getIn(['meta', 'me'])
+], (columnSettings, statusIds, statuses, me) => statusIds.filter(id => {
   const statusForId = statuses.get(id);
   let showStatus    = true;
 
@@ -17,7 +18,7 @@ const getStatusIds = createSelector([
   }
 
   if (columnSettings.getIn(['shows', 'reply']) === false) {
-    showStatus = showStatus && statusForId.get('in_reply_to_id') === null;
+    showStatus = showStatus && (statusForId.get('in_reply_to_id') === null || statusForId.get('in_reply_to_account_id') === me);
   }
 
   if (columnSettings.getIn(['regex', 'body'], '').trim().length > 0) {

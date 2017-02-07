@@ -47,6 +47,13 @@ Rails.application.routes.draw do
   namespace :settings do
     resource :profile, only: [:show, :update]
     resource :preferences, only: [:show, :update]
+
+    resource :two_factor_auth, only: [:show] do
+      member do
+        post :enable
+        post :disable
+      end
+    end
   end
 
   resources :media, only: [:show]
@@ -67,6 +74,8 @@ Rails.application.routes.draw do
       end
     end
   end
+
+  get '/admin', to: redirect('/admin/settings', status: 302)
 
   namespace :api do
     # PubSubHubbub outgoing subscriptions
@@ -99,7 +108,6 @@ Rails.application.routes.draw do
       end
 
       get '/timelines/home',     to: 'timelines#home', as: :home_timeline
-      get '/timelines/mentions', to: 'timelines#mentions', as: :mentions_timeline
       get '/timelines/public',   to: 'timelines#public', as: :public_timeline
       get '/timelines/tag/:id',  to: 'timelines#tag', as: :hashtag_timeline
 

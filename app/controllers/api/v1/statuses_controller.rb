@@ -14,7 +14,12 @@ class Api::V1::StatusesController < ApiController
   end
 
   def context
-    @context = OpenStruct.new(ancestors: @status.in_reply_to_id.nil? ? [] : @status.ancestors(current_account), descendants: @status.descendants(current_account))
+    ancestors_results   = @status.in_reply_to_id.nil? ? [] : @status.ancestors(current_account)
+    descendants_results = @status.descendants(current_account)
+    loaded_ancestors    = cache_collection(ancestors_results, Status)
+    loaded_descendants  = cache_collection(descendants_results, Status)
+
+    @context = OpenStruct.new(ancestors: loaded_ancestors, descendants: loaded_descendants)
     statuses = [@status] + @context[:ancestors] + @context[:descendants]
 
     set_maps(statuses)

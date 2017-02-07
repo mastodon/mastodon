@@ -17,7 +17,7 @@ class SearchService < BaseService
     results = results.limit(limit).to_a
     results = [exact_match] + results.reject { |a| a.id == exact_match.id } if exact_match
 
-    if resolve && results.empty? && !domain.nil?
+    if resolve && !exact_match && !domain.nil?
       results = [FollowRemoteAccountService.new.call("#{username}@#{domain}")]
     end
 

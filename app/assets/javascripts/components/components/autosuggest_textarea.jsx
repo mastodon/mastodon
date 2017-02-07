@@ -56,7 +56,7 @@ const AutosuggestTextarea = React.createClass({
   onChange (e) {
     const [ tokenStart, token ] = textAtCursorMatchesToken(e.target.value, e.target.selectionStart);
 
-    if (token != null && this.state.lastToken !== token) {
+    if (token !== null && this.state.lastToken !== token) {
       this.setState({ lastToken: token, selectedSuggestion: 0, tokenStart });
       this.props.onSuggestionsFetchRequested(token);
     } else if (token === null) {
@@ -77,37 +77,37 @@ const AutosuggestTextarea = React.createClass({
     }
 
     switch(e.key) {
-      case 'Escape':
-        if (!suggestionsHidden) {
-          e.preventDefault();
-          this.setState({ suggestionsHidden: true });
-        }
+    case 'Escape':
+      if (!suggestionsHidden) {
+        e.preventDefault();
+        this.setState({ suggestionsHidden: true });
+      }
 
-        break;
-      case 'ArrowDown':
-        if (suggestions.size > 0 && !suggestionsHidden) {
-          e.preventDefault();
-          this.setState({ selectedSuggestion: Math.min(selectedSuggestion + 1, suggestions.size - 1) });
-        }
+      break;
+    case 'ArrowDown':
+      if (suggestions.size > 0 && !suggestionsHidden) {
+        e.preventDefault();
+        this.setState({ selectedSuggestion: Math.min(selectedSuggestion + 1, suggestions.size - 1) });
+      }
 
-        break;
-      case 'ArrowUp':
-        if (suggestions.size > 0 && !suggestionsHidden) {
-          e.preventDefault();
-          this.setState({ selectedSuggestion: Math.max(selectedSuggestion - 1, 0) });
-        }
+      break;
+    case 'ArrowUp':
+      if (suggestions.size > 0 && !suggestionsHidden) {
+        e.preventDefault();
+        this.setState({ selectedSuggestion: Math.max(selectedSuggestion - 1, 0) });
+      }
 
-        break;
-      case 'Enter':
-      case 'Tab':
-        // Select suggestion
-        if (this.state.lastToken != null && suggestions.size > 0 && !suggestionsHidden) {
-          e.preventDefault();
-          e.stopPropagation();
-          this.props.onSuggestionSelected(this.state.tokenStart, this.state.lastToken, suggestions.get(selectedSuggestion));
-        }
+      break;
+    case 'Enter':
+    case 'Tab':
+      // Select suggestion
+      if (this.state.lastToken !== null && suggestions.size > 0 && !suggestionsHidden) {
+        e.preventDefault();
+        e.stopPropagation();
+        this.props.onSuggestionSelected(this.state.tokenStart, this.state.lastToken, suggestions.get(selectedSuggestion));
+      }
 
-        break;
+      break;
     }
 
     if (e.defaultPrevented || !this.props.onKeyDown) {
@@ -184,6 +184,7 @@ const AutosuggestTextarea = React.createClass({
           className={className}
           disabled={disabled}
           placeholder={placeholder}
+          autoFocus={true}
           value={value}
           onChange={this.onChange}
           onKeyDown={this.onKeyDown}

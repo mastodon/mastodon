@@ -1,3 +1,3 @@
 Fabricator(:domain_block) do
-  domain "MyString"
+  domain "example.com"
 end

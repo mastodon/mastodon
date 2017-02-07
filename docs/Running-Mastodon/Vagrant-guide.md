@@ -28,7 +28,7 @@ Running `vagrant up` for the first time will run provisioning, which will:
 
 The Vagrant box will automatically start after provisioning. It can be started in future with `vagrant up` from the mastodon directory.
 
-Once the Ubuntu virtual machine has booted, it will run the startup script, which loads the environment variables from `.env.vagrant` and then runs `rails s -d -b 0.0.0.0`. This will start a Rails server. You can then access your development site at http://mastodon.dev (or at http://localhost:3000 if you haven't installed vagrants-hostupdater).
+Once the Ubuntu virtual machine has booted, it will run the startup script, which loads the environment variables from `.env.vagrant` and then runs `rails s -d -b 0.0.0.0`. This will start a Rails server. You can then access your development site at http://mastodon.dev (or at http://localhost:3000 if you haven't installed vagrants-hostupdater). By default, your development environment will have an admin account created for you to use - the email address will be `admin@mastodon.dev` and the password will be `mastodonadmin`.
 
 To stop the server, simply run `vagrant halt`.
 

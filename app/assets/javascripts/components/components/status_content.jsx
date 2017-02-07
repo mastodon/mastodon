@@ -1,7 +1,20 @@
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
+import escapeTextContentForBrowser from 'react/lib/escapeTextContentForBrowser';
 import emojify from '../emoji';
 import { FormattedMessage } from 'react-intl';
+import Permalink from './permalink';
+
+const spoilerStyle = {
+  display: 'inline-block',
+  borderRadius: '2px',
+  color: '#363c4b',
+  fontWeight: '500',
+  fontSize: '11px',
+  padding: '0px 6px',
+  textTransform: 'uppercase',
+  lineHeight: 'inherit'
+};
 
 const StatusContent = React.createClass({
 
@@ -29,11 +42,14 @@ const StatusContent = React.createClass({
     for (var i = 0; i < links.length; ++i) {
       let link    = links[i];
       let mention = this.props.status.get('mentions').find(item => link.href === item.get('url'));
+      let media   = this.props.status.get('media_attachments').find(item => link.href === item.get('text_url') || link.href === item.get('remote_url'));
 
       if (mention) {
         link.addEventListener('click', this.onMentionClick.bind(this, mention), false);
       } else if (link.textContent[0] === '#' || (link.previousSibling && link.previousSibling.textContent && link.previousSibling.textContent[link.previousSibling.textContent.length - 1] === '#')) {
         link.addEventListener('click', this.onHashtagClick.bind(this, link.text), false);
+      } else if (media) {
+        link.innerHTML = '<i class="fa fa-fw fa-photo"></i>';
       } else {
         link.setAttribute('target', '_blank');
         link.setAttribute('rel', 'noopener');
@@ -69,7 +85,7 @@ const StatusContent = React.createClass({
       return;
     }
 
-    if (deltaX + deltaY < 5) {
+    if (deltaX + deltaY < 5 && e.button === 0) {
       this.props.onClick();
     }
 
@@ -85,16 +101,30 @@ const StatusContent = React.createClass({
     const { hidden } = this.state;
 
     const content = { __html: emojify(status.get('content')) };
-    const spoilerContent = { __html: emojify(status.get('spoiler_text', '')) };
+    const spoilerContent = { __html: emojify(escapeTextContentForBrowser(status.get('spoiler_text', ''))) };
 
     if (status.get('spoiler_text').length > 0) {
+      let mentionsPlaceholder = '';
+
+      const mentionLinks = status.get('mentions').map(item => (
+        <Permalink to={`/accounts/${item.get('id')}`} href={item.get('url')} key={item.get('id')} className='mention'>
+          @<span>{item.get('username')}</span>
+        </Permalink>
+      )).reduce((aggregate, item) => [...aggregate, item, ' '], [])
+
       const toggleText = hidden ? <FormattedMessage id='status.show_more' defaultMessage='Show more' /> : <FormattedMessage id='status.show_less' defaultMessage='Show less' />;
+
+      if (hidden) {
+        mentionsPlaceholder = <div>{mentionLinks}</div>;
+      }
 
       return (
         <div className='status__content' style={{ cursor: 'pointer' }} onMouseDown={this.handleMouseDown} onMouseUp={this.handleMouseUp}>
-          <p style={{ marginBottom: hidden ? '0px' : '' }} >
-            <span dangerouslySetInnerHTML={spoilerContent} /> <a onClick={this.handleSpoilerClick}>{toggleText}</a>
+          <p style={{ marginBottom: hidden && status.get('mentions').size === 0 ? '0px' : '' }} >
+            <span dangerouslySetInnerHTML={spoilerContent} />  <a className='status__content__spoiler-link' style={spoilerStyle} onClick={this.handleSpoilerClick}>{toggleText}</a>
           </p>
+
+          {mentionsPlaceholder}
 
           <div style={{ display: hidden ? 'none' : 'block' }} dangerouslySetInnerHTML={content} />
         </div>

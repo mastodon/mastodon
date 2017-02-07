@@ -19,6 +19,16 @@ services:
     volumes:
       - ./public/assets:/mastodon/public/assets
       - ./public/system:/mastodon/public/system
+  streaming:
+    restart: always
+    build: .
+    env_file: .env.production
+    command: npm run start
+    ports:
+      - "4000:4000"
+    depends_on:
+      - db
+      - redis
   sidekiq:
     restart: always
     build: .

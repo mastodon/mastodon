@@ -1,0 +1,13 @@
+- content_for :page_title do
+  = t('settings.two_factor_auth')
+
+.simple_form
+  - if current_user.otp_required_for_login
+    %p= t('two_factor_auth.instructions_html')
+
+    .qr-code= raw @qrcode.as_svg(padding: 0, module_size: 5)
+
+    = link_to t('two_factor_auth.disable'), disable_settings_two_factor_auth_path, data: { method: 'POST' }, class: 'block-button'
+  - else
+    %p= t('two_factor_auth.description_html')
+    = link_to t('two_factor_auth.enable'), enable_settings_two_factor_auth_path, data: { method: 'POST' }, class: 'block-button'

@@ -7,9 +7,14 @@ import {
   ACCOUNT_TIMELINE_FETCH_SUCCESS,
   ACCOUNT_TIMELINE_EXPAND_SUCCESS,
   FOLLOW_REQUESTS_FETCH_SUCCESS,
+  FOLLOW_REQUESTS_EXPAND_SUCCESS,
   ACCOUNT_FOLLOW_SUCCESS,
   ACCOUNT_UNFOLLOW_SUCCESS
 } from '../actions/accounts';
+import {
+  BLOCKS_FETCH_SUCCESS,
+  BLOCKS_EXPAND_SUCCESS
+} from '../actions/blocks';
 import { COMPOSE_SUGGESTIONS_READY } from '../actions/compose';
 import {
   REBLOG_SUCCESS,
@@ -87,6 +92,9 @@ export default function accounts(state = initialState, action) {
   case COMPOSE_SUGGESTIONS_READY:
   case SEARCH_SUGGESTIONS_READY:
   case FOLLOW_REQUESTS_FETCH_SUCCESS:
+  case FOLLOW_REQUESTS_EXPAND_SUCCESS:
+  case BLOCKS_FETCH_SUCCESS:
+  case BLOCKS_EXPAND_SUCCESS:
     return normalizeAccounts(state, action.accounts);
   case NOTIFICATIONS_REFRESH_SUCCESS:
   case NOTIFICATIONS_EXPAND_SUCCESS:

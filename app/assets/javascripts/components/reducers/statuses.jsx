@@ -46,7 +46,7 @@ const normalizeStatus = (state, status) => {
     status.reblog = status.reblog.id;
   }
 
-  return state.set(status.id, Immutable.fromJS(status));
+  return state.update(status.id, Immutable.Map(), map => map.mergeDeep(Immutable.fromJS(status)));
 };
 
 const normalizeStatuses = (state, statuses) => {

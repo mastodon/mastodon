@@ -10,6 +10,9 @@ These people make the development of Mastodon possible through [Patreon](https:/
 - [Jimmy Tidey](https://mastodon.social/users/jimmytidey)
 - [Kurtis Rainbolt-Greene](https://mastodon.social/users/krainboltgreene)
 - [Kit Redgrave](https://socially.constructed.space/users/KitRedgrave)
+- [Zeiphner](https://mastodon.social/users/Zeipher)
+- [Effy Elden](https://toot.zone/users/effy)
+- [Zoë Quinn](https://mastodon.social/users/zoequinn)
 
 **Thank you to the following people**
 
@@ -29,3 +32,6 @@ These people make the development of Mastodon possible through [Patreon](https:/
 - [Jessica Hayley](https://mastodon.social/users/jayhay)
 - [Niels Roesen Abildgaard](http://hypesystem.dk/)
 - [Zatnosk](https://github.com/Zatnosk)
+- [Spex Bluefox](https://mastodon.social/users/Spex)
+- [Sam Waldie](https://mastodon.social/users/denjin)
+- [J. C. Holder](http://jcholder.com/)

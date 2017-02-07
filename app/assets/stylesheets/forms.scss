@@ -16,27 +16,34 @@ code {
 
   .hint {
     display: block;
-    color: rgba($color5, 0.8);
+    color: $color3;
     font-size: 12px;
+    margin-top: 4px;
+  }
+
+  .label_input {
+    display: flex;
+
+    label {
+      flex: 0 0 auto;
+      width: 100px;
+    }
+
+    input {
+      flex: 1 1 auto;
+    }
   }
 
   .input.file, .input.select {
     padding: 15px 0;
     margin-bottom: 0;
-    display: flex;
 
     label {
       font-family: inherit;
       font-size: 16px;
       color: $color5;
-      width: 100px;
       display: block;
-      flex: 0 0 auto;
       padding-top: 5px;
-    }
-
-    input[type=file], select {
-      flex: 1 1 auto;
     }
   }
 
@@ -52,6 +59,7 @@ code {
       font-size: 14px;
       color: white;
       display: block;
+      width: auto;
     }
 
     label.checkbox {
@@ -68,6 +76,7 @@ code {
 
     .hint {
       padding-left: 25px;
+      margin-left: 0;
     }
   }
 
@@ -104,13 +113,19 @@ code {
   }
 
   .input.field_with_errors {
+    label {
+      color: $color6;
+    }
+
     input[type=text], input[type=email], input[type=password] {
       border-bottom-color: $color6;
     }
 
     .error {
+      display: block;
       font-weight: 500;
       color: $color6;
+      margin-top: 4px;
     }
   }
 
@@ -118,7 +133,7 @@ code {
     margin-top: 30px;
   }
 
-  button {
+  button, .block-button {
     display: block;
     width: 100%;
     border: 0;
@@ -128,6 +143,9 @@ code {
     font-size: 18px;
     padding: 10px;
     text-transform: uppercase;
+    text-decoration: none;
+    text-align: center;
+    box-sizing: border-box;
     cursor: pointer;
     font-weight: 500;
     outline: 0;
@@ -176,7 +194,7 @@ code {
   text-align: center;
 
   a {
-    color: white;
+    color: $color5;
     text-decoration: none;
 
     &:hover {
@@ -198,5 +216,18 @@ code {
   strong {
     color: $color2;
     font-weight: 500;
+  }
+}
+
+.qr-code {
+  background: #fff;
+  padding: 4px;
+  margin-bottom: 20px;
+  box-shadow: 0 0 15px rgba($color8, 0.2);
+  display: inline-block;
+
+  svg {
+    display: block;
+    margin: 0;
   }
 }

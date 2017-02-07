@@ -302,6 +302,14 @@
       color: $color3;
     }
   }
+
+  .open-in-web-link {
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
 }
 
 .embed {

@@ -117,15 +117,22 @@ const ComposeForm = React.createClass({
   },
 
   render () {
-    const { intl } = this.props;
-    let replyArea  = '';
-    const disabled = this.props.is_submitting || this.props.is_uploading;
+    const { intl }  = this.props;
+    let replyArea   = '';
+    let publishText = '';
+    const disabled  = this.props.is_submitting || this.props.is_uploading;
 
     if (this.props.in_reply_to) {
       replyArea = <ReplyIndicator status={this.props.in_reply_to} onCancel={this.props.onCancelReply} />;
     }
 
     let reply_to_other = !!this.props.in_reply_to && (this.props.in_reply_to.getIn(['account', 'id']) !== this.props.me);
+
+    if (this.props.private) {
+      publishText = <span><i className='fa fa-lock' /> {intl.formatMessage(messages.publish)}</span>;
+    } else {
+      publishText = intl.formatMessage(messages.publish) + (!this.props.unlisted ? '!' : '');
+    }
 
     return (
       <div style={{ padding: '10px' }}>
@@ -154,19 +161,19 @@ const ComposeForm = React.createClass({
         />
 
         <div style={{ marginTop: '10px', overflow: 'hidden' }}>
-          <div style={{ float: 'right' }}><Button text={intl.formatMessage(messages.publish)} onClick={this.handleSubmit} disabled={disabled} /></div>
+          <div style={{ float: 'right' }}><Button text={publishText} onClick={this.handleSubmit} disabled={disabled} /></div>
           <div style={{ float: 'right', marginRight: '16px', lineHeight: '36px' }}><CharacterCounter max={500} text={[this.props.spoiler_text, this.props.text].join('')} /></div>
           <UploadButtonContainer style={{ paddingTop: '4px' }} />
         </div>
 
         <label style={{ display: 'block', lineHeight: '24px', verticalAlign: 'middle', marginTop: '10px', borderTop: '1px solid #282c37', paddingTop: '10px' }}>
-          <Toggle checked={this.props.private} onChange={this.handleChangeVisibility} />
-          <span style={{ display: 'inline-block', verticalAlign: 'middle', marginBottom: '14px', marginLeft: '8px', color: '#9baec8' }}><FormattedMessage id='compose_form.private' defaultMessage='Mark as private' /></span>
+          <Toggle checked={this.props.spoiler} onChange={this.handleChangeSpoilerness} />
+          <span style={{ display: 'inline-block', verticalAlign: 'top', marginLeft: '8px', color: '#9baec8' }}><FormattedMessage id='compose_form.spoiler' defaultMessage='Hide text behind warning' /></span>
         </label>
 
-        <label style={{ display: 'block', lineHeight: '24px', verticalAlign: 'middle' }}>
-          <Toggle checked={this.props.spoiler} onChange={this.handleChangeSpoilerness} />
-          <span style={{ display: 'inline-block', verticalAlign: 'middle', marginBottom: '14px', marginLeft: '8px', color: '#9baec8' }}><FormattedMessage id='compose_form.spoiler' defaultMessage='Hide behind content warning' /></span>
+        <label style={{ display: 'block', lineHeight: '24px', verticalAlign: 'middle', borderTop: '1px solid #282c37', paddingTop: '10px' }}>
+          <Toggle checked={this.props.private} onChange={this.handleChangeVisibility} />
+          <span style={{ display: 'inline-block', verticalAlign: 'middle', marginBottom: '14px', marginLeft: '8px', color: '#9baec8' }}><FormattedMessage id='compose_form.private' defaultMessage='Mark as private' /></span>
         </label>
 
         <Motion defaultStyle={{ opacity: (this.props.private || reply_to_other) ? 0 : 100, height: (this.props.private || reply_to_other) ? 39.5 : 0 }} style={{ opacity: spring((this.props.private || reply_to_other) ? 0 : 100), height: spring((this.props.private || reply_to_other) ? 0 : 39.5) }}>
@@ -182,7 +189,7 @@ const ComposeForm = React.createClass({
           {({ opacity, height }) =>
             <label style={{ display: 'block', lineHeight: '24px', verticalAlign: 'middle', height: `${height}px`, overflow: 'hidden', opacity: opacity / 100 }}>
               <Toggle checked={this.props.sensitive} onChange={this.handleChangeSensitivity} />
-              <span style={{ display: 'inline-block', verticalAlign: 'middle', marginBottom: '14px', marginLeft: '8px', color: '#9baec8' }}><FormattedMessage id='compose_form.sensitive' defaultMessage='Mark content as sensitive' /></span>
+              <span style={{ display: 'inline-block', verticalAlign: 'middle', marginBottom: '14px', marginLeft: '8px', color: '#9baec8' }}><FormattedMessage id='compose_form.sensitive' defaultMessage='Mark media as sensitive' /></span>
             </label>
           }
         </Motion>

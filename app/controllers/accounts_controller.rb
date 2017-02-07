@@ -18,6 +18,8 @@ class AccountsController < ApplicationController
       format.atom do
         @entries = @account.stream_entries.order('id desc').where(hidden: false).with_includes.paginate_by_max_id(20, params[:max_id], params[:since_id])
       end
+
+      format.activitystreams2
     end
   end
 

@@ -31,10 +31,11 @@ en:
   applications:
     invalid_url: The provided URL is invalid
   auth:
-    change_password: Change password
+    change_password: Credentials
     didnt_get_confirmation: Didn't receive confirmation instructions?
     forgot_password: Forgot your password?
     login: Log in
+    logout: Logout
     register: Sign up
     resend_confirmation: Resend confirmation instructions
     reset_password: Reset password
@@ -93,8 +94,15 @@ en:
     back: Back to Mastodon
     edit_profile: Edit profile
     preferences: Preferences
+    settings: Settings
+    two_factor_auth: Two-factor Authentication
   statuses:
+    open_in_web: Open in web
     over_character_limit: character limit of %{max} exceeded
+    visibilities:
+      private: Only show to followers
+      public: Public
+      unlisted: Public, but do not display on the public timeline
   stream_entries:
     click_to_show: Click to show
     favourited: favourited a post by
@@ -104,7 +112,13 @@ en:
   time:
     formats:
       default: "%b %d, %Y, %H:%M"
+  two_factor_auth:
+    description_html: If you enable <strong>two-factor authentication</strong>, logging in will require you to be in possession of your phone, which will generate tokens for you to enter.
+    disable: Disable
+    enable: Enable
+    instructions_html: "<strong>Scan this QR code into Google Authenticator or a similiar app on your phone</strong>. From now on, that app will generate tokens that you will have to enter when logging in."
   users:
     invalid_email: The e-mail address is invalid
+    invalid_otp_token: Invalid two-factor code
   will_paginate:
     page_gap: "&hellip;"

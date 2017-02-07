@@ -1,5 +1,5 @@
 .button {
-  background-color: $color4;
+  background-color: darken($color4, 3%);
   font-family: inherit;
   display: inline-block;
   position: relative;
@@ -28,15 +28,15 @@
   }
 
   &.button-secondary {
-    background-color: $color1;
+    //
+  }
+}
 
-    &:hover {
-      background-color: $color1;
-    }
+.column-icon {
+  color: $color3;
 
-    &:disabled {
-      background-color: $color3;
-    }
+  &:hover {
+    color: lighten($color3, 7%);
   }
 }
 
@@ -102,7 +102,7 @@
   font-size: 15px;
   line-height: 20px;
   word-wrap: break-word;
-  font-weight: 300;
+  font-weight: 400;
   overflow: hidden;
   white-space: pre-wrap;
 
@@ -125,6 +125,10 @@
 
     &:hover {
       text-decoration: underline;
+
+      .fa {
+        color: lighten($color1, 40%);
+      }
     }
 
     &.mention {
@@ -135,6 +139,19 @@
           text-decoration: underline;
         }
       }
+    }
+
+    .fa {
+      color: lighten($color1, 30%);
+    }
+  }
+
+  .status__content__spoiler-link {
+    background: lighten($color1, 30%);
+
+    &:hover {
+      background: lighten($color1, 33%);
+      text-decoration: none;
     }
   }
 }
@@ -160,15 +177,9 @@
   }
 }
 
-@media screen and (max-height: 480px) {
-  .account__header__avatar, .account__header .account__header__content {
-    display: none;
-  }
-}
-
 .account__header__content {
   word-wrap: break-word;
-  font-weight: 300;
+  font-weight: 400;
   overflow: hidden;
 
   p {
@@ -252,6 +263,15 @@
   .status__avatar {
     opacity: 0.5;
   }
+
+  .status__content__spoiler-link {
+    background: lighten($color1, 26%);
+
+    &:hover {
+      background: lighten($color1, 29%);
+      text-decoration: none;
+    }
+  }
 }
 
 .notification__display-name {
@@ -270,8 +290,12 @@
   }
 }
 
-.transparent-background {
+.transparent-background, .imageloader {
   background: image-url('void.png');
+}
+
+.imageloader {
+  display: block;
 }
 
 .dropdown {
@@ -345,6 +369,7 @@
 
 .columns-area {
   flex-direction: row;
+  justify-content: flex-start;
 }
 
 @media screen and (min-width: 360px) {
@@ -360,6 +385,19 @@
 
 .drawer {
   width: 280px;
+}
+
+@media screen and (min-width: 2560px) {
+  .columns-area {
+    justify-content: center;
+  }
+
+  .column, .drawer {
+    width: 350px;
+    border-radius: 4px;
+    height: 90vh;
+    margin-top: 5vh;
+  }
 }
 
 .drawer__inner {
@@ -654,8 +692,13 @@
   box-sizing: border-box;
   overflow-y: auto;
   padding-bottom: 235px;
-  background: image-url('mastodon-getting-started.png') no-repeat 0 100% local;
-  height: 100%;
+  background: image-url('mastodon-getting-started.png') no-repeat bottom left;
+  height: auto;
+  min-height: 100%;
+
+  p {
+    color: $color2;
+  }
 }
 
 .dropdown__content.dropdown__left {
@@ -699,6 +742,12 @@ button.active i.fa-retweet {
 }
 
 .status-card {
+  &:hover {
+    background: lighten($color1, 6%);
+  }
+}
+
+.load-more {
   &:hover {
     background: lighten($color1, 6%);
   }

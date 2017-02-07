@@ -14,8 +14,8 @@ class StreamEntriesController < ApplicationController
         return gone if @stream_entry.activity.nil?
 
         if @stream_entry.activity_type == 'Status'
-          @ancestors   = @stream_entry.activity.ancestors(current_account)
-          @descendants = @stream_entry.activity.descendants(current_account)
+          @ancestors   = @stream_entry.activity.reply? ? cache_collection(@stream_entry.activity.ancestors(current_account), Status) : []
+          @descendants = cache_collection(@stream_entry.activity.descendants(current_account), Status)
         end
       end
 

@@ -68,8 +68,9 @@ class Formatter
     prefix = url.match(/\Ahttps?:\/\/(www\.)?/).to_s
     text   = url[prefix.length, 30]
     suffix = url[prefix.length + 30..-1]
+    cutoff = url[prefix.length..-1].length > 30
 
-    "<a rel=\"nofollow noopener\" target=\"_blank\" href=\"#{url}\"><span class=\"invisible\">#{prefix}</span><span class=\"ellipsis\">#{text}</span><span class=\"invisible\">#{suffix}</span></a>"
+    "<a rel=\"nofollow noopener\" target=\"_blank\" href=\"#{url}\"><span class=\"invisible\">#{prefix}</span><span class=\"#{cutoff ? 'ellipsis' : ''}\">#{text}</span><span class=\"invisible\">#{suffix}</span></a>"
   end
 
   def hashtag_html(match)

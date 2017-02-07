@@ -2,8 +2,8 @@
 
 class FetchLinkCardService < BaseService
   def call(status)
-    # Get first URL
-    url = URI.extract(status.text).reject { |uri| (uri =~ /\Ahttps?:\/\//).nil? }.first
+    # Get first http/https URL that isn't local
+    url = URI.extract(status.text).reject { |uri| (uri =~ /\Ahttps?:\/\//).nil? || TagManager.instance.local_url?(uri) }.first
 
     return if url.nil?
 

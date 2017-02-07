@@ -9,7 +9,7 @@ class Api::V1::BlocksController < ApiController
   def index
     results   = Block.where(account: current_account).paginate_by_max_id(limit_param(DEFAULT_ACCOUNTS_LIMIT), params[:max_id], params[:since_id])
     accounts  = Account.where(id: results.map(&:target_account_id)).map { |a| [a.id, a] }.to_h
-    @accounts = results.map { |f| accounts[f.target_account_id] }
+    @accounts = results.map { |f| accounts[f.target_account_id] }.compact
 
     set_account_counters_maps(@accounts)
 

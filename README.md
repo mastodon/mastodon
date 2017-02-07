@@ -121,13 +121,13 @@ Docker is great for quickly trying out software, but it has its drawbacks too. I
 
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
 
-Mastodon can theoretically run indefinitely on a free [Heroku](https://heroku.com) app. [You can view a guide for deployment on Heroku here.](docs/Running-Mastodon/Heroku.md)
+Mastodon can theoretically run indefinitely on a free [Heroku](https://heroku.com) app. [You can view a guide for deployment on Heroku here.](docs/Running-Mastodon/Heroku-guide.md)
 
 ## Development with Vagrant
 
 A quick way to get a development environment up and running is with Vagrant. You will need recent versions of [Vagrant](https://www.vagrantup.com/) and [VirtualBox](https://www.virtualbox.org/) installed.
 
-[You can find the guide for setting up a Vagrant development environment here.](docs/Running-Mastodon/Vagrant.md)
+[You can find the guide for setting up a Vagrant development environment here.](docs/Running-Mastodon/Vagrant-guide.md)
 
 ## Contributing
 

@@ -74,7 +74,7 @@ export function refreshTimeline(timeline, id = null) {
     let path        = timeline;
     let skipLoading = false;
 
-    if (newestId !== null && getState().getIn(['timelines', timeline, 'loaded'])) {
+    if (newestId !== null && getState().getIn(['timelines', timeline, 'loaded']) && (id === null || getState().getIn(['timelines', timeline, 'id']) === id)) {
       params      = `?since_id=${newestId}`;
       skipLoading = true;
     }
@@ -112,7 +112,7 @@ export function expandTimeline(timeline, id = null) {
       return;
     }
 
-    dispatch(expandTimelineRequest(timeline));
+    dispatch(expandTimelineRequest(timeline, id));
 
     let path = timeline;
 
@@ -133,10 +133,11 @@ export function expandTimeline(timeline, id = null) {
   };
 };
 
-export function expandTimelineRequest(timeline) {
+export function expandTimelineRequest(timeline, id) {
   return {
     type: TIMELINE_EXPAND_REQUEST,
-    timeline
+    timeline,
+    id
   };
 };
 

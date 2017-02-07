@@ -3,7 +3,7 @@
 class Settings::ProfilesController < ApplicationController
   include ObfuscateFilename
 
-  layout 'auth'
+  layout 'admin'
 
   before_action :authenticate_user!
   before_action :set_account

@@ -3,7 +3,6 @@ import NotificationsContainer from './containers/notifications_container';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import LoadingBarContainer from './containers/loading_bar_container';
 import HomeTimeline from '../home_timeline';
-import MentionsTimeline from '../mentions_timeline';
 import Compose from '../compose';
 import TabsBar from './components/tabs_bar';
 import ModalContainer from './containers/modal_container';

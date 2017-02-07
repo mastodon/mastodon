@@ -3,7 +3,9 @@
 class User < ApplicationRecord
   include Settings::Extend
 
-  devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable, :confirmable
+  devise :registerable, :recoverable,
+         :rememberable, :trackable, :validatable, :confirmable,
+         :two_factor_authenticatable, otp_secret_encryption_key: ENV['OTP_SECRET']
 
   belongs_to :account, inverse_of: :user
   accepts_nested_attributes_for :account
@@ -18,5 +20,9 @@ class User < ApplicationRecord
 
   def send_devise_notification(notification, *args)
     devise_mailer.send(notification, self, *args).deliver_later
+  end
+
+  def setting_default_privacy
+    settings.default_privacy || (account.locked? ? 'private' : 'public')
   end
 end

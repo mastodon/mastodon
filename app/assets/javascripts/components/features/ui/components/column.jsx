@@ -1,4 +1,4 @@
-import ColumnHeader    from './column_header';
+import ColumnHeader from './column_header';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 
 const easingOutQuint = (x, t, b, c, d) => c*((t=t/d-1)*t*t*t*t + 1) + b;
@@ -58,16 +58,18 @@ const Column = React.createClass({
   },
 
   render () {
+    const { heading, icon, children } = this.props;
+
     let header = '';
 
-    if (this.props.heading) {
-      header = <ColumnHeader icon={this.props.icon} type={this.props.heading} onClick={this.handleHeaderClick} />;
+    if (heading) {
+      header = <ColumnHeader icon={icon} type={heading} onClick={this.handleHeaderClick} />;
     }
 
     return (
       <div className='column' style={style} onWheel={this.handleWheel}>
         {header}
-        {this.props.children}
+        {children}
       </div>
     );
   }

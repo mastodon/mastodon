@@ -6,7 +6,7 @@ import {
   deleteFromTimelines,
   refreshTimeline
 } from '../actions/timelines';
-import { updateNotifications } from '../actions/notifications';
+import { updateNotifications, refreshNotifications } from '../actions/notifications';
 import createBrowserHistory from 'history/lib/createBrowserHistory';
 import {
   applyRouterMiddleware,
@@ -18,13 +18,11 @@ import {
 } from 'react-router';
 import { useScroll } from 'react-router-scroll';
 import UI from '../features/ui';
-import Account from '../features/account';
 import Status from '../features/status';
 import GettingStarted from '../features/getting_started';
 import PublicTimeline from '../features/public_timeline';
 import AccountTimeline from '../features/account_timeline';
 import HomeTimeline from '../features/home_timeline';
-import MentionsTimeline from '../features/mentions_timeline';
 import Compose from '../features/compose';
 import Followers from '../features/followers';
 import Following from '../features/following';
@@ -35,6 +33,7 @@ import Notifications from '../features/notifications';
 import FollowRequests from '../features/follow_requests';
 import GenericNotFound from '../features/generic_not_found';
 import FavouritedStatuses from '../features/favourited_statuses';
+import Blocks from '../features/blocks';
 import { IntlProvider, addLocaleData } from 'react-intl';
 import en from 'react-intl/locale-data/en';
 import de from 'react-intl/locale-data/de';
@@ -45,6 +44,7 @@ import hu from 'react-intl/locale-data/hu';
 import uk from 'react-intl/locale-data/uk';
 import getMessagesForLocale from '../locales';
 import { hydrateStore } from '../actions/store';
+import createStream from '../stream';
 
 const store = configureStore();
 
@@ -62,28 +62,32 @@ const Mastodon = React.createClass({
     locale: React.PropTypes.string.isRequired
   },
 
-  componentWillMount() {
-    const { locale } = this.props;
+  componentDidMount() {
+    const { locale }  = this.props;
+    const accessToken = store.getState().getIn(['meta', 'access_token']);
 
-    if (typeof App !== 'undefined') {
-      this.subscription = App.cable.subscriptions.create('TimelineChannel', {
+    this.subscription = createStream(accessToken, 'user', {
 
-        received (data) {
-          switch(data.type) {
-          case 'update':
-            store.dispatch(updateTimeline(data.timeline, JSON.parse(data.message)));
-            break;
-          case 'delete':
-            store.dispatch(deleteFromTimelines(data.id));
-            break;
-          case 'notification':
-            store.dispatch(updateNotifications(JSON.parse(data.message), getMessagesForLocale(locale), locale));
-            break;
-          }
+      received (data) {
+        switch(data.event) {
+        case 'update':
+          store.dispatch(updateTimeline('home', JSON.parse(data.payload)));
+          break;
+        case 'delete':
+          store.dispatch(deleteFromTimelines(data.payload));
+          break;
+        case 'notification':
+          store.dispatch(updateNotifications(JSON.parse(data.payload), getMessagesForLocale(locale), locale));
+          break;
         }
+      },
 
-      });
-    }
+      reconnected () {
+        store.dispatch(refreshTimeline('home'));
+        store.dispatch(refreshNotifications());
+      }
+
+    });
 
     // Desktop notifications
     if (typeof window.Notification !== 'undefined' && Notification.permission === 'default') {
@@ -93,7 +97,8 @@ const Mastodon = React.createClass({
 
   componentWillUnmount () {
     if (typeof this.subscription !== 'undefined') {
-      this.subscription.unsubscribe();
+      this.subscription.close();
+      this.subscription = null;
     }
   },
 
@@ -109,7 +114,6 @@ const Mastodon = React.createClass({
 
               <Route path='getting-started' component={GettingStarted} />
               <Route path='timelines/home' component={HomeTimeline} />
-              <Route path='timelines/mentions' component={MentionsTimeline} />
               <Route path='timelines/public' component={PublicTimeline} />
               <Route path='timelines/tag/:id' component={HashtagTimeline} />
 
@@ -121,13 +125,13 @@ const Mastodon = React.createClass({
               <Route path='statuses/:statusId/reblogs' component={Reblogs} />
               <Route path='statuses/:statusId/favourites' component={Favourites} />
 
-              <Route path='accounts/:accountId' component={Account}>
-                <IndexRoute component={AccountTimeline} />
-                <Route path='followers' component={Followers} />
-                <Route path='following' component={Following} />
-              </Route>
+              <Route path='accounts/:accountId' component={AccountTimeline} />
+              <Route path='accounts/:accountId/followers' component={Followers} />
+              <Route path='accounts/:accountId/following' component={Following} />
 
               <Route path='follow_requests' component={FollowRequests} />
+              <Route path='blocks' component={Blocks} />
+
               <Route path='*' component={GenericNotFound} />
             </Route>
           </Router>

@@ -26,10 +26,6 @@ RSpec.describe FanOutOnWriteService do
     expect(Feed.new(:home, follower).get(10).map(&:id)).to include status.id
   end
 
-  it 'delivers status to mentioned users' do
-    expect(Feed.new(:mentions, alice).get(10).map(&:id)).to include status.id
-  end
-
   it 'delivers status to hashtag' do
     expect(Tag.find_by!(name: 'test').statuses.pluck(:id)).to include status.id
   end

@@ -31,8 +31,10 @@ gem 'link_header'
 gem 'ostatus2'
 gem 'goldfinger'
 gem 'devise'
+gem 'devise-two-factor'
 gem 'doorkeeper'
 gem 'rabl'
+gem 'rqrcode'
 gem 'oj'
 gem 'hiredis'
 gem 'redis', '~>3.2'
@@ -75,11 +77,16 @@ group :development do
   gem 'letter_opener_web'
   gem 'bullet'
   gem 'active_record_query_trace'
+
+  gem 'capistrano'
+  gem 'capistrano-rails'
+  gem 'capistrano-rbenv'
+  gem 'capistrano-yarn'
 end
 
 group :production do
   gem 'rails_12factor'
-  gem 'lograge'
   gem 'redis-rails'
-  gem 'rack-timeout-puma'
+  gem 'lograge'
+  gem 'rack-timeout'
 end

@@ -42,13 +42,14 @@ class ProcessFeedService < BaseService
 
     def create_status
       Rails.logger.debug "Creating remote status #{id}"
-      status = status_from_xml(@xml)
+      status, just_created = status_from_xml(@xml)
 
       return if status.nil?
+      return status unless just_created
 
       if verb == :share
-        original_status = status_from_xml(@xml.at_xpath('.//activity:object', activity: TagManager::AS_XMLNS))
-        status.reblog   = original_status
+        original_status, = status_from_xml(@xml.at_xpath('.//activity:object', activity: TagManager::AS_XMLNS))
+        status.reblog    = original_status
 
         if original_status.nil?
           status.destroy
@@ -61,7 +62,6 @@ class ProcessFeedService < BaseService
       status.save!
 
       NotifyService.new.call(status.reblog.account, status) if status.reblog? && status.reblog.account.local?
-      # LinkCrawlWorker.perform_async(status.reblog? ? status.reblog_of_id : status.id)
       Rails.logger.debug "Queuing remote status #{status.id} (#{id}) for distribution"
       DistributionWorker.perform_async(status.id)
       status
@@ -81,22 +81,23 @@ class ProcessFeedService < BaseService
     def status_from_xml(entry)
       # Return early if status already exists in db
       status = find_status(id(entry))
-      return status unless status.nil?
+
+      return [status, false] unless status.nil?
 
       # If status embeds an author, find that author
       # If that author cannot be found, don't record the status (do not misattribute)
       if account?(entry)
         begin
           account = find_or_resolve_account(acct(entry))
-          return nil if account.nil?
+          return [nil, false] if account.nil?
         rescue Goldfinger::Error
-          return nil
+          return [nil, false]
         end
       else
         account = @account
       end
 
-      return if account.suspended?
+      return [nil, false] if account.suspended?
 
       status = Status.create!(
         uri: id(entry),
@@ -116,7 +117,7 @@ class ProcessFeedService < BaseService
       hashtags_from_xml(status, entry)
       media_from_xml(status, entry)
 
-      status
+      [status, true]
     end
 
     def find_or_resolve_account(acct)

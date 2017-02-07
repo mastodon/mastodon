@@ -64,7 +64,7 @@ Rails.application.configure do
     password: ENV.fetch('REDIS_PASSWORD') { false },
     db: 0,
     namespace: 'cache',
-    expires_in: 20.minutes
+    expires_in: 20.minutes,
   }
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server.
@@ -105,8 +105,6 @@ Rails.application.configure do
   config.action_mailer.delivery_method = :smtp
 
   config.react.variant = :production
-
-  config.active_record.logger = nil
 
   config.to_prepare do
     StatsD.backend = StatsD::Instrument::Backends::NullBackend.new if ENV['STATSD_ADDR'].blank?

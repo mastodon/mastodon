@@ -54,10 +54,16 @@ export function cancelReplyCompose() {
   };
 };
 
-export function mentionCompose(account) {
-  return {
-    type: COMPOSE_MENTION,
-    account: account
+export function mentionCompose(account, router) {
+  return (dispatch, getState) => {
+    dispatch({
+      type: COMPOSE_MENTION,
+      account: account
+    });
+
+    if (!getState().getIn(['compose', 'mounted'])) {
+      router.push('/statuses/new');
+    }
   };
 };
 
@@ -78,7 +84,7 @@ export function submitCompose() {
       // To make the app more responsive, immediately get the status into the columns
       dispatch(updateTimeline('home', { ...response.data }));
 
-      if (response.data.in_reply_to_id === null && !getState().getIn(['compose', 'private']) && !getState().getIn(['compose', 'unlisted'])) {
+      if (response.data.in_reply_to_id === null && response.data.visibility === 'public') {
         dispatch(updateTimeline('public', { ...response.data }));
       }
     }).catch(function (error) {
