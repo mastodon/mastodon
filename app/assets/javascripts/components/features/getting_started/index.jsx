@@ -34,7 +34,7 @@ const GettingStarted = ({ intl, me }) => {
         <ColumnLink icon='cog' text={intl.formatMessage(messages.preferences)} href='/settings/preferences' />
         <ColumnLink icon='star' text={intl.formatMessage(messages.favourites)} to='/favourites' />
         {followRequests}
-        <ColumnLink icon='users' text={intl.formatMessage(messages.blocks)} to='/blocks' />
+        <ColumnLink icon='ban' text={intl.formatMessage(messages.blocks)} to='/blocks' />
         <ColumnLink icon='book' text={intl.formatMessage(messages.info)} href='/about/more' />
         <ColumnLink icon='sign-out' text={intl.formatMessage(messages.sign_out)} href='/auth/sign_out' method='delete' />
       </div>
