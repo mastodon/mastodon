@@ -24,6 +24,16 @@ RSpec.describe AccountsController, type: :controller do
       end
     end
 
+    context 'activitystreams2' do
+      before do
+        get :show, params: { username: alice.username }, format: 'activitystreams2'
+      end
+
+      it 'returns http success with Activity Streams 2.0' do
+        expect(response).to have_http_status(:success)
+      end
+    end
+
     context 'html' do
       before do
         get :show, params: { username: alice.username }
