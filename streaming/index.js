@@ -36,6 +36,39 @@ const pgPool = new pg.Pool(pgConfigs[env])
 const server = http.createServer(app)
 const wss    = new WebSocket.Server({ server })
 
+const redisClient = redis.createClient({
+  host:     process.env.REDIS_HOST     || '127.0.0.1',
+  port:     process.env.REDIS_PORT     || 6379,
+  password: process.env.REDIS_PASSWORD
+})
+
+const subs = {}
+
+redisClient.on('pmessage', (_, channel, message) => {
+  const callbacks = subs[channel]
+
+  log.silly(`New message on channel ${channel}`)
+
+  if (!callbacks) {
+    return
+  }
+
+  callbacks.forEach(callback => callback(message))
+})
+
+redisClient.psubscribe('timeline:*')
+
+const subscribe = (channel, callback) => {
+  log.silly(`Adding listener for ${channel}`)
+  subs[channel] = subs[channel] || []
+  subs[channel].push(callback)
+}
+
+const unsubscribe = (channel, callback) => {
+  log.silly(`Removing listener for ${channel}`)
+  subs[channel] = subs[channel].filter(item => item !== callback)
+}
+
 const allowCrossDomain = (req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*')
   res.header('Access-Control-Allow-Headers', 'Authorization, Accept, Cache-Control')
@@ -105,10 +138,10 @@ const errorMiddleware = (err, req, res, next) => {
 
 const placeholders = (arr, shift = 0) => arr.map((_, i) => `$${i + 1 + shift}`).join(', ');
 
-const streamFrom = (redisClient, id, req, output, needsFiltering = false) => {
+const streamFrom = (id, req, output, attachCloseHandler, needsFiltering = false) => {
   log.verbose(req.requestId, `Starting stream from ${id} for ${req.accountId}`)
 
-  redisClient.on('message', (channel, message) => {
+  const listener = message => {
     const { event, payload, queued_at } = JSON.parse(message)
 
     const transmit = () => {
@@ -149,13 +182,14 @@ const streamFrom = (redisClient, id, req, output, needsFiltering = false) => {
     } else {
       transmit()
     }
-  })
+  }
 
-  redisClient.subscribe(id)
+  subscribe(id, listener)
+  attachCloseHandler(id, listener)
 }
 
 // Setup stream output to HTTP
-const streamToHttp = (req, res, redisClient) => {
+const streamToHttp = (req, res) => {
   res.setHeader('Content-Type', 'text/event-stream')
   res.setHeader('Transfer-Encoding', 'chunked')
 
@@ -164,7 +198,6 @@ const streamToHttp = (req, res, redisClient) => {
   req.on('close', () => {
     log.verbose(req.requestId, `Ending stream for ${req.accountId}`)
     clearInterval(heartbeat)
-    redisClient.quit()
   })
 
   return (event, payload) => {
@@ -173,11 +206,17 @@ const streamToHttp = (req, res, redisClient) => {
   }
 }
 
+// Setup stream end for HTTP
+const streamHttpEnd = req => (id, listener) => {
+  req.on('close', () => {
+    unsubscribe(id, listener)
+  })
+}
+
 // Setup stream output to WebSockets
-const streamToWs = (req, ws, redisClient) => {
+const streamToWs = (req, ws) => {
   ws.on('close', () => {
     log.verbose(req.requestId, `Ending stream for ${req.accountId}`)
-    redisClient.quit()
   })
 
   return (event, payload) => {
@@ -190,12 +229,12 @@ const streamToWs = (req, ws, redisClient) => {
   }
 }
 
-// Get new redis connection
-const getRedisClient = () => redis.createClient({
-  host:     process.env.REDIS_HOST     || '127.0.0.1',
-  port:     process.env.REDIS_PORT     || 6379,
-  password: process.env.REDIS_PASSWORD
-})
+// Setup stream end for WebSockets
+const streamWsEnd = ws => (id, listener) => {
+  ws.on('close', () => {
+    unsubscribe(id, listener)
+  })
+}
 
 app.use(setRequestId)
 app.use(allowCrossDomain)
@@ -203,28 +242,23 @@ app.use(authenticationMiddleware)
 app.use(errorMiddleware)
 
 app.get('/api/v1/streaming/user', (req, res) => {
-  const redisClient = getRedisClient()
-  streamFrom(redisClient, `timeline:${req.accountId}`, req, streamToHttp(req, res, redisClient))
+  streamFrom(`timeline:${req.accountId}`, req, streamToHttp(req, res), streamHttpEnd(req))
 })
 
 app.get('/api/v1/streaming/public', (req, res) => {
-  const redisClient = getRedisClient()
-  streamFrom(redisClient, 'timeline:public', req, streamToHttp(req, res, redisClient), true)
+  streamFrom('timeline:public', req, streamToHttp(req, res), streamHttpEnd(req), true)
 })
 
 app.get('/api/v1/streaming/public/local', (req, res) => {
-  const redisClient = getRedisClient()
-  streamFrom(redisClient, 'timeline:public:local', req, streamToHttp(req, res, redisClient), true)
+  streamFrom('timeline:public:local', req, streamToHttp(req, res), streamHttpEnd(req), true)
 })
 
 app.get('/api/v1/streaming/hashtag', (req, res) => {
-  const redisClient = getRedisClient()
-  streamFrom(redisClient, `timeline:hashtag:${req.params.tag}`, req, streamToHttp(req, res, redisClient), true)
+  streamFrom(`timeline:hashtag:${req.params.tag}`, req, streamToHttp(req, res), streamHttpEnd(req), true)
 })
 
 app.get('/api/v1/streaming/hashtag/local', (req, res) => {
-  const redisClient = getRedisClient()
-  streamFrom(redisClient, `timeline:hashtag:${req.params.tag}:local`, req, streamToHttp(req, res, redisClient), true)
+  streamFrom(`timeline:hashtag:${req.params.tag}:local`, req, streamToHttp(req, res), streamHttpEnd(req), true)
 })
 
 wss.on('connection', ws => {
@@ -239,23 +273,21 @@ wss.on('connection', ws => {
       return
     }
 
-    const redisClient = getRedisClient()
-
     switch(location.query.stream) {
     case 'user':
-      streamFrom(redisClient, `timeline:${req.accountId}`, req, streamToWs(req, ws, redisClient))
+      streamFrom(`timeline:${req.accountId}`, req, streamToWs(req, ws), streamWsEnd(ws))
       break;
     case 'public':
-      streamFrom(redisClient, 'timeline:public', req, streamToWs(req, ws, redisClient), true)
+      streamFrom('timeline:public', req, streamToWs(req, ws), streamWsEnd(ws), true)
       break;
     case 'public:local':
-      streamFrom(redisClient, 'timeline:public:local', req, streamToWs(req, ws, redisClient), true)
+      streamFrom('timeline:public:local', req, streamToWs(req, ws), streamWsEnd(ws), true)
       break;
     case 'hashtag':
-      streamFrom(redisClient, `timeline:hashtag:${location.query.tag}`, req, streamToWs(req, ws, redisClient), true)
+      streamFrom(`timeline:hashtag:${location.query.tag}`, req, streamToWs(req, ws), streamWsEnd(ws), true)
       break;
     case 'hashtag:local':
-      streamFrom(redisClient, `timeline:hashtag:${location.query.tag}:local`, req, streamToWs(req, ws, redisClient), true)
+      streamFrom(`timeline:hashtag:${location.query.tag}:local`, req, streamToWs(req, ws), streamWsEnd(ws), true)
       break;
     default:
       ws.close()

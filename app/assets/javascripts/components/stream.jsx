@@ -10,12 +10,13 @@ const createWebSocketURL = (url) => {
   return a.href;
 };
 
-export default function getStream(accessToken, stream, { connected, received, disconnected }) {
+export default function getStream(accessToken, stream, { connected, received, disconnected, reconnected }) {
   const ws = new WebSocketClient(`${createWebSocketURL(STREAMING_API_BASE_URL)}/api/v1/streaming/?access_token=${accessToken}&stream=${stream}`);
 
-  ws.onopen    = connected;
-  ws.onmessage = e => received(JSON.parse(e.data));
-  ws.onclose   = disconnected;
+  ws.onopen      = connected;
+  ws.onmessage   = e => received(JSON.parse(e.data));
+  ws.onclose     = disconnected;
+  ws.onreconnect = reconnected;
 
   return ws;
 };

@@ -6,7 +6,7 @@ import {
   deleteFromTimelines,
   refreshTimeline
 } from '../actions/timelines';
-import { updateNotifications } from '../actions/notifications';
+import { updateNotifications, refreshNotifications } from '../actions/notifications';
 import createBrowserHistory from 'history/lib/createBrowserHistory';
 import {
   applyRouterMiddleware,
@@ -80,6 +80,11 @@ const Mastodon = React.createClass({
           store.dispatch(updateNotifications(JSON.parse(data.payload), getMessagesForLocale(locale), locale));
           break;
         }
+      },
+
+      reconnected () {
+        store.dispatch(refreshTimeline('home'));
+        store.dispatch(refreshNotifications());
       }
 
     });
