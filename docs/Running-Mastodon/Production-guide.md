@@ -87,6 +87,17 @@ It is recommended to create a special user for mastodon on the server (you could
 
     sudo apt-get install postgresql postgresql-contrib
 
+Setup a user and database for Mastodon:
+
+    sudo su - postgres
+    psql
+
+In the prompt:
+
+    CREATE USER mastodon CREATEDB;
+    CREATE DATABASE mastodon_production OWNER mastodon;
+    \q
+
 ## Rbenv
 
 It is recommended to use rbenv (exclusively from the `mastodon` user) to install the desired Ruby version. Follow the guides to [install rbenv][1] and [rbenv-build][2] (I recommend checking the [prerequisites][3] for your system on the rbenv-build project and installing them beforehand, obviously outside the unprivileged `mastodon` user)
@@ -122,7 +133,7 @@ Fill in the important data, like host/port of the redis database, host/port/user
 
     rake secret
 
-To get a random string.
+To get a random string. If you are setting up on one single server (most likely), then REDIS_HOST is localhost and `DB_HOST` is `/var/run/postgresql`, `DB_USER` is `mastodon` and `DB_NAME` is `mastodon_production` while `DB_PASS` is empty because this setup will use the ident authentication method (system user "mastodon" maps to postgres user "mastodon").
 
 ## Setup
 
