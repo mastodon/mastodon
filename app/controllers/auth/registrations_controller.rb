@@ -1,8 +1,7 @@
 # frozen_string_literal: true
 
 class Auth::RegistrationsController < Devise::RegistrationsController
-  layout 'auth'
-  layout 'admin', only: [:edit]
+  layout :determine_layout
 
   before_action :check_single_user_mode
   before_action :configure_sign_up_params, only: [:create]
@@ -30,5 +29,11 @@ class Auth::RegistrationsController < Devise::RegistrationsController
 
   def check_single_user_mode
     redirect_to root_path if Rails.configuration.x.single_user_mode
+  end
+  
+  private
+  
+  def determine_layout
+    %w(edit update).include?(action_name) ? 'admin' : 'auth'
   end
 end
