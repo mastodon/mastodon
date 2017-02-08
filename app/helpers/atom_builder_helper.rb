@@ -192,7 +192,7 @@ module AtomBuilderHelper
 
         # Statuses have content and author
         if stream_entry.target.is_a?(Status)
-          content      xml, conditionally_formatted(stream_entry.target)
+          rich_content xml, stream_entry.target
           verb         xml, stream_entry.target.verb
           published_at xml, stream_entry.target.created_at
           updated_at   xml, stream_entry.target.updated_at
