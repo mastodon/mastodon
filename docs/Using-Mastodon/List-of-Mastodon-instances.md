@@ -8,5 +8,6 @@ List of Mastodon instances
 * [socially.constructed.space](https://socially.constructed.space)
 * [epiktistes.com](https://epiktistes.com)
 * [toot.zone](https://toot.zone)
+* [awoo.space](https://awoo.space/)
 
 Let me know if you start running one so I can add it to the list!
