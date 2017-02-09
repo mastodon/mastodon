@@ -105,7 +105,8 @@ class ProcessFeedService < BaseService
         account: account,
         text: content(entry),
         spoiler_text: content_warning(entry),
-        created_at: published(entry)
+        created_at: published(entry),
+        reply: thread?(entry)
       )
 
       if thread?(entry)

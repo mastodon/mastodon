@@ -81,11 +81,16 @@ function appendMedia(state, media) {
 };
 
 function removeMedia(state, mediaId) {
-  const media = state.get('media_attachments').find(item => item.get('id') === mediaId);
+  const media    = state.get('media_attachments').find(item => item.get('id') === mediaId);
+  const prevSize = state.get('media_attachments').size;
 
   return state.withMutations(map => {
     map.update('media_attachments', list => list.filterNot(item => item.get('id') === mediaId));
     map.update('text', text => text.replace(media.get('text_url'), '').trim());
+
+    if (prevSize === 1) {
+      map.update('sensitive', false);
+    }
   });
 };
 
@@ -126,6 +131,8 @@ export default function compose(state = initialState, action) {
     return state.withMutations(map => {
       map.set('in_reply_to', null);
       map.set('text', '');
+      map.set('unlisted', state.get('default_privacy') === 'unlisted');
+      map.set('private', state.get('default_privacy') === 'private');
     });
   case COMPOSE_SUBMIT_REQUEST:
     return state.set('is_submitting', true);

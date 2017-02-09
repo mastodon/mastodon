@@ -39,16 +39,16 @@ class Status < ApplicationRecord
 
   cache_associated :account, :application, :media_attachments, :tags, :stream_entry, mentions: :account, reblog: [:account, :application, :stream_entry, :tags, :media_attachments, mentions: :account], thread: :account
 
+  def reply?
+    super || !in_reply_to_id.nil?
+  end
+
   def local?
     uri.nil?
   end
 
   def reblog?
     !reblog_of_id.nil?
-  end
-
-  def reply?
-    !in_reply_to_id.nil?
   end
 
   def verb
@@ -105,7 +105,7 @@ class Status < ApplicationRecord
     def as_public_timeline(account = nil, local_only = false)
       query = joins('LEFT OUTER JOIN accounts ON statuses.account_id = accounts.id')
               .where(visibility: :public)
-              .where('(statuses.in_reply_to_id IS NULL OR statuses.in_reply_to_account_id = statuses.account_id)')
+              .where('(statuses.reply = false OR statuses.in_reply_to_account_id = statuses.account_id)')
               .where('statuses.reblog_of_id IS NULL')
 
       query = query.where('accounts.domain IS NULL') if local_only
@@ -176,8 +176,9 @@ class Status < ApplicationRecord
     text.strip!
     spoiler_text&.strip!
 
+    self.reply                  = !(in_reply_to_id.nil? && thread.nil?) unless attributes[:reply]
     self.reblog                 = reblog.reblog if reblog? && reblog.reblog?
-    self.in_reply_to_account_id = (thread.account_id == account_id && thread.reply? ? thread.in_reply_to_account_id : thread.account_id) if reply?
+    self.in_reply_to_account_id = (thread.account_id == account_id && thread.reply? ? thread.in_reply_to_account_id : thread.account_id) if reply? && !thread.nil?
     self.visibility             = (account.locked? ? :private : :public) if visibility.nil?
   end
 

@@ -16,8 +16,6 @@ class FeedManager
       filter_from_home?(status, receiver)
     elsif timeline_type == :mentions
       filter_from_mentions?(status, receiver)
-    elsif timeline_type == :public
-      filter_from_public?(status, receiver)
     else
       false
     end
@@ -89,7 +87,9 @@ class FeedManager
   def filter_from_home?(status, receiver)
     should_filter = false
 
-    if status.reply? && !status.in_reply_to_account_id.nil?                   # Filter out if it's a reply
+    if status.reply? && status.in_reply_to_id.nil?
+      should_filter = true
+    elsif status.reply? && !status.in_reply_to_account_id.nil?                # Filter out if it's a reply
       should_filter   = !receiver.following?(status.in_reply_to_account)      # and I'm not following the person it's a reply to
       should_filter &&= !(receiver.id == status.in_reply_to_account_id)       # and it's not a reply to me
       should_filter &&= !(status.account_id == status.in_reply_to_account_id) # and it's not a self-reply
@@ -111,19 +111,6 @@ class FeedManager
 
     if status.reply? && !status.in_reply_to_account_id.nil?                                 # or it's a reply
       should_filter ||= receiver.blocking?(status.in_reply_to_account)                      # to a user I blocked
-    end
-
-    should_filter
-  end
-
-  def filter_from_public?(status, receiver)
-    should_filter   = receiver.blocking?(status.account)
-    should_filter ||= receiver.blocking?(status.mentions.includes(:account).map(&:account))
-
-    if status.reply? && !status.in_reply_to_account_id.nil?
-      should_filter ||= receiver.blocking?(status.in_reply_to_account)
-    elsif status.reblog?
-      should_filter ||= receiver.blocking?(status.reblog.account)
     end
 
     should_filter
