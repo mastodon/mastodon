@@ -176,7 +176,7 @@ class Status < ApplicationRecord
     text.strip!
     spoiler_text&.strip!
 
-    self.reply                  = !(in_reply_to_id.nil? && thread.nil?) unless attributes[:reply]
+    self.reply                  = !(in_reply_to_id.nil? && thread.nil?) unless reply
     self.reblog                 = reblog.reblog if reblog? && reblog.reblog?
     self.in_reply_to_account_id = (thread.account_id == account_id && thread.reply? ? thread.in_reply_to_account_id : thread.account_id) if reply? && !thread.nil?
     self.visibility             = (account.locked? ? :private : :public) if visibility.nil?
