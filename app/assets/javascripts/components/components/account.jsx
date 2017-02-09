@@ -13,26 +13,6 @@ const messages = defineMessages({
   unblock: { id: 'account.unblock', defaultMessage: 'Unblock' }
 });
 
-const outerStyle = {
-  padding: '10px',
-  borderBottom: '1px solid #363c4b'
-};
-
-const itemStyle = {
-  flex: '1 1 auto',
-  display: 'block',
-  color: '#9baec8',
-  overflow: 'hidden',
-  textDecoration: 'none',
-  fontSize: '14px'
-};
-
-const noteStyle = {
-  paddingTop: '5px',
-  fontSize: '12px',
-  color: '#616b86'
-};
-
 const buttonsStyle = {
   padding: '10px',
   height: '18px'
@@ -45,14 +25,7 @@ const Account = React.createClass({
     me: React.PropTypes.number.isRequired,
     onFollow: React.PropTypes.func.isRequired,
     onBlock: React.PropTypes.func.isRequired,
-    withNote: React.PropTypes.bool,
     intl: React.PropTypes.object.isRequired
-  },
-
-  getDefaultProps () {
-    return {
-      withNote: false
-    };
   },
 
   mixins: [PureRenderMixin],
@@ -66,17 +39,13 @@ const Account = React.createClass({
   },
 
   render () {
-    const { account, me, withNote, intl } = this.props;
+    const { account, me, intl } = this.props;
 
     if (!account) {
       return <div />;
     }
 
-    let note, buttons;
-
-    if (account.get('note').length > 0 && withNote) {
-      note = <div style={noteStyle}>{account.get('note')}</div>;
-    }
+    let buttons;
 
     if (account.get('id') !== me && account.get('relationship', null) !== null) {
       const following = account.getIn(['relationship', 'following']);
@@ -93,9 +62,9 @@ const Account = React.createClass({
     }
 
     return (
-      <div style={outerStyle}>
+      <div className='account'>
         <div style={{ display: 'flex' }}>
-          <Permalink key={account.get('id')} style={itemStyle} className='account__display-name' href={account.get('url')} to={`/accounts/${account.get('id')}`}>
+          <Permalink key={account.get('id')} className='account__display-name' href={account.get('url')} to={`/accounts/${account.get('id')}`}>
             <div style={{ float: 'left', marginLeft: '12px', marginRight: '10px' }}><Avatar src={account.get('avatar')} size={36} /></div>
             <DisplayName account={account} />
           </Permalink>
@@ -104,8 +73,6 @@ const Account = React.createClass({
             {buttons}
           </div>
         </div>
-
-        {note}
       </div>
     );
   }

@@ -11,15 +11,6 @@ import { FormattedMessage } from 'react-intl';
 import emojify from '../emoji';
 import escapeTextContentForBrowser from 'react/lib/escapeTextContentForBrowser';
 
-const outerStyle = {
-  padding: '8px 10px',
-  paddingLeft: '68px',
-  position: 'relative',
-  minHeight: '48px',
-  borderBottom: '1px solid #363c4b',
-  cursor: 'default'
-};
-
 const Status = React.createClass({
 
   contextTypes: {
@@ -55,7 +46,7 @@ const Status = React.createClass({
 
   render () {
     let media = '';
-    const { status, now, ...other } = this.props;
+    const { status, ...other } = this.props;
 
     if (status === null) {
       return <div />;
@@ -72,9 +63,9 @@ const Status = React.createClass({
 
       return (
         <div style={{ cursor: 'default' }}>
-          <div style={{ marginLeft: '68px', color: '#616b86', padding: '8px 0', paddingBottom: '2px', fontSize: '14px', position: 'relative' }}>
+          <div className='status__prepend'>
             <div style={{ position: 'absolute', 'left': '-26px'}}><i className='fa fa-fw fa-retweet' /></div>
-            <FormattedMessage id='status.reblogged_by' defaultMessage='{name} reblogged' values={{ name: <a onClick={this.handleAccountClick.bind(this, status.getIn(['account', 'id']))} href={status.getIn(['account', 'url'])} className='status__display-name muted'><strong style={{ color: '#616b86'}} dangerouslySetInnerHTML={displayNameHTML} /></a> }} />
+            <FormattedMessage id='status.reblogged_by' defaultMessage='{name} reblogged' values={{ name: <a onClick={this.handleAccountClick.bind(this, status.getIn(['account', 'id']))} href={status.getIn(['account', 'url'])} className='status__display-name muted'><strong dangerouslySetInnerHTML={displayNameHTML} /></a> }} />
           </div>
 
           <Status {...other} wrapped={true} status={status.get('reblog')} />
@@ -91,13 +82,13 @@ const Status = React.createClass({
     }
 
     return (
-      <div className={this.props.muted ? 'muted' : ''} style={outerStyle}>
+      <div className={this.props.muted ? 'status muted' : 'status'}>
         <div style={{ fontSize: '15px' }}>
           <div style={{ float: 'right', fontSize: '14px' }}>
-            <a href={status.get('url')} className='status__relative-time' style={{ color: '#616b86' }} target='_blank' rel='noopener'><RelativeTimestamp timestamp={status.get('created_at')} now={now} /></a>
+            <a href={status.get('url')} className='status__relative-time' target='_blank' rel='noopener'><RelativeTimestamp timestamp={status.get('created_at')} /></a>
           </div>
 
-          <a onClick={this.handleAccountClick.bind(this, status.getIn(['account', 'id']))} href={status.getIn(['account', 'url'])} className='status__display-name' style={{ display: 'block', maxWidth: '100%', paddingRight: '25px', color: '#616b86' }}>
+          <a onClick={this.handleAccountClick.bind(this, status.getIn(['account', 'id']))} href={status.getIn(['account', 'url'])} className='status__display-name' style={{ display: 'block', maxWidth: '100%', paddingRight: '25px' }}>
             <div className='status__avatar' style={{ position: 'absolute', left: '10px', top: '10px', width: '48px', height: '48px' }}>
               <Avatar src={status.getIn(['account', 'avatar'])} size={48} />
             </div>

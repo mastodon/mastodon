@@ -166,30 +166,30 @@ const ComposeForm = React.createClass({
           <UploadButtonContainer style={{ paddingTop: '4px' }} />
         </div>
 
-        <label style={{ display: 'block', lineHeight: '24px', verticalAlign: 'middle', marginTop: '10px', borderTop: '1px solid #282c37', paddingTop: '10px' }}>
+        <label className='compose-form__label with-border' style={{ marginTop: '10px' }}>
           <Toggle checked={this.props.spoiler} onChange={this.handleChangeSpoilerness} />
-          <span style={{ display: 'inline-block', verticalAlign: 'top', marginLeft: '8px', color: '#9baec8' }}><FormattedMessage id='compose_form.spoiler' defaultMessage='Hide text behind warning' /></span>
+          <span className='compose-form__label__text'><FormattedMessage id='compose_form.spoiler' defaultMessage='Hide text behind warning' /></span>
         </label>
 
-        <label style={{ display: 'block', lineHeight: '24px', verticalAlign: 'middle', borderTop: '1px solid #282c37', paddingTop: '10px' }}>
+        <label className='compose-form__label with-border'>
           <Toggle checked={this.props.private} onChange={this.handleChangeVisibility} />
-          <span style={{ display: 'inline-block', verticalAlign: 'middle', marginBottom: '14px', marginLeft: '8px', color: '#9baec8' }}><FormattedMessage id='compose_form.private' defaultMessage='Mark as private' /></span>
+          <span className='compose-form__label__text'><FormattedMessage id='compose_form.private' defaultMessage='Mark as private' /></span>
         </label>
 
         <Motion defaultStyle={{ opacity: (this.props.private || reply_to_other) ? 0 : 100, height: (this.props.private || reply_to_other) ? 39.5 : 0 }} style={{ opacity: spring((this.props.private || reply_to_other) ? 0 : 100), height: spring((this.props.private || reply_to_other) ? 0 : 39.5) }}>
           {({ opacity, height }) =>
-            <label style={{ display: 'block', lineHeight: '24px', verticalAlign: 'middle', height: `${height}px`, overflow: 'hidden', opacity: opacity / 100 }}>
+            <label className='compose-form__label' style={{ height: `${height}px`, overflow: 'hidden', opacity: opacity / 100 }}>
               <Toggle checked={this.props.unlisted} onChange={this.handleChangeListability} />
-              <span style={{ display: 'inline-block', verticalAlign: 'middle', marginBottom: '14px', marginLeft: '8px', color: '#9baec8' }}><FormattedMessage id='compose_form.unlisted' defaultMessage='Do not display in public timeline' /></span>
+              <span className='compose-form__label__text'><FormattedMessage id='compose_form.unlisted' defaultMessage='Do not display in public timeline' /></span>
             </label>
           }
         </Motion>
 
         <Motion defaultStyle={{ opacity: 0, height: 0 }} style={{ opacity: spring(this.props.media_count === 0 ? 0 : 100), height: spring(this.props.media_count === 0 ? 0 : 39.5) }}>
           {({ opacity, height }) =>
-            <label style={{ display: 'block', lineHeight: '24px', verticalAlign: 'middle', height: `${height}px`, overflow: 'hidden', opacity: opacity / 100 }}>
+            <label className='compose-form__label' style={{ height: `${height}px`, overflow: 'hidden', opacity: opacity / 100 }}>
               <Toggle checked={this.props.sensitive} onChange={this.handleChangeSensitivity} />
-              <span style={{ display: 'inline-block', verticalAlign: 'middle', marginBottom: '14px', marginLeft: '8px', color: '#9baec8' }}><FormattedMessage id='compose_form.sensitive' defaultMessage='Mark media as sensitive' /></span>
+              <span className='compose-form__label__text'><FormattedMessage id='compose_form.sensitive' defaultMessage='Mark media as sensitive' /></span>
             </label>
           }
         </Motion>

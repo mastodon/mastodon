@@ -31,25 +31,10 @@ const outerStyle = {
   position: 'relative'
 };
 
-const inputStyle = {
-  boxSizing: 'border-box',
-  display: 'block',
-  width: '100%',
-  border: 'none',
-  padding: '10px',
-  paddingRight: '30px',
-  fontFamily: 'inherit',
-  background: '#282c37',
-  color: '#9baec8',
-  fontSize: '14px',
-  margin: '0'
-};
-
 const iconStyle = {
   position: 'absolute',
   top: '18px',
   right: '20px',
-  color: '#9baec8',
   fontSize: '18px',
   pointerEvents: 'none'
 };
@@ -66,7 +51,8 @@ const Search = React.createClass({
     onChange: React.PropTypes.func.isRequired,
     onClear: React.PropTypes.func.isRequired,
     onFetch: React.PropTypes.func.isRequired,
-    onReset: React.PropTypes.func.isRequired
+    onReset: React.PropTypes.func.isRequired,
+    intl: React.PropTypes.object.isRequired
   },
 
   mixins: [PureRenderMixin],
@@ -102,11 +88,11 @@ const Search = React.createClass({
       placeholder: this.props.intl.formatMessage(messages.placeholder),
       value: this.props.value,
       onChange: this.onChange,
-      style: inputStyle
+      className: 'search__input'
     };
 
     return (
-      <div style={outerStyle}>
+      <div className='search' style={outerStyle}>
         <Autosuggest
           multiSection={true}
           suggestions={this.props.suggestions}

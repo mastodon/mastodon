@@ -77,6 +77,25 @@
   color: $color1;
 }
 
+.compose-form__label {
+  display: block;
+  line-height: 24px;
+  vertical-align: middle;
+
+  &.with-border {
+    border-top: 1px solid $color1;
+    padding-top: 10px;
+  }
+
+  .compose-form__label__text {
+    display: inline-block;
+    vertical-align: middle;
+    margin-bottom: 14px;
+    margin-left: 8px;
+    color: $color3;
+  }
+}
+
 .compose-form__textarea, .follow-form__input {
   background: $color5;
 
@@ -95,6 +114,15 @@
 
   img {
     width: auto;
+  }
+}
+
+.reply-indicator {
+  background: $color3;
+  padding: 10px;
+
+  .reply-indicator__display-name {
+    color: $color1;
   }
 }
 
@@ -156,6 +184,47 @@
   }
 }
 
+a.status__content__spoiler-link {
+  display: inline-block;
+  border-radius: 2px;
+  color: lighten($color1, 6%);
+  font-weight: 500;
+  font-size: 11px;
+  padding: 0px 6px;
+  text-transform: uppercase;
+  line-height: inherit;
+}
+
+.status {
+  padding: 8px 10px;
+  padding-left: 68px;
+  position: relative;
+  min-height: 48px;
+  border-bottom: 1px solid lighten($color1, 6%);
+  cursor: default;
+
+  .status__relative-time {
+    color: lighten($color1, 26%);
+  }
+
+  .status__display-name {
+    color: lighten($color1, 26%);
+  }
+}
+
+.status__prepend {
+  margin-left: 68px;
+  color: lighten($color1, 26%);
+  padding: 8px 0;
+  padding-bottom: 2px;
+  font-size: 14px;
+  position: relative;
+
+  .status__display-name strong {
+    color: lighten($color1, 26%);
+  }
+}
+
 .detailed-status {
   .status__content {
     font-size: 19px;
@@ -168,12 +237,60 @@
   }
 }
 
+.detailed-status__action-bar {
+  background: lighten($color1, 4%);
+  display: flex;
+  flex-direction: row;
+  border-top: 1px solid lighten($color1, 6%);
+  border-bottom: 1px solid lighten($color1, 6%);
+  padding: 10px 0;
+}
+
 .reply-indicator__content {
   color: $color1;
   font-size: 14px;
 
   a {
     color: lighten($color1, 20%);
+  }
+}
+
+.account {
+  padding: 10px;
+  border-bottom: 1px solid lighten($color1, 6%);
+
+  .account__display-name {
+    flex: 1 1 auto;
+    display: block;
+    color: $color3;
+    overflow: hidden;
+    text-decoration: none;
+    font-size: 14px;
+  }
+}
+
+.account__header {
+  flex: 0 0 auto;
+  background: lighten($color1, 4%);
+  text-align: center;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+
+  & > div {
+    background: rgba(lighten($color1, 4%), 0.9);
+  }
+
+  .account__header__content {
+    color: $color2;
+  }
+
+  .account__header__display-name {
+    color: $color5;
+  }
+
+  .account__header__username {
+    color: $color4;
   }
 }
 
@@ -204,6 +321,37 @@
   .emojione {
     width: 25px;
     height: 25px;
+  }
+}
+
+.account__action-bar {
+  border-top: 1px solid lighten($color1, 6%);
+  border-bottom: 1px solid lighten($color1, 6%);
+  line-height: 36px;
+  overflow: hidden;
+  flex: 0 0 auto;
+  display: flex;
+}
+
+.account__action-bar__tab {
+  text-decoration: none;
+  overflow: hidden;
+  width: 80px;
+  border-left: 1px solid lighten($color1, 6%);
+  padding: 10px 5px;
+
+  & > span {
+    display: block;
+    text-transform: uppercase;
+    font-size: 11px;
+    color: $color3;
+  }
+
+  strong {
+    display: block;
+    font-size: 15px;
+    font-weight: 500;
+    color: $color5;
   }
 }
 
@@ -298,6 +446,18 @@
   display: block;
 }
 
+.navigation-bar {
+  padding: 10px;
+  display: flex;
+  flex-shrink: 0;
+  cursor: default;
+  color: $color3;
+
+  strong {
+    color: $color5;
+  }
+}
+
 .dropdown {
   display: inline-block;
 }
@@ -381,10 +541,39 @@
 .column {
   width: 330px;
   position: relative;
+  box-sizing: border-box;
+  background: $color1;
+  display: flex;
+  flex-direction: column;
+}
+
+.ui {
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  background: darken($color1, 7%);
 }
 
 .drawer {
   width: 280px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  overflow-y: hidden;
+}
+
+.drawer__tab {
+  display: block;
+  flex: 1 1 auto;
+  padding: 15px;
+  padding-bottom: 13px;
+  color: $color3;
+  text-decoration: none;
+  text-align: center;
+  font-size: 16px;
+  border-bottom: 2px solid transparent;
 }
 
 @media screen and (min-width: 2560px) {
@@ -402,6 +591,12 @@
 
 .drawer__inner {
   background: linear-gradient(rgba(lighten($color1, 13%), 1), rgba(lighten($color1, 13%), 0.65));
+  box-sizing: border-box;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  flex-grow: 1;
 }
 
 .drawer__header {
@@ -451,6 +646,26 @@
 
 .tabs-bar {
   display: flex;
+  background: lighten($color1, 6%);
+  flex: 0 0 auto;
+  overflow-y: auto;
+}
+
+.tabs-bar__link {
+  display: block;
+  flex: 1 1 auto;
+  padding: 10px 5px;
+  color: $color5;
+  text-decoration: none;
+  text-align: center;
+  font-size:12px;
+  font-weight: 500;
+  border-bottom: 2px solid lighten($color1, 6%);
+
+  &.active {
+    border-bottom: 2px solid $color4;
+    color: $color4;
+  }
 }
 
 @media screen and (min-width: 360px) {
@@ -516,6 +731,13 @@
 }
 
 .column-back-button {
+  padding: 15px;
+  font-size: 16px;
+  background: lighten($color1, 4%);
+  flex: 0 0 auto;
+  cursor: pointer;
+  color: $color4;
+
   &:hover {
     text-decoration: underline;
   }
@@ -699,6 +921,10 @@
   p {
     color: $color2;
   }
+
+  a {
+    color: lighten($color1, 26%);
+  }
 }
 
 .dropdown__content.dropdown__left {
@@ -748,7 +974,49 @@ button.active i.fa-retweet {
 }
 
 .load-more {
+  display: block;
+  color: lighten($color1, 26%);
+  text-align: center;
+  padding: 15px;
+  text-decoration: none;
+
   &:hover {
     background: lighten($color1, 6%);
   }
+}
+
+.missing-indicator {
+  text-align: center;
+  font-size: 16px;
+  font-weight: 500;
+  color: lighten($color1, 26%);
+  padding-top: 120px;
+}
+
+.column-header {
+  padding: 15px;
+  font-size: 16px;
+  background: lighten($color1, 4%);
+  flex: 0 0 auto;
+  cursor: pointer;
+}
+
+.search {
+  .fa {
+    color: $color3;
+  }
+}
+
+.search__input {
+  box-sizing: border-box;
+  display: block;
+  width: 100%;
+  border: none;
+  padding: 10px;
+  padding-right: 30px;
+  font-family: inherit;
+  background: $color1;
+  color: $color3;
+  font-size: 14px;
+  margin: 0;
 }

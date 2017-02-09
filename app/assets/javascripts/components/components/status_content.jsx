@@ -5,17 +5,6 @@ import emojify from '../emoji';
 import { FormattedMessage } from 'react-intl';
 import Permalink from './permalink';
 
-const spoilerStyle = {
-  display: 'inline-block',
-  borderRadius: '2px',
-  color: '#363c4b',
-  fontWeight: '500',
-  fontSize: '11px',
-  padding: '0px 6px',
-  textTransform: 'uppercase',
-  lineHeight: 'inherit'
-};
-
 const StatusContent = React.createClass({
 
   contextTypes: {
@@ -42,7 +31,7 @@ const StatusContent = React.createClass({
     for (var i = 0; i < links.length; ++i) {
       let link    = links[i];
       let mention = this.props.status.get('mentions').find(item => link.href === item.get('url'));
-      let media   = this.props.status.get('media_attachments').find(item => link.href === item.get('text_url') || link.href === item.get('remote_url'));
+      let media   = this.props.status.get('media_attachments').find(item => link.href === item.get('text_url') || (item.get('remote_url').length > 0 && link.href === item.get('remote_url')));
 
       if (mention) {
         link.addEventListener('click', this.onMentionClick.bind(this, mention), false);
@@ -92,7 +81,8 @@ const StatusContent = React.createClass({
     this.startXY = null;
   },
 
-  handleSpoilerClick () {
+  handleSpoilerClick (e) {
+    e.preventDefault();
     this.setState({ hidden: !this.state.hidden });
   },
 
@@ -121,7 +111,7 @@ const StatusContent = React.createClass({
       return (
         <div className='status__content' style={{ cursor: 'pointer' }} onMouseDown={this.handleMouseDown} onMouseUp={this.handleMouseUp}>
           <p style={{ marginBottom: hidden && status.get('mentions').size === 0 ? '0px' : '' }} >
-            <span dangerouslySetInnerHTML={spoilerContent} />  <a className='status__content__spoiler-link' style={spoilerStyle} onClick={this.handleSpoilerClick}>{toggleText}</a>
+            <span dangerouslySetInnerHTML={spoilerContent} />  <a className='status__content__spoiler-link' onClick={this.handleSpoilerClick}>{toggleText}</a>
           </p>
 
           {mentionsPlaceholder}

@@ -35,7 +35,6 @@ const Button = React.createClass({
       boxSizing: 'border-box',
       textAlign: 'center',
       border: '10px none',
-      color: '#fff',
       fontSize: '14px',
       fontWeight: '500',
       letterSpacing: '0',

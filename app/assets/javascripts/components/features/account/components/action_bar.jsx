@@ -14,15 +14,6 @@ const messages = defineMessages({
   block: { id: 'account.block', defaultMessage: 'Block' }
 });
 
-const outerStyle = {
-  borderTop: '1px solid #363c4b',
-  borderBottom: '1px solid #363c4b',
-  lineHeight: '36px',
-  overflow: 'hidden',
-  flex: '0 0 auto',
-  display: 'flex'
-};
-
 const outerDropdownStyle = {
   padding: '10px',
   flex: '1 1 auto'
@@ -64,25 +55,25 @@ const ActionBar = React.createClass({
     }
 
     return (
-      <div style={outerStyle}>
+      <div className='account__action-bar'>
         <div style={outerDropdownStyle}>
           <DropdownMenu items={menu} icon='bars' size={24} direction="right" />
         </div>
 
         <div style={outerLinksStyle}>
-          <Link to={`/accounts/${account.get('id')}`} style={{ textDecoration: 'none', overflow: 'hidden', width: '80px', borderLeft: '1px solid #363c4b', padding: '10px', paddingRight: '5px' }}>
-            <span style={{ display: 'block', textTransform: 'uppercase', fontSize: '11px', color: '#616b86' }}><FormattedMessage id='account.posts' defaultMessage='Posts' /></span>
-            <span style={{ display: 'block', fontSize: '15px', fontWeight: '500', color: '#fff' }}><FormattedNumber value={account.get('statuses_count')} /></span>
+          <Link className='account__action-bar__tab' to={`/accounts/${account.get('id')}`}>
+            <span><FormattedMessage id='account.posts' defaultMessage='Posts' /></span>
+            <strong><FormattedNumber value={account.get('statuses_count')} /></strong>
           </Link>
 
-          <Link to={`/accounts/${account.get('id')}/following`} style={{ textDecoration: 'none', overflow: 'hidden', width: '80px', borderLeft: '1px solid #363c4b', padding: '10px 5px' }}>
-            <span style={{ display: 'block', textTransform: 'uppercase', fontSize: '11px', color: '#616b86' }}><FormattedMessage id='account.follows' defaultMessage='Follows' /></span>
-            <span style={{ display: 'block', fontSize: '15px', fontWeight: '500', color: '#fff' }}><FormattedNumber value={account.get('following_count')} /></span>
+          <Link className='account__action-bar__tab' to={`/accounts/${account.get('id')}/following`}>
+            <span><FormattedMessage id='account.follows' defaultMessage='Follows' /></span>
+            <strong><FormattedNumber value={account.get('following_count')} /></strong>
           </Link>
 
-          <Link to={`/accounts/${account.get('id')}/followers`} style={{ textDecoration: 'none', overflow: 'hidden', width: '80px', padding: '10px 5px', borderLeft: '1px solid #363c4b' }}>
-            <span style={{ display: 'block', textTransform: 'uppercase', fontSize: '11px', color: '#616b86' }}><FormattedMessage id='account.followers' defaultMessage='Followers' /></span>
-            <span style={{ display: 'block', fontSize: '15px', fontWeight: '500', color: '#fff' }}><FormattedNumber value={account.get('followers_count')} /></span>
+          <Link className='account__action-bar__tab' to={`/accounts/${account.get('id')}/followers`}>
+            <span><FormattedMessage id='account.followers' defaultMessage='Followers' /></span>
+            <strong><FormattedNumber value={account.get('followers_count')} /></strong>
           </Link>
         </div>
       </div>

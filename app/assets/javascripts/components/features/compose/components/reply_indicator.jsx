@@ -18,7 +18,8 @@ const ReplyIndicator = React.createClass({
 
   propTypes: {
     status: ImmutablePropTypes.map.isRequired,
-    onCancel: React.PropTypes.func.isRequired
+    onCancel: React.PropTypes.func.isRequired,
+    intl: React.PropTypes.object.isRequired
   },
 
   mixins: [PureRenderMixin],
@@ -39,11 +40,11 @@ const ReplyIndicator = React.createClass({
     const content  = { __html: emojify(this.props.status.get('content')) };
 
     return (
-      <div style={{ background: '#9baec8', padding: '10px' }}>
+      <div className='reply-indicator'>
         <div style={{ overflow: 'hidden', marginBottom: '5px' }}>
           <div style={{ float: 'right', lineHeight: '24px' }}><IconButton title={intl.formatMessage(messages.cancel)} icon='times' onClick={this.handleClick} /></div>
 
-          <a href={this.props.status.getIn(['account', 'url'])} onClick={this.handleAccountClick} className='reply-indicator__display-name' style={{ display: 'block', maxWidth: '100%', paddingRight: '25px', color: '#282c37', textDecoration: 'none', overflow: 'hidden', lineHeight: '24px' }}>
+          <a href={this.props.status.getIn(['account', 'url'])} onClick={this.handleAccountClick} className='reply-indicator__display-name' style={{ display: 'block', maxWidth: '100%', paddingRight: '25px', textDecoration: 'none', overflow: 'hidden', lineHeight: '24px' }}>
             <div style={{ float: 'left', marginRight: '5px' }}><Avatar size={24} src={this.props.status.getIn(['account', 'avatar'])} /></div>
             <DisplayName account={this.props.status.get('account')} />
           </a>

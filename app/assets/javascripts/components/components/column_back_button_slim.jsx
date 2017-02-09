@@ -7,10 +7,8 @@ const outerStyle = {
   top: '-48px',
   padding: '15px',
   fontSize: '16px',
-  background: '#2f3441',
   flex: '0 0 auto',
-  cursor: 'pointer',
-  color: '#2b90d9'
+  cursor: 'pointer'
 };
 
 const iconStyle = {

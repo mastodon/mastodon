@@ -89,7 +89,7 @@ const UI = React.createClass({
     }
 
     return (
-      <div style={{ flex: '0 0 auto', display: 'flex', flexDirection: 'column', width: '100%', height: '100%', background: '#1a1c23' }}>
+      <div className='ui'>
         <TabsBar />
 
         {mountedColumns}

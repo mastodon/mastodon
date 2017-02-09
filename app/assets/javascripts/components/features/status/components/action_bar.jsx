@@ -25,7 +25,8 @@ const ActionBar = React.createClass({
     onFavourite: React.PropTypes.func.isRequired,
     onDelete: React.PropTypes.func.isRequired,
     onMention: React.PropTypes.func.isRequired,
-    me: React.PropTypes.number.isRequired
+    me: React.PropTypes.number.isRequired,
+    intl: React.PropTypes.object.isRequired
   },
 
   mixins: [PureRenderMixin],
@@ -62,7 +63,7 @@ const ActionBar = React.createClass({
     }
 
     return (
-      <div style={{ background: '#2f3441', display: 'flex', flexDirection: 'row', borderTop: '1px solid #363c4b', borderBottom: '1px solid #363c4b', padding: '10px 0' }}>
+      <div className='detailed-status__action-bar'>
         <div style={{ flex: '1 1 auto', textAlign: 'center' }}><IconButton title={intl.formatMessage(messages.reply)} icon='reply' onClick={this.handleReplyClick} /></div>
         <div style={{ flex: '1 1 auto', textAlign: 'center' }}><IconButton disabled={status.get('visibility') === 'private'} active={status.get('reblogged')} title={intl.formatMessage(messages.reblog)} icon={status.get('visibility') === 'private' ? 'lock' : 'retweet'} onClick={this.handleReblogClick} /></div>
         <div style={{ flex: '1 1 auto', textAlign: 'center' }}><IconButton animate={true} active={status.get('favourited')} title={intl.formatMessage(messages.favourite)} icon='star' onClick={this.handleFavouriteClick} activeStyle={{ color: '#ca8f04' }} /></div>

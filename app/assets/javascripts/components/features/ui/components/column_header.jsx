@@ -22,7 +22,7 @@ const ColumnHeader = React.createClass({
     }
 
     return (
-      <div onClick={this.handleClick} style={{ padding: '15px', fontSize: '16px', background: '#2f3441', flex: '0 0 auto', cursor: 'pointer' }}>
+      <div className='column-header' onClick={this.handleClick}>
         {icon}
         {this.props.type}
       </div>

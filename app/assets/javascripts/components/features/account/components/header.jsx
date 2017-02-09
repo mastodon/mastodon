@@ -16,7 +16,8 @@ const Header = React.createClass({
   propTypes: {
     account: ImmutablePropTypes.map.isRequired,
     me: React.PropTypes.number.isRequired,
-    onFollow: React.PropTypes.func.isRequired
+    onFollow: React.PropTypes.func.isRequired,
+    intl: React.PropTypes.object.isRequired
   },
 
   mixins: [PureRenderMixin],
@@ -61,18 +62,18 @@ const Header = React.createClass({
     const displayNameHTML = { __html: emojify(escapeTextContentForBrowser(displayName)) };
 
     return (
-      <div className='account__header' style={{ flex: '0 0 auto', background: '#2f3441', textAlign: 'center', backgroundImage: `url(${account.get('header')})`, backgroundSize: 'cover', backgroundPosition: 'center', position: 'relative' }}>
-        <div style={{ background: 'rgba(47, 52, 65, 0.9)', padding: '20px 10px' }}>
+      <div className='account__header' style={{ backgroundImage: `url(${account.get('header')})` }}>
+        <div style={{ padding: '20px 10px' }}>
           <a href={account.get('url')} target='_blank' rel='noopener' style={{ display: 'block', color: 'inherit', textDecoration: 'none' }}>
             <div className='account__header__avatar' style={{ width: '90px', margin: '0 auto', marginBottom: '10px' }}>
               <img src={account.get('avatar')} alt='' style={{ display: 'block', width: '90px', height: '90px', borderRadius: '90px' }} />
             </div>
 
-            <span style={{ display: 'inline-block', color: '#fff', fontSize: '20px', lineHeight: '27px', fontWeight: '500' }} className='account__header__display-name' dangerouslySetInnerHTML={displayNameHTML} />
+            <span style={{ display: 'inline-block', fontSize: '20px', lineHeight: '27px', fontWeight: '500' }} className='account__header__display-name' dangerouslySetInnerHTML={displayNameHTML} />
           </a>
 
-          <span style={{ fontSize: '14px', fontWeight: '400', display: 'block', color: '#489fde', marginBottom: '10px' }}>@{account.get('acct')} {lockedIcon}</span>
-          <div style={{ color: '#d9e1e8', fontSize: '14px' }} className='account__header__content' dangerouslySetInnerHTML={content} />
+          <span className='account__header__username' style={{ fontSize: '14px', fontWeight: '400', display: 'block', marginBottom: '10px' }}>@{account.get('acct')} {lockedIcon}</span>
+          <div style={{ fontSize: '14px' }} className='account__header__content' dangerouslySetInnerHTML={content} />
 
           {info}
           {actionBtn}

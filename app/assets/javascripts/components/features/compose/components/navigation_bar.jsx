@@ -16,11 +16,11 @@ const NavigationBar = React.createClass({
 
   render () {
     return (
-      <div style={{ padding: '10px', display: 'flex', flexShrink: '0', cursor: 'default' }}>
+      <div className='navigation-bar'>
         <Permalink href={this.props.account.get('url')} to={`/accounts/${this.props.account.get('id')}`} style={{ textDecoration: 'none' }}><Avatar src={this.props.account.get('avatar')} size={40} /></Permalink>
 
-        <div style={{ flex: '1 1 auto', marginLeft: '8px', color: '#9baec8' }}>
-          <strong style={{ fontWeight: '500', display: 'block', color: '#fff' }}>{this.props.account.get('acct')}</strong>
+        <div style={{ flex: '1 1 auto', marginLeft: '8px' }}>
+          <strong style={{ fontWeight: '500', display: 'block' }}>{this.props.account.get('acct')}</strong>
           <a href='/settings/profile' style={{ color: 'inherit', textDecoration: 'none' }}><FormattedMessage id='navigation_bar.edit_profile' defaultMessage='Edit profile' /></a>
         </div>
       </div>

@@ -29,13 +29,6 @@ const scrollTop = (node) => {
   };
 };
 
-const style = {
-  boxSizing: 'border-box',
-  background: '#282c37',
-  display: 'flex',
-  flexDirection: 'column'
-};
-
 const Column = React.createClass({
 
   propTypes: {
@@ -67,7 +60,7 @@ const Column = React.createClass({
     }
 
     return (
-      <div className='column' style={style} onWheel={this.handleWheel}>
+      <div className='column' onWheel={this.handleWheel}>
         {header}
         {children}
       </div>

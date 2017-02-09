@@ -1,15 +1,7 @@
 import { FormattedMessage } from 'react-intl';
 
-const loadMoreStyle = {
-  display: 'block',
-  color: '#616b86',
-  textAlign: 'center',
-  padding: '15px',
-  textDecoration: 'none'
-};
-
 const LoadMore = ({ onClick }) => (
-  <a href='#' className='load-more' onClick={onClick} style={loadMoreStyle}>
+  <a href='#' className='load-more' onClick={onClick}>
     <FormattedMessage id='status.load_more' defaultMessage='Load more' />
   </a>
 );
