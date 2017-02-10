@@ -1,7 +1,6 @@
 List of Known Mastodon instances
 ==========================
 
-
 | Name | Theme/Notes, if applicable | Open Registrations |
 | -------------|-------------|---|
 | [mastodon.social](https://mastodon.social) |Flagship, quick updates|Yes|

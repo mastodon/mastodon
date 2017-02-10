@@ -41,13 +41,12 @@ const imageStyle = {
 };
 
 const loadingStyle = {
-  background: '#373b4a',
   width: '400px',
   paddingBottom: '120px'
 };
 
 const preloader = () => (
-  <div style={loadingStyle}>
+  <div className='modal-container--preloader' style={loadingStyle}>
     <LoadingIndicator />
   </div>
 );
@@ -57,7 +56,6 @@ const leftNavStyle = {
   background: 'rgba(0, 0, 0, 0.5)',
   padding: '30px 15px',
   cursor: 'pointer',
-  color: '#fff',
   fontSize: '24px',
   top: '0',
   left: '-61px',
@@ -72,7 +70,6 @@ const rightNavStyle = {
   background: 'rgba(0, 0, 0, 0.5)',
   padding: '30px 15px',
   cursor: 'pointer',
-  color: '#fff',
   fontSize: '24px',
   top: '0',
   right: '-61px',
@@ -143,11 +140,11 @@ const Modal = React.createClass({
     leftNav = rightNav = '';
 
     if (hasLeft) {
-      leftNav = <div style={leftNavStyle} onClick={this.handlePrevClick}><i className='fa fa-fw fa-chevron-left' /></div>;
+      leftNav = <div style={leftNavStyle} className='modal-container--nav' onClick={this.handlePrevClick}><i className='fa fa-fw fa-chevron-left' /></div>;
     }
 
     if (hasRight) {
-      rightNav = <div style={rightNavStyle} onClick={this.handleNextClick}><i className='fa fa-fw fa-chevron-right' /></div>;
+      rightNav = <div style={rightNavStyle} className='modal-container--nav' onClick={this.handleNextClick}><i className='fa fa-fw fa-chevron-right' /></div>;
     }
 
     return (

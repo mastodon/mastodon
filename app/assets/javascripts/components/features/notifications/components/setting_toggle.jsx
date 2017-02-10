@@ -11,14 +11,13 @@ const labelSpanStyle = {
   display: 'inline-block',
   verticalAlign: 'middle',
   marginBottom: '14px',
-  marginLeft: '8px',
-  color: '#9baec8'
+  marginLeft: '8px'
 };
 
 const SettingToggle = ({ settings, settingKey, label, onChange }) => (
   <label style={labelStyle}>
     <Toggle checked={settings.getIn(settingKey)} onChange={(e) => onChange(settingKey, e.target.checked)} />
-    <span style={labelSpanStyle}>{label}</span>
+    <span className='setting-toggle' style={labelSpanStyle}>{label}</span>
   </label>
 );
 
