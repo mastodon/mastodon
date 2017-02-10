@@ -34,7 +34,8 @@
 
 .column-icon {
   color: $color3;
-
+  background: lighten($color1, 4%);
+  
   &:hover {
     color: lighten($color3, 7%);
   }
@@ -883,6 +884,7 @@ a.status__content__spoiler-link {
 
 .autosuggest-textarea__textarea {
   height: 100px;
+  background: $color5;
 }
 
 .autosuggest-textarea__suggestions {
@@ -1019,4 +1021,24 @@ button.active i.fa-retweet {
   color: $color3;
   font-size: 14px;
   margin: 0;
+}
+
+.loading-indicator {
+    color: #616b86;
+    color: #00FF00;
+}
+
+.collapsable-collapsed {
+    color: $color3;
+    background: lighten($color1, 4%);
+}
+
+.collapsable {
+    color: $color5;    
+    background: lighten($color1, 6%);
+}
+
+.media-spoiler {
+    background: $color8;
+    color: $color5;
 }
