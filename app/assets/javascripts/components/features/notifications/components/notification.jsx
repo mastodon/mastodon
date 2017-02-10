@@ -7,16 +7,6 @@ import Permalink from '../../../components/permalink';
 import emojify from '../../../emoji';
 import escapeTextContentForBrowser from 'react/lib/escapeTextContentForBrowser';
 
-const messageStyle = {
-  marginLeft: '68px',
-  padding: '8px 0',
-  paddingBottom: '0',
-  cursor: 'default',
-  color: '#d9e1e8',
-  fontSize: '15px',
-  position: 'relative'
-};
-
 const linkStyle = {
   fontWeight: '500'
 };
@@ -32,9 +22,9 @@ const Notification = React.createClass({
   renderFollow (account, link) {
     return (
       <div className='notification'>
-        <div style={messageStyle}>
+        <div className='notification__message'>
           <div style={{ position: 'absolute', 'left': '-26px'}}>
-            <i className='fa fa-fw fa-user-plus' style={{ color: '#2b90d9' }} />
+            <i className='fa fa-fw fa-user-plus' />
           </div>
 
           <FormattedMessage id='notification.follow' defaultMessage='{name} followed you' values={{ name: link }} />
@@ -52,7 +42,7 @@ const Notification = React.createClass({
   renderFavourite (notification, link) {
     return (
       <div className='notification'>
-        <div style={messageStyle}>
+        <div className='notification__message'>
           <div style={{ position: 'absolute', 'left': '-26px'}}>
             <i className='fa fa-fw fa-star' style={{ color: '#ca8f04' }} />
           </div>
@@ -68,9 +58,9 @@ const Notification = React.createClass({
   renderReblog (notification, link) {
     return (
       <div className='notification'>
-        <div style={messageStyle}>
+        <div className='notification__message'>
           <div style={{ position: 'absolute', 'left': '-26px'}}>
-            <i className='fa fa-fw fa-retweet' style={{ color: '#2b90d9' }} />
+            <i className='fa fa-fw fa-retweet' />
           </div>
 
           <FormattedMessage id='notification.reblog' defaultMessage='{name} boosted your status' values={{ name: link }} />

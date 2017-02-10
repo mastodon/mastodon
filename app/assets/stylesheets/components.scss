@@ -35,7 +35,7 @@
 .column-icon {
   color: $color3;
   background: lighten($color1, 4%);
-  
+
   &:hover {
     color: lighten($color3, 7%);
   }
@@ -188,7 +188,7 @@
 a.status__content__spoiler-link {
   display: inline-block;
   border-radius: 2px;
-  color: lighten($color1, 6%);
+  color: lighten($color1, 8%);
   font-weight: 500;
   font-size: 11px;
   padding: 0px 6px;
@@ -201,7 +201,7 @@ a.status__content__spoiler-link {
   padding-left: 68px;
   position: relative;
   min-height: 48px;
-  border-bottom: 1px solid lighten($color1, 6%);
+  border-bottom: 1px solid lighten($color1, 8%);
   cursor: default;
 
   .status__relative-time {
@@ -228,7 +228,7 @@ a.status__content__spoiler-link {
 
 .detailed-status {
   background: lighten($color1, 4%);
-  
+
   .status__content {
     font-size: 19px;
     line-height: 24px;
@@ -240,12 +240,19 @@ a.status__content__spoiler-link {
   }
 }
 
+.detailed-status__meta {
+  margin-top: 15px;
+  color: lighten($color1, 26%);
+  font-size: 14px;
+  line-height: 18px;
+}
+
 .detailed-status__action-bar {
   background: lighten($color1, 4%);
   display: flex;
   flex-direction: row;
-  border-top: 1px solid lighten($color1, 6%);
-  border-bottom: 1px solid lighten($color1, 6%);
+  border-top: 1px solid lighten($color1, 8%);
+  border-bottom: 1px solid lighten($color1, 8%);
   padding: 10px 0;
 }
 
@@ -260,7 +267,7 @@ a.status__content__spoiler-link {
 
 .account {
   padding: 10px;
-  border-bottom: 1px solid lighten($color1, 6%);
+  border-bottom: 1px solid lighten($color1, 8%);
 
   .account__display-name {
     flex: 1 1 auto;
@@ -302,7 +309,7 @@ a.status__content__spoiler-link {
   font-weight: 400;
   overflow: hidden;
   color: $color3;
-  
+
   p {
     margin-bottom: 20px;
 
@@ -329,8 +336,8 @@ a.status__content__spoiler-link {
 }
 
 .account__action-bar {
-  border-top: 1px solid lighten($color1, 6%);
-  border-bottom: 1px solid lighten($color1, 6%);
+  border-top: 1px solid lighten($color1, 8%);
+  border-bottom: 1px solid lighten($color1, 8%);
   line-height: 36px;
   overflow: hidden;
   flex: 0 0 auto;
@@ -341,7 +348,7 @@ a.status__content__spoiler-link {
   text-decoration: none;
   overflow: hidden;
   width: 80px;
-  border-left: 1px solid lighten($color1, 6%);
+  border-left: 1px solid lighten($color1, 8%);
   padding: 10px 5px;
 
   & > span {
@@ -423,6 +430,20 @@ a.status__content__spoiler-link {
       background: lighten($color1, 29%);
       text-decoration: none;
     }
+  }
+}
+
+.notification__message {
+  margin-left: 68px;
+  padding: 8px 0;
+  padding-bottom: 0;
+  cursor: default;
+  color: $color3;
+  font-size: 15px;
+  position: relative;
+
+  .fa {
+    color: $color4;
   }
 }
 
@@ -650,7 +671,7 @@ a.status__content__spoiler-link {
 
 .tabs-bar {
   display: flex;
-  background: lighten($color1, 6%);
+  background: lighten($color1, 8%);
   flex: 0 0 auto;
   overflow-y: auto;
 }
@@ -664,7 +685,7 @@ a.status__content__spoiler-link {
   text-align: center;
   font-size:12px;
   font-weight: 500;
-  border-bottom: 2px solid lighten($color1, 6%);
+  border-bottom: 2px solid lighten($color1, 8%);
 
   &.active {
     border-bottom: 2px solid $color4;
@@ -854,9 +875,9 @@ a.status__content__spoiler-link {
 }
 
 .column-link {
-  background: lighten($color1, 6%);
+  background: lighten($color1, 8%);
   color: $color5;
-  
+
   &:hover {
     background: lighten($color1, 11%);
   }
@@ -974,9 +995,38 @@ button.active i.fa-retweet {
 }
 
 .status-card {
+  display: flex;
+  cursor: pointer;
+  font-size: 14px;
+  border: 1px solid lighten($color1, 8%);
+  border-radius: 4px;
+  color: lighten($color1, 26%);
+  margin-top: 14px;
+  text-decoration: none;
+  overflow: hidden;
+
   &:hover {
-    background: lighten($color1, 6%);
+    background: lighten($color1, 8%);
   }
+}
+
+.status-card__title {
+  display: block;
+  font-weight: 500;
+  margin-bottom: 5px;
+  color: $color3;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.status-card__description {
+  color: $color3;
+}
+
+.status-card__image {
+  flex: 0 0 100px;
+  background: lighten($color1, 8%);
 }
 
 .load-more {
@@ -987,7 +1037,7 @@ button.active i.fa-retweet {
   text-decoration: none;
 
   &:hover {
-    background: lighten($color1, 6%);
+    background: lighten($color1, 8%);
   }
 }
 
@@ -1037,8 +1087,8 @@ button.active i.fa-retweet {
 }
 
 .collapsable {
-  color: $color5;    
-  background: lighten($color1, 6%);
+  color: $color5;
+  background: lighten($color1, 8%);
 }
 
 .media-spoiler {
@@ -1047,17 +1097,17 @@ button.active i.fa-retweet {
 }
 
 .modal-container--preloader {
-  background: lighten($color1, 6%);
+  background: lighten($color1, 8%);
 }
 
 .account--panel {
   background: lighten($color1, 4%);
-  border-top: 1px solid lighten($color1, 6%);
-  border-bottom: 1px solid lighten($color1, 6%);
+  border-top: 1px solid lighten($color1, 8%);
+  border-bottom: 1px solid lighten($color1, 8%);
 }
 
 .column-settings--outer {
-  background: lighten($color1, 6%);
+  background: lighten($color1, 8%);
 }
 
 .column-settings--section {
