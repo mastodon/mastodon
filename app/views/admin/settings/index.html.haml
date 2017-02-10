@@ -17,6 +17,10 @@
       %td= best_in_place @settings['site_contact_email'], :value, url: admin_setting_path(@settings['site_contact_email']), place_holder: 'Enter a public e-mail address'
     %tr
       %td
+        %strong Site title
+      %td= best_in_place @settings['site_title'], :value, url: admin_setting_path(@settings['site_title'])
+    %tr
+      %td
         %strong Site description
         %br/
         Displayed as a paragraph on the frontpage and used as a meta tag.

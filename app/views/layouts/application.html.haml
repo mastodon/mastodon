@@ -13,7 +13,7 @@
 
     %title
       = "#{yield(:page_title)} - " if content_for?(:page_title)
-      Mastodon
+      = Setting.site_title
 
     = stylesheet_link_tag 'application', media: 'all'
     = csrf_meta_tags
