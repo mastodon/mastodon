@@ -423,8 +423,9 @@ a.status__content__spoiler-link {
     opacity: 0.5;
   }
 
-  .status__content__spoiler-link {
+  a.status__content__spoiler-link {
     background: lighten($color1, 26%);
+    color: lighten($color1, 4%);
 
     &:hover {
       background: lighten($color1, 29%);
