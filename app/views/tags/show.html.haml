@@ -1,10 +1,18 @@
+- content_for :page_title do
+  = "##{@tag.name}"
+
+.compact-header
+  %h1<
+    = link_to 'Mastodon', root_path
+    %small= "##{@tag.name}"
+
 - if @statuses.empty?
   .accounts-grid
     = render partial: 'accounts/nothing_here'
 - else
   .activity-stream.h-feed
-    = render partial: 'stream_entries/status', collection: @statuses, as: :status, cached: true
+    = render partial: 'stream_entries/status', collection: @statuses, as: :status
 
-.pagination
-  - if @statuses.size == 20
+- if @statuses.size == 20
+  .pagination
     = link_to safe_join([t('pagination.next'), fa_icon('chevron-right')], ' '), tag_url(@tag, max_id: @statuses.last.id), class: 'next_page', rel: 'next'
