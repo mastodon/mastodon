@@ -4,7 +4,6 @@ const outerStyle = {
   display: 'block',
   padding: '15px',
   fontSize: '16px',
-  color: '#fff',
   textDecoration: 'none'
 };
 

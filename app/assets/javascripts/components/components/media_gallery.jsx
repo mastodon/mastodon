@@ -16,8 +16,6 @@ const outerStyle = {
 };
 
 const spoilerStyle = {
-  background: '#000',
-  color: '#fff',
   textAlign: 'center',
   height: '100%',
   cursor: 'pointer',
@@ -84,14 +82,14 @@ const MediaGallery = React.createClass({
     if (!this.state.visible) {
       if (sensitive) {
         children = (
-          <div style={spoilerStyle} onClick={this.handleOpen}>
+          <div style={spoilerStyle} className='media-spoiler' onClick={this.handleOpen}>
             <span style={spoilerSpanStyle}><FormattedMessage id='status.sensitive_warning' defaultMessage='Sensitive content' /></span>
             <span style={spoilerSubSpanStyle}><FormattedMessage id='status.sensitive_toggle' defaultMessage='Click to view' /></span>
           </div>
         );
       } else {
         children = (
-          <div style={spoilerStyle} onClick={this.handleOpen}>
+          <div style={spoilerStyle} className='media-spoiler' onClick={this.handleOpen}>
             <span style={spoilerSpanStyle}><FormattedMessage id='status.media_hidden' defaultMessage='Media hidden' /></span>
             <span style={spoilerSubSpanStyle}><FormattedMessage id='status.sensitive_toggle' defaultMessage='Click to view' /></span>
           </div>
