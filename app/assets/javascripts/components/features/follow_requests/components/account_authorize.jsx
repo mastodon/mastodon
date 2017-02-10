@@ -16,11 +16,8 @@ const outerStyle = {
 };
 
 const panelStyle = {
-  background: '#2f3441',
   display: 'flex',
   flexDirection: 'row',
-  borderTop: '1px solid #363c4b',
-  borderBottom: '1px solid #363c4b',
   padding: '10px 0'
 };
 
@@ -40,10 +37,10 @@ const AccountAuthorize = ({ intl, account, onAuthorize, onReject }) => {
           <DisplayName account={account} />
         </Permalink>
 
-        <div style={{ color: '#616b86', fontSize: '14px' }} className='account__header__content' dangerouslySetInnerHTML={content} />
+        <div style={{ fontSize: '14px' }} className='account__header__content' dangerouslySetInnerHTML={content} />
       </div>
 
-      <div style={panelStyle}>
+      <div className='account--panel' style={panelStyle}>
         <div style={btnStyle}><IconButton title={intl.formatMessage(messages.authorize)} icon='check' onClick={onAuthorize} /></div>
         <div style={btnStyle}><IconButton title={intl.formatMessage(messages.reject)} icon='times' onClick={onReject} /></div>
       </div>
