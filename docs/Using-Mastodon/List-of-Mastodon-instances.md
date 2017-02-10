@@ -12,6 +12,7 @@ List of Known Mastodon instances
 | [toot.zone](https://toot.zone) |N/A|Yes|
 | [on.vu](https://on.vu) | Appears defunct|No|
 | [gay.crime.team](https://gay.crime.team) |N/A|Yes(?)|
+| [gnusocial.me](https://gnusocial.me) |Yes, it's a mastodon instance now|Yes|
 
 
 Let me know if you start running one so I can add it to the list! (Alternatively, add it yourself as a pull request).
