@@ -106,7 +106,8 @@ class ProcessFeedService < BaseService
         text: content(entry),
         spoiler_text: content_warning(entry),
         created_at: published(entry),
-        reply: thread?(entry)
+        reply: thread?(entry),
+        visibility: visibility_scope(entry)
       )
 
       if thread?(entry)
@@ -144,15 +145,9 @@ class ProcessFeedService < BaseService
 
     def mentions_from_xml(parent, xml)
       processed_account_ids = []
-      public_visibility     = false
 
       xml.xpath('./xmlns:link[@rel="mentioned"]', xmlns: TagManager::XMLNS).each do |link|
-        if link['ostatus:object-type'] == TagManager::TYPES[:collection] && link['href'] == TagManager::COLLECTIONS[:public]
-          public_visibility = true
-          next
-        elsif link['ostatus:object-type'] == TagManager::TYPES[:group]
-          next
-        end
+        next if [TagManager::TYPES[:group], TagManager::TYPES[:collection]].include? link['ostatus:object-type']
 
         url = Addressable::URI.parse(link['href'])
 
@@ -172,9 +167,6 @@ class ProcessFeedService < BaseService
         # So we can skip duplicate mentions
         processed_account_ids << mentioned_account.id
       end
-
-      parent.visibility = public_visibility ? :public : :unlisted
-      parent.save!
     end
 
     def hashtags_from_xml(parent, xml)
@@ -228,6 +220,10 @@ class ProcessFeedService < BaseService
 
     def content_warning(xml = @xml)
       xml.at_xpath('./xmlns:summary', xmlns: TagManager::XMLNS)&.content || ''
+    end
+
+    def visibility_scope(xml = @xml)
+      xml.at_xpath('./mastodon:scope', mastodon: TagManager::MTDN_XMLNS)&.content&.to_sym || :public
     end
 
     def published(xml = @xml)
