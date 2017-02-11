@@ -6,10 +6,11 @@ class StreamEntry < ApplicationRecord
   belongs_to :account, inverse_of: :stream_entries
   belongs_to :activity, polymorphic: true
 
-  belongs_to :status,    foreign_type: 'Status',    foreign_key: 'activity_id'
-  belongs_to :follow,    foreign_type: 'Follow',    foreign_key: 'activity_id'
-  belongs_to :favourite, foreign_type: 'Favourite', foreign_key: 'activity_id'
-  belongs_to :block,     foreign_type: 'Block',     foreign_key: 'activity_id'
+  belongs_to :status,         foreign_type: 'Status',        foreign_key: 'activity_id'
+  belongs_to :follow,         foreign_type: 'Follow',        foreign_key: 'activity_id'
+  belongs_to :favourite,      foreign_type: 'Favourite',     foreign_key: 'activity_id'
+  belongs_to :block,          foreign_type: 'Block',         foreign_key: 'activity_id'
+  belongs_to :follow_request, foreign_type: 'FollowRequest', foreign_key: 'activity_id'
 
   validates :account, :activity, presence: true
 
@@ -30,7 +31,7 @@ class StreamEntry < ApplicationRecord
   end
 
   def targeted?
-    [:follow, :request_friend, :authorize, :unfollow, :block, :unblock, :share, :favorite].include? verb
+    [:follow, :request_friend, :authorize, :reject, :unfollow, :block, :unblock, :share, :favorite].include? verb
   end
 
   def target
@@ -58,7 +59,7 @@ class StreamEntry < ApplicationRecord
   end
 
   def activity
-    !new_record? ? send(activity_type.downcase) : super
+    !new_record? ? send(activity_type.underscore) : super
   end
 
   private

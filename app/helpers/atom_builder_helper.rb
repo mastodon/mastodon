@@ -191,6 +191,7 @@ module AtomBuilderHelper
           include_author xml, stream_entry.target
         else
           object_type    xml, stream_entry.target.object_type
+          verb           xml, stream_entry.target.verb
           title          xml, stream_entry.target.title
           link_alternate xml, TagManager.instance.url_for(stream_entry.target)
         end

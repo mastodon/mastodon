@@ -19,8 +19,6 @@ class Favourite < ApplicationRecord
     destroyed? ? "#{account.acct} no longer favourites a status by #{status.account.acct}" : "#{account.acct} favourited a status by #{status.account.acct}"
   end
 
-  delegate :object_type, to: :target
-
   def thread
     status
   end

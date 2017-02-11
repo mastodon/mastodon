@@ -18,10 +18,6 @@ class Block < ApplicationRecord
     target_account
   end
 
-  def object_type
-    :person
-  end
-
   def hidden?
     true
   end

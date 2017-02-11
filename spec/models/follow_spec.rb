@@ -25,8 +25,8 @@ RSpec.describe Follow, type: :model do
   end
 
   describe '#object_type' do
-    it 'is a person' do
-      expect(subject.object_type).to be :person
+    it 'is an activity' do
+      expect(subject.object_type).to be :activity
     end
   end
 

@@ -20,10 +20,6 @@ class Follow < ApplicationRecord
     target_account
   end
 
-  def object_type
-    :person
-  end
-
   def title
     destroyed? ? "#{account.acct} is no longer following #{target_account.acct}" : "#{account.acct} started following #{target_account.acct}"
   end

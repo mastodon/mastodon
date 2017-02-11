@@ -13,7 +13,8 @@ class FollowRequest < ApplicationRecord
   validates :account_id, uniqueness: { scope: :target_account_id }
 
   def authorize!
-    @verb = :authorize
+    @verb   = :authorize
+    @target = clone.freeze
 
     account.follow!(target_account)
     MergeWorker.perform_async(target_account.id, account.id)
@@ -22,7 +23,9 @@ class FollowRequest < ApplicationRecord
   end
 
   def reject!
-    @verb = :reject
+    @verb   = :reject
+    @target = clone.freeze
+
     destroy!
   end
 
@@ -31,11 +34,11 @@ class FollowRequest < ApplicationRecord
   end
 
   def target
-    target_account
-  end
-
-  def object_type
-    :person
+    if destroyed? && @verb
+      @target
+    else
+      target_account
+    end
   end
 
   def hidden?

@@ -26,13 +26,8 @@ RSpec.describe Favourite, type: :model do
   end
 
   describe '#object_type' do
-    it 'is a note when the target is a note' do
-      expect(subject.object_type).to be :note
-    end
-
-    it 'is a comment when the target is a comment' do
-      status.in_reply_to_id = 2
-      expect(subject.object_type).to be :comment
+    it 'is an activity' do
+      expect(subject.object_type).to be :activity
     end
   end
 

@@ -23,7 +23,7 @@ Accounts and statuses have an access "scope":
 
 Accounts can be "private" or "public". The former requires a follow request to be approved before a follow relationship can be established, the latter can be followed directly.
 
-Statuses can be "private", "unlisted" or "public". Private must only be shown to the followers of the account, public can be displayed publicly. Unlisted statuses may be displayed publicly but preferably outside of any spotlights e.g. "whole known network" or "public" timelines.
+Statuses can be "private", "unlisted" or "public". Private must only be shown to the followers of the account or people mentioned in the status; public can be displayed publicly. Unlisted statuses may be displayed publicly but preferably outside of any spotlights e.g. "whole known network" or "public" timelines.
 
 Namespace of the scope element is `http://mastodon.social/schema/1.0`. Example:
 
@@ -47,7 +47,7 @@ Mastodon uses the following Salmon slaps to signal a follow request, a follow re
 - `http://activitystrea.ms/schema/1.0/authorize`
 - `http://activitystrea.ms/schema/1.0/reject`
 
-The activity object of the slaps is the account in question. Request-friend slap is sent to that account, when the end-user of that account decides, the authorize/reject decision slap is sent back to the requester.
+The activity object of the request-friend slap is the account in question. The activity object of the authorize and reject slaps is the original request-friend activity. Request-friend slap is sent to the locked account, when the end-user of that account decides, the authorize/reject decision slap is sent back to the requester.
 
 #### PuSH amendment
 
