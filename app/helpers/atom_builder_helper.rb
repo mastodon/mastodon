@@ -143,6 +143,10 @@ module AtomBuilderHelper
     xml.link(:rel => 'mentioned', :href => TagManager::COLLECTIONS[:public], 'ostatus:object-type' => TagManager::TYPES[:collection])
   end
 
+  def privacy_scope(xml, level)
+    xml['mastodon'].scope(level)
+  end
+
   def include_author(xml, account)
     object_type      xml, :person
     uri              xml, TagManager.instance.uri_for(account)
@@ -152,6 +156,7 @@ module AtomBuilderHelper
     link_alternate   xml, TagManager.instance.url_for(account)
     link_avatar      xml, account
     portable_contact xml, account
+    privacy_scope    xml, account.locked? ? :private : :public
   end
 
   def rich_content(xml, activity)
@@ -216,6 +221,7 @@ module AtomBuilderHelper
           end
 
           category(xml, 'nsfw') if stream_entry.target.sensitive?
+          privacy_scope(xml, stream_entry.target.visibility)
         end
       end
     end
@@ -237,6 +243,7 @@ module AtomBuilderHelper
     end
 
     category(xml, 'nsfw') if stream_entry.activity.sensitive?
+    privacy_scope(xml, stream_entry.activity.visibility)
   end
 
   private
@@ -249,6 +256,7 @@ module AtomBuilderHelper
                'xmlns:poco'     => TagManager::POCO_XMLNS,
                'xmlns:media'    => TagManager::MEDIA_XMLNS,
                'xmlns:ostatus'  => TagManager::OS_XMLNS,
+               'xmlns:mastodon' => TagManager::MTDN_XMLNS,
              }, &block)
   end
 

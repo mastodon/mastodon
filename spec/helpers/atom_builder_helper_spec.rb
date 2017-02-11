@@ -13,7 +13,7 @@ RSpec.describe AtomBuilderHelper, type: :helper do
 
   describe '#feed' do
     it 'creates a feed' do
-      expect(used_in_builder { |xml| helper.feed(xml) }).to match '<feed xmlns="http://www.w3.org/2005/Atom" xmlns:thr="http://purl.org/syndication/thread/1.0" xmlns:activity="http://activitystrea.ms/spec/1.0/" xmlns:poco="http://portablecontacts.net/spec/1.0" xmlns:media="http://purl.org/syndication/atommedia" xmlns:ostatus="http://ostatus.org/schema/1.0"/>'
+      expect(used_in_builder { |xml| helper.feed(xml) }).to match '<feed xmlns="http://www.w3.org/2005/Atom" xmlns:thr="http://purl.org/syndication/thread/1.0" xmlns:activity="http://activitystrea.ms/spec/1.0/" xmlns:poco="http://portablecontacts.net/spec/1.0" xmlns:media="http://purl.org/syndication/atommedia" xmlns:ostatus="http://ostatus.org/schema/1.0" xmlns:mastodon="http://mastodon.social/schema/1.0"/>'
     end
   end
 

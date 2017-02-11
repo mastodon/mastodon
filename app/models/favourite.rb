@@ -12,11 +12,11 @@ class Favourite < ApplicationRecord
   validates :status_id, uniqueness: { scope: :account_id }
 
   def verb
-    :favorite
+    destroyed? ? :unfavorite : :favorite
   end
 
   def title
-    "#{account.acct} favourited a status by #{status.account.acct}"
+    destroyed? ? "#{account.acct} no longer favourites a status by #{status.account.acct}" : "#{account.acct} favourited a status by #{status.account.acct}"
   end
 
   delegate :object_type, to: :target

@@ -30,7 +30,7 @@ class StreamEntry < ApplicationRecord
   end
 
   def targeted?
-    [:follow, :unfollow, :block, :unblock, :share, :favorite].include? verb
+    [:follow, :request_friend, :authorize, :unfollow, :block, :unblock, :share, :favorite].include? verb
   end
 
   def target

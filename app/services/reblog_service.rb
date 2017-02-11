@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class ReblogService < BaseService
+  include StreamEntryRenderer
+
   # Reblog a status and notify its remote author
   # @param [Account] account Account to reblog from
   # @param [Status] reblogged_status Status to be reblogged
@@ -18,15 +20,9 @@ class ReblogService < BaseService
     if reblogged_status.local?
       NotifyService.new.call(reblog.reblog.account, reblog)
     else
-      NotificationWorker.perform_async(reblog.stream_entry.id, reblog.reblog.account_id)
+      NotificationWorker.perform_async(stream_entry_to_xml(reblog.stream_entry), account.id, reblog.reblog.account_id)
     end
 
     reblog
-  end
-
-  private
-
-  def send_interaction_service
-    @send_interaction_service ||= SendInteractionService.new
   end
 end
