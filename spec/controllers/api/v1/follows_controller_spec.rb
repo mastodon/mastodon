@@ -14,6 +14,7 @@ RSpec.describe Api::V1::FollowsController, type: :controller do
     before do
       stub_request(:get,  "https://quitter.no/.well-known/host-meta").to_return(request_fixture('.host-meta.txt'))
       stub_request(:get,  "https://quitter.no/.well-known/webfinger?resource=acct:gargron@quitter.no").to_return(request_fixture('webfinger.txt'))
+      stub_request(:head, "https://quitter.no/api/statuses/user_timeline/7477.atom").to_return(:status => 405, :body => "", :headers => {})
       stub_request(:get,  "https://quitter.no/api/statuses/user_timeline/7477.atom").to_return(request_fixture('feed.txt'))
       stub_request(:get,  "https://quitter.no/avatar/7477-300-20160211190340.png").to_return(request_fixture('avatar.txt'))
       stub_request(:post, "https://quitter.no/main/push/hub").to_return(:status => 200, :body => "", :headers => {})

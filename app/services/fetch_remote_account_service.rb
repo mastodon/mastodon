@@ -22,7 +22,9 @@ class FetchRemoteAccountService < BaseService
 
     Rails.logger.debug "Going to webfinger #{username}@#{domain}"
 
-    return FollowRemoteAccountService.new.call("#{username}@#{domain}")
+    account = FollowRemoteAccountService.new.call("#{username}@#{domain}")
+    UpdateRemoteProfileService.new.call(xml, account) unless account.nil?
+    account
   rescue TypeError
     Rails.logger.debug "Unparseable URL given: #{url}"
     nil

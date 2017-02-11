@@ -28,6 +28,7 @@ class FollowService < BaseService
       NotifyService.new.call(target_account, follow_request)
     else
       NotificationWorker.perform_async(stream_entry_to_xml(follow_request.stream_entry), source_account.id, target_account.id)
+      AfterRemoteFollowRequestWorker.perform_async(follow_request.id)
     end
 
     follow_request
@@ -41,6 +42,7 @@ class FollowService < BaseService
     else
       subscribe_service.call(target_account) unless target_account.subscribed?
       NotificationWorker.perform_async(stream_entry_to_xml(follow.stream_entry), source_account.id, target_account.id)
+      AfterRemoteFollowWorker.perform_async(follow.id)
     end
 
     MergeWorker.perform_async(target_account.id, source_account.id)
