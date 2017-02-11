@@ -30,8 +30,12 @@ module Streamable
       false
     end
 
+    def needs_stream_entry?
+      account.local?
+    end
+
     after_create do
-      account.stream_entries.create!(activity: self, hidden: hidden?) if account.local?
+      account.stream_entries.create!(activity: self, hidden: hidden?) if needs_stream_entry?
     end
   end
 end

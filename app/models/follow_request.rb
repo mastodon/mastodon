@@ -45,6 +45,10 @@ class FollowRequest < ApplicationRecord
     true
   end
 
+  def needs_stream_entry?
+    true
+  end
+
   def title
     if destroyed?
       case @verb
