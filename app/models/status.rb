@@ -158,8 +158,7 @@ class Status < ApplicationRecord
       elsif !account.nil? && target_account.blocking?(account)
         where('1 = 0')
       elsif !account.nil?
-        joins('LEFT OUTER JOIN mentions ON statuses.id = mentions.status_id')
-          .where('mentions.account_id = ?', account.id)
+        joins('LEFT OUTER JOIN mentions ON statuses.id = mentions.status_id AND mentions.account_id = ' + account.id.to_s)
           .where('statuses.visibility != ? OR mentions.id IS NOT NULL', Status.visibilities[:private])
       else
         where.not(visibility: :private)
