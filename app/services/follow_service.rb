@@ -39,7 +39,7 @@ class FollowService < BaseService
     if target_account.local?
       NotifyService.new.call(target_account, follow)
     else
-      subscribe_service.call(target_account)
+      subscribe_service.call(target_account) unless target_account.subscribed?
       NotificationWorker.perform_async(stream_entry_to_xml(follow.stream_entry), source_account.id, target_account.id)
     end
 
