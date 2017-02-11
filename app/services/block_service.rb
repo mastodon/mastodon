@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class BlockService < BaseService
+  include StreamEntryRenderer
+
   def call(account, target_account)
     return if account.id == target_account.id
 
@@ -10,6 +12,6 @@ class BlockService < BaseService
     block = account.block!(target_account)
 
     BlockWorker.perform_async(account.id, target_account.id)
-    NotificationWorker.perform_async(block.stream_entry.id, target_account.id) unless target_account.local?
+    NotificationWorker.perform_async(stream_entry_to_xml(block.stream_entry), account.id, target_account.id) unless target_account.local?
   end
 end

@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class ProcessMentionsService < BaseService
+  include StreamEntryRenderer
+
   # Scan status for mentions and fetch remote mentioned users, create
   # local mention pointers, send Salmon notifications to mentioned
   # remote users
@@ -28,12 +30,10 @@ class ProcessMentionsService < BaseService
     status.mentions.each do |mention|
       mentioned_account = mention.account
 
-      next if status.private_visibility? && (!mentioned_account.following?(status.account) || !mentioned_account.local?)
-
       if mentioned_account.local?
         NotifyService.new.call(mentioned_account, mention)
       else
-        NotificationWorker.perform_async(status.stream_entry.id, mentioned_account.id)
+        NotificationWorker.perform_async(stream_entry_to_xml(status.stream_entry), status.account_id, mentioned_account.id)
       end
     end
   end

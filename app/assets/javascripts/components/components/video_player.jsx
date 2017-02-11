@@ -28,8 +28,6 @@ const muteStyle = {
 
 const spoilerStyle = {
   marginTop: '8px',
-  background: '#000',
-  color: '#fff',
   textAlign: 'center',
   height: '100%',
   cursor: 'pointer',
@@ -122,7 +120,7 @@ const VideoPlayer = React.createClass({
     if (!this.state.visible) {
       if (sensitive) {
         return (
-          <div style={{...spoilerStyle, width: `${width}px`, height: `${height}px` }} onClick={this.handleVisibility}>
+          <div style={{...spoilerStyle, width: `${width}px`, height: `${height}px` }} className='media-spoiler' onClick={this.handleVisibility}>
             {spoilerButton}
             <span style={spoilerSpanStyle}><FormattedMessage id='status.sensitive_warning' defaultMessage='Sensitive content' /></span>
             <span style={spoilerSubSpanStyle}><FormattedMessage id='status.sensitive_toggle' defaultMessage='Click to view' /></span>
@@ -130,7 +128,7 @@ const VideoPlayer = React.createClass({
         );
       } else {
         return (
-          <div style={{...spoilerStyle, width: `${width}px`, height: `${height}px` }} onClick={this.handleOpen}>
+          <div style={{...spoilerStyle, width: `${width}px`, height: `${height}px` }} className='media-spoiler' onClick={this.handleOpen}>
             {spoilerButton}
             <span style={spoilerSpanStyle}><FormattedMessage id='status.media_hidden' defaultMessage='Media hidden' /></span>
             <span style={spoilerSubSpanStyle}><FormattedMessage id='status.sensitive_toggle' defaultMessage='Click to view' /></span>

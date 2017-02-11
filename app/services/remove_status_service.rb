@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class RemoveStatusService < BaseService
+  include StreamEntryRenderer
+
   def call(status)
     remove_from_self(status) if status.account.local?
     remove_from_followers(status)
@@ -43,7 +45,7 @@ class RemoveStatusService < BaseService
 
   def send_delete_salmon(account, status)
     return unless status.local?
-    NotificationWorker.perform_async(status.stream_entry.id, account.id)
+    NotificationWorker.perform_async(stream_entry_to_xml(status.stream_entry), status.account_id, account.id)
   end
 
   def remove_reblogs(status)

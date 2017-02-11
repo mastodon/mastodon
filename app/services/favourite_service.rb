@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class FavouriteService < BaseService
+  include StreamEntryRenderer
+
   # Favourite a status and notify remote user
   # @param [Account] account
   # @param [Status] status
@@ -15,7 +17,7 @@ class FavouriteService < BaseService
     if status.local?
       NotifyService.new.call(favourite.status.account, favourite)
     else
-      NotificationWorker.perform_async(favourite.stream_entry.id, status.account_id)
+      NotificationWorker.perform_async(stream_entry_to_xml(favourite.stream_entry), account.id, status.account_id)
     end
 
     favourite

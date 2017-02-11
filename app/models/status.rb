@@ -76,7 +76,11 @@ class Status < ApplicationRecord
   end
 
   def permitted?(other_account = nil)
-    private_visibility? ? (account.id == other_account&.id || other_account&.following?(account)) : other_account.nil? || !account.blocking?(other_account)
+    if private_visibility?
+      (account.id == other_account&.id || other_account&.following?(account) || mentions.include?(other_account))
+    else
+      other_account.nil? || !account.blocking?(other_account)
+    end
   end
 
   def ancestors(account = nil)
@@ -153,6 +157,10 @@ class Status < ApplicationRecord
         where('1 = 1')
       elsif !account.nil? && target_account.blocking?(account)
         where('1 = 0')
+      elsif !account.nil?
+        joins('LEFT OUTER JOIN mentions ON statuses.id = mentions.status_id')
+          .where('mentions.account_id = ?', account.id)
+          .where('statuses.visibility != ? OR mentions.id IS NOT NULL', Status.visibilities[:private])
       else
         where.not(visibility: :private)
       end

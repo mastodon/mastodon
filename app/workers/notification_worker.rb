@@ -5,7 +5,7 @@ class NotificationWorker
 
   sidekiq_options retry: 5
 
-  def perform(stream_entry_id, target_account_id)
-    SendInteractionService.new.call(StreamEntry.find(stream_entry_id), Account.find(target_account_id))
+  def perform(xml, source_account_id, target_account_id)
+    SendInteractionService.new.call(xml, Account.find(source_account_id), Account.find(target_account_id))
   end
 end

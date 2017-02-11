@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class FollowService < BaseService
+  include StreamEntryRenderer
+
   # Follow a remote user, notify remote user about the follow
   # @param [Account] source_account From which to follow
   # @param [String] uri User URI to follow in the form of username@domain
@@ -20,10 +22,14 @@ class FollowService < BaseService
   private
 
   def request_follow(source_account, target_account)
-    return unless target_account.local?
-
     follow_request = FollowRequest.create!(account: source_account, target_account: target_account)
-    NotifyService.new.call(target_account, follow_request)
+
+    if target_account.local?
+      NotifyService.new.call(target_account, follow_request)
+    else
+      NotificationWorker.perform_async(stream_entry_to_xml(follow_request.stream_entry), source_account.id, target_account.id)
+      AfterRemoteFollowRequestWorker.perform_async(follow_request.id)
+    end
 
     follow_request
   end
@@ -34,8 +40,9 @@ class FollowService < BaseService
     if target_account.local?
       NotifyService.new.call(target_account, follow)
     else
-      subscribe_service.call(target_account)
-      NotificationWorker.perform_async(follow.stream_entry.id, target_account.id)
+      subscribe_service.call(target_account) unless target_account.subscribed?
+      NotificationWorker.perform_async(stream_entry_to_xml(follow.stream_entry), source_account.id, target_account.id)
+      AfterRemoteFollowWorker.perform_async(follow.id)
     end
 
     MergeWorker.perform_async(target_account.id, source_account.id)

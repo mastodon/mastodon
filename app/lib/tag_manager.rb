@@ -7,15 +7,18 @@ class TagManager
   include RoutingHelper
 
   VERBS = {
-    post:       'http://activitystrea.ms/schema/1.0/post',
-    share:      'http://activitystrea.ms/schema/1.0/share',
-    favorite:   'http://activitystrea.ms/schema/1.0/favorite',
-    unfavorite: 'http://activitystrea.ms/schema/1.0/unfavorite',
-    delete:     'http://activitystrea.ms/schema/1.0/delete',
-    follow:     'http://activitystrea.ms/schema/1.0/follow',
-    unfollow:   'http://ostatus.org/schema/1.0/unfollow',
-    block:      'http://mastodon.social/schema/1.0/block',
-    unblock:    'http://mastodon.social/schema/1.0/unblock',
+    post:           'http://activitystrea.ms/schema/1.0/post',
+    share:          'http://activitystrea.ms/schema/1.0/share',
+    favorite:       'http://activitystrea.ms/schema/1.0/favorite',
+    unfavorite:     'http://activitystrea.ms/schema/1.0/unfavorite',
+    delete:         'http://activitystrea.ms/schema/1.0/delete',
+    follow:         'http://activitystrea.ms/schema/1.0/follow',
+    request_friend: 'http://activitystrea.ms/schema/1.0/request-friend',
+    authorize:      'http://activitystrea.ms/schema/1.0/authorize',
+    reject:         'http://activitystrea.ms/schema/1.0/reject',
+    unfollow:       'http://ostatus.org/schema/1.0/unfollow',
+    block:          'http://mastodon.social/schema/1.0/block',
+    unblock:        'http://mastodon.social/schema/1.0/unblock',
   }.freeze
 
   TYPES = {
@@ -38,6 +41,7 @@ class TagManager
   POCO_XMLNS  = 'http://portablecontacts.net/spec/1.0'
   DFRN_XMLNS  = 'http://purl.org/macgirvin/dfrn/1.0'
   OS_XMLNS    = 'http://ostatus.org/schema/1.0'
+  MTDN_XMLNS  = 'http://mastodon.social/schema/1.0'
 
   def unique_tag(date, id, type)
     "tag:#{Rails.configuration.x.local_domain},#{date.strftime('%Y-%m-%d')}:objectId=#{id}:objectType=#{type}"

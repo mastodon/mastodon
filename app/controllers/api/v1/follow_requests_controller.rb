@@ -18,12 +18,12 @@ class Api::V1::FollowRequestsController < ApiController
   end
 
   def authorize
-    FollowRequest.find_by!(account_id: params[:id], target_account: current_account).authorize!
+    AuthorizeFollowService.new.call(Account.find(params[:id]), current_account)
     render_empty
   end
 
   def reject
-    FollowRequest.find_by!(account_id: params[:id], target_account: current_account).reject!
+    RejectFollowService.new.call(Account.find(params[:id]), current_account)
     render_empty
   end
 end
