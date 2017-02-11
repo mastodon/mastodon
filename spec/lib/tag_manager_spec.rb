@@ -47,22 +47,6 @@ RSpec.describe TagManager do
         expect(subject).to be_a String
       end
     end
-
-    context 'Follow' do
-      let(:target) { Fabricate(:follow, account: alice, target_account: bob) }
-
-      it 'returns a string' do
-        expect(subject).to be_a String
-      end
-    end
-
-    context 'Favourite' do
-      let(:target) { Fabricate(:favourite, account: bob, status: status) }
-
-      it 'returns a string' do
-        expect(subject).to be_a String
-      end
-    end
   end
 
   describe '#url_for' do
@@ -82,22 +66,6 @@ RSpec.describe TagManager do
 
     context 'Status' do
       let(:target) { status }
-
-      it 'returns a URL' do
-        expect(subject).to be_a String
-      end
-    end
-
-    context 'Follow' do
-      let(:target) { Fabricate(:follow, account: alice, target_account: bob) }
-
-      it 'returns a URL' do
-        expect(subject).to be_a String
-      end
-    end
-
-    context 'Favourite' do
-      let(:target) { Fabricate(:favourite, account: bob, status: status) }
 
       it 'returns a URL' do
         expect(subject).to be_a String
