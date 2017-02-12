@@ -167,6 +167,52 @@ module AtomBuilderHelper
     end
   end
 
+  def include_target(xml, target)
+    simple_id xml, TagManager.instance.uri_for(target)
+
+    if target.object_type == :person
+      include_author xml, target
+    else
+      object_type    xml, target.object_type
+      verb           xml, target.verb
+      title          xml, target.title
+      link_alternate xml, TagManager.instance.url_for(target)
+    end
+
+    # Statuses have content and author
+    return unless target.is_a?(Status)
+
+    rich_content xml, target
+    verb         xml, target.verb
+    published_at xml, target.created_at
+    updated_at   xml, target.updated_at
+
+    author(xml) do
+      include_author xml, target.account
+    end
+
+    if target.reply?
+      in_reply_to xml, TagManager.instance.uri_for(target.thread), TagManager.instance.url_for(target.thread)
+    end
+
+    link_visibility xml, target
+
+    target.mentions.each do |mention|
+      link_mention xml, mention.account
+    end
+
+    target.media_attachments.each do |media|
+      link_enclosure xml, media
+    end
+
+    target.tags.each do |tag|
+      category xml, tag.name
+    end
+
+    category(xml, 'nsfw') if target.sensitive?
+    privacy_scope(xml, target.visibility)
+  end
+
   def include_entry(xml, stream_entry)
     unique_id      xml, stream_entry.created_at, stream_entry.activity_id, stream_entry.activity_type
     published_at   xml, stream_entry.created_at
@@ -185,45 +231,7 @@ module AtomBuilderHelper
 
     if stream_entry.targeted?
       target(xml) do
-        simple_id xml, TagManager.instance.uri_for(stream_entry.target)
-
-        if stream_entry.target.object_type == :person
-          include_author xml, stream_entry.target
-        else
-          object_type    xml, stream_entry.target.object_type
-          verb           xml, stream_entry.target.verb
-          title          xml, stream_entry.target.title
-          link_alternate xml, TagManager.instance.url_for(stream_entry.target)
-        end
-
-        # Statuses have content and author
-        if stream_entry.target.is_a?(Status)
-          rich_content xml, stream_entry.target
-          verb         xml, stream_entry.target.verb
-          published_at xml, stream_entry.target.created_at
-          updated_at   xml, stream_entry.target.updated_at
-
-          author(xml) do
-            include_author xml, stream_entry.target.account
-          end
-
-          link_visibility xml, stream_entry.target
-
-          stream_entry.target.mentions.each do |mention|
-            link_mention xml, mention.account
-          end
-
-          stream_entry.target.media_attachments.each do |media|
-            link_enclosure xml, media
-          end
-
-          stream_entry.target.tags.each do |tag|
-            category xml, tag.name
-          end
-
-          category(xml, 'nsfw') if stream_entry.target.sensitive?
-          privacy_scope(xml, stream_entry.target.visibility)
-        end
+        include_target(xml, stream_entry.target)
       end
     end
 

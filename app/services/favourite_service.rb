@@ -31,14 +31,10 @@ class FavouriteService < BaseService
         end
 
         object_type xml, :activity
-        verb xml, :favourite
+        verb xml, :favorite
 
         target(xml) do
-          author(xml) do
-            include_author xml, favourite.status.account
-          end
-
-          include_entry xml, favourite.status.stream_entry
+          include_target xml, favourite.status
         end
       end
     end.to_xml

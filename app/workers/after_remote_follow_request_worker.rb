@@ -9,7 +9,7 @@ class AfterRemoteFollowRequestWorker
     follow_request  = FollowRequest.find(follow_request_id)
     updated_account = FetchRemoteAccountService.new.call(follow_request.target_account.remote_url)
 
-    return if updated_account.locked?
+    return if updated_account.nil? || updated_account.locked?
 
     follow_request.destroy
     FollowService.new.call(follow_request.account, updated_account.acct)

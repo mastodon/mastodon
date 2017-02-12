@@ -2,6 +2,8 @@
 
 class FetchAtomService < BaseService
   def call(url)
+    return if url.blank?
+
     response = http_client.head(url)
 
     Rails.logger.debug "Remote status HEAD request returned code #{response.code}"
