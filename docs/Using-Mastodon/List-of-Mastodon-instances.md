@@ -9,7 +9,6 @@ List of Known Mastodon instances
 | [animalliberation.social](https://animalliberation.social) |Animal Rights|Yes|
 | [socially.constructed.space](https://socially.constructed.space) |Single user|No|
 | [epiktistes.com](https://epiktistes.com) |N/A|Yes|
-| [toot.zone](https://toot.zone) |N/A|Yes|
 | [on.vu](https://on.vu) | Appears defunct|No|
 | [gay.crime.team](https://gay.crime.team) |N/A|Yes(?)|
 | [gnusocial.me](https://gnusocial.me) |Yes, it's a mastodon instance now|Yes|
