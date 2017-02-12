@@ -39,6 +39,8 @@ class ProcessInteractionService < BaseService
         unfollow!(account, target_account)
       when :favorite
         favourite!(xml, account)
+      when :unfavorite
+        unfavourite!(xml, account)
       when :post
         add_post!(body, account) if mentions_account?(xml, target_account)
       when :share
@@ -119,6 +121,12 @@ class ProcessInteractionService < BaseService
     current_status = status(xml)
     favourite = current_status.favourites.where(account: from_account).first_or_create!(account: from_account)
     NotifyService.new.call(current_status.account, favourite)
+  end
+
+  def unfavourite!(xml, from_account)
+    current_status = status(xml)
+    favourite = current_status.favourites.where(account: from_account).first
+    favourite&.destroy
   end
 
   def add_post!(body, account)
