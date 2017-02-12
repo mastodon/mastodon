@@ -32,12 +32,16 @@ class RemoveStatusService < BaseService
   end
 
   def remove_from_mentioned(status)
+    notified_domains = []
+
     status.mentions.each do |mention|
       mentioned_account = mention.account
 
       if mentioned_account.local?
         unpush(:mentions, mentioned_account, status)
       else
+        next if notified_domains.include?(mentioned_account.domain)
+        notified_domains << mentioned_account.domain
         send_delete_salmon(mentioned_account, status)
       end
     end
