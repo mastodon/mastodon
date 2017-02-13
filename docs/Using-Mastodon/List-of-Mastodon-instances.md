@@ -12,6 +12,6 @@ List of Known Mastodon instances
 | [on.vu](https://on.vu) | Appears defunct|No|
 | [gay.crime.team](https://gay.crime.team) |N/A|Yes(?)|
 | [gnusocial.me](https://gnusocial.me) |Yes, it's a mastodon instance now|Yes|
-
+| [icosahedron.website](https://icosahedron.website/) |Icosahedron-themed (well, visually), open registration.|Yes|
 
 Let me know if you start running one so I can add it to the list! (Alternatively, add it yourself as a pull request).
