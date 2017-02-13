@@ -8,7 +8,8 @@ class Settings::TwoFactorAuthsController < ApplicationController
   def show
     return unless current_user.otp_required_for_login
 
-    @qrcode = RQRCode::QRCode.new(current_user.otp_provisioning_uri(current_user.email, issuer: Rails.configuration.x.local_domain))
+    @provision_url = current_user.otp_provisioning_uri(current_user.email, issuer: Rails.configuration.x.local_domain)
+    @qrcode        = RQRCode::QRCode.new(@provision_url)
   end
 
   def enable

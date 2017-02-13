@@ -7,6 +7,10 @@
 
     .qr-code= raw @qrcode.as_svg(padding: 0, module_size: 5)
 
+    %p= t('two_factor_auth.plaintext_secret_html', secret: current_user.otp_secret)
+
+    %p= t('two_factor_auth.warning')
+
     = link_to t('two_factor_auth.disable'), disable_settings_two_factor_auth_path, data: { method: 'POST' }, class: 'block-button'
   - else
     %p= t('two_factor_auth.description_html')
