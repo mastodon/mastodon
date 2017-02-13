@@ -36,6 +36,8 @@ const ComposeForm = React.createClass({
     in_reply_to: ImmutablePropTypes.map,
     media_count: React.PropTypes.number,
     me: React.PropTypes.number,
+    needsPrivacyWarning: React.PropTypes.bool,
+    mentionedDomains: React.PropTypes.array.isRequired,
     onChange: React.PropTypes.func.isRequired,
     onSubmit: React.PropTypes.func.isRequired,
     onCancelReply: React.PropTypes.func.isRequired,
@@ -117,16 +119,29 @@ const ComposeForm = React.createClass({
   },
 
   render () {
-    const { intl }  = this.props;
-    let replyArea   = '';
-    let publishText = '';
-    const disabled  = this.props.is_submitting || this.props.is_uploading;
+    const { intl, needsPrivacyWarning, mentionedDomains } = this.props;
+    const disabled = this.props.is_submitting || this.props.is_uploading;
+
+    let replyArea      = '';
+    let publishText    = '';
+    let privacyWarning = '';
+    let reply_to_other = !!this.props.in_reply_to && (this.props.in_reply_to.getIn(['account', 'id']) !== this.props.me);
 
     if (this.props.in_reply_to) {
       replyArea = <ReplyIndicator status={this.props.in_reply_to} onCancel={this.props.onCancelReply} />;
     }
 
-    let reply_to_other = !!this.props.in_reply_to && (this.props.in_reply_to.getIn(['account', 'id']) !== this.props.me);
+    if (needsPrivacyWarning) {
+      privacyWarning = (
+        <div className='compose-form__warning'>
+          <FormattedMessage
+            id='compose_form.privacy_disclaimer'
+            defaultMessage='Your private status will be delivered to mentioned users on {domains}. Do you trust {domainsCount, plural, one {that server} other {those servers}} to not leak your status?'
+            values={{ domains: <strong>{mentionedDomains.join(', ')}</strong>, domainsCount: mentionedDomains.length }}
+          />
+        </div>
+      );
+    }
 
     if (this.props.private) {
       publishText = <span><i className='fa fa-lock' /> {intl.formatMessage(messages.publish)}</span>;
@@ -142,6 +157,7 @@ const ComposeForm = React.createClass({
           </div>
         </Collapsable>
 
+        {privacyWarning}
         {replyArea}
 
         <AutosuggestTextarea
@@ -173,13 +189,6 @@ const ComposeForm = React.createClass({
           <Toggle checked={this.props.private} onChange={this.handleChangeVisibility} />
           <span className='compose-form__label__text'><FormattedMessage id='compose_form.private' defaultMessage='Mark as private' /></span>
         </label>
-       
-        <Motion defaultStyle={{ opacity: 0, height: 0 }}, style={{ opacity: spring((this.props.private || reply_to_other) ? 0 : 100), height: spring((this.props.private || reply_to_other) ? 0 : 39.5) }}>
-            <label className='compose-form__label' style={{ height: `${height}px`, overflow: 'hidden', opacity: opacity / 100 }}>
-              <span className='compose-form__label__text'><FormattedMessage id='compose_form.privacy_disclaimer' defaultMessage='Warning: Private posts are not encrypted, and could be read or boosted by instances or people who do not respect post privacy. This is not true privacy. Do not post senstive information.' /></span>
-            </label>
-          }
-        </Motion>
 
         <Collapsable isVisible={!(this.props.private || reply_to_other)} fullHeight={39.5}>
           <label className='compose-form__label'>

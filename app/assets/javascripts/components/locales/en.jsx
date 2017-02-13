@@ -41,7 +41,7 @@ const en = {
   "compose_form.sensitive": "Mark media as sensitive",
   "compose_form.spoiler": "Hide text behind warning",
   "compose_form.private": "Mark as private",
-  "compose_form.privacy_disclaimer": "Warning: Private posts are not encrypted, and could be read or boosted by instances or people who do not respect post privacy. This is not true privacy. Do not post senstive information."
+  "compose_form.privacy_disclaimer": "Your private status will be delivered to mentioned users on {domains}. Do you trust {domainsCount, plural, one {that server} other {those servers}} to not leak your status?",
   "compose_form.unlisted": "Do not display in public timeline",
   "navigation_bar.edit_profile": "Edit profile",
   "navigation_bar.preferences": "Preferences",

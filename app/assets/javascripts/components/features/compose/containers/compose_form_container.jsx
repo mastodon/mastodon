@@ -19,6 +19,8 @@ const makeMapStateToProps = () => {
   const getStatus = makeGetStatus();
 
   const mapStateToProps = function (state, props) {
+    const mentionedUsernamesWithDomains = state.getIn(['compose', 'text']).match(/(?:^|[^\/\w])@([a-z0-9_]+@[a-z0-9\.\-]+)/ig);
+
     return {
       text: state.getIn(['compose', 'text']),
       suggestion_token: state.getIn(['compose', 'suggestion_token']),
@@ -34,6 +36,8 @@ const makeMapStateToProps = () => {
       in_reply_to: getStatus(state, state.getIn(['compose', 'in_reply_to'])),
       media_count: state.getIn(['compose', 'media_attachments']).size,
       me: state.getIn(['compose', 'me']),
+      needsPrivacyWarning: state.getIn(['compose', 'private']) && mentionedUsernamesWithDomains !== null,
+      mentionedDomains: mentionedUsernamesWithDomains !== null ? [...new Set(mentionedUsernamesWithDomains.map(item => item.split('@')[2]))] : []
     };
   };
 

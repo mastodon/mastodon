@@ -78,6 +78,21 @@
   color: $color1;
 }
 
+.compose-form__warning {
+  color: $color2;
+  margin-bottom: 15px;
+  border: 1px solid $color3;
+  padding: 8px 10px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 400;
+
+  strong {
+    color: $color5;
+    font-weight: 500;
+  }
+}
+
 .compose-form__label {
   display: block;
   line-height: 24px;
