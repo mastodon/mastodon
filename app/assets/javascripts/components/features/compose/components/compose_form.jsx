@@ -10,7 +10,7 @@ import { debounce } from 'react-decoration';
 import UploadButtonContainer from '../containers/upload_button_container';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import Toggle from 'react-toggle';
-import { Motion, spring } from 'react-motion';
+import Collapsable from '../../../components/collapsable';
 
 const messages = defineMessages({
   placeholder: { id: 'compose_form.placeholder', defaultMessage: 'What is on your mind?' },
@@ -136,13 +136,11 @@ const ComposeForm = React.createClass({
 
     return (
       <div style={{ padding: '10px' }}>
-        <Motion defaultStyle={{ opacity: !this.props.spoiler ? 0 : 100, height: !this.props.spoiler ? 50 : 0 }} style={{ opacity: spring(!this.props.spoiler ? 0 : 100), height: spring(!this.props.spoiler ? 0 : 50) }}>
-          {({ opacity, height }) =>
-            <div className="spoiler-input" style={{ height: `${height}px`, overflow: 'hidden', opacity: opacity / 100 }}>
-              <input placeholder={intl.formatMessage(messages.spoiler_placeholder)} value={this.props.spoiler_text} onChange={this.handleChangeSpoilerText} type="text" className="spoiler-input__input" />
-            </div>
-          }
-        </Motion>
+        <Collapsable isVisible={this.props.spoiler} fullHeight={50}>
+          <div className="spoiler-input">
+            <input placeholder={intl.formatMessage(messages.spoiler_placeholder)} value={this.props.spoiler_text} onChange={this.handleChangeSpoilerText} type="text" className="spoiler-input__input" />
+          </div>
+        </Collapsable>
 
         {replyArea}
 
@@ -176,23 +174,19 @@ const ComposeForm = React.createClass({
           <span className='compose-form__label__text'><FormattedMessage id='compose_form.private' defaultMessage='Mark as private' /></span>
         </label>
 
-        <Motion defaultStyle={{ opacity: (this.props.private || reply_to_other) ? 0 : 100, height: (this.props.private || reply_to_other) ? 39.5 : 0 }} style={{ opacity: spring((this.props.private || reply_to_other) ? 0 : 100), height: spring((this.props.private || reply_to_other) ? 0 : 39.5) }}>
-          {({ opacity, height }) =>
-            <label className='compose-form__label' style={{ height: `${height}px`, overflow: 'hidden', opacity: opacity / 100 }}>
-              <Toggle checked={this.props.unlisted} onChange={this.handleChangeListability} />
-              <span className='compose-form__label__text'><FormattedMessage id='compose_form.unlisted' defaultMessage='Do not display in public timeline' /></span>
-            </label>
-          }
-        </Motion>
+        <Collapsable isVisible={!(this.props.private || reply_to_other)} fullHeight={39.5}>
+          <label className='compose-form__label'>
+            <Toggle checked={this.props.unlisted} onChange={this.handleChangeListability} />
+            <span className='compose-form__label__text'><FormattedMessage id='compose_form.unlisted' defaultMessage='Do not display in public timeline' /></span>
+          </label>
+        </Collapsable>
 
-        <Motion defaultStyle={{ opacity: 0, height: 0 }} style={{ opacity: spring(this.props.media_count === 0 ? 0 : 100), height: spring(this.props.media_count === 0 ? 0 : 39.5) }}>
-          {({ opacity, height }) =>
-            <label className='compose-form__label' style={{ height: `${height}px`, overflow: 'hidden', opacity: opacity / 100 }}>
-              <Toggle checked={this.props.sensitive} onChange={this.handleChangeSensitivity} />
-              <span className='compose-form__label__text'><FormattedMessage id='compose_form.sensitive' defaultMessage='Mark media as sensitive' /></span>
-            </label>
-          }
-        </Motion>
+        <Collapsable isVisible={this.props.media_count > 0} fullHeight={39.5}>
+          <label className='compose-form__label'>
+            <Toggle checked={this.props.sensitive} onChange={this.handleChangeSensitivity} />
+            <span className='compose-form__label__text'><FormattedMessage id='compose_form.sensitive' defaultMessage='Mark media as sensitive' /></span>
+          </label>
+        </Collapsable>
       </div>
     );
   }

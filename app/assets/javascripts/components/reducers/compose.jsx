@@ -89,7 +89,7 @@ function removeMedia(state, mediaId) {
     map.update('text', text => text.replace(media.get('text_url'), '').trim());
 
     if (prevSize === 1) {
-      map.update('sensitive', false);
+      map.set('sensitive', false);
     }
   });
 };
