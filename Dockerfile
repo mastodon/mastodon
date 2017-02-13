@@ -1,6 +1,7 @@
 FROM ruby:2.3.1
 
 ENV RAILS_ENV=production
+ENV NODE_ENV=production
 
 RUN echo 'deb http://httpredir.debian.org/debian jessie-backports main contrib non-free' >> /etc/apt/sources.list
 RUN curl -sL https://deb.nodesource.com/setup_4.x | bash -
