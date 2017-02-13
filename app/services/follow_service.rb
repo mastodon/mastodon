@@ -57,6 +57,7 @@ class FollowService < BaseService
   def build_follow_request_xml(follow_request)
     Nokogiri::XML::Builder.new do |xml|
       entry(xml, true) do
+        unique_id xml, follow_request.created_at, follow_request.id, 'FollowRequest'
         title xml, "#{follow_request.account.acct} requested to follow #{follow_request.target_account.acct}"
 
         author(xml) do
@@ -76,6 +77,7 @@ class FollowService < BaseService
   def build_follow_xml(follow)
     Nokogiri::XML::Builder.new do |xml|
       entry(xml, true) do
+        unique_id xml, follow.created_at, follow.id, 'Follow'
         title xml, "#{follow.account.acct} started following #{follow.target_account.acct}"
 
         author(xml) do

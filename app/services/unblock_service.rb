@@ -13,6 +13,7 @@ class UnblockService < BaseService
   def build_xml(block)
     Nokogiri::XML::Builder.new do |xml|
       entry(xml, true) do
+        unique_id xml, Time.now.utc, block.id, 'Block'
         title xml, "#{block.account.acct} no longer blocks #{block.target_account.acct}"
 
         author(xml) do

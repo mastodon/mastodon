@@ -12,6 +12,9 @@ class RejectFollowService < BaseService
   def build_xml(follow_request)
     Nokogiri::XML::Builder.new do |xml|
       entry(xml, true) do
+        unique_id xml, Time.now.utc, follow_request.id, 'FollowRequest'
+        title xml, "#{follow_request.target_account.acct} rejects follow request by #{follow_request.account.acct}"
+
         author(xml) do
           include_author xml, follow_request.target_account
         end

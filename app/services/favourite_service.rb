@@ -24,6 +24,7 @@ class FavouriteService < BaseService
   def build_xml(favourite)
     Nokogiri::XML::Builder.new do |xml|
       entry(xml, true) do
+        unique_id xml, favourite.created_at, favourite.id, 'Favourite'
         title xml, "#{favourite.account.acct} favourited a status by #{favourite.status.account.acct}"
 
         author(xml) do
@@ -32,6 +33,7 @@ class FavouriteService < BaseService
 
         object_type xml, :activity
         verb xml, :favorite
+        in_reply_to xml, TagManager.instance.uri_for(favourite.status), TagManager.instance.url_for(favourite.status)
 
         target(xml) do
           include_target xml, favourite.status

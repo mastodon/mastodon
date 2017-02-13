@@ -20,6 +20,7 @@ class BlockService < BaseService
   def build_xml(block)
     Nokogiri::XML::Builder.new do |xml|
       entry(xml, true) do
+        unique_id xml, block.created_at, block.id, 'Block'
         title xml, "#{block.account.acct} no longer wishes to interact with #{block.target_account.acct}"
 
         author(xml) do
