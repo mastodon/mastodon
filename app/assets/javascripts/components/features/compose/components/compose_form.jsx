@@ -158,6 +158,7 @@ const ComposeForm = React.createClass({
       <div style={{ padding: '10px' }}>
         <Collapsable isVisible={this.props.spoiler} fullHeight={50}>
           <div className="spoiler-input">
+<<<<<<< HEAD
             <input placeholder={intl.formatMessage(messages.spoiler_placeholder)} value={this.props.spoiler_text} onChange={this.handleChangeSpoilerText} onKeyDown={this.handleKeyDown} type="text" className="spoiler-input__input" />
           </div>
         </Collapsable>
@@ -201,6 +202,64 @@ const ComposeForm = React.createClass({
             <div style={{ paddingTop: '10px' }}><Button text={publishText} onClick={this.handleSubmit} disabled={disabled} /></div>
           </div>
         </div>
+=======
+            <input placeholder={intl.formatMessage(messages.spoiler_placeholder)} value={this.props.spoiler_text} onChange={this.handleChangeSpoilerText} type="text" className="spoiler-input__input" />
+          </div>
+        </Collapsable>
+
+        {replyArea}
+
+        <AutosuggestTextarea
+          ref={this.setAutosuggestTextarea}
+          placeholder={intl.formatMessage(messages.placeholder)}
+          disabled={disabled}
+          fileDropDate={this.props.fileDropDate}
+          value={this.props.text}
+          onChange={this.handleChange}
+          suggestions={this.props.suggestions}
+          onKeyDown={this.handleKeyDown}
+          onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
+          onSuggestionsClearRequested={this.onSuggestionsClearRequested}
+          onSuggestionSelected={this.onSuggestionSelected}
+        />
+
+        <div style={{ marginTop: '10px', overflow: 'hidden' }}>
+          <div style={{ float: 'right' }}><Button text={publishText} onClick={this.handleSubmit} disabled={disabled} /></div>
+          <div style={{ float: 'right', marginRight: '16px', lineHeight: '36px' }}><CharacterCounter max={500} text={[this.props.spoiler_text, this.props.text].join('')} /></div>
+          <UploadButtonContainer style={{ paddingTop: '4px' }} />
+        </div>
+
+        <label className='compose-form__label with-border' style={{ marginTop: '10px' }}>
+          <Toggle checked={this.props.spoiler} onChange={this.handleChangeSpoilerness} />
+          <span className='compose-form__label__text'><FormattedMessage id='compose_form.spoiler' defaultMessage='Hide text behind warning' /></span>
+        </label>
+
+        <label className='compose-form__label with-border'>
+          <Toggle checked={this.props.private} onChange={this.handleChangeVisibility} />
+          <span className='compose-form__label__text'><FormattedMessage id='compose_form.private' defaultMessage='Mark as private' /></span>
+        </label>
+
+        <Motion defaultStyle={{ opacity: 0, height: 0 }}, style={{ opacity: spring((this.props.private || reply_to_other) ? 0 : 100), height: spring((this.props.private || reply_to_other) ? 0 : 39.5) }}>
+            <label className='compose-form__label' style={{ height: `${height}px`, overflow: 'hidden', opacity: opacity / 100 }}>
+              <span className='compose-form__label__text'><FormattedMessage id='compose_form.privacy_disclaimer' defaultMessage='Warning: Private posts are not encrypted, and could be read or boosted by instances or people who do not respect post privacy. This is not true privacy. Do not post senstive information.' /></span>
+            </label>
+          }
+        </Motion>
+
+        <Collapsable isVisible={!(this.props.private || reply_to_other)} fullHeight={39.5}>
+          <label className='compose-form__label'>
+            <Toggle checked={this.props.unlisted} onChange={this.handleChangeListability} />
+            <span className='compose-form__label__text'><FormattedMessage id='compose_form.unlisted' defaultMessage='Do not display in public timeline' /></span>
+          </label>
+        </Collapsable>
+
+        <Collapsable isVisible={this.props.media_count > 0} fullHeight={39.5}>
+          <label className='compose-form__label'>
+            <Toggle checked={this.props.sensitive} onChange={this.handleChangeSensitivity} />
+            <span className='compose-form__label__text'><FormattedMessage id='compose_form.sensitive' defaultMessage='Mark media as sensitive' /></span>
+          </label>
+        </Collapsable>
+>>>>>>> Clean up collapsible components
       </div>
     );
   }
