@@ -90,6 +90,10 @@ module AtomBuilderHelper
     xml.link(rel: 'self', type: 'application/atom+xml', href: url)
   end
 
+  def link_next(xml, url)
+    xml.link(rel: 'next', type: 'application/atom+xml', href: url)
+  end
+
   def link_hub(xml, url)
     xml.link(rel: 'hub', href: url)
   end
