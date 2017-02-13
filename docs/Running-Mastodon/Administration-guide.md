@@ -1,7 +1,15 @@
 Administration guide
-=================
+====================
 
 So, you have a working Mastodon instance... now what?
+
+## Turning into an admin
+
+The following rake task:
+
+    rails mastodon:make_admin USERNAME=alice
+
+Would turn the local user "alice" into an admin.
 
 ## Administration web interface
 
@@ -20,6 +28,7 @@ Your site settings are stored in the `settings` database table, and editable thr
 
 You are able to set the following settings:
 
+- Site title
 - Contact username
 - Contact email
 - Site description

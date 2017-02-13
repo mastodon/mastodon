@@ -1,6 +1,15 @@
 # frozen_string_literal: true
 
 namespace :mastodon do
+  task make_admin: :environment do
+    include RoutingHelper
+
+    user = Account.find_local(ENV.fetch('USERNAME')).user
+    user.update(admin: true)
+
+    puts "Congrats! #{user.account.username} is now an admin. \\o/\nNavigate to #{admin_settings_url} to get started"
+  end
+
   namespace :media do
     desc 'Removes media attachments that have not been assigned to any status for longer than a day'
     task clear: :environment do
