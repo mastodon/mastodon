@@ -173,6 +173,13 @@ const ComposeForm = React.createClass({
           <Toggle checked={this.props.private} onChange={this.handleChangeVisibility} />
           <span className='compose-form__label__text'><FormattedMessage id='compose_form.private' defaultMessage='Mark as private' /></span>
         </label>
+       
+        <Motion defaultStyle={{ opacity: 0, height: 0 }}, style={{ opacity: spring((this.props.private || reply_to_other) ? 0 : 100), height: spring((this.props.private || reply_to_other) ? 0 : 39.5) }}>
+            <label className='compose-form__label' style={{ height: `${height}px`, overflow: 'hidden', opacity: opacity / 100 }}>
+              <span className='compose-form__label__text'><FormattedMessage id='compose_form.privacy_disclaimer' defaultMessage='Warning: Private posts are not encrypted, and could be read or boosted by instances or people who do not respect post privacy. This is not true privacy. Do not post senstive information.' /></span>
+            </label>
+          }
+        </Motion>
 
         <Collapsable isVisible={!(this.props.private || reply_to_other)} fullHeight={39.5}>
           <label className='compose-form__label'>
