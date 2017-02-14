@@ -25,9 +25,7 @@
     %tr
       %th Username
       %th Domain
-      %th Subscribed
-      %th Silenced
-      %th Suspended
+      %th= fa_icon 'paper-plane-o'
       %th
   %tbody
     - @accounts.each do |account|
@@ -40,16 +38,6 @@
           - if account.local?
             Local
           - elsif account.subscribed?
-            %i.fa.fa-check
-          - else
-            %i.fa.fa-times
-        %td
-          - if account.silenced?
-            %i.fa.fa-check
-          - else
-            %i.fa.fa-times
-        %td
-          - if account.suspended?
             %i.fa.fa-check
           - else
             %i.fa.fa-times

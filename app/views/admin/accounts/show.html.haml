@@ -18,8 +18,11 @@
         %th E-mail
         %td= @account.user.email
       %tr
-        %th Current IP
+        %th Most recent IP
         %td= @account.user.current_sign_in_ip
+      %tr
+        %th Most recent activity
+        %td= l @account.user.current_sign_in_at
     - else
       %tr
         %th Profile URL
@@ -27,14 +30,39 @@
       %tr
         %th Feed URL
         %td= link_to @account.remote_url
+      %tr
+        %th PuSH subscription expires
+        %td
+          - if @account.subscribed?
+            = l @account.subscription_expires_at
+          - else
+            Not subscribed
+      %tr
+        %th Salmon URL
+        %td= link_to @account.salmon_url
 
-= simple_form_for @account, url: admin_account_path(@account.id) do |f|
-  = render 'shared/error_messages', object: @account
+    %tr
+      %th Follows
+      %td= @account.following.count
+    %tr
+      %th Followers
+      %td= @account.followers.count
+    %tr
+      %th Statuses
+      %td= @account.statuses.count
+    %tr
+      %th Media attachments
+      %td
+        = @account.media_attachments.count
+        = surround '(', ')' do
+          = number_to_human_size @account.media_attachments.sum('file_file_size')
 
-  = f.input :silenced, as: :boolean, wrapper: :with_label
-  = f.input :suspended, as: :boolean, wrapper: :with_label
+- if @account.silenced?
+  = link_to 'Undo silence', unsilence_admin_account_path(@account.id), method: :post, class: 'button'
+- else
+  = link_to 'Silence', silence_admin_account_path(@account.id), method: :post, class: 'button'
 
-  .actions
-    = f.button :button, t('generic.save_changes'), type: :submit
-
-= link_to 'Perform full suspension', suspend_admin_account_path(@account.id), method: :post, data: { confirm: 'Are you sure?' }, class: 'button'
+- if @account.suspended?
+  = link_to 'Undo suspension', unsuspend_admin_account_path(@account.id), method: :post, class: 'button'
+- else
+  = link_to 'Perform full suspension', suspend_admin_account_path(@account.id), method: :post, data: { confirm: 'Are you sure?' }, class: 'button'

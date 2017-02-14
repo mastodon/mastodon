@@ -67,9 +67,12 @@ Rails.application.routes.draw do
     resources :domain_blocks, only: [:index, :create]
     resources :settings, only: [:index, :update]
 
-    resources :accounts, only: [:index, :show, :update] do
+    resources :accounts, only: [:index, :show] do
       member do
+        post :silence
+        post :unsilence
         post :suspend
+        post :unsuspend
       end
     end
   end

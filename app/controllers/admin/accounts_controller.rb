@@ -19,16 +19,23 @@ class Admin::AccountsController < ApplicationController
 
   def show; end
 
-  def update
-    if @account.update(account_params)
-      redirect_to admin_accounts_path
-    else
-      render :show
-    end
-  end
-
   def suspend
     Admin::SuspensionWorker.perform_async(@account.id)
+    redirect_to admin_accounts_path
+  end
+
+  def unsuspend
+    @account.update(suspended: false)
+    redirect_to admin_accounts_path
+  end
+
+  def silence
+    @account.update(silenced: true)
+    redirect_to admin_accounts_path
+  end
+
+  def unsilence
+    @account.update(silenced: false)
     redirect_to admin_accounts_path
   end
 
