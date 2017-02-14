@@ -1,7 +1,7 @@
 Heroku guide
 ============
 
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://dashboard.heroku.com/new?button-url=https://github.com/tootsuite/mastodon&template=https://github.com/tootsuite/mastodon)
 
 Mastodon can theoretically run indefinitely on a free [Heroku](https://heroku.com) app. It should be noted this has limited testing and could have unpredictable results.
 
