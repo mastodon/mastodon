@@ -13,7 +13,8 @@ const Header = React.createClass({
     me: React.PropTypes.number.isRequired,
     onFollow: React.PropTypes.func.isRequired,
     onBlock: React.PropTypes.func.isRequired,
-    onMention: React.PropTypes.func.isRequired
+    onMention: React.PropTypes.func.isRequired,
+    onReport: React.PropTypes.func.isRequired
   },
 
   mixins: [PureRenderMixin],
@@ -28,6 +29,11 @@ const Header = React.createClass({
 
   handleMention () {
     this.props.onMention(this.props.account, this.context.router);
+  },
+
+  handleReport () {
+    this.props.onReport(this.props.account);
+    this.context.router.push('/report');
   },
 
   render () {
@@ -50,6 +56,7 @@ const Header = React.createClass({
           me={me}
           onBlock={this.handleBlock}
           onMention={this.handleMention}
+          onReport={this.handleReport}
         />
       </div>
     );

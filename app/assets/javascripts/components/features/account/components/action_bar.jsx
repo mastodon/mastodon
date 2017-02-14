@@ -11,7 +11,8 @@ const messages = defineMessages({
   unfollow: { id: 'account.unfollow', defaultMessage: 'Unfollow' },
   block: { id: 'account.block', defaultMessage: 'Block' },
   follow: { id: 'account.follow', defaultMessage: 'Follow' },
-  block: { id: 'account.block', defaultMessage: 'Block' }
+  block: { id: 'account.block', defaultMessage: 'Block' },
+  report: { id: 'account.report', defaultMessage: 'Report' }
 });
 
 const outerDropdownStyle = {
@@ -32,7 +33,9 @@ const ActionBar = React.createClass({
     me: React.PropTypes.number.isRequired,
     onFollow: React.PropTypes.func,
     onBlock: React.PropTypes.func.isRequired,
-    onMention: React.PropTypes.func.isRequired
+    onMention: React.PropTypes.func.isRequired,
+    onReport: React.PropTypes.func.isRequired,
+    intl: React.PropTypes.object.isRequired
   },
 
   mixins: [PureRenderMixin],
@@ -52,6 +55,10 @@ const ActionBar = React.createClass({
       menu.push({ text: intl.formatMessage(messages.block), action: this.props.onBlock });
     } else {
       menu.push({ text: intl.formatMessage(messages.block), action: this.props.onBlock });
+    }
+
+    if (account.get('id') !== me) {
+      menu.push({ text: intl.formatMessage(messages.report), action: this.props.onReport });
     }
 
     return (

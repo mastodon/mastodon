@@ -8,6 +8,7 @@ import {
   unblockAccount
 } from '../../../actions/accounts';
 import { mentionCompose } from '../../../actions/compose';
+import { initReport } from '../../../actions/reports';
 
 const makeMapStateToProps = () => {
   const getAccount = makeGetAccount();
@@ -39,6 +40,10 @@ const mapDispatchToProps = dispatch => ({
 
   onMention (account, router) {
     dispatch(mentionCompose(account, router));
+  },
+
+  onReport (account) {
+    dispatch(initReport(account));
   }
 });
 

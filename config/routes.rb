@@ -115,6 +115,7 @@ Rails.application.routes.draw do
       resources :apps,       only: [:create]
       resources :blocks,     only: [:index]
       resources :favourites, only: [:index]
+      resources :reports,    only: [:index, :create]
 
       resources :follow_requests, only: [:index] do
         member do

@@ -14,6 +14,7 @@ import {
   mentionCompose
 }                            from '../../actions/compose';
 import { deleteStatus }      from '../../actions/statuses';
+import { initReport } from '../../actions/reports';
 import {
   makeGetStatus,
   getStatusAncestors,
@@ -88,6 +89,10 @@ const Status = React.createClass({
     this.props.dispatch(openMedia(media, index));
   },
 
+  handleReport (status) {
+    this.props.dispatch(initReport(status.get('account'), status));
+  },
+
   renderChildren (list) {
     return list.map(id => <StatusContainer key={id} id={id} />);
   },
@@ -123,7 +128,7 @@ const Status = React.createClass({
             {ancestors}
 
             <DetailedStatus status={status} me={me} onOpenMedia={this.handleOpenMedia} />
-            <ActionBar status={status} me={me} onReply={this.handleReplyClick} onFavourite={this.handleFavouriteClick} onReblog={this.handleReblogClick} onDelete={this.handleDeleteClick} onMention={this.handleMentionClick} />
+            <ActionBar status={status} me={me} onReply={this.handleReplyClick} onFavourite={this.handleFavouriteClick} onReblog={this.handleReblogClick} onDelete={this.handleDeleteClick} onMention={this.handleMentionClick} onReport={this.handleReport} />
 
             {descendants}
           </div>

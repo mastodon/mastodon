@@ -13,6 +13,7 @@ import {
 } from '../actions/interactions';
 import { blockAccount } from '../actions/accounts';
 import { deleteStatus } from '../actions/statuses';
+import { initReport } from '../actions/reports';
 import { openMedia } from '../actions/modal';
 import { createSelector } from 'reselect'
 import { isMobile } from '../is_mobile'
@@ -97,6 +98,10 @@ const mapDispatchToProps = (dispatch) => ({
 
   onBlock (account) {
     dispatch(blockAccount(account.get('id')));
+  },
+
+  onReport (status) {
+    dispatch(initReport(status.get('account'), status));
   }
 
 });

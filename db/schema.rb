@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170209184350) do
+ActiveRecord::Schema.define(version: 20170214110202) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -171,6 +171,16 @@ ActiveRecord::Schema.define(version: 20170209184350) do
     t.datetime "created_at",                      null: false
     t.datetime "updated_at",                      null: false
     t.index ["status_id"], name: "index_preview_cards_on_status_id", unique: true, using: :btree
+  end
+
+  create_table "reports", force: :cascade do |t|
+    t.integer  "account_id",                        null: false
+    t.integer  "target_account_id",                 null: false
+    t.integer  "status_ids",        default: [],    null: false, array: true
+    t.text     "comment",           default: "",    null: false
+    t.boolean  "action_taken",      default: false, null: false
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
   end
 
   create_table "settings", force: :cascade do |t|

@@ -9,7 +9,8 @@ const messages = defineMessages({
   mention: { id: 'status.mention', defaultMessage: 'Mention' },
   reply: { id: 'status.reply', defaultMessage: 'Reply' },
   reblog: { id: 'status.reblog', defaultMessage: 'Reblog' },
-  favourite: { id: 'status.favourite', defaultMessage: 'Favourite' }
+  favourite: { id: 'status.favourite', defaultMessage: 'Favourite' },
+  report: { id: 'status.report', defaultMessage: 'Report' }
 });
 
 const ActionBar = React.createClass({
@@ -25,6 +26,7 @@ const ActionBar = React.createClass({
     onFavourite: React.PropTypes.func.isRequired,
     onDelete: React.PropTypes.func.isRequired,
     onMention: React.PropTypes.func.isRequired,
+    onReport: React.PropTypes.func,
     me: React.PropTypes.number.isRequired,
     intl: React.PropTypes.object.isRequired
   },
@@ -51,6 +53,11 @@ const ActionBar = React.createClass({
     this.props.onMention(this.props.status.get('account'), this.context.router);
   },
 
+  handleReport () {
+    this.props.onReport(this.props.status);
+    this.context.router.push('/report');
+  },
+
   render () {
     const { status, me, intl } = this.props;
 
@@ -60,6 +67,7 @@ const ActionBar = React.createClass({
       menu.push({ text: intl.formatMessage(messages.delete), action: this.handleDeleteClick });
     } else {
       menu.push({ text: intl.formatMessage(messages.mention), action: this.handleMentionClick });
+      menu.push({ text: intl.formatMessage(messages.report), action: this.handleReport });
     }
 
     return (

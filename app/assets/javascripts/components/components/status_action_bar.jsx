@@ -11,7 +11,8 @@ const messages = defineMessages({
   reply: { id: 'status.reply', defaultMessage: 'Reply' },
   reblog: { id: 'status.reblog', defaultMessage: 'Reblog' },
   favourite: { id: 'status.favourite', defaultMessage: 'Favourite' },
-  open: { id: 'status.open', defaultMessage: 'Expand' }
+  open: { id: 'status.open', defaultMessage: 'Expand' },
+  report: { id: 'status.report', defaultMessage: 'Report' }
 });
 
 const StatusActionBar = React.createClass({
@@ -27,7 +28,10 @@ const StatusActionBar = React.createClass({
     onReblog: React.PropTypes.func,
     onDelete: React.PropTypes.func,
     onMention: React.PropTypes.func,
-    onBlock: React.PropTypes.func
+    onBlock: React.PropTypes.func,
+    onReport: React.PropTypes.func,
+    me: React.PropTypes.number.isRequired,
+    intl: React.PropTypes.object.isRequired
   },
 
   mixins: [PureRenderMixin],
@@ -60,6 +64,11 @@ const StatusActionBar = React.createClass({
     this.context.router.push(`/statuses/${this.props.status.get('id')}`);
   },
 
+  handleReport () {
+    this.props.onReport(this.props.status);
+    this.context.router.push('/report');
+  },
+
   render () {
     const { status, me, intl } = this.props;
     let menu = [];
@@ -71,6 +80,7 @@ const StatusActionBar = React.createClass({
     } else {
       menu.push({ text: intl.formatMessage(messages.mention), action: this.handleMentionClick });
       menu.push({ text: intl.formatMessage(messages.block), action: this.handleBlockClick });
+      menu.push({ text: intl.formatMessage(messages.report), action: this.handleReport });
     }
 
     return (
