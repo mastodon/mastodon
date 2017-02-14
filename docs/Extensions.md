@@ -48,9 +48,3 @@ Mastodon uses the following Salmon slaps to signal a follow request, a follow re
 - `http://activitystrea.ms/schema/1.0/reject`
 
 The activity object of the request-friend slap is the account in question. The activity object of the authorize and reject slaps is the original request-friend activity. Request-friend slap is sent to the locked account, when the end-user of that account decides, the authorize/reject decision slap is sent back to the requester.
-
-#### PuSH amendment
-
-Mastodon will only deliver PuSH payloads to callback URLs the domain of which matches at least one follower of the account in question. That means anonymous manual/subscriptions are not possible.
-
-Private statuses do not appear on Atom feeds, but do get delivered in PuSH payloads to the domains of approved followers.
