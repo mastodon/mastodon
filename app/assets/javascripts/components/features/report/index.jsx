@@ -27,7 +27,7 @@ const makeMapStateToProps = () => {
       isSubmitting: state.getIn(['reports', 'new', 'isSubmitting']),
       account: getAccount(state, accountId),
       comment: state.getIn(['reports', 'new', 'comment']),
-      statusIds: state.getIn(['timelines', 'accounts_timelines', accountId, 'items'], Immutable.List())
+      statusIds: Immutable.OrderedSet(state.getIn(['timelines', 'accounts_timelines', accountId, 'items'])).union(state.getIn(['reports', 'new', 'status_ids']))
     };
   };
 

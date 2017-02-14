@@ -25,10 +25,10 @@ export default function reports(state = initialState, action) {
       map.setIn(['new', 'account_id'], action.account.get('id'));
 
       if (state.getIn(['new', 'account_id']) !== action.account.get('id')) {
-        map.setIn(['new', 'status_ids'], action.status ? Immutable.Set([action.status.get('id')]) : Immutable.Set());
+        map.setIn(['new', 'status_ids'], action.status ? Immutable.Set([action.status.getIn(['reblog', 'id'], action.status.get('id'))]) : Immutable.Set());
         map.setIn(['new', 'comment'], '');
       } else {
-        map.updateIn(['new', 'status_ids'], Immutable.Set(), set => set.add(action.status.get('id')));
+        map.updateIn(['new', 'status_ids'], Immutable.Set(), set => set.add(action.status.getIn(['reblog', 'id'], action.status.get('id'))));
       }
     });
   case REPORT_STATUS_TOGGLE:

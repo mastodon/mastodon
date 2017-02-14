@@ -18,6 +18,10 @@ const StatusCheckBox = React.createClass({
     const { status, checked, onToggle, disabled } = this.props;
     const content = { __html: emojify(status.get('content')) };
 
+    if (status.get('reblog')) {
+      return null;
+    }
+
     return (
       <div className='status-check-box' style={{ display: 'flex' }}>
         <div
