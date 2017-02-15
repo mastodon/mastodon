@@ -34,7 +34,7 @@ module Mastodon
       allow do
         origins  '*'
 
-        resource '/api/*',       headers: :any, methods: [:post, :put, :delete, :get, :options], credentials: false
+        resource '/api/*',       headers: :any, methods: [:post, :put, :delete, :get, :options], credentials: false, expose: ['Link', 'X-RateLimit-Reset', 'X-RateLimit-Limit', 'X-RateLimit-Remaining', 'X-Request-Id']
         resource '/oauth/token', headers: :any, methods: [:post], credentials: false
       end
     end
