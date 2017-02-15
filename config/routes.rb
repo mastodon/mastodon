@@ -106,6 +106,15 @@ Rails.application.routes.draw do
     # OEmbed
     get '/oembed', to: 'oembed#show', as: :oembed
 
+    # ActivityPub
+    namespace :activitypub do
+      get '/users/:id/outbox', to: 'outbox#show', as: :outbox
+
+      get '/statuses/:id', to: 'activities#show_status', as: :status
+
+      resources :notes, only: [:show]
+    end
+
     # JSON / REST API
     namespace :v1 do
       resources :statuses, only: [:create, :show, :destroy] do
