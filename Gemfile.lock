@@ -89,6 +89,8 @@ GEM
     capistrano-bundler (1.2.0)
       capistrano (~> 3.1)
       sshkit (~> 1.2)
+    capistrano-faster-assets (1.0.2)
+      capistrano (>= 3.1)
     capistrano-harrow (0.5.3)
     capistrano-rails (1.2.2)
       capistrano (~> 3.1)
@@ -454,6 +456,7 @@ DEPENDENCIES
   browserify-rails
   bullet
   capistrano
+  capistrano-faster-assets (~> 1.0)
   capistrano-rails
   capistrano-rbenv
   capistrano-yarn
