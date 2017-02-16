@@ -1,2 +1,38 @@
 - content_for :page_title do
   = "Report ##{@report.id}"
+
+.report-accounts
+  .report-accounts__item
+    %strong Reported account:
+    = render partial: 'authorize_follow/card', locals: { account: @report.target_account }
+  .report-accounts__item
+    %strong Reported by:
+    = render partial: 'authorize_follow/card', locals: { account: @report.account }
+
+%p
+  %strong Comment:
+  - if @report.comment.blank?
+    None
+  - else
+    = @report.comment
+
+- unless @statuses.empty?
+  %hr/
+
+  - @statuses.each do |status|
+    .report-status
+      .activity-stream.activity-stream-headless
+        .entry= render partial: 'stream_entries/simple_status', locals: { status: status }
+      .report-status__actions
+        = link_to remove_admin_report_path(@report, status_id: status.id), method: :post, class: 'icon-button', style: 'font-size: 24px; width: 24px; height: 24px', title: 'Delete' do
+          = fa_icon 'trash'
+
+- unless @report.action_taken?
+  %hr/
+
+  %div{ style: 'overflow: hidden' }
+    %div{ style: 'float: right' }
+      = link_to 'Silence account', silence_admin_report_path(@report), method: :post, class: 'button'
+      = link_to 'Suspend account', suspend_admin_report_path(@report), method: :post, class: 'button'
+    %div{ style: 'float: left' }
+      = link_to 'Mark as resolved', resolve_admin_report_path(@report), method: :post, class: 'button'

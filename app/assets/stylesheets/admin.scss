@@ -93,7 +93,7 @@
       margin-bottom: 40px;
     }
 
-    p {
+    & > p {
       font-size: 14px;
       line-height: 18px;
       color: $color2;
@@ -103,6 +103,13 @@
         color: $color5;
         font-weight: 500;
       }
+    }
+
+    hr {
+      margin: 20px 0;
+      border: 0;
+      background: transparent;
+      border-bottom: 1px solid $color1;
     }
   }
 
@@ -179,4 +186,40 @@
       }
     }
   }
+}
+
+.report-accounts {
+  display: flex;
+  margin-bottom: 20px;
+}
+
+.report-accounts__item {
+  flex: 1 1 0;
+
+  & > strong {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 18px;
+    color: $color2;
+  }
+
+  &:first-child {
+    margin-right: 10px;
+  }
+}
+
+.report-status {
+  display: flex;
+  margin-bottom: 10px;
+
+  .activity-stream {
+    flex: 2 0 auto;
+    margin-right: 20px;
+  }
+}
+
+.report-status__actions {
+  flex: 0 0 auto;
 }
