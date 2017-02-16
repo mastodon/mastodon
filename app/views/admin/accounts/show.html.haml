@@ -22,7 +22,11 @@
         %td= @account.user.current_sign_in_ip
       %tr
         %th Most recent activity
-        %td= l @account.user.current_sign_in_at
+        %td
+          - if @account.user.current_sign_in_at
+            = l @account.user.current_sign_in_at
+          - else
+            Never
     - else
       %tr
         %th Profile URL

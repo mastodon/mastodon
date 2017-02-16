@@ -77,7 +77,7 @@ class Status < ApplicationRecord
 
   def permitted?(other_account = nil)
     if private_visibility?
-      (account.id == other_account&.id || other_account&.following?(account) || mentions.include?(other_account))
+      (account.id == other_account&.id || other_account&.following?(account) || mentions.where(account: other_account).exists?)
     else
       other_account.nil? || !account.blocking?(other_account)
     end

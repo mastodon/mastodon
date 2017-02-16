@@ -66,6 +66,7 @@ Rails.application.routes.draw do
     resources :pubsubhubbub, only: [:index]
     resources :domain_blocks, only: [:index, :create]
     resources :settings, only: [:index, :update]
+    resources :reports, only: [:index, :show]
 
     resources :accounts, only: [:index, :show] do
       member do
