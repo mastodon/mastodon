@@ -152,6 +152,7 @@ module AtomBuilderHelper
   end
 
   def include_author(xml, account)
+    simple_id        xml, TagManager.instance.uri_for(account)
     object_type      xml, :person
     uri              xml, TagManager.instance.uri_for(account)
     name             xml, account.username
