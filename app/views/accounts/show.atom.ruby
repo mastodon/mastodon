@@ -6,7 +6,7 @@ Nokogiri::XML::Builder.new do |xml|
     title      xml, @account.display_name
     subtitle   xml, @account.note
     updated_at xml, stream_updated_at
-    logo       xml, full_asset_url(@account.avatar.url( :original))
+    logo       xml, full_asset_url(@account.avatar.url(:original))
 
     author(xml) do
       include_author xml, @account

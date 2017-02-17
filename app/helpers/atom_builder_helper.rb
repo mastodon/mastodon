@@ -275,6 +275,6 @@ module AtomBuilderHelper
   end
 
   def single_link_avatar(xml, account, size, px)
-    xml.link('rel' => 'avatar', 'type' => account.avatar_content_type, 'media:width' => px, 'media:height' => px, 'href' => full_asset_url(account.avatar.url(size, false)))
+    xml.link('rel' => 'avatar', 'type' => account.avatar_content_type, 'media:width' => px, 'media:height' => px, 'href' => full_asset_url(account.avatar.url(size)))
   end
 end
