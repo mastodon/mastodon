@@ -151,6 +151,7 @@ Rails.application.routes.draw do
 
         member do
           get :statuses
+          get 'statuses/media', to: 'accounts#media_statuses', as: :media_statuses
           get :followers
           get :following
 
