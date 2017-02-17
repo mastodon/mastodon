@@ -195,6 +195,8 @@
 
 .report-accounts__item {
   flex: 1 1 0;
+  display: flex;
+  flex-direction: column;
 
   & > strong {
     display: block;
@@ -208,6 +210,10 @@
   &:first-child {
     margin-right: 10px;
   }
+
+  .account-card {
+    flex: 1 1 auto;
+  }
 }
 
 .report-status {
@@ -215,7 +221,7 @@
   margin-bottom: 10px;
 
   .activity-stream {
-    flex: 2 0 auto;
+    flex: 2 0 0;
     margin-right: 20px;
   }
 }

@@ -53,7 +53,7 @@ const Card = React.createClass({
     }
 
     return (
-      <a href={card.get('url')} className='status-card'>
+      <a href={card.get('url')} className='status-card' target='_blank' rel='noopener'>
         {image}
 
         <div className='status-card__content' style={contentStyle}>
