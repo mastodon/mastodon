@@ -62,16 +62,11 @@ class Api::V1::StatusesController < ApiController
   end
 
   def create
-    begin
       @status = PostStatusService.new.call(current_user.account, params[:status], params[:in_reply_to_id].blank? ? nil : Status.find(params[:in_reply_to_id]), media_ids: params[:media_ids],
                                                                                                                                                                sensitive: params[:sensitive],
                                                                                                                                                                spoiler_text: params[:spoiler_text],
                                                                                                                                                                visibility: params[:visibility],
                                                                                                                                                                application: doorkeeper_token.application)
-    rescue Mastodon::NotPermitted => e
-       render json: {error: e.message}, status: 422
-       return
-    end
     render action: :show
   end
 
