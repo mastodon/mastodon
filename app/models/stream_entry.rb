@@ -55,7 +55,7 @@ class StreamEntry < ApplicationRecord
   end
 
   def activity
-    !new_record? ? send(activity_type.underscore) : super
+    !new_record? ? send(activity_type.underscore) || super : super
   end
 
   private
