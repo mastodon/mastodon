@@ -71,6 +71,10 @@
     "SMTP_DOMAIN": {
       "description": "Domain for SMTP server. Will default to instance domain if blank.",
       "required": false
+    },
+    "SMTP_FROM_ADDRESS": {
+      "description": "Address to send emails from",
+      "required": false
     }
   },
   "buildpacks": [
