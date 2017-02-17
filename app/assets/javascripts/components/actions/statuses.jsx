@@ -27,12 +27,17 @@ export function fetchStatus(id) {
   return (dispatch, getState) => {
     const skipLoading = getState().getIn(['statuses', id], null) !== null;
 
+    dispatch(fetchContext(id));
+    dispatch(fetchStatusCard(id));
+
+    if (skipLoading) {
+      return;
+    }
+
     dispatch(fetchStatusRequest(id, skipLoading));
 
     api(getState).get(`/api/v1/statuses/${id}`).then(response => {
       dispatch(fetchStatusSuccess(response.data, skipLoading));
-      dispatch(fetchContext(id));
-      dispatch(fetchStatusCard(id));
     }).catch(error => {
       dispatch(fetchStatusFail(id, error, skipLoading));
     });
