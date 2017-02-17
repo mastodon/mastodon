@@ -66,7 +66,11 @@ const Status = React.createClass({
   },
 
   handleFavouriteClick (status) {
-    this.props.dispatch(favourite(status));
+    if (status.get('favourited')) {
+      this.props.dispatch(unfavourite(status));
+    } else {
+      this.props.dispatch(favourite(status));
+    }
   },
 
   handleReplyClick (status) {
@@ -74,7 +78,11 @@ const Status = React.createClass({
   },
 
   handleReblogClick (status) {
-    this.props.dispatch(reblog(status));
+    if (status.get('reblogged')) {
+      this.props.dispatch(unreblog(status));
+    } else {
+      this.props.dispatch(reblog(status));
+    }
   },
 
   handleDeleteClick (status) {

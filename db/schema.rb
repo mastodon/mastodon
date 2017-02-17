@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170214110202) do
+ActiveRecord::Schema.define(version: 20170217012631) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -289,4 +289,5 @@ ActiveRecord::Schema.define(version: 20170214110202) do
     t.index ["user_id"], name: "index_web_settings_on_user_id", unique: true, using: :btree
   end
 
+  add_foreign_key "statuses", "statuses", column: "reblog_of_id", on_delete: :cascade
 end
