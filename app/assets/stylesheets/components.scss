@@ -1182,3 +1182,22 @@ button.active i.fa-retweet {
     background: rgba($color8, 0.1);
   }
 }
+
+.empty-column-indicator {
+  color: lighten($color1, 20%);
+  text-align: center;
+  padding: 20px;
+  padding-top: 100px;
+  font-size: 15px;
+  font-weight: 400;
+  cursor: default;
+
+  a {
+    color: $color4;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}

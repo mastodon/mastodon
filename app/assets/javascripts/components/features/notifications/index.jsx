@@ -5,7 +5,7 @@ import Column from '../ui/components/column';
 import { expandNotifications, clearNotifications } from '../../actions/notifications';
 import NotificationContainer from './containers/notification_container';
 import { ScrollContainer } from 'react-router-scroll';
-import { defineMessages, injectIntl } from 'react-intl';
+import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import ColumnSettingsContainer from './containers/column_settings_container';
 import { createSelector } from 'reselect';
 import Immutable from 'immutable';
@@ -76,20 +76,29 @@ const Notifications = React.createClass({
   render () {
     const { intl, notifications, trackScroll, isLoading } = this.props;
 
-    let loadMore = '';
+    let loadMore       = '';
+    let scrollableArea = '';
 
     if (!isLoading && notifications.size > 0) {
       loadMore = <LoadMore onClick={this.handleLoadMore} />;
     }
 
-    const scrollableArea = (
-      <div className='scrollable' onScroll={this.handleScroll} ref={this.setRef}>
-        <div>
-          {notifications.map(item => <NotificationContainer key={item.get('id')} notification={item} accountId={item.get('account')} />)}
-          {loadMore}
+    if (isLoading || notifications.size > 0) {
+      scrollableArea = (
+        <div className='scrollable' onScroll={this.handleScroll} ref={this.setRef}>
+          <div>
+            {notifications.map(item => <NotificationContainer key={item.get('id')} notification={item} accountId={item.get('account')} />)}
+            {loadMore}
+          </div>
         </div>
-      </div>
-    );
+      );
+    } else {
+      scrollableArea = (
+        <div className='empty-column-indicator' ref={this.setRef}>
+          <FormattedMessage id='empty_column.notifications' defaultMessage="You don't have any notifications yet. Interact with others to start the conversation." />
+        </div>
+      );
+    }
 
     if (trackScroll) {
       return (

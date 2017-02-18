@@ -8,6 +8,7 @@ import {
   deleteFromTimelines
 } from '../../actions/timelines';
 import ColumnBackButtonSlim from '../../components/column_back_button_slim';
+import { FormattedMessage } from 'react-intl';
 import createStream from '../../stream';
 
 const mapStateToProps = state => ({
@@ -76,7 +77,7 @@ const HashtagTimeline = React.createClass({
     return (
       <Column icon='hashtag' heading={id}>
         <ColumnBackButtonSlim />
-        <StatusListContainer type='tag' id={id} />
+        <StatusListContainer type='tag' id={id} emptyMessage={<FormattedMessage id='empty_column.hashtag' defaultMessage='There is nothing in this hashtag yet.' />} />
       </Column>
     );
   },

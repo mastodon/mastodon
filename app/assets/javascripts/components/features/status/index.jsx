@@ -1,29 +1,34 @@
-import { connect }           from 'react-redux';
-import PureRenderMixin       from 'react-addons-pure-render-mixin';
-import ImmutablePropTypes    from 'react-immutable-proptypes';
-import { fetchStatus }       from '../../actions/statuses';
-import Immutable             from 'immutable';
-import EmbeddedStatus        from '../../components/status';
-import LoadingIndicator      from '../../components/loading_indicator';
-import DetailedStatus        from './components/detailed_status';
-import ActionBar             from './components/action_bar';
-import Column                from '../ui/components/column';
-import { favourite, reblog } from '../../actions/interactions';
+import { connect } from 'react-redux';
+import PureRenderMixin from 'react-addons-pure-render-mixin';
+import ImmutablePropTypes from 'react-immutable-proptypes';
+import { fetchStatus } from '../../actions/statuses';
+import Immutable from 'immutable';
+import EmbeddedStatus from '../../components/status';
+import LoadingIndicator from '../../components/loading_indicator';
+import DetailedStatus from './components/detailed_status';
+import ActionBar from './components/action_bar';
+import Column from '../ui/components/column';
+import {
+  favourite,
+  unfavourite,
+  reblog,
+  unreblog
+} from '../../actions/interactions';
 import {
   replyCompose,
   mentionCompose
-}                            from '../../actions/compose';
-import { deleteStatus }      from '../../actions/statuses';
+} from '../../actions/compose';
+import { deleteStatus } from '../../actions/statuses';
 import { initReport } from '../../actions/reports';
 import {
   makeGetStatus,
   getStatusAncestors,
   getStatusDescendants
-}                            from '../../selectors';
-import { ScrollContainer }   from 'react-router-scroll';
-import ColumnBackButton      from '../../components/column_back_button';
-import StatusContainer       from '../../containers/status_container';
-import { openMedia }         from '../../actions/modal';
+} from '../../selectors';
+import { ScrollContainer } from 'react-router-scroll';
+import ColumnBackButton from '../../components/column_back_button';
+import StatusContainer from '../../containers/status_container';
+import { openMedia } from '../../actions/modal';
 import { isMobile } from '../../is_mobile'
 
 const makeMapStateToProps = () => {

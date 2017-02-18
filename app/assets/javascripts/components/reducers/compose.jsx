@@ -126,8 +126,8 @@ export default function compose(state = initialState, action) {
     return state.withMutations(map => {
       map.set('in_reply_to', action.status.get('id'));
       map.set('text', statusToTextMentions(state, action.status));
-      map.set('unlisted', action.status.get('visibility') === 'unlisted');
-      map.set('private', action.status.get('visibility') === 'private');
+      map.set('unlisted', action.status.get('visibility') === 'unlisted' || state.get('default_privacy') === 'unlisted');
+      map.set('private', action.status.get('visibility') === 'private' || state.get('default_privacy') === 'private');
     });
   case COMPOSE_REPLY_CANCEL:
     return state.withMutations(map => {
