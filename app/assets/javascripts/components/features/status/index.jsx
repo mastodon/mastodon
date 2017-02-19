@@ -117,7 +117,7 @@ const Status = React.createClass({
     if (status === null) {
       return (
         <Column>
-          <LoadingIndicator />
+          <ColumnBackButton />
         </Column>
       );
     }
