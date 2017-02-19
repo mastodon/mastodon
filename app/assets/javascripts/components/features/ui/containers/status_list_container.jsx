@@ -3,6 +3,7 @@ import StatusList from '../../../components/status_list';
 import { expandTimeline, scrollTopTimeline } from '../../../actions/timelines';
 import Immutable from 'immutable';
 import { createSelector } from 'reselect';
+import { debounce } from 'react-decoration';
 
 const getStatusIds = createSelector([
   (state, { type }) => state.getIn(['settings', type], Immutable.Map()),
@@ -40,15 +41,18 @@ const mapStateToProps = (state, props) => ({
 
 const mapDispatchToProps = (dispatch, { type, id }) => ({
 
+  @debounce(300, true)
   onScrollToBottom () {
     dispatch(scrollTopTimeline(type, false));
     dispatch(expandTimeline(type, id));
   },
 
+  @debounce(300, true)
   onScrollToTop () {
     dispatch(scrollTopTimeline(type, true));
   },
 
+  @debounce(500)
   onScroll () {
     dispatch(scrollTopTimeline(type, false));
   }

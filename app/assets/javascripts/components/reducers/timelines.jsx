@@ -31,13 +31,8 @@ import Immutable from 'immutable';
 
 const initialState = Immutable.Map({
   home: Immutable.Map({
-    isLoading: false,
-    loaded: false,
-    top: true,
-    items: Immutable.List()
-  }),
-
-  mentions: Immutable.Map({
+    path: () => '/api/v1/timelines/home',
+    next: null,
     isLoading: false,
     loaded: false,
     top: true,
@@ -45,6 +40,18 @@ const initialState = Immutable.Map({
   }),
 
   public: Immutable.Map({
+    path: () => '/api/v1/timelines/public',
+    next: null,
+    isLoading: false,
+    loaded: false,
+    top: true,
+    items: Immutable.List()
+  }),
+
+  community: Immutable.Map({
+    path: () => '/api/v1/timelines/public',
+    next: null,
+    params: { local: true },
     isLoading: false,
     loaded: false,
     top: true,
@@ -52,6 +59,8 @@ const initialState = Immutable.Map({
   }),
 
   tag: Immutable.Map({
+    path: (id) => `/api/v1/timelines/tag/${id}`,
+    next: null,
     isLoading: false,
     id: null,
     loaded: false,
@@ -81,7 +90,7 @@ const normalizeStatus = (state, status) => {
   return state;
 };
 
-const normalizeTimeline = (state, timeline, statuses, replace = false) => {
+const normalizeTimeline = (state, timeline, statuses, next) => {
   let ids      = Immutable.List();
   const loaded = state.getIn([timeline, 'loaded']);
 
@@ -92,11 +101,12 @@ const normalizeTimeline = (state, timeline, statuses, replace = false) => {
 
   state = state.setIn([timeline, 'loaded'], true);
   state = state.setIn([timeline, 'isLoading'], false);
+  state = state.setIn([timeline, 'next'], next);
 
   return state.updateIn([timeline, 'items'], Immutable.List(), list => (loaded ? list.unshift(...ids) : ids));
 };
 
-const appendNormalizedTimeline = (state, timeline, statuses) => {
+const appendNormalizedTimeline = (state, timeline, statuses, next) => {
   let moreIds = Immutable.List();
 
   statuses.forEach((status, i) => {
@@ -105,6 +115,7 @@ const appendNormalizedTimeline = (state, timeline, statuses) => {
   });
 
   state = state.setIn([timeline, 'isLoading'], false);
+  state = state.setIn([timeline, 'next'], next);
 
   return state.updateIn([timeline, 'items'], Immutable.List(), list => list.push(...moreIds));
 };
@@ -169,7 +180,7 @@ const deleteStatus = (state, id, accountId, references, reblogOf) => {
   }
 
   // Remove references from timelines
-  ['home', 'mentions', 'public', 'tag'].forEach(function (timeline) {
+  ['home', 'public', 'community', 'tag'].forEach(function (timeline) {
     state = state.updateIn([timeline, 'items'], list => list.filterNot(item => item === id));
   });
 
@@ -221,7 +232,7 @@ const normalizeContext = (state, id, ancestors, descendants) => {
 };
 
 const resetTimeline = (state, timeline, id) => {
-  if (timeline === 'tag' && state.getIn([timeline, 'id']) !== id) {
+  if (timeline === 'tag' && typeof id !== 'undefined' && state.getIn([timeline, 'id']) !== id) {
     state = state.update(timeline, map => map
         .set('id', id)
         .set('isLoading', true)
@@ -243,9 +254,9 @@ export default function timelines(state = initialState, action) {
   case TIMELINE_EXPAND_FAIL:
     return state.setIn([action.timeline, 'isLoading'], false);
   case TIMELINE_REFRESH_SUCCESS:
-    return normalizeTimeline(state, action.timeline, Immutable.fromJS(action.statuses));
+    return normalizeTimeline(state, action.timeline, Immutable.fromJS(action.statuses), action.next);
   case TIMELINE_EXPAND_SUCCESS:
-    return appendNormalizedTimeline(state, action.timeline, Immutable.fromJS(action.statuses));
+    return appendNormalizedTimeline(state, action.timeline, Immutable.fromJS(action.statuses), action.next);
   case TIMELINE_UPDATE:
     return updateTimeline(state, action.timeline, Immutable.fromJS(action.status), action.references);
   case TIMELINE_DELETE:

@@ -21,6 +21,7 @@ import UI from '../features/ui';
 import Status from '../features/status';
 import GettingStarted from '../features/getting_started';
 import PublicTimeline from '../features/public_timeline';
+import CommunityTimeline from '../features/community_timeline';
 import AccountTimeline from '../features/account_timeline';
 import HomeTimeline from '../features/home_timeline';
 import Compose from '../features/compose';
@@ -116,6 +117,7 @@ const Mastodon = React.createClass({
               <Route path='getting-started' component={GettingStarted} />
               <Route path='timelines/home' component={HomeTimeline} />
               <Route path='timelines/public' component={PublicTimeline} />
+              <Route path='timelines/community' component={CommunityTimeline} />
               <Route path='timelines/tag/:id' component={HashtagTimeline} />
 
               <Route path='notifications' component={Notifications} />

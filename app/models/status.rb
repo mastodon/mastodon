@@ -192,6 +192,6 @@ class Status < ApplicationRecord
   private
 
   def filter_from_context?(status, account)
-    account&.blocking?(status.account_id) || !status.permitted?(account)
+    account&.blocking?(status.account_id) || (status.account.silenced? && !account&.following?(status.account_id)) || !status.permitted?(account)
   end
 end

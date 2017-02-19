@@ -1,4 +1,4 @@
-import api from '../api'
+import api, { getLinks } from '../api'
 import Immutable from 'immutable';
 
 export const TIMELINE_UPDATE  = 'TIMELINE_UPDATE';
@@ -14,12 +14,13 @@ export const TIMELINE_EXPAND_FAIL    = 'TIMELINE_EXPAND_FAIL';
 
 export const TIMELINE_SCROLL_TOP = 'TIMELINE_SCROLL_TOP';
 
-export function refreshTimelineSuccess(timeline, statuses, skipLoading) {
+export function refreshTimelineSuccess(timeline, statuses, skipLoading, next) {
   return {
     type: TIMELINE_REFRESH_SUCCESS,
     timeline,
     statuses,
-    skipLoading
+    skipLoading,
+    next
   };
 };
 
@@ -69,25 +70,22 @@ export function refreshTimeline(timeline, id = null) {
 
     const ids      = getState().getIn(['timelines', timeline, 'items'], Immutable.List());
     const newestId = ids.size > 0 ? ids.first() : null;
+    const params   = getState().getIn(['timelines', timeline, 'params'], {});
+    const path     = getState().getIn(['timelines', timeline, 'path'])(id);
 
-    let params      = '';
-    let path        = timeline;
     let skipLoading = false;
 
     if (newestId !== null && getState().getIn(['timelines', timeline, 'loaded']) && (id === null || getState().getIn(['timelines', timeline, 'id']) === id)) {
-      params      = `?since_id=${newestId}`;
-      skipLoading = true;
-    }
-
-    if (id) {
-      path = `${path}/${id}`
+      params.since_id = newestId;
+      skipLoading     = true;
     }
 
     dispatch(refreshTimelineRequest(timeline, id, skipLoading));
 
-    api(getState).get(`/api/v1/timelines/${path}${params}`).then(function (response) {
-      dispatch(refreshTimelineSuccess(timeline, response.data, skipLoading));
-    }).catch(function (error) {
+    api(getState).get(path, { params }).then(response => {
+      const next = getLinks(response).refs.find(link => link.rel === 'next');
+      dispatch(refreshTimelineSuccess(timeline, response.data, skipLoading, next ? next.uri : null));
+    }).catch(error => {
       dispatch(refreshTimelineFail(timeline, error, skipLoading));
     });
   };
@@ -102,50 +100,48 @@ export function refreshTimelineFail(timeline, error, skipLoading) {
   };
 };
 
-export function expandTimeline(timeline, id = null) {
+export function expandTimeline(timeline) {
   return (dispatch, getState) => {
-    const lastId = getState().getIn(['timelines', timeline, 'items'], Immutable.List()).last();
-
-    if (!lastId || getState().getIn(['timelines', timeline, 'isLoading'])) {
-      // If timeline is empty, don't try to load older posts since there are none
-      // Also if already loading
+    if (getState().getIn(['timelines', timeline, 'isLoading'])) {
       return;
     }
 
-    dispatch(expandTimelineRequest(timeline, id));
+    const next   = getState().getIn(['timelines', timeline, 'next']);
+    const params = getState().getIn(['timelines', timeline, 'params'], {});
 
-    let path = timeline;
-
-    if (id) {
-      path = `${path}/${id}`
+    if (next === null) {
+      return;
     }
 
-    api(getState).get(`/api/v1/timelines/${path}`, {
+    dispatch(expandTimelineRequest(timeline));
+
+    api(getState).get(next, {
       params: {
-        limit: 10,
-        max_id: lastId
+        ...params,
+        limit: 10
       }
     }).then(response => {
-      dispatch(expandTimelineSuccess(timeline, response.data));
+      const next = getLinks(response).refs.find(link => link.rel === 'next');
+      dispatch(expandTimelineSuccess(timeline, response.data, next ? next.uri : null));
     }).catch(error => {
       dispatch(expandTimelineFail(timeline, error));
     });
   };
 };
 
-export function expandTimelineRequest(timeline, id) {
+export function expandTimelineRequest(timeline) {
   return {
     type: TIMELINE_EXPAND_REQUEST,
-    timeline,
-    id
+    timeline
   };
 };
 
-export function expandTimelineSuccess(timeline, statuses) {
+export function expandTimelineSuccess(timeline, statuses, next) {
   return {
     type: TIMELINE_EXPAND_SUCCESS,
     timeline,
-    statuses
+    statuses,
+    next
   };
 };
 

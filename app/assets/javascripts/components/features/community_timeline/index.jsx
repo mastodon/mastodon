@@ -12,14 +12,14 @@ import ColumnBackButtonSlim from '../../components/column_back_button_slim';
 import createStream from '../../stream';
 
 const messages = defineMessages({
-  title: { id: 'column.public', defaultMessage: 'Whole Known Network' }
+  title: { id: 'column.community', defaultMessage: 'Public' }
 });
 
 const mapStateToProps = state => ({
   accessToken: state.getIn(['meta', 'access_token'])
 });
 
-const PublicTimeline = React.createClass({
+const CommunityTimeline = React.createClass({
 
   propTypes: {
     dispatch: React.PropTypes.func.isRequired,
@@ -32,14 +32,14 @@ const PublicTimeline = React.createClass({
   componentDidMount () {
     const { dispatch, accessToken } = this.props;
 
-    dispatch(refreshTimeline('public'));
+    dispatch(refreshTimeline('community'));
 
-    this.subscription = createStream(accessToken, 'public', {
+    this.subscription = createStream(accessToken, 'public:local', {
 
       received (data) {
         switch(data.event) {
         case 'update':
-          dispatch(updateTimeline('public', JSON.parse(data.payload)));
+          dispatch(updateTimeline('community', JSON.parse(data.payload)));
           break;
         case 'delete':
           dispatch(deleteFromTimelines(data.payload));
@@ -61,13 +61,13 @@ const PublicTimeline = React.createClass({
     const { intl } = this.props;
 
     return (
-      <Column icon='globe' heading={intl.formatMessage(messages.title)}>
+      <Column icon='users' heading={intl.formatMessage(messages.title)}>
         <ColumnBackButtonSlim />
-        <StatusListContainer type='public' emptyMessage={<FormattedMessage id='empty_column.public' defaultMessage='There is nothing here! Write something publicly, or manually follow users from other instances to fill it up' />} />
+        <StatusListContainer type='community' emptyMessage={<FormattedMessage id='empty_column.community' defaultMessage='The community timeline is empty. Write something publicly to get the ball rolling!' />} />
       </Column>
     );
   },
 
 });
 
-export default connect(mapStateToProps)(injectIntl(PublicTimeline));
+export default connect(mapStateToProps)(injectIntl(CommunityTimeline));
