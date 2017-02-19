@@ -103,8 +103,12 @@ export function fetchContext(id) {
       dispatch(fetchContextSuccess(id, response.data.ancestors, response.data.descendants));
       dispatch(fetchStatusCard(id));
     }).catch(error => {
-      dispatch(deleteStatusSuccess(id));
-      dispatch(deleteFromTimelines(id));
+      if (error.response.status == 404){
+        dispatch(deleteStatusSuccess(id));
+        dispatch(deleteFromTimelines(id));
+      }else{
+        dispatch(fetchContextFail(id, error));
+      }
     });
   };
 };
