@@ -12,7 +12,7 @@ import ColumnBackButtonSlim from '../../components/column_back_button_slim';
 import createStream from '../../stream';
 
 const messages = defineMessages({
-  title: { id: 'column.community', defaultMessage: 'Public' }
+  title: { id: 'column.community', defaultMessage: 'Local' }
 });
 
 const mapStateToProps = state => ({
@@ -63,7 +63,7 @@ const CommunityTimeline = React.createClass({
     return (
       <Column icon='users' heading={intl.formatMessage(messages.title)}>
         <ColumnBackButtonSlim />
-        <StatusListContainer type='community' emptyMessage={<FormattedMessage id='empty_column.community' defaultMessage='The community timeline is empty. Write something publicly to get the ball rolling!' />} />
+        <StatusListContainer type='community' emptyMessage={<FormattedMessage id='empty_column.community' defaultMessage='The local timeline is empty. Write something publicly to get the ball rolling!' />} />
       </Column>
     );
   },

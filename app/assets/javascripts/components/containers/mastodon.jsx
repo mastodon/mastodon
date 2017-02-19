@@ -117,7 +117,7 @@ const Mastodon = React.createClass({
               <Route path='getting-started' component={GettingStarted} />
               <Route path='timelines/home' component={HomeTimeline} />
               <Route path='timelines/public' component={PublicTimeline} />
-              <Route path='timelines/community' component={CommunityTimeline} />
+              <Route path='timelines/public/local' component={CommunityTimeline} />
               <Route path='timelines/tag/:id' component={HashtagTimeline} />
 
               <Route path='notifications' component={Notifications} />

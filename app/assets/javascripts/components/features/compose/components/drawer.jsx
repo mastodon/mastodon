@@ -3,8 +3,8 @@ import { injectIntl, defineMessages } from 'react-intl';
 
 const messages = defineMessages({
   start: { id: 'getting_started.heading', defaultMessage: 'Getting started' },
-  public: { id: 'navigation_bar.public_timeline', defaultMessage: 'Public timeline' },
-  community: { id: 'navigation_bar.community_timeline', defaultMessage: 'Community timeline' },
+  public: { id: 'navigation_bar.public_timeline', defaultMessage: 'Whole Known Network' },
+  community: { id: 'navigation_bar.community_timeline', defaultMessage: 'Local timeline' },
   preferences: { id: 'navigation_bar.preferences', defaultMessage: 'Preferences' },
   logout: { id: 'navigation_bar.logout', defaultMessage: 'Logout' }
 });
