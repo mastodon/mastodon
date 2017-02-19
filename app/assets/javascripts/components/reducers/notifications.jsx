@@ -37,9 +37,12 @@ const normalizeNotifications = (state, notifications, next) => {
     items = items.set(i, notificationToMap(n));
   });
 
+  if (state.get('next') === null) {
+    state = state.set('next', next);
+  }
+
   return state
     .update('items', list => loaded ? list.unshift(...items) : list.push(...items))
-    .set('next', next)
     .set('loaded', true)
     .set('isLoading', false);
 };

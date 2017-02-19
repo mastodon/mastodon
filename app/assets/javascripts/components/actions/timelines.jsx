@@ -70,13 +70,13 @@ export function refreshTimeline(timeline, id = null) {
 
     const ids      = getState().getIn(['timelines', timeline, 'items'], Immutable.List());
     const newestId = ids.size > 0 ? ids.first() : null;
-    const params   = getState().getIn(['timelines', timeline, 'params'], {});
+    let params     = getState().getIn(['timelines', timeline, 'params'], {});
     const path     = getState().getIn(['timelines', timeline, 'path'])(id);
 
     let skipLoading = false;
 
     if (newestId !== null && getState().getIn(['timelines', timeline, 'loaded']) && (id === null || getState().getIn(['timelines', timeline, 'id']) === id)) {
-      params.since_id = newestId;
+      params          = { ...params, since_id: newestId };
       skipLoading     = true;
     }
 

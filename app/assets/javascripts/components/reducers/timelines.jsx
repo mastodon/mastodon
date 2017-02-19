@@ -101,7 +101,10 @@ const normalizeTimeline = (state, timeline, statuses, next) => {
 
   state = state.setIn([timeline, 'loaded'], true);
   state = state.setIn([timeline, 'isLoading'], false);
-  state = state.setIn([timeline, 'next'], next);
+
+  if (state.getIn([timeline, 'next']) === null) {
+    state = state.setIn([timeline, 'next'], next);
+  }
 
   return state.updateIn([timeline, 'items'], Immutable.List(), list => (loaded ? list.unshift(...ids) : ids));
 };
@@ -237,6 +240,7 @@ const resetTimeline = (state, timeline, id) => {
         .set('id', id)
         .set('isLoading', true)
         .set('loaded', false)
+        .set('next', null)
         .update('items', list => list.clear()));
   } else {
     state = state.setIn([timeline, 'isLoading'], true);
