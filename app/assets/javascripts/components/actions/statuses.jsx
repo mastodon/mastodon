@@ -105,7 +105,6 @@ export function fetchContext(id) {
     }).catch(error => {
       dispatch(deleteStatusSuccess(id));
       dispatch(deleteFromTimelines(id));
-      dispatch(fetchContextFail(id, error));
     });
   };
 };
