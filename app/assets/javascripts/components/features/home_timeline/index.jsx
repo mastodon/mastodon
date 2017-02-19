@@ -23,7 +23,7 @@ const HomeTimeline = React.createClass({
     return (
       <Column icon='home' heading={intl.formatMessage(messages.title)}>
         <ColumnSettingsContainer />
-        <StatusListContainer {...this.props} type='home' emptyMessage={<FormattedMessage id='empty_column.home' defaultMessage="You aren’t following anyone yet. Visit {public} or use search to get started and meet other users." values={{ public: <Link to='/timelines/public'><FormattedMessage id='empty_column.home.public_timeline' defaultMessage='the public timeline' /></Link> }} />} />
+        <StatusListContainer {...this.props} type='home' emptyMessage={<FormattedMessage id='empty_column.home' defaultMessage="You aren't following anyone yet. Visit {public} or use search to get started and meet other users." values={{ public: <Link to='/timelines/public'><FormattedMessage id='empty_column.home.public_timeline' defaultMessage='the public timeline' /></Link> }} />} />
       </Column>
     );
   },

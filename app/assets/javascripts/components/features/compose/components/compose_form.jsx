@@ -193,7 +193,7 @@ const ComposeForm = React.createClass({
         <Collapsable isVisible={!(this.props.private || reply_to_other)} fullHeight={39.5}>
           <label className='compose-form__label'>
             <Toggle checked={this.props.unlisted} onChange={this.handleChangeListability} />
-            <span className='compose-form__label__text'><FormattedMessage id='compose_form.unlisted' defaultMessage='Do not display in public timeline' /></span>
+            <span className='compose-form__label__text'><FormattedMessage id='compose_form.unlisted' defaultMessage='Do not display on public timelines' /></span>
           </label>
         </Collapsable>
 
