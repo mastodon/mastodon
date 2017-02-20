@@ -47,7 +47,7 @@ const mapDispatchToProps = (dispatch, { type, id }) => ({
     dispatch(expandTimeline(type, id));
   },
 
-  @debounce(300, true)
+  @debounce(300)
   onScrollToTop () {
     dispatch(scrollTopTimeline(type, true));
   },
