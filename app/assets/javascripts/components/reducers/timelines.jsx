@@ -36,6 +36,7 @@ const initialState = Immutable.Map({
     isLoading: false,
     loaded: false,
     top: true,
+    unread: 0,
     items: Immutable.List()
   }),
 
@@ -45,6 +46,7 @@ const initialState = Immutable.Map({
     isLoading: false,
     loaded: false,
     top: true,
+    unread: 0,
     items: Immutable.List()
   }),
 
@@ -55,6 +57,7 @@ const initialState = Immutable.Map({
     isLoading: false,
     loaded: false,
     top: true,
+    unread: 0,
     items: Immutable.List()
   }),
 
@@ -65,6 +68,7 @@ const initialState = Immutable.Map({
     id: null,
     loaded: false,
     top: true,
+    unread: 0,
     items: Immutable.List()
   }),
 
@@ -154,6 +158,10 @@ const updateTimeline = (state, timeline, status, references) => {
   const top = state.getIn([timeline, 'top']);
 
   state = normalizeStatus(state, status);
+
+  if (!top) {
+    state = state.updateIn([timeline, 'unread'], unread => unread + 1);
+  }
 
   state = state.updateIn([timeline, 'items'], Immutable.List(), list => {
     if (top && list.size > 40) {
@@ -249,6 +257,14 @@ const resetTimeline = (state, timeline, id) => {
   return state;
 };
 
+const updateTop = (state, timeline, top) => {
+  if (top) {
+    state = state.setIn([timeline, 'unread'], 0);
+  }
+
+  return state.setIn([timeline, 'top'], top);
+};
+
 export default function timelines(state = initialState, action) {
   switch(action.type) {
   case TIMELINE_REFRESH_REQUEST:
@@ -280,7 +296,7 @@ export default function timelines(state = initialState, action) {
   case ACCOUNT_BLOCK_SUCCESS:
     return filterTimelines(state, action.relationship, action.statuses);
   case TIMELINE_SCROLL_TOP:
-    return state.setIn([action.timeline, 'top'], action.top);
+    return updateTop(state, action.timeline, action.top);
   default:
     return state;
   }

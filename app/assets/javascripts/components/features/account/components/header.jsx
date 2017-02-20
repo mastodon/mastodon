@@ -14,7 +14,7 @@ const messages = defineMessages({
 const Header = React.createClass({
 
   propTypes: {
-    account: ImmutablePropTypes.map.isRequired,
+    account: ImmutablePropTypes.map,
     me: React.PropTypes.number.isRequired,
     onFollow: React.PropTypes.func.isRequired,
     intl: React.PropTypes.object.isRequired
@@ -24,6 +24,10 @@ const Header = React.createClass({
 
   render () {
     const { account, me, intl } = this.props;
+
+    if (!account) {
+      return null;
+    }
 
     let displayName = account.get('display_name');
     let info        = '';

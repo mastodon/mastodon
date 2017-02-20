@@ -5,6 +5,7 @@ const ColumnHeader = React.createClass({
   propTypes: {
     icon: React.PropTypes.string,
     type: React.PropTypes.string,
+    active: React.PropTypes.bool,
     onClick: React.PropTypes.func
   },
 
@@ -15,6 +16,8 @@ const ColumnHeader = React.createClass({
   },
 
   render () {
+    const { type, active } = this.props;
+
     let icon = '';
 
     if (this.props.icon) {
@@ -22,9 +25,9 @@ const ColumnHeader = React.createClass({
     }
 
     return (
-      <div className='column-header' onClick={this.handleClick}>
+      <div className={`column-header ${active ? 'active' : ''}`} onClick={this.handleClick}>
         {icon}
-        {this.props.type}
+        {type}
       </div>
     );
   }

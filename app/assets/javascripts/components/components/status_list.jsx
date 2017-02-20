@@ -14,6 +14,7 @@ const StatusList = React.createClass({
     onScroll: React.PropTypes.func,
     trackScroll: React.PropTypes.bool,
     isLoading: React.PropTypes.bool,
+    isUnread: React.PropTypes.bool,
     prepend: React.PropTypes.node,
     emptyMessage: React.PropTypes.node
   },
@@ -72,18 +73,25 @@ const StatusList = React.createClass({
   },
 
   render () {
-    const { statusIds, onScrollToBottom, trackScroll, isLoading, prepend, emptyMessage } = this.props;
+    const { statusIds, onScrollToBottom, trackScroll, isLoading, isUnread, prepend, emptyMessage } = this.props;
 
-    let loadMore = '';
+    let loadMore       = '';
     let scrollableArea = '';
+    let unread         = '';
 
     if (!isLoading && statusIds.size > 0) {
       loadMore = <LoadMore onClick={this.handleLoadMore} />;
     }
 
+    if (isUnread) {
+      unread = <div className='status-list__unread-indicator' />;
+    }
+
     if (isLoading || statusIds.size > 0 || !emptyMessage) {
       scrollableArea = (
         <div className='scrollable' ref={this.setRef}>
+          {unread}
+
           <div>
             {prepend}
 

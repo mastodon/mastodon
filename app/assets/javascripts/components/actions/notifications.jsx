@@ -14,7 +14,8 @@ export const NOTIFICATIONS_EXPAND_REQUEST = 'NOTIFICATIONS_EXPAND_REQUEST';
 export const NOTIFICATIONS_EXPAND_SUCCESS = 'NOTIFICATIONS_EXPAND_SUCCESS';
 export const NOTIFICATIONS_EXPAND_FAIL    = 'NOTIFICATIONS_EXPAND_FAIL';
 
-export const NOTIFICATIONS_CLEAR = 'NOTIFICATIONS_CLEAR';
+export const NOTIFICATIONS_CLEAR      = 'NOTIFICATIONS_CLEAR';
+export const NOTIFICATIONS_SCROLL_TOP = 'NOTIFICATIONS_SCROLL_TOP';
 
 const fetchRelatedRelationships = (dispatch, notifications) => {
   const accountIds = notifications.filter(item => item.type === 'follow').map(item => item.account.id);
@@ -149,5 +150,12 @@ export function clearNotifications() {
     });
 
     api(getState).post('/api/v1/notifications/clear');
+  };
+};
+
+export function scrollTopNotifications(top) {
+  return {
+    type: NOTIFICATIONS_SCROLL_TOP,
+    top
   };
 };

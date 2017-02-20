@@ -6,7 +6,8 @@ import {
   NOTIFICATIONS_EXPAND_REQUEST,
   NOTIFICATIONS_REFRESH_FAIL,
   NOTIFICATIONS_EXPAND_FAIL,
-  NOTIFICATIONS_CLEAR
+  NOTIFICATIONS_CLEAR,
+  NOTIFICATIONS_SCROLL_TOP
 } from '../actions/notifications';
 import { ACCOUNT_BLOCK_SUCCESS } from '../actions/accounts';
 import Immutable from 'immutable';
@@ -14,6 +15,8 @@ import Immutable from 'immutable';
 const initialState = Immutable.Map({
   items: Immutable.List(),
   next: null,
+  top: true,
+  unread: 0,
   loaded: false,
   isLoading: true
 });
@@ -26,6 +29,10 @@ const notificationToMap = notification => Immutable.Map({
 });
 
 const normalizeNotification = (state, notification) => {
+  if (!state.get('top')) {
+    state = state.update('unread', unread => unread + 1);
+  }
+
   return state.update('items', list => list.unshift(notificationToMap(notification)));
 };
 
@@ -64,6 +71,14 @@ const filterNotifications = (state, relationship) => {
   return state.update('items', list => list.filterNot(item => item.get('account') === relationship.id));
 };
 
+const updateTop = (state, top) => {
+  if (top) {
+    state = state.set('unread', 0);
+  }
+
+  return state.set('top', top);
+};
+
 export default function notifications(state = initialState, action) {
   switch(action.type) {
   case NOTIFICATIONS_REFRESH_REQUEST:
@@ -71,6 +86,8 @@ export default function notifications(state = initialState, action) {
   case NOTIFICATIONS_REFRESH_FAIL:
   case NOTIFICATIONS_EXPAND_FAIL:
     return state.set('isLoading', true);
+  case NOTIFICATIONS_SCROLL_TOP:
+    return updateTop(state, action.top);
   case NOTIFICATIONS_UPDATE:
     return normalizeNotification(state, action.notification);
   case NOTIFICATIONS_REFRESH_SUCCESS:

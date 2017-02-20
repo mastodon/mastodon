@@ -34,7 +34,8 @@ const Column = React.createClass({
   propTypes: {
     heading: React.PropTypes.string,
     icon: React.PropTypes.string,
-    children: React.PropTypes.node
+    children: React.PropTypes.node,
+    active: React.PropTypes.bool
   },
 
   mixins: [PureRenderMixin],
@@ -51,12 +52,12 @@ const Column = React.createClass({
   },
 
   render () {
-    const { heading, icon, children } = this.props;
+    const { heading, icon, children, active } = this.props;
 
     let header = '';
 
     if (heading) {
-      header = <ColumnHeader icon={icon} type={heading} onClick={this.handleHeaderClick} />;
+      header = <ColumnHeader icon={icon} active={active} type={heading} onClick={this.handleHeaderClick} />;
     }
 
     return (

@@ -1079,6 +1079,11 @@ button.active i.fa-retweet {
   background: lighten($color1, 4%);
   flex: 0 0 auto;
   cursor: pointer;
+
+  &.active {
+    color: $color4;
+    text-shadow: 0 0 10px rgba($color4, 0.4);
+  }
 }
 
 .search {
@@ -1200,4 +1205,15 @@ button.active i.fa-retweet {
       text-decoration: underline;
     }
   }
+}
+
+.status-list__unread-indicator, .notifications__unread-indicator {
+  position: absolute;
+  top: 48px;
+  left: 0;
+  width: 100%;
+  pointer-events: none;
+  height: 30px;
+  z-index: 2;
+  background: linear-gradient(to bottom, rgba($color4, 0.3) 0%, rgba($color4, 0) 60%);
 }
