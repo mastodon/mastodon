@@ -16,6 +16,7 @@ import Immutable from 'immutable';
 const mapStateToProps = (state, props) => ({
   statusIds: state.getIn(['timelines', 'accounts_timelines', Number(props.params.accountId), 'items'], Immutable.List()),
   isLoading: state.getIn(['timelines', 'accounts_timelines', Number(props.params.accountId), 'isLoading']),
+  hasMore: !!state.getIn(['timelines', 'accounts_timelines', Number(props.params.accountId), 'next']),
   me: state.getIn(['meta', 'me'])
 });
 
@@ -26,6 +27,7 @@ const AccountTimeline = React.createClass({
     dispatch: React.PropTypes.func.isRequired,
     statusIds: ImmutablePropTypes.list,
     isLoading: React.PropTypes.bool,
+    hasMore: React.PropTypes.bool,
     me: React.PropTypes.number.isRequired
   },
 
@@ -48,7 +50,7 @@ const AccountTimeline = React.createClass({
   },
 
   render () {
-    const { statusIds, isLoading, me } = this.props;
+    const { statusIds, isLoading, hasMore, me } = this.props;
 
     if (!statusIds && isLoading) {
       return (
@@ -66,6 +68,7 @@ const AccountTimeline = React.createClass({
           prepend={<HeaderContainer accountId={this.props.params.accountId} />}
           statusIds={statusIds}
           isLoading={isLoading}
+          hasMore={hasMore}
           me={me}
           onScrollToBottom={this.handleScrollToBottom}
         />

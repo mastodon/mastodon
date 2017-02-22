@@ -17,37 +17,32 @@ export const makeGetAccount = () => {
   });
 };
 
-const getStatusBase = (state, id) => state.getIn(['statuses', id], null);
-
 export const makeGetStatus = () => {
-  return createSelector([getStatusBase, getStatuses, getAccounts], (base, statuses, accounts) => {
-    if (base === null) {
-      return null;
+  return createSelector(
+    [
+      (state, id) => state.getIn(['statuses', id]),
+      (state, id) => state.getIn(['statuses', state.getIn(['statuses', id, 'reblog'])]),
+      (state, id) => state.getIn(['accounts', state.getIn(['statuses', id, 'account'])]),
+      (state, id) => state.getIn(['accounts', state.getIn(['statuses', state.getIn(['statuses', id, 'reblog']), 'account'])]),
+    ],
+
+    (statusBase, statusReblog, accountBase, accountReblog) => {
+      if (!statusBase) {
+        return null;
+      }
+
+      if (statusReblog) {
+        statusReblog = statusReblog.set('account', accountReblog);
+      } else {
+        statusReblog = null;
+      }
+
+      return statusBase.withMutations(map => {
+        map.set('reblog', statusReblog);
+        map.set('account', accountBase);
+      });
     }
-
-    return assembleStatus(base.get('id'), statuses, accounts);
-  });
-};
-
-const assembleStatus = (id, statuses, accounts) => {
-  let status = statuses.get(id, null);
-  let reblog = null;
-
-  if (status === null) {
-    return null;
-  }
-
-  if (status.get('reblog', null) !== null) {
-    reblog = statuses.get(status.get('reblog'), null);
-
-    if (reblog !== null) {
-      reblog = reblog.set('account', accounts.get(reblog.get('account')));
-    } else {
-      return null;
-    }
-  }
-
-  return status.set('reblog', reblog).set('account', accounts.get(status.get('account')));
+  );
 };
 
 const getAlertsBase = state => state.get('alerts');

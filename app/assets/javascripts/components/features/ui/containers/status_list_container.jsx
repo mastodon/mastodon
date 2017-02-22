@@ -40,7 +40,8 @@ const makeMapStateToProps = () => {
   const mapStateToProps = (state, props) => ({
     statusIds: getStatusIds(state, props),
     isLoading: state.getIn(['timelines', props.type, 'isLoading'], true),
-    isUnread: state.getIn(['timelines', props.type, 'unread']) > 0
+    isUnread: state.getIn(['timelines', props.type, 'unread']) > 0,
+    hasMore: !!state.getIn(['timelines', props.type, 'next'])
   });
 
   return mapStateToProps;

@@ -18,45 +18,12 @@ import { openMedia } from '../actions/modal';
 import { createSelector } from 'reselect'
 import { isMobile } from '../is_mobile'
 
-const mapStateToProps = (state, props) => ({
-  statusBase: state.getIn(['statuses', props.id]),
-  me: state.getIn(['meta', 'me'])
-});
+const makeMapStateToProps = () => {
+  const getStatus = makeGetStatus();
 
-const makeMapStateToPropsInner = () => {
-  const getStatus = (() => {
-    return createSelector(
-      [
-        (_, base)     => base,
-        (state, base) => (base ? state.getIn(['accounts', base.get('account')]) : null),
-        (state, base) => (base ? state.getIn(['statuses', base.get('reblog')], null) : null)
-      ],
-
-      (base, account, reblog) => (base ? base.set('account', account).set('reblog', reblog) : null)
-    );
-  })();
-
-  const mapStateToProps = (state, { statusBase }) => ({
-    status: getStatus(state, statusBase)
-  });
-
-  return mapStateToProps;
-};
-
-const makeMapStateToPropsLast = () => {
-  const getStatus = (() => {
-    return createSelector(
-      [
-        (_, status)     => status,
-        (state, status) => (status ? state.getIn(['accounts', status.getIn(['reblog', 'account'])], null) : null)
-      ],
-
-      (status, reblogAccount) => (status && status.get('reblog') ? status.setIn(['reblog', 'account'], reblogAccount) : status)
-    );
-  })();
-
-  const mapStateToProps = (state, { status }) => ({
-    status: getStatus(state, status)
+  const mapStateToProps = (state, props) => ({
+    status: getStatus(state, props.id),
+    me: state.getIn(['meta', 'me'])
   });
 
   return mapStateToProps;
@@ -106,8 +73,4 @@ const mapDispatchToProps = (dispatch) => ({
 
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(
-  connect(makeMapStateToPropsInner)(
-    connect(makeMapStateToPropsLast)(Status)
-  )
-);
+export default connect(makeMapStateToProps, mapDispatchToProps)(Status);
