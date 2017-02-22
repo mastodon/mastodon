@@ -181,6 +181,9 @@ class ProcessFeedService < BaseService
         next unless link['href']
 
         media = MediaAttachment.where(status: parent, remote_url: link['href']).first_or_initialize(account: parent.account, status: parent, remote_url: link['href'])
+        parsed_url = URI.parse(link['href'])
+
+        next if !%w(http https).include?(parsed_url.scheme) || parsed_url.host.empty?
 
         begin
           media.file_remote_url = link['href']

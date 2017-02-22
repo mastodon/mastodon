@@ -138,7 +138,7 @@ class Account < ApplicationRecord
   def avatar_remote_url=(url)
     parsed_url = URI.parse(url)
 
-    return if !%w(http https).include?(parsed_url.scheme) || self[:avatar_remote_url] == url
+    return if !%w(http https).include?(parsed_url.scheme) || parsed_url.host.empty? || self[:avatar_remote_url] == url
 
     self.avatar              = parsed_url
     self[:avatar_remote_url] = url
