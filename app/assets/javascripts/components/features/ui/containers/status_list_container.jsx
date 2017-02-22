@@ -54,12 +54,12 @@ const mapDispatchToProps = (dispatch, { type, id }) => ({
     dispatch(expandTimeline(type, id));
   },
 
-  @debounce(300)
+  @debounce(100)
   onScrollToTop () {
     dispatch(scrollTopTimeline(type, true));
   },
 
-  @debounce(500)
+  @debounce(100)
   onScroll () {
     dispatch(scrollTopTimeline(type, false));
   }

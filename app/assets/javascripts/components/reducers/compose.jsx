@@ -35,6 +35,8 @@ const initialState = Immutable.Map({
   private: false,
   text: '',
   fileDropDate: null,
+  focusDate: null,
+  preselectDate: null,
   in_reply_to: null,
   is_submitting: false,
   is_uploading: false,
@@ -99,6 +101,7 @@ const insertSuggestion = (state, position, token, completion) => {
     map.update('text', oldText => `${oldText.slice(0, position)}${completion} ${oldText.slice(position + token.length)}`);
     map.set('suggestion_token', null);
     map.update('suggestions', Immutable.List(), list => list.clear());
+    map.set('focusDate', new Date());
   });
 };
 
@@ -128,6 +131,8 @@ export default function compose(state = initialState, action) {
       map.set('text', statusToTextMentions(state, action.status));
       map.set('unlisted', action.status.get('visibility') === 'unlisted' || state.get('default_privacy') === 'unlisted');
       map.set('private', action.status.get('visibility') === 'private' || state.get('default_privacy') === 'private');
+      map.set('focusDate', new Date());
+      map.set('preselectDate', new Date());
     });
   case COMPOSE_REPLY_CANCEL:
     return state.withMutations(map => {
@@ -156,7 +161,7 @@ export default function compose(state = initialState, action) {
   case COMPOSE_UPLOAD_PROGRESS:
     return state.set('progress', Math.round((action.loaded / action.total) * 100));
   case COMPOSE_MENTION:
-    return state.update('text', text => `${text}@${action.account.get('acct')} `);
+    return state.update('text', text => `${text}@${action.account.get('acct')} `).set('focusDate', new Date());
   case COMPOSE_SUGGESTIONS_CLEAR:
     return state.update('suggestions', Immutable.List(), list => list.clear()).set('suggestion_token', null);
   case COMPOSE_SUGGESTIONS_READY:

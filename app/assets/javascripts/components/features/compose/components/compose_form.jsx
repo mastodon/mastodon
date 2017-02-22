@@ -2,7 +2,7 @@ import CharacterCounter from './character_counter';
 import Button from '../../../components/button';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import ImmutablePropTypes from 'react-immutable-proptypes';
-import ReplyIndicator from './reply_indicator';
+import ReplyIndicatorContainer from '../containers/reply_indicator_container';
 import UploadButton from './upload_button';
 import AutosuggestTextarea from '../../../components/autosuggest_textarea';
 import AutosuggestAccountContainer from '../../compose/containers/autosuggest_account_container';
@@ -11,6 +11,7 @@ import UploadButtonContainer from '../containers/upload_button_container';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import Toggle from 'react-toggle';
 import Collapsable from '../../../components/collapsable';
+import UnlistedToggleContainer from '../containers/unlisted_toggle_container';
 
 const messages = defineMessages({
   placeholder: { id: 'compose_form.placeholder', defaultMessage: 'What is on your mind?' },
@@ -31,24 +32,23 @@ const ComposeForm = React.createClass({
     unlisted: React.PropTypes.bool,
     private: React.PropTypes.bool,
     fileDropDate: React.PropTypes.instanceOf(Date),
+    focusDate: React.PropTypes.instanceOf(Date),
+    preselectDate: React.PropTypes.instanceOf(Date),
     is_submitting: React.PropTypes.bool,
     is_uploading: React.PropTypes.bool,
-    in_reply_to: ImmutablePropTypes.map,
     media_count: React.PropTypes.number,
     me: React.PropTypes.number,
     needsPrivacyWarning: React.PropTypes.bool,
     mentionedDomains: React.PropTypes.array.isRequired,
     onChange: React.PropTypes.func.isRequired,
     onSubmit: React.PropTypes.func.isRequired,
-    onCancelReply: React.PropTypes.func.isRequired,
     onClearSuggestions: React.PropTypes.func.isRequired,
     onFetchSuggestions: React.PropTypes.func.isRequired,
     onSuggestionSelected: React.PropTypes.func.isRequired,
     onChangeSensitivity: React.PropTypes.func.isRequired,
     onChangeSpoilerness: React.PropTypes.func.isRequired,
     onChangeSpoilerText: React.PropTypes.func.isRequired,
-    onChangeVisibility: React.PropTypes.func.isRequired,
-    onChangeListability: React.PropTypes.func.isRequired,
+    onChangeVisibility: React.PropTypes.func.isRequired
   },
 
   mixins: [PureRenderMixin],
@@ -97,17 +97,13 @@ const ComposeForm = React.createClass({
     this.props.onChangeVisibility(e.target.checked);
   },
 
-  handleChangeListability (e) {
-    this.props.onChangeListability(e.target.checked);
-  },
-
   componentDidUpdate (prevProps) {
-    if ((prevProps.in_reply_to === null && this.props.in_reply_to !== null) || (prevProps.in_reply_to !== null && this.props.in_reply_to !== null && prevProps.in_reply_to.get('id') !== this.props.in_reply_to.get('id'))) {
+    if (this.props.focusDate !== prevProps.focusDate) {
       // If replying to zero or one users, places the cursor at the end of the textbox.
       // If replying to more than one user, selects any usernames past the first;
       // this provides a convenient shortcut to drop everyone else from the conversation.
-      const selectionStart = this.props.text.search(/\s/) + 1;
       const selectionEnd   = this.props.text.length;
+      const selectionStart = (this.props.preselectDate !== prevProps.preselectDate) ? (this.props.text.search(/\s/) + 1) : selectionEnd;
 
       this.autosuggestTextarea.textarea.setSelectionRange(selectionStart, selectionEnd);
       this.autosuggestTextarea.textarea.focus();
@@ -122,14 +118,9 @@ const ComposeForm = React.createClass({
     const { intl, needsPrivacyWarning, mentionedDomains } = this.props;
     const disabled = this.props.is_submitting || this.props.is_uploading;
 
-    let replyArea      = '';
     let publishText    = '';
     let privacyWarning = '';
-    let reply_to_other = !!this.props.in_reply_to && (this.props.in_reply_to.getIn(['account', 'id']) !== this.props.me);
-
-    if (this.props.in_reply_to) {
-      replyArea = <ReplyIndicator status={this.props.in_reply_to} onCancel={this.props.onCancelReply} />;
-    }
+    let reply_to_other = false;
 
     if (needsPrivacyWarning) {
       privacyWarning = (
@@ -158,7 +149,8 @@ const ComposeForm = React.createClass({
         </Collapsable>
 
         {privacyWarning}
-        {replyArea}
+
+        <ReplyIndicatorContainer />
 
         <AutosuggestTextarea
           ref={this.setAutosuggestTextarea}
@@ -190,12 +182,7 @@ const ComposeForm = React.createClass({
           <span className='compose-form__label__text'><FormattedMessage id='compose_form.private' defaultMessage='Mark as private' /></span>
         </label>
 
-        <Collapsable isVisible={!(this.props.private || reply_to_other)} fullHeight={39.5}>
-          <label className='compose-form__label'>
-            <Toggle checked={this.props.unlisted} onChange={this.handleChangeListability} />
-            <span className='compose-form__label__text'><FormattedMessage id='compose_form.unlisted' defaultMessage='Do not display on public timelines' /></span>
-          </label>
-        </Collapsable>
+        <UnlistedToggleContainer />
 
         <Collapsable isVisible={this.props.media_count > 0} fullHeight={39.5}>
           <label className='compose-form__label'>

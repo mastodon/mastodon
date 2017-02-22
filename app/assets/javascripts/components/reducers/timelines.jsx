@@ -249,6 +249,7 @@ const resetTimeline = (state, timeline, id) => {
         .set('isLoading', true)
         .set('loaded', false)
         .set('next', null)
+        .set('top', true)
         .update('items', list => list.clear()));
   } else {
     state = state.setIn([timeline, 'isLoading'], true);
