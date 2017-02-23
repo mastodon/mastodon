@@ -786,6 +786,7 @@ a.status__content__spoiler-link {
   flex: 0 0 auto;
   cursor: pointer;
   color: $color4;
+  z-index: 3;
 
   &:hover {
     text-decoration: underline;
@@ -1079,6 +1080,12 @@ button.active i.fa-retweet {
   background: lighten($color1, 4%);
   flex: 0 0 auto;
   cursor: pointer;
+  position: relative;
+  z-index: 2;
+
+  &.active {
+    box-shadow: 0 1px 0 rgba($color4, 0.3);
+  }
 
   &.active .fa {
     color: $color4;
@@ -1209,11 +1216,13 @@ button.active i.fa-retweet {
 
 .status-list__unread-indicator, .notifications__unread-indicator {
   position: absolute;
-  top: 48px;
+  top: 35px;
   left: 0;
-  width: 100%;
+  right: 0;
+  margin: 0 auto;
+  width: 60%;
   pointer-events: none;
-  height: 30px;
-  z-index: 2;
-  background: linear-gradient(to bottom, rgba($color4, 0.3) 0%, rgba($color4, 0) 60%);
+  height: 28px;
+  z-index: 1;
+  background: radial-gradient(ellipse, rgba($color4, 0.23) 0%, rgba($color4, 0) 60%);
 }

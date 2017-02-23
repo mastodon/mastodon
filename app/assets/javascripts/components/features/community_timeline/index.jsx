@@ -16,6 +16,7 @@ const messages = defineMessages({
 });
 
 const mapStateToProps = state => ({
+  hasUnread: state.getIn(['timelines', 'public', 'unread']) > 0,
   accessToken: state.getIn(['meta', 'access_token'])
 });
 
@@ -24,7 +25,8 @@ const CommunityTimeline = React.createClass({
   propTypes: {
     dispatch: React.PropTypes.func.isRequired,
     intl: React.PropTypes.object.isRequired,
-    accessToken: React.PropTypes.string.isRequired
+    accessToken: React.PropTypes.string.isRequired,
+    hasUnread: React.PropTypes.bool
   },
 
   mixins: [PureRenderMixin],
@@ -58,10 +60,10 @@ const CommunityTimeline = React.createClass({
   },
 
   render () {
-    const { intl } = this.props;
+    const { intl, hasUnread } = this.props;
 
     return (
-      <Column icon='users' heading={intl.formatMessage(messages.title)}>
+      <Column icon='users' active={hasUnread} heading={intl.formatMessage(messages.title)}>
         <ColumnBackButtonSlim />
         <StatusListContainer type='community' emptyMessage={<FormattedMessage id='empty_column.community' defaultMessage='The local timeline is empty. Write something publicly to get the ball rolling!' />} />
       </Column>

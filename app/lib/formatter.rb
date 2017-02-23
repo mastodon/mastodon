@@ -26,7 +26,7 @@ class Formatter
   end
 
   def reformat(html)
-    sanitize(html, tags: %w(a br p), attributes: %w(href rel))
+    sanitize(html, tags: %w(a br p span), attributes: %w(href rel class))
   end
 
   def simplified_format(account)

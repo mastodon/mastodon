@@ -7,7 +7,8 @@ const iconStyle = {
   position: 'absolute',
   right: '0',
   top: '-48px',
-  cursor: 'pointer'
+  cursor: 'pointer',
+  zIndex: '3'
 };
 
 const ColumnCollapsable = React.createClass({
@@ -41,7 +42,7 @@ const ColumnCollapsable = React.createClass({
     const { icon, fullHeight, children } = this.props;
     const { collapsed } = this.state;
     const collapsedClassName = collapsed ? 'collapsable-collapsed' : 'collapsable';
-    
+
     return (
       <div style={{ position: 'relative' }}>
         <div style={{...iconStyle }} className={collapsedClassName} onClick={this.handleToggleCollapsed}><i className={`fa fa-${icon}`} /></div>
