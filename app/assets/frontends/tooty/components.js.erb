@@ -10,6 +10,8 @@ if (!window.Intl) {
   require('intl/locale-data/jsonp/en.js');
 }
 
+window.BOOP_PATH = "<%= asset_path('./sounds/boop.mp3') %>"
+
 //= require_tree ./components
 
 window.Mastodon = require('./components/containers/mastodon');

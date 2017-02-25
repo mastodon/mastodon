@@ -488,7 +488,7 @@ a.status__content__spoiler-link {
 }
 
 .transparent-background, .imageloader {
-  background: image-url('void.png');
+  background: image-url('./images/void.png');
 }
 
 .imageloader {
@@ -966,7 +966,7 @@ a.status__content__spoiler-link {
   box-sizing: border-box;
   overflow-y: auto;
   padding-bottom: 235px;
-  background: image-url('mastodon-getting-started.png') no-repeat bottom left;
+  background: image-url('./images/mastodon-getting-started.png') no-repeat bottom left;
   height: auto;
   min-height: 100%;
 
@@ -1000,7 +1000,7 @@ a.status__content__spoiler-link {
   }
 }
 
-@import 'boost';
+@import './boost';
 
 button i.fa-retweet {
   height: 19px;

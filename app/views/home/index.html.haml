@@ -1,8 +1,24 @@
-- content_for :header_tags do
-  :javascript
-    window.STREAMING_API_BASE_URL = '#{Rails.configuration.x.streaming_api_base_url}';
-    window.INITIAL_STATE = #{json_escape(render(file: 'home/initial_state', formats: :json))}
+- if Rails.configuration.x.frontend_default
 
-  = javascript_include_tag 'application'
+  - content_for :header_tags do
 
-= react_component 'Mastodon', default_props, class: 'app-holder', prerender: false
+    :javascript
+      window.STREAMING_API_BASE_URL = '#{Rails.configuration.x.streaming_api_base_url}';
+      window.INITIAL_STATE = #{json_escape(render(file: 'home/initial_state', formats: :json))}
+
+    = javascript_include_tag "#{Rails.configuration.x.frontend_default}"
+    = stylesheet_link_tag "#{Rails.configuration.x.frontend_default}", media: 'all'
+
+
+  = react_component 'Mastodon', default_props, class: 'app-holder', prerender: false
+
+- else
+
+  - content_for :header_tags do
+
+    = javascript_include_tag "#{Rails.configuration.x.skin_default}"
+    = stylesheet_link_tag "#{Rails.configuration.x.skin_default}", media: "all"
+
+  %h1 Oops!
+
+  %p This instance of Mastodon doesn't have a frontend installed!

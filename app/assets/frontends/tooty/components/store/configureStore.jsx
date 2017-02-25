@@ -10,7 +10,7 @@ import Immutable from 'immutable';
 Howler.mobileAutoEnable = false;
 
 const soundsData = {
-  boop: '/sounds/boop.mp3'
+  boop: BOOP_PATH
 };
 
 export default function configureStore() {

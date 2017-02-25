@@ -15,7 +15,13 @@
       = "#{yield(:page_title)} - " if content_for?(:page_title)
       = Setting.site_title
 
+    = javascript_include_tag 'application'
     = stylesheet_link_tag 'application', media: 'all'
+
+    - if controller_name != 'home'
+      = javascript_include_tag "#{Rails.configuration.x.skin_default}"
+      = stylesheet_link_tag "#{Rails.configuration.x.skin_default}", media: 'all'
+
     = csrf_meta_tags
 
     = yield :header_tags
