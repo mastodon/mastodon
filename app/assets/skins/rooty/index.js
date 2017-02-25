@@ -1,6 +1,6 @@
 //= require jquery
 //= require jquery_ujs
-//= require extras
+//= require ./extras
 //= require best_in_place
 
 $(function () {
