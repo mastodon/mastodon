@@ -52,7 +52,7 @@ class Api::V1::AccountsController < ApiController
     set_maps(@statuses)
     set_counters_maps(@statuses)
 
-    next_path = statuses_api_v1_account_url(max_id: @statuses.last.id)    if @statuses.size == limit_param(DEFAULT_STATUSES_LIMIT)
+    next_path = statuses_api_v1_account_url(max_id: @statuses.last.id)    unless @statuses.empty?
     prev_path = statuses_api_v1_account_url(since_id: @statuses.first.id) unless @statuses.empty?
 
     set_pagination_headers(next_path, prev_path)
@@ -66,7 +66,7 @@ class Api::V1::AccountsController < ApiController
     set_maps(@statuses)
     set_counters_maps(@statuses)
 
-    next_path = media_statuses_api_v1_account_url(max_id: @statuses.last.id)    if @statuses.size == limit_param(DEFAULT_STATUSES_LIMIT)
+    next_path = media_statuses_api_v1_account_url(max_id: @statuses.last.id)    unless @statuses.empty?
     prev_path = media_statuses_api_v1_account_url(since_id: @statuses.first.id) unless @statuses.empty?
 
     set_pagination_headers(next_path, prev_path)

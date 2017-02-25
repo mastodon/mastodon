@@ -22,6 +22,7 @@ Index
 - [Development guide](Running-Mastodon/Development-guide.md)
 - [Alternative: Development with Vagrant](Running-Mastodon/Vagrant-guide.md)
 - [Administration guide](Running-Mastodon/Administration-guide.md)
+- [Tuning Mastodon](Running-Mastodon/Tuning.md)
 
 ### Contributing to Mastodon
 - [Sponsors](Contributing-to-Mastodon/Sponsors.md)

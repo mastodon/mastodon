@@ -14,7 +14,7 @@ class Api::V1::TimelinesController < ApiController
     set_counters_maps(@statuses)
     set_account_counters_maps(@statuses.flat_map { |s| [s.account, s.reblog? ? s.reblog.account : nil] }.compact.uniq)
 
-    next_path = api_v1_home_timeline_url(max_id: @statuses.last.id)    if @statuses.size == limit_param(DEFAULT_STATUSES_LIMIT)
+    next_path = api_v1_home_timeline_url(max_id: @statuses.last.id)    unless @statuses.empty?
     prev_path = api_v1_home_timeline_url(since_id: @statuses.first.id) unless @statuses.empty?
 
     set_pagination_headers(next_path, prev_path)
@@ -30,7 +30,7 @@ class Api::V1::TimelinesController < ApiController
     set_counters_maps(@statuses)
     set_account_counters_maps(@statuses.flat_map { |s| [s.account, s.reblog? ? s.reblog.account : nil] }.compact.uniq)
 
-    next_path = api_v1_public_timeline_url(max_id: @statuses.last.id)    if @statuses.size == limit_param(DEFAULT_STATUSES_LIMIT)
+    next_path = api_v1_public_timeline_url(max_id: @statuses.last.id)    unless @statuses.empty?
     prev_path = api_v1_public_timeline_url(since_id: @statuses.first.id) unless @statuses.empty?
 
     set_pagination_headers(next_path, prev_path)
@@ -47,7 +47,7 @@ class Api::V1::TimelinesController < ApiController
     set_counters_maps(@statuses)
     set_account_counters_maps(@statuses.flat_map { |s| [s.account, s.reblog? ? s.reblog.account : nil] }.compact.uniq)
 
-    next_path = api_v1_hashtag_timeline_url(params[:id], max_id: @statuses.last.id)    if @statuses.size == limit_param(DEFAULT_STATUSES_LIMIT)
+    next_path = api_v1_hashtag_timeline_url(params[:id], max_id: @statuses.last.id)    unless @statuses.empty?
     prev_path = api_v1_hashtag_timeline_url(params[:id], since_id: @statuses.first.id) unless @statuses.empty?
 
     set_pagination_headers(next_path, prev_path)

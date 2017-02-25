@@ -17,7 +17,7 @@ class Api::V1::NotificationsController < ApiController
     set_counters_maps(statuses)
     set_account_counters_maps(@notifications.map(&:from_account))
 
-    next_path = api_v1_notifications_url(max_id: @notifications.last.id)    if @notifications.size == limit_param(DEFAULT_NOTIFICATIONS_LIMIT)
+    next_path = api_v1_notifications_url(max_id: @notifications.last.id)    unless @notifications.empty?
     prev_path = api_v1_notifications_url(since_id: @notifications.first.id) unless @notifications.empty?
 
     set_pagination_headers(next_path, prev_path)

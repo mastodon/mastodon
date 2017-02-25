@@ -13,10 +13,13 @@ class UnfollowService < BaseService
   private
 
   def build_xml(follow)
+    description = "#{follow.account.acct} is no longer following #{follow.target_account.acct}"
+
     Nokogiri::XML::Builder.new do |xml|
       entry(xml, true) do
         unique_id xml, Time.now.utc, follow.id, 'Follow'
-        title xml, "#{follow.account.acct} is no longer following #{follow.target_account.acct}"
+        title xml, description
+        content xml, description
 
         author(xml) do
           include_author xml, follow.account
