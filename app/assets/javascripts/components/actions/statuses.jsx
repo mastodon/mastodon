@@ -28,7 +28,6 @@ export function fetchStatus(id) {
     const skipLoading = getState().getIn(['statuses', id], null) !== null;
 
     dispatch(fetchContext(id));
-    dispatch(fetchStatusCard(id));
 
     if (skipLoading) {
       return;
@@ -102,8 +101,14 @@ export function fetchContext(id) {
 
     api(getState).get(`/api/v1/statuses/${id}/context`).then(response => {
       dispatch(fetchContextSuccess(id, response.data.ancestors, response.data.descendants));
+      dispatch(fetchStatusCard(id));
     }).catch(error => {
-      dispatch(fetchContextFail(id, error));
+      if (error.response.status == 404){
+        dispatch(deleteStatusSuccess(id));
+        dispatch(deleteFromTimelines(id));
+      }else{
+        dispatch(fetchContextFail(id, error));
+      }
     });
   };
 };

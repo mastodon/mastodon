@@ -4,7 +4,7 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import { fetchStatus } from '../../actions/statuses';
 import Immutable from 'immutable';
 import EmbeddedStatus from '../../components/status';
-import LoadingIndicator from '../../components/loading_indicator';
+import StatusNotFound from '../../components/status_not_found';
 import DetailedStatus from './components/detailed_status';
 import ActionBar from './components/action_bar';
 import Column from '../ui/components/column';
@@ -117,7 +117,8 @@ const Status = React.createClass({
     if (status === null) {
       return (
         <Column>
-          <LoadingIndicator />
+          <ColumnBackButton />
+          <StatusNotFound />
         </Column>
       );
     }
