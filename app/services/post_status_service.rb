@@ -13,7 +13,7 @@ class PostStatusService < BaseService
   # @option [Doorkeeper::Application] :application
   # @return [Status]
   def call(account, text, in_reply_to = nil, options = {})
-    media = validate_media options[:media_ids]
+    media  = validate_media!(options[:media_ids])
     status = account.statuses.create!(text: text,
                                       thread: in_reply_to,
                                       sensitive: options[:sensitive],
@@ -34,17 +34,16 @@ class PostStatusService < BaseService
 
   private
 
-  def validate_media(media_ids)
+  def validate_media!(media_ids)
     return if media_ids.nil? || !media_ids.is_a?(Enumerable)
+
+    raise Mastodon::ValidationError, 'Cannot attach more than 4 files' if media_ids.size > 4
+
     media = MediaAttachment.where(status_id: nil).where(id: media_ids.take(4).map(&:to_i))
-    if media.length > 1
-      media.each do |m|
-        if m.video?
-          raise Mastodon::NotPermitted, 'Cannot attach a video to a toot that already contains images'
-        end
-      end
-    end
-    return media
+
+    raise Mastodon::ValidationError, 'Cannot attach a video to a toot that already contains images' if media.size > 1 && media.find(&:video?)
+
+    media
   end
 
   def attach_media(status, media)

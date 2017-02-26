@@ -25,7 +25,7 @@ class AuthorizeFollowController < ApplicationController
     else
       redirect_to web_url("accounts/#{@account.id}")
     end
-  rescue ActiveRecord::RecordNotFound, Mastodon::NotPermitted
+  rescue ActiveRecord::RecordNotFound, Mastodon::NotPermittedError
     render :error
   end
 

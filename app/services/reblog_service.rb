@@ -10,7 +10,7 @@ class ReblogService < BaseService
   def call(account, reblogged_status)
     reblogged_status = reblogged_status.reblog if reblogged_status.reblog?
 
-    raise Mastodon::NotPermitted if reblogged_status.private_visibility? || !reblogged_status.permitted?(account)
+    raise Mastodon::NotPermittedError if reblogged_status.private_visibility? || !reblogged_status.permitted?(account)
 
     reblog = account.statuses.create!(reblog: reblogged_status, text: '')
 
