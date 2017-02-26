@@ -9,7 +9,7 @@ import StatusContent from './status_content';
 import StatusActionBar from './status_action_bar';
 import { FormattedMessage } from 'react-intl';
 import emojify from '../emoji';
-import escapeTextContentForBrowser from 'react/lib/escapeTextContentForBrowser';
+import escapeTextContentForBrowser from 'escape-html';
 
 const Status = React.createClass({
 

@@ -5,7 +5,7 @@ import AccountContainer from '../../../containers/account_container';
 import { FormattedMessage } from 'react-intl';
 import Permalink from '../../../components/permalink';
 import emojify from '../../../emoji';
-import escapeTextContentForBrowser from 'react/lib/escapeTextContentForBrowser';
+import escapeTextContentForBrowser from 'escape-html';
 
 const linkStyle = {
   fontWeight: '500'

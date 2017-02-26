@@ -1,6 +1,6 @@
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
-import escapeTextContentForBrowser from 'react/lib/escapeTextContentForBrowser';
+import escapeTextContentForBrowser from 'escape-html';
 import emojify from '../emoji';
 import { FormattedMessage } from 'react-intl';
 import Permalink from './permalink';
