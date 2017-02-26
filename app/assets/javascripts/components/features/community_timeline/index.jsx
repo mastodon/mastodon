@@ -16,7 +16,7 @@ const messages = defineMessages({
 });
 
 const mapStateToProps = state => ({
-  hasUnread: state.getIn(['timelines', 'public', 'unread']) > 0,
+  hasUnread: state.getIn(['timelines', 'community', 'unread']) > 0,
   accessToken: state.getIn(['meta', 'access_token'])
 });
 
