@@ -5,6 +5,7 @@ class SearchService < BaseService
     return if query.blank? || query.start_with?('#')
 
     username, domain = query.gsub(/\A@/, '').split('@')
+    domain = nil if TagManager.instance.local_domain?(domain)
 
     if domain.nil?
       exact_match = Account.find_local(username)

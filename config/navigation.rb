@@ -9,7 +9,8 @@ SimpleNavigation::Configuration.run do |navigation|
       settings.item :preferences, safe_join([fa_icon('sliders fw'), t('settings.preferences')]), settings_preferences_url
       settings.item :password, safe_join([fa_icon('cog fw'), t('auth.change_password')]), edit_user_registration_url
       settings.item :two_factor_auth, safe_join([fa_icon('mobile fw'), t('settings.two_factor_auth')]), settings_two_factor_auth_url
-      # settings.item :authorized_apps, safe_join([fa_icon('list fw'), 'Authorized Apps']), oauth_authorized_applications_url
+      # settings.item :export, safe_join([fa_icon('cloud-download fw'), t('settings.export')]), settings_export_url
+      settings.item :authorized_apps, safe_join([fa_icon('list fw'), 'Authorized Apps']), oauth_authorized_applications_url
     end
 
     primary.item :admin, safe_join([fa_icon('cogs fw'), 'Administration']), admin_accounts_url, if: proc { current_user.admin? } do |admin|

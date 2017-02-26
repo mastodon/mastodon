@@ -52,7 +52,7 @@ class Account < ApplicationRecord
   # PuSH subscriptions
   has_many :subscriptions, dependent: :destroy
 
-  pg_search_scope :search_for, against: { username: 'A', domain: 'B' },
+  pg_search_scope :search_for, against: { display_name: 'A', username: 'B', domain: 'C' },
                                using: { tsearch: { prefix: true } }
 
   scope :remote, -> { where.not(domain: nil) }
