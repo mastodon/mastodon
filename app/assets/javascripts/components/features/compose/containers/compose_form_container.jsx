@@ -1,26 +1,29 @@
 import { connect } from 'react-redux';
 import ComposeForm from '../components/compose_form';
+import { createSelector } from 'reselect';
 import {
   changeCompose,
   submitCompose,
   clearComposeSuggestions,
   fetchComposeSuggestions,
   selectComposeSuggestion,
-  changeComposeSensitivity,
-  changeComposeSpoilerness,
   changeComposeSpoilerText,
-  changeComposeVisibility,
-  changeComposeListability
 } from '../../../actions/compose';
 
+const getMentionedUsernames = createSelector(state => state.getIn(['compose', 'text']), text => text.match(/(?:^|[^\/\w])@([a-z0-9_]+@[a-z0-9\.\-]+)/ig));
+
+const getMentionedDomains = createSelector(getMentionedUsernames, mentionedUsernamesWithDomains => {
+  return mentionedUsernamesWithDomains !== null ? [...new Set(mentionedUsernamesWithDomains.map(item => item.split('@')[2]))] : [];
+});
+
 const mapStateToProps = (state, props) => {
-  const mentionedUsernamesWithDomains = state.getIn(['compose', 'text']).match(/(?:^|[^\/\w])@([a-z0-9_]+@[a-z0-9\.\-]+)/ig);
+  const mentionedUsernames = getMentionedUsernames(state);
+  const mentionedUsernamesWithDomains = getMentionedDomains(state);
 
   return {
     text: state.getIn(['compose', 'text']),
     suggestion_token: state.getIn(['compose', 'suggestion_token']),
     suggestions: state.getIn(['compose', 'suggestions']),
-    sensitive: state.getIn(['compose', 'sensitive']),
     spoiler: state.getIn(['compose', 'spoiler']),
     spoiler_text: state.getIn(['compose', 'spoiler_text']),
     unlisted: state.getIn(['compose', 'unlisted'], ),
@@ -30,10 +33,9 @@ const mapStateToProps = (state, props) => {
     preselectDate: state.getIn(['compose', 'preselectDate']),
     is_submitting: state.getIn(['compose', 'is_submitting']),
     is_uploading: state.getIn(['compose', 'is_uploading']),
-    media_count: state.getIn(['compose', 'media_attachments']).size,
     me: state.getIn(['compose', 'me']),
-    needsPrivacyWarning: state.getIn(['compose', 'private']) && mentionedUsernamesWithDomains !== null,
-    mentionedDomains: mentionedUsernamesWithDomains !== null ? [...new Set(mentionedUsernamesWithDomains.map(item => item.split('@')[2]))] : []
+    needsPrivacyWarning: state.getIn(['compose', 'private']) && mentionedUsernames !== null,
+    mentionedDomains: mentionedUsernamesWithDomains
   };
 };
 
@@ -59,20 +61,8 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(selectComposeSuggestion(position, token, accountId));
   },
 
-  onChangeSensitivity (checked) {
-    dispatch(changeComposeSensitivity(checked));
-  },
-
-  onChangeSpoilerness (checked) {
-    dispatch(changeComposeSpoilerness(checked));
-  },
-
   onChangeSpoilerText (checked) {
     dispatch(changeComposeSpoilerText(checked));
-  },
-
-  onChangeVisibility (checked) {
-    dispatch(changeComposeVisibility(checked));
   },
 
 });

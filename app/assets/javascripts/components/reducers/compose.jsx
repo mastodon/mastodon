@@ -116,7 +116,10 @@ export default function compose(state = initialState, action) {
   case COMPOSE_SENSITIVITY_CHANGE:
     return state.set('sensitive', action.checked);
   case COMPOSE_SPOILERNESS_CHANGE:
-    return (action.checked ? state : state.set('spoiler_text', '')).set('spoiler', action.checked);
+    return state.withMutations(map => {
+      map.set('spoiler_text', '');
+      map.set('spoiler', action.checked);
+    });
   case COMPOSE_SPOILER_TEXT_CHANGE:
     return state.set('spoiler_text', action.text);
   case COMPOSE_VISIBILITY_CHANGE:

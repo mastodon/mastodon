@@ -1,4 +1,4 @@
-import { createSelector } from 'reselect'
+import { createSelector } from 'reselect';
 import Immutable from 'immutable';
 
 const getStatuses = state => state.get('statuses');

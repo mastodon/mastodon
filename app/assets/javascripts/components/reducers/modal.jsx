@@ -23,9 +23,9 @@ export default function modal(state = initialState, action) {
   case MODAL_CLOSE:
     return state.set('open', false);
   case MODAL_INDEX_DECREASE:
-    return state.update('index', index => Math.max(index - 1, 0));
+    return state.update('index', index => (index - 1) % state.get('media').size);
   case MODAL_INDEX_INCREASE:
-    return state.update('index', index => Math.min(index + 1, state.get('media').size - 1));
+    return state.update('index', index => (index + 1) % state.get('media').size);
   default:
     return state;
   }

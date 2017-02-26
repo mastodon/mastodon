@@ -131,19 +131,14 @@ const Modal = React.createClass({
       return null;
     }
 
-    const url      = media.get(index).get('url');
-    const hasLeft  = index > 0;
-    const hasRight = index + 1 < media.size;
+    const url = media.get(index).get('url');
 
     let leftNav, rightNav;
 
     leftNav = rightNav = '';
 
-    if (hasLeft) {
-      leftNav = <div style={leftNavStyle} className='modal-container--nav' onClick={this.handlePrevClick}><i className='fa fa-fw fa-chevron-left' /></div>;
-    }
-
-    if (hasRight) {
+    if (media.size > 1) {
+      leftNav  = <div style={leftNavStyle} className='modal-container--nav' onClick={this.handlePrevClick}><i className='fa fa-fw fa-chevron-left' /></div>;
       rightNav = <div style={rightNavStyle} className='modal-container--nav' onClick={this.handleNextClick}><i className='fa fa-fw fa-chevron-right' /></div>;
     }
 

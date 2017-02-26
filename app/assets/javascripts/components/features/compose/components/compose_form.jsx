@@ -12,6 +12,9 @@ import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import Toggle from 'react-toggle';
 import Collapsable from '../../../components/collapsable';
 import UnlistedToggleContainer from '../containers/unlisted_toggle_container';
+import SpoilerToggleContainer from '../containers/spoiler_toggle_container';
+import PrivateToggleContainer from '../containers/private_toggle_container';
+import SensitiveToggleContainer from '../containers/sensitive_toggle_container';
 
 const messages = defineMessages({
   placeholder: { id: 'compose_form.placeholder', defaultMessage: 'What is on your mind?' },
@@ -26,17 +29,15 @@ const ComposeForm = React.createClass({
     text: React.PropTypes.string.isRequired,
     suggestion_token: React.PropTypes.string,
     suggestions: ImmutablePropTypes.list,
-    sensitive: React.PropTypes.bool,
     spoiler: React.PropTypes.bool,
-    spoiler_text: React.PropTypes.string,
-    unlisted: React.PropTypes.bool,
     private: React.PropTypes.bool,
+    unlisted: React.PropTypes.bool,
+    spoiler_text: React.PropTypes.string,
     fileDropDate: React.PropTypes.instanceOf(Date),
     focusDate: React.PropTypes.instanceOf(Date),
     preselectDate: React.PropTypes.instanceOf(Date),
     is_submitting: React.PropTypes.bool,
     is_uploading: React.PropTypes.bool,
-    media_count: React.PropTypes.number,
     me: React.PropTypes.number,
     needsPrivacyWarning: React.PropTypes.bool,
     mentionedDomains: React.PropTypes.array.isRequired,
@@ -45,10 +46,7 @@ const ComposeForm = React.createClass({
     onClearSuggestions: React.PropTypes.func.isRequired,
     onFetchSuggestions: React.PropTypes.func.isRequired,
     onSuggestionSelected: React.PropTypes.func.isRequired,
-    onChangeSensitivity: React.PropTypes.func.isRequired,
-    onChangeSpoilerness: React.PropTypes.func.isRequired,
     onChangeSpoilerText: React.PropTypes.func.isRequired,
-    onChangeVisibility: React.PropTypes.func.isRequired
   },
 
   mixins: [PureRenderMixin],
@@ -80,21 +78,8 @@ const ComposeForm = React.createClass({
     this.props.onSuggestionSelected(tokenStart, token, value);
   },
 
-  handleChangeSensitivity (e) {
-    this.props.onChangeSensitivity(e.target.checked);
-  },
-
-  handleChangeSpoilerness (e) {
-    this.props.onChangeSpoilerness(e.target.checked);
-    this.props.onChangeSpoilerText('');
-  },
-
   handleChangeSpoilerText (e) {
     this.props.onChangeSpoilerText(e.target.value);
-  },
-
-  handleChangeVisibility (e) {
-    this.props.onChangeVisibility(e.target.checked);
   },
 
   componentDidUpdate (prevProps) {
@@ -172,24 +157,10 @@ const ComposeForm = React.createClass({
           <UploadButtonContainer style={{ paddingTop: '4px' }} />
         </div>
 
-        <label className='compose-form__label with-border' style={{ marginTop: '10px' }}>
-          <Toggle checked={this.props.spoiler} onChange={this.handleChangeSpoilerness} />
-          <span className='compose-form__label__text'><FormattedMessage id='compose_form.spoiler' defaultMessage='Hide text behind warning' /></span>
-        </label>
-
-        <label className='compose-form__label with-border'>
-          <Toggle checked={this.props.private} onChange={this.handleChangeVisibility} />
-          <span className='compose-form__label__text'><FormattedMessage id='compose_form.private' defaultMessage='Mark as private' /></span>
-        </label>
-
+        <SpoilerToggleContainer />
+        <PrivateToggleContainer />
         <UnlistedToggleContainer />
-
-        <Collapsable isVisible={this.props.media_count > 0} fullHeight={39.5}>
-          <label className='compose-form__label'>
-            <Toggle checked={this.props.sensitive} onChange={this.handleChangeSensitivity} />
-            <span className='compose-form__label__text'><FormattedMessage id='compose_form.sensitive' defaultMessage='Mark media as sensitive' /></span>
-          </label>
-        </Collapsable>
+        <SensitiveToggleContainer />
       </div>
     );
   }
