@@ -138,7 +138,8 @@ export function fetchAccountFail(id, error) {
   return {
     type: ACCOUNT_FETCH_FAIL,
     id,
-    error
+    error,
+    skipAlert: true
   };
 };
 
@@ -231,7 +232,8 @@ export function fetchAccountTimelineFail(id, error, skipLoading) {
     type: ACCOUNT_TIMELINE_FETCH_FAIL,
     id,
     error,
-    skipLoading
+    skipLoading,
+    skipAlert: error.response.status === 404
   };
 };
 

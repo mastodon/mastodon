@@ -2,6 +2,7 @@ import PureRenderMixin from 'react-addons-pure-render-mixin';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import InnerHeader from '../../account/components/header';
 import ActionBar from '../../account/components/action_bar';
+import MissingIndicator from '../../../components/missing_indicator';
 
 const Header = React.createClass({
   contextTypes: {
@@ -9,7 +10,7 @@ const Header = React.createClass({
   },
 
   propTypes: {
-    account: ImmutablePropTypes.map.isRequired,
+    account: ImmutablePropTypes.map,
     me: React.PropTypes.number.isRequired,
     onFollow: React.PropTypes.func.isRequired,
     onBlock: React.PropTypes.func.isRequired,
@@ -39,8 +40,8 @@ const Header = React.createClass({
   render () {
     const { account, me } = this.props;
 
-    if (!account) {
-      return null;
+    if (account === null) {
+      return <MissingIndicator />;
     }
 
     return (

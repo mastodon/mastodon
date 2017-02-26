@@ -46,6 +46,7 @@ export function fetchStatusCardFail(id, error) {
     type: STATUS_CARD_FETCH_FAIL,
     id,
     error,
-    skipLoading: true
+    skipLoading: true,
+    skipAlert: true
   };
 };
