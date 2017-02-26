@@ -39,14 +39,15 @@ const normalizeStatus = (state, status) => {
     return state;
   }
 
-  status.account = status.account.id;
+  const normalStatus   = { ...status };
+  normalStatus.account = status.account.id;
 
   if (status.reblog && status.reblog.id) {
-    state         = normalizeStatus(state, status.reblog);
-    status.reblog = status.reblog.id;
+    state               = normalizeStatus(state, status.reblog);
+    normalStatus.reblog = status.reblog.id;
   }
 
-  return state.update(status.id, Immutable.Map(), map => map.mergeDeep(Immutable.fromJS(status)));
+  return state.update(status.id, Immutable.Map(), map => map.mergeDeep(Immutable.fromJS(normalStatus)));
 };
 
 const normalizeStatuses = (state, statuses) => {

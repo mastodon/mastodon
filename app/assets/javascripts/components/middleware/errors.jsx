@@ -5,7 +5,7 @@ const defaultFailSuffix = 'FAIL';
 
 export default function errorsMiddleware() {
   return ({ dispatch }) => next => action => {
-    if (action.type) {
+    if (action.type && !action.skipAlert) {
       const isFail = new RegExp(`${defaultFailSuffix}$`, 'g');
       const isSuccess = new RegExp(`${defaultSuccessSuffix}$`, 'g');
 

@@ -57,7 +57,8 @@ export function fetchStatusFail(id, error, skipLoading) {
     type: STATUS_FETCH_FAIL,
     id,
     error,
-    skipLoading
+    skipLoading,
+    skipAlert: true
   };
 };
 
@@ -102,7 +103,12 @@ export function fetchContext(id) {
 
     api(getState).get(`/api/v1/statuses/${id}/context`).then(response => {
       dispatch(fetchContextSuccess(id, response.data.ancestors, response.data.descendants));
+
     }).catch(error => {
+      if (error.response.status === 404) {
+        dispatch(deleteFromTimelines(id));
+      }
+
       dispatch(fetchContextFail(id, error));
     });
   };
@@ -129,6 +135,7 @@ export function fetchContextFail(id, error) {
   return {
     type: CONTEXT_FETCH_FAIL,
     id,
-    error
+    error,
+    skipAlert: true
   };
 };
