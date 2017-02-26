@@ -6,7 +6,7 @@ class FavouriteService < BaseService
   # @param [Status] status
   # @return [Favourite]
   def call(account, status)
-    raise Mastodon::NotPermitted unless status.permitted?(account)
+    raise Mastodon::NotPermittedError unless status.permitted?(account)
 
     favourite = Favourite.create!(account: account, status: status)
 

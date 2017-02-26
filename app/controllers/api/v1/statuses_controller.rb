@@ -67,7 +67,6 @@ class Api::V1::StatusesController < ApiController
                                                                                                                                                              spoiler_text: params[:spoiler_text],
                                                                                                                                                              visibility: params[:visibility],
                                                                                                                                                              application: doorkeeper_token.application)
-
     render action: :show
   end
 
