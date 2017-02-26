@@ -42,7 +42,7 @@ class Pubsubhubbub::DeliveryWorker
   end
 
   def blocked_domain?
-    DomainBlock.blocked?(host)
+    AllowDomainService.blocked?(host)
   end
 
   def host
