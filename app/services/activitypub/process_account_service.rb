@@ -118,19 +118,15 @@ class ActivityPub::ProcessAccountService < BaseService
   end
 
   def skip_download?
-    @account.suspended? || domain_block&.reject_media?
+    @account.suspended? || AllowDomainService.reject_media?(@domain)
   end
 
   def auto_suspend?
-    domain_block && domain_block.suspend?
+    AllowDomainService.blocked?(@domain)
   end
 
   def auto_silence?
-    domain_block && domain_block.silence?
+    AllowDomainService.silenced?(@domain)
   end
 
-  def domain_block
-    return @domain_block if defined?(@domain_block)
-    @domain_block = DomainBlock.find_by(domain: @domain)
-  end
 end

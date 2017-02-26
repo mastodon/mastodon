@@ -25,8 +25,7 @@ class UpdateRemoteProfileService < BaseService
     account.display_name = remote_profile.display_name || ''
     account.note         = remote_profile.note         || ''
     account.locked       = remote_profile.locked?
-
-    if !account.suspended? && !DomainBlock.find_by(domain: account.domain)&.reject_media?
+    if !account.suspended? && !AllowDomainService.reject_media?(account.domain)
       if remote_profile.avatar.present?
         account.avatar_remote_url = remote_profile.avatar
       else

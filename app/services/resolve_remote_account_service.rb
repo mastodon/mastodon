@@ -124,16 +124,11 @@ class ResolveRemoteAccountService < BaseService
   end
 
   def auto_suspend?
-    domain_block && domain_block.suspend?
+    AllowDomainService.blocked?(@domain)
   end
 
   def auto_silence?
-    domain_block && domain_block.silence?
-  end
-
-  def domain_block
-    return @domain_block if defined?(@domain_block)
-    @domain_block = DomainBlock.find_by(domain: @domain)
+    AllowDomainService.silenced?(@domain)
   end
 
   def atom_url

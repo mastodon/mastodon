@@ -54,7 +54,7 @@ class Pubsubhubbub::SubscribeService < BaseService
   end
 
   def blocked_domain?
-    DomainBlock.blocked? Addressable::URI.parse(callback).host
+    AllowDomainService.blocked?(Addressable::URI.parse(callback).host)
   end
 
   def locate_subscription

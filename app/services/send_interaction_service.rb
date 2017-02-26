@@ -30,7 +30,7 @@ class SendInteractionService < BaseService
   end
 
   def block_notification?
-    DomainBlock.blocked?(@target_account.domain)
+    AllowDomainService.blocked?(@target_account.domain)
   end
 
   def salmon
