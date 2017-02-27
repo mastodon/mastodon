@@ -1074,8 +1074,10 @@ button.active i.fa-retweet {
   text-align: center;
   font-size: 16px;
   font-weight: 500;
-  color: lighten($color1, 26%);
-  padding-top: 120px;
+  color: lighten($color1, 16%);
+  padding-top: 210px;
+  background: image-url('mastodon-not-found.png') no-repeat center -50px;
+  cursor: default;
 }
 
 .column-header {
