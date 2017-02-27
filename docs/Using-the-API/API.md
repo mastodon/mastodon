@@ -19,6 +19,7 @@ API overview
   - Who reblogged/favourited a status
   - Following/unfollowing accounts
   - Blocking/unblocking accounts
+  - Getting site information
   - Creating OAuth apps
 - [Entities](#entities)
   - Status
@@ -206,6 +207,13 @@ Returns the updated relationship to the user.
 **POST /api/v1/accounts/:id/unblock**
 
 Returns the updated relationship to the user.
+
+### Getting site information
+
+**GET /api/v1/site**
+
+Returns an object containing the `title`, character limit (`max_chars`), and an object of `links` for the site.
+Does not require authentication.
 
 ### OAuth apps
 
