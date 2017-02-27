@@ -22,7 +22,7 @@ class AllowDomainService < BaseService
   end
 
   def reject_media?(domain)
-    record_type = if DomainWhitelist.enabled? DomainWhitelist else DomainBlock end
+    record_type = if DomainWhitelist.enabled? then DomainWhitelist else DomainBlock end
     return record_type.find_by(domain: domain)&.reject_media?
   end
 end
