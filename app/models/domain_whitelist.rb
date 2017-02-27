@@ -4,7 +4,7 @@ class DomainWhitelist < ApplicationRecord
   enum severity: [:silence, :enable]
 
   def self.enabled?
-    return Setting.where(var: 'whitelist_enabled').first_or_initialize!(var: 'whitelist_enabled', value: false)
+    return Setting.where(var: 'whitelist_enabled').first_or_initialize(var: 'whitelist_enabled', value: false)
   end
 
   validates :domain, presence: true, uniqueness: true
