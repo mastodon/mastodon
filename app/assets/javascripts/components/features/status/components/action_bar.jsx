@@ -6,11 +6,11 @@ import { defineMessages, injectIntl } from 'react-intl';
 
 const messages = defineMessages({
   delete: { id: 'status.delete', defaultMessage: 'Delete' },
-  mention: { id: 'status.mention', defaultMessage: 'Mention' },
+  mention: { id: 'status.mention', defaultMessage: 'Mention @{name}' },
   reply: { id: 'status.reply', defaultMessage: 'Reply' },
   reblog: { id: 'status.reblog', defaultMessage: 'Reblog' },
   favourite: { id: 'status.favourite', defaultMessage: 'Favourite' },
-  report: { id: 'status.report', defaultMessage: 'Report' }
+  report: { id: 'status.report', defaultMessage: 'Report @{name}' }
 });
 
 const ActionBar = React.createClass({
@@ -66,8 +66,9 @@ const ActionBar = React.createClass({
     if (me === status.getIn(['account', 'id'])) {
       menu.push({ text: intl.formatMessage(messages.delete), action: this.handleDeleteClick });
     } else {
-      menu.push({ text: intl.formatMessage(messages.mention), action: this.handleMentionClick });
-      menu.push({ text: intl.formatMessage(messages.report), action: this.handleReport });
+      menu.push({ text: intl.formatMessage(messages.mention, { name: status.getIn(['account', 'username']) }), action: this.handleMentionClick });
+      menu.push(null);
+      menu.push({ text: intl.formatMessage(messages.report, { name: status.getIn(['account', 'username']) }), action: this.handleReport });
     }
 
     return (

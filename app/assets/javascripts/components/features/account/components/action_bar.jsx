@@ -5,14 +5,13 @@ import { Link } from 'react-router';
 import { defineMessages, injectIntl, FormattedMessage, FormattedNumber } from 'react-intl';
 
 const messages = defineMessages({
-  mention: { id: 'account.mention', defaultMessage: 'Mention' },
+  mention: { id: 'account.mention', defaultMessage: 'Mention @{name}' },
   edit_profile: { id: 'account.edit_profile', defaultMessage: 'Edit profile' },
-  unblock: { id: 'account.unblock', defaultMessage: 'Unblock' },
+  unblock: { id: 'account.unblock', defaultMessage: 'Unblock @{name}' },
   unfollow: { id: 'account.unfollow', defaultMessage: 'Unfollow' },
-  block: { id: 'account.block', defaultMessage: 'Block' },
+  block: { id: 'account.block', defaultMessage: 'Block @{name}' },
   follow: { id: 'account.follow', defaultMessage: 'Follow' },
-  block: { id: 'account.block', defaultMessage: 'Block' },
-  report: { id: 'account.report', defaultMessage: 'Report' }
+  report: { id: 'account.report', defaultMessage: 'Report @{name}' }
 });
 
 const outerDropdownStyle = {
@@ -45,20 +44,21 @@ const ActionBar = React.createClass({
 
     let menu = [];
 
-    menu.push({ text: intl.formatMessage(messages.mention), action: this.props.onMention });
+    menu.push({ text: intl.formatMessage(messages.mention, { name: account.get('username') }), action: this.props.onMention });
+    menu.push(null);
 
     if (account.get('id') === me) {
       menu.push({ text: intl.formatMessage(messages.edit_profile), href: '/settings/profile' });
     } else if (account.getIn(['relationship', 'blocking'])) {
-      menu.push({ text: intl.formatMessage(messages.unblock), action: this.props.onBlock });
+      menu.push({ text: intl.formatMessage(messages.unblock, { name: account.get('username') }), action: this.props.onBlock });
     } else if (account.getIn(['relationship', 'following'])) {
-      menu.push({ text: intl.formatMessage(messages.block), action: this.props.onBlock });
+      menu.push({ text: intl.formatMessage(messages.block, { name: account.get('username') }), action: this.props.onBlock });
     } else {
-      menu.push({ text: intl.formatMessage(messages.block), action: this.props.onBlock });
+      menu.push({ text: intl.formatMessage(messages.block, { name: account.get('username') }), action: this.props.onBlock });
     }
 
     if (account.get('id') !== me) {
-      menu.push({ text: intl.formatMessage(messages.report), action: this.props.onReport });
+      menu.push({ text: intl.formatMessage(messages.report, { name: account.get('username') }), action: this.props.onReport });
     }
 
     return (

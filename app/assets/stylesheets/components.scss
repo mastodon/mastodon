@@ -59,6 +59,10 @@
   &.active {
     color: $color4;
   }
+
+  &:focus {
+    outline: none;
+  }
 }
 
 .invisible {
@@ -516,6 +520,12 @@ a.status__content__spoiler-link {
   position: absolute;
 }
 
+.dropdown__sep {
+  border-bottom: 1px solid darken($color2, 8%);
+  margin: 5px 7px 6px;
+  padding-top: 1px;
+}
+
 .dropdown--active .dropdown__content {
   display: block;
   z-index: 9999;
@@ -539,17 +549,33 @@ a.status__content__spoiler-link {
     padding: 4px 0;
     border-radius: 4px;
     box-shadow: 0 0 15px rgba($color8, 0.4);
-    min-width: 100px;
+    min-width: 140px;
+    position: relative;
+    left: -10px;
+  }
+
+  &.dropdown__left {
+    ul {
+      left: -98px;
+    }
   }
 
   a {
     font-size: 13px;
+    line-height: 18px;
     display: block;
-    padding: 6px 16px;
-    width: 100px;
+    padding: 4px 14px;
+    box-sizing: border-box;
+    width: 140px;
     text-decoration: none;
     background: $color2;
     color: $color1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    &:focus {
+      outline: none;
+    }
 
     &:hover {
       background: $color4;
@@ -980,15 +1006,6 @@ a.status__content__spoiler-link {
 
   a {
     color: lighten($color1, 26%);
-  }
-}
-
-.dropdown__content.dropdown__left {
-  transform: translateX(-108px);
-
-  &::before {
-    right: 8px !important;
-    left: initial !important;
   }
 }
 
