@@ -1,5 +1,6 @@
 import AutosuggestAccountContainer from '../features/compose/containers/autosuggest_account_container';
 import ImmutablePropTypes from 'react-immutable-proptypes';
+import { isRtl } from '../rtl';
 
 const textAtCursorMatchesToken = (str, caretPosition) => {
   let word;
@@ -176,6 +177,11 @@ const AutosuggestTextarea = React.createClass({
     const { value, suggestions, fileDropDate, disabled, placeholder, onKeyUp } = this.props;
     const { isFileDragging, suggestionsHidden, selectedSuggestion } = this.state;
     const className = isFileDragging ? 'autosuggest-textarea__textarea file-drop' : 'autosuggest-textarea__textarea';
+    const style     = { direction: 'ltr' };
+
+    if (isRtl(value)) {
+      style.direction = 'rtl';
+    }
 
     return (
       <div className='autosuggest-textarea'>
@@ -192,6 +198,7 @@ const AutosuggestTextarea = React.createClass({
           onBlur={this.onBlur}
           onDragEnter={this.onDragEnter}
           onDragExit={this.onDragExit}
+          style={style}
         />
 
         <div style={{ display: (suggestions.size > 0 && !suggestionsHidden) ? 'block' : 'none' }} className='autosuggest-textarea__suggestions'>

@@ -15,7 +15,7 @@
   .status__content.e-content.p-name.emojify<
     - unless status.spoiler_text.blank?
       %p= status.spoiler_text
-    = Formatter.instance.format(status)
+    %div{ style: "direction: #{rtl?(status.content) ? 'rtl' : 'ltr'}" }= Formatter.instance.format(status)
 
   - unless status.media_attachments.empty?
     .status__attachments

@@ -37,4 +37,17 @@ module StreamEntriesHelper
   def proper_status(status)
     status.reblog? ? status.reblog : status
   end
+
+  def rtl?(text)
+    return false if text.empty?
+
+    matches = /[\p{Hebrew}|\p{Arabic}|\p{Syriac}|\p{Thaana}|\p{Nko}]+/m.match(text)
+
+    return false unless matches
+
+    rtl_size = matches.to_a.reduce(0) { |acc, elem| acc + elem.size }.to_f
+    ltr_size = text.strip.size.to_f
+
+    rtl_size / ltr_size > 0.3
+  end
 end
