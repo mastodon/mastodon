@@ -1,8 +1,12 @@
-$color1: #282c37; // darkest
-$color2: #d9e1e8; // lightest
-$color3: #9baec8; // lighter
-$color4: #2b90d9; // vibrant
-$color5: #ffffff; // white
-$color6: #df405a; // error red
-$color7: #79bd9a; // succ green
-$color8: #000000; // black
+@import 'variables/palettes';
+
+//  For some colour palettes to chose from, see `variables/palettes.scss`!!
+
+$color1: $mastodon-color1; // darkest
+$color2: $mastodon-color2; // lightest
+$color3: $mastodon-color3; // lighter
+$color4: $mastodon-color4; // vibrant
+$color5: $mastodon-color5; // white
+$color6: $mastodon-color6; // error red
+$color7: $mastodon-color7; // succ green
+$color8: $mastodon-color8; // black
