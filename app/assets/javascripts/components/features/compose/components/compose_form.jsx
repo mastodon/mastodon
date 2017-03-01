@@ -47,6 +47,7 @@ const ComposeForm = React.createClass({
     onFetchSuggestions: React.PropTypes.func.isRequired,
     onSuggestionSelected: React.PropTypes.func.isRequired,
     onChangeSpoilerText: React.PropTypes.func.isRequired,
+    onPaste: React.PropTypes.func.isRequired,
   },
 
   mixins: [PureRenderMixin],
@@ -80,6 +81,10 @@ const ComposeForm = React.createClass({
 
   handleChangeSpoilerText (e) {
     this.props.onChangeSpoilerText(e.target.value);
+  },
+
+  onPaste (files) {
+    this.props.onPaste(files);
   },
 
   componentDidUpdate (prevProps) {
@@ -149,6 +154,7 @@ const ComposeForm = React.createClass({
           onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
           onSuggestionsClearRequested={this.onSuggestionsClearRequested}
           onSuggestionSelected={this.onSuggestionSelected}
+          onPaste={this.onPaste}
         />
 
         <div style={{ marginTop: '10px', overflow: 'hidden' }}>
