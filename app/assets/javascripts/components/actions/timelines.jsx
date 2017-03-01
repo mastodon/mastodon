@@ -106,18 +106,20 @@ export function expandTimeline(timeline) {
       return;
     }
 
-    const next   = getState().getIn(['timelines', timeline, 'next']);
-    const params = getState().getIn(['timelines', timeline, 'params'], {});
-
-    if (next === null) {
+    if (getState().getIn(['timelines', timeline, 'items']).size === 0) {
       return;
     }
 
+    const path   = getState().getIn(['timelines', timeline, 'path'])(getState().getIn(['timelines', timeline, 'id']));
+    const params = getState().getIn(['timelines', timeline, 'params'], {});
+    const lastId = getState().getIn(['timelines', timeline, 'items']).last();
+
     dispatch(expandTimelineRequest(timeline));
 
-    api(getState).get(next, {
+    api(getState).get(path, {
       params: {
         ...params,
+        max_id: lastId,
         limit: 10
       }
     }).then(response => {

@@ -20,6 +20,8 @@ const mapStateToProps = state => ({
   accessToken: state.getIn(['meta', 'access_token'])
 });
 
+let subscription;
+
 const PublicTimeline = React.createClass({
 
   propTypes: {
@@ -36,7 +38,11 @@ const PublicTimeline = React.createClass({
 
     dispatch(refreshTimeline('public'));
 
-    this.subscription = createStream(accessToken, 'public', {
+    if (typeof subscription !== 'undefined') {
+      return;
+    }
+
+    subscription = createStream(accessToken, 'public', {
 
       received (data) {
         switch(data.event) {
@@ -53,10 +59,10 @@ const PublicTimeline = React.createClass({
   },
 
   componentWillUnmount () {
-    if (typeof this.subscription !== 'undefined') {
-      this.subscription.close();
-      this.subscription = null;
-    }
+    // if (typeof subscription !== 'undefined') {
+    //   subscription.close();
+    //   subscription = null;
+    // }
   },
 
   render () {
