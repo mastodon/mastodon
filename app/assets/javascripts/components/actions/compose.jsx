@@ -85,11 +85,11 @@ export function submitCompose() {
       dispatch(updateTimeline('home', { ...response.data }));
 
       if (response.data.in_reply_to_id === null && response.data.visibility === 'public') {
-        if (getState.getIn(['timelines', 'community', 'loaded'])) {
+        if (getState().getIn(['timelines', 'community', 'loaded'])) {
           dispatch(updateTimeline('community', { ...response.data }));
         }
 
-        if (getState.getIn(['timelines', 'public', 'loaded'])) {
+        if (getState().getIn(['timelines', 'public', 'loaded'])) {
           dispatch(updateTimeline('public', { ...response.data }));
         }
       }
