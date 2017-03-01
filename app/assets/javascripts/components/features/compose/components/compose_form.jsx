@@ -47,6 +47,7 @@ const ComposeForm = React.createClass({
     onFetchSuggestions: React.PropTypes.func.isRequired,
     onSuggestionSelected: React.PropTypes.func.isRequired,
     onChangeSpoilerText: React.PropTypes.func.isRequired,
+    onPaste: React.PropTypes.func.isRequired,
   },
 
   mixins: [PureRenderMixin],
@@ -100,7 +101,7 @@ const ComposeForm = React.createClass({
   },
 
   render () {
-    const { intl, needsPrivacyWarning, mentionedDomains } = this.props;
+    const { intl, needsPrivacyWarning, mentionedDomains, onPaste } = this.props;
     const disabled = this.props.is_submitting || this.props.is_uploading;
 
     let publishText    = '';
@@ -149,6 +150,7 @@ const ComposeForm = React.createClass({
           onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
           onSuggestionsClearRequested={this.onSuggestionsClearRequested}
           onSuggestionSelected={this.onSuggestionSelected}
+          onPaste={onPaste}
         />
 
         <div style={{ marginTop: '10px', overflow: 'hidden' }}>
