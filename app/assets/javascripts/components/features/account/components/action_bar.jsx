@@ -63,7 +63,7 @@ const ActionBar = React.createClass({
       menu.push({ text: intl.formatMessage(messages.report, { name: account.get('username') }), action: this.props.onReport });
     }
 
-    if (account.get('domain') !== null) {
+    if (account.get('acct') !== account.get('username')) {
       extraInfo = <abbr title={intl.formatMessage(messages.disclaimer)}>*</abbr>;
     }
 
