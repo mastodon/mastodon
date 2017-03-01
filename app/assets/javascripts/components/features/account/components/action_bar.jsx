@@ -11,7 +11,8 @@ const messages = defineMessages({
   unfollow: { id: 'account.unfollow', defaultMessage: 'Unfollow' },
   block: { id: 'account.block', defaultMessage: 'Block @{name}' },
   follow: { id: 'account.follow', defaultMessage: 'Follow' },
-  report: { id: 'account.report', defaultMessage: 'Report @{name}' }
+  report: { id: 'account.report', defaultMessage: 'Report @{name}' },
+  disclaimer: { id: 'account.disclaimer', defaultMessage: 'This user is from another instance. This number may be larger.' }
 });
 
 const outerDropdownStyle = {
@@ -43,6 +44,7 @@ const ActionBar = React.createClass({
     const { account, me, intl } = this.props;
 
     let menu = [];
+    let extraInfo = '';
 
     menu.push({ text: intl.formatMessage(messages.mention, { name: account.get('username') }), action: this.props.onMention });
     menu.push(null);
@@ -61,6 +63,10 @@ const ActionBar = React.createClass({
       menu.push({ text: intl.formatMessage(messages.report, { name: account.get('username') }), action: this.props.onReport });
     }
 
+    if (account.get('domain') !== null) {
+      extraInfo = <abbr title={intl.formatMessage(messages.disclaimer)}>*</abbr>;
+    }
+
     return (
       <div className='account__action-bar'>
         <div style={outerDropdownStyle}>
@@ -70,17 +76,17 @@ const ActionBar = React.createClass({
         <div style={outerLinksStyle}>
           <Link className='account__action-bar__tab' to={`/accounts/${account.get('id')}`}>
             <span><FormattedMessage id='account.posts' defaultMessage='Posts' /></span>
-            <strong><FormattedNumber value={account.get('statuses_count')} /></strong>
+            <strong><FormattedNumber value={account.get('statuses_count')} /> {extraInfo}</strong>
           </Link>
 
           <Link className='account__action-bar__tab' to={`/accounts/${account.get('id')}/following`}>
             <span><FormattedMessage id='account.follows' defaultMessage='Follows' /></span>
-            <strong><FormattedNumber value={account.get('following_count')} /></strong>
+            <strong><FormattedNumber value={account.get('following_count')} /> {extraInfo}</strong>
           </Link>
 
           <Link className='account__action-bar__tab' to={`/accounts/${account.get('id')}/followers`}>
             <span><FormattedMessage id='account.followers' defaultMessage='Followers' /></span>
-            <strong><FormattedNumber value={account.get('followers_count')} /></strong>
+            <strong><FormattedNumber value={account.get('followers_count')} /> {extraInfo}</strong>
           </Link>
         </div>
       </div>

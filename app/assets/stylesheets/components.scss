@@ -391,6 +391,10 @@ a.status__content__spoiler-link {
     font-weight: 500;
     color: $color5;
   }
+
+  abbr {
+    color: lighten($color1, 26%);
+  }
 }
 
 .status__display-name, .status__relative-time, .detailed-status__display-name, .detailed-status__datetime, .detailed-status__application, .account__display-name {
