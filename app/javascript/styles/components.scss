@@ -446,11 +446,13 @@
 
 .status__content,
 .reply-indicator__content {
+  position: relative;
   font-size: 15px;
   line-height: 20px;
   word-wrap: break-word;
   font-weight: 400;
   overflow: hidden;
+  text-overflow: ellipsis;
   white-space: pre-wrap;
 
   .emojione {
@@ -508,6 +510,48 @@
     &.status__content__text--visible {
       display: block;
     }
+  }
+}
+
+.status__content.status__content--collapsed, {
+  padding-bottom: 25px;
+  height: 200px;
+
+  i {
+    transform: rotateZ(0);
+  }
+}
+
+.status__content.status__content--expanded, {
+  padding-bottom: 25px;
+  height: auto;
+
+  i {
+    transform: rotateZ(180deg);
+  }
+}
+
+.status__content__collapse-button {
+  display: block;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 25px;
+  font-size: 18px;
+  line-height: 25px;
+  color: $color2;
+  text-align: center;
+  background: linear-gradient(to top, transparent, rgba(lighten($color1, 13%), .3)), $color1;
+  transition: background .2s ease-in-out, color .2s ease-in-out;
+
+  &:hover {
+    background-color: lighten($color1, 8%);
+  }
+
+  i {
+    transition: transform .2s ease-in-out;
   }
 }
 
