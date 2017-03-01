@@ -83,10 +83,6 @@ const ComposeForm = React.createClass({
     this.props.onChangeSpoilerText(e.target.value);
   },
 
-  onPaste (files) {
-    this.props.onPaste(files);
-  },
-
   componentDidUpdate (prevProps) {
     if (this.props.focusDate !== prevProps.focusDate) {
       // If replying to zero or one users, places the cursor at the end of the textbox.
@@ -105,7 +101,7 @@ const ComposeForm = React.createClass({
   },
 
   render () {
-    const { intl, needsPrivacyWarning, mentionedDomains } = this.props;
+    const { intl, needsPrivacyWarning, mentionedDomains, onPaste } = this.props;
     const disabled = this.props.is_submitting || this.props.is_uploading;
 
     let publishText    = '';
@@ -154,7 +150,7 @@ const ComposeForm = React.createClass({
           onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
           onSuggestionsClearRequested={this.onSuggestionsClearRequested}
           onSuggestionSelected={this.onSuggestionSelected}
-          onPaste={this.onPaste}
+          onPaste={onPaste}
         />
 
         <div style={{ marginTop: '10px', overflow: 'hidden' }}>
