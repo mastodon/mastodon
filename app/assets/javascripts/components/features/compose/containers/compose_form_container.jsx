@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
 import ComposeForm from '../components/compose_form';
+import { uploadCompose } from '../../../actions/compose';
 import { createSelector } from 'reselect';
 import {
   changeCompose,
@@ -63,6 +64,10 @@ const mapDispatchToProps = (dispatch) => ({
 
   onChangeSpoilerText (checked) {
     dispatch(changeComposeSpoilerText(checked));
+  },
+
+  onPaste (files) {
+    dispatch(uploadCompose(files));
   },
 
 });

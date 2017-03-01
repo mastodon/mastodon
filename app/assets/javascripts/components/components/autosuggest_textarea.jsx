@@ -40,7 +40,8 @@ const AutosuggestTextarea = React.createClass({
     onSuggestionsFetchRequested: React.PropTypes.func.isRequired,
     onChange: React.PropTypes.func.isRequired,
     onKeyUp: React.PropTypes.func,
-    onKeyDown: React.PropTypes.func
+    onKeyDown: React.PropTypes.func,
+    onPaste: React.PropTypes.func.isRequired,
   },
 
   getInitialState () {
@@ -173,6 +174,13 @@ const AutosuggestTextarea = React.createClass({
     })
   },
 
+  onPaste (e) {
+    if (e.clipboardData && e.clipboardData.files.length === 1) {
+      this.props.onPaste(e.clipboardData.files)
+      e.preventDefault();
+    }
+  },
+
   render () {
     const { value, suggestions, fileDropDate, disabled, placeholder, onKeyUp } = this.props;
     const { isFileDragging, suggestionsHidden, selectedSuggestion } = this.state;
@@ -198,6 +206,7 @@ const AutosuggestTextarea = React.createClass({
           onBlur={this.onBlur}
           onDragEnter={this.onDragEnter}
           onDragExit={this.onDragExit}
+          onPaste={this.onPaste}
           style={style}
         />
 
