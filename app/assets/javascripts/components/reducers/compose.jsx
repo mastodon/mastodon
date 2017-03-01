@@ -20,7 +20,8 @@ import {
   COMPOSE_SPOILERNESS_CHANGE,
   COMPOSE_SPOILER_TEXT_CHANGE,
   COMPOSE_VISIBILITY_CHANGE,
-  COMPOSE_LISTABILITY_CHANGE
+  COMPOSE_LISTABILITY_CHANGE,
+  COMPOSE_EMOJI_INSERT
 } from '../actions/compose';
 import { TIMELINE_DELETE } from '../actions/timelines';
 import { STORE_HYDRATE } from '../actions/store';
@@ -105,6 +106,15 @@ const insertSuggestion = (state, position, token, completion) => {
   });
 };
 
+const insertEmoji = (state, position, emojiData) => {
+  const emoji = emojiData.shortname;
+
+  return state.withMutations(map => {
+    map.update('text', oldText => `${oldText.slice(0, position)}${emoji} ${oldText.slice(position)}`);
+    map.set('focusDate', new Date());
+  });
+};
+
 export default function compose(state = initialState, action) {
   switch(action.type) {
   case STORE_HYDRATE:
@@ -177,6 +187,8 @@ export default function compose(state = initialState, action) {
     } else {
       return state;
     }
+  case COMPOSE_EMOJI_INSERT:
+    return insertEmoji(state, action.position, action.emoji);
   default:
     return state;
   }

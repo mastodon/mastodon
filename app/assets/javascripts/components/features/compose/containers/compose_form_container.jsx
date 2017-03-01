@@ -9,6 +9,7 @@ import {
   fetchComposeSuggestions,
   selectComposeSuggestion,
   changeComposeSpoilerText,
+  insertEmojiCompose
 } from '../../../actions/compose';
 
 const getMentionedUsernames = createSelector(state => state.getIn(['compose', 'text']), text => text.match(/(?:^|[^\/\w])@([a-z0-9_]+@[a-z0-9\.\-]+)/ig));
@@ -68,6 +69,10 @@ const mapDispatchToProps = (dispatch) => ({
 
   onPaste (files) {
     dispatch(uploadCompose(files));
+  },
+
+  onPickEmoji (position, data) {
+    dispatch(insertEmojiCompose(position, data));
   },
 
 });

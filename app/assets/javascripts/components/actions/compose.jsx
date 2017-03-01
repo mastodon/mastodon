@@ -28,6 +28,8 @@ export const COMPOSE_SPOILER_TEXT_CHANGE = 'COMPOSE_SPOILER_TEXT_CHANGE';
 export const COMPOSE_VISIBILITY_CHANGE  = 'COMPOSE_VISIBILITY_CHANGE';
 export const COMPOSE_LISTABILITY_CHANGE = 'COMPOSE_LISTABILITY_CHANGE';
 
+export const COMPOSE_EMOJI_INSERT = 'COMPOSE_EMOJI_INSERT';
+
 export function changeCompose(text) {
   return {
     type: COMPOSE_CHANGE,
@@ -258,5 +260,13 @@ export function changeComposeListability(checked) {
   return {
     type: COMPOSE_LISTABILITY_CHANGE,
     checked
+  };
+};
+
+export function insertEmojiCompose(position, emoji) {
+  return {
+    type: COMPOSE_EMOJI_INSERT,
+    position,
+    emoji
   };
 };
