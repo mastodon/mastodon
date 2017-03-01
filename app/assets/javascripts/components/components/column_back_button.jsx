@@ -15,7 +15,8 @@ const ColumnBackButton = React.createClass({
   mixins: [PureRenderMixin],
 
   handleClick () {
-    this.context.router.goBack();
+    if (window.history && window.history.length == 1) this.context.router.push("/");
+    else this.context.router.goBack();
   },
 
   render () {
