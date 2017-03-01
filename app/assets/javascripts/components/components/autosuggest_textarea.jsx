@@ -1,6 +1,8 @@
 import AutosuggestAccountContainer from '../features/compose/containers/autosuggest_account_container';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { isRtl } from '../rtl';
+import { connect } from 'react-redux';
+import { uploadCompose } from '../actions/compose';
 
 const textAtCursorMatchesToken = (str, caretPosition) => {
   let word;
@@ -33,6 +35,7 @@ const AutosuggestTextarea = React.createClass({
     value: React.PropTypes.string,
     suggestions: ImmutablePropTypes.list,
     disabled: React.PropTypes.bool,
+    dispatch: React.PropTypes.func.isRequired,
     fileDropDate: React.PropTypes.instanceOf(Date),
     placeholder: React.PropTypes.string,
     onSuggestionSelected: React.PropTypes.func.isRequired,
@@ -173,6 +176,13 @@ const AutosuggestTextarea = React.createClass({
     })
   },
 
+  onPaste (e) {
+    if (e.clipboardData && e.clipboardData.files.length === 1) {
+      this.props.dispatch(uploadCompose(e.clipboardData.files));
+      e.preventDefault();
+    }
+  },
+
   render () {
     const { value, suggestions, fileDropDate, disabled, placeholder, onKeyUp } = this.props;
     const { isFileDragging, suggestionsHidden, selectedSuggestion } = this.state;
@@ -198,6 +208,7 @@ const AutosuggestTextarea = React.createClass({
           onBlur={this.onBlur}
           onDragEnter={this.onDragEnter}
           onDragExit={this.onDragExit}
+          onPaste={this.onPaste}
           style={style}
         />
 
@@ -214,4 +225,4 @@ const AutosuggestTextarea = React.createClass({
 
 });
 
-export default AutosuggestTextarea;
+export default connect()(AutosuggestTextarea);
