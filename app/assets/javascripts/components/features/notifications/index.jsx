@@ -14,7 +14,7 @@ import ClearColumnButton from './components/clear_column_button';
 
 const messages = defineMessages({
   title: { id: 'column.notifications', defaultMessage: 'Notifications' },
-  confirm: { id: 'confirmation.label', defaultMessage: 'Are you sure?' }
+  confirm: { id: 'notifications.clear_confirmation', defaultMessage: 'Are you sure you want to clear all your notifications?' }
 });
 
 const getNotifications = createSelector([
