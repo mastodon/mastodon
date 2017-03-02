@@ -13,7 +13,8 @@ import LoadMore from '../../components/load_more';
 import ClearColumnButton from './components/clear_column_button';
 
 const messages = defineMessages({
-  title: { id: 'column.notifications', defaultMessage: 'Notifications' }
+  title: { id: 'column.notifications', defaultMessage: 'Notifications' },
+  confirm: { id: 'confirmation.label', defaultMessage: 'Are you sure?' }
 });
 
 const getNotifications = createSelector([
@@ -72,7 +73,9 @@ const Notifications = React.createClass({
   },
 
   handleClear () {
-    this.props.dispatch(clearNotifications());
+    if (window.confirm(this.props.intl.formatMessage(messages.confirm))) {
+      this.props.dispatch(clearNotifications());
+    }
   },
 
   setRef (c) {
