@@ -95,6 +95,8 @@ class FeedManager
   end
 
   def filter_from_home?(status, receiver)
+    return true if receiver.muting?(status.account)
+
     should_filter = false
 
     if status.reply? && status.in_reply_to_id.nil?
@@ -105,6 +107,7 @@ class FeedManager
       should_filter &&= !(status.account_id == status.in_reply_to_account_id) # and it's not a self-reply
     elsif status.reblog?                                                      # Filter out a reblog
       should_filter = receiver.blocking?(status.reblog.account)               # if I'm blocking the reblogged person
+      should_filter ||= receiver.muting?(status.reblog.account)               # or muting that person
     end
 
     should_filter ||= receiver.blocking?(status.mentions.map(&:account_id))   # or if it mentions someone I blocked

@@ -36,7 +36,7 @@ const EmojiPickerDropdown = React.createClass({
 
     return (
       <Dropdown ref={this.setRef} style={{ marginLeft: '5px' }}>
-        <DropdownTrigger className='icon-button' title={intl.formatMessage(messages.emoji)} style={{ fontSize: `24px`, width: `24px`, lineHeight: `24px`, marginTop: '-1px', display: 'block', marginLeft: '2px' }}>
+        <DropdownTrigger className='icon-button' title={intl.formatMessage(messages.emoji)} style={{ fontSize: `24px`, width: `24px`, lineHeight: `24px`, display: 'block', marginLeft: '2px' }}>
           <i className={`fa fa-smile-o`} style={{ verticalAlign: 'middle' }} />
         </DropdownTrigger>
 

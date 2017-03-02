@@ -116,6 +116,44 @@ RSpec.describe Api::V1::AccountsController, type: :controller do
     end
   end
 
+  describe 'POST #mute' do
+    let(:other_account) { Fabricate(:user, email: 'bob@example.com', account: Fabricate(:account, username: 'bob')).account }
+
+    before do
+      user.account.follow!(other_account)
+      post :mute, params: {id: other_account.id }
+    end
+
+    it 'returns http success' do
+      expect(response).to have_http_status(:success)
+    end
+
+    it 'does not remove the following relation between user and target user' do
+      expect(user.account.following?(other_account)).to be true
+    end
+
+    it 'creates a muting relation' do
+      expect(user.account.muting?(other_account)).to be true
+    end
+  end
+
+  describe 'POST #unmute' do
+    let(:other_account) { Fabricate(:user, email: 'bob@example.com', account: Fabricate(:account, username: 'bob')).account }
+
+    before do
+      user.account.mute!(other_account)
+      post :unmute, params: { id: other_account.id }
+    end
+
+    it 'returns http success' do
+      expect(response).to have_http_status(:success)
+    end
+
+    it 'removes the muting relation between user and target user' do
+      expect(user.account.muting?(other_account)).to be false
+    end
+  end
+
   describe 'GET #relationships' do
     let(:simon) { Fabricate(:user, email: 'simon@example.com', account: Fabricate(:account, username: 'simon')).account }
     let(:lewis) { Fabricate(:user, email: 'lewis@example.com', account: Fabricate(:account, username: 'lewis')).account }
