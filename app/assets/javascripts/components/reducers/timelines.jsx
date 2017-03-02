@@ -22,7 +22,8 @@ import {
   ACCOUNT_TIMELINE_EXPAND_REQUEST,
   ACCOUNT_TIMELINE_EXPAND_SUCCESS,
   ACCOUNT_TIMELINE_EXPAND_FAIL,
-  ACCOUNT_BLOCK_SUCCESS
+  ACCOUNT_BLOCK_SUCCESS,
+  ACCOUNT_MUTE_SUCCESS
 } from '../actions/accounts';
 import {
   CONTEXT_FETCH_SUCCESS
@@ -295,6 +296,7 @@ export default function timelines(state = initialState, action) {
   case ACCOUNT_TIMELINE_EXPAND_SUCCESS:
     return appendNormalizedAccountTimeline(state, action.id, Immutable.fromJS(action.statuses));
   case ACCOUNT_BLOCK_SUCCESS:
+  case ACCOUNT_MUTE_SUCCESS:
     return filterTimelines(state, action.relationship, action.statuses);
   case TIMELINE_SCROLL_TOP:
     return updateTop(state, action.timeline, action.top);

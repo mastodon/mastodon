@@ -15,8 +15,8 @@ const Header = React.createClass({
     onFollow: React.PropTypes.func.isRequired,
     onBlock: React.PropTypes.func.isRequired,
     onMention: React.PropTypes.func.isRequired,
-    onReport: React.PropTypes.func.isRequired
-    onMute: React.PropTypes.func.isRequired,
+    onReport: React.PropTypes.func.isRequired,
+    onMute: React.PropTypes.func.isRequired
   },
 
   mixins: [PureRenderMixin],

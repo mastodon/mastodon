@@ -22,8 +22,18 @@ class FeedManager
   end
 
   def push(timeline_type, account, status)
-    redis.zadd(key(timeline_type, account.id), status.id, status.reblog? ? status.reblog_of_id : status.id)
-    trim(timeline_type, account.id)
+    timeline_key = key(timeline_type, account.id)
+
+    if status.reblog?
+      # If the original status is within 40 statuses from top, do not re-insert it into the feed
+      rank = redis.zrevrank(timeline_key, status.reblog_of_id)
+      return if !rank.nil? && rank < 40
+      redis.zadd(timeline_key, status.id, status.reblog_of_id)
+    else
+      redis.zadd(timeline_key, status.id, status.id)
+      trim(timeline_type, account.id)
+    end
+
     broadcast(account.id, event: 'update', payload: inline_render(account, 'api/v1/statuses/show', status))
   end
 
@@ -85,47 +95,34 @@ class FeedManager
   end
 
   def filter_from_home?(status, receiver)
-    should_filter = receiver.muting?(status.account_id)                       # Filter if I'm muting this person
+    return true if receiver.muting?(status.account)
 
-    if status.reply? && status.in_reply_to_id.nil?                            # Filter out replies to nobody
+    should_filter = false
+
+    if status.reply? && status.in_reply_to_id.nil?
       should_filter = true
-    elsif status.reply? && !status.in_reply_to_account_id.nil?                # If it's a reply
-      should_filter   = !receiver.following?(status.in_reply_to_account)      # filter if I'm not following the person it's a reply to
+    elsif status.reply? && !status.in_reply_to_account_id.nil?                # Filter out if it's a reply
+      should_filter   = !receiver.following?(status.in_reply_to_account)      # and I'm not following the person it's a reply to
       should_filter &&= !(receiver.id == status.in_reply_to_account_id)       # and it's not a reply to me
       should_filter &&= !(status.account_id == status.in_reply_to_account_id) # and it's not a self-reply
-    elsif status.reblog?                                                      # If it's a reblog
-      should_filter   = receiver.blocking?(status.reblog.account)             # filter if I'm blocking the reblogged person
-      should_filter ||= receiver.muting?(status.reblog.account)               # or if I'm muting the reblogged person
+    elsif status.reblog?                                                      # Filter out a reblog
+      should_filter = receiver.blocking?(status.reblog.account)               # if I'm blocking the reblogged person
+      should_filter ||= receiver.muting?(status.reblog.account)               # or muting that person
     end
 
-    should_filter ||= receiver.blocking?(status.mentions.map(&:account_id))   # Filter if it mentions someone I blocked
+    should_filter ||= receiver.blocking?(status.mentions.map(&:account_id))   # or if it mentions someone I blocked
+
     should_filter
   end
 
   def filter_from_mentions?(status, receiver)
-    should_filter   = receiver.id == status.account_id                                      # Filter out if I'm mentioning myself
+    should_filter   = receiver.id == status.account_id                                      # Filter if I'm mentioning myself
     should_filter ||= receiver.blocking?(status.account)                                    # or it's from someone I blocked
     should_filter ||= receiver.blocking?(status.mentions.includes(:account).map(&:account)) # or if it mentions someone I blocked
     should_filter ||= (status.account.silenced? && !receiver.following?(status.account))    # of if the account is silenced and I'm not following them
 
-    if status.reply? && !status.in_reply_to_account_id.nil?
-      should_filter ||= receiver.blocking?(status.in_reply_to_account)                      # or if it's a reply to a user I blocked
-    end
-
-    should_filter
-  end
-
-  def filter_from_public?(status, receiver)
-    should_filter   = receiver.blocking?(status.account)                                    # Filter out if I'm blocking that account
-    should_filter ||= receiver.muting?(status.account_id)                                   # or if I'm muting this person
-    should_filter ||= receiver.blocking?(status.mentions.includes(:account).map(&:account)) # or if it mentions someone I blocked
-
     if status.reply? && !status.in_reply_to_account_id.nil?                                 # or it's a reply
-      should_filter ||= receiver.blocking?(status.in_reply_to_account)                      # to somebody I've blocked
-      should_filter ||= receiver.muting?(status.in_reply_to_account)                        # or to somebody I'm muting
-    elsif status.reblog?                                                                    # or if it's a reblog
-      should_filter ||= receiver.blocking?(status.reblog.account)                           # if I'm blocking the reblogged person
-      should_filter ||= receiver.muting?(status.reblog.account)                             # or if I'm muting the reblogged person
+      should_filter ||= receiver.blocking?(status.in_reply_to_account)                      # to a user I blocked
     end
 
     should_filter

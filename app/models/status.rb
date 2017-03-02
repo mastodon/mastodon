@@ -103,10 +103,7 @@ class Status < ApplicationRecord
 
   class << self
     def as_home_timeline(account)
-      muted = Mute.where(account: account).pluck(:target_account_id)
-      query = where(account: [account] + account.following)
-      query = query.where('statuses.account_id NOT IN (?)', muted) unless muted.empty?
-      query
+      where(account: [account] + account.following)
     end
 
     def as_public_timeline(account = nil, local_only = false)
@@ -171,10 +168,8 @@ class Status < ApplicationRecord
     private
 
     def filter_timeline(query, account)
-      blocked = Block.where(account: account).pluck(:target_account_id) + Block.where(target_account: account).pluck(:account_id)
-      muted   = Mute.where(account: account).pluck(:target_account_id)
-      query   = query.where('statuses.account_id NOT IN (?)', blocked) unless blocked.empty?  # Only give us statuses from people we haven't blocked
-      query   = query.where('statuses.account_id NOT IN (?)', muted) unless muted.empty?      # and out of those, only people we haven't muted
+      blocked = Block.where(account: account).pluck(:target_account_id) + Block.where(target_account: account).pluck(:account_id) + Mute.where(account: account).pluck(:target_account_id)
+      query   = query.where('statuses.account_id NOT IN (?)', blocked) unless blocked.empty?  # Only give us statuses from people we haven't blocked, or muted, or that have blocked us
       query   = query.where('accounts.silenced = TRUE') if account.silenced?                  # and if we're hellbanned, only people who are also hellbanned
       query
     end
