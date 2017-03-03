@@ -14,6 +14,7 @@ class Settings::PreferencesController < ApplicationController
       reblog:         user_params[:notification_emails][:reblog]         == '1',
       favourite:      user_params[:notification_emails][:favourite]      == '1',
       mention:        user_params[:notification_emails][:mention]        == '1',
+      digest:         user_params[:notification_emails][:digest]         == '1',
     }
 
     current_user.settings['interactions'] = {
@@ -33,6 +34,6 @@ class Settings::PreferencesController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:locale, :setting_default_privacy, notification_emails: [:follow, :follow_request, :reblog, :favourite, :mention], interactions: [:must_be_follower, :must_be_following])
+    params.require(:user).permit(:locale, :setting_default_privacy, notification_emails: [:follow, :follow_request, :reblog, :favourite, :mention, :digest], interactions: [:must_be_follower, :must_be_following])
   end
 end

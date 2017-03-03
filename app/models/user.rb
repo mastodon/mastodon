@@ -14,9 +14,10 @@ class User < ApplicationRecord
   validates :locale, inclusion: I18n.available_locales.map(&:to_s), unless: 'locale.nil?'
   validates :email, email: true
 
-  scope :prolific, -> { joins('inner join statuses on statuses.account_id = users.account_id').select('users.*, count(statuses.id) as statuses_count').group('users.id').order('statuses_count desc') }
-  scope :recent,   -> { order('id desc') }
-  scope :admins,   -> { where(admin: true) }
+  scope :prolific,  -> { joins('inner join statuses on statuses.account_id = users.account_id').select('users.*, count(statuses.id) as statuses_count').group('users.id').order('statuses_count desc') }
+  scope :recent,    -> { order('id desc') }
+  scope :admins,    -> { where(admin: true) }
+  scope :confirmed, -> { where.not(confirmed_at: nil) }
 
   def send_devise_notification(notification, *args)
     devise_mailer.send(notification, self, *args).deliver_later

@@ -49,4 +49,17 @@ class NotificationMailer < ApplicationMailer
       mail to: @me.user.email, subject: I18n.t('notification_mailer.follow_request.subject', name: @account.acct)
     end
   end
+
+  def digest(recipient, opts = {})
+    @me            = recipient
+    @since         = opts[:since] || @me.user.last_emailed_at || @me.user.current_sign_in_at
+    @notifications = Notification.where(account: @me, activity_type: 'Mention').where('created_at > ?', @since)
+    @follows_since = Notification.where(account: @me, activity_type: 'Follow').where('created_at > ?', @since).count
+
+    return if @notifications.empty?
+
+    I18n.with_locale(@me.user.locale || I18n.default_locale) do
+      mail to: @me.user.email, subject: I18n.t('notification_mailer.digest.subject', count: @notifications.size)
+    end
+  end
 end

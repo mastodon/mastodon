@@ -43,7 +43,7 @@ namespace :mastodon do
   namespace :feeds do
     desc 'Clear timelines of inactive users'
     task clear: :environment do
-      User.where('current_sign_in_at < ?', 14.days.ago).find_each do |user|
+      User.confirmed.where('current_sign_in_at < ?', 14.days.ago).find_each do |user|
         Redis.current.del(FeedManager.instance.key(:home, user.account_id))
       end
     end
@@ -51,6 +51,15 @@ namespace :mastodon do
     desc 'Clears all timelines so that they would be regenerated on next hit'
     task clear_all: :environment do
       Redis.current.keys('feed:*').each { |key| Redis.current.del(key) }
+    end
+  end
+
+  namespace :emails do
+    desc 'Send out digest e-mails'
+    task digest: :environment do
+      User.confirmed.joins(:account).where(accounts: { silenced: false, suspended: false }).where('current_sign_in_at < ?', 20.days.ago).find_each do |user|
+        DigestMailerWorker.perform_async(user.id)
+      end
     end
   end
 end
