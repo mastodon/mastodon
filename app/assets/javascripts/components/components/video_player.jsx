@@ -175,7 +175,7 @@ const VideoPlayer = React.createClass({
         );
       } else {
         return (
-          <div style={{...spoilerStyle, width: `${width}px`, height: `${height}px` }} className='media-spoiler' onClick={this.handleOpen}>
+          <div style={{...spoilerStyle, width: `${width}px`, height: `${height}px` }} className='media-spoiler' onClick={this.handleVisibility}>
             {spoilerButton}
             <span style={spoilerSpanStyle}><FormattedMessage id='status.media_hidden' defaultMessage='Media hidden' /></span>
             <span style={spoilerSubSpanStyle}><FormattedMessage id='status.sensitive_toggle' defaultMessage='Click to view' /></span>
@@ -197,7 +197,7 @@ const VideoPlayer = React.createClass({
       <div style={{ cursor: 'default', marginTop: '8px', overflow: 'hidden', width: `${width}px`, height: `${height}px`, boxSizing: 'border-box', background: '#000', position: 'relative' }}>
         {spoilerButton}
         {muteButton}
-        <video ref={this.setRef} src={media.get('url')} autoPlay='true' loop={true} muted={this.state.muted} style={videoStyle} onClick={this.handleVideoClick} />
+        <video ref={this.setRef} src={media.get('url')} autoPlay={true} loop={true} muted={this.state.muted} style={videoStyle} onClick={this.handleVideoClick} />
       </div>
     );
   }

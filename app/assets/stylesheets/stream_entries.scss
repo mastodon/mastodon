@@ -104,8 +104,12 @@
       overflow: hidden;
       width: 100%;
       box-sizing: border-box;
-      height: 110px;
-      display: flex;
+      position: relative;
+
+      .status__attachments__inner {
+        display: flex;
+        height: 214px;
+      }
     }
   }
 
@@ -184,8 +188,12 @@
       overflow: hidden;
       width: 100%;
       box-sizing: border-box;
-      height: 300px;
-      display: flex;
+      position: relative;
+
+      .status__attachments__inner {
+        display: flex;
+        height: 360px;
+      }
     }
 
     .video-player {
@@ -231,11 +239,19 @@
       text-decoration: none;
       cursor: zoom-in;
     }
+
+    video {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      top: 50%;
+      transform: translateY(-50%);
+    }
   }
 
   .video-item {
-    max-width: 196px;
-
     a {
       cursor: pointer;
     }
@@ -258,6 +274,9 @@
     width: 100%;
     height: 100%;
     cursor: pointer;
+    position: absolute;
+    top: 0;
+    left: 0;
     display: flex;
     align-items: center;
     justify-content: center;

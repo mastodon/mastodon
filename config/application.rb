@@ -2,11 +2,12 @@ require_relative 'boot'
 
 require 'rails/all'
 
-require_relative '../app/lib/exceptions'
-
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
+
+require_relative '../app/lib/exceptions'
+require_relative '../lib/paperclip/gif_transcoder'
 
 Dotenv::Railtie.load
 

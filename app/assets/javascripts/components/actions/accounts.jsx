@@ -75,11 +75,16 @@ export const FOLLOW_REQUEST_REJECT_FAIL    = 'FOLLOW_REQUEST_REJECT_FAIL';
 
 export function fetchAccount(id) {
   return (dispatch, getState) => {
+    dispatch(fetchRelationships([id]));
+
+    if (getState().getIn(['accounts', id], null) !== null) {
+      return;
+    }
+
     dispatch(fetchAccountRequest(id));
 
     api(getState).get(`/api/v1/accounts/${id}`).then(response => {
       dispatch(fetchAccountSuccess(response.data));
-      dispatch(fetchRelationships([id]));
     }).catch(error => {
       dispatch(fetchAccountFail(id, error));
     });

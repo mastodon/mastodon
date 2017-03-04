@@ -38,7 +38,7 @@ const DetailedStatus = React.createClass({
     let applicationLink = '';
 
     if (status.get('media_attachments').size > 0) {
-      if (status.getIn(['media_attachments', 0, 'type']) === 'video') {
+      if (status.getIn(['media_attachments', 0, 'type']) === 'video' || (status.get('media_attachments').size === 1 && status.getIn(['media_attachments', 0, 'type']) === 'gifv')) {
         media = <VideoPlayer sensitive={status.get('sensitive')} media={status.getIn(['media_attachments', 0])} width={300} height={150} autoplay />;
       } else {
         media = <MediaGallery sensitive={status.get('sensitive')} media={status.get('media_attachments')} height={300} onOpenMedia={this.props.onOpenMedia} />;

@@ -43,6 +43,141 @@ const spoilerButtonStyle = {
   zIndex: '100'
 };
 
+const itemStyle = {
+  boxSizing: 'border-box',
+  position: 'relative',
+  float: 'left',
+  border: 'none',
+  display: 'block'
+};
+
+const thumbStyle = {
+  display: 'block',
+  width: '100%',
+  height: '100%',
+  textDecoration: 'none',
+  backgroundSize: 'cover',
+  cursor: 'zoom-in'
+};
+
+const gifvThumbStyle = {
+  position: 'relative',
+  zIndex: '1',
+  width: '100%',
+  height: '100%',
+  objectFit: 'cover',
+  top: '50%',
+  transform: 'translateY(-50%)',
+  cursor: 'zoom-in'
+};
+
+const Item = React.createClass({
+
+  propTypes: {
+    attachment: ImmutablePropTypes.map.isRequired,
+    index: React.PropTypes.number.isRequired,
+    size: React.PropTypes.number.isRequired,
+    onClick: React.PropTypes.func.isRequired
+  },
+
+  mixins: [PureRenderMixin],
+
+  handleClick (e) {
+    const { index, onClick } = this.props;
+
+    if (e.button === 0) {
+      e.preventDefault();
+      onClick(index);
+    }
+
+    e.stopPropagation();
+  },
+
+  render () {
+    const { attachment, index, size } = this.props;
+
+    let width  = 50;
+    let height = 100;
+    let top    = 'auto';
+    let left   = 'auto';
+    let bottom = 'auto';
+    let right  = 'auto';
+
+    if (size === 1) {
+      width = 100;
+    }
+
+    if (size === 4 || (size === 3 && index > 0)) {
+      height = 50;
+    }
+
+    if (size === 2) {
+      if (index === 0) {
+        right = '2px';
+      } else {
+        left = '2px';
+      }
+    } else if (size === 3) {
+      if (index === 0) {
+        right = '2px';
+      } else if (index > 0) {
+        left = '2px';
+      }
+
+      if (index === 1) {
+        bottom = '2px';
+      } else if (index > 1) {
+        top = '2px';
+      }
+    } else if (size === 4) {
+      if (index === 0 || index === 2) {
+        right = '2px';
+      }
+
+      if (index === 1 || index === 3) {
+        left = '2px';
+      }
+
+      if (index < 2) {
+        bottom = '2px';
+      } else {
+        top = '2px';
+      }
+    }
+
+    let thumbnail = '';
+
+    if (attachment.get('type') === 'image') {
+      thumbnail = (
+        <a
+          href={attachment.get('remote_url') ? attachment.get('remote_url') : attachment.get('url')}
+          onClick={this.handleClick}
+          target='_blank'
+          style={{ background: `url(${attachment.get('preview_url')}) no-repeat center`, ...thumbStyle }}
+        />
+      );
+    } else if (attachment.get('type') === 'gifv') {
+      thumbnail = (
+        <video
+          src={attachment.get('url')}
+          onClick={this.handleClick}
+          autoPlay={true}
+          loop={true}
+          muted={true}
+          style={gifvThumbStyle}
+        />
+      );
+    }
+
+    return (
+      <div key={attachment.get('id')} style={{ ...itemStyle, left: left, top: top, right: right, bottom: bottom, width: `${width}%`, height: `${height}%` }}>
+        {thumbnail}
+      </div>
+    );
+  }
+
+});
+
 const MediaGallery = React.createClass({
 
   getInitialState () {
@@ -61,17 +196,12 @@ const MediaGallery = React.createClass({
 
   mixins: [PureRenderMixin],
 
-  handleClick (index, e) {
-    if (e.button === 0) {
-      e.preventDefault();
-      this.props.onOpenMedia(this.props.media, index);
-    }
-
-    e.stopPropagation();
+  handleOpen (e) {
+    this.setState({ visible: !this.state.visible });
   },
 
-  handleOpen () {
-    this.setState({ visible: !this.state.visible });
+  handleClick (index) {
+    this.props.onOpenMedia(this.props.media, index);
   },
 
   render () {
@@ -80,87 +210,31 @@ const MediaGallery = React.createClass({
     let children;
 
     if (!this.state.visible) {
+      let warning;
+
       if (sensitive) {
-        children = (
-          <div style={spoilerStyle} className='media-spoiler' onClick={this.handleOpen}>
-            <span style={spoilerSpanStyle}><FormattedMessage id='status.sensitive_warning' defaultMessage='Sensitive content' /></span>
-            <span style={spoilerSubSpanStyle}><FormattedMessage id='status.sensitive_toggle' defaultMessage='Click to view' /></span>
-          </div>
-        );
+        warning = <FormattedMessage id='status.sensitive_warning' defaultMessage='Sensitive content' />;
       } else {
-        children = (
-          <div style={spoilerStyle} className='media-spoiler' onClick={this.handleOpen}>
-            <span style={spoilerSpanStyle}><FormattedMessage id='status.media_hidden' defaultMessage='Media hidden' /></span>
-            <span style={spoilerSubSpanStyle}><FormattedMessage id='status.sensitive_toggle' defaultMessage='Click to view' /></span>
-          </div>
-        );
+        warning = <FormattedMessage id='status.media_hidden' defaultMessage='Media hidden' />;
       }
+
+      children = (
+        <div style={spoilerStyle} className='media-spoiler' onClick={this.handleOpen}>
+          <span style={spoilerSpanStyle}>{warning}</span>
+          <span style={spoilerSubSpanStyle}><FormattedMessage id='status.sensitive_toggle' defaultMessage='Click to view' /></span>
+        </div>
+      );
     } else {
       const size = media.take(4).size;
-
-      children = media.take(4).map((attachment, i) => {
-        let width  = 50;
-        let height = 100;
-        let top    = 'auto';
-        let left   = 'auto';
-        let bottom = 'auto';
-        let right  = 'auto';
-
-        if (size === 1) {
-          width = 100;
-        }
-
-        if (size === 4 || (size === 3 && i > 0)) {
-          height = 50;
-        }
-
-        if (size === 2) {
-          if (i === 0) {
-            right = '2px';
-          } else {
-            left = '2px';
-          }
-        } else if (size === 3) {
-          if (i === 0) {
-            right = '2px';
-          } else if (i > 0) {
-            left = '2px';
-          }
-
-          if (i === 1) {
-            bottom = '2px';
-          } else if (i > 1) {
-            top = '2px';
-          }
-        } else if (size === 4) {
-          if (i === 0 || i === 2) {
-            right = '2px';
-          }
-
-          if (i === 1 || i === 3) {
-            left = '2px';
-          }
-
-          if (i < 2) {
-            bottom = '2px';
-          } else {
-            top = '2px';
-          }
-        }
-
-        return (
-          <div key={attachment.get('id')} style={{ boxSizing: 'border-box', position: 'relative', left: left, top: top, right: right, bottom: bottom, float: 'left', border: 'none', display: 'block', width: `${width}%`, height: `${height}%` }}>
-            <a href={attachment.get('remote_url') ? attachment.get('remote_url') : attachment.get('url')} onClick={this.handleClick.bind(this, i)} target='_blank' style={{ display: 'block', width: '100%', height: '100%', background: `url(${attachment.get('preview_url')}) no-repeat center`, textDecoration: 'none', backgroundSize: 'cover', cursor: 'zoom-in' }} />
-          </div>
-        );
-      });
+      children = media.take(4).map((attachment, i) => <Item key={attachment.get('id')} onClick={this.handleClick} attachment={attachment} index={i} size={size} />);
     }
 
     return (
       <div style={{ ...outerStyle, height: `${this.props.height}px` }}>
-        <div style={spoilerButtonStyle} >
+        <div style={spoilerButtonStyle}>
           <IconButton title={intl.formatMessage(messages.toggle_visible)} icon={this.state.visible ? 'eye' : 'eye-slash'} onClick={this.handleOpen} />
         </div>
+
         {children}
       </div>
     );

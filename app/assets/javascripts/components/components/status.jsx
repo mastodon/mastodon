@@ -74,8 +74,8 @@ const Status = React.createClass({
     }
 
     if (status.get('media_attachments').size > 0 && !this.props.muted) {
-      if (status.getIn(['media_attachments', 0, 'type']) === 'video') {
-        media = <VideoPlayer media={status.getIn(['media_attachments', 0])} sensitive={status.get('sensitive')} />;
+      if (status.getIn(['media_attachments', 0, 'type']) === 'video' || (status.get('media_attachments').size === 1 && status.getIn(['media_attachments', 0, 'type']) === 'gifv')) {
+        media = <VideoPlayer media={status.getIn(['media_attachments', 0])} autoplay={status.getIn(['media_attachments', 0, 'type']) === 'gifv'} sensitive={status.get('sensitive')} />;
       } else {
         media = <MediaGallery media={status.get('media_attachments')} sensitive={status.get('sensitive')} height={110} onOpenMedia={this.props.onOpenMedia} />;
       }
