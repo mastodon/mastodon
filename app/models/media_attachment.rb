@@ -59,13 +59,15 @@ class MediaAttachment < ApplicationRecord
         {
           small: IMAGE_STYLES[:small],
           original: {
-            format: 'webm',
+            format: 'mp4',
             convert_options: {
               output: {
-                'c:v'   => 'libvpx',
-                'crf'   => 4,
-                'b:v'   => '1300K',
-                'vsync' => 'cfr',
+                'movflags' => 'faststart',
+                'pix_fmt'  => 'yuv420p',
+                'vf'       => 'scale=\'trunc(iw/2)*2:trunc(ih/2)*2\'',
+                'vsync'    => 'cfr',
+                'b:v'      => '1300K',
+                'crf'      => 4,
               },
             },
           },
