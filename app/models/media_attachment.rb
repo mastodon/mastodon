@@ -62,9 +62,10 @@ class MediaAttachment < ApplicationRecord
             format: 'webm',
             convert_options: {
               output: {
-                'c:v' => 'libvpx',
-                'crf' => 4,
-                'b:v' => '500K',
+                'c:v'   => 'libvpx',
+                'crf'   => 4,
+                'b:v'   => '500K',
+                'vsync' => 'cfr',
               },
             },
           },
