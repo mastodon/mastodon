@@ -153,7 +153,6 @@ Rails.application.routes.draw do
 
         member do
           get :statuses
-          get 'statuses/media', to: 'accounts#media_statuses', as: :media_statuses
           get :followers
           get :following
 
@@ -179,6 +178,9 @@ Rails.application.routes.draw do
   get '/terms',      to: 'about#terms'
 
   root 'home#index'
+
+  get '/:username', to: redirect('/users/%{username}')
+  get '/:username/:id', to: redirect('/users/%{username}/updates/%{id}')
 
   match '*unmatched_route', via: :all, to: 'application#raise_not_found'
 end

@@ -47,6 +47,8 @@ class Api::V1::AccountsController < ApiController
 
   def statuses
     @statuses = @account.statuses.permitted_for(@account, current_account).paginate_by_max_id(limit_param(DEFAULT_STATUSES_LIMIT), params[:max_id], params[:since_id])
+    @statuses = @statuses.where(id: MediaAttachment.where(account: @account).where.not(status_id: nil).reorder('').select('distinct status_id')) if params[:only_media]
+    @statuses = @statuses.without_replies if params[:exclude_replies]
     @statuses = cache_collection(@statuses, Status)
 
     set_maps(@statuses)
@@ -56,21 +58,6 @@ class Api::V1::AccountsController < ApiController
     prev_path = statuses_api_v1_account_url(since_id: @statuses.first.id) unless @statuses.empty?
 
     set_pagination_headers(next_path, prev_path)
-  end
-
-  def media_statuses
-    media_ids = MediaAttachment.where(account: @account).where.not(status_id: nil).reorder('').select('distinct status_id')
-    @statuses = @account.statuses.where(id: media_ids).permitted_for(@account, current_account).paginate_by_max_id(limit_param(DEFAULT_STATUSES_LIMIT), params[:max_id], params[:since_id])
-    @statuses = cache_collection(@statuses, Status)
-
-    set_maps(@statuses)
-    set_counters_maps(@statuses)
-
-    next_path = media_statuses_api_v1_account_url(max_id: @statuses.last.id)    unless @statuses.empty?
-    prev_path = media_statuses_api_v1_account_url(since_id: @statuses.first.id) unless @statuses.empty?
-
-    set_pagination_headers(next_path, prev_path)
-    render action: :statuses
   end
 
   def follow

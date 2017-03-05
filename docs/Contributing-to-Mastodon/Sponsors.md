@@ -32,7 +32,7 @@ These people make the development of Mastodon possible through [Patreon](https:/
 - [C418](https://mastodon.social/users/C418)
 - [halcy](https://icosahedron.website/users/halcy)
 - [Extropic](https://gnusocial.no/extropic)
-- TBD
+- [Pat Monaghan](http://iwrite.software/)
 - TBD
 - TBD
 - TBD
