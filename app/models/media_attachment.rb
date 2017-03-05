@@ -63,7 +63,7 @@ class MediaAttachment < ApplicationRecord
             convert_options: {
               output: {
                 'c:v' => 'libvpx',
-                'crf' => 6,
+                'crf' => 4,
                 'b:v' => '500K',
               },
             },
