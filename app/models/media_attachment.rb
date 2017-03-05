@@ -64,7 +64,7 @@ class MediaAttachment < ApplicationRecord
               output: {
                 'c:v'   => 'libvpx',
                 'crf'   => 4,
-                'b:v'   => '500K',
+                'b:v'   => '1300K',
                 'vsync' => 'cfr',
               },
             },
