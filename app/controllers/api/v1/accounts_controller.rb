@@ -53,6 +53,7 @@ class Api::V1::AccountsController < ApiController
 
     set_maps(@statuses)
     set_counters_maps(@statuses)
+    set_account_counters_maps(@statuses.flat_map { |s| [s.account, s.reblog? ? s.reblog.account : nil] }.compact.uniq)
 
     next_path = statuses_api_v1_account_url(max_id: @statuses.last.id)    unless @statuses.empty?
     prev_path = statuses_api_v1_account_url(since_id: @statuses.first.id) unless @statuses.empty?
