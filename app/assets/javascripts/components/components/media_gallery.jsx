@@ -2,6 +2,7 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import IconButton from './icon_button';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
+import { isIOS } from '../is_mobile';
 
 const messages = defineMessages({
   toggle_visible: { id: 'media_gallery.toggle_visible', defaultMessage: 'Toggle visibility' }
@@ -161,7 +162,7 @@ const Item = React.createClass({
         <video
           src={attachment.get('url')}
           onClick={this.handleClick}
-          autoPlay={true}
+          autoPlay={!isIOS()}
           loop={true}
           muted={true}
           style={gifvThumbStyle}
