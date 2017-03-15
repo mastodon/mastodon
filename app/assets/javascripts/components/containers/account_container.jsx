@@ -5,7 +5,9 @@ import {
   followAccount,
   unfollowAccount,
   blockAccount,
-  unblockAccount
+  unblockAccount,
+  muteAccount,
+  unmuteAccount,
 } from '../actions/accounts';
 
 const makeMapStateToProps = () => {
@@ -33,6 +35,14 @@ const mapDispatchToProps = (dispatch) => ({
       dispatch(unblockAccount(account.get('id')));
     } else {
       dispatch(blockAccount(account.get('id')));
+    }
+  },
+
+  onMute (account) {
+    if (account.getIn(['relationship', 'muting'])) {
+      dispatch(unmuteAccount(account.get('id')));
+    } else {
+      dispatch(muteAccount(account.get('id')));
     }
   }
 });

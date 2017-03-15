@@ -28,6 +28,8 @@ export const COMPOSE_SPOILER_TEXT_CHANGE = 'COMPOSE_SPOILER_TEXT_CHANGE';
 export const COMPOSE_VISIBILITY_CHANGE  = 'COMPOSE_VISIBILITY_CHANGE';
 export const COMPOSE_LISTABILITY_CHANGE = 'COMPOSE_LISTABILITY_CHANGE';
 
+export const COMPOSE_EMOJI_INSERT = 'COMPOSE_EMOJI_INSERT';
+
 export function changeCompose(text) {
   return {
     type: COMPOSE_CHANGE,
@@ -85,8 +87,13 @@ export function submitCompose() {
       dispatch(updateTimeline('home', { ...response.data }));
 
       if (response.data.in_reply_to_id === null && response.data.visibility === 'public') {
-        dispatch(updateTimeline('community', { ...response.data }));
-        dispatch(updateTimeline('public', { ...response.data }));
+        if (getState().getIn(['timelines', 'community', 'loaded'])) {
+          dispatch(updateTimeline('community', { ...response.data }));
+        }
+
+        if (getState().getIn(['timelines', 'public', 'loaded'])) {
+          dispatch(updateTimeline('public', { ...response.data }));
+        }
       }
     }).catch(function (error) {
       dispatch(submitComposeFail(error));
@@ -253,5 +260,13 @@ export function changeComposeListability(checked) {
   return {
     type: COMPOSE_LISTABILITY_CHANGE,
     checked
+  };
+};
+
+export function insertEmojiCompose(position, emoji) {
+  return {
+    type: COMPOSE_EMOJI_INSERT,
+    position,
+    emoji
   };
 };

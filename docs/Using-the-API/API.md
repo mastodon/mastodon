@@ -76,6 +76,10 @@ Query parameters:
 - `max_id` (optional): Skip statuses younger than ID (e.g. navigate backwards in time)
 - `since_id` (optional): Skip statuses older than ID (e.g. check for updates)
 
+Query parameters for public and tag timelines only:
+
+- `local` (optional): Only return statuses originating from this instance
+
 ### Notifications
 
 **GET /api/v1/notifications**
@@ -116,7 +120,14 @@ Returns authenticated user's account.
 
 **GET /api/v1/accounts/:id/statuses**
 
-Returns statuses by user. Same options as timeline are permitted.
+Returns statuses by user.
+
+Query parameters:
+
+- `max_id` (optional): Skip statuses younger than ID (e.g. navigate backwards in time)
+- `since_id` (optional): Skip statuses older than ID (e.g. check for updates)
+- `only_media` (optional): Only return statuses that have media attachments
+- `exclude_replies` (optional): Skip statuses that reply to other statuses
 
 **GET /api/v1/accounts/:id/following**
 
@@ -128,7 +139,7 @@ Returns users the given user is followed by.
 
 **GET /api/v1/accounts/relationships**
 
-Returns relationships (`following`, `followed_by`, `blocking`) of the current user to a list of given accounts.
+Returns relationships (`following`, `followed_by`, `blocking`, `muting`, `requested`) of the current user to a list of given accounts.
 
 Query parameters:
 
@@ -146,6 +157,14 @@ Query parameters:
 **GET /api/v1/blocks**
 
 Returns accounts blocked by authenticated user.
+
+**GET /api/v1/mutes**
+
+Returns accounts muted by authenticated user.
+
+**GET /api/v1/follow_requests**
+
+Returns accounts that want to follow the authenticated user but are waiting for approval.
 
 **GET /api/v1/favourites**
 
@@ -214,6 +233,13 @@ Returns the updated relationship to the user.
 
 Returns an object containing the `title`, character limit (`max_chars`), and an object of `links` for the site.
 Does not require authentication.
+
+# Muting and unmuting users
+
+**POST /api/v1/accounts/:id/mute**
+**POST /api/v1/accounts/:id/unmute**
+
+Returns the updated relationship to the user.
 
 ### OAuth apps
 

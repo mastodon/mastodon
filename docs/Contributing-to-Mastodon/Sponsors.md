@@ -6,23 +6,16 @@ These people make the development of Mastodon possible through [Patreon](https:/
 **Extra special Patrons**
 
 - [World'sTallestLadder](https://mastodon.social/users/carcinoGeneticist)
-- [glocal](https://mastodon.social/users/glocal)
 - [Jimmy Tidey](https://mastodon.social/users/jimmytidey)
 - [Kurtis Rainbolt-Greene](https://mastodon.social/users/krainboltgreene)
 - [Kit Redgrave](https://socially.constructed.space/users/KitRedgrave)
-- [Zeiphner](https://mastodon.social/users/Zeipher)
+- [Zeipher](https://mastodon.social/users/Zeipher)
 - [Effy Elden](https://toot.zone/users/effy)
 - [Zoë Quinn](https://mastodon.social/users/zoequinn)
 
 **Thank you to the following people**
 
-- [Sophia Park](https://mastodon.social/users/sophia)
-- [WelshPixie](https://mastodon.social/users/WelshPixie)
-- [John Parker](https://mastodon.social/users/Middaparka)
-- [Christina Hendricks](https://mastodon.social/users/clhendricksbc)
-- [Jelle](http://jelv.nl)
 - [Harris Bomberguy](https://mastodon.social/users/Hbomberguy)
-- [Martin Tithonium](https://mastodon.social/users/tithonium)
 - [Edward Saperia](https://nwspk.com)
 - [Yoz Grahame](http://yoz.com/)
 - [Jenn Kaplan](https://gay.crime.team/users/jkap)
@@ -33,5 +26,21 @@ These people make the development of Mastodon possible through [Patreon](https:/
 - [Niels Roesen Abildgaard](http://hypesystem.dk/)
 - [Zatnosk](https://github.com/Zatnosk)
 - [Spex Bluefox](https://mastodon.social/users/Spex)
-- [Sam Waldie](https://mastodon.social/users/denjin)
 - [J. C. Holder](http://jcholder.com/)
+- [glocal](https://mastodon.social/users/glocal)
+- [jk](https://mastodon.social/users/jk)
+- [C418](https://mastodon.social/users/C418)
+- [halcy](https://icosahedron.website/users/halcy)
+- [Extropic](https://gnusocial.no/extropic)
+- [Pat Monaghan](http://iwrite.software/)
+- TBD
+- TBD
+- TBD
+- TBD
+- TBD
+- TBD
+- TBD
+- TBD
+- TBD
+- TBD
+- TBD

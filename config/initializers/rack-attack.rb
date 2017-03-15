@@ -1,6 +1,6 @@
 class Rack::Attack
   # Rate limits for the API
-  throttle('api', limit: 150, period: 5.minutes) do |req|
+  throttle('api', limit: 300, period: 5.minutes) do |req|
     req.ip if req.path.match(/\A\/api\/v/)
   end
 
@@ -11,7 +11,7 @@ class Rack::Attack
     headers = {
       'X-RateLimit-Limit'     => match_data[:limit].to_s,
       'X-RateLimit-Remaining' => '0',
-      'X-RateLimit-Reset'     => (now + (match_data[:period] - now.to_i % match_data[:period])).iso8601(6)
+      'X-RateLimit-Reset'     => (now + (match_data[:period] - now.to_i % match_data[:period])).iso8601(6),
     }
 
     [429, headers, [{ error: 'Throttled' }.to_json]]

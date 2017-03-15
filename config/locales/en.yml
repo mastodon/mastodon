@@ -29,6 +29,8 @@ en:
     unfollow: Unfollow
   application_mailer:
     signature: Mastodon notifications from %{instance}
+    settings: 'Change e-mail preferences: %{link}'
+    view: 'View:'
   applications:
     invalid_url: The provided URL is invalid
   auth:
@@ -83,6 +85,15 @@ en:
     reblog:
       body: 'Your status was boosted by %{name}:'
       subject: "%{name} boosted your status"
+    digest:
+      subject:
+        one: "1 new notification since your last visit 🐘"
+        other: "%{count} new notifications since your last visit 🐘"
+      body: 'Here is a brief summary of what you missed on %{instance} since your last visit on %{since}:'
+      mention: "%{name} mentioned you in:"
+      new_followers_summary:
+        one: You have acquired one new follower! Yay!
+        other: You have gotten %{count} new followers! Amazing!
   pagination:
     next: Next
     prev: Prev

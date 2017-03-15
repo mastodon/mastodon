@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
 import ComposeForm from '../components/compose_form';
+import { uploadCompose } from '../../../actions/compose';
 import { createSelector } from 'reselect';
 import {
   changeCompose,
@@ -8,6 +9,7 @@ import {
   fetchComposeSuggestions,
   selectComposeSuggestion,
   changeComposeSpoilerText,
+  insertEmojiCompose
 } from '../../../actions/compose';
 
 const getMentionedUsernames = createSelector(state => state.getIn(['compose', 'text']), text => text.match(/(?:^|[^\/\w])@([a-z0-9_]+@[a-z0-9\.\-]+)/ig));
@@ -63,6 +65,14 @@ const mapDispatchToProps = (dispatch) => ({
 
   onChangeSpoilerText (checked) {
     dispatch(changeComposeSpoilerText(checked));
+  },
+
+  onPaste (files) {
+    dispatch(uploadCompose(files));
+  },
+
+  onPickEmoji (position, data) {
+    dispatch(insertEmojiCompose(position, data));
   },
 
 });

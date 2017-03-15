@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 class Api::V1::AccountsController < ApiController
-  before_action -> { doorkeeper_authorize! :read }, except: [:follow, :unfollow, :block, :unblock]
-  before_action -> { doorkeeper_authorize! :follow }, only: [:follow, :unfollow, :block, :unblock]
+  before_action -> { doorkeeper_authorize! :read }, except: [:follow, :unfollow, :block, :unblock, :mute, :unmute]
+  before_action -> { doorkeeper_authorize! :follow }, only: [:follow, :unfollow, :block, :unblock, :mute, :unmute]
   before_action :require_user!, except: [:show, :following, :followers, :statuses]
   before_action :set_account, except: [:verify_credentials, :suggestions, :search]
 
@@ -47,30 +47,18 @@ class Api::V1::AccountsController < ApiController
 
   def statuses
     @statuses = @account.statuses.permitted_for(@account, current_account).paginate_by_max_id(limit_param(DEFAULT_STATUSES_LIMIT), params[:max_id], params[:since_id])
+    @statuses = @statuses.where(id: MediaAttachment.where(account: @account).where.not(status_id: nil).reorder('').select('distinct status_id')) if params[:only_media]
+    @statuses = @statuses.without_replies if params[:exclude_replies]
     @statuses = cache_collection(@statuses, Status)
 
     set_maps(@statuses)
     set_counters_maps(@statuses)
+    set_account_counters_maps(@statuses.flat_map { |s| [s.account, s.reblog? ? s.reblog.account : nil] }.compact.uniq)
 
     next_path = statuses_api_v1_account_url(max_id: @statuses.last.id)    unless @statuses.empty?
     prev_path = statuses_api_v1_account_url(since_id: @statuses.first.id) unless @statuses.empty?
 
     set_pagination_headers(next_path, prev_path)
-  end
-
-  def media_statuses
-    media_ids = MediaAttachment.where(account: @account).where.not(status_id: nil).reorder('').select('distinct status_id')
-    @statuses = @account.statuses.where(id: media_ids).permitted_for(@account, current_account).paginate_by_max_id(limit_param(DEFAULT_STATUSES_LIMIT), params[:max_id], params[:since_id])
-    @statuses = cache_collection(@statuses, Status)
-
-    set_maps(@statuses)
-    set_counters_maps(@statuses)
-
-    next_path = media_statuses_api_v1_account_url(max_id: @statuses.last.id)    unless @statuses.empty?
-    prev_path = media_statuses_api_v1_account_url(since_id: @statuses.first.id) unless @statuses.empty?
-
-    set_pagination_headers(next_path, prev_path)
-    render action: :statuses
   end
 
   def follow
@@ -86,7 +74,14 @@ class Api::V1::AccountsController < ApiController
     @followed_by = { @account.id => false }
     @blocking    = { @account.id => true }
     @requested   = { @account.id => false }
+    @muting      = { @account.id => current_user.account.muting?(@account.id) }
 
+    render action: :relationship
+  end
+
+  def mute
+    MuteService.new.call(current_user.account, @account)
+    set_relationship
     render action: :relationship
   end
 
@@ -102,6 +97,12 @@ class Api::V1::AccountsController < ApiController
     render action: :relationship
   end
 
+  def unmute
+    UnmuteService.new.call(current_user.account, @account)
+    set_relationship
+    render action: :relationship
+  end
+
   def relationships
     ids = params[:id].is_a?(Enumerable) ? params[:id].map(&:to_i) : [params[:id].to_i]
 
@@ -109,6 +110,7 @@ class Api::V1::AccountsController < ApiController
     @following   = Account.following_map(ids, current_user.account_id)
     @followed_by = Account.followed_by_map(ids, current_user.account_id)
     @blocking    = Account.blocking_map(ids, current_user.account_id)
+    @muting      = Account.muting_map(ids, current_user.account_id)
     @requested   = Account.requested_map(ids, current_user.account_id)
   end
 
@@ -130,6 +132,7 @@ class Api::V1::AccountsController < ApiController
     @following   = Account.following_map([@account.id], current_user.account_id)
     @followed_by = Account.followed_by_map([@account.id], current_user.account_id)
     @blocking    = Account.blocking_map([@account.id], current_user.account_id)
+    @muting      = Account.muting_map([@account.id], current_user.account_id)
     @requested   = Account.requested_map([@account.id], current_user.account_id)
   end
 end

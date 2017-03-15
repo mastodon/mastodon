@@ -4,7 +4,7 @@ class Account < ApplicationRecord
   include Targetable
   include PgSearch
 
-  MENTION_RE = /(?:^|[^\/\w])@([a-z0-9_]+(?:@[a-z0-9\.\-]+)?)/i
+  MENTION_RE = /(?:^|[^\/\w])@([a-z0-9_]+(?:@[a-z0-9\.\-]+[a-z0-9]+)?)/i
   IMAGE_MIME_TYPES = ['image/jpeg', 'image/png', 'image/gif'].freeze
 
   # Local users
@@ -46,6 +46,10 @@ class Account < ApplicationRecord
   has_many :block_relationships, class_name: 'Block', foreign_key: 'account_id', dependent: :destroy
   has_many :blocking, -> { order('blocks.id desc') }, through: :block_relationships, source: :target_account
 
+  # Mute relationships
+  has_many :mute_relationships, class_name: 'Mute', foreign_key: 'account_id', dependent: :destroy
+  has_many :muting, -> { order('mutes.id desc') }, through: :mute_relationships, source: :target_account
+
   # Media
   has_many :media_attachments, dependent: :destroy
 
@@ -73,6 +77,10 @@ class Account < ApplicationRecord
     block_relationships.where(target_account: other_account).first_or_create!(target_account: other_account)
   end
 
+  def mute!(other_account)
+    mute_relationships.where(target_account: other_account).first_or_create!(target_account: other_account)
+  end
+
   def unfollow!(other_account)
     follow = active_relationships.find_by(target_account: other_account)
     follow&.destroy
@@ -83,12 +91,21 @@ class Account < ApplicationRecord
     block&.destroy
   end
 
+  def unmute!(other_account)
+    mute = mute_relationships.find_by(target_account: other_account)
+    mute&.destroy
+  end
+
   def following?(other_account)
     following.include?(other_account)
   end
 
   def blocking?(other_account)
     blocking.include?(other_account)
+  end
+
+  def muting?(other_account)
+    muting.include?(other_account)
   end
 
   def requested?(other_account)
@@ -186,6 +203,10 @@ class Account < ApplicationRecord
 
     def blocking_map(target_account_ids, account_id)
       follow_mapping(Block.where(target_account_id: target_account_ids, account_id: account_id), :target_account_id)
+    end
+
+    def muting_map(target_account_ids, account_id)
+      follow_mapping(Mute.where(target_account_id: target_account_ids, account_id: account_id), :target_account_id)
     end
 
     def requested_map(target_account_ids, account_id)

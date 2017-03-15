@@ -29,6 +29,11 @@ class Formatter
     sanitize(html, tags: %w(a br p span), attributes: %w(href rel class))
   end
 
+  def plaintext(status)
+    return status.text if status.local?
+    strip_tags(status.text)
+  end
+
   def simplified_format(account)
     return reformat(account.note) unless account.local?
 

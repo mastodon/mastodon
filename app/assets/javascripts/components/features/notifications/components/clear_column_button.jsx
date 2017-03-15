@@ -4,7 +4,8 @@ const iconStyle = {
   position: 'absolute',
   right: '48px',
   top: '0',
-  cursor: 'pointer'
+  cursor: 'pointer',
+  zIndex: '2'
 };
 
 const ClearColumnButton = ({ onClick }) => (

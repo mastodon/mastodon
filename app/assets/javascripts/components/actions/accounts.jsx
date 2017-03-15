@@ -21,6 +21,14 @@ export const ACCOUNT_UNBLOCK_REQUEST = 'ACCOUNT_UNBLOCK_REQUEST';
 export const ACCOUNT_UNBLOCK_SUCCESS = 'ACCOUNT_UNBLOCK_SUCCESS';
 export const ACCOUNT_UNBLOCK_FAIL    = 'ACCOUNT_UNBLOCK_FAIL';
 
+export const ACCOUNT_MUTE_REQUEST = 'ACCOUNT_MUTE_REQUEST';
+export const ACCOUNT_MUTE_SUCCESS = 'ACCOUNT_MUTE_SUCCESS';
+export const ACCOUNT_MUTE_FAIL    = 'ACCOUNT_MUTE_FAIL';
+
+export const ACCOUNT_UNMUTE_REQUEST = 'ACCOUNT_UNMUTE_REQUEST';
+export const ACCOUNT_UNMUTE_SUCCESS = 'ACCOUNT_UNMUTE_SUCCESS';
+export const ACCOUNT_UNMUTE_FAIL    = 'ACCOUNT_UNMUTE_FAIL';
+
 export const ACCOUNT_TIMELINE_FETCH_REQUEST = 'ACCOUNT_TIMELINE_FETCH_REQUEST';
 export const ACCOUNT_TIMELINE_FETCH_SUCCESS = 'ACCOUNT_TIMELINE_FETCH_SUCCESS';
 export const ACCOUNT_TIMELINE_FETCH_FAIL    = 'ACCOUNT_TIMELINE_FETCH_FAIL';
@@ -67,11 +75,16 @@ export const FOLLOW_REQUEST_REJECT_FAIL    = 'FOLLOW_REQUEST_REJECT_FAIL';
 
 export function fetchAccount(id) {
   return (dispatch, getState) => {
+    dispatch(fetchRelationships([id]));
+
+    if (getState().getIn(['accounts', id], null) !== null) {
+      return;
+    }
+
     dispatch(fetchAccountRequest(id));
 
     api(getState).get(`/api/v1/accounts/${id}`).then(response => {
       dispatch(fetchAccountSuccess(response.data));
-      dispatch(fetchRelationships([id]));
     }).catch(error => {
       dispatch(fetchAccountFail(id, error));
     });
@@ -327,6 +340,76 @@ export function unblockAccountFail(error) {
     error
   };
 };
+
+
+export function muteAccount(id) {
+  return (dispatch, getState) => {
+    dispatch(muteAccountRequest(id));
+
+    api(getState).post(`/api/v1/accounts/${id}/mute`).then(response => {
+      // Pass in entire statuses map so we can use it to filter stuff in different parts of the reducers
+      dispatch(muteAccountSuccess(response.data, getState().get('statuses')));
+    }).catch(error => {
+      dispatch(muteAccountFail(id, error));
+    });
+  };
+};
+
+export function unmuteAccount(id) {
+  return (dispatch, getState) => {
+    dispatch(unmuteAccountRequest(id));
+
+    api(getState).post(`/api/v1/accounts/${id}/unmute`).then(response => {
+      dispatch(unmuteAccountSuccess(response.data));
+    }).catch(error => {
+      dispatch(unmuteAccountFail(id, error));
+    });
+  };
+};
+
+export function muteAccountRequest(id) {
+  return {
+    type: ACCOUNT_MUTE_REQUEST,
+    id
+  };
+};
+
+export function muteAccountSuccess(relationship, statuses) {
+  return {
+    type: ACCOUNT_MUTE_SUCCESS,
+    relationship,
+    statuses
+  };
+};
+
+export function muteAccountFail(error) {
+  return {
+    type: ACCOUNT_MUTE_FAIL,
+    error
+  };
+};
+
+export function unmuteAccountRequest(id) {
+  return {
+    type: ACCOUNT_UNMUTE_REQUEST,
+    id
+  };
+};
+
+export function unmuteAccountSuccess(relationship) {
+  return {
+    type: ACCOUNT_UNMUTE_SUCCESS,
+    relationship
+  };
+};
+
+export function unmuteAccountFail(error) {
+  return {
+    type: ACCOUNT_UNMUTE_FAIL,
+    error
+  };
+};
+
 
 export function fetchFollowers(id) {
   return (dispatch, getState) => {

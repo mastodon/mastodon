@@ -109,4 +109,11 @@ Rails.application.configure do
   config.to_prepare do
     StatsD.backend = StatsD::Instrument::Backends::NullBackend.new if ENV['STATSD_ADDR'].blank?
   end
+
+  config.action_dispatch.default_headers = {
+    'Server'                 => 'Mastodon',
+    'X-Frame-Options'        => 'DENY',
+    'X-Content-Type-Options' => 'nosniff',
+    'X-XSS-Protection'       => '1; mode=block',
+  }
 end

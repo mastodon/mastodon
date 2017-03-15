@@ -127,6 +127,7 @@ Rails.application.routes.draw do
       resources :media,      only: [:create]
       resources :apps,       only: [:create]
       resources :blocks,     only: [:index]
+      resources :mutes,      only: [:index]
       resources :favourites, only: [:index]
       resources :reports,    only: [:index, :create]
       resources :site,       only: [:index]
@@ -153,7 +154,6 @@ Rails.application.routes.draw do
 
         member do
           get :statuses
-          get 'statuses/media', to: 'accounts#media_statuses', as: :media_statuses
           get :followers
           get :following
 
@@ -161,6 +161,8 @@ Rails.application.routes.draw do
           post :unfollow
           post :block
           post :unblock
+          post :mute
+          post :unmute
         end
       end
     end
@@ -177,6 +179,9 @@ Rails.application.routes.draw do
   get '/terms',      to: 'about#terms'
 
   root 'home#index'
+
+  get '/:username', to: redirect('/users/%{username}')
+  get '/:username/:id', to: redirect('/users/%{username}/updates/%{id}')
 
   match '*unmatched_route', via: :all, to: 'application#raise_not_found'
 end

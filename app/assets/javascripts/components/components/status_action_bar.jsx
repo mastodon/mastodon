@@ -6,13 +6,13 @@ import { defineMessages, injectIntl } from 'react-intl';
 
 const messages = defineMessages({
   delete: { id: 'status.delete', defaultMessage: 'Delete' },
-  mention: { id: 'status.mention', defaultMessage: 'Mention' },
-  block: { id: 'account.block', defaultMessage: 'Block' },
+  mention: { id: 'status.mention', defaultMessage: 'Mention @{name}' },
+  block: { id: 'account.block', defaultMessage: 'Block @{name}' },
   reply: { id: 'status.reply', defaultMessage: 'Reply' },
   reblog: { id: 'status.reblog', defaultMessage: 'Reblog' },
   favourite: { id: 'status.favourite', defaultMessage: 'Favourite' },
-  open: { id: 'status.open', defaultMessage: 'Expand' },
-  report: { id: 'status.report', defaultMessage: 'Report' }
+  open: { id: 'status.open', defaultMessage: 'Expand this status' },
+  report: { id: 'status.report', defaultMessage: 'Report @{name}' }
 });
 
 const StatusActionBar = React.createClass({
@@ -74,13 +74,15 @@ const StatusActionBar = React.createClass({
     let menu = [];
 
     menu.push({ text: intl.formatMessage(messages.open), action: this.handleOpen });
+    menu.push(null);
 
     if (status.getIn(['account', 'id']) === me) {
       menu.push({ text: intl.formatMessage(messages.delete), action: this.handleDeleteClick });
     } else {
-      menu.push({ text: intl.formatMessage(messages.mention), action: this.handleMentionClick });
-      menu.push({ text: intl.formatMessage(messages.block), action: this.handleBlockClick });
-      menu.push({ text: intl.formatMessage(messages.report), action: this.handleReport });
+      menu.push({ text: intl.formatMessage(messages.mention, { name: status.getIn(['account', 'username']) }), action: this.handleMentionClick });
+      menu.push(null);
+      menu.push({ text: intl.formatMessage(messages.block, { name: status.getIn(['account', 'username']) }), action: this.handleBlockClick });
+      menu.push({ text: intl.formatMessage(messages.report, { name: status.getIn(['account', 'username']) }), action: this.handleReport });
     }
 
     return (

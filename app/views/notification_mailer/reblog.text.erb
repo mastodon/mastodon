@@ -1,5 +1,5 @@
 <%= display_name(@me) %>,
 
-<%= t('notification_mailer.reblog.body', name: @account.acct) %>
+<%= raw t('notification_mailer.reblog.body', name: @account.acct) %>
 
-<%= render partial: 'status' %>
+<%= render partial: 'status', locals: { status: @status } %>

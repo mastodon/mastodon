@@ -13,6 +13,10 @@ module ObfuscateFilename
     file = params.dig(*path)
     return if file.nil?
 
-    file.original_filename = 'media' + File.extname(file.original_filename)
+    file.original_filename = secure_token + File.extname(file.original_filename)
+  end
+
+  def secure_token(length = 16)
+    SecureRandom.hex(length / 2)
   end
 end

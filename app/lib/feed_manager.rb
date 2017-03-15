@@ -22,8 +22,18 @@ class FeedManager
   end
 
   def push(timeline_type, account, status)
-    redis.zadd(key(timeline_type, account.id), status.id, status.reblog? ? status.reblog_of_id : status.id)
-    trim(timeline_type, account.id)
+    timeline_key = key(timeline_type, account.id)
+
+    if status.reblog?
+      # If the original status is within 40 statuses from top, do not re-insert it into the feed
+      rank = redis.zrevrank(timeline_key, status.reblog_of_id)
+      return if !rank.nil? && rank < 40
+      redis.zadd(timeline_key, status.id, status.reblog_of_id)
+    else
+      redis.zadd(timeline_key, status.id, status.id)
+      trim(timeline_type, account.id)
+    end
+
     broadcast(account.id, event: 'update', payload: inline_render(account, 'api/v1/statuses/show', status))
   end
 
@@ -85,6 +95,8 @@ class FeedManager
   end
 
   def filter_from_home?(status, receiver)
+    return true if receiver.muting?(status.account)
+
     should_filter = false
 
     if status.reply? && status.in_reply_to_id.nil?
@@ -95,6 +107,7 @@ class FeedManager
       should_filter &&= !(status.account_id == status.in_reply_to_account_id) # and it's not a self-reply
     elsif status.reblog?                                                      # Filter out a reblog
       should_filter = receiver.blocking?(status.reblog.account)               # if I'm blocking the reblogged person
+      should_filter ||= receiver.muting?(status.reblog.account)               # or muting that person
     end
 
     should_filter ||= receiver.blocking?(status.mentions.map(&:account_id))   # or if it mentions someone I blocked

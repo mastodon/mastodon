@@ -10,10 +10,42 @@ const DropdownMenu = React.createClass({
     direction: React.PropTypes.string
   },
 
+  getDefaultProps () {
+    return {
+      direction: 'left'
+    };
+  },
+
   mixins: [PureRenderMixin],
 
   setRef (c) {
     this.dropdown = c;
+  },
+
+  handleClick (i, e) {
+    const { action } = this.props.items[i];
+
+    if (typeof action === 'function') {
+      e.preventDefault();
+      action();
+      this.dropdown.hide();
+    }
+  },
+
+  renderItem (item, i) {
+    if (item === null) {
+      return <li key={i} className='dropdown__sep' />;
+    }
+
+    const { text, action, href = '#' } = item;
+
+    return (
+      <li key={i}>
+        <a href={href} target='_blank' rel='noopener' onClick={this.handleClick.bind(this, i)}>
+          {text}
+        </a>
+      </li>
+    );
   },
 
   render () {
@@ -28,13 +60,7 @@ const DropdownMenu = React.createClass({
 
         <DropdownContent className={directionClass} style={{ lineHeight: '18px', textAlign: 'left' }}>
           <ul>
-            {items.map(({ text, action, href = '#' }, i) => <li key={i}><a href={href} target='_blank' rel='noopener' onClick={e => {
-              if (typeof action === 'function') {
-                e.preventDefault();
-                action();
-                this.dropdown.hide();
-              }
-            }}>{text}</a></li>)}
+            {items.map(this.renderItem)}
           </ul>
         </DropdownContent>
       </Dropdown>

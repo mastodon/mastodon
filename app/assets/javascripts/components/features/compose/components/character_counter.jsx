@@ -10,7 +10,7 @@ const CharacterCounter = React.createClass({
   mixins: [PureRenderMixin],
 
   render () {
-    const diff = this.props.max - this.props.text.length;
+    const diff = this.props.max - this.props.text.replace(/[\uD800-\uDBFF][\uDC00-\uDFFF]/g, "_").length;
 
     return (
       <span style={{ fontSize: '16px', cursor: 'default' }}>

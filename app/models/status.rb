@@ -37,6 +37,9 @@ class Status < ApplicationRecord
   scope :remote, -> { where.not(uri: nil) }
   scope :local, -> { where(uri: nil) }
 
+  scope :without_replies, -> { where('statuses.reply = FALSE OR statuses.in_reply_to_account_id = statuses.account_id') }
+  scope :without_reblogs, -> { where('statuses.reblog_of_id IS NULL') }
+
   cache_associated :account, :application, :media_attachments, :tags, :stream_entry, mentions: :account, reblog: [:account, :application, :stream_entry, :tags, :media_attachments, mentions: :account], thread: :account
 
   def reply?
@@ -109,8 +112,8 @@ class Status < ApplicationRecord
     def as_public_timeline(account = nil, local_only = false)
       query = joins('LEFT OUTER JOIN accounts ON statuses.account_id = accounts.id')
               .where(visibility: :public)
-              .where('(statuses.reply = false OR statuses.in_reply_to_account_id = statuses.account_id)')
-              .where('statuses.reblog_of_id IS NULL')
+              .without_replies
+              .without_reblogs
 
       query = query.where('accounts.domain IS NULL') if local_only
 
@@ -121,7 +124,7 @@ class Status < ApplicationRecord
       query = tag.statuses
                  .joins('LEFT OUTER JOIN accounts ON statuses.account_id = accounts.id')
                  .where(visibility: :public)
-                 .where('statuses.reblog_of_id IS NULL')
+                 .without_reblogs
 
       query = query.where('accounts.domain IS NULL') if local_only
 
@@ -168,9 +171,9 @@ class Status < ApplicationRecord
     private
 
     def filter_timeline(query, account)
-      blocked = Block.where(account: account).pluck(:target_account_id) + Block.where(target_account: account).pluck(:account_id)
-      query   = query.where('statuses.account_id NOT IN (?)', blocked) unless blocked.empty?
-      query   = query.where('accounts.silenced = TRUE') if account.silenced?
+      blocked = Block.where(account: account).pluck(:target_account_id) + Block.where(target_account: account).pluck(:account_id) + Mute.where(account: account).pluck(:target_account_id)
+      query   = query.where('statuses.account_id NOT IN (?)', blocked) unless blocked.empty?  # Only give us statuses from people we haven't blocked, or muted, or that have blocked us
+      query   = query.where('accounts.silenced = TRUE') if account.silenced?                  # and if we're hellbanned, only people who are also hellbanned
       query
     end
 
@@ -192,6 +195,6 @@ class Status < ApplicationRecord
   private
 
   def filter_from_context?(status, account)
-    account&.blocking?(status.account_id) || (status.account.silenced? && !account&.following?(status.account_id)) || !status.permitted?(account)
+    account&.blocking?(status.account_id) || account&.muting?(status.account_id) || (status.account.silenced? && !account&.following?(status.account_id)) || !status.permitted?(account)
   end
 end

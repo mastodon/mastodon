@@ -9,6 +9,7 @@ import ImageLoader from 'react-imageloader';
 import LoadingIndicator from '../../../components/loading_indicator';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import ImmutablePropTypes from 'react-immutable-proptypes';
+import ExtendedVideoPlayer from '../../../components/extended_video_player';
 
 const mapStateToProps = state => ({
   media: state.getIn(['modal', 'media']),
@@ -131,27 +132,34 @@ const Modal = React.createClass({
       return null;
     }
 
-    const url = media.get(index).get('url');
+    const attachment = media.get(index);
+    const url = attachment.get('url');
 
-    let leftNav, rightNav;
+    let leftNav, rightNav, content;
 
-    leftNav = rightNav = '';
+    leftNav = rightNav = content = '';
 
     if (media.size > 1) {
       leftNav  = <div style={leftNavStyle} className='modal-container--nav' onClick={this.handlePrevClick}><i className='fa fa-fw fa-chevron-left' /></div>;
       rightNav = <div style={rightNavStyle} className='modal-container--nav' onClick={this.handleNextClick}><i className='fa fa-fw fa-chevron-right' /></div>;
     }
 
-    return (
-      <Lightbox {...other}>
-        {leftNav}
-
+    if (attachment.get('type') === 'image') {
+      content = (
         <ImageLoader
           src={url}
           preloader={preloader}
           imgProps={{ style: imageStyle }}
         />
+      );
+    } else if (attachment.get('type') === 'gifv') {
+      content = <ExtendedVideoPlayer src={url} />;
+    }
 
+    return (
+      <Lightbox {...other}>
+        {leftNav}
+        {content}
         {rightNav}
       </Lightbox>
     );

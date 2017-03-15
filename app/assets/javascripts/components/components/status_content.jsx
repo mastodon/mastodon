@@ -2,6 +2,7 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import escapeTextContentForBrowser from 'escape-html';
 import emojify from '../emoji';
+import { isRtl } from '../rtl';
 import { FormattedMessage } from 'react-intl';
 import Permalink from './permalink';
 
@@ -92,6 +93,11 @@ const StatusContent = React.createClass({
 
     const content = { __html: emojify(status.get('content')) };
     const spoilerContent = { __html: emojify(escapeTextContentForBrowser(status.get('spoiler_text', ''))) };
+    const directionStyle = { direction: 'ltr' };
+
+    if (isRtl(status.get('content'))) {
+      directionStyle.direction = 'rtl';
+    }
 
     if (status.get('spoiler_text').length > 0) {
       let mentionsPlaceholder = '';
@@ -116,14 +122,14 @@ const StatusContent = React.createClass({
 
           {mentionsPlaceholder}
 
-          <div style={{ display: hidden ? 'none' : 'block' }} dangerouslySetInnerHTML={content} />
+          <div style={{ display: hidden ? 'none' : 'block', ...directionStyle }} dangerouslySetInnerHTML={content} />
         </div>
       );
     } else {
       return (
         <div
           className='status__content'
-          style={{ cursor: 'pointer' }}
+          style={{ cursor: 'pointer', ...directionStyle }}
           onMouseDown={this.handleMouseDown}
           onMouseUp={this.handleMouseUp}
           dangerouslySetInnerHTML={content}

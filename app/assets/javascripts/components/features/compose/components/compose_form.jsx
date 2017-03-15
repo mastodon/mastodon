@@ -15,6 +15,7 @@ import UnlistedToggleContainer from '../containers/unlisted_toggle_container';
 import SpoilerToggleContainer from '../containers/spoiler_toggle_container';
 import PrivateToggleContainer from '../containers/private_toggle_container';
 import SensitiveToggleContainer from '../containers/sensitive_toggle_container';
+import EmojiPickerDropdown from './emoji_picker_dropdown';
 
 const messages = defineMessages({
   placeholder: { id: 'compose_form.placeholder', defaultMessage: 'What is on your mind?' },
@@ -47,6 +48,8 @@ const ComposeForm = React.createClass({
     onFetchSuggestions: React.PropTypes.func.isRequired,
     onSuggestionSelected: React.PropTypes.func.isRequired,
     onChangeSpoilerText: React.PropTypes.func.isRequired,
+    onPaste: React.PropTypes.func.isRequired,
+    onPickEmoji: React.PropTypes.func.isRequired
   },
 
   mixins: [PureRenderMixin],
@@ -75,6 +78,7 @@ const ComposeForm = React.createClass({
   },
 
   onSuggestionSelected (tokenStart, token, value) {
+    this._restoreCaret = null;
     this.props.onSuggestionSelected(tokenStart, token, value);
   },
 
@@ -87,8 +91,18 @@ const ComposeForm = React.createClass({
       // If replying to zero or one users, places the cursor at the end of the textbox.
       // If replying to more than one user, selects any usernames past the first;
       // this provides a convenient shortcut to drop everyone else from the conversation.
-      const selectionEnd   = this.props.text.length;
-      const selectionStart = (this.props.preselectDate !== prevProps.preselectDate) ? (this.props.text.search(/\s/) + 1) : selectionEnd;
+      let selectionEnd, selectionStart;
+
+      if (this.props.preselectDate !== prevProps.preselectDate) {
+        selectionEnd   = this.props.text.length;
+        selectionStart = this.props.text.search(/\s/) + 1;
+      } else if (typeof this._restoreCaret === 'number') {
+        selectionStart = this._restoreCaret;
+        selectionEnd   = this._restoreCaret;
+      } else {
+        selectionEnd   = this.props.text.length;
+        selectionStart = selectionEnd;
+      }
 
       this.autosuggestTextarea.textarea.setSelectionRange(selectionStart, selectionEnd);
       this.autosuggestTextarea.textarea.focus();
@@ -99,8 +113,14 @@ const ComposeForm = React.createClass({
     this.autosuggestTextarea = c;
   },
 
+  handleEmojiPick (data) {
+    const position     = this.autosuggestTextarea.textarea.selectionStart;
+    this._restoreCaret = position + data.shortname.length + 1;
+    this.props.onPickEmoji(position, data);
+  },
+
   render () {
-    const { intl, needsPrivacyWarning, mentionedDomains } = this.props;
+    const { intl, needsPrivacyWarning, mentionedDomains, onPaste } = this.props;
     const disabled = this.props.is_submitting || this.props.is_uploading;
 
     let publishText    = '';
@@ -149,12 +169,16 @@ const ComposeForm = React.createClass({
           onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
           onSuggestionsClearRequested={this.onSuggestionsClearRequested}
           onSuggestionSelected={this.onSuggestionSelected}
+          onPaste={onPaste}
         />
 
         <div style={{ marginTop: '10px', overflow: 'hidden' }}>
           <div style={{ float: 'right' }}><Button text={publishText} onClick={this.handleSubmit} disabled={disabled} /></div>
           <div style={{ float: 'right', marginRight: '16px', lineHeight: '36px' }}><CharacterCounter max={500} text={[this.props.spoiler_text, this.props.text].join('')} /></div>
-          <UploadButtonContainer style={{ paddingTop: '4px' }} />
+          <div style={{ display: 'flex', paddingTop: '4px' }}>
+            <UploadButtonContainer />
+            <EmojiPickerDropdown onPickEmoji={this.handleEmojiPick} />
+          </div>
         </div>
 
         <SpoilerToggleContainer />

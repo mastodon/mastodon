@@ -178,7 +178,6 @@ RSpec.describe Account, type: :model do
     end
   end
 
-
   describe 'MENTION_RE' do
     subject { Account::MENTION_RE }
 
@@ -188,6 +187,14 @@ RSpec.describe Account, type: :model do
 
     it 'matches usernames in the beginning of status' do
       expect(subject.match('@alice Hey how are you?')[1]).to eq 'alice'
+    end
+
+    it 'matches full usernames' do
+      expect(subject.match('@alice@example.com')[1]).to eq 'alice@example.com'
+    end
+
+    it 'matches full usernames with a dot at the end' do
+      expect(subject.match('Hello @alice@example.com.')[1]).to eq 'alice@example.com'
     end
 
     it 'matches dot-prepended usernames' do

@@ -2,6 +2,11 @@
 
 Paperclip.options[:read_timeout] = 60
 
+Paperclip.interpolates :filename do |attachment, style|
+  return attachment.original_filename if style == :original
+  [basename(attachment, style), extension(attachment, style)].delete_if(&:empty?).join('.')
+end
+
 if ENV['S3_ENABLED'] == 'true'
   Aws.eager_autoload!(services: %w(S3))
 

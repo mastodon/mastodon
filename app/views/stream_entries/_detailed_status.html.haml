@@ -10,7 +10,7 @@
   .status__content.e-content.p-name.emojify<
     - unless status.spoiler_text.blank?
       %p= status.spoiler_text
-    = Formatter.instance.format(status)
+    %div{ style: "direction: #{rtl?(status.content) ? 'rtl' : 'ltr'}" }= Formatter.instance.format(status)
 
   - unless status.media_attachments.empty?
     - if status.media_attachments.first.video?
@@ -22,9 +22,9 @@
       .detailed-status__attachments
         - if status.sensitive?
           = render partial: 'stream_entries/content_spoiler'
-        - status.media_attachments.each do |media|
-          .media-item
-            = link_to '', (media.remote_url.blank? ? media.file.url(:original) : media.remote_url), style: "background-image: url(#{media.file.url(:original)})", target: '_blank', rel: 'noopener', class: "u-#{media.video? ? 'video' : 'photo'}"
+        .status__attachments__inner
+          - status.media_attachments.each do |media|
+            = render partial: 'stream_entries/media', locals: { media: media }
 
   %div.detailed-status__meta
     %data.dt-published{ value: status.created_at.to_time.iso8601 }

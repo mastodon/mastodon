@@ -27,7 +27,7 @@ class ProcessMentionsService < BaseService
       mentioned_account.mentions.where(status: status).first_or_create(status: status)
     end
 
-    status.mentions.each do |mention|
+    status.mentions.includes(:account).each do |mention|
       mentioned_account = mention.account
 
       if mentioned_account.local?

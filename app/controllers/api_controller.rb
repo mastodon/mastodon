@@ -79,6 +79,7 @@ class ApiController < ApplicationController
 
   def require_user!
     current_resource_owner
+    set_user_activity
   rescue ActiveRecord::RecordNotFound
     render json: { error: 'This method requires an authenticated user' }, status: 422
   end
