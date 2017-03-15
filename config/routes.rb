@@ -131,6 +131,8 @@ Rails.application.routes.draw do
       resources :favourites, only: [:index]
       resources :reports,    only: [:index, :create]
 
+      resource :instance, only: [:show]
+
       resources :follow_requests, only: [:index] do
         member do
           post :authorize

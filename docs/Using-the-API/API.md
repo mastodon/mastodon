@@ -19,6 +19,7 @@ API overview
   - Who reblogged/favourited a status
   - Following/unfollowing accounts
   - Blocking/unblocking accounts
+  - Getting instance information
   - Creating OAuth apps
 - [Entities](#entities)
   - Status
@@ -225,6 +226,12 @@ Returns the updated relationship to the user.
 **POST /api/v1/accounts/:id/unblock**
 
 Returns the updated relationship to the user.
+
+### Getting instance information
+
+**GET /api/v1/instance**
+
+Returns an object containing the `title`, `description`, `email` and `uri` of the instance. Does not require authentication.
 
 # Muting and unmuting users
 
