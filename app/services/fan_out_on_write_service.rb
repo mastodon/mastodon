@@ -5,7 +5,8 @@ class FanOutOnWriteService < BaseService
   # @param [Status] status
   def call(status)
     deliver_to_self(status) if status.account.local?
-    deliver_to_followers(status)
+
+    status.direct_visibility? ? deliver_to_mentioned_followers(status) : deliver_to_followers(status)
 
     return if status.account.silenced? || !status.public_visibility? || status.reblog?
 
@@ -29,6 +30,16 @@ class FanOutOnWriteService < BaseService
     status.account.followers.where(domain: nil).joins(:user).where('users.current_sign_in_at > ?', 14.days.ago).find_each do |follower|
       next if FeedManager.instance.filter?(:home, status, follower)
       FeedManager.instance.push(:home, follower, status)
+    end
+  end
+
+  def deliver_to_mentioned_followers(status)
+    Rails.logger.debug "Delivering status #{status.id} to mentioned followers"
+
+    status.mentions.includes(:account).each do |mention|
+      mentioned_account = mention.account
+      next if !mentioned_account.local? || !mentioned_account.following?(status.account) || FeedManager.instance.filter?(:home, status, mentioned_account)
+      FeedManager.instance.push(:home, mentioned_account, status)
     end
   end
 

@@ -108,6 +108,7 @@ class FeedManager
     elsif status.reblog?                                                      # Filter out a reblog
       should_filter = receiver.blocking?(status.reblog.account)               # if I'm blocking the reblogged person
       should_filter ||= receiver.muting?(status.reblog.account)               # or muting that person
+      should_filter ||= status.reblog.account.blocking?(receiver)             # or if the author of the reblogged status is blocking me
     end
 
     should_filter ||= receiver.blocking?(status.mentions.map(&:account_id))   # or if it mentions someone I blocked

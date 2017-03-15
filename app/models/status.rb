@@ -6,7 +6,7 @@ class Status < ApplicationRecord
   include Streamable
   include Cacheable
 
-  enum visibility: [:public, :unlisted, :private], _suffix: :visibility
+  enum visibility: [:public, :unlisted, :private, :direct], _suffix: :visibility
 
   belongs_to :application, class_name: 'Doorkeeper::Application'
 
@@ -75,12 +75,14 @@ class Status < ApplicationRecord
   end
 
   def hidden?
-    private_visibility?
+    private_visibility? || direct_visibility?
   end
 
   def permitted?(other_account = nil)
-    if private_visibility?
-      (account.id == other_account&.id || other_account&.following?(account) || mentions.where(account: other_account).exists?)
+    if direct_visibility?
+      account.id == other_account&.id || mentions.where(account: other_account).exists?
+    elsif private_visibility?
+      account.id == other_account&.id || other_account&.following?(account) || mentions.where(account: other_account).exists?
     else
       other_account.nil? || !account.blocking?(other_account)
     end
@@ -156,15 +158,18 @@ class Status < ApplicationRecord
     end
 
     def permitted_for(target_account, account)
-      if account&.id == target_account.id || account&.following?(target_account)
-        where('1 = 1')
-      elsif !account.nil? && target_account.blocking?(account)
+      return where.not(visibility: [:private, :direct]) if account.nil?
+
+      if target_account.blocking?(account) # get rid of blocked peeps
         where('1 = 0')
-      elsif !account.nil?
+      elsif account.id == target_account.id # author can see own stuff
+        where('1 = 1')
+      elsif account.following?(target_account) # followers can see followers-only stuff, but also things they are mentioned in
         joins('LEFT OUTER JOIN mentions ON statuses.id = mentions.status_id AND mentions.account_id = ' + account.id.to_s)
-          .where('statuses.visibility != ? OR mentions.id IS NOT NULL', Status.visibilities[:private])
-      else
-        where.not(visibility: :private)
+          .where('statuses.visibility != ? OR mentions.id IS NOT NULL', Status.visibilities[:direct])
+      else # non-followers can see everything that isn't private/direct, but can see stuff they are mentioned in
+        joins('LEFT OUTER JOIN mentions ON statuses.id = mentions.status_id AND mentions.account_id = ' + account.id.to_s)
+          .where('statuses.visibility NOT IN (?) OR mentions.id IS NOT NULL', [Status.visibilities[:direct], Status.visibilities[:private]])
       end
     end
 
