@@ -130,6 +130,7 @@ Rails.application.routes.draw do
       resources :mutes,      only: [:index]
       resources :favourites, only: [:index]
       resources :reports,    only: [:index, :create]
+      resources :site,       only: [:index]
 
       resources :follow_requests, only: [:index] do
         member do
