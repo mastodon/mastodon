@@ -193,6 +193,25 @@ class Account < ApplicationRecord
       nil
     end
 
+    def triadic_closures(account, limit = 5)
+      sql = <<SQL
+        WITH first_degree AS (
+            SELECT target_account_id
+            FROM follows
+            WHERE account_id = ?
+          )
+        SELECT accounts.*
+        FROM follows
+        INNER JOIN accounts ON follows.target_account_id = accounts.id
+        WHERE account_id IN (SELECT * FROM first_degree) AND target_account_id NOT IN (SELECT * FROM first_degree) AND target_account_id <> ?
+        GROUP BY target_account_id, accounts.id
+        ORDER BY count(account_id) DESC
+        LIMIT ?
+SQL
+
+      Account.find_by_sql([sql, account.id, account.id, limit])
+    end
+
     def following_map(target_account_ids, account_id)
       follow_mapping(Follow.where(target_account_id: target_account_ids, account_id: account_id), :target_account_id)
     end
