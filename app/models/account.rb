@@ -2,7 +2,6 @@
 
 class Account < ApplicationRecord
   include Targetable
-  include PgSearch
 
   MENTION_RE = /(?:^|[^\/\w])@([a-z0-9_]+(?:@[a-z0-9\.\-]+[a-z0-9]+)?)/i
   IMAGE_MIME_TYPES = ['image/jpeg', 'image/png', 'image/gif'].freeze
@@ -55,9 +54,6 @@ class Account < ApplicationRecord
 
   # PuSH subscriptions
   has_many :subscriptions, dependent: :destroy
-
-  pg_search_scope :search_for, against: { display_name: 'A', username: 'B', domain: 'C' },
-                               using: { tsearch: { prefix: true } }
 
   scope :remote, -> { where.not(domain: nil) }
   scope :local, -> { where(domain: nil) }
@@ -210,6 +206,42 @@ class Account < ApplicationRecord
 SQL
 
       Account.find_by_sql([sql, account.id, account.id, limit])
+    end
+
+    def search_for(terms, limit = 10)
+      textsearch  = '(setweight(to_tsvector(\'simple\', accounts.display_name), \'A\') || setweight(to_tsvector(\'simple\', accounts.username), \'B\') || setweight(to_tsvector(\'simple\', coalesce(accounts.domain, \'\')), \'C\'))'
+      query       = 'to_tsquery(\'simple\', \'\'\' \' || ? || \' \'\'\' || \':*\')'
+
+      sql = <<SQL
+        SELECT
+          accounts.*,
+          ts_rank_cd(#{textsearch}, #{query}, 32) AS rank
+        FROM accounts
+        WHERE #{query} @@ #{textsearch}
+        ORDER BY rank DESC
+        LIMIT ?
+SQL
+
+      Account.find_by_sql([sql, terms, terms, limit])
+    end
+
+    def advanced_search_for(terms, account, limit = 10)
+      textsearch  = '(setweight(to_tsvector(\'simple\', accounts.display_name), \'A\') || setweight(to_tsvector(\'simple\', accounts.username), \'B\') || setweight(to_tsvector(\'simple\', coalesce(accounts.domain, \'\')), \'C\'))'
+      query       = 'to_tsquery(\'simple\', \'\'\' \' || ? || \' \'\'\' || \':*\')'
+
+      sql = <<SQL
+        SELECT
+          accounts.*,
+          (count(f.id) + 1) * ts_rank_cd(#{textsearch}, #{query}, 32) AS rank
+        FROM accounts
+        LEFT OUTER JOIN follows AS f ON (accounts.id = f.account_id AND f.target_account_id = ?) OR (accounts.id = f.target_account_id AND f.account_id = ?)
+        WHERE #{query} @@ #{textsearch}
+        GROUP BY accounts.id
+        ORDER BY rank DESC
+        LIMIT ?
+SQL
+
+      Account.find_by_sql([sql, terms, account.id, account.id, terms, limit])
     end
 
     def following_map(target_account_ids, account_id)
