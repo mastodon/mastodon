@@ -144,7 +144,9 @@ class Account < ApplicationRecord
     save!
   rescue ActiveRecord::RecordInvalid
     self.avatar              = nil
+    self.header              = nil
     self[:avatar_remote_url] = ''
+    self[:header_remote_url] = ''
     save!
   end
 
@@ -157,6 +159,17 @@ class Account < ApplicationRecord
     self[:avatar_remote_url] = url
   rescue OpenURI::HTTPError => e
     Rails.logger.debug "Error fetching remote avatar: #{e}"
+  end
+
+  def header_remote_url=(url)
+    parsed_url = URI.parse(url)
+
+    return if !%w(http https).include?(parsed_url.scheme) || parsed_url.host.empty? || self[:header_remote_url] == url
+
+    self.header              = parsed_url
+    self[:header_remote_url] = url
+  rescue OpenURI::HTTPError => e
+    Rails.logger.debug "Error fetching remote header: #{e}"
   end
 
   def object_type

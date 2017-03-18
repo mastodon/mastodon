@@ -14,6 +14,7 @@ class UpdateRemoteProfileService < BaseService
 
       unless account.suspended? || DomainBlock.find_by(domain: account.domain)&.reject_media?
         account.avatar_remote_url = author_xml.at_xpath('./xmlns:link[@rel="avatar"]', xmlns: TagManager::XMLNS)['href'] unless author_xml.at_xpath('./xmlns:link[@rel="avatar"]', xmlns: TagManager::XMLNS).nil? || author_xml.at_xpath('./xmlns:link[@rel="avatar"]', xmlns: TagManager::XMLNS)['href'].blank?
+        account.header_remote_url = author_xml.at_xpath('./xmlns:link[@rel="header"]', xmlns: TagManager::XMLNS)['href'] unless author_xml.at_xpath('./xmlns:link[@rel="header"]', xmlns: TagManager::XMLNS).nil? || author_xml.at_xpath('./xmlns:link[@rel="header"]', xmlns: TagManager::XMLNS)['href'].blank?
       end
     end
 
