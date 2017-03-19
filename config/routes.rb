@@ -46,7 +46,13 @@ Rails.application.routes.draw do
   namespace :settings do
     resource :profile, only: [:show, :update]
     resource :preferences, only: [:show, :update]
-    resource :export, only: [:show]
+
+    resource :export, only: [:show] do
+      collection do
+        get :follows, to: 'exports#download_following_list'
+        get :blocks, to: 'exports#download_blocking_list'
+      end
+    end
 
     resource :two_factor_auth, only: [:show] do
       member do
