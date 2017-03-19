@@ -131,7 +131,7 @@ A quick way to get a development environment up and running is with Vagrant. You
 
 ## Contributing
 
-You can open issues for bugs you've found or features you think are missing. You can also submit pull requests to this repository. This section may be updated with more details in the future.
+You can open issues for bugs you've found or features you think are missing. You can also submit pull requests to this repository. [Here are the guidelines for code contributions](CONTRIBUTING.md)
 
 **IRC channel**: #mastodon on irc.freenode.net
 

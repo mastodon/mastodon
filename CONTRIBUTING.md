@@ -7,6 +7,8 @@ There are three ways in which you can contribute to this repository:
 2. By working on the back-end application
 3. By working on the front-end application
 
+Choosing what to work on in a large open source project is not easy. The list of GitHub issues may provide some ideas, but not every feature request has been greenlit. Likewise, not every change or feature that resolves a personal itch will be merged into the main repository. Some communication ahead of time may be wise.
+
 Below are the guidelines for working on pull requests:
 
 ## General
