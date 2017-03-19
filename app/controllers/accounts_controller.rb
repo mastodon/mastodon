@@ -56,6 +56,6 @@ class AccountsController < ApplicationController
   end
 
   def check_account_suspension
-    head 410 if @account.suspended?
+    gone if @account.suspended?
   end
 end

@@ -51,21 +51,21 @@ class ApplicationController < ActionController::Base
   def not_found
     respond_to do |format|
       format.any  { head 404 }
-      format.html { render 'errors/404', layout: 'error' }
+      format.html { render 'errors/404', layout: 'error', status: 404 }
     end
   end
 
   def gone
     respond_to do |format|
       format.any  { head 410 }
-      format.html { render 'errors/410', layout: 'error' }
+      format.html { render 'errors/410', layout: 'error', status: 410 }
     end
   end
 
   def unprocessable_entity
     respond_to do |format|
       format.any  { head 422 }
-      format.html { render 'errors/422', layout: 'error' }
+      format.html { render 'errors/422', layout: 'error', status: 422 }
     end
   end
 
