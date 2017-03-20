@@ -20,5 +20,8 @@
 
   %meta{ property: 'twitter:card', content: 'summary' }/
 
+- if !user_signed_in? && !Rails.configuration.x.single_user_mode
+  = render partial: 'shared/landing_strip', locals: { account: @stream_entry.account }
+
 .activity-stream.activity-stream-headless
   = render partial: @type, locals: { @type.to_sym => @stream_entry.activity, include_threads: true }

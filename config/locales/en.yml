@@ -3,7 +3,6 @@ en:
   about:
     about_instance: "<em>%{instance}</em> is a Mastodon instance."
     about_mastodon: Mastodon is a <em>free, open-source</em> social network server. A <em>decentralized</em> alternative to commercial platforms, it avoids the risks of a single company monopolizing your communication. Anyone can run Mastodon and participate in the <em>social network</em> seamlessly.
-    apps: Apps
     business_email: 'Business e-mail:'
     contact: Contact
     domain_count_after: other instances
@@ -75,6 +74,7 @@ en:
     validation_errors:
       one: Something isn't quite right yet! Please review the error below
       other: Something isn't quite right yet! Please review %{count} errors below
+  landing_strip_html: <strong>%{name}</strong> is a user on <strong>%{domain}</strong>. You can follow them or interact with them if you have an account anywhere in the fediverse. If you don't, you can <a href="%{sign_up_path}">sign up here</a>.
   notification_mailer:
     digest:
       body: 'Here is a brief summary of what you missed on %{instance} since your last visit on %{since}:'
@@ -125,8 +125,6 @@ en:
       unlisted: Public, but do not display on the public timeline
   stream_entries:
     click_to_show: Click to show
-    favourited: favourited a post by
-    is_now_following: is now following
     reblogged: boosted
     sensitive_content: Sensitive content
   time:
