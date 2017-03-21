@@ -95,6 +95,7 @@
 
   .actions {
     overflow: hidden;
+    margin-bottom: 20px;
 
     .info {
       float: right;
@@ -269,6 +270,64 @@
             }
           }
         }
+      }
+    }
+  }
+}
+
+.features-list {
+  display: flex;
+  margin-bottom: 20px;
+
+  .features-list__column {
+    flex: 1 1 0;
+
+    ul {
+      list-style: none;
+    }
+
+    li {
+      margin: 0;
+    }
+  }
+}
+
+.screenshot-with-signup {
+  display: flex;
+  margin-bottom: 20px;
+
+  .mascot {
+    flex: 1 1 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    img {
+      display: block;
+      margin: 0 auto;
+      max-width: 100%;
+      height: auto;
+    }
+  }
+
+  .simple_form {
+    width: 300px;
+    flex: 0 0 auto;
+    background: rgba(darken($color1, 7%), 0.5);
+    padding: 14px;
+    border-radius: 4px;
+    box-shadow: 0 0 15px rgba($color8, 0.4);
+
+    .actions {
+      margin-bottom: 0;
+    }
+
+    .info {
+      text-align: center;
+
+      a {
+        color: $color2;
       }
     }
   }
