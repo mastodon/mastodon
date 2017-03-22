@@ -10,9 +10,9 @@ class FetchRemoteResourceService < BaseService
     xml.encoding = 'utf-8'
 
     if xml.root.name == 'feed'
-      FetchRemoteAccountService.new.call(atom_url)
+      FetchRemoteAccountService.new.call(atom_url, body)
     elsif xml.root.name == 'entry'
-      FetchRemoteStatusService.new.call(atom_url)
+      FetchRemoteStatusService.new.call(atom_url, body)
     end
   end
 end

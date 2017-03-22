@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170322143850) do
+ActiveRecord::Schema.define(version: 20170322162804) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -259,6 +259,7 @@ ActiveRecord::Schema.define(version: 20170322143850) do
     t.string   "name",       default: "", null: false
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
+    t.index "to_tsvector('simple'::regconfig, (name)::text)", name: "hashtag_search_index", using: :gin
     t.index ["name"], name: "index_tags_on_name", unique: true, using: :btree
   end
 

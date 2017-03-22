@@ -13,8 +13,9 @@ class Tag < ApplicationRecord
 
   class << self
     def search_for(terms, limit = 5)
+      terms      = Arel.sql(connection.quote(terms.gsub(/['?\\:]/, ' ')))
       textsearch = 'to_tsvector(\'simple\', tags.name)'
-      query      = 'to_tsquery(\'simple\', \'\'\' \' || ? || \' \'\'\' || \':*\')'
+      query      = 'to_tsquery(\'simple\', \'\'\' \' || ' + terms + ' || \' \'\'\' || \':*\')'
 
       sql = <<SQL
         SELECT
@@ -26,7 +27,7 @@ class Tag < ApplicationRecord
         LIMIT ?
 SQL
 
-      Tag.find_by_sql([sql, terms, terms, limit])
+      Tag.find_by_sql([sql, limit])
     end
   end
 end

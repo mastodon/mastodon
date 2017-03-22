@@ -1,8 +1,13 @@
 # frozen_string_literal: true
 
 class FetchRemoteAccountService < BaseService
-  def call(url)
-    atom_url, body = FetchAtomService.new.call(url)
+  def call(url, prefetched_body = nil)
+    if prefetched_body.nil?
+      atom_url, body = FetchAtomService.new.call(url)
+    else
+      atom_url = url
+      body     = prefetched_body
+    end
 
     return nil if atom_url.nil?
     process_atom(atom_url, body)

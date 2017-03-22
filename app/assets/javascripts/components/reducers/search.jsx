@@ -32,7 +32,7 @@ const normalizeSuggestions = (state, value, accounts, hashtags, statuses) => {
       value: `#${item}`
     }));
 
-    if (value.indexOf('@') === -1 && value.indexOf(' ') === -1 && hashtags.indexOf(value) === -1) {
+    if (value.indexOf('@') === -1 && value.indexOf(' ') === -1 && !value.startsWith('http://') && !value.startsWith('https://') && hashtags.indexOf(value) === -1) {
       hashtagItems.unshift({
         type: 'hashtag',
         id: value,
@@ -40,9 +40,22 @@ const normalizeSuggestions = (state, value, accounts, hashtags, statuses) => {
       });
     }
 
+    if (hashtagItems.length > 0) {
+      newSuggestions.push({
+        title: 'hashtag',
+        items: hashtagItems
+      });
+    }
+  }
+
+  if (statuses.length > 0) {
     newSuggestions.push({
-      title: 'hashtag',
-      items: hashtagItems
+      title: 'status',
+      items: statuses.map(item => ({
+        type: 'status',
+        id: item.id,
+        value: item.id
+      }))
     });
   }
 
