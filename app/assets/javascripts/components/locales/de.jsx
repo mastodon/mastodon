@@ -39,7 +39,7 @@ const en = {
   "tabs_bar.public": "Gesamtes Netz",
   "tabs_bar.notifications": "Mitteilungen",
   "compose_form.placeholder": "Worüber möchstest du schreiben?",
-  "compose_form.publish": "Veröffentlichen",
+  "compose_form.publish": "Tröt",
   "compose_form.sensitive": "Medien als sensitiv markieren",
   "compose_form.unlisted": "Öffentlich nicht auflisten",
   "compose_form.private": "Als privat markieren",
