@@ -187,7 +187,7 @@ class Account < ApplicationRecord
 
     def find_remote!(username, domain)
       return if username.blank?
-      where(arel_table[:username].matches(username.gsub(/[%_]/, '\\\\\0'))).where(domain.nil? ? { domain: nil } : arel_table[:domain].matches(domain.gsub(/[%_]/, '\\\\\0'))).take!
+      where('lower(accounts.username) = ?', username.downcase).where(domain.nil? ? { domain: nil } : 'lower(accounts.domain) = ?', domain&.downcase).take!
     end
 
     def find_local(username)
@@ -222,8 +222,8 @@ SQL
     end
 
     def search_for(terms, limit = 10)
-      textsearch  = '(setweight(to_tsvector(\'simple\', accounts.display_name), \'A\') || setweight(to_tsvector(\'simple\', accounts.username), \'B\') || setweight(to_tsvector(\'simple\', coalesce(accounts.domain, \'\')), \'C\'))'
-      query       = 'to_tsquery(\'simple\', \'\'\' \' || ? || \' \'\'\' || \':*\')'
+      textsearch = '(setweight(to_tsvector(\'simple\', accounts.display_name), \'A\') || setweight(to_tsvector(\'simple\', accounts.username), \'B\') || setweight(to_tsvector(\'simple\', coalesce(accounts.domain, \'\')), \'C\'))'
+      query      = 'to_tsquery(\'simple\', \'\'\' \' || ? || \' \'\'\' || \':*\')'
 
       sql = <<SQL
         SELECT
@@ -239,8 +239,8 @@ SQL
     end
 
     def advanced_search_for(terms, account, limit = 10)
-      textsearch  = '(setweight(to_tsvector(\'simple\', accounts.display_name), \'A\') || setweight(to_tsvector(\'simple\', accounts.username), \'B\') || setweight(to_tsvector(\'simple\', coalesce(accounts.domain, \'\')), \'C\'))'
-      query       = 'to_tsquery(\'simple\', \'\'\' \' || ? || \' \'\'\' || \':*\')'
+      textsearch = '(setweight(to_tsvector(\'simple\', accounts.display_name), \'A\') || setweight(to_tsvector(\'simple\', accounts.username), \'B\') || setweight(to_tsvector(\'simple\', coalesce(accounts.domain, \'\')), \'C\'))'
+      query      = 'to_tsquery(\'simple\', \'\'\' \' || ? || \' \'\'\' || \':*\')'
 
       sql = <<SQL
         SELECT
