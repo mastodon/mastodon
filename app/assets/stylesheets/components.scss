@@ -1421,3 +1421,13 @@ button.active i.fa-retweet {
     }
   }
 }
+
+.autosuggest-status {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+
+  strong {
+    font-weight: 500;
+  }
+}

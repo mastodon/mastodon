@@ -47,6 +47,6 @@ class FetchAtomService < BaseService
   end
 
   def http_client
-    HTTP.timeout(:per_operation, write: 20, connect: 20, read: 50).follow
+    HTTP.timeout(:per_operation, write: 10, connect: 10, read: 10).follow
   end
 end

@@ -24,4 +24,4 @@
   = render partial: 'shared/landing_strip', locals: { account: @stream_entry.account }
 
 .activity-stream.activity-stream-headless
-  = render partial: @type, locals: { @type.to_sym => @stream_entry.activity, include_threads: true }
+  = render partial: "stream_entries/#{@type}", locals: { @type.to_sym => @stream_entry.activity, include_threads: true }

@@ -82,7 +82,9 @@ class TagManager
 
     case target.object_type
     when :person
-      account_url(target)
+      short_account_url(target)
+    when :note, :comment, :activity
+      short_account_status_url(target.account, target)
     else
       account_stream_entry_url(target.account, target.stream_entry)
     end

@@ -2,6 +2,7 @@ import PureRenderMixin from 'react-addons-pure-render-mixin';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import Autosuggest from 'react-autosuggest';
 import AutosuggestAccountContainer from '../containers/autosuggest_account_container';
+import AutosuggestStatusContainer from '../containers/autosuggest_status_container';
 import { debounce } from 'react-decoration';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 
@@ -14,8 +15,10 @@ const getSuggestionValue = suggestion => suggestion.value;
 const renderSuggestion = suggestion => {
   if (suggestion.type === 'account') {
     return <AutosuggestAccountContainer id={suggestion.id} />;
+  } else if (suggestion.type === 'hashtag') {
+    return <span>#{suggestion.id}</span>;
   } else {
-    return <span>#{suggestion.id}</span>
+    return <AutosuggestStatusContainer id={suggestion.id} />;
   }
 };
 
@@ -78,8 +81,10 @@ const Search = React.createClass({
   onSuggestionSelected (_, { suggestion }) {
     if (suggestion.type === 'account') {
       this.context.router.push(`/accounts/${suggestion.id}`);
-    } else {
+    } else if(suggestion.type === 'hashtag') {
       this.context.router.push(`/timelines/tag/${suggestion.id}`);
+    } else {
+      this.context.router.push(`/statuses/${suggestion.id}`);
     }
   },
 

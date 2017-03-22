@@ -64,7 +64,7 @@ class ProcessInteractionService < BaseService
   end
 
   def mentions_account?(xml, account)
-    xml.xpath('/xmlns:entry/xmlns:link[@rel="mentioned"]', xmlns: TagManager::XMLNS).each { |mention_link| return true if mention_link.attribute('href').value == TagManager.instance.url_for(account) }
+    xml.xpath('/xmlns:entry/xmlns:link[@rel="mentioned"]', xmlns: TagManager::XMLNS).each { |mention_link| return true if [TagManager.instance.uri_for(account), TagManager.instance.url_for(account)].include?(mention_link.attribute('href').value) }
     false
   end
 

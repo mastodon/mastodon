@@ -24,6 +24,8 @@ Rails.application.routes.draw do
     confirmations:      'auth/confirmations',
   }
 
+  get '/users/:username', to: redirect('/@%{username}'), constraints: { format: :html }
+
   resources :accounts, path: 'users', only: [:show], param: :username do
     resources :stream_entries, path: 'updates', only: [:show] do
       member do
@@ -42,6 +44,9 @@ Rails.application.routes.draw do
       post :unfollow
     end
   end
+
+  get '/@:username', to: 'accounts#show', as: :short_account
+  get '/@:account_username/:id', to: 'statuses#show', as: :short_account_status
 
   namespace :settings do
     resource :profile, only: [:show, :update]
@@ -129,6 +134,8 @@ Rails.application.routes.draw do
       get '/timelines/public',   to: 'timelines#public', as: :public_timeline
       get '/timelines/tag/:id',  to: 'timelines#tag', as: :hashtag_timeline
 
+      get '/search', to: 'search#index', as: :search
+
       resources :follows,    only: [:create]
       resources :media,      only: [:create]
       resources :apps,       only: [:create]
@@ -186,9 +193,6 @@ Rails.application.routes.draw do
   get '/terms',      to: 'about#terms'
 
   root 'home#index'
-
-  get '/:username', to: redirect('/users/%{username}')
-  get '/:username/:id', to: redirect('/users/%{username}/updates/%{id}')
 
   match '*unmatched_route', via: :all, to: 'application#raise_not_found'
 end

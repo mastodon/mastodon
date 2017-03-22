@@ -222,8 +222,9 @@ SQL
     end
 
     def search_for(terms, limit = 10)
+      terms      = Arel.sql(connection.quote(terms.gsub(/['?\\:]/, ' ')))
       textsearch = '(setweight(to_tsvector(\'simple\', accounts.display_name), \'A\') || setweight(to_tsvector(\'simple\', accounts.username), \'B\') || setweight(to_tsvector(\'simple\', coalesce(accounts.domain, \'\')), \'C\'))'
-      query      = 'to_tsquery(\'simple\', \'\'\' \' || ? || \' \'\'\' || \':*\')'
+      query      = 'to_tsquery(\'simple\', \'\'\' \' || ' + terms + ' || \' \'\'\' || \':*\')'
 
       sql = <<SQL
         SELECT
@@ -235,12 +236,13 @@ SQL
         LIMIT ?
 SQL
 
-      Account.find_by_sql([sql, terms, terms, limit])
+      Account.find_by_sql([sql, limit])
     end
 
     def advanced_search_for(terms, account, limit = 10)
+      terms      = Arel.sql(connection.quote(terms.gsub(/['?\\:]/, ' ')))
       textsearch = '(setweight(to_tsvector(\'simple\', accounts.display_name), \'A\') || setweight(to_tsvector(\'simple\', accounts.username), \'B\') || setweight(to_tsvector(\'simple\', coalesce(accounts.domain, \'\')), \'C\'))'
-      query      = 'to_tsquery(\'simple\', \'\'\' \' || ? || \' \'\'\' || \':*\')'
+      query      = 'to_tsquery(\'simple\', \'\'\' \' || ' + terms + ' || \' \'\'\' || \':*\')'
 
       sql = <<SQL
         SELECT
@@ -254,7 +256,7 @@ SQL
         LIMIT ?
 SQL
 
-      Account.find_by_sql([sql, terms, account.id, account.id, terms, limit])
+      Account.find_by_sql([sql, account.id, account.id, limit])
     end
 
     def following_map(target_account_ids, account_id)
