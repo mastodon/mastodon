@@ -18,11 +18,13 @@ export function clearSearchSuggestions() {
   };
 };
 
-export function readySearchSuggestions(value, accounts) {
+export function readySearchSuggestions(value, { accounts, hashtags, statuses }) {
   return {
     type: SEARCH_SUGGESTIONS_READY,
     value,
-    accounts
+    accounts,
+    hashtags,
+    statuses
   };
 };
 
@@ -32,7 +34,7 @@ export function fetchSearchSuggestions(value) {
       return;
     }
 
-    api(getState).get('/api/v1/accounts/search', {
+    api(getState).get('/api/v1/search', {
       params: {
         q: value,
         resolve: true,
