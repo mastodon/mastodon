@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170322021028) do
+ActiveRecord::Schema.define(version: 20170322143850) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -91,7 +91,7 @@ ActiveRecord::Schema.define(version: 20170322021028) do
   end
 
   create_table "media_attachments", force: :cascade do |t|
-    t.integer  "status_id"
+    t.bigint   "status_id"
     t.string   "file_file_name"
     t.string   "file_content_type"
     t.integer  "file_file_size"
@@ -108,7 +108,7 @@ ActiveRecord::Schema.define(version: 20170322021028) do
 
   create_table "mentions", force: :cascade do |t|
     t.integer  "account_id"
-    t.integer  "status_id"
+    t.bigint   "status_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["account_id", "status_id"], name: "index_mentions_on_account_id_and_status_id", unique: true, using: :btree
@@ -124,7 +124,7 @@ ActiveRecord::Schema.define(version: 20170322021028) do
 
   create_table "notifications", force: :cascade do |t|
     t.integer  "account_id"
-    t.integer  "activity_id"
+    t.bigint   "activity_id"
     t.string   "activity_type"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
@@ -172,7 +172,7 @@ ActiveRecord::Schema.define(version: 20170322021028) do
   end
 
   create_table "preview_cards", force: :cascade do |t|
-    t.integer  "status_id"
+    t.bigint   "status_id"
     t.string   "url",                default: "", null: false
     t.string   "title"
     t.string   "description"
@@ -188,7 +188,7 @@ ActiveRecord::Schema.define(version: 20170322021028) do
   create_table "reports", force: :cascade do |t|
     t.integer  "account_id",                        null: false
     t.integer  "target_account_id",                 null: false
-    t.integer  "status_ids",        default: [],    null: false, array: true
+    t.bigint   "status_ids",        default: [],    null: false, array: true
     t.text     "comment",           default: "",    null: false
     t.boolean  "action_taken",      default: false, null: false
     t.datetime "created_at",                        null: false
@@ -205,14 +205,14 @@ ActiveRecord::Schema.define(version: 20170322021028) do
     t.index ["thing_type", "thing_id", "var"], name: "index_settings_on_thing_type_and_thing_id_and_var", unique: true, using: :btree
   end
 
-  create_table "statuses", force: :cascade do |t|
+  create_table "statuses", id: :bigserial, force: :cascade do |t|
     t.string   "uri"
     t.integer  "account_id",                             null: false
     t.text     "text",                   default: "",    null: false
     t.datetime "created_at",                             null: false
     t.datetime "updated_at",                             null: false
-    t.integer  "in_reply_to_id"
-    t.integer  "reblog_of_id"
+    t.bigint   "in_reply_to_id"
+    t.bigint   "reblog_of_id"
     t.string   "url"
     t.boolean  "sensitive",              default: false
     t.integer  "visibility",             default: 0,     null: false
@@ -227,14 +227,14 @@ ActiveRecord::Schema.define(version: 20170322021028) do
   end
 
   create_table "statuses_tags", id: false, force: :cascade do |t|
-    t.integer "status_id", null: false
+    t.bigint  "status_id", null: false
     t.integer "tag_id",    null: false
     t.index ["tag_id", "status_id"], name: "index_statuses_tags_on_tag_id_and_status_id", unique: true, using: :btree
   end
 
   create_table "stream_entries", force: :cascade do |t|
     t.integer  "account_id"
-    t.integer  "activity_id"
+    t.bigint   "activity_id"
     t.string   "activity_type"
     t.datetime "created_at",                    null: false
     t.datetime "updated_at",                    null: false
