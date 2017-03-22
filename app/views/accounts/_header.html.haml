@@ -20,8 +20,8 @@
       .account__header__content.p-note.emojify= Formatter.instance.simplified_format(@account)
 
     .details-counters
-      .counter{ class: active_nav_class(account_url(@account)) }
-        = link_to account_url(@account), class: 'u-url u-uid' do
+      .counter{ class: active_nav_class(short_account_url(@account)) }
+        = link_to short_account_url(@account), class: 'u-url u-uid' do
           %span.counter-label= t('accounts.posts')
           %span.counter-number= number_with_delimiter @account.statuses.count
       .counter{ class: active_nav_class(following_account_url(@account)) }
