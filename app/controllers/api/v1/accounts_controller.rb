@@ -115,7 +115,7 @@ class Api::V1::AccountsController < ApiController
   end
 
   def search
-    @accounts = SearchService.new.call(params[:q], limit_param(DEFAULT_ACCOUNTS_LIMIT), params[:resolve] == 'true', current_account)
+    @accounts = AccountSearchService.new.call(params[:q], limit_param(DEFAULT_ACCOUNTS_LIMIT), params[:resolve] == 'true', current_account)
 
     set_account_counters_maps(@accounts) unless @accounts.nil?
 

@@ -129,6 +129,8 @@ Rails.application.routes.draw do
       get '/timelines/public',   to: 'timelines#public', as: :public_timeline
       get '/timelines/tag/:id',  to: 'timelines#tag', as: :hashtag_timeline
 
+      get '/search', to: 'search#index', as: :search
+
       resources :follows,    only: [:create]
       resources :media,      only: [:create]
       resources :apps,       only: [:create]

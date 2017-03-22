@@ -10,4 +10,23 @@ class Tag < ApplicationRecord
   def to_param
     name
   end
+
+  class << self
+    def search_for(terms, limit = 5)
+      textsearch = 'to_tsvector(\'simple\', tags.name)'
+      query      = 'to_tsquery(\'simple\', \'\'\' \' || ? || \' \'\'\' || \':*\')'
+
+      sql = <<SQL
+        SELECT
+          tags.*,
+          ts_rank_cd(#{textsearch}, #{query}) AS rank
+        FROM tags
+        WHERE #{query} @@ #{textsearch}
+        ORDER BY rank DESC
+        LIMIT ?
+SQL
+
+      Tag.find_by_sql([sql, terms, terms, limit])
+    end
+  end
 end

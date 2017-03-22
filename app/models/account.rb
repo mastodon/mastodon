@@ -222,8 +222,8 @@ SQL
     end
 
     def search_for(terms, limit = 10)
-      textsearch  = '(setweight(to_tsvector(\'simple\', accounts.display_name), \'A\') || setweight(to_tsvector(\'simple\', accounts.username), \'B\') || setweight(to_tsvector(\'simple\', coalesce(accounts.domain, \'\')), \'C\'))'
-      query       = 'to_tsquery(\'simple\', \'\'\' \' || ? || \' \'\'\' || \':*\')'
+      textsearch = '(setweight(to_tsvector(\'simple\', accounts.display_name), \'A\') || setweight(to_tsvector(\'simple\', accounts.username), \'B\') || setweight(to_tsvector(\'simple\', coalesce(accounts.domain, \'\')), \'C\'))'
+      query      = 'to_tsquery(\'simple\', \'\'\' \' || ? || \' \'\'\' || \':*\')'
 
       sql = <<SQL
         SELECT
