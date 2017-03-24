@@ -13,6 +13,7 @@ import { debounce } from 'react-decoration';
 import { uploadCompose } from '../../actions/compose';
 import { refreshTimeline } from '../../actions/timelines';
 import { refreshNotifications } from '../../actions/notifications';
+import UploadArea from './components/upload_area';
 
 const UI = React.createClass({
 
@@ -23,7 +24,8 @@ const UI = React.createClass({
 
   getInitialState () {
     return {
-      width: window.innerWidth
+      width: window.innerWidth,
+      draggingOver: false
     };
   },
 
@@ -41,7 +43,7 @@ const UI = React.createClass({
     e.dataTransfer.dropEffect = 'copy';
 
     if (e.dataTransfer.effectAllowed === 'all' || e.dataTransfer.effectAllowed === 'uninitialized') {
-      //
+      this.setState({ draggingOver: true });
     }
   },
 
@@ -49,8 +51,13 @@ const UI = React.createClass({
     e.preventDefault();
 
     if (e.dataTransfer && e.dataTransfer.files.length === 1) {
+      this.setState({ draggingOver: false });
       this.props.dispatch(uploadCompose(e.dataTransfer.files));
     }
+  },
+
+  handleDragLeave () {
+    this.setState({ draggingOver: false });
   },
 
   componentWillMount () {
@@ -69,12 +76,15 @@ const UI = React.createClass({
   },
 
   render () {
+    const { width, draggingOver } = this.state;
+    const { children } = this.props;
+
     let mountedColumns;
 
-    if (isMobile(this.state.width)) {
+    if (isMobile(width)) {
       mountedColumns = (
         <ColumnsArea>
-          {this.props.children}
+          {children}
         </ColumnsArea>
       );
     } else {
@@ -83,13 +93,13 @@ const UI = React.createClass({
           <Compose withHeader={true} />
           <HomeTimeline trackScroll={false} />
           <Notifications trackScroll={false} />
-          {this.props.children}
+          {children}
         </ColumnsArea>
       );
     }
 
     return (
-      <div className='ui'>
+      <div className='ui' onDragLeave={this.handleDragLeave}>
         <TabsBar />
 
         {mountedColumns}
@@ -97,6 +107,7 @@ const UI = React.createClass({
         <NotificationsContainer />
         <LoadingBarContainer style={{ backgroundColor: '#2b90d9', left: '0', top: '0' }} />
         <ModalContainer />
+        <UploadArea active={draggingOver} />
       </div>
     );
   }

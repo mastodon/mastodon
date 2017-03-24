@@ -33,7 +33,6 @@ const AutosuggestTextarea = React.createClass({
     value: React.PropTypes.string,
     suggestions: ImmutablePropTypes.list,
     disabled: React.PropTypes.bool,
-    fileDropDate: React.PropTypes.instanceOf(Date),
     placeholder: React.PropTypes.string,
     onSuggestionSelected: React.PropTypes.func.isRequired,
     onSuggestionsClearRequested: React.PropTypes.func.isRequired,
@@ -46,8 +45,6 @@ const AutosuggestTextarea = React.createClass({
 
   getInitialState () {
     return {
-      isFileDragging: false,
-      fileDraggingDate: undefined,
       suggestionsHidden: false,
       selectedSuggestion: 0,
       lastToken: null,
@@ -139,39 +136,10 @@ const AutosuggestTextarea = React.createClass({
     if (nextProps.suggestions !== this.props.suggestions && nextProps.suggestions.size > 0 && this.state.suggestionsHidden) {
       this.setState({ suggestionsHidden: false });
     }
-
-    const fileDropDate = nextProps.fileDropDate;
-    const { isFileDragging, fileDraggingDate } = this.state;
-
-    /*
-     * We can't detect drop events, because they might not be on the textarea (the app allows dropping anywhere in the
-     * window). Instead, on-drop, we notify this textarea to stop its hover effect by passing in a prop with the
-     * drop-date.
-     */
-    if (isFileDragging && fileDraggingDate && fileDropDate // if dragging when props updated, and dates aren't undefined
-      && fileDropDate > fileDraggingDate) { // and if the drop date is now greater than when we started dragging
-      // then we should stop dragging
-      this.setState({
-        isFileDragging: false
-      });
-    }
   },
 
   setTextarea (c) {
     this.textarea = c;
-  },
-
-  onDragEnter () {
-    this.setState({
-      isFileDragging: true,
-      fileDraggingDate: new Date()
-    })
-  },
-
-  onDragExit () {
-    this.setState({
-      isFileDragging: false
-    })
   },
 
   onPaste (e) {
@@ -182,9 +150,9 @@ const AutosuggestTextarea = React.createClass({
   },
 
   render () {
-    const { value, suggestions, fileDropDate, disabled, placeholder, onKeyUp } = this.props;
-    const { isFileDragging, suggestionsHidden, selectedSuggestion } = this.state;
-    const className = isFileDragging ? 'autosuggest-textarea__textarea file-drop' : 'autosuggest-textarea__textarea';
+    const { value, suggestions, disabled, placeholder, onKeyUp } = this.props;
+    const { suggestionsHidden, selectedSuggestion } = this.state;
+    const className = 'autosuggest-textarea__textarea';
     const style     = { direction: 'ltr' };
 
     if (isRtl(value)) {
@@ -204,8 +172,6 @@ const AutosuggestTextarea = React.createClass({
           onKeyDown={this.onKeyDown}
           onKeyUp={onKeyUp}
           onBlur={this.onBlur}
-          onDragEnter={this.onDragEnter}
-          onDragExit={this.onDragExit}
           onPaste={this.onPaste}
           style={style}
         />

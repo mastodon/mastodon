@@ -960,17 +960,11 @@ a.status__content__spoiler-link {
   resize: none;
   margin: 0;
   color: $color1;
-  padding: 7px;
+  padding: 10px;
   font-family: inherit;
   font-size: 14px;
   resize: vertical;
-
-  border: 3px dashed transparent;
-  transition: border-color 0.3s ease;
-
-  &.file-drop {
-    border-color: darken($color5, 33%);
-  }
+  border: 0;
 }
 
 .autosuggest-textarea__textarea {
@@ -1094,7 +1088,7 @@ button.active i.fa-retweet {
   text-decoration: none;
 
   &:hover {
-    background: lighten($color1, 8%);
+    background: lighten($color1, 2%);
   }
 }
 
@@ -1430,4 +1424,117 @@ button.active i.fa-retweet {
   strong {
     font-weight: 500;
   }
+}
+
+.upload-area {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  visibility: hidden;
+  background: rgba($color8, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  z-index: 2000;
+
+  * {
+    pointer-events: none;
+  }
+}
+
+.upload-area__drop {
+  width: 320px;
+  height: 160px;
+  display: flex;
+  box-sizing: border-box;
+  position: relative;
+  padding: 8px;
+}
+
+.upload-area__background {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: -1;
+  border-radius: 4px;
+  background: $color1;
+  box-shadow: 0 0 5px rgba($color8, 0.2);
+}
+
+.upload-area__content {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: $color2;
+  font-size: 18px;
+  font-weight: 500;
+  border: 2px dashed lighten($color1, 26%);
+  border-radius: 4px;
+}
+
+.upload-progress {
+  padding-bottom: 20px;
+  color: lighten($color1, 26%);
+  overflow: hidden;
+  display: flex;
+
+  .fa {
+    font-size: 34px;
+    margin-right: 10px;
+  }
+
+  span {
+    font-size: 12px;
+    text-transform: uppercase;
+    font-weight: 500;
+    display: block;
+  }
+}
+
+.upload-progress__backdrop {
+  width: 100%;
+  height: 6px;
+  border-radius: 6px;
+  background: lighten($color1, 26%);
+  position: relative;
+  margin-top: 5px;
+}
+
+.upload-progress__tracker {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 6px;
+  background: $color2;
+  border-radius: 6px;
+}
+
+.emoji-button {
+  img {
+    filter: grayscale(100%);
+    opacity: 0.4;
+    display: block;
+    margin: 0;
+    width: 22px;
+    height: 22px;
+    margin-top: 2px;
+  }
+
+  &:hover {
+    img {
+      opacity: 1;
+      filter: none;
+    }
+  }
+}
+
+.dropdown--active .emoji-button img {
+  opacity: 1;
+  filter: none;
 }

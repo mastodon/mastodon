@@ -4,7 +4,7 @@ import PureRenderMixin from 'react-addons-pure-render-mixin';
 import { defineMessages, injectIntl } from 'react-intl';
 
 const messages = defineMessages({
-  emoji: { id: 'emoji_button.label', defaultMessage: 'Emoji' }
+  emoji: { id: 'emoji_button.label', defaultMessage: 'Insert emoji' }
 });
 
 const settings = {
@@ -36,8 +36,8 @@ const EmojiPickerDropdown = React.createClass({
 
     return (
       <Dropdown ref={this.setRef} style={{ marginLeft: '5px' }}>
-        <DropdownTrigger className='icon-button' title={intl.formatMessage(messages.emoji)} style={{ fontSize: `24px`, width: `24px`, lineHeight: `24px`, display: 'block', marginLeft: '2px' }}>
-          <i className={`fa fa-smile-o`} style={{ verticalAlign: 'middle' }} />
+        <DropdownTrigger className='icon-button emoji-button' title={intl.formatMessage(messages.emoji)} style={{ fontSize: `24px`, width: `24px`, lineHeight: `24px`, display: 'block', marginLeft: '2px' }}>
+          <img className="emojione" alt="🙂" src="/emoji/1f642.png" />
         </DropdownTrigger>
 
         <DropdownContent>

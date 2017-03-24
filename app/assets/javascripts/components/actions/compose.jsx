@@ -142,7 +142,8 @@ export function uploadCompose(files) {
 
 export function uploadComposeRequest() {
   return {
-    type: COMPOSE_UPLOAD_REQUEST
+    type: COMPOSE_UPLOAD_REQUEST,
+    skipLoading: true
   };
 };
 
@@ -157,14 +158,16 @@ export function uploadComposeProgress(loaded, total) {
 export function uploadComposeSuccess(media) {
   return {
     type: COMPOSE_UPLOAD_SUCCESS,
-    media: media
+    media: media,
+    skipLoading: true
   };
 };
 
 export function uploadComposeFail(error) {
   return {
     type: COMPOSE_UPLOAD_FAIL,
-    error: error
+    error: error,
+    skipLoading: true
   };
 };
 

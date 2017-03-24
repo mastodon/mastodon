@@ -30,7 +30,6 @@ const mapStateToProps = (state, props) => {
     spoiler_text: state.getIn(['compose', 'spoiler_text']),
     unlisted: state.getIn(['compose', 'unlisted'], ),
     private: state.getIn(['compose', 'private']),
-    fileDropDate: state.getIn(['compose', 'fileDropDate']),
     focusDate: state.getIn(['compose', 'focusDate']),
     preselectDate: state.getIn(['compose', 'preselectDate']),
     is_submitting: state.getIn(['compose', 'is_submitting']),
