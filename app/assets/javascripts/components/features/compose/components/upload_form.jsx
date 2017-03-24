@@ -23,7 +23,7 @@ const UploadForm = React.createClass({
     const { intl, media } = this.props;
 
     const uploads = media.map(attachment =>
-      <div key={attachment.get('id')} style={{ marginBottom: '10px' }}>
+      <div key={attachment.get('id')} style={{ margin: '5px', flex: '1 1 0' }}>
         <Motion defaultStyle={{ scale: 0.8 }} style={{ scale: spring(1, { stiffness: 180, damping: 12 }) }}>
           {({ scale }) =>
             <div style={{ transform: `translateZ(0) scale(${scale})`, width: '100%', height: '100px', borderRadius: '4px', background: `url(${attachment.get('preview_url')}) no-repeat center`, backgroundSize: 'cover' }}>
@@ -35,9 +35,9 @@ const UploadForm = React.createClass({
     );
 
     return (
-      <div style={{ marginBottom: '20px', padding: '10px', overflow: 'hidden', flexShrink: '0' }}>
+      <div style={{ overflow: 'hidden' }}>
         <UploadProgressContainer />
-        {uploads}
+        <div style={{ display: 'flex', padding: '5px' }}>{uploads}</div>
       </div>
     );
   }

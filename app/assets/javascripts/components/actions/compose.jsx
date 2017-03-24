@@ -123,6 +123,10 @@ export function submitComposeFail(error) {
 
 export function uploadCompose(files) {
   return function (dispatch, getState) {
+    if (getState().getIn(['compose', 'media_attachments']).size > 3) {
+      return;
+    }
+
     dispatch(uploadComposeRequest());
 
     let data = new FormData();
@@ -231,17 +235,15 @@ export function unmountCompose() {
   };
 };
 
-export function changeComposeSensitivity(checked) {
+export function changeComposeSensitivity() {
   return {
     type: COMPOSE_SENSITIVITY_CHANGE,
-    checked
   };
 };
 
-export function changeComposeSpoilerness(checked) {
+export function changeComposeSpoilerness() {
   return {
-    type: COMPOSE_SPOILERNESS_CHANGE,
-    checked
+    type: COMPOSE_SPOILERNESS_CHANGE
   };
 };
 
@@ -252,17 +254,10 @@ export function changeComposeSpoilerText(text) {
   };
 };
 
-export function changeComposeVisibility(checked) {
+export function changeComposeVisibility(value) {
   return {
     type: COMPOSE_VISIBILITY_CHANGE,
-    checked
-  };
-};
-
-export function changeComposeListability(checked) {
-  return {
-    type: COMPOSE_LISTABILITY_CHANGE,
-    checked
+    value
   };
 };
 

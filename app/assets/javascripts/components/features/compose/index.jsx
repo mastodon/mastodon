@@ -30,7 +30,6 @@ const Compose = React.createClass({
         <SearchContainer />
         <NavigationContainer />
         <ComposeFormContainer />
-        <UploadFormContainer />
       </Drawer>
     );
   }

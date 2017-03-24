@@ -19,9 +19,11 @@
   line-height: 36px;
   border-radius: 4px;
   text-decoration: none;
+  transition: all 100ms ease-in;
 
   &:hover {
     background-color: lighten($color4, 7%);
+    transition: all 200ms ease-out;
   }
 
   &:disabled {
@@ -44,13 +46,17 @@
 }
 
 .icon-button {
+  display: inline-block;
+  padding: 0;
   color: lighten($color1, 26%);
   border: none;
   background: transparent;
   cursor: pointer;
+  transition: all 100ms ease-in;
 
   &:hover {
     color: lighten($color1, 33%);
+    transition: all 200ms ease-out;
   }
 
   &.disabled {
@@ -62,8 +68,63 @@
     color: $color4;
   }
 
-  &:focus {
-    outline: none;
+  &::-moz-focus-inner {
+    border: 0;
+  }
+
+  &::-moz-focus-inner, &:focus, &:active {
+    outline: 0 !important;
+  }
+
+  &.inverted {
+    color: lighten($color1, 33%);
+
+    &:hover {
+      color: lighten($color1, 26%);
+    }
+
+    &.active {
+      color: $color4;
+    }
+
+    &.disabled {
+      color: $color3;
+    }
+  }
+}
+
+.text-icon-button {
+  color: lighten($color1, 26%);
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 12px;
+  padding: 0 3px;
+  line-height: 27px;
+  outline: 0;
+  transition: all 100ms ease-in;
+
+  &:hover {
+    color: lighten($color1, 33%);
+    transition: all 200ms ease-out;
+  }
+
+  &.disabled {
+    color: lighten($color1, 13%);
+    cursor: default;
+  }
+
+  &.active {
+    color: $color4;
+  }
+
+  &::-moz-focus-inner {
+    border: 0;
+  }
+
+  &::-moz-focus-inner, &:focus, &:active {
+    outline: 0 !important;
   }
 }
 
@@ -100,6 +161,29 @@
   strong {
     color: $color5;
     font-weight: 500;
+  }
+}
+
+.compose-form__modifiers {
+  color: $color1;
+  font-family: inherit;
+  font-size: 14px;
+  background: $color5;
+  border-radius: 0 0 4px 0;
+}
+
+.compose-form__buttons {
+  padding: 10px;
+  background: darken($color5, 8%);
+  box-shadow: inset 0 5px 5px rgba($color8, 0.05);
+  border-radius: 0 0 4px 4px;
+  flex: 1 1 auto;
+  margin-right: 16px;
+  display: flex;
+
+  .icon-button {
+    box-sizing: content-box;
+    padding: 0 3px;
   }
 }
 
@@ -144,6 +228,9 @@
 }
 
 .reply-indicator {
+  border-radius: 4px 4px 0 0;
+  position: relative;
+  bottom: -2px;
   background: $color3;
   padding: 10px;
 
@@ -515,6 +602,7 @@ a.status__content__spoiler-link {
   flex-shrink: 0;
   cursor: default;
   color: $color3;
+  padding-bottom: 5px;
 
   strong {
     color: $color5;
@@ -568,6 +656,10 @@ a.status__content__spoiler-link {
     & > ul {
       left: -98px;
     }
+
+    & > .emoji-dialog {
+      left: -249px;
+    }
   }
 
   & > ul > li > a {
@@ -585,7 +677,7 @@ a.status__content__spoiler-link {
     white-space: nowrap;
 
     &:focus {
-      outline: none;
+      outline: 0;
     }
 
     &:hover {
@@ -643,7 +735,7 @@ a.status__content__spoiler-link {
 }
 
 .drawer {
-  width: 280px;
+  width: 330px;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
@@ -676,7 +768,8 @@ a.status__content__spoiler-link {
 }
 
 .drawer__inner {
-  background: linear-gradient(rgba(lighten($color1, 13%), 1), rgba(lighten($color1, 13%), 0.65));
+  //background: linear-gradient(rgba(lighten($color1, 13%), 1), rgba(lighten($color1, 13%), 0.65));
+  background: lighten($color1, 13%);
   box-sizing: border-box;
   padding: 0;
   display: flex;
@@ -965,11 +1058,23 @@ a.status__content__spoiler-link {
   font-size: 14px;
   resize: vertical;
   border: 0;
+  outline: 0;
+
+  &:focus {
+    outline: 0;
+  }
+}
+
+.spoiler-input__input {
+  border-radius: 4px;
 }
 
 .autosuggest-textarea__textarea {
   height: 100px;
   background: $color5;
+  border-radius: 4px 4px 0 0;
+  padding-bottom: 0;
+  padding-right: 10px + 22px;
 }
 
 .autosuggest-textarea__suggestions {
@@ -1153,6 +1258,11 @@ button.active i.fa-retweet {
 .collapsable {
   color: $color5;
   background: lighten($color1, 8%);
+
+  &:hover {
+    color: $color5;
+    background: lighten($color1, 8%);
+  }
 }
 
 .media-spoiler {
@@ -1411,7 +1521,7 @@ button.active i.fa-retweet {
     cursor: pointer;
 
     &:focus {
-      outline: none;
+      outline: 0;
     }
   }
 }
@@ -1479,7 +1589,7 @@ button.active i.fa-retweet {
 }
 
 .upload-progress {
-  padding-bottom: 20px;
+  padding: 10px;
   color: lighten($color1, 26%);
   overflow: hidden;
   display: flex;
@@ -1511,14 +1621,20 @@ button.active i.fa-retweet {
   left: 0;
   top: 0;
   height: 6px;
-  background: $color2;
+  background: $color4;
   border-radius: 6px;
 }
 
 .emoji-button {
+  outline: 0;
+
+  &:active, &:focus {
+    outline: 0 !important;
+  }
+
   img {
     filter: grayscale(100%);
-    opacity: 0.4;
+    opacity: 0.8;
     display: block;
     margin: 0;
     width: 22px;
@@ -1537,4 +1653,75 @@ button.active i.fa-retweet {
 .dropdown--active .emoji-button img {
   opacity: 1;
   filter: none;
+}
+
+.privacy-dropdown {
+  position: relative;
+}
+
+.privacy-dropdown__dropdown {
+  display: none;
+  position: absolute;
+  left: 0;
+  top: 24px;
+  width: 180px;
+  background: $color5;
+  border-radius: 0 4px 4px 4px;
+  z-index: 2;
+  overflow: hidden;
+}
+
+.privacy-dropdown__option {
+  color: $color1;
+  padding: 10px;
+  cursor: pointer;
+  display: flex;
+
+  &:hover, &.active {
+    background: $color4;
+    color: $color5;
+
+    .privacy-dropdown__option__content {
+      color: $color5;
+
+      strong {
+        color: $color5;
+      }
+    }
+  }
+
+  &.active:hover {
+    background: lighten($color4, 4%);
+  }
+}
+
+.privacy-dropdown__option__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 10px;
+}
+
+.privacy-dropdown__option__content {
+  flex: 1 1 auto;
+  color: $color3;
+
+  strong {
+    font-weight: 500;
+    display: block;
+    color: $color1;
+  }
+}
+
+.privacy-dropdown.active {
+  .privacy-dropdown__value {
+    background: $color5;
+    border-radius: 4px 4px 0 0;
+    box-shadow: 0 -4px 4px rgba($color8, 0.1);
+  }
+
+  .privacy-dropdown__dropdown {
+    display: block;
+    box-shadow: 2px 4px 6px rgba($color8, 0.1);
+  }
 }

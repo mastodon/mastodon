@@ -3,19 +3,18 @@ import Button from '../../../components/button';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ReplyIndicatorContainer from '../containers/reply_indicator_container';
-import UploadButton from './upload_button';
 import AutosuggestTextarea from '../../../components/autosuggest_textarea';
-import AutosuggestAccountContainer from '../../compose/containers/autosuggest_account_container';
 import { debounce } from 'react-decoration';
 import UploadButtonContainer from '../containers/upload_button_container';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import Toggle from 'react-toggle';
 import Collapsable from '../../../components/collapsable';
-import UnlistedToggleContainer from '../containers/unlisted_toggle_container';
-import SpoilerToggleContainer from '../containers/spoiler_toggle_container';
-import PrivateToggleContainer from '../containers/private_toggle_container';
-import SensitiveToggleContainer from '../containers/sensitive_toggle_container';
+import SpoilerButtonContainer from '../containers/spoiler_button_container';
+import PrivacyDropdownContainer from '../containers/privacy_dropdown_container';
+import SensitiveButtonContainer from '../containers/sensitive_button_container';
 import EmojiPickerDropdown from './emoji_picker_dropdown';
+import UploadFormContainer from '../containers/upload_form_container';
+import TextIconButton from './text_icon_button';
 
 const messages = defineMessages({
   placeholder: { id: 'compose_form.placeholder', defaultMessage: 'What is on your mind?' },
@@ -156,33 +155,39 @@ const ComposeForm = React.createClass({
 
         <ReplyIndicatorContainer />
 
-        <AutosuggestTextarea
-          ref={this.setAutosuggestTextarea}
-          placeholder={intl.formatMessage(messages.placeholder)}
-          disabled={disabled}
-          value={this.props.text}
-          onChange={this.handleChange}
-          suggestions={this.props.suggestions}
-          onKeyDown={this.handleKeyDown}
-          onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
-          onSuggestionsClearRequested={this.onSuggestionsClearRequested}
-          onSuggestionSelected={this.onSuggestionSelected}
-          onPaste={onPaste}
-        />
+        <div style={{ position: 'relative' }}>
+          <AutosuggestTextarea
+            ref={this.setAutosuggestTextarea}
+            placeholder={intl.formatMessage(messages.placeholder)}
+            disabled={disabled}
+            value={this.props.text}
+            onChange={this.handleChange}
+            suggestions={this.props.suggestions}
+            onKeyDown={this.handleKeyDown}
+            onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
+            onSuggestionsClearRequested={this.onSuggestionsClearRequested}
+            onSuggestionSelected={this.onSuggestionSelected}
+            onPaste={onPaste}
+          />
 
-        <div style={{ marginTop: '10px', overflow: 'hidden' }}>
-          <div style={{ float: 'right' }}><Button text={publishText} onClick={this.handleSubmit} disabled={disabled} /></div>
-          <div style={{ float: 'right', marginRight: '16px', lineHeight: '36px' }}><CharacterCounter max={500} text={[this.props.spoiler_text, this.props.text].join('')} /></div>
-          <div style={{ display: 'flex', paddingTop: '4px' }}>
-            <UploadButtonContainer />
-            <EmojiPickerDropdown onPickEmoji={this.handleEmojiPick} />
-          </div>
+          <EmojiPickerDropdown onPickEmoji={this.handleEmojiPick} />
         </div>
 
-        <SpoilerToggleContainer />
-        <PrivateToggleContainer />
-        <UnlistedToggleContainer />
-        <SensitiveToggleContainer />
+        <div className='compose-form__modifiers'>
+          <UploadFormContainer />
+        </div>
+
+        <div style={{ display: 'flex' }}>
+          <div className='compose-form__buttons'>
+            <UploadButtonContainer />
+            <PrivacyDropdownContainer />
+            <SensitiveButtonContainer />
+            <SpoilerButtonContainer />
+          </div>
+
+          <div style={{ paddingTop: '10px', marginRight: '16px', lineHeight: '36px' }}><CharacterCounter max={500} text={[this.props.spoiler_text, this.props.text].join('')} /></div>
+          <div style={{ paddingTop: '10px' }}><Button text={publishText} onClick={this.handleSubmit} disabled={disabled} /></div>
+        </div>
       </div>
     );
   }

@@ -13,6 +13,12 @@ const settings = {
   imagePathPNG: '/emoji/'
 };
 
+const style = {
+  position: 'absolute',
+  right: '5px',
+  top: '5px'
+};
+
 const EmojiPickerDropdown = React.createClass({
 
   propTypes: {
@@ -35,12 +41,12 @@ const EmojiPickerDropdown = React.createClass({
     const { intl } = this.props;
 
     return (
-      <Dropdown ref={this.setRef} style={{ marginLeft: '5px' }}>
-        <DropdownTrigger className='icon-button emoji-button' title={intl.formatMessage(messages.emoji)} style={{ fontSize: `24px`, width: `24px`, lineHeight: `24px`, display: 'block', marginLeft: '2px' }}>
-          <img className="emojione" alt="🙂" src="/emoji/1f642.png" />
+      <Dropdown ref={this.setRef} style={style}>
+        <DropdownTrigger className='emoji-button' title={intl.formatMessage(messages.emoji)} style={{ fontSize: `24px`, width: `24px`, lineHeight: `24px`, display: 'block', marginLeft: '2px' }}>
+          <img className="emojione" alt="🙂" src="/emoji/1f602.png" />
         </DropdownTrigger>
 
-        <DropdownContent>
+        <DropdownContent className='dropdown__left'>
           <EmojiPicker emojione={settings} onChange={this.handleChange} />
         </DropdownContent>
       </Dropdown>

@@ -37,7 +37,7 @@ const UploadButton = React.createClass({
 
     return (
       <div style={this.props.style}>
-        <IconButton icon='photo' title={intl.formatMessage(messages.upload)} disabled={disabled} onClick={this.handleClick} size={24} />
+        <IconButton icon='camera' title={intl.formatMessage(messages.upload)} disabled={disabled} onClick={this.handleClick} size={22} inverted />
         <input key={resetFileKey} ref={this.setRef} type='file' multiple={false} onChange={this.handleChange} disabled={disabled} style={{ display: 'none' }} />
       </div>
     );
