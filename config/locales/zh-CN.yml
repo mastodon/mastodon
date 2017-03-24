@@ -1,0 +1,156 @@
+---
+en:
+  about:
+    about_instance: "<em>%{instance}</em> 源自于 Mastodon。"
+    about_mastodon: Mastodon <em>开源、自由</em>社交网络。<em>去中心化</em>的商业平台替代，避免单一商业公司垄断沟通。可选择、可信任地任意交流。任何人均可以运行自己的 Mastodon 并进行无缝交流。
+    about_this: 关于本实例
+    business_email: '商务邮件：'
+    contact: 联络
+    description_headline: %{domain} 是什么？
+    domain_count_after: 其它实例
+    domain_count_before: Connected to
+    features:
+      api: 对APP 和服务开放的 API
+      blocks: Rich block and muting tools
+      characters: 每个推多达 500 字符
+      chronology: 按时间线排序
+      ethics: '良心之作：没有广告，没有数据追踪'
+      gifv: GIFV 与小视频
+      privacy: 细粒度，可按推设置隐私
+      public: 公共时间线
+    features_headline: Mastodon 与众不同之处
+    get_started: 立即开始
+    learn_more: 了解更多
+    links: 链接
+    other_instances: 其它实例
+    source_code: 源码
+    status_count_after: statuses
+    status_count_before: Who authored
+    terms: 条款
+    user_count_after: users
+    user_count_before: Home to
+  accounts:
+    follow: 关注
+    followers: 粉丝
+    following: 关注
+    nothing_here: 神马都没有！
+    people_followed_by: %{name} 的关注
+    people_who_follow: %{name} 的粉丝
+    posts: 推
+    remote_follow: Remote follow
+    unfollow: 取关
+  application_mailer:
+    settings: '更改邮件设置: %{link}'
+    signature: 来自 %{instance} 的提醒
+    view: '查看：'
+  applications:
+    invalid_url: URL 无效
+  auth:
+    change_password: 更换密码
+    didnt_get_confirmation: 没有收到确认邮件？
+    forgot_password: 忘记密码？
+    login: 登录
+    logout: 登出
+    register: 注册
+    resend_confirmation: 重发确认邮件
+    reset_password: 重置密码
+    set_new_password: 设置新密码
+  authorize_follow:
+    error: Unfortunately, there was an error looking up the remote account
+    follow: 关注
+    prompt_html: 'You (<strong>%{self}</strong>) have requested to follow:'
+    title: 关注 %{acct}
+  datetime:
+    distance_in_words:
+      about_x_hours: "大约 %{count} 小时"
+      about_x_months: "大约 %{count} 月"
+      about_x_years: "大约 %{count} 年"
+      almost_x_years: "几乎 %{count} 年"
+      half_a_minute: 刚刚
+      less_than_x_minutes: "%{count} 分"
+      less_than_x_seconds: 刚刚
+      over_x_years: "超过 %{count} 年"
+      x_days: "%{count} 天"
+      x_minutes: "%{count} 分"
+      x_months: "%{count} 月"
+      x_seconds: "%{count} 秒"
+  exports:
+    blocks: You block
+    csv: CSV
+    follows: 关注
+    storage: 媒体文件
+  generic:
+    changes_saved_msg: 保存成功！
+    powered_by: 基于 %{link} 构建
+    save_changes: 保存
+    validation_errors:
+      one: 出错了！什么鬼？
+      other: 出错了！什么鬼？
+  landing_strip_html: <strong>%{name}</strong> is a user on <strong>%{domain}</strong>. You can follow them or interact with them if you have an account anywhere in the fediverse. If you don't, you can <a href="%{sign_up_path}">sign up here</a>.
+  notification_mailer:
+    digest:
+      body: 'Here is a brief summary of what you missed on %{instance} since your last visit on %{since}:'
+      mention: "%{name} mentioned you in:"
+      new_followers_summary:
+        one: You have acquired one new follower! Yay!
+        other: You have gotten %{count} new followers! Amazing!
+      subject:
+        one: "1 new notification since your last visit \U0001F418"
+        other: "%{count} new notifications since your last visit \U0001F418"
+    favourite:
+      body: 'Your status was favourited by %{name}:'
+      subject: "%{name} favourited your status"
+    follow:
+      body: "%{name} is now following you!"
+      subject: "%{name} is now following you"
+    follow_request:
+      body: "%{name} has requested to follow you"
+      subject: 'Pending follower: %{name}'
+    mention:
+      body: 'You were mentioned by %{name} in:'
+      subject: You were mentioned by %{name}
+    reblog:
+      body: 'Your status was boosted by %{name}:'
+      subject: "%{name} boosted your status"
+  pagination:
+    next: Next
+    prev: Prev
+  remote_follow:
+    acct: Enter your username@domain you want to follow from
+    missing_resource: Could not find the required redirect URL for your account
+    proceed: Proceed to follow
+    prompt: 'You are going to follow:'
+  settings:
+    authorized_apps: Authorized apps
+    back: Back to Mastodon
+    edit_profile: Edit profile
+    export: Data export
+    preferences: Preferences
+    settings: Settings
+    two_factor_auth: Two-factor Authentication
+  statuses:
+    open_in_web: Open in web
+    over_character_limit: character limit of %{max} exceeded
+    visibilities:
+      private: Only show to followers
+      public: Public
+      unlisted: Public, but do not display on the public timeline
+  stream_entries:
+    click_to_show: Click to show
+    reblogged: boosted
+    sensitive_content: Sensitive content
+  time:
+    formats:
+      default: "%b %d, %Y, %H:%M"
+  two_factor_auth:
+    description_html: If you enable <strong>two-factor authentication</strong>, logging in will require you to be in possession of your phone, which will generate tokens for you to enter.
+    disable: Disable
+    enable: Enable
+    instructions_html: "<strong>Scan this QR code into Google Authenticator or a similiar app on your phone</strong>. From now on, that app will generate tokens that you will have to enter when logging in."
+    plaintext_secret_html: 'Plain-text secret: <samp>%{secret}</samp>'
+    warning: If you cannot configure an authenticator app right now, you should click "disable" or you won't be able to login.
+  users:
+    invalid_email: The e-mail address is invalid
+    invalid_otp_token: Invalid two-factor code
+  will_paginate:
+    page_gap: "&hellip;"
