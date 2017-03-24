@@ -1,6 +1,6 @@
 object @notification
 
-attributes :id, :type
+attributes :id, :type, :created_at
 
 child from_account: :account do
   extends 'api/v1/accounts/show'
