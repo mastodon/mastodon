@@ -79,7 +79,7 @@ export function submitCompose() {
       media_ids: getState().getIn(['compose', 'media_attachments']).map(item => item.get('id')),
       sensitive: getState().getIn(['compose', 'sensitive']),
       spoiler_text: getState().getIn(['compose', 'spoiler_text'], ''),
-      visibility: getState().getIn(['compose', 'private']) ? 'private' : (getState().getIn(['compose', 'unlisted']) ? 'unlisted' : 'public')
+      visibility: getState().getIn(['compose', 'privacy'])
     }).then(function (response) {
       dispatch(submitComposeSuccess({ ...response.data }));
 
