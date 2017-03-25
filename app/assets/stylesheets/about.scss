@@ -109,9 +109,17 @@
     }
   }
 
-  @media screen and (max-width: 360px) {
+  @media screen and (max-width: 625px) {
     .wrapper {
       padding: 20px;
+    }
+
+    .screenshot-with-signup .mascot {
+      display: none;
+    }
+
+    .features-list {
+      display: block;
     }
   }
 }
