@@ -1,12 +1,24 @@
 import PureRenderMixin from 'react-addons-pure-render-mixin';
-import { FormattedMessage } from 'react-intl';
+import { injectIntl, defineMessages } from 'react-intl';
 import IconButton from '../../../components/icon_button';
+
+const messages = defineMessages({
+  public_short: { id: 'privacy.public.short', defaultMessage: 'Public' },
+  public_long: { id: 'privacy.public.long', defaultMessage: 'Anyone can see' },
+  unlisted_short: { id: 'privacy.unlisted.short', defaultMessage: 'Unlisted' },
+  unlisted_long: { id: 'privacy.unlisted.long', defaultMessage: 'Anyone can see' },
+  private_short: { id: 'privacy.private.short', defaultMessage: 'Private' },
+  private_long: { id: 'privacy.private.long', defaultMessage: 'Followers can see' },
+  direct_short: { id: 'privacy.direct.short', defaultMessage: 'Direct' },
+  direct_long: { id: 'privacy.direct.long', defaultMessage: 'Mentions can see' }
+});
 
 const PrivacyDropdown = React.createClass({
 
   propTypes: {
     value: React.PropTypes.string.isRequired,
-    onChange: React.PropTypes.func.isRequired
+    onChange: React.PropTypes.func.isRequired,
+    intl: React.PropTypes.object.isRequired
   },
 
   getInitialState () {
@@ -48,14 +60,14 @@ const PrivacyDropdown = React.createClass({
   },
 
   render () {
-    const { value, onChange } = this.props;
+    const { value, onChange, intl } = this.props;
     const { open } = this.state;
 
     const options = [
-      { icon: 'globe', value: 'public', shortText: 'Public', longText: 'Anyone can see' },
-      { icon: 'globe', value: 'unlisted', shortText: 'Unlisted', longText: 'Anyone can see' },
-      { icon: 'lock', value: 'private', shortText: 'Private', longText: 'Followers can see' },
-      { icon: 'send', value: 'direct', shortText: 'Direct', longText: 'Mentions can see' }
+      { icon: 'globe', value: 'public', shortText: intl.formatMessage(messages.public_short), longText: intl.formatMessage(messages.public_long) },
+      { icon: 'globe', value: 'unlisted', shortText: intl.formatMessage(messages.unlisted_short), longText: intl.formatMessage(messages.unlisted_long) },
+      { icon: 'lock', value: 'private', shortText: intl.formatMessage(messages.private_short), longText: intl.formatMessage(messages.private_long) },
+      { icon: 'send', value: 'direct', shortText: intl.formatMessage(messages.direct_short), longText: intl.formatMessage(messages.direct_long) }
     ];
 
     const valueOption = options.find(item => item.value === value);
@@ -80,4 +92,4 @@ const PrivacyDropdown = React.createClass({
 
 });
 
-export default PrivacyDropdown;
+export default injectIntl(PrivacyDropdown);
