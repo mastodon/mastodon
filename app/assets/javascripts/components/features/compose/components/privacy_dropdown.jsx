@@ -4,13 +4,13 @@ import IconButton from '../../../components/icon_button';
 
 const messages = defineMessages({
   public_short: { id: 'privacy.public.short', defaultMessage: 'Public' },
-  public_long: { id: 'privacy.public.long', defaultMessage: 'Anyone can see' },
+  public_long: { id: 'privacy.public.long', defaultMessage: 'Post to Public Timelines' },
   unlisted_short: { id: 'privacy.unlisted.short', defaultMessage: 'Unlisted' },
-  unlisted_long: { id: 'privacy.unlisted.long', defaultMessage: 'Anyone can see' },
+  unlisted_long: { id: 'privacy.unlisted.long', defaultMessage: 'Do not show in public timelines' },
   private_short: { id: 'privacy.private.short', defaultMessage: 'Private' },
-  private_long: { id: 'privacy.private.long', defaultMessage: 'Followers can see' },
+  private_long: { id: 'privacy.private.long', defaultMessage: 'Post to followers only, cannot be boosted' },
   direct_short: { id: 'privacy.direct.short', defaultMessage: 'Direct' },
-  direct_long: { id: 'privacy.direct.long', defaultMessage: 'Mentions can see' }
+  direct_long: { id: 'privacy.direct.long', defaultMessage: 'Post to mentioned users only' }
 });
 
 const PrivacyDropdown = React.createClass({
@@ -65,9 +65,9 @@ const PrivacyDropdown = React.createClass({
 
     const options = [
       { icon: 'globe', value: 'public', shortText: intl.formatMessage(messages.public_short), longText: intl.formatMessage(messages.public_long) },
-      { icon: 'globe', value: 'unlisted', shortText: intl.formatMessage(messages.unlisted_short), longText: intl.formatMessage(messages.unlisted_long) },
+      { icon: 'unlock-alt', value: 'unlisted', shortText: intl.formatMessage(messages.unlisted_short), longText: intl.formatMessage(messages.unlisted_long) },
       { icon: 'lock', value: 'private', shortText: intl.formatMessage(messages.private_short), longText: intl.formatMessage(messages.private_long) },
-      { icon: 'envelope', value: 'direct', shortText: intl.formatMessage(messages.direct_short), longText: intl.formatMessage(messages.direct_long) }
+      { icon: 'paper-plane', value: 'direct', shortText: intl.formatMessage(messages.direct_short), longText: intl.formatMessage(messages.direct_long) }
     ];
 
     const valueOption = options.find(item => item.value === value);
