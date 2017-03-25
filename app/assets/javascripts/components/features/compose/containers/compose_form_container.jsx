@@ -28,14 +28,13 @@ const mapStateToProps = (state, props) => {
     suggestions: state.getIn(['compose', 'suggestions']),
     spoiler: state.getIn(['compose', 'spoiler']),
     spoiler_text: state.getIn(['compose', 'spoiler_text']),
-    unlisted: state.getIn(['compose', 'unlisted'], ),
-    private: state.getIn(['compose', 'private']),
+    privacy: state.getIn(['compose', 'privacy']),
     focusDate: state.getIn(['compose', 'focusDate']),
     preselectDate: state.getIn(['compose', 'preselectDate']),
     is_submitting: state.getIn(['compose', 'is_submitting']),
     is_uploading: state.getIn(['compose', 'is_uploading']),
     me: state.getIn(['compose', 'me']),
-    needsPrivacyWarning: state.getIn(['compose', 'private']) && mentionedUsernames !== null,
+    needsPrivacyWarning: (state.getIn(['compose', 'privacy']) === 'private' || state.getIn(['compose', 'privacy']) === 'direct') && mentionedUsernames !== null,
     mentionedDomains: mentionedUsernamesWithDomains
   };
 };

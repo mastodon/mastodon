@@ -30,8 +30,7 @@ const ComposeForm = React.createClass({
     suggestion_token: React.PropTypes.string,
     suggestions: ImmutablePropTypes.list,
     spoiler: React.PropTypes.bool,
-    private: React.PropTypes.bool,
-    unlisted: React.PropTypes.bool,
+    privacy: React.PropTypes.string,
     spoiler_text: React.PropTypes.string,
     focusDate: React.PropTypes.instanceOf(Date),
     preselectDate: React.PropTypes.instanceOf(Date),
@@ -137,10 +136,10 @@ const ComposeForm = React.createClass({
       );
     }
 
-    if (this.props.private) {
+    if (this.props.privacy === 'private' || this.props.privacy === 'direct') {
       publishText = <span><i className='fa fa-lock' /> {intl.formatMessage(messages.publish)}</span>;
     } else {
-      publishText = intl.formatMessage(messages.publish) + (!this.props.unlisted ? '!' : '');
+      publishText = intl.formatMessage(messages.publish) + (this.props.privacy !== 'unlisted' ? '!' : '');
     }
 
     return (
