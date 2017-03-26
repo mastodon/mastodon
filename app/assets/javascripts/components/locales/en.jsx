@@ -25,7 +25,7 @@ const en = {
   "getting_started.heading": "Getting started",
   "getting_started.about_addressing": "You can follow people if you know their username and the domain they are on by entering an e-mail-esque address into the search form.",
   "getting_started.about_shortcuts": "If the target user is on the same domain as you, just the username will work. The same rule applies to mentioning people in statuses.",
-  "getting_started.open_source_notice": "Mastodon is open source software. You can contribute or report issues on github at {github}. Various apps are available.",
+  "getting_started.open_source_notice": "Mastodon is open source software. You can contribute or report issues on github at {github}. {apps}.",
   "column.home": "Home",
   "column.community": "Local timeline",
   "column.public": "Federated timeline",

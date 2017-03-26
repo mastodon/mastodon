@@ -146,7 +146,7 @@ const ComposeForm = React.createClass({
       <div style={{ padding: '10px' }}>
         <Collapsable isVisible={this.props.spoiler} fullHeight={50}>
           <div className="spoiler-input">
-            <input placeholder={intl.formatMessage(messages.spoiler_placeholder)} value={this.props.spoiler_text} onChange={this.handleChangeSpoilerText} type="text" className="spoiler-input__input" />
+            <input placeholder={intl.formatMessage(messages.spoiler_placeholder)} value={this.props.spoiler_text} onChange={this.handleChangeSpoilerText} onKeyDown={this.handleKeyDown} type="text" className="spoiler-input__input" />
           </div>
         </Collapsable>
 
@@ -176,7 +176,7 @@ const ComposeForm = React.createClass({
           <UploadFormContainer />
         </div>
 
-        <div style={{ display: 'flex' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between' }}>
           <div className='compose-form__buttons'>
             <UploadButtonContainer />
             <PrivacyDropdownContainer />
@@ -184,8 +184,10 @@ const ComposeForm = React.createClass({
             <SpoilerButtonContainer />
           </div>
 
-          <div style={{ paddingTop: '10px', marginRight: '16px', lineHeight: '36px' }}><CharacterCounter max={500} text={[this.props.spoiler_text, this.props.text].join('')} /></div>
-          <div style={{ paddingTop: '10px' }}><Button text={publishText} onClick={this.handleSubmit} disabled={disabled} /></div>
+          <div style={{ display: 'flex' }}>
+            <div style={{ paddingTop: '10px', marginRight: '16px', lineHeight: '36px' }}><CharacterCounter max={500} text={[this.props.spoiler_text, this.props.text].join('')} /></div>
+            <div style={{ paddingTop: '10px' }}><Button text={publishText} onClick={this.handleSubmit} disabled={disabled} /></div>
+          </div>
         </div>
       </div>
     );

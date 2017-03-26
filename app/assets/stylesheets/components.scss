@@ -94,19 +94,19 @@
 }
 
 .text-icon-button {
-  color: lighten($color1, 26%);
+  color: lighten($color1, 33%);
   border: none;
   background: transparent;
   cursor: pointer;
   font-weight: 600;
-  font-size: 12px;
+  font-size: 11px;
   padding: 0 3px;
   line-height: 27px;
   outline: 0;
   transition: all 100ms ease-in;
 
   &:hover {
-    color: lighten($color1, 33%);
+    color: lighten($color1, 26%);
     transition: all 200ms ease-out;
   }
 
@@ -177,8 +177,6 @@
   background: darken($color5, 8%);
   box-shadow: inset 0 5px 5px rgba($color8, 0.05);
   border-radius: 0 0 4px 4px;
-  flex: 1 1 auto;
-  margin-right: 16px;
   display: flex;
 
   .icon-button {
@@ -734,7 +732,7 @@ a.status__content__spoiler-link {
 }
 
 .drawer {
-  width: 330px;
+  width: 300px;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
@@ -1663,7 +1661,7 @@ button.active i.fa-retweet {
   position: absolute;
   left: 0;
   top: 24px;
-  width: 180px;
+  width: 230px;
   background: $color5;
   border-radius: 0 4px 4px 4px;
   z-index: 2;

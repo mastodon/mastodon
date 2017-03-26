@@ -6,6 +6,11 @@ const messages = defineMessages({
   upload: { id: 'upload_button.label', defaultMessage: 'Add media' }
 });
 
+const iconStyle = {
+  lineHeight: '27px',
+  height: null
+};
+
 const UploadButton = React.createClass({
 
   propTypes: {
@@ -37,7 +42,7 @@ const UploadButton = React.createClass({
 
     return (
       <div style={this.props.style}>
-        <IconButton icon='camera' title={intl.formatMessage(messages.upload)} disabled={disabled} onClick={this.handleClick} size={22} inverted />
+        <IconButton icon='camera' title={intl.formatMessage(messages.upload)} disabled={disabled} onClick={this.handleClick} style={iconStyle} size={18} inverted />
         <input key={resetFileKey} ref={this.setRef} type='file' multiple={false} onChange={this.handleChange} disabled={disabled} style={{ display: 'none' }} />
       </div>
     );
