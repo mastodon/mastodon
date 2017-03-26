@@ -9,6 +9,7 @@ module SettingsHelper
     fr: 'Français',
     hu: 'Magyar',
     uk: 'Українська',
+    'zh-CN': '简体中文'
   }.freeze
 
   def human_locale(locale)
