@@ -1,0 +1,61 @@
+---
+zh-CN:
+  devise:
+    confirmations:
+      confirmed: 邮件已确认。
+      send_instructions: 发送确认邮件
+      send_paranoid_instructions: 发送确认邮件
+    failure:
+      already_authenticated: 已登录。
+      inactive: 账号未激活。
+      invalid: 激活码 %{authentication_keys} 或密码无效。
+      last_attempt: 因多次失败账号已锁。
+      locked: 账号已锁。
+      not_found_in_database: 激活码 %{authentication_keys} 或密码无效。
+      timeout: 登录已过期，请重新登录。
+      unauthenticated: 请先登录
+      unconfirmed: 请先通过邮件激活。
+    mailer:
+      confirmation_instructions:
+        subject: 'Mastodon: 激活指引'
+      password_change:
+        subject: 'Mastodon: 密码变更'
+      reset_password_instructions:
+        subject: 'Mastodon: 密码重置指引'
+      unlock_instructions:
+        subject: 'Mastodon: 账号解锁指引'
+    omniauth_callbacks:
+      failure: 从 %{kind} 授权失败："%{reason}" 。
+      success: 成功从 %{kind} 授权。
+    passwords:
+      no_token: 仅允许通过密码重置邮件访问本页面，或确认完整 URL。
+      send_instructions: 你将收到密码重置指引邮件。
+      send_paranoid_instructions: 你将收到密码重置邮件。
+      updated: 密码重置成功。
+      updated_not_active: 密码重置成功。
+    registrations:
+      destroyed: 撒油娜啦！账号已经注销。有缘再会。
+      signed_up: 欢迎回来！
+      signed_up_but_inactive: 账号未激活。
+      signed_up_but_locked: 账号已锁定。
+      signed_up_but_unconfirmed: 确认邮件已发，请先激活。
+      update_needs_confirmation: 账号需要重新激活，请先激活。
+      updated: 更新成功。
+    sessions:
+      already_signed_out: 登出成功。
+      signed_in: 登录成功。
+      signed_out: 登出成功。
+    unlocks:
+      send_instructions: 解锁邮件已发，请先解锁。
+      send_paranoid_instructions: 解锁邮件已发，请先解锁。
+      unlocked: 账号已解锁，请登录。
+  errors:
+    messages:
+      already_confirmed: 已激活，请登录。
+      confirmation_period_expired: 需要在 %{period} 内激活，请重新申请。
+      expired: 已过期，请重新申请。
+      not_found: 未发现
+      not_locked: 未锁定
+      not_saved:
+        one: '保存失败： %{resource}'
+        other: "保存失败：%{count}"

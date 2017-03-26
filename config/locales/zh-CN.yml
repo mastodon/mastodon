@@ -1,12 +1,12 @@
 ---
-en:
+zh-CN:
   about:
     about_instance: "<em>%{instance}</em> 源自于 Mastodon。"
     about_mastodon: Mastodon <em>开源、自由</em>社交网络。<em>去中心化</em>的商业平台替代，避免单一商业公司垄断沟通。可选择、可信任地任意交流。任何人均可以运行自己的 Mastodon 并进行无缝交流。
     about_this: 关于本实例
     business_email: '商务邮件：'
     contact: 联络
-    description_headline: %{domain} 是什么？
+    description_headline: 去中心化 %{domain} 是什么？
     domain_count_after: 其它实例
     domain_count_before: Connected to
     features:
@@ -34,8 +34,8 @@ en:
     followers: 粉丝
     following: 关注
     nothing_here: 神马都没有！
-    people_followed_by: %{name} 的关注
-    people_who_follow: %{name} 的粉丝
+    people_followed_by: 正关注
+    people_who_follow: 粉丝
     posts: 推
     remote_follow: Remote follow
     unfollow: 取关
@@ -127,30 +127,30 @@ en:
     export: 数据导出
     preferences: 设置
     settings: 设置
-    two_factor_auth: 二步验证
+    two_factor_auth: 两步验证
   statuses:
     open_in_web: 浏览器中打开
     over_character_limit: 超出范围 %{max}
     visibilities:
-      private: Only show to followers
-      public: Public
-      unlisted: Public, but do not display on the public timeline
+      private: 仅向粉丝公开
+      public: 公开
+      unlisted: 公开但不显示在公共时间线中
   stream_entries:
-    click_to_show: Click to show
-    reblogged: boosted
-    sensitive_content: Sensitive content
+    click_to_show: 显示
+    reblogged: 转发
+    sensitive_content: 敏感内容Sensitive content
   time:
     formats:
       default: "%b %d, %Y, %H:%M"
   two_factor_auth:
-    description_html: If you enable <strong>two-factor authentication</strong>, logging in will require you to be in possession of your phone, which will generate tokens for you to enter.
-    disable: Disable
-    enable: Enable
-    instructions_html: "<strong>Scan this QR code into Google Authenticator or a similiar app on your phone</strong>. From now on, that app will generate tokens that you will have to enter when logging in."
-    plaintext_secret_html: 'Plain-text secret: <samp>%{secret}</samp>'
-    warning: If you cannot configure an authenticator app right now, you should click "disable" or you won't be able to login.
+    description_html: 启用<strong>两步验证</strong>后，登录时强制要求手机上生成的两步验证码
+    disable: 禁用
+    enable: 启用
+    instructions_html: "<strong>使用 Google Authenticator 或类似 APP 扫描二维码</strong>。现在起，APP 将会生成登陆时必须的两步验证码。"
+    plaintext_secret_html: '密钥： <samp>%{secret}</samp>'
+    warning: 如果你现在没有 Google Authenticator 或类似授权 APP，你应该先「禁用」本功能，否则你将不能正常登陆。
   users:
-    invalid_email: The e-mail address is invalid
-    invalid_otp_token: Invalid two-factor code
+    invalid_email: 无效的邮箱
+    invalid_otp_token: 无效的两步验证码
   will_paginate:
     page_gap: "&hellip;"
