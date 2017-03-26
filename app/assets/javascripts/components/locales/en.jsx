@@ -40,7 +40,7 @@ const en = {
   "compose_form.sensitive": "Mark media as sensitive",
   "compose_form.spoiler": "Hide text behind warning",
   "compose_form.private": "Mark as private",
-  "compose_form.privacy_disclaimer": "Your private status will be delivered to mentioned users on {domains}. Do you trust {domainsCount, plural, one {that server} other {those servers}} to not leak your status?",
+  "compose_form.privacy_disclaimer": "Your private status will be delivered to mentioned users on {domains}. Do you trust {domainsCount, plural, one {that server} other {those servers}}? Post privacy only works on Mastodon instances. If {domains} {domainsCount, plural, one {is not a Mastodon instance} other {are not Mastodon instances}}, there will be no indication that your post is private, and it may be boosted or otherwise made visible to unintended recipients.",
   "compose_form.unlisted": "Do not display on public timelines",
   "navigation_bar.edit_profile": "Edit profile",
   "navigation_bar.preferences": "Preferences",
