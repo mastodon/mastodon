@@ -10,7 +10,8 @@ const messages = defineMessages({
   private_short: { id: 'privacy.private.short', defaultMessage: 'Private' },
   private_long: { id: 'privacy.private.long', defaultMessage: 'Post to followers only' },
   direct_short: { id: 'privacy.direct.short', defaultMessage: 'Direct' },
-  direct_long: { id: 'privacy.direct.long', defaultMessage: 'Post to mentioned users only' }
+  direct_long: { id: 'privacy.direct.long', defaultMessage: 'Post to mentioned users only' },
+  change_privacy: { id: 'privacy.change', defaultMessage: 'Adjust status privacy' }
 });
 
 const iconStyle = {
@@ -79,7 +80,7 @@ const PrivacyDropdown = React.createClass({
 
     return (
       <div ref={this.setRef} className={`privacy-dropdown ${open ? 'active' : ''}`}>
-        <div className='privacy-dropdown__value'><IconButton icon={valueOption.icon} size={18} active={open} inverted onClick={this.handleToggle} style={iconStyle} /></div>
+        <div className='privacy-dropdown__value'><IconButton icon={valueOption.icon} title={intl.formatMessage(messages.change_privacy)} size={18} active={open} inverted onClick={this.handleToggle} style={iconStyle} /></div>
         <div className='privacy-dropdown__dropdown'>
           {options.map(item =>
             <div key={item.value} onClick={this.handleClick.bind(this, item.value)} className={`privacy-dropdown__option ${item.value === value ? 'active' : ''}`}>
