@@ -9,8 +9,6 @@ class Formatter
   include ActionView::Helpers::TextHelper
   include ActionView::Helpers::SanitizeHelper
 
-  AUTOLINK_RE = /https?:\/\/([\S]+\.[!#$&-;=?-[\]_a-z~]|%[\w\d]{2}]+[\w])/i
-
   def format(status)
     return reformat(status.content) unless status.local?
 
@@ -39,6 +37,7 @@ class Formatter
 
     html = encode(account.note)
     html = link_urls(html)
+    html = link_accounts(html)
     html = link_hashtags(html)
 
     html.html_safe # rubocop:disable Rails/OutputSafety
@@ -59,9 +58,20 @@ class Formatter
   def link_mentions(html, mentions)
     html.gsub(Account::MENTION_RE) do |match|
       acct    = Account::MENTION_RE.match(match)[1]
-      mention = mentions.find { |item| item.account.acct.casecmp(acct).zero? }
+      mention = mentions.find { |item| TagManager.instance.same_acct?(item.account.acct, acct) }
 
       mention.nil? ? match : mention_html(match, mention.account)
+    end
+  end
+
+  def link_accounts(html)
+    html.gsub(Account::MENTION_RE) do |match|
+      acct = Account::MENTION_RE.match(match)[1]
+      username, domain = acct.split('@')
+      domain = nil if TagManager.instance.local_domain?(domain)
+      account = Account.find_remote(username, domain)
+
+      account.nil? ? match : mention_html(match, account)
     end
   end
 
