@@ -50,8 +50,9 @@ const UI = React.createClass({
   handleDrop (e) {
     e.preventDefault();
 
+    this.setState({ draggingOver: false });
+
     if (e.dataTransfer && e.dataTransfer.files.length === 1) {
-      this.setState({ draggingOver: false });
       this.props.dispatch(uploadCompose(e.dataTransfer.files));
     }
   },
