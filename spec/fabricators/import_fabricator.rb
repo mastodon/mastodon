@@ -1,0 +1,2 @@
+Fabricator(:import) do
+end

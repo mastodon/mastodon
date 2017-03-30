@@ -85,6 +85,13 @@ en:
     validation_errors:
       one: Something isn't quite right yet! Please review the error below
       other: Something isn't quite right yet! Please review %{count} errors below
+  imports:
+    preface: You can import certain data like all the people you are following or blocking into your account on this instance, from files created by an export on another instance.
+    success: Your data was successfully uploaded and will now be processed in due time
+    types:
+      blocking: Blocking list
+      following: Following list
+    upload: Upload
   landing_strip_html: <strong>%{name}</strong> is a user on <strong>%{domain}</strong>. You can follow them or interact with them if you have an account anywhere in the fediverse. If you don't, you can <a href="%{sign_up_path}">sign up here</a>.
   notification_mailer:
     digest:
@@ -124,6 +131,7 @@ en:
     back: Back to Mastodon
     edit_profile: Edit profile
     export: Data export
+    import: Import
     preferences: Preferences
     settings: Settings
     two_factor_auth: Two-factor Authentication

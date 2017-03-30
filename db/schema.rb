@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170330021336) do
+ActiveRecord::Schema.define(version: 20170330164118) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -91,6 +91,18 @@ ActiveRecord::Schema.define(version: 20170330021336) do
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
     t.index ["account_id", "target_account_id"], name: "index_follows_on_account_id_and_target_account_id", unique: true, using: :btree
+  end
+
+  create_table "imports", force: :cascade do |t|
+    t.integer  "account_id",        null: false
+    t.integer  "type",              null: false
+    t.boolean  "approved"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+    t.string   "data_file_name"
+    t.string   "data_content_type"
+    t.integer  "data_file_size"
+    t.datetime "data_updated_at"
   end
 
   create_table "media_attachments", force: :cascade do |t|
