@@ -44,9 +44,9 @@ ActiveRecord::Schema.define(version: 20170330021336) do
     t.boolean  "suspended",               default: false, null: false
     t.boolean  "locked",                  default: false, null: false
     t.string   "header_remote_url",       default: "",    null: false
-    t.integer  "statuses_count"
-    t.integer  "followers_count"
-    t.integer  "following_count"
+    t.integer  "statuses_count",          default: 0,     null: false
+    t.integer  "followers_count",         default: 0,     null: false
+    t.integer  "following_count",         default: 0,     null: false
     t.index "(((setweight(to_tsvector('simple'::regconfig, (display_name)::text), 'A'::\"char\") || setweight(to_tsvector('simple'::regconfig, (username)::text), 'B'::\"char\")) || setweight(to_tsvector('simple'::regconfig, (COALESCE(domain, ''::character varying))::text), 'C'::\"char\")))", name: "search_index", using: :gin
     t.index "lower((username)::text), lower((domain)::text)", name: "index_accounts_on_username_and_domain_lower", using: :btree
     t.index ["username", "domain"], name: "index_accounts_on_username_and_domain", unique: true, using: :btree
@@ -223,8 +223,8 @@ ActiveRecord::Schema.define(version: 20170330021336) do
     t.integer  "application_id"
     t.text     "spoiler_text",           default: "",    null: false
     t.boolean  "reply",                  default: false
-    t.integer  "favourites_count"
-    t.integer  "reblogs_count"
+    t.integer  "favourites_count",       default: 0,     null: false
+    t.integer  "reblogs_count",          default: 0,     null: false
     t.index ["account_id"], name: "index_statuses_on_account_id", using: :btree
     t.index ["in_reply_to_id"], name: "index_statuses_on_in_reply_to_id", using: :btree
     t.index ["reblog_of_id"], name: "index_statuses_on_reblog_of_id", using: :btree
