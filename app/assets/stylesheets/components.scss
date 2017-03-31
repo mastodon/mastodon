@@ -21,7 +21,7 @@
   text-decoration: none;
   transition: all 100ms ease-in;
 
-  &:hover {
+  &:hover, &:active, &:focus {
     background-color: lighten($color4, 7%);
     transition: all 200ms ease-out;
   }
@@ -54,7 +54,7 @@
   cursor: pointer;
   transition: all 100ms ease-in;
 
-  &:hover {
+  &:hover, &:active, &:focus {
     color: lighten($color1, 33%);
     transition: all 200ms ease-out;
   }
@@ -79,7 +79,7 @@
   &.inverted {
     color: lighten($color1, 33%);
 
-    &:hover {
+    &:hover, &:active, &:focus {
       color: lighten($color1, 26%);
     }
 
@@ -105,7 +105,7 @@
   outline: 0;
   transition: all 100ms ease-in;
 
-  &:hover {
+  &:hover, &:active, &:focus {
     color: lighten($color1, 26%);
     transition: all 200ms ease-out;
   }
@@ -1640,7 +1640,7 @@ button.active i.fa-retweet {
     margin-top: 2px;
   }
 
-  &:hover {
+  &:hover, &:active, &:focus {
     img {
       opacity: 1;
       filter: none;
