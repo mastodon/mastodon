@@ -41,11 +41,11 @@
       ·
     %span<
       = fa_icon('retweet')
-      %span= status.reblogs.count
+      %span= status.reblogs_count
     ·
     %span<
       = fa_icon('star')
-      %span= status.favourites.count
+      %span= status.favourites_count
 
     - if user_signed_in?
       ·
