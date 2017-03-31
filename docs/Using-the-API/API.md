@@ -65,8 +65,8 @@ Returns a media object with an ID that can be attached when creating a status (s
 
 ### Retrieving a timeline
 
-**GET /api/v1/timelines/home**
-**GET /api/v1/timelines/public**
+**GET /api/v1/timelines/home**  
+**GET /api/v1/timelines/public**  
 **GET /api/v1/timelines/tag/:hashtag**
 
 Returns statuses, most recent ones first. Home timeline is statuses from people you follow, mentions timeline is all statuses that mention you. Public timeline is "whole known network", and the last is the hashtag timeline.
@@ -208,21 +208,21 @@ Returns `ancestors` and `descendants` of the status.
 
 ### Who reblogged/favourited a status
 
-**GET /api/v1/statuses/:id/reblogged_by**
+**GET /api/v1/statuses/:id/reblogged_by**  
 **GET /api/v1/statuses/:id/favourited_by**
 
 Returns list of accounts.
 
 ### Following and unfollowing users
 
-**POST /api/v1/accounts/:id/follow**
+**POST /api/v1/accounts/:id/follow**  
 **POST /api/v1/accounts/:id/unfollow**
 
 Returns the updated relationship to the user.
 
 ### Blocking and unblocking users
 
-**POST /api/v1/accounts/:id/block**
+**POST /api/v1/accounts/:id/block**  
 **POST /api/v1/accounts/:id/unblock**
 
 Returns the updated relationship to the user.
@@ -235,7 +235,7 @@ Returns an object containing the `title`, `description`, `email` and `uri` of th
 
 # Muting and unmuting users
 
-**POST /api/v1/accounts/:id/mute**
+**POST /api/v1/accounts/:id/mute**  
 **POST /api/v1/accounts/:id/unmute**
 
 Returns the updated relationship to the user.
