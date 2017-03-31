@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170322162804) do
+ActiveRecord::Schema.define(version: 20170330164118) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,6 +44,9 @@ ActiveRecord::Schema.define(version: 20170322162804) do
     t.boolean  "suspended",               default: false, null: false
     t.boolean  "locked",                  default: false, null: false
     t.string   "header_remote_url",       default: "",    null: false
+    t.integer  "statuses_count",          default: 0,     null: false
+    t.integer  "followers_count",         default: 0,     null: false
+    t.integer  "following_count",         default: 0,     null: false
     t.index "(((setweight(to_tsvector('simple'::regconfig, (display_name)::text), 'A'::\"char\") || setweight(to_tsvector('simple'::regconfig, (username)::text), 'B'::\"char\")) || setweight(to_tsvector('simple'::regconfig, (COALESCE(domain, ''::character varying))::text), 'C'::\"char\")))", name: "search_index", using: :gin
     t.index "lower((username)::text), lower((domain)::text)", name: "index_accounts_on_username_and_domain_lower", using: :btree
     t.index ["username", "domain"], name: "index_accounts_on_username_and_domain", unique: true, using: :btree
@@ -88,6 +91,18 @@ ActiveRecord::Schema.define(version: 20170322162804) do
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
     t.index ["account_id", "target_account_id"], name: "index_follows_on_account_id_and_target_account_id", unique: true, using: :btree
+  end
+
+  create_table "imports", force: :cascade do |t|
+    t.integer  "account_id",        null: false
+    t.integer  "type",              null: false
+    t.boolean  "approved"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+    t.string   "data_file_name"
+    t.string   "data_content_type"
+    t.integer  "data_file_size"
+    t.datetime "data_updated_at"
   end
 
   create_table "media_attachments", force: :cascade do |t|
@@ -220,6 +235,8 @@ ActiveRecord::Schema.define(version: 20170322162804) do
     t.integer  "application_id"
     t.text     "spoiler_text",           default: "",    null: false
     t.boolean  "reply",                  default: false
+    t.integer  "favourites_count",       default: 0,     null: false
+    t.integer  "reblogs_count",          default: 0,     null: false
     t.index ["account_id"], name: "index_statuses_on_account_id", using: :btree
     t.index ["in_reply_to_id"], name: "index_statuses_on_in_reply_to_id", using: :btree
     t.index ["reblog_of_id"], name: "index_statuses_on_reblog_of_id", using: :btree

@@ -11,7 +11,7 @@ class Api::V1::MutesController < ApiController
     accounts  = Account.where(id: results.map(&:target_account_id)).map { |a| [a.id, a] }.to_h
     @accounts = results.map { |f| accounts[f.target_account_id] }
 
-    set_account_counters_maps(@accounts)
+    # set_account_counters_maps(@accounts)
 
     next_path = api_v1_mutes_url(max_id: results.last.id)    if results.size == limit_param(DEFAULT_ACCOUNTS_LIMIT)
     prev_path = api_v1_mutes_url(since_id: results.first.id) unless results.empty?

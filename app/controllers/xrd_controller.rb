@@ -36,11 +36,14 @@ class XrdController < ApplicationController
   end
 
   def username_from_resource
-    if resource_param.start_with?('acct:') || resource_param.include?('@')
-      resource_param.split('@').first.gsub('acct:', '')
+    if resource_param =~ /\Ahttps?:\/\//
+      path_params = Rails.application.routes.recognize_path(resource_param)
+      raise ActiveRecord::RecordNotFound unless path_params[:controller] == 'users' && path_params[:action] == 'show'
+      path_params[:username]
     else
-      url = Addressable::URI.parse(resource_param)
-      url.path.gsub('/users/', '')
+      username, domain = resource_param.gsub(/\Aacct:/, '').split('@')
+      raise ActiveRecord::RecordNotFound unless TagManager.instance.local_domain?(domain)
+      username
     end
   end
 

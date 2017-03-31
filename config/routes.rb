@@ -51,6 +51,7 @@ Rails.application.routes.draw do
   namespace :settings do
     resource :profile, only: [:show, :update]
     resource :preferences, only: [:show, :update]
+    resource :import, only: [:show, :create]
 
     resource :export, only: [:show] do
       collection do

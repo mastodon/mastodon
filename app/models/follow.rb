@@ -3,8 +3,8 @@
 class Follow < ApplicationRecord
   include Paginable
 
-  belongs_to :account
-  belongs_to :target_account, class_name: 'Account'
+  belongs_to :account, counter_cache: :following_count
+  belongs_to :target_account, class_name: 'Account', counter_cache: :followers_count
 
   has_one :notification, as: :activity, dependent: :destroy
 

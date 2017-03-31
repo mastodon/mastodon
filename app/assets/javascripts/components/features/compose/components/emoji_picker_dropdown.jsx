@@ -43,7 +43,7 @@ const EmojiPickerDropdown = React.createClass({
     return (
       <Dropdown ref={this.setRef} style={style}>
         <DropdownTrigger className='emoji-button' title={intl.formatMessage(messages.emoji)} style={{ fontSize: `24px`, width: `24px`, lineHeight: `24px`, display: 'block', marginLeft: '2px' }}>
-          <img className="emojione" alt="🙂" src="/emoji/1f602.png" />
+          <img draggable="false" className="emojione" alt="🙂" src="/emoji/1f602.svg" />
         </DropdownTrigger>
 
         <DropdownContent className='dropdown__left'>

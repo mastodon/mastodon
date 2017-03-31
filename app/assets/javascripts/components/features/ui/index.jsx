@@ -36,34 +36,62 @@ const UI = React.createClass({
     this.setState({ width: window.innerWidth });
   },
 
+  handleDragEnter (e) {
+    e.preventDefault();
+
+    if (!this.dragTargets) {
+      this.dragTargets = [];
+    }
+
+    if (this.dragTargets.indexOf(e.target) === -1) {
+      this.dragTargets.push(e.target);
+    }
+
+    this.setState({ draggingOver: true });
+  },
+
   handleDragOver (e) {
     e.preventDefault();
     e.stopPropagation();
 
-    e.dataTransfer.dropEffect = 'copy';
+    try {
+      e.dataTransfer.dropEffect = 'copy';
+    } catch (err) {
 
-    if (e.dataTransfer.effectAllowed === 'all' || e.dataTransfer.effectAllowed === 'uninitialized') {
-      this.setState({ draggingOver: true });
     }
+
+    return false;
   },
 
   handleDrop (e) {
     e.preventDefault();
 
+    this.setState({ draggingOver: false });
+
     if (e.dataTransfer && e.dataTransfer.files.length === 1) {
-      this.setState({ draggingOver: false });
       this.props.dispatch(uploadCompose(e.dataTransfer.files));
     }
   },
 
-  handleDragLeave () {
+  handleDragLeave (e) {
+    e.preventDefault();
+    e.stopPropagation();
+
+    this.dragTargets = this.dragTargets.filter(el => el !== e.target && this.node.contains(el));
+
+    if (this.dragTargets.length > 0) {
+      return;
+    }
+
     this.setState({ draggingOver: false });
   },
 
   componentWillMount () {
     window.addEventListener('resize', this.handleResize, { passive: true });
-    window.addEventListener('dragover', this.handleDragOver);
-    window.addEventListener('drop', this.handleDrop);
+    document.addEventListener('dragenter', this.handleDragEnter, false);
+    document.addEventListener('dragover', this.handleDragOver, false);
+    document.addEventListener('drop', this.handleDrop, false);
+    document.addEventListener('dragleave', this.handleDragLeave, false);
 
     this.props.dispatch(refreshTimeline('home'));
     this.props.dispatch(refreshNotifications());
@@ -71,8 +99,14 @@ const UI = React.createClass({
 
   componentWillUnmount () {
     window.removeEventListener('resize', this.handleResize);
-    window.removeEventListener('dragover', this.handleDragOver);
-    window.removeEventListener('drop', this.handleDrop);
+    document.removeEventListener('dragenter', this.handleDragEnter);
+    document.removeEventListener('dragover', this.handleDragOver);
+    document.removeEventListener('drop', this.handleDrop);
+    document.removeEventListener('dragleave', this.handleDragLeave);
+  },
+
+  setRef (c) {
+    this.node = c;
   },
 
   render () {
@@ -99,7 +133,7 @@ const UI = React.createClass({
     }
 
     return (
-      <div className='ui' onDragLeave={this.handleDragLeave}>
+      <div className='ui' ref={this.setRef}>
         <TabsBar />
 
         {mountedColumns}
