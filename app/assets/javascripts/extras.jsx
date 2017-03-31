@@ -24,4 +24,17 @@ $(() => {
       window.location.href = $(e.target).attr('href');
     }
   });
+
+  $('.status__content__spoiler-link').on('click', e => {
+    e.preventDefault();
+    const contentEl = $(e.target).parent().parent().find('div');
+
+    if (contentEl.is(':visible')) {
+      contentEl.hide();
+      $(e.target).parent().attr('style', 'margin-bottom: 0');
+    } else {
+      contentEl.show();
+      $(e.target).parent().attr('style', null);
+    }
+  });
 });
