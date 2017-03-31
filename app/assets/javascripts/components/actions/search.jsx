@@ -25,6 +25,10 @@ export function submitSearch() {
   return (dispatch, getState) => {
     const value = getState().getIn(['search', 'value']);
 
+    if (value.length === 0) {
+      return;
+    }
+
     dispatch(fetchSearchRequest());
 
     api(getState).get('/api/v1/search', {

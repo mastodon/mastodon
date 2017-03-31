@@ -8,7 +8,8 @@ import {
 import Search from '../components/search';
 
 const mapStateToProps = state => ({
-  value: state.getIn(['search', 'value'])
+  value: state.getIn(['search', 'value']),
+  submitted: state.getIn(['search', 'submitted'])
 });
 
 const mapDispatchToProps = dispatch => ({

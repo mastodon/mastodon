@@ -70,9 +70,9 @@ const Compose = React.createClass({
             <ComposeFormContainer />
           </div>
 
-          <Motion defaultStyle={{ x: -300 }} style={{ x: spring(showSearch ? 0 : -300, { stiffness: 210, damping: 20 }) }}>
+          <Motion defaultStyle={{ x: -100 }} style={{ x: spring(showSearch ? 0 : -100, { stiffness: 210, damping: 20 }) }}>
             {({ x }) =>
-              <div className='drawer__inner darker' style={{ transform: `translateX(${x}px)` }}>
+              <div className='drawer__inner darker' style={{ transform: `translateX(${x}%)` }}>
                 <SearchResultsContainer />
               </div>
             }

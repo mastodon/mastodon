@@ -10,6 +10,7 @@ const Search = React.createClass({
 
   propTypes: {
     value: React.PropTypes.string.isRequired,
+    submitted: React.PropTypes.bool,
     onChange: React.PropTypes.func.isRequired,
     onSubmit: React.PropTypes.func.isRequired,
     onClear: React.PropTypes.func.isRequired,
@@ -40,8 +41,8 @@ const Search = React.createClass({
   },
 
   render () {
-    const { intl, value } = this.props;
-    const hasValue = value.length > 0;
+    const { intl, value, submitted } = this.props;
+    const hasValue = value.length > 0 || submitted;
 
     return (
       <div className='search'>

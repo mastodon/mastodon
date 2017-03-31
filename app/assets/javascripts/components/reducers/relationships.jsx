@@ -23,16 +23,16 @@ const initialState = Immutable.Map();
 
 export default function relationships(state = initialState, action) {
   switch(action.type) {
-    case ACCOUNT_FOLLOW_SUCCESS:
-    case ACCOUNT_UNFOLLOW_SUCCESS:
-    case ACCOUNT_BLOCK_SUCCESS:
-    case ACCOUNT_UNBLOCK_SUCCESS:
-    case ACCOUNT_MUTE_SUCCESS:
-    case ACCOUNT_UNMUTE_SUCCESS:
-      return normalizeRelationship(state, action.relationship);
-    case RELATIONSHIPS_FETCH_SUCCESS:
-      return normalizeRelationships(state, action.relationships);
-    default:
-      return state;
+  case ACCOUNT_FOLLOW_SUCCESS:
+  case ACCOUNT_UNFOLLOW_SUCCESS:
+  case ACCOUNT_BLOCK_SUCCESS:
+  case ACCOUNT_UNBLOCK_SUCCESS:
+  case ACCOUNT_MUTE_SUCCESS:
+  case ACCOUNT_UNMUTE_SUCCESS:
+    return normalizeRelationship(state, action.relationship);
+  case RELATIONSHIPS_FETCH_SUCCESS:
+    return normalizeRelationships(state, action.relationships);
+  default:
+    return state;
   }
 };
