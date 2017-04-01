@@ -9,6 +9,6 @@ class Import < ApplicationRecord
 
   FILE_TYPES = ['text/plain', 'text/csv'].freeze
 
-  has_attached_file :data, url: '/system/:hash.:extension', hash_secret: ENV.fetch('PAPERCLIP_SECRET')
+  has_attached_file :data, url: '/system/:hash.:extension', hash_secret: ENV['PAPERCLIP_SECRET']
   validates_attachment_content_type :data, content_type: FILE_TYPES
 end
