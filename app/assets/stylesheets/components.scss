@@ -858,10 +858,24 @@ a.status__content__spoiler-link {
   font-size:12px;
   font-weight: 500;
   border-bottom: 2px solid lighten($color1, 8%);
+  transition: all 200ms linear;
+
+  .fa {
+    font-weight: 400;
+  }
 
   &.active {
     border-bottom: 2px solid $color4;
     color: $color4;
+  }
+
+  &:hover, &:focus, &:active {
+    background: lighten($color1, 14%);
+    transition: all 100ms linear;
+  }
+
+  span {
+    display: none;
   }
 }
 
@@ -869,6 +883,22 @@ a.status__content__spoiler-link {
   .tabs-bar {
     margin: 10px;
     margin-bottom: 0;
+  }
+
+  .search {
+    margin-bottom: 10px;
+  }
+}
+
+@media screen and (min-width: 600px) {
+  .tabs-bar__link {
+    .fa {
+      margin-right: 5px;
+    }
+
+    span {
+      display: inline;
+    }
   }
 }
 
@@ -1721,7 +1751,6 @@ button.active i.fa-retweet {
 
 .search {
   position: relative;
-  margin-bottom: 10px;
 }
 
 .search__input {
