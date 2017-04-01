@@ -15,5 +15,6 @@ List of Known Mastodon instances
 | [memetastic.space](https://memetastic.space) |Memes|Yes|
 | [social.diskseven.com](https://social.diskseven.com) |Single user|No|
 | [social.gestaltzerfall.net](https://social.gestaltzerfall.net) |Single user|No|
+| [mastodon.xyz](https://mastodon.xyz) |N/A|Yes|
 
 Let me know if you start running one so I can add it to the list! (Alternatively, add it yourself as a pull request).
