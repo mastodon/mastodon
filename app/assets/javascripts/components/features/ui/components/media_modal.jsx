@@ -1,4 +1,3 @@
-import Lightbox from '../../../components/lightbox';
 import LoadingIndicator from '../../../components/loading_indicator';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import ImmutablePropTypes from 'react-immutable-proptypes';
