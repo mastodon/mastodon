@@ -722,6 +722,11 @@ a.status__content__spoiler-link {
   flex-direction: column;
 }
 
+.column:not(:last-child) {
+    width: calc(50% - 330px);
+    min-width: 330px;
+}
+
 .ui {
   flex: 0 0 auto;
   display: flex;
