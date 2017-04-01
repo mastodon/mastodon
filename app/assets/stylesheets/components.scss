@@ -719,12 +719,9 @@ a.status__content__spoiler-link {
   box-sizing: border-box;
   background: $color1;
   display: flex;
+  flex-grow: 1;
+  flex-shrink: 1;
   flex-direction: column;
-}
-
-.column:not(:last-child) {
-    width: calc(50% - 330px);
-    min-width: 330px;
 }
 
 .ui {
