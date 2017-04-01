@@ -47,7 +47,9 @@ const UI = React.createClass({
       this.dragTargets.push(e.target);
     }
 
-    this.setState({ draggingOver: true });
+    if (e.dataTransfer && e.dataTransfer.files.length > 0) {
+      this.setState({ draggingOver: true });
+    }
   },
 
   handleDragOver (e) {

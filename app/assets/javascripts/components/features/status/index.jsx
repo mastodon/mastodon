@@ -28,7 +28,7 @@ import {
 import { ScrollContainer } from 'react-router-scroll';
 import ColumnBackButton from '../../components/column_back_button';
 import StatusContainer from '../../containers/status_container';
-import { openMedia } from '../../actions/modal';
+import { openModal } from '../../actions/modal';
 import { isMobile } from '../../is_mobile'
 
 const makeMapStateToProps = () => {
@@ -99,7 +99,7 @@ const Status = React.createClass({
   },
 
   handleOpenMedia (media, index) {
-    this.props.dispatch(openMedia(media, index));
+    this.props.dispatch(openModal('MEDIA', { media, index }));
   },
 
   handleReport (status) {

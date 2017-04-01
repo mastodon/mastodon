@@ -1311,7 +1311,7 @@ button.active i.fa-retweet {
   color: $color3;
 }
 
-.modal-container--nav {
+.modal-container__nav {
   color: $color5;
 }
 
@@ -1846,5 +1846,49 @@ button.active i.fa-retweet {
   &:hover, &:active, &:focus {
     color: lighten($color2, 4%);
     text-decoration: underline;
+  }
+}
+
+.modal-root__overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 9999;
+  opacity: 0;
+  background: rgba($color8, 0.7);
+}
+
+.modal-root__container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  align-content: space-around;
+  z-index: 9999;
+  opacity: 0;
+  pointer-events: none;
+  user-select: none;
+}
+
+.modal-root__modal {
+  pointer-events: auto;
+  display: flex;
+}
+
+.media-modal {
+  max-width: 80vw;
+  max-height: 80vh;
+  position: relative;
+
+  img, video {
+    max-width: 80vw;
+    max-height: 80vh;
   }
 }
