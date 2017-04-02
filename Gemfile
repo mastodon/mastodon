@@ -51,6 +51,7 @@ gem 'simple-navigation'
 gem 'statsd-instrument'
 gem 'ruby-oembed', require: 'oembed'
 gem 'rack-timeout'
+gem 'tzinfo-data'
 
 gem 'react-rails'
 gem 'browserify-rails'
