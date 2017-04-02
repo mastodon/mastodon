@@ -1,24 +1,31 @@
-FROM ruby:2.3.1
+FROM ruby:2.3.1-alpine
 
-ENV RAILS_ENV=production
-ENV NODE_ENV=production
-
-RUN echo 'deb http://httpredir.debian.org/debian jessie-backports main contrib non-free' >> /etc/apt/sources.list
-RUN curl -sL https://deb.nodesource.com/setup_4.x | bash -
-RUN apt-get update -qq && apt-get install -y build-essential libpq-dev libxml2-dev libxslt1-dev nodejs ffmpeg && rm -rf /var/lib/apt/lists/*
-RUN npm install -g npm@3 && npm install -g yarn
-RUN mkdir /mastodon
+ENV RAILS_ENV=production \
+    NODE_ENV=production
 
 WORKDIR /mastodon
 
-ADD Gemfile /mastodon/Gemfile
-ADD Gemfile.lock /mastodon/Gemfile.lock
-RUN bundle install --deployment --without test development
+COPY . /mastodon
 
-ADD package.json /mastodon/package.json
-ADD yarn.lock /mastodon/yarn.lock
-RUN yarn
+RUN BUILD_DEPS=" \
+    postgresql-dev \
+    libxml2-dev \
+    libxslt-dev \
+    build-base" \
+ && apk -U upgrade && apk add \
+    $BUILD_DEPS \
+    nodejs \
+    libpq \
+    libxml2 \
+    libxslt \
+    ffmpeg \
+    file \
+    imagemagick \
+ && npm install -g npm@3 && npm install -g yarn \
+ && bundle install --deployment --without test development \
+ && yarn \
+ && npm cache clean \
+ && apk del $BUILD_DEPS \
+ && rm -rf /tmp/* /var/cache/apk/*
 
-ADD . /mastodon
-
-VOLUME ["/mastodon/public/system", "/mastodon/public/assets"]
+VOLUME /mastodon/public/system /mastodon/public/assets
