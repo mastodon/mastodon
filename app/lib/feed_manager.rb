@@ -52,7 +52,7 @@ class FeedManager
     timeline_key = key(:home, into_account.id)
 
     from_account.statuses.limit(MAX_ITEMS).each do |status|
-      next if filter?(:home, status, into_account)
+      next if status.direct_visibility? || filter?(:home, status, into_account)
       redis.zadd(timeline_key, status.id, status.id)
     end
 
