@@ -1,6 +1,8 @@
 List of Known Mastodon instances
 ==========================
 
+There is also a list at [instances.mastodon.xyz](https://instances.mastodon.xyz) showing realtime information about instances.
+
 | Name | Theme/Notes, if applicable | Open Registrations | IPv6 |
 | -------------|-------------|---|---|
 | [mastodon.social](https://mastodon.social) |Flagship, quick updates|Yes|No|
