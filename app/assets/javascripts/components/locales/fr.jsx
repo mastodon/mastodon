@@ -33,6 +33,7 @@ const fr = {
   "navigation_bar.logout": "Déconnexion",
   "navigation_bar.preferences": "Préférences",
   "navigation_bar.public_timeline": "Fil public",
+  "navigation_bar.local_timeline": "Fil local",
   "notification.favourite": "{name} a ajouté à ses favoris :",
   "notification.follow": "{name} vous suit.",
   "notification.mention": "{name} vous a mentionné⋅e :",
