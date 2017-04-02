@@ -9,7 +9,7 @@ List of Known Mastodon instances
 | [animalliberation.social](https://animalliberation.social) |Animal Rights|Yes|No|
 | [socially.constructed.space](https://socially.constructed.space) |Single user|No|No|
 | [epiktistes.com](https://epiktistes.com) |N/A|Yes|No|
-| [gay.crime.team](https://gay.crime.team) |N/A|Yes(?)|No|
+| [gay.crime.team](https://gay.crime.team) |the place for doin' gay crime online (please don't actually do crime here)|Yes|No|
 | [icosahedron.website](https://icosahedron.website/) |Icosahedron-themed (well, visually), open registration.|Yes|No|
 | [memetastic.space](https://memetastic.space) |Memes|Yes|No|
 | [social.diskseven.com](https://social.diskseven.com) |Single user|No|No (DNS entry but no response)|
