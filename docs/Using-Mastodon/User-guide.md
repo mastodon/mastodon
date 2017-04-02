@@ -69,7 +69,7 @@ This will cause the body of your post to be hidden behind a "Show More" button i
 
 ![animation showing content warnings in the timeline](screenshots/cw-toot.gif)
 
-You can also mark images as "sensitive" to hide them from view by default. To find out how to do this, see the [Posting Images](User-guide.md#posting-images) section of this user guide.
+**NOTE** that this will not hide images included in your post - images can be marked as "sensitive" separately to hide them from view until clicked on. To find out how to do this, see the [Posting Images](User-guide.md#posting-images) section of this user guide.
 
 ##### Hashtags
 
