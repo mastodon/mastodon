@@ -23,7 +23,6 @@ RUN BUILD_DEPS=" \
     imagemagick \
  && npm install -g npm@3 && npm install -g yarn \
  && bundle install --deployment --without test development \
- && gem install tzinfo-data \
  && yarn \
  && npm cache clean \
  && apk del $BUILD_DEPS \
