@@ -719,8 +719,7 @@ a.status__content__spoiler-link {
   box-sizing: border-box;
   background: $color1;
   display: flex;
-  flex-grow: 1;
-  flex-shrink: 1;
+  flex: 1 1 0;
   flex-direction: column;
 }
 
@@ -751,19 +750,6 @@ a.status__content__spoiler-link {
   text-align: center;
   font-size: 16px;
   border-bottom: 2px solid transparent;
-}
-
-@media screen and (min-width: 2560px) {
-  .columns-area {
-    justify-content: center;
-  }
-
-  .column, .drawer {
-    width: 350px;
-    border-radius: 4px;
-    height: 90vh;
-    margin-top: 5vh;
-  }
 }
 
 .drawer__pager {
