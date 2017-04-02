@@ -7,7 +7,7 @@ class Admin::ReportsController < ApplicationController
   layout 'admin'
 
   def index
-    @reports = Report.includes(:account, :target_account).paginate(page: params[:page], per_page: 40)
+    @reports = Report.includes(:account, :target_account).order('id desc').paginate(page: params[:page], per_page: 40)
     @reports = params[:action_taken].present? ? @reports.resolved : @reports.unresolved
   end
 

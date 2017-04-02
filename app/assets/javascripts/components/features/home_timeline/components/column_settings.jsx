@@ -6,7 +6,7 @@ import SettingToggle from '../../notifications/components/setting_toggle';
 import SettingText from './setting_text';
 
 const messages = defineMessages({
-  filter_regex: { id: 'home.column_settings.filter_regex', defaultMessage: 'Filter by regular expressions' }
+  filter_regex: { id: 'home.column_settings.filter_regex', defaultMessage: 'Filter out by regular expressions' }
 });
 
 const outerStyle = {
@@ -44,7 +44,7 @@ const ColumnSettings = React.createClass({
           <span className='column-settings--section' style={sectionStyle}><FormattedMessage id='home.column_settings.basic' defaultMessage='Basic' /></span>
 
           <div style={rowStyle}>
-            <SettingToggle settings={settings} settingKey={['shows', 'reblog']} onChange={onChange} label={<FormattedMessage id='home.column_settings.show_reblogs' defaultMessage='Show reblogs' />} />
+            <SettingToggle settings={settings} settingKey={['shows', 'reblog']} onChange={onChange} label={<FormattedMessage id='home.column_settings.show_reblogs' defaultMessage='Show boosts' />} />
           </div>
 
           <div style={rowStyle}>
