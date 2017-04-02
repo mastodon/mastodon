@@ -12,6 +12,7 @@ class ApplicationController < ActionController::Base
   rescue_from ActionController::RoutingError, with: :not_found
   rescue_from ActiveRecord::RecordNotFound, with: :not_found
   rescue_from ActionController::InvalidAuthenticityToken, with: :unprocessable_entity
+  rescue_from Rack::Timeout::RequestExpiryError, Rack::Timeout::RequestTimeoutError, with: :request_timeout
 
   before_action :store_current_location, except: :raise_not_found, unless: :devise_controller?
   before_action :set_locale
@@ -66,6 +67,13 @@ class ApplicationController < ActionController::Base
     respond_to do |format|
       format.any  { head 422 }
       format.html { render 'errors/422', layout: 'error', status: 422 }
+    end
+  end
+
+  def request_timeout
+    respond_to do |format|
+      format.any  { head 503 }
+      format.html { render 'errors/503', layout: 'error', status: 503 }
     end
   end
 

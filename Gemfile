@@ -50,6 +50,7 @@ gem 'rails-settings-cached'
 gem 'simple-navigation'
 gem 'statsd-instrument'
 gem 'ruby-oembed', require: 'oembed'
+gem 'rack-timeout'
 
 gem 'react-rails'
 gem 'browserify-rails'
@@ -89,5 +90,4 @@ group :production do
   gem 'rails_12factor'
   gem 'redis-rails'
   gem 'lograge'
-  gem 'rack-timeout'
 end
