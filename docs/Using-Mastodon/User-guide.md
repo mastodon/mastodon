@@ -14,7 +14,8 @@ Mastodon User's Guide
   * [Following Other Users](User-guide.md#following-other-users)
   * [Notifications](User-guide.md#notifications)
   * [Mobile Apps](User-guide.md#mobile-apps)
-  * [The Public Timeline](User-guide.md#the-public-timeline)
+  * [The Federated Timeline](User-guide.md#the-federated-timeline)
+  * [The Local Timeline](User-guide.md#the-local-timeline)
   * [Searching](User-guide.md#searching)
 * [Privacy, Safety and Security](User-guide.md#privacy-safety-and-security)
   * [Two-Factor Authentication](User-guide.md#two-factor-authentication)
@@ -91,7 +92,7 @@ You can also attach video files or GIF animations to Toots. However, there is a 
 
 #### Following Other Users
 
-Following another user will make all of their toots as well as other users' toots which they [boost](User-guide.md#boosts-and-favourites) in your Home column. This gives you a separate timeline from the [public timeline](User-guide.md#the-public-timeline) in which you can read what particular people are up to without the noise of general conversation.
+Following another user will make all of their toots as well as other users' toots which they [boost](User-guide.md#boosts-and-favourites) in your Home column. This gives you a separate timeline from the [federated timeline](User-guide.md#the-federated-timeline) in which you can read what particular people are up to without the noise of general conversation.
 
 ![Follow icon](screenshots/follow.png) In order to follow a user, click their name or avatar to open their profile, then click the Follow icon in the top left of their profile view.
 
@@ -117,11 +118,15 @@ When someone follows your account or requests to follow you, mentions your user 
 
 There are no official mobile Mastodon apps for iOS or Android at this point. However, there are several third-party apps in development; you can find a list of these [here](Apps.md).
 
-#### The Public Timeline
+#### The Federated Timeline
 
-Mastodon has a "Public" timeline, which is a collection of all public toots made by all local users as well as posts from remote users that are federated (because someone on your instance follows the remote user making the post). This is a good way to meet new people to follow or interact with, but can be overwhelming especially if there's a lot of activity.
+Mastodon has a "Federated" timeline, which is a collection of all public toots made by all local users as well as posts from remote users that are federated (because someone on your instance follows the remote user making the post). This is a good way to meet new people to follow or interact with, but can be overwhelming especially if there's a lot of activity.
 
-![Public Timeline icon](screenshots/public-timeline.png) To view the public timeline, click the "Public Timeline" icon in your Compose column or the respective button on the Getting Started panel. To hide the public timeline again, simply click the "Back" link at the top of the public column while you're viewing it.
+![Federated Timeline icon](screenshots/federated-timeline.png) To view the federated timeline, click the "Federated Timeline" icon in your Compose column or the respective button on the Getting Started panel. To hide the federated timeline again, simply click the "Back" link at the top of the column while you're viewing it.
+
+#### The Local Timeline
+
+In addition to the Federated Timeline, there's also a "Local" timeline, which only shows public toots made by users on your home instance. This is quieter than the Federated timeline, and useful if you want to stick close to your instance's community without having too much noise from outside. To view the Local Timeline, click the ![Menu icon](screenshots/compose-menu.png) Menu icon on the Compose pane and then select "Local Timeline" on the rightmost column.
 
 #### Searching
 
