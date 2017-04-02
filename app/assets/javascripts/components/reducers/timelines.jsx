@@ -7,7 +7,9 @@ import {
   TIMELINE_EXPAND_SUCCESS,
   TIMELINE_EXPAND_REQUEST,
   TIMELINE_EXPAND_FAIL,
-  TIMELINE_SCROLL_TOP
+  TIMELINE_SCROLL_TOP,
+  TIMELINE_CONNECT,
+  TIMELINE_DISCONNECT
 } from '../actions/timelines';
 import {
   REBLOG_SUCCESS,
@@ -35,6 +37,7 @@ const initialState = Immutable.Map({
     path: () => '/api/v1/timelines/home',
     next: null,
     isLoading: false,
+    online: false,
     loaded: false,
     top: true,
     unread: 0,
@@ -45,6 +48,7 @@ const initialState = Immutable.Map({
     path: () => '/api/v1/timelines/public',
     next: null,
     isLoading: false,
+    online: false,
     loaded: false,
     top: true,
     unread: 0,
@@ -56,6 +60,7 @@ const initialState = Immutable.Map({
     next: null,
     params: { local: true },
     isLoading: false,
+    online: false,
     loaded: false,
     top: true,
     unread: 0,
@@ -300,6 +305,10 @@ export default function timelines(state = initialState, action) {
     return filterTimelines(state, action.relationship, action.statuses);
   case TIMELINE_SCROLL_TOP:
     return updateTop(state, action.timeline, action.top);
+  case TIMELINE_CONNECT:
+    return state.setIn([action.timeline, 'online'], true);
+  case TIMELINE_DISCONNECT:
+    return state.setIn([action.timeline, 'online'], false);
   default:
     return state;
   }

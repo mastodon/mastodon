@@ -4,7 +4,9 @@ import {
   refreshTimelineSuccess,
   updateTimeline,
   deleteFromTimelines,
-  refreshTimeline
+  refreshTimeline,
+  connectTimeline,
+  disconnectTimeline
 } from '../actions/timelines';
 import { updateNotifications, refreshNotifications } from '../actions/notifications';
 import createBrowserHistory from 'history/lib/createBrowserHistory';
@@ -70,6 +72,14 @@ const Mastodon = React.createClass({
 
     this.subscription = createStream(accessToken, 'user', {
 
+      connected () {
+        store.dispatch(connectTimeline('home'));
+      },
+
+      disconnected () {
+        store.dispatch(disconnectTimeline('home'));
+      },
+
       received (data) {
         switch(data.event) {
         case 'update':
@@ -85,6 +95,7 @@ const Mastodon = React.createClass({
       },
 
       reconnected () {
+        store.dispatch(connectTimeline('home'));
         store.dispatch(refreshTimeline('home'));
         store.dispatch(refreshNotifications());
       }

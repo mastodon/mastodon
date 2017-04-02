@@ -5,7 +5,9 @@ import Column from '../ui/components/column';
 import {
   refreshTimeline,
   updateTimeline,
-  deleteFromTimelines
+  deleteFromTimelines,
+  connectTimeline,
+  disconnectTimeline
 } from '../../actions/timelines';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import ColumnBackButtonSlim from '../../components/column_back_button_slim';
@@ -43,6 +45,18 @@ const PublicTimeline = React.createClass({
     }
 
     subscription = createStream(accessToken, 'public', {
+
+      connected () {
+        dispatch(connectTimeline('public'));
+      },
+
+      reconnected () {
+        dispatch(connectTimeline('public'));
+      },
+
+      disconnected () {
+        dispatch(disconnectTimeline('public'));
+      },
 
       received (data) {
         switch(data.event) {
