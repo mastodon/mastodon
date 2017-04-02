@@ -161,6 +161,8 @@ Private toots do not federate to other instances, unless you @mention a remote u
 
 Private toots cannot be boosted. If someone you follow makes a private toot, it will appear in your timeline with a padlock icon in place of the Boost icon. *NOTE* that remote instances may not respect this.
 
+*Direct* messages are only visible to users you have @mentioned in them. This does *not* federate to protect your privacy (as other instances may ignore the "Direct" status and display the messages as public if they were to receive them), even if you have @mentioned a remote user.
+
 To summarise:
 
 Toot Privacy | Visible on Profile | Visible on Public Timeline | Federates to other instances
@@ -168,14 +170,15 @@ Toot Privacy | Visible on Profile | Visible on Public Timeline | Federates to ot
 Public | Anyone incl. anonymous viewers | Yes | Yes
 Unlisted | Anyone incl. anonymous viewers | No | Yes
 Private | Followers only | No | Only remote @mentions
+Direct | No | No | No
 
 #### Blocking
 
-You can block a user to stop them contacting you. To do this, you can click or tap the Menu icon on either a toot of theirs or their profile view and select "Block". *NOTE* that this will *NOT* stop them from seeing your public toots; it will merely hide any and all communication from them.
+You can block a user to stop them contacting you. To do this, you can click or tap the Menu icon on either a toot of theirs or their profile view and select "Block". *NOTE* that this will stop them from seeing your public toots while they are logged in, but they *will* be able to see your public toots by simply opening your profile in another browser that isn't logged into Mastodon (or logged into a different account that you have not blocked).
 
 Mentions, favourites, boosts or any other interaction with you from a blocked user will be hidden from your view. You will not see replies to a blocked person, even if the reply mentions you, nor will you see their toots if someone boosts them. You will not see toots mentioning a blocked person except in the public timeline.
 
-The blocked user will not be notified of your blocking them. They will be removed from your followers, *but* will still be able to see any public toots you make. Blocks do not federate across instances [TODO: what does this specifically mean in user interactions?].
+The blocked user will not be notified of your blocking them. They will be removed from your followers, *but* will still be able to see any public toots you make. Blocks do not federate across instances.
 
 #### Reporting Toots or Users
 
