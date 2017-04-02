@@ -75,7 +75,7 @@ const fr = {
   "privacy.public.long": "Afficher dans les fils publics",
   "privacy.unlisted.short": "Non-listé",
   "privacy.unlisted.long": "Ne pas afficher dans les fils publics",
-  "privacy.private.short": "Privé"
+  "privacy.private.short": "Privé",
   "privacy.private.long": "N’afficher que pour vos abonné⋅e⋅s",
   "privacy.direct.short": "Direct",
   "privacy.direct.long": "N’afficher que pour les personnes mentionné⋅e⋅s",
