@@ -99,6 +99,10 @@ If their account is locked (which is shown with a padlock icon ![Padlock icon](s
 
 Once you follow a user, the Follow icon will be highlighted in blue on their profile ![Following icon](screenshots/following-icon.png); you can unfollow them again by clicking this.
 
+If you know someone's user name you can also open their profile for following by entering it in the [Search box](User-guide.md#searching) in the Compose column. This also works for remote users, though depending on whether they are known to your home instance you might have to enter their full name including the domain (e.g. "gargron@mastodon.social") into the search box before their profile will appear in the suggestions.
+
+Alternately, if you already have a user's profile open in a separate browser tab, most GNU Social-related networks should have a "Follow" or "Subscribe" button on their profile page. This will ask you to enter the full user name to follow **from** (ie. if your account is on mastodon.social you would want to enter this as myaccount@mastodon.social)
+
 #### Notifications
 
 When someone follows your account or requests to follow you, mentions your user name (either as an initial message or in response to one of your toots) or boosts or favourites one of your toots, you will receive a notification for this. These will appear as desktop notifications on your computer (if your web browser supports this and you've enabled them) as well as in your "Notifications" column.
