@@ -61,7 +61,7 @@ Similarly, in order to start a conversation with another user, just mention thei
 
 When you want to post something that you don't want to be immediately visible - for example, spoilers for that film that's just out, or some personal thoughts that contain [triggers](http://www.bbc.co.uk/news/blogs-ouch-26295437), you can "hide" it behind a Content Warning.
 
-To do this, select the "Hide text behind warning" switch under the Compose box. This will add another text box labeled "Content warning"; you should enter a short summary of what the "body" of your post contains here while your actual post goes into the "What is on your mind?" box as normal.
+To do this, click the ![CW icon](screenshots/compose-cw.png) "CW" switch under the Compose box. This will add another text box labeled "Content warning"; you should enter a short summary of what the "body" of your post contains here while your actual post goes into the "What is on your mind?" box as normal.
 
 ![animation showing how to enable content warnings](screenshots/content-warning.gif)
 
@@ -83,11 +83,11 @@ Additionally you can *boost* toots by clicking the "circular arrows" icon. Boost
 
 #### Posting Images
 
-![Image icon](screenshots/image-icon.png) In order to post an image, simply click or tap the "image" icon in your Compose column and select a file to upload.
+![Image icon](screenshots/compose-media.png) In order to post an image, simply click or tap the "image" icon in your Compose column and select a file to upload.
 
-If the image is "not safe for work" or has otherwise sensitive content, you can select the "Mark media as sensitive" tick which appears once you have added an image. This will hide the image in your post by default, making it clickable to show the preview. This is the "visual" version of [content warnings](User-guide.md#content-warnings) and could be combined with them if there is text to accompany the image - otherwise it's fine to just mark the image as sensitive and make the body of your post the content warning.
+If the image is "not safe for work" or has otherwise sensitive content, you can select the ![NSFW toggle](screenshots/compose-nsfw.png) "NSFW" button which appears once you have added an image. This will hide the image in your post by default, making it clickable to show the preview. This is the "visual" version of [content warnings](User-guide.md#content-warnings) and could be combined with them if there is text to accompany the image - otherwise it's fine to just mark the image as sensitive and make the body of your post the content warning.
 
-You can also attach video files or GIF animations to Toots. However, there is a 4MB file size limit for these files. Additionally, for videos to work correctly for most users they should be in .webm format.
+You can also attach video files or GIF animations to Toots. However, there is a 4MB file size limit for these files and videos must be in .webm or .mp4 format.
 
 #### Following Other Users
 
@@ -99,9 +99,9 @@ If their account is locked (which is shown with a padlock icon ![Padlock icon](s
 
 Once you follow a user, the Follow icon will be highlighted in blue on their profile ![Following icon](screenshots/following-icon.png); you can unfollow them again by clicking this.
 
-If you know someone's user name you can also open their profile for following by entering it in the [Search box](User-guide.md#searching) in the Compose column. This also works for remote users, though depending on whether they are known to your home instance you might have to enter their full name including the domain (e.g. "gargron@mastodon.social") into the search box before their profile will appear in the suggestions.
+If you know someone's user name you can also open their profile for following by entering it in the [Search box](User-guide.md#searching) in the Compose column. This also works for remote users, though depending on whether they are known to your home instance you might have to enter their full name including the domain (e.g. `gargron@mastodon.social`) into the search box before their profile will appear in the suggestions.
 
-Alternately, if you already have a user's profile open in a separate browser tab, most GNU Social-related networks should have a "Follow" or "Subscribe" button on their profile page. This will ask you to enter the full user name to follow **from** (ie. if your account is on mastodon.social you would want to enter this as myaccount@mastodon.social)
+Alternately, if you already have a user's profile open in a separate browser tab, most GNU Social-related networks should have a "Follow" or "Subscribe" button on their profile page. This will ask you to enter the full user name to follow **from** (ie. if your account is on mastodon.social you would want to enter this as `myaccount@mastodon.social`)
 
 #### Notifications
 
@@ -149,19 +149,19 @@ To allow you more control over who can see your toots, Mastodon supports "privat
 
 #### Toot Privacy
 
-Toot privacy is handled independently of account privacy, and individually for each toot. The three tiers of visibility for toots are Public (default), Unlisted or Private. The Compose pane has two separate toggles for this; "Mark as private" and "Do not display in public timeline". Changes to these options are remembered, i.e. if you make one private toot you will need to disable the switch again to make public toots.
+Toot privacy is handled independently of account privacy, and individually for each toot. The three tiers of visibility for toots are Public (default), Unlisted or Private. In order to select your privacy level, click the ![Globe icon](screenshots/compose-privacy.png) globe icon. Changes to this setting are remembered between posts, i.e. if you make one private toot you will need to disable the switch again to make public toots.
 
-*Public* is the default status of toots on accounts not set to private; a toot is public if neither of the two flags are set. Public toots are visible to any other user on the public timeline, federate to other GNU Social instances without restriction and appear on your user profile page to anyone including search engine bots and visitors who aren't logged into a Mastodon account.
+**Public** is the default status of toots on accounts not set to private; a toot is public if neither of the two flags are set. Public toots are visible to any other user on the public timeline, federate to other GNU Social instances without restriction and appear on your user profile page to anyone including search engine bots and visitors who aren't logged into a Mastodon account.
 
-*Unlisted* toots are toggled with the "Do not display in public timeline" option in the Compose pane. They are visible to anyone following you and appear on your profile page to the public even without a Mastodon login, but do *not* appear to anyone viewing the Public Timeline while logged into Mastodon.
+**Unlisted** toots are toggled with the "Do not display in public timeline" option in the Compose pane. They are visible to anyone following you and appear on your profile page to the public even without a Mastodon login, but do *not* appear to anyone viewing the Public Timeline while logged into Mastodon.
 
-*Private* toots, finally, are toggled with the "Mark as private" switch. Private toots do not appear in the public timeline nor on your profile page to anyone viewing it unless they are on your Followers list. This means the option is of very limited use if your account is not also set to be private (as anyone can follow you without confirmation and thus see your private toots). However the separation of this means that if you *do* set your entire account to private, you can switch this option off on a toot to make unlisted or even public toots from your otherwise private account.
+**Private** toots, finally, are toggled with the "Mark as private" switch. Private toots do not appear in the public timeline nor on your profile page to anyone viewing it unless they are on your Followers list. This means the option is of very limited use if your account is not also set to be private (as anyone can follow you without confirmation and thus see your private toots). However the separation of this means that if you *do* set your entire account to private, you can switch this option off on a toot to make unlisted or even public toots from your otherwise private account.
 
 Private toots do not federate to other instances, unless you @mention a remote user. In this case, they will federate to their instance *and may appear there PUBLICLY*. A warning will be displayed if you're composing a private toot that will federate to another instance.
 
-Private toots cannot be boosted. If someone you follow makes a private toot, it will appear in your timeline with a padlock icon in place of the Boost icon. *NOTE* that remote instances may not respect this.
+Private toots cannot be boosted. If someone you follow makes a private toot, it will appear in your timeline with a padlock icon in place of the Boost icon. **NOTE** that remote instances may not respect this.
 
-*Direct* messages are only visible to users you have @mentioned in them. This does *not* federate to protect your privacy (as other instances may ignore the "Direct" status and display the messages as public if they were to receive them), even if you have @mentioned a remote user.
+**Direct** messages are only visible to users you have @mentioned in them. This does *not* federate to protect your privacy (as other instances may ignore the "Direct" status and display the messages as public if they were to receive them), even if you have @mentioned a remote user.
 
 To summarise:
 
@@ -174,7 +174,9 @@ Direct | No | No | No
 
 #### Blocking
 
-You can block a user to stop them contacting you. To do this, you can click or tap the Menu icon on either a toot of theirs or their profile view and select "Block". *NOTE* that this will stop them from seeing your public toots while they are logged in, but they *will* be able to see your public toots by simply opening your profile in another browser that isn't logged into Mastodon (or logged into a different account that you have not blocked).
+You can block a user to stop them contacting you. To do this, you can click or tap the Menu icon on either a toot of theirs or their profile view and select "Block".
+
+**NOTE** that this will stop them from seeing your public toots while they are logged in, but they *will* be able to see your public toots by simply opening your profile in another browser that isn't logged into Mastodon (or logged into a different account that you have not blocked).
 
 Mentions, favourites, boosts or any other interaction with you from a blocked user will be hidden from your view. You will not see replies to a blocked person, even if the reply mentions you, nor will you see their toots if someone boosts them. You will not see toots mentioning a blocked person except in the public timeline.
 
