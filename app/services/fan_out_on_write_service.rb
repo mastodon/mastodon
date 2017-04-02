@@ -6,7 +6,11 @@ class FanOutOnWriteService < BaseService
   def call(status)
     deliver_to_self(status) if status.account.local?
 
-    status.direct_visibility? ? deliver_to_mentioned_followers(status) : deliver_to_followers(status)
+    if status.direct_visibility?
+      deliver_to_mentioned_followers(status)
+    else
+      deliver_to_followers(status)
+    end
 
     return if status.account.silenced? || !status.public_visibility? || status.reblog?
 

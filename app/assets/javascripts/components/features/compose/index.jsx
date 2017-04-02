@@ -72,7 +72,7 @@ const Compose = React.createClass({
 
           <Motion defaultStyle={{ x: -100 }} style={{ x: spring(showSearch ? 0 : -100, { stiffness: 210, damping: 20 }) }}>
             {({ x }) =>
-              <div className='drawer__inner darker' style={{ transform: `translateX(${x}%)` }}>
+              <div className='drawer__inner darker' style={{ transform: `translateX(${x}%)`, visibility: x === -100 ? 'hidden' : 'visible' }}>
                 <SearchResultsContainer />
               </div>
             }
