@@ -5,6 +5,9 @@ class AboutController < ApplicationController
 
   def index
     @description = Setting.site_description
+
+    @user = User.new
+    @user.build_account
   end
 
   def more

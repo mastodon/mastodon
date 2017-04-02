@@ -24,7 +24,7 @@
   .screenshot-with-signup
     .mascot= image_tag 'fluffy-elephant-friend.png'
 
-    = simple_form_for(:user, url: user_registration_path) do |f|
+    = simple_form_for(@user, url: user_registration_path) do |f|
       = f.simple_fields_for :account do |ff|
         = ff.input :username, autofocus: true, placeholder: t('simple_form.labels.defaults.username'), required: true, input_html: { 'aria-label' => t('simple_form.labels.defaults.username') }
 
