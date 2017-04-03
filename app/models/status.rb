@@ -188,7 +188,7 @@ class Status < ApplicationRecord
   end
 
   before_validation do
-    text.strip!
+    text&.strip!
     spoiler_text&.strip!
 
     self.reply                  = !(in_reply_to_id.nil? && thread.nil?) unless reply
