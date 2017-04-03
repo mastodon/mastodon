@@ -1,9 +1,11 @@
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import MediaModal from './media_modal';
+import OnboardingModal from './onboarding_modal';
 import { TransitionMotion, spring } from 'react-motion';
 
 const MODAL_COMPONENTS = {
-  'MEDIA': MediaModal
+  'MEDIA': MediaModal,
+  'ONBOARDING': OnboardingModal
 };
 
 const ModalRoot = React.createClass({

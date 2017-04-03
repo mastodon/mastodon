@@ -8,6 +8,7 @@ import {
   connectTimeline,
   disconnectTimeline
 } from '../actions/timelines';
+import { showOnboardingOnce } from '../actions/onboarding';
 import { updateNotifications, refreshNotifications } from '../actions/notifications';
 import createBrowserHistory from 'history/lib/createBrowserHistory';
 import {
@@ -106,6 +107,8 @@ const Mastodon = React.createClass({
     if (typeof window.Notification !== 'undefined' && Notification.permission === 'default') {
       Notification.requestPermission();
     }
+
+    store.dispatch(showOnboardingOnce());
   },
 
   componentWillUnmount () {

@@ -7,6 +7,7 @@ class HomeController < ApplicationController
     @body_classes = 'app-body'
     @token        = find_or_create_access_token.token
     @web_settings = Web::Setting.find_by(user: current_user)&.data || {}
+    @admin        = Account.find_local(Setting.site_contact_username)
   end
 
   private
