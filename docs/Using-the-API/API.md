@@ -112,21 +112,21 @@ Returns an array of [Statuses](#status).
     GET /api/v1/accounts/:id/follow
     GET /api/v1/accounts/:id/unfollow
 
-Returns the target [Account](#account].
+Returns the target [Account](#account).
 
 #### Blocking/unblocking an account:
 
     GET /api/v1/accounts/:id/block
     GET /api/v1/accounts/:id/unblock
 
-Returns the target [Account](#account].
+Returns the target [Account](#account).
 
 #### Muting/unmuting an account:
 
     GET /api/v1/accounts/:id/mute
     GET /api/v1/accounts/:id/unmute
 
-Returns the target [Account](#account].
+Returns the target [Account](#account).
 
 #### Getting an account's relationships:
 
@@ -314,7 +314,7 @@ Returns a [Status](#status).
 
 Returns a [Context](#context).
 
-#### Getting a status card:
+#### Getting a card associated with a status:
 
     GET /api/v1/statuses/:id/card
 
@@ -419,7 +419,7 @@ ___
 
 | Attribute                | Description |
 | ------------------------ | ----------- |
-| `url`                    | The url of the associated status |
+| `url`                    | The url associated with the card |
 | `title`                  | The title of the card |
 | `description`            | The card description |
 | `image`                  | The image associated with the card, if any |
