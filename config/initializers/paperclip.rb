@@ -38,4 +38,6 @@ if ENV['S3_ENABLED'] == 'true'
     Paperclip::Attachment.default_options[:url]           = ':s3_alias_url'
     Paperclip::Attachment.default_options[:s3_host_alias] = ENV['S3_CLOUDFRONT_HOST']
   end
+else
+  Paperclip::Attachment.default_options[:path]           = (ENV['PAPERCLIP_ROOT'] || ':rails_root/public/system') + '/:class/:attachment/:id_partition/:style/:filename'
 end
