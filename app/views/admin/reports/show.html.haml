@@ -27,7 +27,7 @@
         = link_to remove_admin_report_path(@report, status_id: status.id), method: :post, class: 'icon-button', style: 'font-size: 24px; width: 24px; height: 24px', title: 'Delete' do
           = fa_icon 'trash'
 
-- unless @report.action_taken?
+- if !@report.action_taken?
   %hr/
 
   %div{ style: 'overflow: hidden' }
@@ -36,3 +36,9 @@
       = link_to 'Suspend account', suspend_admin_report_path(@report), method: :post, class: 'button'
     %div{ style: 'float: left' }
       = link_to 'Mark as resolved', resolve_admin_report_path(@report), method: :post, class: 'button'
+- elsif !@report.action_taken_by_account.nil?
+  %hr/
+
+  %p
+    %strong Action taken by:
+    = @report.action_taken_by_account.acct
