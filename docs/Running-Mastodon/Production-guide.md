@@ -95,7 +95,6 @@ Setup a user and database for Mastodon:
 In the prompt:
 
     CREATE USER mastodon CREATEDB;
-    CREATE DATABASE mastodon_production OWNER mastodon;
     \q
 
 ## Rbenv
@@ -210,7 +209,7 @@ Restart=always
 WantedBy=multi-user.target
 ```
 
-This allows you to `sudo systemctl enable mastodon-*.service` and `sudo systemctl start mastodon-*.service` to get things going.
+This allows you to `sudo systemctl enable /etc/systemd/system/mastodon-*.service` and `sudo systemctl start mastodon-web.service mastodon-sidekiq.service mastodon-streaming.service` to get things going.
 
 ## Cronjobs
 
