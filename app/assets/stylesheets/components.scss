@@ -1149,10 +1149,9 @@ a.status__content__spoiler-link {
 
 .getting-started {
   box-sizing: border-box;
-  overflow-y: auto;
   padding-bottom: 235px;
   background: image-url('mastodon-getting-started.png') no-repeat 0 100% local;
-  height: 100%;
+  flex: 1 0 auto;
 
   p {
     color: $color2;
