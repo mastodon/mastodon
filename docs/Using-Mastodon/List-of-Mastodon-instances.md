@@ -20,5 +20,6 @@ There is also a list at [instances.mastodon.xyz](https://instances.mastodon.xyz)
 | [social.targaryen.house](https://social.targaryen.house) |N/A|Yes|No|
 | [social.mashek.net](https://social.mashek.net) |Themed and customised for Mashekstein Labs community. Selectively federates.|Yes|No|
 | [masto.themimitoof.fr](https://masto.themimitoof.fr) |N/A|Yes|Yes|
+| [social.imirhil.fr](https://social.imirhil.fr) |N/A|No|Yes|
 
 Let me know if you start running one so I can add it to the list! (Alternatively, add it yourself as a pull request).
