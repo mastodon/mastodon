@@ -509,7 +509,7 @@ ___
 | `favourited`             | Whether the authenticated user has favourited the status |
 | `sensitive`              | Whether media attachments should be hidden by default |
 | `spoiler_text`           | If not empty, warning text that should be displayed before the actual content |
-| `visibility`             | One of: `public`, `unlisted`, `private` |
+| `visibility`             | One of: `public`, `unlisted`, `private`, `direct` |
 | `media_attachments`      | An array of [Attachments](#attachment) |
 | `mentions`               | An array of [Mentions](#mention) |
 | `tags`                   | An array of [Tags](#tag) |
