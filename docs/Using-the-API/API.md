@@ -74,31 +74,31 @@ ___
 
 #### Fetching an account:
 
-**GET /api/v1/accounts/:id**
+    GET /api/v1/accounts/:id
 
 Returns an [Account](#account).
 
 #### Getting the current user:
 
-**GET /api/v1/accounts/verify_credentials**
+    GET /api/v1/accounts/verify_credentials
 
 Returns the authenticated user's [Account](#account).
 
 #### Getting an account's followers:
 
-**GET /api/v1/accounts/:id/followers**
+    GET /api/v1/accounts/:id/followers
 
 Returns an array of [Accounts](#account).
 
 #### Getting who account is following:
 
-**GET /api/v1/accounts/:id/following**
+    GET /api/v1/accounts/:id/following
 
 Returns an array of [Accounts](#account).
 
 #### Getting an account's statuses:
 
-**GET /api/v1/accounts/:id/statuses**
+    GET /api/v1/accounts/:id/statuses
 
 Query parameters:
 
@@ -109,28 +109,28 @@ Returns an array of [Statuses](#status).
 
 #### Following/unfollowing an account:
 
-**GET /api/v1/accounts/:id/follow**<br>
-**GET /api/v1/accounts/:id/unfollow**
+    GET /api/v1/accounts/:id/follow
+    GET /api/v1/accounts/:id/unfollow
 
 Returns the target [Account](#account].
 
 #### Blocking/unblocking an account:
 
-**GET /api/v1/accounts/:id/block**<br>
-**GET /api/v1/accounts/:id/unblock**
+    GET /api/v1/accounts/:id/block
+    GET /api/v1/accounts/:id/unblock
 
 Returns the target [Account](#account].
 
 #### Muting/unmuting an account:
 
-**GET /api/v1/accounts/:id/mute**<br>
-**GET /api/v1/accounts/:id/unmute**
+    GET /api/v1/accounts/:id/mute
+    GET /api/v1/accounts/:id/unmute
 
 Returns the target [Account](#account].
 
 #### Getting an account's relationships:
 
-**GET /api/v1/accounts/relationships**
+    GET /api/v1/accounts/relationships
 
 Query parameters:
 
@@ -140,7 +140,7 @@ Returns an array of [Relationships](#relationships) of the current user to a lis
 
 #### Searching for accounts:
 
-**GET /api/v1/accounts/search**
+    GET /api/v1/accounts/search
 
 Query parameters:
 
@@ -154,7 +154,7 @@ Will lookup an account remotely if the search term is in the `username@domain` f
 
 #### Registering an application:
 
-**POST /api/v1/apps**
+    POST /api/v1/apps
 
 Form data:
 
@@ -172,7 +172,7 @@ These values should be requested in the app itself from the API for each new app
 
 #### Fetching a user's blocks:
 
-**GET /api/v1/blocks**
+    GET /api/v1/blocks
 
 Returns an array of [Accounts](#account) blocked by the authenticated user.
 
@@ -180,7 +180,7 @@ Returns an array of [Accounts](#account) blocked by the authenticated user.
 
 #### Fetching a user's favourites:
 
-**GET /api/v1/favourites**
+    GET /api/v1/favourites
 
 Returns an array of [Statuses](#status) favourited by the authenticated user.
 
@@ -188,14 +188,14 @@ Returns an array of [Statuses](#status) favourited by the authenticated user.
 
 #### Fetching a list of follow requests:
 
-**GET /api/v1/follow_requests**
+    GET /api/v1/follow_requests
 
 Returns an array of [Accounts](#account) which have requested to follow the authenticated user.
 
 #### Authorizing or rejecting follow requests:
 
-**POST /api/v1/follow_requests/authorize**<br>
-**POST /api/v1/follow_requests/reject**
+    POST /api/v1/follow_requests/authorize
+    POST /api/v1/follow_requests/reject
 
 Form data:
 
@@ -207,7 +207,7 @@ Returns an empty object.
 
 #### Following a remote user:
 
-**POST /api/v1/follows**
+    POST /api/v1/follows
 
 Form data:
 
@@ -219,7 +219,7 @@ Returns the local representation of the followed account, as an [Account](#accou
 
 #### Getting instance information:
 
-**GET /api/v1/instance**
+    GET /api/v1/instance
 
 Returns the current [Instance](#instance).
 Does not require authentication.
@@ -228,7 +228,7 @@ Does not require authentication.
 
 #### Uploading a media attachment:
 
-**POST /api/v1/media**
+    POST /api/v1/media
 
 Form data:
 
@@ -240,7 +240,7 @@ Returns an [Attachment](#attachment) that can be used when creating a status.
 
 #### Fetching a user's mutes:
 
-**GET /api/v1/mutes**
+    GET /api/v1/mutes
 
 Returns an array of [Accounts](#account) muted by the authenticated user.
 
@@ -248,19 +248,19 @@ Returns an array of [Accounts](#account) muted by the authenticated user.
 
 #### Fetching a user's notifications:
 
-**GET /api/v1/notifications**
+    GET /api/v1/notifications
 
 Returns a list of [Notifications](#notification) for the authenticated user.
 
 #### Getting a single notification:
 
-**GET /api/v1/notifications/:id**
+    GET /api/v1/notifications/:id
 
 Returns the [Notification](#notification).
 
 #### Clearing notifications:
 
-**POST /api/v1/notifications/clear**
+    POST /api/v1/notifications/clear
 
 Deletes all notifications from the Mastodon server for the authenticated user.
 Returns an empty object.
@@ -269,13 +269,13 @@ Returns an empty object.
 
 #### Fetching a user's reports:
 
-**GET /api/v1/reports**
+    GET /api/v1/reports
 
 Returns a list of [Reports](#report) made by the authenticated user.
 
 #### Reporting a user:
 
-**POST /api/v1/reports**
+    POST /api/v1/reports
 
 Form data:
 
@@ -289,7 +289,7 @@ Returns the finished [Report](#report).
 
 #### Searching for content:
 
-**GET /api/v1/search**
+    GET /api/v1/search
 
 Form data:
 
@@ -304,32 +304,32 @@ Otherwise, it will do a local account and hashtag search.
 
 #### Fetching a status:
 
-**GET /api/v1/statuses/:id**
+    GET /api/v1/statuses/:id
 
 Returns a [Status](#status).
 
 #### Getting status context:
 
-**GET /api/v1/statuses/:id/contexts**
+    GET /api/v1/statuses/:id/contexts
 
 Returns a [Context](#context).
 
 #### Getting a status card:
 
-**GET /api/v1/statuses/:id/card**
+    GET /api/v1/statuses/:id/card
 
 Returns a [Card](#card).
 
 #### Getting who reblogged/favourited a status:
 
-**GET /api/v1/statuses/:id/reblogged_by**<br>
-**GET /api/v1/statuses/:id/favourited_by**
+    GET /api/v1/statuses/:id/reblogged_by
+    GET /api/v1/statuses/:id/favourited_by
 
 Returns an array of [Accounts](#account).
 
 #### Posting a new status:
 
-**POST /api/v1/statuses**
+    POST /api/v1/statuses
 
 Form data:
 
@@ -344,21 +344,21 @@ Returns the new [Status](#status).
 
 #### Deleting a status:
 
-**DELETE /api/v1/statuses/:id**
+    DELETE /api/v1/statuses/:id
 
 Returns an empty object.
 
 #### Reblogging/unreblogging a status:
 
-**POST /api/vi/statuses/:id/reblog**
-**POST /api/vi/statuses/:id/unreblog**
+    POST /api/vi/statuses/:id/reblog
+    POST /api/vi/statuses/:id/unreblog
 
 Returns the target [Status](#status).
 
 #### Favouriting/unfavouriting a status:
 
-**POST /api/vi/statuses/:id/favourite**
-**POST /api/vi/statuses/:id/unfavourite**
+    POST /api/vi/statuses/:id/favourite
+    POST /api/vi/statuses/:id/unfavourite
 
 Returns the target [Status](#status).
 
@@ -366,9 +366,9 @@ Returns the target [Status](#status).
 
 #### Retrieving a timeline:
 
-**GET /api/v1/timelines/home**<br>
-**GET /api/v1/timelines/public**<br>
-**GET /api/v1/timelines/tag/:hashtag**
+    GET /api/v1/timelines/home
+    GET /api/v1/timelines/public
+    GET /api/v1/timelines/tag/:hashtag
 
 Query parameters:
 
