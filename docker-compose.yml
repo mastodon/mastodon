@@ -2,10 +2,10 @@ version: '2'
 services:
   db:
     restart: always
-    image: postgres
+    image: postgres:alpine
   redis:
     restart: always
-    image: redis
+    image: redis:alpine
   web:
     restart: always
     build: .

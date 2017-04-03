@@ -22,13 +22,13 @@ fr:
     links: Liens
     source_code: Code source
     status_count_after: posts
-    status_count_before: Ayant publiés
+    status_count_before: Ayant publié
     terms: Conditions d’utilisation
-    user_count_after: utilisateurs
+    user_count_after: utilisateurs⋅trices
     user_count_before: Abrite
   accounts:
     follow: Suivre
-    followers: Abonnés
+    followers: Abonné⋅es
     following: Abonnements
     nothing_here: Rien à voir ici !
     people_followed_by: Personnes suivies par %{name}
@@ -45,7 +45,7 @@ fr:
   auth:
     change_password: Changer de mot de passe
     didnt_get_confirmation: Vous n’avez pas reçu les consignes de confirmation ?
-    forgot_password: Mode passe oublié ?
+    forgot_password: Mot de passe oublié ?
     login: Se connecter
     logout: Se déconnecter
     register: S’inscrire
@@ -72,23 +72,23 @@ fr:
     preface: Vous pouvez importer certaines données comme les personnes que vous suivez ou bloquez sur votre compte sur cette instance à partir de fichiers crées sur une autre instance.
     success: Vos données ont été importées avec succès et seront traités en temps et en heure
     types:
-      blocking: Liste d'utilisateurs bloqués
-      following: Liste d'utilisateurs suivis
+      blocking: Liste d'utilisateurs⋅trices bloqué⋅es
+      following: Liste d'utilisateurs⋅trices suivi⋅es
     upload: Importer
-  landing_strip_html: <strong>%{name}</strong> utilise <strong>%{domain}</strong>. Vous pouvez le/la suivre et intéragir si vous possédez un compte quelque part dans le "fediverse". Si ce n'est pas le cas, vous pouvez <a href="%{sign_up_path}">en créer un ici</a>.
+  landing_strip_html: <strong>%{name}</strong> utilise <strong>%{domain}</strong>. Vous pouvez le/la suivre et interagir si vous possédez un compte quelque part dans le "fediverse". Si ce n'est pas le cas, vous pouvez <a href="%{sign_up_path}">en créer un ici</a>.
   notification_mailer:
     digest:
       body: 'Voici ce que vous avez raté sur ${instance} depuis votre dernière visite (%{}):'
       mention: '%{name} vous a mentionné⋅e'
       new_followers_summary:
-        one: Vous avez un nouvel abonné! Youpi!
-        other: Vous avez %{count} nouveaux abonnés! Incroyable!
+        one: Vous avez un⋅e nouvel⋅le abonné⋅e ! Youpi !
+        other: Vous avez %{count} nouveaux abonné⋅es ! Incroyable !
       subject:
         one: "Une nouvelle notification depuis votre dernière visite \U0001F418"
         other: "%{count} nouvelles notifications depuis votre dernière visite \U0001F418"
     favourite:
-      body: "%{name} a ajouté votre statut à ses favoris :"
-      subject: "%{name} a ajouté votre statut à ses favoris"
+      body: "%{name} a ajouté votre post à ses favoris :"
+      subject: "%{name} a ajouté votre post à ses favoris"
     follow:
       body: "%{name} vous suit !"
       subject: "%{name} vous suit"
@@ -111,7 +111,7 @@ fr:
     back: Retour vers Mastodon
     edit_profile: Modifier le profil
     export: Export de données
-    import: Importer des données
+    import: Import de données
     preferences: Préférences
     settings: Réglages
     two_factor_auth: Identification à deux facteurs (Two-factor auth)
@@ -120,7 +120,7 @@ fr:
     over_character_limit: limite de caractères dépassée de %{max} caractères
     show_more: Montrer plus
     visibilities:
-      private: Abonnés uniquement
+      private: Abonné⋅es uniquement
       public: Public
       unlisted: Public sans être affiché sur le fil public
   stream_entries:
@@ -134,9 +134,9 @@ fr:
     description_html: Si vous activez <strong>l'identification à deux facteurs</strong> vous devrez être en posession de votre téléphone afin de générer un code de connexion.
     disable: Désactiver
     enable: Activer
-    instructions_html: "<strong>Scannez ce QR code grâce à Google Authenticator or une application similaire sur votre téléphone</strong>. Désormais, cette application générera des jetons que vous devrez saisir à chaque connexion"
+    instructions_html: "<strong>Scannez ce QR code grâce à Google Authenticator or une application similaire sur votre téléphone</strong>. Désormais, cette application générera des jetons que vous devrez saisir à chaque connexion."
     plaintext_secret_html: 'Code secret en clair: <samp>%{secret}</samp>'
-    warning: Si vous ne pouvez pas configurer une application d'authentification maintenant, vous devriez cliquer sur "Désactiver" pour ne pas bloquer l'accès à votre compte
+    warning: Si vous ne pouvez pas configurer une application d'authentification maintenant, vous devriez cliquer sur "Désactiver" pour ne pas bloquer l'accès à votre compte.
   users:
     invalid_email: L'adresse e-mail est invalide
     invalid_otp_token: Le code d'identification à deux facteurs est invalide
