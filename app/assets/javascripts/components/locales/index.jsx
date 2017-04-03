@@ -14,7 +14,7 @@ const locales = {
   hu,
   fr,
   pt,
-  uk
+  uk,
   fi
 };
 
