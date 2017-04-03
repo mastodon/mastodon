@@ -12,13 +12,19 @@ class Api::V1::ReportsController < ApiController
   end
 
   def create
-    status_ids = params[:status_ids].is_a?(Enumerable) ? params[:status_ids] : [params[:status_ids]]
+    status_ids = report_params[:status_ids].is_a?(Enumerable) ? report_params[:status_ids] : [report_params[:status_ids]]
 
     @report = Report.create!(account: current_account,
-                             target_account: Account.find(params[:account_id]),
+                             target_account: Account.find(report_params[:account_id]),
                              status_ids: Status.find(status_ids).pluck(:id),
-                             comment: params[:comment])
+                             comment: report_params[:comment])
 
     render :show
+  end
+
+  private
+
+  def report_params
+    params.permit(:account_id, :comment, status_ids: [])
   end
 end
