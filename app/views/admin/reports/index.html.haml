@@ -8,20 +8,25 @@
       %li= filter_link_to 'Unresolved', action_taken: nil
       %li= filter_link_to 'Resolved', action_taken: '1'
 
-%table.table
-  %thead
-    %tr
-      %th ID
-      %th Target
-      %th Reported by
-      %th Comment
-      %th
-  %tbody
-    - @reports.each do |report|
+= form_tag do
+
+  %table.table
+    %thead
       %tr
-        %td= "##{report.id}"
-        %td= link_to report.target_account.acct, admin_account_path(report.target_account.id)
-        %td= link_to report.account.acct, admin_account_path(report.account.id)
-        %td= truncate(report.comment, length: 30, separator: ' ')
-        %td= table_link_to 'circle', 'View', admin_report_path(report)
+        %th
+        %th ID
+        %th Target
+        %th Reported by
+        %th Comment
+        %th
+    %tbody
+      - @reports.each do |report|
+        %tr
+          %td= check_box_tag 'select', report.id
+          %td= "##{report.id}"
+          %td= link_to report.target_account.acct, admin_account_path(report.target_account.id)
+          %td= link_to report.account.acct, admin_account_path(report.account.id)
+          %td= truncate(report.comment, length: 30, separator: ' ')
+          %td= table_link_to 'circle', 'View', admin_report_path(report)
+
 = will_paginate @reports, pagination_options
