@@ -1,0 +1,164 @@
+---
+fi:
+  about:
+    about_mastodon: Mastodon on <em>ilmainen, avoimeen lähdekoodiin perustuva</em> sosiaalinen verkosto. <em>Hajautettu</em> vaihtoehto kaupallisille alustoille, se välttää eiskit yhden yrityksen monopolisoinnin sinun viestinnässäsi. Valitse palvelin mihin luotat &mdash; minkä tahansa valitset, voit vuorovaikuttaa muiden kanssa. Kuka tahansa voi luoda Mastodon palvelimen ja ottaa osaa <em>sosiaaliseen verkkoon</em> saumattomasti.
+    about_this: Tietoja tästä palvelimesta
+    apps: Ohjelmat
+    business_email: 'Business e-mail:'
+    contact: Ota yhteyttä
+    description_headline: Mikä on %{domain}?
+    domain_count_after: muut palvelimet
+    domain_count_before: Yhdistyneenä
+    features:
+      api: Avoin API ohjelmille ja palveluille
+      blocks: Rikkaat esto ja hiljennys työkalut
+      characters: 500 kirjainta per viesti
+      chronology: Aikajana on kronologisessa järjestyksessä
+      ethics: 'Eettinen suunnittelu: ei mainoksia, no seurantaa'
+      gifv: GIFV settejä ja lyhyitä videoita
+      privacy: Julkaisu kohtainen yksityisyys aseuts
+      public: Julkiset aikajanat
+    features_headline: Mikä erottaa Mastodonin muista
+    get_started: Aloita käyttö
+    links: Linkit
+    other_instances: Muut palvelimet
+    source_code: Lähdekoodi
+    status_count_after: statukset
+    status_count_before: Kuka loi
+    terms: Ehdot
+    user_count_after: käyttäjät
+    user_count_before: Koti käyttäjälle
+  accounts:
+    follow: Seuraa
+    followers: Seuraajat
+    following: Seuratut
+    nothing_here: Täällä ei ole mitään!
+    people_followed_by: Henkilöitä joita %{name} seuraa
+    people_who_follow: Henkilöt jotka seuraa %{name}
+    posts: Postaukset
+    remote_follow: Etäseuranta
+    unfollow: Lopeta seuraaminen
+  application_mailer:
+    settings: 'Muokkaa sähköposti asetuksia: %{link}'
+    signature: Mastodon ilmoituksia palvelimelta %{instance}
+    view: 'Katso:'
+  applications:
+    invalid_url: Annettu URL on väärä
+  auth:
+    change_password: Tunnukset
+    didnt_get_confirmation: Etkö saanut varmennus ohjeita?
+    forgot_password: Unohditko salasanasi?
+    login: Kirjaudu sisään
+    logout: Kirjaudu ulos
+    register: Rekisteröidy
+    resend_confirmation: Lähetä varmennus ohjeet uudestaan
+    reset_password: Palauta Salasana
+    set_new_password: Aseta uusi salasana
+  authorize_follow:
+    error: Valitettavasti tapahtui virhe etätilin haussa
+    follow: Seuraa
+    prompt_html: 'Sinä (<strong>%{self}</strong>) olet pyytänyt lupaa seurata:'
+    title: Seuraa %{acct}
+  datetime:
+    distance_in_words:
+      about_x_hours: "%{count}t"
+      about_x_months: "%{count}kk"
+      about_x_years: "%{count}v"
+      almost_x_years: "%{count}v"
+      half_a_minute: Juuri nyt
+      less_than_x_minutes: "%{count}m"
+      less_than_x_seconds: Juuri nyt
+      over_x_years: "%{count}v"
+      x_days: "%{count}pv"
+      x_minutes: "%{count}m"
+      x_months: "%{count}kk"
+      x_seconds: "%{count}s"
+  exports:
+    blocks: Estosi
+    csv: CSV
+    follows: Seurattavat
+    storage: Mediasi
+  generic:
+    changes_saved_msg: Muutokset onnistuneesti tallenettu!
+    powered_by: powered by %{link}
+    save_changes: Tallenna muutokset
+    validation_errors:
+      one: Jokin ei ole viellä oikein! Katso virhe alapuolelta
+      other: Jokin ei ole viellä oikein! Katso %{count} virhettä alapuolelta
+  imports:
+    preface: Voit tuoda tiettyä dataa kaikista ihmisistä joita seuraat tai estät tilillesi tälle palvelimelle tiedostoista, jotka on luotu toisella palvelimella
+    success: Datasi on onnistuneesti ladattu ja käsitellään pian
+    types:
+      blocking: Esto lista
+      following: Seuratut lista
+    upload: Lähetä
+  landing_strip_html: <strong>%{name}</strong> is a user on <strong>%{domain}</strong>. You can follow them or interact with them if you have an account anywhere in the fediverse. If you don't, you can <a href="%{sign_up_path}">sign up here</a>.
+  notification_mailer:
+    digest:
+      body: 'Here is a brief summary of what you missed on %{instance} since your last visit on %{since}:'
+      mention: "%{name} mentioned you in:"
+      new_followers_summary:
+        one: You have acquired one new follower! Yay!
+        other: You have gotten %{count} new followers! Amazing!
+      subject:
+        one: "1 new notification since your last visit \U0001F418"
+        other: "%{count} new notifications since your last visit \U0001F418"
+    favourite:
+      body: 'Your status was favourited by %{name}:'
+      subject: "%{name} favourited your status"
+    follow:
+      body: "%{name} is now following you!"
+      subject: "%{name} is now following you"
+    follow_request:
+      body: "%{name} has requested to follow you"
+      subject: 'Pending follower: %{name}'
+    mention:
+      body: 'You were mentioned by %{name} in:'
+      subject: You were mentioned by %{name}
+    reblog:
+      body: 'Your status was boosted by %{name}:'
+      subject: "%{name} boosted your status"
+  pagination:
+    next: Next
+    prev: Prev
+  remote_follow:
+    acct: Enter your username@domain you want to follow from
+    missing_resource: Could not find the required redirect URL for your account
+    proceed: Proceed to follow
+    prompt: 'You are going to follow:'
+  settings:
+    authorized_apps: Authorized apps
+    back: Back to Mastodon
+    edit_profile: Edit profile
+    export: Data export
+    import: Import
+    preferences: Preferences
+    settings: Settings
+    two_factor_auth: Two-factor Authentication
+  statuses:
+    open_in_web: Open in web
+    over_character_limit: character limit of %{max} exceeded
+    show_more: Show more
+    visibilities:
+      private: Only show to followers
+      public: Public
+      unlisted: Public, but do not display on the public timeline
+  stream_entries:
+    click_to_show: Click to show
+    reblogged: boosted
+    sensitive_content: Sensitive content
+  time:
+    formats:
+      default: "%b %d, %Y, %H:%M"
+  two_factor_auth:
+    description_html: If you enable <strong>two-factor authentication</strong>, logging in will require you to be in possession of your phone, which will generate tokens for you to enter.
+    disable: Disable
+    enable: Enable
+    instructions_html: "<strong>Scan this QR code into Google Authenticator or a similiar app on your phone</strong>. From now on, that app will generate tokens that you will have to enter when logging in."
+    plaintext_secret_html: 'Plain-text secret: <samp>%{secret}</samp>'
+    warning: If you cannot configure an authenticator app right now, you should click "disable" or you won't be able to login.
+  users:
+    invalid_email: The e-mail address is invalid
+    invalid_otp_token: Invalid two-factor code
+  will_paginate:
+    page_gap: "&hellip;"
