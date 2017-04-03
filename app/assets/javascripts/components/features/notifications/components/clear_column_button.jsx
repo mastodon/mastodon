@@ -9,7 +9,7 @@ const iconStyle = {
 };
 
 const ClearColumnButton = ({ onClick }) => (
-  <div className='column-icon' style={iconStyle} onClick={onClick}>
+  <div className='column-icon' tabindex='0' style={iconStyle} onClick={onClick}>
     <i className='fa fa-trash' />
   </div>
 );
