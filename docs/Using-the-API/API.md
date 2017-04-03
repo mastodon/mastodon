@@ -338,7 +338,7 @@ Form data:
 - `media_ids` (optional): array of media IDs to attach to the status (maximum 4)
 - `sensitive` (optional): set this to mark the media of the status as NSFW
 - `spoiler_text` (optional): text to be shown as a warning before the actual content
-- `visibility` (optional): either `private`, `unlisted` or `public`
+- `visibility` (optional): either "direct", "private", "unlisted" or "public"
 
 Returns the new [Status](#status).
 
