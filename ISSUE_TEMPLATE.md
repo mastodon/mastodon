@@ -2,4 +2,4 @@
 
 * * * *
 
-- [ ] I searched or or browsed the repo’s other issues to ensure this is not a duplicate.
+- [ ] I searched or browsed the repo’s other issues to ensure this is not a duplicate.
