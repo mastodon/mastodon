@@ -5,7 +5,7 @@ require 'singleton'
 class FeedManager
   include Singleton
 
-  MAX_ITEMS = 800
+  MAX_ITEMS = 400
 
   def key(type, id)
     "feed:#{type}:#{id}"
@@ -50,9 +50,9 @@ class FeedManager
 
   def merge_into_timeline(from_account, into_account)
     timeline_key = key(:home, into_account.id)
-    query        = from_account.statuses.limit(MAX_ITEMS)
+    query        = from_account.statuses.limit(FeedManager::MAX_ITEMS / 4)
 
-    if redis.zcard(timeline_key) >= FeedManager::MAX_ITEMS
+    if redis.zcard(timeline_key) >= FeedManager::MAX_ITEMS / 4
       oldest_home_score = redis.zrange(timeline_key, 0, 0, with_scores: true)&.first&.last&.to_i || 0
       query = query.where('id > ?', oldest_home_score)
     end
