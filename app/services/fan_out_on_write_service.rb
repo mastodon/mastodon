@@ -4,6 +4,8 @@ class FanOutOnWriteService < BaseService
   # Push a status into home and mentions feeds
   # @param [Status] status
   def call(status)
+    raise Mastodon::RaceConditionError if status.visibility.nil?
+
     deliver_to_self(status) if status.account.local?
 
     if status.direct_visibility?
