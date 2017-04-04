@@ -54,9 +54,9 @@ class FanOutOnWriteService < BaseService
 
     payload = FeedManager.instance.inline_render(nil, 'api/v1/statuses/show', status)
 
-    status.tags.find_each do |tag|
-      FeedManager.instance.broadcast("hashtag:#{tag.name}", event: 'update', payload: payload)
-      FeedManager.instance.broadcast("hashtag:#{tag.name}:local", event: 'update', payload: payload) if status.account.local?
+    status.tags.pluck(:name) do |name|
+      FeedManager.instance.broadcast("hashtag:#{name}", event: 'update', payload: payload)
+      FeedManager.instance.broadcast("hashtag:#{name}:local", event: 'update', payload: payload) if status.account.local?
     end
   end
 
