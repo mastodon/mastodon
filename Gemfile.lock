@@ -387,6 +387,9 @@ GEM
       connection_pool (~> 2.2, >= 2.2.0)
       rack-protection (>= 1.5.0)
       redis (~> 3.2, >= 3.2.1)
+    sidekiq-unique-jobs (4.0.18)
+      sidekiq (>= 2.6)
+      thor
     simple-navigation (4.0.3)
       activesupport (>= 2.3.2)
     simple_form (3.2.1)
@@ -510,6 +513,7 @@ DEPENDENCIES
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
   sidekiq
+  sidekiq-unique-jobs
   simple-navigation
   simple_form
   simplecov
