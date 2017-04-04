@@ -118,7 +118,7 @@ class FeedManager
 
   def filter_from_mentions?(status, receiver)
     check_for_blocks = [status.account_id]
-    check_for_blocks.concat(status.mentions.select('account_id').map(&:account_id))
+    check_for_blocks.concat(status.mentions.pluck(:account_id))
     check_for_blocks.concat([status.in_reply_to_account]) if status.reply? && !status.in_reply_to_account_id.nil?
 
     should_filter   = receiver.id == status.account_id                                      # Filter if I'm mentioning myself
