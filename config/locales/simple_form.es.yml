@@ -1,6 +1,9 @@
 ---
 es:
   simple_form:
+    hints:
+      defaults:
+        locked: Requerida que aceptes a los seguidores manualmente y por defecto la privacidad de cada post será para los followers solo 
     labels:
       defaults:
         avatar: Avatar
@@ -11,13 +14,18 @@ es:
         email: Dirección de correo electrónico
         header: Img. cabecera
         locale: Idioma
+        locked: Hacer la cuenta privada
         new_password: Nueva contraseña
         note: Biografía
         password: Contraseña
         username: Nombre de usuario
+      interactions:
+        must_be_follower: Bloquear notificaciones de personas que no te siguen
+        must_be_following: BBloquear notificaciones de personas que no sigues
       notification_emails:
         favourite: Enviar correo electrónico cuando alguien de a favorito en su publicación
         follow: Enviar correo electrónico cuando alguien le siga
+        follow_request: Enviar correo electrónico cuando alguien te pida seguirte
         mention: Enviar correo electrónico cuando alguien le mencione
         reblog: Enviar correo electrónico cuando alguien comparta su publicación
     'no': 'No'
