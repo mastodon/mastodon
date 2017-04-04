@@ -37,5 +37,6 @@ There is also a list at [instances.mastodon.xyz](https://instances.mastodon.xyz)
 | [social.lkw.tf](https://social.lkw.tf)|N/A|No|No|
 | [manowar.social](https://manowar.social)|N/A|No|No|
 | [social.ballpointcarrot.net](https://social.ballpointcarrot.net)|Down at time of entry|No|No|
+| [social.nasqueron.org](https://social.nasqueron.org) |Dreamers, open source developers, free culture|Yes|Yes|
 
 Let me know if you start running one so I can add it to the list! (Alternatively, add it yourself as a pull request).
