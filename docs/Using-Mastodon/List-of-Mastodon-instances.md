@@ -11,6 +11,7 @@ There is also a list at [instances.mastodon.xyz](https://instances.mastodon.xyz)
 | [animalliberation.social](https://animalliberation.social) |Animal Rights|Yes|No|
 | [socially.constructed.space](https://socially.constructed.space) |Single user|No|No|
 | [epiktistes.com](https://epiktistes.com) |N/A|Yes|No|
+| [fern.surgeplay.com](https://fern.surgeplay.com) |Federates everywhere, Minecraft-focused|Yes|No
 | [gay.crime.team](https://gay.crime.team) |the place for doin' gay crime online (please don't actually do crime here)|Yes|No|
 | [icosahedron.website](https://icosahedron.website/) |Icosahedron-themed (well, visually), open registration.|Yes|No|
 | [memetastic.space](https://memetastic.space) |Memes|Yes|No|
