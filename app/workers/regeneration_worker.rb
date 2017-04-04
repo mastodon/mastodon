@@ -5,7 +5,7 @@ class RegenerationWorker
 
   sidekiq_options queue: 'pull', backtrace: true
 
-  def perform(account_id, timeline_type)
-    PrecomputeFeedService.new.call(timeline_type, Account.find(account_id))
+  def perform(account_id, _ = :home)
+    PrecomputeFeedService.new.call(:home, Account.find(account_id))
   end
 end
