@@ -96,6 +96,13 @@ table {
   background: transparent;
 }
 
+* {
+  -ms-overflow-style: none;
+}
+#if-supports::webkit-scrollbar, * {
+  -ms-overflow-style: unset;
+}
+
 body {
   font-family: 'Roboto', sans-serif;
   background: $color1 image-url('background-photo.jpeg');
