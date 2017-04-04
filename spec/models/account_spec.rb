@@ -223,7 +223,7 @@ RSpec.describe Account, type: :model do
       expect(account).to model_have_error_on_field(:username)
     end
 
-    it 'is invalid is the username already exists' do
+    it 'is invalid if the username already exists' do
       account_1 = Fabricate(:account, username: 'the_doctor')
       account_2 = Fabricate.build(:account, username: 'the_doctor')
       account_2.valid?
