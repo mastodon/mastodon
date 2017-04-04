@@ -11,11 +11,11 @@ class FeedManager
     "feed:#{type}:#{id}"
   end
 
-  def filter?(timeline_type, status, receiver)
+  def filter?(timeline_type, status, receiver_id)
     if timeline_type == :home
-      filter_from_home?(status, receiver)
+      filter_from_home?(status, receiver_id)
     elsif timeline_type == :mentions
-      filter_from_mentions?(status, receiver)
+      filter_from_mentions?(status, receiver_id)
     else
       false
     end
@@ -91,39 +91,39 @@ class FeedManager
     Redis.current
   end
 
-  def filter_from_home?(status, receiver)
+  def filter_from_home?(status, receiver_id)
     return true if status.reply? && status.in_reply_to_id.nil?
 
     check_for_mutes = [status.account_id]
     check_for_mutes.concat([status.reblog.account_id]) if status.reblog?
 
-    return true if receiver.muting?(check_for_mutes)
+    return true if Mute.where(account_id: receiver_id, target_account_id: check_for_mutes).any?
 
     check_for_blocks = status.mentions.map(&:account_id)
     check_for_blocks.concat([status.reblog.account_id]) if status.reblog?
 
-    return true if receiver.blocking?(check_for_blocks)
+    return true if Block.where(account_id: receiver_id, target_account_id: check_for_blocks).any?
 
-    if status.reply? && !status.in_reply_to_account_id.nil?                   # Filter out if it's a reply
-      should_filter   = !receiver.following?(status.in_reply_to_account)      # and I'm not following the person it's a reply to
-      should_filter &&= !(receiver.id == status.in_reply_to_account_id)       # and it's not a reply to me
-      should_filter &&= !(status.account_id == status.in_reply_to_account_id) # and it's not a self-reply
+    if status.reply? && !status.in_reply_to_account_id.nil?                                                              # Filter out if it's a reply
+      should_filter   = !Follow.where(account_id: receiver_id, target_account_id: status.in_reply_to_account_id).exists? # and I'm not following the person it's a reply to
+      should_filter &&= !(receiver_id == status.in_reply_to_account_id)                                                  # and it's not a reply to me
+      should_filter &&= !(status.account_id == status.in_reply_to_account_id)                                            # and it's not a self-reply
       return should_filter
-    elsif status.reblog?                                                      # Filter out a reblog
-      return status.reblog.account.blocking?(receiver)                        # or if the author of the reblogged status is blocking me
+    elsif status.reblog?                                                                                                 # Filter out a reblog
+      return Block.where(account_id: status.reblog.account_id, target_account_id: receiver_id).exists?                   # or if the author of the reblogged status is blocking me
     end
 
     false
   end
 
-  def filter_from_mentions?(status, receiver)
+  def filter_from_mentions?(status, receiver_id)
     check_for_blocks = [status.account_id]
     check_for_blocks.concat(status.mentions.select('account_id').map(&:account_id))
     check_for_blocks.concat([status.in_reply_to_account]) if status.reply? && !status.in_reply_to_account_id.nil?
 
-    should_filter   = receiver.id == status.account_id                                      # Filter if I'm mentioning myself
-    should_filter ||= receiver.blocking?(check_for_blocks)                                  # or it's from someone I blocked, in reply to someone I blocked, or mentioning someone I blocked
-    should_filter ||= (status.account.silenced? && !receiver.following?(status.account))    # of if the account is silenced and I'm not following them
+    should_filter   = receiver_id == status.account_id                                                                                   # Filter if I'm mentioning myself
+    should_filter ||= Block.where(account_id: receiver_id, target_account_id: check_for_blocks).any?                                     # or it's from someone I blocked, in reply to someone I blocked, or mentioning someone I blocked
+    should_filter ||= (status.account.silenced? && !Follow.where(account_id: receiver_id, target_account_id: status.account_id).exists?) # of if the account is silenced and I'm not following them
 
     should_filter
   end
