@@ -221,7 +221,7 @@ I recommend creating a couple cronjobs for the following tasks:
 
 You may want to run `which bundle` first and copypaste that full path instead of simply `bundle` in the above commands because cronjobs usually don't have all the paths set. The time and intervals of when to run these jobs are up to you, but once every day should be enough for all.
 
-You can edit the cronjob file for the `mastodon` user by running `sudo crontab -e mastodon` (outside of the mastodon user).
+You can edit the cronjob file for the `mastodon` user by running `sudo crontab -e -u mastodon` (outside of the mastodon user).
 
 ## Things to look out for when upgrading Mastodon
 
