@@ -209,4 +209,73 @@ RSpec.describe Account, type: :model do
       expect(subject.match('Check this out https://medium.com/@alice/some-article#.abcdef123')).to be_nil
     end
   end
+
+  describe 'validations' do
+    it 'has a valid fabricator' do
+      account = Fabricate.build(:account)
+      account.valid?
+      expect(account).to be_valid
+    end
+
+    it 'is invalid without a username' do
+      account = Fabricate.build(:account, username: nil)
+      account.valid?
+      expect(account).to model_have_error_on_field(:username)
+    end
+
+    it 'is invalid is the username already exists' do
+      account_1 = Fabricate(:account, username: 'the_doctor')
+      account_2 = Fabricate.build(:account, username: 'the_doctor')
+      account_2.valid?
+      expect(account_2).to model_have_error_on_field(:username)
+    end
+
+    context 'when is local' do
+      it 'is invalid if the username doesn\'t only contains letters, numbers and underscores' do
+        account = Fabricate.build(:account, username: 'the-doctor')
+        account.valid?
+        expect(account).to model_have_error_on_field(:username)
+      end
+
+      it 'is invalid if the username is longer then 30 characters' do
+        account = Fabricate.build(:account, username: Faker::Lorem.characters(31))
+        account.valid?
+        expect(account).to model_have_error_on_field(:username)
+      end
+    end
+  end
+
+  describe 'scopes' do
+    describe 'remote' do
+      it 'returns an array of accounts who have a domain' do
+        account_1 = Fabricate(:account, domain: nil)
+        account_2 = Fabricate(:account, domain: 'example.com')
+        expect(Account.remote).to match_array([account_2])
+      end
+    end
+
+    describe 'local' do
+      it 'returns an array of accounts who do not have a domain' do
+        account_1 = Fabricate(:account, domain: nil)
+        account_2 = Fabricate(:account, domain: 'example.com')
+        expect(Account.local).to match_array([account_1])
+      end
+    end
+
+    describe 'silenced' do
+      it 'returns an array of accounts who are silenced' do
+        account_1 = Fabricate(:account, silenced: true)
+        account_2 = Fabricate(:account, silenced: false)
+        expect(Account.silenced).to match_array([account_1])
+      end
+    end
+
+    describe 'suspended' do
+      it 'returns an array of accounts who are suspended' do
+        account_1 = Fabricate(:account, suspended: true)
+        account_2 = Fabricate(:account, suspended: false)
+        expect(Account.suspended).to match_array([account_1])
+      end
+    end
+  end
 end
