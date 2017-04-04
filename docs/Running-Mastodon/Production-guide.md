@@ -76,7 +76,7 @@ It is recommended to create a special user for mastodon on the server (you could
 ## General dependencies
 
     curl -sL https://deb.nodesource.com/setup_4.x | sudo bash -
-    sudo apt-get install imagemagick ffmpeg libpq-dev libxml2-dev libxslt1-dev nodejs
+    sudo apt-get install imagemagick ffmpeg libpq-dev libxml2-dev libxslt1-dev nodejs file
     sudo npm install -g yarn
 
 ## Redis
