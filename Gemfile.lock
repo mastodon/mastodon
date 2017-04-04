@@ -387,10 +387,6 @@ GEM
       connection_pool (~> 2.2, >= 2.2.0)
       rack-protection (>= 1.5.0)
       redis (~> 3.2, >= 3.2.1)
-    sidekiq-merger (0.0.11)
-      activesupport (>= 3.2, < 6)
-      concurrent-ruby (~> 1.0)
-      sidekiq (>= 3.4, < 5)
     sidekiq-unique-jobs (4.0.18)
       sidekiq (>= 2.6)
       thor
@@ -517,7 +513,6 @@ DEPENDENCIES
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
   sidekiq
-  sidekiq-merger
   sidekiq-unique-jobs
   simple-navigation
   simple_form
