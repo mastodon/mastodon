@@ -5,6 +5,8 @@ defaults: &defaults
   site_extended_description: ''
   site_contact_username: ''
   site_contact_email: ''
+  open_registrations: true
+  closed_registrations_message: ''
   notification_emails:
     follow: false
     reblog: false
@@ -15,6 +17,7 @@ defaults: &defaults
   interactions:
     must_be_follower: false
     must_be_following: false
+
 development:
   <<: *defaults
 
