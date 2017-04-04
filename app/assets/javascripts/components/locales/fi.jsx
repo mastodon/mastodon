@@ -25,7 +25,7 @@ const fi = {
   "getting_started.heading": "Aloitus",
   "getting_started.about_addressing": "Voit seurata ihmisiä jos tiedät heidän käyttäjänimensä ja domainin missä he ovat syöttämällä e-mail-esque osoitteen Etsi kenttään.",
   "getting_started.about_shortcuts": "Jos etsimäsi henkilö on samassa domainissa kuin sinä, pelkkä käyttäjänimi kelpaa. Sama pätee kun mainitset ihmisiä statuksessasi",
-  "getting_started.open_source_notice": "Mastodon Mastodon on avoimen lähdekoodin ohjelma. Voit avustaa tai raportoida ongelmia githubissa {github}. {apps}.",
+  "getting_started.open_source_notice": "Mastodon Mastodon on avoimen lähdekoodin ohjelma. Voit avustaa tai raportoida ongelmia GitHub palvelussa {github}. {apps}.",
   "column.home": "Koti",
   "column.community": "Paikallinen aikajana",
   "column.public": "Yhdistetty aikajana",
