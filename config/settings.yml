@@ -15,6 +15,7 @@ defaults: &defaults
   interactions:
     must_be_follower: false
     must_be_following: false
+  whitelist_enabled: false
 development:
   <<: *defaults
 

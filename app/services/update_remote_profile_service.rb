@@ -12,7 +12,7 @@ class UpdateRemoteProfileService < BaseService
       account.note         = author_xml.at_xpath('./poco:note', poco: TagManager::POCO_XMLNS).content unless author_xml.at_xpath('./poco:note', poco: TagManager::POCO_XMLNS).nil?
       account.locked       = author_xml.at_xpath('./mastodon:scope', mastodon: TagManager::MTDN_XMLNS)&.content == 'private'
 
-      unless account.suspended? || DomainBlock.find_by(domain: account.domain)&.reject_media?
+      unless account.suspended? || AllowDomainService.new.reject_media?(account.domain)
         account.avatar_remote_url = author_xml.at_xpath('./xmlns:link[@rel="avatar"]', xmlns: TagManager::XMLNS)['href'] unless author_xml.at_xpath('./xmlns:link[@rel="avatar"]', xmlns: TagManager::XMLNS).nil? || author_xml.at_xpath('./xmlns:link[@rel="avatar"]', xmlns: TagManager::XMLNS)['href'].blank?
         account.header_remote_url = author_xml.at_xpath('./xmlns:link[@rel="header"]', xmlns: TagManager::XMLNS)['href'] unless author_xml.at_xpath('./xmlns:link[@rel="header"]', xmlns: TagManager::XMLNS).nil? || author_xml.at_xpath('./xmlns:link[@rel="header"]', xmlns: TagManager::XMLNS)['href'].blank?
       end
