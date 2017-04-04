@@ -8,12 +8,15 @@ en:
         header: PNG, GIF or JPG. At most 2MB. Will be downscaled to 700x335px
         locked: Requires you to manually approve followers and defaults post privacy to followers-only
         note: At most 160 characters
+      imports:
+        data: CSV file exported from another Mastodon instance
     labels:
       defaults:
         avatar: Avatar
         confirm_new_password: Confirm new password
         confirm_password: Confirm password
         current_password: Current password
+        data: Data
         display_name: Display name
         email: E-mail address
         header: Header
@@ -24,6 +27,7 @@ en:
         otp_attempt: Two-factor code
         password: Password
         setting_default_privacy: Post privacy
+        type: Import type
         username: Username
       interactions:
         must_be_follower: Block notifications from non-followers

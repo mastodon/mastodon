@@ -62,4 +62,23 @@ namespace :mastodon do
       end
     end
   end
+
+  namespace :maintenance do
+    desc 'Update counter caches'
+    task update_counter_caches: :environment do
+      Rails.logger.debug 'Updating counter caches for accounts...'
+
+      Account.unscoped.select('id').find_in_batches do |batch|
+        Account.where(id: batch.map(&:id)).update_all('statuses_count = (select count(*) from statuses where account_id = accounts.id), followers_count = (select count(*) from follows where target_account_id = accounts.id), following_count = (select count(*) from follows where account_id = accounts.id)')
+      end
+
+      Rails.logger.debug 'Updating counter caches for statuses...'
+
+      Status.unscoped.select('id').find_in_batches do |batch|
+        Status.where(id: batch.map(&:id)).update_all('favourites_count = (select count(*) from favourites where favourites.status_id = statuses.id), reblogs_count = (select count(*) from statuses as reblogs where reblogs.reblog_of_id = statuses.id)')
+      end
+
+      Rails.logger.debug 'Done!'
+    end
+  end
 end

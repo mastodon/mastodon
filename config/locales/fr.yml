@@ -2,29 +2,65 @@
 fr:
   about:
     about_mastodon: Mastodon est un serveur <em>libre</em> de réseautage social. Alternative <em>décentralisée</em> aux plateformes commerciales, la monopolisation de vos communications par une entreprise unique est évitée. Tout un chacun peut faire tourner Mastodon et participer au <em>réseau social</em> de manière transparente.
+    about_this: À propos de cette instance
+    apps: Applications
+    business_email: E-mail professionnel
+    description_headline: Qu'est-ce que %{domain} ?
+    domain_count_after: autres instances
+    domain_count_before: Connectés à
+    features:
+      api: API ouverte aux apps et services
+      blocking: Outils complets de bloquage et masquage
+      characters: 500 caractères par post
+      chronology: Fil chronologique
+      ethics: 'Pas de pubs, pas de pistage'
+      gifv: Partage de vidéos et de GIFs
+      privacy: Réglages de confidentialité au niveau des posts
+      public: Fils publics
+    features_headline: Ce qui rend Mastodon différent
     get_started: Rejoindre le réseau
+    links: Liens
     source_code: Code source
+    status_count_after: posts
+    status_count_before: Ayant publié
     terms: Conditions d’utilisation
+    user_count_after: utilisateurs⋅trices
+    user_count_before: Abrite
   accounts:
     follow: Suivre
-    followers: Abonnés
+    followers: Abonné⋅es
     following: Abonnements
     nothing_here: Rien à voir ici !
     people_followed_by: Personnes suivies par %{name}
     people_who_follow: Personnes qui suivent %{name}
     posts: Statuts
+    remote_follow: Suivre à distance
     unfollow: Ne plus suivre
   application_mailer:
+    settings: 'Changer les préférences e-mail: ${link}'
     signature: Notifications de Mastodon depuis %{instance}
+    view: 'Voir:'
+  applications:
+    invalid_url: L'URL fournie est invalide
   auth:
     change_password: Changer de mot de passe
     didnt_get_confirmation: Vous n’avez pas reçu les consignes de confirmation ?
-    forgot_password: Mode passe oublié ?
+    forgot_password: Mot de passe oublié ?
     login: Se connecter
+    logout: Se déconnecter
     register: S’inscrire
     resend_confirmation: Envoyer à nouveau les consignes de confirmation
     reset_password: Réinitialiser le mot de passe
-    set_new_password: Établir le nouveau mot de passe
+    set_new_password: Définir le nouveau mot de passe
+  authorize_follow:
+    follow: Suivre
+    prompt_html: 'Vous (<strong>%{self}</strong>) avez demandé à suivre:'
+    title: Suivre %{acct}
+  exports:
+    blocks: Vous bloquez
+    csv: CSV
+    follows: Vous suivez
+    storage: Médias stockés
   generic:
     changes_saved_msg: Les modifications ont été enregistrées avec succès !
     powered_by: propulsé par %{link}
@@ -32,10 +68,27 @@ fr:
     validation_errors:
       one: Quelque chose ne va pas ! Vérifiez l’erreur ci-dessous.
       other: Quelques choses ne vont pas ! Vérifiez les erreurs ci-dessous.
+  imports:
+    preface: Vous pouvez importer certaines données comme les personnes que vous suivez ou bloquez sur votre compte sur cette instance à partir de fichiers crées sur une autre instance.
+    success: Vos données ont été importées avec succès et seront traités en temps et en heure
+    types:
+      blocking: Liste d'utilisateurs⋅trices bloqué⋅es
+      following: Liste d'utilisateurs⋅trices suivi⋅es
+    upload: Importer
+  landing_strip_html: <strong>%{name}</strong> utilise <strong>%{domain}</strong>. Vous pouvez le/la suivre et interagir si vous possédez un compte quelque part dans le "fediverse". Si ce n'est pas le cas, vous pouvez <a href="%{sign_up_path}">en créer un ici</a>.
   notification_mailer:
+    digest:
+      body: 'Voici ce que vous avez raté sur ${instance} depuis votre dernière visite (%{}):'
+      mention: '%{name} vous a mentionné⋅e'
+      new_followers_summary:
+        one: Vous avez un⋅e nouvel⋅le abonné⋅e ! Youpi !
+        other: Vous avez %{count} nouveaux abonné⋅es ! Incroyable !
+      subject:
+        one: "Une nouvelle notification depuis votre dernière visite \U0001F418"
+        other: "%{count} nouvelles notifications depuis votre dernière visite \U0001F418"
     favourite:
-      body: "%{name} a ajouté votre statut à ses favoris :"
-      subject: "%{name} a ajouté votre statut à ses favoris"
+      body: "%{name} a ajouté votre post à ses favoris :"
+      subject: "%{name} a ajouté votre post à ses favoris"
     follow:
       body: "%{name} vous suit !"
       subject: "%{name} vous suit"
@@ -48,8 +101,44 @@ fr:
   pagination:
     next: Suivant
     prev: Précédent
+  remote_follow:
+    acct: Entrez votre pseudo@instance depuis lequel vous voulez suivre ce⋅tte utilisateur⋅trice
+    missing_resource: L'URL de redirection n'a pas pu être trouvée
+    proceed: Continuez pour suivre
+    prompt: 'Vous allez suivre :'
   settings:
+    authorized_apps: Applications autorisées
+    back: Retour vers Mastodon
     edit_profile: Modifier le profil
+    export: Export de données
+    import: Import de données
     preferences: Préférences
+    settings: Réglages
+    two_factor_auth: Identification à deux facteurs (Two-factor auth)
+  statuses:
+    open_in_web: Ouvrir sur le web
+    over_character_limit: limite de caractères dépassée de %{max} caractères
+    show_more: Montrer plus
+    visibilities:
+      private: Abonné⋅es uniquement
+      public: Public
+      unlisted: Public sans être affiché sur le fil public
+  stream_entries:
+    click_to_show: Clic pour afficher
+    reblogged: partagé
+    sensitive_content: Contenu sensible
+  time:
+    formats:
+      default: '%d %b %Y, %H:%M'
+  two_factor_auth:
+    description_html: Si vous activez <strong>l'identification à deux facteurs</strong> vous devrez être en posession de votre téléphone afin de générer un code de connexion.
+    disable: Désactiver
+    enable: Activer
+    instructions_html: "<strong>Scannez ce QR code grâce à Google Authenticator, Authy ou une application similaire sur votre téléphone</strong>. Désormais, cette application générera des jetons que vous devrez saisir à chaque connexion."
+    plaintext_secret_html: 'Code secret en clair: <samp>%{secret}</samp>'
+    warning: Si vous ne pouvez pas configurer une application d'authentification maintenant, vous devriez cliquer sur "Désactiver" pour ne pas bloquer l'accès à votre compte.
+  users:
+    invalid_email: L'adresse e-mail est invalide
+    invalid_otp_token: Le code d'authentification à deux facteurs est invalide
   will_paginate:
     page_gap: "&hellip;"

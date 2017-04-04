@@ -13,7 +13,7 @@ Below are the guidelines for working on pull requests:
 
 ## General
 
-- 2 spaces indendation
+- 2 spaces indentation
 
 ## Documentation
 

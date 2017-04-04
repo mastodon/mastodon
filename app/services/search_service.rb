@@ -2,9 +2,9 @@
 
 class SearchService < BaseService
   def call(query, limit, resolve = false, account = nil)
-    return if query.blank?
-
     results = { accounts: [], hashtags: [], statuses: [] }
+
+    return results if query.blank?
 
     if query =~ /\Ahttps?:\/\//
       resource = FetchRemoteResourceService.new.call(query)

@@ -215,8 +215,11 @@ const streamHttpEnd = req => (id, listener) => {
 
 // Setup stream output to WebSockets
 const streamToWs = (req, ws) => {
+  const heartbeat = setInterval(() => ws.ping(), 15000)
+
   ws.on('close', () => {
     log.verbose(req.requestId, `Ending stream for ${req.accountId}`)
+    clearInterval(heartbeat)
   })
 
   return (event, payload) => {
@@ -232,6 +235,10 @@ const streamToWs = (req, ws) => {
 // Setup stream end for WebSockets
 const streamWsEnd = ws => (id, listener) => {
   ws.on('close', () => {
+    unsubscribe(id, listener)
+  })
+
+  ws.on('error', e => {
     unsubscribe(id, listener)
   })
 }

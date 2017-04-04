@@ -62,11 +62,11 @@ class Api::V1::StatusesController < ApiController
   end
 
   def create
-    @status = PostStatusService.new.call(current_user.account, params[:status], params[:in_reply_to_id].blank? ? nil : Status.find(params[:in_reply_to_id]), media_ids: params[:media_ids],
-                                                                                                                                                             sensitive: params[:sensitive],
-                                                                                                                                                             spoiler_text: params[:spoiler_text],
-                                                                                                                                                             visibility: params[:visibility],
-                                                                                                                                                             application: doorkeeper_token.application)
+    @status = PostStatusService.new.call(current_user.account, status_params[:status], status_params[:in_reply_to_id].blank? ? nil : Status.find(status_params[:in_reply_to_id]), media_ids: status_params[:media_ids],
+                                                                                                                                                                                  sensitive: status_params[:sensitive],
+                                                                                                                                                                                  spoiler_text: status_params[:spoiler_text],
+                                                                                                                                                                                  visibility: status_params[:visibility],
+                                                                                                                                                                                  application: doorkeeper_token.application)
     render action: :show
   end
 
@@ -110,5 +110,9 @@ class Api::V1::StatusesController < ApiController
   def set_status
     @status = Status.find(params[:id])
     raise ActiveRecord::RecordNotFound unless @status.permitted?(current_account)
+  end
+
+  def status_params
+    params.permit(:status, :in_reply_to_id, :sensitive, :spoiler_text, :visibility, media_ids: [])
   end
 end

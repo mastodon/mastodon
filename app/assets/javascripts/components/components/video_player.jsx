@@ -23,6 +23,8 @@ const muteStyle = {
   position: 'absolute',
   top: '10px',
   right: '10px',
+  color: 'white',
+  textShadow: "0px 1px 1px black, 1px 0px 1px black",
   opacity: '0.8',
   zIndex: '5'
 };
@@ -54,6 +56,8 @@ const spoilerButtonStyle = {
   position: 'absolute',
   top: '6px',
   left: '8px',
+  color: 'white',
+  textShadow: "0px 1px 1px black, 1px 0px 1px black",
   zIndex: '100'
 };
 

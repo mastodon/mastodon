@@ -97,6 +97,15 @@
       a {
         color: $color4;
       }
+
+      a.status__content__spoiler-link {
+        color: $color5;
+        background: $color3;
+
+        &:hover {
+          background: lighten($color3, 8%);
+        }
+      }
     }
 
     .status__attachments {
@@ -162,6 +171,15 @@
 
       a {
         color: $color4;
+      }
+
+      a.status__content__spoiler-link {
+        color: $color5;
+        background: $color3;
+
+        &:hover {
+          background: lighten($color3, 8%);
+        }
       }
     }
 

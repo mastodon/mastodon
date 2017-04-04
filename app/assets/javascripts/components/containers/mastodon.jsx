@@ -4,7 +4,9 @@ import {
   refreshTimelineSuccess,
   updateTimeline,
   deleteFromTimelines,
-  refreshTimeline
+  refreshTimeline,
+  connectTimeline,
+  disconnectTimeline
 } from '../actions/timelines';
 import { updateNotifications, refreshNotifications } from '../actions/notifications';
 import createBrowserHistory from 'history/lib/createBrowserHistory';
@@ -44,6 +46,7 @@ import fr from 'react-intl/locale-data/fr';
 import pt from 'react-intl/locale-data/pt';
 import hu from 'react-intl/locale-data/hu';
 import uk from 'react-intl/locale-data/uk';
+import fi from 'react-intl/locale-data/fi';
 import getMessagesForLocale from '../locales';
 import { hydrateStore } from '../actions/store';
 import createStream from '../stream';
@@ -56,7 +59,7 @@ const browserHistory = useRouterHistory(createBrowserHistory)({
   basename: '/web'
 });
 
-addLocaleData([...en, ...de, ...es, ...fr, ...pt, ...hu, ...uk]);
+addLocaleData([...en, ...de, ...es, ...fr, ...pt, ...hu, ...uk, ...fi]);
 
 const Mastodon = React.createClass({
 
@@ -69,6 +72,14 @@ const Mastodon = React.createClass({
     const accessToken = store.getState().getIn(['meta', 'access_token']);
 
     this.subscription = createStream(accessToken, 'user', {
+
+      connected () {
+        store.dispatch(connectTimeline('home'));
+      },
+
+      disconnected () {
+        store.dispatch(disconnectTimeline('home'));
+      },
 
       received (data) {
         switch(data.event) {
@@ -85,6 +96,7 @@ const Mastodon = React.createClass({
       },
 
       reconnected () {
+        store.dispatch(connectTimeline('home'));
         store.dispatch(refreshTimeline('home'));
         store.dispatch(refreshNotifications());
       }

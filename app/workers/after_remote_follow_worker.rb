@@ -3,7 +3,7 @@
 class AfterRemoteFollowWorker
   include Sidekiq::Worker
 
-  sidekiq_options retry: 5
+  sidekiq_options queue: 'pull', retry: 5
 
   def perform(follow_id)
     follow          = Follow.find(follow_id)

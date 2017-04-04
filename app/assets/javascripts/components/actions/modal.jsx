@@ -1,31 +1,16 @@
-export const MEDIA_OPEN  = 'MEDIA_OPEN';
+export const MODAL_OPEN  = 'MODAL_OPEN';
 export const MODAL_CLOSE = 'MODAL_CLOSE';
 
-export const MODAL_INDEX_DECREASE = 'MODAL_INDEX_DECREASE';
-export const MODAL_INDEX_INCREASE = 'MODAL_INDEX_INCREASE';
-
-export function openMedia(media, index) {
+export function openModal(type, props) {
   return {
-    type: MEDIA_OPEN,
-    media,
-    index
+    type: MODAL_OPEN,
+    modalType: type,
+    modalProps: props
   };
 };
 
 export function closeModal() {
   return {
     type: MODAL_CLOSE
-  };
-};
-
-export function decreaseIndexInModal() {
-  return {
-    type: MODAL_INDEX_DECREASE
-  };
-};
-
-export function increaseIndexInModal() {
-  return {
-    type: MODAL_INDEX_INCREASE
   };
 };
