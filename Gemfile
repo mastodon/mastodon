@@ -38,7 +38,7 @@ gem 'rqrcode'
 gem 'twitter-text'
 gem 'oj'
 gem 'hiredis'
-gem 'redis', '~>3.2'
+gem 'redis', '~>3.2', require: ['redis', 'redis/connection/hiredis']
 gem 'fast_blank'
 gem 'htmlentities'
 gem 'simple_form'
