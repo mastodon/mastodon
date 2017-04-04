@@ -14,11 +14,11 @@ SimpleNavigation::Configuration.run do |navigation|
       settings.item :authorized_apps, safe_join([fa_icon('list fw'), t('settings.authorized_apps')]), oauth_authorized_applications_url
     end
 
-    primary.item :admin, safe_join([fa_icon('cogs fw'), 'Administration']), admin_accounts_url, if: proc { current_user.admin? } do |admin|
+    primary.item :admin, safe_join([fa_icon('cogs fw'), 'Administration']), admin_reports_url, if: proc { current_user.admin? } do |admin|
       admin.item :reports, safe_join([fa_icon('flag fw'), 'Reports']), admin_reports_url, highlights_on: %r{/admin/reports}
       admin.item :accounts, safe_join([fa_icon('users fw'), 'Accounts']), admin_accounts_url, highlights_on: %r{/admin/accounts}
       admin.item :pubsubhubbubs, safe_join([fa_icon('paper-plane-o fw'), 'PubSubHubbub']), admin_pubsubhubbub_index_url
-      admin.item :domain_blocks, safe_join([fa_icon('lock fw'), 'Domain Blocks']), admin_domain_blocks_url
+      admin.item :domain_blocks, safe_join([fa_icon('lock fw'), 'Domain Blocks']), admin_domain_blocks_url, highlights_on: %r{/admin/domain_blocks}
       admin.item :sidekiq, safe_join([fa_icon('diamond fw'), 'Sidekiq']), sidekiq_url
       admin.item :pghero, safe_join([fa_icon('database fw'), 'PgHero']), pghero_url
       admin.item :settings, safe_join([fa_icon('cogs fw'), 'Site Settings']), admin_settings_url

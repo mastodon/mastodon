@@ -77,7 +77,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :pubsubhubbub, only: [:index]
-    resources :domain_blocks, only: [:index, :create]
+    resources :domain_blocks, only: [:index, :new, :create]
     resources :settings, only: [:index, :update]
 
     resources :reports, only: [:index, :show] do

@@ -5,7 +5,7 @@ require 'csv'
 class ImportWorker
   include Sidekiq::Worker
 
-  sidekiq_options retry: false
+  sidekiq_options queue: 'pull', retry: false
 
   def perform(import_id)
     import = Import.find(import_id)
