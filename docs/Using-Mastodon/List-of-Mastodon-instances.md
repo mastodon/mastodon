@@ -23,6 +23,7 @@ There is also a list at [instances.mastodon.xyz](https://instances.mastodon.xyz)
 | [masto.themimitoof.fr](https://masto.themimitoof.fr) |N/A|Yes|Yes|
 | [social.imirhil.fr](https://social.imirhil.fr) |N/A|No|Yes|
 | [social.wxcafe.net](https://social.wxcafe.net) |Open registrations, federates everywhere, no moderation yet|Yes|Yes|
+| [octodon.social](https://octodon.social) |Open registrations, federates everywhere, cutest instance yet|Yes|Yes|
 | [hostux.social](https://hostux.social) |N/A|Yes|Yes|
 | [social.alex73630.xyz](https://social.alex73630.xyz) |Francophones|Yes|Yes|
 | [maly.io](https://maly.io) |N/A|Yes|No|
