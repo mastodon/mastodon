@@ -17,7 +17,7 @@ There is also a list at [instances.mastodon.xyz](https://instances.mastodon.xyz)
 | [social.diskseven.com](https://social.diskseven.com) |Single user|No|No (DNS entry but no response)|
 | [social.gestaltzerfall.net](https://social.gestaltzerfall.net) |Single user|No|No|
 | [mastodon.xyz](https://mastodon.xyz) |N/A|Yes|Yes|
-| [social.targaryen.house](https://social.targaryen.house) |N/A|Yes|No|
+| [social.targaryen.house](https://social.targaryen.house) |Federates everywhere, quick updates.|Yes|Yes|
 | [social.mashek.net](https://social.mashek.net) |Themed and customised for Mashekstein Labs community. Selectively federates.|Yes|No|
 | [masto.themimitoof.fr](https://masto.themimitoof.fr) |N/A|Yes|Yes|
 | [social.imirhil.fr](https://social.imirhil.fr) |N/A|No|Yes|
