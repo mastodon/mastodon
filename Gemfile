@@ -67,9 +67,10 @@ group :development, :test do
 end
 
 group :test do
+  gem 'faker'
+  gem 'rspec-sidekiq'
   gem 'simplecov', require: false
   gem 'webmock'
-  gem 'rspec-sidekiq'
 end
 
 group :development do
