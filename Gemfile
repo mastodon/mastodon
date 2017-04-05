@@ -38,7 +38,7 @@ gem 'rqrcode'
 gem 'twitter-text'
 gem 'oj'
 gem 'hiredis'
-gem 'redis', '~>3.2'
+gem 'redis', '~>3.2', require: ['redis', 'redis/connection/hiredis']
 gem 'fast_blank'
 gem 'htmlentities'
 gem 'simple_form'
@@ -46,6 +46,7 @@ gem 'will_paginate'
 gem 'rack-attack'
 gem 'rack-cors', require: 'rack/cors'
 gem 'sidekiq'
+gem 'sidekiq-unique-jobs'
 gem 'rails-settings-cached'
 gem 'simple-navigation'
 gem 'statsd-instrument'
@@ -66,9 +67,10 @@ group :development, :test do
 end
 
 group :test do
+  gem 'faker'
+  gem 'rspec-sidekiq'
   gem 'simplecov', require: false
   gem 'webmock'
-  gem 'rspec-sidekiq'
 end
 
 group :development do

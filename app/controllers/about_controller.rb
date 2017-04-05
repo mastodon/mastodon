@@ -4,7 +4,9 @@ class AboutController < ApplicationController
   before_action :set_body_classes
 
   def index
-    @description = Setting.site_description
+    @description                  = Setting.site_description
+    @open_registrations           = Setting.open_registrations
+    @closed_registrations_message = Setting.closed_registrations_message
 
     @user = User.new
     @user.build_account

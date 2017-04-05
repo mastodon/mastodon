@@ -149,6 +149,8 @@ GEM
     erubis (2.7.0)
     execjs (2.7.0)
     fabrication (2.15.2)
+    faker (1.6.6)
+      i18n (~> 0.5)
     fast_blank (1.0.0)
     font-awesome-rails (4.6.3.1)
       railties (>= 3.2, < 5.1)
@@ -387,6 +389,9 @@ GEM
       connection_pool (~> 2.2, >= 2.2.0)
       rack-protection (>= 1.5.0)
       redis (~> 3.2, >= 3.2.1)
+    sidekiq-unique-jobs (4.0.18)
+      sidekiq (>= 2.6)
+      thor
     simple-navigation (4.0.3)
       activesupport (>= 2.3.2)
     simple_form (3.2.1)
@@ -467,6 +472,7 @@ DEPENDENCIES
   doorkeeper
   dotenv-rails
   fabrication
+  faker
   fast_blank
   font-awesome-rails
   fuubar
@@ -510,6 +516,7 @@ DEPENDENCIES
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
   sidekiq
+  sidekiq-unique-jobs
   simple-navigation
   simple_form
   simplecov

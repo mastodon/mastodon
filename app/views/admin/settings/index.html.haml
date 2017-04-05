@@ -38,3 +38,15 @@
         %br/
         You can use HTML tags
       %td= best_in_place @settings['site_extended_description'], :value, as: :textarea, url: admin_setting_path(@settings['site_extended_description'])
+    %tr
+      %td
+        %strong Open registration
+      %td= best_in_place @settings['open_registrations'], :value, as: :checkbox, collection: { false: 'Disabled', true: 'Enabled'}, url: admin_setting_path(@settings['open_registrations'])
+    %tr
+      %td
+        %strong Closed registration message
+        %br/
+        Displayed on frontpage when registrations are closed
+        %br/
+        You can use HTML tags
+      %td= best_in_place @settings['closed_registrations_message'], :value, as: :textarea, url: admin_setting_path(@settings['closed_registrations_message'])

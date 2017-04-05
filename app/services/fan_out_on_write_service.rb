@@ -33,9 +33,8 @@ class FanOutOnWriteService < BaseService
   def deliver_to_followers(status)
     Rails.logger.debug "Delivering status #{status.id} to followers"
 
-    status.account.followers.where(domain: nil).joins(:user).where('users.current_sign_in_at > ?', 14.days.ago).find_each do |follower|
-      next if FeedManager.instance.filter?(:home, status, follower)
-      FeedManager.instance.push(:home, follower, status)
+    status.account.followers.where(domain: nil).joins(:user).where('users.current_sign_in_at > ?', 14.days.ago).select(:id).find_each do |follower|
+      FeedInsertWorker.perform_async(status.id, follower.id)
     end
   end
 
@@ -44,7 +43,7 @@ class FanOutOnWriteService < BaseService
 
     status.mentions.includes(:account).each do |mention|
       mentioned_account = mention.account
-      next if !mentioned_account.local? || !mentioned_account.following?(status.account) || FeedManager.instance.filter?(:home, status, mentioned_account)
+      next if !mentioned_account.local? || !mentioned_account.following?(status.account) || FeedManager.instance.filter?(:home, status, mention.account_id)
       FeedManager.instance.push(:home, mentioned_account, status)
     end
   end
@@ -54,9 +53,9 @@ class FanOutOnWriteService < BaseService
 
     payload = FeedManager.instance.inline_render(nil, 'api/v1/statuses/show', status)
 
-    status.tags.find_each do |tag|
-      FeedManager.instance.broadcast("hashtag:#{tag.name}", event: 'update', payload: payload)
-      FeedManager.instance.broadcast("hashtag:#{tag.name}:local", event: 'update', payload: payload) if status.account.local?
+    status.tags.pluck(:name).each do |hashtag|
+      FeedManager.instance.broadcast("hashtag:#{hashtag}", event: 'update', payload: payload)
+      FeedManager.instance.broadcast("hashtag:#{hashtag}:local", event: 'update', payload: payload) if status.account.local?
     end
   end
 
