@@ -76,10 +76,6 @@ class FeedManager
     end
   end
 
-  def inline_render(target_account, template, object)
-    Rabl::Renderer.new(template, object, view_path: 'app/views', format: :json, scope: InlineRablScope.new(target_account)).render
-  end
-
   private
 
   def redis
