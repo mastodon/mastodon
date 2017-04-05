@@ -112,7 +112,7 @@ Then once `rbenv` is ready, run `rbenv install 2.3.1` to install the Ruby versio
 You need the `git-core` package installed on your system. If it is so, from the `mastodon` user:
 
     cd ~
-    git clone https://github.com/Gargron/mastodon.git live
+    git clone https://github.com/tootsuite/mastodon.git live
     cd live
 
 Then you can proceed to install project dependencies:
