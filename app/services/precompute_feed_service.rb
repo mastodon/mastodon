@@ -7,7 +7,7 @@ class PrecomputeFeedService < BaseService
   def call(_, account)
     redis.pipelined do
       Status.as_home_timeline(account).limit(FeedManager::MAX_ITEMS / 4).each do |status|
-        next if status.direct_visibility? || FeedManager.instance.filter?(:home, status, account)
+        next if status.direct_visibility? || FeedManager.instance.filter?(:home, status, account.id)
         redis.zadd(FeedManager.instance.key(:home, account.id), status.id, status.reblog? ? status.reblog_of_id : status.id)
       end
     end

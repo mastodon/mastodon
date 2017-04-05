@@ -1,14 +1,14 @@
 ---
 de:
   about:
-    about_mastodon: Mastodon ist ein <em>freier, quelloffener</em> soziales Netzwerkserver. Eine <em>dezentralisierte</em> Alternative zu kommerziellen Plattformen, verhindert es die Risiken, die entstehen, wenn eine einzelne Firma deine Kommunikation monopolisiert. Jeder kann Mastodon verwenden und ganz einfach am <em>sozialen Netzwerk</em> teilnehmen.
+    about_mastodon: Mastodon ist ein <em>freier, quelloffener</em> soziales Netzwerkserver. Als <em>dezentralisierte</em> Alternative zu kommerziellen Plattformen verhindert es die Risiken, die entstehen, wenn eine einzelne Firma deine Kommunikation monopolisiert. Jeder kann Mastodon verwenden und ganz einfach am <em>sozialen Netzwerk</em> teilnehmen.
     get_started: Erste Schritte
     source_code: Quellcode
     terms: AGB
   accounts:
     follow: Folgen
-    followers: Folger
-    following: Folgt
+    followers: Follower
+    following: Gefolgt
     nothing_here: Hier gibt es nichts!
     people_followed_by: Nutzer, denen %{name} folgt
     people_who_follow: Nutzer, die %{name} folgen
@@ -27,7 +27,7 @@ de:
     reset_password: Passwort zurücksetzen
     set_new_password: Neues Passwort setzen
   authorize_follow:
-    error: Das entfernte Profil konnte nicht geladen werden
+    error: Das Profil konnte nicht geladen werden
     follow: Folgen
     prompt_html: 'Du (<strong>%{self}</strong>) möchtest dieser Person folgen:'
     title: "%{acct} folgen"
@@ -55,25 +55,25 @@ de:
   notification_mailer:
     favourite:
       body: 'Dein Beitrag wurde von %{name} favorisiert:'
-      subject: "%{name} hat deinen Beitrag favorisiert"
+      subject: "%{name} hat deinen Beitrag favorisiert."
     follow:
       body: "%{name} folgt dir jetzt!"
-      subject: "%{name} folgt dir nun"
+      subject: "%{name} folgt dir jetzt."
     follow_request:
       body: "%{name} möchte dir folgen:"
-      subject: "%{name} möchte dir folgen"
+      subject: "%{name} möchte dir folgen."
     mention:
       body: "%{name} hat dich erwähnt:"
-      subject: "%{name} hat dich erwähnt"
+      subject: "%{name} hat dich erwähnt."
     reblog:
       body: 'Dein Beitrag wurde von %{name} geteilt:'
-      subject: "%{name} teilte deinen Beitrag"
+      subject: "%{name} teilte deinen Beitrag."
   pagination:
     next: Vorwärts
     prev: Zurück
   remote_follow:
-    acct: Dein Nutzername@Domain, von dem du dieser Person folgen möchtest
-    missing_resource: Die erforderliche Weiterleitungs-URL konnte leider in deinem Profil nicht gefunden werden
+    acct: Dein Nutzername@Domain, von dem aus du dieser Person folgen möchtest.
+    missing_resource: Die erforderliche Weiterleitungs-URL konnte leider in deinem Profil nicht gefunden werden.
     proceed: Weiter
     prompt: 'Du wirst dieser Person folgen:'
   settings:
