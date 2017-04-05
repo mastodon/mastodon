@@ -34,7 +34,7 @@ class FeedManager
       trim(timeline_type, account.id)
     end
 
-    broadcast(account.id, event: 'update', payload: inline_render(account, 'api/v1/statuses/show', status))
+    PushUpdateWorker.perform_async(timeline_type, account.id, status.id)
   end
 
   def broadcast(timeline_id, options = {})
