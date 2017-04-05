@@ -5,8 +5,9 @@ There is also a list at [instances.mastodon.xyz](https://instances.mastodon.xyz)
 
 | Name | Theme/Notes, if applicable | Open Registrations | IPv6 |
 | -------------|-------------|---|---|
-| [mastodon.social](https://mastodon.social) |Flagship, quick updates|Yes|No|
+| [mastodon.social](https://mastodon.social) |Flagship, quick updates|No|No|
 | [securitymastod.one](https://securitymastod.one/) |Information security enthusiasts and pros|Yes|Yes|
+| [mastodon.network](https://mastodon.network) |N/A|Yes|Yes|
 | [awoo.space](https://awoo.space) |Intentionally moderated, only federates with mastodon.social|Yes|No|
 | [animalliberation.social](https://animalliberation.social) |Animal Rights|Yes|No|
 | [socially.constructed.space](https://socially.constructed.space) |Single user|No|No|
@@ -41,5 +42,6 @@ There is also a list at [instances.mastodon.xyz](https://instances.mastodon.xyz)
 | [social.nasqueron.org](https://social.nasqueron.org) |Dreamers, open source developers, free culture|Yes|Yes|
 | [status.dissidence.ovh](https://status.dissidence.ovh)|N/A|Yes|Yes|
 | [mastodon.cc](https://mastodon.cc)|Art|Yes|No|
+| [mastodon.technology](https://mastodon.technology)|Open registrations, federates everywhere, for tech folks|Yes|No|
 
 Let me know if you start running one so I can add it to the list! (Alternatively, add it yourself as a pull request).
