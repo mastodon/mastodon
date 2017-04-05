@@ -34,6 +34,7 @@
     text-align: center;
     position: relative;
     z-index: 2;
+    text-shadow: 0 0 2px $color8;
 
     small {
       display: block;
@@ -128,6 +129,7 @@
       text-transform: uppercase;
       display: block;
       margin-bottom: 5px;
+      text-shadow: 0 0 2px $color8;
     }
 
     .counter-number {
@@ -385,5 +387,6 @@
   .account__header__content {
     font-size: 14px;
     color: $color1;
+    text-shadow: 0 0 2px $color8;
   }
 }
