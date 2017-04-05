@@ -119,7 +119,7 @@ Docker is great for quickly trying out software, but it has its drawbacks too. I
 
 ## Deployment on Scalingo
 
-[![Deploy on Scalingo](https://cdn.scalingo.com/deploy/button.svg)](https://my.scalingo.com/deploy?source=https://github.com/johnsudaar/mastodon#master)
+[![Deploy on Scalingo](https://cdn.scalingo.com/deploy/button.svg)](https://my.scalingo.com/deploy?source=https://github.com/tootsuite/mastodon#master)
 
 ## Deployment on Heroku (experimental)
 
