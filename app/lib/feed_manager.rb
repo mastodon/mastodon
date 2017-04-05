@@ -34,7 +34,7 @@ class FeedManager
       trim(timeline_type, account.id)
     end
 
-    PushUpdateWorker.perform_async(timeline_type, account.id, status.id)
+    PushUpdateWorker.perform_async(account.id, status.id)
   end
 
   def trim(type, account_id)

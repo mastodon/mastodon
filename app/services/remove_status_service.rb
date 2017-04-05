@@ -65,17 +65,17 @@ class RemoveStatusService < BaseService
       redis.zremrangebyscore(FeedManager.instance.key(type, receiver.id), status.id, status.id)
     end
 
-    FeedManager.instance.broadcast(receiver.id, event: 'delete', payload: status.id)
+    Redis.current.publish(receiver.id, Oj.dump(event: :delete, payload: status.id))
   end
 
   def remove_from_hashtags(status)
     status.tags.each do |tag|
-      FeedManager.instance.broadcast("hashtag:#{tag.name}", event: 'delete', payload: status.id)
+      Redis.current.publish("hashtag:#{tag.name}", Oj.dump(event: :delete, payload: status.id))
     end
   end
 
   def remove_from_public(status)
-    FeedManager.instance.broadcast(:public, event: 'delete', payload: status.id)
+    Redis.current.publish('public', Oj.dump(event: :delete, payload: status.id))
   end
 
   def redis
