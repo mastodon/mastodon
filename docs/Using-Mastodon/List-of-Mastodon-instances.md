@@ -48,5 +48,5 @@ There is also a list at [instances.mastodon.xyz](https://instances.mastodon.xyz)
 | [mastodon.cc](https://mastodon.cc)|Art|Yes|No|
 | [mastodon.technology](https://mastodon.technology)|Open registrations, federates everywhere, for tech folks|Yes|No|
 | [mastodon.systemlab.fr](https://mastodon.systemlab.fr/)|Le mastodon Français, informatique, jeux-vidéos, gaming et hébergement.|Yes|No|
-
+| [social.nowa.re](https://social.nowa.re)|Open Registration|Yes|Not Yet|
 Let me know if you start running one so I can add it to the list! (Alternatively, add it yourself as a pull request).
