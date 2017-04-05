@@ -24,6 +24,7 @@ There is also a list at [instances.mastodon.xyz](https://instances.mastodon.xyz)
 | [social.imirhil.fr](https://social.imirhil.fr) |N/A|No|Yes|
 | [social.wxcafe.net](https://social.wxcafe.net) |Open registrations, federates everywhere, no moderation yet|Yes|Yes|
 | [octodon.social](https://octodon.social) |Open registrations, federates everywhere, cutest instance yet|Yes|Yes|
+| [mastodon.club](https://mastodon.club)|Open Registration, Open Federation, Mostly Canadians|Yes|No|
 | [hostux.social](https://hostux.social) |N/A|Yes|Yes|
 | [social.alex73630.xyz](https://social.alex73630.xyz) |Francophones|Yes|Yes|
 | [oc.todon.fr](https://oc.todon.fr) |Modérée et principalement francophone, pas de tolérances pour misogynie/LGBTphobies/validisme/etc.|Yes|Yes|
@@ -39,5 +40,6 @@ There is also a list at [instances.mastodon.xyz](https://instances.mastodon.xyz)
 | [manowar.social](https://manowar.social)|N/A|No|No|
 | [social.ballpointcarrot.net](https://social.ballpointcarrot.net)|Down at time of entry|No|No|
 | [mastodon.cc](https://mastodon.cc)|Art|Yes|No|
+
 
 Let me know if you start running one so I can add it to the list! (Alternatively, add it yourself as a pull request).
