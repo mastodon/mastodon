@@ -15,7 +15,7 @@ class PushUpdateWorker
       scope: InlineRablScope.new(account)
     )
 
-    Redis.current.publish("timeline:#{timeline_id}", Oj.dump({ event: :update, payload: message, queued_at: (Time.now.to_f * 1000.0).to_i }))
+    Redis.current.publish("timeline:#{account.id}", Oj.dump({ event: :update, payload: message, queued_at: (Time.now.to_f * 1000.0).to_i }))
   rescue ActiveRecord::RecordNotFound
     true
   end
