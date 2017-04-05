@@ -12,8 +12,20 @@ map $http_upgrade $connection_upgrade {
 }
 
 server {
+  listen 80;
+  listen [::]:80;
+  server_name example.com;
+  return 301 https://$host$request_uri;
+}
+
+server {
   listen 443 ssl;
   server_name example.com;
+
+  ssl_protocols TLSv1.2;
+  ssl_ciphers 'EECDH+AESGCM:EDH+AESGCM:AES256+EECDH:AES256+EDH';
+  ssl_prefer_server_ciphers on;
+  ssl_session_cache shared:SSL:10m;
 
   ssl_certificate     /etc/letsencrypt/live/example.com/fullchain.pem;
   ssl_certificate_key /etc/letsencrypt/live/example.com/privkey.pem;
