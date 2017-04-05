@@ -5,7 +5,8 @@ class PushUpdateWorker
 
   def perform(timeline, account_id, status_id)
     account = Account.find(account_id)
-    status = Status.find(status_id)
+    status  = Status.find(status_id)
+    
     message = Rabl::Renderer.new(
       'api/v1/statuses/show', 
       status, 
@@ -14,6 +15,8 @@ class PushUpdateWorker
       scope: InlineRablScope.new(account)
     )
 
-    ActionCable.server.broadcast("timeline:#{account_id}", type: 'update', timeline: timeline, message: message.render)
+    Redis.current.publish("timeline:#{timeline_id}", Oj.dump({ event: :update, payload: message, queued_at: (Time.now.to_f * 1000.0).to_i }))
+  rescue ActiveRecord::RecordNotFound
+    true
   end
 end
