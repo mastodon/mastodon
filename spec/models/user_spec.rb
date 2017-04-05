@@ -45,8 +45,9 @@ RSpec.describe User, type: :model do
         expect(User.confirmed).to match_array([user_2])
       end
     end
+  end
 
-  let(:account) { Fabricate(:account, username: 'alice') }  
+  let(:account) { Fabricate(:account, username: 'alice') }
   let(:password) { 'abcd1234' }
 
   describe 'blacklist' do
@@ -55,7 +56,7 @@ RSpec.describe User, type: :model do
 
       expect(user.valid?).to be_truthy
     end
-    
+
     it 'should not allow a blacklisted user to be created' do
       user = User.new(email: 'foo@mvrht.com', account: account, password: password)
 
