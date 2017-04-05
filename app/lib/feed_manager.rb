@@ -37,11 +37,6 @@ class FeedManager
     PushUpdateWorker.perform_async(timeline_type, account.id, status.id)
   end
 
-  def broadcast(timeline_id, options = {})
-    options[:queued_at] = (Time.now.to_f * 1000.0).to_i
-    ActionCable.server.broadcast("timeline:#{timeline_id}", options)
-  end
-
   def trim(type, account_id)
     return unless redis.zcard(key(type, account_id)) > FeedManager::MAX_ITEMS
     last = redis.zrevrange(key(type, account_id), FeedManager::MAX_ITEMS - 1, FeedManager::MAX_ITEMS - 1)
