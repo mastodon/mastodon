@@ -39,6 +39,7 @@ There is also a list at [instances.mastodon.xyz](https://instances.mastodon.xyz)
 | [social.lkw.tf](https://social.lkw.tf)|N/A|No|No|
 | [manowar.social](https://manowar.social)|N/A|No|No|
 | [social.ballpointcarrot.net](https://social.ballpointcarrot.net)|Down at time of entry|No|No|
+| [social.nasqueron.org](https://social.nasqueron.org) |Dreamers, open source developers, free culture|Yes|Yes|
 | [status.dissidence.ovh](https://status.dissidence.ovh)|N/A|Yes|Yes|
 | [mastodon.cc](https://mastodon.cc)|Art|Yes|No|
 
