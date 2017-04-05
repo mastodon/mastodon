@@ -50,22 +50,22 @@ class FanOutOnWriteService < BaseService
   end
 
   def render_anonymous_payload(status)
-    @payload = FeedManager.instance.inline_render(nil, 'api/v1/statuses/show', status)
+    @payload = InlineRenderer.render(status, nil, 'api/v1/statuses/show')
   end
 
   def deliver_to_hashtags(status)
     Rails.logger.debug "Delivering status #{status.id} to hashtags"
 
     status.tags.pluck(:name).each do |hashtag|
-      FeedManager.instance.broadcast("hashtag:#{hashtag}", event: 'update', payload: @payload)
-      FeedManager.instance.broadcast("hashtag:#{hashtag}:local", event: 'update', payload: @payload) if status.account.local?
+      Redis.current.publish("hashtag:#{hashtag}", Oj.dump(event: :update, payload: @payload))
+      Redis.current.publish("hashtag:#{hashtag}:local", Oj.dump(event: :update, payload: @payload)) if status.account.local?
     end
   end
 
   def deliver_to_public(status)
     Rails.logger.debug "Delivering status #{status.id} to public timeline"
 
-    FeedManager.instance.broadcast(:public, event: 'update', payload: @payload)
-    FeedManager.instance.broadcast('public:local', event: 'update', payload: @payload) if status.account.local?
+    Redis.current.publish('public', Oj.dump(event: 'update', payload: @payload))
+    Redis.current.publish('public:local', Oj.dump(event: 'update', payload: @payload)) if status.account.local?
   end
 end
