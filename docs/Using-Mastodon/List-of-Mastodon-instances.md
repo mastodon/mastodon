@@ -28,6 +28,7 @@ There is also a list at [instances.mastodon.xyz](https://instances.mastodon.xyz)
 | [social.wxcafe.net](https://social.wxcafe.net) |Open registrations, queer people, activists, safe as much as possible |Yes|Yes|
 | [octodon.social](https://octodon.social) |Open registrations, federates everywhere, cutest instance yet|Yes|Yes|
 | [mastodon.club](https://mastodon.club)|Open Registration, Open Federation, Mostly Canadians|Yes|No|
+| [mastodon.irish](https://mastodon.irish)|Open Registration|Yes|No|
 | [hostux.social](https://hostux.social) |N/A|Yes|Yes|
 | [social.alex73630.xyz](https://social.alex73630.xyz) |Francophones|Yes|Yes|
 | [oc.todon.fr](https://oc.todon.fr) |Modérée et principalement francophone, pas de tolérances pour misogynie/LGBTphobies/validisme/etc.|Yes|Yes|
