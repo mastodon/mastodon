@@ -180,6 +180,10 @@ class Account < ApplicationRecord
     username
   end
 
+  def fully_qualified
+    local? ? "#{username}@#{Rails.configuration.x.local_domain}" : acct
+  end
+
   class << self
     def find_local!(username)
       find_remote!(username, nil)
