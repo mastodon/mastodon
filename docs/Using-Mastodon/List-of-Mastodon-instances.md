@@ -20,7 +20,7 @@ There is also a list at [instances.mastodon.xyz](https://instances.mastodon.xyz)
 | [social.diskseven.com](https://social.diskseven.com) |Single user|No|Yes|
 | [social.gestaltzerfall.net](https://social.gestaltzerfall.net) |Single user|No|No|
 | [mastodon.xyz](https://mastodon.xyz) |N/A|Yes|Yes|
-| [mastodon.partipirate.org](https://mastodon.partipirate.org) |French Pirate Part Instance - Politics and stuff|Yes|No|
+| [mastodon.partipirate.org](https://mastodon.partipirate.org) |French Pirate Party Instance - Politics and stuff|Yes|No|
 | [social.targaryen.house](https://social.targaryen.house) |Federates everywhere, quick updates.|Yes|Yes|
 | [masto.themimitoof.fr](https://masto.themimitoof.fr) |N/A|Yes|Yes|
 | [mstdn.io](https://mstdn.io) |N/A|Yes|Yes|
