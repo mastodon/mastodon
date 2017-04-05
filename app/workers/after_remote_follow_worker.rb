@@ -13,5 +13,7 @@ class AfterRemoteFollowWorker
 
     follow.destroy
     FollowService.new.call(follow.account, updated_account.acct)
+  rescue ActiveRecord::RecordNotFound
+    true
   end
 end
