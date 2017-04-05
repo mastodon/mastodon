@@ -7,19 +7,17 @@ There is also a list at [instances.mastodon.xyz](https://instances.mastodon.xyz)
 | -------------|-------------|---|---|
 | [mastodon.social](https://mastodon.social) |Flagship, quick updates|Yes|No|
 | [awoo.space](https://awoo.space) |Intentionally moderated, only federates with mastodon.social|Yes|No|
-| [social.tchncs.de](https://social.tchncs.de)|N/A|Yes|No|
 | [animalliberation.social](https://animalliberation.social) |Animal Rights|Yes|No|
 | [socially.constructed.space](https://socially.constructed.space) |Single user|No|No|
 | [epiktistes.com](https://epiktistes.com) |N/A|Yes|No|
 | [fern.surgeplay.com](https://fern.surgeplay.com) |Federates everywhere, Minecraft-focused|Yes|No
-| [gay.crime.team](https://gay.crime.team) |the place for doin' gay crime online (please don't actually do crime here)|Yes|No|
+| [gay.crime.team](https://gay.crime.team) |the place for doin' gay crime online (please don't actually do crime here)|No|No|
 | [icosahedron.website](https://icosahedron.website/) |Icosahedron-themed (well, visually), open registration.|Yes|No|
 | [memetastic.space](https://memetastic.space) |Memes|Yes|No|
 | [social.diskseven.com](https://social.diskseven.com) |Single user|No|Yes|
 | [social.gestaltzerfall.net](https://social.gestaltzerfall.net) |Single user|No|No|
 | [mastodon.xyz](https://mastodon.xyz) |N/A|Yes|Yes|
 | [social.targaryen.house](https://social.targaryen.house) |Federates everywhere, quick updates.|Yes|Yes|
-| [social.mashek.net](https://social.mashek.net) |Themed and customised for Mashekstein Labs community. Selectively federates.|Yes|No|
 | [masto.themimitoof.fr](https://masto.themimitoof.fr) |N/A|Yes|Yes|
 | [social.imirhil.fr](https://social.imirhil.fr) |N/A|No|Yes|
 | [social.wxcafe.net](https://social.wxcafe.net) |Open registrations, federates everywhere, no moderation yet|Yes|Yes|
@@ -38,7 +36,7 @@ There is also a list at [instances.mastodon.xyz](https://instances.mastodon.xyz)
 | [share.elouworld.org](https://share.elouworld.org)|N/A|No|No|
 | [social.lkw.tf](https://social.lkw.tf)|N/A|No|No|
 | [manowar.social](https://manowar.social)|N/A|No|No|
-| [social.ballpointcarrot.net](https://social.ballpointcarrot.net)|Down at time of entry|No|No|
+| [social.ballpointcarrot.net](https://social.ballpointcarrot.net)|N/A|No|No|
 | [social.nasqueron.org](https://social.nasqueron.org) |Dreamers, open source developers, free culture|Yes|Yes|
 | [status.dissidence.ovh](https://status.dissidence.ovh)|N/A|Yes|Yes|
 | [mastodon.cc](https://mastodon.cc)|Art|Yes|No|
