@@ -34,7 +34,7 @@ There is also a list at [instances.mastodon.xyz](https://instances.mastodon.xyz)
 | [oc.todon.fr](https://oc.todon.fr) |Modérée et principalement francophone, pas de tolérances pour misogynie/LGBTphobies/validisme/etc.|Yes|Yes|
 | [maly.io](https://maly.io) |N/A|Yes|No|
 | [social.lou.lt](https://social.lou.lt) |N/A|Yes|No|
-| [mastodon.ninetailed.uk](https://mastodon.ninetailed.uk) |N/A|Yes|No|
+| [mastodon.ninetailed.uk](https://mastodon.ninetailed.uk) |Open registrations, furry-friendly, UK-based|Yes|No|
 | [soc.louiz.org](https://soc.louiz.org) |"Coucou"|Yes|No|
 | [7nw.eu](https://7nw.eu) |N/A|Yes|No|
 | [mastodon.gougere.fr](https://mastodon.gougere.fr)|N/A|Yes|No|
