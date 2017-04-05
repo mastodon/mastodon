@@ -149,6 +149,8 @@ GEM
     erubis (2.7.0)
     execjs (2.7.0)
     fabrication (2.15.2)
+    faker (1.6.6)
+      i18n (~> 0.5)
     fast_blank (1.0.0)
     font-awesome-rails (4.6.3.1)
       railties (>= 3.2, < 5.1)
@@ -196,9 +198,6 @@ GEM
       parser (>= 2.2.3.0)
       term-ansicolor (>= 1.3.2)
       terminal-table (>= 1.5.1)
-    jbuilder (2.6.0)
-      activesupport (>= 3.0.0, < 5.1)
-      multi_json (~> 1.2)
     jmespath (1.3.1)
     jquery-rails (4.1.1)
       rails-dom-testing (>= 1, < 3)
@@ -229,7 +228,6 @@ GEM
     mimemagic (0.3.2)
     mini_portile2 (2.1.0)
     minitest (5.10.1)
-    multi_json (1.12.1)
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
     net-ssh (4.0.1)
@@ -308,8 +306,6 @@ GEM
       thor (>= 0.18.1, < 2.0)
     rainbow (2.1.0)
     rake (12.0.0)
-    rdoc (4.2.2)
-      json (~> 1.4)
     react-rails (1.10.0)
       babel-transpiler (>= 0.7.0)
       coffee-script-source (~> 1.8)
@@ -379,14 +375,14 @@ GEM
       sprockets (>= 2.8, < 4.0)
       sprockets-rails (>= 2.0, < 4.0)
       tilt (>= 1.1, < 3)
-    sdoc (0.4.1)
-      json (~> 1.7, >= 1.7.7)
-      rdoc (~> 4.0)
     sidekiq (4.2.7)
       concurrent-ruby (~> 1.0)
       connection_pool (~> 2.2, >= 2.2.0)
       rack-protection (>= 1.5.0)
       redis (~> 3.2, >= 3.2.1)
+    sidekiq-unique-jobs (4.0.18)
+      sidekiq (>= 2.6)
+      thor
     simple-navigation (4.0.3)
       activesupport (>= 2.3.2)
     simple_form (3.2.1)
@@ -467,6 +463,7 @@ DEPENDENCIES
   doorkeeper
   dotenv-rails
   fabrication
+  faker
   fast_blank
   font-awesome-rails
   fuubar
@@ -477,7 +474,6 @@ DEPENDENCIES
   http
   httplog
   i18n-tasks (~> 0.9.6)
-  jbuilder (~> 2.0)
   jquery-rails
   letter_opener
   letter_opener_web
@@ -508,8 +504,8 @@ DEPENDENCIES
   rubocop
   ruby-oembed
   sass-rails (~> 5.0)
-  sdoc (~> 0.4.0)
   sidekiq
+  sidekiq-unique-jobs
   simple-navigation
   simple_form
   simplecov

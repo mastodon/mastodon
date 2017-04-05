@@ -26,17 +26,17 @@ Mastodon User's Guide
 
 ## Intro
 
-Mastodon is a social network application based on the GNU Social protocol. It behaves a lot like other social networks, especially Twitter, with one key difference - it is open-source and anyone can start their own server (also called an "instance"), and users of any instance can interact freely with those of other instances (called "federation"). Thus, it is possible for small communities to set up their own servers to use amongst themselves while also allowing interaction with other communities.
+Mastodon is a social network application based on the GNU Social protocol. It behaves a lot like other social networks, especially Twitter, with one key difference - it is open-source and anyone can start their own server (also called an "*instance*"), and users of any instance can interact freely with those of other instances (called "*federation*"). Thus, it is possible for small communities to set up their own servers to use amongst themselves while also allowing interaction with other communities.
 
 #### Decentralization and Federation
 
-Mastodon is a system decentralized through a concept called "federation" - rather than depending on a single person or organization to run its infrastructure, anyone can download and run the software and run their own server. Federation means different Mastodon servers can interact with each other seamlessly, similar to e.g. e-mail.
+Mastodon is a system decentralized through a concept called "*federation*" - rather than depending on a single person or organization to run its infrastructure, anyone can download and run the software and run their own server. Federation means different Mastodon servers can interact with each other seamlessly, similar to e.g. e-mail.
 
 As such, anyone can download Mastodon and e.g. run it for a small community of people, but any user registered on that instance can follow and send and read posts from other Mastodon instances (as well as servers running other GNU Social-compatible services). This means that not only is users' data not inherently owned by a company with an interest in selling it to advertisers, but also that if any given server shuts down its users can set up a new one or migrate to another instance, rather than the entire service being lost.
 
 Within each Mastodon instance, usernames just appear as `@username`, similar to other services such as Twitter. Users from other instances appear, and can be searched for and followed, as `@user@servername.ext` - so e.g. `@gargron` on the `mastodon.social` instance can be followed from other instances as `@gargron@mastodon.social`).
 
-Posts from users on external instances are "federated" into the local one, i.e. if `user1@mastodon1` follows `user2@gnusocial2`, any posts `user2@gnusocial2` makes appear in both `user1@mastodon`'s Home feed and the public timeline on the `mastodon1` server. Mastodon server administrators have some control over this and can exclude users' posts from appearing on the public timeline; post privacy settings from users on Mastodon instances also affect this, see below in the [Toot Privacy](User-guide.md#toot-privacy) section.
+Posts from users on external instances are "*federated*" into the local one, i.e. if `user1@mastodon1` follows `user2@gnusocial2`, any posts `user2@gnusocial2` makes appear in both `user1@mastodon`'s Home feed and the public timeline on the `mastodon1` server. Mastodon server administrators have some control over this and can exclude users' posts from appearing on the public timeline; post privacy settings from users on Mastodon instances also affect this, see below in the [Toot Privacy](User-guide.md#toot-privacy) section.
 
 ## Getting Started
 
@@ -160,13 +160,13 @@ Toot privacy is handled independently of account privacy, and individually for e
 
 **Unlisted** toots are toggled with the "Do not display in public timeline" option in the Compose pane. They are visible to anyone following you and appear on your profile page to the public even without a Mastodon login, but do *not* appear to anyone viewing the Public Timeline while logged into Mastodon.
 
-**Private** toots, finally, are toggled with the "Mark as private" switch. Private toots do not appear in the public timeline nor on your profile page to anyone viewing it unless they are on your Followers list. This means the option is of very limited use if your account is not also set to be private (as anyone can follow you without confirmation and thus see your private toots). However the separation of this means that if you *do* set your entire account to private, you can switch this option off on a toot to make unlisted or even public toots from your otherwise private account.
+**Private** toots, finally, are toggled with the "Mark as private" switch. Private toots do not appear in the public timeline nor on your profile page to anyone viewing it unless they are on your Followers list. This means the option is of very limited use if your account is not also set to be private (as anyone can follow you without confirmation and thus see your private toots). However the separation of this means that if you *do* set your entire account to private, you can switch this option off on a toot to make unlisted or even public toots from your otherwise private account. Private posts are not encrypted. Make sure you trust your instance admin not to just read your private posts on the back-end.
 
 Private toots do not federate to other instances, unless you @mention a remote user. In this case, they will federate to their instance *and may appear there PUBLICLY*. A warning will be displayed if you're composing a private toot that will federate to another instance.
 
 Private toots cannot be boosted. If someone you follow makes a private toot, it will appear in your timeline with a padlock icon in place of the Boost icon. **NOTE** that remote instances may not respect this.
 
-**Direct** messages are only visible to users you have @mentioned in them. This does *not* federate to protect your privacy (as other instances may ignore the "Direct" status and display the messages as public if they were to receive them), even if you have @mentioned a remote user.
+**Direct** posts are only visible to users you have @mentioned in them and cannot be boosted. Like with private posts, you should be mindful that the remote instance may not respect this protocol. If you are discussing a sensitive matter you should move the conversation off of Mastodon. 
 
 To summarise:
 
@@ -175,7 +175,7 @@ Toot Privacy | Visible on Profile | Visible on Public Timeline | Federates to ot
 Public | Anyone incl. anonymous viewers | Yes | Yes
 Unlisted | Anyone incl. anonymous viewers | No | Yes
 Private | Followers only | No | Only remote @mentions
-Direct | No | No | No
+Direct | No | No | Only remote @mentions
 
 #### Blocking
 

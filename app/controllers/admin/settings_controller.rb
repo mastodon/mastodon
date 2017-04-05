@@ -11,9 +11,13 @@ class Admin::SettingsController < ApplicationController
 
   def update
     @setting = Setting.where(var: params[:id]).first_or_initialize(var: params[:id])
+    value    = settings_params[:value]
 
-    if @setting.value != params[:setting][:value]
-      @setting.value = params[:setting][:value]
+    # Special cases
+    value = value == 'true' if @setting.var == 'open_registrations'
+
+    if @setting.value != value
+      @setting.value = value
       @setting.save
     end
 
@@ -21,5 +25,11 @@ class Admin::SettingsController < ApplicationController
       format.html { redirect_to admin_settings_path }
       format.json { respond_with_bip(@setting) }
     end
+  end
+
+  private
+
+  def settings_params
+    params.require(:setting).permit(:value)
   end
 end

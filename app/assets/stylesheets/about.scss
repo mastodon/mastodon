@@ -319,7 +319,7 @@
     }
   }
 
-  .simple_form {
+  .simple_form, .closed-registrations-message {
     width: 300px;
     flex: 0 0 auto;
     background: rgba(darken($color1, 7%), 0.5);
@@ -339,4 +339,12 @@
       }
     }
   }
+}
+
+.closed-registrations-message {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
 }

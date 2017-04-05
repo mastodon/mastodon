@@ -16,19 +16,19 @@ class Admin::ReportsController < ApplicationController
   end
 
   def resolve
-    @report.update(action_taken: true)
+    @report.update(action_taken: true, action_taken_by_account_id: current_account.id)
     redirect_to admin_report_path(@report)
   end
 
   def suspend
     Admin::SuspensionWorker.perform_async(@report.target_account.id)
-    @report.update(action_taken: true)
+    Report.unresolved.where(target_account: @report.target_account).update_all(action_taken: true, action_taken_by_account_id: current_account.id)
     redirect_to admin_report_path(@report)
   end
 
   def silence
     @report.target_account.update(silenced: true)
-    @report.update(action_taken: true)
+    Report.unresolved.where(target_account: @report.target_account).update_all(action_taken: true, action_taken_by_account_id: current_account.id)
     redirect_to admin_report_path(@report)
   end
 

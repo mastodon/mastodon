@@ -12,8 +12,21 @@ map $http_upgrade $connection_upgrade {
 }
 
 server {
+  listen 80;
+  listen [::]:80;
+  server_name example.com;
+  return 301 https://$host$request_uri;
+}
+
+server {
   listen 443 ssl;
   server_name example.com;
+
+  ssl_protocols TLSv1.2;
+  ssl_ciphers EECDH+AESGCM:EECDH+AES;
+  ssl_ecdh_curve secp384r1;
+  ssl_prefer_server_ciphers on;
+  ssl_session_cache shared:SSL:10m;
 
   ssl_certificate     /etc/letsencrypt/live/example.com/fullchain.pem;
   ssl_certificate_key /etc/letsencrypt/live/example.com/privkey.pem;
@@ -75,8 +88,9 @@ It is recommended to create a special user for mastodon on the server (you could
 
 ## General dependencies
 
+    sudo apt-get install imagemagick ffmpeg libpq-dev libxml2-dev libxslt1-dev nodejs file git curl
     curl -sL https://deb.nodesource.com/setup_4.x | sudo bash -
-    sudo apt-get install imagemagick ffmpeg libpq-dev libxml2-dev libxslt1-dev nodejs
+    apt-get intall nodejs
     sudo npm install -g yarn
 
 ## Redis
@@ -112,7 +126,7 @@ Then once `rbenv` is ready, run `rbenv install 2.3.1` to install the Ruby versio
 You need the `git-core` package installed on your system. If it is so, from the `mastodon` user:
 
     cd ~
-    git clone https://github.com/Gargron/mastodon.git live
+    git clone https://github.com/tootsuite/mastodon.git live
     cd live
 
 Then you can proceed to install project dependencies:
@@ -132,7 +146,7 @@ Fill in the important data, like host/port of the redis database, host/port/user
 
     rake secret
 
-To get a random string. If you are setting up on one single server (most likely), then REDIS_HOST is localhost and `DB_HOST` is `/var/run/postgresql`, `DB_USER` is `mastodon` and `DB_NAME` is `mastodon_production` while `DB_PASS` is empty because this setup will use the ident authentication method (system user "mastodon" maps to postgres user "mastodon").
+To get a random string. If you are setting up on one single server (most likely), then `REDIS_HOST` is localhost and `DB_HOST` is `/var/run/postgresql`, `DB_USER` is `mastodon` and `DB_NAME` is `mastodon_production` while `DB_PASS` is empty because this setup will use the ident authentication method (system user "mastodon" maps to postgres user "mastodon").
 
 ## Setup
 
@@ -180,7 +194,7 @@ User=mastodon
 WorkingDirectory=/home/mastodon/live
 Environment="RAILS_ENV=production"
 Environment="DB_POOL=5"
-ExecStart=/home/mastodon/.rbenv/shims/bundle exec sidekiq -c 5 -q default -q mailers -q push
+ExecStart=/home/mastodon/.rbenv/shims/bundle exec sidekiq -c 5 -q default -q mailers -q pull -q push
 TimeoutSec=15
 Restart=always
 
@@ -221,7 +235,7 @@ I recommend creating a couple cronjobs for the following tasks:
 
 You may want to run `which bundle` first and copypaste that full path instead of simply `bundle` in the above commands because cronjobs usually don't have all the paths set. The time and intervals of when to run these jobs are up to you, but once every day should be enough for all.
 
-You can edit the cronjob file for the `mastodon` user by running `sudo crontab -e mastodon` (outside of the mastodon user).
+You can edit the cronjob file for the `mastodon` user by running `sudo crontab -e -u mastodon` (outside of the mastodon user).
 
 ## Things to look out for when upgrading Mastodon
 
