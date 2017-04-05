@@ -160,13 +160,13 @@ Toot privacy is handled independently of account privacy, and individually for e
 
 **Unlisted** toots are toggled with the "Do not display in public timeline" option in the Compose pane. They are visible to anyone following you and appear on your profile page to the public even without a Mastodon login, but do *not* appear to anyone viewing the Public Timeline while logged into Mastodon.
 
-**Private** toots, finally, are toggled with the "Mark as private" switch. Private toots do not appear in the public timeline nor on your profile page to anyone viewing it unless they are on your Followers list. This means the option is of very limited use if your account is not also set to be private (as anyone can follow you without confirmation and thus see your private toots). However the separation of this means that if you *do* set your entire account to private, you can switch this option off on a toot to make unlisted or even public toots from your otherwise private account.
+**Private** toots, finally, are toggled with the "Mark as private" switch. Private toots do not appear in the public timeline nor on your profile page to anyone viewing it unless they are on your Followers list. This means the option is of very limited use if your account is not also set to be private (as anyone can follow you without confirmation and thus see your private toots). However the separation of this means that if you *do* set your entire account to private, you can switch this option off on a toot to make unlisted or even public toots from your otherwise private account. Private posts are not encrypted. Make sure you trust your instance admin not to just read your private posts on the back-end.
 
 Private toots do not federate to other instances, unless you @mention a remote user. In this case, they will federate to their instance *and may appear there PUBLICLY*. A warning will be displayed if you're composing a private toot that will federate to another instance.
 
 Private toots cannot be boosted. If someone you follow makes a private toot, it will appear in your timeline with a padlock icon in place of the Boost icon. **NOTE** that remote instances may not respect this.
 
-**Direct** messages are only visible to users you have @mentioned in them. This does *not* federate to protect your privacy (as other instances may ignore the "Direct" status and display the messages as public if they were to receive them), even if you have @mentioned a remote user.
+**Direct** posts are only visible to users you have @mentioned in them and cannot be boosted. Like with private posts, you should be mindful that the remote instance may not respect this protocol. If you are discussing a sensitive matter you should move the conversation off of Mastodon. 
 
 To summarise:
 
@@ -175,7 +175,7 @@ Toot Privacy | Visible on Profile | Visible on Public Timeline | Federates to ot
 Public | Anyone incl. anonymous viewers | Yes | Yes
 Unlisted | Anyone incl. anonymous viewers | No | Yes
 Private | Followers only | No | Only remote @mentions
-Direct | No | No | No
+Direct | No | No | Only remote @mentions
 
 #### Blocking
 

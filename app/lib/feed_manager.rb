@@ -39,7 +39,7 @@ class FeedManager
 
   def broadcast(timeline_id, options = {})
     options[:queued_at] = (Time.now.to_f * 1000.0).to_i
-    ActionCable.server.broadcast("timeline:#{timeline_id}", options)
+    redis.publish("timeline:#{timeline_id}", Oj.dump(options))
   end
 
   def trim(type, account_id)
@@ -118,7 +118,7 @@ class FeedManager
 
   def filter_from_mentions?(status, receiver_id)
     check_for_blocks = [status.account_id]
-    check_for_blocks.concat(status.mentions.select('account_id').map(&:account_id))
+    check_for_blocks.concat(status.mentions.pluck(:account_id))
     check_for_blocks.concat([status.in_reply_to_account]) if status.reply? && !status.in_reply_to_account_id.nil?
 
     should_filter   = receiver_id == status.account_id                                                                                   # Filter if I'm mentioning myself
