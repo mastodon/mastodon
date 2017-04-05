@@ -12,4 +12,4 @@ Mastodon can theoretically run indefinitely on a free [Heroku](https://heroku.co
   * If you want your Mastodon to be able to send emails, configure SMTP settings here (or later). Consider using [Mailgun](https://mailgun.com) or similar, who offer free plans that should suit your interests.
 3. Deploy! The app should be set up, with a working web interface and database. You can change settings and manage versions from the Heroku dashboard.
 
-You may need to use the `heroku` CLI application to modify the database directly to give yourself administration rights.
+You may need to use the `heroku` CLI application to run `USERNAME=yourUsername rails mastodon:make_admin` to make yourself an admin.
