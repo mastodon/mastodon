@@ -22,6 +22,7 @@ class Pubsubhubbub::DeliveryWorker
                    .headers(headers)
                    .post(subscription.callback_url, body: payload)
 
+    return subscription.destroy! if response.code > 299 && response.code < 500 && response.code != 429 # HTTP 4xx means error is not temporary, except for 429 (throttling)
     raise "Delivery failed for #{subscription.callback_url}: HTTP #{response.code}" unless response.code > 199 && response.code < 300
 
     subscription.touch(:last_successful_delivery_at)
