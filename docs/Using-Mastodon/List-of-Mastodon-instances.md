@@ -6,6 +6,7 @@ There is also a list at [instances.mastodon.xyz](https://instances.mastodon.xyz)
 | Name | Theme/Notes, if applicable | Open Registrations | IPv6 |
 | -------------|-------------|---|---|
 | [mastodon.social](https://mastodon.social) |Flagship, quick updates|Yes|No|
+| [mastodon.network](https://mastodon.network) |N/A|Yes|Yes|
 | [awoo.space](https://awoo.space) |Intentionally moderated, only federates with mastodon.social|Yes|No|
 | [animalliberation.social](https://animalliberation.social) |Animal Rights|Yes|No|
 | [socially.constructed.space](https://socially.constructed.space) |Single user|No|No|
