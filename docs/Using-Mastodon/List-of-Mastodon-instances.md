@@ -40,5 +40,6 @@ There is also a list at [instances.mastodon.xyz](https://instances.mastodon.xyz)
 | [social.nasqueron.org](https://social.nasqueron.org) |Dreamers, open source developers, free culture|Yes|Yes|
 | [status.dissidence.ovh](https://status.dissidence.ovh)|N/A|Yes|Yes|
 | [mastodon.cc](https://mastodon.cc)|Art|Yes|No|
+| [mastodon.technology](https://mastodon.technology)|Open registrations, federates everywhere, for tech folks|Yes|No|
 
 Let me know if you start running one so I can add it to the list! (Alternatively, add it yourself as a pull request).
