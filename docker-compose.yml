@@ -8,6 +8,8 @@ services:
   redis:
     restart: always
     image: redis:alpine
+    volumes:
+      - ./redis:/data
   web:
     restart: always
     build: .
