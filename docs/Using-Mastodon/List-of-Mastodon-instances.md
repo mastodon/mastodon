@@ -26,6 +26,7 @@ There is also a list at [instances.mastodon.xyz](https://instances.mastodon.xyz)
 | [octodon.social](https://octodon.social) |Open registrations, federates everywhere, cutest instance yet|Yes|Yes|
 | [hostux.social](https://hostux.social) |N/A|Yes|Yes|
 | [social.alex73630.xyz](https://social.alex73630.xyz) |Francophones|Yes|Yes|
+| [oc.todon.fr](https://oc.todon.fr) |Modérée et principalement francophone, pas de tolérances pour misogynie/LGBTphobies/validisme/etc.|Yes|Yes|
 | [maly.io](https://maly.io) |N/A|Yes|No|
 | [social.lou.lt](https://social.lou.lt) |N/A|Yes|No|
 | [mastodon.ninetailed.uk](https://mastodon.ninetailed.uk) |N/A|Yes|No|
