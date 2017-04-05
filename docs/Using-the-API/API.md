@@ -310,7 +310,7 @@ Returns a [Status](#status).
 
 #### Getting status context:
 
-    GET /api/v1/statuses/:id/contexts
+    GET /api/v1/statuses/:id/context
 
 Returns a [Context](#context).
 
