@@ -1,31 +1,31 @@
 ---
 hr:
   about:
-    about_mastodon: Mastodon je <em>free, open-source</em> social network. A <em>decentralized</em> alternative to commercial platforms, it avoids the risks of a single company monopolizing your communication. Pick a server that you trust &mdash; whichever you choose, you can interact with everyone else. Anyone can run their own Mastodon instance and participate in the <em>social network</em> seamlessly.
-    about_this: About this instance
-    apps: Apps
+    about_mastodon: Mastodon je <em>besplatna, open-source</em> socijalna mreža. <em>Decentralizirana</em> alternativa komercijalnim platforms, it avoids the risks of a single company monopolizing your communication. Pick a server that you trust &mdash; whichever you choose, you can interact with everyone else. Anyone can run their own Mastodon instance and participate in the <em>social network</em> seamlessly.
+    about_this: O ovoj instanci
+    apps: Aplikacije
     business_email: 'Poslovni e-mail:'
     closed_registrations: Registracije na ovoj instanci su trenutno zatvorene.
     contact: Kontakt
     description_headline: Što je %{domain}?
     domain_count_after: druge instance
-    domain_count_before: Connected to
+    domain_count_before: Spojen na
     features:
-      api: Open API for apps and services
-      blocks: Rich block and muting tools
-      characters: 500 characters per post
-      chronology: Timelines are chronological
-      ethics: 'Ethical design: no ads, no tracking'
-      gifv: GIFV sets and short videos
+      api: Otvoren API za aplikacije i servise
+      blocks: Rich block i muting alati
+      characters: 500 znakova po postu
+      chronology: Timelines su kronološki
+      ethics: 'Etički dizajn: bez oglasa, bez praćenja'
+      gifv: GIFV setovi i kratki videi
       privacy: Granular, per-post privacy settings
-      public: Public timelines
-    features_headline: What sets Mastodon apart
+      public: Javni timelines
+    features_headline: Po čemu se Mastodon razlikuje
     get_started: Započni
     links: Linkovi
     other_instances: Druge instance
     source_code: Izvorni kod
     status_count_after: statusi
-    status_count_before: Who authored
+    status_count_before: Tko je autor
     terms: Uvjeti
     user_count_after: korisnici
     user_count_before: Home to
@@ -44,19 +44,19 @@ hr:
     signature: Mastodon notifications from %{instance}
     view: 'View:'
   applications:
-    invalid_url: The provided URL is invalid
+    invalid_url: Uneseni link nije valjan
   auth:
     change_password: Credentials
-    didnt_get_confirmation: Didn't receive confirmation instructions?
+    didnt_get_confirmation: Niste primili confirmation instrukcije?
     forgot_password: Zaboravljena lozinka?
     login: Prijavi se
     logout: Odjavi se
-    register: Sign up
-    resend_confirmation: Ponovo pošalji confirmation instructions
+    register: Registriraj se
+    resend_confirmation: Ponovo pošalji confirmation instrukcije
     reset_password: Resetiraj lozinku
     set_new_password: Postavi novu lozinku
   authorize_follow:
-    error: Nažalost, došlo je do greške looking up the remote account
+    error: Nažalost, došlo je do greške looking up the remote račun
     follow: Slijedi
     prompt_html: 'You (<strong>%{self}</strong>) have requested to follow:'
     title: Follow %{acct}
@@ -84,19 +84,19 @@ hr:
     powered_by: omogućuje %{link}
     save_changes: Sačuvaj izmjene
     validation_errors:
-      one: Nešto ne štima! Please review the error below
-      other: Nešto još uvijek ne štima! Please review %{count} errors below
+      one: Nešto ne štima! Vidi grešku ispod
+      other: Nešto još uvijek ne štima! Vidi %{count} greške ispod
   imports:
-    preface: You can import certain data like all the people you are following or blocking into your account on this instance, from files created by an export on another instance.
-    success: Tvoji podaci su uspješno uploadani i bit će obrađeni u due time
+    preface: Možeš uvesti određene podatke kao što su svi ljudi koje slijediš ili blokiraš u svoj račun na ovoj instanci, sa fajlova kreiranih izvozom sa druge instance.
+    success: Tvoji podaci su uspješno uploadani i bit će obrađeni u dogledno vrijeme
     types:
       blocking: Lista blokiranih
       following: Lista onih koje slijedim
     upload: Upload
-  landing_strip_html: <strong>%{name}</strong> is a user on <strong>%{domain}</strong>. You can follow them or interact with them if you have an account anywhere in the fediverse. Ako nemaš, možeš se <a href="%{sign_up_path}">sign up ovdje</a>.
+  landing_strip_html: <strong>%{name}</strong> je korisnik na <strong>%{domain}</strong>. Možeš ih slijediti ili komunicirati s njima ako imaš račun igdje u fediversu. Ako nemaš, možeš se <a href="%{sign_up_path}">registrirati ovdje</a>.
   notification_mailer:
     digest:
-      body: 'Here is a brief summary of what you missed on %{instance} since your last visit on %{since}:'
+      body: 'Ovo je kratak sažetak propuštenog %{instance} od tvog prošlog posjeta %{since}:'
       mention: "%{name} te je spomenuo:"
       new_followers_summary:
         one: Dobio si novog sljedbenika! Yay!
@@ -106,7 +106,7 @@ hr:
         other: "%{count} novih notifikacija od tvog prošlog posjeta \U0001F418"
     favourite:
       body: 'Your status was favourited by %{name}:'
-      subject: "%{name} favourited your status"
+      subject: "%{name} favourited tvoj status"
     follow:
       body: "%{name} te sada slijedi!"
       subject: "%{name} te sada slijedi"
@@ -123,7 +123,7 @@ hr:
     next: Sljedeći
     prev: Prošli
   remote_follow:
-    acct: Enter your username@domain you want to follow from
+    acct: Unesi svoje username@domain you want to follow from
     missing_resource: Could not find the required redirect URL for your account
     proceed: Proceed to follow
     prompt: 'You are going to follow:'
@@ -131,14 +131,14 @@ hr:
     authorized_apps: Autorizirane aplikacije
     back: Natrag na Mastodon
     edit_profile: Uredi profil
-    export: Data export
+    export: Izvoz podataka
     import: Uvezi
     preferences: Preferences
     settings: Postavke
     two_factor_auth: Two-factor Authentication
   statuses:
     open_in_web: Otvori na webu
-    over_character_limit: character limit of %{max} exceeded
+    over_character_limit: prijeđen je limit o %{max} znakova
     show_more: Prikaži više
     visibilities:
       private: Pokaži samo sljedbenicima
@@ -152,7 +152,7 @@ hr:
     formats:
       default: "%b %d, %Y, %H:%M"
   two_factor_auth:
-    description_html: Ako omogućiš <strong>two-factor authentication</strong>, logging in will require you to be in possession of your phone, which will generate tokens for you to enter.
+    description_html: Ako omogućiš <strong>two-factor autentifikaciju</strong>, logging in will require you to be in possession of your phone, which will generate tokens for you to enter.
     disable: Onemogući
     enable: Omogući
     instructions_html: "<strong>Skeniraj ovaj QR kod into Google Authenticator or a similiar app on your phone</strong>. Od sada, ta aplikacija će generirati tokene koje ćeš unijeti pri prijavljivanju."
@@ -160,6 +160,6 @@ hr:
     warning: Ako trenuno ne možeš konfigurirati authenticator app, trebaš kliknuti "onemogući" ili se nećeš moći prijaviti.
   users:
     invalid_email: E-mail adresa nije valjana
-    invalid_otp_token: Nevaljani two-factor code
+    invalid_otp_token: Nevaljani dvo-faktorski kod
   will_paginate:
     page_gap: "&hellip;"
