@@ -68,6 +68,32 @@ server {
   error_page 500 501 502 503 504 /500.html;
 }
 ```
+## Apache 2
+
+And an example for Apache 2.
+
+```apache2
+<IfModule mod_ssl.c>
+<VirtualHost *:443>
+	ServerName example.com
+	ServerAdmin someone@example.com
+    
+	ProxyPreserveHost On
+	ProxyPass / http://localhost:3000/
+	ProxyPassReverse / http://localhost:3000/		
+	RequestHeader set X-Forwarded-Proto "https"
+
+	ErrorLog ${APACHE_LOG_DIR}/social-error.log
+	CustomLog ${APACHE_LOG_DIR}/social-access.log combined
+
+    RewriteEngine on
+    SSLCertificateFile /etc/letsencrypt/live/example.com/fullchain.pem
+    SSLCertificateKeyFile /etc/letsencrypt/live/example.com/privkey.pem
+    Include /etc/letsencrypt/options-ssl-apache.conf
+</VirtualHost>
+</IfModule>
+```
+
 
 ## Running in production without Docker
 
