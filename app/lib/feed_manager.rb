@@ -34,12 +34,7 @@ class FeedManager
       trim(timeline_type, account.id)
     end
 
-    broadcast(account.id, event: 'update', payload: inline_render(account, 'api/v1/statuses/show', status))
-  end
-
-  def broadcast(timeline_id, options = {})
-    options[:queued_at] = (Time.now.to_f * 1000.0).to_i
-    redis.publish("timeline:#{timeline_id}", Oj.dump(options))
+    PushUpdateWorker.perform_async(timeline_type, account.id, status.id)
   end
 
   def trim(type, account_id)
@@ -79,10 +74,6 @@ class FeedManager
         end
       end
     end
-  end
-
-  def inline_render(target_account, template, object)
-    Rabl::Renderer.new(template, object, view_path: 'app/views', format: :json, scope: InlineRablScope.new(target_account)).render
   end
 
   private
