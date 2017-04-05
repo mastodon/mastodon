@@ -23,7 +23,8 @@ server {
   server_name example.com;
 
   ssl_protocols TLSv1.2;
-  ssl_ciphers 'EECDH+AESGCM:EDH+AESGCM:AES256+EECDH:AES256+EDH';
+  ssl_ciphers EECDH+AESGCM:EECDH+AES;
+  ssl_ecdh_curve secp384r1;
   ssl_prefer_server_ciphers on;
   ssl_session_cache shared:SSL:10m;
 
