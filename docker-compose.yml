@@ -12,7 +12,7 @@ services:
     env_file: .env.production
     command: bundle exec rails s -p 3000 -b '0.0.0.0'
     ports:
-      - "3000:3000"
+      - "127.0.0.1:3000:3000"
     depends_on:
       - db
       - redis
@@ -25,7 +25,7 @@ services:
     env_file: .env.production
     command: npm run start
     ports:
-      - "4000:4000"
+      - "127.0.0.1:4000:4000"
     depends_on:
       - db
       - redis
