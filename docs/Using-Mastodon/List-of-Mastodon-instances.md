@@ -19,6 +19,7 @@ There is also a list at [instances.mastodon.xyz](https://instances.mastodon.xyz)
 | [memetastic.space](https://memetastic.space) |Memes|Yes|No|
 | [social.diskseven.com](https://social.diskseven.com) |Single user|No|Yes|
 | [social.gestaltzerfall.net](https://social.gestaltzerfall.net) |Single user|No|No|
+| [from.komic.eu](https://from.komic.eu) |Single user|No|Yes|
 | [mastodon.xyz](https://mastodon.xyz) |N/A|Yes|Yes|
 | [mastodon.partipirate.org](https://mastodon.partipirate.org) |French Pirate Party Instance - Politics and stuff|Yes|No|
 | [social.targaryen.house](https://social.targaryen.house) |Federates everywhere, quick updates.|Yes|Yes|
