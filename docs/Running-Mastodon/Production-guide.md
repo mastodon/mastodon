@@ -12,8 +12,21 @@ map $http_upgrade $connection_upgrade {
 }
 
 server {
+  listen 80;
+  listen [::]:80;
+  server_name example.com;
+  return 301 https://$host$request_uri;
+}
+
+server {
   listen 443 ssl;
   server_name example.com;
+
+  ssl_protocols TLSv1.2;
+  ssl_ciphers EECDH+AESGCM:EECDH+AES;
+  ssl_ecdh_curve secp384r1;
+  ssl_prefer_server_ciphers on;
+  ssl_session_cache shared:SSL:10m;
 
   ssl_certificate     /etc/letsencrypt/live/example.com/fullchain.pem;
   ssl_certificate_key /etc/letsencrypt/live/example.com/privkey.pem;
@@ -75,8 +88,9 @@ It is recommended to create a special user for mastodon on the server (you could
 
 ## General dependencies
 
+    sudo apt-get install imagemagick ffmpeg libpq-dev libxml2-dev libxslt1-dev nodejs file git curl
     curl -sL https://deb.nodesource.com/setup_4.x | sudo bash -
-    sudo apt-get install imagemagick ffmpeg libpq-dev libxml2-dev libxslt1-dev nodejs file
+    apt-get intall nodejs
     sudo npm install -g yarn
 
 ## Redis

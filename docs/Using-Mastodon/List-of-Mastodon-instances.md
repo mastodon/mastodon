@@ -5,7 +5,10 @@ There is also a list at [instances.mastodon.xyz](https://instances.mastodon.xyz)
 
 | Name | Theme/Notes, if applicable | Open Registrations | IPv6 |
 | -------------|-------------|---|---|
-| [mastodon.social](https://mastodon.social) |Flagship, quick updates|Yes|No|
+| [mastodon.social](https://mastodon.social) |Flagship, quick updates|No|No|
+| [securitymastod.one](https://securitymastod.one/) |Information security enthusiasts and pros|Yes|Yes|
+| [mastodon.cx](https://mastodon.cx/) |Alternative Mastodon instance hosted in France|Yes|Yes|
+| [mastodon.network](https://mastodon.network) |N/A|Yes|Yes|
 | [awoo.space](https://awoo.space) |Intentionally moderated, only federates with mastodon.social|Yes|No|
 | [animalliberation.social](https://animalliberation.social) |Animal Rights|Yes|No|
 | [socially.constructed.space](https://socially.constructed.space) |Single user|No|No|
@@ -17,12 +20,15 @@ There is also a list at [instances.mastodon.xyz](https://instances.mastodon.xyz)
 | [social.diskseven.com](https://social.diskseven.com) |Single user|No|Yes|
 | [social.gestaltzerfall.net](https://social.gestaltzerfall.net) |Single user|No|No|
 | [mastodon.xyz](https://mastodon.xyz) |N/A|Yes|Yes|
+| [mastodon.partipirate.org](https://mastodon.partipirate.org) |French Pirate Party Instance - Politics and stuff|Yes|No|
 | [social.targaryen.house](https://social.targaryen.house) |Federates everywhere, quick updates.|Yes|Yes|
 | [masto.themimitoof.fr](https://masto.themimitoof.fr) |N/A|Yes|Yes|
+| [mstdn.io](https://mstdn.io) |N/A|Yes|Yes|
 | [social.imirhil.fr](https://social.imirhil.fr) |N/A|No|Yes|
-| [social.wxcafe.net](https://social.wxcafe.net) |Open registrations, federates everywhere, no moderation yet|Yes|Yes|
+| [social.wxcafe.net](https://social.wxcafe.net) |Open registrations, queer people, activists, safe as much as possible |Yes|Yes|
 | [octodon.social](https://octodon.social) |Open registrations, federates everywhere, cutest instance yet|Yes|Yes|
 | [mastodon.club](https://mastodon.club)|Open Registration, Open Federation, Mostly Canadians|Yes|No|
+| [mastodon.irish](https://mastodon.irish)|Open Registration|Yes|No|
 | [hostux.social](https://hostux.social) |N/A|Yes|Yes|
 | [social.alex73630.xyz](https://social.alex73630.xyz) |Francophones|Yes|Yes|
 | [oc.todon.fr](https://oc.todon.fr) |Modérée et principalement francophone, pas de tolérances pour misogynie/LGBTphobies/validisme/etc.|Yes|Yes|
@@ -40,5 +46,7 @@ There is also a list at [instances.mastodon.xyz](https://instances.mastodon.xyz)
 | [social.nasqueron.org](https://social.nasqueron.org) |Dreamers, open source developers, free culture|Yes|Yes|
 | [status.dissidence.ovh](https://status.dissidence.ovh)|N/A|Yes|Yes|
 | [mastodon.cc](https://mastodon.cc)|Art|Yes|No|
+| [mastodon.technology](https://mastodon.technology)|Open registrations, federates everywhere, for tech folks|Yes|No|
+| [mastodon.systemlab.fr](https://mastodon.systemlab.fr/)|Le mastodon Français, informatique, jeux-vidéos, gaming et hébergement.|Yes|No|
 
 Let me know if you start running one so I can add it to the list! (Alternatively, add it yourself as a pull request).

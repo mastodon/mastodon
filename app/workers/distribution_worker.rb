@@ -1,14 +1,11 @@
 # frozen_string_literal: true
 
-class DistributionWorker
+class DistributionWorker < ApplicationWorker
   include Sidekiq::Worker
 
   def perform(status_id)
-    status = Status.find(status_id)
-
-    FanOutOnWriteService.new.call(status)
-    WarmCacheService.new.call(status)
+    FanOutOnWriteService.new.call(Status.find(status_id))
   rescue ActiveRecord::RecordNotFound
-    true
+    info("Couldn't find the status")
   end
 end
