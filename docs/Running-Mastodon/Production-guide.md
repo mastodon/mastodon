@@ -87,6 +87,12 @@ server {
 Setting up Mastodon behind Apache is possible as well, although you will need to enable [mod_proxy_wstunnel](https://httpd.apache.org/docs/trunk/mod/mod_proxy_wstunnel.html) beforehand. The configuration is then pretty straightforward.
 
 ```
+<VirtualHost *:80>
+   ServerAdmin contact@example.com
+   ServerName example.com
+   Redirect Permanent / https://example.com/
+</VirtualHost>
+
 <VirtualHost *:443>
    ServerAdmin contact@example.com
    ServerName example.com
@@ -97,7 +103,7 @@ Setting up Mastodon behind Apache is possible as well, although you will need to
    SSLEngine on
    SSLProtocol All -SSLv2 -SSLv3
    SSLHonorCipherOrder on
-   SSLCipherSuite EECDH+AESGCM:EDH+AESGCM:AES256+EECDH:AES256+EDH
+   SSLCipherSuite EECDH+AESGCM:EDH+AESGCM:AES256+EECDH:AES256+EDH:AES128+EECDH:AES128+EDH
 
    SSLCertificateFile example.pem
    SSLCertificateKeyFile example.key
