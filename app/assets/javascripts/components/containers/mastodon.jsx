@@ -47,6 +47,7 @@ import pt from 'react-intl/locale-data/pt';
 import hu from 'react-intl/locale-data/hu';
 import uk from 'react-intl/locale-data/uk';
 import fi from 'react-intl/locale-data/fi';
+import co from 'react-intl/locale-data/co';
 import getMessagesForLocale from '../locales';
 import { hydrateStore } from '../actions/store';
 import createStream from '../stream';
