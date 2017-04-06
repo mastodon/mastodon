@@ -4,6 +4,8 @@ class RemoveStatusService < BaseService
   include StreamEntryRenderer
 
   def call(status)
+    @payload = Oj.dump(event: :delete, payload: status.id)
+
     remove_from_self(status) if status.account.local?
     remove_from_followers(status)
     remove_from_mentioned(status)
@@ -25,25 +27,23 @@ class RemoveStatusService < BaseService
   end
 
   def remove_from_followers(status)
-    status.account.followers.each do |follower|
-      next unless follower.local?
+    status.account.followers.where(domain: nil).each do |follower|
       unpush(:home, follower, status)
     end
   end
 
   def remove_from_mentioned(status)
+    return unless status.local?
     notified_domains = []
 
     status.mentions.each do |mention|
       mentioned_account = mention.account
 
-      if mentioned_account.local?
-        unpush(:mentions, mentioned_account, status)
-      else
-        next if notified_domains.include?(mentioned_account.domain)
-        notified_domains << mentioned_account.domain
-        send_delete_salmon(mentioned_account, status)
-      end
+      next if mentioned_account.local?
+      next if notified_domains.include?(mentioned_account.domain)
+
+      notified_domains << mentioned_account.domain
+      send_delete_salmon(mentioned_account, status)
     end
   end
 
@@ -65,17 +65,19 @@ class RemoveStatusService < BaseService
       redis.zremrangebyscore(FeedManager.instance.key(type, receiver.id), status.id, status.id)
     end
 
-    Redis.current.publish(receiver.id, Oj.dump(event: :delete, payload: status.id))
+    Redis.current.publish("timeline:#{receiver.id}", @payload)
   end
 
   def remove_from_hashtags(status)
-    status.tags.each do |tag|
-      Redis.current.publish("hashtag:#{tag.name}", Oj.dump(event: :delete, payload: status.id))
+    status.tags.pluck(:name) do |hashtag|
+      Redis.current.publish("hashtag:#{hashtag}", @payload)
+      Redis.current.publish("hashtag:#{hashtag}:local", @payload) if status.local?
     end
   end
 
   def remove_from_public(status)
-    Redis.current.publish('public', Oj.dump(event: :delete, payload: status.id))
+    Redis.current.publish('public', @payload)
+    Redis.current.publish('public:local', @payload) if status.local?
   end
 
   def redis
