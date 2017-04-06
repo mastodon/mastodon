@@ -35,7 +35,7 @@ const en = {
   "tabs_bar.mentions": "Mentions",
   "tabs_bar.public": "Federated timeline",
   "tabs_bar.notifications": "Notifications",
-  "compose_form.placeholder": "What is on your mind?",
+  "compose_form.placeholder": "What's on your mind, buddy?",
   "compose_form.publish": "Toot",
   "compose_form.sensitive": "Mark media as sensitive",
   "compose_form.spoiler": "Hide text behind warning",
