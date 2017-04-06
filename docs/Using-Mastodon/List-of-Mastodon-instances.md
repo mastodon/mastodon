@@ -7,6 +7,7 @@ There is also a list at [instances.mastodon.xyz](https://instances.mastodon.xyz)
 | -------------|-------------|---|---|
 | [mastodon.social](https://mastodon.social) |Flagship, quick updates|No|No|
 | [securitymastod.one](https://securitymastod.one/) |Information security enthusiasts and pros|Yes|Yes|
+| [hackertribe.io](https://hackertribe.io) |Community of people who are interested in Startups, Programming, Science, and Technology.|Yes|Yes|
 | [mastodon.cx](https://mastodon.cx/) |Alternative Mastodon instance hosted in France|Yes|Yes|
 | [mastodon.network](https://mastodon.network) |N/A|Yes|Yes|
 | [awoo.space](https://awoo.space) |Intentionally moderated, only federates with mastodon.social|Yes|No|
