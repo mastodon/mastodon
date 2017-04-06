@@ -1,0 +1,19 @@
+$witches-primary: #A288BD;
+$witches-off: desaturate($witches-primary, 25%);
+
+div.column {
+  flex-grow: 1;
+  flex-shrink: 1;
+}
+
+.button {
+  background-color: $witches-primary;
+}
+
+.status__content a {
+  color: $witches-primary;
+}
+
+.reply-indicator {
+  background-color: $witches-off;
+}
