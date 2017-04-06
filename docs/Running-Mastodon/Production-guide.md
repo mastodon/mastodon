@@ -92,9 +92,15 @@ Setting up Mastodon behind Apache is possible as well, although you will need to
    ServerName example.com
 
    DocumentRoot /home/mastodon/live/public/
-   RewriteEngine on
 
-# Don't forget your TLS setup
+   Header add Strict-Transport-Security "max-age=31536000"
+   SSLEngine on
+   SSLProtocol All -SSLv2 -SSLv3
+   SSLHonorCipherOrder on
+   SSLCipherSuite EECDH+AESGCM:EDH+AESGCM:AES256+EECDH:AES256+EDH
+
+   SSLCertificateFile example.pem
+   SSLCertificateKeyFile example.key
 
    ProxyPreserveHost On
    ProxyPass /api/v1/streaming/ ws://localhost:4000/
