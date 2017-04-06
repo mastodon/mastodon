@@ -1,7 +1,77 @@
 Production guide
 ================
 
-## Nginx
+## Running in production without Docker
+
+It is recommended to create a special user for mastodon on the server (you could call the user `mastodon`), though remember to disable outside login for it. You should only be able to get into that user through `sudo su - mastodon`.
+
+## General dependencies
+
+    sudo apt-get install imagemagick ffmpeg libpq-dev libxml2-dev libxslt1-dev nodejs file git curl
+    curl -sL https://deb.nodesource.com/setup_4.x | sudo bash -
+    apt-get intall nodejs
+    sudo npm install -g yarn
+
+## Redis
+
+    sudo apt-get install redis-server redis-tools
+
+## Postgres
+
+    sudo apt-get install postgresql postgresql-contrib
+
+Setup a user and database for Mastodon:
+
+    sudo su - postgres
+    psql
+
+In the prompt:
+
+    CREATE USER mastodon CREATEDB;
+    \q
+
+## Rbenv
+
+It is recommended to use rbenv (exclusively from the `mastodon` user) to install the desired Ruby version. Follow the guides to [install rbenv][1] and [rbenv-build][2] (I recommend checking the [prerequisites][3] for your system on the rbenv-build project and installing them beforehand, obviously outside the unprivileged `mastodon` user)
+
+[1]: https://github.com/rbenv/rbenv#installation
+[2]: https://github.com/rbenv/ruby-build#installation
+[3]: https://github.com/rbenv/ruby-build/wiki#suggested-build-environment
+
+Then once `rbenv` is ready, run `rbenv install 2.3.1` to install the Ruby version for Mastodon.
+
+## Git
+
+You need the `git-core` package installed on your system. If it is so, from the `mastodon` user:
+
+    cd ~
+    git clone https://github.com/tootsuite/mastodon.git live
+    cd live
+
+Then you can proceed to install project dependencies:
+
+    gem install bundler
+    bundle install --deployment --without development test
+    yarn install
+
+## Configuration
+
+Then you have to configure your instance:
+
+    cp .env.production.sample .env.production
+    nano .env.production
+
+Fill in the important data, like host/port of the redis database, host/port/username/password of the postgres database, your domain name, SMTP details (e.g. from Mailgun or equivalent transactional e-mail service, many have free tiers), whether you intend to use SSL, etc. If you need to generate secrets, you can use:
+
+    rake secret
+
+To get a random string. If you are setting up on one single server (most likely), then `REDIS_HOST` is localhost and `DB_HOST` is `/var/run/postgresql`, `DB_USER` is `mastodon` and `DB_NAME` is `mastodon_production` while `DB_PASS` is empty because this setup will use the ident authentication method (system user "mastodon" maps to postgres user "mastodon").
+
+## Webserver Configuration
+
+To access the webinterface and allow for apps or other instances to access local data using websockets/REST you need to forward requests to mastodons ports. Usually you'll want to set up a local webserver or create a new vhost if you've already got one. Be aware mastodon uses the folder .well-known for automatic discovery - ensure it is not automatically redirected elsewhere if you are using a webserver management software.
+
+### Nginx
 
 Regardless of whether you go with the Docker approach or not, here is an example Nginx server configuration:
 
@@ -82,71 +152,23 @@ server {
 }
 ```
 
-## Running in production without Docker
+### Apache
 
-It is recommended to create a special user for mastodon on the server (you could call the user `mastodon`), though remember to disable outside login for it. You should only be able to get into that user through `sudo su - mastodon`.
+You need the modules proxy_http and proxy_wstunnel installed and loaded
 
-## General dependencies
+```
+[…]
+   ProxyPreserveHost On
+   ProxyRequests Off
+   RequestHeader set X_FORWARDED_PROTO 'https'
 
-    sudo apt-get install imagemagick ffmpeg libpq-dev libxml2-dev libxslt1-dev nodejs file git curl
-    curl -sL https://deb.nodesource.com/setup_4.x | sudo bash -
-    apt-get intall nodejs
-    sudo npm install -g yarn
+   ProxyPass /api/v1/streaming ws://localhost:4000
+   ProxyPassReverse /api/v1/streaming ws://localhost:4000
 
-## Redis
-
-    sudo apt-get install redis-server redis-tools
-
-## Postgres
-
-    sudo apt-get install postgresql postgresql-contrib
-
-Setup a user and database for Mastodon:
-
-    sudo su - postgres
-    psql
-
-In the prompt:
-
-    CREATE USER mastodon CREATEDB;
-    \q
-
-## Rbenv
-
-It is recommended to use rbenv (exclusively from the `mastodon` user) to install the desired Ruby version. Follow the guides to [install rbenv][1] and [rbenv-build][2] (I recommend checking the [prerequisites][3] for your system on the rbenv-build project and installing them beforehand, obviously outside the unprivileged `mastodon` user)
-
-[1]: https://github.com/rbenv/rbenv#installation
-[2]: https://github.com/rbenv/ruby-build#installation
-[3]: https://github.com/rbenv/ruby-build/wiki#suggested-build-environment
-
-Then once `rbenv` is ready, run `rbenv install 2.3.1` to install the Ruby version for Mastodon.
-
-## Git
-
-You need the `git-core` package installed on your system. If it is so, from the `mastodon` user:
-
-    cd ~
-    git clone https://github.com/tootsuite/mastodon.git live
-    cd live
-
-Then you can proceed to install project dependencies:
-
-    gem install bundler
-    bundle install --deployment --without development test
-    yarn install
-
-## Configuration
-
-Then you have to configure your instance:
-
-    cp .env.production.sample .env.production
-    nano .env.production
-
-Fill in the important data, like host/port of the redis database, host/port/username/password of the postgres database, your domain name, SMTP details (e.g. from Mailgun or equivalent transactional e-mail service, many have free tiers), whether you intend to use SSL, etc. If you need to generate secrets, you can use:
-
-    rake secret
-
-To get a random string. If you are setting up on one single server (most likely), then `REDIS_HOST` is localhost and `DB_HOST` is `/var/run/postgresql`, `DB_USER` is `mastodon` and `DB_NAME` is `mastodon_production` while `DB_PASS` is empty because this setup will use the ident authentication method (system user "mastodon" maps to postgres user "mastodon").
+   ProxyPass / http://localhost:3000/
+   ProxyPassReverse / http://localhost:3000/
+[…]
+```
 
 ## Setup
 
