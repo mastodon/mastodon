@@ -46,7 +46,7 @@ class ImportWorker
 
       begin
         FollowService.new.call(from_account, row[0])
-      rescue Goldfinger::Error, HTTP::Error, OpenSSL::SSL::SSLError
+      rescue Mastodon::NotPermittedError, ActiveRecord::RecordNotFound, Goldfinger::Error, HTTP::Error, OpenSSL::SSL::SSLError
         next
       end
     end
