@@ -27,6 +27,7 @@ There is also a list at [instances.mastodon.xyz](https://instances.mastodon.xyz)
 | [social.imirhil.fr](https://social.imirhil.fr) |N/A|No|Yes|
 | [social.wxcafe.net](https://social.wxcafe.net) |Open registrations, queer people, activists, safe as much as possible |Yes|Yes|
 | [octodon.social](https://octodon.social) |Open registrations, federates everywhere, cutest instance yet|Yes|Yes|
+| [social.intensifi.es](https://social.intensifi.es) |\*Single user instance (for now) intensifies\*|No|No|
 | [mastodon.club](https://mastodon.club)|Open Registration, Open Federation, Mostly Canadians|Yes|No|
 | [mastodon.irish](https://mastodon.irish)|Open Registration|Yes|No|
 | [hostux.social](https://hostux.social) |N/A|Yes|Yes|
