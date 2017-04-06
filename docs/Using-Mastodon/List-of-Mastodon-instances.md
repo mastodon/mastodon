@@ -17,6 +17,7 @@ There is also a list at [instances.mastodon.xyz](https://instances.mastodon.xyz)
 | [gay.crime.team](https://gay.crime.team) |the place for doin' gay crime online (please don't actually do crime here)|No|No|
 | [icosahedron.website](https://icosahedron.website/) |Icosahedron-themed (well, visually), open registration.|Yes|No|
 | [memetastic.space](https://memetastic.space) |Memes|Yes|No|
+| [masto.razrnet.fr](https://masto.razrnet.fr) |Instance Française pour tout le monde ! Développeurs, gamers, etc...|Yes|No|
 | [social.diskseven.com](https://social.diskseven.com) |Single user|No|Yes|
 | [social.gestaltzerfall.net](https://social.gestaltzerfall.net) |Single user|No|No|
 | [mastodon.xyz](https://mastodon.xyz) |N/A|Yes|Yes|
