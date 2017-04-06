@@ -6,6 +6,7 @@ import fr from './fr';
 import pt from './pt';
 import uk from './uk';
 import fi from './fi';
+import ru from './ru';
 
 const locales = {
   en,
@@ -15,7 +16,8 @@ const locales = {
   fr,
   pt,
   uk,
-  fi
+  fi,
+  ru
 };
 
 export default function getMessagesForLocale (locale) {
