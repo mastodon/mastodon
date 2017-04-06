@@ -5,7 +5,7 @@ ENV RAILS_ENV=production \
 
 WORKDIR /mastodon
 
-COPY . /mastodon
+COPY Gemfile Gemfile.lock package.json yarn.lock /mastodon/
 
 RUN BUILD_DEPS=" \
     postgresql-dev \
@@ -27,5 +27,7 @@ RUN BUILD_DEPS=" \
  && npm cache clean \
  && apk del $BUILD_DEPS \
  && rm -rf /tmp/* /var/cache/apk/*
+
+COPY . /mastodon
 
 VOLUME /mastodon/public/system /mastodon/public/assets
