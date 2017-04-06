@@ -10,7 +10,7 @@
           = image_tag status.account.avatar(:original), width: 48, height: 48, alt: '', class: 'u-photo'
       %span.display-name
         %strong.p-name.emojify= display_name(status.account)
-        %span.p-nickname= acct(status.account)
+        %span= acct(status.account)
 
   .status__content.e-content.p-name.emojify<
     - unless status.spoiler_text.blank?
