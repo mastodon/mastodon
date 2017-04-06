@@ -1,3 +1,3 @@
 Fabricator(:account) do
-  username "alice"
+  username { Faker::Internet.user_name(nil, %w(_)) }
 end

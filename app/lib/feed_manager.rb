@@ -34,12 +34,7 @@ class FeedManager
       trim(timeline_type, account.id)
     end
 
-    broadcast(account.id, event: 'update', payload: inline_render(account, 'api/v1/statuses/show', status))
-  end
-
-  def broadcast(timeline_id, options = {})
-    options[:queued_at] = (Time.now.to_f * 1000.0).to_i
-    ActionCable.server.broadcast("timeline:#{timeline_id}", options)
+    PushUpdateWorker.perform_async(account.id, status.id)
   end
 
   def trim(type, account_id)
@@ -81,10 +76,6 @@ class FeedManager
     end
   end
 
-  def inline_render(target_account, template, object)
-    Rabl::Renderer.new(template, object, view_path: 'app/views', format: :json, scope: InlineRablScope.new(target_account)).render
-  end
-
   private
 
   def redis
@@ -118,7 +109,7 @@ class FeedManager
 
   def filter_from_mentions?(status, receiver_id)
     check_for_blocks = [status.account_id]
-    check_for_blocks.concat(status.mentions.select('account_id').map(&:account_id))
+    check_for_blocks.concat(status.mentions.pluck(:account_id))
     check_for_blocks.concat([status.in_reply_to_account]) if status.reply? && !status.in_reply_to_account_id.nil?
 
     should_filter   = receiver_id == status.account_id                                                                                   # Filter if I'm mentioning myself
