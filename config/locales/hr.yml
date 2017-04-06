@@ -1,7 +1,7 @@
 ---
 hr:
   about:
-    about_mastodon: Mastodon je <em>besplatna, open-source</em> socijalna mreža. <em>Decentralizirana</em> alternativa komercijalnim platforms, it avoids the risks of a single company monopolizing your communication. Pick a server that you trust &mdash; whichever you choose, you can interact with everyone else. Anyone can run their own Mastodon instance and participate in the <em>social network</em> seamlessly.
+    about_mastodon: Mastodon je <em>besplatna, open-source</em> socijalna mreža. <em>Decentralizirana</em> alternativa komercijalnim platformama, izbjegava rizik toga da jedna tvrtka monopolizira vašu komunikaciju. Izaberite server kojem ćete vjerovati &mdash; koji god odabrali, moći ćete komunicirati sa svima ostalima. Bilo tko može imati svoju vlastitu Mastodon instancu i sudjelovati u <em>socijalnoj mreži</em> bez problema.
     about_this: O ovoj instanci
     apps: Aplikacije
     business_email: 'Poslovni e-mail:'
@@ -12,13 +12,13 @@ hr:
     domain_count_before: Spojen na
     features:
       api: Otvoren API za aplikacije i servise
-      blocks: Rich block i muting alati
+      blocks: Bogati alati za blokiranje i ušutkivanje
       characters: 500 znakova po postu
-      chronology: Timelines su kronološki
+      chronology: Timelines su kronološke
       ethics: 'Etički dizajn: bez oglasa, bez praćenja'
       gifv: GIFV setovi i kratki videi
-      privacy: Granular, per-post privacy settings
-      public: Javni timelines
+      privacy: Granularne postavke privatnosti, po postu
+      public: Javne timelines
     features_headline: Po čemu se Mastodon razlikuje
     get_started: Započni
     links: Linkovi
@@ -38,28 +38,28 @@ hr:
     people_who_follow: Ljudi koji slijede %{name}
     posts: Postovi
     remote_follow: Remote follow
-    unfollow: Unfollow
+    unfollow: Prestani slijediti
   application_mailer:
-    settings: 'Change e-mail preferences: %{link}'
-    signature: Mastodon notifications from %{instance}
+    settings: 'Promijeni e-mail postavke: %{link}'
+    signature: Mastodon notifikacije sa %{instance}
     view: 'View:'
   applications:
     invalid_url: Uneseni link nije valjan
   auth:
-    change_password: Credentials
-    didnt_get_confirmation: Niste primili confirmation instrukcije?
+    change_password: Vjerodajnice
+    didnt_get_confirmation: Niste primili instrukcije za potvrđivanje?
     forgot_password: Zaboravljena lozinka?
     login: Prijavi se
     logout: Odjavi se
     register: Registriraj se
-    resend_confirmation: Ponovo pošalji confirmation instrukcije
+    resend_confirmation: Ponovo pošalji instrukcije za potvrđivanje
     reset_password: Resetiraj lozinku
     set_new_password: Postavi novu lozinku
   authorize_follow:
     error: Nažalost, došlo je do greške looking up the remote račun
     follow: Slijedi
-    prompt_html: 'You (<strong>%{self}</strong>) have requested to follow:'
-    title: Follow %{acct}
+    prompt_html: 'Ti si (<strong>%{self}</strong>) poslao zahtjev za sljeđenje:'
+    title: Slijedi %{acct}
   datetime:
     distance_in_words:
       about_x_hours: "%{count}s"
@@ -68,7 +68,7 @@ hr:
       almost_x_years: "%{count}g"
       half_a_minute: upravo
       less_than_x_minutes: "%{count}m"
-      less_than_x_seconds: Just now
+      less_than_x_seconds: upravo
       over_x_years: "%{count}g"
       x_days: "%{count}d"
       x_minutes: "%{count}m"
@@ -78,7 +78,7 @@ hr:
     blocks: Blokirao si
     csv: CSV
     follows: Slijediš
-    storage: Media storage
+    storage: Pohrana media zapisa
   generic:
     changes_saved_msg: Izmjene su uspješno sačuvane!
     powered_by: omogućuje %{link}
@@ -99,46 +99,46 @@ hr:
       body: 'Ovo je kratak sažetak propuštenog %{instance} od tvog prošlog posjeta %{since}:'
       mention: "%{name} te je spomenuo:"
       new_followers_summary:
-        one: Dobio si novog sljedbenika! Yay!
+        one: Imaš novog sljedbenika! Yay!
         other: Imaš %{count} novih sljedbenika! Prekrašno!
       subject:
         one: "1 nova notifikacija od tvog prošlog posjeta \U0001F418"
         other: "%{count} novih notifikacija od tvog prošlog posjeta \U0001F418"
     favourite:
-      body: 'Your status was favourited by %{name}:'
-      subject: "%{name} favourited tvoj status"
+      body: 'Tvoj status je %{name} označio kao omiljen:'
+      subject: "%{name} je označio kao omiljen tvoj status"
     follow:
       body: "%{name} te sada slijedi!"
       subject: "%{name} te sada slijedi"
     follow_request:
       body: "%{name} je zatražio da te slijedi"
-      subject: 'Pending sljedbenik: %{name}'
+      subject: 'Sljedbenik na čekanju: %{name}'
     mention:
       body: 'Spomenuo te je %{name} in:'
       subject: Spomenuo te je %{name}
     reblog:
-      body: 'Tvoj status je boosted by %{name}:'
-      subject: "%{name} boosted tvoj status"
+      body: 'Tvoj status je potaknut od %{name}:'
+      subject: "%{name} je potakao tvoj status"
   pagination:
     next: Sljedeći
     prev: Prošli
   remote_follow:
-    acct: Unesi svoje username@domain you want to follow from
-    missing_resource: Could not find the required redirect URL for your account
-    proceed: Proceed to follow
-    prompt: 'You are going to follow:'
+    acct: Unesi svoje username@domain sa koje želiš slijediti
+    missing_resource: Could not find the required redirect URL za tvoj račun
+    proceed: Nastavi slijediti
+    prompt: 'Slijediti ćeš:'
   settings:
     authorized_apps: Autorizirane aplikacije
     back: Natrag na Mastodon
     edit_profile: Uredi profil
     export: Izvoz podataka
     import: Uvezi
-    preferences: Preferences
-    settings: Postavke
-    two_factor_auth: Two-factor Authentication
+    preferences: Postavke
+    settings: Podešenja
+    two_factor_auth: Dvo-faktorska Autentifikacija
   statuses:
     open_in_web: Otvori na webu
-    over_character_limit: prijeđen je limit o %{max} znakova
+    over_character_limit: prijeđen je limit od %{max} znakova
     show_more: Prikaži više
     visibilities:
       private: Pokaži samo sljedbenicima
@@ -146,13 +146,13 @@ hr:
       unlisted: Javno, no nemoj prikazati na javnom timelineu
   stream_entries:
     click_to_show: Klikni da bi prikazao
-    reblogged: boosted
+    reblogged: potaknut
     sensitive_content: Osjetljivi sadržaj
   time:
     formats:
       default: "%b %d, %Y, %H:%M"
   two_factor_auth:
-    description_html: Ako omogućiš <strong>two-factor autentifikaciju</strong>, logging in will require you to be in possession of your phone, which will generate tokens for you to enter.
+    description_html: Ako omogućiš <strong>two-factor autentifikaciju</strong>, prijavljivanje će zahtjevati da kod sebe imaš svoj mobitel, koji će generirati tokene koje ćeš unijeti.
     disable: Onemogući
     enable: Omogući
     instructions_html: "<strong>Skeniraj ovaj QR kod into Google Authenticator or a similiar app on your phone</strong>. Od sada, ta aplikacija će generirati tokene koje ćeš unijeti pri prijavljivanju."
