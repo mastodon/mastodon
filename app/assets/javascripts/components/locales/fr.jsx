@@ -44,7 +44,7 @@ const fr = {
   "tabs_bar.public": "Boule de cristal",
   "tabs_bar.notifications": "Notifications",
   "compose_form.placeholder": "Qu’avez-vous en tête ?",
-  "compose_form.publish": "Maudire ",
+  "compose_form.publish": "Maudire",
   "compose_form.sensitive": "Marquer le média comme délicat",
   "compose_form.spoiler": "Masquer le texte par un avertissement",
   "compose_form.private": "Rendre privé",
