@@ -45,13 +45,13 @@ class FollowRemoteAccountService < BaseService
     account.suspended   = true if domain_block && domain_block.suspend?
     account.silenced    = true if domain_block && domain_block.silence?
 
-    xml  = get_feed(account.remote_url)
-    hubs = get_hubs(xml)
+    body, xml = get_feed(account.remote_url)
+    hubs      = get_hubs(xml)
 
     account.uri     = get_account_uri(xml)
     account.hub_url = hubs.first.attribute('href').value
 
-    get_profile(xml, account)
+    get_profile(body, account)
     account.save!
 
     account
@@ -61,7 +61,7 @@ class FollowRemoteAccountService < BaseService
 
   def get_feed(url)
     response = http_client.get(Addressable::URI.parse(url))
-    Nokogiri::XML(response)
+    [response.to_s, Nokogiri::XML(response)]
   end
 
   def get_hubs(xml)
@@ -82,12 +82,8 @@ class FollowRemoteAccountService < BaseService
     author_uri.content
   end
 
-  def get_profile(xml, account)
-    update_remote_profile_service.call(xml.at_xpath('/xmlns:feed'), account)
-  end
-
-  def update_remote_profile_service
-    @update_remote_profile_service ||= UpdateRemoteProfileService.new
+  def get_profile(body, account)
+    RemoteProfileUpdateWorker.perform_async(account.id, body.force_encoding('UTF-8'), false)
   end
 
   def http_client

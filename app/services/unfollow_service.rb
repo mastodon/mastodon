@@ -13,25 +13,6 @@ class UnfollowService < BaseService
   private
 
   def build_xml(follow)
-    description = "#{follow.account.acct} is no longer following #{follow.target_account.acct}"
-
-    Nokogiri::XML::Builder.new do |xml|
-      entry(xml, true) do
-        unique_id xml, Time.now.utc, follow.id, 'Follow'
-        title xml, description
-        content xml, description
-
-        author(xml) do
-          include_author xml, follow.account
-        end
-
-        object_type xml, :activity
-        verb xml, :unfollow
-
-        target(xml) do
-          include_author xml, follow.target_account
-        end
-      end
-    end.to_xml
+    AtomSerializer.render(AtomSerializer.new.unfollow_salmon(follow))
   end
 end
