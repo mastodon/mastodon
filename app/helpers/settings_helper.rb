@@ -11,6 +11,7 @@ module SettingsHelper
     uk: 'Українська',
     'zh-CN': '简体中文',
     fi: 'Suomi',
+    nl: 'Nederlands',
   }.freeze
 
   def human_locale(locale)
