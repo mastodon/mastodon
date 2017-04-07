@@ -1,0 +1,61 @@
+---
+nl:
+  devise:
+    confirmations:
+      confirmed: UW e-mailadres is met succes bevestigd.
+      send_instructions: U ontvangt binnen een paar minuten een e-mail met instructies over hoe u uw e-mailadres kan bevestigen.
+      send_paranoid_instructions: Indien uw e-mailadres in onze database aanwezig is, ontvangt u binnen een paar minuten een e-mail met instructies over hoe u uw e-mailadres kan bevestigen.
+    failure:
+      already_authenticated: Je bent al ingelogd.
+      inactive: Je account is nog niet geactiveerd.
+      invalid: Ongeldig %{authentication_keys} of wachtwoord.
+      last_attempt: Je hebt nog één poging voordat je account is geblokkeerd.
+      locked: Je account is geblokkeerd.
+      not_found_in_database: Ongeldig %{authentication_keys} of wachtwoord.
+      timeout: Uw sessie verlopen. Meld u opnieuw aan om verder te gaan.
+      unauthenticated: Je moet inloggen of registreren voordat je verder gaat.
+      unconfirmed: Je moet je e-mailadres bevestigen alvorens verder te gaan.
+    mailer:
+      confirmation_instructions:
+        subject: 'Mastodon: Instructies ter bevestiging'
+      password_change:
+        subject: 'Mastodon: Wachtwoord gewijzigd'
+      reset_password_instructions:
+        subject: 'Mastodon: Reset wachtwoord instructies'
+      unlock_instructions:
+        subject: 'Mastodon: Ontgrendel instructies'
+    omniauth_callbacks:
+      failure: Kon u niet authenticeren via %{kind} omdat "%{reason}".
+      success: Met succes geauthenticeerd via %{kind} account.
+    passwords:
+      no_token: U kan deze pagina niet openen zonder via een wachtwoord reset e-mail te komen. Als u wel degelijk komt via een reset wachtwoord e-mail, zorg er dan voor dat u de volledige URL gebruikt.
+      send_instructions: U ontvangt binnen enkele minuten een e-mail met instructies over hoe u uw wachtwoord opnieuw kan instellen.
+      send_paranoid_instructions: Als uw e-mailadres bestaat in onze database, ontvangt u binnen enkele minuten een mail met instructies om je wachtwoord te herstellen.
+      updated: Je wachtwoord is met succes gewijzigd. U bent nu aangemeld.
+      updated_not_active: Je wachtwoord is met succes gewijzigd.
+    registrations:
+      destroyed: Doei! Uw account is geannuleerd. We hopen je snel weer te zien.
+      signed_up: Welkom! U heeft zich succesvol geregistreerd.
+      signed_up_but_inactive: U heeft zich succesvol geregistreerd. Echter, we konden u niet aanmelden omdat uw account nog niet geactiveerd is.
+      signed_up_but_locked: U heeft zich succesvol geregistreerd. Echter, we konden u niet aanmelden omdat uw account geblokkeerd is.
+      signed_up_but_unconfirmed: Een bericht met een bevestiging link is verzonden naar uw e-mailadres. Volg de link om je account te activeren.
+      update_needs_confirmation: U heeft uw account succesvol gewijzigd maar we moeten uw nieuwe e-mailadres nog even verifiëren. Gelieve je e-mail te controleren en de link ter bevestiging te volgen om uw nieuwe e-mailadres te confirmeren.
+      updated: Je account is met succes bijgewerkt.
+    sessions:
+      already_signed_out: Met succes uitgelogd.
+      signed_in: Met succes ingelogd.
+      signed_out: Met succes uitgelogd.
+    unlocks:
+      send_instructions: Je zal binnen enkele minuten een e-mail ontvangen met instructies over hoe je je account kan ontgrendelen.
+      send_paranoid_instructions: Indien je account bestaat zal je binenn enkele minuten een e-mail ontvangen met instructies over hoe je deze kan ontgrendelen.
+      unlocked: Uw account is met succes ontgrendeld. Meld u aan om door te gaan.
+  errors:
+    messages:
+      already_confirmed: werd al bevestigd, gelieve te proberen je aan te melden
+      confirmation_period_expired: dient te worden bevestigd binnen %{period}, gelieve een nieuwe aan te vragen
+      expired: is verlopen, dan kunt u een nieuwe aanvragen
+      not_found: niet gevonden
+      not_locked: was niet vergrendeld
+      not_saved:
+        one: '1 fout verhinderde deze %{resource} van te worden opgeslagen:'
+        other: "%{count} fouten verhinderde deze %{resource} van te worden opgeslagen:"
