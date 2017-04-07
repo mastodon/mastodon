@@ -2,9 +2,32 @@
 es:
   about:
     about_mastodon: Mastodon es un servidor de red social <em>libre y de código abierto</em>. Una alternativa <em>descentralizada</em> a plataformas comerciales, que evita el riesgo de que una única compañía monopolice tu comunicación. Cualquiera puede ejecutar Mastodon y participar sin problemas en la <em>red social</em>.
+    about_this: Sobre esta instancia
+    apps: Apps
+    business_email: 'Correo de contacto:'
+    contact: Contacto
+    description_headline: Que es %{domain}?
+    domain_count_after: otras instancias
+    domain_count_before: Conectado a
+    features:
+      api: API abierta para aplicaciones y servicios
+      blocks: Bloques de uso fácil y tools para mutear
+      characters: 500 carácteres por cada entrada
+      chronology: Las timelines son cronológicas
+      ethics: 'Diseño ético: sin anuncios, sin seguimiento'
+      gifv: GIFV fija y corta videos
+      privacy: Capacidad para editar las opciones de privacidad de cada post
+      public: Timelines publicas
+    features_headline: Lo que distingue a Mastodon del resto
     get_started: Comenzar
+    links: Links
+    other_instances: Otras instancias
     source_code: Código fuente
+    status_count_after: statuses
+    status_count_before: Quien escribió
     terms: Términos de uso
+    user_count_after: Usuarios
+    user_count_before: Inicio de
   accounts:
     follow: Seguir
     followers: Seguidores
@@ -13,18 +36,48 @@ es:
     people_followed_by: Usuarios a quien %{name} sigue
     people_who_follow: Usuarios que siguen a %{name}
     posts: Publicaciones
+    remote_follow: Seguir remotamente
     unfollow: Dejar de seguir
   application_mailer:
-    signature: Notificaciones de Mastodon desde %{instance}
+    settings: 'Cambiar preferencias del correo: %{link}'
+    signature: Notificación de Mostodon desde %{instance}
+    view: 'Ver:'
+  applications:
+    invalid_url: La URL introducida es invalida.
   auth:
     change_password: Cambiar contraseña
-    didnt_get_confirmation: "¿No recibió instrucciones de confirmación?"
+    didnt_get_confirmation: ¿No recibiste las instrucciones de confirmación?
     forgot_password: "¿Olvidó su contraseña?"
     login: Iniciar sesión
+    logout: Cerrar sesión
     register: Registrarse
     resend_confirmation: Volver a enviar las instrucciones de confirmación
     reset_password: Restablecer contraseña
     set_new_password: Establecer nueva contraseña
+  authorize_follow:
+    error: Hubo un error para ver la cuenta remota
+    follow: Seguir
+    prompt_html: 'Tu (<strong>%{self}</strong>) has solicitado seguir a:'
+    title: Seguir a %{acct}
+  datetime:
+    distance_in_words:
+      about_x_hours: "%{count}h"
+      about_x_months: "%{count}m"
+      about_x_years: "%{count}y"
+      almost_x_years: "%{count}y"
+      half_a_minute: Ahora
+      less_than_x_minutes: "%{count}min"
+      less_than_x_seconds: Ahora
+      over_x_years: "%{count}y"
+      x_days: "%{count}d"
+      x_minutes: "%{count}min"
+      x_months: "%{count}m"
+      x_seconds: "%{count}s"
+  exports:
+    blocks: Tus usuarios bloqueados
+    csv: CSV
+    follows: Tus seguimientos
+    storage: Tus fotos/videos
   generic:
     changes_saved_msg: "¡Cambios guardados con éxito!"
     powered_by: powered by %{link}
@@ -32,13 +85,26 @@ es:
     validation_errors:
       one: "¡Algo no está todavía bien! Por favor, revise el error más abajo"
       other: "¡Algo no está todavía bien! Por favor, revise %{count} errores más abajo"
+  landing_strip_html: <strong>%{name}</strong> es un usuario en <strong>%{domain}</strong>. Puedes seguirle o comunicarte con el si tienes una cuenta, si no la tienes la podrás crear desde: <a href="%{sign_up_path}">Registrarse</a>.
   notification_mailer:
+    digest:
+      body: 'Aquí un sumario de lo que te has perdido en %{instance} desde tu última visita en %{since}:'
+      mention: "%{name} te ha mencionado en:"
+      new_followers_summary:
+        one: ¡Tienes un nuevo seguidor! Yay!
+        other: ¡Has ganado %{count} nuevos seguidores! Amazing!
+      subject:
+        one: "1 nueva notificación desde tu última visita en \U0001F418"
+        other: "%{count} nuevas notificaciones desde tu última visita en \U0001F418"
     favourite:
       body: 'Su estado fue marcado como favorito por %{name}:'
       subject: "%{name} marcó como favorito su estado"
     follow:
       body: "¡%{name} le está ahora siguiendo!"
       subject: "%{name} le esta ahora siguiendo"
+    follow_request:
+      body: "%{name} ha solicitado seguirte"
+      subject: 'Seguidores pendientes: %{name}'
     mention:
       body: 'Fue mencionado por %{name} en:'
       subject: Fue mencionado por %{name}
@@ -48,8 +114,42 @@ es:
   pagination:
     next: Próximo
     prev: Anterior
+  remote_follow:
+      acct: Entra tu usuario@dominio que tu quieres seguir desde
+      missing_resource: No se ha encontrado la URL requerida para tu cuenta
+      proceed: Proceder a seguir
+      prompt: 'Tu estas apunto de seguir a:'
   settings:
+    authorized_apps: Aplicaciones Autorizadas
+    back: Volver a Mastodon
     edit_profile: Editar perfil
+    export: Exportar información
     preferences: Preferencias
+    settings: Ajustes
+    two_factor_auth: Two-factor Authentication
+  statuses:
+    open_in_web: Abrir en la web
+    over_character_limit: limite de carácteres, %{max} excedidos
+    visibilities:
+      private: Solo mostrar a tus seguidores
+      public: Público
+      unlisted: Público pero no mostrar en la timeline pública
+  stream_entries:
+    click_to_show: Mostrar
+    reblogged: boosted
+    sensitive_content: Contenido sensible
+  time:
+    formats:
+      default: "%b %d, %Y, %H:%M"
+  two_factor_auth:
+    description_html: Si tu activas el <strong>two-factor authentication</strong>, te enviaremos un token al móvil por cada inicio de sesión.
+    disable: Desactivar
+    enable: Activar
+    instructions_html: "<strong>Escanea este código QR en una aplicación como Google Authenticator o alguna similar</strong>. Esta aplicación te generara los tokens."
+    plaintext_secret_html: 'Plain-text secret: <samp>%{secret}</samp>'
+    warning: Si no puede configurar la aplicación de autenticador, debe hacer click en "desactivar" o no podrá iniciar sesión.
+  users:
+    invalid_email: El correo es invalido
+    invalid_otp_token: Código invalido
   will_paginate:
     page_gap: "&hellip;"
