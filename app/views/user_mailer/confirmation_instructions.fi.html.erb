@@ -1,0 +1,5 @@
+<p>Tervetuloa <%= @resource.email %>!</p>
+
+<p>Voit vahvistaa Mastodon tilisi klikkaamalla alla olevaa linkkiä:</p>
+
+<p><%= link_to 'Varmista tilini', confirmation_url(@resource, confirmation_token: @token) %></p>
