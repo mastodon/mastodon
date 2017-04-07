@@ -1,5 +1,5 @@
 $witches-primary: #A288BD;
-$witches-off: desaturate($witches-primary, 25%);
+$witches-light: lighten($witches-primary, 15%);
 
 div.column {
   flex-grow: 1;
@@ -15,5 +15,18 @@ div.column {
 }
 
 .reply-indicator {
-  background-color: $witches-off;
+  background-color: $witches-light;
+}
+
+.column-header.active .fa {
+  color: $witches-primary;
+  text-shadow-color: 0 0 10px rgba($witches-primary, 0.4);
+}
+
+.notifications__unread-indicator {
+  background: radial-gradient(ellipse, rgba($witches-primary, 0.23) 0%, rgba($witches-primary, 0) 60%);
+}
+
+.column-back-button {
+  color: $witches-primary;
 }
