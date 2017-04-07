@@ -52,6 +52,7 @@ gem 'statsd-instrument'
 gem 'ruby-oembed', require: 'oembed'
 gem 'rack-timeout'
 gem 'tzinfo-data'
+gem 'http_accept_language'
 
 gem 'react-rails'
 gem 'browserify-rails'
