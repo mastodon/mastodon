@@ -34,6 +34,7 @@ gem 'doorkeeper'
 gem 'rabl'
 gem 'rqrcode'
 gem 'twitter-text'
+gem 'ox'
 gem 'oj'
 gem 'hiredis'
 gem 'redis', '~>3.2', require: ['redis', 'redis/connection/hiredis']
