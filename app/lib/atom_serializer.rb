@@ -7,7 +7,7 @@ class AtomSerializer
     def render(element)
       document = Ox::Document.new(version: '1.0')
       document << element
-      "<?xml version=\"1.0\"?>#{Ox.dump(element)}"
+      ('<?xml version="1.0"?>' + Ox.dump(element)).force_encoding('UTF-8')
     end
   end
 
@@ -68,6 +68,9 @@ class AtomSerializer
     append_element(entry, 'published', stream_entry.created_at.iso8601)
     append_element(entry, 'updated', stream_entry.updated_at.iso8601)
     append_element(entry, 'title', stream_entry&.status&.title)
+
+    entry << author(stream_entry.account) if root
+
     append_element(entry, 'activity:object-type', TagManager::TYPES[stream_entry.object_type])
     append_element(entry, 'activity:verb', TagManager::VERBS[stream_entry.verb])
 
