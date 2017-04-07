@@ -91,10 +91,20 @@ RSpec.describe Status, type: :model do
   end
 
   describe '#reblogs_count' do
-    pending
+    it 'is the number of reblogs' do
+      Fabricate(:status, account: bob, reblog: subject)
+      Fabricate(:status, account: alice, reblog: subject)
+
+      expect(subject.reblogs_count).to eq 2
+    end
   end
 
   describe '#favourites_count' do
-    pending
+    it 'is the number of favorites' do
+      Fabricate(:favourite, account: bob, status: subject)
+      Fabricate(:favourite, account: alice, status: subject)
+
+      expect(subject.favourites_count).to eq 2
+    end
   end
 end
