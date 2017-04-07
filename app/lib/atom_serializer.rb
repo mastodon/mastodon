@@ -103,6 +103,207 @@ class AtomSerializer
     object
   end
 
+  def follow_salmon(follow)
+    entry = Ox::Element.new('entry')
+    add_namespaces(entry)
+
+    description = "#{follow.account.acct} started following #{follow.target_account.acct}"
+
+    append_element(entry, 'id', TagManager.instance.unique_tag(follow.created_at, follow.id, 'Follow'))
+    append_element(entry, 'title', description)
+    append_element(entry, 'content', description, type: :html)
+
+    entry << author(follow.account)
+
+    append_element(entry, 'activity:object-type', TagManager::TYPES[:activity])
+    append_element(entry, 'activity:verb', TagManager::VERBS[:follow])
+
+    object = author(follow.target_account)
+    object.value = 'activity:object'
+
+    entry << object
+    entry
+  end
+
+  def follow_request_salmon(follow_request)
+    entry = Ox::Element.new('entry')
+    add_namespaces(entry)
+
+    append_element(entry, 'id', TagManager.instance.unique_tag(follow_request.created_at, follow_request.id, 'FollowRequest'))
+    append_element(entry, 'title', "#{follow_request.account.acct} requested to follow #{follow_request.target_account.acct}")
+
+    entry << author(follow_request.account)
+
+    append_element(entry, 'activity:object-type', TagManager::TYPES[:activity])
+    append_element(entry, 'activity:verb', TagManager::VERBS[:request_friend])
+
+    object = author(follow_request.target_account)
+    object.value = 'activity:object'
+
+    entry << object
+    entry
+  end
+
+  def authorize_follow_request_salmon(follow_request)
+    entry = Ox::Element.new('entry')
+    add_namespaces(entry)
+
+    append_element(entry, 'id', TagManager.instance.unique_tag(Time.now.utc, follow_request.id, 'FollowRequest'))
+    append_element(entry, 'title', "#{follow_request.target_account.acct} authorizes follow request by #{follow_request.account.acct}")
+
+    entry << author(follow_request.target_account)
+
+    append_element(entry, 'activity:object-type', TagManager::TYPES[:activity])
+    append_element(entry, 'activity:verb', TagManager::VERBS[:authorize])
+
+    object = Ox::Element.new('activity:object')
+    object << author(follow_request.account)
+
+    append_element(object, 'activity:object-type', TagManager::TYPES[:activity])
+    append_element(object, 'activity:verb', TagManager::VERBS[:request_friend])
+
+    inner_object = author(follow_request.target_account)
+    inner_object.value = 'activity:object'
+
+    object << inner_object
+    entry  << object
+    entry
+  end
+
+  def reject_follow_request_salmon(follow_request)
+    entry = Ox::Element.new('entry')
+    add_namespaces(entry)
+
+    append_element(entry, 'id', TagManager.instance.unique_tag(Time.now.utc, follow_request.id, 'FollowRequest'))
+    append_element(entry, 'title', "#{follow_request.target_account.acct} rejects follow request by #{follow_request.account.acct}")
+
+    entry << author(follow_request.target_account)
+
+    append_element(entry, 'activity:object-type', TagManager::TYPES[:activity])
+    append_element(entry, 'activity:verb', TagManager::VERBS[:reject])
+
+    object = Ox::Element.new('activity:object')
+    object << author(follow_request.account)
+
+    append_element(object, 'activity:object-type', TagManager::TYPES[:activity])
+    append_element(object, 'activity:verb', TagManager::VERBS[:request_friend])
+
+    inner_object = author(follow_request.target_account)
+    inner_object.value = 'activity:object'
+
+    object << inner_object
+    entry  << object
+    entry
+  end
+
+  def unfollow_salmon(follow)
+    entry = Ox::Element.new('entry')
+    add_namespaces(entry)
+
+    description = "#{follow.account.acct} is no longer following #{follow.target_account.acct}"
+
+    append_element(entry, 'id', TagManager.instance.unique_tag(Time.now.utc, follow.id, 'Follow'))
+    append_element(entry, 'title', description)
+    append_element(entry, 'content', description, type: :html)
+
+    entry << author(follow.account)
+
+    append_element(entry, 'activity:object-type', TagManager::TYPES[:activity])
+    append_element(entry, 'activity:verb', TagManager::VERBS[:unfollow])
+
+    object = author(follow.target_account)
+    object.value = 'activity:object'
+
+    entry << object
+    entry
+  end
+
+  def block_salmon(block)
+    entry = Ox::Element.new('entry')
+    add_namespaces(entry)
+
+    description = "#{block.account.acct} no longer wishes to interact with #{block.target_account.acct}"
+
+    append_element(entry, 'id', TagManager.instance.unique_tag(Time.now.utc, block.id, 'Block'))
+    append_element(entry, 'title', description)
+
+    entry << author(block.account)
+
+    append_element(entry, 'activity:object-type', TagManager::TYPES[:activity])
+    append_element(entry, 'activity:verb', TagManager::VERBS[:block])
+
+    object = author(block.target_account)
+    object.value = 'activity:object'
+
+    entry << object
+    entry
+  end
+
+  def unblock_salmon(block)
+    entry = Ox::Element.new('entry')
+    add_namespaces(entry)
+
+    description = "#{block.account.acct} no longer blocks #{block.target_account.acct}"
+
+    append_element(entry, 'id', TagManager.instance.unique_tag(Time.now.utc, block.id, 'Block'))
+    append_element(entry, 'title', description)
+
+    entry << author(block.account)
+
+    append_element(entry, 'activity:object-type', TagManager::TYPES[:activity])
+    append_element(entry, 'activity:verb', TagManager::VERBS[:unblock])
+
+    object = author(block.target_account)
+    object.value = 'activity:object'
+
+    entry << object
+    entry
+  end
+
+  def favourite_salmon(favourite)
+    entry = Ox::Element.new('entry')
+    add_namespaces(entry)
+
+    description = "#{favourite.account.acct} favourited a status by #{favourite.status.account.acct}"
+
+    append_element(entry, 'id', TagManager.instance.unique_tag(favourite.created_at, favourite.id, 'Favourite'))
+    append_element(entry, 'title', description)
+    append_element(entry, 'content', description, type: :html)
+
+    entry << author(favourite.account)
+
+    append_element(entry, 'activity:object-type', TagManager::TYPES[:activity])
+    append_element(entry, 'activity:verb', TagManager::VERBS[:favorite])
+
+    entry << object(favourite.status)
+
+    append_element(entry, 'thr:in-reply-to', nil, ref: TagManager.instance.uri_for(favourite.status), href: TagManager.instance.url_for(favourite.status))
+
+    entry
+  end
+
+  def unfavourite_salmon(favourite)
+    entry = Ox::Element.new('entry')
+    add_namespaces(entry)
+
+    description = "#{favourite.account.acct} no longer favourites a status by #{favourite.status.account.acct}"
+
+    append_element(entry, 'id', TagManager.instance.unique_tag(Time.now.utc, favourite.id, 'Favourite'))
+    append_element(entry, 'title', description)
+    append_element(entry, 'content', description, type: :html)
+
+    entry << author(favourite.account)
+
+    append_element(entry, 'activity:object-type', TagManager::TYPES[:activity])
+    append_element(entry, 'activity:verb', TagManager::VERBS[:unfavorite])
+
+    entry << object(favourite.status)
+
+    append_element(entry, 'thr:in-reply-to', nil, ref: TagManager.instance.uri_for(favourite.status), href: TagManager.instance.url_for(favourite.status))
+
+    entry
+  end
+
   private
 
   def append_element(parent, name, content = nil, attributes = {})
