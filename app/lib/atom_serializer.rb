@@ -328,7 +328,7 @@ class AtomSerializer
 
   def serialize_status_attributes(entry, status)
     append_element(entry, 'summary', status.spoiler_text) unless status.spoiler_text.blank?
-    append_element(entry, 'content', Formatter.instance.format(status.reblog? ? status.reblog : status).to_str, type: 'html')
+    append_element(entry, 'content', Formatter.instance.format(status.proper).to_str, type: 'html')
 
     status.mentions.each do |mentioned|
       append_element(entry, 'link', nil, rel: :mentioned, 'ostatus:object-type': TagManager::TYPES[:person], href: TagManager.instance.uri_for(mentioned.account))

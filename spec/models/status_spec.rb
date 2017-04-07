@@ -107,4 +107,15 @@ RSpec.describe Status, type: :model do
       expect(subject.favourites_count).to eq 2
     end
   end
+
+  describe '#proper' do
+    it 'is itself for original statuses' do
+      expect(subject.proper).to eq subject
+    end
+
+    it 'is the source status for reblogs' do
+      subject.reblog = other
+      expect(subject.proper).to eq other
+    end
+  end
 end
