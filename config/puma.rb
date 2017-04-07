@@ -9,7 +9,7 @@ preload_app!
 
 on_worker_boot do
   if ENV['HEROKU'] # Spawn the workers from Puma, to only use one dyno
-    @sidekiq_pid ||= spawn('bundle exec sidekiq -q default -q mailers -q push')
+    @sidekiq_pid ||= spawn('bundle exec sidekiq -q default -q push -q pull -q mailers ')
   end
 
   ActiveRecord::Base.establish_connection if defined?(ActiveRecord)
