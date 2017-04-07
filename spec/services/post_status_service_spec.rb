@@ -141,7 +141,7 @@ RSpec.describe PostStatusService do
       )
     end.to raise_error(
       Mastodon::ValidationError,
-      'Cannot attach more than 4 files',
+      I18n.t('media_attachments.validations.too_many'),
     )
   end
 
@@ -160,7 +160,7 @@ RSpec.describe PostStatusService do
       )
     end.to raise_error(
       Mastodon::ValidationError,
-      'Cannot attach a video to a toot that already contains images',
+      I18n.t('media_attachments.validations.images_and_video'),
     )
   end
 
