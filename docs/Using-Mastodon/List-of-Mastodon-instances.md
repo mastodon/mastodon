@@ -55,5 +55,7 @@ There is also a list at [instances.mastodon.xyz](https://instances.mastodon.xyz)
 | [digitalhumanities.club](http://www.digitalhumanities.club)|[Digital humanities](http://whatisdigitalhumanities.com) community; invitations will open once code of conduct drafted.|No|No
 | [design.vu](https://design.vu)|— what's your design view‽|Yes|No|
 | [masto.raildecake.fr](https://masto.raildecake.fr)|Hebergé chez un FAI associatif dans le sud de la france, grillons & pins en options|Yes|No|
+| [good-dragon.com](https://good-dragon.com/)|Quick updates, Relaxed Moderation, Federates Everywhere, Furries|Yes|No|
+
 
 Let me know if you start running one so I can add it to the list! (Alternatively, add it yourself as a pull request).
