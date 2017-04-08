@@ -88,6 +88,8 @@ It is recommended to create a special user for mastodon on the server (you could
 
 ## General dependencies
 
+### Ubuntu / Debian
+
     sudo apt-get install imagemagick ffmpeg libpq-dev libxml2-dev libxslt1-dev nodejs file git curl
     curl -sL https://deb.nodesource.com/setup_4.x | sudo bash -
 
@@ -95,15 +97,44 @@ It is recommended to create a special user for mastodon on the server (you could
 
     sudo npm install -g yarn
 
+### Centos / RHEL
+
+    sudo yum install libxml2-devel ImageMagick libxslt-devel git curl nodejs file
+    sudo yum -y install epel-release
+    sudo rpm --import http://li.nux.ro/download/nux/RPM-GPG-KEY-nux.ro
+    sudo rpm -Uvh http://li.nux.ro/download/nux/dextop/el7/x86_64/nux-dextop-release-0-5.el7.nux.noarch.rpm
+    sudo yum -y install ffmpeg ffmpeg-devel
+
+    sudo yum group install "Development tools"
+    curl --silent --location https://rpm.nodesource.com/setup_4.x | sudo bash -
+    
+    sudo npm install -g yarn
+
 ## Redis
+
+### Ubuntu / Debian
 
     sudo apt-get install redis-server redis-tools
 
+### Centos / RHEL
+
+    sudo yum install redis rubygem-redis
+
 ## Postgres
+
+### Ubuntu / Debian
 
     sudo apt-get install postgresql postgresql-contrib
 
-Setup a user and database for Mastodon:
+### Centos / RHEL
+
+    sudo yum install postgresql-server postgresql postgresql-contrib postgresql-devel
+
+Setup postgres and add user and database for Mastodon:
+
+    sudo postgresql-setup initdb
+    sudo systemctl start postgresql
+    sudo systemctl enable postgresql
 
     sudo su - postgres
     psql
@@ -225,7 +256,7 @@ Restart=always
 WantedBy=multi-user.target
 ```
 
-This allows you to `sudo systemctl enable /etc/systemd/system/mastodon-*.service` and `sudo systemctl start mastodon-web.service mastodon-sidekiq.service mastodon-streaming.service` to get things going.
+This allows you to `sudo systemctl enable /etc/systemd/system/mastodon-*.service` and `sudo systemctl start mastodon-web.service mastodon-sidekiq.service mastodon-streaming.service` to get things going. Depending on your setup, you may have to set the PATH or GEM_PATH enviroment variables in the systemd files to point to the location of your ruby installation.
 
 ## Cronjobs
 
