@@ -75,5 +75,7 @@ There is also a list at [instances.mastodon.xyz](https://instances.mastodon.xyz)
 | [mastodon.host](https://mastodon.host/)|Lightly moderated, federates everywhere and has a follow bot ( Huge federated timeline )|Yes|No|
 | [mastodon.fun](https://mastodon.fun/)|Mastodon for everyone ! |Yes|Yes|
 | [oulipo.social](https://oulipo.social/)|An Oulipo Mastodon in which that fifth symbol in Latin script is taboo|Yes|No|
+| [indigo.zone](https://indigo.zone)|Open Registrations, General Purpose|Yes|No|
+
 
 Let me know if you start running one so I can add it to the list! (Alternatively, add it yourself as a pull request).
