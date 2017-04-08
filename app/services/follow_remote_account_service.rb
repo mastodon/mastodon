@@ -20,8 +20,6 @@ class FollowRemoteAccountService < BaseService
 
     Rails.logger.debug "Looking up webfinger for #{uri}"
 
-    account = Account.new(username: username, domain: domain)
-
     data = Goldfinger.finger("acct:#{uri}")
 
     raise Goldfinger::Error, 'Missing resource links' if data.link('http://schemas.google.com/g/2010#updates-from').nil? || data.link('salmon').nil? || data.link('http://webfinger.net/rel/profile-page').nil? || data.link('magic-public-key').nil?
@@ -37,6 +35,7 @@ class FollowRemoteAccountService < BaseService
 
     domain_block = DomainBlock.find_by(domain: domain)
 
+    account = Account.new(username: confirmed_username, domain: confirmed_domain)
     account.remote_url  = data.link('http://schemas.google.com/g/2010#updates-from').href
     account.salmon_url  = data.link('salmon').href
     account.url         = data.link('http://webfinger.net/rel/profile-page').href
@@ -51,8 +50,8 @@ class FollowRemoteAccountService < BaseService
     account.uri     = get_account_uri(xml)
     account.hub_url = hubs.first.attribute('href').value
 
-    get_profile(body, account)
     account.save!
+    get_profile(body, account)
 
     account
   end

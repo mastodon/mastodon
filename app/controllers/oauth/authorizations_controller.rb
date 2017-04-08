@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
 class Oauth::AuthorizationsController < Doorkeeper::AuthorizationsController
-  include Localized
-
   skip_before_action :authenticate_resource_owner!
 
   before_action :store_current_location
   before_action :authenticate_resource_owner!
+
+  include Localized
 
   private
 
