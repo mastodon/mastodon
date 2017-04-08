@@ -2,16 +2,9 @@
   = t('settings.two_factor_auth')
 
 .simple_form
+  %p.hint= t('two_factor_auth.description_html')
+
   - if current_user.otp_required_for_login
-    %p.hint= t('two_factor_auth.instructions_html')
-
-    .qr-code= raw @qrcode.as_svg(padding: 0, module_size: 5)
-
-    %p.hint= t('two_factor_auth.plaintext_secret_html', secret: current_user.otp_secret)
-
-    %p.hint= t('two_factor_auth.warning')
-
     = link_to t('two_factor_auth.disable'), disable_settings_two_factor_auth_path, data: { method: 'POST' }, class: 'block-button'
   - else
-    %p.hint= t('two_factor_auth.description_html')
-    = link_to t('two_factor_auth.enable'), enable_settings_two_factor_auth_path, data: { method: 'POST' }, class: 'block-button'
+    = link_to t('two_factor_auth.setup'), new_settings_two_factor_auth_path, class: 'block-button'
