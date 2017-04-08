@@ -234,6 +234,7 @@ Example init script for the web workers, to be placed in `/etc/init.d/mastodon-w
 
 name="Mastodon Web Service"
 root="/home/mastodon/live"
+pidfile="${root}/web.pid"
 
 depend() {
     use net
@@ -245,32 +246,37 @@ start() {
     cd $root
 
     start-stop-daemon --start \
-        --background --quiet \
         --chdir "${root}" \
         --user="mastodon" \
-        --make-pidfile --pidfile=${root}/web.pid \
-        --exec /usr/bin/env -- RAILS_ENV=production PORT=3000 bundle exec puma -C config/puma.rb
+        --pidfile="${pidfile}" \
+        --exec /usr/bin/env -- RAILS_ENV=production PORT=3000 bundle exec puma -C config/puma.rb -d --pidfile ${pidfile}
+
     eend $?
 }
 
 stop() {
     ebegin "Stopping Mastodon web workers"
     start-stop-daemon --stop \
-        --pidfile=${root}/web.pid \
+        --pidfile=${pidfile} \
     eend $?
 }
+
 ```
 
 Example init script for the background workers, to be placed in `/etc/init.d/mastodon-sidekiq`:
 
 ```
+
 #!/sbin/openrc-run
 
 name="Mastodon background workers Service"
 root="/home/mastodon/live"
+pidfile="${root}/worker.pid"
+logfile="${root}/sidekiq.conf"
 
 depend() {
     use net
+    need redis
 }
 
 start() {
@@ -279,20 +285,20 @@ start() {
     cd $root
 
     start-stop-daemon --start \
-        --background --quiet \
         --chdir "${root}" \
         --user="mastodon" \
-        --make-pidfile --pidfile=${root}/worker.pid \
-        --exec /usr/bin/env -- RAILS_ENV=production DB_POOL=5 bundle exec sidekiq -c 5 -q default -q mailers -q pull -q push
+        --pidfile="${pidfile}" \
+        --exec /usr/bin/env -- RAILS_ENV=production DB_POOL=5 bundle exec sidekiq -d -P ${pidfile} -L ${logfile} -c 5 -q default -q mailers -q pull -q push
     eend $?
 }
 
 stop() {
     ebegin "Stopping Mastodon background workers"
     start-stop-daemon --stop \
-        --pidfile=${root}/worker.pid \
+        --pidfile=${pidfile} \
     eend $?
 }
+
 ```
 
 Example init script file for the streaming API, to be placed in `/etc/init.d/mastodon-streaming`:
