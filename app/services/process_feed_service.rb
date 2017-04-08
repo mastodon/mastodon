@@ -49,7 +49,6 @@ class ProcessFeedService < BaseService
       if verb == :share
         original_status, = status_from_xml(@xml.at_xpath('.//activity:object', activity: TagManager::AS_XMLNS))
         status.reblog    = original_status
-        status.text      = ''
 
         if original_status.nil?
           status.destroy

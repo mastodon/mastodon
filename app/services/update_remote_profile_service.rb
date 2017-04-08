@@ -18,8 +18,8 @@ class UpdateRemoteProfileService < BaseService
       account.locked       = author_xml.at_xpath('./mastodon:scope', mastodon: TagManager::MTDN_XMLNS)&.content == 'private'
 
       if !account.suspended? && !DomainBlock.find_by(domain: account.domain)&.reject_media?
-        account.avatar_remote_url = author_xml.at_xpath('./xmlns:link[@rel="avatar"]', xmlns: TagManager::XMLNS)['href'] unless author_xml.at_xpath('./xmlns:link[@rel="avatar"]', xmlns: TagManager::XMLNS).nil? || author_xml.at_xpath('./xmlns:link[@rel="avatar"]', xmlns: TagManager::XMLNS)['href'].blank?
-        account.header_remote_url = author_xml.at_xpath('./xmlns:link[@rel="header"]', xmlns: TagManager::XMLNS)['href'] unless author_xml.at_xpath('./xmlns:link[@rel="header"]', xmlns: TagManager::XMLNS).nil? || author_xml.at_xpath('./xmlns:link[@rel="header"]', xmlns: TagManager::XMLNS)['href'].blank?
+        account.avatar_remote_url = link_href_from_xml(author_xml, 'avatar') if link_has_href?(author_xml, 'avatar')
+        account.header_remote_url = link_href_from_xml(author_xml, 'header') if link_has_href?(author_xml, 'header')
       end
     end
 
@@ -29,5 +29,15 @@ class UpdateRemoteProfileService < BaseService
     account.save_with_optional_avatar!
 
     SubscribeService.new.call(account) if resubscribe && (account.hub_url != old_hub_url)
+  end
+
+  private
+
+  def link_href_from_xml(xml, type)
+    xml.at_xpath('./xmlns:link[@rel="' + type + '"]', xmlns: TagManager::XMLNS)['href']
+  end
+
+  def link_has_href?(xml, type)
+    !(xml.at_xpath('./xmlns:link[@rel="' + type + '"]', xmlns: TagManager::XMLNS).nil? || xml.at_xpath('./xmlns:link[@rel="' + type + '"]', xmlns: TagManager::XMLNS)['href'].blank?)
   end
 end
