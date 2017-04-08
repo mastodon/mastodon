@@ -17,7 +17,7 @@ const unicodeToImage = str => {
     const short    = mappedUnicode[unicode];
     const filename = emojione.emojioneList[short].fname;
     const alt      = emojione.convert(unicode.toUpperCase());
-    if (useTextList[filename])
+    if (useTextList[filename]) {
       return alt;
     }
 
