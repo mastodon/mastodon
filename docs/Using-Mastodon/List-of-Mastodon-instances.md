@@ -7,7 +7,7 @@ There is also a list at [instances.mastodon.xyz](https://instances.mastodon.xyz)
 | -------------|-------------|---|---|
 | [mastodon.social](https://mastodon.social) |Flagship, quick updates|No|No|
 | [securitymastod.one](https://securitymastod.one/) |Information security enthusiasts and pros|Yes|Yes|
-| [mastodon.nuzgo.net](https://mastodon.nuzgo.net/) |Mastodon instance hosted in Paris |Yes|No|
+| [mastodon.nuzgo.net](https://mastodon.nuzgo.net/) |Mastodon instance hosted in Paris |Yes|Yes|
 | [mastodon.cx](https://mastodon.cx/) |Alternative Mastodon instance hosted in France|Yes|Yes|
 | [mastodon.network](https://mastodon.network) |N/A|Yes|Yes|
 | [awoo.space](https://awoo.space) |Intentionally moderated, only federates with mastodon.social|Yes|No|
@@ -69,13 +69,14 @@ There is also a list at [instances.mastodon.xyz](https://instances.mastodon.xyz)
 | [meow.social](https://meow.social)|A furry fandom focused instance|Yes|No|
 | [neumastodon.com](https://neumastodon.com/)|Northeastern University Mastodon |Yes|No|
 | [dancingbanana.party](https://dancingbanana.party)|La banane qui danse.|Yes|No|
-| [mastodon.brussels.fr](https://mastodon.brussels/)|Le mastodon pour les belges, si vous aimez la bonne ambiance venez nous rejoindre !|Yes|Yes|
+| [mastodon.brussels](https://mastodon.brussels/)|Le mastodon pour les belges, si vous aimez la bonne ambiance venez nous rejoindre !|Yes|Yes|
 | [mastodon.llamasweet.tech](https://mastodon.llamasweet.tech/)|Mastodon about Android developement|Yes|No|
 | [manx.social](https://manx.social/)|Instance for the Isle of Man|Yes|Yes|
 | [mastodon.host](https://mastodon.host/)|Lightly moderated, federates everywhere and has a follow bot ( Huge federated timeline )|Yes|No|
 | [mastodon.fun](https://mastodon.fun/)|Mastodon for everyone ! |Yes|Yes|
 | [oulipo.social](https://oulipo.social/)|An Oulipo Mastodon in which that fifth symbol in Latin script is taboo|Yes|No|
 | [indigo.zone](https://indigo.zone)|Open Registrations, General Purpose|Yes|No|
+| [mst3k.interlinked.me](https://mst3k.interlinked.me)|Open registrations, general purpose|Yes|Yes|
 
 
-Let me know if you start running one so I can add it to the list! (Alternatively, add it yourself as a pull request).
+We are no longer maintaining this list as instances are popping up too quickly for using GitHub to be a tenable system for tracking them. Please standby while we work on another solution

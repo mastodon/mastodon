@@ -14,11 +14,9 @@ class Api::V1::NotificationsController < ApiController
     statuses       = @notifications.select { |n| !n.target_status.nil? }.map(&:target_status)
 
     set_maps(statuses)
-    # set_counters_maps(statuses)
-    # set_account_counters_maps(@notifications.map(&:from_account))
 
-    next_path = api_v1_notifications_url(max_id: @notifications.last.id)    unless @notifications.empty?
-    prev_path = api_v1_notifications_url(since_id: @notifications.first.id) unless @notifications.empty?
+    next_path = api_v1_notifications_url(pagination_params(max_id: @notifications.last.id))    unless @notifications.empty?
+    prev_path = api_v1_notifications_url(pagination_params(since_id: @notifications.first.id)) unless @notifications.empty?
 
     set_pagination_headers(next_path, prev_path)
   end
@@ -30,5 +28,11 @@ class Api::V1::NotificationsController < ApiController
   def clear
     Notification.where(account: current_account).delete_all
     render_empty
+  end
+
+  private
+
+  def pagination_params(core_params)
+    params.permit(:limit).merge(core_params)
   end
 end
