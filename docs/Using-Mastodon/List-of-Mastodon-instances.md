@@ -61,6 +61,7 @@ There is also a list at [instances.mastodon.xyz](https://instances.mastodon.xyz)
 | [social.nowa.re](https://social.nowa.re)|Open Registration|Yes|No|
 | [mastodon.ml](http://mastodon.ml) |A chill place to hangout and chat about anime, programming and movies.|Yes|Yes|
 | [off-the-clock.us](https://off-the-clock.us/)|The work day is over.|Yes|No|
+| [infinimatix.net](https://infinimatix.net)|Informatics|Yes|Yes|
 
 
 Let me know if you start running one so I can add it to the list! (Alternatively, add it yourself as a pull request).
