@@ -11,22 +11,6 @@ class UnblockService < BaseService
   private
 
   def build_xml(block)
-    Nokogiri::XML::Builder.new do |xml|
-      entry(xml, true) do
-        unique_id xml, Time.now.utc, block.id, 'Block'
-        title xml, "#{block.account.acct} no longer blocks #{block.target_account.acct}"
-
-        author(xml) do
-          include_author xml, block.account
-        end
-
-        object_type xml, :activity
-        verb xml, :unblock
-
-        target(xml) do
-          include_author xml, block.target_account
-        end
-      end
-    end.to_xml
+    AtomSerializer.render(AtomSerializer.new.unblock_salmon(block))
   end
 end
