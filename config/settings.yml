@@ -1,8 +1,13 @@
 # config/app.yml for rails-settings-cached
+# The settings in this file can be overridden through the Web UI by an
+# administrator. You don't need to edit this file.
 defaults: &defaults
   site_title: 'Mastodon'
   site_description: ''
-  site_extended_description: ''
+  site_extended_description: 'Welcome to this brand new Mastodon server! An
+    administrator can edit this text in Preferences -> Administration ->
+    Site Settings. Check out docs/Running-Mastodon/Administration-guide.md
+    in the Mastodon source tree for other great tips. Awoo!'
   site_contact_username: ''
   site_contact_email: ''
   open_registrations: true
