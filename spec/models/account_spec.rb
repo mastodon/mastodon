@@ -99,11 +99,75 @@ RSpec.describe Account, type: :model do
   end
 
   describe '#favourited?' do
-    pending
+    let(:original_status) do
+      author = Fabricate(:account, username: 'original')
+      Fabricate(:status, account: author)
+    end
+
+    context 'when the status is a reblog of another status' do
+      let(:original_reblog) do
+        author = Fabricate(:account, username: 'original_reblogger')
+        Fabricate(:status, reblog: original_status, account: author)
+      end
+
+      it 'is is true when this account has favourited it' do
+        Fabricate(:favourite, status: original_reblog, account: subject)
+
+        expect(subject.favourited?(original_status)).to eq true
+      end
+
+      it 'is false when this account has not favourited it' do
+        expect(subject.favourited?(original_status)).to eq false
+      end
+    end
+
+    context 'when the status is an original status' do
+      it 'is is true when this account has favourited it' do
+        Fabricate(:favourite, status: original_status, account: subject)
+
+        expect(subject.favourited?(original_status)).to eq true
+      end
+
+      it 'is false when this account has not favourited it' do
+        expect(subject.favourited?(original_status)).to eq false
+      end
+    end
   end
 
   describe '#reblogged?' do
-    pending
+    let(:original_status) do
+      author = Fabricate(:account, username: 'original')
+      Fabricate(:status, account: author)
+    end
+
+    context 'when the status is a reblog of another status'do
+      let(:original_reblog) do
+        author = Fabricate(:account, username: 'original_reblogger')
+        Fabricate(:status, reblog: original_status, account: author)
+      end
+
+      it 'is true when this account has reblogged it' do
+        Fabricate(:status, reblog: original_reblog, account: subject)
+
+        expect(subject.reblogged?(original_reblog)).to eq true
+      end
+
+      it 'is false when this account has not reblogged it' do
+        expect(subject.reblogged?(original_reblog)).to eq false
+      end
+    end
+
+    context 'when the status is an original status' do
+      it 'is true when this account has reblogged it' do
+        Fabricate(:status, reblog: original_status, account: subject)
+
+        expect(subject.reblogged?(original_status)).to eq true
+      end
+
+      it 'is false when this account has not reblogged it' do
+        expect(subject.reblogged?(original_status)).to eq false
+      end
+    end
   end
 
   describe '.find_local' do
