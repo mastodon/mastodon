@@ -39,6 +39,40 @@ You will want Amazon S3 for file storage. The only exception is for development
 purposes, where you may not care if files are not saved. Follow a guide online
 for creating a free Amazon S3 bucket and Access Key, then enter the details.
 
+If you deploy from the web, the format for all the S3 bits use Paperclip conventions:
+
+S3 Bucket is just the name of the bucket, e.g. `bucketname` not the full ARN.
+
+S3 Region is the AWS code for the region e.g. `ap-northeast-1` not the name of the city displayed on the AWS Dashboard.
+
+To protect the privacy of the users of the your instance, you should have permissons on the your S3 bucket set to no-read and no-write for the public and non-application-specific AWS users, with only one authorized IAM user or group set up to be able to upload or display content. This is an example of an IAM policy used for the S3 bucket used Mastadon instance hentai.loan:
+
+    {
+        "Version": "2012-10-17",
+        "Statement": [
+            {
+                "Effect": "Allow",
+                "Action": [
+                    "s3:ListAllMyBuckets"
+                ],
+                "Resource": [
+                    "arn:aws:s3:::*"
+                ]
+            },
+            {
+                "Effect": "Allow",
+                "Action": [
+                    "s3:*"
+                ],
+                "Resource": [
+                    "arn:aws:s3:::hentailoan”,
+                    "arn:aws:s3:::hentailoan/*"
+                ]
+            }
+        ]
+    }
+
+
 ## Deployment
 
 You can deploy from the Heroku web interface or from the command line. Run:

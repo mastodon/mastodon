@@ -60,9 +60,8 @@ Rails.application.routes.draw do
       end
     end
 
-    resource :two_factor_auth, only: [:show] do
+    resource :two_factor_auth, only: [:show, :new, :create] do
       member do
-        post :enable
         post :disable
       end
     end
