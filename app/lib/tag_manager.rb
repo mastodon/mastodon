@@ -78,6 +78,8 @@ class TagManager
     case target.object_type
     when :person
       account_url(target)
+    when :note, :comment, :activity
+      unique_tag(target.created_at, target.id, 'Status')
     else
       unique_tag(target.stream_entry.created_at, target.stream_entry.activity_id, target.stream_entry.activity_type)
     end
