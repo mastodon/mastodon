@@ -34,10 +34,6 @@ module StreamEntriesHelper
     user_signed_in? && @favourited.key?(status.id) ? 'favourited' : ''
   end
 
-  def proper_status(status)
-    status.reblog? ? status.reblog : status
-  end
-
   def rtl?(text)
     return false if text.empty?
 
