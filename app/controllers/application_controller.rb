@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class ApplicationController < ActionController::Base
+  include Localized
+
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
@@ -14,7 +16,6 @@ class ApplicationController < ActionController::Base
   rescue_from ActionController::InvalidAuthenticityToken, with: :unprocessable_entity
 
   before_action :store_current_location, except: :raise_not_found, unless: :devise_controller?
-  before_action :set_locale
   before_action :set_user_activity
   before_action :check_suspension, if: :user_signed_in?
 
@@ -26,12 +27,6 @@ class ApplicationController < ActionController::Base
 
   def store_current_location
     store_location_for(:user, request.url)
-  end
-
-  def set_locale
-    I18n.locale = current_user.try(:locale) || I18n.default_locale
-  rescue I18n::InvalidLocale
-    I18n.locale = I18n.default_locale
   end
 
   def require_admin!
