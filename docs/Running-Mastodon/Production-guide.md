@@ -24,7 +24,7 @@ server {
 
   ssl_protocols TLSv1.2;
   ssl_ciphers EECDH+AESGCM:EECDH+AES;
-  ssl_ecdh_curve secp384r1;
+  ssl_ecdh_curve prime256v1;
   ssl_prefer_server_ciphers on;
   ssl_session_cache shared:SSL:10m;
 
@@ -90,7 +90,9 @@ It is recommended to create a special user for mastodon on the server (you could
 
     sudo apt-get install imagemagick ffmpeg libpq-dev libxml2-dev libxslt1-dev nodejs file git curl
     curl -sL https://deb.nodesource.com/setup_4.x | sudo bash -
+
     sudo apt-get install nodejs
+
     sudo npm install -g yarn
 
 ## Redis

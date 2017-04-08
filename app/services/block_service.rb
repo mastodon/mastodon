@@ -18,22 +18,6 @@ class BlockService < BaseService
   private
 
   def build_xml(block)
-    Nokogiri::XML::Builder.new do |xml|
-      entry(xml, true) do
-        unique_id xml, block.created_at, block.id, 'Block'
-        title xml, "#{block.account.acct} no longer wishes to interact with #{block.target_account.acct}"
-
-        author(xml) do
-          include_author xml, block.account
-        end
-
-        object_type xml, :activity
-        verb xml, :block
-
-        target(xml) do
-          include_author xml, block.target_account
-        end
-      end
-    end.to_xml
+    AtomSerializer.render(AtomSerializer.new.block_salmon(block))
   end
 end
