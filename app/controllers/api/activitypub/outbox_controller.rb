@@ -13,6 +13,7 @@ class Api::Activitypub::OutboxController < ApiController
     set_counters_maps(@statuses)
     set_account_counters_maps(@statuses.flat_map { |s| [s.account, s.reblog? ? s.reblog.account : nil] }.compact.uniq)
 
+    # Since the statuses are in reverse chronological order, last is the lowest ID.
     @next_path = api_activitypub_outbox_url(max_id: @statuses.last.id)    if @statuses.size == limit_param(DEFAULT_STATUSES_LIMIT)
     @prev_path = api_activitypub_outbox_url(since_id: @statuses.first.id) unless @statuses.empty?
 

@@ -6,6 +6,7 @@ class Api::Activitypub::ActivitiesController < ApiController
 
   respond_to :activitystreams2
 
+  # Show a status in AS2 format, as either an Announce (reblog) or a Create (post) activity.
   def show_status
     if @status.reblog?
       render :show_status_announce
