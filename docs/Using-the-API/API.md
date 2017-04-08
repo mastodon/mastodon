@@ -43,6 +43,7 @@ ___
 - [For Python](https://github.com/halcy/Mastodon.py)
 - [For JavaScript](https://github.com/Zatnosk/libodonjs)
 - [For JavaScript (Node.js)](https://github.com/jessicahayley/node-mastodon)
+- [For Elixir](https://github.com/milmazz/hunter)
 
 ___
 
