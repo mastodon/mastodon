@@ -5,14 +5,13 @@ class ProcessFeedService < BaseService
     xml = Nokogiri::XML(body)
     xml.encoding = 'utf-8'
 
-    update_author(body, xml, account)
+    update_author(body, account)
     process_entries(xml, account)
   end
 
   private
 
-  def update_author(body, xml, account)
-    return if xml.at_xpath('/xmlns:feed', xmlns: TagManager::XMLNS).nil?
+  def update_author(body, account)
     RemoteProfileUpdateWorker.perform_async(account.id, body.force_encoding('UTF-8'), true)
   end
 

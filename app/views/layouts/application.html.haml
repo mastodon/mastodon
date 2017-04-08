@@ -15,7 +15,7 @@
       - if content_for?(:page_title)
         = yield(:page_title)
         = ' - '
-      = Setting.site_title
+      = site_title
 
     = stylesheet_link_tag 'application', media: 'all'
     = csrf_meta_tags
