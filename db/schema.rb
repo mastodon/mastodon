@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170405112956) do
+ActiveRecord::Schema.define(version: 20170406215816) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -49,6 +49,7 @@ ActiveRecord::Schema.define(version: 20170405112956) do
     t.integer  "following_count",         default: 0,     null: false
     t.index "(((setweight(to_tsvector('simple'::regconfig, (display_name)::text), 'A'::\"char\") || setweight(to_tsvector('simple'::regconfig, (username)::text), 'B'::\"char\")) || setweight(to_tsvector('simple'::regconfig, (COALESCE(domain, ''::character varying))::text), 'C'::\"char\")))", name: "search_index", using: :gin
     t.index "lower((username)::text), lower((domain)::text)", name: "index_accounts_on_username_and_domain_lower", using: :btree
+    t.index ["url"], name: "index_accounts_on_url", using: :btree
     t.index ["username", "domain"], name: "index_accounts_on_username_and_domain", unique: true, using: :btree
   end
 
@@ -75,6 +76,7 @@ ActiveRecord::Schema.define(version: 20170405112956) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["account_id", "status_id"], name: "index_favourites_on_account_id_and_status_id", unique: true, using: :btree
+    t.index ["status_id"], name: "index_favourites_on_status_id", using: :btree
   end
 
   create_table "follow_requests", force: :cascade do |t|
@@ -128,6 +130,7 @@ ActiveRecord::Schema.define(version: 20170405112956) do
     t.datetime "updated_at", null: false
     t.index ["account_id", "status_id"], name: "index_mentions_on_account_id_and_status_id", unique: true, using: :btree
     t.index ["status_id"], name: "index_mentions_on_status_id", using: :btree
+    t.index ["status_id"], name: "mentions_status_id_index", using: :btree
   end
 
   create_table "mutes", force: :cascade do |t|
@@ -146,6 +149,7 @@ ActiveRecord::Schema.define(version: 20170405112956) do
     t.datetime "updated_at",      null: false
     t.integer  "from_account_id"
     t.index ["account_id", "activity_id", "activity_type"], name: "account_activity", unique: true, using: :btree
+    t.index ["activity_id", "activity_type"], name: "index_notifications_on_activity_id_and_activity_type", using: :btree
   end
 
   create_table "oauth_access_grants", force: :cascade do |t|
