@@ -6,6 +6,7 @@ module SettingsHelper
     de: 'Deutsch',
     es: 'Español',
     pt: 'Português',
+	ru: 'Русский',
     fr: 'Français',
     hu: 'Magyar',
     uk: 'Українська',

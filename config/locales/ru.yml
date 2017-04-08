@@ -1,0 +1,169 @@
+---
+ru:
+  about:
+    about_mastodon: Mastodon это <em>бесплатная</em> социальная сеть с <em>открытым кодом</em>. Это <em>децентрализованная</em> альтернатива коммерческим платформам, которая снижает риск монополизации ваших возможностей для общения. Выбирайте сервер, которому доверяете &mdash; в любом случае, вы сможете общаться с кем угодно. Любой может запустить свой инстанцс Mastodon и принять участие в развитии <em>социальной сети</em> на равных.
+    about_this: О нашем инстансе
+    apps: Apps
+    business_email: 'Business e-mail:'
+    closed_registrations: Registrations are currently closed on this instance.
+    contact: Contact
+    description_headline: Мы %{domain}
+    domain_count_after: other instances
+    domain_count_before: Connected to
+    features:
+      api: Open API for apps and services
+      blocks: Rich block and muting tools
+      characters: 500 characters per post
+      chronology: Timelines are chronological
+      ethics: 'Ethical design: no ads, no tracking'
+      gifv: GIFV sets and short videos
+      privacy: Granular, per-post privacy settings
+      public: Public timelines
+    features_headline: What sets Mastodon apart
+    get_started: Get started
+    links: Links
+    other_instances: Другие инстансы
+    source_code: Исходны код
+    status_count_after: statuses
+    status_count_before: Who authored
+    terms: Правила
+    user_count_after: users
+    user_count_before: Home to
+  accounts:
+    follow: Follow
+    followers: Followers
+    following: Following
+    nothing_here: There is nothing here!
+    people_followed_by: People whom %{name} follows
+    people_who_follow: People who follow %{name}
+    posts: Posts
+    remote_follow: Remote follow
+    unfollow: Unfollow
+  application_mailer:
+    settings: 'Change e-mail preferences: %{link}'
+    signature: Mastodon notifications from %{instance}
+    view: 'View:'
+  applications:
+    invalid_url: The provided URL is invalid
+  auth:
+    change_password: Credentials
+    didnt_get_confirmation: Didn't receive confirmation instructions?
+    forgot_password: Forgot your password?
+    login: Log in
+    logout: Logout
+    register: Sign up
+    resend_confirmation: Resend confirmation instructions
+    reset_password: Reset password
+    set_new_password: Set new password
+  authorize_follow:
+    error: Unfortunately, there was an error looking up the remote account
+    follow: Follow
+    prompt_html: 'You (<strong>%{self}</strong>) have requested to follow:'
+    title: Follow %{acct}
+  datetime:
+    distance_in_words:
+      about_x_hours: "%{count}h"
+      about_x_months: "%{count}mo"
+      about_x_years: "%{count}y"
+      almost_x_years: "%{count}y"
+      half_a_minute: Just now
+      less_than_x_minutes: "%{count}m"
+      less_than_x_seconds: Just now
+      over_x_years: "%{count}y"
+      x_days: "%{count}d"
+      x_minutes: "%{count}m"
+      x_months: "%{count}mo"
+      x_seconds: "%{count}s"
+  exports:
+    blocks: You block
+    csv: CSV
+    follows: You follow
+    storage: Media storage
+  generic:
+    changes_saved_msg: Changes successfully saved!
+    powered_by: powered by %{link}
+    save_changes: Save changes
+    validation_errors:
+      one: Something isn't quite right yet! Please review the error below
+      other: Something isn't quite right yet! Please review %{count} errors below
+  imports:
+    preface: You can import certain data like all the people you are following or blocking into your account on this instance, from files created by an export on another instance.
+    success: Your data was successfully uploaded and will now be processed in due time
+    types:
+      blocking: Blocking list
+      following: Following list
+    upload: Upload
+  landing_strip_html: <strong>%{name}</strong> is a user on <strong>%{domain}</strong>. You can follow them or interact with them if you have an account anywhere in the fediverse. If you don't, you can <a href="%{sign_up_path}">sign up here</a>.
+  notification_mailer:
+    digest:
+      body: 'Here is a brief summary of what you missed on %{instance} since your last visit on %{since}:'
+      mention: "%{name} mentioned you in:"
+      new_followers_summary:
+        one: You have acquired one new follower! Yay!
+        other: You have gotten %{count} new followers! Amazing!
+      subject:
+        one: "1 new notification since your last visit \U0001F418"
+        other: "%{count} new notifications since your last visit \U0001F418"
+    favourite:
+      body: 'Your status was favourited by %{name}:'
+      subject: "%{name} favourited your status"
+    follow:
+      body: "%{name} is now following you!"
+      subject: "%{name} is now following you"
+    follow_request:
+      body: "%{name} has requested to follow you"
+      subject: 'Pending follower: %{name}'
+    mention:
+      body: 'You were mentioned by %{name} in:'
+      subject: You were mentioned by %{name}
+    reblog:
+      body: 'Your status was boosted by %{name}:'
+      subject: "%{name} boosted your status"
+  pagination:
+    next: Next
+    prev: Prev
+  remote_follow:
+    acct: Enter your username@domain you want to follow from
+    missing_resource: Could not find the required redirect URL for your account
+    proceed: Proceed to follow
+    prompt: 'You are going to follow:'
+  settings:
+    authorized_apps: Authorized apps
+    back: Back to Mastodon
+    edit_profile: Edit profile
+    export: Data export
+    import: Import
+    preferences: Preferences
+    settings: Settings
+    two_factor_auth: Two-factor Authentication
+  statuses:
+    open_in_web: Open in web
+    over_character_limit: character limit of %{max} exceeded
+    show_more: Show more
+    visibilities:
+      private: Only show to followers
+      public: Public
+      unlisted: Public, but do not display on the public timeline
+  stream_entries:
+    click_to_show: Click to show
+    reblogged: boosted
+    sensitive_content: Sensitive content
+  time:
+    formats:
+      default: "%b %d, %Y, %H:%M"
+  two_factor_auth:
+    description_html: If you enable <strong>two-factor authentication</strong>, logging in will require you to be in possession of your phone, which will generate tokens for you to enter.
+    disable: Disable
+    enable: Enable
+    instructions_html: "<strong>Scan this QR code into Google Authenticator or a similiar app on your phone</strong>. From now on, that app will generate tokens that you will have to enter when logging in."
+    plaintext_secret_html: 'Plain-text secret: <samp>%{secret}</samp>'
+    warning: If you cannot configure an authenticator app right now, you should click "disable" or you won't be able to login.
+  users:
+    invalid_email: The e-mail address is invalid
+    invalid_otp_token: Invalid two-factor code
+  will_paginate:
+    page_gap: "&hellip;"
+  media_attachments:
+    validations:
+      too_many: Cannot attach more than 4 files
+      images_and_video: Cannot attach a video to a status that already contains images
