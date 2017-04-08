@@ -63,16 +63,22 @@ fr:
   datetime:
     distance_in_words:
       about_x_hours: "%{count}h"
-      about_x_months: "%{count}mo"
-      about_x_years: "%{count}y"
-      almost_x_years: "%{count}y"
+      about_x_months: "%{count}mois"
+      about_x_years:
+        one: un an
+        other: "%{count} ans"
+      almost_x_years:
+        one: un an
+        other: "%{count} ans"
       half_a_minute: A l'instant
-      less_than_x_minutes: "%{count}m"
+      less_than_x_minutes: "%{count}min"
       less_than_x_seconds: A l'instant
-      over_x_years: "%{count}y"
-      x_days: "%{count}d"
-      x_minutes: "%{count}m"
-      x_months: "%{count}mo"
+      over_x_years:
+        one: un an
+        other: "%{count} ans"
+      x_days: "%{count}j"
+      x_minutes: "%{count}min"
+      x_months: "%{count}mois"
       x_seconds: "%{count}s"
   exports:
     blocks: Vous bloquez
