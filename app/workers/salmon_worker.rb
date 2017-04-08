@@ -7,7 +7,7 @@ class SalmonWorker
 
   def perform(account_id, body)
     ProcessInteractionService.new.call(body, Account.find(account_id))
-  rescue ActiveRecord::RecordNotFound
+  rescue Nokogiri::XML::XPath::SyntaxError, ActiveRecord::RecordNotFound
     true
   end
 end

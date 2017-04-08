@@ -17,6 +17,8 @@ To create and provision a new virtual machine for Mastodon development:
     cd mastodon
     vagrant up
 
+**Note:** On Linux hosts, you will need to [enable NFS support](https://www.vagrantup.com/docs/synced-folders/nfs.html).
+
 Running `vagrant up` for the first time will run provisioning, which will:
 
 - Download the Ubuntu 14.04 base image, if there isn't already a copy on your machine
