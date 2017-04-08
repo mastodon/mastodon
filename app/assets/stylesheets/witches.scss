@@ -1,5 +1,6 @@
 $witches-primary: #A288BD;
 $witches-light: lighten($witches-primary, 15%);
+$witches-dark: darken($witches-primary, 15%);
 
 div.column {
   flex-grow: 1;
@@ -10,23 +11,60 @@ div.column {
   background-color: $witches-primary;
 }
 
+.button:hover, .button:active, .button:focus {
+  background-color: $witches-dark;
+}
+
 .status__content a {
   color: $witches-primary;
+}
+
+.notification__message .fa {
+  color: $witches-primary;
+}
+
+.icon-button.active {
+  color: $witches-primary;
+}
+
+.account__header .account__header__username {
+  color: $witches-primary;
+}
+
+.status__content .status__content__spoiler-link, 
+.reply-indicator__content .status__content__spoiler-link {
+  color: #fff;
+  text-shadow: #000 0 0 2px;
+  background-color: $witches-primary;
+}
+
+.status__content .status__content__spoiler-link:hover,
+.reply-indicator__content .status__content__spoiler-link:hover {
+  background-color: $witches-dark;
 }
 
 .reply-indicator {
   background-color: $witches-light;
 }
 
-.column-header.active .fa {
-  color: $witches-primary;
-  text-shadow-color: 0 0 10px rgba($witches-primary, 0.4);
+.column-header.active {
+  box-shadow: 0 1px 0 rgba($witches-primary, 0.3);
 }
 
-.notifications__unread-indicator {
+.column-header.active .fa {
+  color: $witches-primary;
+  text-shadow: 0 0 10px rgba($witches-primary, 0.4);
+}
+
+.status-list__unread-indicator, .notifications__unread-indicator {
   background: radial-gradient(ellipse, rgba($witches-primary, 0.23) 0%, rgba($witches-primary, 0) 60%);
 }
 
 .column-back-button {
   color: $witches-primary;
+}
+
+.admin-wrapper .sidebar ul ul a.selected {
+  background-color: $witches-primary;
+  text-shadow: #000 0 0 2px;
 }
