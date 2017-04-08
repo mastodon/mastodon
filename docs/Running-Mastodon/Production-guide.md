@@ -36,8 +36,6 @@ server {
   client_max_body_size 0;
   gzip off;
 
-  root /home/mastodon/live/public;
-
   add_header Strict-Transport-Security "max-age=31536000; includeSubDomains";
 
   location / {
@@ -49,7 +47,7 @@ server {
     proxy_set_header X-Real-IP $remote_addr;
     proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
     proxy_set_header X-Forwarded-Proto https;
-
+    proxy_set_header Proxy "";
     proxy_pass_header Server;
 
     proxy_pass http://localhost:3000;
@@ -67,6 +65,7 @@ server {
     proxy_set_header X-Real-IP $remote_addr;
     proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
     proxy_set_header X-Forwarded-Proto https;
+    proxy_set_header Proxy "";
 
     proxy_pass http://localhost:4000;
     proxy_buffering off;
