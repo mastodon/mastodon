@@ -16,6 +16,7 @@ RSpec.describe ProcessFeedService do
   end
 
   it 'updates remote user\'s account information' do
+    account.reload
     expect(account.display_name).to eq '::1'
     expect(account).to have_attached_file(:avatar)
   end
