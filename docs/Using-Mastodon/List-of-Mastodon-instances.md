@@ -18,6 +18,7 @@ There is also a list at [instances.mastodon.xyz](https://instances.mastodon.xyz)
 | [gay.crime.team](https://gay.crime.team) |the place for doin' gay crime online (please don't actually do crime here)|No|No|
 | [icosahedron.website](https://icosahedron.website/) |Icosahedron-themed (well, visually), open registration.|Yes|No|
 | [memetastic.space](https://memetastic.space) |Memes|Yes|No|
+| [masto.razrnet.fr](https://masto.razrnet.fr) |Instance Française pour tout le monde ! Développeurs, gamers, etc...|Yes|No|
 | [social.diskseven.com](https://social.diskseven.com) |Single user|No|Yes|
 | [social.gestaltzerfall.net](https://social.gestaltzerfall.net) |Single user|No|No|
 | [mastodon.xyz](https://mastodon.xyz) |N/A|Yes|Yes|
@@ -35,7 +36,7 @@ There is also a list at [instances.mastodon.xyz](https://instances.mastodon.xyz)
 | [social.alex73630.xyz](https://social.alex73630.xyz) |Francophones|Yes|Yes|
 | [oc.todon.fr](https://oc.todon.fr) |Modérée et principalement francophone, pas de tolérances pour misogynie/LGBTphobies/validisme/etc.|Yes|Yes|
 | [maly.io](https://maly.io) |N/A|Yes|No|
-| [social.lou.lt](https://social.lou.lt) |N/A|Yes|No|
+| [social.lou.lt](https://social.lou.lt) |Francophones|Yes|No|
 | [mastodon.ninetailed.uk](https://mastodon.ninetailed.uk) |Open registrations, furry-friendly, UK-based|Yes|No|
 | [soc.louiz.org](https://soc.louiz.org) |"Coucou"|Yes|No|
 | [7nw.eu](https://7nw.eu) |N/A|Yes|No|
@@ -66,7 +67,17 @@ There is also a list at [instances.mastodon.xyz](https://instances.mastodon.xyz)
 | [off-the-clock.us](https://off-the-clock.us/)|The work day is over.|Yes|No|
 | [infinimatix.net](https://infinimatix.net)|Informatics|Yes|Yes|
 | [social.0day.agency](https://social.0day.agency)|Infosec, Hacking, Fun (only protonmail)|Yes|Yes|
-
+| [kagrumez.lerk.io](https://kagrumez.lerk.io)|Open registration. German end english.|Yes|No|
+| [meow.social](https://meow.social)|A furry fandom focused instance|Yes|No|
+| [neumastodon.com](https://neumastodon.com/)|Northeastern University Mastodon |Yes|No|
+| [dancingbanana.party](https://dancingbanana.party)|La banane qui danse.|Yes|No|
+| [mastodon.brussels.fr](https://mastodon.brussels/)|Le mastodon pour les belges, si vous aimez la bonne ambiance venez nous rejoindre !|Yes|Yes|
+| [mastodon.llamasweet.tech](https://mastodon.llamasweet.tech/)|Mastodon about Android developement|Yes|No|
+| [manx.social](https://manx.social/)|Instance for the Isle of Man|Yes|Yes|
+| [mastodon.host](https://mastodon.host/)|Lightly moderated, federates everywhere and has a follow bot ( Huge federated timeline )|Yes|No|
+| [mastodon.fun](https://mastodon.fun/)|Mastodon for everyone ! |Yes|Yes|
+| [oulipo.social](https://oulipo.social/)|An Oulipo Mastodon in which that fifth symbol in Latin script is taboo|Yes|No|
+| [indigo.zone](https://indigo.zone)|Open Registrations, General Purpose|Yes|No|
 
 
 Let me know if you start running one so I can add it to the list! (Alternatively, add it yourself as a pull request).
