@@ -62,8 +62,12 @@ class Status < ApplicationRecord
     reply? ? :comment : :note
   end
 
+  def proper
+    reblog? ? reblog : self
+  end
+
   def content
-    reblog? ? reblog.text : text
+    proper.text
   end
 
   def target
