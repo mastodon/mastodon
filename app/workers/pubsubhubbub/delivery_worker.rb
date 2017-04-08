@@ -13,6 +13,9 @@ class Pubsubhubbub::DeliveryWorker
   def perform(subscription_id, payload)
     subscription = Subscription.find(subscription_id)
     headers      = {}
+    host         = Addressable::URI.parse(subscription.callback_url).host
+
+    return if DomainBlock.blocked?(host)
 
     headers['User-Agent']      = 'Mastodon/PubSubHubbub'
     headers['Link']            = LinkHeader.new([[api_push_url, [%w(rel hub)]], [account_url(subscription.account, format: :atom), [%w(rel self)]]]).to_s
