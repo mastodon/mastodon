@@ -76,7 +76,7 @@ There is also a list at [instances.mastodon.xyz](https://instances.mastodon.xyz)
 | [mastodon.fun](https://mastodon.fun/)|Mastodon for everyone ! |Yes|Yes|
 | [oulipo.social](https://oulipo.social/)|An Oulipo Mastodon in which that fifth symbol in Latin script is taboo|Yes|No|
 | [indigo.zone](https://indigo.zone)|Open Registrations, General Purpose|Yes|No|
-| [mst3k.interlinked.me](https://mst3k.interlinked.me)|Open registrations, general purpose|Yes|Yes
+| [mst3k.interlinked.me](https://mst3k.interlinked.me)|Open registrations, general purpose|Yes|Yes|
 
 
 Let me know if you start running one so I can add it to the list! (Alternatively, add it yourself as a pull request).
