@@ -16,7 +16,8 @@ class AccountsController < ApplicationController
       end
 
       format.atom do
-        @entries = @account.stream_entries.order('id desc').where(activity_type: 'Status').where(hidden: false).with_includes.paginate_by_max_id(20, params[:max_id], params[:since_id])
+        @entries = @account.stream_entries.order('id desc').where(hidden: false).with_includes.paginate_by_max_id(20, params[:max_id], params[:since_id])
+        render xml: AtomSerializer.render(AtomSerializer.new.feed(@account, @entries.to_a))
       end
 
       format.activitystreams2
