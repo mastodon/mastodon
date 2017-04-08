@@ -37,11 +37,11 @@ class PostStatusService < BaseService
   def validate_media!(media_ids)
     return if media_ids.nil? || !media_ids.is_a?(Enumerable)
 
-    raise Mastodon::ValidationError, 'Cannot attach more than 4 files' if media_ids.size > 4
+    raise Mastodon::ValidationError, I18n.t('media_attachments.validations.too_many') if media_ids.size > 4
 
     media = MediaAttachment.where(status_id: nil).where(id: media_ids.take(4).map(&:to_i))
 
-    raise Mastodon::ValidationError, 'Cannot attach a video to a toot that already contains images' if media.size > 1 && media.find(&:video?)
+    raise Mastodon::ValidationError, I18n.t('media_attachments.validations.images_and_video') if media.size > 1 && media.find(&:video?)
 
     media
   end

@@ -10,7 +10,7 @@ class FollowService < BaseService
     target_account = FollowRemoteAccountService.new.call(uri)
 
     raise ActiveRecord::RecordNotFound if target_account.nil? || target_account.id == source_account.id || target_account.suspended?
-    raise Mastodon::NotPermittedError       if target_account.blocking?(source_account) || source_account.blocking?(target_account)
+    raise Mastodon::NotPermittedError  if target_account.blocking?(source_account) || source_account.blocking?(target_account)
 
     if target_account.locked?
       request_follow(source_account, target_account)
@@ -55,48 +55,10 @@ class FollowService < BaseService
   end
 
   def build_follow_request_xml(follow_request)
-    description = "#{follow_request.account.acct} requested to follow #{follow_request.target_account.acct}"
-
-    Nokogiri::XML::Builder.new do |xml|
-      entry(xml, true) do
-        unique_id xml, follow_request.created_at, follow_request.id, 'FollowRequest'
-        title xml, description
-        content xml, description
-
-        author(xml) do
-          include_author xml, follow_request.account
-        end
-
-        object_type xml, :activity
-        verb xml, :request_friend
-
-        target(xml) do
-          include_author xml, follow_request.target_account
-        end
-      end
-    end.to_xml
+    AtomSerializer.render(AtomSerializer.new.follow_request_salmon(follow_request))
   end
 
   def build_follow_xml(follow)
-    description = "#{follow.account.acct} started following #{follow.target_account.acct}"
-
-    Nokogiri::XML::Builder.new do |xml|
-      entry(xml, true) do
-        unique_id xml, follow.created_at, follow.id, 'Follow'
-        title xml, description
-        content xml, description
-
-        author(xml) do
-          include_author xml, follow.account
-        end
-
-        object_type xml, :activity
-        verb xml, :follow
-
-        target(xml) do
-          include_author xml, follow.target_account
-        end
-      end
-    end.to_xml
+    AtomSerializer.render(AtomSerializer.new.follow_salmon(follow))
   end
 end

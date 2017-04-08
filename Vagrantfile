@@ -84,6 +84,16 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.provider :virtualbox do |vb|
     vb.name = "mastodon"
     vb.customize ["modifyvm", :id, "--memory", "1024"]
+
+    # Disable VirtualBox DNS proxy to skip long-delay IPv6 resolutions.
+    # https://github.com/mitchellh/vagrant/issues/1172
+    vb.customize ["modifyvm", :id, "--natdnsproxy1", "off"]
+    vb.customize ["modifyvm", :id, "--natdnshostresolver1", "off"]
+
+    # Use "virtio" network interfaces for better performance.
+    vb.customize ["modifyvm", :id, "--nictype1", "virtio"]
+    vb.customize ["modifyvm", :id, "--nictype2", "virtio"]
+
   end
 
   config.vm.hostname = "mastodon.dev"
@@ -91,9 +101,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # This uses the vagrant-hostsupdater plugin, and lets you
   # access the development site at http://mastodon.dev.
   # To install:
-  #   $ vagrant plugin install hostsupdater
+  #   $ vagrant plugin install vagrant-hostsupdater
   if defined?(VagrantPlugins::HostsUpdater)
-    config.vm.network :private_network, ip: "192.168.42.42"
+    config.vm.network :private_network, ip: "192.168.42.42", nictype: "virtio"
     config.hostsupdater.remove_on_suspend = false
   end
 
