@@ -3,9 +3,13 @@ services:
   db:
     restart: always
     image: postgres:alpine
+    volumes:
+      - ./postgres-data:/var/lib/postgresql/data
   redis:
     restart: always
     image: redis:alpine
+    volumes:
+      - ./redis:/data
   web:
     restart: always
     build: .
