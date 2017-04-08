@@ -65,6 +65,8 @@ Consult the example configuration file, `.env.production.sample` for the full li
 
 ## Running with Docker and Docker-Compose
 
+[![](https://images.microbadger.com/badges/version/gargron/mastodon.svg)](https://microbadger.com/images/gargron/mastodon "Get your own version badge on microbadger.com") [![](https://images.microbadger.com/badges/image/gargron/mastodon.svg)](https://microbadger.com/images/gargron/mastodon "Get your own image badge on microbadger.com")
+
 The project now includes a `Dockerfile` and a `docker-compose.yml`. You need to turn `.env.production.sample` into `.env.production` with all the variables set before you can:
 
     docker-compose build
@@ -116,6 +118,12 @@ Which will re-create the updated containers, leaving databases and data as is. D
 ## Deployment without Docker
 
 Docker is great for quickly trying out software, but it has its drawbacks too. If you prefer to run Mastodon without using Docker, refer to the [production guide](docs/Running-Mastodon/Production-guide.md) for examples, configuration and instructions.
+
+## Deployment on Scalingo
+
+[![Deploy on Scalingo](https://cdn.scalingo.com/deploy/button.svg)](https://my.scalingo.com/deploy?source=https://github.com/tootsuite/mastodon#master)
+
+[You can view a guide for deployment on Scalingo here.](docs/Running-Mastodon/Scalingo-guide.md)
 
 ## Deployment on Heroku (experimental)
 
