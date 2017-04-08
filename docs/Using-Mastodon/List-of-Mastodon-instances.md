@@ -50,6 +50,7 @@ There is also a list at [instances.mastodon.xyz](https://instances.mastodon.xyz)
 | [mastodon.systemlab.fr](https://mastodon.systemlab.fr/)|Le mastodon Français, informatique, jeux-vidéos, gaming et hébergement.|Yes|
 | [mastodon.top](https://mastodon.top) |N/A|Yes|Yes|
 | [niu.moe](https://niu.moe/)|:dolls: The most cutest node ever, FR/EN, anime and computer :balloon:|Yes|Yes|
+| [im-in.space](https://im-in.space/)|SPAAAAACE! Probably with a lot of French people. (Invite-only, might randomly open registrations)|No|Yes|
 
 
 Let me know if you start running one so I can add it to the list! (Alternatively, add it yourself as a pull request).
