@@ -39,7 +39,7 @@ const ColumnSettings = React.createClass({
     const { settings, onChange, onSave, intl } = this.props;
 
     return (
-      <ColumnCollapsable icon='sliders' fullHeight={209} onCollapse={onSave}>
+      <ColumnCollapsable title='Settings' icon='sliders' fullHeight={209} onCollapse={onSave}>
         <div className='column-settings--outer' style={outerStyle}>
           <span className='column-settings--section' style={sectionStyle}><FormattedMessage id='home.column_settings.basic' defaultMessage='Basic' /></span>
 

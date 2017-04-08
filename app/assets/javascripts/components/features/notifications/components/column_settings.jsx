@@ -37,7 +37,7 @@ const ColumnSettings = React.createClass({
     const soundStr = <FormattedMessage id='notifications.column_settings.sound' defaultMessage='Play sound' />;
 
     return (
-      <ColumnCollapsable icon='sliders' fullHeight={616} onCollapse={onSave}>
+      <ColumnCollapsable title='Settings' icon='sliders' fullHeight={616} onCollapse={onSave}>
         <div className='column-settings--outer' style={outerStyle}>
           <span className='column-settings--section' style={sectionStyle}><FormattedMessage id='notifications.column_settings.follow' defaultMessage='New followers:' /></span>
 
