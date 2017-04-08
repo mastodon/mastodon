@@ -28,7 +28,8 @@ class Auth::RegistrationsController < Devise::RegistrationsController
   end
 
   def check_enabled_registrations
-    redirect_to root_path if Rails.configuration.x.single_user_mode || !Setting.open_registrations
+    user_count = Rails.cache.fetch('user_count') { User.count }
+    redirect_to root_path if Rails.configuration.x.single_user_mode || !Setting.open_registrations || user_count >= Setting.max_users
   end
 
   private
