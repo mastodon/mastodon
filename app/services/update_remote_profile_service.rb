@@ -1,7 +1,12 @@
 # frozen_string_literal: true
 
 class UpdateRemoteProfileService < BaseService
-  def call(xml, account, resubscribe = false)
+  def call(body, account, resubscribe = false)
+    xml = Nokogiri::XML(body)
+    xml.encoding = 'utf-8'
+
+    xml = xml.at_xpath('/xmlns:feed', xmlns: TagManager::XMLNS) || xml.at_xpath('/xmlns:entry', xmlns: TagManager::XMLNS)
+
     return if xml.nil?
 
     author_xml = xml.at_xpath('./xmlns:author', xmlns: TagManager::XMLNS) || xml.at_xpath('./dfrn:owner', dfrn: TagManager::DFRN_XMLNS)
@@ -12,7 +17,7 @@ class UpdateRemoteProfileService < BaseService
       account.note         = author_xml.at_xpath('./poco:note', poco: TagManager::POCO_XMLNS).content unless author_xml.at_xpath('./poco:note', poco: TagManager::POCO_XMLNS).nil?
       account.locked       = author_xml.at_xpath('./mastodon:scope', mastodon: TagManager::MTDN_XMLNS)&.content == 'private'
 
-      unless account.suspended? || DomainBlock.find_by(domain: account.domain)&.reject_media?
+      if !account.suspended? && !DomainBlock.find_by(domain: account.domain)&.reject_media?
         account.avatar_remote_url = author_xml.at_xpath('./xmlns:link[@rel="avatar"]', xmlns: TagManager::XMLNS)['href'] unless author_xml.at_xpath('./xmlns:link[@rel="avatar"]', xmlns: TagManager::XMLNS).nil? || author_xml.at_xpath('./xmlns:link[@rel="avatar"]', xmlns: TagManager::XMLNS)['href'].blank?
         account.header_remote_url = author_xml.at_xpath('./xmlns:link[@rel="header"]', xmlns: TagManager::XMLNS)['href'] unless author_xml.at_xpath('./xmlns:link[@rel="header"]', xmlns: TagManager::XMLNS).nil? || author_xml.at_xpath('./xmlns:link[@rel="header"]', xmlns: TagManager::XMLNS)['href'].blank?
       end
