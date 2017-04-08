@@ -58,7 +58,7 @@ There is also a list at [instances.mastodon.xyz](https://instances.mastodon.xyz)
 | [good-dragon.com](https://good-dragon.com/)|Quick updates, Relaxed Moderation, Federates Everywhere, Furries|Yes|No|
 | [rich.gop](https://rich.gop/)|Federates everywhere, Open registration, Privacy respected|Yes|Yes|
 | [social.nowa.re](https://social.nowa.re)|Open Registration|Yes|No|
-| [mastodon.mtndevelopment.com](https://mastodon.mtndevelopment.com/)|Open registration. General nerding out.|Yes|No|
+| [mastodon.ml](http://mastodon.ml) |A chill place to hangout and chat about anime, programming and movies.|Yes|Yes|
 
 
 Let me know if you start running one so I can add it to the list! (Alternatively, add it yourself as a pull request).
