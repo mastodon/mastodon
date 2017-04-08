@@ -1,14 +1,13 @@
 # frozen_string_literal: true
 
 class ApplicationController < ActionController::Base
-  include Localized
-
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
   force_ssl if: "Rails.env.production? && ENV['LOCAL_HTTPS'] == 'true'"
 
+  include Localized
   helper_method :current_account
 
   rescue_from ActionController::RoutingError, with: :not_found
@@ -41,7 +40,6 @@ class ApplicationController < ActionController::Base
 
     # If the sign in is after a two week break, we need to regenerate their feed
     RegenerationWorker.perform_async(current_user.account_id) if current_user.last_sign_in_at < 14.days.ago
-    return
   end
 
   def check_suspension
