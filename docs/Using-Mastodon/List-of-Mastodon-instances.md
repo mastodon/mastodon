@@ -7,7 +7,7 @@ There is also a list at [instances.mastodon.xyz](https://instances.mastodon.xyz)
 | -------------|-------------|---|---|
 | [mastodon.social](https://mastodon.social) |Flagship, quick updates|No|No|
 | [securitymastod.one](https://securitymastod.one/) |Information security enthusiasts and pros|Yes|Yes|
-| [mastodon.nuzgo.net](https://mastodon.nuzgo.net/) |Mastodon instance hosted in Paris |Yes|No|
+| [mastodon.nuzgo.net](https://mastodon.nuzgo.net/) |Mastodon instance hosted in Paris |Yes|Yes|
 | [mastodon.cx](https://mastodon.cx/) |Alternative Mastodon instance hosted in France|Yes|Yes|
 | [mastodon.network](https://mastodon.network) |N/A|Yes|Yes|
 | [awoo.space](https://awoo.space) |Intentionally moderated, only federates with mastodon.social|Yes|No|
@@ -45,8 +45,6 @@ There is also a list at [instances.mastodon.xyz](https://instances.mastodon.xyz)
 | [share.elouworld.org](https://share.elouworld.org)|N/A|No|No|
 | [social.lkw.tf](https://social.lkw.tf)|N/A|No|No|
 | [manowar.social](https://manowar.social)|N/A|No|No|
-| [social.ballpointcarrot.net](https://social.ballpointcarrot.net)|Down at time of entry|No|No|
-| [mastodon.cloud](https://mastodon.cloud)|Open Mastodon instance with people from everywhere.|Yes|Yes|
 | [social.ballpointcarrot.net](https://social.ballpointcarrot.net)|N/A|No|No|
 | [social.nasqueron.org](https://social.nasqueron.org) |Dreamers, open source developers, free culture|Yes|Yes|
 | [status.dissidence.ovh](https://status.dissidence.ovh)|N/A|Yes|Yes|
@@ -71,7 +69,7 @@ There is also a list at [instances.mastodon.xyz](https://instances.mastodon.xyz)
 | [meow.social](https://meow.social)|A furry fandom focused instance|Yes|No|
 | [neumastodon.com](https://neumastodon.com/)|Northeastern University Mastodon |Yes|No|
 | [dancingbanana.party](https://dancingbanana.party)|La banane qui danse.|Yes|No|
-| [mastodon.brussels.fr](https://mastodon.brussels/)|Le mastodon pour les belges, si vous aimez la bonne ambiance venez nous rejoindre !|Yes|Yes|
+| [mastodon.brussels](https://mastodon.brussels/)|Le mastodon pour les belges, si vous aimez la bonne ambiance venez nous rejoindre !|Yes|Yes|
 | [mastodon.llamasweet.tech](https://mastodon.llamasweet.tech/)|Mastodon about Android developement|Yes|No|
 | [manx.social](https://manx.social/)|Instance for the Isle of Man|Yes|Yes|
 | [mastodon.host](https://mastodon.host/)|Lightly moderated, federates everywhere and has a follow bot ( Huge federated timeline )|Yes|No|
