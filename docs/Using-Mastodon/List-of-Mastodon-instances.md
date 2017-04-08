@@ -7,7 +7,7 @@ There is also a list at [instances.mastodon.xyz](https://instances.mastodon.xyz)
 | -------------|-------------|---|---|
 | [mastodon.social](https://mastodon.social) |Flagship, quick updates|No|No|
 | [securitymastod.one](https://securitymastod.one/) |Information security enthusiasts and pros|Yes|Yes|
-| [mastodon.nuzgo.net](https://mastodon.nuzgo.net/) |Mastodon instance hosted in Paris |Yes|No|
+| [mastodon.nuzgo.net](https://mastodon.nuzgo.net/) |Mastodon instance hosted in Paris |Yes|Yes|
 | [mastodon.cx](https://mastodon.cx/) |Alternative Mastodon instance hosted in France|Yes|Yes|
 | [mastodon.network](https://mastodon.network) |N/A|Yes|Yes|
 | [awoo.space](https://awoo.space) |Intentionally moderated, only federates with mastodon.social|Yes|No|
