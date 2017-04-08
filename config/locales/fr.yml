@@ -5,13 +5,14 @@ fr:
     about_this: À propos de cette instance
     apps: Applications
     business_email: E-mail professionnel
-    closed_registrations: Les inscriptions sont actuellement fermées sur cette instance. . 
+    closed_registrations: Les inscriptions sont actuellement fermées sur cette instance.
+    contact: Contact
     description_headline: Qu'est-ce que %{domain} ?
     domain_count_after: autres instances
     domain_count_before: Connectés à
     features:
       api: API ouverte aux apps et services
-      blocking: Outils complets de bloquage et masquage
+      blocks: Outils complets de bloquage et masquage
       characters: 500 caractères par post
       chronology: Fil chronologique
       ethics: 'Pas de pubs, pas de pistage'
@@ -21,6 +22,7 @@ fr:
     features_headline: Ce qui rend Mastodon différent
     get_started: Rejoindre le réseau
     links: Liens
+    other_instances: Autres instances
     source_code: Code source
     status_count_after: posts
     status_count_before: Ayant publié
@@ -54,9 +56,24 @@ fr:
     reset_password: Réinitialiser le mot de passe
     set_new_password: Définir le nouveau mot de passe
   authorize_follow:
+    error: Malheureusement, il y a eu une erreur en cherchant les détails du compte distant
     follow: Suivre
     prompt_html: 'Vous (<strong>%{self}</strong>) avez demandé à suivre:'
     title: Suivre %{acct}
+  datetime:
+    distance_in_words:
+      about_x_hours: "%{count}h"
+      about_x_months: "%{count}mo"
+      about_x_years: "%{count}y"
+      almost_x_years: "%{count}y"
+      half_a_minute: A l'instant
+      less_than_x_minutes: "%{count}m"
+      less_than_x_seconds: A l'instant
+      over_x_years: "%{count}y"
+      x_days: "%{count}d"
+      x_minutes: "%{count}m"
+      x_months: "%{count}mo"
+      x_seconds: "%{count}s"
   exports:
     blocks: Vous bloquez
     csv: CSV
@@ -93,6 +110,9 @@ fr:
     follow:
       body: "%{name} vous suit !"
       subject: "%{name} vous suit"
+    follow_request:
+      body: "%{name} a demandé à vous suivre"
+      subject: 'Abonné⋅es en attente : %{name}'
     mention:
       body: "%{name} vous a mentionné⋅e dans :"
       subject: "%{name} vous a mentionné⋅e"

@@ -69,7 +69,7 @@ There is also a list at [instances.mastodon.xyz](https://instances.mastodon.xyz)
 | [meow.social](https://meow.social)|A furry fandom focused instance|Yes|No|
 | [neumastodon.com](https://neumastodon.com/)|Northeastern University Mastodon |Yes|No|
 | [dancingbanana.party](https://dancingbanana.party)|La banane qui danse.|Yes|No|
-| [mastodon.brussels.fr](https://mastodon.brussels/)|Le mastodon pour les belges, si vous aimez la bonne ambiance venez nous rejoindre !|Yes|Yes|
+| [mastodon.brussels](https://mastodon.brussels/)|Le mastodon pour les belges, si vous aimez la bonne ambiance venez nous rejoindre !|Yes|Yes|
 | [mastodon.llamasweet.tech](https://mastodon.llamasweet.tech/)|Mastodon about Android developement|Yes|No|
 | [manx.social](https://manx.social/)|Instance for the Isle of Man|Yes|Yes|
 | [mastodon.host](https://mastodon.host/)|Lightly moderated, federates everywhere and has a follow bot ( Huge federated timeline )|Yes|No|
