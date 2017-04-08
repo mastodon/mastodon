@@ -9,7 +9,7 @@
 .landing-page
   .header-wrapper
     .mascot-container
-      = image_tag asset_pack_path('elephant-fren.png'), alt: '', role: 'presentation', class: 'mascot'
+      = image_tag asset_pack_path('awoospacefrontart-small.png'), alt: '', role: 'presentation', class: 'mascot'
 
     .header
       .container.links
@@ -59,6 +59,12 @@
       - if Setting.timeline_preview
         #mastodon-timeline{ data: { props: Oj.dump(default_props) } }
 
+      .about-awoospace
+        - if DomainWhitelist.enabled?
+          %h3= 'What servers do you federate with?'
+          %p
+            We are open to federating with many servers, and this will only grow over time- you can find a full list
+            = link_to 'here.', about_more_path + '#whitelist'
       .about-mastodon
         %h3= t 'about.what_is_mastodon'
         %p= t 'about.about_mastodon_html'
