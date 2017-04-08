@@ -1,8 +1,12 @@
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import ImmutablePropTypes from 'react-immutable-proptypes';
-import { FormattedMessage } from 'react-intl';
+import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import ColumnCollapsable from '../../../components/column_collapsable';
 import SettingToggle from './setting_toggle';
+
+const messages = defineMessages({
+  settings: { id: 'notifications.settings', defaultMessage: 'Column settings' }
+});
 
 const outerStyle = {
   padding: '15px'
@@ -30,14 +34,14 @@ const ColumnSettings = React.createClass({
   mixins: [PureRenderMixin],
 
   render () {
-    const { settings, onChange, onSave } = this.props;
+    const { settings, intl, onChange, onSave } = this.props;
 
     const alertStr = <FormattedMessage id='notifications.column_settings.alert' defaultMessage='Desktop notifications' />;
     const showStr  = <FormattedMessage id='notifications.column_settings.show' defaultMessage='Show in column' />;
     const soundStr = <FormattedMessage id='notifications.column_settings.sound' defaultMessage='Play sound' />;
 
     return (
-      <ColumnCollapsable icon='sliders' fullHeight={616} onCollapse={onSave}>
+      <ColumnCollapsable icon='sliders' title={intl.formatMessage(messages.settings)} fullHeight={616} onCollapse={onSave}>
         <div className='column-settings--outer' style={outerStyle}>
           <span className='column-settings--section' style={sectionStyle}><FormattedMessage id='notifications.column_settings.follow' defaultMessage='New followers:' /></span>
 
@@ -77,4 +81,4 @@ const ColumnSettings = React.createClass({
 
 });
 
-export default ColumnSettings;
+export default injectIntl(ColumnSettings);
