@@ -68,6 +68,7 @@ There is also a list at [instances.mastodon.xyz](https://instances.mastodon.xyz)
 | [meow.social](https://meow.social)|A furry fandom focused instance|Yes|No|
 | [neumastodon.com](https://neumastodon.com/)|Northeastern University Mastodon |Yes|No|
 | [dancingbanana.party](https://dancingbanana.party)|La banane qui danse.|Yes|No|
+| [mastodon.brussels.fr](https://mastodon.brussels/)|Le mastodon pour les belges, si vous aimez la bonne ambiance venez nous rejoindre !|Yes|Yes|
 
 
 Let me know if you start running one so I can add it to the list! (Alternatively, add it yourself as a pull request).
