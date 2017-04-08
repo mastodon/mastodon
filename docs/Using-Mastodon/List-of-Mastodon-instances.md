@@ -78,4 +78,4 @@ There is also a list at [instances.mastodon.xyz](https://instances.mastodon.xyz)
 | [indigo.zone](https://indigo.zone)|Open Registrations, General Purpose|Yes|No|
 
 
-Let me know if you start running one so I can add it to the list! (Alternatively, add it yourself as a pull request).
+We are no longer maintaining this list as instances are popping up too quickly for using GitHub to be a tenable system for tracking them. Please standby while we work on another solution
