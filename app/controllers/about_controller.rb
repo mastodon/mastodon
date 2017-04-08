@@ -4,8 +4,8 @@ class AboutController < ApplicationController
   before_action :set_body_classes
 
   def index
-	@user_count = Rails.cache.fetch('user_count') { User.count }
-	@max_users                    = Setting.max_users
+    @user_count = Rails.cache.fetch('user_count') { User.count }
+    @max_users                    = Setting.max_users
     @description                  = Setting.site_description
     @open_registrations           = Setting.open_registrations && (@user_count < Setting.max_users or Setting.max_users==nil)
     @closed_registrations_message = Setting.closed_registrations_message
