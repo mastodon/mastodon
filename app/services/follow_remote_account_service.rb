@@ -51,8 +51,8 @@ class FollowRemoteAccountService < BaseService
     account.uri     = get_account_uri(xml)
     account.hub_url = hubs.first.attribute('href').value
 
-    get_profile(body, account)
     account.save!
+    get_profile(body, account)
 
     account
   end
