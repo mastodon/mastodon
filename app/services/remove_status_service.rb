@@ -70,14 +70,14 @@ class RemoveStatusService < BaseService
 
   def remove_from_hashtags(status)
     status.tags.pluck(:name) do |hashtag|
-      Redis.current.publish("hashtag:#{hashtag}", @payload)
-      Redis.current.publish("hashtag:#{hashtag}:local", @payload) if status.local?
+      Redis.current.publish("timeline:hashtag:#{hashtag}", @payload)
+      Redis.current.publish("timeline:hashtag:#{hashtag}:local", @payload) if status.local?
     end
   end
 
   def remove_from_public(status)
-    Redis.current.publish('public', @payload)
-    Redis.current.publish('public:local', @payload) if status.local?
+    Redis.current.publish('timeline:public', @payload)
+    Redis.current.publish('timeline:public:local', @payload) if status.local?
   end
 
   def redis
