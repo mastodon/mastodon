@@ -62,8 +62,12 @@ class Status < ApplicationRecord
     reply? ? :comment : :note
   end
 
+  def proper
+    reblog? ? reblog : self
+  end
+
   def content
-    reblog? ? reblog.text : text
+    proper.text
   end
 
   def target
@@ -161,9 +165,9 @@ class Status < ApplicationRecord
       return where.not(visibility: [:private, :direct]) if account.nil?
 
       if target_account.blocking?(account) # get rid of blocked peeps
-        where('1 = 0')
+        none
       elsif account.id == target_account.id # author can see own stuff
-        where('1 = 1')
+        all
       elsif account.following?(target_account) # followers can see followers-only stuff, but also things they are mentioned in
         joins('LEFT OUTER JOIN mentions ON statuses.id = mentions.status_id AND mentions.account_id = ' + account.id.to_s)
           .where('statuses.visibility != ? OR mentions.id IS NOT NULL', Status.visibilities[:direct])

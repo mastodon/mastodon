@@ -5,8 +5,8 @@ en:
     about_this: About this instance
     apps: Apps
     business_email: 'Business e-mail:'
-    contact: Contact
     closed_registrations: Registrations are currently closed on this instance.
+    contact: Contact
     description_headline: What is %{domain}?
     domain_count_after: other instances
     domain_count_before: Connected to
@@ -163,3 +163,7 @@ en:
     invalid_otp_token: Invalid two-factor code
   will_paginate:
     page_gap: "&hellip;"
+  media_attachments:
+    validations:
+      too_many: Cannot attach more than 4 files
+      images_and_video: Cannot attach a video to a status that already contains images

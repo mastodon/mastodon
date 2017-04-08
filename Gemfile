@@ -8,8 +8,6 @@ gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.1.0'
 gem 'jquery-rails'
-gem 'jbuilder', '~> 2.0'
-gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'puma'
 
 gem 'hamlit-rails'
@@ -36,6 +34,7 @@ gem 'doorkeeper'
 gem 'rabl'
 gem 'rqrcode'
 gem 'twitter-text'
+gem 'ox'
 gem 'oj'
 gem 'hiredis'
 gem 'redis', '~>3.2', require: ['redis', 'redis/connection/hiredis']
@@ -67,9 +66,10 @@ group :development, :test do
 end
 
 group :test do
+  gem 'faker'
+  gem 'rspec-sidekiq'
   gem 'simplecov', require: false
   gem 'webmock'
-  gem 'rspec-sidekiq'
 end
 
 group :development do
