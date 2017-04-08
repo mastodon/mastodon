@@ -7,42 +7,42 @@
       .panel
         %h2= Rails.configuration.x.local_domain
 
-        - unless @description.blank?
-          %p= @description.html_safe
+        - unless @instance_presenter.site_description.blank?
+          %p= @instance_presenter.site_description.html_safe
 
       .information-board
         .section
           %span= t 'about.user_count_before'
-          %strong= number_with_delimiter @user_count
+          %strong= number_with_delimiter @instance_presenter.user_count
           %span= t 'about.user_count_after'
         .section
           %span= t 'about.status_count_before'
-          %strong= number_with_delimiter @status_count
+          %strong= number_with_delimiter @instance_presenter.status_count
           %span= t 'about.status_count_after'
         .section
           %span= t 'about.domain_count_before'
-          %strong= number_with_delimiter @domain_count
+          %strong= number_with_delimiter @instance_presenter.domain_count
           %span= t 'about.domain_count_after'
 
-      - unless @extended_description.blank?
-        .panel= @extended_description.html_safe
+      - unless @instance_presenter.site_extended_description.blank?
+        .panel= @instance_presenter.site_extended_description.html_safe
 
     .sidebar
       .panel
         .panel-header= t 'about.contact'
         .panel-body
-          - if @contact_account
+          - if @instance_presenter.contact_account
             .owner
-              .avatar= image_tag @contact_account.avatar.url
+              .avatar= image_tag @instance_presenter.contact_account.avatar.url
               .name
-                = link_to TagManager.instance.url_for(@contact_account) do
-                  %span.display_name.emojify= display_name(@contact_account)
-                  %span.username= "@#{@contact_account.acct}"
+                = link_to TagManager.instance.url_for(@instance_presenter.contact_account) do
+                  %span.display_name.emojify= display_name(@instance_presenter.contact_account)
+                  %span.username= "@#{@instance_presenter.contact_account.acct}"
 
-          - unless @contact_email.blank?
+          - unless @instance_presenter.contact_email.blank?
             .contact-email
               = t 'about.business_email'
-              %strong= @contact_email
+              %strong= @instance_presenter.contact_email
       .panel
         .panel-header= t 'about.links'
         .panel-list
