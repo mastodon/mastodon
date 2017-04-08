@@ -69,6 +69,7 @@ There is also a list at [instances.mastodon.xyz](https://instances.mastodon.xyz)
 | [neumastodon.com](https://neumastodon.com/)|Northeastern University Mastodon |Yes|No|
 | [dancingbanana.party](https://dancingbanana.party)|La banane qui danse.|Yes|No|
 | [mastodon.brussels.fr](https://mastodon.brussels/)|Le mastodon pour les belges, si vous aimez la bonne ambiance venez nous rejoindre !|Yes|Yes|
+| [mastodon.llamasweet.tech](https://mastodon.llamasweet.tech/)|Mastodon about Android developement|Yes|No|
 
 
 Let me know if you start running one so I can add it to the list! (Alternatively, add it yourself as a pull request).
