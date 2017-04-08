@@ -34,7 +34,17 @@ server {
   keepalive_timeout    70;
   sendfile             on;
   client_max_body_size 0;
-  gzip off;
+
+
+  gzip on;
+  gzip_disable "msie6";
+  gzip_vary on;
+  gzip_proxied any;
+  gzip_comp_level 6;
+  gzip_buffers 16 8k;
+  gzip_http_version 1.1;
+  gzip_types text/plain text/css application/json application/javascript text/xml application/xml application/xml+rss text/javascript;
+
 
   add_header Strict-Transport-Security "max-age=31536000; includeSubDomains";
 
