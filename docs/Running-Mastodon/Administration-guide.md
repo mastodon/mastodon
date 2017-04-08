@@ -7,7 +7,7 @@ So, you have a working Mastodon instance... now what?
 
 The following rake task:
 
-    rake mastodon:make_admin USERNAME=alice
+    RAILS_ENV=production bundle exec rails mastodon:make_admin USERNAME=alice
 
 Would turn the local user "alice" into an admin.
 
