@@ -65,7 +65,7 @@ There is also a list at [instances.mastodon.xyz](https://instances.mastodon.xyz)
 | [infinimatix.net](https://infinimatix.net)|Informatics|Yes|Yes|
 | [social.0day.agency](https://social.0day.agency)|Infosec, Hacking, Fun (only protonmail)|Yes|Yes|
 | [kagrumez.lerk.io](https://kagrumez.lerk.io)|Open registration. German end english.|Yes|No|
-
+| [meow.social](https://meow.social)|A furry fandom focused instance|Yes|No|
 
 
 Let me know if you start running one so I can add it to the list! (Alternatively, add it yourself as a pull request).
