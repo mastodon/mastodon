@@ -8,7 +8,6 @@ There is also a list at [instances.mastodon.xyz](https://instances.mastodon.xyz)
 | [mastodon.social](https://mastodon.social) |Flagship, quick updates|No|No|
 | [securitymastod.one](https://securitymastod.one/) |Information security enthusiasts and pros|Yes|Yes|
 | [mastodon.nuzgo.net](https://mastodon.nuzgo.net/) |Mastodon instance hosted in Paris |Yes|No|
-| [hackertribe.io](https://hackertribe.io) |Community of people who are interested in Startups, Programming, Science, and Technology.|Yes|Yes|
 | [mastodon.cx](https://mastodon.cx/) |Alternative Mastodon instance hosted in France|Yes|Yes|
 | [mastodon.network](https://mastodon.network) |N/A|Yes|Yes|
 | [awoo.space](https://awoo.space) |Intentionally moderated, only federates with mastodon.social|Yes|No|
@@ -22,6 +21,7 @@ There is also a list at [instances.mastodon.xyz](https://instances.mastodon.xyz)
 | [social.diskseven.com](https://social.diskseven.com) |Single user|No|Yes|
 | [social.gestaltzerfall.net](https://social.gestaltzerfall.net) |Single user|No|No|
 | [mastodon.xyz](https://mastodon.xyz) |N/A|Yes|Yes|
+| [mastodon.land](https://mastodon.land) |N/A|Yes|Yes|
 | [mastodon.partipirate.org](https://mastodon.partipirate.org) |French Pirate Party Instance - Politics and stuff|Yes|No|
 | [social.targaryen.house](https://social.targaryen.house) |Federates everywhere, quick updates.|Yes|Yes|
 | [masto.themimitoof.fr](https://masto.themimitoof.fr) |N/A|Yes|Yes|
@@ -64,6 +64,7 @@ There is also a list at [instances.mastodon.xyz](https://instances.mastodon.xyz)
 | [off-the-clock.us](https://off-the-clock.us/)|The work day is over.|Yes|No|
 | [infinimatix.net](https://infinimatix.net)|Informatics|Yes|Yes|
 | [social.0day.agency](https://social.0day.agency)|Infosec, Hacking, Fun (only protonmail)|Yes|Yes|
+| [kagrumez.lerk.io](https://kagrumez.lerk.io)|Open registration. German end english.|Yes|No|
 
 
 
