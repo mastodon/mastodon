@@ -7,7 +7,7 @@ class AtomSerializer
     def render(element)
       document = Ox::Document.new(version: '1.0')
       document << element
-      "<?xml version=\"1.0\"?>#{Ox.dump(element)}"
+      ('<?xml version="1.0"?>' + Ox.dump(element)).force_encoding('UTF-8')
     end
   end
 
@@ -68,6 +68,9 @@ class AtomSerializer
     append_element(entry, 'published', stream_entry.created_at.iso8601)
     append_element(entry, 'updated', stream_entry.updated_at.iso8601)
     append_element(entry, 'title', stream_entry&.status&.title)
+
+    entry << author(stream_entry.account) if root
+
     append_element(entry, 'activity:object-type', TagManager::TYPES[stream_entry.object_type])
     append_element(entry, 'activity:verb', TagManager::VERBS[stream_entry.verb])
 
@@ -98,7 +101,7 @@ class AtomSerializer
     serialize_status_attributes(object, status)
 
     append_element(object, 'link', nil, rel: :alternate, type: 'text/html', href: TagManager.instance.url_for(status))
-    append_element(object, 'thr:in-reply-to', nil, ref: TagManager.instance.uri_for(status.thread), href: TagManager.instance.url_for(status.thread)) if status.reply?
+    append_element(object, 'thr:in-reply-to', nil, ref: TagManager.instance.uri_for(status.thread), href: TagManager.instance.url_for(status.thread)) if status.reply? && !status.thread.nil?
 
     object
   end
@@ -325,7 +328,7 @@ class AtomSerializer
 
   def serialize_status_attributes(entry, status)
     append_element(entry, 'summary', status.spoiler_text) unless status.spoiler_text.blank?
-    append_element(entry, 'content', Formatter.instance.format(status.reblog? ? status.reblog : status).to_str, type: 'html')
+    append_element(entry, 'content', Formatter.instance.format(status.proper).to_str, type: 'html')
 
     status.mentions.each do |mentioned|
       append_element(entry, 'link', nil, rel: :mentioned, 'ostatus:object-type': TagManager::TYPES[:person], href: TagManager.instance.uri_for(mentioned.account))
