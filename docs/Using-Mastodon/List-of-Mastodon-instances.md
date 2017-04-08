@@ -57,6 +57,7 @@ There is also a list at [instances.mastodon.xyz](https://instances.mastodon.xyz)
 | [masto.raildecake.fr](https://masto.raildecake.fr)|Hebergé chez un FAI associatif dans le sud de la france, grillons & pins en options|Yes|No|
 | [good-dragon.com](https://good-dragon.com/)|Quick updates, Relaxed Moderation, Federates Everywhere, Furries|Yes|No|
 | [rich.gop](https://rich.gop/)|Federates everywhere, Open registration, Privacy respected|Yes|Yes|
+| [social.nowa.re](https://social.nowa.re)|Open Registration|Yes|No|
 
 
 Let me know if you start running one so I can add it to the list! (Alternatively, add it yourself as a pull request).
