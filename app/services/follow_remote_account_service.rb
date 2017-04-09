@@ -16,7 +16,7 @@ class FollowRemoteAccountService < BaseService
     return Account.find_local(username) if TagManager.instance.local_domain?(domain)
 
     account = Account.find_remote(username, domain)
-    return account if account&.subscribed?
+    return account unless account&.last_webfingered_at.nil? || 1.day.from_now(account.last_webfingered_at) < Time.now.utc
 
     Rails.logger.debug "Looking up webfinger for #{uri}"
 
@@ -41,13 +41,12 @@ class FollowRemoteAccountService < BaseService
       account = confirmed_account
     end
 
+    account.last_webfingered_at = Time.now.utc
+
     account.remote_url  = data.link('http://schemas.google.com/g/2010#updates-from').href
     account.salmon_url  = data.link('salmon').href
     account.url         = data.link('http://webfinger.net/rel/profile-page').href
     account.public_key  = magic_key_to_pem(data.link('magic-public-key').href)
-
-    # If none of the details have changed, assume the hubs URL and account URI to be unchanged
-    return account unless account.changed?
 
     body, xml = get_feed(account.remote_url)
     hubs      = get_hubs(xml)
