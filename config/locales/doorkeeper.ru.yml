@@ -1,5 +1,5 @@
 ---
-ru:
+en:
   activerecord:
     attributes:
       doorkeeper/application:
@@ -17,20 +17,20 @@ ru:
   doorkeeper:
     applications:
       buttons:
-        authorize: Авторизация
-        cancel: Отмена
-        destroy: Уничтожить
-        edit: Правка
-        submit: Применить
+        authorize: Authorize
+        cancel: Cancel
+        destroy: Destroy
+        edit: Edit
+        submit: Submit
       confirmations:
-        destroy: Уверены?
+        destroy: Are you sure?
       edit:
-        title: Править приложение
+        title: Edit application
       form:
-        error: Упс! проверьте на наличие ошибок
+        error: Whoops! Check your form for possible errors
       help:
-        native_redirect_uri: Используйте %{native_redirect_uri} для локальных тестов
-        redirect_uri: Используйте одну строку для URI
+        native_redirect_uri: Use %{native_redirect_uri} for local tests
+        redirect_uri: Use one line per URI
         scopes: Separate scopes with spaces. Leave blank to use the default scopes.
       index:
         callback_url: Callback URL
