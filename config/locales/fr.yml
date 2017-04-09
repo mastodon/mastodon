@@ -4,7 +4,7 @@ fr:
     about_mastodon: Mastodon est un serveur <em>libre</em> de réseautage social. Alternative <em>décentralisée</em> aux plateformes commerciales, la monopolisation de vos communications par une entreprise unique est évitée. Tout un chacun peut faire tourner Mastodon et participer au <em>réseau social</em> de manière transparente.
     about_this: À propos de cette instance
     apps: Applications
-    business_email: E-mail professionnel
+    business_email: Courriel professionnel
     closed_registrations: Les inscriptions sont actuellement fermées sur cette instance.
     contact: Contact
     description_headline: Qu'est-ce que %{domain} ?
@@ -40,9 +40,9 @@ fr:
     remote_follow: Suivre à distance
     unfollow: Ne plus suivre
   application_mailer:
-    settings: 'Changer les préférences e-mail: ${link}'
+    settings: 'Changer les préférences courriel : ${link}'
     signature: Notifications de Mastodon depuis %{instance}
-    view: 'Voir:'
+    view: 'Voir :'
   applications:
     invalid_url: L'URL fournie est invalide
   auth:
@@ -58,21 +58,27 @@ fr:
   authorize_follow:
     error: Malheureusement, il y a eu une erreur en cherchant les détails du compte distant
     follow: Suivre
-    prompt_html: 'Vous (<strong>%{self}</strong>) avez demandé à suivre:'
+    prompt_html: 'Vous (<strong>%{self}</strong>) avez demandé à suivre :'
     title: Suivre %{acct}
   datetime:
     distance_in_words:
       about_x_hours: "%{count}h"
-      about_x_months: "%{count}mo"
-      about_x_years: "%{count}y"
-      almost_x_years: "%{count}y"
+      about_x_months: "%{count}mois"
+      about_x_years:
+        one: un an
+        other: "%{count} ans"
+      almost_x_years:
+        one: un an
+        other: "%{count} ans"
       half_a_minute: A l'instant
-      less_than_x_minutes: "%{count}m"
+      less_than_x_minutes: "%{count}min"
       less_than_x_seconds: A l'instant
-      over_x_years: "%{count}y"
-      x_days: "%{count}d"
-      x_minutes: "%{count}m"
-      x_months: "%{count}mo"
+      over_x_years:
+        one: un an
+        other: "%{count} ans"
+      x_days: "%{count}j"
+      x_minutes: "%{count}min"
+      x_months: "%{count}mois"
       x_seconds: "%{count}s"
   exports:
     blocks: Vous bloquez
@@ -96,7 +102,7 @@ fr:
   landing_strip_html: <strong>%{name}</strong> utilise <strong>%{domain}</strong>. Vous pouvez le/la suivre et interagir si vous possédez un compte quelque part dans le "fediverse". Si ce n'est pas le cas, vous pouvez <a href="%{sign_up_path}">en créer un ici</a>.
   notification_mailer:
     digest:
-      body: 'Voici ce que vous avez raté sur ${instance} depuis votre dernière visite (%{}):'
+      body: 'Voici ce que vous avez raté sur ${instance} depuis votre dernière visite (%{}) :'
       mention: '%{name} vous a mentionné⋅e'
       new_followers_summary:
         one: Vous avez un⋅e nouvel⋅le abonné⋅e ! Youpi !
@@ -156,10 +162,10 @@ fr:
     disable: Désactiver
     enable: Activer
     instructions_html: "<strong>Scannez ce QR code grâce à Google Authenticator, Authy ou une application similaire sur votre téléphone</strong>. Désormais, cette application générera des jetons que vous devrez saisir à chaque connexion."
-    plaintext_secret_html: 'Code secret en clair: <samp>%{secret}</samp>'
+    plaintext_secret_html: 'Code secret en clair : <samp>%{secret}</samp>'
     warning: Si vous ne pouvez pas configurer une application d'authentification maintenant, vous devriez cliquer sur "Désactiver" pour ne pas bloquer l'accès à votre compte.
   users:
-    invalid_email: L'adresse e-mail est invalide
+    invalid_email: L'adresse courriel est invalide
     invalid_otp_token: Le code d'authentification à deux facteurs est invalide
   will_paginate:
     page_gap: "&hellip;"
