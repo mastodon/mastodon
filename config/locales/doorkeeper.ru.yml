@@ -10,10 +10,10 @@ ru:
         doorkeeper/application:
           attributes:
             redirect_uri:
-              fragment_present: cannot contain a fragment.
-              invalid_uri: must be a valid URI.
-              relative_uri: must be an absolute URI.
-              secured_uri: must be an HTTPS/SSL URI.
+              fragment_present: не содержит фрагментов.
+              invalid_uri: должен быть правильный URI.
+              relative_uri: должен быть работающий URI.
+              secured_uri: должен быть HTTPS/SSL URI.
   doorkeeper:
     applications:
       buttons:
@@ -31,83 +31,83 @@ ru:
       help:
         native_redirect_uri: Используйте %{native_redirect_uri} для локальных тестов
         redirect_uri: Используйте одну строку для URI
-        scopes: Separate scopes with spaces. Leave blank to use the default scopes.
+        scopes: Отделите права пробелами. Оставьте незаполненным, что бы использовать права по умолчанию.
       index:
-        callback_url: Callback URL
-        name: Name
-        new: New Application
-        title: Your applications
+        callback_url: Обратный URL
+        name: Имя
+        new: Новое Приложение
+        title: Ваше приложение
       new:
-        title: New Application
+        title: Новое Приложение
       show:
-        actions: Actions
-        application_id: Application Id
-        callback_urls: Callback urls
-        scopes: Scopes
+        actions: Действия
+        application_id: Id Приложения
+        callback_urls: Обратные urls
+        scopes: Права
         secret: Secret
-        title: 'Application: %{name}'
+        title: 'Приложение: %{name}'
     authorizations:
       buttons:
-        authorize: Authorize
-        deny: Deny
+        authorize: Авторизация
+        deny: Отмена
       error:
-        title: An error has occurred
+        title: Ошибка
       new:
         able_to: It will be able to
-        prompt: Application %{client_name} requests access to your account
-        title: Authorization required
+        prompt: Приложение %{client_name} запрашивает доступ к Вашему аккаунту
+        title: Запрос авторизации
       show:
-        title: Authorization code
+        title: Код авторизации
     authorized_applications:
       buttons:
-        revoke: Revoke
+        revoke: Отозвать
       confirmations:
-        revoke: Are you sure?
+        revoke: Уверены?
       index:
-        application: Application
-        created_at: Authorized
+        application: Приложение
+        created_at: Авторизовано
         date_format: "%Y-%m-%d %H:%M:%S"
-        scopes: Scopes
-        title: Your authorized applications
+        scopes: Права
+        title: Ваши авторизованные приложения
     errors:
       messages:
-        access_denied: The resource owner or authorization server denied the request.
-        credential_flow_not_configured: Resource Owner Password Credentials flow failed due to Doorkeeper.configure.resource_owner_from_credentials being unconfigured.
-        invalid_client: Client authentication failed due to unknown client, no client authentication included, or unsupported authentication method.
-        invalid_grant: The provided authorization grant is invalid, expired, revoked, does not match the redirection URI used in the authorization request, or was issued to another client.
-        invalid_redirect_uri: The redirect uri included is not valid.
-        invalid_request: The request is missing a required parameter, includes an unsupported parameter value, or is otherwise malformed.
-        invalid_resource_owner: The provided resource owner credentials are not valid, or resource owner cannot be found
-        invalid_scope: The requested scope is invalid, unknown, or malformed.
+        access_denied: Владелец ресурса, или сервер авторизации отменил запрос.
+        credential_flow_not_configured: Передача учетных данных владельца ресурса не прошла из-за того, что Doorkeeper.configure.resource_owner_from_credentials не настроен.
+        invalid_client: Сбой аутентификации клиента из-за неизвестного клиента, без аутентификации клиента или неподдерживаемого метода проверки подлинности.
+        invalid_grant: Предоставленный авторизационный грант недействителен, устарел, отменен, не соответствует URI редиректа, используемого в запросе авторизации, или был выдан другому клиенту.
+        invalid_redirect_uri: Введенный uri перенаправления недействителен.
+        invalid_request: В запросе отсутствует обязательный параметр, который содержит неподдерживаемое значение параметра или имеет некорректную форму.
+        invalid_resource_owner: Предоставленные учетные данные владельца ресурса недопустимы или владелец ресурса не может быть найден
+        invalid_scope: Запрашиваемая область недействительна, неизвестна или искажена.
         invalid_token:
-          expired: The access token expired
-          revoked: The access token was revoked
-          unknown: The access token is invalid
-        resource_owner_authenticator_not_configured: Resource Owner find failed due to Doorkeeper.configure.resource_owner_authenticator being unconfiged.
-        server_error: The authorization server encountered an unexpected condition which prevented it from fulfilling the request.
-        temporarily_unavailable: The authorization server is currently unable to handle the request due to a temporary overloading or maintenance of the server.
-        unauthorized_client: The client is not authorized to perform this request using this method.
-        unsupported_grant_type: The authorization grant type is not supported by the authorization server.
-        unsupported_response_type: The authorization server does not support this response type.
+          expired: Токен доступа просрочен
+          revoked: Токен доступа отозван
+          unknown: Токен доступа недействителен
+        resource_owner_authenticator_not_configured: Ошибка определения владельца ресурса из-за того, что Doorkeeper.configure.resource_owner_authenticator отключен.
+        server_error: Сервер авторизации обнаружил непредвиденное условие, которое помешало ему выполнить запрос.
+        temporarily_unavailable: В настоящее время сервер авторизации не может обработать запрос из-за временной перегрузки или обслуживания сервера.
+        unauthorized_client: С помощью этого метода клиент не имеет права выполнять этот запрос.
+        unsupported_grant_type: Тип разрешения авторизации не поддерживается сервером авторизации.
+        unsupported_response_type: Сервер авторизации не поддерживает этот тип ответа.
     flash:
       applications:
         create:
-          notice: Application created.
+          notice: Приложение создано.
         destroy:
-          notice: Application deleted.
+          notice: Приложение удалено.
         update:
-          notice: Application updated.
+          notice: Приложение обновлено.
       authorized_applications:
         destroy:
-          notice: Application revoked.
+          notice: Приложение отозвано.
     layouts:
       admin:
         nav:
-          applications: Applications
+          applications: Приложения
           oauth2_provider: OAuth2 Provider
       application:
-        title: OAuth authorization required
+        title: OAuth авторизация требуется
     scopes:
-      follow: follow, block, unblock and unfollow accounts
-      read: read your account's data
-      write: post on your behalf
+      follow: читать, блокировать, разблокировтаь и нечитать
+      read: читать данные Вашего аккаунта
+      write: постить от Вашего имени
