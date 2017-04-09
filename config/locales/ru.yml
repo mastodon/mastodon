@@ -1,169 +1,169 @@
 ---
 ru:
   about:
-    about_mastodon: Mastodon это бесплатная социальная сеть с <em>открытым исходным кодом</em>. Это <em>децентрализованная</em> альтернатива коммерческим платформам, которая снижает риск монополизации корпорациями ваших возможностей для общения. Выбирайте сервер, которому доверяете &mdash; в любом случае, вы сможете общаться с кем угодно. Любой может запустить свой инстанцс Mastodon и принять участие в развитии <em>социальной сети</em> на равных.
+    about_mastodon: Mastodon это <em>бесплатная</em> социальная сеть с <em>открытым кодом</em>. Это <em>децентрализованная</em> альтернатива коммерческим платформам, которая снижает риск монополизации ваших возможностей для общения. Выбирайте сервер, которому доверяете &mdash; в любом случае, вы сможете общаться с кем угодно. Любой может запустить свой инстанцс Mastodon и принять участие в развитии <em>социальной сети</em> на равных.
     about_this: О нашем инстансе
     apps: Apps
     business_email: 'Business e-mail:'
-    closed_registrations: Registrations are currently closed on this instance.
-    contact: Contact
+    closed_registrations: У нас временно закрыта регистрация.
+    contact: Контакты
     description_headline: Мы %{domain}
-    domain_count_after: other instances
-    domain_count_before: Connected to
+    domain_count_after: Другие инстансы
+    domain_count_before: Подключение к
     features:
-      api: Open API for apps and services
-      blocks: Rich block and muting tools
-      characters: 500 characters per post
-      chronology: Timelines are chronological
-      ethics: 'Ethical design: no ads, no tracking'
-      gifv: GIFV sets and short videos
-      privacy: Granular, per-post privacy settings
-      public: Public timelines
-    features_headline: What sets Mastodon apart
-    get_started: Get started
-    links: Links
+      api: Открытое API для приложения и сервисов
+      blocks: Продвинутые инструменты для комфортного общения
+      characters: Лимит поста 500 символов
+      chronology: Лента постов по хронологии
+      ethics: 'Разработано для людей: без рекламы и слежения'
+      gifv: GIFV анимация и короткие ролики
+      privacy: Настройка доступа к каждому посту
+      public: Публичные ленты постов
+    features_headline: Преимущества Mastodon 
+    get_started: Руководство пользователя
+    links: Ссылки
     other_instances: Другие инстансы
     source_code: Исходны код
     status_count_after: statuses
     status_count_before: Who authored
     terms: Правила
-    user_count_after: users
+    user_count_after: пользователи
     user_count_before: Home to
   accounts:
-    follow: Follow
-    followers: Followers
-    following: Following
-    nothing_here: There is nothing here!
-    people_followed_by: People whom %{name} follows
-    people_who_follow: People who follow %{name}
-    posts: Posts
-    remote_follow: Remote follow
-    unfollow: Unfollow
+    follow: Читать
+    followers: Подписчики
+    following: Читающие
+    nothing_here: Тут ничего нет!
+    people_followed_by: Пользователи, которых %{name} читает
+    people_who_follow: Пользователи, которые читают %{name}
+    posts: Посты
+    remote_follow: Снять follow
+    unfollow: Не читать
   application_mailer:
-    settings: 'Change e-mail preferences: %{link}'
-    signature: Mastodon notifications from %{instance}
+    settings: 'Поменять настройки e-mail: %{link}'
+    signature: Mastodon уведомления с инстанса %{instance}
     view: 'View:'
   applications:
-    invalid_url: The provided URL is invalid
+    invalid_url: Эта ссылка недействительна
   auth:
-    change_password: Credentials
-    didnt_get_confirmation: Didn't receive confirmation instructions?
-    forgot_password: Forgot your password?
-    login: Log in
-    logout: Logout
-    register: Sign up
-    resend_confirmation: Resend confirmation instructions
-    reset_password: Reset password
-    set_new_password: Set new password
+    change_password: Учетные данные
+    didnt_get_confirmation: Ну получили подтверждение?
+    forgot_password: Забыли пароль?
+    login: Войти
+    logout: Выйти
+    register: Регистрация
+    resend_confirmation: Переслать подтверждение
+    reset_password: Сбросить пароль
+    set_new_password: Установить новый пароль
   authorize_follow:
-    error: Unfortunately, there was an error looking up the remote account
-    follow: Follow
-    prompt_html: 'You (<strong>%{self}</strong>) have requested to follow:'
-    title: Follow %{acct}
+    error: При обращении к аккаунту произошла ошибка
+    follow: Читать
+    prompt_html: 'Вы (<strong>%{self}</strong>) запросили чтение у:'
+    title: Читать %{acct}
   datetime:
     distance_in_words:
       about_x_hours: "%{count}h"
       about_x_months: "%{count}mo"
       about_x_years: "%{count}y"
       almost_x_years: "%{count}y"
-      half_a_minute: Just now
+      half_a_minute: Только что
       less_than_x_minutes: "%{count}m"
-      less_than_x_seconds: Just now
+      less_than_x_seconds: Только что
       over_x_years: "%{count}y"
       x_days: "%{count}d"
       x_minutes: "%{count}m"
       x_months: "%{count}mo"
       x_seconds: "%{count}s"
   exports:
-    blocks: You block
+    blocks: Блокировка
     csv: CSV
-    follows: You follow
-    storage: Media storage
+    follows: Вы follow
+    storage: Медиа данные
   generic:
-    changes_saved_msg: Changes successfully saved!
-    powered_by: powered by %{link}
-    save_changes: Save changes
+    changes_saved_msg: Изменения сохранены!
+    powered_by: при поддержке %{link}
+    save_changes: Сохранить изменения
     validation_errors:
-      one: Something isn't quite right yet! Please review the error below
-      other: Something isn't quite right yet! Please review %{count} errors below
+      one: Что-то пошло не так! Информация в коде ошибки
+      other: Что-то пошло не так! Информация в кодах %{count} ошибок
   imports:
-    preface: You can import certain data like all the people you are following or blocking into your account on this instance, from files created by an export on another instance.
-    success: Your data was successfully uploaded and will now be processed in due time
+    preface: Вы не можете импортировать данные о пользователях которых читаете, или заблокировали в аккаунт с другого инстанса.
+    success: Ваши данные были успешно загружены, теперь нам надо их обработать.
     types:
-      blocking: Blocking list
-      following: Following list
-    upload: Upload
-  landing_strip_html: <strong>%{name}</strong> is a user on <strong>%{domain}</strong>. You can follow them or interact with them if you have an account anywhere in the fediverse. If you don't, you can <a href="%{sign_up_path}">sign up here</a>.
+      blocking: Заблокированные
+      following: Я читаю
+    upload: Загрузить
+  landing_strip_html: <strong>%{name}</strong> это пользователь с <strong>%{domain}</strong>. Вы можете читать и общаться с ним, если у Вас есть аккаунт на любом из открытых инстансов. Если нет, то <a href="%{sign_up_path}">зарегистрируйтесь сейчас</a>.
   notification_mailer:
     digest:
-      body: 'Here is a brief summary of what you missed on %{instance} since your last visit on %{since}:'
-      mention: "%{name} mentioned you in:"
+      body: 'Это список того, что вы пропустили на %{instance} Вас не было с %{since}:'
+      mention: "%{name} упомянул вас в:"
       new_followers_summary:
-        one: You have acquired one new follower! Yay!
-        other: You have gotten %{count} new followers! Amazing!
+        one: У Вас один новый подписчик! Ура!
+        other: У Вас целых %{count} новых подписчиков! Невероятно!
       subject:
-        one: "1 new notification since your last visit \U0001F418"
-        other: "%{count} new notifications since your last visit \U0001F418"
+        one: "1 новое уведомление с момента вашего последнего посещения \U0001F418"
+        other: "%{count} новых уведомлений с момента вашего последнего посещения \U0001F418"
     favourite:
-      body: 'Your status was favourited by %{name}:'
-      subject: "%{name} favourited your status"
+      body: 'Ваш запрос был одобрен пользователем %{name}:'
+      subject: "%{name} одобрил ваш статус"
     follow:
-      body: "%{name} is now following you!"
-      subject: "%{name} is now following you"
+      body: "%{name} теперь подписан на Вас!"
+      subject: "%{name} теперь читает Ваши сообщения"
     follow_request:
-      body: "%{name} has requested to follow you"
-      subject: 'Pending follower: %{name}'
+      body: "%{name} просит разрешить подписку на Вас"
+      subject: 'Ожидает подтвеждения: %{name}'
     mention:
-      body: 'You were mentioned by %{name} in:'
-      subject: You were mentioned by %{name}
+      body: 'Вы были упомянуты %{name} в:'
+      subject: Вы были упомянуты пользователем %{name}
     reblog:
-      body: 'Your status was boosted by %{name}:'
-      subject: "%{name} boosted your status"
+      body: 'Ваше сообщение репостнул %{name}:'
+      subject: "%{name} репостнул Ваше сообщение"
   pagination:
-    next: Next
-    prev: Prev
+    next: Далее
+    prev: Назад
   remote_follow:
-    acct: Enter your username@domain you want to follow from
-    missing_resource: Could not find the required redirect URL for your account
-    proceed: Proceed to follow
-    prompt: 'You are going to follow:'
+    acct: Введите имя пользователя с другого инстанса в формате username@domain , что бы читать его
+    missing_resource: Невозможно найти запрашиваемую ссылку перенаправления для Вашего аккаунта
+    proceed: Запрос на чтение
+    prompt: 'Вы собираетесь читать:'
   settings:
-    authorized_apps: Authorized apps
-    back: Back to Mastodon
-    edit_profile: Edit profile
-    export: Data export
-    import: Import
-    preferences: Preferences
-    settings: Settings
-    two_factor_auth: Two-factor Authentication
+    authorized_apps: Авторизованные приложения
+    back: Назад на Mastodon
+    edit_profile: Изменить профиль
+    export: Экспорт данных
+    import: Импорт
+    preferences: Система
+    settings: Настройки
+    two_factor_auth: Двухэтапная аутентификация
   statuses:
-    open_in_web: Open in web
-    over_character_limit: character limit of %{max} exceeded
-    show_more: Show more
+    open_in_web: Открыть в вебе
+    over_character_limit: лимит символов %{max} превышен
+    show_more: Загрузить еще
     visibilities:
-      private: Only show to followers
-      public: Public
-      unlisted: Public, but do not display on the public timeline
+      private: Показывать только подписчикам
+      public: Публично
+      unlisted: Публично, но не показывать в общей ленте
   stream_entries:
-    click_to_show: Click to show
-    reblogged: boosted
-    sensitive_content: Sensitive content
+    click_to_show: Кликните, что бы увидеть
+    reblogged: репост
+    sensitive_content: Особенный контент
   time:
     formats:
       default: "%b %d, %Y, %H:%M"
   two_factor_auth:
-    description_html: If you enable <strong>two-factor authentication</strong>, logging in will require you to be in possession of your phone, which will generate tokens for you to enter.
-    disable: Disable
-    enable: Enable
-    instructions_html: "<strong>Scan this QR code into Google Authenticator or a similiar app on your phone</strong>. From now on, that app will generate tokens that you will have to enter when logging in."
-    plaintext_secret_html: 'Plain-text secret: <samp>%{secret}</samp>'
-    warning: If you cannot configure an authenticator app right now, you should click "disable" or you won't be able to login.
+    description_html: Если вы активируете <strong>Двухэтапную аутентификацию</strong>, авторизация будет требовать подтверждающего кода с Вашего телефона. 
+    disable: Выключить
+    enable: Включить
+    instructions_html: "<strong>Сканируйте этот QR код в Google Authenticator, или подобном приложении с телефона</strong>. После этого, приложение будет генерировать код для авторизации."
+    plaintext_secret_html: 'Ключ (Plain-text secret): <samp>%{secret}</samp>'
+    warning: Если Вы не активировали приложение для двухэтапной аутентификации, то нажмите "выключить", или не сможете зайти в следующий раз!
   users:
-    invalid_email: The e-mail address is invalid
-    invalid_otp_token: Invalid two-factor code
+    invalid_email: Этот адрес почты не подходит
+    invalid_otp_token: Неправильный код двухэтапной аутентификации
   will_paginate:
     page_gap: "&hellip;"
   media_attachments:
     validations:
-      too_many: Cannot attach more than 4 files
-      images_and_video: Cannot attach a video to a status that already contains images
+      too_many: Нельзя прикладывать больше 4х файлов
+      images_and_video: Нельзя добавлять видео в пост, где уже приложено изображение
