@@ -1,0 +1,46 @@
+---
+co:
+  simple_form:
+    hints:
+      defaults:
+        avatar: Furmatu PNG, GIF o JPG. 2Mo o menu. Sarà ridottu à 120x120px
+        display_name: 30 caratteri o menu
+        header: Furmatu PNG, GIF o JPG. 2Mo o menu. Sarà ridottu à 700x335px
+        locked: Duvete appruvà ogni abbunatu.a è i vostri statuti saranu mustrati solu à i vostri abbunati
+        note: 160 caratteri o menu
+      imports:
+        data: Un fugliale CSV da un'altr'istanza di Mastodon
+    labels:
+      defaults:
+        avatar: Ritrattu di prufile
+        confirm_new_password: Cunfirmà a nova chjave d'accessu
+        confirm_password: Cunfirmà a chjave d'accessu
+        current_password: Chjave d'accessu attuale
+        data: Dati
+        display_name: Nome publicu
+        email: Indirizzu e-mail
+        header: Ritrattu di cuprendula
+        locale: Lingua
+        locked: Privatizà u contu
+        new_password: Nova chjave d'accessu
+        note: Prisentazione
+        otp_attempt: Codice d'identificazione à dui fattori
+        password: Chjave d'accessu
+        setting_default_privacy: Cunfidenzialità di i statuti
+        type: Tippu d'impurtazione
+        username: Cugnome
+      interactions:
+        must_be_follower: Mascherà e nutificazione di quelli.e ch'ùn vi seguitanu
+        must_be_following: Macherà e nutificazione di quelli.e ch'ùn seguitate
+      notification_emails:
+        digest: Mandà e-mail di ricapitulazione
+        favourite: Mandà un'e-mail quandu qualch'unu aghjusta i mo statuti à i so favuriti
+        follow: Mandà un'e-mail quandu qualch'unu mi seguita
+        follow_request: Mandà un'e-mail quandu qualch'unu vole seguità mi
+        mention: Mandà un'e-mail quandu qualch'unu mi mintuva
+        reblog: Mandà un'e-mail quandu qualch'unu sparte i mo statuti
+    'no': Nò
+    required:
+      mark: "*"
+      text: Riquesti
+    'yes': Ié

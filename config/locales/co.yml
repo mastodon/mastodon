@@ -1,0 +1,161 @@
+---
+co:
+  about:
+    about_mastodon: Mastodon hè una reta suciale <em>libera</em>. Hè un'alternativa <em>decentralizata</em> à e rete cummerciale chì evita l'accapparamentu di a vostra cumunicazione da un'intrapresa. Pigliate un situ di a rete è puderete cumunicà cù quasi tutti l'altri. Tuttu u mondu pò creà un'istanza di Mastodon è partecipà à a <em>rete suciale</em> di manera trasparente.
+    about_this: À prupositu di st'istanza
+    apps: Applicazione
+    business_email: 'E-mail prufissiunale:'
+    closed_registrations: Pè avà, l'arregistramenti sò chjosi nant'à st'istanza.
+    contact: Cuntattu
+    description_headline: Quale hè %{domain} ?
+    domain_count_after: altre istanze
+    domain_count_before: Cunnettati à
+    features:
+      api: API aperta à l'app è servizi
+      blocking: Sistemi cumpletti pè bluccà un contu
+      characters: 500 caratteri per statutu
+      chronology: Linee crunulogiche
+      ethics: 'Design eticu: Micca pubblicità, micca traccia'
+      gifv: Sparteria di video è GIF
+      privacy: Cunfidenzialità rigulevule pè ogni post
+      public: Linee publiche
+      features_headline: Ciò chì face chì Mastodon hè sfarente
+    get_started: Principià
+    links: Ligami
+    source_code: Codice di fonte
+    status_count_after: statuti
+    status_count_before: chì anu publicatu
+    terms: Cundizione
+    user_count_after: persone
+    user_count_before: Ci sò
+  accounts:
+    follow: Siguità
+    followers: Abbunati.e
+    following: Abbunamenti
+    nothing_here: Ùn c'hè nunda quì !
+    people_followed_by: Seguitati.e da %{name}
+    people_who_follow: Seguitanu %{name}
+    posts: Statuti
+    remote_follow: Siguità d'altrò
+    unfollow: Ùn siguità più
+  application_mailer:
+    settings: 'Cambià e priferenze e-mail: ${link}'
+    signature: Nutificazione di Mastodon da %{instance}
+    view: 'Vede:'
+  applications:
+    invalid_url: L'URL ch'è stata pruvista ùn hè valida
+  auth:
+    change_password: Cambià di chjave d'accessu
+    didnt_get_confirmation: Ùn avete micca ricevutu l'istruzzioni di cunfirmazione?
+    forgot_password: Chjave scurdata ?
+    login: Cunnettassi
+    logout: Scunnettassi
+    register: Arregistrassi
+    resend_confirmation: Rimandà l'istruzzioni di cunfirmazione
+    reset_password: Cambià a chjave d'accessu
+    set_new_password: Creà una nova chjave d'accessu
+  authorize_follow:
+    error: Peccatu, c'hè statu un sbagliu ricercandu u contu.
+    follow: Seguità
+    prompt_html: 'Voi (<strong>%{self}</strong>) avete dumandatu di seguità:'
+    title: Seguità %{acct}
+  datetime:
+    distance_in_words:
+      about_x_hours: "%{count}h"
+      about_x_months: "%{count}mo"
+      about_x_years: "%{count}y"
+      almost_x_years: "%{count}y"
+      half_a_minute: Avà
+      less_than_x_minutes: "%{count}m"
+      less_than_x_seconds: Avà
+      over_x_years: "%{count}y"
+      x_days: "%{count}d"
+      x_minutes: "%{count}m"
+      x_months: "%{count}mo"
+      x_seconds: "%{count}s"
+  exports:
+    blocks: Bluccate
+    csv: CSV
+    follows: Seguitate
+    storage: I vostri media
+  generic:
+    changes_saved_msg: Cambiamenti salvati!
+    powered_by: mossu da %{link}
+    save_changes: Salvà e mudificazione
+    validation_errors:
+      one: Qualcosa ùn và bè! Verificate l'errore quì sottu.
+      other: Qualcosa ùn và bè! Verificate l'errore quì sottu.
+  imports:
+    preface: Pudete impurtà certi dati cumu e persone chì seguitate o bluccate nant'à u vostru contu nant'à st'istanza à partesi di fugliali creati nant'à un'altr'istanza.
+    success: I vostri dati sò stati impurtati è saranu trattati da quì à pocu.
+    types:
+      blocking: Persone chì bluccate
+      following: Persone chì seguitate
+    upload: Impurtà
+  landing_strip_html: <strong>%{name}</strong> hè nant'à <strong>%{domain}</strong>. Pudete siguitallu.a è cumunicà cù ellu.ella sì avete un contu indè u Fediverse. Sì ùn avete micca unu, pudete <a href="%{sign_up_path}">arrigistrà vi quì</a>.
+  notification_mailer:
+    digest:
+      body: 'Eccu cio ch''avete mancatu dapoi à a vostr''ultima visita (%{}):'
+      mention: '%{name} v''hà mintuvatu.a indè:'
+      new_followers_summary:
+        one: Avete un'abbunatu novu!
+        other: Avete %{count} abbunati novi !
+      subject:
+        one: "Una nutificazione nova dapoi à a vostr'ultima visita \U0001F418"
+        other: "%{count} nutificazione nove dapoi à a vostr'ultima visita \U0001F418"
+    favourite:
+      body: "%{name} hà aghjustatu u vostru statutu à i so favuriti :"
+      subject: "%{name} hà messu u vostru post in i so favuriti"
+    follow:
+      body: "%{name} s'hè abbunatu à u vostru contu !"
+      subject: "%{name} vi seguita"
+    mention:
+      body: "%{name} v'hà mintuvatu.a indè :"
+      subject: "%{name} v'hà mintuvatu.a"
+    reblog:
+      body: "%{name} hà spartutu u vostru statutu :"
+      subject: "%{name} hà spartutu u vostru post"
+  pagination:
+    next: Dopu
+    prev: Nanzu
+  remote_follow:
+    acct: Entrate u vostru cugnome@istanza da induve vulete siguità stu contu.
+    missing_resource: Ùn avemu pussutu à truvà l'indirizzu di ridirezzione
+    proceed: Cuntinuà per siguità
+    prompt: 'Avete da siguità :'
+  settings:
+    authorized_apps: Applicazione appruvate
+    back: Rivultà nant'à Mastodon
+    edit_profile: Mudificà u prufile
+    export: Spurtà infurmazione
+    import: Impurtà
+    preferences: Priferenze
+    settings: Aghjustamenti
+    two_factor_auth: Identificazione à dui fattori (Two-factor auth)
+  statuses:
+    open_in_web: Apre nant'à u web
+    over_character_limit: limita di caratteri di %{max} trapassata
+    show_more: Mustrà di più
+    visibilities:
+      private: Solu pè l'abbunati.e
+      public: Publicu
+      unlisted: Publicu senza mustrà nant'à e linee publiche.
+  stream_entries:
+    click_to_show: Cliccà per vede
+    reblogged: spartutu
+    sensitive_content: statutu sensibile
+  time:
+    formats:
+      default: '%d %b %Y, %H:%M'
+  two_factor_auth:
+    description_html: S'ella hè attivata <strong>l'identificazione à dui fattori</strong>, duvete avè u vostru telefuninu pè ottene un codice di cunnezzione
+    disable: Disattivà
+    enable: Attivà
+    instructions_html: "<strong>Scanate stu QR code cù Google Authenticator, Authy o qualcosa cusì nant'à u vostru telefuninu</strong>. St'applicazione hà da creà codici da entrà ogni volta chì vi cunnettate."
+    plaintext_secret_html: 'Codice sicretu : <samp>%{secret}</samp>'
+    warning: S'ellu ùn hè micca pussibule pè voi d'utilizzà un'applicazione d'autintificazione avà, duvete cliccà nant'à "Disattivà" per ùn bluccà l'accessu à u vostru contu.
+  users:
+    invalid_email: L'indirizzu e-mail ùn hè currettu.
+    invalid_otp_token: U codice d'identificazione ùn hè currettu.
+  will_paginate:
+    page_gap: "&hellip;"
