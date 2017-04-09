@@ -342,6 +342,12 @@ Remember above when we set up our LetsEncrypt certificate using a standalone ser
 
 So technically your certificate is fine - it will work for three months. But if you want it to auto-renew (and, like, you do) then once everything is working go ahead and re-run `certbot certonly`. This time, choose option (1) (Place files in webroot directory (webroot)). It'll tell you that your cert isn't close to expiration, and ask you if you're sure - say yes. Enter a new webroot (press `1` again when prompted) and when it asks for the path, give it `/home/users/mastodon/live/public` (or whatever your equivalent path is). This will allow the whole thing to re-run and verify your mastodon instance.
 
+You can confirm that it worked by running:
+
+    certbot renew --dry-run
+
+If it tells you everything was fine, then great! You'll autorenew when you expire! :)
+
 ## Things to look out for when upgrading Mastodon
 
 You can upgrade Mastodon with a `git pull` from the repository directory. You may need to run:
