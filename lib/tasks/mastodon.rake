@@ -10,6 +10,15 @@ namespace :mastodon do
     puts "Congrats! #{user.account.username} is now an admin. \\o/\nNavigate to #{admin_settings_url} to get started"
   end
 
+  desc 'Manually confirms a user with associated user email address stored in USER_EMAIL environment variable.'
+  task confirm_email: :environment do
+    email = ENV.fetch('USER_EMAIL')
+    user = User.where(email: email)
+    user.update(confirmed_at: Time.now.utc)
+
+    puts "User #{email} confirmed."
+  end
+
   namespace :media do
     desc 'Removes media attachments that have not been assigned to any status for longer than a day'
     task clear: :environment do

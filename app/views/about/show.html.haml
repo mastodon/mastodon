@@ -8,7 +8,7 @@
   %meta{ property: 'og:site_name', content: site_title }/
   %meta{ property: 'og:type', content: 'website' }/
   %meta{ property: 'og:title', content: Rails.configuration.x.local_domain }/
-  %meta{ property: 'og:description', content: @description.blank? ? "Mastodon is a free, open-source social network server. A decentralized alternative to commercial platforms, it avoids the risks of a single company monopolizing your communication. Anyone can run Mastodon and participate in the social network seamlessly" : strip_tags(@description) }/
+  %meta{ property: 'og:description', content: strip_tags(@instance_presenter.site_description.blank? ? t('about.about_mastodon') : @instance_presenter.site_description) }/
   %meta{ property: 'og:image', content: asset_url('mastodon_small.jpg') }/
   %meta{ property: 'og:image:width', content: '400' }/
   %meta{ property: 'og:image:height', content: '400' }/
@@ -24,28 +24,14 @@
   .screenshot-with-signup
     .mascot= image_tag 'fluffy-elephant-friend.png'
 
-    - if @open_registrations
-      = simple_form_for(@user, url: user_registration_path) do |f|
-        = f.simple_fields_for :account do |ff|
-          = ff.input :username, autofocus: true, placeholder: t('simple_form.labels.defaults.username'), required: true, input_html: { 'aria-label' => t('simple_form.labels.defaults.username') }
-
-        = f.input :email, placeholder: t('simple_form.labels.defaults.email'), required: true, input_html: { 'aria-label' => t('simple_form.labels.defaults.email') }
-        = f.input :password, autocomplete: "off", placeholder: t('simple_form.labels.defaults.password'), required: true, input_html: { 'aria-label' => t('simple_form.labels.defaults.password') }
-        = f.input :password_confirmation, autocomplete: "off", placeholder: t('simple_form.labels.defaults.confirm_password'), required: true, input_html: { 'aria-label' => t('simple_form.labels.defaults.confirm_password') }
-
-        .actions
-          = f.button :button, t('about.get_started'), type: :submit
-
-        .info
-          = link_to t('auth.login'), new_user_session_path, class: 'webapp-btn'
-          ·
-          = link_to t('about.about_this'), about_more_path
+    - if @instance_presenter.open_registrations
+      = render 'registration'
     - else
       .closed-registrations-message
-        - if @closed_registrations_message.blank?
+        - if @instance_presenter.closed_registrations_message.blank?
           %p= t('about.closed_registrations')
         - else
-          = @closed_registrations_message.html_safe
+          = @instance_presenter.closed_registrations_message.html_safe
         .info
           = link_to t('auth.login'), new_user_session_path, class: 'webapp-btn'
           ·
@@ -85,9 +71,9 @@
           = fa_icon('li check-square')
           = t 'about.features.api'
 
-  - unless @description.blank?
+  - unless @instance_presenter.site_description.blank?
     %h3= t('about.description_headline', domain: Rails.configuration.x.local_domain)
-    %p= @description.html_safe
+    %p= @instance_presenter.site_description.html_safe
 
   .actions
     .info
