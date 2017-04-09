@@ -1896,3 +1896,26 @@ button.active i.fa-retweet {
     max-height: 80vh;
   }
 }
+
+.timeout-form {
+  display: table;
+  margin-bottom: 10px;
+
+  .time {
+    height: 29px;
+    width: 60px;
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+  }
+
+  .modifier {
+    background-color: lighten($color4, 10%);
+    border-radius: 0;
+    appearance: none;
+  }
+
+  .submit {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+}
