@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class UserMailer < Devise::Mailer
-  default from: ENV.fetch('SMTP_FROM_ADDRESS') { 'notifications@localhost' }
+  default from: ENV.fetch('SMTP_FROM_ADDRESS', 'notifications@localhost')
   layout 'mailer'
 
   def confirmation_instructions(user, token, _opts = {})

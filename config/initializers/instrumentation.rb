@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-instrumentation_hostname = ENV.fetch('INSTRUMENTATION_HOSTNAME') { 'localhost' }
+instrumentation_hostname = ENV.fetch('INSTRUMENTATION_HOSTNAME', 'localhost')
 
 ActiveSupport::Notifications.subscribe(/process_action.action_controller/) do |*args|
   event      = ActiveSupport::Notifications::Event.new(*args)

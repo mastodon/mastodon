@@ -59,9 +59,9 @@ Rails.application.configure do
 
   # Use a different cache store in production.
   config.cache_store = :redis_store, {
-    host: ENV.fetch('REDIS_HOST') { 'localhost' },
-    port: ENV.fetch('REDIS_PORT') { 6379 },
-    password: ENV.fetch('REDIS_PASSWORD') { false },
+    host: ENV.fetch('REDIS_HOST', 'localhost'),
+    port: ENV.fetch('REDIS_PORT', 6379),
+    password: ENV.fetch('REDIS_PASSWORD', false),
     db: 0,
     namespace: 'cache',
     expires_in: 20.minutes,

@@ -26,6 +26,6 @@ module Localized
   end
 
   def default_locale
-    ENV.fetch('DEFAULT_LOCALE') { I18n.default_locale }
+    ENV.fetch('DEFAULT_LOCALE', I18n.default_locale)
   end
 end
