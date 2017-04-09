@@ -1,5 +1,11 @@
 # A guide to installing Mastodon on Ubuntu 16.04 LTS (amd64 and arm64).
 
+A really good guide is at 
+
+https://github.com/ummjackson/mastodon-guide/blob/master/up-and-running.md
+
+Go read it, I won't repeat myself.
+
 ## Running under Docker
 
 ### Installing Docker and docker-compose
