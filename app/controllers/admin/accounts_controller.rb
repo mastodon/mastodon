@@ -37,7 +37,7 @@ class Admin::AccountsController < ApplicationController
   def timeout
     @account.update(silenced: true)
     UnsilenceWorker.perform_in(
-      (params[:time].to_i*params[:modifier].to_i).hours,
+      (params[:time].to_i * params[:modifier].to_i).hours,
       @account.id
     )
     redirect_to admin_accounts_path

@@ -36,7 +36,7 @@ class Admin::ReportsController < ApplicationController
     @report.target_account.update(silenced: true)
     Report.unresolved.where(target_account: @report.target_account).update_all(action_taken: true, action_taken_by_account_id: current_account.id)
     UnsilenceWorker.perform_in(
-      (params[:time].to_i*params[:modifier].to_i).hours,
+      (params[:time].to_i * params[:modifier].to_i).hours,
       @account.id
     )
     redirect_to admin_report_path(@report)
