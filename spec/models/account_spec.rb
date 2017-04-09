@@ -212,6 +212,19 @@ RSpec.describe Account, type: :model do
     end
   end
 
+  describe '.advanced_search_for' do
+    it 'ranks followed accounts higher' do
+      account = Fabricate(:account)
+      match = Fabricate(:account, username: "Matching")
+      followed_match = Fabricate(:account, username: "Matcher")
+      Fabricate(:follow, account: account, target_account: followed_match)
+
+      results = Account.advanced_search_for("match", account)
+      expect(results).to eq [followed_match, match]
+      expect(results.first.rank).to be > results.last.rank
+    end
+  end
+
   describe '.find_local' do
     before do
       Fabricate(:account, username: 'Alice')
