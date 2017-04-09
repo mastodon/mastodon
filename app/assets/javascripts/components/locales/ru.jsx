@@ -29,7 +29,7 @@ const ru = {
   "column.home": "Главная",
   "column.community": "Локальная лента",
   "column.public": "Глобальная лента",
-  "column.notifications": "Оповещения",
+  "column.notifications": "Уведомления",
   "tabs_bar.compose": "Написать",
   "tabs_bar.home": "Главная",
   "tabs_bar.mentions": "Упоминания",
