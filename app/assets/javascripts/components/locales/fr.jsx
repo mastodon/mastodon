@@ -41,6 +41,7 @@ const fr = {
   "column.notifications": "Notifications",
   "column.blocks": "Utilisateurs bloqués",
   "column.favourites": "Favoris",
+  "empty_column.notifications": "Vous n’avez pas encore de notification. Interagissez avec d’autres utilisateurs⋅trices pour débuter la conversation.",
   "tabs_bar.compose": "Composer",
   "tabs_bar.home": "Accueil",
   "tabs_bar.mentions": "Mentions",
