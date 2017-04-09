@@ -63,7 +63,7 @@ const browserHistory = useRouterHistory(createBrowserHistory)({
 });
 
 
-addLocaleData([...en, ...de, ...es, ...fr, ...pt, ...hu, ...uk, ...fi, ...eo ...ru]);
+addLocaleData([...en, ...de, ...es, ...fr, ...pt, ...hu, ...uk, ...fi, ...eo, ...ru]);
 
 
 const Mastodon = React.createClass({
