@@ -96,8 +96,8 @@ Rails.application.configure do
   config.action_mailer.smtp_settings = {
     :port           => ENV['SMTP_PORT'],
     :address        => ENV['SMTP_SERVER'],
-    :user_name      => ENV['SMTP_LOGIN'],
-    :password       => ENV['SMTP_PASSWORD'],
+#    :user_name      => ENV['SMTP_LOGIN'],
+#    :password       => ENV['SMTP_PASSWORD'],
     :domain         => ENV['SMTP_DOMAIN'] || config.x.local_domain,
     :authentication => :plain,
   }
