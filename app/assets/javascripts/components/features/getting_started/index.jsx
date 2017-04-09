@@ -1,5 +1,6 @@
 import Column from '../ui/components/column';
 import ColumnLink from '../ui/components/column_link';
+import ColumnSubheading from '../ui/components/column_subheading';
 import { Link } from 'react-router';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
@@ -9,6 +10,8 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 const messages = defineMessages({
   heading: { id: 'getting_started.heading', defaultMessage: 'Getting started' },
   public_timeline: { id: 'navigation_bar.public_timeline', defaultMessage: 'Federated timeline' },
+  navigation_subheading: { id: 'column_subheading.navigation', defaultMessage: 'Navigation'},
+  settings_subheading: { id: 'column_subheading.settings', defaultMessage: 'Settings'},
   community_timeline: { id: 'navigation_bar.community_timeline', defaultMessage: 'Local timeline' },
   preferences: { id: 'navigation_bar.preferences', defaultMessage: 'Preferences' },
   follow_requests: { id: 'navigation_bar.follow_requests', defaultMessage: 'Follow requests' },
@@ -33,14 +36,16 @@ const GettingStarted = ({ intl, me }) => {
   return (
     <Column icon='asterisk' heading={intl.formatMessage(messages.heading)} hideHeadingOnMobile={true}>
       <div className='getting-started__wrapper'>
+        <ColumnSubheading text={intl.formatMessage(messages.navigation_subheading)}/>
         <ColumnLink icon='users' hideOnMobile={true} text={intl.formatMessage(messages.community_timeline)} to='/timelines/public/local' />
         <ColumnLink icon='globe' hideOnMobile={true} text={intl.formatMessage(messages.public_timeline)} to='/timelines/public' />
-        <ColumnLink icon='cog' text={intl.formatMessage(messages.preferences)} href='/settings/preferences' />
         <ColumnLink icon='star' text={intl.formatMessage(messages.favourites)} to='/favourites' />
         {followRequests}
-        <ColumnLink icon='ban' text={intl.formatMessage(messages.blocks)} to='/blocks' />
         <ColumnLink icon='volume-off' text={intl.formatMessage(messages.mutes)} to='/mutes' />
+        <ColumnLink icon='ban' text={intl.formatMessage(messages.blocks)} to='/blocks' />
+        <ColumnSubheading text={intl.formatMessage(messages.settings_subheading)}/>
         <ColumnLink icon='book' text={intl.formatMessage(messages.info)} href='/about/more' />
+        <ColumnLink icon='cog' text={intl.formatMessage(messages.preferences)} href='/settings/preferences' />
         <ColumnLink icon='sign-out' text={intl.formatMessage(messages.sign_out)} href='/auth/sign_out' method='delete' />
       </div>
 
