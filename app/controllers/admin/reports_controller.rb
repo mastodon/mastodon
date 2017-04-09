@@ -32,7 +32,7 @@ class Admin::ReportsController < ApplicationController
     redirect_to admin_report_path(@report)
   end
 
-  def timed_silence
+  def timeout
     @report.target_account.update(silenced: true)
     Report.unresolved.where(target_account: @report.target_account).update_all(action_taken: true, action_taken_by_account_id: current_account.id)
     UnsilenceWorker.perform_in(params[:days].days, @report.target_account.id)
