@@ -28,22 +28,28 @@ Several steps here. First, make sure your domain name is either pointing to your
 Go to https://certbot.eff.org/ to get setup instructions for your server configuration. If you're following this guide, you want the nginx setup - and for the purposes of this example, let's assume you're running on Ubuntu 16.04. (If you're not the instructions may slightly vary - follow what it says on the website instead of what it says here).
 
 Certbot tells us to:
+
     sudo add-apt-repository ppa:certbot/certbot
     sudo apt-get update
     sudo apt-get install certbot 
 
 Depending on your Ubuntu image, you may first need to run: 
+
     sudo apt-get install software-properties-common python-software-properties
 
 Once that's installed, just run:
+
     certbot certonly
+
 and follow the prompts. It'll ask you what domain name you want to get a certificate for - put in the public facing domain name, which should be the same as your instance name. The one you set up DNS for. This installer is cool, it has the ability to stand up a temporary webserver on your host that it will use to verify that you own the domain name you're claiming. Once this is done, great! You can provide HTTPS access!
 
 ### Nginx
 Installing nginx is super simple:
+
     sudo apt-get install nginx
 
 But we want to use a custom configuration for mastodon. Edit `/etc/nginx/nginx.conf` to contain the following, where YOUR_HOST is replaced with your actual public instance name.
+
 ```
 worker_processes  4;
 #Refers to single threaded process. Generally set to be equal to the number of CPUs or cores.
