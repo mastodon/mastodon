@@ -39,6 +39,9 @@ server {
   root /home/mastodon/live/public;
 
   add_header Strict-Transport-Security "max-age=31536000; includeSubDomains";
+  add_header Content-Security-Policy "default-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self' https://example.com/ wss://example.com/; upgrade-insecure-requests";
+  add_header X-Content-Type-Options nosniff;
+  add_header X-Frame-Options DENY;
 
   location / {
     try_files $uri @proxy;
@@ -81,6 +84,8 @@ server {
   error_page 500 501 502 503 504 /500.html;
 }
 ```
+
+Make sure you remplace all instances of `example.com`.
 
 ## Running in production without Docker
 
