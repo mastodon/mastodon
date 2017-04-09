@@ -101,19 +101,21 @@ Setting up Mastodon behind Apache is possible as well, although you will need to
 
    Header add Strict-Transport-Security "max-age=31536000"
    SSLEngine on
-   SSLProtocol All -SSLv2 -SSLv3
+   SSLProtocol -all +TLSv1.2
    SSLHonorCipherOrder on
-   SSLCipherSuite EECDH+AESGCM:EDH+AESGCM:AES256+EECDH:AES256+EDH:AES128+EECDH:AES128+EDH
+   SSLCipherSuite EECDH+AESGCM:AES256+EECDH:AES128+EECDH
 
    SSLCertificateFile example.pem
    SSLCertificateKeyFile example.key
 
    ProxyPreserveHost On
+   RequestHeader set X-Forwarded-Proto "https"
+   ProxyPass /500.html !
+   ProxyPass /oops.png !
    ProxyPass /api/v1/streaming/ ws://localhost:4000/
    ProxyPassReverse /api/v1/streaming/ ws://localhost:4000/
    ProxyPass / http://localhost:3000/
    ProxyPassReverse / http://localhost:3000/
-   RequestHeader set X-Forwarded-Proto "https"
 
    ErrorDocument 500 /500.html
    ErrorDocument 501 /500.html
