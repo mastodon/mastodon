@@ -83,6 +83,7 @@ Rails.application.routes.draw do
       member do
         post :resolve
         post :silence
+        post :timed_silence
         post :suspend
         post :remove
       end
@@ -91,6 +92,7 @@ Rails.application.routes.draw do
     resources :accounts, only: [:index, :show] do
       member do
         post :silence
+        post :timed_silence
         post :unsilence
         post :suspend
         post :unsuspend
