@@ -1,10 +1,11 @@
-# frozen_string_literal: true
+﻿# frozen_string_literal: true
 
 module SettingsHelper
   HUMAN_LOCALES = {
     en: 'English',
     de: 'Deutsch',
     es: 'Español',
+    nl: 'Nederlands',
     pt: 'Português',
     fr: 'Français',
     hu: 'Magyar',
