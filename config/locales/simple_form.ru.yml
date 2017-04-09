@@ -3,44 +3,44 @@ ru:
   simple_form:
     hints:
       defaults:
-        avatar: PNG, GIF or JPG. At most 2MB. Will be downscaled to 120x120px
-        display_name: At most 30 characters
-        header: PNG, GIF or JPG. At most 2MB. Will be downscaled to 700x335px
-        locked: Requires you to manually approve followers and defaults post privacy to followers-only
-        note: At most 160 characters
+        avatar: PNG, GIF или JPG. Не более 2 МБ. Будет сжато до 120x120px
+        display_name: Не более 30 символов
+        header: PNG, GIF или JPG. Не более 2 МБ. Будет сжато до 700x335px
+        locked: Требуется, чтобы вы вручную утверждали подписчиков и ставит настройки постов по умолчанию "только подписчикам"
+        note: Не более 160 символов
       imports:
-        data: CSV file exported from another Mastodon instance
+        data: CSV файл экспортирован с другого инстанса Mastodon
     labels:
       defaults:
-        avatar: Avatar
-        confirm_new_password: Confirm new password
-        confirm_password: Confirm password
-        current_password: Current password
-        data: Data
-        display_name: Display name
-        email: E-mail address
-        header: Header
-        locale: Language
-        locked: Make account private
-        new_password: New password
-        note: Bio
-        otp_attempt: Two-factor code
-        password: Password
-        setting_default_privacy: Post privacy
-        type: Import type
-        username: Username
+        avatar: Аватар
+        confirm_new_password: Подтверждение нового пароля
+        confirm_password: Подтверждение пароля
+        current_password: Действующий пароль
+        data: Данные
+        display_name: Отображать имя
+        email: E-mail адрес
+        header: Заголовок
+        locale: Язык
+        locked: Сделать аккаунт закрытым
+        new_password: Новый пароль
+        note: О себе
+        otp_attempt: Код двухэтапной авторизации
+        password: Пароль
+        setting_default_privacy: Настройки постов
+        type: Тип импорта
+        username: Имя пользователя
       interactions:
-        must_be_follower: Block notifications from non-followers
-        must_be_following: Block notifications from people you don't follow
+        must_be_follower: Блокировать оповещения от не подписчиков
+        must_be_following: Блокировать оповещения от пользователей, какторые не читают Вас
       notification_emails:
-        digest: Send digest e-mails
-        favourite: Send e-mail when someone favourites your status
-        follow: Send e-mail when someone follows you
-        follow_request: Send e-mail when someone requests to follow you
-        mention: Send e-mail when someone mentions you
-        reblog: Send e-mail when someone boosts your status
-    'no': 'No'
+        digest: Отправить дайджест e-mails
+        favourite: Отправить e-mail когда кто-то лайкнет статус
+        follow: Отправить e-mail когда кто-то подпишется на Вас
+        follow_request: Отправить e-mail когда кто-то запросит подписку на Вас
+        mention: Отправить e-mail когда кто-то упомянет Вас
+        reblog: Отправить e-mail когда кто-то продвинет Ваш статус
+    'no': 'Нет'
     required:
       mark: "*"
-      text: required
-    'yes': 'Yes'
+      text: требуется
+    'yes': 'Да'
