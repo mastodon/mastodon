@@ -14,6 +14,7 @@ const fr = {
   "status.show_less": "Replier",
   "status.open": "Déplier ce status",
   "status.report": "Signaler @{name}",
+  "status.load_more": "Charger plus",
   "video_player.toggle_sound": "Mettre/Couper le son",
   "account.mention": "Mentionner",
   "account.edit_profile": "Modifier le profil",
