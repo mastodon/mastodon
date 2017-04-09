@@ -28,21 +28,30 @@ class FollowRemoteAccountService < BaseService
 
     return Account.find_local(confirmed_username) if TagManager.instance.local_domain?(confirmed_domain)
 
-    confirmed_account = Account.find_remote(confirmed_username, confirmed_domain)
-    return confirmed_account unless confirmed_account.nil?
+    remote_url  = data.link('http://schemas.google.com/g/2010#updates-from').href
+    salmon_url  = data.link('salmon').href
+    url         = data.link('http://webfinger.net/rel/profile-page').href
+    public_key  = magic_key_to_pem(data.link('magic-public-key').href)
 
-    Rails.logger.debug "Creating new remote account for #{uri}"
+    account = Account.find_remote(confirmed_username, confirmed_domain)
+    return account unless account.nil? || remote_url != account.remote_url || salmon_url != account.salmon_url || url != account.url || public_key != account.public_key
 
-    domain_block = DomainBlock.find_by(domain: domain)
+    if account.nil?
+        Rails.logger.debug "Creating new remote account for #{uri}"
 
-    account = Account.new(username: confirmed_username, domain: confirmed_domain)
-    account.remote_url  = data.link('http://schemas.google.com/g/2010#updates-from').href
-    account.salmon_url  = data.link('salmon').href
-    account.url         = data.link('http://webfinger.net/rel/profile-page').href
-    account.public_key  = magic_key_to_pem(data.link('magic-public-key').href)
-    account.private_key = nil
-    account.suspended   = true if domain_block && domain_block.suspend?
-    account.silenced    = true if domain_block && domain_block.silence?
+        domain_block = DomainBlock.find_by(domain: domain)
+        account = Account.new(username: confirmed_username, domain: confirmed_domain)
+        account.suspended   = true if domain_block && domain_block.suspend?
+        account.silenced    = true if domain_block && domain_block.silence?
+        account.private_key = nil
+    else
+        Rails.logger.debug "Updating remote account #{uri}"
+    end
+
+    account.remote_url  = remote_url
+    account.salmon_url  = salmon_url
+    account.url         = url
+    account.public_key  = public_key
 
     body, xml = get_feed(account.remote_url)
     hubs      = get_hubs(xml)
