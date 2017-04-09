@@ -27,6 +27,9 @@ defaults: &defaults
   interactions:
     must_be_follower: false
     must_be_following: false
+  reserved_usernames:
+    - 'admin'
+    - 'support'
 
 development:
   <<: *defaults
