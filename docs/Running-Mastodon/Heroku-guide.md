@@ -10,7 +10,7 @@ See [#1275](https://github.com/tootsuite/mastodon/issues/1275) for details.
 
 ## Limitations
 
-Currently heroku setup as two main limitations:
+Currently heroku setup has two main limitations:
 
 - Animated GIF upload doesn't work ([#1007](https://github.com/tootsuite/mastodon/issues/1007)).
 - Streaming API not working ([#1119](https://github.com/tootsuite/mastodon/issues/1119)).
