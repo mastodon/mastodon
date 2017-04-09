@@ -163,6 +163,7 @@ Rails.application.routes.draw do
         collection do
           get :relationships
           get :verify_credentials
+          patch :update_credentials
           get :search
         end
 
