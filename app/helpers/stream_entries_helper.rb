@@ -13,18 +13,29 @@ module StreamEntriesHelper
     status.reblog? ? status.reblog.account.avatar.url(:original) : status.account.avatar.url(:original)
   end
 
-  def entry_classes(status, is_predecessor, is_successor, include_threads, is_direct_parent, is_direct_child)
+  def style_classes(status, is_predecessor, is_successor, include_threads)
     classes = ['entry']
-    classes << 'entry-reblog h-cite' if status.reblog?
-    classes << 'entry-predecessor h-cite' if is_predecessor
-    classes << 'p-repost-of' if status.reblog? && is_direct_parent
-    classes << 'p-in-reply-to' if is_predecessor && is_direct_parent
-    classes << 'entry-successor h-cite' if is_successor
-    classes << 'p-comment' if is_direct_child
+    classes << 'entry-predecessor' if is_predecessor
+    classes << 'entry-reblog' if status.reblog?
+    classes << 'entry-successor' if is_successor
     classes << 'entry-center' if include_threads
-    classes << 'h-entry' if !include_threads && !is_successor && !is_predecessor && !status.reblog?
     classes.join(' ')
   end
+
+  def microformats_classes(status, is_direct_parent, is_direct_child)
+    classes = []
+    classes << 'p-in-reply-to' if is_direct_parent
+    classes << 'p-repost-of' if status.reblog? && is_direct_parent
+    classes << 'p-comment' if is_direct_child
+    classes.join(' ')
+  end
+
+  def microformats_h_class(status, is_predecessor, is_successor, include_threads)
+    return 'h-cite' if is_predecessor || status.reblog || is_successor
+    return 'h-entry' if !include_threads
+    return ''
+  end
+
 
   def relative_time(date)
     date < 5.days.ago ? date.strftime('%d.%m.%Y') : "#{time_ago_in_words(date)} ago"
