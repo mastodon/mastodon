@@ -12,7 +12,7 @@ const ru = {
   "status.sensitive_toggle": "Кликнуть для просмотра",
   "status.show_more": "Показать больше",
   "status.show_less": "Показать меньше",
-  "status.open": "Развернуть этот статус",
+  "status.open": "Развернуть",
   "status.report": "Пожаловаться @{name}",
   "video_player.toggle_sound": "Включить звук",
   "account.mention": "Упоминание @{name}",
