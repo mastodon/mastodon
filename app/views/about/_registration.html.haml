@@ -1,0 +1,30 @@
+= simple_form_for(new_user, url: user_registration_path) do |f|
+  = f.simple_fields_for :account do |account_fields|
+    = account_fields.input :username,
+      autofocus: true,
+      placeholder: t('simple_form.labels.defaults.username'),
+      required: true,
+      input_html: { 'aria-label' => t('simple_form.labels.defaults.username') }
+
+  = f.input :email,
+    placeholder: t('simple_form.labels.defaults.email'),
+    required: true,
+    input_html: { 'aria-label' => t('simple_form.labels.defaults.email') }
+  = f.input :password,
+    autocomplete: "off",
+    placeholder: t('simple_form.labels.defaults.password'),
+    required: true,
+    input_html: { 'aria-label' => t('simple_form.labels.defaults.password') }
+  = f.input :password_confirmation,
+    autocomplete: "off",
+    placeholder: t('simple_form.labels.defaults.confirm_password'),
+    required: true,
+    input_html: { 'aria-label' => t('simple_form.labels.defaults.confirm_password') }
+
+  .actions
+    = f.button :button, t('about.get_started'), type: :submit
+
+  .info
+    = link_to t('auth.login'), new_user_session_path, class: 'webapp-btn'
+    ·
+    = link_to t('about.about_this'), about_more_path

@@ -30,7 +30,7 @@ API overview
   - [Instance](#instance)
   - [Mention](#mention)
   - [Notification](#notification)
-  - [Relationships](#relationships)
+  - [Relationship](#relationship)
   - [Results](#results)
   - [Status](#status)
   - [Tag](#tag)
@@ -84,6 +84,17 @@ Returns an [Account](#account).
     GET /api/v1/accounts/verify_credentials
 
 Returns the authenticated user's [Account](#account).
+
+#### Updating the current user:
+
+    PATCH /api/v1/accounts/update_credentials
+
+Form data:
+
+- `display_name`: The name to display in the user's profile
+- `note`: A new biography for the user
+- `avatar`: A base64 encoded image to display as the user's avatar (e.g. `data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAUoAAADrCAYAAAA...`)
+- `header`: A base64 encoded image to display as the user's header image (e.g. `data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAUoAAADrCAYAAAA...`)
 
 #### Getting an account's followers:
 
@@ -456,7 +467,7 @@ ___
 | `acct`                   | Equals `username` for local users, includes `@domain` for remote ones |
 | `id`                     | Account ID |
 
-### Notifications
+### Notification
 
 | Attribute                | Description |
 | ------------------------ | ----------- |
@@ -464,9 +475,9 @@ ___
 | `type`                   | One of: "mention", "reblog", "favourite", "follow" |
 | `created_at`             | The time the notification was created |
 | `account`                | The [Account](#account) sending the notification to the user |
-| `status`                 | The [Status](#status) associated with the notification, if applicible |
+| `status`                 | The [Status](#status) associated with the notification, if applicable |
 
-### Relationships
+### Relationship
 
 | Attribute                | Description |
 | ------------------------ | ----------- |
@@ -516,7 +527,7 @@ ___
 | `tags`                   | An array of [Tags](#tag) |
 | `application`            | [Application](#application) from which the status was posted |
 
-### Tags
+### Tag
 
 | Attribute                | Description |
 | ------------------------ | ----------- |
