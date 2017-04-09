@@ -14,6 +14,7 @@ const fr = {
   "status.show_less": "Replier",
   "status.open": "Déplier ce status",
   "status.report": "Signaler @{name}",
+  "status.load_more": "Charger plus",
   "video_player.toggle_sound": "Mettre/Couper le son",
   "account.mention": "Mentionner",
   "account.edit_profile": "Modifier le profil",
@@ -88,6 +89,7 @@ const fr = {
   "privacy.direct.short": "Direct",
   "privacy.direct.long": "N’afficher que pour les personnes mentionné⋅e⋅s",
   "privacy.change": "Ajuster la confidentialité du message",
+  "empty_column.notifications": "Vous n'avez pas de notifications. Interagissez avec d'autres personnes pour commencer la conversation.",
 };
 
 export default fr;
