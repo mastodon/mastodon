@@ -107,28 +107,6 @@ http {
       try_files $uri @proxy;
     }
 
-    location /netdata {
-      return 301 /netdata/;
-    }
-
-    location ~ /netdata/(?<ndpath>.*) {
-      proxy_redirect off;
-      proxy_set_header Host $host;
-
-      proxy_set_header X-Forwarded-Host $host;
-      proxy_set_header X-Forwarded-Server $host;
-      proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-      proxy_http_version 1.1;
-      proxy_pass_request_headers on;
-      proxy_set_header Connection "keep-alive";
-      proxy_store off;
-      proxy_pass http://netdata/$ndpath$is_args$args;
-
-      gzip on;
-      gzip_proxied any;
-      gzip_types *;
-    }
-
     location @proxy {
       proxy_set_header Host $host;
       proxy_set_header X-Real-IP $remote_addr;
