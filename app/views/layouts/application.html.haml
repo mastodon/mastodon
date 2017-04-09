@@ -11,9 +11,11 @@
     %meta{:name => "theme-color", :content => "#282c37"}/
     %meta{:name => "apple-mobile-web-app-capable", :content => "yes"}/
 
-    %title
-      = "#{yield(:page_title)} - " if content_for?(:page_title)
-      = Setting.site_title
+    %title<
+      - if content_for?(:page_title)
+        = yield(:page_title)
+        = ' - '
+      = site_title
 
     = stylesheet_link_tag 'application', media: 'all'
     = csrf_meta_tags

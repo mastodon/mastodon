@@ -1,25 +1,19 @@
 # frozen_string_literal: true
 
 class SearchService < BaseService
-  def call(query, limit, resolve = false)
-    return if query.blank? || query.start_with?('#')
+  def call(query, limit, resolve = false, account = nil)
+    results = { accounts: [], hashtags: [], statuses: [] }
 
-    username, domain = query.gsub(/\A@/, '').split('@')
-    domain = nil if TagManager.instance.local_domain?(domain)
+    return results if query.blank?
 
-    if domain.nil?
-      exact_match = Account.find_local(username)
-      results     = Account.search_for(username)
+    if query =~ /\Ahttps?:\/\//
+      resource = FetchRemoteResourceService.new.call(query)
+
+      results[:accounts] << resource if resource.is_a?(Account)
+      results[:statuses] << resource if resource.is_a?(Status)
     else
-      exact_match = Account.find_remote(username, domain)
-      results     = Account.search_for("#{username} #{domain}")
-    end
-
-    results = results.limit(limit).to_a
-    results = [exact_match] + results.reject { |a| a.id == exact_match.id } if exact_match
-
-    if resolve && !exact_match && !domain.nil?
-      results = [FollowRemoteAccountService.new.call("#{username}@#{domain}")]
+      results[:accounts] = AccountSearchService.new.call(query, limit, resolve, account)
+      results[:hashtags] = Tag.search_for(query.gsub(/\A#/, ''), limit) unless query.start_with?('@')
     end
 
     results

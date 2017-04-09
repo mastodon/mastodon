@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe UpdateRemoteProfileService do
-  let(:xml) { Nokogiri::XML(File.read(File.join(Rails.root, 'spec', 'fixtures', 'push', 'feed.atom'))).at_xpath('//xmlns:feed') }
+  let(:xml) { File.read(File.join(Rails.root, 'spec', 'fixtures', 'push', 'feed.atom')) }
 
   subject { UpdateRemoteProfileService.new }
 

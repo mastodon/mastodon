@@ -28,6 +28,8 @@ export const COMPOSE_SPOILER_TEXT_CHANGE = 'COMPOSE_SPOILER_TEXT_CHANGE';
 export const COMPOSE_VISIBILITY_CHANGE  = 'COMPOSE_VISIBILITY_CHANGE';
 export const COMPOSE_LISTABILITY_CHANGE = 'COMPOSE_LISTABILITY_CHANGE';
 
+export const COMPOSE_EMOJI_INSERT = 'COMPOSE_EMOJI_INSERT';
+
 export function changeCompose(text) {
   return {
     type: COMPOSE_CHANGE,
@@ -77,7 +79,7 @@ export function submitCompose() {
       media_ids: getState().getIn(['compose', 'media_attachments']).map(item => item.get('id')),
       sensitive: getState().getIn(['compose', 'sensitive']),
       spoiler_text: getState().getIn(['compose', 'spoiler_text'], ''),
-      visibility: getState().getIn(['compose', 'private']) ? 'private' : (getState().getIn(['compose', 'unlisted']) ? 'unlisted' : 'public')
+      visibility: getState().getIn(['compose', 'privacy'])
     }).then(function (response) {
       dispatch(submitComposeSuccess({ ...response.data }));
 
@@ -121,6 +123,10 @@ export function submitComposeFail(error) {
 
 export function uploadCompose(files) {
   return function (dispatch, getState) {
+    if (getState().getIn(['compose', 'media_attachments']).size > 3) {
+      return;
+    }
+
     dispatch(uploadComposeRequest());
 
     let data = new FormData();
@@ -140,7 +146,8 @@ export function uploadCompose(files) {
 
 export function uploadComposeRequest() {
   return {
-    type: COMPOSE_UPLOAD_REQUEST
+    type: COMPOSE_UPLOAD_REQUEST,
+    skipLoading: true
   };
 };
 
@@ -155,14 +162,16 @@ export function uploadComposeProgress(loaded, total) {
 export function uploadComposeSuccess(media) {
   return {
     type: COMPOSE_UPLOAD_SUCCESS,
-    media: media
+    media: media,
+    skipLoading: true
   };
 };
 
 export function uploadComposeFail(error) {
   return {
     type: COMPOSE_UPLOAD_FAIL,
-    error: error
+    error: error,
+    skipLoading: true
   };
 };
 
@@ -226,17 +235,15 @@ export function unmountCompose() {
   };
 };
 
-export function changeComposeSensitivity(checked) {
+export function changeComposeSensitivity() {
   return {
     type: COMPOSE_SENSITIVITY_CHANGE,
-    checked
   };
 };
 
-export function changeComposeSpoilerness(checked) {
+export function changeComposeSpoilerness() {
   return {
-    type: COMPOSE_SPOILERNESS_CHANGE,
-    checked
+    type: COMPOSE_SPOILERNESS_CHANGE
   };
 };
 
@@ -247,16 +254,17 @@ export function changeComposeSpoilerText(text) {
   };
 };
 
-export function changeComposeVisibility(checked) {
+export function changeComposeVisibility(value) {
   return {
     type: COMPOSE_VISIBILITY_CHANGE,
-    checked
+    value
   };
 };
 
-export function changeComposeListability(checked) {
+export function insertEmojiCompose(position, emoji) {
   return {
-    type: COMPOSE_LISTABILITY_CHANGE,
-    checked
+    type: COMPOSE_EMOJI_INSERT,
+    position,
+    emoji
   };
 };

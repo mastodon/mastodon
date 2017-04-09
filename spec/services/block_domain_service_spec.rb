@@ -14,7 +14,7 @@ RSpec.describe BlockDomainService do
     bad_status2
     bad_attachment
 
-    subject.call('evil.org', :suspend)
+    subject.call(DomainBlock.create!(domain: 'evil.org', severity: :suspend))
   end
 
   it 'creates a domain block' do

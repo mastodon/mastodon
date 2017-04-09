@@ -5,15 +5,14 @@ class ProcessFeedService < BaseService
     xml = Nokogiri::XML(body)
     xml.encoding = 'utf-8'
 
-    update_author(xml, account)
+    update_author(body, account)
     process_entries(xml, account)
   end
 
   private
 
-  def update_author(xml, account)
-    return if xml.at_xpath('/xmlns:feed', xmlns: TagManager::XMLNS).nil?
-    UpdateRemoteProfileService.new.call(xml.at_xpath('/xmlns:feed', xmlns: TagManager::XMLNS), account, true)
+  def update_author(body, account)
+    RemoteProfileUpdateWorker.perform_async(account.id, body.force_encoding('UTF-8'), true)
   end
 
   def process_entries(xml, account)
@@ -61,10 +60,23 @@ class ProcessFeedService < BaseService
 
       status.save!
 
-      NotifyService.new.call(status.reblog.account, status) if status.reblog? && status.reblog.account.local?
+      notify_about_mentions!(status) unless status.reblog?
+      notify_about_reblog!(status) if status.reblog? && status.reblog.account.local?
       Rails.logger.debug "Queuing remote status #{status.id} (#{id}) for distribution"
       DistributionWorker.perform_async(status.id)
       status
+    end
+
+    def notify_about_mentions!(status)
+      status.mentions.includes(:account).each do |mention|
+        mentioned_account = mention.account
+        next unless mentioned_account.local?
+        NotifyService.new.call(mentioned_account, mention)
+      end
+    end
+
+    def notify_about_reblog!(status)
+      NotifyService.new.call(status.reblog.account, status)
     end
 
     def delete_status
@@ -159,10 +171,7 @@ class ProcessFeedService < BaseService
 
         next if mentioned_account.nil? || processed_account_ids.include?(mentioned_account.id)
 
-        mention = mentioned_account.mentions.where(status: parent).first_or_create(status: parent)
-
-        # Notify local user
-        NotifyService.new.call(mentioned_account, mention) if mentioned_account.local?
+        mentioned_account.mentions.where(status: parent).first_or_create(status: parent)
 
         # So we can skip duplicate mentions
         processed_account_ids << mentioned_account.id

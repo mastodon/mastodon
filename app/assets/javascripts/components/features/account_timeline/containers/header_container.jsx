@@ -5,7 +5,9 @@ import {
   followAccount,
   unfollowAccount,
   blockAccount,
-  unblockAccount
+  unblockAccount,
+  muteAccount,
+  unmuteAccount
 } from '../../../actions/accounts';
 import { mentionCompose } from '../../../actions/compose';
 import { initReport } from '../../../actions/reports';
@@ -44,6 +46,14 @@ const mapDispatchToProps = dispatch => ({
 
   onReport (account) {
     dispatch(initReport(account));
+  },
+
+  onMute (account) {
+    if (account.getIn(['relationship', 'muting'])) {
+      dispatch(unmuteAccount(account.get('id')));
+    } else {
+      dispatch(muteAccount(account.get('id')));
+    }
   }
 });
 

@@ -7,7 +7,9 @@ import {
   TIMELINE_EXPAND_SUCCESS,
   TIMELINE_EXPAND_REQUEST,
   TIMELINE_EXPAND_FAIL,
-  TIMELINE_SCROLL_TOP
+  TIMELINE_SCROLL_TOP,
+  TIMELINE_CONNECT,
+  TIMELINE_DISCONNECT
 } from '../actions/timelines';
 import {
   REBLOG_SUCCESS,
@@ -22,7 +24,8 @@ import {
   ACCOUNT_TIMELINE_EXPAND_REQUEST,
   ACCOUNT_TIMELINE_EXPAND_SUCCESS,
   ACCOUNT_TIMELINE_EXPAND_FAIL,
-  ACCOUNT_BLOCK_SUCCESS
+  ACCOUNT_BLOCK_SUCCESS,
+  ACCOUNT_MUTE_SUCCESS
 } from '../actions/accounts';
 import {
   CONTEXT_FETCH_SUCCESS
@@ -34,6 +37,7 @@ const initialState = Immutable.Map({
     path: () => '/api/v1/timelines/home',
     next: null,
     isLoading: false,
+    online: false,
     loaded: false,
     top: true,
     unread: 0,
@@ -44,6 +48,7 @@ const initialState = Immutable.Map({
     path: () => '/api/v1/timelines/public',
     next: null,
     isLoading: false,
+    online: false,
     loaded: false,
     top: true,
     unread: 0,
@@ -55,6 +60,7 @@ const initialState = Immutable.Map({
     next: null,
     params: { local: true },
     isLoading: false,
+    online: false,
     loaded: false,
     top: true,
     unread: 0,
@@ -295,9 +301,14 @@ export default function timelines(state = initialState, action) {
   case ACCOUNT_TIMELINE_EXPAND_SUCCESS:
     return appendNormalizedAccountTimeline(state, action.id, Immutable.fromJS(action.statuses));
   case ACCOUNT_BLOCK_SUCCESS:
+  case ACCOUNT_MUTE_SUCCESS:
     return filterTimelines(state, action.relationship, action.statuses);
   case TIMELINE_SCROLL_TOP:
     return updateTop(state, action.timeline, action.top);
+  case TIMELINE_CONNECT:
+    return state.setIn([action.timeline, 'online'], true);
+  case TIMELINE_DISCONNECT:
+    return state.setIn([action.timeline, 'online'], false);
   default:
     return state;
   }

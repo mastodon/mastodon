@@ -38,9 +38,9 @@ Rails.application.configure do
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
   config.force_ssl = false
 
-  # Use the lowest log level to ensure availability of diagnostic information
+  # By default, use the lowest log level to ensure availability of diagnostic information
   # when problems arise.
-  config.log_level = :debug
+  config.log_level = ENV.fetch('RAILS_LOG_LEVEL', 'debug').to_sym
 
   # Prepend all log lines with the following tags.
   config.log_tags = [:request_id]
@@ -109,4 +109,11 @@ Rails.application.configure do
   config.to_prepare do
     StatsD.backend = StatsD::Instrument::Backends::NullBackend.new if ENV['STATSD_ADDR'].blank?
   end
+
+  config.action_dispatch.default_headers = {
+    'Server'                 => 'Mastodon',
+    'X-Frame-Options'        => 'DENY',
+    'X-Content-Type-Options' => 'nosniff',
+    'X-XSS-Protection'       => '1; mode=block',
+  }
 end

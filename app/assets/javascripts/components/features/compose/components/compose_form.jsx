@@ -3,18 +3,18 @@ import Button from '../../../components/button';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ReplyIndicatorContainer from '../containers/reply_indicator_container';
-import UploadButton from './upload_button';
 import AutosuggestTextarea from '../../../components/autosuggest_textarea';
-import AutosuggestAccountContainer from '../../compose/containers/autosuggest_account_container';
 import { debounce } from 'react-decoration';
 import UploadButtonContainer from '../containers/upload_button_container';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import Toggle from 'react-toggle';
 import Collapsable from '../../../components/collapsable';
-import UnlistedToggleContainer from '../containers/unlisted_toggle_container';
-import SpoilerToggleContainer from '../containers/spoiler_toggle_container';
-import PrivateToggleContainer from '../containers/private_toggle_container';
-import SensitiveToggleContainer from '../containers/sensitive_toggle_container';
+import SpoilerButtonContainer from '../containers/spoiler_button_container';
+import PrivacyDropdownContainer from '../containers/privacy_dropdown_container';
+import SensitiveButtonContainer from '../containers/sensitive_button_container';
+import EmojiPickerDropdown from './emoji_picker_dropdown';
+import UploadFormContainer from '../containers/upload_form_container';
+import TextIconButton from './text_icon_button';
 
 const messages = defineMessages({
   placeholder: { id: 'compose_form.placeholder', defaultMessage: 'What is on your mind?' },
@@ -30,10 +30,8 @@ const ComposeForm = React.createClass({
     suggestion_token: React.PropTypes.string,
     suggestions: ImmutablePropTypes.list,
     spoiler: React.PropTypes.bool,
-    private: React.PropTypes.bool,
-    unlisted: React.PropTypes.bool,
+    privacy: React.PropTypes.string,
     spoiler_text: React.PropTypes.string,
-    fileDropDate: React.PropTypes.instanceOf(Date),
     focusDate: React.PropTypes.instanceOf(Date),
     preselectDate: React.PropTypes.instanceOf(Date),
     is_submitting: React.PropTypes.bool,
@@ -47,6 +45,8 @@ const ComposeForm = React.createClass({
     onFetchSuggestions: React.PropTypes.func.isRequired,
     onSuggestionSelected: React.PropTypes.func.isRequired,
     onChangeSpoilerText: React.PropTypes.func.isRequired,
+    onPaste: React.PropTypes.func.isRequired,
+    onPickEmoji: React.PropTypes.func.isRequired
   },
 
   mixins: [PureRenderMixin],
@@ -75,6 +75,7 @@ const ComposeForm = React.createClass({
   },
 
   onSuggestionSelected (tokenStart, token, value) {
+    this._restoreCaret = null;
     this.props.onSuggestionSelected(tokenStart, token, value);
   },
 
@@ -87,8 +88,18 @@ const ComposeForm = React.createClass({
       // If replying to zero or one users, places the cursor at the end of the textbox.
       // If replying to more than one user, selects any usernames past the first;
       // this provides a convenient shortcut to drop everyone else from the conversation.
-      const selectionEnd   = this.props.text.length;
-      const selectionStart = (this.props.preselectDate !== prevProps.preselectDate) ? (this.props.text.search(/\s/) + 1) : selectionEnd;
+      let selectionEnd, selectionStart;
+
+      if (this.props.preselectDate !== prevProps.preselectDate) {
+        selectionEnd   = this.props.text.length;
+        selectionStart = this.props.text.search(/\s/) + 1;
+      } else if (typeof this._restoreCaret === 'number') {
+        selectionStart = this._restoreCaret;
+        selectionEnd   = this._restoreCaret;
+      } else {
+        selectionEnd   = this.props.text.length;
+        selectionStart = selectionEnd;
+      }
 
       this.autosuggestTextarea.textarea.setSelectionRange(selectionStart, selectionEnd);
       this.autosuggestTextarea.textarea.focus();
@@ -99,8 +110,14 @@ const ComposeForm = React.createClass({
     this.autosuggestTextarea = c;
   },
 
+  handleEmojiPick (data) {
+    const position     = this.autosuggestTextarea.textarea.selectionStart;
+    this._restoreCaret = position + data.shortname.length + 1;
+    this.props.onPickEmoji(position, data);
+  },
+
   render () {
-    const { intl, needsPrivacyWarning, mentionedDomains } = this.props;
+    const { intl, needsPrivacyWarning, mentionedDomains, onPaste } = this.props;
     const disabled = this.props.is_submitting || this.props.is_uploading;
 
     let publishText    = '';
@@ -119,17 +136,17 @@ const ComposeForm = React.createClass({
       );
     }
 
-    if (this.props.private) {
+    if (this.props.privacy === 'private' || this.props.privacy === 'direct') {
       publishText = <span><i className='fa fa-lock' /> {intl.formatMessage(messages.publish)}</span>;
     } else {
-      publishText = intl.formatMessage(messages.publish) + (!this.props.unlisted ? '!' : '');
+      publishText = intl.formatMessage(messages.publish) + (this.props.privacy !== 'unlisted' ? '!' : '');
     }
 
     return (
       <div style={{ padding: '10px' }}>
         <Collapsable isVisible={this.props.spoiler} fullHeight={50}>
           <div className="spoiler-input">
-            <input placeholder={intl.formatMessage(messages.spoiler_placeholder)} value={this.props.spoiler_text} onChange={this.handleChangeSpoilerText} type="text" className="spoiler-input__input" />
+            <input placeholder={intl.formatMessage(messages.spoiler_placeholder)} value={this.props.spoiler_text} onChange={this.handleChangeSpoilerText} onKeyDown={this.handleKeyDown} type="text" className="spoiler-input__input" />
           </div>
         </Collapsable>
 
@@ -137,30 +154,41 @@ const ComposeForm = React.createClass({
 
         <ReplyIndicatorContainer />
 
-        <AutosuggestTextarea
-          ref={this.setAutosuggestTextarea}
-          placeholder={intl.formatMessage(messages.placeholder)}
-          disabled={disabled}
-          fileDropDate={this.props.fileDropDate}
-          value={this.props.text}
-          onChange={this.handleChange}
-          suggestions={this.props.suggestions}
-          onKeyDown={this.handleKeyDown}
-          onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
-          onSuggestionsClearRequested={this.onSuggestionsClearRequested}
-          onSuggestionSelected={this.onSuggestionSelected}
-        />
+        <div style={{ position: 'relative' }}>
+          <AutosuggestTextarea
+            ref={this.setAutosuggestTextarea}
+            placeholder={intl.formatMessage(messages.placeholder)}
+            disabled={disabled}
+            value={this.props.text}
+            onChange={this.handleChange}
+            suggestions={this.props.suggestions}
+            onKeyDown={this.handleKeyDown}
+            onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
+            onSuggestionsClearRequested={this.onSuggestionsClearRequested}
+            onSuggestionSelected={this.onSuggestionSelected}
+            onPaste={onPaste}
+          />
 
-        <div style={{ marginTop: '10px', overflow: 'hidden' }}>
-          <div style={{ float: 'right' }}><Button text={publishText} onClick={this.handleSubmit} disabled={disabled} /></div>
-          <div style={{ float: 'right', marginRight: '16px', lineHeight: '36px' }}><CharacterCounter max={500} text={[this.props.spoiler_text, this.props.text].join('')} /></div>
-          <UploadButtonContainer style={{ paddingTop: '4px' }} />
+          <EmojiPickerDropdown onPickEmoji={this.handleEmojiPick} />
         </div>
 
-        <SpoilerToggleContainer />
-        <PrivateToggleContainer />
-        <UnlistedToggleContainer />
-        <SensitiveToggleContainer />
+        <div className='compose-form__modifiers'>
+          <UploadFormContainer />
+        </div>
+
+        <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+          <div className='compose-form__buttons'>
+            <UploadButtonContainer />
+            <PrivacyDropdownContainer />
+            <SensitiveButtonContainer />
+            <SpoilerButtonContainer />
+          </div>
+
+          <div style={{ display: 'flex' }}>
+            <div style={{ paddingTop: '10px', marginRight: '16px', lineHeight: '36px' }}><CharacterCounter max={500} text={[this.props.spoiler_text, this.props.text].join('')} /></div>
+            <div style={{ paddingTop: '10px' }}><Button text={publishText} onClick={this.handleSubmit} disabled={disabled} /></div>
+          </div>
+        </div>
       </div>
     );
   }

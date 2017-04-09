@@ -13,6 +13,7 @@ import { debounce } from 'react-decoration';
 import { uploadCompose } from '../../actions/compose';
 import { refreshTimeline } from '../../actions/timelines';
 import { refreshNotifications } from '../../actions/notifications';
+import UploadArea from './components/upload_area';
 
 const UI = React.createClass({
 
@@ -23,7 +24,8 @@ const UI = React.createClass({
 
   getInitialState () {
     return {
-      width: window.innerWidth
+      width: window.innerWidth,
+      draggingOver: false
     };
   },
 
@@ -34,29 +36,64 @@ const UI = React.createClass({
     this.setState({ width: window.innerWidth });
   },
 
+  handleDragEnter (e) {
+    e.preventDefault();
+
+    if (!this.dragTargets) {
+      this.dragTargets = [];
+    }
+
+    if (this.dragTargets.indexOf(e.target) === -1) {
+      this.dragTargets.push(e.target);
+    }
+
+    if (e.dataTransfer && e.dataTransfer.files.length > 0) {
+      this.setState({ draggingOver: true });
+    }
+  },
+
   handleDragOver (e) {
     e.preventDefault();
     e.stopPropagation();
 
-    e.dataTransfer.dropEffect = 'copy';
+    try {
+      e.dataTransfer.dropEffect = 'copy';
+    } catch (err) {
 
-    if (e.dataTransfer.effectAllowed === 'all' || e.dataTransfer.effectAllowed === 'uninitialized') {
-      //
     }
+
+    return false;
   },
 
   handleDrop (e) {
     e.preventDefault();
+
+    this.setState({ draggingOver: false });
 
     if (e.dataTransfer && e.dataTransfer.files.length === 1) {
       this.props.dispatch(uploadCompose(e.dataTransfer.files));
     }
   },
 
+  handleDragLeave (e) {
+    e.preventDefault();
+    e.stopPropagation();
+
+    this.dragTargets = this.dragTargets.filter(el => el !== e.target && this.node.contains(el));
+
+    if (this.dragTargets.length > 0) {
+      return;
+    }
+
+    this.setState({ draggingOver: false });
+  },
+
   componentWillMount () {
     window.addEventListener('resize', this.handleResize, { passive: true });
-    window.addEventListener('dragover', this.handleDragOver);
-    window.addEventListener('drop', this.handleDrop);
+    document.addEventListener('dragenter', this.handleDragEnter, false);
+    document.addEventListener('dragover', this.handleDragOver, false);
+    document.addEventListener('drop', this.handleDrop, false);
+    document.addEventListener('dragleave', this.handleDragLeave, false);
 
     this.props.dispatch(refreshTimeline('home'));
     this.props.dispatch(refreshNotifications());
@@ -64,17 +101,26 @@ const UI = React.createClass({
 
   componentWillUnmount () {
     window.removeEventListener('resize', this.handleResize);
-    window.removeEventListener('dragover', this.handleDragOver);
-    window.removeEventListener('drop', this.handleDrop);
+    document.removeEventListener('dragenter', this.handleDragEnter);
+    document.removeEventListener('dragover', this.handleDragOver);
+    document.removeEventListener('drop', this.handleDrop);
+    document.removeEventListener('dragleave', this.handleDragLeave);
+  },
+
+  setRef (c) {
+    this.node = c;
   },
 
   render () {
+    const { width, draggingOver } = this.state;
+    const { children } = this.props;
+
     let mountedColumns;
 
-    if (isMobile(this.state.width)) {
+    if (isMobile(width)) {
       mountedColumns = (
         <ColumnsArea>
-          {this.props.children}
+          {children}
         </ColumnsArea>
       );
     } else {
@@ -83,13 +129,13 @@ const UI = React.createClass({
           <Compose withHeader={true} />
           <HomeTimeline trackScroll={false} />
           <Notifications trackScroll={false} />
-          {this.props.children}
+          {children}
         </ColumnsArea>
       );
     }
 
     return (
-      <div className='ui'>
+      <div className='ui' ref={this.setRef}>
         <TabsBar />
 
         {mountedColumns}
@@ -97,6 +143,7 @@ const UI = React.createClass({
         <NotificationsContainer />
         <LoadingBarContainer style={{ backgroundColor: '#2b90d9', left: '0', top: '0' }} />
         <ModalContainer />
+        <UploadArea active={draggingOver} />
       </div>
     );
   }

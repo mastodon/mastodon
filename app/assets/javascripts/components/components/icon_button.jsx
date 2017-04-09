@@ -12,6 +12,7 @@ const IconButton = React.createClass({
     style: React.PropTypes.object,
     activeStyle: React.PropTypes.object,
     disabled: React.PropTypes.bool,
+    inverted: React.PropTypes.bool,
     animate: React.PropTypes.bool
   },
 
@@ -36,10 +37,6 @@ const IconButton = React.createClass({
 
   render () {
     let style = {
-      display: 'inline-block',
-      border: 'none',
-      padding: '0',
-      background: 'transparent',
       fontSize: `${this.props.size}px`,
       width: `${this.props.size * 1.28571429}px`,
       height: `${this.props.size}px`,
@@ -57,7 +54,7 @@ const IconButton = React.createClass({
           <button
             aria-label={this.props.title}
             title={this.props.title}
-            className={`icon-button ${this.props.active ? 'active' : ''} ${this.props.disabled ? 'disabled' : ''}`}
+            className={`icon-button ${this.props.active ? 'active' : ''} ${this.props.disabled ? 'disabled' : ''} ${this.props.inverted ? 'inverted' : ''}`}
             onClick={this.handleClick}
             style={style}>
             <i style={{ transform: `rotate(${rotate}deg)` }} className={`fa fa-fw fa-${this.props.icon}`} aria-hidden='true' />

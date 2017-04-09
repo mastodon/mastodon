@@ -6,7 +6,6 @@ RSpec.describe Api::SalmonController, type: :controller do
   let(:account) { Fabricate(:user, account: Fabricate(:account, username: 'catsrgr8')).account }
 
   before do
-    stub_request(:post, "https://pubsubhubbub.superfeedr.com/").to_return(:status => 200, :body => "", :headers => {})
     stub_request(:get, "https://quitter.no/.well-known/host-meta").to_return(request_fixture('.host-meta.txt'))
     stub_request(:get, "https://quitter.no/.well-known/webfinger?resource=acct:gargron@quitter.no").to_return(request_fixture('webfinger.txt'))
     stub_request(:get, "https://quitter.no/api/statuses/user_timeline/7477.atom").to_return(request_fixture('feed.txt'))

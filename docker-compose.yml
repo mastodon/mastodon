@@ -2,10 +2,10 @@ version: '2'
 services:
   db:
     restart: always
-    image: postgres
+    image: postgres:alpine
   redis:
     restart: always
-    image: redis
+    image: redis:alpine
   web:
     restart: always
     build: .
@@ -33,7 +33,7 @@ services:
     restart: always
     build: .
     env_file: .env.production
-    command: bundle exec sidekiq -q default -q mailers -q push
+    command: bundle exec sidekiq -q default -q mailers -q pull -q push
     depends_on:
       - db
       - redis

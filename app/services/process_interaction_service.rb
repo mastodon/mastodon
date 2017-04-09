@@ -24,7 +24,7 @@ class ProcessInteractionService < BaseService
     return if account.suspended?
 
     if salmon.verify(envelope, account.keypair)
-      update_remote_profile_service.call(xml.at_xpath('/xmlns:entry', xmlns: TagManager::XMLNS), account, true)
+      RemoteProfileUpdateWorker.perform_async(account.id, body.force_encoding('UTF-8'), true)
 
       case verb(xml)
       when :follow
@@ -64,7 +64,7 @@ class ProcessInteractionService < BaseService
   end
 
   def mentions_account?(xml, account)
-    xml.xpath('/xmlns:entry/xmlns:link[@rel="mentioned"]', xmlns: TagManager::XMLNS).each { |mention_link| return true if mention_link.attribute('href').value == TagManager.instance.url_for(account) }
+    xml.xpath('/xmlns:entry/xmlns:link[@rel="mentioned"]', xmlns: TagManager::XMLNS).each { |mention_link| return true if [TagManager.instance.uri_for(account), TagManager.instance.url_for(account)].include?(mention_link.attribute('href').value) }
     false
   end
 
@@ -114,7 +114,7 @@ class ProcessInteractionService < BaseService
 
     return if status.nil?
 
-    remove_status_service.call(status) if account.id == status.account_id
+    RemovalWorker.perform_async(status.id) if account.id == status.account_id
   end
 
   def favourite!(xml, from_account)
@@ -130,7 +130,7 @@ class ProcessInteractionService < BaseService
   end
 
   def add_post!(body, account)
-    process_feed_service.call(body, account)
+    ProcessingWorker.perform_async(account.id, body.force_encoding('UTF-8'))
   end
 
   def status(xml)
@@ -151,10 +151,6 @@ class ProcessInteractionService < BaseService
 
   def process_feed_service
     @process_feed_service ||= ProcessFeedService.new
-  end
-
-  def update_remote_profile_service
-    @update_remote_profile_service ||= UpdateRemoteProfileService.new
   end
 
   def remove_status_service

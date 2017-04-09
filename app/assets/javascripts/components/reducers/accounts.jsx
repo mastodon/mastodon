@@ -33,7 +33,7 @@ import {
   STATUS_FETCH_SUCCESS,
   CONTEXT_FETCH_SUCCESS
 } from '../actions/statuses';
-import { SEARCH_SUGGESTIONS_READY } from '../actions/search';
+import { SEARCH_FETCH_SUCCESS } from '../actions/search';
 import {
   NOTIFICATIONS_UPDATE,
   NOTIFICATIONS_REFRESH_SUCCESS,
@@ -90,7 +90,6 @@ export default function accounts(state = initialState, action) {
   case REBLOGS_FETCH_SUCCESS:
   case FAVOURITES_FETCH_SUCCESS:
   case COMPOSE_SUGGESTIONS_READY:
-  case SEARCH_SUGGESTIONS_READY:
   case FOLLOW_REQUESTS_FETCH_SUCCESS:
   case FOLLOW_REQUESTS_EXPAND_SUCCESS:
   case BLOCKS_FETCH_SUCCESS:
@@ -98,6 +97,7 @@ export default function accounts(state = initialState, action) {
     return normalizeAccounts(state, action.accounts);
   case NOTIFICATIONS_REFRESH_SUCCESS:
   case NOTIFICATIONS_EXPAND_SUCCESS:
+  case SEARCH_FETCH_SUCCESS:
     return normalizeAccountsFromStatuses(normalizeAccounts(state, action.accounts), action.statuses);
   case TIMELINE_REFRESH_SUCCESS:
   case TIMELINE_EXPAND_SUCCESS:

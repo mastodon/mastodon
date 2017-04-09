@@ -7,7 +7,7 @@ Mastodon
 [travis]: https://travis-ci.org/tootsuite/mastodon
 [code_climate]: https://codeclimate.com/github/tootsuite/mastodon
 
-Mastodon is a free, open-source social network server. A decentralized alternative to commercial platforms, it avoids the risks of a single company monopolizing your communication. Anyone can run Mastodon and participate in the social network seamlessly.
+Mastodon is a free, open-source social network server. A decentralized solution to commercial platforms, it avoids the risks of a single company monopolizing your communication. Anyone can run Mastodon and participate in the social network seamlessly.
 
 An alternative implementation of the GNU social project. Based on ActivityStreams, Webfinger, PubsubHubbub and Salmon.
 
@@ -17,7 +17,7 @@ Click on the screenshot to watch a demo of the UI:
 
 [youtube_demo]: https://www.youtube.com/watch?v=YO1jQ8_rAMU
 
-Focus of the project on a clean REST API and a good user interface. Ruby on Rails is used for the back-end, while React.js and Redux are used for the dynamic front-end. A static front-end for public resources (profiles and statuses) is also provided.
+The project focus is a clean REST API and a good user interface. Ruby on Rails is used for the back-end, while React.js and Redux are used for the dynamic front-end. A static front-end for public resources (profiles and statuses) is also provided.
 
 If you would like, you can [support the development of this project on Patreon][patreon]. Alternatively, you can donate to this BTC address: `17j2g7vpgHhLuXhN4bueZFCvdxxieyRVWd`
 
@@ -64,6 +64,8 @@ Consult the example configuration file, `.env.production.sample` for the full li
 - Nginx
 
 ## Running with Docker and Docker-Compose
+
+[![](https://images.microbadger.com/badges/version/gargron/mastodon.svg)](https://microbadger.com/images/gargron/mastodon "Get your own version badge on microbadger.com") [![](https://images.microbadger.com/badges/image/gargron/mastodon.svg)](https://microbadger.com/images/gargron/mastodon "Get your own image badge on microbadger.com")
 
 The project now includes a `Dockerfile` and a `docker-compose.yml`. You need to turn `.env.production.sample` into `.env.production` with all the variables set before you can:
 
@@ -117,6 +119,12 @@ Which will re-create the updated containers, leaving databases and data as is. D
 
 Docker is great for quickly trying out software, but it has its drawbacks too. If you prefer to run Mastodon without using Docker, refer to the [production guide](docs/Running-Mastodon/Production-guide.md) for examples, configuration and instructions.
 
+## Deployment on Scalingo
+
+[![Deploy on Scalingo](https://cdn.scalingo.com/deploy/button.svg)](https://my.scalingo.com/deploy?source=https://github.com/tootsuite/mastodon#master)
+
+[You can view a guide for deployment on Scalingo here.](docs/Running-Mastodon/Scalingo-guide.md)
+
 ## Deployment on Heroku (experimental)
 
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
@@ -131,7 +139,7 @@ A quick way to get a development environment up and running is with Vagrant. You
 
 ## Contributing
 
-You can open issues for bugs you've found or features you think are missing. You can also submit pull requests to this repository. This section may be updated with more details in the future.
+You can open issues for bugs you've found or features you think are missing. You can also submit pull requests to this repository. [Here are the guidelines for code contributions](CONTRIBUTING.md)
 
 **IRC channel**: #mastodon on irc.freenode.net
 

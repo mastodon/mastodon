@@ -2,9 +2,8 @@
 
 class Account < ApplicationRecord
   include Targetable
-  include PgSearch
 
-  MENTION_RE = /(?:^|[^\/\w])@([a-z0-9_]+(?:@[a-z0-9\.\-]+)?)/i
+  MENTION_RE = /(?:^|[^\/\w])@([a-z0-9_]+(?:@[a-z0-9\.\-]+[a-z0-9]+)?)/i
   IMAGE_MIME_TYPES = ['image/jpeg', 'image/png', 'image/gif'].freeze
 
   # Local users
@@ -46,14 +45,15 @@ class Account < ApplicationRecord
   has_many :block_relationships, class_name: 'Block', foreign_key: 'account_id', dependent: :destroy
   has_many :blocking, -> { order('blocks.id desc') }, through: :block_relationships, source: :target_account
 
+  # Mute relationships
+  has_many :mute_relationships, class_name: 'Mute', foreign_key: 'account_id', dependent: :destroy
+  has_many :muting, -> { order('mutes.id desc') }, through: :mute_relationships, source: :target_account
+
   # Media
   has_many :media_attachments, dependent: :destroy
 
   # PuSH subscriptions
   has_many :subscriptions, dependent: :destroy
-
-  pg_search_scope :search_for, against: { display_name: 'A', username: 'B', domain: 'C' },
-                               using: { tsearch: { prefix: true } }
 
   scope :remote, -> { where.not(domain: nil) }
   scope :local, -> { where(domain: nil) }
@@ -73,6 +73,10 @@ class Account < ApplicationRecord
     block_relationships.where(target_account: other_account).first_or_create!(target_account: other_account)
   end
 
+  def mute!(other_account)
+    mute_relationships.where(target_account: other_account).first_or_create!(target_account: other_account)
+  end
+
   def unfollow!(other_account)
     follow = active_relationships.find_by(target_account: other_account)
     follow&.destroy
@@ -83,12 +87,21 @@ class Account < ApplicationRecord
     block&.destroy
   end
 
+  def unmute!(other_account)
+    mute = mute_relationships.find_by(target_account: other_account)
+    mute&.destroy
+  end
+
   def following?(other_account)
     following.include?(other_account)
   end
 
   def blocking?(other_account)
     blocking.include?(other_account)
+  end
+
+  def muting?(other_account)
+    muting.include?(other_account)
   end
 
   def requested?(other_account)
@@ -112,11 +125,11 @@ class Account < ApplicationRecord
   end
 
   def favourited?(status)
-    (status.reblog? ? status.reblog : status).favourites.where(account: self).count.positive?
+    status.proper.favourites.where(account: self).count.positive?
   end
 
   def reblogged?(status)
-    (status.reblog? ? status.reblog : status).reblogs.where(account: self).count.positive?
+    status.proper.reblogs.where(account: self).count.positive?
   end
 
   def keypair
@@ -131,7 +144,9 @@ class Account < ApplicationRecord
     save!
   rescue ActiveRecord::RecordInvalid
     self.avatar              = nil
+    self.header              = nil
     self[:avatar_remote_url] = ''
+    self[:header_remote_url] = ''
     save!
   end
 
@@ -144,6 +159,17 @@ class Account < ApplicationRecord
     self[:avatar_remote_url] = url
   rescue OpenURI::HTTPError => e
     Rails.logger.debug "Error fetching remote avatar: #{e}"
+  end
+
+  def header_remote_url=(url)
+    parsed_url = URI.parse(url)
+
+    return if !%w(http https).include?(parsed_url.scheme) || parsed_url.host.empty? || self[:header_remote_url] == url
+
+    self.header              = parsed_url
+    self[:header_remote_url] = url
+  rescue OpenURI::HTTPError => e
+    Rails.logger.debug "Error fetching remote header: #{e}"
   end
 
   def object_type
@@ -161,7 +187,7 @@ class Account < ApplicationRecord
 
     def find_remote!(username, domain)
       return if username.blank?
-      where(arel_table[:username].matches(username.gsub(/[%_]/, '\\\\\0'))).where(domain.nil? ? { domain: nil } : arel_table[:domain].matches(domain.gsub(/[%_]/, '\\\\\0'))).take!
+      where('lower(accounts.username) = ?', username.downcase).where(domain.nil? ? { domain: nil } : 'lower(accounts.domain) = ?', domain&.downcase).take!
     end
 
     def find_local(username)
@@ -176,6 +202,63 @@ class Account < ApplicationRecord
       nil
     end
 
+    def triadic_closures(account, limit = 5)
+      sql = <<-SQL.squish
+        WITH first_degree AS (
+            SELECT target_account_id
+            FROM follows
+            WHERE account_id = ?
+          )
+        SELECT accounts.*
+        FROM follows
+        INNER JOIN accounts ON follows.target_account_id = accounts.id
+        WHERE account_id IN (SELECT * FROM first_degree) AND target_account_id NOT IN (SELECT * FROM first_degree) AND target_account_id <> ?
+        GROUP BY target_account_id, accounts.id
+        ORDER BY count(account_id) DESC
+        LIMIT ?
+      SQL
+
+      Account.find_by_sql([sql, account.id, account.id, limit])
+    end
+
+    def search_for(terms, limit = 10)
+      terms      = Arel.sql(connection.quote(terms.gsub(/['?\\:]/, ' ')))
+      textsearch = '(setweight(to_tsvector(\'simple\', accounts.display_name), \'A\') || setweight(to_tsvector(\'simple\', accounts.username), \'B\') || setweight(to_tsvector(\'simple\', coalesce(accounts.domain, \'\')), \'C\'))'
+      query      = 'to_tsquery(\'simple\', \'\'\' \' || ' + terms + ' || \' \'\'\' || \':*\')'
+
+      sql = <<-SQL.squish
+        SELECT
+          accounts.*,
+          ts_rank_cd(#{textsearch}, #{query}, 32) AS rank
+        FROM accounts
+        WHERE #{query} @@ #{textsearch}
+        ORDER BY rank DESC
+        LIMIT ?
+      SQL
+
+      Account.find_by_sql([sql, limit])
+    end
+
+    def advanced_search_for(terms, account, limit = 10)
+      terms      = Arel.sql(connection.quote(terms.gsub(/['?\\:]/, ' ')))
+      textsearch = '(setweight(to_tsvector(\'simple\', accounts.display_name), \'A\') || setweight(to_tsvector(\'simple\', accounts.username), \'B\') || setweight(to_tsvector(\'simple\', coalesce(accounts.domain, \'\')), \'C\'))'
+      query      = 'to_tsquery(\'simple\', \'\'\' \' || ' + terms + ' || \' \'\'\' || \':*\')'
+
+      sql = <<-SQL.squish
+        SELECT
+          accounts.*,
+          (count(f.id) + 1) * ts_rank_cd(#{textsearch}, #{query}, 32) AS rank
+        FROM accounts
+        LEFT OUTER JOIN follows AS f ON (accounts.id = f.account_id AND f.target_account_id = ?) OR (accounts.id = f.target_account_id AND f.account_id = ?)
+        WHERE #{query} @@ #{textsearch}
+        GROUP BY accounts.id
+        ORDER BY rank DESC
+        LIMIT ?
+      SQL
+
+      Account.find_by_sql([sql, account.id, account.id, limit])
+    end
+
     def following_map(target_account_ids, account_id)
       follow_mapping(Follow.where(target_account_id: target_account_ids, account_id: account_id), :target_account_id)
     end
@@ -186,6 +269,10 @@ class Account < ApplicationRecord
 
     def blocking_map(target_account_ids, account_id)
       follow_mapping(Block.where(target_account_id: target_account_ids, account_id: account_id), :target_account_id)
+    end
+
+    def muting_map(target_account_ids, account_id)
+      follow_mapping(Mute.where(target_account_id: target_account_ids, account_id: account_id), :target_account_id)
     end
 
     def requested_map(target_account_ids, account_id)

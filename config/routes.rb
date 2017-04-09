@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   end
 
   use_doorkeeper do
-    controllers authorizations: 'oauth/authorizations'
+    controllers authorizations: 'oauth/authorizations', authorized_applications: 'oauth/authorized_applications'
   end
 
   get '.well-known/host-meta', to: 'xrd#host_meta', as: :host_meta
@@ -23,6 +23,8 @@ Rails.application.routes.draw do
     passwords:          'auth/passwords',
     confirmations:      'auth/confirmations',
   }
+
+  get '/users/:username', to: redirect('/@%{username}'), constraints: { format: :html }
 
   resources :accounts, path: 'users', only: [:show], param: :username do
     resources :stream_entries, path: 'updates', only: [:show] do
@@ -43,14 +45,23 @@ Rails.application.routes.draw do
     end
   end
 
+  get '/@:username', to: 'accounts#show', as: :short_account
+  get '/@:account_username/:id', to: 'statuses#show', as: :short_account_status
+
   namespace :settings do
     resource :profile, only: [:show, :update]
     resource :preferences, only: [:show, :update]
-    resource :export, only: [:show]
+    resource :import, only: [:show, :create]
 
-    resource :two_factor_auth, only: [:show] do
+    resource :export, only: [:show] do
+      collection do
+        get :follows, to: 'exports#download_following_list'
+        get :blocks, to: 'exports#download_blocking_list'
+      end
+    end
+
+    resource :two_factor_auth, only: [:show, :new, :create] do
       member do
-        post :enable
         post :disable
       end
     end
@@ -65,7 +76,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :pubsubhubbub, only: [:index]
-    resources :domain_blocks, only: [:index, :create]
+    resources :domain_blocks, only: [:index, :new, :create]
     resources :settings, only: [:index, :update]
 
     resources :reports, only: [:index, :show] do
@@ -123,12 +134,17 @@ Rails.application.routes.draw do
       get '/timelines/public',   to: 'timelines#public', as: :public_timeline
       get '/timelines/tag/:id',  to: 'timelines#tag', as: :hashtag_timeline
 
+      get '/search', to: 'search#index', as: :search
+
       resources :follows,    only: [:create]
       resources :media,      only: [:create]
       resources :apps,       only: [:create]
       resources :blocks,     only: [:index]
+      resources :mutes,      only: [:index]
       resources :favourites, only: [:index]
       resources :reports,    only: [:index, :create]
+
+      resource :instance, only: [:show]
 
       resources :follow_requests, only: [:index] do
         member do
@@ -147,12 +163,12 @@ Rails.application.routes.draw do
         collection do
           get :relationships
           get :verify_credentials
+          patch :update_credentials
           get :search
         end
 
         member do
           get :statuses
-          get 'statuses/media', to: 'accounts#media_statuses', as: :media_statuses
           get :followers
           get :following
 
@@ -160,6 +176,8 @@ Rails.application.routes.draw do
           post :unfollow
           post :block
           post :unblock
+          post :mute
+          post :unmute
         end
       end
     end
@@ -171,11 +189,14 @@ Rails.application.routes.draw do
 
   get '/web/(*any)', to: 'home#index', as: :web
 
-  get '/about',      to: 'about#index'
+  get '/about',      to: 'about#show'
   get '/about/more', to: 'about#more'
   get '/terms',      to: 'about#terms'
 
   root 'home#index'
 
-  match '*unmatched_route', via: :all, to: 'application#raise_not_found'
+  match '*unmatched_route',
+    via: :all,
+    to: 'application#raise_not_found',
+    format: false
 end

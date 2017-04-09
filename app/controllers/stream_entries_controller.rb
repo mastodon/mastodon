@@ -19,7 +19,9 @@ class StreamEntriesController < ApplicationController
         end
       end
 
-      format.atom
+      format.atom do
+        render xml: AtomSerializer.render(AtomSerializer.new.entry(@stream_entry, true))
+      end
     end
   end
 
@@ -50,6 +52,6 @@ class StreamEntriesController < ApplicationController
   end
 
   def check_account_suspension
-    head 410 if @account.suspended?
+    gone if @account.suspended?
   end
 end

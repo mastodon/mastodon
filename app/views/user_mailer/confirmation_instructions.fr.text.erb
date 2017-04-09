@@ -1,0 +1,5 @@
+Bienvenue <%= @resource.email %> !
+
+Vous pouvez confirmer le courriel de votre compte Mastodon en cliquant sur le lien ci-dessous :
+
+<%= confirmation_url(@resource, confirmation_token: @token) %>

@@ -11,10 +11,13 @@ import {
   unreblog,
   unfavourite
 } from '../actions/interactions';
-import { blockAccount } from '../actions/accounts';
+import {
+  blockAccount,
+  muteAccount
+} from '../actions/accounts';
 import { deleteStatus } from '../actions/statuses';
 import { initReport } from '../actions/reports';
-import { openMedia } from '../actions/modal';
+import { openModal } from '../actions/modal';
 import { createSelector } from 'reselect'
 import { isMobile } from '../is_mobile'
 
@@ -60,7 +63,7 @@ const mapDispatchToProps = (dispatch) => ({
   },
 
   onOpenMedia (media, index) {
-    dispatch(openMedia(media, index));
+    dispatch(openModal('MEDIA', { media, index }));
   },
 
   onBlock (account) {
@@ -69,7 +72,11 @@ const mapDispatchToProps = (dispatch) => ({
 
   onReport (status) {
     dispatch(initReport(status.get('account'), status));
-  }
+  },
+
+  onMute (account) {
+    dispatch(muteAccount(account.get('id')));
+  },
 
 });
 

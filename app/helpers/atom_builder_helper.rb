@@ -124,6 +124,10 @@ module AtomBuilderHelper
     single_link_avatar(xml, account, :original, 120)
   end
 
+  def link_header(xml, account)
+    xml.link('rel' => 'header', 'type' => account.header_content_type, 'media:width' => 700, 'media:height' => 335, 'href' => full_asset_url(account.header.url(:original)))
+  end
+
   def logo(xml, url)
     xml.logo url
   end
@@ -160,6 +164,7 @@ module AtomBuilderHelper
     summary          xml, account.note
     link_alternate   xml, TagManager.instance.url_for(account)
     link_avatar      xml, account
+    link_header      xml, account
     portable_contact xml, account
     privacy_scope    xml, account.locked? ? :private : :public
   end

@@ -5,7 +5,7 @@ const getStatuses = state => state.get('statuses');
 const getAccounts = state => state.get('accounts');
 
 const getAccountBase         = (state, id) => state.getIn(['accounts', id], null);
-const getAccountRelationship = (state, id) => state.getIn(['relationships', id]);
+const getAccountRelationship = (state, id) => state.getIn(['relationships', id], null);
 
 export const makeGetAccount = () => {
   return createSelector([getAccountBase, getAccountRelationship], (base, relationship) => {

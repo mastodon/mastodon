@@ -7,6 +7,7 @@ import { defineMessages, injectIntl } from 'react-intl';
 const messages = defineMessages({
   delete: { id: 'status.delete', defaultMessage: 'Delete' },
   mention: { id: 'status.mention', defaultMessage: 'Mention @{name}' },
+  mute: { id: 'account.mute', defaultMessage: 'Mute @{name}' },
   block: { id: 'account.block', defaultMessage: 'Block @{name}' },
   reply: { id: 'status.reply', defaultMessage: 'Reply' },
   reblog: { id: 'status.reblog', defaultMessage: 'Reblog' },
@@ -28,6 +29,7 @@ const StatusActionBar = React.createClass({
     onReblog: React.PropTypes.func,
     onDelete: React.PropTypes.func,
     onMention: React.PropTypes.func,
+    onMute: React.PropTypes.func,
     onBlock: React.PropTypes.func,
     onReport: React.PropTypes.func,
     me: React.PropTypes.number.isRequired,
@@ -56,6 +58,10 @@ const StatusActionBar = React.createClass({
     this.props.onMention(this.props.status.get('account'), this.context.router);
   },
 
+  handleMuteClick () {
+    this.props.onMute(this.props.status.get('account'));
+  },
+
   handleBlockClick () {
     this.props.onBlock(this.props.status.get('account'));
   },
@@ -81,6 +87,7 @@ const StatusActionBar = React.createClass({
     } else {
       menu.push({ text: intl.formatMessage(messages.mention, { name: status.getIn(['account', 'username']) }), action: this.handleMentionClick });
       menu.push(null);
+      menu.push({ text: intl.formatMessage(messages.mute, { name: status.getIn(['account', 'username']) }), action: this.handleMuteClick });
       menu.push({ text: intl.formatMessage(messages.block, { name: status.getIn(['account', 'username']) }), action: this.handleBlockClick });
       menu.push({ text: intl.formatMessage(messages.report, { name: status.getIn(['account', 'username']) }), action: this.handleReport });
     }
@@ -88,7 +95,7 @@ const StatusActionBar = React.createClass({
     return (
       <div style={{ marginTop: '10px', overflow: 'hidden' }}>
         <div style={{ float: 'left', marginRight: '18px'}}><IconButton title={intl.formatMessage(messages.reply)} icon='reply' onClick={this.handleReplyClick} /></div>
-        <div style={{ float: 'left', marginRight: '18px'}}><IconButton disabled={status.get('visibility') === 'private'} active={status.get('reblogged')} title={intl.formatMessage(messages.reblog)} icon={status.get('visibility') === 'private' ? 'lock' : 'retweet'} onClick={this.handleReblogClick} /></div>
+        <div style={{ float: 'left', marginRight: '18px'}}><IconButton disabled={status.get('visibility') === 'private' || status.get('visibility') === 'direct'} active={status.get('reblogged')} title={intl.formatMessage(messages.reblog)} icon={status.get('visibility') === 'direct' ? 'envelope' : (status.get('visibility') === 'private' ? 'lock' : 'retweet')} onClick={this.handleReblogClick} /></div>
         <div style={{ float: 'left', marginRight: '18px'}}><IconButton animate={true} active={status.get('favourited')} title={intl.formatMessage(messages.favourite)} icon='star' onClick={this.handleFavouriteClick} activeStyle={{ color: '#ca8f04' }} /></div>
 
         <div style={{ width: '18px', height: '18px', float: 'left' }}>
