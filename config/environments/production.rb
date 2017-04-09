@@ -99,7 +99,7 @@ Rails.application.configure do
     :user_name      => ENV['SMTP_LOGIN'],
     :password       => ENV['SMTP_PASSWORD'],
     :domain         => ENV['SMTP_DOMAIN'] || config.x.local_domain,
-    :authentication => :plain,
+    :authentication => ENV['SMTP_AUTH_METHOD'] || :plain,
   }
 
   config.action_mailer.delivery_method = :smtp

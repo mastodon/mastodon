@@ -71,6 +71,10 @@
       "description": "Address to send emails from",
       "required": false
     },
+    "SMTP_AUTH_METHOD": {
+      "description": "Authentication method to use with SMTP server. Default is 'plain'.",
+      "required": false
+    },
     "BUILDPACK_URL": {
       "description": "Internal scalingo configuration",
       "required": true,
