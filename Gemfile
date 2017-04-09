@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
 source 'https://rubygems.org'
-ruby '2.3.1'
+# ruby '2.3.1'
+ruby '2.3.1', engine: 'jruby', engine_version: '9.1.8.0'
 
 gem 'rails', '~> 5.0.2'
 gem 'sass-rails', '~> 5.0'
@@ -10,8 +11,10 @@ gem 'coffee-rails', '~> 4.1.0'
 gem 'jquery-rails'
 gem 'puma'
 
-gem 'hamlit-rails'
-gem 'pg'
+gem 'hamlit-rails', platforms: :ruby
+gem 'pg', platforms: :ruby
+gem 'activerecord-jdbc-adapter', git: 'https://github.com/jruby/activerecord-jdbc-adapter.git', branch: 'rails-5', platforms: :jruby
+gem 'activerecord-jdbcpostgresql-adapter', git: 'https://github.com/jruby/activerecord-jdbc-adapter.git', branch: 'rails-5', platforms: :jruby
 gem 'pghero'
 gem 'dotenv-rails'
 gem 'font-awesome-rails'
@@ -34,11 +37,12 @@ gem 'doorkeeper'
 gem 'rabl'
 gem 'rqrcode'
 gem 'twitter-text'
-gem 'ox'
-gem 'oj'
+gem 'ox', platforms: :ruby
+gem 'oj', platforms: :ruby
+gem 'json', platforms: :jruby
 gem 'hiredis'
 gem 'redis', '~>3.2', require: ['redis', 'redis/connection/hiredis']
-gem 'fast_blank'
+gem 'fast_blank', platforms: :ruby
 gem 'htmlentities'
 gem 'simple_form'
 gem 'will_paginate'
@@ -75,7 +79,7 @@ end
 group :development do
   gem 'rubocop', require: false
   gem 'better_errors'
-  gem 'binding_of_caller'
+  gem 'binding_of_caller', platforms: :ruby
   gem 'letter_opener'
   gem 'letter_opener_web'
   gem 'bullet'
