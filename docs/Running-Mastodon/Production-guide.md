@@ -5,7 +5,7 @@ Production guide
 
 It is recommended to create a special user for mastodon on the server (you could call the user `mastodon`), though remember to disable outside login for it. You should only be able to get into that user through `sudo su - mastodon`.
 
-    $ adduser mastodon sudo
+    $ adduser mastodon
     $ echo "DenyUsers mastodon" >> /etc/ssh/sshd_config
     $ sudo systemctl restart ssh
     $ sudo su - mastodon
@@ -41,7 +41,9 @@ Once that's installed, run:
 
     certbot certonly
 
-and follow the prompts. It'll ask you what domain name you want to get a certificate for - put in the public facing domain name, which should be the same as your instance name. The one you set up DNS for. This installer is cool, it has the ability to stand up a temporary webserver on your host that it will use to verify that you own the domain name you're claiming. Once this is done, great! You can provide HTTPS access!
+and follow the prompts. It'll ask you what domain name you want to get a certificate for - put in the public facing domain name, which should be the same as your instance name. The one you set up DNS for. For now, use the standalone server to verify (option 2). Once this is done, great! You can provide HTTPS access! 
+
+*You will have to do one more thing, later, to make this certificate auto-renew - see 'Updating Your SSL Certificate' near the end of this guide.*
 
 ### Nginx
 To install nginx, run:
@@ -335,6 +337,10 @@ Netdata should now be running on localhost:19999. To expose it via nginx we need
 
 Then `sudo systemctl restart nginx` and navigate to https://YOUR_DOMAIN/netdata to see realtime monitoring data.
 
+## Updating Your SSL Certificate
+Remember above when we set up our LetsEncrypt certificate using a standalone server? In three months, when it tries to auto-renew that certificate, it's going to fail because we now have something else listening on those ports. (namely, nginx and our mastodon app). 
+
+So technically your certificate is fine - it will work for three months. But if you want it to auto-renew (and, like, you do) then once everything is working go ahead and re-run `certbot certonly`. This time, choose option (1) (Place files in webroot directory (webroot)). It'll tell you that your cert isn't close to expiration, and ask you if you're sure - say yes. Enter a new webroot (press `1` again when prompted) and when it asks for the path, give it `/home/users/mastodon/live/public` (or whatever your equivalent path is). This will allow the whole thing to re-run and verify your mastodon instance.
 
 ## Things to look out for when upgrading Mastodon
 
