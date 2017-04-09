@@ -516,7 +516,7 @@ ___
 | `tags`                   | An array of [Tags](#tag) |
 | `application`            | [Application](#application) from which the status was posted |
 
-### Tags
+### Tag
 
 | Attribute                | Description |
 | ------------------------ | ----------- |
