@@ -29,7 +29,7 @@ const ru = {
   "getting_started.heading": "Домашняя страница",
   "getting_started.about_addressing": " Вы можете читать пользователей, если знаете их имя и инстанс. Для этого введите имя@инстанс в форму поиска.",
   "getting_started.about_shortcuts": "Если пользователь на этом же инстансе, то достаточно ввести имя. То же самое правило касается упоминания людей в статусах.",
-  "getting_started.open_source_notice": "Mastodon имеет открытый исходный код. Вы можете распространять его, или сообщить о нарушении на GitHub {github}. {apps}. Перевод на Русский {mastodonrussia}",
+  "getting_started.open_source_notice": "Mastodon имеет открытый исходный код. Вы можете распространять его, или сообщить о нарушении на GitHub {github}. {apps}. Перевод на Русский: MastodonRussia.ru",
   "column.home": "Домашняя лента",
   "column.community": "Местная лента",
   "column.public": "Глобальная лента",
