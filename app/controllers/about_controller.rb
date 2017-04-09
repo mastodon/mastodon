@@ -5,9 +5,9 @@ class AboutController < ApplicationController
 
   def index
     @user_count = Rails.cache.fetch('user_count') { User.count }
-    @max_users                    = Setting.max_users
+    @max_users                    = Setting.max_users || Float::INFINITY
     @description                  = Setting.site_description
-    @open_registrations           = Setting.open_registrations && @user_count < (@max_users || 0)
+    @open_registrations           = Setting.open_registrations && @user_count <= @max_users
     @closed_registrations_message = Setting.closed_registrations_message
 
     @user = User.new
