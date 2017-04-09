@@ -125,11 +125,11 @@ class Account < ApplicationRecord
   end
 
   def favourited?(status)
-    (status.reblog? ? status.reblog : status).favourites.where(account: self).count.positive?
+    status.proper.favourites.where(account: self).count.positive?
   end
 
   def reblogged?(status)
-    (status.reblog? ? status.reblog : status).reblogs.where(account: self).count.positive?
+    status.proper.reblogs.where(account: self).count.positive?
   end
 
   def keypair

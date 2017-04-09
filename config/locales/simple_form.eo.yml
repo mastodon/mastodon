@@ -1,0 +1,46 @@
+---
+eo:
+  simple_form:
+    hints:
+      defaults:
+        avatar: En la formato PNG, GIF aŭ JPG. Ĝis 2Mo. Estos malgrandigita al 120x120px
+        display_name: 30 signoj pleje
+        header: En la formato PNG, GIF aŭ JPG. Ĝis 2Mo. Estos malgrandigita al 700x335px
+        locked: Vi devos aprobi ĉiun peton de sekvado, kaj viaj mesaĝoj estos senŝanĝe nur por viaj sekvantoj.
+        note: 160 signoj pleje
+      imports:
+        data: Dosiero CSV el alia aperaĵo de Mastodon
+    labels:
+      defaults:
+        avatar: Profilbildo
+        confirm_new_password: Konfirmi novan pasvorton
+        confirm_password: Konfirmi la pasvorton
+        current_password: Nuna pasvorto
+        data: Datumoj
+        display_name: Publika nomo
+        email: Retpoŝt-adreso
+        header: Kapbildo
+        locale: Lingvo
+        locked: Privatigi la konton
+        new_password: Nova pasvorto
+        note: Sinprezento
+        otp_attempt: Dufaktora identigilo
+        password: Pasvorto
+        setting_default_privacy: Videbleco de la mesaĝoj
+        type: Tipo de alportado
+        username: Uzantnomo
+      interactions:
+        must_be_follower: Kaŝi la sciigojn de homoj, kiuj ne sekvas vin
+        must_be_following: Kaŝi la sciigojn de homoj, kiujn vi ne sekas
+      notification_emails:
+        digest: Sendi resumajn retpoŝt-mesaĝojn
+        favourite: Sendi retpoŝt-mesaĝon, kiam iu favoras mesaĝon de vi
+        follow: Sendi retpoŝt-mesaĝon, kiam iu eksekvas vin
+        follow_request: Sendi retpoŝt-mesaĝon, kiam iu petas sekvi vin
+        mention: Sendi retpoŝt-mesaĝon, kiam iu mencias vin
+        reblog: Sendi retpoŝt-mesaĝon, kiam iu diskonigas mesaĝon de vi
+    'no': 'Ne'
+    required:
+      mark: "*"
+      text: bezonata
+    'yes': 'Jes'

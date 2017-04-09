@@ -7,6 +7,7 @@ class ApplicationController < ActionController::Base
 
   force_ssl if: "Rails.env.production? && ENV['LOCAL_HTTPS'] == 'true'"
 
+  include Localized
   helper_method :current_account
 
   rescue_from ActionController::RoutingError, with: :not_found
@@ -14,7 +15,6 @@ class ApplicationController < ActionController::Base
   rescue_from ActionController::InvalidAuthenticityToken, with: :unprocessable_entity
 
   before_action :store_current_location, except: :raise_not_found, unless: :devise_controller?
-  before_action :set_locale
   before_action :set_user_activity
   before_action :check_suspension, if: :user_signed_in?
 
@@ -26,12 +26,6 @@ class ApplicationController < ActionController::Base
 
   def store_current_location
     store_location_for(:user, request.url)
-  end
-
-  def set_locale
-    I18n.locale = current_user.try(:locale) || I18n.default_locale
-  rescue I18n::InvalidLocale
-    I18n.locale = I18n.default_locale
   end
 
   def require_admin!
@@ -46,7 +40,6 @@ class ApplicationController < ActionController::Base
 
     # If the sign in is after a two week break, we need to regenerate their feed
     RegenerationWorker.perform_async(current_user.account_id) if current_user.last_sign_in_at < 14.days.ago
-    return
   end
 
   def check_suspension
