@@ -7,6 +7,7 @@ class ApiController < ApplicationController
   protect_from_forgery with: :null_session
 
   skip_before_action :verify_authenticity_token
+  skip_before_action :store_current_location
 
   before_action :set_rate_limit_headers
 
