@@ -12,7 +12,7 @@ if ENV['S3_ENABLED'] == 'true'
 
   Paperclip::Attachment.default_options[:storage]        = :s3
   Paperclip::Attachment.default_options[:s3_protocol]    = ENV.fetch('S3_PROTOCOL') { 'https' }
-  Paperclip::Attachment.default_options[:url]            = ':s3_domain_url'
+  Paperclip::Attachment.default_options[:url]            = ''
   Paperclip::Attachment.default_options[:s3_host_name]   = ENV.fetch('S3_HOSTNAME') { "s3-#{ENV.fetch('S3_REGION')}.amazonaws.com" }
   Paperclip::Attachment.default_options[:path]           = '/:class/:attachment/:id_partition/:style/:filename'
   Paperclip::Attachment.default_options[:s3_headers]     = { 'Cache-Control' => 'max-age=315576000', 'Expires' => 10.years.from_now.httpdate }
