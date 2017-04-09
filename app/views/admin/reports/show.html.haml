@@ -32,6 +32,10 @@
 
   %div{ style: 'overflow: hidden' }
     %div{ style: 'float: right' }
+      = form_tag timeout_admin_report_path(@report), class: 'timeout-form' do
+        = text_field_tag 'time', '', class: 'time', placeholder: 'time'
+        = select_tag 'modifier', options_for_select([['hours','1'],['days','24']]), class: 'button modifier'
+        = submit_tag 'Timeout account', class: 'submit button'
       = link_to 'Silence account', silence_admin_report_path(@report), method: :post, class: 'button'
       = link_to 'Suspend account', suspend_admin_report_path(@report), method: :post, class: 'button'
     %div{ style: 'float: left' }
