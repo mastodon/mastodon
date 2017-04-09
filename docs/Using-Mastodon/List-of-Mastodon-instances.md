@@ -65,7 +65,7 @@ There is also a list at [instances.mastodon.xyz](https://instances.mastodon.xyz)
 | [off-the-clock.us](https://off-the-clock.us/)|The work day is over.|Yes|No|
 | [infinimatix.net](https://infinimatix.net)|Informatics|Yes|Yes|
 | [social.0day.agency](https://social.0day.agency)|Infosec, Hacking, Fun (only protonmail)|Yes|Yes|
-| [kagrumez.lerk.io](https://kagrumez.lerk.io)|Open registration. German end english.|Yes|No|
+| [social.k40s.net](https://social.k40s.net)|Open registration. German end english.|Yes|No|
 | [meow.social](https://meow.social)|A furry fandom focused instance|Yes|No|
 | [neumastodon.com](https://neumastodon.com/)|Northeastern University Mastodon |Yes|No|
 | [dancingbanana.party](https://dancingbanana.party)|La banane qui danse.|Yes|No|
