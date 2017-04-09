@@ -16,7 +16,7 @@ class FollowRemoteAccountService < BaseService
     return Account.find_local(username) if TagManager.instance.local_domain?(domain)
 
     account = Account.find_remote(username, domain)
-    return account unless account.nil?
+    return account unless account.nil? || !account.subscribed?
 
     Rails.logger.debug "Looking up webfinger for #{uri}"
 
