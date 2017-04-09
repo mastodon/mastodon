@@ -85,6 +85,17 @@ Returns an [Account](#account).
 
 Returns the authenticated user's [Account](#account).
 
+#### Updating the current user:
+
+    PATCH /api/v1/accounts/update_credentials
+
+Form data:
+
+- `display_name`: The name to display in the user's profile
+- `note`: A new biography for the user
+- `avatar`: A base64 encoded image to display as the user's avatar (e.g. `data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAUoAAADrCAYAAAA...`)
+- `header`: A base64 encoded image to display as the user's header image (e.g. `data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAUoAAADrCAYAAAA...`)
+
 #### Getting an account's followers:
 
     GET /api/v1/accounts/:id/followers
