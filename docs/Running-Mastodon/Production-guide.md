@@ -22,7 +22,7 @@ Now, if you try to ssh in as mastodon you'll fail - but if you ssh in as the roo
     sudo npm install -g yarn
 
 ## Nginx w/ HTTPS via LetsEncrypt
-Several steps here. First, make sure your domain name is either pointing to your IP via A record, or to your hostname via CNAME record. Or, if you have a hosting setup where you can just set the DNS servers entirely, use that. Regardless, your DNS has to be configured before LetsEncrypt will work.
+First, make sure your domain name is either pointing to your server's IP via A record, or to its hostname via CNAME record. Or, if you have a hosting setup where you can just set the DNS servers entirely, use that. Regardless, your DNS has to be configured before LetsEncrypt will work.
 
 ### LetsEncrypt (SSL is free and easy, do this!)
 Go to https://certbot.eff.org/ to get setup instructions for your server configuration. If you're following this guide, you want the nginx setup - and for the purposes of this example, let's assume you're running on Ubuntu 16.04. (If you're not the instructions may slightly vary - follow what it says on the website instead of what it says here).
@@ -37,18 +37,18 @@ Depending on your Ubuntu image, you may first need to run:
 
     sudo apt-get install software-properties-common python-software-properties
 
-Once that's installed, just run:
+Once that's installed, run:
 
     certbot certonly
 
 and follow the prompts. It'll ask you what domain name you want to get a certificate for - put in the public facing domain name, which should be the same as your instance name. The one you set up DNS for. This installer is cool, it has the ability to stand up a temporary webserver on your host that it will use to verify that you own the domain name you're claiming. Once this is done, great! You can provide HTTPS access!
 
 ### Nginx
-Installing nginx is super simple:
+To install nginx, run:
 
     sudo apt-get install nginx
 
-But we want to use a custom configuration for mastodon. Edit `/etc/nginx/nginx.conf` to contain the following, where YOUR_HOST is replaced with your actual public instance name.
+Replace the default contents of `/etc/nginx/nginx.conf` with the following, where all four instances of the string `YOUR_HOST` are changed to the hostname for which you set up SSL above.
 
 ```
 worker_processes  4;
@@ -320,7 +320,7 @@ You can monitor your server's status using [netdata](https://github.com/firehol/
     cd netdata
     ./netdata-installer.sh
 
-That's it - netdata should now be running on localhost:19999. To expose it via nginx we need to add a few rules to our nginx configuration.
+Netdata should now be running on localhost:19999. To expose it via nginx we need to add a few rules to our nginx configuration.
 
 1. Inside of the `http` directive, as a sibling to the various `server` directives we set up above, add this:
     ```
