@@ -322,7 +322,7 @@ You can monitor your server's status using [netdata](https://github.com/firehol/
 
 That's it - netdata should now be running on localhost:19999. To expose it via nginx we need to add a few rules to our nginx configuration.
 
-    1. Inside of the `http` directive, as a sibling to the various `server` directives we set up above, add this:
+1. Inside of the `http` directive, as a sibling to the various `server` directives we set up above, add this:
     ```
     upstream netdata {
         server 127.0.0.1:19999;
@@ -330,7 +330,7 @@ That's it - netdata should now be running on localhost:19999. To expose it via n
     }
     ```
 
-    2. Inside of the `server` directive that's handling https, next to all of the other locations, add the following two:
+2. Inside of the `server` directive that's handling https, next to all of the other locations, add the following two:
     ```
     location /netdata {
       return 301 /netdata/;
