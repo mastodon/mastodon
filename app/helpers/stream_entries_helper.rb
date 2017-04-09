@@ -32,10 +32,9 @@ module StreamEntriesHelper
 
   def microformats_h_class(status, is_predecessor, is_successor, include_threads)
     return 'h-cite' if is_predecessor || status.reblog || is_successor
-    return 'h-entry' if !include_threads
-    return ''
+    return 'h-entry' unless include_threads
+    ''
   end
-
 
   def relative_time(date)
     date < 5.days.ago ? date.strftime('%d.%m.%Y') : "#{time_ago_in_words(date)} ago"
