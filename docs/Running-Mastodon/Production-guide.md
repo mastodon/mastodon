@@ -35,6 +35,7 @@ server {
   sendfile             on;
   client_max_body_size 0;
 
+  root /home/mastodon/live/public;
 
   gzip on;
   gzip_disable "msie6";
