@@ -35,3 +35,11 @@ You are able to set the following settings:
 - Site extended description
 
 You may wish to use the extended description (shown at https://yourmastodon.instance/about/more ) to display content guidelines or a user agreement (see https://mastodon.social/about/more for an example).
+
+## Confirming Users Manually
+
+The following rake task:
+
+    RAILS_ENV=production bundle exec rails mastodon:confirm_email USER_EMAIL=alice@alice.com
+
+Will confirm a user manually, in case they don't have access to their confirmation email for whatever reason.
