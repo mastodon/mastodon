@@ -11,11 +11,15 @@ class Api::V1::BlocksController < ApiController
     accounts  = Account.where(id: results.map(&:target_account_id)).map { |a| [a.id, a] }.to_h
     @accounts = results.map { |f| accounts[f.target_account_id] }.compact
 
-    # set_account_counters_maps(@accounts)
-
-    next_path = api_v1_blocks_url(max_id: results.last.id)    if results.size == limit_param(DEFAULT_ACCOUNTS_LIMIT)
-    prev_path = api_v1_blocks_url(since_id: results.first.id) unless results.empty?
+    next_path = api_v1_blocks_url(pagination_params(max_id: results.last.id))    if results.size == limit_param(DEFAULT_ACCOUNTS_LIMIT)
+    prev_path = api_v1_blocks_url(pagination_params(since_id: results.first.id)) unless results.empty?
 
     set_pagination_headers(next_path, prev_path)
+  end
+
+  private
+
+  def pagination_params(core_params)
+    params.permit(:limit).merge(core_params)
   end
 end

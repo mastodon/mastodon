@@ -25,6 +25,10 @@ code {
     margin-bottom: 15px;
   }
 
+  strong {
+    font-weight: 500;
+  }
+
   .label_input {
     display: flex;
 
@@ -224,7 +228,12 @@ code {
   }
 }
 
+.qr-wrapper {
+  display: flex;
+}
+
 .qr-code {
+  flex: 0 0 auto;
   background: #fff;
   padding: 4px;
   margin-bottom: 20px;
@@ -234,5 +243,15 @@ code {
   svg {
     display: block;
     margin: 0;
+  }
+}
+
+.qr-alternative {
+  margin-left: 10px;
+  color: $color3;
+
+  samp {
+    display: block;
+    font-size: 14px;
   }
 }

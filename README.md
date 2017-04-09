@@ -17,7 +17,7 @@ Click on the screenshot to watch a demo of the UI:
 
 [youtube_demo]: https://www.youtube.com/watch?v=YO1jQ8_rAMU
 
-Focus of the project on a clean REST API and a good user interface. Ruby on Rails is used for the back-end, while React.js and Redux are used for the dynamic front-end. A static front-end for public resources (profiles and statuses) is also provided.
+The project focus is a clean REST API and a good user interface. Ruby on Rails is used for the back-end, while React.js and Redux are used for the dynamic front-end. A static front-end for public resources (profiles and statuses) is also provided.
 
 If you would like, you can [support the development of this project on Patreon][patreon]. Alternatively, you can donate to this BTC address: `17j2g7vpgHhLuXhN4bueZFCvdxxieyRVWd`
 
