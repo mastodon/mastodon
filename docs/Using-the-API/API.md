@@ -30,7 +30,7 @@ API overview
   - [Instance](#instance)
   - [Mention](#mention)
   - [Notification](#notification)
-  - [Relationships](#relationship)
+  - [Relationship](#relationship)
   - [Results](#results)
   - [Status](#status)
   - [Tag](#tag)
