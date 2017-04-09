@@ -24,6 +24,39 @@ RSpec.describe Api::V1::AccountsController, type: :controller do
     end
   end
 
+  describe 'PATCH #update_credentials' do
+    it 'returns http success' do
+      expect(user.account.avatar).not_to exist
+      expect(user.account.header).not_to exist
+
+      avatar = File.read(Rails.root.join('app', 'assets', 'images', 'logo.png'))
+      header = File.read(Rails.root.join('app', 'assets', 'images', 'mastodon-getting-started.png'))
+      params = {
+        display_name: "Alice Isn't Dead",
+        note: "Hi!\n\nToot toot!",
+        avatar: "data:image/png;base64,#{Base64.encode64(avatar)}",
+        header: "data:image/png;base64,#{Base64.encode64(header)}"
+      }
+      patch :update_credentials, params: params
+      expect(response).to have_http_status(:success)
+
+      user.reload
+
+      expect(user.account.display_name).to eq("Alice Isn't Dead")
+      expect(user.account.note).to eq("Hi!\n\nToot toot!")
+      expect(user.account.avatar).to exist
+      expect(user.account.header).to exist
+    end
+
+    it 'respects Account validations' do
+      note = "This is too long. " * 10
+      error = { error: 'The account could not be updated: Note is too long (maximum is 160 characters)' }.to_json
+      patch :update_credentials, params: { note: note }
+      expect(response).to have_http_status(:unprocessable_entity)
+      expect(response.body).to eq(error)
+    end
+  end
+
   describe 'GET #statuses' do
     it 'returns http success' do
       get :statuses, params: { id: user.account.id }
