@@ -62,7 +62,7 @@ Rails.application.configure do
     host: ENV.fetch('REDIS_HOST') { 'localhost' },
     port: ENV.fetch('REDIS_PORT') { 6379 },
     password: ENV.fetch('REDIS_PASSWORD') { false },
-    db: 0,
+    db: ENV.fetch('REDIS_DB') { 0 },
     namespace: 'cache',
     expires_in: 20.minutes,
   }
