@@ -34,6 +34,12 @@ class Admin::AccountsController < ApplicationController
     redirect_to admin_accounts_path
   end
 
+  def timed_silence
+    @account.update(silenced: true)
+    UnsilenceWorker.perform_in(params[:days].days, @account.id)
+    redirect_to admin_accounts_path
+  end
+
   def unsilence
     @account.update(silenced: false)
     redirect_to admin_accounts_path
