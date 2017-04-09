@@ -43,6 +43,7 @@ import en from 'react-intl/locale-data/en';
 import de from 'react-intl/locale-data/de';
 import es from 'react-intl/locale-data/es';
 import fr from 'react-intl/locale-data/fr';
+import nl from 'react-intl/locale-data/nl';
 import pt from 'react-intl/locale-data/pt';
 import hu from 'react-intl/locale-data/hu';
 import uk from 'react-intl/locale-data/uk';
@@ -59,7 +60,7 @@ const browserHistory = useRouterHistory(createBrowserHistory)({
   basename: '/web'
 });
 
-addLocaleData([...en, ...de, ...es, ...fr, ...pt, ...hu, ...uk, ...fi]);
+addLocaleData([...en, ...de, ...es, ...fr, ...nl, ...pt, ...hu, ...uk, ...fi]);
 
 const Mastodon = React.createClass({
 
