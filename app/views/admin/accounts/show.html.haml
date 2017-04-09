@@ -64,6 +64,10 @@
 - if @account.silenced?
   = link_to 'Undo silence', unsilence_admin_account_path(@account.id), method: :post, class: 'button'
 - else
+  = form_tag timeout_admin_account_path(@account.id) do
+    = text_field_tag 'time'
+    = select_tag 'modifier', options_for_select([['hours','1'],['days','24']])
+    = submit_tag 'Timeout'
   = link_to 'Silence', silence_admin_account_path(@account.id), method: :post, class: 'button'
 
 - if @account.suspended?
