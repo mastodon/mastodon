@@ -102,6 +102,7 @@ Rails.application.configure do
     :authentication => ENV['SMTP_AUTH_METHOD'] || :plain,
     :openssl_verify_mode => ENV['SMTP_OPENSSL_VERIFY_MODE'] || 'peer',
     :enable_starttls_auto => ENV['SMTP_ENABLE_STARTTLS_AUTO'] || true,
+    :ca_file => ENV['SMTP_SSL_CERT_FILE'] || "/etc/ssl/certs/ca-certificates.crt",
   }
 
   config.action_mailer.delivery_method = :smtp
