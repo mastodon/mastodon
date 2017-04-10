@@ -83,11 +83,23 @@ const ComposeForm = React.createClass({
     this.props.onChangeSpoilerText(e.target.value);
   },
 
+  componentWillReceiveProps (nextProps) {
+    // If this is the update where we've finished uploading,
+    // save the last caret position so we can restore it below!
+    if (!nextProps.is_uploading && this.props.is_uploading) {
+      this._restoreCaret = this.autosuggestTextarea.textarea.selectionStart;
+    }
+  },
+
   componentDidUpdate (prevProps) {
-    if (this.props.focusDate !== prevProps.focusDate) {
-      // If replying to zero or one users, places the cursor at the end of the textbox.
-      // If replying to more than one user, selects any usernames past the first;
-      // this provides a convenient shortcut to drop everyone else from the conversation.
+    // This statement does several things: 
+    // - If we're beginning a reply, and,
+    //     - Replying to zero or one users, places the cursor at the end of the textbox.
+    //     - Replying to more than one user, selects any usernames past the first;
+    //       this provides a convenient shortcut to drop everyone else from the conversation.
+    // - If we've just finished uploading an image, and have a saved caret position,
+    //   restores the cursor to that position after the text changes!
+    if (this.props.focusDate !== prevProps.focusDate || (prevProps.is_uploading && !this.props.is_uploading && typeof this._restoreCaret === 'number')) {
       let selectionEnd, selectionStart;
 
       if (this.props.preselectDate !== prevProps.preselectDate) {
@@ -118,7 +130,7 @@ const ComposeForm = React.createClass({
 
   render () {
     const { intl, needsPrivacyWarning, mentionedDomains, onPaste } = this.props;
-    const disabled = this.props.is_submitting || this.props.is_uploading;
+    const disabled = this.props.is_submitting;
 
     let publishText    = '';
     let privacyWarning = '';
