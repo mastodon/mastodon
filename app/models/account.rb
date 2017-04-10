@@ -120,8 +120,12 @@ class Account < ApplicationRecord
     local? ? username : "#{username}@#{domain}"
   end
 
+  def local_username_and_domain
+    "#{username}@#{Rails.configuration.x.local_domain}"
+  end
+
   def to_webfinger_s
-    "acct:#{username}@#{Rails.configuration.x.local_domain}"
+    "acct:#{local_username_and_domain}"
   end
 
   def subscribed?
