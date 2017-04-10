@@ -85,7 +85,7 @@ server {
 }
 ```
 
-Make sure you remplace all instances of `example.com`.
+Make sure you replace all instances of `example.com`.
 
 ## Running in production without Docker
 
