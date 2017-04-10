@@ -12,7 +12,7 @@ module SettingsHelper
     'zh-CN': '简体中文',
     fi: 'Suomi',
     eo: 'Esperanto',
-    ru: 'Русский',
+	ru:	'Русский',
   }.freeze
 
   def human_locale(locale)
