@@ -1,0 +1,6 @@
+- content_for :page_title do
+  = t('accounts.people_followed_by', name: display_name(@account))
+
+= render 'accounts/header', account: @account
+
+= render 'accounts/follow_grid', accounts: @accounts
