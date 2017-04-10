@@ -32,6 +32,16 @@ class Admin::ReportsController < ApplicationController
     redirect_to admin_report_path(@report)
   end
 
+  def timeout
+    @report.target_account.update(silenced: true)
+    Report.unresolved.where(target_account: @report.target_account).update_all(action_taken: true, action_taken_by_account_id: current_account.id)
+    UnsilenceWorker.perform_in(
+      (params[:time].to_i * params[:modifier].to_i).hours,
+      @report.target_account.id
+    )
+    redirect_to admin_report_path(@report)
+  end
+
   def remove
     RemovalWorker.perform_async(params[:status_id])
     redirect_to admin_report_path(@report)
