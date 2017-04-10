@@ -1,0 +1,46 @@
+---
+ru:
+  simple_form:
+    hints:
+      defaults:
+        avatar: PNG, GIF или JPG. Не более 2 МБ. Будет сжато до 120x120px
+        display_name: Не более 30 символов
+        header: PNG, GIF или JPG. Не более 2 МБ. Будет сжато до 700x335px
+        locked: Требуется, чтобы вы вручную утверждали подписчиков и ставит настройки постов по умолчанию "только подписчикам"
+        note: Не более 160 символов
+      imports:
+        data: CSV файл экспортирован с другого инстанса Mastodon
+    labels:
+      defaults:
+        avatar: Аватар
+        confirm_new_password: Подтверждение нового пароля
+        confirm_password: Подтверждение пароля
+        current_password: Действующий пароль
+        data: Данные
+        display_name: Отображать имя
+        email: E-mail адрес
+        header: Заголовок
+        locale: Язык
+        locked: Сделать аккаунт закрытым
+        new_password: Новый пароль
+        note: О себе
+        otp_attempt: Код двухэтапной авторизации
+        password: Пароль
+        setting_default_privacy: Настройки постов
+        type: Тип импорта
+        username: Имя пользователя
+      interactions:
+        must_be_follower: Блокировать оповещения от не подписчиков
+        must_be_following: Блокировать оповещения от пользователей, какторые не читают Вас
+      notification_emails:
+        digest: Отправить дайджест e-mails
+        favourite: Отправить e-mail когда кто-то лайкнет статус
+        follow: Отправить e-mail когда кто-то подпишется на Вас
+        follow_request: Отправить e-mail когда кто-то запросит подписку на Вас
+        mention: Отправить e-mail когда кто-то упомянет Вас
+        reblog: Отправить e-mail когда кто-то продвинет Ваш статус
+    'no': 'Нет'
+    required:
+      mark: "*"
+      text: требуется
+    'yes': 'Да'

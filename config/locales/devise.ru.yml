@@ -1,0 +1,61 @@
+---
+ru:
+  devise:
+    confirmations:
+      confirmed: Ваш email адрес подтвержден.
+      send_instructions: Скоро Вы получите email с инструкциями для подтверждения.
+      send_paranoid_instructions: Если в нашей базе есть такой email, то скоро Вам придет письмо с дальнейшими инструкциями.
+    failure:
+      already_authenticated: Вы уже вошли.
+      inactive: Ваш аккаунт не активирован.
+      invalid: Неправильный %{authentication_keys} или пароль.
+      last_attempt: У Вас последняя попытка, после аккаунт будет заблокирован.
+      locked: Ваш аккаунт заблокирован.
+      not_found_in_database: Неправильный %{authentication_keys} или пароль.
+      timeout: Ваша сессия устарела. Авторизуйтесь снова.
+      unauthenticated: Вам надо авторизоваться, или зарегистрироваться.
+      unconfirmed: Вам надо подтвердить email.
+    mailer:
+      confirmation_instructions:
+        subject: 'Mastodon: Инструкции для подтверждения'
+      password_change:
+        subject: 'Mastodon: Пароль изменен'
+      reset_password_instructions:
+        subject: 'Mastodon: Сброс пароля'
+      unlock_instructions:
+        subject: 'Mastodon: Разблокировка'
+    omniauth_callbacks:
+      failure: Я не могу авторизоваться Вас %{kind} из-за "%{reason}".
+      success: Успешная авторизация %{kind} аккаунта.
+    passwords:
+      no_token: Это не работает без ссылки из письма о сбросе пароля. Если Вы пришли по такой ссылке, то убедитесь, что она скопирована полностью.
+      send_instructions: Очень скоро Вы получите письмо с дальнейшими инструкциями.
+      send_paranoid_instructions: Если в нашей базе есть такой email, то скоро Вам придет письмо с дальнейшими инструкциями.
+      updated: Ваш пароль изменен. Вы авторизованы.
+      updated_not_active: Успешная смена пароля.
+    registrations:
+      destroyed: Всего доброго! Ваш аккаунт закрыт. Надеемся увидеть Вас снова.
+      signed_up: Добро пожаловать! Вы успешно зарегистрированы.
+      signed_up_but_inactive: Вы успешно зарегистрированы. Но Ваш аккаунт еще не активирован.
+      signed_up_but_locked: Вы успешно зарегистрированы. Но Ваш аккаунт заблокирован.
+      signed_up_but_unconfirmed: Письмо с ссылкой для подтверждения отправлено. Перейдите по этой ссылке для активации.
+      update_needs_confirmation: Вы успешно обновили свой аккаунт, но Вам нужно подтвердить email. Пожалуйста, проверьте свой email и подтвердите его смену.
+      updated: Вы успешно обновили свой аккаунт.
+    sessions:
+      already_signed_out: Выход осуществлен.
+      signed_in: Вход осуществлен.
+      signed_out: Выход осуществлен.
+    unlocks:
+      send_instructions: Очень скоро Вы получите письмо с дальнейшими инструкциями для разблокировки.
+      send_paranoid_instructions: Если Ваш аккаунт существует, то очень скоро Вы получите письмо с дальнейшими инструкциями.
+      unlocked: Ваш аккаунт разблокирован. Авторизуйтесь для продолжения.
+  errors:
+    messages:
+      already_confirmed: уже подтвержден, попробуйте авторизоваться
+      confirmation_period_expired: нужно успеть подтвердить за %{period}, пожалуйста, сделайте новый запрос
+      expired: уже просрочено, пожалуйста, сделайте новый запрос
+      not_found: не найдено
+      not_locked: не заблокировано
+      not_saved:
+        one: '1 ошибка мешает %{resource} сохранению:'
+        other: "%{count} ошибок мешает %{resource} сохранению:"

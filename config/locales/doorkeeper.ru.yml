@@ -1,0 +1,113 @@
+---
+ru:
+  activerecord:
+    attributes:
+      doorkeeper/application:
+        name: Name
+        redirect_uri: Redirect URI
+    errors:
+      models:
+        doorkeeper/application:
+          attributes:
+            redirect_uri:
+              fragment_present: не содержит фрагментов.
+              invalid_uri: должен быть правильный URI.
+              relative_uri: должен быть работающий URI.
+              secured_uri: должен быть HTTPS/SSL URI.
+  doorkeeper:
+    applications:
+      buttons:
+        authorize: Авторизация
+        cancel: Отмена
+        destroy: Уничтожить
+        edit: Правка
+        submit: Применить
+      confirmations:
+        destroy: Уверены?
+      edit:
+        title: Править приложение
+      form:
+        error: Упс! проверьте на наличие ошибок
+      help:
+        native_redirect_uri: Используйте %{native_redirect_uri} для локальных тестов
+        redirect_uri: Используйте одну строку для URI
+        scopes: Отделите права пробелами. Оставьте незаполненным, что бы использовать права по умолчанию.
+      index:
+        callback_url: Обратный URL
+        name: Имя
+        new: Новое Приложение
+        title: Ваше приложение
+      new:
+        title: Новое Приложение
+      show:
+        actions: Действия
+        application_id: Id Приложения
+        callback_urls: Обратные urls
+        scopes: Права
+        secret: Secret
+        title: 'Приложение: %{name}'
+    authorizations:
+      buttons:
+        authorize: Авторизация
+        deny: Отмена
+      error:
+        title: Ошибка
+      new:
+        able_to: It will be able to
+        prompt: Приложение %{client_name} запрашивает доступ к Вашему аккаунту
+        title: Запрос авторизации
+      show:
+        title: Код авторизации
+    authorized_applications:
+      buttons:
+        revoke: Отозвать
+      confirmations:
+        revoke: Уверены?
+      index:
+        application: Приложение
+        created_at: Авторизовано
+        date_format: "%Y-%m-%d %H:%M:%S"
+        scopes: Права
+        title: Ваши авторизованные приложения
+    errors:
+      messages:
+        access_denied: Владелец ресурса, или сервер авторизации отменил запрос.
+        credential_flow_not_configured: Передача учетных данных владельца ресурса не прошла из-за того, что Doorkeeper.configure.resource_owner_from_credentials не настроен.
+        invalid_client: Сбой аутентификации клиента из-за неизвестного клиента, без аутентификации клиента или неподдерживаемого метода проверки подлинности.
+        invalid_grant: Предоставленный авторизационный грант недействителен, устарел, отменен, не соответствует URI редиректа, используемого в запросе авторизации, или был выдан другому клиенту.
+        invalid_redirect_uri: Введенный uri перенаправления недействителен.
+        invalid_request: В запросе отсутствует обязательный параметр, который содержит неподдерживаемое значение параметра или имеет некорректную форму.
+        invalid_resource_owner: Предоставленные учетные данные владельца ресурса недопустимы или владелец ресурса не может быть найден
+        invalid_scope: Запрашиваемая область недействительна, неизвестна или искажена.
+        invalid_token:
+          expired: Токен доступа просрочен
+          revoked: Токен доступа отозван
+          unknown: Токен доступа недействителен
+        resource_owner_authenticator_not_configured: Ошибка определения владельца ресурса из-за того, что Doorkeeper.configure.resource_owner_authenticator отключен.
+        server_error: Сервер авторизации обнаружил непредвиденное условие, которое помешало ему выполнить запрос.
+        temporarily_unavailable: В настоящее время сервер авторизации не может обработать запрос из-за временной перегрузки или обслуживания сервера.
+        unauthorized_client: С помощью этого метода клиент не имеет права выполнять этот запрос.
+        unsupported_grant_type: Тип разрешения авторизации не поддерживается сервером авторизации.
+        unsupported_response_type: Сервер авторизации не поддерживает этот тип ответа.
+    flash:
+      applications:
+        create:
+          notice: Приложение создано.
+        destroy:
+          notice: Приложение удалено.
+        update:
+          notice: Приложение обновлено.
+      authorized_applications:
+        destroy:
+          notice: Приложение отозвано.
+    layouts:
+      admin:
+        nav:
+          applications: Приложения
+          oauth2_provider: OAuth2 Provider
+      application:
+        title: OAuth авторизация требуется
+    scopes:
+      follow: читать, блокировать, разблокировтаь и нечитать
+      read: читать данные Вашего аккаунта
+      write: постить от Вашего имени
