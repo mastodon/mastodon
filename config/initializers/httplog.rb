@@ -1,3 +1,5 @@
-HttpLog.options[:logger] = Rails.logger
-HttpLog.options[:color]  = { color: :yellow }
-HttpLog.options[:compact_log] = true
+HttpLog.configure do |config|
+  config.logger = Rails.logger
+  config.color = { color: :yellow }
+  config.compact_log = true
+end
