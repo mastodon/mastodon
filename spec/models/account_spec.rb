@@ -170,6 +170,61 @@ RSpec.describe Account, type: :model do
     end
   end
 
+  describe '.search_for' do
+    before do
+      @match = Fabricate(
+        :account,
+        display_name: "Display Name",
+        username: "username",
+        domain: "example.com"
+      )
+      _missing = Fabricate(
+        :account,
+        display_name: "Missing",
+        username: "missing",
+        domain: "missing.com"
+      )
+    end
+
+    it 'finds accounts with matching display_name' do
+      results = Account.search_for("display")
+      expect(results).to eq [@match]
+    end
+
+    it 'finds accounts with matching username' do
+      results = Account.search_for("username")
+      expect(results).to eq [@match]
+    end
+
+    it 'finds accounts with matching domain' do
+      results = Account.search_for("example")
+      expect(results).to eq [@match]
+    end
+
+    it 'ranks multiple matches higher' do
+      account = Fabricate(
+        :account,
+        username: "username",
+        display_name: "username"
+      )
+      results = Account.search_for("username")
+      expect(results).to eq [account, @match]
+    end
+  end
+
+  describe '.advanced_search_for' do
+    it 'ranks followed accounts higher' do
+      account = Fabricate(:account)
+      match = Fabricate(:account, username: "Matching")
+      followed_match = Fabricate(:account, username: "Matcher")
+      Fabricate(:follow, account: account, target_account: followed_match)
+
+      results = Account.advanced_search_for("match", account)
+      expect(results).to eq [followed_match, match]
+      expect(results.first.rank).to be > results.last.rank
+    end
+  end
+
   describe '.find_local' do
     before do
       Fabricate(:account, username: 'Alice')
