@@ -75,6 +75,10 @@
       "description": "Authentication method to use with SMTP server. Default is 'plain'.",
       "required": false
     },
+    "SMTP_OPENSSL_VERIFY_MODE": {
+      "description": "SMTP server certificate verification mode. Defaults is 'peer'.",
+      "required": false
+    },
     "BUILDPACK_URL": {
       "description": "Internal scalingo configuration",
       "required": true,

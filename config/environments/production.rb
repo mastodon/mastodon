@@ -100,6 +100,7 @@ Rails.application.configure do
     :password       => ENV['SMTP_PASSWORD'],
     :domain         => ENV['SMTP_DOMAIN'] || config.x.local_domain,
     :authentication => ENV['SMTP_AUTH_METHOD'] || :plain,
+    :openssl_verify_mode => ENV['SMTP_OPENSSL_VERIFY_MODE'] || 'peer',
   }
 
   config.action_mailer.delivery_method = :smtp
