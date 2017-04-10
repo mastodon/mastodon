@@ -101,6 +101,7 @@ Rails.application.configure do
     :domain         => ENV['SMTP_DOMAIN'] || config.x.local_domain,
     :authentication => ENV['SMTP_AUTH_METHOD'] || :plain,
     :openssl_verify_mode => ENV['SMTP_OPENSSL_VERIFY_MODE'] || 'peer',
+    :enable_starttls_auto => ENV['SMTP_ENABLE_STARTTLS_AUTO'] || true,
   }
 
   config.action_mailer.delivery_method = :smtp
