@@ -21,7 +21,7 @@ const Notification = React.createClass({
 
   renderFollow (account, link) {
     return (
-      <div className='notification'>
+      <div className='notification notification-follow'>
         <div className='notification__message'>
           <div style={{ position: 'absolute', 'left': '-26px'}}>
             <i className='fa fa-fw fa-user-plus' />
@@ -41,7 +41,7 @@ const Notification = React.createClass({
 
   renderFavourite (notification, link) {
     return (
-      <div className='notification'>
+      <div className='notification notification-favourite'>
         <div className='notification__message'>
           <div style={{ position: 'absolute', 'left': '-26px'}}>
             <i className='fa fa-fw fa-star' style={{ color: '#ca8f04' }} />
@@ -57,7 +57,7 @@ const Notification = React.createClass({
 
   renderReblog (notification, link) {
     return (
-      <div className='notification'>
+      <div className='notification notification-reblog'>
         <div className='notification__message'>
           <div style={{ position: 'absolute', 'left': '-26px'}}>
             <i className='fa fa-fw fa-retweet' />
@@ -76,7 +76,7 @@ const Notification = React.createClass({
     const account          = notification.get('account');
     const displayName      = account.get('display_name').length > 0 ? account.get('display_name') : account.get('username');
     const displayNameHTML = { __html: emojify(escapeTextContentForBrowser(displayName)) };
-    const link             = <Permalink className='notification__display-name' style={linkStyle} href={account.get('url')} to={`/accounts/${account.get('id')}`} dangerouslySetInnerHTML={displayNameHTML} />;
+    const link             = <Permalink className='notification__display-name' style={linkStyle} href={account.get('url')} title={account.get('acct')} to={`/accounts/${account.get('id')}`} dangerouslySetInnerHTML={displayNameHTML} />;
 
     switch(notification.get('type')) {
       case 'follow':

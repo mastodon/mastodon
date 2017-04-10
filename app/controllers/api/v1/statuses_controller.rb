@@ -23,7 +23,6 @@ class Api::V1::StatusesController < ApiController
     statuses = [@status] + @context[:ancestors] + @context[:descendants]
 
     set_maps(statuses)
-    # set_counters_maps(statuses)
   end
 
   def card
@@ -36,10 +35,8 @@ class Api::V1::StatusesController < ApiController
     accounts  = Account.where(id: results.map(&:account_id)).map { |a| [a.id, a] }.to_h
     @accounts = results.map { |r| accounts[r.account_id] }
 
-    # set_account_counters_maps(@accounts)
-
-    next_path = reblogged_by_api_v1_status_url(max_id: results.last.id)    if results.size == limit_param(DEFAULT_ACCOUNTS_LIMIT)
-    prev_path = reblogged_by_api_v1_status_url(since_id: results.first.id) unless results.empty?
+    next_path = reblogged_by_api_v1_status_url(pagination_params(max_id: results.last.id))    if results.size == limit_param(DEFAULT_ACCOUNTS_LIMIT)
+    prev_path = reblogged_by_api_v1_status_url(pagination_params(since_id: results.first.id)) unless results.empty?
 
     set_pagination_headers(next_path, prev_path)
 
@@ -51,10 +48,8 @@ class Api::V1::StatusesController < ApiController
     accounts  = Account.where(id: results.map(&:account_id)).map { |a| [a.id, a] }.to_h
     @accounts = results.map { |f| accounts[f.account_id] }
 
-    # set_account_counters_maps(@accounts)
-
-    next_path = favourited_by_api_v1_status_url(max_id: results.last.id)    if results.size == limit_param(DEFAULT_ACCOUNTS_LIMIT)
-    prev_path = favourited_by_api_v1_status_url(since_id: results.first.id) unless results.empty?
+    next_path = favourited_by_api_v1_status_url(pagination_params(max_id: results.last.id))    if results.size == limit_param(DEFAULT_ACCOUNTS_LIMIT)
+    prev_path = favourited_by_api_v1_status_url(pagination_params(since_id: results.first.id)) unless results.empty?
 
     set_pagination_headers(next_path, prev_path)
 
@@ -114,5 +109,9 @@ class Api::V1::StatusesController < ApiController
 
   def status_params
     params.permit(:status, :in_reply_to_id, :sensitive, :spoiler_text, :visibility, media_ids: [])
+  end
+
+  def pagination_params(core_params)
+    params.permit(:limit).merge(core_params)
   end
 end

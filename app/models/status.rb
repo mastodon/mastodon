@@ -62,8 +62,12 @@ class Status < ApplicationRecord
     reply? ? :comment : :note
   end
 
+  def proper
+    reblog? ? reblog : self
+  end
+
   def content
-    reblog? ? reblog.text : text
+    proper.text
   end
 
   def target
@@ -71,7 +75,7 @@ class Status < ApplicationRecord
   end
 
   def title
-    content
+    reblog? ? "#{account.acct} shared a status by #{reblog.account.acct}" : "New status by #{account.acct}"
   end
 
   def hidden?

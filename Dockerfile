@@ -1,4 +1,4 @@
-FROM ruby:2.3.1-alpine
+FROM ruby:2.4.1-alpine
 
 LABEL maintainer="https://github.com/tootsuite/mastodon" \
       description="A GNU Social-compatible microblogging server"
@@ -29,7 +29,8 @@ RUN BUILD_DEPS=" \
  && npm install -g npm@3 && npm install -g yarn \
  && bundle install --deployment --without test development \
  && yarn \
- && npm cache clean \
+ && yarn cache clean \
+ && npm -g cache clean \
  && apk del $BUILD_DEPS \
  && rm -rf /tmp/* /var/cache/apk/*
 

@@ -30,7 +30,7 @@ API overview
   - [Instance](#instance)
   - [Mention](#mention)
   - [Notification](#notification)
-  - [Relationships](#relationships)
+  - [Relationship](#relationship)
   - [Results](#results)
   - [Status](#status)
   - [Tag](#tag)
@@ -43,6 +43,7 @@ ___
 - [For Python](https://github.com/halcy/Mastodon.py)
 - [For JavaScript](https://github.com/Zatnosk/libodonjs)
 - [For JavaScript (Node.js)](https://github.com/jessicahayley/node-mastodon)
+- [For Elixir](https://github.com/milmazz/hunter)
 
 ___
 
@@ -83,6 +84,17 @@ Returns an [Account](#account).
     GET /api/v1/accounts/verify_credentials
 
 Returns the authenticated user's [Account](#account).
+
+#### Updating the current user:
+
+    PATCH /api/v1/accounts/update_credentials
+
+Form data:
+
+- `display_name`: The name to display in the user's profile
+- `note`: A new biography for the user
+- `avatar`: A base64 encoded image to display as the user's avatar (e.g. `data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAUoAAADrCAYAAAA...`)
+- `header`: A base64 encoded image to display as the user's header image (e.g. `data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAUoAAADrCAYAAAA...`)
 
 #### Getting an account's followers:
 
@@ -350,15 +362,15 @@ Returns an empty object.
 
 #### Reblogging/unreblogging a status:
 
-    POST /api/vi/statuses/:id/reblog
-    POST /api/vi/statuses/:id/unreblog
+    POST /api/v1/statuses/:id/reblog
+    POST /api/v1/statuses/:id/unreblog
 
 Returns the target [Status](#status).
 
 #### Favouriting/unfavouriting a status:
 
-    POST /api/vi/statuses/:id/favourite
-    POST /api/vi/statuses/:id/unfavourite
+    POST /api/v1/statuses/:id/favourite
+    POST /api/v1/statuses/:id/unfavourite
 
 Returns the target [Status](#status).
 
@@ -455,7 +467,7 @@ ___
 | `acct`                   | Equals `username` for local users, includes `@domain` for remote ones |
 | `id`                     | Account ID |
 
-### Notifications
+### Notification
 
 | Attribute                | Description |
 | ------------------------ | ----------- |
@@ -463,9 +475,9 @@ ___
 | `type`                   | One of: "mention", "reblog", "favourite", "follow" |
 | `created_at`             | The time the notification was created |
 | `account`                | The [Account](#account) sending the notification to the user |
-| `status`                 | The [Status](#status) associated with the notification, if applicible |
+| `status`                 | The [Status](#status) associated with the notification, if applicable |
 
-### Relationships
+### Relationship
 
 | Attribute                | Description |
 | ------------------------ | ----------- |
@@ -515,7 +527,7 @@ ___
 | `tags`                   | An array of [Tags](#tag) |
 | `application`            | [Application](#application) from which the status was posted |
 
-### Tags
+### Tag
 
 | Attribute                | Description |
 | ------------------------ | ----------- |
