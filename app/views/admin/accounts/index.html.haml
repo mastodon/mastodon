@@ -19,6 +19,13 @@
     %ul
       %li= filter_link_to 'Alphabetic', recent: nil
       %li= filter_link_to 'Most recent', recent: '1'
+.filters
+  .filter-subset
+    %strong Username
+    = filter_form 'by_username'
+  .filter-subset
+    %strong Domain
+    = filter_form 'by_domain'
 
 %table.table
   %thead
