@@ -125,13 +125,21 @@ const StatusContent = React.createClass({
           <div style={{ display: hidden ? 'none' : 'block', ...directionStyle }} dangerouslySetInnerHTML={content} />
         </div>
       );
-    } else {
+    } else if (this.props.onClick) {
       return (
         <div
           className='status__content'
           style={{ cursor: 'pointer', ...directionStyle }}
           onMouseDown={this.handleMouseDown}
           onMouseUp={this.handleMouseUp}
+          dangerouslySetInnerHTML={content}
+        />
+      );
+    } else {
+      return (
+        <div
+          className='status__content'
+          style={{ ...directionStyle }}
           dangerouslySetInnerHTML={content}
         />
       );
