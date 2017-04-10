@@ -1,0 +1,99 @@
+{
+  "name": "Mastodon",
+  "description": "A GNU Social-compatible microblogging server",
+  "repository": "https://github.com/tootsuite/mastodon",
+  "logo": "https://github.com/tootsuite/mastodon/raw/master/app/assets/images/logo.png",
+  "env": {
+    "LOCAL_DOMAIN": {
+      "description": "The domain that your Mastodon instance will run on (this can be appname.scalingo.io or a custom domain)",
+      "required": true
+    },
+    "LOCAL_HTTPS": {
+      "description": "Will your domain support HTTPS? (Automatic for *.scalingo.io, requires manual configuration for custom domains)",
+      "value": "true",
+      "required": true
+    },
+    "PAPERCLIP_SECRET": {
+      "description": "The secret key for storing media files",
+      "generator": "secret"
+    },
+    "SECRET_KEY_BASE": {
+      "description": "The secret key base",
+      "generator": "secret"
+    },
+    "SINGLE_USER_MODE": {
+      "description": "Should the instance run in single user mode? (Disable registrations, redirect to front page)",
+      "value": "false",
+      "required": true
+    },
+    "S3_ENABLED": {
+      "description": "Should Mastodon use Amazon S3 for storage? This is highly recommended, as Scalingo does not have persistent file storage (files will be lost).",
+      "value": "true",
+      "required": false
+    },
+    "S3_BUCKET": {
+      "description": "Amazon S3 Bucket",
+      "required": false
+    },
+    "S3_REGION": {
+      "description": "Amazon S3 region that the bucket is located in",
+      "required": false
+    },
+    "AWS_ACCESS_KEY_ID": {
+      "description": "Amazon S3 Access Key",
+      "required": false
+    },
+    "AWS_SECRET_ACCESS_KEY": {
+      "description": "Amazon S3 Secret Key",
+      "required": false
+    },
+    "SMTP_SERVER": {
+      "description": "Hostname for SMTP server, if you want to enable email",
+      "required": false
+    },
+    "SMTP_PORT": {
+      "description": "Port for SMTP server",
+      "required": false
+    },
+    "SMTP_LOGIN": {
+      "description": "Username for SMTP server",
+      "required": false
+    },
+    "SMTP_PASSWORD": {
+      "description": "Password for SMTP server",
+      "required": false
+    },
+    "SMTP_DOMAIN": {
+      "description": "Domain for SMTP server. Will default to instance domain if blank.",
+      "required": false
+    },
+    "SMTP_FROM_ADDRESS": {
+      "description": "Address to send emails from",
+      "required": false
+    },
+    "SMTP_AUTH_METHOD": {
+      "description": "Authentication method to use with SMTP server. Default is 'plain'.",
+      "required": false
+    },
+    "SMTP_OPENSSL_VERIFY_MODE": {
+      "description": "SMTP server certificate verification mode. Defaults is 'peer'.",
+      "required": false
+    },
+    "SMTP_ENABLE_STARTTLS_AUTO": {
+      "description": "Enable STARTTLS if SMTP server supports it? Default is true.",
+      "required": false
+    },
+    "BUILDPACK_URL": {
+      "description": "Internal scalingo configuration",
+      "required": true,
+      "value": "https://github.com/Scalingo/multi-buildpack.git"
+    }
+  },
+  "scripts": {
+    "postdeploy": "bundle exec rails db:migrate && bundle exec rails db:seed"
+  },
+  "addons": [
+    "scalingo-postgresql",
+    "scalingo-redis"
+  ]
+}

@@ -13,10 +13,10 @@
         = fa_icon('retweet fw')
       %span
         = link_to TagManager.instance.url_for(status.account), class: 'status__display-name muted' do
-          %strong= display_name(status.account)
+          %strong.emojify= display_name(status.account)
         = t('stream_entries.reblogged')
 
-  = render partial: centered ? 'stream_entries/detailed_status' : 'stream_entries/simple_status', locals: { status: proper_status(status) }
+  = render partial: centered ? 'stream_entries/detailed_status' : 'stream_entries/simple_status', locals: { status: status.proper }
 
 - if include_threads
   = render partial: 'stream_entries/status', collection: @descendants, as: :status, locals: { is_successor: true }

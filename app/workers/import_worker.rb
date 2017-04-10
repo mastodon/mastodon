@@ -25,7 +25,7 @@ class ImportWorker
   def process_blocks(import)
     from_account = import.account
 
-    CSV.foreach(import.data.path) do |row|
+    CSV.new(open(import.data.url)).each do |row|
       next if row.size != 1
 
       begin
@@ -41,12 +41,12 @@ class ImportWorker
   def process_follows(import)
     from_account = import.account
 
-    CSV.foreach(import.data.path) do |row|
+    CSV.new(open(import.data.url)).each do |row|
       next if row.size != 1
 
       begin
         FollowService.new.call(from_account, row[0])
-      rescue Goldfinger::Error, HTTP::Error, OpenSSL::SSL::SSLError
+      rescue Mastodon::NotPermittedError, ActiveRecord::RecordNotFound, Goldfinger::Error, HTTP::Error, OpenSSL::SSL::SSLError
         next
       end
     end

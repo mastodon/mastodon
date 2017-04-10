@@ -120,16 +120,24 @@ class Account < ApplicationRecord
     local? ? username : "#{username}@#{domain}"
   end
 
+  def local_username_and_domain
+    "#{username}@#{Rails.configuration.x.local_domain}"
+  end
+
+  def to_webfinger_s
+    "acct:#{local_username_and_domain}"
+  end
+
   def subscribed?
     !subscription_expires_at.blank?
   end
 
   def favourited?(status)
-    (status.reblog? ? status.reblog : status).favourites.where(account: self).count.positive?
+    status.proper.favourites.where(account: self).count.positive?
   end
 
   def reblogged?(status)
-    (status.reblog? ? status.reblog : status).reblogs.where(account: self).count.positive?
+    status.proper.reblogs.where(account: self).count.positive?
   end
 
   def keypair
@@ -203,7 +211,7 @@ class Account < ApplicationRecord
     end
 
     def triadic_closures(account, limit = 5)
-      sql = <<SQL
+      sql = <<-SQL.squish
         WITH first_degree AS (
             SELECT target_account_id
             FROM follows
@@ -216,7 +224,7 @@ class Account < ApplicationRecord
         GROUP BY target_account_id, accounts.id
         ORDER BY count(account_id) DESC
         LIMIT ?
-SQL
+      SQL
 
       Account.find_by_sql([sql, account.id, account.id, limit])
     end
@@ -226,7 +234,7 @@ SQL
       textsearch = '(setweight(to_tsvector(\'simple\', accounts.display_name), \'A\') || setweight(to_tsvector(\'simple\', accounts.username), \'B\') || setweight(to_tsvector(\'simple\', coalesce(accounts.domain, \'\')), \'C\'))'
       query      = 'to_tsquery(\'simple\', \'\'\' \' || ' + terms + ' || \' \'\'\' || \':*\')'
 
-      sql = <<SQL
+      sql = <<-SQL.squish
         SELECT
           accounts.*,
           ts_rank_cd(#{textsearch}, #{query}, 32) AS rank
@@ -234,7 +242,7 @@ SQL
         WHERE #{query} @@ #{textsearch}
         ORDER BY rank DESC
         LIMIT ?
-SQL
+      SQL
 
       Account.find_by_sql([sql, limit])
     end
@@ -244,7 +252,7 @@ SQL
       textsearch = '(setweight(to_tsvector(\'simple\', accounts.display_name), \'A\') || setweight(to_tsvector(\'simple\', accounts.username), \'B\') || setweight(to_tsvector(\'simple\', coalesce(accounts.domain, \'\')), \'C\'))'
       query      = 'to_tsquery(\'simple\', \'\'\' \' || ' + terms + ' || \' \'\'\' || \':*\')'
 
-      sql = <<SQL
+      sql = <<-SQL.squish
         SELECT
           accounts.*,
           (count(f.id) + 1) * ts_rank_cd(#{textsearch}, #{query}, 32) AS rank
@@ -254,7 +262,7 @@ SQL
         GROUP BY accounts.id
         ORDER BY rank DESC
         LIMIT ?
-SQL
+      SQL
 
       Account.find_by_sql([sql, account.id, account.id, limit])
     end

@@ -39,7 +39,7 @@ class Settings::ExportsController < ApplicationController
   def accounts_list_to_csv(list)
     CSV.generate do |csv|
       list.each do |account|
-        csv << [(account.local? ? "#{account.username}@#{Rails.configuration.x.local_domain}" : account.acct)]
+        csv << [(account.local? ? account.local_username_and_domain : account.acct)]
       end
     end
   end

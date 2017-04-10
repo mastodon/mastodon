@@ -17,7 +17,7 @@ Click on the screenshot to watch a demo of the UI:
 
 [youtube_demo]: https://www.youtube.com/watch?v=YO1jQ8_rAMU
 
-Focus of the project on a clean REST API and a good user interface. Ruby on Rails is used for the back-end, while React.js and Redux are used for the dynamic front-end. A static front-end for public resources (profiles and statuses) is also provided.
+The project focus is a clean REST API and a good user interface. Ruby on Rails is used for the back-end, while React.js and Redux are used for the dynamic front-end. A static front-end for public resources (profiles and statuses) is also provided.
 
 If you would like, you can [support the development of this project on Patreon][patreon]. Alternatively, you can donate to this BTC address: `17j2g7vpgHhLuXhN4bueZFCvdxxieyRVWd`
 
@@ -64,6 +64,8 @@ Consult the example configuration file, `.env.production.sample` for the full li
 - Nginx
 
 ## Running with Docker and Docker-Compose
+
+[![](https://images.microbadger.com/badges/version/gargron/mastodon.svg)](https://microbadger.com/images/gargron/mastodon "Get your own version badge on microbadger.com") [![](https://images.microbadger.com/badges/image/gargron/mastodon.svg)](https://microbadger.com/images/gargron/mastodon "Get your own image badge on microbadger.com")
 
 The project now includes a `Dockerfile` and a `docker-compose.yml`. You need to turn `.env.production.sample` into `.env.production` with all the variables set before you can:
 
@@ -116,6 +118,12 @@ Which will re-create the updated containers, leaving databases and data as is. D
 ## Deployment without Docker
 
 Docker is great for quickly trying out software, but it has its drawbacks too. If you prefer to run Mastodon without using Docker, refer to the [production guide](docs/Running-Mastodon/Production-guide.md) for examples, configuration and instructions.
+
+## Deployment on Scalingo
+
+[![Deploy on Scalingo](https://cdn.scalingo.com/deploy/button.svg)](https://my.scalingo.com/deploy?source=https://github.com/tootsuite/mastodon#master)
+
+[You can view a guide for deployment on Scalingo here.](docs/Running-Mastodon/Scalingo-guide.md)
 
 ## Deployment on Heroku (experimental)
 

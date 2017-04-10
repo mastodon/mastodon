@@ -6,6 +6,8 @@ class Oauth::AuthorizationsController < Doorkeeper::AuthorizationsController
   before_action :store_current_location
   before_action :authenticate_resource_owner!
 
+  include Localized
+
   private
 
   def store_current_location

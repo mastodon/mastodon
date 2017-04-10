@@ -1,15 +1,13 @@
 # frozen_string_literal: true
 
 source 'https://rubygems.org'
-ruby '2.3.1'
+ruby '2.4.1'
 
 gem 'rails', '~> 5.0.2'
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.1.0'
 gem 'jquery-rails'
-gem 'jbuilder', '~> 2.0'
-gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'puma'
 
 gem 'hamlit-rails'
@@ -23,35 +21,38 @@ gem 'paperclip', '~> 5.1'
 gem 'paperclip-av-transcoder'
 gem 'aws-sdk', '>= 2.0'
 
-gem 'http'
-gem 'httplog'
 gem 'addressable'
-gem 'nokogiri'
-gem 'link_header'
-gem 'ostatus2'
-gem 'goldfinger'
 gem 'devise'
 gem 'devise-two-factor'
 gem 'doorkeeper'
-gem 'rabl'
-gem 'rqrcode'
-gem 'twitter-text'
-gem 'oj'
-gem 'hiredis'
-gem 'redis', '~>3.2'
 gem 'fast_blank'
+gem 'goldfinger'
+gem 'hiredis'
 gem 'htmlentities'
-gem 'simple_form'
-gem 'will_paginate'
+gem 'http'
+gem 'http_accept_language'
+gem 'httplog'
+gem 'link_header'
+gem 'nokogiri'
+gem 'oj'
+gem 'ostatus2'
+gem 'ox'
+gem 'rabl'
 gem 'rack-attack'
 gem 'rack-cors', require: 'rack/cors'
-gem 'sidekiq'
-gem 'rails-settings-cached'
-gem 'simple-navigation'
-gem 'statsd-instrument'
-gem 'ruby-oembed', require: 'oembed'
 gem 'rack-timeout'
+gem 'rails-settings-cached'
+gem 'redis', '~>3.2', require: ['redis', 'redis/connection/hiredis']
+gem 'rqrcode'
+gem 'ruby-oembed', require: 'oembed'
+gem 'sidekiq'
+gem 'sidekiq-unique-jobs'
+gem 'simple-navigation'
+gem 'simple_form'
+gem 'statsd-instrument'
+gem 'twitter-text'
 gem 'tzinfo-data'
+gem 'will_paginate'
 
 gem 'react-rails'
 gem 'browserify-rails'
@@ -66,9 +67,10 @@ group :development, :test do
 end
 
 group :test do
+  gem 'faker'
+  gem 'rspec-sidekiq'
   gem 'simplecov', require: false
   gem 'webmock'
-  gem 'rspec-sidekiq'
 end
 
 group :development do

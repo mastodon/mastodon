@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   end
 
   use_doorkeeper do
-    controllers authorizations: 'oauth/authorizations'
+    controllers authorizations: 'oauth/authorizations', authorized_applications: 'oauth/authorized_applications'
   end
 
   get '.well-known/host-meta', to: 'xrd#host_meta', as: :host_meta
@@ -60,9 +60,8 @@ Rails.application.routes.draw do
       end
     end
 
-    resource :two_factor_auth, only: [:show] do
+    resource :two_factor_auth, only: [:show, :new, :create] do
       member do
-        post :enable
         post :disable
       end
     end
@@ -164,6 +163,7 @@ Rails.application.routes.draw do
         collection do
           get :relationships
           get :verify_credentials
+          patch :update_credentials
           get :search
         end
 
@@ -189,11 +189,14 @@ Rails.application.routes.draw do
 
   get '/web/(*any)', to: 'home#index', as: :web
 
-  get '/about',      to: 'about#index'
+  get '/about',      to: 'about#show'
   get '/about/more', to: 'about#more'
   get '/terms',      to: 'about#terms'
 
   root 'home#index'
 
-  match '*unmatched_route', via: :all, to: 'application#raise_not_found'
+  match '*unmatched_route',
+    via: :all,
+    to: 'application#raise_not_found',
+    format: false
 end
