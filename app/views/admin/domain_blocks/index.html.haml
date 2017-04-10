@@ -13,5 +13,5 @@
           %samp= block.domain
         %td= block.severity
 
-= will_paginate @blocks, pagination_options
+= paginate @blocks
 = link_to 'Add new', new_admin_domain_block_path, class: 'button'
