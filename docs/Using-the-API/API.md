@@ -362,15 +362,15 @@ Returns an empty object.
 
 #### Reblogging/unreblogging a status:
 
-    POST /api/vi/statuses/:id/reblog
-    POST /api/vi/statuses/:id/unreblog
+    POST /api/v1/statuses/:id/reblog
+    POST /api/v1/statuses/:id/unreblog
 
 Returns the target [Status](#status).
 
 #### Favouriting/unfavouriting a status:
 
-    POST /api/vi/statuses/:id/favourite
-    POST /api/vi/statuses/:id/unfavourite
+    POST /api/v1/statuses/:id/favourite
+    POST /api/v1/statuses/:id/unfavourite
 
 Returns the target [Status](#status).
 
