@@ -9,6 +9,9 @@ const messages = defineMessages({
   mention: { id: 'status.mention', defaultMessage: 'Mention @{name}' },
   reply: { id: 'status.reply', defaultMessage: 'Reply' },
   reblog: { id: 'status.reblog', defaultMessage: 'Reblog' },
+  unreblog: { id: 'status.unreblog', defaultMessage: 'Undo boost' },
+  direct: { id: 'status.direct', defaultMessage: 'Direct' },
+  private: { id: 'status.private', defaultMessage: 'Private' },
   favourite: { id: 'status.favourite', defaultMessage: 'Favourite' },
   report: { id: 'status.report', defaultMessage: 'Report @{name}' }
 });
@@ -74,7 +77,7 @@ const ActionBar = React.createClass({
     return (
       <div className='detailed-status__action-bar'>
         <div style={{ flex: '1 1 auto', textAlign: 'center' }}><IconButton title={intl.formatMessage(messages.reply)} icon='reply' onClick={this.handleReplyClick} /></div>
-        <div style={{ flex: '1 1 auto', textAlign: 'center' }}><IconButton disabled={status.get('visibility') === 'direct' || status.get('visibility') === 'private'} active={status.get('reblogged')} title={intl.formatMessage(messages.reblog)} icon={status.get('visibility') === 'direct' ? 'envelope' : (status.get('visibility') === 'private' ? 'lock' : 'retweet')} onClick={this.handleReblogClick} /></div>
+        <div style={{ flex: '1 1 auto', textAlign: 'center' }}><IconButton disabled={status.get('visibility') === 'direct' || status.get('visibility') === 'private'} active={status.get('reblogged')} title={status.get('visibility') === 'direct' ? intl.formatMessage(messages.direct) : (status.get('visibility') === 'private' ? intl.formatMessage(messages.private) : (status.get('reblogged') ? intl.formatMessage(messages.unreblog) : intl.formatMessage(messages.reblog)))} icon={status.get('visibility') === 'direct' ? 'envelope' : (status.get('visibility') === 'private' ? 'lock' : 'retweet')} onClick={this.handleReblogClick} /></div>
         <div style={{ flex: '1 1 auto', textAlign: 'center' }}><IconButton animate={true} active={status.get('favourited')} title={intl.formatMessage(messages.favourite)} icon='star' onClick={this.handleFavouriteClick} activeStyle={{ color: '#ca8f04' }} /></div>
         <div style={{ flex: '1 1 auto', textAlign: 'center' }}><DropdownMenu size={18} icon='ellipsis-h' items={menu} direction="left" /></div>
       </div>
