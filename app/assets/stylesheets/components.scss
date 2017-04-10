@@ -855,6 +855,12 @@ a.status__content__spoiler-link {
   }
 }
 
+@media screen and (min-width: 1023px) {
+	.column, .drawer {
+		width: 24vw;
+	}
+}
+
 .tabs-bar {
   display: flex;
   background: lighten($color1, 8%);
