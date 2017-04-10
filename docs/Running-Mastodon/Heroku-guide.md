@@ -12,8 +12,8 @@ See [#1275](https://github.com/tootsuite/mastodon/issues/1275) for details.
 
 Currently heroku setup has two main limitations:
 
-- Animated GIF upload doesn't work ([#1007](https://github.com/tootsuite/mastodon/issues/1007)).
-- Streaming API not working ([#1119](https://github.com/tootsuite/mastodon/issues/1119)).
+- Animated GIF upload requires extra setup ([#1007](https://github.com/tootsuite/mastodon/issues/1007)).
+- Streaming API requires extra setup ([#1119](https://github.com/tootsuite/mastodon/issues/1119)).
 
 ## Basic setup
 
