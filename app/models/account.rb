@@ -120,6 +120,10 @@ class Account < ApplicationRecord
     local? ? username : "#{username}@#{domain}"
   end
 
+  def to_webfinger_s
+    "acct:#{username}@#{Rails.configuration.x.local_domain}"
+  end
+
   def subscribed?
     !subscription_expires_at.blank?
   end
