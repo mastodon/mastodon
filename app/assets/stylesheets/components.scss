@@ -865,17 +865,18 @@ a.status__content__spoiler-link {
 .tabs-bar__link {
   display: block;
   flex: 1 1 auto;
-  padding: 10px 5px;
+  padding: 15px 10px;
   color: $color5;
   text-decoration: none;
   text-align: center;
-  font-size:12px;
+  font-size: 14px;
   font-weight: 500;
   border-bottom: 2px solid lighten($color1, 8%);
   transition: all 200ms linear;
 
   .fa {
     font-weight: 400;
+    font-size: 16px;
   }
 
   &.active {
@@ -889,6 +890,7 @@ a.status__content__spoiler-link {
   }
 
   span {
+    margin-left: 5px;
     display: none;
   }
 }
@@ -916,10 +918,6 @@ a.status__content__spoiler-link {
 
 @media screen and (min-width: 600px) {
   .tabs-bar__link {
-    .fa {
-      margin-right: 5px;
-    }
-
     span {
       display: inline;
     }
@@ -1423,6 +1421,8 @@ button.active i.fa-retweet {
 
   .emojione {
     margin: 0;
+    width: 100%;
+    height: auto;
   }
 
   .emoji-dialog-header {
