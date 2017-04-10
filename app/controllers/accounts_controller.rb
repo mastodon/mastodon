@@ -53,7 +53,7 @@ class AccountsController < ApplicationController
   end
 
   def webfinger_account_url
-    webfinger_url(resource: "acct:#{@account.acct}@#{Rails.configuration.x.local_domain}")
+    webfinger_url(resource: @account.to_webfinger_s)
   end
 
   def check_account_suspension
