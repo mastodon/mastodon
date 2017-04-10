@@ -9,4 +9,4 @@ The API is divided up into access scopes:
 - `write`: Post statuses and upload media for statuses
 - `follow`: Follow, unfollow, block, unblock
 
-Multiple scopes can be requested during the authorization phase with the `scope` query param (space-separate the scopes).
+Multiple scopes can be requested during the authorization phase with the `scope` query param (space-separate the scopes). If you do not specify a `scope` in your authorization request, the resulting access token will default to `read` access.
