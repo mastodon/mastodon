@@ -13,10 +13,13 @@ namespace :mastodon do
   desc 'Manually confirms a user with associated user email address stored in USER_EMAIL environment variable.'
   task confirm_email: :environment do
     email = ENV.fetch('USER_EMAIL')
-    user = User.where(email: email)
-    user.update(confirmed_at: Time.now.utc)
-
-    puts "User #{email} confirmed."
+    user = User.where(email: email).first
+    if user
+      user.update(confirmed_at: Time.now.utc)
+      puts "User #{email} confirmed."
+    else
+      abort "User #{email} not found."
+    end
   end
 
   namespace :media do
