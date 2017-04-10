@@ -21,7 +21,7 @@ const Notification = React.createClass({
 
   renderFollow (account, link) {
     return (
-      <div className='notification'>
+      <div className='notification notification-follow'>
         <div className='notification__message'>
           <div style={{ position: 'absolute', 'left': '-26px'}}>
             <i className='fa fa-fw fa-user-plus' />
@@ -41,7 +41,7 @@ const Notification = React.createClass({
 
   renderFavourite (notification, link) {
     return (
-      <div className='notification'>
+      <div className='notification notification-favourite'>
         <div className='notification__message'>
           <div style={{ position: 'absolute', 'left': '-26px'}}>
             <i className='fa fa-fw fa-star' style={{ color: '#ca8f04' }} />
@@ -57,7 +57,7 @@ const Notification = React.createClass({
 
   renderReblog (notification, link) {
     return (
-      <div className='notification'>
+      <div className='notification notification-reblog'>
         <div className='notification__message'>
           <div style={{ position: 'absolute', 'left': '-26px'}}>
             <i className='fa fa-fw fa-retweet' />
