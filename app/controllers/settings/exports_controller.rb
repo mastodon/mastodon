@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'csv'
+include RoutingHelper
 
 class Settings::ExportsController < ApplicationController
   layout 'admin'
@@ -12,6 +13,7 @@ class Settings::ExportsController < ApplicationController
     @total_storage = current_account.media_attachments.sum(:file_file_size)
     @total_follows = current_account.following.count
     @total_blocks  = current_account.blocking.count
+    @total_toots  = current_account.statuses.count
   end
 
   def download_following_list
@@ -30,6 +32,12 @@ class Settings::ExportsController < ApplicationController
     end
   end
 
+  def download_toots
+    respond_to do |format|
+      format.csv { render text: toots_to_csv(current_account.statuses) }
+    end
+  end
+
   private
 
   def set_account
@@ -39,7 +47,27 @@ class Settings::ExportsController < ApplicationController
   def accounts_list_to_csv(list)
     CSV.generate do |csv|
       list.each do |account|
-        csv << [(account.local? ? "#{account.username}@#{Rails.configuration.x.local_domain}" : account.acct)]
+        csv << [(account.fully_qualified)]
+      end
+    end
+  end
+
+  def toots_to_csv(list)
+    CSV.generate do |csv|
+      csv << ["Created", "Account", "Visibility", "Text", "Favourites", "Boosts", "Replies", "Media"]
+      list.each do |status|
+        csv << [
+          status.created_at,
+          status.account.fully_qualified,
+          status.visibility,
+          status.text,
+          status.favourites.count,
+          status.reblogs.count,
+          status.replies.count,
+          status.media_attachments.map {
+            |a| a.file_content_type + ';' + full_asset_url(a.file.url(:original, false))
+          }.join(' '),
+        ]
       end
     end
   end
