@@ -1,0 +1,113 @@
+---
+nl:
+  activerecord:
+    attributes:
+      doorkeeper/application:
+        name: Naam
+        redirect_uri: Omleidings-URL
+    errors:
+      models:
+        doorkeeper/application:
+          attributes:
+            redirect_uri:
+              fragment_present: kan geen fragment bevatten.
+              invalid_uri: moet een geldige URI zijn.
+              relative_uri: moet een absolute URI zijn.
+              secured_uri: moet een HTTPS/SSL URI zijn.
+  doorkeeper:
+    applications:
+      buttons:
+        authorize: Autoriseer
+        cancel: Annuleer
+        destroy: Vernietigen
+        edit: Bewerk
+        submit: Verzend
+      confirmations:
+        destroy: Ben je zeker?
+      edit:
+        title: Bewerk applicatie
+      form:
+        error: Oeps! Controleer uw formulier voor mogelijke fouten
+      help:
+        native_redirect_uri: Gebruik %{native_redirect_uri} voor lokale testen
+        redirect_uri: Gebruik één regel per URI
+        scopes: Scheid scopes met spaties. Laat dit veld leeg om de standaard scopes te gebruiken.
+      index:
+        callback_url: Callback URL
+        name: Naam
+        new: Nieuwe Applicatie
+        title: Jouw applicaties
+      new:
+        title: Nieuwe Applicatie
+      show:
+        actions: Acties
+        application_id: Id van de toepassing
+        callback_urls: Callback URLs
+        scopes: Scopes
+        secret: Secret
+        title: 'Applicatie: %{name}'
+    authorizations:
+      buttons:
+        authorize: Autoriseer
+        deny: Ontzeggen
+      error:
+        title: Er is een fout opgetreden
+      new:
+        able_to: Het zal in staat zijn om
+        prompt: Applicatie %{client_name} vraagt voor toegang tot uw account
+        title: Autorisatie vereist
+      show:
+        title: Authorisatie code
+    authorized_applications:
+      buttons:
+        revoke: Intrekken
+      confirmations:
+        revoke: Weet je het zeker?
+      index:
+        application: Applicatie
+        created_at: Geautoriseerd
+        date_format: "%d-%m-%Y %H:%M:%S"
+        scopes: Scopes
+        title: Uw geautoriseerde applicaties
+    errors:
+      messages:
+        access_denied: De Resource Owner of de autorisatieserver heeft uw verzoek geweigerd.
+        credential_flow_not_configured: De stroom van wachtwoordgegevens van de Resource Owner is mislukt omdat Doorkeeper.configure.resource_owner_from_credentials niet is geconfigureerd.
+        invalid_client: Client verificatie is mislukt door onbekende client, geen meegeleverde authenticatie of niet-ondersteunde authenticatie methode.
+        invalid_grant: De verstrekte machtigings vergunning is ongeldig, verlopen, ingetrokken, komt niet overeen met de omleidings-URI gebruikt in de toelatingsaanvraag, of werd uitgegeven aan een andere client.
+        invalid_redirect_uri: De meegeleverde omleidings-URI is niet geldig.
+        invalid_request: Het verzoek ontbreekt een vereiste parameter, bevat een niet-ondersteunde parameter waarde of is misvormd.
+        invalid_resource_owner: De gegevens van de Resource Owner zijn ongeldig of de Resource Owner kan niet gevonden worden.
+        invalid_scope: De gevraagde scope is ongeldig, onbekend, of misvormd.
+        invalid_token:
+          expired: De toegangstoken is verlopen
+          revoked: De toegangstoken is ingetrokken
+          unknown: De toegangstoken is ongeldig
+        resource_owner_authenticator_not_configured: Zoeken naar Resource Owner gefaald omdat Doorkeeper.configure.resource_owner_authenticator niet is geconfigureerd.
+        server_error: Er heeft zich een onverwacht fout voorgedaan op de autorisatieserver die hem verhinderd heeft het verzoek verder af te handelen.
+        temporarily_unavailable: De autorisatieserver is op dit moment niet in staat om het verzoek af te handelen als gevolg van een tijdelijke overbelasting of onderhoud van de server.
+        unauthorized_client: De client is niet bevoegd om dit verzoek met behulp van deze method uit te voeren.
+        unsupported_grant_type: Het type autorisatie wordt niet ondersteund door de autorisatieserver.
+        unsupported_response_type: De autorisatie server biedt geen ondersteuning voor dit type antwoord.
+    flash:
+      applications:
+        create:
+          notice: Applicatie aangemaakt.
+        destroy:
+          notice: Applicatie verwijderd.
+        update:
+          notice: Applicatie bijgewerkt.
+      authorized_applications:
+        destroy:
+          notice: Applicatie herroepen.
+    layouts:
+      admin:
+        nav:
+          applications: Applicaties
+          oauth2_provider: OAuth2 Provider
+      application:
+        title: OAuth autorisatie vereist
+    scopes:
+      follow: accounts volgen, ontvolgen, blokkeren en deblokkeren
+      read: de gegevens van je account lezen
+      write: berichten schrijven namens jou
