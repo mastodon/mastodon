@@ -54,6 +54,30 @@ RSpec.describe Account, type: :model do
     end
   end
 
+  describe 'Local domain user methods' do
+    around do |example|
+      before = Rails.configuration.x.local_domain
+      example.run
+      Rails.configuration.x.local_domain = before
+    end
+
+    describe '#to_webfinger_s' do
+      it 'returns a webfinger string for the account' do
+        Rails.configuration.x.local_domain = 'example.com'
+
+        expect(subject.to_webfinger_s).to eq 'acct:alice@example.com'
+      end
+    end
+
+    describe '#local_username_and_domain' do
+      it 'returns the username and local domain for the account' do
+        Rails.configuration.x.local_domain = 'example.com'
+
+        expect(subject.local_username_and_domain).to eq 'alice@example.com'
+      end
+    end
+  end
+
   describe '#acct' do
     it 'returns username for local users' do
       expect(subject.acct).to eql 'alice'
