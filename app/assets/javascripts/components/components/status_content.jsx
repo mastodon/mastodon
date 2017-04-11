@@ -5,6 +5,27 @@ import emojify from '../emoji';
 import { isRtl } from '../rtl';
 import { FormattedMessage } from 'react-intl';
 import Permalink from './permalink';
+import md5 from 'md5';
+
+function getContrastYIQ(hexcolor) {
+  var r = parseInt(hexcolor.substr(0,2),16);
+  var g = parseInt(hexcolor.substr(2,2),16);
+  var b = parseInt(hexcolor.substr(4,2),16);
+  var yiq = ((r*299)+(g*587)+(b*114))/1000;
+  return (yiq >= 128) ? 'black' : 'white';
+}
+
+function getColorHash(url) {
+  let parts = url.split('/@');
+  if (parts.length > 1) {
+    let instance_name = parts[0].split('://')[1];
+    let username = parts[1];
+
+    if (instance_name) {
+      return md5(instance_name).substr(0, 6);
+    }
+  }
+}
 
 const StatusContent = React.createClass({
 
@@ -37,6 +58,19 @@ const StatusContent = React.createClass({
       if (mention) {
         link.addEventListener('click', this.onMentionClick.bind(this, mention), false);
         link.setAttribute('title', mention.get('acct'));
+        let url = link.getAttribute('href');
+        let color = getColorHash(url);
+        if (color) {
+          link.setAttribute('style', `border-radius: 5px; border-left: 6px solid #${color}; border-bottom: 1px solid #${color}; padding-right: 2px;`);
+          let at = link.firstChild;
+          if (at.nodeValue === "@") {
+            let atColor = getContrastYIQ(color);
+            let newSpan = document.createElement('span');
+            newSpan.appendChild(document.createTextNode(at.nodeValue));
+            newSpan.setAttribute('style', `color: ${atColor}; background-color: #${color}; padding-right: 4px; margin-right: 1px;`);
+            link.replaceChild(newSpan, at);
+          }
+        }
       } else if (link.textContent[0] === '#' || (link.previousSibling && link.previousSibling.textContent && link.previousSibling.textContent[link.previousSibling.textContent.length - 1] === '#')) {
         link.addEventListener('click', this.onHashtagClick.bind(this, link.text), false);
       } else if (media) {
