@@ -23,10 +23,7 @@ function getColorHashes(url) {
 
     if (instance_name) {
       let hash = sha1(instance_name);
-      return {
-        border: hash.substr(0, 6),
-        fill: hash.substr(7, 6)
-      }
+      return hash.substr(0, 6);
     }
   }
 }
@@ -63,15 +60,15 @@ const StatusContent = React.createClass({
         link.addEventListener('click', this.onMentionClick.bind(this, mention), false);
         link.setAttribute('title', mention.get('acct'));
         let url = link.getAttribute('href');
-        let colors = getColorHashes(url);
-        if (colors) {
-          link.setAttribute('style', `border-radius: 5px; border-left: 6px solid #${colors.border}; border-bottom: 1px solid #${colors.border}; padding-right: 2px;`);
+        let color = getColorHash(url);
+        if (color) {
+          link.setAttribute('style', `border-radius: 5px; border-left: 6px solid #${color}; border-bottom: 1px solid #${color}; padding-right: 2px;`);
           let at = link.firstChild;
           if (at.nodeValue === "@") {
-            let atColor = getContrastYIQ(colors.fill);
+            let atColor = getContrastYIQ(color);
             let newSpan = document.createElement('span');
             newSpan.appendChild(document.createTextNode(at.nodeValue));
-            newSpan.setAttribute('style', `color: ${atColor}; background-color: #${colors.fill}; padding-left: 8px; padding-right: 4px; margin-right: 1px;`);
+            newSpan.setAttribute('style', `color: ${atColor}; background-color: #${color}; padding-right: 4px; margin-right: 1px;`);
             link.replaceChild(newSpan, at);
           }
         }
