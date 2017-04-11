@@ -2,7 +2,7 @@
   .wrapper {
     max-width: 600px;
     margin: 0 auto;
-    color: $color3;
+    color: var(--color3, $color3);
     padding-top: 50px;
     padding-bottom: 50px;
 
@@ -15,7 +15,7 @@
     font: 46px/52px 'Roboto', sans-serif;
     font-weight: 600;
     margin-bottom: 20px;
-    color: $color4;
+    color: var(--color4, $color4);
     padding: 20px 0;
 
     img {
@@ -32,7 +32,7 @@
     line-height: 28px;
     font-weight: 400;
     margin-bottom: 20px;
-    color: $color5;
+    color: var(--color5, $color5);
   }
 
   h3 {
@@ -41,7 +41,7 @@
     line-height: 28px;
     font-weight: 400;
     margin-bottom: 20px;
-    color: $color2;
+    color: var(--color2, $color2);
   }
 
   ul, ol {
@@ -67,7 +67,7 @@
     margin-bottom: 26px;
 
     a {
-      color: $color4;
+      color: var(--color4, $color4);
       text-decoration: underline;
     }
   }
@@ -76,14 +76,14 @@
     display: inline-block;
     padding: 7px 7px 5px 7px;
     margin: 0 2px;
-    background: $color3;
-    color: $color1;
+    background: var(--color3, $color3);
+    color: var(--color1, $color1);
     font: 16px/16px 'Montserrat', sans-serif;
     font-weight: 300;
   }
 
   .screenshot {
-    box-shadow: 0 0 15px rgba($color8, 0.4);
+    box-shadow: 0 0 15px rgba(var(--color8, $color8), 0.4);
     margin-bottom: 26px;
 
     img {
@@ -103,7 +103,7 @@
       line-height: 36px;
 
       a {
-        color: $color3;
+        color: var(--color3, $color3);
         text-decoration: underline;
       }
     }
@@ -126,6 +126,7 @@
   justify-content: space-between;
   border-top: 1px solid lighten($color1, 10%);
   border-bottom: 1px solid lighten($color1, 10%);
+  border-color: var(--color1, $color1);
   padding-right: 14px;
 
   .section {
@@ -142,7 +143,7 @@
       font-size: 16px;
 
       &:last-child {
-        color: $color2;
+        color: var(--color2, $color2);
         font-size: 14px;
       }
     }
@@ -151,7 +152,7 @@
       font-weight: 500;
       font-size: 32px;
       line-height: 48px;
-      color: $color5;
+      color: var(--color5, $color5);
     }
   }
 
@@ -186,7 +187,7 @@
 
     a {
       display: block;
-      color: $color5;
+      color: var(--color5, $color5);
       text-decoration: none;
 
       &:hover {
@@ -198,7 +199,7 @@
 
     .username {
       display: block;
-      color: $color3;
+      color: var(--color3, $color3);
     }
   }
 }
@@ -209,7 +210,7 @@
 
   strong {
     display: block;
-    color: $color5;
+    color: var(--color5, $color5);
   }
 }
 
@@ -258,7 +259,7 @@
           a {
             display: block;
             padding: 7px 14px;
-            color: rgba($color5, 0.7);
+            color: rgba(var(--color5, $color5), 0.7);
             text-decoration: none;
             transition: all 200ms linear;
 
@@ -267,14 +268,14 @@
             }
 
             &:hover {
-              color: $color5;
-              background-color: darken($color1, 5%);
+              color: var(--color5, $color5);
+              background-color: darken(var(--color1, $color1), 5%);
               transition: all 100ms linear;
             }
 
             &.selected {
-              color: $color5;
-              background-color: $color4;
+              color: var(--color5, $color5);
+              background-color: var(--color4, $color4);
 
               &:hover {
                 background-color: lighten($color4, 5%);
@@ -335,10 +336,10 @@
   .simple_form, .closed-registrations-message {
     width: 300px;
     flex: 0 0 auto;
-    background: rgba(darken($color1, 7%), 0.5);
+    background: rgba(darken(var(--color1, $color1), 7%), 0.5);
     padding: 14px;
     border-radius: 4px;
-    box-shadow: 0 0 15px rgba($color8, 0.4);
+    box-shadow: 0 0 15px rgba(var(--color8, $color8), 0.4);
 
     .actions {
       margin-bottom: 0;
@@ -348,7 +349,7 @@
       text-align: center;
 
       a {
-        color: $color2;
+        color: var(--color2, $color2);
       }
     }
   }

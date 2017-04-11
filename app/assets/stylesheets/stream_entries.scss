@@ -1,12 +1,12 @@
 .activity-stream {
   clear: both;
-  box-shadow: 0 0 15px rgba($color8, 0.2);
+  box-shadow: 0 0 15px rgba(var(--color8, $color8), 0.2);
 
   .entry {
-    background: $color5;
+    background: var(--color5, $color5);
 
     .detailed-status.light, .status.light {
-      border-bottom: 1px solid $color2;
+      border-bottom: 1px solid var(--color2, $color2);
     }
 
     &:last-child {
@@ -43,7 +43,7 @@
         font-size: 14px;
 
         .status__relative-time {
-          color: $color3;
+          color: var(--color3, $color3);
         }
       }
     }
@@ -52,7 +52,7 @@
       display: block;
       max-width: 100%;
       padding-right: 25px;
-      color: $color1;
+      color: var(--color1, $color1);
     }
 
     .status__avatar {
@@ -82,25 +82,25 @@
 
       strong {
         font-weight: 500;
-        color: $color1;
+        color: var(--color1, $color1);
       }
 
       span {
         font-size: 14px;
-        color: $color3;
+        color: var(--color3, $color3);
       }
     }
 
     .status__content {
-      color: $color1;
+      color: var(--color1, $color1);
 
       a {
-        color: $color4;
+        color: var(--color4, $color4);
       }
 
       a.status__content__spoiler-link {
-        color: $color5;
-        background: $color3;
+        color: var(--color5, $color5);
+        background: var(--color3, $color3);
 
         &:hover {
           background: lighten($color3, 8%);
@@ -124,7 +124,7 @@
 
   .detailed-status.light {
     padding: 14px;
-    background: $color5;
+    background: var(--color5, $color5);
     cursor: default;
 
     .detailed-status__display-name {
@@ -146,12 +146,12 @@
 
         strong {
           font-weight: 500;
-          color: $color1;
+          color: var(--color1, $color1);
         }
 
         span {
           font-size: 14px;
-          color: $color3;
+          color: var(--color3, $color3);
         }
       }
     }
@@ -167,15 +167,15 @@
     }
 
     .status__content {
-      color: $color1;
+      color: var(--color1, $color1);
 
       a {
-        color: $color4;
+        color: var(--color4, $color4);
       }
 
       a.status__content__spoiler-link {
-        color: $color5;
-        background: $color3;
+        color: var(--color5, $color5);
+        background: var(--color3, $color3);
 
         &:hover {
           background: lighten($color3, 8%);
@@ -185,7 +185,7 @@
 
     .detailed-status__meta {
       margin-top: 15px;
-      color: $color3;
+      color: var(--color3, $color3);
       font-size: 14px;
       line-height: 18px;
 
@@ -282,13 +282,13 @@
       transform: translate(-50%, -50%);
       padding: 5px;
       border-radius: 100px;
-      color: rgba($color5, 0.8);
+      color: rgba(var(--color5, $color5), 0.8);
       z-index: 1;
     }
   }
 
   .media-spoiler {
-    background: $color3;
+    background: var(--color3, $color3);
     width: 100%;
     height: 100%;
     cursor: pointer;
@@ -326,7 +326,7 @@
     padding-left: (48px + 14px*2);
     padding-bottom: 0;
     margin-bottom: -4px;
-    color: $color3;
+    color: var(--color3, $color3);
     font-size: 14px;
     position: relative;
 
@@ -336,7 +336,7 @@
     }
 
     .status__display-name.muted strong {
-      color: $color3;
+      color: var(--color3, $color3);
     }
   }
 

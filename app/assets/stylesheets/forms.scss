@@ -16,7 +16,7 @@ code {
 
   span.hint {
     display: block;
-    color: $color3;
+    color: var(--color3, $color3);
     font-size: 12px;
     margin-top: 4px;
   }
@@ -49,7 +49,7 @@ code {
     label {
       font-family: inherit;
       font-size: 16px;
-      color: $color5;
+      color: var(--color5, $color5);
       display: block;
       padding-top: 5px;
     }
@@ -96,7 +96,7 @@ code {
     border-radius: 2px 2px 0 0;
     padding: 7px 4px;
     font-size: 16px;
-    color: $color5;
+    color: var(--color5, $color5);
     display: block;
     width: 100%;
     outline: 0;
@@ -108,32 +108,32 @@ code {
     }
 
     &:focus:invalid {
-      border-bottom-color: $color6;
+      border-bottom-color: var(--color6, $color6);
     }
 
     &:required:valid {
-      border-bottom-color: $color7;
+      border-bottom-color: var(--color7, $color7);
     }
 
     &:active, &:focus {
-      border-bottom-color: $color4;
-      background: rgba($color8, 0.1);
+      border-bottom-color: var(--color4, $color4);
+      background: rgba(var(--color8, $color8), 0.1);
     }
   }
 
   .input.field_with_errors {
     label {
-      color: $color6;
+      color: var(--color6, $color6);
     }
 
     input[type=text], input[type=email], input[type=password] {
-      border-bottom-color: $color6;
+      border-bottom-color: var(--color6, $color6);
     }
 
     .error {
       display: block;
       font-weight: 500;
-      color: $color6;
+      color: var(--color6, $color6);
       margin-top: 4px;
     }
   }
@@ -147,8 +147,8 @@ code {
     width: 100%;
     border: 0;
     border-radius: 4px;
-    background: $color4;
-    color: $color5;
+    background: var(--color4, $color4);
+    color: var(--color5, $color5);
     font-size: 18px;
     padding: 10px;
     text-transform: uppercase;
@@ -171,7 +171,7 @@ code {
     }
 
     &.negative {
-      background: $color6;
+      background: var(--color6, $color6);
 
       &:hover {
         background-color: lighten($color6, 5%);
@@ -185,12 +185,12 @@ code {
 }
 
 .flash-message {
-  background: $color1;
-  color: $color3;
+  background: var(--color1, $color1);
+  color: var(--color3, $color3);
   border-radius: 4px;
   padding: 15px 10px;
   margin-bottom: 30px;
-  box-shadow: 0 0 5px rgba($color8, 0.2);
+  box-shadow: 0 0 5px rgba(var(--color8, $color8), 0.2);
   text-align: center;
 
   strong {
@@ -203,7 +203,7 @@ code {
   text-align: center;
 
   a {
-    color: $color5;
+    color: var(--color5, $color5);
     text-decoration: none;
 
     &:hover {
@@ -215,7 +215,7 @@ code {
 .oauth-prompt, .follow-prompt {
   margin-bottom: 30px;
   text-align: center;
-  color: $color3;
+  color: var(--color3, $color3);
 
   h2 {
     font-size: 16px;
@@ -223,7 +223,7 @@ code {
   }
 
   strong {
-    color: $color2;
+    color: var(--color2, $color2);
     font-weight: 500;
   }
 }
@@ -237,7 +237,7 @@ code {
   background: #fff;
   padding: 4px;
   margin-bottom: 20px;
-  box-shadow: 0 0 15px rgba($color8, 0.2);
+  box-shadow: 0 0 15px rgba(var(--color8, $color8), 0.2);
   display: inline-block;
 
   svg {
@@ -248,7 +248,7 @@ code {
 
 .qr-alternative {
   margin-left: 10px;
-  color: $color3;
+  color: var(--color3, $color3);
 
   samp {
     display: block;

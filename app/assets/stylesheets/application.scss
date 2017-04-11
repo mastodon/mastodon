@@ -66,7 +66,7 @@ table {
 
 ::-webkit-scrollbar-thumb {
   background: lighten($color1, 4%);
-  border: 0px none $color5;
+  border: 0px none var(--color5, $color5);
   border-radius: 50px;
 }
 
@@ -81,15 +81,15 @@ table {
 ::-webkit-scrollbar-track {
   border: 0px none $color5;
   border-radius: 0;
-  background: rgba($color8, 0.1);
+  background: rgba(var(--color8, $color8), 0.1);
 }
 
 ::-webkit-scrollbar-track:hover {
-  background: $color1;
+  background: var(--color1, $color1);
 }
 
 ::-webkit-scrollbar-track:active {
-  background: $color1;
+  background: var(--color1, $color1);
 }
 
 ::-webkit-scrollbar-corner {
@@ -98,7 +98,7 @@ table {
 
 body {
   font-family: 'Roboto', sans-serif;
-  background: $color1 image-url('background-photo.jpeg');
+  background: var(--color1, $color1) image-url('background-photo.jpeg');
   background-size: cover;
   background-attachment: fixed;
   font-size: 13px;
@@ -115,7 +115,7 @@ body {
     width: 100%;
     height: 100%;
     padding: 0;
-    background: $color1;
+    background: var(--color1, $color1);
   }
 
   &.embed {
@@ -131,7 +131,7 @@ body {
   }
 
   &.admin {
-    background: darken($color1, 4%);
+    background: darken(var(--color1, $color1), 4%);
     position: fixed;
     width: 100%;
     height: 100%;
@@ -179,7 +179,7 @@ button:focus {
   h1 {
     display: block;
     text-align: center;
-    color: $color5;
+    color: var(--color5, $color5);
     font-size: 48px;
     font-weight: 500;
 
@@ -230,7 +230,7 @@ button:focus {
   text-align: center;
   margin-top: 30px;
   font-size: 12px;
-  color: darken($color2, 25%);
+  color: darken(var(--color2, $color2), 25%);
 
   .domain {
     font-weight: 500;
@@ -260,7 +260,7 @@ button:focus {
   h1 {
     font-size: 24px;
     line-height: 28px;
-    color: $color3;
+    color: var(--color3, $color3);
     overflow: hidden;
     font-weight: 500;
     margin-bottom: 20px;
@@ -272,7 +272,7 @@ button:focus {
 
     small {
       font-weight: 400;
-      color: $color2;
+      color: var(--color2, $color2);
     }
 
     img {
@@ -286,8 +286,8 @@ button:focus {
 }
 
 .landing-strip {
-  background: rgba(darken($color1, 7%), 0.8);
-  color: $color3;
+  background: rgba(darken(var(--color1, $color1), 7%), 0.8);
+  color: var(--color3, $color3);
   font-weight: 400;
   padding: 14px;
   border-radius: 4px;
