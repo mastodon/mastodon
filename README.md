@@ -25,11 +25,11 @@ If you would like, you can [support the development of this project on Patreon][
 
 ## Resources
 
-- [List of Mastodon instances](docs/Using-Mastodon/List-of-Mastodon-instances.md)
+- [List of Mastodon instances](https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/List-of-Mastodon-instances.md)
 - [Use this tool to find Twitter friends on Mastodon](https://mastodon-bridge.herokuapp.com)
-- [API overview](docs/Using-the-API/API.md)
-- [Frequently Asked Questions](docs/Using-Mastodon/FAQ.md)
-- [List of apps](docs/Using-Mastodon/Apps.md)
+- [API overview](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md)
+- [Frequently Asked Questions](https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/FAQ.md)
+- [List of apps](https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/Apps.md)
 
 ## Features
 
@@ -117,25 +117,25 @@ Which will re-create the updated containers, leaving databases and data as is. D
 
 ## Deployment without Docker
 
-Docker is great for quickly trying out software, but it has its drawbacks too. If you prefer to run Mastodon without using Docker, refer to the [production guide](docs/Running-Mastodon/Production-guide.md) for examples, configuration and instructions.
+Docker is great for quickly trying out software, but it has its drawbacks too. If you prefer to run Mastodon without using Docker, refer to the [production guide](https://github.com/tootsuite/documentation/blob/master/Running-Mastodon/Production-guide.md) for examples, configuration and instructions.
 
 ## Deployment on Scalingo
 
 [![Deploy on Scalingo](https://cdn.scalingo.com/deploy/button.svg)](https://my.scalingo.com/deploy?source=https://github.com/tootsuite/mastodon#master)
 
-[You can view a guide for deployment on Scalingo here.](docs/Running-Mastodon/Scalingo-guide.md)
+[You can view a guide for deployment on Scalingo here.](https://github.com/tootsuite/documentation/blob/master/Running-Mastodon/Scalingo-guide.md)
 
 ## Deployment on Heroku (experimental)
 
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
 
-Mastodon can theoretically run indefinitely on a free [Heroku](https://heroku.com) app. [You can view a guide for deployment on Heroku here.](docs/Running-Mastodon/Heroku-guide.md)
+Mastodon can theoretically run indefinitely on a free [Heroku](https://heroku.com) app. [You can view a guide for deployment on Heroku here.](https://github.com/tootsuite/documentation/blob/master/Running-Mastodon/Heroku-guide.md)
 
 ## Development with Vagrant
 
 A quick way to get a development environment up and running is with Vagrant. You will need recent versions of [Vagrant](https://www.vagrantup.com/) and [VirtualBox](https://www.virtualbox.org/) installed.
 
-[You can find the guide for setting up a Vagrant development environment here.](docs/Running-Mastodon/Vagrant-guide.md)
+[You can find the guide for setting up a Vagrant development environment here.](https://github.com/tootsuite/documentation/blob/master/Running-Mastodon/Vagrant-guide.md)
 
 ## Contributing
 
