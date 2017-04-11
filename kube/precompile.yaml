@@ -1,0 +1,23 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: precompile
+spec:
+  template:
+    metadata:
+      name: precompile
+    spec:
+      containers:
+      - name: precompile
+        volumeMounts:
+        - mountPath: /mastodon/public
+          name: mastodon-volume
+        command: ["rails", "assets:precompile"]
+        image: gcr.io/mastodon-163707/web:latest
+        env:
+        - name: SECRET_KEY_BASE
+          value: 7a2b55669ab2479f86578ca890ad46c37fa1ba7f4f8535b1f6cab54dc425c9763fcd616e23771e08b4d8946488a2715d74baf0f61c0b91e69013fedec91c665a
+      volumes:
+      - name: mastodon-volume
+        emptyDir: {}
+      restartPolicy: Never

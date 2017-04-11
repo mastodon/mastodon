@@ -1,0 +1,39 @@
+# Please edit the object below. Lines beginning with a '#' will be ignored,
+# and an empty file will abort the edit. If an error occurs while saving this file will be
+# reopened with the relevant failures.
+#
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: adminify
+spec:
+  template:
+    metadata:
+      name: pi
+    spec:
+      containers:
+      - command:
+        - bundle
+        - exec
+        - rails
+        - mastodon:make_admin
+        - USERNAME=bradurani
+        env:
+        - name: SECRET_KEY_BASE
+          value: 7a2b55669ab2479f86578ca890ad46c37fa1ba7f4f8535b1f6cab54dc425c9763fcd616e23771e08b4d8946488a2715d74baf0f61c0b91e69013fedec91c665a
+        - name: DB_HOST
+          value: 35.184.49.250
+        - name: DB_USER
+          value: postgres
+        - name: DB_NAME
+          value: postgres
+        - name: DB_PASS
+          value: fhs7635shzbqeyfian2l
+        - name: DB_PORT
+          value: "5432"
+        image: gcr.io/mastodon-163707/web:latest
+        imagePullPolicy: Always
+        name: adminify
+        resources: {}
+        terminationMessagePath: /dev/termination-log
+      restartPolicy: Never
