@@ -1995,9 +1995,11 @@ button.active i.fa-retweet {
   }
 
   p {
-    font-size: 16px;
+    font-size: 18px;
     color: lighten($color1, 8%);
+    margin-top: 10px;
     margin-bottom: 10px;
+    line-height: 10x;
 
     &:last-child {
       margin-bottom: 0;
@@ -2008,3 +2010,21 @@ button.active i.fa-retweet {
     }
   }
 }
+
+ .onboarding-modal__image {
+    border-radius: 8px;
+    width: 70vw;
+    max-width: 450px;
+    max-height: auto;
+    display: block;
+    margin: auto;
+  }
+  
+.onboard-sliders {
+    display: inline-block;
+    max-width: 30px;
+    max-height: auto;
+    margin-left: 10px;
+  }
+  
+ 
