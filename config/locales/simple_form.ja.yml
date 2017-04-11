@@ -17,28 +17,28 @@ ja:
         confirm_password: 新しいパスワード
         current_password: 現在のパスワード
         data: データ
-        display_name: ユーザーネーム
+        display_name: 表示名
         email: メールアドレス
         header: ヘッダー
         locale: 言語
-        locked: プライベートを作成する
+        locked: 非公開アカウントにする
         new_password: パスワード
-        note: Bio
-        otp_attempt: Two-factor code
+        note: プロフィール
+        otp_attempt: 二段階認証コード
         password: パスワード
         setting_default_privacy: 投稿範囲
-        type: Import type
-        username: ユーザーID
+        type: インポートするファイルの種類
+        username: ユーザー名
       interactions:
-        must_be_follower: フォロワーされていないユーザーは通知しない
+        must_be_follower: フォロワーのみ通知
         must_be_following: あなたがフォローしていないユーザーは通知しない
       notification_emails:
         digest: メール通知
         favourite: いいねされた時メール通知します。
         follow: フォローされた時メール通知します。
         follow_request: フォローリクエストを受けた時メール通知します。
-        mention: あなた宛のTootが送信された時メール通知します。
-        reblog: あなたがReTootされた時メール通知します。
+        mention: あなた宛のトゥートが送信された時メール通知します。
+        reblog: あなたのトゥートがブーストされた時メール通知します。
     'no': 'いいえ'
     required:
       mark: "*"
