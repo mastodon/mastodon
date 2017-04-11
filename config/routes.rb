@@ -53,16 +53,14 @@ Rails.application.routes.draw do
     resource :preferences, only: [:show, :update]
     resource :import, only: [:show, :create]
 
-    resource :export, only: [:show] do
-      collection do
-        get :follows, to: 'exports#download_following_list'
-        get :blocks, to: 'exports#download_blocking_list'
-      end
+    resource :export, only: [:show]
+    namespace :exports, constraints: { format: :csv } do
+      resources :follows, only: :index, controller: :following_accounts
+      resources :blocks, only: :index, controller: :blocked_accounts
     end
 
-    resource :two_factor_auth, only: [:show] do
+    resource :two_factor_auth, only: [:show, :new, :create] do
       member do
-        post :enable
         post :disable
       end
     end
@@ -164,6 +162,7 @@ Rails.application.routes.draw do
         collection do
           get :relationships
           get :verify_credentials
+          patch :update_credentials
           get :search
         end
 
@@ -189,11 +188,14 @@ Rails.application.routes.draw do
 
   get '/web/(*any)', to: 'home#index', as: :web
 
-  get '/about',      to: 'about#index'
+  get '/about',      to: 'about#show'
   get '/about/more', to: 'about#more'
   get '/terms',      to: 'about#terms'
 
   root 'home#index'
 
-  match '*unmatched_route', via: :all, to: 'application#raise_not_found'
+  match '*unmatched_route',
+    via: :all,
+    to: 'application#raise_not_found',
+    format: false
 end

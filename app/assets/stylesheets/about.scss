@@ -114,10 +114,6 @@
       padding: 20px;
     }
 
-    .screenshot-with-signup .mascot {
-      display: none;
-    }
-
     .features-list {
       display: block;
     }
@@ -156,6 +152,14 @@
       font-size: 32px;
       line-height: 48px;
       color: $color5;
+    }
+  }
+
+  @media screen and (max-width: 500px) {
+    flex-direction: column;
+
+    .section {
+      text-align: left;
     }
   }
 }
@@ -281,6 +285,15 @@
       }
     }
   }
+
+  @media screen and (max-width: 625px) {
+    flex-direction: column;
+
+    .sidebar {
+      border: 1px solid lighten($color1, 10%);
+      width: auto;
+    }
+  }
 }
 
 .features-list {
@@ -337,6 +350,16 @@
       a {
         color: $color2;
       }
+    }
+  }
+  
+  @media screen and (max-width: 625px) {
+    .mascot {
+      display: none;
+    }
+
+    .simple_form, .closed-registrations-message {
+      flex: auto;
     }
   }
 }

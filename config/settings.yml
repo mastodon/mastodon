@@ -1,4 +1,11 @@
 # config/app.yml for rails-settings-cached
+#
+# This file contains default values, and does not need to be edited
+# when configuring an instance.  These settings may be changed by an
+# Administrator using the Web UI.
+#
+# For more information, see docs/Running-Mastodon/Administration-guide.md
+#
 defaults: &defaults
   site_title: 'Mastodon'
   site_description: ''
@@ -7,6 +14,7 @@ defaults: &defaults
   site_contact_email: ''
   open_registrations: true
   closed_registrations_message: ''
+  boost_modal: true
   notification_emails:
     follow: false
     reblog: false

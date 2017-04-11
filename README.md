@@ -17,7 +17,7 @@ Click on the screenshot to watch a demo of the UI:
 
 [youtube_demo]: https://www.youtube.com/watch?v=YO1jQ8_rAMU
 
-Focus of the project on a clean REST API and a good user interface. Ruby on Rails is used for the back-end, while React.js and Redux are used for the dynamic front-end. A static front-end for public resources (profiles and statuses) is also provided.
+The project focus is a clean REST API and a good user interface. Ruby on Rails is used for the back-end, while React.js and Redux are used for the dynamic front-end. A static front-end for public resources (profiles and statuses) is also provided.
 
 If you would like, you can [support the development of this project on Patreon][patreon]. Alternatively, you can donate to this BTC address: `17j2g7vpgHhLuXhN4bueZFCvdxxieyRVWd`
 
@@ -25,11 +25,11 @@ If you would like, you can [support the development of this project on Patreon][
 
 ## Resources
 
-- [List of Mastodon instances](docs/Using-Mastodon/List-of-Mastodon-instances.md)
+- [List of Mastodon instances](https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/List-of-Mastodon-instances.md)
 - [Use this tool to find Twitter friends on Mastodon](https://mastodon-bridge.herokuapp.com)
-- [API overview](docs/Using-the-API/API.md)
-- [Frequently Asked Questions](docs/Using-Mastodon/FAQ.md)
-- [List of apps](docs/Using-Mastodon/Apps.md)
+- [API overview](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md)
+- [Frequently Asked Questions](https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/FAQ.md)
+- [List of apps](https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/Apps.md)
 
 ## Features
 
@@ -67,9 +67,10 @@ Consult the example configuration file, `.env.production.sample` for the full li
 
 [![](https://images.microbadger.com/badges/version/gargron/mastodon.svg)](https://microbadger.com/images/gargron/mastodon "Get your own version badge on microbadger.com") [![](https://images.microbadger.com/badges/image/gargron/mastodon.svg)](https://microbadger.com/images/gargron/mastodon "Get your own image badge on microbadger.com")
 
-The project now includes a `Dockerfile` and a `docker-compose.yml`.
+The project now includes a `Dockerfile` and a `docker-compose.yml` file (which requires at least docker-compose version `1.10.0`).
 
-Do NOT change the REDIS_* or DB_* settings when running with the default docker configurations.
+Review the settings in docker-compose.yml.  Note that it is not default to store the postgresql database and redis databases in a persistent storage location,
+so you may need or want to adjust the settings there.
 
 Before running the first time, you need to build the images:
     docker-compose build
@@ -77,6 +78,8 @@ Before running the first time, you need to build the images:
 Then, you need to fill in the .env.production file:
     cp .env.production.sample .env.production
     vi .env.production
+
+Do NOT change the REDIS_* or DB_* settings when running with the default docker configurations.
 
 You will need to fill in, at least:
     LOCAL_DOMAIN, LOCAL_HTTPS, PAPERCLIP_SECRET, SECRET_KEY_BASE, OTP_SECRET, and the SMTP_*
@@ -86,8 +89,6 @@ You will need to fill in, at least:
 
     Do this once for each of those keys, and copy the result into the .env.production file in
     the appropriate field.
-
-    Note: WOW Cable/Internet and Gmail SMTP hosts do not work.
 
 Then you should run the db:migrate command to create the database, or migrate it from an older release:
 
@@ -105,12 +106,14 @@ If you wish to run this as a daemon process instead of monitoring it on console,
 
     docker-compose up -d
 
-Then you may login to your new Mastodon instance by browsing to http://(yourhost):3000/
+Then you may login to your new Mastodon instance by browsing to http(s)://(yourhost):3000/
 
 Following that, make sure that you read the [production guide](docs/Running-Mastodon/Production-guide.md). You are probably going to want to understand how
 to configure NGINX to make your Mastodon instance available to the rest of the world.
 
-The container has two volumes, for the assets and for user uploads. The default docker-compose.yml maps them to the repository's `public/assets` and `public/system` directories, you may wish to put them somewhere else. Likewise, the PostgreSQL and Redis images have data containers that you may wish to map somewhere where you know how to find them and back them up.
+The container has two volumes, for the assets and for user uploads, and optionally two more, for the postgresql and redis databases.
+
+The default docker-compose.yml maps them to the repository's `public/assets` and `public/system` directories, you may wish to put them somewhere else. Likewise, the PostgreSQL and Redis images have data containers that you may wish to map somewhere where you know how to find them and back them up.
 
 **Note**: The `--rm` option for docker-compose will remove the container that is created to run a one-off command after it completes. As data is stored in volumes it is not affected by that container clean-up.
 
@@ -144,25 +147,25 @@ Which will re-create the updated containers, leaving databases and data as is. D
 
 ## Deployment without Docker
 
-Docker is great for quickly trying out software, but it has its drawbacks too. If you prefer to run Mastodon without using Docker, refer to the [production guide](docs/Running-Mastodon/Production-guide.md) for examples, configuration and instructions.
+Docker is great for quickly trying out software, but it has its drawbacks too. If you prefer to run Mastodon without using Docker, refer to the [production guide](https://github.com/tootsuite/documentation/blob/master/Running-Mastodon/Production-guide.md) for examples, configuration and instructions.
 
 ## Deployment on Scalingo
 
 [![Deploy on Scalingo](https://cdn.scalingo.com/deploy/button.svg)](https://my.scalingo.com/deploy?source=https://github.com/tootsuite/mastodon#master)
 
-[You can view a guide for deployment on Scalingo here.](docs/Running-Mastodon/Scalingo-guide.md)
+[You can view a guide for deployment on Scalingo here.](https://github.com/tootsuite/documentation/blob/master/Running-Mastodon/Scalingo-guide.md)
 
 ## Deployment on Heroku (experimental)
 
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
 
-Mastodon can theoretically run indefinitely on a free [Heroku](https://heroku.com) app. [You can view a guide for deployment on Heroku here.](docs/Running-Mastodon/Heroku-guide.md)
+Mastodon can theoretically run indefinitely on a free [Heroku](https://heroku.com) app. [You can view a guide for deployment on Heroku here.](https://github.com/tootsuite/documentation/blob/master/Running-Mastodon/Heroku-guide.md)
 
 ## Development with Vagrant
 
 A quick way to get a development environment up and running is with Vagrant. You will need recent versions of [Vagrant](https://www.vagrantup.com/) and [VirtualBox](https://www.virtualbox.org/) installed.
 
-[You can find the guide for setting up a Vagrant development environment here.](docs/Running-Mastodon/Vagrant-guide.md)
+[You can find the guide for setting up a Vagrant development environment here.](https://github.com/tootsuite/documentation/blob/master/Running-Mastodon/Vagrant-guide.md)
 
 ## Contributing
 

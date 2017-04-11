@@ -25,7 +25,7 @@ class RemoteFollowController < ApplicationController
 
       session[:remote_follow] = @remote_follow.acct
 
-      redirect_to Addressable::Template.new(redirect_url_link.template).expand(uri: "#{@account.username}@#{Rails.configuration.x.local_domain}").to_s
+      redirect_to Addressable::Template.new(redirect_url_link.template).expand(uri: @account.to_webfinger_s).to_s
     else
       render :new
     end
