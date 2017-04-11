@@ -3,8 +3,17 @@ Heroku guide
 
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://dashboard.heroku.com/new?button-url=https://github.com/tootsuite/mastodon&template=https://github.com/tootsuite/mastodon)
 
-Mastodon can be run on a free [Heroku](https://heroku.com) app. It should be
-noted this has limited testing and could have unpredictable results.
+Mastodon _can_ be run on a free [Heroku](https://heroku.com) app. It should be
+noted this has limited testing and could have unpredictable results in 
+production. For production uses, free hobby dynos are probably not sufficient. 
+See [#1275](https://github.com/tootsuite/mastodon/issues/1275) for details.
+
+## Limitations
+
+Currently heroku setup has two main limitations:
+
+- Animated GIF upload requires extra setup ([#1007](https://github.com/tootsuite/mastodon/issues/1007)).
+- Streaming API requires extra setup ([#1119](https://github.com/tootsuite/mastodon/issues/1119)).
 
 ## Basic setup
 
