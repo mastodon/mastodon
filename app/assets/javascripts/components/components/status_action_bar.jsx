@@ -46,8 +46,8 @@ const StatusActionBar = React.createClass({
     this.props.onFavourite(this.props.status);
   },
 
-  handleReblogClick () {
-    this.props.onReblog(this.props.status);
+  handleReblogClick (e) {
+    this.props.onReblog(this.props.status, e);
   },
 
   handleDeleteClick () {
