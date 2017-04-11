@@ -40,7 +40,7 @@ Rails.application.configure do
 
   # By default, use the lowest log level to ensure availability of diagnostic information
   # when problems arise.
-  config.log_level = ENV.fetch('RAILS_LOG_LEVEL', 'debug').to_sym
+  config.log_level = ENV.fetch('RAILS_LOG_LEVEL', 'info').to_sym
 
   # Prepend all log lines with the following tags.
   config.log_tags = [:request_id]
@@ -64,7 +64,7 @@ Rails.application.configure do
     password: ENV.fetch('REDIS_PASSWORD') { false },
     db: 0,
     namespace: 'cache',
-    expires_in: 20.minutes,
+    expires_in: 10.minutes,
   }
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server.
