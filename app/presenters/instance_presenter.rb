@@ -24,10 +24,10 @@ class InstancePresenter
   def domain_count
     Rails.cache.fetch('distinct_domain_count') { Account.distinct.count(:domain) }
   end
-  
+
   def open_registrations
-    if not Setting.open_registrations then return false end
-    if not Setting.max_users then return true end
-    return user_count < Setting.max_users
+    return false unless Setting.open_registrations
+    return true unless Setting.max_users
+    user_count < Setting.max_users
   end
 end
