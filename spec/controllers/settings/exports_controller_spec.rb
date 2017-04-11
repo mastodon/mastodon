@@ -13,4 +13,22 @@ describe Settings::ExportsController do
     end
   end
 
+  describe 'GET #download_following_list' do
+    it 'returns a csv of the following accounts' do
+      get :download_following_list, format: :csv
+
+      expect(response).to have_http_status(:success)
+      expect(response.content_type).to eq "text/csv"
+    end
+  end
+
+  describe 'GET #download_blocking_list' do
+    it 'returns a csv of the blocking accounts' do
+      get :download_blocking_list, format: :csv
+
+      expect(response).to have_http_status(:success)
+      expect(response.content_type).to eq "text/csv"
+    end
+  end
+
 end
