@@ -61,7 +61,7 @@ server {
     proxy_set_header Proxy "";
     proxy_pass_header Server;
 
-    proxy_pass http://localhost:3000;
+    proxy_pass http://127.0.0.1:3000;
     proxy_buffering off;
     proxy_redirect off;
     proxy_http_version 1.1;
