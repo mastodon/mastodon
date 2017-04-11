@@ -9,10 +9,10 @@ module SettingsHelper
     pt: 'Português',
     fr: 'Français',
     hu: 'Magyar',
+    ru: 'Русский',
     uk: 'Українська',
     'zh-CN': '简体中文',
     fi: 'Suomi',
-    ru: 'Русский',
 
   }.freeze
 
