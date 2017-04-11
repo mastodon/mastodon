@@ -57,6 +57,7 @@ Rails.application.routes.draw do
       collection do
         get :follows, to: 'exports#download_following_list'
         get :blocks, to: 'exports#download_blocking_list'
+        get :mutes, to: 'exports#download_muting_list'
       end
     end
 
