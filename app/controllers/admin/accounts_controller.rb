@@ -5,7 +5,7 @@ module Admin
     before_action :set_account, except: :index
 
     def index
-      @accounts = Account.alphabetic.paginate(page: params[:page], per_page: 40)
+      @accounts = Account.alphabetic.page(params[:page])
 
       @accounts = @accounts.local                             if params[:local].present?
       @accounts = @accounts.remote                            if params[:remote].present?

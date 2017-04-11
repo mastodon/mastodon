@@ -9,4 +9,4 @@
   - else
     = render partial: 'grid_card', collection: @following, as: :account, cached: true
 
-= will_paginate @following, pagination_options
+= paginate @following

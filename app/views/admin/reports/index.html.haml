@@ -29,4 +29,4 @@
           %td= truncate(report.comment, length: 30, separator: ' ')
           %td= table_link_to 'circle', 'View', admin_report_path(report)
 
-= will_paginate @reports, pagination_options
+= paginate @reports

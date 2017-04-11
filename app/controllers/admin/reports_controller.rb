@@ -5,7 +5,7 @@ module Admin
     before_action :set_report, except: [:index]
 
     def index
-      @reports = Report.includes(:account, :target_account).order('id desc').paginate(page: params[:page], per_page: 40)
+      @reports = Report.includes(:account, :target_account).order('id desc').page(params[:page])
       @reports = params[:action_taken].present? ? @reports.resolved : @reports.unresolved
     end
 
