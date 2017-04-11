@@ -76,7 +76,7 @@ const Notification = React.createClass({
     const account          = notification.get('account');
     const displayName      = account.get('display_name').length > 0 ? account.get('display_name') : account.get('username');
     const displayNameHTML = { __html: emojify(escapeTextContentForBrowser(displayName)) };
-    const link             = <Permalink className='notification__display-name' style={linkStyle} href={account.get('url')} to={`/accounts/${account.get('id')}`} dangerouslySetInnerHTML={displayNameHTML} />;
+    const link             = <Permalink className='notification__display-name' style={linkStyle} href={account.get('url')} title={account.get('acct')} to={`/accounts/${account.get('id')}`} dangerouslySetInnerHTML={displayNameHTML} />;
 
     switch(notification.get('type')) {
       case 'follow':

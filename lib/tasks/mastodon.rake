@@ -92,5 +92,17 @@ namespace :mastodon do
 
       Rails.logger.debug 'Done!'
     end
+
+    desc 'Generate static versions of GIF avatars/headers'
+    task add_static_avatars: :environment do
+      Rails.logger.debug 'Generating static avatars/headers for GIF ones...'
+
+      Account.unscoped.where(avatar_content_type: 'image/gif').or(Account.unscoped.where(header_content_type: 'image/gif')).find_each do |account|
+        account.avatar.reprocess!
+        account.header.reprocess!
+      end
+
+      Rails.logger.debug 'Done!'
+    end
   end
 end

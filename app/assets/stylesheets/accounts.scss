@@ -173,7 +173,7 @@
   text-align: center;
   overflow: hidden;
 
-  a, .current, .next_page, .previous_page, .gap {
+  a, .current, .page, .gap {
     font-size: 14px;
     color: $color5;
     font-weight: 500;
@@ -193,12 +193,12 @@
     cursor: default;
   }
 
-  .previous_page, .next_page {
+  .prev, .next {
     text-transform: uppercase;
     color: $color2;
   }
 
-  .previous_page {
+  .prev {
     float: left;
     padding-left: 0;
 
@@ -208,7 +208,7 @@
     }
   }
 
-  .next_page {
+  .next {
     float: right;
     padding-right: 0;
 
@@ -226,11 +226,11 @@
   @media screen and (max-width: 360px) {
     padding: 30px 20px;
 
-    a, .current, .next_page, .previous_page, .gap {
+    a, .current, .next, .prev, .gap {
       display: none;
     }
 
-    .next_page, .previous_page {
+    .next, .prev {
       display: inline-block;
     }
   }

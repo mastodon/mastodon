@@ -1,7 +1,7 @@
 @import 'variables';
 
 .app-body{
- -ms-overflow-style: -ms-autohiding-scrollbar; 
+ -ms-overflow-style: -ms-autohiding-scrollbar;
 }
 
 .button {
@@ -163,6 +163,14 @@
   &:after {
     content: "…";
   }
+}
+
+.avatar {
+  border-radius: 4px;
+  background: transparent no-repeat;
+  background-position: 50%;
+  background-clip: padding-box;
+  position: relative;
 }
 
 .lightbox .icon-button {

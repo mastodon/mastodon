@@ -3,7 +3,7 @@
 module Admin
   class DomainBlocksController < BaseController
     def index
-      @blocks = DomainBlock.paginate(page: params[:page], per_page: 40)
+      @blocks = DomainBlock.page(params[:page])
     end
 
     def new

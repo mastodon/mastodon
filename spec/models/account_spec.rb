@@ -421,4 +421,24 @@ RSpec.describe Account, type: :model do
       end
     end
   end
+
+  describe 'static avatars' do
+    describe 'when GIF' do
+      it 'creates a png static style' do
+        subject.avatar = attachment_fixture('avatar.gif')
+        subject.save
+
+        expect(subject.avatar_static_url).to_not eq subject.avatar_original_url
+      end
+    end
+
+    describe 'when non-GIF' do
+      it 'does not create extra static style' do
+        subject.avatar = attachment_fixture('attachment.jpg')
+        subject.save
+
+        expect(subject.avatar_static_url).to eq subject.avatar_original_url
+      end
+    end
+  end
 end
