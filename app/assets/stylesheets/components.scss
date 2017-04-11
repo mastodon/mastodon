@@ -1215,7 +1215,7 @@ a.status__content__spoiler-link {
 
 @import 'boost';
 
-button i.fa-retweet {
+button.icon-button i.fa-retweet {
   height: 19px;
   width: 22px;
   background-position: 0 0;
@@ -1227,7 +1227,7 @@ button i.fa-retweet {
   }
 }
 
-button.active i.fa-retweet {
+button.icon-button.active i.fa-retweet {
   transition-duration: 0.9s;
   background-position: 0 100%;
 }
@@ -1934,5 +1934,34 @@ button.active i.fa-retweet {
   img, video {
     max-width: 80vw;
     max-height: 80vh;
+  }
+}
+
+.boost-modal {
+  display: block;
+
+  color: white;
+  background: lighten($color1, 13%);
+
+  max-width: 90vw;
+  width: 480px;
+
+  padding-top: 25px;
+  border-radius: 3px;
+
+  position: relative;
+
+  & .detailed-status {
+    pointer-events: none;
+    max-height: 60vh;
+    overflow-y: auto;
+  }
+
+  & > .icon-button {
+    color: lighten($color1, 40%);
+
+    &:hover, &:active {
+      color: lighten($color1, 60%);
+    }
   }
 }
