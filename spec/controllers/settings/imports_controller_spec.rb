@@ -13,4 +13,11 @@ RSpec.describe Settings::ImportsController, type: :controller do
     end
   end
 
+  describe 'POST #create' do
+    it 'redirects to settings path' do
+      post :create, params: { import: { type: 'following' } }
+
+      expect(response).to be_redirect(settings_import_path)
+    end
+  end
 end
