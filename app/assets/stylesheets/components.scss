@@ -349,6 +349,43 @@ a.status__content__spoiler-link {
   .status__display-name {
     color: lighten($color1, 26%);
   }
+
+  &.light {
+    .status__relative-time {
+      color: $color3;
+    }
+
+    .status__display-name {
+      color: $color1;
+    }
+
+    .display-name {
+      strong {
+        color: $color1;
+      }
+
+      span {
+        color: $color3;
+      }
+    }
+
+    .status__content {
+      color: $color1;
+
+      a {
+        color: $color4;
+      }
+
+      a.status__content__spoiler-link {
+        color: $color5;
+        background: $color3;
+
+        &:hover {
+          background: lighten($color3, 8%);
+        }
+      }
+    }
+  }
 }
 
 .status-check-box {
@@ -1938,30 +1975,39 @@ button.icon-button.active i.fa-retweet {
 }
 
 .boost-modal {
-  display: block;
-
-  color: white;
-  background: lighten($color1, 13%);
-
+  background: lighten($color2, 8%);
+  color: $color1;
+  border-radius: 8px;
+  overflow: hidden;
   max-width: 90vw;
   width: 480px;
-
-  padding-top: 25px;
-  border-radius: 3px;
-
   position: relative;
+  flex-direction: column;
+}
 
-  & .detailed-status {
-    pointer-events: none;
-    max-height: 60vh;
-    overflow-y: auto;
+.boost-modal__container {
+  padding: 10px;
+
+  .status {
+    user-select: text;
+    border-bottom: 0;
+  }
+}
+
+.boost-modal__action-bar {
+  display: flex;
+  background: $color2;
+  padding: 10px;
+  line-height: 36px;
+
+  & > div {
+    flex: 1 1 auto;
+    text-align: right;
+    color: lighten($color1, 33%);
+    padding-right: 10px;
   }
 
-  & > .icon-button {
-    color: lighten($color1, 40%);
-
-    &:hover, &:active {
-      color: lighten($color1, 60%);
-    }
+  .button {
+    flex: 0 0 auto;
   }
 }
