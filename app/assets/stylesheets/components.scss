@@ -764,19 +764,6 @@ a.status__content__spoiler-link {
   border-bottom: 2px solid transparent;
 }
 
-@media screen and (min-width: 2560px) {
-  .columns-area {
-    justify-content: center;
-  }
-
-  .column, .drawer {
-    width: 350px;
-    border-radius: 4px;
-    height: 90vh;
-    margin-top: 5vh;
-  }
-}
-
 .drawer__pager {
   box-sizing: border-box;
   padding: 0;
@@ -829,14 +816,6 @@ a.status__content__spoiler-link {
   margin-right: 5px;
   flex: 0 0 auto;
   overflow: hidden;
-}
-
-.column:first-child, .drawer:first-child {
-  margin-left: 10px;
-}
-
-.column:last-child, .drawer:last-child {
-  margin-right: 10px;
 }
 
 @media screen and (max-width: 1024px) {
@@ -895,7 +874,7 @@ a.status__content__spoiler-link {
 
 @media screen and (min-width: 360px) {
   .columns-area {
-    margin: 10px;
+    margin: 0 10px;
   }
 
   .tabs-bar {
@@ -910,7 +889,7 @@ a.status__content__spoiler-link {
 
 @media screen and (min-width: 1024px) {
   .columns-area {
-    margin: 0;
+    margin: 0 10px;
   }
 }
 
