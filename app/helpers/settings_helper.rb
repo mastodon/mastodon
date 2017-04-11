@@ -11,6 +11,7 @@ module SettingsHelper
     hu: 'Magyar',
     uk: 'Українська',
     'zh-CN': '简体中文',
+    'zh-HK': '繁體中文（香港）',
     fi: 'Suomi',
     ru: 'Русский',
     ja: '日本語',
