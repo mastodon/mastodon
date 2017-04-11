@@ -65,7 +65,7 @@ const Account = React.createClass({
       <div className='account'>
         <div style={{ display: 'flex' }}>
           <Permalink key={account.get('id')} className='account__display-name' href={account.get('url')} to={`/accounts/${account.get('id')}`}>
-            <div style={{ float: 'left', marginLeft: '12px', marginRight: '10px' }}><Avatar src={account.get('avatar')} size={36} /></div>
+            <div style={{ float: 'left', marginLeft: '12px', marginRight: '10px' }}><Avatar src={account.get('avatar')} staticSrc={status.getIn(['account', 'avatar_static'])} size={36} /></div>
             <DisplayName account={account} />
           </Permalink>
 

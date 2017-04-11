@@ -1,21 +1,25 @@
-const iconStyle = {
-  fontSize: '16px',
-  padding: '15px',
-  position: 'absolute',
-  right: '48px',
-  top: '0',
-  cursor: 'pointer',
-  zIndex: '2'
-};
+import { defineMessages, injectIntl } from 'react-intl';
 
-const ClearColumnButton = ({ onClick }) => (
-  <div className='column-icon' tabindex='0' style={iconStyle} onClick={onClick}>
-    <i className='fa fa-trash' />
-  </div>
-);
+const messages = defineMessages({
+  clear: { id: 'notifications.clear', defaultMessage: 'Clear notifications' }
+});
 
-ClearColumnButton.propTypes = {
-  onClick: React.PropTypes.func.isRequired
-};
+const ClearColumnButton = React.createClass({
 
-export default ClearColumnButton;
+  propTypes: {
+    onClick: React.PropTypes.func.isRequired,
+    intl: React.PropTypes.object.isRequired
+  },
+
+  render () {
+    const { intl } = this.props;
+
+    return (
+      <div title={intl.formatMessage(messages.clear)} className='column-icon column-icon-clear' tabIndex='0' onClick={this.props.onClick}>
+        <i className='fa fa-eraser' />
+      </div>
+    );
+  }
+})
+
+export default injectIntl(ClearColumnButton);

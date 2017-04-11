@@ -90,7 +90,9 @@ It is recommended to create a special user for mastodon on the server (you could
 
     sudo apt-get install imagemagick ffmpeg libpq-dev libxml2-dev libxslt1-dev nodejs file git curl
     curl -sL https://deb.nodesource.com/setup_4.x | sudo bash -
-    apt-get install nodejs
+
+    sudo apt-get install nodejs
+
     sudo npm install -g yarn
 
 ## Redis
@@ -119,7 +121,7 @@ It is recommended to use rbenv (exclusively from the `mastodon` user) to install
 [2]: https://github.com/rbenv/ruby-build#installation
 [3]: https://github.com/rbenv/ruby-build/wiki#suggested-build-environment
 
-Then once `rbenv` is ready, run `rbenv install 2.3.1` to install the Ruby version for Mastodon.
+Then once `rbenv` is ready, run `rbenv install 2.4.1` to install the Ruby version for Mastodon.
 
 ## Git
 

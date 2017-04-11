@@ -5,7 +5,7 @@
   %link{ rel: 'salmon', href: api_salmon_url(@account.id) }/
   %link{ rel: 'alternate', type: 'application/atom+xml', href: account_url(@account, format: 'atom') }/
 
-  %meta{ property: 'og:site_name', content: 'Mastodon' }/
+  %meta{ property: 'og:site_name', content: site_title }/
   %meta{ property: 'og:type', content: 'profile' }/
   %meta{ property: 'og:title', content: "#{@account.username} on #{Rails.configuration.x.local_domain}" }/
   %meta{ property: 'og:description', content: @account.note }/
@@ -31,4 +31,4 @@
 
   .pagination
     - if @statuses.size == 20
-      = link_to safe_join([t('pagination.next'), fa_icon('chevron-right')], ' '), short_account_url(@account, max_id: @statuses.last.id), class: 'next_page', rel: 'next'
+      = link_to safe_join([t('pagination.next'), fa_icon('chevron-right')], ' '), short_account_url(@account, max_id: @statuses.last.id), class: 'next', rel: 'next'
