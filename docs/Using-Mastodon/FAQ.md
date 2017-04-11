@@ -3,7 +3,7 @@ Frequently Asked Questions
 
 #### What is a Mastodon?
 
-A prehistoric animal, predecessor of the mammoth.
+A prehistoric animal, predecessor of the mammoth. Goes "toot."
 
 #### Why the name Mastodon?
 
