@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'csv'
-
 class Settings::ExportsController < ApplicationController
   layout 'admin'
 
@@ -17,7 +15,7 @@ class Settings::ExportsController < ApplicationController
     @accounts = current_account.following
 
     respond_to do |format|
-      format.csv { send_data accounts_list_to_csv(@accounts), filename: 'following.csv' }
+      format.csv { send_data export_data, filename: 'following.csv' }
     end
   end
 
@@ -25,17 +23,13 @@ class Settings::ExportsController < ApplicationController
     @accounts = current_account.blocking
 
     respond_to do |format|
-      format.csv { send_data accounts_list_to_csv(@accounts), filename: 'blocking.csv' }
+      format.csv { send_data export_data, filename: 'blocking.csv' }
     end
   end
 
   private
 
-  def accounts_list_to_csv(list)
-    CSV.generate do |csv|
-      list.each do |account|
-        csv << [(account.local? ? account.local_username_and_domain : account.acct)]
-      end
-    end
+  def export_data
+    Export.new(@accounts).to_csv
   end
 end
