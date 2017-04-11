@@ -24,8 +24,9 @@ class ImportWorker
 
   def process_blocks(import)
     from_account = import.account
+    contents = Paperclip.io_adapters.for(import.data).read
 
-    CSV.new(open(import.data.url)).each do |row|
+    CSV.new(contents).each do |row|
       next if row.size != 1
 
       begin
@@ -40,8 +41,9 @@ class ImportWorker
 
   def process_follows(import)
     from_account = import.account
+    contents = Paperclip.io_adapters.for(import.data).read
 
-    CSV.new(open(import.data.url)).each do |row|
+    CSV.new(contents).each do |row|
       next if row.size != 1
 
       begin

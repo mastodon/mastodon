@@ -14,10 +14,30 @@ RSpec.describe Settings::ImportsController, type: :controller do
   end
 
   describe 'POST #create' do
-    it 'redirects to settings path' do
-      post :create, params: { import: { type: 'following' } }
+    it 'redirects to settings path with successful following import' do
+      service = double(call: nil)
+      allow(FollowRemoteAccountService).to receive(:new).and_return(service)
+      post :create, params: {
+        import: {
+          type: 'following',
+          data: fixture_file_upload('files/imports.txt')
+        }
+      }
 
-      expect(response).to be_redirect(settings_import_path)
+      expect(response).to redirect_to(settings_import_path)
+    end
+
+    it 'redirects to settings path with successful blocking import' do
+      service = double(call: nil)
+      allow(FollowRemoteAccountService).to receive(:new).and_return(service)
+      post :create, params: {
+        import: {
+          type: 'blocking',
+          data: fixture_file_upload('files/imports.txt')
+        }
+      }
+
+      expect(response).to redirect_to(settings_import_path)
     end
   end
 end
