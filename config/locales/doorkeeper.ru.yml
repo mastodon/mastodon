@@ -1,0 +1,113 @@
+---
+ru:
+  activerecord:
+    attributes:
+      doorkeeper/application:
+        name: Название
+        redirect_uri: URI перенаправления
+    errors:
+      models:
+        doorkeeper/application:
+          attributes:
+            redirect_uri:
+              fragment_present: не может содержать фрагмент.
+              invalid_uri: должен быть правильным URI.
+              relative_uri: должен быть абсолютным URI.
+              secured_uri: должен быть HTTPS/SSL URI.
+  doorkeeper:
+    applications:
+      buttons:
+        authorize: Авторизовать
+        cancel: Отменить
+        destroy: Удалить
+        edit: Изменить
+        submit: Принять
+      confirmations:
+        destroy: Вы уверены?
+      edit:
+        title: Изменить приложение
+      form:
+        error: Ой! Проверьте Вашу форму на возможные ошибки
+      help:
+        native_redirect_uri: Используйте %{native_redirect_uri} для локального тестирования
+        redirect_uri: Используйте по одной строке на URI
+        scopes: Разделяйте список разрешений пробелами. Оставьте незаполненным для использования разрешений по умолчанию.
+      index:
+        callback_url: Callback URL
+        name: Название
+        new: Новое Приложение
+        title: Ваши приложения
+      new:
+        title: Новое Приложение
+      show:
+        actions: Действия
+        application_id: Id приложения
+        callback_urls: Callback urls
+        scopes: Разрешения
+        secret: Секрет
+        title: 'Приложение: %{name}'
+    authorizations:
+      buttons:
+        authorize: Авторизовать
+        deny: Отказать
+      error:
+        title: Произошла ошибка
+      new:
+        able_to: Оно сможет
+        prompt: Приложение %{client_name} запрашивает доступ к Вашему аккаунту
+        title: Требуется авторизация
+      show:
+        title: Код авторизации
+    authorized_applications:
+      buttons:
+        revoke: Отозвать авторизацию
+      confirmations:
+        revoke: Вы уверены?
+      index:
+        application: Приложение
+        created_at: Авторизовано
+        date_format: "%Y-%m-%d %H:%M:%S"
+        scopes: Разрешения
+        title: Ваши авторизованные приложения
+    errors:
+      messages:
+        access_denied: Владелец ресурса или сервер авторизации ответил отказом на Ваш запрос.
+        credential_flow_not_configured: Поток с предоставлением клиенту пароля завершился неудачей, поскольку параметр Doorkeeper.configure.resource_owner_from_credentials не был сконфигурирован.
+        invalid_client: Клиентская аутентификация завершилась неудачей (неизвестный клиент, не включена клиентская аутентификация, или метод аутентификации не поддерживается.
+        invalid_grant: Предоставленный доступ некорректен, истек, отозван, не совпадает с URI перенаправления, использованным в запросе авторизации, или был выпущен для другого клиента.
+        invalid_redirect_uri: Включенный URI перенаправления некорректен.
+        invalid_request: В запросе не хватает обязательного параметра, присутствует неподдерживаемое значение параметра, либо он был сформирован неверно.
+        invalid_resource_owner: Предоставленные данные владельца ресурса некорректны, или владелец ресурса не может быть найден
+        invalid_scope: Запрошенное разрешение некорректно, неизвестно или неверно сформировано.
+        invalid_token:
+          expired: Токен доступа истек
+          revoked: Токен доступа был отменен
+          unknown: Токен доступа некорректен
+        resource_owner_authenticator_not_configured: Поиск владельца ресурса завершился неудачей, поскольку параметр Doorkeeper.configure.resource_owner_authenticator не был сконфигурирован.
+        server_error: Сервер авторизации встретился с неожиданной ошибкой, не позволившей ему выполнить запрос.
+        temporarily_unavailable: Сервер авторизации в данный момент не может выполнить запрос по причине временной перегрузки или профилактики.
+        unauthorized_client: Клиент не авторизован для выполнения этого запроса с использованием этого метода.
+        unsupported_grant_type: Тип авторизации не поддерживается сервером авторизации.
+        unsupported_response_type: Сервер авторизации не поддерживает этот тип ответа.
+    flash:
+      applications:
+        create:
+          notice: Приложение создано.
+        destroy:
+          notice: Приложение удалено.
+        update:
+          notice: Приложение обновлено.
+      authorized_applications:
+        destroy:
+          notice: Авторизация приложения отозвана.
+    layouts:
+      admin:
+        nav:
+          applications: Приложения
+          oauth2_provider: Провайдер OAuth2
+      application:
+        title: Требуется авторизация OAuth
+    scopes:
+      follow: подписываться, отписываться, блокировать и разблокировать аккаунты
+      read: читать данные Вашего аккаунта
+      write: отправлять за Вас посты

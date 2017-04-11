@@ -1,7 +1,7 @@
 @import 'variables';
 
 .app-body{
- -ms-overflow-style: -ms-autohiding-scrollbar; 
+ -ms-overflow-style: -ms-autohiding-scrollbar;
 }
 
 .button {
@@ -46,6 +46,22 @@
 
   &:hover {
     color: lighten($color3, 7%);
+  }
+}
+
+.column-icon-clear {
+  font-size: 16px;
+  padding: 15px;
+  position: absolute;
+  right: 48px;
+  top: 0;
+  cursor: pointer;
+  z-index: 2;
+}
+
+@media screen and (min-width: 1024px) {
+  .column-icon-clear {
+    top: 10px;
   }
 }
 
@@ -147,6 +163,14 @@
   &:after {
     content: "…";
   }
+}
+
+.avatar {
+  border-radius: 4px;
+  background: transparent no-repeat;
+  background-position: 50%;
+  background-clip: padding-box;
+  position: relative;
 }
 
 .lightbox .icon-button {
@@ -714,15 +738,7 @@ a.status__content__spoiler-link {
 
 @media screen and (min-width: 360px) {
   .columns-area {
-    margin: 0;
-  }
-
-  .column:first-child, .drawer:first-child {
-    margin-left: 0;
-  }
-
-  .column:last-child, .drawer:last-child {
-    margin-right: 0;
+    padding: 10px;
   }
 }
 
@@ -730,9 +746,12 @@ a.status__content__spoiler-link {
   width: 330px;
   position: relative;
   box-sizing: border-box;
-  background: $color1;
   display: flex;
   flex-direction: column;
+
+  > .scrollable {
+    background: $color1;
+  }
 }
 
 .ui {
@@ -833,7 +852,6 @@ a.status__content__spoiler-link {
     font-size: 16px;
   }
 }
-
 .tabs-bar {
   display: flex;
   background: lighten($color1, 8%);
@@ -844,17 +862,18 @@ a.status__content__spoiler-link {
 .tabs-bar__link {
   display: block;
   flex: 1 1 auto;
-  padding: 10px 5px;
+  padding: 15px 10px;
   color: $color5;
   text-decoration: none;
   text-align: center;
-  font-size:12px;
+  font-size: 14px;
   font-weight: 500;
   border-bottom: 2px solid lighten($color1, 8%);
   transition: all 200ms linear;
 
   .fa {
     font-weight: 400;
+    font-size: 16px;
   }
 
   &.active {
@@ -868,6 +887,7 @@ a.status__content__spoiler-link {
   }
 
   span {
+    margin-left: 5px;
     display: none;
   }
 }
@@ -895,10 +915,6 @@ a.status__content__spoiler-link {
 
 @media screen and (min-width: 600px) {
   .tabs-bar__link {
-    .fa {
-      margin-right: 5px;
-    }
-
     span {
       display: inline;
     }
@@ -1360,12 +1376,15 @@ button.active i.fa-retweet {
 
 .empty-column-indicator {
   color: lighten($color1, 20%);
+  background: $color1;
   text-align: center;
   padding: 20px;
-  padding-top: 100px;
   font-size: 15px;
   font-weight: 400;
   cursor: default;
+  display: flex;
+  flex: 1 1 auto;
+  align-items: center;
 
   a {
     color: $color4;
@@ -1393,7 +1412,7 @@ button.active i.fa-retweet {
 .emoji-dialog {
   width: 280px;
   height: 220px;
-  background: $color2;
+  background: darken($color3, 10%);
   box-sizing: border-box;
   border-radius: 2px;
   overflow: hidden;
@@ -1402,6 +1421,8 @@ button.active i.fa-retweet {
 
   .emojione {
     margin: 0;
+    width: 100%;
+    height: auto;
   }
 
   .emoji-dialog-header {
