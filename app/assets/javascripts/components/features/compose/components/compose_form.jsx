@@ -1,5 +1,6 @@
 import CharacterCounter from './character_counter';
 import Button from '../../../components/button';
+import Icon from '../../../components/icon';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ReplyIndicatorContainer from '../containers/reply_indicator_container';
@@ -137,7 +138,7 @@ const ComposeForm = React.createClass({
     }
 
     if (this.props.privacy === 'private' || this.props.privacy === 'direct') {
-      publishText = <span><i className='fa fa-lock' /> {intl.formatMessage(messages.publish)}</span>;
+      publishText = <span><Icon icon='lock' /> {intl.formatMessage(messages.publish)}</span>;
     } else {
       publishText = intl.formatMessage(messages.publish) + (this.props.privacy !== 'unlisted' ? '!' : '');
     }

@@ -1,4 +1,5 @@
 import { Link } from 'react-router';
+import Icon from '../../../components/icon';
 
 const outerStyle = {
   display: 'block',
@@ -16,14 +17,14 @@ const ColumnLink = ({ icon, text, to, href, method }) => {
   if (href) {
     return (
       <a href={href} style={outerStyle} className='column-link' data-method={method}>
-        <i className={`fa fa-fw fa-${icon}`} style={iconStyle} />
+        <Icon icon={icon} style={iconStyle} />
         {text}
       </a>
     );
   } else {
     return (
       <Link to={to} style={outerStyle} className='column-link'>
-        <i className={`fa fa-fw fa-${icon}`} style={iconStyle} />
+        <Icon icon={icon} style={iconStyle} />
         {text}
       </Link>
     );

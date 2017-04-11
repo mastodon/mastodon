@@ -1,4 +1,5 @@
 import PureRenderMixin from 'react-addons-pure-render-mixin';
+import Icon from '../../../components/icon';
 
 const ColumnHeader = React.createClass({
 
@@ -21,7 +22,7 @@ const ColumnHeader = React.createClass({
     let icon = '';
 
     if (this.props.icon) {
-      icon = <i className={`fa fa-fw fa-${this.props.icon}`} style={{ display: 'inline-block', marginRight: '5px' }} />;
+      icon = <Icon icon={this.props.icon} style={{ display: 'inline-block', marginRight: '5px' }} />;
     }
 
     return (

@@ -5,6 +5,7 @@ import emojify from '../emoji';
 import { isRtl } from '../rtl';
 import { FormattedMessage } from 'react-intl';
 import Permalink from './permalink';
+import Icon from './icon';
 
 const StatusContent = React.createClass({
 
@@ -39,7 +40,7 @@ const StatusContent = React.createClass({
       } else if (link.textContent[0] === '#' || (link.previousSibling && link.previousSibling.textContent && link.previousSibling.textContent[link.previousSibling.textContent.length - 1] === '#')) {
         link.addEventListener('click', this.onHashtagClick.bind(this, link.text), false);
       } else if (media) {
-        link.innerHTML = '<i class="fa fa-fw fa-photo"></i>';
+        link.innerHTML = '<Icon icon="photo" />';
       } else {
         link.setAttribute('target', '_blank');
         link.setAttribute('rel', 'noopener');

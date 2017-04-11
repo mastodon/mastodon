@@ -2,6 +2,7 @@ import PureRenderMixin from 'react-addons-pure-render-mixin';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import Avatar from '../../../components/avatar';
 import DisplayName from '../../../components/display_name';
+import Icon from '../../../components/icon';
 import StatusContent from '../../../components/status_content';
 import MediaGallery from '../../../components/media_gallery';
 import VideoPlayer from '../../../components/video_player';
@@ -63,7 +64,7 @@ const DetailedStatus = React.createClass({
         {media}
 
         <div className='detailed-status__meta'>
-          <a className='detailed-status__datetime' style={{ color: 'inherit' }} href={status.get('url')} target='_blank' rel='noopener'><FormattedDate value={new Date(status.get('created_at'))} hour12={false} year='numeric' month='short' day='2-digit' hour='2-digit' minute='2-digit' /></a>{applicationLink} · <Link to={`/statuses/${status.get('id')}/reblogs`} style={{ color: 'inherit', textDecoration: 'none' }}><i className='fa fa-retweet' /><span style={{ fontWeight: '500', fontSize: '12px', marginLeft: '6px', display: 'inline-block' }}><FormattedNumber value={status.get('reblogs_count')} /></span></Link> · <Link to={`/statuses/${status.get('id')}/favourites`} style={{ color: 'inherit', textDecoration: 'none' }}><i className='fa fa-star' /><span style={{ fontWeight: '500', fontSize: '12px', marginLeft: '6px', display: 'inline-block' }}><FormattedNumber value={status.get('favourites_count')} /></span></Link>
+          <a className='detailed-status__datetime' style={{ color: 'inherit' }} href={status.get('url')} target='_blank' rel='noopener'><FormattedDate value={new Date(status.get('created_at'))} hour12={false} year='numeric' month='short' day='2-digit' hour='2-digit' minute='2-digit' /></a>{applicationLink} · <Link to={`/statuses/${status.get('id')}/reblogs`} style={{ color: 'inherit', textDecoration: 'none' }}><Icon icon='retweet' /><span style={{ fontWeight: '500', fontSize: '12px', marginLeft: '6px', display: 'inline-block' }}><FormattedNumber value={status.get('reblogs_count')} /></span></Link> · <Link to={`/statuses/${status.get('id')}/favourites`} style={{ color: 'inherit', textDecoration: 'none' }}><Icon icon='star' /><span style={{ fontWeight: '500', fontSize: '12px', marginLeft: '6px', display: 'inline-block' }}><FormattedNumber value={status.get('favourites_count')} /></span></Link>
         </div>
       </div>
     );

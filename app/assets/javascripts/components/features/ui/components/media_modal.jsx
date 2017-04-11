@@ -4,6 +4,7 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import ExtendedVideoPlayer from '../../../components/extended_video_player';
 import ImageLoader from 'react-imageloader';
 import { defineMessages, injectIntl } from 'react-intl';
+import Icon from '../../../components/icon';
 import IconButton from '../../../components/icon_button';
 
 const messages = defineMessages({
@@ -104,8 +105,8 @@ const MediaModal = React.createClass({
     leftNav = rightNav = content = '';
 
     if (media.size > 1) {
-      leftNav  = <div style={leftNavStyle} className='modal-container__nav' onClick={this.handlePrevClick}><i className='fa fa-fw fa-chevron-left' /></div>;
-      rightNav = <div style={rightNavStyle} className='modal-container__nav' onClick={this.handleNextClick}><i className='fa fa-fw fa-chevron-right' /></div>;
+      leftNav  = <div style={leftNavStyle} className='modal-container__nav' onClick={this.handlePrevClick}><Icon icon='chevron-left' fixedWidth={true} /></div>;
+      rightNav = <div style={rightNavStyle} className='modal-container__nav' onClick={this.handleNextClick}><Icon icon='chevron-right' fixedWidth={true} /></div>;
     }
 
     if (attachment.get('type') === 'image') {

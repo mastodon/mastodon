@@ -1,5 +1,6 @@
 import Dropdown, { DropdownTrigger, DropdownContent } from 'react-simple-dropdown';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
+import Icon from './icon';
 
 const DropdownMenu = React.createClass({
 
@@ -55,7 +56,7 @@ const DropdownMenu = React.createClass({
     return (
       <Dropdown ref={this.setRef}>
         <DropdownTrigger className='icon-button' style={{ fontSize: `${size}px`, width: `${size}px`, lineHeight: `${size}px` }}>
-          <i className={`fa fa-fw fa-${icon}`} style={{ verticalAlign: 'middle' }} />
+          <Icon icon={icon} style={{ verticalAlign: 'middle' }} fixedWidth={true} />
         </DropdownTrigger>
 
         <DropdownContent className={directionClass} style={{ lineHeight: '18px', textAlign: 'left' }}>

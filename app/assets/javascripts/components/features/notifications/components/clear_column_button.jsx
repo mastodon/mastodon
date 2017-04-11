@@ -1,4 +1,5 @@
 import { defineMessages, injectIntl } from 'react-intl';
+import Icon from '../../../components/icon';
 
 const messages = defineMessages({
   clear: { id: 'notifications.clear', defaultMessage: 'Clear notifications' }
@@ -26,7 +27,7 @@ const ClearColumnButton = React.createClass({
 
     return (
       <div title={intl.formatMessage(messages.clear)} className='column-icon' tabIndex='0' style={iconStyle} onClick={this.props.onClick}>
-        <i className='fa fa-eraser' />
+        <Icon icon='eraser' />
       </div>
     );
   }

@@ -1,6 +1,7 @@
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import { Motion, spring } from 'react-motion';
 import { FormattedMessage } from 'react-intl';
+import Icon from '../../../components/icon';
 
 const UploadProgress = React.createClass({
 
@@ -21,7 +22,7 @@ const UploadProgress = React.createClass({
     return (
       <div className='upload-progress'>
         <div>
-          <i className='fa fa-upload' />
+          <Icon icon='upload' />
         </div>
 
         <div style={{ flex: '1 1 auto' }}>

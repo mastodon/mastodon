@@ -1,5 +1,6 @@
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import { Motion, spring } from 'react-motion';
+import Icon from './icon';
 
 const iconStyle = {
   fontSize: '16px',
@@ -46,7 +47,7 @@ const ColumnCollapsable = React.createClass({
 
     return (
       <div style={{ position: 'relative' }}>
-        <div title={`${title}`} style={{...iconStyle }} className={`column-icon ${collapsedClassName}`} onClick={this.handleToggleCollapsed}><i className={`fa fa-${icon}`} /></div>
+        <div title={`${title}`} style={{...iconStyle }} className={`column-icon ${collapsedClassName}`} onClick={this.handleToggleCollapsed}><Icon icon={icon} /></div>
 
         <Motion defaultStyle={{ opacity: 0, height: 0 }} style={{ opacity: spring(collapsed ? 0 : 100), height: spring(collapsed ? 0 : fullHeight, collapsed ? undefined : { stiffness: 150, damping: 9 }) }}>
           {({ opacity, height }) =>

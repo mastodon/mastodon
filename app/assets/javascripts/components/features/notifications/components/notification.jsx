@@ -3,6 +3,7 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import StatusContainer from '../../../containers/status_container';
 import AccountContainer from '../../../containers/account_container';
 import { FormattedMessage } from 'react-intl';
+import Icon from '../../../components/icon';
 import Permalink from '../../../components/permalink';
 import emojify from '../../../emoji';
 import escapeTextContentForBrowser from 'escape-html';
@@ -24,7 +25,7 @@ const Notification = React.createClass({
       <div className='notification'>
         <div className='notification__message'>
           <div style={{ position: 'absolute', 'left': '-26px'}}>
-            <i className='fa fa-fw fa-user-plus' />
+            <Icon icon='user-plus' fixedWidth={true} />
           </div>
 
           <FormattedMessage id='notification.follow' defaultMessage='{name} followed you' values={{ name: link }} />
@@ -44,7 +45,7 @@ const Notification = React.createClass({
       <div className='notification'>
         <div className='notification__message'>
           <div style={{ position: 'absolute', 'left': '-26px'}}>
-            <i className='fa fa-fw fa-star' style={{ color: '#ca8f04' }} />
+            <Icon icon='star' fixedWidth={true} style={{ color: '#ca8f04' }} />
           </div>
 
           <FormattedMessage id='notification.favourite' defaultMessage='{name} favourited your status' values={{ name: link }} />
@@ -60,7 +61,7 @@ const Notification = React.createClass({
       <div className='notification'>
         <div className='notification__message'>
           <div style={{ position: 'absolute', 'left': '-26px'}}>
-            <i className='fa fa-fw fa-retweet' />
+            <Icon icon='retweet' />
           </div>
 
           <FormattedMessage id='notification.reblog' defaultMessage='{name} boosted your status' values={{ name: link }} />

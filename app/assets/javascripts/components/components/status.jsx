@@ -10,6 +10,7 @@ import StatusActionBar from './status_action_bar';
 import { FormattedMessage } from 'react-intl';
 import emojify from '../emoji';
 import escapeTextContentForBrowser from 'escape-html';
+import Icon from './icon';
 
 const Status = React.createClass({
 
@@ -64,7 +65,7 @@ const Status = React.createClass({
       return (
         <div style={{ cursor: 'default' }}>
           <div className='status__prepend'>
-            <div style={{ position: 'absolute', 'left': '-26px'}}><i className='fa fa-fw fa-retweet' /></div>
+            <div style={{ position: 'absolute', 'left': '-26px'}}><Icon icon="retweet" fixedWidth={true} /></div>
             <FormattedMessage id='status.reblogged_by' defaultMessage='{name} reblogged' values={{ name: <a onClick={this.handleAccountClick.bind(this, status.getIn(['account', 'id']))} href={status.getIn(['account', 'url'])} className='status__display-name muted'><strong dangerouslySetInnerHTML={displayNameHTML} /></a> }} />
           </div>
 

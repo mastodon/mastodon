@@ -9,6 +9,7 @@ import { injectIntl, defineMessages } from 'react-intl';
 import SearchContainer from './containers/search_container';
 import { Motion, spring } from 'react-motion';
 import SearchResultsContainer from './containers/search_results_container';
+import Icon from '../../components/icon';
 
 const messages = defineMessages({
   start: { id: 'getting_started.heading', defaultMessage: 'Getting started' },
@@ -49,11 +50,11 @@ const Compose = React.createClass({
     if (withHeader) {
       header = (
         <div className='drawer__header'>
-          <Link title={intl.formatMessage(messages.start)} className='drawer__tab' to='/getting-started'><i className='fa fa-fw fa-asterisk' /></Link>
-          <Link title={intl.formatMessage(messages.community)} className='drawer__tab' to='/timelines/public/local'><i className='fa fa-fw fa-users' /></Link>
-          <Link title={intl.formatMessage(messages.public)} className='drawer__tab' to='/timelines/public'><i className='fa fa-fw fa-globe' /></Link>
-          <a title={intl.formatMessage(messages.preferences)} className='drawer__tab' href='/settings/preferences'><i className='fa fa-fw fa-cog' /></a>
-          <a title={intl.formatMessage(messages.logout)} className='drawer__tab' href='/auth/sign_out' data-method='delete'><i className='fa fa-fw fa-sign-out' /></a>
+          <Link title={intl.formatMessage(messages.start)} className='drawer__tab' to='/getting-started'><Icon icon='asterisk' fixedWidth={true} /></Link>
+          <Link title={intl.formatMessage(messages.community)} className='drawer__tab' to='/timelines/public/local'><Icon icon='users' fixedWidth={true} /></Link>
+          <Link title={intl.formatMessage(messages.public)} className='drawer__tab' to='/timelines/public'><Icon icon='globe'  fixedWidth={true} /></Link>
+          <a title={intl.formatMessage(messages.preferences)} className='drawer__tab' href='/settings/preferences'><Icon icon='cog' fixedWidth={true} /></a>
+          <a title={intl.formatMessage(messages.logout)} className='drawer__tab' href='/auth/sign_out' data-method='delete'><Icon icon='sign-out' fixedWidth={true} /></a>
         </div>
       );
     }

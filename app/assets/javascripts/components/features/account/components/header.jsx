@@ -3,6 +3,7 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import emojify from '../../../emoji';
 import escapeTextContentForBrowser from 'escape-html';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
+import Icon from '../../../components/icon';
 import IconButton from '../../../components/icon_button';
 import { Motion, spring } from 'react-motion';
 
@@ -101,7 +102,7 @@ const Header = React.createClass({
     }
 
     if (account.get('locked')) {
-      lockedIcon = <i className='fa fa-lock' />;
+      lockedIcon = <Icon icon='lock' />;
     }
 
     const content         = { __html: emojify(account.get('note')) };

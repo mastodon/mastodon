@@ -1,5 +1,6 @@
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import { Motion, spring } from 'react-motion';
+import Icon from './icon';
 
 const IconButton = React.createClass({
 
@@ -57,7 +58,7 @@ const IconButton = React.createClass({
             className={`icon-button ${this.props.active ? 'active' : ''} ${this.props.disabled ? 'disabled' : ''} ${this.props.inverted ? 'inverted' : ''}`}
             onClick={this.handleClick}
             style={style}>
-            <i style={{ transform: `rotate(${rotate}deg)` }} className={`fa fa-fw fa-${this.props.icon}`} aria-hidden='true' />
+            <Icon style={{ transform: `rotate(${rotate}deg)` }} icon={this.props.icon} aria-hidden='true' />
           </button>
         }
       </Motion>

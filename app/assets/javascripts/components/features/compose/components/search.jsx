@@ -1,6 +1,7 @@
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
+import Icon from '../../../components/icon';
 
 const messages = defineMessages({
   placeholder: { id: 'search.placeholder', defaultMessage: 'Search' }
@@ -57,8 +58,8 @@ const Search = React.createClass({
         />
 
         <div className='search__icon'>
-          <i className={`fa fa-search ${hasValue ? '' : 'active'}`} />
-          <i className={`fa fa-times-circle ${hasValue ? 'active' : ''}`} onClick={this.handleClear} />
+          <Icon icon="search" active={hasValue} />
+          <Icon icon="times-circle" active={hasValue} onClick={this.handleClear} />
         </div>
       </div>
     );

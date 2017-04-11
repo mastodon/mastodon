@@ -1,5 +1,6 @@
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import { injectIntl, defineMessages } from 'react-intl';
+import Icon from '../../../components/icon';
 import IconButton from '../../../components/icon_button';
 
 const messages = defineMessages({
@@ -84,7 +85,7 @@ const PrivacyDropdown = React.createClass({
         <div className='privacy-dropdown__dropdown'>
           {options.map(item =>
             <div key={item.value} onClick={this.handleClick.bind(this, item.value)} className={`privacy-dropdown__option ${item.value === value ? 'active' : ''}`}>
-              <div className='privacy-dropdown__option__icon'><i className={`fa fa-fw fa-${item.icon}`} /></div>
+              <div className='privacy-dropdown__option__icon'><Icon icon={item.icon} fixedWidth={true} /></div>
               <div className='privacy-dropdown__option__content'>
                 <strong>{item.shortText}</strong>
                 {item.longText}
