@@ -61,6 +61,8 @@ export function refreshNotifications() {
       params.since_id = ids.first().get('id');
     }
 
+    params.exclude_types = getState().getIn(['settings', 'notifications', 'shows']).filter(enabled => !enabled).keySeq().toJS();
+
     api(getState).get('/api/v1/notifications', { params }).then(response => {
       const next = getLinks(response).refs.find(link => link.rel === 'next');
 
@@ -105,11 +107,11 @@ export function expandNotifications() {
 
     dispatch(expandNotificationsRequest());
 
-    api(getState).get(url, {
-      params: {
-        limit: 5
-      }
-    }).then(response => {
+    const params = {};
+
+    params.exclude_types = getState().getIn(['settings', 'notifications', 'shows']).filter(enabled => !enabled).keySeq().toJS();
+
+    api(getState).get(url, params).then(response => {
       const next = getLinks(response).refs.find(link => link.rel === 'next');
 
       dispatch(expandNotificationsSuccess(response.data, next ? next.uri : null));

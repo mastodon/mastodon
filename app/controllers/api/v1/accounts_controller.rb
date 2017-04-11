@@ -17,10 +17,8 @@ class Api::V1::AccountsController < ApiController
   end
 
   def update_credentials
-    @account = current_user.account
-
-    @account.update_attributes!(account_params)
-
+    current_account.update!(account_params)
+    @account = current_account
     render action: :show
   end
 
@@ -146,6 +144,6 @@ class Api::V1::AccountsController < ApiController
   end
 
   def account_params
-    @account_params ||= params.permit(:display_name, :note, :avatar, :header)
+    params.permit(:display_name, :note, :avatar, :header)
   end
 end
