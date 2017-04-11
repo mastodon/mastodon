@@ -10,20 +10,4 @@ class Settings::ExportsController < ApplicationController
     @total_follows = current_account.following.count
     @total_blocks  = current_account.blocking.count
   end
-
-  def download_following_list
-    export_data = Export.new(current_account.following).to_csv
-
-    respond_to do |format|
-      format.csv { send_data export_data, filename: 'following.csv' }
-    end
-  end
-
-  def download_blocking_list
-    export_data = Export.new(current_account.blocking).to_csv
-
-    respond_to do |format|
-      format.csv { send_data export_data, filename: 'blocking.csv' }
-    end
-  end
 end

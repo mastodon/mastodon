@@ -10,8 +10,8 @@
     %tr
       %th= t('exports.follows')
       %td= @total_follows
-      %td= table_link_to 'download', t('exports.csv'), follows_settings_export_path(format: :csv)
+      %td= table_link_to 'download', t('exports.csv'), settings_exports_follows_path(format: :csv)
     %tr
       %th= t('exports.blocks')
       %td= @total_blocks
-      %td= table_link_to 'download', t('exports.csv'), blocks_settings_export_path(format: :csv)
+      %td= table_link_to 'download', t('exports.csv'), settings_exports_blocks_path(format: :csv)
