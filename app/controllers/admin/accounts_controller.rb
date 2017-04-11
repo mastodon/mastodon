@@ -2,7 +2,7 @@
 
 module Admin
   class AccountsController < BaseController
-    before_action :set_account, except: :index
+    before_action :set_account, except: [:index, :new, :create]
 
     def index
       @accounts = Account.alphabetic.page(params[:page])
@@ -30,11 +30,6 @@ module Admin
       else
         render :new
       end
-    end
-
-    def suspend
-      Admin::SuspensionWorker.perform_async(@account.id)
-      redirect_to admin_accounts_path
     end
 
     def suspend
