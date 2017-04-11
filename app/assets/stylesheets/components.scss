@@ -1,7 +1,7 @@
 @import 'variables';
 
 .app-body{
- -ms-overflow-style: -ms-autohiding-scrollbar; 
+ -ms-overflow-style: -ms-autohiding-scrollbar;
 }
 
 .button {
@@ -163,6 +163,14 @@
   &:after {
     content: "…";
   }
+}
+
+.avatar {
+  border-radius: 4px;
+  background: transparent no-repeat;
+  background-position: 50%;
+  background-clip: padding-box;
+  position: relative;
 }
 
 .lightbox .icon-button {
@@ -1425,7 +1433,7 @@ button.active i.fa-retweet {
 .emoji-dialog {
   width: 280px;
   height: 220px;
-  background: $color2;
+  background: darken($color3, 10%);
   box-sizing: border-box;
   border-radius: 2px;
   overflow: hidden;

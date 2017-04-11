@@ -14,7 +14,7 @@ RSpec.describe XrdController, type: :controller do
     let(:alice) { Fabricate(:account, username: 'alice') }
 
     it 'returns http success when account can be found' do
-      get :webfinger, params: { resource: "acct:#{alice.username}@#{Rails.configuration.x.local_domain}" }
+      get :webfinger, params: { resource: alice.to_webfinger_s }
       expect(response).to have_http_status(:success)
     end
 
