@@ -69,7 +69,11 @@ Consult the example configuration file, `.env.production.sample` for the full li
 
 The project now includes a `Dockerfile` and a `docker-compose.yml` file (which requires at least docker-compose version `1.10.0`). You need to turn `.env.production.sample` into `.env.production` with all the variables set before you can:
 
+```
+    docker volume create --name=data
+
     docker-compose build
+```
 
 And finally
 
