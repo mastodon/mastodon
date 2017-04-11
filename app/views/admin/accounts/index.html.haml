@@ -1,5 +1,5 @@
 - content_for :page_title do
-  Accounts
+  = t('admin.accounts')
 
 .filters
   .filter-subset
@@ -47,3 +47,6 @@
           = table_link_to 'pencil', 'Edit', admin_account_path(account.id)
 
 = will_paginate @accounts, pagination_options
+
+.simple_form{ style: 'max-width: 100%' }
+  = link_to t('admin.create_account'), new_admin_account_path, class: 'block-button'

@@ -88,7 +88,7 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :accounts, only: [:index, :show] do
+    resources :accounts, only: [:index, :show, :new, :create] do
       member do
         post :silence
         post :unsilence

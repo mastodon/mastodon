@@ -2,7 +2,7 @@
 
 class Admin::AccountsController < ApplicationController
   before_action :require_admin!
-  before_action :set_account, except: :index
+  before_action :set_account, except: [:index, :new, :create]
 
   layout 'admin'
 
@@ -18,6 +18,21 @@ class Admin::AccountsController < ApplicationController
   end
 
   def show; end
+
+  def new;
+    @user = User.new.tap(&:build_account)
+  end
+
+  def create
+    @user = User.new(user_params)
+    # We generate random password, so user need to choose password (Forgot your password?) after validation.
+    @user.password = SecureRandom.hex
+    if @user.save
+      redirect_to admin_accounts_url, notice: I18n.t('admin.create_success')
+    else
+      render :new
+    end
+  end
 
   def suspend
     Admin::SuspensionWorker.perform_async(@account.id)
@@ -47,5 +62,9 @@ class Admin::AccountsController < ApplicationController
 
   def account_params
     params.require(:account).permit(:silenced, :suspended)
+  end
+
+  def user_params
+    params.require(:user).permit(:email, { account_attributes: [:username] })
   end
 end
