@@ -5,7 +5,7 @@ import emojify from '../emoji';
 import { isRtl } from '../rtl';
 import { FormattedMessage } from 'react-intl';
 import Permalink from './permalink';
-import md5 from 'md5';
+import sha1 from 'sha1';
 
 function getContrastYIQ(hexcolor) {
   var r = parseInt(hexcolor.substr(0,2),16);
@@ -15,14 +15,18 @@ function getContrastYIQ(hexcolor) {
   return (yiq >= 128) ? 'black' : 'white';
 }
 
-function getColorHash(url) {
+function getColorHashes(url) {
   let parts = url.split('/@');
   if (parts.length > 1) {
     let instance_name = parts[0].split('://')[1];
     let username = parts[1];
 
     if (instance_name) {
-      return md5(instance_name).substr(0, 6);
+      let hash = sha1(instance_name);
+      return {
+        border: hash.substr(0, 6),
+        fill: hash.substr(7, 6)
+      }
     }
   }
 }
@@ -59,15 +63,15 @@ const StatusContent = React.createClass({
         link.addEventListener('click', this.onMentionClick.bind(this, mention), false);
         link.setAttribute('title', mention.get('acct'));
         let url = link.getAttribute('href');
-        let color = getColorHash(url);
-        if (color) {
-          link.setAttribute('style', `border-radius: 5px; border-left: 6px solid #${color}; border-bottom: 1px solid #${color}; padding-right: 2px;`);
+        let colors = getColorHashes(url);
+        if (colors) {
+          link.setAttribute('style', `border-radius: 5px; border-left: 6px solid #${colors.border}; border-bottom: 1px solid #${colors.border}; padding-right: 2px;`);
           let at = link.firstChild;
           if (at.nodeValue === "@") {
-            let atColor = getContrastYIQ(color);
+            let atColor = getContrastYIQ(colors.fill);
             let newSpan = document.createElement('span');
             newSpan.appendChild(document.createTextNode(at.nodeValue));
-            newSpan.setAttribute('style', `color: ${atColor}; background-color: #${color}; padding-right: 4px; margin-right: 1px;`);
+            newSpan.setAttribute('style', `color: ${atColor}; background-color: #${colors.fill}; padding-left: 8px; padding-right: 4px; margin-right: 1px;`);
             link.replaceChild(newSpan, at);
           }
         }
