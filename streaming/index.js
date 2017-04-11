@@ -307,7 +307,7 @@ wss.on('connection', ws => {
   })
 })
 
-server.listen(process.env.PORT || 4000, () => {
+server.listen(process.env.PORT || 4000, process.env.BIND || '0.0.0.0', () => {
   log.level = process.env.LOG_LEVEL || 'verbose'
   log.info(`Starting streaming API server on port ${server.address().port}`)
 })
