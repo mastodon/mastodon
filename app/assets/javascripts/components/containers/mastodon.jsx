@@ -48,6 +48,8 @@ import hu from 'react-intl/locale-data/hu';
 import uk from 'react-intl/locale-data/uk';
 import fi from 'react-intl/locale-data/fi';
 import eo from 'react-intl/locale-data/eo';
+import ru from 'react-intl/locale-data/ru';
+
 import getMessagesForLocale from '../locales';
 import { hydrateStore } from '../actions/store';
 import createStream from '../stream';
@@ -60,7 +62,9 @@ const browserHistory = useRouterHistory(createBrowserHistory)({
   basename: '/web'
 });
 
-addLocaleData([...en, ...de, ...es, ...fr, ...pt, ...hu, ...uk, ...fi, ...eo]);
+
+addLocaleData([...en, ...de, ...es, ...fr, ...pt, ...hu, ...uk, ...fi, ...eo, ...ru]);
+
 
 const Mastodon = React.createClass({
 

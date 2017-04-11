@@ -54,7 +54,7 @@ const DetailedStatus = React.createClass({
     return (
       <div style={{ padding: '14px 10px' }} className='detailed-status'>
         <a href={status.getIn(['account', 'url'])} onClick={this.handleAccountClick} className='detailed-status__display-name' style={{ display: 'block', overflow: 'hidden', marginBottom: '15px' }}>
-          <div style={{ float: 'left', marginRight: '10px' }}><Avatar src={status.getIn(['account', 'avatar'])} size={48} /></div>
+          <div style={{ float: 'left', marginRight: '10px' }}><Avatar src={status.getIn(['account', 'avatar'])} staticSrc={status.getIn(['account', 'avatar_static'])} size={48} /></div>
           <DisplayName account={status.get('account')} />
         </a>
 

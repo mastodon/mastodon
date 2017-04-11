@@ -15,7 +15,6 @@ class Formatter
     html = status.text
     html = encode(html)
     html = simple_format(html, {}, sanitize: false)
-    html = html.gsub(/\n/, '')
     html = link_urls(html)
     html = link_mentions(html, status.mentions)
     html = link_hashtags(html)

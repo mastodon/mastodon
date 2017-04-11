@@ -36,6 +36,7 @@ const StatusContent = React.createClass({
 
       if (mention) {
         link.addEventListener('click', this.onMentionClick.bind(this, mention), false);
+        link.setAttribute('title', mention.get('acct'));
       } else if (link.textContent[0] === '#' || (link.previousSibling && link.previousSibling.textContent && link.previousSibling.textContent[link.previousSibling.textContent.length - 1] === '#')) {
         link.addEventListener('click', this.onHashtagClick.bind(this, link.text), false);
       } else if (media) {
@@ -91,7 +92,7 @@ const StatusContent = React.createClass({
     const { status } = this.props;
     const { hidden } = this.state;
 
-    const content = { __html: emojify(status.get('content')) };
+    const content = { __html: emojify(status.get('content')).replace(/\n/g, '') };
     const spoilerContent = { __html: emojify(escapeTextContentForBrowser(status.get('spoiler_text', ''))) };
     const directionStyle = { direction: 'ltr' };
 
@@ -125,13 +126,21 @@ const StatusContent = React.createClass({
           <div style={{ display: hidden ? 'none' : 'block', ...directionStyle }} dangerouslySetInnerHTML={content} />
         </div>
       );
-    } else {
+    } else if (this.props.onClick) {
       return (
         <div
           className='status__content'
           style={{ cursor: 'pointer', ...directionStyle }}
           onMouseDown={this.handleMouseDown}
           onMouseUp={this.handleMouseUp}
+          dangerouslySetInnerHTML={content}
+        />
+      );
+    } else {
+      return (
+        <div
+          className='status__content'
+          style={{ ...directionStyle }}
           dangerouslySetInnerHTML={content}
         />
       );

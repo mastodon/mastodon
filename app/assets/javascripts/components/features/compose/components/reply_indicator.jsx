@@ -50,7 +50,7 @@ const ReplyIndicator = React.createClass({
           <div style={{ float: 'right', lineHeight: '24px' }}><IconButton title={intl.formatMessage(messages.cancel)} icon='times' onClick={this.handleClick} /></div>
 
           <a href={status.getIn(['account', 'url'])} onClick={this.handleAccountClick} className='reply-indicator__display-name' style={{ display: 'block', maxWidth: '100%', paddingRight: '25px', textDecoration: 'none', overflow: 'hidden', lineHeight: '24px' }}>
-            <div style={{ float: 'left', marginRight: '5px' }}><Avatar size={24} src={status.getIn(['account', 'avatar'])} /></div>
+            <div style={{ float: 'left', marginRight: '5px' }}><Avatar size={24} src={status.getIn(['account', 'avatar'])} staticSrc={status.getIn(['account', 'avatar_static'])} /></div>
             <DisplayName account={status.get('account')} />
           </a>
         </div>
