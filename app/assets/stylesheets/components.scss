@@ -1600,11 +1600,17 @@ button.active i.fa-retweet {
     top: 93px;
   }
 
-  .emoji-row .emoji:hover {
-    background: lighten($color2, 3%);
-
+  .emoji-row .emoji {
     img, svg {
-      transform: translateZ(0) scale(1.2);
+      transition: transform 60ms ease-in-out;
+    }
+
+    &:hover {
+      background: lighten($color2, 3%);
+
+      img, svg {
+        transform: translateZ(0) scale(1.2);
+      }
     }
   }
 
