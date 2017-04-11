@@ -74,6 +74,13 @@ namespace :mastodon do
       end
     end
   end
+  
+  namespace :users do
+    desc 'clear unconfirmed users'
+    task clear: :environment do
+      User.where('confirmed_at is NULL AND confirmation_sent_at <= ?', 7.days.ago).find_each(&:destroy)
+    end
+  end
 
   namespace :maintenance do
     desc 'Update counter caches'
