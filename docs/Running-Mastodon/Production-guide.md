@@ -1,9 +1,11 @@
 Production guide
 ================
 
-## Nginx
+## WEB server
 
-Regardless of whether you go with the Docker approach or not, here is an example Nginx server configuration:
+Regardless of whether you go with the Docker approach or not, here is an example configuration for apache2 or Nginx, assuming your domain name is example.com:
+
+### Nginx
 
 ```nginx
 map $http_upgrade $connection_upgrade {
@@ -90,6 +92,61 @@ server {
 
   error_page 500 501 502 503 504 /500.html;
 }
+```
+
+### Apache2
+
+For apache2, make sure you activated the followings mods: proxy, proxy_ajp, proxy_connect, proxy_html, proxy_http, proxy_wstunnel with the command a2enmod.
+
+```
+# We set a http VirtualHost which redirects to the https one
+<VirtualHost example.com:80>
+        ServerName example.com
+        
+        ErrorLog ${APACHE_LOG_DIR}/error.log
+        CustomLog ${APACHE_LOG_DIR}/access.log combined
+
+        RewriteEngine on
+        RewriteCond %{HTTPS} !=on
+        RewriteRule ^/?(.*) https://%{SERVER_NAME}/$1 [R,L]
+</VirtualHost>
+
+
+
+<IfModule mod_ssl.c>
+        <VirtualHost example.com:443>
+                ServerName example.com
+
+                ErrorLog ${APACHE_LOG_DIR}/error.log
+                CustomLog ${APACHE_LOG_DIR}/access.log combined
+
+                <Proxy *>
+                        Order deny,allow
+                        Allow from all
+                </Proxy>
+
+                SSLEngine On
+                SSLProxyEngine On
+                SSLCertificateFile /etc/letsencrypt/live/example.com/fullchain.pem
+                SSLCertificateKeyFile /etc/letsencrypt/live/example.com/privkey.pem
+                Include /etc/letsencrypt/options-ssl-apache.conf
+
+                ProxyRequests Off
+                ProxyPreserveHost On
+
+                # We only redirect WebSockets to /api/v1/streaming/
+                ProxyPass /api/v1/streaming/ ws://127.0.0.1:4000/
+
+                ProxyPass / http://127.0.0.1:3000/ retry=1 KeepAlive=On timeout=600 acquire=3000
+                ProxyPassReverse / http://127.0.0.1:3000/
+
+                RequestHeader set X-Forwarded-Proto "https"
+
+                SSLProtocol ALL -SSLv2 -SSLv3
+                SSLHonorCipherOrder On
+                SSLCipherSuite ECDH+AESGCM:DH+AESGCM:ECDH+AES256:DH+AES256:ECDH+AES128:DH+AES:RSA+AESGCM:RSA+AES:!aNULL:!MD5:!DSS
+        </VirtualHost>
+</IfModule>
 ```
 
 ## Running in production without Docker
