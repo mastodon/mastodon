@@ -6,7 +6,6 @@ class Settings::ExportsController < ApplicationController
   layout 'admin'
 
   before_action :authenticate_user!
-  before_action :set_account
 
   def show
     @total_storage = current_account.media_attachments.sum(:file_file_size)
@@ -31,10 +30,6 @@ class Settings::ExportsController < ApplicationController
   end
 
   private
-
-  def set_account
-    @account = current_user.account
-  end
 
   def accounts_list_to_csv(list)
     CSV.generate do |csv|
