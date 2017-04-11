@@ -12,7 +12,7 @@ class Settings::ExportsController < ApplicationController
   end
 
   def download_following_list
-    @accounts = current_account.following
+    export_data = Export.new(current_account.following).to_csv
 
     respond_to do |format|
       format.csv { send_data export_data, filename: 'following.csv' }
@@ -20,16 +20,10 @@ class Settings::ExportsController < ApplicationController
   end
 
   def download_blocking_list
-    @accounts = current_account.blocking
+    export_data = Export.new(current_account.blocking).to_csv
 
     respond_to do |format|
       format.csv { send_data export_data, filename: 'blocking.csv' }
     end
-  end
-
-  private
-
-  def export_data
-    Export.new(@accounts).to_csv
   end
 end
