@@ -86,11 +86,15 @@ const Status = React.createClass({
     this.props.dispatch(reblog(status));
   },
 
-  handleReblogClick (status) {
+  handleReblogClick (status, e) {
     if (status.get('reblogged')) {
       this.props.dispatch(unreblog(status));
     } else {
-      this.props.dispatch(openModal('BOOST', { status, onReblog: this.handleModalReblog }));
+      if (e.altKey) {
+        this.handleModalReblog(status);
+      } else {
+        this.props.dispatch(openModal('BOOST', { status, onReblog: this.handleModalReblog }));
+      }
     }
   },
 
