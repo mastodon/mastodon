@@ -92,6 +92,49 @@ server {
 }
 ```
 
+## Apache
+
+Setting up Mastodon behind Apache is possible as well, although you will need to enable [mod_proxy_wstunnel](https://httpd.apache.org/docs/trunk/mod/mod_proxy_wstunnel.html) beforehand. The configuration is then pretty straightforward.
+
+```
+<VirtualHost *:80>
+   ServerAdmin contact@example.com
+   ServerName example.com
+   Redirect Permanent / https://example.com/
+</VirtualHost>
+
+<VirtualHost *:443>
+   ServerAdmin contact@example.com
+   ServerName example.com
+
+   DocumentRoot /home/mastodon/live/public/
+
+   Header add Strict-Transport-Security "max-age=31536000"
+   SSLEngine on
+   SSLProtocol -all +TLSv1.2
+   SSLHonorCipherOrder on
+   SSLCipherSuite EECDH+AESGCM:AES256+EECDH:AES128+EECDH
+
+   SSLCertificateFile example.pem
+   SSLCertificateKeyFile example.key
+
+   ProxyPreserveHost On
+   RequestHeader set X-Forwarded-Proto "https"
+   ProxyPass /500.html !
+   ProxyPass /oops.png !
+   ProxyPass /api/v1/streaming/ ws://localhost:4000/
+   ProxyPassReverse /api/v1/streaming/ ws://localhost:4000/
+   ProxyPass / http://localhost:3000/
+   ProxyPassReverse / http://localhost:3000/
+
+   ErrorDocument 500 /500.html
+   ErrorDocument 501 /500.html
+   ErrorDocument 502 /500.html
+   ErrorDocument 503 /500.html
+   ErrorDocument 504 /500.html
+</VirtualHost>
+```
+
 ## Running in production without Docker
 
 It is recommended to create a special user for mastodon on the server (you could call the user `mastodon`), though remember to disable outside login for it. You should only be able to get into that user through `sudo su - mastodon`.
