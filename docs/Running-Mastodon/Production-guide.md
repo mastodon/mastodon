@@ -34,9 +34,18 @@ server {
   keepalive_timeout    70;
   sendfile             on;
   client_max_body_size 0;
-  gzip off;
 
   root /home/mastodon/live/public;
+
+  gzip on;
+  gzip_disable "msie6";
+  gzip_vary on;
+  gzip_proxied any;
+  gzip_comp_level 6;
+  gzip_buffers 16 8k;
+  gzip_http_version 1.1;
+  gzip_types text/plain text/css application/json application/javascript text/xml application/xml application/xml+rss text/javascript;
+
 
   add_header Strict-Transport-Security "max-age=31536000; includeSubDomains";
 
@@ -49,7 +58,7 @@ server {
     proxy_set_header X-Real-IP $remote_addr;
     proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
     proxy_set_header X-Forwarded-Proto https;
-
+    proxy_set_header Proxy "";
     proxy_pass_header Server;
 
     proxy_pass http://localhost:3000;
@@ -67,6 +76,7 @@ server {
     proxy_set_header X-Real-IP $remote_addr;
     proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
     proxy_set_header X-Forwarded-Proto https;
+    proxy_set_header Proxy "";
 
     proxy_pass http://localhost:4000;
     proxy_buffering off;
@@ -121,7 +131,7 @@ It is recommended to use rbenv (exclusively from the `mastodon` user) to install
 [2]: https://github.com/rbenv/ruby-build#installation
 [3]: https://github.com/rbenv/ruby-build/wiki#suggested-build-environment
 
-Then once `rbenv` is ready, run `rbenv install 2.3.1` to install the Ruby version for Mastodon.
+Then once `rbenv` is ready, run `rbenv install 2.4.1` to install the Ruby version for Mastodon.
 
 ## Git
 

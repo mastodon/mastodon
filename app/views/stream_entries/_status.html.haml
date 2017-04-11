@@ -13,7 +13,7 @@
         = fa_icon('retweet fw')
       %span
         = link_to TagManager.instance.url_for(status.account), class: 'status__display-name muted' do
-          %strong= display_name(status.account)
+          %strong.emojify= display_name(status.account)
         = t('stream_entries.reblogged')
 
   = render partial: centered ? 'stream_entries/detailed_status' : 'stream_entries/simple_status', locals: { status: status.proper }
