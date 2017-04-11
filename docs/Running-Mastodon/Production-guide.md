@@ -121,7 +121,7 @@ It is recommended to use rbenv (exclusively from the `mastodon` user) to install
 [2]: https://github.com/rbenv/ruby-build#installation
 [3]: https://github.com/rbenv/ruby-build/wiki#suggested-build-environment
 
-Then once `rbenv` is ready, run `rbenv install 2.3.1` to install the Ruby version for Mastodon.
+Then once `rbenv` is ready, run `rbenv install 2.4.1` to install the Ruby version for Mastodon.
 
 ## Git
 

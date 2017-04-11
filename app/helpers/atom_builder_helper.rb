@@ -160,7 +160,7 @@ module AtomBuilderHelper
     object_type      xml, :person
     uri              xml, TagManager.instance.uri_for(account)
     name             xml, account.username
-    email            xml, account.local? ? "#{account.acct}@#{Rails.configuration.x.local_domain}" : account.acct
+    email            xml, account.local? ? account.local_username_and_domain : account.acct
     summary          xml, account.note
     link_alternate   xml, TagManager.instance.url_for(account)
     link_avatar      xml, account
