@@ -44,6 +44,7 @@ ___
 - [For JavaScript](https://github.com/Zatnosk/libodonjs)
 - [For JavaScript (Node.js)](https://github.com/jessicahayley/node-mastodon)
 - [For Elixir](https://github.com/milmazz/hunter)
+- [For Rust](https://github.com/Aaronepower/Mammut)
 
 ___
 
