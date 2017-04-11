@@ -13,6 +13,7 @@ module SettingsHelper
     'zh-CN': '简体中文',
     fi: 'Suomi',
     ru: 'Русский',
+    ja: '日本語',
 
   }.freeze
 

@@ -8,6 +8,7 @@ import uk from './uk';
 import fi from './fi';
 import eo from './eo';
 import ru from './ru';
+import ja from './ja';
 
 
 const locales = {
@@ -20,7 +21,8 @@ const locales = {
   uk,
   fi,
   eo,
-  ru
+  ru,
+  ja
 
 };
 
