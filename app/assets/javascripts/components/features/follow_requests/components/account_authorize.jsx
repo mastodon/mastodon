@@ -33,7 +33,7 @@ const AccountAuthorize = ({ intl, account, onAuthorize, onReject }) => {
     <div>
       <div style={outerStyle}>
         <Permalink href={account.get('url')} to={`/accounts/${account.get('id')}`} className='detailed-status__display-name' style={{ display: 'block', overflow: 'hidden', marginBottom: '15px' }}>
-          <div style={{ float: 'left', marginRight: '10px' }}><Avatar src={account.get('avatar')} staticSrc={status.getIn(['account', 'avatar_static'])} size={48} /></div>
+          <div style={{ float: 'left', marginRight: '10px' }}><Avatar src={account.get('avatar')} staticSrc={account.get('avatar_static')} size={48} /></div>
           <DisplayName account={account} />
         </Permalink>
 

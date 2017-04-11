@@ -4,7 +4,7 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 
 const AutosuggestAccount = ({ account }) => (
   <div style={{ overflow: 'hidden' }} className='autosuggest-account'>
-    <div style={{ float: 'left', marginRight: '5px' }}><Avatar src={account.get('avatar')} staticSrc={status.getIn(['account', 'avatar_static'])} size={18} /></div>
+    <div style={{ float: 'left', marginRight: '5px' }}><Avatar src={account.get('avatar')} staticSrc={account.get('avatar_static')} size={18} /></div>
     <DisplayName account={account} />
   </div>
 );
