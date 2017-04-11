@@ -38,9 +38,9 @@ Rails.application.configure do
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
   config.force_ssl = false
 
-  # Use the lowest log level to ensure availability of diagnostic information
+  # By default, use the lowest log level to ensure availability of diagnostic information
   # when problems arise.
-  config.log_level = :debug
+  config.log_level = ENV.fetch('RAILS_LOG_LEVEL', 'debug').to_sym
 
   # Prepend all log lines with the following tags.
   config.log_tags = [:request_id]
@@ -99,7 +99,9 @@ Rails.application.configure do
     :user_name      => ENV['SMTP_LOGIN'],
     :password       => ENV['SMTP_PASSWORD'],
     :domain         => ENV['SMTP_DOMAIN'] || config.x.local_domain,
-    :authentication => :plain,
+    :authentication => ENV['SMTP_AUTH_METHOD'] || :plain,
+    :openssl_verify_mode => ENV['SMTP_OPENSSL_VERIFY_MODE'] || 'peer',
+    :enable_starttls_auto => ENV['SMTP_ENABLE_STARTTLS_AUTO'] || true,
   }
 
   config.action_mailer.delivery_method = :smtp

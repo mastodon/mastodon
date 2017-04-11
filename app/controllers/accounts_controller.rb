@@ -35,11 +35,11 @@ class AccountsController < ApplicationController
   end
 
   def followers
-    @followers = @account.followers.order('follows.created_at desc').paginate(page: params[:page], per_page: 12)
+    @followers = @account.followers.order('follows.created_at desc').page(params[:page]).per(12)
   end
 
   def following
-    @following = @account.following.order('follows.created_at desc').paginate(page: params[:page], per_page: 12)
+    @following = @account.following.order('follows.created_at desc').page(params[:page]).per(12)
   end
 
   private
@@ -53,7 +53,7 @@ class AccountsController < ApplicationController
   end
 
   def webfinger_account_url
-    webfinger_url(resource: "acct:#{@account.acct}@#{Rails.configuration.x.local_domain}")
+    webfinger_url(resource: @account.to_webfinger_s)
   end
 
   def check_account_suspension

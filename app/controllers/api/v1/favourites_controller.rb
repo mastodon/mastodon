@@ -11,11 +11,16 @@ class Api::V1::FavouritesController < ApiController
     @statuses = cache_collection(Status.where(id: results.map(&:status_id)), Status)
 
     set_maps(@statuses)
-    # set_counters_maps(@statuses)
 
-    next_path = api_v1_favourites_url(max_id: results.last.id)    if results.size == limit_param(DEFAULT_STATUSES_LIMIT)
-    prev_path = api_v1_favourites_url(since_id: results.first.id) unless results.empty?
+    next_path = api_v1_favourites_url(pagination_params(max_id: results.last.id))    if results.size == limit_param(DEFAULT_STATUSES_LIMIT)
+    prev_path = api_v1_favourites_url(pagination_params(since_id: results.first.id)) unless results.empty?
 
     set_pagination_headers(next_path, prev_path)
+  end
+
+  private
+
+  def pagination_params(core_params)
+    params.permit(:limit).merge(core_params)
   end
 end

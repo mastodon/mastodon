@@ -47,7 +47,7 @@ const EmojiPickerDropdown = React.createClass({
         </DropdownTrigger>
 
         <DropdownContent className='dropdown__left'>
-          <EmojiPicker emojione={settings} onChange={this.handleChange} />
+          <EmojiPicker emojione={settings} onChange={this.handleChange} search={true} />
         </DropdownContent>
       </Dropdown>
     );

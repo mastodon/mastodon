@@ -75,7 +75,7 @@ class Status < ApplicationRecord
   end
 
   def title
-    content
+    reblog? ? "#{account.acct} shared a status by #{reblog.account.acct}" : "New status by #{account.acct}"
   end
 
   def hidden?
