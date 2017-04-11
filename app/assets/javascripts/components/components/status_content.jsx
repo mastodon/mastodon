@@ -15,7 +15,7 @@ function getContrastYIQ(hexcolor) {
   return (yiq >= 128) ? 'black' : 'white';
 }
 
-function getColorHashes(url) {
+function getColorHash(url) {
   let parts = url.split('/@');
   if (parts.length > 1) {
     let instance_name = parts[0].split('://')[1];
