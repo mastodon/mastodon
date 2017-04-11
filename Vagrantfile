@@ -46,9 +46,10 @@ git clone https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build
 export PATH="$HOME/.rbenv/bin::$PATH"
 eval "$(rbenv init -)"
 
-echo "Compiling Ruby 2.3.1: warning, this takes a while!!!"
-rbenv install 2.3.1
-rbenv global 2.3.1
+ruby_version=$(cd /vagrant; rbenv version-file-read $(rbenv version-file))
+echo "Compiling Ruby $ruby_version: warning, this takes a while!!!"
+rbenv install "$ruby_version"
+rbenv global "$ruby_version"
 
 cd /vagrant
 
