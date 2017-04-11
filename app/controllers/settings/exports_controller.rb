@@ -17,7 +17,7 @@ class Settings::ExportsController < ApplicationController
     @accounts = current_account.following
 
     respond_to do |format|
-      format.csv { render text: accounts_list_to_csv(@accounts) }
+      format.csv { send_data accounts_list_to_csv(@accounts), filename: 'following.csv' }
     end
   end
 
@@ -25,7 +25,7 @@ class Settings::ExportsController < ApplicationController
     @accounts = current_account.blocking
 
     respond_to do |format|
-      format.csv { render text: accounts_list_to_csv(@accounts) }
+      format.csv { send_data accounts_list_to_csv(@accounts), filename: 'blocking.csv' }
     end
   end
 
