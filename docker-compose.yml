@@ -6,6 +6,7 @@ services:
   redis:
     restart: always
     image: redis:alpine
+    command: redis-server --appendonly yes
   web:
     restart: always
     build: .
