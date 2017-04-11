@@ -104,7 +104,8 @@ Rails.application.configure do
     :enable_starttls_auto => ENV['SMTP_ENABLE_STARTTLS_AUTO'] || true,
   }
 
-  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.delivery_method = ENV.fetch('SMTP_DELIVERY_METHOD', 'smtp').to_sym
+
 
   config.react.variant = :production
 
