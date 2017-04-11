@@ -27,6 +27,7 @@ const Status = React.createClass({
     onOpenMedia: React.PropTypes.func,
     onBlock: React.PropTypes.func,
     me: React.PropTypes.number,
+    boostModal: React.PropTypes.bool,
     muted: React.PropTypes.bool
   },
 

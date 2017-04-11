@@ -26,7 +26,8 @@ const makeMapStateToProps = () => {
 
   const mapStateToProps = (state, props) => ({
     status: getStatus(state, props.id),
-    me: state.getIn(['meta', 'me'])
+    me: state.getIn(['meta', 'me']),
+    boostModal: state.getIn(['meta', 'boost_modal'])
   });
 
   return mapStateToProps;
@@ -46,7 +47,7 @@ const mapDispatchToProps = (dispatch) => ({
     if (status.get('reblogged')) {
       dispatch(unreblog(status));
     } else {
-      if (e.altKey) {
+      if (e.altKey || !this.boostModal) {
         this.onModalReblog(status);
       } else {
         dispatch(openModal('BOOST', { status, onReblog: this.onModalReblog }));

@@ -38,7 +38,8 @@ const makeMapStateToProps = () => {
     status: getStatus(state, Number(props.params.statusId)),
     ancestorsIds: state.getIn(['timelines', 'ancestors', Number(props.params.statusId)]),
     descendantsIds: state.getIn(['timelines', 'descendants', Number(props.params.statusId)]),
-    me: state.getIn(['meta', 'me'])
+    me: state.getIn(['meta', 'me']),
+    boostModal: state.getIn(['meta', 'boost_modal'])
   });
 
   return mapStateToProps;
@@ -55,7 +56,8 @@ const Status = React.createClass({
     status: ImmutablePropTypes.map,
     ancestorsIds: ImmutablePropTypes.list,
     descendantsIds: ImmutablePropTypes.list,
-    me: React.PropTypes.number
+    me: React.PropTypes.number,
+    boostModal: React.PropTypes.bool
   },
 
   mixins: [PureRenderMixin],
@@ -90,7 +92,7 @@ const Status = React.createClass({
     if (status.get('reblogged')) {
       this.props.dispatch(unreblog(status));
     } else {
-      if (e.altKey) {
+      if (e.altKey || !this.props.boostModal) {
         this.handleModalReblog(status);
       } else {
         this.props.dispatch(openModal('BOOST', { status, onReblog: this.handleModalReblog }));
