@@ -2,7 +2,7 @@
 
 module StreamEntriesHelper
   def display_name(account)
-    account.display_name.blank? ? account.username : account.display_name
+    account.display_name.presence || account.username
   end
 
   def stream_link_target

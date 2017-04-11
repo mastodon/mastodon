@@ -11,10 +11,7 @@
 
 %p
   %strong Comment:
-  - if @report.comment.blank?
-    None
-  - else
-    = @report.comment
+  = @report.comment.presence || 'None'
 
 - unless @statuses.empty?
   %hr/

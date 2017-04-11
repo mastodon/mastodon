@@ -19,7 +19,7 @@ class Pubsubhubbub::DeliveryWorker
 
     headers['User-Agent']      = 'Mastodon/PubSubHubbub'
     headers['Link']            = LinkHeader.new([[api_push_url, [%w(rel hub)]], [account_url(subscription.account, format: :atom), [%w(rel self)]]]).to_s
-    headers['X-Hub-Signature'] = signature(subscription.secret, payload) unless subscription.secret.blank?
+    headers['X-Hub-Signature'] = signature(subscription.secret, payload) if subscription.secret?
 
     response = HTTP.timeout(:per_operation, write: 50, connect: 20, read: 50)
                    .headers(headers)
