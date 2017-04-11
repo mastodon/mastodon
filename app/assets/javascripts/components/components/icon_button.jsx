@@ -31,7 +31,7 @@ const IconButton = React.createClass({
     e.preventDefault();
 
     if (!this.props.disabled) {
-      this.props.onClick();
+      this.props.onClick(e);
     }
   },
 

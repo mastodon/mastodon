@@ -94,13 +94,13 @@ Rails.application.configure do
 
   # E-mails
   config.action_mailer.smtp_settings = {
-    :port           => ENV['SMTP_PORT'],
-    :address        => ENV['SMTP_SERVER'],
-    :user_name      => ENV['SMTP_LOGIN'],
-    :password       => ENV['SMTP_PASSWORD'],
-    :domain         => ENV['SMTP_DOMAIN'] || config.x.local_domain,
-    :authentication => ENV['SMTP_AUTH_METHOD'] || :plain,
-    :openssl_verify_mode => ENV['SMTP_OPENSSL_VERIFY_MODE'] || 'peer',
+    :port                 => ENV['SMTP_PORT'],
+    :address              => ENV['SMTP_SERVER'],
+    :user_name            => ENV['SMTP_LOGIN'],
+    :password             => ENV['SMTP_PASSWORD'],
+    :domain               => ENV['SMTP_DOMAIN'] || config.x.local_domain,
+    :authentication       => ENV['SMTP_AUTH_METHOD'] || :plain,
+    :openssl_verify_mode  => ENV['SMTP_OPENSSL_VERIFY_MODE'],
     :enable_starttls_auto => ENV['SMTP_ENABLE_STARTTLS_AUTO'] || true,
   }
 

@@ -53,11 +53,10 @@ Rails.application.routes.draw do
     resource :preferences, only: [:show, :update]
     resource :import, only: [:show, :create]
 
-    resource :export, only: [:show] do
-      collection do
-        get :follows, to: 'exports#download_following_list'
-        get :blocks, to: 'exports#download_blocking_list'
-      end
+    resource :export, only: [:show]
+    namespace :exports, constraints: { format: :csv } do
+      resources :follows, only: :index, controller: :following_accounts
+      resources :blocks, only: :index, controller: :blocked_accounts
     end
 
     resource :two_factor_auth, only: [:show, :new, :create] do
