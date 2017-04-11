@@ -7,7 +7,7 @@ ja:
         display_name: 名前は30文字まで設定することができます。
         header: PNGやGIF、JPGは2MBまでです。 700x335pxまで縮小されます。
         locked: フォロワーを手動で承認する必要があります。デフォルトでは投稿範囲はフォロワーまでです。
-        note: Bioは30文字まで設定することができます。
+        note: プロフィールは30文字まで設定することができます。
       imports:
         data: CSVファイルからデータをインポートしました。
     labels:
@@ -30,15 +30,15 @@ ja:
         type: インポートするファイルの種類
         username: ユーザー名
       interactions:
-        must_be_follower: フォロワーのみ通知
-        must_be_following: あなたがフォローしていないユーザーは通知しない
+        must_be_follower: フォロワー以外からの通知をブロック
+        must_be_following: フォローしていないユーザーからの通知をブロック
       notification_emails:
-        digest: メール通知
-        favourite: いいねされた時メール通知します。
-        follow: フォローされた時メール通知します。
-        follow_request: フォローリクエストを受けた時メール通知します。
-        mention: あなた宛のトゥートが送信された時メール通知します。
-        reblog: あなたのトゥートがブーストされた時メール通知します。
+        digest: タイムラインからピックアップしてメールで通知する
+        favourite: いいねされた時メールで通知する
+        follow: フォローされた時メールで通知する
+        follow_request: フォローリクエストを受けた時メールで通知する
+        mention: 返信された時メールで通知する
+        reblog: あなたのトゥートがブーストされた時メールで通知する
     'no': 'いいえ'
     required:
       mark: "*"
