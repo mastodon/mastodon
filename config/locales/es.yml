@@ -18,7 +18,7 @@ es:
       ethics: 'Diseño etico: sin anuncios, sin rastreos'
       gifv: Videos cortos y GIFV
       privacy: Configuraciones de privacidad ajustables
-      public: Historias publicas
+      public: Historia federada
     features_headline: Lo que distingue a Mastodon
     get_started: Comenzar
     links: Enlaces
@@ -36,7 +36,7 @@ es:
     nothing_here: ¡No hay nada aquí!
     people_followed_by: Usuarios a quien %{name} sigue
     people_who_follow: Usuarios que siguen a %{name}
-    posts: Publicaciones
+    posts: Toots
     remote_follow: Seguir
     unfollow: Dejar de seguir
   application_mailer:
@@ -56,7 +56,7 @@ es:
     reset_password: Restablecer contraseña
     set_new_password: Establecer nueva contraseña
   authorize_follow:
-    error: Desafortunadamente, ha oucrrido un error buscando la cuenta remota
+    error: Desafortunadamente, ha ocurrido un error buscando la cuenta remota
     follow: Seguir
     prompt_html: 'Tú (<strong>%{self}</strong>) has solicitado seguir:'
     title: Seguir %{acct}
@@ -87,7 +87,7 @@ es:
       one: ¡Algo no está bien! Por favor, revisa el error
       other: ¡Algo no está bien! Por favor, revise %{count} errores más abajo
   imports:
-    preface: Puedes importar ciertos datos, como todas las personas que estás siguiendo o bloqueando en tu cuenta en esta instancia, desde archivos creados por una exportación en otra instancia.
+    preface: Puedes importar ciertos datos, como todas las personas que estás siguiendo o bloqueando en tu cuenta en esta instancia, desde archivos exportados de otra instancia.
     success: Sus datos se han cargado correctamente y serán procesados en brevedad
     types:
       blocking: Lista de bloqueados
@@ -105,20 +105,20 @@ es:
         one: "1 nueva notificación desde tu última visita \U0001F418"
         other: "%{count} nuevas notificaciones desde tu última visita \U0001F418"
     favourite:
-      body: 'Su estado fue marcado como favorito por %{name}:'
-      subject: "%{name} marcó como favorito su estado"
+      body: 'Tu estado fue marcado como favorito por %{name}:'
+      subject: "%{name} marcó como favorito tu estado"
     follow:
-      body: "¡%{name} le está ahora siguiendo!"
-      subject: "%{name} le esta ahora siguiendo"
+      body: "¡%{name} te está siguiendo!"
+      subject: "%{name} te está siguiendo"
     follow_request:
       body: "%{name} ha solicitado seguirte"
       subject: 'Seguidor pendiente: %{name}'
     mention:
-      body: 'Fue mencionado por %{name} en:'
-      subject: Fue mencionado por %{name}
+      body: 'Fuiste mencionado por %{name} en:'
+      subject: Fuiste mencionado por %{name}
     reblog:
-      body: 'Su estado fue vuelto a publicar por %{name}:'
-      subject: "%{name} volvió a publicar su estado"
+      body: '%{name} ha retooteado tu estado'
+      subject: "%{name} ha retooteado tu estado"
   pagination:
     next: Próximo
     prev: Anterior
@@ -126,7 +126,7 @@ es:
     acct: Ingesa el usuario@dominio de la persona que quieres seguir
     missing_resource: No se pudo encontrar la URL de redirección necesaria para su cuenta.
     proceed: Proceder a seguir
-    prompt: 'Vas a empezar a seguir:'
+    prompt: 'Vas a seguir a:'
   settings:
     authorized_apps: Aplicaciones autorizadas
     back: Volver al inicio
@@ -135,7 +135,7 @@ es:
     import: Importar
     preferences: Preferencias
     settings: Ajustes
-    two_factor_auth: Autenticación de dos factores
+    two_factor_auth: Aute/ción. de dos factores
   statuses:
     open_in_web: Abrir en web
     over_character_limit: Límite de caracteres de %{max} superado
@@ -143,10 +143,10 @@ es:
     visibilities:
       private: Sólo mostrar a seguidores
       public: Público
-      unlisted: Público, pero no mostrar en la historia pública
+      unlisted: Público, pero no mostrar en la historia federada
   stream_entries:
     click_to_show: Click para mostrar
-    reblogged: republicado
+    reblogged: retooteado
     sensitive_content: Contenido sensible
   time:
     formats:
