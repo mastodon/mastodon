@@ -72,6 +72,7 @@
     position: relative;
     z-index: 2;
     flex-direction: row;
+    background: rgba(0,0,0,0.5);
   }
 
   .details-counters {
@@ -83,7 +84,7 @@
   .counter {
     width: 80px;
     color: $color3;
-    padding: 0 10px;
+    padding: 5px 10px 0px;
     margin-bottom: 10px;
     border-right: 1px solid $color3;
     cursor: default;
