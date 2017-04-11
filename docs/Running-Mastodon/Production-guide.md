@@ -98,6 +98,8 @@ It is recommended to create a special user for mastodon on the server (you could
 
 ## General dependencies
 
+If you are hosting an instance on a small server (e.g., 512 MB) you will need a swapfile to install some of the dependencies below.
+
     sudo apt-get install imagemagick ffmpeg libpq-dev libxml2-dev libxslt1-dev nodejs file git curl
     curl -sL https://deb.nodesource.com/setup_4.x | sudo bash -
 
