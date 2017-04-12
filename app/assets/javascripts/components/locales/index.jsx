@@ -3,6 +3,7 @@ import de from './de';
 import es from './es';
 import hu from './hu';
 import fr from './fr';
+import no from './no';
 import pt from './pt';
 import uk from './uk';
 import fi from './fi';
@@ -18,6 +19,7 @@ const locales = {
   es,
   hu,
   fr,
+  no,
   pt,
   uk,
   fi,

@@ -2,52 +2,166 @@
 es:
   about:
     about_mastodon: Mastodon es un servidor de red social <em>libre y de código abierto</em>. Una alternativa <em>descentralizada</em> a plataformas comerciales, que evita el riesgo de que una única compañía monopolice tu comunicación. Cualquiera puede ejecutar Mastodon y participar sin problemas en la <em>red social</em>.
+    about_this: Acerca de esta instancia
+    apps: Apps
+    business_email: 'Correo de negocios:'
+    closed_registrations: Los registros están actualmente cerrados en esta instancia.
+    contact: Contacto
+    description_headline: ¿Qué es %{domain}?
+    domain_count_after: otras instancias
+    domain_count_before: Conectado a 
+    features:
+      api: API pública para aplicaciones y servicios
+      blocks: Moderación de contenido
+      characters: 500 caracteres por publicación
+      chronology: Las historias son cronológicas 
+      ethics: 'Diseño etico: sin anuncios, sin rastreos'
+      gifv: Videos cortos y GIFV
+      privacy: Configuraciones de privacidad ajustables
+      public: Historia federada
+    features_headline: Lo que distingue a Mastodon
     get_started: Comenzar
+    links: Enlaces
+    other_instances: Otras instancias
     source_code: Código fuente
-    terms: Términos de uso
+    status_count_after: estados
+    status_count_before: Que han escrito
+    terms: Términos
+    user_count_after: usuarios registrados
+    user_count_before: Tenemos
   accounts:
     follow: Seguir
     followers: Seguidores
     following: Siguiendo
-    nothing_here: "¡No hay nada aquí!"
+    nothing_here: ¡No hay nada aquí!
     people_followed_by: Usuarios a quien %{name} sigue
     people_who_follow: Usuarios que siguen a %{name}
-    posts: Publicaciones
+    posts: Toots
+    remote_follow: Seguir
     unfollow: Dejar de seguir
   application_mailer:
+    settings: 'Cambiar preferencias de correo: %{link}'
     signature: Notificaciones de Mastodon desde %{instance}
+    view: 'Vista:'
+  applications:
+    invalid_url: La URL proporcionada es incorrecta
   auth:
     change_password: Cambiar contraseña
-    didnt_get_confirmation: "¿No recibió instrucciones de confirmación?"
-    forgot_password: "¿Olvidó su contraseña?"
+    didnt_get_confirmation: ¿No recibió el correo de confirmación?
+    forgot_password: ¿Olvidaste tu contraseña?
     login: Iniciar sesión
+    logout: Cerrar sesión
     register: Registrarse
-    resend_confirmation: Volver a enviar las instrucciones de confirmación
+    resend_confirmation: Volver a enviar el correo de confirmación
     reset_password: Restablecer contraseña
     set_new_password: Establecer nueva contraseña
+  authorize_follow:
+    error: Desafortunadamente, ha ocurrido un error buscando la cuenta remota
+    follow: Seguir
+    prompt_html: 'Tú (<strong>%{self}</strong>) has solicitado seguir:'
+    title: Seguir %{acct}
+  datetime:
+    distance_in_words:
+      about_x_hours: "%{count}h"
+      about_x_months: "%{count}m"
+      about_x_years: "%{count}y"
+      almost_x_years: "%{count}y"
+      half_a_minute: Justo ahora
+      less_than_x_minutes: "%{count}m"
+      less_than_x_seconds: Justo ahora
+      over_x_years: "%{count}y"
+      x_days: "%{count}d"
+      x_minutes: "%{count}m"
+      x_months: "%{count}m"
+      x_seconds: "%{count}s"
+  exports:
+    blocks: Personas que has bloqueado
+    csv: CSV
+    follows: Personas que sigues
+    storage: Almacenamiento
   generic:
-    changes_saved_msg: "¡Cambios guardados con éxito!"
+    changes_saved_msg: ¡Cambios guardados con éxito!
     powered_by: powered by %{link}
     save_changes: Guardar cambios
     validation_errors:
-      one: "¡Algo no está todavía bien! Por favor, revise el error más abajo"
-      other: "¡Algo no está todavía bien! Por favor, revise %{count} errores más abajo"
+      one: ¡Algo no está bien! Por favor, revisa el error
+      other: ¡Algo no está bien! Por favor, revise %{count} errores más abajo
+  imports:
+    preface: Puedes importar ciertos datos, como todas las personas que estás siguiendo o bloqueando en tu cuenta en esta instancia, desde archivos exportados de otra instancia.
+    success: Sus datos se han cargado correctamente y serán procesados en brevedad
+    types:
+      blocking: Lista de bloqueados
+      following: Lista de seguidos
+    upload: Cargar
+  landing_strip_html: <strong>%{name}</strong> es un usuario en <strong>%{domain}</strong>. Puedes seguirlo(a) o interactuar con el o ella si tienes una cuenta en cualquier parte del fediverse. Si no tienes una, puedes <a href="%{sign_up_path}">registrar aquí</a>.
   notification_mailer:
+    digest:
+      body: 'Un resumen de lo que te perdiste en %{instance} desde tu última visita el %{since}:'
+      mention: "%{name} te ha mencionado en:"
+      new_followers_summary:
+        one: ¡Hurra!. Alguien más te ha comenzado a seguir
+        other: ¡Genial!. Te han seguido %{count} nuevas personas
+      subject:
+        one: "1 nueva notificación desde tu última visita \U0001F418"
+        other: "%{count} nuevas notificaciones desde tu última visita \U0001F418"
     favourite:
-      body: 'Su estado fue marcado como favorito por %{name}:'
-      subject: "%{name} marcó como favorito su estado"
+      body: 'Tu estado fue marcado como favorito por %{name}:'
+      subject: "%{name} marcó como favorito tu estado"
     follow:
-      body: "¡%{name} le está ahora siguiendo!"
-      subject: "%{name} le esta ahora siguiendo"
+      body: "¡%{name} te está siguiendo!"
+      subject: "%{name} te está siguiendo"
+    follow_request:
+      body: "%{name} ha solicitado seguirte"
+      subject: 'Seguidor pendiente: %{name}'
     mention:
-      body: 'Fue mencionado por %{name} en:'
-      subject: Fue mencionado por %{name}
+      body: 'Fuiste mencionado por %{name} en:'
+      subject: Fuiste mencionado por %{name}
     reblog:
-      body: 'Su estado fue vuelto a publicar por %{name}:'
-      subject: "%{name} volvió a publicar su estado"
+      body: '%{name} ha retooteado tu estado'
+      subject: "%{name} ha retooteado tu estado"
   pagination:
     next: Próximo
     prev: Anterior
+  remote_follow:
+    acct: Ingesa el usuario@dominio de la persona que quieres seguir
+    missing_resource: No se pudo encontrar la URL de redirección necesaria para su cuenta.
+    proceed: Proceder a seguir
+    prompt: 'Vas a seguir a:'
   settings:
+    authorized_apps: Aplicaciones autorizadas
+    back: Volver al inicio
     edit_profile: Editar perfil
+    export: Exportar información
+    import: Importar
     preferences: Preferencias
+    settings: Ajustes
+    two_factor_auth: Aute/ción. de dos factores
+  statuses:
+    open_in_web: Abrir en web
+    over_character_limit: Límite de caracteres de %{max} superado
+    show_more: Mostrar más
+    visibilities:
+      private: Sólo mostrar a seguidores
+      public: Público
+      unlisted: Público, pero no mostrar en la historia federada
+  stream_entries:
+    click_to_show: Click para mostrar
+    reblogged: retooteado
+    sensitive_content: Contenido sensible
+  time:
+    formats:
+      default: "%b %d, %Y, %H:%M"
+  two_factor_auth:
+    description_html: Sí habilitas la <strong>autenticación de dos factores</strong>, se requerirá estar en posesión de su teléfono, lo que generará tokens para que usted pueda iniciar sesión.
+    disable: Deshabilitar
+    enable: Habilitar
+    instructions_html: "<strong>Escanea este código QR desde Google Authenticator o una aplicación similar en su teléfono</strong>. Desde ahora, esta aplicación va a generar tokens que tienes que ingresar cuando quieras iniciar sesión."
+    plaintext_secret_html: 'Código en texto plano: <samp>%{secret}</samp>'
+    warning: Sí no puedes configurar una aplicación de autenticación ahora, deberás deshabilitar la autenticación de dos factores o no podrás iniciar sesión.
+  users:
+    invalid_email: La dirección de correo es incorrecta
+    invalid_otp_token: Código de dos factores incorrecto
+  media_attachments:
+    validations:
+      too_many: No se pueden adjuntar más de 4 archivos
+      images_and_video: No se puede adjuntar un video a un estado que ya contenga imágenes

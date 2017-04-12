@@ -6,10 +6,21 @@ module Admin::AccountsHelper
   end
 
   def filter_link_to(text, more_params)
-    link_to text, filter_params(more_params), class: params.merge(more_params).compact == params.compact ? 'selected' : ''
+    new_url = filtered_url_for(more_params)
+    link_to text, new_url, class: filter_link_class(new_url)
   end
 
   def table_link_to(icon, text, path, options = {})
     link_to safe_join([fa_icon(icon), text]), path, options.merge(class: 'table-action-link')
+  end
+
+  private
+
+  def filter_link_class(new_url)
+    filtered_url_for(params) == new_url ? 'selected' : ''
+  end
+
+  def filtered_url_for(params)
+    url_for filter_params(params)
   end
 end

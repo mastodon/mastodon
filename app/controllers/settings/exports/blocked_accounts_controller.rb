@@ -2,15 +2,11 @@
 
 module Settings
   module Exports
-    class BlockedAccountsController < ApplicationController
-      before_action :authenticate_user!
+    class BlockedAccountsController < BaseController
+      private
 
-      def index
-        export_data = Export.new(current_account.blocking).to_csv
-
-        respond_to do |format|
-          format.csv { send_data export_data, filename: 'blocking.csv' }
-        end
+      def export_accounts
+        current_account.blocking
       end
     end
   end

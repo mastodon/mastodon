@@ -14,12 +14,12 @@ RSpec.describe XrdController, type: :controller do
     let(:alice) { Fabricate(:account, username: 'alice') }
 
     it 'returns http success when account can be found' do
-      get :webfinger, params: { resource: alice.to_webfinger_s }
+      get :webfinger, params: { resource: alice.to_webfinger_s }, format: :json
       expect(response).to have_http_status(:success)
     end
 
     it 'returns http not found when account cannot be found' do
-      get :webfinger, params: { resource: 'acct:not@existing.com' }
+      get :webfinger, params: { resource: 'acct:not@existing.com' }, format: :json
       expect(response).to have_http_status(:not_found)
     end
   end
