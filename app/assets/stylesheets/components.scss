@@ -349,6 +349,43 @@ a.status__content__spoiler-link {
   .status__display-name {
     color: lighten($color1, 26%);
   }
+
+  &.light {
+    .status__relative-time {
+      color: $color3;
+    }
+
+    .status__display-name {
+      color: $color1;
+    }
+
+    .display-name {
+      strong {
+        color: $color1;
+      }
+
+      span {
+        color: $color3;
+      }
+    }
+
+    .status__content {
+      color: $color1;
+
+      a {
+        color: $color4;
+      }
+
+      a.status__content__spoiler-link {
+        color: $color5;
+        background: $color3;
+
+        &:hover {
+          background: lighten($color3, 8%);
+        }
+      }
+    }
+  }
 }
 
 .status-check-box {
@@ -667,6 +704,12 @@ a.status__content__spoiler-link {
     left: 8px;
   }
 
+  &.light {
+    &:before {
+      border-color: transparent transparent $color5 transparent;
+    }
+  }
+
   & > ul {
     list-style: none;
     background: $color2;
@@ -684,7 +727,7 @@ a.status__content__spoiler-link {
     }
 
     & > .emoji-dialog {
-      left: -249px;
+      left: -210px;
     }
   }
 
@@ -1215,7 +1258,7 @@ a.status__content__spoiler-link {
 
 @import 'boost';
 
-button i.fa-retweet {
+button.icon-button i.fa-retweet {
   height: 19px;
   width: 22px;
   background-position: 0 0;
@@ -1227,7 +1270,7 @@ button i.fa-retweet {
   }
 }
 
-button.active i.fa-retweet {
+button.icon-button.active i.fa-retweet {
   transition-duration: 0.9s;
   background-position: 0 100%;
 }
@@ -1431,14 +1474,14 @@ button.active i.fa-retweet {
 }
 
 .emoji-dialog {
-  width: 280px;
-  height: 220px;
-  background: darken($color3, 10%);
+  width: 245px;
+  height: 270px;
+  background: $color5;
   box-sizing: border-box;
-  border-radius: 2px;
+  border-radius: 4px;
   overflow: hidden;
   position: relative;
-  box-shadow: 0 0 15px rgba($color8, 0.4);
+  box-shadow: 0 0 8px rgba($color8, 0.2);
 
   .emojione {
     margin: 0;
@@ -1448,7 +1491,6 @@ button.active i.fa-retweet {
 
   .emoji-dialog-header {
     padding: 0 10px;
-    background-color: $color3;
 
     ul {
       padding: 0;
@@ -1459,18 +1501,29 @@ button.active i.fa-retweet {
     li {
       display: inline-block;
       box-sizing: border-box;
-      height: 42px;
-      padding: 9px 5px;
+      padding: 10px 5px;
       cursor: pointer;
+      border-bottom: 2px solid transparent;
+
+      .emoji {
+        width: 18px;
+        height: 18px;
+      }
 
       img, svg {
-        width: 22px;
-        height: 22px;
+        width: 18px;
+        height: 18px;
         filter: grayscale(100%);
       }
 
+      &:hover {
+        img, svg {
+          filter: grayscale(0);
+        }
+      }
+
       &.active {
-        background: lighten($color3, 6%);
+        border-bottom-color: $color4;
 
         img, svg {
           filter: grayscale(0);
@@ -1494,7 +1547,7 @@ button.active i.fa-retweet {
   .emoji-category-header {
     box-sizing: border-box;
     overflow-y: hidden;
-    padding: 8px 16px 0;
+    padding: 10px 8px 10px 16px;
     display: table;
 
     > * {
@@ -1504,10 +1557,10 @@ button.active i.fa-retweet {
   }
 
   .emoji-category-title {
-    font-size: 14px;
-    font-family: sans-serif;
-    font-weight: normal;
-    color: $color1;
+    font-size: 12px;
+    text-transform: uppercase;
+    font-weight: 500;
+    color: darken($color2, 18%);
     cursor: default;
   }
 
@@ -1547,7 +1600,7 @@ button.active i.fa-retweet {
         width: 7px;
         height: 7px;
         border-radius: 10px;
-        border: 2px solid $color1;
+        border: 2px solid $color5;
         top: 2px;
         left: 2px;
       }
@@ -1555,14 +1608,20 @@ button.active i.fa-retweet {
   }
 
   .emoji-search-wrapper {
-    padding: 6px 16px;
+    padding: 10px;
+    border-bottom: 1px solid lighten($color2, 4%);
   }
 
   .emoji-search {
-    font-size: 12px;
-    padding: 6px 4px;
+    font-size: 14px;
+    font-weight: 400;
+    padding: 7px 9px;
+    font-family: inherit;
+    display: block;
     width: 100%;
-    border: 1px solid #ddd;
+    background: rgba($color2, 0.3);
+    color: darken($color2, 18%);
+    border: 1px solid $color2;
     border-radius: 4px;
   }
 
@@ -1575,11 +1634,21 @@ button.active i.fa-retweet {
   }
 
   .emoji-search-wrapper + .emoji-categories-wrapper {
-    top: 83px;
+    top: 93px;
   }
 
-  .emoji-row .emoji:hover {
-    background: lighten($color2, 3%);
+  .emoji-row .emoji {
+    img, svg {
+      transition: transform 60ms ease-in-out;
+    }
+
+    &:hover {
+      background: lighten($color2, 3%);
+
+      img, svg {
+        transform: translateZ(0) scale(1.2);
+      }
+    }
   }
 
   .emoji {
@@ -1934,5 +2003,43 @@ button.active i.fa-retweet {
   img, video {
     max-width: 80vw;
     max-height: 80vh;
+  }
+}
+
+.boost-modal {
+  background: lighten($color2, 8%);
+  color: $color1;
+  border-radius: 8px;
+  overflow: hidden;
+  max-width: 90vw;
+  width: 480px;
+  position: relative;
+  flex-direction: column;
+}
+
+.boost-modal__container {
+  padding: 10px;
+
+  .status {
+    user-select: text;
+    border-bottom: 0;
+  }
+}
+
+.boost-modal__action-bar {
+  display: flex;
+  background: $color2;
+  padding: 10px;
+  line-height: 36px;
+
+  & > div {
+    flex: 1 1 auto;
+    text-align: right;
+    color: lighten($color1, 33%);
+    padding-right: 10px;
+  }
+
+  .button {
+    flex: 0 0 auto;
   }
 }
