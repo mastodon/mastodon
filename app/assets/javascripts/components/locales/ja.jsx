@@ -24,7 +24,7 @@ const ja = {
   "account.posts": "投稿",
   "account.follows": "フォロー",
   "account.followers": "フォロワー",
-  "account.follows_you": "フォロー中",
+  "account.follows_you": "フォローされています",
   "account.requested": "承認待ち",
   "getting_started.heading": "スタート",
   "getting_started.about_addressing": "ドメインとユーザー名を知っているなら検索フォームに入力すればフォローできます。",
