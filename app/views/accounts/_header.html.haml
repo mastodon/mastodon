@@ -13,7 +13,7 @@
   %h1.name
     %span.p-name.emojify= display_name(@account)
     %small
-      %span.p-nickname= "@#{@account.username}"
+      %span= "@#{@account.username}"
       = fa_icon('lock') if @account.locked?
   .details
     .bio

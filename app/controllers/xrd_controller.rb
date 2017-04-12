@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class XrdController < ApplicationController
-  before_action :set_default_format_json, only: :webfinger
   before_action :set_default_format_xml, only: :host_meta
 
   def host_meta
@@ -31,20 +30,8 @@ class XrdController < ApplicationController
     request.format = 'xml' if request.headers['HTTP_ACCEPT'].nil? && params[:format].nil?
   end
 
-  def set_default_format_json
-    request.format = 'json' if request.headers['HTTP_ACCEPT'].nil? && params[:format].nil?
-  end
-
   def username_from_resource
-    if resource_param =~ /\Ahttps?:\/\//
-      path_params = Rails.application.routes.recognize_path(resource_param)
-      raise ActiveRecord::RecordNotFound unless path_params[:controller] == 'users' && path_params[:action] == 'show'
-      path_params[:username]
-    else
-      username, domain = resource_param.gsub(/\Aacct:/, '').split('@')
-      raise ActiveRecord::RecordNotFound unless TagManager.instance.local_domain?(domain)
-      username
-    end
+    WebfingerResource.new(resource_param).username
   end
 
   def pem_to_magic_key(public_key)
