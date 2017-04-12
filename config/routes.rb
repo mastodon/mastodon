@@ -57,6 +57,7 @@ Rails.application.routes.draw do
     namespace :exports, constraints: { format: :csv } do
       resources :follows, only: :index, controller: :following_accounts
       resources :blocks, only: :index, controller: :blocked_accounts
+      resources :mutes, only: :index, controller: :muted_accounts
     end
 
     resource :two_factor_auth, only: [:show, :new, :create] do
