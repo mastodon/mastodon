@@ -24,7 +24,7 @@ const ja = {
   "account.posts": "投稿",
   "account.follows": "フォロー",
   "account.followers": "フォロワー",
-  "account.follows_you": "フォローされています",
+  "account.follows_you": "フォロー中",
   "account.requested": "承認待ち",
   "getting_started.heading": "スタート",
   "getting_started.about_addressing": "ドメインとユーザー名を知っているなら検索フォームに入力すればフォローできます。",
@@ -62,11 +62,11 @@ const ja = {
   "notification.reblog": "{name}さんがあなたのトゥートをブーストしました",
   "notification.mention": "{name}さんがあなたに返信しました",
   "notifications.column_settings.alert": "デスクトップ通知",
-  "notifications.column_settings.show": "カラムに表示",
-  "notifications.column_settings.follow": "新しいフォロワー",
-  "notifications.column_settings.favourite": "いいね",
-  "notifications.column_settings.mention": "返信",
-  "notifications.column_settings.reblog": "ブースト",
+  "notifications.column_settings.show": "表示項目",
+  "notifications.column_settings.follow": "新しいフォロワー:",
+  "notifications.column_settings.favourite": "いいね:",
+  "notifications.column_settings.mention": "返信:",
+  "notifications.column_settings.reblog": "ブースト:",
 };
 
 export default ja;
