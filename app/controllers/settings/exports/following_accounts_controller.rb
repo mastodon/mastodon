@@ -2,15 +2,11 @@
 
 module Settings
   module Exports
-    class FollowingAccountsController < ApplicationController
-      before_action :authenticate_user!
+    class FollowingAccountsController < BaseController
+      private
 
-      def index
-        export_data = Export.new(current_account.following).to_csv
-
-        respond_to do |format|
-          format.csv { send_data export_data, filename: 'following.csv' }
-        end
+      def export_accounts
+        current_account.following
       end
     end
   end

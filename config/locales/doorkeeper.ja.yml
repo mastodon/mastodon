@@ -60,15 +60,15 @@ ja:
         title: 認証コード
     authorized_applications:
       buttons:
-        revoke: 取り消す
+        revoke: 取消
       confirmations:
         revoke: 本当に取り消しますか？
       index:
-        application: アプリケーション
-        created_at: 認証済み
+        application: アプリ名
+        created_at: 許可した日時
         date_format: "%Y年%m月%d日 %H時%M分%S秒"
         scopes: アクセス権
-        title: あなたの認証済みアプリケーション
+        title: 認証済みアプリケーション
     errors:
       messages:
         access_denied: リソースの所有者または認証サーバーが要求を拒否しました。
@@ -83,7 +83,7 @@ ja:
           expired: アクセストークンの有効期限が切れています
           revoked: アクセストークンは取り消されています。
           unknown: アクセストークンが無効です。
-        resource_owner_authenticator_not_configured: Doorkeeper.configure.resource_owner_authenticatorが設定されていないため、リソース所有者の検索に失敗しました。
+        resource_owner_authenticator_not_configured: Doorkeeper.configure.resource_owner_authenticator が設定されていないため、リソース所有者の検索に失敗しました。
         server_error: 認証サーバーに予期せぬ例外が発生したため、リクエストを実行できなくなりました。
         temporarily_unavailable: 現在、認証サーバーに一時的な過負荷が掛かっているか、またはメンテナンス中のため、リクエストを処理できません。
         unauthorized_client: クライアントはこのメゾットで要求を実行する権限がありません。
