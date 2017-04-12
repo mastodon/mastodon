@@ -2,7 +2,7 @@
 
 module Admin
   class AccountsController < BaseController
-    before_action :set_account, except: [:index, :new, :create]
+    before_action :set_account, except: %i[index new create]
 
     def index
       @accounts = Account.alphabetic.page(params[:page])
@@ -17,7 +17,7 @@ module Admin
 
     def show; end
 
-    def new;
+    def new
       @user = User.new.tap(&:build_account)
     end
 
@@ -63,7 +63,8 @@ module Admin
     end
 
     def user_params
-      params.require(:user).permit(:email, { account_attributes: [:username] })
+      account_attr = { account_attributes: [:username] }
+      params.require(:user).permit(:email, account_attr)
     end
   end
 end
