@@ -25,7 +25,7 @@ ja:
       confirmations:
         destroy: 本当に削除しますか?
       edit:
-        title: アプリケーションの編集
+        title: アプリの編集
       form:
         error: フォームにエラーが無いか確認してください。
       help:
@@ -35,17 +35,17 @@ ja:
       index:
         callback_url: コールバックURL
         name: 名前
-        new: 新規アプリケーション
-        title: あなたのアプリケーション
+        new: 新規アプリ
+        title: アプリ
       new:
-        title: 新規アプリケーション
+        title: 新規アプリ
       show:
         actions: アクション
         application_id: アクションId
         callback_urls: コールバックurl
         scopes: アクセス権
         secret: 非公開
-        title: 'アプリケーション: %{name}'
+        title: 'アプリ: %{name}'
     authorizations:
       buttons:
         authorize: 承認
@@ -53,8 +53,8 @@ ja:
       error:
         title: エラーが発生しました。
       new:
-        able_to: このアプリケーションは以下のことができます
-        prompt: アプリケーション %{client_name} があなたのアカウントへのアクセスを要求しています。
+        able_to: このアプリは以下のことができます
+        prompt: アプリ %{client_name} があなたのアカウントへのアクセスを要求しています。
         title: 認証が必要です。
       show:
         title: 認証コード
@@ -68,7 +68,7 @@ ja:
         created_at: 許可した日時
         date_format: "%Y年%m月%d日 %H時%M分%S秒"
         scopes: アクセス権
-        title: 認証済みアプリケーション
+        title: 認証済みアプリ
     errors:
       messages:
         access_denied: リソースの所有者または認証サーバーが要求を拒否しました。
@@ -92,22 +92,22 @@ ja:
     flash:
       applications:
         create:
-          notice: アプリケーションが作成されました。
+          notice: アプリが作成されました。
         destroy:
-          notice: アプリケーションが削除されました。
+          notice: アプリが削除されました。
         update:
-          notice: アプリケーションが更新されました。
+          notice: アプリが更新されました。
       authorized_applications:
         destroy:
-          notice: アプリケーションが取り消されました。
+          notice: アプリが取り消されました。
     layouts:
       admin:
         nav:
-          applications: アプリケーション
+          applications: アプリ
           oauth2_provider: OAuth2プロバイダー
       application:
-        title: OAuth認証が必要です。
+        title: OAuth認証
     scopes:
       follow: アカウントのフォロー, ブロック, ブロック解除, フォロー解除
-      read: アカウントへのデータの読み取り
-      write: アカウントからの投稿の書き込み
+      read: アカウントからのデータの読み取り
+      write: アカウントへのデータの書き込み
