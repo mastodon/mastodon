@@ -6,7 +6,8 @@ services:
     image: postgres:alpine
 ### Uncomment to enable DB persistance
 #    volumes:
-#      - ./postgres:/var/lib/postgresql/data
+#      - mastodon-postgres:/var/lib/postgresql/data # Windows -- make sure you check volumes section at bottom of file!
+#      - ./postgres:/var/lib/postgresql/data # Unix/Mac
 
   redis:
     restart: always
@@ -50,3 +51,7 @@ services:
       - redis
     volumes:
       - ./public/system:/mastodon/public/system
+
+#volumes: # Windows - Uncomment if you uncomment the postgres volume above
+#  mastodon-postgres:
+#    external: true
