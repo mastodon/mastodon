@@ -14,7 +14,7 @@ class Formatter
 
     html = status.text
     html = encode(html)
-    html = simple_format(html, {}, sanitize: false)
+    html = html.gsub(/(?:\n\r?|\r\n?)/, '<br />')
     html = link_urls(html)
     html = link_mentions(html, status.mentions)
     html = link_hashtags(html)
@@ -23,7 +23,7 @@ class Formatter
   end
 
   def reformat(html)
-    sanitize(html, tags: %w(a br p span), attributes: %w(href rel class))
+    sanitize(html, tags: %w(a span br p), attributes: %w(href rel class))
   end
 
   def plaintext(status)
