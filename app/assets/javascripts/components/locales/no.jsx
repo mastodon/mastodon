@@ -6,7 +6,7 @@ const no = {
   "status.delete": "Slett",
   "status.reply": "Svar",
   "status.reblog": "Reblogg",
-  "status.favourite": "Favoritt",
+  "status.favourite": "Lik",
   "status.reblogged_by": "{name} reblogget",
   "status.sensitive_warning": "Sensitivt innhold",
   "status.sensitive_toggle": "Klikk for å vise",

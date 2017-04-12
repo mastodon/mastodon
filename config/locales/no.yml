@@ -10,12 +10,12 @@
     domain_count_after: andre instanser
     domain_count_before: Koblet til
     features:
-      api: Åpent api for applikasjoner og tjenester
-      blocks: Rikholdige blokkerings verktøy
-      characters: 500 tegn per post
+      api: Åpent API for applikasjoner og tjenester
+      blocks: Rikholdige blokkeringsverktøy
+      characters: 500 tegn per status
       chronology: Tidslinjer er kronologiske
       ethics: 'Etisk design: Ingen reklame, ingen sporing'
-      gifv: GIFV sett og korte videoer
+      gifv: Støtte for GIFV og korte videoer
       privacy: Finmaskete personvernsinnstillinger
       public: Fødererte tidslinjer
     features_headline: Hva skiller Mastodon fra andre sosiale nettverk
@@ -116,8 +116,8 @@
       body: 'Du ble nevnt av %{name} i:'
       subject: Du ble nevnt av %{name}
     reblog:
-      body: 'Din status fikk en boost av %{name}:'
-      subject: "%{name} ga din status en boost"
+      body: 'Din status ble reblogget av %{name}:'
+      subject: "%{name} reblogget din status"
   pagination:
     next: Neste
     prev: Forrige
@@ -145,7 +145,7 @@
       unlisted: Offentlig, men vis ikke på føderert tidslinje
   stream_entries:
     click_to_show: Klikk for å vise
-    reblogged: boostet
+    reblogged: reblogget
     sensitive_content: Sensitivt innhold
   time:
     formats:
