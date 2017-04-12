@@ -26,7 +26,7 @@ module Admin
       # We generate random password, so user need to choose password (Forgot your password?) after validation.
       @user.password = SecureRandom.hex
       if @user.save
-        redirect_to admin_accounts_url, notice: I18n.t('admin.create_success')
+        redirect_to admin_accounts_url, notice: I18n.t('admin.accounts.create.success')
       else
         render :new
       end

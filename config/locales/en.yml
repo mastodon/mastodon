@@ -84,6 +84,7 @@ en:
     changes_saved_msg: Changes successfully saved!
     powered_by: powered by %{link}
     save_changes: Save changes
+    save: Save
     validation_errors:
       one: Something isn't quite right yet! Please review the error below
       other: Something isn't quite right yet! Please review %{count} errors below
@@ -223,8 +224,9 @@ en:
         closed_message:
           title: Closed registration message
           desc_html: "Displayed on frontpage when registrations are closed<br>You can use HTML tags"
-    accounts: Accounts
-    create_account: Create account
-    create: Create
-    create_success: Account has been created successfully
-    create_account_description_html: After confirming their email, the user will need to reset their password to be able to login. It can be done by using 'Forgot your password?' method.
+    accounts:
+      title: Accounts
+      create:
+        title: Create account
+        success: Account has been created successfully
+        description_html: After confirming their email, the user will need to reset their password to be able to login. It can be done by using 'Forgot your password?' method.

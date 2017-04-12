@@ -1,5 +1,5 @@
 - content_for :page_title do
-  = t('admin.create_account')
+  = t('admin.accounts.create.title')
 
 = simple_form_for(@user, url: admin_accounts_path) do |f|
   = render 'shared/error_messages', object: @user
@@ -11,4 +11,4 @@
   = f.input :email, placeholder: t('simple_form.labels.defaults.email'), required: true, input_html: { 'aria-label' => t('simple_form.labels.defaults.email') }
 
   .actions
-    = f.button :button, t('admin.create'), type: :submit
+    = f.button :button, t('generic.save'), type: :submit
