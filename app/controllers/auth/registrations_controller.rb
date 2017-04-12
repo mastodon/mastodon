@@ -28,7 +28,7 @@ class Auth::RegistrationsController < Devise::RegistrationsController
   end
 
   def check_enabled_registrations
-    redirect_to root_path if Rails.configuration.x.single_user_mode || InstancePresenter.new.open_registrations
+    redirect_to root_path if Rails.configuration.x.single_user_mode || !InstancePresenter.new.open_registrations
   end
 
   private
