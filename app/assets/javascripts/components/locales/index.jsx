@@ -9,6 +9,7 @@ import fi from './fi';
 import eo from './eo';
 import ru from './ru';
 import ja from './ja';
+import zh_hk from './zh-hk';
 
 
 const locales = {
@@ -22,8 +23,8 @@ const locales = {
   fi,
   eo,
   ru,
-  ja
-
+  ja,
+  'zh-HK': zh_hk,
 };
 
 export default function getMessagesForLocale (locale) {
