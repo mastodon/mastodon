@@ -7,5 +7,5 @@
       %strong.emojify= display_name(account)
       %span= "@#{account.acct}"
 
-  - unless account.note.blank?
+  - if account.note?
     .account__header__content.emojify= Formatter.instance.simplified_format(account)

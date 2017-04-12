@@ -2,15 +2,15 @@
 
 module StreamEntriesHelper
   def display_name(account)
-    account.display_name.blank? ? account.username : account.display_name
+    account.display_name.presence || account.username
+  end
+
+  def stream_link_target
+    embedded_view? ? '_blank' : nil
   end
 
   def acct(account)
-    "@#{account.acct}#{@external_links && account.local? ? "@#{Rails.configuration.x.local_domain}" : ''}"
-  end
-
-  def avatar_for_status_url(status)
-    status.reblog? ? status.reblog.account.avatar.url(:original) : status.account.avatar.url(:original)
+    "@#{account.acct}#{embedded_view? && account.local? ? "@#{Rails.configuration.x.local_domain}" : ''}"
   end
 
   def entry_classes(status, is_predecessor, is_successor, include_threads)
@@ -20,18 +20,6 @@ module StreamEntriesHelper
     classes << 'entry-successor u-comment h-cite' if is_successor
     classes << 'entry-center h-entry' if include_threads
     classes.join(' ')
-  end
-
-  def relative_time(date)
-    date < 5.days.ago ? date.strftime('%d.%m.%Y') : "#{time_ago_in_words(date)} ago"
-  end
-
-  def reblogged_by_me_class(status)
-    user_signed_in? && @reblogged.key?(status.id) ? 'reblogged' : ''
-  end
-
-  def favourited_by_me_class(status)
-    user_signed_in? && @favourited.key?(status.id) ? 'favourited' : ''
   end
 
   def rtl?(text)
@@ -45,5 +33,11 @@ module StreamEntriesHelper
     ltr_size = text.strip.size.to_f
 
     rtl_size / ltr_size > 0.3
+  end
+
+  private
+
+  def embedded_view?
+    params[:controller] == 'stream_entries' && params[:action] == 'embed'
   end
 end

@@ -12,7 +12,7 @@ class SuspendAccountService < BaseService
   private
 
   def purge_content
-    @account.statuses.find_each do |status|
+    @account.statuses.reorder(nil).find_each do |status|
       RemoveStatusService.new.call(status)
     end
 

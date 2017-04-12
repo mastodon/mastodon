@@ -5,6 +5,7 @@ node(:meta) do
     access_token: @token,
     locale: I18n.locale,
     me: current_account.id,
+    boost_modal: current_account.user.setting_boost_modal,
   }
 end
 
