@@ -31,7 +31,7 @@ RSpec.describe Admin::AccountsController, type: :controller do
   describe 'POST #create' do
     before do
       request.env["devise.mapping"] = Devise.mappings[:user]
-      post :create, params: { user: { account_attributes: { username: 'testadmin' }, email: 'testadmin@example.com', password: '12345678', password_confirmation: '12345678' } }
+      post :create, params: { user: { account_attributes: { username: 'testadmin' }, email: 'testadmin@example.com' } }
     end
 
     it 'redirects to accounts list page' do
@@ -48,7 +48,7 @@ RSpec.describe Admin::AccountsController, type: :controller do
 
     before do
       request.env["devise.mapping"] = Devise.mappings[:user]
-      post :create, params: { user: { account_attributes: { username: user.account.username }, email: user.email, password: '12345678', password_confirmation: '12345678' } }
+      post :create, params: { user: { account_attributes: { username: user.account.username }, email: user.email } }
     end
 
     it 'redirects to accounts list page' do
