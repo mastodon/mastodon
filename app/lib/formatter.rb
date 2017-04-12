@@ -13,8 +13,8 @@ class Formatter
     return reformat(status.content) unless status.local?
 
     html = status.text
+    html = reformat(html)
     html = encode(html)
-    html = simple_format(html, {}, sanitize: false)
     html = link_urls(html)
     html = link_mentions(html, status.mentions)
     html = link_hashtags(html)
@@ -23,7 +23,7 @@ class Formatter
   end
 
   def reformat(html)
-    sanitize(html, tags: %w(a br p span), attributes: %w(href rel class))
+    sanitize(html, tags: %w(a span), attributes: %w(href rel class))
   end
 
   def plaintext(status)
