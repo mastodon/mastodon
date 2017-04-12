@@ -172,6 +172,12 @@ en:
     invalid_otp_token: Invalid two-factor code
   will_paginate:
     page_gap: "&hellip;"
+  errors:
+      404: The page you were looking for doesn't exist.
+      410: The page you were looking for doesn't exist anymore.
+      422:
+        title: Security verification failed
+        content: Security verification failed. Are you blocking cookies?
   reports:
     reports: Reports
     status: Status
