@@ -16,7 +16,7 @@ const ja = {
   "status.report": "@{name}さんを報告",
   "video_player.toggle_sound": "音切り替え",
   "account.mention": "@{name}さんに返信",
-  "account.edit_profile": "プロフィール返信",
+  "account.edit_profile": "プロフィール編集",
   "account.unblock": "@{name}さんのブロックを解除",
   "account.unfollow": "フォロー解除",
   "account.block": "@{name}さんをブロック",
