@@ -5,8 +5,12 @@ module StreamEntriesHelper
     account.display_name.blank? ? account.username : account.display_name
   end
 
+  def stream_link_target
+    embedded_view? ? '_blank' : nil
+  end
+
   def acct(account)
-    "@#{account.acct}#{@external_links && account.local? ? "@#{Rails.configuration.x.local_domain}" : ''}"
+    "@#{account.acct}#{embedded_view? && account.local? ? "@#{Rails.configuration.x.local_domain}" : ''}"
   end
 
   def entry_classes(status, is_predecessor, is_successor, include_threads)
@@ -29,5 +33,11 @@ module StreamEntriesHelper
     ltr_size = text.strip.size.to_f
 
     rtl_size / ltr_size > 0.3
+  end
+
+  private
+
+  def embedded_view?
+    params[:controller] == 'stream_entries' && params[:action] == 'embed'
   end
 end

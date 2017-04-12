@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class XrdController < ApplicationController
-  before_action :set_default_format_json, only: :webfinger
   before_action :set_default_format_xml, only: :host_meta
 
   def host_meta
@@ -29,10 +28,6 @@ class XrdController < ApplicationController
 
   def set_default_format_xml
     request.format = 'xml' if request.headers['HTTP_ACCEPT'].nil? && params[:format].nil?
-  end
-
-  def set_default_format_json
-    request.format = 'json' if request.headers['HTTP_ACCEPT'].nil? && params[:format].nil?
   end
 
   def username_from_resource
