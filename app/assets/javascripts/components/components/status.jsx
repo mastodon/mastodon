@@ -27,6 +27,7 @@ const Status = React.createClass({
     onOpenMedia: React.PropTypes.func,
     onBlock: React.PropTypes.func,
     me: React.PropTypes.number,
+    boostModal: React.PropTypes.bool,
     muted: React.PropTypes.bool
   },
 
@@ -90,7 +91,7 @@ const Status = React.createClass({
 
           <a onClick={this.handleAccountClick.bind(this, status.getIn(['account', 'id']))} href={status.getIn(['account', 'url'])} className='status__display-name' style={{ display: 'block', maxWidth: '100%', paddingRight: '25px' }}>
             <div className='status__avatar' style={{ position: 'absolute', left: '10px', top: '10px', width: '48px', height: '48px' }}>
-              <Avatar src={status.getIn(['account', 'avatar'])} size={48} />
+              <Avatar src={status.getIn(['account', 'avatar'])} staticSrc={status.getIn(['account', 'avatar_static'])} size={48} />
             </div>
 
             <DisplayName account={status.get('account')} />

@@ -46,8 +46,8 @@ const EmojiPickerDropdown = React.createClass({
           <img draggable="false" className="emojione" alt="🙂" src="/emoji/1f602.svg" />
         </DropdownTrigger>
 
-        <DropdownContent className='dropdown__left'>
-          <EmojiPicker emojione={settings} onChange={this.handleChange} />
+        <DropdownContent className='dropdown__left light'>
+          <EmojiPicker emojione={settings} onChange={this.handleChange} search={true} />
         </DropdownContent>
       </Dropdown>
     );

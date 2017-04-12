@@ -1,0 +1,173 @@
+---
+ja:
+  about:
+    about_mastodon: Mastodon は<em>無料でオープンソース</em>のソーシャルネットワークです。 従来のプラットフォームとは違う<em>分散型</em>で、これはあなたの会話が一つの会社によって独占されるのを防ぎます。自分の信頼できるサーバーを選びます&mdash; どのサーバーを選んでも、誰とでも会話することができます。 だれでも自分の Mastodon サーバーを作ることができ、<em>シームレスにソーシャルネットワークに参加</em>できます。
+    about_this: このサーバーについて
+    apps: アプリ
+    business_email: 'ビジネスメールアドレス:'
+    closed_registrations: 現在このサーバーでの新規登録は受け付けていません。
+    contact: 連絡先
+    description_headline: '%{domain}とは？'
+    domain_count_after: 個のサーバー
+    domain_count_before: 接続中
+    features:
+      api: アプリやその他サービスにAPIを公開
+      blocks: ブロックやミュートの種類は豊富
+      characters: 1投稿は500文字まで可能
+      chronology: 時系列に沿ったタイムライン
+      ethics: 広告も行動追跡もなく、プライバシーにも配慮
+      gifv: GIFVや短い動画にも対応
+      privacy: 細かく投稿ごとに公開範囲が設定可能
+      public: 公開タイムライン
+    features_headline: Mastodonの特徴
+    get_started: 始める
+    links: リンク
+    other_instances: 他のサーバー
+    source_code: ソースコード
+    status_count_after: トゥート
+    status_count_before: トゥート数
+    terms: 規約
+    user_count_after: 人
+    user_count_before: ユーザー数
+  accounts:
+    follow: フォロー
+    followers: フォロワー
+    following: フォロー中
+    nothing_here: 何もありません
+    people_followed_by: '%{name}さんをフォロー中のアカウント'
+    people_who_follow: '%{name}さんがフォロー中のアカウント'
+    posts: 投稿
+    remote_follow: リモートフォロー
+    unfollow: フォロー解除
+  application_mailer:
+    settings: 'メール設定の変更: %{link}'
+    signature: 'Mastodon %{instance}サーバーからの通知'
+    view: 'View:'
+  applications:
+    invalid_url: URLが無効です
+  auth:
+    change_password: 資格情報
+    didnt_get_confirmation: 確認メールを受信できませんか？
+    forgot_password: パスワードをお忘れですか？
+    login: ログイン
+    logout: ログアウト
+    register: サインアップ
+    resend_confirmation: 確認メールを再送する
+    reset_password: パスワード再発行
+    set_new_password: 新しいパスワード
+  authorize_follow:
+    error: 残念ながら、リモートアカウントにエラーが発生しました。
+    follow: フォロー
+    prompt_html: 'あなた (<strong>%{self}</strong>) は以下のアカウントのフォローをリクエストしました:'
+    title: '%{acct}をフォロー'
+  datetime:
+    distance_in_words:
+      about_x_hours: "%{count}時間"
+      about_x_months: "%{count}月"
+      about_x_years: "%{count}年"
+      almost_x_years: "%{count}年"
+      half_a_minute: 今
+      less_than_x_minutes: "%{count}分"
+      less_than_x_seconds: 今
+      over_x_years: "%{count}年"
+      x_days: "%{count}日"
+      x_minutes: "%{count}分"
+      x_months: "%{count}月"
+      x_seconds: "%{count}秒"
+  exports:
+    blocks: ブロック
+    csv: CSV
+    follows: フォロー
+    storage: メディア
+  generic:
+    changes_saved_msg: 正常に変更されました
+    powered_by: powered by %{link}
+    save_changes: 変更を保存
+    validation_errors:
+      one: エラーが発生しました。以下のエラーを確認してください
+      other: エラーが発生しました。以下の%{count}個のエラーを確認してください
+  imports:
+    preface: このサーバーのあなたのアカウントにフォロー、ブロック、などの他のサーバーからエクスポートされたファイルの情報をインポートできます。
+    success: ファイルは正常にアップロードされ、現在処理中です。しばらくしてから確認してください
+    types:
+      blocking: ブロック中のアカウントリスト
+      following: フォロー中のアカウントリスト
+    upload: アップロード
+  landing_strip_html: <strong>%{name}</strong>さんはサーバー<strong>%{domain}</strong>のユーザーです。アカウントさえ持っていればフォローしたり会話したりできます。もしお持ちでないなら<a href="%{sign_up_path}">こちら</a>からサインアップできます。
+  media_attachments:
+    validations:
+      images_and_video: 既に画像が追加されている場合動画を追加することはできません。
+      too_many: 追加できるファイルは4つまでです。
+  notification_mailer:
+    digest:
+      body: '%{instance}での最後のログインからの出来事:'
+      mention: "%{name}さんがあなたに返信しました:"
+      new_followers_summary:
+        one: 新たなフォロワーを獲得しました！
+        other: '%{count}人の新たなフォロワーを獲得しました！'
+      subject:
+        one: "新しい1つの通知 \U0001F418"
+        other: "新しい%{count}つの通知 \U0001F418"
+    favourite:
+      body: 'あなたのステータスが%{name}さんにいいねされました:'
+      subject: "%{name}さんがあなたのステータスをいいねしました"
+    follow:
+      body: "%{name}さんにフォローされています"
+      subject: "%{name}さんにフォローされています"
+    follow_request:
+      body: "%{name}さんがあなたにフォローをリクエストしました。"
+      subject: '%{name}さんからのフォローリクエスト'
+    mention:
+      body: '%{name}さんから返信がありました:'
+      subject: '%{name}さんに返信されました'
+    reblog:
+      body: 'あなたのステータスが%{name}さんにブーストされました:'
+      subject: "あなたのステータスが%{name}さんにブーストされました"
+  pagination:
+    next: 次
+    prev: 前
+  remote_follow:
+    acct: フォローしたい人の ユーザー名@ドメイン を入力してください
+    missing_resource: リダイレクト先が見つかりませんでした
+    proceed: フォローする
+    prompt: 'フォローしようとしています:'
+  settings:
+    authorized_apps: 認証済みアプリ
+    back: 戻る
+    edit_profile: プロフィール編集
+    export: データのエクスポート
+    import: データのインポート
+    preferences: ユーザー設定
+    settings: 設定
+    two_factor_auth: 二段階認証
+  statuses:
+    open_in_web: Webで開く
+    over_character_limit: '%{max}文字までしか入力できません'
+    show_more: もっと見る
+    visibilities:
+      private: フォロワーだけに見せる
+      public: 公開
+      unlisted: 公開されますが、公開タイムラインには載りません
+  stream_entries:
+    click_to_show: 見るにはクリック
+    reblogged: ブーストされました
+    sensitive_content: 不適切なコンテンツの可能性があります
+  time:
+    formats:
+      default: "%Y年%m月%d日 %H:%M"
+  two_factor_auth:
+    code_hint: 確認するには認証アプリで表示されたコードを入力してください
+    description_html: <strong>二段階認証</strong>を有効にするとログイン時、電話でコードを受け取る必要があります。
+    disable: 無効
+    enable: 有効
+    enabled_success: 二段階認証が有効になりました
+    instructions_html: "<strong>Google Authenticatorか、もしくはほかのTOTPアプリでこのQRコードをスキャンしてください。</strong>これ以降、ログインするときはそのアプリで生成されるコードが必要になります。"
+    manual_instructions: 'QRコードがスキャンできず、手動での登録を希望の場合はこのシークレットコードを利用してください。:'
+    setup: 初期設定
+    warning: 現在認証アプリを設定できない場合、無効に設定して、有効にしないでください。
+    wrong_code: コードが間違っています。サーバー上の時間とデバイス上の時間が一致していることを確認してください。
+  users:
+    invalid_email: メールアドレスが無効です
+    invalid_otp_token: 二段階認証コードが間違っています
+  will_paginate:
+    page_gap: "&hellip;"

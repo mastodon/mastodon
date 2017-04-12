@@ -5,13 +5,16 @@ module SettingsHelper
     en: 'English',
     de: 'Deutsch',
     es: 'Español',
+    eo: 'Esperanto',
     pt: 'Português',
     fr: 'Français',
     hu: 'Magyar',
     uk: 'Українська',
     'zh-CN': '简体中文',
     fi: 'Suomi',
-    eo: 'Esperanto',
+    ru: 'Русский',
+    ja: '日本語',
+
   }.freeze
 
   def human_locale(locale)
