@@ -4,32 +4,41 @@ require 'csv'
 
 class ImportWorker
   include Sidekiq::Worker
-
   sidekiq_options queue: 'pull', retry: false
 
-  def perform(import_id)
-    import = Import.find(import_id)
+  attr_reader :import
 
-    case import.type
+  def perform(import_id)
+    @import = Import.find(import_id)
+
+    case @import.type
     when 'blocking'
-      process_blocks(import)
+      process_blocks
     when 'following'
-      process_follows(import)
+      process_follows
     end
 
-    import.destroy
+    @import.destroy
   end
 
   private
 
-  def process_blocks(import)
-    from_account = import.account
+  def from_account
+    @import.account
+  end
 
-    CSV.new(open(import.data.url)).each do |row|
-      next if row.size != 1
+  def import_contents
+    Paperclip.io_adapters.for(@import.data).read
+  end
 
+  def import_rows
+    CSV.new(import_contents).reject(&:blank?)
+  end
+
+  def process_blocks
+    import_rows.each do |row|
       begin
-        target_account = FollowRemoteAccountService.new.call(row[0])
+        target_account = FollowRemoteAccountService.new.call(row.first)
         next if target_account.nil?
         BlockService.new.call(from_account, target_account)
       rescue Goldfinger::Error, HTTP::Error, OpenSSL::SSL::SSLError
@@ -38,14 +47,10 @@ class ImportWorker
     end
   end
 
-  def process_follows(import)
-    from_account = import.account
-
-    CSV.new(open(import.data.url)).each do |row|
-      next if row.size != 1
-
+  def process_follows
+    import_rows.each do |row|
       begin
-        FollowService.new.call(from_account, row[0])
+        FollowService.new.call(from_account, row.first)
       rescue Mastodon::NotPermittedError, ActiveRecord::RecordNotFound, Goldfinger::Error, HTTP::Error, OpenSSL::SSL::SSLError
         next
       end

@@ -37,8 +37,8 @@ const ActionBar = React.createClass({
     this.props.onReply(this.props.status);
   },
 
-  handleReblogClick () {
-    this.props.onReblog(this.props.status);
+  handleReblogClick (e) {
+    this.props.onReblog(this.props.status, e);
   },
 
   handleFavouriteClick () {

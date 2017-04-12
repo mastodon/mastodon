@@ -6,15 +6,15 @@ module SettingsHelper
     de: 'Deutsch',
     es: 'Español',
     eo: 'Esperanto',
-    pt: 'Português',
     fr: 'Français',
     hu: 'Magyar',
-    uk: 'Українська',
-    'zh-CN': '简体中文',
+    pt: 'Português',
     fi: 'Suomi',
-    ru: 'Русский',
-    ja: '日本語',
-
+    ru: '�уѺий',
+    uk: 'Українька',
+    ja: '日本�,
+    'zh-CN': '简体中�,
+    'zh-HK': '繫�中於�香港,
   }.freeze
 
   def human_locale(locale)
