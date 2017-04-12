@@ -47,6 +47,7 @@ const Search = React.createClass({
         <input
           className='search__input'
           type='text'
+          required={true}
           placeholder={intl.formatMessage(messages.placeholder)}
           value={value}
           onChange={this.handleChange}
