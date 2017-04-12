@@ -21,9 +21,9 @@
             %i.fa.fa-check
         %td= distance_of_time_in_words(Time.now, subscription.expires_at)
         %td
-          - if subscription.last_successful_delivery_at.nil?
-            %i.fa.fa-times
-          - else
+          - if subscription.last_successful_delivery_at?
             = l subscription.last_successful_delivery_at
+          - else
+            %i.fa.fa-times
 
 = paginate @subscriptions

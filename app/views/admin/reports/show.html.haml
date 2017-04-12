@@ -12,10 +12,7 @@
 %p
   %strong= t('reports.comment.label')
   \:
-  - if @report.comment.blank?
-    = t('reports.comment.none')
-  - else
-    = @report.comment
+  = @report.comment.presence || t('reports.comment.none')
 
 - unless @statuses.empty?
   %hr/

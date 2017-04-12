@@ -13,11 +13,11 @@
         %span.p-nickname= acct(status.account)
 
   .status__content.e-content.p-name.emojify<
-    - unless status.spoiler_text.blank?
+    - if status.spoiler_text?
       %p{ style: 'margin-bottom: 0' }<
         %span>= "#{status.spoiler_text} "
         %a.status__content__spoiler-link{ href: '#' }= t('statuses.show_more')
-    %div{ style: "display: #{status.spoiler_text.blank? ? 'block' : 'none'}; direction: #{rtl?(status.content) ? 'rtl' : 'ltr'}" }= Formatter.instance.format(status)
+    %div{ style: "display: #{status.spoiler_text? ? 'none' : 'block'}; direction: #{rtl?(status.content) ? 'rtl' : 'ltr'}" }= Formatter.instance.format(status)
 
   - unless status.media_attachments.empty?
     .status__attachments
