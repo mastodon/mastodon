@@ -1,0 +1,61 @@
+---
+zh-HK:
+  devise:
+    confirmations:
+      confirmed: 你的電郵地址確認成功
+      send_instructions: 你將會在幾分鐘內收到確認指示電郵，上面有確認你電郵地址的指示。
+      send_paranoid_instructions: 如果你的電郵地址已經存在於我們的資料庫，你將會在幾分鐘內收到電郵，確認你電郵地址的指示。
+    failure:
+      already_authenticated: 你之前已經登入了。
+      inactive: 你的用戶並未啟用。
+      invalid: 不正確的 %{authentication_keys} 或密碼。
+      last_attempt: 若你再一次嘗試失敗，我們將鎖定你的用戶，以察安全。
+      locked: 你的用戶已被鎖定
+      not_found_in_database: 不正確的 %{authentication_keys} 或密碼。
+      timeout: 你的登入階段已經過期，請重新登入以繼續使用。
+      unauthenticated: 你必須先登入或登記，以繼續使用。
+      unconfirmed: 你必須先確認電郵地址，繼續使用。
+    mailer:
+      confirmation_instructions:
+        subject: 'Mastodon: 確認電郵地址'
+      password_change:
+        subject: 'Mastodon: 更改密碼'
+      reset_password_instructions:
+        subject: 'Mastodon: 重設密碼'
+      unlock_instructions:
+        subject: 'Mastodon: 解除用戶鎖定'
+    omniauth_callbacks:
+      failure: 無法以 %{kind} 登入你的用戶，原因是︰「%{reason}」。
+      success: 成功以 %{kind} 登入你的用戶。
+    passwords:
+      no_token: 你必須使用重設密碼電郵內的網址進入本頁。如果你確是使用電郵內的網址，請確認你用了完整的網址。
+      send_instructions: 你將在幾分鐘內收到重設密碼的電郵指示。
+      send_paranoid_instructions: 如果你的電郵地址已經存在於我們的資料庫，你將會在幾分鐘內收到重設密碼的電郵指示。
+      updated: 你的密碼已經更新，你現在正登入本站。
+      updated_not_active: 你的密碼已經更新。
+    registrations:
+      destroyed: 再見了！你的用戶已被取消，希望我們相有相見的機會吧。
+      signed_up: 歡迎你！你的登記已經成功。
+      signed_up_but_inactive: 你的登記已經成功，可是由於你的用戶還被被啟用，暫時還不能讓你登入。
+      signed_up_but_locked: 你的登記已經成功，可是由於你的用戶已被鎖定，我們無法讓你登入。
+      signed_up_but_unconfirmed: 一條確認連結已經電郵到你的郵址。請使用讓連結啟用你的用戶。
+      update_needs_confirmation: 你的用戶已經更新，但我們需要確認你的電郵地址。請打開你的郵箱，使用確認電郵的連結來確認的地郵址。
+      updated: 你的用戶已經成功更新。
+    sessions:
+      already_signed_out: 成功登出。
+      signed_in: 成功登入。
+      signed_out: 成功登出。
+    unlocks:
+      send_instructions: 你將在幾分鐘內收到解除用戶鎖定的電郵指示。
+      send_paranoid_instructions: 如果你的電郵地址已經存在於我們的資料庫，你將在幾分鐘內收到解除用戶鎖定的電郵指示。
+      unlocked: 你的用戶已經解鎖，請登入以繼續。
+  errors:
+    messages:
+      already_confirmed: 先前已經確認，請嘗試登入
+      confirmation_period_expired: 需要在 %{period} 之內確認。請重新申請
+      expired: 已經過期，請重新申請
+      not_found: 找不到
+      not_locked: 並未被鎖定
+      not_saved:
+        one: '1 個錯誤令 %{resource} 被法被儲存︰'
+        other: "%{count} 個錯誤令 %{resource} 被法被儲存︰"

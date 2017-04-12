@@ -1,5 +1,12 @@
 ---
 fr:
+  activemodel:
+    errors:
+      models:
+        remote_follow:
+          attributes:
+            acct:
+              blank: Le nom d'utilisateur ne doit pas être vide
   activerecord:
     attributes:
       doorkeeper/application:
@@ -14,6 +21,23 @@ fr:
               invalid_uri: doit être une URL valide.
               relative_uri: doit être une URL absolue.
               secured_uri: doit être une URL HTTP/SSL.
+        account:
+          attributes:
+            username:
+              blank: Identifiant vide
+        user:
+          attributes:
+            email:
+              taken: Email pris
+              invalid: Email invalide
+              blank: Email vide
+            password:
+              blank: Mot de passe vide
+              too_short: Mot de passe trop court
+            password_confirmation:
+              confirmation: Le mot de passe ne correspond pas
+      messages:
+        record_invalid: Données invalides
   doorkeeper:
     applications:
       buttons:
