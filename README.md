@@ -67,23 +67,52 @@ Consult the example configuration file, `.env.production.sample` for the full li
 
 [![](https://images.microbadger.com/badges/version/gargron/mastodon.svg)](https://microbadger.com/images/gargron/mastodon "Get your own version badge on microbadger.com") [![](https://images.microbadger.com/badges/image/gargron/mastodon.svg)](https://microbadger.com/images/gargron/mastodon "Get your own image badge on microbadger.com")
 
-The project now includes a `Dockerfile` and a `docker-compose.yml` file (which requires at least docker-compose version `1.10.0`). You need to turn `.env.production.sample` into `.env.production` with all the variables set before you can:
+The project now includes a `Dockerfile` and a `docker-compose.yml` file (which requires at least docker-compose version `1.10.0`).
+
+Review the settings in `docker-compose.yml`. Note that it is not default to store the postgresql database and redis databases in a persistent storage location,
+so you may need or want to adjust the settings there.
+
+Before running the first time, you need to build the images:
 
     docker-compose build
 
-And finally
+Then, you need to fill in the `.env.production` file:
 
-    docker-compose up -d
+    cp .env.production.sample .env.production
+    nano .env.production
 
-As usual, the first thing you would need to do would be to run migrations:
+Do NOT change the `REDIS_*` or `DB_*` settings when running with the default docker configurations.
+
+You will need to fill in, at least: `LOCAL_DOMAIN`, `LOCAL_HTTPS`, `PAPERCLIP_SECRET`, `SECRET_KEY_BASE`, `OTP_SECRET`, and the `SMTP_*` settings.  To generate the `PAPERCLIP_SECRET`, `SECRET_KEY_BASE`, and `OTP_SECRET`, you may use:
+
+    docker-compose run --rm web rake secret
+
+Do this once for each of those keys, and copy the result into the `.env.production` file in the appropriate field.
+
+Then you should run the `db:migrate` command to create the database, or migrate it from an older release:
 
     docker-compose run --rm web rails db:migrate
 
-And since the instance running in the container will be running in production mode, you need to pre-compile assets:
+Then, you will also need to precompile the assets:
 
     docker-compose run --rm web rails assets:precompile
 
-The container has two volumes, for the assets and for user uploads. The default docker-compose.yml maps them to the repository's `public/assets` and `public/system` directories, you may wish to put them somewhere else. Likewise, the PostgreSQL and Redis images have data containers that you may wish to map somewhere where you know how to find them and back them up.
+before you can launch the docker image with:
+
+    docker-compose up
+
+If you wish to run this as a daemon process instead of monitoring it on console, use instead:
+
+    docker-compose up -d
+
+Then you may login to your new Mastodon instance by browsing to http://localhost:3000/
+
+Following that, make sure that you read the [production guide](docs/Running-Mastodon/Production-guide.md). You are probably going to want to understand how
+to configure Nginx to make your Mastodon instance available to the rest of the world.
+
+The container has two volumes, for the assets and for user uploads, and optionally two more, for the postgresql and redis databases.
+
+The default docker-compose.yml maps them to the repository's `public/assets` and `public/system` directories, you may wish to put them somewhere else. Likewise, the PostgreSQL and Redis images have data containers that you may wish to map somewhere where you know how to find them and back them up.
 
 **Note**: The `--rm` option for docker-compose will remove the container that is created to run a one-off command after it completes. As data is stored in volumes it is not affected by that container clean-up.
 
@@ -103,17 +132,11 @@ Running any of these tasks via docker-compose would look like this:
 
 This approach makes updating to the latest version a real breeze.
 
-    git pull
-
-To pull down the updates, re-run
-
-    docker-compose build
-
-And finally,
-
-    docker-compose up -d
-
-Which will re-create the updated containers, leaving databases and data as is. Depending on what files have been updated, you might need to re-run migrations and asset compilation.
+1. `git pull` to download updates from the repository
+2. `docker-compose build` to compile the Docker image out of the changed source files
+3. (optional) `docker-compose run --rm web rails db:migrate` to perform database migrations. Does nothing if your database is up to date
+4. (optional) `docker-compose run --rm web rails assets:precompile` to compile new JS and CSS assets
+5. `docker-compose up -d` to re-create (restart) containers and pick up the changes
 
 ## Deployment without Docker
 
@@ -129,7 +152,7 @@ Docker is great for quickly trying out software, but it has its drawbacks too. I
 
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
 
-Mastodon can theoretically run indefinitely on a free [Heroku](https://heroku.com) app. [You can view a guide for deployment on Heroku here.](https://github.com/tootsuite/documentation/blob/master/Running-Mastodon/Heroku-guide.md)
+Mastodon can run on [Heroku](https://heroku.com), but it gets expensive and impractical due to how Heroku prices resource usage. [You can view a guide for deployment on Heroku here](https://github.com/tootsuite/documentation/blob/master/Running-Mastodon/Heroku-guide.md), but you have been warned.
 
 ## Development with Vagrant
 

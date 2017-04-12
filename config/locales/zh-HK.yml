@@ -1,0 +1,172 @@
+---
+zh-HK:
+  about:
+    about_mastodon: Mastodon （長毛象）是一個<em>自由、開放源碼</em>的社交網站。它是一個分散式的服務，避免你的通訊被單一商業機構壟斷操控。請你選擇一家你信任的 Mastodon 服務站，在上面建立帳號，然後你就可以和任一 Mastodon 服務站上的用戶互通，享受無縫的<em>社交網絡</em>交流。
+    about_this: 關於本服務站
+    apps: 應用程式
+    business_email: 商業電郵︰
+    closed_registrations: 本服務站暫時停止接受登記。
+    contact: 聯絡
+    description_headline: 關於 %{domain}
+    domain_count_after: 個其他服務站
+    domain_count_before: 已連接至
+    features:
+      api: 開放 API，供各式應用程式及服務連入
+      blocks: 完善的封鎖用戶、靜音功能
+      characters: 每篇文章最多 500 字
+      chronology: 時間軸忠實按時序顯示文章，不作多餘處理
+      ethics: 良心設計︰沒有廣告，不追蹤你的使用行為
+      gifv: 支援顯示 GIFV 短片圖組
+      privacy: 可逐篇文章設定私隱度
+      public: 公共時間軸
+    features_headline: 甚麼讓 Mastodon 與眾不同
+    get_started: 立即登記
+    links: 連結
+    other_instances: 其他服務站
+    source_code: 源代碼
+    status_count_after: 篇文章
+    status_count_before: 他們共發佈了
+    terms: 使用條款
+    user_count_after: 位使用者
+    user_count_before: 這裏共註冊有
+  accounts:
+    follow: 關注
+    followers: 關注者
+    following: 正在關注
+    nothing_here: 暫時未有內容可以顯示
+    people_followed_by: '%{name} 關注的人'
+    people_who_follow: 關注 %{name} 的人
+    posts: 文章
+    remote_follow: 跨站關注
+    unfollow: 取消關注
+  application_mailer:
+    settings: '修改電郵設定︰ %{link}'
+    signature: 來自 %{instance} 的 Mastodon 通知
+    view: '進入瀏覽︰'
+  applications:
+    invalid_url: 所提供的網址不正確
+  auth:
+    change_password: 登入資訊
+    didnt_get_confirmation: 沒有收到確認指示電郵？
+    forgot_password: 忘記了密碼？
+    login: 登入
+    logout: 登出
+    register: 登記
+    resend_confirmation: 重發確認指示電郵
+    reset_password: 重設密碼
+    set_new_password: 設定新密碼
+  authorize_follow:
+    error: 對不起，尋找這個跨站用戶的過程發生錯誤
+    follow: 關注
+    prompt_html: '你 (<strong>%{self}</strong>) 正準備關注︰'
+    title: 關注 %{acct}
+  datetime:
+    distance_in_words:
+      about_x_hours: "%{count}小時前"
+      about_x_months: "%{count}個月前"
+      about_x_years: "%{count}年前"
+      almost_x_years: "接近%{count}年前"
+      half_a_minute: 剛剛
+      less_than_x_minutes: "少於%{count}分鐘前"
+      less_than_x_seconds: 剛剛
+      over_x_years: "%{count}y"
+      x_days: "%{count}日"
+      x_minutes: "%{count}分鐘"
+      x_months: "%{count}個月"
+      x_seconds: "%{count}秒"
+  exports:
+    blocks: 被你封鎖的用戶
+    csv: CSV
+    follows: 你所關注的用戶
+    storage: 媒體容量大小
+  generic:
+    changes_saved_msg: 已成功儲存修改
+    powered_by: 網站由 %{link} 開發
+    save_changes: 儲存修改
+    validation_errors:
+      one: 提交的資料有問題
+      other: 提交的資料有 %{count} 項問題
+  imports:
+    preface: 你可以在此匯入你在其他服務站所匯出的資料檔，包括︰你所關注的用戶，被你封鎖的用戶。
+    success: 你已成功上載資料檔，我們正將資料匯入，請稍候
+    types:
+      blocking: 被你封鎖的用戶名單
+      following: 你所關注的用戶名單
+    upload: 上載
+  landing_strip_html: <strong>%{name}</strong> 是一個在 <strong>%{domain}</strong> 的用戶。只要你有任何 Mastodon 服務站、或者聯盟網站的用戶，便可以跨站關注此站用戶，或者與他們互動。如果你沒有這類用戶，歡迎在<a href="%{sign_up_path}">此處登記</a>。
+  media_attachments:
+    validations:
+      images_and_video: 不能在已有圖片的文章上加入影片
+      too_many: 不可以加入超過 4 個檔案
+  notification_mailer:
+    digest:
+      body: '這是自從你在%{since}使用%{instance}以後，你錯失了的訊息︰'
+      mention: "%{name} 在此提及了你︰"
+      new_followers_summary:
+        one: 你新獲得了 1 位關注者了！恭喜！
+        other: 你新獲得了 %{count} 位關注者了！好厲害！
+      subject:
+        one: "自從上次登入以來，你收到 1 則新的通知 \U0001F418"
+        other: "自從上次登入以來，你收到 %{count} 則新的通知 \U0001F418"
+    favourite:
+      body: '你的文章獲得 %{name} 的喜愛'
+      subject: "%{name} 喜歡你的文章"
+    follow:
+      body: "%{name} 開始關注你！"
+      subject: "%{name} 現正關注你"
+    follow_request:
+      body: "%{name} 要求關注你"
+      subject: '等候關注你的用戶︰ %{name}'
+    mention:
+      body: '%{name} 在文章中提及你︰'
+      subject: '%{name} 在文章中提及你'
+    reblog:
+      body: '你的文章得到 %{name} 的轉推'
+      subject: "%{name} 轉推了你的文章"
+  pagination:
+    next: 下一頁
+    prev: 上一頁
+    truncate: "……"
+  remote_follow:
+    acct: 請輸入你的︰用戶名稱@服務點域名
+    missing_resource: 無法找到你用戶的轉接網址
+    proceed: 下一步
+    prompt: '你希望關注︰'
+  settings:
+    authorized_apps: 授權應用程式
+    back: 回到 Mastodon
+    edit_profile: 修改個人資料
+    export: 匯出
+    import: 匯入
+    preferences: 偏好設定
+    settings: 設定
+    two_factor_auth: 雙重認證
+  statuses:
+    open_in_web: 開啟網頁
+    over_character_limit: 超過了 %{max} 字的限制
+    show_more: 顯示更多
+    visibilities:
+      private: 只有關注你的人能看
+      public: 公開
+      unlisted: 公開，但不在公共時間軸顯示
+  stream_entries:
+    click_to_show: 點擊顯示
+    reblogged: 轉推
+    sensitive_content: 敏感內容
+  time:
+    formats:
+      default: "%Y年%-m月%d日 %H:%M"
+  two_factor_auth:
+    code_hint: 請輸入你認證器產生的代碼，以確認設定
+    description_html: 當你啟用<strong>雙重認證</strong>後，你登入時將需要使你手機、或其他種類認證器產生的代碼。
+    disable: 停用
+    enable: 啟用
+    enabled_success: 已成功啟用雙重認證
+    instructions_html: <strong>請用你手機的認證器應用程式（如 Google Authenticator、Authy），掃描這裏的 QR 圖形碼</strong>。在雙重認證啟用後，你登入時將須要使用此應用程式產生的認證碼。
+    manual_instructions: 如果你無法掃描 QR 圖形碼，請手動輸入這個文字密碼︰
+    setup: 設定
+    warning: 如果你現在無法正確設定你的應用程式，請即「停用」雙重認證，否則日後可能無法登入本站。
+    wrong_code: 你輸入的認證碼並不正確！可能伺服器時間和你手機不一致，請檢查你手機的時鐘，或與本站管理員聯絡。
+  users:
+    invalid_email: 電郵地址格式不正確
+    invalid_otp_token: 雙重認證確認碼不正確
