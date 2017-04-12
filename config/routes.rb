@@ -15,7 +15,7 @@ Rails.application.routes.draw do
   end
 
   get '.well-known/host-meta', to: 'xrd#host_meta', as: :host_meta
-  get '.well-known/webfinger', to: 'xrd#webfinger', as: :webfinger
+  get '.well-known/webfinger', to: 'xrd#webfinger', as: :webfinger, defaults: { format: 'json' }
 
   devise_for :users, path: 'auth', controllers: {
     sessions:           'auth/sessions',

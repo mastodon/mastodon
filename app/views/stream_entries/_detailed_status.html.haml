@@ -1,5 +1,5 @@
 .detailed-status.light
-  = link_to TagManager.instance.url_for(status.account), class: 'detailed-status__display-name p-author h-card', target: @external_links ? '_blank' : nil, rel: 'noopener' do
+  = link_to TagManager.instance.url_for(status.account), class: 'detailed-status__display-name p-author h-card', target: stream_link_target, rel: 'noopener' do
     %div
       %div.avatar
         = image_tag status.account.avatar.url(:original), width: 48, height: 48, alt: '', class: 'u-photo'
@@ -30,7 +30,7 @@
 
   %div.detailed-status__meta
     %data.dt-published{ value: status.created_at.to_time.iso8601 }
-    = link_to TagManager.instance.url_for(status), class: 'detailed-status__datetime u-url u-uid', target: @external_links ? '_blank' : nil, rel: 'noopener' do
+    = link_to TagManager.instance.url_for(status), class: 'detailed-status__datetime u-url u-uid', target: stream_link_target, rel: 'noopener' do
       %span= l(status.created_at)
     ·
     - if status.application
