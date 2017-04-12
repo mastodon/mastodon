@@ -107,7 +107,7 @@ const fr = {
   "privacy.private.short": "Privé",
   "privacy.private.long": "N’afficher que pour vos abonné⋅e⋅s",
   "privacy.direct.short": "Direct",
-  "privacy.direct.long": "N’afficher que pour les personnes mentionné⋅e⋅s",
+  "privacy.direct.long": "N’afficher que pour les personnes mentionnées",
   "privacy.change": "Ajuster la confidentialité du message",
   "media_gallery.toggle_visible": "Modifier la visibilité",
   "missing_indicator.label": "Non trouvé",
