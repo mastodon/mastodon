@@ -2,7 +2,7 @@
 
 module Admin
   class AccountsController < BaseController
-    before_action :set_account, except: %i[index new create]
+    before_action :set_account, except: %i(index new create)
 
     def index
       @accounts = Account.alphabetic.page(params[:page])
