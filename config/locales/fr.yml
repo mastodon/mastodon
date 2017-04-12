@@ -40,7 +40,7 @@ fr:
     remote_follow: Suivre à distance
     unfollow: Ne plus suivre
   application_mailer:
-    settings: 'Changer les préférences courriel : ${link}'
+    settings: 'Changer les préférences courriel : %{link}'
     signature: Notifications de Mastodon depuis %{instance}
     view: 'Voir :'
   applications:
@@ -167,3 +167,54 @@ fr:
   users:
     invalid_email: L'adresse courriel est invalide
     invalid_otp_token: Le code d'authentification à deux facteurs est invalide
+  will_paginate:
+    page_gap: "&hellip;"
+  errors:
+    404: La page que vous recherchez n'existe pas.
+    410: La page que vous recherchez n'existe plus.
+    422:
+      title: Vérification de sécurité échouée
+      content: Vérification de sécurité échouée. Bloquez-vous les cookies ?
+  reports:
+    reports: Signalements
+    status: Statut
+    unresolved: Non résolus
+    resolved: Résolus
+    id: ID
+    target: Cible
+    reported_by: Signalé par
+    comment:
+      label: Commentaire
+      none: Aucun
+    view: Voir
+    report: "Signalement #%{id}"
+    delete: Supprimer
+    reported_account: Compte signalé
+    reported_by: Signalé par
+    silence_account: Rendre le compte muet
+    suspend_account: Suspendre le compte
+    mark_as_resolved: Marqué comme résolu
+  admin:
+    settings:
+      title: Paramètres du site
+      setting: Paramètre
+      click_to_edit: Cliquez pour éditer
+      contact_information:
+        label: Informations de contact
+        username: Entrez un nom d'utilisateur
+        email: Entrez une adresse courriel publique
+      site_title: Titre du site
+      site_description:
+        title: Description du site
+        desc_html: "Affichée sous la forme d'un paragraphe sur la page d'accueil et utilisée comme balise meta.<br>Vous pouvez utiliser des balises HTML, en particulier <code>&lt;a&gt;</code> et <code>&lt;em&gt;</code>."
+      site_description_extended:
+        title: Description étendue du site
+        desc_html: "Affichée sur la page d'informations complémentaires du site<br>Vous pouvez utiliser des balises HTML"
+      registrations:
+        open:
+          title: Inscriptions
+          enabled: Activées
+          disabled: Désactivées
+        closed_message:
+          title: Message de fermeture des inscriptions
+          desc_html: "Affiché sur la page d'accueil lorsque les inscriptions sont fermées<br>Vous pouvez utiliser des balises HTML"
