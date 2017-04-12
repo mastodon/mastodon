@@ -17,13 +17,13 @@ fr:
       unconfirmed: Vous devez valider votre compte pour continuer.
     mailer:
       confirmation_instructions:
-        subject: Instructions de confirmation
+        subject: "Merci de confirmer votre inscription sur %{instance}"
       password_change:
         subject: Votre mot de passe a été modifié avec succés.
       reset_password_instructions:
-        subject: Instructions pour modifier le mot de passe
+        subject: Instructions pour changer votre mot de passe
       unlock_instructions:
-        subject: Instructions pour déverrouiller le compte
+        subject: Instructions pour déverrouiller votre compte
     omniauth_callbacks:
       failure: 'Nous n''avons pas pu vous authentifier via %{kind} : ''%{reason}''.'
       success: Authentifié avec succès via %{kind}.
