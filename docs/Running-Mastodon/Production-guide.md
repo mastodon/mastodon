@@ -39,7 +39,7 @@ server {
   root /home/mastodon/live/public;
 
   add_header Strict-Transport-Security "max-age=31536000; includeSubDomains";
-  add_header Content-Security-Policy "default-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self' https://example.com/ wss://example.com/; upgrade-insecure-requests";
+  add_header Content-Security-Policy "default-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self' wss://example.com;; upgrade-insecure-requests";
 
   location / {
     try_files $uri @proxy;
