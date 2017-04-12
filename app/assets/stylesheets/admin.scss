@@ -115,6 +115,15 @@
 
   .simple_form {
     max-width: 400px;
+    .label_input {
+      label.select {
+        width: 50%;
+      }
+      select {
+        width: 50%;
+        float: right;
+      }
+    }
   }
 
   @media screen and (max-width: 600px) {
