@@ -4,7 +4,7 @@
     "test": "mocha --require ./spec/javascript/setup.js --compilers js:babel-register ./spec/javascript/components/*.test.jsx",
     "storybook": "start-storybook -p 9001 -c storybook",
     "start": "babel-node ./streaming/index.js --presets es2015,stage-2",
-    "lint": "eslint -c .eslintrc app/assets/javascripts/"
+    "lint": "eslint -c .eslintrc --ext=js --ext=jsx app/assets/javascripts/"
   },
   "dependencies": {
     "@kadira/storybook": "^2.35.3",
