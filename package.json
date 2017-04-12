@@ -3,7 +3,8 @@
   "scripts": {
     "test": "mocha --require ./spec/javascript/setup.js --compilers js:babel-register ./spec/javascript/components/*.test.jsx",
     "storybook": "start-storybook -p 9001 -c storybook",
-    "start": "babel-node ./streaming/index.js --presets es2015,stage-2"
+    "start": "babel-node ./streaming/index.js --presets es2015,stage-2",
+    "lint": "eslint -c .eslintrc app/assets/javascripts/"
   },
   "dependencies": {
     "@kadira/storybook": "^2.35.3",
@@ -76,6 +77,7 @@
   "devDependencies": {
     "babel-eslint": "^7.2.1",
     "eslint": "^3.19.0",
+    "eslint-plugin-jsx-a11y": "^4.0.0",
     "eslint-plugin-react": "^6.10.3"
   }
 }
