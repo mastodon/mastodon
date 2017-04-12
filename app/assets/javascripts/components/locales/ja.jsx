@@ -64,7 +64,7 @@ const ja = {
   "notifications.column_settings.alert": "デスクトップ通知",
   "notifications.column_settings.show": "表示項目",
   "notifications.column_settings.follow": "新しいフォロワー:",
-  "notifications.column_settings.favourite": "お気に入り:",
+  "notifications.column_settings.favourite": "いいね:",
   "notifications.column_settings.mention": "返信:",
   "notifications.column_settings.reblog": "ブースト:",
 };
