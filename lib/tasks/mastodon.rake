@@ -13,10 +13,13 @@ namespace :mastodon do
   desc 'Manually confirms a user with associated user email address stored in USER_EMAIL environment variable.'
   task confirm_email: :environment do
     email = ENV.fetch('USER_EMAIL')
-    user = User.where(email: email)
-    user.update(confirmed_at: Time.now.utc)
-
-    puts "User #{email} confirmed."
+    user = User.where(email: email).first
+    if user
+      user.update(confirmed_at: Time.now.utc)
+      puts "User #{email} confirmed."
+    else
+      abort "User #{email} not found."
+    end
   end
 
   namespace :media do
@@ -72,6 +75,13 @@ namespace :mastodon do
     end
   end
 
+  namespace :users do
+    desc 'clear unconfirmed users'
+    task clear: :environment do
+      User.where('confirmed_at is NULL AND confirmation_sent_at <= ?', 2.days.ago).find_each(&:destroy)
+    end
+  end
+
   namespace :maintenance do
     desc 'Update counter caches'
     task update_counter_caches: :environment do
@@ -85,6 +95,18 @@ namespace :mastodon do
 
       Status.unscoped.select('id').find_in_batches do |batch|
         Status.where(id: batch.map(&:id)).update_all('favourites_count = (select count(*) from favourites where favourites.status_id = statuses.id), reblogs_count = (select count(*) from statuses as reblogs where reblogs.reblog_of_id = statuses.id)')
+      end
+
+      Rails.logger.debug 'Done!'
+    end
+
+    desc 'Generate static versions of GIF avatars/headers'
+    task add_static_avatars: :environment do
+      Rails.logger.debug 'Generating static avatars/headers for GIF ones...'
+
+      Account.unscoped.where(avatar_content_type: 'image/gif').or(Account.unscoped.where(header_content_type: 'image/gif')).find_each do |account|
+        account.avatar.reprocess!
+        account.header.reprocess!
       end
 
       Rails.logger.debug 'Done!'

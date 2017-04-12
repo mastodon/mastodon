@@ -54,6 +54,30 @@ RSpec.describe Account, type: :model do
     end
   end
 
+  describe 'Local domain user methods' do
+    around do |example|
+      before = Rails.configuration.x.local_domain
+      example.run
+      Rails.configuration.x.local_domain = before
+    end
+
+    describe '#to_webfinger_s' do
+      it 'returns a webfinger string for the account' do
+        Rails.configuration.x.local_domain = 'example.com'
+
+        expect(subject.to_webfinger_s).to eq 'acct:alice@example.com'
+      end
+    end
+
+    describe '#local_username_and_domain' do
+      it 'returns the username and local domain for the account' do
+        Rails.configuration.x.local_domain = 'example.com'
+
+        expect(subject.local_username_and_domain).to eq 'alice@example.com'
+      end
+    end
+  end
+
   describe '#acct' do
     it 'returns username for local users' do
       expect(subject.acct).to eql 'alice'
@@ -394,6 +418,26 @@ RSpec.describe Account, type: :model do
         account_1 = Fabricate(:account, suspended: true)
         account_2 = Fabricate(:account, suspended: false)
         expect(Account.suspended).to match_array([account_1])
+      end
+    end
+  end
+
+  describe 'static avatars' do
+    describe 'when GIF' do
+      it 'creates a png static style' do
+        subject.avatar = attachment_fixture('avatar.gif')
+        subject.save
+
+        expect(subject.avatar_static_url).to_not eq subject.avatar_original_url
+      end
+    end
+
+    describe 'when non-GIF' do
+      it 'does not create extra static style' do
+        subject.avatar = attachment_fixture('attachment.jpg')
+        subject.save
+
+        expect(subject.avatar_static_url).to eq subject.avatar_original_url
       end
     end
   end
