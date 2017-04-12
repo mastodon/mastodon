@@ -58,7 +58,7 @@ const ja = {
   "upload_button.label": "メディアを追加",
   "upload_form.undo": "やり直す",
   "notification.follow": "{name}さんにフォローされました",
-  "notification.favourite": "{name}さんがあなたのトゥートをお気に入りしました",
+  "notification.favourite": "{name}さんがあなたのトゥートをいいねしました",
   "notification.reblog": "{name}さんがあなたのトゥートをブーストしました",
   "notification.mention": "{name}さんがあなたに返信しました",
   "notifications.column_settings.alert": "デスクトップ通知",
