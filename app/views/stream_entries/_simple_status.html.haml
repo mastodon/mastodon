@@ -10,14 +10,14 @@
           = image_tag status.account.avatar(:original), width: 48, height: 48, alt: '', class: 'u-photo'
       %span.display-name
         %strong.p-name.emojify= display_name(status.account)
-        %span.p-nickname= acct(status.account)
+        %span= acct(status.account)
 
-  .status__content.e-content.p-name.emojify<
+  .status__content.p-name.emojify<
     - if status.spoiler_text?
       %p{ style: 'margin-bottom: 0' }<
-        %span>= "#{status.spoiler_text} "
+        %span.p-summary>= "#{status.spoiler_text} "
         %a.status__content__spoiler-link{ href: '#' }= t('statuses.show_more')
-    %div{ style: "display: #{status.spoiler_text? ? 'none' : 'block'}; direction: #{rtl?(status.content) ? 'rtl' : 'ltr'}" }= Formatter.instance.format(status)
+    %div.e-content{ style: "display: #{status.spoiler_text? ? 'none' : 'block'}; direction: #{rtl?(status.content) ? 'rtl' : 'ltr'}" }= Formatter.instance.format(status)
 
   - unless status.media_attachments.empty?
     .status__attachments
