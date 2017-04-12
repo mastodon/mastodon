@@ -87,21 +87,24 @@ const setRequestId = (req, res, next) => {
 const accountFromToken = (token, req, next) => {
   pgPool.connect((err, client, done) => {
     if (err) {
-      return next(err)
+      next(err)
+      return
     }
 
     client.query('SELECT oauth_access_tokens.resource_owner_id, users.account_id FROM oauth_access_tokens INNER JOIN users ON oauth_access_tokens.resource_owner_id = users.id WHERE oauth_access_tokens.token = $1 LIMIT 1', [token], (err, result) => {
       done()
 
       if (err) {
-        return next(err)
+        next(err)
+        return
       }
 
       if (result.rows.length === 0) {
         err = new Error('Invalid access token')
         err.statusCode = 401
 
-        return next(err)
+        next(err)
+        return
       }
 
       req.accountId = result.rows[0].account_id
@@ -113,7 +116,8 @@ const accountFromToken = (token, req, next) => {
 
 const authenticationMiddleware = (req, res, next) => {
   if (req.method === 'OPTIONS') {
-    return next()
+    next()
+    return
   }
 
   const authorization = req.get('Authorization')
@@ -122,7 +126,8 @@ const authenticationMiddleware = (req, res, next) => {
     const err = new Error('Missing access token')
     err.statusCode = 401
 
-    return next(err)
+    next(err)
+    return
   }
 
   const token = authorization.replace(/^Bearer /, '')

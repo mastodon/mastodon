@@ -22,5 +22,8 @@
     = ff.input :must_be_follower, as: :boolean, wrapper: :with_label
     = ff.input :must_be_following, as: :boolean, wrapper: :with_label
 
+  .fields-group
+    = f.input :setting_boost_modal, as: :boolean, wrapper: :with_label
+
   .actions
     = f.button :button, t('generic.save_changes'), type: :submit

@@ -1,0 +1,46 @@
+---
+ja:
+  simple_form:
+    hints:
+      defaults:
+        avatar: PNGやGIF、JPGは2MBまでです。120x120pxまで縮小されます。
+        display_name: 名前は30文字まで設定することができます。
+        header: PNGやGIF、JPGは2MBまでです。 700x335pxまで縮小されます。
+        locked: フォロワーを手動で承認する必要があります。デフォルトでは投稿範囲はフォロワーまでです。
+        note: プロフィールは30文字まで設定することができます。
+      imports:
+        data: CSVファイルからデータをインポートしました。
+    labels:
+      defaults:
+        avatar: アカウント
+        confirm_new_password: 新しいパスワード(確認用)
+        confirm_password: 新しいパスワード
+        current_password: 現在のパスワード
+        data: データ
+        display_name: 表示名
+        email: メールアドレス
+        header: ヘッダー
+        locale: 言語
+        locked: 非公開アカウントにする
+        new_password: パスワード
+        note: プロフィール
+        otp_attempt: 二段階認証コード
+        password: パスワード
+        setting_default_privacy: 投稿範囲
+        type: インポートするファイルの種類
+        username: ユーザー名
+      interactions:
+        must_be_follower: フォロワー以外からの通知をブロック
+        must_be_following: フォローしていないユーザーからの通知をブロック
+      notification_emails:
+        digest: タイムラインからピックアップしてメールで通知する
+        favourite: いいねされた時メールで通知する
+        follow: フォローされた時メールで通知する
+        follow_request: フォローリクエストを受けた時メールで通知する
+        mention: 返信された時メールで通知する
+        reblog: あなたのトゥートがブーストされた時メールで通知する
+    'no': 'いいえ'
+    required:
+      mark: "*"
+      text: 必須
+    'yes': 'はい'

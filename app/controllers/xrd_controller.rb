@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class XrdController < ApplicationController
-  before_action :set_default_format_json, only: :webfinger
   before_action :set_default_format_xml, only: :host_meta
 
   def host_meta
@@ -14,7 +13,7 @@ class XrdController < ApplicationController
 
   def webfinger
     @account = Account.find_local!(username_from_resource)
-    @canonical_account_uri = "acct:#{@account.username}@#{Rails.configuration.x.local_domain}"
+    @canonical_account_uri = @account.to_webfinger_s
     @magic_key = pem_to_magic_key(@account.keypair.public_key)
 
     respond_to do |format|
@@ -29,10 +28,6 @@ class XrdController < ApplicationController
 
   def set_default_format_xml
     request.format = 'xml' if request.headers['HTTP_ACCEPT'].nil? && params[:format].nil?
-  end
-
-  def set_default_format_json
-    request.format = 'json' if request.headers['HTTP_ACCEPT'].nil? && params[:format].nil?
   end
 
   def username_from_resource
