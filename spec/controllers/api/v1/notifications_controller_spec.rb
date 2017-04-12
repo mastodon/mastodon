@@ -12,62 +12,77 @@ RSpec.describe Api::V1::NotificationsController, type: :controller do
   end
 
   describe 'GET #index' do
-    before do
-      status     = PostStatusService.new.call(user.account, 'Test')
-      @reblog    = ReblogService.new.call(other.account, status)
-      @mention   = PostStatusService.new.call(other.account, 'Hello @alice')
-      @favourite = FavouriteService.new.call(other.account, status)
-      @follow    = FollowService.new.call(other.account, 'alice')
-    end
 
     describe 'with no options' do
-      before do
-        get :index
-      end
 
       it 'returns http success' do
+        PostStatusService.new.call(user.account, 'Test')
+        get :index
         expect(response).to have_http_status(:success)
       end
 
       it 'includes reblog' do
+        status     = PostStatusService.new.call(user.account, 'Test')
+        @reblog    = ReblogService.new.call(other.account, status)
+        get :index
         expect(assigns(:notifications).map(&:activity_id)).to include(@reblog.id)
       end
 
       it 'includes mention' do
+        PostStatusService.new.call(user.account, 'Test')
+        @mention   = PostStatusService.new.call(other.account, 'Hello @alice')
+        get :index
         expect(assigns(:notifications).map(&:activity_id)).to include(@mention.mentions.first.id)
       end
 
       it 'includes favourite' do
+        status     = PostStatusService.new.call(user.account, 'Test')
+        @favourite = FavouriteService.new.call(other.account, status)
+        get :index
         expect(assigns(:notifications).map(&:activity_id)).to include(@favourite.id)
       end
 
       it 'includes follow' do
+        PostStatusService.new.call(user.account, 'Test')
+        @follow    = FollowService.new.call(other.account, 'alice')
+        get :index
         expect(assigns(:notifications).map(&:activity_id)).to include(@follow.id)
       end
     end
 
     describe 'with excluded mentions' do
-      before do
-        get :index, params: { exclude_types: ['mention'] }
-      end
 
       it 'returns http success' do
+        PostStatusService.new.call(user.account, 'Test')
+        get :index, params: { exclude_types: ['mention'] }
         expect(response).to have_http_status(:success)
       end
 
       it 'includes reblog' do
+        status     = PostStatusService.new.call(user.account, 'Test')
+        @reblog    = ReblogService.new.call(other.account, status)
+        get :index, params: { exclude_types: ['mention'] }
         expect(assigns(:notifications).map(&:activity_id)).to include(@reblog.id)
       end
 
       it 'excludes mention' do
+        PostStatusService.new.call(user.account, 'Test')
+        @mention   = PostStatusService.new.call(other.account, 'Hello @alice')
+        get :index, params: { exclude_types: ['mention'] }
         expect(assigns(:notifications).map(&:activity_id)).to_not include(@mention.mentions.first.id)
       end
 
       it 'includes favourite' do
+        status     = PostStatusService.new.call(user.account, 'Test')
+        @favourite = FavouriteService.new.call(other.account, status)
+        get :index, params: { exclude_types: ['mention'] }
         expect(assigns(:notifications).map(&:activity_id)).to include(@favourite.id)
       end
 
       it 'includes follow' do
+        PostStatusService.new.call(user.account, 'Test')
+        @follow    = FollowService.new.call(other.account, 'alice')
+        get :index, params: { exclude_types: ['mention'] }
         expect(assigns(:notifications).map(&:activity_id)).to include(@follow.id)
       end
     end
