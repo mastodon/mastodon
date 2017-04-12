@@ -76,6 +76,7 @@ en:
       x_seconds: "%{count}s"
   exports:
     blocks: You block
+    mutes: You mute
     csv: CSV
     follows: You follow
     storage: Media storage
@@ -92,6 +93,7 @@ en:
     types:
       blocking: Blocking list
       following: Following list
+      muting: Muting list
     upload: Upload
   landing_strip_html: <strong>%{name}</strong> is a user on <strong>%{domain}</strong>. You can follow them or interact with them if you have an account anywhere in the fediverse. If you don't, you can <a href="%{sign_up_path}">sign up here</a>.
   media_attachments:
@@ -170,3 +172,54 @@ en:
   users:
     invalid_email: The e-mail address is invalid
     invalid_otp_token: Invalid two-factor code
+  will_paginate:
+    page_gap: "&hellip;"
+  errors:
+      404: The page you were looking for doesn't exist.
+      410: The page you were looking for doesn't exist anymore.
+      422:
+        title: Security verification failed
+        content: Security verification failed. Are you blocking cookies?
+  reports:
+    reports: Reports
+    status: Status
+    unresolved: Unresolved
+    resolved: Resolved
+    id: ID
+    target: Target
+    reported_by: Reported by
+    comment:
+      label: Comment
+      none: None
+    view: View
+    report: "Report #%{id}"
+    delete: Delete
+    reported_account: Reported account
+    reported_by: Signalé par
+    silence_account: Silence account
+    suspend_account: Suspend account
+    mark_as_resolved: Mark as resolved
+  admin:
+    settings:
+      title: Site Settings
+      setting: Setting
+      click_to_edit: Click to edit
+      contact_information:
+        label: Contact information
+        username: Enter a username
+        email: Enter a public e-mail address
+      site_title: Site title
+      site_description:
+        title: Site description
+        desc_html: "Displayed as a paragraph on the frontpage and used as a meta tag.<br>You can use HTML tags, in particular <code>&lt;a&gt;</code> and <code>&lt;em&gt;</code>."
+      site_description_extended:
+        title: Extended site description
+        desc_html: "Displayed on extended information page<br>You can use HTML tags"
+      registrations:
+        open:
+          title: Open registration
+          enabled: Enabled
+          disabled: Disabled
+        closed_message:
+          title: Closed registration message
+          desc_html: "Displayed on frontpage when registrations are closed<br>You can use HTML tags"

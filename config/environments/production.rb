@@ -40,7 +40,7 @@ Rails.application.configure do
 
   # By default, use the lowest log level to ensure availability of diagnostic information
   # when problems arise.
-  config.log_level = ENV.fetch('RAILS_LOG_LEVEL', 'debug').to_sym
+  config.log_level = ENV.fetch('RAILS_LOG_LEVEL', 'info').to_sym
 
   # Prepend all log lines with the following tags.
   config.log_tags = [:request_id]
@@ -64,7 +64,7 @@ Rails.application.configure do
     password: ENV.fetch('REDIS_PASSWORD') { false },
     db: 0,
     namespace: 'cache',
-    expires_in: 20.minutes,
+    expires_in: 10.minutes,
   }
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server.
@@ -94,13 +94,13 @@ Rails.application.configure do
 
   # E-mails
   config.action_mailer.smtp_settings = {
-    :port           => ENV['SMTP_PORT'],
-    :address        => ENV['SMTP_SERVER'],
-    :user_name      => ENV['SMTP_LOGIN'],
-    :password       => ENV['SMTP_PASSWORD'],
-    :domain         => ENV['SMTP_DOMAIN'] || config.x.local_domain,
-    :authentication => ENV['SMTP_AUTH_METHOD'] || :plain,
-    :openssl_verify_mode => ENV['SMTP_OPENSSL_VERIFY_MODE'] || 'peer',
+    :port                 => ENV['SMTP_PORT'],
+    :address              => ENV['SMTP_SERVER'],
+    :user_name            => ENV['SMTP_LOGIN'],
+    :password             => ENV['SMTP_PASSWORD'],
+    :domain               => ENV['SMTP_DOMAIN'] || config.x.local_domain,
+    :authentication       => ENV['SMTP_AUTH_METHOD'] || :plain,
+    :openssl_verify_mode  => ENV['SMTP_OPENSSL_VERIFY_MODE'],
     :enable_starttls_auto => ENV['SMTP_ENABLE_STARTTLS_AUTO'] || true,
   }
 
