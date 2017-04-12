@@ -14,7 +14,7 @@ class XrdController < ApplicationController
 
   def webfinger
     @account = Account.find_local!(username_from_resource)
-    @canonical_account_uri = "acct:#{@account.username}@#{Rails.configuration.x.local_domain}"
+    @canonical_account_uri = @account.to_webfinger_s
     @magic_key = pem_to_magic_key(@account.keypair.public_key)
 
     respond_to do |format|
