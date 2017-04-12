@@ -7,9 +7,9 @@
       %strong.p-name.emojify= display_name(status.account)
       %span= acct(status.account)
 
-  .status__content.p-name.emojify
+  .status__content.p-name.emojify<
     - if status.spoiler_text?
-      %p{ style: 'margin-bottom: 0' }
+      %p{ style: 'margin-bottom: 0' }<
         %span.p-summary>= "#{status.spoiler_text} "
         %a.status__content__spoiler-link{ href: '#' }= t('statuses.show_more')
     %div.e-content{ style: "display: #{status.spoiler_text? ? 'none' : 'block'}; direction: #{rtl?(status.content) ? 'rtl' : 'ltr'}" }= Formatter.instance.format(status)
