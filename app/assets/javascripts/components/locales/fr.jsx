@@ -34,7 +34,7 @@ const fr = {
   "account.report": "Signaler",
   "account.disclaimer": "Ce compte est situé sur une autre instance. Les nombres peuvent être plus grands.",
   "getting_started.heading": "Pour commencer",
-  "getting_started.about_addressing": "Vous pouvez suivre les statuts de quelqu’un en entrant dans le champs de recherche leur identifiant et le domaine de leur instance, séparés par un @ à la manière d’une adresse courriel.",
+  "getting_started.about_addressing": "Vous pouvez suivre les statuts de quelqu’un en entrant dans le champ de recherche leur identifiant et le domaine de leur instance, séparés par un @ à la manière d’une adresse courriel.",
   "getting_started.about_shortcuts": "Si cette personne utilise la même instance que vous, l’identifiant suffit. C’est le même principe pour mentionner quelqu’un dans vos statuts.",
   "getting_started.about_developer": "Pour suivre le développeur de ce projet, c’est Gargron@mastodon.social",
   "getting_started.open_source_notice": "Mastodon est un logiciel libre. Vous pouvez contribuer et envoyer vos commentaires et rapports de bogues via {github} sur GitHub.",
