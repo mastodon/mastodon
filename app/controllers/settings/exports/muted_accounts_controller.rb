@@ -2,11 +2,11 @@
 
 module Settings
   module Exports
-    class FollowingAccountsController < BaseController
+    class MutedAccountsController < BaseController
       private
 
       def export_accounts
-        current_account.following
+        current_account.muting
       end
     end
   end
