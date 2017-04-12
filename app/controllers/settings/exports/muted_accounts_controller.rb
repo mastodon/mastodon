@@ -2,15 +2,11 @@
 
 module Settings
   module Exports
-    class MutedAccountsController < ApplicationController
-      before_action :authenticate_user!
+    class MutedAccountsController < BaseController
+      private
 
-      def index
-        export_data = Export.new(current_account.muting).to_csv
-
-        respond_to do |format|
-          format.csv { send_data export_data, filename: 'mutes.csv' }
-        end
+      def export_accounts
+        current_account.muting
       end
     end
   end

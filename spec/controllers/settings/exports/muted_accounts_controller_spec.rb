@@ -11,7 +11,7 @@ describe Settings::Exports::MutedAccountsController do
 
       expect(response).to have_http_status(:success)
       expect(response.content_type).to eq 'text/csv'
-      expect(response.headers['Content-Disposition']).to eq 'attachment; filename="mutes.csv"'
+      expect(response.headers['Content-Disposition']).to eq 'attachment; filename="muted_accounts.csv"'
     end
   end
 end
