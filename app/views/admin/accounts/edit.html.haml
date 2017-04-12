@@ -1,0 +1,12 @@
+- content_for :page_title do
+  = @account.acct
+
+= simple_form_for(@user, url: admin_account_path(@account.id), html: { method: :put }) do |f|
+  = render 'shared/error_messages', object: @user
+
+  = f.input :email, placeholder: t('simple_form.labels.defaults.email'), input_html: { 'aria-label' => t('simple_form.labels.defaults.email') }
+  = f.input :password, autocomplete: "off", placeholder: t('simple_form.labels.defaults.new_password'), input_html: { 'aria-label' => t('simple_form.labels.defaults.new_password') }
+  = f.input :password_confirmation, autocomplete: "off", placeholder: t('simple_form.labels.defaults.confirm_new_password'), input_html: { 'aria-label' => t('simple_form.labels.defaults.confirm_new_password') }
+
+  .actions
+    = f.button :button, t('admin.accounts.set_new_password'), type: :submit

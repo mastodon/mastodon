@@ -37,6 +37,21 @@ module Admin
       redirect_to admin_accounts_path
     end
 
+    def edit
+      redirect_to admin_account_path(@account.id) unless @account.local?
+      @user = @account.user
+    end
+
+    def update
+      redirect_to admin_account_path(@account.id) unless @account.local?
+      @user = @account.user
+      if @user.update(credentials_params)
+        redirect_to admin_account_path(@account.id), notice: I18n.t('generic.changes_saved_msg')
+      else
+        render action: :edit
+      end
+    end
+
     private
 
     def set_account
@@ -45,6 +60,15 @@ module Admin
 
     def account_params
       params.require(:account).permit(:silenced, :suspended)
+    end
+
+    def credentials_params
+      new_params = params.require(:user).permit(:email, :password, :password_confirmation)
+      if new_params[:password].blank? && new_params[:password_confirmation].blank?
+        new_params.delete(:password)
+        new_params.delete(:password_confirmation)
+      end
+      new_params
     end
   end
 end
