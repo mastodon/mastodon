@@ -97,7 +97,7 @@ const ru = {
   "notifications.clear": "Очистить уведомления",
   "notifications.clear_confirmation": "Вы уверены, что хотите очистить все уведомления?",
   "notifications.settings": "Настройки колонки",
-  "missing_indicator.label": "Не найдено","notifications.column_settings.alert": "Десктопные уведомления",
+  "notifications.column_settings.alert": "Десктопные уведомления",
   "notifications.column_settings.show": "Показывать в колонке",
   "notifications.column_settings.follow": "Новые подписчики:",
   "notifications.column_settings.favourite": "Нравится:",
