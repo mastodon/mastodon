@@ -25,6 +25,8 @@
   border-radius: 4px;
   text-decoration: none;
   transition: all 100ms ease-in;
+  white-space: nowrap;
+  max-width: 75px;
 
   &:hover, &:active, &:focus {
     background-color: lighten($color4, 7%);
