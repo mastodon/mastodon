@@ -1,6 +1,12 @@
 require 'rails_helper'
 
 describe WebfingerResource do
+  around do |example|
+    before = Rails.configuration.x.local_domain
+    example.run
+    Rails.configuration.x.local_domain = before
+  end
+
   describe '#username' do
     describe 'with a URL value' do
       it 'raises with an unrecognized route' do

@@ -14,7 +14,7 @@ import ColumnBackButtonSlim from '../../components/column_back_button_slim';
 import createStream from '../../stream';
 
 const messages = defineMessages({
-  title: { id: 'column.community', defaultMessage: 'Local' }
+  title: { id: 'column.community', defaultMessage: 'Local timeline' }
 });
 
 const mapStateToProps = state => ({

@@ -1,12 +1,12 @@
 - content_for :page_title do
-  = t('reports.reports')
+  = t('admin.reports.title')
 
 .filters
   .filter-subset
-    %strong= t('reports.status')
+    %strong= t('admin.reports.status')
     %ul
-      %li= filter_link_to t('reports.unresolved'), action_taken: nil
-      %li= filter_link_to t('reports.resolved'), action_taken: '1'
+      %li= filter_link_to t('admin.reports.unresolved'), action_taken: nil
+      %li= filter_link_to t('admin.reports.resolved'), action_taken: '1'
 
 = form_tag do
 
@@ -14,10 +14,10 @@
     %thead
       %tr
         %th
-        %th= t('reports.id')
-        %th= t('reports.target')
-        %th= t('reports.reported_by')
-        %th= t('reports.comment.label')
+        %th= t('admin.reports.id')
+        %th= t('admin.reports.target')
+        %th= t('admin.reports.reported_by')
+        %th= t('admin.reports.comment.label')
         %th
     %tbody
       - @reports.each do |report|
@@ -27,6 +27,6 @@
           %td= link_to report.target_account.acct, admin_account_path(report.target_account.id)
           %td= link_to report.account.acct, admin_account_path(report.account.id)
           %td= truncate(report.comment, length: 30, separator: ' ')
-          %td= table_link_to 'circle', t('reports.view'), admin_report_path(report)
+          %td= table_link_to 'circle', t('admin.reports.view'), admin_report_path(report)
 
 = paginate @reports

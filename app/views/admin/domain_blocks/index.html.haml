@@ -1,11 +1,11 @@
 - content_for :page_title do
-  Domain Blocks
+  = t('admin.domain_block.title')
 
 %table.table
   %thead
     %tr
-      %th Domain
-      %th Severity
+      %th= t('admin.domain_block.domain')
+      %th= t('admin.domain_block.severity')
   %tbody
     - @blocks.each do |block|
       %tr
@@ -14,4 +14,4 @@
         %td= block.severity
 
 = paginate @blocks
-= link_to 'Add new', new_admin_domain_block_path, class: 'button'
+= link_to t('admin.domain_block.add_new'), new_admin_domain_block_path, class: 'button'
