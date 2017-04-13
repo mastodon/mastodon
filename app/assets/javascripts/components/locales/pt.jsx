@@ -97,7 +97,7 @@ const pt = {
   "notifications.column_settings.favourite": "Favoritos:",
   "notifications.column_settings.mention": "Menções:",
   "notifications.column_settings.reblog": "Partilhas:",
-  "notifications.clear": "Limpar notificações”,
+  "notifications.clear": "Limpar notificações",
   "notifications.clear_confirmation": "Queres mesmo limpar todas as notificações?",
   "notifications.settings": "Parâmetros da lista de Notificações",
   "privacy.public.short": "Público",
