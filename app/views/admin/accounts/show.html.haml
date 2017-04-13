@@ -62,11 +62,11 @@
           = number_to_human_size @account.media_attachments.sum('file_file_size')
 
 - if @account.silenced?
-  = link_to 'Undo silence', unsilence_admin_account_path(@account.id), method: :post, class: 'button'
+  = link_to 'Undo silence', admin_account_silence_path(@account.id), method: :delete, class: 'button'
 - else
-  = link_to 'Silence', silence_admin_account_path(@account.id), method: :post, class: 'button'
+  = link_to 'Silence', admin_account_silence_path(@account.id), method: :post, class: 'button'
 
 - if @account.suspended?
-  = link_to 'Undo suspension', unsuspend_admin_account_path(@account.id), method: :post, class: 'button'
+  = link_to 'Undo suspension', admin_account_suspension_path(@account.id), method: :delete, class: 'button'
 - else
-  = link_to 'Perform full suspension', suspend_admin_account_path(@account.id), method: :post, data: { confirm: 'Are you sure?' }, class: 'button'
+  = link_to 'Perform full suspension', admin_account_suspension_path(@account.id), method: :post, data: { confirm: 'Are you sure?' }, class: 'button'
