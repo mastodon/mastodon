@@ -5,14 +5,7 @@ module Admin
     before_action :set_account, except: :index
 
     def index
-      @accounts = Account.alphabetic.page(params[:page])
-
-      @accounts = @accounts.local                             if params[:local].present?
-      @accounts = @accounts.remote                            if params[:remote].present?
-      @accounts = @accounts.where(domain: params[:by_domain]) if params[:by_domain].present?
-      @accounts = @accounts.silenced                          if params[:silenced].present?
-      @accounts = @accounts.recent                            if params[:recent].present?
-      @accounts = @accounts.suspended                         if params[:suspended].present?
+      @accounts = filtered_accounts.page(params[:page])
     end
 
     def show; end
@@ -38,6 +31,21 @@ module Admin
     end
 
     private
+
+    def filtered_accounts
+      AccountFilter.new(filter_params).results
+    end
+
+    def filter_params
+      params.permit(
+        :local,
+        :remote,
+        :by_domain,
+        :silenced,
+        :recent,
+        :suspended,
+      )
+    end
 
     def set_account
       @account = Account.find(params[:id])
