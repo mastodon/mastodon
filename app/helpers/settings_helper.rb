@@ -16,6 +16,7 @@ module SettingsHelper
     ja: '日本語',
     'zh-CN': '简体中文',
     'zh-HK': '繁體中文（香港）',
+    bg: 'Български',
   }.freeze
 
   def human_locale(locale)

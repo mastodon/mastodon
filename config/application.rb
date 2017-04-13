@@ -27,6 +27,7 @@ module Mastodon
 
     config.i18n.available_locales = [
       :en,
+      :bg,
       :de,
       :eo,
       :es,

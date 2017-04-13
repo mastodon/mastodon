@@ -52,8 +52,8 @@ import no from 'react-intl/locale-data/no';
 import ru from 'react-intl/locale-data/ru';
 import uk from 'react-intl/locale-data/uk';
 import zh from 'react-intl/locale-data/zh';
+import bg from 'react-intl/locale-data/bg';
 import { localeData as zh_hk } from '../locales/zh-hk';
-
 import getMessagesForLocale from '../locales';
 import { hydrateStore } from '../actions/store';
 import createStream from '../stream';
@@ -65,7 +65,6 @@ store.dispatch(hydrateStore(window.INITIAL_STATE));
 const browserHistory = useRouterHistory(createBrowserHistory)({
   basename: '/web'
 });
-
 
 addLocaleData([
   ...en,
@@ -82,8 +81,8 @@ addLocaleData([
   ...uk,
   ...zh,
   ...zh_hk,
+  ...bg,
 ]);
-
 
 const Mastodon = React.createClass({
 
