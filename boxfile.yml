@@ -14,6 +14,9 @@ run.config:
     # for videos:
     - ffmpeg3
 
+    # to prep the .env file
+    - gettext-tools
+
   cache_dirs:
     - node_modules
 
@@ -37,17 +40,20 @@ run.config:
   fs_watch: true
 
 deploy.config:
+  extra_steps:
+    - bundle exec rake assets:precompile
+    - "[ -r /app/.env.production ] || sed 's/LOCAL_HTTPS=.*/LOCAL_HTTPS=true/i' /app/.env.nanobox > /app/.env.production"
   transform:
-    - "[ -r .env.production ] || sed 's/LOCAL_HTTPS=.*/LOCAL_HTTPS=true/i' .env.nanobox > .env.production"
+    - envsubst < /app/.env.production > /tmp/.env.production && mv /tmp/.env.production /app/.env.production
+    - touch /app/log/production.log
   before_live:
     web.web:
-      - bundle exec rake assets:precompile
       - bundle exec rake db:migrate:setup
 
 web.web:
   start:
-    nginx: nginx -c nanobox/nginx-web.conf
-    rails: bundle exec puma -C config/puma.rb
+    nginx: nginx -c /app/nanobox/nginx-web.conf
+    rails: bundle exec puma -C /app/config/puma.rb
 
   routes:
     - '/'
@@ -56,7 +62,7 @@ web.web:
     - tmp
 
   log_watch:
-    rails: 'log/nanobox.log'
+    rails: 'log/production.log'
 
   network_dirs:
     data.storage:
@@ -64,7 +70,7 @@ web.web:
 
 web.stream:
   start:
-    nginx: nginx -c nanobox/nginx-stream.conf
+    nginx: nginx -c /app/nanobox/nginx-stream.conf
     node: yarn run start
 
   routes:
@@ -73,17 +79,15 @@ web.stream:
   writable_dirs:
     - tmp
 
-  log_watch:
-    rails: 'log/nanobox.log'
-
 worker.sidekiq:
-  start: bundle exec sidekiq -c 5 -q default -q mailers -q pull -q push -L log/sidekiq.log
+  start: bundle exec sidekiq -c 5 -q default -q mailers -q pull -q push -L /app/log/sidekiq.log
 
   writable_dirs:
     - tmp
 
   log_watch:
-    rails: 'log/sidekiq.log'
+    rails: 'log/production.log'
+    sidekiq: 'log/sidekiq.log'
 
   network_dirs:
     data.storage:

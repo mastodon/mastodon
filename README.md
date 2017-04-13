@@ -73,6 +73,7 @@ To deploy, you'll need to create an application in [your Nanobox dashboard](http
 Mastodon will not run under Nanobox without first setting a handful of required variables:
 
 - `RAILS_ENV` - set this to `production`, unless you're in development (this value is treated as `development` if it isn't set)
+- `NODE_ENV` - same as `RAILS_ENV`
 - `PAPERCLIP_SECRET` - set to a random string of characters; you can use `nanobox run bundle exec rake secret` to generate one
 - `SECRET_KEY_BASE` - set to a random string of characters; you can use `nanobox run bundle exec rake secret` to generate one
 - `OTP_SECRET` - set to a random string of characters; you can use `nanobox run bundle exec rake secret` to generate one
