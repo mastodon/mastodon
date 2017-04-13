@@ -125,6 +125,7 @@ const en = {
   "upload_progress.label": "Uploading...",
   "video_player.toggle_sound": "Toggle sound",
   "video_player.toggle_visible": "Toggle visibility",
+  "video_player.expand": "Expand video",
 };
 
 export default en;
