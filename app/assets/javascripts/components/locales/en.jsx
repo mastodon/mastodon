@@ -47,7 +47,7 @@ const en = {
   "empty_column.notifications": "You don't have any notifications yet. Interact with others to start the conversation.",
   "empty_column.public": "There is nothing here! Write something publicly, or manually follow users from other instances to fill it up",
   "follow_request.authorize": "Authorize",
-  "follow_request.reject": "Rejec",
+  "follow_request.reject": "Reject",
   "getting_started.apps": "Various apps are available",
   "getting_started.heading": "Getting started",
   "getting_started.open_source_notice": "Mastodon is open source software. You can contribute or report issues on GitHub at {github}. {apps}.",
