@@ -2,7 +2,7 @@
 
 module Admin
   class AccountsController < BaseController
-    before_action :set_account, except: :index
+    before_action :set_account, except: %i(index new create)
 
     def index
       @accounts = Account.alphabetic.page(params[:page])
@@ -16,6 +16,21 @@ module Admin
     end
 
     def show; end
+
+    def new
+      @user = User.new.tap(&:build_account)
+    end
+
+    def create
+      @user = User.new(user_params)
+      # We generate random password, so user need to choose password (Forgot your password?) after validation.
+      @user.password = SecureRandom.hex
+      if @user.save
+        redirect_to admin_accounts_url, notice: I18n.t('admin.accounts.create.success')
+      else
+        render :new
+      end
+    end
 
     def suspend
       Admin::SuspensionWorker.perform_async(@account.id)
@@ -45,6 +60,11 @@ module Admin
 
     def account_params
       params.require(:account).permit(:silenced, :suspended)
+    end
+
+    def user_params
+      account_attr = { account_attributes: [:username] }
+      params.require(:user).permit(:email, account_attr)
     end
   end
 end

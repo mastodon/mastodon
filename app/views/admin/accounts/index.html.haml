@@ -47,3 +47,6 @@
           = table_link_to 'pencil', 'Edit', admin_account_path(account.id)
 
 = paginate @accounts
+
+.simple_form{ style: 'max-width: 100%' }
+  = link_to t('admin.accounts.create.title'), new_admin_account_path, class: 'block-button'
