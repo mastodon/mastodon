@@ -16,7 +16,7 @@ RSpec.describe Admin::ReportsController, type: :controller do
 
     it 'returns http success with resolved filter' do
       allow(Report).to receive(:resolved).and_return(Report.all)
-      get :index, params: { action_taken: 1 }
+      get :index, params: { resolved: 1 }
 
       expect(response).to have_http_status(:success)
       expect(Report).to have_received(:resolved)

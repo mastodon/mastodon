@@ -43,7 +43,7 @@ module Admin
     end
 
     def filtering_scope
-      params[:action_taken].present? ? Report.resolved : Report.unresolved
+      params[:resolved].present? ? Report.resolved : Report.unresolved
     end
 
     def set_report
