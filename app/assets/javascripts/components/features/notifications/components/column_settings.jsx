@@ -27,7 +27,7 @@ const ColumnSettings = React.createClass({
 
   propTypes: {
     settings: ImmutablePropTypes.map.isRequired,
-    intl: ImmutablePropTypes.object.isRequired,
+    intl: React.PropTypes.object.isRequired,
     onChange: React.PropTypes.func.isRequired,
     onSave: React.PropTypes.func.isRequired,
   },

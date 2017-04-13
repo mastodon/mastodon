@@ -47,7 +47,7 @@ const Report = React.createClass({
   propTypes: {
     isSubmitting: React.PropTypes.bool,
     account: ImmutablePropTypes.map,
-    statusIds: ImmutablePropTypes.list.isRequired,
+    statusIds: ImmutablePropTypes.orderedSet.isRequired,
     comment: React.PropTypes.string.isRequired,
     dispatch: React.PropTypes.func.isRequired,
     intl: React.PropTypes.object.isRequired
@@ -94,7 +94,8 @@ const Report = React.createClass({
     return (
       <Column heading={intl.formatMessage(messages.heading)} icon='flag'>
         <ColumnBackButtonSlim />
-        <div className='report' style={{ display: 'flex', flexDirection: 'column', maxHeight: '100%', boxSizing: 'border-box' }}>
+
+        <div className='report scrollable' style={{ display: 'flex', flexDirection: 'column', maxHeight: '100%', boxSizing: 'border-box' }}>
           <div className='report__target' style={{ flex: '0 0 auto', padding: '10px' }}>
             <FormattedMessage id='report.target' defaultMessage='Reporting' />
             <strong>{account.get('acct')}</strong>
@@ -106,7 +107,7 @@ const Report = React.createClass({
             </div>
           </div>
 
-          <div style={{ flex: '0 0 160px', padding: '10px' }}>
+          <div style={{ flex: '0 0 100px', padding: '10px' }}>
             <textarea
               className='report__textarea'
               placeholder={intl.formatMessage(messages.placeholder)}
