@@ -1,3 +1,4 @@
+
 # frozen_string_literal: true
 
 require 'sidekiq/web'
@@ -89,12 +90,8 @@ Rails.application.routes.draw do
     end
 
     resources :accounts, only: [:index, :show] do
-      member do
-        post :silence
-        post :unsilence
-        post :suspend
-        post :unsuspend
-      end
+      resource :silence, only: [:create, :destroy]
+      resource :suspension, only: [:create, :destroy]
     end
   end
 
