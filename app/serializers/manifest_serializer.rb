@@ -24,10 +24,30 @@ class ManifestSerializer < ActiveModel::Serializer
   def icons
     [
       {
+        src: '/android-chrome-48x48.png',
+        sizes: '48x48',
+        type: 'image/png',
+      }, {
+        src: '/android-chrome-72x72.png',
+        sizes: '72x72',
+        type: 'image/png',
+      }, {
+        src: '/android-chrome-96x96.png',
+        sizes: '96x96',
+        type: 'image/png',
+      }, {
+        src: '/android-chrome-144x144.png',
+        sizes: '144x144',
+        type: 'image/png',
+      }, {
         src: '/android-chrome-192x192.png',
         sizes: '192x192',
         type: 'image/png',
-      },
+      }, {
+        src: '/android-chrome-512x512.png',
+        sizes: '512x512',
+        type: 'image/png',
+      }
     ]
   end
 
@@ -36,7 +56,7 @@ class ManifestSerializer < ActiveModel::Serializer
   end
 
   def background_color
-    '#191b22'
+    '#f1ebff'
   end
 
   def display
