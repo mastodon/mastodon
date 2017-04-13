@@ -70,3 +70,6 @@
   = link_to 'Undo suspension', unsuspend_admin_account_path(@account.id), method: :post, class: 'button'
 - else
   = link_to 'Perform full suspension', suspend_admin_account_path(@account.id), method: :post, data: { confirm: 'Are you sure?' }, class: 'button'
+
+- if @account.local?
+  = link_to t('admin.accounts.change_password'), edit_admin_account_path(@account.id), class: 'button'
