@@ -7,14 +7,14 @@ es:
     business_email: 'Correo de negocios:'
     closed_registrations: Los registros están actualmente cerrados en esta instancia.
     contact: Contacto
-    description_headline: ¿Qué es %{domain}?
+    description_headline: "¿Qué es %{domain}?"
     domain_count_after: otras instancias
-    domain_count_before: Conectado a 
+    domain_count_before: Conectado a
     features:
       api: API pública para aplicaciones y servicios
       blocks: Moderación de contenido
       characters: 500 caracteres por publicación
-      chronology: Las historias son cronológicas 
+      chronology: Las historias son cronológicas
       ethics: 'Diseño etico: sin anuncios, sin rastreos'
       gifv: Videos cortos y GIFV
       privacy: Configuraciones de privacidad ajustables
@@ -33,7 +33,7 @@ es:
     follow: Seguir
     followers: Seguidores
     following: Siguiendo
-    nothing_here: ¡No hay nada aquí!
+    nothing_here: "¡No hay nada aquí!"
     people_followed_by: Usuarios a quien %{name} sigue
     people_who_follow: Usuarios que siguen a %{name}
     posts: Toots
@@ -47,8 +47,8 @@ es:
     invalid_url: La URL proporcionada es incorrecta
   auth:
     change_password: Cambiar contraseña
-    didnt_get_confirmation: ¿No recibió el correo de confirmación?
-    forgot_password: ¿Olvidaste tu contraseña?
+    didnt_get_confirmation: "¿No recibió el correo de confirmación?"
+    forgot_password: "¿Olvidaste tu contraseña?"
     login: Iniciar sesión
     logout: Cerrar sesión
     register: Registrarse
@@ -80,12 +80,12 @@ es:
     follows: Personas que sigues
     storage: Almacenamiento
   generic:
-    changes_saved_msg: ¡Cambios guardados con éxito!
+    changes_saved_msg: "¡Cambios guardados con éxito!"
     powered_by: powered by %{link}
     save_changes: Guardar cambios
     validation_errors:
-      one: ¡Algo no está bien! Por favor, revisa el error
-      other: ¡Algo no está bien! Por favor, revise %{count} errores más abajo
+      one: "¡Algo no está bien! Por favor, revisa el error"
+      other: "¡Algo no está bien! Por favor, revise %{count} errores más abajo"
   imports:
     preface: Puedes importar ciertos datos, como todas las personas que estás siguiendo o bloqueando en tu cuenta en esta instancia, desde archivos exportados de otra instancia.
     success: Sus datos se han cargado correctamente y serán procesados en brevedad
@@ -94,13 +94,17 @@ es:
       following: Lista de seguidos
     upload: Cargar
   landing_strip_html: <strong>%{name}</strong> es un usuario en <strong>%{domain}</strong>. Puedes seguirlo(a) o interactuar con el o ella si tienes una cuenta en cualquier parte del fediverse. Si no tienes una, puedes <a href="%{sign_up_path}">registrar aquí</a>.
+  media_attachments:
+    validations:
+      images_and_video: No se puede adjuntar un video a un estado que ya contenga imágenes
+      too_many: No se pueden adjuntar más de 4 archivos
   notification_mailer:
     digest:
       body: 'Un resumen de lo que te perdiste en %{instance} desde tu última visita el %{since}:'
       mention: "%{name} te ha mencionado en:"
       new_followers_summary:
-        one: ¡Hurra!. Alguien más te ha comenzado a seguir
-        other: ¡Genial!. Te han seguido %{count} nuevas personas
+        one: "¡Hurra!. Alguien más te ha comenzado a seguir"
+        other: "¡Genial!. Te han seguido %{count} nuevas personas"
       subject:
         one: "1 nueva notificación desde tu última visita \U0001F418"
         other: "%{count} nuevas notificaciones desde tu última visita \U0001F418"
@@ -117,7 +121,7 @@ es:
       body: 'Fuiste mencionado por %{name} en:'
       subject: Fuiste mencionado por %{name}
     reblog:
-      body: '%{name} ha retooteado tu estado'
+      body: "%{name} ha retooteado tu estado"
       subject: "%{name} ha retooteado tu estado"
   pagination:
     next: Próximo
@@ -161,7 +165,3 @@ es:
   users:
     invalid_email: La dirección de correo es incorrecta
     invalid_otp_token: Código de dos factores incorrecto
-  media_attachments:
-    validations:
-      too_many: No se pueden adjuntar más de 4 archivos
-      images_and_video: No se puede adjuntar un video a un estado que ya contenga imágenes
