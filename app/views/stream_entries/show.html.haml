@@ -11,7 +11,7 @@
   - else
     %meta{ property: 'og:description', content: @stream_entry.activity.content }/
 
-  - if @stream_entry.activity.is_a?(Status) && @stream_entry.activity.media_attachments.size > 0
+  - if @stream_entry.activity.is_a?(Status) && !@stream_entry.activity.sensitive? && @stream_entry.activity.media_attachments.size > 0
     %meta{ property: 'og:image', content: full_asset_url(@stream_entry.activity.media_attachments.first.file.url(:small)) }/
   - else
     %meta{ property: 'og:image', content: full_asset_url(@account.avatar.url(:original)) }/
