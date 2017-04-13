@@ -1,4 +1,4 @@
-const en = {
+const de = {
   "column_back_button.label": "Zurück",
   "lightbox.close": "Schließen",
   "loading_indicator.label": "Lade…",
@@ -74,4 +74,4 @@ const en = {
   "missing_indicator.label": "Nicht gefunden"
 };
 
-export default en;
+export default de;

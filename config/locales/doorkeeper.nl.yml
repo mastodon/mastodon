@@ -1,0 +1,129 @@
+nl:
+  activerecord:
+    attributes:
+      doorkeeper/application:
+        name: 'Naam'
+        redirect_uri: 'Redirect URI'
+        scopes: 'Scopes'
+    errors:
+      models:
+        doorkeeper/application:
+          attributes:
+            redirect_uri:
+              fragment_present: 'kan geen fragment bevatten.'
+              invalid_uri: 'moet een geldige URI zijn.'
+              relative_uri: 'moet een absolute URI zijn.'
+              secured_uri: 'moet een HTTPS/SSL URI zijn.'
+
+  doorkeeper:
+    applications:
+      confirmations:
+        destroy: 'Weet je het zeker?'
+      buttons:
+        edit: 'Bewerken'
+        destroy: 'Verwijderen'
+        submit: 'Opslaan'
+        cancel: 'Annuleren'
+        authorize: 'Autoriseren'
+      form:
+        error: 'Oops! Controleer het formulier op fouten'
+      help:
+        redirect_uri: 'Gebruik één regel per URI. '
+        native_redirect_uri: 'Gebruik %{native_redirect_uri} voor lokale tests'
+        scopes: 'Scheid scopes met spaties. Laat leeg om de standaard scopes te gebruiken.'
+      edit:
+        title: 'Bewerk applicatie'
+      index:
+        title: 'Jouw applicaties'
+        new: 'Nieuwe applicatie'
+        name: 'Naam'
+        callback_url: 'Callback URL'
+      new:
+        title: 'Nieuwe applicatie'
+      show:
+        title: 'Applicatie: %{name}'
+        application_id: 'Applicatie Id'
+        secret: 'Secret'
+        scopes: 'Scopes'
+        callback_urls: 'Callback urls'
+        actions: 'Acties'
+
+    authorizations:
+      buttons:
+        authorize: 'Autoriseren'
+        deny: 'Weigeren'
+      error:
+        title: 'Er is een fout opgetreden'
+      new:
+        title: 'Autorisatie vereist'
+        prompt: '%{client_name} autoriseren om uw account te gebruiken?'
+        able_to: 'Deze applicatie zal in staat zijn om'
+      show:
+        title: 'Autorisatie code'
+
+    authorized_applications:
+      confirmations:
+        revoke: 'Weet je het zeker?'
+      buttons:
+        revoke: 'Intrekken'
+      index:
+        title: 'Jouw geautoriseerde applicaties'
+        application: 'Applicatie'
+        created_at: 'Aangemaakt op'
+        date_format: '%d-%m-%Y %H:%M:%S'
+
+    errors:
+      messages:
+        # Common error messages
+        invalid_request: 'Het verzoek mist een vereiste parameter, bevat een niet-ondersteunde parameter waarde of is anderszins onjuist.'
+        invalid_redirect_uri: 'De opgegeven redirect uri is niet geldig.'
+        unauthorized_client: 'De client is niet bevoegd om dit verzoek met deze methode uit te voeren.'
+        access_denied: 'De resource eigenaar of autorisatie-server weigerde het verzoek.'
+        invalid_scope: 'De opgevraagde scope is niet geldig, onbekend of onjuist.'
+        server_error: 'De autorisatieserver is een onverwachte voorwaarde tegengekomen die het verzoek verhinderd.'
+        temporarily_unavailable: 'De autorisatieserver is momenteel niet in staat het verzoek te behandelen als gevolg van een tijdelijke overbelasting of onderhoud aan de server.'
+
+        #configuration error messages
+        credential_flow_not_configured: 'Resource Owner Password Credentials flow failed due to Doorkeeper.configure.resource_owner_from_credentials being unconfigured.'
+        resource_owner_authenticator_not_configured: 'Resource Owner find failed due to Doorkeeper.configure.resource_owner_authenticator being unconfiged.'
+
+        # Access grant errors
+        unsupported_response_type: 'De autorisatieserver ondersteund dit response type niet'
+
+        # Access token errors
+        invalid_client: 'Client verificatie is mislukt door onbekende klant, geen client authenticatie opgegeven, of een niet-ondersteunde authenticatie methode.'
+        invalid_grant: 'De verstrekte autorisatie is ongeldig, verlopen, ingetrokken, komt niet overeen met de redirect uri die is opgegeven, of werd uitgegeven aan een andere klant.'
+        unsupported_grant_type: 'Het type autorisatie is niet ondersteund door de autorisatieserver'
+
+        # Password Access token errors
+        invalid_resource_owner: 'De verstrekte resource eigenaar gegevens zijn niet geldig of de resource eigenaar kan niet worden gevonden'
+
+        invalid_token:
+          revoked: "Het toegangstoken is geweigerd"
+          expired: "Het toegangstoken is verlopen"
+          unknown: "Het toegangstoken is ongeldig"
+
+    flash:
+      applications:
+        create:
+          notice: 'Applicatie aangemaakt.'
+        destroy:
+          notice: 'Applicatie verwijderd.'
+        update:
+          notice: 'Applicatie bewerkt.'
+      authorized_applications:
+        destroy:
+          notice: 'Applicatie ingetrokken.'
+
+    layouts:
+      admin:
+        nav:
+          oauth2_provider: 'OAuth2 Provider'
+          applications: 'Applicaties'
+          home: 'Home'
+      application:
+        title: 'OAuth autorisatie vereist'
+    scopes:
+      follow: volg, blokkeer, deblokkeer en stop volgen accounts
+      read: lees je accountgegevens
+      write: plaatsen namens jou

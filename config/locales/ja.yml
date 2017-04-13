@@ -46,7 +46,7 @@ ja:
   applications:
     invalid_url: URLが無効です
   auth:
-    change_password: 資格情報
+    change_password: ログイン情報
     didnt_get_confirmation: 確認メールを受信できませんか？
     forgot_password: パスワードをお忘れですか？
     login: ログイン
@@ -76,6 +76,7 @@ ja:
       x_seconds: "%{count}秒"
   exports:
     blocks: ブロック
+    mutes: ミュート
     csv: CSV
     follows: フォロー
     storage: メディア
@@ -90,8 +91,9 @@ ja:
     preface: 他のインスタンスでエクスポートされたファイルから、フォロー/ブロックした情報をこのインスタンス上のアカウントにインポートできます。
     success: ファイルは正常にアップロードされ、現在処理中です。しばらくしてから確認してください
     types:
-      blocking: ブロック中のアカウントリスト
+      blocking: ブロックしたアカウントリスト
       following: フォロー中のアカウントリスト
+      muting: ミュートしたアカウントリスト
     upload: アップロード
   landing_strip_html: <strong>%{name}</strong> さんはインスタンス <strong>%{domain}</strong> のユーザーです。アカウントさえ持っていればフォローしたり会話したりできます。もしお持ちでないなら <a href="%{sign_up_path}">こちら</a> からサインアップできます。
   media_attachments:
@@ -126,6 +128,7 @@ ja:
   pagination:
     next: 次
     prev: 前
+    truncate: "&hellip;"
   remote_follow:
     acct: フォローしたい人の ユーザー名@ドメイン を入力してください
     missing_resource: リダイレクト先が見つかりませんでした
@@ -171,13 +174,31 @@ ja:
     invalid_otp_token: 二段階認証コードが間違っています
   will_paginate:
     page_gap: "&hellip;"
-
   errors:
       404: お探しのページは見つかりませんでした。
       410: お探しのページはもう存在しません。
       422:
         title: セキュリティ認証に失敗
         content: セキュリティ認証に失敗しました。Cookieをブロックしていませんか？
+  reports:
+    reports: 通報
+    status: 現状
+    unresolved: 未決
+    resolved: 解決済み
+    id: ID
+    target: 通報されているユーザー
+    reported_by: 通報者
+    comment:
+      label: コメント
+      none: なし
+    view: 見る
+    report: "通報 #%{id}"
+    delete: 削除
+    reported_account: 通報されているユーザー
+    reported_by: 通報者
+    silence_account: ユーザーをサイレンスする
+    suspend_account: ユーザーを停止する
+    mark_as_resolved: 解決する
   admin:
     settings:
       title: サイト設定
