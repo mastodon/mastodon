@@ -112,6 +112,18 @@
       color: $color3;
     }
   }
+
+  &.overlayed {
+    box-sizing: content-box;
+    background: rgba($color8, 0.6);
+    color: rgba($color5, 0.7);
+    border-radius: 4px;
+    padding: 2px;
+
+    &:hover {
+      background: rgba($color8, 0.9);
+    }
+  }
 }
 
 .text-icon-button {

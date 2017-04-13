@@ -65,4 +65,4 @@ const bg = {
   "notifications.column_settings.reblog": "Споделяния:",
 };
 
-export default en;
+export default bg;

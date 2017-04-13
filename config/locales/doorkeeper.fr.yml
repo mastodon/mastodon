@@ -13,7 +13,13 @@ fr:
         name: Nom
         redirect_uri: L'URL de redirection
     errors:
+      messages:
+        record_invalid: Données invalides
       models:
+        account:
+          attributes:
+            username:
+              blank: Identifiant vide
         doorkeeper/application:
           attributes:
             redirect_uri:
@@ -31,16 +37,14 @@ fr:
         user:
           attributes:
             email:
-              taken: Email pris
-              invalid: Email invalide
               blank: Email vide
+              invalid: Email invalide
+              taken: Email pris
             password:
               blank: Mot de passe vide
               too_short: Mot de passe trop court
             password_confirmation:
               confirmation: Le mot de passe ne correspond pas
-      messages:
-        record_invalid: Données invalides
   doorkeeper:
     applications:
       buttons:
