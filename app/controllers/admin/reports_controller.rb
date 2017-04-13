@@ -8,9 +8,7 @@ module Admin
       @reports = filtered_reports.page(params[:page])
     end
 
-    def show
-      @statuses = Status.where(id: @report.status_ids)
-    end
+    def show; end
 
     def update
       process_report

@@ -14,10 +14,10 @@
   \:
   = @report.comment.presence || t('reports.comment.none')
 
-- unless @statuses.empty?
+- unless @report.statuses.empty?
   %hr/
 
-  - @statuses.each do |status|
+  - @report.statuses.each do |status|
     .report-status
       .activity-stream.activity-stream-headless
         .entry= render partial: 'stream_entries/simple_status', locals: { status: status }
