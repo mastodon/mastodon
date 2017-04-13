@@ -1,3 +1,12 @@
+/**
+ * Note for Contributors:
+ * This file (en.jsx) serve as a template for other languages.
+ * To make other contributors' life easier, please REMEMBER:
+ *   1. to add your new string here; and
+ *   2. to remove old strings that are no longer needed; and
+ *   3. to sort the strings by the key.
+ * Thanks!
+ */
 const en = {
   "account.block": "Block @{name}",
   "account.disclaimer": "This user is from another instance. This number may be larger.",
