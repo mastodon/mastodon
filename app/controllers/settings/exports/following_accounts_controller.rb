@@ -5,8 +5,8 @@ module Settings
     class FollowingAccountsController < BaseController
       private
 
-      def export_accounts
-        current_account.following
+      def export_data
+        @export.to_following_accounts_csv
       end
     end
   end

@@ -5,8 +5,8 @@ module Settings
     class MutedAccountsController < BaseController
       private
 
-      def export_accounts
-        current_account.muting
+      def export_data
+        @export.to_muted_accounts_csv
       end
     end
   end
