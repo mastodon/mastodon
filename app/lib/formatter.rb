@@ -13,8 +13,8 @@ class Formatter
     return reformat(status.content) unless status.local?
 
     html = status.text
-    html = reformat(html)
     html = encode(html)
+    html = reformat(html)
     html = link_urls(html)
     html = link_mentions(html, status.mentions)
     html = link_hashtags(html)
