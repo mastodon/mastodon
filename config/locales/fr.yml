@@ -40,6 +40,83 @@ fr:
     remote_follow: Suivre à distance
     unfollow: Ne plus suivre
   admin:
+    accounts:
+      are_you_sure: Êtes-vous certain ?
+      display_name: Nom affiché
+      domain: Domaine
+      edit: Éditer
+      email: Courriel
+      feed_url: URL du flux
+      followers: Abonné⋅es
+      follows: Abonnements
+      location:
+        all: Tous
+        local: Local
+        remote: Distant
+        title: Situation
+      media_attachments: Fichiers médias
+      moderation:
+        all: Tous
+        silenced: Muets
+        suspended: Suspendus
+        title: Modération
+      most_recent_activity: Dernière activité
+      most_recent_ip: Adresse IP la plus récente
+      not_subscribed: Non abonné
+      order:
+        alphabetic: Alphabétique
+        most_recent: Plus récent
+        title: Tri
+      perform_full_suspension: Effectuer une suspension complète
+      profile_url: URL du profil
+      public: Public
+      push_subscription_expires: Expiration de l'abonnement PuSH
+      salmon_url: URL Salmon
+      silence: Rendre muet
+      statuses: Statuts
+      title: Comptes
+      undo_silenced: Annuler la mu
+      undo_suspension: Annuler la suspension
+      username: Nom d'utilisateur
+      web: Web
+    domain_block:
+      add_new: Ajouter
+      domain: Domaine
+      new:
+        create: Créer le blocage
+        hint: Le blocage de domaine n'empêchera pas la création de comptes dans la base de données, mais il appliquera automatiquement et rétrospectivement des méthodes de modération spécifiques sur ces comptes.
+        severity:
+          desc_html: "<strong>Silence</strong> rendra les messages des comptes concernés invisibles à ceux qui ne les suivent pas. <strong>Suspend</strong> supprimera tout le contenu des comptes concernés, les médias, et les données du profil."
+          silence: Muet
+          suspend: Suspendre
+        title: Nouveau blocage de domaine
+      severity: Séverité
+      title: Blocage de domaines
+    pubsubhubbub:
+      callback_url: URL de rappel
+      confirmed: Confirmé
+      expires_in: Expire dans
+      last_delivery: Dernière livraison
+      title: PubSubHubbub
+      topic: Sujet
+    reports:
+      comment:
+        label: Commentaire
+        none: Aucun
+      delete: Supprimer
+      id: ID
+      mark_as_resolved: Marqué comme résolu
+      report: 'Signalement #%{id}'
+      reported_account: Compte signalé
+      reported_by: Signalé par
+      resolved: Résolus
+      silence_account: Rendre le compte muet
+      status: Statut
+      suspend_account: Suspendre le compte
+      target: Cible
+      title: Signalements
+      unresolved: Non résolus
+      view: Voir
     settings:
       click_to_edit: Cliquez pour éditer
       contact_information:
@@ -63,6 +140,7 @@ fr:
         title: Description étendue du site
       site_title: Titre du site
       title: Paramètres du site
+    title: Administration
   application_mailer:
     settings: 'Changer les préférences courriel : %{link}'
     signature: Notifications de Mastodon depuis %{instance}
@@ -217,112 +295,3 @@ fr:
     invalid_otp_token: Le code d'authentification à deux facteurs est invalide
   will_paginate:
     page_gap: "&hellip;"
-  errors:
-    404: La page que vous recherchez n'existe pas.
-    410: La page que vous recherchez n'existe plus.
-    422:
-      title: Vérification de sécurité échouée
-      content: Vérification de sécurité échouée. Bloquez-vous les cookies ?
-  admin:
-    title: Administration
-    reports:
-      title: Signalements
-      status: Statut
-      unresolved: Non résolus
-      resolved: Résolus
-      id: ID
-      target: Cible
-      reported_by: Signalé par
-      comment:
-        label: Commentaire
-        none: Aucun
-      view: Voir
-      report: "Signalement #%{id}"
-      delete: Supprimer
-      reported_account: Compte signalé
-      reported_by: Signalé par
-      silence_account: Rendre le compte muet
-      suspend_account: Suspendre le compte
-      mark_as_resolved: Marqué comme résolu
-    settings:
-      title: Paramètres du site
-      setting: Paramètre
-      click_to_edit: Cliquez pour éditer
-      contact_information:
-        label: Informations de contact
-        username: Entrez un nom d'utilisateur
-        email: Entrez une adresse courriel publique
-      site_title: Titre du site
-      site_description:
-        title: Description du site
-        desc_html: "Affichée sous la forme d'un paragraphe sur la page d'accueil et utilisée comme balise meta.<br>Vous pouvez utiliser des balises HTML, en particulier <code>&lt;a&gt;</code> et <code>&lt;em&gt;</code>."
-      site_description_extended:
-        title: Description étendue du site
-        desc_html: "Affichée sur la page d'informations complémentaires du site<br>Vous pouvez utiliser des balises HTML"
-      registrations:
-        open:
-          title: Inscriptions
-          enabled: Activées
-          disabled: Désactivées
-        closed_message:
-          title: Message de fermeture des inscriptions
-          desc_html: "Affiché sur la page d'accueil lorsque les inscriptions sont fermées<br>Vous pouvez utiliser des balises HTML"
-    domain_block:
-      title: Blocage de domaines
-      domain: Domaine
-      severity: Séverité
-      add_new: Ajouter
-      new:
-        title: Nouveau blocage de domaine
-        hint: Le blocage de domaine n'empêchera pas la création de comptes dans la base de données, mais il appliquera automatiquement et rétrospectivement des méthodes de modération spécifiques sur ces comptes.
-        severity:
-          silence: Muet
-          suspend: Suspendre
-          desc_html: "<strong>Silence</strong> rendra les messages des comptes concernés invisibles à ceux qui ne les suivent pas. <strong>Suspend</strong> supprimera tout le contenu des comptes concernés, les médias, et les données du profil."
-        create: Créer le blocage
-    pubsubhubbub:
-      title: PubSubHubbub
-      topic: Sujet
-      callback_url: URL de rappel
-      confirmed: Confirmé
-      expires_in: Expire dans
-      last_delivery: Dernière livraison
-    accounts:
-      title: Comptes
-      location:
-        title: Situation
-        all: Tous
-        remote: Distant
-        local: Local
-      moderation:
-        title: Modération
-        all: Tous
-        silenced: Muets
-        suspended: Suspendus
-      order:
-        title: Tri
-        alphabetic: Alphabétique
-        most_recent: Plus récent
-      username: Nom d'utilisateur
-      domain: Domaine
-      display_name: Nom affiché
-      web: Web
-      public: Public
-      edit: Éditer
-      email: Courriel
-      most_recent_ip: Adresse IP la plus récente
-      most_recent_activity: Dernière activité
-      profile_url: URL du profil
-      feed_url: URL du flux
-      push_subscription_expires: Expiration de l'abonnement PuSH
-      not_subscribed: Non abonné
-      salmon_url: URL Salmon
-      follows: Abonnements
-      followers: Abonné⋅es
-      statuses: Statuts
-      media_attachments: Fichiers médias
-      undo_silenced: Annuler la mu
-      silence: Rendre muet
-      undo_suspension: Annuler la suspension
-      perform_full_suspension: Effectuer une suspension complète
-      are_you_sure: Êtes-vous certain ?
