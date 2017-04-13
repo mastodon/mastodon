@@ -1,5 +1,5 @@
 const nl = {
-  "column_back_button.label": terug",
+  "column_back_button.label": "terug",
   "lightbox.close": "Sluiten",
   "loading_indicator.label": "Laden...",
   "status.mention": "Vermeld @{name}",
