@@ -14,7 +14,7 @@ const ru = {
   "status.show_less": "Свернуть",
   "status.open": "Развернуть статус",
   "status.report": "Пожаловаться",
-  "status.load_more": "Показать еще", 
+  "status.load_more": "Показать еще",
   "video_player.toggle_sound": "Вкл./выкл. звук",
   "account.mention": "Упомянуть",
   "account.edit_profile": "Изменить профиль",
