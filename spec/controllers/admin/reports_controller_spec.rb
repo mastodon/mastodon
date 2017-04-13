@@ -33,56 +33,54 @@ describe Admin::ReportsController do
     end
   end
 
-  describe 'POST #resolve' do
-    it 'resolves the report' do
-      report = Fabricate(:report)
+  describe 'PUT #update' do
+    describe 'with an unknown outcome' do
+      it 'rejects the change' do
+        report = Fabricate(:report)
+        put :update, params: { id: report, outcome: 'unknown' }
 
-      post :resolve, params: { id: report }
-      expect(response).to redirect_to(admin_report_path(report))
-      report.reload
-      expect(report.action_taken_by_account).to eq user.account
-      expect(report.action_taken).to eq true
+        expect(response).to have_http_status(:missing)
+      end
     end
-  end
 
-  describe 'POST #suspend' do
-    it 'suspends the reported account' do
-      report = Fabricate(:report)
-      allow(Admin::SuspensionWorker).to receive(:perform_async)
+    describe 'with an outcome of `resolve`' do
+      it 'resolves the report' do
+        report = Fabricate(:report)
 
-      post :suspend, params: { id: report }
-      expect(response).to redirect_to(admin_report_path(report))
-      report.reload
-      expect(report.action_taken_by_account).to eq user.account
-      expect(report.action_taken).to eq true
-      expect(Admin::SuspensionWorker).
-        to have_received(:perform_async).with(report.target_account_id)
+        put :update, params: { id: report, outcome: 'resolve' }
+        expect(response).to redirect_to(admin_report_path(report))
+        report.reload
+        expect(report.action_taken_by_account).to eq user.account
+        expect(report.action_taken).to eq true
+      end
     end
-  end
 
-  describe 'POST #silence' do
-    it 'silences the reported account' do
-      report = Fabricate(:report)
+    describe 'with an outcome of `suspend`' do
+      it 'suspends the reported account' do
+        report = Fabricate(:report)
+        allow(Admin::SuspensionWorker).to receive(:perform_async)
 
-      post :silence, params: { id: report }
-      expect(response).to redirect_to(admin_report_path(report))
-      report.reload
-      expect(report.action_taken_by_account).to eq user.account
-      expect(report.action_taken).to eq true
-      expect(report.target_account).to be_silenced
+        put :update, params: { id: report, outcome: 'suspend' }
+        expect(response).to redirect_to(admin_report_path(report))
+        report.reload
+        expect(report.action_taken_by_account).to eq user.account
+        expect(report.action_taken).to eq true
+        expect(Admin::SuspensionWorker).
+          to have_received(:perform_async).with(report.target_account_id)
+      end
     end
-  end
 
-  describe 'POST #remove' do
-    it 'removes a status' do
-      report = Fabricate(:report)
-      status = Fabricate(:status)
-      allow(RemovalWorker).to receive(:perform_async)
+    describe 'with an outsome of `silence`' do
+      it 'silences the reported account' do
+        report = Fabricate(:report)
 
-      post :remove, params: { id: report, status_id: status }
-      expect(response).to redirect_to(admin_report_path(report))
-      expect(RemovalWorker).
-        to have_received(:perform_async).with(status.id)
+        put :update, params: { id: report, outcome: 'silence' }
+        expect(response).to redirect_to(admin_report_path(report))
+        report.reload
+        expect(report.action_taken_by_account).to eq user.account
+        expect(report.action_taken).to eq true
+        expect(report.target_account).to be_silenced
+      end
     end
   end
 end

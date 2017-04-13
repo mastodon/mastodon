@@ -12,29 +12,27 @@ module Admin
       @statuses = Status.where(id: @report.status_ids)
     end
 
-    def resolve
-      @report.update(action_taken: true, action_taken_by_account_id: current_account.id)
-      redirect_to admin_report_path(@report)
-    end
-
-    def suspend
-      Admin::SuspensionWorker.perform_async(@report.target_account.id)
-      resolve_all_target_account_reports
-      redirect_to admin_report_path(@report)
-    end
-
-    def silence
-      @report.target_account.update(silenced: true)
-      resolve_all_target_account_reports
-      redirect_to admin_report_path(@report)
-    end
-
-    def remove
-      RemovalWorker.perform_async(params[:status_id].to_i)
+    def update
+      process_report
       redirect_to admin_report_path(@report)
     end
 
     private
+
+    def process_report
+      case params[:outcome].to_s
+      when 'resolve'
+        @report.update(action_taken: true, action_taken_by_account_id: current_account.id)
+      when 'suspend'
+        Admin::SuspensionWorker.perform_async(@report.target_account.id)
+        resolve_all_target_account_reports
+      when 'silence'
+        @report.target_account.update(silenced: true)
+        resolve_all_target_account_reports
+      else
+        raise ActiveRecord::RecordNotFound
+      end
+    end
 
     def resolve_all_target_account_reports
       unresolved_reports_for_target_account.update_all(
