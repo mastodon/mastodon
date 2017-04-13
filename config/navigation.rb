@@ -19,8 +19,8 @@ SimpleNavigation::Configuration.run do |navigation|
       admin.item :accounts, safe_join([fa_icon('users fw'), 'Accounts']), admin_accounts_url, highlights_on: %r{/admin/accounts}
       admin.item :pubsubhubbubs, safe_join([fa_icon('paper-plane-o fw'), 'PubSubHubbub']), admin_pubsubhubbub_index_url
       admin.item :domain_blocks, safe_join([fa_icon('lock fw'), 'Domain Blocks']), admin_domain_blocks_url, highlights_on: %r{/admin/domain_blocks}
-      admin.item :sidekiq, safe_join([fa_icon('diamond fw'), 'Sidekiq']), sidekiq_url
-      admin.item :pghero, safe_join([fa_icon('database fw'), 'PgHero']), pghero_url
+      admin.item :sidekiq, safe_join([fa_icon('diamond fw'), 'Sidekiq']), sidekiq_url, link_html: { target: 'sidekiq' }
+      admin.item :pghero, safe_join([fa_icon('database fw'), 'PgHero']), pghero_url, link_html: { target: 'pghero' }
       admin.item :settings, safe_join([fa_icon('cogs fw'), 'Site Settings']), admin_settings_url
     end
 

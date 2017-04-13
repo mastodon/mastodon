@@ -1,0 +1,117 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  annotations:
+    deployment.kubernetes.io/revision: "5"
+  creationTimestamp: 2017-04-07T07:22:46Z
+  generation: 6
+  labels:
+    app: streaming
+    version: latest
+  name: streaming
+  namespace: default
+  resourceVersion: "6066"
+  selfLink: /apis/extensions/v1beta1/namespaces/default/deployments/streaming
+  uid: ff956966-1b62-11e7-9cef-42010a80010c
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: streaming
+      version: latest
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: streaming
+        version: latest
+      name: streaming
+    spec:
+      containers:
+      - args:
+        - ""
+        command:
+        - npm
+        - run
+        - start
+        env:
+        - name: REDIS_HOST
+          value: 104.154.188.19
+        - name: REDIS_PORT
+          value: "6379"
+        - name: REDIS_PASSWORD
+          value: nf5Cd9Ha
+        - name: DB_HOST
+          value: 35.184.49.250
+        - name: DB_USER
+          value: postgres
+        - name: DB_NAME
+          value: postgres
+        - name: DB_PASS
+          value: fhs7635shzbqeyfian2l
+        - name: DB_PORT
+          value: "5432"
+        - name: LOCAL_DOMAIN
+          value: somewhy.com
+        - name: PAPERCLIP_SECRET
+          value: 601e944408570b8fc2f6844b6bd2657892c500fe55752ed62ff46886f8a8af8cb303b65687bb5b5b8de46e6fcefdb4eb81423aae69b1c19eda4a61a004e71972
+        - name: SECRET_KEY_BASE
+          value: 7a2b55669ab2479f86578ca890ad46c37fa1ba7f4f8535b1f6cab54dc425c9763fcd616e23771e08b4d8946488a2715d74baf0f61c0b91e69013fedec91c665a
+        - name: OTP_SECRET
+          value: 758ad3a7db8e88e4a9793365b5fb78fcdec2c3bcb062c5b0901b818e842b9f68ef914fd46499c5deb8c42d3d44b687ebd55caab3f38f005441dd6c6664a32c45
+        - name: SMTP_SERVER
+          value: smtp.mailgun.org
+        - name: SMTP_PORT
+          value: "587"
+        - name: SMTP_LOGIN
+          value: postmaster@mail.somewhy.com
+        - name: SMTP_PASSWORD
+          value: 0ecf06bce833bccf6a368c458942f3e5
+        - name: SMTP_FROM_ADDRESS
+          value: do-not-reply@somewhy.com
+        - name: S3_ENABLED
+          value: "true"
+        - name: S3_BUCKET
+          value: somewhy
+        - name: AWS_ACCESS_KEY_ID
+          value: AKIAICKMAC257TXEV3QA
+        - name: AWS_SECRET_ACCESS_KEY
+          value: 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
+        - name: S3_REGION
+          value: us-west-1
+        - name: S3_PROTOCOL
+          value: https
+        - name: S3_HOSTNAME
+          value: somewhy.s3-website-us-west-1.amazonaws.com
+        - name: STREAMING_API_BASE_URL
+          value: https://somewhy.com
+        image: gcr.io/mastodon-163707/web:latest
+        imagePullPolicy: Always
+        name: streaming
+        ports:
+        - containerPort: 4000
+        resources: {}
+        securityContext:
+          privileged: false
+        terminationMessagePath: /dev/termination-log
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+status:
+  availableReplicas: 1
+  conditions:
+  - lastTransitionTime: 2017-04-07T07:22:46Z
+    lastUpdateTime: 2017-04-07T07:22:46Z
+    message: Deployment has minimum availability.
+    reason: MinimumReplicasAvailable
+    status: "True"
+    type: Available
+  observedGeneration: 6
+  replicas: 1
+  updatedReplicas: 1
