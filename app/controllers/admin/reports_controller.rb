@@ -30,7 +30,7 @@ module Admin
     end
 
     def remove
-      RemovalWorker.perform_async(params[:status_id])
+      RemovalWorker.perform_async(params[:status_id].to_i)
       redirect_to admin_report_path(@report)
     end
 
