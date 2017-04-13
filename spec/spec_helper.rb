@@ -2,6 +2,7 @@ require 'simplecov'
 
 SimpleCov.start 'rails' do
   add_group "Services", "app/services"
+  add_group "Presenters", "app/presenters"
 end
 
 RSpec.configure do |config|
