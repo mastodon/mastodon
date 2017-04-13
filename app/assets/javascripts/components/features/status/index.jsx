@@ -92,7 +92,7 @@ const Status = React.createClass({
     if (status.get('reblogged')) {
       this.props.dispatch(unreblog(status));
     } else {
-      if (e.altKey || !this.props.boostModal) {
+      if (e.shiftKey || !this.props.boostModal) {
         this.handleModalReblog(status);
       } else {
         this.props.dispatch(openModal('BOOST', { status, onReblog: this.handleModalReblog }));
@@ -110,6 +110,10 @@ const Status = React.createClass({
 
   handleOpenMedia (media, index) {
     this.props.dispatch(openModal('MEDIA', { media, index }));
+  },
+
+  handleOpenVideo (media, time) {
+    this.props.dispatch(openModal('VIDEO', { media, time }));
   },
 
   handleReport (status) {
@@ -151,7 +155,7 @@ const Status = React.createClass({
           <div className='scrollable'>
             {ancestors}
 
-            <DetailedStatus status={status} me={me} onOpenMedia={this.handleOpenMedia} />
+            <DetailedStatus status={status} me={me} onOpenVideo={this.handleOpenVideo} onOpenMedia={this.handleOpenMedia} />
             <ActionBar status={status} me={me} onReply={this.handleReplyClick} onFavourite={this.handleFavouriteClick} onReblog={this.handleReblogClick} onDelete={this.handleDeleteClick} onMention={this.handleMentionClick} onReport={this.handleReport} />
 
             {descendants}

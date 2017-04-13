@@ -1,18 +1,14 @@
 - content_for :page_title do
-  New domain block
+  = t('admin.domain_block.new.title')
 
 = simple_form_for @domain_block, url: admin_domain_blocks_path do |f|
   = render 'shared/error_messages', object: @domain_block
 
-  %p.hint The domain block will not prevent creation of account entries in the database, but will retroactively and automatically apply specific moderation methods on those accounts.
+  %p.hint= t('admin.domain_block.new.hint')
 
-  = f.input :domain, placeholder: 'Domain'
-  = f.input :severity, collection: DomainBlock.severities.keys, wrapper: :with_label, include_blank: false
+  = f.input :domain, placeholder: t('admin.domain_block.domain')
+  = f.input :severity, collection: DomainBlock.severities.keys, wrapper: :with_label, include_blank: false, label_method: lambda { |type| I18n.t("admin.domain_block.new.severity.#{type}") }
 
-  %p.hint
-    %strong Silence
-    will make the account's posts invisible to anyone who isn't following them.
-    %strong Suspend
-    will remove all of the account's content, media, and profile data.
+  %p.hint= t('admin.domain_block.new.severity.desc_html')
   .actions
-    = f.button :button, 'Create block', type: :submit
+    = f.button :button, t('admin.domain_block.new.create'), type: :submit
