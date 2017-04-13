@@ -243,7 +243,7 @@ en:
     report: "Report #%{id}"
     delete: Delete
     reported_account: Reported account
-    reported_by: Signalé par
+    reported_by: Reported by
     silence_account: Silence account
     suspend_account: Suspend account
     mark_as_resolved: Mark as resolved
@@ -280,8 +280,8 @@ en:
         title: New domain block
         hint: The domain block will not prevent creation of account entries in the database, but will retroactively and automatically apply specific moderation methods on those accounts.
         severity:
-          silenced: Muet
-          suspend: Suspendre
+          silence: Silence
+          suspend: Suspend
           desc_html: "<strong>Silence</strong> will make the account's posts invisible to anyone who isn't following them. <strong>Suspend</strong> will remove all of the account's content, media, and profile data."
         create: Create block
     pubsubhubbub:
@@ -291,3 +291,42 @@ en:
       confirmed: Confirmed
       expires_in: Expires in
       last_delivery: Last delivery
+    accounts:
+      title: Accounts
+      location:
+        title: Location
+        all: All
+        remote: Remote
+        local: Local
+      moderation:
+        title: Moderation
+        all: All
+        silenced: Silenced
+        suspended: Suspended
+      order:
+        title: Order
+        alphabetic: Alphabetic
+        most_recent: Most recent
+      username: Username
+      domain: Domain
+      display_name: Display name
+      web: Web
+      public: Public
+      edit: Edit
+      email: E-mail
+      most_recent_ip: Most recent IP
+      most_recent_activity: Most recent activity
+      profile_url: Profile URL
+      feed_url: Feed URL
+      push_subscription_expires: PuSH subscription expires
+      not_subscribed: Not subscribed
+      salmon_url: Salmon URL
+      follows: Follows
+      followers: Followers
+      statuses: Statuses
+      media_attachments: Media attachments
+      undo_silenced: Undo silence
+      silence: Silence
+      undo_suspension: Undo suspension
+      perform_full_suspension: Perform full suspension
+      are_you_sure: Are you sure?
