@@ -5,17 +5,17 @@
   %tbody
     %tr
       %th= t('exports.storage')
-      %td= number_to_human_size @total_storage
+      %td= number_to_human_size @export.total_storage
       %td
     %tr
       %th= t('exports.follows')
-      %td= @total_follows
+      %td= @export.total_follows
       %td= table_link_to 'download', t('exports.csv'), settings_exports_follows_path(format: :csv)
     %tr
       %th= t('exports.blocks')
-      %td= @total_blocks
+      %td= @export.total_blocks
       %td= table_link_to 'download', t('exports.csv'), settings_exports_blocks_path(format: :csv)
     %tr
       %th= t('exports.mutes')
-      %td= @total_mutes
+      %td= @export.total_mutes
       %td= table_link_to 'download', t('exports.csv'), settings_exports_mutes_path(format: :csv)
