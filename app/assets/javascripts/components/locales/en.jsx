@@ -5,6 +5,7 @@
  *   1. to add your new string here; and
  *   2. to remove old strings that are no longer needed; and
  *   3. to sort the strings by the key.
+ #   4. To rename the `en` const name and export default name to match your locale.
  * Thanks!
  */
 const en = {
