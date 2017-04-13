@@ -42,9 +42,5 @@ module Admin
     def set_account
       @account = Account.find(params[:id])
     end
-
-    def account_params
-      params.require(:account).permit(:silenced, :suspended)
-    end
   end
 end
