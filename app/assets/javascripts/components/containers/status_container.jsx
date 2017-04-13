@@ -75,8 +75,8 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(openModal('MEDIA', { media, index }));
   },
 
-  onOpenVideo (media) {
-    dispatch(openModal('VIDEO', { media }));
+  onOpenVideo (media, time) {
+    dispatch(openModal('VIDEO', { media, time }));
   },
 
   onBlock (account) {

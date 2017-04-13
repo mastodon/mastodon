@@ -112,8 +112,8 @@ const Status = React.createClass({
     this.props.dispatch(openModal('MEDIA', { media, index }));
   },
 
-  handleOpenVideo (media) {
-    this.props.dispatch(openModal('VIDEO', { media }));
+  handleOpenVideo (media, time) {
+    this.props.dispatch(openModal('VIDEO', { media, time }));
   },
 
   handleReport (status) {

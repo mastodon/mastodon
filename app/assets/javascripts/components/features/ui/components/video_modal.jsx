@@ -20,6 +20,7 @@ const VideoModal = React.createClass({
 
   propTypes: {
     media: ImmutablePropTypes.map.isRequired,
+    time: React.PropTypes.number,
     onClose: React.PropTypes.func.isRequired,
     intl: React.PropTypes.object.isRequired
   },
@@ -27,15 +28,15 @@ const VideoModal = React.createClass({
   mixins: [PureRenderMixin],
 
   render () {
-    const { media, intl, onClose } = this.props;
+    const { media, intl, time, onClose } = this.props;
 
     const url = media.get('url');
 
     return (
       <div className='modal-root__modal media-modal'>
         <div>
-          <IconButton title={intl.formatMessage(messages.close)} icon='times' onClick={onClose} size={16} style={closeStyle} />
-          <ExtendedVideoPlayer src={url} muted={false} controls={true} />
+          <div style={closeStyle}><IconButton title={intl.formatMessage(messages.close)} icon='times' overlay onClick={onClose} /></div>
+          <ExtendedVideoPlayer src={url} muted={false} controls={true} time={time} />
         </div>
       </div>
     );

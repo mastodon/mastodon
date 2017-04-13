@@ -22,8 +22,8 @@ const videoStyle = {
 
 const muteStyle = {
   position: 'absolute',
-  top: '10px',
-  right: '10px',
+  top: '4px',
+  right: '4px',
   color: 'white',
   textShadow: "0px 1px 1px black, 1px 0px 1px black",
   opacity: '0.8',
@@ -55,8 +55,8 @@ const spoilerSubSpanStyle = {
 
 const spoilerButtonStyle = {
   position: 'absolute',
-  top: '6px',
-  left: '8px',
+  top: '4px',
+  left: '4px',
   color: 'white',
   textShadow: "0px 1px 1px black, 1px 0px 1px black",
   zIndex: '100'
@@ -64,8 +64,8 @@ const spoilerButtonStyle = {
 
 const expandButtonStyle = {
   position: 'absolute',
-  bottom: '6px',
-  right: '8px',
+  bottom: '4px',
+  right: '4px',
   color: 'white',
   textShadow: "0px 1px 1px black, 1px 0px 1px black",
   zIndex: '100'
@@ -128,10 +128,8 @@ const VideoPlayer = React.createClass({
   },
 
   handleExpand () {
-    const node = ReactDOM.findDOMNode(this).querySelector('video');
-    node.pause();
-
-    this.props.onOpenVideo(this.props.media);
+    this.video.pause();
+    this.props.onOpenVideo(this.props.media, this.video.currentTime);
   },
 
   setRef (c) {
@@ -172,14 +170,14 @@ const VideoPlayer = React.createClass({
     const { media, intl, width, height, sensitive, autoplay } = this.props;
 
     let spoilerButton = (
-      <div style={spoilerButtonStyle} >
-        <IconButton title={intl.formatMessage(messages.toggle_visible)} icon={this.state.visible ? 'eye' : 'eye-slash'} onClick={this.handleVisibility} />
+      <div style={{...spoilerButtonStyle, display: !this.state.visible ? 'none' : 'block'}} >
+        <IconButton overlay title={intl.formatMessage(messages.toggle_visible)} icon={this.state.visible ? 'eye' : 'eye-slash'} onClick={this.handleVisibility} />
       </div>
     );
 
     let expandButton = (
       <div style={expandButtonStyle} >
-        <IconButton title={intl.formatMessage(messages.expand_video)} icon='expand' onClick={this.handleExpand} />
+        <IconButton overlay title={intl.formatMessage(messages.expand_video)} icon='expand' onClick={this.handleExpand} />
       </div>
     );
 
@@ -188,7 +186,7 @@ const VideoPlayer = React.createClass({
     if (this.state.hasAudio) {
       muteButton = (
         <div style={muteStyle}>
-          <IconButton title={intl.formatMessage(messages.toggle_sound)} icon={this.state.muted ? 'volume-off' : 'volume-up'} onClick={this.handleClick} />
+          <IconButton overlay title={intl.formatMessage(messages.toggle_sound)} icon={this.state.muted ? 'volume-off' : 'volume-up'} onClick={this.handleClick} />
         </div>
       );
     }
