@@ -11,6 +11,9 @@ const messages = defineMessages({
   block: { id: 'account.block', defaultMessage: 'Block @{name}' },
   reply: { id: 'status.reply', defaultMessage: 'Reply' },
   reblog: { id: 'status.reblog', defaultMessage: 'Reblog' },
+  unreblog: { id: 'status.unreblog', defaultMessage: 'Undo boost' },
+  direct: { id: 'status.direct', defaultMessage: 'Direct' },
+  private: { id: 'status.private', defaultMessage: 'Private' },
   favourite: { id: 'status.favourite', defaultMessage: 'Favourite' },
   open: { id: 'status.open', defaultMessage: 'Expand this status' },
   report: { id: 'status.report', defaultMessage: 'Report @{name}' }
@@ -95,7 +98,7 @@ const StatusActionBar = React.createClass({
     return (
       <div style={{ marginTop: '10px', overflow: 'hidden' }}>
         <div style={{ float: 'left', marginRight: '18px'}}><IconButton title={intl.formatMessage(messages.reply)} icon='reply' onClick={this.handleReplyClick} /></div>
-        <div style={{ float: 'left', marginRight: '18px'}}><IconButton disabled={status.get('visibility') === 'private' || status.get('visibility') === 'direct'} active={status.get('reblogged')} title={intl.formatMessage(messages.reblog)} icon={status.get('visibility') === 'direct' ? 'envelope' : (status.get('visibility') === 'private' ? 'lock' : 'retweet')} onClick={this.handleReblogClick} /></div>
+        <div style={{ float: 'left', marginRight: '18px'}}><IconButton disabled={status.get('visibility') === 'private' || status.get('visibility') === 'direct'} active={status.get('reblogged')} title={status.get('visibility') === 'direct' ? intl.formatMessage(messages.direct) : (status.get('visibility') === 'private' ? intl.formatMessage(messages.private) : (status.get('reblogged') ? intl.formatMessage(messages.unreblog) : intl.formatMessage(messages.reblog)))} icon={status.get('visibility') === 'direct' ? 'envelope' : (status.get('visibility') === 'private' ? 'lock' : 'retweet')} onClick={this.handleReblogClick} /></div>
         <div style={{ float: 'left', marginRight: '18px'}}><IconButton animate={true} active={status.get('favourited')} title={intl.formatMessage(messages.favourite)} icon='star' onClick={this.handleFavouriteClick} activeStyle={{ color: '#ca8f04' }} /></div>
 
         <div style={{ width: '18px', height: '18px', float: 'left' }}>
