@@ -40,6 +40,83 @@ en:
     remote_follow: Remote follow
     unfollow: Unfollow
   admin:
+    accounts:
+      are_you_sure: Are you sure?
+      display_name: Display name
+      domain: Domain
+      edit: Edit
+      email: E-mail
+      feed_url: Feed URL
+      followers: Followers
+      follows: Follows
+      location:
+        all: All
+        local: Local
+        remote: Remote
+        title: Location
+      media_attachments: Media attachments
+      moderation:
+        all: All
+        silenced: Silenced
+        suspended: Suspended
+        title: Moderation
+      most_recent_activity: Most recent activity
+      most_recent_ip: Most recent IP
+      not_subscribed: Not subscribed
+      order:
+        alphabetic: Alphabetic
+        most_recent: Most recent
+        title: Order
+      perform_full_suspension: Perform full suspension
+      profile_url: Profile URL
+      public: Public
+      push_subscription_expires: PuSH subscription expires
+      salmon_url: Salmon URL
+      silence: Silence
+      statuses: Statuses
+      title: Accounts
+      undo_silenced: Undo silence
+      undo_suspension: Undo suspension
+      username: Username
+      web: Web
+    domain_block:
+      add_new: Add new
+      domain: Domain
+      new:
+        create: Create block
+        hint: The domain block will not prevent creation of account entries in the database, but will retroactively and automatically apply specific moderation methods on those accounts.
+        severity:
+          desc_html: "<strong>Silence</strong> will make the account's posts invisible to anyone who isn't following them. <strong>Suspend</strong> will remove all of the account's content, media, and profile data."
+          silence: Silence
+          suspend: Suspend
+        title: New domain block
+      severity: Severity
+      title: Domain Blocks
+    pubsubhubbub:
+      callback_url: Callback URL
+      confirmed: Confirmed
+      expires_in: Expires in
+      last_delivery: Last delivery
+      title: PubSubHubbub
+      topic: Topic
+    reports:
+      comment:
+        label: Comment
+        none: None
+      delete: Delete
+      id: ID
+      mark_as_resolved: Mark as resolved
+      report: 'Report #%{id}'
+      reported_account: Reported account
+      reported_by: Reported by
+      resolved: Resolved
+      silence_account: Silence account
+      status: Status
+      suspend_account: Suspend account
+      target: Target
+      title: Reports
+      unresolved: Unresolved
+      view: View
     settings:
       click_to_edit: Click to edit
       contact_information:
@@ -63,6 +140,7 @@ en:
         title: Extended site description
       site_title: Site title
       title: Site Settings
+    title: Administration
   application_mailer:
     settings: 'Change e-mail preferences: %{link}'
     signature: Mastodon notifications from %{instance}
