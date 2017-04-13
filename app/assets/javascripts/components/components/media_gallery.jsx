@@ -160,8 +160,6 @@ const Item = React.createClass({
     } else if (attachment.get('type') === 'gifv') {
       thumbnail = (
         <video
-          tabIndex='0'
-          role='button'
           src={attachment.get('url')}
           onClick={this.handleClick}
           autoPlay={!isIOS()}
