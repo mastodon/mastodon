@@ -37,20 +37,22 @@ module Admin
     end
 
     def resolve_all_target_account_reports
-      unresolved_reports_for_target_account.
-        update_all(action_taken_by_current_attributes)
+      unresolved_reports_for_target_account.update_all(
+        action_taken_by_current_attributes
+      )
     end
 
     def unresolved_reports_for_target_account
-      Report.
-        unresolved.
-        where(target_account: @report.target_account)
+      Report.where(
+        target_account: @report.target_account
+      ).unresolved
     end
 
     def filtered_reports
-      filtering_scope.
-        includes(:account, :target_account).
-        order('id desc')
+      filtering_scope.order('id desc').includes(
+        :account,
+        :target_account
+      )
     end
 
     def filtering_scope
