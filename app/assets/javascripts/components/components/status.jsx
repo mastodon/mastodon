@@ -25,6 +25,7 @@ const Status = React.createClass({
     onReblog: React.PropTypes.func,
     onDelete: React.PropTypes.func,
     onOpenMedia: React.PropTypes.func,
+    onOpenVideo: React.PropTypes.func,
     onBlock: React.PropTypes.func,
     me: React.PropTypes.number,
     boostModal: React.PropTypes.bool,
@@ -76,7 +77,7 @@ const Status = React.createClass({
 
     if (status.get('media_attachments').size > 0 && !this.props.muted) {
       if (status.getIn(['media_attachments', 0, 'type']) === 'video') {
-        media = <VideoPlayer media={status.getIn(['media_attachments', 0])} sensitive={status.get('sensitive')} />;
+        media = <VideoPlayer media={status.getIn(['media_attachments', 0])} sensitive={status.get('sensitive')} onOpenVideo={this.props.onOpenVideo} />;
       } else {
         media = <MediaGallery media={status.get('media_attachments')} sensitive={status.get('sensitive')} height={110} onOpenMedia={this.props.onOpenMedia} />;
       }
