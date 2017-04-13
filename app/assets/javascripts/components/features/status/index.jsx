@@ -92,7 +92,7 @@ const Status = React.createClass({
     if (status.get('reblogged')) {
       this.props.dispatch(unreblog(status));
     } else {
-      if (e.altKey || !this.props.boostModal) {
+      if (e.shiftKey || !this.props.boostModal) {
         this.handleModalReblog(status);
       } else {
         this.props.dispatch(openModal('BOOST', { status, onReblog: this.handleModalReblog }));
