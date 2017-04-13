@@ -7,6 +7,7 @@ module SettingsHelper
     es: 'Español',
     eo: 'Esperanto',
     fr: 'Français',
+    it: 'Italiano'
     hu: 'Magyar',
     no: 'Norsk',
     pt: 'Português',
