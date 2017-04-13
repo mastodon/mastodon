@@ -92,7 +92,7 @@ const ComposeForm = React.createClass({
   },
 
   componentDidUpdate (prevProps) {
-    // This statement does several things: 
+    // This statement does several things:
     // - If we're beginning a reply, and,
     //     - Replying to zero or one users, places the cursor at the end of the textbox.
     //     - Replying to more than one user, selects any usernames past the first;
