@@ -5,8 +5,7 @@ module Admin
     before_action :set_report, except: [:index]
 
     def index
-      @reports = Report.includes(:account, :target_account).order('id desc').page(params[:page])
-      @reports = params[:action_taken].present? ? @reports.resolved : @reports.unresolved
+      @reports = filtered_reports.page(params[:page])
     end
 
     def show
@@ -36,6 +35,16 @@ module Admin
     end
 
     private
+
+    def filtered_reports
+      filtering_scope.
+        includes(:account, :target_account).
+        order('id desc')
+    end
+
+    def filtering_scope
+      params[:action_taken].present? ? Report.resolved : Report.unresolved
+    end
 
     def set_report
       @report = Report.find(params[:id])
