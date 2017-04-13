@@ -62,7 +62,9 @@ module Mastodon
     config.middleware.use Rack::Attack
     config.middleware.use Rack::Deflater
 
-    config.browserify_rails.commandline_options = '--transform [ babelify --presets [ es2015 react ] ] --extension=".jsx"'
+    config.browserify_rails.source_map_environments << 'development'
+    config.browserify_rails.commandline_options   = '--transform [ babelify --presets [ es2015 react ] ] --extension=".jsx"'
+    config.browserify_rails.evaluate_node_modules = true
 
     config.to_prepare do
       Doorkeeper::AuthorizationsController.layout 'public'
