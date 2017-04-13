@@ -4,6 +4,7 @@ import {
   REPORT_SUBMIT_SUCCESS,
   REPORT_SUBMIT_FAIL,
   REPORT_CANCEL,
+  REPORT_CHANGE_COMMENT,
   REPORT_STATUS_TOGGLE
 } from '../actions/reports';
 import Immutable from 'immutable';
@@ -31,6 +32,8 @@ export default function reports(state = initialState, action) {
         map.updateIn(['new', 'status_ids'], Immutable.Set(), set => set.add(action.status.getIn(['reblog', 'id'], action.status.get('id'))));
       }
     });
+  case REPORT_CHANGE_COMMENT:
+    return state.setIn(['new', 'comment'], action.comment);
   case REPORT_STATUS_TOGGLE:
     return state.updateIn(['new', 'status_ids'], Immutable.Set(), set => {
       if (action.checked) {
