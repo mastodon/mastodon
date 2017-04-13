@@ -58,7 +58,7 @@ const Search = React.createClass({
 
         <div className='search__icon'>
           <i className={`fa fa-search ${hasValue ? '' : 'active'}`} />
-          <i className={`fa fa-times-circle ${hasValue ? 'active' : ''}`} onClick={this.handleClear} />
+          <i role='button' tabIndex='0' className={`fa fa-times-circle ${hasValue ? 'active' : ''}`} onClick={this.handleClear} />
         </div>
       </div>
     );

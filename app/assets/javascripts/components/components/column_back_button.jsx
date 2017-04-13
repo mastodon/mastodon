@@ -21,7 +21,7 @@ const ColumnBackButton = React.createClass({
 
   render () {
     return (
-      <div onClick={this.handleClick} className='column-back-button'>
+      <div role='button' tabIndex='0' onClick={this.handleClick} className='column-back-button'>
         <i className='fa fa-fw fa-chevron-left' style={iconStyle} />
         <FormattedMessage id='column_back_button.label' defaultMessage='Back' />
       </div>

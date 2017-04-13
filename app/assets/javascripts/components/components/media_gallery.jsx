@@ -160,6 +160,8 @@ const Item = React.createClass({
     } else if (attachment.get('type') === 'gifv') {
       thumbnail = (
         <video
+          tabIndex='0'
+          role='button'
           src={attachment.get('url')}
           onClick={this.handleClick}
           autoPlay={!isIOS()}
@@ -220,7 +222,7 @@ const MediaGallery = React.createClass({
       }
 
       children = (
-        <div style={spoilerStyle} className='media-spoiler' onClick={this.handleOpen}>
+        <div role='button' tabIndex='0' style={spoilerStyle} className='media-spoiler' onClick={this.handleOpen}>
           <span style={spoilerSpanStyle}>{warning}</span>
           <span style={spoilerSubSpanStyle}><FormattedMessage id='status.sensitive_toggle' defaultMessage='Click to view' /></span>
         </div>
