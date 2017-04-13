@@ -40,6 +40,83 @@ fr:
     remote_follow: Suivre à distance
     unfollow: Ne plus suivre
   admin:
+    accounts:
+      are_you_sure: Êtes-vous certain ?
+      display_name: Nom affiché
+      domain: Domaine
+      edit: Éditer
+      email: Courriel
+      feed_url: URL du flux
+      followers: Abonné⋅es
+      follows: Abonnements
+      location:
+        all: Tous
+        local: Local
+        remote: Distant
+        title: Situation
+      media_attachments: Fichiers médias
+      moderation:
+        all: Tous
+        silenced: Muets
+        suspended: Suspendus
+        title: Modération
+      most_recent_activity: Dernière activité
+      most_recent_ip: Adresse IP la plus récente
+      not_subscribed: Non abonné
+      order:
+        alphabetic: Alphabétique
+        most_recent: Plus récent
+        title: Tri
+      perform_full_suspension: Effectuer une suspension complète
+      profile_url: URL du profil
+      public: Public
+      push_subscription_expires: Expiration de l'abonnement PuSH
+      salmon_url: URL Salmon
+      silence: Rendre muet
+      statuses: Statuts
+      title: Comptes
+      undo_silenced: Annuler la mu
+      undo_suspension: Annuler la suspension
+      username: Nom d'utilisateur
+      web: Web
+    domain_block:
+      add_new: Ajouter
+      domain: Domaine
+      new:
+        create: Créer le blocage
+        hint: Le blocage de domaine n'empêchera pas la création de comptes dans la base de données, mais il appliquera automatiquement et rétrospectivement des méthodes de modération spécifiques sur ces comptes.
+        severity:
+          desc_html: "<strong>Silence</strong> rendra les messages des comptes concernés invisibles à ceux qui ne les suivent pas. <strong>Suspend</strong> supprimera tout le contenu des comptes concernés, les médias, et les données du profil."
+          silence: Muet
+          suspend: Suspendre
+        title: Nouveau blocage de domaine
+      severity: Séverité
+      title: Blocage de domaines
+    pubsubhubbub:
+      callback_url: URL de rappel
+      confirmed: Confirmé
+      expires_in: Expire dans
+      last_delivery: Dernière livraison
+      title: PubSubHubbub
+      topic: Sujet
+    reports:
+      comment:
+        label: Commentaire
+        none: Aucun
+      delete: Supprimer
+      id: ID
+      mark_as_resolved: Marqué comme résolu
+      report: 'Signalement #%{id}'
+      reported_account: Compte signalé
+      reported_by: Signalé par
+      resolved: Résolus
+      silence_account: Rendre le compte muet
+      status: Statut
+      suspend_account: Suspendre le compte
+      target: Cible
+      title: Signalements
+      unresolved: Non résolus
+      view: Voir
     settings:
       click_to_edit: Cliquez pour éditer
       contact_information:
@@ -63,6 +140,7 @@ fr:
         title: Description étendue du site
       site_title: Titre du site
       title: Paramètres du site
+    title: Administration
   application_mailer:
     settings: 'Changer les préférences courriel : %{link}'
     signature: Notifications de Mastodon depuis %{instance}
