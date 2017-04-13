@@ -20,7 +20,7 @@ module Admin
     def process_report
       case params[:outcome].to_s
       when 'resolve'
-        @report.update(action_taken: true, action_taken_by_account_id: current_account.id)
+        @report.update(action_taken_by_current_attributes)
       when 'suspend'
         Admin::SuspensionWorker.perform_async(@report.target_account.id)
         resolve_all_target_account_reports
@@ -32,11 +32,13 @@ module Admin
       end
     end
 
+    def action_taken_by_current_attributes
+      { action_taken: true, action_taken_by_account_id: current_account.id }
+    end
+
     def resolve_all_target_account_reports
-      unresolved_reports_for_target_account.update_all(
-        action_taken: true,
-        action_taken_by_account_id: current_account.id
-      )
+      unresolved_reports_for_target_account.
+        update_all(action_taken_by_current_attributes)
     end
 
     def unresolved_reports_for_target_account
