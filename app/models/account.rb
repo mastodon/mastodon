@@ -108,10 +108,6 @@ class Account < ApplicationRecord
     follow_requests.where(target_account: other_account).exists?
   end
 
-  def followers_domains
-    followers.reorder('').select('DISTINCT accounts.domain').map(&:domain)
-  end
-
   def local?
     domain.nil?
   end
