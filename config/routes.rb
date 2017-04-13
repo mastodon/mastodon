@@ -15,8 +15,8 @@ Rails.application.routes.draw do
     controllers authorizations: 'oauth/authorizations', authorized_applications: 'oauth/authorized_applications'
   end
 
-  get '.well-known/host-meta', to: 'xrd#host_meta', as: :host_meta
-  get '.well-known/webfinger', to: 'xrd#webfinger', as: :webfinger, defaults: { format: 'json' }
+  get '.well-known/host-meta', to: 'well_known/host_meta#show', as: :host_meta, defaults: { format: 'xml' }
+  get '.well-known/webfinger', to: 'well_known/webfinger#show', as: :webfinger, defaults: { format: 'json' }
 
   devise_for :users, path: 'auth', controllers: {
     sessions:           'auth/sessions',
