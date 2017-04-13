@@ -6,7 +6,8 @@ import { isIOS } from '../is_mobile';
 
 const messages = defineMessages({
   toggle_sound: { id: 'video_player.toggle_sound', defaultMessage: 'Toggle sound' },
-  toggle_visible: { id: 'video_player.toggle_visible', defaultMessage: 'Toggle visibility' }
+  toggle_visible: { id: 'video_player.toggle_visible', defaultMessage: 'Toggle visibility' },
+  expand_video: { id: 'video_player.expand', defaultMessage: 'Expand video' }
 });
 
 const videoStyle = {
@@ -61,6 +62,15 @@ const spoilerButtonStyle = {
   zIndex: '100'
 };
 
+const expandButtonStyle = {
+  position: 'absolute',
+  bottom: '6px',
+  right: '8px',
+  color: 'white',
+  textShadow: "0px 1px 1px black, 1px 0px 1px black",
+  zIndex: '100'
+};
+
 const VideoPlayer = React.createClass({
   propTypes: {
     media: ImmutablePropTypes.map.isRequired,
@@ -68,7 +78,8 @@ const VideoPlayer = React.createClass({
     height: React.PropTypes.number,
     sensitive: React.PropTypes.bool,
     intl: React.PropTypes.object.isRequired,
-    autoplay: React.PropTypes.bool
+    autoplay: React.PropTypes.bool,
+    onOpenVideo: React.PropTypes.func.isRequired
   },
 
   getDefaultProps () {
@@ -116,6 +127,13 @@ const VideoPlayer = React.createClass({
     });
   },
 
+  handleExpand () {
+    const node = ReactDOM.findDOMNode(this).querySelector('video');
+    node.pause();
+
+    this.props.onOpenVideo(this.props.media);
+  },
+
   setRef (c) {
     this.video = c;
   },
@@ -156,6 +174,12 @@ const VideoPlayer = React.createClass({
     let spoilerButton = (
       <div style={spoilerButtonStyle} >
         <IconButton title={intl.formatMessage(messages.toggle_visible)} icon={this.state.visible ? 'eye' : 'eye-slash'} onClick={this.handleVisibility} />
+      </div>
+    );
+
+    let expandButton = (
+      <div style={expandButtonStyle} >
+        <IconButton title={intl.formatMessage(messages.expand_video)} icon='expand' onClick={this.handleExpand} />
       </div>
     );
 
@@ -202,6 +226,7 @@ const VideoPlayer = React.createClass({
       <div style={{ cursor: 'default', marginTop: '8px', overflow: 'hidden', width: `${width}px`, height: `${height}px`, boxSizing: 'border-box', background: '#000', position: 'relative' }}>
         {spoilerButton}
         {muteButton}
+        {expandButton}
         <video ref={this.setRef} src={media.get('url')} autoPlay={!isIOS()} loop={true} muted={this.state.muted} style={videoStyle} onClick={this.handleVideoClick} />
       </div>
     );
