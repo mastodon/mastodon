@@ -39,7 +39,7 @@ const nl = {
   "compose_form.publish": "Toot",
   "compose_form.sensitive": "Markeer media als gevoelig",
   "compose_form.spoiler": "Verberg tekst achter waarschuwing",
-  "compose_form.private": "Mark as private",
+  "compose_form.private": "Mark als privé",
   "compose_form.privacy_disclaimer": "Je besloten status wordt afgeleverd aan vermelde gebruikers op  {domains}. Vertrouw je {domainsCount, plural, one {that server} andere {those servers}}? Privé plaatsen werkt alleen op Mastodon servers. Als {domains} {domainsCount, plural, een {is not a Mastodon instance} andere {are not Mastodon instances}}, dan wordt er geen indicatie gegeven dat he bericht besloten is, waardoor het kan worden geboost of op andere manier zichtbaar worden voor niet bedoelde lezers.",
   "compose_form.unlisted": "Niet tonen op openbare tijdlijnen",
   "navigation_bar.edit_profile": "Bewerk profiel",
