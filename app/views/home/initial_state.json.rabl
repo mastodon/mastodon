@@ -7,6 +7,7 @@ node(:meta) do
     domain: Rails.configuration.x.local_domain,
     me: current_account.id,
     admin: @admin.try(:id),
+    boost_modal: current_account.user.setting_boost_modal,
   }
 end
 

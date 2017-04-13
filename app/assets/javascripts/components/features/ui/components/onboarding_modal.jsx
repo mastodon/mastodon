@@ -6,47 +6,52 @@ import Permalink from '../../../components/permalink';
 
 const PageOne = ({ acct, domain }) => (
   <div className='onboarding-modal__page onboarding-modal__page-one'>
-    <h1><FormattedMessage id='onboarding.page_one.welcome' defaultMessage='Welcome to Mastodon!' /></h1>
-    <p><FormattedMessage id='onboarding.page_one.federation' defaultMessage='Mastodon is a decentralized federation of {instances} linking up and forming one larger social network.' values={{ instances: <a href='https://instances.mastodon.xyz' target='_blank' rel='noopener'><FormattedMessage id='onboarding.page_one.different_instances' defaultMessage='different server instances' /></a> }} /></p>
-    <p><FormattedMessage id='onboarding.page_one.handle' defaultMessage='You are on {domain}, your full handle is {handle}' values={{ domain: <strong>{domain}</strong>, handle: <strong>@{acct}@{domain}</strong> }}/></p>
+    <div style={{ flex: '0 0 auto' }}>
+      <div className='onboarding-modal__page-one__elephant-friend' />
+    </div>
+
+    <div>
+      <h1><FormattedMessage id='onboarding.page_one.welcome' defaultMessage='Welcome to Mastodon!' /></h1>
+      <p><FormattedMessage id='onboarding.page_one.federation' defaultMessage='Mastodon is a decentralized federation of different server instances linking up and forming one larger social network.' /></p>
+      <p><FormattedMessage id='onboarding.page_one.handle' defaultMessage='You are on {domain}, so your full handle is {handle}' values={{ domain: domain, handle: <strong>{acct}@{domain}</strong> }}/></p>
+    </div>
   </div>
 );
 
-const PageTwo = (
+const PageTwo = () => (
   <div className='onboarding-modal__page onboarding-modal__page-two'>
-    <img className="onboarding-modal__image onboard-compose" src={'/onboarding/onboard-compose.jpg'}></img>
+    <img className="onboarding-modal__image onboard-compose" src={'/onboarding/onboard-compose.jpg'} />
     <p><FormattedMessage id='onboarding.page_two.compose' defaultMessage='Write posts from the compose column. You can upload images, change privacy settings, and add content warnings with the icons below.' /></p>
   </div>
 );
 
-
-const PageThree = (
+const PageThree = () => (
   <div className='onboarding-modal__page onboarding-modal__page-three'>
-    <img className="onboarding-modal__image onboard-compose" src={'/onboarding/onboard-search.jpg'}></img>
+    <img className="onboarding-modal__image onboard-compose" src={'/onboarding/onboard-search.jpg'} />
     <p><FormattedMessage id='onboarding.page_three.search' defaultMessage='Use the search bar to find users and look at hashtags, such as #MastoArt and #Introductions.' /></p>
-	<p><FormattedMessage id='onboarding.page_three.profile' defaultMessage='Click "Edit Profile" to change your avatar, bio, and display name.' /></p>
+    <p><FormattedMessage id='onboarding.page_three.profile' defaultMessage='Click "Edit Profile" to change your avatar, bio, and display name.' /></p>
   </div>
 );
 
-const PageFour = (
+const PageFour = () => (
   <div className='onboarding-modal__page onboarding-modal__page-four'>
-    <img className="onboarding-modal__image onboard-column" src={'/onboarding/onboard-home.jpg'}></img>
-	  <p><FormattedMessage id='onboarding.page_four.home' defaultMessage='The Home Timeline shows posts from users you follow.'/></p>
-	  <img className="onboarding-modal__image onboard-column" src={"/onboarding/onboard-notifications.jpg"}></img>
-	  <p><FormattedMessage id='onboarding.page_four.notifications' defaultMessage='The Notifications Column shows when a user boosts, favorites, or replies to your posts; and when you have a new follower.' /></p>
-	  <p><FormattedMessage id='onboarding.page_four.filter' defaultMessage='Each column can be customized using the settings menu in the top right.' /><img className="onboard-sliders" src={"/onboarding/onboard-sliders.png"}></img></p>
+    <img className="onboarding-modal__image onboard-column" src={'/onboarding/onboard-home.jpg'} />
+    <p><FormattedMessage id='onboarding.page_four.home' defaultMessage='The Home Timeline shows posts from users you follow.'/></p>
+    <img className="onboarding-modal__image onboard-column" src={"/onboarding/onboard-notifications.jpg"} />
+    <p><FormattedMessage id='onboarding.page_four.notifications' defaultMessage='The Notifications Column shows when a user boosts, favorites, or replies to your posts; and when you have a new follower.' /></p>
+    <p><FormattedMessage id='onboarding.page_four.filter' defaultMessage='Each column can be customized using the settings menu in the top right.' /><img className="onboard-sliders" src={"/onboarding/onboard-sliders.png"}></img></p>
   </div>
 );
 
-const PageFive = (
+const PageFive = () => (
   <div className='onboarding-modal__page onboarding-modal__page-five'>
-    <img className="onboarding-modal__image onboard-column" src={"/onboarding/onboard-getting-started.jpg"}></img>
-	  <p><FormattedMessage id='onboarding.page_five.getting-started' defaultMessage='The Getting Started Column changes based on your needs.'/></p>
-	  <img className="onboarding-modal__image onboard-column" src={"/onboarding/onboard-local-timeline.jpg"}></img>
-	  <p><FormattedMessage id='onboarding.page_five.local-timeline' defaultMessage='The Local Timeline shows public posts from every user on your instance.' /></p>
-	  <img className="onboarding-modal__image onboard-column" src={"/onboarding/onboard-federated-timeline.jpg"}></img>
-	  <p><FormattedMessage id='onboarding.page_five.federated-timeline' defaultMessage='The Federated Timeline shows public posts from the whole known network of instances.' /></p>
-	  <p><FormattedMessage id='onboarding.page_five.public' defaultMessage='These are the Public Timelines, a great way to find people to follow.' /></p>
+    <img className="onboarding-modal__image onboard-column" src={"/onboarding/onboard-getting-started.jpg"} />
+    <p><FormattedMessage id='onboarding.page_five.getting-started' defaultMessage='The Getting Started Column changes based on your needs.'/></p>
+    <img className="onboarding-modal__image onboard-column" src={"/onboarding/onboard-local-timeline.jpg"} />
+    <p><FormattedMessage id='onboarding.page_five.local-timeline' defaultMessage='The Local Timeline shows public posts from every user on your instance.' /></p>
+    <img className="onboarding-modal__image onboard-column" src={"/onboarding/onboard-federated-timeline.jpg"} />
+    <p><FormattedMessage id='onboarding.page_five.federated-timeline' defaultMessage='The Federated Timeline shows public posts from the whole known network of instances.' /></p>
+    <p><FormattedMessage id='onboarding.page_five.public' defaultMessage='These are the Public Timelines, a great way to find people to follow.' /></p>
   </div>
 );
 
@@ -62,8 +67,6 @@ const PageSix = ({ admin }) => (
     <p><strong><FormattedMessage id='onboarding.page_six.have_fun' defaultMessage='Bon Appetoot!' /></strong></p>
   </div>
 );
-
-
 
 const mapStateToProps = state => ({
   me: state.getIn(['accounts', state.getIn(['meta', 'me'])]),
@@ -114,10 +117,10 @@ const OnboardingModal = React.createClass({
 
     const pages = [
       <PageOne acct={me.get('acct')} domain={domain} />,
-      PageTwo,
-      PageThree,
-      PageFour,
-      PageFive,
+      <PageTwo />,
+      <PageThree />,
+      <PageFour />,
+      <PageFive />,
       <PageSix admin={admin} />
     ];
 

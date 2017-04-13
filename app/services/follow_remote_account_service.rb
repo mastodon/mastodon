@@ -20,8 +20,6 @@ class FollowRemoteAccountService < BaseService
 
     Rails.logger.debug "Looking up webfinger for #{uri}"
 
-    account = Account.new(username: username, domain: domain)
-
     data = Goldfinger.finger("acct:#{uri}")
 
     raise Goldfinger::Error, 'Missing resource links' if data.link('http://schemas.google.com/g/2010#updates-from').nil? || data.link('salmon').nil? || data.link('http://webfinger.net/rel/profile-page').nil? || data.link('magic-public-key').nil?
@@ -37,6 +35,7 @@ class FollowRemoteAccountService < BaseService
 
     domain_block = DomainBlock.find_by(domain: domain)
 
+    account = Account.new(username: confirmed_username, domain: confirmed_domain)
     account.remote_url  = data.link('http://schemas.google.com/g/2010#updates-from').href
     account.salmon_url  = data.link('salmon').href
     account.url         = data.link('http://webfinger.net/rel/profile-page').href
@@ -45,14 +44,14 @@ class FollowRemoteAccountService < BaseService
     account.suspended   = true if domain_block && domain_block.suspend?
     account.silenced    = true if domain_block && domain_block.silence?
 
-    xml  = get_feed(account.remote_url)
-    hubs = get_hubs(xml)
+    body, xml = get_feed(account.remote_url)
+    hubs      = get_hubs(xml)
 
     account.uri     = get_account_uri(xml)
     account.hub_url = hubs.first.attribute('href').value
 
-    get_profile(xml, account)
     account.save!
+    get_profile(body, account)
 
     account
   end
@@ -61,7 +60,7 @@ class FollowRemoteAccountService < BaseService
 
   def get_feed(url)
     response = http_client.get(Addressable::URI.parse(url))
-    Nokogiri::XML(response)
+    [response.to_s, Nokogiri::XML(response)]
   end
 
   def get_hubs(xml)
@@ -82,12 +81,8 @@ class FollowRemoteAccountService < BaseService
     author_uri.content
   end
 
-  def get_profile(xml, account)
-    update_remote_profile_service.call(xml.at_xpath('/xmlns:feed'), account)
-  end
-
-  def update_remote_profile_service
-    @update_remote_profile_service ||= UpdateRemoteProfileService.new
+  def get_profile(body, account)
+    RemoteProfileUpdateWorker.perform_async(account.id, body.force_encoding('UTF-8'), false)
   end
 
   def http_client

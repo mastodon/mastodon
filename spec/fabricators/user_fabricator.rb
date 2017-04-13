@@ -1,6 +1,6 @@
 Fabricator(:user) do
   account
-  email        "alice@example.com"
+  email        { Faker::Internet.email }
   password     "123456789"
   confirmed_at { Time.now }
 end

@@ -42,11 +42,20 @@ import Report from '../features/report';
 import { IntlProvider, addLocaleData } from 'react-intl';
 import en from 'react-intl/locale-data/en';
 import de from 'react-intl/locale-data/de';
+import eo from 'react-intl/locale-data/eo';
 import es from 'react-intl/locale-data/es';
+import fi from 'react-intl/locale-data/fi';
 import fr from 'react-intl/locale-data/fr';
-import pt from 'react-intl/locale-data/pt';
 import hu from 'react-intl/locale-data/hu';
+import ja from 'react-intl/locale-data/ja';
+import pt from 'react-intl/locale-data/pt';
+import nl from 'react-intl/locale-data/nl';
+import no from 'react-intl/locale-data/no';
+import ru from 'react-intl/locale-data/ru';
 import uk from 'react-intl/locale-data/uk';
+import zh from 'react-intl/locale-data/zh';
+import bg from 'react-intl/locale-data/bg';
+import { localeData as zh_hk } from '../locales/zh-hk';
 import getMessagesForLocale from '../locales';
 import { hydrateStore } from '../actions/store';
 import createStream from '../stream';
@@ -59,7 +68,24 @@ const browserHistory = useRouterHistory(createBrowserHistory)({
   basename: '/web'
 });
 
-addLocaleData([...en, ...de, ...es, ...fr, ...pt, ...hu, ...uk]);
+addLocaleData([
+  ...en,
+  ...de,
+  ...eo,
+  ...es,
+  ...fi,
+  ...fr,
+  ...hu,
+  ...ja,
+  ...pt,
+  ...nl,
+  ...no,
+  ...ru,
+  ...uk,
+  ...zh,
+  ...zh_hk,
+  ...bg,
+]);
 
 const Mastodon = React.createClass({
 

@@ -1,7 +1,9 @@
 require 'simplecov'
 
 SimpleCov.start 'rails' do
-  add_group "Services", "app/services"
+  add_group 'Services', 'app/services'
+  add_group 'Presenters', 'app/presenters'
+  add_group 'Validators', 'app/validators'
 end
 
 RSpec.configure do |config|

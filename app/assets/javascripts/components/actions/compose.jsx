@@ -2,6 +2,8 @@ import api from '../api';
 
 import { updateTimeline } from './timelines';
 
+import * as emojione from 'emojione';
+
 export const COMPOSE_CHANGE          = 'COMPOSE_CHANGE';
 export const COMPOSE_SUBMIT_REQUEST  = 'COMPOSE_SUBMIT_REQUEST';
 export const COMPOSE_SUBMIT_SUCCESS  = 'COMPOSE_SUBMIT_SUCCESS';
@@ -72,9 +74,8 @@ export function mentionCompose(account, router) {
 export function submitCompose() {
   return function (dispatch, getState) {
     dispatch(submitComposeRequest());
-
     api(getState).post('/api/v1/statuses', {
-      status: getState().getIn(['compose', 'text'], ''),
+      status: emojione.shortnameToUnicode(getState().getIn(['compose', 'text'], '')),
       in_reply_to_id: getState().getIn(['compose', 'in_reply_to'], null),
       media_ids: getState().getIn(['compose', 'media_attachments']).map(item => item.get('id')),
       sensitive: getState().getIn(['compose', 'sensitive']),

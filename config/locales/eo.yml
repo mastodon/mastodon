@@ -1,0 +1,162 @@
+---
+eo:
+  about:
+    about_mastodon: Mastodon estas <em>senpaga, malfermitkoda</em> socia reto. Ĝi estas <em>sencentra</em> alia eblo al komercaj servoj. Ĝi evitigas, ke unusola firmao regu vian tutan komunikadon. Elektu servilon, kiun vi fidas. Kiu ajn estas via elekto, vi povas interagi kun ĉiuj aliaj uzantoj. Iu ajn povas krei sian propran aperaĵon de Mastodon en sia servilo, kaj partopreni en la <em>socia reto</em> tute glate.
+    about_this: Pri tiu aperaĵo
+    apps: Aplikaĵoj
+    business_email: 'Profesia retpoŝt-adreso:'
+    contact: Kontakti
+    description_headline: Kio estas %{domain}?
+    domain_count_after: aliaj aperaĵoj
+    domain_count_before: Konektita al
+    features:
+      api: Malfermita API por aplikaĵoj kaj servoj
+      blocks: Kompletaj iloj por bloki kaj kaŝi
+      characters: Po 500 signoj por ĉiu mesaĝo
+      chronology: Tempolinioj laŭtempaj
+      ethics: 'Etike kreita: neniu reklamo, neniu ŝpurado'
+      gifv: Eblo diskonigi etajn videojn kaj GIFV
+      privacy: Videbleco agordita laŭ la mesaĝo
+      public: Publikaj tempolinioj
+    features_headline: Kiel Mastodon estas malsimila
+    get_started: Komenci
+    links: Ligiloj
+    other_instances: Aliaj aperaĵoj
+    source_code: Fontkodo
+    status_count_after: mesaĝoj
+    status_count_before: Kiu publikigis
+    terms: Terms
+    user_count_after: uzantoj
+    user_count_before: Hejmo de
+  accounts:
+    follow: Sekvi
+    followers: Sekvantoj
+    following: Sekvatoj
+    nothing_here: Estas nenio ĉi tie!
+    people_followed_by: Sekvatoj de %{name}
+    people_who_follow: Sekvantoj de %{name}
+    posts: Mesaĝoj
+    remote_follow: Fore sekvi
+    unfollow: Malsekvi
+  application_mailer:
+    settings: 'Ŝanĝi la retpoŝt-mesaĝajn preferojn: %{link}'
+    signature: Sciigoj de Mastodon el %{instance}
+    view: 'Vidi:'
+  applications:
+    invalid_url: La URL donita ne estas valida
+  auth:
+    change_password: Ŝanĝi pasvorton
+    didnt_get_confirmation: Ĉu vi ne ricevis la instrukciojn por konfirmi?
+    forgot_password: Pasvorto forgesita?
+    login: Ensaluti
+    logout: Elsaluti
+    register: Membriĝi
+    resend_confirmation: Resendi la instrukciojn por konfirmi
+    reset_password: Ŝanĝi la pasvorton
+    set_new_password: Elekti novan pasvorton
+  authorize_follow:
+    error: Bedaŭrinde, okazis eraro provante konsulti la foran konton
+    follow: Sekvi
+    prompt_html: 'Vi (<strong>%{self}</strong>) petis sekvi:'
+    title: Sekvi %{acct}
+  datetime:
+    distance_in_words:
+      about_x_hours: "%{count}h"
+      about_x_months: "%{count}mo"
+      about_x_years: "%{count}j"
+      almost_x_years: "%{count}j"
+      half_a_minute: Ĵus
+      less_than_x_minutes: "%{count}m"
+      less_than_x_seconds: Ĵus
+      over_x_years: "%{count}j"
+      x_days: "%{count}t"
+      x_minutes: "%{count}m"
+      x_months: "%{count}mo"
+      x_seconds: "%{count}s"
+  exports:
+    blocks: Vi blokas
+    csv: CSV
+    follows: Vi sekvas
+    storage: Mediaĵa konservado
+  generic:
+    changes_saved_msg: Ŝanĝoj senprobleme konservitaj!
+    powered_by: povigita de %{link}
+    save_changes: Konservi la ŝanĝojn
+    validation_errors:
+      one: Io ne okazis senprobleme! Bonvolu konsulti la suban erar-raporton.
+      other: Io ne okazis senprobleme! Bonvolu konsulti la subajn %{count} erar-raportojn.
+  imports:
+    preface: Vi povas alporti kelkajn datumojn, kiel listojn de ĉiuj homoj kiujn vi sekvas aŭ blokas, al via konto de ĉi tiu aperaĵo, per dosiero elportita de alia aperaĵo.
+    success: Viaj datumoj estis senprobleme alportitaj kaj estos traktitaj kiel planite.
+    types:
+      blocking: Listo de blokitoj
+      following: Listo de sekvatoj
+    upload: Alporti
+  landing_strip_html: <strong>%{name}</strong> estas uzanto en <strong>%{domain}</strong>. Vi povas sekvi tiun aŭ interagi kun tiu, se vi havas konton ie ajn en la Fediverse. Se vi ne havas, vi povas <a href="%{sign_up_path}">membriĝi ĉi tie.</a>.
+  notification_mailer:
+    digest:
+      body: 'Jen eta resumo de tio, kio okazis en %{instance}, ekde kiam vi laste vizitis en %{since}:'
+      mention: "%{name} menciis vin en:"
+      new_followers_summary:
+        one: Vi ekhavis novan sekvanton! Jej!
+        other: Vi ekhavis %{count} novajn sekvantojn! Mirinde!
+      subject:
+        one: "1 nova sciigo ekde via lasta vizito \U0001F418"
+        other: "%{count} novaj sciigoj ekde via lasta vizito \U0001F418"
+    favourite:
+      body: '%{name} favoris vian mesaĝon:'
+      subject: "%{name} favoris vian mesaĝon"
+    follow:
+      body: "%{name} eksekvis vin:"
+      subject: "%{name} eksekvis vin"
+    follow_request:
+      body: "%{name} petis sekvi vin:"
+      subject: '%{name} petis sekvi vin'
+    mention:
+      body: '%{name} menciis vin en:'
+      subject: '%{name} menciis vin'
+    reblog:
+      body: '%{name} diskonigis vian mesaĝon:'
+      subject: "%{name} diskonigis vian mesaĝon"
+  pagination:
+    next: Sekva
+    prev: Malsekva
+  remote_follow:
+    acct: Enmetu vian uzantnomo@aperaĵo de kie vi volas sekvi tiun uzanton
+    missing_resource: La URL de plusendado ne povis esti trovita
+    proceed: Daŭrigi por plusendi
+    prompt: 'Vi eksekvos:'
+  settings:
+    authorized_apps: Rajtigitaj aplikaĵoj
+    back: Reveni al Mastodon
+    edit_profile: Redakti la profilon
+    export: Elporti datumojn
+    import: Alporti
+    preferences: Preferoj
+    settings: Agordoj
+    two_factor_auth: Dufaktora aŭtentigo
+  statuses:
+    open_in_web: Malfermi retumile
+    over_character_limit: limo de %{max} signoj trapasita
+    show_more: Montri pli
+    visibilities:
+      private: Montri nur al sekvantoj
+      public: Publika
+      unlisted: Publika, sed ne aperos en publikaj tempolinioj
+  stream_entries:
+    click_to_show: Alklaki por montri
+    reblogged: diskonigita
+    sensitive_content: Tikla enhavo
+  time:
+    formats:
+      default: "%b %d, %Y, %H:%M"
+  two_factor_auth:
+    description_html: Se vi ebligas <strong>dufaktoran aŭtentigon</strong>, vi bezonos vian poŝtelefonon por ensaluti, ĉar ĝi kreos nombrojn, kiujn vi devos entajpi.
+    disable: Malebligi
+    enable: Ebligi
+    instructions_html: "<strong>Skanu tiun QR-kodon per Google Authenticator aŭ per simila aplikaĵo de via poŝtelefono</strong>. De tiam, la aplikaĵo kreos nombrojn, kiujn vi devos entajpi."
+    plaintext_secret_html: 'Rekte legebla sekreta kodo: <samp>%{secret}</samp>'
+    warning: Se vi ne povas agordi aŭtentigan aplikaĵon nun, elektu "malebligi" aŭ vi ne plu povos ensaluti.
+  users:
+    invalid_email: La retpoŝt-adreso ne estas valida
+    invalid_otp_token: La dufaktora aŭtentigila kodo ne estas valida

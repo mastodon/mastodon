@@ -19,14 +19,14 @@ class StreamEntriesController < ApplicationController
         end
       end
 
-      format.atom
+      format.atom do
+        render xml: AtomSerializer.render(AtomSerializer.new.entry(@stream_entry, true))
+      end
     end
   end
 
   def embed
     response.headers['X-Frame-Options'] = 'ALLOWALL'
-    @external_links = true
-
     return gone if @stream_entry.activity.nil?
 
     render layout: 'embedded'

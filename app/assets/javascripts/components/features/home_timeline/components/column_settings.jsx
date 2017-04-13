@@ -6,7 +6,8 @@ import SettingToggle from '../../notifications/components/setting_toggle';
 import SettingText from './setting_text';
 
 const messages = defineMessages({
-  filter_regex: { id: 'home.column_settings.filter_regex', defaultMessage: 'Filter out by regular expressions' }
+  filter_regex: { id: 'home.column_settings.filter_regex', defaultMessage: 'Filter out by regular expressions' },
+  settings: { id: 'home.settings', defaultMessage: 'Column settings' }
 });
 
 const outerStyle = {
@@ -39,7 +40,7 @@ const ColumnSettings = React.createClass({
     const { settings, onChange, onSave, intl } = this.props;
 
     return (
-      <ColumnCollapsable icon='sliders' fullHeight={209} onCollapse={onSave}>
+      <ColumnCollapsable icon='sliders' title={intl.formatMessage(messages.settings)} fullHeight={209} onCollapse={onSave}>
         <div className='column-settings--outer' style={outerStyle}>
           <span className='column-settings--section' style={sectionStyle}><FormattedMessage id='home.column_settings.basic' defaultMessage='Basic' /></span>
 

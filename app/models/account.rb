@@ -12,12 +12,12 @@ class Account < ApplicationRecord
   validates :username, presence: true, uniqueness: { scope: :domain, case_sensitive: true }, unless: 'local?'
 
   # Avatar upload
-  has_attached_file :avatar, styles: { original: '120x120#' }, convert_options: { all: '-quality 80 -strip' }
+  has_attached_file :avatar, styles: ->(f) { avatar_styles(f) }, convert_options: { all: '-quality 80 -strip' }
   validates_attachment_content_type :avatar, content_type: IMAGE_MIME_TYPES
   validates_attachment_size :avatar, less_than: 2.megabytes
 
   # Header upload
-  has_attached_file :header, styles: { original: '700x335#' }, convert_options: { all: '-quality 80 -strip' }
+  has_attached_file :header, styles: ->(f) { header_styles(f) }, convert_options: { all: '-quality 80 -strip' }
   validates_attachment_content_type :header, content_type: IMAGE_MIME_TYPES
   validates_attachment_size :header, less_than: 2.megabytes
 
@@ -120,16 +120,24 @@ class Account < ApplicationRecord
     local? ? username : "#{username}@#{domain}"
   end
 
+  def local_username_and_domain
+    "#{username}@#{Rails.configuration.x.local_domain}"
+  end
+
+  def to_webfinger_s
+    "acct:#{local_username_and_domain}"
+  end
+
   def subscribed?
     !subscription_expires_at.blank?
   end
 
   def favourited?(status)
-    (status.reblog? ? status.reblog : status).favourites.where(account: self).count.positive?
+    status.proper.favourites.where(account: self).count.positive?
   end
 
   def reblogged?(status)
-    (status.reblog? ? status.reblog : status).reblogs.where(account: self).count.positive?
+    status.proper.reblogs.where(account: self).count.positive?
   end
 
   def keypair
@@ -148,6 +156,22 @@ class Account < ApplicationRecord
     self[:avatar_remote_url] = ''
     self[:header_remote_url] = ''
     save!
+  end
+
+  def avatar_original_url
+    avatar.url(:original)
+  end
+
+  def avatar_static_url
+    avatar_content_type == 'image/gif' ? avatar.url(:static) : avatar_original_url
+  end
+
+  def header_original_url
+    header.url(:original)
+  end
+
+  def header_static_url
+    header_content_type == 'image/gif' ? header.url(:static) : header_original_url
   end
 
   def avatar_remote_url=(url)
@@ -203,7 +227,7 @@ class Account < ApplicationRecord
     end
 
     def triadic_closures(account, limit = 5)
-      sql = <<SQL
+      sql = <<-SQL.squish
         WITH first_degree AS (
             SELECT target_account_id
             FROM follows
@@ -216,7 +240,7 @@ class Account < ApplicationRecord
         GROUP BY target_account_id, accounts.id
         ORDER BY count(account_id) DESC
         LIMIT ?
-SQL
+      SQL
 
       Account.find_by_sql([sql, account.id, account.id, limit])
     end
@@ -226,7 +250,7 @@ SQL
       textsearch = '(setweight(to_tsvector(\'simple\', accounts.display_name), \'A\') || setweight(to_tsvector(\'simple\', accounts.username), \'B\') || setweight(to_tsvector(\'simple\', coalesce(accounts.domain, \'\')), \'C\'))'
       query      = 'to_tsquery(\'simple\', \'\'\' \' || ' + terms + ' || \' \'\'\' || \':*\')'
 
-      sql = <<SQL
+      sql = <<-SQL.squish
         SELECT
           accounts.*,
           ts_rank_cd(#{textsearch}, #{query}, 32) AS rank
@@ -234,7 +258,7 @@ SQL
         WHERE #{query} @@ #{textsearch}
         ORDER BY rank DESC
         LIMIT ?
-SQL
+      SQL
 
       Account.find_by_sql([sql, limit])
     end
@@ -244,7 +268,7 @@ SQL
       textsearch = '(setweight(to_tsvector(\'simple\', accounts.display_name), \'A\') || setweight(to_tsvector(\'simple\', accounts.username), \'B\') || setweight(to_tsvector(\'simple\', coalesce(accounts.domain, \'\')), \'C\'))'
       query      = 'to_tsquery(\'simple\', \'\'\' \' || ' + terms + ' || \' \'\'\' || \':*\')'
 
-      sql = <<SQL
+      sql = <<-SQL.squish
         SELECT
           accounts.*,
           (count(f.id) + 1) * ts_rank_cd(#{textsearch}, #{query}, 32) AS rank
@@ -254,7 +278,7 @@ SQL
         GROUP BY accounts.id
         ORDER BY rank DESC
         LIMIT ?
-SQL
+      SQL
 
       Account.find_by_sql([sql, account.id, account.id, limit])
     end
@@ -283,6 +307,18 @@ SQL
 
     def follow_mapping(query, field)
       query.pluck(field).inject({}) { |mapping, id| mapping[id] = true; mapping }
+    end
+
+    def avatar_styles(file)
+      styles = { original: '120x120#' }
+      styles[:static] = { format: 'png' } if file.content_type == 'image/gif'
+      styles
+    end
+
+    def header_styles(file)
+      styles = { original: '700x335#' }
+      styles[:static] = { format: 'png' } if file.content_type == 'image/gif'
+      styles
     end
   end
 

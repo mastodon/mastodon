@@ -1,0 +1,60 @@
+---
+hr:
+  devise:
+    confirmations:
+      already_authenticated: Već si prijavljen.
+      confirmed: Tvoja email adresa je uspješno potvrđena.
+      inactive: Tvoj račun još nije aktiviran.
+      invalid: Nevaljan %{authentication_keys} ili lozinka.
+      last_attempt: Imaš još jedan pokušaj prije no što ti se račun zaključa.
+      locked: Tvoj račun je zaključan.
+      not_found_in_database: Nevaljani %{authentication_keys} ili lozinka.
+      send_instructions: Primit ćeš email sa uputama kako potvrditi  svoju email adresu za nekoliko minuta.
+      send_paranoid_instructions: Ako tvoja email adresa postoji u našoj bazi podataka, primit ćeš email sa uputama kako ju potvrditi za nekoliko minuta.
+      timeout: Tvoja sesija je istekla. Molimo te, prijavi se ponovo kako bi nastavio.
+      unauthenticated: Moraš se registrirati ili prijaviti prije no što nastaviš.
+      unconfirmed: Moraš potvrditi svoju email adresu prije no što nastaviš.
+    mailer:
+      confirmation_instructions:
+        subject: 'Mastodon: Upute za potvrđivanje'
+      password_change:
+        subject: 'Mastodon: Lozinka je promijenjena'
+      reset_password_instructions:
+        subject: 'Mastodon: Upute za resetiranje lozinke'
+      unlock_instructions:
+        subject: 'Mastodon: Upute za otključavanje'
+    omniauth_callbacks:
+      failure: Ne možemo te autentificirati sa %{kind} zbog "%{reason}".
+      success: Uspješno autentificiran sa %{kind} računa.
+    passwords:
+      no_token: Ne možeš pristupiti ovoj stranici bez dolaženja sa emaila za resetiranje lozinke. Ako dolaziš sa tog emaila, pazi da koristiš potpuni link koji ti je dan.
+      send_instructions: Primit ćeš email sa uputama kako resetirati svoju lozinku za nekoliko minuta.
+      send_paranoid_instructions: Ako tvoja email adresa postoji u našoj bazi podataka, primit ćeš link za povrat lozinke na svoju email adresu za nekoliko minuta.
+      updated: Tvoja lozinka je uspješno izmijenjena. Sada si prijavljen.
+      updated_not_active: Toja lozinka je uspješno izmijenjena.
+    registrations:
+      destroyed: Zbogom! Tvoj račun je uspješno otkazan. Nadamo se da ćemo te vidjeti ponovo.
+      signed_up: Dobro došao! Uspješno si se prijavio.
+      signed_up_but_inactive: Uspješno si se registrirao. No, ne možeš se prijaviti, jer ti račun još nije aktiviran.
+      signed_up_but_locked: Uspješno si se registrirao. No, ne možeš se prijaviti jer je tvoj račun zaključan.
+      signed_up_but_unconfirmed: Poruka sa linkom za potvrđivanje je poslana na tvoju email adresu. Molimo, slijedi link kako bi tvoj račun bio aktiviran.
+      update_needs_confirmation: Tvoj račun je uspješno ažuriran, ali trebamo provjeriti tvoju novu email adresu. Molimo, provjeri svoj email i slijedi link za potvrđivanje kako bi tvoja nova email adresa bila potvrđena.
+      updated: Tvoj račun je uspješno ažuriran.
+    sessions:
+      already_signed_out: Uspješno si odjavljen.
+      signed_in: Uspješno si prijavljen.
+      signed_out: Uspješno si odjavljen.
+    unlocks:
+      send_instructions: Primit ćeš email sa uputama kako otključati svoj račun za nekoliko minuta.
+      send_paranoid_instructions: Ako tvoj račun postoji, primit ćeš email sa uputama kako ga otključati za nekoliko minuta.
+      unlocked: Tvoj račun je uspješno otključan. Prijavi se kako bi nastavio.
+  errors:
+    messages:
+      already_confirmed: je već potvrđen, pokušaj se prijaviti
+      confirmation_period_expired: mora biti potvrđen u roku od %{period}, molimo zatraži novi
+      expired: je istekao, zatraži novu
+      not_found: nije nađen
+      not_locked: nije zaključan
+      not_saved:
+        one: '1 greška je zabranila da ovaj %{resource} bude sačuvan:'
+        other: "%{count} greške su zabranile da ovaj %{resource} bude sačuvan:"
