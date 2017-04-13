@@ -14,7 +14,7 @@ import ColumnBackButtonSlim from '../../components/column_back_button_slim';
 import createStream from '../../stream';
 
 const messages = defineMessages({
-  title: { id: 'column.public', defaultMessage: 'Whole Known Network' }
+  title: { id: 'column.public', defaultMessage: 'Federated timeline' }
 });
 
 const mapStateToProps = state => ({
