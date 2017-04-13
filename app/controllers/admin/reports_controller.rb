@@ -19,13 +19,13 @@ module Admin
 
     def suspend
       Admin::SuspensionWorker.perform_async(@report.target_account.id)
-      Report.unresolved.where(target_account: @report.target_account).update_all(action_taken: true, action_taken_by_account_id: current_account.id)
+      resolve_all_target_account_reports
       redirect_to admin_report_path(@report)
     end
 
     def silence
       @report.target_account.update(silenced: true)
-      Report.unresolved.where(target_account: @report.target_account).update_all(action_taken: true, action_taken_by_account_id: current_account.id)
+      resolve_all_target_account_reports
       redirect_to admin_report_path(@report)
     end
 
@@ -35,6 +35,19 @@ module Admin
     end
 
     private
+
+    def resolve_all_target_account_reports
+      unresolved_reports_for_target_account.update_all(
+        action_taken: true,
+        action_taken_by_account_id: current_account.id
+      )
+    end
+
+    def unresolved_reports_for_target_account
+      Report.
+        unresolved.
+        where(target_account: @report.target_account)
+    end
 
     def filtered_reports
       filtering_scope.
