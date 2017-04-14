@@ -1,0 +1,2 @@
+ window.STREAMING_API_BASE_URL = '<%= Rails.configuration.x.streaming_api_base_url %>';
+ window.INITIAL_STATE = <%= json_escape(render(file: 'home/initial_state', formats: :json)).html_safe %>
