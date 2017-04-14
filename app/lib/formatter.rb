@@ -24,7 +24,7 @@ class Formatter
   end
 
   def reformat(html)
-    sanitize(html, tags: %w(a br p span), attributes: %w(href rel class))
+    sanitize(html, tags: %w[a br p span], attributes: %w[href rel class])
   end
 
   def plaintext(status)

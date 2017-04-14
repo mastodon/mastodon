@@ -11,7 +11,7 @@ class Api::V1::NotificationsController < ApiController
   def index
     @notifications = Notification.where(account: current_account).browserable(exclude_types).paginate_by_max_id(limit_param(DEFAULT_NOTIFICATIONS_LIMIT), params[:max_id], params[:since_id])
     @notifications = cache_collection(@notifications, Notification)
-    statuses       = @notifications.select { |n| !n.target_status.nil? }.map(&:target_status)
+    statuses       = @notifications.reject { |n| n.target_status.nil? }.map(&:target_status)
 
     set_maps(statuses)
 

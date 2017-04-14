@@ -6,7 +6,7 @@ class Status < ApplicationRecord
   include Streamable
   include Cacheable
 
-  enum visibility: [:public, :unlisted, :private, :direct], _suffix: :visibility
+  enum visibility: %i[public unlisted private direct], _suffix: :visibility
 
   belongs_to :application, class_name: 'Doorkeeper::Application'
 
@@ -162,7 +162,7 @@ class Status < ApplicationRecord
     end
 
     def permitted_for(target_account, account)
-      return where.not(visibility: [:private, :direct]) if account.nil?
+      return where.not(visibility: %i[private direct]) if account.nil?
 
       if target_account.blocking?(account) # get rid of blocked peeps
         none
