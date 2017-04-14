@@ -74,8 +74,8 @@ group :test do
   gem 'rails-controller-testing'
   gem 'rspec-sidekiq'
   gem 'simplecov', require: false
-  gem 'webmock'
   gem 'microformats2'
+  gem 'webmock'
 end
 
 group :development do
