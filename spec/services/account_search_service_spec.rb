@@ -32,7 +32,13 @@ describe AccountSearchService do
     end
 
     describe 'with an exact match' do
-      it 'does not return duplicate results'
+      it 'does not return duplicate results' do
+        exact = Fabricate(:account, username: 'one')
+
+        results = subject.call('one', 10)
+        expect(results.size).to eq 1
+        expect(results).to eq [exact]
+      end
     end
 
     describe 'with different resolve options' do
