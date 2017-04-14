@@ -40,6 +40,83 @@ ja:
     remote_follow: リモートフォロー
     unfollow: フォロー解除
   admin:
+    accounts:
+      are_you_sure: 本当によろしいですか？
+      display_name: 表示名
+      domain: ドメイン
+      edit: 編集
+      email: メールアドレス
+      feed_url: フィードURL
+      followers: フォロワー
+      follows: フォロー
+      location:
+        all: 全て
+        local: ローカル
+        remote: リモート
+        title: ロケーション
+      media_attachments: メディア
+      moderation:
+        all: All
+        silenced: Silenced
+        suspended: Suspended
+        title: Moderation
+      most_recent_activity: 最後に活動した日
+      most_recent_ip: 最後にログインしたIP
+      not_subscribed: Not subscribed
+      order:
+        alphabetic: 名前順
+        most_recent: 時間順
+        title: ソート順
+      perform_full_suspension: アカウント停止
+      profile_url: Profile URL
+      public: Public
+      push_subscription_expires: PuSH subscription expires
+      salmon_url: Salmon URL
+      silence: タイムライン非表示
+      statuses: 投稿数
+      title: アカウント
+      undo_silenced: タイムライン非表示を解除
+      undo_suspension: アカウント停止を解除
+      username: ユーザー名
+      web: Web
+    domain_block:
+      add_new: Add new
+      domain: Domain
+      new:
+        create: Create block
+        hint: The domain block will not prevent creation of account entries in the database, but will retroactively and automatically apply specific moderation methods on those accounts.
+        severity:
+          desc_html: "<strong>Silence</strong> will make the account's posts invisible to anyone who isn't following them. <strong>Suspend</strong> will remove all of the account's content, media, and profile data."
+          silence: Silence
+          suspend: Suspend
+        title: New domain block
+      severity: Severity
+      title: ドメインブロック
+    pubsubhubbub:
+      callback_url: Callback URL
+      confirmed: Confirmed
+      expires_in: Expires in
+      last_delivery: Last delivery
+      title: PubSubHubbub
+      topic: Topic
+    reports:
+      comment:
+        label: Comment
+        none: None
+      delete: Delete
+      id: ID
+      mark_as_resolved: Mark as resolved
+      report: 'Report #%{id}'
+      reported_account: Reported account
+      reported_by: Reported by
+      resolved: Resolved
+      silence_account: Silence account
+      status: Status
+      suspend_account: Suspend account
+      target: Target
+      title: 通報
+      unresolved: Unresolved
+      view: View
     settings:
       click_to_edit: クリックして編集
       contact_information:
@@ -47,19 +124,23 @@ ja:
         label: 連絡先情報
         username: ユーザー名を入力
       registrations:
+        closed_message:
+          desc_html: 登録停止時にトップページに表示されます<br>HTMLタグが使えます
+          title: 登録停止時のメッセージ
         open:
           disabled: 無効
           enabled: 有効
           title: 新規登録を受け付ける
       setting: 設定
       site_description:
-        desc_html: トップページへの表示と meta タグに使用されます。<br>HTMLタグ、特に<code>&lt;a&gt;</code> and <code>&lt;em&gt;</code>が利用可能です。
+        desc_html: トップページの表示とmetaタグに使用されます<br><code>&lt;a&gt;</code>と<code>&lt;em&gt;</code>のみ、HTMLタグが使えます
         title: サイトの説明文
       site_description_extended:
-        desc_html: インスタンスについてのページに表示されます。<br>HTMLタグが利用可能です。
+        desc_html: インスタンスについてのページに表示されます<br>HTMLタグが使えます
         title: サイトの詳細な説明
       site_title: サイトのタイトル
       title: サイト設定
+    title: 管理者メニュー
   application_mailer:
     settings: 'メール設定の変更: %{link}'
     signature: Mastodon %{instance} インスタンスからの通知
@@ -193,9 +274,9 @@ ja:
     over_character_limit: 上限は %{max}文字までです
     show_more: もっと見る
     visibilities:
-      private: Private - フォロワーだけに見せる
-      public: Public - 全体に公開する
-      unlisted: Unlisted - トゥートは公開するが、公開タイムラインには表示しない
+      private: フォロワーのみに表示
+      public: 全体へ公開
+      unlisted: 全体へ公開するが、公開タイムラインには表示しない
   stream_entries:
     click_to_show: クリックして表示
     reblogged: ブーストされました
@@ -205,13 +286,13 @@ ja:
       default: "%Y年%m月%d日 %H:%M"
   two_factor_auth:
     code_hint: 確認するには認証アプリで表示されたコードを入力してください
-    description_html: "<strong>二段階認証</strong>を有効にするとログイン時、電話でコードを受け取る必要があります。"
+    description_html: "<strong>二段階認証</strong>を有効にすると、ログイン時にスマートフォンで生成されるワンタイムパスワードが必要になります。"
     disable: 無効
     enable: 有効
     enabled_success: 二段階認証が有効になりました
     instructions_html: "<strong>Google Authenticatorか、もしくはほかのTOTPアプリでこのQRコードをスキャンしてください。</strong>これ以降、ログインするときはそのアプリで生成されるコードが必要になります。"
     manual_instructions: 'QRコードがスキャンできず、手動での登録を希望の場合はこのシークレットコードを利用してください。:'
-    setup: 初期設定
+    setup: セットアップ
     warning: 現在認証アプリを設定できない場合、無効に設定して、有効にしないでください。
     wrong_code: コードが間違っています。サーバー上の時間とデバイス上の時間が一致していることを確認してください。
   users:

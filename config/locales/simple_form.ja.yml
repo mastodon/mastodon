@@ -3,11 +3,11 @@ ja:
   simple_form:
     hints:
       defaults:
-        avatar: 2MBまでのPNGやGIF、JPGが利用可能です。120x120pxまで縮小されます。
-        display_name: 名前は30文字まで設定することができます。
-        header: 2MBまでのPNGやGIF、JPGが利用可能です。 700x335pxまで縮小されます。
-        locked: フォロワーを手動で承認する必要があります。デフォルトではトゥートの公開範囲はフォロワーのみです。
-        note: プロフィールは160文字まで設定することができます。
+        avatar: 2MBまでのPNG・GIF・JPGが利用可能です、120x120pxに縮小されます
+        display_name: 30文字まで設定できます
+        header: 2MBまでのPNG・GIF・JPGが利用可能です、 700x335pxに縮小されます
+        locked: フォロワーを手動で承認する必要があります。また、デフォルトの投稿の公開範囲がフォロワーのみになります。
+        note: 160文字まで設定できます
       imports:
         data: 他の Mastodon サーバーからエクスポートしたCSVファイルを選択して下さい
     labels:
@@ -21,25 +21,26 @@ ja:
         email: メールアドレス
         header: ヘッダー
         locale: 言語
-        locked: 非公開アカウントにする
+        locked: アカウントを非公開にする
         new_password: パスワード
         note: プロフィール
         otp_attempt: 二段階認証コード
         password: パスワード
-        setting_boost_modal: ブーストする前に確認ダイアログを表示する
-        setting_default_privacy: 投稿の公開範囲
+        setting_boost_modal: ブーストする前に確認ダイアログを表示
+        setting_default_privacy: 公開範囲
+        severity: Severity
         type: インポートする項目
         username: ユーザー名
       interactions:
         must_be_follower: フォロワー以外からの通知をブロック
         must_be_following: フォローしていないユーザーからの通知をブロック
       notification_emails:
-        digest: タイムラインからピックアップしてメールで通知する
-        favourite: お気に入りに登録された時にメールで通知する
-        follow: フォローされた時にメールで通知する
-        follow_request: フォローリクエストを受けた時にメールで通知する
-        mention: 返信が来た時にメールで通知する
-        reblog: トゥートがブーストされた時にメールで通知する
+        digest: タイムラインの要約をメールで通知
+        favourite: いいねされた時にメールで通知
+        follow: フォローされた時にメールで通知
+        follow_request: フォローリクエストを受けた時にメールで通知
+        mention: 返信された時にメールで通知
+        reblog: ブーストされた時にメールで通知
     'no': いいえ
     required:
       mark: "*"
