@@ -39,22 +39,18 @@ describe InstancePresenter do
     before :all do
       Setting.open_registrations = true
     end
-    
+      
     it "closes registrations when user_count >= max_users" do
-      cache = double
-      allow(Rails).to receive(:cache).and_return(cache)
-      allow(cache).to receive(:fetch).with("user_count").and_return(100)
       Setting.max_users = 100
-
+      allow(Rails.cache).to receive(:fetch).and_call_original
+      allow(Rails.cache).to receive(:fetch).with("user_count").and_return(100)
       expect(instance_presenter.open_registrations).to eq false
     end
     
     it "opens registrations when user_count < max_users" do
-      cache = double
-      allow(Rails).to receive(:cache).and_return(cache)
-      allow(cache).to receive(:fetch).with("user_count").and_return(99)
       Setting.max_users = 100
-
+      allow(Rails.cache).to receive(:fetch).and_call_original
+      allow(Rails.cache).to receive(:fetch).with("user_count").and_return(99)
       expect(instance_presenter.open_registrations).to eq true
     end
     
