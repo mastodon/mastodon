@@ -5,8 +5,8 @@
   .filter-subset
     %strong= t('admin.reports.status')
     %ul
-      %li= filter_link_to t('admin.reports.unresolved'), action_taken: nil
-      %li= filter_link_to t('admin.reports.resolved'), action_taken: '1'
+      %li= filter_link_to t('admin.reports.unresolved'), resolved: nil
+      %li= filter_link_to t('admin.reports.resolved'), resolved: '1'
 
 = form_tag do
 
