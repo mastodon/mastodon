@@ -2,7 +2,7 @@ const ar = {
   "column_back_button.label": "العودة الى الوراء",
   "lightbox.close": "إغلاق",
   "loading_indicator.label": "تحميل ...",
-  "status.mention": "Mention @{name}",
+  "status.mention": "أذكُر @{name}",
   "status.delete": "Delete",
   "status.reply": "Reply",
   "status.reblog": "إدفع",
