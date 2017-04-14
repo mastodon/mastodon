@@ -5,7 +5,7 @@ const ar = {
   "status.mention": "Mention @{name}",
   "status.delete": "Delete",
   "status.reply": "Reply",
-  "status.reblog": "Boost",
+  "status.reblog": "إدفع",
   "status.favourite": "Favourite",
   "status.reblogged_by": "{name} boosted",
   "status.sensitive_warning": "Sensitive content",
