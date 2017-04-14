@@ -44,6 +44,7 @@ const StatusContent = React.createClass({
       } else {
         link.setAttribute('target', '_blank');
         link.setAttribute('rel', 'noopener');
+        link.setAttribute('title', link.href);
       }
     }
   },
