@@ -102,6 +102,8 @@ const fr = {
   "notifications.settings": "Paramètres de la colonne",
   "privacy.public.short": "Public",
   "privacy.public.long": "Afficher dans les fils publics",
+  "privacy.local.short": "Local",
+  "privacy.local.long": "Afficher dans les fils locaux",
   "privacy.unlisted.short": "Non-listé",
   "privacy.unlisted.long": "Ne pas afficher dans les fils publics",
   "privacy.private.short": "Privé",

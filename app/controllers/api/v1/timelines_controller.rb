@@ -21,13 +21,27 @@ class Api::V1::TimelinesController < ApiController
   end
 
   def public
-    @statuses = Status.as_public_timeline(current_account, params[:local]).paginate_by_max_id(limit_param(DEFAULT_STATUSES_LIMIT), params[:max_id], params[:since_id])
+    @statuses = Status.as_public_timeline(current_account).paginate_by_max_id(limit_param(DEFAULT_STATUSES_LIMIT), params[:max_id], params[:since_id])
     @statuses = cache_collection(@statuses)
 
     set_maps(@statuses)
 
     next_path = api_v1_public_timeline_url(pagination_params(max_id: @statuses.last.id))    unless @statuses.empty?
     prev_path = api_v1_public_timeline_url(pagination_params(since_id: @statuses.first.id)) unless @statuses.empty?
+
+    set_pagination_headers(next_path, prev_path)
+
+    render action: :index
+  end
+
+  def local
+    @statuses = Status.as_local_timeline(current_account).paginate_by_max_id(limit_param(DEFAULT_STATUSES_LIMIT), params[:max_id], params[:since_id])
+    @statuses = cache_collection(@statuses)
+
+    set_maps(@statuses)
+
+    next_path = api_v1_local_timeline_url(pagination_params(max_id: @statuses.last.id))    unless @statuses.empty?
+    prev_path = api_v1_local_timeline_url(pagination_params(since_id: @statuses.first.id)) unless @statuses.empty?
 
     set_pagination_headers(next_path, prev_path)
 

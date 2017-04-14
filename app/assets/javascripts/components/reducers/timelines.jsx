@@ -56,9 +56,8 @@ const initialState = Immutable.Map({
   }),
 
   community: Immutable.Map({
-    path: () => '/api/v1/timelines/public',
+    path: () => '/api/v1/timelines/local',
     next: null,
-    params: { local: true },
     isLoading: false,
     online: false,
     loaded: false,

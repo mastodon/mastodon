@@ -6,7 +6,7 @@ class Status < ApplicationRecord
   include Streamable
   include Cacheable
 
-  enum visibility: [:public, :unlisted, :private, :direct], _suffix: :visibility
+  enum visibility: [:public, :local, :unlisted, :private, :direct], _suffix: :visibility
 
   belongs_to :application, class_name: 'Doorkeeper::Application'
 
@@ -115,13 +115,21 @@ class Status < ApplicationRecord
       where(account: [account] + account.following)
     end
 
-    def as_public_timeline(account = nil, local_only = false)
+    def as_public_timeline(account = nil)
       query = joins('LEFT OUTER JOIN accounts ON statuses.account_id = accounts.id')
               .where(visibility: :public)
               .without_replies
               .without_reblogs
 
-      query = query.where('accounts.domain IS NULL') if local_only
+      account.nil? ? filter_timeline_default(query) : filter_timeline_default(filter_timeline(query, account))
+    end
+
+    def as_local_timeline(account = nil)
+      query = joins('LEFT OUTER JOIN accounts ON statuses.account_id = accounts.id')
+              .where(visibility: :local)
+              .without_replies
+              .without_reblogs
+              .where('accounts.domain IS NULL')
 
       account.nil? ? filter_timeline_default(query) : filter_timeline_default(filter_timeline(query, account))
     end
