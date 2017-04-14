@@ -29,7 +29,7 @@ const ar = {
   "getting_started.heading": "إستعدّ للبدء",
   "getting_started.about_addressing": "You can follow people if you know their username and the domain they are on by entering an e-mail-esque address into the search form.",
   "getting_started.about_shortcuts": "If the target user is on the same domain as you, just the username will work. The same rule applies to mentioning people in statuses.",
-  "getting_started.open_source_notice": "Mastodon is open source software. You can contribute or report issues on GitHub at {github}. {apps}.",
+  "getting_started.open_source_notice": "ماستدون برنامج مفتوح المصدر. يمكنك المساهمة، أو الإبلاغ عن تقارير الأخطاء، على GitHub {github}. {apps}.",
   "column.home": "الرئيسية",
   "column.community": "القائمة الزمنية المحلية",
   "column.public": "القائمة الزمنية الفيدرالية",
