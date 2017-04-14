@@ -71,10 +71,10 @@ end
 
 group :test do
   gem 'faker'
+  gem 'microformats2'
   gem 'rails-controller-testing'
   gem 'rspec-sidekiq'
   gem 'simplecov', require: false
-  gem 'microformats2'
   gem 'webmock'
 end
 
