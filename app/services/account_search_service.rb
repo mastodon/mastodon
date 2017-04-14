@@ -17,15 +17,17 @@ class AccountSearchService < BaseService
   def search_service_results
     return [] if query_blank_or_hashtag?
 
-    results = search_results
-
-    # results = [exact_match] + results.reject { |a| a.id == exact_match.id } if exact_match
+    results = search_results_and_exact_match.uniq
 
     if resolve && !exact_match && !domain_is_local?
       results = [FollowRemoteAccountService.new.call("#{query_username}@#{query_domain}")]
     end
 
     results
+  end
+
+  def search_results_and_exact_match
+    search_results.to_a + [exact_match]
   end
 
   def query_blank_or_hashtag?
