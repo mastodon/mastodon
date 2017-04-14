@@ -37,15 +37,15 @@ class AccountSearchService < BaseService
   end
 
   def split_query_string
-    query.gsub(/\A@/, '').split('@')
+    @_split_query_string ||= query.gsub(/\A@/, '').split('@')
   end
 
   def query_username
-    split_query_string.first
+    @_query_username ||= split_query_string.first
   end
 
   def query_domain
-    query_without_split? ? nil : split_query_string.last
+    @_query_domain ||= query_without_split? ? nil : split_query_string.last
   end
 
   def query_without_split?
@@ -53,11 +53,11 @@ class AccountSearchService < BaseService
   end
 
   def domain_is_local?
-    TagManager.instance.local_domain?(query_domain)
+    @_domain_is_local ||= TagManager.instance.local_domain?(query_domain)
   end
 
   def exact_match
-    if domain_is_local?
+    @_exact_match ||= if domain_is_local?
       Account.find_local(query_username)
     else
       Account.find_remote(query_username, query_domain)
@@ -65,7 +65,7 @@ class AccountSearchService < BaseService
   end
 
   def search_results
-    if account
+    @_search_results ||= if account
       advanced_search_results
     else
       simple_search_results
