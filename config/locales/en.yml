@@ -39,6 +39,108 @@ en:
     posts: Posts
     remote_follow: Remote follow
     unfollow: Unfollow
+  admin:
+    accounts:
+      are_you_sure: Are you sure?
+      display_name: Display name
+      domain: Domain
+      edit: Edit
+      email: E-mail
+      feed_url: Feed URL
+      followers: Followers
+      follows: Follows
+      location:
+        all: All
+        local: Local
+        remote: Remote
+        title: Location
+      media_attachments: Media attachments
+      moderation:
+        all: All
+        silenced: Silenced
+        suspended: Suspended
+        title: Moderation
+      most_recent_activity: Most recent activity
+      most_recent_ip: Most recent IP
+      not_subscribed: Not subscribed
+      order:
+        alphabetic: Alphabetic
+        most_recent: Most recent
+        title: Order
+      perform_full_suspension: Perform full suspension
+      profile_url: Profile URL
+      public: Public
+      push_subscription_expires: PuSH subscription expires
+      salmon_url: Salmon URL
+      silence: Silence
+      statuses: Statuses
+      title: Accounts
+      undo_silenced: Undo silence
+      undo_suspension: Undo suspension
+      username: Username
+      web: Web
+    domain_block:
+      add_new: Add new
+      domain: Domain
+      new:
+        create: Create block
+        hint: The domain block will not prevent creation of account entries in the database, but will retroactively and automatically apply specific moderation methods on those accounts.
+        severity:
+          desc_html: "<strong>Silence</strong> will make the account's posts invisible to anyone who isn't following them. <strong>Suspend</strong> will remove all of the account's content, media, and profile data."
+          silence: Silence
+          suspend: Suspend
+        title: New domain block
+      severity: Severity
+      title: Domain Blocks
+    pubsubhubbub:
+      callback_url: Callback URL
+      confirmed: Confirmed
+      expires_in: Expires in
+      last_delivery: Last delivery
+      title: PubSubHubbub
+      topic: Topic
+    reports:
+      comment:
+        label: Comment
+        none: None
+      delete: Delete
+      id: ID
+      mark_as_resolved: Mark as resolved
+      report: 'Report #%{id}'
+      reported_account: Reported account
+      reported_by: Reported by
+      resolved: Resolved
+      silence_account: Silence account
+      status: Status
+      suspend_account: Suspend account
+      target: Target
+      title: Reports
+      unresolved: Unresolved
+      view: View
+    settings:
+      click_to_edit: Click to edit
+      contact_information:
+        email: Enter a public e-mail address
+        label: Contact information
+        username: Enter a username
+      registrations:
+        closed_message:
+          desc_html: Displayed on frontpage when registrations are closed<br>You can use HTML tags
+          title: Closed registration message
+        open:
+          disabled: Disabled
+          enabled: Enabled
+          title: Open registration
+      setting: Setting
+      site_description:
+        desc_html: Displayed as a paragraph on the frontpage and used as a meta tag.<br>You can use HTML tags, in particular <code>&lt;a&gt;</code> and <code>&lt;em&gt;</code>.
+        title: Site description
+      site_description_extended:
+        desc_html: Displayed on extended information page<br>You can use HTML tags
+        title: Extended site description
+      site_title: Site title
+      title: Site Settings
+    title: Administration
   application_mailer:
     settings: 'Change e-mail preferences: %{link}'
     signature: Mastodon notifications from %{instance}
@@ -74,11 +176,17 @@ en:
       x_minutes: "%{count}m"
       x_months: "%{count}mo"
       x_seconds: "%{count}s"
+  errors:
+    '404': The page you were looking for doesn't exist.
+    '410': The page you were looking for doesn't exist anymore.
+    '422':
+      content: Security verification failed. Are you blocking cookies?
+      title: Security verification failed
   exports:
     blocks: You block
-    mutes: You mute
     csv: CSV
     follows: You follow
+    mutes: You mute
     storage: Media storage
   generic:
     changes_saved_msg: Changes successfully saved!
@@ -134,6 +242,24 @@ en:
     missing_resource: Could not find the required redirect URL for your account
     proceed: Proceed to follow
     prompt: 'You are going to follow:'
+  reports:
+    comment:
+      label: Comment
+      none: None
+    delete: Delete
+    id: ID
+    mark_as_resolved: Mark as resolved
+    report: 'Report #%{id}'
+    reported_account: Reported account
+    reported_by: Reported by
+    reports: Reports
+    resolved: Resolved
+    silence_account: Silence account
+    status: Status
+    suspend_account: Suspend account
+    target: Target
+    unresolved: Unresolved
+    view: View
   settings:
     authorized_apps: Authorized apps
     back: Back to Mastodon
@@ -174,52 +300,3 @@ en:
     invalid_otp_token: Invalid two-factor code
   will_paginate:
     page_gap: "&hellip;"
-  errors:
-      404: The page you were looking for doesn't exist.
-      410: The page you were looking for doesn't exist anymore.
-      422:
-        title: Security verification failed
-        content: Security verification failed. Are you blocking cookies?
-  reports:
-    reports: Reports
-    status: Status
-    unresolved: Unresolved
-    resolved: Resolved
-    id: ID
-    target: Target
-    reported_by: Reported by
-    comment:
-      label: Comment
-      none: None
-    view: View
-    report: "Report #%{id}"
-    delete: Delete
-    reported_account: Reported account
-    reported_by: Signalé par
-    silence_account: Silence account
-    suspend_account: Suspend account
-    mark_as_resolved: Mark as resolved
-  admin:
-    settings:
-      title: Site Settings
-      setting: Setting
-      click_to_edit: Click to edit
-      contact_information:
-        label: Contact information
-        username: Enter a username
-        email: Enter a public e-mail address
-      site_title: Site title
-      site_description:
-        title: Site description
-        desc_html: "Displayed as a paragraph on the frontpage and used as a meta tag.<br>You can use HTML tags, in particular <code>&lt;a&gt;</code> and <code>&lt;em&gt;</code>."
-      site_description_extended:
-        title: Extended site description
-        desc_html: "Displayed on extended information page<br>You can use HTML tags"
-      registrations:
-        open:
-          title: Open registration
-          enabled: Enabled
-          disabled: Disabled
-        closed_message:
-          title: Closed registration message
-          desc_html: "Displayed on frontpage when registrations are closed<br>You can use HTML tags"

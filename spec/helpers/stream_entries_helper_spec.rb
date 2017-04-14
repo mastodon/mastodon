@@ -14,8 +14,4 @@ RSpec.describe StreamEntriesHelper, type: :helper do
       expect(helper.display_name(account)).to eq "Username"
     end
   end
-
-  describe '#entry_classes' do
-    pending
-  end
 end

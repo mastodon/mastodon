@@ -7,7 +7,7 @@ ja:
     business_email: 'ビジネスメールアドレス:'
     closed_registrations: 現在このインスタンスでの新規登録は受け付けていません。
     contact: 連絡先
-    description_headline: '%{domain} とは？'
+    description_headline: "%{domain} とは？"
     domain_count_after: 個のインスタンス
     domain_count_before: 接続中
     features:
@@ -34,19 +34,40 @@ ja:
     followers: フォロワー
     following: フォロー中
     nothing_here: 何もありません
-    people_followed_by: '%{name} さんをフォロー中のアカウント'
-    people_who_follow: '%{name} さんがフォロー中のアカウント'
+    people_followed_by: "%{name} さんをフォロー中のアカウント"
+    people_who_follow: "%{name} さんがフォロー中のアカウント"
     posts: 投稿
     remote_follow: リモートフォロー
     unfollow: フォロー解除
+  admin:
+    settings:
+      click_to_edit: クリックして編集
+      contact_information:
+        email: 公開するメールアドレスを入力
+        label: 連絡先情報
+        username: ユーザー名を入力
+      registrations:
+        open:
+          disabled: 無効
+          enabled: 有効
+          title: 新規登録を受け付ける
+      setting: 設定
+      site_description:
+        desc_html: トップページへの表示と meta タグに使用されます。<br>HTMLタグ、特に<code>&lt;a&gt;</code> and <code>&lt;em&gt;</code>が利用可能です。
+        title: サイトの説明文
+      site_description_extended:
+        desc_html: インスタンスについてのページに表示されます。<br>HTMLタグが利用可能です。
+        title: サイトの詳細な説明
+      site_title: サイトのタイトル
+      title: サイト設定
   application_mailer:
     settings: 'メール設定の変更: %{link}'
-    signature: 'Mastodon %{instance} インスタンスからの通知'
+    signature: Mastodon %{instance} インスタンスからの通知
     view: 'View:'
   applications:
     invalid_url: URLが無効です
   auth:
-    change_password: 資格情報
+    change_password: ログイン情報
     didnt_get_confirmation: 確認メールを受信できませんか？
     forgot_password: パスワードをお忘れですか？
     login: ログイン
@@ -59,7 +80,7 @@ ja:
     error: 残念ながら、リモートアカウントにエラーが発生しました。
     follow: フォロー
     prompt_html: 'あなた（<strong>%{self}</strong>）は以下のアカウントのフォローをリクエストしました:'
-    title: '%{acct} をフォロー'
+    title: "%{acct} をフォロー"
   datetime:
     distance_in_words:
       about_x_hours: "%{count}時間"
@@ -74,10 +95,17 @@ ja:
       x_minutes: "%{count}分"
       x_months: "%{count}月"
       x_seconds: "%{count}秒"
+  errors:
+    '404': お探しのページは見つかりませんでした。
+    '410': お探しのページはもう存在しません。
+    '422':
+      content: セキュリティ認証に失敗しました。Cookieをブロックしていませんか？
+      title: セキュリティ認証に失敗
   exports:
     blocks: ブロック
     csv: CSV
     follows: フォロー
+    mutes: ミュート
     storage: メディア
   generic:
     changes_saved_msg: 正常に変更されました
@@ -90,8 +118,9 @@ ja:
     preface: 他のインスタンスでエクスポートされたファイルから、フォロー/ブロックした情報をこのインスタンス上のアカウントにインポートできます。
     success: ファイルは正常にアップロードされ、現在処理中です。しばらくしてから確認してください
     types:
-      blocking: ブロック中のアカウントリスト
+      blocking: ブロックしたアカウントリスト
       following: フォロー中のアカウントリスト
+      muting: ミュートしたアカウントリスト
     upload: アップロード
   landing_strip_html: <strong>%{name}</strong> さんはインスタンス <strong>%{domain}</strong> のユーザーです。アカウントさえ持っていればフォローしたり会話したりできます。もしお持ちでないなら <a href="%{sign_up_path}">こちら</a> からサインアップできます。
   media_attachments:
@@ -100,11 +129,11 @@ ja:
       too_many: 追加できるファイルは4つまでです。
   notification_mailer:
     digest:
-      body: '%{instance} での最後のログインからの出来事:'
+      body: "%{instance} での最後のログインからの出来事:"
       mention: "%{name} さんがあなたに返信しました:"
       new_followers_summary:
         one: 新たなフォロワーを獲得しました！
-        other: '%{count} 人の新たなフォロワーを獲得しました！'
+        other: "%{count} 人の新たなフォロワーを獲得しました！"
       subject:
         one: "新しい1件の通知 \U0001F418"
         other: "新しい%{count}件の通知 \U0001F418"
@@ -116,21 +145,40 @@ ja:
       subject: "%{name} さんにフォローされています"
     follow_request:
       body: "%{name} さんがあなたにフォローをリクエストしました。"
-      subject: '%{name} さんからのフォローリクエスト'
+      subject: "%{name} さんからのフォローリクエスト"
     mention:
-      body: '%{name} さんから返信がありました:'
-      subject: '%{name} さんに返信されました'
+      body: "%{name} さんから返信がありました:"
+      subject: "%{name} さんに返信されました"
     reblog:
       body: 'あなたのトゥートが %{name} さんにブーストされました:'
-      subject: "あなたのトゥートが %{name} さんにブーストされました"
+      subject: あなたのトゥートが %{name} さんにブーストされました
   pagination:
     next: 次
     prev: 前
+    truncate: "&hellip;"
   remote_follow:
     acct: フォローしたい人の ユーザー名@ドメイン を入力してください
     missing_resource: リダイレクト先が見つかりませんでした
     proceed: フォローする
     prompt: 'フォローしようとしています:'
+  reports:
+    comment:
+      label: コメント
+      none: なし
+    delete: 削除
+    id: ID
+    mark_as_resolved: 解決する
+    report: '通報 #%{id}'
+    reported_account: 通報されているユーザー
+    reported_by: 通報者
+    reports: 通報
+    resolved: 解決済み
+    silence_account: ユーザーをサイレンスする
+    status: 現状
+    suspend_account: ユーザーを停止する
+    target: 通報されているユーザー
+    unresolved: 未決
+    view: 見る
   settings:
     authorized_apps: 認証済みアプリ
     back: 戻る
@@ -142,7 +190,7 @@ ja:
     two_factor_auth: 二段階認証
   statuses:
     open_in_web: Webで開く
-    over_character_limit: '上限は %{max}文字までです'
+    over_character_limit: 上限は %{max}文字までです
     show_more: もっと見る
     visibilities:
       private: Private - フォロワーだけに見せる
@@ -157,7 +205,7 @@ ja:
       default: "%Y年%m月%d日 %H:%M"
   two_factor_auth:
     code_hint: 確認するには認証アプリで表示されたコードを入力してください
-    description_html: <strong>二段階認証</strong>を有効にするとログイン時、電話でコードを受け取る必要があります。
+    description_html: "<strong>二段階認証</strong>を有効にするとログイン時、電話でコードを受け取る必要があります。"
     disable: 無効
     enable: 有効
     enabled_success: 二段階認証が有効になりました
@@ -171,31 +219,3 @@ ja:
     invalid_otp_token: 二段階認証コードが間違っています
   will_paginate:
     page_gap: "&hellip;"
-
-  errors:
-      404: お探しのページは見つかりませんでした。
-      410: お探しのページはもう存在しません。
-      422:
-        title: セキュリティ認証に失敗
-        content: セキュリティ認証に失敗しました。Cookieをブロックしていませんか？
-  admin:
-    settings:
-      title: サイト設定
-      setting: 設定
-      click_to_edit: クリックして編集
-      contact_information:
-        label: 連絡先情報
-        username: ユーザー名を入力
-        email: 公開するメールアドレスを入力
-      site_title: サイトのタイトル
-      site_description:
-        title: サイトの説明文
-        desc_html: "トップページへの表示と meta タグに使用されます。<br>HTMLタグ、特に<code>&lt;a&gt;</code> and <code>&lt;em&gt;</code>が利用可能です。"
-      site_description_extended:
-        title: サイトの詳細な説明
-        desc_html: "インスタンスについてのページに表示されます。<br>HTMLタグが利用可能です。"
-      registrations:
-        open:
-          title: 新規登録を受け付ける
-          enabled: 有効
-          disabled: 無効
