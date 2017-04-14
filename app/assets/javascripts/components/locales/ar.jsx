@@ -7,7 +7,7 @@ const ar = {
   "status.reply": "ردّ",
   "status.reblog": "إدفع",
   "status.favourite": "Favourite",
-  "status.reblogged_by": "{name} boosted",
+  "status.reblogged_by": "{name} عزّز",
   "status.sensitive_warning": "Sensitive content",
   "status.sensitive_toggle": "اضغط للعرض",
   "status.show_more": "أظهر المزيد",
