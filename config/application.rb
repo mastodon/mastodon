@@ -44,6 +44,7 @@ module Mastodon
       'zh-CN',
       :'zh-HK',
     ]
+    
     config.i18n.default_locale    = :en
 
     # config.paths.add File.join('app', 'api'), glob: File.join('**', '*.rb')
