@@ -16,18 +16,50 @@ describe AccountSearchService do
     end
 
     describe 'searching local and remote users' do
-      it 'uses find_local to look for local accounts when no domain' do
-        allow(Account).to receive(:find_local)
-        results = subject.call('one', 10)
+      describe 'when no domain' do
+        before do
+          allow(Account).to receive(:find_local)
+          allow(Account).to receive(:search_for)
+          subject.call('one', 10)
+        end
 
-        expect(Account).to have_received(:find_local).with('one')
+        it 'uses find_local to look for local accounts' do
+          expect(Account).to have_received(:find_local).with('one')
+        end
+
+        it 'uses search_for to find matches' do
+          expect(Account).to have_received(:search_for).with('one', 10)
+        end
       end
 
-      it 'uses find_remote to look for remote accounts when there is a domain' do
-        allow(Account).to receive(:find_remote)
-        results = subject.call('two@example.com', 10)
+      describe 'when there is a domain' do
+        before do
+          allow(Account).to receive(:find_remote)
+        end
 
-        expect(Account).to have_received(:find_remote).with('two', 'example.com')
+        it 'uses find_remote to look for remote accounts' do
+          subject.call('two@example.com', 10)
+          expect(Account).to have_received(:find_remote).with('two', 'example.com')
+        end
+
+        describe 'and there is no account provided' do
+          it 'uses search_for to find matches' do
+            allow(Account).to receive(:search_for)
+            subject.call('two@example.com', 10, false, nil)
+
+            expect(Account).to have_received(:search_for).with('two example.com', 10)
+          end
+        end
+
+        describe 'and there is an account provided' do
+          it 'uses advanced_search_for to find matches' do
+            account = Fabricate(:account)
+            allow(Account).to receive(:advanced_search_for)
+            subject.call('two@example.com', 10, false, account)
+
+            expect(Account).to have_received(:advanced_search_for).with('two example.com', account, 10)
+          end
+        end
       end
     end
 
@@ -57,10 +89,6 @@ describe AccountSearchService do
         results = subject.call('newuser@remote.com', 10, false)
         expect(service).not_to have_received(:call)
       end
-    end
-
-    describe 'when account is provided' do
-      it 'uses advanced search'
     end
   end
 end
