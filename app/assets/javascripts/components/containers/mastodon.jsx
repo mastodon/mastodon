@@ -39,6 +39,7 @@ import FavouritedStatuses from '../features/favourited_statuses';
 import Blocks from '../features/blocks';
 import Report from '../features/report';
 import { IntlProvider, addLocaleData } from 'react-intl';
+import en from 'react-intl/locale-data/ar';
 import en from 'react-intl/locale-data/en';
 import de from 'react-intl/locale-data/de';
 import es from 'react-intl/locale-data/es';
@@ -60,7 +61,7 @@ const browserHistory = useRouterHistory(createBrowserHistory)({
   basename: '/web'
 });
 
-addLocaleData([...en, ...de, ...es, ...fr, ...pt, ...hu, ...uk, ...fi, ...eo]);
+addLocaleData([...ar, ...en, ...de, ...es, ...fr, ...pt, ...hu, ...uk, ...fi, ...eo]);
 
 const Mastodon = React.createClass({
 
