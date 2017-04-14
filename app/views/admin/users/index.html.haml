@@ -1,6 +1,19 @@
 - content_for :page_title do
   = t('admin.users.title')
 
+.filters
+  .filter-subset
+    %strong= t('admin.users.user_type.title')
+    %ul
+      %li= filter_link_to t('admin.users.user_type.all'), admin: nil
+      %li= filter_link_to t('admin.users.user_type.admins'), admin: 1
+  .filter-subset
+    %strong= t('admin.users.confirmed_status.title')
+    %ul
+      %li= filter_link_to t('admin.users.confirmed_status.any'), confirmed: nil, unconfirmed: nil
+      %li= filter_link_to t('admin.users.confirmed_status.confirmed'), confirmed: 1, unconfirmed: nil
+      %li= filter_link_to t('admin.users.confirmed_status.unconfirmed'), unconfirmed: 1, confirmed: nil
+
 %table.table
   %thead
     %tr
