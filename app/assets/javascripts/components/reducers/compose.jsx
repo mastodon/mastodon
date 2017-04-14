@@ -67,6 +67,7 @@ function clearAll(state) {
     map.set('is_submitting', false);
     map.set('in_reply_to', null);
     map.set('privacy', state.get('default_privacy'));
+    map.set('sensitive', false);
     map.update('media_attachments', list => list.clear());
   });
 };
@@ -76,7 +77,8 @@ function appendMedia(state, media) {
     map.update('media_attachments', list => list.push(media));
     map.set('is_uploading', false);
     map.set('resetFileKey', Math.floor((Math.random() * 0x10000)));
-    map.update('text', oldText => `${oldText} ${media.get('text_url')}`.trim());
+    map.set('focusDate', new Date());
+    map.update('text', oldText => `${oldText.trim()} ${media.get('text_url')}`.trim() + ' ');
   });
 };
 
@@ -156,6 +158,9 @@ export default function compose(state = initialState, action) {
       if (action.status.get('spoiler_text').length > 0) {
         map.set('spoiler', true);
         map.set('spoiler_text', action.status.get('spoiler_text'));
+      } else {
+        map.set('spoiler', false);
+        map.set('spoiler_text', '');
       }
     });
   case COMPOSE_REPLY_CANCEL:

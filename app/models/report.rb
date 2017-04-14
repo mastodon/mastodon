@@ -7,4 +7,8 @@ class Report < ApplicationRecord
 
   scope :unresolved, -> { where(action_taken: false) }
   scope :resolved,   -> { where(action_taken: true) }
+
+  def statuses
+    Status.where(id: status_ids)
+  end
 end

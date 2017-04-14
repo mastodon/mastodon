@@ -19,7 +19,7 @@ import TextIconButton from './text_icon_button';
 const messages = defineMessages({
   placeholder: { id: 'compose_form.placeholder', defaultMessage: 'What is on your mind?' },
   spoiler_placeholder: { id: 'compose_form.spoiler_placeholder', defaultMessage: 'Content warning' },
-  publish: { id: 'compose_form.publish', defaultMessage: 'Publish' }
+  publish: { id: 'compose_form.publish', defaultMessage: 'Toot' }
 });
 
 const ComposeForm = React.createClass({
