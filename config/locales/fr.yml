@@ -15,7 +15,7 @@ fr:
       blocks: Outils complets de bloquage et masquage
       characters: 500 caractères par post
       chronology: Fil chronologique
-      ethics: 'Pas de pubs, pas de pistage'
+      ethics: Pas de pubs, pas de pistage
       gifv: Partage de vidéos et de GIFs
       privacy: Réglages de confidentialité au niveau des posts
       public: Fils publics
@@ -39,6 +39,108 @@ fr:
     posts: Statuts
     remote_follow: Suivre à distance
     unfollow: Ne plus suivre
+  admin:
+    accounts:
+      are_you_sure: Êtes-vous certain ?
+      display_name: Nom affiché
+      domain: Domaine
+      edit: Éditer
+      email: Courriel
+      feed_url: URL du flux
+      followers: Abonné⋅es
+      follows: Abonnements
+      location:
+        all: Tous
+        local: Local
+        remote: Distant
+        title: Situation
+      media_attachments: Fichiers médias
+      moderation:
+        all: Tous
+        silenced: Muets
+        suspended: Suspendus
+        title: Modération
+      most_recent_activity: Dernière activité
+      most_recent_ip: Adresse IP la plus récente
+      not_subscribed: Non abonné
+      order:
+        alphabetic: Alphabétique
+        most_recent: Plus récent
+        title: Tri
+      perform_full_suspension: Effectuer une suspension complète
+      profile_url: URL du profil
+      public: Public
+      push_subscription_expires: Expiration de l'abonnement PuSH
+      salmon_url: URL Salmon
+      silence: Rendre muet
+      statuses: Statuts
+      title: Comptes
+      undo_silenced: Annuler la mu
+      undo_suspension: Annuler la suspension
+      username: Nom d'utilisateur
+      web: Web
+    domain_block:
+      add_new: Ajouter
+      domain: Domaine
+      new:
+        create: Créer le blocage
+        hint: Le blocage de domaine n'empêchera pas la création de comptes dans la base de données, mais il appliquera automatiquement et rétrospectivement des méthodes de modération spécifiques sur ces comptes.
+        severity:
+          desc_html: "<strong>Silence</strong> rendra les messages des comptes concernés invisibles à ceux qui ne les suivent pas. <strong>Suspend</strong> supprimera tout le contenu des comptes concernés, les médias, et les données du profil."
+          silence: Muet
+          suspend: Suspendre
+        title: Nouveau blocage de domaine
+      severity: Séverité
+      title: Blocage de domaines
+    pubsubhubbub:
+      callback_url: URL de rappel
+      confirmed: Confirmé
+      expires_in: Expire dans
+      last_delivery: Dernière livraison
+      title: PubSubHubbub
+      topic: Sujet
+    reports:
+      comment:
+        label: Commentaire
+        none: Aucun
+      delete: Supprimer
+      id: ID
+      mark_as_resolved: Marqué comme résolu
+      report: 'Signalement #%{id}'
+      reported_account: Compte signalé
+      reported_by: Signalé par
+      resolved: Résolus
+      silence_account: Rendre le compte muet
+      status: Statut
+      suspend_account: Suspendre le compte
+      target: Cible
+      title: Signalements
+      unresolved: Non résolus
+      view: Voir
+    settings:
+      click_to_edit: Cliquez pour éditer
+      contact_information:
+        email: Entrez une adresse courriel publique
+        label: Informations de contact
+        username: Entrez un nom d'utilisateur
+      registrations:
+        closed_message:
+          desc_html: Affiché sur la page d'accueil lorsque les inscriptions sont fermées<br>Vous pouvez utiliser des balises HTML
+          title: Message de fermeture des inscriptions
+        open:
+          disabled: Désactivées
+          enabled: Activées
+          title: Inscriptions
+      setting: Paramètre
+      site_description:
+        desc_html: Affichée sous la forme d'un paragraphe sur la page d'accueil et utilisée comme balise meta.<br>Vous pouvez utiliser des balises HTML, en particulier <code>&lt;a&gt;</code> et <code>&lt;em&gt;</code>.
+        title: Description du site
+      site_description_extended:
+        desc_html: Affichée sur la page d'informations complémentaires du site<br>Vous pouvez utiliser des balises HTML
+        title: Description étendue du site
+      site_title: Titre du site
+      title: Paramètres du site
+    title: Administration
   application_mailer:
     settings: 'Changer les préférences courriel : %{link}'
     signature: Notifications de Mastodon depuis %{instance}
@@ -80,6 +182,12 @@ fr:
       x_minutes: "%{count}min"
       x_months: "%{count}mois"
       x_seconds: "%{count}s"
+  errors:
+    '404': La page que vous recherchez n'existe pas.
+    '410': La page que vous recherchez n'existe plus.
+    '422':
+      content: Vérification de sécurité échouée. Bloquez-vous les cookies ?
+      title: Vérification de sécurité échouée
   exports:
     blocks: Vous bloquez
     csv: CSV
@@ -103,7 +211,7 @@ fr:
   notification_mailer:
     digest:
       body: 'Voici ce que vous avez raté sur ${instance} depuis votre dernière visite (%{}) :'
-      mention: '%{name} vous a mentionné⋅e'
+      mention: "%{name} vous a mentionné⋅e"
       new_followers_summary:
         one: Vous avez un⋅e nouvel⋅le abonné⋅e ! Youpi !
         other: Vous avez %{count} nouveaux abonné⋅es ! Incroyable !
@@ -133,6 +241,24 @@ fr:
     missing_resource: L'URL de redirection n'a pas pu être trouvée
     proceed: Continuez pour suivre
     prompt: 'Vous allez suivre :'
+  reports:
+    comment:
+      label: Commentaire
+      none: Aucun
+    delete: Supprimer
+    id: ID
+    mark_as_resolved: Marqué comme résolu
+    report: 'Signalement #%{id}'
+    reported_account: Compte signalé
+    reported_by: Signalé par
+    reports: Signalements
+    resolved: Résolus
+    silence_account: Rendre le compte muet
+    status: Statut
+    suspend_account: Suspendre le compte
+    target: Cible
+    unresolved: Non résolus
+    view: Voir
   settings:
     authorized_apps: Applications autorisées
     back: Retour vers Mastodon
@@ -156,7 +282,7 @@ fr:
     sensitive_content: Contenu sensible
   time:
     formats:
-      default: '%d %b %Y, %H:%M'
+      default: "%d %b %Y, %H:%M"
   two_factor_auth:
     description_html: Si vous activez <strong>l'identification à deux facteurs</strong>, vous devrez être en possession de votre téléphone afin de générer un code de connexion.
     disable: Désactiver
@@ -169,52 +295,3 @@ fr:
     invalid_otp_token: Le code d'authentification à deux facteurs est invalide
   will_paginate:
     page_gap: "&hellip;"
-  errors:
-    404: La page que vous recherchez n'existe pas.
-    410: La page que vous recherchez n'existe plus.
-    422:
-      title: Vérification de sécurité échouée
-      content: Vérification de sécurité échouée. Bloquez-vous les cookies ?
-  reports:
-    reports: Signalements
-    status: Statut
-    unresolved: Non résolus
-    resolved: Résolus
-    id: ID
-    target: Cible
-    reported_by: Signalé par
-    comment:
-      label: Commentaire
-      none: Aucun
-    view: Voir
-    report: "Signalement #%{id}"
-    delete: Supprimer
-    reported_account: Compte signalé
-    reported_by: Signalé par
-    silence_account: Rendre le compte muet
-    suspend_account: Suspendre le compte
-    mark_as_resolved: Marqué comme résolu
-  admin:
-    settings:
-      title: Paramètres du site
-      setting: Paramètre
-      click_to_edit: Cliquez pour éditer
-      contact_information:
-        label: Informations de contact
-        username: Entrez un nom d'utilisateur
-        email: Entrez une adresse courriel publique
-      site_title: Titre du site
-      site_description:
-        title: Description du site
-        desc_html: "Affichée sous la forme d'un paragraphe sur la page d'accueil et utilisée comme balise meta.<br>Vous pouvez utiliser des balises HTML, en particulier <code>&lt;a&gt;</code> et <code>&lt;em&gt;</code>."
-      site_description_extended:
-        title: Description étendue du site
-        desc_html: "Affichée sur la page d'informations complémentaires du site<br>Vous pouvez utiliser des balises HTML"
-      registrations:
-        open:
-          title: Inscriptions
-          enabled: Activées
-          disabled: Désactivées
-        closed_message:
-          title: Message de fermeture des inscriptions
-          desc_html: "Affiché sur la page d'accueil lorsque les inscriptions sont fermées<br>Vous pouvez utiliser des balises HTML"

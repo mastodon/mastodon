@@ -112,6 +112,10 @@ const Status = React.createClass({
     this.props.dispatch(openModal('MEDIA', { media, index }));
   },
 
+  handleOpenVideo (media, time) {
+    this.props.dispatch(openModal('VIDEO', { media, time }));
+  },
+
   handleReport (status) {
     this.props.dispatch(initReport(status.get('account'), status));
   },
@@ -151,7 +155,7 @@ const Status = React.createClass({
           <div className='scrollable'>
             {ancestors}
 
-            <DetailedStatus status={status} me={me} onOpenMedia={this.handleOpenMedia} />
+            <DetailedStatus status={status} me={me} onOpenVideo={this.handleOpenVideo} onOpenMedia={this.handleOpenMedia} />
             <ActionBar status={status} me={me} onReply={this.handleReplyClick} onFavourite={this.handleFavouriteClick} onReblog={this.handleReblogClick} onDelete={this.handleDeleteClick} onMention={this.handleMentionClick} onReport={this.handleReport} />
 
             {descendants}
