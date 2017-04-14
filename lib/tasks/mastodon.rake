@@ -76,9 +76,14 @@ namespace :mastodon do
   end
 
   namespace :users do
-    desc 'clear unconfirmed users'
+    desc 'Clear out unconfirmed users'
     task clear: :environment do
-      User.where('confirmed_at is NULL AND confirmation_sent_at <= ?', 2.days.ago).find_each(&:destroy)
+      # Users that never confirmed e-mail never signed in, means they
+      # only have a user record and an avatar record, with no files uploaded
+      User.where('confirmed_at is NULL AND confirmation_sent_at <= ?', 2.days.ago).find_in_batches do |batch|
+        Account.where(id: batch.map(&:account_id)).delete_all
+        batch.delete_all
+      end
     end
   end
 
