@@ -227,18 +227,20 @@ class Account < ApplicationRecord
         WITH first_degree AS (
             SELECT target_account_id
             FROM follows
-            WHERE account_id = ?
+            WHERE account_id = :account_id
           )
         SELECT accounts.*
         FROM follows
         INNER JOIN accounts ON follows.target_account_id = accounts.id
-        WHERE account_id IN (SELECT * FROM first_degree) AND target_account_id NOT IN (SELECT * FROM first_degree) AND target_account_id <> ?
+        WHERE account_id IN (SELECT * FROM first_degree) AND target_account_id NOT IN (SELECT * FROM first_degree) AND target_account_id <> :account_id
         GROUP BY target_account_id, accounts.id
         ORDER BY count(account_id) DESC
-        LIMIT ?
+        LIMIT :limit
       SQL
 
-      Account.find_by_sql([sql, account.id, account.id, limit])
+      find_by_sql(
+        [sql, { account_id: account.id, limit: limit }]
+      )
     end
 
     def search_for(terms, limit = 10)
