@@ -1,24 +1,40 @@
 ---
 es:
   simple_form:
+    hints:
+      defaults:
+        avatar: PNG, GIF o JPG. Máximo 2MB. Será escalado a 120x120px
+        display_name: Máximo 30 caracteres
+        header: PNG, GIF o JPG. Máximo 2MB. Será escalado a 700x335px
+        locked: Requiere que manualmente apruebes seguidores y las publicaciones serán mostradas solamente a tus seguidores 
+        note: Máximo 160 caracteres
+      imports:
+        data: Archivo CSV exportado desde otra instancia de Mastodon
     labels:
       defaults:
         avatar: Avatar
         confirm_new_password: Confirmar nueva contraseña
         confirm_password: Confirmar contraseña
         current_password: Contraseña actual
+        data: Información
         display_name: Mostrar nombre
         email: Dirección de correo electrónico
         header: Img. cabecera
         locale: Idioma
         new_password: Nueva contraseña
         note: Biografía
+        otp_attempt: Código de dos factores
         password: Contraseña
+        setting_default_privacy: Privacidad de publicaciones
+        type: Importar tipo
         username: Nombre de usuario
+      interactions:
+        must_be_follower: Bloquear notificaciones de personas que no te siguen
+        must_be_following: Bloquear notificaciones de personas que no sigues
       notification_emails:
         favourite: Enviar correo electrónico cuando alguien de a favorito en su publicación
-        follow: Enviar correo electrónico cuando alguien le siga
-        mention: Enviar correo electrónico cuando alguien le mencione
+        follow: Enviar correo electrónico cuando alguien te siga
+        mention: Enviar correo electrónico cuando alguien te mencione
         reblog: Enviar correo electrónico cuando alguien comparta su publicación
     'no': 'No'
     required:

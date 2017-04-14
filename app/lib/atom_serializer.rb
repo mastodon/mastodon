@@ -20,14 +20,14 @@ class AtomSerializer
     append_element(author, 'activity:object-type', TagManager::TYPES[:person])
     append_element(author, 'uri', uri)
     append_element(author, 'name', account.username)
-    append_element(author, 'email', account.local? ? "#{account.acct}@#{Rails.configuration.x.local_domain}" : account.acct)
+    append_element(author, 'email', account.local? ? account.local_username_and_domain : account.acct)
     append_element(author, 'summary', account.note)
     append_element(author, 'link', nil, rel: :alternate, type: 'text/html', href: TagManager.instance.url_for(account))
     append_element(author, 'link', nil, rel: :avatar, type: account.avatar_content_type, 'media:width': 120, 'media:height': 120, href: full_asset_url(account.avatar.url(:original)))
     append_element(author, 'link', nil, rel: :header, type: account.header_content_type, 'media:width': 700, 'media:height': 335, href: full_asset_url(account.header.url(:original)))
     append_element(author, 'poco:preferredUsername', account.username)
-    append_element(author, 'poco:displayName', account.display_name) unless account.display_name.blank?
-    append_element(author, 'poco:note', Formatter.instance.simplified_format(account).to_str) unless account.note.blank?
+    append_element(author, 'poco:displayName', account.display_name) if account.display_name?
+    append_element(author, 'poco:note', Formatter.instance.simplified_format(account).to_str) if account.note?
     append_element(author, 'mastodon:scope', account.locked? ? :private : :public)
 
     author
@@ -327,7 +327,7 @@ class AtomSerializer
   end
 
   def serialize_status_attributes(entry, status)
-    append_element(entry, 'summary', status.spoiler_text) unless status.spoiler_text.blank?
+    append_element(entry, 'summary', status.spoiler_text) if status.spoiler_text?
     append_element(entry, 'content', Formatter.instance.format(status.proper).to_str, type: 'html')
 
     status.mentions.each do |mentioned|

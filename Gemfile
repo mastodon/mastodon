@@ -1,7 +1,9 @@
 # frozen_string_literal: true
 
 source 'https://rubygems.org'
-ruby '2.3.1'
+ruby '2.4.1'
+
+gem 'pkg-config'
 
 gem 'rails', '~> 5.0.2'
 gem 'sass-rails', '~> 5.0'
@@ -32,6 +34,7 @@ gem 'htmlentities'
 gem 'http'
 gem 'http_accept_language'
 gem 'httplog'
+gem 'kaminari'
 gem 'link_header'
 gem 'nokogiri'
 gem 'oj'
@@ -49,10 +52,10 @@ gem 'sidekiq'
 gem 'sidekiq-unique-jobs'
 gem 'simple-navigation'
 gem 'simple_form'
+gem 'sprockets-rails', :require => 'sprockets/railtie'
 gem 'statsd-instrument'
 gem 'twitter-text'
 gem 'tzinfo-data'
-gem 'will_paginate'
 
 gem 'react-rails'
 gem 'browserify-rails'
@@ -68,6 +71,7 @@ end
 
 group :test do
   gem 'faker'
+  gem 'rails-controller-testing'
   gem 'rspec-sidekiq'
   gem 'simplecov', require: false
   gem 'webmock'

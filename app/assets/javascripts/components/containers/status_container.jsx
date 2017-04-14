@@ -26,7 +26,8 @@ const makeMapStateToProps = () => {
 
   const mapStateToProps = (state, props) => ({
     status: getStatus(state, props.id),
-    me: state.getIn(['meta', 'me'])
+    me: state.getIn(['meta', 'me']),
+    boostModal: state.getIn(['meta', 'boost_modal'])
   });
 
   return mapStateToProps;
@@ -38,11 +39,19 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(replyCompose(status, router));
   },
 
-  onReblog (status) {
+  onModalReblog (status) {
+    dispatch(reblog(status));
+  },
+
+  onReblog (status, e) {
     if (status.get('reblogged')) {
       dispatch(unreblog(status));
     } else {
-      dispatch(reblog(status));
+      if (e.shiftKey || !this.boostModal) {
+        this.onModalReblog(status);
+      } else {
+        dispatch(openModal('BOOST', { status, onReblog: this.onModalReblog }));
+      }
     }
   },
 
@@ -64,6 +73,10 @@ const mapDispatchToProps = (dispatch) => ({
 
   onOpenMedia (media, index) {
     dispatch(openModal('MEDIA', { media, index }));
+  },
+
+  onOpenVideo (media, time) {
+    dispatch(openModal('VIDEO', { media, time }));
   },
 
   onBlock (account) {

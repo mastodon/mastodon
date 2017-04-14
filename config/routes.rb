@@ -1,3 +1,4 @@
+
 # frozen_string_literal: true
 
 require 'sidekiq/web'
@@ -14,8 +15,8 @@ Rails.application.routes.draw do
     controllers authorizations: 'oauth/authorizations', authorized_applications: 'oauth/authorized_applications'
   end
 
-  get '.well-known/host-meta', to: 'xrd#host_meta', as: :host_meta
-  get '.well-known/webfinger', to: 'xrd#webfinger', as: :webfinger
+  get '.well-known/host-meta', to: 'well_known/host_meta#show', as: :host_meta, defaults: { format: 'xml' }
+  get '.well-known/webfinger', to: 'well_known/webfinger#show', as: :webfinger, defaults: { format: 'json' }
 
   devise_for :users, path: 'auth', controllers: {
     sessions:           'auth/sessions',
@@ -53,11 +54,11 @@ Rails.application.routes.draw do
     resource :preferences, only: [:show, :update]
     resource :import, only: [:show, :create]
 
-    resource :export, only: [:show] do
-      collection do
-        get :follows, to: 'exports#download_following_list'
-        get :blocks, to: 'exports#download_blocking_list'
-      end
+    resource :export, only: [:show]
+    namespace :exports, constraints: { format: :csv } do
+      resources :follows, only: :index, controller: :following_accounts
+      resources :blocks, only: :index, controller: :blocked_accounts
+      resources :mutes, only: :index, controller: :muted_accounts
     end
 
     resource :two_factor_auth, only: [:show, :new, :create] do
@@ -79,22 +80,13 @@ Rails.application.routes.draw do
     resources :domain_blocks, only: [:index, :new, :create]
     resources :settings, only: [:index, :update]
 
-    resources :reports, only: [:index, :show] do
-      member do
-        post :resolve
-        post :silence
-        post :suspend
-        post :remove
-      end
+    resources :reports, only: [:index, :show, :update] do
+      resources :reported_statuses, only: :destroy
     end
 
     resources :accounts, only: [:index, :show] do
-      member do
-        post :silence
-        post :unsilence
-        post :suspend
-        post :unsuspend
-      end
+      resource :silence, only: [:create, :destroy]
+      resource :suspension, only: [:create, :destroy]
     end
   end
 

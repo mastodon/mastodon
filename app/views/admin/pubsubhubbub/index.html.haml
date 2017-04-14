@@ -1,14 +1,14 @@
 - content_for :page_title do
-  PubSubHubbub
+  = t('admin.pubsubhubbub.title')
 
 %table.table
   %thead
     %tr
-      %th Topic
-      %th Callback URL
-      %th Confirmed
-      %th Expires in
-      %th Last delivery
+      %th= t('admin.pubsubhubbub.topic')
+      %th= t('admin.pubsubhubbub.callback_url')
+      %th= t('admin.pubsubhubbub.confirmed')
+      %th= t('admin.pubsubhubbub.expires_in')
+      %th= t('admin.pubsubhubbub.last_delivery')
   %tbody
     - @subscriptions.each do |subscription|
       %tr
@@ -21,9 +21,9 @@
             %i.fa.fa-check
         %td= distance_of_time_in_words(Time.now, subscription.expires_at)
         %td
-          - if subscription.last_successful_delivery_at.nil?
-            %i.fa.fa-times
-          - else
+          - if subscription.last_successful_delivery_at?
             = l subscription.last_successful_delivery_at
+          - else
+            %i.fa.fa-times
 
-= will_paginate @subscriptions, pagination_options
+= paginate @subscriptions
