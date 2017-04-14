@@ -2006,6 +2006,7 @@ button.icon-button.active i.fa-retweet {
 .modal-root__modal {
   pointer-events: auto;
   display: flex;
+  z-index: 9999;
 }
 
 .media-modal {
@@ -2033,19 +2034,39 @@ button.icon-button.active i.fa-retweet {
   width: 80vw;
   max-width: 500px;
   max-height: 500px;
-  display: flex;
+  position: relative;
 
   & > div {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
     padding: 25px;
     display: none;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    display: flex;
+    opacity: 0;
     user-select: text;
+  }
+}
 
-    &.active {
-      display: flex;
-    }
+@media screen and (max-width: 550px) {
+  .onboarding-modal {
+    width: 100%;
+    height: 100%;
+    border-radius: 0;
+  }
+
+  .onboarding-modal__pager {
+    width: 100%;
+    height: auto;
+    max-width: none;
+    max-height: none;
+    flex: 1 1 auto;
   }
 }
 
@@ -2151,12 +2172,27 @@ button.icon-button.active i.fa-retweet {
   margin-right: 10px;
 }
 
-.onboarding-modal__page-two__compose {
-  position: relative;
-  height: 300px;
+.onboarding-modal__page-two,
+.onboarding-modal__page-three,
+.onboarding-modal__page-four,
+.onboarding-modal__page-five {
+  p {
+    text-align: center;
+  }
 
-  & > div {
-    position: absolute;
+  .figure {
+    background: $color1;
+    color: $color2;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    padding: 10px;
+    text-align: center;
+    font-size: 14px;
+
+    .onboarding-modal__image {
+      border-radius: 4px;
+      margin-bottom: 10px;
+    }
   }
 }
 
@@ -2167,6 +2203,7 @@ button.icon-button.active i.fa-retweet {
   max-height: auto;
   display: block;
   margin: auto;
+  margin-bottom: 20px;
 }
 
 .onboard-sliders {
