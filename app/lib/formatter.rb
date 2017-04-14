@@ -15,6 +15,7 @@ class Formatter
     html = status.text
     html = encode(html)
     html = simple_format(html, {}, sanitize: false)
+    html = html.gsub(/\n/, '')
     html = link_urls(html)
     html = link_mentions(html, status.mentions)
     html = link_hashtags(html)
@@ -95,6 +96,6 @@ class Formatter
   end
 
   def mention_html(match, account)
-    "#{match.split('@').first}<span class=\"h-card\"><a href=\"#{TagManager.instance.url_for(account)}\" class=\"u-url mention\">@#{account.username}</a></span>"
+    "#{match.split('@').first}<span class=\"h-card\"><a href=\"#{TagManager.instance.url_for(account)}\" class=\"u-url mention\">@<span>#{account.username}</span></a></span>"
   end
 end

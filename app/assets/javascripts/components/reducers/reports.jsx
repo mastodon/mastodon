@@ -4,7 +4,8 @@ import {
   REPORT_SUBMIT_SUCCESS,
   REPORT_SUBMIT_FAIL,
   REPORT_CANCEL,
-  REPORT_STATUS_TOGGLE
+  REPORT_STATUS_TOGGLE,
+  REPORT_COMMENT_CHANGE
 } from '../actions/reports';
 import Immutable from 'immutable';
 
@@ -39,6 +40,8 @@ export default function reports(state = initialState, action) {
 
       return set.remove(action.statusId);
     });
+  case REPORT_COMMENT_CHANGE:
+    return state.setIn(['new', 'comment'], action.comment);
   case REPORT_SUBMIT_REQUEST:
     return state.setIn(['new', 'isSubmitting'], true);
   case REPORT_SUBMIT_FAIL:

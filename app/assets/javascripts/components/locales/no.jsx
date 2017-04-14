@@ -8,7 +8,7 @@ const no = {
   "status.reblog": "Gjenta",
   "status.favourite": "Lik",
   "status.reblogged_by": "Gjentatt av {name}",
-  "status.sensitive_warning": "Sensitivt innhold",
+  "status.sensitive_warning": "Følsomt innhold",
   "status.sensitive_toggle": "Klikk for å vise",
   "status.show_more": "Vis mer",
   "status.show_less": "Vis mindre",

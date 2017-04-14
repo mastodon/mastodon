@@ -1,0 +1,169 @@
+---
+bg:
+  about:
+    about_mastodon: Mastodon е <em>безплатен</em> сървър с <em>отворен код</em> за социални мрежи. Като <em>децентрализирана</em> алтернатива на комерсиалните платформи, той позволява избягването на риска от монополизация на твоята комуникация от единични компании. Изберете си сървър, на който се доверявате, и ще можете да контактувате с всички останали. Всеки може да пусне Mastodon и лесно да вземе участие в <em>социалната мрежа</em>.
+    about_this: За тази инстанция
+    apps: Приложения
+    business_email: 'Служебен e-mail:'
+    closed_registrations: В момента регистрациите за тази инстанция са затворени.
+    contact: За контакти
+    description_headline: Какво е %{domain}?
+    domain_count_after: други инстанции
+    domain_count_before: Свързани към
+    features:
+      api: Отворено API за приложения и услуги
+      blocks: Богат на инструменти за блокиране и заглушаване
+      characters: Публикации от 500 символа
+      chronology: Публикациите се показват хронологично
+      ethics: 'Етичен дизайн: без реклами и проследяване'
+      gifv: GIFV комплекти и кратки видео клипове
+      privacy: Настройване на поверителността за всяка публикация
+      public: Публични канали
+    features_headline: Какво откроява Mastodon
+    get_started: Първи стъпки
+    links: Връзки
+    other_instances: Други инстанции
+    source_code: Програмен код
+    status_count_after: публикации
+    status_count_before: Написали
+    terms: Условия
+    user_count_after: потребители
+    user_count_before: Дом на
+  accounts:
+    follow: Последвай
+    followers: Последователи
+    following: Следва
+    nothing_here: Тук няма никого!
+    people_followed_by: Хора, които %{name} следва
+    people_who_follow: Хора, които следват %{name}
+    posts: Публикации
+    remote_follow: Последвай
+    unfollow: Не следвай
+  application_mailer:
+    settings: 'Промяна на предпочитанията за e-mail: %{link}'
+    signature: Mastodon известия от %{instance}
+    view: 'Преглед:'
+  applications:
+    invalid_url: Предоставеният URL е невалиден
+  auth:
+    change_password: Идентификационни данни
+    didnt_get_confirmation: Не получих инструкции за потвърждение
+    forgot_password: Забравих си паролата
+    login: Влизане
+    logout: Излизане
+    register: Регистрация
+    resend_confirmation: Изпрати отново инструкции за потвърждение
+    reset_password: Подновяване на паролата
+    set_new_password: Задай нова парола
+  authorize_follow:
+    error: Възникна грешка в откриването на потребителя
+    follow: Последвай
+    prompt_html: "(<strong>%{self}</strong>), молбата ти беше изпратена до:"
+    title: Последвай %{acct}
+  datetime:
+    distance_in_words:
+      about_x_hours: "%{count} ч."
+      about_x_months: "%{count} м."
+      about_x_years: "%{count} г."
+      almost_x_years: "%{count} г."
+      half_a_minute: Току-що
+      less_than_x_minutes: "%{count} мин."
+      less_than_x_seconds: Току-що
+      over_x_years: "%{count} г."
+      x_days: "%{count} дни"
+      x_minutes: "%{count} мин."
+      x_months: "%{count} м."
+      x_seconds: "%{count} сек."
+  exports:
+    blocks: Вашите блокирания
+    csv: CSV
+    follows: Вашите следвания
+    storage: Съхранение на мултимедия
+  generic:
+    changes_saved_msg: Успешно запазване на промените!
+    powered_by: поддържано от %{link}
+    save_changes: Запази промените
+    validation_errors:
+      one: Нещо все още не е наред! Моля, прегледай грешката по-долу
+      other: Нещо все още не е наред! Моля, прегледай грешките по-долу
+  imports:
+    preface: Можеш да импортираш някои данни, като например всички хора, които следваш или блокираш в акаунта си на тази инстанция, от файлове, създадени чрез експорт в друга инстанция.
+    success: Твоите данни бяха успешно качени и ще бъдат обработени впоследствие.
+    types:
+      blocking: Списък на блокираните
+      following: Списък на последователите
+    upload: Качване
+  landing_strip_html: <strong>%{name}</strong> е потребител от <strong>%{domain}</strong>. Можеш да ги следваш, или да контактуваш с тях, ако имаш акаунт където и да е из федерираната вселена на Mastodon. Ако нямаш акаунт, можеш да си <a href="%{sign_up_path}">създадеш ето тук</a>.
+  media_attachments:
+    validations:
+      images_and_video: Не мога да прикача видеоклип към публикация, която вече съдържа изображения
+      too_many: Не мога да прикача повече от 4 файла
+  notification_mailer:
+    digest:
+      body: 'Ето кратко резюме на нещата, които се случиха от последното ти посещение в %{instance} на %{since}:'
+      mention: "%{name} те спомена в:"
+      new_followers_summary:
+        one: Имаш един нов последовател! Ура!
+        other: Имаш %{count} нови последователи! Изумително!
+      subject:
+        one: "1 ново известие от последното ти посещение \U0001F418"
+        other: "%{count} нови известия от последното ти посещение \U0001F418"
+    favourite:
+      body: 'Публикацията ти беше харесана от %{name}:'
+      subject: "%{name} хареса твоята публикация"
+    follow:
+      body: "%{name} те последва!"
+      subject: "%{name} те последва"
+    follow_request:
+      body: "%{name} помоли за разрешение да те последва"
+      subject: 'Чакащ последовател: %{name}'
+    mention:
+      body: "%{name} те спомена в:"
+      subject: "%{name} те спомена"
+    reblog:
+      body: 'Твоята публикация беше споделена от %{name}:'
+      subject: "%{name} сподели публикацията ти"
+  pagination:
+    next: Напред
+    prev: Назад
+  remote_follow:
+    acct: Въведи потребителско_име@домейн, от които искаш да следваш
+    missing_resource: Неуспешно търсене на нужния URL за пренасочване за твоя акаунт
+    proceed: Започни следване
+    prompt: 'Ще последваш:'
+  settings:
+    authorized_apps: Упълномощени приложения
+    back: Обратно към Mastodon
+    edit_profile: Редактирай профила си
+    export: Експортиране на данни
+    import: Импортиране
+    preferences: Предпочитания
+    settings: Настройки
+    two_factor_auth: Двустепенно удостоверяване
+  statuses:
+    open_in_web: Отвори в уеб
+    over_character_limit: прехвърлен лимит от %{max} символа
+    show_more: Покажи повече
+    visibilities:
+      private: Покажи само на последователите си
+      public: Публично
+      unlisted: Публично, но не показвай в публичния канал
+  stream_entries:
+    click_to_show: Покажи
+    reblogged: споделено
+    sensitive_content: Деликатно съдържание
+  time:
+    formats:
+      default: "%d %b, %Y, %H:%M"
+  two_factor_auth:
+    description_html: При активация на <strong>двустепенно удостоверяване</strong>, за да влезеш в приложението, ще трябва да използваш телефона си. През него ще се генерира код, който да въвеждаш при влизане.
+    disable: Деактивирай
+    enable: Активирай
+    instructions_html: "<strong>Сканирай този QR код с Google Authenticator или подобно приложение от своя телефон</strong>. Oтсега нататък, това приложение ще генерира код, който ще трябва да въвеждаш при всяко влизане."
+    plaintext_secret_html: 'Тайна в обикновен текст: <samp>%{secret}</samp>'
+    warning: Ако не можеш да настроиш приложението за удостверяване сега, избери "Деактивирай". В противен случай, няма да можеш да влезеш в акаунта си.
+  users:
+    invalid_email: E-mail адресът е невалиден
+    invalid_otp_token: Невалиден код
+  will_paginate:
+    page_gap: "&hellip;"

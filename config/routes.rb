@@ -1,3 +1,4 @@
+
 # frozen_string_literal: true
 
 require 'sidekiq/web'
@@ -14,8 +15,8 @@ Rails.application.routes.draw do
     controllers authorizations: 'oauth/authorizations', authorized_applications: 'oauth/authorized_applications'
   end
 
-  get '.well-known/host-meta', to: 'xrd#host_meta', as: :host_meta
-  get '.well-known/webfinger', to: 'xrd#webfinger', as: :webfinger, defaults: { format: 'json' }
+  get '.well-known/host-meta', to: 'well_known/host_meta#show', as: :host_meta, defaults: { format: 'xml' }
+  get '.well-known/webfinger', to: 'well_known/webfinger#show', as: :webfinger, defaults: { format: 'json' }
 
   devise_for :users, path: 'auth', controllers: {
     sessions:           'auth/sessions',
@@ -89,12 +90,8 @@ Rails.application.routes.draw do
     end
 
     resources :accounts, only: [:index, :show] do
-      member do
-        post :silence
-        post :unsilence
-        post :suspend
-        post :unsuspend
-      end
+      resource :silence, only: [:create, :destroy]
+      resource :suspension, only: [:create, :destroy]
     end
   end
 

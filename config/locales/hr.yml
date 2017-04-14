@@ -1,0 +1,165 @@
+---
+hr:
+  about:
+    about_mastodon: Mastodon je <em>besplatna, open-source</em> socijalna mreža. <em>Decentralizirana</em> alternativa komercijalnim platformama, izbjegava rizik toga da jedna tvrtka monopolizira vašu komunikaciju. Izaberite server kojem ćete vjerovati &mdash; koji god odabrali, moći ćete komunicirati sa svima ostalima. Bilo tko može imati svoju vlastitu Mastodon instancu i sudjelovati u <em>socijalnoj mreži</em> bez problema.
+    about_this: O ovoj instanci
+    apps: Aplikacije
+    business_email: 'Poslovni e-mail:'
+    closed_registrations: Registracije na ovoj instanci su trenutno zatvorene.
+    contact: Kontakt
+    description_headline: Što je %{domain}?
+    domain_count_after: druge instance
+    domain_count_before: Spojen na
+    features:
+      api: Otvoren API za aplikacije i servise
+      blocks: Bogati alati za blokiranje i ušutkivanje
+      characters: 500 znakova po postu
+      chronology: Timelines su kronološke
+      ethics: 'Etički dizajn: bez oglasa, bez praćenja'
+      gifv: GIFV setovi i kratki videi
+      privacy: Granularne postavke privatnosti, po postu
+      public: Javne timelines
+    features_headline: Po čemu se Mastodon razlikuje
+    get_started: Započni
+    links: Linkovi
+    other_instances: Druge instance
+    source_code: Izvorni kod
+    status_count_after: statusi
+    status_count_before: Tko je autor
+    terms: Uvjeti
+    user_count_after: korisnici
+    user_count_before: Home to
+  accounts:
+    follow: Slijedi
+    followers: Sljedbenici
+    following: Slijedim
+    nothing_here: Ovdje nema ničeg!
+    people_followed_by: Ljudi koje %{name} slijedi
+    people_who_follow: Ljudi koji slijede %{name}
+    posts: Postovi
+    remote_follow: Remote follow
+    unfollow: Prestani slijediti
+  application_mailer:
+    settings: 'Promijeni e-mail postavke: %{link}'
+    signature: Mastodon notifikacije sa %{instance}
+    view: 'View:'
+  applications:
+    invalid_url: Uneseni link nije valjan
+  auth:
+    change_password: Vjerodajnice
+    didnt_get_confirmation: Niste primili instrukcije za potvrđivanje?
+    forgot_password: Zaboravljena lozinka?
+    login: Prijavi se
+    logout: Odjavi se
+    register: Registriraj se
+    resend_confirmation: Ponovo pošalji instrukcije za potvrđivanje
+    reset_password: Resetiraj lozinku
+    set_new_password: Postavi novu lozinku
+  authorize_follow:
+    error: Nažalost, došlo je do greške looking up the remote račun
+    follow: Slijedi
+    prompt_html: 'Ti si (<strong>%{self}</strong>) poslao zahtjev za sljeđenje:'
+    title: Slijedi %{acct}
+  datetime:
+    distance_in_words:
+      about_x_hours: "%{count}s"
+      about_x_months: "%{count}mj"
+      about_x_years: "%{count}g"
+      almost_x_years: "%{count}g"
+      half_a_minute: upravo
+      less_than_x_minutes: "%{count}m"
+      less_than_x_seconds: upravo
+      over_x_years: "%{count}g"
+      x_days: "%{count}d"
+      x_minutes: "%{count}m"
+      x_months: "%{count}mj"
+      x_seconds: "%{count}sek"
+  exports:
+    blocks: Blokirao si
+    csv: CSV
+    follows: Slijediš
+    storage: Pohrana media zapisa
+  generic:
+    changes_saved_msg: Izmjene su uspješno sačuvane!
+    powered_by: omogućuje %{link}
+    save_changes: Sačuvaj izmjene
+    validation_errors:
+      one: Nešto ne štima! Vidi grešku ispod
+      other: Nešto još uvijek ne štima! Vidi %{count} greške ispod
+  imports:
+    preface: Možeš uvesti određene podatke kao što su svi ljudi koje slijediš ili blokiraš u svoj račun na ovoj instanci, sa fajlova kreiranih izvozom sa druge instance.
+    success: Tvoji podaci su uspješno uploadani i bit će obrađeni u dogledno vrijeme
+    types:
+      blocking: Lista blokiranih
+      following: Lista onih koje slijedim
+    upload: Upload
+  landing_strip_html: <strong>%{name}</strong> je korisnik na <strong>%{domain}</strong>. Možeš ih slijediti ili komunicirati s njima ako imaš račun igdje u fediversu. Ako nemaš, možeš se <a href="%{sign_up_path}">registrirati ovdje</a>.
+  notification_mailer:
+    digest:
+      body: 'Ovo je kratak sažetak propuštenog %{instance} od tvog prošlog posjeta %{since}:'
+      mention: "%{name} te je spomenuo:"
+      new_followers_summary:
+        one: Imaš novog sljedbenika! Yay!
+        other: Imaš %{count} novih sljedbenika! Prekrašno!
+      subject:
+        one: "1 nova notifikacija od tvog prošlog posjeta \U0001F418"
+        other: "%{count} novih notifikacija od tvog prošlog posjeta \U0001F418"
+    favourite:
+      body: 'Tvoj status je %{name} označio kao omiljen:'
+      subject: "%{name} je označio kao omiljen tvoj status"
+    follow:
+      body: "%{name} te sada slijedi!"
+      subject: "%{name} te sada slijedi"
+    follow_request:
+      body: "%{name} je zatražio da te slijedi"
+      subject: 'Sljedbenik na čekanju: %{name}'
+    mention:
+      body: 'Spomenuo te je %{name} in:'
+      subject: Spomenuo te je %{name}
+    reblog:
+      body: 'Tvoj status je potaknut od %{name}:'
+      subject: "%{name} je potakao tvoj status"
+  pagination:
+    next: Sljedeći
+    prev: Prošli
+  remote_follow:
+    acct: Unesi svoje username@domain sa koje želiš slijediti
+    missing_resource: Could not find the required redirect URL za tvoj račun
+    proceed: Nastavi slijediti
+    prompt: 'Slijediti ćeš:'
+  settings:
+    authorized_apps: Autorizirane aplikacije
+    back: Natrag na Mastodon
+    edit_profile: Uredi profil
+    export: Izvoz podataka
+    import: Uvezi
+    preferences: Postavke
+    settings: Podešenja
+    two_factor_auth: Dvo-faktorska Autentifikacija
+  statuses:
+    open_in_web: Otvori na webu
+    over_character_limit: prijeđen je limit od %{max} znakova
+    show_more: Prikaži više
+    visibilities:
+      private: Pokaži samo sljedbenicima
+      public: Javno
+      unlisted: Javno, no nemoj prikazati na javnom timelineu
+  stream_entries:
+    click_to_show: Klikni da bi prikazao
+    reblogged: potaknut
+    sensitive_content: Osjetljivi sadržaj
+  time:
+    formats:
+      default: "%b %d, %Y, %H:%M"
+  two_factor_auth:
+    description_html: Ako omogućiš <strong>two-factor autentifikaciju</strong>, prijavljivanje će zahtjevati da kod sebe imaš svoj mobitel, koji će generirati tokene koje ćeš unijeti.
+    disable: Onemogući
+    enable: Omogući
+    instructions_html: "<strong>Skeniraj ovaj QR kod into Google Authenticator or a similiar app on your phone</strong>. Od sada, ta aplikacija će generirati tokene koje ćeš unijeti pri prijavljivanju."
+    plaintext_secret_html: 'Plain-text secret: <samp>%{secret}</samp>'
+    warning: Ako trenuno ne možeš konfigurirati authenticator app, trebaš kliknuti "onemogući" ili se nećeš moći prijaviti.
+  users:
+    invalid_email: E-mail adresa nije valjana
+    invalid_otp_token: Nevaljani dvo-faktorski kod
+  will_paginate:
+    page_gap: "&hellip;"
