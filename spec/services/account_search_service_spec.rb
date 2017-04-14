@@ -15,6 +15,15 @@ describe AccountSearchService do
       end
     end
 
+    describe 'searching for a simple term that is not an exact match' do
+      it 'does not return a nil entry in the array for the exact match' do
+        match = Fabricate(:account, username: 'matchingusername')
+
+        results = subject.call('match', 5)
+        expect(results).to eq [match]
+      end
+    end
+
     describe 'searching local and remote users' do
       describe 'when no domain' do
         before do

@@ -20,7 +20,7 @@ class AccountSearchService < BaseService
     if resolving_non_matching_remote_account?
       [FollowRemoteAccountService.new.call("#{query_username}@#{query_domain}")]
     else
-      search_results_and_exact_match.uniq
+      search_results_and_exact_match.compact.uniq
     end
   end
 
