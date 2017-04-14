@@ -179,7 +179,7 @@ class ProcessFeedService < BaseService
     end
 
     def hashtags_from_xml(parent, xml)
-      tags = xml.xpath('./xmlns:category', xmlns: TagManager::XMLNS).map { |category| category['term'] }.select { |t| !t.blank? }
+      tags = xml.xpath('./xmlns:category', xmlns: TagManager::XMLNS).map { |category| category['term'] }.select(&:present?)
       ProcessHashtagsService.new.call(parent, tags)
     end
 
