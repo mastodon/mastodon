@@ -8,7 +8,11 @@ describe AccountSearchService do
 
         expect(results).to eq []
       end
-      it 'returns empty array for hashtag query'
+      it 'returns empty array for hashtag query' do
+        results = subject.call('#tag', 10)
+
+        expect(results).to eq []
+      end
     end
 
     describe 'searching local users' do
