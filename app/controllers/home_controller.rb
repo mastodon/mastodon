@@ -7,7 +7,7 @@ class HomeController < ApplicationController
   def index
     @body_classes = 'app-body'
   end
-  
+
   def streaming
     @token        = find_or_create_access_token.token
     @web_settings = Web::Setting.find_by(user: current_user)&.data || {}
