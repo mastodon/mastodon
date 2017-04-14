@@ -36,7 +36,7 @@ class Auth::RegistrationsController < Devise::RegistrationsController
   def determine_layout
     %w(edit update).include?(action_name) ? 'admin' : 'auth'
   end
-  
+
   def single_user_or_registrations_closed?
     Rails.configuration.x.single_user_mode || !InstancePresenter.new.open_registrations
   end
