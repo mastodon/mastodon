@@ -18,11 +18,9 @@ class AccountSearchService < BaseService
     return [] if query_blank_or_hashtag?
 
     if domain_is_local?
-      exact_match = Account.find_local(query_username)
-      results     = account.nil? ? Account.search_for(query_username, limit) : Account.advanced_search_for(query_username, account, limit)
+      results = account.nil? ? Account.search_for(query_username, limit) : Account.advanced_search_for(query_username, account, limit)
     else
-      exact_match = Account.find_remote(query_username, query_domain)
-      results     = account.nil? ? Account.search_for("#{query_username} #{query_domain}", limit) : Account.advanced_search_for("#{query_username} #{query_domain}", account, limit)
+      results = account.nil? ? Account.search_for("#{query_username} #{query_domain}", limit) : Account.advanced_search_for("#{query_username} #{query_domain}", account, limit)
     end
 
     results = [exact_match] + results.reject { |a| a.id == exact_match.id } if exact_match
@@ -56,5 +54,13 @@ class AccountSearchService < BaseService
 
   def domain_is_local?
     TagManager.instance.local_domain?(query_domain)
+  end
+
+  def exact_match
+    if domain_is_local?
+      Account.find_local(query_username)
+    else
+      Account.find_remote(query_username, query_domain)
+    end
   end
 end
