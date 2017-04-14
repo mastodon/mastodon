@@ -1,10 +1,23 @@
 # frozen_string_literal: true
 
 class AccountSearchService < BaseService
-  def call(query, limit, resolve = false, account = nil)
-    return [] if query.blank? || query.start_with?('#')
+  attr_reader :query, :limit, :resolve, :account
 
-    username, domain = query.gsub(/\A@/, '').split('@')
+  def call(query, limit, resolve = false, account = nil)
+    @query = query
+    @limit = limit
+    @resolve = resolve
+    @account = account
+
+    search_service_results
+  end
+
+  private
+
+  def search_service_results
+    return [] if query_blank_or_hashtag?
+
+    username, domain = split_query_string
     domain = nil if TagManager.instance.local_domain?(domain)
 
     if domain.nil?
@@ -22,5 +35,13 @@ class AccountSearchService < BaseService
     end
 
     results
+  end
+
+  def query_blank_or_hashtag?
+    query.blank? || query.start_with?('#')
+  end
+
+  def split_query_string
+    query.gsub(/\A@/, '').split('@')
   end
 end
