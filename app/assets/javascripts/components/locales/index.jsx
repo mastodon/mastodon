@@ -1,3 +1,4 @@
+import ar from './ar';
 import en from './en';
 import de from './de';
 import es from './es';
@@ -9,6 +10,7 @@ import fi from './fi';
 import eo from './eo';
 
 const locales = {
+  ar,
   en,
   de,
   es,
