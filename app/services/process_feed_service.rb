@@ -232,7 +232,7 @@ class ProcessFeedService < BaseService
     end
 
     def content_language(xml = @xml)
-      xml.at_xpath('./xmlns:content', xmlns: TagManager::XMLNS)['xml:lang']
+      xml.at_xpath('./xmlns:content', xmlns: TagManager::XMLNS)['xml:lang']&.presence || 'en'
     end
 
     def content_warning(xml = @xml)
