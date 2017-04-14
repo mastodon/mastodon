@@ -118,10 +118,6 @@ RSpec.describe Account, type: :model do
     end
   end
 
-  describe '#ping!' do
-    pending
-  end
-
   describe '#favourited?' do
     let(:original_status) do
       author = Fabricate(:account, username: 'original')

@@ -7,11 +7,11 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 
 const messages = defineMessages({
   heading: { id: 'getting_started.heading', defaultMessage: 'Getting started' },
-  public_timeline: { id: 'navigation_bar.public_timeline', defaultMessage: 'Whole Known Network' },
+  public_timeline: { id: 'navigation_bar.public_timeline', defaultMessage: 'Federated timeline' },
   community_timeline: { id: 'navigation_bar.community_timeline', defaultMessage: 'Local timeline' },
   preferences: { id: 'navigation_bar.preferences', defaultMessage: 'Preferences' },
   follow_requests: { id: 'navigation_bar.follow_requests', defaultMessage: 'Follow requests' },
-  sign_out: { id: 'navigation_bar.logout', defaultMessage: 'Sign out' },
+  sign_out: { id: 'navigation_bar.logout', defaultMessage: 'Logout' },
   favourites: { id: 'navigation_bar.favourites', defaultMessage: 'Favourites' },
   blocks: { id: 'navigation_bar.blocks', defaultMessage: 'Blocked users' },
   info: { id: 'navigation_bar.info', defaultMessage: 'Extended information' }
@@ -43,7 +43,7 @@ const GettingStarted = ({ intl, me }) => {
 
       <div className='scrollable optionally-scrollable' style={{ display: 'flex', flexDirection: 'column' }}>
         <div className='static-content getting-started'>
-          <p><FormattedMessage id='getting_started.open_source_notice' defaultMessage='Mastodon is open source software. You can contribute or report issues on GitHub at {github}. {apps}.' values={{ github: <a href="https://github.com/tootsuite/mastodon" target="_blank">tootsuite/mastodon</a>, apps: <a href="https://github.com/tootsuite/mastodon/blob/master/docs/Using-Mastodon/Apps.md" target="_blank"><FormattedMessage id='getting_started.apps' defaultMessage='Various apps are available' /></a> }} /></p>
+          <p><FormattedMessage id='getting_started.open_source_notice' defaultMessage='Mastodon is open source software. You can contribute or report issues on GitHub at {github}. {apps}.' values={{ github: <a href="https://github.com/tootsuite/mastodon" target="_blank">tootsuite/mastodon</a>, apps: <a href="https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/Apps.md" target="_blank"><FormattedMessage id='getting_started.apps' defaultMessage='Various apps are available' /></a> }} /></p>
         </div>
       </div>
     </Column>

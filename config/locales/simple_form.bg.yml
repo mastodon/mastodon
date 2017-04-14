@@ -1,0 +1,46 @@
+---
+bg:
+  simple_form:
+    hints:
+      defaults:
+        avatar: PNG, GIF или JPG. До 2MB. Ще бъде смалена до 120x120 пиксела
+        display_name: До 30 символа
+        header: PNG, GIF или JPG. До 2MB. Ще бъде смалена до 700x335 пиксела
+        locked: Изисква ръчно одобрение на последователите. По подразбиране, публикациите са достъпни само до последователи.
+        note: До 160 символа
+      imports:
+        data: CSV файл, експортиран от друга инстанция на Mastodon
+    labels:
+      defaults:
+        avatar: Аватар
+        confirm_new_password: Потвърди новата парола
+        confirm_password: Потвърди паролата
+        current_password: Текуща парола
+        data: Данни
+        display_name: Показвано име
+        email: E-mail адрес
+        header: Заглавен ред
+        locale: Език
+        locked: Направи акаунта поверителен
+        new_password: Нова парола
+        note: Био
+        otp_attempt: Двустепенен код
+        password: Парола
+        setting_default_privacy: Поверителност на публикациите
+        type: Тип на импортиране
+        username: Потребителско име
+      interactions:
+        must_be_follower: Блокирай известия от не-последователи
+        must_be_following: Блокирай известия от хора, които не следваш
+      notification_emails:
+        digest: Изпращай извлечения на съобщенията
+        favourite: Изпращай e-mail, когато някой хареса твоя публикация
+        follow: Изпращай e-mail, когато някой те последва
+        follow_request: Изпращай e-mail, когато някой пожелае да те последва
+        mention: Изпращай e-mail, когато някой те спомене
+        reblog: Изпращай e-mail, когато някой сподели твоя публикация
+    'no': 'Не'
+    required:
+      mark: "*"
+      text: задължително
+    'yes': 'Да'
