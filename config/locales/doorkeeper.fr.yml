@@ -18,8 +18,11 @@ fr:
       models:
         account:
           attributes:
+            note:
+              too_long: Description trop longue
             username:
               blank: Identifiant vide
+              taken: Identifiant déjà pris
         doorkeeper/application:
           attributes:
             redirect_uri:
