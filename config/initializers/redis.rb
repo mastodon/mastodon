@@ -9,14 +9,16 @@ if ENV['REDIS_URL'].blank?
   ENV['REDIS_URL'] = "redis://#{password.blank? ? '' : ":#{password}@"}#{host}:#{port}/#{db}"
 end
 
-Redis.current = Redis.new(
+namespace = ENV.fetch('REDIS_NAMESPACE') { '' }
+redis_connection = Redis.new(
   url: ENV['REDIS_URL'],
   driver: :hiredis
 )
+Redis.current = Redis::Namespace.new(namespace, :redis => redis_connection)
 
 Rails.application.configure do
   config.cache_store = :redis_store, ENV['REDIS_URL'], {
-    namespace: 'cache',
+    namespace: namespace + '_cache',
     expires_in: 10.minutes,
   }
 end
