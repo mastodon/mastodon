@@ -26,6 +26,13 @@ RSpec.describe Api::V1::TimelinesController, type: :controller do
       end
     end
 
+    describe 'GET #local' do
+      it 'returns http success' do
+        get :local
+        expect(response).to have_http_status(:success)
+      end
+    end
+
     describe 'GET #tag' do
       before do
         PostStatusService.new.call(user.account, 'It is a #test')
@@ -51,6 +58,13 @@ RSpec.describe Api::V1::TimelinesController, type: :controller do
     describe 'GET #public' do
       it 'returns http success' do
         get :public
+        expect(response).to have_http_status(:success)
+      end
+    end
+
+    describe 'GET #local' do
+      it 'returns http success' do
+        get :local
         expect(response).to have_http_status(:success)
       end
     end

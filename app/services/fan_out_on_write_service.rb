@@ -14,6 +14,10 @@ class FanOutOnWriteService < BaseService
       deliver_to_followers(status)
     end
 
+    if status.local_visibility?
+      deliver_to_local(status)
+    end
+
     return if status.account.silenced? || !status.public_visibility? || status.reblog?
 
     render_anonymous_payload(status)
@@ -68,5 +72,12 @@ class FanOutOnWriteService < BaseService
 
     Redis.current.publish('timeline:public', @payload)
     Redis.current.publish('timeline:public:local', @payload) if status.local?
+  end
+
+  def deliver_to_local(status)
+    Rails.logger.debug "Delivering status #{status.id} to local timeline"
+
+    Redis.current.publish('timeline:public', @payload)
+    Redis.current.publish('timeline:public:local', @payload)
   end
 end
