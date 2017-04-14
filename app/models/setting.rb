@@ -39,6 +39,12 @@ class Setting < RailsSettings::Base
       records
     end
 
+    def version(fresh: false)
+      file = Rails.root.join('.version')
+      return File.read file if File.exist?(file) && !fresh
+      `git describe --tags`.strip if system('git --version')
+    end
+
     private
 
     def default_settings

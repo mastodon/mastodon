@@ -133,4 +133,11 @@ namespace :mastodon do
       Rails.logger.debug 'Done!'
     end
   end
+
+  namespace :version do
+    desc 'Persists the version file prior to building'
+    task write: :environment do
+      File.write Rails.root.join('.version'), Setting.version(fresh: true)
+    end
+  end
 end
