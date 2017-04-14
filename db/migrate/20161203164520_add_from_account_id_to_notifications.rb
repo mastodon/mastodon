@@ -1,6 +1,6 @@
 class AddFromAccountIdToNotifications < ActiveRecord::Migration[5.0]
   def up
-    add_column :notifications, :from_account_id, :integer
+    add_column :notifications, :from_account_id, :integer if !column_exists?(:notifications, :from_account_id)
 
     Notification.where(from_account_id: nil).where(activity_type: 'Status').update_all('from_account_id = (SELECT statuses.account_id FROM notifications AS notifications1 INNER JOIN statuses ON notifications1.activity_id = statuses.id WHERE notifications1.activity_type = \'Status\' AND notifications1.id = notifications.id)')
     Notification.where(from_account_id: nil).where(activity_type: 'Mention').update_all('from_account_id = (SELECT statuses.account_id FROM notifications AS notifications1 INNER JOIN mentions ON notifications1.activity_id = mentions.id INNER JOIN statuses ON mentions.status_id = statuses.id WHERE notifications1.activity_type = \'Mention\' AND notifications1.id = notifications.id)')
