@@ -34,6 +34,6 @@ RSpec.describe FanOutOnWriteService do
   end
 
   it 'delivers status to local timeline' do
-    expect(Status.as_local_timeline(alice).map(&:id)).to include statusLocal.id
+    expect(Status.as_public_timeline(alice, true).map(&:id)).to include statusLocal.id
   end
 end
