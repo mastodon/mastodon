@@ -58,6 +58,9 @@ gem 'react-rails'
 gem 'browserify-rails'
 gem 'autoprefixer-rails'
 
+gem 'skylight'
+gem 'sidekiq-skylight'
+
 group :development, :test do
   gem 'rspec-rails'
   gem 'pry-rails'

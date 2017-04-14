@@ -391,6 +391,9 @@ GEM
       connection_pool (~> 2.2, >= 2.2.0)
       rack-protection (>= 1.5.0)
       redis (~> 3.2, >= 3.2.1)
+    sidekiq-skylight (0.2.0)
+      sidekiq (>= 3.3.0)
+      skylight (>= 0.5.2)
     sidekiq-unique-jobs (5.0.0)
       sidekiq (>= 4.0)
       thor
@@ -404,6 +407,8 @@ GEM
       json (>= 1.8, < 3)
       simplecov-html (~> 0.10.0)
     simplecov-html (0.10.0)
+    skylight (1.2.0)
+      activesupport (>= 3.0.0)
     slop (3.6.0)
     sprockets (3.7.1)
       concurrent-ruby (~> 1.0)
@@ -516,10 +521,12 @@ DEPENDENCIES
   ruby-oembed
   sass-rails (~> 5.0)
   sidekiq
+  sidekiq-skylight
   sidekiq-unique-jobs
   simple-navigation
   simple_form
   simplecov
+  skylight
   statsd-instrument
   twitter-text
   tzinfo-data
