@@ -120,7 +120,7 @@ class Status < ApplicationRecord
               .without_replies
               .without_reblogs
 
-      query = query.where(visibility: :public) if !local_only
+      query = query.where(visibility: :public) unless local_only
       query = query.where(visibility: :local).where('accounts.domain IS NULL') if local_only
 
       account.nil? ? filter_timeline_default(query) : filter_timeline_default(filter_timeline(query, account))
