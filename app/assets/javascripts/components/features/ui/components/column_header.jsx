@@ -25,7 +25,7 @@ const ColumnHeader = React.createClass({
     }
 
     return (
-      <div className={`column-header ${active ? 'active' : ''}`} onClick={this.handleClick}>
+      <div aria-label={type} className={`column-header ${active ? 'active' : ''}`} onClick={this.handleClick}>
         {icon}
         {type}
       </div>
