@@ -14,7 +14,7 @@ class Notification < ApplicationRecord
   belongs_to :follow_request, foreign_type: 'FollowRequest', foreign_key: 'activity_id'
   belongs_to :favourite,      foreign_type: 'Favourite',     foreign_key: 'activity_id'
 
-  validates :account_id, uniqueness: { scope: [:activity_type, :activity_id] }
+  validates :account_id, uniqueness: { scope: %i[activity_type activity_id] }
 
   TYPE_CLASS_MAP = {
     mention:        'Mention',

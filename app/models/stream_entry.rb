@@ -9,7 +9,7 @@ class StreamEntry < ApplicationRecord
 
   validates :account, :activity, presence: true
 
-  STATUS_INCLUDES = [:account, :stream_entry, :media_attachments, :tags, mentions: :account, reblog: [:stream_entry, :account, :media_attachments, :tags, mentions: :account], thread: [:stream_entry, :account]].freeze
+  STATUS_INCLUDES = [:account, :stream_entry, :media_attachments, :tags, mentions: :account, reblog: [:stream_entry, :account, :media_attachments, :tags, mentions: :account], thread: %i[stream_entry account]].freeze
 
   default_scope { where(activity_type: 'Status') }
   scope :with_includes, -> { includes(:account, status: STATUS_INCLUDES) }
@@ -23,7 +23,7 @@ class StreamEntry < ApplicationRecord
   end
 
   def targeted?
-    [:follow, :request_friend, :authorize, :reject, :unfollow, :block, :unblock, :share, :favorite].include? verb
+    %i[follow request_friend authorize reject unfollow block unblock share favorite].include? verb
   end
 
   def target

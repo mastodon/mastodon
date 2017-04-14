@@ -5,7 +5,7 @@ class AccountsController < ApplicationController
 
   before_action :set_account
   before_action :set_link_headers
-  before_action :authenticate_user!, only: [:follow, :unfollow]
+  before_action :authenticate_user!, only: %i[follow unfollow]
   before_action :check_account_suspension
 
   def show
@@ -49,7 +49,7 @@ class AccountsController < ApplicationController
   end
 
   def set_link_headers
-    response.headers['Link'] = LinkHeader.new([[webfinger_account_url, [%w(rel lrdd), %w(type application/xrd+xml)]], [account_url(@account, format: 'atom'), [%w(rel alternate), %w(type application/atom+xml)]]])
+    response.headers['Link'] = LinkHeader.new([[webfinger_account_url, [%w[rel lrdd], %w[type application/xrd+xml]]], [account_url(@account, format: 'atom'), [%w[rel alternate], %w[type application/atom+xml]]]])
   end
 
   def webfinger_account_url

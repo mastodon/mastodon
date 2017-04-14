@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class DomainBlock < ApplicationRecord
-  enum severity: [:silence, :suspend]
+  enum severity: %i[silence suspend]
 
   validates :domain, presence: true, uniqueness: true
 

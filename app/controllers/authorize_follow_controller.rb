@@ -8,7 +8,7 @@ class AuthorizeFollowController < ApplicationController
   def new
     uri = Addressable::URI.parse(acct_param)
 
-    if uri.path && %w(http https).include?(uri.scheme)
+    if uri.path && %w[http https].include?(uri.scheme)
       set_account_from_url
     else
       set_account_from_acct

@@ -3,7 +3,7 @@
 class Auth::RegistrationsController < Devise::RegistrationsController
   layout :determine_layout
 
-  before_action :check_enabled_registrations, only: [:new, :create]
+  before_action :check_enabled_registrations, only: %i[new create]
   before_action :configure_sign_up_params, only: [:create]
 
   protected
@@ -34,6 +34,6 @@ class Auth::RegistrationsController < Devise::RegistrationsController
   private
 
   def determine_layout
-    %w(edit update).include?(action_name) ? 'admin' : 'auth'
+    %w[edit update].include?(action_name) ? 'admin' : 'auth'
   end
 end
