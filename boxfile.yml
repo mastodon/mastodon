@@ -74,7 +74,9 @@ web.stream:
     node: yarn run start
 
   routes:
-    - '/api/v1/streaming'
+    - '/api/v1/streaming*'
+    # Somehow we're getting requests for scheme://domain//api/v1/streaming* - match those, too
+    - '//api/v1/streaming*'
 
   writable_dirs:
     - tmp
