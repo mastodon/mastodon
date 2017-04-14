@@ -177,7 +177,7 @@ class Account < ApplicationRecord
   def avatar_remote_url=(url)
     parsed_url = URI.parse(url)
 
-    return if !%w(http https).include?(parsed_url.scheme) || parsed_url.host.empty? || self[:avatar_remote_url] == url
+    return if !%w[http https].include?(parsed_url.scheme) || parsed_url.host.empty? || self[:avatar_remote_url] == url
 
     self.avatar              = parsed_url
     self[:avatar_remote_url] = url
@@ -188,7 +188,7 @@ class Account < ApplicationRecord
   def header_remote_url=(url)
     parsed_url = URI.parse(url)
 
-    return if !%w(http https).include?(parsed_url.scheme) || parsed_url.host.empty? || self[:header_remote_url] == url
+    return if !%w[http https].include?(parsed_url.scheme) || parsed_url.host.empty? || self[:header_remote_url] == url
 
     self.header              = parsed_url
     self[:header_remote_url] = url
@@ -306,7 +306,7 @@ class Account < ApplicationRecord
     private
 
     def follow_mapping(query, field)
-      query.pluck(field).inject({}) { |mapping, id| mapping[id] = true; mapping }
+      query.pluck(field).each_with_object({}) { |id, mapping| mapping[id] = true; }
     end
 
     def avatar_styles(file)

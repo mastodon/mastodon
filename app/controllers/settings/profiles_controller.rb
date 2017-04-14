@@ -8,8 +8,8 @@ class Settings::ProfilesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_account
 
-  obfuscate_filename [:account, :avatar]
-  obfuscate_filename [:account, :header]
+  obfuscate_filename %i[account avatar]
+  obfuscate_filename %i[account header]
 
   def show; end
 
