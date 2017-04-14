@@ -18,7 +18,7 @@
   = render partial: 'shared/landing_strip', locals: { account: @account }
 
 .bg-profile
-  .bg-profile-img{ style: "background-image: url(#{@account.header.url( :original)})" }
+  .bg-profile-img{ style: "background-image: url(#{@account.header_static_url})" }
 
 .h-feed
   %data.p-name{ value: "#{@account.username} on #{Rails.configuration.x.local_domain}" }/

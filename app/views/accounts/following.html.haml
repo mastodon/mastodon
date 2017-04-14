@@ -3,6 +3,9 @@
 
 = render partial: 'header'
 
+.bg-profile
+  .bg-profile-img{ style: "background-image: url(#{@account.header_static_url})" }
+
 .accounts-grid
   - if @following.empty?
     = render partial: 'nothing_here'
