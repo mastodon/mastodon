@@ -88,6 +88,7 @@ Rails.application.routes.draw do
       resource :silence, only: [:create, :destroy]
       resource :suspension, only: [:create, :destroy]
     end
+    resources :users, only: [:index, :show]
   end
 
   get '/admin', to: redirect('/admin/settings', status: 302)
