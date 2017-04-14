@@ -2,7 +2,7 @@
 
 module Admin::AccountsHelper
   def filter_params(more_params)
-    params.permit(:local, :remote, :by_domain, :silenced, :suspended, :recent).merge(more_params)
+    params.permit(:local, :remote, :by_domain, :silenced, :suspended, :recent, :resolved).merge(more_params)
   end
 
   def filter_link_to(text, more_params)
