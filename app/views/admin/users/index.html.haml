@@ -1,0 +1,20 @@
+- content_for :page_title do
+  = t('admin.users.title')
+
+%table.table
+  %thead
+    %tr
+      %th= t('admin.users.email_address')
+      %th= t('admin.users.is_admin')
+      %th
+  %tbody
+    - @users.each do |user|
+      %tr
+        %td= user.email
+        %td
+          - if user.admin?
+            %i.fa.fa-check
+        %td
+          = table_link_to 'pencil', t('admin.users.edit'), admin_user_path(user.id)
+
+= paginate @users
