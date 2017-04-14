@@ -1,6 +1,6 @@
 - content_for :header_tags do
 
   = javascript_include_tag '/streaming'
-  = javascript_include_tag 'application'
+  = javascript_include_tag 'application', integrity: true
 
 = react_component 'Mastodon', default_props, class: 'app-holder', prerender: false
