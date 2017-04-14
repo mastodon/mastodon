@@ -15,12 +15,20 @@ describe AccountSearchService do
       end
     end
 
-    describe 'searching local users' do
-      it 'looks for local accounts'
-    end
+    describe 'searching local and remote users' do
+      it 'uses find_local to look for local accounts when no domain' do
+        allow(Account).to receive(:find_local)
+        results = subject.call('one', 10)
 
-    describe 'searching remote users' do
-      it 'looks for remote accounts'
+        expect(Account).to have_received(:find_local).with('one')
+      end
+
+      it 'uses find_remote to look for remote accounts when there is a domain' do
+        allow(Account).to receive(:find_remote)
+        results = subject.call('two@example.com', 10)
+
+        expect(Account).to have_received(:find_remote).with('two', 'example.com')
+      end
     end
 
     describe 'with an exact match' do
