@@ -245,6 +245,23 @@ RSpec.describe Account, type: :model do
     end
   end
 
+  describe '.triadic_closures' do
+    it 'finds accounts you dont follow which are followed by accounts you do follow' do
+      me = Fabricate(:account)
+      friend = Fabricate(:account)
+      friends_friend = Fabricate(:account)
+      me.follow!(friend)
+      friend.follow!(friends_friend)
+
+      both_follow = Fabricate(:account)
+      me.follow!(both_follow)
+      friend.follow!(both_follow)
+
+      results = Account.triadic_closures(me)
+      expect(results).to eq [friends_friend]
+    end
+  end
+
   describe '.find_local' do
     before do
       Fabricate(:account, username: 'Alice')
