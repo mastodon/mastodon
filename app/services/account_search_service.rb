@@ -19,7 +19,7 @@ class AccountSearchService < BaseService
 
     results = search_results
 
-    results = [exact_match] + results.reject { |a| a.id == exact_match.id } if exact_match
+    # results = [exact_match] + results.reject { |a| a.id == exact_match.id } if exact_match
 
     if resolve && !exact_match && !domain_is_local?
       results = [FollowRemoteAccountService.new.call("#{query_username}@#{query_domain}")]
