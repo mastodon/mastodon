@@ -41,9 +41,22 @@ describe AccountSearchService do
       end
     end
 
-    describe 'with different resolve options' do
-      it 'follows the remote account when resolve is true'
-      it 'does not follow the remote account when resolve is false'
+    describe 'when there is a domain but no exact match' do
+      it 'follows the remote account when resolve is true' do
+        service = double(call: nil)
+        allow(FollowRemoteAccountService).to receive(:new).and_return(service)
+
+        results = subject.call('newuser@remote.com', 10, true)
+        expect(service).to have_received(:call).with('newuser@remote.com')
+      end
+
+      it 'does not follow the remote account when resolve is false' do
+        service = double(call: nil)
+        allow(FollowRemoteAccountService).to receive(:new).and_return(service)
+
+        results = subject.call('newuser@remote.com', 10, false)
+        expect(service).not_to have_received(:call)
+      end
     end
 
     describe 'when account is provided' do
