@@ -107,6 +107,7 @@ const en = {
   "status.mention": "Mention @{name}",
   "status.open": "Expand this status",
   "status.reblog": "Boost",
+  "status.cannot_reblog": "This toot cannot be boosted",
   "status.reblogged_by": "{name} boosted",
   "status.reply": "Reply",
   "status.report": "Report @{name}",
