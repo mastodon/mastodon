@@ -40,6 +40,83 @@ ja:
     remote_follow: リモートフォロー
     unfollow: フォロー解除
   admin:
+    accounts:
+      are_you_sure: 本当に実行しますか?
+      display_name: 表示名
+      domain: ドメイン
+      edit: 編集
+      email: E-mail
+      feed_url: Feed URL
+      followers: フォロワー数
+      follows: フォロー数
+      location:
+        all: すべて
+        local: ローカル
+        remote: リモート
+        title: ロケーション
+      media_attachments: 添付されたメディア
+      moderation:
+        all: すべて
+        silenced: サイレンス中
+        suspended: 停止中
+        title: モデレーション
+      most_recent_activity: 直近の活動
+      most_recent_ip: 直近のIP
+      not_subscribed: 購読していない
+      order:
+        alphabetic: アルファベット順
+        most_recent: 直近の活動順
+        title: 順序
+      perform_full_suspension: 完全に活動停止させる
+      profile_url: プロフィールURL
+      public: パブリック
+      push_subscription_expires: PuSH購読期限切れ
+      salmon_url: Salmon URL
+      silence: サイレンス
+      statuses: トゥート数
+      title: アカウント
+      undo_silenced: サイレンスから戻す
+      undo_suspension: 停止から戻す
+      username: ユーザー名
+      web: Web
+    domain_block:
+      add_new: 新規追加
+      domain: ドメイン
+      new:
+        create: ブロックを作成
+        hint: ドメインブロックはデータベース中のアカウント項目の作成を妨げませんが、遡って自動的に指定されたモデレーションをそれらのアカウントに適用します。
+        severity:
+          desc_html: "<strong>サイレンス</strong>はアカウントのトゥートをフォローしていない人から隠します。<strong>停止</strong>はそのアカウントのコンテンツ、メディア、プロフィールデータをすべて削除します。"
+          silence: サイレンス
+          suspend: 停止
+        title: 新規ドメインブロック
+      severity: 深刻度
+      title: ドメインブロック
+    pubsubhubbub:
+      callback_url: コールバックURL
+      confirmed: 確認済み
+      expires_in: 期限
+      last_delivery: 最終配送
+      title: PubSubHubbub
+      topic: トピック
+    reports:
+      comment:
+        label: コメント
+        none: なし
+      delete: 削除
+      id: ID
+      mark_as_resolved: 解決済みとしてマーク
+      report: 'レポート#%{id}'
+      reported_account: 報告対象アカウント
+      reported_by: 報告者
+      resolved: 解決済み
+      silence_account: アカウントをサイレンス
+      status: ステータス
+      suspend_account: アカウントを停止
+      target: ターゲット
+      title: レポート
+      unresolved: 未解決
+      view: 表示
     settings:
       click_to_edit: クリックして編集
       contact_information:
@@ -47,19 +124,23 @@ ja:
         label: 連絡先情報
         username: ユーザー名を入力
       registrations:
+        closed_message:
+          desc_html: 新規登録を停止しているときにフロントページに表示されます。<br>HTMLタグが利用可能です。
+          title: 新規登録停止時のメッセージ
         open:
           disabled: 無効
           enabled: 有効
           title: 新規登録を受け付ける
       setting: 設定
       site_description:
-        desc_html: トップページへの表示と meta タグに使用されます。<br>HTMLタグ、特に<code>&lt;a&gt;</code> and <code>&lt;em&gt;</code>が利用可能です。
+        desc_html: トップページへの表示と meta タグに使用されます。<br>HTMLタグ、特に<code>&lt;a&gt;</code> と <code>&lt;em&gt;</code>が利用可能です。
         title: サイトの説明文
       site_description_extended:
         desc_html: インスタンスについてのページに表示されます。<br>HTMLタグが利用可能です。
         title: サイトの詳細な説明
       site_title: サイトのタイトル
       title: サイト設定
+    title: 管理
   application_mailer:
     settings: 'メール設定の変更: %{link}'
     signature: Mastodon %{instance} インスタンスからの通知
