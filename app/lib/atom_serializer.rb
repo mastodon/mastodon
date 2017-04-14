@@ -327,8 +327,8 @@ class AtomSerializer
   end
 
   def serialize_status_attributes(entry, status)
-    append_element(entry, 'summary', status.spoiler_text) if status.spoiler_text?
-    append_element(entry, 'content', Formatter.instance.format(status.proper).to_str, type: 'html')
+    append_element(entry, 'summary', status.spoiler_text, 'xml:lang': status.language) if status.spoiler_text?
+    append_element(entry, 'content', Formatter.instance.format(status.proper).to_str, type: 'html', 'xml:lang': status.language)
 
     status.mentions.each do |mentioned|
       append_element(entry, 'link', nil, rel: :mentioned, 'ostatus:object-type': TagManager::TYPES[:person], href: TagManager.instance.uri_for(mentioned.account))
