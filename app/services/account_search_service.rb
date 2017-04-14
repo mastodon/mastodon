@@ -61,26 +61,26 @@ class AccountSearchService < BaseService
   end
 
   def search_results
+    if account
+      advanced_search_results
+    else
+      simple_search_results
+    end
+  end
+
+  def advanced_search_results
+    Account.advanced_search_for(terms_for_query, account, limit)
+  end
+
+  def simple_search_results
+    Account.search_for(terms_for_query, limit)
+  end
+
+  def terms_for_query
     if domain_is_local?
-      local_search_results
+      query_username
     else
-      remote_search_results
-    end
-  end
-
-  def local_search_results
-    if account
-      Account.advanced_search_for(query_username, account, limit)
-    else
-      Account.search_for(query_username, limit)
-    end
-  end
-
-  def remote_search_results
-    if account
-      Account.advanced_search_for("#{query_username} #{query_domain}", account, limit)
-    else
-      Account.search_for("#{query_username} #{query_domain}", limit)
+      "#{query_username} #{query_domain}"
     end
   end
 end
