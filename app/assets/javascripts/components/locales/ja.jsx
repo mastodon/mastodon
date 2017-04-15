@@ -37,6 +37,7 @@ const ja = {
   "getting_started.about_addressing": "ドメインとユーザー名を知っているなら検索フォームに入力すればフォローできます。",
   "getting_started.about_shortcuts": "対象のアカウントがあなたと同じドメインのユーザーならばユーザー名のみで検索できます。これは返信のときも一緒です。",
   "getting_started.open_source_notice": "Mastodon はオープンソースソフトウェアです。誰でも GitHub（{github}）から開発に参加したり、問題を報告したりできます。 {apps}",
+  "getting_started.apps": "さまざまなアプリで利用できます。",
   "column.home": "ホーム",
   "column.community": "ローカルタイムライン",
   "column.public": "連合タイムライン",
@@ -82,6 +83,7 @@ const ja = {
   "search.account": "アカウント",
   "search.hashtag": "ハッシュタグ",
   "search.status_by": "{uuuname}からの投稿",
+  "search_results.total": "{count} 件",
   "upload_area.title": "ファイルをこちらにドラッグしてください",
   "upload_button.label": "メディアを追加",
   "upload_form.undo": "やり直す",
@@ -111,7 +113,7 @@ const ja = {
   "home.column_settings.show_replies": "返信表示",
   "home.column_settings.filter_regex": "正規表現でフィルター",
   "home.settings": "カラム設定",
-  "notification.settings": "カラム設定",
+  "notifications.settings": "カラム設定",
   "missing_indicator.label": "見つかりません",
   "boost_modal.combo": "次は{combo}を押せば、これをスキップできます。"
 };
