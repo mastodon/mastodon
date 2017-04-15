@@ -39,10 +39,15 @@ const Status = React.createClass({
     this.context.router.push(`/statuses/${status.getIn(['reblog', 'id'], status.get('id'))}`);
   },
 
+  handleTimeClick (e) {
+    e.stopPropagation();
+  },
+
   handleAccountClick (id, e) {
     if (e.button === 0) {
       e.preventDefault();
       this.context.router.push(`/accounts/${id}`);
+      e.stopPropagation();
     }
   },
 
@@ -86,7 +91,7 @@ const Status = React.createClass({
     return (
       <div className={this.props.muted ? 'status muted' : 'status'}  onClick={this.handleClick} style={{ cursor: 'pointer' }}>
         <div style={{ fontSize: '15px' }}>
-          <div style={{ float: 'right', fontSize: '14px' }}>
+          <div style={{ float: 'right', fontSize: '14px' }} onClick={this.handleTimeClick}>
             <a href={status.get('url')} className='status__relative-time' target='_blank' rel='noopener'><RelativeTimestamp timestamp={status.get('created_at')} /></a>
           </div>
 
