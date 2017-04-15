@@ -12,14 +12,16 @@ WORKDIR /mastodon
 
 COPY Gemfile Gemfile.lock package.json yarn.lock /mastodon/
 
-RUN BUILD_DEPS=" \
+RUN echo "@edge https://nl.alpinelinux.org/alpine/edge/main" >> /etc/apk/repositories \
+ && BUILD_DEPS=" \
     postgresql-dev \
     libxml2-dev \
     libxslt-dev \
     build-base" \
  && apk -U upgrade && apk add \
     $BUILD_DEPS \
-    nodejs \
+    nodejs@edge \
+    nodejs-npm@edge \
     libpq \
     libxml2 \
     libxslt \
