@@ -7,7 +7,7 @@ const Permalink = React.createClass({
   propTypes: {
     href: React.PropTypes.string.isRequired,
     to: React.PropTypes.string.isRequired,
-    children: React.PropTypes.node.isRequired
+    children: React.PropTypes.node
   },
 
   handleClick (e) {
