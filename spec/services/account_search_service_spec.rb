@@ -27,13 +27,13 @@ describe AccountSearchService do
     describe 'searching local and remote users' do
       describe 'when no domain' do
         before do
-          allow(Account).to receive(:find_local)
+          allow(Account).to receive(:find_remote)
           allow(Account).to receive(:search_for)
           subject.call('one', 10)
         end
 
-        it 'uses find_local to look for local accounts' do
-          expect(Account).to have_received(:find_local).with('one')
+        it 'uses find_remote with nil domain to look for local accounts' do
+          expect(Account).to have_received(:find_remote).with('one', nil)
         end
 
         it 'uses search_for to find matches' do
