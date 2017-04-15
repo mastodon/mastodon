@@ -49,7 +49,8 @@ class Auth::SessionsController < Devise::SessionsController
   end
 
   def valid_otp_attempt?(user)
-    user.validate_and_consume_otp!(user_params[:otp_attempt])
+    user.validate_and_consume_otp!(user_params[:otp_attempt]) ||
+      user.invalidate_otp_backup_code!(user_params[:otp_attempt])
   end
 
   def authenticate_with_two_factor

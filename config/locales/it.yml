@@ -1,0 +1,172 @@
+---
+it:
+  about:
+    about_mastodon: Mastodon è un social network <em>gratuito e open-source</em>. Un'alternativa <em>decentralizzata</em> alle piattaforme commerciali che evita che una singola compagnia monopolizzi il tuo modo di comunicare. Scegli un server di cui ti fidi &mdash; qualunque sia la tua scelta, potrai interagire con chiunque altro. Chiunque può sviluppare un suo server Mastodon e partecipare alla vita del <em>social network</em>.
+    about_this: A proposito di questo server
+    apps: Applicazioni
+    business_email: 'Email di lavoro:'
+    closed_registrations: Al momento le iscrizioni a questo server sono chiuse.
+    contact: Contatti
+    description_headline: Cos'è %{domain}?
+    domain_count_after: altri server
+    domain_count_before: Connesso a
+    features:
+      api: API aperto per applicazioni e servizi
+      blocks: Potenti strumenti di blocco e silenziamento
+      characters: 500 caratteri per status
+      chronology: Le timeline sono cronologiche
+      ethics: 'Design etico: niente pubblicità, niente tracking'
+      gifv: Set di GIFV e brevi video
+      privacy: Opzioni di privacy mirate per-post
+      public: Timeline pubbliche
+    features_headline: Cosa rende Mastodon migliore
+    get_started: Inizia
+    links: Links
+    other_instances: Altri server
+    source_code: Codice sorgente
+    status_count_after: status
+    status_count_before: Che hanno pubblicato
+    terms: Termini di Utilizzo
+    user_count_after: utenti
+    user_count_before: Casa di
+  accounts:
+    follow: Segui
+    followers: Seguaci
+    following: Seguiti
+    nothing_here: Qui non c'è nulla!
+    people_followed_by: Persone seguite da %{name}
+    people_who_follow: Persone che seguono %{name}
+    posts: Posts
+    remote_follow: Segui da remoto
+    unfollow: Non seguire più
+  application_mailer:
+    settings: 'Cambia le impostazioni per le e-mail: %{link}'
+    signature: Notifiche Mastodon da %{instance}
+    view: 'Guarda:'
+  applications:
+    invalid_url: L'URL fornito non è valido
+  auth:
+    change_password: Credenziali
+    didnt_get_confirmation: Non hai ricevuto le istruzioni di conferma?
+    forgot_password: Hai dimenticato la tua password?
+    login: Entra
+    logout: Logout
+    register: Iscriviti
+    resend_confirmation: Invia di nuovo le istruzioni di conferma
+    reset_password: Resetta la password
+    set_new_password: Imposta una nuova password
+  authorize_follow:
+    error: Sfortunatamente c'è stato un errore nel consultare l'account remoto
+    follow: Segui
+    prompt_html: 'Tu, (<strong>%{self}</strong>), hai richiesto di seguire:'
+    title: Segui %{acct}
+  datetime:
+    distance_in_words:
+      about_x_hours: "%{count} ore"
+      about_x_months: "%{count} mesi"
+      about_x_years: "%{count} anni"
+      almost_x_years: "%{count} anni"
+      half_a_minute: Adesso
+      less_than_x_minutes: "%{count} minuti"
+      less_than_x_seconds: Adesso
+      over_x_years: "%{count} anni"
+      x_days: "%{count} giorni"
+      x_minutes: "%{count} minuti"
+      x_months: "%{count} mesi"
+      x_seconds: "%{count} secondi"
+  exports:
+    blocks: Stai bloccando
+    csv: CSV
+    follows: Stai seguendo
+    storage: Archiviazione media
+  generic:
+    changes_saved_msg: Modifiche effettuate con successo!
+    powered_by: offerto da %{link}
+    save_changes: Salva modifiche
+    validation_errors:
+      one: Qualcosa ancora non va bene! Per favore, controlla l'errore qui sotto
+      other: Qualcosa ancora non va bene! Per favore, controlla i %{count} errori qui sotto
+  imports:
+    preface: Puoi importare alcune informazioni, come le persone che segui o hai bloccato su questo server, da file creati da un esportazione su un altro server.
+    success: Le tue impostazioni sono state importate correttamente e verranno applicate in breve tempo
+    types:
+      blocking: Lista dei bloccati
+      following: Lista dei seguaci
+    upload: Carica
+  landing_strip_html: <strong>%{name}</strong> è un utente su <strong>%{domain}</strong>. Puoi seguirlo o interagire con lui se possiedi un account ovunque nel fediverse. Se non possiedi un account, puoi <a href="%{sign_up_path}">iscriverti qui</a>.
+  media_attachments:
+    validations:
+      images_and_video: Impossibile allegare video a un post che contiene già immagini
+      too_many: Impossibile allegare più di 4 file
+  notification_mailer:
+    digest:
+      body: 'Ecco un breve riassunto di quello che ti sei perso su %{instance} dalla tua ultima visita del %{since}:'
+      mention: "%{name} ti ha menzionato:"
+      new_followers_summary:
+        one: Hai ricevuto un nuovo seguace! Urrà!
+        other: Hai ricevuto %{count} nuovi seguaci! Incredibile!
+      subject:
+        one: "1 nuova notifica dalla tua ultima visita \U0001F418"
+        other: "%{count} nuove notifiche dalla tua ultima visita \U0001F418"
+    favourite:
+      body: 'Il tuo status è stato apprezzato da %{name}:'
+      subject: "%{name} ha apprezzato il tuo status"
+    follow:
+      body: "%{name} ti sta seguendo!"
+      subject: "%{name} ti sta seguendo"
+    follow_request:
+      body: "%{name} ha chiesto di seguirti"
+      subject: 'Seguace in sospeso: %{name}'
+    mention:
+      body: 'Sei stato menzionato da %{name} su:'
+      subject: Sei stato menzionato da %{name}
+    reblog:
+      body: 'Il tuo status è stato condiviso da %{name}:'
+      subject: "%{name} ha condiviso il tuo status"
+  pagination:
+    next: Avanti
+    prev: Indietro
+    truncate: "&hellip;"
+  remote_follow:
+    acct: Inserisci il tuo username@dominio da cui vuoi seguire questo utente
+    missing_resource: Impossibile trovare l'URL di reindirizzamento richiesto per il tuo account
+    proceed: Conferma
+    prompt: 'Stai per seguire:'
+  settings:
+    authorized_apps: Applicazioni autorizzate
+    back: Torna a Mastodon
+    edit_profile: Modifica profilo
+    export: Esporta impostazioni
+    import: Importa
+    preferences: Preferenze
+    settings: Impostazioni
+    two_factor_auth: Autenticazione a Due Fattori
+  statuses:
+    open_in_web: Apri sul Web
+    over_character_limit: Limite caratteri superato di %{max}
+    show_more: Mostra di più
+    visibilities:
+      private: Mostra solo ai tuoi seguaci
+      public: Pubblico
+      unlisted: Pubblico, ma non visibile sulla timeline pubblica
+  stream_entries:
+    click_to_show: Clicca per mostrare
+    reblogged: condiviso
+    sensitive_content: Materiale sensibile
+  time:
+    formats:
+      default: "%b %d, %Y, %H:%M"
+  two_factor_auth:
+    code_hint: Inserisci il codice generato dalla tua app di autenticazione
+    description_html: Se abiliti <strong>l'autorizzazione a due fattori</strong>, entrare nel tuo account ti richiederà di avere vicino il tuo telefono, il quale ti genererà un codice per eseguire l'accesso.
+    disable: Disabilita
+    enable: Abilita
+    enabled_success: Autenticazione a due fattori attivata con successo
+    instructions_html: "<strong>Scannerizza questo QR code con Google Authenticator o un'app TOTP simile sul tuo telefono</strong>. Da ora in poi, quell'applicazione genererà codici da inserire necessariamente per eseguire l'accesso."
+    manual_instructions: 'Se non puoi scannerizzare il QR code e hai bisogno di inserirlo manualmente, questo è il codice segreto in chiaro:'
+    setup: Configura
+    warning: Se non puoi convalidare immediatamente la tua app di autenticazione, dovresti selezionare "disabilita" o non sarai più in grado di eseguire l'accesso.
+    wrong_code: Il codice inserito non è corretto! Assicurati che l'orario del server e l'orario del telefono siano corretti.
+  users:
+    invalid_email: L'indirizzo e-mail inserito non è valido
+    invalid_otp_token: Codice d'accesso non valido

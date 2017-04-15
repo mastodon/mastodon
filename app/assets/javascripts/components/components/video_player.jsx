@@ -6,7 +6,8 @@ import { isIOS } from '../is_mobile';
 
 const messages = defineMessages({
   toggle_sound: { id: 'video_player.toggle_sound', defaultMessage: 'Toggle sound' },
-  toggle_visible: { id: 'video_player.toggle_visible', defaultMessage: 'Toggle visibility' }
+  toggle_visible: { id: 'video_player.toggle_visible', defaultMessage: 'Toggle visibility' },
+  expand_video: { id: 'video_player.expand', defaultMessage: 'Expand video' }
 });
 
 const videoStyle = {
@@ -21,8 +22,8 @@ const videoStyle = {
 
 const muteStyle = {
   position: 'absolute',
-  top: '10px',
-  right: '10px',
+  top: '4px',
+  right: '4px',
   color: 'white',
   textShadow: "0px 1px 1px black, 1px 0px 1px black",
   opacity: '0.8',
@@ -54,8 +55,17 @@ const spoilerSubSpanStyle = {
 
 const spoilerButtonStyle = {
   position: 'absolute',
-  top: '6px',
-  left: '8px',
+  top: '4px',
+  left: '4px',
+  color: 'white',
+  textShadow: "0px 1px 1px black, 1px 0px 1px black",
+  zIndex: '100'
+};
+
+const expandButtonStyle = {
+  position: 'absolute',
+  bottom: '4px',
+  right: '4px',
   color: 'white',
   textShadow: "0px 1px 1px black, 1px 0px 1px black",
   zIndex: '100'
@@ -68,7 +78,8 @@ const VideoPlayer = React.createClass({
     height: React.PropTypes.number,
     sensitive: React.PropTypes.bool,
     intl: React.PropTypes.object.isRequired,
-    autoplay: React.PropTypes.bool
+    autoplay: React.PropTypes.bool,
+    onOpenVideo: React.PropTypes.func.isRequired
   },
 
   getDefaultProps () {
@@ -116,6 +127,11 @@ const VideoPlayer = React.createClass({
     });
   },
 
+  handleExpand () {
+    this.video.pause();
+    this.props.onOpenVideo(this.props.media, this.video.currentTime);
+  },
+
   setRef (c) {
     this.video = c;
   },
@@ -154,8 +170,14 @@ const VideoPlayer = React.createClass({
     const { media, intl, width, height, sensitive, autoplay } = this.props;
 
     let spoilerButton = (
-      <div style={spoilerButtonStyle} >
-        <IconButton title={intl.formatMessage(messages.toggle_visible)} icon={this.state.visible ? 'eye' : 'eye-slash'} onClick={this.handleVisibility} />
+      <div style={{...spoilerButtonStyle, display: !this.state.visible ? 'none' : 'block'}} >
+        <IconButton overlay title={intl.formatMessage(messages.toggle_visible)} icon={this.state.visible ? 'eye' : 'eye-slash'} onClick={this.handleVisibility} />
+      </div>
+    );
+
+    let expandButton = (
+      <div style={expandButtonStyle} >
+        <IconButton overlay title={intl.formatMessage(messages.expand_video)} icon='expand' onClick={this.handleExpand} />
       </div>
     );
 
@@ -164,7 +186,7 @@ const VideoPlayer = React.createClass({
     if (this.state.hasAudio) {
       muteButton = (
         <div style={muteStyle}>
-          <IconButton title={intl.formatMessage(messages.toggle_sound)} icon={this.state.muted ? 'volume-off' : 'volume-up'} onClick={this.handleClick} />
+          <IconButton overlay title={intl.formatMessage(messages.toggle_sound)} icon={this.state.muted ? 'volume-off' : 'volume-up'} onClick={this.handleClick} />
         </div>
       );
     }
@@ -172,7 +194,7 @@ const VideoPlayer = React.createClass({
     if (!this.state.visible) {
       if (sensitive) {
         return (
-          <div style={{...spoilerStyle, width: `${width}px`, height: `${height}px` }} className='media-spoiler' onClick={this.handleVisibility}>
+          <div role='button' tabIndex='0' style={{...spoilerStyle, width: `${width}px`, height: `${height}px` }} className='media-spoiler' onClick={this.handleVisibility}>
             {spoilerButton}
             <span style={spoilerSpanStyle}><FormattedMessage id='status.sensitive_warning' defaultMessage='Sensitive content' /></span>
             <span style={spoilerSubSpanStyle}><FormattedMessage id='status.sensitive_toggle' defaultMessage='Click to view' /></span>
@@ -180,7 +202,7 @@ const VideoPlayer = React.createClass({
         );
       } else {
         return (
-          <div style={{...spoilerStyle, width: `${width}px`, height: `${height}px` }} className='media-spoiler' onClick={this.handleVisibility}>
+          <div role='button' tabIndex='0' style={{...spoilerStyle, width: `${width}px`, height: `${height}px` }} className='media-spoiler' onClick={this.handleVisibility}>
             {spoilerButton}
             <span style={spoilerSpanStyle}><FormattedMessage id='status.media_hidden' defaultMessage='Media hidden' /></span>
             <span style={spoilerSubSpanStyle}><FormattedMessage id='status.sensitive_toggle' defaultMessage='Click to view' /></span>
@@ -191,7 +213,7 @@ const VideoPlayer = React.createClass({
 
     if (this.state.preview && !autoplay) {
       return (
-        <div style={{ cursor: 'pointer', position: 'relative', marginTop: '8px', width: `${width}px`, height: `${height}px`, background: `url(${media.get('preview_url')}) no-repeat center`, backgroundSize: 'cover' }} onClick={this.handleOpen}>
+        <div role='button' tabIndex='0' style={{ cursor: 'pointer', position: 'relative', marginTop: '8px', width: `${width}px`, height: `${height}px`, background: `url(${media.get('preview_url')}) no-repeat center`, backgroundSize: 'cover' }} onClick={this.handleOpen}>
           {spoilerButton}
           <div style={{ position: 'absolute', top: '50%', left: '50%', fontSize: '36px', transform: 'translate(-50%, -50%)', padding: '5px', borderRadius: '100px', color: 'rgba(255, 255, 255, 0.8)' }}><i className='fa fa-play' /></div>
         </div>
@@ -202,7 +224,8 @@ const VideoPlayer = React.createClass({
       <div style={{ cursor: 'default', marginTop: '8px', overflow: 'hidden', width: `${width}px`, height: `${height}px`, boxSizing: 'border-box', background: '#000', position: 'relative' }}>
         {spoilerButton}
         {muteButton}
-        <video ref={this.setRef} src={media.get('url')} autoPlay={!isIOS()} loop={true} muted={this.state.muted} style={videoStyle} onClick={this.handleVideoClick} />
+        {expandButton}
+        <video role='button' tabIndex='0' ref={this.setRef} src={media.get('url')} autoPlay={!isIOS()} loop={true} muted={this.state.muted} style={videoStyle} onClick={this.handleVideoClick} />
       </div>
     );
   }
