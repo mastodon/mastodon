@@ -25,7 +25,7 @@ class Export
       account.favourites.each do |favourite|
         domain = favourite.account.local? ? Rails.configuration.x.local_domain : favourite.account.domain
 
-        csv << ["#{domain}/#{favourite.account.username}/#{favourite.status_id}"]
+        csv << ["#{domain}/@#{favourite.account.username}/#{favourite.status_id}"]
       end
     end
   end
