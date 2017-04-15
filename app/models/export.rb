@@ -20,6 +20,16 @@ class Export
     to_csv account.following
   end
 
+  def to_favourite_posts_csv
+    CSV.generate do |csv|
+      account.favourites.each do |favourite|
+        domain = favourite.account.local? ? Rails.configuration.x.local_domain : favourite.account.domain
+
+        csv << ["#{domain}/#{favourite.account.username}/#{favourite.status_id}"]
+      end
+    end
+  end
+
   def total_storage
     account.media_attachments.sum(:file_file_size)
   end
@@ -34,6 +44,10 @@ class Export
 
   def total_mutes
     account.muting.count
+  end
+
+  def total_favourites
+    account.favourites.count
   end
 
   private
