@@ -179,12 +179,12 @@ class ProcessFeedService < BaseService
     end
 
     def hashtags_from_xml(parent, xml)
-      tags = xml.xpath('./xmlns:category', xmlns: TagManager::XMLNS).map { |category| category['term'] }.select { |t| !t.blank? }
+      tags = xml.xpath('./xmlns:category', xmlns: TagManager::XMLNS).map { |category| category['term'] }.select(&:present?)
       ProcessHashtagsService.new.call(parent, tags)
     end
 
     def media_from_xml(parent, xml)
-      return if DomainBlock.find_by(domain: parent.account.domain)&.reject_media?
+      do_not_download = DomainBlock.find_by(domain: parent.account.domain)&.reject_media?
 
       xml.xpath('./xmlns:link[@rel="enclosure"]', xmlns: TagManager::XMLNS).each do |link|
         next unless link['href']
@@ -192,7 +192,11 @@ class ProcessFeedService < BaseService
         media = MediaAttachment.where(status: parent, remote_url: link['href']).first_or_initialize(account: parent.account, status: parent, remote_url: link['href'])
         parsed_url = URI.parse(link['href'])
 
-        next if !%w(http https).include?(parsed_url.scheme) || parsed_url.host.empty?
+        next if !%w[http https].include?(parsed_url.scheme) || parsed_url.host.empty?
+
+        media.save
+
+        next if do_not_download
 
         begin
           media.file_remote_url = link['href']

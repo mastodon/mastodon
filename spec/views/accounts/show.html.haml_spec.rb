@@ -2,25 +2,28 @@ require 'rails_helper'
 $LOAD_PATH << '../lib'
 require 'tag_manager'
 
-describe "stream_entries/show.html.haml" do
-
+describe 'stream_entries/show.html.haml' do
   before do
-    double(:api_oembed_url => '')
-    double(:account_stream_entry_url => '')
+    double(api_oembed_url: '')
+    double(account_stream_entry_url: '')
+
+    def view.single_user_mode?
+      false
+    end
   end
 
-  it "has valid author h-card and basic data for a detailed_status" do
-    alice  =  Fabricate(:account, username: 'alice', display_name: 'Alice')
-    bob    =  Fabricate(:account, username: 'bob', display_name: 'Bob')
-    status =  Fabricate(:status, account: alice, text: 'Hello World')
-    reply  =  Fabricate(:status, account: bob, thread: status, text: 'Hello Alice')
+  it 'has valid author h-card and basic data for a detailed_status' do
+    alice  = Fabricate(:account, username: 'alice', display_name: 'Alice')
+    bob    = Fabricate(:account, username: 'bob', display_name: 'Bob')
+    status = Fabricate(:status, account: alice, text: 'Hello World')
+    Fabricate(:status, account: bob, thread: status, text: 'Hello Alice')
 
     assign(:status, status)
     assign(:stream_entry, status.stream_entry)
     assign(:account, alice)
     assign(:type, status.stream_entry.activity_type.downcase)
 
-    render(:template => 'stream_entries/show.html.haml')
+    render(template: 'stream_entries/show.html.haml')
 
     mf2 = Microformats2.parse(rendered)
 
@@ -31,22 +34,22 @@ describe "stream_entries/show.html.haml" do
     expect(mf2.entry.author.format.url.to_s).not_to be_empty
   end
 
-  it "has valid h-cites for p-in-reply-to and p-comment" do
-    alice   =  Fabricate(:account, username: 'alice', display_name: 'Alice')
-    bob     =  Fabricate(:account, username: 'bob', display_name: 'Bob')
-    carl    =  Fabricate(:account, username: 'carl', display_name: 'Carl')
-    status  =  Fabricate(:status, account: alice, text: 'Hello World')
-    reply   =  Fabricate(:status, account: bob, thread: status, text: 'Hello Alice')
-    comment =  Fabricate(:status, account: carl, thread: reply, text: 'Hello Bob')
+  it 'has valid h-cites for p-in-reply-to and p-comment' do
+    alice  = Fabricate(:account, username: 'alice', display_name: 'Alice')
+    bob    = Fabricate(:account, username: 'bob', display_name: 'Bob')
+    carl   = Fabricate(:account, username: 'carl', display_name: 'Carl')
+    status = Fabricate(:status, account: alice, text: 'Hello World')
+    reply  = Fabricate(:status, account: bob, thread: status, text: 'Hello Alice')
+    Fabricate(:status, account: carl, thread: reply, text: 'Hello Bob')
 
     assign(:status, reply)
     assign(:stream_entry, reply.stream_entry)
     assign(:account, alice)
     assign(:type, reply.stream_entry.activity_type.downcase)
-    assign(:ancestors, reply.stream_entry.activity.ancestors(bob) )
+    assign(:ancestors, reply.stream_entry.activity.ancestors(bob))
     assign(:descendants, reply.stream_entry.activity.descendants(bob))
 
-    render(:template => 'stream_entries/show.html.haml')
+    render(template: 'stream_entries/show.html.haml')
 
     mf2 = Microformats2.parse(rendered)
 
@@ -61,7 +64,4 @@ describe "stream_entries/show.html.haml" do
     expect(mf2.entry.in_reply_to.format.author.format.name.to_s).to eq alice.display_name
     expect(mf2.entry.in_reply_to.format.author.format.url.to_s).not_to be_empty
   end
-
 end
-
-
