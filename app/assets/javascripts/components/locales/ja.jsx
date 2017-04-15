@@ -64,7 +64,7 @@ const ja = {
   "privacy.private.long": "フォロワーだけに公開",
   "privacy.direct.short": "ダイレクト",
   "privacy.direct.long": "含んだユーザーだけに公開",
-  "privacy.change": "投稿のプライバシーを変更2",
+  "privacy.change": "投稿のプライバシーを変更",
   "report.heading": "新規通報",
   "report.placeholder": "コメント",
   "report.target": "問題のユーザー",
