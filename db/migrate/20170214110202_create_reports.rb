@@ -4,7 +4,7 @@ class CreateReports < ActiveRecord::Migration[5.0]
       t.integer :account_id, null: false
       t.integer :target_account_id, null: false
       t.integer :status_ids, array: true, null: false, default: []
-      t.text :comment, null: false, default: ''
+      t.text :comment, null: false
       t.boolean :action_taken, null: false, default: false
 
       t.timestamps

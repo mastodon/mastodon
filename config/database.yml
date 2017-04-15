@@ -1,8 +1,9 @@
 default: &default
-  adapter: postgresql
+  adapter: mysql2
   pool: <%= ENV["DB_POOL"] || ENV['MAX_THREADS'] || 5 %>
   timeout: 5000
-  encoding: unicode
+  encoding: utf8mb4
+  collation: utf8mb4_bin
 
 development:
   <<: *default

@@ -159,6 +159,8 @@ GEM
     fast_blank (1.0.0)
     font-awesome-rails (4.7.0.1)
       railties (>= 3.2, < 5.1)
+    foreman (0.84.0)
+      thor (~> 0.19.1)
     fuubar (2.2.0)
       rspec-core (~> 3.0)
       ruby-progressbar (~> 1.4)
@@ -246,6 +248,7 @@ GEM
     mimemagic (0.3.2)
     mini_portile2 (2.1.0)
     minitest (5.10.1)
+    mysql2 (0.4.5)
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
     net-ssh (4.1.0)
@@ -484,6 +487,7 @@ DEPENDENCIES
   faker
   fast_blank
   font-awesome-rails
+  foreman
   fuubar
   goldfinger
   hamlit-rails
@@ -499,6 +503,7 @@ DEPENDENCIES
   letter_opener_web
   link_header
   lograge
+  mysql2
   nokogiri
   oj
   ostatus2
@@ -540,7 +545,7 @@ DEPENDENCIES
   webmock
 
 RUBY VERSION
-   ruby 2.4.1p111
+   ruby 2.4.0p0
 
 BUNDLED WITH
    1.14.6

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 source 'https://rubygems.org'
-ruby '2.4.1'
+ruby '2.4.0'
 
 gem 'pkg-config'
 
@@ -15,6 +15,9 @@ gem 'puma'
 gem 'hamlit-rails'
 gem 'pg'
 gem 'pghero'
+
+gem 'mysql2'
+
 gem 'dotenv-rails'
 gem 'font-awesome-rails'
 gem 'best_in_place', '~> 3.0.1'
@@ -79,6 +82,8 @@ group :test do
 end
 
 group :development do
+  gem 'foreman'
+
   gem 'rubocop', require: false
   gem 'better_errors'
   gem 'binding_of_caller'

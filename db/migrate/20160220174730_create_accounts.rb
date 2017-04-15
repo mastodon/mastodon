@@ -10,7 +10,7 @@ class CreateAccounts < ActiveRecord::Migration
 
       # RSA key pair
       t.text :private_key, null: true
-      t.text :public_key, null: false, default: ''
+      t.text :public_key, null: false
 
       # URLs
       t.string :remote_url, null: false, default: ''
