@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
   force_ssl if: "Rails.env.production? && ENV['LOCAL_HTTPS'] == 'true'"
 
   include Localized
-  helper_method :current_account
+  helper_method :current_account, :single_user_mode?
 
   rescue_from ActionController::RoutingError, with: :not_found
   rescue_from ActiveRecord::RecordNotFound, with: :not_found
@@ -67,6 +67,10 @@ class ApplicationController < ActionController::Base
       format.any  { head 422 }
       format.html { render 'errors/422', layout: 'error', status: 422 }
     end
+  end
+
+  def single_user_mode?
+    @single_user_mode ||= Rails.configuration.x.single_user_mode && Account.first
   end
 
   def current_account
