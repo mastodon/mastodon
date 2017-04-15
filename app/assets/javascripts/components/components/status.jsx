@@ -84,7 +84,7 @@ const Status = React.createClass({
     }
 
     return (
-      <div className={this.props.muted ? 'status muted' : 'status'}>
+      <div className={this.props.muted ? 'status muted' : 'status'}  onClick={this.handleClick} style={{ cursor: 'pointer' }}>
         <div style={{ fontSize: '15px' }}>
           <div style={{ float: 'right', fontSize: '14px' }}>
             <a href={status.get('url')} className='status__relative-time' target='_blank' rel='noopener'><RelativeTimestamp timestamp={status.get('created_at')} /></a>
@@ -99,7 +99,7 @@ const Status = React.createClass({
           </a>
         </div>
 
-        <StatusContent status={status} onClick={this.handleClick} />
+        <StatusContent status={status} />
 
         {media}
 

@@ -199,6 +199,7 @@ const MediaGallery = React.createClass({
 
   handleOpen (e) {
     this.setState({ visible: !this.state.visible });
+    e.stopPropagation();
   },
 
   handleClick (index) {
