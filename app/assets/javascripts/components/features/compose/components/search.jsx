@@ -36,6 +36,10 @@ const Search = React.createClass({
     }
   },
 
+  noop () {
+
+  },
+
   handleFocus () {
     this.props.onShow();
   },
@@ -56,9 +60,9 @@ const Search = React.createClass({
           onFocus={this.handleFocus}
         />
 
-        <div className='search__icon'>
+        <div role='button' tabIndex='0' className='search__icon' onClick={hasValue ? this.handleClear : this.noop}>
           <i className={`fa fa-search ${hasValue ? '' : 'active'}`} />
-          <i className={`fa fa-times-circle ${hasValue ? 'active' : ''}`} onClick={this.handleClear} />
+          <i aria-label="Clear search" className={`fa fa-times-circle ${hasValue ? 'active' : ''}`} />
         </div>
       </div>
     );
