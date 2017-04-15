@@ -20,7 +20,7 @@ SimpleNavigation::Configuration.run do |navigation|
       admin.item :pubsubhubbubs, safe_join([fa_icon('paper-plane-o fw'), t('admin.pubsubhubbub.title')]), admin_pubsubhubbub_index_url
       admin.item :domain_blocks, safe_join([fa_icon('lock fw'), t('admin.domain_block.title')]), admin_domain_blocks_url, highlights_on: %r{/admin/domain_blocks}
       admin.item :sidekiq, safe_join([fa_icon('diamond fw'), 'Sidekiq']), sidekiq_url, link_html: { target: 'sidekiq' }
-      admin.item :pghero, safe_join([fa_icon('database fw'), 'PgHero']), pghero_url link_html: { target: 'pghero' }
+      admin.item :pghero, safe_join([fa_icon('database fw'), 'PgHero']), pghero_url, link_html: { target: 'pghero' }
       admin.item :settings, safe_join([fa_icon('cogs fw'), t('admin.settings.title')]), admin_settings_url
     end
 
