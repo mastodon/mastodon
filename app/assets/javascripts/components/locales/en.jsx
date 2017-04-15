@@ -88,7 +88,7 @@ const en = {
   "privacy.change": "Adjust status privacy",
   "privacy.direct.long": "Post to mentioned users only",
   "privacy.direct.short": "Direct",
-  "privacy.private.long": "Post to followers only",
+  "privacy.private.long": "Post to local followers only",
   "privacy.private.short": "Private",
   "privacy.public.long": "Post to public timelines",
   "privacy.public.short": "Public",
