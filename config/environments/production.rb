@@ -98,7 +98,6 @@ Rails.application.configure do
     :address              => ENV['SMTP_SERVER'],
 #    :user_name            => ENV['SMTP_LOGIN'],
 #    :password             => ENV['SMTP_PASSWORD'],
-    :domain               => ENV['SMTP_DOMAIN'] || config.x.local_domain,
     :user_name            => ENV['SMTP_LOGIN'],
     :password             => ENV['SMTP_PASSWORD'],
     :domain               => ENV['SMTP_DOMAIN'] || ENV['LOCAL_DOMAIN'],
