@@ -43,7 +43,7 @@ echo 'eval "$(rbenv init -)"' >> ~/.bash_profile
 
 git clone https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build
 
-export PATH="$HOME/.rbenv/bin::$PATH"
+export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
 
 cd /vagrant

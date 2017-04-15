@@ -20,38 +20,38 @@
         authorize: Autoriser
         cancel: Avbryt
         destroy: Ødelegg
-        edit: Endre
+        edit: Rediger
         submit: Send inn
       confirmations:
         destroy: Er du sikker?
       edit:
         title: Endre applikasjon
       form:
-        error: Whoops! Sjekk skjemaet ditt for mulige feil
+        error: Oops! Sjekk skjemaet ditt for mulige feil
       help:
         native_redirect_uri: Bruk %{native_redirect_uri} for lokale tester
-        redirect_uri: Bruk en linje per URI
+        redirect_uri: Bruk én linje per URI
         scopes: Adskill omfang med mellomrom. La det være blankt for å bruke standard omfang.
       index:
-        callback_url: Callback URL
+        callback_url: Callback-URL
         name: Navn
-        new: Ny Applikasjon
+        new: Ny applikasjon
         title: Dine applikasjoner
       new:
-        title: Ny Applikasjoner
+        title: Nye applikasjoner
       show:
         actions: Operasjoner
-        application_id: Applikasjon Id
-        callback_urls: Callback urls
+        application_id: Applikasjons-ID
+        callback_urls: Callback-URLer
         scopes: Omfang
         secret: Hemmelighet
         title: 'Applikasjon: %{name}'
     authorizations:
       buttons:
-        authorize: Autoriser
+        authorize: Autorisér
         deny: Avvis
       error:
-        title: En feil oppsto
+        title: En feil oppstod
       new:
         able_to: Den vil ha mulighet til
         prompt: Applikasjon %{client_name} spør om tilgang til din konto
@@ -71,24 +71,24 @@
         title: Dine autoriserte applikasjoner
     errors:
       messages:
-        access_denied: Ressurseieren eller autoriserings tjeneren avviste forespørslen.
-        credential_flow_not_configured: Ressurseiers passord flyt feilet på grunn av at Doorkeeper.configure.resource_owner_from_credentials ikke var konfigurert.
-        invalid_client: Klient autentisering feilet på grunn av ukjent klient, ingen autentisering inkludert eller autentiserings metode som ikke er støttet.
+        access_denied: Ressurseieren eller autoriseringstjeneren avviste forespørslen.
+        credential_flow_not_configured: Ressurseiers passordflyt feilet fordi Doorkeeper.configure.resource_owner_from_credentials ikke var konfigurert.
+        invalid_client: Klientautentisering feilet på grunn av ukjent klient, ingen autentisering inkludert, eller autentiseringsmetode er ikke støttet.
         invalid_grant: Autoriseringen er ugyldig, utløpt, opphevet, stemmer ikke overens med omdirigerings-URIen eller var utstedt til en annen klient.
-        invalid_redirect_uri: redirect urien som var inkludert er ikke gyldig.
-        invalid_request: Forespørslen mangler ett eller flere parametere, inkluderte ett parameter som ikke støttes eller har feil struktur.
-        invalid_resource_owner: Ressurseierens detaljer er ikke gyldig, eller så kan ikke eieren finnes.
+        invalid_redirect_uri: Den inkluderte omdirigerings-URLen er ikke gyldig.
+        invalid_request: Forespørslen mangler en eller flere parametere, inkluderte en parameter som ikke støttes eller har feil struktur.
+        invalid_resource_owner: Ressurseierens detaljer er ikke gyldige, eller så kan ikke eieren finnes.
         invalid_scope: Det etterspurte omfanget er ugyldig, ukjent eller har feil struktur.
         invalid_token:
           expired: Tilgangsbeviset har utløpt
           revoked: Tilgangsbeviset har blitt opphevet
           unknown: Tilgangsbeviset er ugyldig
         resource_owner_authenticator_not_configured: Ressurseier kunne ikke finnes fordi Doorkeeper.configure.resource_owner_authenticator ikke er konfigurert.
-        server_error: Autoriserings tjeneren støtte på en uventet hendelse som hindret den i å svare på forespørslen.
-        temporarily_unavailable: Autoriserings tjeneren kan ikke håndtere forespørslen grunnet en midlertidig overbelastning eller tjenervedlikehold.
+        server_error: Autoriseringstjeneren støtte på en uventet hendelse som hindret den i å svare på forespørslen.
+        temporarily_unavailable: Autoriseringstjeneren kan ikke håndtere forespørslen grunnet en midlertidig overbelastning eller tjenervedlikehold.
         unauthorized_client: Klienten har ikke autorisasjon for å utføre denne forespørslen med denne metoden.
-        unsupported_grant_type: Autorisasjons tildelings typen er ikke støttet av denne autoriserings tjeneren.
-        unsupported_response_type: Autorisasjons serveren støtter ikke denne typen av forespørsler.
+        unsupported_grant_type: Autorisasjonstildelingstypen er ikke støttet av denne autoriseringstjeneren.
+        unsupported_response_type: Autorisasjonsserveren støtter ikke denne typen av forespørsler.
     flash:
       applications:
         create:
@@ -104,10 +104,10 @@
       admin:
         nav:
           applications: Applikasjoner
-          oauth2_provider: OAuth2 tilbyder
+          oauth2_provider: OAuth2-tilbyder
       application:
-        title: OAuth autorisering påkrevet
+        title: OAuth-autorisering påkrevet
     scopes:
-      follow: følg, blokker, avblokker, avfølg kontoer
+      follow: følg, blokkér, avblokkér, avfølg brukere
       read: lese dine data
       write: poste på dine vegne
