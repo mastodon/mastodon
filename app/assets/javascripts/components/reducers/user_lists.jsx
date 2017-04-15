@@ -16,6 +16,10 @@ import {
   BLOCKS_FETCH_SUCCESS,
   BLOCKS_EXPAND_SUCCESS
 } from '../actions/blocks';
+import {
+  MUTES_FETCH_SUCCESS,
+  MUTES_EXPAND_SUCCESS
+} from '../actions/mutes';
 import Immutable from 'immutable';
 
 const initialState = Immutable.Map({
@@ -24,7 +28,8 @@ const initialState = Immutable.Map({
   reblogged_by: Immutable.Map(),
   favourited_by: Immutable.Map(),
   follow_requests: Immutable.Map(),
-  blocks: Immutable.Map()
+  blocks: Immutable.Map(),
+  mutes: Immutable.Map()
 });
 
 const normalizeList = (state, type, id, accounts, next) => {
@@ -65,6 +70,10 @@ export default function userLists(state = initialState, action) {
     return state.setIn(['blocks', 'items'], Immutable.List(action.accounts.map(item => item.id))).setIn(['blocks', 'next'], action.next);
   case BLOCKS_EXPAND_SUCCESS:
     return state.updateIn(['blocks', 'items'], list => list.push(...action.accounts.map(item => item.id))).setIn(['blocks', 'next'], action.next);
+  case MUTES_FETCH_SUCCESS:
+    return state.setIn(['mutes', 'items'], Immutable.List(action.accounts.map(item => item.id))).setIn(['mutes', 'next'], action.next);
+  case MUTES_EXPAND_SUCCESS:
+    return state.updateIn(['mutes', 'items'], list => list.push(...action.accounts.map(item => item.id))).setIn(['mutes', 'next'], action.next);
   default:
     return state;
   }

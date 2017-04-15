@@ -11,12 +11,12 @@ fi:
     domain_count_before: Yhdistyneenä
     features:
       api: Avoin API ohjelmille ja palveluille
-      blocks: Rikkaat esto ja hiljennys työkalut
+      blocks: Rikkaat esto- ja hiljennystyökalut
       characters: 500 kirjainta per viesti
       chronology: Aikajana on kronologisessa järjestyksessä
-      ethics: 'Eettinen suunnittelu: ei mainoksia, no seurantaa'
+      ethics: 'Eettinen suunnittelu: ei mainoksia, ei seurantaa'
       gifv: GIFV settejä ja lyhyitä videoita
-      privacy: Julkaisu kohtainen yksityisyys asetus
+      privacy: Julkaisukohtainen yksityisyysasetus
       public: Julkiset aikajanat
     features_headline: Mikä erottaa Mastodonin muista
     get_started: Aloita käyttö
@@ -39,23 +39,23 @@ fi:
     remote_follow: Etäseuranta
     unfollow: Lopeta seuraaminen
   application_mailer:
-    settings: 'Muokkaa sähköposti asetuksia: %{link}'
-    signature: Mastodon ilmoituksia palvelimelta %{instance}
+    settings: 'Muokkaa sähköpostiasetuksia: %{link}'
+    signature: Mastodon-ilmoituksia palvelimelta %{instance}
     view: 'Katso:'
   applications:
     invalid_url: Annettu URL on väärä
   auth:
     change_password: Tunnukset
-    didnt_get_confirmation: Etkö saanut varmennus ohjeita?
+    didnt_get_confirmation: Etkö saanut varmennusohjeita?
     forgot_password: Unohditko salasanasi?
     login: Kirjaudu sisään
     logout: Kirjaudu ulos
     register: Rekisteröidy
-    resend_confirmation: Lähetä varmennus ohjeet uudestaan
-    reset_password: Palauta Salasana
+    resend_confirmation: Lähetä varmennusohjeet uudestaan
+    reset_password: Palauta salasana
     set_new_password: Aseta uusi salasana
   authorize_follow:
-    error: Valitettavasti tapahtui virhe etätilin haussa
+    error: Valitettavasti tapahtui virhe etätilin haussa.
     follow: Seuraa
     prompt_html: 'Sinä (<strong>%{self}</strong>) olet pyytänyt lupaa seurata:'
     title: Seuraa %{acct}
@@ -79,12 +79,12 @@ fi:
     follows: Seurattavat
     storage: Mediasi
   generic:
-    changes_saved_msg: Muutokset onnistuneesti tallenettu!
+    changes_saved_msg: Muutokset onnistuneesti tallennettu!
     powered_by: powered by %{link}
     save_changes: Tallenna muutokset
     validation_errors:
-      one: Jokin ei ole viellä oikein! Katso virhe alapuolelta
-      other: Jokin ei ole viellä oikein! Katso %{count} virhettä alapuolelta
+      one: Jokin ei ole viellä oikein! Katso virhe alapuolelta.
+      other: Jokin ei ole viellä oikein! Katso %{count} virhettä alapuolelta.
   imports:
     preface: Voit tuoda tiettyä dataa kaikista ihmisistä joita seuraat tai estät tilillesi tälle palvelimelle tiedostoista, jotka on luotu toisella palvelimella
     success: Datasi on onnistuneesti ladattu ja käsitellään pian
@@ -151,12 +151,12 @@ fi:
     formats:
       default: "%b %d, %Y, %H:%M"
   two_factor_auth:
-    description_html: Jos otat käyttöön <strong>kaksivaiheisen tunnistuksen</stron>, kirjautumiseen vaaditaan puhelin, joka voi generoida tokeneita kirjautumista varten.
+    description_html: Jos otat käyttöön <strong>kaksivaiheisen tunnistuksen</stron>, kirjautumiseen vaaditaan puhelin, joka voi luoda tokeneita kirjautumista varten.
     disable: Poista käytöstä
     enable: Ota käyttöön
-    instructions_html: "<strong>Skannaa tämä QR-koodi Google Authenticator tai samanlaiseen sovellukseen puhelimellasi</strong>. Tästä hetkestä lähtien ohjelma generoi koodin, mikä sinun tarvitsee syöttää sisäänkirjautuessa."
+    instructions_html: "<strong>Skannaa tämä QR-koodi Google Authenticator- tai vastaavaan sovellukseen puhelimellasi</strong>. Tästä hetkestä lähtien ohjelma luo koodin, mikä sinun tarvitsee syöttää sisäänkirjautuessa."
     plaintext_secret_html: 'Plain-text secret: <samp>%{secret}</samp>'
     warning: Jos et juuri nyt voi konfiguroida authenticator-applikaatiota juuri nyt, sinun pitäisi klikata "Poista käytöstä" tai et voi kirjautua sisään.
   users:
     invalid_email: Virheellinen sähköposti
-    invalid_otp_token: Virheellinen kaksivaihe tunnistus koodi
+    invalid_otp_token: Virheellinen kaksivaihetunnistuskoodi

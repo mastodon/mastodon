@@ -5,37 +5,59 @@ module Admin
     before_action :set_report, except: [:index]
 
     def index
-      @reports = Report.includes(:account, :target_account).order('id desc').page(params[:page])
-      @reports = params[:action_taken].present? ? @reports.resolved : @reports.unresolved
+      @reports = filtered_reports.page(params[:page])
     end
 
-    def show
-      @statuses = Status.where(id: @report.status_ids)
-    end
+    def show; end
 
-    def resolve
-      @report.update(action_taken: true, action_taken_by_account_id: current_account.id)
-      redirect_to admin_report_path(@report)
-    end
-
-    def suspend
-      Admin::SuspensionWorker.perform_async(@report.target_account.id)
-      Report.unresolved.where(target_account: @report.target_account).update_all(action_taken: true, action_taken_by_account_id: current_account.id)
-      redirect_to admin_report_path(@report)
-    end
-
-    def silence
-      @report.target_account.update(silenced: true)
-      Report.unresolved.where(target_account: @report.target_account).update_all(action_taken: true, action_taken_by_account_id: current_account.id)
-      redirect_to admin_report_path(@report)
-    end
-
-    def remove
-      RemovalWorker.perform_async(params[:status_id])
+    def update
+      process_report
       redirect_to admin_report_path(@report)
     end
 
     private
+
+    def process_report
+      case params[:outcome].to_s
+      when 'resolve'
+        @report.update(action_taken_by_current_attributes)
+      when 'suspend'
+        Admin::SuspensionWorker.perform_async(@report.target_account.id)
+        resolve_all_target_account_reports
+      when 'silence'
+        @report.target_account.update(silenced: true)
+        resolve_all_target_account_reports
+      else
+        raise ActiveRecord::RecordNotFound
+      end
+    end
+
+    def action_taken_by_current_attributes
+      { action_taken: true, action_taken_by_account_id: current_account.id }
+    end
+
+    def resolve_all_target_account_reports
+      unresolved_reports_for_target_account.update_all(
+        action_taken_by_current_attributes
+      )
+    end
+
+    def unresolved_reports_for_target_account
+      Report.where(
+        target_account: @report.target_account
+      ).unresolved
+    end
+
+    def filtered_reports
+      filtering_scope.order('id desc').includes(
+        :account,
+        :target_account
+      )
+    end
+
+    def filtering_scope
+      params[:resolved].present? ? Report.resolved : Report.unresolved
+    end
 
     def set_report
       @report = Report.find(params[:id])

@@ -9,7 +9,7 @@ ru:
     contact: Связаться
     description_headline: Что такое %{domain}?
     domain_count_after: другими узлами
-    domain_count_before: Связывается с
+    domain_count_before: Связан с
     features:
       api: Открытый API для приложений и сервисов
       blocks: Продвинутые инструменты блокирования и глушения
@@ -25,7 +25,7 @@ ru:
     other_instances: Другие узлы
     source_code: Исходный код
     status_count_after: статусов
-    status_count_before: Автор
+    status_count_before: Опубликовано
     terms: Условия
     user_count_after: пользователей
     user_count_before: Здесь живет
@@ -42,7 +42,7 @@ ru:
   application_mailer:
     settings: 'Изменить настройки e-mail: %{link}'
     signature: Уведомления Mastodon от %{instance}
-    view: 'View:'
+    view: 'Просмотр:'
   applications:
     invalid_url: Введенный URL неверен
   auth:
@@ -112,7 +112,7 @@ ru:
       subject: "%{name} теперь подписан(а) на Вас"
     follow_request:
       body: "%{name} запросил Вас о подписке"
-      subject: '%{name} хочет подписаться на Вас'
+      subject: "%{name} хочет подписаться на Вас"
     mention:
       body: 'Вас упомянул(а) %{name} в:'
       subject: Вы были упомянуты %{name}
@@ -126,7 +126,7 @@ ru:
     acct: Введите username@domain, откуда Вы хотите подписаться
     missing_resource: Поиск требуемого перенаправления URL для Вашего аккаунта завершился неудачей
     proceed: Продолжить подписку
-    prompt: 'Вы ходите подписаться на:'
+    prompt: 'Вы хотите подписаться на:'
   settings:
     authorized_apps: Авторизованные приложения
     back: Назад в Mastodon
@@ -142,8 +142,8 @@ ru:
     show_more: Подробнее
     visibilities:
       private: Показывать только подписчикам
-      public: Публичный
-      unlisted: Публичный, но без отображения в публичных лентах
+      public: Показывать всем
+      unlisted: Показывать всем, но не отображать в публичных лентах
   stream_entries:
     click_to_show: Показать
     reblogged: продвинул(а)
@@ -152,12 +152,17 @@ ru:
     formats:
       default: "%b %d, %Y, %H:%M"
   two_factor_auth:
+    code_hint: Для подтверждения введите код, сгенерированный приложением аутентификатора
     description_html: При включении <strong>двухфакторной аутентификации</strong>, вход потребует от Вас использования Вашего телефона, который сгенерирует входные токены.
     disable: Отключить
     enable: Включить
     instructions_html: "<strong>Отсканируйте этот QR-код с помощью Google Authenticator или другого подобного приложения на Вашем телефоне</strong>. С этого момента приложение будет генерировать токены, которые будет необходимо ввести для входа."
+    manual_instructions: 'Если Вы не можете отсканировать QR-код и хотите ввести его вручную, секрет представлен здесь открытым текстом:'
     plaintext_secret_html: 'Секрет открытым текстом: <samp>%{secret}</samp>'
+    setup: Настроить
     warning: Если сейчас у Вас не получается настроить аутентификатор, нажмите "отключить", иначе Вы не сможете войти!
   users:
     invalid_email: Введенный e-mail неверен
     invalid_otp_token: Введен неверный код
+  will_paginate:
+    page_gap: "&hellip;"

@@ -1,6 +1,8 @@
 engines:
  duplication:
    enabled: true
+   exclude_paths:
+     - app/assets/javascripts/components/locales/
    config:
      languages:
      - ruby

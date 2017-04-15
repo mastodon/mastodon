@@ -1,7 +1,7 @@
 ---
 'no':
   about:
-    about_mastodon: Mastodon er et <em>gratis, åpen kildekode</em> sosialt nettverk. Et <em>desentralisert</em> alternativ til kommersielle plattformer. Slik kan det unngå risikoene ved å ha et enkelt selskap med monopol på din kommunikasjon. Velg en tjener du stoler på &mdash; uansett hvilken du velger så kan du interagere med alle andre. Alle kan kjøre sin egen Mastodon og delta sømløst i det sosiale nettverket.
+    about_mastodon: Mastodon er et sosialt nettverk laget med <em>fri programvare</em>. Et <em>desentralisert</em> alternativ til kommersielle plattformer. Slik kan det unngå risikoene ved å ha et enkelt selskap som monopoliserer din kommunikasjon. Velg en tjener du stoler på &mdash; uansett hvilken du velger så kan du kommunisere med alle andre. Alle kan kjøre sin egen Mastodon og delta sømløst i det sosiale nettverket.
     about_this: Om denne instansen
     apps: Applikasjoner
     business_email: 'Bedriftsepost:'
@@ -10,24 +10,24 @@
     domain_count_after: andre instanser
     domain_count_before: Koblet til
     features:
-      api: Åpent api for applikasjoner og tjenester
-      blocks: Rikholdige blokkerings verktøy
-      characters: 500 tegn per post
+      api: Åpent API for applikasjoner og tjenester
+      blocks: Rikholdige blokkeringsverktøy
+      characters: 500 tegn per status
       chronology: Tidslinjer er kronologiske
       ethics: 'Etisk design: Ingen reklame, ingen sporing'
-      gifv: GIFV sett og korte videoer
-      privacy: Finmaskete personvernsinnstillinger
-      public: Offentlige tidslinjer
+      gifv: Støtte for GIFV og korte videoer
+      privacy: Finmaskede personvernsinnstillinger
+      public: Forente tidslinjer
     features_headline: Hva skiller Mastodon fra andre sosiale nettverk
     get_started: Kom i gang
     links: Lenker
     other_instances: Andre instanser
     source_code: Kildekode
     status_count_after: statuser
-    status_count_before: Hvem skrev
+    status_count_before: Som skrev
     terms: Betingelser
     user_count_after: brukere
-    user_count_before: Hjem til
+    user_count_before: Her bor
   accounts:
     follow: Følg
     followers: Følgere
@@ -104,8 +104,8 @@
         one: "1 ny hendelse siden ditt siste besøk \U0001F418"
         other: "%{count} nye hendelser siden ditt siste besøk \U0001F418"
     favourite:
-      body: 'Din status ble satt som favoritt av %{name}'
-      subject: "%{name} satte din status som favoritt."
+      body: 'Din status ble likt av %{name}'
+      subject: "%{name} likte din status."
     follow:
       body: "%{name} følger deg!"
       subject: "%{name} følger deg"
@@ -116,8 +116,8 @@
       body: 'Du ble nevnt av %{name} i:'
       subject: Du ble nevnt av %{name}
     reblog:
-      body: 'Din status fikk en boost av %{name}:'
-      subject: "%{name} ga din status en boost"
+      body: 'Din status ble reblogget av %{name}:'
+      subject: "%{name} reblogget din status"
   pagination:
     next: Neste
     prev: Forrige
@@ -142,10 +142,10 @@
     visibilities:
       private: Vis kun til følgere
       public: Offentlig
-      unlisted: Offentlig, men vis ikke på offentlig tidslinje
+      unlisted: Offentlig, men vis ikke på forent tidslinje
   stream_entries:
     click_to_show: Klikk for å vise
-    reblogged: boostet
+    reblogged: reblogget
     sensitive_content: Sensitivt innhold
   time:
     formats:

@@ -2,36 +2,38 @@
 
 module StreamEntriesHelper
   def display_name(account)
-    account.display_name.blank? ? account.username : account.display_name
+    account.display_name.presence || account.username
+  end
+
+  def stream_link_target
+    embedded_view? ? '_blank' : nil
   end
 
   def acct(account)
-    "@#{account.acct}#{@external_links && account.local? ? "@#{Rails.configuration.x.local_domain}" : ''}"
+    "@#{account.acct}#{embedded_view? && account.local? ? "@#{Rails.configuration.x.local_domain}" : ''}"
   end
 
-  def avatar_for_status_url(status)
-    status.reblog? ? status.reblog.account.avatar.url(:original) : status.account.avatar.url(:original)
-  end
-
-  def entry_classes(status, is_predecessor, is_successor, include_threads)
+  def style_classes(status, is_predecessor, is_successor, include_threads)
     classes = ['entry']
-    classes << 'entry-reblog u-repost-of h-cite' if status.reblog?
-    classes << 'entry-predecessor u-in-reply-to h-cite' if is_predecessor
-    classes << 'entry-successor u-comment h-cite' if is_successor
-    classes << 'entry-center h-entry' if include_threads
+    classes << 'entry-predecessor' if is_predecessor
+    classes << 'entry-reblog' if status.reblog?
+    classes << 'entry-successor' if is_successor
+    classes << 'entry-center' if include_threads
     classes.join(' ')
   end
 
-  def relative_time(date)
-    date < 5.days.ago ? date.strftime('%d.%m.%Y') : "#{time_ago_in_words(date)} ago"
+  def microformats_classes(status, is_direct_parent, is_direct_child)
+    classes = []
+    classes << 'p-in-reply-to' if is_direct_parent
+    classes << 'p-repost-of' if status.reblog? && is_direct_parent
+    classes << 'p-comment' if is_direct_child
+    classes.join(' ')
   end
 
-  def reblogged_by_me_class(status)
-    user_signed_in? && @reblogged.key?(status.id) ? 'reblogged' : ''
-  end
-
-  def favourited_by_me_class(status)
-    user_signed_in? && @favourited.key?(status.id) ? 'favourited' : ''
+  def microformats_h_class(status, is_predecessor, is_successor, include_threads)
+    return 'h-cite' if is_predecessor || status.reblog || is_successor
+    return 'h-entry' unless include_threads
+    ''
   end
 
   def rtl?(text)
@@ -45,5 +47,11 @@ module StreamEntriesHelper
     ltr_size = text.strip.size.to_f
 
     rtl_size / ltr_size > 0.3
+  end
+
+  private
+
+  def embedded_view?
+    params[:controller] == 'stream_entries' && params[:action] == 'embed'
   end
 end

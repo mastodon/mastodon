@@ -79,14 +79,14 @@ const Notification = React.createClass({
     const link             = <Permalink className='notification__display-name' style={linkStyle} href={account.get('url')} title={account.get('acct')} to={`/accounts/${account.get('id')}`} dangerouslySetInnerHTML={displayNameHTML} />;
 
     switch(notification.get('type')) {
-      case 'follow':
-        return this.renderFollow(account, link);
-      case 'mention':
-        return this.renderMention(notification);
-      case 'favourite':
-        return this.renderFavourite(notification, link);
-      case 'reblog':
-        return this.renderReblog(notification, link);
+    case 'follow':
+      return this.renderFollow(account, link);
+    case 'mention':
+      return this.renderMention(notification);
+    case 'favourite':
+      return this.renderFavourite(notification, link);
+    case 'reblog':
+      return this.renderReblog(notification, link);
     }
   }
 
