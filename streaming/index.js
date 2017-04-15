@@ -56,8 +56,9 @@ if (cluster.isMaster) {
   const wss    = new WebSocket.Server({ server })
 
   const redisClient = redis.createClient({
-    host:     process.env.REDIS_HOST     || '127.0.0.1',
-    port:     process.env.REDIS_PORT     || 6379,
+    host:     process.env.REDIS_HOST     || (process.env.REDIS_SOCKET ? null : '127.0.0.1'),
+    port:     process.env.REDIS_PORT     || (process.env.REDIS_SOCKET ? null : 6379),
+    path:     process.env.REDIS_SOCKET,
     password: process.env.REDIS_PASSWORD
   })
 

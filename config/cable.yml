@@ -5,6 +5,13 @@ development:
 test:
   adapter: async
 
+<% redis_url = if ENV['REDIS_SOCKET']
+  "unix:#{ENV['REDIS_SOCKET']}"
+else
+  "redis://#{ENV['REDIS_PASSWORD'] ? ':' + ENV['REDIS_PASSWORD'] + '@' : ''}#{ENV['REDIS_HOST'] || 'localhost'}:#{ENV['REDIS_PORT'] || 6379}"
+end %>
+
 production:
   adapter: redis
-  url: redis://<%= ENV['REDIS_PASSWORD'] ? ':' + ENV['REDIS_PASSWORD'] + '@' : '' %><%= ENV['REDIS_HOST'] || 'localhost' %>:<%= ENV['REDIS_PORT'] || 6379 %>/1
+  url: <%= redis_url %>
+  db: 1
