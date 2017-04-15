@@ -55,6 +55,8 @@ Rails.application.configure do
     ENV['REDIS_HOST'] = redis_url.host
     ENV['REDIS_PORT'] = redis_url.port.to_s
     ENV['REDIS_PASSWORD'] = redis_url.password
+    db_num = redis_url.path[1..-1]
+    ENV['REDIS_DB'] = db_num if db_num.present?
   end
 
   # Use a different cache store in production.
@@ -62,7 +64,7 @@ Rails.application.configure do
     host: ENV.fetch('REDIS_HOST') { 'localhost' },
     port: ENV.fetch('REDIS_PORT') { 6379 },
     password: ENV.fetch('REDIS_PASSWORD') { false },
-    db: 0,
+    db: ENV.fetch('REDIS_DB') { 0 },
     namespace: 'cache',
     expires_in: 10.minutes,
   }
@@ -98,7 +100,7 @@ Rails.application.configure do
     :address              => ENV['SMTP_SERVER'],
     :user_name            => ENV['SMTP_LOGIN'],
     :password             => ENV['SMTP_PASSWORD'],
-    :domain               => ENV['SMTP_DOMAIN'] || config.x.local_domain,
+    :domain               => ENV['SMTP_DOMAIN'] || ENV['LOCAL_DOMAIN'],
     :authentication       => ENV['SMTP_AUTH_METHOD'] || :plain,
     :openssl_verify_mode  => ENV['SMTP_OPENSSL_VERIFY_MODE'],
     :enable_starttls_auto => ENV['SMTP_ENABLE_STARTTLS_AUTO'] || true,

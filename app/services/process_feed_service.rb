@@ -163,7 +163,7 @@ class ProcessFeedService < BaseService
 
         url = Addressable::URI.parse(link['href'])
 
-        mentioned_account = if TagManager.instance.local_domain?(url.host)
+        mentioned_account = if TagManager.instance.web_domain?(url.host)
                               Account.find_local(url.path.gsub('/users/', ''))
                             else
                               Account.find_by(url: link['href']) || FetchRemoteAccountService.new.call(link['href'])

@@ -6,12 +6,12 @@ fr:
       send_instructions: Vous allez recevoir les instructions nécessaires à la confirmation de votre compte dans quelques minutes.
       send_paranoid_instructions: Si votre e-mail existe dans notre base de données, vous allez bientôt recevoir un e-mail contenant les instructions de confirmation de votre compte.
     failure:
-      already_authenticated: Vous êtes déjà connecté
-      inactive: Votre compte n'est pas encore activé.
-      invalid: Email ou mot de passe incorrect.
+      already_authenticated: Vous êtes déjà connecté⋅e
+      inactive: Votre compte n’est pas encore activé.
+      invalid: Courriel ou mot de passe incorrect.
       last_attempt: Vous avez droit à une tentative avant que votre compte ne soit verrouillé.
       locked: Votre compte est verrouillé.
-      not_found_in_database: Email ou mot de passe invalide.
+      not_found_in_database: Courriel ou mot de passe invalide.
       timeout: Votre session a expiré. Veuillez vous reconnecter pour continuer.
       unauthenticated: Vous devez vous connecter ou vous inscrire pour continuer.
       unconfirmed: Vous devez valider votre compte pour continuer.
@@ -25,7 +25,7 @@ fr:
       unlock_instructions:
         subject: Instructions pour déverrouiller votre compte
     omniauth_callbacks:
-      failure: 'Nous n''avons pas pu vous authentifier via %{kind} : ''%{reason}''.'
+      failure: 'Nous n’avons pas pu vous authentifier via %{kind} : ''%{reason}''.'
       success: Authentifié avec succès via %{kind}.
     passwords:
       no_token: Vous ne pouvez accéder à cette page sans passer par un e-mail de réinitialisation de mot de passe. Si vous êtes passé⋅e par un e-mail de ce type, assurez-vous d'utiliser l'URL complète.
@@ -36,10 +36,10 @@ fr:
     registrations:
       destroyed: Votre compte a été supprimé avec succès. Nous espérons vous revoir bientôt.
       signed_up: Bienvenue, vous êtes connecté⋅e.
-      signed_up_but_inactive: Vous êtes bien enregistré⋅e. Vous ne pouvez cependant pas vous connecter car votre compte n'est pas encore activé.
+      signed_up_but_inactive: Vous êtes bien enregistré⋅e. Vous ne pouvez cependant pas vous connecter car votre compte n’est pas encore activé.
       signed_up_but_locked: Vous êtes bien enregistré⋅e. Vous ne pouvez cependant pas vous connecter car votre compte est verrouillé.
-      signed_up_but_unconfirmed: Un message contenant un lien de confirmation a été envoyé à votre adresse email. Ouvrez ce lien pour activer votre compte.
-      update_needs_confirmation: Votre compte a bien été mis à jour mais nous devons vérifier votre nouvelle adresse email. Merci de vérifier vos emails et de cliquer sur le lien de confirmation pour finaliser la validation de votre nouvelle adresse.
+      signed_up_but_unconfirmed: Un message contenant un lien de confirmation a été envoyé à votre adresse courriel. Ouvrez ce lien pour activer votre compte.
+      update_needs_confirmation: Votre compte a bien été mis à jour mais nous devons vérifier votre nouvelle adresse courriel. Merci de vérifier vos courriels et de cliquer sur le lien de confirmation pour finaliser la validation de votre nouvelle adresse.
       updated: Votre compte a été modifié avec succès.
     sessions:
       already_signed_out: Déconnecté.
@@ -47,15 +47,15 @@ fr:
       signed_out: Déconnecté.
     unlocks:
       send_instructions: Vous allez recevoir les instructions nécessaires au déverrouillage de votre compte dans quelques instants
-      send_paranoid_instructions: Si votre compte existe, vous allez bientôt recevoir un email contenant les instructions pour le déverrouiller.
+      send_paranoid_instructions: Si votre compte existe, vous allez bientôt recevoir un courriel contenant les instructions pour le déverrouiller.
       unlocked: Votre compte a été déverrouillé avec succès, vous êtes maintenant connecté⋅e.
   errors:
     messages:
       already_confirmed: a déjà été validé⋅e, veuillez essayer de vous connecter
       confirmation_period_expired: à confirmer dans les %{period}, merci de faire une nouvelle demande
-      expired: a expiré, merci d'en faire une nouvelle demande
-      not_found: n'a pas été trouvé⋅e
-      not_locked: n'était pas verrouillé⋅e
+      expired: a expiré, merci d’en faire une nouvelle demande
+      not_found: n’a pas été trouvé⋅e
+      not_locked: n’était pas verrouillé⋅e
       not_saved:
         one: '1 erreur a empêché ce(tte) %{resource} d’être sauvegardé⋅e :'
         other: '%{count} erreurs ont empêché %{resource} d’être sauvegardé⋅e :'
