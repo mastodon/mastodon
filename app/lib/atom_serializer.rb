@@ -311,9 +311,15 @@ class AtomSerializer
 
   def append_element(parent, name, content = nil, attributes = {})
     element = Ox::Element.new(name)
-    attributes.each { |k, v| element[k] = v.to_s }
-    element << content.to_s unless content.nil?
+    attributes.each { |k, v| element[k] = sanitize_str(v) }
+    element << sanitize_str(content) unless content.nil?
     parent  << element
+  end
+
+  def sanitize_str(raw_str)
+    str = raw_str.to_s
+    ["\v", "\f", "\b"].each { |char| str = str.delete(char) }
+    str
   end
 
   def add_namespaces(parent)
