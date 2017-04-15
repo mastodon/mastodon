@@ -85,14 +85,14 @@ namespace :mastodon do
   namespace :settings do
     desc 'Open registrations on this instance'
     task open_registrations: :environment do
-      setting = Setting.where(var: 'open_registrations').first()
+      setting = Setting.where(var: 'open_registrations').first
       setting.value = 'true'
       setting.save
     end
 
     desc 'Close registrations on this instance'
     task close_registrations: :environment do
-      setting = Setting.where(var: 'open_registrations').first()
+      setting = Setting.where(var: 'open_registrations').first
       setting.value = false
       setting.save
     end
