@@ -1,0 +1,32 @@
+- content_for :page_title do
+  = @user.email
+
+%table.table
+  %tbody
+    %tr
+      %th= t('admin.users.email_address')
+      %td= @user.email
+    %tr
+      %th= t('admin.users.account')
+      %td= link_to @user.account.username, web_url("accounts/#{@user.account_id}")
+    %tr
+      %th= t('admin.users.is_admin')
+      %td= @user.admin
+    %tr
+      %th= t('admin.users.created_at')
+      %td= @user.created_at
+    %tr
+      %th= t('admin.users.last_sign_in_ip')
+      %td= @user.last_sign_in_ip
+    %tr
+      %th= t('admin.users.confirmed_at')
+      %td= @user.confirmed_at
+    %tr
+      %th= t('admin.users.confirmation_sent_at')
+      %td= @user.confirmation_sent_at
+    %tr
+      %th= t('admin.users.locale')
+      %td= @user.locale
+    %tr
+      %th= t('admin.users.last_emailed_at')
+      %td= @user.last_emailed_at
