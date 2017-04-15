@@ -19,11 +19,16 @@ class FetchRemoteAccountService < BaseService
     xml = Nokogiri::XML(body)
     xml.encoding = 'utf-8'
 
-    url_parts = Addressable::URI.parse(url)
-    username  = xml.at_xpath('//xmlns:author/xmlns:name').try(:content)
-    domain    = url_parts.host
+    email = xml.at_xpath('//xmlns:author/xmlns:email').try(:content)
+    if email.nil?
+      url_parts = Addressable::URI.parse(url)
+      username  = xml.at_xpath('//xmlns:author/xmlns:name').try(:content)
+      domain    = url_parts.host
+    else
+      username, domain = email.split('@')
+    end
 
-    return nil if username.nil?
+    return nil if username.nil? || domain.nil?
 
     Rails.logger.debug "Going to webfinger #{username}@#{domain}"
 

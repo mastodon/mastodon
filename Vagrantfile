@@ -43,14 +43,14 @@ echo 'eval "$(rbenv init -)"' >> ~/.bash_profile
 
 git clone https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build
 
-export PATH="$HOME/.rbenv/bin::$PATH"
+export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
 
-echo "Compiling Ruby 2.3.1: warning, this takes a while!!!"
-rbenv install 2.3.1
-rbenv global 2.3.1
-
 cd /vagrant
+
+echo "Compiling Ruby $(cat .ruby-version): warning, this takes a while!!!"
+rbenv install $(cat .ruby-version)
+rbenv global $(cat .ruby-version)
 
 # Configure database
 sudo -u postgres createuser -U postgres vagrant -s

@@ -114,10 +114,6 @@
       padding: 20px;
     }
 
-    .screenshot-with-signup .mascot {
-      display: none;
-    }
-
     .features-list {
       display: block;
     }
@@ -354,6 +350,16 @@
       a {
         color: $color2;
       }
+    }
+  }
+  
+  @media screen and (max-width: 625px) {
+    .mascot {
+      display: none;
+    }
+
+    .simple_form, .closed-registrations-message {
+      flex: auto;
     }
   }
 }
