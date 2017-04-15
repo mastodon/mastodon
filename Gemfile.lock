@@ -319,6 +319,9 @@ GEM
       nokogiri (~> 1.6)
     rails-html-sanitizer (1.0.3)
       loofah (~> 2.0)
+    rails-i18n (5.0.3)
+      i18n (~> 0.7)
+      railties (~> 5.0)
     rails-settings-cached (0.6.5)
       rails (>= 4.2.0)
     rails_12factor (0.0.3)
@@ -521,6 +524,7 @@ DEPENDENCIES
   rack-timeout
   rails (~> 5.0.2)
   rails-controller-testing
+  rails-i18n
   rails-settings-cached
   rails_12factor
   react-rails
