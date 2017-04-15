@@ -29,15 +29,13 @@ const Search = React.createClass({
     this.props.onClear();
   },
 
-  handleKeyDown (e) {
-    if (e.key === 'Enter') {
-      e.preventDefault();
-      this.props.onSubmit();
-    }
-  },
-
   handleFocus () {
     this.props.onShow();
+  },
+
+  handleSubmit (e) {
+    e.preventDefault();
+    this.props.onSubmit();
   },
 
   render () {
@@ -45,22 +43,22 @@ const Search = React.createClass({
     const hasValue = value.length > 0 || submitted;
 
     return (
-      <div className='search'>
+      <form role='search' className='search' onSubmit={this.handleSubmit}>
         <input
           className='search__input'
           type='text'
+          required={true}
           placeholder={intl.formatMessage(messages.placeholder)}
           value={value}
           onChange={this.handleChange}
-          onKeyUp={this.handleKeyDown}
           onFocus={this.handleFocus}
         />
 
-        <div className='search__icon'>
+        <button type='submit' className='search__icon'>
           <i className={`fa fa-search ${hasValue ? '' : 'active'}`} />
           <i className={`fa fa-times-circle ${hasValue ? 'active' : ''}`} onClick={this.handleClear} />
-        </div>
-      </div>
+        </button>
+      </form>
     );
   }
 
