@@ -29,10 +29,16 @@ neo4j/
 # Ignore Capistrano customizations
 config/deploy/*
 
-
 # Ignore IDE files
 .vscode/
 
 # Ignore postgres + redis volume optionally created by docker-compose
 postgres
 redis
+
+# Ignore Apple files
+.DS_Store
+
+# Ignore vim files
+*~
+*.swp

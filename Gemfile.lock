@@ -240,6 +240,10 @@ GEM
     mail (2.6.4)
       mime-types (>= 1.16, < 4)
     method_source (0.8.2)
+    microformats2 (2.1.0)
+      activesupport
+      json
+      nokogiri
     mime-types (3.1)
       mime-types-data (~> 3.2015)
     mime-types-data (3.2016.0521)
@@ -315,6 +319,9 @@ GEM
       nokogiri (~> 1.6)
     rails-html-sanitizer (1.0.3)
       loofah (~> 2.0)
+    rails-i18n (5.0.3)
+      i18n (~> 0.7)
+      railties (~> 5.0)
     rails-settings-cached (0.6.5)
       rails (>= 4.2.0)
     rails_12factor (0.0.3)
@@ -499,6 +506,7 @@ DEPENDENCIES
   letter_opener_web
   link_header
   lograge
+  microformats2
   nokogiri
   oj
   ostatus2
@@ -516,6 +524,7 @@ DEPENDENCIES
   rack-timeout
   rails (~> 5.0.2)
   rails-controller-testing
+  rails-i18n
   rails-settings-cached
   rails_12factor
   react-rails

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class HomeController < ApplicationController
 	  before_action :authenticate_user!
 
@@ -11,7 +13,7 @@ class HomeController < ApplicationController
 	      private
 
 	        def authenticate_user!
-			    redirect_to(Rails.configuration.x.single_user_mode ? account_path(Account.first) : about_path) unless user_signed_in?
+			    redirect_to(single_user_mode? ? account_path(Account.first) : about_path) unless user_signed_in?
 			      end
 
 		  def find_or_create_access_token

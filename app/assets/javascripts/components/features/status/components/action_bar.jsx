@@ -71,10 +71,14 @@ const ActionBar = React.createClass({
       menu.push({ text: intl.formatMessage(messages.report, { name: status.getIn(['account', 'username']) }), action: this.handleReport });
     }
 
+    let reblogIcon = 'retweet';
+    if (status.get('visibility') === 'direct') reblogIcon = 'envelope';
+    else if (status.get('visibility') === 'private') reblogIcon = 'lock';
+
     return (
       <div className='detailed-status__action-bar'>
-        <div style={{ flex: '1 1 auto', textAlign: 'center' }}><IconButton title={intl.formatMessage(messages.reply)} icon='reply' onClick={this.handleReplyClick} /></div>
-        <div style={{ flex: '1 1 auto', textAlign: 'center' }}><IconButton disabled={status.get('visibility') === 'direct' || status.get('visibility') === 'private'} active={status.get('reblogged')} title={intl.formatMessage(messages.reblog)} icon={status.get('visibility') === 'direct' ? 'envelope' : (status.get('visibility') === 'private' ? 'lock' : 'retweet')} onClick={this.handleReblogClick} /></div>
+        <div style={{ flex: '1 1 auto', textAlign: 'center' }}><IconButton title={intl.formatMessage(messages.reply)} icon={status.get('in_reply_to_id', null) === null ? 'reply' : 'reply-all'} onClick={this.handleReplyClick} /></div>
+        <div style={{ flex: '1 1 auto', textAlign: 'center' }}><IconButton disabled={status.get('visibility') === 'direct' || status.get('visibility') === 'private'} active={status.get('reblogged')} title={intl.formatMessage(messages.reblog)} icon={reblogIcon} onClick={this.handleReblogClick} /></div>
         <div style={{ flex: '1 1 auto', textAlign: 'center' }}><IconButton animate={true} active={status.get('favourited')} title={intl.formatMessage(messages.favourite)} icon='star' onClick={this.handleFavouriteClick} activeStyle={{ color: '#ca8f04' }} /></div>
         <div style={{ flex: '1 1 auto', textAlign: 'center' }}><DropdownMenu size={18} icon='ellipsis-h' items={menu} direction="left" /></div>
       </div>

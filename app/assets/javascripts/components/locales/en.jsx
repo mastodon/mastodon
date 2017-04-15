@@ -74,6 +74,7 @@ const en = {
   "navigation_bar.public_timeline": "Federated timeline",
   "notification.favourite": "{name} favourited your status",
   "notification.follow": "{name} followed you",
+  "notification.mention": "{name} mentioned you",
   "notification.reblog": "{name} boosted your status",
   "notifications.clear_confirmation": "Are you sure you want to clear all your notifications?",
   "notifications.clear": "Clear notifications",

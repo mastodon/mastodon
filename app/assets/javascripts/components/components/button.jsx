@@ -9,6 +9,7 @@ const Button = React.createClass({
     block: React.PropTypes.bool,
     secondary: React.PropTypes.bool,
     size: React.PropTypes.number,
+    style: React.PropTypes.object,
     children: React.PropTypes.node
   },
 
