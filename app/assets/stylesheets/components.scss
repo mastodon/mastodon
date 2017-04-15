@@ -932,6 +932,12 @@ a.status__content__spoiler-link {
   }
 }
 
+.pseudo-drawer {
+  background: lighten($color1, 13%);
+  font-size: 13px;
+  text-align: left;
+}
+
 .drawer__header {
   flex: 0 0 auto;
   font-size: 16px;
@@ -2033,7 +2039,7 @@ button.icon-button.active i.fa-retweet {
   height: 80vh;
   width: 80vw;
   max-width: 500px;
-  max-height: 500px;
+  max-height: 350px;
   position: relative;
 
   & > div {
@@ -2177,22 +2183,60 @@ button.icon-button.active i.fa-retweet {
 .onboarding-modal__page-four,
 .onboarding-modal__page-five {
   p {
-    text-align: center;
+    text-align: left;
   }
 
   .figure {
-    background: $color1;
+    background: darken($color1, 8%);
     color: $color2;
     margin-bottom: 20px;
-    border-radius: 8px;
+    border-radius: 4px;
     padding: 10px;
     text-align: center;
     font-size: 14px;
+    box-shadow: 1px 2px 6px rgba($color8, 0.3);
 
     .onboarding-modal__image {
       border-radius: 4px;
       margin-bottom: 10px;
     }
+
+    &.non-interactive {
+      pointer-events: none;
+      text-align: left;
+    }
+  }
+}
+
+.onboarding-modal__page-four__columns {
+  .row {
+    display: flex;
+    margin-bottom: 20px;
+
+    & > div {
+      flex: 1 1 0;
+      margin: 0 10px;
+
+      &:first-child {
+        margin-left: 0;
+      }
+
+      &:last-child {
+        margin-right: 0;
+      }
+
+      p {
+        text-align: center;
+      }
+    }
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  .column-header {
+    color: $color5;
   }
 }
 

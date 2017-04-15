@@ -5,10 +5,10 @@ export function showOnboardingOnce() {
   return (dispatch, getState) => {
     const alreadySeen = getState().getIn(['settings', 'onboarded']);
 
-    //if (!alreadySeen) {
+    if (!alreadySeen) {
       dispatch(openModal('ONBOARDING'));
       dispatch(changeSetting(['onboarded'], true));
       dispatch(saveSettings());
-    //}
+    }
   };
 };

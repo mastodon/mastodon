@@ -4,6 +4,18 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import Permalink from '../../../components/permalink';
 import { TransitionMotion, spring } from 'react-motion';
+import ComposeForm from '../../compose/components/compose_form';
+import Search from '../../compose/components/search';
+import NavigationBar from '../../compose/components/navigation_bar';
+import ColumnHeader from './column_header';
+import Immutable from 'immutable';
+
+const messages = defineMessages({
+  home_title: { id: 'column.home', defaultMessage: 'Home' },
+  notifications_title: { id: 'column.notifications', defaultMessage: 'Notifications' },
+  local_title: { id: 'column.community', defaultMessage: 'Local timeline' },
+  federated_title: { id: 'column.public', defaultMessage: 'Federated timeline' }
+});
 
 const PageOne = ({ acct, domain }) => (
   <div className='onboarding-modal__page onboarding-modal__page-one'>
@@ -21,50 +33,76 @@ const PageOne = ({ acct, domain }) => (
 
 const PageTwo = () => (
   <div className='onboarding-modal__page onboarding-modal__page-two'>
-    <img className="onboarding-modal__image onboard-compose" src='/onboarding/onboard-compose.jpg' />
+    <div className='figure non-interactive'>
+      <ComposeForm
+        text='Awoo! #introductions'
+        suggestions={Immutable.List()}
+        mentionedDomains={[]}
+        onChange={() => {}}
+        onSubmit={() => {}}
+        onPaste={() => {}}
+        onPickEmoji={() => {}}
+        onChangeSpoilerText={() => {}}
+        onClearSuggestions={() => {}}
+        onFetchSuggestions={() => {}}
+        onSuggestionSelected={() => {}}
+      />
+    </div>
+
     <p><FormattedMessage id='onboarding.page_two.compose' defaultMessage='Write posts from the compose column. You can upload images, change privacy settings, and add content warnings with the icons below.' /></p>
   </div>
 );
 
-const PageThree = () => (
+const PageThree = ({ me, domain }) => (
   <div className='onboarding-modal__page onboarding-modal__page-three'>
-    <img className="onboarding-modal__image onboard-compose" src='/onboarding/onboard-search.jpg' />
+    <div className='figure non-interactive'>
+      <Search
+        value=''
+        onChange={() => {}}
+        onSubmit={() => {}}
+        onClear={() => {}}
+        onShow={() => {}}
+      />
+
+      <div className='pseudo-drawer'>
+        <NavigationBar account={me} />
+      </div>
+    </div>
+
     <p><FormattedMessage id='onboarding.page_three.search' defaultMessage='Use the search bar to find people and look at hashtags, such as {illustration} and {introductions}. To look for a person who is not on this instance, use their full handle.' values={{ illustration: <Permalink to='/timelines/tag/illustration' href='/tags/illustration'>#illustration</Permalink>, introductions: <Permalink to='/timelines/tag/introductions' href='/tags/introductions'>#introductions</Permalink> }}/></p>
     <p><FormattedMessage id='onboarding.page_three.profile' defaultMessage='Click "Edit Profile" to change your avatar, bio, and display name. There, you will also find other preferences.' /></p>
   </div>
 );
 
-const PageFour = () => (
+const PageFour = injectIntl(({ domain, intl }) => (
   <div className='onboarding-modal__page onboarding-modal__page-four'>
-    <div className='figure'>
-      <img className="onboarding-modal__image onboard-column" src='/onboarding/onboard-home.jpg' />
-      <FormattedMessage id='onboarding.page_four.home' defaultMessage='Home timeline shows posts from yourself, people you follow, and the posts they share'/>
-    </div>
+    <div className='onboarding-modal__page-four__columns'>
+      <div className='row'>
+        <div>
+          <div className='figure non-interactive'><ColumnHeader icon='home' type={intl.formatMessage(messages.home_title)} /></div>
+          <p><FormattedMessage id='onboarding.page_four.home' defaultMessage='Home timeline shows posts from people you follow'/></p>
+        </div>
 
-    <div className='figure'>
-      <img className="onboarding-modal__image onboard-column" src="/onboarding/onboard-notifications.jpg" />
-      <FormattedMessage id='onboarding.page_four.notifications' defaultMessage='The notifications column shows when a user shares, favourites, or replies to your posts, and when you have a new follower' />
-    </div>
+        <div>
+          <div className='figure non-interactive'><ColumnHeader icon='bell' type={intl.formatMessage(messages.notifications_title)} /></div>
+          <p><FormattedMessage id='onboarding.page_four.notifications' defaultMessage='Notifications show when someone interacts with you' /></p>
+        </div>
+      </div>
 
-    <p><FormattedMessage id='onboarding.page_four.filter' defaultMessage='Each column can be customized using the {icon} menu.' values={{ icon: <i className='fa fa-sliders' /> }} /></p>
+      <div className='row'>
+        <div>
+          <div className='figure non-interactive' style={{ marginBottom: 0 }}><ColumnHeader icon='globe' type={intl.formatMessage(messages.federated_title)} /></div>
+        </div>
+
+        <div>
+          <div className='figure non-interactive' style={{ marginBottom: 0 }}><ColumnHeader icon='users' type={intl.formatMessage(messages.local_title)} /></div>
+        </div>
+      </div>
+
+      <p><FormattedMessage id='onboarding.page_five.public_timelines' defaultMessage='Federated timeline lists public posts from everyone who people on {domain} follow. Local timeline is a subset of that limited to people on {domain}.' values={{ domain }} /></p>
+    </div>
   </div>
-);
-
-const PageFive = ({ domain }) => (
-  <div className='onboarding-modal__page onboarding-modal__page-five'>
-    <div className='figure'>
-      <img className="onboarding-modal__image onboard-column" src="/onboarding/onboard-local-timeline.jpg" />
-      <FormattedMessage id='onboarding.page_five.local-timeline' defaultMessage='Local timeline lists public posts originating from people on {domain}, your local instance' values={{ domain }} />
-    </div>
-
-    <div className='figure'>
-      <img className="onboarding-modal__image onboard-column" src="/onboarding/onboard-federated-timeline.jpg" />
-      <FormattedMessage id='onboarding.page_five.federated-timeline' defaultMessage='Federated timeline lists public posts from everyone who people on {domain} follow, regardless of which instance they are from' values={{ domain }} />
-    </div>
-
-    <p><FormattedMessage id='onboarding.page_five.public' defaultMessage='These are the public timelines, a great way to discover content.' /></p>
-  </div>
-);
+));
 
 const PageSix = ({ admin }) => {
   let adminSection = '';
@@ -139,9 +177,8 @@ const OnboardingModal = React.createClass({
     const pages = [
       <PageOne acct={me.get('acct')} domain={domain} />,
       <PageTwo />,
-      <PageThree />,
-      <PageFour />,
-      <PageFive domain={domain} />,
+      <PageThree me={me} domain={domain} />,
+      <PageFour domain={domain} />,
       <PageSix admin={admin} />
     ];
 
