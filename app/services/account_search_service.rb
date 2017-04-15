@@ -29,7 +29,7 @@ class AccountSearchService < BaseService
   end
 
   def search_results_and_exact_match
-    search_results.to_a + [exact_match]
+    [exact_match] + search_results.to_a
   end
 
   def query_blank_or_hashtag?
