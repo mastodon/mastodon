@@ -2,7 +2,7 @@
 
 module StyleHelper
   def stylesheet_for_layout
-    if asset_exist?'custom.css'
+    if asset_exist? 'custom.css'
       'custom'
     else
       'application'
