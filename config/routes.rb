@@ -186,7 +186,6 @@ Rails.application.routes.draw do
   get '/terms',      to: 'about#terms'
 
   root 'home#index'
-  get '/streaming', to: 'home#streaming'
   match '*unmatched_route',
     via: :all,
     to: 'application#raise_not_found',
