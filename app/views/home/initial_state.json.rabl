@@ -2,6 +2,7 @@ object false
 
 node(:meta) do
   {
+    streaming_api_base_url: @streaming_api_base_url,
     access_token: @token,
     locale: I18n.locale,
     me: current_account.id,
