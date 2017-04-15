@@ -40,6 +40,7 @@ ActiveRecord::Schema.define(version: 20170406215816) do
     t.datetime "header_updated_at"
     t.string   "avatar_remote_url"
     t.datetime "subscription_expires_at"
+    t.datetime "last_webfingered_at"
     t.boolean  "silenced",                default: false, null: false
     t.boolean  "suspended",               default: false, null: false
     t.boolean  "locked",                  default: false, null: false
