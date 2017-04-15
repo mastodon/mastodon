@@ -20,7 +20,7 @@
 
   %meta{ property: 'twitter:card', content: 'summary' }/
 
-- if !user_signed_in? && !Rails.configuration.x.single_user_mode
+- if !user_signed_in? && !single_user_mode?
   = render partial: 'shared/landing_strip', locals: { account: @stream_entry.account }
 
 .activity-stream.activity-stream-headless.h-entry
