@@ -64,6 +64,7 @@ Rails.application.routes.draw do
     resource :two_factor_auth, only: [:show, :new, :create] do
       member do
         post :disable
+        post :recovery_codes
       end
     end
   end
@@ -85,6 +86,7 @@ Rails.application.routes.draw do
     end
 
     resources :accounts, only: [:index, :show] do
+      resource :reset, only: [:create]
       resource :silence, only: [:create, :destroy]
       resource :suspension, only: [:create, :destroy]
     end

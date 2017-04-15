@@ -71,7 +71,7 @@ const Notification = React.createClass({
     );
   },
 
-  render () {
+  render () { // eslint-disable-line consistent-return
     const { notification } = this.props;
     const account          = notification.get('account');
     const displayName      = account.get('display_name').length > 0 ? account.get('display_name') : account.get('username');

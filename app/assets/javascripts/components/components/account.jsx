@@ -10,7 +10,8 @@ const messages = defineMessages({
   follow: { id: 'account.follow', defaultMessage: 'Follow' },
   unfollow: { id: 'account.unfollow', defaultMessage: 'Unfollow' },
   requested: { id: 'account.requested', defaultMessage: 'Awaiting approval' },
-  unblock: { id: 'account.unblock', defaultMessage: 'Unblock' }
+  unblock: { id: 'account.unblock', defaultMessage: 'Unblock' },
+  unmute: { id: 'account.unmute', defaultMessage: 'Unmute' }
 });
 
 const buttonsStyle = {
@@ -25,6 +26,7 @@ const Account = React.createClass({
     me: React.PropTypes.number.isRequired,
     onFollow: React.PropTypes.func.isRequired,
     onBlock: React.PropTypes.func.isRequired,
+    onMute: React.PropTypes.func.isRequired,
     intl: React.PropTypes.object.isRequired
   },
 
@@ -36,6 +38,10 @@ const Account = React.createClass({
 
   handleBlock () {
     this.props.onBlock(this.props.account);
+  },
+
+  handleMute () {
+    this.props.onMute(this.props.account);
   },
 
   render () {
@@ -51,11 +57,14 @@ const Account = React.createClass({
       const following = account.getIn(['relationship', 'following']);
       const requested = account.getIn(['relationship', 'requested']);
       const blocking  = account.getIn(['relationship', 'blocking']);
+      const muting  = account.getIn(['relationship', 'muting']);
 
       if (requested) {
         buttons = <IconButton disabled={true} icon='hourglass' title={intl.formatMessage(messages.requested)} />
       } else if (blocking) {
-        buttons = <IconButton active={true} icon='unlock-alt' title={intl.formatMessage(messages.unblock)} onClick={this.handleBlock} />;
+        buttons = <IconButton active={true} icon='unlock-alt' title={intl.formatMessage(messages.unblock, { name: account.get('username') })} onClick={this.handleBlock} />;
+      } else if (muting) {
+        buttons = <IconButton active={true} icon='volume-up' title={intl.formatMessage(messages.unmute, { name: account.get('username') })} onClick={this.handleMute} />;
       } else {
         buttons = <IconButton icon={following ? 'user-times' : 'user-plus'} title={intl.formatMessage(following ? messages.unfollow : messages.follow)} onClick={this.handleFollow} active={following} />;
       }
