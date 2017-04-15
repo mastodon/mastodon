@@ -4,9 +4,10 @@ class HomeController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @body_classes = 'app-body'
-    @token        = find_or_create_access_token.token
-    @web_settings = Web::Setting.find_by(user: current_user)&.data || {}
+    @body_classes           = 'app-body'
+    @token                  = find_or_create_access_token.token
+    @web_settings           = Web::Setting.find_by(user: current_user)&.data || {}
+    @streaming_api_base_url = Rails.configuration.x.streaming_api_base_url
   end
 
   private

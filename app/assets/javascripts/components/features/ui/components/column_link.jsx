@@ -34,7 +34,8 @@ ColumnLink.propTypes = {
   icon: React.PropTypes.string.isRequired,
   text: React.PropTypes.string.isRequired,
   to: React.PropTypes.string,
-  href: React.PropTypes.string
+  href: React.PropTypes.string,
+  method: React.PropTypes.string
 };
 
 export default ColumnLink;

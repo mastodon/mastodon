@@ -47,7 +47,7 @@ const mapDispatchToProps = (dispatch) => ({
     if (status.get('reblogged')) {
       dispatch(unreblog(status));
     } else {
-      if (e.altKey || !this.boostModal) {
+      if (e.shiftKey || !this.boostModal) {
         this.onModalReblog(status);
       } else {
         dispatch(openModal('BOOST', { status, onReblog: this.onModalReblog }));
@@ -73,6 +73,10 @@ const mapDispatchToProps = (dispatch) => ({
 
   onOpenMedia (media, index) {
     dispatch(openModal('MEDIA', { media, index }));
+  },
+
+  onOpenVideo (media, time) {
+    dispatch(openModal('VIDEO', { media, time }));
   },
 
   onBlock (account) {

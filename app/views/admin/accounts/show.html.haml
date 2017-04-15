@@ -4,24 +4,24 @@
 %table.table
   %tbody
     %tr
-      %th Username
+      %th= t('admin.accounts.username')
       %td= @account.username
     %tr
-      %th Domain
+      %th= t('admin.accounts.domain')
       %td= @account.domain
     %tr
-      %th Display name
+      %th= t('admin.accounts.display_name')
       %td= @account.display_name
 
     - if @account.local?
       %tr
-        %th E-mail
+        %th= t('admin.accounts.email')
         %td= @account.user.email
       %tr
-        %th Most recent IP
+        %th= t('admin.accounts.most_recent_ip')
         %td= @account.user.current_sign_in_ip
       %tr
-        %th Most recent activity
+        %th= t('admin.accounts.most_recent_activity')
         %td
           - if @account.user.current_sign_in_at
             = l @account.user.current_sign_in_at
@@ -29,44 +29,44 @@
             Never
     - else
       %tr
-        %th Profile URL
+        %th= t('admin.accounts.profile_url')
         %td= link_to @account.url
       %tr
-        %th Feed URL
+        %th= t('admin.accounts.feed_url')
         %td= link_to @account.remote_url
       %tr
-        %th PuSH subscription expires
+        %th= t('admin.accounts.push_subscription_expires')
         %td
           - if @account.subscribed?
             = l @account.subscription_expires_at
           - else
-            Not subscribed
+            = t('admin.accounts.not_subscribed')
       %tr
-        %th Salmon URL
+        %th= t('admin.accounts.salmon_url')
         %td= link_to @account.salmon_url
 
     %tr
-      %th Follows
+      %th= t('admin.accounts.follows')
       %td= @account.following_count
     %tr
-      %th Followers
+      %th= t('admin.accounts.followers')
       %td= @account.followers_count
     %tr
-      %th Statuses
+      %th= t('admin.accounts.statuses')
       %td= @account.statuses_count
     %tr
-      %th Media attachments
+      %th= t('admin.accounts.media_attachments')
       %td
         = @account.media_attachments.count
         = surround '(', ')' do
           = number_to_human_size @account.media_attachments.sum('file_file_size')
 
 - if @account.silenced?
-  = link_to 'Undo silence', unsilence_admin_account_path(@account.id), method: :post, class: 'button'
+  = link_to t('admin.accounts.undo_silenced'), admin_account_silence_path(@account.id), method: :delete, class: 'button'
 - else
-  = link_to 'Silence', silence_admin_account_path(@account.id), method: :post, class: 'button'
+  = link_to t('admin.accounts.silence'), admin_account_silence_path(@account.id), method: :post, class: 'button'
 
 - if @account.suspended?
-  = link_to 'Undo suspension', unsuspend_admin_account_path(@account.id), method: :post, class: 'button'
+  = link_to t('admin.accounts.undo_suspension'), admin_account_suspension_path(@account.id), method: :delete, class: 'button'
 - else
-  = link_to 'Perform full suspension', suspend_admin_account_path(@account.id), method: :post, data: { confirm: 'Are you sure?' }, class: 'button'
+  = link_to t('admin.accounts.perform_full_suspension'), admin_account_suspension_path(@account.id), method: :post, data: { confirm: t('admin.accounts.are_you_sure') }, class: 'button'
