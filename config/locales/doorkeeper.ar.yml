@@ -3,7 +3,7 @@ ar:
   activerecord:
     attributes:
       doorkeeper/application:
-        name: Name
+        name: الإسم
         redirect_uri: Redirect URI
     errors:
       models:
@@ -18,12 +18,12 @@ ar:
     applications:
       buttons:
         authorize: Authorize
-        cancel: Cancel
+        cancel: إلغاء
         destroy: Destroy
         edit: Edit
         submit: Submit
       confirmations:
-        destroy: Are you sure?
+        destroy: هل أنت متأكد ؟
       edit:
         title: Edit application
       form:
@@ -34,11 +34,11 @@ ar:
         scopes: Separate scopes with spaces. Leave blank to use the default scopes.
       index:
         callback_url: Callback URL
-        name: Name
-        new: New Application
-        title: Your applications
+        name: الإسم
+        new: تطبيق جديد
+        title: تطبيقاتك
       new:
-        title: New Application
+        title: تطبيق جديد
       show:
         actions: Actions
         application_id: Application Id
@@ -62,7 +62,7 @@ ar:
       buttons:
         revoke: Revoke
       confirmations:
-        revoke: Are you sure?
+        revoke: هل أنت متأكد ؟
       index:
         application: Application
         created_at: Authorized
