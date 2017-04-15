@@ -1,8 +1,6 @@
 - content_for :header_tags do
-  :javascript
-    window.STREAMING_API_BASE_URL = '#{Rails.configuration.x.streaming_api_base_url}';
-    window.INITIAL_STATE = #{json_escape(render(file: 'home/initial_state', formats: :json))}
+  %script#initial-state{:type => 'application/json'}!= json_escape(render(file: 'home/initial_state', formats: :json))
 
-  = javascript_include_tag 'application'
+  = javascript_include_tag 'application', integrity: true, crossorigin: 'anonymous'
 
 = react_component 'Mastodon', default_props, class: 'app-holder', prerender: false

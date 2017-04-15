@@ -7,7 +7,8 @@ import { isIOS } from '../is_mobile';
 const messages = defineMessages({
   toggle_sound: { id: 'video_player.toggle_sound', defaultMessage: 'Toggle sound' },
   toggle_visible: { id: 'video_player.toggle_visible', defaultMessage: 'Toggle visibility' },
-  expand_video: { id: 'video_player.expand', defaultMessage: 'Expand video' }
+  expand_video: { id: 'video_player.expand', defaultMessage: 'Expand video' },
+  expand_video: { id: 'video_player.video_error', defaultMessage: 'Video could not be played' }
 });
 
 const videoStyle = {
@@ -30,7 +31,7 @@ const muteStyle = {
   zIndex: '5'
 };
 
-const spoilerStyle = {
+const coverStyle = {
   marginTop: '8px',
   textAlign: 'center',
   height: '100%',
@@ -94,7 +95,8 @@ const VideoPlayer = React.createClass({
       visible: !this.props.sensitive,
       preview: true,
       muted: true,
-      hasAudio: true
+      hasAudio: true,
+      videoError: false
     };
   },
 
@@ -142,12 +144,17 @@ const VideoPlayer = React.createClass({
     }
   },
 
+  handleVideoError () {
+    this.setState({ videoError: true });
+  },
+
   componentDidMount () {
     if (!this.video) {
       return;
     }
 
     this.video.addEventListener('loadeddata', this.handleLoadedData);
+    this.video.addEventListener('error', this.handleVideoError);
   },
 
   componentDidUpdate () {
@@ -156,6 +163,7 @@ const VideoPlayer = React.createClass({
     }
 
     this.video.addEventListener('loadeddata', this.handleLoadedData);
+    this.video.addEventListener('error', this.handleVideoError);
   },
 
   componentWillUnmount () {
@@ -164,6 +172,7 @@ const VideoPlayer = React.createClass({
     }
 
     this.video.removeEventListener('loadeddata', this.handleLoadedData);
+    this.video.removeEventListener('error', this.handleVideoError);
   },
 
   render () {
@@ -194,7 +203,7 @@ const VideoPlayer = React.createClass({
     if (!this.state.visible) {
       if (sensitive) {
         return (
-          <div style={{...spoilerStyle, width: `${width}px`, height: `${height}px` }} className='media-spoiler' onClick={this.handleVisibility}>
+          <div role='button' tabIndex='0' style={{...coverStyle, width: `${width}px`, height: `${height}px` }} className='media-spoiler' onClick={this.handleVisibility}>
             {spoilerButton}
             <span style={spoilerSpanStyle}><FormattedMessage id='status.sensitive_warning' defaultMessage='Sensitive content' /></span>
             <span style={spoilerSubSpanStyle}><FormattedMessage id='status.sensitive_toggle' defaultMessage='Click to view' /></span>
@@ -202,7 +211,7 @@ const VideoPlayer = React.createClass({
         );
       } else {
         return (
-          <div style={{...spoilerStyle, width: `${width}px`, height: `${height}px` }} className='media-spoiler' onClick={this.handleVisibility}>
+          <div role='button' tabIndex='0' style={{...coverStyle, width: `${width}px`, height: `${height}px` }} className='media-spoiler' onClick={this.handleVisibility}>
             {spoilerButton}
             <span style={spoilerSpanStyle}><FormattedMessage id='status.media_hidden' defaultMessage='Media hidden' /></span>
             <span style={spoilerSubSpanStyle}><FormattedMessage id='status.sensitive_toggle' defaultMessage='Click to view' /></span>
@@ -213,9 +222,17 @@ const VideoPlayer = React.createClass({
 
     if (this.state.preview && !autoplay) {
       return (
-        <div style={{ cursor: 'pointer', position: 'relative', marginTop: '8px', width: `${width}px`, height: `${height}px`, background: `url(${media.get('preview_url')}) no-repeat center`, backgroundSize: 'cover' }} onClick={this.handleOpen}>
+        <div role='button' tabIndex='0' style={{ cursor: 'pointer', position: 'relative', marginTop: '8px', width: `${width}px`, height: `${height}px`, background: `url(${media.get('preview_url')}) no-repeat center`, backgroundSize: 'cover' }} onClick={this.handleOpen}>
           {spoilerButton}
           <div style={{ position: 'absolute', top: '50%', left: '50%', fontSize: '36px', transform: 'translate(-50%, -50%)', padding: '5px', borderRadius: '100px', color: 'rgba(255, 255, 255, 0.8)' }}><i className='fa fa-play' /></div>
+        </div>
+      );
+    }
+
+    if (this.state.videoError) {
+      return (
+        <div style={{...coverStyle, width: `${width}px`, height: `${height}px` }} className='video-error-cover' >
+          <span style={spoilerSpanStyle}><FormattedMessage id='video_player.video_error' defaultMessage='Video could not be played' /></span>
         </div>
       );
     }
@@ -225,7 +242,7 @@ const VideoPlayer = React.createClass({
         {spoilerButton}
         {muteButton}
         {expandButton}
-        <video ref={this.setRef} src={media.get('url')} autoPlay={!isIOS()} loop={true} muted={this.state.muted} style={videoStyle} onClick={this.handleVideoClick} />
+        <video role='button' tabIndex='0' ref={this.setRef} src={media.get('url')} autoPlay={!isIOS()} loop={true} muted={this.state.muted} style={videoStyle} onClick={this.handleVideoClick} />
       </div>
     );
   }

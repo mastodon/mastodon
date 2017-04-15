@@ -1383,7 +1383,7 @@ button.icon-button.active i.fa-retweet {
   }
 }
 
-.media-spoiler {
+.media-spoiler, .video-error-cover {
   background: $color8;
   color: $color5;
 }
@@ -2055,4 +2055,12 @@ button.icon-button.active i.fa-retweet {
   .button {
     flex: 0 0 auto;
   }
+}
+
+.loading-bar {
+  background-color: $color4;
+  height: 3px;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
