@@ -1,6 +1,6 @@
 const ja = {
   "account.block": "@{name} さんをブロック",
-  "account.disclaimer": "このユーザーは他のインスタンスに所属しているため、数字が実際と異なる場合があります。",
+  "account.disclaimer": "このユーザーは他のインスタンスに所属しているため、数字が正確で無い場合があります。",
   "account.edit_profile": "プロフィールを編集",
   "account.follow": "フォロー",
   "account.followers": "フォロワー",
