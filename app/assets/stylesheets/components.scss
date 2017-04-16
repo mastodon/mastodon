@@ -1203,6 +1203,10 @@ a.status__content__spoiler-link {
   &:focus {
     outline: 0;
   }
+
+  @media screen and (max-width: 600px) {
+    font-size: 16px;
+  }
 }
 
 .spoiler-input__input {
@@ -1266,6 +1270,10 @@ a.status__content__spoiler-link {
   &:focus, &:active {
     color: $color5;
     border-bottom-color: $color4;
+  }
+
+  @media screen and (max-width: 600px) {
+    font-size: 16px;
   }
 }
 
@@ -1905,6 +1913,10 @@ button.icon-button.active i.fa-retweet {
 
   &:focus {
     background: lighten($color1, 4%);
+  }
+
+  @media screen and (max-width: 600px) {
+    font-size: 16px;
   }
 }
 
