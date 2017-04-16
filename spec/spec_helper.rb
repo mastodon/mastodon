@@ -13,6 +13,12 @@ RSpec.configure do |config|
 
   config.mock_with :rspec do |mocks|
     mocks.verify_partial_doubles = true
+
+    config.around(:example, :without_verify_partial_doubles) do |example|
+      mocks.verify_partial_doubles = false
+      example.call
+      mocks.verify_partial_doubles = true
+    end
   end
 
   config.before :each do
