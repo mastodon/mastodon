@@ -88,7 +88,7 @@ group :development do
   gem 'bullet'
   gem 'active_record_query_trace'
 
-  gem 'capistrano'
+  gem 'capistrano', '3.8.0'
   gem 'capistrano-rails'
   gem 'capistrano-rbenv'
   gem 'capistrano-yarn'
