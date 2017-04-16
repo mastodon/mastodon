@@ -1,33 +1,30 @@
-import PureRenderMixin from 'react-addons-pure-render-mixin';
+import PropTypes from 'prop-types';
 
-const ExtendedVideoPlayer = React.createClass({
+class ExtendedVideoPlayer extends React.PureComponent {
 
-  propTypes: {
-    src: React.PropTypes.string.isRequired,
-    time: React.PropTypes.number,
-    controls: React.PropTypes.bool.isRequired,
-    muted: React.PropTypes.bool.isRequired
-  },
-
-  mixins: [PureRenderMixin],
+  constructor (props, context) {
+    super(props, context);
+    this.handleLoadedData = this.handleLoadedData.bind(this);
+    this.setRef = this.setRef.bind(this);
+  }
 
   handleLoadedData () {
     if (this.props.time) {
       this.video.currentTime = this.props.time;
     }
-  },
+  }
 
   componentDidMount () {
     this.video.addEventListener('loadeddata', this.handleLoadedData);
-  },
+  }
 
   componentWillUnmount () {
     this.video.removeEventListener('loadeddata', this.handleLoadedData);
-  },
+  }
 
   setRef (c) {
     this.video = c;
-  },
+  }
 
   render () {
     return (
@@ -42,8 +39,15 @@ const ExtendedVideoPlayer = React.createClass({
         />
       </div>
     );
-  },
+  }
 
-});
+}
+
+ExtendedVideoPlayer.propTypes = {
+  src: PropTypes.string.isRequired,
+  time: PropTypes.number,
+  controls: PropTypes.bool.isRequired,
+  muted: PropTypes.bool.isRequired
+};
 
 export default ExtendedVideoPlayer;

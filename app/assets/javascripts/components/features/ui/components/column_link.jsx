@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { Link } from 'react-router';
 
 const outerStyle = {
@@ -31,11 +32,11 @@ const ColumnLink = ({ icon, text, to, href, method }) => {
 };
 
 ColumnLink.propTypes = {
-  icon: React.PropTypes.string.isRequired,
-  text: React.PropTypes.string.isRequired,
-  to: React.PropTypes.string,
-  href: React.PropTypes.string,
-  method: React.PropTypes.string
+  icon: PropTypes.string.isRequired,
+  text: PropTypes.string.isRequired,
+  to: PropTypes.string,
+  href: PropTypes.string,
+  method: PropTypes.string
 };
 
 export default ColumnLink;

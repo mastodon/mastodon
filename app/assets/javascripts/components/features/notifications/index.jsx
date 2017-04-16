@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
+import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import Column from '../ui/components/column';
 import { expandNotifications, clearNotifications, scrollTopNotifications } from '../../actions/notifications';
@@ -28,24 +28,15 @@ const mapStateToProps = state => ({
   isUnread: state.getIn(['notifications', 'unread']) > 0
 });
 
-const Notifications = React.createClass({
+class Notifications extends React.PureComponent {
 
-  propTypes: {
-    notifications: ImmutablePropTypes.list.isRequired,
-    dispatch: React.PropTypes.func.isRequired,
-    trackScroll: React.PropTypes.bool,
-    intl: React.PropTypes.object.isRequired,
-    isLoading: React.PropTypes.bool,
-    isUnread: React.PropTypes.bool
-  },
-
-  getDefaultProps () {
-    return {
-      trackScroll: true
-    };
-  },
-
-  mixins: [PureRenderMixin],
+  constructor (props, context) {
+    super(props, context);
+    this.handleScroll = this.handleScroll.bind(this);
+    this.handleLoadMore = this.handleLoadMore.bind(this);
+    this.handleClear = this.handleClear.bind(this);
+    this.setRef = this.setRef.bind(this);
+  }
 
   handleScroll (e) {
     const { scrollTop, scrollHeight, clientHeight } = e.target;
@@ -59,28 +50,28 @@ const Notifications = React.createClass({
     } else {
       this.props.dispatch(scrollTopNotifications(false));
     }
-  },
+  }
 
   componentDidUpdate (prevProps) {
     if (this.node.scrollTop > 0 && (prevProps.notifications.size < this.props.notifications.size && prevProps.notifications.first() !== this.props.notifications.first() && !!this._oldScrollPosition)) {
       this.node.scrollTop = this.node.scrollHeight - this._oldScrollPosition;
     }
-  },
+  }
 
   handleLoadMore (e) {
     e.preventDefault();
     this.props.dispatch(expandNotifications());
-  },
+  }
 
   handleClear () {
     if (window.confirm(this.props.intl.formatMessage(messages.confirm))) {
       this.props.dispatch(clearNotifications());
     }
-  },
+  }
 
   setRef (c) {
     this.node = c;
-  },
+  }
 
   render () {
     const { intl, notifications, trackScroll, isLoading, isUnread } = this.props;
@@ -137,6 +128,19 @@ const Notifications = React.createClass({
     }
   }
 
-});
+}
+
+Notifications.propTypes = {
+  notifications: ImmutablePropTypes.list.isRequired,
+  dispatch: PropTypes.func.isRequired,
+  trackScroll: PropTypes.bool,
+  intl: PropTypes.object.isRequired,
+  isLoading: PropTypes.bool,
+  isUnread: PropTypes.bool
+};
+
+Notifications.defaultProps = {
+  trackScroll: true
+};
 
 export default connect(mapStateToProps)(injectIntl(Notifications));

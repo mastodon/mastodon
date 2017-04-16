@@ -1,23 +1,22 @@
-import PureRenderMixin from 'react-addons-pure-render-mixin';
 import { FormattedMessage } from 'react-intl';
+import PropTypes from 'prop-types';
 
 const iconStyle = {
   display: 'inline-block',
   marginRight: '5px'
 };
 
-const ColumnBackButton = React.createClass({
+class ColumnBackButton extends React.PureComponent {
 
-  contextTypes: {
-    router: React.PropTypes.object
-  },
-
-  mixins: [PureRenderMixin],
+  constructor (props, context) {
+    super(props, context);
+    this.handleClick = this.handleClick.bind(this);
+  }
 
   handleClick () {
     if (window.history && window.history.length === 1) this.context.router.push("/");
     else this.context.router.goBack();
-  },
+  }
 
   render () {
     return (
@@ -28,6 +27,10 @@ const ColumnBackButton = React.createClass({
     );
   }
 
-});
+};
+
+ColumnBackButton.contextTypes = {
+  router: PropTypes.object
+};
 
 export default ColumnBackButton;

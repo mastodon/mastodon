@@ -1,15 +1,8 @@
 import ImmutablePropTypes from 'react-immutable-proptypes';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
 import escapeTextContentForBrowser from 'escape-html';
 import emojify from '../emoji';
 
-const DisplayName = React.createClass({
-
-  propTypes: {
-    account: ImmutablePropTypes.map.isRequired
-  },
-
-  mixins: [PureRenderMixin],
+class DisplayName extends React.PureComponent {
 
   render () {
     const displayName     = this.props.account.get('display_name').length === 0 ? this.props.account.get('username') : this.props.account.get('display_name');
@@ -22,6 +15,10 @@ const DisplayName = React.createClass({
     );
   }
 
-});
+};
+
+DisplayName.propTypes = {
+  account: ImmutablePropTypes.map.isRequired
+}
 
 export default DisplayName;

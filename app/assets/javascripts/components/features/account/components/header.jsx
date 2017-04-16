@@ -1,5 +1,5 @@
-import PureRenderMixin from 'react-addons-pure-render-mixin';
 import ImmutablePropTypes from 'react-immutable-proptypes';
+import PropTypes from 'prop-types';
 import emojify from '../../../emoji';
 import escapeTextContentForBrowser from 'escape-html';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
@@ -12,29 +12,26 @@ const messages = defineMessages({
   requested: { id: 'account.requested', defaultMessage: 'Awaiting approval' }
 });
 
-const Avatar = React.createClass({
+class Avatar extends React.PureComponent {
 
-  propTypes: {
-    account: ImmutablePropTypes.map.isRequired
-  },
-
-  getInitialState () {
-    return {
+  constructor (props, context) {
+    super(props, context);
+    this.state = {
       isHovered: false
     };
-  },
-
-  mixins: [PureRenderMixin],
+    this.handleMouseOver = this.handleMouseOver.bind(this);
+    this.handleMouseOut = this.handleMouseOut.bind(this);
+  }
 
   handleMouseOver () {
     if (this.state.isHovered) return;
     this.setState({ isHovered: true });
-  },
+  }
 
   handleMouseOut () {
     if (!this.state.isHovered) return;
     this.setState({ isHovered: false });
-  },
+  }
 
   render () {
     const { account }   = this.props;
@@ -60,18 +57,13 @@ const Avatar = React.createClass({
     );
   }
 
-});
+}
 
-const Header = React.createClass({
+Avatar.propTypes = {
+  account: ImmutablePropTypes.map.isRequired
+};
 
-  propTypes: {
-    account: ImmutablePropTypes.map,
-    me: React.PropTypes.number.isRequired,
-    onFollow: React.PropTypes.func.isRequired,
-    intl: React.PropTypes.object.isRequired
-  },
-
-  mixins: [PureRenderMixin],
+class Header extends React.Component {
 
   render () {
     const { account, me, intl } = this.props;
@@ -132,6 +124,13 @@ const Header = React.createClass({
     );
   }
 
-});
+}
+
+Header.propTypes = {
+  account: ImmutablePropTypes.map,
+  me: PropTypes.number.isRequired,
+  onFollow: PropTypes.func.isRequired,
+  intl: PropTypes.object.isRequired
+};
 
 export default injectIntl(Header);

@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
+import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import LoadingIndicator from '../../components/loading_indicator';
 import { fetchFavourites } from '../../actions/interactions';
@@ -12,25 +12,17 @@ const mapStateToProps = (state, props) => ({
   accountIds: state.getIn(['user_lists', 'favourited_by', Number(props.params.statusId)])
 });
 
-const Favourites = React.createClass({
-
-  propTypes: {
-    params: React.PropTypes.object.isRequired,
-    dispatch: React.PropTypes.func.isRequired,
-    accountIds: ImmutablePropTypes.list
-  },
-
-  mixins: [PureRenderMixin],
+class Favourites extends React.PureComponent {
 
   componentWillMount () {
     this.props.dispatch(fetchFavourites(Number(this.props.params.statusId)));
-  },
+  }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.params.statusId !== this.props.params.statusId && nextProps.params.statusId) {
       this.props.dispatch(fetchFavourites(Number(nextProps.params.statusId)));
     }
-  },
+  }
 
   render () {
     const { accountIds } = this.props;
@@ -56,6 +48,12 @@ const Favourites = React.createClass({
     );
   }
 
-});
+}
+
+Favourites.propTypes = {
+  params: PropTypes.object.isRequired,
+  dispatch: PropTypes.func.isRequired,
+  accountIds: ImmutablePropTypes.list
+};
 
 export default connect(mapStateToProps)(Favourites);

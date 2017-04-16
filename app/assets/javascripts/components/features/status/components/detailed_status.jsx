@@ -1,4 +1,4 @@
-import PureRenderMixin from 'react-addons-pure-render-mixin';
+import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import Avatar from '../../../components/avatar';
 import DisplayName from '../../../components/display_name';
@@ -9,19 +9,12 @@ import { Link } from 'react-router';
 import { FormattedDate, FormattedNumber } from 'react-intl';
 import CardContainer from '../containers/card_container';
 
-const DetailedStatus = React.createClass({
+class DetailedStatus extends React.PureComponent {
 
-  contextTypes: {
-    router: React.PropTypes.object
-  },
-
-  propTypes: {
-    status: ImmutablePropTypes.map.isRequired,
-    onOpenMedia: React.PropTypes.func.isRequired,
-    onOpenVideo: React.PropTypes.func.isRequired,
-  },
-
-  mixins: [PureRenderMixin],
+  constructor (props, context) {
+    super(props, context);
+    this.handleAccountClick = this.handleAccountClick.bind(this);
+  }
 
   handleAccountClick (e) {
     if (e.button === 0) {
@@ -30,7 +23,7 @@ const DetailedStatus = React.createClass({
     }
 
     e.stopPropagation();
-  },
+  }
 
   render () {
     const status = this.props.status.get('reblog') ? this.props.status.get('reblog') : this.props.status;
@@ -70,6 +63,16 @@ const DetailedStatus = React.createClass({
     );
   }
 
-});
+}
+
+DetailedStatus.contextTypes = {
+  router: PropTypes.object
+};
+
+DetailedStatus.propTypes = {
+  status: ImmutablePropTypes.map.isRequired,
+  onOpenMedia: PropTypes.func.isRequired,
+  onOpenVideo: PropTypes.func.isRequired,
+};
 
 export default DetailedStatus;

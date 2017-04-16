@@ -1,4 +1,3 @@
-import PureRenderMixin from 'react-addons-pure-render-mixin';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import StatusContainer from '../../../containers/status_container';
 import AccountContainer from '../../../containers/account_container';
@@ -11,13 +10,7 @@ const linkStyle = {
   fontWeight: '500'
 };
 
-const Notification = React.createClass({
-
-  propTypes: {
-    notification: ImmutablePropTypes.map.isRequired
-  },
-
-  mixins: [PureRenderMixin],
+class Notification extends React.PureComponent {
 
   renderFollow (account, link) {
     return (
@@ -33,11 +26,11 @@ const Notification = React.createClass({
         <AccountContainer id={account.get('id')} withNote={false} />
       </div>
     );
-  },
+  }
 
   renderMention (notification) {
     return <StatusContainer id={notification.get('status')} />;
-  },
+  }
 
   renderFavourite (notification, link) {
     return (
@@ -53,7 +46,7 @@ const Notification = React.createClass({
         <StatusContainer id={notification.get('status')} muted={true} />
       </div>
     );
-  },
+  }
 
   renderReblog (notification, link) {
     return (
@@ -69,7 +62,7 @@ const Notification = React.createClass({
         <StatusContainer id={notification.get('status')} muted={true} />
       </div>
     );
-  },
+  }
 
   render () { // eslint-disable-line consistent-return
     const { notification } = this.props;
@@ -90,6 +83,10 @@ const Notification = React.createClass({
     }
   }
 
-});
+}
+
+Notification.propTypes = {
+  notification: ImmutablePropTypes.map.isRequired
+};
 
 export default Notification;
