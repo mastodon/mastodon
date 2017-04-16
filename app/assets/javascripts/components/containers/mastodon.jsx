@@ -97,7 +97,7 @@ const Mastodon = React.createClass({
     const streamingAPIBaseURL = store.getState().getIn(['meta', 'streaming_api_base_url']);
     const accessToken = store.getState().getIn(['meta', 'access_token']);
 
-    this.subscription = createStream(streamingAPIBaseURL, accessToken, 'user', {
+    this.subscription = createStream(accessToken, 'user', {
 
       connected () {
         store.dispatch(connectTimeline('home'));
