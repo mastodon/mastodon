@@ -5,6 +5,7 @@ import emojify from '../emoji';
 import { isRtl } from '../rtl';
 import { FormattedMessage } from 'react-intl';
 import Permalink from './permalink';
+import ReactKaTeX from 'react-katex';
 
 class StatusContent extends React.PureComponent {
 
@@ -132,6 +133,18 @@ class StatusContent extends React.PureComponent {
           dangerouslySetInnerHTML={content}
         />
       );
+      // return (
+      // 	  <div>
+      // 	  <h1>Hi(1)</h1>
+      //   <div
+      //     className='status__content'
+      //     style={{ cursor: 'pointer', ...directionStyle }}
+      //     onMouseDown={this.handleMouseDown}
+      //     onMouseUp={this.handleMouseUp}
+      //     dangerouslySetInnerHTML={content}
+      //     />
+      // 	  </div>
+      // );
     } else {
       return (
         <div
@@ -140,6 +153,17 @@ class StatusContent extends React.PureComponent {
           dangerouslySetInnerHTML={content}
         />
       );
+      // 	return (
+      // 	    <div>
+      // 	    <h1>Hi(2)</h1>
+      //       <div
+      //       className='status__content'
+      //       style={{ ...directionStyle }}
+      //       dangerouslySetInnerHTML={content}
+      //       />
+      // 	    <BlockMath math="\\int_0^\\infty x^2 dx"/>
+      // 	    </div>
+      // );
     }
   }
 
