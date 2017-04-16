@@ -3,7 +3,13 @@
 
 = simple_form_for @domain_block, url: admin_domain_block_path(@domain_block), method: :delete do |f|
 
-  = f.input :retroactive, as: :boolean, wrapper: :with_label, label: I18n.t("admin.domain_blocks.show.retroactive.#{@domain_block.severity}"), hint: I18n.t('admin.domain_blocks.show.affected_accounts', count: Account.where(domain: @domain_block.domain).count)
+  = f.input :retroactive,
+    as: :boolean,
+    wrapper: :with_label,
+    label: t(".retroactive.#{@domain_block.severity}"),
+    hint: t(:affected_accounts,
+      scope: [:admin, :domain_blocks, :show],
+      count: Account.where(domain: @domain_block.domain).count)
 
   .actions
-    = f.button :button, t('admin.domain_blocks.show.undo'), type: :submit
+    = f.button :button, t('.undo'), type: :submit
