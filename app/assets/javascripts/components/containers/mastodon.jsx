@@ -61,6 +61,7 @@ import { hydrateStore } from '../actions/store';
 import createStream from '../stream';
 
 const store = configureStore();
+store.dispatch(hydrateStore(window.INITIAL_STATE));
 const browserHistory = useRouterHistory(createBrowserHistory)({
   basename: '/web'
 });
