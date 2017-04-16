@@ -2,7 +2,6 @@
 
 module SettingsHelper
   HUMAN_LOCALES = {
-    ar: 'العربية',
     en: 'English',
     de: 'Deutsch',
     es: 'Español',
@@ -20,6 +19,7 @@ module SettingsHelper
     'zh-CN': '简体中文',
     'zh-HK': '繁體中文（香港）',
     bg: 'Български',
+    ar: 'العربية',
   }.freeze
 
   def human_locale(locale)
