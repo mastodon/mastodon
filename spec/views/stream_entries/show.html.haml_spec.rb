@@ -61,5 +61,4 @@ describe 'stream_entries/show.html.haml' do
     expect(mf2.entry.in_reply_to.format.author.format.name.to_s).to eq alice.display_name
     expect(mf2.entry.in_reply_to.format.author.format.url.to_s).not_to be_empty
   end
-
 end
