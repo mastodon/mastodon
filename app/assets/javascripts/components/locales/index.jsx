@@ -23,6 +23,7 @@ const locales = {
   nl,
   no,
   pt,
+  'pt-BR': pt_br,
   uk,
   fi,
   eo,
