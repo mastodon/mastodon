@@ -3,6 +3,8 @@
 class AtomSerializer
   include RoutingHelper
 
+  INVALID_XML_CHARS = /[^\u0009\u000a\u000d\u0020-\uD7FF\uE000-\uFFFD\u10000-\u10FFFF]/
+
   class << self
     def render(element)
       document = Ox::Document.new(version: '1.0')
@@ -317,9 +319,7 @@ class AtomSerializer
   end
 
   def sanitize_str(raw_str)
-    str = raw_str.to_s
-    ["\v", "\f", "\b"].each { |char| str = str.delete(char) }
-    str
+    raw_str.to_s.gsub(INVALID_XML_CHARS, '')
   end
 
   def add_namespaces(parent)
