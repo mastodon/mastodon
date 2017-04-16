@@ -41,7 +41,7 @@ GEM
       tzinfo (~> 1.1)
     addressable (2.5.1)
       public_suffix (~> 2.0, >= 2.0.2)
-    airbrussh (1.1.2)
+    airbrussh (1.2.0)
       sshkit (>= 1.6.1, != 1.7.0)
     arel (7.1.4)
     ast (2.3.0)
@@ -111,13 +111,6 @@ GEM
     cocaine (0.5.8)
       climate_control (>= 0.0.3, < 1.0)
     coderay (1.1.1)
-    coffee-rails (4.1.1)
-      coffee-script (>= 2.2.0)
-      railties (>= 4.0.0, < 5.1.x)
-    coffee-script (2.4.1)
-      coffee-script-source
-      execjs
-    coffee-script-source (1.12.2)
     colorize (0.8.1)
     concurrent-ruby (1.0.5)
     connection_pool (2.2.1)
@@ -477,13 +470,12 @@ DEPENDENCIES
   binding_of_caller
   browserify-rails
   bullet
-  capistrano
+  capistrano (= 3.8.0)
   capistrano-faster-assets (~> 1.0)
   capistrano-rails
   capistrano-rbenv
   capistrano-yarn
   capybara
-  coffee-rails (~> 4.1.0)
   devise
   devise-two-factor
   doorkeeper
