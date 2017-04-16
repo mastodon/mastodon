@@ -161,13 +161,7 @@ class ProcessFeedService < BaseService
       xml.xpath('./xmlns:link[@rel="mentioned"]', xmlns: TagManager::XMLNS).each do |link|
         next if [TagManager::TYPES[:group], TagManager::TYPES[:collection]].include? link['ostatus:object-type']
 
-        url = Addressable::URI.parse(link['href'])
-
-        mentioned_account = if TagManager.instance.web_domain?(url.host)
-                              Account.find_local(url.path.gsub('/users/', ''))
-                            else
-                              Account.find_by(url: link['href']) || FetchRemoteAccountService.new.call(link['href'])
-                            end
+        mentioned_account = account_from_href(link['href'])
 
         next if mentioned_account.nil? || processed_account_ids.include?(mentioned_account.id)
 
@@ -175,6 +169,16 @@ class ProcessFeedService < BaseService
 
         # So we can skip duplicate mentions
         processed_account_ids << mentioned_account.id
+      end
+    end
+
+    def account_from_href(href)
+      url = Addressable::URI.parse(href)
+
+      if TagManager.instance.web_domain?(url.host)
+        Account.find_local(url.path.gsub('/users/', ''))
+      else
+        Account.find_by(uri: href) || Account.find_by(url: href) || FetchRemoteAccountService.new.call(href)
       end
     end
 
