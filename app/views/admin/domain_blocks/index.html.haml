@@ -1,17 +1,24 @@
 - content_for :page_title do
-  = t('admin.domain_block.title')
+  = t('admin.domain_blocks.title')
 
 %table.table
   %thead
     %tr
-      %th= t('admin.domain_block.domain')
-      %th= t('admin.domain_block.severity')
+      %th= t('admin.domain_blocks.domain')
+      %th= t('admin.domain_blocks.severity')
+      %th= t('admin.domain_blocks.reject_media')
+      %th
   %tbody
     - @blocks.each do |block|
       %tr
         %td
           %samp= block.domain
-        %td= block.severity
+        %td= t("admin.domain_blocks.severities.#{block.severity}")
+        %td
+          - if block.reject_media? || block.suspend?
+            %i.fa.fa-check
+        %td
+          = table_link_to 'undo', t('admin.domain_blocks.undo'), admin_domain_block_path(block)
 
 = paginate @blocks
-= link_to t('admin.domain_block.add_new'), new_admin_domain_block_path, class: 'button'
+= link_to t('admin.domain_blocks.add_new'), new_admin_domain_block_path, class: 'button'

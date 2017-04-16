@@ -1,6 +1,16 @@
 # frozen_string_literal: true
 
 namespace :mastodon do
+  desc 'Execute daily tasks'
+  task :daily do
+    Rake::Task['mastodon:feeds:clear'].invoke
+    Rake::Task['mastodon:media:clear'].invoke
+    Rake::Task['mastodon:users:clear'].invoke
+
+    Rake::Task['mastodon:push:refresh'].invoke
+  end
+
+  desc 'Turn a user into an admin, identified by the USERNAME environment variable'
   task make_admin: :environment do
     include RoutingHelper
 
@@ -13,12 +23,13 @@ namespace :mastodon do
   desc 'Manually confirms a user with associated user email address stored in USER_EMAIL environment variable.'
   task confirm_email: :environment do
     email = ENV.fetch('USER_EMAIL')
-    user = User.where(email: email).first
+    user  = User.find_by(email: email)
+
     if user
       user.update(confirmed_at: Time.now.utc)
-      puts "User #{email} confirmed."
+      puts "#{email} confirmed"
     else
-      abort "User #{email} not found."
+      abort "#{email} not found"
     end
   end
 
@@ -31,6 +42,13 @@ namespace :mastodon do
     desc 'Remove media attachments attributed to silenced accounts'
     task remove_silenced: :environment do
       MediaAttachment.where(account: Account.silenced).find_each(&:destroy)
+    end
+
+    desc 'Remove cached remote media attachments that are older than a week'
+    task remove_remote: :environment do
+      MediaAttachment.where.not(remote_url: '').where('created_at < ?', 1.week.ago).find_each do |media|
+        media.file.destroy
+      end
     end
   end
 
@@ -60,7 +78,7 @@ namespace :mastodon do
       end
     end
 
-    desc 'Clears all timelines so that they would be regenerated on next hit'
+    desc 'Clears all timelines'
     task clear_all: :environment do
       Redis.current.keys('feed:*').each { |key| Redis.current.del(key) }
     end
@@ -76,9 +94,30 @@ namespace :mastodon do
   end
 
   namespace :users do
-    desc 'clear unconfirmed users'
+    desc 'Clear out unconfirmed users'
     task clear: :environment do
-      User.where('confirmed_at is NULL AND confirmation_sent_at <= ?', 2.days.ago).find_each(&:destroy)
+      # Users that never confirmed e-mail never signed in, means they
+      # only have a user record and an avatar record, with no files uploaded
+      User.where('confirmed_at is NULL AND confirmation_sent_at <= ?', 2.days.ago).find_in_batches do |batch|
+        Account.where(id: batch.map(&:account_id)).delete_all
+        User.where(id: batch.map(&:id)).delete_all
+      end
+    end
+  end
+
+  namespace :settings do
+    desc 'Open registrations on this instance'
+    task open_registrations: :environment do
+      setting = Setting.where(var: 'open_registrations').first
+      setting.value = true
+      setting.save
+    end
+
+    desc 'Close registrations on this instance'
+    task close_registrations: :environment do
+      setting = Setting.where(var: 'open_registrations').first
+      setting.value = false
+      setting.save
     end
   end
 
@@ -105,8 +144,13 @@ namespace :mastodon do
       Rails.logger.debug 'Generating static avatars/headers for GIF ones...'
 
       Account.unscoped.where(avatar_content_type: 'image/gif').or(Account.unscoped.where(header_content_type: 'image/gif')).find_each do |account|
-        account.avatar.reprocess!
-        account.header.reprocess!
+        begin
+          account.avatar.reprocess!
+          account.header.reprocess!
+        rescue StandardError => e
+          Rails.logger.error "Error while generating static avatars/headers for account #{account.id}: #{e}"
+          next
+        end
       end
 
       Rails.logger.debug 'Done!'

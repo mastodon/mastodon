@@ -56,6 +56,10 @@ class TagManager
     id.start_with?("tag:#{Rails.configuration.x.local_domain}")
   end
 
+  def web_domain?(domain)
+    domain.nil? || domain.gsub(/[\/]/, '').casecmp(Rails.configuration.x.web_domain).zero?
+  end
+
   def local_domain?(domain)
     domain.nil? || domain.gsub(/[\/]/, '').casecmp(Rails.configuration.x.local_domain).zero?
   end

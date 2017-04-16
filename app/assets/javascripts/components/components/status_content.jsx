@@ -44,6 +44,7 @@ const StatusContent = React.createClass({
       } else {
         link.setAttribute('target', '_blank');
         link.setAttribute('rel', 'noopener');
+        link.setAttribute('title', link.href);
       }
     }
   },
@@ -118,7 +119,7 @@ const StatusContent = React.createClass({
       return (
         <div className='status__content' style={{ cursor: 'pointer' }} onMouseDown={this.handleMouseDown} onMouseUp={this.handleMouseUp}>
           <p style={{ marginBottom: hidden && status.get('mentions').size === 0 ? '0px' : '' }} >
-            <span dangerouslySetInnerHTML={spoilerContent} />  <a className='status__content__spoiler-link' onClick={this.handleSpoilerClick}>{toggleText}</a>
+            <span dangerouslySetInnerHTML={spoilerContent} />  <a tabIndex='0' className='status__content__spoiler-link' role='button' onClick={this.handleSpoilerClick}>{toggleText}</a>
           </p>
 
           {mentionsPlaceholder}

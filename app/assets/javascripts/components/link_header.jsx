@@ -14,7 +14,7 @@ Link.parseAttrs = (link, parts) => {
     link  = Link.parseParams(link, uriAttrs[1])
   }
 
-  while(match = Link.attrPattern.exec(attrs)) {
+  while(match = Link.attrPattern.exec(attrs)) { // eslint-disable-line no-cond-assign
     attr  = match[1].toLowerCase()
     value = match[4] || match[3] || match[2]
 

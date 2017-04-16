@@ -1,5 +1,5 @@
 - content_for :header_tags do
-  = javascript_include_tag 'application_public'
+  = javascript_include_tag 'application_public', integrity: true, crossorigin: 'anonymous'
 
 - content_for :content do
   .container
