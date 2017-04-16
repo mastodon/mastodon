@@ -37,10 +37,8 @@ import FollowRequests from '../features/follow_requests';
 import GenericNotFound from '../features/generic_not_found';
 import FavouritedStatuses from '../features/favourited_statuses';
 import Blocks from '../features/blocks';
-import Mutes from '../features/mutes';
 import Report from '../features/report';
 import { IntlProvider, addLocaleData } from 'react-intl';
-import ar from 'react-intl/locale-data/ar';
 import en from 'react-intl/locale-data/en';
 import de from 'react-intl/locale-data/de';
 import eo from 'react-intl/locale-data/eo';
@@ -57,21 +55,18 @@ import uk from 'react-intl/locale-data/uk';
 import zh from 'react-intl/locale-data/zh';
 import bg from 'react-intl/locale-data/bg';
 import { localeData as zh_hk } from '../locales/zh-hk';
+import ar from 'react-intl/locale-data/ar';
 import getMessagesForLocale from '../locales';
 import { hydrateStore } from '../actions/store';
 import createStream from '../stream';
 
 const store = configureStore();
-const initialState = JSON.parse(document.getElementById("initial-state").textContent);
-store.dispatch(hydrateStore(initialState));
-
 const browserHistory = useRouterHistory(createBrowserHistory)({
   basename: '/web'
 });
 
 addLocaleData([
   ...en,
-  ...ar,
   ...de,
   ...eo,
   ...es,
@@ -87,6 +82,7 @@ addLocaleData([
   ...zh,
   ...zh_hk,
   ...bg,
+  ...ar,
 ]);
 
 const Mastodon = React.createClass({
