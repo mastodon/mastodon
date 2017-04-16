@@ -141,7 +141,7 @@ const UI = React.createClass({
         {mountedColumns}
 
         <NotificationsContainer />
-        <LoadingBarContainer style={{ backgroundColor: '#2b90d9', left: '0', top: '0' }} />
+        <LoadingBarContainer className="loading-bar" />
         <ModalContainer />
         <UploadArea active={draggingOver} />
       </div>

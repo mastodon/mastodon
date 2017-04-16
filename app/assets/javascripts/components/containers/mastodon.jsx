@@ -37,6 +37,7 @@ import FollowRequests from '../features/follow_requests';
 import GenericNotFound from '../features/generic_not_found';
 import FavouritedStatuses from '../features/favourited_statuses';
 import Blocks from '../features/blocks';
+import Mutes from '../features/mutes';
 import Report from '../features/report';
 import { IntlProvider, addLocaleData } from 'react-intl';
 import en from 'react-intl/locale-data/en';
@@ -60,8 +61,8 @@ import { hydrateStore } from '../actions/store';
 import createStream from '../stream';
 
 const store = configureStore();
-
-store.dispatch(hydrateStore(window.INITIAL_STATE));
+const initialState = JSON.parse(document.getElementById("initial-state").textContent);
+store.dispatch(hydrateStore(initialState));
 
 const browserHistory = useRouterHistory(createBrowserHistory)({
   basename: '/web'
@@ -94,9 +95,10 @@ const Mastodon = React.createClass({
 
   componentDidMount() {
     const { locale }  = this.props;
+    const streamingAPIBaseURL = store.getState().getIn(['meta', 'streaming_api_base_url']);
     const accessToken = store.getState().getIn(['meta', 'access_token']);
 
-    this.subscription = createStream(accessToken, 'user', {
+    this.subscription = createStream(streamingAPIBaseURL, accessToken, 'user', {
 
       connected () {
         store.dispatch(connectTimeline('home'));
@@ -171,6 +173,7 @@ const Mastodon = React.createClass({
 
               <Route path='follow_requests' component={FollowRequests} />
               <Route path='blocks' component={Blocks} />
+              <Route path='mutes' component={Mutes} />
               <Route path='report' component={Report} />
 
               <Route path='*' component={GenericNotFound} />

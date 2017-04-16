@@ -3,10 +3,11 @@
 source 'https://rubygems.org'
 ruby '2.4.1'
 
+gem 'pkg-config'
+
 gem 'rails', '~> 5.0.2'
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
-gem 'coffee-rails', '~> 4.1.0'
 gem 'jquery-rails'
 gem 'puma'
 
@@ -42,6 +43,7 @@ gem 'rabl'
 gem 'rack-attack'
 gem 'rack-cors', require: 'rack/cors'
 gem 'rack-timeout'
+gem 'rails-i18n'
 gem 'rails-settings-cached'
 gem 'redis', '~>3.2', require: ['redis', 'redis/connection/hiredis']
 gem 'rqrcode'
@@ -50,6 +52,7 @@ gem 'sidekiq'
 gem 'sidekiq-unique-jobs'
 gem 'simple-navigation'
 gem 'simple_form'
+gem 'sprockets-rails', :require => 'sprockets/railtie'
 gem 'statsd-instrument'
 gem 'twitter-text'
 gem 'tzinfo-data'
@@ -67,7 +70,9 @@ group :development, :test do
 end
 
 group :test do
+  gem 'capybara'
   gem 'faker'
+  gem 'microformats2'
   gem 'rails-controller-testing'
   gem 'rspec-sidekiq'
   gem 'simplecov', require: false
