@@ -61,8 +61,9 @@
         = surround '(', ')' do
           = number_to_human_size @account.media_attachments.sum('file_file_size')
 
-%div{ style: 'float: right' }
-  = link_to t('admin.accounts.reset_password'), admin_account_reset_path(@account.id), method: :create, class: 'button'
+- if @account.local?
+  %div{ style: 'float: right' }
+    = link_to t('admin.accounts.reset_password'), admin_account_reset_path(@account.id), method: :create, class: 'button'
 
 %div{ style: 'float: left' }
   - if @account.silenced?
