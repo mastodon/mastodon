@@ -80,7 +80,7 @@ ja:
       undo_suspension: 停止から戻す
       username: ユーザー名
       web: Web
-    domain_block:
+    domain_blocks:
       add_new: 新規追加
       created_msg: ドメインブロック処理を完了しました
       destroyed_msg: ドメインブロックを外しました
@@ -258,24 +258,6 @@ ja:
     missing_resource: リダイレクト先が見つかりませんでした
     proceed: フォローする
     prompt: 'フォローしようとしています:'
-  reports:
-    comment:
-      label: コメント
-      none: なし
-    delete: 削除
-    id: ID
-    mark_as_resolved: 解決する
-    report: '通報 #%{id}'
-    reported_account: 通報されているユーザー
-    reported_by: 通報者
-    reports: 通報
-    resolved: 解決済み
-    silence_account: ユーザーをサイレンスする
-    status: 現状
-    suspend_account: ユーザーを停止する
-    target: 通報されているユーザー
-    unresolved: 未決
-    view: 見る
   settings:
     authorized_apps: 認証済みアプリ
     back: 戻る
@@ -310,11 +292,9 @@ ja:
     instructions_html: "<strong>Google Authenticatorか、もしくはほかのTOTPアプリでこのQRコードをスキャンしてください。</strong>これ以降、ログインするときはそのアプリで生成されるコードが必要になります。"
     lost_recovery_codes: リカバリコードを使用すると携帯電話を紛失した場合でもアカウントにアクセスできるようになります。 リカバリーコードを紛失した場合もここで再生成することができますが、古いリカバリコードは無効になります。
     manual_instructions: 'QRコードがスキャンできず、手動での登録を希望の場合はこのシークレットコードを利用してください。:'
-    recovery_codes: リカバリーコード
     recovery_codes_regenerated: リカバリーコードが再生成されました。
     recovery_instructions: 携帯電話を紛失した場合、以下の内どれかのリカバリコードを使用してアカウントへアクセスすることができます。 リカバリコードは印刷して安全に保管してください。
     setup: 初期設定
-    warning: 現在認証アプリを設定できない場合、無効に設定して、有効にしないでください。
     wrong_code: コードが間違っています。サーバー上の時間とデバイス上の時間が一致していることを確認してください。
   users:
     invalid_email: メールアドレスが無効です
