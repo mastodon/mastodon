@@ -24,8 +24,10 @@ const makeGetStatusIds = () => createSelector([
 
   if (columnSettings.getIn(['regex', 'body'], '').trim().length > 0) {
     try {
-      const regex = new RegExp(columnSettings.getIn(['regex', 'body']).trim(), 'i');
-      showStatus = showStatus && !regex.test(statusForId.get('reblog') ? statuses.getIn([statusForId.get('reblog'), 'content']) : statusForId.get('content'));
+      if (showStatus) {
+        const regex = new RegExp(columnSettings.getIn(['regex', 'body']).trim(), 'i');
+        showStatus = !regex.test(statusForId.get('reblog') ? statuses.getIn([statusForId.get('reblog'), 'unescaped_content']) : statusForId.get('unescaped_content'));
+      }
     } catch(e) {
       // Bad regex, don't affect filters
     }
