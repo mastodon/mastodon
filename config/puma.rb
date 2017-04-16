@@ -12,3 +12,9 @@ on_worker_boot do
 end
 
 plugin :tmp_restart
+
+before_fork do
+  require 'puma_worker_killer'
+
+  PumaWorkerKiller.enable_rolling_restart
+end
