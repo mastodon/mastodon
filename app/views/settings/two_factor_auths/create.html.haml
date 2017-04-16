@@ -1,0 +1,4 @@
+- content_for :page_title do
+  = t('settings.two_factor_auth')
+
+= render partial: 'recovery_codes', object: @codes

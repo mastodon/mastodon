@@ -28,7 +28,7 @@ RUN BUILD_DEPS=" \
     imagemagick \
  && npm install -g npm@3 && npm install -g yarn \
  && bundle install --deployment --without test development \
- && yarn \
+ && yarn --ignore-optional \
  && yarn cache clean \
  && npm -g cache clean \
  && apk del $BUILD_DEPS \

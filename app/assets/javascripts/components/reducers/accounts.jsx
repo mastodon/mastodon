@@ -15,6 +15,10 @@ import {
   BLOCKS_FETCH_SUCCESS,
   BLOCKS_EXPAND_SUCCESS
 } from '../actions/blocks';
+import {
+  MUTES_FETCH_SUCCESS,
+  MUTES_EXPAND_SUCCESS
+} from '../actions/mutes';
 import { COMPOSE_SUGGESTIONS_READY } from '../actions/compose';
 import {
   REBLOG_SUCCESS,
@@ -94,6 +98,8 @@ export default function accounts(state = initialState, action) {
   case FOLLOW_REQUESTS_EXPAND_SUCCESS:
   case BLOCKS_FETCH_SUCCESS:
   case BLOCKS_EXPAND_SUCCESS:
+  case MUTES_FETCH_SUCCESS:
+  case MUTES_EXPAND_SUCCESS:
     return normalizeAccounts(state, action.accounts);
   case NOTIFICATIONS_REFRESH_SUCCESS:
   case NOTIFICATIONS_EXPAND_SUCCESS:

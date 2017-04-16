@@ -19,6 +19,7 @@ const messages = defineMessages({
 
 const mapStateToProps = state => ({
   hasUnread: state.getIn(['timelines', 'public', 'unread']) > 0,
+  streamingAPIBaseURL: state.getIn(['meta', 'streaming_api_base_url']),
   accessToken: state.getIn(['meta', 'access_token'])
 });
 
@@ -29,6 +30,7 @@ const PublicTimeline = React.createClass({
   propTypes: {
     dispatch: React.PropTypes.func.isRequired,
     intl: React.PropTypes.object.isRequired,
+    streamingAPIBaseURL: React.PropTypes.string.isRequired,
     accessToken: React.PropTypes.string.isRequired,
     hasUnread: React.PropTypes.bool
   },
@@ -36,7 +38,7 @@ const PublicTimeline = React.createClass({
   mixins: [PureRenderMixin],
 
   componentDidMount () {
-    const { dispatch, accessToken } = this.props;
+    const { dispatch, streamingAPIBaseURL, accessToken } = this.props;
 
     dispatch(refreshTimeline('public'));
 
@@ -44,7 +46,7 @@ const PublicTimeline = React.createClass({
       return;
     }
 
-    subscription = createStream(accessToken, 'public', {
+    subscription = createStream(streamingAPIBaseURL, accessToken, 'public', {
 
       connected () {
         dispatch(connectTimeline('public'));
