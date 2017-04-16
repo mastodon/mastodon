@@ -14,11 +14,12 @@ import ColumnBackButtonSlim from '../../components/column_back_button_slim';
 import createStream from '../../stream';
 
 const messages = defineMessages({
-  title: { id: 'column.community', defaultMessage: 'Local' }
+  title: { id: 'column.community', defaultMessage: 'Local timeline' }
 });
 
 const mapStateToProps = state => ({
   hasUnread: state.getIn(['timelines', 'community', 'unread']) > 0,
+  streamingAPIBaseURL: state.getIn(['meta', 'streaming_api_base_url']),
   accessToken: state.getIn(['meta', 'access_token'])
 });
 
@@ -29,6 +30,7 @@ const CommunityTimeline = React.createClass({
   propTypes: {
     dispatch: React.PropTypes.func.isRequired,
     intl: React.PropTypes.object.isRequired,
+    streamingAPIBaseURL: React.PropTypes.string.isRequired,
     accessToken: React.PropTypes.string.isRequired,
     hasUnread: React.PropTypes.bool
   },
@@ -36,7 +38,7 @@ const CommunityTimeline = React.createClass({
   mixins: [PureRenderMixin],
 
   componentDidMount () {
-    const { dispatch, accessToken } = this.props;
+    const { dispatch, streamingAPIBaseURL, accessToken } = this.props;
 
     dispatch(refreshTimeline('community'));
 
@@ -44,7 +46,7 @@ const CommunityTimeline = React.createClass({
       return;
     }
 
-    subscription = createStream(accessToken, 'public:local', {
+    subscription = createStream(streamingAPIBaseURL, accessToken, 'public:local', {
 
       connected () {
         dispatch(connectTimeline('community'));

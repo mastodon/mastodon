@@ -7,7 +7,7 @@ There are three ways in which you can contribute to this repository:
 2. By working on the back-end application
 3. By working on the front-end application
 
-Choosing what to work on in a large open source project is not easy. The list of GitHub issues may provide some ideas, but not every feature request has been greenlit. Likewise, not every change or feature that resolves a personal itch will be merged into the main repository. Some communication ahead of time may be wise.
+Choosing what to work on in a large open source project is not easy. The list of GitHub issues may provide some ideas, but not every feature request has been greenlit. Likewise, not every change or feature that resolves a personal itch will be merged into the main repository. Some communication ahead of time may be wise. If your addition creates a new feature or setting, or otherwise changes how things work in some substantial way, please remember to submit a correlating pull request to document your changes in the [documentation](http://github.com/tootsuite/documentation).
 
 Below are the guidelines for working on pull requests:
 
@@ -41,3 +41,4 @@ It is expected that you have a working development environment set up (see back-
 * If you are introducing new strings, they must be using localization methods
 
 If the JavaScript or CSS assets won't compile due to a syntax error, it's a good sign that the pull request isn't ready for submission yet.
+

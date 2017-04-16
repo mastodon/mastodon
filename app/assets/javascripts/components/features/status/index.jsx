@@ -38,7 +38,8 @@ const makeMapStateToProps = () => {
     status: getStatus(state, Number(props.params.statusId)),
     ancestorsIds: state.getIn(['timelines', 'ancestors', Number(props.params.statusId)]),
     descendantsIds: state.getIn(['timelines', 'descendants', Number(props.params.statusId)]),
-    me: state.getIn(['meta', 'me'])
+    me: state.getIn(['meta', 'me']),
+    boostModal: state.getIn(['meta', 'boost_modal'])
   });
 
   return mapStateToProps;
@@ -55,7 +56,8 @@ const Status = React.createClass({
     status: ImmutablePropTypes.map,
     ancestorsIds: ImmutablePropTypes.list,
     descendantsIds: ImmutablePropTypes.list,
-    me: React.PropTypes.number
+    me: React.PropTypes.number,
+    boostModal: React.PropTypes.bool
   },
 
   mixins: [PureRenderMixin],
@@ -82,11 +84,19 @@ const Status = React.createClass({
     this.props.dispatch(replyCompose(status, this.context.router));
   },
 
-  handleReblogClick (status) {
+  handleModalReblog (status) {
+    this.props.dispatch(reblog(status));
+  },
+
+  handleReblogClick (status, e) {
     if (status.get('reblogged')) {
       this.props.dispatch(unreblog(status));
     } else {
-      this.props.dispatch(reblog(status));
+      if (e.shiftKey || !this.props.boostModal) {
+        this.handleModalReblog(status);
+      } else {
+        this.props.dispatch(openModal('BOOST', { status, onReblog: this.handleModalReblog }));
+      }
     }
   },
 
@@ -100,6 +110,10 @@ const Status = React.createClass({
 
   handleOpenMedia (media, index) {
     this.props.dispatch(openModal('MEDIA', { media, index }));
+  },
+
+  handleOpenVideo (media, time) {
+    this.props.dispatch(openModal('VIDEO', { media, time }));
   },
 
   handleReport (status) {
@@ -141,7 +155,7 @@ const Status = React.createClass({
           <div className='scrollable'>
             {ancestors}
 
-            <DetailedStatus status={status} me={me} onOpenMedia={this.handleOpenMedia} />
+            <DetailedStatus status={status} me={me} onOpenVideo={this.handleOpenVideo} onOpenMedia={this.handleOpenMedia} />
             <ActionBar status={status} me={me} onReply={this.handleReplyClick} onFavourite={this.handleFavouriteClick} onReblog={this.handleReblogClick} onDelete={this.handleDeleteClick} onMention={this.handleMentionClick} onReport={this.handleReport} />
 
             {descendants}

@@ -1,0 +1,46 @@
+---
+hr:
+  simple_form:
+    hints:
+      defaults:
+        avatar: PNG, GIF ili JPG. Najviše 2MB. Bit će smanjen na 120x120px
+        display_name: Najviše 30 znakova
+        header: PNG, GIF ili JPG. Najviše 2MB. Bit će smanjen na 700x335px
+        locked: traži te da ručno odobriš sljedbenike i postavlja privatnost postova na dostupnu samo sljedbenicima
+        note: Najviše 160 znakova
+      imports:
+        data: CSV fajl izvezen iz druge Mastodon instance
+    labels:
+      defaults:
+        avatar: Avatar
+        confirm_new_password: Potvrdi novu lozinku
+        confirm_password: Potvrdi lozinku
+        current_password: Trenutna lozinka
+        data: Podaci
+        display_name: Ime koje ću prikazati
+        email: E-mail adresa
+        header: Header
+        locale: Jezik
+        locked: Učini račun privatnim
+        new_password: Nova lozinka
+        note: Bio
+        otp_attempt: Dvo-faktorski kod
+        password: Lozinka
+        setting_default_privacy: Privatnost posta
+        type: Tip uvoženja
+        username: Korisničko ime
+      interactions:
+        must_be_follower: Blokiraj notifikacije onih koji me ne slijede
+        must_be_following: Blokiraj notifikacije ljudi koje ne slijedim
+      notification_emails:
+        digest: Šalji mi e-mailove s notifikacijama
+        favourite: Pošalji mi e-mail kad netko lajka moj status
+        follow: Pošalji mi e-mail kad me netko počne slijediti
+        follow_request: Pošalji mi e-mail kad mi netko pošalje zahtjev da me želi slijediti
+        mention: Pošalji mi e-mail kad me netko spomene
+        reblog: Pošalji mi e-mail kad netko rebloga moj status
+    'no': 'Ne'
+    required:
+      mark: "*"
+      text: traženo
+    'yes': 'Da'
