@@ -32,7 +32,9 @@ search:
     - app/assets/videos
 
 ignore_unused:
+  - 'activemodel.errors.*'
   - 'activerecord.attributes.*'
+  - 'activerecord.errors.*'
   - '{devise,pagination,doorkeeper}.*'
   - '{datetime,time}.*'
   - 'simple_form.{yes,no}'
