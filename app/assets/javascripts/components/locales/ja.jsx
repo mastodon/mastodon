@@ -92,7 +92,7 @@ const ja = {
   "report.target": "問題のユーザー",
   "search.placeholder": "検索",
   "search.status_by": "{name}からの投稿",
-  "search_results.total": "{count} {count, plural, one {result} other {results}} 件",  
+  "search_results.total": "{count} {count, plural, one {result} other {results}} 件",
   "status.delete": "削除",
   "status.favourite": "お気に入り",
   "status.load_more": "もっと見る",
