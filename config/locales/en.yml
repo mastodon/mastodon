@@ -81,6 +81,8 @@ en:
       web: Web
     domain_block:
       add_new: Add new
+      created_msg: Domain block is now being processed
+      destroyed_msg: Domain block has been undone
       domain: Domain
       new:
         create: Create block
@@ -90,8 +92,22 @@ en:
           silence: Silence
           suspend: Suspend
         title: New domain block
+      reject_media: Reject media files
+      reject_media_hint: Removes locally stored media files and refuses to download any in the future. Irrelevant for suspensions
+      severities:
+        silence: Silence
+        suspend: Suspend
       severity: Severity
+      show:
+        affected_accounts:
+          one: One account in the database affected
+          other: "%{count} accounts in the database affected"
+        retroactive:
+          silence: Unsilence all existing accounts from this domain
+          suspend: Unsuspend all existing accounts from this domain
+        title: Undo domain block for %{domain}
       title: Domain Blocks
+      undo: Undo
     pubsubhubbub:
       callback_url: Callback URL
       confirmed: Confirmed

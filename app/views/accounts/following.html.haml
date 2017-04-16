@@ -1,7 +1,7 @@
 - content_for :page_title do
   = t('accounts.people_followed_by', name: display_name(@account))
 
-= render partial: 'header'
+= render 'header', account: @account
 
 .accounts-grid
   - if @following.empty?
