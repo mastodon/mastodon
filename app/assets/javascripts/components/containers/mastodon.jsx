@@ -56,6 +56,7 @@ import uk from 'react-intl/locale-data/uk';
 import zh from 'react-intl/locale-data/zh';
 import bg from 'react-intl/locale-data/bg';
 import { localeData as zh_hk } from '../locales/zh-hk';
+import bg from 'react-intl/locale-data/ar';
 import getMessagesForLocale from '../locales';
 import { hydrateStore } from '../actions/store';
 import createStream from '../stream';
@@ -85,6 +86,7 @@ addLocaleData([
   ...zh,
   ...zh_hk,
   ...bg,
+  ...ar,
 ]);
 
 const Mastodon = React.createClass({
