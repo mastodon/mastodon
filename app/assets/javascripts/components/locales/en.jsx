@@ -129,6 +129,7 @@ const en = {
   "video_player.toggle_sound": "Toggle sound",
   "video_player.toggle_visible": "Toggle visibility",
   "video_player.expand": "Expand video",
+  "video_player.video_error": "Video could not be played",
 };
 
 export default en;

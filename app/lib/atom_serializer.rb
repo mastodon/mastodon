@@ -3,6 +3,8 @@
 class AtomSerializer
   include RoutingHelper
 
+  INVALID_XML_CHARS = /[^\u0009\u000a\u000d\u0020-\uD7FF\uE000-\uFFFD\u10000-\u10FFFF]/
+
   class << self
     def render(element)
       document = Ox::Document.new(version: '1.0')
@@ -39,7 +41,7 @@ class AtomSerializer
     add_namespaces(feed)
 
     append_element(feed, 'id', account_url(account, format: 'atom'))
-    append_element(feed, 'title', account.display_name)
+    append_element(feed, 'title', account.display_name.presence || account.username)
     append_element(feed, 'subtitle', account.note)
     append_element(feed, 'updated', account.updated_at.iso8601)
     append_element(feed, 'logo', full_asset_url(account.avatar.url(:original)))
@@ -311,9 +313,13 @@ class AtomSerializer
 
   def append_element(parent, name, content = nil, attributes = {})
     element = Ox::Element.new(name)
-    attributes.each { |k, v| element[k] = v.to_s }
-    element << content.to_s unless content.nil?
+    attributes.each { |k, v| element[k] = sanitize_str(v) }
+    element << sanitize_str(content) unless content.nil?
     parent  << element
+  end
+
+  def sanitize_str(raw_str)
+    raw_str.to_s.gsub(INVALID_XML_CHARS, '')
   end
 
   def add_namespaces(parent)
@@ -327,8 +333,8 @@ class AtomSerializer
   end
 
   def serialize_status_attributes(entry, status)
-    append_element(entry, 'summary', status.spoiler_text) if status.spoiler_text?
-    append_element(entry, 'content', Formatter.instance.format(status.proper).to_str, type: 'html')
+    append_element(entry, 'summary', status.spoiler_text, 'xml:lang': status.language) if status.spoiler_text?
+    append_element(entry, 'content', Formatter.instance.format(status.proper).to_str, type: 'html', 'xml:lang': status.language)
 
     status.mentions.each do |mentioned|
       append_element(entry, 'link', nil, rel: :mentioned, 'ostatus:object-type': TagManager::TYPES[:person], href: TagManager.instance.uri_for(mentioned.account))

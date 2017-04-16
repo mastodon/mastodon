@@ -1,34 +1,34 @@
-.card.h-card.p-author{ style: "background-image: url(#{@account.header.url( :original)})" }
-  - if user_signed_in? && current_account.id != @account.id && !current_account.requested?(@account)
+.card.h-card.p-author{ style: "background-image: url(#{account.header.url( :original)})" }
+  - if user_signed_in? && current_account.id != account.id && !current_account.requested?(account)
     .controls
-      - if current_account.following?(@account)
-        = link_to t('accounts.unfollow'), unfollow_account_path(@account), data: { method: :post }, class: 'button'
+      - if current_account.following?(account)
+        = link_to t('accounts.unfollow'), unfollow_account_path(account), data: { method: :post }, class: 'button'
       - else
-        = link_to t('accounts.follow'), follow_account_path(@account), data: { method: :post }, class: 'button'
+        = link_to t('accounts.follow'), follow_account_path(account), data: { method: :post }, class: 'button'
   - elsif !user_signed_in?
     .controls
       .remote-follow
-        = link_to t('accounts.remote_follow'), account_remote_follow_path(@account), class: 'button'
-  .avatar= image_tag @account.avatar.url(:original), class: 'u-photo'
+        = link_to t('accounts.remote_follow'), account_remote_follow_path(account), class: 'button'
+  .avatar= image_tag account.avatar.url(:original), class: 'u-photo'
   %h1.name
-    %span.p-name.emojify= display_name(@account)
+    %span.p-name.emojify= display_name(account)
     %small
-      %span= "@#{@account.username}"
-      = fa_icon('lock') if @account.locked?
+      %span= "@#{account.username}"
+      = fa_icon('lock') if account.locked?
   .details
     .bio
-      .account__header__content.p-note.emojify= Formatter.instance.simplified_format(@account)
+      .account__header__content.p-note.emojify= Formatter.instance.simplified_format(account)
 
     .details-counters
-      .counter{ class: active_nav_class(short_account_url(@account)) }
-        = link_to short_account_url(@account), class: 'u-url u-uid' do
+      .counter{ class: active_nav_class(short_account_url(account)) }
+        = link_to short_account_url(account), class: 'u-url u-uid' do
           %span.counter-label= t('accounts.posts')
-          %span.counter-number= number_with_delimiter @account.statuses_count
-      .counter{ class: active_nav_class(following_account_url(@account)) }
-        = link_to following_account_url(@account) do
+          %span.counter-number= number_with_delimiter account.statuses_count
+      .counter{ class: active_nav_class(following_account_url(account)) }
+        = link_to following_account_url(account) do
           %span.counter-label= t('accounts.following')
-          %span.counter-number= number_with_delimiter @account.following_count
-      .counter{ class: active_nav_class(followers_account_url(@account)) }
-        = link_to followers_account_url(@account) do
+          %span.counter-number= number_with_delimiter account.following_count
+      .counter{ class: active_nav_class(followers_account_url(account)) }
+        = link_to followers_account_url(account) do
           %span.counter-label= t('accounts.followers')
-          %span.counter-number= number_with_delimiter @account.followers_count
+          %span.counter-number= number_with_delimiter account.followers_count
