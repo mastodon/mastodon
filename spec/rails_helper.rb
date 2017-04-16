@@ -7,6 +7,7 @@ require 'spec_helper'
 require 'rspec/rails'
 require 'webmock/rspec'
 require 'paperclip/matchers'
+require 'capybara/rspec'
 
 Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
 
@@ -22,8 +23,13 @@ RSpec.configure do |config|
   config.filter_rails_from_backtrace!
 
   config.include Devise::Test::ControllerHelpers, type: :controller
-  config.include Devise::TestHelpers, type: :view
+  config.include Devise::Test::ControllerHelpers, type: :view
   config.include Paperclip::Shoulda::Matchers
+
+  config.before :each, type: :feature do
+    https = ENV['LOCAL_HTTPS'] == 'true'
+    Capybara.app_host = "http#{https ? 's' : ''}://#{ENV.fetch('LOCAL_DOMAIN')}"
+  end
 end
 
 RSpec::Sidekiq.configure do |config|

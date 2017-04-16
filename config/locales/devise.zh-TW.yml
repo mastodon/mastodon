@@ -1,0 +1,61 @@
+---
+zh-TW:
+  devise:
+    confirmations:
+      confirmed: 信箱驗證成功
+      send_instructions: 您將會在幾分鐘內收到驗證信。
+      send_paranoid_instructions: 如果您的電子信箱已經存在於我們的資料庫，您將會在幾分鐘內收到信，確認您電子信箱的指示。
+    failure:
+      already_authenticated: 您已經登入了。
+      inactive: 您的帳號尚未啟用。
+      invalid: 不正確的 %{authentication_keys} 或密碼。
+      last_attempt: 若您再次嘗試失敗，我們將鎖定您的帳號，以策安全。
+      locked: 您的帳號已被鎖定
+      not_found_in_database: 不正確的 %{authentication_keys} 或密碼。
+      timeout: 您的登入階段已經逾期，請重新登入以繼續使用。
+      unauthenticated: 您必須先登入或註冊，以繼續使用。
+      unconfirmed: 您必須先完成信箱驗證，以繼續使用。
+    mailer:
+      confirmation_instructions:
+        subject: 'Mastodon: 信箱驗證'
+      password_change:
+        subject: 'Mastodon: 更改密碼'
+      reset_password_instructions:
+        subject: 'Mastodon: 重設密碼'
+      unlock_instructions:
+        subject: 'Mastodon: 帳號解鎖'
+    omniauth_callbacks:
+      failure: 無法以 %{kind} 登入您的帳號，原因是︰「%{reason}」。
+      success: 成功以 %{kind} 登入您的帳號。
+    passwords:
+      no_token: 您請使用重設密碼信中的網址，並確認您用了完整的網址。
+      send_instructions: 您將在幾分鐘內收到重設密碼信。
+      send_paranoid_instructions: 如果您的電子信箱已經存在於我們的資料庫，您將會在幾分鐘內收到重設密碼信。
+      updated: 您的密碼已經更新，您現在正登入本站。
+      updated_not_active: 您的密碼已經更新。
+    registrations:
+      destroyed: 再見了！您的帳號已被取消，期待再相逢。
+      signed_up: 歡迎您！您的已成功註冊。
+      signed_up_but_inactive: 您已成功註冊，但由於您的帳號尚未啟用，我們暫時無法讓您登入。
+      signed_up_but_locked: 您已成功註冊，但由於您的帳號已被鎖定，我們無法讓您登入。
+      signed_up_but_unconfirmed: 驗證信已寄出。請使用該連結啟用您的帳號。
+      update_needs_confirmation: 已更新您的帳號，但我們需要進行信箱驗證。請開啟您的信箱，使用確認信中的連結進行驗證。
+      updated: 您的帳號已成功更新。
+    sessions:
+      already_signed_out: 成功登出。
+      signed_in: 成功登入。
+      signed_out: 成功登出。
+    unlocks:
+      send_instructions: 您將在幾分鐘內收到帳號解鎖信。
+      send_paranoid_instructions: 如果您的電子信箱已經存在於我們的資料庫，您將在幾分鐘內收到帳號解鎖信。
+      unlocked: 已解鎖您的帳號，請登入以繼續。
+  errors:
+    messages:
+      already_confirmed: 已經確認，請嘗試登入
+      confirmation_period_expired: 需要在 %{period} 內完成驗證。請重新申請
+      expired: 已經過期，請重新申請
+      not_found: 找不到
+      not_locked: 並未被鎖定
+      not_saved:
+        one: '1 個錯誤使 %{resource} 無法被儲存︰'
+        other: "%{count} 個錯誤使 %{resource} 無法被儲存︰"

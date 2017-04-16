@@ -39,7 +39,7 @@ class AtomSerializer
     add_namespaces(feed)
 
     append_element(feed, 'id', account_url(account, format: 'atom'))
-    append_element(feed, 'title', account.display_name)
+    append_element(feed, 'title', account.display_name.presence || account.username)
     append_element(feed, 'subtitle', account.note)
     append_element(feed, 'updated', account.updated_at.iso8601)
     append_element(feed, 'logo', full_asset_url(account.avatar.url(:original)))

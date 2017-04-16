@@ -48,6 +48,14 @@ If you would like, you can [support the development of this project on Patreon][
 - **Deployable via Docker**
   You don't need to mess with dependencies and configuration if you want to try Mastodon, if you have Docker and Docker Compose the deployment is extremely easy
 
+## Checking out
+
+If you want a stable release for production use, you should use tagged releases. To checkout the latest available tagged version:
+
+    git clone https://github.com/tootsuite/mastodon.git
+    cd mastodon
+    git checkout $(git describe --tags `git rev-list --tags --max-count=1`)
+
 ## Configuration
 
 - `LOCAL_DOMAIN` should be the domain/hostname of your instance. This is **absolutely required** as it is used for generating unique IDs for everything federation-related
