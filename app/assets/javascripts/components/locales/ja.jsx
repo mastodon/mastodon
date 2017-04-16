@@ -20,7 +20,7 @@ const ja = {
   "column.favourites": "お気に入り",
   "column.follow_requests": "フォローリクエスト",
   "column.home": "ホーム",
-  "column.mutes": "ミュート済みユーザー",
+  "column.mutes": "ミュートしたユーザー",
   "column.notifications": "通知",
   "column.public": "連合タイムライン",
   "column_back_button.label": "戻る",
