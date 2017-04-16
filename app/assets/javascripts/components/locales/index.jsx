@@ -6,6 +6,7 @@ import fr from './fr';
 import nl from './nl';
 import no from './no';
 import pt from './pt';
+import pt_br from './pt-br';
 import uk from './uk';
 import fi from './fi';
 import eo from './eo';
@@ -23,6 +24,7 @@ const locales = {
   nl,
   no,
   pt,
+  'pt-BR': pt_br,
   uk,
   fi,
   eo,
