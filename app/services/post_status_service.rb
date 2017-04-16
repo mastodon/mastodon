@@ -39,7 +39,8 @@ class PostStatusService < BaseService
 
     raise Mastodon::ValidationError, I18n.t('media_attachments.validations.too_many') if media_ids.size > 4
 
-    media = MediaAttachment.where(status_id: nil).where(id: media_ids.take(4).map(&:to_i))
+    target_media_ids = media_ids.take(4).map(&:to_i)
+    media = target_media_ids.blank? ? [] : MediaAttachment.where(status_id: nil).where(id: target_media_ids)
 
     raise Mastodon::ValidationError, I18n.t('media_attachments.validations.images_and_video') if media.size > 1 && media.find(&:video?)
 
@@ -47,7 +48,7 @@ class PostStatusService < BaseService
   end
 
   def attach_media(status, media)
-    return if media.nil?
+    return if media.nil? || media.empty?
     media.update(status_id: status.id)
   end
 
