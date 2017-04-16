@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 source 'https://rubygems.org'
-ruby '2.4.1'
+ruby '>= 2.3.0', '< 2.5.0'
 
 gem 'pkg-config'
 
@@ -88,7 +88,7 @@ group :development do
   gem 'bullet'
   gem 'active_record_query_trace'
 
-  gem 'capistrano'
+  gem 'capistrano', '3.8.0'
   gem 'capistrano-rails'
   gem 'capistrano-rbenv'
   gem 'capistrano-yarn'

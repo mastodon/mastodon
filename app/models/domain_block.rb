@@ -3,6 +3,8 @@
 class DomainBlock < ApplicationRecord
   enum severity: [:silence, :suspend]
 
+  attr_accessor :retroactive
+
   validates :domain, presence: true, uniqueness: true
 
   def self.blocked?(domain)
