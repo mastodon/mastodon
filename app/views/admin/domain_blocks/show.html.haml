@@ -1,0 +1,9 @@
+- content_for :page_title do
+  = t('admin.domain_block.show.title', domain: @domain_block.domain)
+
+= simple_form_for @domain_block, url: admin_domain_block_path(@domain_block), method: :delete do |f|
+
+  = f.input :retroactive, as: :boolean, wrapper: :with_label, label: I18n.t("admin.domain_block.show.retroactive.#{@domain_block.severity}"), hint: I18n.t('admin.domain_block.show.affected_accounts', count: Account.where(domain: @domain_block.domain).count)
+
+  .actions
+    = f.button :button, t('admin.domain_block.show.undo'), type: :submit
