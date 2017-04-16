@@ -1,6 +1,7 @@
 @import 'variables';
 
 .app-body{
+ -webkit-overflow-scrolling: touch;
  -ms-overflow-style: -ms-autohiding-scrollbar;
 }
 
@@ -109,6 +110,18 @@
 
     &.disabled {
       color: $color3;
+    }
+  }
+
+  &.overlayed {
+    box-sizing: content-box;
+    background: rgba($color8, 0.6);
+    color: rgba($color5, 0.7);
+    border-radius: 4px;
+    padding: 2px;
+
+    &:hover {
+      background: rgba($color8, 0.9);
     }
   }
 }
@@ -1190,6 +1203,10 @@ a.status__content__spoiler-link {
   &:focus {
     outline: 0;
   }
+
+  @media screen and (max-width: 600px) {
+    font-size: 16px;
+  }
 }
 
 .spoiler-input__input {
@@ -1253,6 +1270,10 @@ a.status__content__spoiler-link {
   &:focus, &:active {
     color: $color5;
     border-bottom-color: $color4;
+  }
+
+  @media screen and (max-width: 600px) {
+    font-size: 16px;
   }
 }
 
@@ -1370,7 +1391,7 @@ button.icon-button.active i.fa-retweet {
   }
 }
 
-.media-spoiler {
+.media-spoiler, .video-error-cover {
   background: $color8;
   color: $color5;
 }
@@ -1893,6 +1914,10 @@ button.icon-button.active i.fa-retweet {
   &:focus {
     background: lighten($color1, 4%);
   }
+
+  @media screen and (max-width: 600px) {
+    font-size: 16px;
+  }
 }
 
 .search__icon {
@@ -2042,4 +2067,12 @@ button.icon-button.active i.fa-retweet {
   .button {
     flex: 0 0 auto;
   }
+}
+
+.loading-bar {
+  background-color: $color4;
+  height: 3px;
+  position: absolute;
+  top: 0;
+  left: 0;
 }

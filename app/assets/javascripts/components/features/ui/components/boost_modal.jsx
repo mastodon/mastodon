@@ -65,7 +65,7 @@ const BoostModal = React.createClass({
         </div>
 
         <div className='boost-modal__action-bar'>
-          <div><FormattedMessage id='boost_modal.combo' defaultMessage='You can press {combo} to skip this next time' values={{ combo: <span>Alt + <i className='fa fa-retweet' /></span> }} /></div>
+          <div><FormattedMessage id='boost_modal.combo' defaultMessage='You can press {combo} to skip this next time' values={{ combo: <span>Shift + <i className='fa fa-retweet' /></span> }} /></div>
           <Button text={intl.formatMessage(messages.reblog)} onClick={this.handleReblog} />
         </div>
       </div>

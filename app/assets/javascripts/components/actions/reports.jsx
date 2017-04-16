@@ -7,7 +7,8 @@ export const REPORT_SUBMIT_REQUEST = 'REPORT_SUBMIT_REQUEST';
 export const REPORT_SUBMIT_SUCCESS = 'REPORT_SUBMIT_SUCCESS';
 export const REPORT_SUBMIT_FAIL    = 'REPORT_SUBMIT_FAIL';
 
-export const REPORT_STATUS_TOGGLE = 'REPORT_STATUS_TOGGLE';
+export const REPORT_STATUS_TOGGLE  = 'REPORT_STATUS_TOGGLE';
+export const REPORT_COMMENT_CHANGE = 'REPORT_COMMENT_CHANGE';
 
 export function initReport(account, status) {
   return {
@@ -60,5 +61,12 @@ export function submitReportFail(error) {
   return {
     type: REPORT_SUBMIT_FAIL,
     error
+  };
+};
+
+export function changeReportComment(comment) {
+  return {
+    type: REPORT_COMMENT_CHANGE,
+    comment
   };
 };
