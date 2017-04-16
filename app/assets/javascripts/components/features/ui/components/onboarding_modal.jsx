@@ -31,6 +31,11 @@ const PageOne = ({ acct, domain }) => (
   </div>
 );
 
+PageOne.propTypes = {
+  acct: React.PropTypes.string.isRequired,
+  domain: React.PropTypes.string.isRequired
+};
+
 const PageTwo = () => (
   <div className='onboarding-modal__page onboarding-modal__page-two'>
     <div className='figure non-interactive'>
@@ -74,7 +79,12 @@ const PageThree = ({ me, domain }) => (
   </div>
 );
 
-const PageFour = injectIntl(({ domain, intl }) => (
+PageThree.propTypes = {
+  me: ImmutablePropTypes.map.isRequired,
+  domain: React.PropTypes.string.isRequired
+};
+
+const PageFour = ({ domain, intl }) => (
   <div className='onboarding-modal__page onboarding-modal__page-four'>
     <div className='onboarding-modal__page-four__columns'>
       <div className='row'>
@@ -102,7 +112,12 @@ const PageFour = injectIntl(({ domain, intl }) => (
       <p><FormattedMessage id='onboarding.page_five.public_timelines' defaultMessage='Federated timeline lists public posts from everyone who people on {domain} follow. Local timeline is a subset of that limited to people on {domain}.' values={{ domain }} /></p>
     </div>
   </div>
-));
+);
+
+PageFour.propTypes = {
+  domain: React.PropTypes.string.isRequired,
+  intl: React.PropTypes.object.isRequired
+};
 
 const PageSix = ({ admin }) => {
   let adminSection = '';
@@ -125,6 +140,10 @@ const PageSix = ({ admin }) => {
       <p><FormattedMessage id='onboarding.page_six.apps_available' defaultMessage='There are {apps} available for iOS, Android and other platforms. And now... Bon Appetoot!' values={{ apps: <a href='https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/Apps.md' target='_blank' rel='noopener'><FormattedMessage id='onboarding.page_six.various_app' defaultMessage='various mobile apps' /></a> }} /></p>
     </div>
   );
+};
+
+PageSix.propTypes = {
+  admin: ImmutablePropTypes.map
 };
 
 const mapStateToProps = state => ({
@@ -172,13 +191,13 @@ const OnboardingModal = React.createClass({
   },
 
   render () {
-    const { me, admin, domain } = this.props;
+    const { me, admin, domain, intl } = this.props;
 
     const pages = [
       <PageOne acct={me.get('acct')} domain={domain} />,
       <PageTwo />,
       <PageThree me={me} domain={domain} />,
-      <PageFour domain={domain} />,
+      <PageFour domain={domain} intl={intl} />,
       <PageSix admin={admin} />
     ];
 
