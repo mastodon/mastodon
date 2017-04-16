@@ -5,7 +5,7 @@ import emojify from '../emoji';
 import { isRtl } from '../rtl';
 import { FormattedMessage } from 'react-intl';
 import Permalink from './permalink';
-import ReactKaTeX from 'react-katex';
+import TeX from 'react-formula-beautifier';
 
 class StatusContent extends React.PureComponent {
 
