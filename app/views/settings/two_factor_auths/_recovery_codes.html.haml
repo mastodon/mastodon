@@ -1,0 +1,6 @@
+%p.hint= t('two_factor_auth.recovery_instructions')
+
+%ol.recovery-codes
+  - recovery_codes.each do |code|
+    %li
+      %samp= code

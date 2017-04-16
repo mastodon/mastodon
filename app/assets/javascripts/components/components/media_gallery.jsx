@@ -39,8 +39,8 @@ const spoilerSubSpanStyle = {
 
 const spoilerButtonStyle = {
   position: 'absolute',
-  top: '6px',
-  left: '8px',
+  top: '4px',
+  left: '4px',
   zIndex: '100'
 };
 
@@ -220,7 +220,7 @@ const MediaGallery = React.createClass({
       }
 
       children = (
-        <div style={spoilerStyle} className='media-spoiler' onClick={this.handleOpen}>
+        <div role='button' tabIndex='0' style={spoilerStyle} className='media-spoiler' onClick={this.handleOpen}>
           <span style={spoilerSpanStyle}>{warning}</span>
           <span style={spoilerSubSpanStyle}><FormattedMessage id='status.sensitive_toggle' defaultMessage='Click to view' /></span>
         </div>
@@ -232,8 +232,8 @@ const MediaGallery = React.createClass({
 
     return (
       <div style={{ ...outerStyle, height: `${this.props.height}px` }}>
-        <div style={spoilerButtonStyle}>
-          <IconButton title={intl.formatMessage(messages.toggle_visible)} icon={this.state.visible ? 'eye' : 'eye-slash'} onClick={this.handleOpen} />
+        <div style={{ ...spoilerButtonStyle, display: !this.state.visible ? 'none' : 'block' }}>
+          <IconButton title={intl.formatMessage(messages.toggle_visible)} icon={this.state.visible ? 'eye' : 'eye-slash'} overlay onClick={this.handleOpen} />
         </div>
 
         {children}
