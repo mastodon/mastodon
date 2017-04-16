@@ -48,9 +48,10 @@ eval "$(rbenv init -)"
 
 cd /vagrant
 
-echo "Compiling Ruby $(cat .ruby-version): warning, this takes a while!!!"
-rbenv install $(cat .ruby-version)
-rbenv global $(cat .ruby-version)
+read RUBY_VERSION < .ruby-version
+echo "Compiling Ruby $RUBY_VERSION: warning, this takes a while!!!"
+rbenv install $RUBY_VERSION
+rbenv global $RUBY_VERSION
 
 # Configure database
 sudo -u postgres createuser -U postgres vagrant -s
