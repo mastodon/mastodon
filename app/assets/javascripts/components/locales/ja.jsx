@@ -14,7 +14,7 @@ const ja = {
   "account.unblock": "@{name} さんのブロックを解除",
   "account.unfollow": "フォロー解除",
   "account.unmute": "ミュート解除",
-  "boost_modal.combo": "次からは{combo}を押せば、これをスキップできます。"
+  "boost_modal.combo": "次からは{combo}を押せば、これをスキップできます。",
   "column.blocks": "ブロックしたユーザー",
   "column.community": "ローカルタイムライン",
   "column.favourites": "お気に入り",
@@ -92,7 +92,7 @@ const ja = {
   "report.target": "問題のユーザー",
   "search.placeholder": "検索",
   "search.status_by": "{name}からの投稿",
-  "search_results.total": "{count} {count, plural, one {result} other {results}} 件",  
+  "search_results.total": "{count} {count, plural, one {result} other {results}} 件",
   "status.delete": "削除",
   "status.favourite": "お気に入り",
   "status.load_more": "もっと見る",
