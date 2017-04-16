@@ -14,7 +14,7 @@ const ja = {
   "account.unblock": "@{name} さんのブロックを解除",
   "account.unfollow": "フォロー解除",
   "account.unmute": "ミュート解除",
-  "boost_modal.combo": "次からは{combo}を押せば、これをスキップできます。"
+  "boost_modal.combo": "次からは{combo}を押せば、これをスキップできます。",
   "column.blocks": "ブロックしたユーザー",
   "column.community": "ローカルタイムライン",
   "column.favourites": "お気に入り",
