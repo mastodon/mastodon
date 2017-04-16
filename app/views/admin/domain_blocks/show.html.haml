@@ -9,7 +9,7 @@
     label: t(".retroactive.#{@domain_block.severity}"),
     hint: t(:affected_accounts,
       scope: [:admin, :domain_blocks, :show],
-      count: Account.where(domain: @domain_block.domain).count)
+      count: @domain_block.accounts_count)
 
   .actions
     = f.button :button, t('.undo'), type: :submit
