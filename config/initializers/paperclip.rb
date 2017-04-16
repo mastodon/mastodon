@@ -4,7 +4,7 @@ Paperclip.options[:read_timeout] = 60
 
 Paperclip.interpolates :filename do |attachment, style|
   return attachment.original_filename if style == :original
-  [basename(attachment, style), extension(attachment, style)].delete_if(&:empty?).join('.')
+  [basename(attachment, style), content_type_extension(attachment, style)].delete_if(&:empty?).join('.')
 end
 
 if ENV['S3_ENABLED'] == 'true'
@@ -38,4 +38,7 @@ if ENV['S3_ENABLED'] == 'true'
     Paperclip::Attachment.default_options[:url]           = ':s3_alias_url'
     Paperclip::Attachment.default_options[:s3_host_alias] = ENV['S3_CLOUDFRONT_HOST']
   end
+else
+  Paperclip::Attachment.default_options[:path]           = (ENV['PAPERCLIP_ROOT_PATH'] || ':rails_root/public/system') + '/:class/:attachment/:id_partition/:style/:filename'
+  Paperclip::Attachment.default_options[:url]            = (ENV['PAPERCLIP_ROOT_URL'] || '/system') + '/:class/:attachment/:id_partition/:style/:filename'
 end

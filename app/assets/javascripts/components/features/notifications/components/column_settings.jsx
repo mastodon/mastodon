@@ -27,9 +27,11 @@ const ColumnSettings = React.createClass({
 
   propTypes: {
     settings: ImmutablePropTypes.map.isRequired,
-    intl: React.PropTypes.object.isRequired,
     onChange: React.PropTypes.func.isRequired,
     onSave: React.PropTypes.func.isRequired,
+    intl: React.PropTypes.shape({
+      formatMessage: React.PropTypes.func.isRequired
+    }).isRequired
   },
 
   mixins: [PureRenderMixin],

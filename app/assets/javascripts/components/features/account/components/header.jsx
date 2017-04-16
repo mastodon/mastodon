@@ -43,7 +43,16 @@ const Avatar = React.createClass({
     return (
       <Motion defaultStyle={{ radius: 90 }} style={{ radius: spring(isHovered ? 30 : 90, { stiffness: 180, damping: 12 }) }}>
         {({ radius }) =>
-          <a href={account.get('url')} className='account__header__avatar' target='_blank' rel='noopener' style={{ display: 'block', width: '90px', height: '90px', margin: '0 auto', marginBottom: '10px', borderRadius: `${radius}px`, overflow: 'hidden' }} onMouseOver={this.handleMouseOver} onMouseOut={this.handleMouseOut}>
+          <a
+            href={account.get('url')}
+            className='account__header__avatar'
+            target='_blank'
+            rel='noopener'
+            style={{ display: 'block', width: '90px', height: '90px', margin: '0 auto', marginBottom: '10px', borderRadius: `${radius}px`, overflow: 'hidden' }}
+            onMouseOver={this.handleMouseOver}
+            onMouseOut={this.handleMouseOut}
+            onFocus={this.handleMouseOver}
+            onBlur={this.handleMouseOut}>
             <img src={account.get('avatar')} alt={account.get('acct')} style={{ display: 'block', width: '90px', height: '90px' }} />
           </a>
         }
