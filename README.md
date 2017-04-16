@@ -132,11 +132,12 @@ Running any of these tasks via docker-compose would look like this:
 
 This approach makes updating to the latest version a real breeze.
 
-1. `git pull` to download updates from the repository
-2. `docker-compose build` to compile the Docker image out of the changed source files
-3. (optional) `docker-compose run --rm web rails db:migrate` to perform database migrations. Does nothing if your database is up to date
-4. (optional) `docker-compose run --rm web rails assets:precompile` to compile new JS and CSS assets
-5. `docker-compose up -d` to re-create (restart) containers and pick up the changes
+1. `git fetch` to fetch updates from the repository
+2. `git merge RELEASE_TAG`, where `RELEASE_TAG` is the [release](https://github.com/tootsuite/mastodon/releases) tag you want to update to.
+3. `docker-compose build` to compile the Docker image out of the changed source files
+4. (optional) `docker-compose run --rm web rails db:migrate` to perform database migrations. Does nothing if your database is up to date
+5. (optional) `docker-compose run --rm web rails assets:precompile` to compile new JS and CSS assets
+6. `docker-compose up -d` to re-create (restart) containers and pick up the changes
 
 ## Deployment without Docker
 
