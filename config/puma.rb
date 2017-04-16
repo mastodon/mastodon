@@ -17,5 +17,5 @@ before_fork do
   require 'puma_worker_killer'
 
   rolling_restart_interval = (ENV['PUMA_WORKER_RESTART_INTERVAL'] || (6 * 3600)).to_i
-  PumaWorkerKiller.enable_rolling_restart
+  PumaWorkerKiller.enable_rolling_restart(rolling_restart_interval)
 end
