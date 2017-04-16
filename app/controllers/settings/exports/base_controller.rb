@@ -6,7 +6,7 @@ module Settings
       before_action :authenticate_user!
 
       def index
-        export_data = Export.new(export_accounts).to_csv
+        @export = Export.new(current_account)
 
         respond_to do |format|
           format.csv { send_data export_data, filename: export_filename }

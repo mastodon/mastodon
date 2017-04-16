@@ -46,7 +46,9 @@ const ColumnCollapsable = React.createClass({
 
     return (
       <div style={{ position: 'relative' }}>
-        <div title={`${title}`} style={{...iconStyle }} className={`column-icon ${collapsedClassName}`} onClick={this.handleToggleCollapsed}><i className={`fa fa-${icon}`} /></div>
+        <div role='button' tabIndex='0' title={`${title}`} style={{...iconStyle }} className={`column-icon ${collapsedClassName}`} onClick={this.handleToggleCollapsed}>
+          <i className={`fa fa-${icon}`} />
+        </div>
 
         <Motion defaultStyle={{ opacity: 0, height: 0 }} style={{ opacity: spring(collapsed ? 0 : 100), height: spring(collapsed ? 0 : fullHeight, collapsed ? undefined : { stiffness: 150, damping: 9 }) }}>
           {({ opacity, height }) =>

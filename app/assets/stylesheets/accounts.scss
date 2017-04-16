@@ -14,7 +14,7 @@
   }
 
   &:after {
-    background: rgba($color8, 0.5);
+    background: linear-gradient(rgba($color8, 0.5), rgba($color8, 0.8));
     display: block;
     content: "";
     position: absolute;
@@ -72,7 +72,6 @@
     position: relative;
     z-index: 2;
     flex-direction: row;
-    background: rgba(0,0,0,0.5);
   }
 
   .details-counters {
@@ -388,6 +387,5 @@
   .account__header__content {
     font-size: 14px;
     color: $color1;
-    text-shadow: 0 0 2px $color8;
   }
 }

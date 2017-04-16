@@ -75,6 +75,7 @@ const fr = {
   "navigation_bar.favourites": "Favoris",
   "navigation_bar.info": "Plus d'informations",
   "navigation_bar.logout": "Déconnexion",
+  "navigation_bar.mutes": "Utilisateurs muets",
   "navigation_bar.follow_requests": "Demandes de suivi",
   "reply_indicator.cancel": "Annuler",
   "search.placeholder": "Rechercher",

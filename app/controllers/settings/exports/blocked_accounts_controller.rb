@@ -5,8 +5,8 @@ module Settings
     class BlockedAccountsController < BaseController
       private
 
-      def export_accounts
-        current_account.blocking
+      def export_data
+        @export.to_blocked_accounts_csv
       end
     end
   end
