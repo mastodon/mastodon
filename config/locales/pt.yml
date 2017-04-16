@@ -1,9 +1,8 @@
 ---
 pt:
   about:
-    about_mastodon: Mastodon é um servidor de rede social <em>grátis, e open-source</em>. Uma alternativa <em>descentralizada</em> ás plataformas comerciais, que evita o risco de uma única empresa monopolizar a sua comunicação. Qualquer um pode ter uma instância Mastodon e assim participar na <em>rede social federada</em> sem problemas.
+    about_mastodon: Mastodon é um servidor de rede social <em>grátis, e open-source</em>. Uma alternativa <em>descentralizada</em> ás plataformas comerciais, que evita o risco de uma única empresa monopolizar a sua comunicação. Escolha um servidor que você confie &mdash; qualquer um que escolher, você poderá interagir com todo o resto. Qualquer um pode ter uma instância Mastodon e assim participar na <em>rede social federada</em> sem problemas.
     about_this: Sobre essa instância
-    get_started: Como começar
     apps: Aplicações
     business_email: 'Email comercial:'
     closed_registrations: Registros estão fechadas para essa instância.
@@ -83,8 +82,86 @@ pt:
       created_msg: Bloqueio do domínio está sendo processado
       destroyed_msg: Bloqueio de domínio está sendo desfeito
       domain: Domínio
+      new:
+        create: Criar bloqueio
+        hint: O bloqueio de dominio não vai previnir a criação de entradas no banco de dados, mas irá, retroativamente e automaticamente aplicar métodos de moderação específica nessas contas.
+        severity:
+          desc_html: "<strong>Silenciar</strong> irá fazer com que os posts dessas contas sejam invisíveis para todos que não a seguem. <strong>Supender</strong> irá remover todos o conteúdo das contas, mídia e dados do perfil."
+          silence: Silenciar
+          suspend: Suspender
+        title: Novo bloqueio de domínio
+      reject_media: Rejeitar arquivos de mídia
+      reject_media_hint: Remove localmente arquivos armazenados e rejeita fazer o download de novos no futuro. Irrelevante em suspensões.
+      severities:
+        silence: Silenciar
+        suspend: Suspender
+      severity: Severidade
+      show:
+        affected_accounts:
+          one: Uma conta no banco de dados afetada
+          other: "%{count} contas no banco de dados afetada"
+        retroactive:
+          silence: Desilenciar todas as contas existentes nesse domínio
+          suspend: Desuspender todas as contas existentes nesse domínio
+        title: Desfazer bloqueio de domínio para %{domain}
+      title: Bloqueio de domínio
+      undo: Desfazer
+    pubsubhubbub:
+      callback_url: URL de Callback
+      confirmed: Confirmado
+      expires_in: Expira em
+      last_delivery: Última entrega
+      title: PubSubHubbub
+      topic: Tópico
+    reports:
+      comment:
+        label: Commentário
+        none: None
+      delete: Deletar
+      id: ID
+      mark_as_resolved: Marque como resolvido
+      report: 'Report #%{id}'
+      reported_account: Conta reportada
+      reported_by: Reportado por
+      resolved: Resolvido
+      silence_account: Conta silenciada
+      status: Status
+      suspend_account: Conta suspensa
+      target: Target
+      title: Reports
+      unresolved: Unresolved
+      view: View
+    settings:
+      click_to_edit: Clique para editar
+      contact_information:
+        email: Entre um endereço de email público
+        label: Informação de contato
+        username: Entre com usuário
+      registrations:
+        closed_message:
+          desc_html: Mostrar na página inicial quando registros estão fecados<br/>Você pode usar tags HTML
+          title: Mensagem de registro fechados
+        open:
+          disabled: Desabilitado
+          enabled: Habilitado
+          title: Aberto para registro
+      registrations:
+      setting: Preferências
+      site_description:
+        desc_html: Mostrar como parágrafo e usado como meta tag.<br/>Vôce pode usar tags HTML, em particular <code>&lt;a&gt;</code> e <code>&lt;em&gt;</code>.
+        title: Descrição do site
+      site_description_extended:
+        desc_html: Mostrar na página de informação extendiada <br/>Você pode usar tags HTML
+        title: Descrição extendida do site
+      site_title: Título do site
+      title: Preferências do site
+    title: Administração
   application_mailer:
+    settings: 'Mudar preferências de email: %{link}'
     signature: notificações Mastodon de %{instance}
+    view: 'View:'
+  applications:
+    invalid_url: URL dada é inválida
   auth:
     change_password: Mudar senha
     didnt_get_confirmation: Não recebeu instruções de confirmação?
