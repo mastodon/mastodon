@@ -31,7 +31,7 @@ class UI extends React.PureComponent {
     this.setRef = this.setRef.bind(this);
   }
 
-  // @debounce(500)
+  @debounce(500)
   handleResize () {
     this.setState({ width: window.innerWidth });
   }

@@ -55,7 +55,7 @@ class ComposeForm extends React.PureComponent {
     this.props.onClearSuggestions();
   }
 
-  // @debounce(500)
+  @debounce(500)
   onSuggestionsFetchRequested (token) {
     this.props.onFetchSuggestions(token);
   }
