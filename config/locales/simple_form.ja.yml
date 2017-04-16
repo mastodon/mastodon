@@ -10,11 +10,13 @@ ja:
         note: プロフィールは160文字まで設定することができます。
       imports:
         data: 他の Mastodon サーバーからエクスポートしたCSVファイルを選択して下さい
+      sessions:
+        otp: 携帯電話に表示された2段階認証コードを入力するか、生成したリカバリーコードを使用してください。
     labels:
       defaults:
         avatar: アイコン
         confirm_new_password: 新しいパスワード（確認用）
-        confirm_password: 新しいパスワード
+        confirm_password: パスワード（確認用）
         current_password: 現在のパスワード
         data: データ
         display_name: 表示名
@@ -22,12 +24,13 @@ ja:
         header: ヘッダー
         locale: 言語
         locked: 非公開アカウントにする
-        new_password: パスワード
+        new_password: 新しいパスワード
         note: プロフィール
         otp_attempt: 二段階認証コード
         password: パスワード
         setting_boost_modal: ブーストする前に確認ダイアログを表示する
         setting_default_privacy: 投稿の公開範囲
+        severity: 重大性
         type: インポートする項目
         username: ユーザー名
       interactions:
