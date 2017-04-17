@@ -1,9 +1,12 @@
 {
   "name": "mastodon",
+  "license" : "AGPL-3.0",
   "scripts": {
-    "test": "mocha --require ./spec/javascript/setup.js --compilers js:babel-register ./spec/javascript/components/*.test.jsx",
+    "start": "babel-node ./streaming/index.js --presets es2015,stage-2",
     "storybook": "start-storybook -p 9001 -c storybook",
-    "start": "babel-node ./streaming/index.js --presets es2015,stage-2"
+    "test": "npm run test:lint && npm run test:mocha",
+    "test:lint": "eslint -c .eslintrc --ext=js --ext=jsx app/assets/javascripts/",
+    "test:mocha": "mocha --require ./spec/javascript/setup.js --compilers js:babel-register ./spec/javascript/components/*.test.jsx"
   },
   "dependencies": {
     "@kadira/storybook": "^2.35.3",
@@ -74,8 +77,12 @@
     "ws": "^2.1.0"
   },
   "devDependencies": {
-    "babel-eslint": "^7.2.1",
+    "babel-eslint": "^7.2.2",
     "eslint": "^3.19.0",
+    "eslint-plugin-jsx-a11y": "^4.0.0",
     "eslint-plugin-react": "^6.10.3"
+  },
+  "optionalDependencies": {
+    "fsevents": "*"
   }
 }
