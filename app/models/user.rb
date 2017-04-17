@@ -9,10 +9,9 @@ class User < ApplicationRecord
          otp_secret_encryption_key: ENV['OTP_SECRET'],
          otp_number_of_backup_codes: 10
 
-  belongs_to :account, inverse_of: :user
+  belongs_to :account, inverse_of: :user, required: true
   accepts_nested_attributes_for :account
 
-  validates :account, presence: true
   validates :locale, inclusion: I18n.available_locales.map(&:to_s), unless: 'locale.nil?'
   validates :email, email: true
 

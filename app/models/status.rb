@@ -10,7 +10,7 @@ class Status < ApplicationRecord
 
   belongs_to :application, class_name: 'Doorkeeper::Application'
 
-  belongs_to :account, inverse_of: :statuses, counter_cache: true
+  belongs_to :account, inverse_of: :statuses, counter_cache: true, required: true
   belongs_to :in_reply_to_account, foreign_key: 'in_reply_to_account_id', class_name: 'Account'
 
   belongs_to :thread, foreign_key: 'in_reply_to_id', class_name: 'Status', inverse_of: :replies
@@ -26,7 +26,6 @@ class Status < ApplicationRecord
   has_one :notification, as: :activity, dependent: :destroy
   has_one :preview_card, dependent: :destroy
 
-  validates :account, presence: true
   validates :uri, uniqueness: true, unless: 'local?'
   validates :text, presence: true, unless: 'reblog?'
   validates_with StatusLengthValidator
