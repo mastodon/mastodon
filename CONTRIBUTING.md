@@ -23,7 +23,7 @@ Below are the guidelines for working on pull requests:
 
 ## Back-end application
 
-It is expected that you have a working development environment set up. The development environment includes [rubocop](https://github.com/pderichs/sublime_rubocop), which checks your Ruby code for compliance with our style guide and best practices. Sublime Text, likely like other editors, has a Rubocop plugin that runs checks on files as you edit them. The codebase also has a test suite.
+It is expected that you have a working development environment set up. The development environment includes [rubocop](https://github.com/bbatsov/rubocop), which checks your Ruby code for compliance with our style guide and best practices. Sublime Text, likely like other editors, has a [Rubocop plugin](https://github.com/pderichs/sublime_rubocop) that runs checks on files as you edit them. The codebase also has a test suite.
 
 * The codebase is not perfect, at the time of writing, but it is expected that you do not introduce new code style violations
 * The rspec test suite must pass
@@ -41,4 +41,3 @@ It is expected that you have a working development environment set up (see back-
 * If you are introducing new strings, they must be using localization methods
 
 If the JavaScript or CSS assets won't compile due to a syntax error, it's a good sign that the pull request isn't ready for submission yet.
-
