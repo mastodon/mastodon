@@ -107,7 +107,11 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     config.hostsupdater.remove_on_suspend = false
   end
 
-  config.vm.synced_folder ".", "/vagrant", type: "nfs", mount_options: ['rw', 'vers=3', 'tcp']
+  if RUBY_PLATFORM =~ /(win32|mingw32)/
+    config.vm.synced_folder ".", "/vagrant", type: "rsync", rsync__exclude: ['node_modules/','tmp/'],  rsync__args: ["--verbose", "--archive", "--delete", "-z"]
+  else
+    config.vm.synced_folder ".", "/vagrant", type: "nfs", mount_options: ['rw', 'vers=3', 'tcp']
+  end
 
   # Otherwise, you can access the site at http://localhost:3000
   config.vm.network :forwarded_port, guest: 80, host: 3000
