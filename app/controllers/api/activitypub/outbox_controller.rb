@@ -6,7 +6,7 @@ class Api::Activitypub::OutboxController < ApiController
   respond_to :activitystreams2
 
   def show
-    @statuses = Feed.new(:outbox, @account).get(limit_param(DEFAULT_STATUSES_LIMIT), params[:max_id], params[:since_id])
+    @statuses = Status.as_outbox_timeline(@account).paginate_by_max_id(limit_param(DEFAULT_STATUSES_LIMIT), params[:max_id], params[:since_id])
     @statuses = cache_collection(@statuses)
 
     set_maps(@statuses)
@@ -15,9 +15,20 @@ class Api::Activitypub::OutboxController < ApiController
 
     # Since the statuses are in reverse chronological order, last is the lowest ID.
     @next_path = api_activitypub_outbox_url(max_id: @statuses.last.id)    if @statuses.size == limit_param(DEFAULT_STATUSES_LIMIT)
-    @prev_path = api_activitypub_outbox_url(since_id: @statuses.first.id) unless @statuses.empty?
+
+    if not @statuses.empty?
+      if @statuses.first.id === 1
+        @prev_path = api_activitypub_outbox_url
+      elsif params[:max_id]
+        @prev_path = api_activitypub_outbox_url(since_id: @statuses.first.id)
+      end
+    end
 
     set_pagination_headers(@next_path, @prev_path)
+  end
+
+  def paginated?
+    @next_path or @prev_path
   end
 
   private

@@ -62,6 +62,12 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def forbidden
+    respond_to do |format|
+      format.any  { head 403 }
+    end
+  end
+
   def unprocessable_entity
     respond_to do |format|
       format.any  { head 422 }

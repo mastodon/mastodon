@@ -5,6 +5,4 @@ class BaseService
   include ActionView::Helpers::SanitizeHelper
 
   include RoutingHelper
-  # TODO: move this
-  include ActivityStreams2BuilderHelper
 end

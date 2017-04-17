@@ -5,7 +5,9 @@ class Api::Activitypub::NotesController < ApiController
 
   respond_to :activitystreams2
 
-  def show; end
+  def show
+    forbidden unless @status.permitted?
+  end
 
   private
 

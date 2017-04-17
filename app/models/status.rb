@@ -138,7 +138,7 @@ class Status < ApplicationRecord
     end
 
     def as_outbox_timeline(account)
-      where(account: account)
+      where(account: account, visibility: :public)
     end
 
     def favourites_map(status_ids, account_id)
