@@ -19,7 +19,9 @@
     = image_tag 'logo.png'
     = Setting.site_title
 
-  %p= t('about.about_mastodon').html_safe
+  - if @instance_presenter.site_description.present?
+    %h3= t('about.description_headline', domain: Rails.configuration.x.local_domain)
+    %p= @instance_presenter.site_description.html_safe
 
   .screenshot-with-signup
     .mascot= image_tag 'fluffy-elephant-friend.png'
@@ -38,6 +40,8 @@
           = link_to t('about.other_instances'), 'https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/List-of-Mastodon-instances.md'
           ·
           = link_to t('about.about_this'), about_more_path
+
+  %p= t('about.about_mastodon').html_safe
 
   %h3= t('about.features_headline')
 
@@ -70,10 +74,6 @@
         %li
           = fa_icon('li check-square')
           = t 'about.features.api'
-
-  - unless @instance_presenter.site_description.blank?
-    %h3= t('about.description_headline', domain: Rails.configuration.x.local_domain)
-    %p= @instance_presenter.site_description.html_safe
 
   .actions
     .info
