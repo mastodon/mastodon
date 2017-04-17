@@ -13,7 +13,7 @@ const CharacterCounter = React.createClass({
     const diff = this.props.max - this.props.text.replace(/[\uD800-\uDBFF][\uDC00-\uDFFF]/g, "_").length;
 
     return (
-      <span style={{ fontSize: '16px', cursor: 'default' }}>
+      <span style={{ color: 'inherit', fontSize: '16px', cursor: 'default', paddingRight: '5px' }}>
         {diff}
       </span>
     );

@@ -188,17 +188,16 @@ const ComposeForm = React.createClass({
           <UploadFormContainer />
         </div>
 
-        <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-          <div className='compose-form__buttons'>
+        <div className='compose-form__buttons' style={{ display: 'flex', justifyContent: 'space-between' }}>
+          <div style={{ display: 'flex', alignItems: 'center' }}>
             <UploadButtonContainer />
             <PrivacyDropdownContainer />
             <SensitiveButtonContainer />
             <SpoilerButtonContainer />
           </div>
-
-          <div style={{ display: 'flex' }}>
-            <div style={{ paddingTop: '10px', marginRight: '16px', lineHeight: '36px' }}><CharacterCounter max={500} text={[this.props.spoiler_text, this.props.text].join('')} /></div>
-            <div style={{ paddingTop: '10px' }}><Button text={publishText} onClick={this.handleSubmit} disabled={disabled} /></div>
+          <div style={{ display: 'flex', alignItems: 'center' }}>
+            <CharacterCounter max={500} text={[this.props.spoiler_text, this.props.text].join('')} />
+            <Button text={publishText} onClick={this.handleSubmit} disabled={disabled} />
           </div>
         </div>
       </div>
