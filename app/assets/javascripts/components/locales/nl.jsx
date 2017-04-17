@@ -52,7 +52,7 @@ const nl = {
   "navigation_bar.public_timeline": "Globale tijdlijn",
   "navigation_bar.follow_requests": "Volgverzoeken",
   "navigation_bar.info": "Uitgebreide informatie",
-  "navigation_bar.blocks": "Geblokkeerde gebruikers"
+  "navigation_bar.blocks": "Geblokkeerde gebruikers",
   "navigation_bar.mutes": "Genegeerde gebruikers",
   "navigation_bar.logout": "Afmelden",
   "reply_indicator.cancel": "Annuleren",
