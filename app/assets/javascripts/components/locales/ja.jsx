@@ -46,7 +46,7 @@ const ja = {
   "tabs_bar.compose": "投稿",
   "tabs_bar.home": "ウチ",
   "tabs_bar.mentions": "返信",
-  "tabs_bar.local_timeline": "近所
+  "tabs_bar.local_timeline": "近所",
   "tabs_bar.federated_timeline": "関西",
   "tabs_bar.notifications": "あめちゃん",
   "compose_form.placeholder": "今なにしてんの？",
