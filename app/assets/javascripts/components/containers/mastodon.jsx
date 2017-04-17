@@ -8,6 +8,7 @@ import {
   connectTimeline,
   disconnectTimeline
 } from '../actions/timelines';
+import { showOnboardingOnce } from '../actions/onboarding';
 import { updateNotifications, refreshNotifications } from '../actions/notifications';
 import createBrowserHistory from 'history/lib/createBrowserHistory';
 import {
@@ -56,6 +57,7 @@ import uk from 'react-intl/locale-data/uk';
 import zh from 'react-intl/locale-data/zh';
 import bg from 'react-intl/locale-data/bg';
 import { localeData as zh_hk } from '../locales/zh-hk';
+import { localeData as pt_br } from '../locales/pt-br';
 import getMessagesForLocale from '../locales';
 import { hydrateStore } from '../actions/store';
 import createStream from '../stream';
@@ -78,6 +80,7 @@ addLocaleData([
   ...hu,
   ...ja,
   ...pt,
+  ...pt_br,
   ...nl,
   ...no,
   ...ru,
@@ -134,6 +137,8 @@ const Mastodon = React.createClass({
     if (typeof window.Notification !== 'undefined' && Notification.permission === 'default') {
       Notification.requestPermission();
     }
+
+    store.dispatch(showOnboardingOnce());
   },
 
   componentWillUnmount () {

@@ -89,6 +89,8 @@ Do NOT change the `REDIS_*` or `DB_*` settings when running with the default doc
 
 You will need to fill in, at least: `LOCAL_DOMAIN`, `LOCAL_HTTPS`, `PAPERCLIP_SECRET`, `SECRET_KEY_BASE`, `OTP_SECRET`, and the `SMTP_*` settings.  To generate the `PAPERCLIP_SECRET`, `SECRET_KEY_BASE`, and `OTP_SECRET`, you may use:
 
+    rake secret
+
 Before running the first time, you need to build the images:
 
     docker-compose build

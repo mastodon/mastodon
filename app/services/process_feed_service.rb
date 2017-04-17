@@ -119,6 +119,7 @@ class ProcessFeedService < BaseService
         spoiler_text: content_warning(entry),
         created_at: published(entry),
         reply: thread?(entry),
+        language: content_language(entry),
         visibility: visibility_scope(entry)
       )
 
@@ -236,6 +237,10 @@ class ProcessFeedService < BaseService
 
     def content(xml = @xml)
       xml.at_xpath('./xmlns:content', xmlns: TagManager::XMLNS).content
+    end
+
+    def content_language(xml = @xml)
+      xml.at_xpath('./xmlns:content', xmlns: TagManager::XMLNS)['xml:lang']&.presence || 'en'
     end
 
     def content_warning(xml = @xml)

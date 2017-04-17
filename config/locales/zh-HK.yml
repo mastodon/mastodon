@@ -79,7 +79,7 @@ zh-HK:
       undo_suspension: 解除停權
       username: 用戶名稱
       web: 用戶頁面
-    domain_block:
+    domain_blocks:
       add_new: 新增
       domain: 域名阻隔
       new:
@@ -246,24 +246,6 @@ zh-HK:
     missing_resource: 無法找到你用戶的轉接網址
     proceed: 下一步
     prompt: 你希望關注︰
-  reports:
-    comment:
-      label: 詳細解釋
-      none: 沒有
-    delete: 刪除
-    id: ID
-    mark_as_resolved: 標示為「已處理」
-    report: '舉報 #%{id}'
-    reported_account: 舉報 account
-    reported_by: 舉報者
-    reports: 舉報
-    resolved: 已處埋
-    silence_account: 將用戶靜音
-    status: 狀態
-    suspend_account: 將用戶停權
-    target: 對像
-    unresolved: 未處埋
-    view: 檢視
   settings:
     authorized_apps: 授權應用程式
     back: 回到 Mastodon
@@ -297,10 +279,7 @@ zh-HK:
     instructions_html: "<strong>請用你手機的認證器應用程式（如 Google Authenticator、Authy），掃描這裏的QR 圖形碼</strong>。在雙重認證啟用後，你登入時將須要使用此應用程式產生的認證碼。"
     manual_instructions: 如果你無法掃描 QR 圖形碼，請手動輸入這個文字密碼︰
     setup: 設定
-    warning: 如果你現在無法正確設定你的應用程式，請即「停用」雙重認證，否則日後可能無法登入本站。
     wrong_code: 你輸入的認證碼並不正確！可能伺服器時間和你手機不一致，請檢查你手機的時鐘，或與本站管理員聯絡。
   users:
     invalid_email: 電郵地址格式不正確
     invalid_otp_token: 雙重認證確認碼不正確
-  will_paginate:
-    page_gap: "&hellip;"

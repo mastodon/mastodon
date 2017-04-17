@@ -42,7 +42,7 @@ code {
     }
   }
 
-  .input.file, .input.select {
+  .input.file, .input.select, .input.radio_buttons {
     padding: 15px 0;
     margin-bottom: 0;
 
@@ -59,6 +59,15 @@ code {
     margin-bottom: 25px;
   }
 
+  .input.radio_buttons .radio label {
+    margin-bottom: 5px;
+    font-family: inherit;
+    font-size: 14px;
+    color: white;
+    display: block;
+    width: auto;
+  }
+
   .input.boolean {
     margin-bottom: 5px;
 
@@ -72,7 +81,8 @@ code {
 
     label.checkbox {
       position: relative;
-	    padding-left: 25px;
+      padding-left: 25px;
+      flex: 1 1 auto;
     }
 
     input[type=checkbox] {
@@ -181,6 +191,10 @@ code {
         background-color: darken($color6, 5%);
       }
     }
+  }
+
+  select {
+    font-size: 16px;
   }
 }
 
