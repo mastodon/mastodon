@@ -110,6 +110,10 @@ class Status < ApplicationRecord
     results
   end
 
+  def non_sensitive_with_media?
+    !sensitive? && media_attachments.any?
+  end
+
   class << self
     def as_home_timeline(account)
       where(account: [account] + account.following)

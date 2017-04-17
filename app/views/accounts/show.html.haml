@@ -14,13 +14,13 @@
   %meta{ property: 'og:image:height', content: '120' }/
   %meta{ property: 'twitter:card', content: 'summary' }/
 
-- if !user_signed_in? && !Rails.configuration.x.single_user_mode
+- if show_landing_strip?
   = render partial: 'shared/landing_strip', locals: { account: @account }
 
 .h-feed
   %data.p-name{ value: "#{@account.username} on #{Rails.configuration.x.local_domain}" }/
 
-  = render partial: 'header'
+  = render 'header', account: @account
 
   - if @statuses.empty?
     .accounts-grid

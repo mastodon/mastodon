@@ -61,12 +61,17 @@
         = surround '(', ')' do
           = number_to_human_size @account.media_attachments.sum('file_file_size')
 
-- if @account.silenced?
-  = link_to t('admin.accounts.undo_silenced'), admin_account_silence_path(@account.id), method: :delete, class: 'button'
-- else
-  = link_to t('admin.accounts.silence'), admin_account_silence_path(@account.id), method: :post, class: 'button'
+- if @account.local?
+  %div{ style: 'float: right' }
+    = link_to t('admin.accounts.reset_password'), admin_account_reset_path(@account.id), method: :create, class: 'button'
 
-- if @account.suspended?
-  = link_to t('admin.accounts.undo_suspension'), admin_account_suspension_path(@account.id), method: :delete, class: 'button'
-- else
-  = link_to t('admin.accounts.perform_full_suspension'), admin_account_suspension_path(@account.id), method: :post, data: { confirm: t('admin.accounts.are_you_sure') }, class: 'button'
+%div{ style: 'float: left' }
+  - if @account.silenced?
+    = link_to t('admin.accounts.undo_silenced'), admin_account_silence_path(@account.id), method: :delete, class: 'button'
+  - else
+    = link_to t('admin.accounts.silence'), admin_account_silence_path(@account.id), method: :post, class: 'button'
+
+  - if @account.suspended?
+    = link_to t('admin.accounts.undo_suspension'), admin_account_suspension_path(@account.id), method: :delete, class: 'button'
+  - else
+    = link_to t('admin.accounts.perform_full_suspension'), admin_account_suspension_path(@account.id), method: :post, data: { confirm: t('admin.accounts.are_you_sure') }, class: 'button'

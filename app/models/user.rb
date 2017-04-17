@@ -5,7 +5,9 @@ class User < ApplicationRecord
 
   devise :registerable, :recoverable,
          :rememberable, :trackable, :validatable, :confirmable,
-         :two_factor_authenticatable, otp_secret_encryption_key: ENV['OTP_SECRET']
+         :two_factor_authenticatable, :two_factor_backupable,
+         otp_secret_encryption_key: ENV['OTP_SECRET'],
+         otp_number_of_backup_codes: 10
 
   belongs_to :account, inverse_of: :user
   accepts_nested_attributes_for :account

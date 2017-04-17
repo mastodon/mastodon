@@ -932,6 +932,12 @@ a.status__content__spoiler-link {
   }
 }
 
+.pseudo-drawer {
+  background: lighten($color1, 13%);
+  font-size: 13px;
+  text-align: left;
+}
+
 .drawer__header {
   flex: 0 0 auto;
   font-size: 16px;
@@ -1203,6 +1209,10 @@ a.status__content__spoiler-link {
   &:focus {
     outline: 0;
   }
+
+  @media screen and (max-width: 600px) {
+    font-size: 16px;
+  }
 }
 
 .spoiler-input__input {
@@ -1266,6 +1276,10 @@ a.status__content__spoiler-link {
   &:focus, &:active {
     color: $color5;
     border-bottom-color: $color4;
+  }
+
+  @media screen and (max-width: 600px) {
+    font-size: 16px;
   }
 }
 
@@ -1383,7 +1397,7 @@ button.icon-button.active i.fa-retweet {
   }
 }
 
-.media-spoiler {
+.media-spoiler, .video-error-cover {
   background: $color8;
   color: $color5;
 }
@@ -1906,6 +1920,10 @@ button.icon-button.active i.fa-retweet {
   &:focus {
     background: lighten($color1, 4%);
   }
+
+  @media screen and (max-width: 600px) {
+    font-size: 16px;
+  }
 }
 
 .search__icon {
@@ -2006,6 +2024,7 @@ button.icon-button.active i.fa-retweet {
 .modal-root__modal {
   pointer-events: auto;
   display: flex;
+  z-index: 9999;
 }
 
 .media-modal {
@@ -2017,6 +2036,237 @@ button.icon-button.active i.fa-retweet {
     max-width: 80vw;
     max-height: 80vh;
   }
+}
+
+.onboarding-modal {
+  background: $color2;
+  color: $color1;
+  border-radius: 8px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.onboarding-modal__pager {
+  height: 80vh;
+  width: 80vw;
+  max-width: 500px;
+  max-height: 350px;
+  position: relative;
+
+  & > div {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    padding: 25px;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    opacity: 0;
+    user-select: text;
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .onboarding-modal {
+    width: 100%;
+    height: 100%;
+    border-radius: 0;
+  }
+
+  .onboarding-modal__pager {
+    width: 100%;
+    height: auto;
+    max-width: none;
+    max-height: none;
+    flex: 1 1 auto;
+  }
+}
+
+.onboarding-modal__paginator {
+  flex: 0 0 auto;
+  background: darken($color2, 8%);
+  display: flex;
+  padding: 25px;
+
+  & > div {
+    min-width: 33px;
+  }
+
+  a {
+    color: darken($color2, 34%);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+
+    &:hover, &:focus, &:active {
+      color: darken($color2, 38%);
+    }
+
+    &.onboarding-modal__done, &.onboarding-modal__next {
+      color: $color4;
+    }
+  }
+}
+
+.onboarding-modal__dots {
+  flex: 1 1 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.onboarding-modal__dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 14px;
+  background: darken($color2, 16%);
+  margin: 0 3px;
+  cursor: pointer;
+
+  &:hover {
+    background: darken($color2, 18%);
+  }
+
+  &.active {
+    cursor: default;
+    background: darken($color2, 24%);
+  }
+}
+
+.onboarding-modal__page {
+  cursor: default;
+  line-height: 21px;
+
+  h1 {
+    font-size: 18px;
+    font-weight: 500;
+    color: $color1;
+    margin-bottom: 20px;
+  }
+
+  a {
+    color: $color4;
+
+    &:hover, &:focus, &:active {
+      color: lighten($color4, 4%);
+    }
+  }
+
+  p {
+    font-size: 16px;
+    color: lighten($color1, 8%);
+    margin-top: 10px;
+    margin-bottom: 10px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    strong {
+      font-weight: 500;
+      background: $color1;
+      color: $color2;
+      border-radius: 4px;
+      font-size: 14px;
+      padding: 3px 6px;
+    }
+  }
+}
+
+.onboarding-modal__page-one {
+  display: flex;
+}
+
+.onboarding-modal__page-one__elephant-friend {
+  background: image-url('elephant-friend.png') no-repeat 0 0;
+  width: 147px;
+  height: 160px;
+  margin-right: 10px;
+}
+
+.onboarding-modal__page-two,
+.onboarding-modal__page-three,
+.onboarding-modal__page-four,
+.onboarding-modal__page-five {
+  p {
+    text-align: left;
+  }
+
+  .figure {
+    background: darken($color1, 8%);
+    color: $color2;
+    margin-bottom: 20px;
+    border-radius: 4px;
+    padding: 10px;
+    text-align: center;
+    font-size: 14px;
+    box-shadow: 1px 2px 6px rgba($color8, 0.3);
+
+    .onboarding-modal__image {
+      border-radius: 4px;
+      margin-bottom: 10px;
+    }
+
+    &.non-interactive {
+      pointer-events: none;
+      text-align: left;
+    }
+  }
+}
+
+.onboarding-modal__page-four__columns {
+  .row {
+    display: flex;
+    margin-bottom: 20px;
+
+    & > div {
+      flex: 1 1 0;
+      margin: 0 10px;
+
+      &:first-child {
+        margin-left: 0;
+      }
+
+      &:last-child {
+        margin-right: 0;
+      }
+
+      p {
+        text-align: center;
+      }
+    }
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  .column-header {
+    color: $color5;
+  }
+}
+
+.onboarding-modal__image {
+  border-radius: 8px;
+  width: 70vw;
+  max-width: 450px;
+  max-height: auto;
+  display: block;
+  margin: auto;
+  margin-bottom: 20px;
+}
+
+.onboard-sliders {
+  display: inline-block;
+  max-width: 30px;
+  max-height: auto;
+  margin-left: 10px;
 }
 
 .boost-modal {
@@ -2055,4 +2305,12 @@ button.icon-button.active i.fa-retweet {
   .button {
     flex: 0 0 auto;
   }
+}
+
+.loading-bar {
+  background-color: $color4;
+  height: 3px;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
