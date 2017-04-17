@@ -16,4 +16,18 @@ describe InstanceHelper do
       expect(helper.site_title).to eq ''
     end
   end
+
+  describe 'site_hostname' do
+    around(:each) do |example|
+      before = Rails.configuration.x.local_domain
+      example.run
+      Rails.configuration.x.local_domain = before
+    end
+
+    it 'returns the local domain value' do
+      Rails.configuration.x.local_domain = 'example.com'
+
+      expect(helper.site_hostname).to eq 'example.com'
+    end
+  end
 end
