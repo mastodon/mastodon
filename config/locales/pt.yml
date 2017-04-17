@@ -1,64 +1,66 @@
 ---
 pt:
   about:
-    about_mastodon: Mastodon é um servidor de rede social <em>grátis, e open-source</em>. Uma alternativa <em>descentralizada</em> ás plataformas comerciais, que evita o risco de uma única empresa monopolizar a sua comunicação. Escolha um servidor que você confie &mdash; qualquer um que escolher, você poderá interagir com todo o resto. Qualquer um pode ter uma instância Mastodon e assim participar na <em>rede social federada</em> sem problemas.
-    about_this: Sobre essa instância
+    about_mastodon: Mastodon é uma rede social <em>grátis e em código aberto</em>. Uma alternativa <em>descentralizada</em> às plataformas comerciais, que evita o risco de uma única empresa monopolizar a tua comunicação. Escolhe um servidor que confies, não importa qual, pois vais poder comunicar com todos os outros. Qualquer um pode criar uma instância Mastodon e participar nesta <em>rede social</em>.
+    about_this: Sobre esta instância
     apps: Aplicações
     business_email: 'Email comercial:'
-    closed_registrations: Registros estão fechadas para essa instância.
-    contact: Contato
-    description_headline: O que é %{domain}?
+    closed_registrations: Novos registos estão fechados nesta instância.
+    contact: Contacto
+    description_headline: O que é o %{domain}?
     domain_count_after: outras instâncias
-    domain_count_before: Conectado a
+    domain_count_before: Ligado a
     features:
-      api: Aberto para API de aplicações e serviços
-      blocks: Bloqueos e ferramentas para mudar
+      api: API aberta para aplicações e serviços
+      blocks: Ferramentas para silenciar e bloquear
       characters: 500 caracteres por post
-      chronology: Timeline são cronologicas
-      ethics: 'Design ético: sem propaganda, sem tracking'
-      gifv: GIFV e vídeos curtos
-      privacy: Granular, privacidade setada por post
+      chronology: Timelines cronológicas
+      ethics: 'Design ético: sem públicidade ou tracking'
+      gifv: GIFV e pequenos vídeos
+      privacy: Privacidade granular por post
       public: Timelines públicas
     features_headline: O que torna Mastodon diferente
-    get_started: Comece aqui
+    get_started: Começar
     links: Links
-    source_code: Source code
     other_instances: Outras instâncias
+    source_code: Código fonte
+    status_count_after: publicações
+    status_count_before: Que fizeram
     terms: Termos
-    user_count_after: usuários
-    user_count_before: Lugar de
+    user_count_after: utilizadores
+    user_count_before: Casa para
   accounts:
     follow: Seguir
     followers: Seguidores
-    following: Seguindo
+    following: A seguir
     nothing_here: Não há nada aqui!
     people_followed_by: Pessoas seguidas por %{name}
     people_who_follow: Pessoas que seguem %{name}
     posts: Posts
-    remote_follow: Acesso remoto
-    unfollow: Unfollow
+    remote_follow: Seguir remotamente
+    unfollow: Deixar de seguir
   admin:
     accounts:
-      are_you_sure: Você tem certeza?
-      display_name: Nome mostrado
-      domain: Domain
+      are_you_sure: Tens a certeza?
+      display_name: Nome a mostrar
+      domain: Domínio
       edit: Editar
       email: E-mail
       feed_url: URL do Feed
       followers: Seguidores
-      follows: Seguindo
+      follows: A seguir
       location:
         all: Todos
         local: Local
         remote: Remoto
         title: Local
-      media_attachments: Mídia anexadas
+      media_attachments: Media anexa
       moderation:
         all: Todos
-        silenced: Silenciado
-        suspended: Supenso
+        silenced: Silenciados
+        suspended: Supensos
         title: Moderação
-      most_recent_activity: Atividade mais recente
+      most_recent_activity: Actividade mais recente
       most_recent_ip: IP mais recente
       not_subscribed: Não inscrito
       order:
@@ -69,6 +71,7 @@ pt:
       profile_url: URL do perfil
       public: Público
       push_subscription_expires: PuSH subscription expires
+      reset_password: Reset palavra-passe
       salmon_url: Salmon URL
       silence: Silêncio
       statuses: Status
@@ -78,34 +81,35 @@ pt:
       username: Usuário
       web: Web
     domain_blocks:
-      add_new: Adicionar nova
-      created_msg: Bloqueio do domínio está sendo processado
-      destroyed_msg: Bloqueio de domínio está sendo desfeito
+      add_new: Adicionar novo
+      created_msg: Bloqueio do domínio está a ser processado
+      destroyed_msg: Bloqueio de domínio está a ser removido
       domain: Domínio
       new:
         create: Criar bloqueio
-        hint: O bloqueio de dominio não vai previnir a criação de entradas no banco de dados, mas irá, retroativamente e automaticamente aplicar métodos de moderação específica nessas contas.
+        hint: O bloqueio de dominio não vai previnir a criação de entradas na base de dados, mas irá retroativamente e automaticamente aplicar métodos de moderação específica nessas contas.
         severity:
-          desc_html: "<strong>Silenciar</strong> irá fazer com que os posts dessas contas sejam invisíveis para todos que não a seguem. <strong>Supender</strong> irá remover todos o conteúdo das contas, mídia e dados do perfil."
+          desc_html: "<strong>Silenciar</strong> irá fazer com que os posts dessas contas sejam invisíveis para todos que não a seguem. <strong>Supender</strong> irá eliminar todo o conteúdo guardado dessa conta, mídia e informação de perfil."
           silence: Silenciar
           suspend: Suspender
         title: Novo bloqueio de domínio
-      reject_media: Rejeitar arquivos de mídia
-      reject_media_hint: Remove localmente arquivos armazenados e rejeita fazer o download de novos no futuro. Irrelevante em suspensões.
+      reject_media: Rejeitar ficheiros de mídia
+      reject_media_hint: Remove localmente arquivos armazenados e rejeita fazer guardar novos no futuro. Irrelevante na suspensão.
       severities:
         silence: Silenciar
         suspend: Suspender
       severity: Severidade
       show:
         affected_accounts:
-          one: Uma conta no banco de dados afetada
-          other: "%{count} contas no banco de dados afetada"
+          one: Uma conta na base de dados afectada
+          other: "%{count} contas na base de dados afectadas"
         retroactive:
-          silence: Desilenciar todas as contas existentes nesse domínio
-          suspend: Desuspender todas as contas existentes nesse domínio
-        title: Desfazer bloqueio de domínio para %{domain}
+          silence: Não silenciar todas as contas existentes nesse domínio
+          suspend: Não suspender todas as contas existentes nesse domínio
+        title: Remover o bloqueio de domínio de %{domain}
+        undo: Anular
       title: Bloqueio de domínio
-      undo: Desfazer
+      undo: Anular
     pubsubhubbub:
       callback_url: URL de Callback
       confirmed: Confirmado
@@ -115,84 +119,84 @@ pt:
       topic: Tópico
     reports:
       comment:
-        label: Commentário
-        none: None
-      delete: Deletar
+        label: Comentário
+        none: Nenhum
+      delete: Eliminar
       id: ID
-      mark_as_resolved: Marque como resolvido
-      report: 'Report #%{id}'
-      reported_account: Conta reportada
-      reported_by: Reportado por
+      mark_as_resolved: Marcar como resolvido
+      report: 'Denúncia #%{id}'
+      reported_account: Conta denunciada
+      reported_by: Denúnciada por
       resolved: Resolvido
       silence_account: Conta silenciada
-      status: Status
+      status: Estado
       suspend_account: Conta suspensa
       target: Target
-      title: Reports
-      unresolved: Unresolved
-      view: View
+      title: Denúncias
+      unresolved: Por resolver
+      view: Ver
     settings:
       click_to_edit: Clique para editar
       contact_information:
-        email: Entre um endereço de email público
-        label: Informação de contato
-        username: Entre com usuário
+        email: Inserir um endereço de email para tornar público
+        label: Informação de contacto
+        username: Insira um nome de utilizador
       registrations:
         closed_message:
-          desc_html: Mostrar na página inicial quando registros estão fecados<br/>Você pode usar tags HTML
-          title: Mensagem de registro fechados
+          desc_html: Mostrar na página inicial quando registos estão encerrados<br/>Podes usar tags HTML
+          title: Mensagem de registos encerrados
         open:
           disabled: Desabilitado
           enabled: Habilitado
-          title: Aberto para registro
+          title: Aceitar novos registos
       setting: Preferências
       site_description:
-        desc_html: Mostrar como parágrafo e usado como meta tag.<br/>Vôce pode usar tags HTML, em particular <code>&lt;a&gt;</code> e <code>&lt;em&gt;</code>.
+        desc_html: Mostrar como parágrafo na página inicial e usado como meta tag.<br/>Podes usar tags HTML, em particular <code>&lt;a&gt;</code> e <code>&lt;em&gt;</code>.
         title: Descrição do site
       site_description_extended:
-        desc_html: Mostrar na página de informação extendiada <br/>Você pode usar tags HTML
-        title: Descrição extendida do site
+        desc_html: Mostrar na página de mais informações<br/>Podes usar tags HTML
+        title: Página de mais informações
       site_title: Título do site
       title: Preferências do site
     title: Administração
   application_mailer:
-    settings: 'Mudar preferências de email: %{link}'
-    signature: notificações Mastodon de %{instance}
-    view: 'View:'
+    settings: 'Alterar preferências de email: %{link}'
+    signature: notificações Mastodon do %{instance}
+    view: 'Ver:'
   applications:
-    invalid_url: URL dada é inválida
+    invalid_url: O URL é inválido
   auth:
-    change_password: Mudar senha
-    didnt_get_confirmation: Não recebeu instruções de confirmação?
-    forgot_password: Esqueceu a senha?
+    change_password: Alterar palavra-passe
+    didnt_get_confirmation: Não recebeu o email de confirmação?
+    forgot_password: Esqueceste a palavra-passe?
     login: Entrar
     register: Registar
     resend_confirmation: Reenviar instruções de confirmação
-    reset_password: Resetar senha
-    set_new_password: Editar password
+    reset_password: Criar nova palavra-passe
+    set_new_password: Editar palavra-passe
   generic:
-    changes_saved_msg: Mudanças guardadas!
+    changes_saved_msg: Alteraçes guardadas!
     powered_by: powered by %{link}
     save_changes: Guardar alterações
     validation_errors:
-      one: Algo não está correto. Por favor reveja o erro abaixo
-      other: Algo não está correto. Por favor reveja os %{count} erros abaixo
+      one: Algo não está correcto. Por favor vê o erro abaixo
+      other: Algo não está correto. Por favor vê os %{count} erros abaixo
   notification_mailer:
     favourite:
-      body: 'O seu post foi favoritado por %{name}:'
-      subject: "%{name} favouritou o seu post"
+      body: 'O teu post foi adicionado aos favoritos por %{name}:'
+      subject: "%{name} adicionou o teu post aos favoritos"
     follow:
-      body: "%{name} seguiu você!"
-      subject: "%{name} segue você"
+      body: "%{name} é teu seguidor!"
+      subject: "%{name} começou a seguir-te"
     mention:
-      body: 'Você foi mencionado por %{name} em:'
-      subject: Foi mencionado por %{name}
+      body: 'Foste mencionado por %{name}:'
+      subject: "%{name} mencionou-te"
     reblog:
-      body: 'O seu post foi reblogado por %{name}:'
-      subject: "%{name} reblogou o seu post"
+      body: 'O teu post foi partilhado por %{name}:'
+      subject: "%{name} partilhou o teu post"
   pagination:
-    next: Next
-    prev: Prev
+    next: Seguinte
+    prev: Anterior
   settings:
     edit_profile: Editar perfil
     preferences: Preferências

@@ -13,6 +13,7 @@ module SettingsHelper
     nl: 'Nederlands',
     no: 'Norsk',
     pt: 'Português',
+    'pt-BR': 'Português do Brasil',
     fi: 'Suomi',
     ru: 'Русский',
     uk: 'Українська',
