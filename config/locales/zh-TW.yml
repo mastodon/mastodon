@@ -79,7 +79,7 @@ zh-TW:
       undo_suspension: 取消停權
       username: 使用者名稱
       web: Web
-    domain_block:
+    domain_blocks:
       add_new: 新增
       domain: 網域
       new:
@@ -240,24 +240,6 @@ zh-TW:
     missing_resource: 無法找到資源
     proceed: 下一步
     prompt: '您希望關注︰'
-  reports:
-    comment:
-      label: 留言
-      none: 無
-    delete: 刪除
-    id: ID
-    mark_as_resolved: 標記為已解決
-    report: '檢舉 #%{id}'
-    reported_account: 被檢舉帳號
-    reported_by: 檢舉人
-    reports: 檢舉
-    resolved: 已解決
-    silence_account: 靜音帳號
-    status: 狀態
-    suspend_account: 停權帳號
-    target: 目標
-    unresolved: 未解決
-    view: 檢視
   settings:
     authorized_apps: 已授權應用程式
     back: 回到 Mastodon
@@ -291,10 +273,7 @@ zh-TW:
     instructions_html: <strong>請用您手機的認證器應用程式（如 Google Authenticator、Authy），掃描這裡的 QR 圖形碼</strong>。在雙因子認證啟用後，您登入時將須要使用此應用程式產生的認證碼。
     manual_instructions: 如果您無法掃描 QR 圖形碼，請手動輸入︰
     setup: 設定
-    warning: 如果您現在無法正確設定您的應用程式，請立刻「停用」雙因子認證，否則日後可能無法登入本站。
     wrong_code: 您輸入的認證碼並不正確！可能伺服器時間和您手機不一致，請檢查您手機的時間，或與本站管理員聯絡。
   users:
     invalid_email: 信箱地址格式不正確
     invalid_otp_token: 雙因子認證碼不正確
-  will_paginate:
-    page_gap: "&hellip;"
