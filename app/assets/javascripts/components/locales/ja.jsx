@@ -49,7 +49,7 @@ const ja = {
   "tabs_bar.local_timeline": "ローカル",
   "tabs_bar.federated_timeline": "連合",
   "tabs_bar.notifications": "通知",
-  "compose_form.placeholder": "今なにしてる？",
+  "compose_form.placeholder": "今なにしてんの？",
   "compose_form.publish": "トゥート",
   "compose_form.sensitive": "メディアを不適切なコンテンツとしてマークする",
   "compose_form.spoiler": "テキストを隠す",
