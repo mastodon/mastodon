@@ -11,6 +11,6 @@ class Favourite < ApplicationRecord
   validates :status_id, uniqueness: { scope: :account_id }
 
   before_validation do
-    self.status = status.reblog if status.reblog?
+    self.status = status.reblog if status&.reblog?
   end
 end
