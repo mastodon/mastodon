@@ -63,14 +63,6 @@ If you want a stable release for production use, you should use tagged releases.
 
 Consult the example configuration file, `.env.production.sample` for the full list. Among other things you need to set details for the SMTP server you are going to use.
 
-## Requirements
-
-- Ruby
-- Node.js
-- PostgreSQL
-- Redis
-- Nginx
-
 ## Deployment
 
 There are guides in the documentation repository for [deploying on various platforms](https://github.com/tootsuite/documentation#running-mastodon).
