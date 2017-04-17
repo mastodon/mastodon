@@ -1,7 +1,7 @@
 ---
 nl:
   about:
-    about_mastodon: Mastodon is een <em>vrij, gratis en open-source</em> sociaal netwerk. Een <em>gedecentraliseerd</em> alternatief voor commerciële platforms, het voorkomt de risico's van een enkel bedrijf dat jouw communicatie monopoliseert. Kies een server die je vertrouwt &mdash; welke je ook kiest, je kunt met elke andere server communiceren. Iedereen kan een eigen Mastodon-server draaien en naadloos deelnemen in het <em>sociale netwerk</em>.
+    about_mastodon: Mastodon is een <em>vrij, gratis en open-source</em> sociaal netwerk. Een <em>gedecentraliseerd</em> alternatief voor commerciële platforms. Het voorkomt de risico's van een enkel bedrijf dat jouw communicatie monopoliseert. Kies een server die je vertrouwt &mdash; welke je ook kiest, je kunt met elke andere server communiceren. Iedereen kan een eigen Mastodon-server draaien en naadloos deelnemen in het <em>sociale netwerk</em>.
     about_this: Over deze server
     apps: Apps
     business_email: 'Zakelijk e-mailadres:'
@@ -58,7 +58,7 @@ nl:
   authorize_follow:
     error: Helaas, er is een fout opgetreden bij het opzoeken van de externe account
     follow: Volgen
-    prompt_html: 'Je (<strong>%{self}</strong>) hebt toestemming om te volgen aangevraagd:'
+    prompt_html: 'Je (<strong>%{self}</strong>) hebt toestemming gevraagd om iemand te mogen volgen:'
     title: Volg %{acct}
   datetime:
     distance_in_words:
@@ -75,9 +75,10 @@ nl:
       x_months: "%{count}ma"
       x_seconds: "%{count}s"
   exports:
-    blocks: Je blokkeert
+    blocks: Jij blokkeert
     csv: CSV
-    follows: Je volgt
+    follows: Jij volgt
+    mutes: Jij negeert
     storage: Mediaopslag
   generic:
     changes_saved_msg: Wijzigingen succesvol opgeslagen!
@@ -87,37 +88,38 @@ nl:
       one: Er is iets niet helemaal goed! Bekijk onderstaande fout
       other: Er is iets niet helemaal goed! Bekijk onderstaande %{count} fouten
   imports:
-    preface: Je kunt bepaalde gegevens, zoals de mensen die je volgt of hebt geblokkeerd, naar jouw account op deze server importeren. Je moet deze gegevens wel eerst op de oorspronkelijke server exporteren.
+    preface: Je kunt bepaalde gegevens, zoals de mensen die jij volgt of hebt geblokkeerd, naar jouw account op deze server importeren. Je moet deze gegevens wel eerst op de oorspronkelijke server exporteren.
     success: Jouw gegevens zijn succesvol geüpload en worden binnenkort verwerkt
     types:
       blocking: Blokkeerlijst
       following: Volglijst
+      muting: Negeerlijst
     upload: Uploaden
   landing_strip_html: <strong>%{name}</strong> is een gebruiker op <strong>%{domain}</strong>. Je kunt deze volgen en ermee communiceren als je ergens in deze fediverse een account hebt. Als je dat niet hebt, kun je je <a href="%{sign_up_path}">hier aanmelden</a>.
   notification_mailer:
     digest:
       body: 'Hier is een korte samenvatting van wat je hebt gemist op %{instance} sinds jouw laatste bezoek op %{since}:'
-      mention: "%{name} vermeldde je in:"
+      mention: "%{name} vermeldde jou in:"
       new_followers_summary:
-        one: Je hebt een nieuwe volger! Hoera!
-        other: Je hebt %{count} nieuwe volgers! Prachtig!
+        one: Jij hebt een nieuwe volger! Hoera!
+        other: Jij hebt %{count} nieuwe volgers! Prachtig!
       subject:
         one: "1 nieuwe melding sinds jouw laatste bezoek \U0001F418"
         other: "%{count} nieuwe meldingen sinds jouw laatste bezoek \U0001F418"
     favourite:
-      body: 'Je status werd door  %{name} als favoriet gemarkeerd:'
+      body: 'Jouw toot werd door %{name} als favoriet gemarkeerd:'
       subject: "%{name} markeerde jouw toot als favoriet"
     follow:
-      body: "%{name} volgt je nu!"
-      subject: "%{name} volgt je nu"
+      body: "%{name} volgt jou nu!"
+      subject: "%{name} volgt jou nu"
     follow_request:
-      body: "%{name} wil je graag volgen"
+      body: "%{name} wil jou graag volgen"
       subject: 'Volgen in afwachting: %{name}'
     mention:
-      body: 'Je bent door %{name} vermeld in:'
-      subject: Je bent vermeld door %{name}
+      body: 'Jij bent door %{name} vermeld in:'
+      subject: Jij bent vermeld door %{name}
     reblog:
-      body: 'Je toot werd door %{name} geboost:'
+      body: 'Jouw toot werd door %{name} geboost:'
       subject: "%{name} booste jouw toot"
   pagination:
     next: Volgende
@@ -126,7 +128,7 @@ nl:
     acct: Geef jouw account@domein.tld op waarvandaan je wilt volgen
     missing_resource: Kon vereiste doorverwijzings-URL voor jouw account niet vinden
     proceed: Ga door om te volgen
-    prompt: 'Je gaat volgen:'
+    prompt: 'Jij gaat volgen:'
   settings:
     authorized_apps: Geautoriseerde
     back: Terug naar Mastodon
@@ -152,10 +154,10 @@ nl:
     formats:
       default: "%b %d, %J, %U:%M"
   two_factor_auth:
-    description_html: Als je <strong>tweestapsverificatie</strong> instelt, kun je je alleen aanmelden als je jouw mobiele telefoon bij je hebt, waarmee je de in te voeren aanmeldcode genereert.
+    description_html: Na het instellen van <strong>tweestapsverificatie</strong>, kun jij je alleen aanmelden als je jouw mobiele telefoon bij je hebt. Hiermee genereer je namelijk de in te voeren aanmeldcode.
     disable: Uitschakelen
     enable: Inschakelen
-    instructions_html: "<strong>Scan deze QR-code in Google Authenticator of een soortgelijke app op jouw mobiele telefoon</strong>. Van nu af aan creëert deze app aanmeldcodes die je bij het aanmelden moet invoeren."
+    instructions_html: "<strong>Scan deze QR-code in Google Authenticator of een soortgelijke app op jouw mobiele telefoon</strong>. Van nu af aan genereert deze app aanmeldcodes die je bij het aanmelden moet invoeren."
   users:
     invalid_email: E-mailadres is ongeldig
     invalid_otp_token: Ongeldige tweestaps-aanmeldcode
