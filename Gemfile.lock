@@ -155,6 +155,7 @@ GEM
     fuubar (2.2.0)
       rspec-core (~> 3.0)
       ruby-progressbar (~> 1.4)
+    get_process_mem (0.2.1)
     globalid (0.3.7)
       activesupport (>= 4.1.0)
     goldfinger (1.1.2)
@@ -282,6 +283,9 @@ GEM
       pry (>= 0.10.4)
     public_suffix (2.0.5)
     puma (3.8.2)
+    puma_worker_killer (0.0.7)
+      get_process_mem (~> 0.2)
+      puma (>= 2.7, < 4)
     rabl (0.13.1)
       activesupport (>= 2.3.14)
     rack (2.0.1)
@@ -513,6 +517,7 @@ DEPENDENCIES
   pkg-config
   pry-rails
   puma
+  puma_worker_killer
   rabl
   rack-attack
   rack-cors
