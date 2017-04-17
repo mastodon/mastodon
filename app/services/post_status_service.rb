@@ -36,7 +36,7 @@ class PostStatusService < BaseService
   private
 
   def validate_media!(media_ids)
-    return if media_ids.nil? || !media_ids.is_a?(Enumerable)
+    return if media_ids.blank? || !media_ids.is_a?(Enumerable)
 
     raise Mastodon::ValidationError, I18n.t('media_attachments.validations.too_many') if media_ids.size > 4
 
