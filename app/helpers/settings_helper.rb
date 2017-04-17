@@ -18,6 +18,7 @@ module SettingsHelper
     ja: '日本語',
     'zh-CN': '简体中文',
     'zh-HK': '繁體中文（香港）',
+    'zh-TW': '繁體中文（臺灣）',
     bg: 'Български',
   }.freeze
 
