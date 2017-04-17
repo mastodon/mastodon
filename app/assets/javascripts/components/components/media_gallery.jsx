@@ -159,24 +159,22 @@ const Item = React.createClass({
         />
       );
     } else if (attachment.get('type') === 'gifv') {
-      if (isIOS() || !this.props.autoPlayGif) {
-        return (
-          <div  key={attachment.get('id')} style={{ ...itemStyle, background: `url(${attachment.get('preview_url')}) no-repeat center`, left: left, top: top, right: right, bottom: bottom, width: `${width}%`, height: `${height}%` }} onClick={this.handleClick}>
-            <div style={{ position: 'absolute', top: '50%', left: '50%', fontSize: '36px', transform: 'translate(-50%, -50%)', padding: '5px', borderRadius: '100px', color: 'rgba(255, 255, 255, 0.8)' }}><i className='fa fa-play' /></div>
-          </div>
-        );
-      } else {
-        thumbnail = (
-            <video
-              src={attachment.get('url')}
-              onClick={this.handleClick}
-              autoPlay
-              loop={true}
-              muted={true}
-              style={gifvThumbStyle}
-            />
-        );
-      }
+      const autoPlay = !isIOS() && this.props.autoPlayGif;
+
+      thumbnail = (
+        <div style={{ position: 'relative', width: '100%', height: '100%', overflow: 'hidden' }} className={`media-gallery__gifv ${autoPlay ? 'autoplay' : ''}`}>
+          <video
+            src={attachment.get('url')}
+            onClick={this.handleClick}
+            autoPlay={autoPlay}
+            loop={true}
+            muted={true}
+            style={gifvThumbStyle}
+          />
+
+          <span className='media-gallery__gifv__label'>GIF</span>
+        </div>
+      );
     }
 
     return (

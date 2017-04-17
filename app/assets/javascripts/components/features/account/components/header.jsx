@@ -58,13 +58,12 @@ const Avatar = React.createClass({
             className='account__header__avatar'
             target='_blank'
             rel='noopener'
-            style={{ display: 'block', width: '90px', height: '90px', margin: '0 auto', marginBottom: '10px', borderRadius: `${radius}px`, overflow: 'hidden' }}
+            style={{ display: 'block', width: '90px', height: '90px', margin: '0 auto', marginBottom: '10px', borderRadius: `${radius}px`, overflow: 'hidden', backgroundSize: '90px 90px', backgroundImage: `url(${autoPlayGif || isHovered ? account.get('avatar') : account.get('avatar_static')})` }}
             onMouseOver={this.handleMouseOver}
             onMouseOut={this.handleMouseOut}
             onFocus={this.handleMouseOver}
-            onBlur={this.handleMouseOut}>
-            <img src={autoPlayGif || isHovered ? account.get('avatar') : account.get('avatar_static')} alt={account.get('acct')} style={{ display: 'block', width: '90px', height: '90px' }} />
-          </a>
+            onBlur={this.handleMouseOut}
+          />
         }
       </Motion>
     );
