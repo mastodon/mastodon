@@ -1,4 +1,4 @@
-const pt = {
+const pt_br = {
   "account.block": "Bloquear @{name}",
   "account.disclaimer": "Essa conta está localizado em outra instância. Os nomes podem ser maiores.",
   "account.edit_profile": "Editar perfil",
@@ -122,4 +122,4 @@ const pt = {
   "video_player.video_error": "Não é possível ver o vídeo",
 };
 
-export default pt;
+export default pt_br;
