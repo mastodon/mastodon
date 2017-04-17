@@ -4,7 +4,7 @@
 - content_for :content do
   .container= yield
   .footer
-    %span.domain= link_to Rails.configuration.x.local_domain, root_path
+    %span.domain= link_to site_hostname, root_path
     %span.powered-by
       = t('generic.powered_by', link: link_to('Mastodon', 'https://github.com/tootsuite/mastodon')).html_safe
 
