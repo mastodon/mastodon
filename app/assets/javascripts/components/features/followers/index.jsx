@@ -50,7 +50,7 @@ const Followers = React.createClass({
 
   handleLoadMore (e) {
     e.preventDefault();
-    this.props.dispatch(expandFollowing(Number(this.props.params.accountId)));
+    this.props.dispatch(expandFollowers(Number(this.props.params.accountId)));
   },
 
   render () {

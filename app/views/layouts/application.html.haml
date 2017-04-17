@@ -17,7 +17,7 @@
         = ' - '
       = site_title
 
-    = stylesheet_link_tag 'application', media: 'all'
+    = stylesheet_link_tag stylesheet_for_layout, media: 'all'
     = csrf_meta_tags
 
     = yield :header_tags
