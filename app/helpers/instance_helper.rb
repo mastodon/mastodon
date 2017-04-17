@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module SiteTitleHelper
+module InstanceHelper
   def site_title
     Setting.site_title.to_s
   end
