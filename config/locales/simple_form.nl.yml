@@ -1,0 +1,46 @@
+---
+nl:
+  simple_form:
+    hints:
+      defaults:
+        avatar: PNG, GIF of JPG. Maximaal 2MB. Wordt teruggeschaald naar 120x120px
+        display_name: Maximaal 30 tekens
+        header: PNG, GIF of JPG. Maximaal 2MB. Wordt teruggeschaald naar 700x335px
+        locked: Vereist dat je handmatig volgers accepteert en stelt standaard plaatsen berichten privacy in op alleen-volgers
+        note: Maximaal 160 characters
+      imports:
+        data: CSV file geëxporteerd van een andere Mastodon server
+    labels:
+      defaults:
+        avatar: Avatar
+        confirm_new_password: Bevestig nieuw wachtwoord
+        confirm_password: Bevestig wachtwoord
+        current_password: Huidige wachtwoord
+        data: Gegevens
+        display_name: Weergavenaam
+        email: E-mailadres
+        header: Kop
+        locale: Taal
+        locked: Maak account besloten
+        new_password: Nieuwe wachtwoord
+        note: Bio
+        otp_attempt: Twee-factor code
+        password: Wachtwoord
+        setting_default_privacy: Berichten privacy
+        type: Import type
+        username: gebruikersnaam
+      interactions:
+        must_be_follower: Blokkeermeldingen van niet-volgers
+        must_be_following: Blokkeer meldingen van mensen die je niet volgt
+      notification_emails:
+        digest: Verstuur samenvattingse-mails
+        favourite: Verstuur een e-mail wanneer iemand je status als favoriet markeert
+        follow: Verstuur een e-mail wanneer iemand je volgt
+        follow_request: Verstuur een e-mail wanneer iemand je wil volgen
+        mention: Verstuur een e-mail wanneer iemand je vermeld
+        reblog: Verstuur een e-mail wanneer iemand je status boost
+    'no': 'Nee'
+    required:
+      mark: "*"
+      text: vereist
+    'yes': 'Ja'

@@ -47,7 +47,7 @@ const UI = React.createClass({
       this.dragTargets.push(e.target);
     }
 
-    if (e.dataTransfer && e.dataTransfer.files.length > 0) {
+    if (e.dataTransfer && e.dataTransfer.items.length > 0) {
       this.setState({ draggingOver: true });
     }
   },
@@ -141,7 +141,7 @@ const UI = React.createClass({
         {mountedColumns}
 
         <NotificationsContainer />
-        <LoadingBarContainer style={{ backgroundColor: '#2b90d9', left: '0', top: '0' }} />
+        <LoadingBarContainer className="loading-bar" />
         <ModalContainer />
         <UploadArea active={draggingOver} />
       </div>
