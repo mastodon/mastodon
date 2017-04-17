@@ -211,7 +211,7 @@ ja:
   notification_mailer:
     digest:
       body: "%{instance} での最後のログインからの出来事:"
-      mention: "%{name} さんがあなたに返信しました:"
+      mention: "%{name} さんが自分に返信しました:"
       new_followers_summary:
         one: 新たなフォロワーを獲得しました！
         other: "%{count} 人の新たなフォロワーを獲得しました！"
@@ -219,26 +219,26 @@ ja:
         one: "新しい1件の通知 \U0001F418"
         other: "新しい%{count}件の通知 \U0001F418"
     favourite:
-      body: 'あなたのトゥートが %{name} さんにええやんされました:'
-      subject: "%{name} さんがあなたのトゥートをええやんしました"
+      body: '自分のトゥートが %{name} さんにええやんゆわれてるわ:'
+      subject: "%{name} さんが自分のトゥートをええやんゆーてるわ"
     follow:
       body: "%{name} さんにフォローされています"
       subject: "%{name} さんにフォローされています"
     follow_request:
-      body: "%{name} さんがあなたにフォローをリクエストしました。"
+      body: "%{name} さんが自分にフォローをリクエストしました。"
       subject: "%{name} さんからのフォローリクエスト"
     mention:
       body: "%{name} さんから返信がありました:"
       subject: "%{name} さんに返信されました"
     reblog:
-      body: 'あなたのトゥートが %{name} さんにしばかれました:'
-      subject: あなたのトゥートが %{name} さんにしばかれました
+      body: '自分のトゥートが %{name} さんにしばかれました:'
+      subject: 自分のトゥートが %{name} さんにしばかれました
   pagination:
     next: 次
     prev: 前
     truncate: "&hellip;"
   remote_follow:
-    acct: あなたの ユーザー名@ドメイン を入力してください
+    acct: 自分の ユーザー名@ドメイン を入力してください
     missing_resource: リダイレクト先が見つかりませんでした
     proceed: フォローする
     prompt: 'フォローしようとしています:'
