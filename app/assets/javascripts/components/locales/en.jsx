@@ -38,6 +38,7 @@ const en = {
   "compose_form.privacy_disclaimer": "Your private status will be delivered to mentioned users on {domains}. Do you trust {domainsCount, plural, one {that server} other {those servers}}? Post privacy only works on Mastodon instances. If {domains} {domainsCount, plural, one {is not a Mastodon instance} other {are not Mastodon instances}}, there will be no indication that your post is private, and it may be boosted or otherwise made visible to unintended recipients.",
   "compose_form.publish": "Toot",
   "compose_form.sensitive": "Mark media as sensitive",
+  "compose_form.sensitive_message": "Please be sure to mark NSFW if the image you are trying to post is erotic content",
   "compose_form.spoiler_placeholder": "Content warning",
   "compose_form.spoiler": "Hide text behind warning",
   "emoji_button.label": "Insert emoji",
