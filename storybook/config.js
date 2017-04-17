@@ -17,6 +17,7 @@ window.React     = React;
 function loadStories () {
   require('./stories/loading_indicator.story.jsx');
   require('./stories/button.story.jsx');
+  require('./stories/character_counter.story.jsx');
   require('./stories/autosuggest_textarea.story.jsx');
 }
 
