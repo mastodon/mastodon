@@ -20,7 +20,7 @@
 .h-feed
   %data.p-name{ value: "#{@account.username} on #{Rails.configuration.x.local_domain}" }/
 
-  = render partial: 'header'
+  = render 'header', account: @account
 
   - if @statuses.empty?
     .accounts-grid
