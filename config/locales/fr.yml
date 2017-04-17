@@ -79,7 +79,7 @@ fr:
       undo_suspension: Annuler la suspension
       username: Nom d'utilisateur
       web: Web
-    domain_block:
+    domain_blocks:
       add_new: Ajouter
       domain: Domaine
       new:
@@ -241,24 +241,6 @@ fr:
     missing_resource: L'URL de redirection n'a pas pu être trouvée
     proceed: Continuez pour suivre
     prompt: 'Vous allez suivre :'
-  reports:
-    comment:
-      label: Commentaire
-      none: Aucun
-    delete: Supprimer
-    id: ID
-    mark_as_resolved: Marqué comme résolu
-    report: 'Signalement #%{id}'
-    reported_account: Compte signalé
-    reported_by: Signalé par
-    reports: Signalements
-    resolved: Résolus
-    silence_account: Rendre le compte muet
-    status: Statut
-    suspend_account: Suspendre le compte
-    target: Cible
-    unresolved: Non résolus
-    view: Voir
   settings:
     authorized_apps: Applications autorisées
     back: Retour vers Mastodon
@@ -288,10 +270,6 @@ fr:
     disable: Désactiver
     enable: Activer
     instructions_html: "<strong>Scannez ce QR code grâce à Google Authenticator, Authy ou une application similaire sur votre téléphone</strong>. Désormais, cette application générera des jetons que vous devrez saisir à chaque connexion."
-    plaintext_secret_html: 'Code secret en clair : <samp>%{secret}</samp>'
-    warning: Si vous ne pouvez pas configurer une application d'authentification maintenant, vous devriez cliquer sur "Désactiver" pour ne pas bloquer l'accès à votre compte.
   users:
     invalid_email: L'adresse courriel est invalide
     invalid_otp_token: Le code d'authentification à deux facteurs est invalide
-  will_paginate:
-    page_gap: "&hellip;"

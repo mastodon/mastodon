@@ -6,21 +6,12 @@
   %meta{ property: 'og:type', content: 'article' }/
   %meta{ property: 'og:title', content: "#{@account.username} on #{Rails.configuration.x.local_domain}" }/
 
-  - if @stream_entry.activity.is_a?(Status) && !@stream_entry.activity.spoiler_text.blank?
-    %meta{ property: 'og:description', content: @stream_entry.activity.spoiler_text }/
-  - else
-    %meta{ property: 'og:description', content: @stream_entry.activity.content }/
-
-  - if @stream_entry.activity.is_a?(Status) && !@stream_entry.activity.sensitive? && @stream_entry.activity.media_attachments.size > 0
-    %meta{ property: 'og:image', content: full_asset_url(@stream_entry.activity.media_attachments.first.file.url(:small)) }/
-  - else
-    %meta{ property: 'og:image', content: full_asset_url(@account.avatar.url(:original)) }/
-    %meta{ property: 'og:image:width', content: '120' }/
-    %meta{ property: 'og:image:height', content: '120' }/
+  = render 'stream_entries/og_description', activity: @stream_entry.activity
+  = render 'stream_entries/og_image', activity: @stream_entry.activity, account: @account
 
   %meta{ property: 'twitter:card', content: 'summary' }/
 
-- if !user_signed_in? && !Rails.configuration.x.single_user_mode
+- if show_landing_strip?
   = render partial: 'shared/landing_strip', locals: { account: @stream_entry.account }
 
 .activity-stream.activity-stream-headless.h-entry

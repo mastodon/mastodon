@@ -1,11 +1,11 @@
 ---
 nl:
   about:
-    about_mastodon: Mastodon is een <em>vrije, gratis, open-source</em> sociaal netwerk. E <em>gedecentraliseerd</em> alternatief voor commerciële platforms, het voorkomt de risico's van een enkel bedrijf dat jouw communicatie monopoliseert. Kies een server die je vertrouwt &mdash; welke je ook kiest, je kunt met iedere ander communiceren. Iedereen kan een eigen Mastodon server draaien en naadloos deelnemen in het <em>sociale netwerk</em>.
+    about_mastodon: Mastodon is een <em>vrij, gratis en open-source</em> sociaal netwerk. Een <em>gedecentraliseerd</em> alternatief voor commerciële platforms, het voorkomt de risico's van een enkel bedrijf dat jouw communicatie monopoliseert. Kies een server die je vertrouwt &mdash; welke je ook kiest, je kunt met iedere ander communiceren. Iedereen kan een eigen Mastodon-server draaien en naadloos deelnemen in het <em>sociale netwerk</em>.
     about_this: Over deze server
     apps: Apps
-    business_email: 'Zakelijke e-mailadres:'
-    closed_registrations: Registrateren op deze server is momenteel uitgeschakeld.
+    business_email: 'Zakelijk e-mailadres:'
+    closed_registrations: Registreren op deze server is momenteel uitgeschakeld.
     contact: Contact
     description_headline: Wat is %{domain}?
     domain_count_after: andere servers
@@ -16,22 +16,22 @@ nl:
       characters: 500 tekens per bericht
       chronology: Tijdlijnen zijn chronologisch
       ethics: 'Ethisch design: geen ads, geen spionage'
-      gifv: GIFV sets en korte video's
-      privacy: Granulaire, privacy instellingen per bericht
+      gifv: GIFV-sets en korte video's
+      privacy: Granulaire privacyinstellingen per bericht
       public: Openbare tijdlijnen
-    features_headline: Wat maak Mastodon anders
+    features_headline: Wat maakt Mastodon anders
     get_started: Beginnen
     links: Links
     other_instances: Andere servers
     source_code: Source code
     status_count_after: statussen
     status_count_before: Wie schreef
-    terms: Voorw
+    terms: Voorwaarden
     user_count_after: gebruikers
     user_count_before: Thuis naar
   accounts:
-    follow: Volg
-    followers: Volgens
+    follow: Volgen
+    followers: Volgers
     following: Volgend
     nothing_here: Hier is niets!
     people_followed_by: Mensen die %{name} volgt
@@ -40,23 +40,23 @@ nl:
     remote_follow: Externe volg
     unfollow: Ontvolgen
   application_mailer:
-    settings: 'Wijzigen e-mailvoorkeuren: %{link}'
-    signature: Mastodon meldingen van %{instance}
+    settings: 'E-mailvoorkeuren wijzigen: %{link}'
+    signature: Mastodon-meldingen van %{instance}
     view: 'Bekijk:'
   applications:
     invalid_url: De opgegevens URL is ongeldig
   auth:
     change_password: Inloggegevens
-    didnt_get_confirmation: Ontving je geen bevestigingsinstructies?
+    didnt_get_confirmation: Geen bevestigingsinstructies ontvangen?
     forgot_password: Wachtwoord vergeten?
-    login: Inloggen
-    logout: Uitloggen
+    login: Aanmelden
+    logout: Afmelden
     register: Registreren
-    resend_confirmation: Herstuur de bevestigingsinstructies
-    reset_password: Herstel wachtwoord
-    set_new_password: Instellen nieuw wachtwoord
+    resend_confirmation: Verstuur de bevestigingsinstructies nogmaals
+    reset_password: Wachtwoord opnieuw instellen
+    set_new_password: Nieuw wachtwoord instellen
   authorize_follow:
-    error: Helaas, er was een fout bij het opzoeken van het externe account
+    error: Helaas, er is een fout opgetreden bij het opzoeken van de externe account
     follow: Volgen
     prompt_html: 'Je (<strong>%{self}</strong>) hebt volgen aangevraagd:'
     title: Volg %{acct}
@@ -78,22 +78,22 @@ nl:
     blocks: Je blokkeert
     csv: CSV
     follows: Je volgt
-    storage: Media-opslag
+    storage: Mediaopslag
   generic:
     changes_saved_msg: Wijzigingen succesvol opgeslagen!
-    powered_by: powered by %{link}
+    powered_by: mogelijk gemaakt door %{link}
     save_changes: Wijziginen opslaan
     validation_errors:
       one: Er is iets niet helemaal goed! Bekijk onderstaande fout
       other: Er is iets niet helemaal goed! Bekijk onderstaande %{count} fouten
   imports:
     preface: Je kunt bepaalde gegevens, zoals de mensen die je volgt of blokkeert, importeren voor je account op deze server, als ze zijn geëxporteerd op een andere server.
-    success: Je gegevens zijn succesvol ge-upload en wordt binnenkort verwerkt
+    success: Je gegevens zijn succesvol geüpload en worden binnenkort verwerkt
     types:
-      blocking: Blokkadelijst
+      blocking: Blokkeerlijst
       following: Volglijst
     upload: Uploaden
-  landing_strip_html: <strong>%{name}</strong> is een gebruiker op <strong>%{domain}</strong>. Je kunt deze volgen of ermee interacteren als je ergens in deze fediverse een account hebt. Als he dat niet hebt, kun je je <a href="%{sign_up_path}">hier aanmelden</a>.
+  landing_strip_html: <strong>%{name}</strong> is een gebruiker op <strong>%{domain}</strong>. Je kunt deze volgen of ermee interacteren als je ergens in deze fediverse een account hebt. Als je dat niet hebt, kun je je <a href="%{sign_up_path}">hier aanmelden</a>.
   notification_mailer:
     digest:
       body: 'Hier is een korte samenvatting van wat je hebt gemist op %{instance} sinds je laatste bezoek op %{since}:'
@@ -105,17 +105,17 @@ nl:
         one: "1 nieuwe melding sinds je laatste bezoek \U0001F418"
         other: "%{count} nieuwe meldingen sinds je laatste bezoek \U0001F418"
     favourite:
-      body: 'Je status werd als favoriet gemarkeerd door  %{name}:'
-      subject: "%{name} markeerde je status als favouriet"
+      body: 'Je status werd door  %{name} als favoriet gemarkeerd:'
+      subject: "%{name} markeerde je status als favoriet"
     follow:
       body: "%{name} volgt je nu!"
       subject: "%{name} volgt je nu"
     follow_request:
-      body: "%{name} wil je graag volgend"
+      body: "%{name} wil je graag volgen"
       subject: 'Volgen in afwachting: %{name}'
     mention:
-      body: 'Je werd door %{name} vermeld in:'
-      subject: Je werd vermeld door %{name}
+      body: 'Je bent door %{name} vermeld in:'
+      subject: Je bent vermeld door %{name}
     reblog:
       body: 'Je status werd geboost door %{name}:'
       subject: "%{name} booste je status"
@@ -124,24 +124,24 @@ nl:
     prev: Vorige
   remote_follow:
     acct: Geef je gebruikersnaam@domein op waarvandaan je wilt volgen
-    missing_resource: Kon geen de vereiste doorverwijszings-URL voor je account niet vinden
+    missing_resource: Kon vereiste doorverwijzings-URL voor je account niet vinden
     proceed: Ga door om te volgen
     prompt: 'Je gaat volgen:'
   settings:
     authorized_apps: Geautoriseerde
     back: Terug naar Mastodon
-    edit_profile: Bewerk profiel
+    edit_profile: Profiel bewerken
     export: Gegevensexport
     import: Import
     preferences: Voorkeuren
     settings: Instellingen
-    two_factor_auth: Twe-factor authenticatie
+    two_factor_auth: Twee-factorauthenticatie
   statuses:
     open_in_web: Openen in web
     over_character_limit: Tekenlimiet van %{max} overschreden
     show_more: Toon meer
     visibilities:
-      private: Toon alleen aan volgers
+      private: Alleen aan volgers tonen
       public: Openbaar
       unlisted: Openbaar, maar niet tonen op openbare tijdlijn
   stream_entries:
@@ -152,14 +152,10 @@ nl:
     formats:
       default: "%b %d, %J, %U:%M"
   two_factor_auth:
-    description_html: Als je <strong>twee-factor authenticatie</strong> instelt, kun je alleen inloggen als je je mobiele telefoon bij je hebt, waarmee je de in te voeren tokens genereert.
+    description_html: Als je <strong>twee-factorauthenticatie</strong> instelt, kun je alleen aanmelden als je je mobiele telefoon bij je hebt, waarmee je de in te voeren tokens genereert.
     disable: Uitschakelen
     enable: Inschakelen
-    instructions_html: "<strong>Scan deze QR-code in Google Authenticator of een soortgelijke app op je mobiele telefoon</strong>. Van nu af aan creëert deze app tokens die je bij inloggen moet invoeren."
-    plaintext_secret_html: 'Gewone-tekst geheim: <samp>%{secret}</samp>'
-    warning: Als je nu geen authenticator app kunt installeren, moet je "Uitschakelen" kiezen of je kunt niet meer inloggen.
+    instructions_html: "<strong>Scan deze QR-code in Google Authenticator of een soortgelijke app op je mobiele telefoon</strong>. Van nu af aan creëert deze app tokens die je bij aanmelden moet invoeren."
   users:
     invalid_email: Het e-mailadres is ongeldig
-    invalid_otp_token: Ongeldige twe-factor code
-  will_paginate:
-    page_gap: "&hellip;"
+    invalid_otp_token: Ongeldige twee-factorcode

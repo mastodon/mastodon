@@ -15,7 +15,7 @@ const ClearColumnButton = React.createClass({
     const { intl } = this.props;
 
     return (
-      <div title={intl.formatMessage(messages.clear)} className='column-icon column-icon-clear' tabIndex='0' onClick={this.props.onClick}>
+      <div role='button' title={intl.formatMessage(messages.clear)} className='column-icon column-icon-clear' tabIndex='0' onClick={this.props.onClick}>
         <i className='fa fa-eraser' />
       </div>
     );

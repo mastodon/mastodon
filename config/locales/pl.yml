@@ -1,0 +1,160 @@
+---
+pl:
+  about:
+    about_mastodon: Mastodon jest <em>wolną i otwartą</em> siecią społecznościową, <em>zdecentralizowaną</em> alternatywą dla zamkniętych, komercyjnych platform. Pozwala uniknąć ryzyka monopolizacji Twojej komunikacji przez jedną korporację. Wybierz serwer, któremu ufasz &mdash; nie ograniczy to Twoich możliwości komunikacji z innymi osobami w sieci. Każdy może też uruchomić własną instancję Mastodona i dołączyć do reszty tej <em>sieci społecznościowej</em>.
+    about_this: O tej instancji
+    apps: Aplikacje
+    business_email: 'Służbowy adres e-mail:'
+    contact: Kontakt
+    description_headline: Czym jest %{domain}?
+    domain_count_after: inne instancje
+    domain_count_before: Połączone z
+    features:
+      api: Otwarte API dla aplikacji i usług
+      blocks: Rozbudowane narzędzia blokowania i wyciszania
+      characters: 500 znaków na wpis
+      chronology: Chronologiczny porządek wyświetlania
+      ethics: 'Etyczne założenia: bez reklam, bez śledzenia'
+      gifv: obsługa GIFV i krótkich wideo
+      privacy: Precyzyjne ustawienia widoczności poszczególnych postów
+      public: Publiczne osie czasu
+    features_headline: Co wyróżnia Mastodona
+    get_started: Rozpocznijmy!
+    links: Odnośniki
+    other_instances: Inne instancje
+    source_code: Kod źródłowy
+    status_count_after: wpisów
+    status_count_before: Kto jest autorem
+    terms: Regulamin
+    user_count_after: tootujących
+    user_count_before: Dom dla
+  accounts:
+    follow: Śledź
+    followers: Śledzących
+    following: Śledzi
+    nothing_here: Niczego tu nie ma!
+    people_followed_by: Konta śledzone przez %{name}
+    people_who_follow: Osoby, które śledzą konto %{name}
+    posts: Wpisy
+    remote_follow: Zdalne śledzenie
+    unfollow: Przestań śledzić
+  application_mailer:
+    settings: 'Zmień ustawienia powiadamiania: %{link}'
+    signature: Powiadomienie Mastodona, wysłane przez %{instance}
+    view: 'Zobacz:'
+  applications:
+    invalid_url: Ten URL jest nieprawidłowy
+  auth:
+    change_password: Uwierzytelnienie
+    didnt_get_confirmation: Nie otrzymałeś instrukcji weryfikacji?
+    forgot_password: Zapomniane hasło
+    login: Zaloguj się
+    logout: Wyloguj się
+    register: Rejestracja
+    resend_confirmation: Ponownie prześlij instrukcje weryfikacji
+    reset_password: Zresetuj hasło
+    set_new_password: Ustaw nowe hasło
+  authorize_follow:
+    error: Niestety, podczas sprawdzania zdalnego konta wystąpił błąd
+    follow: Śledź
+    prompt_html: 'Ty (<strong>%{self}</strong>) chcesz śledzić:'
+    title: Śledź %{acct}
+  datetime:
+    distance_in_words:
+      about_x_hours: "%{count}h"
+      about_x_months: "%{count} miesięcy"
+      about_x_years: "%{count} lat"
+      almost_x_years: "%{count} lat"
+      half_a_minute: Przed chwilą
+      less_than_x_minutes: "%{count}min"
+      less_than_x_seconds: Przed chwilą
+      over_x_years: "%{count} lat"
+      x_days: "%{count} dni"
+      x_minutes: "%{count}min"
+      x_months: "%{count} miesięcy"
+      x_seconds: "%{count}s"
+  exports:
+    blocks: Blokujesz
+    csv: CSV
+    follows: Śledzisz
+    storage: Media storage
+  generic:
+    changes_saved_msg: Ustawienia zapisane!
+    powered_by: uruchomione na %{link}
+    save_changes: Zapisz zmiany
+    validation_errors:
+      one: Coś jest wciąż nie tak! Przyjrzyj się błędowi poniżej
+      other: Coś jest wciąż nie tak! Przejrzyj błędy (%{count}) poniżej
+  imports:
+    preface: Możesz zaimportować pewne dane (jak dane kont, które śledzisz lub blokujesz) do swojego konta na tym serwerze, korzystająć z danych wyeksportowanych z innego serwera.
+    success: Twoje dane zostały załadowane i zostaną niebawem przetworzone
+    types:
+      blocking: Lista blokowanych
+      following: Lista śledzonych
+    upload: Załaduj
+  landing_strip_html: <strong>%{name}</strong> ma konto na <strong>%{domain}</strong>. Możesz je śledzić i wejść z nim w interakcję jeśli masz konto gdziekolwiek w Fediwersie. Jeśli jeszcze go nie masz, możesz <a href="%{sign_up_path}">stworzyć konto</a>.
+  notification_mailer:
+    digest:
+      body: 'Oto krótkie podsumowanie co Cię ominęło na %{instance} od Twojej ostatniej wizyty (%{since}):'
+      mention: "%{name} wspomniał o Tobie w:"
+      new_followers_summary:
+        one: Śledzi Cię nowa osoba! Gratulacje!
+        other: Kilka (%{count}) nowych osób Cię śledzi! Wspaniale!
+      subject:
+        one: "1 nowe powiadomienie od Twojej ostatniej wizyty \U0001F418"
+        other: "%{count} nowych powiadomień od Twojej ostatniej wizyty \U0001F418"
+    favourite:
+      body: 'Twój wpis został polubiony przez %{name}:'
+      subject: "%{name} lubi Twój wpis"
+    follow:
+      body: "%{name} Cię śledzi!"
+      subject: "%{name} Cię śledzi"
+    follow_request:
+      body: "%{name} poprosił o możliwość śledzenia Cię"
+      subject: 'Prośba o możliwość śledzenia: %{name}'
+    mention:
+      body: '%{name} wspomniał Cię w:'
+      subject: '%{name} Cię wspomniał'
+    reblog:
+      body: 'Twój wpis został podbity przez %{name}:'
+      subject: "Twój wpis został podbity przez %{name}"
+  pagination:
+    next: Następna
+    prev: Poprzednia
+  remote_follow:
+    acct: Podaj swój adres (nazwa@domena), z którego chcesz śledzić
+    missing_resource: Nie udało się znaleźć adresu przekierowania z Twojej domeny
+    proceed: Śledź
+    prompt: 'Śledzony będzie:'
+  settings:
+    authorized_apps: Uwierzytelnione aplikacje
+    back: Powrót do Mastodona
+    edit_profile: Edytuj profil
+    export: Exportuj dane
+    import: Importuj dane
+    preferences: Preferencje
+    settings: Ustawienia
+    two_factor_auth: Uwierzytelnianie dwuetapowe
+  statuses:
+    open_in_web: Otwórz w przeglądarce
+    over_character_limit: limit %{max} znaków przekroczony
+    show_more: Pokaż więcej
+    visibilities:
+      private: Tylko dla śledzących
+      public: Publiczny
+      unlisted: Publiczny, ale nie wyświetlaj na publicznych osiach czasu
+  stream_entries:
+    click_to_show: Kliknij aby pokazać
+    reblogged: podbity
+    sensitive_content: Wrażliwa treść
+  time:
+    formats:
+      default: "%b %d, %Y, %H:%M"
+  two_factor_auth:
+    description_html: Jeśli włączysz <strong>uwierzytelnianie dwustopniowe</strong>, logowanie się będzie wymagało podania tokenu wyświetlonego na Twoim telefone.
+    disable: Wyłącz
+    enable: Włącz
+    instructions_html: "<strong>Zeskanuj ten kod QR na swoim urządzeniu za pomocą Google Authenticator, FreeOTP lub podobnej aplikacji</strong>. Od teraz będzie ona generowała kody wymagane przy logowaniu."
+  users:
+    invalid_email: Adres e-mail jest niepoprawny
+    invalid_otp_token: Kod uwierzytelniający jest niepoprawny

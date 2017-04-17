@@ -31,6 +31,7 @@ const en = {
   "column.favourites": "Favourites",
   "column.follow_requests": "Follow requests",
   "column.home": "Home",
+  "column.mutes": "Muted users",
   "column.notifications": "Notifications",
   "column.public": "Federated timeline",
   "compose_form.placeholder": "What is on your mind?",
@@ -68,10 +69,12 @@ const en = {
   "navigation_bar.follow_requests": "Follow requests",
   "navigation_bar.info": "Extended information",
   "navigation_bar.logout": "Logout",
+  "navigation_bar.mutes": "Muted users",
   "navigation_bar.preferences": "Preferences",
   "navigation_bar.public_timeline": "Federated timeline",
   "notification.favourite": "{name} favourited your status",
   "notification.follow": "{name} followed you",
+  "notification.mention": "{name} mentioned you",
   "notification.reblog": "{name} boosted your status",
   "notifications.clear_confirmation": "Are you sure you want to clear all your notifications?",
   "notifications.clear": "Clear notifications",
@@ -126,6 +129,7 @@ const en = {
   "video_player.toggle_sound": "Toggle sound",
   "video_player.toggle_visible": "Toggle visibility",
   "video_player.expand": "Expand video",
+  "video_player.video_error": "Video could not be played",
 };
 
 export default en;
