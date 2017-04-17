@@ -78,7 +78,8 @@ const Item = React.createClass({
     attachment: ImmutablePropTypes.map.isRequired,
     index: React.PropTypes.number.isRequired,
     size: React.PropTypes.number.isRequired,
-    onClick: React.PropTypes.func.isRequired
+    onClick: React.PropTypes.func.isRequired,
+    autoPlayGif: React.PropTypes.bool.isRequired
   },
 
   mixins: [PureRenderMixin],
@@ -158,16 +159,24 @@ const Item = React.createClass({
         />
       );
     } else if (attachment.get('type') === 'gifv') {
-      thumbnail = (
-        <video
-          src={attachment.get('url')}
-          onClick={this.handleClick}
-          autoPlay={!isIOS()}
-          loop={true}
-          muted={true}
-          style={gifvThumbStyle}
-        />
-      );
+      if (isIOS() || !this.props.autoPlayGif) {
+        return (
+          <div  key={attachment.get('id')} style={{ ...itemStyle, background: `url(${attachment.get('preview_url')}) no-repeat center`, left: left, top: top, right: right, bottom: bottom, width: `${width}%`, height: `${height}%` }} onClick={this.handleClick}>
+            <div style={{ position: 'absolute', top: '50%', left: '50%', fontSize: '36px', transform: 'translate(-50%, -50%)', padding: '5px', borderRadius: '100px', color: 'rgba(255, 255, 255, 0.8)' }}><i className='fa fa-play' /></div>
+          </div>
+        );
+      } else {
+        thumbnail = (
+            <video
+              src={attachment.get('url')}
+              onClick={this.handleClick}
+              autoPlay
+              loop={true}
+              muted={true}
+              style={gifvThumbStyle}
+            />
+        );
+      }
     }
 
     return (
@@ -192,7 +201,8 @@ const MediaGallery = React.createClass({
     media: ImmutablePropTypes.list.isRequired,
     height: React.PropTypes.number.isRequired,
     onOpenMedia: React.PropTypes.func.isRequired,
-    intl: React.PropTypes.object.isRequired
+    intl: React.PropTypes.object.isRequired,
+    autoPlayGif: React.PropTypes.bool.isRequired
   },
 
   mixins: [PureRenderMixin],
@@ -227,7 +237,7 @@ const MediaGallery = React.createClass({
       );
     } else {
       const size = media.take(4).size;
-      children = media.take(4).map((attachment, i) => <Item key={attachment.get('id')} onClick={this.handleClick} attachment={attachment} index={i} size={size} />);
+      children = media.take(4).map((attachment, i) => <Item key={attachment.get('id')} onClick={this.handleClick} attachment={attachment} autoPlayGif={this.props.autoPlayGif} index={i} size={size} />);
     }
 
     return (

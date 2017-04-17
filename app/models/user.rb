@@ -32,4 +32,8 @@ class User < ApplicationRecord
   def setting_boost_modal
     settings.boost_modal
   end
+
+  def setting_auto_play_gif
+    settings.auto_play_gif
+  end
 end
