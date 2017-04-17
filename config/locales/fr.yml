@@ -71,6 +71,7 @@ fr:
       profile_url: URL du profil
       public: Public
       push_subscription_expires: Expiration de l'abonnement PuSH
+      reset_password: Réinitialiser le mot de passe
       salmon_url: URL Salmon
       silence: Rendre muet
       statuses: Statuts
@@ -81,6 +82,8 @@ fr:
       web: Web
     domain_blocks:
       add_new: Ajouter
+      created_msg: Le blocage de domaine est désormais activé
+      destroyed_msg: Le blocage de domaine a été désactivé
       domain: Domaine
       new:
         create: Créer le blocage
@@ -90,8 +93,23 @@ fr:
           silence: Muet
           suspend: Suspendre
         title: Nouveau blocage de domaine
+      reject_media: Fichiers media rejetés
+      reject_media_hint: Supprime localement les fichiers media stockés et refuse d'en télécharger ultérieurement. Ne concerne pas les suspensions.
+      severities:
+        silence: Rendre muet
+        suspend: Suspendre
       severity: Séverité
+      show:
+        affected_accounts:
+          one: Un compte affecté dans la base de données
+          other: "%{count} comptes affectés dans la base de données"
+        retroactive:
+          silence: Annuler le silence sur tous les comptes existants pour ce domaine
+          suspend: Annuler la suspension sur tous les comptes existants pour ce domaine
+        title: Annuler le blocage de domaine pour %{domain}
+        undo: Annuler
       title: Blocage de domaines
+      undo: Annuler
     pubsubhubbub:
       callback_url: URL de rappel
       confirmed: Confirmé
@@ -192,6 +210,7 @@ fr:
     blocks: Vous bloquez
     csv: CSV
     follows: Vous suivez
+    mutes: Vous faites taire
     storage: Médias stockés
   generic:
     changes_saved_msg: Les modifications ont été enregistrées avec succès !
@@ -206,8 +225,13 @@ fr:
     types:
       blocking: Liste d'utilisateurs⋅trices bloqué⋅es
       following: Liste d'utilisateurs⋅trices suivi⋅es
+      muting: Liste d'utilisateurs⋅trices que vous faites taire
     upload: Importer
   landing_strip_html: <strong>%{name}</strong> utilise <strong>%{domain}</strong>. Vous pouvez le/la suivre et interagir si vous possédez un compte quelque part dans le "fediverse". Si ce n'est pas le cas, vous pouvez <a href="%{sign_up_path}">en créer un ici</a>.
+  media_attachments:
+    validations:
+      images_and_video: Impossible de joindre une vidéo à un statuts contenant déjà des images
+      too_many: Impossible de joindre plus de 4 fichiers
   notification_mailer:
     digest:
       body: 'Voici ce que vous avez raté sur ${instance} depuis votre dernière visite (%{}) :'
@@ -266,10 +290,19 @@ fr:
     formats:
       default: "%d %b %Y, %H:%M"
   two_factor_auth:
+    code_hint: Entrez le code généré par votre application pour confirmer
     description_html: Si vous activez <strong>l'identification à deux facteurs</strong>, vous devrez être en possession de votre téléphone afin de générer un code de connexion.
     disable: Désactiver
     enable: Activer
+    enabled_success: Identification à deux facteurs activée avec succès
+    generate_recovery_codes: Générer les codes de récupération
     instructions_html: "<strong>Scannez ce QR code grâce à Google Authenticator, Authy ou une application similaire sur votre téléphone</strong>. Désormais, cette application générera des jetons que vous devrez saisir à chaque connexion."
+    lost_recovery_codes: Les codes de récupération vous permettent de retrouver les accès à votre comptre si vous perdez votre téléphone. Si vous perdez vos codes de récupération, vous pouvez les générer à nouveau ici. Vos anciens codes de récupération seront invalidés.
+    manual_instructions: "Si vous ne pouvez pas scanner ce QR code et devez l'entrer manuellement, voici le secret en clair :"
+    recovery_codes_regenerated: Codes de récupération régénérés avec succès
+    recovery_instructions: Si vous perdez l'accès à votre téléphone, vous pouvez utiliser un des code de récupération ci-dessous pour récupérer l'accès à votre compte. Conservez les codes de récupération en toute sécurité, par exemple, en les imprimant et en les stockant avec vos autres documents importants.
+    setup: Installer
+    wrong_code: Les codes entrés sont incorrects ! L'heure du serveur et celle de votre appareil sont-elles correctes ?
   users:
     invalid_email: L'adresse courriel est invalide
     invalid_otp_token: Le code d'authentification à deux facteurs est invalide
