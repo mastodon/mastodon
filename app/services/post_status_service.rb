@@ -35,12 +35,11 @@ class PostStatusService < BaseService
   private
 
   def validate_media!(media_ids)
-    return if media_ids.nil? || !media_ids.is_a?(Enumerable)
+    return if media_ids.blank? || !media_ids.is_a?(Enumerable)
 
     raise Mastodon::ValidationError, I18n.t('media_attachments.validations.too_many') if media_ids.size > 4
 
-    target_media_ids = media_ids.take(4).map(&:to_i)
-    media = target_media_ids.blank? ? [] : MediaAttachment.where(status_id: nil).where(id: target_media_ids)
+    media = MediaAttachment.where(status_id: nil).where(id: media_ids.take(4).map(&:to_i))
 
     raise Mastodon::ValidationError, I18n.t('media_attachments.validations.images_and_video') if media.size > 1 && media.find(&:video?)
 
@@ -48,7 +47,7 @@ class PostStatusService < BaseService
   end
 
   def attach_media(status, media)
-    return if media.nil? || media.empty?
+    return if media.nil?
     media.update(status_id: status.id)
   end
 
