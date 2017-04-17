@@ -19,15 +19,21 @@ class Settings::TwoFactorAuthsController < ApplicationController
   def create
     if current_user.validate_and_consume_otp!(confirmation_params[:code])
       current_user.otp_required_for_login = true
+      @codes = current_user.generate_otp_backup_codes!
       current_user.save!
-
-      redirect_to settings_two_factor_auth_path, notice: I18n.t('two_factor_auth.enabled_success')
+      flash[:notice] = I18n.t('two_factor_auth.enabled_success')
     else
       @confirmation = Form::TwoFactorConfirmation.new
       set_qr_code
       flash.now[:alert] = I18n.t('two_factor_auth.wrong_code')
       render action: :new
     end
+  end
+
+  def recovery_codes
+    @codes = current_user.generate_otp_backup_codes!
+    current_user.save!
+    flash[:notice] = I18n.t('two_factor_auth.recovery_codes_regenerated')
   end
 
   def disable

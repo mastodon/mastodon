@@ -24,22 +24,27 @@ module Mastodon
 
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
-
     config.i18n.available_locales = [
       :en,
+      :bg,
       :de,
       :eo,
       :es,
       :fi,
       :fr,
+      :hr,
       :hu,
+      :it,
       :ja,
+      :nl,
       :no,
       :pt,
+      :'pt-BR',
       :ru,
       :uk,
       'zh-CN',
       :'zh-HK',
+      :'zh-TW',
     ]
 
     config.i18n.default_locale    = :en
@@ -61,7 +66,9 @@ module Mastodon
     config.middleware.use Rack::Attack
     config.middleware.use Rack::Deflater
 
-    config.browserify_rails.commandline_options = '--transform [ babelify --presets [ es2015 react ] ] --extension=".jsx"'
+    config.browserify_rails.source_map_environments << 'development'
+    config.browserify_rails.commandline_options   = '--transform [ babelify --presets [ es2015 react ] ] --extension=".jsx"'
+    config.browserify_rails.evaluate_node_modules = true
 
     config.to_prepare do
       Doorkeeper::AuthorizationsController.layout 'public'

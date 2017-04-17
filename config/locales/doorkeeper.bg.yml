@@ -1,0 +1,113 @@
+---
+bg:
+  activerecord:
+    attributes:
+      doorkeeper/application:
+        name: Име
+        redirect_uri: URI за пренасочване
+    errors:
+      models:
+        doorkeeper/application:
+          attributes:
+            redirect_uri:
+              fragment_present: не може да съдържа фрагмент.
+              invalid_uri: трябва да е валидно URI.
+              relative_uri: трябва да е абсолютно URI.
+              secured_uri: трябва да е HTTPS/SSL URI.
+  doorkeeper:
+    applications:
+      buttons:
+        authorize: Упълномощаване
+        cancel: Отказ
+        destroy: Унищожаване
+        edit: Редакция
+        submit: Изпращане
+      confirmations:
+        destroy: Потвърждаваш ли изтриването?
+      edit:
+        title: Редактиране на приложението
+      form:
+        error: О, не! Провери формата за възможни грешки
+      help:
+        native_redirect_uri: Изполвай %{native_redirect_uri} за локални тестове
+        redirect_uri: Използвай един ред за всяко URI
+        scopes: Разделяй диапазоните с интервал. Остави празно, за да използваш диапазона по подразбиране.
+      index:
+        callback_url: URL за обратно повикване
+        name: Име
+        new: Ново приложение
+        title: Твоите приложения
+      new:
+        title: Ново приложение
+      show:
+        actions: Действия
+        application_id: Идентификатор на приложението
+        callback_urls: URL-и за обратно повикване
+        scopes: Диапазони
+        secret: Тайна
+        title: 'Приложение: %{name}'
+    authorizations:
+      buttons:
+        authorize: Упълномощаване
+        deny: Отказ
+      error:
+        title: Възникна грешка
+      new:
+        able_to: Ще е възможно
+        prompt: Приложението %{client_name} заявява достъп до твоя акаунт
+        title: Изисква се упълномощаване
+      show:
+        title: Код за упълномощаване
+    authorized_applications:
+      buttons:
+        revoke: Отмяна
+      confirmations:
+        revoke: Потвърждаваш ли отмяната?
+      index:
+        application: Приложение
+        created_at: Създадено на
+        date_format: "%Y-%m-%d %H:%M:%S"
+        scopes: Диапазони
+        title: Твоите упълномощени приложения
+    errors:
+      messages:
+        access_denied: Заявката беше отказана от собственика на ресурса или от сървъра за упълномощаване.
+        credential_flow_not_configured: Resource Owner Password Credentials предизвика грешка, заради това, че настройките за Doorkeeper.configure.resource_owner_from_credentials липсват.
+        invalid_client: Удостоверяването на клиента предизвика грешка, поради непознат клиент, липсващо клиентско удостоверяване, или заради това, че методът на удостоверяване не се поддържа.
+        invalid_grant: Предоставеното удостоверение за достъп е невалидно, изтекло, отхвърлено, не съвпада с пренасочващото URI, използвано в заявката за удостоверение, или е бил издадено от друг клиент.
+        invalid_redirect_uri: Наличното пренасочващо URI е невалидно.
+        invalid_request: Заявката е с липсващ задължителен параметър, включва стойност на параметъра, която не се поддържа, или е изкривена по друг начин.
+        invalid_resource_owner: Предоставените идентификационни данни на притежателя на ресурса са невалидни, или притежателят не може да бъде намерен.
+        invalid_scope: Заявеният диапазон е невалиден, неизвестен или изкривен.
+        invalid_token:
+          expired: Маркерът за достъп изтече
+          revoked: Маркерът за достъп беше отхвърлен
+          unknown: Маркерът за достъп е невалиден
+        resource_owner_authenticator_not_configured: Намирането на Resource Owner се провали поради липса на конфигурация на Doorkeeper.configure.resource_owner_authenticator.
+        server_error: Сървърът за удостоверяване попадна на неочаквано условие, което предотврати изпълнението на заявката.
+        temporarily_unavailable: Сървърът за удостоверяване не може да се справи със заявката в момента поради временно претоварване или профилактика на сървъра.
+        unauthorized_client: Клиентът не е удостоверен да изпълни заявката по този начин.
+        unsupported_grant_type: Типът на удостоврението за достъп не се поддържа от сървъра за удостоверяване.
+        unsupported_response_type: Удостоверяващият сървър не поддържа този тип отговор.
+    flash:
+      applications:
+        create:
+          notice: Приложението е създадено.
+        destroy:
+          notice: Приложението е изтрито.
+        update:
+          notice: Приложението е обновено.
+      authorized_applications:
+        destroy:
+          notice: Приложението е отказано.
+    layouts:
+      admin:
+        nav:
+          applications: Приложения
+          oauth2_provider: OAuth2 доставчик
+      application:
+        title: Нужно е упълномощаване по OAuth
+    scopes:
+      follow: следването, блокирането, деблокирането и отмяната на следването на акаунтите
+      read: четенето на данните от твоя акаунт
+      write: публикуването от твое име

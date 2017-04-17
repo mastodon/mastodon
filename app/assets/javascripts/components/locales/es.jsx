@@ -73,7 +73,7 @@ const es = {
   "notifications.column_settings.mention": "Menciones:",
   "notifications.column_settings.reblog": "Retoots:",
   "emoji_button.label": "Insertar emoji",
-  "privacy.public.short": "Público", 
+  "privacy.public.short": "Público",
   "privacy.public.long": "Mostrar en la historia federada",
   "privacy.unlisted.short": "Sin federar",
   "privacy.unlisted.long": "No mostrar en la historia federada",

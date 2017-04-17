@@ -1,30 +1,30 @@
 - content_for :page_title do
-  Accounts
+  = t('admin.accounts.title')
 
 .filters
   .filter-subset
-    %strong Location
+    %strong= t('admin.accounts.location.title')
     %ul
-      %li= filter_link_to 'All', local: nil, remote: nil
-      %li= filter_link_to 'Local', local: '1', remote: nil
-      %li= filter_link_to 'Remote', remote: '1', local: nil
+      %li= filter_link_to t('admin.accounts.location.all'), local: nil, remote: nil
+      %li= filter_link_to t('admin.accounts.location.local'), local: '1', remote: nil
+      %li= filter_link_to t('admin.accounts.location.remote'), remote: '1', local: nil
   .filter-subset
-    %strong Moderation
+    %strong= t('admin.accounts.moderation.title')
     %ul
-      %li= filter_link_to 'All', silenced: nil, suspended: nil
-      %li= filter_link_to 'Silenced', silenced: '1'
-      %li= filter_link_to 'Suspended', suspended: '1'
+      %li= filter_link_to t('admin.accounts.moderation.all'), silenced: nil, suspended: nil
+      %li= filter_link_to t('admin.accounts.moderation.silenced'), silenced: '1'
+      %li= filter_link_to t('admin.accounts.moderation.suspended'), suspended: '1'
   .filter-subset
-    %strong Order
+    %strong= t('admin.accounts.order.title')
     %ul
-      %li= filter_link_to 'Alphabetic', recent: nil
-      %li= filter_link_to 'Most recent', recent: '1'
+      %li= filter_link_to t('admin.accounts.order.alphabetic'), recent: nil
+      %li= filter_link_to t('admin.accounts.order.most_recent'), recent: '1'
 
 %table.table
   %thead
     %tr
-      %th Username
-      %th Domain
+      %th= t('admin.accounts.username')
+      %th= t('admin.accounts.domain')
       %th= fa_icon 'paper-plane-o'
       %th
   %tbody
@@ -36,14 +36,14 @@
             = link_to account.domain, admin_accounts_path(by_domain: account.domain)
         %td
           - if account.local?
-            Local
+            = t('admin.accounts.location.local')
           - elsif account.subscribed?
             %i.fa.fa-check
           - else
             %i.fa.fa-times
         %td
-          = table_link_to 'circle', 'Web', web_path("accounts/#{account.id}")
-          = table_link_to 'globe', 'Public', TagManager.instance.url_for(account)
-          = table_link_to 'pencil', 'Edit', admin_account_path(account.id)
+          = table_link_to 'circle', t('admin.accounts.web'), web_path("accounts/#{account.id}")
+          = table_link_to 'globe', t('admin.accounts.public'), TagManager.instance.url_for(account)
+          = table_link_to 'pencil', t('admin.accounts.edit'), admin_account_path(account.id)
 
 = paginate @accounts

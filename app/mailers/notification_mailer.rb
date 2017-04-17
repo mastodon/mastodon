@@ -59,7 +59,12 @@ class NotificationMailer < ApplicationMailer
     return if @notifications.empty?
 
     I18n.with_locale(@me.user.locale || I18n.default_locale) do
-      mail to: @me.user.email, subject: I18n.t('notification_mailer.digest.subject', count: @notifications.size)
+      mail to: @me.user.email,
+        subject: I18n.t(
+          :subject,
+          scope: [:notification_mailer, :digest],
+          count: @notifications.size
+        )
     end
   end
 end
