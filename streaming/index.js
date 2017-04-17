@@ -328,6 +328,6 @@ if (cluster.isMaster) {
 
   server.listen(process.env.PORT || 4000, () => {
     log.level = process.env.LOG_LEVEL || 'verbose'
-    log.info(`Starting streaming API server worker on port ${server.address().port}`)
+    log.info(`Starting streaming API server worker on ${server.address()}`)
   })
 }
