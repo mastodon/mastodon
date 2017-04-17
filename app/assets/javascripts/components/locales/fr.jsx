@@ -99,7 +99,7 @@ const fr = {
   "notifications.column_settings.mention": "Mentions :",
   "notifications.column_settings.reblog": "Partages :",
   "notifications.clear": "Nettoyer",
-  "notifications.clear_confirmation": "Voulez-vous vraiment nettoyer toutes vos notifications ?",
+  "notifications.clear_confirmation": "Voulez-vous vraiment supprimer toutes vos notifications ?",
   "notifications.settings": "Paramètres de la colonne",
   "privacy.public.short": "Public",
   "privacy.public.long": "Afficher dans les fils publics",
