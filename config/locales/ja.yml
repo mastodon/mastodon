@@ -34,8 +34,8 @@ ja:
     followers: フォロワー
     following: フォロー中
     nothing_here: 何もありません
-    people_followed_by: "%{name} さんがフォロー中のアカウント"
-    people_who_follow: "%{name} さんをフォロー中のアカウント"
+    people_followed_by: "%{name} はんがフォロー中のアカウント"
+    people_who_follow: "%{name} はんをフォロー中のアカウント"
     posts: 投稿
     remote_follow: リモートフォロー
     unfollow: フォロー解除
@@ -203,7 +203,7 @@ ja:
       following: フォロー中のアカウントリスト
       muting: ミュートしたアカウントリスト
     upload: アップロード
-  landing_strip_html: <strong>%{name}</strong> さんはインスタンス <strong>%{domain}</strong> のユーザーです。アカウントさえ持っていればフォローしたり会話したりできます。もしお持ちでないなら <a href="%{sign_up_path}">こちら</a> からサインアップできます。
+  landing_strip_html: <strong>%{name}</strong> はんはインスタンス <strong>%{domain}</strong> のユーザーです。アカウントさえ持っていればフォローしたり会話したりできます。もしお持ちでないなら <a href="%{sign_up_path}">こちら</a> からサインアップできます。
   media_attachments:
     validations:
       images_and_video: 既に画像が追加されているため、動画を追加することはできません。
@@ -211,7 +211,7 @@ ja:
   notification_mailer:
     digest:
       body: "%{instance} での最後のログインからの出来事:"
-      mention: "%{name} さんが自分に返信しました:"
+      mention: "%{name} はんが自分に返信しました:"
       new_followers_summary:
         one: 新たなフォロワーを獲得しました！
         other: "%{count} 人の新たなフォロワーを獲得しました！"
@@ -219,20 +219,20 @@ ja:
         one: "新しい1件の通知 \U0001F418"
         other: "新しい%{count}件の通知 \U0001F418"
     favourite:
-      body: '自分のなんやが %{name} さんにええやん思われてるわ:'
-      subject: "%{name} さんが自分のなんやをええやん思た"
+      body: '自分のなんやが %{name} はんにええやん思われてるわ:'
+      subject: "%{name} はんが自分のなんやをええやん思た"
     follow:
-      body: "%{name} さんにフォローされています"
-      subject: "%{name} さんにフォローされています"
+      body: "%{name} はんにフォローされています"
+      subject: "%{name} はんにフォローされています"
     follow_request:
-      body: "%{name} さんが自分にフォローをリクエストしました。"
-      subject: "%{name} さんからのフォローリクエスト"
+      body: "%{name} はんが自分にフォローをリクエストしました。"
+      subject: "%{name} はんからのフォローリクエスト"
     mention:
-      body: "%{name} さんから返信がありました:"
-      subject: "%{name} さんに返信されました"
+      body: "%{name} はんから返信がありました:"
+      subject: "%{name} はんに返信されました"
     reblog:
-      body: '自分のなんやが %{name} さんにしばかれました:'
-      subject: 自分のなんやが %{name} さんにしばかれました
+      body: '自分のなんやが %{name} はんにしばかれました:'
+      subject: 自分のなんやが %{name} はんにしばかれました
   pagination:
     next: 次
     prev: 前
