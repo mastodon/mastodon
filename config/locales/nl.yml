@@ -4,7 +4,7 @@ nl:
     about_mastodon: Mastodon is een <em>vrij, gratis en open-source</em> sociaal netwerk. Een <em>gedecentraliseerd</em> alternatief voor commerciële platforms. Het voorkomt de risico's van een enkel bedrijf dat jouw communicatie monopoliseert. Kies een server die je vertrouwt &mdash; welke je ook kiest, je kunt met elke andere server communiceren. Iedereen kan een eigen Mastodon-server draaien en naadloos deelnemen in het <em>sociale netwerk</em>.
     about_this: Over deze server
     apps: Apps
-    business_email: 'Zakelijk e-mailadres:'
+    business_email: 'E-mailadres:'
     closed_registrations: Registreren op deze server is momenteel uitgeschakeld.
     contact: Contact
     description_headline: Wat is %{domain}?
@@ -161,3 +161,54 @@ nl:
   users:
     invalid_email: E-mailadres is ongeldig
     invalid_otp_token: Ongeldige tweestaps-aanmeldcode
+  will_paginate:
+    page_gap: "&hellip;"
+  errors:
+      404: De pagina waarnaar jij op zoek bent bestaat niet.
+      410: De pagina waarnaar jij op zoek bent bestaat niet meer.
+      422:
+        title: Veiligheidsverificatie mislukt
+        content: Veiligheidsverificatie mislukt. Blokkeer je toevallig cookies?
+  reports:
+    reports: Gerapporteerde toots
+    status: Toot
+    unresolved: Onopgelost
+    resolved: Opgelost
+    id: ID
+    target: Target
+    reported_by: Gerapporteerd door
+    comment:
+      label: Opmerking
+      none: Geen
+    view: Weergeven
+    report: "Gerapporteerde toot #%{id}"
+    delete: Verwijderen
+    reported_account: Gerapporteerde account
+    reported_by: Gerapporteerd door
+    silence_account: Account stilzwijgen
+    suspend_account: Account blokkeren
+    mark_as_resolved: Markeer als opgelost
+  admin:
+    settings:
+      title: Server-instellingen
+      setting: Instelling
+      click_to_edit: Klik om te bewerken
+      contact_information:
+        label: Contactgegevens
+        username: Vul een gebruikersnaam in
+        email: Vul een openbaar gebruikt e-mailadres in
+      site_title: Naam Mastodon-server
+      site_description:
+        title: Omschrijving Mastodon-server
+        desc_html: "Dit wordt als een alinea op de voorpagina getoond en gebruikt als meta-tag in de paginabron.<br>Je kan HTML gebruiken, zoals <code>&lt;a&gt;</code> en <code>&lt;em&gt;</code>."
+      site_description_extended:
+        title: Uitgebreide omschrijving Mastodon-server
+        desc_html: "Wordt op de uitgebreide informatiepagina weergegeven<br>Je kan ook hier HTML gebruiken"
+      registrations:
+        open:
+          title: Open registratie
+          enabled: Ingeschakeld
+          disabled: Uitgeschakeld
+        closed_message:
+          title: Bericht wanneer registratie is uitgeschakeld
+          desc_html: "Wordt op de voorpagina weergegeven wanneer registratie van nieuwe accounts is uitgeschakeld<br>En ook hier kan je HTML gebruiken"
