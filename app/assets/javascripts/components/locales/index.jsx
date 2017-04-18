@@ -6,6 +6,7 @@ import hu from './hu';
 import fr from './fr';
 import nl from './nl';
 import no from './no';
+import oc from './oc';
 import pt from './pt';
 import pt_br from './pt-br';
 import uk from './uk';
