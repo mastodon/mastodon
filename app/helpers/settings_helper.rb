@@ -12,6 +12,7 @@ module SettingsHelper
     it: 'Italiano',
     nl: 'Nederlands',
     no: 'Norsk',
+    oc: 'Occitan',
     pt: 'Português',
     'pt-BR': 'Português do Brasil',
     fi: 'Suomi',
