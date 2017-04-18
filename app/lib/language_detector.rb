@@ -8,6 +8,6 @@ class LanguageDetector
   end
 
   def to_iso_s
-    WhatLanguage.new(:all).language_iso(text) || 'en'
+    WhatLanguage.new(:all).language_iso(text) || I18n.default_locale
   end
 end
