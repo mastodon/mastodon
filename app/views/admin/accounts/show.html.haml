@@ -60,6 +60,12 @@
         = @account.media_attachments.count
         = surround '(', ')' do
           = number_to_human_size @account.media_attachments.sum('file_file_size')
+    %tr
+      %th= t('.created_reports')
+      %td= link_to pluralize(@account.reports.count, t('.report')), admin_reports_path(account_id: @account.id)
+    %tr
+      %th= t('.targeted_reports')
+      %td= link_to pluralize(@account.targeted_reports.count, t('.report')), admin_reports_path(target_account_id: @account.id)
 
 - if @account.local?
   %div{ style: 'float: right' }
