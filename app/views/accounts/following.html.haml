@@ -5,7 +5,7 @@
 
 .accounts-grid
   - if @following.empty?
-    = render partial: 'nothing_here'
+    = render 'nothing_here'
   - else
     = render partial: 'grid_card', collection: @following, as: :account, cached: true
 
