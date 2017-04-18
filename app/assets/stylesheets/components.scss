@@ -2050,8 +2050,8 @@ button.icon-button.active i.fa-retweet {
 .onboarding-modal__pager {
   height: 80vh;
   width: 80vw;
-  max-width: 500px;
-  max-height: 350px;
+  max-width: 520px;
+  max-height: 420px;
   position: relative;
 
   & > div {
@@ -2281,6 +2281,7 @@ button.icon-button.active i.fa-retweet {
 }
 
 .boost-modal__container {
+  overflow-x: scroll;
   padding: 10px;
 
   .status {
@@ -2313,4 +2314,35 @@ button.icon-button.active i.fa-retweet {
   position: absolute;
   top: 0;
   left: 0;
+}
+
+.media-gallery__gifv__label {
+  display: block;
+  position: absolute;
+  color: $color5;
+  background: rgba($color8, 0.5);
+  bottom: 6px;
+  left: 6px;
+  padding: 2px 6px;
+  border-radius: 2px;
+  font-size: 11px;
+  font-weight: 600;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.9;
+  transition: opacity 0.1s ease;
+}
+
+.media-gallery__gifv {
+  &.autoplay {
+    .media-gallery__gifv__label {
+      display: none;
+    }
+  }
+
+  &:hover {
+    .media-gallery__gifv__label {
+      opacity: 1;
+    }
+  }
 }

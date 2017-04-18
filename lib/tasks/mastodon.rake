@@ -103,6 +103,12 @@ namespace :mastodon do
         User.where(id: batch.map(&:id)).delete_all
       end
     end
+
+    desc 'List all admin users'
+    task admins: :environment do
+      puts 'Admin user emails:'
+      puts User.admins.map(&:email).join("\n")
+    end
   end
 
   namespace :settings do
@@ -145,8 +151,8 @@ namespace :mastodon do
 
       Account.unscoped.where(avatar_content_type: 'image/gif').or(Account.unscoped.where(header_content_type: 'image/gif')).find_each do |account|
         begin
-          account.avatar.reprocess!
-          account.header.reprocess!
+          account.avatar.reprocess! if account.avatar_content_type == 'image/gif' && !account.avatar.exists?(:static)
+          account.header.reprocess! if account.header_content_type == 'image/gif' && !account.header.exists?(:static)
         rescue StandardError => e
           Rails.logger.error "Error while generating static avatars/headers for account #{account.id}: #{e}"
           next

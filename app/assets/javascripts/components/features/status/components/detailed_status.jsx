@@ -19,6 +19,7 @@ const DetailedStatus = React.createClass({
     status: ImmutablePropTypes.map.isRequired,
     onOpenMedia: React.PropTypes.func.isRequired,
     onOpenVideo: React.PropTypes.func.isRequired,
+    autoPlayGif: React.PropTypes.bool,
   },
 
   mixins: [PureRenderMixin],
@@ -42,7 +43,7 @@ const DetailedStatus = React.createClass({
       if (status.getIn(['media_attachments', 0, 'type']) === 'video') {
         media = <VideoPlayer sensitive={status.get('sensitive')} media={status.getIn(['media_attachments', 0])} width={300} height={150} onOpenVideo={this.props.onOpenVideo} autoplay />;
       } else {
-        media = <MediaGallery sensitive={status.get('sensitive')} media={status.get('media_attachments')} height={300} onOpenMedia={this.props.onOpenMedia} />;
+        media = <MediaGallery sensitive={status.get('sensitive')} media={status.get('media_attachments')} height={300} onOpenMedia={this.props.onOpenMedia} autoPlayGif={this.props.autoPlayGif} />;
       }
     } else {
       media = <CardContainer statusId={status.get('id')} />;

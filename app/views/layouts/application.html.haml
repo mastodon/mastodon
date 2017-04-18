@@ -6,6 +6,7 @@
     %meta{'http-equiv' => 'X-UA-Compatible', :content => 'IE=edge'}/
 
     %link{:rel => "apple-touch-icon", :sizes => "180x180", :href => "/apple-touch-icon.png"}/
+    %link{:rel => "mask-icon", :href => "/mask-icon.svg", :color => "#2B90D9"}/
     %link{:rel => "manifest", :href => "/manifest.json"}/
     %meta{:name => "msapplication-config", :content => "/browserconfig.xml"}/
     %meta{:name => "theme-color", :content => "#282c37"}/
@@ -13,7 +14,7 @@
 
     %title<
       - if content_for?(:page_title)
-        = yield(:page_title)
+        = yield(:page_title).strip
         = ' - '
       = site_title
 
