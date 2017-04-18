@@ -19,7 +19,7 @@ class PostStatusService < BaseService
                                       sensitive: options[:sensitive],
                                       spoiler_text: options[:spoiler_text] || '',
                                       visibility: options[:visibility],
-                                      language: account.user.locale || 'en',
+                                      language: account&.user&.locale || 'en',
                                       application: options[:application])
 
     attach_media(status, media)
