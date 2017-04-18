@@ -42,7 +42,7 @@ class Status < ApplicationRecord
   cache_associated :account, :application, :media_attachments, :tags, :stream_entry, mentions: :account, reblog: [:account, :application, :stream_entry, :tags, :media_attachments, mentions: :account], thread: :account
 
   def reply?
-    super || !in_reply_to_id.nil?
+    !in_reply_to_id.nil? || super
   end
 
   def local?
