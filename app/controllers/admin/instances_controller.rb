@@ -10,7 +10,7 @@ module Admin
 
     def ordered_instances
       Account.
-        where.not(domain: nil).
+        remote.
         group(:domain).
         select(:domain, "COUNT(*) AS accounts_count").
         order('accounts_count desc')
