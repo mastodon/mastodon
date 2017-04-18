@@ -19,6 +19,11 @@ describe LanguageDetector do
     end
 
     describe 'when language cant be detected' do
+      it 'confirm language engine cant detect' do
+        result = WhatLanguage.new(:all).language_iso('')
+        expect(result).to be_nil
+      end
+
       describe 'with an `en` default locale' do
         it 'uses the default locale' do
           string = ''
