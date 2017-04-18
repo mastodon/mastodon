@@ -333,12 +333,16 @@ class Account < ApplicationRecord
   private
 
   def set_file_extensions
-    extension = Paperclip::Interpolations.content_type_extension(avatar, :original)
-    basename  = Paperclip::Interpolations.basename(avatar, :original)
-    avatar.instance_write :file_name, [basename, extension].delete_if(&:empty?).join('.')
+    unless avatar.blank?
+      extension = Paperclip::Interpolations.content_type_extension(avatar, :original)
+      basename  = Paperclip::Interpolations.basename(avatar, :original)
+      avatar.instance_write :file_name, [basename, extension].delete_if(&:empty?).join('.')
+    end
 
-    extension = Paperclip::Interpolations.content_type_extension(header, :original)
-    basename  = Paperclip::Interpolations.basename(header, :original)
-    header.instance_write :file_name, [basename, extension].delete_if(&:empty?).join('.')
+    unless header.blank?
+      extension = Paperclip::Interpolations.content_type_extension(header, :original)
+      basename  = Paperclip::Interpolations.basename(header, :original)
+      header.instance_write :file_name, [basename, extension].delete_if(&:empty?).join('.')
+    end
   end
 end
