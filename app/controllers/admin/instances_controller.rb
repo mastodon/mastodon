@@ -9,11 +9,7 @@ module Admin
     private
 
     def ordered_instances
-      Account.
-        remote.
-        group(:domain).
-        select(:domain, "COUNT(*) AS accounts_count").
-        order('accounts_count desc')
+      Account.remote.by_domain_accounts
     end
   end
 end

@@ -410,6 +410,20 @@ RSpec.describe Account, type: :model do
       end
     end
 
+    describe 'by_domain_accounts' do
+      it 'returns accounts grouped by domain sorted by accounts' do
+        2.times { Fabricate(:account, domain: 'example.com') }
+        Fabricate(:account, domain: 'example2.com')
+
+        results = Account.by_domain_accounts
+        expect(results.length).to eq 2
+        expect(results.first.domain).to eq 'example.com'
+        expect(results.first.accounts_count).to eq 2
+        expect(results.last.domain).to eq 'example2.com'
+        expect(results.last.accounts_count).to eq 1
+      end
+    end
+
     describe 'local' do
       it 'returns an array of accounts who do not have a domain' do
         account_1 = Fabricate(:account, domain: nil)
