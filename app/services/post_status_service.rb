@@ -53,7 +53,7 @@ class PostStatusService < BaseService
   end
 
   def detect_language(text)
-    WhatLanguage.new(:all).language_iso(text) || 'en'
+    LanguageDetector.new(text).to_iso_s
   end
 
   def process_mentions_service
