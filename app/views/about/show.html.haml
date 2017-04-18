@@ -1,5 +1,5 @@
 - content_for :header_tags do
-  = javascript_include_tag 'application_public'
+  = javascript_include_tag 'application_public', integrity: true
 
 - content_for :page_title do
   = Rails.configuration.x.local_domain
@@ -17,7 +17,7 @@
 .wrapper
   %h1
     = image_tag 'logo.png'
-    Mastodon
+    = Setting.site_title
 
   %p= t('about.about_mastodon').html_safe
 

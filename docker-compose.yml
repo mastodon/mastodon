@@ -18,6 +18,7 @@ services:
   web:
     restart: always
     build: .
+    image: gargron/mastodon
     env_file: .env.production
     command: bundle exec rails s -p 3000 -b '0.0.0.0'
     ports:
@@ -32,6 +33,7 @@ services:
   streaming:
     restart: always
     build: .
+    image: gargron/mastodon
     env_file: .env.production
     command: npm run start
     ports:
@@ -43,6 +45,7 @@ services:
   sidekiq:
     restart: always
     build: .
+    image: gargron/mastodon
     env_file: .env.production
     command: bundle exec sidekiq -q default -q mailers -q pull -q push
     depends_on:

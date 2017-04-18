@@ -119,6 +119,7 @@ class ProcessFeedService < BaseService
         spoiler_text: content_warning(entry),
         created_at: published(entry),
         reply: thread?(entry),
+        language: content_language(entry),
         visibility: visibility_scope(entry)
       )
 
@@ -161,13 +162,7 @@ class ProcessFeedService < BaseService
       xml.xpath('./xmlns:link[@rel="mentioned"]', xmlns: TagManager::XMLNS).each do |link|
         next if [TagManager::TYPES[:group], TagManager::TYPES[:collection]].include? link['ostatus:object-type']
 
-        url = Addressable::URI.parse(link['href'])
-
-        mentioned_account = if TagManager.instance.local_domain?(url.host)
-                              Account.find_local(url.path.gsub('/users/', ''))
-                            else
-                              Account.find_by(url: link['href']) || FetchRemoteAccountService.new.call(link['href'])
-                            end
+        mentioned_account = account_from_href(link['href'])
 
         next if mentioned_account.nil? || processed_account_ids.include?(mentioned_account.id)
 
@@ -178,13 +173,23 @@ class ProcessFeedService < BaseService
       end
     end
 
+    def account_from_href(href)
+      url = Addressable::URI.parse(href)
+
+      if TagManager.instance.web_domain?(url.host)
+        Account.find_local(url.path.gsub('/users/', ''))
+      else
+        Account.find_by(uri: href) || Account.find_by(url: href) || FetchRemoteAccountService.new.call(href)
+      end
+    end
+
     def hashtags_from_xml(parent, xml)
-      tags = xml.xpath('./xmlns:category', xmlns: TagManager::XMLNS).map { |category| category['term'] }.select { |t| !t.blank? }
+      tags = xml.xpath('./xmlns:category', xmlns: TagManager::XMLNS).map { |category| category['term'] }.select(&:present?)
       ProcessHashtagsService.new.call(parent, tags)
     end
 
     def media_from_xml(parent, xml)
-      return if DomainBlock.find_by(domain: parent.account.domain)&.reject_media?
+      do_not_download = DomainBlock.find_by(domain: parent.account.domain)&.reject_media?
 
       xml.xpath('./xmlns:link[@rel="enclosure"]', xmlns: TagManager::XMLNS).each do |link|
         next unless link['href']
@@ -192,7 +197,11 @@ class ProcessFeedService < BaseService
         media = MediaAttachment.where(status: parent, remote_url: link['href']).first_or_initialize(account: parent.account, status: parent, remote_url: link['href'])
         parsed_url = URI.parse(link['href'])
 
-        next if !%w(http https).include?(parsed_url.scheme) || parsed_url.host.empty?
+        next if !%w[http https].include?(parsed_url.scheme) || parsed_url.host.empty?
+
+        media.save
+
+        next if do_not_download
 
         begin
           media.file_remote_url = link['href']
@@ -228,6 +237,10 @@ class ProcessFeedService < BaseService
 
     def content(xml = @xml)
       xml.at_xpath('./xmlns:content', xmlns: TagManager::XMLNS).content
+    end
+
+    def content_language(xml = @xml)
+      xml.at_xpath('./xmlns:content', xmlns: TagManager::XMLNS)['xml:lang']&.presence || 'en'
     end
 
     def content_warning(xml = @xml)

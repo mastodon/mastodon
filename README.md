@@ -48,6 +48,14 @@ If you would like, you can [support the development of this project on Patreon][
 - **Deployable via Docker**
   You don't need to mess with dependencies and configuration if you want to try Mastodon, if you have Docker and Docker Compose the deployment is extremely easy
 
+## Checking out
+
+If you want a stable release for production use, you should use tagged releases. To checkout the latest available tagged version:
+
+    git clone https://github.com/tootsuite/mastodon.git
+    cd mastodon
+    git checkout $(git describe --tags `git rev-list --tags --max-count=1`)
+
 ## Configuration
 
 - `LOCAL_DOMAIN` should be the domain/hostname of your instance. This is **absolutely required** as it is used for generating unique IDs for everything federation-related
@@ -72,10 +80,6 @@ The project now includes a `Dockerfile` and a `docker-compose.yml` file (which r
 Review the settings in `docker-compose.yml`. Note that it is not default to store the postgresql database and redis databases in a persistent storage location,
 so you may need or want to adjust the settings there.
 
-Before running the first time, you need to build the images:
-
-    docker-compose build
-
 Then, you need to fill in the `.env.production` file:
 
     cp .env.production.sample .env.production
@@ -84,6 +88,11 @@ Then, you need to fill in the `.env.production` file:
 Do NOT change the `REDIS_*` or `DB_*` settings when running with the default docker configurations.
 
 You will need to fill in, at least: `LOCAL_DOMAIN`, `LOCAL_HTTPS`, `PAPERCLIP_SECRET`, `SECRET_KEY_BASE`, `OTP_SECRET`, and the `SMTP_*` settings.  To generate the `PAPERCLIP_SECRET`, `SECRET_KEY_BASE`, and `OTP_SECRET`, you may use:
+
+Before running the first time, you need to build the images:
+
+    docker-compose build
+
 
     docker-compose run --rm web rake secret
 
