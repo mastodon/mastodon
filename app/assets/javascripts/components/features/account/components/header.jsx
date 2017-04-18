@@ -5,6 +5,7 @@ import escapeTextContentForBrowser from 'escape-html';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import IconButton from '../../../components/icon_button';
 import { Motion, spring } from 'react-motion';
+import { connect } from 'react-redux';
 
 const messages = defineMessages({
   unfollow: { id: 'account.unfollow', defaultMessage: 'Unfollow' },
@@ -12,10 +13,19 @@ const messages = defineMessages({
   requested: { id: 'account.requested', defaultMessage: 'Awaiting approval' }
 });
 
+const makeMapStateToProps = () => {
+  const mapStateToProps = (state, props) => ({
+    autoPlayGif: state.getIn(['meta', 'auto_play_gif'])
+  });
+
+  return mapStateToProps;
+};
+
 const Avatar = React.createClass({
 
   propTypes: {
-    account: ImmutablePropTypes.map.isRequired
+    account: ImmutablePropTypes.map.isRequired,
+    autoPlayGif: React.PropTypes.bool.isRequired
   },
 
   getInitialState () {
@@ -37,7 +47,7 @@ const Avatar = React.createClass({
   },
 
   render () {
-    const { account }   = this.props;
+    const { account, autoPlayGif }   = this.props;
     const { isHovered } = this.state;
 
     return (
@@ -48,13 +58,12 @@ const Avatar = React.createClass({
             className='account__header__avatar'
             target='_blank'
             rel='noopener'
-            style={{ display: 'block', width: '90px', height: '90px', margin: '0 auto', marginBottom: '10px', borderRadius: `${radius}px`, overflow: 'hidden' }}
+            style={{ display: 'block', width: '90px', height: '90px', margin: '0 auto', marginBottom: '10px', borderRadius: `${radius}px`, overflow: 'hidden', backgroundSize: '90px 90px', backgroundImage: `url(${autoPlayGif || isHovered ? account.get('avatar') : account.get('avatar_static')})` }}
             onMouseOver={this.handleMouseOver}
             onMouseOut={this.handleMouseOut}
             onFocus={this.handleMouseOver}
-            onBlur={this.handleMouseOut}>
-            <img src={account.get('avatar')} alt={account.get('acct')} style={{ display: 'block', width: '90px', height: '90px' }} />
-          </a>
+            onBlur={this.handleMouseOut}
+          />
         }
       </Motion>
     );
@@ -68,7 +77,8 @@ const Header = React.createClass({
     account: ImmutablePropTypes.map,
     me: React.PropTypes.number.isRequired,
     onFollow: React.PropTypes.func.isRequired,
-    intl: React.PropTypes.object.isRequired
+    intl: React.PropTypes.object.isRequired,
+    autoPlayGif: React.PropTypes.bool.isRequired
   },
 
   mixins: [PureRenderMixin],
@@ -119,7 +129,7 @@ const Header = React.createClass({
     return (
       <div className='account__header' style={{ backgroundImage: `url(${account.get('header')})` }}>
         <div style={{ padding: '20px 10px' }}>
-          <Avatar account={account} />
+          <Avatar account={account} autoPlayGif={this.props.autoPlayGif} />
 
           <span style={{ display: 'inline-block', fontSize: '20px', lineHeight: '27px', fontWeight: '500' }} className='account__header__display-name' dangerouslySetInnerHTML={displayNameHTML} />
           <span className='account__header__username' style={{ fontSize: '14px', fontWeight: '400', display: 'block', marginBottom: '10px' }}>@{account.get('acct')} {lockedIcon}</span>
@@ -134,4 +144,4 @@ const Header = React.createClass({
 
 });
 
-export default injectIntl(Header);
+export default connect(makeMapStateToProps)(injectIntl(Header));

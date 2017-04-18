@@ -33,6 +33,7 @@ class MediaAttachment < ApplicationRecord
 
   validates :account, presence: true
 
+  scope :attached, -> { where.not(status_id: nil) }
   scope :local, -> { where(remote_url: '') }
   default_scope { order('id asc') }
 
@@ -49,7 +50,7 @@ class MediaAttachment < ApplicationRecord
   end
 
   before_create :set_shortcode
-  before_post_process :set_type
+  before_post_process :set_type_and_extension
 
   class << self
     private
@@ -102,7 +103,13 @@ class MediaAttachment < ApplicationRecord
     end
   end
 
-  def set_type
+  def set_type_and_extension
     self.type = VIDEO_MIME_TYPES.include?(file_content_type) ? :video : :image
+
+    unless file.blank?
+      extension = Paperclip::Interpolations.content_type_extension(file, :original)
+      basename  = Paperclip::Interpolations.basename(file, :original)
+      file.instance_write :file_name, [basename, extension].delete_if(&:empty?).join('.')
+    end
   end
 end

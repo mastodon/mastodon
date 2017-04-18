@@ -78,7 +78,8 @@ const Item = React.createClass({
     attachment: ImmutablePropTypes.map.isRequired,
     index: React.PropTypes.number.isRequired,
     size: React.PropTypes.number.isRequired,
-    onClick: React.PropTypes.func.isRequired
+    onClick: React.PropTypes.func.isRequired,
+    autoPlayGif: React.PropTypes.bool.isRequired
   },
 
   mixins: [PureRenderMixin],
@@ -158,15 +159,21 @@ const Item = React.createClass({
         />
       );
     } else if (attachment.get('type') === 'gifv') {
+      const autoPlay = !isIOS() && this.props.autoPlayGif;
+
       thumbnail = (
-        <video
-          src={attachment.get('url')}
-          onClick={this.handleClick}
-          autoPlay={!isIOS()}
-          loop={true}
-          muted={true}
-          style={gifvThumbStyle}
-        />
+        <div style={{ position: 'relative', width: '100%', height: '100%', overflow: 'hidden' }} className={`media-gallery__gifv ${autoPlay ? 'autoplay' : ''}`}>
+          <video
+            src={attachment.get('url')}
+            onClick={this.handleClick}
+            autoPlay={autoPlay}
+            loop={true}
+            muted={true}
+            style={gifvThumbStyle}
+          />
+
+          <span className='media-gallery__gifv__label'>GIF</span>
+        </div>
       );
     }
 
@@ -192,7 +199,8 @@ const MediaGallery = React.createClass({
     media: ImmutablePropTypes.list.isRequired,
     height: React.PropTypes.number.isRequired,
     onOpenMedia: React.PropTypes.func.isRequired,
-    intl: React.PropTypes.object.isRequired
+    intl: React.PropTypes.object.isRequired,
+    autoPlayGif: React.PropTypes.bool.isRequired
   },
 
   mixins: [PureRenderMixin],
@@ -227,7 +235,7 @@ const MediaGallery = React.createClass({
       );
     } else {
       const size = media.take(4).size;
-      children = media.take(4).map((attachment, i) => <Item key={attachment.get('id')} onClick={this.handleClick} attachment={attachment} index={i} size={size} />);
+      children = media.take(4).map((attachment, i) => <Item key={attachment.get('id')} onClick={this.handleClick} attachment={attachment} autoPlayGif={this.props.autoPlayGif} index={i} size={size} />);
     }
 
     return (
