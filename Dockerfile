@@ -29,7 +29,7 @@ RUN echo "@edge https://nl.alpinelinux.org/alpine/edge/main" >> /etc/apk/reposit
     file \
     imagemagick@edge \
  && npm install -g npm@3 && npm install -g yarn \
- && bundle install --deployment --without test development \
+ && bundle install --deployment --without test development --jobs=4 \
  && yarn --ignore-optional \
  && yarn cache clean \
  && npm -g cache clean \
