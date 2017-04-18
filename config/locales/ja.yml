@@ -28,17 +28,17 @@ ja:
     status_count_before: なんや数
     terms: プライバシーポリシー
     user_count_after: 人
-    user_count_before: ユーザー数
+    user_count_before: osaka人数
   accounts:
-    follow: フォロー
-    followers: フォロワー
-    following: フォロー中
+    follow: ツルみ
+    followers: ツルまれ
+    following: ツルみ中
     nothing_here: 何もありません
-    people_followed_by: "%{name} はんがフォロー中のアカウント"
-    people_who_follow: "%{name} はんをフォロー中のアカウント"
+    people_followed_by: "%{name} はんがツルみ中のアカウント"
+    people_who_follow: "%{name} はんをツルみ中のアカウント"
     posts: 投稿
     remote_follow: リモートフォロー
-    unfollow: フォロー解除
+    unfollow: ツルみ解除
   admin:
     accounts:
       are_you_sure: 本当に実行しますか?
@@ -47,8 +47,8 @@ ja:
       edit: いらう
       email: E-mail
       feed_url: Feed URL
-      followers: フォロワー数
-      follows: フォロー数
+      followers: ツルまれ数
+      follows: ツルみ数
       location:
         all: すべて
         local: ローカル
@@ -71,6 +71,7 @@ ja:
       profile_url: プロフィールURL
       public: パブリック
       push_subscription_expires: PuSH購読期限切れ
+      reset_password: パスワード再設定
       salmon_url: Salmon URL
       silence: サイレンス
       statuses: なんや数
@@ -79,19 +80,34 @@ ja:
       undo_suspension: 停止から戻す
       username: ユーザー名
       web: Web
-    domain_block:
+    domain_blocks:
       add_new: 新規追加
+      created_msg: ドメインブロック処理を完了しました
+      destroyed_msg: ドメインブロックを外しました
       domain: ドメイン
       new:
         create: ブロックを作成
         hint: ドメインブロックはデータベース中のアカウント項目の作成を妨げませんが、遡って自動的に指定されたモデレーションをそれらのアカウントに適用します。
         severity:
-          desc_html: "<strong>サイレンス</strong>はアカウントのなんやをフォローしていない人から隠します。<strong>停止</strong>はそのアカウントのコンテンツ、メディア、プロフィールデータをすべて削除します。"
+          desc_html: "<strong>サイレンス</strong>はアカウントのなんやをツルんでない人から隠します。<strong>停止</strong>はそのアカウントのコンテンツ、メディア、プロフィールデータをすべて削除します。"
           silence: サイレンス
           suspend: 停止
         title: 新規ドメインブロック
+      reject_media: メディアファイルを拒否
+      reject_media_hint: ローカルに保村されたメディアファイルを削除し、今後のダウンロードを拒否します。停止とは無関係です。
+      severities:
+        silence: サイレンス
+        suspend: 停止
       severity: 深刻度
+      show:
+        affected_accounts: "データベース中の%{count}個のアカウントに影響します"
+        retroactive:
+          silence: このドメインからの存在するすべてのアカウントのサイレンスを戻す
+          suspend: このドメインからの存在するすべてのアカウントの停止を戻す
+        title: "%{domain}のドメインブロックを戻す"
+        undo: 元に戻す
       title: ドメインブロック
+      undo: 元に戻す
     pubsubhubbub:
       callback_url: コールバックURL
       confirmed: 確認済み
@@ -106,14 +122,14 @@ ja:
       delete: 削除
       id: ID
       mark_as_resolved: 解決済みとしてマーク
-      report: 'レポート#%{id}'
+      report: レポート#%{id}
       reported_account: 報告対象アカウント
-      reported_by: 報告者
+      reported_by: チクリ者
       resolved: 解決済み
       silence_account: アカウントをサイレンス
       status: ステータス
       suspend_account: アカウントを停止
-      target: ターゲット
+      target: チクられ者
       title: レポート
       unresolved: 未解決
       view: 表示
@@ -159,9 +175,9 @@ ja:
     set_new_password: 新しいパスワード
   authorize_follow:
     error: 残念ながら、リモートアカウントにエラーが発生しました。
-    follow: フォロー
-    prompt_html: 'あなた（<strong>%{self}</strong>）は以下のアカウントのフォローをリクエストしました:'
-    title: "%{acct} をフォロー"
+    follow: ツルみ
+    prompt_html: 'あなた（<strong>%{self}</strong>）は以下のアカウントのツルみをリクエストしました:'
+    title: "%{acct} をツルみ"
   datetime:
     distance_in_words:
       about_x_hours: "%{count}時間"
@@ -185,7 +201,7 @@ ja:
   exports:
     blocks: ブロック
     csv: CSV
-    follows: フォロー
+    follows: ツルみ
     mutes: ミュート
     storage: メディア
   generic:
@@ -203,7 +219,7 @@ ja:
       following: フォロー中のアカウントリスト
       muting: ミュートしたアカウントリスト
     upload: アップロード
-  landing_strip_html: <strong>%{name}</strong> はんはインスタンス <strong>%{domain}</strong> のユーザーです。アカウントさえ持っていればフォローしたり会話したりできます。もしお持ちでないなら <a href="%{sign_up_path}">こちら</a> からサインアップできます。
+  landing_strip_html: <strong>%{name}</strong> はんはインスタンス <strong>%{domain}</strong> のosaka人です。アカウントさえ持っていればツルんたり会話したりできます。もしお持ちでないなら <a href="%{sign_up_path}">こちら</a> からサインアップできます。
   media_attachments:
     validations:
       images_and_video: 既に画像が追加されているため、動画を追加することはできません。
@@ -213,8 +229,8 @@ ja:
       body: "%{instance} での最後のログインからの出来事:"
       mention: "%{name} はんが自分に返信しました:"
       new_followers_summary:
-        one: 新たなフォロワーを獲得しました！
-        other: "%{count} 人の新たなフォロワーを獲得しました！"
+        one: 新たにツルまれました！
+        other: "%{count} 人に新たにツルまれました！"
       subject:
         one: "新しい1件のあめちゃん \U0001F418"
         other: "新しい%{count}件のあめちゃん \U0001F418"
@@ -222,11 +238,11 @@ ja:
       body: '自分のなんやが %{name} はんにええやん思われてるわ:'
       subject: "%{name} はんが自分のなんやをええやん思た"
     follow:
-      body: "%{name} はんにフォローされています"
-      subject: "%{name} はんにフォローされています"
+      body: "%{name} はんにツルまれています"
+      subject: "%{name} はんにツルまれています"
     follow_request:
-      body: "%{name} はんが自分にフォローをリクエストしました。"
-      subject: "%{name} はんからのフォローリクエスト"
+      body: "%{name} はんが自分にツルみをリクエストしました。"
+      subject: "%{name} はんからのツルみリクエスト"
     mention:
       body: "%{name} はんから返信がありました:"
       subject: "%{name} はんに返信されました"
@@ -240,26 +256,8 @@ ja:
   remote_follow:
     acct: 自分の ユーザー名@ドメイン を入力してください
     missing_resource: リダイレクト先が見つかりませんでした
-    proceed: フォローする
-    prompt: 'フォローしようとしています:'
-  reports:
-    comment:
-      label: コメント
-      none: なし
-    delete: 削除
-    id: ID
-    mark_as_resolved: 解決する
-    report: 'チクリ #%{id}'
-    reported_account: チクられているユーザー
-    reported_by: チクリ者
-    reports: チクリ
-    resolved: 解決済み
-    silence_account: ユーザーをサイレンスする
-    status: 現状
-    suspend_account: ユーザーを停止する
-    target: チクられているユーザー
-    unresolved: 未決
-    view: 見る
+    proceed: ツルむ
+    prompt: 'ツルもうとしています:'
   settings:
     authorized_apps: 認証済みアプリ
     back: 戻る
@@ -274,7 +272,7 @@ ja:
     over_character_limit: 上限は %{max}文字までです
     show_more: もっと見る
     visibilities:
-      private: Private - フォロワーだけに見せる
+      private: Private - ツルまれだけに見せる
       public: Public - 全体に公開する
       unlisted: Unlisted - なんやは公開するが、公開タイムラインには表示しない
   stream_entries:
@@ -290,10 +288,13 @@ ja:
     disable: 無効
     enable: 有効
     enabled_success: 二段階認証が有効になりました
+    generate_recovery_codes: 復元コードを生成
     instructions_html: "<strong>Google Authenticatorか、もしくはほかのTOTPアプリでこのQRコードをスキャンしてください。</strong>これ以降、ログインするときはそのアプリで生成されるコードが必要になります。"
+    lost_recovery_codes: リカバリコードを使用すると携帯電話を紛失した場合でもアカウントにアクセスできるようになります。 リカバリーコードを紛失した場合もここで再生成することができますが、古いリカバリコードは無効になります。
     manual_instructions: 'QRコードがスキャンできず、手動での登録を希望の場合はこのシークレットコードを利用してください。:'
+    recovery_codes_regenerated: リカバリーコードが再生成されました。
+    recovery_instructions: 携帯電話を紛失した場合、以下の内どれかのリカバリコードを使用してアカウントへアクセスすることができます。 リカバリコードは印刷して安全に保管してください。
     setup: 初期設定
-    warning: 現在認証アプリを設定できない場合、無効に設定して、有効にしないでください。
     wrong_code: コードが間違っています。サーバー上の時間とデバイス上の時間が一致していることを確認してください。
   users:
     invalid_email: メールアドレスが無効です
