@@ -8,6 +8,7 @@ import {
   connectTimeline,
   disconnectTimeline
 } from '../actions/timelines';
+import { showOnboardingOnce } from '../actions/onboarding';
 import { updateNotifications, refreshNotifications } from '../actions/notifications';
 import createBrowserHistory from 'history/lib/createBrowserHistory';
 import {
@@ -37,34 +38,57 @@ import FollowRequests from '../features/follow_requests';
 import GenericNotFound from '../features/generic_not_found';
 import FavouritedStatuses from '../features/favourited_statuses';
 import Blocks from '../features/blocks';
+import Mutes from '../features/mutes';
 import Report from '../features/report';
 import { IntlProvider, addLocaleData } from 'react-intl';
 import en from 'react-intl/locale-data/en';
 import de from 'react-intl/locale-data/de';
-import es from 'react-intl/locale-data/es';
-import fr from 'react-intl/locale-data/fr';
-import pt from 'react-intl/locale-data/pt';
-import hu from 'react-intl/locale-data/hu';
-import uk from 'react-intl/locale-data/uk';
-import fi from 'react-intl/locale-data/fi';
 import eo from 'react-intl/locale-data/eo';
+import es from 'react-intl/locale-data/es';
+import fi from 'react-intl/locale-data/fi';
+import fr from 'react-intl/locale-data/fr';
+import hu from 'react-intl/locale-data/hu';
+import ja from 'react-intl/locale-data/ja';
+import pt from 'react-intl/locale-data/pt';
+import nl from 'react-intl/locale-data/nl';
+import no from 'react-intl/locale-data/no';
 import ru from 'react-intl/locale-data/ru';
-
+import uk from 'react-intl/locale-data/uk';
+import zh from 'react-intl/locale-data/zh';
+import bg from 'react-intl/locale-data/bg';
+import { localeData as zh_hk } from '../locales/zh-hk';
+import pt_br from '../locales/pt-br';
 import getMessagesForLocale from '../locales';
 import { hydrateStore } from '../actions/store';
 import createStream from '../stream';
 
 const store = configureStore();
-
-store.dispatch(hydrateStore(window.INITIAL_STATE));
+const initialState = JSON.parse(document.getElementById("initial-state").textContent);
+store.dispatch(hydrateStore(initialState));
 
 const browserHistory = useRouterHistory(createBrowserHistory)({
   basename: '/web'
 });
 
-
-addLocaleData([...en, ...de, ...es, ...fr, ...pt, ...hu, ...uk, ...fi, ...eo, ...ru]);
-
+addLocaleData([
+  ...en,
+  ...de,
+  ...eo,
+  ...es,
+  ...fi,
+  ...fr,
+  ...hu,
+  ...ja,
+  ...pt,
+  ...pt_br,
+  ...nl,
+  ...no,
+  ...ru,
+  ...uk,
+  ...zh,
+  ...zh_hk,
+  ...bg,
+]);
 
 const Mastodon = React.createClass({
 
@@ -74,9 +98,10 @@ const Mastodon = React.createClass({
 
   componentDidMount() {
     const { locale }  = this.props;
+    const streamingAPIBaseURL = store.getState().getIn(['meta', 'streaming_api_base_url']);
     const accessToken = store.getState().getIn(['meta', 'access_token']);
 
-    this.subscription = createStream(accessToken, 'user', {
+    this.subscription = createStream(streamingAPIBaseURL, accessToken, 'user', {
 
       connected () {
         store.dispatch(connectTimeline('home'));
@@ -112,6 +137,8 @@ const Mastodon = React.createClass({
     if (typeof window.Notification !== 'undefined' && Notification.permission === 'default') {
       Notification.requestPermission();
     }
+
+    store.dispatch(showOnboardingOnce());
   },
 
   componentWillUnmount () {
@@ -151,6 +178,7 @@ const Mastodon = React.createClass({
 
               <Route path='follow_requests' component={FollowRequests} />
               <Route path='blocks' component={Blocks} />
+              <Route path='mutes' component={Mutes} />
               <Route path='report' component={Report} />
 
               <Route path='*' component={GenericNotFound} />

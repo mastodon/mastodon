@@ -6,14 +6,23 @@ module SettingsHelper
     de: 'Deutsch',
     es: 'Español',
     eo: 'Esperanto',
-    pt: 'Português',
     fr: 'Français',
+    hr: 'Hrvatski',
     hu: 'Magyar',
-    uk: 'Українська',
-    'zh-CN': '简体中文',
+    it: 'Italiano',
+    nl: 'Nederlands',
+    no: 'Norsk',
+    oc: 'Occitan',
+    pt: 'Português',
+    'pt-BR': 'Português do Brasil',
     fi: 'Suomi',
     ru: 'Русский',
-
+    uk: 'Українська',
+    ja: '日本語',
+    'zh-CN': '简体中文',
+    'zh-HK': '繁體中文（香港）',
+    'zh-TW': '繁體中文（臺灣）',
+    bg: 'Български',
   }.freeze
 
   def human_locale(locale)

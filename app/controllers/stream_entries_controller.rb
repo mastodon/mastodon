@@ -27,8 +27,6 @@ class StreamEntriesController < ApplicationController
 
   def embed
     response.headers['X-Frame-Options'] = 'ALLOWALL'
-    @external_links = true
-
     return gone if @stream_entry.activity.nil?
 
     render layout: 'embedded'

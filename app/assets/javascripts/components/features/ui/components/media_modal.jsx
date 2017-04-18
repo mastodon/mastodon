@@ -104,14 +104,14 @@ const MediaModal = React.createClass({
     leftNav = rightNav = content = '';
 
     if (media.size > 1) {
-      leftNav  = <div style={leftNavStyle} className='modal-container__nav' onClick={this.handlePrevClick}><i className='fa fa-fw fa-chevron-left' /></div>;
-      rightNav = <div style={rightNavStyle} className='modal-container__nav' onClick={this.handleNextClick}><i className='fa fa-fw fa-chevron-right' /></div>;
+      leftNav  = <div role='button' tabIndex='0' style={leftNavStyle} className='modal-container__nav' onClick={this.handlePrevClick}><i className='fa fa-fw fa-chevron-left' /></div>;
+      rightNav = <div role='button' tabIndex='0' style={rightNavStyle} className='modal-container__nav' onClick={this.handleNextClick}><i className='fa fa-fw fa-chevron-right' /></div>;
     }
 
     if (attachment.get('type') === 'image') {
       content = <ImageLoader src={url} imgProps={{ style: { display: 'block' } }} />;
     } else if (attachment.get('type') === 'gifv') {
-      content = <ExtendedVideoPlayer src={url} />;
+      content = <ExtendedVideoPlayer src={url} muted={true} controls={false} />;
     }
 
     return (

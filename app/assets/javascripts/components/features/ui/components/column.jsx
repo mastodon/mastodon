@@ -41,8 +41,11 @@ const Column = React.createClass({
   mixins: [PureRenderMixin],
 
   handleHeaderClick () {
-    let node = ReactDOM.findDOMNode(this);
-    this._interruptScrollAnimation = scrollTop(node.querySelector('.scrollable'));
+    const scrollable = ReactDOM.findDOMNode(this).querySelector('.scrollable');
+    if (!scrollable) {
+      return;
+    }
+    this._interruptScrollAnimation = scrollTop(scrollable);
   },
 
   handleWheel () {

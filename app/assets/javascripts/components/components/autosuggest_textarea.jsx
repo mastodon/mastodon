@@ -178,7 +178,12 @@ const AutosuggestTextarea = React.createClass({
 
         <div style={{ display: (suggestions.size > 0 && !suggestionsHidden) ? 'block' : 'none' }} className='autosuggest-textarea__suggestions'>
           {suggestions.map((suggestion, i) => (
-            <div key={suggestion} className={`autosuggest-textarea__suggestions__item ${i === selectedSuggestion ? 'selected' : ''}`} onClick={this.onSuggestionClick.bind(this, suggestion)}>
+            <div
+              role='button'
+              tabIndex='0'
+              key={suggestion}
+              className={`autosuggest-textarea__suggestions__item ${i === selectedSuggestion ? 'selected' : ''}`}
+              onClick={this.onSuggestionClick.bind(this, suggestion)}>
               <AutosuggestAccountContainer id={suggestion} />
             </div>
           ))}

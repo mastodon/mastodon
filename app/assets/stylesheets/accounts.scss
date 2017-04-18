@@ -14,7 +14,7 @@
   }
 
   &:after {
-    background: rgba($color8, 0.5);
+    background: linear-gradient(rgba($color8, 0.5), rgba($color8, 0.8));
     display: block;
     content: "";
     position: absolute;
@@ -83,7 +83,7 @@
   .counter {
     width: 80px;
     color: $color3;
-    padding: 0 10px;
+    padding: 5px 10px 0px;
     margin-bottom: 10px;
     border-right: 1px solid $color3;
     cursor: default;
@@ -148,7 +148,7 @@
     order: 1;
   }
 
-  @media screen and (max-width: 360px) {
+  @media screen and (max-width: 480px) {
     .details {
       display: block;
     }
@@ -173,7 +173,7 @@
   text-align: center;
   overflow: hidden;
 
-  a, .current, .next_page, .previous_page, .gap {
+  a, .current, .page, .gap {
     font-size: 14px;
     color: $color5;
     font-weight: 500;
@@ -193,12 +193,12 @@
     cursor: default;
   }
 
-  .previous_page, .next_page {
+  .prev, .next {
     text-transform: uppercase;
     color: $color2;
   }
 
-  .previous_page {
+  .prev {
     float: left;
     padding-left: 0;
 
@@ -208,7 +208,7 @@
     }
   }
 
-  .next_page {
+  .next {
     float: right;
     padding-right: 0;
 
@@ -226,11 +226,11 @@
   @media screen and (max-width: 360px) {
     padding: 30px 20px;
 
-    a, .current, .next_page, .previous_page, .gap {
+    a, .current, .next, .prev, .gap {
       display: none;
     }
 
-    .next_page, .previous_page {
+    .next, .prev {
       display: inline-block;
     }
   }
@@ -387,6 +387,5 @@
   .account__header__content {
     font-size: 14px;
     color: $color1;
-    text-shadow: 0 0 2px $color8;
   }
 }

@@ -1,12 +1,12 @@
 - content_for :page_title do
   = t('accounts.people_who_follow', name: display_name(@account))
 
-= render partial: 'header'
+= render 'header', account: @account
 
 .accounts-grid
   - if @followers.empty?
-    = render partial: 'nothing_here'
+    = render 'nothing_here'
   - else
     = render partial: 'grid_card', collection: @followers, as: :account, cached: true
 
-= will_paginate @followers, pagination_options
+= paginate @followers

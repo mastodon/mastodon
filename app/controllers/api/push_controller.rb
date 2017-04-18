@@ -30,7 +30,7 @@ class Api::PushController < ApiController
     params = Rails.application.routes.recognize_path(uri.path)
     domain = uri.host + (uri.port ? ":#{uri.port}" : '')
 
-    return unless TagManager.instance.local_domain?(domain) && params[:controller] == 'accounts' && params[:action] == 'show' && params[:format] == 'atom'
+    return unless TagManager.instance.web_domain?(domain) && params[:controller] == 'accounts' && params[:action] == 'show' && params[:format] == 'atom'
 
     Account.find_local(params[:username])
   end

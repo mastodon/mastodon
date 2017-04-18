@@ -3,6 +3,6 @@
   %head
     %meta{:charset => 'utf-8'}/
     = stylesheet_link_tag 'application', media: 'all'
-    = javascript_include_tag 'application_public'
+    = javascript_include_tag 'application_public', integrity: true, crossorigin: 'anonymous'
   %body.embed
     = yield

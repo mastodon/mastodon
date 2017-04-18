@@ -77,9 +77,9 @@ class Api::V1::StatusesController < ApiController
   end
 
   def unreblog
-    reblog         = Status.where(account_id: current_user.account, reblog_of_id: params[:id]).first!
-    @status        = reblog.reblog
-    @reblogged_map = { @status.id => false }
+    reblog       = Status.where(account_id: current_user.account, reblog_of_id: params[:id]).first!
+    @status      = reblog.reblog
+    @reblogs_map = { @status.id => false }
 
     RemovalWorker.perform_async(reblog.id)
 
@@ -93,7 +93,7 @@ class Api::V1::StatusesController < ApiController
 
   def unfavourite
     @status         = Status.find(params[:id])
-    @favourited_map = { @status.id => false }
+    @favourites_map = { @status.id => false }
 
     UnfavouriteWorker.perform_async(current_user.account_id, @status.id)
 

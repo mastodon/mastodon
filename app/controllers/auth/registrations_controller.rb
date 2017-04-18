@@ -10,6 +10,7 @@ class Auth::RegistrationsController < Devise::RegistrationsController
 
   def build_resource(hash = nil)
     super(hash)
+    resource.locale = I18n.locale
     resource.build_account if resource.account.nil?
   end
 
@@ -28,7 +29,7 @@ class Auth::RegistrationsController < Devise::RegistrationsController
   end
 
   def check_enabled_registrations
-    redirect_to root_path if Rails.configuration.x.single_user_mode || !Setting.open_registrations
+    redirect_to root_path if single_user_mode? || !Setting.open_registrations
   end
 
   private

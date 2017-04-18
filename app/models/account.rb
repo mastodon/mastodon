@@ -12,12 +12,12 @@ class Account < ApplicationRecord
   validates :username, presence: true, uniqueness: { scope: :domain, case_sensitive: true }, unless: 'local?'
 
   # Avatar upload
-  has_attached_file :avatar, styles: { original: '120x120#' }, convert_options: { all: '-quality 80 -strip' }
+  has_attached_file :avatar, styles: ->(f) { avatar_styles(f) }, convert_options: { all: '-quality 80 -strip' }
   validates_attachment_content_type :avatar, content_type: IMAGE_MIME_TYPES
   validates_attachment_size :avatar, less_than: 2.megabytes
 
   # Header upload
-  has_attached_file :header, styles: { original: '700x335#' }, convert_options: { all: '-quality 80 -strip' }
+  has_attached_file :header, styles: ->(f) { header_styles(f) }, convert_options: { all: '-quality 80 -strip' }
   validates_attachment_content_type :header, content_type: IMAGE_MIME_TYPES
   validates_attachment_size :header, less_than: 2.megabytes
 
@@ -108,16 +108,20 @@ class Account < ApplicationRecord
     follow_requests.where(target_account: other_account).exists?
   end
 
-  def followers_domains
-    followers.reorder('').select('DISTINCT accounts.domain').map(&:domain)
-  end
-
   def local?
     domain.nil?
   end
 
   def acct
     local? ? username : "#{username}@#{domain}"
+  end
+
+  def local_username_and_domain
+    "#{username}@#{Rails.configuration.x.local_domain}"
+  end
+
+  def to_webfinger_s
+    "acct:#{local_username_and_domain}"
   end
 
   def subscribed?
@@ -148,6 +152,22 @@ class Account < ApplicationRecord
     self[:avatar_remote_url] = ''
     self[:header_remote_url] = ''
     save!
+  end
+
+  def avatar_original_url
+    avatar.url(:original)
+  end
+
+  def avatar_static_url
+    avatar_content_type == 'image/gif' ? avatar.url(:static) : avatar_original_url
+  end
+
+  def header_original_url
+    header.url(:original)
+  end
+
+  def header_static_url
+    header_content_type == 'image/gif' ? header.url(:static) : header_original_url
   end
 
   def avatar_remote_url=(url)
@@ -207,18 +227,20 @@ class Account < ApplicationRecord
         WITH first_degree AS (
             SELECT target_account_id
             FROM follows
-            WHERE account_id = ?
+            WHERE account_id = :account_id
           )
         SELECT accounts.*
         FROM follows
         INNER JOIN accounts ON follows.target_account_id = accounts.id
-        WHERE account_id IN (SELECT * FROM first_degree) AND target_account_id NOT IN (SELECT * FROM first_degree) AND target_account_id <> ?
+        WHERE account_id IN (SELECT * FROM first_degree) AND target_account_id NOT IN (SELECT * FROM first_degree) AND target_account_id <> :account_id
         GROUP BY target_account_id, accounts.id
         ORDER BY count(account_id) DESC
-        LIMIT ?
+        LIMIT :limit
       SQL
 
-      Account.find_by_sql([sql, account.id, account.id, limit])
+      find_by_sql(
+        [sql, { account_id: account.id, limit: limit }]
+      )
     end
 
     def search_for(terms, limit = 10)
@@ -283,6 +305,18 @@ class Account < ApplicationRecord
 
     def follow_mapping(query, field)
       query.pluck(field).inject({}) { |mapping, id| mapping[id] = true; mapping }
+    end
+
+    def avatar_styles(file)
+      styles = { original: '120x120#' }
+      styles[:static] = { format: 'png' } if file.content_type == 'image/gif'
+      styles
+    end
+
+    def header_styles(file)
+      styles = { original: '700x335#' }
+      styles[:static] = { format: 'png' } if file.content_type == 'image/gif'
+      styles
     end
   end
 
