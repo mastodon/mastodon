@@ -10,6 +10,7 @@ import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import Toggle from 'react-toggle';
 import Collapsable from '../../../components/collapsable';
 import SpoilerButtonContainer from '../containers/spoiler_button_container';
+import MonologueButtonContainer from '../containers/monologue_button_container';
 import PrivacyDropdownContainer from '../containers/privacy_dropdown_container';
 import SensitiveButtonContainer from '../containers/sensitive_button_container';
 import EmojiPickerDropdown from './emoji_picker_dropdown';
@@ -27,6 +28,7 @@ const ComposeForm = React.createClass({
   propTypes: {
     intl: React.PropTypes.object.isRequired,
     text: React.PropTypes.string.isRequired,
+    monologuing: React.PropTypes.bool,
     suggestion_token: React.PropTypes.string,
     suggestions: ImmutablePropTypes.list,
     spoiler: React.PropTypes.bool,
@@ -132,6 +134,9 @@ const ComposeForm = React.createClass({
     const { intl, needsPrivacyWarning, mentionedDomains, onPaste } = this.props;
     const disabled = this.props.is_submitting;
 
+    let characterCounter = '';
+    let monologuingNotice = '';
+
     let publishText    = '';
     let privacyWarning = '';
     let reply_to_other = false;
@@ -154,6 +159,20 @@ const ComposeForm = React.createClass({
       publishText = intl.formatMessage(messages.publish) + (this.props.privacy !== 'unlisted' ? '!' : '');
     }
 
+    if (this.props.monologuing) {
+      characterCounter = '\u221E';
+      monologuingNotice = (
+        <div className='compose-form__warning'>
+          <FormattedMessage
+            id='compose_form.monologuing_on'
+            defaultMessage='You are monologuing. Your entire status will be saved on the server, however only the first paragraph (400 characters max) will be displayed on timelines. You can format your text using Markdown.'
+          />
+        </div>
+      );
+    } else {
+      characterCounter = <CharacterCounter max={500} text={[this.props.spoiler_text, this.props.text].join('')} />;
+    }
+
     return (
       <div style={{ padding: '10px' }}>
         <Collapsable isVisible={this.props.spoiler} fullHeight={50}>
@@ -163,6 +182,8 @@ const ComposeForm = React.createClass({
         </Collapsable>
 
         {privacyWarning}
+
+        {monologuingNotice}
 
         <ReplyIndicatorContainer />
 
@@ -194,12 +215,13 @@ const ComposeForm = React.createClass({
             <PrivacyDropdownContainer />
             <SensitiveButtonContainer />
             <SpoilerButtonContainer />
+            <MonologueButtonContainer />
           </div>
 
-          <div style={{ display: 'flex' }}>
-            <div style={{ paddingTop: '10px', marginRight: '16px', lineHeight: '36px' }}><CharacterCounter max={500} text={[this.props.spoiler_text, this.props.text].join('')} /></div>
-            <div style={{ paddingTop: '10px' }}><Button text={publishText} onClick={this.handleSubmit} disabled={disabled} /></div>
-          </div>
+          <div style={{ paddingTop: '10px' }}><Button text={publishText} onClick={this.handleSubmit} disabled={disabled} /></div>
+        </div>
+        <div className='compose-form__characterCounter'>
+          {characterCounter}
         </div>
       </div>
     );

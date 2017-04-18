@@ -9,6 +9,13 @@ class Formatter
   include ActionView::Helpers::TextHelper
   include ActionView::Helpers::SanitizeHelper
 
+  def markdown_format(status)
+    html_r = Redcarpet::Render::HTML.new(render_options = {escape_html: true, safe_links_only: true})
+    markdown = Redcarpet::Markdown.new(html_r, extensions = {no_intra_emphasis: true, autolink: true, strikethrough: true,})
+
+    markdown.render(status.full_status_text).html_safe # rubocop:disable Rails/OutputSafety
+  end
+
   def format(status)
     return reformat(status.content) unless status.local?
 

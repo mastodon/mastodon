@@ -6,6 +6,7 @@ class PostStatusService < BaseService
   # @param [String] text Message
   # @param [Status] in_reply_to Optional status to reply to
   # @param [Hash] options
+  # @option [Boolean] :monologuing Store full status text locally, truncate for others
   # @option [Boolean] :sensitive
   # @option [String] :visibility
   # @option [String] :spoiler_text
@@ -13,13 +14,22 @@ class PostStatusService < BaseService
   # @option [Doorkeeper::Application] :application
   # @return [Status]
   def call(account, text, in_reply_to = nil, options = {})
+    full_text_markdown = ''
+    if options[:monologuing]
+      full_text_markdown = text
+      text = truncate_status(text)
+    end
+
     media  = validate_media!(options[:media_ids])
     status = account.statuses.create!(text: text,
+                                      full_status_text: full_text_markdown,
                                       thread: in_reply_to,
                                       sensitive: options[:sensitive],
                                       spoiler_text: options[:spoiler_text] || '',
                                       visibility: options[:visibility],
                                       application: options[:application])
+
+    insert_status_link(status, account) if options[:monologuing]
 
     attach_media(status, media)
     process_mentions_service.call(status)
@@ -33,6 +43,24 @@ class PostStatusService < BaseService
   end
 
   private
+
+  def truncate_status(text)
+    return text unless text.length > 400
+
+    cutoff = text.index("\n")
+
+    return text[0, cutoff] unless cutoff.nil? || cutoff > 400
+    return text[0, 400] + "\u2026"
+  end
+
+  def insert_status_link(status, account)
+    text = status.text
+    protocol = ENV['LOCAL_HTTPS'] == 'true' ? 'https' : 'http'
+
+    text += "\n\n"
+    text += "View the full post: #{protocol}://#{Rails.configuration.x.local_domain}/@#{account.username}/#{status.id}/"
+    status.update(text: text)
+  end
 
   def validate_media!(media_ids)
     return if media_ids.nil? || !media_ids.is_a?(Enumerable)

@@ -253,6 +253,13 @@
   }
 }
 
+.compose-form__characterCounter {
+  text-align: right;
+  padding-top: 6px;
+  margin-right: 4px;
+  line-height: 12px;
+}
+
 .emojione {
   display: inline-block;
   font-size: inherit;
@@ -324,6 +331,44 @@
     .fa {
       color: lighten($color1, 30%);
     }
+  }
+
+  strong {
+    font-weight: bold;
+  }
+
+  em {
+    font-style: italic;
+  }
+
+  h1 {
+    font-size: 2em;
+    font-weight: bold;
+  }
+
+  h2 {
+    font-size: 1.5em;
+    font-weight: bold;
+  }
+
+  h3 {
+    font-size: 1.17em;
+    font-weight: bold;
+  }
+
+  h4 {
+    font-size: 1em;
+    font-weight: bold;
+  }
+
+  h5 {
+    font-size: .83em;
+    font-weight: bold;
+  }
+
+  h6 {
+    font-size: .67em;
+    font-weight: bold;
   }
 
   .status__content__spoiler-link {

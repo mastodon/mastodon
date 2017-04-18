@@ -57,7 +57,8 @@ class Api::V1::StatusesController < ApiController
   end
 
   def create
-    @status = PostStatusService.new.call(current_user.account, status_params[:status], status_params[:in_reply_to_id].blank? ? nil : Status.find(status_params[:in_reply_to_id]), media_ids: status_params[:media_ids],
+    @status = PostStatusService.new.call(current_user.account, status_params[:status], status_params[:in_reply_to_id].blank? ? nil : Status.find(status_params[:in_reply_to_id]), monologuing: status_params[:monologuing],
+                                                                                                                                                                                  media_ids: status_params[:media_ids],
                                                                                                                                                                                   sensitive: status_params[:sensitive],
                                                                                                                                                                                   spoiler_text: status_params[:spoiler_text],
                                                                                                                                                                                   visibility: status_params[:visibility],
@@ -108,7 +109,7 @@ class Api::V1::StatusesController < ApiController
   end
 
   def status_params
-    params.permit(:status, :in_reply_to_id, :sensitive, :spoiler_text, :visibility, media_ids: [])
+    params.permit(:status, :monologuing, :in_reply_to_id, :sensitive, :spoiler_text, :visibility, media_ids: [])
   end
 
   def pagination_params(core_params)
