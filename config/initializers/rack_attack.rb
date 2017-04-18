@@ -16,6 +16,11 @@ class Rack::Attack
     req.ip if req.path == '/auth' && req.post?
   end
 
+  # Rate limit forgotten passwords
+  throttle('reminder', limit: 5, period: 5.minutes) do |req|
+    req.ip if req.path == '/auth/password' && req.post?
+  end
+
   self.throttled_response = lambda do |env|
     now        = Time.now.utc
     match_data = env['rack.attack.match_data']
