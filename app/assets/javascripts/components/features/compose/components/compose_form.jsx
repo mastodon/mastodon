@@ -198,7 +198,7 @@ const ComposeForm = React.createClass({
 
           <div style={{ display: 'flex' }}>
             <div style={{ paddingTop: '10px', marginRight: '16px', lineHeight: '36px' }}><CharacterCounter max={500} text={[this.props.spoiler_text, this.props.text].join('')} /></div>
-            <div style={{ paddingTop: '10px' }}><Button text={publishText} onClick={this.handleSubmit} disabled={disabled || this.props.text.length > 500} /></div>
+            <div style={{ paddingTop: '10px' }}><Button text={publishText} onClick={this.handleSubmit} disabled={disabled || this.props.text.replace(/[\uD800-\uDBFF][\uDC00-\uDFFF]/g, "_").length > 500} /></div>
           </div>
         </div>
       </div>
