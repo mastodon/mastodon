@@ -16,7 +16,7 @@ class AtomSerializer
   def author(account)
     author = Ox::Element.new('author')
 
-    uri = TagManager.instance.uri_for(account).gsub(Rails.configuration.x.web_domain, Rails.configuration.x.local_domain)
+    uri = TagManager.instance.uri_for(account)
 
     append_element(author, 'id', uri)
     append_element(author, 'activity:object-type', TagManager::TYPES[:person])
