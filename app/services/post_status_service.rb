@@ -52,10 +52,6 @@ class PostStatusService < BaseService
     media.update(status_id: status.id)
   end
 
-  def detect_language(text)
-    WhatLanguage.new(:all).language_iso(text) || 'en'
-  end
-
   def process_mentions_service
     @process_mentions_service ||= ProcessMentionsService.new
   end
