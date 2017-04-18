@@ -68,6 +68,7 @@ class Account < ApplicationRecord
   scope :suspended, -> { where(suspended: true) }
   scope :recent, -> { reorder(id: :desc) }
   scope :alphabetic, -> { order(domain: :asc, username: :asc) }
+  scope :by_domain_accounts, -> { group(:domain).select(:domain, 'COUNT(*) AS accounts_count').order('accounts_count desc') }
 
   def follow!(other_account)
     active_relationships.where(target_account: other_account).first_or_create!(target_account: other_account)

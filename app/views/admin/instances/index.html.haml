@@ -1,0 +1,15 @@
+- content_for :page_title do
+  = t('admin.instances.title')
+
+%table.table
+  %thead
+    %tr
+      %th= t('admin.instances.domain_name')
+      %th= t('admin.instances.account_count')
+  %tbody
+    - @instances.each do |instance|
+      %tr
+        %td= instance.domain
+        %td= instance.accounts_count
+
+= paginate @instances
