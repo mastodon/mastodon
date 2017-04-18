@@ -330,4 +330,12 @@ if (cluster.isMaster) {
     log.level = process.env.LOG_LEVEL || 'verbose'
     log.info(`Starting streaming API server worker on ${server.address()}`)
   })
+
+  process.on('SIGINT', exit)
+  process.on('SIGTERM', exit)
+  process.on('exit', exit)
+
+  function exit() {
+    server.close()
+  }
 }
