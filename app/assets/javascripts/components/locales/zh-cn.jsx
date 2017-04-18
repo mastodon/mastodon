@@ -66,7 +66,7 @@ const zh_cn = {
   "follow_request.authorize": "批准",
   "follow_request.reject": "拒绝",
   "getting_started.about_addressing": "只要你知道一位用户的用户名称和域名，你可以用“@用户名称@域名”的格式在搜索栏寻找该用户。",
-  "getting_started.about_shortcuts": "只要该用户是在你现在的服务站开立，你可以直接输入用户名同样的规则适用于在嘟文提及别的用户。",
+  "getting_started.about_shortcuts": "只要该用户是在你现在的服务站开立，你就可以直接输入用户名搜索。适用于在嘟文提及别的用户也是如此。",
   "getting_started.apps": "手机或桌面应用程序",
   "getting_started.heading": "开始使用",
   "getting_started.open_source_notice": "Mastodon 是一个开放源码的软件。你可以在官方 GitHub ({github}) 贡献或者回报问题。你亦可通过{apps}阅读 Mastodon 上的消息。",
