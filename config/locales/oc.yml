@@ -129,22 +129,22 @@ oc:
       topic: Topic
     reports:
       comment:
-        label: Comment
-        none: None
-      delete: Delete
+        label: Comentari
+        none: Pas cap
+      delete: Suprimir
       id: ID
-      mark_as_resolved: Mark as resolved
-      report: 'Report #%{id}'
-      reported_account: Reported account
-      reported_by: Reported by
-      resolved: Resolved
-      silence_account: Silence account
-      status: Status
-      suspend_account: Suspend account
-      target: Target
-      title: Reports
-      unresolved: Unresolved
-      view: View
+      mark_as_resolved: Marcat coma resolgut
+      report: 'enhalament #%{id}'
+      reported_account: Compte senhalat
+      reported_by: Senhalat per
+      resolved: Resolgut
+      silence_account: Metre lo compte en silenci
+      status: Estatut
+      suspend_account: Suspendre lo compte
+      target: Cibla
+      title: Senhalament
+      unresolved: Pas resolguts
+      view: Veire
     settings:
       click_to_edit: Clicatz per modificar
       contact_information:
@@ -332,29 +332,6 @@ oc:
       documents.
     setup: Set up
     wrong_code: The entered code was invalid! Are server time and device time correct?
-    plaintext_secret_html: 'Plain-text secret: <samp>%{secret}</samp>'
-    warning: Se capitatz pas a configurar l’aplicacion d’autentificacion ara, vos
-      cal la desactivar autrament poiretz  pas vos connectar.
   users:
     invalid_email: L’adreça de corrièl es invalida
     invalid_otp_token: Còdi d’autentificacion en dos temps invalid
-  will_paginate:
-    page_gap: "&hellip;"
-  reports:
-    reports: Senhalament
-    status: Estatut
-    unresolved: Pas resolguts
-    resolved: Resolgut
-    id: ID
-    target: Cibla
-    comment:
-      label: Comentari
-      none: Pas cap
-    view: Veire
-    report: 'enhalament #%{id}'
-    delete: Suprimir
-    reported_account: Compte senhalat
-    reported_by: Senhalat per
-    silence_account: Metre lo compte en silenci
-    suspend_account: Suspendre lo compte
-    mark_as_resolved: Marcat coma resolgut
