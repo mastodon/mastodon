@@ -24,7 +24,7 @@
 
   - if @statuses.empty?
     .accounts-grid
-      = render partial: 'nothing_here'
+      = render 'nothing_here'
   - else
     .activity-stream
       = render partial: 'stream_entries/status', collection: @statuses, as: :status
