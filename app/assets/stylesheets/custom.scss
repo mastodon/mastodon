@@ -1,0 +1,15 @@
+@import 'application';
+
+.button {
+  &:disabled {
+    background-color: #bca498;
+  }
+}
+
+.text-icon-button {
+  &.active {
+    color: #ffffff;
+    background-color: #FF5500;
+    border-radius: 4px;
+  }
+}
