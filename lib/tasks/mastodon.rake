@@ -103,6 +103,12 @@ namespace :mastodon do
         User.where(id: batch.map(&:id)).delete_all
       end
     end
+
+    desc 'List all admin users'
+    task admins: :environment do
+      puts 'Admin user emails:'
+      puts User.admins.map(&:email).join("\n")
+    end
   end
 
   namespace :settings do

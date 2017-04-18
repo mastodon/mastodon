@@ -100,17 +100,4 @@ class ApiController < ApplicationController
     @reblogs_map    = Status.reblogs_map(status_ids, current_account)
     @favourites_map = Status.favourites_map(status_ids, current_account)
   end
-
-  def set_counters_maps(statuses) # rubocop:disable Style/AccessorMethodName
-    status_ids             = statuses.compact.map { |s| s.reblog? ? s.reblog_of_id : s.id }.uniq
-    @favourites_counts_map = Favourite.select('status_id, COUNT(id) AS favourites_count').group('status_id').where(status_id: status_ids).map { |f| [f.status_id, f.favourites_count] }.to_h
-    @reblogs_counts_map    = Status.select('statuses.id, COUNT(reblogs.id) AS reblogs_count').joins('LEFT OUTER JOIN statuses AS reblogs ON statuses.id = reblogs.reblog_of_id').where(id: status_ids).group('statuses.id').map { |r| [r.id, r.reblogs_count] }.to_h
-  end
-
-  def set_account_counters_maps(accounts) # rubocop:disable Style/AccessorMethodName
-    account_ids = accounts.compact.map(&:id).uniq
-    @followers_counts_map = Follow.unscoped.select('target_account_id, COUNT(account_id) AS followers_count').group('target_account_id').where(target_account_id: account_ids).map { |f| [f.target_account_id, f.followers_count] }.to_h
-    @following_counts_map = Follow.unscoped.select('account_id, COUNT(target_account_id) AS following_count').group('account_id').where(account_id: account_ids).map { |f| [f.account_id, f.following_count] }.to_h
-    @statuses_counts_map  = Status.unscoped.select('account_id, COUNT(id) AS statuses_count').group('account_id').where(account_id: account_ids).map { |s| [s.account_id, s.statuses_count] }.to_h
-  end
 end

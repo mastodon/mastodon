@@ -1,11 +1,11 @@
 - content_for :page_title do
-  #{Rails.configuration.x.local_domain}
+  = site_hostname
 
 .wrapper.thicc
   .sidebar-layout
     .main
       .panel
-        %h2= Rails.configuration.x.local_domain
+        %h2= site_hostname
 
         - unless @instance_presenter.site_description.blank?
           %p= @instance_presenter.site_description.html_safe
