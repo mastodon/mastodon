@@ -30,15 +30,15 @@ ja:
     user_count_after: 人
     user_count_before: osaka人数
   accounts:
-    follow: フォロー
+    follow: ツルみ
     followers: フォロワー
-    following: フォロー中
+    following: ツルみ中
     nothing_here: 何もありません
-    people_followed_by: "%{name} はんがフォロー中のアカウント"
-    people_who_follow: "%{name} はんをフォロー中のアカウント"
+    people_followed_by: "%{name} はんがツルみ中のアカウント"
+    people_who_follow: "%{name} はんをツルみ中のアカウント"
     posts: 投稿
     remote_follow: リモートフォロー
-    unfollow: フォロー解除
+    unfollow: ツルみ解除
   admin:
     accounts:
       are_you_sure: 本当に実行しますか?
@@ -48,7 +48,7 @@ ja:
       email: E-mail
       feed_url: Feed URL
       followers: フォロワー数
-      follows: フォロー数
+      follows: ツルみ数
       location:
         all: すべて
         local: ローカル
@@ -89,7 +89,7 @@ ja:
         create: ブロックを作成
         hint: ドメインブロックはデータベース中のアカウント項目の作成を妨げませんが、遡って自動的に指定されたモデレーションをそれらのアカウントに適用します。
         severity:
-          desc_html: "<strong>サイレンス</strong>はアカウントのなんやをフォローしていない人から隠します。<strong>停止</strong>はそのアカウントのコンテンツ、メディア、プロフィールデータをすべて削除します。"
+          desc_html: "<strong>サイレンス</strong>はアカウントのなんやをツルんでない人から隠します。<strong>停止</strong>はそのアカウントのコンテンツ、メディア、プロフィールデータをすべて削除します。"
           silence: サイレンス
           suspend: 停止
         title: 新規ドメインブロック
@@ -175,9 +175,9 @@ ja:
     set_new_password: 新しいパスワード
   authorize_follow:
     error: 残念ながら、リモートアカウントにエラーが発生しました。
-    follow: フォロー
-    prompt_html: 'あなた（<strong>%{self}</strong>）は以下のアカウントのフォローをリクエストしました:'
-    title: "%{acct} をフォロー"
+    follow: ツルみ
+    prompt_html: 'あなた（<strong>%{self}</strong>）は以下のアカウントのツルみをリクエストしました:'
+    title: "%{acct} をツルみ"
   datetime:
     distance_in_words:
       about_x_hours: "%{count}時間"
@@ -201,7 +201,7 @@ ja:
   exports:
     blocks: ブロック
     csv: CSV
-    follows: フォロー
+    follows: ツルみ
     mutes: ミュート
     storage: メディア
   generic:
@@ -219,7 +219,7 @@ ja:
       following: フォロー中のアカウントリスト
       muting: ミュートしたアカウントリスト
     upload: アップロード
-  landing_strip_html: <strong>%{name}</strong> はんはインスタンス <strong>%{domain}</strong> のosaka人です。アカウントさえ持っていればフォローしたり会話したりできます。もしお持ちでないなら <a href="%{sign_up_path}">こちら</a> からサインアップできます。
+  landing_strip_html: <strong>%{name}</strong> はんはインスタンス <strong>%{domain}</strong> のosaka人です。アカウントさえ持っていればツルんたり会話したりできます。もしお持ちでないなら <a href="%{sign_up_path}">こちら</a> からサインアップできます。
   media_attachments:
     validations:
       images_and_video: 既に画像が追加されているため、動画を追加することはできません。
@@ -238,11 +238,11 @@ ja:
       body: '自分のなんやが %{name} はんにええやん思われてるわ:'
       subject: "%{name} はんが自分のなんやをええやん思た"
     follow:
-      body: "%{name} はんにフォローされています"
-      subject: "%{name} はんにフォローされています"
+      body: "%{name} はんにツルまれています"
+      subject: "%{name} はんにツルまれています"
     follow_request:
-      body: "%{name} はんが自分にフォローをリクエストしました。"
-      subject: "%{name} はんからのフォローリクエスト"
+      body: "%{name} はんが自分にツルみをリクエストしました。"
+      subject: "%{name} はんからのツルみリクエスト"
     mention:
       body: "%{name} はんから返信がありました:"
       subject: "%{name} はんに返信されました"
@@ -256,8 +256,8 @@ ja:
   remote_follow:
     acct: 自分の ユーザー名@ドメイン を入力してください
     missing_resource: リダイレクト先が見つかりませんでした
-    proceed: フォローする
-    prompt: 'フォローしようとしています:'
+    proceed: ツルむ
+    prompt: 'ツルもうとしています:'
   settings:
     authorized_apps: 認証済みアプリ
     back: 戻る
