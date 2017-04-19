@@ -12,6 +12,8 @@ class FollowRemoteAccountService < BaseService
   # @param [String] uri User URI in the form of username@domain
   # @return [Account]
   def call(uri, redirected = nil)
+    return nil if uri.nil?
+
     username, domain = uri.split('@')
 
     return Account.find_local(username) if TagManager.instance.local_domain?(domain)
