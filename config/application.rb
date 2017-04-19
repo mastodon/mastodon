@@ -33,6 +33,7 @@ module Mastodon
       :fi,
       :fr,
       :hr,
+      :id,
       :hu,
       :id,
       :it,
