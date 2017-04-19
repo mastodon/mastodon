@@ -6,7 +6,8 @@ const ColumnHeader = React.createClass({
     icon: React.PropTypes.string,
     type: React.PropTypes.string,
     active: React.PropTypes.bool,
-    onClick: React.PropTypes.func
+    onClick: React.PropTypes.func,
+    hideOnMobile: React.PropTypes.bool
   },
 
   mixins: [PureRenderMixin],
@@ -16,7 +17,7 @@ const ColumnHeader = React.createClass({
   },
 
   render () {
-    const { type, active } = this.props;
+    const { type, active, hideOnMobile } = this.props;
 
     let icon = '';
 
@@ -25,7 +26,7 @@ const ColumnHeader = React.createClass({
     }
 
     return (
-      <div role='button' tabIndex='0' aria-label={type} className={`column-header ${active ? 'active' : ''}`} onClick={this.handleClick}>
+      <div role='button' tabIndex='0' aria-label={type} className={`column-header ${active ? 'active' : ''} ${hideOnMobile ? 'hidden-on-mobile' : ''}`} onClick={this.handleClick}>
         {icon}
         {type}
       </div>
