@@ -82,6 +82,20 @@ RSpec.describe Formatter do
         expect(subject).to include('href="https://en.wikipedia.org/wiki/Diaspora_(software)"')
       end
     end
+
+    context 'contains html (script tag)' do
+        let(:local_text) { '<script>alert("Hello")</script>' }
+        it 'has valid url' do
+            expect(subject).to match '<p>&lt;script&gt;alert(&quot;Hello&quot;)&lt;/script&gt;</p>'
+        end
+    end
+
+    context 'contains html (xss attack)' do
+      let(:local_text) { %q{<img src="javascript:alert('XSS');">} }
+      it 'has valid url' do
+        expect(subject).to match '<p>&lt;img src=&quot;javascript:alert(&apos;XSS&apos;);&quot;&gt;</p>'
+      end
+    end
   end
 
   describe '#reformat' do
