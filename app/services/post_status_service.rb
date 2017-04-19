@@ -27,6 +27,7 @@ class PostStatusService < BaseService
                                       sensitive: options[:sensitive],
                                       spoiler_text: options[:spoiler_text] || '',
                                       visibility: options[:visibility],
+                                      language: detect_language_for(text, account),
                                       application: options[:application])
 
     insert_status_link(status, account) if options[:monologuing]
@@ -62,7 +63,7 @@ class PostStatusService < BaseService
   end
 
   def validate_media!(media_ids)
-    return if media_ids.nil? || !media_ids.is_a?(Enumerable)
+    return if media_ids.blank? || !media_ids.is_a?(Enumerable)
 
     raise Mastodon::ValidationError, I18n.t('media_attachments.validations.too_many') if media_ids.size > 4
 
@@ -76,6 +77,10 @@ class PostStatusService < BaseService
   def attach_media(status, media)
     return if media.nil?
     media.update(status_id: status.id)
+  end
+
+  def detect_language_for(text, account)
+    LanguageDetector.new(text, account).to_iso_s
   end
 
   def process_mentions_service

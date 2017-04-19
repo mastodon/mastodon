@@ -94,7 +94,7 @@ const ComposeForm = React.createClass({
   },
 
   componentDidUpdate (prevProps) {
-    // This statement does several things: 
+    // This statement does several things:
     // - If we're beginning a reply, and,
     //     - Replying to zero or one users, places the cursor at the end of the textbox.
     //     - Replying to more than one user, selects any usernames past the first;
@@ -133,6 +133,7 @@ const ComposeForm = React.createClass({
   render () {
     const { intl, needsPrivacyWarning, mentionedDomains, onPaste } = this.props;
     const disabled = this.props.is_submitting;
+    const text = [this.props.spoiler_text, this.props.text].join('');
 
     let characterCounter = '';
     let monologuingNotice = '';
@@ -218,7 +219,7 @@ const ComposeForm = React.createClass({
             <MonologueButtonContainer />
           </div>
 
-          <div style={{ paddingTop: '10px' }}><Button text={publishText} onClick={this.handleSubmit} disabled={disabled} /></div>
+          <div style={{ paddingTop: '10px', overflow: 'hidden' }}><Button text={publishText} onClick={this.handleSubmit} disabled={disabled || text.replace(/[\uD800-\uDBFF][\uDC00-\uDFFF]/g, "_").length > 500} block /></div>
         </div>
         <div className='compose-form__characterCounter'>
           {characterCounter}

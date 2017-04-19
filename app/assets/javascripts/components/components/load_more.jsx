@@ -1,7 +1,7 @@
 import { FormattedMessage } from 'react-intl';
 
 const LoadMore = ({ onClick }) => (
-  <a href='#' className='load-more' onClick={onClick}>
+  <a href="#" className='load-more' role='button' onClick={onClick}>
     <FormattedMessage id='status.load_more' defaultMessage='Load more' />
   </a>
 );

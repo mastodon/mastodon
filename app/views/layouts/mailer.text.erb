@@ -1,5 +1,5 @@
 <%= yield %>
 ---
 
-<%= t('application_mailer.signature', instance: Rails.configuration.x.local_domain) %>
+<%= t('application_mailer.signature', instance: site_hostname) %>
 <%= t('application_mailer.settings', link: settings_preferences_url) %>

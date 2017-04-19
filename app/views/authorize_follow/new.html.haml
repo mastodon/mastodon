@@ -5,7 +5,7 @@
   .follow-prompt
     %h2= t('authorize_follow.prompt_html', self: current_account.username)
 
-    = render partial: 'card', locals: { account: @account }
+    = render 'card', account: @account
 
   = form_tag authorize_follow_path, method: :post, class: 'simple_form' do
     = hidden_field_tag :acct, @account.acct

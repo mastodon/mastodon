@@ -13,6 +13,7 @@ import createStream from '../../stream';
 
 const mapStateToProps = state => ({
   hasUnread: state.getIn(['timelines', 'tag', 'unread']) > 0,
+  streamingAPIBaseURL: state.getIn(['meta', 'streaming_api_base_url']),
   accessToken: state.getIn(['meta', 'access_token'])
 });
 
@@ -21,6 +22,7 @@ const HashtagTimeline = React.createClass({
   propTypes: {
     params: React.PropTypes.object.isRequired,
     dispatch: React.PropTypes.func.isRequired,
+    streamingAPIBaseURL: React.PropTypes.string.isRequired,
     accessToken: React.PropTypes.string.isRequired,
     hasUnread: React.PropTypes.bool
   },
@@ -28,9 +30,9 @@ const HashtagTimeline = React.createClass({
   mixins: [PureRenderMixin],
 
   _subscribe (dispatch, id) {
-    const { accessToken } = this.props;
+    const { streamingAPIBaseURL, accessToken } = this.props;
 
-    this.subscription = createStream(accessToken, `hashtag&tag=${id}`, {
+    this.subscription = createStream(streamingAPIBaseURL, accessToken, `hashtag&tag=${id}`, {
 
       received (data) {
         switch(data.event) {

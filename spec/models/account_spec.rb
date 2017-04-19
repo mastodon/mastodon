@@ -245,6 +245,23 @@ RSpec.describe Account, type: :model do
     end
   end
 
+  describe '.triadic_closures' do
+    it 'finds accounts you dont follow which are followed by accounts you do follow' do
+      me = Fabricate(:account)
+      friend = Fabricate(:account)
+      friends_friend = Fabricate(:account)
+      me.follow!(friend)
+      friend.follow!(friends_friend)
+
+      both_follow = Fabricate(:account)
+      me.follow!(both_follow)
+      friend.follow!(both_follow)
+
+      results = Account.triadic_closures(me)
+      expect(results).to eq [friends_friend]
+    end
+  end
+
   describe '.find_local' do
     before do
       Fabricate(:account, username: 'Alice')
@@ -390,6 +407,20 @@ RSpec.describe Account, type: :model do
         account_1 = Fabricate(:account, domain: nil)
         account_2 = Fabricate(:account, domain: 'example.com')
         expect(Account.remote).to match_array([account_2])
+      end
+    end
+
+    describe 'by_domain_accounts' do
+      it 'returns accounts grouped by domain sorted by accounts' do
+        2.times { Fabricate(:account, domain: 'example.com') }
+        Fabricate(:account, domain: 'example2.com')
+
+        results = Account.by_domain_accounts
+        expect(results.length).to eq 2
+        expect(results.first.domain).to eq 'example.com'
+        expect(results.first.accounts_count).to eq 2
+        expect(results.last.domain).to eq 'example2.com'
+        expect(results.last.accounts_count).to eq 1
       end
     end
 
