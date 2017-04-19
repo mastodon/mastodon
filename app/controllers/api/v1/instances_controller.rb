@@ -5,7 +5,7 @@ class Api::V1::InstancesController < ApiController
   respond_to :json
 
   def show; end
-    
+
   def set_instance_presenter
     @instance_presenter = InstancePresenter.new
   end
