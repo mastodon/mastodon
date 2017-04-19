@@ -10,9 +10,10 @@ class Formatter
   include ActionView::Helpers::SanitizeHelper
 
   def format(status)
-    return reformat(status.content) unless status.local?
+    html = status.content
+    html = html.gsub(/  /, " \u00a0")
+    return reformat(html) unless status.local?
 
-    html = status.text
     html = encode(html)
     html = html.gsub(/(?:\n\r?|\r\n?)/, '<br />')
     html = link_urls(html)
