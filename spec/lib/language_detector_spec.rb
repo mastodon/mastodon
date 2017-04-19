@@ -1,24 +1,23 @@
 # frozen_string_literal: true
-
 require 'rails_helper'
 
 describe LanguageDetector do
   describe 'to_iso_s' do
     it 'detects english language' do
-      string = 'Hello and welcome to mastadon'
+      string = 'Hello and welcome to mastodon'
       result = described_class.new(string).to_iso_s
 
       expect(result).to eq :en
     end
 
     it 'detects spanish language' do
-      string = 'Obtener un Hola y bienvenidos a Mastadon'
+      string = 'Obtener un Hola y bienvenidos a Mastodon'
       result = described_class.new(string).to_iso_s
 
       expect(result).to eq :es
     end
 
-    describe 'when language cant be detected' do
+    describe 'when language can\'t be detected' do
       it 'confirm language engine cant detect' do
         result = WhatLanguage.new(:all).language_iso('')
         expect(result).to be_nil
@@ -26,17 +25,17 @@ describe LanguageDetector do
 
       describe 'with an account' do
         it 'uses the account locale when present' do
-          user = double(:user, locale: 'fr')
+          user    = double(:user, locale: 'fr')
           account = double(:account, user: user)
-          result = described_class.new('', account).to_iso_s
+          result  = described_class.new('', account).to_iso_s
 
           expect(result).to eq :fr
         end
 
         it 'uses default locale when account is present but has no locale' do
-          user = double(:user, locale: nil)
+          user    = double(:user, locale: nil)
           account = double(:accunt, user: user)
-          result = described_class.new('', account).to_iso_s
+          result  = described_class.new('', account).to_iso_s
 
           expect(result).to eq :en
         end
