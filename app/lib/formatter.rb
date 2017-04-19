@@ -54,7 +54,7 @@ class Formatter
     chars = html.to_s.to_char_a
     html_attrs = {
       target: '_blank',
-      rel: 'nofollow noopener'
+      rel: 'nofollow noopener',
     }
     result = ''
 
