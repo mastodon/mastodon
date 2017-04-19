@@ -28,6 +28,7 @@ if ENV['S3_ENABLED'] == 'true'
   unless ENV['S3_ENDPOINT'].blank?
     Paperclip::Attachment.default_options[:s3_options] = {
       endpoint: ENV['S3_ENDPOINT'],
+      signature_version: ENV['S3_SIGNATURE_VERSION'] || 'v4',
       force_path_style: true,
     }
 
