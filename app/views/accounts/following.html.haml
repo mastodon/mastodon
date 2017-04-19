@@ -1,9 +1,6 @@
 - content_for :page_title do
   = t('accounts.people_followed_by', name: display_name(@account))
 
-- content_for :header_tags do
-  = render 'og', account: @account
-
 = render 'header', account: @account
 
 .accounts-grid
