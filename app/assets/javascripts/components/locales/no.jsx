@@ -87,7 +87,7 @@ const no = {
   "report.placeholder": "Tilleggskommentarer",
   "report.submit": "Send inn",
   "report.target": "Rapporterer",
-  "search_results.total": "{count} {count, plural, one {resultat} other {resultater}}",
+  "search_results.total": "{count, number} {count, plural, one {resultat} other {resultater}}",
   "search.placeholder": "Søk",
   "search.status_by": "Status fra {name}",
   "status.delete": "Slett",

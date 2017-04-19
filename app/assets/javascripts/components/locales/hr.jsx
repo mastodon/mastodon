@@ -90,7 +90,7 @@ const hr = {
   "report.placeholder": "Dodatni komentari",
   "report.submit": "Pošalji",
   "report.target": "Prijavljivanje",
-  "search_results.total": "{count} {count, plural, one {result} other {results}}",
+  "search_results.total": "{count, number} {count, plural, one {result} other {results}}",
   "search.placeholder": "Traži",
   "search.status_by": "Status od {name}",
   "status.delete": "Obriši",

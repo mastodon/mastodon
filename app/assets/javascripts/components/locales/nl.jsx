@@ -59,7 +59,7 @@ const nl = {
   "search.placeholder": "Zoeken",
   "search.account": "Account",
   "search.hashtag": "Hashtag",
-  "search_results.total": "{count} {count, plural, one {resultaat} other {resultaten}}",
+  "search_results.total": "{count, number} {count, plural, one {resultaat} other {resultaten}}",
   "upload_button.label": "Media toevoegen",
   "upload_form.undo": "Ongedaan maken",
   "notification.follow": "{name} volgt jou nu",

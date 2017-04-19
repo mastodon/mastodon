@@ -81,7 +81,7 @@ const fr = {
   "search.placeholder": "Rechercher",
   "search.account": "Compte",
   "search.hashtag": "Mot-clé",
-  "search_results.total": "{count} {count, plural, one {résultat} other {résultats}}",
+  "search_results.total": "{count, number} {count, plural, one {résultat} other {résultats}}",
   "search.status_by": "Statuts de {name}",
   "upload_button.label": "Joindre un média",
   "upload_form.undo": "Annuler",
