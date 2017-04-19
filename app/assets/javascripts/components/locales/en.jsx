@@ -112,6 +112,7 @@ const en = {
   "status.reblog": "Boost",
   "status.reblogged_by": "{name} boosted",
   "status.reply": "Reply",
+  "status.replyAll": "Reply to thread",
   "status.report": "Report @{name}",
   "status.sensitive_toggle": "Click to view",
   "status.sensitive_warning": "Sensitive content",
