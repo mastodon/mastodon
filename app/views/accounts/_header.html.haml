@@ -2,9 +2,9 @@
   - if user_signed_in? && current_account.id != account.id && !current_account.requested?(account)
     .controls
       - if current_account.following?(account)
-        = link_to t('accounts.unfollow'), unfollow_account_path(account), data: { method: :post }, class: 'button'
+        = link_to t('accounts.unfollow'), account_unfollow_path(account), data: { method: :post }, class: 'button'
       - else
-        = link_to t('accounts.follow'), follow_account_path(account), data: { method: :post }, class: 'button'
+        = link_to t('accounts.follow'), account_follow_path(account), data: { method: :post }, class: 'button'
   - elsif !user_signed_in?
     .controls
       .remote-follow
@@ -24,11 +24,11 @@
         = link_to short_account_url(account), class: 'u-url u-uid' do
           %span.counter-label= t('accounts.posts')
           %span.counter-number= number_with_delimiter account.statuses_count
-      .counter{ class: active_nav_class(following_account_url(account)) }
-        = link_to following_account_url(account) do
+      .counter{ class: active_nav_class(account_following_index_url(account)) }
+        = link_to account_following_index_url(account) do
           %span.counter-label= t('accounts.following')
           %span.counter-number= number_with_delimiter account.following_count
-      .counter{ class: active_nav_class(followers_account_url(account)) }
-        = link_to followers_account_url(account) do
+      .counter{ class: active_nav_class(account_followers_url(account)) }
+        = link_to account_followers_url(account) do
           %span.counter-label= t('accounts.followers')
           %span.counter-number= number_with_delimiter account.followers_count

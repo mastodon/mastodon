@@ -37,13 +37,10 @@ Rails.application.routes.draw do
     get :remote_follow,  to: 'remote_follow#new'
     post :remote_follow, to: 'remote_follow#create'
 
-    member do
-      get :followers
-      get :following
-
-      post :follow
-      post :unfollow
-    end
+    resources :followers, only: [:index], controller: :follower_accounts
+    resources :following, only: [:index], controller: :following_accounts
+    resource :follow, only: [:create], controller: :account_follow
+    resource :unfollow, only: [:create], controller: :account_unfollow
   end
 
   get '/@:username', to: 'accounts#show', as: :short_account
