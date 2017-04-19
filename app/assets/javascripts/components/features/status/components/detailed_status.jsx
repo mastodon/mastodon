@@ -44,7 +44,7 @@ const DetailedStatus = React.createClass({
       } else {
         media = <MediaGallery sensitive={status.get('sensitive')} media={status.get('media_attachments')} height={300} onOpenMedia={this.props.onOpenMedia} />;
       }
-    } else if (status.get('spoiler_text').length == 0) {
+    } else if (status.get('spoiler_text').length === 0) {
       media = <CardContainer statusId={status.get('id')} />;
     }
 
