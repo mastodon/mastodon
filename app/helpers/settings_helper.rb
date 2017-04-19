@@ -9,6 +9,7 @@ module SettingsHelper
     fr: 'Français',
     hr: 'Hrvatski',
     hu: 'Magyar',
+    io: 'Ido',
     it: 'Italiano',
     nl: 'Nederlands',
     no: 'Norsk',
