@@ -135,6 +135,7 @@ const ComposeForm = React.createClass({
     const disabled = this.props.is_submitting;
     const text = [this.props.spoiler_text, this.props.text].join('');
 
+    let disableSubmitButton = false;
     let characterCounter = '';
     let monologuingNotice = '';
 
@@ -172,6 +173,7 @@ const ComposeForm = React.createClass({
       );
     } else {
       characterCounter = <CharacterCounter max={500} text={[this.props.spoiler_text, this.props.text].join('')} />;
+      disableSubmitButton = text.replace(/[\uD800-\uDBFF][\uDC00-\uDFFF]/g, "_").length > 500;
     }
 
     return (
@@ -219,7 +221,9 @@ const ComposeForm = React.createClass({
             <MonologueButtonContainer />
           </div>
 
-          <div style={{ paddingTop: '10px', overflow: 'hidden' }}><Button text={publishText} onClick={this.handleSubmit} disabled={disabled || text.replace(/[\uD800-\uDBFF][\uDC00-\uDFFF]/g, "_").length > 500} block /></div>
+          <div style={{ paddingTop: '10px', overflow: 'hidden' }}>
+            <Button text={publishText} onClick={this.handleSubmit} disabled={disabled || disableSubmitButton} block />
+          </div>
         </div>
         <div className='compose-form__characterCounter'>
           {characterCounter}
