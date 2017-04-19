@@ -4,7 +4,7 @@ const ja = {
   "account.edit_profile": "プロフィールをいらう",
   "account.follow": "ツルむ",
   "account.followers": "ツルまれ",
-  "account.follows": "ツルむ",
+  "account.follows": "ツルみ",
   "account.follows_you": "ツルまれています",
   "account.mention": "@{name} はんに返信",
   "account.mute": "ミュート",
