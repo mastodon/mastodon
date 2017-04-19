@@ -6,41 +6,42 @@
         avatar: PNG, GIF eller JPG. Maksimalt 2MB. Vil bli nedskalert til 120x120px
         display_name: Maksimalt 30 tegn
         header: PNG, GIF eller JPG. Maksimalt 2MB. Vil bli nedskalert til 700x335px
-        locked: Krever at du manuelt godkjenner følgere og setter standard beskyttelse av poster til kun-følgere
+        locked: Krever at du manuelt godkjenner følgere og setter standardbeskyttelse av poster til kun-følgere
         note: Maksimalt 160 tegn
       imports:
-        data: CSV fil eksportert fra en annen Mastodon instans
+        data: CSV-fil eksportert fra en annen Mastodon instans
     labels:
       defaults:
-        avatar: Avatar
+        avatar: Profilbilde
         confirm_new_password: Bekreft nytt passord
         confirm_password: Bekreft passord
         current_password: Nåværende passord
         data: Data
         display_name: Visningsnavn
-        email: E-post adresse
-        header: Header
+        email: E-postadresse
+        header: Overskrift
         locale: Språk
         locked: Endre konto til privat
         new_password: Nytt passord
         note: Biografi
-        otp_attempt: To-faktor kode
+        otp_attempt: Tofaktorkode
         password: Passord
         setting_boost_modal: Vis bekreftelsesdialog før reblogging
         setting_default_privacy: Leserettigheter for poster
         type: Importeringstype
         username: Brukernavn
+        setting_boost_modal: Vis bekreftelsesdialog før fremheving
       interactions:
-        must_be_follower: Blokker varslinger fra ikke-følgere
-        must_be_following: Blokker varslinger fra folk du ikke følger
+        must_be_follower: Blokkér varslinger fra ikke-følgere
+        must_be_following: Blokkér varslinger fra brukere du ikke følger
       notification_emails:
         digest: Send oppsummeringseposter
         favourite: Send e-post når noen liker din status
         follow: Send e-post når noen følger deg
         follow_request: Send e-post når noen ber om å få følge deg
         mention: Send e-post når noen nevner deg
-        reblog: Send e-post når noen reblogger din status
-    'no': Nei
+        reblog: Send e-post når noen fremhever din status
+    'no': 'Nei'
     required:
       mark: "*"
       text: påkrevd

@@ -17,7 +17,7 @@
       ethics: 'Etisk design: Ingen reklame, ingen sporing'
       gifv: Støtte for GIFV og korte videoer
       privacy: Finmaskede personvernsinnstillinger
-      public: Forente tidslinjer
+      public: Felles tidslinjer
     features_headline: Hva skiller Mastodon fra andre sosiale nettverk
     get_started: Kom i gang
     links: Lenker
@@ -40,7 +40,7 @@
     unfollow: Avfølg
   application_mailer:
     settings: 'Endre foretrukne epost innstillinger: %{link}'
-    signature: Mastodon notiser fra %{instance}
+    signature: Mastodon-notiser fra %{instance}
     view: 'Se:'
   applications:
     invalid_url: Den oppgitte URLen er ugyldig
@@ -55,44 +55,44 @@
     reset_password: Nullstill passord
     set_new_password: Sett nytt passord
   authorize_follow:
-    error: Uheldigvis så skjedde det en feil når vi prøvde å få tak i en konto fra en annen instans.
+    error: Uheldigvis så skjedde det en feil da vi prøvde å få tak i en bruker fra en annen instans.
     follow: Følg
     prompt_html: 'Du (<strong>%{self}</strong>) har spurt om å følge:'
     title: Følg %{acct}
   datetime:
     distance_in_words:
-      about_x_hours: "%{count}t"
-      about_x_months: "%{count}m"
-      about_x_years: "%{count}å"
-      almost_x_years: "%{count}å"
-      half_a_minute: Nylig
-      less_than_x_minutes: "%{count}min"
-      less_than_x_seconds: Nylig
-      over_x_years: "%{count}å"
-      x_days: "%{count}d"
-      x_minutes: "%{count}min"
-      x_months: "%{count}mo"
-      x_seconds: "%{count}s"
+      about_x_hours: "%{count} timer"
+      about_x_months: "%{count} mnd"
+      about_x_years: "%{count} år"
+      almost_x_years: "%{count} år"
+      half_a_minute: Nettopp
+      less_than_x_minutes: "%{count} min"
+      less_than_x_seconds: Nettopp
+      over_x_years: "%{count} år"
+      x_days: "%{count} dager"
+      x_minutes: "%{count} min"
+      x_months: "%{count} mnd"
+      x_seconds: "%{count} sek"
   exports:
     blocks: Du blokkerer
     csv: CSV
     follows: Du følger
-    storage: Media lagring
+    storage: Medialagring
   generic:
     changes_saved_msg: Vellykket lagring av endringer!
     powered_by: drevet av %{link}
     save_changes: Lagre endringer
     validation_errors:
-      one: Noe er ikke helt riktig ennå. Vær snill å se etter en gang til
+      one: Noe er ikke helt riktig ennå. Vennligst se etter en gang til
       other: Noe er ikke helt riktig ennå. Det er ennå %{count} feil å rette på
   imports:
-    preface: Du kan importere data om mennesker du følger eller blokkerer inn til kontoen din på denne instansen, fra filer opprettet av eksporter fra andre instanser.
-    success: Din data ble mottatt og vil bli prosessert så fort som mulig.
+    preface: Du kan importere data om brukere du følger eller blokkerer til kontoen din på denne instansen med eksportfiler fra andre instanser.
+    success: Din data ble mottatt og vil bli behandlet så fort som mulig.
     types:
       blocking: Blokkeringsliste
       following: Følgeliste
     upload: Opplastning
-  landing_strip_html: <strong>%{name}</strong> er en bruker på <strong>%{domain}</strong>. Du kan følge dem eller interagere med dem hvis du har en konto hvor som helst i fediverset. Hvis du ikke har en konto så kan du <a href="%{sign_up_path}">registrere deg her</a>.
+  landing_strip_html: <strong>%{name}</strong> er en bruker på <strong>%{domain}</strong>. Du kan følge dem eller kommunisere med dem hvis du har en konto hvor som helst i fediverset. Hvis du ikke har en konto så kan du <a href="%{sign_up_path}">registrere deg her</a>.
   notification_mailer:
     digest:
       body: 'Her er en kort oppsummering av hva du har gått glipp av på %{instance} siden du logget deg inn sist den %{since}:'
@@ -110,14 +110,14 @@
       body: "%{name} følger deg!"
       subject: "%{name} følger deg"
     follow_request:
-      body: "%{name} har spurt om å få lov til å følge deg"
-      subject: 'Ventende følger: %{name}'
+      body: "%{name} har bedt om lov til å følge deg"
+      subject: 'Ventende følginger: %{name}'
     mention:
       body: 'Du ble nevnt av %{name} i:'
       subject: Du ble nevnt av %{name}
     reblog:
-      body: 'Din status ble reblogget av %{name}:'
-      subject: "%{name} reblogget din status"
+      body: 'Din status ble fremhevd av %{name}:'
+      subject: "%{name} fremhevde din status"
   pagination:
     next: Neste
     prev: Forrige
@@ -125,38 +125,36 @@
     acct: Tast inn brukernavn@domene som du vil følge fra
     missing_resource: Kunne ikke finne URLen for din konto
     proceed: Fortsett med følging
-    prompt: 'Du kommer til å følge:'
+    prompt: 'Du vil følge:'
   settings:
     authorized_apps: Autoriserte applikasjoner
     back: Tilbake til Mastodon
     edit_profile: Endre profil
-    export: Data eksport
-    import: Importer
-    preferences: Foretrukne valg
+    export: Dataeksport
+    import: Importér
+    preferences: Preferanser
     settings: Innstillinger
-    two_factor_auth: To-faktor autentisering
+    two_factor_auth: Tofaktorautentisering
   statuses:
     open_in_web: Åpne i nettleser
-    over_character_limit: tegngrense på %{max} overskredet
+    over_character_limit: grense på %{max} tegn overskredet
     show_more: Vis mer
     visibilities:
       private: Vis kun til følgere
       public: Offentlig
-      unlisted: Offentlig, men vis ikke på forent tidslinje
+      unlisted: Offentlig, men vis ikke på felles tidslinje
   stream_entries:
     click_to_show: Klikk for å vise
-    reblogged: reblogget
-    sensitive_content: Sensitivt innhold
+    reblogged: fremhevde
+    sensitive_content: Følsomt innhold
   time:
     formats:
       default: "%d, %b %Y, %H:%M"
   two_factor_auth:
-    description_html: Hvis du skru på <strong>tofaktor autentisering</strong> vil innlogging kreve at du har telefonen din, som vil generere koder som du må taste inn.
+    description_html: Hvis du skrur på <strong>tofaktorautentisering</strong> må du ha din telefon for å logge inn. Denne vil generere koder som du må taste inn.
     disable: Skru av
     enable: Skru på
-    instructions_html: "<strong>Scan denne QR-koden i Google Authenticator eller en lignende app på telefonen din</strong>. Fra nå av så vil denne applikasjonen generere koder for deg som skal brukes under innlogging"
-    plaintext_secret_html: 'Plain-text secret: <samp>%{secret}</samp>'
-    warning: Hvis du ikke kan konfigurere en autentikatorapp nå, så bør du trykke "Skru av"; ellers vil du ikke kunne logge inn.
+    instructions_html: "<strong>Scan denne QR-koden i Google Authenticator eller en lignende app på telefonen din</strong>. Fra nå av vil denne applikasjonen generere koder for deg som skal brukes under innlogging"
   users:
-    invalid_email: E-post addressen er ugyldig
-    invalid_otp_token: Ugyldig two-faktor kode
+    invalid_email: E-postaddressen er ugyldig
+    invalid_otp_token: Ugyldig tofaktorkode

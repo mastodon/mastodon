@@ -32,16 +32,20 @@ module Mastodon
       :es,
       :fi,
       :fr,
-      :it,
+      :hr,
       :hu,
+      :it,
       :ja,
       :nl,
       :no,
+      :oc,
       :pt,
+      :'pt-BR',
       :ru,
       :uk,
       'zh-CN',
       :'zh-HK',
+      :'zh-TW',
     ]
 
     config.i18n.default_locale    = :en
