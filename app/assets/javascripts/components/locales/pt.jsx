@@ -90,7 +90,7 @@ const pt = {
   "report.placeholder": "Comentários adicionais",
   "report.submit": "Enviar",
   "report.target": "Denunciar",
-  "search_results.total": "{count} {count, plural, one {resultado} other {resultados}}",
+  "search_results.total": "{count, number} {count, plural, one {resultado} other {resultados}}",
   "search.placeholder": "Pesquisar",
   "search.status_by": "Post de {name}",
   "status.delete": "Eliminar",

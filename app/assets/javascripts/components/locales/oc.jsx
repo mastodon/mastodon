@@ -80,7 +80,7 @@ const oc = {
   "search.placeholder": "Recercar",
   "search.account": "Compte",
   "search.hashtag": "Mot-clau",
-  "search_results.total": "{count} {count, plural, one {resultat} other {resultats}}",
+  "search_results.total": "{count, number} {count, plural, one {resultat} other {resultats}}",
   "search.status_by": "Estatuts de {name}",
   "upload_button.label": "Apondre un mèdia",
   "upload_form.undo": "Anullar",

@@ -119,7 +119,7 @@ const zh_cn = {
   "report.placeholder": "额外消息",
   "report.submit": "提交",
   "report.target": "Reporting",
-  "search_results.total": "{count} 项结果",
+  "search_results.total": "{count, number} 项结果",
   "search.account": "用户",
   "search.hashtag": "标签",
   "search.placeholder": "搜索",
