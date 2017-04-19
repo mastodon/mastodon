@@ -25,7 +25,7 @@ bundler_args: --without development production --retry=3 --jobs=3
 before_install:
   - sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test
   - sudo apt-get -qq update
-  - sudo apt-get -qq install g++-4.8
+  - sudo apt-get -qq install g++-4.8 ffmpeg
 install:
   - nvm install
   - npm install -g yarn
