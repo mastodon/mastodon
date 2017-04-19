@@ -11,9 +11,6 @@
 - if show_landing_strip?
   = render partial: 'shared/landing_strip', locals: { account: @account }
 
-.bg-profile
-  .bg-profile-img{ style: "background-image: url(#{@account.header_static_url})" }
-
 .h-feed
   %data.p-name{ value: "#{@account.username} on #{site_hostname}" }/
 
