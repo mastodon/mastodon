@@ -44,7 +44,10 @@ const Button = React.createClass({
       cursor: 'pointer',
       lineHeight: `${this.props.size}px`,
       borderRadius: '4px',
-      textDecoration: 'none'
+      textDecoration: 'none',
+      whiteSpace: 'nowrap',
+      textOverflow: 'ellipsis',
+      overflow: 'hidden'
     };
 
     return (
