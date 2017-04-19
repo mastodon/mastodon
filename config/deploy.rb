@@ -10,5 +10,5 @@ set :rbenv_type, :user
 set :rbenv_ruby, File.read('.ruby-version').strip
 set :migration_role, :app
 
-append :linked_files, '.env.production'
+append :linked_files, '.env.production', 'public/robots.txt'
 append :linked_dirs, 'vendor/bundle', 'node_modules', 'public/system'

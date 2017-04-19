@@ -10,6 +10,7 @@ const messages = defineMessages({
   mute: { id: 'account.mute', defaultMessage: 'Mute @{name}' },
   block: { id: 'account.block', defaultMessage: 'Block @{name}' },
   reply: { id: 'status.reply', defaultMessage: 'Reply' },
+  replyAll: { id: 'status.replyAll', defaultMessage: 'Reply to thread' },
   reblog: { id: 'status.reblog', defaultMessage: 'Reblog' },
   favourite: { id: 'status.favourite', defaultMessage: 'Favourite' },
   open: { id: 'status.open', defaultMessage: 'Expand this status' },
@@ -95,10 +96,19 @@ const StatusActionBar = React.createClass({
     let reblogIcon = 'retweet';
     if (status.get('visibility') === 'direct') reblogIcon = 'envelope';
     else if (status.get('visibility') === 'private') reblogIcon = 'lock';
+    let reply_icon;
+    let reply_title;
+    if (status.get('in_reply_to_id', null) === null) {
+      reply_icon = "reply";
+      reply_title = intl.formatMessage(messages.reply);
+    } else {
+      reply_icon = "reply-all";
+      reply_title = intl.formatMessage(messages.replyAll);
+    }
 
     return (
       <div style={{ marginTop: '10px', overflow: 'hidden' }}>
-        <div style={{ float: 'left', marginRight: '18px'}}><IconButton title={intl.formatMessage(messages.reply)} icon={status.get('in_reply_to_id', null) === null ? 'reply' : 'reply-all'} onClick={this.handleReplyClick} /></div>
+        <div style={{ float: 'left', marginRight: '18px'}}><IconButton title={reply_title} icon={reply_icon} onClick={this.handleReplyClick} /></div>
         <div style={{ float: 'left', marginRight: '18px'}}><IconButton disabled={status.get('visibility') === 'private' || status.get('visibility') === 'direct'} active={status.get('reblogged')} title={intl.formatMessage(messages.reblog)} icon={reblogIcon} onClick={this.handleReblogClick} /></div>
         <div style={{ float: 'left', marginRight: '18px'}}><IconButton animate={true} active={status.get('favourited')} title={intl.formatMessage(messages.favourite)} icon='star' onClick={this.handleFavouriteClick} activeStyle={{ color: '#ca8f04' }} /></div>
 

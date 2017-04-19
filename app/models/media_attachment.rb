@@ -3,7 +3,7 @@
 class MediaAttachment < ApplicationRecord
   self.inheritance_column = nil
 
-  enum type: [:image, :gifv, :video]
+  enum type: [:image, :gifv, :video, :unknown]
 
   IMAGE_MIME_TYPES = ['image/jpeg', 'image/png', 'image/gif'].freeze
   VIDEO_MIME_TYPES = ['video/webm', 'video/mp4'].freeze
@@ -50,7 +50,7 @@ class MediaAttachment < ApplicationRecord
   end
 
   before_create :set_shortcode
-  before_post_process :set_type
+  before_post_process :set_type_and_extension
 
   class << self
     private
@@ -95,6 +95,8 @@ class MediaAttachment < ApplicationRecord
   private
 
   def set_shortcode
+    self.type = :unknown if file.blank? && type.blank?
+
     return unless local?
 
     loop do
@@ -103,7 +105,14 @@ class MediaAttachment < ApplicationRecord
     end
   end
 
-  def set_type
-    self.type = VIDEO_MIME_TYPES.include?(file_content_type) ? :video : :image
+  def set_type_and_extension
+    if file.blank?
+      self.type = :unknown
+    else
+      self.type = VIDEO_MIME_TYPES.include?(file_content_type) ? :video : :image
+      extension = Paperclip::Interpolations.content_type_extension(file, :original)
+      basename  = Paperclip::Interpolations.basename(file, :original)
+      file.instance_write :file_name, [basename, extension].delete_if(&:empty?).join('.')
+    end
   end
 end
