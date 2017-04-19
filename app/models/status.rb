@@ -6,7 +6,7 @@ class Status < ApplicationRecord
   include Streamable
   include Cacheable
 
-  enum visibility: [:public, :local, :unlisted, :private, :direct], _suffix: :visibility
+  enum visibility: [:public, :unlisted, :private, :direct, :local], _suffix: :visibility
 
   belongs_to :application, class_name: 'Doorkeeper::Application'
 
