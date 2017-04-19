@@ -58,7 +58,7 @@ const ja = {
   "navigation_bar.favourites": "ええやん",
   "navigation_bar.follow_requests": "ツルみリクエスト",
   "navigation_bar.info": "サーバー情報",
-  "navigation_bar.logout": "ログアウト",
+  "navigation_bar.logout": "ほなさいなら",
   "navigation_bar.mutes": "ミュートしたosaka人",
   "navigation_bar.preferences": "osaka人設定",
   "navigation_bar.public_timeline": "新世界",
