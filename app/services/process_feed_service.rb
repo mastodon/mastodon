@@ -108,7 +108,9 @@ class ProcessFeedService < BaseService
       # If that author cannot be found, don't record the status (do not misattribute)
       if account?(entry)
         begin
-          account = find_or_resolve_account(acct(entry))
+          follow_remote_account_service = FollowRemoteAccountService.new
+          uri = follow_remote_account_service.acct_uri_from_atom(entry)
+          account = follow_remote_account_service.call(uri)
           return [nil, false] if account.nil?
         rescue Goldfinger::Error
           return [nil, false]
@@ -141,10 +143,6 @@ class ProcessFeedService < BaseService
       media_from_xml(status, entry)
 
       [status, true]
-    end
-
-    def find_or_resolve_account(acct)
-      FollowRemoteAccountService.new.call(acct)
     end
 
     def find_or_resolve_status(parent, uri, url)
@@ -182,12 +180,17 @@ class ProcessFeedService < BaseService
     end
 
     def account_from_href(href)
+      account = Account.find_by(uri: href)
+      return account unless account.nil? || account.needs_webfinger_update?
+
       url = Addressable::URI.parse(href).normalize
 
       if TagManager.instance.web_domain?(url.host)
         Account.find_local(url.path.gsub('/users/', ''))
       else
-        Account.find_by(uri: href) || Account.find_by(url: href) || FetchRemoteAccountService.new.call(href)
+        follow_remote_account_service = FollowRemoteAccountService.new
+        uri = follow_remote_account_service.acct_uri_from_user_uri(href)
+        follow_remote_account_service.call(uri)
       end
     end
 
@@ -274,14 +277,6 @@ class ProcessFeedService < BaseService
 
     def account?(xml = @xml)
       !xml.at_xpath('./xmlns:author', xmlns: TagManager::XMLNS).nil?
-    end
-
-    def acct(xml = @xml)
-      username = xml.at_xpath('./xmlns:author/xmlns:name', xmlns: TagManager::XMLNS).content
-      url      = xml.at_xpath('./xmlns:author/xmlns:uri', xmlns: TagManager::XMLNS).content
-      domain   = Addressable::URI.parse(url).normalize.host
-
-      "#{username}@#{domain}"
     end
   end
 end

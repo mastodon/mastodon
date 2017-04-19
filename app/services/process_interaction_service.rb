@@ -12,14 +12,8 @@ class ProcessInteractionService < BaseService
 
     return unless contains_author?(xml)
 
-    username = xml.at_xpath('/xmlns:entry/xmlns:author/xmlns:name', xmlns: TagManager::XMLNS).content
-    url      = xml.at_xpath('/xmlns:entry/xmlns:author/xmlns:uri', xmlns: TagManager::XMLNS).content
-    domain   = Addressable::URI.parse(url).normalize.host
-    account  = Account.find_by(username: username, domain: domain)
-
-    if account.nil?
-      account = follow_remote_account_service.call("#{username}@#{domain}")
-    end
+    acct_uri = follow_remote_account_service.acct_uri_from_atom(xml)
+    account = follow_remote_account_service.call(acct_uri)
 
     return if account.suspended?
 
