@@ -1,0 +1,46 @@
+---
+zh-TW:
+  simple_form:
+    hints:
+      defaults:
+        avatar: 支援 PNG, GIF 或 JPG 圖片，檔案大小上限為 2MB，會被縮小為 120x120px
+        display_name: 最多 30 個字元
+        header: 支援 PNG, GIF 或 JPG 圖片，檔案大小上限為 2MB，會被縮小為 700x335px
+        locked: 您必須手動核准每個使用者對您的關注請求，而您的文章隱私預設為「只有關注您的人能看」
+        note: 最多 160 個字元
+      imports:
+        data: 自其他服務站匯出的 CSV 檔案
+    labels:
+      defaults:
+        avatar: 大頭貼
+        confirm_new_password: 確認新密碼
+        confirm_password: 確認密碼
+        current_password: 目前密碼
+        data: 資料
+        display_name: 顯示名稱
+        email: 電子信箱
+        header: 個人頁面頂部
+        locale: 語言
+        locked: 將帳號轉為「私密」
+        new_password: 新密碼
+        note: 簡介
+        otp_attempt: 雙因子驗證碼
+        password: 密碼
+        setting_default_privacy: 文章預設隱私度
+        type: 匯入資料類型
+        username: 使用者名稱
+      interactions:
+        must_be_follower: 隱藏沒有關注您的使用者的通知
+        must_be_following: 隱藏您不關注的使用者的通知
+      notification_emails:
+        digest: 定期摘要信
+        favourite: 當有使用者喜歡您的文章時，發信通知
+        follow: 當有使用者關注您時，發信通知
+        follow_request: 當有使用者要求關注您時，發信通知
+        mention: 當有使用者在文章提及您時，發信通知
+        reblog: 當有使用者轉推您的文章時，發信通知
+    'no': '否'
+    required:
+      mark: "*"
+      text: 必填
+    'yes': '是'

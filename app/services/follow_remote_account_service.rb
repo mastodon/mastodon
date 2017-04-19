@@ -16,7 +16,7 @@ class FollowRemoteAccountService < BaseService
     return Account.find_local(username) if TagManager.instance.local_domain?(domain)
 
     account = Account.find_remote(username, domain)
-    return account unless account.nil?
+    return account unless account_needs_webfinger_update?(account)
 
     Rails.logger.debug "Looking up webfinger for #{uri}"
 
@@ -29,20 +29,24 @@ class FollowRemoteAccountService < BaseService
     return Account.find_local(confirmed_username) if TagManager.instance.local_domain?(confirmed_domain)
 
     confirmed_account = Account.find_remote(confirmed_username, confirmed_domain)
-    return confirmed_account unless confirmed_account.nil?
+    if confirmed_account.nil?
+      Rails.logger.debug "Creating new remote account for #{uri}"
 
-    Rails.logger.debug "Creating new remote account for #{uri}"
+      domain_block = DomainBlock.find_by(domain: domain)
+      account = Account.new(username: confirmed_username, domain: confirmed_domain)
+      account.suspended   = true if domain_block && domain_block.suspend?
+      account.silenced    = true if domain_block && domain_block.silence?
+      account.private_key = nil
+    else
+      account = confirmed_account
+    end
 
-    domain_block = DomainBlock.find_by(domain: domain)
+    account.last_webfingered_at = Time.now.utc
 
-    account = Account.new(username: confirmed_username, domain: confirmed_domain)
     account.remote_url  = data.link('http://schemas.google.com/g/2010#updates-from').href
     account.salmon_url  = data.link('salmon').href
     account.url         = data.link('http://webfinger.net/rel/profile-page').href
     account.public_key  = magic_key_to_pem(data.link('magic-public-key').href)
-    account.private_key = nil
-    account.suspended   = true if domain_block && domain_block.suspend?
-    account.silenced    = true if domain_block && domain_block.silence?
 
     body, xml = get_feed(account.remote_url)
     hubs      = get_hubs(xml)
@@ -57,6 +61,10 @@ class FollowRemoteAccountService < BaseService
   end
 
   private
+
+  def account_needs_webfinger_update?(account)
+    account&.last_webfingered_at.nil? || account.last_webfingered_at <= 1.day.ago
+  end
 
   def get_feed(url)
     response = http_client.get(Addressable::URI.parse(url))

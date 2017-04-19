@@ -44,18 +44,4 @@ RSpec.describe AccountsController, type: :controller do
       end
     end
   end
-
-  describe 'GET #followers' do
-    it 'returns http success' do
-      get :followers, params: { username: alice.username }
-      expect(response).to have_http_status(:success)
-    end
-  end
-
-  describe 'GET #following' do
-    it 'returns http success' do
-      get :following, params: { username: alice.username }
-      expect(response).to have_http_status(:success)
-    end
-  end
 end

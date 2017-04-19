@@ -2,60 +2,60 @@
 'no':
   devise:
     confirmations:
-      confirmed: Epostaddressen din er blitt bekreftet.
-      send_instructions: Du vil motta en epost med instruksjoner for hvordan bekrefte din epostaddresse om noen få minutter.
-      send_paranoid_instructions: Hvis din epostaddresse finnes i vår database vil du motta en epost med instruksjoner for hvordan bekrefte din epost om noen få minutter.
+      confirmed: E-postaddressen din er blitt bekreftet.
+      send_instructions: Du vil motta en e-post med instruksjoner for bekreftelse om noen få minutter.
+      send_paranoid_instructions: Hvis din e-postaddresse finnes i vår database vil du motta en e-post med instruksjoner for bekreftelse om noen få minutter.
     failure:
       already_authenticated: Du er allerede innlogget.
       inactive: Din konto er ikke blitt aktivert ennå.
       invalid: Ugyldig %{authentication_keys} eller passord.
-      last_attempt: Du har ett forsøk igjen før kontoen din bli låst.
+      last_attempt: Du har ett forsøk igjen før kontoen din låses.
       locked: Din konto er låst.
       not_found_in_database: Ugyldig %{authentication_keys} eller passord.
-      timeout: Sesjonen din løp ut på tid. Logg inn på nytt for å fortsette.
+      timeout: Økten din løp ut på tid. Logg inn på nytt for å fortsette.
       unauthenticated: Du må logge inn eller registrere deg før du kan fortsette.
-      unconfirmed: Du må bekrefte epostadressen din før du kan fortsette.
+      unconfirmed: Du må bekrefte e-postadressen din før du kan fortsette.
     mailer:
       confirmation_instructions:
-        subject: 'Mastodon: Instruksjoner for å bekrefte epostadresse'
+        subject: 'Mastodon: Instruksjoner for å bekrefte e-postadresse'
       password_change:
         subject: 'Mastodon: Passord endret'
       reset_password_instructions:
-        subject: 'Mastodon: Hvordan nullstille passord?'
+        subject: 'Mastodon: Hvordan nullstille passord'
       unlock_instructions:
         subject: 'Mastodon: Instruksjoner for å gjenåpne konto'
     omniauth_callbacks:
       failure: Kunne ikke autentisere deg fra %{kind} fordi "%{reason}".
       success: Vellykket autentisering fra %{kind}.
     passwords:
-      no_token: Du har ingen tilgang til denne siden så lenge du ikke kommer fra en epost om nullstilling av passord. Hvis du kommer fra en passordnullstilling epost, dobbelsjekk at du brukte hele URLen.
-      send_instructions: Du vil motta en epost med instruksjoner for å nullstille passordet ditt om noen få minutter.
-      send_paranoid_instructions: Hvis epostadressen din finnes i databasen vår vil du motta en instruksjonsmail om passord nullstilling om noen få minutter.
-      updated: Passordet ditt har blitt endret. Du er nå logget inn.
-      updated_not_active: Passordet ditt har blitt endret.
+      no_token: Du har ingen tilgang til denne siden hvis ikke klikket på en e-post om nullstilling av passord. Hvis du kommer fra en sådan bør du dobbelsjekke at du limte inn hele URLen.
+      send_instructions: Du vil motta en e-post med instruksjoner om nullstilling av passord om noen få minutter.
+      send_paranoid_instructions: Hvis e-postadressen din finnes i databasen vår vil du motta en e-post med instruksjoner om nullstilling av passord om noen få minutter.
+      updated: Passordet ditt er endret. Du er nå logget inn.
+      updated_not_active: Passordet ditt er endret.
     registrations:
-      destroyed: Adjø! Kontoen din har blitt avsluttet. Vi håper at vi ser deg igjen snart.
-      signed_up: Velkommen! Registrasjonen var vellykket.
-      signed_up_but_inactive: Registrasjonen var vellykket. Vi kunne dessverre ikke logge deg inn fordi kontoen din ennå ikke har blitt aktivert.
-      signed_up_but_locked: Registrasjonen var vellykket. Vi kunne dessverre ikke logge deg inn fordi kontoen din har blitt låst.
-      signed_up_but_unconfirmed: En epostmelding med en bekreftelseslink har blitt sendt til din adresse. Klikk på linken i eposten for å aktivere kontoen din.
-      update_needs_confirmation: Du har oppdatert kontoen din, men vi må bekrefte din nye epostadresse. Sjekk eposten din og følg bekreftelseslinken for å bekrefte din nye epostadresse.
+      destroyed: Adjø! Kontoen din er slettet. På gjensyn!
+      signed_up: Velkommen! Registreringen var vellykket.
+      signed_up_but_inactive: Registreringen var vellykket. Vi kunne dessverre ikke logge deg inn fordi kontoen din ennå ikke har blitt aktivert.
+      signed_up_but_locked: Registreringen var vellykket. Vi kunne dessverre ikke logge deg inn fordi kontoen din har blitt låst.
+      signed_up_but_unconfirmed: En e-post med en bekreftelseslenke har blitt sendt til din innboks. Klikk på lenken i e-posten for å aktivere kontoen din.
+      update_needs_confirmation: Du har oppdatert kontoen din, men vi må bekrefte din nye e-postadresse. Sjekk e-posten din og følg bekreftelseslenken for å bekrefte din nye e-postadresse.
       updated: Kontoen din ble oppdatert.
     sessions:
       already_signed_out: Logget ut.
       signed_in: Logget inn.
       signed_out: Logget ut.
     unlocks:
-      send_instructions: Du vil motta en epost med instruksjoner for å åpne kontoen din om noen få minutter.
-      send_paranoid_instructions: Hvis kontoen din eksisterer vil du motta en epost med instruksjoner for å åpne kontoen din om noen få minutter.
+      send_instructions: Du vil motta en e-post med instruksjoner for å åpne kontoen din om noen få minutter.
+      send_paranoid_instructions: Hvis kontoen din eksisterer vil du motta en e-post med instruksjoner for å åpne kontoen din om noen få minutter.
       unlocked: Kontoen din ble åpnet uten problemer. Logg på for å fortsette.
   errors:
     messages:
-      already_confirmed: har allerede blitt bekreftet, prøv å logg på istedet.
-      confirmation_period_expired: må bekreftes innen %{period}. Spør om en ny bekreftelsesmail istedet.
+      already_confirmed: har allerede blitt bekreftet, prøv å logge på istedet.
+      confirmation_period_expired: må bekreftes innen %{period}. Spør om en ny e-mail for bekreftelse istedet.
       expired: har utløpt, spør om en ny en istedet
       not_found: ikke funnet
       not_locked: var ikke låst
       not_saved:
-        one: '1 feil hindret denne %{resource} fra å bli lagret:'
-        other: "%{count} feil hindret denne %{resource} fra å bli lagret:"
+        one: '1 feil hindret denne %{resource} i å bli lagret:'
+        other: "%{count} feil hindret denne %{resource} i å bli lagret:"

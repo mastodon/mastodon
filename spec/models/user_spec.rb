@@ -1,6 +1,9 @@
 require 'rails_helper'
+require 'devise_two_factor/spec_helpers'
 
 RSpec.describe User, type: :model do
+  it_behaves_like 'two_factor_backupable'
+
   describe 'validations' do
     it 'is invalid without an account' do
       user = Fabricate.build(:user, account: nil)

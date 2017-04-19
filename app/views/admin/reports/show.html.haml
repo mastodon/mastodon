@@ -12,17 +12,17 @@
 %p
   %strong= t('admin.reports.comment.label')
   \:
-  = @report.comment.presence || t('reports.comment.none')
+  = @report.comment.presence || t('admin.reports.comment.none')
 
-- unless @statuses.empty?
+- unless @report.statuses.empty?
   %hr/
 
-  - @statuses.each do |status|
+  - @report.statuses.each do |status|
     .report-status
       .activity-stream.activity-stream-headless
         .entry= render partial: 'stream_entries/simple_status', locals: { status: status }
       .report-status__actions
-        = link_to remove_admin_report_path(@report, status_id: status.id), method: :post, class: 'icon-button', style: 'font-size: 24px; width: 24px; height: 24px', title: t('admin.reports.delete') do
+        = link_to admin_report_reported_status_path(@report, status), method: :delete, class: 'icon-button', style: 'font-size: 24px; width: 24px; height: 24px', title: t('admin.reports.delete') do
           = fa_icon 'trash'
 
 - if !@report.action_taken?
@@ -30,10 +30,10 @@
 
   %div{ style: 'overflow: hidden' }
     %div{ style: 'float: right' }
-      = link_to t('admin.reports.silence_account'), silence_admin_report_path(@report), method: :post, class: 'button'
-      = link_to t('admin.reports.suspend_account'), suspend_admin_report_path(@report), method: :post, class: 'button'
+      = link_to t('admin.reports.silence_account'), admin_report_path(@report, outcome: 'silence'), method: :put, class: 'button'
+      = link_to t('admin.reports.suspend_account'), admin_report_path(@report, outcome: 'suspend'), method: :put, class: 'button'
     %div{ style: 'float: left' }
-      = link_to t('admin.reports.mark_as_resolved'), resolve_admin_report_path(@report), method: :post, class: 'button'
+      = link_to t('admin.reports.mark_as_resolved'), admin_report_path(@report, outcome: 'resolve'), method: :put, class: 'button'
 - elsif !@report.action_taken_by_account.nil?
   %hr/
 

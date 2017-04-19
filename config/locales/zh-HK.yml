@@ -34,15 +34,120 @@ zh-HK:
     followers: 關注者
     following: 正在關注
     nothing_here: 暫時未有內容可以顯示
-    people_followed_by: '%{name} 關注的人'
+    people_followed_by: "%{name} 關注的人"
     people_who_follow: 關注 %{name} 的人
     posts: 文章
     remote_follow: 跨站關注
     unfollow: 取消關注
+  admin:
+    accounts:
+      are_you_sure: 你確定嗎？
+      display_name: 顯示名稱
+      domain: 域名
+      edit: 編輯
+      email: 電郵地址
+      feed_url: Feed URL
+      followers: 關注者
+      follows: 正在關注
+      location:
+        all: 全部
+        local: 本地
+        remote: 遠端
+        title: 地點
+      media_attachments: 媒體檔案
+      moderation:
+        all: 全部
+        silenced: 被靜音的
+        suspended: 被停權的
+        title: 管理操作
+      most_recent_activity: 最新活動
+      most_recent_ip: 最新 IP 位域
+      not_subscribed: 未訂閱
+      order:
+        alphabetic: 按字母
+        most_recent: 按時間
+        title: 排序
+      perform_full_suspension: 實行完全暫停
+      profile_url: 個人檔案 URL
+      public: 公共
+      push_subscription_expires: PuSH subscription expires
+      salmon_url: Salmon 反饋 URL
+      silence: 靜音
+      statuses: 文章
+      title: 用戶
+      undo_silenced: 解除靜音
+      undo_suspension: 解除停權
+      username: 用戶名稱
+      web: 用戶頁面
+    domain_blocks:
+      add_new: 新增
+      domain: 域名阻隔
+      new:
+        create: 新增域名阻隔
+        hint: 「域名阻隔」不會隔絕該域名用戶的文章進入本站資料庫，但會文章抵達後，自動套用特定的審批操作。
+        severity:
+          desc_html: 「<strong>自動靜音</strong>」令該域名用戶的文章，設為只對關注者顯示，沒有關注的人會看不到。
+            「<strong>自動刪除</strong>」會自動將該域名用戶的文章、媒體檔案、個人資料自本服務站刪除。
+          silence: 自動靜音
+          suspend: 自動刪除
+        title: 新增域名阻隔
+      severity: 阻隔分級
+      title: 域名阻隔
+    pubsubhubbub:
+      callback_url: 回傳 URL
+      confirmed: 確定
+      expires_in: 期限
+      last_delivery: 資料最後送抵時間
+      title: PubSubHubbub 訂閱
+      topic: 所訂閱資源
+    reports:
+      comment:
+        label: 詳細解釋
+        none: 沒有
+      delete: 刪除
+      id: ID
+      mark_as_resolved: 標示為「已處理」
+      report: '舉報 #%{id}'
+      reported_account: 舉報用戶
+      reported_by: 舉報者
+      resolved: 已處理
+      silence_account: 將用戶靜音
+      status: 狀態
+      suspend_account: 將用戶停權
+      target: 對象
+      title: 舉報
+      unresolved: 未處理
+      view: 檢視
+    settings:
+      click_to_edit: 點擊編輯
+      contact_information:
+        email: 輸入一個公開的電郵地址
+        label: 聯絡資料
+        username: 輸入用戶名稱
+      registrations:
+        closed_message:
+          desc_html: 當本站暫停接受註冊時，會顯示這個訊息。<br/>
+            可使用 HTML
+          title: 暫停註冊訊息
+        open:
+          disabled: 停用
+          enabled: 啟用
+          title: 開放註冊
+      setting: 設定
+      site_description:
+        desc_html: 在首頁顯示，及在 meta tag 使用作網站介紹。<br/>
+          你可以在此使用 <code>&lt;a&gt;</code> 和 <code>&lt;em&gt;</code>。
+        title: 本站介紹
+      site_description_extended:
+        desc_html: 本站詳細資訊頁的內文<br/>你可以在此使用 HTML
+        title: 本站詳細資訊
+      site_title: 本站名稱
+      title: 網站設定
+    title: 管理
   application_mailer:
-    settings: '修改電郵設定︰ %{link}'
+    settings: 修改電郵設定︰ %{link}
     signature: 來自 %{instance} 的 Mastodon 通知
-    view: '進入瀏覽︰'
+    view: 進入瀏覽︰
   applications:
     invalid_url: 所提供的網址不正確
   auth:
@@ -58,26 +163,33 @@ zh-HK:
   authorize_follow:
     error: 對不起，尋找這個跨站用戶的過程發生錯誤
     follow: 關注
-    prompt_html: '你 (<strong>%{self}</strong>) 正準備關注︰'
+    prompt_html: 你 (<strong>%{self}</strong>) 正準備關注︰
     title: 關注 %{acct}
   datetime:
     distance_in_words:
       about_x_hours: "%{count}小時前"
       about_x_months: "%{count}個月前"
       about_x_years: "%{count}年前"
-      almost_x_years: "接近%{count}年前"
+      almost_x_years: 接近%{count}年前
       half_a_minute: 剛剛
-      less_than_x_minutes: "少於%{count}分鐘前"
+      less_than_x_minutes: 少於%{count}分鐘前
       less_than_x_seconds: 剛剛
       over_x_years: "%{count}y"
       x_days: "%{count}日"
       x_minutes: "%{count}分鐘"
       x_months: "%{count}個月"
       x_seconds: "%{count}秒"
+  errors:
+    '404': 找不到內容
+    '410': 內容已被刪除
+    '422':
+      content: 無法確認登入資訊。會不會你阻擋了本站使用 Cookies 的權限？
+      title: 無法確認登入資訊
   exports:
     blocks: 被你封鎖的用戶
     csv: CSV
     follows: 你所關注的用戶
+    mutes: 你所靜音的用戶
     storage: 媒體容量大小
   generic:
     changes_saved_msg: 已成功儲存修改
@@ -92,15 +204,17 @@ zh-HK:
     types:
       blocking: 被你封鎖的用戶名單
       following: 你所關注的用戶名單
+      muting: Muting list
     upload: 上載
-  landing_strip_html: <strong>%{name}</strong> 是一個在 <strong>%{domain}</strong> 的用戶。只要你有任何 Mastodon 服務站、或者聯盟網站的用戶，便可以跨站關注此站用戶，或者與他們互動。如果你沒有這類用戶，歡迎在<a href="%{sign_up_path}">此處登記</a>。
+  landing_strip_html: <strong>%{name}</strong> 是一個在 <strong>%{domain}</strong> 的用戶。只要你有任何
+    Mastodon 服務站、或者聯盟網站的用戶，便可以跨站關注此站用戶，或者與他們互動。如果你沒有這類用戶，歡迎在<a href="%{sign_up_path}">此處登記</a>。
   media_attachments:
     validations:
       images_and_video: 不能在已有圖片的文章上加入影片
       too_many: 不可以加入超過 4 個檔案
   notification_mailer:
     digest:
-      body: '這是自從你在%{since}使用%{instance}以後，你錯失了的訊息︰'
+      body: 這是自從你在%{since}使用%{instance}以後，你錯失了的訊息︰
       mention: "%{name} 在此提及了你︰"
       new_followers_summary:
         one: 你新獲得了 1 位關注者了！恭喜！
@@ -109,19 +223,19 @@ zh-HK:
         one: "自從上次登入以來，你收到 1 則新的通知 \U0001F418"
         other: "自從上次登入以來，你收到 %{count} 則新的通知 \U0001F418"
     favourite:
-      body: '你的文章獲得 %{name} 的喜愛'
+      body: 你的文章獲得 %{name} 的喜愛
       subject: "%{name} 喜歡你的文章"
     follow:
       body: "%{name} 開始關注你！"
       subject: "%{name} 現正關注你"
     follow_request:
       body: "%{name} 要求關注你"
-      subject: '等候關注你的用戶︰ %{name}'
+      subject: 等候關注你的用戶︰ %{name}
     mention:
-      body: '%{name} 在文章中提及你︰'
-      subject: '%{name} 在文章中提及你'
+      body: "%{name} 在文章中提及你︰"
+      subject: "%{name} 在文章中提及你"
     reblog:
-      body: '你的文章得到 %{name} 的轉推'
+      body: 你的文章得到 %{name} 的轉推
       subject: "%{name} 轉推了你的文章"
   pagination:
     next: 下一頁
@@ -131,7 +245,7 @@ zh-HK:
     acct: 請輸入你的︰用戶名稱@服務點域名
     missing_resource: 無法找到你用戶的轉接網址
     proceed: 下一步
-    prompt: '你希望關注︰'
+    prompt: 你希望關注︰
   settings:
     authorized_apps: 授權應用程式
     back: 回到 Mastodon
@@ -162,10 +276,9 @@ zh-HK:
     disable: 停用
     enable: 啟用
     enabled_success: 已成功啟用雙重認證
-    instructions_html: <strong>請用你手機的認證器應用程式（如 Google Authenticator、Authy），掃描這裏的 QR 圖形碼</strong>。在雙重認證啟用後，你登入時將須要使用此應用程式產生的認證碼。
+    instructions_html: "<strong>請用你手機的認證器應用程式（如 Google Authenticator、Authy），掃描這裏的QR 圖形碼</strong>。在雙重認證啟用後，你登入時將須要使用此應用程式產生的認證碼。"
     manual_instructions: 如果你無法掃描 QR 圖形碼，請手動輸入這個文字密碼︰
     setup: 設定
-    warning: 如果你現在無法正確設定你的應用程式，請即「停用」雙重認證，否則日後可能無法登入本站。
     wrong_code: 你輸入的認證碼並不正確！可能伺服器時間和你手機不一致，請檢查你手機的時鐘，或與本站管理員聯絡。
   users:
     invalid_email: 電郵地址格式不正確

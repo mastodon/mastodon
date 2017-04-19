@@ -5,8 +5,6 @@ notifications:
   email: false
 
 env:
-  matrix:
-    - TRAVIS_NODE_VERSION="4"
   global:
     - LOCAL_DOMAIN=cb6e6126.ngrok.io
     - LOCAL_HTTPS=true
@@ -16,6 +14,7 @@ addons:
   postgresql: 9.4
 
 rvm:
+  - 2.3.4
   - 2.4.1
 
 services:
@@ -28,8 +27,7 @@ before_install:
   - sudo apt-get -qq update
   - sudo apt-get -qq install g++-4.8
 install:
-  - nvm install $TRAVIS_NODE_VERSION
-  - npm install -g npm@3
+  - nvm install
   - npm install -g yarn
   - bundle install
   - yarn install
@@ -40,3 +38,4 @@ before_script:
 script:
   - bundle exec rspec
   - npm test
+  - i18n-tasks unused
