@@ -32,6 +32,7 @@ module Mastodon
       :es,
       :fi,
       :fr,
+      :id,
       :it,
       :hu,
       :ja,
