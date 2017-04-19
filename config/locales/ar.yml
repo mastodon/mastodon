@@ -30,21 +30,21 @@ ar:
     user_count_after: المُستخدِمين
     user_count_before: يستضيف
   accounts:
-    follow: Follow
+    follow: إتبع
     followers: متابِعون
     following: يتابعون
     nothing_here: لا يوجد أي شيء هنا !
     people_followed_by: People whom %{name} follows
-    people_who_follow: People who follow %{name}
+    people_who_follow: الأشخاص الذين يتبعون %{name}
     posts: منشورات
     remote_follow: إتبع عن بعد
-    unfollow: Unfollow
+    unfollow: إلغاء المتابعة
   application_mailer:
-    settings: 'Change e-mail preferences: %{link}'
-    signature: Mastodon notifications from %{instance}
+    settings: 'تغيير تفضيلات البريد الإلكتروني : %{link}'
+    signature: إشعارات ماستدون من %{instance}
     view: 'View:'
   applications:
-    invalid_url: The provided URL is invalid
+    invalid_url: إن الرابط المقدم غير صالح
   auth:
     change_password: Credentials
     didnt_get_confirmation: Didn't receive confirmation instructions?
@@ -57,9 +57,9 @@ ar:
     set_new_password: تعيين كلمة مرور جديدة
   authorize_follow:
     error: Unfortunately, there was an error looking up the remote account
-    follow: Follow
+    follow: إتبع
     prompt_html: 'You (<strong>%{self}</strong>) have requested to follow:'
-    title: Follow %{acct}
+    title: إتباع %{acct}
   datetime:
     distance_in_words:
       about_x_hours: "%{count}سا"
@@ -75,14 +75,14 @@ ar:
       x_months: "%{count}شه"
       x_seconds: "%{count}ث"
   exports:
-    blocks: You block
+    blocks: قمت بحظر
     csv: CSV
     follows: You follow
-    storage: Media storage
+    storage: ذاكرة التخزين
   generic:
     changes_saved_msg: Changes successfully saved!
     powered_by: powered by %{link}
-    save_changes: Save changes
+    save_changes: حفظ التغييرات
     validation_errors:
       one: Something isn't quite right yet! Please review the error below
       other: Something isn't quite right yet! Please review %{count} errors below
@@ -90,9 +90,9 @@ ar:
     preface: You can import certain data like all the people you are following or blocking into your account on this instance, from files created by an export on another instance.
     success: Your data was successfully uploaded and will now be processed in due time
     types:
-      blocking: Blocking list
+      blocking: قائمة المحظورين
       following: Following list
-    upload: Upload
+    upload: تحميل
   landing_strip_html: <strong>%{name}</strong> is a user on <strong>%{domain}</strong>. You can follow them or interact with them if you have an account anywhere in the fediverse. If you don't, you can <a href="%{sign_up_path}">sign up here</a>.
   media_attachments:
     validations:
@@ -135,11 +135,11 @@ ar:
     authorized_apps: التطبيقات المرخص لها
     back: عودة إلى ماستدون
     edit_profile: تعديل الملف الشخصي
-    export: Data export
+    export: تصدير البيانات
     import: إستيراد
     preferences: التفضيلات
     settings: الإعدادات
-    two_factor_auth: Two-factor Authentication
+    two_factor_auth: المصادقة الثنائية
   statuses:
     open_in_web: إفتح في الويب
     over_character_limit: character limit of %{max} exceeded
@@ -150,7 +150,7 @@ ar:
       unlisted: Public, but do not display on the public timeline
   stream_entries:
     click_to_show: إضغط للعرض
-    reblogged: boosted
+    reblogged: رقى
     sensitive_content: محتوى حساس
   time:
     formats:
@@ -167,4 +167,4 @@ ar:
     wrong_code: The entered code was invalid! Are server time and device time correct?
   users:
     invalid_email: عنوان البريد الإلكتروني غير صالح
-    invalid_otp_token: Invalid two-factor code
+    invalid_otp_token: الرمز الثنائي غير صالح
