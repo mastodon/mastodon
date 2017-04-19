@@ -21,6 +21,8 @@ class Account < ApplicationRecord
   validates_attachment_content_type :header, content_type: IMAGE_MIME_TYPES
   validates_attachment_size :header, less_than: 2.megabytes
 
+  before_post_process :set_file_extensions
+
   # Local user profile validations
   validates :display_name, length: { maximum: 30 }, if: 'local?'
   validates :note, length: { maximum: 160 }, if: 'local?'
@@ -55,6 +57,10 @@ class Account < ApplicationRecord
   # PuSH subscriptions
   has_many :subscriptions, dependent: :destroy
 
+  # Report relationships
+  has_many :reports
+  has_many :targeted_reports, class_name: 'Report', foreign_key: :target_account_id
+
   scope :remote, -> { where.not(domain: nil) }
   scope :local, -> { where(domain: nil) }
   scope :without_followers, -> { where('(select count(f.id) from follows as f where f.target_account_id = accounts.id) = 0') }
@@ -64,6 +70,7 @@ class Account < ApplicationRecord
   scope :suspended, -> { where(suspended: true) }
   scope :recent, -> { reorder(id: :desc) }
   scope :alphabetic, -> { order(domain: :asc, username: :asc) }
+  scope :by_domain_accounts, -> { group(:domain).select(:domain, 'COUNT(*) AS accounts_count').order('accounts_count desc') }
 
   def follow!(other_account)
     active_relationships.where(target_account: other_account).first_or_create!(target_account: other_account)
@@ -325,6 +332,22 @@ class Account < ApplicationRecord
       keypair = OpenSSL::PKey::RSA.new(Rails.env.test? ? 1024 : 2048)
       self.private_key = keypair.to_pem
       self.public_key  = keypair.public_key.to_pem
+    end
+  end
+
+  private
+
+  def set_file_extensions
+    unless avatar.blank?
+      extension = Paperclip::Interpolations.content_type_extension(avatar, :original)
+      basename  = Paperclip::Interpolations.basename(avatar, :original)
+      avatar.instance_write :file_name, [basename, extension].delete_if(&:empty?).join('.')
+    end
+
+    unless header.blank?
+      extension = Paperclip::Interpolations.content_type_extension(header, :original)
+      basename  = Paperclip::Interpolations.basename(header, :original)
+      header.instance_write :file_name, [basename, extension].delete_if(&:empty?).join('.')
     end
   end
 end

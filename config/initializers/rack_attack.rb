@@ -1,7 +1,24 @@
+# frozen_string_literal: true
+
 class Rack::Attack
   # Rate limits for the API
   throttle('api', limit: 300, period: 5.minutes) do |req|
-    req.ip if req.path.match(/\A\/api\/v/)
+    req.ip if req.path =~ /\A\/api\/v/
+  end
+
+  # Rate limit logins
+  throttle('login', limit: 5, period: 5.minutes) do |req|
+    req.ip if req.path == '/auth/sign_in' && req.post?
+  end
+
+  # Rate limit sign-ups
+  throttle('register', limit: 5, period: 5.minutes) do |req|
+    req.ip if req.path == '/auth' && req.post?
+  end
+
+  # Rate limit forgotten passwords
+  throttle('reminder', limit: 5, period: 5.minutes) do |req|
+    req.ip if req.path == '/auth/password' && req.post?
   end
 
   self.throttled_response = lambda do |env|

@@ -73,6 +73,10 @@ ja:
       push_subscription_expires: PuSH購読期限切れ
       reset_password: パスワード再設定
       salmon_url: Salmon URL
+      show:
+        created_reports: このアカウントで作られたレポート
+        report: レポート
+        targeted_reports: このアカウントについてのレポート
       silence: サイレンス
       statuses: トゥート数
       title: アカウント
@@ -100,7 +104,9 @@ ja:
         suspend: 停止
       severity: 深刻度
       show:
-        affected_accounts: "データベース中の%{count}個のアカウントに影響します"
+        affected_accounts:
+          one: "データベース中の一つのアカウントに影響します"
+          other: "データベース中の%{count}個のアカウントに影響します"
         retroactive:
           silence: このドメインからの存在するすべてのアカウントのサイレンスを戻す
           suspend: このドメインからの存在するすべてのアカウントの停止を戻す
@@ -108,6 +114,10 @@ ja:
         undo: 元に戻す
       title: ドメインブロック
       undo: 元に戻す
+    instances:
+      account_count: 既知のアカウント数
+      domain_name: ドメイン名
+      title: 既知のインスタンス
     pubsubhubbub:
       callback_url: コールバックURL
       confirmed: 確認済み
