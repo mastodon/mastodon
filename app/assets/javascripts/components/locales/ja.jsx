@@ -120,6 +120,7 @@ const ja = {
   "status.reblog": "ブースト",
   "status.reblogged_by": "{name} さんにブーストされました",
   "status.reply": "返信",
+  "status.replyAll": "全員に返信",
   "status.report": "@{name} さんを通報",
   "status.sensitive_toggle": "クリックして表示",
   "status.sensitive_warning": "不適切なコンテンツ",
