@@ -29,7 +29,7 @@ class Status < ApplicationRecord
   validates :uri, uniqueness: true, unless: 'local?'
   validates :text, presence: true, unless: 'reblog?'
   validates_with StatusLengthValidator
-  validates :reblog, uniqueness: { scope: :account, message: 'of status already exists' }, if: 'reblog?'
+  validates :reblog, uniqueness: { scope: :account }, if: 'reblog?'
 
   default_scope { order('id desc') }
 
