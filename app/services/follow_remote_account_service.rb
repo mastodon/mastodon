@@ -17,7 +17,7 @@ class FollowRemoteAccountService < BaseService
     return Account.find_local(username) if TagManager.instance.local_domain?(domain)
 
     account = Account.find_remote(username, domain)
-    return account unless account_needs_webfinger_update?(account)
+    return account unless account.nil? || account.needs_webfinger_update?
 
     Rails.logger.debug "Looking up webfinger for #{uri}"
 
@@ -111,10 +111,6 @@ class FollowRemoteAccountService < BaseService
   end
 
   private
-
-  def account_needs_webfinger_update?(account)
-    account&.last_webfingered_at.nil? || account.last_webfingered_at <= 1.day.ago
-  end
 
   def get_feed(url)
     response = http_client(write: 20, connect: 20, read: 50).get(Addressable::URI.parse(url).normalize)
