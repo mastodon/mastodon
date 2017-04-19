@@ -45,12 +45,11 @@ class PostStatusService < BaseService
   private
 
   def truncate_status(text)
-    return text unless text.length > 400
-
     cutoff = text.index("\n")
 
     return text[0, cutoff] unless cutoff.nil? || cutoff > 400
-    return text[0, 400] + "\u2026"
+    return text[0, 400] + "\u2026" unless text.length <= 400
+    text
   end
 
   def insert_status_link(status, account)

@@ -371,6 +371,28 @@
     font-weight: bold;
   }
 
+  ul {
+    list-style: disc outside none;
+    margin-left: 20px;
+  }
+
+  ol {
+    list-style: decimal outside none;
+    margin-left: 20px;
+  }
+
+  ul ul, ol ul {
+    list-style-type: circle;
+  }
+
+  ul ul ul, ul ol ul, ol ul ul, ol ol ul {
+    list-style-type: square;
+  }
+
+  ol ol, ul ol {
+    list-style-type: lower-latin;
+  }
+
   .status__content__spoiler-link {
     background: lighten($color1, 30%);
 

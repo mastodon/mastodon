@@ -11,9 +11,13 @@ class Formatter
 
   def markdown_format(status)
     html_r = Redcarpet::Render::HTML.new(render_options = {escape_html: true, safe_links_only: true})
-    markdown = Redcarpet::Markdown.new(html_r, extensions = {no_intra_emphasis: true, autolink: true, strikethrough: true,})
+    markdown = Redcarpet::Markdown.new(html_r, extensions = {no_intra_emphasis: true, autolink: true, strikethrough: true})
 
-    markdown.render(status.full_status_text).html_safe # rubocop:disable Rails/OutputSafety
+    html = markdown.render(status.full_status_text)
+    html = link_mentions(html, status.mentions)
+    html = link_hashtags(html)
+
+    html.html_safe # rubocop:disable Rails/OutputSafety
   end
 
   def format(status)
