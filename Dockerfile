@@ -27,6 +27,7 @@ RUN echo "@edge https://nl.alpinelinux.org/alpine/edge/main" >> /etc/apk/reposit
     libxslt \
     ffmpeg \
     file \
+    git \
     imagemagick@edge \
  && npm install -g npm@3 && npm install -g yarn \
  && bundle install --deployment --without test development \
