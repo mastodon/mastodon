@@ -1,0 +1,610 @@
+HTTP/1.1 200 OK
+Server: nginx/1.6.2
+Date: Wed, 19 Apr 2017 13:00:22 GMT
+Content-Type: text/html; charset=UTF-8
+Transfer-Encoding: chunked
+Connection: keep-alive
+Vary: Accept-Encoding
+Access-Control-Allow-Origin: *
+Vary: Accept-Encoding,Cookie
+Expires: Thu, 19 Nov 1981 08:52:00 GMT
+Cache-Control: no-store, no-cache, must-revalidate, post-check=0, pre-check=0
+Pragma: no-cache
+Strict-Transport-Security: max-age=31536000; includeSubdomains;
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+		"http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+		<html xmlns="http://www.w3.org/1999/xhtml">
+			<head>
+				<title>Quitter.no</title>
+				<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+				<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+				<link rel="stylesheet" type="text/css" href="https://quitter.no/plugins/Qvitter/css/qvitter.css?changed=20170411155602" />
+				<link rel="stylesheet" type="text/css" href="https://quitter.no/plugins/Qvitter/css/jquery.minicolors.css" />
+                <link rel="apple-touch-icon" sizes="57x57" href="https://quitter.no/plugins/Qvitter/img/gnusocial-favicons/apple-touch-icon-57x57.png">
+                <link rel="apple-touch-icon" sizes="60x60" href="https://quitter.no/plugins/Qvitter/img/gnusocial-favicons/apple-touch-icon-60x60.png">
+                <link rel="apple-touch-icon" sizes="72x72" href="https://quitter.no/plugins/Qvitter/img/gnusocial-favicons/apple-touch-icon-72x72.png">
+                <link rel="apple-touch-icon" sizes="76x76" href="https://quitter.no/plugins/Qvitter/img/gnusocial-favicons/apple-touch-icon-76x76.png">
+                <link rel="apple-touch-icon" sizes="114x114" href="https://quitter.no/plugins/Qvitter/img/gnusocial-favicons/apple-touch-icon-114x114.png">
+                <link rel="apple-touch-icon" sizes="120x120" href="https://quitter.no/plugins/Qvitter/img/gnusocial-favicons/apple-touch-icon-120x120.png">
+                <link rel="apple-touch-icon" sizes="144x144" href="https://quitter.no/plugins/Qvitter/img/gnusocial-favicons/apple-touch-icon-144x144.png">
+                <link rel="apple-touch-icon" sizes="152x152" href="https://quitter.no/plugins/Qvitter/img/gnusocial-favicons/apple-touch-icon-152x152.png">
+                <link rel="apple-touch-icon" sizes="180x180" href="https://quitter.no/plugins/Qvitter/img/gnusocial-favicons/apple-touch-icon-180x180.png">
+                <link rel="icon" type="image/png" href="https://quitter.no/plugins/Qvitter/img/gnusocial-favicons/favicon-16x16.png" sizes="16x16">
+                <link rel="icon" type="image/png" href="https://quitter.no/plugins/Qvitter/img/gnusocial-favicons/favicon-32x32.png" sizes="32x32">
+                <link rel="icon" type="image/png" href="https://quitter.no/plugins/Qvitter/img/gnusocial-favicons/android-chrome-192x192.png" sizes="192x192">
+                <link rel="icon" type="image/png" href="https://quitter.no/plugins/Qvitter/img/gnusocial-favicons/favicon-96x96.png" sizes="96x96">
+                <link rel="manifest" href="https://quitter.no/plugins/Qvitter/img/gnusocial-favicons/manifest.json">
+                <link rel="mask-icon" href="https://quitter.no/plugins/Qvitter/img/gnusocial-favicons/safari-pinned-tab.svg" color="#a22430">
+                <meta name="apple-mobile-web-app-title" content="Quitter.no">
+                <meta name="application-name" content="Quitter.no">
+                <meta name="msapplication-TileColor" content="#da532c">
+                <meta name="msapplication-TileImage" content="https://quitter.no/plugins/Qvitter/img/gnusocial-favicons/mstile-144x144.png">
+                <meta name="theme-color" content="#ffffff">
+				<link title="Notice feed for Gargron (Activity Streams JSON)" type="application/stream+json" href="https://quitter.no/api/statuses/user_timeline/7477.as" rel="alternate">
+				<link title="Notice feed for Gargron (RSS 1.0)" type="application/rdf+xml" href="https://quitter.no/Gargron/rss" rel="alternate">
+				<link title="Notice feed for Gargron (RSS 2.0)" type="application/rss+xml" href="https://quitter.no/api/statuses/user_timeline/7477.rss" rel="alternate">
+				<link title="Notice feed for Gargron (Atom)" type="application/atom+xml" href="https://quitter.no/api/statuses/user_timeline/7477.atom" rel="alternate">
+				<link title="FOAF for Gargron" type="application/rdf+xml" href="https://quitter.no/Gargron/foaf" rel="meta">
+				<link href="https://quitter.no/Gargron/microsummary" rel="microsummary">
+				<link href="https://Gargron.org" title="Homepage" rel="me" />
+				<link rel="openid2.provider" href="https://quitter.no/main/openidserver"/>
+				<link rel="openid2.local_id" href="https://quitter.no/Gargron"/>
+				<link rel="openid2.server" href="https://quitter.no/main/openidserver"/>
+				<link rel="openid2.delegate" href="https://quitter.no/Gargron"/>
+				<script>
+
+					/*
+					@licstart  The following is the entire license notice for the
+					JavaScript code in this page.
+
+					Copyright (C) 2015  Hannes Mannerheim and other contributors
+
+					This program is free software: you can redistribute it and/or modify
+					it under the terms of the GNU Affero General Public License as
+					published by the Free Software Foundation, either version 3 of the
+					License, or (at your option) any later version.
+
+					This program is distributed in the hope that it will be useful,
+					but WITHOUT ANY WARRANTY; without even the implied warranty of
+					MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+					GNU Affero General Public License for more details.
+
+					You should have received a copy of the GNU Affero General Public License
+					along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+					@licend  The above is the entire license notice
+					for the JavaScript code in this page.
+					*/
+
+                    window.usersLanguageCode = "en";
+                    window.usersLanguageNameInEnglish = "English";
+                    window.englishLanguageData = {
+	"directionality":"ltr",
+	"languageName": "English",
+	"loginUsername": "Username or e-mail",
+	"loginPassword": "Password",
+	"loginSignIn": "Sign in",
+	"loginRememberMe": "Remember me",
+	"loginForgotPassword": "Forgot password?",
+	"notices": "Quips",
+	"followers": "Followers",
+	"following": "Following",
+	"groups": "Groups",
+	"compose": "What's quipping?",
+	"queetVerb": "Send",
+	"queetsNounPlural": "Quips",
+	"logout": "Sign out",
+	"languageSelected": "Language:",
+	"viewMyProfilePage": "View my profile page",
+	"expand": "Expand",
+	"collapse": "Collapse",
+	"details": "Details",
+	"expandFullConversation": "Expand full conversation",
+	"replyVerb": "Reply",
+	"requeetVerb": "Requip",
+	"favoriteVerb": "Favorite",
+	"requeetedVerb": "Requipped",
+	"favoritedVerb": "Favorited",
+	"replyTo": "Reply to",
+	"requeetedBy": "Requipped by {requeeted-by}",
+	"favoriteNoun": "Favorite",
+	"favoritesNoun": "Favorites",
+	"requeetNoun": "Requip",
+	"requeetsNoun": "Requips",
+	"newQueet": "{new-notice-count} new quip",
+	"newQueets": "{new-notice-count} new quips",
+	"longmonthsJanuary": "January",
+	"longmonthsFebruary": "February",
+	"longmonthsMars": "March",
+	"longmonthsApril": "April",
+	"longmonthsMay": "May",
+	"longmonthsJune": "June",
+	"longmonthsJuly": "July",
+	"longmonthsAugust": "August",
+	"longmonthsSeptember": "September",
+	"longmonthsOctober": "October",
+	"longmonthsNovember": "November",
+	"longmonthsDecember": "December",
+	"shortmonthsJanuary": "jan",
+	"shortmonthsFebruary": "feb",
+	"shortmonthsMars": "mar",
+	"shortmonthsApril": "apr",
+	"shortmonthsMay": "may",
+	"shortmonthsJune": "jun",
+	"shortmonthsJuly": "jul",
+	"shortmonthsAugust": "aug",
+	"shortmonthsSeptember": "sep",
+	"shortmonthsOctober": "oct",
+	"shortmonthsNovember": "nov",
+	"shortmonthsDecember": "dec",
+	"time12am": "{time} am",
+	"time12pm": "{time} pm",
+	"longDateFormat": "{time12} - {day} {month} {year}",
+	"shortDateFormatSeconds": "{seconds}s",
+	"shortDateFormatMinutes": "{minutes}m",
+	"shortDateFormatHours": "{hours}h",
+	"shortDateFormatDate": "{day} {month}",
+	"shortDateFormatDateAndY": "{day} {month} {year}",
+	"now": "now",
+	"posting": "posting",
+	"viewMoreInConvBefore": "← View more in conversation",
+	"viewMoreInConvAfter": "View more in conversation →",
+	"mentions": "Mentions",
+	"timeline": "Timeline",
+	"publicTimeline": "Public Timeline",
+	"publicAndExtTimeline": "The Whole Known Network",
+	"searchVerb": "Search",
+	"deleteVerb": "Delete",
+	"cancelVerb": "Cancel",
+	"deleteConfirmation": "Are you sure you want to delete this quip?",
+	"userExternalFollow": "Remote follow",
+	"userExternalFollowHelp": "Your account ID (e.g. user@rainbowdash.net).",
+	"userFollow": "Follow",
+	"userFollowing": "Following",
+	"userUnfollow": "Unfollow",
+	"joinGroup": "Join",
+	"joinExternalGroup": "Join remotely",
+	"isMemberOfGroup": "Member",
+	"leaveGroup": "Leave",
+	"memberCount": "Members",
+	"adminCount": "Admins",
+	"settings": "Settings",
+	"saveChanges": "Save changes",
+	"linkColor": "Link color",
+	"backgroundColor": "Background color",
+	"newToQuitter": "New to {site-title}?",
+	"signUp": "Sign up",
+	"signUpFullName": "Full name",
+	"signUpEmail": "Email",
+	"signUpButtonText": "Sign up to {site-title}",
+	"welcomeHeading": "Welcome to {site-title}.",
+	"welcomeText": "We are a <span id=\"federated-tooltip\"><div id=\"what-is-federation\">\"Federation\" means that you don't need a {site-title} account to be able to follow, be followed by or interact with {site-title} users. You can register on any StatusNet or GNU social server or any service based on the the <a href=\"http://www.w3.org/community/ostatus/wiki/Main_Page\">Ostatus</a> protocol! You don't even have to join a service – try installing the lovely <a href=\"http://www.gnu.org/software/social/\">GNU social</a> software on your own server! :)</div>federation</span> of microbloggers who care about social justice and solidarity and want to quit the centralised capitalist services.",
+	"registerNickname": "Nickname",
+	"registerHomepage": "Homepage",
+	"registerBio": "Bio",
+	"registerLocation": "Location",
+	"registerRepeatPassword": "Repeat password",
+	"moreSettings": "More settings",
+	"otherServers": "Alternatively you can create an account on another server of the GNU social network. <a href=\"http://federation.skilledtests.com/select_your_server.html\">Comparison</a>",
+	"editMyProfile": "Edit profile",
+	"notifications": "Notifications",
+	"xFavedYourQueet": "favorited your quip",
+	"xRepeatedYourQueet": "requipped you",
+	"xStartedFollowingYou": "followed you",
+	"followsYou": "follows you",
+	"FAQ": "FAQ",
+	"inviteAFriend": "Invite a friend!",
+	"goToExternalProfile": "Go to full profile",
+	"cropAndSave": "Crop and save",
+	"showTerms": "Read our Terms of Use",
+	"ellipsisMore": "More",
+	"blockUser": "Block",
+	"goToOriginalNotice": "Go to the original quip",
+	"goToTheUsersRemoteProfile": "Go to the user's remote profile",
+	"clickToDrag":"Click to drag",
+	"keyboardShortcuts":"Keyboard shortcuts",
+	"classicInterface":"Classic {site-title}",
+	"accessibilityToggleLink":"For better accessibility, click this link to switch to the classic interface",
+	"tooltipBookmarkStream":"Add this stream to your bookmarks",
+	"tooltipTopMenu":"Menu and settings",
+	"tooltipAttachImage":"Attach an image",
+	"tooltipShortenUrls":"Shorten all URLs in the quip",
+	"tooltipReloadStream":"Refresh this stream",
+	"tooltipRemoveBookmark":"Remove this bookmark",
+	"clearHistory":"Clear browsing history",
+	"ERRORsomethingWentWrong":"Something went wrong.",
+	"ERRORmustBeLoggedIn":"You must be logged in to view this stream.",
+	"ERRORcouldNotFindUserWithNickname":"Could not find a user with nickname \"{nickname}\" on this server",
+	"ERRORcouldNotFindGroupWithNickname":"Could not find a group with nickname \"{nickname}\" on this server",
+	"ERRORcouldNotFindPage":"Could not find that page.",
+	"ERRORnoticeRemoved": "This quip has been removed.",
+	"ERRORnoContactWithServer": "Can not establish a connection to the server. The server could be overloaded, or there might be a problem with your internet connection. Please try again later!",
+	"ERRORattachmentUploadFailed": "The upload failed. The format might be unsupported or the size too large.",
+	"hideRepliesToPeopleIDoNotFollow":"Hide replies to people I don't follow",
+	"markAllNotificationsAsSeen":"Mark all notifications as seen",
+	"notifyRepliesAndMentions":"Mentions and replies",
+	"notifyFavs":"Favorites",
+	"notifyRepeats":"Requips",
+	"notifyFollows":"New followers",
+	"timelineOptions":"Timeline options",
+	"ERRORfailedSavingYourSetting":"Failed saving your setting",
+	"ERRORfailedMarkingAllNotificationsAsRead":"Failed marking all notifications as seen.",
+	"newNotification": "{new-notice-count} new notification",
+	"newNotifications": "{new-notice-count} new notifications",
+	"thisIsANoticeFromABlockedUser":"Warning: This is a quip from a user you have blocked. Click to show it.",
+	"nicknamesListWithListName":"{nickname}’s list: {list-name}",
+	"myListWithListName":"My list: {list-name}",
+	"listMembers":"Members",
+	"listSubscribers":"Subscribers",
+	"ERRORcouldNotFindList":"There is no such list.",
+	"emailAlreadyInUse":"Already in use",
+	"addEditLanguageLink":"Help translate {site-title} to another language",
+	"onlyPartlyTranslated":"{site-title} is only partly translated to <em>{language-name}</em> ({percent}%). You can help complete the translation at <a href=\"https://git.gnu.io/h2p/Qvitter/tree/master/locale\">Qvitter's repository homepage</a>",
+	"startRant":"Start a rant",
+	"continueRant":"Continue the rant",
+	"hideEmbeddedInTimeline":"Hide embedded content in this timeline",
+	"hideQuotesInTimeline":"Hide quotes in this timeline",
+	"userBlocks":"Accounts you're blocking",
+	"buttonBlocked":"Blocked",
+	"buttonUnblock":"Unblock",
+	"failedBlockingUser":"Failed to block the user.",
+	"failedUnblockingUser":"Failed to unblock the user.",
+	"unblockUser": "Unblock",
+	"tooltipBlocksYou":"You are blocked from following {username}.",
+	"silenced":"Silenced",
+	"silencedPlural":"Silenced profiles",
+	"silencedUsersOnThisInstance":"Silenced profiles on {site-title}",
+	"sandboxed":"Sandboxed",
+	"sandboxedPlural":"Sandboxed profiles",
+	"sandboxedUsersOnThisInstance":"Sandboxed profiles on {site-title}",
+	"silencedStreamDescription":"Silenced users can't login or post quips and the quips they've already posted are hidden. For local users it's like a delete that can be reversed, for remote users it's like a site wide block.",
+	"sandboxedStreamDescription":"Quips from sandboxed users are excluded from the Public Timeline and The Whole Known Network. Apart from that, they can use the site like any other user.",
+	"onlyShowNotificationsFromUsersIFollow":"Only show notifications from users I follow",
+	"userOptions":"More user actions",
+	"silenceThisUser":"Silence {nickname}",
+	"sandboxThisUser":"Sandbox {nickname}",
+	"unSilenceThisUser":"Unsilence {nickname}",
+	"unSandboxThisUser":"Unsandbox {nickname}",
+	"ERRORfailedSandboxingUser":"Failed sandboxing/unsandboxing the user",
+	"ERRORfailedSilencingUser":"Failed silencing/unsilencing the user",
+	"muteUser":"Mute",
+	"unmuteUser":"Unmute",
+	"hideNotificationsFromMutedUsers":"Hide notifications from muted users",
+	"thisIsANoticeFromAMutedUser":"You have muted the author of this quip. Click here to show it anyway.",
+	"userMutes":"Accounts you're muting",
+	"userBlocked":"Blocked accounts",
+	"userMuted":"Muted accounts",
+	"mutedStreamDescription":"You've hidden these accounts from your timeline. You will still receive notifications from these accounts, unless you select &quot;Hide notifications from muted users&quot; from the cog wheel menu on the notifications page.",
+	"profileAndSettings":"Profile and settings",
+	"profileSettings":"Profile settings",
+	"thisIsABookmark":"This is a bookmark created in the Classic interface",
+	"thisIsARemoteUser":"<strong>Attention!</strong> This is a remote user. This page is only a cached copy of their profile, and includes only data known to this GNU social instance. Go to the <a href=\"{remote-profile-url}\" donthijack>user's profile on their server</a> to view their full profile.",
+	"findSomeone":"Find someone",
+	"findSomeoneTooltip":"Input a username or a profile url, e.g. @localuser or https://remote.instance/nickname",
+	"tooltipAttachFile":"Attach a file"
+}
+;
+                    window.defaultAvatarStreamSize = "https:\/\/quitter.no\/theme\/neo-quitter\/default-avatar-stream.png";
+                    window.defaultAvatarProfileSize = "https:\/\/quitter.no\/theme\/neo-quitter\/default-avatar-profile.png";
+					window.textLimit = 1000;
+					window.registrationsClosed = true;
+					window.thisSiteThinksItIsHttpButIsActuallyHttps = false;
+					window.siteTitle = "Quitter.no";
+					window.loggedIn = false;
+					window.timeBetweenPolling = 5000;
+					window.apiRoot = 'https://quitter.no/api/';
+					window.fullUrlToThisQvitterApp = 'https://quitter.no/plugins/Qvitter/';
+					window.siteRootDomain = 'quitter.no';
+					window.siteInstanceURL = 'https://quitter.no/';
+					window.defaultLinkColor = '#0084B4';
+					window.defaultBackgroundColor = '#f4f4f4';
+					window.siteBackground = 'img/vagnsmossen.jpg';
+					window.enableWelcomeText = true;
+					window.customWelcomeText = {"nb":"<h1>Velkommen til Quitter.no \u2013 en distribuert<sup>1<\/sup> mikrobloggsamling!<\/h1><p>Dette er stedet for deg som er lei av at private selskaper kontrollerer dine relasjoner, samtaler og selger data til egen personlig gevinst. Her er du ikke innesteng i en kommersiell tjeneste; med Quitter.no kan du f\u00f8lge og samtale med mikrobloggere som benytter det \u00e5pne nettverket <em>GNU social<\/em>.<sup>2<\/sup> Sammen tar vi makten over kommunikasjonen og skaper virkelig demokrati p\u00e5 nettet.<br><br>Quitter.no er ingen tjeneste, dette fordi vi ikke selger noen varer.<sup>3<\/sup> Isteden benevner vi det som en allmenning.<sup>4<\/sup> Nettsiden driftes av en ideell forening <em>kollektivet0x242<\/em><sup>5<\/sup> og finansieres ved donasjoner. Alt arbeid som nedlegges er ikke-l\u00f8nnet arbeid og utf\u00f8res av frivillige. Det er gratis \u00e5 <span class=\"welcome-text-register-link\">registrere seg<\/span>.<br><br><small class=\"notes\"><sup>1<\/sup> \"Distribuert\" er motsteningen til sentralisert. e-Post er distribuert, du kan sende en post mellom f.eks Gmail til Hotmail. Kommersielle sosiale medier er ikke distribuerte, du kan ikke prate med en Facebook bruker p\u00e5 Twitter. Det \u00e5 l\u00e5se inn brukerne til en bestemt plattform er nemmelig hele deres forretningside med sosiale medier!<br><sup>2<\/sup> <a href=\"http:\/\/gnu.io\/social\/\">http:\/\/gnu.io\/social\/<\/a> \"GNU social\" er programvaren som Quitter.no benytter. Nettverket benevnes som et <em>fediversum<\/em> (\"The Fediverse\" p\u00e5 engelsk) og best\u00e5r av mange servere som kommuniserer via Ostatus-protokollen. GNU social mikroblogg tjenester benevnes som <em>instanser<\/em>. Det er m\u00e5nge andre, f.eks: <a href=\"https:\/\/quitter.is\/\">quitter.is<\/a>, <a href=\"https:\/\/quitter.se\/\">quitter.se<\/a>, <a href=\"https:\/\/quitter.es\/\">quitter.es<\/a> og <a href=\"https:\/\/gnusocial.no\/\">gnusocial.no<\/a>. Det spiller ingen rolle hvilken instans du har din konto p\u00e5, du kan kommunisere fritt med andre instanser i nettverket.<br><sup>3<\/sup> Karl Marx. <em>Kapitalen, bind I-III<\/em><br><sup>4<\/sup> <a href=\"https:\/\/no.wikipedia.org\/wiki\/Allmenning\/\">Allmenning, eller almenning, kommer fra gammelnorsk almenningr av almennr som betyr alle menn eller hele befolkningen.<br><sup>5<\/sup> <a href=\"http:\/\/www.kollektivet0x242.no\/\">http:\/\/www.kollektivet0x242.no\/<\/a><br><\/small><a href=\"https:\/\/www.paypal.com\/cgi-bin\/webscr?cmd=_s-xclick&amp;hosted_button_id=YC5U3MLFTYWBS\"><img src=\"https:\/\/www.paypalobjects.com\/en_US\/i\/btn\/btn_donateCC_LG.gif\" alt=\"image\"\/><\/a><\/p>","en":"<h1>Welcome to Quitter.no<\/h1><br><p>We are a federation of microbloggers who care about social justice and solidarity and want to quit the centralised capitalist services.<br><br>This is the place for you who are tired of private companies controlling  your conversations and contacts and selling them for profit. On  Quitter.no you are not locked up in a single commercial service; here  you can follow and talk to microbloggers from the whole open <em>GNU social<\/em> network.<sup>2<\/sup> Together we seize the means of communication, and create real democracy online.<br><br>Quitter.no is not a service, because we're not selling commodities.<sup>3<\/sup> Instead we call it an online commons.<sup>4<\/sup> The site is run by the small Norwegian non-profit organisation <em>kollektivet0x242.no<\/em><sup>5<\/sup> which is solely funded by donations. All work is voluntary. Joining Quitter.no is completely free, but those who want to help out financially can donate to the organisation.<sup>6<\/sup><br><br><small class=\"notes\"><sup>1<\/sup> \"Federated\" is the opposite of centralised. E-mail is federated, you can email from a Gmail account to a Hotmail account.  Commercial social media is not federated. You can not talk to Facebook  users on Twitter. Confining users within a single service is the  business model of social media!<br><sup>2<\/sup> <a href=\"http:\/\/gnu.io\/social\/\">http:\/\/gnu.io\/social\/<\/a> \"GNU Social\" is the software that Quitter.no uses. The network is called <em>The Fediverse<\/em>. It consists of all sites communicating using the Ostatus protocol. GNU Social connected sites are called instances. There are many other, e.g. <a href=\"https:\/\/quitter.is\/\">quitter.is<\/a>, <a href=\"https:\/\/quitter.se\/\">quitter.se<\/a>, <a href=\"https:\/\/quitter.es\/\">quitter.es<\/a> and <a href=\"https:\/\/quitter.nu\/\">quitter.nu<\/a>. It doesn't matter where you register your account, you can still communicate with everyone on the network.<br><sup>3<\/sup> Karl Marx. <em>Capital. Vol. I-III<\/em><br><sup>4<\/sup> <a href=\"http:\/\/p2pfoundation.net\/Commons\">http:\/\/p2pfoundation.net\/Commons<\/a><br><sup>5<\/sup> <a href=\"http:\/\/kollektivet0x242.no\/\">http:\/\/kollektivet0x242.no\/<\/a><br><sup>6<\/sup> <a href=\"http:\/\/kollektivet0x242.no\/\">http:\/\/kollektivet0x242.no\/<\/a><\/small><\/p>"};
+					window.urlShortenerAPIURL = 'https://quitter.no/shortener.php';
+					window.urlShortenerSignature = 'b6afeec983';
+                    window.urlshortenerFormat = 'jsonp';
+					window.commonSessionToken = '54b923d7644394dbb817b27701b8fcaa035de8f483278d46a41db9b78b07fe492cf300f255c182d0414b6ce4f77fea9493a0c1bf83cab304982b2db09a80066e';
+					window.siteMaxThumbnailSize = 3000;
+					window.siteAttachmentURLBase = 'https://quitter.no/attachment/';
+					window.siteEmail = 'webadmin@quitter.no';
+					window.siteLicenseTitle = 'Creative Commons Attribution 3.0';
+					window.siteLicenseURL = 'https://creativecommons.org/licenses/by/3.0/';
+					window.customTermsOfUse = false;
+                    window.siteLocalOnlyDefaultPath = true;
+                    window.disableKeyboardShortcuts = false;
+					// available language files and their last update time
+					window.availableLanguages = {
+						"ar": "ar.json?changed=20170411155602",
+						"ast": "ast.json?changed=20170411155602",
+						"ca": "ca.json?changed=20170411155602",
+						"de": "de.json?changed=20170411155602",
+						"en": "en.json?changed=20170411155602",
+						"eo": "eo.json?changed=20170411155602",
+						"es_419": "es_419.json?changed=20170411155602",
+						"es": "es.json?changed=20170411155602",
+						"eu": "eu.json?changed=20170411155602",
+						"fa": "fa.json?changed=20170411155602",
+						"fi": "fi.json?changed=20170411155602",
+						"fr": "fr.json?changed=20170411155602",
+						"gl": "gl.json?changed=20170411155602",
+						"he": "he.json?changed=20170411155602",
+						"hy": "hy.json?changed=20170411155602",
+						"ia": "ia.json?changed=20170411155602",
+						"io": "io.json?changed=20170411155602",
+						"it": "it.json?changed=20170411155602",
+						"ja": "ja.json?changed=20170411155602",
+						"nb": "nb.json?changed=20170411155602",
+						"nl": "nl.json?changed=20170411155602",
+						"pl": "pl.json?changed=20170411155602",
+						"pt_br": "pt_br.json?changed=20170411155602",
+						"pt": "pt.json?changed=20170411155602",
+						"ru": "ru.json?changed=20170411155602",
+						"sq": "sq.json?changed=20170411155602",
+						"sv": "sv.json?changed=20170411155602",
+						"tr": "tr.json?changed=20170411155602",
+						"uk": "uk.json?changed=20170411155602",
+						"zh_cn": "zh_cn.json?changed=20170411155602",
+						"zh_tw": "zh_tw.json?changed=20170411155602",
+						};
+
+				</script>
+							</head>
+			<body class="" style="background-color:#f4f4f4">
+                				<input id="upload-image-input" class="upload-image-input" type="file" name="upload-image-input">
+				<div class="topbar">
+					<a href="https://quitter.no/main/public"><div id="logo"></div></a><div id="top-compose" class="hidden"></div>
+					<ul class="quitter-settings dropdown-menu">
+						<li class="dropdown-caret right">
+							<span class="caret-outer"></span>
+							<span class="caret-inner"></span>
+						</li>
+						<li class="fullwidth"><a id="top-menu-profile-link" class="no-hover-card" href="https://quitter.no/"><div id="top-menu-profile-link-fullname"></div><div id="top-menu-profile-link-view-profile"></div></a></li>
+						<li class="fullwidth dropdown-divider"></li>
+                        <li class="fullwidth"><a id="faq-link"></a></li>
+                        <li class="fullwidth"><a id="tou-link"></a></li>
+                        <li class="fullwidth"><a id="shortcuts-link"></a></li>						<li class="fullwidth"><a id="classic-link"></a></li>
+						<li class="fullwidth dropdown-divider"></li>
+						<li class="fullwidth"><a id="logout"></a></li>
+						<li class="fullwidth language dropdown-divider"></li>
+						<li class="language"><a class="language-link" data-tooltip="العربية – Arabic" data-lang-code="ar">العربية</a></li><li class="language"><a class="language-link" data-tooltip="Asturian" data-lang-code="ast">Asturian</a></li><li class="language"><a class="language-link" data-tooltip="català – Catalan" data-lang-code="ca">català</a></li><li class="language"><a class="language-link" data-tooltip="Deutsch – German" data-lang-code="de">Deutsch</a></li><li class="language"><a class="language-link" data-tooltip="English" data-lang-code="en">English</a></li><li class="language"><a class="language-link" data-tooltip="esperanto – Esperanto" data-lang-code="eo">esperanto</a></li><li class="language"><a class="language-link" data-tooltip="español (Latinoamérica) – Spanish (Latin America)" data-lang-code="es_419">español (Latinoamérica)</a></li><li class="language"><a class="language-link" data-tooltip="español – Spanish" data-lang-code="es">español</a></li><li class="language"><a class="language-link" data-tooltip="euskara – Basque" data-lang-code="eu">euskara</a></li><li class="language"><a class="language-link" data-tooltip="فارسی – Persian" data-lang-code="fa">فارسی</a></li><li class="language"><a class="language-link" data-tooltip="suomi – Finnish" data-lang-code="fi">suomi</a></li><li class="language"><a class="language-link" data-tooltip="français – French" data-lang-code="fr">français</a></li><li class="language"><a class="language-link" data-tooltip="galego – Galician" data-lang-code="gl">galego</a></li><li class="language"><a class="language-link" data-tooltip="עברית – Hebrew" data-lang-code="he">עברית</a></li><li class="language"><a class="language-link" data-tooltip="հայերեն – Armenian" data-lang-code="hy">հայերեն</a></li><li class="language"><a class="language-link" data-tooltip="Interlingua" data-lang-code="ia">Interlingua</a></li><li class="language"><a class="language-link" data-tooltip="Ido" data-lang-code="io">Ido</a></li><li class="language"><a class="language-link" data-tooltip="italiano – Italian" data-lang-code="it">italiano</a></li><li class="language"><a class="language-link" data-tooltip="日本語 – Japanese" data-lang-code="ja">日本語</a></li><li class="language"><a class="language-link" data-tooltip="norsk bokmål – Norwegian Bokmål" data-lang-code="nb">norsk bokmål</a></li><li class="language"><a class="language-link" data-tooltip="Nederlands – Dutch" data-lang-code="nl">Nederlands</a></li><li class="language"><a class="language-link" data-tooltip="polski – Polish" data-lang-code="pl">polski</a></li><li class="language"><a class="language-link" data-tooltip="português (Brasil) – Portuguese (Brazil)" data-lang-code="pt_br">português (Brasil)</a></li><li class="language"><a class="language-link" data-tooltip="português – Portuguese" data-lang-code="pt">português</a></li><li class="language"><a class="language-link" data-tooltip="русский – Russian" data-lang-code="ru">русский</a></li><li class="language"><a class="language-link" data-tooltip="Shqip – Albanian" data-lang-code="sq">Shqip</a></li><li class="language"><a class="language-link" data-tooltip="svenska – Swedish" data-lang-code="sv">svenska</a></li><li class="language"><a class="language-link" data-tooltip="Türkçe – Turkish" data-lang-code="tr">Türkçe</a></li><li class="language"><a class="language-link" data-tooltip="українська – Ukrainian" data-lang-code="uk">українська</a></li><li class="language"><a class="language-link" data-tooltip="中文（中国） – Chinese (China)" data-lang-code="zh_cn">中文（中国）</a></li><li class="language"><a class="language-link" data-tooltip="中文（台灣） – Chinese (Taiwan)" data-lang-code="zh_tw">中文（台灣）</a></li>                        <li class="fullwidth language dropdown-divider"></li>
+                        <li class="fullwidth"><a href="https://git.gnu.io/h2p/Qvitter/tree/master/locale" target="_blank" id="add-edit-language-link"></a></li>
+					</ul>
+					<div class="global-nav">
+						<div class="global-nav-inner">
+							<div class="container">
+								<div id="search">
+									<input type="text" spellcheck="false" autocomplete="off" name="q" placeholder="Sök" id="search-query" class="search-input">
+									<span class="search-icon">
+										<button class="icon nav-search" type="submit" tabindex="-1">
+											<span> Sök </span>
+										</button>
+									</span>
+								</div>
+								<ul class="language-dropdown">
+									<li class="dropdown">
+										<a class="dropdown-toggle">
+											<small></small>
+											<span class="current-language"></span>
+											<b class="caret"></b>
+										</a>
+										<ul class="dropdown-menu">
+											<li class="dropdown-caret right">
+												<span class="caret-outer"></span>
+												<span class="caret-inner"></span>
+											</li>
+											<li><a class="language-link" data-tooltip="Arabic" data-lang-code="ar">العربية</a></li><li><a class="language-link" data-tooltip="Asturian" data-lang-code="ast">Asturian</a></li><li><a class="language-link" data-tooltip="Catalan" data-lang-code="ca">català</a></li><li><a class="language-link" data-tooltip="German" data-lang-code="de">Deutsch</a></li><li><a class="language-link" data-tooltip="English" data-lang-code="en">English</a></li><li><a class="language-link" data-tooltip="Esperanto" data-lang-code="eo">esperanto</a></li><li><a class="language-link" data-tooltip="Spanish (Latin America)" data-lang-code="es_419">español (Latinoamérica)</a></li><li><a class="language-link" data-tooltip="Spanish" data-lang-code="es">español</a></li><li><a class="language-link" data-tooltip="Basque" data-lang-code="eu">euskara</a></li><li><a class="language-link" data-tooltip="Persian" data-lang-code="fa">فارسی</a></li><li><a class="language-link" data-tooltip="Finnish" data-lang-code="fi">suomi</a></li><li><a class="language-link" data-tooltip="French" data-lang-code="fr">français</a></li><li><a class="language-link" data-tooltip="Galician" data-lang-code="gl">galego</a></li><li><a class="language-link" data-tooltip="Hebrew" data-lang-code="he">עברית</a></li><li><a class="language-link" data-tooltip="Armenian" data-lang-code="hy">հայերեն</a></li><li><a class="language-link" data-tooltip="Interlingua" data-lang-code="ia">Interlingua</a></li><li><a class="language-link" data-tooltip="Ido" data-lang-code="io">Ido</a></li><li><a class="language-link" data-tooltip="Italian" data-lang-code="it">italiano</a></li><li><a class="language-link" data-tooltip="Japanese" data-lang-code="ja">日本語</a></li><li><a class="language-link" data-tooltip="Norwegian Bokmål" data-lang-code="nb">norsk bokmål</a></li><li><a class="language-link" data-tooltip="Dutch" data-lang-code="nl">Nederlands</a></li><li><a class="language-link" data-tooltip="Polish" data-lang-code="pl">polski</a></li><li><a class="language-link" data-tooltip="Portuguese (Brazil)" data-lang-code="pt_br">português (Brasil)</a></li><li><a class="language-link" data-tooltip="Portuguese" data-lang-code="pt">português</a></li><li><a class="language-link" data-tooltip="Russian" data-lang-code="ru">русский</a></li><li><a class="language-link" data-tooltip="Albanian" data-lang-code="sq">Shqip</a></li><li><a class="language-link" data-tooltip="Swedish" data-lang-code="sv">svenska</a></li><li><a class="language-link" data-tooltip="Turkish" data-lang-code="tr">Türkçe</a></li><li><a class="language-link" data-tooltip="Ukrainian" data-lang-code="uk">українська</a></li><li><a class="language-link" data-tooltip="Chinese (China)" data-lang-code="zh_cn">中文（中国）</a></li><li><a class="language-link" data-tooltip="Chinese (Taiwan)" data-lang-code="zh_tw">中文（台灣）</a></li>										</ul>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+                <div id="no-js-error">Please enable javascript to use this site.<script>var element = document.getElementById('no-js-error'); element.parentNode.removeChild(element);</script></div>
+				<div id="page-container">
+					                        <div class="front-welcome-text registrations-closed"></div>
+                        <div id="login-register-container">
+    						<div id="login-content">
+    							<form id="form_login" class="form_settings" action="https://quitter.no/main/qlogin" method="post">
+    								<div id="username-container">
+    									<input id="nickname" name="nickname" type="text" value="" tabindex="1" />
+    								</div>
+    								<table class="password-signin"><tbody><tr>
+    									<td class="flex-table-primary">
+    										<div class="placeholding-input">
+    											<input id="password" name="password" type="password" tabindex="2" value="" />
+    										</div>
+    									</td>
+    									<td class="flex-table-secondary">
+    										<button class="submit" type="submit" id="submit-login" tabindex="4"></button>
+    									</td>
+    								</tr></tbody></table>
+    								<div id="remember-forgot">
+    									<input type="checkbox" id="rememberme" name="rememberme" value="yes" tabindex="3" checked="checked"> <span id="rememberme_label"></span> · <a id="forgot-password" href="https://quitter.no/main/recoverpassword" ></a>
+    									<input type="hidden" id="token" name="token" value="54b923d7644394dbb817b27701b8fcaa035de8f483278d46a41db9b78b07fe492cf300f255c182d0414b6ce4f77fea9493a0c1bf83cab304982b2db09a80066e">
+    									<a href="https://quitter.no/main/openid" id="openid-login" title="OpenID" donthijack>OpenID</a>    								</div>
+    							</form>
+    						</div>
+    						<div id="qvitter-notice-logged-out"><div style="text-align: center;">
+<h3><a href="https://help.quitter.no">Link to The Unofficial</br>GNU social User Manual</a></h3></br>
+Donations will cover our site expenses. Thanks for your support.
+<a href="https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=knut.erik@kollektivet0x242.no&item_name=Donation%20%28in%20EUR%29">Link to PayPal</a>
+</div>
+<p> BITCOIN Adr : 1BkWd6SgEWRc36dhEiKrwUhnLiee4CzkvA </p>
+<p>Quitter.no is not a service and you are not a customer here. We are a small part of
+a bigger social change, creating a large decentralized community. This means that we don't
+have to be neutral toward the content on our GNU social instance. If you don't like the
+direction this instance is going, you are free to move to another instance or start your own.
+You will still be able to follow and be followed (and blocked) by users on this instance.</p>
+
+<p>In constrast to the top-down authority of commercial social media, this creates a kind
+of flat power structure. We are enabled to protect eachother from harassment and opression,
+but without censorship.</p>
+
+<p><b>On this instance, users who harass others will be removed.</b> We also take a strong stance 
+against e.g. racism, sexism, ableism, homo- and transphobia. Such expressions make the 
+site unsafe for other users, and in practice limit their freedom of speech.</p>
+
+<p>The Public Timeline is considered an especially sensitive place. It is what new users see,
+and all registered users will see the posts published there. Moderators can exclude users
+from appearing in the public timeline it at any moment, without warning, permanently or
+temporarily. Consider it a privilege to be published in the public timeline, not a right.
+If you are excluded from the public timeline, you can still use all other features on the
+site just like any other user.</p>
+
+<p>Advertising and commercial entities are not allowed on this instance. We are completely
+non-profit and all our expenses are payed for by donations from individuals. 
+<p><a href="https://quitter.no/doc/tos">GNU social TOS</a></p></div></div>
+                    <div id="feed">
+						<div id="feed-header">
+							<div id="feed-header-inner">
+								<h2>
+                                    <span id="stream-header"></span>
+                                </h2>
+								<div class="reload-stream"></div>
+							</div>
+                            <div id="feed-header-description"></div>
+						</div>
+						<div id="new-queets-bar-container" class="hidden"><div id="new-queets-bar"></div></div>
+						<div id="feed-body"></div>
+					</div>
+                    <div id="hidden-html"></div>
+					<div id="footer"><div id="footer-spinner-container"></div></div>
+				</div>
+				<script type="text/javascript" src="https://quitter.no/plugins/Qvitter/js/lib/jquery-2.1.4.min.js?changed=20160305144349"></script>
+				<script type="text/javascript" src="https://quitter.no/plugins/Qvitter/js/lib/jquery-ui.min.js?changed=20160305144349"></script>
+				<script type="text/javascript" src="https://quitter.no/plugins/Qvitter/js/lib/jquery.minicolors.min.js?changed=20160305144349"></script>
+				<script type="text/javascript" src="https://quitter.no/plugins/Qvitter/js/lib/jquery.jWindowCrop.js?changed=20160305144349"></script>
+				<script type="text/javascript" src="https://quitter.no/plugins/Qvitter/js/lib/load-image.min.js?changed=20160305144349"></script>
+				<script type="text/javascript" src="https://quitter.no/plugins/Qvitter/js/lib/xregexp-all-3.0.0-pre.js?changed=20160313213422"></script>
+                <script type="text/javascript" src="https://quitter.no/plugins/Qvitter/js/lib/lz-string.js?changed=20160313213422"></script>
+                <script type="text/javascript" src="https://quitter.no/plugins/Qvitter/js/lib/bowser.min.js?changed=20160313213422"></script>
+				<script charset="utf-8" type="text/javascript" src="https://quitter.no/plugins/Qvitter/js/dom-functions.js?changed=20170411155602"></script>
+				<script charset="utf-8" type="text/javascript" src="https://quitter.no/plugins/Qvitter/js/misc-functions.js?changed=20170411155602"></script>
+				<script charset="utf-8" type="text/javascript" src="https://quitter.no/plugins/Qvitter/js/ajax-functions.js?changed=20170118175629"></script>
+                <script charset="utf-8" type="text/javascript" src="https://quitter.no/plugins/Qvitter/js/stream-router.js?changed=20170411155602"></script>
+				<script charset="utf-8" type="text/javascript" src="https://quitter.no/plugins/Qvitter/js/qvitter.js?changed=20170411155602"></script>
+							<div id="dynamic-styles">
+				<style>
+					a, a:visited, a:active,
+					ul.stats li:hover a,
+					ul.stats li:hover a strong,
+					#user-body a:hover div strong,
+					#user-body a:hover div div,
+					.permalink-link:hover,
+					.stream-item.expanded > .queet .stream-item-expand,
+					.stream-item-footer .with-icn .requeet-text a b:hover,
+					.queet-text span.attachment.more,
+					.stream-item-header .created-at a:hover,
+					.stream-item-header a.account-group:hover .name,
+					.queet:hover .stream-item-expand,
+					.show-full-conversation:hover,
+					#new-queets-bar,
+					.menu-container div,
+					.cm-mention, .cm-tag, .cm-group, .cm-url, .cm-email,
+					div.syntax-middle span,
+					#user-body strong,
+					ul.stats,
+					.stream-item:not(.temp-post) ul.queet-actions li .icon:not(.is-mine):hover:before,
+					.show-full-conversation,
+					#user-body #user-queets:hover .label,
+					#user-body #user-groups:hover .label,
+					#user-body #user-following:hover .label,
+					ul.stats a strong,
+					.queet-box-extras button,
+					#openid-login:hover:after,
+                    .post-to-group,
+                    .stream-item-header .addressees .reply-to .h-card.not-mentioned-inline {
+						color:/*COLORSTART*/#0084B4/*COLOREND*/;
+						}
+					#unseen-notifications,
+					.stream-item.notification.not-seen > .queet::before,
+					#top-compose,
+					#logo,
+					.queet-toolbar button,
+					#user-header,
+					.profile-header-inner,
+					.topbar,
+					.menu-container,
+					.member-button.member,
+					.external-follow-button.following,
+					.qvitter-follow-button.following,
+					.save-profile-button,
+					.crop-and-save-button,
+					.topbar .global-nav.show-logo:before,
+					.topbar .global-nav.pulse-logo:before,
+                    .dropdown-menu li:not(.dropdown-caret) a:hover {
+						background-color:/*BACKGROUNDCOLORSTART*/#0084B4/*BACKGROUNDCOLOREND*/;
+						}
+					.queet-box-syntax[contenteditable="true"]:focus,
+                    .stream-item.selected-by-keyboard::before {
+						border-color:/*BORDERCOLORSTART*/#999999/*BORDERCOLOREND*/;
+						}
+					#user-footer-inner,
+					.inline-reply-queetbox,
+					#popup-faq #faq-container p.indent,
+                    #find-someone {
+						background-color:/*LIGHTERBACKGROUNDCOLORSTART*/rgb(205,230,239)/*LIGHTERBACKGROUNDCOLOREND*/;
+						}
+					#user-footer-inner,
+					.queet-box,
+					.queet-box-syntax[contenteditable="true"],
+					.inline-reply-queetbox,
+					span.inline-reply-caret,
+				    .stream-item.expanded .stream-item.first-visible-after-parent,
+					#popup-faq #faq-container p.indent,
+                    .post-to-group,
+                    .quoted-notice:hover,
+                    .oembed-item:hover,
+                    .stream-item:hover:not(.expanded) .quoted-notice:hover,
+                    .stream-item:hover:not(.expanded) .oembed-item:hover,
+                    #find-someone input:focus {
+						border-color:/*LIGHTERBORDERCOLORSTART*/rgb(155,206,224)/*LIGHTERBORDERCOLOREND*/;
+						}
+					span.inline-reply-caret .caret-inner {
+						border-bottom-color:/*LIGHTERBORDERBOTTOMCOLORSTART*/rgb(205,230,239)/*LIGHTERBORDERBOTTOMCOLOREND*/;
+						}
+
+					.modal-close .icon,
+					.chev-right,
+					.close-right,
+					button.icon.nav-search,
+					.member-button .join-text i,
+					.external-member-button .join-text i,
+					.external-follow-button .follow-text i,
+					.qvitter-follow-button .follow-text i,
+					#logo,
+					.upload-cover-photo,
+					.upload-avatar,
+					.upload-background-image,
+					button.shorten i,
+					.reload-stream,
+					.topbar .global-nav:before,
+					.stream-item.notification.repeat .dogear,
+					.stream-item.notification.like .dogear,
+					.ostatus-link,
+					.close-edit-profile-window {
+						background-image: url("https://quitter.no/plugins/Qvitter/img/sprite.png?v=41");
+						background-size: 500px 1329px;
+						}
+					@media (max-width: 910px) {
+						#search-query,
+						.menu-container a,
+						.menu-container a.current,
+						.stream-selection.friends-timeline:after,
+						.stream-selection.notifications:after,
+						.stream-selection.my-timeline:after,
+						.stream-selection.public-timeline:after {
+							background-image: url("https://quitter.no/plugins/Qvitter/img/sprite.png?v=41");
+							background-size: 500px 1329px;
+							}
+						}
+
+				</style>
+			</div>
+			</body>
+		</html>
+
+
+			

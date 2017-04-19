@@ -13,6 +13,8 @@ RSpec.describe FollowRemoteAccountService do
     stub_request(:get, "https://redirected.com/.well-known/webfinger?resource=acct:hacker1@redirected.com").to_return(request_fixture('webfinger-hacker1.txt'))
     stub_request(:get, "https://redirected.com/.well-known/webfinger?resource=acct:hacker2@redirected.com").to_return(request_fixture('webfinger-hacker2.txt'))
     stub_request(:get, "https://quitter.no/.well-known/webfinger?resource=acct:catsrgr8@quitter.no").to_return(status: 404)
+    stub_request(:head, "https://quitter.no/user/7477").to_return(:status => 200, :body => "", :headers => {})
+    stub_request(:get, "https://quitter.no/user/7477").to_return(request_fixture("profile.txt"))
     stub_request(:get, "https://quitter.no/api/statuses/user_timeline/7477.atom").to_return(request_fixture('feed.txt'))
     stub_request(:get, "https://quitter.no/avatar/7477-300-20160211190340.png").to_return(request_fixture('avatar.txt'))
   end
