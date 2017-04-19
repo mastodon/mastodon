@@ -1196,7 +1196,6 @@ a.status__content__spoiler-link {
   display: block;
   box-sizing: border-box;
   width: 100%;
-  resize: none;
   margin: 0;
   color: $color1;
   padding: 10px;
@@ -1220,11 +1219,17 @@ a.status__content__spoiler-link {
 }
 
 .autosuggest-textarea__textarea {
-  height: 100px;
+  min-height: 100px;
   background: $color5;
   border-radius: 4px 4px 0 0;
   padding-bottom: 0;
   padding-right: 10px + 22px;
+  resize: none;
+
+  @media screen and (max-width: 600px) {
+    height: 100px !important; // prevent auto-resize textarea
+    resize: vertical;
+  }
 }
 
 .autosuggest-textarea__suggestions {
