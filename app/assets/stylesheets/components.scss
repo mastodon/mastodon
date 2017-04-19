@@ -393,6 +393,14 @@
     list-style-type: lower-latin;
   }
 
+  blockquote {
+    display: block;
+    border-left: 10px solid lighten($color1, 30%);
+    margin-left: 30px;
+    padding-left: 10px;
+    margin-right: 40px;
+  }
+
   .status__content__spoiler-link {
     background: lighten($color1, 30%);
 
