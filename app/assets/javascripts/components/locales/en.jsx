@@ -100,7 +100,7 @@ const en = {
   "report.placeholder": "Additional comments",
   "report.submit": "Submit",
   "report.target": "Reporting",
-  "search_results.total": "{count} {count, plural, one {result} other {results}}",
+  "search_results.total": "{count, number} {count, plural, one {result} other {results}}",
   "search.placeholder": "Search",
   "search.status_by": "Status by {name}",
   "status.delete": "Delete",
