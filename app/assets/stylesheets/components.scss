@@ -891,16 +891,18 @@ a.status__content__spoiler-link {
   }
 }
 
-@media screen and (min-width: 2560px) {
+@media screen and (min-width: 1300px) { 
   .columns-area {
     justify-content: center;
   }
+}
 
+@media screen and (min-width: 1900px) {
   .column, .drawer {
-    width: 350px;
+    width: 400px;
     border-radius: 4px;
-    height: 90vh;
-    margin-top: 5vh;
+    height: 96vh;
+    margin-top: 2vh;
   }
 }
 
