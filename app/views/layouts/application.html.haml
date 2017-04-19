@@ -14,7 +14,7 @@
 
     %title<
       - if content_for?(:page_title)
-        = yield(:page_title).strip
+        = yield(:page_title)
         = ' - '
       = site_title
 
