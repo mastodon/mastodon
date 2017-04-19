@@ -1,3 +1,9 @@
+けもふれインスタンス用
+
+[![Build Status](https://travis-ci.org/maa123/mastodon.svg?branch=master)](https://travis-ci.org/maa123/mastodon)
+
+
+
 Mastodon
 ========
 
