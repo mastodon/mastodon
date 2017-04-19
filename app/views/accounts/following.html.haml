@@ -2,7 +2,7 @@
   = t('accounts.people_followed_by', name: display_name(@account))
 
 - content_for :header_tags do
-  = render partial: 'og', locals: { account: @account }
+  = render 'og', account: @account
 
 = render 'header', account: @account
 

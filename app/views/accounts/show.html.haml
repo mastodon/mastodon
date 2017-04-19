@@ -5,7 +5,7 @@
   %link{ rel: 'salmon', href: api_salmon_url(@account.id) }/
   %link{ rel: 'alternate', type: 'application/atom+xml', href: account_url(@account, format: 'atom') }/
 
-  = render partial: 'og', locals: { type: 'profile', account: @account }
+  = render 'og', type: 'profile', account: @account
 
 - if show_landing_strip?
   = render partial: 'shared/landing_strip', locals: { account: @account }
