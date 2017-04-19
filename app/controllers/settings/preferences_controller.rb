@@ -29,7 +29,7 @@ class Settings::PreferencesController < ApplicationController
     if current_user.update(user_params.except(:notification_emails, :interactions, :setting_default_privacy, :setting_boost_modal, :setting_auto_play_gif))
       redirect_to settings_preferences_path, notice: I18n.t('generic.changes_saved_msg')
     else
-      render action: :show
+      render :show
     end
   end
 
