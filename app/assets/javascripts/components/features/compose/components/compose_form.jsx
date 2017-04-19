@@ -197,9 +197,9 @@ const ComposeForm = React.createClass({
             <SpoilerButtonContainer />
           </div>
 
-          <div style={{ display: 'flex' }}>
+          <div style={{ display: 'flex', minWidth: 0 }}>
             <div style={{ paddingTop: '10px', marginRight: '16px', lineHeight: '36px' }}><CharacterCounter max={500} text={text} /></div>
-            <div style={{ paddingTop: '10px' }}><Button text={publishText} onClick={this.handleSubmit} disabled={disabled || text.replace(/[\uD800-\uDBFF][\uDC00-\uDFFF]/g, "_").length > 500} /></div>
+            <div style={{ paddingTop: '10px', overflow: 'hidden' }}><Button text={publishText} onClick={this.handleSubmit} disabled={disabled || text.replace(/[\uD800-\uDBFF][\uDC00-\uDFFF]/g, "_").length > 500} block /></div>
           </div>
         </div>
       </div>
