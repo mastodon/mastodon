@@ -6,6 +6,8 @@ class Api::Activitypub::OutboxController < ApiController
   respond_to :activitystreams2
 
   def show
+    headers['Access-Control-Allow-Origin'] = '*'
+
     @statuses = Status.as_outbox_timeline(@account).paginate_by_max_id(limit_param(DEFAULT_STATUSES_LIMIT), params[:max_id], params[:since_id])
     @statuses = cache_collection(@statuses)
 
