@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe Admin::SettingsController, type: :controller do
+  render_views
+
   describe 'GET #index' do
     before do
       sign_in Fabricate(:user, admin: true), scope: :user
