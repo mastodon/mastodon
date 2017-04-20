@@ -25,7 +25,7 @@ const PageOne = ({ acct, domain }) => (
 
     <div>
       <h1><FormattedMessage id='onboarding.page_one.welcome' defaultMessage='Welcome to Mastodon!' /></h1>
-      <p><FormattedMessage id='onboarding.page_one.federation' defaultMessage='Mastodon is a network of independent server instances joining up to make one larger social network.' /></p>
+      <p><FormattedMessage id='onboarding.page_one.federation' defaultMessage='Mastodon is a network of independent servers joining up to make one larger social network. We call these servers: <em>Instances</em>' /></p>
       <p><FormattedMessage id='onboarding.page_one.handle' defaultMessage='You are on {domain}, so your full handle is {handle}' values={{ domain, handle: <strong>{acct}@{domain}</strong> }}/></p>
     </div>
   </div>
@@ -94,12 +94,12 @@ const PageFour = ({ domain, intl }) => (
       <div className='row'>
         <div>
           <div className='figure non-interactive'><ColumnHeader icon='home' type={intl.formatMessage(messages.home_title)} /></div>
-          <p><FormattedMessage id='onboarding.page_four.home' defaultMessage='The Home timeline shows posts from people you follow'/></p>
+          <p><FormattedMessage id='onboarding.page_four.home' defaultMessage='The home timeline shows posts from people you follow.'/></p>
         </div>
 
         <div>
           <div className='figure non-interactive'><ColumnHeader icon='bell' type={intl.formatMessage(messages.notifications_title)} /></div>
-          <p><FormattedMessage id='onboarding.page_four.notifications' defaultMessage='The Notifications column shows when someone interacts with you' /></p>
+          <p><FormattedMessage id='onboarding.page_four.notifications' defaultMessage='The notifications column shows when someone interacts with you.' /></p>
         </div>
       </div>
 
@@ -113,7 +113,7 @@ const PageFour = ({ domain, intl }) => (
         </div>
       </div>
 
-      <p><FormattedMessage id='onboarding.page_five.public_timelines' defaultMessage='The Local timeline shows public posts from everyone on {domain}. The Federated timeline shows public posts from everyone who people on {domain} follow. These are the Public Timelines, a great way to discover new people.' values={{ domain }} /></p>
+      <p><FormattedMessage id='onboarding.page_five.public_timelines' defaultMessage='The local timeline shows public posts from everyone on {domain}. The federated timeline shows public posts from everyone who people on {domain} follow. These are the public timelines, a great way to discover new people.' values={{ domain }} /></p>
     </div>
   </div>
 );
