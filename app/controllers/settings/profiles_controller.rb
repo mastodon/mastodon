@@ -17,7 +17,7 @@ class Settings::ProfilesController < ApplicationController
     if @account.update(account_params)
       redirect_to settings_profile_path, notice: I18n.t('generic.changes_saved_msg')
     else
-      render action: :show
+      render :show
     end
   end
 
