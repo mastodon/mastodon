@@ -108,5 +108,15 @@ RSpec.describe User, type: :model do
       user = User.new(email: 'foo@mastodon.space.userdomain.com', account: account, password: password)
       expect(user.valid?).to be_falsey
     end
+
+    it 'should not allow a user to be created with a specific blacklisted subdomain even if the top domain is whitelisted' do
+      old_blacklist = Rails.configuration.x.email_blacklist
+      Rails.configuration.x.email_domains_blacklist = 'blacklisted.mastodon.space'
+
+      user = User.new(email: 'foo@blacklisted.mastodon.space', account: account, password: password)
+      expect(user.valid?).to be_falsey
+
+      Rails.configuration.x.email_domains_blacklist = old_blacklist
+    end
   end
 end
