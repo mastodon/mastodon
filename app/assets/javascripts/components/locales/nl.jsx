@@ -27,6 +27,7 @@ const nl = {
   "account.mute": "Negeer @{name}",
   "account.unmute": "Negeer @{name} niet meer",
   "account.report": "Rapporteer @{name}",
+  "boost_modal.combo": "Je kunt {combo} klikken om dit de volgende keer over te slaan",
   "getting_started.heading": "Beginnen",
   "getting_started.about_addressing": "Je kunt mensen volgen als je hun gebruikersnaam en het domein van hun server kent. Voer hiervoor het e-mailachtige adres in het zoekveld in.",
   "getting_started.about_shortcuts": "Als de gezochte gebruiker op hetzelfde domein zit als jijzelf, is invoeren van de gebruikersnaam genoeg. Dat geldt ook als je mensen in toots wilt vermelden.",
