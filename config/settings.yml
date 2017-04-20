@@ -7,8 +7,8 @@
 # For more information, see docs/Running-Mastodon/Administration-guide.md
 #
 defaults: &defaults
-  site_title: 'Mastodon'
-  site_description: ''
+  site_title: 'LoL JP Mastodon'
+  site_description: '日本のLoLプレイヤーが交流をするためのマストドンインスタンスです'
   site_extended_description: ''
   site_contact_username: ''
   site_contact_email: ''
@@ -21,8 +21,8 @@ defaults: &defaults
     reblog: false
     favourite: false
     mention: false
-    follow_request: true
-    digest: true
+    follow_request: false
+    digest: false
   interactions:
     must_be_follower: false
     must_be_following: false
