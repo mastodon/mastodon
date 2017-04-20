@@ -26,7 +26,7 @@ const ja_im = {
   "column_back_button.label": "戻る",
   "compose_form.placeholder": "もう時間がないんです！",
   "compose_form.privacy_disclaimer": "あなたの非公開あふぅはReあふぅ先のユーザー（at {domains}）に公開されます。{domainsCount, plural, one {that server} other {those servers}}を信頼しますか？あふぅのプライバシー保護はMastodonサーバー内でのみ有効です。 もし{domains} {domainsCount, plural, one {is not a Mastodon instance} other {are not Mastodon instances}}ならばあなたのあふぅのプライバシーは保護されず、わかるわされたり予期しないユーザーに見られる可能性があります。",
-  "compose_form.publish": "あふぅ",
+  "compose_form.publish": "あふぅ...",
   "compose_form.sensitive": "早苗さんに見つからないようにする",
   "compose_form.spoiler": "テキストを隠す",
   "compose_form.spoiler_placeholder": "ζ'ヮ')ζ＜まえせつ",
