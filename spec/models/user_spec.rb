@@ -87,5 +87,10 @@ RSpec.describe User, type: :model do
       user = User.new(email: 'foo@mastodon.space', account: account, password: password)
       expect(user.valid?).to be_truthy
     end
+
+    it 'should not allow a smart user to be created unless they are whitelisted' do
+      user = User.new(email: 'foo@mastodon.space.userdomain.com', account: account, password: password)
+      expect(user.valid?).to be_falsey
+    end
   end
 end

@@ -23,9 +23,11 @@ class EmailValidator < ActiveModel::EachValidator
   def not_on_whitelist?(value)
     return false if Rails.configuration.x.email_domains_whitelist.blank?
 
-    domains = Rails.configuration.x.email_domains_whitelist.gsub('.', '\.')
-    regexp  = Regexp.new("@(.+\\.)?(#{domains})", true)
+    domains = Rails.configuration.x.email_domains_whitelist.gsub('.', '\.').split('|')
+    domains.any? { |domain|
+      regexp  = Regexp.new("@(.+\\.)?(#{domain})$", true)
+      value !~ regexp
+    }
 
-    value !~ regexp
   end
 end
