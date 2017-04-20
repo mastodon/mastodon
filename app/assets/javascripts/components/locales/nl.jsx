@@ -10,6 +10,8 @@ const nl = {
   "status.reblogged_by": "{name} boostte",
   "status.sensitive_warning": "Gevoelige inhoud",
   "status.sensitive_toggle": "Klik om te zien",
+  "status.show_less": "Minder tonen",
+  "status.show_more": "Meer tonen",
   "video_player.toggle_sound": "Geluid in-/uitschakelen",
   "account.mention": "Vermeld @{name}",
   "account.edit_profile": "Profiel bewerken",
@@ -84,11 +86,11 @@ const nl = {
   "privacy.change": "Privacy toot aanpassen",
   "privacy.direct.long": "Toot alleen naar vermelde gebruikers",
   "privacy.direct.short": "Direct",
-  "privacy.private.long": "Toot alleen naar jouw volgers",
+  "privacy.private.long": "Alleen aan volgers (en vermeldingen) tonen",
   "privacy.private.short": "Privé",
-  "privacy.public.long": "Toot naar openbare tijdlijnen",
+  "privacy.public.long": "Op openbare tijdlijnen tonen",
   "privacy.public.short": "Openbaar",
-  "privacy.unlisted.long": "Niet op openbare tijdlijnen weergeven",
+  "privacy.unlisted.long": "Niet op openbare tijdlijnen tonen",
   "privacy.unlisted.short": "Minder openbaar",
 };
 
