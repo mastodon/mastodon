@@ -21,6 +21,9 @@ chdir APP_ROOT do
   puts "\n== Updating database =="
   system! 'bin/rails db:migrate'
 
+  puts "\n== Installing front-end dependencies =="
+  system! 'yarn'
+
   puts "\n== Removing old logs and tempfiles =="
   system! 'bin/rails log:clear tmp:clear'
 
