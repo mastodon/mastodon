@@ -19,7 +19,7 @@ dotenv.config({
 if (cluster.isMaster) {
   // cluster master
 
-  const core = +process.env.STREAMING_CLUSTER_NUM || (env === 'development' ? 1 : os.cpus().length - 1)
+  const core = +process.env.STREAMING_CLUSTER_NUM || (env === 'development' ? 1 : (os.cpus().length > 1 ? os.cpus().length - 1 : 1))
   const fork = () => {
     const worker = cluster.fork();
     worker.on('exit', (code, signal) => {

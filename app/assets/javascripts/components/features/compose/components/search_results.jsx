@@ -53,7 +53,7 @@ const SearchResults = React.createClass({
     return (
       <div className='search-results'>
         <div className='search-results__header'>
-          <FormattedMessage id='search_results.total' defaultMessage='{count} {count, plural, one {result} other {results}}' values={{ count }} />
+          <FormattedMessage id='search_results.total' defaultMessage='{count, number} {count, plural, one {result} other {results}}' values={{ count }} />
         </div>
 
         {accounts}

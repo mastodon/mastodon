@@ -112,7 +112,7 @@ const zh_hk = {
   "report.placeholder": "額外訊息",
   "report.submit": "提交",
   "report.target": "Reporting",
-  "search_results.total": "{count} 項結果",
+  "search_results.total": "{count, number} 項結果",
   "search.account": "用戶",
   "search.hashtag": "標籤",
   "search.placeholder": "搜尋",
