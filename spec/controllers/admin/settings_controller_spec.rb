@@ -17,6 +17,22 @@ RSpec.describe Admin::SettingsController, type: :controller do
     end
 
     describe 'PUT #update' do
+
+      describe 'for a record that doesnt exist' do
+        after do
+          Setting.new_setting_key = nil
+        end
+
+        it 'creates a settings value that didnt exist before' do
+          expect(Setting.new_setting_key).to be_nil
+
+          patch :update, params: { id: 'new_setting_key', setting: { value: 'New key value' } }
+
+          expect(response).to redirect_to(admin_settings_path)
+          expect(Setting.new_setting_key).to eq 'New key value'
+        end
+      end
+
       it 'updates a settings value' do
         Setting.site_title = 'Original'
         patch :update, params: { id: 'site_title', setting: { value: 'New title' } }
