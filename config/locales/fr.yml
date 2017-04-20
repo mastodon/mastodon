@@ -76,7 +76,7 @@ fr:
       silence: Rendre muet
       statuses: Statuts
       title: Comptes
-      undo_silenced: Annuler la mu
+      undo_silenced: Annuler le silence
       undo_suspension: Annuler la suspension
       username: Nom d'utilisateur
       web: Web
@@ -93,8 +93,8 @@ fr:
           silence: Muet
           suspend: Suspendre
         title: Nouveau blocage de domaine
-      reject_media: Fichiers media rejetés
-      reject_media_hint: Supprime localement les fichiers media stockés et refuse d'en télécharger ultérieurement. Ne concerne pas les suspensions.
+      reject_media: Fichiers média rejetés
+      reject_media_hint: Supprime localement les fichiers média stockés et refuse d'en télécharger ultérieurement. Ne concerne pas les suspensions.
       severities:
         silence: Rendre muet
         suspend: Suspendre
@@ -123,7 +123,7 @@ fr:
         none: Aucun
       delete: Supprimer
       id: ID
-      mark_as_resolved: Marqué comme résolu
+      mark_as_resolved: Marquer comme résolu
       report: 'Signalement #%{id}'
       reported_account: Compte signalé
       reported_by: Signalé par
@@ -218,10 +218,10 @@ fr:
     save_changes: Enregistrer les modifications
     validation_errors:
       one: Quelque chose ne va pas ! Vérifiez l’erreur ci-dessous.
-      other: Quelques choses ne vont pas ! Vérifiez les erreurs ci-dessous.
+      other: Certaines choses ne vont pas ! Vérifiez les erreurs ci-dessous.
   imports:
-    preface: Vous pouvez importer certaines données comme les personnes que vous suivez ou bloquez sur votre compte sur cette instance à partir de fichiers crées sur une autre instance.
-    success: Vos données ont été importées avec succès et seront traités en temps et en heure
+    preface: Vous pouvez importer certaines données comme les personnes que vous suivez ou bloquez sur votre compte sur cette instance à partir de fichiers créés sur une autre instance.
+    success: Vos données ont été importées avec succès et seront traitées en temps et en heure
     types:
       blocking: Liste d'utilisateurs⋅trices bloqué⋅es
       following: Liste d'utilisateurs⋅trices suivi⋅es
@@ -230,7 +230,7 @@ fr:
   landing_strip_html: <strong>%{name}</strong> utilise <strong>%{domain}</strong>. Vous pouvez le/la suivre et interagir si vous possédez un compte quelque part dans le "fediverse". Si ce n'est pas le cas, vous pouvez <a href="%{sign_up_path}">en créer un ici</a>.
   media_attachments:
     validations:
-      images_and_video: Impossible de joindre une vidéo à un statuts contenant déjà des images
+      images_and_video: Impossible de joindre une vidéo à un statut contenant déjà des images
       too_many: Impossible de joindre plus de 4 fichiers
   notification_mailer:
     digest:
@@ -277,13 +277,13 @@ fr:
   statuses:
     open_in_web: Ouvrir sur le web
     over_character_limit: limite de caractères dépassée de %{max} caractères
-    show_more: Montrer plus
+    show_more: Afficher plus
     visibilities:
       private: Abonné⋅es uniquement
       public: Public
       unlisted: Public sans être affiché sur le fil public
   stream_entries:
-    click_to_show: Clic pour afficher
+    click_to_show: Cliquer pour afficher
     reblogged: partagé
     sensitive_content: Contenu sensible
   time:
@@ -300,7 +300,7 @@ fr:
     lost_recovery_codes: Les codes de récupération vous permettent de retrouver les accès à votre comptre si vous perdez votre téléphone. Si vous perdez vos codes de récupération, vous pouvez les générer à nouveau ici. Vos anciens codes de récupération seront invalidés.
     manual_instructions: "Si vous ne pouvez pas scanner ce QR code et devez l'entrer manuellement, voici le secret en clair :"
     recovery_codes_regenerated: Codes de récupération régénérés avec succès
-    recovery_instructions: Si vous perdez l'accès à votre téléphone, vous pouvez utiliser un des code de récupération ci-dessous pour récupérer l'accès à votre compte. Conservez les codes de récupération en toute sécurité, par exemple, en les imprimant et en les stockant avec vos autres documents importants.
+    recovery_instructions: Si vous perdez l'accès à votre téléphone, vous pouvez utiliser un des codes de récupération ci-dessous pour récupérer l'accès à votre compte. Conservez les codes de récupération en toute sécurité, par exemple, en les imprimant et en les stockant avec vos autres documents importants.
     setup: Installer
     wrong_code: Les codes entrés sont incorrects ! L'heure du serveur et celle de votre appareil sont-elles correctes ?
   users:

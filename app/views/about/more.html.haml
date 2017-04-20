@@ -28,5 +28,5 @@
         .panel= @instance_presenter.site_extended_description.html_safe
 
     .sidebar
-      = render partial: 'contact', object: @instance_presenter
+      = render 'contact', contact: @instance_presenter
       = render 'links'

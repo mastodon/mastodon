@@ -14,11 +14,10 @@ window.storiesOf = storiesOf;
 window.action    = action;
 window.React     = React;
 
+let req = require.context('./stories/', true, /.story.jsx$/);
+
 function loadStories () {
-  require('./stories/loading_indicator.story.jsx');
-  require('./stories/button.story.jsx');
-  require('./stories/character_counter.story.jsx');
-  require('./stories/autosuggest_textarea.story.jsx');
+  req.keys().forEach((filename) => req(filename))
 }
 
 configure(loadStories, module);
