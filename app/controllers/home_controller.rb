@@ -14,7 +14,10 @@ class HomeController < ApplicationController
   private
 
   def authenticate_user!
-    redirect_to(single_user_mode? ? account_path(Account.first) : about_path) unless user_signed_in?
+    return if user_signed_in?
+    md = request.original_fullpath.match(/\A\/web\/accounts\/(\d+)/)
+    return redirect_to(short_account_path(Account.find(md[1].to_i))) if md
+    redirect_to(single_user_mode? ? account_path(Account.first) : about_path)
   end
 
   def find_or_create_access_token
