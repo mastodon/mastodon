@@ -8,11 +8,7 @@ module Admin
 
     def update
       @setting = Setting.where(var: params[:id]).first_or_initialize(var: params[:id])
-
-      if @setting.value != value_for_update
-        @setting.value = value_for_update
-        @setting.save
-      end
+      @setting.update(value: value_for_update)
 
       respond_to do |format|
         format.html { redirect_to admin_settings_path }
