@@ -2,6 +2,8 @@
 
 module Admin
   class SettingsController < BaseController
+    BOOLEAN_SETTINGS = %w(open_registrations).freeze
+
     def index
       @settings = Setting.all_as_records
     end
@@ -23,15 +25,15 @@ module Admin
     end
 
     def value_for_update
-      if updating_open_registrations?
+      if updating_boolean_setting?
         settings_params[:value] == 'true'
       else
         settings_params[:value]
       end
     end
 
-    def updating_open_registrations?
-      params[:id] == 'open_registrations'
+    def updating_boolean_setting?
+      BOOLEAN_SETTINGS.include?(params[:id])
     end
   end
 end
