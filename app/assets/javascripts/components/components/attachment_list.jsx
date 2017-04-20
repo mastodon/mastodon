@@ -1,14 +1,8 @@
 import ImmutablePropTypes from 'react-immutable-proptypes';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
 
 const filename = url => url.split('/').pop().split('#')[0].split('?')[0];
 
-const AttachmentList = React.createClass({
-  propTypes: {
-    media: ImmutablePropTypes.list.isRequired
-  },
-
-  mixins: [PureRenderMixin],
+class AttachmentList extends React.PureComponent {
 
   render () {
     const { media } = this.props;
@@ -29,6 +23,10 @@ const AttachmentList = React.createClass({
       </div>
     );
   }
-});
+}
+
+AttachmentList.propTypes = {
+  media: ImmutablePropTypes.list.isRequired
+};
 
 export default AttachmentList;

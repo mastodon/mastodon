@@ -178,7 +178,7 @@ Status.propTypes = {
   descendantsIds: ImmutablePropTypes.list,
   me: PropTypes.number,
   boostModal: PropTypes.bool,
-  autoPlayGif: React.PropTypes.bool
+  autoPlayGif: PropTypes.bool
 };
 
 export default connect(makeMapStateToProps)(Status);

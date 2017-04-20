@@ -71,7 +71,7 @@ class Avatar extends React.PureComponent {
 
 Avatar.propTypes = {
   account: ImmutablePropTypes.map.isRequired,
-  autoPlayGif: React.PropTypes.bool.isRequired
+  autoPlayGif: PropTypes.bool.isRequired
 };
 
 class Header extends React.Component {
@@ -142,7 +142,7 @@ Header.propTypes = {
   me: PropTypes.number.isRequired,
   onFollow: PropTypes.func.isRequired,
   intl: PropTypes.object.isRequired,
-  autoPlayGif: React.PropTypes.bool.isRequired
+  autoPlayGif: PropTypes.bool.isRequired
 };
 
 export default connect(makeMapStateToProps)(injectIntl(Header));

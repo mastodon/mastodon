@@ -186,7 +186,7 @@ Item.propTypes = {
   index: PropTypes.number.isRequired,
   size: PropTypes.number.isRequired,
   onClick: PropTypes.func.isRequired,
-  autoPlayGif: React.PropTypes.bool.isRequired
+  autoPlayGif: PropTypes.bool.isRequired
 };
 
 class MediaGallery extends React.PureComponent {
@@ -252,7 +252,7 @@ MediaGallery.propTypes = {
   height: PropTypes.number.isRequired,
   onOpenMedia: PropTypes.func.isRequired,
   intl: PropTypes.object.isRequired,
-  autoPlayGif: React.PropTypes.bool.isRequired
+  autoPlayGif: PropTypes.bool.isRequired
 };
 
 export default injectIntl(MediaGallery);

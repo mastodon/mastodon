@@ -114,7 +114,7 @@ Status.propTypes = {
   onBlock: PropTypes.func,
   me: PropTypes.number,
   boostModal: PropTypes.bool,
-  autoPlayGif: React.PropTypes.bool,
+  autoPlayGif: PropTypes.bool,
   muted: PropTypes.bool
 };
 

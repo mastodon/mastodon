@@ -76,7 +76,7 @@ DetailedStatus.propTypes = {
   status: ImmutablePropTypes.map.isRequired,
   onOpenMedia: PropTypes.func.isRequired,
   onOpenVideo: PropTypes.func.isRequired,
-  autoPlayGif: React.PropTypes.bool,
+  autoPlayGif: PropTypes.bool,
 };
 
 export default DetailedStatus;
