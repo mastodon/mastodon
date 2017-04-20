@@ -145,6 +145,8 @@ Rails.application.routes.draw do
         end
       end
 
+      resources :version, only: [:index]
+
       resources :notifications, only: [:index, :show] do
         collection do
           post :clear
