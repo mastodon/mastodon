@@ -5,14 +5,8 @@
   %link{ rel: 'salmon', href: api_salmon_url(@account.id) }/
   %link{ rel: 'alternate', type: 'application/atom+xml', href: account_url(@account, format: 'atom') }/
 
-  %meta{ property: 'og:site_name', content: site_title }/
   %meta{ property: 'og:type', content: 'profile' }/
-  %meta{ property: 'og:title', content: "#{@account.username} on #{site_hostname}" }/
-  %meta{ property: 'og:description', content: @account.note }/
-  %meta{ property: 'og:image', content: full_asset_url(@account.avatar.url(:original)) }/
-  %meta{ property: 'og:image:width', content: '120' }/
-  %meta{ property: 'og:image:height', content: '120' }/
-  %meta{ property: 'twitter:card', content: 'summary' }/
+  = render 'og', account: @account
 
 - if show_landing_strip?
   = render partial: 'shared/landing_strip', locals: { account: @account }

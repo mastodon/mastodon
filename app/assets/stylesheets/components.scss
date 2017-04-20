@@ -1196,7 +1196,6 @@ a.status__content__spoiler-link {
   display: block;
   box-sizing: border-box;
   width: 100%;
-  resize: none;
   margin: 0;
   color: $color1;
   padding: 10px;
@@ -1220,11 +1219,17 @@ a.status__content__spoiler-link {
 }
 
 .autosuggest-textarea__textarea {
-  height: 100px;
+  min-height: 100px;
   background: $color5;
   border-radius: 4px 4px 0 0;
   padding-bottom: 0;
   padding-right: 10px + 22px;
+  resize: none;
+
+  @media screen and (max-width: 600px) {
+    height: 100px !important; // prevent auto-resize textarea
+    resize: vertical;
+  }
 }
 
 .autosuggest-textarea__suggestions {
@@ -2343,6 +2348,56 @@ button.icon-button.active i.fa-retweet {
   &:hover {
     .media-gallery__gifv__label {
       opacity: 1;
+    }
+  }
+}
+
+.attachment-list {
+  display: flex;
+  font-size: 14px;
+  border: 1px solid lighten($color1, 8%);
+  border-radius: 4px;
+  margin-top: 14px;
+  overflow: hidden;
+}
+
+.attachment-list__icon {
+  flex: 0 0 auto;
+  color: lighten($color1, 26%);
+  padding: 8px 18px;
+  cursor: default;
+  border-right: 1px solid lighten($color1, 8%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 26px;
+
+  .fa {
+    display: block;
+  }
+}
+
+.attachment-list__list {
+  list-style: none;
+  padding: 4px 0;
+  padding-left: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  li {
+    display: block;
+    padding: 4px 0;
+  }
+
+  a {
+    text-decoration: none;
+    color: lighten($color1, 26%);
+    font-weight: 500;
+
+    &:hover {
+      text-decoration: underline;
     }
   }
 }

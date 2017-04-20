@@ -16,8 +16,9 @@ if ENV['S3_ENABLED'] == 'true'
   Paperclip::Attachment.default_options[:s3_host_name]   = ENV.fetch('S3_HOSTNAME') { "s3-#{ENV.fetch('S3_REGION')}.amazonaws.com" }
   Paperclip::Attachment.default_options[:path]           = '/:class/:attachment/:id_partition/:style/:filename'
   Paperclip::Attachment.default_options[:s3_headers]     = { 'Cache-Control' => 'max-age=315576000' }
-  Paperclip::Attachment.default_options[:s3_permissions] = 'public-read'
+  Paperclip::Attachment.default_options[:s3_permissions] = ENV.fetch('S3_PERMISSION') { 'public-read' }
   Paperclip::Attachment.default_options[:s3_region]      = ENV.fetch('S3_REGION') { 'us-east-1' }
+  Paperclip::Attachment.default_options[:use_timestamp]  = false
 
   Paperclip::Attachment.default_options[:s3_credentials] = {
     bucket: ENV.fetch('S3_BUCKET'),
@@ -28,6 +29,7 @@ if ENV['S3_ENABLED'] == 'true'
   unless ENV['S3_ENDPOINT'].blank?
     Paperclip::Attachment.default_options[:s3_options] = {
       endpoint: ENV['S3_ENDPOINT'],
+      signature_version: ENV['S3_SIGNATURE_VERSION'] || 'v4',
       force_path_style: true,
     }
 
