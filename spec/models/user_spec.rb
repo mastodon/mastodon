@@ -54,6 +54,16 @@ RSpec.describe User, type: :model do
   let(:password) { 'abcd1234' }
 
   describe 'blacklist' do
+    around(:each) do |example|
+      old_blacklist = Rails.configuration.x.email_blacklist
+
+      Rails.configuration.x.email_domains_blacklist = 'mvrht.com'
+
+      example.run
+
+      Rails.configuration.x.email_domains_blacklist = old_blacklist
+    end
+
     it 'should allow a non-blacklisted user to be created' do
       user = User.new(email: 'foo@example.com', account: account, password: password)
 
@@ -62,6 +72,12 @@ RSpec.describe User, type: :model do
 
     it 'should not allow a blacklisted user to be created' do
       user = User.new(email: 'foo@mvrht.com', account: account, password: password)
+
+      expect(user.valid?).to be_falsey
+    end
+
+    it 'should not allow a subdomain blacklisted user to be created' do
+      user = User.new(email: 'foo@mvrht.com.topdomain.tld', account: account, password: password)
 
       expect(user.valid?).to be_falsey
     end
