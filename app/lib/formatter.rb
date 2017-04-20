@@ -13,10 +13,9 @@ class Formatter
     return reformat(status.content) unless status.local?
 
     html = status.text
-    html = encode(html)
+    html = encode_and_link_urls(html)
     html = simple_format(html, {}, sanitize: false)
     html = html.delete("\n")
-    html = link_urls(html)
     html = link_mentions(html, status.mentions)
     html = link_hashtags(html)
 
@@ -35,8 +34,7 @@ class Formatter
   def simplified_format(account)
     return reformat(account.note) unless account.local?
 
-    html = encode(account.note)
-    html = link_urls(html)
+    html = encode_and_link_urls(account.note)
     html = link_accounts(html)
     html = link_hashtags(html)
 
@@ -47,6 +45,26 @@ class Formatter
 
   def encode(html)
     HTMLEntities.new.encode(html)
+  end
+
+  def encode_and_link_urls(html)
+    entities = Twitter::Extractor.extract_urls_with_indices(html, extract_url_without_protocol: false)
+    entities = entities.sort_by { |entity| entity[:indices].first }
+
+    chars = html.to_s.to_char_a
+    html_attrs = {
+      target: '_blank',
+      rel: 'nofollow noopener',
+    }
+    result = ''
+
+    last_index = entities.reduce(0) do |index, entity|
+      indices = entity[:indices]
+      result += encode(chars[index...indices.first].join)
+      result += Twitter::Autolink.send(:link_to_text, entity, link_html(entity[:url]), entity[:url], html_attrs)
+      indices.last
+    end
+    result += encode(chars[last_index..-1].join)
   end
 
   def link_urls(html)

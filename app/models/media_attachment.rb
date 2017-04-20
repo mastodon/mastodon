@@ -3,7 +3,7 @@
 class MediaAttachment < ApplicationRecord
   self.inheritance_column = nil
 
-  enum type: [:image, :gifv, :video]
+  enum type: [:image, :gifv, :video, :unknown]
 
   IMAGE_MIME_TYPES = ['image/jpeg', 'image/png', 'image/gif'].freeze
   VIDEO_MIME_TYPES = ['video/webm', 'video/mp4'].freeze
@@ -33,6 +33,7 @@ class MediaAttachment < ApplicationRecord
 
   validates :account, presence: true
 
+  scope :attached, -> { where.not(status_id: nil) }
   scope :local, -> { where(remote_url: '') }
   default_scope { order('id asc') }
 
@@ -49,7 +50,7 @@ class MediaAttachment < ApplicationRecord
   end
 
   before_create :set_shortcode
-  before_post_process :set_type
+  before_post_process :set_type_and_extension
 
   class << self
     private
@@ -94,6 +95,8 @@ class MediaAttachment < ApplicationRecord
   private
 
   def set_shortcode
+    self.type = :unknown if file.blank? && type.blank?
+
     return unless local?
 
     loop do
@@ -102,7 +105,19 @@ class MediaAttachment < ApplicationRecord
     end
   end
 
-  def set_type
+  def set_type_and_extension
     self.type = VIDEO_MIME_TYPES.include?(file_content_type) ? :video : :image
+    extension = appropriate_extension
+    basename  = Paperclip::Interpolations.basename(file, :original)
+    file.instance_write :file_name, [basename, extension].delete_if(&:empty?).join('.')
+  end
+
+  def appropriate_extension
+    mime_type = MIME::Types[file.content_type]
+
+    extensions_for_mime_type = mime_type.empty? ? [] : mime_type.first.extensions
+    original_extension       = Paperclip::Interpolations.extension(file, :original)
+
+    extensions_for_mime_type.include?(original_extension) ? original_extension : extensions_for_mime_type.first
   end
 end

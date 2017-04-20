@@ -5,6 +5,7 @@ import RelativeTimestamp from './relative_timestamp';
 import DisplayName from './display_name';
 import MediaGallery from './media_gallery';
 import VideoPlayer from './video_player';
+import AttachmentList from './attachment_list';
 import StatusContent from './status_content';
 import StatusActionBar from './status_action_bar';
 import { FormattedMessage } from 'react-intl';
@@ -61,10 +62,12 @@ class Status extends React.PureComponent {
     }
 
     if (status.get('media_attachments').size > 0 && !this.props.muted) {
-      if (status.getIn(['media_attachments', 0, 'type']) === 'video') {
+      if (status.get('media_attachments').some(item => item.get('type') === 'unknown')) {
+
+      } else if (status.getIn(['media_attachments', 0, 'type']) === 'video') {
         media = <VideoPlayer media={status.getIn(['media_attachments', 0])} sensitive={status.get('sensitive')} onOpenVideo={this.props.onOpenVideo} />;
       } else {
-        media = <MediaGallery media={status.get('media_attachments')} sensitive={status.get('sensitive')} height={110} onOpenMedia={this.props.onOpenMedia} />;
+        media = <MediaGallery media={status.get('media_attachments')} sensitive={status.get('sensitive')} height={110} onOpenMedia={this.props.onOpenMedia} autoPlayGif={this.props.autoPlayGif} />;
       }
     }
 
@@ -111,6 +114,7 @@ Status.propTypes = {
   onBlock: PropTypes.func,
   me: PropTypes.number,
   boostModal: PropTypes.bool,
+  autoPlayGif: React.PropTypes.bool,
   muted: PropTypes.bool
 };
 

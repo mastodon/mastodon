@@ -57,6 +57,10 @@ class AutosuggestTextarea extends React.Component {
       this.props.onSuggestionsClearRequested();
     }
 
+    // auto-resize textarea
+    e.target.style.height = 'auto';
+    e.target.style.height = `${e.target.scrollHeight}px`;
+
     this.props.onChange(e);
   }
 

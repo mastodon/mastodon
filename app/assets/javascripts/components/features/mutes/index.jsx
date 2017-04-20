@@ -48,7 +48,7 @@ class Mutes extends React.PureComponent {
     }
 
     return (
-      <Column icon='users' heading={intl.formatMessage(messages.heading)}>
+      <Column icon='volume-off' heading={intl.formatMessage(messages.heading)}>
         <ColumnBackButtonSlim />
         <ScrollContainer scrollKey='mutes'>
           <div className='scrollable' onScroll={this.handleScroll}>

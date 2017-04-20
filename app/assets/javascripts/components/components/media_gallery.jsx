@@ -154,15 +154,21 @@ class Item extends React.PureComponent {
         />
       );
     } else if (attachment.get('type') === 'gifv') {
+      const autoPlay = !isIOS() && this.props.autoPlayGif;
+
       thumbnail = (
-        <video
-          src={attachment.get('url')}
-          onClick={this.handleClick}
-          autoPlay={!isIOS()}
-          loop={true}
-          muted={true}
-          style={gifvThumbStyle}
-        />
+        <div style={{ position: 'relative', width: '100%', height: '100%', overflow: 'hidden' }} className={`media-gallery__gifv ${autoPlay ? 'autoplay' : ''}`}>
+          <video
+            src={attachment.get('url')}
+            onClick={this.handleClick}
+            autoPlay={autoPlay}
+            loop={true}
+            muted={true}
+            style={gifvThumbStyle}
+          />
+
+          <span className='media-gallery__gifv__label'>GIF</span>
+        </div>
       );
     }
 
@@ -179,7 +185,8 @@ Item.propTypes = {
   attachment: ImmutablePropTypes.map.isRequired,
   index: PropTypes.number.isRequired,
   size: PropTypes.number.isRequired,
-  onClick: PropTypes.func.isRequired
+  onClick: PropTypes.func.isRequired,
+  autoPlayGif: React.PropTypes.bool.isRequired
 };
 
 class MediaGallery extends React.PureComponent {
@@ -223,7 +230,7 @@ class MediaGallery extends React.PureComponent {
       );
     } else {
       const size = media.take(4).size;
-      children = media.take(4).map((attachment, i) => <Item key={attachment.get('id')} onClick={this.handleClick} attachment={attachment} index={i} size={size} />);
+      children = media.take(4).map((attachment, i) => <Item key={attachment.get('id')} onClick={this.handleClick} attachment={attachment} autoPlayGif={this.props.autoPlayGif} index={i} size={size} />);
     }
 
     return (
@@ -244,7 +251,8 @@ MediaGallery.propTypes = {
   media: ImmutablePropTypes.list.isRequired,
   height: PropTypes.number.isRequired,
   onOpenMedia: PropTypes.func.isRequired,
-  intl: PropTypes.object.isRequired
+  intl: PropTypes.object.isRequired,
+  autoPlayGif: React.PropTypes.bool.isRequired
 };
 
 export default injectIntl(MediaGallery);

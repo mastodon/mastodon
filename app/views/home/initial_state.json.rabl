@@ -5,10 +5,11 @@ node(:meta) do
     streaming_api_base_url: @streaming_api_base_url,
     access_token: @token,
     locale: I18n.locale,
-    domain: Rails.configuration.x.local_domain,
+    domain: site_hostname,
     me: current_account.id,
     admin: @admin.try(:id),
     boost_modal: current_account.user.setting_boost_modal,
+    auto_play_gif: current_account.user.setting_auto_play_gif,
   }
 end
 

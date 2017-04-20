@@ -48,7 +48,7 @@ class Blocks extends React.PureComponent {
     }
 
     return (
-      <Column icon='users' heading={intl.formatMessage(messages.heading)}>
+      <Column icon='ban' heading={intl.formatMessage(messages.heading)}>
         <ColumnBackButtonSlim />
         <ScrollContainer scrollKey='blocks'>
           <div className='scrollable' onScroll={this.handleScroll}>
