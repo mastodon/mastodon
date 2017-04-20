@@ -24,6 +24,14 @@ RSpec.describe Admin::SettingsController, type: :controller do
         expect(response).to redirect_to(admin_settings_path)
         expect(Setting.site_title).to eq 'New title'
       end
+
+      it 'typecasts open_registrations to boolean' do
+        Setting.open_registrations = false
+        patch :update, params: { id: 'open_registrations', setting: { value: 'true' } }
+
+        expect(response).to redirect_to(admin_settings_path)
+        expect(Setting.open_registrations).to eq true
+      end
     end
   end
 end
