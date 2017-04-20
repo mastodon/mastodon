@@ -109,7 +109,7 @@ const PageFour = ({ domain, intl }) => (
         </div>
       </div>
 
-      <p><FormattedMessage id='onboarding.page_five.public_timelines' defaultMessage='Federated timeline lists public posts from everyone who people on {domain} follow. Local timeline is the same, but limited to people on {domain}.' values={{ domain }} /></p>
+      <p><FormattedMessage id='onboarding.page_five.public_timelines' defaultMessage='Federated timeline lists public posts from everyone who follow people on {domain}. Local timeline is the same, but limited to people on {domain}.' values={{ domain }} /></p>
     </div>
   </div>
 );
