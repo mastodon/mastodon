@@ -2,6 +2,6 @@
 
 class Api::V1::VersionController < ApiController
   def index
-    render :text => Mastodon::VERSION
+    render text: Mastodon::VERSION
   end
 end
