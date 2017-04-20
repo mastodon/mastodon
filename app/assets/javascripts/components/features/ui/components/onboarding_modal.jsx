@@ -43,6 +43,7 @@ const PageTwo = () => (
         text='Awoo! #introductions'
         suggestions={Immutable.List()}
         mentionedDomains={[]}
+        spoiler={false}
         onChange={() => {}}
         onSubmit={() => {}}
         onPaste={() => {}}
@@ -213,7 +214,7 @@ const OnboardingModal = React.createClass({
     }
 
     const styles = pages.map((page, i) => ({
-      key: i,
+      key: `page-${i}`,
       style: { opacity: spring(i === currentIndex ? 1 : 0) }
     }));
 
@@ -223,7 +224,7 @@ const OnboardingModal = React.createClass({
           {interpolatedStyles =>
             <div className='onboarding-modal__pager'>
               {pages.map((page, i) =>
-                <div key={i} style={{ opacity: interpolatedStyles[i].style.opacity, pointerEvents: i === currentIndex ? 'auto' : 'none' }}>{page}</div>
+                <div key={`page-${i}`} style={{ opacity: interpolatedStyles[i].style.opacity, pointerEvents: i === currentIndex ? 'auto' : 'none' }}>{page}</div>
               )}
             </div>
           }
