@@ -39,6 +39,15 @@ en:
     posts: Posts
     remote_follow: Remote follow
     unfollow: Unfollow
+  activitypub:
+    outbox:
+      name: "%{account_name}'s Outbox"
+      summary: "A collection of activities from user %{account_name}."
+    activity:
+      create:
+        name: "%{account_name} created a note."
+      announce:
+        name: "%{account_name} announced an activity."
   admin:
     accounts:
       are_you_sure: Are you sure?

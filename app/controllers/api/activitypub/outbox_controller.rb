@@ -12,25 +12,21 @@ class Api::Activitypub::OutboxController < ApiController
     @statuses = cache_collection(@statuses)
 
     set_maps(@statuses)
-    set_counters_maps(@statuses)
-    set_account_counters_maps(@statuses.flat_map { |s| [s.account, s.reblog? ? s.reblog.account : nil] }.compact.uniq)
 
     # Since the statuses are in reverse chronological order, last is the lowest ID.
-    @next_path = api_activitypub_outbox_url(max_id: @statuses.last.id)    if @statuses.size == limit_param(DEFAULT_STATUSES_LIMIT)
+    @next_path = api_activitypub_outbox_url(max_id: @statuses.last.id) if @statuses.size == limit_param(DEFAULT_STATUSES_LIMIT)
 
-    if not @statuses.empty?
-      if @statuses.first.id === 1
+    unless @statuses.empty?
+      if @statuses.first.id == 1
         @prev_path = api_activitypub_outbox_url
       elsif params[:max_id]
         @prev_path = api_activitypub_outbox_url(since_id: @statuses.first.id)
       end
     end
 
-    set_pagination_headers(@next_path, @prev_path)
-  end
+    @paginated = @next_path || @prev_path
 
-  def paginated?
-    @next_path or @prev_path
+    set_pagination_headers(@next_path, @prev_path)
   end
 
   private
