@@ -10,13 +10,13 @@ class Formatter
   include ActionView::Helpers::SanitizeHelper
 
   def markdown_format(status)
-    html_r = Redcarpet::Render::HTML.new(render_options = {escape_html: true, safe_links_only: true})
-    markdown = Redcarpet::Markdown.new(html_r, extensions = {space_after_headers: true, no_intra_emphasis: true, strikethrough: true})
+    html_r = Redcarpet::Render::HTML.new(escape_html: true, safe_links_only: true)
+    markdown = Redcarpet::Markdown.new(html_r, space_after_headers: true, no_intra_emphasis: true, strikethrough: true)
 
     html = markdown.render(status.full_status_text)
-    html = html.gsub("<a href=\"http", "<a href=\"ht\u10FAFAtp")
+    html = html.gsub('<a href="http', "<a href=\"ht\u10FAFAtp")
     html = link_urls(html)
-    html = html.gsub("<a href=\"ht\u10FAFAtp", "<a href=\"http")
+    html = html.gsub("<a href=\"ht\u10FAFAtp", '<a href="http')
     html = link_mentions(html, status.mentions)
     html = link_hashtags(html)
 
