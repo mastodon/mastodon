@@ -8,13 +8,9 @@ module Admin
 
     def update
       @setting = Setting.where(var: params[:id]).first_or_initialize(var: params[:id])
-      value    = settings_params[:value]
 
-      # Special cases
-      value = value == 'true' if @setting.var == 'open_registrations'
-
-      if @setting.value != value
-        @setting.value = value
+      if @setting.value != value_for_update
+        @setting.value = value_for_update
         @setting.save
       end
 
@@ -28,6 +24,18 @@ module Admin
 
     def settings_params
       params.require(:setting).permit(:value)
+    end
+
+    def value_for_update
+      if updating_open_registrations?
+        settings_params[:value] == 'true'
+      else
+        settings_params[:value]
+      end
+    end
+
+    def updating_open_registrations?
+      params[:id] == 'open_registrations'
     end
   end
 end
