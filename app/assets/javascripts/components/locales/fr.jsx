@@ -1,3 +1,11 @@
+/**
+ * Note aux contributeurs⋅trices:
+ * Pour rendre plus simple la vie des autres personnes
+ * apportant leur contribution, merci de penser aux choses suivantes :
+ *   1. Ajoutez les nouvelles chaînes traduites par ordre alphabétique
+ *   2. Pensez à supprimer les chaînes inutilisées
+ * Merci !
+ */
 const fr = {
   "account.block": "Bloquer",
   "account.disclaimer": "Ce compte est situé sur une autre instance. Les nombres peuvent être plus grands.",
