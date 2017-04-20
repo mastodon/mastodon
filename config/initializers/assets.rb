@@ -8,6 +8,24 @@ Rails.application.config.assets.version = '1.0'
 
 # Precompile additional assets.
 # application.js, application.css, and all non-JS/CSS in app/assets folder are already added.
-Rails.application.config.assets.precompile += %w(application_public.js custom.css)
+Rails.application.config.assets.precompile += %w(custom.css)
+
+# Skin assets
+if ENV['SKIN'] and not ENV['SKIN'].empty?
+  for skin in ENV['SKIN'].split("|") do
+    Rails.application.config.assets.precompile += [skin + ".css", skin + ".js"]
+  end
+else
+  Rails.application.config.assets.precompile += %w(rooty.css rooty.js)
+end
+
+# Frontend assets
+if ENV['FRONTEND'] and not ENV['FRONTEND'].empty?
+  for frontend in ENV['FRONTEND'].split("|") do
+    Rails.application.config.assets.precompile += [frontend + ".css", frontend + ".js"]
+  end
+else
+  Rails.application.config.assets.precompile += %w(tooty.css tooty.js)
+end
 
 Rails.application.config.assets.initialize_on_precompile = true

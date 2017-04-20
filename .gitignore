@@ -11,6 +11,16 @@
 /db/*.sqlite3
 /db/*.sqlite3-journal
 
+# Ignore frontends
+/app/assets/frontends/*
+!/app/assets/frontends/.keep
+!/app/assets/frontends/tooty
+
+# Ignore skins
+/app/assets/skins/*
+!/app/assets/skins/.keep
+!/app/assets/skins/rooty
+
 # Ignore all logfiles and tempfiles.
 /log/*
 !/log/.keep

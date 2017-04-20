@@ -2,7 +2,9 @@
 %html{:lang => 'en'}
   %head
     %meta{:charset => 'utf-8'}/
-    = stylesheet_link_tag 'application', media: 'all'
-    = javascript_include_tag 'application_public', integrity: true, crossorigin: 'anonymous'
+    = javascript_include_tag 'application', integrity: true, crossorigin: 'anonymous'
+    = stylesheet_link_tag 'application', integrity: true,  media: 'all'
   %body.embed
+    = javascript_include_tag "#{Rails.configuration.x.skin_default}", integrity: true
+    = stylesheet_link_tag "#{Rails.configuration.x.skin_default}", integrity: true, media: 'all'
     = yield
