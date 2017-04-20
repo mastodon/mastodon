@@ -1,10 +1,3 @@
-@import 'variables';
-
-.app-body{
- -webkit-overflow-scrolling: touch;
- -ms-overflow-style: -ms-autohiding-scrollbar;
-}
-
 .button {
   background-color: darken($rooty-color4, 3%);
   font-family: inherit;
@@ -1268,8 +1261,6 @@ a.status__content__spoiler-link {
     border-bottom-color: $rooty-color4;
   }
 }
-
-@import 'boost';
 
 button.icon-button i.fa-retweet {
   height: 19px;
