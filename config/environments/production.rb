@@ -98,12 +98,10 @@ Rails.application.configure do
   config.action_mailer.smtp_settings = {
     :port                 => ENV['SMTP_PORT'],
     :address              => ENV['SMTP_SERVER'],
-    :user_name            => ENV['SMTP_LOGIN'],
-    :password             => ENV['SMTP_PASSWORD'],
-
+    :user_name            => ENV['SMTP_LOGIN'].presence,
+    :password             => ENV['SMTP_PASSWORD'].presence,
     :domain               => ENV['SMTP_DOMAIN'] || ENV['LOCAL_DOMAIN'],
     :authentication       => ENV['SMTP_AUTH_METHOD'] == 'none' ? nil : ENV['SMTP_AUTH_METHOD'] || :plain,
-
     :openssl_verify_mode  => ENV['SMTP_OPENSSL_VERIFY_MODE'],
     :enable_starttls_auto => ENV['SMTP_ENABLE_STARTTLS_AUTO'] || true,
   }
