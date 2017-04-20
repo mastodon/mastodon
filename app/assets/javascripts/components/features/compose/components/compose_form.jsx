@@ -156,7 +156,7 @@ const ComposeForm = React.createClass({
     }
 
     return (
-      <div style={{ padding: '10px' }}>
+      <div style={{ padding: '0 10px' }}>
         <Collapsable isVisible={this.props.spoiler} fullHeight={50}>
           <div className="spoiler-input">
             <input placeholder={intl.formatMessage(messages.spoiler_placeholder)} value={this.props.spoiler_text} onChange={this.handleChangeSpoilerText} onKeyDown={this.handleKeyDown} type="text" className="spoiler-input__input" />
