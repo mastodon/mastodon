@@ -17,6 +17,7 @@ RUN echo "@edge https://nl.alpinelinux.org/alpine/edge/main" >> /etc/apk/reposit
     postgresql-dev \
     libxml2-dev \
     libxslt-dev \
+    python \
     build-base" \
  && apk -U upgrade && apk add \
     $BUILD_DEPS \
