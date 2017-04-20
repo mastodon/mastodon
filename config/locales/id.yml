@@ -79,7 +79,7 @@ id:
       undo_suspension: Undo suspen
       username: Nama pengguna
       web: Web
-    domain_block:
+    domain_blocks:
       add_new: Tambah
       domain: Domain
       new:
@@ -242,24 +242,6 @@ id:
     missing_resource: Tidak dapat menemukan URL redirect dari akun anda
     proceed: Lanjutkan untuk mengikuti
     prompt: 'Anda akan mengikuti:'
-  reports:
-    comment:
-      label: Komentar
-      none: Tidak ada
-    delete: Hapus
-    mark_as_resolved: Tandai telah diseleseikan
-    id: ID
-    report: 'Laporkan #%{id}'
-    reported_account: Akun yang dilaporkan
-    reported_by: Dilaporkan oleh
-    reports: Laporan
-    resolved: Terseleseikan
-    silence_account: Akun didiamkan
-    status: Status
-    suspend_account: Akun disuspen
-    target: Target
-    unresolved: Belum Terseleseikan
-    view: Tampilan
   settings:
     authorized_apps: Apl yang diizinkan
     back: Kembali ke Mastodon
@@ -294,11 +276,9 @@ id:
     instructions_html: "<strong>Pindai kode QR ini pada Otentikator Google anda atau aplikasi TOTP lainnya di telepon anda</strong>. Mulai sekarang, aplikasi tersebut akan membuat token yang bisa anda gunakan untuk login."
     lost_recovery_codes: Kode pemulihan bisa anda gunakan untuk mendapatkan kembali akses pada akun anda jika anda kehilangan handphone anda. Jika anda kehilangan kode pemulihan, anda bisa membuatnya ulang disini. Kode pemulihan anda yang lama tidak akan bisa digunakan lagi.
     manual_instructions: 'Jika anda tidak bisa memindai kode QR dan harus memasukkannya secara manual, ini dia kode yang harus dimasukkan:'
-    recovery_codes: Kode Pemulihan
     recovery_codes_regenerated: Kode Pemulihan berhasil dibuat ulang
     recovery_instructions: Jika anda kehilangan akses pada handphone anda, anda bisa menggunakan kode pemulihan dibawah ini untuk mendapatkan kembali akses pada akun anda. Simpan kode pemulihan anda baik-baik, misalnya dengan mencetaknya atau menyimpannya bersama dokumen penting lainnya.
     setup: Persiapan
-    warning: Jika anda tidak bisa mengkonfigurasi aplikasi otentikator sekarang, sebaiknya anda klik "nonaktifkan" atau anda tidak bakal bisa login.
     wrong_code: Kode yang dimasukkan tidak cocok! Apa waktu server dan waktu di handphone sudah cocok?
   users:
     invalid_email: Alamat email tidak cocok
