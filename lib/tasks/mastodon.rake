@@ -38,23 +38,24 @@ namespace :mastodon do
     require 'fileutils'
     all = Account.all
     all.each do |account|
-      next unless account.avatar_remote_url.present?
-      if account.avatar_file_name.present? && !File.exist?(account.avatar.path)
-        begin
-          FileUtils.mkdir_p(File.dirname(account.avatar.path))
-        rescue
-          # this means directory already exists,so we can ignore exception
-        end
-        begin
-          open(account.avatar.path, 'wb') do |out|
-            open(account.avatar_remote_url) do |data|
-              out.write(data.read)
-            end
+      next if account.avatar_remote_url.blank?
+      next unless account.avatar_file_name.present? && !File.exist?(account.avatar.path)
+      begin
+        FileUtils.mkdir_p(File.dirname(account.avatar.path))
+      rescue => ex
+        # this means directory already exists,so we can ignore exception
+        puts ex.inspect
+      end
+      begin
+        open(account.avatar.path, 'wb') do |out|
+          open(account.avatar_remote_url) do |data|
+            out.write(data.read)
+            puts "refetch #{account.username}"
           end
-        rescue => ex
-          # can't fetch remote url,so skip
-          puts 'skip due to #{ex.inspect}'            
         end
+      rescue => ex2
+        # can't fetch remote url,so skip
+        puts 'skip due to ' + ex2.inspect
       end
     end
   end
