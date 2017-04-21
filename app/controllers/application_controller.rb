@@ -51,29 +51,23 @@ class ApplicationController < ActionController::Base
   protected
 
   def not_found
-    set_locale do
-      respond_to do |format|
-        format.any  { head 404 }
-        format.html { render 'errors/404', layout: 'error', status: 404 }
-      end
+    respond_to do |format|
+      format.any  { head 404 }
+      format.html { respond_with_error(404) }
     end
   end
 
   def gone
-    set_locale do
-      respond_to do |format|
-        format.any  { head 410 }
-        format.html { render 'errors/410', layout: 'error', status: 410 }
-      end
+    respond_to do |format|
+      format.any  { head 410 }
+      format.html { respond_with_error(410) }
     end
   end
 
   def unprocessable_entity
-    set_locale do
-      respond_to do |format|
-        format.any  { head 422 }
-        format.html { render 'errors/422', layout: 'error', status: 422 }
-      end
+    respond_to do |format|
+      format.any  { head 422 }
+      format.html { respond_with_error(422) }
     end
   end
 
@@ -107,5 +101,11 @@ class ApplicationController < ActionController::Base
     end
 
     raw.map { |item| cached_keys_with_value[item.cache_key] || uncached[item.id] }.compact
+  end
+
+  def respond_with_error(code)
+    set_locale do
+      render "errors/#{code}", layout: 'error', status: code
+    end
   end
 end
