@@ -103,7 +103,7 @@ const Status = React.createClass({
           </a>
         </div>
 
-        <StatusContent status={status} onClick={this.handleClick} />
+        <StatusContent status={status} onClick={this.handleClick} collapsable />
 
         {media}
 

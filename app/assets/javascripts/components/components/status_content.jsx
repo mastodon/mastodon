@@ -14,12 +14,14 @@ const StatusContent = React.createClass({
 
   propTypes: {
     status: ImmutablePropTypes.map.isRequired,
+    collapsable: React.PropTypes.bool,
     onClick: React.PropTypes.func
   },
 
   getInitialState () {
     return {
-      hidden: true
+      hidden: true,
+      collapsed: null  //  `null` indicates that an element doesn't need collapsing, while `true` or `false` indicates that it does (and is/isn't).
     };
   },
 
@@ -47,6 +49,8 @@ const StatusContent = React.createClass({
         link.setAttribute('title', link.href);
       }
     }
+
+    if (this.props.collapsable && node.clientHeight > 200) this.setState({ collapsed: true });
   },
 
   onMentionClick (mention, e) {
@@ -89,6 +93,11 @@ const StatusContent = React.createClass({
     this.setState({ hidden: !this.state.hidden });
   },
 
+  handleCollapsedClick (e) {
+    e.preventDefault();
+    this.setState({ collapsed: !this.state.collapsed });
+  },
+
   render () {
     const { status } = this.props;
     const { hidden } = this.state;
@@ -96,6 +105,8 @@ const StatusContent = React.createClass({
     const content = { __html: emojify(status.get('content')) };
     const spoilerContent = { __html: emojify(escapeTextContentForBrowser(status.get('spoiler_text', ''))) };
     const directionStyle = { direction: 'ltr' };
+
+    const collapsedClass = this.state.collapsed === true ? "status__content--collapsed" : this.state.collapsed === false ? "status__content--expanded" : "";
 
     if (isRtl(status.get('content'))) {
       directionStyle.direction = 'rtl';
@@ -130,12 +141,20 @@ const StatusContent = React.createClass({
     } else if (this.props.onClick) {
       return (
         <div
-          className='status__content'
+          className={('status__content ' + collapsedClass).trim()}
           style={{ cursor: 'pointer', ...directionStyle }}
           onMouseDown={this.handleMouseDown}
-          onMouseUp={this.handleMouseUp}
-          dangerouslySetInnerHTML={content}
-        />
+          onMouseUp={this.handleMouseUp}>
+          <div dangerouslySetInnerHTML={content} />
+          {this.state.collapsed !== null ?
+            <a
+              className="status__content__collapse-button"
+              onClick={this.handleCollapsedClick}
+            >
+              <i className='fa fa-fw fa-angle-double-down' />
+            </a>
+          : null}
+        </div>
       );
     } else {
       return (
