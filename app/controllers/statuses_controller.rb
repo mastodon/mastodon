@@ -5,6 +5,7 @@ class StatusesController < ApplicationController
 
   before_action :set_account
   before_action :set_status
+  before_action :set_card
   before_action :set_link_headers
   before_action :check_account_suspension
 
@@ -31,6 +32,10 @@ class StatusesController < ApplicationController
     @type         = @stream_entry.activity_type.downcase
 
     raise ActiveRecord::RecordNotFound unless @status.permitted?(current_account)
+  end
+
+  def set_card
+    @card = PreviewCard.find_by(status: @status)
   end
 
   def check_account_suspension
