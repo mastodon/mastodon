@@ -65,12 +65,12 @@ describe Settings::TwoFactorAuthsController do
     end
   end
 
-  describe 'POST #disable' do
+  describe 'POST #destroy' do
     before do
       user.update(otp_required_for_login: true)
     end
     it 'turns off otp requirement' do
-      post :disable
+      post :destroy
 
       expect(response).to redirect_to(settings_two_factor_auth_path)
       user.reload

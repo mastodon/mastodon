@@ -58,11 +58,8 @@ Rails.application.routes.draw do
       resources :mutes, only: :index, controller: :muted_accounts
     end
 
-    resource :two_factor_auth, only: [:show, :new, :create] do
+    resource :two_factor_auth, only: [:show, :new, :create, :destroy] do
       resources :recovery_codes, only: [:create]
-      member do
-        post :disable
-      end
     end
   end
 

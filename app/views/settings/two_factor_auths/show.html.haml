@@ -5,7 +5,7 @@
   %p.hint= t('two_factor_auth.description_html')
 
   - if current_user.otp_required_for_login
-    = link_to t('two_factor_auth.disable'), disable_settings_two_factor_auth_path, data: { method: 'POST' }, class: 'block-button'
+    = link_to t('two_factor_auth.disable'), settings_two_factor_auth_path, data: { method: :delete }, class: 'block-button'
   - else
     = link_to t('two_factor_auth.setup'), new_settings_two_factor_auth_path, class: 'block-button'
 

@@ -30,7 +30,7 @@ class Settings::TwoFactorAuthsController < ApplicationController
     end
   end
 
-  def disable
+  def destroy
     current_user.otp_required_for_login = false
     current_user.save!
 
