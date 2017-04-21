@@ -1,11 +1,11 @@
 {
   "name": "mastodon",
-  "license" : "AGPL-3.0",
+  "license": "AGPL-3.0",
   "scripts": {
     "start": "babel-node ./streaming/index.js --presets es2015,stage-2",
     "storybook": "start-storybook -p 9001 -c storybook",
     "test": "npm run test:lint && npm run test:mocha",
-    "test:lint": "eslint -c .eslintrc --ext=js --ext=jsx app/assets/javascripts/",
+    "test:lint": "eslint -c .eslintrc.json --ext=js --ext=jsx app/assets/javascripts/",
     "test:mocha": "mocha --require ./spec/javascript/setup.js --compilers js:babel-register ./spec/javascript/components/*.test.jsx"
   },
   "dependencies": {
@@ -38,7 +38,7 @@
     "intl": "^1.2.5",
     "jsdom": "^9.11.0",
     "mocha": "^3.2.0",
-    "node-sass": "^4.5.0",
+    "node-sass": "^4.5.2",
     "npmlog": "^4.0.2",
     "pg": "^6.1.2",
     "react": "^15.4.2",

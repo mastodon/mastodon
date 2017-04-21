@@ -62,6 +62,7 @@ const ComposeForm = React.createClass({
   },
 
   handleSubmit () {
+    this.autosuggestTextarea.textarea.style.height = "auto";
     this.props.onSubmit();
   },
 

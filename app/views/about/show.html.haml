@@ -1,5 +1,5 @@
 - content_for :header_tags do
-  = javascript_include_tag 'application_public', integrity: true
+  = javascript_include_tag 'application_public', integrity: true, crossorigin: 'anonymous'
 
 - content_for :page_title do
   = site_hostname
