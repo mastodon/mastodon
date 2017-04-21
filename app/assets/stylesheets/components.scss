@@ -1183,9 +1183,16 @@ a.status__content__spoiler-link {
 .column-link {
   background: lighten($color1, 8%);
   color: $color5;
+  display: block;
 
   &:hover {
     background: lighten($color1, 11%);
+  }
+
+  &.hidden-on-mobile {
+    @media screen and (max-width: 1024px) {
+      display: none;
+    }
   }
 }
 
@@ -1381,6 +1388,12 @@ button.icon-button.active i.fa-retweet {
   &.active .fa {
     color: $color4;
     text-shadow: 0 0 10px rgba($color4, 0.4);
+  }
+
+  &.hidden-on-mobile {
+    @media screen and (max-width: 1024px) {
+      display: none;
+    }
   }
 }
 
