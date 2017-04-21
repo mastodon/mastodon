@@ -27,7 +27,8 @@ const makeMapStateToProps = () => {
   const mapStateToProps = (state, props) => ({
     status: getStatus(state, props.id),
     me: state.getIn(['meta', 'me']),
-    boostModal: state.getIn(['meta', 'boost_modal'])
+    boostModal: state.getIn(['meta', 'boost_modal']),
+    autoPlayGif: state.getIn(['meta', 'auto_play_gif'])
   });
 
   return mapStateToProps;

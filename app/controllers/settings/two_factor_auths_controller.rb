@@ -26,7 +26,7 @@ class Settings::TwoFactorAuthsController < ApplicationController
       @confirmation = Form::TwoFactorConfirmation.new
       set_qr_code
       flash.now[:alert] = I18n.t('two_factor_auth.wrong_code')
-      render action: :new
+      render :new
     end
   end
 

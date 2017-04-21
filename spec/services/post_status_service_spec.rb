@@ -64,6 +64,18 @@ RSpec.describe PostStatusService do
     expect(status.application).to eq application
   end
 
+  it 'creates a status with a language set' do
+    detector = double(to_iso_s: :en)
+    allow(LanguageDetector).to receive(:new).and_return(detector)
+
+    account = Fabricate(:account)
+    text = 'test status text'
+
+    subject.call(account, text)
+
+    expect(LanguageDetector).to have_received(:new).with(text, account)
+  end
+
   it 'processes mentions' do
     mention_service = double(:process_mentions_service)
     allow(mention_service).to receive(:call)
