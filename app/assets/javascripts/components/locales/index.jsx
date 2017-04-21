@@ -18,6 +18,7 @@ import ja from './ja';
 import zh_hk from './zh-hk';
 import zh_cn from './zh-cn';
 import bg from './bg';
+import ja_im from './ja-im';
 
 const locales = {
   en,
@@ -39,6 +40,7 @@ const locales = {
   'zh-HK': zh_hk,
   'zh-CN': zh_cn,
   bg,
+  'ja-IM': ja_im,
 };
 
 export default function getMessagesForLocale (locale) {
