@@ -24,7 +24,7 @@ class Settings::ProfilesController < ApplicationController
   private
 
   def account_params
-    params.require(:account).permit(:display_name, :note, :avatar, :header, :locked)
+    params.require(:account).permit(:display_name, :note, :avatar, :delete_avatar, :header, :delete_header, :locked)
   end
 
   def set_account
