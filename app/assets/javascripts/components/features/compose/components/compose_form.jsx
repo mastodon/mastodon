@@ -153,7 +153,11 @@ const ComposeForm = React.createClass({
     if (this.props.privacy === 'private' || this.props.privacy === 'direct') {
       publishText = <span><i className='fa fa-lock' /> {intl.formatMessage(messages.publish)}</span>;
     } else {
-      publishText = intl.formatMessage(messages.publish) + (this.props.privacy !== 'unlisted' ? '!' : '');
+      if (intl.locale === 'ja-IM' && this.props.privacy !== 'unlisted') {
+        publishText = intl.formatMessage(messages.publish).replace(/\./g, '');
+      } else {
+        publishText = intl.formatMessage(messages.publish) + (this.props.privacy !== 'unlisted' ? '!' : '');
+      }
     }
 
     return (
