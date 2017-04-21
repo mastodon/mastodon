@@ -52,12 +52,12 @@ class Column extends React.PureComponent {
   }
 
   render () {
-    const { heading, icon, children, active } = this.props;
+    const { heading, icon, children, active, hideHeadingOnMobile } = this.props;
 
     let header = '';
 
     if (heading) {
-      header = <ColumnHeader icon={icon} active={active} type={heading} onClick={this.handleHeaderClick} />;
+      header = <ColumnHeader icon={icon} active={active} type={heading} onClick={this.handleHeaderClick} hideOnMobile={hideHeadingOnMobile} />;
     }
 
     return (
@@ -74,7 +74,8 @@ Column.propTypes = {
   heading: PropTypes.string,
   icon: PropTypes.string,
   children: PropTypes.node,
-  active: PropTypes.bool
+  active: PropTypes.bool,
+  hideHeadingOnMobile: PropTypes.bool
 };
 
 export default Column;

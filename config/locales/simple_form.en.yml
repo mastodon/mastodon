@@ -4,10 +4,10 @@ en:
     hints:
       defaults:
         avatar: PNG, GIF or JPG. At most 2MB. Will be downscaled to 120x120px
-        display_name: At most 30 characters
+        display_name: '%{counter} characters left'
         header: PNG, GIF or JPG. At most 2MB. Will be downscaled to 700x335px
         locked: Requires you to manually approve followers and defaults post privacy to followers-only
-        note: At most 160 characters
+        note: '%{counter} characters left'
       imports:
         data: CSV file exported from another Mastodon instance
       sessions:

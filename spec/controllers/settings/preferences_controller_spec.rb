@@ -24,8 +24,8 @@ describe Settings::PreferencesController do
 
     it 'updates user settings' do
       user.settings['boost_modal'] = false
-      user.settings['notification_emails']['follow'] = false
-      user.settings['interactions']['must_be_follower'] = true
+      user.settings['notification_emails'] = user.settings['notification_emails'].merge('follow' => false)
+      user.settings['interactions'] = user.settings['interactions'].merge('must_be_follower' => true)
 
       put :update, params: {
         user: {
