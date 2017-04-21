@@ -1,0 +1,24 @@
+//= require_self
+//= require react_ujs
+
+window.React    = require('react');
+window.ReactDOM = require('react-dom');
+window.Perf     = require('react-addons-perf');
+
+if (!window.Intl) {
+  require('intl');
+  require('intl/locale-data/jsonp/en.js');
+}
+
+//  We can't use the asset pipeline with browserify, unfortunately, so we'll just have to use global variables.
+
+window.MASTODON_ASSETS = Object.defineProperties({}, {
+  BOOP: {
+    enumerable: true,
+    value: "<%= asset_path('../assets/boop.mp3') %>"
+  }
+});
+
+//= require_tree .
+
+window.Mastodon = require('./containers/mastodon');
