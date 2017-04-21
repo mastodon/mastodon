@@ -1052,6 +1052,7 @@ a.status__content__spoiler-link {
   overflow-y: scroll;
   overflow-x: hidden;
   flex: 1 1 auto;
+  backface-visibility: hidden;
   -webkit-overflow-scrolling: touch;
 
   &.optionally-scrollable {
