@@ -31,9 +31,13 @@ module StreamEntriesHelper
   end
 
   def microformats_h_class(status, is_predecessor, is_successor, include_threads)
-    return 'h-cite' if is_predecessor || status.reblog || is_successor
-    return 'h-entry' unless include_threads
-    ''
+    if is_predecessor || status.reblog? || is_successor
+      'h-cite'
+    elsif include_threads
+      ''
+    else
+      'h-entry'
+    end
   end
 
   def rtl?(text)
