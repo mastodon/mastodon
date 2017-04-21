@@ -1,6 +1,6 @@
 import LoadingIndicator from '../../../components/loading_indicator';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
 import ImmutablePropTypes from 'react-immutable-proptypes';
+import PropTypes from 'prop-types';
 import ExtendedVideoPlayer from '../../../components/extended_video_player';
 import { defineMessages, injectIntl } from 'react-intl';
 import IconButton from '../../../components/icon_button';
@@ -16,16 +16,7 @@ const closeStyle = {
   right: '4px'
 };
 
-const VideoModal = React.createClass({
-
-  propTypes: {
-    media: ImmutablePropTypes.map.isRequired,
-    time: React.PropTypes.number,
-    onClose: React.PropTypes.func.isRequired,
-    intl: React.PropTypes.object.isRequired
-  },
-
-  mixins: [PureRenderMixin],
+class VideoModal extends React.PureComponent {
 
   render () {
     const { media, intl, time, onClose } = this.props;
@@ -42,6 +33,13 @@ const VideoModal = React.createClass({
     );
   }
 
-});
+}
+
+VideoModal.propTypes = {
+  media: ImmutablePropTypes.map.isRequired,
+  time: PropTypes.number,
+  onClose: PropTypes.func.isRequired,
+  intl: PropTypes.object.isRequired
+};
 
 export default injectIntl(VideoModal);

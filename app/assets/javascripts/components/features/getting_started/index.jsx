@@ -3,6 +3,7 @@ import ColumnLink from '../ui/components/column_link';
 import { Link } from 'react-router';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 
 const messages = defineMessages({
@@ -53,7 +54,7 @@ const GettingStarted = ({ intl, me }) => {
 };
 
 GettingStarted.propTypes = {
-  intl: React.PropTypes.object.isRequired,
+  intl: PropTypes.object.isRequired,
   me: ImmutablePropTypes.map.isRequired
 };
 

@@ -1,7 +1,7 @@
 import CharacterCounter from './character_counter';
 import Button from '../../../components/button';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
 import ImmutablePropTypes from 'react-immutable-proptypes';
+import PropTypes from 'prop-types';
 import ReplyIndicatorContainer from '../containers/reply_indicator_container';
 import AutosuggestTextarea from '../../../components/autosuggest_textarea';
 import { debounce } from 'react-decoration';
@@ -22,67 +22,53 @@ const messages = defineMessages({
   publish: { id: 'compose_form.publish', defaultMessage: 'Toot' }
 });
 
-const ComposeForm = React.createClass({
+class ComposeForm extends React.PureComponent {
 
-  propTypes: {
-    intl: React.PropTypes.object.isRequired,
-    text: React.PropTypes.string.isRequired,
-    suggestion_token: React.PropTypes.string,
-    suggestions: ImmutablePropTypes.list,
-    spoiler: React.PropTypes.bool,
-    privacy: React.PropTypes.string,
-    spoiler_text: React.PropTypes.string,
-    focusDate: React.PropTypes.instanceOf(Date),
-    preselectDate: React.PropTypes.instanceOf(Date),
-    is_submitting: React.PropTypes.bool,
-    is_uploading: React.PropTypes.bool,
-    me: React.PropTypes.number,
-    needsPrivacyWarning: React.PropTypes.bool,
-    mentionedDomains: React.PropTypes.array.isRequired,
-    onChange: React.PropTypes.func.isRequired,
-    onSubmit: React.PropTypes.func.isRequired,
-    onClearSuggestions: React.PropTypes.func.isRequired,
-    onFetchSuggestions: React.PropTypes.func.isRequired,
-    onSuggestionSelected: React.PropTypes.func.isRequired,
-    onChangeSpoilerText: React.PropTypes.func.isRequired,
-    onPaste: React.PropTypes.func.isRequired,
-    onPickEmoji: React.PropTypes.func.isRequired
-  },
-
-  mixins: [PureRenderMixin],
+  constructor (props, context) {
+    super(props, context);
+    this.handleChange = this.handleChange.bind(this);
+    this.handleKeyDown = this.handleKeyDown.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.onSuggestionsClearRequested = this.onSuggestionsClearRequested.bind(this);
+    this.onSuggestionsFetchRequested = this.onSuggestionsFetchRequested.bind(this);
+    this.onSuggestionSelected = this.onSuggestionSelected.bind(this);
+    this.handleChangeSpoilerText = this.handleChangeSpoilerText.bind(this);
+    this.setAutosuggestTextarea = this.setAutosuggestTextarea.bind(this);
+    this.handleEmojiPick = this.handleEmojiPick.bind(this);
+  }
 
   handleChange (e) {
     this.props.onChange(e.target.value);
-  },
+  }
 
   handleKeyDown (e) {
     if (e.keyCode === 13 && (e.ctrlKey || e.metaKey)) {
       this.props.onSubmit();
     }
-  },
+  }
 
   handleSubmit () {
     this.autosuggestTextarea.textarea.style.height = "auto";
     this.props.onSubmit();
-  },
+  }
 
   onSuggestionsClearRequested () {
     this.props.onClearSuggestions();
-  },
+  }
 
   @debounce(500)
   onSuggestionsFetchRequested (token) {
     this.props.onFetchSuggestions(token);
-  },
+  }
 
   onSuggestionSelected (tokenStart, token, value) {
     this._restoreCaret = null;
     this.props.onSuggestionSelected(tokenStart, token, value);
-  },
+  }
 
   handleChangeSpoilerText (e) {
     this.props.onChangeSpoilerText(e.target.value);
-  },
+  }
 
   componentWillReceiveProps (nextProps) {
     // If this is the update where we've finished uploading,
@@ -90,7 +76,7 @@ const ComposeForm = React.createClass({
     if (!nextProps.is_uploading && this.props.is_uploading) {
       this._restoreCaret = this.autosuggestTextarea.textarea.selectionStart;
     }
-  },
+  }
 
   componentDidUpdate (prevProps) {
     // This statement does several things:
@@ -117,17 +103,17 @@ const ComposeForm = React.createClass({
       this.autosuggestTextarea.textarea.setSelectionRange(selectionStart, selectionEnd);
       this.autosuggestTextarea.textarea.focus();
     }
-  },
+  }
 
   setAutosuggestTextarea (c) {
     this.autosuggestTextarea = c;
-  },
+  }
 
   handleEmojiPick (data) {
     const position     = this.autosuggestTextarea.textarea.selectionStart;
     this._restoreCaret = position + data.shortname.length + 1;
     this.props.onPickEmoji(position, data);
-  },
+  }
 
   render () {
     const { intl, needsPrivacyWarning, mentionedDomains, onPaste } = this.props;
@@ -207,6 +193,31 @@ const ComposeForm = React.createClass({
     );
   }
 
-});
+}
+
+ComposeForm.propTypes = {
+  intl: PropTypes.object.isRequired,
+  text: PropTypes.string.isRequired,
+  suggestion_token: PropTypes.string,
+  suggestions: ImmutablePropTypes.list,
+  spoiler: PropTypes.bool,
+  privacy: PropTypes.string,
+  spoiler_text: PropTypes.string,
+  focusDate: PropTypes.instanceOf(Date),
+  preselectDate: PropTypes.instanceOf(Date),
+  is_submitting: PropTypes.bool,
+  is_uploading: PropTypes.bool,
+  me: PropTypes.number,
+  needsPrivacyWarning: PropTypes.bool,
+  mentionedDomains: PropTypes.array.isRequired,
+  onChange: PropTypes.func.isRequired,
+  onSubmit: PropTypes.func.isRequired,
+  onClearSuggestions: PropTypes.func.isRequired,
+  onFetchSuggestions: PropTypes.func.isRequired,
+  onSuggestionSelected: PropTypes.func.isRequired,
+  onChangeSpoilerText: PropTypes.func.isRequired,
+  onPaste: PropTypes.func.isRequired,
+  onPickEmoji: PropTypes.func.isRequired
+};
 
 export default injectIntl(ComposeForm);

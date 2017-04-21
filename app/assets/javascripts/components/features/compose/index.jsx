@@ -1,7 +1,7 @@
 import ComposeFormContainer from './containers/compose_form_container';
 import UploadFormContainer from './containers/upload_form_container';
 import NavigationContainer from './containers/navigation_container';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { mountCompose, unmountCompose } from '../../actions/compose';
 import { Link } from 'react-router';
@@ -22,24 +22,15 @@ const mapStateToProps = state => ({
   showSearch: state.getIn(['search', 'submitted']) && !state.getIn(['search', 'hidden'])
 });
 
-const Compose = React.createClass({
-
-  propTypes: {
-    dispatch: React.PropTypes.func.isRequired,
-    withHeader: React.PropTypes.bool,
-    showSearch: React.PropTypes.bool,
-    intl: React.PropTypes.object.isRequired
-  },
-
-  mixins: [PureRenderMixin],
+class Compose extends React.PureComponent {
 
   componentDidMount () {
     this.props.dispatch(mountCompose());
-  },
+  }
 
   componentWillUnmount () {
     this.props.dispatch(unmountCompose());
-  },
+  }
 
   render () {
     const { withHeader, showSearch, intl } = this.props;
@@ -82,6 +73,13 @@ const Compose = React.createClass({
     );
   }
 
-});
+}
+
+Compose.propTypes = {
+  dispatch: PropTypes.func.isRequired,
+  withHeader: PropTypes.bool,
+  showSearch: PropTypes.bool,
+  intl: PropTypes.object.isRequired
+};
 
 export default connect(mapStateToProps)(injectIntl(Compose));

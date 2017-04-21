@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import Permalink from '../../../components/permalink';
 import Avatar from '../../../components/avatar';
@@ -50,9 +51,9 @@ const AccountAuthorize = ({ intl, account, onAuthorize, onReject }) => {
 
 AccountAuthorize.propTypes = {
   account: ImmutablePropTypes.map.isRequired,
-  onAuthorize: React.PropTypes.func.isRequired,
-  onReject: React.PropTypes.func.isRequired,
-  intl: React.PropTypes.object.isRequired
+  onAuthorize: PropTypes.func.isRequired,
+  onReject: PropTypes.func.isRequired,
+  intl: PropTypes.object.isRequired
 };
 
 export default injectIntl(AccountAuthorize);

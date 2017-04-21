@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
+import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import Permalink from '../../../components/permalink';
@@ -32,8 +32,8 @@ const PageOne = ({ acct, domain }) => (
 );
 
 PageOne.propTypes = {
-  acct: React.PropTypes.string.isRequired,
-  domain: React.PropTypes.string.isRequired
+  acct: PropTypes.string.isRequired,
+  domain: PropTypes.string.isRequired
 };
 
 const PageTwo = () => (
@@ -85,7 +85,7 @@ const PageThree = ({ me, domain }) => (
 
 PageThree.propTypes = {
   me: ImmutablePropTypes.map.isRequired,
-  domain: React.PropTypes.string.isRequired
+  domain: PropTypes.string.isRequired
 };
 
 const PageFour = ({ domain, intl }) => (
@@ -119,8 +119,8 @@ const PageFour = ({ domain, intl }) => (
 );
 
 PageFour.propTypes = {
-  domain: React.PropTypes.string.isRequired,
-  intl: React.PropTypes.object.isRequired
+  domain: PropTypes.string.isRequired,
+  intl: PropTypes.object.isRequired
 };
 
 const PageSix = ({ admin }) => {
@@ -157,33 +157,27 @@ const mapStateToProps = state => ({
   domain: state.getIn(['meta', 'domain'])
 });
 
-const OnboardingModal = React.createClass({
+class OnboardingModal extends React.PureComponent {
 
-  propTypes: {
-    onClose: React.PropTypes.func.isRequired,
-    intl: React.PropTypes.object.isRequired,
-    me: ImmutablePropTypes.map.isRequired,
-    domain: React.PropTypes.string.isRequired,
-    admin: ImmutablePropTypes.map
-  },
-
-  getInitialState () {
-    return {
+  constructor (props, context) {
+    super(props, context);
+    this.state = {
       currentIndex: 0
     };
-  },
-
-  mixins: [PureRenderMixin],
+    this.handleSkip = this.handleSkip.bind(this);
+    this.handleDot = this.handleDot.bind(this);
+    this.handleNext = this.handleNext.bind(this);
+  }
 
   handleSkip (e) {
     e.preventDefault();
     this.props.onClose();
-  },
+  }
 
   handleDot (i, e) {
     e.preventDefault();
     this.setState({ currentIndex: i });
-  },
+  }
 
   handleNext (maxNum, e) {
     e.preventDefault();
@@ -193,7 +187,7 @@ const OnboardingModal = React.createClass({
     } else {
       this.props.onClose();
     }
-  },
+  }
 
   render () {
     const { me, admin, domain, intl } = this.props;
@@ -251,6 +245,14 @@ const OnboardingModal = React.createClass({
     );
   }
 
-});
+}
+
+OnboardingModal.propTypes = {
+  onClose: PropTypes.func.isRequired,
+  intl: PropTypes.object.isRequired,
+  me: ImmutablePropTypes.map.isRequired,
+  domain: PropTypes.string.isRequired,
+  admin: ImmutablePropTypes.map
+}
 
 export default connect(mapStateToProps)(injectIntl(OnboardingModal));

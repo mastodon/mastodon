@@ -1,5 +1,5 @@
-import PureRenderMixin from 'react-addons-pure-render-mixin';
 import ImmutablePropTypes from 'react-immutable-proptypes';
+import PropTypes from 'prop-types';
 import IconButton from '../../../components/icon_button';
 import { defineMessages, injectIntl } from 'react-intl';
 import UploadProgressContainer from '../containers/upload_progress_container';
@@ -9,15 +9,7 @@ const messages = defineMessages({
   undo: { id: 'upload_form.undo', defaultMessage: 'Undo' }
 });
 
-const UploadForm = React.createClass({
-
-  propTypes: {
-    media: ImmutablePropTypes.list.isRequired,
-    onRemoveFile: React.PropTypes.func.isRequired,
-    intl: React.PropTypes.object.isRequired
-  },
-
-  mixins: [PureRenderMixin],
+class UploadForm extends React.PureComponent {
 
   render () {
     const { intl, media } = this.props;
@@ -42,6 +34,12 @@ const UploadForm = React.createClass({
     );
   }
 
-});
+}
+
+UploadForm.propTypes = {
+  media: ImmutablePropTypes.list.isRequired,
+  onRemoveFile: PropTypes.func.isRequired,
+  intl: PropTypes.object.isRequired
+};
 
 export default injectIntl(UploadForm);

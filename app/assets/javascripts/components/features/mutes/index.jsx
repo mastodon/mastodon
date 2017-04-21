@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
+import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import LoadingIndicator from '../../components/loading_indicator';
 import { ScrollContainer } from 'react-router-scroll';
@@ -17,19 +17,16 @@ const mapStateToProps = state => ({
   accountIds: state.getIn(['user_lists', 'mutes', 'items'])
 });
 
-const Mutes = React.createClass({
-  propTypes: {
-    params: React.PropTypes.object.isRequired,
-    dispatch: React.PropTypes.func.isRequired,
-    accountIds: ImmutablePropTypes.list,
-    intl: React.PropTypes.object.isRequired
-  },
+class Mutes extends React.PureComponent {
 
-  mixins: [PureRenderMixin],
+  constructor (props, context) {
+    super(props, context);
+    this.handleScroll = this.handleScroll.bind(this);
+  }
 
   componentWillMount () {
     this.props.dispatch(fetchMutes());
-  },
+  }
 
   handleScroll (e) {
     const { scrollTop, scrollHeight, clientHeight } = e.target;
@@ -37,7 +34,7 @@ const Mutes = React.createClass({
     if (scrollTop === scrollHeight - clientHeight) {
       this.props.dispatch(expandMutes());
     }
-  },
+  }
 
   render () {
     const { intl, accountIds } = this.props;
@@ -63,6 +60,13 @@ const Mutes = React.createClass({
       </Column>
     );
   }
-});
+}
+
+Mutes.propTypes = {
+  params: PropTypes.object.isRequired,
+  dispatch: PropTypes.func.isRequired,
+  accountIds: ImmutablePropTypes.list,
+  intl: PropTypes.object.isRequired
+};
 
 export default connect(mapStateToProps)(injectIntl(Mutes));
