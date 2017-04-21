@@ -40,7 +40,7 @@ class Api::V1::StatusesController < ApiController
 
     set_pagination_headers(next_path, prev_path)
 
-    render action: :accounts
+    render :accounts
   end
 
   def favourited_by
@@ -53,7 +53,7 @@ class Api::V1::StatusesController < ApiController
 
     set_pagination_headers(next_path, prev_path)
 
-    render action: :accounts
+    render :accounts
   end
 
   def create
@@ -62,7 +62,7 @@ class Api::V1::StatusesController < ApiController
                                                                                                                                                                                   spoiler_text: status_params[:spoiler_text],
                                                                                                                                                                                   visibility: status_params[:visibility],
                                                                                                                                                                                   application: doorkeeper_token.application)
-    render action: :show
+    render :show
   end
 
   def destroy
@@ -73,7 +73,7 @@ class Api::V1::StatusesController < ApiController
 
   def reblog
     @status = ReblogService.new.call(current_user.account, Status.find(params[:id]))
-    render action: :show
+    render :show
   end
 
   def unreblog
@@ -83,12 +83,12 @@ class Api::V1::StatusesController < ApiController
 
     RemovalWorker.perform_async(reblog.id)
 
-    render action: :show
+    render :show
   end
 
   def favourite
     @status = FavouriteService.new.call(current_user.account, Status.find(params[:id])).status.reload
-    render action: :show
+    render :show
   end
 
   def unfavourite
@@ -97,7 +97,7 @@ class Api::V1::StatusesController < ApiController
 
     UnfavouriteWorker.perform_async(current_user.account_id, @status.id)
 
-    render action: :show
+    render :show
   end
 
   private

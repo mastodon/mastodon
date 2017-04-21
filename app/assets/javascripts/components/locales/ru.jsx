@@ -92,7 +92,7 @@ const ru = {
   "report.target": "Жалуемся на",
   "search.placeholder": "Поиск",
   "search.status_by": "Статус от {name}",
-  "search_results.total": "{count} {count, plural, one {result} other {results}}",
+  "search_results.total": "{count, number} {count, plural, one {result} other {results}}",
   "status.delete": "Удалить",
   "status.favourite": "Нравится",
   "status.load_more": "Показать еще",
