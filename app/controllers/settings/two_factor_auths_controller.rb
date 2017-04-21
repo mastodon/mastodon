@@ -20,6 +20,7 @@ class Settings::TwoFactorAuthsController < ApplicationController
       @codes = current_user.generate_otp_backup_codes!
       current_user.save!
       flash[:notice] = I18n.t('two_factor_auth.enabled_success')
+      render :recovery_codes
     else
       flash.now[:alert] = I18n.t('two_factor_auth.wrong_code')
       prepare_two_factor_form

@@ -48,7 +48,7 @@ describe Settings::TwoFactorAuthsController do
 
         post :create, params: { form_two_factor_confirmation: { code: '123456' } }
         expect(response).to have_http_status(:success)
-        expect(response).to render_template(:create)
+        expect(response).to render_template(:recovery_codes)
       end
     end
 
