@@ -10,10 +10,9 @@ class Settings::TwoFactorAuthsController < ApplicationController
   def new
     redirect_to settings_two_factor_auth_path if current_user.otp_required_for_login
 
-    @confirmation = Form::TwoFactorConfirmation.new
     current_user.otp_secret = User.generate_otp_secret(32)
     current_user.save!
-    set_qr_code
+    prepare_two_factor_form
   end
 
   def create
@@ -23,9 +22,8 @@ class Settings::TwoFactorAuthsController < ApplicationController
       current_user.save!
       flash[:notice] = I18n.t('two_factor_auth.enabled_success')
     else
-      @confirmation = Form::TwoFactorConfirmation.new
-      set_qr_code
       flash.now[:alert] = I18n.t('two_factor_auth.wrong_code')
+      prepare_two_factor_form
       render :new
     end
   end
@@ -44,6 +42,11 @@ class Settings::TwoFactorAuthsController < ApplicationController
   end
 
   private
+
+  def prepare_two_factor_form
+    @confirmation = Form::TwoFactorConfirmation.new
+    set_qr_code
+  end
 
   def set_qr_code
     @provision_url = current_user.otp_provisioning_uri(current_user.email, issuer: Rails.configuration.x.local_domain)
