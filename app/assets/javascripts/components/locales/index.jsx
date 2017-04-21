@@ -16,6 +16,7 @@ import eo from './eo';
 import ru from './ru';
 import ja from './ja';
 import zh_hk from './zh-hk';
+import zh_cn from './zh-cn';
 import bg from './bg';
 
 const locales = {
@@ -36,6 +37,7 @@ const locales = {
   ru,
   ja,
   'zh-HK': zh_hk,
+  'zh-CN': zh_cn,
   bg,
 };
 
