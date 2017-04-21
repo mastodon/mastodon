@@ -4,12 +4,11 @@ class Settings::TwoFactorAuthsController < ApplicationController
   layout 'admin'
 
   before_action :authenticate_user!
+  before_action :verify_otp_required, only: [:new]
 
   def show; end
 
   def new
-    redirect_to settings_two_factor_auth_path if current_user.otp_required_for_login
-
     current_user.otp_secret = User.generate_otp_secret(32)
     current_user.save!
     prepare_two_factor_form
@@ -42,6 +41,12 @@ class Settings::TwoFactorAuthsController < ApplicationController
   end
 
   private
+
+  def verify_otp_required
+    if current_user.otp_required_for_login?
+      redirect_to settings_two_factor_auth_path
+    end
+  end
 
   def prepare_two_factor_form
     @confirmation = Form::TwoFactorConfirmation.new
