@@ -32,6 +32,7 @@ class Api::V1::NotificationsController < ApiController
 
   def dismiss
     Notification.where(account: current_account, id: params[:id]).delete_all
+    render_empty
   end
 
   private
