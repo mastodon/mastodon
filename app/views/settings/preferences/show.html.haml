@@ -18,9 +18,10 @@
       = ff.input :mention, as: :boolean, wrapper: :with_label
       = ff.input :digest, as: :boolean, wrapper: :with_label
 
-  = f.simple_fields_for :interactions, hash_to_object(current_user.settings.interactions) do |ff|
-    = ff.input :must_be_follower, as: :boolean, wrapper: :with_label
-    = ff.input :must_be_following, as: :boolean, wrapper: :with_label
+  .fields-group
+    = f.simple_fields_for :interactions, hash_to_object(current_user.settings.interactions) do |ff|
+      = ff.input :must_be_follower, as: :boolean, wrapper: :with_label
+      = ff.input :must_be_following, as: :boolean, wrapper: :with_label
 
   .fields-group
     = f.input :setting_boost_modal, as: :boolean, wrapper: :with_label
