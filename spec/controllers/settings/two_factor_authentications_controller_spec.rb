@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe Settings::TwoFactorAuthsController do
+describe Settings::TwoFactorAuthenticationsController do
   render_views
 
   let(:user) { Fabricate(:user) }
@@ -36,7 +36,7 @@ describe Settings::TwoFactorAuthsController do
         user.update(otp_required_for_login: true)
         get :new
 
-        expect(response).to redirect_to(settings_two_factor_auth_path)
+        expect(response).to redirect_to(settings_two_factor_authentication_path)
       end
     end
 
@@ -84,7 +84,7 @@ describe Settings::TwoFactorAuthsController do
     it 'turns off otp requirement' do
       post :destroy
 
-      expect(response).to redirect_to(settings_two_factor_auth_path)
+      expect(response).to redirect_to(settings_two_factor_authentication_path)
       user.reload
       expect(user.otp_required_for_login).to eq(false)
     end

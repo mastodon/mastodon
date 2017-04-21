@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Settings::TwoFactorAuthsController < ApplicationController
+class Settings::TwoFactorAuthenticationsController < ApplicationController
   layout 'admin'
 
   before_action :authenticate_user!
@@ -16,7 +16,7 @@ class Settings::TwoFactorAuthsController < ApplicationController
 
   def create
     if current_user.validate_and_consume_otp!(confirmation_params[:code])
-      flash[:notice] = I18n.t('two_factor_auth.enabled_success')
+      flash[:notice] = I18n.t('two_factor_authentication.enabled_success')
 
       current_user.otp_required_for_login = true
       @recovery_codes = current_user.generate_otp_backup_codes!
@@ -24,7 +24,7 @@ class Settings::TwoFactorAuthsController < ApplicationController
 
       render 'settings/recovery_codes/index'
     else
-      flash.now[:alert] = I18n.t('two_factor_auth.wrong_code')
+      flash.now[:alert] = I18n.t('two_factor_authentication.wrong_code')
       prepare_two_factor_form
       render :new
     end
@@ -34,14 +34,14 @@ class Settings::TwoFactorAuthsController < ApplicationController
     current_user.otp_required_for_login = false
     current_user.save!
 
-    redirect_to settings_two_factor_auth_path
+    redirect_to settings_two_factor_authentication_path
   end
 
   private
 
   def verify_otp_required
     if current_user.otp_required_for_login?
-      redirect_to settings_two_factor_auth_path
+      redirect_to settings_two_factor_authentication_path
     end
   end
 
