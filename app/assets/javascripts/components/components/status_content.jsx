@@ -5,7 +5,18 @@ import emojify from '../emoji';
 import { isRtl } from '../rtl';
 import { FormattedMessage } from 'react-intl';
 import Permalink from './permalink';
-import TeX from 'react-formula-beautifier';
+
+const MathJax = require('react-mathjax');
+const reactStringReplace = require('react-string-replace')
+
+function mapAlternate(array, fn1, fn2, thisArg) {
+    var fn = fn1, output = [];
+    for (var i=0; i<array.length; i++){
+	output[i] = fn.call(thisArg, array[i], i, array);
+	fn = fn === fn1 ? fn2 : fn1;
+    }
+    return output;
+}
 
 class StatusContent extends React.PureComponent {
 
