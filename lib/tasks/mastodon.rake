@@ -38,21 +38,23 @@ namespace :mastodon do
     require 'fileutils'
     all = Account.all
     all.each do |account|
-      if account.avatar_remote_url.present? 
-        if account.avatar_file_name.present? && ! File.exist?(account.avatar.path)
+      next if account.avatar_remote_url.present?
+        if account.avatar_file_name.present? && !File.exist?(account.avatar.path)
           begin
             FileUtils.mkdir_p(File.dirname(account.avatar.path))
           rescue => ex
             # this means directory already exists,so we can ignore exception
+            p ex
           end
           begin
-            open(account.avatar.path,'wb') do |out|
+            open(account.avatar.path, 'wb') do |out|
               open(account.avatar_remote_url) do |data|
                 out.write(data.read)
               end
             end
-          rescue => ex
+          rescue => ex2
             # can't fetch remote url,so skip
+            Rails.logger.debug "skp due to#{ex2.inspect}"
           end
         end
       end
