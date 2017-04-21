@@ -16,10 +16,12 @@ class Settings::TwoFactorAuthsController < ApplicationController
 
   def create
     if current_user.validate_and_consume_otp!(confirmation_params[:code])
+      flash[:notice] = I18n.t('two_factor_auth.enabled_success')
+
       current_user.otp_required_for_login = true
       @codes = current_user.generate_otp_backup_codes!
       current_user.save!
-      flash[:notice] = I18n.t('two_factor_auth.enabled_success')
+
       render :recovery_codes
     else
       flash.now[:alert] = I18n.t('two_factor_auth.wrong_code')
@@ -29,9 +31,9 @@ class Settings::TwoFactorAuthsController < ApplicationController
   end
 
   def recovery_codes
+    flash[:notice] = I18n.t('two_factor_auth.recovery_codes_regenerated')
     @codes = current_user.generate_otp_backup_codes!
     current_user.save!
-    flash[:notice] = I18n.t('two_factor_auth.recovery_codes_regenerated')
   end
 
   def disable
