@@ -34,7 +34,10 @@ module Mastodon
       :fi,
       :fr,
       :hr,
+      :id,
       :hu,
+      :id,
+      :io,
       :it,
       :ja,
       :nl,
@@ -45,7 +48,7 @@ module Mastodon
       :'pt-BR',
       :ru,
       :uk,
-      'zh-CN',
+      :'zh-CN',
       :'zh-HK',
       :'zh-TW',
     ]
@@ -70,7 +73,7 @@ module Mastodon
     config.middleware.use Rack::Deflater
 
     config.browserify_rails.source_map_environments << 'development'
-    config.browserify_rails.commandline_options   = '--transform [ babelify --presets [ es2015 react ] ] --extension=".jsx"'
+    config.browserify_rails.commandline_options   = '--transform [ babelify --presets [ es2015 react ] --plugins [ transform-decorators-legacy ] ] --extension=".jsx"'
     config.browserify_rails.evaluate_node_modules = true
 
     config.to_prepare do

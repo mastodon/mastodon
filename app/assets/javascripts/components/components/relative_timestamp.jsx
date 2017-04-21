@@ -1,4 +1,5 @@
 import { injectIntl, FormattedRelative } from 'react-intl';
+import PropTypes from 'prop-types';
 
 const RelativeTimestamp = ({ intl, timestamp }) => {
   const date = new Date(timestamp);
@@ -11,8 +12,8 @@ const RelativeTimestamp = ({ intl, timestamp }) => {
 };
 
 RelativeTimestamp.propTypes = {
-  intl: React.PropTypes.object.isRequired,
-  timestamp: React.PropTypes.string.isRequired
+  intl: PropTypes.object.isRequired,
+  timestamp: PropTypes.string.isRequired
 };
 
 export default injectIntl(RelativeTimestamp);

@@ -1,5 +1,5 @@
-import PureRenderMixin from 'react-addons-pure-render-mixin';
 import { Motion, spring } from 'react-motion';
+import PropTypes from 'prop-types';
 
 const iconStyle = {
   fontSize: '16px',
@@ -11,23 +11,16 @@ const iconStyle = {
   zIndex: '3'
 };
 
-const ColumnCollapsable = React.createClass({
+class ColumnCollapsable extends React.PureComponent {
 
-  propTypes: {
-    icon: React.PropTypes.string.isRequired,
-    title: React.PropTypes.string,
-    fullHeight: React.PropTypes.number.isRequired,
-    children: React.PropTypes.node,
-    onCollapse: React.PropTypes.func
-  },
-
-  getInitialState () {
-    return {
+  constructor (props, context) {
+    super(props, context);
+    this.state = {
       collapsed: true
     };
-  },
 
-  mixins: [PureRenderMixin],
+    this.handleToggleCollapsed = this.handleToggleCollapsed.bind(this);
+  }
 
   handleToggleCollapsed () {
     const currentState = this.state.collapsed;
@@ -37,7 +30,7 @@ const ColumnCollapsable = React.createClass({
     if (!currentState && this.props.onCollapse) {
       this.props.onCollapse();
     }
-  },
+  }
 
   render () {
     const { icon, title, fullHeight, children } = this.props;
@@ -60,6 +53,14 @@ const ColumnCollapsable = React.createClass({
       </div>
     );
   }
-});
+}
+
+ColumnCollapsable.propTypes = {
+  icon: PropTypes.string.isRequired,
+  title: PropTypes.string,
+  fullHeight: PropTypes.number.isRequired,
+  children: PropTypes.node,
+  onCollapse: PropTypes.func
+};
 
 export default ColumnCollapsable;

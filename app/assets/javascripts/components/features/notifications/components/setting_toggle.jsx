@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import Toggle from 'react-toggle';
 
@@ -23,10 +24,10 @@ const SettingToggle = ({ settings, settingKey, label, onChange, htmlFor = '' }) 
 
 SettingToggle.propTypes = {
   settings: ImmutablePropTypes.map.isRequired,
-  settingKey: React.PropTypes.array.isRequired,
-  label: React.PropTypes.node.isRequired,
-  onChange: React.PropTypes.func.isRequired,
-  htmlFor: React.PropTypes.string
+  settingKey: PropTypes.array.isRequired,
+  label: PropTypes.node.isRequired,
+  onChange: PropTypes.func.isRequired,
+  htmlFor: PropTypes.string
 };
 
 export default SettingToggle;

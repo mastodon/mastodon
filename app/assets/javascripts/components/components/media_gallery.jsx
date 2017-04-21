@@ -1,5 +1,5 @@
 import ImmutablePropTypes from 'react-immutable-proptypes';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
+import PropTypes from 'prop-types';
 import IconButton from './icon_button';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import { isIOS } from '../is_mobile';
@@ -72,17 +72,12 @@ const gifvThumbStyle = {
   cursor: 'zoom-in'
 };
 
-const Item = React.createClass({
+class Item extends React.PureComponent {
 
-  propTypes: {
-    attachment: ImmutablePropTypes.map.isRequired,
-    index: React.PropTypes.number.isRequired,
-    size: React.PropTypes.number.isRequired,
-    onClick: React.PropTypes.func.isRequired,
-    autoPlayGif: React.PropTypes.bool.isRequired
-  },
-
-  mixins: [PureRenderMixin],
+  constructor (props, context) {
+    super(props, context);
+    this.handleClick = this.handleClick.bind(this);
+  }
 
   handleClick (e) {
     const { index, onClick } = this.props;
@@ -93,7 +88,7 @@ const Item = React.createClass({
     }
 
     e.stopPropagation();
-  },
+  }
 
   render () {
     const { attachment, index, size } = this.props;
@@ -184,34 +179,34 @@ const Item = React.createClass({
     );
   }
 
-});
+}
 
-const MediaGallery = React.createClass({
+Item.propTypes = {
+  attachment: ImmutablePropTypes.map.isRequired,
+  index: PropTypes.number.isRequired,
+  size: PropTypes.number.isRequired,
+  onClick: PropTypes.func.isRequired,
+  autoPlayGif: PropTypes.bool.isRequired
+};
 
-  getInitialState () {
-    return {
-      visible: !this.props.sensitive
+class MediaGallery extends React.PureComponent {
+
+  constructor (props, context) {
+    super(props, context);
+    this.state = {
+      visible: !props.sensitive
     };
-  },
-
-  propTypes: {
-    sensitive: React.PropTypes.bool,
-    media: ImmutablePropTypes.list.isRequired,
-    height: React.PropTypes.number.isRequired,
-    onOpenMedia: React.PropTypes.func.isRequired,
-    intl: React.PropTypes.object.isRequired,
-    autoPlayGif: React.PropTypes.bool.isRequired
-  },
-
-  mixins: [PureRenderMixin],
+    this.handleOpen = this.handleOpen.bind(this);
+    this.handleClick = this.handleClick.bind(this);
+  }
 
   handleOpen (e) {
     this.setState({ visible: !this.state.visible });
-  },
+  }
 
   handleClick (index) {
     this.props.onOpenMedia(this.props.media, index);
-  },
+  }
 
   render () {
     const { media, intl, sensitive } = this.props;
@@ -249,6 +244,15 @@ const MediaGallery = React.createClass({
     );
   }
 
-});
+}
+
+MediaGallery.propTypes = {
+  sensitive: PropTypes.bool,
+  media: ImmutablePropTypes.list.isRequired,
+  height: PropTypes.number.isRequired,
+  onOpenMedia: PropTypes.func.isRequired,
+  intl: PropTypes.object.isRequired,
+  autoPlayGif: PropTypes.bool.isRequired
+};
 
 export default injectIntl(MediaGallery);

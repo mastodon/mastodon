@@ -1,6 +1,6 @@
 import Dropdown, { DropdownTrigger, DropdownContent } from 'react-simple-dropdown';
 import EmojiPicker from 'emojione-picker';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
+import PropTypes from 'prop-types';
 import { defineMessages, injectIntl } from 'react-intl';
 
 const messages = defineMessages({
@@ -19,23 +19,22 @@ const style = {
   top: '5px'
 };
 
-const EmojiPickerDropdown = React.createClass({
+class EmojiPickerDropdown extends React.PureComponent {
 
-  propTypes: {
-    intl: React.PropTypes.object.isRequired,
-    onPickEmoji: React.PropTypes.func.isRequired
-  },
-
-  mixins: [PureRenderMixin],
+  constructor (props, context) {
+    super(props, context);
+    this.setRef = this.setRef.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+  }
 
   setRef (c) {
     this.dropdown = c;
-  },
+  }
 
   handleChange (data) {
     this.dropdown.hide();
     this.props.onPickEmoji(data);
-  },
+  }
 
   render () {
     const { intl } = this.props;
@@ -53,6 +52,11 @@ const EmojiPickerDropdown = React.createClass({
     );
   }
 
-});
+}
+
+EmojiPickerDropdown.propTypes = {
+  intl: PropTypes.object.isRequired,
+  onPickEmoji: PropTypes.func.isRequired
+};
 
 export default injectIntl(EmojiPickerDropdown);
