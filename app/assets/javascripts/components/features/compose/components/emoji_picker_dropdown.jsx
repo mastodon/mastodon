@@ -4,7 +4,8 @@ import PureRenderMixin from 'react-addons-pure-render-mixin';
 import { defineMessages, injectIntl } from 'react-intl';
 
 const messages = defineMessages({
-  emoji: { id: 'emoji_button.label', defaultMessage: 'Insert emoji' }
+  emoji: { id: 'emoji_button.label', defaultMessage: 'Insert emoji' },
+  emoji_search: { id: 'emoji_button.search', defaultMessage: 'Search...' }
 });
 
 const settings = {
@@ -47,7 +48,7 @@ const EmojiPickerDropdown = React.createClass({
         </DropdownTrigger>
 
         <DropdownContent className='dropdown__left light'>
-          <EmojiPicker emojione={settings} onChange={this.handleChange} search={true} />
+          <EmojiPicker emojione={settings} onChange={this.handleChange} searchPlaceholder={intl.formatMessage(messages.emoji_search)} search={true} />
         </DropdownContent>
       </Dropdown>
     );
