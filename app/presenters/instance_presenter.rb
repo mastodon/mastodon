@@ -25,4 +25,8 @@ class InstancePresenter
   def domain_count
     Rails.cache.fetch('distinct_domain_count') { Account.distinct.count(:domain) }
   end
+
+  def version_number
+    Mastodon::VERSION
+  end
 end

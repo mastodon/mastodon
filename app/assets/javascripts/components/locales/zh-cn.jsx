@@ -47,7 +47,7 @@ const zh_cn = {
   "column.notifications": "通知",
   "column.public": "跨站公共时间轴",
   "compose_form.placeholder": "在想啥？",
-  "compose_form.privacy_disclaimer": "你的私人嘟文，将被发送至你所提及的 {domains} 用户。你是否信任 {domainsCount, plural, one {这个网站} other {这些网站}}？请留意，嘟文隐私设置只适用于各 Mastodon 服务站，如果 {domains} {domainsCount, plural, one {不是 Mastodon 服务站} other {之中有些不是 Mastodon 服务站}}，对方将无法收到这篇嘟文的隐私设置，然后可能被转嘟给不能预知的用户阅读。",
+  "compose_form.privacy_disclaimer": "你的私人嘟文，将被发送至你所提及的 {domains} 用户。你是否信任{domainsCount, plural, one {这个网站} other {这些网站}}？请留意，嘟文隐私设置只适用于各 Mastodon 服务站，如果 {domains} {domainsCount, plural, one {不是 Mastodon 服务站} other {之中有些不是 Mastodon 服务站}}，对方将无法收到这篇嘟文的隐私设置，然后可能被转嘟给不能预知的用户阅读。",
   "compose_form.private": "标示为“只有关注你的人能看”",
   // Going "toot-toot!" here below.
   "compose_form.publish": "嘟嘟！",

@@ -18,6 +18,7 @@ if ENV['S3_ENABLED'] == 'true'
   Paperclip::Attachment.default_options[:s3_headers]     = { 'Cache-Control' => 'max-age=315576000' }
   Paperclip::Attachment.default_options[:s3_permissions] = ENV.fetch('S3_PERMISSION') { 'public-read' }
   Paperclip::Attachment.default_options[:s3_region]      = ENV.fetch('S3_REGION') { 'us-east-1' }
+  Paperclip::Attachment.default_options[:use_timestamp]  = false
 
   Paperclip::Attachment.default_options[:s3_credentials] = {
     bucket: ENV.fetch('S3_BUCKET'),

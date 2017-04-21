@@ -48,6 +48,7 @@ class ComposeForm extends React.PureComponent {
   }
 
   handleSubmit () {
+    this.autosuggestTextarea.textarea.style.height = "auto";
     this.props.onSubmit();
   }
 
