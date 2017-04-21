@@ -9,7 +9,10 @@
             %span.display_name.emojify= display_name(contact.contact_account)
             %span.username= "@#{contact.contact_account.acct}"
 
-    - if contact.site_contact_email
-      .contact-email
-        = t 'about.business_email'
-        %strong= contact.site_contact_email
+    - if contact.contact_account_sub
+      .owner
+        .avatar= image_tag contact.contact_account_sub.avatar.url
+        .name
+          = link_to TagManager.instance.url_for(contact.contact_account_sub) do
+            %span.display_name.emojify= display_name(contact.contact_account_sub)
+            %span.username= "@#{contact.contact_account_sub.acct}"

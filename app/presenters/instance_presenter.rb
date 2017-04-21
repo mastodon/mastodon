@@ -14,6 +14,10 @@ class InstancePresenter
     Account.find_local(Setting.site_contact_username)
   end
 
+  def contact_account_sub
+    Account.find_local(Setting.site_contact_username_sub)
+  end
+
   def user_count
     Rails.cache.fetch('user_count') { User.confirmed.count }
   end

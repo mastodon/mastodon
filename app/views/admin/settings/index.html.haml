@@ -10,9 +10,11 @@
       %th= t('admin.settings.click_to_edit')
   %tbody
     %tr
-      %td{ rowspan: 2 }
+      %td{ rowspan: 3 }
         %strong= t('admin.settings.contact_information.label')
       %td= best_in_place @settings['site_contact_username'], :value, url: admin_setting_path(@settings['site_contact_username']), place_holder: t('admin.settings.contact_information.username')
+    %tr
+      %td= best_in_place @settings['site_contact_username_sub'], :value, url: admin_setting_path(@settings['site_contact_username_sub']), place_holder: t('admin.settings.contact_information_sub.username')
     %tr
       %td= best_in_place @settings['site_contact_email'], :value, url: admin_setting_path(@settings['site_contact_email']), place_holder: t('admin.settings.contact_information.email')
     %tr
