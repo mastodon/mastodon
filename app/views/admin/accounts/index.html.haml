@@ -37,7 +37,7 @@
             = link_to account.domain, admin_accounts_path(by_domain: account.domain)
         %td
           - if account.local?
-            - if account.user.present? && account.user.confirmed_at.present?
+            - if account.user.present? && account.user.confirmed?
               %i.fa.fa-check
             - else 
               %i.fa.fa-times
