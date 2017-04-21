@@ -2,6 +2,7 @@
 
 class AtomSerializer
   include RoutingHelper
+  include ActionView::Helpers::SanitizeHelper
 
   class << self
     def render(element)
@@ -27,7 +28,7 @@ class AtomSerializer
     append_element(author, 'link', nil, rel: :header, type: account.header_content_type, 'media:width': 700, 'media:height': 335, href: full_asset_url(account.header.url(:original)))
     append_element(author, 'poco:preferredUsername', account.username)
     append_element(author, 'poco:displayName', account.display_name) if account.display_name?
-    append_element(author, 'poco:note', account.note) if account.note?
+    append_element(author, 'poco:note', account.local? ? account.note : strip_tags(account.note)) if account.note?
     append_element(author, 'mastodon:scope', account.locked? ? :private : :public)
 
     author
