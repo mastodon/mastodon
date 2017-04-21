@@ -43,7 +43,7 @@ const zh_hk = {
   "column.notifications": "通知",
   "column.public": "跨站公共時間軸",
   "compose_form.placeholder": "你在想甚麼？",
-  "compose_form.privacy_disclaimer": "你的私人文章，將被遞送至你所提及的 {domains} 用戶。你是否信任 {domainsCount, plural, one {這個網站} other {這些網站}}？請留意，文章私隱設定只適用於各 Mastodon 服務站，如果 {domains} {domainsCount, plural, one {不是 Mastodon 服務站} other {之中有些不是 Mastodon 服務站}}，對方將無法收到這篇文章的私隱設定，然後可能被轉推給不能預知的用戶閱讀。",
+  "compose_form.privacy_disclaimer": "你的私人文章，將被遞送至你所提及的 {domains} 用戶。你是否信任{domainsCount, plural, one {這個網站} other {這些網站}}？請留意，文章私隱設定只適用於各 Mastodon 服務站，如果 {domains} {domainsCount, plural, one {不是 Mastodon 服務站} other {之中有些不是 Mastodon 服務站}}，對方將無法收到這篇文章的私隱設定，然後可能被轉推給不能預知的用戶閱讀。",
   "compose_form.private": "標示為「只有關注你的人能看」",
   "compose_form.publish": "發文",
   "compose_form.sensitive": "將媒體檔案標示為「敏感內容」",
