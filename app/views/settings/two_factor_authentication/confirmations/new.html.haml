@@ -1,7 +1,7 @@
 - content_for :page_title do
   = t('settings.two_factor_authentication')
 
-= simple_form_for @confirmation, url: settings_two_factor_authentication_path, method: :post do |f|
+= simple_form_for @confirmation, url: settings_two_factor_authentication_confirmation_path, method: :post do |f|
   %p.hint= t('two_factor_authentication.instructions_html')
 
   .qr-wrapper

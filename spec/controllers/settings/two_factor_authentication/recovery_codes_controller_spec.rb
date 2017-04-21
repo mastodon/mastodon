@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe Settings::RecoveryCodesController do
+describe Settings::TwoFactorAuthentication::RecoveryCodesController do
   render_views
 
   let(:user) { Fabricate(:user) }

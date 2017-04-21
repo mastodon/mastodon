@@ -30,49 +30,23 @@ describe Settings::TwoFactorAuthenticationsController do
     end
   end
 
-  describe 'GET #new' do
+  describe 'POST #create' do
     describe 'when user requires otp for login already' do
       it 'redirects to show page' do
         user.update(otp_required_for_login: true)
-        get :new
+        post :create
 
         expect(response).to redirect_to(settings_two_factor_authentication_path)
       end
     end
 
-    describe 'when user does not require otp for login' do
-      it 'returns http success' do
-        get :new
-
-        expect(response).to have_http_status(:success)
-        expect(response).to render_template(:new)
-      end
-    end
-  end
-
-  describe 'POST #create' do
-    before do
-      user.otp_secret = User.generate_otp_secret(32)
-      user.save!
-    end
-
     describe 'when creation succeeds' do
-      it 'renders page with success' do
-        allow_any_instance_of(User).to receive(:validate_and_consume_otp!).with('123456').and_return(true)
+      it 'updates user secret' do
+        before = user.otp_secret
+        post :create
 
-        post :create, params: { form_two_factor_confirmation: { code: '123456' } }
-        expect(response).to have_http_status(:success)
-        expect(response).to render_template('settings/recovery_codes/index')
-      end
-    end
-
-    describe 'when creation fails' do
-      it 'renders the new view' do
-        allow_any_instance_of(User).to receive(:validate_and_consume_otp!).with('123456').and_return(false)
-
-        post :create, params: { form_two_factor_confirmation: { code: '123456' } }
-        expect(response).to have_http_status(:success)
-        expect(response).to render_template(:new)
+        expect(user.reload.otp_secret).not_to eq(before)
+        expect(response).to redirect_to(new_settings_two_factor_authentication_confirmation_path)
       end
     end
   end
