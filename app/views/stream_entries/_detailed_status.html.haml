@@ -32,7 +32,7 @@
   %div.detailed-status__meta
     %data.dt-published{ value: status.created_at.to_time.iso8601 }
     = link_to TagManager.instance.url_for(status), class: 'detailed-status__datetime u-url u-uid', target: stream_link_target, rel: 'noopener' do
-      %span= l(status.created_at)
+      %span= local_time(status.created_at, format: :default)
     ·
     - if status.application
       - if status.application.website.blank?
