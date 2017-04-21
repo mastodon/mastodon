@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 describe Settings::TwoFactorAuthsController do
@@ -48,7 +50,7 @@ describe Settings::TwoFactorAuthsController do
 
         post :create, params: { form_two_factor_confirmation: { code: '123456' } }
         expect(response).to have_http_status(:success)
-        expect(response).to render_template(:recovery_codes)
+        expect(response).to render_template('settings/recovery_codes/index')
       end
     end
 
@@ -73,19 +75,6 @@ describe Settings::TwoFactorAuthsController do
       expect(response).to redirect_to(settings_two_factor_auth_path)
       user.reload
       expect(user.otp_required_for_login).to eq(false)
-    end
-  end
-
-  describe 'POST #recovery_codes' do
-    it 'updates the codes and shows them on a view' do
-      before = user.otp_backup_codes
-
-      post :recovery_codes
-      user.reload
-
-      expect(user.otp_backup_codes).not_to eq(before)
-      expect(response).to have_http_status(:success)
-      expect(response).to render_template(:recovery_codes)
     end
   end
 end

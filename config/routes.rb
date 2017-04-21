@@ -59,9 +59,9 @@ Rails.application.routes.draw do
     end
 
     resource :two_factor_auth, only: [:show, :new, :create] do
+      resources :recovery_codes, only: [:create]
       member do
         post :disable
-        post :recovery_codes
       end
     end
   end
