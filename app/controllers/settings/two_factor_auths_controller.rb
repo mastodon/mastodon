@@ -50,12 +50,8 @@ class Settings::TwoFactorAuthsController < ApplicationController
 
   def prepare_two_factor_form
     @confirmation = Form::TwoFactorConfirmation.new
-    set_qr_code
-  end
-
-  def set_qr_code
     @provision_url = current_user.otp_provisioning_uri(current_user.email, issuer: Rails.configuration.x.local_domain)
-    @qrcode        = RQRCode::QRCode.new(@provision_url)
+    @qrcode = RQRCode::QRCode.new(@provision_url)
   end
 
   def confirmation_params
