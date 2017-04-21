@@ -659,7 +659,7 @@ a.status__content__spoiler-link {
 }
 
 .transparent-background, .imageloader {
-  background: image-url('void.png');
+  background: image-url('./assets/void.png');
 }
 
 .imageloader {
@@ -1238,7 +1238,7 @@ a.status__content__spoiler-link {
 .getting-started {
   box-sizing: border-box;
   padding-bottom: 235px;
-  background: image-url('mastodon-getting-started.png') no-repeat 0 100% local;
+  background: image-url('./assets/mastodon-getting-started.png') no-repeat 0 100% local;
   flex: 1 0 auto;
 
   p {
@@ -1332,7 +1332,7 @@ button.icon-button.active i.fa-retweet {
   font-weight: 500;
   color: lighten($rooty-color1, 16%);
   padding-top: 210px;
-  background: image-url('mastodon-not-found.png') no-repeat center -50px;
+  background: image-url('./assets/mastodon-not-found.png') no-repeat center -50px;
   cursor: default;
 }
 

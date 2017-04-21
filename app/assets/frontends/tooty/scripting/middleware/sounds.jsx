@@ -9,7 +9,7 @@ const play = audio => {
 
 export default function soundsMiddleware() {
   const soundCache = {
-    boop: new Audio(['/sounds/boop.mp3'])
+    boop: new Audio([MASTODON_ASSETS.BOOP])
   };
 
   return ({ dispatch }) => next => (action) => {
