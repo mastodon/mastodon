@@ -11,10 +11,22 @@ describe Settings::TwoFactorAuthsController do
   end
 
   describe 'GET #show' do
-    it 'returns http success' do
-      get :show
+    describe 'when user requires otp for login already' do
+      it 'returns http success' do
+        user.update(otp_required_for_login: true)
+        get :show
 
-      expect(response).to have_http_status(:success)
+        expect(response).to have_http_status(:success)
+      end
+    end
+
+    describe 'when user does not require otp for login' do
+      it 'returns http success' do
+        user.update(otp_required_for_login: false)
+        get :show
+
+        expect(response).to have_http_status(:success)
+      end
     end
   end
 

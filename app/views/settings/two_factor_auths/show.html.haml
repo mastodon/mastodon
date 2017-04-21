@@ -14,4 +14,4 @@
 
   .simple_form
     %p.hint= t('two_factor_auth.lost_recovery_codes')
-    = link_to t('two_factor_auth.generate_recovery_codes'), recovery_codes_settings_two_factor_auth_path, data: { method: 'POST' }, class: 'block-button'
+    = link_to t('two_factor_auth.generate_recovery_codes'), settings_two_factor_auth_recovery_codes_path, data: { method: 'POST' }, class: 'block-button'
