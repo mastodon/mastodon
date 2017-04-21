@@ -62,6 +62,7 @@ class AccountTimeline extends React.PureComponent {
 
         <StatusList
           prepend={<HeaderContainer accountId={this.props.params.accountId} />}
+          scrollKey='account_timeline'
           statusIds={statusIds}
           isLoading={isLoading}
           hasMore={hasMore}

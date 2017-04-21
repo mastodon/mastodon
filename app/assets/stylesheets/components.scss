@@ -89,11 +89,11 @@
   border: none;
   background: transparent;
   cursor: pointer;
-  transition: all 100ms ease-in;
+  transition: color 100ms ease-in;
 
   &:hover, &:active, &:focus {
     color: lighten($color1, 33%);
-    transition: all 200ms ease-out;
+    transition: color 200ms ease-out;
   }
 
   &.disabled {
@@ -152,11 +152,11 @@
   padding: 0 3px;
   line-height: 27px;
   outline: 0;
-  transition: all 100ms ease-in;
+  transition: color 100ms ease-in;
 
   &:hover, &:active, &:focus {
     color: lighten($color1, 26%);
-    transition: all 200ms ease-out;
+    transition: color 200ms ease-out;
   }
 
   &.disabled {
@@ -1100,6 +1100,7 @@ a.status__content__spoiler-link {
   flex-direction: row;
   justify-content: flex-start;
   overflow-x: auto;
+  position:   relative;
 }
 
 @media screen and (min-width: 360px) {
@@ -1257,11 +1258,11 @@ a.status__content__spoiler-link {
   flex-direction: row;
 
   a {
-    transition: all 100ms ease-in;
+    transition: background 100ms ease-in;
 
     &:hover {
       background: lighten($color1, 3%);
-      transition: all 200ms ease-out;
+      transition: background 200ms ease-out;
     }
   }
 }

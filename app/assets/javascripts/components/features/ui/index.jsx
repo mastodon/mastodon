@@ -127,9 +127,9 @@ class UI extends React.PureComponent {
       mountedColumns = (
         <ColumnsArea>
           <Compose withHeader={true} />
-          <HomeTimeline trackScroll={false} />
-          <Notifications trackScroll={false} />
-          {children}
+          <HomeTimeline shouldUpdateScroll={() => false} />
+          <Notifications shouldUpdateScroll={() => false} />
+          <div style={{display: 'flex', flex: '1 1 auto', position: 'relative'}}>{children}</div>
         </ColumnsArea>
       );
     }
