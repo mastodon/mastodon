@@ -63,6 +63,12 @@ Rails.application.routes.draw do
       resources :recovery_codes, only: [:create]
       resource :confirmation, only: [:new, :create]
     end
+
+    resource :followers, only: [:show] do
+      member do
+        post :purge
+      end
+    end
   end
 
   resources :media, only: [:show]

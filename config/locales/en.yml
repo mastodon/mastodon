@@ -215,6 +215,18 @@ en:
     follows: You follow
     mutes: You mute
     storage: Media storage
+  followers:
+    domain: Domain
+    explanation_html: If you want to ensure the privacy of your statuses, you must be aware of who is following you. <strong>Your private statuses are delivered to all instances where you have followers</strong>. You may wish to review them, and remove followers if you do not trust your privacy to be respected by the staff or software of those instances.
+    followers_count: Number of followers
+    lock_link: Lock your account
+    purge: Remove from followers
+    success:
+      one: Successfully soft-blocked one account
+      other: Successfully soft-blocked %{count} accounts
+    true_privacy_html: Please mind that <strong>true privacy can only be achieved with end-to-end encryption</strong>.
+    unlocked_warning_html: Anyone can follow you to immediately view your private statuses. %{lock_link} to be able to review and reject followers.
+    unlocked_warning_title: Your account is not locked
   generic:
     changes_saved_msg: Changes successfully saved!
     powered_by: powered by %{link}
@@ -274,6 +286,7 @@ en:
     back: Back to Mastodon
     edit_profile: Edit profile
     export: Data export
+    followers: Authorized followers
     import: Import
     preferences: Preferences
     settings: Settings
