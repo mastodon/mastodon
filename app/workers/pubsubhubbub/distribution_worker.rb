@@ -8,7 +8,7 @@ class Pubsubhubbub::DistributionWorker
   def perform(stream_entry_id)
     stream_entry = StreamEntry.find(stream_entry_id)
 
-    return if stream_entry.status.direct_visibility?
+    return if stream_entry.status&.direct_visibility?
 
     account = stream_entry.account
     payload = AtomSerializer.render(AtomSerializer.new.feed(account, [stream_entry]))

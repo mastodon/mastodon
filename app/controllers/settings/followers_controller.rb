@@ -14,7 +14,7 @@ class Settings::FollowersController < ApplicationController
     domains = purge_params[:select] || []
 
     domains.each do |domain|
-      SoftBlockDomainFollowers.perform_async(current_account.id, domain)
+      SoftBlockDomainFollowersWorker.perform_async(current_account.id, domain)
     end
 
     redirect_to settings_followers_path, notice: I18n.t('followers.success', count: domains.size)
