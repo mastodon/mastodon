@@ -13,7 +13,7 @@ const TabsBar = React.createClass({
         <Link className='tabs-bar__link secondary' activeClassName='active' to='/timelines/public/local'><i className='fa fa-fw fa-users' /><FormattedMessage id='tabs_bar.local_timeline' defaultMessage='Local' /></Link>
         <Link className='tabs-bar__link secondary' activeClassName='active' to='/timelines/public'><i className='fa fa-fw fa-globe' /><FormattedMessage id='tabs_bar.federated_timeline' defaultMessage='Federated' /></Link>
 
-        <Link className='tabs-bar__link primary' activeClassName='active' style={{ flexGrow: '0', flexBasis: '30px' }} to='/getting-started'><i className='fa fa-fw fa-bars' /></Link>
+        <Link className='tabs-bar__link primary' activeClassName='active' style={{ flexGrow: '0', flexBasis: '30px' }} to='/getting-started'><i className='fa fa-fw fa-asterisk' /></Link>
       </div>
     );
   }

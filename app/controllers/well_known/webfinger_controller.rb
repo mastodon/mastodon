@@ -8,8 +8,13 @@ module WellKnown
       @magic_key = pem_to_magic_key(@account.keypair.public_key)
 
       respond_to do |format|
-        format.xml  { render content_type: 'application/xrd+xml' }
-        format.json { render content_type: 'application/jrd+json' }
+        format.any(:json, :html) do
+          render formats: :json, content_type: 'application/jrd+json'
+        end
+
+        format.xml do
+          render content_type: 'application/xrd+xml'
+        end
       end
     rescue ActiveRecord::RecordNotFound
       head 404
