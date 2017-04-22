@@ -7,24 +7,27 @@
 
 .button {
   background-color: darken($color4, 3%);
-  font-family: inherit;
-  display: inline-block;
-  position: relative;
-  box-sizing: border-box;
-  text-align: center;
   border: 10px none;
+  border-radius: 4px;
+  box-sizing: border-box;
   color: $color5;
+  cursor: pointer;
+  display: inline-block;
+  font-family: inherit;
   font-size: 14px;
   font-weight: 500;
-  letter-spacing: 0;
-  text-transform: uppercase;
-  padding: 0 16px;
   height: 36px;
-  cursor: pointer;
+  letter-spacing: 0;
   line-height: 36px;
-  border-radius: 4px;
+  overflow: hidden;
+  padding: 0 16px;
+  position: relative;
+  text-align: center;
+  text-transform: uppercase;
   text-decoration: none;
+  text-overflow: ellipsis;
   transition: all 100ms ease-in;
+  white-space: nowrap;
 
   &:active,
   &:focus,
@@ -43,9 +46,20 @@
   }
 }
 
+.column-collapsable {
+  position: relative;
+}
+
 .column-icon {
-  color: $color3;
   background: lighten($color1, 4%);
+  color: $color3;
+  cursor: pointer;
+  font-size: 16px;
+  padding: 15px;
+  position: absolute;
+  right: 0;
+  top: -48px;
+  z-index: 3;
 
   &:hover {
     color: lighten($color3, 7%);
@@ -808,6 +822,8 @@ a.status__content__spoiler-link {
 
 .dropdown--active .dropdown__content {
   display: block;
+  line-height: 18px;
+  text-align: left;
   z-index: 9999;
 
   &:before {
@@ -873,6 +889,10 @@ a.status__content__spoiler-link {
       color: $color2;
     }
   }
+}
+
+.dropdown__icon {
+  vertical-align: middle;
 }
 
 .static-content {
@@ -1178,6 +1198,25 @@ a.status__content__spoiler-link {
   &:hover {
     text-decoration: underline;
   }
+}
+
+.column-back-button__icon {
+  display: inline-block;
+  margin-right: 5px;
+}
+
+.column-back-button--slim {
+  position: relative;
+}
+
+.column-back-button--slim-button {
+  cursor: pointer;
+  flex: 0 0 auto;
+  font-size: 16px;
+  padding: 15px;
+  position: absolute;
+  right: 0;
+  top: -48px;
 }
 
 .react-toggle {
@@ -1505,6 +1544,10 @@ button.icon-button.active i.fa-retweet {
 
 .loading-indicator {
   color: $color2;
+  font-size: 16px;
+  font-weight: 500;
+  padding-top: 120px;
+  text-align: center;
 }
 
 .collapsable-collapsed {
