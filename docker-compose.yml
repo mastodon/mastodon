@@ -1,12 +1,12 @@
 version: '2'
 services:
 
-#  db:
-#    restart: always
-#    image: postgres:alpine
+  db:
+    restart: always
+    image: postgres:alpine
 ### Uncomment to enable DB persistance
-#    volumes:
-#      - ./postgres:/var/lib/postgresql/data
+    volumes:
+      - ./postgres:/var/lib/postgresql/data
 
   redis:
     restart: always
@@ -24,7 +24,7 @@ services:
     ports:
       - "3000:3000"
     depends_on:
-#      - db
+      - db
       - redis
     volumes:
       - ./public/assets:/mastodon/public/assets
@@ -39,7 +39,7 @@ services:
     ports:
       - "4000:4000"
     depends_on:
-#      - db
+      - db
       - redis
 
   sidekiq:
@@ -49,7 +49,7 @@ services:
     env_file: .env.production
     command: bundle exec sidekiq -q default -q mailers -q pull -q push
     depends_on:
-#      - db
+      - db
       - redis
     volumes:
       - ./public/system:/mastodon/public/system
