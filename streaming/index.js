@@ -60,6 +60,7 @@ if (cluster.isMaster) {
     port:     process.env.REDIS_PORT     || 6379,
     password: process.env.REDIS_PASSWORD
   })
+  const redisPubSubPrefix = process.env.REDIS_PUBSUB_PREFIX || ''
 
   const subs = {}
 
@@ -75,7 +76,7 @@ if (cluster.isMaster) {
     callbacks.forEach(callback => callback(message))
   })
 
-  redisClient.psubscribe('timeline:*')
+  redisClient.psubscribe(`${redisPubSubPrefix}timeline:*`)
 
   const subscribe = (channel, callback) => {
     log.silly(`Adding listener for ${channel}`)
@@ -306,19 +307,19 @@ if (cluster.isMaster) {
 
       switch(location.query.stream) {
       case 'user':
-        streamFrom(`timeline:${req.accountId}`, req, streamToWs(req, ws), streamWsEnd(ws))
+        streamFrom(`${redisPubSubPrefix}timeline:${req.accountId}`, req, streamToWs(req, ws), streamWsEnd(ws))
         break;
       case 'public':
-        streamFrom('timeline:public', req, streamToWs(req, ws), streamWsEnd(ws), true)
+        streamFrom(`${redisPubSubPrefix}timeline:public`, req, streamToWs(req, ws), streamWsEnd(ws), true)
         break;
       case 'public:local':
-        streamFrom('timeline:public:local', req, streamToWs(req, ws), streamWsEnd(ws), true)
+        streamFrom(`${redisPubSubPrefix}timeline:public:local`, req, streamToWs(req, ws), streamWsEnd(ws), true)
         break;
       case 'hashtag':
-        streamFrom(`timeline:hashtag:${location.query.tag}`, req, streamToWs(req, ws), streamWsEnd(ws), true)
+        streamFrom(`${redisPubSubPrefix}timeline:hashtag:${location.query.tag}`, req, streamToWs(req, ws), streamWsEnd(ws), true)
         break;
       case 'hashtag:local':
-        streamFrom(`timeline:hashtag:${location.query.tag}:local`, req, streamToWs(req, ws), streamWsEnd(ws), true)
+        streamFrom(`${redisPubSubPrefix}timeline:hashtag:${location.query.tag}:local`, req, streamToWs(req, ws), streamWsEnd(ws), true)
         break;
       default:
         ws.close()

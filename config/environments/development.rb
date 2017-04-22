@@ -19,7 +19,7 @@ Rails.application.configure do
     config.cache_store = :redis_store, {
       host: ENV['REDIS_HOST'] || 'localhost',
       port: ENV['REDIS_PORT'] || 6379,
-      db: 0,
+      db: ENV['REDIS_DB'] || 0,
       namespace: 'cache',
       expires_in: 1.minute,
     }
