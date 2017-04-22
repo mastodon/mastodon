@@ -244,6 +244,8 @@
   padding: 20px 10px;
   padding-bottom: 10px;
   overflow: hidden;
+  display: flex;
+  flex-wrap: wrap;
 
   @media screen and (max-width: 700px) {
     border-radius: 0;
@@ -253,11 +255,9 @@
   .account-grid-card {
     box-sizing: border-box;
     width: 335px;
-    float: left;
     border: 1px solid $rooty-color2;
     border-radius: 4px;
     color: $rooty-color1;
-    height: 160px;
     margin-bottom: 10px;
 
     &:nth-child(odd) {

@@ -1,16 +1,16 @@
 Mastodon CE
 ========
 
-Mastodon CE is a fork of [Mastodon](https://github.com/tootsuite/mastodon) developed cooperatively by [bbnet](https://source.heropunch.io/bbnet/bbnet). The focus of this fork is on interoperability and community-responsive development. 
+Mastodon CE is a fork of [Mastodon](https://github.com/tootsuite/mastodon) developed cooperatively by [bbnet](https://source.heropunch.io/bbnet/bbnet). The focus of this fork is on interoperability and community-responsive development.
 
 ## What's different?
 
 - **Fully separated front-end and back-end.**
-  Use the Mastodon CE front-end with any back-end. Use the Mastodon CE back-end with any front-end. 
+  Use the Mastodon CE front-end with any back-end. Use the Mastodon CE back-end with any front-end.
 - **Plays nice with the rest of the fediverse.**
   Other instances don't need to conform to Mastodon CE. bbnet will fix bugs which cause problems for neighbors.
 - **What the people want, not the media.**
-  Mastodon CE will deliver long overdue features and fixes that communties have been craving. Our goal is not to fit in with silicon valley aesthetics and dazzle the media with appearances. Our goal is to create a functional useful piece of software that meets the needs of communities who use it. 
+  Mastodon CE will deliver long overdue features and fixes that communties have been craving. Our goal is not to fit in with silicon valley aesthetics and dazzle the media with appearances. Our goal is to create a functional useful piece of software that meets the needs of communities who use it.
 
 ## Resources
 
@@ -26,7 +26,7 @@ Mastodon CE is a fork of [Mastodon](https://github.com/tootsuite/mastodon) devel
 - **Real-time timeline updates**
   See the updates of people you're following appear in real-time in the UI via WebSockets
 - **Federated thread resolving**
-  If someone you follow replies to a user unknown to the server, the server fetches the full thread so you can view it without leaving the UI. 
+  If someone you follow replies to a user unknown to the server, the server fetches the full thread so you can view it without leaving the UI.
 - **Media attachments like images and WebM**
   Upload and view images and WebM videos attached to the updates
 - **OAuth2 and a straightforward REST API**
@@ -36,7 +36,7 @@ Mastodon CE is a fork of [Mastodon](https://github.com/tootsuite/mastodon) devel
 - **Deployable via Docker**
   You don't need to mess with dependencies and configuration if you want to try Mastodon, if you have Docker and Docker Compose the deployment is extremely easy
 
-## Configuration
+## Deployment
 
 - `LOCAL_DOMAIN` should be the domain/hostname of your instance. This is **absolutely required** as it is used for generating unique IDs for everything federation-related
 - `LOCAL_HTTPS` set it to `true` if HTTPS works on your website. This is used to generate canonical URLs, which is also important when generating and parsing federation-related IDs

@@ -1,4 +1,5 @@
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import TextIconButton from '../components/text_icon_button';
 import { changeComposeSensitivity } from '../../../actions/compose';
 import { Motion, spring } from 'react-motion';
@@ -21,14 +22,7 @@ const mapDispatchToProps = dispatch => ({
 
 });
 
-const SensitiveButton = React.createClass({
-
-  propTypes: {
-    visible: React.PropTypes.bool,
-    active: React.PropTypes.bool,
-    onClick: React.PropTypes.func.isRequired,
-    intl: React.PropTypes.object.isRequired
-  },
+class SensitiveButton extends React.PureComponent {
 
   render () {
     const { visible, active, onClick, intl } = this.props;
@@ -44,6 +38,13 @@ const SensitiveButton = React.createClass({
     );
   }
 
-});
+}
+
+SensitiveButton.propTypes = {
+  visible: PropTypes.bool,
+  active: PropTypes.bool,
+  onClick: PropTypes.func.isRequired,
+  intl: PropTypes.object.isRequired
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(injectIntl(SensitiveButton));

@@ -8,7 +8,9 @@ class ApplicationController < ActionController::Base
   force_ssl if: "Rails.env.production? && ENV['LOCAL_HTTPS'] == 'true'"
 
   include Localized
-  helper_method :current_account, :single_user_mode?
+
+  helper_method :current_account
+  helper_method :single_user_mode?
 
   rescue_from ActionController::RoutingError, with: :not_found
   rescue_from ActiveRecord::RecordNotFound, with: :not_found
@@ -51,21 +53,21 @@ class ApplicationController < ActionController::Base
   def not_found
     respond_to do |format|
       format.any  { head 404 }
-      format.html { render 'errors/404', layout: 'error', status: 404 }
+      format.html { respond_with_error(404) }
     end
   end
 
   def gone
     respond_to do |format|
       format.any  { head 410 }
-      format.html { render 'errors/410', layout: 'error', status: 410 }
+      format.html { respond_with_error(410) }
     end
   end
 
   def unprocessable_entity
     respond_to do |format|
       format.any  { head 422 }
-      format.html { render 'errors/422', layout: 'error', status: 422 }
+      format.html { respond_with_error(422) }
     end
   end
 
@@ -99,5 +101,11 @@ class ApplicationController < ActionController::Base
     end
 
     raw.map { |item| cached_keys_with_value[item.cache_key] || uncached[item.id] }.compact
+  end
+
+  def respond_with_error(code)
+    set_locale do
+      render "errors/#{code}", layout: 'error', status: code
+    end
   end
 end

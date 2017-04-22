@@ -1,18 +1,9 @@
-import PureRenderMixin from 'react-addons-pure-render-mixin';
+import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import emojify from '../../../emoji';
 import Toggle from 'react-toggle';
 
-const StatusCheckBox = React.createClass({
-
-  propTypes: {
-    status: ImmutablePropTypes.map.isRequired,
-    checked: React.PropTypes.bool,
-    onToggle: React.PropTypes.func.isRequired,
-    disabled: React.PropTypes.bool
-  },
-
-  mixins: [PureRenderMixin],
+class StatusCheckBox extends React.PureComponent {
 
   render () {
     const { status, checked, onToggle, disabled } = this.props;
@@ -37,6 +28,13 @@ const StatusCheckBox = React.createClass({
     );
   }
 
-});
+}
+
+StatusCheckBox.propTypes = {
+  status: ImmutablePropTypes.map.isRequired,
+  checked: PropTypes.bool,
+  onToggle: PropTypes.func.isRequired,
+  disabled: PropTypes.bool
+};
 
 export default StatusCheckBox;

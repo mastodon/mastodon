@@ -1,5 +1,5 @@
 import ImmutablePropTypes from 'react-immutable-proptypes';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
+import PropTypes from 'prop-types';
 import IconButton from './icon_button';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import { isIOS } from '../is_mobile';
@@ -72,16 +72,12 @@ const gifvThumbStyle = {
   cursor: 'zoom-in'
 };
 
-const Item = React.createClass({
+class Item extends React.PureComponent {
 
-  propTypes: {
-    attachment: ImmutablePropTypes.map.isRequired,
-    index: React.PropTypes.number.isRequired,
-    size: React.PropTypes.number.isRequired,
-    onClick: React.PropTypes.func.isRequired
-  },
-
-  mixins: [PureRenderMixin],
+  constructor (props, context) {
+    super(props, context);
+    this.handleClick = this.handleClick.bind(this);
+  }
 
   handleClick (e) {
     const { index, onClick } = this.props;
@@ -92,7 +88,7 @@ const Item = React.createClass({
     }
 
     e.stopPropagation();
-  },
+  }
 
   render () {
     const { attachment, index, size } = this.props;
@@ -158,15 +154,21 @@ const Item = React.createClass({
         />
       );
     } else if (attachment.get('type') === 'gifv') {
+      const autoPlay = !isIOS() && this.props.autoPlayGif;
+
       thumbnail = (
-        <video
-          src={attachment.get('url')}
-          onClick={this.handleClick}
-          autoPlay={!isIOS()}
-          loop={true}
-          muted={true}
-          style={gifvThumbStyle}
-        />
+        <div style={{ position: 'relative', width: '100%', height: '100%', overflow: 'hidden' }} className={`media-gallery__gifv ${autoPlay ? 'autoplay' : ''}`}>
+          <video
+            src={attachment.get('url')}
+            onClick={this.handleClick}
+            autoPlay={autoPlay}
+            loop={true}
+            muted={true}
+            style={gifvThumbStyle}
+          />
+
+          <span className='media-gallery__gifv__label'>GIF</span>
+        </div>
       );
     }
 
@@ -177,33 +179,34 @@ const Item = React.createClass({
     );
   }
 
-});
+}
 
-const MediaGallery = React.createClass({
+Item.propTypes = {
+  attachment: ImmutablePropTypes.map.isRequired,
+  index: PropTypes.number.isRequired,
+  size: PropTypes.number.isRequired,
+  onClick: PropTypes.func.isRequired,
+  autoPlayGif: PropTypes.bool.isRequired
+};
 
-  getInitialState () {
-    return {
-      visible: !this.props.sensitive
+class MediaGallery extends React.PureComponent {
+
+  constructor (props, context) {
+    super(props, context);
+    this.state = {
+      visible: !props.sensitive
     };
-  },
-
-  propTypes: {
-    sensitive: React.PropTypes.bool,
-    media: ImmutablePropTypes.list.isRequired,
-    height: React.PropTypes.number.isRequired,
-    onOpenMedia: React.PropTypes.func.isRequired,
-    intl: React.PropTypes.object.isRequired
-  },
-
-  mixins: [PureRenderMixin],
+    this.handleOpen = this.handleOpen.bind(this);
+    this.handleClick = this.handleClick.bind(this);
+  }
 
   handleOpen (e) {
     this.setState({ visible: !this.state.visible });
-  },
+  }
 
   handleClick (index) {
     this.props.onOpenMedia(this.props.media, index);
-  },
+  }
 
   render () {
     const { media, intl, sensitive } = this.props;
@@ -227,7 +230,7 @@ const MediaGallery = React.createClass({
       );
     } else {
       const size = media.take(4).size;
-      children = media.take(4).map((attachment, i) => <Item key={attachment.get('id')} onClick={this.handleClick} attachment={attachment} index={i} size={size} />);
+      children = media.take(4).map((attachment, i) => <Item key={attachment.get('id')} onClick={this.handleClick} attachment={attachment} autoPlayGif={this.props.autoPlayGif} index={i} size={size} />);
     }
 
     return (
@@ -241,6 +244,15 @@ const MediaGallery = React.createClass({
     );
   }
 
-});
+}
+
+MediaGallery.propTypes = {
+  sensitive: PropTypes.bool,
+  media: ImmutablePropTypes.list.isRequired,
+  height: PropTypes.number.isRequired,
+  onOpenMedia: PropTypes.func.isRequired,
+  intl: PropTypes.object.isRequired,
+  autoPlayGif: PropTypes.bool.isRequired
+};
 
 export default injectIntl(MediaGallery);

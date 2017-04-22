@@ -1,50 +1,36 @@
 import ImmutablePropTypes from 'react-immutable-proptypes';
+import PropTypes from 'prop-types';
 import Avatar from './avatar';
 import RelativeTimestamp from './relative_timestamp';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
 import DisplayName from './display_name';
 import MediaGallery from './media_gallery';
 import VideoPlayer from './video_player';
+import AttachmentList from './attachment_list';
 import StatusContent from './status_content';
 import StatusActionBar from './status_action_bar';
 import { FormattedMessage } from 'react-intl';
 import emojify from '../emoji';
 import escapeTextContentForBrowser from 'escape-html';
 
-const Status = React.createClass({
+class Status extends React.PureComponent {
 
-  contextTypes: {
-    router: React.PropTypes.object
-  },
-
-  propTypes: {
-    status: ImmutablePropTypes.map,
-    wrapped: React.PropTypes.bool,
-    onReply: React.PropTypes.func,
-    onFavourite: React.PropTypes.func,
-    onReblog: React.PropTypes.func,
-    onDelete: React.PropTypes.func,
-    onOpenMedia: React.PropTypes.func,
-    onOpenVideo: React.PropTypes.func,
-    onBlock: React.PropTypes.func,
-    me: React.PropTypes.number,
-    boostModal: React.PropTypes.bool,
-    muted: React.PropTypes.bool
-  },
-
-  mixins: [PureRenderMixin],
+  constructor (props, context) {
+    super(props, context);
+    this.handleClick = this.handleClick.bind(this);
+    this.handleAccountClick = this.handleAccountClick.bind(this);
+  }
 
   handleClick () {
     const { status } = this.props;
     this.context.router.push(`/statuses/${status.getIn(['reblog', 'id'], status.get('id'))}`);
-  },
+  }
 
   handleAccountClick (id, e) {
     if (e.button === 0) {
       e.preventDefault();
       this.context.router.push(`/accounts/${id}`);
     }
-  },
+  }
 
   render () {
     let media = '';
@@ -76,10 +62,12 @@ const Status = React.createClass({
     }
 
     if (status.get('media_attachments').size > 0 && !this.props.muted) {
-      if (status.getIn(['media_attachments', 0, 'type']) === 'video') {
+      if (status.get('media_attachments').some(item => item.get('type') === 'unknown')) {
+
+      } else if (status.getIn(['media_attachments', 0, 'type']) === 'video') {
         media = <VideoPlayer media={status.getIn(['media_attachments', 0])} sensitive={status.get('sensitive')} onOpenVideo={this.props.onOpenVideo} />;
       } else {
-        media = <MediaGallery media={status.get('media_attachments')} sensitive={status.get('sensitive')} height={110} onOpenMedia={this.props.onOpenMedia} />;
+        media = <MediaGallery media={status.get('media_attachments')} sensitive={status.get('sensitive')} height={110} onOpenMedia={this.props.onOpenMedia} autoPlayGif={this.props.autoPlayGif} />;
       }
     }
 
@@ -108,6 +96,26 @@ const Status = React.createClass({
     );
   }
 
-});
+}
+
+Status.contextTypes = {
+  router: PropTypes.object
+};
+
+Status.propTypes = {
+  status: ImmutablePropTypes.map,
+  wrapped: PropTypes.bool,
+  onReply: PropTypes.func,
+  onFavourite: PropTypes.func,
+  onReblog: PropTypes.func,
+  onDelete: PropTypes.func,
+  onOpenMedia: PropTypes.func,
+  onOpenVideo: PropTypes.func,
+  onBlock: PropTypes.func,
+  me: PropTypes.number,
+  boostModal: PropTypes.bool,
+  autoPlayGif: PropTypes.bool,
+  muted: PropTypes.bool
+};
 
 export default Status;

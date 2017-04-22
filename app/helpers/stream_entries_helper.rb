@@ -37,19 +37,21 @@ module StreamEntriesHelper
   end
 
   def rtl?(text)
-    return false if text.empty?
+    rtl_characters = /[\p{Hebrew}|\p{Arabic}|\p{Syriac}|\p{Thaana}|\p{Nko}]+/m.match(text)
 
-    matches = /[\p{Hebrew}|\p{Arabic}|\p{Syriac}|\p{Thaana}|\p{Nko}]+/m.match(text)
-
-    return false unless matches
-
-    rtl_size = matches.to_a.reduce(0) { |acc, elem| acc + elem.size }.to_f
-    ltr_size = text.strip.size.to_f
-
-    rtl_size / ltr_size > 0.3
+    if rtl_characters.present?
+      total_size = text.strip.size.to_f
+      rtl_size(rtl_characters.to_a) / total_size > 0.3
+    else
+      false
+    end
   end
 
   private
+
+  def rtl_size(characters)
+    characters.reduce(0) { |acc, elem| acc + elem.size }.to_f
+  end
 
   def embedded_view?
     params[:controller] == 'stream_entries' && params[:action] == 'embed'

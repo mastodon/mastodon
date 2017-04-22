@@ -37,4 +37,12 @@ $(() => {
       $(e.target).parent().attr('style', null);
     }
   });
+
+  // used on /settings/profile
+  $('.account_display_name').on('input', e => {
+    $('.name-counter').text(30 - $(e.target).val().length)
+  });
+  $('.account_note').on('input', e => {
+    $('.note-counter').text(160 - $(e.target).val().length)
+  });
 });

@@ -48,9 +48,10 @@ eval "$(rbenv init -)"
 
 cd /vagrant
 
-echo "Compiling Ruby $(cat .ruby-version): warning, this takes a while!!!"
-rbenv install $(cat .ruby-version)
-rbenv global $(cat .ruby-version)
+read RUBY_VERSION < .ruby-version
+echo "Compiling Ruby $RUBY_VERSION: warning, this takes a while!!!"
+rbenv install $RUBY_VERSION
+rbenv global $RUBY_VERSION
 
 # Configure database
 sudo -u postgres createuser -U postgres vagrant -s
@@ -107,7 +108,11 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     config.hostsupdater.remove_on_suspend = false
   end
 
-  config.vm.synced_folder ".", "/vagrant", type: "nfs", mount_options: ['rw', 'vers=3', 'tcp']
+  if config.vm.networks.any? { |type, options| type == :private_network }
+    config.vm.synced_folder ".", "/vagrant", type: "nfs", mount_options: ['rw', 'vers=3', 'tcp']
+  else
+    config.vm.synced_folder ".", "/vagrant"
+  end
 
   # Otherwise, you can access the site at http://localhost:3000
   config.vm.network :forwarded_port, guest: 80, host: 3000

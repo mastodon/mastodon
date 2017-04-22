@@ -1,5 +1,5 @@
 import ImmutablePropTypes from 'react-immutable-proptypes';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
+import PropTypes from 'prop-types';
 import IconButton from './icon_button';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import { isIOS } from '../is_mobile';
@@ -72,39 +72,30 @@ const expandButtonStyle = {
   zIndex: '100'
 };
 
-const VideoPlayer = React.createClass({
-  propTypes: {
-    media: ImmutablePropTypes.map.isRequired,
-    width: React.PropTypes.number,
-    height: React.PropTypes.number,
-    sensitive: React.PropTypes.bool,
-    intl: React.PropTypes.object.isRequired,
-    autoplay: React.PropTypes.bool,
-    onOpenVideo: React.PropTypes.func.isRequired
-  },
+class VideoPlayer extends React.PureComponent {
 
-  getDefaultProps () {
-    return {
-      width: 239,
-      height: 110
-    };
-  },
-
-  getInitialState () {
-    return {
+  constructor (props, context) {
+    super(props, context);
+    this.state = {
       visible: !this.props.sensitive,
       preview: true,
       muted: true,
       hasAudio: true,
       videoError: false
     };
-  },
-
-  mixins: [PureRenderMixin],
+    this.handleClick = this.handleClick.bind(this);
+    this.handleVideoClick = this.handleVideoClick.bind(this);
+    this.handleOpen = this.handleOpen.bind(this);
+    this.handleVisibility = this.handleVisibility.bind(this);
+    this.handleExpand = this.handleExpand.bind(this);
+    this.setRef = this.setRef.bind(this);
+    this.handleLoadedData = this.handleLoadedData.bind(this);
+    this.handleVideoError = this.handleVideoError.bind(this);
+  }
 
   handleClick () {
     this.setState({ muted: !this.state.muted });
-  },
+  }
 
   handleVideoClick (e) {
     e.stopPropagation();
@@ -116,37 +107,37 @@ const VideoPlayer = React.createClass({
     } else {
       node.pause();
     }
-  },
+  }
 
   handleOpen () {
     this.setState({ preview: !this.state.preview });
-  },
+  }
 
   handleVisibility () {
     this.setState({
       visible: !this.state.visible,
       preview: true
     });
-  },
+  }
 
   handleExpand () {
     this.video.pause();
     this.props.onOpenVideo(this.props.media, this.video.currentTime);
-  },
+  }
 
   setRef (c) {
     this.video = c;
-  },
+  }
 
   handleLoadedData () {
     if (('WebkitAppearance' in document.documentElement.style && this.video.audioTracks.length === 0) || this.video.mozHasAudio === false) {
       this.setState({ hasAudio: false });
     }
-  },
+  }
 
   handleVideoError () {
     this.setState({ videoError: true });
-  },
+  }
 
   componentDidMount () {
     if (!this.video) {
@@ -155,7 +146,7 @@ const VideoPlayer = React.createClass({
 
     this.video.addEventListener('loadeddata', this.handleLoadedData);
     this.video.addEventListener('error', this.handleVideoError);
-  },
+  }
 
   componentDidUpdate () {
     if (!this.video) {
@@ -164,7 +155,7 @@ const VideoPlayer = React.createClass({
 
     this.video.addEventListener('loadeddata', this.handleLoadedData);
     this.video.addEventListener('error', this.handleVideoError);
-  },
+  }
 
   componentWillUnmount () {
     if (!this.video) {
@@ -173,7 +164,7 @@ const VideoPlayer = React.createClass({
 
     this.video.removeEventListener('loadeddata', this.handleLoadedData);
     this.video.removeEventListener('error', this.handleVideoError);
-  },
+  }
 
   render () {
     const { media, intl, width, height, sensitive, autoplay } = this.props;
@@ -247,6 +238,21 @@ const VideoPlayer = React.createClass({
     );
   }
 
-});
+}
+
+VideoPlayer.propTypes = {
+  media: ImmutablePropTypes.map.isRequired,
+  width: PropTypes.number,
+  height: PropTypes.number,
+  sensitive: PropTypes.bool,
+  intl: PropTypes.object.isRequired,
+  autoplay: PropTypes.bool,
+  onOpenVideo: PropTypes.func.isRequired
+};
+
+VideoPlayer.defaultProps = {
+  width: 239,
+  height: 110
+};
 
 export default injectIntl(VideoPlayer);
