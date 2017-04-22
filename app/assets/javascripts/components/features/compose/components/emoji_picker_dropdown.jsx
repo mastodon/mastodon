@@ -4,7 +4,8 @@ import PropTypes from 'prop-types';
 import { defineMessages, injectIntl } from 'react-intl';
 
 const messages = defineMessages({
-  emoji: { id: 'emoji_button.label', defaultMessage: 'Insert emoji' }
+  emoji: { id: 'emoji_button.label', defaultMessage: 'Insert emoji' },
+  emoji_search: { id: 'emoji_button.search', defaultMessage: 'Search...' }
 });
 
 const settings = {
@@ -46,7 +47,7 @@ class EmojiPickerDropdown extends React.PureComponent {
         </DropdownTrigger>
 
         <DropdownContent className='dropdown__left light'>
-          <EmojiPicker emojione={settings} onChange={this.handleChange} search={true} />
+          <EmojiPicker emojione={settings} onChange={this.handleChange} searchPlaceholder={intl.formatMessage(messages.emoji_search)} search={true} />
         </DropdownContent>
       </Dropdown>
     );

@@ -41,6 +41,7 @@ const en = {
   "compose_form.spoiler_placeholder": "Content warning",
   "compose_form.spoiler": "Hide text behind warning",
   "emoji_button.label": "Insert emoji",
+  "emoji_button.search": "Search...",
   "empty_column.community": "The local timeline is empty. Write something publicly to get the ball rolling!",
   "empty_column.hashtag": "There is nothing in this hashtag yet.",
   "empty_column.home.public_timeline": "the public timeline",
