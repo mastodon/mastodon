@@ -8,7 +8,7 @@ class PushUpdateWorker
     status  = Status.find(status_id)
     message = InlineRenderer.render(status, account, 'api/v1/statuses/show')
 
-    prefix = ENV.fetch('REDIS_PUBSUB_PREFIX') {''}
+    prefix = ENV.fetch('REDIS_PUBSUB_PREFIX') { '' }
 
     Redis.current.publish("#{prefix}timeline:#{account.id}", Oj.dump(event: :update, payload: message, queued_at: (Time.now.to_f * 1000.0).to_i))
   rescue ActiveRecord::RecordNotFound

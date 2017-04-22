@@ -57,7 +57,7 @@ class FanOutOnWriteService < BaseService
   def deliver_to_hashtags(status)
     Rails.logger.debug "Delivering status #{status.id} to hashtags"
 
-    prefix = ENV.fetch('REDIS_PUBSUB_PREFIX') {''}
+    prefix = ENV.fetch('REDIS_PUBSUB_PREFIX') { '' }
 
     status.tags.pluck(:name).each do |hashtag|
       Redis.current.publish("#{prefix}timeline:hashtag:#{hashtag}", @payload)
@@ -68,7 +68,7 @@ class FanOutOnWriteService < BaseService
   def deliver_to_public(status)
     Rails.logger.debug "Delivering status #{status.id} to public timeline"
 
-    prefix = ENV.fetch('REDIS_PUBSUB_PREFIX') {''}
+    prefix = ENV.fetch('REDIS_PUBSUB_PREFIX') { '' }
 
     Redis.current.publish("#{prefix}timeline:public", @payload)
     Redis.current.publish("#{prefix}timeline:public:local", @payload) if status.local?

@@ -51,7 +51,7 @@ class NotifyService < BaseService
     @notification.save!
     return unless @notification.browserable?
 
-    prefix = ENV.fetch('REDIS_PUBSUB_PREFIX') {''}
+    prefix = ENV.fetch('REDIS_PUBSUB_PREFIX') { '' }
 
     Redis.current.publish("#{prefix}timeline:#{@recipient.id}", Oj.dump(event: :notification, payload: InlineRenderer.render(@notification, @recipient, 'api/v1/notifications/show')))
   end
