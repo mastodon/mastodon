@@ -1,0 +1,46 @@
+---
+ar:
+  simple_form:
+    hints:
+      defaults:
+        avatar: PNG, GIF or JPG. At most 2MB. Will be downscaled to 120x120px
+        display_name: At most 30 characters
+        header: PNG, GIF or JPG. At most 2MB. Will be downscaled to 700x335px
+        locked: Requires you to manually approve followers and defaults post privacy to followers-only
+        note: At most 160 characters
+      imports:
+        data: CSV file exported from another Mastodon instance
+    labels:
+      defaults:
+        avatar: الصورة الرمزية
+        confirm_new_password: تأكيد كلمة المرور الجديدة
+        confirm_password: تأكيد كلمة المرور
+        current_password: كلمة المرور الحالية
+        data: البيانات
+        display_name: الاسم الذي يتم عرضه
+        email: عنوان البريد الإلكتروني
+        header: رأس الصفحة
+        locale: اللغة
+        locked: إجعل حسابك خاصًا
+        new_password: كلمة مرور جديدة
+        note: Bio
+        otp_attempt: الرمز الثنائي
+        password: كلمة المرور
+        setting_default_privacy: Post privacy
+        type: Import type
+        username: اسم المستخدم
+      interactions:
+        must_be_follower: Block notifications from non-followers
+        must_be_following: Block notifications from people you don't follow
+      notification_emails:
+        digest: إرسال رسائل بريد إلكتروني ملخصة
+        favourite: Send e-mail when someone favourites your status
+        follow: Send e-mail when someone follows you
+        follow_request: Send e-mail when someone requests to follow you
+        mention: Send e-mail when someone mentions you
+        reblog: Send e-mail when someone boosts your status
+    'no': 'لا'
+    required:
+      mark: "*"
+      text: مطلوب
+    'yes': 'نعم'
