@@ -27,7 +27,7 @@ You can make your own skins and frontends for Mastodon! However, you should keep
 
 1. Your skin/frontend **must** include an `index.js` and `index.css` file (or something which compiles to these), as these are the files Mastodon will look for upon loading/precompiling. You can include as many other files from these as you like.
 
-2. Right now, Mastodon loads its frontend with the line `= react_component 'Mastodon', default_props, class: 'app-holder', prerender: false` in `/app/views/home/index.html.haml`. This means that for the time being your frontend must be written using React, and its root component must be titled "Mastodon". (This will liekly change in the future.)
+2. It is *strongly recommended* that your frontend render into `document.getElementById("frontend")`, which will be provided for you on page load.
 
 3. It is *recommended* that your frontend/skin make use of SCSS variables and load `variables.scss` somewhere in its styling to allow easy user customization.
 

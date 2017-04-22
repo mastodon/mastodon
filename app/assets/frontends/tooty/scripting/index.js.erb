@@ -21,4 +21,16 @@ window.MASTODON_ASSETS = Object.defineProperties({}, {
 
 //= require_tree .
 
-window.Mastodon = require('./containers/mastodon');
+window.Mastodon = require('./containers/mastodon').default;
+
+//  We can render as soon as the page loads.
+
+function run () {
+  ReactDOM.render(
+    React.createElement(Mastodon),
+    document.getElementById("frontend")
+  );
+}
+
+if (document.readyState === "complete") run();
+else window.addEventListener("load", run);

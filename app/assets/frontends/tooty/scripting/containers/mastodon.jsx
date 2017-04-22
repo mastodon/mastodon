@@ -89,12 +89,8 @@ addLocaleData([
 
 const Mastodon = React.createClass({
 
-  propTypes: {
-    locale: React.PropTypes.string.isRequired
-  },
-
   componentDidMount() {
-    const { locale }  = this.props;
+    const locale = initialState.meta.locale || "en";
     const streamingAPIBaseURL = store.getState().getIn(['meta', 'streaming_api_base_url']);
     const accessToken = store.getState().getIn(['meta', 'access_token']);
 
@@ -144,7 +140,7 @@ const Mastodon = React.createClass({
   },
 
   render () {
-    const { locale } = this.props;
+    const locale = initialState.meta.locale || "en";
 
     return (
       <IntlProvider locale={locale} messages={getMessagesForLocale(locale)}>

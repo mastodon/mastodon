@@ -6,7 +6,7 @@
     = javascript_include_tag "#{Rails.configuration.x.frontend_default}", integrity: true, crossorigin: 'anonymous'
     = stylesheet_link_tag "#{Rails.configuration.x.frontend_default}", integrity: true, media: 'all'
 
-  = react_component 'Mastodon', default_props, class: 'app-holder', prerender: false
+  %div#frontend
 
 - else
 
