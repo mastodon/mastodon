@@ -37,6 +37,7 @@ const ComposeForm = React.createClass({
     is_submitting: React.PropTypes.bool,
     is_uploading: React.PropTypes.bool,
     me: React.PropTypes.number,
+    max_chars: React.PropTypes.number.isRequired,
     needsPrivacyWarning: React.PropTypes.bool,
     mentionedDomains: React.PropTypes.array.isRequired,
     onChange: React.PropTypes.func.isRequired,
@@ -197,7 +198,7 @@ const ComposeForm = React.createClass({
           </div>
 
           <div style={{ display: 'flex' }}>
-            <div style={{ paddingTop: '10px', marginRight: '16px', lineHeight: '36px' }}><CharacterCounter max={500} text={[this.props.spoiler_text, this.props.text].join('')} /></div>
+            <div style={{ paddingTop: '10px', marginRight: '16px', lineHeight: '36px' }}><CharacterCounter max={this.props.max_chars} text={[this.props.spoiler_text, this.props.text].join('')} /></div>
             <div style={{ paddingTop: '10px' }}><Button text={publishText} onClick={this.handleSubmit} disabled={disabled} /></div>
           </div>
         </div>
