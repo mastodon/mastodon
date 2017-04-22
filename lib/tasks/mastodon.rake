@@ -33,29 +33,27 @@ namespace :mastodon do
     end
   end
 
-  desc 'refetch avatar'
-  task refetch_avatar: :environment do
+  desc 'Refetch missing avatar and header'
+  task refetch_avatar_header: :environment do
     require 'fileutils'
-    all = Account.all
-    all.each do |account|
-      next if account.avatar_remote_url.blank?
-      next unless account.avatar_file_name.present? && !File.exist?(account.avatar.path)
-      begin
-        FileUtils.mkdir_p(File.dirname(account.avatar.path))
-      rescue => ex
-        # this means directory already exists,so we can ignore exception
-        puts ex.inspect
-      end
-      begin
-        open(account.avatar.path, 'wb') do |out|
-          open(account.avatar_remote_url) do |data|
-            out.write(data.read)
-            puts "refetch #{account.username}"
-          end
+    Account.remote.find_each do |account|
+      unless account.avatar.exists? || account.avatar_remote_url.blank?
+        begin
+          account.avatar = URI.parse(account.avatar_remote_url)
+          puts "refetch avatar of #{account.username}"
+        rescue => ex
+          # need to think about 404 Not Found
+          puts "can't refetch avatar of #{account.username} due to " + ex.inspect
         end
-      rescue => ex2
-        # can't fetch remote url,so skip
-        puts 'skip due to ' + ex2.inspect
+      end
+      unless account.header.exists? || account.header_remote_url.blank?
+        begin
+          account.header = URI.parse(account.header_remote_url)
+          puts "refetch header of #{account.username}"
+        rescue => ex2
+          # need to think about 404 Not Found
+          puts "can't refetch header of #{account.username} due to " + ex2.inspect
+        end
       end
     end
   end
