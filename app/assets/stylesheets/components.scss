@@ -26,7 +26,9 @@
   text-decoration: none;
   transition: all 100ms ease-in;
 
-  &:hover, &:active, &:focus {
+  &:active,
+  &:focus,
+  &:hover {
     background-color: lighten($color4, 7%);
     transition: all 200ms ease-out;
   }
@@ -270,7 +272,16 @@
   }
 }
 
-.status__content, .reply-indicator__content {
+.status__content {
+  cursor: pointer;
+}
+
+.status__content--no-action {
+  cursor: default;
+}
+
+.status__content,
+.reply-indicator__content {
   font-size: 15px;
   line-height: 20px;
   word-wrap: break-word;
@@ -339,6 +350,15 @@ a.status__content__spoiler-link {
   line-height: inherit;
 }
 
+.status__wrapper {
+  pointer: default; // May not be needed
+}
+
+.status__prepend-icon-wrapper {
+  left: -26px;
+  position: absolute;
+}
+
 .status {
   padding: 8px 10px;
   padding-left: 68px;
@@ -346,14 +366,6 @@ a.status__content__spoiler-link {
   min-height: 48px;
   border-bottom: 1px solid lighten($color1, 8%);
   cursor: default;
-
-  .status__relative-time {
-    color: lighten($color1, 26%);
-  }
-
-  .status__display-name {
-    color: lighten($color1, 26%);
-  }
 
   &.light {
     .status__relative-time {
@@ -393,11 +405,34 @@ a.status__content__spoiler-link {
   }
 }
 
+.status__relative-time {
+  color: lighten($color1, 26%);
+}
+
+.status__display-name {
+  color: lighten($color1, 26%);
+  display: block;
+  max-width: 100%;
+  padding-right: 25px;
+}
+
+.status__info {
+  font-size: 15px;
+}
+
+.status__info-time {
+  float: right;
+  font-size: 14px;
+}
+
 .status-check-box {
   border-bottom: 1px solid lighten($color1, 8%);
+  display: flex;
 
   .status__content {
     background: lighten($color1, 4%);
+    flex: 1 1 auto;
+    padding: 10px;
   }
 }
 
@@ -598,11 +633,17 @@ a.status__content__spoiler-link {
   }
 }
 
-.status__display-name, .status__relative-time, .detailed-status__display-name, .detailed-status__datetime, .detailed-status__application, .account__display-name {
+.status__display-name,
+.status__relative-time,
+.detailed-status__display-name,
+.detailed-status__datetime,
+.detailed-status__application,
+.account__display-name {
   text-decoration: none;
 }
 
-.status__display-name, .account__display-name {
+.status__display-name,
+.account__display-name {
   strong {
     color: $color5;
   }
@@ -614,25 +655,25 @@ a.status__content__spoiler-link {
   }
 }
 
-.status__display-name, .reply-indicator__display-name, .detailed-status__display-name, .account__display-name {
-  &:hover {
-    strong {
-      text-decoration: underline;
-    }
+.status__display-name,
+.reply-indicator__display-name,
+.detailed-status__display-name,
+.account__display-name {
+  &:hover strong {
+    text-decoration: underline;
   }
 }
 
-.account__display-name {
-  strong {
-    display: block;
-  }
+.account__display-name strong {
+  display: block;
 }
 
 .detailed-status__display-name {
   color: $color2;
   line-height: 24px;
 
-  strong, span {
+  strong,
+  span {
     display: block;
   }
 
@@ -642,8 +683,17 @@ a.status__content__spoiler-link {
   }
 }
 
+.status__avatar {
+  height: 48px;
+  left: 10px;
+  position: absolute;
+  top: 10px;
+  width: 48px;
+}
+
 .muted {
-  .status__content p, .status__content a {
+  .status__content p,
+  .status__content a {
     color: lighten($color1, 26%);
   }
 
@@ -655,7 +705,7 @@ a.status__content__spoiler-link {
     opacity: 0.5;
   }
 
-  a.status__content__spoiler-link {
+  .status__content__spoiler-link {
     background: lighten($color1, 26%);
     color: lighten($color1, 4%);
 
@@ -697,6 +747,22 @@ a.status__content__spoiler-link {
     color: $color5;
     text-decoration: underline;
   }
+}
+
+.display-name {
+  display: block;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.display-name__html {
+  font-weight: 500;
+}
+
+.display-name__account {
+  font-size: 14px;
 }
 
 .status__relative-time, .detailed-status__datetime {
@@ -1456,9 +1522,37 @@ button.icon-button.active i.fa-retweet {
   }
 }
 
-.media-spoiler, .video-error-cover {
+.media-spoiler,
+.video-error-cover {
+  align-items: center;
   background: $color8;
   color: $color5;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: center;
+  margin-top: 8px;
+  position: relative;
+  text-align: center;
+  z-index: 100;
+}
+
+.media-spoiler__warning {
+  display: block;
+  font-size: 14px;
+}
+
+.media-spoiler__trigger {
+  display: block;
+  font-size: 11px;
+  font-weight: 500;
+}
+
+.spoiler-button {
+  left: 4px;
+  position: absolute;
+  top: 4px;
 }
 
 .modal-container--preloader {
@@ -2455,3 +2549,116 @@ button.icon-button.active i.fa-retweet {
     }
   }
 }
+
+/* Media Gallery */
+.media-gallery {
+  box-sizing: border-box;
+  margin-top: 8px;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+}
+
+.media-gallery__item {
+  border: none;
+  box-sizing: border-box;
+  display: block;
+  float: left;
+  position: relative;
+}
+
+.media-gallery__item-thumbnail {
+  background-size: cover;
+  cursor: zoom-in;
+  display: block;
+  height: 100%;
+  text-decoration: none;
+  width: 100%;
+}
+
+.media-gallery__gifv {
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+}
+
+.media-gallery__item-gifv-thumbnail {
+  cursor: zoom-in;
+  height: 100%;
+  object-fit: cover;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 100%;
+  z-index: 1;
+}
+
+.media-gallery__item-thumbnail-label {
+  clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
+  clip: rect(1px, 1px, 1px, 1px);
+  overflow: hidden;
+  position: absolute;
+}
+/* End Media Gallery */
+
+/* Status Video Player */
+.status__video-player {
+  background: #000;
+  box-sizing: border-box;
+  cursor: default; /* May not be needed */
+  margin-top: 8px;
+  overflow: hidden;
+  position: relative;
+}
+
+.status__video-player-video {
+  height: 100%;
+  object-fit: cover;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 100%;
+  z-index: 1;
+}
+
+.status__video-player-expand,
+.status__video-player-mute {
+  color: #fff;
+  opacity: 0.8;
+  position: absolute;
+  right: 4px;
+  text-shadow: 0px 1px 1px #000, 1px 0px 1px #000;
+  top: 4px;
+}
+
+.status__video-player-spoiler {
+  color: #fff;
+  text-shadow: 0px 1px 1px #000, 1px 0px 1px #000;
+}
+
+.status__video-player-expand {
+  z-index: 100;
+}
+
+.status__video-player-mute {
+  z-index: 5;
+}
+
+.media-spoiler-video {
+  background-size: cover;
+  cursor: pointer;
+  margin-top: 8px;
+  position: relative;
+}
+
+.media-spoiler-video-play-icon {
+  border-radius: 100px;
+  color: rgba(255, 255, 255, 0.8);
+  fontSize: 36px;
+  padding: 5px;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+/* End Video Player */

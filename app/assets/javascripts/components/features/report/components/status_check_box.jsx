@@ -14,10 +14,9 @@ class StatusCheckBox extends React.PureComponent {
     }
 
     return (
-      <div className='status-check-box' style={{ display: 'flex' }}>
+      <div className='status-check-box'>
         <div
           className='status__content'
-          style={{ flex: '1 1 auto', padding: '10px' }}
           dangerouslySetInnerHTML={content}
         />
 
