@@ -16,7 +16,7 @@ class Notification extends React.PureComponent {
     return (
       <div className='notification notification-follow'>
         <div className='notification__message'>
-          <div style={{ position: 'absolute', 'left': '-26px'}}>
+          <div className='notification__favourite-icon-wrapper'>
             <i className='fa fa-fw fa-user-plus' />
           </div>
 
@@ -36,8 +36,8 @@ class Notification extends React.PureComponent {
     return (
       <div className='notification notification-favourite'>
         <div className='notification__message'>
-          <div style={{ position: 'absolute', 'left': '-26px'}}>
-            <i className='fa fa-fw fa-star' style={{ color: '#ca8f04' }} />
+          <div className='notification__favourite-icon-wrapper'>
+            <i className='fa fa-fw fa-star star-icon'/>
           </div>
 
           <FormattedMessage id='notification.favourite' defaultMessage='{name} favourited your status' values={{ name: link }} />
@@ -52,7 +52,7 @@ class Notification extends React.PureComponent {
     return (
       <div className='notification notification-reblog'>
         <div className='notification__message'>
-          <div style={{ position: 'absolute', 'left': '-26px'}}>
+          <div className='notification__favourite-icon-wrapper'>
             <i className='fa fa-fw fa-retweet' />
           </div>
 

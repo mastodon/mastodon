@@ -178,14 +178,6 @@
   }
 }
 
-.avatar {
-  border-radius: 4px;
-  background: transparent no-repeat;
-  background-position: 50%;
-  background-clip: padding-box;
-  position: relative;
-}
-
 .lightbox .icon-button {
   color: $color1;
 }
@@ -422,6 +414,22 @@ a.status__content__spoiler-link {
   }
 }
 
+.status__action-bar {
+  margin-top: 10px;
+  overflow: hidden;
+}
+
+.status__action-bar-button-wrapper {
+  float: left;
+  margin-right: 18px;
+}
+
+.status__action-bar-dropdown {
+  float: left;
+  height: 18px;
+  width: 18px;
+}
+
 .detailed-status {
   background: lighten($color1, 4%);
 
@@ -473,6 +481,29 @@ a.status__content__spoiler-link {
     text-decoration: none;
     font-size: 14px;
   }
+}
+
+.account__wrapper {
+  display: flex;
+}
+
+.account__avatar-wrapper {
+  float: left;
+  margin-left: 12px;
+  margin-right: 12px;
+}
+
+.account__avatar {
+  border-radius: 4px;
+  background: transparent no-repeat;
+  background-position: 50%;
+  background-clip: padding-box;
+  position: relative;
+}
+
+.account__relationship {
+  height: 18px;
+  padding: 10px;
 }
 
 .account__header {
@@ -647,6 +678,15 @@ a.status__content__spoiler-link {
   .fa {
     color: $color4;
   }
+}
+
+.notification__favourite-icon-wrapper {
+  left: -26px;
+  position: absolute;
+}
+
+.star-icon {
+  color: #ca8f04;
 }
 
 .notification__display-name {
@@ -1295,7 +1335,7 @@ a.status__content__spoiler-link {
     font-size: 16px;
   }
 }
-
+    
 @import 'boost';
 
 button.icon-button i.fa-retweet {
