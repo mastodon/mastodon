@@ -32,41 +32,48 @@ class StatusActionBar extends React.PureComponent {
     this.handleReport = this.handleReport.bind(this);
   }
 
-  handleReplyClick () {
+  handleReplyClick (e) {
     this.props.onReply(this.props.status, this.context.router);
+    e.stopPropagation();
   }
 
-  handleFavouriteClick () {
+  handleFavouriteClick (e) {
     this.props.onFavourite(this.props.status);
+    e.stopPropagation();
   }
 
   handleReblogClick (e) {
     this.props.onReblog(this.props.status, e);
+    e.stopPropagation();
   }
 
   handleDeleteClick () {
     this.props.onDelete(this.props.status);
   }
 
-  handleMentionClick () {
+  handleMentionClick (e) {
     this.props.onMention(this.props.status.get('account'), this.context.router);
+    e.stopPropagation();
   }
 
-  handleMuteClick () {
+  handleMuteClick (e) {
     this.props.onMute(this.props.status.get('account'));
+    e.stopPropagation();
   }
 
-  handleBlockClick () {
+  handleBlockClick (e) {
     this.props.onBlock(this.props.status.get('account'));
+    e.stopPropagation();
   }
 
   handleOpen () {
     this.context.router.push(`/statuses/${this.props.status.get('id')}`);
   }
 
-  handleReport () {
+  handleReport (e) {
     this.props.onReport(this.props.status);
     this.context.router.push('/report');
+    e.stopPropagation();
   }
 
   render () {

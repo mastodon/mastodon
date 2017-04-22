@@ -40,14 +40,20 @@ class StatusContent extends React.PureComponent {
         link.setAttribute('target', '_blank');
         link.setAttribute('rel', 'noopener');
         link.setAttribute('title', link.href);
+        link.addEventListener('click', this.onLinkClick, false);
       }
     }
   }
+
+  onLinkClick (e) {
+    e.stopPropagation();
+  },
 
   onMentionClick (mention, e) {
     if (e.button === 0) {
       e.preventDefault();
       this.context.router.push(`/accounts/${mention.get('id')}`);
+      e.stopPropagation();
     }
   }
 
@@ -57,6 +63,7 @@ class StatusContent extends React.PureComponent {
     if (e.button === 0) {
       e.preventDefault();
       this.context.router.push(`/timelines/tag/${hashtag}`);
+      e.stopPropagation();
     }
   }
 
@@ -82,6 +89,7 @@ class StatusContent extends React.PureComponent {
   handleSpoilerClick (e) {
     e.preventDefault();
     this.setState({ hidden: !this.state.hidden });
+    e.stopPropagation();
   }
 
   render () {

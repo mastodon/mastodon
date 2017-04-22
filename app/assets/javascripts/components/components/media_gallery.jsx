@@ -202,6 +202,7 @@ class MediaGallery extends React.PureComponent {
 
   handleOpen (e) {
     this.setState({ visible: !this.state.visible });
+    e.stopPropagation();
   }
 
   handleClick (index) {
