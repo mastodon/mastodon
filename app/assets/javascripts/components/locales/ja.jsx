@@ -25,7 +25,7 @@ const ja = {
   "column.public": "連合タイムライン",
   "column_back_button.label": "戻る",
   "compose_form.placeholder": "今なにしてる？",
-  "compose_form.privacy_disclaimer": "あなたの非公開トゥートは返信先のユーザー（at {domains}）に公開されます。{domainsCount, plural, one {that server} other {those servers}}を信頼しますか？投稿のプライバシー保護はMastodonサーバー内でのみ有効です。 もし{domains} {domainsCount, plural, one {is not a Mastodon instance} other {are not Mastodon instances}}ならばあなたの投稿のプライバシーは保護されず、ブーストされたり予期しないユーザーに見られる可能性があります。",
+  "compose_form.privacy_disclaimer": "あなたの非公開トゥートは返信先ユーザーが所属する {domains} に送信されます。{domainsCount, plural, one {このサーバー} other {これらのサーバー}}は信頼できますか？投稿のプライバシー保護はMastodonサーバー内でのみ有効です。 {domains} {domainsCount, plural, one {がMastodonインスタンス} other {がMastodonインスタンス}}でない場合、あなたの投稿がプライベートなものとして扱われず、ブーストされたり予期しないユーザーに見られる可能性があります。",
   "compose_form.publish": "トゥート",
   "compose_form.sensitive": "メディアを不適切なコンテンツとしてマークする",
   "compose_form.spoiler": "テキストを隠す",
