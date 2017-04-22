@@ -18,7 +18,7 @@ module SettingsHelper
     fi: 'Suomi',
     ru: 'Русский',
     uk: 'Українська',
-    ja: '日本語',
+    ja: '大阪弁',
     'zh-CN': '简体中文',
     'zh-HK': '繁體中文（香港）',
     'zh-TW': '繁體中文（臺灣）',

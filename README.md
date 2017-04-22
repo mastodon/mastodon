@@ -1,3 +1,14 @@
+大阪のMastodon
+==============
+
+関西弁にローカライズされたMastodonのリポジトリやで。
+プルリクしてや
+
+![画像](https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=4863542178&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL250_&tag=alarky-22)
+[AD] [わかばちゃんと学ぶ Git使い方入門 〈GitHub、Bitbucket、SourceTree〉](https://www.amazon.co.jp/gp/product/4863542178/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=4863542178&linkCode=as2&tag=alarky-22&linkId=76fcb5ae4aea226d43a93fce34587e8e)
+![](https://ir-jp.amazon-adsystem.com/e/ir?t=alarky-22&l=am2&o=9&a=4863542178)
+
+
 Mastodon
 ========
 
