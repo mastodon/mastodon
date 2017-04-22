@@ -87,7 +87,7 @@ Rails.application.routes.draw do
       resource :reset, only: [:create]
       resource :silence, only: [:create, :destroy]
       resource :suspension, only: [:create, :destroy]
-      post '/confirmation', to:'confirmations#create'
+      resource :confirmation, only: [:create]
     end
   end
 
