@@ -5,7 +5,15 @@ import { defineMessages, injectIntl } from 'react-intl';
 
 const messages = defineMessages({
   emoji: { id: 'emoji_button.label', defaultMessage: 'Insert emoji' },
-  emoji_search: { id: 'emoji_button.search', defaultMessage: 'Search...' }
+  emoji_search: { id: 'emoji_button.search', defaultMessage: 'Search...' },
+  people: { id: 'emoji_button.people', defaultMessage: 'People' },
+  nature: { id: 'emoji_button.nature', defaultMessage: 'Nature' },
+  food: { id: 'emoji_button.food', defaultMessage: 'Food & Drink' },
+  activity: { id: 'emoji_button.activity', defaultMessage: 'Activity' },
+  travel: { id: 'emoji_button.travel', defaultMessage: 'Travel & Places' },
+  objects: { id: 'emoji_button.objects', defaultMessage: 'Objects' },
+  symbols: { id: 'emoji_button.symbols', defaultMessage: 'Symbols' },
+  flags: { id: 'emoji_button.flags', defaultMessage: 'Flags' }
 });
 
 const settings = {
@@ -40,6 +48,41 @@ class EmojiPickerDropdown extends React.PureComponent {
   render () {
     const { intl } = this.props;
 
+    const categories = {
+      people: {
+        title: intl.formatMessage(messages.people),
+        emoji: 'smile',
+      },
+      nature: {
+        title: intl.formatMessage(messages.nature),
+        emoji: 'hamster',
+      },
+      food: {
+        title: intl.formatMessage(messages.food),
+        emoji: 'pizza',
+      },
+      activity: {
+        title: intl.formatMessage(messages.activity),
+        emoji: 'soccer',
+      },
+      travel: {
+        title: intl.formatMessage(messages.travel),
+        emoji: 'earth_americas',
+      },
+      objects: {
+        title: intl.formatMessage(messages.objects),
+        emoji: 'bulb',
+      },
+      symbols: {
+        title: intl.formatMessage(messages.symbols),
+        emoji: 'clock9',
+      },
+      flags: {
+        title: intl.formatMessage(messages.flags),
+        emoji: 'flag_gb',
+      }
+    }
+
     return (
       <Dropdown ref={this.setRef} style={style}>
         <DropdownTrigger className='emoji-button' title={intl.formatMessage(messages.emoji)} style={{ fontSize: `24px`, width: `24px`, lineHeight: `24px`, display: 'block', marginLeft: '2px' }}>
@@ -47,7 +90,7 @@ class EmojiPickerDropdown extends React.PureComponent {
         </DropdownTrigger>
 
         <DropdownContent className='dropdown__left light'>
-          <EmojiPicker emojione={settings} onChange={this.handleChange} searchPlaceholder={intl.formatMessage(messages.emoji_search)} search={true} />
+          <EmojiPicker emojione={settings} onChange={this.handleChange} searchPlaceholder={intl.formatMessage(messages.emoji_search)} categories={categories} search={true} />
         </DropdownContent>
       </Dropdown>
     );
