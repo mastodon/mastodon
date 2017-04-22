@@ -4,3 +4,10 @@
 .drawer {
   width: 25%;
 }
+
+@media screen and (max-width: 1024px) {
+  .column,
+  .drawer {
+    width: 100%;
+  }
+}
