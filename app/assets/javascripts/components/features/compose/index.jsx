@@ -40,9 +40,9 @@ class Compose extends React.PureComponent {
     if (withHeader) {
       header = (
         <div className='drawer__header'>
-          <Link to='/getting-started' className='drawer__tab' title={intl.formatMessage(messages.start)} aria-label={intl.formatMessage(messages.start)} aria-controls='account-timeline-column'><i className='fa fa-fw fa-asterisk' /></Link>
-          <Link to='/timelines/public/local' className='drawer__tab' title={intl.formatMessage(messages.community)} aria-label={intl.formatMessage(messages.community)} aria-controls='account-timeline-column'><i className='fa fa-fw fa-users' /></Link>
-          <Link to='/timelines/public' className='drawer__tab' title={intl.formatMessage(messages.public)} aria-label={intl.formatMessage(messages.public)} aria-controls='account-timeline-column'><i className='fa fa-fw fa-globe' /></Link>
+          <Link to='/getting-started' className='drawer__tab' title={intl.formatMessage(messages.start)} aria-labelledby={intl.formatMessage(messages.start)}><i className='fa fa-fw fa-asterisk' /></Link>
+          <Link to='/timelines/public/local' className='drawer__tab' title={intl.formatMessage(messages.community)} aria-label={intl.formatMessage(messages.community)}><i className='fa fa-fw fa-users' /></Link>
+          <Link to='/timelines/public' className='drawer__tab' title={intl.formatMessage(messages.public)} aria-label={intl.formatMessage(messages.public)}><i className='fa fa-fw fa-globe' /></Link>
           <a href='/settings/preferences' className='drawer__tab' title={intl.formatMessage(messages.preferences)} aria-label={intl.formatMessage(messages.preferences)}><i className='fa fa-fw fa-cog' /></a>
           <a href='/auth/sign_out' className='drawer__tab' data-method='delete' title={intl.formatMessage(messages.logout)} aria-label={intl.formatMessage(messages.logout)}><i className='fa fa-fw fa-sign-out' /></a>
         </div>
