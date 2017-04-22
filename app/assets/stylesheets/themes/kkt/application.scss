@@ -1,0 +1,29 @@
+@import 'variables';
+@import '../../fonts/roboto';
+@import '../../fonts/roboto-mono';
+@import '../../fonts/montserrat';
+@import 'font-awesome';
+
+@import '../../reset';
+@import '../../basics';
+@import '../../containers';
+@import '../../lists';
+@import '../../footer';
+@import '../../compact_header';
+@import '../../landing_strip';
+@import '../../forms';
+@import '../../accounts';
+@import '../../stream_entries';
+@import '../../components';
+@import '../../about';
+@import '../../tables';
+@import '../../admin';
+
+@import 'kirakiratter';
+
+.getting-started {
+  box-sizing: border-box;
+  padding-bottom: 235px;
+  background: image-url('themes/kkt/kirakiratter-getting-started.png') no-repeat 0 100% local;
+  flex: 1 0 auto;
+}
