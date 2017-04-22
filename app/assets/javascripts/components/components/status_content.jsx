@@ -18,6 +18,30 @@ function mapAlternate(array, fn1, fn2, thisArg) {
     return output;
 }
 
+const componentToString = c => {
+    var aDom = document.createElement('span');
+    var result = null;
+    ReactDOM.render(c, aDom, () => {
+	result = aDom.innerHTML;
+    });
+    return result;
+};
+
+const mathjaxify = str => {
+    var s = mapAlternate(str.split(/\$\$/g),
+	x => x,
+	x => componentToString(<MathJax.Context><MathJax.Node>{x}</MathJax.Node></MathJax.Context>)).join("");
+    s = mapAlternate(s.split(/\$/g),
+	x => x,
+	x => componentToString(<MathJax.Context><MathJax.Node inline>{x}</MathJax.Node></MathJax.Context>)).join("");
+    s = s.replace(/\\\((.*?)\\\)/g,
+	componentToString(<MathJax.Context><MathJax.Node inline>{"$1"}</MathJax.Node></MathJax.Context>))
+    .replace(/\\\[(.*?)\\\]/g,
+	componentToString(<MathJax.Context><MathJax.Node>{"$1"}</MathJax.Node></MathJax.Context>));
+    console.log(s);
+    return s;
+};
+
 class StatusContent extends React.PureComponent {
 
   constructor (props, context) {
@@ -100,7 +124,7 @@ class StatusContent extends React.PureComponent {
     const { status } = this.props;
     const { hidden } = this.state;
 
-    const content = { __html: emojify(status.get('content')) };
+    const content = { __html: mathjaxify(emojify(status.get('content'))) };
     const spoilerContent = { __html: emojify(escapeTextContentForBrowser(status.get('spoiler_text', ''))) };
     const directionStyle = { direction: 'ltr' };
 
@@ -144,18 +168,6 @@ class StatusContent extends React.PureComponent {
           dangerouslySetInnerHTML={content}
         />
       );
-      // return (
-      // 	  <div>
-      // 	  <h1>Hi(1)</h1>
-      //   <div
-      //     className='status__content'
-      //     style={{ cursor: 'pointer', ...directionStyle }}
-      //     onMouseDown={this.handleMouseDown}
-      //     onMouseUp={this.handleMouseUp}
-      //     dangerouslySetInnerHTML={content}
-      //     />
-      // 	  </div>
-      // );
     } else {
       return (
         <div
@@ -164,17 +176,6 @@ class StatusContent extends React.PureComponent {
           dangerouslySetInnerHTML={content}
         />
       );
-      // 	return (
-      // 	    <div>
-      // 	    <h1>Hi(2)</h1>
-      //       <div
-      //       className='status__content'
-      //       style={{ ...directionStyle }}
-      //       dangerouslySetInnerHTML={content}
-      //       />
-      // 	    <BlockMath math="\\int_0^\\infty x^2 dx"/>
-      // 	    </div>
-      // );
     }
   }
 
