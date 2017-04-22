@@ -32,7 +32,7 @@ const ja = {
   "compose_form.spoiler_placeholder": "閲覧注意",
   "emoji_button.label": "絵文字を追加",
   "empty_column.community": "ローカルタイムラインはまだ使われてへんさかい、なんか書いてーな",
-  "empty_column.hashtag": "このハッシュタグはまだ使われていません。",
+  "empty_column.hashtag": "このハッシュタグはまだ使われてへんで。",
   "empty_column.home": "まだ誰もツルんでいません。{public}を見に行くか、検索を使って他のosaka人を見つけましょう。",
   "empty_column.home.public_timeline": "新世界",
   "empty_column.notifications": "まだあめちゃんがありません。他の人とふれ合って会話を始めましょう。",
