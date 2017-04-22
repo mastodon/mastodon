@@ -54,14 +54,15 @@ class Column extends React.PureComponent {
   render () {
     const { heading, icon, children, active, hideHeadingOnMobile } = this.props;
 
+    let columnHeaderId = null
     let header = '';
 
     if (heading) {
-      header = <ColumnHeader icon={icon} active={active} type={heading} onClick={this.handleHeaderClick} hideOnMobile={hideHeadingOnMobile} />;
+      columnHeaderId = heading.replace(/ /g, '-')
+      header = <ColumnHeader icon={icon} active={active} type={heading} onClick={this.handleHeaderClick} hideOnMobile={hideHeadingOnMobile} columnHeaderId={columnHeaderId}/>;
     }
-
     return (
-      <div role='section' aria-label={heading} className='column' onWheel={this.handleWheel}>
+      <div role='region' aria-labelledby={columnHeaderId} className='column' onWheel={this.handleWheel}>
         {header}
         {children}
       </div>
