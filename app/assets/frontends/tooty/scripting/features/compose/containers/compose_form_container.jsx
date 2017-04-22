@@ -34,6 +34,7 @@ const mapStateToProps = (state, props) => {
     is_submitting: state.getIn(['compose', 'is_submitting']),
     is_uploading: state.getIn(['compose', 'is_uploading']),
     me: state.getIn(['compose', 'me']),
+    max_chars: state.getIn(['compose', 'max_chars']),
     needsPrivacyWarning: (state.getIn(['compose', 'privacy']) === 'private' || state.getIn(['compose', 'privacy']) === 'direct') && mentionedUsernames !== null,
     mentionedDomains: mentionedUsernamesWithDomains
   };

@@ -14,6 +14,7 @@ node(:compose) do
   {
     me: current_account.id,
     default_privacy: current_account.user.setting_default_privacy,
+    max_chars: Rails.application.config.x.max_chars
   }
 end
 
