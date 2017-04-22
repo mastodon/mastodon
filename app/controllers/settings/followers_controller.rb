@@ -12,17 +12,12 @@ class Settings::FollowersController < ApplicationController
 
   def purge
     domains = purge_params[:select] || []
-    total   = 0
 
     domains.each do |domain|
-      current_account.followers.where(domain: domain).find_each do |follower|
-        BlockService.new.call(current_account, follower)
-        UnblockService.new.call(current_account, follower)
-        total += 1
-      end
+      SoftBlockDomainFollowers.perform_async(current_account.id, domain)
     end
 
-    redirect_to settings_followers_path, notice: I18n.t('followers.success', count: total)
+    redirect_to settings_followers_path, notice: I18n.t('followers.success', count: domains.size)
   end
 
   private
