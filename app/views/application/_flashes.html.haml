@@ -1,0 +1,7 @@
+- if flash[:notice]
+  .flash-message.notice
+    %strong= flash[:notice]
+
+- if flash[:alert]
+  .flash-message.alert
+    %strong= flash[:alert]

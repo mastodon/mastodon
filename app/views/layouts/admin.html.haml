@@ -13,13 +13,7 @@
       .content
         %h2= yield :page_title
 
-        - if flash[:notice]
-          .flash-message.notice
-            %strong= flash[:notice]
-
-        - if flash[:alert]
-          .flash-message.alert
-            %strong= flash[:alert]
+        = render 'flashes'
 
         = yield
 
