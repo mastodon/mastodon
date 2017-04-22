@@ -1,7 +1,3 @@
-- if flash[:notice]
-  .flash-message.notice
-    %strong= flash[:notice]
-
-- if flash[:alert]
-  .flash-message.alert
-    %strong= flash[:alert]
+- user_facing_flashes.each do |key, value|
+  .flash-message{class: key}
+    %strong= value
