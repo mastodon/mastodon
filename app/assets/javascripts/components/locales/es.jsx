@@ -48,7 +48,6 @@ const es = {
   "compose_form.publish": "Tootear",
   "compose_form.sensitive": "Marcar contenido como sensible",
   "compose_form.spoiler": "Ocultar texto tras advertencia",
-  "compose_form.spoiler_placeholder": "Advertencia de contenido",
   "composer_form.private": "Marcar como privado",
   "composer_form.privacy_disclaimer": "Tu estado se mostrará a los usuarios mencionados en {domains}. Tu estado podrá ser visto en otras instancias, quizás no quieras que tu estado sea visto por otros usuarios.",
   "compose_form.unlisted": "No mostrar en la historia federada",

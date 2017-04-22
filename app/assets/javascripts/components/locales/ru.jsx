@@ -29,7 +29,6 @@ const ru = {
   "compose_form.publish": "Трубить",
   "compose_form.sensitive": "Отметить как чувствительный контент",
   "compose_form.spoiler": "Скрыть текст за предупреждением",
-  "compose_form.spoiler_placeholder": "Предупреждение о скрытом тексте",
   "emoji_button.label": "Вставить эмодзи",
   "empty_column.community": "Локальная лента пуста. Напишите что-нибудь, чтобы разогреть народ!",
   "empty_column.hashtag": "Статусов с таким хэштегом еще не существует.",

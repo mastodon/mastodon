@@ -28,7 +28,6 @@ const id = {
   "compose_form.privacy_disclaimer": "Status pribadi anda akan dikirim ke pengguna yang disebut dalam {domains}. Apa anda mempercayai {domainsCount, plural, one {server tersebut} other {server tersebut}}? Privasi postingan hanya bekerja dalam server Mastodon. Jika {domains} {domainsCount, plural, one {bukan server Mastodon} other {bukan server Mastodon}}, akan ada indikasi bahwa postingan anda adalah postingan pribadi, dan dapat di-boost atau dapat dilihat oleh orang lain.",
   "compose_form.publish": "Toot",
   "compose_form.sensitive": "Tandai media sensitif",
-  "compose_form.spoiler_placeholder": "Peringatan konten",
   "compose_form.spoiler": "Sembunyikan teks dibalik peringatan",
   "emoji_button.label": "Tambahkan emoji",
   "empty_column.community": "Linimasa lokal masih kosong. Tulis sesuatu secara publik dan buat roda berputar!",
