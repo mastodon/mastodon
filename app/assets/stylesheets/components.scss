@@ -1268,7 +1268,7 @@ a.status__content__spoiler-link {
 .getting-started {
   box-sizing: border-box;
   padding-bottom: 235px;
-  background: image-url('mastodon-getting-started.png') no-repeat 0 100% local;
+  background: image-url('mastodon-getting-started.png') no-repeat 0 100%/contain local;
   flex: 1 0 auto;
 
   p {
@@ -2203,7 +2203,7 @@ button.icon-button.active i.fa-retweet {
 }
 
 .onboarding-modal__page-one__elephant-friend {
-  background: image-url('elephant-friend.png') no-repeat 0 0;
+  background: image-url('elephant-friend.png') no-repeat center center/contain;
   width: 147px;
   height: 160px;
   margin-right: 10px;
