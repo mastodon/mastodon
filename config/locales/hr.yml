@@ -42,11 +42,11 @@ hr:
   application_mailer:
     settings: 'Promijeni e-mail postavke: %{link}'
     signature: Mastodon notifikacije sa %{instance}
-    view: 'View:'
+    view: 'Vidi:'
   applications:
     invalid_url: Uneseni link nije valjan
   auth:
-    change_password: Vjerodajnice
+    change_password: Vjerodajnica
     didnt_get_confirmation: Niste primili instrukcije za potvrđivanje?
     forgot_password: Zaboravljena lozinka?
     login: Prijavi se
@@ -92,6 +92,7 @@ hr:
     types:
       blocking: Lista blokiranih
       following: Lista onih koje slijedim
+      muting: Lista utišanih
     upload: Upload
   landing_strip_html: <strong>%{name}</strong> je korisnik na <strong>%{domain}</strong>. Možeš ih slijediti ili komunicirati s njima ako imaš račun igdje u fediversu. Ako nemaš, možeš se <a href="%{sign_up_path}">registrirati ovdje</a>.
   notification_mailer:
@@ -114,7 +115,7 @@ hr:
       body: "%{name} je zatražio da te slijedi"
       subject: 'Sljedbenik na čekanju: %{name}'
     mention:
-      body: 'Spomenuo te je %{name} in:'
+      body: 'Spomenuo te je %{name} u:'
       subject: Spomenuo te je %{name}
     reblog:
       body: 'Tvoj status je potaknut od %{name}:'
@@ -124,7 +125,7 @@ hr:
     prev: Prošli
   remote_follow:
     acct: Unesi svoje username@domain sa koje želiš slijediti
-    missing_resource: Could not find the required redirect URL za tvoj račun
+    missing_resource: Traženi redirect link za tvoj račun nije mogao biti nađen
     proceed: Nastavi slijediti
     prompt: 'Slijediti ćeš:'
   settings:
@@ -135,7 +136,7 @@ hr:
     import: Uvezi
     preferences: Postavke
     settings: Podešenja
-    two_factor_auth: Dvo-faktorska Autentifikacija
+    two_factor_authentication: Dvo-faktorska Autentifikacija
   statuses:
     open_in_web: Otvori na webu
     over_character_limit: prijeđen je limit od %{max} znakova
@@ -151,11 +152,11 @@ hr:
   time:
     formats:
       default: "%b %d, %Y, %H:%M"
-  two_factor_auth:
-    description_html: Ako omogućiš <strong>two-factor autentifikaciju</strong>, prijavljivanje će zahtjevati da kod sebe imaš svoj mobitel, koji će generirati tokene koje ćeš unijeti.
+  two_factor_authentication:
+    description_html: Ako omogućiš <strong>dvo-faktorsku autentifikaciju</strong>, prijavljivanje će zahtjevati da kod sebe imaš svoj mobitel, koji će generirati tokene koje ćeš unijeti.
     disable: Onemogući
     enable: Omogući
-    instructions_html: "<strong>Skeniraj ovaj QR kod into Google Authenticator or a similiar app on your phone</strong>. Od sada, ta aplikacija će generirati tokene koje ćeš unijeti pri prijavljivanju."
+    instructions_html: "<strong>Skeniraj ovaj QR kod u Google Authenticator ili sličnu aplikaciju na svom telefonu</strong>. Od sada, ta aplikacija će generirati tokene koje ćeš unijeti pri prijavljivanju."
   users:
     invalid_email: E-mail adresa nije valjana
     invalid_otp_token: Nevaljani dvo-faktorski kod

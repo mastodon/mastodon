@@ -1,4 +1,3 @@
-import PureRenderMixin from 'react-addons-pure-render-mixin';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 
 const contentStyle = {
@@ -28,12 +27,7 @@ const getHostname = url => {
   return parser.hostname;
 };
 
-const Card = React.createClass({
-  propTypes: {
-    card: ImmutablePropTypes.map
-  },
-
-  mixins: [PureRenderMixin],
+class Card extends React.PureComponent {
 
   render () {
     const { card } = this.props;
@@ -64,6 +58,10 @@ const Card = React.createClass({
       </a>
     );
   }
-});
+}
+
+Card.propTypes = {
+  card: ImmutablePropTypes.map
+};
 
 export default Card;

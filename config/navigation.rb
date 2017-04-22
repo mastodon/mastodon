@@ -8,7 +8,7 @@ SimpleNavigation::Configuration.run do |navigation|
       settings.item :profile, safe_join([fa_icon('user fw'), t('settings.edit_profile')]), settings_profile_url
       settings.item :preferences, safe_join([fa_icon('sliders fw'), t('settings.preferences')]), settings_preferences_url
       settings.item :password, safe_join([fa_icon('cog fw'), t('auth.change_password')]), edit_user_registration_url
-      settings.item :two_factor_auth, safe_join([fa_icon('mobile fw'), t('settings.two_factor_auth')]), settings_two_factor_auth_url, highlights_on: %r{/settings/two_factor_auth}
+      settings.item :two_factor_authentication, safe_join([fa_icon('mobile fw'), t('settings.two_factor_authentication')]), settings_two_factor_authentication_url, highlights_on: %r{/settings/two_factor_authentication}
       settings.item :import, safe_join([fa_icon('cloud-upload fw'), t('settings.import')]), settings_import_url
       settings.item :export, safe_join([fa_icon('cloud-download fw'), t('settings.export')]), settings_export_url
       settings.item :authorized_apps, safe_join([fa_icon('list fw'), t('settings.authorized_apps')]), oauth_authorized_applications_url

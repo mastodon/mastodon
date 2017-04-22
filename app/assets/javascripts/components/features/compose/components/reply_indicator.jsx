@@ -1,5 +1,5 @@
-import PureRenderMixin from 'react-addons-pure-render-mixin';
 import ImmutablePropTypes from 'react-immutable-proptypes';
+import PropTypes from 'prop-types';
 import Avatar from '../../../components/avatar';
 import IconButton from '../../../components/icon_button';
 import DisplayName from '../../../components/display_name';
@@ -10,30 +10,24 @@ const messages = defineMessages({
   cancel: { id: 'reply_indicator.cancel', defaultMessage: 'Cancel' }
 });
 
-const ReplyIndicator = React.createClass({
+class ReplyIndicator extends React.PureComponent {
 
-  contextTypes: {
-    router: React.PropTypes.object
-  },
-
-  propTypes: {
-    status: ImmutablePropTypes.map,
-    onCancel: React.PropTypes.func.isRequired,
-    intl: React.PropTypes.object.isRequired
-  },
-
-  mixins: [PureRenderMixin],
+  constructor (props, context) {
+    super(props, context);
+    this.handleClick = this.handleClick.bind(this);
+    this.handleAccountClick = this.handleAccountClick.bind(this);
+  }
 
   handleClick () {
     this.props.onCancel();
-  },
+  }
 
   handleAccountClick (e) {
     if (e.button === 0) {
       e.preventDefault();
       this.context.router.push(`/accounts/${this.props.status.getIn(['account', 'id'])}`);
     }
-  },
+  }
 
   render () {
     const { status, intl } = this.props;
@@ -60,6 +54,16 @@ const ReplyIndicator = React.createClass({
     );
   }
 
-});
+}
+
+ReplyIndicator.contextTypes = {
+  router: PropTypes.object
+};
+
+ReplyIndicator.propTypes = {
+  status: ImmutablePropTypes.map,
+  onCancel: PropTypes.func.isRequired,
+  intl: PropTypes.object.isRequired
+};
 
 export default injectIntl(ReplyIndicator);

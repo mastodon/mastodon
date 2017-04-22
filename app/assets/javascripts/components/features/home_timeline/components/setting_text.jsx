@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 
 const style = {
@@ -9,18 +10,16 @@ const style = {
   width: '100%'
 };
 
-const SettingText = React.createClass({
+class SettingText extends React.PureComponent {
 
-  propTypes: {
-    settings: ImmutablePropTypes.map.isRequired,
-    settingKey: React.PropTypes.array.isRequired,
-    label: React.PropTypes.string.isRequired,
-    onChange: React.PropTypes.func.isRequired
-  },
+  constructor (props, context) {
+    super(props, context);
+    this.handleChange = this.handleChange.bind(this);
+  }
 
   handleChange (e) {
     this.props.onChange(this.props.settingKey, e.target.value)
-  },
+  }
 
   render () {
     const { settings, settingKey, label } = this.props;
@@ -36,6 +35,13 @@ const SettingText = React.createClass({
     );
   }
 
-});
+}
+
+SettingText.propTypes = {
+  settings: ImmutablePropTypes.map.isRequired,
+  settingKey: PropTypes.array.isRequired,
+  label: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired
+};
 
 export default SettingText;

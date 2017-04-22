@@ -1,0 +1,311 @@
+---
+io:
+  about:
+    about_mastodon: Mastodon esas <em>gratuita, apertitkodexa</em> sociala reto. Ol esas <em>sencentra</em> altra alternativo a komercala servadi. Ol evitigas, ke sola firmo guvernez tua tota komunikadol. Selektez servero, quan tu fidas. Irge qua esas tua selekto, tu povas komunikar kun omna altra uzeri. Irgu povas krear sua propra instaluro di Mastodon en sua servero, e partoprenar en la <em>sociala reto</em> tote glate.
+    about_this: Pri ta instaluro
+    apps: Apliki
+    business_email: 'Profesionala retpost-adreso:'
+    closed_registrations: Membresko ne nun esas posible en ta instaluro.
+    contact: Kontaktar
+    description_headline: Quo esas %{domain}?
+    domain_count_after: altra instaluri
+    domain_count_before: Konektita ad
+    features:
+      api: Apertita API por apliki e servadi
+      blocks: Kompleta utensili por blokusar e celar
+      characters: Til 500 signi por singla mesajo
+      chronology: Tempolinei seguntempa
+      ethics: 'Etike kreita: nula anunco, nula trakado'
+      gifv: Posibleso diskononigar mikra videi e GIFV
+      privacy: Videbleso ajustita segun la mesajo
+      public: Publika tempolinei
+    features_headline: Quale Mastodon esas diferanta
+    get_started: Komencar
+    links: Ligili
+    other_instances: Altra instaluri
+    source_code: Fontkodexo
+    status_count_after: mesaji
+    status_count_before: Qua publikigis
+    terms: Terms
+    user_count_after: uzeri
+    user_count_before: Hemo di
+  accounts:
+    follow: Sequar
+    followers: Sequanti
+    following: Sequati
+    nothing_here: Esas nulo hike!
+    people_followed_by: Sequati da %{name}
+    people_who_follow: Sequanti di %{name}
+    posts: Mesaji
+    remote_follow: Fore sequar
+    unfollow: Dessequar
+  admin:
+    accounts:
+      are_you_sure: Ka tu esas certa?
+      display_name: Display name
+      domain: Domain
+      edit: Edit
+      email: E-mail
+      feed_url: Feed URL
+      followers: Followers
+      follows: Follows
+      location:
+        all: All
+        local: Local
+        remote: Remote
+        title: Location
+      media_attachments: Media attachments
+      moderation:
+        all: All
+        silenced: Silenced
+        suspended: Suspended
+        title: Moderation
+      most_recent_activity: Most recent activity
+      most_recent_ip: Most recent IP
+      not_subscribed: Not subscribed
+      order:
+        alphabetic: Alphabetic
+        most_recent: Most recent
+        title: Order
+      perform_full_suspension: Perform full suspension
+      profile_url: Profile URL
+      public: Public
+      push_subscription_expires: PuSH subscription expires
+      reset_password: Reset password
+      salmon_url: Salmon URL
+      show:
+        created_reports: Reports created by this account
+        report: report
+        targeted_reports: Reports made about this account
+      silence: Silence
+      statuses: Statuses
+      title: Accounts
+      undo_silenced: Undo silence
+      undo_suspension: Undo suspension
+      username: Username
+      web: Web
+    domain_blocks:
+      add_new: Add new
+      created_msg: Domain block is now being processed
+      destroyed_msg: Domain block has been undone
+      domain: Domain
+      new:
+        create: Create block
+        hint: The domain block will not prevent creation of account entries in the database, but will retroactively and automatically apply specific moderation methods on those accounts.
+        severity:
+          desc_html: "<strong>Silence</strong> will make the account's posts invisible to anyone who isn't following them. <strong>Suspend</strong> will remove all of the account's content, media, and profile data."
+          silence: Silence
+          suspend: Suspend
+        title: New domain block
+      reject_media: Reject media files
+      reject_media_hint: Removes locally stored media files and refuses to download any in the future. Irrelevant for suspensions
+      severities:
+        silence: Silence
+        suspend: Suspend
+      severity: Severity
+      show:
+        affected_accounts:
+          one: One account in the database affected
+          other: "%{count} accounts in the database affected"
+        retroactive:
+          silence: Unsilence all existing accounts from this domain
+          suspend: Unsuspend all existing accounts from this domain
+        title: Undo domain block for %{domain}
+        undo: Undo
+      title: Domain Blocks
+      undo: Undo
+    instances:
+      account_count: Known accounts
+      domain_name: Domain
+      title: Known Instances
+    pubsubhubbub:
+      callback_url: Callback URL
+      confirmed: Confirmed
+      expires_in: Expires in
+      last_delivery: Last delivery
+      title: PubSubHubbub
+      topic: Topic
+    reports:
+      comment:
+        label: Comment
+        none: None
+      delete: Delete
+      id: ID
+      mark_as_resolved: Mark as resolved
+      report: 'Report #%{id}'
+      reported_account: Reported account
+      reported_by: Reported by
+      resolved: Resolved
+      silence_account: Silence account
+      status: Status
+      suspend_account: Suspend account
+      target: Target
+      title: Reports
+      unresolved: Unresolved
+      view: View
+    settings:
+      click_to_edit: Click to edit
+      contact_information:
+        email: Enter a public e-mail address
+        label: Contact information
+        username: Enter a username
+      registrations:
+        closed_message:
+          desc_html: Displayed on frontpage when registrations are closed<br>You can use HTML tags
+          title: Closed registration message
+        open:
+          disabled: Disabled
+          enabled: Enabled
+          title: Open registration
+      setting: Setting
+      site_description:
+        desc_html: Displayed as a paragraph on the frontpage and used as a meta tag.<br>You can use HTML tags, in particular <code>&lt;a&gt;</code> and <code>&lt;em&gt;</code>.
+        title: Site description
+      site_description_extended:
+        desc_html: Displayed on extended information page<br>You can use HTML tags
+        title: Extended site description
+      site_title: Site title
+      title: Site Settings
+    title: Administration
+  application_mailer:
+    settings: 'Chanjar la retpost-mesajala preferi: %{link}'
+    signature: Savigi di Mastodon de %{instance}
+    view: 'Vidar:'
+  applications:
+    invalid_url: La URL donita ne esas valida
+  auth:
+    change_password: Chanjar pasvorto
+    didnt_get_confirmation: Ka tu ne recevis la instrucioni por konfirmar?
+    forgot_password: Pasvorto obliviita?
+    login: Enirar
+    logout: Ekirar
+    register: Membreskar
+    resend_confirmation: Risendar la instrucioni por konfirmar
+    reset_password: Chanjar la pasvorto
+    set_new_password: Selektar nova pasvorto
+  authorize_follow:
+    error: Regretinde, eventis eraro probante konsultar la fora konto
+    follow: Sequar
+    prompt_html: 'Tu (<strong>%{self}</strong>) demandis sequar:'
+    title: Sequar %{acct}
+  datetime:
+    distance_in_words:
+      about_x_hours: "%{count}h"
+      about_x_months: "%{count}mo"
+      about_x_years: "%{count}y"
+      almost_x_years: "%{count}y"
+      half_a_minute: Jus
+      less_than_x_minutes: "%{count}m"
+      less_than_x_seconds: Jus
+      over_x_years: "%{count}y"
+      x_days: "%{count}d"
+      x_minutes: "%{count}m"
+      x_months: "%{count}mo"
+      x_seconds: "%{count}s"
+  errors:
+    '404': La pagino quan tu serchas ne existas.
+    '410': La pagino quan tu serchas ne plus existas.
+    '422':
+      content: Security verification failed. Are you blocking cookies?
+      title: Security verification failed
+  exports:
+    blocks: Tu blokusas
+    csv: CSV
+    follows: Tu sequas
+    mutes: You mute
+    storage: Konservado di kontenajo
+  generic:
+    changes_saved_msg: Chanji senprobleme konservita!
+    powered_by: povigita da %{link}
+    save_changes: Konservar la chanji
+    validation_errors:
+      one: Ulo ne eventis senprobleme! Voluntez konsultar la suba eror-raporto.
+      other: Ulo ne eventis senprobleme! Voluntez konsultar la suba %{count} eror-raporti.
+  imports:
+    preface: Tu povas importacar kelka datumi, tal quala listi de omna homi quin tu sequas o blokusas, a tua konto di ca instaluro, per dosiero exportacita de altra instaluro.
+    success: Tua datumi esis senprobleme importacita ed esos traktita quale projetita.
+    types:
+      blocking: Listo de blokusiti
+      following: Listo de sequati
+      muting: Muting list
+    upload: Kargar
+  landing_strip_html: <strong>%{name}</strong> esas uzero en <strong>%{domain}</strong>. Tu povas sequar lu o komunikar kun lu, se tu havas konto irgaloke en la Fediverse. Se tu ne havas, tu povas <a href="%{sign_up_path}">membreskar hike</a>.
+  media_attachments:
+    validations:
+      images_and_video: Cannot attach a video to a status that already contains images
+      too_many: Cannot attach more than 4 files
+  notification_mailer:
+    digest:
+      body: 'Yen mikra rezumo di to, quo eventis en %{instance}, depos ke tu laste vizitis en %{since}:'
+      mention: "%{name} mencionis tu en:"
+      new_followers_summary:
+        one: Tu obtenis nova sequanto! Yey!
+        other: Tu obtenis %{count} nova sequanti! Astonive!
+      subject:
+        one: "1 nova savigo depos tua lasta vizito \U0001F418"
+        other: "%{count} nova savigi depos tua lasta vizito \U0001F418"
+    favourite:
+      body: '%{name} favoris tua mesajo:'
+      subject: "%{name} favoris tua mesajo"
+    follow:
+      body: "%{name} sequeskas tu!"
+      subject: "%{name} sequeskas tu"
+    follow_request:
+      body: "%{name} demandis sequar tu"
+      subject: '%{name} demandis sequar tu'
+    mention:
+      body: '%{name} mencionis tu en:'
+      subject: '%{name} mencionis tu'
+    reblog:
+      body: '%{name} diskonocigis tua mesajo:'
+      subject: "%{name} diskonocigis tua mesajo"
+  pagination:
+    next: Sequanta
+    prev: Preiranta
+    truncate: "&hellip;"
+  remote_follow:
+    acct: Enpozez tua uzernomo@instaluro de ube tu volas sequar ta uzero
+    missing_resource: La URL di plussendado ne povis esar trovita
+    proceed: Durar por plussendar
+    prompt: 'Tu sequeskos:'
+  settings:
+    authorized_apps: Yurizita apliki
+    back: Retro a Mastodon
+    edit_profile: Redaktar la profilo
+    export: Exportacar datumi
+    import: Importacar
+    preferences: Preferi
+    settings: Settings
+    two_factor_authentication: Dufaktora autentikigo
+  statuses:
+    open_in_web: Apertar retnavigile
+    over_character_limit: limito de %{max} signi ecesita
+    show_more: Montrar plue
+    visibilities:
+      private: Montrar nur a sequanti
+      public: Publika
+      unlisted: Publika, ma ne aperos en publika tempolinei
+  stream_entries:
+    click_to_show: Kliktar por montrar
+    reblogged: diskonocigita
+    sensitive_content: Titiliva kontenajo
+  time:
+    formats:
+      default: "%b %d, %Y, %H:%M"
+  two_factor_authentication:
+    code_hint: Enter the code generated by your authenticator app to confirm
+    description_html: Se tu posibligas <strong>dufaktora autentikigo</strong>, tu bezonos tua poshtelefonilo por enirar, nam ol kreos nombri, quin tu devos enskribar.
+    disable: Extingar
+    enable: Acendar
+    enabled_success: Two-factor authentication successfully enabled
+    generate_recovery_codes: Generate Recovery Codes
+    instructions_html: "<strong>Skanez ta QR-kodexo per Google Authenticator o per simila apliko di tua poshtelefonilo</strong>. De lore, la apliko kreos nombri, quin tu devos enskribar."
+    lost_recovery_codes: Recovery codes allow you to regain access to your account if you lose your phone. If you've lost your recovery codes, you can regenerate them here. Your old recovery codes will be invalidated.
+    manual_instructions: 'If you can''t scan the QR code and need to enter it manually, here is the plain-text secret:'
+    recovery_codes_regenerated: Recovery codes successfully regenerated
+    recovery_instructions: If you ever lose access to your phone, you can use one of the recovery codes below to regain access to your account. Keep the recovery codes safe, for example by printing them and storing them with other important documents.
+    setup: Set up
+    wrong_code: The entered code was invalid! Are server time and device time correct?
+  users:
+    invalid_email: La retpost-adreso ne esas valida
+    invalid_otp_token: La dufaktora autentikigila kodexo ne esas valida

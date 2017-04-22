@@ -37,13 +37,10 @@ Rails.application.routes.draw do
     get :remote_follow,  to: 'remote_follow#new'
     post :remote_follow, to: 'remote_follow#create'
 
-    member do
-      get :followers
-      get :following
-
-      post :follow
-      post :unfollow
-    end
+    resources :followers, only: [:index], controller: :follower_accounts
+    resources :following, only: [:index], controller: :following_accounts
+    resource :follow, only: [:create], controller: :account_follow
+    resource :unfollow, only: [:create], controller: :account_unfollow
   end
 
   get '/@:username', to: 'accounts#show', as: :short_account
@@ -61,11 +58,10 @@ Rails.application.routes.draw do
       resources :mutes, only: :index, controller: :muted_accounts
     end
 
-    resource :two_factor_auth, only: [:show, :new, :create] do
-      member do
-        post :disable
-        post :recovery_codes
-      end
+    resource :two_factor_authentication, only: [:show, :create, :destroy]
+    namespace :two_factor_authentication do
+      resources :recovery_codes, only: [:create]
+      resource :confirmation, only: [:new, :create]
     end
   end
 
@@ -151,6 +147,7 @@ Rails.application.routes.draw do
       resources :notifications, only: [:index, :show] do
         collection do
           post :clear
+          post :dismiss
         end
       end
 

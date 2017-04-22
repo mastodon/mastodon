@@ -1,4 +1,5 @@
 import { FormattedMessage } from 'react-intl';
+import PropTypes from 'prop-types';
 
 const LoadMore = ({ onClick }) => (
   <a href="#" className='load-more' role='button' onClick={onClick}>
@@ -7,7 +8,7 @@ const LoadMore = ({ onClick }) => (
 );
 
 LoadMore.propTypes = {
-  onClick: React.PropTypes.func
+  onClick: PropTypes.func
 };
 
 export default LoadMore;

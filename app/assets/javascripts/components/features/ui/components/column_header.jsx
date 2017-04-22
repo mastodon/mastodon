@@ -1,22 +1,18 @@
-import PureRenderMixin from 'react-addons-pure-render-mixin';
+import PropTypes from 'prop-types'
 
-const ColumnHeader = React.createClass({
+class ColumnHeader extends React.PureComponent {
 
-  propTypes: {
-    icon: React.PropTypes.string,
-    type: React.PropTypes.string,
-    active: React.PropTypes.bool,
-    onClick: React.PropTypes.func
-  },
-
-  mixins: [PureRenderMixin],
+  constructor (props, context) {
+    super(props, context);
+    this.handleClick = this.handleClick.bind(this);
+  }
 
   handleClick () {
     this.props.onClick();
-  },
+  }
 
   render () {
-    const { type, active } = this.props;
+    const { type, active, hideOnMobile, columnHeaderId } = this.props;
 
     let icon = '';
 
@@ -25,13 +21,22 @@ const ColumnHeader = React.createClass({
     }
 
     return (
-      <div role='button' tabIndex='0' aria-label={type} className={`column-header ${active ? 'active' : ''}`} onClick={this.handleClick}>
+      <div role='button heading' tabIndex='0' className={`column-header ${active ? 'active' : ''} ${hideOnMobile ? 'hidden-on-mobile' : ''}`} onClick={this.handleClick} id={columnHeaderId || null}>
         {icon}
         {type}
       </div>
     );
   }
 
-});
+}
+
+ColumnHeader.propTypes = {
+  icon: PropTypes.string,
+  type: PropTypes.string,
+  active: PropTypes.bool,
+  onClick: PropTypes.func,
+  hideOnMobile: PropTypes.bool,
+  columnHeaderId: PropTypes.string
+};
 
 export default ColumnHeader;
