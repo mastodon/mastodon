@@ -1,7 +1,7 @@
 import { Link } from 'react-router';
 import { FormattedMessage } from 'react-intl';
 
-class TabsBar extends React.PureComponent {
+class TabsBar extends React.Component {
 
   render () {
     return (
