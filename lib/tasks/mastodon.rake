@@ -75,7 +75,7 @@ namespace :mastodon do
   desc 'Refresh All avatar and header'
   task refresh_avatar_header: :environment do
     Account.remote.find_each do |account|
-      need_save = false;
+      need_save = false
       if account.avatar.exists? && account.avatar_remote_url.present?
         begin
           account.avatar = URI.parse(account.avatar_remote_url)
@@ -90,7 +90,7 @@ namespace :mastodon do
         begin
           account.header = URI.parse(account.header_remote_url)
           puts "refetch header of #{account.username}"
-          need_save = true          
+          need_save = true
         rescue => ex2
           # need to think about 404"
           puts "can't refetch header of #{account.username} due to " + ex2.inspect
