@@ -46,6 +46,15 @@ class Card extends React.PureComponent {
       );
     }
 
+    let url = card.get('url');
+    let ytMatch = url.match(/http(?:s|):\/\/(?:www\.|)youtu(?:\.be\/|be\.com\/watch\?v=)([A-z0-9_-]{11})/);
+
+    if(ytMatch){
+      return (
+        <iframe src={'https://youtube.com/embed/' + ytMatch[1]} title="YouTube Video" className='status-embed status-embed-youtube'/>
+      );
+    }
+
     return (
       <a href={card.get('url')} className='status-card' target='_blank' rel='noopener'>
         {image}
