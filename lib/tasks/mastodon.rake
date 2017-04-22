@@ -37,24 +37,66 @@ namespace :mastodon do
   task refetch_avatar_header: :environment do
     require 'fileutils'
     Account.remote.find_each do |account|
-      unless account.avatar.exists? || account.avatar_remote_url.blank?
+      if account.avatar_file_name.present? && account.avatar_remote_url.present?
         begin
-          account.avatar = URI.parse(account.avatar_remote_url)
-          puts "refetch avatar of #{account.username}"
+          unless File.exist?(account.avatar.path)
+            mkdir_p(File.dirname(account.avatar.path))
+            open(account.avatar.path, 'wb') do |out|
+              open(account.avatar_remote_url) do |data|
+                out.write(data.read)
+              end
+            end
+            puts "refetch avatar of #{account.username}"
+          end
         rescue => ex
-          # need to think about 404 Not Found
+          # need to think about 404"
           puts "can't refetch avatar of #{account.username} due to " + ex.inspect
         end
       end
-      unless account.header.exists? || account.header_remote_url.blank?
+      if account.header.exists? && account.header_remote_url.present?
         begin
-          account.header = URI.parse(account.header_remote_url)
-          puts "refetch header of #{account.username}"
+          unless File.exist?(account.header.path)
+            mkdir_p(File.dirname(account.header.path))
+            open(account.header.path, 'wb') do |out|
+              open(account.header_remote_url) do |data|
+                out.write(data.read)
+              end
+            end
+            puts "refetch header of #{account.username}"
+          end
         rescue => ex2
-          # need to think about 404 Not Found
+          # need to think about 404"
           puts "can't refetch header of #{account.username} due to " + ex2.inspect
         end
       end
+    end
+  end
+
+  desc 'Refresh All avatar and header'
+  task refresh_avatar_header: :environment do
+    Account.remote.find_each do |account|
+      need_save = false;
+      if account.avatar.exists? && account.avatar_remote_url.present?
+        begin
+          account.avatar = URI.parse(account.avatar_remote_url)
+          puts "refetch avatar of #{account.username}"
+          need_save = true
+        rescue => ex
+          # need to think about 404"
+          puts "can't refetch avatar of #{account.username} due to " + ex.inspect
+        end
+      end
+      if account.header.exists? && account.header_remote_url.present?
+        begin
+          account.header = URI.parse(account.header_remote_url)
+          puts "refetch header of #{account.username}"
+          need_save = true          
+        rescue => ex2
+          # need to think about 404"
+          puts "can't refetch header of #{account.username} due to " + ex2.inspect
+        end
+      end
+      account.save if need_save
     end
   end
 
