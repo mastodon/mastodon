@@ -1,4 +1,4 @@
-import PureRenderMixin from 'react-addons-pure-render-mixin';
+import PropTypes from 'prop-types';
 import { injectIntl, defineMessages } from 'react-intl';
 import IconButton from '../../../components/icon_button';
 
@@ -19,51 +19,48 @@ const iconStyle = {
   height: null
 };
 
-const PrivacyDropdown = React.createClass({
+class PrivacyDropdown extends React.PureComponent {
 
-  propTypes: {
-    value: React.PropTypes.string.isRequired,
-    onChange: React.PropTypes.func.isRequired,
-    intl: React.PropTypes.object.isRequired
-  },
-
-  getInitialState () {
-    return {
+  constructor (props, context) {
+    super(props, context);
+    this.state = {
       open: false
     };
-  },
-
-  mixins: [PureRenderMixin],
+    this.handleToggle = this.handleToggle.bind(this);
+    this.handleClick = this.handleClick.bind(this);
+    this.onGlobalClick = this.onGlobalClick.bind(this);
+    this.setRef = this.setRef.bind(this);
+  }
 
   handleToggle () {
     this.setState({ open: !this.state.open });
-  },
+  }
 
   handleClick (value, e) {
     e.preventDefault();
     this.setState({ open: false });
     this.props.onChange(value);
-  },
+  }
 
   onGlobalClick (e) {
     if (e.target !== this.node && !this.node.contains(e.target) && this.state.open) {
       this.setState({ open: false });
     }
-  },
+  }
 
   componentDidMount () {
     window.addEventListener('click', this.onGlobalClick);
     window.addEventListener('touchstart', this.onGlobalClick);
-  },
+  }
 
   componentWillUnmount () {
     window.removeEventListener('click', this.onGlobalClick);
     window.removeEventListener('touchstart', this.onGlobalClick);
-  },
+  }
 
   setRef (c) {
     this.node = c;
-  },
+  }
 
   render () {
     const { value, onChange, intl } = this.props;
@@ -96,6 +93,12 @@ const PrivacyDropdown = React.createClass({
     );
   }
 
-});
+}
+
+PrivacyDropdown.propTypes = {
+  value: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired,
+  intl: PropTypes.object.isRequired
+};
 
 export default injectIntl(PrivacyDropdown);

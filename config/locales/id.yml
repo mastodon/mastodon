@@ -1,0 +1,285 @@
+---
+id:
+  about:
+    about_mastodon: Mastodon adalah sebuah jejaring sosial <em>terbuka, open-source</em. Sebuah alternatif <em>desentralisasi</em> dari platform komersial, menjauhkan anda resiko dari sebuah perusahaan yang memonopoli komunikasi anda. Pilih server yang anda percayai &mdash; apapun yang anda pilih, anda tetap dapat berinteraksi dengan semua orang. Semua orang dapat menjalankan server Mastodon sendiri dan berpartisipasi dalam <em>jejaring sosial</em> dengan mudah.
+    about_this: Tentang server ini
+    apps: Apl
+    business_email: 'E-mail bisnis:'
+    closed_registrations: Pendaftaran untuk server ini sedang ditutup.
+    contact: Kontak
+    description_headline: Apa itu %{domain}?
+    domain_count_after: server lain
+    domain_count_before: Terhubung dengan
+    features:
+      api: API terbuka untuk aplikasi dan layanan lain
+      blocks: Aneka ragam fitur blokir dan pembisuan
+      characters: 500 karakter per posting
+      chronology: Linimasa berurutan
+      ethics: 'Desain etis: tanpa iklan, tidak ada pelacakan'
+      gifv: Fitur GIFV dan video pendek
+      privacy: Terperinci, pengaturan privasi per postingan
+      public: Linimasa publik
+    features_headline: Yang berbeda dari Mastodon
+    get_started: Mulai
+    links: Link
+    other_instances: Server lain
+    source_code: Kode sumber
+    status_count_after: status
+    status_count_before: Siapa yang membuat
+    terms: Ketentuan
+    user_count_after: pengguna
+    user_count_before: Tempat bernaung bagi
+  accounts:
+    follow: Ikuti
+    followers: Pengikut
+    following: Mengikut
+    nothing_here: Tidak ada apapun disini!
+    people_followed_by: Orang yang diikuti %{name}
+    people_who_follow: Orang-orang yang mengikuti %{name}
+    posts: Postingan
+    remote_follow: Mengikuti
+    unfollow: Berhenti mengikuti
+  admin:
+    accounts:
+      are_you_sure: Anda yakin?
+      display_name: Nama
+      domain: Domain
+      edit: Ubah
+      email: E-mail
+      feed_url: URL Feed
+      followers: Pengikut
+      follows: Mengikut
+      location:
+        all: Semua
+        local: Lokal
+        remote: Remote
+        title: Lokasi
+      media_attachments: Lampiran media
+      moderation:
+        all: Semua
+        silenced: Didiamkan
+        suspended: Disuspen
+        title: Moderasi
+      most_recent_activity: Aktivitas terbaru
+      most_recent_ip: IP terbaru
+      not_subscribed: Tidak berlangganan
+      order:
+        alphabetic: Alfabetik
+        most_recent: Terbaru
+        title: Urutan
+      perform_full_suspension: Lakukan suspen penuh
+      profile_url: URL profil
+      public: Publik
+      push_subscription_expires: Langganan push telah kadaluarsa
+      salmon_url: URL Salmon
+      silence: Diam
+      statuses: Status
+      title: Akun
+      undo_silenced: Undo diamkan
+      undo_suspension: Undo suspen
+      username: Nama pengguna
+      web: Web
+    domain_blocks:
+      add_new: Tambah
+      domain: Domain
+      new:
+        create: Buat pemblokiran
+        hint: Pemblokiran domain tidak akan menghentikan pembuatan akun dalam database, tapi kami akan memberikan moderasi otomatis pada akun-akun tersebut.
+        severity:
+          desc_html: "<strong>Pendiaman</strong> akan membuat semua postingan tidak dapat dilihat oleh semua orang yang tidak mengikutinya. <strong>Suspen</strong> akan menghapus semua konten, media, dan profil dari akun yang bersangkutan."
+          silence: Pendiaman
+          suspend: Suspen
+        title: Pemblokiran domain baru
+      severity: Keparahan
+      title: Pemblokiran Domain
+    pubsubhubbub:
+      callback_url: Callback URL
+      confirmed: Dikonfirmasi
+      expires_in: Kadaluarsa dalam
+      last_delivery: Terakhir dikirim
+      title: PubSubHubbub
+      topic: Topik
+    reports:
+      comment:
+        label: Komentar
+        none: Tidak ada
+      delete: Hapus
+      id: ID
+      mark_as_resolved: Tandai telah diseleseikan
+      report: 'Laporkan #%{id}'
+      reported_account: Akun yang dilaporkan
+      reported_by: Dilaporkan oleh
+      resolved: Terseleseikan
+      silence_account: Akun yang didiamkan
+      status: Status
+      suspend_account: Akun yang disuspen
+      target: Target
+      title: Laporan
+      unresolved: Belum Terseleseikan
+      view: Tampilan
+    settings:
+      click_to_edit: Klik untuk mengubah
+      contact_information:
+        email: Masukkan alamat email
+        label: Informasi kontak
+        username: Masukkan nama pengguna
+      registrations:
+        closed_message:
+          desc_html: Ditampilkan pada halaman depan saat pendaftaran ditutup<br>Anda bisa menggunakan tag HTML
+          title: Pesan penutupan pendaftaran
+        open:
+          disabled: Dinonaktifkan
+          enabled: Diaktifkan
+          title: Pendaftaran terbuka
+      setting: Pengaturan
+      site_description:
+        desc_html: Ditampilkan sebagai sebuah paragraf di halaman depan dan digunakan sebagai tag meta.<br>Anda bisa menggunakan tag HTML, khususnya <code>&lt;a&gt;</code> dan <code>&lt;em&gt;</code>.
+        title: Deskripsi situs
+      site_description_extended:
+        desc_html: Ditampilkan pada halaman informasi tambahan<br>Anda bisa menggunakan tag HTML
+        title: Deskripsi situs tambahan
+      site_title: Judul Situs
+      title: Pengaturan situs
+    title: Administrasi
+  application_mailer:
+    settings: 'Ubah pilihan email: %{link}'
+    signature: Notifikasi Mastodon dari %{instance}
+    view: 'Tampilan:'
+  applications:
+    invalid_url: URL tidak sesuai
+  auth:
+    change_password: Identitas
+    didnt_get_confirmation: Tidak menerima petunjuk konfirmasi?
+    forgot_password: Lupa kata sandi?
+    login: Masuk
+    logout: Keluar
+    register: Daftar
+    resend_confirmation: Kirim ulang email konfirmasi
+    reset_password: Reset kata sandi
+    set_new_password: Tentukan kata sandi baru
+  authorize_follow:
+    error: Sayangnya, ada error saat melihat akun remote
+    follow: Ikuti
+    prompt_html: 'Anda (<strong>%{self}</strong>) telah diminta untuk mengikuti:'
+    title: Mengikuti %{acct}
+  datetime:
+    distance_in_words:
+      about_x_hours: "%{count}j"
+      about_x_months: "%{count}bln"
+      about_x_years: "%{count}thn"
+      almost_x_years: "%{count}thn"
+      half_a_minute: Baru saja
+      less_than_x_minutes: "%{count}mnt"
+      less_than_x_seconds: Baru saja
+      over_x_years: "%{count}thn"
+      x_days: "%{count}hari"
+      x_minutes: "%{count}mnt"
+      x_months: "%{count}bln"
+      x_seconds: "%{count}dtk"
+  errors:
+    '404': Halaman yang anda cari tidak ditemukan
+    '410': Halaman yang anda cari sudah tidak dapat ditemukan lagi.
+    '422':
+      content: Verifikasi keamanan gagal. Apa anda memblokir cookie?
+      title: Verifikasi keamanan gagal.
+  exports:
+    blocks: Anda memblokir
+    csv: CSV
+    follows: Anda mengikuti
+    mutes: Anda membisukan
+    storage: Penyimpanan media
+  generic:
+    changes_saved_msg: Perubahan berhasil disimpan!
+    powered_by: didukung oleh %{link}
+    save_changes: Simpan perubahan
+    validation_errors:
+      one: Ada yang tidak beres! Mohon tinjau error dibawah ini
+      other: Ada yang tidak beres! Mohon tinjau error dibawah ini
+  imports:
+    preface: Anda bisa mengimpor data tertentu seperti orang-orang yang anda ikuti atau anda blokir di server ini, dari file yang dibuat oleh fitur expor di server lain.
+    success: Data anda berhasil diupload dan akan diproses sesegera mungkin
+    types:
+      blocking: Daftar diblokir
+      following: Daftar diikuti
+      muting: Daftar didiamkan
+    upload: Unggah
+  landing_strip_html: <strong>%{name}</strong> adalah pengguna di <strong>%{domain}</strong>.Anda dapat mengikuti mereka atau berinteraksi dengan mereka jika anda memiliki akun di fediverse. Jika anda tidak punya, anda bisa <a href="%{sign_up_path}">daftar disini</a>.
+  media_attachments:
+    validations:
+      images_and_video: Tidak bisa melampirkan video pada status yang telah memiliki gambar
+      too_many: Tidak dapat melampirkan lebih dari 4 file
+  notification_mailer:
+    digest:
+      body: 'Ini adalah ringkasan singkat yang anda lewatkan pada %{instance} sejak kunjungan terakhir anda pada %{since}:'
+      mention: "%{name} menyebut anda di:"
+      new_followers_summary:
+        one: Anda mendapatkan satu pengikut baru! Hore!
+        other: Anda mendapatkan %{count} pengikut baru! Luar biasa!
+      subject:
+        one: "1 notifikasi baru sejak kunjungan terakhir anda pada \U0001F418"
+        other: "%{count} notifikasi baru sejak kunjungan terakhir anda pada \U0001F418"
+    favourite:
+      body: 'Status anda disukai oleh %{name}:'
+      subject: "%{name} menyukai status anda"
+    follow:
+      body: "%{name} mengikuti anda!"
+      subject: "%{name} menjadi pengikut anda"
+    follow_request:
+      body: "%{name} meminta untuk mengikuti anda"
+      subject: 'Pengikut menunggu: %{name}'
+    mention:
+      body: 'Anda disebut oleh %{name} pada:'
+      subject: Anda disebut oleh %{name}
+    reblog:
+      body: 'Status anda di-boost oleh %{name}:'
+      subject: "%{name} mem-boost status anda"
+  pagination:
+    next: Selanjutnya
+    prev: Sebelumnya
+    truncate: "&hellip;"
+  remote_follow:
+    acct: Masukkan namapengguna@domain yang akan anda ikuti
+    missing_resource: Tidak dapat menemukan URL redirect dari akun anda
+    proceed: Lanjutkan untuk mengikuti
+    prompt: 'Anda akan mengikuti:'
+  settings:
+    authorized_apps: Apl yang diizinkan
+    back: Kembali ke Mastodon
+    edit_profile: Ubah profil
+    export: Expor data
+    import: Impor
+    preferences: Pilihan
+    settings: Pengaturan
+    two_factor_authentication: Autentikasi Two-factor
+  statuses:
+    open_in_web: Buka di web
+    over_character_limit: melebihi %{max} karakter
+    show_more: Tampilkan selengkapnya
+    visibilities:
+      private: Hanya tampilkan ke pengikut
+      public: Publik
+      unlisted: Publik, tapi tidak ditampilkan di linimasa publik
+  stream_entries:
+    click_to_show: Klik untuk menampilkan
+    reblogged: di-boost-kan
+    sensitive_content: Konten sensitif
+  time:
+    formats:
+      default: "%d %b %Y, %H:%M"
+  two_factor_authentication:
+    code_hint: Masukkan kode yang dibuat oleh app autentikator sebagai konfirmasi
+    description_html: Jika anda menaktifkan ototentikasi dua faktor, saat login anda harus menggunakan telepon anda  untuk membuat token supaya anda bisa masuk.
+    disable: Matikan
+    enable: Aktifkan
+    enabled_success: Ototentikasi dua faktor telah diaktifkan
+    generate_recovery_codes: Buat Kode Pemulihan
+    instructions_html: "<strong>Pindai kode QR ini pada Otentikator Google anda atau aplikasi TOTP lainnya di telepon anda</strong>. Mulai sekarang, aplikasi tersebut akan membuat token yang bisa anda gunakan untuk login."
+    lost_recovery_codes: Kode pemulihan bisa anda gunakan untuk mendapatkan kembali akses pada akun anda jika anda kehilangan handphone anda. Jika anda kehilangan kode pemulihan, anda bisa membuatnya ulang disini. Kode pemulihan anda yang lama tidak akan bisa digunakan lagi.
+    manual_instructions: 'Jika anda tidak bisa memindai kode QR dan harus memasukkannya secara manual, ini dia kode yang harus dimasukkan:'
+    recovery_codes_regenerated: Kode Pemulihan berhasil dibuat ulang
+    recovery_instructions: Jika anda kehilangan akses pada handphone anda, anda bisa menggunakan kode pemulihan dibawah ini untuk mendapatkan kembali akses pada akun anda. Simpan kode pemulihan anda baik-baik, misalnya dengan mencetaknya atau menyimpannya bersama dokumen penting lainnya.
+    setup: Persiapan
+    wrong_code: Kode yang dimasukkan tidak cocok! Apa waktu server dan waktu di handphone sudah cocok?
+  users:
+    invalid_email: Alamat email tidak cocok
+    invalid_otp_token: Kode dua faktor tidak cocok

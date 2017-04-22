@@ -1,4 +1,4 @@
-import PureRenderMixin from 'react-addons-pure-render-mixin';
+import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import ColumnCollapsable from '../../../components/column_collapsable';
@@ -23,18 +23,7 @@ const rowStyle = {
 
 };
 
-const ColumnSettings = React.createClass({
-
-  propTypes: {
-    settings: ImmutablePropTypes.map.isRequired,
-    onChange: React.PropTypes.func.isRequired,
-    onSave: React.PropTypes.func.isRequired,
-    intl: React.PropTypes.shape({
-      formatMessage: React.PropTypes.func.isRequired
-    }).isRequired
-  },
-
-  mixins: [PureRenderMixin],
+class ColumnSettings extends React.PureComponent {
 
   render () {
     const { settings, intl, onChange, onSave } = this.props;
@@ -82,6 +71,15 @@ const ColumnSettings = React.createClass({
     );
   }
 
-});
+}
+
+ColumnSettings.propTypes = {
+  settings: ImmutablePropTypes.map.isRequired,
+  onChange: PropTypes.func.isRequired,
+  onSave: PropTypes.func.isRequired,
+  intl: PropTypes.shape({
+    formatMessage: PropTypes.func.isRequired
+  }).isRequired
+};
 
 export default injectIntl(ColumnSettings);

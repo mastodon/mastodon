@@ -8,6 +8,6 @@ class RemoteFollow
   validates :acct, presence: true
 
   def initialize(attrs = {})
-    @acct = attrs[:acct]
+    @acct = attrs[:acct].strip unless attrs[:acct].nil?
   end
 end

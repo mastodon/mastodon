@@ -1,5 +1,5 @@
-import PureRenderMixin from 'react-addons-pure-render-mixin';
 import { FormattedMessage } from 'react-intl';
+import PropTypes from 'prop-types';
 
 const outerStyle = {
   position: 'absolute',
@@ -16,17 +16,16 @@ const iconStyle = {
   marginRight: '5px'
 };
 
-const ColumnBackButtonSlim = React.createClass({
+class ColumnBackButtonSlim extends React.PureComponent {
 
-  contextTypes: {
-    router: React.PropTypes.object
-  },
-
-  mixins: [PureRenderMixin],
+  constructor (props, context) {
+    super(props, context);
+    this.handleClick = this.handleClick.bind(this);
+  }
 
   handleClick () {
     this.context.router.push('/');
-  },
+  }
 
   render () {
     return (
@@ -39,6 +38,10 @@ const ColumnBackButtonSlim = React.createClass({
     );
   }
 
-});
+}
+
+ColumnBackButtonSlim.contextTypes = {
+  router: PropTypes.object
+};
 
 export default ColumnBackButtonSlim;

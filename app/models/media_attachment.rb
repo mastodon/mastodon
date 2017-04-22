@@ -106,13 +106,18 @@ class MediaAttachment < ApplicationRecord
   end
 
   def set_type_and_extension
-    if file.blank?
-      self.type = :unknown
-    else
-      self.type = VIDEO_MIME_TYPES.include?(file_content_type) ? :video : :image
-      extension = Paperclip::Interpolations.content_type_extension(file, :original)
-      basename  = Paperclip::Interpolations.basename(file, :original)
-      file.instance_write :file_name, [basename, extension].delete_if(&:empty?).join('.')
-    end
+    self.type = VIDEO_MIME_TYPES.include?(file_content_type) ? :video : :image
+    extension = appropriate_extension
+    basename  = Paperclip::Interpolations.basename(file, :original)
+    file.instance_write :file_name, [basename, extension].delete_if(&:empty?).join('.')
+  end
+
+  def appropriate_extension
+    mime_type = MIME::Types[file.content_type]
+
+    extensions_for_mime_type = mime_type.empty? ? [] : mime_type.first.extensions
+    original_extension       = Paperclip::Interpolations.extension(file, :original)
+
+    extensions_for_mime_type.include?(original_extension) ? original_extension : extensions_for_mime_type.first
   end
 end

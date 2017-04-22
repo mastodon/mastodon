@@ -237,13 +237,14 @@
 }
 
 .accounts-grid {
-  clear: both;
   box-shadow: 0 0 15px rgba($color8, 0.2);
   background: $color5;
   border-radius: 0 0 4px 4px;
   padding: 20px 10px;
   padding-bottom: 10px;
   overflow: hidden;
+  display: flex;
+  flex-wrap: wrap;
 
   @media screen and (max-width: 700px) {
     border-radius: 0;
@@ -253,11 +254,9 @@
   .account-grid-card {
     box-sizing: border-box;
     width: 335px;
-    float: left;
     border: 1px solid $color2;
     border-radius: 4px;
     color: $color1;
-    height: 160px;
     margin-bottom: 10px;
 
     &:nth-child(odd) {

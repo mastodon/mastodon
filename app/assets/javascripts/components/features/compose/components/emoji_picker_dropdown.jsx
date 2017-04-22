@@ -1,10 +1,19 @@
 import Dropdown, { DropdownTrigger, DropdownContent } from 'react-simple-dropdown';
 import EmojiPicker from 'emojione-picker';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
+import PropTypes from 'prop-types';
 import { defineMessages, injectIntl } from 'react-intl';
 
 const messages = defineMessages({
-  emoji: { id: 'emoji_button.label', defaultMessage: 'Insert emoji' }
+  emoji: { id: 'emoji_button.label', defaultMessage: 'Insert emoji' },
+  emoji_search: { id: 'emoji_button.search', defaultMessage: 'Search...' },
+  people: { id: 'emoji_button.people', defaultMessage: 'People' },
+  nature: { id: 'emoji_button.nature', defaultMessage: 'Nature' },
+  food: { id: 'emoji_button.food', defaultMessage: 'Food & Drink' },
+  activity: { id: 'emoji_button.activity', defaultMessage: 'Activity' },
+  travel: { id: 'emoji_button.travel', defaultMessage: 'Travel & Places' },
+  objects: { id: 'emoji_button.objects', defaultMessage: 'Objects' },
+  symbols: { id: 'emoji_button.symbols', defaultMessage: 'Symbols' },
+  flags: { id: 'emoji_button.flags', defaultMessage: 'Flags' }
 });
 
 const settings = {
@@ -19,26 +28,60 @@ const style = {
   top: '5px'
 };
 
-const EmojiPickerDropdown = React.createClass({
+class EmojiPickerDropdown extends React.PureComponent {
 
-  propTypes: {
-    intl: React.PropTypes.object.isRequired,
-    onPickEmoji: React.PropTypes.func.isRequired
-  },
-
-  mixins: [PureRenderMixin],
+  constructor (props, context) {
+    super(props, context);
+    this.setRef = this.setRef.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+  }
 
   setRef (c) {
     this.dropdown = c;
-  },
+  }
 
   handleChange (data) {
     this.dropdown.hide();
     this.props.onPickEmoji(data);
-  },
+  }
 
   render () {
     const { intl } = this.props;
+
+    const categories = {
+      people: {
+        title: intl.formatMessage(messages.people),
+        emoji: 'smile',
+      },
+      nature: {
+        title: intl.formatMessage(messages.nature),
+        emoji: 'hamster',
+      },
+      food: {
+        title: intl.formatMessage(messages.food),
+        emoji: 'pizza',
+      },
+      activity: {
+        title: intl.formatMessage(messages.activity),
+        emoji: 'soccer',
+      },
+      travel: {
+        title: intl.formatMessage(messages.travel),
+        emoji: 'earth_americas',
+      },
+      objects: {
+        title: intl.formatMessage(messages.objects),
+        emoji: 'bulb',
+      },
+      symbols: {
+        title: intl.formatMessage(messages.symbols),
+        emoji: 'clock9',
+      },
+      flags: {
+        title: intl.formatMessage(messages.flags),
+        emoji: 'flag_gb',
+      }
+    }
 
     return (
       <Dropdown ref={this.setRef} style={style}>
@@ -47,12 +90,17 @@ const EmojiPickerDropdown = React.createClass({
         </DropdownTrigger>
 
         <DropdownContent className='dropdown__left light'>
-          <EmojiPicker emojione={settings} onChange={this.handleChange} search={true} />
+          <EmojiPicker emojione={settings} onChange={this.handleChange} searchPlaceholder={intl.formatMessage(messages.emoji_search)} categories={categories} search={true} />
         </DropdownContent>
       </Dropdown>
     );
   }
 
-});
+}
+
+EmojiPickerDropdown.propTypes = {
+  intl: PropTypes.object.isRequired,
+  onPickEmoji: PropTypes.func.isRequired
+};
 
 export default injectIntl(EmojiPickerDropdown);

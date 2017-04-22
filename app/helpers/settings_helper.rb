@@ -9,10 +9,12 @@ module SettingsHelper
     fr: 'Français',
     hr: 'Hrvatski',
     hu: 'Magyar',
+    io: 'Ido',
     it: 'Italiano',
     nl: 'Nederlands',
     no: 'Norsk',
     oc: 'Occitan',
+    pl: 'Polszczyzna',
     pt: 'Português',
     'pt-BR': 'Português do Brasil',
     fi: 'Suomi',
@@ -23,6 +25,7 @@ module SettingsHelper
     'zh-HK': '繁體中文（香港）',
     'zh-TW': '繁體中文（臺灣）',
     bg: 'Български',
+    id: 'Bahasa Indonesia',
   }.freeze
 
   def human_locale(locale)

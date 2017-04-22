@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
+import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { fetchStatus } from '../../actions/statuses';
 import Immutable from 'immutable';
@@ -46,33 +46,30 @@ const makeMapStateToProps = () => {
   return mapStateToProps;
 };
 
-const Status = React.createClass({
-  contextTypes: {
-    router: React.PropTypes.object
-  },
+class Status extends React.PureComponent {
 
-  propTypes: {
-    params: React.PropTypes.object.isRequired,
-    dispatch: React.PropTypes.func.isRequired,
-    status: ImmutablePropTypes.map,
-    ancestorsIds: ImmutablePropTypes.list,
-    descendantsIds: ImmutablePropTypes.list,
-    me: React.PropTypes.number,
-    boostModal: React.PropTypes.bool,
-    autoPlayGif: React.PropTypes.bool
-  },
-
-  mixins: [PureRenderMixin],
+  constructor (props, context) {
+    super(props, context);
+    this.handleFavouriteClick = this.handleFavouriteClick.bind(this);
+    this.handleReplyClick = this.handleReplyClick.bind(this);
+    this.handleModalReblog = this.handleModalReblog.bind(this);
+    this.handleReblogClick = this.handleReblogClick.bind(this);
+    this.handleDeleteClick = this.handleDeleteClick.bind(this);
+    this.handleMentionClick = this.handleMentionClick.bind(this);
+    this.handleOpenMedia = this.handleOpenMedia.bind(this);
+    this.handleOpenVideo = this.handleOpenVideo.bind(this);
+    this.handleReport = this.handleReport.bind(this);
+  }
 
   componentWillMount () {
     this.props.dispatch(fetchStatus(Number(this.props.params.statusId)));
-  },
+  }
 
   componentWillReceiveProps (nextProps) {
     if (nextProps.params.statusId !== this.props.params.statusId && nextProps.params.statusId) {
       this.props.dispatch(fetchStatus(Number(nextProps.params.statusId)));
     }
-  },
+  }
 
   handleFavouriteClick (status) {
     if (status.get('favourited')) {
@@ -80,15 +77,15 @@ const Status = React.createClass({
     } else {
       this.props.dispatch(favourite(status));
     }
-  },
+  }
 
   handleReplyClick (status) {
     this.props.dispatch(replyCompose(status, this.context.router));
-  },
+  }
 
   handleModalReblog (status) {
     this.props.dispatch(reblog(status));
-  },
+  }
 
   handleReblogClick (status, e) {
     if (status.get('reblogged')) {
@@ -100,31 +97,31 @@ const Status = React.createClass({
         this.props.dispatch(openModal('BOOST', { status, onReblog: this.handleModalReblog }));
       }
     }
-  },
+  }
 
   handleDeleteClick (status) {
     this.props.dispatch(deleteStatus(status.get('id')));
-  },
+  }
 
   handleMentionClick (account, router) {
     this.props.dispatch(mentionCompose(account, router));
-  },
+  }
 
   handleOpenMedia (media, index) {
     this.props.dispatch(openModal('MEDIA', { media, index }));
-  },
+  }
 
   handleOpenVideo (media, time) {
     this.props.dispatch(openModal('VIDEO', { media, time }));
-  },
+  }
 
   handleReport (status) {
     this.props.dispatch(initReport(status.get('account'), status));
-  },
+  }
 
   renderChildren (list) {
     return list.map(id => <StatusContainer key={id} id={id} />);
-  },
+  }
 
   render () {
     let ancestors, descendants;
@@ -167,6 +164,21 @@ const Status = React.createClass({
     );
   }
 
-});
+}
+
+Status.contextTypes = {
+  router: PropTypes.object
+};
+
+Status.propTypes = {
+  params: PropTypes.object.isRequired,
+  dispatch: PropTypes.func.isRequired,
+  status: ImmutablePropTypes.map,
+  ancestorsIds: ImmutablePropTypes.list,
+  descendantsIds: ImmutablePropTypes.list,
+  me: PropTypes.number,
+  boostModal: PropTypes.bool,
+  autoPlayGif: PropTypes.bool
+};
 
 export default connect(makeMapStateToProps)(Status);

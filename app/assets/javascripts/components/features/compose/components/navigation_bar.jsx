@@ -1,4 +1,3 @@
-import PureRenderMixin from 'react-addons-pure-render-mixin';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import Avatar from '../../../components/avatar';
 import IconButton from '../../../components/icon_button';
@@ -7,12 +6,7 @@ import Permalink from '../../../components/permalink';
 import { FormattedMessage } from 'react-intl';
 import { Link } from 'react-router';
 
-const NavigationBar = React.createClass({
-  propTypes: {
-    account: ImmutablePropTypes.map.isRequired
-  },
-
-  mixins: [PureRenderMixin],
+class NavigationBar extends React.PureComponent {
 
   render () {
     return (
@@ -27,6 +21,10 @@ const NavigationBar = React.createClass({
     );
   }
 
-});
+}
+
+NavigationBar.propTypes = {
+  account: ImmutablePropTypes.map.isRequired
+};
 
 export default NavigationBar;

@@ -1,4 +1,4 @@
-import PureRenderMixin from 'react-addons-pure-render-mixin';
+import PropTypes from 'prop-types';
 import MediaModal from './media_modal';
 import OnboardingModal from './onboarding_modal';
 import VideoModal from './video_modal';
@@ -12,37 +12,34 @@ const MODAL_COMPONENTS = {
   'BOOST': BoostModal
 };
 
-const ModalRoot = React.createClass({
+class ModalRoot extends React.PureComponent {
 
-  propTypes: {
-    type: React.PropTypes.string,
-    props: React.PropTypes.object,
-    onClose: React.PropTypes.func.isRequired
-  },
-
-  mixins: [PureRenderMixin],
+  constructor (props, context) {
+    super(props, context);
+    this.handleKeyUp = this.handleKeyUp.bind(this);
+  }
 
   handleKeyUp (e) {
     if (e.key === 'Escape' && !!this.props.type) {
       this.props.onClose();
     }
-  },
+  }
 
   componentDidMount () {
     window.addEventListener('keyup', this.handleKeyUp, false);
-  },
+  }
 
   componentWillUnmount () {
     window.removeEventListener('keyup', this.handleKeyUp);
-  },
+  }
 
   willEnter () {
     return { opacity: 0, scale: 0.98 };
-  },
+  }
 
   willLeave () {
     return { opacity: spring(0), scale: spring(0.98) };
-  },
+  }
 
   render () {
     const { type, props, onClose } = this.props;
@@ -81,6 +78,12 @@ const ModalRoot = React.createClass({
     );
   }
 
-});
+}
+
+ModalRoot.propTypes = {
+  type: PropTypes.string,
+  props: PropTypes.object,
+  onClose: PropTypes.func.isRequired
+};
 
 export default ModalRoot;

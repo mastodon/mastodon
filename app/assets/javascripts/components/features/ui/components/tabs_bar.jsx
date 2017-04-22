@@ -1,7 +1,7 @@
 import { Link } from 'react-router';
 import { FormattedMessage } from 'react-intl';
 
-const TabsBar = React.createClass({
+class TabsBar extends React.Component {
 
   render () {
     return (
@@ -18,6 +18,6 @@ const TabsBar = React.createClass({
     );
   }
 
-});
+}
 
 export default TabsBar;

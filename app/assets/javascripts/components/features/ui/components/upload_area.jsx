@@ -1,14 +1,8 @@
-import PureRenderMixin from 'react-addons-pure-render-mixin';
+import PropTypes from 'prop-types';
 import { Motion, spring } from 'react-motion';
 import { FormattedMessage } from 'react-intl';
 
-const UploadArea = React.createClass({
-
-  propTypes: {
-    active: React.PropTypes.bool
-  },
-
-  mixins: [PureRenderMixin],
+class UploadArea extends React.PureComponent {
 
   render () {
     const { active } = this.props;
@@ -27,6 +21,10 @@ const UploadArea = React.createClass({
     );
   }
 
-});
+}
+
+UploadArea.propTypes = {
+  active: PropTypes.bool
+};
 
 export default UploadArea;

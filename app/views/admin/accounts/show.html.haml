@@ -30,10 +30,10 @@
     - else
       %tr
         %th= t('admin.accounts.profile_url')
-        %td= link_to @account.url
+        %td= link_to @account.url, @account.url
       %tr
         %th= t('admin.accounts.feed_url')
-        %td= link_to @account.remote_url
+        %td= link_to @account.remote_url, @account.remote_url
       %tr
         %th= t('admin.accounts.push_subscription_expires')
         %td
@@ -43,7 +43,7 @@
             = t('admin.accounts.not_subscribed')
       %tr
         %th= t('admin.accounts.salmon_url')
-        %td= link_to @account.salmon_url
+        %td= link_to @account.salmon_url, @account.salmon_url
 
     %tr
       %th= t('admin.accounts.follows')

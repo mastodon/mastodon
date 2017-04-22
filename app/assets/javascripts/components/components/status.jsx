@@ -1,7 +1,7 @@
 import ImmutablePropTypes from 'react-immutable-proptypes';
+import PropTypes from 'prop-types';
 import Avatar from './avatar';
 import RelativeTimestamp from './relative_timestamp';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
 import DisplayName from './display_name';
 import MediaGallery from './media_gallery';
 import VideoPlayer from './video_player';
@@ -12,41 +12,25 @@ import { FormattedMessage } from 'react-intl';
 import emojify from '../emoji';
 import escapeTextContentForBrowser from 'escape-html';
 
-const Status = React.createClass({
+class Status extends React.PureComponent {
 
-  contextTypes: {
-    router: React.PropTypes.object
-  },
-
-  propTypes: {
-    status: ImmutablePropTypes.map,
-    wrapped: React.PropTypes.bool,
-    onReply: React.PropTypes.func,
-    onFavourite: React.PropTypes.func,
-    onReblog: React.PropTypes.func,
-    onDelete: React.PropTypes.func,
-    onOpenMedia: React.PropTypes.func,
-    onOpenVideo: React.PropTypes.func,
-    onBlock: React.PropTypes.func,
-    me: React.PropTypes.number,
-    boostModal: React.PropTypes.bool,
-    autoPlayGif: React.PropTypes.bool,
-    muted: React.PropTypes.bool
-  },
-
-  mixins: [PureRenderMixin],
+  constructor (props, context) {
+    super(props, context);
+    this.handleClick = this.handleClick.bind(this);
+    this.handleAccountClick = this.handleAccountClick.bind(this);
+  }
 
   handleClick () {
     const { status } = this.props;
     this.context.router.push(`/statuses/${status.getIn(['reblog', 'id'], status.get('id'))}`);
-  },
+  }
 
   handleAccountClick (id, e) {
     if (e.button === 0) {
       e.preventDefault();
       this.context.router.push(`/accounts/${id}`);
     }
-  },
+  }
 
   render () {
     let media = '';
@@ -112,6 +96,26 @@ const Status = React.createClass({
     );
   }
 
-});
+}
+
+Status.contextTypes = {
+  router: PropTypes.object
+};
+
+Status.propTypes = {
+  status: ImmutablePropTypes.map,
+  wrapped: PropTypes.bool,
+  onReply: PropTypes.func,
+  onFavourite: PropTypes.func,
+  onReblog: PropTypes.func,
+  onDelete: PropTypes.func,
+  onOpenMedia: PropTypes.func,
+  onOpenVideo: PropTypes.func,
+  onBlock: PropTypes.func,
+  me: PropTypes.number,
+  boostModal: PropTypes.bool,
+  autoPlayGif: PropTypes.bool,
+  muted: PropTypes.bool
+};
 
 export default Status;
