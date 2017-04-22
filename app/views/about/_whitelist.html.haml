@@ -1,0 +1,9 @@
+- if DomainWhitelist.enabled?
+  .panel
+    .panel-header#whitelist= t 'about.domain_whitelist'
+    .panel-list
+      %ul
+        - @instance_presenter.whitelist.each do |site|
+          .whitelist-site
+            %li
+              = link_to site.domain + (DomainWhitelist.silenced?(site.domain) ? ' (silenced)' : ''), 'https://' + site.domain, :remote => true
