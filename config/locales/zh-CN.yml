@@ -1,50 +1,177 @@
 ---
 zh-CN:
   about:
-    about_mastodon: Mastodon <em>开源、自由</em>社交网络。<em>去中心化</em>的商业平台替代，避免单一商业公司垄断沟通。可选择、可信任地任意交流。任何人均可以运行自己的 Mastodon 并进行无缝交流。
+    about_mastodon: Mastodon（长毛象）是一个<em>自由、开放源码</em>的社交网站。它是一个分布式的服务，避免你的通信被单一商业机构垄断操控。请你选择一家你信任的 Mastodon 实例，在上面创建帐号，然后你就可以和任一 Mastodon 实例上的用户互通，享受无缝的<em>社交</em>交流。
     about_this: 关于本实例
-    business_email: 商务邮件：
+    apps: 应用程序
+    business_email: 商业电邮︰
     contact: 联络
-    description_headline: 去中心化 %{domain} 是什么？
-    domain_count_after: 其它实例
-    domain_count_before: Connected to
+    description_headline: 关于 %{domain}
+    domain_count_after: 个其它实例
+    domain_count_before: 现已接入
     features:
-      api: 对APP 和服务开放的 API
-      blocks: Rich block and muting tools
-      characters: 每个推多达 500 字符
-      chronology: 按时间线排序
-      ethics: 良心之作：没有广告，没有数据追踪
-      gifv: GIFV 与小视频
-      privacy: 细粒度，可按推设置隐私
-      public: 公共时间线
-    features_headline: Mastodon 与众不同之处
-    get_started: 立即开始
+      api: 开放 API，供各式应用程序及服务接入
+      blocks: 完善的封锁用户、静音功能
+      characters: 每篇嘟文最多 500 字
+      chronology: 纯粹按时间排序，不作多余处理
+      ethics: 良心设计︰没有广告，不追踪你的使用行为
+      gifv: 支持显示 GIFV 动图小视频
+      privacy: 可逐篇嘟文设置隐私
+      public: 提供公共时间轴
+    features_headline: 是什么让 Mastodon 与众不同
+    get_started: 上手使用
     links: 链接
     other_instances: 其它实例
     source_code: 源码
-    status_count_after: statuses
-    status_count_before: Who authored
+    status_count_after: 条嘟文
+    status_count_before: 他们共嘟出了
     terms: 条款
-    user_count_after: users
-    user_count_before: Home to
+    user_count_after: 位用户
+    user_count_before: 这里共注册有
   accounts:
     follow: 关注
-    followers: 粉丝
-    following: 关注
+    followers: 粉丝 # "Fans"
+    following: 关注 # "Follow"
     nothing_here: 神马都没有！
     people_followed_by: 正关注
     people_who_follow: 粉丝
-    posts: 推
-    remote_follow: Remote follow
-    unfollow: 取关
+    posts: 嘟文
+    remote_follow: 跨站关注
+    unfollow: 取消关注
+  admin:
+    accounts:
+      are_you_sure: 你确定吗？
+      display_name: 显示名称
+      domain: 域名
+      edit: 编辑
+      email: 电邮地址
+      feed_url: 订阅 URL
+      followers: 关注者
+      follows: 正在关注
+      location:
+        all: 全部
+        local: 本地
+        remote: 远程
+        title: 地点
+      media_attachments: 媒体文件
+      moderation:
+        all: 全部
+        silenced: 被静音的
+        suspended: 被停权的
+        title: 管理操作
+      most_recent_activity: 最新活动
+      most_recent_ip: 最新 IP 地址
+      not_subscribed: 未订阅
+      order:
+        alphabetic: 按字母
+        most_recent: 按时间
+        title: 排序
+      perform_full_suspension: 实行完全暂停
+      profile_url: 个人文件 URL
+      public: 公共
+      push_subscription_expires: 推送订阅过期
+      salmon_url: Salmon 反馈 URL
+      silence: 静音
+      statuses: 嘟文
+      title: 用户
+      undo_silenced: 解除静音
+      undo_suspension: 解除停权
+      username: 用户名称
+      web: 用户页面
+    domain_blocks:
+      add_new: 添加
+      domain: 域名阻隔
+      created_msg: 正处理域名阻隔
+      destroyed_msg: 已撤销域名阻隔
+      new:
+        create: 添加域名阻隔
+        hint: 「域名阻隔」不会隔绝该域名用户的嘟账户入本站数据库，但会嘟文抵达后，自动套用特定的审批操作。
+        severity:
+          desc_html: 「<strong>自动静音</strong>」令该域名用户的嘟文，设为只对关注者显示，没有关注的人会看不到。
+            「<strong>自动除名</strong>」会自动将该域名用户的嘟文、媒体文件、个人资料自本服务站删除。
+          silence: 自动静音
+          suspend: 自动除名
+        title: 添加域名阻隔
+      reject_media: 拒绝媒体文件
+      reject_media_hint: 删除本地缓存的媒体文件，再也不在未来下载这个站点的文件。和自动除名无关。
+      severities:
+        silence: 自动静音
+        suspend: 自动除名
+      severity: 阻隔程度
+      show:
+        # It turns out that Chinese only uses an "other"
+        # Well, we don't have these -s magic anyway...
+        affected_accounts:
+          other: "数据库中有%{count}个账户受影响"
+        retroactive:
+          silence: 对此域名的所有账户取消静音
+          suspend: 对此域名的所有账户取消除名
+        title: 撤销 %{domain} 的域名阻隔
+        undo: 撤销
+      title: 域名阻隔
+      undo: 撤销
+    instances:
+      account_count: 已知帐号
+      domain_name: 域名
+      title: 已知实例
+    pubsubhubbub:
+      callback_url: 回调 URL
+      confirmed: 确定
+      expires_in: 期限
+      last_delivery: 数据最后送抵时间
+      title: PubSubHubbub 订阅
+      topic: 所订阅资源
+    reports:
+      comment:
+        label: 备注
+        none: 没有
+      delete: 删除
+      id: ID
+      mark_as_resolved: 标示为「已处理」
+      report: '举报 #%{id}'
+      reported_account: 举报用户
+      reported_by: 举报者
+      resolved: 已处理
+      silence_account: 将用户静音
+      status: 状态
+      suspend_account: 将用户停权
+      target: 对象
+      title: 举报
+      unresolved: 未处理
+      view: 查看
+    settings:
+      click_to_edit: 点击编辑
+      contact_information:
+        email: 输入一个公开的电邮地址
+        label: 联系数据
+        username: 输入用户名称
+      registrations:
+        closed_message:
+          desc_html: 当本站暂停接受注册时，会显示这个消息。<br/>
+            可使用 HTML
+          title: 暂停注册消息
+        open:
+          disabled: 停用
+          enabled: 启用
+          title: 开放注册
+      setting: 设置
+      site_description:
+        desc_html: 在首页显示，及在 meta 标签中用作网站介绍。<br>你可以在此使用 HTML 标签，尤其是<code>&lt;a&gt;</code> 和 <code>&lt;em&gt;</code>。
+        title: 本站介绍
+      site_description_extended:
+        desc_html: 本站详细信息页的內容<br/>你可在此使用 HTML
+        title: 本站详细信息
+      site_title: 本站名称
+      title: 网站设置
+    title: 管理
   application_mailer:
-    settings: '更改邮件设置: %{link}'
-    signature: 来自 %{instance} 的提醒
+    settings: 更改电邮设置︰%{link}
+    signature: 来自 %{instance} 的 Mastodon 通知
     view: 查看：
   applications:
     invalid_url: URL 无效
   auth:
-    change_password: 更换密码
+    change_password: 登录凭据
     didnt_get_confirmation: 没有收到确认邮件？
     forgot_password: 忘记密码？
     login: 登录
@@ -54,47 +181,63 @@ zh-CN:
     reset_password: 重置密码
     set_new_password: 设置新密码
   authorize_follow:
-    error: Unfortunately, there was an error looking up the remote account
+    error: 对不起，寻找这个跨站用户时出错
     follow: 关注
-    prompt_html: 'You (<strong>%{self}</strong>) have requested to follow:'
+    prompt_html: 你 (<strong>%{self}</strong>) 正准备关注︰
     title: 关注 %{acct}
   datetime:
     distance_in_words:
-      about_x_hours: 大约 %{count} 小时
-      about_x_months: 大约 %{count} 月
-      about_x_years: 大约 %{count} 年
-      almost_x_years: 几乎 %{count} 年
+      # Ditching "about" as in en
+      about_x_hours: "%{count} 小时"
+      about_x_months: "%{count} 个月"
+      about_x_years: "%{count} 年"
+      almost_x_years: "接近 %{count} 年"
       half_a_minute: 刚刚
-      less_than_x_minutes: "%{count} 分"
+      less_than_x_minutes: "%{count} 分不到"
       less_than_x_seconds: 刚刚
       over_x_years: 超过 %{count} 年
       x_days: "%{count} 天"
       x_minutes: "%{count} 分"
-      x_months: "%{count} 月"
+      x_months: "%{count} 个月"
       x_seconds: "%{count} 秒"
+  errors:
+    '404': 找不到页面
+    '410': 内容已被删除
+    '422':
+      content: 无法确认登录信息。你是不是屏蔽了 Cookie？
+      title: 无法确认登录信息
   exports:
-    blocks: You block
+    blocks: 被你封锁的用户
     csv: CSV
-    follows: 关注
-    storage: 媒体文件
+    follows: 你所关注的用户
+    mutes: 你所静音的用户
+    storage: 媒体容量大小
   generic:
-    changes_saved_msg: 保存成功！
+    changes_saved_msg: 更改已被保存。
     powered_by: 基于 %{link} 构建
     save_changes: 保存
     validation_errors:
-      one: 出错了！什么鬼？
-      other: 出错了！什么鬼？
-  landing_strip_html: <strong>%{name}</strong> is a user on <strong>%{domain}</strong>. You can follow them or interact with them if you have an account anywhere in the fediverse. If you don't, you can <a href="%{sign_up_path}">sign up here</a>.
+      other: 出错了！请看一看以下 %{count} 处闹鬼现场：
+  imports:
+    preface: 你可以在此导入你在其他服务站所导出的数据文件，包括︰你所关注、封锁的用户。
+    success: 你已成功上载数据文件，我们正将数据导入，请稍候
+    types:
+      blocking: 封锁名单
+      following: 关注名单
+      muting: 静音名单
+    upload: 上载
+  landing_strip_html: <strong>%{name}</strong> 是一个在 <strong>%{domain}</strong> 的用户。只要你是象毛世界里（Mastodon、GNU social）任一服务站的用户，便可以跨站关注此站用户并与其沟通。如果你没有这类账户，欢迎在<a href="%{sign_up_path}">此处登记</a>。
   notification_mailer:
     digest:
-      body: 'Here is a brief summary of what you missed on %{instance} since your last visit on %{since}:'
-      mention: "%{name} mentioned you in:"
+      body: 自从你在%{since}使用%{instance}以后，错过了这些嘟嘟滴滴：
+      mention: "%{name} 在此提及了你︰"
       new_followers_summary:
+        # censorship note: Better not mention "don't move your chicken", even if it's a phonetic joke
         one: 有人关注你了！耶！
-        other: 有 %{count} 个人关注了你！别鸡动！
+        other: 有 %{count} 个人关注了你！别激动！
       subject:
-        one: "你有一个新提醒 \U0001F418"
-        other: "%{count} 个提醒太多，赶快去看看 \U0001F418"
+        one: "你有一个新通知 \U0001F418"
+        other: "%{count} 个通知太多，赶快去看看 \U0001F418"
     favourite:
       body: "%{name} 赞你"
       subject: "%{name} 对你点赞"
@@ -102,49 +245,57 @@ zh-CN:
       body: "%{name} 关注了你"
       subject: "%{name} 关注了你"
     follow_request:
-      body: "%{name} 要关注你"
-      subject: 'Pending follower: %{name}'
+      body: "%{name} 要求关注你"
+      subject: 等候关注你的用户︰ %{name}
     mention:
-      body: 'You were mentioned by %{name} in:'
-      subject: You were mentioned by %{name}
+      body: "%{name} 在文章中提及你︰"
+      subject: "%{name} 在文章中提及你"
     reblog:
-      body: 'Your status was boosted by %{name}:'
-      subject: "%{name} boosted your status"
+      body: 你的嘟文得到 %{name} 的转嘟
+      subject: "%{name} 转嘟（嘟嘟滴）了你的嘟文"
   pagination:
     next: 下一页
     prev: 上一页
+    truncate: "……"
   remote_follow:
-    acct: Enter your username@domain you want to follow from
-    missing_resource: Could not find the required redirect URL for your account
-    proceed: Proceed to follow
-    prompt: 'You are going to follow:'
+    acct: 请输入你的︰用户名称@实例域名
+    missing_resource: 无法找到您的账户转接网址
+    proceed: 下一步
+    prompt: 你正准备关注︰
   settings:
-    authorized_apps: 已授权 APP
-    back: 返回
+    authorized_apps: 已授权的应用
+    back: 回到 Mastodon
     edit_profile: 更改个人信息
     export: 数据导出
-    preferences: 设置
+    preferences: 首选项
     settings: 设置
-    two_factor_auth: 两步验证
+    two_factor_authentication: 两步认证
   statuses:
-    open_in_web: 浏览器中打开
-    over_character_limit: 超出范围 %{max}
+    # Hey, this is already in a web browser!
+    open_in_web: 打开网页
+    over_character_limit: 超过了 %{max} 字的限制
+    show_more: 显示更多
     visibilities:
       private: 仅向粉丝公开
       public: 公开
-      unlisted: 公开但不显示在公共时间线中
+      unlisted: 公开，但不显示在公共时间线中
   stream_entries:
     click_to_show: 显示
     reblogged: 转发
-    sensitive_content: 敏感内容Sensitive content
+    sensitive_content: 敏感内容
   time:
     formats:
-      default: "%b %d, %Y, %H:%M"
-  two_factor_auth:
-    description_html: 启用<strong>两步验证</strong>后，登录时强制要求手机上生成的两步验证码
-    disable: 禁用
+      default: "%Y年%-m月%d日 %H:%M"
+  two_factor_authentication:
+    code_hint: 请输入你认证器产生的代码，以确认设置
+    description_html: 当你启用<strong>两步认证</strong>后，你登录时将额外需要使用手机或其他认证器生成的代码。
+    disable: 停用
     enable: 启用
-    instructions_html: "<strong>使用 Google Authenticator 或类似 APP 扫描二维码</strong>。现在起，APP 将会生成登陆时必须的两步验证码。"
+    enabled_success: 已成功启用两步认证
+    instructions_html: "<strong>请用你手机的认证器应用（如 Google Authenticator、Authy），扫描这里的 QR 二维码</strong>。在两步认证启用后，你登录时将需要使用此应用程序产生的认证码。"
+    manual_instructions: 如果你无法扫描 QR 二维码，请手动输入这个文本密码︰
+    setup: 设置
+    wrong_code: 你输入的认证码并不正确！可能服务器时间和你手机不一致，请检查你手机的时钟，或与本站管理员联系。
   users:
-    invalid_email: 无效的邮箱
-    invalid_otp_token: 无效的两步验证码
+    invalid_email: 邮箱格式有误
+    invalid_otp_token: 两步认证码有误

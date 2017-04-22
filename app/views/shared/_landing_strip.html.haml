@@ -1,5 +1,5 @@
 .landing-strip
   = t('landing_strip_html',
     name: content_tag(:span, display_name(account), class: :emojify),
-    domain: Rails.configuration.x.local_domain,
+    domain: site_hostname,
     sign_up_path: new_user_registration_path)

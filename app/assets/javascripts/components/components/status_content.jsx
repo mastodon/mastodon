@@ -1,29 +1,24 @@
 import ImmutablePropTypes from 'react-immutable-proptypes';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
 import escapeTextContentForBrowser from 'escape-html';
+import PropTypes from 'prop-types';
 import emojify from '../emoji';
 import { isRtl } from '../rtl';
 import { FormattedMessage } from 'react-intl';
 import Permalink from './permalink';
 
-const StatusContent = React.createClass({
+class StatusContent extends React.PureComponent {
 
-  contextTypes: {
-    router: React.PropTypes.object
-  },
-
-  propTypes: {
-    status: ImmutablePropTypes.map.isRequired,
-    onClick: React.PropTypes.func
-  },
-
-  getInitialState () {
-    return {
+  constructor (props, context) {
+    super(props, context);
+    this.state = {
       hidden: true
     };
-  },
-
-  mixins: [PureRenderMixin],
+    this.onMentionClick = this.onMentionClick.bind(this);
+    this.onHashtagClick = this.onHashtagClick.bind(this);
+    this.handleMouseDown = this.handleMouseDown.bind(this)
+    this.handleMouseUp = this.handleMouseUp.bind(this);
+    this.handleSpoilerClick = this.handleSpoilerClick.bind(this);
+  };
 
   componentDidMount () {
     const node  = ReactDOM.findDOMNode(this);
@@ -48,7 +43,7 @@ const StatusContent = React.createClass({
         link.addEventListener('click', this.onLinkClick, false);
       }
     }
-  },
+  }
 
   onLinkClick (e) {
     e.stopPropagation();
@@ -60,7 +55,7 @@ const StatusContent = React.createClass({
       this.context.router.push(`/accounts/${mention.get('id')}`);
       e.stopPropagation();
     }
-  },
+  }
 
   onHashtagClick (hashtag, e) {
     hashtag = hashtag.replace(/^#/, '').toLowerCase();
@@ -70,11 +65,11 @@ const StatusContent = React.createClass({
       this.context.router.push(`/timelines/tag/${hashtag}`);
       e.stopPropagation();
     }
-  },
+  }
 
   handleMouseDown (e) {
     this.startXY = [e.clientX, e.clientY];
-  },
+  }
 
   handleMouseUp (e) {
     const [ startX, startY ] = this.startXY;
@@ -89,13 +84,13 @@ const StatusContent = React.createClass({
     }
 
     this.startXY = null;
-  },
+  }
 
   handleSpoilerClick (e) {
     e.preventDefault();
     this.setState({ hidden: !this.state.hidden });
     e.stopPropagation();
-  },
+  }
 
   render () {
     const { status } = this.props;
@@ -154,8 +149,17 @@ const StatusContent = React.createClass({
         />
       );
     }
-  },
+  }
 
-});
+}
+
+StatusContent.contextTypes = {
+  router: PropTypes.object
+};
+
+StatusContent.propTypes = {
+  status: ImmutablePropTypes.map.isRequired,
+  onClick: PropTypes.func
+};
 
 export default StatusContent;

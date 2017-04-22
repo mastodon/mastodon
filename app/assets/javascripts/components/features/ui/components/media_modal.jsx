@@ -1,6 +1,6 @@
 import LoadingIndicator from '../../../components/loading_indicator';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
 import ImmutablePropTypes from 'react-immutable-proptypes';
+import PropTypes from 'prop-types';
 import ExtendedVideoPlayer from '../../../components/extended_video_player';
 import ImageLoader from 'react-imageloader';
 import { defineMessages, injectIntl } from 'react-intl';
@@ -44,30 +44,25 @@ const closeStyle = {
   right: '4px'
 };
 
-const MediaModal = React.createClass({
+class MediaModal extends React.PureComponent {
 
-  propTypes: {
-    media: ImmutablePropTypes.list.isRequired,
-    index: React.PropTypes.number.isRequired,
-    onClose: React.PropTypes.func.isRequired,
-    intl: React.PropTypes.object.isRequired
-  },
-
-  getInitialState () {
-    return {
+  constructor (props, context) {
+    super(props, context);
+    this.state = {
       index: null
     };
-  },
-
-  mixins: [PureRenderMixin],
+    this.handleNextClick = this.handleNextClick.bind(this);
+    this.handlePrevClick = this.handlePrevClick.bind(this);
+    this.handleKeyUp = this.handleKeyUp.bind(this);
+  }
 
   handleNextClick () {
     this.setState({ index: (this.getIndex() + 1) % this.props.media.size});
-  },
+  }
 
   handlePrevClick () {
     this.setState({ index: (this.getIndex() - 1) % this.props.media.size});
-  },
+  }
 
   handleKeyUp (e) {
     switch(e.key) {
@@ -78,19 +73,19 @@ const MediaModal = React.createClass({
       this.handleNextClick();
       break;
     }
-  },
+  }
 
   componentDidMount () {
     window.addEventListener('keyup', this.handleKeyUp, false);
-  },
+  }
 
   componentWillUnmount () {
     window.removeEventListener('keyup', this.handleKeyUp);
-  },
+  }
 
   getIndex () {
     return this.state.index !== null ? this.state.index : this.props.index;
-  },
+  }
 
   render () {
     const { media, intl, onClose } = this.props;
@@ -128,6 +123,13 @@ const MediaModal = React.createClass({
     );
   }
 
-});
+}
+
+MediaModal.propTypes = {
+  media: ImmutablePropTypes.list.isRequired,
+  index: PropTypes.number.isRequired,
+  onClose: PropTypes.func.isRequired,
+  intl: PropTypes.object.isRequired
+};
 
 export default injectIntl(MediaModal);

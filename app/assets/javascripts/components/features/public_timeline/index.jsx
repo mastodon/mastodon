@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
+import PropTypes from 'prop-types';
 import StatusListContainer from '../ui/containers/status_list_container';
 import Column from '../ui/components/column';
 import {
@@ -25,17 +25,7 @@ const mapStateToProps = state => ({
 
 let subscription;
 
-const PublicTimeline = React.createClass({
-
-  propTypes: {
-    dispatch: React.PropTypes.func.isRequired,
-    intl: React.PropTypes.object.isRequired,
-    streamingAPIBaseURL: React.PropTypes.string.isRequired,
-    accessToken: React.PropTypes.string.isRequired,
-    hasUnread: React.PropTypes.bool
-  },
-
-  mixins: [PureRenderMixin],
+class PublicTimeline extends React.PureComponent {
 
   componentDidMount () {
     const { dispatch, streamingAPIBaseURL, accessToken } = this.props;
@@ -72,14 +62,14 @@ const PublicTimeline = React.createClass({
       }
 
     });
-  },
+  }
 
   componentWillUnmount () {
     // if (typeof subscription !== 'undefined') {
     //   subscription.close();
     //   subscription = null;
     // }
-  },
+  }
 
   render () {
     const { intl, hasUnread } = this.props;
@@ -90,8 +80,16 @@ const PublicTimeline = React.createClass({
         <StatusListContainer type='public' emptyMessage={<FormattedMessage id='empty_column.public' defaultMessage='There is nothing here! Write something publicly, or manually follow users from other instances to fill it up' />} />
       </Column>
     );
-  },
+  }
 
-});
+}
+
+PublicTimeline.propTypes = {
+  dispatch: PropTypes.func.isRequired,
+  intl: PropTypes.object.isRequired,
+  streamingAPIBaseURL: PropTypes.string.isRequired,
+  accessToken: PropTypes.string.isRequired,
+  hasUnread: PropTypes.bool
+};
 
 export default connect(mapStateToProps)(injectIntl(PublicTimeline));

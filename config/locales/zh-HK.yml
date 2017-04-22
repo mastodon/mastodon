@@ -1,7 +1,7 @@
 ---
 zh-HK:
   about:
-    about_mastodon: Mastodon （長毛象）是一個<em>自由、開放源碼</em>的社交網站。它是一個分散式的服務，避免你的通訊被單一商業機構壟斷操控。請你選擇一家你信任的 Mastodon 服務站，在上面建立帳號，然後你就可以和任一 Mastodon 服務站上的用戶互通，享受無縫的<em>社交網絡</em>交流。
+    about_mastodon: Mastodon（長毛象）是一個<em>自由、開放源碼</em>的社交網站。它是一個分散式的服務，避免你的通訊被單一商業機構壟斷操控。請你選擇一家你信任的 Mastodon 服務站，在上面建立帳號，然後你就可以和任一 Mastodon 服務站上的用戶互通，享受無縫的<em>社交網絡</em>交流。
     about_this: 關於本服務站
     apps: 應用程式
     business_email: 商業電郵︰
@@ -81,18 +81,40 @@ zh-HK:
       web: 用戶頁面
     domain_blocks:
       add_new: 新增
+      created_msg: 正處理域名阻隔
+      destroyed_msg: 已撤銷域名阻隔
       domain: 域名阻隔
       new:
         create: 新增域名阻隔
-        hint: 「域名阻隔」不會隔絕該域名用戶的文章進入本站資料庫，但會文章抵達後，自動套用特定的審批操作。
+        hint: 「域名阻隔」不會隔絕該域名用戶的賬戶進入本站資料庫，而是會在時候自動套用特定的審批操作。
         severity:
           desc_html: 「<strong>自動靜音</strong>」令該域名用戶的文章，設為只對關注者顯示，沒有關注的人會看不到。
             「<strong>自動刪除</strong>」會自動將該域名用戶的文章、媒體檔案、個人資料自本服務站刪除。
           silence: 自動靜音
           suspend: 自動刪除
         title: 新增域名阻隔
+      reject_media: 拒絕媒體檔案
+      reject_media_hint: 刪除本地緩存的媒體檔案，再也不在未來下載這個站點的檔案。和自動刪除無關。
+      severities:
+        silence: 自動靜音
+        suspend: 自動刪除
       severity: 阻隔分級
+      show:
+        # It turns out that Chinese only uses an "other"
+        # Well, we don't have these -s magic anyway...
+        affected_accounts:
+          other: "資料庫中有%{count}個賬戶受影響"
+        retroactive:
+          silence: 對此域名的所有賬戶取消靜音
+          suspend: 對此域名的所有賬戶取消除名
+        title: 撤銷 %{domain} 的域名阻隔
+        undo: 撤銷
       title: 域名阻隔
+      undo: 撤銷
+    instances:
+      account_count: 已知帳號
+      domain_name: 域名
+      title: 已知服務站
     pubsubhubbub:
       callback_url: 回傳 URL
       confirmed: 確定
@@ -135,8 +157,8 @@ zh-HK:
           title: 開放註冊
       setting: 設定
       site_description:
-        desc_html: 在首頁顯示，及在 meta tag 使用作網站介紹。<br/>
-          你可以在此使用 <code>&lt;a&gt;</code> 和 <code>&lt;em&gt;</code>。
+        desc_html: 在首頁顯示，及在 meta 標籤使用作網站介紹。<br/>
+          你可以在此使用 <code>&lt;a&gt;</code> 和 <code>&lt;em&gt;</code> 等 HTML 標籤。
         title: 本站介紹
       site_description_extended:
         desc_html: 本站詳細資訊頁的內文<br/>你可以在此使用 HTML
@@ -145,7 +167,7 @@ zh-HK:
       title: 網站設定
     title: 管理
   application_mailer:
-    settings: 修改電郵設定︰ %{link}
+    settings: 修改電郵設定︰%{link}
     signature: 來自 %{instance} 的 Mastodon 通知
     view: 進入瀏覽︰
   applications:
@@ -174,7 +196,7 @@ zh-HK:
       half_a_minute: 剛剛
       less_than_x_minutes: 少於%{count}分鐘前
       less_than_x_seconds: 剛剛
-      over_x_years: "%{count}y"
+      over_x_years: "%{count}年"
       x_days: "%{count}日"
       x_minutes: "%{count}分鐘"
       x_months: "%{count}個月"
@@ -204,7 +226,7 @@ zh-HK:
     types:
       blocking: 被你封鎖的用戶名單
       following: 你所關注的用戶名單
-      muting: Muting list
+      muting: 靜音名單
     upload: 上載
   landing_strip_html: <strong>%{name}</strong> 是一個在 <strong>%{domain}</strong> 的用戶。只要你有任何
     Mastodon 服務站、或者聯盟網站的用戶，便可以跨站關注此站用戶，或者與他們互動。如果你沒有這類用戶，歡迎在<a href="%{sign_up_path}">此處登記</a>。
@@ -254,7 +276,7 @@ zh-HK:
     import: 匯入
     preferences: 偏好設定
     settings: 設定
-    two_factor_auth: 雙重認證
+    two_factor_authentication: 雙重認證
   statuses:
     open_in_web: 開啟網頁
     over_character_limit: 超過了 %{max} 字的限制
@@ -270,7 +292,7 @@ zh-HK:
   time:
     formats:
       default: "%Y年%-m月%d日 %H:%M"
-  two_factor_auth:
+  two_factor_authentication:
     code_hint: 請輸入你認證器產生的代碼，以確認設定
     description_html: 當你啟用<strong>雙重認證</strong>後，你登入時將需要使你手機、或其他種類認證器產生的代碼。
     disable: 停用

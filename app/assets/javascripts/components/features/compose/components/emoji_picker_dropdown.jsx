@@ -1,10 +1,11 @@
 import Dropdown, { DropdownTrigger, DropdownContent } from 'react-simple-dropdown';
 import EmojiPicker from 'emojione-picker';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
+import PropTypes from 'prop-types';
 import { defineMessages, injectIntl } from 'react-intl';
 
 const messages = defineMessages({
-  emoji: { id: 'emoji_button.label', defaultMessage: 'Insert emoji' }
+  emoji: { id: 'emoji_button.label', defaultMessage: 'Insert emoji' },
+  emoji_search: { id: 'emoji_button.search', defaultMessage: 'Search...' }
 });
 
 const settings = {
@@ -19,23 +20,22 @@ const style = {
   top: '5px'
 };
 
-const EmojiPickerDropdown = React.createClass({
+class EmojiPickerDropdown extends React.PureComponent {
 
-  propTypes: {
-    intl: React.PropTypes.object.isRequired,
-    onPickEmoji: React.PropTypes.func.isRequired
-  },
-
-  mixins: [PureRenderMixin],
+  constructor (props, context) {
+    super(props, context);
+    this.setRef = this.setRef.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+  }
 
   setRef (c) {
     this.dropdown = c;
-  },
+  }
 
   handleChange (data) {
     this.dropdown.hide();
     this.props.onPickEmoji(data);
-  },
+  }
 
   render () {
     const { intl } = this.props;
@@ -47,12 +47,17 @@ const EmojiPickerDropdown = React.createClass({
         </DropdownTrigger>
 
         <DropdownContent className='dropdown__left light'>
-          <EmojiPicker emojione={settings} onChange={this.handleChange} search={true} />
+          <EmojiPicker emojione={settings} onChange={this.handleChange} searchPlaceholder={intl.formatMessage(messages.emoji_search)} search={true} />
         </DropdownContent>
       </Dropdown>
     );
   }
 
-});
+}
+
+EmojiPickerDropdown.propTypes = {
+  intl: PropTypes.object.isRequired,
+  onPickEmoji: PropTypes.func.isRequired
+};
 
 export default injectIntl(EmojiPickerDropdown);

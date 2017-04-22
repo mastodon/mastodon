@@ -1,4 +1,5 @@
 import { Provider } from 'react-redux';
+import PropTypes from 'prop-types';
 import configureStore from '../store/configureStore';
 import {
   refreshTimelineSuccess,
@@ -48,6 +49,7 @@ import es from 'react-intl/locale-data/es';
 import fi from 'react-intl/locale-data/fi';
 import fr from 'react-intl/locale-data/fr';
 import hu from 'react-intl/locale-data/hu';
+import it from 'react-intl/locale-data/it';
 import ja from 'react-intl/locale-data/ja';
 import pt from 'react-intl/locale-data/pt';
 import nl from 'react-intl/locale-data/nl';
@@ -56,7 +58,10 @@ import ru from 'react-intl/locale-data/ru';
 import uk from 'react-intl/locale-data/uk';
 import zh from 'react-intl/locale-data/zh';
 import bg from 'react-intl/locale-data/bg';
+import id from 'react-intl/locale-data/id';
 import { localeData as zh_hk } from '../locales/zh-hk';
+import { localeData as zh_cn } from '../locales/zh-cn';
+import pt_br from '../locales/pt-br';
 import getMessagesForLocale from '../locales';
 import { hydrateStore } from '../actions/store';
 import createStream from '../stream';
@@ -77,22 +82,22 @@ addLocaleData([
   ...fi,
   ...fr,
   ...hu,
+  ...it,
   ...ja,
   ...pt,
+  ...pt_br,
   ...nl,
   ...no,
   ...ru,
   ...uk,
   ...zh,
   ...zh_hk,
+  ...zh_cn,
   ...bg,
+  ...id,
 ]);
 
-const Mastodon = React.createClass({
-
-  propTypes: {
-    locale: React.PropTypes.string.isRequired
-  },
+class Mastodon extends React.Component {
 
   componentDidMount() {
     const { locale }  = this.props;
@@ -137,14 +142,14 @@ const Mastodon = React.createClass({
     }
 
     store.dispatch(showOnboardingOnce());
-  },
+  }
 
   componentWillUnmount () {
     if (typeof this.subscription !== 'undefined') {
       this.subscription.close();
       this.subscription = null;
     }
-  },
+  }
 
   render () {
     const { locale } = this.props;
@@ -187,6 +192,10 @@ const Mastodon = React.createClass({
     );
   }
 
-});
+}
+
+Mastodon.propTypes = {
+  locale: PropTypes.string.isRequired
+};
 
 export default Mastodon;
