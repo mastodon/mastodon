@@ -101,8 +101,6 @@ class StatusActionBar extends React.PureComponent {
       reply_title = intl.formatMessage(messages.replyAll);
     }
     
-    
-
     return (
       <div className='status__action-bar'>
         <div className='status__action-bar-button-wrapper'><IconButton title={reply_title} icon={reply_icon} onClick={this.handleReplyClick} /></div>
