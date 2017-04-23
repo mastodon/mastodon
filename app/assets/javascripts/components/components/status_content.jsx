@@ -6,7 +6,8 @@ import { isRtl } from '../rtl';
 import { FormattedMessage } from 'react-intl';
 import Permalink from './permalink';
 
-const MathJax = require('react-mathjax');
+const loadScript = require('load-script');
+// const MathJax = require('react-mathjax');
 const reactStringReplace = require('react-string-replace')
 
 function mapAlternate(array, fn1, fn2, thisArg) {
@@ -19,12 +20,18 @@ function mapAlternate(array, fn1, fn2, thisArg) {
 }
 
 const componentToString = c => {
-    var aDom = document.createElement('span');
-    var result = null;
+    let aDom = document.createElement('span');
+    var finished = false;
     ReactDOM.render(c, aDom, () => {
-	result = aDom.innerHTML;
+	finished = true;
     });
-    return result;
+    while(finished == false) { }
+    
+    const s = aDom.outerHTML;
+    console.log([aDom,s]);
+    result = s;
+
+    return s;
 };
 
 const mathjaxify = str => {
@@ -41,6 +48,12 @@ const mathjaxify = str => {
     console.log(s);
     return s;
 };
+
+const isMathjaxifyable = str => {
+    return [ /\$\$(.*?)\$\$/g, /\$(.*?)\$/g, /\\\((.*?)\\\)/g, /\\\[(.*?)\\\]/g]
+    .map( r => str.match(r))
+    .reduce((prev, elem) => prev || elem, false);
+}
 
 class StatusContent extends React.PureComponent {
 
@@ -78,6 +91,42 @@ class StatusContent extends React.PureComponent {
         link.setAttribute('title', link.href);
       }
     }
+      loadScript('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML,Safe',
+	  (err, script) => {
+	      if (err) {
+	      } else {
+		  const options = {
+		      tex2jax: {
+			  inlineMath: [ ['$','$'], ['\\(','\\)'] ]
+		      },
+		      skipStartupTypeset: true,
+		      showProcessingMessages: false,
+		      messageStyle: "none",
+		      showMathMenu: false,
+		      showMathMenuMSIE: false,
+		      "SVG": {
+			  font:
+			  "TeX"
+			  // "STIX-Web"
+			  // "Asana-Math"
+			  // "Neo-Euler"
+			  // "Gyre-Pagella"
+			  // "Gyre-Termes"
+			  // "Latin-Modern"
+		      },
+		      "HTML-CSS": {
+			  availableFonts: ["TeX"],
+			  preferredFont: "TeX",
+			  webFont: "TeX"
+		      }
+		  };
+		  MathJax.Hub.Config(options);
+		  const elements = [...document.querySelectorAll('.status__content')];
+		  MathJax.Hub.Queue(["Typeset", MathJax.Hub, elements]);
+		  // MathJax.Hub.Queue(["Typeset", MathJax.Hub, node]);
+		  // console.log(elements);
+	      }
+	  });
   }
 
   onMentionClick (mention, e) {
@@ -124,7 +173,7 @@ class StatusContent extends React.PureComponent {
     const { status } = this.props;
     const { hidden } = this.state;
 
-    const content = { __html: mathjaxify(emojify(status.get('content'))) };
+    const content = { __html: emojify(status.get('content')) };
     const spoilerContent = { __html: emojify(escapeTextContentForBrowser(status.get('spoiler_text', ''))) };
     const directionStyle = { direction: 'ltr' };
 
