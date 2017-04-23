@@ -13,7 +13,7 @@ export function fetchStatusCard(id) {
     dispatch(fetchStatusCardRequest(id));
 
     api(getState).get(`/api/v1/statuses/${id}/card`).then(response => {
-      if (!response.data.url || !response.data.title || !response.data.description) {
+      if (!response.data.url) {
         return;
       }
 
