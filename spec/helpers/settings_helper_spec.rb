@@ -10,4 +10,13 @@ describe SettingsHelper do
       expect(described_class::HUMAN_LOCALES.keys).to eq(options)
     end
   end
+
+  describe 'human_locale' do
+    it 'finds the human readable local description from a key' do
+      # Ensure the value is as we expect
+      expect(described_class::HUMAN_LOCALES[:en]).to eq('English')
+
+      expect(helper.human_locale(:en)).to eq('English')
+    end
+  end
 end
