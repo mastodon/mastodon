@@ -19,7 +19,7 @@ class FetchLinkCardService < BaseService
 
     card.title       = meta_property(page, 'og:title') || page.at_xpath('//title')&.content
     card.description = meta_property(page, 'og:description') || meta_property(page, 'description')
-    card.image       = URI.parse(meta_property(page, 'og:image')) if meta_property(page, 'og:image')
+    card.image       = URI.parse(Addressable::URI.parse(meta_property(page, 'og:image')).normalize.to_s) if meta_property(page, 'og:image')
 
     return if card.title.blank?
 

@@ -178,22 +178,22 @@ class Account < ApplicationRecord
   end
 
   def avatar_remote_url=(url)
-    parsed_url = URI.parse(url)
+    parsed_url = Addressable::URI.parse(url).normalize
 
     return if !%w(http https).include?(parsed_url.scheme) || parsed_url.host.empty? || self[:avatar_remote_url] == url
 
-    self.avatar              = parsed_url
+    self.avatar              = URI.parse(parsed_url.to_s)
     self[:avatar_remote_url] = url
   rescue OpenURI::HTTPError => e
     Rails.logger.debug "Error fetching remote avatar: #{e}"
   end
 
   def header_remote_url=(url)
-    parsed_url = URI.parse(url)
+    parsed_url = Addressable::URI.parse(url).normalize
 
     return if !%w(http https).include?(parsed_url.scheme) || parsed_url.host.empty? || self[:header_remote_url] == url
 
-    self.header              = parsed_url
+    self.header              = URI.parse(parsed_url.to_s)
     self[:header_remote_url] = url
   rescue OpenURI::HTTPError => e
     Rails.logger.debug "Error fetching remote header: #{e}"

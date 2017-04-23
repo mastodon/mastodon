@@ -71,7 +71,7 @@ class TagManager
   end
 
   def local_url?(url)
-    uri    = Addressable::URI.parse(url)
+    uri    = Addressable::URI.parse(url).normalize
     domain = uri.host + (uri.port ? ":#{uri.port}" : '')
     TagManager.instance.local_domain?(domain)
   end

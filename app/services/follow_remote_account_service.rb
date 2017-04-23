@@ -73,7 +73,7 @@ class FollowRemoteAccountService < BaseService
   end
 
   def get_feed(url)
-    response = http_client.get(Addressable::URI.parse(url))
+    response = http_client.get(Addressable::URI.parse(url).normalize)
     [response.to_s, Nokogiri::XML(response)]
   end
 
