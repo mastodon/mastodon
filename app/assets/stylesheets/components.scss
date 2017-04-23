@@ -895,6 +895,7 @@ a.status__content__spoiler-link {
 
 .notification__display-name {
   color: inherit;
+  font-weight: 500;
   text-decoration: none;
 
   &:hover {
@@ -2785,6 +2786,20 @@ button.icon-button.active i.fa-retweet {
   width: 480px;
   position: relative;
   flex-direction: column;
+
+  .status__display-name {
+    display: block;
+    max-width: 100%;
+    padding-right: 25px;
+  }
+
+  .status__avatar {
+    height: 28px;
+    left: 10px;
+    position: absolute;
+    top: 10px;
+    width: 48px;
+  }
 }
 
 .boost-modal__container {
@@ -2813,6 +2828,15 @@ button.icon-button.active i.fa-retweet {
   .button {
     flex: 0 0 auto;
   }
+}
+
+.boost-modal__status-header {
+  font-size: 15px;
+}
+
+.boost-modal__status-time {
+  float: right;
+  font-size: 14px;
 }
 
 .loading-bar {
