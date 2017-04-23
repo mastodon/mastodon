@@ -1,7 +1,7 @@
 import ComposeFormContainer from './containers/compose_form_container';
 import UploadFormContainer from './containers/upload_form_container';
 import NavigationContainer from './containers/navigation_container';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { mountCompose, unmountCompose } from '../../actions/compose';
 import { Link } from 'react-router';
@@ -22,24 +22,15 @@ const mapStateToProps = state => ({
   showSearch: state.getIn(['search', 'submitted']) && !state.getIn(['search', 'hidden'])
 });
 
-const Compose = React.createClass({
-
-  propTypes: {
-    dispatch: React.PropTypes.func.isRequired,
-    withHeader: React.PropTypes.bool,
-    showSearch: React.PropTypes.bool,
-    intl: React.PropTypes.object.isRequired
-  },
-
-  mixins: [PureRenderMixin],
+class Compose extends React.PureComponent {
 
   componentDidMount () {
     this.props.dispatch(mountCompose());
-  },
+  }
 
   componentWillUnmount () {
     this.props.dispatch(unmountCompose());
-  },
+  }
 
   render () {
     const { withHeader, showSearch, intl } = this.props;
@@ -49,11 +40,11 @@ const Compose = React.createClass({
     if (withHeader) {
       header = (
         <div className='drawer__header'>
-          <Link title={intl.formatMessage(messages.start)} className='drawer__tab' to='/getting-started'><i className='fa fa-fw fa-asterisk' /></Link>
-          <Link title={intl.formatMessage(messages.community)} className='drawer__tab' to='/timelines/public/local'><i className='fa fa-fw fa-users' /></Link>
-          <Link title={intl.formatMessage(messages.public)} className='drawer__tab' to='/timelines/public'><i className='fa fa-fw fa-globe' /></Link>
-          <a title={intl.formatMessage(messages.preferences)} className='drawer__tab' href='/settings/preferences'><i className='fa fa-fw fa-cog' /></a>
-          <a title={intl.formatMessage(messages.logout)} className='drawer__tab' href='/auth/sign_out' data-method='delete'><i className='fa fa-fw fa-sign-out' /></a>
+          <Link to='/getting-started' className='drawer__tab' title={intl.formatMessage(messages.start)} aria-label={intl.formatMessage(messages.start)}><i className='fa fa-fw fa-asterisk' /></Link>
+          <Link to='/timelines/public/local' className='drawer__tab' title={intl.formatMessage(messages.community)} aria-label={intl.formatMessage(messages.community)}><i className='fa fa-fw fa-users' /></Link>
+          <Link to='/timelines/public' className='drawer__tab' title={intl.formatMessage(messages.public)} aria-label={intl.formatMessage(messages.public)}><i className='fa fa-fw fa-globe' /></Link>
+          <a href='/settings/preferences' className='drawer__tab' title={intl.formatMessage(messages.preferences)} aria-label={intl.formatMessage(messages.preferences)}><i className='fa fa-fw fa-cog' /></a>
+          <a href='/auth/sign_out' className='drawer__tab' data-method='delete' title={intl.formatMessage(messages.logout)} aria-label={intl.formatMessage(messages.logout)}><i className='fa fa-fw fa-sign-out' /></a>
         </div>
       );
     }
@@ -82,6 +73,13 @@ const Compose = React.createClass({
     );
   }
 
-});
+}
+
+Compose.propTypes = {
+  dispatch: PropTypes.func.isRequired,
+  withHeader: PropTypes.bool,
+  showSearch: PropTypes.bool,
+  intl: PropTypes.object.isRequired
+};
 
 export default connect(mapStateToProps)(injectIntl(Compose));

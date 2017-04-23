@@ -2,7 +2,7 @@
   = t('accounts.people_followed_by', name: display_name(@account))
 
 - content_for :header_tags do
-  = render 'accounts/og', account: @account
+  = render 'accounts/og', account: @account, url: account_followers_url(@account, only_path: false)
 
 = render 'accounts/header', account: @account
 

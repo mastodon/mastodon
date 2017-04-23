@@ -1,5 +1,5 @@
-import PureRenderMixin from 'react-addons-pure-render-mixin';
 import ImmutablePropTypes from 'react-immutable-proptypes';
+import PropTypes from 'prop-types';
 import DropdownMenu from '../../../components/dropdown_menu';
 import { Link } from 'react-router';
 import { defineMessages, injectIntl, FormattedMessage, FormattedNumber } from 'react-intl';
@@ -17,31 +17,7 @@ const messages = defineMessages({
   disclaimer: { id: 'account.disclaimer', defaultMessage: 'This user is from another instance. This number may be larger.' }
 });
 
-const outerDropdownStyle = {
-  padding: '10px',
-  flex: '1 1 auto'
-};
-
-const outerLinksStyle = {
-  flex: '1 1 auto',
-  display: 'flex',
-  lineHeight: '18px'
-};
-
-const ActionBar = React.createClass({
-
-  propTypes: {
-    account: ImmutablePropTypes.map.isRequired,
-    me: React.PropTypes.number.isRequired,
-    onFollow: React.PropTypes.func,
-    onBlock: React.PropTypes.func.isRequired,
-    onMention: React.PropTypes.func.isRequired,
-    onReport: React.PropTypes.func.isRequired,
-    onMute: React.PropTypes.func.isRequired,
-    intl: React.PropTypes.object.isRequired
-  },
-
-  mixins: [PureRenderMixin],
+class ActionBar extends React.PureComponent {
 
   render () {
     const { account, me, intl } = this.props;
@@ -76,11 +52,11 @@ const ActionBar = React.createClass({
 
     return (
       <div className='account__action-bar'>
-        <div style={outerDropdownStyle}>
+        <div className='account__action-bar-dropdown'>
           <DropdownMenu items={menu} icon='bars' size={24} direction="right" />
         </div>
 
-        <div style={outerLinksStyle}>
+        <div className='account__action-bar-links'>
           <Link className='account__action-bar__tab' to={`/accounts/${account.get('id')}`}>
             <span><FormattedMessage id='account.posts' defaultMessage='Posts' /></span>
             <strong><FormattedNumber value={account.get('statuses_count')} /> {extraInfo}</strong>
@@ -100,6 +76,17 @@ const ActionBar = React.createClass({
     );
   }
 
-});
+}
+
+ActionBar.propTypes = {
+  account: ImmutablePropTypes.map.isRequired,
+  me: PropTypes.number.isRequired,
+  onFollow: PropTypes.func,
+  onBlock: PropTypes.func.isRequired,
+  onMention: PropTypes.func.isRequired,
+  onReport: PropTypes.func.isRequired,
+  onMute: PropTypes.func.isRequired,
+  intl: PropTypes.object.isRequired
+};
 
 export default injectIntl(ActionBar);

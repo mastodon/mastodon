@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
+import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import LoadingIndicator from '../../components/loading_indicator';
 import {
@@ -18,27 +18,25 @@ const mapStateToProps = (state, props) => ({
   accountIds: state.getIn(['user_lists', 'followers', Number(props.params.accountId), 'items'])
 });
 
-const Followers = React.createClass({
+class Followers extends React.PureComponent {
 
-  propTypes: {
-    params: React.PropTypes.object.isRequired,
-    dispatch: React.PropTypes.func.isRequired,
-    accountIds: ImmutablePropTypes.list
-  },
-
-  mixins: [PureRenderMixin],
+  constructor (props, context) {
+    super(props, context);
+    this.handleScroll = this.handleScroll.bind(this);
+    this.handleLoadMore = this.handleLoadMore.bind(this);
+  }
 
   componentWillMount () {
     this.props.dispatch(fetchAccount(Number(this.props.params.accountId)));
     this.props.dispatch(fetchFollowers(Number(this.props.params.accountId)));
-  },
+  }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.params.accountId !== this.props.params.accountId && nextProps.params.accountId) {
       this.props.dispatch(fetchAccount(Number(nextProps.params.accountId)));
       this.props.dispatch(fetchFollowers(Number(nextProps.params.accountId)));
     }
-  },
+  }
 
   handleScroll (e) {
     const { scrollTop, scrollHeight, clientHeight } = e.target;
@@ -46,12 +44,12 @@ const Followers = React.createClass({
     if (scrollTop === scrollHeight - clientHeight) {
       this.props.dispatch(expandFollowers(Number(this.props.params.accountId)));
     }
-  },
+  }
 
   handleLoadMore (e) {
     e.preventDefault();
     this.props.dispatch(expandFollowers(Number(this.props.params.accountId)));
-  },
+  }
 
   render () {
     const { accountIds } = this.props;
@@ -70,7 +68,7 @@ const Followers = React.createClass({
 
         <ScrollContainer scrollKey='followers'>
           <div className='scrollable' onScroll={this.handleScroll}>
-            <div>
+            <div className='followers'>
               <HeaderContainer accountId={this.props.params.accountId} />
               {accountIds.map(id => <AccountContainer key={id} id={id} withNote={false} />)}
               <LoadMore onClick={this.handleLoadMore} />
@@ -81,6 +79,12 @@ const Followers = React.createClass({
     );
   }
 
-});
+}
+
+Followers.propTypes = {
+  params: PropTypes.object.isRequired,
+  dispatch: PropTypes.func.isRequired,
+  accountIds: ImmutablePropTypes.list
+};
 
 export default connect(mapStateToProps)(Followers);
