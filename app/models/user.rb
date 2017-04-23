@@ -19,6 +19,10 @@ class User < ApplicationRecord
   scope :admins,    -> { where(admin: true) }
   scope :confirmed, -> { where.not(confirmed_at: nil) }
 
+  def allowed_languages
+    ['en', 'es']
+  end
+
   def confirmed?
     confirmed_at.present?
   end
