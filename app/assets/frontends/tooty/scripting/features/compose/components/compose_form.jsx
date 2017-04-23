@@ -186,8 +186,7 @@ const messages = defineMessages({
 
           <div style={{ display: 'flex', minWidth: 0 }}>
             <div style={{ paddingTop: '10px', marginRight: '16px', lineHeight: '36px' }}><CharacterCounter max={this.props.max_chars} text={text} /></div>
-            <div style={{ paddingTop: '10px', overflow: 'hidden' }}><Button text={publishText} onClick={this.handleSubmit} disabled={disabled || text.replace(/[\uD800-\uDBFF][\uDC00-\uDFFF]/g, "_").length > {this.props.max_chars}} block />} /></div>
-
+            <div style={{ paddingTop: '10px', overflow: 'hidden' }}><Button text={publishText} onClick={this.handleSubmit} disabled={disabled || text.replace(/[\uD800-\uDBFF][\uDC00-\uDFFF]/g, "_").length > this.props.max_chars} block /></div>
           </div>
         </div>
       </div>
