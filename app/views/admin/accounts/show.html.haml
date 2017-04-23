@@ -77,6 +77,9 @@
   - else
     = link_to t('admin.accounts.silence'), admin_account_silence_path(@account.id), method: :post, class: 'button'
 
+  - unless @account.user.confirmed?
+    = link_to t('admin.accounts.confirm'), admin_account_confirmation_path(@account.id), method: :post, class: 'button'
+
   - if @account.suspended?
     = link_to t('admin.accounts.undo_suspension'), admin_account_suspension_path(@account.id), method: :delete, class: 'button'
   - else
