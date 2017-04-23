@@ -14,11 +14,6 @@ const messages = defineMessages({
   change_privacy: { id: 'privacy.change', defaultMessage: 'Adjust status privacy' }
 });
 
-const iconStyle = {
-  lineHeight: '27px',
-  height: null
-};
-
 class PrivacyDropdown extends React.PureComponent {
 
   constructor (props, context) {
@@ -77,7 +72,7 @@ class PrivacyDropdown extends React.PureComponent {
 
     return (
       <div ref={this.setRef} className={`privacy-dropdown ${open ? 'active' : ''}`}>
-        <div className='privacy-dropdown__value'><IconButton icon={valueOption.icon} title={intl.formatMessage(messages.change_privacy)} size={18} active={open} inverted onClick={this.handleToggle} style={iconStyle} /></div>
+        <div className='privacy-dropdown__value'><IconButton className='privacy-dropdown__value-icon' icon={valueOption.icon} title={intl.formatMessage(messages.change_privacy)} size={18} active={open} inverted onClick={this.handleToggle} /></div>
         <div className='privacy-dropdown__dropdown'>
           {options.map(item =>
             <div role='button' tabIndex='0' key={item.value} onClick={this.handleClick.bind(this, item.value)} className={`privacy-dropdown__option ${item.value === value ? 'active' : ''}`}>

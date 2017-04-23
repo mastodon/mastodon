@@ -1,16 +1,6 @@
 import { Motion, spring } from 'react-motion';
 import PropTypes from 'prop-types';
 
-const iconStyle = {
-  fontSize: '16px',
-  padding: '15px',
-  position: 'absolute',
-  right: '0',
-  top: '-48px',
-  cursor: 'pointer',
-  zIndex: '3'
-};
-
 class ColumnCollapsable extends React.PureComponent {
 
   constructor (props, context) {
@@ -38,8 +28,8 @@ class ColumnCollapsable extends React.PureComponent {
     const collapsedClassName = collapsed ? 'collapsable-collapsed' : 'collapsable';
 
     return (
-      <div style={{ position: 'relative' }}>
-        <div role='button' tabIndex='0' title={`${title}`} style={{...iconStyle }} className={`column-icon ${collapsedClassName}`} onClick={this.handleToggleCollapsed}>
+      <div className='column-collapsable'>
+        <div role='button' tabIndex='0' title={`${title}`} className={`column-icon ${collapsedClassName}`} onClick={this.handleToggleCollapsed}>
           <i className={`fa fa-${icon}`} />
         </div>
 

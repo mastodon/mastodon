@@ -15,10 +15,10 @@ class UploadForm extends React.PureComponent {
     const { intl, media } = this.props;
 
     const uploads = media.map(attachment =>
-      <div key={attachment.get('id')} style={{ margin: '5px', flex: '1 1 0' }}>
+      <div className='compose-form__upload' key={attachment.get('id')}>
         <Motion defaultStyle={{ scale: 0.8 }} style={{ scale: spring(1, { stiffness: 180, damping: 12 }) }}>
           {({ scale }) =>
-            <div style={{ transform: `translateZ(0) scale(${scale})`, width: '100%', height: '100px', borderRadius: '4px', background: `url(${attachment.get('preview_url')}) no-repeat center`, backgroundSize: 'cover' }}>
+            <div style={{ transform: `translateZ(0) scale(${scale})`, background: `url(${attachment.get('preview_url')}) no-repeat center` }}>
               <IconButton icon='times' title={intl.formatMessage(messages.undo)} size={36} onClick={this.props.onRemoveFile.bind(this, attachment.get('id'))} />
             </div>
           }
@@ -27,9 +27,9 @@ class UploadForm extends React.PureComponent {
     );
 
     return (
-      <div style={{ overflow: 'hidden' }}>
+      <div className='compose-form__upload-wrapper'>
         <UploadProgressContainer />
-        <div style={{ display: 'flex', padding: '5px' }}>{uploads}</div>
+        <div className='compose-form__uploads-wrapper'>{uploads}</div>
       </div>
     );
   }
