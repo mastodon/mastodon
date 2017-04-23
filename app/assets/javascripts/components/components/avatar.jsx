@@ -38,7 +38,7 @@ class Avatar extends React.PureComponent {
 
     return (
       <div
-        className='avatar'
+        className='account__avatar'
         onMouseEnter={this.handleMouseEnter}
         onMouseLeave={this.handleMouseLeave}
         style={style}
