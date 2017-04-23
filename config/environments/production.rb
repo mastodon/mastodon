@@ -35,8 +35,13 @@ Rails.application.configure do
   # Allow to specify public IP of reverse proxy if it's needed
   config.action_dispatch.trusted_proxies = [IPAddr.new(ENV['TRUSTED_PROXY_IP'])] unless ENV['TRUSTED_PROXY_IP'].blank?
 
-  # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
-  config.force_ssl = false
+  # When LOCAL_HTTPS is set, force traffic over SSL
+  config.force_ssl = (ENV['LOCAL_HTTPS'] == 'true')
+
+  # When ENABLE_HSTS is also set, turn on Strict-Transport-Security
+  config.ssl_options = {
+    hsts: (ENV['ENABLE_HSTS'] == 'true')
+  }
 
   # By default, use the lowest log level to ensure availability of diagnostic information
   # when problems arise.
@@ -107,7 +112,6 @@ Rails.application.configure do
   }
 
   config.action_mailer.delivery_method = ENV.fetch('SMTP_DELIVERY_METHOD', 'smtp').to_sym
-
 
   config.react.variant = :production
 

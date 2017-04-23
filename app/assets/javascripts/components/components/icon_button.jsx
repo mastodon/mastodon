@@ -47,6 +47,10 @@ class IconButton extends React.PureComponent {
       classes.push('overlayed');
     }
 
+    if (this.props.className) {
+      classes.push(this.props.className)
+    }
+
     return (
       <Motion defaultStyle={{ rotate: this.props.active ? -360 : 0 }} style={{ rotate: this.props.animate ? spring(this.props.active ? -360 : 0, { stiffness: 120, damping: 7 }) : 0 }}>
         {({ rotate }) =>
@@ -66,6 +70,7 @@ class IconButton extends React.PureComponent {
 }
 
 IconButton.propTypes = {
+  className: PropTypes.string,
   title: PropTypes.string.isRequired,
   icon: PropTypes.string.isRequired,
   onClick: PropTypes.func,

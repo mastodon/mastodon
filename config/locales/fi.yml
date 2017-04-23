@@ -92,7 +92,7 @@ fi:
       blocking: Estetyt lista
       following: Seuratut lista
     upload: Lähetä
-  landing_strip_html: <strong>%{name}</strong> on käyttäjä domainilla <strong>%{domain}</strong>. Voit seurata tai vuorovaikuttaa heidän kanssaan jos sinulla on tili yleisessä verkossa. Jos sinulla ei ole tiliä, voit <a href="%{sign_up_path}">rekisteröityä täällä</a>.
+  landing_strip_html: <strong>%{name}</strong> on käyttäjä domainilla %{link_to_root_path}. Voit seurata tai vuorovaikuttaa heidän kanssaan jos sinulla on tili yleisessä verkossa. Jos sinulla ei ole tiliä, voit <a href="%{sign_up_path}">rekisteröityä täällä</a>.
   notification_mailer:
     digest:
       body: 'Tässä on pieni yhteenveto palvelimelta %{instance} viimeksi kun olit paikalla %{since}:'

@@ -42,6 +42,7 @@ import Blocks from '../features/blocks';
 import Mutes from '../features/mutes';
 import Report from '../features/report';
 import { IntlProvider, addLocaleData } from 'react-intl';
+import ar from 'react-intl/locale-data/ar';
 import en from 'react-intl/locale-data/en';
 import de from 'react-intl/locale-data/de';
 import eo from 'react-intl/locale-data/eo';
@@ -76,6 +77,7 @@ const browserHistory = useRouterHistory(createBrowserHistory)({
 
 addLocaleData([
   ...en,
+  ...ar,
   ...de,
   ...eo,
   ...es,
