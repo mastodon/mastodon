@@ -19,7 +19,7 @@ RUN echo "@edge https://nl.alpinelinux.org/alpine/edge/main" >> /etc/apk/reposit
     libxslt-dev \
     python \
     build-base" \
- && apk -U upgrade && apk add \
+ && apk --no-cache add \
     $BUILD_DEPS \
     nodejs@edge \
     nodejs-npm@edge \
@@ -34,8 +34,7 @@ RUN echo "@edge https://nl.alpinelinux.org/alpine/edge/main" >> /etc/apk/reposit
  && yarn --ignore-optional \
  && yarn cache clean \
  && npm -g cache clean \
- && apk del $BUILD_DEPS \
- && rm -rf /tmp/* /var/cache/apk/*
+ && apk del $BUILD_DEPS
 
 COPY . /mastodon
 
