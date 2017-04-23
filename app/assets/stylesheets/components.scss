@@ -216,6 +216,16 @@
     color: darken($color3, 33%);
     font-weight: 500;
   }
+
+  a {
+    color: darken($color3, 33%);
+    font-weight: 500;
+    text-decoration: underline;
+
+    &:hover, &:active, &:focus {
+      text-decoration: none;
+    }
+  }
 }
 
 .compose-form__modifiers {
@@ -1767,6 +1777,7 @@ button.icon-button.active i.fa-retweet {
   cursor: pointer;
   position: relative;
   z-index: 2;
+  outline: 0;
 
   &.active {
     box-shadow: 0 1px 0 rgba($color4, 0.3);
@@ -1781,6 +1792,10 @@ button.icon-button.active i.fa-retweet {
     @media screen and (max-width: 1024px) {
       display: none;
     }
+  }
+
+  &:focus, &:active {
+    outline: 0;
   }
 }
 
