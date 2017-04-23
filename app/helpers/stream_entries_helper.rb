@@ -38,25 +38,31 @@ module StreamEntriesHelper
   end
 
   def microformats_h_class(status, is_predecessor, is_successor, include_threads)
-    return 'h-cite' if is_predecessor || status.reblog || is_successor
-    return 'h-entry' unless include_threads
-    ''
+    if is_predecessor || status.reblog? || is_successor
+      'h-cite'
+    elsif include_threads
+      ''
+    else
+      'h-entry'
+    end
   end
 
   def rtl?(text)
-    return false if text.empty?
+    rtl_characters = /[\p{Hebrew}|\p{Arabic}|\p{Syriac}|\p{Thaana}|\p{Nko}]+/m.match(text)
 
-    matches = /[\p{Hebrew}|\p{Arabic}|\p{Syriac}|\p{Thaana}|\p{Nko}]+/m.match(text)
-
-    return false unless matches
-
-    rtl_size = matches.to_a.reduce(0) { |acc, elem| acc + elem.size }.to_f
-    ltr_size = text.strip.size.to_f
-
-    rtl_size / ltr_size > 0.3
+    if rtl_characters.present?
+      total_size = text.strip.size.to_f
+      rtl_size(rtl_characters.to_a) / total_size > 0.3
+    else
+      false
+    end
   end
 
   private
+
+  def rtl_size(characters)
+    characters.reduce(0) { |acc, elem| acc + elem.size }.to_f
+  end
 
   def embedded_view?
     params[:controller] == EMBEDDED_CONTROLLER && params[:action] == EMBEDDED_ACTION

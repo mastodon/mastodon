@@ -17,17 +17,6 @@ const messages = defineMessages({
   disclaimer: { id: 'account.disclaimer', defaultMessage: 'This user is from another instance. This number may be larger.' }
 });
 
-const outerDropdownStyle = {
-  padding: '10px',
-  flex: '1 1 auto'
-};
-
-const outerLinksStyle = {
-  flex: '1 1 auto',
-  display: 'flex',
-  lineHeight: '18px'
-};
-
 class ActionBar extends React.PureComponent {
 
   render () {
@@ -63,11 +52,11 @@ class ActionBar extends React.PureComponent {
 
     return (
       <div className='account__action-bar'>
-        <div style={outerDropdownStyle}>
+        <div className='account__action-bar-dropdown'>
           <DropdownMenu items={menu} icon='bars' size={24} direction="right" />
         </div>
 
-        <div style={outerLinksStyle}>
+        <div className='account__action-bar-links'>
           <Link className='account__action-bar__tab' to={`/accounts/${account.get('id')}`}>
             <span><FormattedMessage id='account.posts' defaultMessage='Posts' /></span>
             <strong><FormattedNumber value={account.get('statuses_count')} /> {extraInfo}</strong>

@@ -1,0 +1,63 @@
+ar:
+  activerecord:
+    attributes:
+      doorkeeper/application:
+        name: التسمية
+  doorkeeper:
+    applications:
+      buttons:
+        cancel: إلغاء
+        edit: تعديل
+        submit: إرسال
+      confirmations:
+        destroy: متأكد ؟
+      edit:
+        title: تعديل التطبيق
+      index:
+        name: التسمية
+        new: تطبيق جديد
+        title: تطبيقاتك
+      new:
+        title: تطبيق جديد
+      show:
+        application_id: معرف التطبيق
+        secret: السر
+        title: 'تطبيق : %{name}'
+    authorizations:
+      buttons:
+        authorize: ترخيص
+        deny: رفض
+      error:
+        title: حدث هناك خطأ
+      new:
+        able_to: سيكون بامكانه القيام ب
+        title: الترخيص مطلوب
+      show:
+        title: رمز الترخيص
+    authorized_applications:
+      buttons:
+        revoke: إبطال التصريح
+      confirmations:
+        revoke: متأكد ؟
+      index:
+        application: التطبيق
+        scopes: النطاقات
+        title: تطبيقاتك المرخص لها
+    flash:
+      applications:
+        create:
+          notice: تم إنشاء التطبيق
+        destroy:
+          notice: تم حذف التطبيق.
+        update:
+          notice: تم تحديث التطبيق.
+      authorized_applications:
+        destroy:
+          notice: تم إبطال التصريح المخول للتطبيق.
+    layouts:
+      admin:
+        nav:
+          applications: التطبيقات
+    scopes:
+      read: قراءة بيانات حسابك
+      write: النشر نيابةً عنك
