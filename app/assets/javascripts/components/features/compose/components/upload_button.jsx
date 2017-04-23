@@ -6,6 +6,12 @@ const messages = defineMessages({
   upload: { id: 'upload_button.label', defaultMessage: 'Add media' }
 });
 
+
+const iconStyle = {
+  height: null,
+  lineHeight: '27px'
+}
+
 class UploadButton extends React.PureComponent {
 
   constructor (props, context) {
@@ -30,11 +36,12 @@ class UploadButton extends React.PureComponent {
   }
 
   render () {
+
     const { intl, resetFileKey, disabled } = this.props;
 
     return (
       <div className='compose-form__upload-button'>
-        <IconButton icon='camera' title={intl.formatMessage(messages.upload)} disabled={disabled} onClick={this.handleClick} className='compose-form__upload-button-icon' size={18} inverted />
+        <IconButton icon='camera' title={intl.formatMessage(messages.upload)} disabled={disabled} onClick={this.handleClick} className='compose-form__upload-button-icon' size={18} inverted style={iconStyle}/>
         <input key={resetFileKey} ref={this.setRef} type='file' multiple={false} onChange={this.handleChange} disabled={disabled} style={{ display: 'none' }} />
       </div>
     );
