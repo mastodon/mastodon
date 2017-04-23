@@ -13,13 +13,13 @@ class Api::V1::AccountsController < ApiController
 
   def verify_credentials
     @account = current_user.account
-    render action: :show
+    render :show
   end
 
   def update_credentials
     current_account.update!(account_params)
     @account = current_account
-    render action: :show
+    render :show
   end
 
   def following
@@ -32,7 +32,7 @@ class Api::V1::AccountsController < ApiController
 
     set_pagination_headers(next_path, prev_path)
 
-    render action: :index
+    render :index
   end
 
   def followers
@@ -45,7 +45,7 @@ class Api::V1::AccountsController < ApiController
 
     set_pagination_headers(next_path, prev_path)
 
-    render action: :index
+    render :index
   end
 
   def statuses
@@ -65,7 +65,7 @@ class Api::V1::AccountsController < ApiController
   def follow
     FollowService.new.call(current_user.account, @account.acct)
     set_relationship
-    render action: :relationship
+    render :relationship
   end
 
   def block
@@ -77,31 +77,31 @@ class Api::V1::AccountsController < ApiController
     @requested   = { @account.id => false }
     @muting      = { @account.id => current_user.account.muting?(@account.id) }
 
-    render action: :relationship
+    render :relationship
   end
 
   def mute
     MuteService.new.call(current_user.account, @account)
     set_relationship
-    render action: :relationship
+    render :relationship
   end
 
   def unfollow
     UnfollowService.new.call(current_user.account, @account)
     set_relationship
-    render action: :relationship
+    render :relationship
   end
 
   def unblock
     UnblockService.new.call(current_user.account, @account)
     set_relationship
-    render action: :relationship
+    render :relationship
   end
 
   def unmute
     UnmuteService.new.call(current_user.account, @account)
     set_relationship
-    render action: :relationship
+    render :relationship
   end
 
   def relationships
@@ -118,7 +118,7 @@ class Api::V1::AccountsController < ApiController
   def search
     @accounts = AccountSearchService.new.call(params[:q], limit_param(DEFAULT_ACCOUNTS_LIMIT), params[:resolve] == 'true', current_account)
 
-    render action: :index
+    render :index
   end
 
   private

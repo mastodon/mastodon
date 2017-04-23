@@ -3,6 +3,7 @@ import ColumnLink from '../ui/components/column_link';
 import { Link } from 'react-router';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 
 const messages = defineMessages({
@@ -14,6 +15,7 @@ const messages = defineMessages({
   sign_out: { id: 'navigation_bar.logout', defaultMessage: 'Logout' },
   favourites: { id: 'navigation_bar.favourites', defaultMessage: 'Favourites' },
   blocks: { id: 'navigation_bar.blocks', defaultMessage: 'Blocked users' },
+  mutes: { id: 'navigation_bar.mutes', defaultMessage: 'Muted users' },
   info: { id: 'navigation_bar.info', defaultMessage: 'Extended information' }
 });
 
@@ -29,14 +31,15 @@ const GettingStarted = ({ intl, me }) => {
   }
 
   return (
-    <Column icon='asterisk' heading={intl.formatMessage(messages.heading)}>
-      <div style={{ position: 'relative' }}>
-        <ColumnLink icon='users' text={intl.formatMessage(messages.community_timeline)} to='/timelines/public/local' />
-        <ColumnLink icon='globe' text={intl.formatMessage(messages.public_timeline)} to='/timelines/public' />
+    <Column icon='asterisk' heading={intl.formatMessage(messages.heading)} hideHeadingOnMobile={true}>
+      <div className='getting-started__wrapper'>
+        <ColumnLink icon='users' hideOnMobile={true} text={intl.formatMessage(messages.community_timeline)} to='/timelines/public/local' />
+        <ColumnLink icon='globe' hideOnMobile={true} text={intl.formatMessage(messages.public_timeline)} to='/timelines/public' />
         <ColumnLink icon='cog' text={intl.formatMessage(messages.preferences)} href='/settings/preferences' />
         <ColumnLink icon='star' text={intl.formatMessage(messages.favourites)} to='/favourites' />
         {followRequests}
         <ColumnLink icon='ban' text={intl.formatMessage(messages.blocks)} to='/blocks' />
+        <ColumnLink icon='volume-off' text={intl.formatMessage(messages.mutes)} to='/mutes' />
         <ColumnLink icon='book' text={intl.formatMessage(messages.info)} href='/about/more' />
         <ColumnLink icon='sign-out' text={intl.formatMessage(messages.sign_out)} href='/auth/sign_out' method='delete' />
       </div>
@@ -51,7 +54,7 @@ const GettingStarted = ({ intl, me }) => {
 };
 
 GettingStarted.propTypes = {
-  intl: React.PropTypes.object.isRequired,
+  intl: PropTypes.object.isRequired,
   me: ImmutablePropTypes.map.isRequired
 };
 
