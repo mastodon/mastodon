@@ -30,6 +30,12 @@ import ColumnBackButton from '../../components/column_back_button';
 import StatusContainer from '../../containers/status_container';
 import { openModal } from '../../actions/modal';
 import { isMobile } from '../../is_mobile'
+import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
+
+const messages = defineMessages({
+  deleteConfirm: { id: 'confirmations.delete.confirm', defaultMessage: 'Delete' },
+  deleteMessage: { id: 'confirmations.delete.message', defaultMessage: 'Are you sure you want to delete this status?' }
+});
 
 const makeMapStateToProps = () => {
   const getStatus = makeGetStatus();
@@ -100,7 +106,13 @@ class Status extends React.PureComponent {
   }
 
   handleDeleteClick (status) {
-    this.props.dispatch(deleteStatus(status.get('id')));
+    const { dispatch, intl } = this.props;
+
+    dispatch(openModal('CONFIRM', {
+      message: intl.formatMessage(messages.deleteMessage),
+      confirm: intl.formatMessage(messages.deleteConfirm),
+      onConfirm: () => dispatch(deleteStatus(status.get('id')))
+    }));
   }
 
   handleMentionClick (account, router) {
@@ -178,7 +190,8 @@ Status.propTypes = {
   descendantsIds: ImmutablePropTypes.list,
   me: PropTypes.number,
   boostModal: PropTypes.bool,
-  autoPlayGif: PropTypes.bool
+  autoPlayGif: PropTypes.bool,
+  intl: PropTypes.object.isRequired
 };
 
-export default connect(makeMapStateToProps)(Status);
+export default injectIntl(connect(makeMapStateToProps)(Status));

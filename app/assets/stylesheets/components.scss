@@ -2773,7 +2773,7 @@ button.icon-button.active i.fa-retweet {
   margin-left: 10px;
 }
 
-.boost-modal {
+.boost-modal, .confirmation-modal {
   background: lighten($color2, 8%);
   color: $color1;
   border-radius: 8px;
@@ -2808,7 +2808,7 @@ button.icon-button.active i.fa-retweet {
   }
 }
 
-.boost-modal__action-bar {
+.boost-modal__action-bar, .confirmation-modal__action-bar {
   display: flex;
   background: $color2;
   padding: 10px;
@@ -2833,6 +2833,38 @@ button.icon-button.active i.fa-retweet {
 .boost-modal__status-time {
   float: right;
   font-size: 14px;
+}
+
+.confirmation-modal {
+  max-width: 380px;
+}
+
+.confirmation-modal__action-bar {
+  & > div {
+    text-align: left;
+    padding: 0 16px;
+  }
+
+  a {
+    color: darken($color2, 34%);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+
+    &:hover, &:focus, &:active {
+      color: darken($color2, 38%);
+    }
+  }
+}
+
+.confirmation-modal__container {
+  padding: 30px;
+  font-size: 16px;
+  text-align: center;
+
+  strong {
+    font-weight: 500;
+  }
 }
 
 .loading-bar {
