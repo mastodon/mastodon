@@ -26,6 +26,7 @@ module SettingsHelper
     'zh-TW': '繁體中文（臺灣）',
     bg: 'Български',
     id: 'Bahasa Indonesia',
+    ar: 'عربى',
   }.freeze
 
   def human_locale(locale)
