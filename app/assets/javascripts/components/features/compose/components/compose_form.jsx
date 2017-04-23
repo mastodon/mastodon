@@ -18,8 +18,8 @@ import TextIconButton from './text_icon_button';
 
 const messages = defineMessages({
   placeholder: { id: 'compose_form.placeholder', defaultMessage: 'What is on your mind?' },
-  hide_text_placeholder: { id: 'compose_form.hide_text_placeholder', defaultMessage: 'This text hide by default.' },
-  spoiler_placeholder: { id: 'compose_form.spoiler_placeholder', defaultMessage: 'Write warnings before hide text.' },
+  hide_text_placeholder: { id: 'compose_form.hide_text_placeholder', defaultMessage: 'Text to hide behind warning' },
+  spoiler_placeholder: { id: 'compose_form.spoiler_placeholder', defaultMessage: 'Write warning before hidden text' },
   publish: { id: 'compose_form.publish', defaultMessage: 'Toot' }
 });
 
