@@ -15,6 +15,69 @@ RSpec.describe StreamEntriesHelper, type: :helper do
     end
   end
 
+  describe '#stream_link_target' do
+    it 'returns nil if it is not an embedded view' do
+      set_not_embedded_view
+
+      expect(helper.stream_link_target).to be_nil
+    end
+
+    it 'returns _blank if it is an embedded view' do
+      set_embedded_view
+
+      expect(helper.stream_link_target).to eq '_blank'
+    end
+  end
+
+  describe '#acct' do
+    it 'is fully qualified for embedded local accounts' do
+      allow(Rails.configuration.x).to receive(:local_domain).and_return('local_domain')
+      set_embedded_view
+      account = Account.new(domain: nil, username: 'user')
+
+      acct = helper.acct(account)
+
+      expect(acct).to eq '@user@local_domain'
+    end
+
+    it 'is fully qualified for embedded foreign accounts' do
+      set_embedded_view
+      account = Account.new(domain: 'foreign_server.com', username: 'user')
+
+      acct = helper.acct(account)
+
+      expect(acct).to eq '@user@foreign_server.com'
+    end
+
+    it 'is fully qualified for non embedded foreign accounts' do
+      set_not_embedded_view
+      account = Account.new(domain: 'foreign_server.com', username: 'user')
+
+      acct = helper.acct(account)
+
+      expect(acct).to eq '@user@foreign_server.com'
+    end
+
+    it 'is the shortname for non embedded local accounts' do
+      set_not_embedded_view
+      account = Account.new(domain: nil, username: 'user')
+
+      acct = helper.acct(account)
+
+      expect(acct).to eq '@user'
+    end
+  end
+
+  def set_not_embedded_view
+    params[:controller] = "not_#{StreamEntriesHelper::EMBEDDED_CONTROLLER}"
+    params[:action] = "not_#{StreamEntriesHelper::EMBEDDED_ACTION}"
+  end
+
+  def set_embedded_view
+    params[:controller] = StreamEntriesHelper::EMBEDDED_CONTROLLER
+    params[:action] = StreamEntriesHelper::EMBEDDED_ACTION
+  end
+  
   describe '#style_classes' do
     it do
       status = double(reblog?: false)
