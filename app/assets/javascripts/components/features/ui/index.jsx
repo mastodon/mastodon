@@ -1,6 +1,6 @@
 import ColumnsArea from './components/columns_area';
 import NotificationsContainer from './containers/notifications_container';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
+import PropTypes from 'prop-types';
 import LoadingBarContainer from './containers/loading_bar_container';
 import HomeTimeline from '../home_timeline';
 import Compose from '../compose';
@@ -15,26 +15,26 @@ import { refreshTimeline } from '../../actions/timelines';
 import { refreshNotifications } from '../../actions/notifications';
 import UploadArea from './components/upload_area';
 
-const UI = React.createClass({
+class UI extends React.PureComponent {
 
-  propTypes: {
-    dispatch: React.PropTypes.func.isRequired,
-    children: React.PropTypes.node
-  },
-
-  getInitialState () {
-    return {
+  constructor (props, context) {
+    super(props, context);
+    this.state = {
       width: window.innerWidth,
       draggingOver: false
     };
-  },
-
-  mixins: [PureRenderMixin],
+    this.handleResize = this.handleResize.bind(this);
+    this.handleDragEnter = this.handleDragEnter.bind(this);
+    this.handleDragOver = this.handleDragOver.bind(this);
+    this.handleDrop = this.handleDrop.bind(this);
+    this.handleDragLeave = this.handleDragLeave.bind(this);
+    this.setRef = this.setRef.bind(this);
+  }
 
   @debounce(500)
   handleResize () {
     this.setState({ width: window.innerWidth });
-  },
+  }
 
   handleDragEnter (e) {
     e.preventDefault();
@@ -50,7 +50,7 @@ const UI = React.createClass({
     if (e.dataTransfer && e.dataTransfer.items.length > 0) {
       this.setState({ draggingOver: true });
     }
-  },
+  }
 
   handleDragOver (e) {
     e.preventDefault();
@@ -63,7 +63,7 @@ const UI = React.createClass({
     }
 
     return false;
-  },
+  }
 
   handleDrop (e) {
     e.preventDefault();
@@ -73,7 +73,7 @@ const UI = React.createClass({
     if (e.dataTransfer && e.dataTransfer.files.length === 1) {
       this.props.dispatch(uploadCompose(e.dataTransfer.files));
     }
-  },
+  }
 
   handleDragLeave (e) {
     e.preventDefault();
@@ -86,7 +86,7 @@ const UI = React.createClass({
     }
 
     this.setState({ draggingOver: false });
-  },
+  }
 
   componentWillMount () {
     window.addEventListener('resize', this.handleResize, { passive: true });
@@ -97,7 +97,7 @@ const UI = React.createClass({
 
     this.props.dispatch(refreshTimeline('home'));
     this.props.dispatch(refreshNotifications());
-  },
+  }
 
   componentWillUnmount () {
     window.removeEventListener('resize', this.handleResize);
@@ -105,11 +105,11 @@ const UI = React.createClass({
     document.removeEventListener('dragover', this.handleDragOver);
     document.removeEventListener('drop', this.handleDrop);
     document.removeEventListener('dragleave', this.handleDragLeave);
-  },
+  }
 
   setRef (c) {
     this.node = c;
-  },
+  }
 
   render () {
     const { width, draggingOver } = this.state;
@@ -148,6 +148,11 @@ const UI = React.createClass({
     );
   }
 
-});
+}
+
+UI.propTypes = {
+  dispatch: PropTypes.func.isRequired,
+  children: PropTypes.node
+};
 
 export default connect()(UI);

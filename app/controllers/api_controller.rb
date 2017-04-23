@@ -73,7 +73,7 @@ class ApiController < ApplicationController
   end
 
   def current_user
-    super || current_resource_owner
+    current_resource_owner || super
   rescue ActiveRecord::RecordNotFound
     nil
   end

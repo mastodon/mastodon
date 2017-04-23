@@ -29,7 +29,7 @@ class Status < ApplicationRecord
   validates :uri, uniqueness: true, unless: 'local?'
   validates :text, presence: true, unless: 'reblog?'
   validates_with StatusLengthValidator
-  validates :reblog, uniqueness: { scope: :account, message: 'of status already exists' }, if: 'reblog?'
+  validates :reblog, uniqueness: { scope: :account }, if: 'reblog?'
 
   default_scope { order('id desc') }
 
@@ -42,7 +42,7 @@ class Status < ApplicationRecord
   cache_associated :account, :application, :media_attachments, :tags, :stream_entry, mentions: :account, reblog: [:account, :application, :stream_entry, :tags, :media_attachments, mentions: :account], thread: :account
 
   def reply?
-    super || !in_reply_to_id.nil?
+    !in_reply_to_id.nil? || super
   end
 
   def local?
@@ -138,6 +138,10 @@ class Status < ApplicationRecord
       query = query.where('accounts.domain IS NULL') if local_only
 
       account.nil? ? filter_timeline_default(query) : filter_timeline_default(filter_timeline(query, account))
+    end
+
+    def as_outbox_timeline(account)
+      where(account: account, visibility: :public)
     end
 
     def favourites_map(status_ids, account_id)

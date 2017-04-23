@@ -19,7 +19,7 @@ class PostStatusService < BaseService
                                       sensitive: options[:sensitive],
                                       spoiler_text: options[:spoiler_text] || '',
                                       visibility: options[:visibility],
-                                      language: detect_language(text),
+                                      language: detect_language_for(text, account),
                                       application: options[:application])
 
     attach_media(status, media)
@@ -52,8 +52,8 @@ class PostStatusService < BaseService
     media.update(status_id: status.id)
   end
 
-  def detect_language(text)
-    WhatLanguage.new(:all).language_iso(text) || 'en'
+  def detect_language_for(text, account)
+    LanguageDetector.new(text, account).to_iso_s
   end
 
   def process_mentions_service

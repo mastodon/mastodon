@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
+import PropTypes from 'prop-types';
 import StatusListContainer from '../ui/containers/status_list_container';
 import Column from '../ui/components/column';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
@@ -14,14 +14,7 @@ const mapStateToProps = state => ({
   hasUnread: state.getIn(['timelines', 'home', 'unread']) > 0
 });
 
-const HomeTimeline = React.createClass({
-
-  propTypes: {
-    intl: React.PropTypes.object.isRequired,
-    hasUnread: React.PropTypes.bool
-  },
-
-  mixins: [PureRenderMixin],
+class HomeTimeline extends React.PureComponent {
 
   render () {
     const { intl, hasUnread } = this.props;
@@ -32,8 +25,13 @@ const HomeTimeline = React.createClass({
         <StatusListContainer {...this.props} type='home' emptyMessage={<FormattedMessage id='empty_column.home' defaultMessage="You aren't following anyone yet. Visit {public} or use search to get started and meet other users." values={{ public: <Link to='/timelines/public'><FormattedMessage id='empty_column.home.public_timeline' defaultMessage='the public timeline' /></Link> }} />} />
       </Column>
     );
-  },
+  }
 
-});
+}
+
+HomeTimeline.propTypes = {
+  intl: PropTypes.object.isRequired,
+  hasUnread: PropTypes.bool
+};
 
 export default connect(mapStateToProps)(injectIntl(HomeTimeline));

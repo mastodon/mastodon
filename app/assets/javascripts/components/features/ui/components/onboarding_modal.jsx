@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
+import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import Permalink from '../../../components/permalink';
@@ -25,24 +25,28 @@ const PageOne = ({ acct, domain }) => (
 
     <div>
       <h1><FormattedMessage id='onboarding.page_one.welcome' defaultMessage='Welcome to Mastodon!' /></h1>
-      <p><FormattedMessage id='onboarding.page_one.federation' defaultMessage='Mastodon is a social network that belongs to everyone.' /></p>
-      <p><FormattedMessage id='onboarding.page_one.handle' defaultMessage='You are on {domain}, one of many independent Mastodon instances. Your full handle is {handle}' values={{ domain, handle: <strong>{acct}@{domain}</strong> }}/></p>
+      <p><FormattedMessage id='onboarding.page_one.federation' defaultMessage='Mastodon is a network of independent servers joining up to make one larger social network. We call these servers: <em>Instances</em>' /></p>
+      <p><FormattedMessage id='onboarding.page_one.handle' defaultMessage='You are on {domain}, so your full handle is {handle}' values={{ domain, handle: <strong>{acct}@{domain}</strong> }}/></p>
     </div>
   </div>
 );
 
 PageOne.propTypes = {
-  acct: React.PropTypes.string.isRequired,
-  domain: React.PropTypes.string.isRequired
+  acct: PropTypes.string.isRequired,
+  domain: PropTypes.string.isRequired
 };
 
 const PageTwo = () => (
   <div className='onboarding-modal__page onboarding-modal__page-two'>
     <div className='figure non-interactive'>
+       <div className='pseudo-drawer'>
+        <NavigationBar account={me} />
+        </div>
       <ComposeForm
         text='Awoo! #introductions'
         suggestions={Immutable.List()}
         mentionedDomains={[]}
+        spoiler={false}
         onChange={() => {}}
         onSubmit={() => {}}
         onPaste={() => {}}
@@ -81,7 +85,7 @@ const PageThree = ({ me, domain }) => (
 
 PageThree.propTypes = {
   me: ImmutablePropTypes.map.isRequired,
-  domain: React.PropTypes.string.isRequired
+  domain: PropTypes.string.isRequired
 };
 
 const PageFour = ({ domain, intl }) => (
@@ -90,33 +94,33 @@ const PageFour = ({ domain, intl }) => (
       <div className='row'>
         <div>
           <div className='figure non-interactive'><ColumnHeader icon='home' type={intl.formatMessage(messages.home_title)} /></div>
-          <p><FormattedMessage id='onboarding.page_four.home' defaultMessage='Home timeline shows posts from people you follow'/></p>
+          <p><FormattedMessage id='onboarding.page_four.home' defaultMessage='The home timeline shows posts from people you follow.'/></p>
         </div>
 
         <div>
           <div className='figure non-interactive'><ColumnHeader icon='bell' type={intl.formatMessage(messages.notifications_title)} /></div>
-          <p><FormattedMessage id='onboarding.page_four.notifications' defaultMessage='Notifications show when someone interacts with you' /></p>
+          <p><FormattedMessage id='onboarding.page_four.notifications' defaultMessage='The notifications column shows when someone interacts with you.' /></p>
         </div>
       </div>
 
       <div className='row'>
         <div>
-          <div className='figure non-interactive' style={{ marginBottom: 0 }}><ColumnHeader icon='globe' type={intl.formatMessage(messages.federated_title)} /></div>
+          <div className='figure non-interactive' style={{ marginBottom: 0 }}><ColumnHeader icon='users' type={intl.formatMessage(messages.local_title)} /></div>
         </div>
 
         <div>
-          <div className='figure non-interactive' style={{ marginBottom: 0 }}><ColumnHeader icon='users' type={intl.formatMessage(messages.local_title)} /></div>
+          <div className='figure non-interactive' style={{ marginBottom: 0 }}><ColumnHeader icon='globe' type={intl.formatMessage(messages.federated_title)} /></div>
         </div>
       </div>
 
-      <p><FormattedMessage id='onboarding.page_five.public_timelines' defaultMessage='Federated timeline lists public posts from everyone who people on {domain} follow. Local timeline is the same, but limited to people on {domain}.' values={{ domain }} /></p>
+      <p><FormattedMessage id='onboarding.page_five.public_timelines' defaultMessage='The local timeline shows public posts from everyone on {domain}. The federated timeline shows public posts from everyone who people on {domain} follow. These are the Public Timelines, a great way to discover new people.' values={{ domain }} /></p>
     </div>
   </div>
 );
 
 PageFour.propTypes = {
-  domain: React.PropTypes.string.isRequired,
-  intl: React.PropTypes.object.isRequired
+  domain: PropTypes.string.isRequired,
+  intl: PropTypes.object.isRequired
 };
 
 const PageSix = ({ admin }) => {
@@ -127,7 +131,7 @@ const PageSix = ({ admin }) => {
       <p>
         <FormattedMessage id='onboarding.page_six.admin' defaultMessage="Your instance's admin is {admin}." values={{ admin: <Permalink href={admin.get('url')} to={`/accounts/${admin.get('id')}`}>@{admin.get('acct')}</Permalink> }} />
         <br />
-        <FormattedMessage id='onboarding.page_six.read_guidelines' defaultMessage='Please, do not forget to read the {guidelines}!' values={{ guidelines: <a href='/about/more' target='_blank'><FormattedMessage id='onboarding.page_six.guidelines' defaultMessage='community guidelines' /></a> }}/>
+        <FormattedMessage id='onboarding.page_six.read_guidelines' defaultMessage="Please read {domain}'s {guidelines}!" values={{domain, guidelines: <a href='/about/more' target='_blank'><FormattedMessage id='onboarding.page_six.guidelines' defaultMessage='community guidelines' /></a> }}/>
       </p>
     );
   }
@@ -137,7 +141,8 @@ const PageSix = ({ admin }) => {
       <h1><FormattedMessage id='onboarding.page_six.almost_done' defaultMessage='Almost done...' /></h1>
       {adminSection}
       <p><FormattedMessage id='onboarding.page_six.github' defaultMessage='Mastodon is free open-source software. You can report bugs, request features, or contribute to the code on {github}.' values={{ github: <a href='https://github.com/tootsuite/mastodon' target='_blank' rel='noopener'>GitHub</a> }} /></p>
-      <p><FormattedMessage id='onboarding.page_six.apps_available' defaultMessage='There are {apps} available for iOS, Android and other platforms. And now... Bon Appetoot!' values={{ apps: <a href='https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/Apps.md' target='_blank' rel='noopener'><FormattedMessage id='onboarding.page_six.various_app' defaultMessage='various mobile apps' /></a> }} /></p>
+      <p><FormattedMessage id='onboarding.page_six.apps_available' defaultMessage='There are {apps} available for iOS, Android and other platforms.' values={{ apps: <a href='https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/Apps.md' target='_blank' rel='noopener'><FormattedMessage id='onboarding.page_six.various_app' defaultMessage='mobile apps' /></a> }} /></p>
+      <p><em><FormattedMessage id='onboarding.page_six.appetoot' defaultMessage='Bon Appetoot!' /></em></p>
     </div>
   );
 };
@@ -152,33 +157,27 @@ const mapStateToProps = state => ({
   domain: state.getIn(['meta', 'domain'])
 });
 
-const OnboardingModal = React.createClass({
+class OnboardingModal extends React.PureComponent {
 
-  propTypes: {
-    onClose: React.PropTypes.func.isRequired,
-    intl: React.PropTypes.object.isRequired,
-    me: ImmutablePropTypes.map.isRequired,
-    domain: React.PropTypes.string.isRequired,
-    admin: ImmutablePropTypes.map
-  },
-
-  getInitialState () {
-    return {
+  constructor (props, context) {
+    super(props, context);
+    this.state = {
       currentIndex: 0
     };
-  },
-
-  mixins: [PureRenderMixin],
+    this.handleSkip = this.handleSkip.bind(this);
+    this.handleDot = this.handleDot.bind(this);
+    this.handleNext = this.handleNext.bind(this);
+  }
 
   handleSkip (e) {
     e.preventDefault();
     this.props.onClose();
-  },
+  }
 
   handleDot (i, e) {
     e.preventDefault();
     this.setState({ currentIndex: i });
-  },
+  }
 
   handleNext (maxNum, e) {
     e.preventDefault();
@@ -188,7 +187,7 @@ const OnboardingModal = React.createClass({
     } else {
       this.props.onClose();
     }
-  },
+  }
 
   render () {
     const { me, admin, domain, intl } = this.props;
@@ -213,7 +212,7 @@ const OnboardingModal = React.createClass({
     }
 
     const styles = pages.map((page, i) => ({
-      key: i,
+      key: `page-${i}`,
       style: { opacity: spring(i === currentIndex ? 1 : 0) }
     }));
 
@@ -223,7 +222,7 @@ const OnboardingModal = React.createClass({
           {interpolatedStyles =>
             <div className='onboarding-modal__pager'>
               {pages.map((page, i) =>
-                <div key={i} style={{ opacity: interpolatedStyles[i].style.opacity, pointerEvents: i === currentIndex ? 'auto' : 'none' }}>{page}</div>
+                <div key={`page-${i}`} style={{ opacity: interpolatedStyles[i].style.opacity, pointerEvents: i === currentIndex ? 'auto' : 'none' }}>{page}</div>
               )}
             </div>
           }
@@ -246,6 +245,14 @@ const OnboardingModal = React.createClass({
     );
   }
 
-});
+}
+
+OnboardingModal.propTypes = {
+  onClose: PropTypes.func.isRequired,
+  intl: PropTypes.object.isRequired,
+  me: ImmutablePropTypes.map.isRequired,
+  domain: PropTypes.string.isRequired,
+  admin: ImmutablePropTypes.map
+}
 
 export default connect(mapStateToProps)(injectIntl(OnboardingModal));
