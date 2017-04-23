@@ -20,7 +20,7 @@ class StatusCheckBox extends React.PureComponent {
           dangerouslySetInnerHTML={content}
         />
 
-        <div style={{ flex: '0 0 auto', padding: '10px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+        <div className='status-check-box-toggle'>
           <Toggle checked={checked} onChange={onToggle} disabled={disabled} />
         </div>
       </div>

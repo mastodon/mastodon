@@ -65,7 +65,7 @@ class ModalRoot extends React.PureComponent {
 
               return (
                 <div key={key}>
-                  <div role='presentation' className='modal-root__overlay' style={{ opacity: style.opacity, transform: `translateZ(0px)` }} onClick={onClose} />
+                  <div role='presentation' className='modal-root__overlay' style={{ opacity: style.opacity }} onClick={onClose} />
                   <div className='modal-root__container' style={{ opacity: style.opacity, transform: `translateZ(0px) scale(${style.scale})` }}>
                     <SpecificComponent {...props} onClose={onClose} />
                   </div>

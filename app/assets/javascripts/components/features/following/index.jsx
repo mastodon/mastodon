@@ -68,7 +68,7 @@ class Following extends React.PureComponent {
 
         <ScrollContainer scrollKey='following'>
           <div className='scrollable' onScroll={this.handleScroll}>
-            <div>
+            <div className='following'>
               <HeaderContainer accountId={this.props.params.accountId} />
               {accountIds.map(id => <AccountContainer key={id} id={id} withNote={false} />)}
               <LoadMore onClick={this.handleLoadMore} />

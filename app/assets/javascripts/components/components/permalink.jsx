@@ -17,7 +17,7 @@ class Permalink extends React.Component {
   render () {
     const { href, children, ...other } = this.props;
 
-    return <a href={href} onClick={this.handleClick} {...other}>{children}</a>;
+    return <a href={href} onClick={this.handleClick} {...other} className='permalink'>{children}</a>;
   }
 
 }
