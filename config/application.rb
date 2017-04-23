@@ -72,7 +72,8 @@ module Mastodon
     config.middleware.use Rack::Attack
     config.middleware.use Rack::Deflater
 
-    config.browserify_rails.commandline_options   = '--transform [ babelify --presets [ es2015 react ] --plugins [ transform-decorators-legacy ] ] --extension=".jsx"'
+    # babel config can be found in .babelrc
+    config.browserify_rails.commandline_options   = '--transform babelify --extension=".jsx"'
     config.browserify_rails.evaluate_node_modules = true
 
     config.to_prepare do
