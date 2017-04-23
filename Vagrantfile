@@ -63,6 +63,7 @@ bundle install
 yarn install
 
 # Build Mastodon
+export $(cat ".env.vagrant" | xargs)
 bundle exec rails db:setup
 bundle exec rails assets:precompile
 
