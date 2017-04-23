@@ -79,7 +79,7 @@ class StatusList extends React.PureComponent {
         <div className='scrollable' ref={this.setRef}>
           {unread}
 
-          <div>
+          <div className='status-list'>
             {prepend}
 
             {statusIds.map((statusId) => {

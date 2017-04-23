@@ -40,11 +40,11 @@ class ReplyIndicator extends React.PureComponent {
 
     return (
       <div className='reply-indicator'>
-        <div style={{ overflow: 'hidden', marginBottom: '5px' }}>
-          <div style={{ float: 'right', lineHeight: '24px' }}><IconButton title={intl.formatMessage(messages.cancel)} icon='times' onClick={this.handleClick} /></div>
+        <div className='reply-indicator__header'>
+          <div className='reply-indicator__cancel'><IconButton title={intl.formatMessage(messages.cancel)} icon='times' onClick={this.handleClick} /></div>
 
-          <a href={status.getIn(['account', 'url'])} onClick={this.handleAccountClick} className='reply-indicator__display-name' style={{ display: 'block', maxWidth: '100%', paddingRight: '25px', textDecoration: 'none', overflow: 'hidden', lineHeight: '24px' }}>
-            <div style={{ float: 'left', marginRight: '5px' }}><Avatar size={24} src={status.getIn(['account', 'avatar'])} staticSrc={status.getIn(['account', 'avatar_static'])} /></div>
+          <a href={status.getIn(['account', 'url'])} onClick={this.handleAccountClick} className='reply-indicator__display-name'>
+            <div className='reply-indicator__display-avatar'><Avatar size={24} src={status.getIn(['account', 'avatar'])} staticSrc={status.getIn(['account', 'avatar_static'])} /></div>
             <DisplayName account={status.get('account')} />
           </a>
         </div>

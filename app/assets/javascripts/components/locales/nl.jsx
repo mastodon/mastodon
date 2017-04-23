@@ -122,7 +122,7 @@ const nl = {
   "upload_button.label": "Media toevoegen",
   "upload_form.undo": "Ongedaan maken",
   "video_player.toggle_sound": "Geluid in-/uitschakelen",
-  
+
 };
 
 export default nl;
