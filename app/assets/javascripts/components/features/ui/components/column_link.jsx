@@ -4,7 +4,7 @@ import { Link } from 'react-router';
 const ColumnLink = ({ icon, text, to, href, method, hideOnMobile }) => {
   if (href) {
     return (
-      <a href={href} style={outerStyle} className={`column-link ${hideOnMobile ? 'hidden-on-mobile' : ''}`} data-method={method}>
+      <a href={href} className={`column-link ${hideOnMobile ? 'hidden-on-mobile' : ''}`} data-method={method}>
         <i className={`fa fa-fw fa-${icon} column-link__icon`} />
         {text}
       </a>
