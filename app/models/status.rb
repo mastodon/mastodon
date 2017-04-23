@@ -202,7 +202,7 @@ class Status < ApplicationRecord
 
     def filter_timeline_for_account(query, account)
       query = query.not_excluded_by_account(account)
-      query = query.in_allowed_languages(account.user)
+      query = query.in_allowed_languages(account) if account.allowed_languages.present?
       query.merge(account_silencing_filter(account))
     end
 

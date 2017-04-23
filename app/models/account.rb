@@ -82,9 +82,7 @@ class Account < ApplicationRecord
     prefix: true,
     allow_nil: true
 
-  delegate :allowed_languages,
-    to: :user,
-    prefix: false
+  delegate :allowed_languages, to: :user, prefix: false, allow_nil: true
 
   def follow!(other_account)
     active_relationships.where(target_account: other_account).first_or_create!(target_account: other_account)
