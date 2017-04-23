@@ -40,7 +40,7 @@ class Reblogs extends React.PureComponent {
         <ColumnBackButton />
 
         <ScrollContainer scrollKey='reblogs'>
-          <div className='scrollable'>
+          <div className='scrollable reblogs'>
             {accountIds.map(id => <AccountContainer key={id} id={id} withNote={false} />)}
           </div>
         </ScrollContainer>

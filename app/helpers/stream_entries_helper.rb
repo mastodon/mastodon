@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
 module StreamEntriesHelper
+  EMBEDDED_CONTROLLER = 'stream_entries'.freeze
+  EMBEDDED_ACTION = 'embed'.freeze
+
   def display_name(account)
     account.display_name.presence || account.username
   end
@@ -10,7 +13,11 @@ module StreamEntriesHelper
   end
 
   def acct(account)
-    "@#{account.acct}#{embedded_view? && account.local? ? "@#{Rails.configuration.x.local_domain}" : ''}"
+    if embedded_view? && account.local?
+      "@#{account.acct}@#{Rails.configuration.x.local_domain}"
+    else
+      "@#{account.acct}"
+    end
   end
 
   def style_classes(status, is_predecessor, is_successor, include_threads)
@@ -31,9 +38,13 @@ module StreamEntriesHelper
   end
 
   def microformats_h_class(status, is_predecessor, is_successor, include_threads)
-    return 'h-cite' if is_predecessor || status.reblog || is_successor
-    return 'h-entry' unless include_threads
-    ''
+    if is_predecessor || status.reblog? || is_successor
+      'h-cite'
+    elsif include_threads
+      ''
+    else
+      'h-entry'
+    end
   end
 
   def rtl?(text)
@@ -54,6 +65,6 @@ module StreamEntriesHelper
   end
 
   def embedded_view?
-    params[:controller] == 'stream_entries' && params[:action] == 'embed'
+    params[:controller] == EMBEDDED_CONTROLLER && params[:action] == EMBEDDED_ACTION
   end
 end

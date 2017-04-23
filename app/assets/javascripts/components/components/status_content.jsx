@@ -112,7 +112,7 @@ class StatusContent extends React.PureComponent {
       }
 
       return (
-        <div className='status__content' style={{ cursor: 'pointer' }} onMouseDown={this.handleMouseDown} onMouseUp={this.handleMouseUp}>
+        <div className='status__content' onMouseDown={this.handleMouseDown} onMouseUp={this.handleMouseUp}>
           <p style={{ marginBottom: hidden && status.get('mentions').size === 0 ? '0px' : '' }} >
             <span dangerouslySetInnerHTML={spoilerContent} />  <a tabIndex='0' className='status__content__spoiler-link' role='button' onClick={this.handleSpoilerClick}>{toggleText}</a>
           </p>
@@ -126,7 +126,7 @@ class StatusContent extends React.PureComponent {
       return (
         <div
           className='status__content'
-          style={{ cursor: 'pointer', ...directionStyle }}
+          style={{ ...directionStyle }}
           onMouseDown={this.handleMouseDown}
           onMouseUp={this.handleMouseUp}
           dangerouslySetInnerHTML={content}
@@ -135,7 +135,7 @@ class StatusContent extends React.PureComponent {
     } else {
       return (
         <div
-          className='status__content'
+          className='status__content status__content--no-action'
           style={{ ...directionStyle }}
           dangerouslySetInnerHTML={content}
         />

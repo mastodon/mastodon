@@ -25,11 +25,11 @@ class Avatar extends React.PureComponent {
 
   constructor (props, context) {
     super(props, context);
-    
+
     this.state = {
       isHovered: false
     };
-    
+
     this.handleMouseOver = this.handleMouseOver.bind(this);
     this.handleMouseOut = this.handleMouseOut.bind(this);
   }
@@ -56,7 +56,7 @@ class Avatar extends React.PureComponent {
             className='account__header__avatar'
             target='_blank'
             rel='noopener'
-            style={{ display: 'block', width: '90px', height: '90px', margin: '0 auto', marginBottom: '10px', borderRadius: `${radius}px`, overflow: 'hidden', backgroundSize: '90px 90px', backgroundImage: `url(${autoPlayGif || isHovered ? account.get('avatar') : account.get('avatar_static')})` }}
+            style={{ borderRadius: `${radius}px`, backgroundImage: `url(${autoPlayGif || isHovered ? account.get('avatar') : account.get('avatar_static')})` }}
             onMouseOver={this.handleMouseOver}
             onMouseOut={this.handleMouseOut}
             onFocus={this.handleMouseOver}

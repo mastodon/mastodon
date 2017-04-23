@@ -12,6 +12,7 @@ const messages = defineMessages({
   reply: { id: 'status.reply', defaultMessage: 'Reply' },
   replyAll: { id: 'status.replyAll', defaultMessage: 'Reply to thread' },
   reblog: { id: 'status.reblog', defaultMessage: 'Reblog' },
+  cannot_reblog: { id: 'status.cannot_reblog', defaultMessage: 'This post cannot be reblogged' },
   favourite: { id: 'status.favourite', defaultMessage: 'Favourite' },
   open: { id: 'status.open', defaultMessage: 'Expand this status' },
   report: { id: 'status.report', defaultMessage: 'Report @{name}' }
@@ -71,6 +72,7 @@ class StatusActionBar extends React.PureComponent {
 
   render () {
     const { status, me, intl } = this.props;
+    const reblog_disabled = status.get('visibility') === 'private' || status.get('visibility') === 'direct';
     let menu = [];
 
     menu.push({ text: intl.formatMessage(messages.open), action: this.handleOpen });
@@ -100,12 +102,12 @@ class StatusActionBar extends React.PureComponent {
     }
 
     return (
-      <div style={{ marginTop: '10px', overflow: 'hidden' }}>
-        <div style={{ float: 'left', marginRight: '18px'}}><IconButton title={reply_title} icon={reply_icon} onClick={this.handleReplyClick} /></div>
-        <div style={{ float: 'left', marginRight: '18px'}}><IconButton disabled={status.get('visibility') === 'private' || status.get('visibility') === 'direct'} active={status.get('reblogged')} title={intl.formatMessage(messages.reblog)} icon={reblogIcon} onClick={this.handleReblogClick} /></div>
-        <div style={{ float: 'left', marginRight: '18px'}}><IconButton animate={true} active={status.get('favourited')} title={intl.formatMessage(messages.favourite)} icon='star' onClick={this.handleFavouriteClick} activeStyle={{ color: '#ca8f04' }} /></div>
+      <div className='status__action-bar'>
+        <div className='status__action-bar-button-wrapper'><IconButton title={reply_title} icon={reply_icon} onClick={this.handleReplyClick} /></div>
+        <div className='status__action-bar-button-wrapper'><IconButton disabled={reblog_disabled} active={status.get('reblogged')} title={reblog_disabled ? intl.formatMessage(messages.cannot_reblog) : intl.formatMessage(messages.reblog)} icon={reblogIcon} onClick={this.handleReblogClick} /></div>
+        <div className='status__action-bar-button-wrapper'><IconButton animate={true} active={status.get('favourited')} title={intl.formatMessage(messages.favourite)} icon='star' onClick={this.handleFavouriteClick} className='star-icon' /></div>
 
-        <div style={{ width: '18px', height: '18px', float: 'left' }}>
+        <div className='status__action-bar-dropdown'>
           <DropdownMenu items={menu} icon='ellipsis-h' size={18} direction="right" />
         </div>
       </div>
