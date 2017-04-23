@@ -496,6 +496,9 @@ a.status__content__spoiler-link {
 
 .status__display-name {
   color: lighten($color1, 26%);
+}
+
+.status__info .status__display-name {
   display: block;
   max-width: 100%;
   padding-right: 25px;
@@ -835,7 +838,7 @@ a.status__content__spoiler-link {
 }
 
 .detailed-status__display-avatar {
-  float: right;
+  float: left;
   margin-right: 10px;
 }
 
@@ -861,7 +864,7 @@ a.status__content__spoiler-link {
     opacity: 0.5;
   }
 
-  .status__content__spoiler-link {
+  a.status__content__spoiler-link {
     background: lighten($color1, 26%);
     color: lighten($color1, 4%);
 
@@ -889,6 +892,10 @@ a.status__content__spoiler-link {
 .notification__favourite-icon-wrapper {
   left: -26px;
   position: absolute;
+
+  .star-icon {
+    color: #ca8f04;
+  }
 }
 
 .star-icon.active {
