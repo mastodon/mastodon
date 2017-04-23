@@ -261,6 +261,12 @@
   margin: 5px;
 }
 
+.compose-form__upload-thumbnail {
+  border-radius: 4px;
+  height: 100px;
+  width: 100%;
+}
+
 .compose-form__upload-cancel {
   background-size: cover;
   border-radius: 4px;
@@ -1347,12 +1353,12 @@ a.status__content__spoiler-link {
 }
 
 .column-back-button {
-  padding: 15px;
-  font-size: 16px;
   background: lighten($color1, 4%);
-  flex: 0 0 auto;
-  cursor: pointer;
   color: $color4;
+  cursor: pointer;
+  flex: 0 0 auto;
+  font-size: 16px;
+  padding: 15px;
   z-index: 3;
 
   &:hover {
@@ -2375,10 +2381,6 @@ button.icon-button.active i.fa-retweet {
     box-shadow: 0 -4px 4px rgba($color8, 0.1);
   }
 
-  .privacy-dropdown__value-icon {
-    line-height: 27px;
-  }
-
   .privacy-dropdown__dropdown {
     display: block;
     box-shadow: 2px 4px 6px rgba($color8, 0.1);
@@ -3061,7 +3063,7 @@ button.icon-button.active i.fa-retweet {
 .media-spoiler-video-play-icon {
   border-radius: 100px;
   color: rgba(255, 255, 255, 0.8);
-  fontSize: 36px;
+  font-size: 36px;
   padding: 5px;
   position: absolute;
   top: 50%;
