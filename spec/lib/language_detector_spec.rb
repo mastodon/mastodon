@@ -23,6 +23,18 @@ describe LanguageDetector do
         expect(result).to be_nil
       end
 
+      describe 'because of a URL' do
+        it 'uses default locale when sent just a URL' do
+          string = 'http://example.com/media/2kFTgOJLXhQf0g2nKB4'
+          wl_result = WhatLanguage.new(:all).language_iso(string)
+          expect(wl_result).not_to eq :en
+
+          result = described_class.new(string).to_iso_s
+
+          expect(result).to eq :en
+        end
+      end
+
       describe 'with an account' do
         it 'uses the account locale when present' do
           user    = double(:user, locale: 'fr')

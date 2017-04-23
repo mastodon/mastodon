@@ -137,13 +137,13 @@ class ComposeForm extends React.PureComponent {
     }
 
     if (this.props.privacy === 'private' || this.props.privacy === 'direct') {
-      publishText = <span><i className='fa fa-lock' /> {intl.formatMessage(messages.publish)}</span>;
+      publishText = <span className='compose-form__publish-private'><i className='fa fa-lock' /> {intl.formatMessage(messages.publish)}</span>;
     } else {
       publishText = intl.formatMessage(messages.publish) + (this.props.privacy !== 'unlisted' ? '!' : '');
     }
 
     return (
-      <div style={{ padding: '10px' }}>
+      <div className='compose-form'>
         <Collapsable isVisible={this.props.spoiler} fullHeight={50}>
           <div className="spoiler-input">
             <input placeholder={intl.formatMessage(messages.spoiler_placeholder)} value={this.props.spoiler_text} onChange={this.handleChangeSpoilerText} onKeyDown={this.handleKeyDown} type="text" className="spoiler-input__input" />
@@ -154,7 +154,7 @@ class ComposeForm extends React.PureComponent {
 
         <ReplyIndicatorContainer />
 
-        <div style={{ position: 'relative' }}>
+        <div className='compose-form__autosuggest-wrapper'>
           <AutosuggestTextarea
             ref={this.setAutosuggestTextarea}
             placeholder={intl.formatMessage(messages.placeholder)}
@@ -176,7 +176,7 @@ class ComposeForm extends React.PureComponent {
           <UploadFormContainer />
         </div>
 
-        <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+        <div className='compose-form__buttons-wrapper'>
           <div className='compose-form__buttons'>
             <UploadButtonContainer />
             <PrivacyDropdownContainer />
@@ -184,9 +184,9 @@ class ComposeForm extends React.PureComponent {
             <SpoilerButtonContainer />
           </div>
 
-          <div style={{ display: 'flex', minWidth: 0 }}>
-            <div style={{ paddingTop: '10px', marginRight: '16px', lineHeight: '36px' }}><CharacterCounter max={500} text={text} /></div>
-            <div style={{ paddingTop: '10px', overflow: 'hidden' }}><Button text={publishText} onClick={this.handleSubmit} disabled={disabled || text.replace(/[\uD800-\uDBFF][\uDC00-\uDFFF]/g, "_").length > 500} block /></div>
+          <div className='compose-form__publish'>
+            <div className='character-counter__wrapper'><CharacterCounter max={500} text={text} /></div>
+            <div className='compose-form__publish-button-wrapper'><Button text={publishText} onClick={this.handleSubmit} disabled={disabled || text.replace(/[\uD800-\uDBFF][\uDC00-\uDFFF]/g, "_").length > 500} block /></div>
           </div>
         </div>
       </div>

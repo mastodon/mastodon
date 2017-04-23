@@ -10,21 +10,6 @@ const messages = defineMessages({
   settings: { id: 'home.settings', defaultMessage: 'Column settings' }
 });
 
-const outerStyle = {
-  padding: '15px'
-};
-
-const sectionStyle = {
-  cursor: 'default',
-  display: 'block',
-  fontWeight: '500',
-  marginBottom: '10px'
-};
-
-const rowStyle = {
-
-};
-
 class ColumnSettings extends React.PureComponent {
 
   render () {
@@ -32,20 +17,20 @@ class ColumnSettings extends React.PureComponent {
 
     return (
       <ColumnCollapsable icon='sliders' title={intl.formatMessage(messages.settings)} fullHeight={209} onCollapse={onSave}>
-        <div className='column-settings--outer' style={outerStyle}>
-          <span className='column-settings--section' style={sectionStyle}><FormattedMessage id='home.column_settings.basic' defaultMessage='Basic' /></span>
+        <div className='column-settings__outer'>
+          <span className='column-settings__section'><FormattedMessage id='home.column_settings.basic' defaultMessage='Basic' /></span>
 
-          <div style={rowStyle}>
+          <div className='column-settings__row'>
             <SettingToggle settings={settings} settingKey={['shows', 'reblog']} onChange={onChange} label={<FormattedMessage id='home.column_settings.show_reblogs' defaultMessage='Show boosts' />} />
           </div>
 
-          <div style={rowStyle}>
+          <div className='column-settings__row'>
             <SettingToggle settings={settings} settingKey={['shows', 'reply']} onChange={onChange} label={<FormattedMessage id='home.column_settings.show_replies' defaultMessage='Show replies' />} />
           </div>
 
-          <span className='column-settings--section' style={sectionStyle}><FormattedMessage id='home.column_settings.advanced' defaultMessage='Advanced' /></span>
+          <span className='column-settings__section'><FormattedMessage id='home.column_settings.advanced' defaultMessage='Advanced' /></span>
 
-          <div style={rowStyle}>
+          <div className='column-settings__row'>
             <SettingText settings={settings} settingKey={['regex', 'body']} onChange={onChange} label={intl.formatMessage(messages.filter_regex)} />
           </div>
         </div>
