@@ -10,7 +10,7 @@ class DisplayName extends React.PureComponent {
 
     return (
       <span className='display-name'>
-        <strong className='display-name__html' dangerouslySetInnerHTML={displayNameHTML} /><span className='display-name__account'>@{this.props.account.get('acct')}</span>
+        <strong className='display-name__html' dangerouslySetInnerHTML={displayNameHTML} /> <span className='display-name__account'>@{this.props.account.get('acct')}</span>
       </span>
     );
   }

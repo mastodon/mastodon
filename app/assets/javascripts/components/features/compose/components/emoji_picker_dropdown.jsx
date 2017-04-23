@@ -29,7 +29,7 @@ const dropdownStyle = {
 };
 
 const dropdownTriggerStyle = {
-  display: 'block', 
+  display: 'block',
   fontSize: '24px',
   lineHeight: '24px',
   marginLeft: '2px',

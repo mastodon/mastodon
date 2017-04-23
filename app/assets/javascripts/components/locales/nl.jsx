@@ -112,7 +112,6 @@ const nl = {
   "privacy.public.short": "Openbaar",
   "privacy.unlisted.long": "Niet op openbare tijdlijnen tonen",
   "privacy.unlisted.short": "Minder openbaar",
-  
 };
 
 export default nl;

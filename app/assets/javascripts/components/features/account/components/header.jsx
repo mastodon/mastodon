@@ -25,11 +25,11 @@ class Avatar extends React.PureComponent {
 
   constructor (props, context) {
     super(props, context);
-    
+
     this.state = {
       isHovered: false
     };
-    
+
     this.handleMouseOver = this.handleMouseOver.bind(this);
     this.handleMouseOut = this.handleMouseOut.bind(this);
   }
