@@ -8,7 +8,7 @@ const messages = defineMessages({
   unlisted_short: { id: 'privacy.unlisted.short', defaultMessage: 'Unlisted' },
   unlisted_long: { id: 'privacy.unlisted.long', defaultMessage: 'Do not show in public timelines' },
   private_short: { id: 'privacy.private.short', defaultMessage: 'Private' },
-  private_long: { id: 'privacy.private.long', defaultMessage: 'Post to followers only' },
+  private_long: { id: 'privacy.private.long', defaultMessage: 'Post to local followers only' },
   direct_short: { id: 'privacy.direct.short', defaultMessage: 'Direct' },
   direct_long: { id: 'privacy.direct.long', defaultMessage: 'Post to mentioned users only' },
   change_privacy: { id: 'privacy.change', defaultMessage: 'Adjust status privacy' }
