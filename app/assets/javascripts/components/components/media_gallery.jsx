@@ -8,72 +8,7 @@ const messages = defineMessages({
   toggle_visible: { id: 'media_gallery.toggle_visible', defaultMessage: 'Toggle visibility' }
 });
 
-const outerStyle = {
-  marginTop: '8px',
-  overflow: 'hidden',
-  width: '100%',
-  boxSizing: 'border-box',
-  position: 'relative'
-};
-
-const spoilerStyle = {
-  textAlign: 'center',
-  height: '100%',
-  cursor: 'pointer',
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  flexDirection: 'column'
-};
-
-const spoilerSpanStyle = {
-  display: 'block',
-  fontSize: '14px',
-};
-
-const spoilerSubSpanStyle = {
-  display: 'block',
-  fontSize: '11px',
-  fontWeight: '500'
-};
-
-const spoilerButtonStyle = {
-  position: 'absolute',
-  top: '4px',
-  left: '4px',
-  zIndex: '100'
-};
-
-const itemStyle = {
-  boxSizing: 'border-box',
-  position: 'relative',
-  float: 'left',
-  border: 'none',
-  display: 'block'
-};
-
-const thumbStyle = {
-  display: 'block',
-  width: '100%',
-  height: '100%',
-  textDecoration: 'none',
-  backgroundSize: 'cover',
-  cursor: 'zoom-in'
-};
-
-const gifvThumbStyle = {
-  position: 'relative',
-  zIndex: '1',
-  width: '100%',
-  height: '100%',
-  objectFit: 'cover',
-  top: '50%',
-  transform: 'translateY(-50%)',
-  cursor: 'zoom-in'
-};
-
 class Item extends React.PureComponent {
-
   constructor (props, context) {
     super(props, context);
     this.handleClick = this.handleClick.bind(this);
@@ -147,24 +82,26 @@ class Item extends React.PureComponent {
     if (attachment.get('type') === 'image') {
       thumbnail = (
         <a
-          href={attachment.get('remote_url') ? attachment.get('remote_url') : attachment.get('url')}
+          className='media-gallery__item-thumbnail'
+          href={attachment.get('remote_url') || attachment.get('url')}
           onClick={this.handleClick}
           target='_blank'
-          style={{ background: `url(${attachment.get('preview_url')}) no-repeat center`, ...thumbStyle }}
+          style={{ background: `url(${attachment.get('preview_url')}) no-repeat center`}}
         />
       );
     } else if (attachment.get('type') === 'gifv') {
       const autoPlay = !isIOS() && this.props.autoPlayGif;
 
       thumbnail = (
-        <div style={{ position: 'relative', width: '100%', height: '100%', overflow: 'hidden' }} className={`media-gallery__gifv ${autoPlay ? 'autoplay' : ''}`}>
+        <div className={`media-gallery__gifv ${autoPlay ? 'autoplay' : ''}`}>
           <video
+            className='media-gallery__item-gifv-thumbnail'
+            role='application'
             src={attachment.get('url')}
             onClick={this.handleClick}
             autoPlay={autoPlay}
             loop={true}
             muted={true}
-            style={gifvThumbStyle}
           />
 
           <span className='media-gallery__gifv__label'>GIF</span>
@@ -173,7 +110,7 @@ class Item extends React.PureComponent {
     }
 
     return (
-      <div key={attachment.get('id')} style={{ ...itemStyle, left: left, top: top, right: right, bottom: bottom, width: `${width}%`, height: `${height}%` }}>
+      <div className='media-gallery__item' key={attachment.get('id')} style={{ left: left, top: top, right: right, bottom: bottom, width: `${width}%`, height: `${height}%` }}>
         {thumbnail}
       </div>
     );
@@ -223,9 +160,9 @@ class MediaGallery extends React.PureComponent {
       }
 
       children = (
-        <div role='button' tabIndex='0' style={spoilerStyle} className='media-spoiler' onClick={this.handleOpen}>
-          <span style={spoilerSpanStyle}>{warning}</span>
-          <span style={spoilerSubSpanStyle}><FormattedMessage id='status.sensitive_toggle' defaultMessage='Click to view' /></span>
+        <div role='button' tabIndex='0' className='media-spoiler' onClick={this.handleOpen}>
+          <span className='media-spoiler__warning'>{warning}</span>
+          <span className='media-spoiler__trigger'><FormattedMessage id='status.sensitive_toggle' defaultMessage='Click to view' /></span>
         </div>
       );
     } else {
@@ -234,8 +171,8 @@ class MediaGallery extends React.PureComponent {
     }
 
     return (
-      <div style={{ ...outerStyle, height: `${this.props.height}px` }}>
-        <div style={{ ...spoilerButtonStyle, display: !this.state.visible ? 'none' : 'block' }}>
+      <div className='media-gallery' style={{ height: `${this.props.height}px` }}>
+        <div className='spoiler-button' style={{ display: !this.state.visible ? 'none' : 'block' }}>
           <IconButton title={intl.formatMessage(messages.toggle_visible)} icon={this.state.visible ? 'eye' : 'eye-slash'} overlay onClick={this.handleOpen} />
         </div>
 

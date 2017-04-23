@@ -151,7 +151,7 @@ class Status extends React.PureComponent {
         <ColumnBackButton />
 
         <ScrollContainer scrollKey='thread'>
-          <div className='scrollable'>
+          <div className='scrollable detailed-status__wrapper'>
             {ancestors}
 
             <DetailedStatus status={status} autoPlayGif={autoPlayGif} me={me} onOpenVideo={this.handleOpenVideo} onOpenMedia={this.handleOpenMedia} />

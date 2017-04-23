@@ -15,9 +15,9 @@ class Permalink extends React.Component {
   }
 
   render () {
-    const { href, children, ...other } = this.props;
+    const { href, children, className, ...other } = this.props;
 
-    return <a href={href} onClick={this.handleClick} {...other}>{children}</a>;
+    return <a href={href} onClick={this.handleClick} {...other} className={'permalink ' + className}>{children}</a>;
   }
 
 }
@@ -27,6 +27,7 @@ Permalink.contextTypes = {
 };
 
 Permalink.propTypes = {
+  className: PropTypes.string,
   href: PropTypes.string.isRequired,
   to: PropTypes.string.isRequired,
   children: PropTypes.node

@@ -150,8 +150,7 @@ class AutosuggestTextarea extends React.Component {
   render () {
     const { value, suggestions, disabled, placeholder, onKeyUp } = this.props;
     const { suggestionsHidden, selectedSuggestion } = this.state;
-    const className = 'autosuggest-textarea__textarea';
-    const style     = { direction: 'ltr' };
+    const style = { direction: 'ltr' };
 
     if (isRtl(value)) {
       style.direction = 'rtl';
@@ -161,7 +160,7 @@ class AutosuggestTextarea extends React.Component {
       <div className='autosuggest-textarea'>
         <textarea
           ref={this.setTextarea}
-          className={className}
+          className='autosuggest-textarea__textarea'
           disabled={disabled}
           placeholder={placeholder}
           autoFocus={true}

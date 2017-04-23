@@ -7,26 +7,31 @@
 
 .button {
   background-color: darken($color4, 3%);
-  font-family: inherit;
-  display: inline-block;
-  position: relative;
-  box-sizing: border-box;
-  text-align: center;
   border: 10px none;
+  border-radius: 4px;
+  box-sizing: border-box;
   color: $color5;
+  cursor: pointer;
+  display: inline-block;
+  font-family: inherit;
   font-size: 14px;
   font-weight: 500;
-  letter-spacing: 0;
-  text-transform: uppercase;
-  padding: 0 16px;
   height: 36px;
-  cursor: pointer;
+  letter-spacing: 0;
   line-height: 36px;
-  border-radius: 4px;
+  overflow: hidden;
+  padding: 0 16px;
+  position: relative;
+  text-align: center;
+  text-transform: uppercase;
   text-decoration: none;
+  text-overflow: ellipsis;
   transition: all 100ms ease-in;
+  white-space: nowrap;
 
-  &:hover, &:active, &:focus {
+  &:active,
+  &:focus,
+  &:hover {
     background-color: lighten($color4, 7%);
     transition: all 200ms ease-out;
   }
@@ -41,9 +46,20 @@
   }
 }
 
+.column-collapsable {
+  position: relative;
+}
+
 .column-icon {
-  color: $color3;
   background: lighten($color1, 4%);
+  color: $color3;
+  cursor: pointer;
+  font-size: 16px;
+  padding: 15px;
+  position: absolute;
+  right: 0;
+  top: -48px;
+  z-index: 3;
 
   &:hover {
     color: lighten($color3, 7%);
@@ -178,16 +194,12 @@
   }
 }
 
-.avatar {
-  border-radius: 4px;
-  background: transparent no-repeat;
-  background-position: 50%;
-  background-clip: padding-box;
-  position: relative;
-}
-
 .lightbox .icon-button {
   color: $color1;
+}
+
+.compose-form {
+  padding: 10px;
 }
 
 .compose-form__warning {
@@ -213,6 +225,11 @@
   border-radius: 0 0 4px 0;
 }
 
+.compose-form__buttons-wrapper {
+  display: flex;
+  justify-content: space-between;
+}
+
 .compose-form__buttons {
   padding: 10px;
   background: darken($color5, 8%);
@@ -224,6 +241,31 @@
     box-sizing: content-box;
     padding: 0 3px;
   }
+}
+
+.compose-form__upload-button-icon {
+  line-height: 27px;
+}
+
+.compose-form__upload-wrapper {
+  overflow: hidden;
+}
+
+.compose-form__uploads-wrapper {
+  display: flex;
+  padding: 5px;
+}
+
+.compose-form__upload {
+  flex: 1 1 0;
+  margin: 5px;
+}
+
+.compose-form__upload-cancel {
+  background-size: cover;
+  border-radius: 4px;
+  height: 100px;
+  width: 100px;
 }
 
 .compose-form__label {
@@ -253,6 +295,20 @@
   }
 }
 
+.compose-form__autosuggest-wrapper {
+  position: relative;
+}
+
+.compose-form__publish {
+  display: flex;
+  min-width: 0;
+}
+
+.compose-form__publish-button-wrapper {
+  overflow: hidden;
+  padding-top: 10px;
+}
+
 .emojione {
   display: inline-block;
   font-size: inherit;
@@ -272,13 +328,43 @@
   bottom: -2px;
   background: $color3;
   padding: 10px;
-
-  .reply-indicator__display-name {
-    color: $color1;
-  }
 }
 
-.status__content, .reply-indicator__content {
+.reply-indicator__header {
+  margin-bottom: 5px;
+  overflow: hidden;
+}
+
+.reply-indicator__cancel {
+  float: right;
+  line-height: 24px;
+}
+
+.reply-indicator__display-name {
+  color: $color1;
+  display: block;
+  max-width: 100%;
+  line-height: 24px;
+  overflow: hidden;
+  padding-right: 25px;
+  text-decoration: none;
+}
+
+.reply-indicator__display-avatar {
+  float: left;
+  margin-right: 5px;
+}
+
+.status__content {
+  cursor: pointer;
+}
+
+.status__content--no-action {
+  cursor: default;
+}
+
+.status__content,
+.reply-indicator__content {
   font-size: 15px;
   line-height: 20px;
   word-wrap: break-word;
@@ -347,6 +433,11 @@ a.status__content__spoiler-link {
   line-height: inherit;
 }
 
+.status__prepend-icon-wrapper {
+  left: -26px;
+  position: absolute;
+}
+
 .status {
   padding: 8px 10px;
   padding-left: 68px;
@@ -354,14 +445,6 @@ a.status__content__spoiler-link {
   min-height: 48px;
   border-bottom: 1px solid lighten($color1, 8%);
   cursor: default;
-
-  .status__relative-time {
-    color: lighten($color1, 26%);
-  }
-
-  .status__display-name {
-    color: lighten($color1, 26%);
-  }
 
   &.light {
     .status__relative-time {
@@ -401,12 +484,43 @@ a.status__content__spoiler-link {
   }
 }
 
+.status__relative-time {
+  color: lighten($color1, 26%);
+}
+
+.status__display-name {
+  color: lighten($color1, 26%);
+  display: block;
+  max-width: 100%;
+  padding-right: 25px;
+}
+
+.status__info {
+  font-size: 15px;
+}
+
+.status__info-time {
+  float: right;
+  font-size: 14px;
+}
+
 .status-check-box {
   border-bottom: 1px solid lighten($color1, 8%);
+  display: flex;
 
   .status__content {
     background: lighten($color1, 4%);
+    flex: 1 1 auto;
+    padding: 10px;
   }
+}
+
+.status-check-box-toggle {
+  align-items: center;
+  display: flex;
+  flex: 0 0 auto;
+  justify-content: center;
+  padding: 10px;
 }
 
 .status__prepend {
@@ -422,8 +536,25 @@ a.status__content__spoiler-link {
   }
 }
 
+.status__action-bar {
+  margin-top: 10px;
+  overflow: hidden;
+}
+
+.status__action-bar-button-wrapper {
+  float: left;
+  margin-right: 18px;
+}
+
+.status__action-bar-dropdown {
+  float: left;
+  height: 18px;
+  width: 18px;
+}
+
 .detailed-status {
   background: lighten($color1, 4%);
+  padding: 14px 10px;
 
   .status__content {
     font-size: 19px;
@@ -452,6 +583,19 @@ a.status__content__spoiler-link {
   padding: 10px 0;
 }
 
+.detailed-status__link {
+  color: inherit;
+  text-decoration: none;
+}
+
+.detailed-status__favorites,
+.detailed-status__reblogs {
+  display: inline-block;
+  font-weight: 500;
+  font-size: 12px;
+  margin-left: 6px;
+}
+
 .reply-indicator__content {
   color: $color1;
   font-size: 14px;
@@ -473,6 +617,29 @@ a.status__content__spoiler-link {
     text-decoration: none;
     font-size: 14px;
   }
+}
+
+.account__wrapper {
+  display: flex;
+}
+
+.account__avatar-wrapper {
+  float: left;
+  margin-left: 12px;
+  margin-right: 12px;
+}
+
+.account__avatar {
+  border-radius: 4px;
+  background: transparent no-repeat;
+  background-position: 50%;
+  background-clip: padding-box;
+  position: relative;
+}
+
+.account__relationship {
+  height: 18px;
+  padding: 10px;
 }
 
 .account__header {
@@ -501,11 +668,12 @@ a.status__content__spoiler-link {
 }
 
 .account__header__content {
-  word-wrap: break-word;
-  word-break: normal;
+  color: $color3;
+  font-size: 14px;
   font-weight: 400;
   overflow: hidden;
-  color: $color3;
+  word-break: normal;
+  word-wrap: break-word;
 
   p {
     margin-bottom: 20px;
@@ -541,6 +709,17 @@ a.status__content__spoiler-link {
   display: flex;
 }
 
+.account__action-bar-dropdown {
+  flex: 1 1 auto;
+  padding: 10px;
+}
+
+.account__action-bar-links {
+  display: flex;
+  flex: 1 1 auto;
+  line-height: 18px;
+}
+
 .account__action-bar__tab {
   text-decoration: none;
   overflow: hidden;
@@ -567,11 +746,41 @@ a.status__content__spoiler-link {
   }
 }
 
-.status__display-name, .status__relative-time, .detailed-status__display-name, .detailed-status__datetime, .detailed-status__application, .account__display-name {
+.account__header__avatar {
+  background-size: 90px 90px;
+  display: block;
+  height: 90px;
+  margin: 0 auto 10px;
+  overflow: hidden;
+  width: 90px;
+}
+
+.account-authorize {
+  padding: 14px 10px;
+
+  .detailed-status__display-name {
+    display: block;
+    margin-bottom: 15px;
+    overflow: hidden;
+  }
+}
+
+.account-authorize__avatar {
+  float: left;
+  margin-right: 10px;
+}
+
+.status__display-name,
+.status__relative-time,
+.detailed-status__display-name,
+.detailed-status__datetime,
+.detailed-status__application,
+.account__display-name {
   text-decoration: none;
 }
 
-.status__display-name, .account__display-name {
+.status__display-name,
+.account__display-name {
   strong {
     color: $color5;
   }
@@ -583,25 +792,33 @@ a.status__content__spoiler-link {
   }
 }
 
-.status__display-name, .reply-indicator__display-name, .detailed-status__display-name, .account__display-name {
-  &:hover {
-    strong {
-      text-decoration: underline;
-    }
+.status__display-name,
+.reply-indicator__display-name,
+.detailed-status__display-name,
+.account__display-name {
+  &:hover strong {
+    text-decoration: underline;
   }
 }
 
-.account__display-name {
-  strong {
-    display: block;
-  }
+.account__display-name strong {
+  display: block;
+}
+
+.detailed-status__application,
+.detailed-status__datetime {
+  color: inherit;
 }
 
 .detailed-status__display-name {
   color: $color2;
+  display: block;
   line-height: 24px;
+  margin-bottom: 15px;
+  overflow: hidden;
 
-  strong, span {
+  strong,
+  span {
     display: block;
   }
 
@@ -611,8 +828,22 @@ a.status__content__spoiler-link {
   }
 }
 
+.detailed-status__display-avatar {
+  float: right;
+  margin-right: 10px;
+}
+
+.status__avatar {
+  height: 48px;
+  left: 10px;
+  position: absolute;
+  top: 10px;
+  width: 48px;
+}
+
 .muted {
-  .status__content p, .status__content a {
+  .status__content p,
+  .status__content a {
     color: lighten($color1, 26%);
   }
 
@@ -624,7 +855,7 @@ a.status__content__spoiler-link {
     opacity: 0.5;
   }
 
-  a.status__content__spoiler-link {
+  .status__content__spoiler-link {
     background: lighten($color1, 26%);
     color: lighten($color1, 4%);
 
@@ -649,8 +880,18 @@ a.status__content__spoiler-link {
   }
 }
 
+.notification__favourite-icon-wrapper {
+  left: -26px;
+  position: absolute;
+}
+
+.star-icon.active {
+  color: #ca8f04;
+}
+
 .notification__display-name {
   color: inherit;
+  font-weight: 500;
   text-decoration: none;
 
   &:hover {
@@ -659,7 +900,24 @@ a.status__content__spoiler-link {
   }
 }
 
-.status__relative-time, .detailed-status__datetime {
+.display-name {
+  display: block;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.display-name__html {
+  font-weight: 500;
+}
+
+.display-name__account {
+  font-size: 14px;
+}
+
+.status__relative-time,
+.detailed-status__datetime {
   &:hover {
     text-decoration: underline;
   }
@@ -683,6 +941,25 @@ a.status__content__spoiler-link {
   strong {
     color: $color5;
   }
+
+  .permalink {
+    text-decoration: none;
+  }
+}
+
+.navigation-bar__profile {
+  flex: 1 1 auto;
+  margin-left: 8px;
+}
+
+.navigation-bar__profile-account {
+  display: block;
+  font-weight: 500;
+}
+
+.navigation-bar__profile-edit {
+  color: inherit;
+  text-decoration: none;
 }
 
 .dropdown {
@@ -702,6 +979,8 @@ a.status__content__spoiler-link {
 
 .dropdown--active .dropdown__content {
   display: block;
+  line-height: 18px;
+  text-align: left;
   z-index: 9999;
 
   &:before {
@@ -769,6 +1048,10 @@ a.status__content__spoiler-link {
   }
 }
 
+.dropdown__icon {
+  vertical-align: middle;
+}
+
 .static-content {
   padding: 10px;
   padding-top: 20px;
@@ -788,8 +1071,11 @@ a.status__content__spoiler-link {
 }
 
 .columns-area {
+  display: flex;
+  flex: 1 1 auto;
   flex-direction: row;
   justify-content: flex-start;
+  overflow-x: auto;
 }
 
 @media screen and (min-width: 360px) {
@@ -1074,6 +1360,25 @@ a.status__content__spoiler-link {
   }
 }
 
+.column-back-button__icon {
+  display: inline-block;
+  margin-right: 5px;
+}
+
+.column-back-button--slim {
+  position: relative;
+}
+
+.column-back-button--slim-button {
+  cursor: pointer;
+  flex: 0 0 auto;
+  font-size: 16px;
+  padding: 15px;
+  position: absolute;
+  right: 0;
+  top: -48px;
+}
+
 .react-toggle {
   display: inline-block;
   position: relative;
@@ -1184,6 +1489,9 @@ a.status__content__spoiler-link {
   background: lighten($color1, 8%);
   color: $color5;
   display: block;
+  font-size: 16px;
+  padding: 15px;
+  text-decoration: none;
 
   &:hover {
     background: lighten($color1, 11%);
@@ -1196,11 +1504,18 @@ a.status__content__spoiler-link {
   }
 }
 
-.autosuggest-textarea, .spoiler-input {
+.column-link__icon {
+  display: inline-block;
+  margin-right: 5px;
+}
+
+.autosuggest-textarea,
+.spoiler-input {
   position: relative;
 }
 
-.autosuggest-textarea__textarea, .spoiler-input__input {
+.autosuggest-textarea__textarea,
+.spoiler-input__input {
   display: block;
   box-sizing: border-box;
   width: 100%;
@@ -1265,6 +1580,44 @@ a.status__content__spoiler-link {
   }
 }
 
+.autosuggest-account {
+  overflow: hidden;
+}
+
+.autosuggest-account-icon {
+  float: left;
+  margin-right: 5px;
+}
+
+.autosuggest-status {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+
+  strong {
+    font-weight: 500;
+  }
+}
+
+.character-counter__wrapper {
+  line-height: 36px;
+  margin-right: 16px;
+  padding-top: 10px;
+}
+
+.character-counter {
+  cursor: default; 
+  font-size: 16px;
+}
+
+.character-counter--over {
+  color: #ff5050;
+}
+
+.getting-started__wrapper {
+  position: relative;
+}
+
 .getting-started {
   box-sizing: border-box;
   padding-bottom: 235px;
@@ -1285,6 +1638,12 @@ a.status__content__spoiler-link {
   background: transparent;
   border: none;
   border-bottom: 2px solid $color3;
+  box-sizing: border-box;
+  display: block;
+  font-family: inherit;
+  margin-bottom: 10px;
+  padding: 7px 0px;
+  width: 100%;
 
   &:focus, &:active {
     color: $color5;
@@ -1295,7 +1654,7 @@ a.status__content__spoiler-link {
     font-size: 16px;
   }
 }
-
+    
 @import 'boost';
 
 button.icon-button i.fa-retweet {
@@ -1341,6 +1700,12 @@ button.icon-button.active i.fa-retweet {
   white-space: nowrap;
 }
 
+.status-card__content {
+  flex: 1 1 auto;
+  overflow: hidden;
+  padding: 14px 14px 14px 8px;
+}
+
 .status-card__description {
   color: $color3;
 }
@@ -1348,6 +1713,14 @@ button.icon-button.active i.fa-retweet {
 .status-card__image {
   flex: 0 0 100px;
   background: lighten($color1, 8%);
+}
+
+.status-card__image-image {
+  border-radius: 4px 0px 0px 4px;
+  display: block;
+  height: auto;
+  margin: 0;
+  width: 100%;
 }
 
 .load-more {
@@ -1397,8 +1770,17 @@ button.icon-button.active i.fa-retweet {
   }
 }
 
+.column-header__icon {
+  display: inline-block;
+  margin-right: 5px;
+}
+
 .loading-indicator {
   color: $color2;
+  font-size: 16px;
+  font-weight: 500;
+  padding-top: 120px;
+  text-align: center;
 }
 
 .collapsable-collapsed {
@@ -1416,9 +1798,37 @@ button.icon-button.active i.fa-retweet {
   }
 }
 
-.media-spoiler, .video-error-cover {
+.media-spoiler,
+.video-error-cover {
+  align-items: center;
   background: $color8;
   color: $color5;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: center;
+  margin-top: 8px;
+  position: relative;
+  text-align: center;
+  z-index: 100;
+}
+
+.media-spoiler__warning {
+  display: block;
+  font-size: 14px;
+}
+
+.media-spoiler__trigger {
+  display: block;
+  font-size: 11px;
+  font-weight: 500;
+}
+
+.spoiler-button {
+  left: 4px;
+  position: absolute;
+  top: 4px;
 }
 
 .modal-container--preloader {
@@ -1429,32 +1839,82 @@ button.icon-button.active i.fa-retweet {
   background: lighten($color1, 4%);
   border-top: 1px solid lighten($color1, 8%);
   border-bottom: 1px solid lighten($color1, 8%);
+  display: flex;
+  flex-direction: row;
+  padding: 10px 0px;
 }
 
-.column-settings--outer {
+.account--panel__button,
+.detailed-status__button {
+  flex: 1 1 auto;
+  text-align: center;
+}
+
+.column-settings__outer {
   background: lighten($color1, 8%);
+  padding: 15px;
 }
 
-.column-settings--section {
+.column-settings__section {
   color: $color3;
+  cursor: default;
+  display: block;
+  font-weight: 500;
+  margin-bottom: 10px;
 }
 
 .modal-container__nav {
+  align-items: center;
+  background: rgba(0, 0, 0, 0.5);
+  box-sizing: border-box;
   color: $color5;
+  cursor: pointer;
+  display: flex;
+  font-size: 24px;
+  height: 100%;
+  padding: 30px 15px;
+  position: absolute;
+  top: 0;
+}
+
+.modal-container__nav--left {
+  left: -61px;
+}
+
+.modal-container__nav--right {
+  right: -61px;
 }
 
 .account--follows-info {
   color: $color5;
 }
 
+.setting-toggle__label {
+  display: block;
+  line-height: 24px;
+  vertical-align: middle;
+}
+
 .setting-toggle {
   color: $color3;
+  display: inline-block;
+  margin-bottom: 14px;
+  margin-left: 8px;
+  vertical-align: middle;
+}
+
+.report.scrollable {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  max-height: 100%;
 }
 
 .report__target {
   border-bottom: 1px solid lighten($color1, 4%);
   color: $color2;
-  padding-bottom: 10px;
+  flex: 0 0 auto;
+  padding: 10px;
 
   strong {
     display: block;
@@ -1463,25 +1923,44 @@ button.icon-button.active i.fa-retweet {
   }
 }
 
+.report__statuses {
+  flex: 1 1 auto;
+}
+
+.report__textarea-wrapper {
+  flex: 0 0 100px;
+  padding: 10px;
+}
+
 .report__textarea {
   background: transparent;
   box-sizing: border-box;
   border: 0;
   border-bottom: 2px solid $color3;
   border-radius: 2px 2px 0 0;
-  padding: 7px 4px;
-  font-size: 14px;
   color: $color5;
   display: block;
-  width: 100%;
-  outline: 0;
   font-family: inherit;
+  font-size: 14px;
+  margin-bottom: 10px;
+  outline: 0;
+  padding: 7px 4px;
   resize: vertical;
+  width: 100%;
 
   &:active, &:focus {
     border-bottom-color: $color4;
     background: rgba($color8, 0.1);
   }
+}
+
+.report__submit {
+  margin-top: 10px;
+  overflow: hidden;
+}
+
+.report__submit-button {
+  float: right;
 }
 
 .empty-column-indicator {
@@ -1708,28 +2187,18 @@ button.icon-button.active i.fa-retweet {
   }
 }
 
-.autosuggest-status {
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-
-  strong {
-    font-weight: 500;
-  }
-}
-
 .upload-area {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  visibility: hidden;
+  align-items: center;
   background: rgba($color8, 0.8);
   display: flex;
-  align-items: center;
+  height: 100%;
   justify-content: center;
+  left: 0;
   opacity: 0;
+  position: absolute;
+  top: 0;
+  visibility: hidden;
+  width: 100%;
   z-index: 2000;
 
   * {
@@ -1787,6 +2256,10 @@ button.icon-button.active i.fa-retweet {
     font-weight: 500;
     display: block;
   }
+}
+
+.upload-progess__message {
+  flex: 1 1 auto;
 }
 
 .upload-progress__backdrop {
@@ -1900,6 +2373,10 @@ button.icon-button.active i.fa-retweet {
     background: $color5;
     border-radius: 4px 4px 0 0;
     box-shadow: 0 -4px 4px rgba($color8, 0.1);
+  }
+
+  .privacy-dropdown__value-icon {
+    line-height: 27px;
   }
 
   .privacy-dropdown__dropdown {
@@ -2021,6 +2498,7 @@ button.icon-button.active i.fa-retweet {
   z-index: 9999;
   opacity: 0;
   background: rgba($color8, 0.7);
+  transform: translateZ(0px);
 }
 
 .modal-root__container {
@@ -2055,6 +2533,13 @@ button.icon-button.active i.fa-retweet {
     max-width: 80vw;
     max-height: 80vh;
   }
+}
+
+.media-modal__close {
+  position: absolute;
+  right: 4;
+  top: 4;
+  z-index: 100;
 }
 
 .onboarding-modal {
@@ -2297,6 +2782,20 @@ button.icon-button.active i.fa-retweet {
   width: 480px;
   position: relative;
   flex-direction: column;
+
+  .status__display-name {
+    display: block;
+    max-width: 100%;
+    padding-right: 25px;
+  }
+
+  .status__avatar {
+    height: 28px;
+    left: 10px;
+    position: absolute;
+    top: 10px;
+    width: 48px;
+  }
 }
 
 .boost-modal__container {
@@ -2325,6 +2824,15 @@ button.icon-button.active i.fa-retweet {
   .button {
     flex: 0 0 auto;
   }
+}
+
+.boost-modal__status-header {
+  font-size: 15px;
+}
+
+.boost-modal__status-time {
+  float: right;
+  font-size: 14px;
 }
 
 .loading-bar {
@@ -2415,3 +2923,116 @@ button.icon-button.active i.fa-retweet {
     }
   }
 }
+
+/* Media Gallery */
+.media-gallery {
+  box-sizing: border-box;
+  margin-top: 8px;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+}
+
+.media-gallery__item {
+  border: none;
+  box-sizing: border-box;
+  display: block;
+  float: left;
+  position: relative;
+}
+
+.media-gallery__item-thumbnail {
+  background-size: cover;
+  cursor: zoom-in;
+  display: block;
+  height: 100%;
+  text-decoration: none;
+  width: 100%;
+}
+
+.media-gallery__gifv {
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+}
+
+.media-gallery__item-gifv-thumbnail {
+  cursor: zoom-in;
+  height: 100%;
+  object-fit: cover;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 100%;
+  z-index: 1;
+}
+
+.media-gallery__item-thumbnail-label {
+  clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
+  clip: rect(1px, 1px, 1px, 1px);
+  overflow: hidden;
+  position: absolute;
+}
+/* End Media Gallery */
+
+/* Status Video Player */
+.status__video-player {
+  background: #000;
+  box-sizing: border-box;
+  cursor: default; /* May not be needed */
+  margin-top: 8px;
+  overflow: hidden;
+  position: relative;
+}
+
+.status__video-player-video {
+  height: 100%;
+  object-fit: cover;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 100%;
+  z-index: 1;
+}
+
+.status__video-player-expand,
+.status__video-player-mute {
+  color: #fff;
+  opacity: 0.8;
+  position: absolute;
+  right: 4px;
+  text-shadow: 0px 1px 1px #000, 1px 0px 1px #000;
+  top: 4px;
+}
+
+.status__video-player-spoiler {
+  color: #fff;
+  text-shadow: 0px 1px 1px #000, 1px 0px 1px #000;
+}
+
+.status__video-player-expand {
+  z-index: 100;
+}
+
+.status__video-player-mute {
+  z-index: 5;
+}
+
+.media-spoiler-video {
+  background-size: cover;
+  cursor: pointer;
+  margin-top: 8px;
+  position: relative;
+}
+
+.media-spoiler-video-play-icon {
+  border-radius: 100px;
+  color: rgba(255, 255, 255, 0.8);
+  fontSize: 36px;
+  padding: 5px;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+/* End Video Player */
