@@ -13,7 +13,7 @@ RSpec.describe Api::Activitypub::ActivitiesController, type: :controller do
         public_status = Status.create!(account: user.account, text: 'Hello world', visibility: :public)
 
         @request.env['HTTP_ACCEPT'] = 'application/activity+json'
-        get :show_status, id: public_status.id
+        get :show_status, params: { id: public_status.id }
       end
 
       it 'returns http success' do
@@ -48,7 +48,7 @@ RSpec.describe Api::Activitypub::ActivitiesController, type: :controller do
         reblog = Status.create!(account: user.account, reblog_of_id: original.id, visibility: :public)
 
         @request.env['HTTP_ACCEPT'] = 'application/activity+json'
-        get :show_status, id: reblog.id
+        get :show_status, params: { id: reblog.id }
       end
 
       it 'returns http success' do

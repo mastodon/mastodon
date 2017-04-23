@@ -19,7 +19,7 @@ RSpec.describe Api::Activitypub::OutboxController, type: :controller do
         Status.create!(account: user.account, text: 'Hello world', visibility: :unlisted)
         Status.create!(account: user.account, text: 'Hello world', visibility: :direct)
 
-        get :show, id: user.account.id
+        get :show, params: { id: user.account.id }
       end
 
       it 'returns http success' do
@@ -59,7 +59,7 @@ RSpec.describe Api::Activitypub::OutboxController, type: :controller do
 
       describe 'first page' do
         before do
-          get :show, id: user.account.id
+          get :show, params: { id: user.account.id }
         end
 
         it 'returns http success' do
