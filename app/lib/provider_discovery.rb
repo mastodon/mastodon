@@ -13,20 +13,22 @@ class ProviderDiscovery < OEmbed::ProviderDiscovery
       html = Nokogiri::HTML(res.to_s)
 
       if format.nil? || format == :json
-        provider_endpoint = html.at_xpath('//link[@type="application/json+oembed"]')['href']
-        format ||= :json
+        provider_endpoint ||= html.at_xpath('//link[@type="application/json+oembed"]')&.attribute('href')&.value
+        format ||= :json if provider_endpoint
       end
 
       if format.nil? || format == :xml
-        provider_endpoint = html.at_xpath('//link[@type="application/xml+oembed"]')['href']
-        format ||= :xml
+        provider_endpoint ||= html.at_xpath('//link[@type="application/xml+oembed"]')&.attribute('href')&.value
+        format ||= :xml if provider_endpoint
       end
 
-      provider_endpoint = Addressable::URI.parse(provider_endpoint)
-      provider_endpoint.query = nil
-      provider_endpoint = provider_endpoint.to_s
-
-      raise OEmbed::NotFound, url if provider_endpoint.blank?
+      begin
+        provider_endpoint = Addressable::URI.parse(provider_endpoint)
+        provider_endpoint.query = nil
+        provider_endpoint = provider_endpoint.to_s
+      rescue Addressable::URI::InvalidURIError
+        raise OEmbed::NotFound, url
+      end
 
       OEmbed::Provider.new(provider_endpoint, format || OEmbed::Formatter.default)
     end
