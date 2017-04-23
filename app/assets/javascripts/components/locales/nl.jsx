@@ -28,8 +28,6 @@ const nl = {
   "compose_form.publish": "Toot",
   "compose_form.sensitive": "Media als gevoelig markeren",
   "compose_form.spoiler": "Tekst achter waarschuwing verbergen",
-  "compose_form.private": "Als privé markeren",
-  "compose_form.privacy_disclaimer": "Jouw privétoot wordt afgeleverd aan de vermelde gebruikers op {domains}. Vertrouw jij {domainsCount, plural, one {die server} other {die servers}}? Het privé plaatsen van toots werkt alleen op Mastodon-servers. Wanneer {domains} {domainsCount, plural, one {geen Mastodon-server is} other {geen Mastodon-servers zijn}}, dan wordt er niet aangegeven dat de toot privé is, waardoor het kan worden geboost of op een andere manier zichtbaar wordt gemaakt voor mensen waarvoor het niet was bedoeld.",
   "compose_form.unlisted": "Niet op openbare tijdlijnen tonen",
   "emoji_button.activity": "Activiteiten",
   "emoji_button.flags": "Vlaggen",
