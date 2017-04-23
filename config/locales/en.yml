@@ -40,6 +40,15 @@ en:
     posts: Posts
     remote_follow: Remote follow
     unfollow: Unfollow
+  activitypub:
+    outbox:
+      name: "%{account_name}'s Outbox"
+      summary: "A collection of activities from user %{account_name}."
+    activity:
+      create:
+        name: "%{account_name} created a note."
+      announce:
+        name: "%{account_name} announced an activity."
   admin:
     accounts:
       are_you_sure: Are you sure?
@@ -206,6 +215,7 @@ en:
       x_months: "%{count}mo"
       x_seconds: "%{count}s"
   errors:
+    '403': You don't have permission to view this page.
     '404': The page you were looking for doesn't exist.
     '410': The page you were looking for doesn't exist anymore.
     '422':
