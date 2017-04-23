@@ -9,8 +9,8 @@ class DisplayName extends React.PureComponent {
     const displayNameHTML = { __html: emojify(escapeTextContentForBrowser(displayName)) };
 
     return (
-      <span style={{ display: 'block', maxWidth: '100%', overflow: 'hidden', whiteSpace: 'nowrap', textOverflow: 'ellipsis' }} className='display-name'>
-        <strong style={{ fontWeight: '500' }} dangerouslySetInnerHTML={displayNameHTML} /> <span style={{ fontSize: '14px' }}>@{this.props.account.get('acct')}</span>
+      <span className='display-name'>
+        <strong className='display-name__html' dangerouslySetInnerHTML={displayNameHTML} /> <span className='display-name__account'>@{this.props.account.get('acct')}</span>
       </span>
     );
   }

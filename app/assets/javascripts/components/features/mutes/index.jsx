@@ -51,7 +51,7 @@ class Mutes extends React.PureComponent {
       <Column icon='volume-off' heading={intl.formatMessage(messages.heading)}>
         <ColumnBackButtonSlim />
         <ScrollContainer scrollKey='mutes'>
-          <div className='scrollable' onScroll={this.handleScroll}>
+          <div className='scrollable mutes' onScroll={this.handleScroll}>
             {accountIds.map(id =>
               <AccountContainer key={id} id={id} />
             )}
@@ -60,6 +60,7 @@ class Mutes extends React.PureComponent {
       </Column>
     );
   }
+
 }
 
 Mutes.propTypes = {
