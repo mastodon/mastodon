@@ -35,7 +35,6 @@ module Mastodon
       :fi,
       :fr,
       :hr,
-      :id,
       :hu,
       :id,
       :io,
