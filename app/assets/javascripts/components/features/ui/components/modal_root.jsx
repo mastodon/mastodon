@@ -3,13 +3,15 @@ import MediaModal from './media_modal';
 import OnboardingModal from './onboarding_modal';
 import VideoModal from './video_modal';
 import BoostModal from './boost_modal';
+import ConfirmationModal from './confirmation_modal';
 import { TransitionMotion, spring } from 'react-motion';
 
 const MODAL_COMPONENTS = {
   'MEDIA': MediaModal,
   'ONBOARDING': OnboardingModal,
   'VIDEO': VideoModal,
-  'BOOST': BoostModal
+  'BOOST': BoostModal,
+  'CONFIRM': ConfirmationModal
 };
 
 class ModalRoot extends React.PureComponent {

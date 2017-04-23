@@ -85,7 +85,7 @@ const en = {
   "notification.follow": "{name} followed you",
   "notification.mention": "{name} mentioned you",
   "notification.reblog": "{name} boosted your status",
-  "notifications.clear_confirmation": "Are you sure you want to clear all your notifications?",
+  "notifications.clear_confirmation": "Are you sure you want to permanently clear all your notifications?",
   "notifications.clear": "Clear notifications",
   "notifications.column_settings.alert": "Desktop notifications",
   "notifications.column_settings.favourite": "Favourites:",

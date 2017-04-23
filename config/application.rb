@@ -53,7 +53,7 @@ module Mastodon
       :'zh-TW',
     ]
 
-    config.i18n.default_locale    = :en
+    config.i18n.default_locale = :en
 
     # config.paths.add File.join('app', 'api'), glob: File.join('**', '*.rb')
     # config.autoload_paths += Dir[Rails.root.join('app', 'api', '*')]
@@ -72,7 +72,6 @@ module Mastodon
     config.middleware.use Rack::Attack
     config.middleware.use Rack::Deflater
 
-    config.browserify_rails.source_map_environments << 'development'
     config.browserify_rails.commandline_options   = '--transform [ babelify --presets [ es2015 react ] --plugins [ transform-decorators-legacy ] ] --extension=".jsx"'
     config.browserify_rails.evaluate_node_modules = true
 
