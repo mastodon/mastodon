@@ -41,14 +41,14 @@ en:
     remote_follow: Remote follow
     unfollow: Unfollow
   activitypub:
-    outbox:
-      name: "%{account_name}'s Outbox"
-      summary: "A collection of activities from user %{account_name}."
     activity:
-      create:
-        name: "%{account_name} created a note."
       announce:
         name: "%{account_name} announced an activity."
+      create:
+        name: "%{account_name} created a note."
+    outbox:
+      name: "%{account_name}'s Outbox"
+      summary: A collection of activities from user %{account_name}.
   admin:
     accounts:
       are_you_sure: Are you sure?
@@ -227,6 +227,18 @@ en:
     follows: You follow
     mutes: You mute
     storage: Media storage
+  followers:
+    domain: Domain
+    explanation_html: If you want to ensure the privacy of your statuses, you must be aware of who is following you. <strong>Your private statuses are delivered to all instances where you have followers</strong>. You may wish to review them, and remove followers if you do not trust your privacy to be respected by the staff or software of those instances.
+    followers_count: Number of followers
+    lock_link: Lock your account
+    purge: Remove from followers
+    success:
+      one: In the process of soft-blocking followers from one domain...
+      other: In the process of soft-blocking followers from %{count} domains...
+    true_privacy_html: Please mind that <strong>true privacy can only be achieved with end-to-end encryption</strong>.
+    unlocked_warning_html: Anyone can follow you to immediately view your private statuses. %{lock_link} to be able to review and reject followers.
+    unlocked_warning_title: Your account is not locked
   generic:
     changes_saved_msg: Changes successfully saved!
     powered_by: powered by %{link}
@@ -286,6 +298,7 @@ en:
     back: Back to Mastodon
     edit_profile: Edit profile
     export: Data export
+    followers: Authorized followers
     import: Import
     preferences: Preferences
     settings: Settings
@@ -295,9 +308,12 @@ en:
     over_character_limit: character limit of %{max} exceeded
     show_more: Show more
     visibilities:
-      private: Only show to followers
+      private: Followers-only
+      private_long: Only show to followers
       public: Public
-      unlisted: Public, but do not display on the public timeline
+      public_long: Everyone can see
+      unlisted: Unlisted
+      unlisted_long: Everyone can see, but not listed on public timelines
   stream_entries:
     click_to_show: Click to show
     reblogged: boosted

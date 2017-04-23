@@ -135,6 +135,10 @@ class Account < ApplicationRecord
     !subscription_expires_at.blank?
   end
 
+  def followers_domains
+    followers.reorder(nil).pluck('distinct accounts.domain')
+  end
+
   def favourited?(status)
     status.proper.favourites.where(account: self).count.positive?
   end

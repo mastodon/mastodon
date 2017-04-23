@@ -173,7 +173,7 @@
   text-align: center;
   overflow: hidden;
 
-  a, .current, .page, .gap {
+  a, .current, .next, .prev, .page, .gap {
     font-size: 14px;
     color: $color5;
     font-weight: 500;
@@ -187,6 +187,7 @@
     border-radius: 100px;
     color: $color1;
     cursor: default;
+    margin: 0 10px;
   }
 
   .gap {

@@ -15,6 +15,7 @@ import SensitiveButtonContainer from '../containers/sensitive_button_container';
 import EmojiPickerDropdown from './emoji_picker_dropdown';
 import UploadFormContainer from '../containers/upload_form_container';
 import TextIconButton from './text_icon_button';
+import WarningContainer from '../containers/warning_container';
 
 const messages = defineMessages({
   placeholder: { id: 'compose_form.placeholder', defaultMessage: 'What is on your mind?' },
@@ -116,25 +117,12 @@ class ComposeForm extends React.PureComponent {
   }
 
   render () {
-    const { intl, needsPrivacyWarning, mentionedDomains, onPaste } = this.props;
+    const { intl, onPaste } = this.props;
     const disabled = this.props.is_submitting;
     const text = [this.props.spoiler_text, this.props.text].join('');
 
     let publishText    = '';
-    let privacyWarning = '';
     let reply_to_other = false;
-
-    if (needsPrivacyWarning) {
-      privacyWarning = (
-        <div className='compose-form__warning'>
-          <FormattedMessage
-            id='compose_form.privacy_disclaimer'
-            defaultMessage='Your private status will be delivered to mentioned users on {domains}. Do you trust {domainsCount, plural, one {that server} other {those servers}} to not leak your status?'
-            values={{ domains: <strong>{mentionedDomains.join(', ')}</strong>, domainsCount: mentionedDomains.length }}
-          />
-        </div>
-      );
-    }
 
     if (this.props.privacy === 'private' || this.props.privacy === 'direct') {
       publishText = <span className='compose-form__publish-private'><i className='fa fa-lock' /> {intl.formatMessage(messages.publish)}</span>;
@@ -150,7 +138,7 @@ class ComposeForm extends React.PureComponent {
           </div>
         </Collapsable>
 
-        {privacyWarning}
+        <WarningContainer />
 
         <ReplyIndicatorContainer />
 
@@ -208,8 +196,6 @@ ComposeForm.propTypes = {
   is_submitting: PropTypes.bool,
   is_uploading: PropTypes.bool,
   me: PropTypes.number,
-  needsPrivacyWarning: PropTypes.bool,
-  mentionedDomains: PropTypes.array.isRequired,
   onChange: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired,
   onClearSuggestions: PropTypes.func.isRequired,

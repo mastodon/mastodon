@@ -1,7 +1,6 @@
 import { connect } from 'react-redux';
 import ComposeForm from '../components/compose_form';
 import { uploadCompose } from '../../../actions/compose';
-import { createSelector } from 'reselect';
 import {
   changeCompose,
   submitCompose,
@@ -12,32 +11,19 @@ import {
   insertEmojiCompose
 } from '../../../actions/compose';
 
-const getMentionedUsernames = createSelector(state => state.getIn(['compose', 'text']), text => text.match(/(?:^|[^\/\w])@([a-z0-9_]+@[a-z0-9\.\-]+)/ig));
-
-const getMentionedDomains = createSelector(getMentionedUsernames, mentionedUsernamesWithDomains => {
-  return mentionedUsernamesWithDomains !== null ? [...new Set(mentionedUsernamesWithDomains.map(item => item.split('@')[2]))] : [];
+const mapStateToProps = state => ({
+  text: state.getIn(['compose', 'text']),
+  suggestion_token: state.getIn(['compose', 'suggestion_token']),
+  suggestions: state.getIn(['compose', 'suggestions']),
+  spoiler: state.getIn(['compose', 'spoiler']),
+  spoiler_text: state.getIn(['compose', 'spoiler_text']),
+  privacy: state.getIn(['compose', 'privacy']),
+  focusDate: state.getIn(['compose', 'focusDate']),
+  preselectDate: state.getIn(['compose', 'preselectDate']),
+  is_submitting: state.getIn(['compose', 'is_submitting']),
+  is_uploading: state.getIn(['compose', 'is_uploading']),
+  me: state.getIn(['compose', 'me'])
 });
-
-const mapStateToProps = (state, props) => {
-  const mentionedUsernames = getMentionedUsernames(state);
-  const mentionedUsernamesWithDomains = getMentionedDomains(state);
-
-  return {
-    text: state.getIn(['compose', 'text']),
-    suggestion_token: state.getIn(['compose', 'suggestion_token']),
-    suggestions: state.getIn(['compose', 'suggestions']),
-    spoiler: state.getIn(['compose', 'spoiler']),
-    spoiler_text: state.getIn(['compose', 'spoiler_text']),
-    privacy: state.getIn(['compose', 'privacy']),
-    focusDate: state.getIn(['compose', 'focusDate']),
-    preselectDate: state.getIn(['compose', 'preselectDate']),
-    is_submitting: state.getIn(['compose', 'is_submitting']),
-    is_uploading: state.getIn(['compose', 'is_uploading']),
-    me: state.getIn(['compose', 'me']),
-    needsPrivacyWarning: (state.getIn(['compose', 'privacy']) === 'private' || state.getIn(['compose', 'privacy']) === 'direct') && mentionedUsernames !== null,
-    mentionedDomains: mentionedUsernamesWithDomains
-  };
-};
 
 const mapDispatchToProps = (dispatch) => ({
 

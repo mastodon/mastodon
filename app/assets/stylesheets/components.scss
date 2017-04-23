@@ -1,6 +1,6 @@
 @import 'variables';
 
-.app-body{
+.app-body {
  -webkit-overflow-scrolling: touch;
  -ms-overflow-style: -ms-autohiding-scrollbar;
 }
@@ -203,17 +203,28 @@
 }
 
 .compose-form__warning {
-  color: $color2;
+  color: darken($color3, 33%);
   margin-bottom: 15px;
-  border: 1px solid $color3;
+  background: $color3;
+  box-shadow: 0 2px 6px rgba($color8, 0.3);
   padding: 8px 10px;
   border-radius: 4px;
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 400;
 
   strong {
-    color: $color5;
+    color: darken($color3, 33%);
     font-weight: 500;
+  }
+
+  a {
+    color: darken($color3, 33%);
+    font-weight: 500;
+    text-decoration: underline;
+
+    &:hover, &:active, &:focus {
+      text-decoration: none;
+    }
   }
 }
 
@@ -1619,7 +1630,7 @@ a.status__content__spoiler-link {
 }
 
 .character-counter {
-  cursor: default; 
+  cursor: default;
   font-size: 16px;
 }
 
@@ -1667,7 +1678,7 @@ a.status__content__spoiler-link {
     font-size: 16px;
   }
 }
-    
+
 @import 'boost';
 
 button.icon-button i.fa-retweet {
@@ -1766,6 +1777,7 @@ button.icon-button.active i.fa-retweet {
   cursor: pointer;
   position: relative;
   z-index: 2;
+  outline: 0;
 
   &.active {
     box-shadow: 0 1px 0 rgba($color4, 0.3);
@@ -1780,6 +1792,10 @@ button.icon-button.active i.fa-retweet {
     @media screen and (max-width: 1024px) {
       display: none;
     }
+  }
+
+  &:focus, &:active {
+    outline: 0;
   }
 }
 
