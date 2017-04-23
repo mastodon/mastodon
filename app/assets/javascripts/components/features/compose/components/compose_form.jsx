@@ -15,6 +15,7 @@ import SensitiveButtonContainer from '../containers/sensitive_button_container';
 import EmojiPickerDropdown from './emoji_picker_dropdown';
 import UploadFormContainer from '../containers/upload_form_container';
 import TextIconButton from './text_icon_button';
+import Warning from './warning';
 
 const messages = defineMessages({
   placeholder: { id: 'compose_form.placeholder', defaultMessage: 'What is on your mind?' },
@@ -126,14 +127,13 @@ class ComposeForm extends React.PureComponent {
 
     if (needsPrivacyWarning) {
       privacyWarning = (
-        <div className='compose-form__warning'>
-          <FormattedMessage
+        <Warning
+          message={<FormattedMessage
             id='compose_form.privacy_disclaimer'
             defaultMessage='Your private status will be delivered to mentioned users on {domains}. Do you trust {domainsCount, plural, one {that server} other {those servers}} to not leak your status?'
             values={{ domains: <strong>{mentionedDomains.join(', ')}</strong>, domainsCount: mentionedDomains.length }}
-          />
-        </div>
-      );
+          />}
+        />);
     }
 
     if (this.props.privacy === 'private' || this.props.privacy === 'direct') {

@@ -41,14 +41,14 @@ en:
     remote_follow: Remote follow
     unfollow: Unfollow
   activitypub:
-    outbox:
-      name: "%{account_name}'s Outbox"
-      summary: "A collection of activities from user %{account_name}."
     activity:
-      create:
-        name: "%{account_name} created a note."
       announce:
         name: "%{account_name} announced an activity."
+      create:
+        name: "%{account_name} created a note."
+    outbox:
+      name: "%{account_name}'s Outbox"
+      summary: A collection of activities from user %{account_name}.
   admin:
     accounts:
       are_you_sure: Are you sure?
@@ -308,9 +308,12 @@ en:
     over_character_limit: character limit of %{max} exceeded
     show_more: Show more
     visibilities:
-      private: Only show to followers
+      private: Followers-only
+      private_long: Only show to followers
       public: Public
-      unlisted: Public, but do not display on the public timeline
+      public_long: Everyone can see
+      unlisted: Unlisted
+      unlisted_long: Everyone can see, but not listed on public timelines
   stream_entries:
     click_to_show: Click to show
     reblogged: boosted

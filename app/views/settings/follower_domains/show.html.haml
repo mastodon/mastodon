@@ -1,7 +1,7 @@
 - content_for :page_title do
   = t('settings.followers')
 
-= form_tag purge_settings_followers_path, method: :post, class: 'table-form' do
+= form_tag settings_follower_domains_path, method: :patch, class: 'table-form' do
   - unless @account.locked?
     .warning
       %strong
@@ -27,4 +27,7 @@
             %samp= domain.domain.presence || Rails.configuration.x.local_domain
           %td= number_with_delimiter domain.accounts_from_domain
 
-  = button_tag t('followers.purge'), type: :submit, class: 'button', disabled: !@account.locked?
+  .action-pagination
+    .actions
+      = button_tag t('followers.purge'), type: :submit, class: 'button', disabled: !@account.locked?
+    = paginate @domains
