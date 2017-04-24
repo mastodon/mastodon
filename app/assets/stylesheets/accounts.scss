@@ -4,7 +4,7 @@
   padding: 60px 0;
   padding-bottom: 0;
   border-radius: 4px 4px 0 0;
-  box-shadow: 0 0 15px rgba($color8, 0.2);
+  box-shadow: 0 0 15px $twenty_alpha_color8;
   overflow: hidden;
   position: relative;
 
@@ -14,7 +14,7 @@
   }
 
   &:after {
-    background: linear-gradient(rgba($color8, 0.5), rgba($color8, 0.8));
+    background: linear-gradient($fifty_alpha_color8, $eighty_alpha_color8);
     display: block;
     content: "";
     position: absolute;
@@ -238,7 +238,7 @@
 }
 
 .accounts-grid {
-  box-shadow: 0 0 15px rgba($color8, 0.2);
+  box-shadow: 0 0 15px $twenty_alpha_color8;
   background: $color5;
   border-radius: 0 0 4px 4px;
   padding: 20px 10px;
@@ -333,7 +333,7 @@
   background: $color5;
   border-radius: 4px;
   text-align: left;
-  box-shadow: 0 0 15px rgba($color8, 0.2);
+  box-shadow: 0 0 15px $twenty_alpha_color8;
 
   .detailed-status__display-name {
     display: block;

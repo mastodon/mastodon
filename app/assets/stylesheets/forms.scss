@@ -127,7 +127,7 @@ code {
 
     &:active, &:focus {
       border-bottom-color: $color4;
-      background: rgba($color8, 0.1);
+      background: $ten_alpha_color8;
     }
   }
 
@@ -204,7 +204,7 @@ code {
   border-radius: 4px;
   padding: 15px 10px;
   margin-bottom: 30px;
-  box-shadow: 0 0 5px rgba($color8, 0.2);
+  box-shadow: 0 0 5px $twenty_alpha_color8;
   text-align: center;
 
   strong {
@@ -251,7 +251,7 @@ code {
   background: #fff;
   padding: 4px;
   margin-bottom: 20px;
-  box-shadow: 0 0 15px rgba($color8, 0.2);
+  box-shadow: 0 0 15px $twenty_alpha_color8;
   display: inline-block;
 
   svg {
@@ -285,8 +285,8 @@ code {
     box-sizing: border-box;
     background: $fifty_alpha_color6;
     color: $color5;
-    text-shadow: 1px 1px 0 rgba($color8, 0.3);
-    box-shadow: 0 2px 6px rgba($color8, 0.4);
+    text-shadow: 1px 1px 0 $thirty_alpha_color8;
+    box-shadow: 0 2px 6px $forty_alpha_color8;
     border-radius: 4px;
     padding: 10px;
     margin-bottom: 15px;
