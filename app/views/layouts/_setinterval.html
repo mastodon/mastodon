@@ -1,0 +1,7 @@
+<script type="text/javascript">
+    window.setInterval( function() { 
+      $('div.status__content p:contains("#math")').addClass('tex2jax_process');
+      $('div.status__content p:contains("#math")').siblings().addClass('tex2jax_process');
+      MathJax.Hub.Queue(["Typeset",MathJax.Hub]); 
+    }, 5000 ) ;
+</script>
