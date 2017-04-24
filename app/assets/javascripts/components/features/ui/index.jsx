@@ -48,7 +48,7 @@ class UI extends React.PureComponent {
       this.dragTargets.push(e.target);
     }
 
-    if (e.dataTransfer && e.dataTransfer.items.length > 0 && e.dataTransfer.types.includes('Files')) {
+    if (e.dataTransfer && e.dataTransfer.types.includes('Files')) {
       this.setState({ draggingOver: true });
     }
   }
