@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
 class Api::V1::AccountsController < ApiController
-  before_action -> { doorkeeper_authorize! :read }, except: [:follow, :unfollow, :block, :unblock, :mute, :unmute, :update_credentials]
+  before_action -> { doorkeeper_authorize_if_got_token! :read }, only: [:show, :following, :followers, :statuses, :search]
+  before_action -> { doorkeeper_authorize! :read }, except: [:show, :following, :followers, :statuses, :search, :follow, :unfollow, :block, :unblock, :mute, :unmute, :update_credentials]
   before_action -> { doorkeeper_authorize! :follow }, only: [:follow, :unfollow, :block, :unblock, :mute, :unmute]
   before_action -> { doorkeeper_authorize! :write }, only: [:update_credentials]
   before_action :require_user!, except: [:show, :following, :followers, :statuses]
