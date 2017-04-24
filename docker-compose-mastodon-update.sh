@@ -1,6 +1,8 @@
 #!/bin/bash
 git stash
-git pull
+git fetch --tags
+latestTag=$(git describe --tags `git rev-list --tags --max-count=1`)
+git checkout $latestTag
 git stash pop
 docker-compose build
 docker-compose up -d
