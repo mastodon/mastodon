@@ -149,6 +149,8 @@ GEM
     fabrication (2.16.1)
     faker (1.7.3)
       i18n (~> 0.5)
+    faraday (0.11.0)
+      multipart-post (>= 1.2, < 3)
     fast_blank (1.0.0)
     font-awesome-rails (4.7.0.1)
       railties (>= 3.2, < 5.1)
@@ -243,6 +245,7 @@ GEM
     mimemagic (0.3.2)
     mini_portile2 (2.1.0)
     minitest (5.10.1)
+    multipart-post (2.0.0)
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
     net-ssh (4.1.0)
@@ -484,6 +487,7 @@ DEPENDENCIES
   dotenv-rails
   fabrication
   faker
+  faraday
   fast_blank
   font-awesome-rails
   fuubar

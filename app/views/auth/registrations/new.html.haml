@@ -12,6 +12,16 @@
   = f.input :password_confirmation, autocomplete: "off", placeholder: t('simple_form.labels.defaults.confirm_password'), required: true, input_html: { 'aria-label' => t('simple_form.labels.defaults.confirm_password') }
 
   .actions
-    = f.button :button, t('auth.register'), type: :submit
+    - if ENV['RECAPTCHA_ENABLED'] == 'true'
+      %script(src='https://www.google.com/recaptcha/api.js')
+      = f.button :button, t('auth.register'), type: :submit, id: 'registration-form',
+        class: 'g-recaptcha',
+        data: { sitekey: ENV['RECAPTCHA_SITE_KEY'], callback: 'on_submit_new_user' }
+      :javascript
+        function on_submit_new_user(token) {
+          document.getElementById("new_user").submit();
+        }
+    - else
+      = f.button :button, t('auth.register'), type: :submit
 
 .form-footer= render "auth/shared/links"
