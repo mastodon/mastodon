@@ -184,11 +184,11 @@ code {
       background: $color6;
 
       &:hover {
-        background-color: lighten($color6, 5%);
+        background-color: $five_lighten_color6;
       }
 
       &:active, &:focus {
-        background-color: darken($color6, 5%);
+        background-color: $five_darken_color6;
       }
     }
   }
@@ -283,7 +283,7 @@ code {
   .warning {
     max-width: 400px;
     box-sizing: border-box;
-    background: rgba($color6, 0.5);
+    background: $fifty_alpha_color6;
     color: $color5;
     text-shadow: 1px 1px 0 rgba($color8, 0.3);
     box-shadow: 0 2px 6px rgba($color8, 0.4);
