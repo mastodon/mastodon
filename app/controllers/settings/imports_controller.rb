@@ -18,7 +18,7 @@ class Settings::ImportsController < ApplicationController
       ImportWorker.perform_async(@import.id)
       redirect_to settings_import_path, notice: I18n.t('imports.success')
     else
-      render action: :show
+      render :show
     end
   end
 

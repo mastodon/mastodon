@@ -1,29 +1,24 @@
 import ImmutablePropTypes from 'react-immutable-proptypes';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
 import escapeTextContentForBrowser from 'escape-html';
+import PropTypes from 'prop-types';
 import emojify from '../emoji';
 import { isRtl } from '../rtl';
 import { FormattedMessage } from 'react-intl';
 import Permalink from './permalink';
 
-const StatusContent = React.createClass({
+class StatusContent extends React.PureComponent {
 
-  contextTypes: {
-    router: React.PropTypes.object
-  },
-
-  propTypes: {
-    status: ImmutablePropTypes.map.isRequired,
-    onClick: React.PropTypes.func
-  },
-
-  getInitialState () {
-    return {
+  constructor (props, context) {
+    super(props, context);
+    this.state = {
       hidden: true
     };
-  },
-
-  mixins: [PureRenderMixin],
+    this.onMentionClick = this.onMentionClick.bind(this);
+    this.onHashtagClick = this.onHashtagClick.bind(this);
+    this.handleMouseDown = this.handleMouseDown.bind(this)
+    this.handleMouseUp = this.handleMouseUp.bind(this);
+    this.handleSpoilerClick = this.handleSpoilerClick.bind(this);
+  };
 
   componentDidMount () {
     const node  = ReactDOM.findDOMNode(this);
@@ -47,14 +42,14 @@ const StatusContent = React.createClass({
         link.setAttribute('title', link.href);
       }
     }
-  },
+  }
 
   onMentionClick (mention, e) {
     if (e.button === 0) {
       e.preventDefault();
       this.context.router.push(`/accounts/${mention.get('id')}`);
     }
-  },
+  }
 
   onHashtagClick (hashtag, e) {
     hashtag = hashtag.replace(/^#/, '').toLowerCase();
@@ -63,11 +58,11 @@ const StatusContent = React.createClass({
       e.preventDefault();
       this.context.router.push(`/timelines/tag/${hashtag}`);
     }
-  },
+  }
 
   handleMouseDown (e) {
     this.startXY = [e.clientX, e.clientY];
-  },
+  }
 
   handleMouseUp (e) {
     const [ startX, startY ] = this.startXY;
@@ -82,12 +77,12 @@ const StatusContent = React.createClass({
     }
 
     this.startXY = null;
-  },
+  }
 
   handleSpoilerClick (e) {
     e.preventDefault();
     this.setState({ hidden: !this.state.hidden });
-  },
+  }
 
   render () {
     const { status } = this.props;
@@ -117,7 +112,7 @@ const StatusContent = React.createClass({
       }
 
       return (
-        <div className='status__content' style={{ cursor: 'pointer' }} onMouseDown={this.handleMouseDown} onMouseUp={this.handleMouseUp}>
+        <div className='status__content' onMouseDown={this.handleMouseDown} onMouseUp={this.handleMouseUp}>
           <p style={{ marginBottom: hidden && status.get('mentions').size === 0 ? '0px' : '' }} >
             <span dangerouslySetInnerHTML={spoilerContent} />  <a tabIndex='0' className='status__content__spoiler-link' role='button' onClick={this.handleSpoilerClick}>{toggleText}</a>
           </p>
@@ -131,7 +126,7 @@ const StatusContent = React.createClass({
       return (
         <div
           className='status__content'
-          style={{ cursor: 'pointer', ...directionStyle }}
+          style={{ ...directionStyle }}
           onMouseDown={this.handleMouseDown}
           onMouseUp={this.handleMouseUp}
           dangerouslySetInnerHTML={content}
@@ -140,14 +135,23 @@ const StatusContent = React.createClass({
     } else {
       return (
         <div
-          className='status__content'
+          className='status__content status__content--no-action'
           style={{ ...directionStyle }}
           dangerouslySetInnerHTML={content}
         />
       );
     }
-  },
+  }
 
-});
+}
+
+StatusContent.contextTypes = {
+  router: PropTypes.object
+};
+
+StatusContent.propTypes = {
+  status: ImmutablePropTypes.map.isRequired,
+  onClick: PropTypes.func
+};
 
 export default StatusContent;

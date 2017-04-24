@@ -1,32 +1,18 @@
 import Status from './status';
 import ImmutablePropTypes from 'react-immutable-proptypes';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
 import { ScrollContainer } from 'react-router-scroll';
+import PropTypes from 'prop-types';
 import StatusContainer from '../containers/status_container';
 import LoadMore from './load_more';
 
-const StatusList = React.createClass({
+class StatusList extends React.PureComponent {
 
-  propTypes: {
-    statusIds: ImmutablePropTypes.list.isRequired,
-    onScrollToBottom: React.PropTypes.func,
-    onScrollToTop: React.PropTypes.func,
-    onScroll: React.PropTypes.func,
-    trackScroll: React.PropTypes.bool,
-    isLoading: React.PropTypes.bool,
-    isUnread: React.PropTypes.bool,
-    hasMore: React.PropTypes.bool,
-    prepend: React.PropTypes.node,
-    emptyMessage: React.PropTypes.node
-  },
-
-  getDefaultProps () {
-    return {
-      trackScroll: true
-    };
-  },
-
-  mixins: [PureRenderMixin],
+  constructor (props, context) {
+    super(props, context);
+    this.handleScroll = this.handleScroll.bind(this);
+    this.setRef = this.setRef.bind(this);
+    this.handleLoadMore = this.handleLoadMore.bind(this);
+  }
 
   handleScroll (e) {
     const { scrollTop, scrollHeight, clientHeight } = e.target;
@@ -40,38 +26,38 @@ const StatusList = React.createClass({
     } else if (this.props.onScroll) {
       this.props.onScroll();
     }
-  },
+  }
 
   componentDidMount () {
     this.attachScrollListener();
-  },
+  }
 
   componentDidUpdate (prevProps) {
     if (this.node.scrollTop > 0 && (prevProps.statusIds.size < this.props.statusIds.size && prevProps.statusIds.first() !== this.props.statusIds.first() && !!this._oldScrollPosition)) {
       this.node.scrollTop = this.node.scrollHeight - this._oldScrollPosition;
     }
-  },
+  }
 
   componentWillUnmount () {
     this.detachScrollListener();
-  },
+  }
 
   attachScrollListener () {
     this.node.addEventListener('scroll', this.handleScroll);
-  },
+  }
 
   detachScrollListener () {
     this.node.removeEventListener('scroll', this.handleScroll);
-  },
+  }
 
   setRef (c) {
     this.node = c;
-  },
+  }
 
   handleLoadMore (e) {
     e.preventDefault();
     this.props.onScrollToBottom();
-  },
+  }
 
   render () {
     const { statusIds, onScrollToBottom, trackScroll, isLoading, isUnread, hasMore, prepend, emptyMessage } = this.props;
@@ -93,7 +79,7 @@ const StatusList = React.createClass({
         <div className='scrollable' ref={this.setRef}>
           {unread}
 
-          <div>
+          <div className='status-list'>
             {prepend}
 
             {statusIds.map((statusId) => {
@@ -123,6 +109,23 @@ const StatusList = React.createClass({
     }
   }
 
-});
+}
+
+StatusList.propTypes = {
+  statusIds: ImmutablePropTypes.list.isRequired,
+  onScrollToBottom: PropTypes.func,
+  onScrollToTop: PropTypes.func,
+  onScroll: PropTypes.func,
+  trackScroll: PropTypes.bool,
+  isLoading: PropTypes.bool,
+  isUnread: PropTypes.bool,
+  hasMore: PropTypes.bool,
+  prepend: PropTypes.node,
+  emptyMessage: PropTypes.node
+};
+
+StatusList.defaultProps = {
+  trackScroll: true
+};
 
 export default StatusList;

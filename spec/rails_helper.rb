@@ -12,7 +12,7 @@ require 'capybara/rspec'
 Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
 
 ActiveRecord::Migration.maintain_test_schema!
-WebMock.disable_net_connect!(allow: 'localhost:7575')
+WebMock.disable_net_connect!
 Sidekiq::Testing.inline!
 
 RSpec.configure do |config|
