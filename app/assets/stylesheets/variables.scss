@@ -35,3 +35,18 @@ $ten_darken_color1: darken($color1, 10%) !default;
 $darken_transparent_color1: rgba(darken($color1, 7%), 0.5) !default;
 $light_transparent_darken_color1: rgba(darken($color1, 7%), 0.8) !default;
 
+
+$three_lighten_color2: lighten($color2, 3%);
+$four_lighten_color2: lighten($color2, 4%);
+$eight_lighten_color2: lighten($color2, 8%);
+
+$eight_darken_color2: darken($color2, 8%);
+$ten_darken_color2: darken($color2, 10%);
+$sixteen_darken_color2: darken($color2, 16%);
+$eighteen_darken_color2: darken($color2, 18%);
+$twentyfour_darken_color2: darken($color2, 24%);
+$twentyfive_darken_color2: darken($color2, 25%);
+$thirtyfour_darken_color2: darken($color2, 34%);
+$thirtyeight_darken_color2: darken($color2, 38%);
+
+$transparent_color2: rgba($color2, 0.3);

@@ -996,7 +996,7 @@ a.status__content__spoiler-link {
 }
 
 .dropdown__sep {
-  border-bottom: 1px solid darken($color2, 8%);
+  border-bottom: 1px solid $eight_darken_color2;
   margin: 5px 7px 6px;
   padding-top: 1px;
 }
@@ -1596,7 +1596,7 @@ a.status__content__spoiler-link {
   cursor: pointer;
 
   &:hover {
-    background: darken($color2, 10%);
+    background: $ten_darken_color2;
   }
 
   &.selected {
@@ -2115,7 +2115,7 @@ button.icon-button.active i.fa-retweet {
     font-size: 12px;
     text-transform: uppercase;
     font-weight: 500;
-    color: darken($color2, 18%);
+    color: $eighteen_darken_color2;
     cursor: default;
   }
 
@@ -2164,7 +2164,7 @@ button.icon-button.active i.fa-retweet {
 
   .emoji-search-wrapper {
     padding: 10px;
-    border-bottom: 1px solid lighten($color2, 4%);
+    border-bottom: 1px solid $four_lighten_color2;
   }
 
   .emoji-search {
@@ -2174,8 +2174,8 @@ button.icon-button.active i.fa-retweet {
     font-family: inherit;
     display: block;
     width: 100%;
-    background: rgba($color2, 0.3);
-    color: darken($color2, 18%);
+    background: $transparent_color2;
+    color: $eighteen_darken_color2;
     border: 1px solid $color2;
     border-radius: 4px;
   }
@@ -2198,7 +2198,7 @@ button.icon-button.active i.fa-retweet {
     }
 
     &:hover {
-      background: lighten($color2, 3%);
+      background: $three_lighten_color2;
 
       img, svg {
         transform: translateZ(0) scale(1.2);
@@ -2510,7 +2510,7 @@ button.icon-button.active i.fa-retweet {
   text-decoration: none;
 
   &:hover, &:active, &:focus {
-    color: lighten($color2, 4%);
+    color: $four_lighten_color2;
     text-decoration: underline;
   }
 }
@@ -2620,7 +2620,7 @@ button.icon-button.active i.fa-retweet {
 
 .onboarding-modal__paginator {
   flex: 0 0 auto;
-  background: darken($color2, 8%);
+  background: $eight_darken_color2;
   display: flex;
   padding: 25px;
 
@@ -2629,13 +2629,13 @@ button.icon-button.active i.fa-retweet {
   }
 
   a {
-    color: darken($color2, 34%);
+    color: $thirtyfour_darken_color2;
     text-decoration: none;
     font-size: 14px;
     font-weight: 500;
 
     &:hover, &:focus, &:active {
-      color: darken($color2, 38%);
+      color: $thirtyeight_darken_color2;
     }
 
     &.onboarding-modal__done, &.onboarding-modal__next {
@@ -2655,17 +2655,17 @@ button.icon-button.active i.fa-retweet {
   width: 14px;
   height: 14px;
   border-radius: 14px;
-  background: darken($color2, 16%);
+  background: $sixteen_darken_color2;
   margin: 0 3px;
   cursor: pointer;
 
   &:hover {
-    background: darken($color2, 18%);
+    background: $eighteen_darken_color2;
   }
 
   &.active {
     cursor: default;
-    background: darken($color2, 24%);
+    background: $twentyfour_darken_color2;
   }
 }
 
@@ -2800,7 +2800,7 @@ button.icon-button.active i.fa-retweet {
 }
 
 .boost-modal, .confirmation-modal {
-  background: lighten($color2, 8%);
+  background: $eight_lighten_color2;
   color: $color1;
   border-radius: 8px;
   overflow: hidden;
@@ -2872,13 +2872,13 @@ button.icon-button.active i.fa-retweet {
   }
 
   a {
-    color: darken($color2, 34%);
+    color: $thirtyfour_darken_color2;
     text-decoration: none;
     font-size: 14px;
     font-weight: 500;
 
     &:hover, &:focus, &:active {
-      color: darken($color2, 38%);
+      color: $thirtyeight_darken_color2;
     }
   }
 }
