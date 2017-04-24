@@ -221,7 +221,7 @@
 
   .disabled {
     cursor: default;
-    color: lighten($color1, 10%);
+    color: $lighten_color1;
   }
 
   @media screen and (max-width: 360px) {

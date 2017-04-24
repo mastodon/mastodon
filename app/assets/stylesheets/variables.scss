@@ -6,3 +6,32 @@ $color5: #ffffff !default; // white
 $color6: #df405a !default; // error red
 $color7: #79bd9a !default; // succ green
 $color8: #000000 !default; // black
+
+$two_lighten_color1: lighten($color1, 2%) !default;
+$three_lighten_color1: lighten($color1, 3%) !default;
+$lighter_lighten_color1: lighten($color1, 4%) !default;
+$light_lighten_color1: lighten($color1, 5%) !default;
+$six_lighten_color1: lighten($color1, 6%) !default;
+$eight_lighten_color1: lighten($color1, 8%) !default;
+$lighten_color1: lighten($color1, 10%) !default;
+$eleven_lighten_color1: lighten($color1, 11%) !default;
+$eigth_lighten_color1: lighten($color1, 13%) !default;
+$fourteen_lighten_color1: lighten($color1, 14%) !default;
+$sixteen_lighten_color1: lighten($color1, 16%) !default;
+$twenty_lighten_color1: lighten($color1, 20%) !default;
+$quarter_lighten_color1: lighten($color1, 26%) !default;
+$twentynine_lighten_color1: lighten($color1, 29%) !default;
+$thirty_lighten_color1: lighten($color1, 30%) !default;
+$third_lighten_color1: lighten($color1, 33%) !default;
+$forty_lighten_color1: lighten($color1, 40%) !default;
+
+$lighter_darken_color1: darken($color1, 2%) !default;
+$light_darken_color1: darken($color1, 4%) !default;
+$darken_color1: darken($color1, 5%) !default;
+$seven_darken_color1: darken($color1, 7%) !default;
+$eight_darken_color1: darken($color1, 8%) !default;
+$ten_darken_color1: darken($color1, 10%) !default;
+
+$darken_transparent_color1: rgba(darken($color1, 7%), 0.5) !default;
+$light_transparent_darken_color1: rgba(darken($color1, 7%), 0.8) !default;
+
