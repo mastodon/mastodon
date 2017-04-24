@@ -40,9 +40,20 @@ pt:
     posts: Posts
     remote_follow: Seguir remotamente
     unfollow: Deixar de seguir
+  activitypub:
+    outbox:
+      name: "%{account_name}'s Outbox"
+      summary: "Uma coleção de atividades do usuário %{account_name}."
+    activity:
+      create:
+        name: "%{account_name} criou uma nota."
+      announce:
+        name: "%{account_name} anunciou uma atividade."
   admin:
     accounts:
       are_you_sure: Tens a certeza?
+      confirm: Confirme
+      confirmed: Confirmado
       display_name: Nome a mostrar
       domain: Domínio
       edit: Editar
@@ -202,6 +213,45 @@ pt:
   pagination:
     next: Seguinte
     prev: Anterior
+    truncate: "&hellip;"
+  remote_follow:
+    acct: Entre seu usuário@domínio do qual quer seguir
+    missing_resource: Não foi possível achar a URL de redirecionamento para sua conta
+    proceed: Prossiga para seguir
+    prompt: 'Você vai seguir:'
   settings:
+    authorized_apps: Aplicativos autorizados
+    back: Voltar ao Mastodon
     edit_profile: Editar perfil
     preferences: Preferências
+    export: Importar dados
+    import: Importar
+    preferences: Preferências
+    settings: Settings
+    two_factor_authentication: Autenticação Two-factor
+  statuses:
+    open_in_web: Abrir no browser
+    over_character_limit: limite de caracter excedeu %{max}
+    show_more: Mostrar mais
+    visibilities:
+      private: Mostrar apenas para seguidores
+      public: Público
+      unlisted: Público, mas não mostre no timeline público
+  stream_entries:
+    click_to_show: Clique pra mostrar
+    reblogged: boosted
+    sensitive_content: Conteúdo sensível
+  time:
+    formats:
+      default: "%b %d, %Y, %H:%M"
+  two_factor_authentication:
+    code_hint: Entre o código gerado pelo seu aplicativo para confirmar
+    description_html: Se você habilitar <strong>autenticação two-factor </strong>, quando logar será necessário o seu telefone que vai gerar os tokens usado.
+    disable: Disabilitar
+    enable: Habilitar
+    enabled_success: Autenticador Two-factor habilitador com sucesso
+    generate_recovery_codes: Gerar códigos para recuperar conta
+    instructions_html: "<strong>Scaneie este código QR no seu Google Authenticator ou aplicativo similar no seu telefone</strong>. A partir de agora seu aplicativo irá gerar tokens que deverão ser digitados para você logar."
+    lost_recovery_codes: Códigos de recuperação permite que você recupere o acesso a sua conta se você perder seu telefone. Se você perder os códigos de recuperação, você pode regera-los aqui. Seus códigos antigos serão invalidados.
+    manual_instructions: 'Se você não puder scanear o código QR e precisa digita-los manualmente, aqui está o segredo em texto.:'
+    recovery_codes_regenerated: Códigos de recuperação foram gerados com sucesso
