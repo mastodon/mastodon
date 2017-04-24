@@ -28,6 +28,7 @@ class UI extends React.PureComponent {
     this.handleDragOver = this.handleDragOver.bind(this);
     this.handleDrop = this.handleDrop.bind(this);
     this.handleDragLeave = this.handleDragLeave.bind(this);
+    this.handleDragEnd = this.handleDragLeave.bind(this)
     this.setRef = this.setRef.bind(this);
   }
 
@@ -94,6 +95,7 @@ class UI extends React.PureComponent {
     document.addEventListener('dragover', this.handleDragOver, false);
     document.addEventListener('drop', this.handleDrop, false);
     document.addEventListener('dragleave', this.handleDragLeave, false);
+    document.addEventListener('dragend', this.handleDragEnd, false);
 
     this.props.dispatch(refreshTimeline('home'));
     this.props.dispatch(refreshNotifications());
@@ -105,6 +107,7 @@ class UI extends React.PureComponent {
     document.removeEventListener('dragover', this.handleDragOver);
     document.removeEventListener('drop', this.handleDrop);
     document.removeEventListener('dragleave', this.handleDragLeave);
+    document.removeEventListener('dragend', this.handleDragEnd);
   }
 
   setRef (c) {
