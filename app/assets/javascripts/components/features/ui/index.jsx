@@ -29,6 +29,7 @@ class UI extends React.PureComponent {
     this.handleDrop = this.handleDrop.bind(this);
     this.handleDragLeave = this.handleDragLeave.bind(this);
     this.handleDragEnd = this.handleDragLeave.bind(this)
+    this.closeUploadModal = this.closeUploadModal.bind(this)
     this.setRef = this.setRef.bind(this);
   }
 
@@ -89,6 +90,10 @@ class UI extends React.PureComponent {
     this.setState({ draggingOver: false });
   }
 
+  closeUploadModal() {
+    this.setState({ draggingOver: false });
+  }
+
   componentWillMount () {
     window.addEventListener('resize', this.handleResize, { passive: true });
     document.addEventListener('dragenter', this.handleDragEnter, false);
@@ -146,7 +151,7 @@ class UI extends React.PureComponent {
         <NotificationsContainer />
         <LoadingBarContainer className="loading-bar" />
         <ModalContainer />
-        <UploadArea active={draggingOver} />
+        <UploadArea active={draggingOver} onClose={this.closeUploadModal} />
       </div>
     );
   }
