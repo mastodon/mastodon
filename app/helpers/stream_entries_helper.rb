@@ -12,10 +12,6 @@ module StreamEntriesHelper
     embedded_view? ? '_blank' : nil
   end
 
-  def joined_at(account)
-    "Joined #{account.created_at.strftime('%B %Y')}"
-  end
-
   def acct(account)
     if embedded_view? && account.local?
       "@#{account.acct}@#{Rails.configuration.x.local_domain}"
