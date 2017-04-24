@@ -60,7 +60,7 @@ class StatusList extends React.PureComponent {
   }
 
   render () {
-    const { statusIds, onScrollToBottom, trackScroll, isLoading, isUnread, hasMore, prepend, emptyMessage } = this.props;
+    const { statusIds, onScrollToBottom, scrollKey, shouldUpdateScroll, isLoading, isUnread, hasMore, prepend, emptyMessage } = this.props;
 
     let loadMore       = '';
     let scrollableArea = '';
@@ -98,25 +98,22 @@ class StatusList extends React.PureComponent {
       );
     }
 
-    if (trackScroll) {
-      return (
-        <ScrollContainer scrollKey='status-list'>
-          {scrollableArea}
-        </ScrollContainer>
-      );
-    } else {
-      return scrollableArea;
-    }
+    return (
+      <ScrollContainer scrollKey={scrollKey} shouldUpdateScroll={shouldUpdateScroll}>
+        {scrollableArea}
+      </ScrollContainer>
+    );
   }
 
 }
 
 StatusList.propTypes = {
+  scrollKey: PropTypes.string.isRequired,
   statusIds: ImmutablePropTypes.list.isRequired,
   onScrollToBottom: PropTypes.func,
   onScrollToTop: PropTypes.func,
   onScroll: PropTypes.func,
-  trackScroll: PropTypes.bool,
+  shouldUpdateScroll: PropTypes.func,
   isLoading: PropTypes.bool,
   isUnread: PropTypes.bool,
   hasMore: PropTypes.bool,
