@@ -62,7 +62,7 @@
   z-index: 3;
 
   &:hover {
-    color: lighten($color3, 7%);
+    color: $seven_lighten_color3;
   }
 }
 
@@ -203,7 +203,7 @@
 }
 
 .compose-form__warning {
-  color: darken($color3, 33%);
+  color: $thirtythree_darken_color3;
   margin-bottom: 15px;
   background: $color3;
   box-shadow: 0 2px 6px rgba($color8, 0.3);
@@ -213,12 +213,12 @@
   font-weight: 400;
 
   strong {
-    color: darken($color3, 33%);
+    color: $thirtythree_darken_color3;
     font-weight: 500;
   }
 
   a {
-    color: darken($color3, 33%);
+    color: $thirtythree_darken_color3;
     font-weight: 500;
     text-decoration: underline;
 
@@ -494,7 +494,7 @@ a.status__content__spoiler-link {
         background: $color3;
 
         &:hover {
-          background: lighten($color3, 8%);
+          background: $eight_lighten_color3;
         }
       }
     }
@@ -2389,7 +2389,7 @@ button.icon-button.active i.fa-retweet {
 
 .privacy-dropdown__option__content {
   flex: 1 1 auto;
-  color: darken($color3, 24%);
+  color: $twenty_darken_color3;
 
   strong {
     font-weight: 500;
