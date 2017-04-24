@@ -201,7 +201,7 @@ zh-TW:
       blocking: 您封鎖的使用者名單
       following: 您關注的使用者名單
     upload: 上傳
-  landing_strip_html: <strong>%{name}</strong> 是一個在 <strong>%{domain}</strong> 的使用者。只要您有任何 Mastodon 服務站、或者聯盟網站的帳號，便可以跨站關注此站使用者，或者與他們互動。如果您沒有這些帳號，歡迎在<a href="%{sign_up_path}">這裡註冊</a>。
+  landing_strip_html: <strong>%{name}</strong> 是一個在 %{link_to_root_path} 的使用者。只要您有任何 Mastodon 服務站、或者聯盟網站的帳號，便可以跨站關注此站使用者，或者與他們互動。如果您沒有這些帳號，歡迎在<a href="%{sign_up_path}">這裡註冊</a>。
   media_attachments:
     validations:
       images_and_video: 無法在已有圖片的文章上加入影片
@@ -248,7 +248,7 @@ zh-TW:
     import: 匯入
     preferences: 偏好設定
     settings: 設定
-    two_factor_auth: 雙因子認證
+    two_factor_authentication: 雙因子認證
   statuses:
     open_in_web: 以網頁開啟
     over_character_limit: 超過了 %{max} 字的限制
@@ -264,7 +264,7 @@ zh-TW:
   time:
     formats:
       default: "%Y年%-m月%d日 %H:%M"
-  two_factor_auth:
+  two_factor_authentication:
     code_hint: 請輸入您認證器產生的代碼，以進行認證
     description_html: 當您啟用<strong>雙因子認證</strong>後，您登入時將需要使您手機、或其他種類認證器產生的代碼。
     disable: 停用

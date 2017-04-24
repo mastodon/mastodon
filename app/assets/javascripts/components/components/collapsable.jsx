@@ -1,4 +1,5 @@
 import { Motion, spring } from 'react-motion';
+import PropTypes from 'prop-types';
 
 const Collapsable = ({ fullHeight, isVisible, children }) => (
   <Motion defaultStyle={{ opacity: !isVisible ? 0 : 100, height: isVisible ? fullHeight : 0 }} style={{ opacity: spring(!isVisible ? 0 : 100), height: spring(!isVisible ? 0 : fullHeight) }}>
@@ -11,9 +12,9 @@ const Collapsable = ({ fullHeight, isVisible, children }) => (
 );
 
 Collapsable.propTypes = {
-  fullHeight: React.PropTypes.number.isRequired,
-  isVisible: React.PropTypes.bool.isRequired,
-  children: React.PropTypes.node.isRequired
+  fullHeight: PropTypes.number.isRequired,
+  isVisible: PropTypes.bool.isRequired,
+  children: PropTypes.node.isRequired
 };
 
 export default Collapsable;

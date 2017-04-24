@@ -1,48 +1,47 @@
-import PureRenderMixin from 'react-addons-pure-render-mixin';
+import PropTypes from 'prop-types';
 import MediaModal from './media_modal';
 import OnboardingModal from './onboarding_modal';
 import VideoModal from './video_modal';
 import BoostModal from './boost_modal';
+import ConfirmationModal from './confirmation_modal';
 import { TransitionMotion, spring } from 'react-motion';
 
 const MODAL_COMPONENTS = {
   'MEDIA': MediaModal,
   'ONBOARDING': OnboardingModal,
   'VIDEO': VideoModal,
-  'BOOST': BoostModal
+  'BOOST': BoostModal,
+  'CONFIRM': ConfirmationModal
 };
 
-const ModalRoot = React.createClass({
+class ModalRoot extends React.PureComponent {
 
-  propTypes: {
-    type: React.PropTypes.string,
-    props: React.PropTypes.object,
-    onClose: React.PropTypes.func.isRequired
-  },
-
-  mixins: [PureRenderMixin],
+  constructor (props, context) {
+    super(props, context);
+    this.handleKeyUp = this.handleKeyUp.bind(this);
+  }
 
   handleKeyUp (e) {
     if (e.key === 'Escape' && !!this.props.type) {
       this.props.onClose();
     }
-  },
+  }
 
   componentDidMount () {
     window.addEventListener('keyup', this.handleKeyUp, false);
-  },
+  }
 
   componentWillUnmount () {
     window.removeEventListener('keyup', this.handleKeyUp);
-  },
+  }
 
   willEnter () {
     return { opacity: 0, scale: 0.98 };
-  },
+  }
 
   willLeave () {
     return { opacity: spring(0), scale: spring(0.98) };
-  },
+  }
 
   render () {
     const { type, props, onClose } = this.props;
@@ -68,7 +67,7 @@ const ModalRoot = React.createClass({
 
               return (
                 <div key={key}>
-                  <div role='presentation' className='modal-root__overlay' style={{ opacity: style.opacity, transform: `translateZ(0px)` }} onClick={onClose} />
+                  <div role='presentation' className='modal-root__overlay' style={{ opacity: style.opacity }} onClick={onClose} />
                   <div className='modal-root__container' style={{ opacity: style.opacity, transform: `translateZ(0px) scale(${style.scale})` }}>
                     <SpecificComponent {...props} onClose={onClose} />
                   </div>
@@ -81,6 +80,12 @@ const ModalRoot = React.createClass({
     );
   }
 
-});
+}
+
+ModalRoot.propTypes = {
+  type: PropTypes.string,
+  props: PropTypes.object,
+  onClose: PropTypes.func.isRequired
+};
 
 export default ModalRoot;

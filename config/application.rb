@@ -9,6 +9,7 @@ Bundler.require(*Rails.groups)
 require_relative '../app/lib/exceptions'
 require_relative '../lib/paperclip/gif_transcoder'
 require_relative '../lib/paperclip/video_transcoder'
+require_relative '../lib/mastodon/version'
 
 Dotenv::Railtie.load
 
@@ -26,6 +27,7 @@ module Mastodon
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     config.i18n.available_locales = [
       :en,
+      :ar,
       :bg,
       :de,
       :eo,
@@ -34,20 +36,24 @@ module Mastodon
       :fr,
       :hr,
       :hu,
+      :id,
+      :io,
       :it,
       :ja,
       :nl,
       :no,
+      :oc,
+      :pl,
       :pt,
       :'pt-BR',
       :ru,
       :uk,
-      'zh-CN',
+      :'zh-CN',
       :'zh-HK',
       :'zh-TW',
     ]
 
-    config.i18n.default_locale    = :en
+    config.i18n.default_locale = :en
 
     # config.paths.add File.join('app', 'api'), glob: File.join('**', '*.rb')
     # config.autoload_paths += Dir[Rails.root.join('app', 'api', '*')]
@@ -66,8 +72,8 @@ module Mastodon
     config.middleware.use Rack::Attack
     config.middleware.use Rack::Deflater
 
-    config.browserify_rails.source_map_environments << 'development'
-    config.browserify_rails.commandline_options   = '--transform [ babelify --presets [ es2015 react ] ] --extension=".jsx"'
+    # babel config can be found in .babelrc
+    config.browserify_rails.commandline_options   = '--transform babelify --extension=".jsx"'
     config.browserify_rails.evaluate_node_modules = true
 
     config.to_prepare do

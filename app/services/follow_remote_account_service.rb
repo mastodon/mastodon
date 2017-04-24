@@ -10,7 +10,7 @@ class FollowRemoteAccountService < BaseService
   # important information from their feed
   # @param [String] uri User URI in the form of username@domain
   # @return [Account]
-  def call(uri)
+  def call(uri, redirected = nil)
     username, domain = uri.split('@')
 
     return Account.find_local(username) if TagManager.instance.local_domain?(domain)
@@ -24,7 +24,13 @@ class FollowRemoteAccountService < BaseService
 
     raise Goldfinger::Error, 'Missing resource links' if data.link('http://schemas.google.com/g/2010#updates-from').nil? || data.link('salmon').nil? || data.link('http://webfinger.net/rel/profile-page').nil? || data.link('magic-public-key').nil?
 
+    # Disallow account hijacking
     confirmed_username, confirmed_domain = data.subject.gsub(/\Aacct:/, '').split('@')
+
+    unless confirmed_username.casecmp(username).zero? && confirmed_domain.casecmp(domain).zero?
+      return call("#{confirmed_username}@#{confirmed_domain}", true) if redirected.nil?
+      raise Goldfinger::Error, 'Requested and returned acct URI do not match'
+    end
 
     return Account.find_local(confirmed_username) if TagManager.instance.local_domain?(confirmed_domain)
 

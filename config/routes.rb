@@ -37,13 +37,10 @@ Rails.application.routes.draw do
     get :remote_follow,  to: 'remote_follow#new'
     post :remote_follow, to: 'remote_follow#create'
 
-    member do
-      get :followers
-      get :following
-
-      post :follow
-      post :unfollow
-    end
+    resources :followers, only: [:index], controller: :follower_accounts
+    resources :following, only: [:index], controller: :following_accounts
+    resource :follow, only: [:create], controller: :account_follow
+    resource :unfollow, only: [:create], controller: :account_unfollow
   end
 
   get '/@:username', to: 'accounts#show', as: :short_account
@@ -61,12 +58,13 @@ Rails.application.routes.draw do
       resources :mutes, only: :index, controller: :muted_accounts
     end
 
-    resource :two_factor_auth, only: [:show, :new, :create] do
-      member do
-        post :disable
-        post :recovery_codes
-      end
+    resource :two_factor_authentication, only: [:show, :create, :destroy]
+    namespace :two_factor_authentication do
+      resources :recovery_codes, only: [:create]
+      resource :confirmation, only: [:new, :create]
     end
+
+    resource :follower_domains, only: [:show, :update]
   end
 
   resources :media, only: [:show]
@@ -80,6 +78,7 @@ Rails.application.routes.draw do
     resources :pubsubhubbub, only: [:index]
     resources :domain_blocks, only: [:index, :new, :create, :show, :destroy]
     resources :settings, only: [:index, :update]
+    resources :instances, only: [:index]
 
     resources :reports, only: [:index, :show, :update] do
       resources :reported_statuses, only: :destroy
@@ -89,6 +88,7 @@ Rails.application.routes.draw do
       resource :reset, only: [:create]
       resource :silence, only: [:create, :destroy]
       resource :suspension, only: [:create, :destroy]
+      resource :confirmation, only: [:create]
     end
   end
 
@@ -107,6 +107,13 @@ Rails.application.routes.draw do
 
     # OEmbed
     get '/oembed', to: 'oembed#show', as: :oembed
+
+    # ActivityPub
+    namespace :activitypub do
+      get '/users/:id/outbox', to: 'outbox#show', as: :outbox
+      get '/statuses/:id', to: 'activities#show_status', as: :status
+      resources :notes, only: [:show]
+    end
 
     # JSON / REST API
     namespace :v1 do
@@ -150,6 +157,7 @@ Rails.application.routes.draw do
       resources :notifications, only: [:index, :show] do
         collection do
           post :clear
+          post :dismiss
         end
       end
 
