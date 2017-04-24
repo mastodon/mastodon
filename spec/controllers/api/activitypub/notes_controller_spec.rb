@@ -25,10 +25,6 @@ RSpec.describe Api::Activitypub::NotesController, type: :controller do
         expect(response.header['Content-Type']).to include 'application/activity+json'
       end
 
-      it 'sets Access-Control-Allow-Origin header to *' do
-        expect(response.header['Access-Control-Allow-Origin']).to eq '*'
-      end
-
       it 'returns http success' do
         json_data = JSON.parse(response.body)
         expect(json_data).to include('@context' => 'https://www.w3.org/ns/activitystreams')
@@ -59,10 +55,6 @@ RSpec.describe Api::Activitypub::NotesController, type: :controller do
 
       it 'sets Content-Type header to AS2' do
         expect(response.header['Content-Type']).to include 'application/activity+json'
-      end
-
-      it 'sets Access-Control-Allow-Origin header to *' do
-        expect(response.header['Access-Control-Allow-Origin']).to eq '*'
       end
 
       it 'returns http success' do

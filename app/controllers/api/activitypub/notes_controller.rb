@@ -6,8 +6,6 @@ class Api::Activitypub::NotesController < ApiController
   respond_to :activitystreams2
 
   def show
-    headers['Access-Control-Allow-Origin'] = '*'
-
     forbidden unless @status.permitted?
   end
 
