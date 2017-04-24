@@ -64,6 +64,12 @@ class TagManager
     domain.nil? || domain.gsub(/[\/]/, '').casecmp(Rails.configuration.x.local_domain).zero?
   end
 
+  def normalize_domain(domain)
+    uri = Addressable::URI.new
+    uri.host = domain
+    uri.normalize.host
+  end
+
   def same_acct?(canonical, needle)
     return true if canonical.casecmp(needle).zero?
     username, domain = needle.split('@')

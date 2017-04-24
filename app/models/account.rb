@@ -327,15 +327,24 @@ class Account < ApplicationRecord
     end
   end
 
-  before_create do
-    if local?
-      keypair = OpenSSL::PKey::RSA.new(Rails.env.test? ? 1024 : 2048)
-      self.private_key = keypair.to_pem
-      self.public_key  = keypair.public_key.to_pem
-    end
-  end
+  before_create :generate_keys
+  before_validation :normalize_domain
 
   private
+
+  def generate_keys
+    return unless local?
+
+    keypair = OpenSSL::PKey::RSA.new(Rails.env.test? ? 1024 : 2048)
+    self.private_key = keypair.to_pem
+    self.public_key  = keypair.public_key.to_pem
+  end
+
+  def normalize_domain
+    return if local?
+
+    self.domain = TagManager.instance.normalize_domain(domain)
+  end
 
   def set_file_extensions
     unless avatar.blank?
