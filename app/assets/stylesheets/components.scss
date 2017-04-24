@@ -6,7 +6,7 @@
 }
 
 .button {
-  background-color: darken($color4, 3%);
+  background-color: $three_darken_color4;
   border: 10px none;
   border-radius: 4px;
   box-sizing: border-box;
@@ -32,7 +32,7 @@
   &:active,
   &:focus,
   &:hover {
-    background-color: lighten($color4, 7%);
+    background-color: $seven_lighten_color4;
     transition: all 200ms ease-out;
   }
 
@@ -1451,7 +1451,7 @@ a.status__content__spoiler-link {
 }
 
 .react-toggle--checked:hover:not(.react-toggle--disabled) .react-toggle-track {
-  background-color: lighten($color4, 10%);
+  background-color: $ten_lighten_color4;
 }
 
 .react-toggle-track-check {
@@ -1781,12 +1781,12 @@ button.icon-button.active i.fa-retweet {
   outline: 0;
 
   &.active {
-    box-shadow: 0 1px 0 rgba($color4, 0.3);
+    box-shadow: 0 1px 0 $thirty_alpha_color4;
   }
 
   &.active .fa {
     color: $color4;
-    text-shadow: 0 0 10px rgba($color4, 0.4);
+    text-shadow: 0 0 10px $fourty_alpha_color4;
   }
 
   &.hidden-on-mobile {
@@ -2025,7 +2025,7 @@ button.icon-button.active i.fa-retweet {
   pointer-events: none;
   height: 28px;
   z-index: 1;
-  background: radial-gradient(ellipse, rgba($color4, 0.23) 0%, rgba($color4, 0) 60%);
+  background: radial-gradient(ellipse, $twentythree_alpha_color4 0%, rgba($color4, 0) 60%);
 }
 
 .emoji-dialog {
@@ -2376,7 +2376,7 @@ button.icon-button.active i.fa-retweet {
   }
 
   &.active:hover {
-    background: lighten($color4, 4%);
+    background: $four_lighten_color4;
   }
 }
 
@@ -2684,7 +2684,7 @@ button.icon-button.active i.fa-retweet {
     color: $color4;
 
     &:hover, &:focus, &:active {
-      color: lighten($color4, 4%);
+      color: $four_lighten_color4;
     }
   }
 

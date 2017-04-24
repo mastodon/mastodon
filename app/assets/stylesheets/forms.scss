@@ -171,13 +171,13 @@ code {
     margin-bottom: 10px;
 
     &:hover {
-      background-color: lighten($color4, 5%);
+      background-color: $five_lighten_color4;
     }
 
     &:active, &:focus {
       position: relative;
       top: 1px;
-      background-color: darken($color4, 5%);
+      background-color: $five_darken_color4;
     }
 
     &.negative {
