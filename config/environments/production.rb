@@ -35,14 +35,6 @@ Rails.application.configure do
   # Allow to specify public IP of reverse proxy if it's needed
   config.action_dispatch.trusted_proxies = [IPAddr.new(ENV['TRUSTED_PROXY_IP'])] unless ENV['TRUSTED_PROXY_IP'].blank?
 
-  # When LOCAL_HTTPS is set, force traffic over SSL
-  config.force_ssl = (ENV['LOCAL_HTTPS'] == 'true')
-
-  # When ENABLE_HSTS is also set, turn on Strict-Transport-Security
-  config.ssl_options = {
-    hsts: (ENV['ENABLE_HSTS'] == 'true')
-  }
-
   # By default, use the lowest log level to ensure availability of diagnostic information
   # when problems arise.
   config.log_level = ENV.fetch('RAILS_LOG_LEVEL', 'info').to_sym
