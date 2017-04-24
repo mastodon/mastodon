@@ -40,14 +40,25 @@ ja:
     posts: 投稿
     remote_follow: リモートフォロー
     unfollow: フォロー解除
+  activitypub:
+    activity:
+      announce:
+        name: "%{account_name} さんがアクティビティをシェアしました"
+      create:
+        name: "%{account_name} さんがノートを作成しました"
+    outbox:
+      name: "%{account_name}の送信トレイ"
+      summary: "%{account_name} さんからのアクティビティコレクション"
   admin:
     accounts:
       are_you_sure: 本当に実行しますか?
+      confirm: 確認
+      confirmed: 確認済み
       display_name: 表示名
       domain: ドメイン
       edit: 編集
       email: E-mail
-      feed_url: Feed URL
+      feed_url: フィードURL
       followers: フォロワー数
       follows: フォロー数
       location:
@@ -136,6 +147,7 @@ ja:
       report: レポート#%{id}
       reported_account: 報告対象アカウント
       reported_by: 報告者
+      report_contents: 内容
       resolved: 解決済み
       silence_account: アカウントをサイレンス
       status: ステータス
@@ -204,6 +216,7 @@ ja:
       x_months: "%{count}月"
       x_seconds: "%{count}秒"
   errors:
+    '403': このページを表示する権限がありません
     '404': お探しのページは見つかりませんでした。
     '410': お探しのページはもう存在しません。
     '422':
@@ -215,6 +228,18 @@ ja:
     follows: フォロー
     mutes: ミュート
     storage: メディア
+  followers:
+    domain: ドメイン
+    explanation_html: あなたの投稿のプライバシーを確保したい場合、誰があなたをフォローしているのかを把握している必要があります。 <strong>プライベート投稿は、あなたをフォロワーのすべてのインスタンスに配信されます</strong>。 もしフォロワーのインスタンス管理者、またはソフトウェアがあなたのプライバシーを尊重してくれるか信頼できるかをいま一度確認し、必要に応じてフォロワーを削除することも検討してください。
+    followers_count: フォロワー数
+    lock_link: 非公開アカウント
+    purge: フォロワーから削除する
+    success:
+      one: 1個のドメインからソフトブロックするフォロワーを処理中...
+      other: "%{count} 個のドメインからソフトブロックするフォロワーを処理中..."
+    true_privacy_html: <strong>純粋なプライバシーはエンドツーエンドの暗号化でのみ実現可能</strong>であることに留意ください。
+    unlocked_warning_html: 誰でもあなたをフォローすることができ、あなたのプライベートステータスをすぐに見ることができます。フォローする人を限定したい場合は%{lock_link}に設定してください。
+    unlocked_warning_title: このアカウントは非公開アカウントに設定されていません。
   generic:
     changes_saved_msg: 正常に変更されました
     powered_by: powered by %{link}
@@ -274,6 +299,7 @@ ja:
     back: 戻る
     edit_profile: プロフィールを編集
     export: データのエクスポート
+    followers: フォロー承認
     import: データのインポート
     preferences: ユーザー設定
     settings: 設定
@@ -284,8 +310,11 @@ ja:
     show_more: もっと見る
     visibilities:
       private: 非公開 - フォロワーだけに公開
+      private_long: フォロワーにのみ表示されます
       public: 公開 - 公開タイムラインに投稿する
+      public_long: 誰でも見ることができます
       unlisted: 未収載 - トゥートは公開するが、公開タイムラインには表示しない
+      unlisted_long: 誰でも見ることができます。ただし公開タイムラインには表示されません
   stream_entries:
     click_to_show: クリックして表示
     reblogged: ブーストされました
