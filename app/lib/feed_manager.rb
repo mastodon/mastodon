@@ -98,7 +98,7 @@ class FeedManager
 
     return true if Mute.where(account_id: receiver_id, target_account_id: check_for_mutes).any?
 
-    check_for_blocks = status.mentions.map(&:account_id)
+    check_for_blocks = status.mentions.pluck(:account_id)
     check_for_blocks.concat([status.reblog.account_id]) if status.reblog?
 
     return true if Block.where(account_id: receiver_id, target_account_id: check_for_blocks).any?

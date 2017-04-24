@@ -163,6 +163,10 @@ class Account < ApplicationRecord
     blocking.include?(other_account)
   end
 
+  def domain_blocking?(other_account)
+    AccountDomainBlock.where(account: self, domain: other_account.domain).exists?
+  end
+
   def muting?(other_account)
     muting.include?(other_account)
   end
