@@ -4,6 +4,34 @@ import { FormattedMessage } from 'react-intl';
 
 class UploadArea extends React.PureComponent {
 
+  constructor (props, context) {
+    super(props, context);
+
+    this.handleKeyUp = this.handleKeyUp.bind(this);
+  }
+
+  handleKeyUp (e) {
+    e.preventDefault();
+    e.stopPropagation();
+
+    const keyCode = e.keyCode
+    if (this.props.active) {
+      switch(keyCode) {
+      case 27:
+        this.props.onClose();
+        break;
+      }
+    }
+  }
+
+  componentDidMount () {
+    window.addEventListener('keyup', this.handleKeyUp, false);
+  }
+
+  componentWillUnmount () {
+    window.removeEventListener('keyup', this.handleKeyUp);
+  }
+
   render () {
     const { active } = this.props;
 
@@ -24,7 +52,8 @@ class UploadArea extends React.PureComponent {
 }
 
 UploadArea.propTypes = {
-  active: PropTypes.bool
+  active: PropTypes.bool,
+  onClose: PropTypes.func
 };
 
 export default UploadArea;
