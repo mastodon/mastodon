@@ -10,8 +10,8 @@ $lighten35_color1:  lighten($color1, 33%) !default;
 $lighten40_color1:  lighten($color1, 40%) !default;
 $darken5_color1:    darken($color1, 5%) !default;
 $darken10_color1:   darken($color1, 10%) !default;
-$darken_transparent5_color1: rgba(darken($color1, 7%), 0.5) !default;
-$darken_transparent8_color1: rgba(darken($color1, 7%), 0.8) !default;
+$darken_color1_alpha05: rgba(darken($color1, 7%), 0.5) !default;
+$darken_color1_alpha08: rgba(darken($color1, 7%), 0.8) !default;
 
 /* $color2 is the default text color
     and the light background of non-connected view */
@@ -22,7 +22,7 @@ $darken8_color2:      darken($color2, 8%) !default;
 $darken16_color2:     darken($color2, 16%) !default;
 $darken24_color2:     darken($color2, 24%) !default;
 $darken36_color2:     darken($color2, 36%) !default;
-$transparent_color2:  rgba($color2, 0.3) !default;
+$color2_alpha03:      rgba($color2, 0.3) !default;
 
 
 /* $color3 is the base color for muted colors
@@ -46,7 +46,7 @@ like username, title, strong… and for inverted bg */
 $color5:              #ffffff !default; // white
 $darken2_color5:      darken($color5, 2%) !default;
 $darken8_color5:      darken($color5, 8%) !default;
-$transparent7_color5: rgba($color5, 0.7) !default;
+$color5_alpha07:      rgba($color5, 0.7) !default;
 
 
 /* $color6 (error) and $color7 (success) are for
@@ -54,7 +54,7 @@ messages in forms */
 $color6:              #df405a !default; // error red
 $lighten_color6:      lighten($color6, 5%) !default;
 $darken_color6:       darken($color6, 5%) !default;
-$transparent_color6:  rgba($color6, 0.5) !default;
+$color6_alpha05:      rgba($color6, 0.5) !default;
 
 $color7:              #79bd9a !default; // succ green
 
