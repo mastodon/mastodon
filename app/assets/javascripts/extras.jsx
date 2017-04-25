@@ -1,4 +1,5 @@
-import emojify from './components/emoji'
+import emojify from './components/emoji';
+import { length } from 'stringz';
 
 $(() => {
   $.each($('.emojify'), (_, content) => {
@@ -40,9 +41,9 @@ $(() => {
 
   // used on /settings/profile
   $('.account_display_name').on('input', e => {
-    $('.name-counter').text(30 - $(e.target).val().length)
+    $('.name-counter').text(30 - length($(e.target).val()));
   });
   $('.account_note').on('input', e => {
-    $('.note-counter').text(160 - $(e.target).val().length)
+    $('.note-counter').text(160 - length($(e.target).val()));
   });
 });
