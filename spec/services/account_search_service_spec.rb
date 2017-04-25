@@ -13,6 +13,12 @@ describe AccountSearchService do
 
         expect(results).to eq []
       end
+      it 'returns empty array for limit zero' do
+        Fabricate(:account, username: 'match')
+        results = subject.call('match', 0)
+
+        expect(results).to eq []
+      end
     end
 
     describe 'searching for a simple term that is not an exact match' do
@@ -25,6 +31,18 @@ describe AccountSearchService do
     end
 
     describe 'searching local and remote users' do
+      describe "when only '@'" do
+        before do
+          allow(Account).to receive(:find_remote)
+          allow(Account).to receive(:search_for)
+          subject.call('@', 10)
+        end
+
+        it 'uses find_remote with empty query to look for local accounts' do
+          expect(Account).to have_received(:find_remote).with('', nil)
+        end
+      end
+
       describe 'when no domain' do
         before do
           allow(Account).to receive(:find_remote)

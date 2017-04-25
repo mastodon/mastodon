@@ -4,6 +4,8 @@ class UserMailer < Devise::Mailer
   default from: ENV.fetch('SMTP_FROM_ADDRESS') { 'notifications@localhost' }
   layout 'mailer'
 
+  helper :instance
+
   def confirmation_instructions(user, token, _opts = {})
     @resource = user
     @token    = token

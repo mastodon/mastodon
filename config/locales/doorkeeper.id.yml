@@ -1,0 +1,113 @@
+---
+id:
+  activerecord:
+    attributes:
+      doorkeeper/application:
+        name: Nama
+        redirect_uri: URI Pengalihan (Redirect)
+    errors:
+      models:
+        doorkeeper/application:
+          attributes:
+            redirect_uri:
+              fragment_present: tidak dapat mengandung fragmen.
+              invalid_uri: URI harus valid.
+              relative_uri: URI harus absolut.
+              secured_uri: URI harus berupa HTTPS/SSL.
+  doorkeeper:
+    applications:
+      buttons:
+        authorize: Otorisasi
+        cancel: Batal
+        destroy: Hapus
+        edit: Ubah
+        submit: Kirim
+      confirmations:
+        destroy: Anda yakin?
+      edit:
+        title: Ubah aplikasi
+      form:
+        error: Oh tidak! Cek kembali kemungkinan kesalahan pada formulir anda
+      help:
+        native_redirect_uri: Gunakan %{native_redirect_uri} sebagai tes lokal
+        redirect_uri: Gunakan satu baris per URI
+        scopes: Pisahkan scope dengan spasi. Biarkan kosong jika ingin menggunakan scope default.
+      index:
+        callback_url: URL Callback
+        name: Nama
+        new: Aplikasi baru
+        title: Aplikasi anda
+      new:
+        title: Aplikasi Baru
+      show:
+        actions: Aksi
+        application_id: Id Aplikasi
+        callback_urls: Url callback
+        scopes: Scope
+        secret: Rahasia
+        title: 'Aplikasi: %{name}'
+    authorizations:
+      buttons:
+        authorize: Izinkan
+        deny: Tolak
+      error:
+        title: Ada sebuah Error
+      new:
+        able_to: Mempunyai akses untuk
+        prompt: Aplikasi %{client_name} meminta akses pada akun anda
+        title: Izin diperlukan
+      show:
+        title: Kode izin
+    authorized_applications:
+      buttons:
+        revoke: Cabut izin
+      confirmations:
+        revoke: Anda yakin?
+      index:
+        application: Aplikasi
+        created_at: Diizinkan pada
+        date_format: "%Y-%m-%d %H:%M:%S"
+        scopes: Scope
+        title: Aplikasi yang anda izinkan
+    errors:
+      messages:
+        access_denied: Pemilik akun atau server otorisasi menolak permintaan.
+        credential_flow_not_configured: Aliran Resource Owner Password Credentials gagal dikarenakan Doorkeeper.configure.resource_owner_from_credentials tidak terkonfigurasi dengan benar.
+        invalid_client: Perizinan klien gagal karena klien tidak diketahui, tidak ada klien yang diizinkan, atau metode perizinan tidak didukung.
+        invalid_grant: Pemberian izin yang diberikan tidak valid, kadaluarsa, telah dicabut, atau tidak cocok dengan URI pengalihan yang digunakan pada permintaan izin, atau telah diberikan pada klien lain.
+        invalid_redirect_uri: Uri pengalihan tidak valid.
+        invalid_request: Permintaan ini tidak mempunyai parameter yang dibutuhkan, mengandung parameter yang tidak didukung, atau mungkin strukturnya tidak benar.
+        invalid_resource_owner: Identitas pemilik data yang diberikan tidak valid, atau pemilik data tidak ditemukan
+        invalid_scope: Scope yang diminta tidak valid, tidak diketahui, atau struktur tidak benar.
+        invalid_token:
+          expired: Token akses telah kadaluarsa
+          revoked: Token akses telah dicabut
+          unknown: Token akses tidak valid
+        resource_owner_authenticator_not_configured: Pencarian pemilik data gagal karena Doorkeeper.configure.resource_owner_authenticator tidak dikonfigurasi dengan benar.
+        server_error: Server otorisasi tidak bisa memenuhi permintaan karena terjadi sesuatu.
+        temporarily_unavailable: Server otorisasi saat ini tidak bisa menangani permintaan karena server sibuk atau sedang ada maintenance/perawatan.
+        unauthorized_client: Klien tidak memiliki izin untuk melakukan permintaan dengan metode ini.
+        unsupported_grant_type: Tipe izin tidak didukung oleh server otorisasi.
+        unsupported_response_type: Server otorisasi tidak mendukung tipe tanggapan/response seperti ini.
+    flash:
+      applications:
+        create:
+          notice: Aplikasi dibuat.
+        destroy:
+          notice: Aplikasi dihapus.
+        update:
+          notice: Aplikasi diubah.
+      authorized_applications:
+        destroy:
+          notice: Aplikasi dicabut.
+    layouts:
+      admin:
+        nav:
+          applications: Aplikasi
+          oauth2_provider: Penyedia OAuth2
+      application:
+        title: Otorisasi OAuth diperlukan
+    scopes:
+      follow: mengikuti, blokir, menghapus blokir, dan berhenti mengikuti akun
+      read: membaca data pada akun anda
+      write: memposting sebagai anda

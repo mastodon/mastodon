@@ -1,5 +1,11 @@
 <p>ようこそ<%= @resource.email %>さん</p>
 
-<p>以下のリンクをクリックしてMastodonアカウントのメールアドレスを確認してください</p>
+<p><%= @instance %>にアカウントが作成されました。</p>
+
+<p>以下のリンクをクリックしてMastodonアカウントのメールアドレスを確認してください。</p>
 
 <p><%= link_to 'メールアドレスの確認', confirmation_url(@resource, confirmation_token: @token) %></p>
+
+<p>また、インスタンスの<%= link_to '利用規約', terms_url %>についてもご確認ください。</p>
+
+<p><%= @instance %> チーム</p>

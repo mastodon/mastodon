@@ -1,0 +1,30 @@
+---
+pt-BR:
+  simple_form:
+    labels:
+      defaults:
+        avatar: Avatar
+        confirm_new_password: Confirme nova senha
+        confirm_password: Confirme a senha
+        current_password: Senha atual
+        display_name: Nome
+        email: Endereço de email
+        header: Header
+        locale: Linguagem
+        new_password: Nova senha
+        note: Biografia
+        password: Senha
+        username: Usuário
+      interactions:
+        must_be_follower: Bloquear notificações de não-seguidores
+        must_be_following: Bloquear notificações de pessoas que você
+      notification_emails:
+        favourite: Enviar email quando alguém favorita um post seu
+        follow: Enviar email quando alguém seguir você
+        mention: Enviar email quando alguém mencionar você
+        reblog: Enviar email quando alguém reblogar um post seu
+    'no': 'Não'
+    required:
+      mark: "*"
+      text: necessário
+    'yes': 'Sim'

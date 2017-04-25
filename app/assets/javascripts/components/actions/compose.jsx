@@ -73,14 +73,22 @@ export function mentionCompose(account, router) {
 
 export function submitCompose() {
   return function (dispatch, getState) {
+    const status = emojione.shortnameToUnicode(getState().getIn(['compose', 'text'], ''));
+    if (!status || !status.length) {
+      return;
+    }
     dispatch(submitComposeRequest());
     api(getState).post('/api/v1/statuses', {
-      status: emojione.shortnameToUnicode(getState().getIn(['compose', 'text'], '')),
+      status,
       in_reply_to_id: getState().getIn(['compose', 'in_reply_to'], null),
       media_ids: getState().getIn(['compose', 'media_attachments']).map(item => item.get('id')),
       sensitive: getState().getIn(['compose', 'sensitive']),
       spoiler_text: getState().getIn(['compose', 'spoiler_text'], ''),
       visibility: getState().getIn(['compose', 'privacy'])
+    }, {
+      headers: {
+        'Idempotency-Key': getState().getIn(['compose', 'idempotencyKey'])
+      }
     }).then(function (response) {
       dispatch(submitComposeSuccess({ ...response.data }));
 

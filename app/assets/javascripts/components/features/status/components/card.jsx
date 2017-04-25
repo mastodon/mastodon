@@ -1,20 +1,4 @@
-import PureRenderMixin from 'react-addons-pure-render-mixin';
 import ImmutablePropTypes from 'react-immutable-proptypes';
-
-const contentStyle = {
-  flex: '1 1 auto',
-  padding: '8px',
-  paddingLeft: '14px',
-  overflow: 'hidden'
-};
-
-const imageStyle = {
-  display: 'block',
-  width: '100%',
-  height: 'auto',
-  margin: '0',
-  borderRadius: '4px 0 0 4px'
-};
 
 const hostStyle = {
   display: 'block',
@@ -28,12 +12,7 @@ const getHostname = url => {
   return parser.hostname;
 };
 
-const Card = React.createClass({
-  propTypes: {
-    card: ImmutablePropTypes.map
-  },
-
-  mixins: [PureRenderMixin],
+class Card extends React.PureComponent {
 
   render () {
     const { card } = this.props;
@@ -47,7 +26,7 @@ const Card = React.createClass({
     if (card.get('image')) {
       image = (
         <div className='status-card__image'>
-          <img src={card.get('image')} alt={card.get('title')} style={imageStyle} />
+          <img src={card.get('image')} alt={card.get('title')} className='status-card__image-image' />
         </div>
       );
     }
@@ -56,7 +35,7 @@ const Card = React.createClass({
       <a href={card.get('url')} className='status-card' target='_blank' rel='noopener'>
         {image}
 
-        <div className='status-card__content' style={contentStyle}>
+        <div className='status-card__content'>
           <strong className='status-card__title' title={card.get('title')}>{card.get('title')}</strong>
           <p className='status-card__description'>{card.get('description').substring(0, 50)}</p>
           <span className='status-card__host' style={hostStyle}>{getHostname(card.get('url'))}</span>
@@ -64,6 +43,10 @@ const Card = React.createClass({
       </a>
     );
   }
-});
+}
+
+Card.propTypes = {
+  card: ImmutablePropTypes.map
+};
 
 export default Card;

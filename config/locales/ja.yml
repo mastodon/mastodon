@@ -29,6 +29,7 @@ ja:
     terms: プライバシーポリシー
     user_count_after: 人
     user_count_before: ユーザー数
+    version: バージョン
   accounts:
     follow: フォロー
     followers: フォロワー
@@ -73,6 +74,10 @@ ja:
       push_subscription_expires: PuSH購読期限切れ
       reset_password: パスワード再設定
       salmon_url: Salmon URL
+      show:
+        created_reports: このアカウントで作られたレポート
+        report: レポート
+        targeted_reports: このアカウントについてのレポート
       silence: サイレンス
       statuses: トゥート数
       title: アカウント
@@ -100,7 +105,9 @@ ja:
         suspend: 停止
       severity: 深刻度
       show:
-        affected_accounts: "データベース中の%{count}個のアカウントに影響します"
+        affected_accounts:
+          one: "データベース中の一つのアカウントに影響します"
+          other: "データベース中の%{count}個のアカウントに影響します"
         retroactive:
           silence: このドメインからの存在するすべてのアカウントのサイレンスを戻す
           suspend: このドメインからの存在するすべてのアカウントの停止を戻す
@@ -108,6 +115,10 @@ ja:
         undo: 元に戻す
       title: ドメインブロック
       undo: 元に戻す
+    instances:
+      account_count: 既知のアカウント数
+      domain_name: ドメイン名
+      title: 既知のインスタンス
     pubsubhubbub:
       callback_url: コールバックURL
       confirmed: 確認済み
@@ -219,7 +230,7 @@ ja:
       following: フォロー中のアカウントリスト
       muting: ミュートしたアカウントリスト
     upload: アップロード
-  landing_strip_html: <strong>%{name}</strong> さんはインスタンス <strong>%{domain}</strong> のユーザーです。アカウントさえ持っていればフォローしたり会話したりできます。もしお持ちでないなら <a href="%{sign_up_path}">こちら</a> からサインアップできます。
+  landing_strip_html: <strong>%{name}</strong> さんはインスタンス %{link_to_root_path} のユーザーです。アカウントさえ持っていればフォローしたり会話したりできます。もしお持ちでないなら <a href="%{sign_up_path}">こちら</a> からサインアップできます。
   media_attachments:
     validations:
       images_and_video: 既に画像が追加されているため、動画を追加することはできません。
@@ -266,34 +277,34 @@ ja:
     import: データのインポート
     preferences: ユーザー設定
     settings: 設定
-    two_factor_auth: 二段階認証
+    two_factor_authentication: 二段階認証
   statuses:
     open_in_web: Webで開く
     over_character_limit: 上限は %{max}文字までです
     show_more: もっと見る
     visibilities:
-      private: Private - フォロワーだけに見せる
-      public: Public - 全体に公開する
-      unlisted: Unlisted - トゥートは公開するが、公開タイムラインには表示しない
+      private: 非公開 - フォロワーだけに公開
+      public: 公開 - 公開タイムラインに投稿する
+      unlisted: 未収載 - トゥートは公開するが、公開タイムラインには表示しない
   stream_entries:
     click_to_show: クリックして表示
     reblogged: ブーストされました
-    sensitive_content: 不適切なコンテンツの可能性があります
+    sensitive_content: 閲覧注意
   time:
     formats:
       default: "%Y年%m月%d日 %H:%M"
-  two_factor_auth:
+  two_factor_authentication:
     code_hint: 確認するには認証アプリで表示されたコードを入力してください
     description_html: "<strong>二段階認証</strong>を有効にするとログイン時、電話でコードを受け取る必要があります。"
     disable: 無効
     enable: 有効
     enabled_success: 二段階認証が有効になりました
-    generate_recovery_codes: 復元コードを生成
+    generate_recovery_codes: リカバリーコードを生成
     instructions_html: "<strong>Google Authenticatorか、もしくはほかのTOTPアプリでこのQRコードをスキャンしてください。</strong>これ以降、ログインするときはそのアプリで生成されるコードが必要になります。"
-    lost_recovery_codes: リカバリコードを使用すると携帯電話を紛失した場合でもアカウントにアクセスできるようになります。 リカバリーコードを紛失した場合もここで再生成することができますが、古いリカバリコードは無効になります。
+    lost_recovery_codes: リカバリーコードを使用すると携帯電話を紛失した場合でもアカウントにアクセスできるようになります。 リカバリーコードを紛失した場合もここで再生成することができますが、古いリカバリーコードは無効になります。
     manual_instructions: 'QRコードがスキャンできず、手動での登録を希望の場合はこのシークレットコードを利用してください。:'
     recovery_codes_regenerated: リカバリーコードが再生成されました。
-    recovery_instructions: 携帯電話を紛失した場合、以下の内どれかのリカバリコードを使用してアカウントへアクセスすることができます。 リカバリコードは印刷して安全に保管してください。
+    recovery_instructions: 携帯電話を紛失した場合、以下の内どれかのリカバリーコードを使用してアカウントへアクセスすることができます。 リカバリーコードは印刷して安全に保管してください。
     setup: 初期設定
     wrong_code: コードが間違っています。サーバー上の時間とデバイス上の時間が一致していることを確認してください。
   users:
