@@ -54,7 +54,7 @@ namespace :mastodon do
         end
       end
     rescue => ex
-      _raise(field, account, ex, kind)
+      _raise_(field, account, ex, kind)
     end
 
     def re_save(field, account)
@@ -64,10 +64,10 @@ namespace :mastodon do
       account.send(field + '=', URI.parse(account.send(field + '_remote_url')))
       account.save
     rescue => ex
-      _raise(field, account, ex, kind)
+      _raise_(field, account, ex, kind)
     end
 
-    def _raise(field, account, ex, kind)
+    def _raise_(field, account, ex, kind)
       # need to think about "404"
       puts "can't #{kind} #{field} of #{account.username} due to " + ex.inspect
     end
