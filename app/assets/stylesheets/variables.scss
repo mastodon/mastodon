@@ -20,7 +20,8 @@ $darken10_color1:   darken($color1, 10%) !default;
 $darken_transparent5_color1: rgba(darken($color1, 7%), 0.5) !default;
 $darken_transparent8_color1: rgba(darken($color1, 7%), 0.8) !default;
 
-/* $color2 is the default text color */
+/* $color2 is the default text color
+    and the light background of non-connected view */
 $color2:              #d9e1e8 !default; // lightest
 $lighten4_color2:     lighten($color2, 4%) !default;
 $lighten8_color2:     lighten($color2, 8%) !default;
@@ -31,12 +32,12 @@ $darken36_color2:     darken($color2, 36%) !default;
 $transparent_color2:  rgba($color2, 0.3) !default;
 
 
-$seven_lighten_color3: lighten($color3, 7%) !default;
-$eight_lighten_color3: lighten($color3, 8%) !default;
-
-$five_darken_color3: darken($color3, 5%) !default;
-$twenty_darken_color3: darken($color3, 24%) !default;
-$thirtythree_darken_color3: darken($color3, 33%) !default;
+/* $color3 is the base color for muted colors
+(text or bg on dark or light backgrounds) */
+$color3:              #9baec8 !default; // lighter
+$lighten8_color3:     lighten($color3, 8%) !default;
+$darken5_color3:      darken($color3, 5%) !default;
+$darken30_color3:     darken($color3, 30%) !default;
 
 
 $lighten4_color24: lighten($color4, 4%) !default;
