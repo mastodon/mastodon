@@ -1,5 +1,3 @@
-$color8: #000000 !default; // black
-
 /* $color1 is the default body background-color */
 $color1:            #282c37 !default; // darkest
 $lighten5_color1:   lighten($color1, 5%) !default;
@@ -61,16 +59,14 @@ $transparent_color6:  rgba($color6, 0.5) !default;
 $color7:              #79bd9a !default; // succ green
 
 
-
-$ten_alpha_color8: rgba($color8, 0.1) !default;
-$twenty_alpha_color8: rgba($color8, 0.2) !default;
-$thirty_alpha_color8: rgba($color8, 0.3) !default;
-$forty_alpha_color8: rgba($color8, 0.4) !default;
-$fifty_alpha_color8: rgba($color8, 0.5) !default;
-$sixty_alpha_color8: rgba($color8, 0.6) !default;
-$seventy_alpha_color8: rgba($color8, 0.7) !default;
-$eighty_alpha_color8: rgba($color8, 0.8) !default;
-$ninety_alpha_color8: rgba($color8, 0.9) !default;
-
-
-
+/* $color8 (black) is for shadows and alpha backgrounds */
+$color8:              #000000 !default; // black
+$color8_alpha01:      rgba($color8, 0.1) !default;
+$color8_alpha02:      rgba($color8, 0.2) !default;
+$color8_alpha03:      rgba($color8, 0.3) !default;
+$color8_alpha04:      rgba($color8, 0.4) !default;
+$color8_alpha05:      rgba($color8, 0.5) !default;
+$color8_alpha06:      rgba($color8, 0.6) !default;
+$color8_alpha07:      rgba($color8, 0.7) !default;
+$color8_alpha08:      rgba($color8, 0.8) !default;
+$color8_alpha09:      rgba($color8, 0.9) !default;
