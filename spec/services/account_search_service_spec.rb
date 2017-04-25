@@ -13,6 +13,12 @@ describe AccountSearchService do
 
         expect(results).to eq []
       end
+      it 'returns empty array for limit zero' do
+        Fabricate(:account, username: 'match')
+        results = subject.call('match', 0)
+
+        expect(results).to eq []
+      end
     end
 
     describe 'searching for a simple term that is not an exact match' do
