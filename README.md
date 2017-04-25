@@ -1,4 +1,4 @@
-Mastodon
+Mastodon™
 ========
 
 [![Build Status](http://img.shields.io/travis/tootsuite/mastodon.svg)][travis]
@@ -7,7 +7,7 @@ Mastodon
 [travis]: https://travis-ci.org/tootsuite/mastodon
 [code_climate]: https://codeclimate.com/github/tootsuite/mastodon
 
-Mastodon is a free, open-source social network server. A decentralized solution to commercial platforms, it avoids the risks of a single company monopolizing your communication. Anyone can run Mastodon and participate in the social network seamlessly.
+Mastodon™ is a free, open-source social network server. A decentralized solution to commercial platforms, it avoids the risks of a single company monopolizing your communication. Anyone can run Mastodon™ and participate in the social network seamlessly.
 
 An alternative implementation of the GNU social project. Based on [ActivityStreams](https://en.wikipedia.org/wiki/Activity_Streams_(format)), [Webfinger](https://en.wikipedia.org/wiki/WebFinger), [PubsubHubbub](https://en.wikipedia.org/wiki/PubSubHubbub) and [Salmon](https://en.wikipedia.org/wiki/Salmon_(protocol)).
 
@@ -25,8 +25,8 @@ If you would like, you can [support the development of this project on Patreon][
 
 ## Resources
 
-- [List of Mastodon instances](https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/List-of-Mastodon-instances.md)
-- [Use this tool to find Twitter friends on Mastodon](https://mastodon-bridge.herokuapp.com)
+- [List of Mastodon™ instances](https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/List-of-Mastodon-instances.md)
+- [Use this tool to find Twitter friends on Mastodon™](https://mastodon-bridge.herokuapp.com)
 - [API overview](https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md)
 - [Frequently Asked Questions](https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/FAQ.md)
 - [List of apps](https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/Apps.md)
@@ -42,11 +42,11 @@ If you would like, you can [support the development of this project on Patreon][
 - **Media attachments like images and WebM**
   Upload and view images and WebM videos attached to the updates
 - **OAuth2 and a straightforward REST API**
-  Mastodon acts as an OAuth2 provider so 3rd party apps can use the API, which is RESTful and simple
+  Mastodon™ acts as an OAuth2 provider so 3rd party apps can use the API, which is RESTful and simple
 - **Background processing for long-running tasks**
-  Mastodon tries to be as fast and responsive as possible, so all long-running tasks that can be delegated to background processing, are
+  Mastodon™ tries to be as fast and responsive as possible, so all long-running tasks that can be delegated to background processing, are
 - **Deployable via Docker**
-  You don't need to mess with dependencies and configuration if you want to try Mastodon, if you have Docker and Docker Compose the deployment is extremely easy
+  You don't need to mess with dependencies and configuration if you want to try Mastodon™, if you have Docker and Docker Compose the deployment is extremely easy
 
 ## Deployment
 
@@ -63,4 +63,4 @@ You can open issues for bugs you've found or features you think are missing. You
 - The [Emoji One](https://github.com/Ranks/emojione) pack has been used for the emojis
 - The error page image courtesy of [Dopatwo](https://www.youtube.com/user/dopatwo)
 
-![Mastodon error image](https://mastodon.social/oops.png)
+![Mastodon™ error image](https://mastodon.social/oops.png)
