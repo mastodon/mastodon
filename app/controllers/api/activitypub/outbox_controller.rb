@@ -57,9 +57,7 @@ class Api::Activitypub::OutboxController < ApiController
   end
 
   def set_first_last_page(statuses) # rubocop:disable Style/AccessorMethodName
-    if statuses.empty?
-      return
-    end
+    return if statuses.empty?
 
     @first_page_url = api_activitypub_outbox_url(max_id: statuses.first.id + 1)
     @last_page_url = api_activitypub_outbox_url(since_id: statuses.last.id - 1)
