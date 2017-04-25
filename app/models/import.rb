@@ -7,7 +7,7 @@ class Import < ApplicationRecord
 
   belongs_to :account, required: true
 
-  enum type: [:following, :blocking, :muting]
+  enum type: [:following, :blocking, :muting, :favourites]
 
   validates :type, presence: true
 

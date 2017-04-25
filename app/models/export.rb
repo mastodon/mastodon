@@ -23,9 +23,9 @@ class Export
   def to_favourite_posts_csv
     CSV.generate do |csv|
       account.favourites.each do |favourite|
-        domain = favourite.account.local? ? Rails.configuration.x.local_domain : favourite.account.domain
+        domain = favourite.status.account.local? ? Rails.configuration.x.local_domain : favourite.status.account.domain
 
-        csv << ["#{domain}/@#{favourite.account.username}/#{favourite.status_id}"]
+        csv << [domain, favourite.status.account.username, favourite.status_id]
       end
     end
   end
