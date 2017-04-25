@@ -47,7 +47,7 @@ const zh_hk = {
   "compose_form.private": "標示為「只有關注你的人能看」",
   "compose_form.publish": "發文",
   "compose_form.sensitive": "將媒體檔案標示為「敏感內容」",
-  "compose_form.spoiler_placeholder": "敏感內容",
+  "compose_form.spoiler_placeholder": "敏感警告訊息",
   "compose_form.spoiler": "將部份文字藏於警告訊息之後",
   "compose_form.unlisted": "請勿在公共時間軸顯示",
   "emoji_button.label": "加入表情符號",
