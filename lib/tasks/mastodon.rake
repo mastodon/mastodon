@@ -9,10 +9,10 @@ namespace :mastodon do
       mastodon:users:clear
       mastodon:push:refresh
     ).each do |task|
-      puts "Starting #{task} at #{Time.utc.now}"
+      puts "Starting #{task} at #{Time.now.utc}"
       Rake::Task[task].invoke
     end
-    puts "Completed daily tasks at #{Time.utc.now}"
+    puts "Completed daily tasks at #{Time.now.utc}"
   end
 
   desc 'Turn a user into an admin, identified by the USERNAME environment variable'
