@@ -27,7 +27,6 @@ const nl = {
   "compose_form.private": "Als privé markeren",
   "compose_form.publish": "Toot",
   "compose_form.sensitive": "Media als gevoelig markeren",
-  "compose_form.spoiler_placeholder": "Waarschuwingstekst",
   "compose_form.spoiler": "Tekst achter waarschuwing verbergen",
   "compose_form.unlisted": "Niet op openbare tijdlijnen tonen",
   "emoji_button.activity": "Activiteiten",

@@ -30,7 +30,6 @@ const hr = {
   "compose_form.privacy_disclaimer": "Tvoj privatni status će biti dostavljen spomenutim korisnicima na {domains}. Vjeruješ li {domainsCount, plural, one {that server} drugim {those servers}}? Privatnost postova radi samo na Mastodon instancama. Ako {domains} {domainsCount, plural, one {is not a Mastodon instance} other {are not Mastodon instances}}, neće biti indikacije da je tvoj post privatan, i mogao bit biti podignut ili biti učinjen vidljivim na drugi način neželjenim primateljima.",
   "compose_form.publish": "Toot",
   "compose_form.sensitive": "Označi media sadržaj kao osjetljiv",
-  "compose_form.spoiler_placeholder": "Upozorenje o sadržaju",
   "compose_form.spoiler": "Sakrij text iza upozorenja",
   "emoji_button.label": "Umetni smajlije",
   "empty_column.community": "Lokalni timeline je prazan. Napiši nešto javno kako bi pokrenuo stvari!",

@@ -27,7 +27,6 @@ const no = {
   "compose_form.privacy_disclaimer": "Din private status vil leveres til nevnte brukere på {domains}. Stoler du på {domainsCount, plural, one {den serveren} other {de serverne}}? Synlighet fungerer kun på Mastodon-instanser. Hvis {domains} {domainsCount, plural, one {ike er en Mastodon-instans} other {ikke er Mastodon-instanser}}, vil det ikke indikeres at posten din er privat, og den kan kanskje bli fremhevd eller på annen måte bli synlig for uventede mottakere.",
   "compose_form.publish": "Tut",
   "compose_form.sensitive": "Merk media som følsomt",
-  "compose_form.spoiler_placeholder": "Innholdsadvarsel",
   "compose_form.spoiler": "Skjul tekst bak advarsel",
   "emoji_button.label": "Sett inn emoji",
   "empty_column.community": "Den lokale tidslinjen er tom. Skriv noe offentlig for å få snøballen til å rulle!",

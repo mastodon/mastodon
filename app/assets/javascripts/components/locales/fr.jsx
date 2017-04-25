@@ -36,7 +36,6 @@ const fr = {
   "compose_form.publish": "Pouet",
   "compose_form.sensitive": "Marquer le média comme délicat",
   "compose_form.spoiler": "Masquer le texte derrière un avertissement",
-  "compose_form.spoiler_placeholder": "Avertissement",
   "compose_form.unlisted": "Ne pas afficher dans les fils publics",
   "emoji_button.label": "Insérer un emoji",
   "empty_column.community": "Le fil public local est vide. Écrivez-donc quelque chose pour le remplir !",

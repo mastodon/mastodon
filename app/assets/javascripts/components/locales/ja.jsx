@@ -29,7 +29,6 @@ const ja = {
   "compose_form.publish": "トゥート",
   "compose_form.sensitive": "メディアを閲覧注意としてマークする",
   "compose_form.spoiler": "テキストを隠す",
-  "compose_form.spoiler_placeholder": "警告",
   "emoji_button.label": "絵文字を追加",
   "emoji_button.search": "検索...",
   "emoji_button.people": "人々",

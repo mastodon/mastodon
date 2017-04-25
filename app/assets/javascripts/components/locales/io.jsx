@@ -28,7 +28,6 @@ const io = {
   "compose_form.privacy_disclaimer": "Tua privata mesajo livresos a mencionata uzeri en {domains}. Ka tu fidas {domainsCount, plural, one {ta servero} other {ta serveri}}? Privateso di mesaji funcionas nur en instaluri di Mastodon. Se {domains} {domainsCount, plural, one {ne esas instaluro di Mastodon} other {ne esas instaluri di Mastodon}}, esos nula indiko, ke tua mesajo esas privata, ed ol povos repetesar od altre divenar videbla da nedezirinda recevanti.",
   "compose_form.publish": "Siflar",
   "compose_form.sensitive": "Markizar kontenajo kom trubliva",
-  "compose_form.spoiler_placeholder": "Averto di kontenajo",
   "compose_form.spoiler": "Celar texto dop averto",
   "emoji_button.label": "Insertar emoji",
   "empty_column.community": "La lokala tempolineo esas vakua. Skribez ulo publike por iniciar la agiveso!",

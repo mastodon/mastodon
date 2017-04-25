@@ -28,7 +28,6 @@ const pt = {
   "compose_form.privacy_disclaimer": "O teu conteúdo privado vai ser partilhado com os utilizadores do {domains}. Confias {domainsCount, plural, one {neste servidor} other {nestes servidores}}? A privacidade só funciona em instâncias do Mastodon. Se {domains} {domainsCount, plural, one {não é uma instância} other {não são instâncias}}, não existem indicadores da privacidade da tua partilha, e podem ser partilhados com outros.",
   "compose_form.publish": "Publicar",
   "compose_form.sensitive": "Marcar media como conteúdo sensível",
-  "compose_form.spoiler_placeholder": "Aviso de conteúdo",
   "compose_form.spoiler": "Esconder texto com aviso",
   "emoji_button.label": "Inserir Emoji",
   "empty_column.community": "Ainda não existem conteúdo local para mostrar!",

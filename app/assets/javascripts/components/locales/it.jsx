@@ -28,7 +28,6 @@ const it = {
   "compose_form.privacy_disclaimer": "Il tuo status privato verrà condiviso con gli utenti menzionati su {domains}. Ti fidi di {domainsCount, plural, one {quel server} other {quei server}}? Le impostazioni sulla privacy valgono solo su server Mastodon. Se {domains} {domainsCount, plural, one {non è un server Mastodon} other {non sono server Mastodon}}, non ci saranno indicazioni sulla privacy del tuo status, e potrebbe essere condiviso o reso visibile a destinatari indesiderati.",
   "compose_form.publish": "Toot",
   "compose_form.sensitive": "Segnala file come sensibile",
-  "compose_form.spoiler_placeholder": "Content warning",
   "compose_form.spoiler": "Nascondi testo con avvertimento",
   "emoji_button.label": "Inserisci emoji",
   "empty_column.community": "La timeline locale è vuota. Condividi qualcosa pubblicamente per dare inizio alla festa!",

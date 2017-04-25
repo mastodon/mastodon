@@ -62,7 +62,6 @@ const oc = {
   "compose_form.publish": "Tut",
   "compose_form.sensitive": "Marcar lo mèdia coma embarrassant",
   "compose_form.spoiler": "Rescondre lo tèxte darrièr un avertiment",
-  "compose_form.spoiler_placeholder": "Avertiment",
   "compose_form.private": "Far venir privat",
   "compose_form.privacy_disclaimer": "Vòstre estatut privat serà enviat a las personas mencionadas sus {domains}. Vos fisatz d’aqueste{domainsCount, plural, one { servidor} other {s servidors}} per divulgar pas vòstre estatut ? Los estatuts privats foncionan pas que sus las instàncias a Mastodons. Se {domains} {domainsCount, plural, one {es pas una instància a Mastodon} other {son pas d'instàncias a Mastodon}}, i aurà pas d’indicacion disent que vòstre estatut es privat e poirà èsser partejat o èsser visible a de mond pas prevists",
   "compose_form.unlisted": "Mostrar pas dins los fils publics",

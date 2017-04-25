@@ -19,7 +19,8 @@ import WarningContainer from '../containers/warning_container';
 
 const messages = defineMessages({
   placeholder: { id: 'compose_form.placeholder', defaultMessage: 'What is on your mind?' },
-  spoiler_placeholder: { id: 'compose_form.spoiler_placeholder', defaultMessage: 'Content warning' },
+  hide_text_placeholder: { id: 'compose_form.hide_text_placeholder', defaultMessage: 'Text to hide behind warning' },
+  spoiler_placeholder: { id: 'compose_form.spoiler_placeholder', defaultMessage: 'Write warning before hidden text' },
   publish: { id: 'compose_form.publish', defaultMessage: 'Toot' }
 });
 
@@ -145,7 +146,7 @@ class ComposeForm extends React.PureComponent {
         <div className='compose-form__autosuggest-wrapper'>
           <AutosuggestTextarea
             ref={this.setAutosuggestTextarea}
-            placeholder={intl.formatMessage(messages.placeholder)}
+            placeholder={intl.formatMessage(this.props.spoiler ? messages.hide_text_placeholder : messages.placeholder)}
             disabled={disabled}
             value={this.props.text}
             onChange={this.handleChange}
