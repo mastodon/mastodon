@@ -1,0 +1,61 @@
+---
+oc:
+  devise:
+    confirmations:
+      confirmed: Vòstra adreça de corrièl es ben estada validada.
+      send_instructions: Recebretz un corrièl per vos indicar çò que cal far per confirmar vòstra adreça de corrièl dins una estona.
+      send_paranoid_instructions: Se vòstra adreça existís dins nòstra basa de donadas, recebretz un corrièl per vos indicar çò que cal far per confirmar vòstra adreça de corrièl dins una estona.
+    failure:
+      already_authenticated: Sètz ja connectat.
+      inactive: Vòstre compte es pas encara activat.
+      invalid: Corrièl o senhal invalid.
+      last_attempt: Vos demòra un ensag abans que vòstre compte siasgue blocat.
+      locked: Vòstre compte es blocat.
+      not_found_in_database: Corrièl o senhal invalid.
+      timeout: Vòstra session s’a acabat. Mercés de vos tornar connectar per contunhar.
+      unauthenticated: Vos cal vos connectar o marcar abans de contunhar.
+      unconfirmed: Vos cal confirmar vòstra adreça de corrièl abans de contunhar.
+    mailer:
+      confirmation_instructions:
+        subject: "Mercés de confirmar vòstra inscripcion sus %{instance}"
+      password_change:
+        subject: 'Mastodon : senhal cambiat'
+      reset_password_instructions:
+        subject: 'Mastodon : instruccions per reïnicializar lo senhal'
+      unlock_instructions:
+        subject: 'Mastodon : instuccions de desblocatge'
+    omniauth_callbacks:
+      failure: Fracàs al moment de vos autentificar de %{kind} perque "%{reason}".
+      success: Sètz ben autentificat dempuèi lo compte %{kind}.
+    passwords:
+      no_token: Podètz pas accedir a aquesta pagina sens venir d’un corriel de reïnicializacion de senhal. S’es lo cas, mercés de verificar qu’avètz ben utilizat l’URL donada de manièra complèta.
+      send_instructions: Recebretz un corrièl amb las instruccions per reĩnicializar vòstre senhal dins una estona.
+      send_paranoid_instructions: Se vòstra adreça de corrièl existís dins nòstra basa de donadas, recebretz un ligam per reĩnicializar vòstre senhal dins una estona.
+      updated: Vòstre senhal es ben estat cambiat. Sètz ara connectat.
+      updated_not_active: Vòstre senhal es ben estat cambiat.
+    registrations:
+      destroyed: Adiu ! Vòstra inscripcion es estada anullada amb succès. Esperem vos tornar veire lèu.
+      signed_up: Benvengut ! Sètz ben marcat al malhum.
+      signed_up_but_inactive: Sètz ben marcat. Pasmens, avèm pas pogut vos connectar perque vòstre compte es pas encara validat.
+      signed_up_but_locked: Sètz ben marcat. Pasmens, avèm pas pogut vos connectar perque vòstre compte es pas encara blocat.
+      signed_up_but_unconfirmed: Un messatge amb un ligam de confirmacion es estat enviat a vòstra adreça de corrièl. Clicatz sul ligam per activar vòstre compte.
+      update_needs_confirmation: Avètz ben mes a jorn vòstre compte, mai nos cal verificar vòstra nòva adreça de corrièl. Mercés de verificar vòstres messatges e clicar sul ligam de confirmacion per confirmar vòstra nòva adreça de corrièl.
+      updated: Vòstre compte es estat mes a jorn amb succès.
+    sessions:
+      already_signed_out: Desconnectat amb succès.
+      signed_in: Connectat amb succès.
+      signed_out: Desconnectat amb succès.
+    unlocks:
+      send_instructions: Recebretz un corrièl amb las instruccions per o desblocar dins una estona.
+      send_paranoid_instructions: Se vòstre compte existís recebretz un corrièl amb las instruccions per o desblocar dins una estona.
+      unlocked: Vòstre compte es estat desblocat amb succès. Mercés de vos connectar per contunhar.
+  errors:
+    messages:
+      already_confirmed: es ja estat confirmat, mercés d’ensejar de vos connectar
+      confirmation_period_expired: a d’èsser confirmat dins %{period}, mercés de tornar demandar
+      expired: a expirat, mercés de demandar un nòu
+      not_found: pas trobat
+      not_locked: èra pas blocat
+      not_saved:
+        one: '1 error defend aquesta %{resource} d’èsser salvagardada :'
+        other: "%{count} errors defendon aquesta %{resource} d’èsser salvagardadas :"
