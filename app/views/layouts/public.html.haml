@@ -4,7 +4,7 @@
 - content_for :content do
   .container= yield
   .footer
-    - if single_user_mode? && !user_signed_in?
+    - if !user_signed_in? && single_user_mode?
       %span.single-user-login
         = link_to t('auth.login'), new_user_session_path
         = "\u2014"
