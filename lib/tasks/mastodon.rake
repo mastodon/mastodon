@@ -3,16 +3,16 @@
 namespace :mastodon do
   desc 'Execute daily tasks'
   task :daily do
-    %w[
+    %w(
       mastodon:feeds:clear
       mastodon:media:clear
       mastodon:users:clear
       mastodon:push:refresh
-    ].each do |task|
-      puts "Starting #{task} at #{Time.now}"
+    ).each do |task|
+      puts "Starting #{task} at #{Time.utc.now}"
       Rake::Task[task].invoke
     end
-    puts "Completed daily tasks at #{Time.now}"
+    puts "Completed daily tasks at #{Time.utc.now}"
   end
 
   desc 'Turn a user into an admin, identified by the USERNAME environment variable'
