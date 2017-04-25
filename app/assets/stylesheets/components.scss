@@ -1780,12 +1780,12 @@ button.icon-button.active i.fa-retweet {
   outline: 0;
 
   &.active {
-    box-shadow: 0 1px 0 $transparent3_color4;
+    box-shadow: 0 1px 0 $color4_alpha03;
   }
 
   &.active .fa {
     color: $color4;
-    text-shadow: 0 0 10px $transparent3_color4;
+    text-shadow: 0 0 10px $color4_alpha03;
   }
 
   &.hidden-on-mobile {
@@ -2024,7 +2024,7 @@ button.icon-button.active i.fa-retweet {
   pointer-events: none;
   height: 28px;
   z-index: 1;
-  background: radial-gradient(ellipse, $transparent3_color4 0%, transparent 60%);
+  background: radial-gradient(ellipse, $color4_alpha03 0%, transparent 60%);
 }
 
 .emoji-dialog {
