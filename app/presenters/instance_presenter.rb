@@ -3,7 +3,7 @@
 class InstancePresenter
   delegate(
     :closed_registrations_message,
-    :contact_email,
+    :site_contact_email,
     :open_registrations,
     :site_description,
     :site_extended_description,
@@ -15,7 +15,7 @@ class InstancePresenter
   end
 
   def user_count
-    Rails.cache.fetch('user_count') { User.count }
+    Rails.cache.fetch('user_count') { User.confirmed.count }
   end
 
   def status_count
@@ -24,5 +24,9 @@ class InstancePresenter
 
   def domain_count
     Rails.cache.fetch('distinct_domain_count') { Account.distinct.count(:domain) }
+  end
+
+  def version_number
+    Mastodon::VERSION
   end
 end

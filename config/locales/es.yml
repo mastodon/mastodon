@@ -93,7 +93,7 @@ es:
       blocking: Lista de bloqueados
       following: Lista de seguidos
     upload: Cargar
-  landing_strip_html: <strong>%{name}</strong> es un usuario en <strong>%{domain}</strong>. Puedes seguirlo(a) o interactuar con el o ella si tienes una cuenta en cualquier parte del fediverse. Si no tienes una, puedes <a href="%{sign_up_path}">registrar aquí</a>.
+  landing_strip_html: <strong>%{name}</strong> es un usuario en %{link_to_root_path}. Puedes seguirlo(a) o interactuar con el o ella si tienes una cuenta en cualquier parte del fediverse. Si no tienes una, puedes <a href="%{sign_up_path}">registrar aquí</a>.
   media_attachments:
     validations:
       images_and_video: No se puede adjuntar un video a un estado que ya contenga imágenes
@@ -139,7 +139,7 @@ es:
     import: Importar
     preferences: Preferencias
     settings: Ajustes
-    two_factor_auth: Aute/ción. de dos factores
+    two_factor_authentication: Autenticación de dos factores
   statuses:
     open_in_web: Abrir en web
     over_character_limit: Límite de caracteres de %{max} superado
@@ -155,13 +155,11 @@ es:
   time:
     formats:
       default: "%b %d, %Y, %H:%M"
-  two_factor_auth:
+  two_factor_authentication:
     description_html: Sí habilitas la <strong>autenticación de dos factores</strong>, se requerirá estar en posesión de su teléfono, lo que generará tokens para que usted pueda iniciar sesión.
     disable: Deshabilitar
     enable: Habilitar
     instructions_html: "<strong>Escanea este código QR desde Google Authenticator o una aplicación similar en su teléfono</strong>. Desde ahora, esta aplicación va a generar tokens que tienes que ingresar cuando quieras iniciar sesión."
-    plaintext_secret_html: 'Código en texto plano: <samp>%{secret}</samp>'
-    warning: Sí no puedes configurar una aplicación de autenticación ahora, deberás deshabilitar la autenticación de dos factores o no podrás iniciar sesión.
   users:
     invalid_email: La dirección de correo es incorrecta
     invalid_otp_token: Código de dos factores incorrecto

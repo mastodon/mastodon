@@ -30,6 +30,11 @@ class Api::V1::NotificationsController < ApiController
     render_empty
   end
 
+  def dismiss
+    Notification.find_by!(account: current_account, id: params[:id]).destroy!
+    render_empty
+  end
+
   private
 
   def exclude_types

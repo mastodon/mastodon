@@ -41,7 +41,7 @@ class AccountSearchService < BaseService
   end
 
   def query_username
-    @_query_username ||= split_query_string.first
+    @_query_username ||= split_query_string.first || ''
   end
 
   def query_domain
