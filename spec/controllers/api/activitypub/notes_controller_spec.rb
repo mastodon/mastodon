@@ -14,7 +14,7 @@ RSpec.describe Api::Activitypub::NotesController, type: :controller do
         public_status = Status.create!(account: user_alice.account, text: 'Hello world', visibility: :public)
 
         @request.env['HTTP_ACCEPT'] = 'application/activity+json'
-        get :show, id: public_status.id
+        get :show, params: { id: public_status.id }
       end
 
       it 'returns http success' do
@@ -50,7 +50,7 @@ RSpec.describe Api::Activitypub::NotesController, type: :controller do
         reply = Status.create!(account: user_bob.account, text: 'Hello world', in_reply_to_id: original.id, visibility: :public)
 
         @request.env['HTTP_ACCEPT'] = 'application/activity+json'
-        get :show, id: reply.id
+        get :show, params: { id: reply.id }
       end
 
       it 'returns http success' do

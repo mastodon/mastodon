@@ -1,11 +1,12 @@
 # frozen_string_literal: true
 
 class FetchLinkCardService < BaseService
+  URL_PATTERN = %r{https?://\S+}
   USER_AGENT = "#{HTTP::Request::USER_AGENT} (Mastodon/#{Mastodon::VERSION}; +http://#{Rails.configuration.x.local_domain}/)"
 
   def call(status)
     # Get first http/https URL that isn't local
-    url = URI.extract(status.text).reject { |uri| (uri =~ /\Ahttps?:\/\//).nil? || TagManager.instance.local_url?(uri) }.first
+    url = status.text.match(URL_PATTERN).to_a.reject { |uri| TagManager.instance.local_url?(uri) }.first
 
     return if url.nil?
 
@@ -18,7 +19,7 @@ class FetchLinkCardService < BaseService
 
     card.title       = meta_property(page, 'og:title') || page.at_xpath('//title')&.content
     card.description = meta_property(page, 'og:description') || meta_property(page, 'description')
-    card.image       = URI.parse(meta_property(page, 'og:image')) if meta_property(page, 'og:image')
+    card.image       = URI.parse(Addressable::URI.parse(meta_property(page, 'og:image')).normalize.to_s) if meta_property(page, 'og:image')
 
     return if card.title.blank?
 

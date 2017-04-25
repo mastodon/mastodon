@@ -269,3 +269,60 @@ code {
     font-size: 14px;
   }
 }
+
+.table-form {
+  p {
+    max-width: 400px;
+    margin-bottom: 15px;
+
+    strong {
+      font-weight: 500;
+    }
+  }
+
+  .warning {
+    max-width: 400px;
+    box-sizing: border-box;
+    background: rgba($color6, 0.5);
+    color: $color5;
+    text-shadow: 1px 1px 0 rgba($color8, 0.3);
+    box-shadow: 0 2px 6px rgba($color8, 0.4);
+    border-radius: 4px;
+    padding: 10px;
+    margin-bottom: 15px;
+
+    a {
+      color: $color5;
+      text-decoration: underline;
+
+      &:hover, &:focus, &:active {
+        text-decoration: none;
+      }
+    }
+
+    strong {
+      font-weight: 600;
+      display: block;
+      margin-bottom: 5px;
+
+      .fa {
+        font-weight: 400;
+      }
+    }
+  }
+}
+
+.action-pagination {
+  display: flex;
+  align-items: center;
+
+  .actions, .pagination {
+    flex: 1 1 auto;
+  }
+
+  .actions {
+    padding: 30px 0;
+    padding-right: 20px;
+    flex: 0 0 auto;
+  }
+}

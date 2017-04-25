@@ -39,6 +39,48 @@ nl:
     posts: Berichten
     remote_follow: Extern volgen
     unfollow: Ontvolgen
+  admin:
+    settings:
+      click_to_edit: Klik om te bewerken
+      contact_information:
+        email: Vul een openbaar gebruikt e-mailadres in
+        label: Contactgegevens
+        username: Vul een gebruikersnaam in
+      registrations:
+        closed_message:
+          desc_html: Wordt op de voorpagina weergegeven wanneer registratie van nieuwe accounts is uitgeschakeld<br>En ook hier kan je HTML gebruiken
+          title: Bericht wanneer registratie is uitgeschakeld
+        open:
+          disabled: Uitgeschakeld
+          enabled: Ingeschakeld
+          title: Open registratie
+      setting: Instelling
+      site_description:
+        desc_html: Dit wordt als een alinea op de voorpagina getoond en gebruikt als meta-tag in de paginabron.<br>Je kan HTML gebruiken, zoals <code>&lt;a&gt;</code> en <code>&lt;em&gt;</code>.
+        title: Omschrijving Mastodon-server
+      site_description_extended:
+        desc_html: Wordt op de uitgebreide informatiepagina weergegeven<br>Je kan ook hier HTML gebruiken
+        title: Uitgebreide omschrijving Mastodon-server
+      site_title: Naam Mastodon-server
+      title: Server-instellingen
+  admin.reports:
+    comment:
+      label: Opmerking
+      none: Geen
+    delete: Verwijderen
+    id: ID
+    mark_as_resolved: Markeer als opgelost
+    report: 'Gerapporteerde toot #%{id}'
+    reported_account: Gerapporteerde account
+    reported_by: Gerapporteerd door
+    resolved: Opgelost
+    silence_account: Account stilzwijgen
+    status: Toot
+    suspend_account: Account blokkeren
+    target: Target
+    title: Gerapporteerde toots
+    unresolved: Onopgelost
+    view: Weergeven
   application_mailer:
     settings: 'E-mailvoorkeuren wijzigen: %{link}'
     signature: Mastodon-meldingen van %{instance}
@@ -74,6 +116,12 @@ nl:
       x_minutes: "%{count}m"
       x_months: "%{count}ma"
       x_seconds: "%{count}s"
+  errors:
+    '404': De pagina waarnaar jij op zoek bent bestaat niet.
+    '410': De pagina waarnaar jij op zoek bent bestaat niet meer.
+    '422':
+      content: Veiligheidsverificatie mislukt. Blokkeer je toevallig cookies?
+      title: Veiligheidsverificatie mislukt
   exports:
     blocks: Jij blokkeert
     csv: CSV
@@ -95,7 +143,7 @@ nl:
       following: Volglijst
       muting: Negeerlijst
     upload: Uploaden
-  landing_strip_html: <strong>%{name}</strong> is een gebruiker op <strong>%{domain}</strong>. Je kunt deze volgen en ermee communiceren als je ergens in deze fediverse een account hebt. Als je dat niet hebt, kun je je <a href="%{sign_up_path}">hier aanmelden</a>.
+  landing_strip_html: <strong>%{name}</strong> is een gebruiker op %{link_to_root_path}. Je kunt deze volgen en ermee communiceren als je ergens in deze fediverse een account hebt. Als je dat niet hebt, kun je je <a href="%{sign_up_path}">hier aanmelden</a>.
   notification_mailer:
     digest:
       body: 'Hier is een korte samenvatting van wat je hebt gemist op %{instance} sinds jouw laatste bezoek op %{since}:'
@@ -161,52 +209,3 @@ nl:
   users:
     invalid_email: E-mailadres is ongeldig
     invalid_otp_token: Ongeldige tweestaps-aanmeldcode
-  errors:
-      404: De pagina waarnaar jij op zoek bent bestaat niet.
-      410: De pagina waarnaar jij op zoek bent bestaat niet meer.
-      422:
-        title: Veiligheidsverificatie mislukt
-        content: Veiligheidsverificatie mislukt. Blokkeer je toevallig cookies?
-  admin.reports:
-    title: Gerapporteerde toots
-    status: Toot
-    unresolved: Onopgelost
-    resolved: Opgelost
-    id: ID
-    target: Target
-    reported_by: Gerapporteerd door
-    comment:
-      label: Opmerking
-      none: Geen
-    view: Weergeven
-    report: 'Gerapporteerde toot #%{id}'
-    delete: Verwijderen
-    reported_account: Gerapporteerde account
-    reported_by: Gerapporteerd door
-    silence_account: Account stilzwijgen
-    suspend_account: Account blokkeren
-    mark_as_resolved: Markeer als opgelost
-  admin:
-    settings:
-      title: Server-instellingen
-      setting: Instelling
-      click_to_edit: Klik om te bewerken
-      contact_information:
-        label: Contactgegevens
-        username: Vul een gebruikersnaam in
-        email: Vul een openbaar gebruikt e-mailadres in
-      site_title: Naam Mastodon-server
-      site_description:
-        title: Omschrijving Mastodon-server
-        desc_html: "Dit wordt als een alinea op de voorpagina getoond en gebruikt als meta-tag in de paginabron.<br>Je kan HTML gebruiken, zoals <code>&lt;a&gt;</code> en <code>&lt;em&gt;</code>."
-      site_description_extended:
-        title: Uitgebreide omschrijving Mastodon-server
-        desc_html: "Wordt op de uitgebreide informatiepagina weergegeven<br>Je kan ook hier HTML gebruiken"
-      registrations:
-        open:
-          title: Open registratie
-          enabled: Ingeschakeld
-          disabled: Uitgeschakeld
-        closed_message:
-          title: Bericht wanneer registratie is uitgeschakeld
-          desc_html: "Wordt op de voorpagina weergegeven wanneer registratie van nieuwe accounts is uitgeschakeld<br>En ook hier kan je HTML gebruiken"

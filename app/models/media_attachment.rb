@@ -42,7 +42,7 @@ class MediaAttachment < ApplicationRecord
   end
 
   def file_remote_url=(url)
-    self.file = URI.parse(url)
+    self.file = URI.parse(Addressable::URI.parse(url).normalize.to_s)
   end
 
   def to_param
