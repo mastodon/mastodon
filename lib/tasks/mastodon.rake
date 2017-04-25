@@ -76,13 +76,13 @@ namespace :mastodon do
   desc 'Refetch missing avatar and header'
   task refetch_avatar_header: :environment do
     include AvatarHeader
-    %w[avatar header].each { |e| get_loop e, :re_get }
+    %w(avatar header).each { |e| get_loop e, :re_get }
   end
 
   desc 'Refresh All avatar and header'
   task refresh_avatar_header: :environment do
     include AvatarHeader
-    %w[avatar header].each { |e| get_loop e, :re_save }
+    %w(avatar header).each { |e| get_loop e, :re_save }
   end
 
   namespace :media do
