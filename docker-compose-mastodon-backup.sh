@@ -20,10 +20,14 @@ mkdir -p "$target/mastodon/data"
 
 echo "Backing up Database..."
 volume=$(docker inspect --format '{{ range .Mounts }}{{ if eq .Destination "/var/lib/postgresql/data" }}{{ .Source }}{{ end }}{{ end }}' $dbContainerName)
-docker-compose exec db bash -c "mkdir -p /var/lib/postgresql/data/backup/ && rm /var/lib/postgresql/data/backup/mastodon.sql"
-docker-compose exec db bash -c "pg_dump -U postgres postgres > /var/lib/postgresql/data/backup/mastodon.sql"
-rm "$target/mastodon/db/mastodon.sql"
-cp "$volume/backup/mastodon.sql" "$target/mastodon/db/"
+if [ -n "$volume" ]; then
+    docker-compose exec db bash -c "mkdir -p /var/lib/postgresql/data/backup/ && rm /var/lib/postgresql/data/backup/mastodon.sql"
+    docker-compose exec db bash -c "pg_dump -U postgres postgres > /var/lib/postgresql/data/backup/mastodon.sql"
+    rm "$target/mastodon/db/mastodon.sql"
+    cp "$volume/backup/mastodon.sql" "$target/mastodon/db/"
+else
+    echo "Couldn't determine mountpoint, not backing up database"
+fi
 
 if [ -f "Rakefile" ]; then
 echo "Backing up folder structure..."
