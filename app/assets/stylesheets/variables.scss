@@ -1,4 +1,3 @@
-$color2: #d9e1e8 !default; // lightest
 $color3: #9baec8 !default; // lighter
 $color4: #2b90d9 !default; // vibrant
 $color5: #ffffff !default; // white
@@ -22,20 +21,14 @@ $darken_transparent5_color1: rgba(darken($color1, 7%), 0.5) !default;
 $darken_transparent8_color1: rgba(darken($color1, 7%), 0.8) !default;
 
 /* $color2 is the default text color */
-$three_lighten_color2: lighten($color2, 3%) !default;
-$four_lighten_color2: lighten($color2, 4%) !default;
-$eight_lighten_color2: lighten($color2, 8%) !default;
-
-$eight_darken_color2: darken($color2, 8%) !default;
-$ten_darken_color2: darken($color2, 10%) !default;
-$sixteen_darken_color2: darken($color2, 16%) !default;
-$eighteen_darken_color2: darken($color2, 18%) !default;
-$twentyfour_darken_color2: darken($color2, 24%) !default;
-$twentyfive_darken_color2: darken($color2, 25%) !default;
-$thirtyfour_darken_color2: darken($color2, 34%) !default;
-$thirtyeight_darken_color2: darken($color2, 38%) !default;
-
-$transparent_color2: rgba($color2, 0.3) !default;
+$color2:              #d9e1e8 !default; // lightest
+$lighten4_color2:     lighten($color2, 4%) !default;
+$lighten8_color2:     lighten($color2, 8%) !default;
+$darken8_color2:      darken($color2, 8%) !default;
+$darken16_color2:     darken($color2, 16%) !default;
+$darken24_color2:     darken($color2, 24%) !default;
+$darken36_color2:     darken($color2, 36%) !default;
+$transparent_color2:  rgba($color2, 0.3) !default;
 
 
 $seven_lighten_color3: lighten($color3, 7%) !default;
@@ -46,7 +39,7 @@ $twenty_darken_color3: darken($color3, 24%) !default;
 $thirtythree_darken_color3: darken($color3, 33%) !default;
 
 
-$four_lighten_color4: lighten($color4, 4%) !default;
+$lighten4_color24: lighten($color4, 4%) !default;
 $five_lighten_color4: lighten($color4, 5%) !default;
 $seven_lighten_color4: lighten($color4, 7%) !default;
 $ten_lighten_color4: lighten($color4, 10%) !default;
