@@ -104,7 +104,7 @@ RSpec.describe User, type: :model do
       expect(user.valid?).to be_truthy
     end
 
-    it 'should not allow a smart user to be created unless they are whitelisted' do
+    it 'should not allow a user with a whitelisted top domain as subdomain in their email address to be created' do
       user = User.new(email: 'foo@mastodon.space.userdomain.com', account: account, password: password)
       expect(user.valid?).to be_falsey
     end
