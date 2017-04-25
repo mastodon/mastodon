@@ -62,6 +62,10 @@ const PageTwo = ({ me }) => (
   </div>
 );
 
+PageTwo.propTypes = {
+  me: ImmutablePropTypes.map.isRequired
+}
+
 const PageThree = ({ me, domain }) => (
   <div className='onboarding-modal__page onboarding-modal__page-three'>
     <div className='figure non-interactive'>
