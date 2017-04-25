@@ -1,5 +1,3 @@
-$color6: #df405a !default; // error red
-$color7: #79bd9a !default; // succ green
 $color8: #000000 !default; // black
 
 /* $color1 is the default body background-color */
@@ -53,10 +51,15 @@ $darken8_color5:      darken($color5, 8%) !default;
 $transparent7_color5: rgba($color5, 0.7) !default;
 
 
+/* $color6 (error) and $color7 (success) are for
+messages in forms */
+$color6:              #df405a !default; // error red
+$lighten_color6:      lighten($color6, 5%) !default;
+$darken_color6:       darken($color6, 5%) !default;
+$transparent_color6:  rgba($color6, 0.5) !default;
 
-$five_lighten_color6: lighten($color6, 5%) !default;
-$five_darken_color6: darken($color6, 5%) !default;
-$fifty_alpha_color6: rgba($color6, 0.5) !default;
+$color7:              #79bd9a !default; // succ green
+
 
 
 $ten_alpha_color8: rgba($color8, 0.1) !default;
