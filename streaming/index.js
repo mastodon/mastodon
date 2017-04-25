@@ -164,7 +164,8 @@ if (cluster.isMaster) {
   const placeholders = (arr, shift = 0) => arr.map((_, i) => `$${i + 1 + shift}`).join(', ');
 
   const streamFrom = (id, req, output, attachCloseHandler, needsFiltering = false) => {
-    log.verbose(req.requestId, `Starting stream from ${id} for ${req.accountId}`)
+    const pubSubId = redisPubSubPrefix + id;
+    log.verbose(req.requestId, `Starting stream from ${pubSubId} for ${req.accountId}`)
 
     const listener = message => {
       const { event, payload, queued_at } = JSON.parse(message)
@@ -209,8 +210,8 @@ if (cluster.isMaster) {
       }
     }
 
-    subscribe(id, listener)
-    attachCloseHandler(id, listener)
+    subscribe(pubSubId, listener)
+    attachCloseHandler(pubSubId, listener)
   }
 
   // Setup stream output to HTTP
@@ -307,19 +308,19 @@ if (cluster.isMaster) {
 
       switch(location.query.stream) {
       case 'user':
-        streamFrom(`${redisPubSubPrefix}timeline:${req.accountId}`, req, streamToWs(req, ws), streamWsEnd(ws))
+        streamFrom(`timeline:${req.accountId}`, req, streamToWs(req, ws), streamWsEnd(ws))
         break;
       case 'public':
-        streamFrom(`${redisPubSubPrefix}timeline:public`, req, streamToWs(req, ws), streamWsEnd(ws), true)
+        streamFrom("timeline:public", req, streamToWs(req, ws), streamWsEnd(ws), true)
         break;
       case 'public:local':
-        streamFrom(`${redisPubSubPrefix}timeline:public:local`, req, streamToWs(req, ws), streamWsEnd(ws), true)
+        streamFrom("timeline:public:local", req, streamToWs(req, ws), streamWsEnd(ws), true)
         break;
       case 'hashtag':
-        streamFrom(`${redisPubSubPrefix}timeline:hashtag:${location.query.tag}`, req, streamToWs(req, ws), streamWsEnd(ws), true)
+        streamFrom(`timeline:hashtag:${location.query.tag}`, req, streamToWs(req, ws), streamWsEnd(ws), true)
         break;
       case 'hashtag:local':
-        streamFrom(`${redisPubSubPrefix}timeline:hashtag:${location.query.tag}:local`, req, streamToWs(req, ws), streamWsEnd(ws), true)
+        streamFrom(`timeline:hashtag:${location.query.tag}:local`, req, streamToWs(req, ws), streamWsEnd(ws), true)
         break;
       default:
         ws.close()
