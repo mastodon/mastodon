@@ -388,7 +388,6 @@
   font-weight: 400;
   overflow: hidden;
   white-space: pre-wrap;
-  overflow-x: auto;
 
   .emojione {
     width: 18px;
@@ -438,6 +437,10 @@
       text-decoration: none;
     }
   }
+}
+
+.MathJax_Display {
+    overflow-x: auto;
 }
 
 a.status__content__spoiler-link {
