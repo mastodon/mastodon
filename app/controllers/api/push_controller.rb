@@ -26,11 +26,11 @@ class Api::PushController < ApiController
   def topic_to_account(topic_url)
     return if topic_url.blank?
 
-    uri    = Addressable::URI.parse(topic_url)
+    uri    = Addressable::URI.parse(topic_url).normalize
     params = Rails.application.routes.recognize_path(uri.path)
     domain = uri.host + (uri.port ? ":#{uri.port}" : '')
 
-    return unless TagManager.instance.local_domain?(domain) && params[:controller] == 'accounts' && params[:action] == 'show' && params[:format] == 'atom'
+    return unless TagManager.instance.web_domain?(domain) && params[:controller] == 'accounts' && params[:action] == 'show' && params[:format] == 'atom'
 
     Account.find_local(params[:username])
   end

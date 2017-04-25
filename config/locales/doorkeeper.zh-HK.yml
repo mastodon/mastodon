@@ -10,7 +10,7 @@ zh-HK:
         doorkeeper/application:
           attributes:
             redirect_uri:
-              fragment_present: 'URI 不可包含 "#fragment" 部份'
+              fragment_present: URI 不可包含 "#fragment" 部份
               invalid_uri: 必需有正確的 URI.
               relative_uri: 必需為絕對 URI.
               secured_uri: 必需使用有 HTTPS/SSL 加密的 URI.
@@ -45,7 +45,7 @@ zh-HK:
         callback_urls: 回傳網址
         scopes: 權限範圍
         secret: 密碼
-        title: '應用程式︰ %{name}'
+        title: 應用程式︰ %{name}
     authorizations:
       buttons:
         authorize: 批准
@@ -72,9 +72,12 @@ zh-HK:
     errors:
       messages:
         access_denied: 資源擁有者或授權伺服器不接受請求。
-        credential_flow_not_configured: 資源擁有者密碼認證程序 (Resource Owner Password Credentials flow) 失敗，原因是 Doorkeeper.configure.resource_owner_from_credentials 沒有設定。
-        invalid_client: 用戶程式認證 (Client authentication) 失敗，原因是用戶程式未有登記、沒有指定用戶程式 (client)、或者使用了不支援的認證方法 (method)。
-        invalid_grant: 授權申請 (authorization grant) 不正確、過期、已被取消，或者無法對應授權請求 (authorization request) 內的轉接 URI，或者屬於別的用戶程式。
+        credential_flow_not_configured: 資源擁有者密碼認證程序 (Resource Owner Password Credentials
+          flow) 失敗，原因是 Doorkeeper.configure.resource_owner_from_credentials 沒有設定。
+        invalid_client: 用戶程式認證 (Client authentication) 失敗，原因是用戶程式未有登記、沒有指定用戶程式 (client)、或者使用了不支援的認證方法
+          (method)。
+        invalid_grant: 授權申請 (authorization grant) 不正確、過期、已被取消，或者無法對應授權請求 (authorization
+          request) 內的轉接 URI，或者屬於別的用戶程式。
         invalid_redirect_uri: 不正確的轉接網址。
         invalid_request: 請求缺少了必要的參數、包含了不支援的參數、或者其他輸入錯誤。
         invalid_resource_owner: 資源擁有者的登入資訊錯誤、或者無法找到該資源擁有者。
@@ -83,7 +86,8 @@ zh-HK:
           expired: access token 已經過期
           revoked: access token 已被取消
           unknown: access token 不正確
-        resource_owner_authenticator_not_configured: 無法找到資源擁有者，原因是 Doorkeeper.configure.resource_owner_authenticator 沒有設定。
+        resource_owner_authenticator_not_configured: 無法找到資源擁有者，原因是 Doorkeeper.configure.resource_owner_authenticator
+          沒有設定。
         server_error: 認證伺服器遇上未知狀況，令請求無法通過。
         temporarily_unavailable: 認證伺服器由於臨時負荷過重或者維護，目前未能處理請求。
         unauthorized_client: 用戶程式無權用此方法 (method) 請行這個請求。

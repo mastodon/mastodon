@@ -14,8 +14,9 @@
   .sidebar {
     width: 240px;
     height: 100%;
-    padding: 20px 0;
-
+    padding: 0;
+    overflow-y: auto;
+    
     .logo {
       display: block;
       margin: 40px auto;
@@ -27,6 +28,7 @@
       list-style: none;
       border-radius: 4px 0 0 4px;
       overflow: hidden;
+      margin-bottom: 20px;
 
       a {
         display: block;
@@ -55,6 +57,7 @@
       ul {
         background: darken($color1, 4%);
         border-radius: 0 0 0 4px;
+        margin: 0;
 
         a {
           border: 0;
@@ -115,15 +118,26 @@
 
   .simple_form {
     max-width: 400px;
+    .label_input {
+      label.select {
+        width: 50%;
+      }
+      select {
+        width: 50%;
+        float: right;
+      }
+    }
   }
 
   @media screen and (max-width: 600px) {
     display: block;
     overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
 
     .sidebar-wrapper, .content-wrapper {
       flex: 0 0 auto;
       height: auto;
+      overflow: initial;
     }
 
     .sidebar {

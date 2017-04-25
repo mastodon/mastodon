@@ -1,6 +1,9 @@
 require 'rails_helper'
+require 'devise_two_factor/spec_helpers'
 
 RSpec.describe User, type: :model do
+  it_behaves_like 'two_factor_backupable'
+
   describe 'validations' do
     it 'is invalid without an account' do
       user = Fabricate.build(:user, account: nil)
@@ -18,6 +21,37 @@ RSpec.describe User, type: :model do
       user = Fabricate.build(:user, email: 'john@')
       user.valid?
       expect(user).to model_have_error_on_field(:email)
+    end
+  end
+
+  describe 'settings' do
+    it 'inherits default settings from default yml' do
+      expect(Setting.boost_modal).to eq false
+      expect(Setting.interactions['must_be_follower']).to eq false
+
+      user = User.new
+      expect(user.settings.boost_modal).to eq false
+      expect(user.settings.interactions['must_be_follower']).to eq false
+    end
+
+    it 'can update settings' do
+      user = Fabricate(:user)
+      expect(user.settings['interactions']['must_be_follower']).to eq false
+      user.settings['interactions'] = user.settings['interactions'].merge('must_be_follower' => true)
+      user.reload
+
+      expect(user.settings['interactions']['must_be_follower']).to eq true
+    end
+
+    xit 'does not mutate defaults via the cache' do
+      user = Fabricate(:user)
+      user.settings['interactions']['must_be_follower'] = true
+      # TODO
+      # This mutates the global settings default such that future user
+      # instances will inherit the incorrect starting values
+
+      other = Fabricate(:user)
+      expect(other.settings['interactions']['must_be_follower']).to eq false
     end
   end
 
@@ -61,6 +95,18 @@ RSpec.describe User, type: :model do
       user = User.new(email: 'foo@mvrht.com', account: account, password: password)
 
       expect(user.valid?).to be_falsey
+    end
+  end
+
+  describe '#confirmed?' do
+    it 'returns true when a confirmed_at is set' do
+      user = Fabricate.build(:user, confirmed_at: Time.now.utc)
+      expect(user.confirmed?).to be true
+    end
+
+    it 'returns false if a confirmed_at is nil' do
+      user = Fabricate.build(:user, confirmed_at: nil)
+      expect(user.confirmed?).to be false
     end
   end
 

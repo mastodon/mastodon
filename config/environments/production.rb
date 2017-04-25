@@ -35,9 +35,6 @@ Rails.application.configure do
   # Allow to specify public IP of reverse proxy if it's needed
   config.action_dispatch.trusted_proxies = [IPAddr.new(ENV['TRUSTED_PROXY_IP'])] unless ENV['TRUSTED_PROXY_IP'].blank?
 
-  # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
-  config.force_ssl = false
-
   # By default, use the lowest log level to ensure availability of diagnostic information
   # when problems arise.
   config.log_level = ENV.fetch('RAILS_LOG_LEVEL', 'info').to_sym
@@ -55,6 +52,8 @@ Rails.application.configure do
     ENV['REDIS_HOST'] = redis_url.host
     ENV['REDIS_PORT'] = redis_url.port.to_s
     ENV['REDIS_PASSWORD'] = redis_url.password
+    db_num = redis_url.path[1..-1]
+    ENV['REDIS_DB'] = db_num if db_num.present?
   end
 
   # Use a different cache store in production.
@@ -62,7 +61,7 @@ Rails.application.configure do
     host: ENV.fetch('REDIS_HOST') { 'localhost' },
     port: ENV.fetch('REDIS_PORT') { 6379 },
     password: ENV.fetch('REDIS_PASSWORD') { false },
-    db: 0,
+    db: ENV.fetch('REDIS_DB') { 0 },
     namespace: 'cache',
     expires_in: 10.minutes,
   }
@@ -96,16 +95,15 @@ Rails.application.configure do
   config.action_mailer.smtp_settings = {
     :port                 => ENV['SMTP_PORT'],
     :address              => ENV['SMTP_SERVER'],
-    :user_name            => ENV['SMTP_LOGIN'],
-    :password             => ENV['SMTP_PASSWORD'],
-    :domain               => ENV['SMTP_DOMAIN'] || config.x.local_domain,
-    :authentication       => ENV['SMTP_AUTH_METHOD'] || :plain,
+    :user_name            => ENV['SMTP_LOGIN'].presence,
+    :password             => ENV['SMTP_PASSWORD'].presence,
+    :domain               => ENV['SMTP_DOMAIN'] || ENV['LOCAL_DOMAIN'],
+    :authentication       => ENV['SMTP_AUTH_METHOD'] == 'none' ? nil : ENV['SMTP_AUTH_METHOD'] || :plain,
     :openssl_verify_mode  => ENV['SMTP_OPENSSL_VERIFY_MODE'],
     :enable_starttls_auto => ENV['SMTP_ENABLE_STARTTLS_AUTO'] || true,
   }
 
   config.action_mailer.delivery_method = ENV.fetch('SMTP_DELIVERY_METHOD', 'smtp').to_sym
-
 
   config.react.variant = :production
 

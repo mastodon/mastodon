@@ -1,24 +1,25 @@
-import PureRenderMixin from 'react-addons-pure-render-mixin';
+import PropTypes from 'prop-types';
 
-const CharacterCounter = React.createClass({
+class CharacterCounter extends React.PureComponent {
 
-  propTypes: {
-    text: React.PropTypes.string.isRequired,
-    max: React.PropTypes.number.isRequired
-  },
-
-  mixins: [PureRenderMixin],
+  checkRemainingText (diff) {
+    if (diff <= 0) {
+      return <span className='character-counter character-counter--over'>{diff}</span>;
+    }
+    return <span className='character-counter'>{diff}</span>;
+  }
 
   render () {
     const diff = this.props.max - this.props.text.replace(/[\uD800-\uDBFF][\uDC00-\uDFFF]/g, "_").length;
 
-    return (
-      <span style={{ fontSize: '16px', cursor: 'default' }}>
-        {diff}
-      </span>
-    );
+    return this.checkRemainingText(diff);
   }
 
-});
+}
+
+CharacterCounter.propTypes = {
+  text: PropTypes.string.isRequired,
+  max: PropTypes.number.isRequired
+}
 
 export default CharacterCounter;
