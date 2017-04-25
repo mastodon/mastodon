@@ -36,7 +36,7 @@ PageOne.propTypes = {
   domain: PropTypes.string.isRequired
 };
 
-const PageTwo = () => (
+const PageTwo = ({ me }) => (
   <div className='onboarding-modal__page onboarding-modal__page-two'>
     <div className='figure non-interactive'>
        <div className='pseudo-drawer'>
@@ -194,7 +194,7 @@ class OnboardingModal extends React.PureComponent {
 
     const pages = [
       <PageOne acct={me.get('acct')} domain={domain} />,
-      <PageTwo />,
+      <PageTwo me={me} />,
       <PageThree me={me} domain={domain} />,
       <PageFour domain={domain} intl={intl} />,
       <PageSix admin={admin} />
