@@ -29,6 +29,8 @@ class Api::Activitypub::OutboxController < ApiController
   def show_outbox_page
     all_statuses = Status.as_outbox_timeline(@account)
     @statuses = all_statuses.paginate_by_max_id(limit_param(DEFAULT_STATUSES_LIMIT), params[:max_id], params[:since_id])
+
+    all_statuses = cache_collection(all_statuses)
     @statuses = cache_collection(@statuses)
 
     set_maps(@statuses)
@@ -54,11 +56,13 @@ class Api::Activitypub::OutboxController < ApiController
     @account = Account.find(params[:id])
   end
 
-  def set_first_last_page(statuses)
-    unless statuses.empty?
-      @first_page_url = api_activitypub_outbox_url(max_id: statuses.first.id + 1)
-      @last_page_url = api_activitypub_outbox_url(since_id: statuses.last.id - 1)
+  def set_first_last_page(statuses) # rubocop:disable Style/AccessorMethodName
+    if statuses.empty?
+      return
     end
+
+    @first_page_url = api_activitypub_outbox_url(max_id: statuses.first.id + 1)
+    @last_page_url = api_activitypub_outbox_url(since_id: statuses.last.id - 1)
   end
 
   def pagination_params(core_params)

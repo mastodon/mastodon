@@ -83,7 +83,7 @@ RSpec.describe Api::Activitypub::OutboxController, type: :controller do
       statuses = []
 
       before do
-        40.times do
+        30.times do
           statuses << Status.create!(account: user.account, text: 'Hello world', visibility: :public)
         end
 
@@ -94,7 +94,7 @@ RSpec.describe Api::Activitypub::OutboxController, type: :controller do
 
       describe 'first page' do
         before do
-          get :show, params: { id: user.account.id, max_id: statuses[30].id }
+          get :show, params: { id: user.account.id, max_id: statuses.last.id }
         end
 
         it 'returns http success' do
