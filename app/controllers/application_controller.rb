@@ -115,8 +115,7 @@ class ApplicationController < ActionController::Base
   end
 
   def respond_with_error(code)
-    set_locale do
-      render "errors/#{code}", layout: 'error', status: code
-    end
+    set_locale
+    render "errors/#{code}", layout: 'error', status: code
   end
 end
