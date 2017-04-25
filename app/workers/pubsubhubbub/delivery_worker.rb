@@ -13,7 +13,7 @@ class Pubsubhubbub::DeliveryWorker
   def perform(subscription_id, payload)
     subscription = Subscription.find(subscription_id)
     headers      = {}
-    host         = Addressable::URI.parse(subscription.callback_url).host
+    host         = Addressable::URI.parse(subscription.callback_url).normalize.host
 
     return if DomainBlock.blocked?(host)
 
