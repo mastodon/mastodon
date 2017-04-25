@@ -33,71 +33,56 @@ namespace :mastodon do
     end
   end
 
-  desc 'Refetch missing avatar and header'
-  task refetch_avatar_header: :environment do
+  module AvatarHeader
     require 'fileutils'
-    Account.remote.find_each do |account|
-      if account.avatar_file_name.present? && account.avatar_remote_url.present?
-        begin
-          unless File.exist?(account.avatar.path)
-            mkdir_p(File.dirname(account.avatar.path))
-            open(account.avatar.path, 'wb') do |out|
-              open(account.avatar_remote_url) do |data|
-                out.write(data.read)
-              end
-            end
-            puts "refetch avatar of #{account.username}"
-          end
-        rescue => ex
-          # need to think about 404"
-          puts "can't refetch avatar of #{account.username} due to " + ex.inspect
-        end
-      end
-      if account.header.exists? && account.header_remote_url.present?
-        begin
-          unless File.exist?(account.header.path)
-            mkdir_p(File.dirname(account.header.path))
-            open(account.header.path, 'wb') do |out|
-              open(account.header_remote_url) do |data|
-                out.write(data.read)
-              end
-            end
-            puts "refetch header of #{account.username}"
-          end
-        rescue => ex2
-          # need to think about 404"
-          puts "can't refetch header of #{account.username} due to " + ex2.inspect
-        end
+
+    def get_loop(field, method)
+      Account.remote.find_each do |account|
+        send(method, field, account)
       end
     end
+
+    def re_get(field, account)
+      return unless account.send(field + '_file_name').present? && account.send(field + '_remote_url').present?
+      return if File.exist?(account.send(field).path)
+      kind = 'refetch'
+      puts "#{kind} #{field} of #{account.username}"
+      mkdir_p(File.dirname(account.send(field).path))
+      open(account.send(field).path, 'wb') do |out|
+        open(account.send(field + '_remote_url')) do |data|
+          out.write(data.read)
+        end
+      end
+    rescue => ex
+      _raise(field, account, ex, kind)
+    end
+
+    def re_save(field, account)
+      return unless account.send(field).exists? && account.send(field + '_remote_url').present?
+      kind = 'refresh'
+      puts "#{kind} #{field} of #{account.username}"
+      account.send(field + '=', URI.parse(account.send(field + '_remote_url')))
+      account.save
+    rescue => ex
+      _raise(field, account, ex, kind)
+    end
+
+    def _raise(field, account, ex, kind)
+      # need to think about "404"
+      puts "can't #{kind} #{field} of #{account.username} due to " + ex.inspect
+    end
+  end
+
+  desc 'Refetch missing avatar and header'
+  task refetch_avatar_header: :environment do
+    include AvatarHeader
+    %w[avatar header].each { |e| get_loop e, :re_get }
   end
 
   desc 'Refresh All avatar and header'
   task refresh_avatar_header: :environment do
-    Account.remote.find_each do |account|
-      need_save = false
-      if account.avatar.exists? && account.avatar_remote_url.present?
-        begin
-          account.avatar = URI.parse(account.avatar_remote_url)
-          puts "refetch avatar of #{account.username}"
-          need_save = true
-        rescue => ex
-          # need to think about 404"
-          puts "can't refetch avatar of #{account.username} due to " + ex.inspect
-        end
-      end
-      if account.header.exists? && account.header_remote_url.present?
-        begin
-          account.header = URI.parse(account.header_remote_url)
-          puts "refetch header of #{account.username}"
-          need_save = true
-        rescue => ex2
-          # need to think about 404"
-          puts "can't refetch header of #{account.username} due to " + ex2.inspect
-        end
-      end
-      account.save if need_save
-    end
+    include AvatarHeader
+    %w[avatar header].each { |e| get_loop e, :re_save }
   end
 
   namespace :media do
