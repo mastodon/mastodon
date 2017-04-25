@@ -1,0 +1,30 @@
+@media screen and (min-width: 800px) {
+  .drawer {
+    overflow: visible;
+    width : 25% !important ;
+    height : 410px !important ;
+  }
+
+  .column {
+    flex : 1 1 0 !important ;
+  }
+
+  .column:nth-child(3) {
+    position : fixed !important ;
+    width : 25% !important ;
+    margin-top : 400px !important ;
+    height : 100% ;
+    padding-left : 10px !important ;
+  }
+
+  .drawer__pager{
+    overflow: visible;
+    height: 300px;
+    z-index: 1;
+  }
+
+  .drawer__inner{
+    overflow: visible;
+    overflow-y: visible;
+  }
+}
