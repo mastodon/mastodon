@@ -221,7 +221,7 @@ ru:
       following: Подписки
       muting: Список глушения
     upload: Загрузить
-  landing_strip_html: <strong>%{name}</strong> - пользователь на <strong>%{domain}</strong>. Вы можете подписаться на него/нее и общаться с ним/ней, если у Вас есть аккаунт на любом узле общей сети. Если у Вас его нет, вы можете <a href="%{sign_up_path}">зарегистрироваться здесь</a>.
+  landing_strip_html: <strong>%{name}</strong> - пользователь на %{link_to_root_path}. Вы можете подписаться на него/нее и общаться с ним/ней, если у Вас есть аккаунт на любом узле общей сети. Если у Вас его нет, вы можете <a href="%{sign_up_path}">зарегистрироваться здесь</a>.
   media_attachments:
     validations:
       images_and_video: Нельзя добавить видео к статусу с изображениями
@@ -267,7 +267,7 @@ ru:
     import: Импорт
     preferences: Настройки
     settings: Опции
-    two_factor_auth: Двухфакторная аутентификация
+    two_factor_authentication: Двухфакторная аутентификация
   statuses:
     open_in_web: Открыть в WWW
     over_character_limit: превышен лимит символов (%{max})
@@ -283,7 +283,7 @@ ru:
   time:
     formats:
       default: "%b %d, %Y, %H:%M"
-  two_factor_auth:
+  two_factor_authentication:
     code_hint: Для подтверждения введите код, сгенерированный приложением аутентификатора
     description_html: При включении <strong>двухфакторной аутентификации</strong>, вход потребует от Вас использования Вашего телефона, который сгенерирует входные токены.
     disable: Отключить

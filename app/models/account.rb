@@ -8,7 +8,7 @@ class Account < ApplicationRecord
 
   # Local users
   has_one :user, inverse_of: :account
-  validates :username, presence: true, format: { with: /\A[a-z0-9_]+\z/i, message: 'only letters, numbers and underscores' }, uniqueness: { scope: :domain, case_sensitive: false }, length: { maximum: 30 }, if: 'local?'
+  validates :username, presence: true, format: { with: /\A[a-z0-9_]+\z/i }, uniqueness: { scope: :domain, case_sensitive: false }, length: { maximum: 30 }, if: 'local?'
   validates :username, presence: true, uniqueness: { scope: :domain, case_sensitive: true }, unless: 'local?'
 
   # Avatar upload
@@ -135,6 +135,10 @@ class Account < ApplicationRecord
     !subscription_expires_at.blank?
   end
 
+  def followers_domains
+    followers.reorder(nil).pluck('distinct accounts.domain')
+  end
+
   def favourited?(status)
     status.proper.favourites.where(account: self).count.positive?
   end
@@ -178,22 +182,22 @@ class Account < ApplicationRecord
   end
 
   def avatar_remote_url=(url)
-    parsed_url = URI.parse(url)
+    parsed_url = Addressable::URI.parse(url).normalize
 
     return if !%w(http https).include?(parsed_url.scheme) || parsed_url.host.empty? || self[:avatar_remote_url] == url
 
-    self.avatar              = parsed_url
+    self.avatar              = URI.parse(parsed_url.to_s)
     self[:avatar_remote_url] = url
   rescue OpenURI::HTTPError => e
     Rails.logger.debug "Error fetching remote avatar: #{e}"
   end
 
   def header_remote_url=(url)
-    parsed_url = URI.parse(url)
+    parsed_url = Addressable::URI.parse(url).normalize
 
     return if !%w(http https).include?(parsed_url.scheme) || parsed_url.host.empty? || self[:header_remote_url] == url
 
-    self.header              = parsed_url
+    self.header              = URI.parse(parsed_url.to_s)
     self[:header_remote_url] = url
   rescue OpenURI::HTTPError => e
     Rails.logger.debug "Error fetching remote header: #{e}"
@@ -327,15 +331,24 @@ class Account < ApplicationRecord
     end
   end
 
-  before_create do
-    if local?
-      keypair = OpenSSL::PKey::RSA.new(Rails.env.test? ? 1024 : 2048)
-      self.private_key = keypair.to_pem
-      self.public_key  = keypair.public_key.to_pem
-    end
-  end
+  before_create :generate_keys
+  before_validation :normalize_domain
 
   private
+
+  def generate_keys
+    return unless local?
+
+    keypair = OpenSSL::PKey::RSA.new(Rails.env.test? ? 1024 : 2048)
+    self.private_key = keypair.to_pem
+    self.public_key  = keypair.public_key.to_pem
+  end
+
+  def normalize_domain
+    return if local?
+
+    self.domain = TagManager.instance.normalize_domain(domain)
+  end
 
   def set_file_extensions
     unless avatar.blank?

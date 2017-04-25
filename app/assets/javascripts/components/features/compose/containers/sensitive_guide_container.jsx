@@ -5,7 +5,7 @@ import { Motion, spring } from 'react-motion';
 import { injectIntl, defineMessages } from 'react-intl';
 
 const messages = defineMessages({
-  message: { id: 'compose_form.sensitive_message', defaultMessage: 'Please be sure to mark NSFW if the image you are trying to post is erotic content' }
+  message: { id: 'compose_form.sensitive_message', defaultMessage: 'Please be sure to mark the post as NSFW if the image is not safe for work environments.' }
 });
 
 const mapStateToProps = state => ({

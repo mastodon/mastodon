@@ -3,7 +3,7 @@ import DisplayName from '../../../components/display_name';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 
 const AutosuggestStatus = ({ status }) => (
-  <div style={{ overflow: 'hidden' }} className='autosuggest-status'>
+  <div className='autosuggest-status'>
     <FormattedMessage id='search.status_by' defaultMessage='Status by {name}' values={{ name: <strong>@{status.getIn(['account', 'acct'])}</strong> }} />
   </div>
 );

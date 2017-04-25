@@ -1,5 +1,5 @@
-import PureRenderMixin from 'react-addons-pure-render-mixin';
 import ImmutablePropTypes from 'react-immutable-proptypes';
+import PropTypes from 'prop-types';
 import Avatar from './avatar';
 import DisplayName from './display_name';
 import Permalink from './permalink';
@@ -14,35 +14,26 @@ const messages = defineMessages({
   unmute: { id: 'account.unmute', defaultMessage: 'Unmute' }
 });
 
-const buttonsStyle = {
-  padding: '10px',
-  height: '18px'
-};
+class Account extends React.PureComponent {
 
-const Account = React.createClass({
-
-  propTypes: {
-    account: ImmutablePropTypes.map.isRequired,
-    me: React.PropTypes.number.isRequired,
-    onFollow: React.PropTypes.func.isRequired,
-    onBlock: React.PropTypes.func.isRequired,
-    onMute: React.PropTypes.func.isRequired,
-    intl: React.PropTypes.object.isRequired
-  },
-
-  mixins: [PureRenderMixin],
+  constructor (props, context) {
+    super(props, context);
+    this.handleFollow = this.handleFollow.bind(this);
+    this.handleBlock = this.handleBlock.bind(this);
+    this.handleMute = this.handleMute.bind(this);
+  }
 
   handleFollow () {
     this.props.onFollow(this.props.account);
-  },
+  }
 
   handleBlock () {
     this.props.onBlock(this.props.account);
-  },
+  }
 
   handleMute () {
     this.props.onMute(this.props.account);
-  },
+  }
 
   render () {
     const { account, me, intl } = this.props;
@@ -72,13 +63,13 @@ const Account = React.createClass({
 
     return (
       <div className='account'>
-        <div style={{ display: 'flex' }}>
+        <div className='account__wrapper'>
           <Permalink key={account.get('id')} className='account__display-name' href={account.get('url')} to={`/accounts/${account.get('id')}`}>
-            <div style={{ float: 'left', marginLeft: '12px', marginRight: '10px' }}><Avatar src={account.get('avatar')} staticSrc={account.get('avatar_static')} size={36} /></div>
+            <div className='account__avatar-wrapper'><Avatar src={account.get('avatar')} staticSrc={account.get('avatar_static')} size={36} /></div>
             <DisplayName account={account} />
           </Permalink>
 
-          <div style={buttonsStyle}>
+          <div className='account__relationship'>
             {buttons}
           </div>
         </div>
@@ -86,6 +77,15 @@ const Account = React.createClass({
     );
   }
 
-});
+}
+
+Account.propTypes = {
+  account: ImmutablePropTypes.map.isRequired,
+  me: PropTypes.number.isRequired,
+  onFollow: PropTypes.func.isRequired,
+  onBlock: PropTypes.func.isRequired,
+  onMute: PropTypes.func.isRequired,
+  intl: PropTypes.object.isRequired
+}
 
 export default injectIntl(Account);

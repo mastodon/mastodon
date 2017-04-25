@@ -26,7 +26,7 @@ class Api::PushController < ApiController
   def topic_to_account(topic_url)
     return if topic_url.blank?
 
-    uri    = Addressable::URI.parse(topic_url)
+    uri    = Addressable::URI.parse(topic_url).normalize
     params = Rails.application.routes.recognize_path(uri.path)
     domain = uri.host + (uri.port ? ":#{uri.port}" : '')
 

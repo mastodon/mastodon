@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
 import ImmutablePropTypes from 'react-immutable-proptypes';
+import PropTypes from 'prop-types';
 import LoadingIndicator from '../../components/loading_indicator';
 import { ScrollContainer } from 'react-router-scroll';
 import Column from '../ui/components/column';
@@ -17,19 +17,16 @@ const mapStateToProps = state => ({
   accountIds: state.getIn(['user_lists', 'blocks', 'items'])
 });
 
-const Blocks = React.createClass({
-  propTypes: {
-    params: React.PropTypes.object.isRequired,
-    dispatch: React.PropTypes.func.isRequired,
-    accountIds: ImmutablePropTypes.list,
-    intl: React.PropTypes.object.isRequired
-  },
+class Blocks extends React.PureComponent {
 
-  mixins: [PureRenderMixin],
+  constructor (props, context) {
+    super(props, context);
+    this.handleScroll = this.handleScroll.bind(this);
+  }
 
   componentWillMount () {
     this.props.dispatch(fetchBlocks());
-  },
+  }
 
   handleScroll (e) {
     const { scrollTop, scrollHeight, clientHeight } = e.target;
@@ -37,7 +34,7 @@ const Blocks = React.createClass({
     if (scrollTop === scrollHeight - clientHeight) {
       this.props.dispatch(expandBlocks());
     }
-  },
+  }
 
   render () {
     const { intl, accountIds } = this.props;
@@ -63,6 +60,13 @@ const Blocks = React.createClass({
       </Column>
     );
   }
-});
+}
+
+Blocks.propTypes = {
+  params: PropTypes.object.isRequired,
+  dispatch: PropTypes.func.isRequired,
+  accountIds: ImmutablePropTypes.list,
+  intl: PropTypes.object.isRequired
+};
 
 export default connect(mapStateToProps)(injectIntl(Blocks));

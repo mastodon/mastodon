@@ -1,4 +1,5 @@
 import { Provider } from 'react-redux';
+import PropTypes from 'prop-types';
 import configureStore from '../store/configureStore';
 import {
   refreshTimelineSuccess,
@@ -41,6 +42,7 @@ import Blocks from '../features/blocks';
 import Mutes from '../features/mutes';
 import Report from '../features/report';
 import { IntlProvider, addLocaleData } from 'react-intl';
+import ar from 'react-intl/locale-data/ar';
 import en from 'react-intl/locale-data/en';
 import de from 'react-intl/locale-data/de';
 import eo from 'react-intl/locale-data/eo';
@@ -48,6 +50,7 @@ import es from 'react-intl/locale-data/es';
 import fi from 'react-intl/locale-data/fi';
 import fr from 'react-intl/locale-data/fr';
 import hu from 'react-intl/locale-data/hu';
+import it from 'react-intl/locale-data/it';
 import ja from 'react-intl/locale-data/ja';
 import pt from 'react-intl/locale-data/pt';
 import nl from 'react-intl/locale-data/nl';
@@ -56,7 +59,9 @@ import ru from 'react-intl/locale-data/ru';
 import uk from 'react-intl/locale-data/uk';
 import zh from 'react-intl/locale-data/zh';
 import bg from 'react-intl/locale-data/bg';
+import id from 'react-intl/locale-data/id';
 import { localeData as zh_hk } from '../locales/zh-hk';
+import { localeData as zh_cn } from '../locales/zh-cn';
 import pt_br from '../locales/pt-br';
 import getMessagesForLocale from '../locales';
 import { hydrateStore } from '../actions/store';
@@ -72,12 +77,14 @@ const browserHistory = useRouterHistory(createBrowserHistory)({
 
 addLocaleData([
   ...en,
+  ...ar,
   ...de,
   ...eo,
   ...es,
   ...fi,
   ...fr,
   ...hu,
+  ...it,
   ...ja,
   ...pt,
   ...pt_br,
@@ -87,14 +94,131 @@ addLocaleData([
   ...uk,
   ...zh,
   ...zh_hk,
+  ...zh_cn,
   ...bg,
+  ...id,
 ]);
 
-const Mastodon = React.createClass({
+const getTopWhenReplacing = (previous, { location }) => location && location.action === 'REPLACE' && [0, 0];
 
-  propTypes: {
-    locale: React.PropTypes.string.isRequired
-  },
+const hiddenColumnContainerStyle = {
+  position: 'absolute',
+  left: '0',
+  top:  '0',
+  visibility: 'hidden'
+};
+
+class Container extends React.PureComponent {
+
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      renderedPersistents: [],
+      unrenderedPersistents: [],
+    };
+  }
+
+  componentWillMount () {
+    this.unlistenHistory = null;
+
+    this.setState(() => {
+      return {
+        mountImpersistent: false,
+        renderedPersistents: [],
+        unrenderedPersistents: [
+          {pathname: '/timelines/home', component: HomeTimeline},
+          {pathname: '/timelines/public', component: PublicTimeline},
+          {pathname: '/timelines/public/local', component: CommunityTimeline},
+
+          {pathname: '/notifications', component: Notifications},
+          {pathname: '/favourites', component: FavouritedStatuses}
+        ],
+      };
+    }, () => {
+      if (this.unlistenHistory) {
+        return;
+      }
+
+      this.unlistenHistory = browserHistory.listen(location => {
+        const pathname = location.pathname.replace(/\/$/, '').toLowerCase();
+
+        this.setState(oldState => {
+          let persistentMatched = false;
+
+          const newState = {
+            renderedPersistents: oldState.renderedPersistents.map(persistent => {
+              const givenMatched = persistent.pathname === pathname;
+
+              if (givenMatched) {
+                persistentMatched = true;
+              }
+
+              return {
+                hidden: !givenMatched,
+                pathname: persistent.pathname,
+                component: persistent.component
+              };
+            }),
+          };
+
+          if (!persistentMatched) {
+            newState.unrenderedPersistents = [];
+
+            oldState.unrenderedPersistents.forEach(persistent => {
+              if (persistent.pathname === pathname) {
+                persistentMatched = true;
+
+                newState.renderedPersistents.push({
+                  hidden: false,
+                  pathname: persistent.pathname,
+                  component: persistent.component
+                });
+              } else {
+                newState.unrenderedPersistents.push(persistent);
+              }
+            });
+          }
+
+          newState.mountImpersistent = !persistentMatched;
+
+          return newState;
+        });
+      });
+    });
+  }
+
+  componentWillUnmount () {
+    if (this.unlistenHistory) {
+      this.unlistenHistory();
+    }
+
+    this.unlistenHistory = "done";
+  }
+
+  render () {
+    // Hide some components rather than unmounting them to allow to show again
+    // quickly and keep the view state such as the scrolled offset.
+    const persistentsView = this.state.renderedPersistents.map((persistent) =>
+      <div aria-hidden={persistent.hidden} key={persistent.pathname} className='mastodon-column-container' style={persistent.hidden ? hiddenColumnContainerStyle : null}>
+        <persistent.component shouldUpdateScroll={persistent.hidden ? Function.prototype : getTopWhenReplacing} />
+      </div>
+    );
+
+    return (
+      <UI>
+        {this.state.mountImpersistent && this.props.children}
+        {persistentsView}
+      </UI>
+    );
+  }
+}
+
+Container.propTypes = {
+  children: PropTypes.node,
+};
+
+class Mastodon extends React.Component {
 
   componentDidMount() {
     const { locale }  = this.props;
@@ -139,14 +263,14 @@ const Mastodon = React.createClass({
     }
 
     store.dispatch(showOnboardingOnce());
-  },
+  }
 
   componentWillUnmount () {
     if (typeof this.subscription !== 'undefined') {
       this.subscription.close();
       this.subscription = null;
     }
-  },
+  }
 
   render () {
     const { locale } = this.props;
@@ -155,17 +279,11 @@ const Mastodon = React.createClass({
       <IntlProvider locale={locale} messages={getMessagesForLocale(locale)}>
         <Provider store={store}>
           <Router history={browserHistory} render={applyRouterMiddleware(useScroll())}>
-            <Route path='/' component={UI}>
+            <Route path='/' component={Container}>
               <IndexRedirect to="/getting-started" />
 
               <Route path='getting-started' component={GettingStarted} />
-              <Route path='timelines/home' component={HomeTimeline} />
-              <Route path='timelines/public' component={PublicTimeline} />
-              <Route path='timelines/public/local' component={CommunityTimeline} />
               <Route path='timelines/tag/:id' component={HashtagTimeline} />
-
-              <Route path='notifications' component={Notifications} />
-              <Route path='favourites' component={FavouritedStatuses} />
 
               <Route path='statuses/new' component={Compose} />
               <Route path='statuses/:statusId' component={Status} />
@@ -189,6 +307,10 @@ const Mastodon = React.createClass({
     );
   }
 
-});
+}
+
+Mastodon.propTypes = {
+  locale: PropTypes.string.isRequired
+};
 
 export default Mastodon;

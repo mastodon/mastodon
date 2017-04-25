@@ -29,7 +29,7 @@ class Status < ApplicationRecord
   validates :uri, uniqueness: true, unless: 'local?'
   validates :text, presence: true, unless: 'reblog?'
   validates_with StatusLengthValidator
-  validates :reblog, uniqueness: { scope: :account, message: 'of status already exists' }, if: 'reblog?'
+  validates :reblog, uniqueness: { scope: :account }, if: 'reblog?'
 
   default_scope { order('id desc') }
 
@@ -138,6 +138,10 @@ class Status < ApplicationRecord
       query = query.where('accounts.domain IS NULL') if local_only
 
       account.nil? ? filter_timeline_default(query) : filter_timeline_default(filter_timeline(query, account))
+    end
+
+    def as_outbox_timeline(account)
+      where(account: account, visibility: :public)
     end
 
     def favourites_map(status_ids, account_id)

@@ -7,7 +7,7 @@
   .fields-group
     = f.input :locale, collection: I18n.available_locales, wrapper: :with_label, include_blank: false, label_method: lambda { |locale| human_locale(locale) }
 
-    = f.input :setting_default_privacy, collection: Status.visibilities.keys - ['direct'], wrapper: :with_label, include_blank: false, label_method: lambda { |visibility| I18n.t("statuses.visibilities.#{visibility}") }, required: false, as: :radio_buttons, collection_wrapper_tag: 'ul', item_wrapper_tag: 'li'
+    = f.input :setting_default_privacy, collection: Status.visibilities.keys - ['direct'], wrapper: :with_label, include_blank: false, label_method: lambda { |visibility| safe_join([I18n.t("statuses.visibilities.#{visibility}"), content_tag(:span, I18n.t("statuses.visibilities.#{visibility}_long"), class: 'hint')]) }, required: false, as: :radio_buttons, collection_wrapper_tag: 'ul', item_wrapper_tag: 'li'
 
   .fields-group
     = f.simple_fields_for :notification_emails, hash_to_object(current_user.settings.notification_emails) do |ff|
@@ -18,9 +18,10 @@
       = ff.input :mention, as: :boolean, wrapper: :with_label
       = ff.input :digest, as: :boolean, wrapper: :with_label
 
-  = f.simple_fields_for :interactions, hash_to_object(current_user.settings.interactions) do |ff|
-    = ff.input :must_be_follower, as: :boolean, wrapper: :with_label
-    = ff.input :must_be_following, as: :boolean, wrapper: :with_label
+  .fields-group
+    = f.simple_fields_for :interactions, hash_to_object(current_user.settings.interactions) do |ff|
+      = ff.input :must_be_follower, as: :boolean, wrapper: :with_label
+      = ff.input :must_be_following, as: :boolean, wrapper: :with_label
 
   .fields-group
     = f.input :setting_boost_modal, as: :boolean, wrapper: :with_label

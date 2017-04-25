@@ -5,14 +5,16 @@
   .report-accounts__item
     %strong= t('admin.reports.reported_account')
     = render partial: 'authorize_follow/card', locals: { account: @report.target_account }
+    = render partial: 'admin/accounts/card', locals: { account: @report.target_account }
   .report-accounts__item
     %strong= t('admin.reports.reported_by')
     = render partial: 'authorize_follow/card', locals: { account: @report.account }
+    = render partial: 'admin/accounts/card', locals: { account: @report.account }
 
 %p
   %strong= t('admin.reports.comment.label')
   \:
-  = @report.comment.presence || t('admin.reports.comment.none')
+  = simple_format(@report.comment.presence || t('admin.reports.comment.none'))
 
 - unless @report.statuses.empty?
   %hr/
