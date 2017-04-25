@@ -7,7 +7,7 @@
 
   %meta{ property: 'og:site_name', content: site_title }/
   %meta{ property: 'og:type', content: 'profile' }/
-  %meta{ property: 'og:title', content: "#{@account.username} on #{Rails.configuration.x.local_domain}" }/
+  %meta{ property: 'og:title', content: "#{@account.username} on #{site_hostname}" }/
   %meta{ property: 'og:description', content: @account.note }/
   %meta{ property: 'og:image', content: full_asset_url(@account.avatar.url(:original)) }/
   %meta{ property: 'og:image:width', content: '120' }/
@@ -18,13 +18,13 @@
   = render partial: 'shared/landing_strip', locals: { account: @account }
 
 .h-feed
-  %data.p-name{ value: "#{@account.username} on #{Rails.configuration.x.local_domain}" }/
+  %data.p-name{ value: "#{@account.username} on #{site_hostname}" }/
 
   = render 'header', account: @account
 
   - if @statuses.empty?
     .accounts-grid
-      = render partial: 'nothing_here'
+      = render 'nothing_here'
   - else
     .activity-stream
       = render partial: 'stream_entries/status', collection: @statuses, as: :status

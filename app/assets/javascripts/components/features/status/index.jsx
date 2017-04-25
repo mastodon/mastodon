@@ -39,7 +39,8 @@ const makeMapStateToProps = () => {
     ancestorsIds: state.getIn(['timelines', 'ancestors', Number(props.params.statusId)]),
     descendantsIds: state.getIn(['timelines', 'descendants', Number(props.params.statusId)]),
     me: state.getIn(['meta', 'me']),
-    boostModal: state.getIn(['meta', 'boost_modal'])
+    boostModal: state.getIn(['meta', 'boost_modal']),
+    autoPlayGif: state.getIn(['meta', 'auto_play_gif'])
   });
 
   return mapStateToProps;
@@ -57,7 +58,8 @@ const Status = React.createClass({
     ancestorsIds: ImmutablePropTypes.list,
     descendantsIds: ImmutablePropTypes.list,
     me: React.PropTypes.number,
-    boostModal: React.PropTypes.bool
+    boostModal: React.PropTypes.bool,
+    autoPlayGif: React.PropTypes.bool
   },
 
   mixins: [PureRenderMixin],
@@ -126,7 +128,7 @@ const Status = React.createClass({
 
   render () {
     let ancestors, descendants;
-    const { status, ancestorsIds, descendantsIds, me } = this.props;
+    const { status, ancestorsIds, descendantsIds, me, autoPlayGif } = this.props;
 
     if (status === null) {
       return (
@@ -155,7 +157,7 @@ const Status = React.createClass({
           <div className='scrollable'>
             {ancestors}
 
-            <DetailedStatus status={status} me={me} onOpenVideo={this.handleOpenVideo} onOpenMedia={this.handleOpenMedia} />
+            <DetailedStatus status={status} autoPlayGif={autoPlayGif} me={me} onOpenVideo={this.handleOpenVideo} onOpenMedia={this.handleOpenMedia} />
             <ActionBar status={status} me={me} onReply={this.handleReplyClick} onFavourite={this.handleFavouriteClick} onReblog={this.handleReblogClick} onDelete={this.handleDeleteClick} onMention={this.handleMentionClick} onReport={this.handleReport} />
 
             {descendants}

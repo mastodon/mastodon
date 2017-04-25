@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   end
 
   get '.well-known/host-meta', to: 'well_known/host_meta#show', as: :host_meta, defaults: { format: 'xml' }
-  get '.well-known/webfinger', to: 'well_known/webfinger#show', as: :webfinger, defaults: { format: 'json' }
+  get '.well-known/webfinger', to: 'well_known/webfinger#show', as: :webfinger
 
   devise_for :users, path: 'auth', controllers: {
     sessions:           'auth/sessions',
@@ -80,6 +80,7 @@ Rails.application.routes.draw do
     resources :pubsubhubbub, only: [:index]
     resources :domain_blocks, only: [:index, :new, :create, :show, :destroy]
     resources :settings, only: [:index, :update]
+    resources :instances, only: [:index]
 
     resources :reports, only: [:index, :show, :update] do
       resources :reported_statuses, only: :destroy

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Api::V1::StatusesController < ApiController
-  before_action -> { doorkeeper_authorize! :read }, except: [:create, :destroy, :reblog, :unreblog, :favourite, :unfavourite]
+  before_action :authorize_if_got_token, except:            [:create, :destroy, :reblog, :unreblog, :favourite, :unfavourite]
   before_action -> { doorkeeper_authorize! :write }, only:  [:create, :destroy, :reblog, :unreblog, :favourite, :unfavourite]
   before_action :require_user!, except: [:show, :context, :card, :reblogged_by, :favourited_by]
   before_action :set_status, only:      [:show, :context, :card, :reblogged_by, :favourited_by]
@@ -77,9 +77,9 @@ class Api::V1::StatusesController < ApiController
   end
 
   def unreblog
-    reblog         = Status.where(account_id: current_user.account, reblog_of_id: params[:id]).first!
-    @status        = reblog.reblog
-    @reblogged_map = { @status.id => false }
+    reblog       = Status.where(account_id: current_user.account, reblog_of_id: params[:id]).first!
+    @status      = reblog.reblog
+    @reblogs_map = { @status.id => false }
 
     RemovalWorker.perform_async(reblog.id)
 
@@ -93,7 +93,7 @@ class Api::V1::StatusesController < ApiController
 
   def unfavourite
     @status         = Status.find(params[:id])
-    @favourited_map = { @status.id => false }
+    @favourites_map = { @status.id => false }
 
     UnfavouriteWorker.perform_async(current_user.account_id, @status.id)
 
@@ -113,5 +113,10 @@ class Api::V1::StatusesController < ApiController
 
   def pagination_params(core_params)
     params.permit(:limit).merge(core_params)
+  end
+
+  def authorize_if_got_token
+    request_token = Doorkeeper::OAuth::Token.from_request(request, *Doorkeeper.configuration.access_token_methods)
+    doorkeeper_authorize! :read if request_token
   end
 end

@@ -64,7 +64,7 @@ const Column = React.createClass({
     }
 
     return (
-      <div role='section' className='column' onWheel={this.handleWheel}>
+      <div role='section' aria-label={heading} className='column' onWheel={this.handleWheel}>
         {header}
         {children}
       </div>

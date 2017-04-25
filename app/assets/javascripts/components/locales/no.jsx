@@ -33,7 +33,7 @@ const no = {
   "empty_column.community": "Den lokale tidslinjen er tom. Skriv noe offentlig for å få snøballen til å rulle!",
   "empty_column.hashtag": "Det er ingenting i denne hashtagen ennå.",
   "empty_column.home.public_timeline": "en offentlig tidslinje",
-  "empty_column.home": "Du har ikke fulgt noen ennå. Besøk {publlic} eller bruk søk for å komme i gang og møte andre brukere.",                
+  "empty_column.home": "Du har ikke fulgt noen ennå. Besøk {publlic} eller bruk søk for å komme i gang og møte andre brukere.",
   "empty_column.notifications": "Du har ingen varsler ennå. Kommuniser med andre for å begynne samtalen.",
   "empty_column.public": "Det er ingenting her! Skriv noe offentlig, eller følg brukere manuelt fra andre instanser for å fylle den opp",
   "follow_request.authorize": "Autorisér",
