@@ -23,5 +23,11 @@ RSpec.describe MediaAttachment, type: :model do
     it 'leaves original file as-is' do
       expect(media.file_content_type).to eq 'image/gif'
     end
+
+    it 'sets dimensions' do
+      expect(media.meta[:width]).to eq 600
+      expect(media.meta[:height]).to eq 400
+      expect(media.meta[:aspect]).to eq 1.5
+    end
   end
 end
