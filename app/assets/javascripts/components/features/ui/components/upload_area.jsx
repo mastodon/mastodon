@@ -1,14 +1,36 @@
-import PureRenderMixin from 'react-addons-pure-render-mixin';
+import PropTypes from 'prop-types';
 import { Motion, spring } from 'react-motion';
 import { FormattedMessage } from 'react-intl';
 
-const UploadArea = React.createClass({
+class UploadArea extends React.PureComponent {
 
-  propTypes: {
-    active: React.PropTypes.bool
-  },
+  constructor (props, context) {
+    super(props, context);
 
-  mixins: [PureRenderMixin],
+    this.handleKeyUp = this.handleKeyUp.bind(this);
+  }
+
+  handleKeyUp (e) {
+    e.preventDefault();
+    e.stopPropagation();
+
+    const keyCode = e.keyCode
+    if (this.props.active) {
+      switch(keyCode) {
+      case 27:
+        this.props.onClose();
+        break;
+      }
+    }
+  }
+
+  componentDidMount () {
+    window.addEventListener('keyup', this.handleKeyUp, false);
+  }
+
+  componentWillUnmount () {
+    window.removeEventListener('keyup', this.handleKeyUp);
+  }
 
   render () {
     const { active } = this.props;
@@ -27,6 +49,11 @@ const UploadArea = React.createClass({
     );
   }
 
-});
+}
+
+UploadArea.propTypes = {
+  active: PropTypes.bool,
+  onClose: PropTypes.func
+};
 
 export default UploadArea;

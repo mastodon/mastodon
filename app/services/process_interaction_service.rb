@@ -14,7 +14,7 @@ class ProcessInteractionService < BaseService
 
     username = xml.at_xpath('/xmlns:entry/xmlns:author/xmlns:name', xmlns: TagManager::XMLNS).content
     url      = xml.at_xpath('/xmlns:entry/xmlns:author/xmlns:uri', xmlns: TagManager::XMLNS).content
-    domain   = Addressable::URI.parse(url).host
+    domain   = Addressable::URI.parse(url).normalize.host
     account  = Account.find_by(username: username, domain: domain)
 
     if account.nil?
