@@ -11,8 +11,14 @@ class PostStatusService < BaseService
   # @option [String] :spoiler_text
   # @option [Enumerable] :media_ids Optional array of media IDs to attach
   # @option [Doorkeeper::Application] :application
+  # @option [String] :idempotency Optional idempotency key
   # @return [Status]
   def call(account, text, in_reply_to = nil, options = {})
+    if options[:idempotency].present?
+      existing_id = redis.get("idempotency:status:#{account.id}:#{options[:idempotency]}")
+      return Status.find(existing_id) if existing_id
+    end
+
     media  = validate_media!(options[:media_ids])
     status = account.statuses.create!(text: text,
                                       thread: in_reply_to,
@@ -29,6 +35,10 @@ class PostStatusService < BaseService
     LinkCrawlWorker.perform_async(status.id)
     DistributionWorker.perform_async(status.id)
     Pubsubhubbub::DistributionWorker.perform_async(status.stream_entry.id)
+
+    if options[:idempotency].present?
+      redis.setex("idempotency:status:#{account.id}:#{options[:idempotency]}", 3_600, status.id)
+    end
 
     status
   end
@@ -62,5 +72,9 @@ class PostStatusService < BaseService
 
   def process_hashtags_service
     @process_hashtags_service ||= ProcessHashtagsService.new
+  end
+
+  def redis
+    Redis.current
   end
 end
