@@ -1,6 +1,6 @@
 .activity-stream {
   clear: both;
-  box-shadow: 0 0 15px rgba($color8, 0.2);
+  box-shadow: 0 0 15px $twenty_alpha_color8;
 
   .entry {
     background: $color5;
@@ -103,7 +103,7 @@
         background: $color3;
 
         &:hover {
-          background: lighten($color3, 8%);
+          background: $eight_lighten_color3;
         }
       }
     }
@@ -178,7 +178,7 @@
         background: $color3;
 
         &:hover {
-          background: lighten($color3, 8%);
+          background: $eight_lighten_color3;
         }
       }
     }
@@ -283,7 +283,7 @@
       transform: translate(-50%, -50%);
       padding: 5px;
       border-radius: 100px;
-      color: rgba($color5, 0.8);
+      color: $eighty_alpha_color5;
       z-index: 1;
     }
   }
@@ -305,7 +305,7 @@
     z-index: 2;
 
     &:hover {
-      background: darken($color3, 5%);
+      background: $five_darken_color3;
     }
 
     span {
