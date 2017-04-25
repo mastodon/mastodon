@@ -66,7 +66,7 @@ class FanOutOnWriteService < BaseService
   def deliver_to_public(status)
     Rails.logger.debug "Delivering status #{status.id} to public timeline"
 
-    LocalPubSub::PublishService.new.call("timeline:public", @payload)
-    LocalPubSub::PublishService.new.call("timeline:public:local", @payload) if status.local?
+    LocalPubSub::PublishService.new.call('timeline:public', @payload)
+    LocalPubSub::PublishService.new.call('timeline:public:local', @payload) if status.local?
   end
 end
