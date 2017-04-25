@@ -16,7 +16,7 @@
     height: 100%;
     padding: 0;
     overflow-y: auto;
-    
+
     .logo {
       display: block;
       margin: 40px auto;
@@ -44,18 +44,18 @@
 
         &:hover {
           color: $color5;
-          background-color: $darken_color1;
+          background-color: $darken5_color1;
           transition: all 100ms linear;
         }
 
         &.selected {
-          background: $lighter_darken_color1;
+          background: $darken5_color1;
           border-radius: 4px 0 0 0;
         }
       }
 
       ul {
-        background: $light_darken_color1;
+        background: $darken5_color1;
         border-radius: 0 0 0 4px;
         margin: 0;
 
@@ -191,7 +191,7 @@
 
       &:hover {
         color: $color5;
-        border-bottom: 2px solid $light_lighten_color1;
+        border-bottom: 2px solid $lighten5_color1;
       }
 
       &.selected {
