@@ -61,18 +61,13 @@ class Formatter
     result = ''
 
     last_index = entities.reduce(0) do |index, entity|
+      normalized_url = Addressable::URI.parse(entity[:url]).normalize
       indices = entity[:indices]
       result += encode(chars[index...indices.first].join)
-      result += Twitter::Autolink.send(:link_to_text, entity, link_html(entity[:url]), entity[:url], html_attrs)
+      result += Twitter::Autolink.send(:link_to_text, entity, link_html(entity[:url]), normalized_url, html_attrs)
       indices.last
     end
     result += encode(chars[last_index..-1].join)
-  end
-
-  def link_urls(html)
-    Twitter::Autolink.auto_link_urls(html, url_target: '_blank',
-                                           link_attribute_block: lambda { |_, a| a[:rel] << ' noopener' },
-                                           link_text_block: lambda { |_, text| link_html(text) })
   end
 
   def link_mentions(html, mentions)
@@ -102,6 +97,7 @@ class Formatter
   end
 
   def link_html(url)
+    url = Addressable::URI.parse(url).display_uri.to_s
     prefix = url.match(/\Ahttps?:\/\/(www\.)?/).to_s
     text   = url[prefix.length, 30]
     suffix = url[prefix.length + 30..-1]
