@@ -1,0 +1,136 @@
+body.rtl {
+  direction: rtl;
+
+  .column-link__icon, .column-header__icon {
+    margin-right: 0;
+    margin-left: 5px;
+  }
+
+  .character-counter__wrapper {
+    margin-right: 0;
+    margin-left: 16px;
+  }
+
+  .navigation-bar__profile {
+    margin-left: 0;
+    margin-right: 8px;
+  }
+
+  .search__input {
+    padding-right: 10px;
+    padding-left: 30px;
+  }
+
+  .search__icon .fa {
+    right: auto;
+    left: 10px;
+  }
+
+  .column-icon-clear {
+    right: auto;
+    left: 48px;
+  }
+
+  .column-icon {
+    right: auto;
+    left: 5px;
+  }
+
+  .setting-toggle {
+    margin-left: 0;
+    margin-right: 8px;
+  }
+
+  .status__avatar {
+    left: auto;
+    right: 10px;
+  }
+
+  .status {
+    padding-left: 10px;
+    padding-right: 68px;
+  }
+
+  .status__info .status__display-name {
+    padding-left: 25px;
+    padding-right: 0;
+  }
+
+  .column-back-button--slim-button {
+    right: auto;
+    left: 0;
+  }
+
+  .status__info-time {
+    float: left;
+  }
+
+  .status__action-bar-button-wrapper {
+    float: right;
+    margin-right: 0;
+    margin-left: 18px;
+  }
+
+  .status__action-bar-dropdown {
+    float: right;
+  }
+
+  .privacy-dropdown__dropdown {
+    left: auto;
+    right: 0;
+  }
+
+  .dropdown--active .dropdown__content {
+    text-align: right;
+  }
+
+  .dropdown--active .dropdown__content::before {
+    left: auto;
+    right: 8px;
+  }
+
+  .dropdown--active .dropdown__content > ul {
+    left: auto;
+    right: -10px;
+  }
+
+  .privacy-dropdown__option__icon {
+    margin-left: 10px;
+    margin-right: 0;
+  }
+
+  .detailed-status__display-avatar {
+    margin-right: 0;
+    margin-left: 10px;
+    float: right;
+  }
+
+  .detailed-status__favorites, .detailed-status__reblogs {
+    margin-left: 0;
+    margin-right: 6px;
+  }
+
+  @media screen and (min-width: 1025px) {
+    .column, .drawer {
+      padding-left: 5px;
+      padding-right: 5px;
+
+      &:first-child {
+        padding-left: 5px;
+        padding-right: 10px;
+      }
+
+      &:last-child {
+        padding-right: 0px;
+        padding-left: 10px;
+      }
+    }
+
+    .columns-area > div {
+      .column, .drawer {
+        padding-left: 5px;
+        padding-right: 5px;
+      }
+    }
+  }
+}

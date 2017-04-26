@@ -41,14 +41,14 @@ pt:
     remote_follow: Seguir remotamente
     unfollow: Deixar de seguir
   activitypub:
-    outbox:
-      name: "%{account_name}'s Outbox"
-      summary: "Uma coleção de atividades do usuário %{account_name}."
     activity:
-      create:
-        name: "%{account_name} criou uma nota."
       announce:
         name: "%{account_name} anunciou uma atividade."
+      create:
+        name: "%{account_name} criou uma nota."
+    outbox:
+      name: "%{account_name}'s Outbox"
+      summary: Uma coleção de atividades do usuário %{account_name}.
   admin:
     accounts:
       are_you_sure: Tens a certeza?
@@ -223,7 +223,6 @@ pt:
     authorized_apps: Aplicativos autorizados
     back: Voltar ao Mastodon
     edit_profile: Editar perfil
-    preferences: Preferências
     export: Importar dados
     import: Importar
     preferences: Preferências

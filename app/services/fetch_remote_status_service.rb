@@ -31,7 +31,7 @@ class FetchRemoteStatusService < BaseService
   end
 
   def extract_author(url, xml)
-    url_parts = Addressable::URI.parse(url)
+    url_parts = Addressable::URI.parse(url).normalize
     username  = xml.at_xpath('//xmlns:author/xmlns:name').try(:content)
     domain    = url_parts.host
 

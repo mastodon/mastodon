@@ -182,22 +182,22 @@ class Account < ApplicationRecord
   end
 
   def avatar_remote_url=(url)
-    parsed_url = URI.parse(url)
+    parsed_url = Addressable::URI.parse(url).normalize
 
     return if !%w(http https).include?(parsed_url.scheme) || parsed_url.host.empty? || self[:avatar_remote_url] == url
 
-    self.avatar              = parsed_url
+    self.avatar              = URI.parse(parsed_url.to_s)
     self[:avatar_remote_url] = url
   rescue OpenURI::HTTPError => e
     Rails.logger.debug "Error fetching remote avatar: #{e}"
   end
 
   def header_remote_url=(url)
-    parsed_url = URI.parse(url)
+    parsed_url = Addressable::URI.parse(url).normalize
 
     return if !%w(http https).include?(parsed_url.scheme) || parsed_url.host.empty? || self[:header_remote_url] == url
 
-    self.header              = parsed_url
+    self.header              = URI.parse(parsed_url.to_s)
     self[:header_remote_url] = url
   rescue OpenURI::HTTPError => e
     Rails.logger.debug "Error fetching remote header: #{e}"
@@ -331,15 +331,24 @@ class Account < ApplicationRecord
     end
   end
 
-  before_create do
-    if local?
-      keypair = OpenSSL::PKey::RSA.new(Rails.env.test? ? 1024 : 2048)
-      self.private_key = keypair.to_pem
-      self.public_key  = keypair.public_key.to_pem
-    end
-  end
+  before_create :generate_keys
+  before_validation :normalize_domain
 
   private
+
+  def generate_keys
+    return unless local?
+
+    keypair = OpenSSL::PKey::RSA.new(Rails.env.test? ? 1024 : 2048)
+    self.private_key = keypair.to_pem
+    self.public_key  = keypair.public_key.to_pem
+  end
+
+  def normalize_domain
+    return if local?
+
+    self.domain = TagManager.instance.normalize_domain(domain)
+  end
 
   def set_file_extensions
     unless avatar.blank?
