@@ -1,7 +1,16 @@
 # frozen_string_literal: true
 
 class BlockDomainService < BaseService
+  attr_reader :domain_block
+
   def call(domain_block)
+    @domain_block = domain_block
+    process_domain_block
+  end
+
+  private
+
+  def process_domain_block
     if domain_block.silence?
       silence_accounts!(domain_block.domain)
       clear_media!(domain_block.domain) if domain_block.reject_media?
@@ -9,8 +18,6 @@ class BlockDomainService < BaseService
       suspend_accounts!(domain_block.domain)
     end
   end
-
-  private
 
   def silence_accounts!(domain)
     Account.where(domain: domain).update_all(silenced: true)
