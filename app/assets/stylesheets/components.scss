@@ -1202,6 +1202,13 @@ a.status__content__spoiler-link {
       padding-right: 10px;
     }
   }
+
+  .columns-area > div {
+    .column, .drawer {
+      padding-left: 5px;
+      padding-right: 5px;
+    }
+  }
 }
 
 @media screen and (min-width: 2560px) {
@@ -1537,9 +1544,13 @@ a.status__content__spoiler-link {
 }
 
 .column-subheading {
-  background: lighten($color1, 20%);
+  background: $color1;
+  color: lighten($color1, 26%);
   padding: 8px 20px;
-  font-size: 16px;
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: uppercase;
+  cursor: default;
 }
 
 .autosuggest-textarea,
