@@ -2,16 +2,8 @@
 
 namespace :mastodon do
   desc 'Execute daily tasks'
-  task :daily do
-    %w(
-      mastodon:feeds:clear
-      mastodon:media:clear
-      mastodon:users:clear
-      mastodon:push:refresh
-    ).each do |task|
-      puts "Starting #{task} at #{Time.now.utc}"
-      Rake::Task[task].invoke
-    end
+  task daily: :environment do
+    MastodonTasksService.daily
     puts "Completed daily tasks at #{Time.now.utc}"
   end
 
@@ -41,51 +33,41 @@ namespace :mastodon do
   namespace :media do
     desc 'Removes media attachments that have not been assigned to any status for longer than a day'
     task clear: :environment do
-      MediaAttachment.where(status_id: nil).where('created_at < ?', 1.day.ago).find_each(&:destroy)
+      MastodonTasksService::Media.clear
     end
 
     desc 'Remove media attachments attributed to silenced accounts'
     task remove_silenced: :environment do
-      MediaAttachment.where(account: Account.silenced).find_each(&:destroy)
+      MastodonTasksService::Media.remove_silenced
     end
 
     desc 'Remove cached remote media attachments that are older than a week'
     task remove_remote: :environment do
-      MediaAttachment.where.not(remote_url: '').where('created_at < ?', 1.week.ago).find_each do |media|
-        media.file.destroy
-      end
+      MastodonTasksService::Media.remove_remote
     end
   end
 
   namespace :push do
     desc 'Unsubscribes from PuSH updates of feeds nobody follows locally'
     task clear: :environment do
-      Account.remote.without_followers.where.not(subscription_expires_at: nil).find_each do |a|
-        Rails.logger.debug "PuSH unsubscribing from #{a.acct}"
-        UnsubscribeService.new.call(a)
-      end
+      MastodonTasksService::Push.clear
     end
 
     desc 'Re-subscribes to soon expiring PuSH subscriptions'
     task refresh: :environment do
-      Account.expiring(1.day.from_now).find_each do |a|
-        Rails.logger.debug "PuSH re-subscribing to #{a.acct}"
-        SubscribeService.new.call(a)
-      end
+      MastodonTasksService::Push.refresh
     end
   end
 
   namespace :feeds do
     desc 'Clear timelines of inactive users'
     task clear: :environment do
-      User.confirmed.where('current_sign_in_at < ?', 14.days.ago).find_each do |user|
-        Redis.current.del(FeedManager.instance.key(:home, user.account_id))
-      end
+      MastodonTasksService::Feeds.clear
     end
 
     desc 'Clears all timelines'
     task clear_all: :environment do
-      Redis.current.keys('feed:*').each { |key| Redis.current.del(key) }
+      MastodonTasksService::Feeds.clear_all
     end
   end
 
@@ -101,18 +83,12 @@ namespace :mastodon do
   namespace :users do
     desc 'Clear out unconfirmed users'
     task clear: :environment do
-      # Users that never confirmed e-mail never signed in, means they
-      # only have a user record and an avatar record, with no files uploaded
-      User.where('confirmed_at is NULL AND confirmation_sent_at <= ?', 2.days.ago).find_in_batches do |batch|
-        Account.where(id: batch.map(&:account_id)).delete_all
-        User.where(id: batch.map(&:id)).delete_all
-      end
+      MastodonTasksService::Users.clear
     end
 
     desc 'List all admin users'
     task admins: :environment do
-      puts 'Admin user emails:'
-      puts User.admins.map(&:email).join("\n")
+      MastodonTasksService::Users.admins
     end
   end
 

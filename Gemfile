@@ -58,6 +58,7 @@ gem 'statsd-instrument'
 gem 'twitter-text'
 gem 'tzinfo-data'
 gem 'whatlanguage'
+gem 'sidekiq-scheduler'
 
 gem 'react-rails'
 gem 'browserify-rails'
