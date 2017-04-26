@@ -22,7 +22,7 @@ class BlockDomainService < BaseService
       account.header.destroy
     end
 
-    MediaAttachment.where(account: Account.where(domain: domain)).find_each do |attachment|
+    MediaAttachment.where(account: Account.where(domain: domain)).reorder(nil).find_each do |attachment|
       attachment.file.destroy
     end
   end
