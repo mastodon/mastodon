@@ -57,7 +57,7 @@ const thumbStyle = {
   width: '100%',
   height: '100%',
   textDecoration: 'none',
-  backgroundSize: 'cover',
+  backgroundColor: '#191b22',
   cursor: 'zoom-in'
 };
 
