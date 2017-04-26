@@ -24,13 +24,10 @@
   .actions
     - if ENV['RECAPTCHA_ENABLED'] == 'true'
       %script(src='https://www.google.com/recaptcha/api.js' async defer)
+      = javascript_include_tag 'on_submit_new_user'
       = f.button :button, t('about.get_started'), type: :submit, id: 'registration-form',
         class: 'g-recaptcha',
         data: { sitekey: ENV['RECAPTCHA_SITE_KEY'], callback: 'on_submit_new_user' }
-      :javascript
-        function on_submit_new_user(token) {
-          document.getElementById("new_user").submit();
-        }
     - else
       = f.button :button, t('about.get_started'), type: :submit
 
