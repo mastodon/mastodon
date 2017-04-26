@@ -557,6 +557,8 @@ a.status__content__spoiler-link {
 }
 
 .status__action-bar {
+  align-items: center;
+  display: flex;
   margin-top: 10px;
   overflow: hidden;
 }
@@ -596,10 +598,10 @@ a.status__content__spoiler-link {
 
 .detailed-status__action-bar {
   background: lighten($color1, 4%);
-  display: flex;
-  flex-direction: row;
   border-top: 1px solid lighten($color1, 8%);
   border-bottom: 1px solid lighten($color1, 8%);
+  display: flex;
+  flex-direction: row;
   padding: 10px 0;
 }
 
@@ -1200,6 +1202,13 @@ a.status__content__spoiler-link {
       padding-right: 10px;
     }
   }
+
+  .columns-area > div {
+    .column, .drawer {
+      padding-left: 5px;
+      padding-right: 5px;
+    }
+  }
 }
 
 @media screen and (min-width: 2560px) {
@@ -1533,6 +1542,16 @@ a.status__content__spoiler-link {
 .column-link__icon {
   display: inline-block;
   margin-right: 5px;
+}
+
+.column-subheading {
+  background: $color1;
+  color: lighten($color1, 26%);
+  padding: 8px 20px;
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: uppercase;
+  cursor: default;
 }
 
 .autosuggest-textarea,
