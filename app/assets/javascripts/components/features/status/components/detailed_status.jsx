@@ -45,7 +45,7 @@ class DetailedStatus extends React.PureComponent {
     }
 
     if (status.get('application')) {
-      applicationLink = <span> · <a className='detailed-status__application' href={status.getIn(['application', 'website'])} target='_blank' rel='nooopener'>{status.getIn(['application', 'name'])}</a></span>;
+      applicationLink = <span> · <a className='detailed-status__application' href={status.getIn(['application', 'website'])} target='_blank' rel='noopener'>{status.getIn(['application', 'name'])}</a></span>;
     }
 
     return (
