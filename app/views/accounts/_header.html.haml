@@ -1,3 +1,6 @@
+= link_to root_path, class: 'service-logo' do
+  = image_tag 'service_logo.png'
+
 .card.h-card.p-author{ style: "background-image: url(#{account.header.url( :original)})" }
   - if user_signed_in? && current_account.id != account.id && !current_account.requested?(account)
     .controls
@@ -24,6 +27,10 @@
         = link_to short_account_url(account), class: 'u-url u-uid' do
           %span.counter-label= t('accounts.posts')
           %span.counter-number= number_with_delimiter account.statuses_count
+      .counter{ class: active_nav_class(account_media_url(account)) }
+        = link_to account_media_url(@account) do
+          %span.counter-label= t('accounts.media')
+          %span.counter-number &nbsp;
       .counter{ class: active_nav_class(account_following_index_url(account)) }
         = link_to account_following_index_url(account) do
           %span.counter-label= t('accounts.following')
