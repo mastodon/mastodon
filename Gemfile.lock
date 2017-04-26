@@ -41,6 +41,9 @@ GEM
       tzinfo (~> 1.1)
     addressable (2.5.1)
       public_suffix (~> 2.0, >= 2.0.2)
+    airbrake (6.0.0)
+      airbrake-ruby (~> 2.0)
+    airbrake-ruby (2.0.0)
     airbrussh (1.2.0)
       sshkit (>= 1.6.1, != 1.7.0)
     arel (7.1.4)
@@ -255,6 +258,7 @@ GEM
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
     net-ssh (4.1.0)
+    newrelic_rpm (4.1.0.333)
     nio4r (2.0.0)
     nokogiri (1.7.1)
       mini_portile2 (~> 2.1.0)
@@ -474,6 +478,7 @@ PLATFORMS
 DEPENDENCIES
   active_record_query_trace
   addressable
+  airbrake
   autoprefixer-rails
   aws-sdk (>= 2.0)
   best_in_place (~> 3.0.1)
@@ -512,6 +517,7 @@ DEPENDENCIES
   local_time
   lograge
   microformats2
+  newrelic_rpm
   nokogiri
   oj
   ostatus2 (~> 1.1)
