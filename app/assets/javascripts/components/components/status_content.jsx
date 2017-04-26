@@ -5,6 +5,34 @@ import emojify from '../emoji';
 import { isRtl } from '../rtl';
 import { FormattedMessage } from 'react-intl';
 import Permalink from './permalink';
+import sha1 from 'sha1';
+
+function getLocalInstanceName() {
+  return window.location.hostname;
+}
+
+function extractInstanceName(url) {
+  return url.split("://")[1].split("/")[0];
+}
+
+function isLocal(instance_name) {
+  return instance_name === getLocalInstanceName();
+}
+
+function getContrastYIQ(hexcolor) {
+  var r = parseInt(hexcolor.substr(0,2),16);
+  var g = parseInt(hexcolor.substr(2,2),16);
+  var b = parseInt(hexcolor.substr(4,2),16);
+  var yiq = ((r*299)+(g*587)+(b*114))/1000;
+  return (yiq >= 128) ? 'black' : 'white';
+}
+
+function getColorHash(instance_name) {
+  if (instance_name) {
+    let hash = sha1(instance_name);
+    return hash.substr(0, 6);
+  }
+}
 
 class StatusContent extends React.PureComponent {
 
@@ -32,6 +60,27 @@ class StatusContent extends React.PureComponent {
       if (mention) {
         link.addEventListener('click', this.onMentionClick.bind(this, mention), false);
         link.setAttribute('title', mention.get('acct'));
+        let url = link.getAttribute('href');
+        let instance_name = extractInstanceName(url);
+        let local = isLocal(instance_name);
+        let color = getColorHash(instance_name);
+        if (color) {
+          link.setAttribute('style', `border-radius: 5px; border-color: #${color}; border-left: 6px solid; border-bottom: 1px solid; ${local ? "border-right: 3px solid;" : "padding-right: 3px;"}`);
+          let at = link.firstChild;
+
+          // sometimes, React inserts comments before the '@' which end up as 'first child'
+          if (at.nodeValue !== '@') {
+            at = at.nextSibling;
+          }
+
+          if (at.nodeValue === "@") {
+            let atColor = getContrastYIQ(color);
+            let newSpan = document.createElement('span');
+            newSpan.appendChild(document.createTextNode('@'));
+            newSpan.setAttribute('style', `color: ${atColor}; background-color: #${color}; padding-right: 4px; margin-right: 1px;`);
+            link.replaceChild(newSpan, at);
+          }
+        }
       } else if (link.textContent[0] === '#' || (link.previousSibling && link.previousSibling.textContent && link.previousSibling.textContent[link.previousSibling.textContent.length - 1] === '#')) {
         link.addEventListener('click', this.onHashtagClick.bind(this, link.text), false);
       } else if (media) {
