@@ -86,7 +86,7 @@ class Item extends React.PureComponent {
           href={attachment.get('remote_url') || attachment.get('url')}
           onClick={this.handleClick}
           target='_blank'
-          style={{ backgroundImage: `url(${attachment.get('preview_url')})`, backgroundSize: 'initial', backgroundColor: '#191b22' }}
+          style={{ backgroundImage: `url(${attachment.get('preview_url')})` }}
         />
       );
     } else if (attachment.get('type') === 'gifv') {
