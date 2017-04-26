@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import { length } from 'stringz';
 
 class CharacterCounter extends React.PureComponent {
 
@@ -10,7 +11,7 @@ class CharacterCounter extends React.PureComponent {
   }
 
   render () {
-    const diff = this.props.max - this.props.text.replace(/[\uD800-\uDBFF][\uDC00-\uDFFF]/g, "_").length;
+    const diff = this.props.max - length(this.props.text);
 
     return this.checkRemainingText(diff);
   }
