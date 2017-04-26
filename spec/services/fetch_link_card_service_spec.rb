@@ -9,6 +9,6 @@ RSpec.describe FetchLinkCardService do
     status = Fabricate(:status, text: 'Check out http://example.中国')
 
     FetchLinkCardService.new.call(status)
-    expect(a_request(:get, 'http://example.xn--fiqs8s/')).to have_been_made
+    expect(a_request(:get, 'http://example.xn--fiqs8s/')).to have_been_made.at_least_once
   end
 end
