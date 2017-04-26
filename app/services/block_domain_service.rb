@@ -13,7 +13,6 @@ class BlockDomainService < BaseService
   def process_domain_block
     if domain_block.silence?
       silence_accounts!(domain_block.domain)
-      clear_media!(domain_block.domain) if domain_block.reject_media?
     else
       suspend_accounts!(domain_block.domain)
     end
@@ -21,6 +20,7 @@ class BlockDomainService < BaseService
 
   def silence_accounts!(domain)
     Account.where(domain: domain).update_all(silenced: true)
+    clear_media!(domain_block.domain) if domain_block.reject_media?
   end
 
   def clear_media!(domain)
