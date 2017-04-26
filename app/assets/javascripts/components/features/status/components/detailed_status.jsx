@@ -45,13 +45,13 @@ class DetailedStatus extends React.PureComponent {
     }
 
     if (status.get('application')) {
-      applicationLink = <span> · <a className='detailed-status__application' href={status.getIn(['application', 'website'])} target='_blank' rel='nooopener'>{status.getIn(['application', 'name'])}</a></span>;
+      applicationLink = <span> · <a className='detailed-status__application' href={status.getIn(['application', 'website'])} target='_blank' rel='noopener'>{status.getIn(['application', 'name'])}</a></span>;
     }
 
     return (
       <div className='detailed-status'>
         <a href={status.getIn(['account', 'url'])} onClick={this.handleAccountClick} className='detailed-status__display-name'>
-          <div className='.detailed-status__display-avatar'><Avatar src={status.getIn(['account', 'avatar'])} staticSrc={status.getIn(['account', 'avatar_static'])} size={48} /></div>
+          <div className='detailed-status__display-avatar'><Avatar src={status.getIn(['account', 'avatar'])} staticSrc={status.getIn(['account', 'avatar_static'])} size={48} /></div>
           <DisplayName account={status.get('account')} />
         </a>
 

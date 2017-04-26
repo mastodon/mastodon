@@ -13,4 +13,12 @@ class DomainBlock < ApplicationRecord
   def self.blocked?(domain)
     where(domain: domain, severity: :suspend).exists?
   end
+
+  before_validation :normalize_domain
+
+  private
+
+  def normalize_domain
+    self.domain = TagManager.instance.normalize_domain(domain)
+  end
 end

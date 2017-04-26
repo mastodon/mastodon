@@ -30,8 +30,8 @@ zh-CN:
     user_count_before: 这里共注册有
   accounts:
     follow: 关注
-    followers: 粉丝 # "Fans"
-    following: 关注 # "Follow"
+    followers: 粉丝
+    following: 关注
     nothing_here: 神马都没有！
     people_followed_by: 正关注
     people_who_follow: 粉丝
@@ -80,15 +80,14 @@ zh-CN:
       web: 用户页面
     domain_blocks:
       add_new: 添加
-      domain: 域名阻隔
       created_msg: 正处理域名阻隔
       destroyed_msg: 已撤销域名阻隔
+      domain: 域名阻隔
       new:
         create: 添加域名阻隔
-        hint: 「域名阻隔」不会隔绝该域名用户的嘟账户入本站数据库，但会嘟文抵达后，自动套用特定的审批操作。
+        hint: "「域名阻隔」不会隔绝该域名用户的嘟账户入本站数据库，但会嘟文抵达后，自动套用特定的审批操作。"
         severity:
-          desc_html: 「<strong>自动静音</strong>」令该域名用户的嘟文，设为只对关注者显示，没有关注的人会看不到。
-            「<strong>自动除名</strong>」会自动将该域名用户的嘟文、媒体文件、个人资料自本服务站删除。
+          desc_html: "「<strong>自动静音</strong>」令该域名用户的嘟文，设为只对关注者显示，没有关注的人会看不到。 「<strong>自动除名</strong>」会自动将该域名用户的嘟文、媒体文件、个人资料自本服务站删除。"
           silence: 自动静音
           suspend: 自动除名
         title: 添加域名阻隔
@@ -99,10 +98,8 @@ zh-CN:
         suspend: 自动除名
       severity: 阻隔程度
       show:
-        # It turns out that Chinese only uses an "other"
-        # Well, we don't have these -s magic anyway...
         affected_accounts:
-          other: "数据库中有%{count}个账户受影响"
+          other: 数据库中有%{count}个账户受影响
         retroactive:
           silence: 对此域名的所有账户取消静音
           suspend: 对此域名的所有账户取消除名
@@ -147,8 +144,7 @@ zh-CN:
         username: 输入用户名称
       registrations:
         closed_message:
-          desc_html: 当本站暂停接受注册时，会显示这个消息。<br/>
-            可使用 HTML
+          desc_html: 当本站暂停接受注册时，会显示这个消息。<br/> 可使用 HTML
           title: 暂停注册消息
         open:
           disabled: 停用
@@ -187,11 +183,10 @@ zh-CN:
     title: 关注 %{acct}
   datetime:
     distance_in_words:
-      # Ditching "about" as in en
       about_x_hours: "%{count} 小时"
       about_x_months: "%{count} 个月"
       about_x_years: "%{count} 年"
-      almost_x_years: "接近 %{count} 年"
+      almost_x_years: 接近 %{count} 年
       half_a_minute: 刚刚
       less_than_x_minutes: "%{count} 分不到"
       less_than_x_seconds: 刚刚
@@ -226,13 +221,12 @@ zh-CN:
       following: 关注名单
       muting: 静音名单
     upload: 上载
-  landing_strip_html: <strong>%{name}</strong> 是一个在 <strong>%{domain}</strong> 的用户。只要你是象毛世界里（Mastodon、GNU social）任一服务站的用户，便可以跨站关注此站用户并与其沟通。如果你没有这类账户，欢迎在<a href="%{sign_up_path}">此处登记</a>。
+  landing_strip_html: <strong>%{name}</strong> 是一个在 %{link_to_root_path} 的用户。只要你是象毛世界里（Mastodon、GNU social）任一服务站的用户，便可以跨站关注此站用户并与其沟通。如果你没有这类账户，欢迎在<a href="%{sign_up_path}">此处登记</a>。
   notification_mailer:
     digest:
       body: 自从你在%{since}使用%{instance}以后，错过了这些嘟嘟滴滴：
       mention: "%{name} 在此提及了你︰"
       new_followers_summary:
-        # censorship note: Better not mention "don't move your chicken", even if it's a phonetic joke
         one: 有人关注你了！耶！
         other: 有 %{count} 个人关注了你！别激动！
       subject:
@@ -271,7 +265,6 @@ zh-CN:
     settings: 设置
     two_factor_authentication: 两步认证
   statuses:
-    # Hey, this is already in a web browser!
     open_in_web: 打开网页
     over_character_limit: 超过了 %{max} 字的限制
     show_more: 显示更多

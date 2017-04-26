@@ -118,4 +118,12 @@ RSpec.describe Status, type: :model do
       expect(subject.proper).to eq other
     end
   end
+
+  describe '#permitted?' do
+    pending
+  end
+
+  describe '#filter_from_context?' do
+    pending
+  end
 end

@@ -18,7 +18,7 @@ RSpec.describe Formatter do
     end
 
     it 'contains a link' do
-      expect(subject).to match('<a href="http://google.com" rel="nofollow noopener" target="_blank"><span class="invisible">http://</span><span class="">google.com</span><span class="invisible"></span></a>')
+      expect(subject).to match('<a href="http://google.com/" rel="nofollow noopener" target="_blank"><span class="invisible">http://</span><span class="">google.com/</span><span class="invisible"></span></a>')
     end
 
     context 'matches a stand-alone medium URL' do
@@ -31,7 +31,18 @@ RSpec.describe Formatter do
     context 'matches a stand-alone google URL' do
       let(:local_text) { 'http://google.com' }
       it 'has valid url' do
-        expect(subject).to include('href="http://google.com"')
+        expect(subject).to include('href="http://google.com/"')
+      end
+    end
+
+    context 'matches a stand-alone IDN URL' do
+      let(:local_text) { 'https://nic.みんな/' }
+      it 'has valid url' do
+        expect(subject).to include('href="https://nic.xn--q9jyb4c/"')
+      end
+
+      it 'has display url' do
+        expect(subject).to include('<span class="">nic.みんな/</span>')
       end
     end
 
@@ -51,21 +62,21 @@ RSpec.describe Formatter do
     context 'matches a URL without exclamation point' do
       let(:local_text) { 'http://www.google.com!' }
       it 'has valid url' do
-        expect(subject).to include('href="http://www.google.com"')
+        expect(subject).to include('href="http://www.google.com/"')
       end
     end
 
     context 'matches a URL without single quote' do
       let(:local_text) { "http://www.google.com'" }
       it 'has valid url' do
-        expect(subject).to include('href="http://www.google.com"')
+        expect(subject).to include('href="http://www.google.com/"')
       end
     end
 
     context 'matches a URL without angle brackets' do
       let(:local_text) { 'http://www.google.com>' }
       it 'has valid url' do
-        expect(subject).to include('href="http://www.google.com"')
+        expect(subject).to include('href="http://www.google.com/"')
       end
     end
 

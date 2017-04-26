@@ -99,7 +99,7 @@ const en = {
   "privacy.direct.long": "Post to mentioned users only",
   "privacy.direct.short": "Direct",
   "privacy.private.long": "Post to followers only",
-  "privacy.private.short": "Private",
+  "privacy.private.short": "Followers-only",
   "privacy.public.long": "Post to public timelines",
   "privacy.public.short": "Public",
   "privacy.unlisted.long": "Do not show in public timelines",
