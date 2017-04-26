@@ -1,3 +1,4 @@
+import React from 'react';
 import PropTypes from 'prop-types'
 
 class ColumnHeader extends React.PureComponent {

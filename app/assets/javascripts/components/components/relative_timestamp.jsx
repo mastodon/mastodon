@@ -1,3 +1,4 @@
+import React from 'react';
 import { injectIntl, FormattedRelative } from 'react-intl';
 import PropTypes from 'prop-types';
 

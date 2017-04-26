@@ -1,5 +1,7 @@
-import ColumnHeader from './column_header';
+import React from 'react';
+import ReactDOM from 'react-dom'
 import PropTypes from 'prop-types';
+import ColumnHeader from './column_header';
 
 const easingOutQuint = (x, t, b, c, d) => c*((t=t/d-1)*t*t*t*t + 1) + b;
 
