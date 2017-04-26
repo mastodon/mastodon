@@ -873,6 +873,7 @@ a.status__content__spoiler-link {
 @media screen and (min-width: 1025px) {
   .columns-area {
     padding: 0;
+    margin: 0 auto;
   }
 
   .column, .drawer {
@@ -888,12 +889,6 @@ a.status__content__spoiler-link {
     &:last-child {
       padding-right: 10px;
     }
-  }
-}
-
-@media screen and (min-width: 1300px) { 
-  .columns-area {
-    justify-content: center;
   }
 }
 
