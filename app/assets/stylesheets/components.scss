@@ -1157,6 +1157,10 @@ a.status__content__spoiler-link {
   overflow: hidden;
 }
 
+.column:first-child, .drawer:first-child {
+  margin-left: 0;
+}
+
 @media screen and (min-width: 360px) {
   .tabs-bar {
     margin: 10px;
