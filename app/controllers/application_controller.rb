@@ -8,6 +8,7 @@ class ApplicationController < ActionController::Base
   force_ssl if: :https_enabled?
 
   include Localized
+  include UserTrackingConcern
 
   helper_method :current_account
   helper_method :single_user_mode?
@@ -17,7 +18,6 @@ class ApplicationController < ActionController::Base
   rescue_from ActionController::InvalidAuthenticityToken, with: :unprocessable_entity
 
   before_action :store_current_location, except: :raise_not_found, unless: :devise_controller?
-  before_action :set_user_activity
   before_action :check_suspension, if: :user_signed_in?
 
   def raise_not_found
@@ -36,16 +36,6 @@ class ApplicationController < ActionController::Base
 
   def require_admin!
     redirect_to root_path unless current_user&.admin?
-  end
-
-  def set_user_activity
-    return unless !current_user.nil? && (current_user.current_sign_in_at.nil? || current_user.current_sign_in_at < 24.hours.ago)
-
-    # Mark user as signed-in today
-    current_user.update_tracked_fields(request)
-
-    # If the sign in is after a two week break, we need to regenerate their feed
-    RegenerationWorker.perform_async(current_user.account_id) if current_user.last_sign_in_at < 14.days.ago
   end
 
   def check_suspension
