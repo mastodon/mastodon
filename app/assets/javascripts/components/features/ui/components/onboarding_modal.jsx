@@ -39,9 +39,9 @@ PageOne.propTypes = {
 const PageTwo = ({ me }) => (
   <div className='onboarding-modal__page onboarding-modal__page-two'>
     <div className='figure non-interactive'>
-       <div className='pseudo-drawer'>
+      <div className='pseudo-drawer'>
         <NavigationBar account={me} />
-        </div>
+      </div>
       <ComposeForm
         text='Awoo! #introductions'
         suggestions={Immutable.List()}
@@ -63,8 +63,8 @@ const PageTwo = ({ me }) => (
 );
 
 PageTwo.propTypes = {
-  me: ImmutablePropTypes.map.isRequired
-}
+  me: ImmutablePropTypes.map.isRequired,
+};
 
 const PageThree = ({ me, domain }) => (
   <div className='onboarding-modal__page onboarding-modal__page-three'>
@@ -127,7 +127,7 @@ PageFour.propTypes = {
   intl: PropTypes.object.isRequired
 };
 
-const PageSix = ({ admin }) => {
+const PageSix = ({ admin, domain }) => {
   let adminSection = '';
 
   if (admin) {
@@ -152,7 +152,8 @@ const PageSix = ({ admin }) => {
 };
 
 PageSix.propTypes = {
-  admin: ImmutablePropTypes.map
+  admin: ImmutablePropTypes.map,
+  domain: PropTypes.string.isRequired
 };
 
 const mapStateToProps = state => ({
@@ -201,7 +202,7 @@ class OnboardingModal extends React.PureComponent {
       <PageTwo me={me} />,
       <PageThree me={me} domain={domain} />,
       <PageFour domain={domain} intl={intl} />,
-      <PageSix admin={admin} />
+      <PageSix admin={admin} domain={domain} />
     ];
 
     const { currentIndex } = this.state;
