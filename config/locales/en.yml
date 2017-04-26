@@ -43,12 +43,12 @@ en:
   activitypub:
     activity:
       announce:
-        name: "%{account_name} announced an activity."
+        name: "%{account_name} shared an activity."
       create:
         name: "%{account_name} created a note."
     outbox:
       name: "%{account_name}'s Outbox"
-      summary: A collection of activities from user %{account_name}.
+      summary: "A collection of activities from user %{account_name}."
   admin:
     accounts:
       are_you_sure: Are you sure?
@@ -145,9 +145,9 @@ en:
       id: ID
       mark_as_resolved: Mark as resolved
       report: 'Report #%{id}'
+      report_contents: Contents
       reported_account: Reported account
       reported_by: Reported by
-      report_contents: Contents
       resolved: Resolved
       silence_account: Silence account
       status: Status

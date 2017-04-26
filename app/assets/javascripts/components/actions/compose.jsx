@@ -85,6 +85,10 @@ export function submitCompose() {
       sensitive: getState().getIn(['compose', 'sensitive']),
       spoiler_text: getState().getIn(['compose', 'spoiler_text'], ''),
       visibility: getState().getIn(['compose', 'privacy'])
+    }, {
+      headers: {
+        'Idempotency-Key': getState().getIn(['compose', 'idempotencyKey'])
+      }
     }).then(function (response) {
       dispatch(submitComposeSuccess({ ...response.data }));
 

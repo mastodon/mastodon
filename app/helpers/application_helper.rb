@@ -10,7 +10,12 @@ module ApplicationHelper
   end
 
   def add_rtl_body_class(other_classes)
-    other_classes = "#{other_classes} rtl" if [:ar].include?(I18n.locale)
+    other_classes = "#{other_classes} rtl" if [:ar, :fa].include?(I18n.locale)
     other_classes
+  end
+
+  def favicon_path
+    env_suffix = Rails.env.production? ? '' : '-dev'
+    asset_path "favicon#{env_suffix}.ico"
   end
 end

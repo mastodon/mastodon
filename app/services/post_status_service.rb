@@ -11,24 +11,36 @@ class PostStatusService < BaseService
   # @option [String] :spoiler_text
   # @option [Enumerable] :media_ids Optional array of media IDs to attach
   # @option [Doorkeeper::Application] :application
+  # @option [String] :idempotency Optional idempotency key
   # @return [Status]
   def call(account, text, in_reply_to = nil, options = {})
-    media  = validate_media!(options[:media_ids])
-    status = account.statuses.create!(text: text,
-                                      thread: in_reply_to,
-                                      sensitive: options[:sensitive],
-                                      spoiler_text: options[:spoiler_text] || '',
-                                      visibility: options[:visibility],
-                                      language: detect_language_for(text, account),
-                                      application: options[:application])
+    if options[:idempotency].present?
+      existing_id = redis.get("idempotency:status:#{account.id}:#{options[:idempotency]}")
+      return Status.find(existing_id) if existing_id
+    end
 
-    attach_media(status, media)
+    media  = validate_media!(options[:media_ids])
+    status = nil
+    ApplicationRecord.transaction do
+      status = account.statuses.create!(text: text,
+                                        thread: in_reply_to,
+                                        sensitive: options[:sensitive],
+                                        spoiler_text: options[:spoiler_text] || '',
+                                        visibility: options[:visibility],
+                                        language: detect_language_for(text, account),
+                                        application: options[:application])
+      attach_media(status, media)
+    end
     process_mentions_service.call(status)
     process_hashtags_service.call(status)
 
     LinkCrawlWorker.perform_async(status.id)
     DistributionWorker.perform_async(status.id)
     Pubsubhubbub::DistributionWorker.perform_async(status.stream_entry.id)
+
+    if options[:idempotency].present?
+      redis.setex("idempotency:status:#{account.id}:#{options[:idempotency]}", 3_600, status.id)
+    end
 
     status
   end
@@ -62,5 +74,9 @@ class PostStatusService < BaseService
 
   def process_hashtags_service
     @process_hashtags_service ||= ProcessHashtagsService.new
+  end
+
+  def redis
+    Redis.current
   end
 end

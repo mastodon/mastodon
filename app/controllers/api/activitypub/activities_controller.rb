@@ -8,8 +8,6 @@ class Api::Activitypub::ActivitiesController < ApiController
 
   # Show a status in AS2 format, as either an Announce (reblog) or a Create (post) activity.
   def show_status
-    headers['Access-Control-Allow-Origin'] = '*'
-
     return forbidden unless @status.permitted?
 
     if @status.reblog?
