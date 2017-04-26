@@ -30,6 +30,7 @@ const ja = {
   "compose_form.privacy_disclaimer": "あなたの非公開トゥートは返信先ユーザーが所属する {domains} に送信されます。{domainsCount, plural, one {このサーバー} other {これらのサーバー}}は信頼できますか？投稿のプライバシー保護はMastodonサーバー内でのみ有効です。 {domains} {domainsCount, plural, one {がMastodonインスタンス} other {がMastodonインスタンス}}でない場合、あなたの投稿がプライベートなものとして扱われず、ブーストされたり予期しないユーザーに見られる可能性があります。",
   "compose_form.publish": "トゥート",
   "compose_form.sensitive": "メディアを閲覧注意としてマークする",
+  "compose_form.sensitive_message": "投稿する画像がエッチなコンテンツの場合、必ずNSFWマークをつけてください",
   "compose_form.spoiler": "テキストを隠す",
   "compose_form.spoiler_placeholder": "警告",
   "confirmation_modal.cancel": "キャンセル",
