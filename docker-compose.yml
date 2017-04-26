@@ -58,7 +58,7 @@ services:
     restart: always
     build: .
     env_file: .env.production
-    command: bundle exec sidekiq -c 50 -q default 
+    command: bundle exec sidekiq -c 40 -q default 
     depends_on:
       - db
       - redis
@@ -69,7 +69,7 @@ services:
     restart: always
     build: .
     env_file: .env.production
-    command: bundle exec sidekiq -c 10 -q mailers
+    command: bundle exec sidekiq -c 5 -q mailers
     depends_on:
       - db
       - redis
@@ -90,7 +90,7 @@ services:
   sidekiq4:
     restart: always
     build: .
-    command: bundle exec sidekiq -c 20 -q push
+    command: bundle exec sidekiq -c 15 -q push
     env_file: .env.production
     depends_on:
       - db
@@ -98,16 +98,16 @@ services:
     volumes:
       - ./public/system:/mastodon/public/system
 
-#  sidekiq5:
-#    restart: always
-#    build: .
-#    env_file: .env.production
-#    command: bundle exec sidekiq -c 30 -q default 
-#    depends_on:
-#      - db
-#      - redis
-#    volumes:
-#      - ./public/system:/mastodon/public/system
+  sidekiq5:
+    restart: always
+    build: .
+    env_file: .env.production
+    command: bundle exec sidekiq -c 40 -q default 
+    depends_on:
+      - db
+      - redis
+    volumes:
+      - ./public/system:/mastodon/public/system
 
 #  sidekiq6:
 #    restart: always
