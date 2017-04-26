@@ -24,20 +24,27 @@ class BlockDomainService < BaseService
   end
 
   def clear_media!
-    blocked_domain_accounts.find_each do |account|
-      account.avatar.destroy
-      account.header.destroy
-    end
-
-    media_from_blocked_domain.find_each do |attachment|
-      attachment.file.destroy
-    end
+    clear_account_images
+    clear_account_attachments
   end
 
   def suspend_accounts!
     blocked_domain_accounts.where(suspended: false).find_each do |account|
       account.subscription(api_subscription_url(account.id)).unsubscribe if account.subscribed?
       SuspendAccountService.new.call(account)
+    end
+  end
+
+  def clear_account_images
+    blocked_domain_accounts.find_each do |account|
+      account.avatar.destroy
+      account.header.destroy
+    end
+  end
+
+  def clear_account_attachments
+    media_from_blocked_domain.find_each do |attachment|
+      attachment.file.destroy
     end
   end
 
