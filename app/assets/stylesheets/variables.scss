@@ -14,23 +14,16 @@ $darken10_color1:       darken($color1, 10%) !default;
 $darken_color1_alpha05: rgba(darken($color1, 7%), 0.5) !default;
 $darken_color1_alpha08: rgba(darken($color1, 7%), 0.8) !default;
 
-/* $color2 is the default text color
-    and the light background of non-connected view */
-$color2:                #d9e1e8 !default; // lightest
-$lighten4_color2:       lighten($color2, 4%) !default;
-$lighten8_color2:       lighten($color2, 8%) !default;
-$darken8_color2:        darken($color2, 8%) !default;
-$darken16_color2:       darken($color2, 16%) !default;
-$darken24_color2:       darken($color2, 24%) !default;
-$darken36_color2:       darken($color2, 36%) !default;
-$color2_alpha03:        rgba($color2, 0.3) !default;
-
-
-/* $color3 is the base color for muted colors
-(text or bg on dark or light backgrounds) */
-$color3:                #9baec8 !default; // lighter
+/* $color3 is for muted text-color or backgrounds */
+$color3:                #9baec8 !default; // muted text on light bg
+$lighten4_color3:       lighten($color3, 4%) !default;
 $lighten8_color3:       lighten($color3, 8%) !default;
-$darken5_color3:        darken($color3, 5%) !default;
+$lighten12_color3:      lighten($color3, 12%) !default;
+$lighten20_color3:      lighten($color3, 20%) !default;
+$lighten24_color3:      lighten($color3, 24%) !default;
+$lighten28_color3:      lighten($color3, 28%) !default;
+$darken4_color3:        darken($color3, 4%) !default;
+$darken16_color3:       darken($color3, 16%) !default; // muted text on dark bg
 $darken30_color3:       darken($color3, 30%) !default;
 
 
