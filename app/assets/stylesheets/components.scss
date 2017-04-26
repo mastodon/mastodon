@@ -79,6 +79,7 @@
 @media screen and (min-width: 1025px) {
   .column-icon-clear {
     top: 10px;
+    padding: 5px;
   }
 }
 
@@ -1186,34 +1187,12 @@ a.status__content__spoiler-link {
 @media screen and (min-width: 1025px) {
   .columns-area {
     padding: 0;
+    margin: 10px 5px;
   }
 
   .column, .drawer {
     flex: 0 0 auto;
-    padding: 10px;
-    padding-left: 5px;
-    padding-right: 5px;
-
-    &:first-child {
-      padding-left: 10px;
-    }
-
-    &:last-child {
-      padding-right: 10px;
-    }
-  }
-}
-
-@media screen and (min-width: 2560px) {
-  .columns-area {
-    justify-content: center;
-  }
-
-  .column, .drawer {
-    width: 350px;
-    border-radius: 4px;
-    height: 90vh;
-    margin-top: 5vh;
+    padding: 0 5px;
   }
 }
 
