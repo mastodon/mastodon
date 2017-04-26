@@ -42,6 +42,10 @@ RSpec.describe AccountsController, type: :controller do
       it 'returns http success' do
         expect(response).to have_http_status(:success)
       end
+
+      it 'returns an h-entry for each status in the h-feed' do
+        expect(Nokogiri::HTML(response.body).search('.h-feed .h-entry').size).to eq 4
+      end
     end
   end
 end
