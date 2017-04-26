@@ -28,6 +28,8 @@ class UI extends React.PureComponent {
     this.handleDragOver = this.handleDragOver.bind(this);
     this.handleDrop = this.handleDrop.bind(this);
     this.handleDragLeave = this.handleDragLeave.bind(this);
+    this.handleDragEnd = this.handleDragLeave.bind(this)
+    this.closeUploadModal = this.closeUploadModal.bind(this)
     this.setRef = this.setRef.bind(this);
   }
 
@@ -47,7 +49,7 @@ class UI extends React.PureComponent {
       this.dragTargets.push(e.target);
     }
 
-    if (e.dataTransfer && e.dataTransfer.items.length > 0) {
+    if (e.dataTransfer && e.dataTransfer.types.includes('Files')) {
       this.setState({ draggingOver: true });
     }
   }
@@ -88,12 +90,17 @@ class UI extends React.PureComponent {
     this.setState({ draggingOver: false });
   }
 
+  closeUploadModal() {
+    this.setState({ draggingOver: false });
+  }
+
   componentWillMount () {
     window.addEventListener('resize', this.handleResize, { passive: true });
     document.addEventListener('dragenter', this.handleDragEnter, false);
     document.addEventListener('dragover', this.handleDragOver, false);
     document.addEventListener('drop', this.handleDrop, false);
     document.addEventListener('dragleave', this.handleDragLeave, false);
+    document.addEventListener('dragend', this.handleDragEnd, false);
 
     this.props.dispatch(refreshTimeline('home'));
     this.props.dispatch(refreshNotifications());
@@ -105,6 +112,7 @@ class UI extends React.PureComponent {
     document.removeEventListener('dragover', this.handleDragOver);
     document.removeEventListener('drop', this.handleDrop);
     document.removeEventListener('dragleave', this.handleDragLeave);
+    document.removeEventListener('dragend', this.handleDragEnd);
   }
 
   setRef (c) {
@@ -127,9 +135,9 @@ class UI extends React.PureComponent {
       mountedColumns = (
         <ColumnsArea>
           <Compose withHeader={true} />
-          <HomeTimeline trackScroll={false} />
-          <Notifications trackScroll={false} />
-          {children}
+          <HomeTimeline shouldUpdateScroll={() => false} />
+          <Notifications shouldUpdateScroll={() => false} />
+          <div style={{display: 'flex', flex: '1 1 auto', position: 'relative'}}>{children}</div>
         </ColumnsArea>
       );
     }
@@ -143,7 +151,7 @@ class UI extends React.PureComponent {
         <NotificationsContainer />
         <LoadingBarContainer className="loading-bar" />
         <ModalContainer />
-        <UploadArea active={draggingOver} />
+        <UploadArea active={draggingOver} onClose={this.closeUploadModal} />
       </div>
     );
   }

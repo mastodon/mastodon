@@ -123,7 +123,7 @@ PageFour.propTypes = {
   intl: PropTypes.object.isRequired
 };
 
-const PageSix = ({ admin }) => {
+const PageSix = ({ admin, domain }) => {
   let adminSection = '';
 
   if (admin) {
@@ -148,7 +148,8 @@ const PageSix = ({ admin }) => {
 };
 
 PageSix.propTypes = {
-  admin: ImmutablePropTypes.map
+  admin: ImmutablePropTypes.map,
+  domain: PropTypes.string.isRequired
 };
 
 const mapStateToProps = state => ({
@@ -197,7 +198,7 @@ class OnboardingModal extends React.PureComponent {
       <PageTwo />,
       <PageThree me={me} domain={domain} />,
       <PageFour domain={domain} intl={intl} />,
-      <PageSix admin={admin} />
+      <PageSix admin={admin} domain={domain} />
     ];
 
     const { currentIndex } = this.state;

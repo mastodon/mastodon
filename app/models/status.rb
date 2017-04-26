@@ -140,6 +140,10 @@ class Status < ApplicationRecord
       account.nil? ? filter_timeline_default(query) : filter_timeline_default(filter_timeline(query, account))
     end
 
+    def as_outbox_timeline(account)
+      where(account: account, visibility: :public)
+    end
+
     def favourites_map(status_ids, account_id)
       Favourite.select('status_id').where(status_id: status_ids).where(account_id: account_id).map { |f| [f.status_id, true] }.to_h
     end

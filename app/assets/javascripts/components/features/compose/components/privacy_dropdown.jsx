@@ -7,7 +7,7 @@ const messages = defineMessages({
   public_long: { id: 'privacy.public.long', defaultMessage: 'Post to public timelines' },
   unlisted_short: { id: 'privacy.unlisted.short', defaultMessage: 'Unlisted' },
   unlisted_long: { id: 'privacy.unlisted.long', defaultMessage: 'Do not show in public timelines' },
-  private_short: { id: 'privacy.private.short', defaultMessage: 'Private' },
+  private_short: { id: 'privacy.private.short', defaultMessage: 'Followers-only' },
   private_long: { id: 'privacy.private.long', defaultMessage: 'Post to followers only' },
   direct_short: { id: 'privacy.direct.short', defaultMessage: 'Direct' },
   direct_long: { id: 'privacy.direct.long', defaultMessage: 'Post to mentioned users only' },
@@ -15,9 +15,9 @@ const messages = defineMessages({
 });
 
 const iconStyle = {
-  lineHeight: '27px',
-  height: null
-};
+  height: null,
+  lineHeight: '27px'
+}
 
 class PrivacyDropdown extends React.PureComponent {
 
@@ -77,7 +77,7 @@ class PrivacyDropdown extends React.PureComponent {
 
     return (
       <div ref={this.setRef} className={`privacy-dropdown ${open ? 'active' : ''}`}>
-        <div className='privacy-dropdown__value'><IconButton icon={valueOption.icon} title={intl.formatMessage(messages.change_privacy)} size={18} active={open} inverted onClick={this.handleToggle} style={iconStyle} /></div>
+        <div className='privacy-dropdown__value'><IconButton className='privacy-dropdown__value-icon' icon={valueOption.icon} title={intl.formatMessage(messages.change_privacy)} size={18} active={open} inverted onClick={this.handleToggle} style={iconStyle}/></div>
         <div className='privacy-dropdown__dropdown'>
           {options.map(item =>
             <div role='button' tabIndex='0' key={item.value} onClick={this.handleClick.bind(this, item.value)} className={`privacy-dropdown__option ${item.value === value ? 'active' : ''}`}>

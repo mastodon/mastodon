@@ -3,7 +3,7 @@ object @account
 node(:subject) { @canonical_account_uri }
 
 node(:aliases) do
-  [TagManager.instance.url_for(@account)]
+  [TagManager.instance.url_for(@account), TagManager.instance.uri_for(@account)]
 end
 
 node(:links) do

@@ -2,23 +2,10 @@ import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import Toggle from 'react-toggle';
 
-const labelStyle = {
-  display: 'block',
-  lineHeight: '24px',
-  verticalAlign: 'middle'
-};
-
-const labelSpanStyle = {
-  display: 'inline-block',
-  verticalAlign: 'middle',
-  marginBottom: '14px',
-  marginLeft: '8px'
-};
-
 const SettingToggle = ({ settings, settingKey, label, onChange, htmlFor = '' }) => (
-  <label htmlFor={htmlFor} style={labelStyle}>
+  <label htmlFor={htmlFor} className='setting-toggle__label'>
     <Toggle checked={settings.getIn(settingKey)} onChange={(e) => onChange(settingKey, e.target.checked)} />
-    <span className='setting-toggle' style={labelSpanStyle}>{label}</span>
+    <span className='setting-toggle'>{label}</span>
   </label>
 );
 

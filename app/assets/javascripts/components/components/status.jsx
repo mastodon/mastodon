@@ -50,9 +50,9 @@ class Status extends React.PureComponent {
       const displayNameHTML = { __html: emojify(escapeTextContentForBrowser(displayName)) };
 
       return (
-        <div style={{ cursor: 'default' }}>
+        <div className='status__wrapper'>
           <div className='status__prepend'>
-            <div style={{ position: 'absolute', 'left': '-26px'}}><i className='fa fa-fw fa-retweet' /></div>
+            <div className='status__prepend-icon-wrapper'><i className='fa fa-fw fa-retweet status__prepend-icon' /></div>
             <FormattedMessage id='status.reblogged_by' defaultMessage='{name} reblogged' values={{ name: <a onClick={this.handleAccountClick.bind(this, status.getIn(['account', 'id']))} href={status.getIn(['account', 'url'])} className='status__display-name muted'><strong dangerouslySetInnerHTML={displayNameHTML} /></a> }} />
           </div>
 
@@ -73,13 +73,13 @@ class Status extends React.PureComponent {
 
     return (
       <div className={this.props.muted ? 'status muted' : 'status'}>
-        <div style={{ fontSize: '15px' }}>
-          <div style={{ float: 'right', fontSize: '14px' }}>
+        <div className='status__info'>
+          <div className='status__info-time'>
             <a href={status.get('url')} className='status__relative-time' target='_blank' rel='noopener'><RelativeTimestamp timestamp={status.get('created_at')} /></a>
           </div>
 
-          <a onClick={this.handleAccountClick.bind(this, status.getIn(['account', 'id']))} href={status.getIn(['account', 'url'])} className='status__display-name' style={{ display: 'block', maxWidth: '100%', paddingRight: '25px' }}>
-            <div className='status__avatar' style={{ position: 'absolute', left: '10px', top: '10px', width: '48px', height: '48px' }}>
+          <a onClick={this.handleAccountClick.bind(this, status.getIn(['account', 'id']))} href={status.getIn(['account', 'url'])} className='status__display-name'>
+            <div className='status__avatar'>
               <Avatar src={status.getIn(['account', 'avatar'])} staticSrc={status.getIn(['account', 'avatar_static'])} size={48} />
             </div>
 

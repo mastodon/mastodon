@@ -1,7 +1,7 @@
 language: ruby
 cache: bundler
 dist: trusty
-sudo: required
+sudo: false
 
 notifications:
   email: false
@@ -14,6 +14,13 @@ env:
     - CXX=g++-4.8
 addons:
   postgresql: 9.4
+  apt:
+    sources:
+    - ubuntu-toolchain-r-test
+    - trusty-media
+    packages:
+    - g++-4.8
+    - ffmpeg
 
 rvm:
   - 2.3.4
@@ -24,11 +31,6 @@ services:
 
 bundler_args: --without development production --retry=3 --jobs=3
 
-before_install:
-  - sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test
-  - sudo add-apt-repository -y ppa:mc3man/trusty-media
-  - sudo apt-get -qq update
-  - sudo apt-get -qq install g++-4.8 ffmpeg
 install:
   - nvm install
   - npm install -g yarn

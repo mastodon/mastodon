@@ -10,40 +10,6 @@ const messages = defineMessages({
   close: { id: 'lightbox.close', defaultMessage: 'Close' }
 });
 
-const leftNavStyle = {
-  position: 'absolute',
-  background: 'rgba(0, 0, 0, 0.5)',
-  padding: '30px 15px',
-  cursor: 'pointer',
-  fontSize: '24px',
-  top: '0',
-  left: '-61px',
-  boxSizing: 'border-box',
-  height: '100%',
-  display: 'flex',
-  alignItems: 'center'
-};
-
-const rightNavStyle = {
-  position: 'absolute',
-  background: 'rgba(0, 0, 0, 0.5)',
-  padding: '30px 15px',
-  cursor: 'pointer',
-  fontSize: '24px',
-  top: '0',
-  right: '-61px',
-  boxSizing: 'border-box',
-  height: '100%',
-  display: 'flex',
-  alignItems: 'center'
-};
-
-const closeStyle = {
-  position: 'absolute',
-  top: '4px',
-  right: '4px'
-};
-
 class MediaModal extends React.PureComponent {
 
   constructor (props, context) {
@@ -99,8 +65,8 @@ class MediaModal extends React.PureComponent {
     leftNav = rightNav = content = '';
 
     if (media.size > 1) {
-      leftNav  = <div role='button' tabIndex='0' style={leftNavStyle} className='modal-container__nav' onClick={this.handlePrevClick}><i className='fa fa-fw fa-chevron-left' /></div>;
-      rightNav = <div role='button' tabIndex='0' style={rightNavStyle} className='modal-container__nav' onClick={this.handleNextClick}><i className='fa fa-fw fa-chevron-right' /></div>;
+      leftNav  = <div role='button' tabIndex='0' className='modal-container__nav modal-container__nav--left' onClick={this.handlePrevClick}><i className='fa fa-fw fa-chevron-left' /></div>;
+      rightNav = <div role='button' tabIndex='0' className='modal-container__nav  modal-container__nav--right' onClick={this.handleNextClick}><i className='fa fa-fw fa-chevron-right' /></div>;
     }
 
     if (attachment.get('type') === 'image') {
@@ -113,8 +79,8 @@ class MediaModal extends React.PureComponent {
       <div className='modal-root__modal media-modal'>
         {leftNav}
 
-        <div>
-          <IconButton title={intl.formatMessage(messages.close)} icon='times' onClick={onClose} size={16} style={closeStyle} />
+        <div className='media-modal__content'>
+          <IconButton className='media-modal__close' title={intl.formatMessage(messages.close)} icon='times' onClick={onClose} size={16} />
           {content}
         </div>
 

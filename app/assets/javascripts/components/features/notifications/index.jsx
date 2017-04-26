@@ -11,10 +11,12 @@ import { createSelector } from 'reselect';
 import Immutable from 'immutable';
 import LoadMore from '../../components/load_more';
 import ClearColumnButton from './components/clear_column_button';
+import { openModal } from '../../actions/modal';
 
 const messages = defineMessages({
   title: { id: 'column.notifications', defaultMessage: 'Notifications' },
-  confirm: { id: 'notifications.clear_confirmation', defaultMessage: 'Are you sure you want to clear all your notifications?' }
+  clearMessage: { id: 'notifications.clear_confirmation', defaultMessage: 'Are you sure you want to permanently clear all your notifications?' },
+  clearConfirm: { id: 'notifications.clear', defaultMessage: 'Clear notifications' }
 });
 
 const getNotifications = createSelector([
@@ -64,9 +66,13 @@ class Notifications extends React.PureComponent {
   }
 
   handleClear () {
-    if (window.confirm(this.props.intl.formatMessage(messages.confirm))) {
-      this.props.dispatch(clearNotifications());
-    }
+    const { dispatch, intl } = this.props;
+
+    dispatch(openModal('CONFIRM', {
+      message: intl.formatMessage(messages.clearMessage),
+      confirm: intl.formatMessage(messages.clearConfirm),
+      onConfirm: () => dispatch(clearNotifications())
+    }));
   }
 
   setRef (c) {
@@ -74,7 +80,7 @@ class Notifications extends React.PureComponent {
   }
 
   render () {
-    const { intl, notifications, trackScroll, isLoading, isUnread } = this.props;
+    const { intl, notifications, shouldUpdateScroll, isLoading, isUnread } = this.props;
 
     let loadMore       = '';
     let scrollableArea = '';
@@ -107,25 +113,15 @@ class Notifications extends React.PureComponent {
       );
     }
 
-    if (trackScroll) {
-      return (
-        <Column icon='bell' active={isUnread} heading={intl.formatMessage(messages.title)}>
-          <ColumnSettingsContainer />
-          <ClearColumnButton onClick={this.handleClear} />
-          <ScrollContainer scrollKey='notifications'>
-            {scrollableArea}
-          </ScrollContainer>
-        </Column>
-      );
-    } else {
-      return (
-        <Column icon='bell' active={isUnread} heading={intl.formatMessage(messages.title)}>
-          <ColumnSettingsContainer />
-          <ClearColumnButton onClick={this.handleClear} />
+    return (
+      <Column icon='bell' active={isUnread} heading={intl.formatMessage(messages.title)}>
+        <ColumnSettingsContainer />
+        <ClearColumnButton onClick={this.handleClear} />
+        <ScrollContainer scrollKey='notifications' shouldUpdateScroll={shouldUpdateScroll}>
           {scrollableArea}
-        </Column>
-      );
-    }
+        </ScrollContainer>
+      </Column>
+    );
   }
 
 }
@@ -133,7 +129,7 @@ class Notifications extends React.PureComponent {
 Notifications.propTypes = {
   notifications: ImmutablePropTypes.list.isRequired,
   dispatch: PropTypes.func.isRequired,
-  trackScroll: PropTypes.bool,
+  shouldUpdateScroll: PropTypes.func,
   intl: PropTypes.object.isRequired,
   isLoading: PropTypes.bool,
   isUnread: PropTypes.bool
