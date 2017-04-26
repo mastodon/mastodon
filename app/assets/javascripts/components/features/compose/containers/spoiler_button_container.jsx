@@ -10,7 +10,8 @@ const messages = defineMessages({
 const mapStateToProps = (state, { intl }) => ({
   label: 'CW',
   title: intl.formatMessage(messages.title),
-  active: state.getIn(['compose', 'spoiler'])
+  active: state.getIn(['compose', 'spoiler']),
+  ariaControls: 'cw-spoiler-input'
 });
 
 const mapDispatchToProps = dispatch => ({

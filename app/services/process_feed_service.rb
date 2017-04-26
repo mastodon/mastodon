@@ -174,7 +174,7 @@ class ProcessFeedService < BaseService
     end
 
     def account_from_href(href)
-      url = Addressable::URI.parse(href)
+      url = Addressable::URI.parse(href).normalize
 
       if TagManager.instance.web_domain?(url.host)
         Account.find_local(url.path.gsub('/users/', ''))
@@ -195,7 +195,7 @@ class ProcessFeedService < BaseService
         next unless link['href']
 
         media = MediaAttachment.where(status: parent, remote_url: link['href']).first_or_initialize(account: parent.account, status: parent, remote_url: link['href'])
-        parsed_url = URI.parse(link['href'])
+        parsed_url = Addressable::URI.parse(link['href']).normalize
 
         next if !%w[http https].include?(parsed_url.scheme) || parsed_url.host.empty?
 
@@ -271,7 +271,7 @@ class ProcessFeedService < BaseService
     def acct(xml = @xml)
       username = xml.at_xpath('./xmlns:author/xmlns:name', xmlns: TagManager::XMLNS).content
       url      = xml.at_xpath('./xmlns:author/xmlns:uri', xmlns: TagManager::XMLNS).content
-      domain   = Addressable::URI.parse(url).host
+      domain   = Addressable::URI.parse(url).normalize.host
 
       "#{username}@#{domain}"
     end

@@ -61,6 +61,6 @@ class WebfingerResource
   end
 
   def domain_matches_local?
-    TagManager.instance.local_domain?(local_domain)
+    TagManager.instance.local_domain?(local_domain) || TagManager.instance.web_domain?(local_domain)
   end
 end

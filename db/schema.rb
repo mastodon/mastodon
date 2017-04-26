@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170418160728) do
+ActiveRecord::Schema.define(version: 20170425131920) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -120,6 +120,7 @@ ActiveRecord::Schema.define(version: 20170418160728) do
     t.datetime "updated_at",                     null: false
     t.string   "shortcode"
     t.integer  "type",              default: 0,  null: false
+    t.json     "file_meta"
     t.index ["shortcode"], name: "index_media_attachments_on_shortcode", unique: true, using: :btree
     t.index ["status_id"], name: "index_media_attachments_on_status_id", using: :btree
   end
@@ -255,6 +256,7 @@ ActiveRecord::Schema.define(version: 20170418160728) do
   create_table "statuses_tags", id: false, force: :cascade do |t|
     t.bigint  "status_id", null: false
     t.integer "tag_id",    null: false
+    t.index ["status_id"], name: "index_statuses_tags_on_status_id", using: :btree
     t.index ["tag_id", "status_id"], name: "index_statuses_tags_on_tag_id_and_status_id", unique: true, using: :btree
   end
 

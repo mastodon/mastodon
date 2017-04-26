@@ -15,25 +15,11 @@ class Button extends React.PureComponent {
 
   render () {
     const style = {
-      fontFamily: 'inherit',
       display: this.props.block ? 'block' : 'inline-block',
       width: this.props.block ? '100%' : 'auto',
-      position: 'relative',
-      boxSizing: 'border-box',
-      textAlign: 'center',
-      border: '10px none',
-      fontSize: '14px',
-      fontWeight: '500',
-      letterSpacing: '0',
       padding: `0 ${this.props.size / 2.25}px`,
       height: `${this.props.size}px`,
-      cursor: 'pointer',
-      lineHeight: `${this.props.size}px`,
-      borderRadius: '4px',
-      textDecoration: 'none',
-      whiteSpace: 'nowrap',
-      textOverflow: 'ellipsis',
-      overflow: 'hidden'
+      lineHeight: `${this.props.size}px`
     };
 
     return (

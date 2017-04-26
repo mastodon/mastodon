@@ -13,6 +13,7 @@ class Search extends React.PureComponent {
     this.handleChange = this.handleChange.bind(this);
     this.handleKeyDown = this.handleKeyDown.bind(this);
     this.handleFocus = this.handleFocus.bind(this);
+    this.handleClear = this.handleClear.bind(this);
   }
 
   handleChange (e) {
@@ -21,7 +22,10 @@ class Search extends React.PureComponent {
 
   handleClear (e) {
     e.preventDefault();
-    this.props.onClear();
+
+    if (this.props.value.length > 0 || this.props.submitted) {
+      this.props.onClear();
+    }
   }
 
   handleKeyDown (e) {
@@ -55,9 +59,9 @@ class Search extends React.PureComponent {
           onFocus={this.handleFocus}
         />
 
-        <div role='button' tabIndex='0' className='search__icon' onClick={hasValue ? this.handleClear : this.noop}>
+        <div role='button' tabIndex='0' className='search__icon' onClick={this.handleClear}>
           <i className={`fa fa-search ${hasValue ? '' : 'active'}`} />
-          <i aria-label="Clear search" className={`fa fa-times-circle ${hasValue ? 'active' : ''}`} />
+          <i aria-label={intl.formatMessage(messages.placeholder)} className={`fa fa-times-circle ${hasValue ? 'active' : ''}`} />
         </div>
       </div>
     );

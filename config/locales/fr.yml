@@ -227,7 +227,7 @@ fr:
       following: Liste d'utilisateurs⋅trices suivi⋅es
       muting: Liste d'utilisateurs⋅trices que vous faites taire
     upload: Importer
-  landing_strip_html: <strong>%{name}</strong> utilise <strong>%{domain}</strong>. Vous pouvez le/la suivre et interagir si vous possédez un compte quelque part dans le "fediverse". Si ce n'est pas le cas, vous pouvez <a href="%{sign_up_path}">en créer un ici</a>.
+  landing_strip_html: <strong>%{name}</strong> utilise %{link_to_root_path}. Vous pouvez le/la suivre et interagir si vous possédez un compte quelque part dans le "fediverse". Si ce n'est pas le cas, vous pouvez <a href="%{sign_up_path}">en créer un ici</a>.
   media_attachments:
     validations:
       images_and_video: Impossible de joindre une vidéo à un statut contenant déjà des images
@@ -273,7 +273,7 @@ fr:
     import: Import de données
     preferences: Préférences
     settings: Réglages
-    two_factor_auth: Identification à deux facteurs (Two-factor auth)
+    two_factor_authentication: Identification à deux facteurs (Two-factor auth)
   statuses:
     open_in_web: Ouvrir sur le web
     over_character_limit: limite de caractères dépassée de %{max} caractères
@@ -289,7 +289,7 @@ fr:
   time:
     formats:
       default: "%d %b %Y, %H:%M"
-  two_factor_auth:
+  two_factor_authentication:
     code_hint: Entrez le code généré par votre application pour confirmer
     description_html: Si vous activez <strong>l'identification à deux facteurs</strong>, vous devrez être en possession de votre téléphone afin de générer un code de connexion.
     disable: Désactiver

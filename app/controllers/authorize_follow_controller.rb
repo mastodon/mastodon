@@ -6,7 +6,7 @@ class AuthorizeFollowController < ApplicationController
   before_action :authenticate_user!
 
   def new
-    uri = Addressable::URI.parse(acct_param)
+    uri = Addressable::URI.parse(acct_param).normalize
 
     if uri.path && %w(http https).include?(uri.scheme)
       set_account_from_url

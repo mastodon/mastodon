@@ -29,11 +29,13 @@ RUN echo "@edge https://nl.alpinelinux.org/alpine/edge/main" >> /etc/apk/reposit
     ffmpeg \
     file \
     imagemagick@edge \
+    ca-certificates \
  && npm install -g npm@3 && npm install -g yarn \
  && bundle install --deployment --without test development \
  && yarn --ignore-optional \
  && yarn cache clean \
  && npm -g cache clean \
+ && update-ca-certificates \
  && apk del $BUILD_DEPS \
  && rm -rf /tmp/* /var/cache/apk/*
 

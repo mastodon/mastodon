@@ -13,8 +13,8 @@ class UpdateRemoteProfileService < BaseService
     hub_link   = xml.at_xpath('./xmlns:link[@rel="hub"]', xmlns: TagManager::XMLNS)
 
     unless author_xml.nil?
-      account.display_name = author_xml.at_xpath('./poco:displayName', poco: TagManager::POCO_XMLNS).content unless author_xml.at_xpath('./poco:displayName', poco: TagManager::POCO_XMLNS).nil?
-      account.note         = author_xml.at_xpath('./poco:note', poco: TagManager::POCO_XMLNS).content unless author_xml.at_xpath('./poco:note', poco: TagManager::POCO_XMLNS).nil?
+      account.display_name = author_xml.at_xpath('./poco:displayName', poco: TagManager::POCO_XMLNS)&.content || ''
+      account.note         = author_xml.at_xpath('./xmlns:summary', xmlns: TagManager::XMLNS)&.content || author_xml.at_xpath('./poco:note', poco: TagManager::POCO_XMLNS)&.content || ''
       account.locked       = author_xml.at_xpath('./mastodon:scope', mastodon: TagManager::MTDN_XMLNS)&.content == 'private'
 
       if !account.suspended? && !DomainBlock.find_by(domain: account.domain)&.reject_media?
