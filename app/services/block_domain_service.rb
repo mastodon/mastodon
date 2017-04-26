@@ -29,7 +29,7 @@ class BlockDomainService < BaseService
       account.header.destroy
     end
 
-    MediaAttachment.where(account: blocked_domain_accounts).reorder(nil).find_each do |attachment|
+    media_from_blocked_domain.find_each do |attachment|
       attachment.file.destroy
     end
   end
@@ -47,5 +47,9 @@ class BlockDomainService < BaseService
 
   def blocked_domain_accounts
     Account.where(domain: blocked_domain)
+  end
+
+  def media_from_blocked_domain
+    MediaAttachment.where(account: blocked_domain_accounts).reorder(nil)
   end
 end
