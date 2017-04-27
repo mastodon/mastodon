@@ -1734,6 +1734,28 @@ button.icon-button.active i.fa-retweet {
   }
 }
 
+.status-card-video, .status-card-rich, .status-card-photo {
+  margin-top: 14px;
+  overflow: hidden;
+
+  iframe {
+    width: 100%;
+    height: auto;
+  }
+}
+
+.status-card-photo {
+  display: block;
+  text-decoration: none;
+
+  img {
+    display: block;
+    width: 100%;
+    height: auto;
+    margin: 0;
+  }
+}
+
 .status-card__title {
   display: block;
   font-weight: 500;
