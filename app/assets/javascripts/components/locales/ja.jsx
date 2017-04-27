@@ -82,7 +82,7 @@ const ja = {
   "notifications.type.status": "ブースト",
   "notifications.type.follow": "フォロワー",
   "notifications.type.follow_request": "フォローリクエスト",
-  "notifications.type.favorite": "お気に入り",
+  "notifications.type.favourite": "お気に入り",
   "privacy.change": "投稿のプライバシーを変更",
   "privacy.direct.long": "メンションしたユーザーだけに公開",
   "privacy.direct.short": "ダイレクト",

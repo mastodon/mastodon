@@ -8,7 +8,7 @@ const messages = defineMessages({
   status: { id: 'notifications.type.status', defaultMessage: 'Reblog' },
   follow: { id: 'notifications.type.follow', defaultMessage: 'Follow' },
   follow_request: { id: 'notifications.type.follow_request', defaultMessage: 'Follow Request' },
-  favorite: { id: 'notifications.type.favorite', defaultMessage: 'Favorite' },
+  favourite: { id: 'notifications.type.favourite', defaultMessage: 'Favourite' },
   change_notification: { id: 'notifications.change', defaultMessage: 'Change Notification Type' }
 });
 
@@ -51,7 +51,7 @@ const NotificationTypeDropdown = React.createClass({
       { icon: 'retweet', value: 'Status', shortText: intl.formatMessage(messages.status) },
       { icon: 'user-plus', value: 'Follow', shortText: intl.formatMessage(messages.follow) },
       { icon: 'handshake-o', value: 'FollowRequest', shortText: intl.formatMessage(messages.follow_request) },
-      { icon: 'star', value: 'Favorite', shortText: intl.formatMessage(messages.favorite) }
+      { icon: 'star', value: 'Favourite', shortText: intl.formatMessage(messages.favourite) }
     ];
 
     const valueOption = options.find(item => item.value === value);
