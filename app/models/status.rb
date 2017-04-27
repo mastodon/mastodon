@@ -124,17 +124,17 @@ class Status < ApplicationRecord
     end
 
     def as_public_timeline(account = nil, local_only = false)
-      query = timeline_scope(local_only).
+      public_timeline_query = timeline_scope(local_only).
         without_replies
 
-      account.nil? ? filter_timeline_default(query) : filter_timeline_for_account(query, account)
+      apply_timeline_filters(public_timeline_query, account)
     end
 
     def as_tag_timeline(tag, account = nil, local_only = false)
-      query = timeline_scope(local_only).
+      tag_timeline_query = timeline_scope(local_only).
         tagged_with(tag)
 
-      account.nil? ? filter_timeline_default(query) : filter_timeline_for_account(query, account)
+      apply_timeline_filters(tag_timeline_query, account)
     end
 
     def timeline_scope(local_only = false)
@@ -189,6 +189,14 @@ class Status < ApplicationRecord
     end
 
     private
+
+    def apply_timeline_filters(query, account)
+      if account.nil?
+        filter_timeline_default(query)
+      else
+        filter_timeline_for_account(query, account)
+      end
+    end
 
     def filter_timeline_for_account(query, account)
       query = query.not_excluded_by_account(account)
