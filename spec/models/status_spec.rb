@@ -261,5 +261,14 @@ RSpec.describe Status, type: :model do
       expect(results).to include(status)
       expect(results).not_to include(other)
     end
+
+    it 'allows replies to be included' do
+      original = Fabricate(:status)
+      tag = Fabricate(:tag)
+      status = Fabricate(:status, tags: [tag], in_reply_to_id: original.id)
+
+      results = Status.as_tag_timeline(tag)
+      expect(results).to include(status)
+    end
   end
 end
