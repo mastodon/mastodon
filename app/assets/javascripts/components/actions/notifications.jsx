@@ -147,6 +147,27 @@ export function expandNotificationsFail(error) {
   };
 };
 
+export function changeNotificationType(types) {
+  return (dispatch, getState) => {
+    dispatch(refreshNotificationsRequest());
+
+    const params = {};
+    const ids    = getState().getIn(['notifications', 'items']);
+
+    params.exclude_types = excludeTypesFromSettings(getState());
+    params.types = types
+
+    api(getState).get('/api/v1/notifications', { params }).then(response => {
+      const next = getLinks(response).refs.find(link => link.rel === 'next');
+
+      dispatch(refreshNotificationsSuccess(response.data, next ? next.uri : null));
+      fetchRelatedRelationships(dispatch, response.data);
+    }).catch(error => {
+      dispatch(refreshNotificationsFail(error));
+    });
+  };
+};
+
 export function clearNotifications() {
   return (dispatch, getState) => {
     dispatch({
