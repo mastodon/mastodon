@@ -20,6 +20,6 @@ module ApplicationHelper
   end
 
   def title
-     Rails.env.production? ? site_title : "#{site_title} (Dev)"
+    Rails.env.production? ? site_title : "#{site_title} (Dev)"
   end
 end
