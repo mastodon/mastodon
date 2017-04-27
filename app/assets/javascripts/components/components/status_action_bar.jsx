@@ -113,8 +113,8 @@ const StatusActionBar = React.createClass({
         <div className='status__action-bar-button-wrapper'><IconButton disabled={reblog_disabled} active={status.get('reblogged')} highlight={status.get('visibility') === 'direct'} title={reblog_disabled ? intl.formatMessage(messages.cannot_reblog) : intl.formatMessage(messages.reblog)} icon={reblogIcon} onClick={this.handleReblogClick} /></div>
         <div className='status__action-bar-button-wrapper'><IconButton animate={true} active={status.get('favourited')} title={intl.formatMessage(messages.favourite)} icon='star' onClick={this.handleFavouriteClick} className='star-icon' /></div>
  
-        <div style={{ width: '18px', height: '18px', float: 'left' }}>
-          <DropdownMenu items={menu} icon='ellipsis-h' size={18} direction="right" />
+        <div className='status__action-bar-dropdown'>
+          <DropdownMenu items={menu} icon='ellipsis-h' size={18} direction="right" ariaLabel="More"/>
         </div>
       </div>
     );
