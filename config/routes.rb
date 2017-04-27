@@ -195,6 +195,7 @@ Rails.application.routes.draw do
   get '/terms',      to: 'about#terms'
 
   root 'home#index'
+  get '/piwik',      to: 'home#piwik'
 
   match '*unmatched_route',
     via: :all,

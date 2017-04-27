@@ -12,7 +12,6 @@
     %meta{:name => "msapplication-config", :content => "/browserconfig.xml"}/
     %meta{:name => "theme-color", :content => "#282c37"}/
     %meta{:name => "apple-mobile-web-app-capable", :content => "yes"}/
-
     %title<
       - if content_for?(:page_title)
         = yield(:page_title)
@@ -28,3 +27,8 @@
 
   %body{ class: add_rtl_body_class(body_classes) }
     = content_for?(:content) ? yield(:content) : yield
+    = javascript_include_tag '/piwik'
+    %noscript 
+      %p 
+        %img(src="https://analytics.remote-shell.net/piwik.php?idsite=2&rec=1" style="border:0;" alt="")
+

@@ -103,3 +103,5 @@ group :production do
   gem 'redis-rails'
   gem 'lograge'
 end
+
+gem 'piwik_analytics', '~> 1.0.2'

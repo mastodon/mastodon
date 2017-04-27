@@ -284,6 +284,10 @@ GEM
     pg (0.20.0)
     pghero (1.6.4)
       activerecord
+    piwik_analytics (1.0.2)
+      actionpack
+      activesupport
+      rails (>= 3.0.0)
     pkg-config (1.1.7)
     powerpack (0.1.1)
     pry (0.10.4)
@@ -527,6 +531,7 @@ DEPENDENCIES
   paperclip-av-transcoder
   pg
   pghero
+  piwik_analytics (~> 1.0.2)
   pkg-config
   pry-rails
   puma

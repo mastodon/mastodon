@@ -1,0 +1,33 @@
+# Configuration:
+# 
+# disabled
+#   false if tracking tag should be shown
+# use_async
+#   Set to true if you want to use asynchronous tracking
+# url
+#   The url of your piwik instance (e.g. localhost/piwik/
+# id_site
+#   The id of your website inside Piwik
+#
+production:
+  piwik:
+    id_site: 2
+    url: analytics.remote-shell.net
+    use_async: false
+    disabled: false
+
+development:
+  piwik:
+    id_site: 1
+    url: localhost
+    disabled: true
+    use_async: false
+    hostname: localhost
+
+test:
+  piwik:
+    id_site: 1
+    url: localhost
+    disabled: true
+    use_async: false
+    hostname: localhost
