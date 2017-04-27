@@ -44,7 +44,7 @@ class Header extends React.PureComponent {
     }
 
     return (
-      <div>
+      <div className='account-timeline__header'>
         <InnerHeader
           account={account}
           me={me}

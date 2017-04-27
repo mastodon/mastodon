@@ -4,9 +4,9 @@ class CharacterCounter extends React.PureComponent {
 
   checkRemainingText (diff) {
     if (diff <= 0) {
-      return <span style={{ fontSize: '16px', cursor: 'default', color: '#ff5050' }}>{diff}</span>;
+      return <span className='character-counter character-counter--over'>{diff}</span>;
     }
-    return <span style={{ fontSize: '16px', cursor: 'default' }}>{diff}</span>;
+    return <span className='character-counter'>{diff}</span>;
   }
 
   render () {

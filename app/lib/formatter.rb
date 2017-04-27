@@ -35,6 +35,8 @@ class Formatter
     return reformat(account.note) unless account.local?
 
     html = encode_and_link_urls(account.note)
+    html = simple_format(html, {}, sanitize: false)
+    html = html.delete("\n")
     html = link_accounts(html)
     html = link_hashtags(html)
 

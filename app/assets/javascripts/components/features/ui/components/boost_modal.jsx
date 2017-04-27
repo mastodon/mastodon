@@ -40,13 +40,13 @@ class BoostModal extends React.PureComponent {
       <div className='modal-root__modal boost-modal'>
         <div className='boost-modal__container'>
           <div className='status light'>
-            <div style={{ fontSize: '15px' }}>
-              <div style={{ float: 'right', fontSize: '14px' }}>
+            <div className='boost-modal__status-header'>
+              <div className='boost-modal__status-time'>
                 <a href={status.get('url')} className='status__relative-time' target='_blank' rel='noopener'><RelativeTimestamp timestamp={status.get('created_at')} /></a>
               </div>
 
-              <a onClick={this.handleAccountClick} href={status.getIn(['account', 'url'])} className='status__display-name' style={{ display: 'block', maxWidth: '100%', paddingRight: '25px' }}>
-                <div className='status__avatar' style={{ position: 'absolute', left: '10px', top: '10px', width: '48px', height: '48px' }}>
+              <a onClick={this.handleAccountClick} href={status.getIn(['account', 'url'])} className='status__display-name'>
+                <div className='status__avatar'>
                   <Avatar src={status.getIn(['account', 'avatar'])} staticSrc={status.getIn(['account', 'avatar_static'])} size={48} />
                 </div>
 

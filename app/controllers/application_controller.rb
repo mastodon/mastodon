@@ -5,8 +5,6 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
-  force_ssl if: "Rails.env.production? && ENV['LOCAL_HTTPS'] == 'true'"
-
   include Localized
 
   helper_method :current_account
@@ -61,6 +59,13 @@ class ApplicationController < ActionController::Base
     respond_to do |format|
       format.any  { head 410 }
       format.html { respond_with_error(410) }
+    end
+  end
+
+  def forbidden
+    respond_to do |format|
+      format.any  { head 403 }
+      format.html { render 'errors/403', layout: 'error', status: 403 }
     end
   end
 

@@ -45,13 +45,13 @@ class DetailedStatus extends React.PureComponent {
     }
 
     if (status.get('application')) {
-      applicationLink = <span> · <a className='detailed-status__application' style={{ color: 'inherit' }} href={status.getIn(['application', 'website'])} target='_blank' rel='nooopener'>{status.getIn(['application', 'name'])}</a></span>;
+      applicationLink = <span> · <a className='detailed-status__application' href={status.getIn(['application', 'website'])} target='_blank' rel='nooopener'>{status.getIn(['application', 'name'])}</a></span>;
     }
 
     return (
-      <div style={{ padding: '14px 10px' }} className='detailed-status'>
-        <a href={status.getIn(['account', 'url'])} onClick={this.handleAccountClick} className='detailed-status__display-name' style={{ display: 'block', overflow: 'hidden', marginBottom: '15px' }}>
-          <div style={{ float: 'left', marginRight: '10px' }}><Avatar src={status.getIn(['account', 'avatar'])} staticSrc={status.getIn(['account', 'avatar_static'])} size={48} /></div>
+      <div className='detailed-status'>
+        <a href={status.getIn(['account', 'url'])} onClick={this.handleAccountClick} className='detailed-status__display-name'>
+          <div className='.detailed-status__display-avatar'><Avatar src={status.getIn(['account', 'avatar'])} staticSrc={status.getIn(['account', 'avatar_static'])} size={48} /></div>
           <DisplayName account={status.get('account')} />
         </a>
 
@@ -60,7 +60,19 @@ class DetailedStatus extends React.PureComponent {
         {media}
 
         <div className='detailed-status__meta'>
-          <a className='detailed-status__datetime' style={{ color: 'inherit' }} href={status.get('url')} target='_blank' rel='noopener'><FormattedDate value={new Date(status.get('created_at'))} hour12={false} year='numeric' month='short' day='2-digit' hour='2-digit' minute='2-digit' /></a>{applicationLink} · <Link to={`/statuses/${status.get('id')}/reblogs`} style={{ color: 'inherit', textDecoration: 'none' }}><i className='fa fa-retweet' /><span style={{ fontWeight: '500', fontSize: '12px', marginLeft: '6px', display: 'inline-block' }}><FormattedNumber value={status.get('reblogs_count')} /></span></Link> · <Link to={`/statuses/${status.get('id')}/favourites`} style={{ color: 'inherit', textDecoration: 'none' }}><i className='fa fa-star' /><span style={{ fontWeight: '500', fontSize: '12px', marginLeft: '6px', display: 'inline-block' }}><FormattedNumber value={status.get('favourites_count')} /></span></Link>
+          <a className='detailed-status__datetime' href={status.get('url')} target='_blank' rel='noopener'>
+            <FormattedDate value={new Date(status.get('created_at'))} hour12={false} year='numeric' month='short' day='2-digit' hour='2-digit' minute='2-digit' />
+          </a>{applicationLink} · <Link to={`/statuses/${status.get('id')}/reblogs`} className='detailed-status__link'>
+            <i className='fa fa-retweet' />
+            <span className='detailed-status__reblogs'>
+              <FormattedNumber value={status.get('reblogs_count')} />
+            </span>
+          </Link> · <Link to={`/statuses/${status.get('id')}/favourites`} className='detailed-status__link'>
+            <i className='fa fa-star' />
+            <span className='detailed-status__favorites'>
+              <FormattedNumber value={status.get('favourites_count')} />
+            </span>
+          </Link>
         </div>
       </div>
     );

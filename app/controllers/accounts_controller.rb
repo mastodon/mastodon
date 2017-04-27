@@ -15,7 +15,9 @@ class AccountsController < ApplicationController
         render xml: AtomSerializer.render(AtomSerializer.new.feed(@account, @entries.to_a))
       end
 
-      format.activitystreams2
+      format.activitystreams2 do
+        headers['Access-Control-Allow-Origin'] = '*'
+      end
     end
   end
 

@@ -98,6 +98,18 @@ RSpec.describe User, type: :model do
     end
   end
 
+  describe '#confirmed?' do
+    it 'returns true when a confirmed_at is set' do
+      user = Fabricate.build(:user, confirmed_at: Time.now.utc)
+      expect(user.confirmed?).to be true
+    end
+
+    it 'returns false if a confirmed_at is nil' do
+      user = Fabricate.build(:user, confirmed_at: nil)
+      expect(user.confirmed?).to be false
+    end
+  end
+
   describe 'whitelist' do
     around(:each) do |example|
       old_whitelist = Rails.configuration.x.email_whitelist
