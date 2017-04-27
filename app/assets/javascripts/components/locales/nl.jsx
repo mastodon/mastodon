@@ -96,7 +96,7 @@ const nl = {
   "privacy.direct.long": "Toot alleen naar vermelde gebruikers",
   "privacy.direct.short": "Direct",
   "privacy.private.long": "Alleen aan volgers tonen",
-  "privacy.private.short": "Privé",
+  "privacy.private.short": "Alleen volgers",
   "privacy.public.long": "Op openbare tijdlijnen tonen",
   "privacy.public.short": "Openbaar",
   "privacy.unlisted.long": "Niet op openbare tijdlijnen tonen",
