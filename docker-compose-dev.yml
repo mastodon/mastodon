@@ -12,15 +12,11 @@ services:
       - ./redis:/data
   web:
     restart: always
-    image: valentinnc/mastodon:stable
+    build: .
     env_file: .env.production
-    environment:
-      - WEB_CONCURRENCY=4
-      - MAX_THREADS=5
-      - DB_POOL=10
     command: bundle exec rails s -p 3000 -b '0.0.0.0'
     ports:
-      - "127.0.0.1:3000:3000"
+      - "3000:3000"
     depends_on:
       - db
       - redis
@@ -29,23 +25,21 @@ services:
       - ./public/system:/mastodon/public/system
   streaming:
     restart: always
-    image: valentinnc/mastodon:stable
+    build: .
     env_file: .env.production
     command: npm run start
     ports:
-      - "127.0.0.1:4000:4000"
+      - "4000:4000"
     depends_on:
       - db
       - redis
   sidekiq:
     restart: always
-    image: valentinnc/mastodon:stable
+    build: .
     env_file: .env.production
-    command: bundle exec sidekiq -c 10 -q default -q mailers -q pull -q push
+    command: bundle exec sidekiq -q default -q mailers -q pull -q push
     depends_on:
       - db
       - redis
     volumes:
       - ./public/system:/mastodon/public/system
-    environment:
-      - DB_POOL=10

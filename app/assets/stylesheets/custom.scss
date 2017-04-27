@@ -1,0 +1,13 @@
+$color1: #23262d !default; // darkest
+
+
+.fa-asterisk:before {
+	content: "\f0c2";
+}
+
+.drawer__inner {
+	background: lighten($color1, 5%);
+}
+
+
+@import 'application';
