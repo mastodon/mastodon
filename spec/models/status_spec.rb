@@ -182,7 +182,16 @@ RSpec.describe Status, type: :model do
       expect(results).not_to include(boost)
     end
 
-    it 'filters out silenced accounts'
+    it 'filters out silenced accounts' do
+      account = Fabricate(:account)
+      silenced_account = Fabricate(:account, silenced: true)
+      status = Fabricate(:status, account: account)
+      silenced_status = Fabricate(:status, account: silenced_account)
+
+      results = Status.as_public_timeline
+      expect(results).to include(status)
+      expect(results).not_to include(silenced_status)
+    end
 
     context 'with a local_only option set' do
       it 'does not include remote instances statuses'
