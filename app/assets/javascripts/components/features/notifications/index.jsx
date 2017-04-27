@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import Column from '../ui/components/column';
-import { expandNotifications, clearNotifications, scrollTopNotifications } from '../../actions/notifications';
+import { expandNotifications, changeNotificationType, clearNotifications, scrollTopNotifications } from '../../actions/notifications';
 import NotificationContainer from './containers/notification_container';
 import { ScrollContainer } from 'react-router-scroll';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
@@ -11,6 +11,7 @@ import { createSelector } from 'reselect';
 import Immutable from 'immutable';
 import LoadMore from '../../components/load_more';
 import ClearColumnButton from './components/clear_column_button';
+import NotificationTypeDropdown from './components/notification_type_dropdown';
 
 const messages = defineMessages({
   title: { id: 'column.notifications', defaultMessage: 'Notifications' },
@@ -78,6 +79,10 @@ const Notifications = React.createClass({
     }
   },
 
+  handleChange (type) {
+    this.props.dispatch(changeNotificationType([type]));
+  },
+
   setRef (c) {
     this.node = c;
   },
@@ -121,6 +126,7 @@ const Notifications = React.createClass({
         <Column icon='bell' active={isUnread} heading={intl.formatMessage(messages.title)}>
           <ColumnSettingsContainer />
           <ClearColumnButton onClick={this.handleClear} />
+          <NotificationTypeDropdown onClick={this.handleChange} />
           <ScrollContainer scrollKey='notifications'>
             {scrollableArea}
           </ScrollContainer>
@@ -131,6 +137,7 @@ const Notifications = React.createClass({
         <Column icon='bell' active={isUnread} heading={intl.formatMessage(messages.title)}>
           <ColumnSettingsContainer />
           <ClearColumnButton onClick={this.handleClear} />
+          <NotificationTypeDropdown onClick={this.handleChange} />
           {scrollableArea}
         </Column>
       );
