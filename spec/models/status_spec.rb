@@ -250,4 +250,16 @@ RSpec.describe Status, type: :model do
       end
     end
   end
+
+  describe '.as_tag_timeline' do
+    it 'includes statuses with a tag' do
+      tag = Fabricate(:tag)
+      status = Fabricate(:status, tags: [tag])
+      other = Fabricate(:status)
+
+      results = Status.as_tag_timeline(tag)
+      expect(results).to include(status)
+      expect(results).not_to include(other)
+    end
+  end
 end
