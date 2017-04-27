@@ -132,7 +132,7 @@ class Status < ApplicationRecord
 
     def as_tag_timeline(tag, account = nil, local_only = false)
       query = joins('LEFT OUTER JOIN accounts ON statuses.account_id = accounts.id')
-              .where(visibility: :public)
+              .with_public_visibility
               .without_reblogs
               .tagged_with(tag)
 
