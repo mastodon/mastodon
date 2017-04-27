@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe Auth::SessionsController, type: :controller do
@@ -87,6 +89,21 @@ RSpec.describe Auth::SessionsController, type: :controller do
 
         it 'logs the user in' do
           expect(controller.current_user).to eq user
+        end
+      end
+
+      context 'when the server has an decryption error' do
+        before do
+          allow_any_instance_of(User).to receive(:validate_and_consume_otp!).and_raise(OpenSSL::Cipher::CipherError)
+          post :create, params: { user: { otp_attempt: user.current_otp } }, session: { otp_user_id: user.id }
+        end
+
+        it 'shows a login error' do
+          expect(flash[:alert]).to match I18n.t('users.invalid_otp_token')
+        end
+
+        it "doesn't log the user in" do
+          expect(controller.current_user).to be_nil
         end
       end
 

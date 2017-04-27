@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class ProviderDiscovery < OEmbed::ProviderDiscovery
-  include HttpHelper
+  extend HttpHelper
 
   class << self
     def discover_provider(url, options = {})

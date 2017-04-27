@@ -39,9 +39,19 @@ class FetchRemoteStatusService < BaseService
 
     Rails.logger.debug "Going to webfinger #{username}@#{domain}"
 
-    return FollowRemoteAccountService.new.call("#{username}@#{domain}")
+    account = FollowRemoteAccountService.new.call("#{username}@#{domain}")
+
+    # If the author's confirmed URLs do not match the domain of the URL
+    # we are reading this from, abort
+    return nil unless confirmed_domain?(domain, account)
+
+    account
   rescue Nokogiri::XML::XPath::SyntaxError
     Rails.logger.debug 'Invalid XML or missing namespace'
     nil
+  end
+
+  def confirmed_domain?(domain, account)
+    domain.casecmp(account.domain).zero? || domain.casecmp(Addressable::URI.parse(account.remote_url).normalize.host).zero?
   end
 end
