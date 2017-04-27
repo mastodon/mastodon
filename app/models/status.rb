@@ -38,11 +38,11 @@ class Status < ApplicationRecord
   scope :without_replies, -> { where('statuses.reply = FALSE OR statuses.in_reply_to_account_id = statuses.account_id') }
   scope :without_reblogs, -> { where('statuses.reblog_of_id IS NULL') }
   scope :with_public_visibility, -> { where(visibility: :public) }
-  scope :tagged_with, -> (tag) { joins(:statuses_tags).where(statuses_tags: { tag_id: tag })}
+  scope :tagged_with, ->(tag) { joins(:statuses_tags).where(statuses_tags: { tag_id: tag }) }
   scope :local_only, -> { left_outer_joins(:account).where(accounts: { domain: nil }) }
   scope :excluding_silenced_accounts, -> { left_outer_joins(:account).where(accounts: { silenced: false }) }
   scope :including_silenced_accounts, -> { left_outer_joins(:account).where(accounts: { silenced: true }) }
-  scope :not_excluded_by_account, -> (account) { where.not(account_id: account.excluded_from_timeline_account_ids) }
+  scope :not_excluded_by_account, ->(account) { where.not(account_id: account.excluded_from_timeline_account_ids) }
 
   cache_associated :account, :application, :media_attachments, :tags, :stream_entry, mentions: :account, reblog: [:account, :application, :stream_entry, :tags, :media_attachments, mentions: :account], thread: :account
 
@@ -124,17 +124,15 @@ class Status < ApplicationRecord
     end
 
     def as_public_timeline(account = nil, local_only = false)
-      public_timeline_query = timeline_scope(local_only).
-        without_replies
+      query = timeline_scope(local_only).without_replies
 
-      apply_timeline_filters(public_timeline_query, account)
+      apply_timeline_filters(query, account)
     end
 
     def as_tag_timeline(tag, account = nil, local_only = false)
-      tag_timeline_query = timeline_scope(local_only).
-        tagged_with(tag)
+      query = timeline_scope(local_only).tagged_with(tag)
 
-      apply_timeline_filters(tag_timeline_query, account)
+      apply_timeline_filters(query, account)
     end
 
     def as_outbox_timeline(account)
@@ -185,9 +183,9 @@ class Status < ApplicationRecord
 
     def timeline_scope(local_only = false)
       starting_scope = local_only ? Status.local_only : Status
-      starting_scope.
-        with_public_visibility.
-        without_reblogs
+      starting_scope
+        .with_public_visibility
+        .without_reblogs
     end
 
     def apply_timeline_filters(query, account)
@@ -200,7 +198,7 @@ class Status < ApplicationRecord
 
     def filter_timeline_for_account(query, account)
       query = query.not_excluded_by_account(account)
-      query = query.merge(account_silencing_filter(account))
+      query.merge(account_silencing_filter(account))
     end
 
     def filter_timeline_default(query)
