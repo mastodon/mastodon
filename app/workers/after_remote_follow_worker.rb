@@ -3,7 +3,7 @@
 class AfterRemoteFollowWorker
   include Sidekiq::Worker
 
-  sidekiq_options retry: 5
+  sidekiq_options queue: 'pull', retry: 5
 
   def perform(follow_id)
     follow          = Follow.find(follow_id)
@@ -13,5 +13,7 @@ class AfterRemoteFollowWorker
 
     follow.destroy
     FollowService.new.call(follow.account, updated_account.acct)
+  rescue ActiveRecord::RecordNotFound
+    true
   end
 end

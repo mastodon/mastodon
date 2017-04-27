@@ -1,24 +1,44 @@
-FROM ruby:2.3.1
+FROM ruby:2.4.1-alpine
 
-ENV RAILS_ENV=production
-ENV NODE_ENV=production
+LABEL maintainer="https://github.com/tootsuite/mastodon" \
+      description="A GNU Social-compatible microblogging server"
 
-RUN echo 'deb http://httpredir.debian.org/debian jessie-backports main contrib non-free' >> /etc/apt/sources.list
-RUN curl -sL https://deb.nodesource.com/setup_4.x | bash -
-RUN apt-get update -qq && apt-get install -y build-essential libpq-dev libxml2-dev libxslt1-dev nodejs ffmpeg && rm -rf /var/lib/apt/lists/*
-RUN npm install -g npm@3 && npm install -g yarn
-RUN mkdir /mastodon
+ENV RAILS_ENV=production \
+    NODE_ENV=production
+
+EXPOSE 3000 4000
 
 WORKDIR /mastodon
 
-ADD Gemfile /mastodon/Gemfile
-ADD Gemfile.lock /mastodon/Gemfile.lock
-RUN bundle install --deployment --without test development
+COPY Gemfile Gemfile.lock package.json yarn.lock /mastodon/
 
-ADD package.json /mastodon/package.json
-ADD yarn.lock /mastodon/yarn.lock
-RUN yarn
+RUN echo "@edge https://nl.alpinelinux.org/alpine/edge/main" >> /etc/apk/repositories \
+ && BUILD_DEPS=" \
+    postgresql-dev \
+    libxml2-dev \
+    libxslt-dev \
+    python \
+    build-base" \
+ && apk -U upgrade && apk add \
+    $BUILD_DEPS \
+    nodejs@edge \
+    nodejs-npm@edge \
+    libpq \
+    libxml2 \
+    libxslt \
+    ffmpeg \
+    file \
+    imagemagick@edge \
+    ca-certificates \
+ && npm install -g npm@3 && npm install -g yarn \
+ && bundle install --deployment --without test development \
+ && yarn --ignore-optional \
+ && yarn cache clean \
+ && npm -g cache clean \
+ && update-ca-certificates \
+ && apk del $BUILD_DEPS \
+ && rm -rf /tmp/* /var/cache/apk/*
 
-ADD . /mastodon
+COPY . /mastodon
 
-VOLUME ["/mastodon/public/system", "/mastodon/public/assets"]
+VOLUME /mastodon/public/system /mastodon/public/assets

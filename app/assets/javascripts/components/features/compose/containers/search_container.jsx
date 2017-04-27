@@ -1,15 +1,15 @@
 import { connect } from 'react-redux';
 import {
   changeSearch,
-  clearSearchSuggestions,
-  fetchSearchSuggestions,
-  resetSearch
+  clearSearch,
+  submitSearch,
+  showSearch
 } from '../../../actions/search';
 import Search from '../components/search';
 
 const mapStateToProps = state => ({
-  suggestions: state.getIn(['search', 'suggestions']),
-  value: state.getIn(['search', 'value'])
+  value: state.getIn(['search', 'value']),
+  submitted: state.getIn(['search', 'submitted'])
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -19,15 +19,15 @@ const mapDispatchToProps = dispatch => ({
   },
 
   onClear () {
-    dispatch(clearSearchSuggestions());
+    dispatch(clearSearch());
   },
 
-  onFetch (value) {
-    dispatch(fetchSearchSuggestions(value));
+  onSubmit () {
+    dispatch(submitSearch());
   },
 
-  onReset () {
-    dispatch(resetSearch());
+  onShow () {
+    dispatch(showSearch());
   }
 
 });

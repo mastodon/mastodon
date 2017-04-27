@@ -22,7 +22,7 @@ export default function errorsMiddleware() {
 
           dispatch(showAlert(title, message));
         } else {
-          console.error(action.error);
+          console.error(action.error); // eslint-disable-line no-console
           dispatch(showAlert('Oops!', 'An unexpected error occurred.'));
         }
       }

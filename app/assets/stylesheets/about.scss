@@ -64,7 +64,7 @@
   p, li {
     font: 16px/28px 'Montserrat', sans-serif;
     font-weight: 400;
-    margin-bottom: 26px;
+    margin-bottom: 12px;
 
     a {
       color: $color4;
@@ -114,10 +114,6 @@
       padding: 20px;
     }
 
-    .screenshot-with-signup .mascot {
-      display: none;
-    }
-
     .features-list {
       display: block;
     }
@@ -156,6 +152,14 @@
       font-size: 32px;
       line-height: 48px;
       color: $color5;
+    }
+  }
+
+  @media screen and (max-width: 500px) {
+    flex-direction: column;
+
+    .section {
+      text-align: left;
     }
   }
 }
@@ -206,6 +210,7 @@
   strong {
     display: block;
     color: $color5;
+    word-break: break-word;
   }
 }
 
@@ -281,6 +286,15 @@
       }
     }
   }
+
+  @media screen and (max-width: 625px) {
+    flex-direction: column;
+
+    .sidebar {
+      border: 1px solid lighten($color1, 10%);
+      width: auto;
+    }
+  }
 }
 
 .features-list {
@@ -319,7 +333,7 @@
     }
   }
 
-  .simple_form {
+  .simple_form, .closed-registrations-message {
     width: 300px;
     flex: 0 0 auto;
     background: rgba(darken($color1, 7%), 0.5);
@@ -339,4 +353,22 @@
       }
     }
   }
+
+  @media screen and (max-width: 625px) {
+    .mascot {
+      display: none;
+    }
+
+    .simple_form, .closed-registrations-message {
+      flex: auto;
+    }
+  }
+}
+
+.closed-registrations-message {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
 }

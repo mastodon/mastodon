@@ -35,22 +35,12 @@ sudo apt-get install \
   libreadline-dev \
   -y
 
-# Install rbenv
-git clone https://github.com/rbenv/rbenv.git ~/.rbenv
-cd ~/.rbenv && src/configure && make -C src
-echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bash_profile
-echo 'eval "$(rbenv init -)"' >> ~/.bash_profile
-
-git clone https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build
-
-export PATH="$HOME/.rbenv/bin::$PATH"
-eval "$(rbenv init -)"
-
-echo "Compiling Ruby 2.3.1: warning, this takes a while!!!"
-rbenv install 2.3.1
-rbenv global 2.3.1
-
+# Install rvm
 cd /vagrant
+read RUBY_VERSION < .ruby-version
+gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3
+curl -sSL https://get.rvm.io | bash -s stable --ruby=$RUBY_VERSION
+source /home/vagrant/.rvm/scripts/rvm
 
 # Configure database
 sudo -u postgres createuser -U postgres vagrant -s
@@ -62,6 +52,7 @@ bundle install
 yarn install
 
 # Build Mastodon
+export $(cat ".env.vagrant" | xargs)
 bundle exec rails db:setup
 bundle exec rails assets:precompile
 
@@ -84,6 +75,16 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.provider :virtualbox do |vb|
     vb.name = "mastodon"
     vb.customize ["modifyvm", :id, "--memory", "1024"]
+
+    # Disable VirtualBox DNS proxy to skip long-delay IPv6 resolutions.
+    # https://github.com/mitchellh/vagrant/issues/1172
+    vb.customize ["modifyvm", :id, "--natdnsproxy1", "off"]
+    vb.customize ["modifyvm", :id, "--natdnshostresolver1", "off"]
+
+    # Use "virtio" network interfaces for better performance.
+    vb.customize ["modifyvm", :id, "--nictype1", "virtio"]
+    vb.customize ["modifyvm", :id, "--nictype2", "virtio"]
+
   end
 
   config.vm.hostname = "mastodon.dev"
@@ -91,10 +92,16 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # This uses the vagrant-hostsupdater plugin, and lets you
   # access the development site at http://mastodon.dev.
   # To install:
-  #   $ vagrant plugin install hostsupdater
+  #   $ vagrant plugin install vagrant-hostsupdater
   if defined?(VagrantPlugins::HostsUpdater)
-    config.vm.network :private_network, ip: "192.168.42.42"
+    config.vm.network :private_network, ip: "192.168.42.42", nictype: "virtio"
     config.hostsupdater.remove_on_suspend = false
+  end
+
+  if config.vm.networks.any? { |type, options| type == :private_network }
+    config.vm.synced_folder ".", "/vagrant", type: "nfs", mount_options: ['rw', 'vers=3', 'tcp']
+  else
+    config.vm.synced_folder ".", "/vagrant"
   end
 
   # Otherwise, you can access the site at http://localhost:3000

@@ -10,31 +10,6 @@ class AuthorizeFollowService < BaseService
   private
 
   def build_xml(follow_request)
-    Nokogiri::XML::Builder.new do |xml|
-      entry(xml, true) do
-        unique_id xml, Time.now.utc, follow_request.id, 'FollowRequest'
-        title xml, "#{follow_request.target_account.acct} authorizes follow request by #{follow_request.account.acct}"
-
-        author(xml) do
-          include_author xml, follow_request.target_account
-        end
-
-        object_type xml, :activity
-        verb xml, :authorize
-
-        target(xml) do
-          author(xml) do
-            include_author xml, follow_request.account
-          end
-
-          object_type xml, :activity
-          verb xml, :request_friend
-
-          target(xml) do
-            include_author xml, follow_request.target_account
-          end
-        end
-      end
-    end.to_xml
+    AtomSerializer.render(AtomSerializer.new.authorize_follow_request_salmon(follow_request))
   end
 end

@@ -1,6 +1,6 @@
 import ColumnsArea from './components/columns_area';
 import NotificationsContainer from './containers/notifications_container';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
+import PropTypes from 'prop-types';
 import LoadingBarContainer from './containers/loading_bar_container';
 import HomeTimeline from '../home_timeline';
 import Compose from '../compose';
@@ -15,37 +15,57 @@ import { refreshTimeline } from '../../actions/timelines';
 import { refreshNotifications } from '../../actions/notifications';
 import UploadArea from './components/upload_area';
 
-const UI = React.createClass({
+class UI extends React.PureComponent {
 
-  propTypes: {
-    dispatch: React.PropTypes.func.isRequired,
-    children: React.PropTypes.node
-  },
-
-  getInitialState () {
-    return {
+  constructor (props, context) {
+    super(props, context);
+    this.state = {
       width: window.innerWidth,
       draggingOver: false
     };
-  },
-
-  mixins: [PureRenderMixin],
+    this.handleResize = this.handleResize.bind(this);
+    this.handleDragEnter = this.handleDragEnter.bind(this);
+    this.handleDragOver = this.handleDragOver.bind(this);
+    this.handleDrop = this.handleDrop.bind(this);
+    this.handleDragLeave = this.handleDragLeave.bind(this);
+    this.handleDragEnd = this.handleDragLeave.bind(this)
+    this.closeUploadModal = this.closeUploadModal.bind(this)
+    this.setRef = this.setRef.bind(this);
+  }
 
   @debounce(500)
   handleResize () {
     this.setState({ width: window.innerWidth });
-  },
+  }
+
+  handleDragEnter (e) {
+    e.preventDefault();
+
+    if (!this.dragTargets) {
+      this.dragTargets = [];
+    }
+
+    if (this.dragTargets.indexOf(e.target) === -1) {
+      this.dragTargets.push(e.target);
+    }
+
+    if (e.dataTransfer && e.dataTransfer.types.includes('Files')) {
+      this.setState({ draggingOver: true });
+    }
+  }
 
   handleDragOver (e) {
     e.preventDefault();
     e.stopPropagation();
 
-    e.dataTransfer.dropEffect = 'copy';
+    try {
+      e.dataTransfer.dropEffect = 'copy';
+    } catch (err) {
 
-    if (e.dataTransfer.effectAllowed === 'all' || e.dataTransfer.effectAllowed === 'uninitialized') {
-      this.setState({ draggingOver: true });
     }
-  },
+
+    return false;
+  }
 
   handleDrop (e) {
     e.preventDefault();
@@ -55,26 +75,49 @@ const UI = React.createClass({
     if (e.dataTransfer && e.dataTransfer.files.length === 1) {
       this.props.dispatch(uploadCompose(e.dataTransfer.files));
     }
-  },
+  }
 
-  handleDragLeave () {
+  handleDragLeave (e) {
+    e.preventDefault();
+    e.stopPropagation();
+
+    this.dragTargets = this.dragTargets.filter(el => el !== e.target && this.node.contains(el));
+
+    if (this.dragTargets.length > 0) {
+      return;
+    }
+
     this.setState({ draggingOver: false });
-  },
+  }
+
+  closeUploadModal() {
+    this.setState({ draggingOver: false });
+  }
 
   componentWillMount () {
     window.addEventListener('resize', this.handleResize, { passive: true });
-    window.addEventListener('dragover', this.handleDragOver);
-    window.addEventListener('drop', this.handleDrop);
+    document.addEventListener('dragenter', this.handleDragEnter, false);
+    document.addEventListener('dragover', this.handleDragOver, false);
+    document.addEventListener('drop', this.handleDrop, false);
+    document.addEventListener('dragleave', this.handleDragLeave, false);
+    document.addEventListener('dragend', this.handleDragEnd, false);
 
     this.props.dispatch(refreshTimeline('home'));
     this.props.dispatch(refreshNotifications());
-  },
+  }
 
   componentWillUnmount () {
     window.removeEventListener('resize', this.handleResize);
-    window.removeEventListener('dragover', this.handleDragOver);
-    window.removeEventListener('drop', this.handleDrop);
-  },
+    document.removeEventListener('dragenter', this.handleDragEnter);
+    document.removeEventListener('dragover', this.handleDragOver);
+    document.removeEventListener('drop', this.handleDrop);
+    document.removeEventListener('dragleave', this.handleDragLeave);
+    document.removeEventListener('dragend', this.handleDragEnd);
+  }
+
+  setRef (c) {
+    this.node = c;
+  }
 
   render () {
     const { width, draggingOver } = this.state;
@@ -92,27 +135,32 @@ const UI = React.createClass({
       mountedColumns = (
         <ColumnsArea>
           <Compose withHeader={true} />
-          <HomeTimeline trackScroll={false} />
-          <Notifications trackScroll={false} />
-          {children}
+          <HomeTimeline shouldUpdateScroll={() => false} />
+          <Notifications shouldUpdateScroll={() => false} />
+          <div style={{display: 'flex', flex: '1 1 auto', position: 'relative'}}>{children}</div>
         </ColumnsArea>
       );
     }
 
     return (
-      <div className='ui' onDragLeave={this.handleDragLeave}>
+      <div className='ui' ref={this.setRef}>
         <TabsBar />
 
         {mountedColumns}
 
         <NotificationsContainer />
-        <LoadingBarContainer style={{ backgroundColor: '#2b90d9', left: '0', top: '0' }} />
+        <LoadingBarContainer className="loading-bar" />
         <ModalContainer />
-        <UploadArea active={draggingOver} />
+        <UploadArea active={draggingOver} onClose={this.closeUploadModal} />
       </div>
     );
   }
 
-});
+}
+
+UI.propTypes = {
+  dispatch: PropTypes.func.isRequired,
+  children: PropTypes.node
+};
 
 export default connect()(UI);

@@ -1,9 +1,11 @@
-import PureRenderMixin from 'react-addons-pure-render-mixin';
 import ImmutablePropTypes from 'react-immutable-proptypes';
+import PropTypes from 'prop-types';
 import emojify from '../../../emoji';
 import escapeTextContentForBrowser from 'escape-html';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import IconButton from '../../../components/icon_button';
+import { Motion, spring } from 'react-motion';
+import { connect } from 'react-redux';
 
 const messages = defineMessages({
   unfollow: { id: 'account.unfollow', defaultMessage: 'Unfollow' },
@@ -11,16 +13,68 @@ const messages = defineMessages({
   requested: { id: 'account.requested', defaultMessage: 'Awaiting approval' }
 });
 
-const Header = React.createClass({
+const makeMapStateToProps = () => {
+  const mapStateToProps = (state, props) => ({
+    autoPlayGif: state.getIn(['meta', 'auto_play_gif'])
+  });
 
-  propTypes: {
-    account: ImmutablePropTypes.map,
-    me: React.PropTypes.number.isRequired,
-    onFollow: React.PropTypes.func.isRequired,
-    intl: React.PropTypes.object.isRequired
-  },
+  return mapStateToProps;
+};
 
-  mixins: [PureRenderMixin],
+class Avatar extends React.PureComponent {
+
+  constructor (props, context) {
+    super(props, context);
+
+    this.state = {
+      isHovered: false
+    };
+
+    this.handleMouseOver = this.handleMouseOver.bind(this);
+    this.handleMouseOut = this.handleMouseOut.bind(this);
+  }
+
+  handleMouseOver () {
+    if (this.state.isHovered) return;
+    this.setState({ isHovered: true });
+  }
+
+  handleMouseOut () {
+    if (!this.state.isHovered) return;
+    this.setState({ isHovered: false });
+  }
+
+  render () {
+    const { account, autoPlayGif }   = this.props;
+    const { isHovered } = this.state;
+
+    return (
+      <Motion defaultStyle={{ radius: 90 }} style={{ radius: spring(isHovered ? 30 : 90, { stiffness: 180, damping: 12 }) }}>
+        {({ radius }) =>
+          <a
+            href={account.get('url')}
+            className='account__header__avatar'
+            target='_blank'
+            rel='noopener'
+            style={{ borderRadius: `${radius}px`, backgroundImage: `url(${autoPlayGif || isHovered ? account.get('avatar') : account.get('avatar_static')})` }}
+            onMouseOver={this.handleMouseOver}
+            onMouseOut={this.handleMouseOut}
+            onFocus={this.handleMouseOver}
+            onBlur={this.handleMouseOut}
+          />
+        }
+      </Motion>
+    );
+  }
+
+}
+
+Avatar.propTypes = {
+  account: ImmutablePropTypes.map.isRequired,
+  autoPlayGif: PropTypes.bool.isRequired
+};
+
+class Header extends React.Component {
 
   render () {
     const { account, me, intl } = this.props;
@@ -68,14 +122,9 @@ const Header = React.createClass({
     return (
       <div className='account__header' style={{ backgroundImage: `url(${account.get('header')})` }}>
         <div style={{ padding: '20px 10px' }}>
-          <a href={account.get('url')} target='_blank' rel='noopener' style={{ display: 'block', color: 'inherit', textDecoration: 'none' }}>
-            <div className='account__header__avatar' style={{ width: '90px', margin: '0 auto', marginBottom: '10px' }}>
-              <img src={account.get('avatar')} alt='' style={{ display: 'block', width: '90px', height: '90px', borderRadius: '90px' }} />
-            </div>
+          <Avatar account={account} autoPlayGif={this.props.autoPlayGif} />
 
-            <span style={{ display: 'inline-block', fontSize: '20px', lineHeight: '27px', fontWeight: '500' }} className='account__header__display-name' dangerouslySetInnerHTML={displayNameHTML} />
-          </a>
-
+          <span style={{ display: 'inline-block', fontSize: '20px', lineHeight: '27px', fontWeight: '500' }} className='account__header__display-name' dangerouslySetInnerHTML={displayNameHTML} />
           <span className='account__header__username' style={{ fontSize: '14px', fontWeight: '400', display: 'block', marginBottom: '10px' }}>@{account.get('acct')} {lockedIcon}</span>
           <div style={{ fontSize: '14px' }} className='account__header__content' dangerouslySetInnerHTML={content} />
 
@@ -86,6 +135,14 @@ const Header = React.createClass({
     );
   }
 
-});
+}
 
-export default injectIntl(Header);
+Header.propTypes = {
+  account: ImmutablePropTypes.map,
+  me: PropTypes.number.isRequired,
+  onFollow: PropTypes.func.isRequired,
+  intl: PropTypes.object.isRequired,
+  autoPlayGif: PropTypes.bool.isRequired
+};
+
+export default connect(makeMapStateToProps)(injectIntl(Header));

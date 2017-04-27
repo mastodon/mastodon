@@ -1,0 +1,160 @@
+---
+'no':
+  about:
+    about_mastodon: Mastodon er et sosialt nettverk laget med <em>fri programvare</em>. Et <em>desentralisert</em> alternativ til kommersielle plattformer. Slik kan det unngå risikoene ved å ha et enkelt selskap som monopoliserer din kommunikasjon. Velg en tjener du stoler på &mdash; uansett hvilken du velger så kan du kommunisere med alle andre. Alle kan kjøre sin egen Mastodon og delta sømløst i det sosiale nettverket.
+    about_this: Om denne instansen
+    apps: Applikasjoner
+    business_email: 'Bedriftsepost:'
+    contact: Kontakt
+    description_headline: Hva er %{domain}?
+    domain_count_after: andre instanser
+    domain_count_before: Koblet til
+    features:
+      api: Åpent API for applikasjoner og tjenester
+      blocks: Rikholdige blokkeringsverktøy
+      characters: 500 tegn per status
+      chronology: Tidslinjer er kronologiske
+      ethics: 'Etisk design: Ingen reklame, ingen sporing'
+      gifv: Støtte for GIFV og korte videoer
+      privacy: Finmaskede personvernsinnstillinger
+      public: Felles tidslinjer
+    features_headline: Hva skiller Mastodon fra andre sosiale nettverk
+    get_started: Kom i gang
+    links: Lenker
+    other_instances: Andre instanser
+    source_code: Kildekode
+    status_count_after: statuser
+    status_count_before: Som skrev
+    terms: Betingelser
+    user_count_after: brukere
+    user_count_before: Her bor
+  accounts:
+    follow: Følg
+    followers: Følgere
+    following: Følger
+    nothing_here: Det er ingenting her!
+    people_followed_by: Folk som %{name} følger
+    people_who_follow: Folk som følger %{name}
+    posts: Poster
+    remote_follow: Følg fra andre instanser
+    unfollow: Avfølg
+  application_mailer:
+    settings: 'Endre foretrukne epost innstillinger: %{link}'
+    signature: Mastodon-notiser fra %{instance}
+    view: 'Se:'
+  applications:
+    invalid_url: Den oppgitte URLen er ugyldig
+  auth:
+    change_password: Brukerdetaljer
+    didnt_get_confirmation: Fikk du ikke bekreftelsesmailen din?
+    forgot_password: Har du glemt passordet ditt?
+    login: Innlogging
+    logout: Logg ut
+    register: Bli med
+    resend_confirmation: Send bekreftelsesinstruksjoner på nytt
+    reset_password: Nullstill passord
+    set_new_password: Sett nytt passord
+  authorize_follow:
+    error: Uheldigvis så skjedde det en feil da vi prøvde å få tak i en bruker fra en annen instans.
+    follow: Følg
+    prompt_html: 'Du (<strong>%{self}</strong>) har spurt om å følge:'
+    title: Følg %{acct}
+  datetime:
+    distance_in_words:
+      about_x_hours: "%{count} timer"
+      about_x_months: "%{count} mnd"
+      about_x_years: "%{count} år"
+      almost_x_years: "%{count} år"
+      half_a_minute: Nettopp
+      less_than_x_minutes: "%{count} min"
+      less_than_x_seconds: Nettopp
+      over_x_years: "%{count} år"
+      x_days: "%{count} dager"
+      x_minutes: "%{count} min"
+      x_months: "%{count} mnd"
+      x_seconds: "%{count} sek"
+  exports:
+    blocks: Du blokkerer
+    csv: CSV
+    follows: Du følger
+    storage: Medialagring
+  generic:
+    changes_saved_msg: Vellykket lagring av endringer!
+    powered_by: drevet av %{link}
+    save_changes: Lagre endringer
+    validation_errors:
+      one: Noe er ikke helt riktig ennå. Vennligst se etter en gang til
+      other: Noe er ikke helt riktig ennå. Det er ennå %{count} feil å rette på
+  imports:
+    preface: Du kan importere data om brukere du følger eller blokkerer til kontoen din på denne instansen med eksportfiler fra andre instanser.
+    success: Din data ble mottatt og vil bli behandlet så fort som mulig.
+    types:
+      blocking: Blokkeringsliste
+      following: Følgeliste
+    upload: Opplastning
+  landing_strip_html: <strong>%{name}</strong> er en bruker på %{link_to_root_path}. Du kan følge dem eller kommunisere med dem hvis du har en konto hvor som helst i fediverset. Hvis du ikke har en konto så kan du <a href="%{sign_up_path}">registrere deg her</a>.
+  notification_mailer:
+    digest:
+      body: 'Her er en kort oppsummering av hva du har gått glipp av på %{instance} siden du logget deg inn sist den %{since}:'
+      mention: "%{name} nevnte deg i:"
+      new_followers_summary:
+        one: Du har fått en ny følger. Jippi!
+        other: Du har fått %{count} nye følgere! Imponerende!
+      subject:
+        one: "1 ny hendelse siden ditt siste besøk \U0001F418"
+        other: "%{count} nye hendelser siden ditt siste besøk \U0001F418"
+    favourite:
+      body: 'Din status ble likt av %{name}'
+      subject: "%{name} likte din status."
+    follow:
+      body: "%{name} følger deg!"
+      subject: "%{name} følger deg"
+    follow_request:
+      body: "%{name} har bedt om lov til å følge deg"
+      subject: 'Ventende følginger: %{name}'
+    mention:
+      body: 'Du ble nevnt av %{name} i:'
+      subject: Du ble nevnt av %{name}
+    reblog:
+      body: 'Din status ble fremhevd av %{name}:'
+      subject: "%{name} fremhevde din status"
+  pagination:
+    next: Neste
+    prev: Forrige
+  remote_follow:
+    acct: Tast inn brukernavn@domene som du vil følge fra
+    missing_resource: Kunne ikke finne URLen for din konto
+    proceed: Fortsett med følging
+    prompt: 'Du vil følge:'
+  settings:
+    authorized_apps: Autoriserte applikasjoner
+    back: Tilbake til Mastodon
+    edit_profile: Endre profil
+    export: Dataeksport
+    import: Importér
+    preferences: Preferanser
+    settings: Innstillinger
+    two_factor_authentication: Tofaktorautentisering
+  statuses:
+    open_in_web: Åpne i nettleser
+    over_character_limit: grense på %{max} tegn overskredet
+    show_more: Vis mer
+    visibilities:
+      private: Vis kun til følgere
+      public: Offentlig
+      unlisted: Offentlig, men vis ikke på felles tidslinje
+  stream_entries:
+    click_to_show: Klikk for å vise
+    reblogged: fremhevde
+    sensitive_content: Følsomt innhold
+  time:
+    formats:
+      default: "%d, %b %Y, %H:%M"
+  two_factor_authentication:
+    description_html: Hvis du skrur på <strong>tofaktorautentisering</strong> må du ha din telefon for å logge inn. Denne vil generere koder som du må taste inn.
+    disable: Skru av
+    enable: Skru på
+    instructions_html: "<strong>Scan denne QR-koden i Google Authenticator eller en lignende app på telefonen din</strong>. Fra nå av vil denne applikasjonen generere koder for deg som skal brukes under innlogging"
+  users:
+    invalid_email: E-postaddressen er ugyldig
+    invalid_otp_token: Ugyldig tofaktorkode

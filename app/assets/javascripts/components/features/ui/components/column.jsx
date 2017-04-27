@@ -1,5 +1,5 @@
 import ColumnHeader from './column_header';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
+import PropTypes from 'prop-types';
 
 const easingOutQuint = (x, t, b, c, d) => c*((t=t/d-1)*t*t*t*t + 1) + b;
 
@@ -29,45 +29,54 @@ const scrollTop = (node) => {
   };
 };
 
-const Column = React.createClass({
+class Column extends React.PureComponent {
 
-  propTypes: {
-    heading: React.PropTypes.string,
-    icon: React.PropTypes.string,
-    children: React.PropTypes.node,
-    active: React.PropTypes.bool
-  },
-
-  mixins: [PureRenderMixin],
+  constructor (props, context) {
+    super(props, context);
+    this.handleHeaderClick = this.handleHeaderClick.bind(this);
+    this.handleWheel = this.handleWheel.bind(this);
+  }
 
   handleHeaderClick () {
-    let node = ReactDOM.findDOMNode(this);
-    this._interruptScrollAnimation = scrollTop(node.querySelector('.scrollable'));
-  },
+    const scrollable = ReactDOM.findDOMNode(this).querySelector('.scrollable');
+    if (!scrollable) {
+      return;
+    }
+    this._interruptScrollAnimation = scrollTop(scrollable);
+  }
 
   handleWheel () {
     if (typeof this._interruptScrollAnimation !== 'undefined') {
       this._interruptScrollAnimation();
     }
-  },
+  }
 
   render () {
-    const { heading, icon, children, active } = this.props;
+    const { heading, icon, children, active, hideHeadingOnMobile } = this.props;
 
+    let columnHeaderId = null
     let header = '';
 
     if (heading) {
-      header = <ColumnHeader icon={icon} active={active} type={heading} onClick={this.handleHeaderClick} />;
+      columnHeaderId = heading.replace(/ /g, '-')
+      header = <ColumnHeader icon={icon} active={active} type={heading} onClick={this.handleHeaderClick} hideOnMobile={hideHeadingOnMobile} columnHeaderId={columnHeaderId}/>;
     }
-
     return (
-      <div className='column' onWheel={this.handleWheel}>
+      <div role='region' aria-labelledby={columnHeaderId} className='column' onWheel={this.handleWheel}>
         {header}
         {children}
       </div>
     );
   }
 
-});
+}
+
+Column.propTypes = {
+  heading: PropTypes.string,
+  icon: PropTypes.string,
+  children: PropTypes.node,
+  active: PropTypes.bool,
+  hideHeadingOnMobile: PropTypes.bool
+};
 
 export default Column;

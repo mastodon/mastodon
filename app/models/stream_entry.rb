@@ -5,25 +5,21 @@ class StreamEntry < ApplicationRecord
 
   belongs_to :account, inverse_of: :stream_entries
   belongs_to :activity, polymorphic: true
-
   belongs_to :status, foreign_type: 'Status', foreign_key: 'activity_id', inverse_of: :stream_entry
 
   validates :account, :activity, presence: true
 
-  STATUS_INCLUDES = [:account, :stream_entry, :media_attachments, :tags, mentions: :account, reblog: [:stream_entry, :account, mentions: :account], thread: [:stream_entry, :account]].freeze
+  STATUS_INCLUDES = [:account, :stream_entry, :media_attachments, :tags, mentions: :account, reblog: [:stream_entry, :account, :media_attachments, :tags, mentions: :account], thread: [:stream_entry, :account]].freeze
 
+  default_scope { where(activity_type: 'Status') }
   scope :with_includes, -> { includes(:account, status: STATUS_INCLUDES) }
 
   def object_type
-    if orphaned?
-      :activity
-    else
-      targeted? ? :activity : activity.object_type
-    end
+    orphaned? || targeted? ? :activity : status.object_type
   end
 
   def verb
-    orphaned? ? :delete : activity.verb
+    orphaned? ? :delete : status.verb
   end
 
   def targeted?
@@ -31,15 +27,15 @@ class StreamEntry < ApplicationRecord
   end
 
   def target
-    orphaned? ? nil : activity.target
+    orphaned? ? nil : status.target
   end
 
   def title
-    orphaned? ? nil : activity.title
+    orphaned? ? nil : status.title
   end
 
   def content
-    orphaned? ? nil : activity.content
+    orphaned? ? nil : status.content
   end
 
   def threaded?
@@ -47,20 +43,16 @@ class StreamEntry < ApplicationRecord
   end
 
   def thread
-    orphaned? ? nil : activity.thread
+    orphaned? ? nil : status.thread
   end
 
   def mentions
-    activity.respond_to?(:mentions) ? activity.mentions.map(&:account) : []
-  end
-
-  def activity
-    !new_record? ? send(activity_type.underscore) || super : super
+    orphaned? ? [] : status.mentions.map(&:account)
   end
 
   private
 
   def orphaned?
-    activity.nil?
+    status.nil?
   end
 end

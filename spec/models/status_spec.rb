@@ -91,10 +91,66 @@ RSpec.describe Status, type: :model do
   end
 
   describe '#reblogs_count' do
-    pending
+    it 'is the number of reblogs' do
+      Fabricate(:status, account: bob, reblog: subject)
+      Fabricate(:status, account: alice, reblog: subject)
+
+      expect(subject.reblogs_count).to eq 2
+    end
   end
 
   describe '#favourites_count' do
+    it 'is the number of favorites' do
+      Fabricate(:favourite, account: bob, status: subject)
+      Fabricate(:favourite, account: alice, status: subject)
+
+      expect(subject.favourites_count).to eq 2
+    end
+  end
+
+  describe '#proper' do
+    it 'is itself for original statuses' do
+      expect(subject.proper).to eq subject
+    end
+
+    it 'is the source status for reblogs' do
+      subject.reblog = other
+      expect(subject.proper).to eq other
+    end
+  end
+
+  describe '#permitted?' do
     pending
+  end
+
+  describe '#filter_from_context?' do
+    pending
+  end
+
+  describe '.as_home_timeline' do
+    before do
+      account = Fabricate(:account)
+      followed = Fabricate(:account)
+      not_followed = Fabricate(:account)
+      Fabricate(:follow, account: account, target_account: followed)
+
+      @self_status = Fabricate(:status, account: account)
+      @followed_status = Fabricate(:status, account: followed)
+      @not_followed_status = Fabricate(:status, account: not_followed)
+
+      @results = Status.as_home_timeline(account)
+    end
+
+    it 'includes statuses from self' do
+      expect(@results).to include(@self_status)
+    end
+
+    it 'includes statuses from followed' do
+      expect(@results).to include(@followed_status)
+    end
+
+    it 'does not include statuses from non-followed' do
+      expect(@results).not_to include(@not_followed_status)
+    end
   end
 end

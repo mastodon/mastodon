@@ -12,7 +12,8 @@ class SuspendAccountService < BaseService
   private
 
   def purge_content
-    @account.statuses.find_each do |status|
+    @account.statuses.reorder(nil).find_each do |status|
+      # This federates out deletes to previous followers
       RemoveStatusService.new.call(status)
     end
 
@@ -29,9 +30,7 @@ class SuspendAccountService < BaseService
     @account.display_name = ''
     @account.note         = ''
     @account.avatar.destroy
-    @account.avatar.clear
     @account.header.destroy
-    @account.header.clear
     @account.save!
   end
 

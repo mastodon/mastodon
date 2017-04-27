@@ -1,10 +1,11 @@
 # frozen_string_literal: true
 
 class Api::V1::AccountsController < ApiController
-  before_action -> { doorkeeper_authorize! :read }, except: [:follow, :unfollow, :block, :unblock, :mute, :unmute]
+  before_action -> { doorkeeper_authorize! :read }, except: [:follow, :unfollow, :block, :unblock, :mute, :unmute, :update_credentials]
   before_action -> { doorkeeper_authorize! :follow }, only: [:follow, :unfollow, :block, :unblock, :mute, :unmute]
+  before_action -> { doorkeeper_authorize! :write }, only: [:update_credentials]
   before_action :require_user!, except: [:show, :following, :followers, :statuses]
-  before_action :set_account, except: [:verify_credentials, :suggestions, :search]
+  before_action :set_account, except: [:verify_credentials, :update_credentials, :suggestions, :search]
 
   respond_to :json
 
@@ -12,7 +13,13 @@ class Api::V1::AccountsController < ApiController
 
   def verify_credentials
     @account = current_user.account
-    render action: :show
+    render :show
+  end
+
+  def update_credentials
+    current_account.update!(account_params)
+    @account = current_account
+    render :show
   end
 
   def following
@@ -20,14 +27,12 @@ class Api::V1::AccountsController < ApiController
     accounts  = Account.where(id: results.map(&:target_account_id)).map { |a| [a.id, a] }.to_h
     @accounts = results.map { |f| accounts[f.target_account_id] }
 
-    # set_account_counters_maps(@accounts)
-
-    next_path = following_api_v1_account_url(max_id: results.last.id)    if results.size == limit_param(DEFAULT_ACCOUNTS_LIMIT)
-    prev_path = following_api_v1_account_url(since_id: results.first.id) unless results.empty?
+    next_path = following_api_v1_account_url(pagination_params(max_id: results.last.id))    if results.size == limit_param(DEFAULT_ACCOUNTS_LIMIT)
+    prev_path = following_api_v1_account_url(pagination_params(since_id: results.first.id)) unless results.empty?
 
     set_pagination_headers(next_path, prev_path)
 
-    render action: :index
+    render :index
   end
 
   def followers
@@ -35,14 +40,12 @@ class Api::V1::AccountsController < ApiController
     accounts  = Account.where(id: results.map(&:account_id)).map { |a| [a.id, a] }.to_h
     @accounts = results.map { |f| accounts[f.account_id] }
 
-    # set_account_counters_maps(@accounts)
-
-    next_path = followers_api_v1_account_url(max_id: results.last.id)    if results.size == limit_param(DEFAULT_ACCOUNTS_LIMIT)
-    prev_path = followers_api_v1_account_url(since_id: results.first.id) unless results.empty?
+    next_path = followers_api_v1_account_url(pagination_params(max_id: results.last.id))    if results.size == limit_param(DEFAULT_ACCOUNTS_LIMIT)
+    prev_path = followers_api_v1_account_url(pagination_params(since_id: results.first.id)) unless results.empty?
 
     set_pagination_headers(next_path, prev_path)
 
-    render action: :index
+    render :index
   end
 
   def statuses
@@ -52,11 +55,9 @@ class Api::V1::AccountsController < ApiController
     @statuses = cache_collection(@statuses, Status)
 
     set_maps(@statuses)
-    # set_counters_maps(@statuses)
-    # set_account_counters_maps(@statuses.flat_map { |s| [s.account, s.reblog? ? s.reblog.account : nil] }.compact.uniq)
 
-    next_path = statuses_api_v1_account_url(max_id: @statuses.last.id)    unless @statuses.empty?
-    prev_path = statuses_api_v1_account_url(since_id: @statuses.first.id) unless @statuses.empty?
+    next_path = statuses_api_v1_account_url(statuses_pagination_params(max_id: @statuses.last.id))    unless @statuses.empty?
+    prev_path = statuses_api_v1_account_url(statuses_pagination_params(since_id: @statuses.first.id)) unless @statuses.empty?
 
     set_pagination_headers(next_path, prev_path)
   end
@@ -64,7 +65,7 @@ class Api::V1::AccountsController < ApiController
   def follow
     FollowService.new.call(current_user.account, @account.acct)
     set_relationship
-    render action: :relationship
+    render :relationship
   end
 
   def block
@@ -76,31 +77,31 @@ class Api::V1::AccountsController < ApiController
     @requested   = { @account.id => false }
     @muting      = { @account.id => current_user.account.muting?(@account.id) }
 
-    render action: :relationship
+    render :relationship
   end
 
   def mute
     MuteService.new.call(current_user.account, @account)
     set_relationship
-    render action: :relationship
+    render :relationship
   end
 
   def unfollow
     UnfollowService.new.call(current_user.account, @account)
     set_relationship
-    render action: :relationship
+    render :relationship
   end
 
   def unblock
     UnblockService.new.call(current_user.account, @account)
     set_relationship
-    render action: :relationship
+    render :relationship
   end
 
   def unmute
     UnmuteService.new.call(current_user.account, @account)
     set_relationship
-    render action: :relationship
+    render :relationship
   end
 
   def relationships
@@ -117,9 +118,7 @@ class Api::V1::AccountsController < ApiController
   def search
     @accounts = AccountSearchService.new.call(params[:q], limit_param(DEFAULT_ACCOUNTS_LIMIT), params[:resolve] == 'true', current_account)
 
-    # set_account_counters_maps(@accounts) unless @accounts.nil?
-
-    render action: :index
+    render :index
   end
 
   private
@@ -134,5 +133,17 @@ class Api::V1::AccountsController < ApiController
     @blocking    = Account.blocking_map([@account.id], current_user.account_id)
     @muting      = Account.muting_map([@account.id], current_user.account_id)
     @requested   = Account.requested_map([@account.id], current_user.account_id)
+  end
+
+  def pagination_params(core_params)
+    params.permit(:limit).merge(core_params)
+  end
+
+  def statuses_pagination_params(core_params)
+    params.permit(:limit, :only_media, :exclude_replies).merge(core_params)
+  end
+
+  def account_params
+    params.permit(:display_name, :note, :avatar, :header)
   end
 end

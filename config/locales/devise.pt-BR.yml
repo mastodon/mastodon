@@ -1,0 +1,61 @@
+---
+pt-BR:
+  devise:
+    confirmations:
+      confirmed: O seu endereço de email foi confirmado.
+      send_instructions: Você irá receber um email com instruções em como confirmar o seu endereço de email dentro de alguns minutos.
+      send_paranoid_instructions: Se o seu endereço de email já existir na nossa base de dados, irá receber um email com instruções em como confirmá-lo dentro de alguns minutos.
+    failure:
+      already_authenticated: A sua sessão já está aberta.
+      inactive: A sua contra ainda não está ativada.
+      invalid: "%{authentication_keys} ou password inválidos."
+      last_attempt: Tem mais uma tentativa antes de a sua conta ser protegida.
+      locked: A sua conta está protegida
+      not_found_in_database: "%{authentication_keys} ou password inválidos."
+      timeout: A sua sessão expirou. Por favore entre de novo para continuar.
+      unauthenticated: Você precsa de entrar ou registar-se antes de continuar.
+      unconfirmed: Você tem de confirmar o seu endereço de email antes de continuar.
+    mailer:
+      confirmation_instructions:
+        subject: 'Mastodon: Instruções de confirmação'
+      password_change:
+        subject: 'Mastodon: Password nova'
+      reset_password_instructions:
+        subject: 'Mastodon: Instruções para editar a password'
+      unlock_instructions:
+        subject: 'Mastodon: Instruções para desproteger a sua conta'
+    omniauth_callbacks:
+      failure: Could not authenticate you from %{kind} because "%{reason}".
+      success: Successfully authenticated from %{kind} account.
+    passwords:
+      no_token: Você não pode aceder a esta página sem ter vindo de um email para mudar a password. Se este for o case, por favor faça questão de verificar que usou o URL no email.
+      send_instructions: Irá receber um email com instruções em como mudar a sua password dentro de algns minutos.
+      send_paranoid_instructions: Se  seu endereço de email existe na nossa base de dados, irá receber um link para recuperar a sua password dentro de alguns minutos.
+      updated: A sua password foi alterada. A sua sessão está aberta.
+      updated_not_active: A sua password foi alterada.
+    registrations:
+      destroyed: Adeus! A sua conta foi cancelada. Esperamos vê-lo em breve.
+      signed_up: Bem vindo! A sua conta foi registada com sucesso.
+      signed_up_but_inactive: A sua conta foi registada. No entanto, não abrimos a sua sessão porque a sua conta ainda não foi ativada.
+      signed_up_but_locked: A sua conta foi registada. No entanto, não abrimos a sua sessão porque a sua conta está protegida.
+      signed_up_but_unconfirmed: Uma mensagem com um link de confirmação foi enviada para o seu email. Por favor siga o link para ativar a sua conta.
+      update_needs_confirmation: Você mudou o seu endereço de email ou password, mas é necessário confirmar a mudança. Por favor siga o link que foi enviado para o seu novo endereço de email.
+      updated: A sua conta foi alterada com sucesso.
+    sessions:
+      already_signed_out: Sessão fechada.
+      signed_in: Sessão iniciada.
+      signed_out: Sessão fechada.
+    unlocks:
+      send_instructions: Irá receber um email com instruções para desproteger a sua conta dentro de alguns minutos.
+      send_paranoid_instructions: Se a sua conta existe, irá receber um email com instruções a detalhar como a desproteger dentro de alguns minutos.
+      unlocked: A sua conta foi desprotegida. Por favor inicie sessão para continuar.
+  errors:
+    messages:
+      already_confirmed: já foi confirmado, por favor tente iniciar sessão
+      confirmation_period_expired: tem de ser confirmado dentro de %{period}, por favor tente outra vez
+      expired: expirou, por favor tente outra vez
+      not_found: não encontrado
+      not_locked: não está protegido
+      not_saved:
+        one: '1 erro impediu este %{resource} de ser guardado:'
+        other: "%{count} erros impediram este %{resource} de ser guardado:"

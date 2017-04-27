@@ -1,15 +1,14 @@
 # frozen_string_literal: true
 
 source 'https://rubygems.org'
-ruby '2.3.1'
+ruby '>= 2.3.0', '< 2.5.0'
+
+gem 'pkg-config'
 
 gem 'rails', '~> 5.0.2'
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
-gem 'coffee-rails', '~> 4.1.0'
 gem 'jquery-rails'
-gem 'jbuilder', '~> 2.0'
-gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'puma'
 
 gem 'hamlit-rails'
@@ -23,33 +22,43 @@ gem 'paperclip', '~> 5.1'
 gem 'paperclip-av-transcoder'
 gem 'aws-sdk', '>= 2.0'
 
-gem 'http'
-gem 'httplog'
 gem 'addressable'
-gem 'nokogiri'
-gem 'link_header'
-gem 'ostatus2'
-gem 'goldfinger'
 gem 'devise'
 gem 'devise-two-factor'
 gem 'doorkeeper'
-gem 'rabl'
-gem 'rqrcode'
-gem 'twitter-text'
-gem 'oj'
-gem 'hiredis'
-gem 'redis', '~>3.2'
 gem 'fast_blank'
+gem 'goldfinger'
+gem 'hiredis'
 gem 'htmlentities'
-gem 'simple_form'
-gem 'will_paginate'
+gem 'http'
+gem 'http_accept_language'
+gem 'httplog'
+gem 'kaminari'
+gem 'link_header'
+gem 'local_time'
+gem 'nokogiri'
+gem 'oj'
+gem 'ostatus2', '~> 1.1'
+gem 'ox'
+gem 'rabl'
 gem 'rack-attack'
 gem 'rack-cors', require: 'rack/cors'
-gem 'sidekiq'
+gem 'rack-timeout'
+gem 'rails-i18n'
 gem 'rails-settings-cached'
-gem 'simple-navigation'
-gem 'statsd-instrument'
+gem 'redis', '~>3.2', require: ['redis', 'redis/connection/hiredis']
+gem 'rqrcode'
 gem 'ruby-oembed', require: 'oembed'
+gem 'sanitize'
+gem 'sidekiq'
+gem 'sidekiq-unique-jobs'
+gem 'simple-navigation'
+gem 'simple_form'
+gem 'sprockets-rails', :require => 'sprockets/railtie'
+gem 'statsd-instrument'
+gem 'twitter-text'
+gem 'tzinfo-data'
+gem 'whatlanguage'
 
 gem 'react-rails'
 gem 'browserify-rails'
@@ -64,9 +73,13 @@ group :development, :test do
 end
 
 group :test do
+  gem 'capybara'
+  gem 'faker'
+  gem 'microformats2'
+  gem 'rails-controller-testing'
+  gem 'rspec-sidekiq'
   gem 'simplecov', require: false
   gem 'webmock'
-  gem 'rspec-sidekiq'
 end
 
 group :development do
@@ -78,7 +91,7 @@ group :development do
   gem 'bullet'
   gem 'active_record_query_trace'
 
-  gem 'capistrano'
+  gem 'capistrano', '3.8.0'
   gem 'capistrano-rails'
   gem 'capistrano-rbenv'
   gem 'capistrano-yarn'
@@ -89,5 +102,4 @@ group :production do
   gem 'rails_12factor'
   gem 'redis-rails'
   gem 'lograge'
-  gem 'rack-timeout'
 end

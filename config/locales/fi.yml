@@ -1,0 +1,160 @@
+---
+fi:
+  about:
+    about_mastodon: Mastodon on <em>ilmainen, avoimeen lähdekoodiin perustuva</em> sosiaalinen verkosto. <em>Hajautettu</em> vaihtoehto kaupallisille alustoille, se välttää eiskit yhden yrityksen monopolisoinnin sinun viestinnässäsi. Valitse palvelin mihin luotat &mdash; minkä tahansa valitset, voit vuorovaikuttaa muiden kanssa. Kuka tahansa voi luoda Mastodon palvelimen ja ottaa osaa <em>sosiaaliseen verkkoon</em> saumattomasti.
+    about_this: Tietoja tästä palvelimesta
+    apps: Ohjelmat
+    business_email: 'Business e-mail:'
+    contact: Ota yhteyttä
+    description_headline: Mikä on %{domain}?
+    domain_count_after: muuhun palvelimeen
+    domain_count_before: Yhdistyneenä
+    features:
+      api: Avoin API ohjelmille ja palveluille
+      blocks: Rikkaat esto- ja hiljennystyökalut
+      characters: 500 kirjainta per viesti
+      chronology: Aikajana on kronologisessa järjestyksessä
+      ethics: 'Eettinen suunnittelu: ei mainoksia, ei seurantaa'
+      gifv: GIFV settejä ja lyhyitä videoita
+      privacy: Julkaisukohtainen yksityisyysasetus
+      public: Julkiset aikajanat
+    features_headline: Mikä erottaa Mastodonin muista
+    get_started: Aloita käyttö
+    links: Linkit
+    other_instances: Muut palvelimet
+    source_code: Lähdekoodi
+    status_count_after: statusta
+    status_count_before: Ovat luoneet
+    terms: Ehdot
+    user_count_after: käyttäjälle
+    user_count_before: Koti
+  accounts:
+    follow: Seuraa
+    followers: Seuraajat
+    following: Seuratut
+    nothing_here: Täällä ei ole mitään!
+    people_followed_by: Henkilöitä joita %{name} seuraa
+    people_who_follow: Henkilöt jotka seuraa %{name}
+    posts: Postaukset
+    remote_follow: Etäseuranta
+    unfollow: Lopeta seuraaminen
+  application_mailer:
+    settings: 'Muokkaa sähköpostiasetuksia: %{link}'
+    signature: Mastodon-ilmoituksia palvelimelta %{instance}
+    view: 'Katso:'
+  applications:
+    invalid_url: Annettu URL on väärä
+  auth:
+    change_password: Tunnukset
+    didnt_get_confirmation: Etkö saanut varmennusohjeita?
+    forgot_password: Unohditko salasanasi?
+    login: Kirjaudu sisään
+    logout: Kirjaudu ulos
+    register: Rekisteröidy
+    resend_confirmation: Lähetä varmennusohjeet uudestaan
+    reset_password: Palauta salasana
+    set_new_password: Aseta uusi salasana
+  authorize_follow:
+    error: Valitettavasti tapahtui virhe etätilin haussa.
+    follow: Seuraa
+    prompt_html: 'Sinä (<strong>%{self}</strong>) olet pyytänyt lupaa seurata:'
+    title: Seuraa %{acct}
+  datetime:
+    distance_in_words:
+      about_x_hours: "%{count}t"
+      about_x_months: "%{count}kk"
+      about_x_years: "%{count}v"
+      almost_x_years: "%{count}v"
+      half_a_minute: Juuri nyt
+      less_than_x_minutes: "%{count}m"
+      less_than_x_seconds: Juuri nyt
+      over_x_years: "%{count}v"
+      x_days: "%{count}pv"
+      x_minutes: "%{count}m"
+      x_months: "%{count}kk"
+      x_seconds: "%{count}s"
+  exports:
+    blocks: Estosi
+    csv: CSV
+    follows: Seurattavat
+    storage: Mediasi
+  generic:
+    changes_saved_msg: Muutokset onnistuneesti tallennettu!
+    powered_by: powered by %{link}
+    save_changes: Tallenna muutokset
+    validation_errors:
+      one: Jokin ei ole viellä oikein! Katso virhe alapuolelta.
+      other: Jokin ei ole viellä oikein! Katso %{count} virhettä alapuolelta.
+  imports:
+    preface: Voit tuoda tiettyä dataa kaikista ihmisistä joita seuraat tai estät tilillesi tälle palvelimelle tiedostoista, jotka on luotu toisella palvelimella
+    success: Datasi on onnistuneesti ladattu ja käsitellään pian
+    types:
+      blocking: Estetyt lista
+      following: Seuratut lista
+    upload: Lähetä
+  landing_strip_html: <strong>%{name}</strong> on käyttäjä domainilla %{link_to_root_path}. Voit seurata tai vuorovaikuttaa heidän kanssaan jos sinulla on tili yleisessä verkossa. Jos sinulla ei ole tiliä, voit <a href="%{sign_up_path}">rekisteröityä täällä</a>.
+  notification_mailer:
+    digest:
+      body: 'Tässä on pieni yhteenveto palvelimelta %{instance} viimeksi kun olit paikalla %{since}:'
+      mention: "%{name} mainitsi sinut:"
+      new_followers_summary:
+        one: Olet saanut yhden uuden seuraajan! Jee!
+        other: Olet saanut %{count} uutta seuraajaa! Loistavaa!
+      subject:
+        one: "1 uusi ilmoitus viimeisen käyntisi jälkeen \U0001F418"
+        other: "%{count} uutta ilmoitusta viimeisen käyntisi jälkeen \U0001F418"
+    favourite:
+      body: 'Statuksestasi tykkäsi %{name}:'
+      subject: "%{name} tykkäsi sinun statuksestasi"
+    follow:
+      body: "%{name} seuraa nyt sinua!"
+      subject: "%{name} seuraa nyt sinua"
+    follow_request:
+      body: "%{name} on pyytänyt seurata sinua"
+      subject: 'Odottava seuraus pyyntö: %{name}'
+    mention:
+      body: 'Sinut mainitsi %{name} postauksessa:'
+      subject: Sinut mainitsi %{name}
+    reblog:
+      body: 'Sinun statustasi boostasi %{name}:'
+      subject: "%{name} boostasi statustasi"
+  pagination:
+    next: Seuraava
+    prev: Edellinen
+  remote_follow:
+    acct: Syötä sinun käyttäjänimesi@domain jos haluat seurata palvelimelta
+    missing_resource: Ei löydetty tarvittavaa uudelleenohjaavaa URL-linkkiä tilillesi
+    proceed: Siirry seuraamiseen
+    prompt: 'Sinä aiot seurata:'
+  settings:
+    authorized_apps: Valtuutetut ohjelmat
+    back: Takaisin Mastodoniin
+    edit_profile: Muokkaa profiilia
+    export: Vie dataa
+    import: Tuo dataa
+    preferences: Ominaisuudet
+    settings: Asetukset
+    two_factor_authentication: Kaksivaiheinen tunnistus
+  statuses:
+    open_in_web: Avaa webissä
+    over_character_limit: sallittu kirjanmäärä %{max} ylitetty
+    show_more: Näytä lisää
+    visibilities:
+      private: Näytä vain seuraajille
+      public: Julkinen
+      unlisted: Julkinen, mutta älä näytä julkisella aikajanalla
+  stream_entries:
+    click_to_show: Klikkaa näyttääksesi
+    reblogged: boosted
+    sensitive_content: Herkkä materiaali
+  time:
+    formats:
+      default: "%b %d, %Y, %H:%M"
+  two_factor_authentication:
+    description_html: Jos otat käyttöön <strong>kaksivaiheisen tunnistuksen</stron>, kirjautumiseen vaaditaan puhelin, joka voi luoda tokeneita kirjautumista varten.
+    disable: Poista käytöstä
+    enable: Ota käyttöön
+    instructions_html: "<strong>Skannaa tämä QR-koodi Google Authenticator- tai vastaavaan sovellukseen puhelimellasi</strong>. Tästä hetkestä lähtien ohjelma luo koodin, mikä sinun tarvitsee syöttää sisäänkirjautuessa."
+  users:
+    invalid_email: Virheellinen sähköposti
+    invalid_otp_token: Virheellinen kaksivaihetunnistuskoodi

@@ -1,0 +1,60 @@
+---
+io:
+  devise:
+    confirmations:
+      confirmed: Tua konto konfirmesas.
+      send_instructions: Tu recevos instrucioni por konfirmar tua konto pos kelka minuti.
+      send_paranoid_instructions: Se tua retpost-adreso existas en nia datumbazo, tu balde revecos retpost-mesajo, qua kontenas la instrucioni por konfirmar tua konto.
+    failure:
+      already_authenticated: Tu ya esas enirinta.
+      inactive: Tua konto ankore ne konfirmesas.
+      invalid: Nejusta retpost-adreso o pasvorto.
+      last_attempt: Tu ankore povas probar unfoye ante ke tua konto esos extingita.
+      locked: Tua konto esas extingita.
+      not_found_in_database: Nejusta retpost-adreso o pasvorto.
+      timeout: Tua kunsido expiris. Voluntez rienirar por durar.
+      unauthenticated: Tu devas enirar o membreskar por durar.
+      unconfirmed: Tu devas konfirmar tua konto por durar.
+    mailer:
+      confirmation_instructions:
+        subject: Instrucioni por konfirmar
+      password_change:
+        subject: Tua pasvorto chanjesis senprobleme.
+      reset_password_instructions:
+        subject: Instrucioni por chanjar la pasvorto
+      unlock_instructions:
+        subject: Instructioni por riacendar la konto
+    omniauth_callbacks:
+      failure: 'Ni ne povis autentikigar tu per %{kind}: ''%{reason}''.'
+      success: Autentikigita senprobleme per %{kind}.
+    passwords:
+      no_token: Tu ne povas irar a ta pagino per altra voyo kam retpost-mesajo por chanjar pasvorto. Se tu venas de tala retpost-mesajo, kontrolez ke tu uzis la tota URL.
+      send_instructions: Tu recevos retpost-mesajo kun instrucioni por chanjar tua pasvorto pos kelka minuti.
+      send_paranoid_instructions: Se tua retpost-adreso existas en nia datumbazo, tu recevos ligilo por chanjar tua pasvorto per retpost-mesajo.
+      updated_not_active: Tua pasvorto redaktesis senprobleme.
+    registrations:
+      destroyed: Til! Tua konto efacesis senprobleme. Ni esperas rividar tu balde.
+      signed_up: Bonveno! Tu membreskis senprobleme.
+      signed_up_but_inactive: Tu bone membreskis, ma tu ankore ne povas enirar pro ke tua konto ne konfirmesis.
+      signed_up_but_locked: Tu bone membreskis, ma tu ne povas enirar pro ke tua konto extingesis.
+      signed_up_but_unconfirmed: Retpost-mesajo kun tua ligilo por konfirmar tua konto sendesis a tua retpost-adreso. Voluntez uzar ta ligilo por konfirmar tua konto.
+      update_needs_confirmation: Tu vone aktualigis tua konto, ma ni bezonas kontrolar tua nova retpost-adreso. Voluntez kontrolar tua retpost-mesaji ed uzar la ligilo por konfirmar tua nova retpost-adreso.
+      updated: Tua konto aktualigesis senprobleme.
+    sessions:
+      already_signed_out: Ekirinta.
+      signed_in: Enirinta.
+      signed_out: Ekirinta.
+    unlocks:
+      send_instructions: Tu recevos retpost-mesajo kun instrucioni por riacendar tua konto pos kelka minuti.
+      send_paranoid_instructions: Se tua retpost-adreso existas en nia datumbazo, tu recevos ligilo por riacendar tua konto per retpost-meajo.
+      unlocked: Tua konto riacendesis senprobleme, tu nun esas enirinta.
+  errors:
+    messages:
+      already_confirmed: ja konfirmesis, voluntez probar enirar
+      confirmation_period_expired: devas konfirmesar en %{period}, voluntez iterar
+      expired: expiris, voluntez repetar
+      not_found: ne trovesis
+      not_locked: ne extingesis
+      not_saved:
+        one: '1 eroro impedis a ta %{resource} konservesar:'
+        other: "%{count} erori impedis a ta %{resource} konservesar:"

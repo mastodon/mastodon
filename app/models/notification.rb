@@ -16,10 +16,17 @@ class Notification < ApplicationRecord
 
   validates :account_id, uniqueness: { scope: [:activity_type, :activity_id] }
 
+  TYPE_CLASS_MAP = {
+    mention:        'Mention',
+    reblog:         'Status',
+    follow:         'Follow',
+    follow_request: 'FollowRequest',
+    favourite:      'Favourite',
+  }.freeze
+
   STATUS_INCLUDES = [:account, :stream_entry, :media_attachments, :tags, mentions: :account, reblog: [:stream_entry, :account, :media_attachments, :tags, mentions: :account]].freeze
 
   scope :cache_ids, -> { select(:id, :updated_at, :activity_type, :activity_id) }
-  scope :browserable, -> { where.not(activity_type: ['FollowRequest']) }
 
   cache_associated :from_account, status: STATUS_INCLUDES, mention: [status: STATUS_INCLUDES], favourite: [:account, status: STATUS_INCLUDES], follow: :account
 
@@ -28,12 +35,7 @@ class Notification < ApplicationRecord
   end
 
   def type
-    case activity_type
-    when 'Status'
-      :reblog
-    else
-      activity_type.underscore.to_sym
-    end
+    @type ||= TYPE_CLASS_MAP.invert[activity_type].to_sym
   end
 
   def target_status
@@ -50,6 +52,11 @@ class Notification < ApplicationRecord
   end
 
   class << self
+    def browserable(types = [])
+      types.concat([:follow_request])
+      where.not(activity_type: activity_types_from_types(types))
+    end
+
     def reload_stale_associations!(cached_items)
       account_ids = cached_items.map(&:from_account_id).uniq
       accounts    = Account.where(id: account_ids).map { |a| [a.id, a] }.to_h
@@ -57,6 +64,12 @@ class Notification < ApplicationRecord
       cached_items.each do |item|
         item.from_account = accounts[item.from_account_id]
       end
+    end
+
+    private
+
+    def activity_types_from_types(types)
+      types.map { |type| TYPE_CLASS_MAP[type.to_sym] }.compact
     end
   end
 

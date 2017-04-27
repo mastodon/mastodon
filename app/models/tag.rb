@@ -17,7 +17,7 @@ class Tag < ApplicationRecord
       textsearch = 'to_tsvector(\'simple\', tags.name)'
       query      = 'to_tsquery(\'simple\', \'\'\' \' || ' + terms + ' || \' \'\'\' || \':*\')'
 
-      sql = <<SQL
+      sql = <<-SQL.squish
         SELECT
           tags.*,
           ts_rank_cd(#{textsearch}, #{query}) AS rank
@@ -25,7 +25,7 @@ class Tag < ApplicationRecord
         WHERE #{query} @@ #{textsearch}
         ORDER BY rank DESC
         LIMIT ?
-SQL
+      SQL
 
       Tag.find_by_sql([sql, limit])
     end

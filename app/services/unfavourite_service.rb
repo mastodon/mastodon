@@ -13,26 +13,6 @@ class UnfavouriteService < BaseService
   private
 
   def build_xml(favourite)
-    description = "#{favourite.account.acct} no longer favourites a status by #{favourite.status.account.acct}"
-
-    Nokogiri::XML::Builder.new do |xml|
-      entry(xml, true) do
-        unique_id xml, Time.now.utc, favourite.id, 'Favourite'
-        title xml, description
-        content xml, description
-
-        author(xml) do
-          include_author xml, favourite.account
-        end
-
-        object_type xml, :activity
-        verb xml, :unfavorite
-        in_reply_to xml, TagManager.instance.uri_for(favourite.status), TagManager.instance.url_for(favourite.status)
-
-        target(xml) do
-          include_target xml, favourite.status
-        end
-      end
-    end.to_xml
+    AtomSerializer.render(AtomSerializer.new.unfavourite_salmon(favourite))
   end
 end

@@ -1,0 +1,51 @@
+---
+fa:
+  simple_form:
+    hints:
+      defaults:
+        avatar: یکی از قالب‌های PNG یا  GIF یا JPG. بیشترین اندازه ۲ مگابایت. تصویر به اندازهٔ ۱۲۰×۱۲۰ پیکسل تبدیل خواهد شد.
+        display_name: '%{counter} حرف باقی مانده'
+        header: یکی از قالب‌های PNG یا  GIF یا JPG. بیشترین اندازه ۲ مگابایت. تصویر به اندازهٔ ۳۳۵×۷۰۰ پیکسل تبدیل خواهد شد
+        locked: باید پیگیران تازه را خودتان تأیید کنید. حریم خصوصی پیش‌فرض نوشته‌ها را روی پیگیران تنظیم می‌کند
+        note: '%{counter} حرف باقی مانده'
+      imports:
+        data: پروندهٔ CSV که از سرور ماستدون دیگری برون‌سپاری شده
+      sessions:
+        otp: کد تأیید دومرحله‌ای را از تلفن خود وارد کنید یا یکی از کدهای بازیابی را به کار ببرید.
+    labels:
+      defaults:
+        avatar: تصویر نمایه
+        confirm_new_password: تأیید رمز تازه
+        confirm_password: تأیید رمز
+        current_password: رمز فعلی
+        data: داده‌ها
+        display_name: نمایش به نام
+        email: نشانی ایمیل
+        header: موضوع
+        locale: تصویر زمینه
+        locked: خصوصی‌کردن حساب
+        new_password: رمز تازه
+        note: دربارهٔ شما
+        otp_attempt: کد ورود دومرحله‌ای
+        password: رمز
+        setting_auto_play_gif: پخش خودکار تصویرهای متحرک
+        setting_boost_modal: نمایش پیغام تأیید پیش از بازبوقیدن
+        setting_default_privacy: حریم خصوصی نوشته‌ها
+        severity: شدت
+        type: نوع درون‌ریزی
+        username: نام کاربری
+      interactions:
+        must_be_follower: مسدودکردن اعلان‌های همه به جز پیگیران
+        must_be_following: مسدودکردن اعلان‌های کسانی که شما پی نمی‌گیرید
+      notification_emails:
+        digest: خلاصه‌کردن چند اعلان در یک ایمیل
+        favourite: وقتی کسی نوشتهٔ شما پسندید ایمیل بفرست
+        follow: وقتی کسی پیگیر شما شد ایمیل بفرست
+        follow_request: وقتی کسی درخواست پیگیری کرد ایمیل بفرست
+        mention: وقتی کسی از شما نام برد ایمیل بفرست
+        reblog: وقتی کسی نوشتهٔ شما را بازبوقید ایمیل بفرست
+    'no': 'خیر'
+    required:
+      mark: "*"
+      text: ضروری
+    'yes': 'بله'

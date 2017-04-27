@@ -1,21 +1,26 @@
-const iconStyle = {
-  fontSize: '16px',
-  padding: '15px',
-  position: 'absolute',
-  right: '48px',
-  top: '0',
-  cursor: 'pointer',
-  zIndex: '2'
-};
+import PropTypes from 'prop-types';
+import { defineMessages, injectIntl } from 'react-intl';
 
-const ClearColumnButton = ({ onClick }) => (
-  <div className='column-icon' style={iconStyle} onClick={onClick}>
-    <i className='fa fa-trash' />
-  </div>
-);
+const messages = defineMessages({
+  clear: { id: 'notifications.clear', defaultMessage: 'Clear notifications' }
+});
+
+class ClearColumnButton extends React.Component {
+
+  render () {
+    const { intl } = this.props;
+
+    return (
+      <div role='button' title={intl.formatMessage(messages.clear)} className='column-icon column-icon-clear' tabIndex='0' onClick={this.props.onClick}>
+        <i className='fa fa-eraser' />
+      </div>
+    );
+  }
+}
 
 ClearColumnButton.propTypes = {
-  onClick: React.PropTypes.func.isRequired
+  onClick: PropTypes.func.isRequired,
+  intl: PropTypes.object.isRequired
 };
 
-export default ClearColumnButton;
+export default injectIntl(ClearColumnButton);

@@ -1,0 +1,113 @@
+---
+'no':
+  activerecord:
+    attributes:
+      doorkeeper/application:
+        name: Navn
+        redirect_uri: Omdirigerings-URI
+    errors:
+      models:
+        doorkeeper/application:
+          attributes:
+            redirect_uri:
+              fragment_present: kan ikke inneholde ett fragment.
+              invalid_uri: må være en gyldig URI.
+              relative_uri: må være en absolutt URI.
+              secured_uri: må være en HTTPS/SSL URI.
+  doorkeeper:
+    applications:
+      buttons:
+        authorize: Autoriser
+        cancel: Avbryt
+        destroy: Ødelegg
+        edit: Rediger
+        submit: Send inn
+      confirmations:
+        destroy: Er du sikker?
+      edit:
+        title: Endre applikasjon
+      form:
+        error: Oops! Sjekk skjemaet ditt for mulige feil
+      help:
+        native_redirect_uri: Bruk %{native_redirect_uri} for lokale tester
+        redirect_uri: Bruk én linje per URI
+        scopes: Adskill omfang med mellomrom. La det være blankt for å bruke standard omfang.
+      index:
+        callback_url: Callback-URL
+        name: Navn
+        new: Ny applikasjon
+        title: Dine applikasjoner
+      new:
+        title: Nye applikasjoner
+      show:
+        actions: Operasjoner
+        application_id: Applikasjons-ID
+        callback_urls: Callback-URLer
+        scopes: Omfang
+        secret: Hemmelighet
+        title: 'Applikasjon: %{name}'
+    authorizations:
+      buttons:
+        authorize: Autorisér
+        deny: Avvis
+      error:
+        title: En feil oppstod
+      new:
+        able_to: Den vil ha mulighet til
+        prompt: Applikasjon %{client_name} spør om tilgang til din konto
+        title: Autorisasjon påkrevd
+      show:
+        title: Autoriserings kode
+    authorized_applications:
+      buttons:
+        revoke: Opphev
+      confirmations:
+        revoke: Opphev?
+      index:
+        application: Applikasjon
+        created_at: Autorisert
+        date_format: "%Y-%m-%d %H:%M:%S"
+        scopes: Omfang
+        title: Dine autoriserte applikasjoner
+    errors:
+      messages:
+        access_denied: Ressurseieren eller autoriseringstjeneren avviste forespørslen.
+        credential_flow_not_configured: Ressurseiers passordflyt feilet fordi Doorkeeper.configure.resource_owner_from_credentials ikke var konfigurert.
+        invalid_client: Klientautentisering feilet på grunn av ukjent klient, ingen autentisering inkludert, eller autentiseringsmetode er ikke støttet.
+        invalid_grant: Autoriseringen er ugyldig, utløpt, opphevet, stemmer ikke overens med omdirigerings-URIen eller var utstedt til en annen klient.
+        invalid_redirect_uri: Den inkluderte omdirigerings-URLen er ikke gyldig.
+        invalid_request: Forespørslen mangler en eller flere parametere, inkluderte en parameter som ikke støttes eller har feil struktur.
+        invalid_resource_owner: Ressurseierens detaljer er ikke gyldige, eller så kan ikke eieren finnes.
+        invalid_scope: Det etterspurte omfanget er ugyldig, ukjent eller har feil struktur.
+        invalid_token:
+          expired: Tilgangsbeviset har utløpt
+          revoked: Tilgangsbeviset har blitt opphevet
+          unknown: Tilgangsbeviset er ugyldig
+        resource_owner_authenticator_not_configured: Ressurseier kunne ikke finnes fordi Doorkeeper.configure.resource_owner_authenticator ikke er konfigurert.
+        server_error: Autoriseringstjeneren støtte på en uventet hendelse som hindret den i å svare på forespørslen.
+        temporarily_unavailable: Autoriseringstjeneren kan ikke håndtere forespørslen grunnet en midlertidig overbelastning eller tjenervedlikehold.
+        unauthorized_client: Klienten har ikke autorisasjon for å utføre denne forespørslen med denne metoden.
+        unsupported_grant_type: Autorisasjonstildelingstypen er ikke støttet av denne autoriseringstjeneren.
+        unsupported_response_type: Autorisasjonsserveren støtter ikke denne typen av forespørsler.
+    flash:
+      applications:
+        create:
+          notice: Applikasjon opprettet.
+        destroy:
+          notice: Applikasjon slettet.
+        update:
+          notice: Applikasjon oppdatert.
+      authorized_applications:
+        destroy:
+          notice: Applikasjon opphevet.
+    layouts:
+      admin:
+        nav:
+          applications: Applikasjoner
+          oauth2_provider: OAuth2-tilbyder
+      application:
+        title: OAuth-autorisering påkrevet
+    scopes:
+      follow: følg, blokkér, avblokkér, avfølg brukere
+      read: lese dine data
+      write: poste på dine vegne

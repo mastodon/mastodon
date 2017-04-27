@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class Status < ApplicationRecord
-  include ActiveModel::Validations
   include Paginable
   include Streamable
   include Cacheable
@@ -10,7 +9,7 @@ class Status < ApplicationRecord
 
   belongs_to :application, class_name: 'Doorkeeper::Application'
 
-  belongs_to :account, inverse_of: :statuses, counter_cache: true
+  belongs_to :account, inverse_of: :statuses, counter_cache: true, required: true
   belongs_to :in_reply_to_account, foreign_key: 'in_reply_to_account_id', class_name: 'Account'
 
   belongs_to :thread, foreign_key: 'in_reply_to_id', class_name: 'Status', inverse_of: :replies
@@ -26,11 +25,10 @@ class Status < ApplicationRecord
   has_one :notification, as: :activity, dependent: :destroy
   has_one :preview_card, dependent: :destroy
 
-  validates :account, presence: true
   validates :uri, uniqueness: true, unless: 'local?'
   validates :text, presence: true, unless: 'reblog?'
   validates_with StatusLengthValidator
-  validates :reblog, uniqueness: { scope: :account, message: 'of status already exists' }, if: 'reblog?'
+  validates :reblog, uniqueness: { scope: :account }, if: 'reblog?'
 
   default_scope { order('id desc') }
 
@@ -43,7 +41,7 @@ class Status < ApplicationRecord
   cache_associated :account, :application, :media_attachments, :tags, :stream_entry, mentions: :account, reblog: [:account, :application, :stream_entry, :tags, :media_attachments, mentions: :account], thread: :account
 
   def reply?
-    super || !in_reply_to_id.nil?
+    !in_reply_to_id.nil? || super
   end
 
   def local?
@@ -62,8 +60,12 @@ class Status < ApplicationRecord
     reply? ? :comment : :note
   end
 
+  def proper
+    reblog? ? reblog : self
+  end
+
   def content
-    reblog? ? reblog.text : text
+    proper.text
   end
 
   def target
@@ -71,7 +73,7 @@ class Status < ApplicationRecord
   end
 
   def title
-    content
+    reblog? ? "#{account.acct} shared a status by #{reblog.account.acct}" : "New status by #{account.acct}"
   end
 
   def hidden?
@@ -89,7 +91,7 @@ class Status < ApplicationRecord
   end
 
   def ancestors(account = nil)
-    ids      = (Status.find_by_sql(['WITH RECURSIVE search_tree(id, in_reply_to_id, path) AS (SELECT id, in_reply_to_id, ARRAY[id] FROM statuses WHERE id = ? UNION ALL SELECT statuses.id, statuses.in_reply_to_id, path || statuses.id FROM search_tree JOIN statuses ON statuses.id = search_tree.in_reply_to_id WHERE NOT statuses.id = ANY(path)) SELECT id FROM search_tree ORDER BY path DESC', id]) - [self]).pluck(:id)
+    ids      = Rails.cache.fetch("ancestors:#{id}") { (Status.find_by_sql(['WITH RECURSIVE search_tree(id, in_reply_to_id, path) AS (SELECT id, in_reply_to_id, ARRAY[id] FROM statuses WHERE id = ? UNION ALL SELECT statuses.id, statuses.in_reply_to_id, path || statuses.id FROM search_tree JOIN statuses ON statuses.id = search_tree.in_reply_to_id WHERE NOT statuses.id = ANY(path)) SELECT id FROM search_tree ORDER BY path DESC', id]) - [self]).pluck(:id) }
     statuses = Status.where(id: ids).group_by(&:id)
     results  = ids.map { |id| statuses[id].first }
     results  = results.reject { |status| filter_from_context?(status, account) }
@@ -104,6 +106,10 @@ class Status < ApplicationRecord
     results  = results.reject { |status| filter_from_context?(status, account) }
 
     results
+  end
+
+  def non_sensitive_with_media?
+    !sensitive? && media_attachments.any?
   end
 
   class << self
@@ -131,6 +137,10 @@ class Status < ApplicationRecord
       query = query.where('accounts.domain IS NULL') if local_only
 
       account.nil? ? filter_timeline_default(query) : filter_timeline_default(filter_timeline(query, account))
+    end
+
+    def as_outbox_timeline(account)
+      where(account: account, visibility: :public)
     end
 
     def favourites_map(status_ids, account_id)
@@ -161,9 +171,9 @@ class Status < ApplicationRecord
       return where.not(visibility: [:private, :direct]) if account.nil?
 
       if target_account.blocking?(account) # get rid of blocked peeps
-        where('1 = 0')
+        none
       elsif account.id == target_account.id # author can see own stuff
-        where('1 = 1')
+        all
       elsif account.following?(target_account) # followers can see followers-only stuff, but also things they are mentioned in
         joins('LEFT OUTER JOIN mentions ON statuses.id = mentions.status_id AND mentions.account_id = ' + account.id.to_s)
           .where('statuses.visibility != ? OR mentions.id IS NOT NULL', Status.visibilities[:direct])
@@ -176,7 +186,7 @@ class Status < ApplicationRecord
     private
 
     def filter_timeline(query, account)
-      blocked = Block.where(account: account).pluck(:target_account_id) + Block.where(target_account: account).pluck(:account_id) + Mute.where(account: account).pluck(:target_account_id)
+      blocked = Rails.cache.fetch("exclude_account_ids_for:#{account.id}") { Block.where(account: account).pluck(:target_account_id) + Block.where(target_account: account).pluck(:account_id) + Mute.where(account: account).pluck(:target_account_id) }
       query   = query.where('statuses.account_id NOT IN (?)', blocked) unless blocked.empty?  # Only give us statuses from people we haven't blocked, or muted, or that have blocked us
       query   = query.where('accounts.silenced = TRUE') if account.silenced?                  # and if we're hellbanned, only people who are also hellbanned
       query
@@ -188,7 +198,7 @@ class Status < ApplicationRecord
   end
 
   before_validation do
-    text.strip!
+    text&.strip!
     spoiler_text&.strip!
 
     self.reply                  = !(in_reply_to_id.nil? && thread.nil?) unless reply

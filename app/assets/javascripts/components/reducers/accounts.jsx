@@ -15,6 +15,10 @@ import {
   BLOCKS_FETCH_SUCCESS,
   BLOCKS_EXPAND_SUCCESS
 } from '../actions/blocks';
+import {
+  MUTES_FETCH_SUCCESS,
+  MUTES_EXPAND_SUCCESS
+} from '../actions/mutes';
 import { COMPOSE_SUGGESTIONS_READY } from '../actions/compose';
 import {
   REBLOG_SUCCESS,
@@ -33,7 +37,7 @@ import {
   STATUS_FETCH_SUCCESS,
   CONTEXT_FETCH_SUCCESS
 } from '../actions/statuses';
-import { SEARCH_SUGGESTIONS_READY } from '../actions/search';
+import { SEARCH_FETCH_SUCCESS } from '../actions/search';
 import {
   NOTIFICATIONS_UPDATE,
   NOTIFICATIONS_REFRESH_SUCCESS,
@@ -94,10 +98,12 @@ export default function accounts(state = initialState, action) {
   case FOLLOW_REQUESTS_EXPAND_SUCCESS:
   case BLOCKS_FETCH_SUCCESS:
   case BLOCKS_EXPAND_SUCCESS:
+  case MUTES_FETCH_SUCCESS:
+  case MUTES_EXPAND_SUCCESS:
     return normalizeAccounts(state, action.accounts);
   case NOTIFICATIONS_REFRESH_SUCCESS:
   case NOTIFICATIONS_EXPAND_SUCCESS:
-  case SEARCH_SUGGESTIONS_READY:
+  case SEARCH_FETCH_SUCCESS:
     return normalizeAccountsFromStatuses(normalizeAccounts(state, action.accounts), action.statuses);
   case TIMELINE_REFRESH_SUCCESS:
   case TIMELINE_EXPAND_SUCCESS:

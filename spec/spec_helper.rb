@@ -1,7 +1,9 @@
 require 'simplecov'
 
 SimpleCov.start 'rails' do
-  add_group "Services", "app/services"
+  add_group 'Services', 'app/services'
+  add_group 'Presenters', 'app/presenters'
+  add_group 'Validators', 'app/validators'
 end
 
 RSpec.configure do |config|
@@ -11,10 +13,12 @@ RSpec.configure do |config|
 
   config.mock_with :rspec do |mocks|
     mocks.verify_partial_doubles = true
-  end
 
-  config.before :each do
-    stub_request(:post, 'https://fcm.googleapis.com/fcm/send').to_return(status: 200, body: '')
+    config.around(:example, :without_verify_partial_doubles) do |example|
+      mocks.verify_partial_doubles = false
+      example.call
+      mocks.verify_partial_doubles = true
+    end
   end
 
   config.after :suite do

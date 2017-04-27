@@ -12,4 +12,15 @@ RSpec.describe Tag, type: :model do
       expect(subject.match('https://en.wikipedia.org/wiki/Ghostbusters_(song)#Lawsuit')).to be_nil
     end
   end
+
+  describe '.search_for' do
+    it 'finds tag records with matching names' do
+      tag = Fabricate(:tag, name: "match")
+      _miss_tag = Fabricate(:tag, name: "miss")
+
+      results = Tag.search_for("match")
+
+      expect(results).to eq [tag]
+    end
+  end
 end

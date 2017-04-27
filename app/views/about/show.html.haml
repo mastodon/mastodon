@@ -1,0 +1,87 @@
+- content_for :header_tags do
+  = javascript_include_tag 'application_public', integrity: true, crossorigin: 'anonymous'
+
+- content_for :page_title do
+  = site_hostname
+
+- content_for :header_tags do
+  %meta{ property: 'og:site_name', content: site_title }/
+  %meta{ property: 'og:url', content: about_url }/
+  %meta{ property: 'og:type', content: 'website' }/
+  %meta{ property: 'og:title', content: site_hostname }/
+  %meta{ property: 'og:description', content: strip_tags(@instance_presenter.site_description.presence || t('about.about_mastodon')) }/
+  %meta{ property: 'og:image', content: asset_url('mastodon_small.jpg') }/
+  %meta{ property: 'og:image:width', content: '400' }/
+  %meta{ property: 'og:image:height', content: '400' }/
+  %meta{ property: 'twitter:card', content: 'summary' }/
+
+.wrapper
+  %h1
+    = image_tag 'logo.png'
+    = Setting.site_title
+
+  %p= t('about.about_mastodon').html_safe
+
+  .screenshot-with-signup
+    .mascot= image_tag 'fluffy-elephant-friend.png'
+
+    - if @instance_presenter.open_registrations
+      = render 'registration'
+    - else
+      .closed-registrations-message
+        - if @instance_presenter.closed_registrations_message.blank?
+          %p= t('about.closed_registrations')
+        - else
+          = @instance_presenter.closed_registrations_message.html_safe
+        .info
+          = link_to t('auth.login'), new_user_session_path, class: 'webapp-btn'
+          ·
+          = link_to t('about.other_instances'), 'https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/List-of-Mastodon-instances.md'
+          ·
+          = link_to t('about.about_this'), about_more_path
+
+  %h3= t('about.features_headline')
+
+  .features-list
+    .features-list__column
+      %ul.fa-ul
+        %li
+          = fa_icon('li check-square')
+          = t 'about.features.chronology'
+        %li
+          = fa_icon('li check-square')
+          = t 'about.features.public'
+        %li
+          = fa_icon('li check-square')
+          = t 'about.features.characters'
+        %li
+          = fa_icon('li check-square')
+          = t 'about.features.gifv'
+    .features-list__column
+      %ul.fa-ul
+        %li
+          = fa_icon('li check-square')
+          = t 'about.features.privacy'
+        %li
+          = fa_icon('li check-square')
+          = t 'about.features.blocks'
+        %li
+          = fa_icon('li check-square')
+          = t 'about.features.ethics'
+        %li
+          = fa_icon('li check-square')
+          = t 'about.features.api'
+
+  - unless @instance_presenter.site_description.blank?
+    %h3= t('about.description_headline', domain: site_hostname)
+    %p= @instance_presenter.site_description.html_safe
+
+  .actions
+    .info
+      = link_to t('about.terms'), terms_path
+      ·
+      = link_to t('about.apps'), 'https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/Apps.md'
+      ·
+      = link_to t('about.source_code'), 'https://github.com/tootsuite/mastodon'
+      ·
+      = link_to t('about.other_instances'), 'https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/List-of-Mastodon-instances.md'

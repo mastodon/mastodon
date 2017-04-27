@@ -2,43 +2,255 @@
 fr:
   about:
     about_mastodon: Mastodon est un serveur <em>libre</em> de réseautage social. Alternative <em>décentralisée</em> aux plateformes commerciales, la monopolisation de vos communications par une entreprise unique est évitée. Tout un chacun peut faire tourner Mastodon et participer au <em>réseau social</em> de manière transparente.
+    about_this: À propos de cette instance
+    apps: Applications
+    business_email: Courriel professionnel
+    closed_registrations: Les inscriptions sont actuellement fermées sur cette instance.
+    contact: Contact
+    description_headline: Qu'est-ce que %{domain} ?
+    domain_count_after: autres instances
+    domain_count_before: Connectés à
+    features:
+      api: API ouverte aux apps et services
+      blocks: Outils complets de bloquage et masquage
+      characters: 500 caractères par post
+      chronology: Fil chronologique
+      ethics: Pas de pubs, pas de pistage
+      gifv: Partage de vidéos et de GIFs
+      privacy: Réglages de confidentialité au niveau des posts
+      public: Fils publics
+    features_headline: Ce qui rend Mastodon différent
     get_started: Rejoindre le réseau
+    links: Liens
+    other_instances: Autres instances
     source_code: Code source
+    status_count_after: posts
+    status_count_before: Ayant publié
     terms: Conditions d’utilisation
+    user_count_after: utilisateurs⋅trices
+    user_count_before: Abrite
   accounts:
     follow: Suivre
-    followers: Abonnés
+    followers: Abonné⋅es
     following: Abonnements
     nothing_here: Rien à voir ici !
     people_followed_by: Personnes suivies par %{name}
     people_who_follow: Personnes qui suivent %{name}
     posts: Statuts
+    remote_follow: Suivre à distance
     unfollow: Ne plus suivre
+  admin:
+    accounts:
+      are_you_sure: Êtes-vous certain ?
+      display_name: Nom affiché
+      domain: Domaine
+      edit: Éditer
+      email: Courriel
+      feed_url: URL du flux
+      followers: Abonné⋅es
+      follows: Abonnements
+      location:
+        all: Tous
+        local: Local
+        remote: Distant
+        title: Situation
+      media_attachments: Fichiers médias
+      moderation:
+        all: Tous
+        silenced: Muets
+        suspended: Suspendus
+        title: Modération
+      most_recent_activity: Dernière activité
+      most_recent_ip: Adresse IP la plus récente
+      not_subscribed: Non abonné
+      order:
+        alphabetic: Alphabétique
+        most_recent: Plus récent
+        title: Tri
+      perform_full_suspension: Effectuer une suspension complète
+      profile_url: URL du profil
+      public: Public
+      push_subscription_expires: Expiration de l'abonnement PuSH
+      reset_password: Réinitialiser le mot de passe
+      salmon_url: URL Salmon
+      silence: Rendre muet
+      statuses: Statuts
+      title: Comptes
+      undo_silenced: Annuler le silence
+      undo_suspension: Annuler la suspension
+      username: Nom d'utilisateur
+      web: Web
+    domain_blocks:
+      add_new: Ajouter
+      created_msg: Le blocage de domaine est désormais activé
+      destroyed_msg: Le blocage de domaine a été désactivé
+      domain: Domaine
+      new:
+        create: Créer le blocage
+        hint: Le blocage de domaine n'empêchera pas la création de comptes dans la base de données, mais il appliquera automatiquement et rétrospectivement des méthodes de modération spécifiques sur ces comptes.
+        severity:
+          desc_html: "<strong>Silence</strong> rendra les messages des comptes concernés invisibles à ceux qui ne les suivent pas. <strong>Suspend</strong> supprimera tout le contenu des comptes concernés, les médias, et les données du profil."
+          silence: Muet
+          suspend: Suspendre
+        title: Nouveau blocage de domaine
+      reject_media: Fichiers média rejetés
+      reject_media_hint: Supprime localement les fichiers média stockés et refuse d'en télécharger ultérieurement. Ne concerne pas les suspensions.
+      severities:
+        silence: Rendre muet
+        suspend: Suspendre
+      severity: Séverité
+      show:
+        affected_accounts:
+          one: Un compte affecté dans la base de données
+          other: "%{count} comptes affectés dans la base de données"
+        retroactive:
+          silence: Annuler le silence sur tous les comptes existants pour ce domaine
+          suspend: Annuler la suspension sur tous les comptes existants pour ce domaine
+        title: Annuler le blocage de domaine pour %{domain}
+        undo: Annuler
+      title: Blocage de domaines
+      undo: Annuler
+    pubsubhubbub:
+      callback_url: URL de rappel
+      confirmed: Confirmé
+      expires_in: Expire dans
+      last_delivery: Dernière livraison
+      title: PubSubHubbub
+      topic: Sujet
+    reports:
+      comment:
+        label: Commentaire
+        none: Aucun
+      delete: Supprimer
+      id: ID
+      mark_as_resolved: Marquer comme résolu
+      report: 'Signalement #%{id}'
+      reported_account: Compte signalé
+      reported_by: Signalé par
+      resolved: Résolus
+      silence_account: Rendre le compte muet
+      status: Statut
+      suspend_account: Suspendre le compte
+      target: Cible
+      title: Signalements
+      unresolved: Non résolus
+      view: Voir
+    settings:
+      click_to_edit: Cliquez pour éditer
+      contact_information:
+        email: Entrez une adresse courriel publique
+        label: Informations de contact
+        username: Entrez un nom d'utilisateur
+      registrations:
+        closed_message:
+          desc_html: Affiché sur la page d'accueil lorsque les inscriptions sont fermées<br>Vous pouvez utiliser des balises HTML
+          title: Message de fermeture des inscriptions
+        open:
+          disabled: Désactivées
+          enabled: Activées
+          title: Inscriptions
+      setting: Paramètre
+      site_description:
+        desc_html: Affichée sous la forme d'un paragraphe sur la page d'accueil et utilisée comme balise meta.<br>Vous pouvez utiliser des balises HTML, en particulier <code>&lt;a&gt;</code> et <code>&lt;em&gt;</code>.
+        title: Description du site
+      site_description_extended:
+        desc_html: Affichée sur la page d'informations complémentaires du site<br>Vous pouvez utiliser des balises HTML
+        title: Description étendue du site
+      site_title: Titre du site
+      title: Paramètres du site
+    title: Administration
   application_mailer:
+    settings: 'Changer les préférences courriel : %{link}'
     signature: Notifications de Mastodon depuis %{instance}
+    view: 'Voir :'
+  applications:
+    invalid_url: L'URL fournie est invalide
   auth:
     change_password: Changer de mot de passe
     didnt_get_confirmation: Vous n’avez pas reçu les consignes de confirmation ?
-    forgot_password: Mode passe oublié ?
+    forgot_password: Mot de passe oublié ?
     login: Se connecter
+    logout: Se déconnecter
     register: S’inscrire
     resend_confirmation: Envoyer à nouveau les consignes de confirmation
     reset_password: Réinitialiser le mot de passe
-    set_new_password: Établir le nouveau mot de passe
+    set_new_password: Définir le nouveau mot de passe
+  authorize_follow:
+    error: Malheureusement, il y a eu une erreur en cherchant les détails du compte distant
+    follow: Suivre
+    prompt_html: 'Vous (<strong>%{self}</strong>) avez demandé à suivre :'
+    title: Suivre %{acct}
+  datetime:
+    distance_in_words:
+      about_x_hours: "%{count}h"
+      about_x_months: "%{count}mois"
+      about_x_years:
+        one: un an
+        other: "%{count} ans"
+      almost_x_years:
+        one: un an
+        other: "%{count} ans"
+      half_a_minute: A l'instant
+      less_than_x_minutes: "%{count}min"
+      less_than_x_seconds: A l'instant
+      over_x_years:
+        one: un an
+        other: "%{count} ans"
+      x_days: "%{count}j"
+      x_minutes: "%{count}min"
+      x_months: "%{count}mois"
+      x_seconds: "%{count}s"
+  errors:
+    '404': La page que vous recherchez n'existe pas.
+    '410': La page que vous recherchez n'existe plus.
+    '422':
+      content: Vérification de sécurité échouée. Bloquez-vous les cookies ?
+      title: Vérification de sécurité échouée
+  exports:
+    blocks: Vous bloquez
+    csv: CSV
+    follows: Vous suivez
+    mutes: Vous faites taire
+    storage: Médias stockés
   generic:
     changes_saved_msg: Les modifications ont été enregistrées avec succès !
     powered_by: propulsé par %{link}
     save_changes: Enregistrer les modifications
     validation_errors:
       one: Quelque chose ne va pas ! Vérifiez l’erreur ci-dessous.
-      other: Quelques choses ne vont pas ! Vérifiez les erreurs ci-dessous.
+      other: Certaines choses ne vont pas ! Vérifiez les erreurs ci-dessous.
+  imports:
+    preface: Vous pouvez importer certaines données comme les personnes que vous suivez ou bloquez sur votre compte sur cette instance à partir de fichiers créés sur une autre instance.
+    success: Vos données ont été importées avec succès et seront traitées en temps et en heure
+    types:
+      blocking: Liste d'utilisateurs⋅trices bloqué⋅es
+      following: Liste d'utilisateurs⋅trices suivi⋅es
+      muting: Liste d'utilisateurs⋅trices que vous faites taire
+    upload: Importer
+  landing_strip_html: <strong>%{name}</strong> utilise %{link_to_root_path}. Vous pouvez le/la suivre et interagir si vous possédez un compte quelque part dans le "fediverse". Si ce n'est pas le cas, vous pouvez <a href="%{sign_up_path}">en créer un ici</a>.
+  media_attachments:
+    validations:
+      images_and_video: Impossible de joindre une vidéo à un statut contenant déjà des images
+      too_many: Impossible de joindre plus de 4 fichiers
   notification_mailer:
+    digest:
+      body: 'Voici ce que vous avez raté sur ${instance} depuis votre dernière visite (%{}) :'
+      mention: "%{name} vous a mentionné⋅e"
+      new_followers_summary:
+        one: Vous avez un⋅e nouvel⋅le abonné⋅e ! Youpi !
+        other: Vous avez %{count} nouveaux abonné⋅es ! Incroyable !
+      subject:
+        one: "Une nouvelle notification depuis votre dernière visite \U0001F418"
+        other: "%{count} nouvelles notifications depuis votre dernière visite \U0001F418"
     favourite:
-      body: "%{name} a ajouté votre statut à ses favoris :"
-      subject: "%{name} a ajouté votre statut à ses favoris"
+      body: "%{name} a ajouté votre post à ses favoris :"
+      subject: "%{name} a ajouté votre post à ses favoris"
     follow:
       body: "%{name} vous suit !"
       subject: "%{name} vous suit"
+    follow_request:
+      body: "%{name} a demandé à vous suivre"
+      subject: 'Abonné⋅es en attente : %{name}'
     mention:
       body: "%{name} vous a mentionné⋅e dans :"
       subject: "%{name} vous a mentionné⋅e"
@@ -48,8 +260,49 @@ fr:
   pagination:
     next: Suivant
     prev: Précédent
+  remote_follow:
+    acct: Entrez votre pseudo@instance depuis lequel vous voulez suivre ce⋅tte utilisateur⋅trice
+    missing_resource: L'URL de redirection n'a pas pu être trouvée
+    proceed: Continuez pour suivre
+    prompt: 'Vous allez suivre :'
   settings:
+    authorized_apps: Applications autorisées
+    back: Retour vers Mastodon
     edit_profile: Modifier le profil
+    export: Export de données
+    import: Import de données
     preferences: Préférences
-  will_paginate:
-    page_gap: "&hellip;"
+    settings: Réglages
+    two_factor_authentication: Identification à deux facteurs (Two-factor auth)
+  statuses:
+    open_in_web: Ouvrir sur le web
+    over_character_limit: limite de caractères dépassée de %{max} caractères
+    show_more: Afficher plus
+    visibilities:
+      private: Abonné⋅es uniquement
+      public: Public
+      unlisted: Public sans être affiché sur le fil public
+  stream_entries:
+    click_to_show: Cliquer pour afficher
+    reblogged: partagé
+    sensitive_content: Contenu sensible
+  time:
+    formats:
+      default: "%d %b %Y, %H:%M"
+  two_factor_authentication:
+    code_hint: Entrez le code généré par votre application pour confirmer
+    description_html: Si vous activez <strong>l'identification à deux facteurs</strong>, vous devrez être en possession de votre téléphone afin de générer un code de connexion.
+    disable: Désactiver
+    enable: Activer
+    enabled_success: Identification à deux facteurs activée avec succès
+    generate_recovery_codes: Générer les codes de récupération
+    instructions_html: "<strong>Scannez ce QR code grâce à Google Authenticator, Authy ou une application similaire sur votre téléphone</strong>. Désormais, cette application générera des jetons que vous devrez saisir à chaque connexion."
+    lost_recovery_codes: Les codes de récupération vous permettent de retrouver les accès à votre comptre si vous perdez votre téléphone. Si vous perdez vos codes de récupération, vous pouvez les générer à nouveau ici. Vos anciens codes de récupération seront invalidés.
+    manual_instructions: "Si vous ne pouvez pas scanner ce QR code et devez l'entrer manuellement, voici le secret en clair :"
+    recovery_codes_regenerated: Codes de récupération régénérés avec succès
+    recovery_instructions: Si vous perdez l'accès à votre téléphone, vous pouvez utiliser un des codes de récupération ci-dessous pour récupérer l'accès à votre compte. Conservez les codes de récupération en toute sécurité, par exemple, en les imprimant et en les stockant avec vos autres documents importants.
+    setup: Installer
+    wrong_code: Les codes entrés sont incorrects ! L'heure du serveur et celle de votre appareil sont-elles correctes ?
+  users:
+    invalid_email: L'adresse courriel est invalide
+    invalid_otp_token: Le code d'authentification à deux facteurs est invalide

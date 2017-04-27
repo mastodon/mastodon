@@ -1,0 +1,214 @@
+---
+nl:
+  about:
+    about_mastodon: Mastodon is een <em>vrij, gratis en open-source</em> sociaal netwerk. Een <em>gedecentraliseerd</em> alternatief voor commerciële platforms. Het voorkomt de risico's van een enkel bedrijf dat jouw communicatie monopoliseert. Kies een server die je vertrouwt &mdash; welke je ook kiest, je kunt met elke andere server communiceren. Iedereen kan een eigen Mastodon-server draaien en naadloos deelnemen in het <em>sociale netwerk</em>.
+    about_this: Over deze server
+    apps: Apps
+    business_email: 'E-mailadres:'
+    closed_registrations: Registreren op deze server is momenteel uitgeschakeld.
+    contact: Contact
+    description_headline: Wat is %{domain}?
+    domain_count_after: andere servers
+    domain_count_before: Verbonden met
+    features:
+      api: Open API voor apps en diensten
+      blocks: Uitgebreide blokkeer- en negeerhulpmiddelen
+      characters: 500 tekens per bericht
+      chronology: Tijdlijnen zijn chronologisch
+      ethics: 'Ethisch design: geen advertenties, geen spionage'
+      gifv: GIFV-sets en korte video's
+      privacy: Nauwkeurige privacyinstellingen per toot (bericht)
+      public: Openbare tijdlijnen
+    features_headline: Wat maakt Mastodon anders
+    get_started: Beginnen
+    links: Links
+    other_instances: Andere servers
+    source_code: Broncode
+    status_count_after: toots
+    status_count_before: Zij schreven
+    terms: Voorwaarden
+    user_count_after: gebruikers
+    user_count_before: Thuisbasis van
+  accounts:
+    follow: Volgen
+    followers: Volgers
+    following: Volgend
+    nothing_here: Hier is niets!
+    people_followed_by: Mensen die %{name} volgt
+    people_who_follow: Mensen die %{name} volgen
+    posts: Berichten
+    remote_follow: Extern volgen
+    unfollow: Ontvolgen
+  admin:
+    settings:
+      click_to_edit: Klik om te bewerken
+      contact_information:
+        email: Vul een openbaar gebruikt e-mailadres in
+        label: Contactgegevens
+        username: Vul een gebruikersnaam in
+      registrations:
+        closed_message:
+          desc_html: Wordt op de voorpagina weergegeven wanneer registratie van nieuwe accounts is uitgeschakeld<br>En ook hier kan je HTML gebruiken
+          title: Bericht wanneer registratie is uitgeschakeld
+        open:
+          disabled: Uitgeschakeld
+          enabled: Ingeschakeld
+          title: Open registratie
+      setting: Instelling
+      site_description:
+        desc_html: Dit wordt als een alinea op de voorpagina getoond en gebruikt als meta-tag in de paginabron.<br>Je kan HTML gebruiken, zoals <code>&lt;a&gt;</code> en <code>&lt;em&gt;</code>.
+        title: Omschrijving Mastodon-server
+      site_description_extended:
+        desc_html: Wordt op de uitgebreide informatiepagina weergegeven<br>Je kan ook hier HTML gebruiken
+        title: Uitgebreide omschrijving Mastodon-server
+      site_title: Naam Mastodon-server
+      title: Server-instellingen
+  admin.reports:
+    comment:
+      label: Opmerking
+      none: Geen
+    delete: Verwijderen
+    id: ID
+    mark_as_resolved: Markeer als opgelost
+    report: 'Gerapporteerde toot #%{id}'
+    reported_account: Gerapporteerde account
+    reported_by: Gerapporteerd door
+    resolved: Opgelost
+    silence_account: Account stilzwijgen
+    status: Toot
+    suspend_account: Account blokkeren
+    target: Target
+    title: Gerapporteerde toots
+    unresolved: Onopgelost
+    view: Weergeven
+  application_mailer:
+    settings: 'E-mailvoorkeuren wijzigen: %{link}'
+    signature: Mastodon-meldingen van %{instance}
+    view: 'Bekijk:'
+  applications:
+    invalid_url: De opgegevens URL is ongeldig
+  auth:
+    change_password: Inloggegevens
+    didnt_get_confirmation: Geen bevestigingsinstructies ontvangen?
+    forgot_password: Wachtwoord vergeten?
+    login: Aanmelden
+    logout: Afmelden
+    register: Registreren
+    resend_confirmation: Verstuur de bevestigingsinstructies nogmaals
+    reset_password: Wachtwoord opnieuw instellen
+    set_new_password: Nieuw wachtwoord instellen
+  authorize_follow:
+    error: Helaas, er is een fout opgetreden bij het opzoeken van de externe account
+    follow: Volgen
+    prompt_html: 'Je (<strong>%{self}</strong>) hebt toestemming gevraagd om iemand te mogen volgen:'
+    title: Volg %{acct}
+  datetime:
+    distance_in_words:
+      about_x_hours: "%{count}u"
+      about_x_months: "%{count}ma"
+      about_x_years: "%{count}j"
+      almost_x_years: "%{count}j"
+      half_a_minute: Zojuist
+      less_than_x_minutes: "%{count}m"
+      less_than_x_seconds: Zojuist
+      over_x_years: "%{count}j"
+      x_days: "%{count}d"
+      x_minutes: "%{count}m"
+      x_months: "%{count}ma"
+      x_seconds: "%{count}s"
+  errors:
+    '404': De pagina waarnaar jij op zoek bent bestaat niet.
+    '410': De pagina waarnaar jij op zoek bent bestaat niet meer.
+    '422':
+      content: Veiligheidsverificatie mislukt. Blokkeer je toevallig cookies?
+      title: Veiligheidsverificatie mislukt
+  exports:
+    blocks: Jij blokkeert
+    csv: CSV
+    follows: Jij volgt
+    mutes: Jij negeert
+    storage: Mediaopslag
+  generic:
+    changes_saved_msg: Wijzigingen succesvol opgeslagen!
+    powered_by: mogelijk gemaakt door %{link}
+    save_changes: Wijzigingen opslaan
+    validation_errors:
+      one: Er is iets niet helemaal goed! Bekijk onderstaande fout
+      other: Er is iets niet helemaal goed! Bekijk onderstaande %{count} fouten
+  imports:
+    preface: Je kunt bepaalde gegevens, zoals de mensen die jij volgt of hebt geblokkeerd, naar jouw account op deze server importeren. Je moet deze gegevens wel eerst op de oorspronkelijke server exporteren.
+    success: Jouw gegevens zijn succesvol geüpload en worden binnenkort verwerkt
+    types:
+      blocking: Blokkeerlijst
+      following: Volglijst
+      muting: Negeerlijst
+    upload: Uploaden
+  landing_strip_html: <strong>%{name}</strong> is een gebruiker op %{link_to_root_path}. Je kunt deze volgen en ermee communiceren als je ergens in deze fediverse een account hebt. Als je dat niet hebt, kun je je <a href="%{sign_up_path}">hier aanmelden</a>.
+  notification_mailer:
+    digest:
+      body: 'Hier is een korte samenvatting van wat je hebt gemist op %{instance} sinds jouw laatste bezoek op %{since}:'
+      mention: "%{name} vermeldde jou in:"
+      new_followers_summary:
+        one: Jij hebt een nieuwe volger! Hoera!
+        other: Jij hebt %{count} nieuwe volgers! Prachtig!
+      subject:
+        one: "1 nieuwe melding sinds jouw laatste bezoek \U0001F418"
+        other: "%{count} nieuwe meldingen sinds jouw laatste bezoek \U0001F418"
+    favourite:
+      body: 'Jouw toot werd door %{name} als favoriet gemarkeerd:'
+      subject: "%{name} markeerde jouw toot als favoriet"
+    follow:
+      body: "%{name} volgt jou nu!"
+      subject: "%{name} volgt jou nu"
+    follow_request:
+      body: "%{name} wil jou graag volgen"
+      subject: 'Volgen in afwachting: %{name}'
+    mention:
+      body: 'Jij bent door %{name} vermeld in:'
+      subject: Jij bent vermeld door %{name}
+    reblog:
+      body: 'Jouw toot werd door %{name} geboost:'
+      subject: "%{name} booste jouw toot"
+  pagination:
+    next: Volgende
+    prev: Vorige
+  remote_follow:
+    acct: Geef jouw account@domein.tld op waarvandaan je wilt volgen
+    missing_resource: Kon vereiste doorverwijzings-URL voor jouw account niet vinden
+    proceed: Ga door om te volgen
+    prompt: 'Jij gaat volgen:'
+  settings:
+    authorized_apps: Geautoriseerde
+    back: Terug naar Mastodon
+    edit_profile: Profiel bewerken
+    export: Export
+    import: Import
+    preferences: Voorkeuren
+    settings: Instellingen
+    two_factor_authentication: Tweestapsverificatie
+  statuses:
+    open_in_web: Openen in web
+    over_character_limit: Limiet van %{max} tekens overschreden
+    show_more: Toon meer
+    visibilities:
+      private: Alleen volgers
+      private_long: Alleen aan volgers tonen
+      public: Openbaar
+      public_long: Aan iedereen tonen, ook op openbare tijdlijnen
+      unlisted: Minder openbaar
+      unlisted_long: Aan iedereen tonen, maar niet op openbare tijdlijnen
+  stream_entries:
+    click_to_show: Klik om te tonen
+    reblogged: boostte
+    sensitive_content: Gevoelige inhoud
+  time:
+    formats:
+      default: "%d %B %Y om %H:%M"
+  two_factor_authentication:
+    description_html: Na het instellen van <strong>tweestapsverificatie</strong>, kun jij je alleen aanmelden als je jouw mobiele telefoon bij je hebt. Hiermee genereer je namelijk de in te voeren aanmeldcode.
+    disable: Uitschakelen
+    enable: Inschakelen
+    instructions_html: "<strong>Scan deze QR-code in Google Authenticator of een soortgelijke app op jouw mobiele telefoon</strong>. Van nu af aan genereert deze app aanmeldcodes die je bij het aanmelden moet invoeren."
+  users:
+    invalid_email: E-mailadres is ongeldig
+    invalid_otp_token: Ongeldige tweestaps-aanmeldcode

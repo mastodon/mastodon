@@ -1,0 +1,113 @@
+---
+fi:
+  activerecord:
+    attributes:
+      doorkeeper/application:
+        name: Nimi
+        redirect_uri: Uudelleenohjaus URI
+    errors:
+      models:
+        doorkeeper/application:
+          attributes:
+            redirect_uri:
+              fragment_present: ei voi sisältää osia.
+              invalid_uri: pitää olla validi URI.
+              relative_uri: pitää olla täydellinen URI.
+              secured_uri: pitää olla HTTPS/SSL URI.
+  doorkeeper:
+    applications:
+      buttons:
+        authorize: Valtuuta
+        cancel: Peruuta
+        destroy: Tuhoa
+        edit: Muokkaa
+        submit: Lähetä
+      confirmations:
+        destroy: Oletko varma?
+      edit:
+        title: Muokkaa applikaatiota
+      form:
+        error: Whoops! Tarkista lomakkeesi mahdollisten virheiden varalta
+      help:
+        native_redirect_uri: Käytä %{native_redirect_uri} paikallisiin testeihin
+        redirect_uri: Käytä yhtä riviä per URI
+        scopes: Erota scopet välilyönnein. Jätä tyhjäksi käyteksi oletus scopeja.
+      index:
+        callback_url: Callback URL
+        name: Nimi
+        new: Uusi applikaatio
+        title: Sinun applikaatiosi
+      new:
+        title: Uusi applikaatio
+      show:
+        actions: Toiminnot
+        application_id: Applikaation Id
+        callback_urls: Callback urls
+        scopes: Scopet
+        secret: Salainen avain
+        title: 'Applikaatio: %{name}'
+    authorizations:
+      buttons:
+        authorize: Valtuuta
+        deny: Evää
+      error:
+        title: Virhe on tapahtunut
+      new:
+        able_to: Se voi
+        prompt: Applikaatio %{client_name} pyytää lupaa tilillesi
+        title: Valtuutus vaaditaan
+      show:
+        title: Valtuutus koodi
+    authorized_applications:
+      buttons:
+        revoke: Evää
+      confirmations:
+        revoke: Oletko varma?
+      index:
+        application: Applikaatio
+        created_at: Valtuutettu
+        date_format: "%Y-%m-%d %H:%M:%S"
+        scopes: Scopet
+        title: Valtuuttamasi applikaatiot
+    errors:
+      messages:
+        access_denied: Resurssin omistaja tai valtuutus palvelin hylkäsi pyynnönr.
+        credential_flow_not_configured: Resurssin omistajan salasana epäonnistui koska Doorkeeper.configure.resource_owner_from_credentials ei ole konfiguroitu.
+        invalid_client: Asiakkaan valtuutus epäonnistui koska tuntematon asiakas, asiakas ei sisältänyt valtuutusta, tai tukematon valtuutus tapa
+        invalid_grant: Antamasi valtuutus lupa on joko väärä, erääntynyt, peruttu, ei vastaa uudelleenohjaus URI jota käytetään valtuutus pyynnössä, tai se myönnettin toiselle asiakkaalle.
+        invalid_redirect_uri: Uudelleenohjaus uri ei ole oikein.
+        invalid_request: Pyynnöstä puutti parametri, sisältää tukemattoman parametri arvonn, tai on korruptoitunut.
+        invalid_resource_owner: Annetut resurssin omistajan tunnnukset ovat väärät, tai resurssin omistajaa ei löydy
+        invalid_scope: Pyydetty scope on väärä, tuntemat, tai korruptoitunut.
+        invalid_token:
+          expired: Access token vanhentunut
+          revoked: Access token evätty
+          unknown: Access token väärä
+        resource_owner_authenticator_not_configured: Resurssin omistajan etsiminen epäonnistui koska Doorkeeper.configure.resource_owner_authenticator ei ole konfiguroitu.
+        server_error: Valtuutus palvelin kohtasi odottamattoman virheen joka esti sitä täyttämästä pyyntöä.
+        temporarily_unavailable: Valtuutus palvelin ei voi tällä hetkellä käsitellä pyyntöäsi joko väliaikaisen ruuhkan tai huollon takia.
+        unauthorized_client: Asiakas ei ole valtuutettu tekemään tätä pyyntöä käyttäen tätä metodia.
+        unsupported_grant_type: Valtuutus grant type ei ole tuettu valtuutus palvelimella.
+        unsupported_response_type: Valtuutus palvelin ei tue tätä vastaus tyyppiä.
+    flash:
+      applications:
+        create:
+          notice: Applikaatio luotu.
+        destroy:
+          notice: Applikaatio poistettu.
+        update:
+          notice: Applikaatio päivitetty.
+      authorized_applications:
+        destroy:
+          notice: Applikaatio tuhottu.
+    layouts:
+      admin:
+        nav:
+          applications: Applikaatiot
+          oauth2_provider: OAuth2 Provider
+      application:
+        title: OAuth valtuutus tarvitaan
+    scopes:
+      follow: seuraa, estä, peru esto ja lopeta tilien seuraaminen
+      read: lukea tilin dataa
+      write: julkaista puolestasi

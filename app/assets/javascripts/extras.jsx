@@ -1,4 +1,5 @@
-import emojify from './components/emoji'
+import emojify from './components/emoji';
+import { length } from 'stringz';
 
 $(() => {
   $.each($('.emojify'), (_, content) => {
@@ -23,5 +24,26 @@ $(() => {
       e.preventDefault();
       window.location.href = $(e.target).attr('href');
     }
+  });
+
+  $('.status__content__spoiler-link').on('click', e => {
+    e.preventDefault();
+    const contentEl = $(e.target).parent().parent().find('div');
+
+    if (contentEl.is(':visible')) {
+      contentEl.hide();
+      $(e.target).parent().attr('style', 'margin-bottom: 0');
+    } else {
+      contentEl.show();
+      $(e.target).parent().attr('style', null);
+    }
+  });
+
+  // used on /settings/profile
+  $('.account_display_name').on('input', e => {
+    $('.name-counter').text(30 - length($(e.target).val()));
+  });
+  $('.account_note').on('input', e => {
+    $('.note-counter').text(160 - length($(e.target).val()));
   });
 });

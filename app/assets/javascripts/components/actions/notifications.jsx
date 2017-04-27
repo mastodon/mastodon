@@ -50,6 +50,8 @@ export function updateNotifications(notification, intlMessages, intlLocale) {
   };
 };
 
+const excludeTypesFromSettings = state => state.getIn(['settings', 'notifications', 'shows']).filter(enabled => !enabled).keySeq().toJS();
+
 export function refreshNotifications() {
   return (dispatch, getState) => {
     dispatch(refreshNotificationsRequest());
@@ -60,6 +62,8 @@ export function refreshNotifications() {
     if (ids.size > 0) {
       params.since_id = ids.first().get('id');
     }
+
+    params.exclude_types = excludeTypesFromSettings(getState());
 
     api(getState).get('/api/v1/notifications', { params }).then(response => {
       const next = getLinks(response).refs.find(link => link.rel === 'next');
@@ -105,11 +109,11 @@ export function expandNotifications() {
 
     dispatch(expandNotificationsRequest());
 
-    api(getState).get(url, {
-      params: {
-        limit: 5
-      }
-    }).then(response => {
+    const params = {};
+
+    params.exclude_types = excludeTypesFromSettings(getState());
+
+    api(getState).get(url, params).then(response => {
       const next = getLinks(response).refs.find(link => link.rel === 'next');
 
       dispatch(expandNotificationsSuccess(response.data, next ? next.uri : null));

@@ -3,6 +3,8 @@ import { STORE_HYDRATE } from '../actions/store';
 import Immutable from 'immutable';
 
 const initialState = Immutable.Map({
+  onboarded: false,
+
   home: Immutable.Map({
     shows: Immutable.Map({
       reblog: true,

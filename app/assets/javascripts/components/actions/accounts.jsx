@@ -126,7 +126,8 @@ export function expandAccountTimeline(id) {
         max_id: lastId
       }
     }).then(response => {
-      dispatch(expandAccountTimelineSuccess(id, response.data));
+      const next = getLinks(response).refs.find(link => link.rel === 'next');
+      dispatch(expandAccountTimelineSuccess(id, response.data, next));
     }).catch(error => {
       dispatch(expandAccountTimelineFail(id, error));
     });
@@ -257,11 +258,12 @@ export function expandAccountTimelineRequest(id) {
   };
 };
 
-export function expandAccountTimelineSuccess(id, statuses) {
+export function expandAccountTimelineSuccess(id, statuses, next) {
   return {
     type: ACCOUNT_TIMELINE_EXPAND_SUCCESS,
     id,
-    statuses
+    statuses,
+    next
   };
 };
 
@@ -579,15 +581,18 @@ export function expandFollowingFail(id, error) {
   };
 };
 
-export function fetchRelationships(account_ids) {
+export function fetchRelationships(accountIds) {
   return (dispatch, getState) => {
-    if (account_ids.length === 0) {
+    const loadedRelationships = getState().get('relationships');
+    const newAccountIds = accountIds.filter(id => loadedRelationships.get(id, null) === null);
+
+    if (newAccountIds.length === 0) {
       return;
     }
 
-    dispatch(fetchRelationshipsRequest(account_ids));
+    dispatch(fetchRelationshipsRequest(newAccountIds));
 
-    api(getState).get(`/api/v1/accounts/relationships?${account_ids.map(id => `id[]=${id}`).join('&')}`).then(response => {
+    api(getState).get(`/api/v1/accounts/relationships?${newAccountIds.map(id => `id[]=${id}`).join('&')}`).then(response => {
       dispatch(fetchRelationshipsSuccess(response.data));
     }).catch(error => {
       dispatch(fetchRelationshipsFail(error));

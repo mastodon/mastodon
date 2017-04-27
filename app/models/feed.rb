@@ -10,17 +10,9 @@ class Feed
     max_id     = '+inf' if max_id.blank?
     since_id   = '-inf' if since_id.blank?
     unhydrated = redis.zrevrangebyscore(key, "(#{max_id}", "(#{since_id}", limit: [0, limit], with_scores: true).map(&:last).map(&:to_i)
+    status_map = Status.where(id: unhydrated).cache_ids.map { |s| [s.id, s] }.to_h
 
-    # If we're after most recent items and none are there, we need to precompute the feed
-    if unhydrated.empty? && max_id == '+inf' && since_id == '-inf'
-      RegenerationWorker.perform_async(@account.id, @type)
-      @statuses = Status.send("as_#{@type}_timeline", @account).cache_ids.paginate_by_max_id(limit, nil, nil)
-    else
-      status_map = Status.where(id: unhydrated).cache_ids.map { |s| [s.id, s] }.to_h
-      @statuses  = unhydrated.map { |id| status_map[id] }.compact
-    end
-
-    @statuses
+    unhydrated.map { |id| status_map[id] }.compact
   end
 
   private

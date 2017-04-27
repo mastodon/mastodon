@@ -5,16 +5,18 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
-  force_ssl if: "Rails.env.production? && ENV['LOCAL_HTTPS'] == 'true'"
+  force_ssl if: :https_enabled?
+
+  include Localized
 
   helper_method :current_account
+  helper_method :single_user_mode?
 
   rescue_from ActionController::RoutingError, with: :not_found
   rescue_from ActiveRecord::RecordNotFound, with: :not_found
   rescue_from ActionController::InvalidAuthenticityToken, with: :unprocessable_entity
 
   before_action :store_current_location, except: :raise_not_found, unless: :devise_controller?
-  before_action :set_locale
   before_action :set_user_activity
   before_action :check_suspension, if: :user_signed_in?
 
@@ -24,14 +26,12 @@ class ApplicationController < ActionController::Base
 
   private
 
-  def store_current_location
-    store_location_for(:user, request.url)
+  def https_enabled?
+    Rails.env.production? && ENV['LOCAL_HTTPS'] == 'true'
   end
 
-  def set_locale
-    I18n.locale = current_user.try(:locale) || I18n.default_locale
-  rescue I18n::InvalidLocale
-    I18n.locale = I18n.default_locale
+  def store_current_location
+    store_location_for(:user, request.url)
   end
 
   def require_admin!
@@ -39,7 +39,13 @@ class ApplicationController < ActionController::Base
   end
 
   def set_user_activity
-    current_user.touch(:current_sign_in_at) if !current_user.nil? && (current_user.current_sign_in_at.nil? || current_user.current_sign_in_at < 24.hours.ago)
+    return unless !current_user.nil? && (current_user.current_sign_in_at.nil? || current_user.current_sign_in_at < 24.hours.ago)
+
+    # Mark user as signed-in today
+    current_user.update_tracked_fields(request)
+
+    # If the sign in is after a two week break, we need to regenerate their feed
+    RegenerationWorker.perform_async(current_user.account_id) if current_user.last_sign_in_at < 14.days.ago
   end
 
   def check_suspension
@@ -51,22 +57,33 @@ class ApplicationController < ActionController::Base
   def not_found
     respond_to do |format|
       format.any  { head 404 }
-      format.html { render 'errors/404', layout: 'error', status: 404 }
+      format.html { respond_with_error(404) }
     end
   end
 
   def gone
     respond_to do |format|
       format.any  { head 410 }
-      format.html { render 'errors/410', layout: 'error', status: 410 }
+      format.html { respond_with_error(410) }
+    end
+  end
+
+  def forbidden
+    respond_to do |format|
+      format.any  { head 403 }
+      format.html { render 'errors/403', layout: 'error', status: 403 }
     end
   end
 
   def unprocessable_entity
     respond_to do |format|
       format.any  { head 422 }
-      format.html { render 'errors/422', layout: 'error', status: 422 }
+      format.html { respond_with_error(422) }
     end
+  end
+
+  def single_user_mode?
+    @single_user_mode ||= Rails.configuration.x.single_user_mode && Account.first
   end
 
   def current_account
@@ -95,5 +112,10 @@ class ApplicationController < ActionController::Base
     end
 
     raw.map { |item| cached_keys_with_value[item.cache_key] || uncached[item.id] }.compact
+  end
+
+  def respond_with_error(code)
+    set_locale
+    render "errors/#{code}", layout: 'error', status: code
   end
 end

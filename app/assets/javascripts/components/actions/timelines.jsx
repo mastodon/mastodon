@@ -14,6 +14,9 @@ export const TIMELINE_EXPAND_FAIL    = 'TIMELINE_EXPAND_FAIL';
 
 export const TIMELINE_SCROLL_TOP = 'TIMELINE_SCROLL_TOP';
 
+export const TIMELINE_CONNECT    = 'TIMELINE_CONNECT';
+export const TIMELINE_DISCONNECT = 'TIMELINE_DISCONNECT';
+
 export function refreshTimelineSuccess(timeline, statuses, skipLoading, next) {
   return {
     type: TIMELINE_REFRESH_SUCCESS,
@@ -76,6 +79,11 @@ export function refreshTimeline(timeline, id = null) {
     let skipLoading = false;
 
     if (newestId !== null && getState().getIn(['timelines', timeline, 'loaded']) && (id === null || getState().getIn(['timelines', timeline, 'id']) === id)) {
+      if (id === null && getState().getIn(['timelines', timeline, 'online'])) {
+        // Skip refreshing when timeline is live anyway
+        return;
+      }
+
       params          = { ...params, since_id: newestId };
       skipLoading     = true;
     }
@@ -160,5 +168,19 @@ export function scrollTopTimeline(timeline, top) {
     type: TIMELINE_SCROLL_TOP,
     timeline,
     top
+  };
+};
+
+export function connectTimeline(timeline) {
+  return {
+    type: TIMELINE_CONNECT,
+    timeline
+  };
+};
+
+export function disconnectTimeline(timeline) {
+  return {
+    type: TIMELINE_DISCONNECT,
+    timeline
   };
 };

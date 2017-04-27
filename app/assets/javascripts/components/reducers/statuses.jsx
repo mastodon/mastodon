@@ -32,7 +32,7 @@ import {
   FAVOURITED_STATUSES_FETCH_SUCCESS,
   FAVOURITED_STATUSES_EXPAND_SUCCESS
 } from '../actions/favourites';
-import { SEARCH_SUGGESTIONS_READY } from '../actions/search';
+import { SEARCH_FETCH_SUCCESS } from '../actions/search';
 import Immutable from 'immutable';
 
 const normalizeStatus = (state, status) => {
@@ -47,6 +47,9 @@ const normalizeStatus = (state, status) => {
     state               = normalizeStatus(state, status.reblog);
     normalStatus.reblog = status.reblog.id;
   }
+
+  const linebreakComplemented = status.content.replace(/<br \/>/g, '\n').replace(/<\/p><p>/g, '\n\n');
+  normalStatus.unescaped_content = new DOMParser().parseFromString(linebreakComplemented, 'text/html').documentElement.textContent;
 
   return state.update(status.id, Immutable.Map(), map => map.mergeDeep(Immutable.fromJS(normalStatus)));
 };
@@ -109,7 +112,7 @@ export default function statuses(state = initialState, action) {
   case NOTIFICATIONS_EXPAND_SUCCESS:
   case FAVOURITED_STATUSES_FETCH_SUCCESS:
   case FAVOURITED_STATUSES_EXPAND_SUCCESS:
-  case SEARCH_SUGGESTIONS_READY:
+  case SEARCH_FETCH_SUCCESS:
     return normalizeStatuses(state, action.statuses);
   case TIMELINE_DELETE:
     return deleteStatus(state, action.id, action.references);
