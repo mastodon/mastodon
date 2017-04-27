@@ -211,6 +211,10 @@ class Account < ApplicationRecord
     username
   end
 
+  def excluded_from_timeline_account_ids
+    Rails.cache.fetch("exclude_account_ids_for:#{id}") { Block.where(account: self).pluck(:target_account_id) + Block.where(target_account: self).pluck(:account_id) + Mute.where(account: self).pluck(:target_account_id) }
+  end
+
   class << self
     def find_local!(username)
       find_remote!(username, nil)
