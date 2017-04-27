@@ -37,6 +37,7 @@ class Status < ApplicationRecord
 
   scope :without_replies, -> { where('statuses.reply = FALSE OR statuses.in_reply_to_account_id = statuses.account_id') }
   scope :without_reblogs, -> { where('statuses.reblog_of_id IS NULL') }
+  scope :with_public_visibility, -> { where(visibility: :public) }
 
   cache_associated :account, :application, :media_attachments, :tags, :stream_entry, mentions: :account, reblog: [:account, :application, :stream_entry, :tags, :media_attachments, mentions: :account], thread: :account
 
@@ -119,7 +120,7 @@ class Status < ApplicationRecord
 
     def as_public_timeline(account = nil, local_only = false)
       query = joins('LEFT OUTER JOIN accounts ON statuses.account_id = accounts.id')
-              .where(visibility: :public)
+              .with_public_visibility
               .without_replies
               .without_reblogs
 
