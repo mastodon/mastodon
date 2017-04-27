@@ -1,8 +1,9 @@
 # frozen_string_literal: true
 
 class FetchLinkCardService < BaseService
+  include HttpHelper
+
   URL_PATTERN = %r{https?://\S+}
-  USER_AGENT = "#{HTTP::Request::USER_AGENT} (Mastodon/#{Mastodon::VERSION}; +http://#{Rails.configuration.x.local_domain}/)"
 
   def call(status)
     # Get first http/https URL that isn't local
@@ -64,10 +65,6 @@ class FetchLinkCardService < BaseService
     return if card.title.blank?
 
     card.save_with_optional_image!
-  end
-
-  def http_client
-    HTTP.headers(user_agent: USER_AGENT).timeout(:per_operation, write: 10, connect: 10, read: 10).follow
   end
 
   def meta_property(html, property)

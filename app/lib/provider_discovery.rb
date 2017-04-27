@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class ProviderDiscovery < OEmbed::ProviderDiscovery
-  USER_AGENT = "#{HTTP::Request::USER_AGENT} (Mastodon/#{Mastodon::VERSION}; +http://#{Rails.configuration.x.local_domain}/)"
+  include HttpHelper
 
   class << self
     def discover_provider(url, options = {})
@@ -31,10 +31,6 @@ class ProviderDiscovery < OEmbed::ProviderDiscovery
       end
 
       OEmbed::Provider.new(provider_endpoint, format || OEmbed::Formatter.default)
-    end
-
-    def http_client
-      HTTP.headers(user_agent: USER_AGENT).timeout(:per_operation, write: 10, connect: 10, read: 10).follow
     end
   end
 end
