@@ -616,10 +616,23 @@ a.status__content__spoiler-link {
   }
 }
 
+.detailed-status__display-avatar {
+  float: left;
+  margin-right: 10px;
+}
+
+.status__avatar {
+  height: 48px;
+  left: 10px;
+  position: absolute;
+  top: 10px;
+  width: 48px;
+}
+
 .direct {
   background: lighten($color1, 10%);
   .status__display-name strong {
-    color: lighten($color1, 30%);
+    color: $color5;
   }
 }
 
