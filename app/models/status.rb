@@ -39,6 +39,7 @@ class Status < ApplicationRecord
   scope :without_reblogs, -> { where('statuses.reblog_of_id IS NULL') }
   scope :with_public_visibility, -> { where(visibility: :public) }
   scope :tagged_with, -> (tag) { joins(:statuses_tags).where(statuses_tags: { tag_id: tag })}
+  scope :local_only, -> { where(accounts: { domain: nil }) }
 
   cache_associated :account, :application, :media_attachments, :tags, :stream_entry, mentions: :account, reblog: [:account, :application, :stream_entry, :tags, :media_attachments, mentions: :account], thread: :account
 
@@ -123,7 +124,7 @@ class Status < ApplicationRecord
       query = timeline_scope
         .without_replies
 
-      query = query.where('accounts.domain IS NULL') if local_only
+      query = query.local_only if local_only
 
       account.nil? ? filter_timeline_default(query) : filter_timeline_default(filter_timeline(query, account))
     end
@@ -132,7 +133,7 @@ class Status < ApplicationRecord
       query = timeline_scope
         .tagged_with(tag)
 
-      query = query.where('accounts.domain IS NULL') if local_only
+      query = query.local_only if local_only
 
       account.nil? ? filter_timeline_default(query) : filter_timeline_default(filter_timeline(query, account))
     end
