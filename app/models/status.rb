@@ -40,6 +40,8 @@ class Status < ApplicationRecord
   scope :with_public_visibility, -> { where(visibility: :public) }
   scope :tagged_with, -> (tag) { joins(:statuses_tags).where(statuses_tags: { tag_id: tag })}
   scope :local_only, -> { where(accounts: { domain: nil }) }
+  scope :excluding_silenced_accounts, -> { left_outer_joins(:account).where(accounts: { silenced: false }) }
+  scope :including_silenced_accounts, -> { left_outer_joins(:account).where(accounts: { silenced: true }) }
 
   cache_associated :account, :application, :media_attachments, :tags, :stream_entry, mentions: :account, reblog: [:account, :application, :stream_entry, :tags, :media_attachments, mentions: :account], thread: :account
 
@@ -137,7 +139,6 @@ class Status < ApplicationRecord
     def timeline_scope(local_only = false)
       starting_scope = local_only ? Status.local_only : Status
       starting_scope.
-        joins('LEFT OUTER JOIN accounts ON statuses.account_id = accounts.id').
         with_public_visibility.
         without_reblogs
     end
@@ -191,12 +192,12 @@ class Status < ApplicationRecord
     def filter_timeline(query, account)
       blocked = account.excluded_from_timeline_account_ids
       query   = query.where('statuses.account_id NOT IN (?)', blocked) unless blocked.empty?  # Only give us statuses from people we haven't blocked, or muted, or that have blocked us
-      query   = query.where('accounts.silenced = TRUE') if account.silenced?                  # and if we're hellbanned, only people who are also hellbanned
+      query   = query.including_silenced_accounts if account.silenced?                  # and if we're hellbanned, only people who are also hellbanned
       query
     end
 
     def filter_timeline_default(query)
-      query.where('accounts.silenced = FALSE')
+      query.excluding_silenced_accounts
     end
   end
 
