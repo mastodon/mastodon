@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class Status < ApplicationRecord
-  include ActiveModel::Validations
   include Paginable
   include Streamable
   include Cacheable
