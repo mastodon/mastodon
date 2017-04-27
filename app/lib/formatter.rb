@@ -10,20 +10,20 @@ class Formatter
   include ActionView::Helpers::SanitizeHelper
 
   def format(status)
-    return reformat(status.content) unless status.local?
+    html = status.content
+    html = html.gsub(/  /, " \u00a0")
+    return reformat(html) unless status.local?
 
-    html = status.text
     html = encode_and_link_urls(html)
-    html = simple_format(html, {}, sanitize: false)
-    html = html.delete("\n")
     html = link_mentions(html, status.mentions)
     html = link_hashtags(html)
+    html = html.gsub(/(?:\n\r?|\r\n?)/, '<br />')
 
     html.html_safe # rubocop:disable Rails/OutputSafety
   end
 
   def reformat(html)
-    sanitize(html, tags: %w(a br p span), attributes: %w(href rel class))
+    sanitize(html, tags: %w(a span br p), attributes: %w(href rel class))
   end
 
   def plaintext(status)
