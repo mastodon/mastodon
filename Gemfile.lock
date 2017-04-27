@@ -123,6 +123,7 @@ GEM
     connection_pool (2.2.1)
     crack (0.4.3)
       safe_yaml (~> 1.0.0)
+    crass (1.0.2)
     debug_inspector (0.0.2)
     devise (4.2.1)
       bcrypt (~> 3.0)
@@ -258,6 +259,8 @@ GEM
     nio4r (2.0.0)
     nokogiri (1.7.1)
       mini_portile2 (~> 2.1.0)
+    nokogumbo (1.4.10)
+      nokogiri
     oj (2.18.5)
     openssl (2.0.3)
     orm_adapter (0.5.0)
@@ -398,6 +401,10 @@ GEM
     ruby-oembed (0.12.0)
     ruby-progressbar (1.8.1)
     safe_yaml (1.0.4)
+    sanitize (4.4.0)
+      crass (~> 1.0.2)
+      nokogiri (>= 1.4.4)
+      nokogumbo (~> 1.4.1)
     sass (3.4.23)
     sass-rails (5.0.6)
       railties (>= 4.0.0, < 6)
@@ -540,6 +547,7 @@ DEPENDENCIES
   rspec-sidekiq
   rubocop
   ruby-oembed
+  sanitize
   sass-rails (~> 5.0)
   sidekiq
   sidekiq-unique-jobs

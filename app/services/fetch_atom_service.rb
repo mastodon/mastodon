@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class FetchAtomService < BaseService
+  include HttpHelper
+
   def call(url)
     return if url.blank?
 
@@ -44,9 +46,5 @@ class FetchAtomService < BaseService
 
   def fetch(url)
     http_client.get(url).to_s
-  end
-
-  def http_client
-    HTTP.timeout(:per_operation, write: 10, connect: 10, read: 10).follow
   end
 end

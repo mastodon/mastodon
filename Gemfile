@@ -49,6 +49,7 @@ gem 'rails-settings-cached'
 gem 'redis', '~>3.2', require: ['redis', 'redis/connection/hiredis']
 gem 'rqrcode'
 gem 'ruby-oembed', require: 'oembed'
+gem 'sanitize'
 gem 'sidekiq'
 gem 'sidekiq-unique-jobs'
 gem 'simple-navigation'
