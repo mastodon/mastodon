@@ -239,7 +239,7 @@ RSpec.describe Status, type: :model do
       end
 
       context 'where that account is silenced' do
-        xit 'includes statuses from other accounts that are silenced' do
+        it 'includes statuses from other accounts that are silenced' do
           @account.update(silenced: true)
           other_silenced_account = Fabricate(:account, silenced: true)
           other_status = Fabricate(:status, account: other_silenced_account)

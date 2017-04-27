@@ -127,14 +127,14 @@ class Status < ApplicationRecord
       query = timeline_scope(local_only).
         without_replies
 
-      account.nil? ? filter_timeline_default(query) : filter_timeline_default(filter_timeline_for_account(query, account))
+      account.nil? ? filter_timeline_default(query) : filter_timeline_for_account(query, account)
     end
 
     def as_tag_timeline(tag, account = nil, local_only = false)
       query = timeline_scope(local_only).
         tagged_with(tag)
 
-      account.nil? ? filter_timeline_default(query) : filter_timeline_default(filter_timeline_for_account(query, account))
+      account.nil? ? filter_timeline_default(query) : filter_timeline_for_account(query, account)
     end
 
     def timeline_scope(local_only = false)
@@ -192,12 +192,19 @@ class Status < ApplicationRecord
 
     def filter_timeline_for_account(query, account)
       query = query.not_excluded_by_account(account)
-      query = query.including_silenced_accounts if account.silenced?                  # and if we're hellbanned, only people who are also hellbanned
-      query
+      query = query.merge(account_silencing_filter(account))
     end
 
     def filter_timeline_default(query)
       query.excluding_silenced_accounts
+    end
+
+    def account_silencing_filter(account)
+      if account.silenced?
+        including_silenced_accounts
+      else
+        excluding_silenced_accounts
+      end
     end
   end
 
