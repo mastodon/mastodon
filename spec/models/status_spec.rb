@@ -194,7 +194,16 @@ RSpec.describe Status, type: :model do
     end
 
     context 'with a local_only option set' do
-      it 'does not include remote instances statuses'
+      it 'does not include remote instances statuses' do
+        local_account = Fabricate(:account, domain: nil)
+        remote_account = Fabricate(:account, domain: 'test.com')
+        local_status = Fabricate(:status, account: local_account)
+        remote_status = Fabricate(:status, account: remote_account)
+
+        results = Status.as_public_timeline(nil, true)
+        expect(results).to include(local_status)
+        expect(results).not_to include(remote_status)
+      end
     end
 
     describe 'with an account passed in' do
