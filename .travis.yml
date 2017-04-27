@@ -1,5 +1,9 @@
 language: ruby
-cache: bundler
+cache:
+  bundler: true
+  yarn: true
+  directories:
+    - node_modules
 dist: trusty
 sudo: false
 

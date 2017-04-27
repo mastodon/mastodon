@@ -1,6 +1,3 @@
-/**
-hrvatski jezik
- */
 const hr = {
   "account.block": "Blokiraj @{name}",
   "account.disclaimer": "Ovaj korisnik je sa druge instance. Ovaj broj bi mogao biti veći.",

@@ -71,8 +71,7 @@ Rails.application.routes.draw do
   resources :tags,  only: [:show]
 
   # Remote follow
-  get  :authorize_follow, to: 'authorize_follow#new'
-  post :authorize_follow, to: 'authorize_follow#create'
+  resource :authorize_follow, only: [:show, :create]
 
   namespace :admin do
     resources :pubsubhubbub, only: [:index]

@@ -126,4 +126,31 @@ RSpec.describe Status, type: :model do
   describe '#filter_from_context?' do
     pending
   end
+
+  describe '.as_home_timeline' do
+    before do
+      account = Fabricate(:account)
+      followed = Fabricate(:account)
+      not_followed = Fabricate(:account)
+      Fabricate(:follow, account: account, target_account: followed)
+
+      @self_status = Fabricate(:status, account: account)
+      @followed_status = Fabricate(:status, account: followed)
+      @not_followed_status = Fabricate(:status, account: not_followed)
+
+      @results = Status.as_home_timeline(account)
+    end
+
+    it 'includes statuses from self' do
+      expect(@results).to include(@self_status)
+    end
+
+    it 'includes statuses from followed' do
+      expect(@results).to include(@followed_status)
+    end
+
+    it 'does not include statuses from non-followed' do
+      expect(@results).not_to include(@not_followed_status)
+    end
+  end
 end

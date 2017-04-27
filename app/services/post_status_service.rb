@@ -20,15 +20,17 @@ class PostStatusService < BaseService
     end
 
     media  = validate_media!(options[:media_ids])
-    status = account.statuses.create!(text: text,
-                                      thread: in_reply_to,
-                                      sensitive: options[:sensitive],
-                                      spoiler_text: options[:spoiler_text] || '',
-                                      visibility: options[:visibility],
-                                      language: detect_language_for(text, account),
-                                      application: options[:application])
-
-    attach_media(status, media)
+    status = nil
+    ApplicationRecord.transaction do
+      status = account.statuses.create!(text: text,
+                                        thread: in_reply_to,
+                                        sensitive: options[:sensitive],
+                                        spoiler_text: options[:spoiler_text] || '',
+                                        visibility: options[:visibility],
+                                        language: detect_language_for(text, account),
+                                        application: options[:application])
+      attach_media(status, media)
+    end
     process_mentions_service.call(status)
     process_hashtags_service.call(status)
 
