@@ -137,13 +137,6 @@ class Status < ApplicationRecord
       apply_timeline_filters(tag_timeline_query, account)
     end
 
-    def timeline_scope(local_only = false)
-      starting_scope = local_only ? Status.local_only : Status
-      starting_scope.
-        with_public_visibility.
-        without_reblogs
-    end
-
     def as_outbox_timeline(account)
       where(account: account, visibility: :public)
     end
@@ -189,6 +182,13 @@ class Status < ApplicationRecord
     end
 
     private
+
+    def timeline_scope(local_only = false)
+      starting_scope = local_only ? Status.local_only : Status
+      starting_scope.
+        with_public_visibility.
+        without_reblogs
+    end
 
     def apply_timeline_filters(query, account)
       if account.nil?
