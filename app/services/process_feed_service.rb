@@ -47,8 +47,8 @@ class ProcessFeedService < BaseService
       return status unless just_created
 
       if verb == :share
-        original_status, = status_from_xml(@xml.at_xpath('.//activity:object', activity: TagManager::AS_XMLNS))
-        status.reblog    = original_status
+        original_status = shared_status_from_xml(@xml.at_xpath('.//activity:object', activity: TagManager::AS_XMLNS))
+        status.reblog   = original_status
 
         if original_status.nil?
           status.destroy
@@ -88,6 +88,14 @@ class ProcessFeedService < BaseService
 
     def skip_unsupported_type?
       !([:post, :share, :delete].include?(verb) && [:activity, :note, :comment].include?(type))
+    end
+
+    def shared_status_from_xml(entry)
+      status = find_status(id(entry))
+
+      return status unless status.nil?
+
+      FetchRemoteStatusService.new.call(url(entry))
     end
 
     def status_from_xml(entry)
