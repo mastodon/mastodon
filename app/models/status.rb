@@ -42,6 +42,7 @@ class Status < ApplicationRecord
   scope :local_only, -> { where(accounts: { domain: nil }) }
   scope :excluding_silenced_accounts, -> { left_outer_joins(:account).where(accounts: { silenced: false }) }
   scope :including_silenced_accounts, -> { left_outer_joins(:account).where(accounts: { silenced: true }) }
+  scope :not_excluded_by_account, -> (account) { where.not(account_id: account.excluded_from_timeline_account_ids) }
 
   cache_associated :account, :application, :media_attachments, :tags, :stream_entry, mentions: :account, reblog: [:account, :application, :stream_entry, :tags, :media_attachments, mentions: :account], thread: :account
 
@@ -190,9 +191,8 @@ class Status < ApplicationRecord
     private
 
     def filter_timeline_for_account(query, account)
-      blocked = account.excluded_from_timeline_account_ids
-      query   = query.where('statuses.account_id NOT IN (?)', blocked) unless blocked.empty?  # Only give us statuses from people we haven't blocked, or muted, or that have blocked us
-      query   = query.including_silenced_accounts if account.silenced?                  # and if we're hellbanned, only people who are also hellbanned
+      query = query.not_excluded_by_account(account)
+      query = query.including_silenced_accounts if account.silenced?                  # and if we're hellbanned, only people who are also hellbanned
       query
     end
 
