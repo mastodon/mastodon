@@ -80,7 +80,7 @@ class Notifications extends React.PureComponent {
   }
 
   render () {
-    const { intl, notifications, trackScroll, isLoading, isUnread } = this.props;
+    const { intl, notifications, shouldUpdateScroll, isLoading, isUnread } = this.props;
 
     let loadMore       = '';
     let scrollableArea = '';
@@ -113,25 +113,15 @@ class Notifications extends React.PureComponent {
       );
     }
 
-    if (trackScroll) {
-      return (
-        <Column icon='bell' active={isUnread} heading={intl.formatMessage(messages.title)}>
-          <ColumnSettingsContainer />
-          <ClearColumnButton onClick={this.handleClear} />
-          <ScrollContainer scrollKey='notifications'>
-            {scrollableArea}
-          </ScrollContainer>
-        </Column>
-      );
-    } else {
-      return (
-        <Column icon='bell' active={isUnread} heading={intl.formatMessage(messages.title)}>
-          <ColumnSettingsContainer />
-          <ClearColumnButton onClick={this.handleClear} />
+    return (
+      <Column icon='bell' active={isUnread} heading={intl.formatMessage(messages.title)}>
+        <ColumnSettingsContainer />
+        <ClearColumnButton onClick={this.handleClear} />
+        <ScrollContainer scrollKey='notifications' shouldUpdateScroll={shouldUpdateScroll}>
           {scrollableArea}
-        </Column>
-      );
-    }
+        </ScrollContainer>
+      </Column>
+    );
   }
 
 }
@@ -139,7 +129,7 @@ class Notifications extends React.PureComponent {
 Notifications.propTypes = {
   notifications: ImmutablePropTypes.list.isRequired,
   dispatch: PropTypes.func.isRequired,
-  trackScroll: PropTypes.bool,
+  shouldUpdateScroll: PropTypes.func,
   intl: PropTypes.object.isRequired,
   isLoading: PropTypes.bool,
   isUnread: PropTypes.bool

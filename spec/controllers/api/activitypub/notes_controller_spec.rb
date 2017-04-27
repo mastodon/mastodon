@@ -11,10 +11,10 @@ RSpec.describe Api::Activitypub::NotesController, type: :controller do
       public_status = nil
 
       before do
-        public_status = Status.create!(account: user_alice.account, text: 'Hello world', visibility: :public)
+        public_status = Fabricate(:status, account: user_alice.account, text: 'Hello world', visibility: :public)
 
         @request.env['HTTP_ACCEPT'] = 'application/activity+json'
-        get :show, id: public_status.id
+        get :show, params: { id: public_status.id }
       end
 
       it 'returns http success' do
@@ -23,10 +23,6 @@ RSpec.describe Api::Activitypub::NotesController, type: :controller do
 
       it 'sets Content-Type header to AS2' do
         expect(response.header['Content-Type']).to include 'application/activity+json'
-      end
-
-      it 'sets Access-Control-Allow-Origin header to *' do
-        expect(response.header['Access-Control-Allow-Origin']).to eq '*'
       end
 
       it 'returns http success' do
@@ -46,11 +42,11 @@ RSpec.describe Api::Activitypub::NotesController, type: :controller do
       reply = nil
 
       before do
-        original = Status.create!(account: user_alice.account, text: 'Hello world', visibility: :public)
-        reply = Status.create!(account: user_bob.account, text: 'Hello world', in_reply_to_id: original.id, visibility: :public)
+        original = Fabricate(:status, account: user_alice.account, text: 'Hello world', visibility: :public)
+        reply = Fabricate(:status, account: user_bob.account, text: 'Hello world', in_reply_to_id: original.id, visibility: :public)
 
         @request.env['HTTP_ACCEPT'] = 'application/activity+json'
-        get :show, id: reply.id
+        get :show, params: { id: reply.id }
       end
 
       it 'returns http success' do
@@ -59,10 +55,6 @@ RSpec.describe Api::Activitypub::NotesController, type: :controller do
 
       it 'sets Content-Type header to AS2' do
         expect(response.header['Content-Type']).to include 'application/activity+json'
-      end
-
-      it 'sets Access-Control-Allow-Origin header to *' do
-        expect(response.header['Access-Control-Allow-Origin']).to eq '*'
       end
 
       it 'returns http success' do

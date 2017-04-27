@@ -176,7 +176,14 @@ RSpec.describe PostStatusService do
     )
   end
 
+  it 'returns existing status when used twice with idempotency key' do
+    account = Fabricate(:account)
+    status1 = subject.call(account, 'test', nil, idempotency: 'meepmeep')
+    status2 = subject.call(account, 'test', nil, idempotency: 'meepmeep')
+    expect(status2.id).to eq status1.id
+  end
+
   def create_status_with_options(options = {})
-    subject.call(Fabricate(:account), "test", nil, options)
+    subject.call(Fabricate(:account), 'test', nil, options)
   end
 end

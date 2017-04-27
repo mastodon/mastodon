@@ -1,6 +1,6 @@
 @import 'variables';
 
-.app-body{
+.app-body {
  -webkit-overflow-scrolling: touch;
  -ms-overflow-style: -ms-autohiding-scrollbar;
 }
@@ -89,11 +89,11 @@
   border: none;
   background: transparent;
   cursor: pointer;
-  transition: all 100ms ease-in;
+  transition: color 100ms ease-in;
 
   &:hover, &:active, &:focus {
     color: lighten($color1, 33%);
-    transition: all 200ms ease-out;
+    transition: color 200ms ease-out;
   }
 
   &.disabled {
@@ -152,11 +152,11 @@
   padding: 0 3px;
   line-height: 27px;
   outline: 0;
-  transition: all 100ms ease-in;
+  transition: color 100ms ease-in;
 
   &:hover, &:active, &:focus {
     color: lighten($color1, 26%);
-    transition: all 200ms ease-out;
+    transition: color 200ms ease-out;
   }
 
   &.disabled {
@@ -203,17 +203,28 @@
 }
 
 .compose-form__warning {
-  color: $color2;
+  color: darken($color3, 33%);
   margin-bottom: 15px;
-  border: 1px solid $color3;
+  background: $color3;
+  box-shadow: 0 2px 6px rgba($color8, 0.3);
   padding: 8px 10px;
   border-radius: 4px;
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 400;
 
   strong {
-    color: $color5;
+    color: darken($color3, 33%);
     font-weight: 500;
+  }
+
+  a {
+    color: darken($color3, 33%);
+    font-weight: 500;
+    text-decoration: underline;
+
+    &:hover, &:active, &:focus {
+      text-decoration: none;
+    }
   }
 }
 
@@ -496,6 +507,9 @@ a.status__content__spoiler-link {
 
 .status__display-name {
   color: lighten($color1, 26%);
+}
+
+.status__info .status__display-name {
   display: block;
   max-width: 100%;
   padding-right: 25px;
@@ -543,6 +557,8 @@ a.status__content__spoiler-link {
 }
 
 .status__action-bar {
+  align-items: center;
+  display: flex;
   margin-top: 10px;
   overflow: hidden;
 }
@@ -582,10 +598,10 @@ a.status__content__spoiler-link {
 
 .detailed-status__action-bar {
   background: lighten($color1, 4%);
-  display: flex;
-  flex-direction: row;
   border-top: 1px solid lighten($color1, 8%);
   border-bottom: 1px solid lighten($color1, 8%);
+  display: flex;
+  flex-direction: row;
   padding: 10px 0;
 }
 
@@ -835,7 +851,7 @@ a.status__content__spoiler-link {
 }
 
 .detailed-status__display-avatar {
-  float: right;
+  float: left;
   margin-right: 10px;
 }
 
@@ -861,7 +877,7 @@ a.status__content__spoiler-link {
     opacity: 0.5;
   }
 
-  .status__content__spoiler-link {
+  a.status__content__spoiler-link {
     background: lighten($color1, 26%);
     color: lighten($color1, 4%);
 
@@ -889,6 +905,10 @@ a.status__content__spoiler-link {
 .notification__favourite-icon-wrapper {
   left: -26px;
   position: absolute;
+
+  .star-icon {
+    color: #ca8f04;
+  }
 }
 
 .star-icon.active {
@@ -1096,6 +1116,7 @@ a.status__content__spoiler-link {
   flex-direction: row;
   justify-content: flex-start;
   overflow-x: auto;
+  position:   relative;
 }
 
 @media screen and (min-width: 360px) {
@@ -1204,6 +1225,12 @@ a.status__content__spoiler-link {
     max-width: 800px;
     flex: 0 0 auto;
   }
+  .columns-area > div {
+    .column, .drawer {
+      padding-left: 5px;
+      padding-right: 5px;
+    }
+  }
 }
 
 @media screen and (min-width: 2560px) {
@@ -1261,11 +1288,11 @@ a.status__content__spoiler-link {
   flex-direction: row;
 
   a {
-    transition: all 100ms ease-in;
+    transition: background 100ms ease-in;
 
     &:hover {
       background: lighten($color1, 3%);
-      transition: all 200ms ease-out;
+      transition: background 200ms ease-out;
     }
   }
 }
@@ -1537,6 +1564,16 @@ a.status__content__spoiler-link {
   margin-right: 5px;
 }
 
+.column-subheading {
+  background: $color1;
+  color: lighten($color1, 26%);
+  padding: 8px 20px;
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: uppercase;
+  cursor: default;
+}
+
 .autosuggest-textarea,
 .spoiler-input {
   position: relative;
@@ -1634,7 +1671,7 @@ a.status__content__spoiler-link {
 }
 
 .character-counter {
-  cursor: default; 
+  cursor: default;
   font-size: 16px;
 }
 
@@ -1682,7 +1719,7 @@ a.status__content__spoiler-link {
     font-size: 16px;
   }
 }
-    
+
 @import 'boost';
 
 button.icon-button i.fa-retweet {
@@ -1781,6 +1818,7 @@ button.icon-button.active i.fa-retweet {
   cursor: pointer;
   position: relative;
   z-index: 2;
+  outline: 0;
 
   &.active {
     box-shadow: 0 1px 0 rgba($color4, 0.3);
@@ -1795,6 +1833,10 @@ button.icon-button.active i.fa-retweet {
     @media screen and (max-width: 1024px) {
       display: none;
     }
+  }
+
+  &:focus, &:active {
+    outline: 0;
   }
 }
 
@@ -1856,7 +1898,9 @@ button.icon-button.active i.fa-retweet {
 .spoiler-button {
   left: 4px;
   position: absolute;
+  text-shadow: 0px 1px 1px #000, 1px 0px 1px #000;
   top: 4px;
+  z-index: 100;
 }
 
 .modal-container--preloader {
@@ -2561,8 +2605,8 @@ button.icon-button.active i.fa-retweet {
 
 .media-modal__close {
   position: absolute;
-  right: 4;
-  top: 4;
+  right: 4px;
+  top: 4px;
   z-index: 100;
 }
 
@@ -2998,6 +3042,8 @@ button.icon-button.active i.fa-retweet {
 }
 
 .media-gallery__item-thumbnail {
+  background-position: center;
+  background-repeat: no-repeat;
   background-size: cover;
   cursor: zoom-in;
   display: block;
