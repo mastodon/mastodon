@@ -2,12 +2,37 @@
 de:
   about:
     about_mastodon: Mastodon ist ein <em>freier, quelloffener</em> sozialer Netzwerkserver. Als <em>dezentralisierte</em> Alternative zu kommerziellen Plattformen verhindert es die Risiken, die entstehen, wenn eine einzelne Firma deine Kommunikation monopolisiert. Jeder kann Mastodon verwenden und ganz einfach am <em>sozialen Netzwerk</em> teilnehmen.
+    about_this: Über diese Instanz
+    apps: Apps
+    business_email: 'Geschäftliche E-Mail:'
+    closed_registrations: Die Registrierung ist auf dieser Instanz momentan geschlossen.
+    contact: Kontact
+    description_headline: Was ist %{domain}?
+    domain_count_after: andere Instanzen
+    domain_count_before: Verbunden mit
+    features:
+      api: Offene API für Apps und Dienste
+      blocks: Mächtige Block- und Stummschaltungswerkzeuge
+      characters: 500 Zeichen pro Beitrag
+      chronology: Zeitleisten sind chronologisch
+      ethics: 'Ethisches Design: keine Werbung, kein Tracking'
+      gifv: GIFV-Sets und kurze Videos
+      privacy: Granulare Privatsphäre-Einstellungen für jeden Beitrag
+      public: Öffentliche Zeitleisten
+    features_headline: Was Mastodon einzigartig macht
     get_started: Erste Schritte
+    links: Links
+    other_instances: Andere Instanzen
     source_code: Quellcode
+    status_count_after: Beiträge verfassten
+    status_count_before: die
     terms: AGB
+    user_count_after: Benutzer
+    user_count_before: Heimat für
+    version: Version
   accounts:
     follow: Folgen
-    followers: Folger
+    followers: Folgende
     following: Folgt
     nothing_here: Hier gibt es nichts!
     people_followed_by: Nutzer, denen %{name} folgt
@@ -15,13 +40,146 @@ de:
     posts: Beiträge
     remote_follow: Folgen
     unfollow: Entfolgen
+  admin:
+    accounts:
+      are_you_sure: Bist du sicher?
+      display_name: Anzeigename
+      domain: Domain
+      edit: Bearbeiten
+      email: E-Mail
+      feed_url: Feed-URL
+      followers: Folgende
+      follows: Folgt
+      location:
+        all: Alle
+        local: Lokal
+        remote: Entfernt
+        title: Ort
+      media_attachments: Medienanhänge
+      moderation:
+        all: Alle
+        silenced: Stummgeschaltet
+        suspended: Gesperrt
+        title: Moderation
+      most_recent_activity: Letzte Aktivität
+      most_recent_ip: Letzte IP-Adresse
+      not_subscribed: Nicht abonniert
+      order:
+        alphabetic: Alphabetisch
+        most_recent: Neueste
+        title: Reihenfolge
+      perform_full_suspension: Führe vollständige Sperre durch
+      profile_url: Profil-URL
+      public: Öffentlich
+      push_subscription_expires: PuSH-Abonnement läuft aus
+      reset_password: Passwort zurücksetzen
+      salmon_url: Salmon-URL
+      show:
+        created_reports: Meldungen durch dieses Konto
+        report: Meldung
+        targeted_reports: Meldungen über dieses Konto
+      silence: Stummschalten
+      statuses: Beiträge
+      title: Konten
+      undo_silenced: Stummschaltung zurücknehmen
+      undo_suspension: Sperre zurücknehmen
+      username: Benutzername
+      web: Web
+    domain_blocks:
+      add_new: Neu hinzufügen
+      created_msg: Die Domain-Blockade wird nun durchgeführt
+      destroyed_msg: Die Domain-Blockade wurde rückgängig gemacht
+      domain: Domain
+      new:
+        create: Blockade einrichten
+        hint: Die Domain-Blockade wird nicht die Erstellung von Konteneinträgen in der Datenbank verhindern, aber rückwirkend und automatisch alle Moderationsmethoden auf diese Accounts anwenden.
+        severity:
+          desc_html: "<strong>Stummschaltung</strong> wird die Beiträge dieses Accounts für alle, die ihm nicht folgen, unsichtbar machen. Eine <strong>Sperre</strong> wird alle Beiträge, Medien und Profildaten dieses Accounts entfernen."
+          silence: Stummschaltung
+          suspend: Sperre
+        title: Neue Domain-Blockade
+      reject_media: Mediendateien ablehnen
+      reject_media_hint: Entfernt lokal gespeicherte Mediendateien und verweigert künftig deren Herunterladen. Irrelevant für Sperren
+      severities:
+        silence: Stummschaltung
+        suspend: Sperren
+      severity: Gewichtung
+      show:
+        affected_accounts:
+          one: Ein Konto in der Datenbank betroffen
+          other: "%{count} Konten in der Datenbank betroffen"
+        retroactive:
+          silence: Alle existierenden Konten dieser Domain nicht mehr stummschalten
+          suspend: Alle existierenden Konten dieser Domain entsperren
+        title: Domain-Blockade für %{domain} zurücknehmen
+        undo: Zurücknehmen
+      title: Domain-Blockaden
+      undo: Zurücknehmen
+    instances:
+      account_count: Bekannte Konten
+      domain_name: Domain
+      title: Bekannte Instanzen
+    pubsubhubbub:
+      callback_url: Callback-URL
+      confirmed: Bestätigt
+      expires_in: Verfällt in
+      last_delivery: Letzte Zustellung
+      title: PubSubHubbub
+      topic: Thema
+    reports:
+      comment:
+        label: Kommentar
+        none: Kein
+      delete: Löschen
+      id: ID
+      mark_as_resolved: Als gelöst markieren
+      report: '#%{id} melden'
+      reported_account: Gemeldetes Konto
+      reported_by: Gemeldet von
+      resolved: Gelöst
+      silence_account: Account stummschalten
+      status: Status
+      suspend_account: Account sperren
+      target: Ziel
+      title: Meldungen
+      unresolved: Ungelöst
+      view: Ansehen
+    settings:
+      click_to_edit: Klicken zum Bearbeiten
+      contact_information:
+        email: Eine öffentliche E-Mail-Adresse angeben
+        label: Kontaktinformationen
+        username: Einen Benutzernamen angeben
+      registrations:
+        closed_message:
+          desc_html: Wird auf der Frontseite angezeigt, wenn die Registrierung geschlossen ist<br>Du kannst HTML-Tags benutzen
+          title: Nachricht über geschlossene Registrierung
+        open:
+          disabled: Deaktiviert
+          enabled: Aktiviert
+          title: Offene Registrierung
+      setting: Einstellung
+      site_description:
+        desc_html: Wird als Absatz auf der Frontseite angezeigt und als Meta-Tag benutzt.<br>Du kannst HTML-Tags benutzen, insbesondere <code>&lt;a&gt;</code> und <code>&lt;em&gt;</code>.
+        title: Seitenbeschreibung
+      site_description_extended:
+        desc_html: Wird auf der erweiterten Informationsseite angezeigt<br>Du kannst HTML-Tags benutzen
+        title: Erweiterte Seitenbeschreibung
+      site_title: Seitentitel
+      title: Seiteneinstellungen
+    title: Administration
   application_mailer:
+    settings: 'E-Mail-Einstellungen ändern: %{link}'
     signature: Mastodon-Benachrichtigungen von %{instance}
+    view: 'Darstellung:'
+  applications:
+    invalid_url: Die angegebene URL ist ungültig
   auth:
     change_password: Passwort ändern
     didnt_get_confirmation: Keine Bestätigung bekommen?
     forgot_password: Passwort vergessen?
     login: Anmelden
+    logout: Abmelden
     register: Registrieren
     resend_confirmation: Bestätigung nochmal versenden
     reset_password: Passwort zurücksetzen
@@ -45,6 +203,18 @@ de:
       x_minutes: "%{count}m"
       x_months: "%{count}mo"
       x_seconds: "%{count}s"
+  errors:
+    '404': Die Seite, die du gesucht hast, existiert nicht.
+    '410': Die Seite, die du gesucht hast, existiert nicht mehr.
+    '422':
+      content: Sicherheitsüberprüfung fehlgeschlagen. Blockierst du Cookies?
+      title: Sicherheitsüberprüfung fehlgeschlagen
+  exports:
+    blocks: Du blockierst
+    csv: CSV
+    follows: Du folgst
+    mutes: Du schaltest stumm
+    storage: Medienspeicher
   generic:
     changes_saved_msg: Änderungen gespeichert!
     powered_by: angetrieben von %{link}
@@ -52,7 +222,29 @@ de:
     validation_errors:
       one: Etwas ist noch nicht ganz richtig! Bitte korrigiere den Fehler
       other: Etwas ist noch nicht ganz richtig! Bitte korrigiere %{count} Fehler
+  imports:
+    preface: Du kannst bestimmte Daten wie die Leute, denen du folgst oder die du blockierst, in dein Konto auf dieser Instanz aus einem Export von einer anderen importieren.
+    success: Deine Daten wurden erfolgreich hochgeladen und werden in Kürze verabeitet
+    types:
+      blocking: Blockierliste
+      following: Folgeliste
+      muting: Stummschaltungsliste
+    upload: Hochladen
+  landing_strip_html: <strong>%{name}</strong> ist ein Benutzer auf <strong>%{domain}</strong>. Du kannst ihm folgen oder mit ihm interagieren, sofern du ein Konto irgendwo im Fediverse hast. Wenn nicht, kannst du dich <a href="%{sign_up_path}">hier anmelden</a>.
+  media_attachments:
+    validations:
+      images_and_video: Es kann kein Video an einen Beitrag, der bereits Bilder enthält, angehängt werden
+      too_many: Es können nicht mehr als 4 Bilder angehängt werden
   notification_mailer:
+    digest:
+      body: 'Hier ist eine kurze Zusammenfasung dessen, was du auf %{instance} seit deinem letzten Besuch am %{since} verpasst hast:'
+      mention: "%{name} hat dich erwähnt:"
+      new_followers_summary:
+        one: Du hast einen neuen Folgenden bekommen! Juhu!
+        other: Du hast %{count} neue Folgende bekommen! Großartig!
+      subject:
+        one: "1 neue Mitteilung seit deinem letzten Besuch \U0001F418"
+        other: "%{count} neue Mitteilungen seit deinem letzten Besuch \U0001F418"
     favourite:
       body: 'Dein Beitrag wurde von %{name} favorisiert:'
       subject: "%{name} hat deinen Beitrag favorisiert."
@@ -71,14 +263,29 @@ de:
   pagination:
     next: Vorwärts
     prev: Zurück
+    truncate: "&hellip;"
   remote_follow:
     acct: Dein Nutzername@Domain, von dem aus du dieser Person folgen möchtest.
     missing_resource: Die erforderliche Weiterleitungs-URL konnte leider in deinem Profil nicht gefunden werden.
     proceed: Weiter
     prompt: 'Du wirst dieser Person folgen:'
   settings:
+    authorized_apps: Autorisierte Anwendungen
+    back: Zurück zu Mastodon
     edit_profile: Profil bearbeiten
+    export: Datenexport
+    import: Datenimport
     preferences: Einstellungen
+    settings: Einstellungen
+    two_factor_authentication: Zwei-Faktor-Authentisierung
+  statuses:
+    open_in_web: Im Web öffnen
+    over_character_limit: Zeichenlimit von %{max} überschritten
+    show_more: Mehr anzeigen
+    visibilities:
+      private: Nur Folgenden zeigen
+      public: Öffentlich
+      unlisted: Öffentlich, aber nicht auf der öffentlichen Zeitleiste anzeigen
   stream_entries:
     click_to_show: Klicken um zu zeigen
     reblogged: teilte
@@ -86,5 +293,20 @@ de:
   time:
     formats:
       default: "%d.%m.%Y %H:%M"
+  two_factor_authentication:
+    code_hint: Gib den Code, den deine Authenticator-App generiert hat, zur Bestätigung an
+    description_html: Wenn du <strong>Zwei-Faktor-Authentisierung</strong> aktivierst, wirst du dein Telefon zum Anmelden benötigen, welches Tokens für dich generiert, die du eingeben musst.
+    disable: Deaktivieren
+    enable: Aktivieren
+    enabled_success: Zwei-Faktor-Authentisierung erfolgreich aktiviert
+    generate_recovery_codes: Wiederherstellungscodes generieren
+    instructions_html: "<strong>Lese diesen QR-Code mit Google Authenticator oder einer ähnlichen TOTP-App auf deinem Telefon ein</strong>. Von nun an wird diese App Tokens generieren, die du beim Anmelden eingeben musst."
+    lost_recovery_codes: Wiederherstellungscodes erlauben dir, wieder den Zugang zu deinem Konto zu erlangen, falls du dein Telefon verlierst. Wenn du deine Wiederherstellungscodes verloren hast, kannst du sie hier regenerieren. Deine alten Wiederherstellungscodes werden damit ungültig gemacht.
+    manual_instructions: 'Wenn du den QR-Code nicht einlesen kannst und ihn manuell eingeben musst, ist hier das Klartext-Geheimnis:'
+    recovery_codes_regenerated: Wiederherstellungscodes erfolgreich regeneriert
+    recovery_instructions: Wenn du jemals den Zugang zu deinem Telefon verlierst, kannst du einen der Wiederherstellungscodes unten benutzen, um wieder auf dein Konto zugreifen zu können. Bewahre die Wiederherstellungscodes sicher auf, indem du sie beispielsweise ausdruckst und sie zusammen mit anderen wichtigen Dokumenten lagerst.
+    setup: Einrichten
+    wrong_code: Der eingegebene Code war ungültig! Sind die Server- und die Gerätezeit korrekt?
   users:
-    invalid_email: Inkorrekte E-mail-Addresse
+    invalid_email: Ungültige E-Mail-Addresse
+    invalid_otp_token: Ungültiger Zwei-Faktor-Authentisierungs-Code

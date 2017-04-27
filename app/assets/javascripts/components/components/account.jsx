@@ -10,8 +10,8 @@ const messages = defineMessages({
   follow: { id: 'account.follow', defaultMessage: 'Follow' },
   unfollow: { id: 'account.unfollow', defaultMessage: 'Unfollow' },
   requested: { id: 'account.requested', defaultMessage: 'Awaiting approval' },
-  unblock: { id: 'account.unblock', defaultMessage: 'Unblock' },
-  unmute: { id: 'account.unmute', defaultMessage: 'Unmute' }
+  unblock: { id: 'account.unblock', defaultMessage: 'Unblock @{name}' },
+  unmute: { id: 'account.unmute', defaultMessage: 'Unmute @{name}' }
 });
 
 class Account extends React.PureComponent {

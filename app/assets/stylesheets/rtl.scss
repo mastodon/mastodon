@@ -33,7 +33,7 @@ body.rtl {
 
   .column-icon {
     right: auto;
-    left: 0;
+    left: 5px;
   }
 
   .setting-toggle {
@@ -123,6 +123,13 @@ body.rtl {
       &:last-child {
         padding-right: 0px;
         padding-left: 10px;
+      }
+    }
+
+    .columns-area > div {
+      .column, .drawer {
+        padding-left: 5px;
+        padding-right: 5px;
       }
     }
   }
