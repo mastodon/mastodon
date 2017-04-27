@@ -41,7 +41,9 @@ class FetchRemoteStatusService < BaseService
 
     account = FollowRemoteAccountService.new.call("#{username}@#{domain}")
 
-    return nil if confirmed_domain?(domain, account)
+    # If the author's confirmed URLs do not match the domain of the URL
+    # we are reading this from, abort
+    return nil unless confirmed_domain?(domain, account)
 
     account
   rescue Nokogiri::XML::XPath::SyntaxError
