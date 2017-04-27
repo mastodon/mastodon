@@ -8,7 +8,7 @@ import Permalink from './permalink';
 
 const loadScript = require('load-script');
 // const MathJax = require('react-mathjax');
-const reactStringReplace = require('react-string-replace')
+// const reactStringReplace = require('react-string-replace')
 
 function mapAlternate(array, fn1, fn2, thisArg) {
     var fn = fn1, output = [];
