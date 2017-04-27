@@ -56,6 +56,10 @@ const IconButton = React.createClass({
       classes.push('active');
     }
 
+    if (this.props.highlight) {
+      classes.push('highlight');
+    } 
+
     if (this.props.disabled) {
       classes.push('disabled');
     }

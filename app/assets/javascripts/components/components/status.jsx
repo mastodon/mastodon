@@ -87,8 +87,11 @@ const Status = React.createClass({
       }
     }
 
+    let visible_direct = false;
+    if (status.get('visibility') === 'direct') visible_direct = true;
+
     return (
-      <div className={this.props.muted ? 'status muted' : 'status'}>
+      <div className={this.props.muted ? 'status muted' : visible_direct ? 'status direct' : 'status'}>
         <div style={{ fontSize: '15px' }}>
           <div style={{ float: 'right', fontSize: '14px' }}>
             <a href={status.get('url')} className='status__relative-time' target='_blank' rel='noopener'><RelativeTimestamp timestamp={status.get('created_at')} /></a>

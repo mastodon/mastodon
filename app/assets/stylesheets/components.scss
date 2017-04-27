@@ -1,4 +1,4 @@
-@import 'variables';
+﻿@import 'variables';
 
 .app-body{
  -webkit-overflow-scrolling: touch;
@@ -82,6 +82,11 @@
 
   &.disabled {
     color: lighten($color1, 13%);
+    cursor: default;
+  }
+
+  &.highlight {
+    color: lighten($color3, 13%) !important;
     cursor: default;
   }
 
@@ -608,6 +613,13 @@ a.status__content__spoiler-link {
   strong {
     font-size: 16px;
     color: $color5;
+  }
+}
+
+.direct {
+  background: lighten($color1, 10%);
+  .status__display-name strong {
+    color: lighten($color1, 30%);
   }
 }
 
