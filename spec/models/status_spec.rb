@@ -207,11 +207,36 @@ RSpec.describe Status, type: :model do
     end
 
     describe 'with an account passed in' do
-      it 'excludes statuses from accounts blocked by the account'
+      before do
+        @account = Fabricate(:account)
+      end
 
-      it 'excludes statuses from accounts who have blocked the account'
+      it 'excludes statuses from accounts blocked by the account' do
+        blocked = Fabricate(:account)
+        Fabricate(:block, account: @account, target_account: blocked)
+        blocked_status = Fabricate(:status, account: blocked)
 
-      it 'excludes statuses from accounts muted by the account'
+        results = Status.as_public_timeline(@account)
+        expect(results).not_to include(blocked_status)
+      end
+
+      it 'excludes statuses from accounts who have blocked the account' do
+        blocked = Fabricate(:account)
+        Fabricate(:block, account: blocked, target_account: @account)
+        blocked_status = Fabricate(:status, account: blocked)
+
+        results = Status.as_public_timeline(@account)
+        expect(results).not_to include(blocked_status)
+      end
+
+      it 'excludes statuses from accounts muted by the account' do
+        muted = Fabricate(:account)
+        Fabricate(:mute, account: @account, target_account: muted)
+        muted_status = Fabricate(:status, account: muted)
+
+        results = Status.as_public_timeline(@account)
+        expect(results).not_to include(muted_status)
+      end
 
       context 'where that account is silenced' do
         it 'includes statuses from other accounts that are silenced'
