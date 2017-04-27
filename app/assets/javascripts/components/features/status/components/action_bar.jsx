@@ -8,8 +8,8 @@ const messages = defineMessages({
   delete: { id: 'status.delete', defaultMessage: 'Delete' },
   mention: { id: 'status.mention', defaultMessage: 'Mention @{name}' },
   reply: { id: 'status.reply', defaultMessage: 'Reply' },
-  reblog: { id: 'status.reblog', defaultMessage: 'Reblog' },
-  cannot_reblog: { id: 'status.cannot_reblog', defaultMessage: 'This post cannot be reblogged' },
+  reblog: { id: 'status.reblog', defaultMessage: 'Boost' },
+  cannot_reblog: { id: 'status.cannot_reblog', defaultMessage: 'This post cannot be boosted' },
   favourite: { id: 'status.favourite', defaultMessage: 'Favourite' },
   report: { id: 'status.report', defaultMessage: 'Report @{name}' }
 });
