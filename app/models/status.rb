@@ -121,27 +121,25 @@ class Status < ApplicationRecord
     end
 
     def as_public_timeline(account = nil, local_only = false)
-      query = timeline_scope
-        .without_replies
-
-      query = query.local_only if local_only
+      query = timeline_scope(local_only).
+        without_replies
 
       account.nil? ? filter_timeline_default(query) : filter_timeline_default(filter_timeline(query, account))
     end
 
     def as_tag_timeline(tag, account = nil, local_only = false)
-      query = timeline_scope
-        .tagged_with(tag)
-
-      query = query.local_only if local_only
+      query = timeline_scope(local_only).
+        tagged_with(tag)
 
       account.nil? ? filter_timeline_default(query) : filter_timeline_default(filter_timeline(query, account))
     end
 
-    def timeline_scope
-      joins('LEFT OUTER JOIN accounts ON statuses.account_id = accounts.id')
-        .with_public_visibility
-        .without_reblogs
+    def timeline_scope(local_only = false)
+      starting_scope = local_only ? Status.local_only : Status
+      starting_scope.
+        joins('LEFT OUTER JOIN accounts ON statuses.account_id = accounts.id').
+        with_public_visibility.
+        without_reblogs
     end
 
     def as_outbox_timeline(account)
