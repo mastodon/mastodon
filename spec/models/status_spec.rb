@@ -155,11 +155,32 @@ RSpec.describe Status, type: :model do
   end
 
   describe '.as_public_timeline' do
-    it 'only includes statuses with public visibility'
+    it 'only includes statuses with public visibility' do
+      public_status = Fabricate(:status, visibility: :public)
+      private_status = Fabricate(:status, visibility: :private)
 
-    it 'does not include replies'
+      results = Status.as_public_timeline
+      expect(results).to include(public_status)
+      expect(results).not_to include(private_status)
+    end
 
-    it 'does not include boosts'
+    it 'does not include replies' do
+      status = Fabricate(:status)
+      reply = Fabricate(:status, in_reply_to_id: status.id)
+
+      results = Status.as_public_timeline
+      expect(results).to include(status)
+      expect(results).not_to include(reply)
+    end
+
+    it 'does not include boosts' do
+      status = Fabricate(:status)
+      boost = Fabricate(:status, reblog_of_id: status.id)
+
+      results = Status.as_public_timeline
+      expect(results).to include(status)
+      expect(results).not_to include(boost)
+    end
 
     it 'filters out silenced accounts'
 
