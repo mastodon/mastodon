@@ -28,7 +28,7 @@ class User < ApplicationRecord
   end
 
   def setting_default_privacy
-    settings.default_privacy || (account.locked? ? 'private' : 'public')
+    settings.default_privacy || (account.locked? ? 'private' : 'local')
   end
 
   def setting_boost_modal

@@ -133,6 +133,8 @@ const en = {
   "privacy.private.short": "Followers-only",
   "privacy.public.long": "Post to public timelines",
   "privacy.public.short": "Public",
+  "privacy.local.long": "Post to local timelines",
+  "privacy.local.short": "Local",
   "privacy.unlisted.long": "Do not show in public timelines",
   "privacy.unlisted.short": "Unlisted",
   "reply_indicator.cancel": "Cancel",
