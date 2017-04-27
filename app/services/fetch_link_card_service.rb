@@ -2,7 +2,7 @@
 
 class FetchLinkCardService < BaseService
   URL_PATTERN = %r{https?://\S+}
-  USER_AGENT = "#{HTTP::Request::USER_AGENT} (Mastodon/#{Mastodon::VERSION}; +http://#{Rails.configuration.x.local_domain}/)"
+  USER_AGENT = "#{HTTP::Request::USER_AGENT} (Mastodon/#{Mastodon::Version}; +http://#{Rails.configuration.x.local_domain}/)"
 
   def call(status)
     # Get first http/https URL that isn't local
