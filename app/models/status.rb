@@ -126,14 +126,14 @@ class Status < ApplicationRecord
       query = timeline_scope(local_only).
         without_replies
 
-      account.nil? ? filter_timeline_default(query) : filter_timeline_default(filter_timeline(query, account))
+      account.nil? ? filter_timeline_default(query) : filter_timeline_default(filter_timeline_for_account(query, account))
     end
 
     def as_tag_timeline(tag, account = nil, local_only = false)
       query = timeline_scope(local_only).
         tagged_with(tag)
 
-      account.nil? ? filter_timeline_default(query) : filter_timeline_default(filter_timeline(query, account))
+      account.nil? ? filter_timeline_default(query) : filter_timeline_default(filter_timeline_for_account(query, account))
     end
 
     def timeline_scope(local_only = false)
@@ -189,7 +189,7 @@ class Status < ApplicationRecord
 
     private
 
-    def filter_timeline(query, account)
+    def filter_timeline_for_account(query, account)
       blocked = account.excluded_from_timeline_account_ids
       query   = query.where('statuses.account_id NOT IN (?)', blocked) unless blocked.empty?  # Only give us statuses from people we haven't blocked, or muted, or that have blocked us
       query   = query.including_silenced_accounts if account.silenced?                  # and if we're hellbanned, only people who are also hellbanned
