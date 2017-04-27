@@ -16,6 +16,21 @@ RSpec.describe Auth::SessionsController, type: :controller do
     end
   end
 
+  describe 'DELETE #destroy' do
+    before do
+      request.env['devise.mapping'] = Devise.mappings[:user]
+      sign_in Fabricate(:user), scope: :user
+    end
+
+    context 'with a regular user' do
+      it 'redirects to home after sign out' do
+        delete :destroy
+
+        expect(response).to redirect_to(root_path)
+      end
+    end
+  end
+
   describe 'POST #create' do
     before do
       request.env['devise.mapping'] = Devise.mappings[:user]
