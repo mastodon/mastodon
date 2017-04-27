@@ -153,4 +153,30 @@ RSpec.describe Status, type: :model do
       expect(@results).not_to include(@not_followed_status)
     end
   end
+
+  describe '.as_public_timeline' do
+    it 'only includes statuses with public visibility'
+
+    it 'does not include replies'
+
+    it 'does not include boosts'
+
+    it 'filters out silenced accounts'
+
+    context 'with a local_only option set' do
+      it 'does not include remote instances statuses'
+    end
+
+    describe 'with an account passed in' do
+      it 'excludes statuses from accounts blocked by the account'
+
+      it 'excludes statuses from accounts who have blocked the account'
+
+      it 'excludes statuses from accounts muted by the account'
+
+      context 'where that account is silenced' do
+        it 'includes statuses from other accounts that are silenced'
+      end
+    end
+  end
 end
