@@ -3,6 +3,8 @@
 require 'rails_helper'
 
 describe AuthorizeFollowsController do
+  render_views
+
   describe 'GET #show' do
     describe 'when signed out' do
       it 'redirects to sign in page' do
