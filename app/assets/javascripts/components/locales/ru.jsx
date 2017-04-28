@@ -24,6 +24,8 @@ const ru = {
   "column.notifications": "Уведомления",
   "column.public": "Глобальная лента",
   "column_back_button.label": "Назад",
+  "column_subheading.navigation": "Навигация",
+  "column_subheading.settings": "Настройки",
   "compose_form.placeholder": "О чем Вы думаете?",
   "compose_form.privacy_disclaimer": "Ваш приватный статус будет доставлен упомянутым пользователям на доменах {domains}. Доверяете ли вы {domainsCount, plural, one {этому серверу} other {этим серверам}}? Приватность постов работает только на узлах Mastodon. Если {domains} {domainsCount, plural, one {не является узлом Mastodon} other {не являются узлами Mastodon}}, приватность поста не будет указана, и он может оказаться продвинут или иным образом показан не обозначенным Вами пользователям.",
   "compose_form.publish": "Трубить",
