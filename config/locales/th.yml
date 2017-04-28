@@ -48,7 +48,7 @@ en:
         name: "%{account_name} สร้างโน๊ต."
     outbox:
       name: "%{account_name}'s Outbox"
-      summary: "A collection of activities from user %{account_name}."
+      summary: "รวมกิจกรรมของผู้ใช้ %{account_name}."
   admin:
     accounts:
       are_you_sure: แน่ใจนะ?
@@ -103,25 +103,25 @@ en:
       domain: โดเมน
       new:
         create: สร้างการบล๊อก
-        hint: The domain block will not prevent creation of account entries in the database, but will retroactively and automatically apply specific moderation methods on those accounts.
+        hint: การบล๊อคโดเมนไม่สามารถป้องกันการสร้างแอคเค๊าท์ในฐานข้อมูล, but will retroactively and automatically apply specific moderation methods on those accounts.
         severity:
-          desc_html: "<strong>Silence</strong> will make the account's posts invisible to anyone who isn't following them. <strong>Suspend</strong> will remove all of the account's content, media, and profile data."
+          desc_html: "<strong>การปิดเสียง</strong> จะทำให้ผู้ที่ไมไ่ด้ติดตามไม่เห็นโพสต์ของเขา. <strong>การหยุด</strong> จะนำเนื้อหา สื่อ และ โปรไฟล์ ออก."
           silence: ปิดเสียง
           suspend: หยุดไว้
         title: การบล๊อกโดเมนใหม่
       reject_media: ไม่อนุมัติไฟล์สื่อ
-      reject_media_hint: Removes locally stored media files and refuses to download any in the future. Irrelevant for suspensions
+      reject_media_hint: ลบไฟล์สื่อที่เก็บไว้ในเครื่อง และ ป้องกันการดาวน์โหลดในอนาคต. Irrelevant for suspensions
       severities:
         silence: ปิดเสียง
         suspend: หยุดไว้
       severity: Severity
       show:
         affected_accounts:
-          one: One account in the database affected
-          other: "%{count} accounts in the database affected"
+          one: มีผลต่อหนึ่งแอคเค๊าท์ในฐานข้อมูล
+          other: "มีผลต่อแอคเค๊าท์ในฐานข้อมูลจำนวน %{count}"
         retroactive:
-          silence: Unsilence all existing accounts from this domain
-          suspend: Unsuspend all existing accounts from this domain
+          silence: ยกเลิกการปิดเสียงทุกแอคเค๊าท์จากโดเมน
+          suspend: ยกเลิกการหยุดทุกแอคเค๊าท์จากโดเมน
         title: ยกเลิกการบล๊อกโดเมน %{domain}
         undo: ยกเลิก
       title: บล๊อกโดเมน
