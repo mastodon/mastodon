@@ -88,12 +88,13 @@ group :development do
   gem 'letter_opener_web'
   gem 'bullet'
   gem 'active_record_query_trace'
+  gem 'asset_sync'
+  gem 'fog-aws'
 
   gem 'capistrano', '3.8.0'
   gem 'capistrano-rails'
   gem 'capistrano-rbenv'
   gem 'capistrano-yarn'
-  gem 'capistrano-faster-assets', '~> 1.0'
 end
 
 group :production do
