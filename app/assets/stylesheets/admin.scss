@@ -16,7 +16,7 @@
     height: 100%;
     padding: 0;
     overflow-y: auto;
-    
+
     .logo {
       display: block;
       margin: 40px auto;
@@ -33,7 +33,7 @@
       a {
         display: block;
         padding: 15px 25px;
-        color: $seventy_alpha_color5;
+        color: $color5_alpha07;
         text-decoration: none;
         transition: all 200ms linear;
         border-radius: 4px 0 0 4px;
@@ -44,18 +44,18 @@
 
         &:hover {
           color: $color5;
-          background-color: $darken_color1;
+          background-color: $darken5_color1;
           transition: all 100ms linear;
         }
 
         &.selected {
-          background: $lighter_darken_color1;
+          background: $darken5_color1;
           border-radius: 4px 0 0 0;
         }
       }
 
       ul {
-        background: $light_darken_color1;
+        background: $darken5_color1;
         border-radius: 0 0 0 4px;
         margin: 0;
 
@@ -69,7 +69,7 @@
             border-radius: 0;
 
             &:hover {
-              background-color: $five_lighten_color4;
+              background-color: $lighten5_color4;
             }
           }
         }
@@ -89,7 +89,7 @@
     padding-left: 25px;
 
     h2 {
-      color: $color2;
+      color: $lighten20_color3;
       font-size: 24px;
       line-height: 28px;
       font-weight: 400;
@@ -99,7 +99,7 @@
     & > p {
       font-size: 14px;
       line-height: 18px;
-      color: $color2;
+      color: $lighten20_color3;
       margin-bottom: 20px;
 
       strong {
@@ -182,7 +182,7 @@
 
     a {
       display: inline-block;
-      color: $seventy_alpha_color5;
+      color: $color5_alpha07;
       text-decoration: none;
       text-transform: uppercase;
       font-size: 12px;
@@ -191,7 +191,7 @@
 
       &:hover {
         color: $color5;
-        border-bottom: 2px solid $light_lighten_color1;
+        border-bottom: 2px solid $lighten5_color1;
       }
 
       &.selected {
@@ -218,7 +218,7 @@
     font-weight: 500;
     font-size: 14px;
     line-height: 18px;
-    color: $color2;
+    color: $lighten20_color3;
   }
 
   &:first-child {

@@ -41,7 +41,7 @@
     line-height: 28px;
     font-weight: 400;
     margin-bottom: 20px;
-    color: $color2;
+    color: $lighten20_color3;
   }
 
   ul, ol {
@@ -83,7 +83,7 @@
   }
 
   .screenshot {
-    box-shadow: 0 0 15px $forty_alpha_color8;
+    box-shadow: 0 0 15px $color8_alpha04;
     margin-bottom: 26px;
 
     img {
@@ -124,8 +124,8 @@
   margin: 20px 0;
   display: flex;
   justify-content: space-between;
-  border-top: 1px solid $lighten_color1;
-  border-bottom: 1px solid $lighten_color1;
+  border-top: 1px solid $lighten10_color1;
+  border-bottom: 1px solid $lighten10_color1;
   padding-right: 14px;
 
   .section {
@@ -142,7 +142,7 @@
       font-size: 16px;
 
       &:last-child {
-        color: $color2;
+        color: $lighten20_color3;
         font-size: 14px;
       }
     }
@@ -227,14 +227,14 @@
   }
 
   .sidebar {
-    border-left: 1px solid $lighten_color1;
+    border-left: 1px solid $lighten10_color1;
     width: 180px;
     flex: 0 0 auto;
   }
 
   .panel {
     .panel-header {
-      background: $lighten_color1;
+      background: $lighten10_color1;
       padding: 7px 14px;
       text-transform: uppercase;
       font-size: 12px;
@@ -259,7 +259,7 @@
           a {
             display: block;
             padding: 7px 14px;
-            color: $seventy_alpha_color5;
+            color: $color5_alpha07;
             text-decoration: none;
             transition: all 200ms linear;
 
@@ -269,7 +269,7 @@
 
             &:hover {
               color: $color5;
-              background-color: $darken_color1;
+              background-color: $darken5_color1;
               transition: all 100ms linear;
             }
 
@@ -278,7 +278,7 @@
               background-color: $color4;
 
               &:hover {
-                background-color: $five_lighten_color4;
+                background-color: $lighten5_color4;
               }
             }
           }
@@ -291,7 +291,7 @@
     flex-direction: column;
 
     .sidebar {
-      border: 1px solid $lighten_color1;
+      border: 1px solid $lighten10_color1;
       width: auto;
     }
   }
@@ -336,10 +336,10 @@
   .simple_form, .closed-registrations-message {
     width: 300px;
     flex: 0 0 auto;
-    background: $darken_transparent_color1;
+    background: $darken_color1_alpha05;
     padding: 14px;
     border-radius: 4px;
-    box-shadow: 0 0 15px $forty_alpha_color8;
+    box-shadow: 0 0 15px $color8_alpha04;
 
     .actions {
       margin-bottom: 0;
@@ -349,7 +349,7 @@
       text-align: center;
 
       a {
-        color: $color2;
+        color: $lighten20_color3;
       }
     }
   }

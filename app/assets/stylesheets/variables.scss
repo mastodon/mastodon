@@ -1,102 +1,66 @@
-$color1: #282c37 !default; // darkest
-$color2: #d9e1e8 !default; // lightest
-$color3: #9baec8 !default; // lighter
-$color4: #2b90d9 !default; // vibrant
-$color5: #ffffff !default; // white
-$color6: #df405a !default; // error red
-$color7: #79bd9a !default; // succ green
-$color8: #000000 !default; // black
+/* $color1 is the default body background-color
+  and the column-scrollable background-color */
+$color1:                #282c37 !default; // darkest
+$lighten5_color1:       lighten($color1, 5%) !default;
+$lighten10_color1:      lighten($color1, 10%) !default;
+$lighten15_color1:      lighten($color1, 15%) !default;
+$lighten20_color1:      lighten($color1, 20%) !default;
+$lighten25_color1:      lighten($color1, 25%) !default;
+$lighten30_color1:      lighten($color1, 30%) !default;
+$lighten35_color1:      lighten($color1, 35%) !default; // muted text or icons on dark bg
+$lighten40_color1:      lighten($color1, 40%) !default;
+$darken5_color1:        darken($color1, 5%) !default;
+$darken10_color1:       darken($color1, 10%) !default;
+$darken_color1_alpha05: rgba(darken($color1, 7%), 0.5) !default;
+$darken_color1_alpha08: rgba(darken($color1, 7%), 0.8) !default;
 
-$two_lighten_color1: lighten($color1, 2%) !default;
-$three_lighten_color1: lighten($color1, 3%) !default;
-$lighter_lighten_color1: lighten($color1, 4%) !default;
-$light_lighten_color1: lighten($color1, 5%) !default;
-$six_lighten_color1: lighten($color1, 6%) !default;
-$eight_lighten_color1: lighten($color1, 8%) !default;
-$lighten_color1: lighten($color1, 10%) !default;
-$eleven_lighten_color1: lighten($color1, 11%) !default;
-$eigth_lighten_color1: lighten($color1, 13%) !default;
-$fourteen_lighten_color1: lighten($color1, 14%) !default;
-$sixteen_lighten_color1: lighten($color1, 16%) !default;
-$twenty_lighten_color1: lighten($color1, 20%) !default;
-$quarter_lighten_color1: lighten($color1, 26%) !default;
-$twentynine_lighten_color1: lighten($color1, 29%) !default;
-$thirty_lighten_color1: lighten($color1, 30%) !default;
-$third_lighten_color1: lighten($color1, 33%) !default;
-$forty_lighten_color1: lighten($color1, 40%) !default;
-
-$lighter_darken_color1: darken($color1, 2%) !default;
-$light_darken_color1: darken($color1, 4%) !default;
-$darken_color1: darken($color1, 5%) !default;
-$seven_darken_color1: darken($color1, 7%) !default;
-$eight_darken_color1: darken($color1, 8%) !default;
-$ten_darken_color1: darken($color1, 10%) !default;
-
-$darken_transparent_color1: rgba(darken($color1, 7%), 0.5) !default;
-$light_transparent_darken_color1: rgba(darken($color1, 7%), 0.8) !default;
+/* $color3 is the secondary color */
+$color3:                #9baec8 !default; // muted text on light bg
+$lighten4_color3:       lighten($color3, 4%) !default;
+$lighten8_color3:       lighten($color3, 8%) !default;
+$lighten12_color3:      lighten($color3, 12%) !default;
+$lighten20_color3:      lighten($color3, 20%) !default;
+$lighten24_color3:      lighten($color3, 24%) !default;
+$lighten28_color3:      lighten($color3, 28%) !default;
+$darken4_color3:        darken($color3, 4%) !default;
+$darken16_color3:       darken($color3, 16%) !default;
+$darken30_color3:       darken($color3, 30%) !default;
 
 
-$three_lighten_color2: lighten($color2, 3%) !default;
-$four_lighten_color2: lighten($color2, 4%) !default;
-$eight_lighten_color2: lighten($color2, 8%) !default;
-
-$eight_darken_color2: darken($color2, 8%) !default;
-$ten_darken_color2: darken($color2, 10%) !default;
-$sixteen_darken_color2: darken($color2, 16%) !default;
-$eighteen_darken_color2: darken($color2, 18%) !default;
-$twentyfour_darken_color2: darken($color2, 24%) !default;
-$twentyfive_darken_color2: darken($color2, 25%) !default;
-$thirtyfour_darken_color2: darken($color2, 34%) !default;
-$thirtyeight_darken_color2: darken($color2, 38%) !default;
-
-$transparent_color2: rgba($color2, 0.3) !default;
+/* $color4 is the accent color */
+$color4:                #2b90d9 !default; // vibrant
+$lighten5_color4:       lighten($color4, 5%) !default;
+$lighten10_color4:      lighten($color4, 10%) !default;
+$darken5_color4:        darken($color4, 5%) !default;
+$color4_alpha03:        rgba($color4, 0.3) !default;
 
 
-$seven_lighten_color3: lighten($color3, 7%) !default;
-$eight_lighten_color3: lighten($color3, 8%) !default;
-
-$five_darken_color3: darken($color3, 5%) !default;
-$twenty_darken_color3: darken($color3, 24%) !default;
-$thirtythree_darken_color3: darken($color3, 33%) !default;
-
-
-$four_lighten_color4: lighten($color4, 4%) !default;
-$five_lighten_color4: lighten($color4, 5%) !default;
-$seven_lighten_color4: lighten($color4, 7%) !default;
-$ten_lighten_color4: lighten($color4, 10%) !default;
-
-$three_darken_color4: darken($color4, 3%) !default;
-$five_darken_color4: darken($color4, 5%) !default;
-
-$zero_alpha_color4: rgba($color4, 0) !default;
-$thirty_alpha_color4: rgba($color4, 0.3) !default;
-$fourty_alpha_color4: rgba($color4, 0.4) !default;
-$twentythree_alpha_color4: rgba($color4, 0.23) !default;
+/* $color5 (actually white) is used to enlight text
+like username, title, strong… and for inverted bg */
+$color5:                #ffffff !default; // white
+$darken2_color5:        darken($color5, 2%) !default;
+$darken8_color5:        darken($color5, 8%) !default;
+$color5_alpha07:        rgba($color5, 0.7) !default;
 
 
-$two_darken_color5: darken($color5, 2%) !default;
-$eight_darken_color5: darken($color5, 8%) !default;
+/* $color6 (error) and $color7 (success) are for
+messages in forms */
+$color6:                #df405a !default; // error red
+$lighten_color6:        lighten($color6, 5%) !default;
+$darken_color6:         darken($color6, 5%) !default;
+$color6_alpha05:        rgba($color6, 0.5) !default;
 
-$seventy_alpha_color5: rgba($color5, 0.7) !default;
-$eighty_alpha_color5: rgba($color5, 0.8) !default;
-
-
-$five_lighten_color6: lighten($color6, 5%) !default;
-
-$five_darken_color6: darken($color6, 5%) !default;
-
-$fifty_alpha_color6: rgba($color6, 0.5) !default;
+$color7:                #79bd9a !default; // succ green
 
 
-$ten_alpha_color8: rgba($color8, 0.1) !default;
-$twenty_alpha_color8: rgba($color8, 0.2) !default;
-$thirty_alpha_color8: rgba($color8, 0.3) !default;
-$forty_alpha_color8: rgba($color8, 0.4) !default;
-$fifty_alpha_color8: rgba($color8, 0.5) !default;
-$sixty_alpha_color8: rgba($color8, 0.6) !default;
-$seventy_alpha_color8: rgba($color8, 0.7) !default;
-$eighty_alpha_color8: rgba($color8, 0.8) !default;
-$ninety_alpha_color8: rgba($color8, 0.9) !default;
-
-
-
+/* $color8 (black) is for shadows and alpha backgrounds */
+$color8:                #000000 !default; // black
+$color8_alpha01:        rgba($color8, 0.1) !default;
+$color8_alpha02:        rgba($color8, 0.2) !default;
+$color8_alpha03:        rgba($color8, 0.3) !default;
+$color8_alpha04:        rgba($color8, 0.4) !default;
+$color8_alpha05:        rgba($color8, 0.5) !default;
+$color8_alpha06:        rgba($color8, 0.6) !default;
+$color8_alpha07:        rgba($color8, 0.7) !default;
+$color8_alpha08:        rgba($color8, 0.8) !default;
+$color8_alpha09:        rgba($color8, 0.9) !default;

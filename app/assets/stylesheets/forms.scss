@@ -127,7 +127,7 @@ code {
 
     &:active, &:focus {
       border-bottom-color: $color4;
-      background: $ten_alpha_color8;
+      background: $color8_alpha01;
     }
   }
 
@@ -171,24 +171,24 @@ code {
     margin-bottom: 10px;
 
     &:hover {
-      background-color: $five_lighten_color4;
+      background-color: $lighten5_color4;
     }
 
     &:active, &:focus {
       position: relative;
       top: 1px;
-      background-color: $five_darken_color4;
+      background-color: $darken5_color4;
     }
 
     &.negative {
       background: $color6;
 
       &:hover {
-        background-color: $five_lighten_color6;
+        background-color: $lighten_color6;
       }
 
       &:active, &:focus {
-        background-color: $five_darken_color6;
+        background-color: $darken_color6;
       }
     }
   }
@@ -204,7 +204,7 @@ code {
   border-radius: 4px;
   padding: 15px 10px;
   margin-bottom: 30px;
-  box-shadow: 0 0 5px $twenty_alpha_color8;
+  box-shadow: 0 0 5px $color8_alpha02;
   text-align: center;
 
   strong {
@@ -237,7 +237,7 @@ code {
   }
 
   strong {
-    color: $color2;
+    color: $lighten20_color3;
     font-weight: 500;
   }
 }
@@ -251,7 +251,7 @@ code {
   background: #fff;
   padding: 4px;
   margin-bottom: 20px;
-  box-shadow: 0 0 15px $twenty_alpha_color8;
+  box-shadow: 0 0 15px $color8_alpha02;
   display: inline-block;
 
   svg {
@@ -283,10 +283,10 @@ code {
   .warning {
     max-width: 400px;
     box-sizing: border-box;
-    background: $fifty_alpha_color6;
+    background: $color6_alpha05;
     color: $color5;
-    text-shadow: 1px 1px 0 $thirty_alpha_color8;
-    box-shadow: 0 2px 6px $forty_alpha_color8;
+    text-shadow: 1px 1px 0 $color8_alpha03;
+    box-shadow: 0 2px 6px $color8_alpha04;
     border-radius: 4px;
     padding: 10px;
     margin-bottom: 15px;
