@@ -12,9 +12,9 @@ Rails.application.configure do
   config.x.use_s3       = ENV['S3_ENABLED'] == 'true'
 
   config.action_mailer.default_url_options = { host: web_host, protocol: https ? 'https://' : 'http://', trailing_slash: false }
-  config.x.streaming_api_base_url          = 'http://localhost:4000'
+  config.x.streaming_api_base_url          = 'ws://localhost:4000'
 
   if Rails.env.production?
-    config.x.streaming_api_base_url = ENV.fetch('STREAMING_API_BASE_URL') { "http#{https ? 's' : ''}://#{web_host}" }
+    config.x.streaming_api_base_url = ENV.fetch('STREAMING_API_BASE_URL') { "ws#{https ? 's' : ''}://#{web_host}" }
   end
 end
