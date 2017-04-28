@@ -3,7 +3,7 @@
 class HomeController < ApplicationController
   protect_from_forgery except: :piwik
   skip_before_action :store_current_location, only: :piwik
-  before_action :authenticate_user!, :except => [:piwik]
+  before_action :authenticate_user!, :except => [ :piwik ]
 
   def index
     @body_classes           = 'app-body'
