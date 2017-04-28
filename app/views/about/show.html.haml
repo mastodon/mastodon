@@ -42,6 +42,7 @@
 
     .mascot= image_tag "fluffy-elephant-friend.png"
 
+  %br
   %h2= t('mastodon-cloud.rules_headline')
 
   .features-list
@@ -72,6 +73,7 @@
           = fa_icon('li check-square')
           = t 'mastodon-cloud.rules.h'
 
+  %br
   %h2= t('about.features_headline')
 
   .features-list
@@ -105,6 +107,7 @@
           = t 'about.features.api'
 
 
+  %br
   %h2= t('mastodon-cloud.usercount_headline')
 
   .information-board
@@ -121,14 +124,18 @@
       %strong= number_with_delimiter @instance_presenter.domain_count
       %span= t 'about.domain_count_after'
 
-  %h2= t('mastodon-cloud.thanks_headline')
-  %p= t('mastodon-cloud.thanks')
 
+  %br
   %h2= t('mastodon-cloud.contribute_headline')
   = link_to image_tag('patreon.png'), 'https://www.patreon.com/ValentinOuvrard'
   %p= 'BTC : 1  MP5gpJNmfT2V48aAVsGknbqhDkmj5JF61'
   
+  %br
+  %h2= t('mastodon-cloud.thanks_headline')
+  %p= t('mastodon-cloud.thanks')
 
+
+  %br
   %h2= t('mastodon-cloud.sponsors_headline')
   = link_to image_tag('stickermule.png'), 'https://www.stickermule.com/'
   = link_to image_tag('cloudflare.png'), 'https://www.cloudflare.com/'
