@@ -103,7 +103,7 @@ const ru = {
   "report.target": "Жалуемся на",
   "search.placeholder": "Поиск",
   "search.status_by": "Статус от {name}",
-  "search_results.total": "{count, number} {count, plural, one {result} other {results}}",
+  "search_results.total": "{count, number} {count, plural, one {результат} few {результата} many {результатов} other {результатов}}",
   "status.cannot_reblog": "Этот статус не может быть продвинут",
   "status.delete": "Удалить",
   "status.favourite": "Нравится",
