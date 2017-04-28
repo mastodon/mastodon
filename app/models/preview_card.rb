@@ -3,6 +3,10 @@
 class PreviewCard < ApplicationRecord
   IMAGE_MIME_TYPES = ['image/jpeg', 'image/png', 'image/gif'].freeze
 
+  self.inheritance_column = false
+
+  enum type: [:link, :photo, :video, :rich]
+
   belongs_to :status
 
   has_attached_file :image, styles: { original: '120x120#' }, convert_options: { all: '-quality 80 -strip' }

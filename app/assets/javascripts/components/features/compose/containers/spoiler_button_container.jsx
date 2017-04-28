@@ -4,7 +4,7 @@ import { changeComposeSpoilerness } from '../../../actions/compose';
 import { injectIntl, defineMessages } from 'react-intl';
 
 const messages = defineMessages({
-  title: { id: 'compose_form.spoiler', defaultMessage: 'Hide text behind content warning' }
+  title: { id: 'compose_form.spoiler', defaultMessage: 'Hide text behind warning' }
 });
 
 const mapStateToProps = (state, { intl }) => ({

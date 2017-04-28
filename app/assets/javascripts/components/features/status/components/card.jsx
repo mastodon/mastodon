@@ -14,14 +14,11 @@ const getHostname = url => {
 
 class Card extends React.PureComponent {
 
-  render () {
+  renderLink () {
     const { card } = this.props;
 
-    if (card === null) {
-      return null;
-    }
-
-    let image = '';
+    let image    = '';
+    let provider = card.get('provider_name');
 
     if (card.get('image')) {
       image = (
@@ -31,17 +28,63 @@ class Card extends React.PureComponent {
       );
     }
 
+    if (provider.length < 1) {
+      provider = getHostname(card.get('url'))
+    }
+
     return (
       <a href={card.get('url')} className='status-card' target='_blank' rel='noopener'>
         {image}
 
         <div className='status-card__content'>
           <strong className='status-card__title' title={card.get('title')}>{card.get('title')}</strong>
-          <p className='status-card__description'>{card.get('description').substring(0, 50)}</p>
-          <span className='status-card__host' style={hostStyle}>{getHostname(card.get('url'))}</span>
+          <p className='status-card__description'>{(card.get('description') || '').substring(0, 50)}</p>
+          <span className='status-card__host' style={hostStyle}>{provider}</span>
         </div>
       </a>
     );
+  }
+
+  renderPhoto () {
+    const { card } = this.props;
+
+    return (
+      <a href={card.get('url')} className='status-card-photo' target='_blank' rel='noopener'>
+        <img src={card.get('url')} alt={card.get('title')} width={card.get('width')} height={card.get('height')} />
+      </a>
+    );
+  }
+
+  renderVideo () {
+    const { card } = this.props;
+    const content  = { __html: card.get('html') };
+
+    return (
+      <div
+        className='status-card-video'
+        dangerouslySetInnerHTML={content}
+      />
+    );
+  }
+
+  render () {
+    const { card } = this.props;
+
+    if (card === null) {
+      return null;
+    }
+
+    switch(card.get('type')) {
+    case 'link':
+      return this.renderLink();
+    case 'photo':
+      return this.renderPhoto();
+    case 'video':
+      return this.renderVideo();
+    case 'rich':
+    default:
+      return null;
+    }
   }
 }
 
