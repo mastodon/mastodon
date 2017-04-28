@@ -4,7 +4,7 @@ class HomeController < ApplicationController
   protect_from_forgery except: :piwik
   skip_before_action :store_current_location, only: :piwik
   # rubocop sees that as a hash ?!
-  before_action :authenticate_user!, :except => %i(piwik)
+  before_action :authenticate_user!, :except => %i(piwik) # rubocop:disable Style/HashSyntax
 
   def index
     @body_classes           = 'app-body'
