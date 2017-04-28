@@ -55,7 +55,7 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
   onReblog (status, e) {
     if (status.get('reblogged')) {
       dispatch(unreblog(status));
-      if (state.getIn(['meta', 'piwik_enabled']) == 'true') {
+      if (state.getIn(['meta', 'piwik_enabled']) === 'true') {
         _paq.push(['trackEvent', 'Statuses', 'Unreblog']);
       }
     } else {
@@ -64,7 +64,7 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
       } else {
         dispatch(openModal('BOOST', { status, onReblog: this.onModalReblog }));
       }
-      if (state.getIn(['meta', 'piwik_enabled']) == 'true') {
+      if (state.getIn(['meta', 'piwik_enabled']) === 'true') {
         _paq.push(['trackEvent', 'Statuses', 'Reblog']);
       }
     }
@@ -73,19 +73,19 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
   onFavourite (status) {
     if (status.get('favourited')) {
       dispatch(unfavourite(status));
-      if (state.getIn(['meta', 'piwik_enabled']) == 'true') {
+      if (state.getIn(['meta', 'piwik_enabled']) === 'true') {
         _paq.push(['trackEvent', 'Statuses', 'UnFav']);
       }
     } else {
       dispatch(favourite(status));
-      if (state.getIn(['meta', 'piwik_enabled']) == 'true') {
+      if (state.getIn(['meta', 'piwik_enabled']) === 'true') {
         _paq.push(['trackEvent', 'Statuses', 'Fav']);
       }
     }
   },
 
   onDelete (status) {
-    if (state.getIn(['meta', 'piwik_enabled']) == 'true') {
+    if (state.getIn(['meta', 'piwik_enabled']) === 'true') {
       _paq.push(['trackEvent', 'Statuses', 'Delete']);
     }
     dispatch(openModal('CONFIRM', {
@@ -97,7 +97,7 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
 
   onMention (account, router) {
     dispatch(mentionCompose(account, router));
-    if (state.getIn(['meta', 'piwik_enabled']) == 'true') {
+    if (state.getIn(['meta', 'piwik_enabled']) === 'true') {
       _paq.push(['trackEvent', 'Statuses', 'Mention']);
     }
   },
@@ -120,7 +120,7 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
 
   onReport (status) {
     dispatch(initReport(status.get('account'), status));
-    if (state.getIn(['meta', 'piwik_enabled']) == 'true') {
+    if (state.getIn(['meta', 'piwik_enabled']) === 'true') {
       _paq.push(['trackEvent', 'Statuses', 'Report']);
     }
   },
