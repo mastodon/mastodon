@@ -53,7 +53,7 @@ const zh_cn = {
   "compose_form.publish": "嘟嘟",
   "compose_form.sensitive": "将媒体文件标示为“敏感内容”",
   "compose_form.spoiler_placeholder": "敏感内容的警告消息",
-  "compose_form.spoiler": "将部份文本藏于警告消息之后",
+  "compose_form.spoiler": "将部分文本藏于警告消息之后",
   "compose_form.unlisted": "请勿在公共时间轴显示",
   "emoji_button.label": "加入表情符号",
   "empty_column.community": "本站时间轴暂时未有内容，快贴文来抢头香啊！",
