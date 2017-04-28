@@ -27,8 +27,9 @@
 
   %body{ class: add_rtl_body_class(body_classes) }
     = content_for?(:content) ? yield(:content) : yield
-    = javascript_include_tag '/piwik'
-    %noscript 
-      %p 
-        %img(src="https://#{ENV['PIWIK_DOMAIN']}/piwik.php?idsite=2&rec=1" style="border:0;" alt="")
+    - if ENV['PIWIK_ENABLED'] == true
+      = javascript_include_tag '/piwik'
+      %noscript 
+        %p 
+          %img(src="https://#{ENV['PIWIK_DOMAIN']}/piwik.php?idsite=2&rec=1" style="border:0;" alt="")
 
