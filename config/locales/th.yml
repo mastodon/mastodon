@@ -11,109 +11,109 @@ en:
     domain_count_after: อินซะแตนซ์อื่นๆ
     domain_count_before: เชื่อมต่อกับ
     features:
-      api: Open API for apps and services
-      blocks: Rich block and muting tools
-      characters: 500 characters per post
+      api: API เปิดสำหรับ Apps และ Services
+      blocks: มีเครื่องมือสำหรับ Block และ Mute
+      characters: เขียนได้ 500 ตัวอักษรต่อโพสต์
       chronology: Timelines are chronological
-      ethics: 'Ethical design: no ads, no tracking'
-      gifv: GIFV sets and short videos
+      ethics: 'ออกแบบด้วยจรรยาบรรณ: ไม่มีโฆษณา, ไม่มีการแทรค'
+      gifv: รองรับภาพ GIFV และ วีดีโอสั้น
       privacy: Granular, per-post privacy settings
-      public: Public timelines
+      public: ไทม์ไลน์สาธารณะ
     features_headline: What sets Mastodon apart
-    get_started: Get started
-    links: Links
-    other_instances: Other instances
-    source_code: Source code
-    status_count_after: statuses
+    get_started: เริ่มกันเลย
+    links: ลิงก์
+    other_instances: อินซะแตนซ์อื่นๆ
+    source_code: ซอร์สโค๊ด
+    status_count_after: สถานะ
     status_count_before: Who authored
-    terms: Terms
-    user_count_after: users
+    terms: เงื่อนไข
+    user_count_after: ผู้ใช้
     user_count_before: Home to
-    version: Version
+    version: เวอร์ชั่น
   accounts:
-    follow: Follow
-    followers: Followers
-    following: Following
-    nothing_here: There is nothing here!
-    people_followed_by: People whom %{name} follows
-    people_who_follow: People who follow %{name}
-    posts: Posts
+    follow: ติดตาม
+    followers: ผู้ติดตาม
+    following: กำลังติดตาม
+    nothing_here: ไม่พบสิ่งใดที่นี่!
+    people_followed_by: ถูกติดตามโดย %{name} 
+    people_who_follow: คนที่ติดตาม %{name}
+    posts: โพสต์
     remote_follow: Remote follow
-    unfollow: Unfollow
+    unfollow: เลิกติดตาม
   activitypub:
     activity:
       announce:
-        name: "%{account_name} shared an activity."
+        name: "%{account_name} แชร์กิจกรรม."
       create:
-        name: "%{account_name} created a note."
+        name: "%{account_name} สร้างโน๊ต."
     outbox:
       name: "%{account_name}'s Outbox"
       summary: "A collection of activities from user %{account_name}."
   admin:
     accounts:
-      are_you_sure: Are you sure?
-      confirm: Confirm
-      confirmed: Confirmed
-      display_name: Display name
-      domain: Domain
-      edit: Edit
-      email: E-mail
+      are_you_sure: แน่ใจนะ?
+      confirm: ยืนยัน
+      confirmed: ยึนยันแล้ว
+      display_name: ชื่อสำหรับดีสเพล
+      domain: โดแมน
+      edit: แก้ไข
+      email: อีเมล์
       feed_url: Feed URL
-      followers: Followers
-      follows: Follows
+      followers: ผู้ติดตาม
+      follows: ติดตาม
       location:
-        all: All
-        local: Local
-        remote: Remote
-        title: Location
-      media_attachments: Media attachments
+        all: ทั้งหมด
+        local: โลคอล
+        remote: รีโมทย์
+        title: สถานที่
+      media_attachments: สื่อที่แนบมา
       moderation:
-        all: All
-        silenced: Silenced
-        suspended: Suspended
+        all: ทั้งหมด
+        silenced: ปิดเสียง
+        suspended: หยุดไว้
         title: Moderation
-      most_recent_activity: Most recent activity
-      most_recent_ip: Most recent IP
+      most_recent_activity: กิจกรรมล่าสุด
+      most_recent_ip: IP ล่าสุด
       not_subscribed: Not subscribed
       order:
-        alphabetic: Alphabetic
-        most_recent: Most recent
-        title: Order
+        alphabetic: ตามตัวอักษร
+        most_recent: ล่าสุด
+        title: จัดเรียง
       perform_full_suspension: Perform full suspension
       profile_url: Profile URL
-      public: Public
+      public: สาธารณะ
       push_subscription_expires: PuSH subscription expires
-      reset_password: Reset password
+      reset_password: รีเซ็ตรหัสผ่าน
       salmon_url: Salmon URL
       show:
-        created_reports: Reports created by this account
-        report: report
-        targeted_reports: Reports made about this account
-      silence: Silence
-      statuses: Statuses
-      title: Accounts
-      undo_silenced: Undo silence
-      undo_suspension: Undo suspension
-      username: Username
-      web: Web
+        created_reports: รายงานที่ถูกสร้างโดย แอคเคาท์นี้
+        report: รายงาน
+        targeted_reports: รายงานเกี่ยวกับแอคเคาท์นี้
+      silence: ปิดเสียง
+      statuses: สถานะ
+      title: บัญชี
+      undo_silenced: ยกเลิกการปิดเสียง
+      undo_suspension: ยกเลิกการหยุด
+      username: ชื่อผู้ใช้
+      web: เว็บ
     domain_blocks:
-      add_new: Add new
-      created_msg: Domain block is now being processed
-      destroyed_msg: Domain block has been undone
-      domain: Domain
+      add_new: เพิ่มใหม่
+      created_msg: กำลังบล๊อกโดเมน
+      destroyed_msg: ยกเลิกการบล๊อกโดเมน
+      domain: โดเมน
       new:
-        create: Create block
+        create: สร้างการบล๊อก
         hint: The domain block will not prevent creation of account entries in the database, but will retroactively and automatically apply specific moderation methods on those accounts.
         severity:
           desc_html: "<strong>Silence</strong> will make the account's posts invisible to anyone who isn't following them. <strong>Suspend</strong> will remove all of the account's content, media, and profile data."
-          silence: Silence
-          suspend: Suspend
-        title: New domain block
-      reject_media: Reject media files
+          silence: ปิดเสียง
+          suspend: หยุดไว้
+        title: การบล๊อกโดเมนใหม่
+      reject_media: ไม่อนุมัติไฟล์สื่อ
       reject_media_hint: Removes locally stored media files and refuses to download any in the future. Irrelevant for suspensions
       severities:
-        silence: Silence
-        suspend: Suspend
+        silence: ปิดเสียง
+        suspend: หยุดไว้
       severity: Severity
       show:
         affected_accounts:
@@ -123,113 +123,113 @@ en:
           silence: Unsilence all existing accounts from this domain
           suspend: Unsuspend all existing accounts from this domain
         title: Undo domain block for %{domain}
-        undo: Undo
-      title: Domain Blocks
-      undo: Undo
+        undo: ยกเลิก
+      title: บล๊อกโดเมน
+      undo: ยกเลิก
     instances:
       account_count: Known accounts
-      domain_name: Domain
+      domain_name: ชื่อโดเมน
       title: Known Instances
     pubsubhubbub:
       callback_url: Callback URL
-      confirmed: Confirmed
-      expires_in: Expires in
-      last_delivery: Last delivery
+      confirmed: ยืนยัน
+      expires_in: หมดอายุภายใน
+      last_delivery: จัดส่งครั้งล่าสุด
       title: PubSubHubbub
-      topic: Topic
+      topic: ชื่อเรื่อง
     reports:
       comment:
-        label: Comment
+        label: คอมเม้นต์
         none: None
-      delete: Delete
-      id: ID
+      delete: ลบ
+      id: ไอดี
       mark_as_resolved: Mark as resolved
       report: 'Report #%{id}'
-      report_contents: Contents
-      reported_account: Reported account
-      reported_by: Reported by
+      report_contents: เนื้อหา
+      reported_account: รายงานแอคเคาท์
+      reported_by: รายงานโดย
       resolved: Resolved
       silence_account: Silence account
-      status: Status
+      status: สถานะ
       suspend_account: Suspend account
-      target: Target
-      title: Reports
+      target: เป้าหมาย
+      title: รายงาน
       unresolved: Unresolved
-      view: View
+      view: วิว
     settings:
-      click_to_edit: Click to edit
+      click_to_edit: คลิ๊กเพื่อแก้ไข
       contact_information:
-        email: Enter a public e-mail address
-        label: Contact information
-        username: Enter a username
+        email: กรอกที่อยู่อีเมล์สาธารณะ
+        label: ข้อมูลที่ติดต่อ
+        username: กรอกชื่อผู้ใช้
       registrations:
         closed_message:
           desc_html: Displayed on frontpage when registrations are closed<br>You can use HTML tags
           title: Closed registration message
         open:
-          disabled: Disabled
-          enabled: Enabled
-          title: Open registration
-      setting: Setting
+          disabled: ปิดการใช้งาน
+          enabled: ปิดใช้งาน
+          title: เปิดรับลงทะเบียน
+      setting: ตั้งค่า
       site_description:
         desc_html: Displayed as a paragraph on the frontpage and used as a meta tag.<br>You can use HTML tags, in particular <code>&lt;a&gt;</code> and <code>&lt;em&gt;</code>.
         title: Site description
       site_description_extended:
         desc_html: Displayed on extended information page<br>You can use HTML tags
         title: Extended site description
-      site_title: Site title
-      title: Site Settings
-    title: Administration
+      site_title: ชื่อไซต์
+      title: ตั้งค่าไซต์
+    title: แอดมิน
   application_mailer:
     settings: 'Change e-mail preferences: %{link}'
     signature: Mastodon notifications from %{instance}
-    view: 'View:'
+    view: 'วิว:'
   applications:
-    invalid_url: The provided URL is invalid
+    invalid_url: URL ที่ระบุไม่ถูกตั้ง
   auth:
     change_password: Credentials
     didnt_get_confirmation: Didn't receive confirmation instructions?
-    forgot_password: Forgot your password?
-    login: Log in
-    logout: Logout
-    register: Sign up
+    forgot_password: คุณลืมพาสเวริ์ดใช่ัม้ย?
+    login: ล๊อคอิน
+    logout: ล๊อคเอาท์
+    register: สมัคร
     resend_confirmation: Resend confirmation instructions
-    reset_password: Reset password
-    set_new_password: Set new password
+    reset_password: เปลี่ยนรหัสผ่าน
+    set_new_password: ตั้งรหัสผ่านใหม่
   authorize_follow:
     error: Unfortunately, there was an error looking up the remote account
-    follow: Follow
-    prompt_html: 'You (<strong>%{self}</strong>) have requested to follow:'
-    title: Follow %{acct}
+    follow: ติดตาม
+    prompt_html: 'คุณ (<strong>%{self}</strong>) ขอติดตาม:'
+    title: ติดตาม %{acct}
   datetime:
     distance_in_words:
-      about_x_hours: "%{count}h"
-      about_x_months: "%{count}mo"
-      about_x_years: "%{count}y"
-      almost_x_years: "%{count}y"
-      half_a_minute: Just now
-      less_than_x_minutes: "%{count}m"
-      less_than_x_seconds: Just now
-      over_x_years: "%{count}y"
-      x_days: "%{count}d"
-      x_minutes: "%{count}m"
-      x_months: "%{count}mo"
-      x_seconds: "%{count}s"
+      about_x_hours: "%{count}ช"
+      about_x_months: "%{count}ด"
+      about_x_years: "%{count}ป"
+      almost_x_years: "%{count}ป"
+      half_a_minute: ครึ่งนาที
+      less_than_x_minutes: "%{count}ม"
+      less_than_x_seconds: ไม่ถึงนาที
+      over_x_years: "%{count}ป"
+      x_days: "%{count}ด"
+      x_minutes: "%{count}น"
+      x_months: "%{count}ด"
+      x_seconds: "%{count}ว"
   errors:
-    '403': You don't have permission to view this page.
-    '404': The page you were looking for doesn't exist.
-    '410': The page you were looking for doesn't exist anymore.
+    '403': คุณไม่มีสิทธิ์เข้าดูหน้านี้.
+    '404': ไม่พบเพจที่คุณต้องการดู.
+    '410': เพจที่คุณต้องการดูไม่มีแล้ว.
     '422':
-      content: Security verification failed. Are you blocking cookies?
-      title: Security verification failed
+      content: การตรวจสอบความปลอดภัยล้มเหลว. คุณกำลังบล๊อกคุกกี้อยู่?
+      title: การตรวจสอบความปลอดภัยล้มเหลว
   exports:
-    blocks: You block
+    blocks: คุณบล๊อก
     csv: CSV
-    follows: You follow
-    mutes: You mute
+    follows: คุณติดตาม
+    mutes: คุณปิดเสียง
     storage: Media storage
   followers:
-    domain: Domain
+    domain: โดเมน
     explanation_html: If you want to ensure the privacy of your statuses, you must be aware of who is following you. <strong>Your private statuses are delivered to all instances where you have followers</strong>. You may wish to review them, and remove followers if you do not trust your privacy to be respected by the staff or software of those instances.
     followers_count: Number of followers
     lock_link: Lock your account
@@ -286,8 +286,8 @@ en:
       body: 'Your status was boosted by %{name}:'
       subject: "%{name} boosted your status"
   pagination:
-    next: Next
-    prev: Prev
+    next: ต่อไป
+    prev: ย้อนกลับ
     truncate: "&hellip;"
   remote_follow:
     acct: Enter your username@domain you want to follow from
@@ -296,27 +296,27 @@ en:
     prompt: 'You are going to follow:'
   settings:
     authorized_apps: Authorized apps
-    back: Back to Mastodon
-    edit_profile: Edit profile
-    export: Data export
+    back: กลับไปที่แมสโทดอน
+    edit_profile: แก้ไขโปรไฟล์
+    export: นำข้อมูลออก
     followers: Authorized followers
-    import: Import
+    import: นำเข้า
     preferences: Preferences
-    settings: Settings
+    settings: ตั้งค่า
     two_factor_authentication: Two-factor Authentication
   statuses:
-    open_in_web: Open in web
+    open_in_web: เปิดในเว็บ
     over_character_limit: character limit of %{max} exceeded
-    show_more: Show more
+    show_more: แสดงเพิ่มอีก
     visibilities:
-      private: Followers-only
-      private_long: Only show to followers
+      private: สำหรับผู้ติดตามเท่านั้น
+      private_long: ให้เห็นเฉพาะผู้ติดตาม
       public: Public
-      public_long: Everyone can see
+      public_long: เปิดให้ทุกคนเห็นได้
       unlisted: Unlisted
       unlisted_long: Everyone can see, but not listed on public timelines
   stream_entries:
-    click_to_show: Click to show
+    click_to_show: คลิกเพื่อแสดง
     reblogged: boosted
     sensitive_content: Sensitive content
   time:
@@ -325,8 +325,8 @@ en:
   two_factor_authentication:
     code_hint: Enter the code generated by your authenticator app to confirm
     description_html: If you enable <strong>two-factor authentication</strong>, logging in will require you to be in possession of your phone, which will generate tokens for you to enter.
-    disable: Disable
-    enable: Enable
+    disable: ปิด
+    enable: เปิด
     enabled_success: Two-factor authentication successfully enabled
     generate_recovery_codes: Generate Recovery Codes
     instructions_html: "<strong>Scan this QR code into Google Authenticator or a similiar TOTP app on your phone</strong>. From now on, that app will generate tokens that you will have to enter when logging in."
@@ -334,8 +334,8 @@ en:
     manual_instructions: 'If you can''t scan the QR code and need to enter it manually, here is the plain-text secret:'
     recovery_codes_regenerated: Recovery codes successfully regenerated
     recovery_instructions: If you ever lose access to your phone, you can use one of the recovery codes below to regain access to your account. Keep the recovery codes safe, for example by printing them and storing them with other important documents.
-    setup: Set up
+    setup: ตั้งค่า
     wrong_code: The entered code was invalid! Are server time and device time correct?
   users:
-    invalid_email: The e-mail address is invalid
+    invalid_email: อีเมล์ไม่ถูกต้อง
     invalid_otp_token: Invalid two-factor code
