@@ -122,7 +122,7 @@ en:
         retroactive:
           silence: Unsilence all existing accounts from this domain
           suspend: Unsuspend all existing accounts from this domain
-        title: Undo domain block for %{domain}
+        title: ยกเลิกการบล๊อกโดเมน %{domain}
         undo: ยกเลิก
       title: บล๊อกโดเมน
       undo: ยกเลิก
@@ -143,15 +143,15 @@ en:
         none: None
       delete: ลบ
       id: ไอดี
-      mark_as_resolved: Mark as resolved
+      mark_as_resolved: ทำเครื่องหมายว่าจัดการแล้ว
       report: 'Report #%{id}'
       report_contents: เนื้อหา
       reported_account: รายงานแอคเคาท์
       reported_by: รายงานโดย
-      resolved: Resolved
-      silence_account: Silence account
+      resolved: จัดการแล้ว
+      silence_account: แอคเค๊าท์ที่ปิดเสียง
       status: สถานะ
-      suspend_account: Suspend account
+      suspend_account: แอคเค๊าท์ที่หยุดไว้
       target: เป้าหมาย
       title: รายงาน
       unresolved: Unresolved
@@ -164,25 +164,25 @@ en:
         username: กรอกชื่อผู้ใช้
       registrations:
         closed_message:
-          desc_html: Displayed on frontpage when registrations are closed<br>You can use HTML tags
-          title: Closed registration message
+          desc_html: Displayed on frontpage when registrations are closed<br> ใช้ HTML tags ได้
+          title: ปิดข้อความลงทะเบียน
         open:
           disabled: ปิดการใช้งาน
           enabled: ปิดใช้งาน
           title: เปิดรับลงทะเบียน
       setting: ตั้งค่า
       site_description:
-        desc_html: Displayed as a paragraph on the frontpage and used as a meta tag.<br>You can use HTML tags, in particular <code>&lt;a&gt;</code> and <code>&lt;em&gt;</code>.
-        title: Site description
+        desc_html: Displayed as a paragraph on the frontpage and used as a meta tag.<br> ใช้ HTML tags ได้, in particular <code>&lt;a&gt;</code> และ <code>&lt;em&gt;</code>.
+        title: คำอธิบายไซต์
       site_description_extended:
         desc_html: Displayed on extended information page<br>You can use HTML tags
-        title: Extended site description
+        title: คำอธิบายไซต์เพิ่มเติม
       site_title: ชื่อไซต์
       title: ตั้งค่าไซต์
     title: แอดมิน
   application_mailer:
-    settings: 'Change e-mail preferences: %{link}'
-    signature: Mastodon notifications from %{instance}
+    settings: 'เปลี่ยนอีเมล์ preferences: %{link}'
+    signature: ฟอร์มการแจ้งเตือนแมสโทดอน %{instance}
     view: 'วิว:'
   applications:
     invalid_url: URL ที่ระบุไม่ถูกตั้ง
@@ -193,11 +193,11 @@ en:
     login: ล๊อคอิน
     logout: ล๊อคเอาท์
     register: สมัคร
-    resend_confirmation: Resend confirmation instructions
+    resend_confirmation: ส่งขั้นตอนวิธีการยืนยันใหม่อีกครั้ง
     reset_password: เปลี่ยนรหัสผ่าน
     set_new_password: ตั้งรหัสผ่านใหม่
   authorize_follow:
-    error: Unfortunately, there was an error looking up the remote account
+    error: ว๊าาแย่จัง, ว๊าาแย่จัง, เกิดเออเร่อเกียวกับการหารีโมทย์แอคเคาท์
     follow: ติดตาม
     prompt_html: 'คุณ (<strong>%{self}</strong>) ขอติดตาม:'
     title: ติดตาม %{acct}
@@ -263,7 +263,7 @@ en:
   notification_mailer:
     digest:
       body: 'Here is a brief summary of what you missed on %{instance} since your last visit on %{since}:'
-      mention: "%{name} mentioned you in:"
+      mention: "%{name} ส่งข้อความถึงคุณ:"
       new_followers_summary:
         one: ยินดีด้วยคุณได้ผู้ติดตามคนใหม่! Yay!
         other: You have gotten %{count} new followers! Amazing!
@@ -328,14 +328,14 @@ en:
     disable: ปิด
     enable: เปิด
     enabled_success: Two-factor authentication successfully enabled
-    generate_recovery_codes: Generate Recovery Codes
+    generate_recovery_codes: สร้าง Recovery Codes
     instructions_html: "<strong>Scan this QR code into Google Authenticator or a similiar TOTP app on your phone</strong>. From now on, that app will generate tokens that you will have to enter when logging in."
     lost_recovery_codes: Recovery codes allow you to regain access to your account if you lose your phone. If you've lost your recovery codes, you can regenerate them here. Your old recovery codes will be invalidated.
     manual_instructions: 'If you can''t scan the QR code and need to enter it manually, here is the plain-text secret:'
     recovery_codes_regenerated: Recovery codes successfully regenerated
     recovery_instructions: If you ever lose access to your phone, you can use one of the recovery codes below to regain access to your account. Keep the recovery codes safe, for example by printing them and storing them with other important documents.
     setup: ตั้งค่า
-    wrong_code: The entered code was invalid! Are server time and device time correct?
+    wrong_code: รหัสที่กรอกไม่ถูกต้อง! Are server time and device time correct?
   users:
     invalid_email: อีเมล์ไม่ถูกต้อง
-    invalid_otp_token: Invalid two-factor code
+    invalid_otp_token: two-factor code ไม่ถูกต้อง
