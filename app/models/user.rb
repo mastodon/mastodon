@@ -23,6 +23,12 @@ class User < ApplicationRecord
     confirmed_at.present?
   end
 
+  def disable_two_factor!
+    self.otp_required_for_login = false
+    otp_backup_codes&.clear
+    save!
+  end
+
   def send_devise_notification(notification, *args)
     devise_mailer.send(notification, self, *args).deliver_later
   end

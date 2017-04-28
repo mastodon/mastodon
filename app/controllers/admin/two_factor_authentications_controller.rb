@@ -2,19 +2,17 @@
 
 module Admin
   class TwoFactorAuthenticationsController < BaseController
-    before_action :set_account
+    before_action :set_user
 
     def destroy
-      @account.user.otp_required_for_login = false
-      @account.user.otp_backup_codes.clear
-      @account.user.save!
+      @user.disable_two_factor!
       redirect_to admin_accounts_path
     end
 
     private
 
-    def set_account
-      @account = Account.find(params[:account_id])
+    def set_user
+      @user = User.find(params[:user_id])
     end
   end
 end
