@@ -71,7 +71,7 @@ class HashtagTimeline extends React.PureComponent {
     return (
       <Column icon='hashtag' active={hasUnread} heading={id}>
         <ColumnBackButtonSlim />
-        <StatusListContainer type='tag' id={id} emptyMessage={<FormattedMessage id='empty_column.hashtag' defaultMessage='There is nothing in this hashtag yet.' />} />
+        <StatusListContainer scrollKey='hashtag_timeline' type='tag' id={id} emptyMessage={<FormattedMessage id='empty_column.hashtag' defaultMessage='There is nothing in this hashtag yet.' />} />
       </Column>
     );
   }

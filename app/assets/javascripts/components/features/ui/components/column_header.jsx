@@ -17,7 +17,7 @@ class ColumnHeader extends React.PureComponent {
     let icon = '';
 
     if (this.props.icon) {
-      icon = <i className={`fa fa-fw fa-${this.props.icon}`} style={{ display: 'inline-block', marginRight: '5px' }} />;
+      icon = <i className={`fa fa-fw fa-${this.props.icon} column-header__icon`} />;
     }
 
     return (

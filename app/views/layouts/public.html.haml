@@ -4,6 +4,10 @@
 - content_for :content do
   .container= yield
   .footer
+    - if !user_signed_in? && single_user_mode?
+      %span.single-user-login
+        = link_to t('auth.login'), new_user_session_path
+        = "\u2014"
     %span.domain= link_to site_hostname, root_path
     %span.powered-by
       = t('generic.powered_by', link: link_to('Mastodon', 'https://github.com/tootsuite/mastodon')).html_safe

@@ -25,6 +25,7 @@
     %tr
       %th= t('admin.accounts.username')
       %th= t('admin.accounts.domain')
+      %th= t('admin.accounts.confirmed')
       %th= fa_icon 'paper-plane-o'
       %th
   %tbody
@@ -34,6 +35,12 @@
         %td
           - unless account.local?
             = link_to account.domain, admin_accounts_path(by_domain: account.domain)
+        %td
+          - if account.local?
+            - if account.user.present? && account.user.confirmed?
+              %i.fa.fa-check
+            - else 
+              %i.fa.fa-times
         %td
           - if account.local?
             = t('admin.accounts.location.local')

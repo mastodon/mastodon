@@ -40,6 +40,8 @@ const makeMapStateToProps = () => {
   const getStatusIds = makeGetStatusIds();
 
   const mapStateToProps = (state, props) => ({
+    scrollKey: props.scrollKey,
+    shouldUpdateScroll: props.shouldUpdateScroll,
     statusIds: getStatusIds(state, props),
     isLoading: state.getIn(['timelines', props.type, 'isLoading'], true),
     isUnread: state.getIn(['timelines', props.type, 'unread']) > 0,

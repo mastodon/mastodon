@@ -11,67 +11,6 @@ const messages = defineMessages({
   expand_video: { id: 'video_player.video_error', defaultMessage: 'Video could not be played' }
 });
 
-const videoStyle = {
-  position: 'relative',
-  zIndex: '1',
-  width: '100%',
-  height: '100%',
-  objectFit: 'cover',
-  top: '50%',
-  transform: 'translateY(-50%)'
-};
-
-const muteStyle = {
-  position: 'absolute',
-  top: '4px',
-  right: '4px',
-  color: 'white',
-  textShadow: "0px 1px 1px black, 1px 0px 1px black",
-  opacity: '0.8',
-  zIndex: '5'
-};
-
-const coverStyle = {
-  marginTop: '8px',
-  textAlign: 'center',
-  height: '100%',
-  cursor: 'pointer',
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  flexDirection: 'column',
-  position: 'relative'
-};
-
-const spoilerSpanStyle = {
-  display: 'block',
-  fontSize: '14px'
-};
-
-const spoilerSubSpanStyle = {
-  display: 'block',
-  fontSize: '11px',
-  fontWeight: '500'
-};
-
-const spoilerButtonStyle = {
-  position: 'absolute',
-  top: '4px',
-  left: '4px',
-  color: 'white',
-  textShadow: "0px 1px 1px black, 1px 0px 1px black",
-  zIndex: '100'
-};
-
-const expandButtonStyle = {
-  position: 'absolute',
-  bottom: '4px',
-  right: '4px',
-  color: 'white',
-  textShadow: "0px 1px 1px black, 1px 0px 1px black",
-  zIndex: '100'
-};
-
 class VideoPlayer extends React.PureComponent {
 
   constructor (props, context) {
@@ -83,6 +22,7 @@ class VideoPlayer extends React.PureComponent {
       hasAudio: true,
       videoError: false
     };
+
     this.handleClick = this.handleClick.bind(this);
     this.handleVideoClick = this.handleVideoClick.bind(this);
     this.handleOpen = this.handleOpen.bind(this);
@@ -170,13 +110,13 @@ class VideoPlayer extends React.PureComponent {
     const { media, intl, width, height, sensitive, autoplay } = this.props;
 
     let spoilerButton = (
-      <div style={{...spoilerButtonStyle, display: !this.state.visible ? 'none' : 'block'}} >
+      <div className='status__video-player-spoiler' style={{ display: !this.state.visible ? 'none' : 'block' }} >
         <IconButton overlay title={intl.formatMessage(messages.toggle_visible)} icon={this.state.visible ? 'eye' : 'eye-slash'} onClick={this.handleVisibility} />
       </div>
     );
 
     let expandButton = (
-      <div style={expandButtonStyle} >
+      <div className='status__video-player-expand'>
         <IconButton overlay title={intl.formatMessage(messages.expand_video)} icon='expand' onClick={this.handleExpand} />
       </div>
     );
@@ -185,7 +125,7 @@ class VideoPlayer extends React.PureComponent {
 
     if (this.state.hasAudio) {
       muteButton = (
-        <div style={muteStyle}>
+        <div className='status__video-player-mute'>
           <IconButton overlay title={intl.formatMessage(messages.toggle_sound)} icon={this.state.muted ? 'volume-off' : 'volume-up'} onClick={this.handleClick} />
         </div>
       );
@@ -194,18 +134,18 @@ class VideoPlayer extends React.PureComponent {
     if (!this.state.visible) {
       if (sensitive) {
         return (
-          <div role='button' tabIndex='0' style={{...coverStyle, width: `${width}px`, height: `${height}px` }} className='media-spoiler' onClick={this.handleVisibility}>
+          <div role='button' tabIndex='0' style={{ width: `${width}px`, height: `${height}px` }} className='media-spoiler' onClick={this.handleVisibility}>
             {spoilerButton}
-            <span style={spoilerSpanStyle}><FormattedMessage id='status.sensitive_warning' defaultMessage='Sensitive content' /></span>
-            <span style={spoilerSubSpanStyle}><FormattedMessage id='status.sensitive_toggle' defaultMessage='Click to view' /></span>
+            <span className='media-spoiler__warning'><FormattedMessage id='status.sensitive_warning' defaultMessage='Sensitive content' /></span>
+            <span className='media-spoiler__trigger'><FormattedMessage id='status.sensitive_toggle' defaultMessage='Click to view' /></span>
           </div>
         );
       } else {
         return (
-          <div role='button' tabIndex='0' style={{...coverStyle, width: `${width}px`, height: `${height}px` }} className='media-spoiler' onClick={this.handleVisibility}>
+          <div role='button' tabIndex='0' style={{ width: `${width}px`, height: `${height}px` }} className='media-spoiler' onClick={this.handleVisibility}>
             {spoilerButton}
-            <span style={spoilerSpanStyle}><FormattedMessage id='status.media_hidden' defaultMessage='Media hidden' /></span>
-            <span style={spoilerSubSpanStyle}><FormattedMessage id='status.sensitive_toggle' defaultMessage='Click to view' /></span>
+            <span className='media-spoiler__warning'><FormattedMessage id='status.media_hidden' defaultMessage='Media hidden' /></span>
+            <span className='media-spoiler__trigger'><FormattedMessage id='status.sensitive_toggle' defaultMessage='Click to view' /></span>
           </div>
         );
       }
@@ -213,27 +153,27 @@ class VideoPlayer extends React.PureComponent {
 
     if (this.state.preview && !autoplay) {
       return (
-        <div role='button' tabIndex='0' style={{ cursor: 'pointer', position: 'relative', marginTop: '8px', width: `${width}px`, height: `${height}px`, background: `url(${media.get('preview_url')}) no-repeat center`, backgroundSize: 'cover' }} onClick={this.handleOpen}>
+        <div role='button' tabIndex='0' className='media-spoiler-video' style={{ width: `${width}px`, height: `${height}px`, background: `url(${media.get('preview_url')}) no-repeat center` }} onClick={this.handleOpen}>
           {spoilerButton}
-          <div style={{ position: 'absolute', top: '50%', left: '50%', fontSize: '36px', transform: 'translate(-50%, -50%)', padding: '5px', borderRadius: '100px', color: 'rgba(255, 255, 255, 0.8)' }}><i className='fa fa-play' /></div>
+          <div className='media-spoiler-video-play-icon'><i className='fa fa-play' /></div>
         </div>
       );
     }
 
     if (this.state.videoError) {
       return (
-        <div style={{...coverStyle, width: `${width}px`, height: `${height}px` }} className='video-error-cover' >
-          <span style={spoilerSpanStyle}><FormattedMessage id='video_player.video_error' defaultMessage='Video could not be played' /></span>
+        <div style={{ width: `${width}px`, height: `${height}px` }} className='video-error-cover' >
+          <span className='media-spoiler__warning'><FormattedMessage id='video_player.video_error' defaultMessage='Video could not be played' /></span>
         </div>
       );
     }
 
     return (
-      <div style={{ cursor: 'default', marginTop: '8px', overflow: 'hidden', width: `${width}px`, height: `${height}px`, boxSizing: 'border-box', background: '#000', position: 'relative' }}>
+      <div className='status__video-player' style={{ width: `${width}px`, height: `${height}px` }}>
         {spoilerButton}
         {muteButton}
         {expandButton}
-        <video role='button' tabIndex='0' ref={this.setRef} src={media.get('url')} autoPlay={!isIOS()} loop={true} muted={this.state.muted} style={videoStyle} onClick={this.handleVideoClick} />
+        <video className='status__video-player-video' role='button' tabIndex='0' ref={this.setRef} src={media.get('url')} autoPlay={!isIOS()} loop={true} muted={this.state.muted} onClick={this.handleVideoClick} />
       </div>
     );
   }

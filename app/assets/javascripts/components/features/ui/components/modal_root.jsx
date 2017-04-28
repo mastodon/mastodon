@@ -3,13 +3,15 @@ import MediaModal from './media_modal';
 import OnboardingModal from './onboarding_modal';
 import VideoModal from './video_modal';
 import BoostModal from './boost_modal';
+import ConfirmationModal from './confirmation_modal';
 import { TransitionMotion, spring } from 'react-motion';
 
 const MODAL_COMPONENTS = {
   'MEDIA': MediaModal,
   'ONBOARDING': OnboardingModal,
   'VIDEO': VideoModal,
-  'BOOST': BoostModal
+  'BOOST': BoostModal,
+  'CONFIRM': ConfirmationModal
 };
 
 class ModalRoot extends React.PureComponent {
@@ -65,7 +67,7 @@ class ModalRoot extends React.PureComponent {
 
               return (
                 <div key={key}>
-                  <div role='presentation' className='modal-root__overlay' style={{ opacity: style.opacity, transform: `translateZ(0px)` }} onClick={onClose} />
+                  <div role='presentation' className='modal-root__overlay' style={{ opacity: style.opacity }} onClick={onClose} />
                   <div className='modal-root__container' style={{ opacity: style.opacity, transform: `translateZ(0px) scale(${style.scale})` }}>
                     <SpecificComponent {...props} onClose={onClose} />
                   </div>

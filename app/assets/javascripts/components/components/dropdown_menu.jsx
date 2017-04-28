@@ -28,14 +28,14 @@ class DropdownMenu extends React.PureComponent {
 
   renderItem (item, i) {
     if (item === null) {
-      return <li key={i} className='dropdown__sep' />;
+      return <li key={ 'sep' + i } className='dropdown__sep' />;
     }
 
     const { text, action, href = '#' } = item;
 
     return (
-      <li key={i}>
-        <a href={href} target='_blank' rel='noopener' onClick={this.handleClick.bind(this, i)}>
+      <li className='dropdown__content-list-item' key={ text + i }>
+        <a href={href} target='_blank' rel='noopener' onClick={this.handleClick.bind(this, i)} className='dropdown__content-list-link'>
           {text}
         </a>
       </li>
@@ -43,17 +43,17 @@ class DropdownMenu extends React.PureComponent {
   }
 
   render () {
-    const { icon, items, size, direction } = this.props;
+    const { icon, items, size, direction, ariaLabel } = this.props;
     const directionClass = (direction === "left") ? "dropdown__left" : "dropdown__right";
 
     return (
       <Dropdown ref={this.setRef}>
-        <DropdownTrigger className='icon-button' style={{ fontSize: `${size}px`, width: `${size}px`, lineHeight: `${size}px` }}>
-          <i className={`fa fa-fw fa-${icon}`} style={{ verticalAlign: 'middle' }} />
+        <DropdownTrigger className='icon-button' style={{ fontSize: `${size}px`, width: `${size}px`, lineHeight: `${size}px` }} aria-label={ariaLabel}>
+          <i className={ `fa fa-fw fa-${icon} dropdown__icon` }  aria-hidden={true} />
         </DropdownTrigger>
 
-        <DropdownContent className={directionClass} style={{ lineHeight: '18px', textAlign: 'left' }}>
-          <ul>
+        <DropdownContent className={directionClass}>
+          <ul className='dropdown__content-list'>
             {items.map(this.renderItem)}
           </ul>
         </DropdownContent>
@@ -67,7 +67,12 @@ DropdownMenu.propTypes = {
   icon: PropTypes.string.isRequired,
   items: PropTypes.array.isRequired,
   size: PropTypes.number.isRequired,
-  direction: PropTypes.string
+  direction: PropTypes.string,
+  ariaLabel: PropTypes.string
+};
+
+DropdownMenu.defaultProps = {
+  ariaLabel: "Menu"
 };
 
 export default DropdownMenu;
