@@ -30,5 +30,5 @@
     = javascript_include_tag '/piwik'
     %noscript 
       %p 
-        %img(src="https://analytics.remote-shell.net/piwik.php?idsite=2&rec=1" style="border:0;" alt="")
+        %img(src="https://#{ENV['PIWIK_DOMAIN']}/piwik.php?idsite=2&rec=1" style="border:0;" alt="")
 

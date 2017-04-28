@@ -19,14 +19,14 @@ class HomeController < ApplicationController
   var _paq = _paq || [];
   /* tracker methods like 'setCustomDimension' should be called before 'trackPageView' */
   _paq.push(['setDocumentTitle', document.domain + '/' + document.title]);
-  _paq.push(['setCookieDomain', '*.mastodon.host']);
-  _paq.push(['setDomains', ['*.mastodon.host']]);
+  _paq.push(['setCookieDomain', '*."+ENV['LOCAL_DOMAIN']+"']);
+  _paq.push(['setDomains', ['*."+ENV['LOCAL_DOMAIN']+"']]);
   _paq.push(['trackPageView']);
   _paq.push(['enableLinkTracking']);
   (function() {
-    var u='//analytics.remote-shell.net/';
+    var u='//"+ENV['PIWIK_DOMAIN']+"/';
     _paq.push(['setTrackerUrl', u+'piwik.php']);
-    _paq.push(['setSiteId', '2']);
+    _paq.push(['setSiteId', '"+ENV['PIWIK_SITEID']+"']);
     _paq.push(['setUserId', '"+piwik_user_id+"']);
     _paq.push(['trackVisibleContentImpressions']);
     var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
