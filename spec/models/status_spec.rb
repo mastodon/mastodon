@@ -127,6 +127,19 @@ RSpec.describe Status, type: :model do
     pending
   end
 
+  describe '.local_only' do
+    it 'returns only statuses from local accounts' do
+      local_account = Fabricate(:account, domain: nil)
+      remote_account = Fabricate(:account, domain: 'test.com')
+      local_status = Fabricate(:status, account: local_account)
+      remote_status = Fabricate(:status, account: remote_account)
+
+      results = described_class.local_only
+      expect(results).to include(local_status)
+      expect(results).not_to include(remote_status)
+    end
+  end
+
   describe '.as_home_timeline' do
     before do
       account = Fabricate(:account)
@@ -151,6 +164,124 @@ RSpec.describe Status, type: :model do
 
     it 'does not include statuses from non-followed' do
       expect(@results).not_to include(@not_followed_status)
+    end
+  end
+
+  describe '.as_public_timeline' do
+    it 'only includes statuses with public visibility' do
+      public_status = Fabricate(:status, visibility: :public)
+      private_status = Fabricate(:status, visibility: :private)
+
+      results = Status.as_public_timeline
+      expect(results).to include(public_status)
+      expect(results).not_to include(private_status)
+    end
+
+    it 'does not include replies' do
+      status = Fabricate(:status)
+      reply = Fabricate(:status, in_reply_to_id: status.id)
+
+      results = Status.as_public_timeline
+      expect(results).to include(status)
+      expect(results).not_to include(reply)
+    end
+
+    it 'does not include boosts' do
+      status = Fabricate(:status)
+      boost = Fabricate(:status, reblog_of_id: status.id)
+
+      results = Status.as_public_timeline
+      expect(results).to include(status)
+      expect(results).not_to include(boost)
+    end
+
+    it 'filters out silenced accounts' do
+      account = Fabricate(:account)
+      silenced_account = Fabricate(:account, silenced: true)
+      status = Fabricate(:status, account: account)
+      silenced_status = Fabricate(:status, account: silenced_account)
+
+      results = Status.as_public_timeline
+      expect(results).to include(status)
+      expect(results).not_to include(silenced_status)
+    end
+
+    context 'with a local_only option set' do
+      it 'does not include remote instances statuses' do
+        local_account = Fabricate(:account, domain: nil)
+        remote_account = Fabricate(:account, domain: 'test.com')
+        local_status = Fabricate(:status, account: local_account)
+        remote_status = Fabricate(:status, account: remote_account)
+
+        results = Status.as_public_timeline(nil, true)
+        expect(results).to include(local_status)
+        expect(results).not_to include(remote_status)
+      end
+    end
+
+    describe 'with an account passed in' do
+      before do
+        @account = Fabricate(:account)
+      end
+
+      it 'excludes statuses from accounts blocked by the account' do
+        blocked = Fabricate(:account)
+        Fabricate(:block, account: @account, target_account: blocked)
+        blocked_status = Fabricate(:status, account: blocked)
+
+        results = Status.as_public_timeline(@account)
+        expect(results).not_to include(blocked_status)
+      end
+
+      it 'excludes statuses from accounts who have blocked the account' do
+        blocked = Fabricate(:account)
+        Fabricate(:block, account: blocked, target_account: @account)
+        blocked_status = Fabricate(:status, account: blocked)
+
+        results = Status.as_public_timeline(@account)
+        expect(results).not_to include(blocked_status)
+      end
+
+      it 'excludes statuses from accounts muted by the account' do
+        muted = Fabricate(:account)
+        Fabricate(:mute, account: @account, target_account: muted)
+        muted_status = Fabricate(:status, account: muted)
+
+        results = Status.as_public_timeline(@account)
+        expect(results).not_to include(muted_status)
+      end
+
+      context 'where that account is silenced' do
+        it 'includes statuses from other accounts that are silenced' do
+          @account.update(silenced: true)
+          other_silenced_account = Fabricate(:account, silenced: true)
+          other_status = Fabricate(:status, account: other_silenced_account)
+
+          results = Status.as_public_timeline(@account)
+          expect(results).to include(other_status)
+        end
+      end
+    end
+  end
+
+  describe '.as_tag_timeline' do
+    it 'includes statuses with a tag' do
+      tag = Fabricate(:tag)
+      status = Fabricate(:status, tags: [tag])
+      other = Fabricate(:status)
+
+      results = Status.as_tag_timeline(tag)
+      expect(results).to include(status)
+      expect(results).not_to include(other)
+    end
+
+    it 'allows replies to be included' do
+      original = Fabricate(:status)
+      tag = Fabricate(:tag)
+      status = Fabricate(:status, tags: [tag], in_reply_to_id: original.id)
+
+      results = Status.as_tag_timeline(tag)
+      expect(results).to include(status)
     end
   end
 end

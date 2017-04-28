@@ -46,6 +46,8 @@ class Account < ApplicationRecord
   # Block relationships
   has_many :block_relationships, class_name: 'Block', foreign_key: 'account_id', dependent: :destroy
   has_many :blocking, -> { order('blocks.id desc') }, through: :block_relationships, source: :target_account
+  has_many :blocked_by_relationships, class_name: 'Block', foreign_key: :target_account_id, dependent: :destroy
+  has_many :blocked_by, -> { order('blocks.id desc') }, through: :blocked_by_relationships, source: :account
 
   # Mute relationships
   has_many :mute_relationships, class_name: 'Mute', foreign_key: 'account_id', dependent: :destroy
@@ -209,6 +211,10 @@ class Account < ApplicationRecord
 
   def to_param
     username
+  end
+
+  def excluded_from_timeline_account_ids
+    Rails.cache.fetch("exclude_account_ids_for:#{id}") { blocking.pluck(:target_account_id) + blocked_by.pluck(:account_id) + muting.pluck(:target_account_id) }
   end
 
   class << self
