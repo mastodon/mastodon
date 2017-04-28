@@ -88,6 +88,7 @@ Rails.application.routes.draw do
       resource :silence, only: [:create, :destroy]
       resource :suspension, only: [:create, :destroy]
       resource :confirmation, only: [:create]
+      resource :two_factor_authentication, only: [:destroy]
     end
   end
 
