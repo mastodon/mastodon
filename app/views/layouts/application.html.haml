@@ -17,7 +17,7 @@
       - if content_for?(:page_title)
         = yield(:page_title)
         = ' - '
-      = site_title
+      = title
 
     = stylesheet_link_tag stylesheet_for_layout, media: 'all'
     = csrf_meta_tags
