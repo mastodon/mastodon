@@ -83,6 +83,7 @@ const ja = {
   "navigation_bar.mutes": "ミュートしたユーザー",
   "navigation_bar.preferences": "ユーザー設定",
   "navigation_bar.public_timeline": "ジャパリパーク",
+  "navigation_bar.library": "としょかん (Wiki)",
   "notification.favourite": "{name} さんがあなたのがおーにすごーいしました",
   "notification.follow": "{name} さんにフォローされました",
   "notification.mention": "{name} さんがあなたにおしゃべりしました",

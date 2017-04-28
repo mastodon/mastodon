@@ -19,7 +19,8 @@ const messages = defineMessages({
   favourites: { id: 'navigation_bar.favourites', defaultMessage: 'Favourites' },
   blocks: { id: 'navigation_bar.blocks', defaultMessage: 'Blocked users' },
   mutes: { id: 'navigation_bar.mutes', defaultMessage: 'Muted users' },
-  info: { id: 'navigation_bar.info', defaultMessage: 'Extended information' }
+  info: { id: 'navigation_bar.info', defaultMessage: 'Extended information' },
+  library: { id: 'navigation_bar.library', defaultMessage: 'Library (Wiki)' }
 });
 
 const mapStateToProps = state => ({
@@ -44,7 +45,8 @@ const GettingStarted = ({ intl, me }) => {
         <ColumnLink icon='volume-off' text={intl.formatMessage(messages.mutes)} to='/mutes' />
         <ColumnLink icon='ban' text={intl.formatMessage(messages.blocks)} to='/blocks' />
         <ColumnSubheading text={intl.formatMessage(messages.settings_subheading)}/>
-        <ColumnLink icon='book' text={intl.formatMessage(messages.info)} href='/about/more' />
+        <ColumnLink icon='server' text={intl.formatMessage(messages.info)} href='/about/more' />
+        <ColumnLink icon='book' text={intl.formatMessage(messages.library)} href='http://library.kemono-friends.info' />
         <ColumnLink icon='cog' text={intl.formatMessage(messages.preferences)} href='/settings/preferences' />
         <ColumnLink icon='sign-out' text={intl.formatMessage(messages.sign_out)} href='/auth/sign_out' method='delete' />
       </div>
