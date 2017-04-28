@@ -79,11 +79,7 @@ class ImportWorker
       begin
         domain, account, id = row
 
-        if domain == Rails.configuration.x.local_domain
-          status = Status.find(id)
-        else
-          status = FetchRemoteStatusService.new.call("http://#{domain}/users/#{account}/#{id}.atom")
-        end
+        status = (domain == Rails.configuration.x.local_domain) ? Status.find(id) : FetchRemoteStatusService.new.call("http://#{domain}/users/#{account}/#{id}.atom")
 
         FavouriteService.new.call(from_account, status)
       rescue Mastodon::NotPermittedError, ActiveRecord::RecordNotFound, ActiveRecord::RecordInvalid, Goldfinger::Error, HTTP::Error, OpenSSL::SSL::SSLError
