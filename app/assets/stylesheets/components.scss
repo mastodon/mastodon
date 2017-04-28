@@ -1034,9 +1034,24 @@ a.status__content__spoiler-link {
     padding: 4px 0;
     border-radius: 4px;
     box-shadow: 0 0 15px rgba($color8, 0.4);
-    min-width: 140px;
     position: relative;
     left: -10px;
+    width: 25vw;
+    * {
+      width: 25vw;
+    }
+    @media screen and (max-width: 1024px) {
+      width: 50vw;
+      * {
+        width: 50vw
+      }
+    }
+    @media screen and (max-width: 500px) {
+      width: 90vw;
+      * {
+        width: 90vw
+      }
+    }
   }
 
   &.dropdown__left {
@@ -1055,7 +1070,6 @@ a.status__content__spoiler-link {
     display: block;
     padding: 4px 14px;
     box-sizing: border-box;
-    width: 140px;
     text-decoration: none;
     background: $color2;
     color: $color1;
@@ -1202,7 +1216,15 @@ a.status__content__spoiler-link {
       padding-right: 10px;
     }
   }
-
+  .drawer {
+    width: 20%;
+    max-width: 400px;
+  }
+  .column {
+    width: calc(80%/3);
+    max-width: 800px;
+    flex: 0 0 auto;
+  }
   .columns-area > div {
     .column, .drawer {
       padding-left: 5px;
@@ -1217,10 +1239,9 @@ a.status__content__spoiler-link {
   }
 
   .column, .drawer {
-    width: 350px;
     border-radius: 4px;
-    height: 90vh;
-    margin-top: 5vh;
+    margin: 0;
+    height: 100vh;
   }
 }
 
