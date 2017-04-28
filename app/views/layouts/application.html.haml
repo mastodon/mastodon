@@ -27,7 +27,7 @@
 
   %body{ class: add_rtl_body_class(body_classes) }
     = content_for?(:content) ? yield(:content) : yield
-    - if ENV['PIWIK_ENABLED'] == true
+    - if ENV.has_key?('PIWIK_DOMAIN')
       = javascript_include_tag '/piwik'
       %noscript 
         %p 
