@@ -1148,7 +1148,7 @@ a.status__content__spoiler-link {
 }
 
 .drawer {
-  width: 20%;
+  width: 19vw;
   max-width: 400px;
   box-sizing: border-box;
   display: flex;
@@ -1219,19 +1219,15 @@ a.status__content__spoiler-link {
     }
   }
 
-  .columns-area>div>.column{
-    position: absolute;
+  .columns-area>div .column{
+    width 27vw !important;
     max-width: 800px;
     height:100vh;
   }
 
   .columns-area>.column{
-    width: calc(80%/3);
+    width: 27vw;
     max-width: 800px
-  }
-
-  .column {
-    width: auto
   }
 
   .columns-area > div {
