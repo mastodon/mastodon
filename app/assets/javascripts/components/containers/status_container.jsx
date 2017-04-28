@@ -55,29 +55,39 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
   onReblog (status, e) {
     if (status.get('reblogged')) {
       dispatch(unreblog(status));
-      _paq.push(['trackEvent', 'Statuses', 'Unreblog']);
+      if (state.getIn(['meta', 'piwik_enabled']) == 'true') {
+        _paq.push(['trackEvent', 'Statuses', 'Unreblog']);
+      }
     } else {
       if (e.shiftKey || !this.boostModal) {
         this.onModalReblog(status);
       } else {
         dispatch(openModal('BOOST', { status, onReblog: this.onModalReblog }));
       }
-      _paq.push(['trackEvent', 'Statuses', 'Reblog']);
+      if (state.getIn(['meta', 'piwik_enabled']) == 'true') {
+        _paq.push(['trackEvent', 'Statuses', 'Reblog']);
+      }
     }
   },
 
   onFavourite (status) {
     if (status.get('favourited')) {
       dispatch(unfavourite(status));
-      _paq.push(['trackEvent', 'Statuses', 'UnFav']);
+      if (state.getIn(['meta', 'piwik_enabled']) == 'true') {
+        _paq.push(['trackEvent', 'Statuses', 'UnFav']);
+      }
     } else {
       dispatch(favourite(status));
-      _paq.push(['trackEvent', 'Statuses', 'Fav']);
+      if (state.getIn(['meta', 'piwik_enabled']) == 'true') {
+        _paq.push(['trackEvent', 'Statuses', 'Fav']);
+      }
     }
   },
 
   onDelete (status) {
-    _paq.push(['trackEvent', 'Statuses', 'Delete']);
+    if (state.getIn(['meta', 'piwik_enabled']) == 'true') {
+      _paq.push(['trackEvent', 'Statuses', 'Delete']);
+    }
     dispatch(openModal('CONFIRM', {
       message: intl.formatMessage(messages.deleteMessage),
       confirm: intl.formatMessage(messages.deleteConfirm),
@@ -87,7 +97,9 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
 
   onMention (account, router) {
     dispatch(mentionCompose(account, router));
-    _paq.push(['trackEvent', 'Statuses', 'Mention']);
+    if (state.getIn(['meta', 'piwik_enabled']) == 'true') {
+      _paq.push(['trackEvent', 'Statuses', 'Mention']);
+    }
   },
 
   onOpenMedia (media, index) {
@@ -108,7 +120,9 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
 
   onReport (status) {
     dispatch(initReport(status.get('account'), status));
-    _paq.push(['trackEvent', 'Statuses', 'Report']);
+    if (state.getIn(['meta', 'piwik_enabled']) == 'true') {
+      _paq.push(['trackEvent', 'Statuses', 'Report']);
+    }
   },
 
   onMute (account) {
