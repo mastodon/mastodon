@@ -67,7 +67,10 @@
           = t 'about.features.blocks'
         %li
           = fa_icon('li check-square')
-          = t 'about.features.ethics'
+          - if not ENV.has_key?('PIWIK_DOMAIN')
+            = t 'about.features.ethics'
+          - else
+            = t 'about.features.ethics_piwik'
         %li
           = fa_icon('li check-square')
           = t 'about.features.api'
