@@ -69,7 +69,7 @@ const fr = {
   "navigation_bar.follow_requests": "Demandes de suivi",
   "navigation_bar.info": "Plus d'informations",
   "navigation_bar.logout": "Déconnexion",
-  "navigation_bar.mutes": "Comptes muets",
+  "navigation_bar.mutes": "Comptes silencés",
   "navigation_bar.preferences": "Préférences",
   "navigation_bar.public_timeline": "Fil public global",
   "notification.favourite": "{name} a ajouté à ses favoris :",
