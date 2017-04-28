@@ -34,6 +34,7 @@ run.config:
     - cp .env.nanobox .env
     - gem install bundler
     - bundle config build.nokogiri --with-iconv-dir=/data/ --with-zlib-dir=/data/
+    - bundle config build.nokogumbo --with-iconv-dir=/data/ --with-zlib-dir=/data/
     - bundle install --without=pkgconfig --clean
     - yarn
 
