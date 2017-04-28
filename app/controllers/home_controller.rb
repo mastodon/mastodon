@@ -3,8 +3,10 @@
 class HomeController < ApplicationController
   protect_from_forgery except: :piwik
   skip_before_action :store_current_location, only: :piwik
-  before_action :authenticate_user!, :except => [ :piwik ]
-
+  # rubocop sees that as a hash ?!
+  # rubocop:disable EnforcedStyle
+  before_action :authenticate_user!, :except => [:piwik]
+  # rubocop:enable EnforcedStyle
   def index
     @body_classes           = 'app-body'
     @token                  = find_or_create_access_token.token
