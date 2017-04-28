@@ -63,16 +63,16 @@ class Account < ApplicationRecord
   has_many :reports
   has_many :targeted_reports, class_name: 'Report', foreign_key: :target_account_id
 
-  scope :remote, -> { where.not(domain: nil) }
-  scope :local, -> { where(domain: nil) }
-  scope :without_followers, -> { where('(select count(f.id) from follows as f where f.target_account_id = accounts.id) = 0') }
-  scope :with_followers, -> { where('(select count(f.id) from follows as f where f.target_account_id = accounts.id) > 0') }
-  scope :expiring, ->(time) { where(subscription_expires_at: nil).or(where('subscription_expires_at < ?', time)).remote.with_followers }
-  scope :silenced, -> { where(silenced: true) }
-  scope :suspended, -> { where(suspended: true) }
-  scope :recent, -> { reorder(id: :desc) }
-  scope :alphabetic, -> { order(domain: :asc, username: :asc) }
-  scope :by_domain_accounts, -> { group(:domain).select(:domain, 'COUNT(*) AS accounts_count').order('accounts_count desc') }
+  scope :remote, (-> { where.not(domain: nil) })
+  scope :local, (-> { where(domain: nil) })
+  scope :without_followers, (-> { where('(select count(f.id) from follows as f where f.target_account_id = accounts.id) = 0') })
+  scope :with_followers, (-> { where('(select count(f.id) from follows as f where f.target_account_id = accounts.id) > 0') })
+  scope :expiring, (->(time) { where(subscription_expires_at: nil).or(where('subscription_expires_at < ?', time)).remote.with_followers })
+  scope :silenced, (-> { where(silenced: true) })
+  scope :suspended, (-> { where(suspended: true) })
+  scope :recent, (-> { reorder(id: :desc) })
+  scope :alphabetic, (-> { order(domain: :asc, username: :asc) })
+  scope :by_domain_accounts, (-> { group(:domain).select(:domain, 'COUNT(*) AS accounts_count').order('accounts_count desc') })
 
   delegate :email,
            :current_sign_in_ip,
@@ -144,7 +144,7 @@ class Account < ApplicationRecord
   end
 
   def subscribed?
-    !subscription_expires_at.blank?
+    subscription_expires_at.present?
   end
 
   def followers_domains
@@ -196,7 +196,7 @@ class Account < ApplicationRecord
   def avatar_remote_url=(url)
     parsed_url = Addressable::URI.parse(url).normalize
 
-    return if !%w(http https).include?(parsed_url.scheme) || parsed_url.host.empty? || self[:avatar_remote_url] == url
+    return if !%w[http https].include?(parsed_url.scheme) || parsed_url.host.empty? || self[:avatar_remote_url] == url
 
     self.avatar              = URI.parse(parsed_url.to_s)
     self[:avatar_remote_url] = url
@@ -207,7 +207,7 @@ class Account < ApplicationRecord
   def header_remote_url=(url)
     parsed_url = Addressable::URI.parse(url).normalize
 
-    return if !%w(http https).include?(parsed_url.scheme) || parsed_url.host.empty? || self[:header_remote_url] == url
+    return if !%w[http https].include?(parsed_url.scheme) || parsed_url.host.empty? || self[:header_remote_url] == url
 
     self.header              = URI.parse(parsed_url.to_s)
     self[:header_remote_url] = url
