@@ -1,0 +1,341 @@
+---
+en:
+  about:
+    about_mastodon: แมสโทดอน เป็น  <em>ดีเซ็นทรัลไลซ์</em><em>ฟรีโอเพ่นซอร์ส</em> โซเชี่ยวเน็ตเวริ์ค.  เป็นทางเลือกทดแทนโซเชี่ยวเน็ตเวิร์คที่ทำเป็นธุรกิจการค้า, ป้องกันการผูกขาดช่องทางการสื่อสารของคุณ. เลือกเซร์ฟเวอร์ที่คุณไว้ใจ &mdash; ที่คุณเลือกได้เอง, สื่อสารกับคนที่คุณต้องการได้เสมอ. ใครๆก็รันแมสโทดอนอินซะแตนซ์ได้ และ เชื่อมต่อกับ<em>โซเชี่ยวเน็ตเวิร์ค</em> โดยไม่มีอะไรมาขวางกั้น.
+    about_this: About this instance
+    apps: Apps
+    business_email: 'Business e-mail:'
+    closed_registrations: Registrations are currently closed on this instance.
+    contact: Contact
+    description_headline: What is %{domain}?
+    domain_count_after: other instances
+    domain_count_before: Connected to
+    features:
+      api: Open API for apps and services
+      blocks: Rich block and muting tools
+      characters: 500 characters per post
+      chronology: Timelines are chronological
+      ethics: 'Ethical design: no ads, no tracking'
+      gifv: GIFV sets and short videos
+      privacy: Granular, per-post privacy settings
+      public: Public timelines
+    features_headline: What sets Mastodon apart
+    get_started: Get started
+    links: Links
+    other_instances: Other instances
+    source_code: Source code
+    status_count_after: statuses
+    status_count_before: Who authored
+    terms: Terms
+    user_count_after: users
+    user_count_before: Home to
+    version: Version
+  accounts:
+    follow: Follow
+    followers: Followers
+    following: Following
+    nothing_here: There is nothing here!
+    people_followed_by: People whom %{name} follows
+    people_who_follow: People who follow %{name}
+    posts: Posts
+    remote_follow: Remote follow
+    unfollow: Unfollow
+  activitypub:
+    activity:
+      announce:
+        name: "%{account_name} shared an activity."
+      create:
+        name: "%{account_name} created a note."
+    outbox:
+      name: "%{account_name}'s Outbox"
+      summary: "A collection of activities from user %{account_name}."
+  admin:
+    accounts:
+      are_you_sure: Are you sure?
+      confirm: Confirm
+      confirmed: Confirmed
+      display_name: Display name
+      domain: Domain
+      edit: Edit
+      email: E-mail
+      feed_url: Feed URL
+      followers: Followers
+      follows: Follows
+      location:
+        all: All
+        local: Local
+        remote: Remote
+        title: Location
+      media_attachments: Media attachments
+      moderation:
+        all: All
+        silenced: Silenced
+        suspended: Suspended
+        title: Moderation
+      most_recent_activity: Most recent activity
+      most_recent_ip: Most recent IP
+      not_subscribed: Not subscribed
+      order:
+        alphabetic: Alphabetic
+        most_recent: Most recent
+        title: Order
+      perform_full_suspension: Perform full suspension
+      profile_url: Profile URL
+      public: Public
+      push_subscription_expires: PuSH subscription expires
+      reset_password: Reset password
+      salmon_url: Salmon URL
+      show:
+        created_reports: Reports created by this account
+        report: report
+        targeted_reports: Reports made about this account
+      silence: Silence
+      statuses: Statuses
+      title: Accounts
+      undo_silenced: Undo silence
+      undo_suspension: Undo suspension
+      username: Username
+      web: Web
+    domain_blocks:
+      add_new: Add new
+      created_msg: Domain block is now being processed
+      destroyed_msg: Domain block has been undone
+      domain: Domain
+      new:
+        create: Create block
+        hint: The domain block will not prevent creation of account entries in the database, but will retroactively and automatically apply specific moderation methods on those accounts.
+        severity:
+          desc_html: "<strong>Silence</strong> will make the account's posts invisible to anyone who isn't following them. <strong>Suspend</strong> will remove all of the account's content, media, and profile data."
+          silence: Silence
+          suspend: Suspend
+        title: New domain block
+      reject_media: Reject media files
+      reject_media_hint: Removes locally stored media files and refuses to download any in the future. Irrelevant for suspensions
+      severities:
+        silence: Silence
+        suspend: Suspend
+      severity: Severity
+      show:
+        affected_accounts:
+          one: One account in the database affected
+          other: "%{count} accounts in the database affected"
+        retroactive:
+          silence: Unsilence all existing accounts from this domain
+          suspend: Unsuspend all existing accounts from this domain
+        title: Undo domain block for %{domain}
+        undo: Undo
+      title: Domain Blocks
+      undo: Undo
+    instances:
+      account_count: Known accounts
+      domain_name: Domain
+      title: Known Instances
+    pubsubhubbub:
+      callback_url: Callback URL
+      confirmed: Confirmed
+      expires_in: Expires in
+      last_delivery: Last delivery
+      title: PubSubHubbub
+      topic: Topic
+    reports:
+      comment:
+        label: Comment
+        none: None
+      delete: Delete
+      id: ID
+      mark_as_resolved: Mark as resolved
+      report: 'Report #%{id}'
+      report_contents: Contents
+      reported_account: Reported account
+      reported_by: Reported by
+      resolved: Resolved
+      silence_account: Silence account
+      status: Status
+      suspend_account: Suspend account
+      target: Target
+      title: Reports
+      unresolved: Unresolved
+      view: View
+    settings:
+      click_to_edit: Click to edit
+      contact_information:
+        email: Enter a public e-mail address
+        label: Contact information
+        username: Enter a username
+      registrations:
+        closed_message:
+          desc_html: Displayed on frontpage when registrations are closed<br>You can use HTML tags
+          title: Closed registration message
+        open:
+          disabled: Disabled
+          enabled: Enabled
+          title: Open registration
+      setting: Setting
+      site_description:
+        desc_html: Displayed as a paragraph on the frontpage and used as a meta tag.<br>You can use HTML tags, in particular <code>&lt;a&gt;</code> and <code>&lt;em&gt;</code>.
+        title: Site description
+      site_description_extended:
+        desc_html: Displayed on extended information page<br>You can use HTML tags
+        title: Extended site description
+      site_title: Site title
+      title: Site Settings
+    title: Administration
+  application_mailer:
+    settings: 'Change e-mail preferences: %{link}'
+    signature: Mastodon notifications from %{instance}
+    view: 'View:'
+  applications:
+    invalid_url: The provided URL is invalid
+  auth:
+    change_password: Credentials
+    didnt_get_confirmation: Didn't receive confirmation instructions?
+    forgot_password: Forgot your password?
+    login: Log in
+    logout: Logout
+    register: Sign up
+    resend_confirmation: Resend confirmation instructions
+    reset_password: Reset password
+    set_new_password: Set new password
+  authorize_follow:
+    error: Unfortunately, there was an error looking up the remote account
+    follow: Follow
+    prompt_html: 'You (<strong>%{self}</strong>) have requested to follow:'
+    title: Follow %{acct}
+  datetime:
+    distance_in_words:
+      about_x_hours: "%{count}h"
+      about_x_months: "%{count}mo"
+      about_x_years: "%{count}y"
+      almost_x_years: "%{count}y"
+      half_a_minute: Just now
+      less_than_x_minutes: "%{count}m"
+      less_than_x_seconds: Just now
+      over_x_years: "%{count}y"
+      x_days: "%{count}d"
+      x_minutes: "%{count}m"
+      x_months: "%{count}mo"
+      x_seconds: "%{count}s"
+  errors:
+    '403': You don't have permission to view this page.
+    '404': The page you were looking for doesn't exist.
+    '410': The page you were looking for doesn't exist anymore.
+    '422':
+      content: Security verification failed. Are you blocking cookies?
+      title: Security verification failed
+  exports:
+    blocks: You block
+    csv: CSV
+    follows: You follow
+    mutes: You mute
+    storage: Media storage
+  followers:
+    domain: Domain
+    explanation_html: If you want to ensure the privacy of your statuses, you must be aware of who is following you. <strong>Your private statuses are delivered to all instances where you have followers</strong>. You may wish to review them, and remove followers if you do not trust your privacy to be respected by the staff or software of those instances.
+    followers_count: Number of followers
+    lock_link: Lock your account
+    purge: Remove from followers
+    success:
+      one: In the process of soft-blocking followers from one domain...
+      other: In the process of soft-blocking followers from %{count} domains...
+    true_privacy_html: Please mind that <strong>true privacy can only be achieved with end-to-end encryption</strong>.
+    unlocked_warning_html: Anyone can follow you to immediately view your private statuses. %{lock_link} to be able to review and reject followers.
+    unlocked_warning_title: Your account is not locked
+  generic:
+    changes_saved_msg: Changes successfully saved!
+    powered_by: powered by %{link}
+    save_changes: Save changes
+    validation_errors:
+      one: Something isn't quite right yet! Please review the error below
+      other: Something isn't quite right yet! Please review %{count} errors below
+  imports:
+    preface: You can import certain data like all the people you are following or blocking into your account on this instance, from files created by an export on another instance.
+    success: Your data was successfully uploaded and will now be processed in due time
+    types:
+      blocking: Blocking list
+      following: Following list
+      muting: Muting list
+    upload: Upload
+  landing_strip_html: <strong>%{name}</strong> is a user on %{link_to_root_path}. You can follow them or interact with them if you have an account anywhere in the fediverse. If you don't, you can <a href="%{sign_up_path}">sign up here</a>.
+  media_attachments:
+    validations:
+      images_and_video: Cannot attach a video to a status that already contains images
+      too_many: Cannot attach more than 4 files
+  notification_mailer:
+    digest:
+      body: 'Here is a brief summary of what you missed on %{instance} since your last visit on %{since}:'
+      mention: "%{name} mentioned you in:"
+      new_followers_summary:
+        one: You have acquired one new follower! Yay!
+        other: You have gotten %{count} new followers! Amazing!
+      subject:
+        one: "1 new notification since your last visit \U0001F418"
+        other: "%{count} new notifications since your last visit \U0001F418"
+    favourite:
+      body: 'Your status was favourited by %{name}:'
+      subject: "%{name} favourited your status"
+    follow:
+      body: "%{name} is now following you!"
+      subject: "%{name} is now following you"
+    follow_request:
+      body: "%{name} has requested to follow you"
+      subject: 'Pending follower: %{name}'
+    mention:
+      body: 'You were mentioned by %{name} in:'
+      subject: You were mentioned by %{name}
+    reblog:
+      body: 'Your status was boosted by %{name}:'
+      subject: "%{name} boosted your status"
+  pagination:
+    next: Next
+    prev: Prev
+    truncate: "&hellip;"
+  remote_follow:
+    acct: Enter your username@domain you want to follow from
+    missing_resource: Could not find the required redirect URL for your account
+    proceed: Proceed to follow
+    prompt: 'You are going to follow:'
+  settings:
+    authorized_apps: Authorized apps
+    back: Back to Mastodon
+    edit_profile: Edit profile
+    export: Data export
+    followers: Authorized followers
+    import: Import
+    preferences: Preferences
+    settings: Settings
+    two_factor_authentication: Two-factor Authentication
+  statuses:
+    open_in_web: Open in web
+    over_character_limit: character limit of %{max} exceeded
+    show_more: Show more
+    visibilities:
+      private: Followers-only
+      private_long: Only show to followers
+      public: Public
+      public_long: Everyone can see
+      unlisted: Unlisted
+      unlisted_long: Everyone can see, but not listed on public timelines
+  stream_entries:
+    click_to_show: Click to show
+    reblogged: boosted
+    sensitive_content: Sensitive content
+  time:
+    formats:
+      default: "%b %d, %Y, %H:%M"
+  two_factor_authentication:
+    code_hint: Enter the code generated by your authenticator app to confirm
+    description_html: If you enable <strong>two-factor authentication</strong>, logging in will require you to be in possession of your phone, which will generate tokens for you to enter.
+    disable: Disable
+    enable: Enable
+    enabled_success: Two-factor authentication successfully enabled
+    generate_recovery_codes: Generate Recovery Codes
+    instructions_html: "<strong>Scan this QR code into Google Authenticator or a similiar TOTP app on your phone</strong>. From now on, that app will generate tokens that you will have to enter when logging in."
+    lost_recovery_codes: Recovery codes allow you to regain access to your account if you lose your phone. If you've lost your recovery codes, you can regenerate them here. Your old recovery codes will be invalidated.
+    manual_instructions: 'If you can''t scan the QR code and need to enter it manually, here is the plain-text secret:'
+    recovery_codes_regenerated: Recovery codes successfully regenerated
+    recovery_instructions: If you ever lose access to your phone, you can use one of the recovery codes below to regain access to your account. Keep the recovery codes safe, for example by printing them and storing them with other important documents.
+    setup: Set up
+    wrong_code: The entered code was invalid! Are server time and device time correct?
+  users:
+    invalid_email: The e-mail address is invalid
+    invalid_otp_token: Invalid two-factor code
