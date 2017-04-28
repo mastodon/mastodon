@@ -1,15 +1,6 @@
 import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 
-const style = {
-  display: 'block',
-  fontFamily: 'inherit',
-  marginBottom: '10px',
-  padding: '7px 0',
-  boxSizing: 'border-box',
-  width: '100%'
-};
-
 class SettingText extends React.PureComponent {
 
   constructor (props, context) {
@@ -26,7 +17,6 @@ class SettingText extends React.PureComponent {
 
     return (
       <input
-        style={style}
         className='setting-text'
         value={settings.getIn(settingKey)}
         onChange={this.handleChange}

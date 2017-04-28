@@ -2,11 +2,16 @@
   "name": "mastodon",
   "license": "AGPL-3.0",
   "scripts": {
+    "postversion": "git push --tags",
     "start": "babel-node ./streaming/index.js --presets es2015,stage-2",
     "storybook": "start-storybook -p 9001 -c storybook",
     "test": "npm run test:lint && npm run test:mocha",
     "test:lint": "eslint -c .eslintrc.json --ext=js --ext=jsx app/assets/javascripts/",
     "test:mocha": "mocha --require ./spec/javascript/setup.js --compilers js:babel-register ./spec/javascript/components/*.test.jsx"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tootsuite/mastodon.git"
   },
   "dependencies": {
     "@kadira/storybook": "^2.35.3",
@@ -69,6 +74,7 @@
     "reselect": "^2.5.4",
     "sass-loader": "^6.0.2",
     "sinon": "^1.17.6",
+    "stringz": "^0.1.2",
     "style-loader": "^0.13.2",
     "utf-8-validate": "^3.0.1",
     "uuid": "^3.0.1",

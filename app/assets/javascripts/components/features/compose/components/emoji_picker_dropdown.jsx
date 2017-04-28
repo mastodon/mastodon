@@ -22,11 +22,19 @@ const settings = {
   imagePathPNG: '/emoji/'
 };
 
-const style = {
+const dropdownStyle = {
   position: 'absolute',
   right: '5px',
   top: '5px'
 };
+
+const dropdownTriggerStyle = {
+  display: 'block',
+  fontSize: '24px',
+  lineHeight: '24px',
+  marginLeft: '2px',
+  width: '24px'
+}
 
 class EmojiPickerDropdown extends React.PureComponent {
 
@@ -84,8 +92,8 @@ class EmojiPickerDropdown extends React.PureComponent {
     }
 
     return (
-      <Dropdown ref={this.setRef} style={style}>
-        <DropdownTrigger className='emoji-button' title={intl.formatMessage(messages.emoji)} style={{ fontSize: `24px`, width: `24px`, lineHeight: `24px`, display: 'block', marginLeft: '2px' }}>
+      <Dropdown ref={this.setRef} style={dropdownStyle}>
+        <DropdownTrigger className='emoji-button' title={intl.formatMessage(messages.emoji)} style={dropdownTriggerStyle}>
           <img draggable="false" className="emojione" alt="🙂" src="/emoji/1f602.svg" />
         </DropdownTrigger>
 
