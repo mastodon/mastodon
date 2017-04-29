@@ -16,7 +16,7 @@ code {
 
   span.hint {
     display: block;
-    color: $color3;
+    color: $form-hint-color;
     font-size: 12px;
     margin-top: 4px;
   }
@@ -49,7 +49,7 @@ code {
     label {
       font-family: inherit;
       font-size: 16px;
-      color: $color5;
+      color: $form-text-color;
       display: block;
       padding-top: 5px;
     }
@@ -102,11 +102,11 @@ code {
     background: transparent;
     box-sizing: border-box;
     border: 0;
-    border-bottom: 2px solid $color3;
+    border-bottom: 2px solid $form-input-border-bottom-color;
     border-radius: 2px 2px 0 0;
     padding: 7px 4px;
     font-size: 16px;
-    color: $color5;
+    color: $form-text-color;
     display: block;
     width: 100%;
     outline: 0;
@@ -118,32 +118,32 @@ code {
     }
 
     &:focus:invalid {
-      border-bottom-color: $color6;
+      border-bottom-color: $form-input-border-bottom-color-invalid;
     }
 
     &:required:valid {
-      border-bottom-color: $color7;
+      border-bottom-color: $form-input-border-bottom-color-valid;
     }
 
     &:active, &:focus {
-      border-bottom-color: $color4;
-      background: $color8_alpha01;
+      border-bottom-color: $form-input-border-bottom-color-active;
+      background: $form-input-background-active;
     }
   }
 
   .input.field_with_errors {
     label {
-      color: $color6;
+      color: $form-text-error;
     }
 
     input[type=text], input[type=email], input[type=password] {
-      border-bottom-color: $color6;
+      border-bottom-color: $form-input-border-bottom-color-invalid;
     }
 
     .error {
       display: block;
       font-weight: 500;
-      color: $color6;
+      color: $form-text-error;
       margin-top: 4px;
     }
   }
@@ -157,8 +157,8 @@ code {
     width: 100%;
     border: 0;
     border-radius: 4px;
-    background: $color4;
-    color: $color5;
+    background: $form-button-background;
+    color: $form-button-color;
     font-size: 18px;
     padding: 10px;
     text-transform: uppercase;
@@ -171,24 +171,24 @@ code {
     margin-bottom: 10px;
 
     &:hover {
-      background-color: $lighten5_color4;
+      background-color: $form-button-background-hover;
     }
 
     &:active, &:focus {
       position: relative;
       top: 1px;
-      background-color: $darken5_color4;
+      background-color: $form-button-background-active;
     }
 
     &.negative {
-      background: $color6;
+      background: $form-button-negative-background;
 
       &:hover {
-        background-color: $lighten_color6;
+        background-color: $form-button-negative-background-hover;
       }
 
       &:active, &:focus {
-        background-color: $darken_color6;
+        background-color: $form-button-negative-background-active;
       }
     }
   }
@@ -199,12 +199,12 @@ code {
 }
 
 .flash-message {
-  background: $color1;
-  color: $color3;
+  background: $flash-background;
+  color: $flash-color;
   border-radius: 4px;
   padding: 15px 10px;
   margin-bottom: 30px;
-  box-shadow: 0 0 5px $color8_alpha02;
+  box-shadow: 0 0 5px $flash-shadow;
   text-align: center;
 
   strong {
@@ -217,7 +217,7 @@ code {
   text-align: center;
 
   a {
-    color: $color5;
+    color: $form-text-color;
     text-decoration: none;
 
     &:hover {
@@ -229,7 +229,7 @@ code {
 .oauth-prompt, .follow-prompt {
   margin-bottom: 30px;
   text-align: center;
-  color: $color3;
+  color: $prompt-color;
 
   h2 {
     font-size: 16px;
@@ -237,7 +237,7 @@ code {
   }
 
   strong {
-    color: $lighten20_color3;
+    color: $prompt-strong-color;
     font-weight: 500;
   }
 }
@@ -251,7 +251,7 @@ code {
   background: #fff;
   padding: 4px;
   margin-bottom: 20px;
-  box-shadow: 0 0 15px $color8_alpha02;
+  box-shadow: 0 0 15px $qrcode-shadow;
   display: inline-block;
 
   svg {
@@ -262,7 +262,7 @@ code {
 
 .qr-alternative {
   margin-left: 10px;
-  color: $color3;
+  color: $qr-alternative-color;
 
   samp {
     display: block;
@@ -283,16 +283,16 @@ code {
   .warning {
     max-width: 400px;
     box-sizing: border-box;
-    background: $color6_alpha05;
-    color: $color5;
-    text-shadow: 1px 1px 0 $color8_alpha03;
-    box-shadow: 0 2px 6px $color8_alpha04;
+    background: $form-warning-background;
+    color: $form-text-color;
+    text-shadow: 1px 1px 0 $form-warning-text-shadow;
+    box-shadow: 0 2px 6px $form-warning-shadow;
     border-radius: 4px;
     padding: 10px;
     margin-bottom: 15px;
 
     a {
-      color: $color5;
+      color: $form-warning-color;
       text-decoration: underline;
 
       &:hover, &:focus, &:active {
