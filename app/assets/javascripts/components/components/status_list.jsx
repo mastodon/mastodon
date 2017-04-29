@@ -1,4 +1,3 @@
-import Status from './status';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import { ScrollContainer } from 'react-router-scroll';
