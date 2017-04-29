@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 describe Settings::Exports::FollowingAccountsController do
+  render_views
+
   before do
     sign_in Fabricate(:user), scope: :user
   end

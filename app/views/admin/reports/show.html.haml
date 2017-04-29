@@ -4,11 +4,11 @@
 .report-accounts
   .report-accounts__item
     %strong= t('admin.reports.reported_account')
-    = render partial: 'authorize_follow/card', locals: { account: @report.target_account }
+    = render partial: 'authorize_follows/card', locals: { account: @report.target_account }
     = render partial: 'admin/accounts/card', locals: { account: @report.target_account }
   .report-accounts__item
     %strong= t('admin.reports.reported_by')
-    = render partial: 'authorize_follow/card', locals: { account: @report.account }
+    = render partial: 'authorize_follows/card', locals: { account: @report.account }
     = render partial: 'admin/accounts/card', locals: { account: @report.account }
 
 %p
