@@ -1,5 +1,15 @@
 {
-  "presets": ["es2015", "react"],
+  "presets": [
+    "es2015",
+    "react",
+    [
+      "env",
+      {
+        "loose": true,
+        "modules": false
+      }
+    ]
+  ],
   "plugins": [
     "transform-decorators-legacy",
     "transform-object-rest-spread"

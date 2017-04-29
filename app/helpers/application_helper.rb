@@ -22,4 +22,8 @@ module ApplicationHelper
   def title
     Rails.env.production? ? site_title : "#{site_title} (Dev)"
   end
+
+  def fa_icon(icon)
+    content_tag(:i, nil, class: 'fa ' + icon.split(' ').map { |cl| "fa-#{cl}" }.join(' '))
+  end
 end
