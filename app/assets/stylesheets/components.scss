@@ -1150,6 +1150,7 @@ a.status__content__spoiler-link {
 .drawer {
   width: 19vw;
   max-width: 400px;
+  height: 100vh;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
@@ -1219,15 +1220,10 @@ a.status__content__spoiler-link {
     }
   }
 
-  .columns-area>div .column{
-    width 27vw !important;
+  .column{
+    width: 27vw !important;
     max-width: 800px;
     height:100vh;
-  }
-
-  .columns-area>.column{
-    width: 27vw;
-    max-width: 800px
   }
 
   .columns-area > div {
