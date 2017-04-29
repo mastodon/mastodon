@@ -1,45 +1,26 @@
-import PureRenderMixin from 'react-addons-pure-render-mixin';
 import { Motion, spring } from 'react-motion';
+import PropTypes from 'prop-types';
 
-const IconButton = React.createClass({
+class IconButton extends React.PureComponent {
 
-  propTypes: {
-    title: React.PropTypes.string.isRequired,
-    icon: React.PropTypes.string.isRequired,
-    onClick: React.PropTypes.func,
-    size: React.PropTypes.number,
-    active: React.PropTypes.bool,
-    style: React.PropTypes.object,
-    activeStyle: React.PropTypes.object,
-    disabled: React.PropTypes.bool,
-    inverted: React.PropTypes.bool,
-    animate: React.PropTypes.bool
-  },
-
-  getDefaultProps () {
-    return {
-      size: 18,
-      active: false,
-      disabled: false,
-      animate: false
-    };
-  },
-
-  mixins: [PureRenderMixin],
+  constructor (props, context) {
+    super(props, context);
+    this.handleClick = this.handleClick.bind(this);
+  }
 
   handleClick (e) {
     e.preventDefault();
 
     if (!this.props.disabled) {
-      this.props.onClick();
+      this.props.onClick(e);
     }
-  },
+  }
 
   render () {
     let style = {
       fontSize: `${this.props.size}px`,
       width: `${this.props.size * 1.28571429}px`,
-      height: `${this.props.size}px`,
+      height: `${this.props.size * 1.28571429}px`,
       lineHeight: `${this.props.size}px`,
       ...this.props.style
     };
@@ -48,13 +29,35 @@ const IconButton = React.createClass({
       style = { ...style, ...this.props.activeStyle };
     }
 
+    const classes = ['icon-button'];
+
+    if (this.props.active) {
+      classes.push('active');
+    }
+
+    if (this.props.disabled) {
+      classes.push('disabled');
+    }
+
+    if (this.props.inverted) {
+      classes.push('inverted');
+    }
+
+    if (this.props.overlay) {
+      classes.push('overlayed');
+    }
+
+    if (this.props.className) {
+      classes.push(this.props.className)
+    }
+
     return (
       <Motion defaultStyle={{ rotate: this.props.active ? -360 : 0 }} style={{ rotate: this.props.animate ? spring(this.props.active ? -360 : 0, { stiffness: 120, damping: 7 }) : 0 }}>
         {({ rotate }) =>
           <button
             aria-label={this.props.title}
             title={this.props.title}
-            className={`icon-button ${this.props.active ? 'active' : ''} ${this.props.disabled ? 'disabled' : ''} ${this.props.inverted ? 'inverted' : ''}`}
+            className={classes.join(' ')}
             onClick={this.handleClick}
             style={style}>
             <i style={{ transform: `rotate(${rotate}deg)` }} className={`fa fa-fw fa-${this.props.icon}`} aria-hidden='true' />
@@ -64,6 +67,29 @@ const IconButton = React.createClass({
     );
   }
 
-});
+}
+
+IconButton.propTypes = {
+  className: PropTypes.string,
+  title: PropTypes.string.isRequired,
+  icon: PropTypes.string.isRequired,
+  onClick: PropTypes.func,
+  size: PropTypes.number,
+  active: PropTypes.bool,
+  style: PropTypes.object,
+  activeStyle: PropTypes.object,
+  disabled: PropTypes.bool,
+  inverted: PropTypes.bool,
+  animate: PropTypes.bool,
+  overlay: PropTypes.bool
+};
+
+IconButton.defaultProps = {
+  size: 18,
+  active: false,
+  disabled: false,
+  animate: false,
+  overlay: false
+};
 
 export default IconButton;

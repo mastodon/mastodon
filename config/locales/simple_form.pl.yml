@@ -1,0 +1,46 @@
+---
+pl:
+  simple_form:
+    hints:
+      defaults:
+        avatar: PNG, GIF lub JPG. Najwyżej 2MB. Zostanie zmniejszone do 120x120px
+        display_name: Najwyżej 30 znaków
+        header: PNG, GIF lub JPG. Najwyżej 2MB. Zostanie zmniejszone do 700x335px
+        locked: Śledzenie Cię wymaga Twojego potwierdzenia; Twoje wpisy są domyślnie widoczne tylko dla śledzących Cię.
+        note: Najwyżej 160 znaków
+      imports:
+        data: Plik CSV wyeksportowany z innej instancji Mastodona
+    labels:
+      defaults:
+        avatar: Awatar
+        confirm_new_password: Potwierdź nowe hasło
+        confirm_password: Potwierdź hasło
+        current_password: Obecne hasło
+        data: Dane
+        display_name: Widoczna nazwa
+        email: Adres e-mail
+        header: Nagłówek
+        locale: Język
+        locked: Ustaw konto jako prywatne
+        new_password: Nowe hasło
+        note: Biogram
+        otp_attempt: Kod uwierzytelnienia dwustopniowego
+        password: Hasło
+        setting_default_privacy: Widoczność posta
+        type: Typ importu
+        username: Nazwa użytkownika
+      interactions:
+        must_be_follower: Zablokuj powiadomienia od osób, które Cię nie śledzą
+        must_be_following: Zablokuj powiadomienia od osób, których nie śledzisz
+      notification_emails:
+        digest: Wysyłaj podsumowania e-mailem
+        favourite: Powiadom mnie e-mailem gdy ktoś polubi mój status.
+        follow: Powiadom mnie e-mailem gdy ktoś zacznie mnie śledzić.
+        follow_request: Powiadom mnie e-mailem gdy ktoś poprosi o pozwolenie śledzenia mnie.
+        mention: Powiadom mnie e-mailem gdy ktoś mnie wspomni.
+        reblog: Powiadom mnie e-mailem gdy ktoś podbije mój status.
+    'no': 'Nie'
+    required:
+      mark: "*"
+      text: pole wymagane
+    'yes': 'Tak'

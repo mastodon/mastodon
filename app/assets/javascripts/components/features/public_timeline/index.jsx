@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
+import PropTypes from 'prop-types';
 import StatusListContainer from '../ui/containers/status_list_container';
 import Column from '../ui/components/column';
 import {
@@ -14,29 +14,21 @@ import ColumnBackButtonSlim from '../../components/column_back_button_slim';
 import createStream from '../../stream';
 
 const messages = defineMessages({
-  title: { id: 'column.public', defaultMessage: 'Whole Known Network' }
+  title: { id: 'column.public', defaultMessage: 'Federated timeline' }
 });
 
 const mapStateToProps = state => ({
   hasUnread: state.getIn(['timelines', 'public', 'unread']) > 0,
+  streamingAPIBaseURL: state.getIn(['meta', 'streaming_api_base_url']),
   accessToken: state.getIn(['meta', 'access_token'])
 });
 
 let subscription;
 
-const PublicTimeline = React.createClass({
-
-  propTypes: {
-    dispatch: React.PropTypes.func.isRequired,
-    intl: React.PropTypes.object.isRequired,
-    accessToken: React.PropTypes.string.isRequired,
-    hasUnread: React.PropTypes.bool
-  },
-
-  mixins: [PureRenderMixin],
+class PublicTimeline extends React.PureComponent {
 
   componentDidMount () {
-    const { dispatch, accessToken } = this.props;
+    const { dispatch, streamingAPIBaseURL, accessToken } = this.props;
 
     dispatch(refreshTimeline('public'));
 
@@ -44,7 +36,7 @@ const PublicTimeline = React.createClass({
       return;
     }
 
-    subscription = createStream(accessToken, 'public', {
+    subscription = createStream(streamingAPIBaseURL, accessToken, 'public', {
 
       connected () {
         dispatch(connectTimeline('public'));
@@ -70,14 +62,14 @@ const PublicTimeline = React.createClass({
       }
 
     });
-  },
+  }
 
   componentWillUnmount () {
     // if (typeof subscription !== 'undefined') {
     //   subscription.close();
     //   subscription = null;
     // }
-  },
+  }
 
   render () {
     const { intl, hasUnread } = this.props;
@@ -85,11 +77,19 @@ const PublicTimeline = React.createClass({
     return (
       <Column icon='globe' active={hasUnread} heading={intl.formatMessage(messages.title)}>
         <ColumnBackButtonSlim />
-        <StatusListContainer type='public' emptyMessage={<FormattedMessage id='empty_column.public' defaultMessage='There is nothing here! Write something publicly, or manually follow users from other instances to fill it up' />} />
+        <StatusListContainer {...this.props} type='public' scrollKey='public_timeline' emptyMessage={<FormattedMessage id='empty_column.public' defaultMessage='There is nothing here! Write something publicly, or manually follow users from other instances to fill it up' />} />
       </Column>
     );
-  },
+  }
 
-});
+}
+
+PublicTimeline.propTypes = {
+  dispatch: PropTypes.func.isRequired,
+  intl: PropTypes.object.isRequired,
+  streamingAPIBaseURL: PropTypes.string.isRequired,
+  accessToken: PropTypes.string.isRequired,
+  hasUnread: PropTypes.bool
+};
 
 export default connect(mapStateToProps)(injectIntl(PublicTimeline));

@@ -28,9 +28,9 @@ describe InstancePresenter do
   end
 
   it "delegates contact_email to Setting" do
-    Setting.contact_email = "admin@example.com"
+    Setting.site_contact_email = "admin@example.com"
 
-    expect(instance_presenter.contact_email).to eq "admin@example.com"
+    expect(instance_presenter.site_contact_email).to eq "admin@example.com"
   end
 
   describe "contact_account" do

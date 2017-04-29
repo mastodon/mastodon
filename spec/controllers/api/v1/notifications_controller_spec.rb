@@ -13,11 +13,12 @@ RSpec.describe Api::V1::NotificationsController, type: :controller do
 
   describe 'GET #index' do
     before do
-      status     = PostStatusService.new.call(user.account, 'Test')
-      @reblog    = ReblogService.new.call(other.account, status)
-      @mention   = PostStatusService.new.call(other.account, 'Hello @alice')
-      @favourite = FavouriteService.new.call(other.account, status)
-      @follow    = FollowService.new.call(other.account, 'alice')
+      first_status = PostStatusService.new.call(user.account, 'Test')
+      @reblog_of_first_status = ReblogService.new.call(other.account, first_status)
+      mentioning_status = PostStatusService.new.call(other.account, 'Hello @alice')
+      @mention_from_status = mentioning_status.mentions.first
+      @favourite = FavouriteService.new.call(other.account, first_status)
+      @follow = FollowService.new.call(other.account, 'alice')
     end
 
     describe 'with no options' do
@@ -30,19 +31,19 @@ RSpec.describe Api::V1::NotificationsController, type: :controller do
       end
 
       it 'includes reblog' do
-        expect(assigns(:notifications).map(&:activity_id)).to include(@reblog.id)
+        expect(assigns(:notifications).map(&:activity)).to include(@reblog_of_first_status)
       end
 
       it 'includes mention' do
-        expect(assigns(:notifications).map(&:activity_id)).to include(@mention.mentions.first.id)
+        expect(assigns(:notifications).map(&:activity)).to include(@mention_from_status)
       end
 
       it 'includes favourite' do
-        expect(assigns(:notifications).map(&:activity_id)).to include(@favourite.id)
+        expect(assigns(:notifications).map(&:activity)).to include(@favourite)
       end
 
       it 'includes follow' do
-        expect(assigns(:notifications).map(&:activity_id)).to include(@follow.id)
+        expect(assigns(:notifications).map(&:activity)).to include(@follow)
       end
     end
 
@@ -56,19 +57,19 @@ RSpec.describe Api::V1::NotificationsController, type: :controller do
       end
 
       it 'includes reblog' do
-        expect(assigns(:notifications).map(&:activity_id)).to include(@reblog.id)
+        expect(assigns(:notifications).map(&:activity)).to include(@reblog_of_first_status)
       end
 
       it 'excludes mention' do
-        expect(assigns(:notifications).map(&:activity_id)).to_not include(@mention.mentions.first.id)
+        expect(assigns(:notifications).map(&:activity)).to_not include(@mention_from_status)
       end
 
       it 'includes favourite' do
-        expect(assigns(:notifications).map(&:activity_id)).to include(@favourite.id)
+        expect(assigns(:notifications).map(&:activity)).to include(@favourite)
       end
 
       it 'includes follow' do
-        expect(assigns(:notifications).map(&:activity_id)).to include(@follow.id)
+        expect(assigns(:notifications).map(&:activity)).to include(@follow)
       end
     end
   end

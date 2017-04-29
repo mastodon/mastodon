@@ -1,12 +1,7 @@
 # frozen_string_literal: true
 
 class AccountsController < ApplicationController
-  layout 'public'
-
-  before_action :set_account
-  before_action :set_link_headers
-  before_action :authenticate_user!, only: [:follow, :unfollow]
-  before_action :check_account_suspension
+  include AccountControllerConcern
 
   def show
     respond_to do |format|
@@ -24,39 +19,9 @@ class AccountsController < ApplicationController
     end
   end
 
-  def follow
-    FollowService.new.call(current_user.account, @account.acct)
-    redirect_to account_path(@account)
-  end
-
-  def unfollow
-    UnfollowService.new.call(current_user.account, @account)
-    redirect_to account_path(@account)
-  end
-
-  def followers
-    @followers = @account.followers.order('follows.created_at desc').page(params[:page]).per(12)
-  end
-
-  def following
-    @following = @account.following.order('follows.created_at desc').page(params[:page]).per(12)
-  end
-
   private
 
   def set_account
     @account = Account.find_local!(params[:username])
-  end
-
-  def set_link_headers
-    response.headers['Link'] = LinkHeader.new([[webfinger_account_url, [%w(rel lrdd), %w(type application/xrd+xml)]], [account_url(@account, format: 'atom'), [%w(rel alternate), %w(type application/atom+xml)]]])
-  end
-
-  def webfinger_account_url
-    webfinger_url(resource: @account.to_webfinger_s)
-  end
-
-  def check_account_suspension
-    gone if @account.suspended?
   end
 end

@@ -1,5 +1,14 @@
-Bienvenue <%= @resource.email %> !
+Bonjour <%= @resource.email %> !
 
-Vous pouvez confirmer le courriel de votre compte Mastodon en cliquant sur le lien ci-dessous :
+Vous venez de vous créer un compte sur <%= @instance %> et nous vous en remercions.
 
+Pour confirmer votre inscription, merci de cliquer sur le lien suivant :
 <%= confirmation_url(@resource, confirmation_token: @token) %>
+
+Après votre première connexion, vous pourrez accéder à la documentation de l'outil.
+
+Pour rappel, nos conditions d'utilisation sont indiquées ici <%= terms_url %>
+
+Amicalement,
+
+L'équipe <%= @instance %>

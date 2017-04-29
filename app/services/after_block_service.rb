@@ -12,7 +12,7 @@ class AfterBlockService < BaseService
     home_key = FeedManager.instance.key(:home, account.id)
 
     redis.pipelined do
-      target_account.statuses.select('id').find_each do |status|
+      target_account.statuses.select('id').reorder(nil).find_each do |status|
         redis.zrem(home_key, status.id)
       end
     end

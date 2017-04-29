@@ -1,52 +1,40 @@
 - content_for :page_title do
-  Site Settings
+  = t('admin.settings.title')
 
 %table.table
   %colgroup
     %col{ width: '35%' }/
   %thead
     %tr
-      %th Setting
-      %th Click to edit
+      %th= t('admin.settings.setting')
+      %th= t('admin.settings.click_to_edit')
   %tbody
     %tr
       %td{ rowspan: 2 }
-        %strong Contact information
-      %td= best_in_place @settings['site_contact_username'], :value, url: admin_setting_path(@settings['site_contact_username']), place_holder: 'Enter a username'
+        %strong= t('admin.settings.contact_information.label')
+      %td= best_in_place @settings['site_contact_username'], :value, url: admin_setting_path(@settings['site_contact_username']), place_holder: t('admin.settings.contact_information.username')
     %tr
-      %td= best_in_place @settings['site_contact_email'], :value, url: admin_setting_path(@settings['site_contact_email']), place_holder: 'Enter a public e-mail address'
+      %td= best_in_place @settings['site_contact_email'], :value, url: admin_setting_path(@settings['site_contact_email']), place_holder: t('admin.settings.contact_information.email')
     %tr
       %td
-        %strong Site title
+        %strong= t('admin.settings.site_title')
       %td= best_in_place @settings['site_title'], :value, url: admin_setting_path(@settings['site_title'])
     %tr
       %td
-        %strong Site description
-        %br/
-        Displayed as a paragraph on the frontpage and used as a meta tag.
-        %br/
-        You can use HTML tags, in particular
-        %code= '<a>'
-        and
-        %code= '<em>'
+        %strong= t('admin.settings.site_description.title')
+        %p= t('admin.settings.site_description.desc_html')
       %td= best_in_place @settings['site_description'], :value, as: :textarea, url: admin_setting_path(@settings['site_description'])
     %tr
       %td
-        %strong Extended site description
-        %br/
-        Displayed on extended information page
-        %br/
-        You can use HTML tags
+        %strong= t('admin.settings.site_description_extended.title')
+        %p= t('admin.settings.site_description_extended.desc_html')
       %td= best_in_place @settings['site_extended_description'], :value, as: :textarea, url: admin_setting_path(@settings['site_extended_description'])
     %tr
       %td
-        %strong Open registration
-      %td= best_in_place @settings['open_registrations'], :value, as: :checkbox, collection: { false: 'Disabled', true: 'Enabled'}, url: admin_setting_path(@settings['open_registrations'])
+        %strong= t('admin.settings.registrations.open.title')
+      %td= best_in_place @settings['open_registrations'], :value, as: :checkbox, collection: { false: t('admin.settings.registrations.open.disabled'), true: t('admin.settings.registrations.open.enabled')}, url: admin_setting_path(@settings['open_registrations'])
     %tr
       %td
-        %strong Closed registration message
-        %br/
-        Displayed on frontpage when registrations are closed
-        %br/
-        You can use HTML tags
+        %strong= t('admin.settings.registrations.closed_message.title')
+        %p= t('admin.settings.registrations.closed_message.desc_html')
       %td= best_in_place @settings['closed_registrations_message'], :value, as: :textarea, url: admin_setting_path(@settings['closed_registrations_message'])

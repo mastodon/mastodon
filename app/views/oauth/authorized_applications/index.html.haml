@@ -15,7 +15,7 @@
           - if application.website.blank?
             = application.name
           - else
-            = link_to application.name, application.website
+            = link_to application.name, application.website, target: '_blank', rel: 'noopener'
         %th= application.scopes.map { |scope| t(scope, scope: [:doorkeeper, :scopes]) }.join('<br />').html_safe
         %td= l application.created_at
         %td

@@ -12,7 +12,7 @@ class MuteService < BaseService
   def clear_home_timeline(account, target_account)
     home_key = FeedManager.instance.key(:home, account.id)
 
-    target_account.statuses.select('id').find_each do |status|
+    target_account.statuses.select('id').reorder(nil).find_each do |status|
       redis.zrem(home_key, status.id)
     end
   end

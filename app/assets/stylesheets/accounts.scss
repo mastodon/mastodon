@@ -14,7 +14,7 @@
   }
 
   &:after {
-    background: rgba($color8, 0.5);
+    background: linear-gradient(rgba($color8, 0.5), rgba($color8, 0.8));
     display: block;
     content: "";
     position: absolute;
@@ -83,7 +83,7 @@
   .counter {
     width: 80px;
     color: $color3;
-    padding: 0 10px;
+    padding: 5px 10px 0px;
     margin-bottom: 10px;
     border-right: 1px solid $color3;
     cursor: default;
@@ -148,7 +148,7 @@
     order: 1;
   }
 
-  @media screen and (max-width: 360px) {
+  @media screen and (max-width: 480px) {
     .details {
       display: block;
     }
@@ -173,7 +173,7 @@
   text-align: center;
   overflow: hidden;
 
-  a, .current, .page, .gap {
+  a, .current, .next, .prev, .page, .gap {
     font-size: 14px;
     color: $color5;
     font-weight: 500;
@@ -187,6 +187,7 @@
     border-radius: 100px;
     color: $color1;
     cursor: default;
+    margin: 0 10px;
   }
 
   .gap {
@@ -237,13 +238,14 @@
 }
 
 .accounts-grid {
-  clear: both;
   box-shadow: 0 0 15px rgba($color8, 0.2);
   background: $color5;
   border-radius: 0 0 4px 4px;
   padding: 20px 10px;
   padding-bottom: 10px;
   overflow: hidden;
+  display: flex;
+  flex-wrap: wrap;
 
   @media screen and (max-width: 700px) {
     border-radius: 0;
@@ -253,11 +255,9 @@
   .account-grid-card {
     box-sizing: border-box;
     width: 335px;
-    float: left;
     border: 1px solid $color2;
     border-radius: 4px;
     color: $color1;
-    height: 160px;
     margin-bottom: 10px;
 
     &:nth-child(odd) {
@@ -387,6 +387,5 @@
   .account__header__content {
     font-size: 14px;
     color: $color1;
-    text-shadow: 0 0 2px $color8;
   }
 }

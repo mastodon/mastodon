@@ -2,4 +2,4 @@
 
 <%= raw t('notification_mailer.reblog.body', name: @account.acct) %>
 
-<%= render partial: 'status', locals: { status: @status } %>
+<%= render 'status', status: @status %>

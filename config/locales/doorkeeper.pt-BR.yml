@@ -1,0 +1,112 @@
+---
+pt-BR:
+  activerecord:
+    attributes:
+      doorkeeper/application:
+        name: Nome
+        redirect_uri: Redirect URI
+    errors:
+      models:
+        doorkeeper/application:
+          attributes:
+            redirect_uri:
+              fragment_present: não pode conter um fragmento.
+              invalid_uri: tem de ser um URI válido.
+              relative_uri: tem de ser um URI absoluto.
+              secured_uri: tem de ser um HTTPS/SSL URI.
+  doorkeeper:
+    applications:
+      buttons:
+        authorize: Autorizar
+        cancel: Cancelar
+        destroy: Destruir
+        edit: Editar
+        submit: Submeter
+      confirmations:
+        destroy: Tem a certeza?
+      edit:
+        title: Editar aplicação
+      form:
+        error: Oops! Verifique que o formulário não tem erros
+      help:
+        native_redirect_uri: Use %{native_redirect_uri} para testes locais
+        redirect_uri: Utilize uma linha por URI
+        scopes: Separate scopes with spaces. Leave blank to use the default scopes.
+      index:
+        callback_url: Callback URL
+        name: Nome
+        new: Nova Aplicação
+        title: As suas aplicações
+      new:
+        title: Nova aplicação
+      show:
+        actions: Ações
+        application_id: Id de Aplicação
+        callback_urls: Callback urls
+        scopes: Scopes
+        secret: Segredo
+        title: 'Aplicação: %{name}'
+    authorizations:
+      buttons:
+        authorize: Autorize
+        deny: Não autorize
+      error:
+        title: Ocorreu um erro
+      new:
+        able_to: Vai poder
+        prompt: Aplicação %{client_name} requisita acesso à sua conta
+        title: Autorização é necessária
+      show:
+        title: Código de autorização
+    authorized_applications:
+      buttons:
+        revoke: Revogar
+      confirmations:
+        revoke: Tem a certeza?
+      index:
+        application: Aplicação
+        created_at: Criada em
+        date_format: "%Y-%m-%d %H:%M:%S"
+        title: As suas aplicações autorizadas
+    errors:
+      messages:
+        access_denied: The resource owner or authorization server denied the request.
+        credential_flow_not_configured: Resource Owner Password Credentials flow failed due to Doorkeeper.configure.resource_owner_from_credentials being unconfigured.
+        invalid_client: Client authentication failed due to unknown client, no client authentication included, or unsupported authentication method.
+        invalid_grant: The provided authorization grant is invalid, expired, revoked, does not match the redirection URI used in the authorization request, or was issued to another client.
+        invalid_redirect_uri: The redirect uri included is not valid.
+        invalid_request: The request is missing a required parameter, includes an unsupported parameter value, or is otherwise malformed.
+        invalid_resource_owner: The provided resource owner credentials are not valid, or resource owner cannot be found
+        invalid_scope: The requested scope is invalid, unknown, or malformed.
+        invalid_token:
+          expired: O token de acesso expirou
+          revoked: O token de acesso foi revogado
+          unknown: O token de acesso é inválido
+        resource_owner_authenticator_not_configured: Resource Owner find failed due to Doorkeeper.configure.resource_owner_authenticator being unconfiged.
+        server_error: The authorization server encountered an unexpected condition which prevented it from fulfilling the request.
+        temporarily_unavailable: The authorization server is currently unable to handle the request due to a temporary overloading or maintenance of the server.
+        unauthorized_client: The client is not authorized to perform this request using this method.
+        unsupported_grant_type: The authorization grant type is not supported by the authorization server.
+        unsupported_response_type: The authorization server does not support this response type.
+    flash:
+      applications:
+        create:
+          notice: Aplicação criada.
+        destroy:
+          notice: Aplicação eliminada.
+        update:
+          notice: Aplicação alterada.
+      authorized_applications:
+        destroy:
+          notice: Aplicação revogada.
+    layouts:
+      admin:
+        nav:
+          applications: Aplicações
+          oauth2_provider: OAuth2 Provider
+      application:
+        title: Autorização OAuth necessária
+    scopes:
+      follow: siga, bloqueie, desbloqueie, e deixe de seguir contas
+      read: tenha acesso aos dados da sua conta
+      write: públique por si

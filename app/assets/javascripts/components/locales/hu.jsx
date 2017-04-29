@@ -18,7 +18,7 @@ const hu = {
   "account.block": "Blokkolás",
   "account.follow": "Követés",
   "account.posts": "Posts",
-  "account.follows": "Követők",
+  "account.follows": "Követve",
   "account.followers": "Követők",
   "account.follows_you": "Követnek téged",
   "getting_started.heading": "Első lépések",

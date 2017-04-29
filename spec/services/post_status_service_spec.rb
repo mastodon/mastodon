@@ -64,6 +64,18 @@ RSpec.describe PostStatusService do
     expect(status.application).to eq application
   end
 
+  it 'creates a status with a language set' do
+    detector = double(to_iso_s: :en)
+    allow(LanguageDetector).to receive(:new).and_return(detector)
+
+    account = Fabricate(:account)
+    text = 'test status text'
+
+    subject.call(account, text)
+
+    expect(LanguageDetector).to have_received(:new).with(text, account)
+  end
+
   it 'processes mentions' do
     mention_service = double(:process_mentions_service)
     allow(mention_service).to receive(:call)
@@ -164,7 +176,14 @@ RSpec.describe PostStatusService do
     )
   end
 
+  it 'returns existing status when used twice with idempotency key' do
+    account = Fabricate(:account)
+    status1 = subject.call(account, 'test', nil, idempotency: 'meepmeep')
+    status2 = subject.call(account, 'test', nil, idempotency: 'meepmeep')
+    expect(status2.id).to eq status1.id
+  end
+
   def create_status_with_options(options = {})
-    subject.call(Fabricate(:account), "test", nil, options)
+    subject.call(Fabricate(:account), 'test', nil, options)
   end
 end

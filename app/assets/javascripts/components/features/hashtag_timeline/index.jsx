@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
+import PropTypes from 'prop-types';
 import StatusListContainer from '../ui/containers/status_list_container';
 import Column from '../ui/components/column';
 import {
@@ -13,24 +13,16 @@ import createStream from '../../stream';
 
 const mapStateToProps = state => ({
   hasUnread: state.getIn(['timelines', 'tag', 'unread']) > 0,
+  streamingAPIBaseURL: state.getIn(['meta', 'streaming_api_base_url']),
   accessToken: state.getIn(['meta', 'access_token'])
 });
 
-const HashtagTimeline = React.createClass({
-
-  propTypes: {
-    params: React.PropTypes.object.isRequired,
-    dispatch: React.PropTypes.func.isRequired,
-    accessToken: React.PropTypes.string.isRequired,
-    hasUnread: React.PropTypes.bool
-  },
-
-  mixins: [PureRenderMixin],
+class HashtagTimeline extends React.PureComponent {
 
   _subscribe (dispatch, id) {
-    const { accessToken } = this.props;
+    const { streamingAPIBaseURL, accessToken } = this.props;
 
-    this.subscription = createStream(accessToken, `hashtag&tag=${id}`, {
+    this.subscription = createStream(streamingAPIBaseURL, accessToken, `hashtag&tag=${id}`, {
 
       received (data) {
         switch(data.event) {
@@ -44,14 +36,14 @@ const HashtagTimeline = React.createClass({
       }
 
     });
-  },
+  }
 
   _unsubscribe () {
     if (typeof this.subscription !== 'undefined') {
       this.subscription.close();
       this.subscription = null;
     }
-  },
+  }
 
   componentDidMount () {
     const { dispatch } = this.props;
@@ -59,7 +51,7 @@ const HashtagTimeline = React.createClass({
 
     dispatch(refreshTimeline('tag', id));
     this._subscribe(dispatch, id);
-  },
+  }
 
   componentWillReceiveProps (nextProps) {
     if (nextProps.params.id !== this.props.params.id) {
@@ -67,11 +59,11 @@ const HashtagTimeline = React.createClass({
       this._unsubscribe();
       this._subscribe(this.props.dispatch, nextProps.params.id);
     }
-  },
+  }
 
   componentWillUnmount () {
     this._unsubscribe();
-  },
+  }
 
   render () {
     const { id, hasUnread } = this.props.params;
@@ -79,11 +71,19 @@ const HashtagTimeline = React.createClass({
     return (
       <Column icon='hashtag' active={hasUnread} heading={id}>
         <ColumnBackButtonSlim />
-        <StatusListContainer type='tag' id={id} emptyMessage={<FormattedMessage id='empty_column.hashtag' defaultMessage='There is nothing in this hashtag yet.' />} />
+        <StatusListContainer scrollKey='hashtag_timeline' type='tag' id={id} emptyMessage={<FormattedMessage id='empty_column.hashtag' defaultMessage='There is nothing in this hashtag yet.' />} />
       </Column>
     );
-  },
+  }
 
-});
+}
+
+HashtagTimeline.propTypes = {
+  params: PropTypes.object.isRequired,
+  dispatch: PropTypes.func.isRequired,
+  streamingAPIBaseURL: PropTypes.string.isRequired,
+  accessToken: PropTypes.string.isRequired,
+  hasUnread: PropTypes.bool
+};
 
 export default connect(mapStateToProps)(HashtagTimeline);
