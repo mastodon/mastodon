@@ -2,7 +2,7 @@
   .wrapper {
     max-width: 600px;
     margin: 0 auto;
-    color: $color3;
+    color: $about-color;
     padding-top: 50px;
     padding-bottom: 50px;
 
@@ -15,7 +15,7 @@
     font: 46px/52px 'Roboto', sans-serif;
     font-weight: 600;
     margin-bottom: 20px;
-    color: $color4;
+    color: $about-title1-color;
     padding: 20px 0;
 
     img {
@@ -32,7 +32,7 @@
     line-height: 28px;
     font-weight: 400;
     margin-bottom: 20px;
-    color: $color5;
+    color: $about-title2-color;
   }
 
   h3 {
@@ -41,7 +41,7 @@
     line-height: 28px;
     font-weight: 400;
     margin-bottom: 20px;
-    color: $lighten20_color3;
+    color: $about-title3-color;
   }
 
   ul, ol {
@@ -67,7 +67,7 @@
     margin-bottom: 12px;
 
     a {
-      color: $color4;
+      color: $about-link-color;
       text-decoration: underline;
     }
   }
@@ -76,14 +76,14 @@
     display: inline-block;
     padding: 7px 7px 5px 7px;
     margin: 0 2px;
-    background: $color3;
-    color: $color1;
+    background: $about-emphasis-background;
+    color: $about-emphasis-color;
     font: 16px/16px 'Montserrat', sans-serif;
     font-weight: 300;
   }
 
   .screenshot {
-    box-shadow: 0 0 15px $color8_alpha04;
+    box-shadow: 0 0 15px $about-screenshot-shadow;
     margin-bottom: 26px;
 
     img {
@@ -103,7 +103,7 @@
       line-height: 36px;
 
       a {
-        color: $color3;
+        color: $about-actions-link-color;
         text-decoration: underline;
       }
     }
@@ -124,8 +124,8 @@
   margin: 20px 0;
   display: flex;
   justify-content: space-between;
-  border-top: 1px solid $lighten10_color1;
-  border-bottom: 1px solid $lighten10_color1;
+  border-top: 1px solid $about-infoboard-border;
+  border-bottom: 1px solid $about-infoboard-border;
   padding-right: 14px;
 
   .section {
@@ -142,7 +142,7 @@
       font-size: 16px;
 
       &:last-child {
-        color: $lighten20_color3;
+        color: $about-infoboard-lastsection;
         font-size: 14px;
       }
     }
@@ -151,7 +151,7 @@
       font-weight: 500;
       font-size: 32px;
       line-height: 48px;
-      color: $color5;
+      color: $about-infoboard-section-strong;
     }
   }
 
@@ -186,7 +186,7 @@
 
     a {
       display: block;
-      color: $color5;
+      color: $owner-link-color;
       text-decoration: none;
 
       &:hover {
@@ -198,7 +198,7 @@
 
     .username {
       display: block;
-      color: $color3;
+      color: $owner-username-color;
     }
   }
 }
@@ -209,7 +209,7 @@
 
   strong {
     display: block;
-    color: $color5;
+    color: $owner-contact-strong;
     word-break: break-word;
   }
 }
@@ -227,14 +227,14 @@
   }
 
   .sidebar {
-    border-left: 1px solid $lighten10_color1;
+    border-left: 1px solid $sidebar-border-color;
     width: 180px;
     flex: 0 0 auto;
   }
 
   .panel {
     .panel-header {
-      background: $lighten10_color1;
+      background: $panel-header-background;
       padding: 7px 14px;
       text-transform: uppercase;
       font-size: 12px;
@@ -259,7 +259,7 @@
           a {
             display: block;
             padding: 7px 14px;
-            color: $color5_alpha07;
+            color: $panel-list-link-color;
             text-decoration: none;
             transition: all 200ms linear;
 
@@ -268,17 +268,17 @@
             }
 
             &:hover {
-              color: $color5;
-              background-color: $darken5_color1;
+              color: $panel-list-link-hover-color;
+              background-color: $panel-list-link-hover-background;
               transition: all 100ms linear;
             }
 
             &.selected {
-              color: $color5;
-              background-color: $color4;
+              color: $panel-list-selected-link-color;
+              background-color: $panel-list-selected-link-background;
 
               &:hover {
-                background-color: $lighten5_color4;
+                background-color: $panel-list-selected-link-hover-background;
               }
             }
           }
@@ -291,7 +291,7 @@
     flex-direction: column;
 
     .sidebar {
-      border: 1px solid $lighten10_color1;
+      border: 1px solid $sidebar-border-color;
       width: auto;
     }
   }
@@ -336,10 +336,10 @@
   .simple_form, .closed-registrations-message {
     width: 300px;
     flex: 0 0 auto;
-    background: $darken_color1_alpha05;
+    background: $signup-background;
     padding: 14px;
     border-radius: 4px;
-    box-shadow: 0 0 15px $color8_alpha04;
+    box-shadow: 0 0 15px $signup-shadow;
 
     .actions {
       margin-bottom: 0;
@@ -349,7 +349,7 @@
       text-align: center;
 
       a {
-        color: $lighten20_color3;
+        color: $signup-info-link-color;
       }
     }
   }
