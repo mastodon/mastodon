@@ -1115,7 +1115,7 @@ a.status__content__spoiler-link {
 }
 
 .column {
-  width: 330px;
+  width: 25%;
   position: relative;
   box-sizing: border-box;
   display: flex;
@@ -1136,7 +1136,7 @@ a.status__content__spoiler-link {
 }
 
 .drawer {
-  width: 300px;
+  width: 22%;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
@@ -1220,7 +1220,7 @@ a.status__content__spoiler-link {
   }
 
   .column, .drawer {
-    width: 350px;
+    max-width: 30em;
     border-radius: 4px;
     height: 90vh;
     margin-top: 5vh;
