@@ -23,6 +23,7 @@ RUN echo "@edge https://nl.alpinelinux.org/alpine/edge/main" >> /etc/apk/reposit
     $BUILD_DEPS \
     nodejs@edge \
     nodejs-npm@edge \
+    git \
     libpq \
     libxml2 \
     libxslt \
@@ -32,7 +33,7 @@ RUN echo "@edge https://nl.alpinelinux.org/alpine/edge/main" >> /etc/apk/reposit
     ca-certificates \
  && npm install -g npm@3 && npm install -g yarn \
  && bundle install --deployment --without test development \
- && yarn --ignore-optional \
+ && yarn --ignore-optional --pure-lockfile \
  && yarn cache clean \
  && npm -g cache clean \
  && update-ca-certificates \

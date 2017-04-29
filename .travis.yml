@@ -43,6 +43,7 @@ install:
 
 before_script:
   - bundle exec rails db:create db:migrate
+  - bundle exec rails assets:precompile
 
 script:
   - bundle exec rspec
