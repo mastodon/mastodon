@@ -11,6 +11,7 @@ module.exports = merge(sharedConfig, {
   output: { filename: '[name]-[chunkhash].js' },
 
   plugins: [
+    new BabiliPlugin(),
     new webpack.optimize.UglifyJsPlugin({
       compress: {
         warnings: true
