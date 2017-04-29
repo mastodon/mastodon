@@ -14,20 +14,8 @@ class Api::OEmbedController < ApiController
   def stream_entry_from_url(url)
     params = Rails.application.routes.recognize_path(url)
 
-    raise ActiveRecord::RecordNotFound unless recognized_stream_entry_url?(params)
+    raise ActiveRecord::RecordNotFound unless params[:controller] == 'stream_entries' && params[:action] == 'show'
 
-    stream_entry(params)
-  end
-
-  def recognized_stream_entry_url?(params)
-    %w(stream_entries statuses).include?(params[:controller]) && params[:action] == 'show'
-  end
-
-  def stream_entry(params)
-    if params[:controller] == 'stream_entries'
-      StreamEntry.find(params[:id])
-    else
-      Status.find(params[:id]).stream_entry
-    end
+    StreamEntry.find(params[:id])
   end
 end

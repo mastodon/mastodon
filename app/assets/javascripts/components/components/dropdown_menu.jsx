@@ -43,13 +43,13 @@ class DropdownMenu extends React.PureComponent {
   }
 
   render () {
-    const { icon, items, size, direction, ariaLabel } = this.props;
+    const { icon, items, size, direction } = this.props;
     const directionClass = (direction === "left") ? "dropdown__left" : "dropdown__right";
 
     return (
       <Dropdown ref={this.setRef}>
-        <DropdownTrigger className='icon-button' style={{ fontSize: `${size}px`, width: `${size}px`, lineHeight: `${size}px` }} aria-label={ariaLabel}>
-          <i className={ `fa fa-fw fa-${icon} dropdown__icon` }  aria-hidden={true} />
+        <DropdownTrigger className='icon-button' style={{ fontSize: `${size}px`, width: `${size}px`, lineHeight: `${size}px` }}>
+          <i className={ `fa fa-fw fa-${icon} dropdown__icon` } />
         </DropdownTrigger>
 
         <DropdownContent className={directionClass}>
@@ -67,12 +67,7 @@ DropdownMenu.propTypes = {
   icon: PropTypes.string.isRequired,
   items: PropTypes.array.isRequired,
   size: PropTypes.number.isRequired,
-  direction: PropTypes.string,
-  ariaLabel: PropTypes.string
-};
-
-DropdownMenu.defaultProps = {
-  ariaLabel: "Menu"
+  direction: PropTypes.string
 };
 
 export default DropdownMenu;
