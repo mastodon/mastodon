@@ -3,57 +3,59 @@ nl:
   devise:
     confirmations:
       confirmed: Je account is bevestigd.
-      send_instructions: Je ontvangt via e-mail instructies hoe je je account kan bevestigen.
-      send_paranoid_instructions: Als je e-mailadres bestaat in de database, ontvang je via e-mail instructies hoe je je account kan bevestigen.
+      send_instructions: Je ontvangt via e-mail instructies hoe je jouw account kan bevestigen.
+      send_paranoid_instructions: Als jouw e-mailadres in de database staat, ontvang je via e-mail instructies hoe je jouw account kan bevestigen.
     failure:
       already_authenticated: Je bent al ingelogd.
-      inactive: Je account is nog niet geactiveerd.
-      invalid: Ongeldig e-mail of wachtwoord.
-      invalid_token: Invalide authenticiteit token.
-      last_attempt: Je hebt nog een poging over voordat je account wordt geblokkeerd.
-      locked: Je account is gelocked.
-      not_found_in_database: Ongeldig e-mail of wachtwoord.
-      timeout: Je sessie is verlopen, log a.u.b. opnieuw in.
-      unauthenticated: Je dient in te loggen of je in te schrijven.
-      unconfirmed: Je dient eerst je account te bevestigen.
+      inactive: Jouw account is nog niet geactiveerd.
+      invalid: Ongeldig e-mailadres of wachtwoord.
+      invalid_token: Ongeldige bevestigingscode.
+      last_attempt: Je hebt nog één poging over voordat jouw account geblokkeerd wordt.
+      locked: Jouw account is geblokkeerd.
+      not_found_in_database: Ongeldig e-mailadres of wachtwoord.
+      timeout: Jouw sessie is verlopen, log opnieuw in.
+      unauthenticated: Je dient in te loggen of te registreren.
+      unconfirmed: Je dient eerst jouw account te bevestigen.
     mailer:
       confirmation_instructions:
-        subject: Bevestiging mailadres
+        subject: 'Mastodon: E-mail bevestigen voor %{instance}'
+      password_change:
+        subject: 'Mastodon: Wachtwoord veranderd'
       reset_password_instructions:
-        subject: Wachtwoord resetten
+        subject: 'Mastodon: Wachtwoord opnieuw instellen'
       unlock_instructions:
-        subject: Unlock instructies
+        subject: 'Mastodon: Instructies om account te deblokkeren' 
     omniauth_callbacks:
-      failure: Kon je niet aanmelden met je %{kind} account, omdat "%{reason}".
-      success: Successvol aangemeld met je %{kind} account.
+      failure: Kon je niet aanmelden met jouw %{kind} account, omdat "%{reason}".
+      success: Successvol aangemeld met jouw %{kind} account.
     passwords:
-      no_token: Je kan deze pagina niet benaderen zonder een "wachtwoord reset e-mail"
-      send_instructions: Je ontvangt via e-mail instructies hoe je je wachtwoord moet resetten.
-      send_paranoid_instructions: Als je e-mailadres bestaat in de database, ontvang je via e-mail instructies hoe je je wachtwoord moet resetten.
-      updated: Je wachtwoord is gewijzigd. Je bent nu ingelogd.
-      updated_not_active: Je wachtwoord is gewijzigd.
+      no_token: Je kan deze pagina niet benaderen zonder dat je een e-mail om je wachtwoord opnieuw in te stellen hebt ontvangen.
+      send_instructions: Je ontvangt via e-mail instructies hoe je jouw wachtwoord opnieuw moet instellen.
+      send_paranoid_instructions: Als jouw e-mailadres in de database staat, ontvang je via e-mail instructies hoe je jouw wachtwoord opnieuw moet instellen.
+      updated: Jouw wachtwoord is gewijzigd. Je bent nu ingelogd.
+      updated_not_active: Jouw wachtwoord is gewijzigd.
     registrations:
-      destroyed: Je account is verwijderd, wellicht tot ziens!
-      signed_up: Je bent ingeschreven.
-      signed_up_but_inactive: Je bent ingeschreven. Je kon alleen niet automatisch ingelogd worden omdat je account nog niet geactiveerd is.
-      signed_up_but_locked: Je bent ingeschreven. Je kon alleen niet automatisch ingelogd worden omdat je account geblokkeerd is.
-      signed_up_but_unconfirmed: Je ontvangt via e-mail instructies hoe je je account kunt activeren.
-      update_needs_confirmation: Je hebt je e-mailadres succesvol gewijzigd, maar we moeten je nieuwe mailadres nog verifiëren. Controleer je e-mail en klik op de link in de mail om je mailadres te verifiëren.
-      updated: Je account gegevens zijn opgeslagen.
+      destroyed: Jouw account is verwijderd. Wellicht tot ziens!
+      signed_up: Je bent geregistreerd.
+      signed_up_but_inactive: Je bent geregistreerd. Je kon alleen niet automatisch ingelogd worden omdat jouw account nog niet geactiveerd is.
+      signed_up_but_locked: Je bent ingeschreven. Je kon alleen niet automatisch ingelogd worden omdat jouw account geblokkeerd is.
+      signed_up_but_unconfirmed: Je ontvangt via e-mail instructies hoe je jouw account kunt activeren.
+      update_needs_confirmation: Je hebt je e-mailadres succesvol gewijzigd, maar we moeten je nieuwe mailadres nog bevestigen. Controleer jouw e-mail en klik op de link in de mail om jouw e-mailadres te bevestigen.
+      updated: Jouw accountgegevens zijn opgeslagen.
     sessions:
       signed_in: Je bent succesvol ingelogd.
       signed_out: Je bent succesvol uitgelogd.
     unlocks:
-      send_instructions: Je ontvangt via e-mail instructies hoe je je account kan unlocken.
-      send_paranoid_instructions: Als je e-mailadres bestaat in de database, ontvang je via e-mail instructies hoe je je account kan unlocken.
-      unlocked: Je account is ge-unlocked. Je kan nu weer inloggen.
+      send_instructions: Je ontvangt via e-mail instructies hoe je jouw account kan deblokkeren.
+      send_paranoid_instructions: Als jouw e-mailadres in de database staat, ontvang je via e-mail instructies hoe je jouw account kan deblokkeren.
+      unlocked: Jouw account is gedeblokkeerd. Je kan nu weer inloggen.
   errors:
     messages:
       already_confirmed: is reeds bevestigd
-      confirmation_period_expired: moet worden bevestigd binnen %{period}, probeer het a.u.b. nog een keer
+      confirmation_period_expired: moet worden bevestigd binnen %{period}, probeer het nog een keer
       expired: is verlopen, vraag een nieuwe aan
       not_found: niet gevonden
-      not_locked: is niet gesloten
+      not_locked: is niet geblokkeerd
       not_saved:
-        one: '1 fout blokkeerde het opslaan van deze %{resource}:'
-        other: "%{count} fouten blokkeerden het opslaan van deze %{resource}:"
+        one: '1 fout verhinderde het opslaan van deze %{resource}:'
+        other: "%{count} fouten verhinderden het opslaan van deze %{resource}:"

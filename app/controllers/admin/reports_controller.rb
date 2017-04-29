@@ -49,14 +49,18 @@ module Admin
     end
 
     def filtered_reports
-      filtering_scope.order('id desc').includes(
+      ReportFilter.new(filter_params).results.order('id desc').includes(
         :account,
         :target_account
       )
     end
 
-    def filtering_scope
-      params[:resolved].present? ? Report.resolved : Report.unresolved
+    def filter_params
+      params.permit(
+        :account_id,
+        :resolved,
+        :target_account_id
+      )
     end
 
     def set_report

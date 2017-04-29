@@ -92,7 +92,7 @@ pl:
       blocking: Lista blokowanych
       following: Lista śledzonych
     upload: Załaduj
-  landing_strip_html: <strong>%{name}</strong> ma konto na <strong>%{domain}</strong>. Możesz je śledzić i wejść z nim w interakcję jeśli masz konto gdziekolwiek w Fediwersie. Jeśli jeszcze go nie masz, możesz <a href="%{sign_up_path}">stworzyć konto</a>.
+  landing_strip_html: <strong>%{name}</strong> ma konto na %{link_to_root_path}. Możesz je śledzić i wejść z nim w interakcję jeśli masz konto gdziekolwiek w Fediwersie. Jeśli jeszcze go nie masz, możesz <a href="%{sign_up_path}">stworzyć konto</a>.
   notification_mailer:
     digest:
       body: 'Oto krótkie podsumowanie co Cię ominęło na %{instance} od Twojej ostatniej wizyty (%{since}):'
@@ -134,7 +134,7 @@ pl:
     import: Importuj dane
     preferences: Preferencje
     settings: Ustawienia
-    two_factor_auth: Uwierzytelnianie dwuetapowe
+    two_factor_authentication: Uwierzytelnianie dwuetapowe
   statuses:
     open_in_web: Otwórz w przeglądarce
     over_character_limit: limit %{max} znaków przekroczony
@@ -150,7 +150,7 @@ pl:
   time:
     formats:
       default: "%b %d, %Y, %H:%M"
-  two_factor_auth:
+  two_factor_authentication:
     description_html: Jeśli włączysz <strong>uwierzytelnianie dwustopniowe</strong>, logowanie się będzie wymagało podania tokenu wyświetlonego na Twoim telefone.
     disable: Wyłącz
     enable: Włącz

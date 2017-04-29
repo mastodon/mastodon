@@ -10,6 +10,7 @@ class Auth::RegistrationsController < Devise::RegistrationsController
 
   def build_resource(hash = nil)
     super(hash)
+    resource.locale = I18n.locale
     resource.build_account if resource.account.nil?
   end
 

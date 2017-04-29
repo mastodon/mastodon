@@ -1,31 +1,35 @@
-import PureRenderMixin from 'react-addons-pure-render-mixin';
+import PropTypes from 'prop-types';
 
-const TextIconButton = React.createClass({
+class TextIconButton extends React.PureComponent {
 
-  propTypes: {
-    label: React.PropTypes.string.isRequired,
-    title: React.PropTypes.string,
-    active: React.PropTypes.bool,
-    onClick: React.PropTypes.func.isRequired
-  },
-
-  mixins: [PureRenderMixin],
+  constructor (props, context) {
+    super(props, context);
+    this.handleClick = this.handleClick.bind(this);
+  }
 
   handleClick (e) {
     e.preventDefault();
     this.props.onClick();
-  },
+  }
 
   render () {
-    const { label, title, active } = this.props;
+    const { label, title, active, ariaControls } = this.props;
 
     return (
-      <button title={title} aria-label={title} className={`text-icon-button ${active ? 'active' : ''}`} onClick={this.handleClick}>
+      <button title={title} aria-label={title} className={`text-icon-button ${active ? 'active' : ''}`} aria-expanded={active} onClick={this.handleClick} aria-controls={ariaControls}>
         {label}
       </button>
     );
   }
 
-});
+}
+
+TextIconButton.propTypes = {
+  label: PropTypes.string.isRequired,
+  title: PropTypes.string,
+  active: PropTypes.bool,
+  onClick: PropTypes.func.isRequired,
+  ariaControls: PropTypes.string
+};
 
 export default TextIconButton;

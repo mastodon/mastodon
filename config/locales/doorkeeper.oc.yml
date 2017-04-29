@@ -1,0 +1,113 @@
+---
+oc:
+  activerecord:
+    attributes:
+      doorkeeper/application:
+        name: Nom
+        redirect_uri: URL de redireccion
+    errors:
+      models:
+        doorkeeper/application:
+          attributes:
+            redirect_uri:
+              fragment_present: pòt pas conténer un tròç.
+              invalid_uri: deu èstre un URI valid.
+              relative_uri: deu èstre un URI absolut.
+              secured_uri: deu èstre un HTTPS/SSL URI.
+  doorkeeper:
+    applications:
+      buttons:
+        authorize: Autorizar
+        cancel: Anullar
+        destroy: Suprimir
+        edit: Modificar
+        submit: Mandar
+      confirmations:
+        destroy: Sètz segur ?
+      edit:
+        title: Modificar l'aplicacion
+      form:
+        error: Ops ! Verificatz vòstre formulari
+      help:
+        native_redirect_uri: Emplegatz %{native_redirect_uri} per d'ensages locales
+        redirect_uri: Utilizatz una linha per URI
+        scopes: Separatz los encastres amb d’espacis. Daissatz void per utilizar l’encastre per defaut.
+      index:
+        callback_url: URL de rapèl
+        name: Nom
+        new: Nòva aplicacion
+        title: Vòstra aplicacions
+      new:
+        title: Nòva aplicacion
+      show:
+        actions: Accions
+        application_id: Id de l’aplicacion
+        callback_urls: urls de rapèls
+        scopes: Encastres
+        secret: Secret
+        title: 'Aplicacion: %{name}'
+    authorizations:
+      buttons:
+        authorize: Autorizar
+        deny: Refusar
+      error:
+        title: I a agut un error
+      new:
+        able_to: Aquesta aplicacion poirà
+        prompt: L’aplicacion %{client_name} demanda l’accès al vòstre compte.
+        title: Cal l’autorizacion
+      show:
+        title: Còdi d’autorizacion
+    authorized_applications:
+      buttons:
+        revoke: Revocar
+      confirmations:
+        revoke: Ne sètz segur?
+      index:
+        application: Aplicacion
+        created_at: Creada lo
+        date_format: "%d-%m-%Y %Ho%M %S"
+        scopes: Encastres
+        title: Las vòstras aplicacions autorizadas
+    errors:
+      messages:
+        access_denied: Lo proprietari de la ressorça o lo servider d’autorizacion refusèt la demanda.
+        credential_flow_not_configured: Lo flux de qualificacion del senhal del proprietari de la ressorça capitèt pas pr’amor que Doorkeeper.configure.resource_owner_from_credentials es pas configurat.
+        invalid_client: L’autorizacion del client capitèt pas pr’amor que lo client es desconegut, l’autorizacion del client es pas enclús, o lo metòde d’autorizacion es pas suportat.
+        invalid_grant: L’acòrdi d’autorizacion donadat es pas valid, expirat, revocat, una redireccion URI utilizat en la demanda d’autorizacion no correspond, o a estat desliurat a un altre client.
+        invalid_redirect_uri: L'URL de redireccion es pas valida.
+        invalid_request: La demanda a un paramètre que li manca, a una valor qu’es pas suportada, o quicòm mal format.
+        invalid_resource_owner: La qualificacion del proprietari de la ressorça donada es pas valid, o lo proprietari de la ressorça se pòt pas trobar.
+        invalid_scope: L’encastre demandat es pas valid, o mal format.
+        invalid_token:
+          expired: Lo geton d’accès a expirat
+          revoked: Lo geton d’accès a estat revocat
+          unknown: Lo geton d’accès es pas valid
+        resource_owner_authenticator_not_configured: La recèrca del proprietari de la ressorça a pas capitat pr’amor que Doorkeeper.configure.resource_owner_authenticator es pas configurat.
+        server_error: Lo servider d’autorizacion trobèt una condicion que l’empachèt d’acomplir la demanda.
+        temporarily_unavailable: Lo servider d’autorizacion pòt actualament pas menar la demanda pr’amor que es temporalament subrecargat o es en mantenença.
+        unauthorized_client: Lo client es pas autorizat a far aquesta demanda en utlizant aqueste metòde.
+        unsupported_grant_type: Lo tipe de qualificacion de l’autorizacion es pas suportat pel servider d’autorizacion.
+        unsupported_response_type: Lo servider d’autorizacion supòrta pas aqueste tipe de responsa.
+    flash:
+      applications:
+        create:
+          notice: Aplicacion creada.
+        destroy:
+          notice: Aplicacion escafada.
+        update:
+          notice: Aplicacion mesa a jorn.
+      authorized_applications:
+        destroy:
+          notice: Aplicacion revocada.
+    layouts:
+      admin:
+        nav:
+          applications: Aplicacions
+          oauth2_provider: Provesidor OAuth
+      application:
+        title: Cal una autorizacion OAuth
+    scopes:
+      follow: sègre, blocar, quitar de blocar e quitar de sègre de comptes
+      read: legissètz las donadas de vòstre compte
+      write: publicatz per vos
