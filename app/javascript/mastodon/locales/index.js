@@ -1,27 +1,27 @@
-import ar from './ar';
-import en from './en';
-import de from './de';
-import es from './es';
-import fa from './fa';
-import hr from './hr';
-import hu from './hu';
-import io from './io';
-import it from './it';
-import fr from './fr';
-import nl from './nl';
-import no from './no';
-import oc from './oc';
-import pt from './pt';
-import pt_br from './pt-br';
-import uk from './uk';
-import fi from './fi';
-import eo from './eo';
-import ru from './ru';
-import ja from './ja';
-import zh_hk from './zh-hk';
-import zh_cn from './zh-cn';
-import bg from './bg';
-import id from './id';
+import ar from './ar.json';
+import en from './en.json';
+import de from './de.json';
+import es from './es.json';
+import fa from './fa.json';
+import hr from './hr.json';
+import hu from './hu.json';
+import io from './io.json';
+import it from './it.json';
+import fr from './fr.json';
+import nl from './nl.json';
+import no from './no.json';
+import oc from './oc.json';
+import pt from './pt.json';
+import pt_br from './pt-BR.json';
+import uk from './uk.json';
+import fi from './fi.json';
+import eo from './eo.json';
+import ru from './ru.json';
+import ja from './ja.json';
+import zh_hk from './zh-HK.json';
+import zh_cn from './zh-CN.json';
+import bg from './bg.json';
+import id from './id.json';
 
 const locales = {
   ar,
@@ -50,6 +50,6 @@ const locales = {
   id,
 };
 
-export default function getMessagesForLocale (locale) {
+export default function getMessagesForLocale(locale) {
   return locales[locale];
 };

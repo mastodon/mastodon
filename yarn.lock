@@ -724,6 +724,14 @@ babel-plugin-react-docgen@^1.4.2:
     lodash "4.x.x"
     react-docgen "^2.12.1"
 
+babel-plugin-react-intl@^2.3.1:
+  version "2.3.1"
+  resolved "https://registry.yarnpkg.com/babel-plugin-react-intl/-/babel-plugin-react-intl-2.3.1.tgz#3d43912e824da005e08e8e8239d5ba784374bb00"
+  dependencies:
+    babel-runtime "^6.2.0"
+    intl-messageformat-parser "^1.2.0"
+    mkdirp "^0.5.1"
+
 babel-plugin-react-transform@^2.0.2:
   version "2.0.2"
   resolved "https://registry.yarnpkg.com/babel-plugin-react-transform/-/babel-plugin-react-transform-2.0.2.tgz#515bbfa996893981142d90b1f9b1635de2995109"
@@ -3528,7 +3536,7 @@ intl-format-cache@^2.0.5:
   version "2.0.5"
   resolved "https://registry.yarnpkg.com/intl-format-cache/-/intl-format-cache-2.0.5.tgz#b484cefcb9353f374f25de389a3ceea1af18d7c9"
 
-intl-messageformat-parser@1.2.0:
+intl-messageformat-parser@1.2.0, intl-messageformat-parser@^1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/intl-messageformat-parser/-/intl-messageformat-parser-1.2.0.tgz#5906b7f953ab7470e0dc8549097b648b991892ff"
 
@@ -5673,6 +5681,15 @@ react-inspector@^1.1.0:
   resolved "https://registry.yarnpkg.com/react-inspector/-/react-inspector-1.1.0.tgz#8d55bb94ffc9fd3982a222eb257dbe9cdd4f1b87"
   dependencies:
     is-dom "^1.0.5"
+
+react-intl-translations-manager@^5.0.0:
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/react-intl-translations-manager/-/react-intl-translations-manager-5.0.0.tgz#3c78d3e3e44c5804d7a15c60e89c3aefd9d06615"
+  dependencies:
+    chalk "^1.1.3"
+    glob "^7.0.3"
+    json-stable-stringify "^1.0.1"
+    mkdirp "^0.5.1"
 
 react-intl@^2.1.5:
   version "2.1.5"

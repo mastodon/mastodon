@@ -62,9 +62,6 @@ import uk from 'react-intl/locale-data/uk';
 import zh from 'react-intl/locale-data/zh';
 import bg from 'react-intl/locale-data/bg';
 import id from 'react-intl/locale-data/id';
-import { localeData as zh_hk } from '../locales/zh-hk';
-import { localeData as zh_cn } from '../locales/zh-cn';
-import pt_br from '../locales/pt-br';
 import getMessagesForLocale from '../locales';
 import { hydrateStore } from '../actions/store';
 import createStream from '../stream';
@@ -90,14 +87,11 @@ addLocaleData([
   ...it,
   ...ja,
   ...pt,
-  ...pt_br,
   ...nl,
   ...no,
   ...ru,
   ...uk,
   ...zh,
-  ...zh_hk,
-  ...zh_cn,
   ...bg,
   ...id,
 ]);
