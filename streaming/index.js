@@ -205,8 +205,7 @@ if (cluster.isMaster) {
             return
           }
 
-          const unpackedPayload  = JSON.parse(payload)
-          const targetAccountIds = [unpackedPayload.account.id].concat(unpackedPayload.mentions.map(item => item.id)).concat(unpackedPayload.reblog ? [unpackedPayload.reblog.account.id] : [])
+          const targetAccountIds = [payload.account.id].concat(payload.mentions.map(item => item.id)).concat(payload.reblog ? [payload.reblog.account.id] : [])
 
           client.query(`SELECT target_account_id FROM blocks WHERE account_id = $1 AND target_account_id IN (${placeholders(targetAccountIds, 1)}) UNION SELECT target_account_id FROM mutes WHERE account_id = $1 AND target_account_id IN (${placeholders(targetAccountIds, 1)})`, [req.accountId].concat(targetAccountIds), (err, result) => {
             done()
@@ -246,7 +245,7 @@ if (cluster.isMaster) {
 
     return (event, payload) => {
       res.write(`event: ${event}\n`)
-      res.write(`data: ${payload}\n\n`)
+      res.write(`data: ${JSON.stringify(payload)}\n\n`)
     }
   }
 

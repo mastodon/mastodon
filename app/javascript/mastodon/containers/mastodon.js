@@ -237,13 +237,13 @@ class Mastodon extends React.Component {
       received (data) {
         switch(data.event) {
         case 'update':
-          store.dispatch(updateTimeline('home', JSON.parse(data.payload)));
+          store.dispatch(updateTimeline('home', data.payload));
           break;
         case 'delete':
           store.dispatch(deleteFromTimelines(data.payload));
           break;
         case 'notification':
-          store.dispatch(updateNotifications(JSON.parse(data.payload), getMessagesForLocale(locale), locale));
+          store.dispatch(updateNotifications(data.payload, getMessagesForLocale(locale), locale));
           break;
         }
       },

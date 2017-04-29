@@ -50,7 +50,7 @@ class NotifyService < BaseService
   def create_notification
     @notification.save!
     return unless @notification.browserable?
-    Redis.current.publish("timeline:#{@recipient.id}", Oj.dump(event: :notification, payload: InlineRenderer.render(@notification, @recipient, 'api/v1/notifications/show')))
+    Redis.current.publish("timeline:#{@recipient.id}", InlineRenderer.render(Event.new(@notification), @recipient, 'streaming/notification'))
   end
 
   def send_email
