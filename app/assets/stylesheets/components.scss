@@ -3111,7 +3111,11 @@ button.icon-button.active i.fa-retweet {
 
 .status__video-player-spoiler {
   color: #fff;
+  left: 4px;
+  position: absolute;
   text-shadow: 0px 1px 1px #000, 1px 0px 1px #000;
+  top: 4px;
+  z-index: 100;
 }
 
 .status__video-player-expand {
