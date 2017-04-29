@@ -31,7 +31,7 @@ const fr = {
   "column.notifications": "Notifications",
   "column.public": "Fil public global",
   "compose_form.placeholder": "Qu’avez-vous en tête ?",
-  "compose_form.privacy_disclaimer": "Votre statut privé va être transmis aux personnes mentionnées sur {domains}. Avez-vous confiance en {domainsCount, plural, one {ce serveur} other {ces serveurs}} pour ne pas divulguer votre statut ? Les statuts privés ne fonctionnent que sur les instances de Mastodons. Si {domains} {domainsCount, plural, one {n’est pas une instance de Mastodon} other {ne sont pas des instances de Mastodon}}, il n’y aura aucune indication que votre statut est privé, et il pourrait être partagé ou rendu visible d’une autre manière à d’autres personnes imprévues.",
+  "compose_form.privacy_disclaimer": "Votre statut privé va être transmis aux personnes mentionnées sur {domains}. Avez-vous confiance en {domainsCount, plural, one {ce serveur} other {ces serveurs}} pour ne pas divulguer votre statut ? Les statuts privés ne fonctionnent que sur les instances de Mastodon. Si {domains} {domainsCount, plural, one {n’est pas une instance de Mastodon} other {ne sont pas des instances de Mastodon}}, il n’y aura aucune indication que votre statut est privé, et il pourrait être partagé ou rendu visible d’une autre manière à d’autres personnes imprévues.",
   "compose_form.private": "Rendre privé",
   "compose_form.publish": "Pouet",
   "compose_form.sensitive": "Marquer le média comme délicat",
