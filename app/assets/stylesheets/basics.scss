@@ -1,6 +1,6 @@
 body {
   font-family: 'Roboto', sans-serif;
-  background: $color1 image-url('background-photo.jpeg');
+  background: $body-background-color image-url('background-photo.jpeg');
   background-size: cover;
   background-attachment: fixed;
   font-size: 13px;
@@ -17,7 +17,7 @@ body {
     width: 100%;
     height: 100%;
     padding: 0;
-    background: $color1;
+    background: $body-background-color;
   }
 
   &.embed {
@@ -33,7 +33,7 @@ body {
   }
 
   &.admin {
-    background: $darken5_color1;
+    background: $admin-background;
     position: fixed;
     width: 100%;
     height: 100%;
