@@ -1,5 +1,4 @@
 import React from 'react';
-import Status from './status';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { ScrollContainer } from 'react-router-scroll';
 import PropTypes from 'prop-types';
