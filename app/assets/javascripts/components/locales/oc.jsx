@@ -17,7 +17,7 @@ const oc = {
   "account.follows_you": "Vos sèc",
   "account.follows": "Abonaments",
   "account.mention": "Mencionar @{name}",
-  "account.mute": "Rescondre @{name}"
+  "account.mute": "Rescondre @{name}",
   "account.posts": "Estatuts",
   "account.report": "Senhalar @{name}",
   "account.requested": "Invitacion mandada",
@@ -26,7 +26,7 @@ const oc = {
   "account.unmute": "Quitar de rescondre @{name}",
   "boost_modal.combo": "Podètz picar {combo} per passar aquò lo cop que ven",
   "column.blocks": "Personas blocadas",
-  "column.community": "Fil public local"
+  "column.community": "Fil public local",
   "column.favourites": "Favorits",
   "column.follow_requests": "Demandas d’abonament",
   "column.home": "Acuèlh",
@@ -164,7 +164,7 @@ const oc = {
   "tabs_bar.home": "Acuèlh",
   "tabs_bar.local_timeline": "Fil public local",
   "tabs_bar.mentions": "Mencions",
-  "upload_area.title": "Lisatz e depausatz per mandar"
+  "upload_area.title": "Lisatz e depausatz per mandar",
   "upload_button.label": "Apondre un mèdia",
   "upload_form.undo": "Anullar",
   "upload_progress.label": "Mandadís…",
