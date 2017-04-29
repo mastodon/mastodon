@@ -3109,7 +3109,6 @@ button.icon-button.active i.fa-retweet {
   position: absolute;
   right: 4px;
   text-shadow: 0px 1px 1px #000, 1px 0px 1px #000;
-  top: 4px;
 }
 
 .status__video-player-spoiler {
@@ -3122,10 +3121,12 @@ button.icon-button.active i.fa-retweet {
 }
 
 .status__video-player-expand {
+  bottom: 4px;
   z-index: 100;
 }
 
 .status__video-player-mute {
+  top: 4px;
   z-index: 5;
 }
 
