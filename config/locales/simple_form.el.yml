@@ -1,0 +1,51 @@
+---
+el:
+  simple_form:
+    hints:
+      defaults:
+        avatar: PNG, GIF ή JPG. Μέγιστο 2MB. Θα μικρύνει σε 120x120px
+        display_name: 'Απομένουν %{counter} χαρακτήρες'
+        header: PPNG, GIF ή JPG. Μέγιστο 2MB. Θα μικρύνει σε 700x335px
+        locked: Απαιτεί να εγκρίνεις χειροκίνητα followers και προεπιλέγει δημοσίευση μηνυμάτων μόνο followers
+        note: 'Απομένουν %{counter} χαρακτήρες'
+      imports:
+        data: Αρχείο CSV από άλλο Mastodon instance
+      sessions:
+        otp: Εισαγωγή του κωδικου two-factor από το κινητό ή χρησιμοποίησε recovery κωδικούς.
+    labels:
+      defaults:
+        avatar: Avatar
+        confirm_new_password: Επιβεβαίωση κωδικού
+        confirm_password: Επιβεβαίωση κωδικού
+        current_password: Επιβεβαίωση κωδικού
+        data: Δεδομένα
+        display_name: Προβολή ονόματος
+        email: Διεύθυνση E-mail
+        header: Κεφαλίδα
+        locale: Γλώσσα
+        locked: Κλείδωμα λογαριασμού
+        new_password: Νέος κωδικός
+        note: Βιογραφικό
+        otp_attempt: Two-factor κωδικός
+        password: Κωδικός
+        setting_auto_play_gif: Auto-play animated GIFs
+        setting_boost_modal: Επιβεβαίωση πριν απο boost
+        setting_default_privacy: Ιδιωτικότητα Μηνυμάτων
+        severity: Αυστηρότητα
+        type: Import type
+        username: Username
+      interactions:
+        must_be_follower: Αποκλεισμός ειδοποιήσεων από μη followers
+        must_be_following: Αποκλεισμός ειδοποιήσεων από χρήστες που δεν ακολουθείς
+      notification_emails:
+        digest: Αποστολή digest e-mails
+        favourite: Αποστολή e-mail όταν κάποιος κάνει favourite το μήνυμά σου
+        follow: Αποστολή e-mail όταν κάποιος σε κάνει follow
+        follow_request: Αποστολή e-mail όταν κάποιος ζητήσει να σε κάνει follow
+        mention: Αποστολή e-mail όταν κάποιος σε αναφέρει
+        reblog: Αποστολή e-mail όταν κάποιος κάνει boost το μήνυμά σου
+    'no': 'Όχι'
+    required:
+      mark: "*"
+      text: required
+    'yes': 'Ναι'
