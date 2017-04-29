@@ -44,7 +44,7 @@ class AuthorizeFollowsController < ApplicationController
   end
 
   def acct_param_is_url?
-    parsed_uri.path && %w[http https].include?(parsed_uri.scheme)
+    parsed_uri.path && %w(http https).include?(parsed_uri.scheme)
   end
 
   def parsed_uri
