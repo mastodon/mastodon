@@ -22,6 +22,7 @@ gem 'paperclip', '~> 5.1'
 gem 'paperclip-av-transcoder'
 gem 'aws-sdk', '>= 2.0'
 
+gem 'active_hash'
 gem 'addressable'
 gem 'devise'
 gem 'devise-two-factor'

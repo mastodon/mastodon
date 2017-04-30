@@ -24,6 +24,8 @@ GEM
       erubis (~> 2.7.0)
       rails-dom-testing (~> 2.0)
       rails-html-sanitizer (~> 1.0, >= 1.0.3)
+    active_hash (1.5.1)
+      activesupport (>= 2.2.2)
     active_record_query_trace (1.5.4)
     activejob (5.0.2)
       activesupport (= 5.0.2)
@@ -485,6 +487,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  active_hash
   active_record_query_trace
   addressable
   asset_sync

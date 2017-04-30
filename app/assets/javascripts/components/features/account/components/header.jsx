@@ -3,6 +3,7 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import emojify from '../../../emoji';
 import escapeTextContentForBrowser from 'escape-html';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
+import FanTargetIcon from '../../../components/fan_target_icon';
 import IconButton from '../../../components/icon_button';
 import { Motion, spring } from 'react-motion';
 import { connect } from 'react-redux';
@@ -123,6 +124,11 @@ const Header = React.createClass({
       lockedIcon = <i className='fa fa-lock' />;
     }
 
+    let fanTargetIcon='';
+    if (account.get('acct') === account.get('username') && account.get('fan_target_icon')) {
+      fanTargetIcon = <div style={{ marginBottom: '10px' }}><FanTargetIcon src={account.get('fan_target_icon')} size={24} /></div>;
+    }
+
     const content         = { __html: emojify(account.get('note')) };
     const displayNameHTML = { __html: emojify(escapeTextContentForBrowser(displayName)) };
 
@@ -133,6 +139,7 @@ const Header = React.createClass({
 
           <span style={{ display: 'inline-block', fontSize: '20px', lineHeight: '27px', fontWeight: '500' }} className='account__header__display-name' dangerouslySetInnerHTML={displayNameHTML} />
           <span className='account__header__username' style={{ fontSize: '14px', fontWeight: '400', display: 'block', marginBottom: '10px' }}>@{account.get('acct')} {lockedIcon}</span>
+          {fanTargetIcon}
           <div style={{ fontSize: '14px' }} className='account__header__content' dangerouslySetInnerHTML={content} />
 
           {info}

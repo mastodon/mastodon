@@ -11,6 +11,14 @@
   = f.input :password, autocomplete: "off", placeholder: t('simple_form.labels.defaults.password'), required: true, input_html: { 'aria-label' => t('simple_form.labels.defaults.password') }
   = f.input :password_confirmation, autocomplete: "off", placeholder: t('simple_form.labels.defaults.confirm_password'), required: true, input_html: { 'aria-label' => t('simple_form.labels.defaults.confirm_password') }
 
+  = f.simple_fields_for :account do |ff|
+    = ff.association :fan_target,
+      collection: FanTarget.all.sort_by(&:order),
+      wrapper: :with_label,
+      label: t("simple_form.labels.custom.#{ENV.fetch('FAN_TARGET', 'npb')}.fan_target_id"),
+      label_html: { style: 'width: 50%' },
+      input_html: { style: 'width: 50%' },
+      include_blank: t('simple_form.placeholders.custom.include_blank')
   .actions
     = f.button :button, t('auth.register'), type: :submit
 

@@ -2,6 +2,7 @@
 
 class Account < ApplicationRecord
   include Targetable
+  extend ActiveHash::Associations::ActiveRecordExtensions
 
   MENTION_RE = /(?:^|[^\/\w])@([a-z0-9_]+(?:@[a-z0-9\.\-]+[a-z0-9]+)?)/i
   IMAGE_MIME_TYPES = ['image/jpeg', 'image/png', 'image/gif'].freeze
@@ -60,6 +61,8 @@ class Account < ApplicationRecord
   # Report relationships
   has_many :reports
   has_many :targeted_reports, class_name: 'Report', foreign_key: :target_account_id
+
+  belongs_to :fan_target
 
   scope :remote, -> { where.not(domain: nil) }
   scope :local, -> { where(domain: nil) }

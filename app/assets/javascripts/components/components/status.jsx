@@ -1,5 +1,6 @@
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import Avatar from './avatar';
+import FanTargetIcon from './fan_target_icon';
 import RelativeTimestamp from './relative_timestamp';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import DisplayName from './display_name';
@@ -87,6 +88,11 @@ const Status = React.createClass({
       }
     }
 
+    let fanTargetIcon='';
+    if (status.getIn(['account', 'acct']) === status.getIn(['account', 'username']) && status.getIn(['account', 'fan_target_icon'])) {
+      fanTargetIcon = <div style={{ position: 'absolute', right: '10px', bottom: '10px', width: '24px', height: '24px' }}><FanTargetIcon src={status.getIn(['account', 'fan_target_icon'])} size={24} /></div>;
+    }
+
     return (
       <div className={this.props.muted ? 'status muted' : 'status'}>
         <div style={{ fontSize: '15px' }}>
@@ -106,6 +112,8 @@ const Status = React.createClass({
         <StatusContent status={status} onClick={this.handleClick} />
 
         {media}
+
+        {fanTargetIcon}
 
         <StatusActionBar {...this.props} />
       </div>

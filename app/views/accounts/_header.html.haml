@@ -15,6 +15,9 @@
     %small
       %span= "@#{account.username}"
       = fa_icon('lock') if account.locked?
+    - if account.fan_target
+      %small= image_tag account.fan_target.icon_path, size: '24x24'
+
   .details
     .bio
       .account__header__content.p-note.emojify= Formatter.instance.simplified_format(account)

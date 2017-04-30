@@ -8,5 +8,6 @@ node(:avatar)          { |account| full_asset_url(account.avatar_original_url) }
 node(:avatar_static)   { |account| full_asset_url(account.avatar_static_url) }
 node(:header)          { |account| full_asset_url(account.header_original_url) }
 node(:header_static)   { |account| full_asset_url(account.header_static_url) }
+node(:fan_target_icon, if: lambda { |account| account.fan_target }) { |account| full_asset_url(account.fan_target.icon_path) }
 
 attributes :followers_count, :following_count, :statuses_count

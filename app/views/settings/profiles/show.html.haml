@@ -7,6 +7,11 @@
   .fields-group
     = f.input :display_name, placeholder: t('simple_form.labels.defaults.display_name')
     = f.input :note, placeholder: t('simple_form.labels.defaults.note')
+    = f.input :fan_target_id,
+      collection: FanTarget.all.sort_by(&:order),
+      wrapper: :with_label,
+      label: t("simple_form.labels.custom.#{ENV.fetch('FAN_TARGET', 'npb')}.fan_target_id"),
+      include_blank: t('simple_form.placeholders.custom.include_blank')
     = f.input :avatar, wrapper: :with_label, hint: t('simple_form.hints.defaults.avatar')
     = f.input :header, wrapper: :with_label, hint: t('simple_form.hints.defaults.header')
 

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170418160728) do
+ActiveRecord::Schema.define(version: 20170429043547) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -48,8 +48,10 @@ ActiveRecord::Schema.define(version: 20170418160728) do
     t.integer  "followers_count",         default: 0,     null: false
     t.integer  "following_count",         default: 0,     null: false
     t.datetime "last_webfingered_at"
+    t.integer  "fan_target_id"
     t.index "(((setweight(to_tsvector('simple'::regconfig, (display_name)::text), 'A'::\"char\") || setweight(to_tsvector('simple'::regconfig, (username)::text), 'B'::\"char\")) || setweight(to_tsvector('simple'::regconfig, (COALESCE(domain, ''::character varying))::text), 'C'::\"char\")))", name: "search_index", using: :gin
     t.index "lower((username)::text), lower((domain)::text)", name: "index_accounts_on_username_and_domain_lower", using: :btree
+    t.index ["fan_target_id"], name: "index_accounts_on_fan_target_id", using: :btree
     t.index ["url"], name: "index_accounts_on_url", using: :btree
     t.index ["username", "domain"], name: "index_accounts_on_username_and_domain", unique: true, using: :btree
   end
@@ -131,7 +133,6 @@ ActiveRecord::Schema.define(version: 20170418160728) do
     t.datetime "updated_at", null: false
     t.index ["account_id", "status_id"], name: "index_mentions_on_account_id_and_status_id", unique: true, using: :btree
     t.index ["status_id"], name: "index_mentions_on_status_id", using: :btree
-    t.index ["status_id"], name: "mentions_status_id_index", using: :btree
   end
 
   create_table "mutes", force: :cascade do |t|
