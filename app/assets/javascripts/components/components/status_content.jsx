@@ -101,7 +101,7 @@ class StatusContent extends React.PureComponent {
 		      },
               TeX: {
                 extensions: ["AMScd.js"]
-              }
+              },
 		      skipStartupTypeset: true,
 		      showProcessingMessages: false,
 		      messageStyle: "none",
