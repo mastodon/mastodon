@@ -1,11 +1,7 @@
 language: ruby
 cache:
   bundler: true
-  yarn: true
-  directories:
-    - $HOME/.node-gyp
-    - $HOME/.npm
-    - node_modules
+  yarn: false
 dist: trusty
 sudo: false
 

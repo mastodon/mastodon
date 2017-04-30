@@ -3,9 +3,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import 'font-awesome/css/font-awesome.css';
 import '../styles/application.scss';
-import * as OfflinePluginRuntime from 'offline-plugin/runtime';
-
-OfflinePluginRuntime.install()
 
 if (!window.Intl) {
   require('intl');

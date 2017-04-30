@@ -5,14 +5,12 @@
 const webpack = require('webpack')
 const merge = require('webpack-merge')
 const CompressionPlugin = require('compression-webpack-plugin')
-const BabiliPlugin = require('babili-webpack-plugin')
 const sharedConfig = require('./shared.js')
 
 module.exports = merge(sharedConfig, {
   output: { filename: '[name]-[chunkhash].js' },
 
   plugins: [
-    new BabiliPlugin(),
     new webpack.optimize.UglifyJsPlugin({
       compress: {
         unused: true,
