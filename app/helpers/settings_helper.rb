@@ -30,11 +30,24 @@ module SettingsHelper
     'zh-TW': '繁體中文（臺灣）',
   }.freeze
 
+  THEMES = {
+    default: {
+      label: 'Default(dark)',
+    },
+    kkt: {
+      label: 'Kirakiratter',
+    }
+  }
+
   def human_locale(locale)
     HUMAN_LOCALES[locale]
   end
 
   def hash_to_object(hash)
     HashObject.new(hash)
+  end
+
+  def themes_list
+    THEMES
   end
 end

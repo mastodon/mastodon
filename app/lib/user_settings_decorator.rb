@@ -20,6 +20,7 @@ class UserSettingsDecorator
     user.settings['default_privacy'] = default_privacy_preference
     user.settings['boost_modal'] = boost_modal_preference
     user.settings['auto_play_gif'] = auto_play_gif_preference
+    user.settings['theme'] = theme_preference
   end
 
   def merged_notification_emails
@@ -40,6 +41,10 @@ class UserSettingsDecorator
 
   def auto_play_gif_preference
     boolean_cast_setting 'setting_auto_play_gif'
+  end
+
+  def theme_preference
+    settings['setting_theme']
   end
 
   def boolean_cast_setting(key)
