@@ -99,6 +99,9 @@ class StatusContent extends React.PureComponent {
 		      tex2jax: {
 			  inlineMath: [ ['$','$'], ['\\(','\\)'] ]
 		      },
+              TeX: {
+                extensions: ["AMScd.js"]
+              }
 		      skipStartupTypeset: true,
 		      showProcessingMessages: false,
 		      messageStyle: "none",
