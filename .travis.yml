@@ -3,6 +3,8 @@ cache:
   bundler: true
   yarn: true
   directories:
+    - $HOME/.node-gyp
+    - $HOME/.npm
     - node_modules
 dist: trusty
 sudo: false
