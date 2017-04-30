@@ -1,6 +1,13 @@
 # frozen_string_literal: true
 
 class Rack::Attack
+  # Always allow requests from localhost
+  # (blocklist & throttles are skipped)
+  Rack::Attack.safelist('allow from localhost') do |req|
+    # Requests are allowed if the return value is truthy
+    '127.0.0.1' == req.ip || '::1' == req.ip
+  end
+
   # Rate limits for the API
   throttle('api', limit: 300, period: 5.minutes) do |req|
     req.ip if req.path =~ /\A\/api\/v/
