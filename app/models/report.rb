@@ -13,10 +13,6 @@ class Report < ApplicationRecord
   end
 
   def media_attachments
-    media_attachments = []
-    statuses.each do |s|
-      media_attachments.concat s.media_attachments
-    end
-    media_attachments
+    MediaAttachment.where(status_id: status_ids)
   end
 end
