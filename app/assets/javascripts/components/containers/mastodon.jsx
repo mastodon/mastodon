@@ -50,6 +50,7 @@ import es from 'react-intl/locale-data/es';
 import fa from 'react-intl/locale-data/fa';
 import fi from 'react-intl/locale-data/fi';
 import fr from 'react-intl/locale-data/fr';
+import hr from 'react-intl/locale-data/hr';
 import hu from 'react-intl/locale-data/hu';
 import it from 'react-intl/locale-data/it';
 import ja from 'react-intl/locale-data/ja';
