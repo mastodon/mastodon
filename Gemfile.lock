@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/rails/webpacker.git
-  revision: 3d53587e51ce8372930602e40bd3722856f447f3
+  revision: a32633d0850f854db5e82c9749c7a350ae5bc2ee
   specs:
     webpacker (1.2)
       activesupport (>= 4.2)
@@ -66,6 +66,10 @@ GEM
     aws-sdk-resources (2.9.12)
       aws-sdk-core (= 2.9.12)
     aws-sigv4 (1.0.0)
+    babel-source (5.8.35)
+    babel-transpiler (0.7.0)
+      babel-source (>= 4.0, < 6)
+      execjs (~> 2.0)
     bcrypt (3.1.11)
     best_in_place (3.0.3)
       actionpack (>= 3.2)
@@ -338,6 +342,12 @@ GEM
     rainbow (2.2.2)
       rake
     rake (12.0.0)
+    react-rails (2.1.0)
+      babel-transpiler (>= 0.7.0)
+      connection_pool
+      execjs
+      railties (>= 3.2)
+      tilt
     redis (3.3.3)
     redis-actionpack (5.0.1)
       actionpack (>= 4.0, < 6)
@@ -515,6 +525,7 @@ DEPENDENCIES
   rails-i18n
   rails-settings-cached
   rails_12factor
+  react-rails
   redis (~> 3.2)
   redis-rails
   rqrcode
@@ -532,7 +543,7 @@ DEPENDENCIES
   statsd-instrument
   twitter-text
   tzinfo-data
-  uglifier
+  uglifier (>= 1.3.0)
   webmock
   webpacker!
   whatlanguage

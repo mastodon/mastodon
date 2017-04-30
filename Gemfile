@@ -7,7 +7,7 @@ gem 'pkg-config'
 
 gem 'puma'
 gem 'rails', '~> 5.0.2'
-gem 'uglifier'
+gem 'uglifier', '>= 1.3.0'
 
 gem 'hamlit-rails'
 gem 'pg'
@@ -57,6 +57,9 @@ gem 'twitter-text'
 gem 'tzinfo-data'
 gem 'webpacker', github: 'rails/webpacker'
 gem 'whatlanguage'
+
+# For some reason the view specs start failing without this
+gem 'react-rails'
 
 group :development, :test do
   gem 'fabrication'
