@@ -2,12 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const ColumnSubheading = ({ text }) => {
-    return (
-      <div className='column-subheading'>
-        {text}
-      </div>
-    );
-  };
+  return (
+    <div className='column-subheading'>
+      {text}
+    </div>
+  );
+};
 
 ColumnSubheading.propTypes = {
   text: PropTypes.string.isRequired,
