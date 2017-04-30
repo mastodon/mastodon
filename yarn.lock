@@ -3729,7 +3729,13 @@ load-json-file@^1.0.0:
     pinkie-promise "^2.0.0"
     strip-bom "^2.0.0"
 
-load-script@^1.0.0:
+load-script-once@^1.1.2:
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/load-script-once/-/load-script-once-1.1.2.tgz#94ca09b9f12a7829f1f09f5e440588bb9c338bd0"
+  dependencies:
+    load-script "~1.0.0"
+
+load-script@^1.0.0, load-script@~1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/load-script/-/load-script-1.0.0.tgz#0491939e0bee5643ee494a7e3da3d2bac70c6ca4"
 

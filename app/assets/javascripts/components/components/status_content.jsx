@@ -6,7 +6,7 @@ import { isRtl } from '../rtl';
 import { FormattedMessage } from 'react-intl';
 import Permalink from './permalink';
 
-const loadScript = require('load-script');
+const loadScriptOnce = require('load-script-once');
 // const MathJax = require('react-mathjax');
 // const reactStringReplace = require('react-string-replace')
 
@@ -91,7 +91,7 @@ class StatusContent extends React.PureComponent {
         link.setAttribute('title', link.href);
       }
     }
-      loadScript('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML,Safe',
+      loadScriptOnce('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML,Safe',
 	  (err, script) => {
 	      if (err) {
 	      } else {
@@ -121,10 +121,7 @@ class StatusContent extends React.PureComponent {
 		      }
 		  };
 		  MathJax.Hub.Config(options);
-		  const elements = [...document.querySelectorAll('.status__content')];
-		  MathJax.Hub.Queue(["Typeset", MathJax.Hub, elements]);
-		  // MathJax.Hub.Queue(["Typeset", MathJax.Hub, node]);
-		  // console.log(elements);
+		  MathJax.Hub.Queue(["Typeset", MathJax.Hub, node]);
 	      }
 	  });
   }
