@@ -52,6 +52,7 @@ module Mastodon
       :'zh-CN',
       :'zh-HK',
       :'zh-TW',
+      :'ja-IM',
     ]
 
     config.i18n.default_locale = :en

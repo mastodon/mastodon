@@ -1,0 +1,341 @@
+---
+ja-IM:
+  about:
+    about_mastodon: Mastodon は<em>自由でオープンソース</em>なソーシャルネットワークです。商用プラットフォームの代替となる<em>分散型</em>を採用し、あなたのやりとりが一つの会社によって独占されるのを防ぎます。信頼できるインスタンスを選択してください &mdash; どのインスタンスを選んでも、誰とでもやりとりすることができます。 だれでも自分の Mastodon インスタンスを作ることができ、シームレスに<em>ソーシャルネットワーク</em>に参加できます。
+    about_this: このインスタンスについて
+    apps: アプリ
+    business_email: 'ビジネスメールアドレス:'
+    closed_registrations: 現在このインスタンスでの新規登録は受け付けていません。
+    contact: 連絡先
+    description_headline: "%{domain} とは？"
+    domain_count_after: 個のインスタンス
+    domain_count_before: 接続中
+    features:
+      api: アプリやその他サービスにAPIを公開
+      blocks: 豊富なブロックやミュート機能
+      characters: 1つの投稿は500文字まで利用可能
+      chronology: 時系列順のタイムライン
+      ethics: 広告もトラッキングもありません
+      gifv: GIFVや短い動画にも対応
+      privacy: 投稿ごとに公開範囲を細かく設定可能
+      public: 公開タイムライン
+    features_headline: Mastodon の特徴
+    get_started: 参加する
+    links: リンク
+    other_instances: 他のインスタンス
+    source_code: ソースコード
+    status_count_after: あふぅ
+    status_count_before: あふぅした数
+    terms: プライバシーポリシー
+    user_count_after: 人
+    user_count_before: プロデューサー数
+    version: バージョン
+  accounts:
+    follow: フォロー
+    followers: フォロワー
+    following: フォロー中
+    nothing_here: 何もありません
+    people_followed_by: "%{name} さんがフォロー中のアカウント"
+    people_who_follow: "%{name} さんをフォロー中のアカウント"
+    posts: 投稿
+    remote_follow: リモートフォロー
+    unfollow: フォロー解除
+  activitypub:
+    activity:
+      announce:
+        name: "%{account_name} さんがアクティビティをシェアしました"
+      create:
+        name: "%{account_name} さんがノートを作成しました"
+    outbox:
+      name: "%{account_name} さんの送信トレイ"
+      summary: "%{account_name} さんからのアクティビティコレクション"
+  admin:
+    accounts:
+      are_you_sure: 本当に実行しますか?
+      confirm: 確認
+      confirmed: 確認済み
+      display_name: 表示名
+      domain: ドメイン
+      edit: 編集
+      email: E-mail
+      feed_url: フィードURL
+      followers: フォロワー数
+      follows: フォロー数
+      location:
+        all: すべて
+        local: ローカル
+        remote: リモート
+        title: ロケーション
+      media_attachments: 添付されたメディア
+      moderation:
+        all: すべて
+        silenced: サイレンス中
+        suspended: 停止中
+        title: モデレーション
+      most_recent_activity: 直近の活動
+      most_recent_ip: 直近のIP
+      not_subscribed: 購読していない
+      order:
+        alphabetic: アルファベット順
+        most_recent: 直近の活動順
+        title: 順序
+      perform_full_suspension: 完全に活動停止させる
+      profile_url: プロフィールURL
+      public: パブリック
+      push_subscription_expires: PuSH購読期限切れ
+      reset_password: パスワード再設定
+      salmon_url: Salmon URL
+      show:
+        created_reports: このアカウントで作られたレポート
+        report: レポート
+        targeted_reports: このアカウントについてのレポート
+      silence: サイレンス
+      statuses: あふぅした数
+      title: アカウント
+      undo_silenced: サイレンスから戻す
+      undo_suspension: 停止から戻す
+      username: ユーザー名
+      web: Web
+    domain_blocks:
+      add_new: 新規追加
+      created_msg: ドメインブロック処理を完了しました
+      destroyed_msg: ドメインブロックを外しました
+      domain: ドメイン
+      new:
+        create: ブロックを作成
+        hint: ドメインブロックはデータベース中のアカウント項目の作成を妨げませんが、遡って自動的に指定されたモデレーションをそれらのアカウントに適用します。
+        severity:
+          desc_html: "<strong>サイレンス</strong>はアカウントのあふぅをフォローしていない人から隠します。<strong>停止</strong>はそのアカウントのコンテンツ、メディア、プロフィールデータをすべて削除します。"
+          silence: サイレンス
+          suspend: 停止
+        title: 新規ドメインブロック
+      reject_media: メディアファイルを拒否
+      reject_media_hint: ローカルに保存されたメディアファイルを削除し、今後のダウンロードを拒否します。停止とは無関係です。
+      severities:
+        silence: サイレンス
+        suspend: 停止
+      severity: 深刻度
+      show:
+        affected_accounts:
+          one: "データベース中の一つのアカウントに影響します"
+          other: "データベース中の%{count}個のアカウントに影響します"
+        retroactive:
+          silence: このドメインからの存在するすべてのアカウントのサイレンスを戻す
+          suspend: このドメインからの存在するすべてのアカウントの停止を戻す
+        title: "%{domain}のドメインブロックを戻す"
+        undo: 元に戻す
+      title: ドメインブロック
+      undo: 元に戻す
+    instances:
+      account_count: 既知のアカウント数
+      domain_name: ドメイン名
+      title: 既知のインスタンス
+    pubsubhubbub:
+      callback_url: コールバックURL
+      confirmed: 確認済み
+      expires_in: 期限
+      last_delivery: 最終配送
+      title: PubSubHubbub
+      topic: トピック
+    reports:
+      comment:
+        label: コメント
+        none: なし
+      delete: 削除
+      id: ID
+      mark_as_resolved: 解決済みとしてマーク
+      report: レポート#%{id}
+      reported_account: 報告対象アカウント
+      reported_by: 報告者
+      report_contents: 内容
+      resolved: 解決済み
+      silence_account: アカウントをサイレンス
+      status: ステータス
+      suspend_account: アカウントを停止
+      target: ターゲット
+      title: レポート
+      unresolved: 未解決
+      view: 表示
+    settings:
+      click_to_edit: クリックして編集
+      contact_information:
+        email: 公開するメールアドレスを入力
+        label: 連絡先情報
+        username: ユーザー名を入力
+      registrations:
+        closed_message:
+          desc_html: 新規登録を停止しているときにフロントページに表示されます。<br>HTMLタグが利用可能です。
+          title: 新規登録停止時のメッセージ
+        open:
+          disabled: 無効
+          enabled: 有効
+          title: 新規登録を受け付ける
+      setting: 設定
+      site_description:
+        desc_html: トップページへの表示と meta タグに使用されます。<br>HTMLタグ、特に<code>&lt;a&gt;</code> と <code>&lt;em&gt;</code>が利用可能です。
+        title: サイトの説明文
+      site_description_extended:
+        desc_html: インスタンスについてのページに表示されます。<br>HTMLタグが利用可能です。
+        title: サイトの詳細な説明
+      site_title: サイトのタイトル
+      title: サイト設定
+    title: 管理
+  application_mailer:
+    settings: 'メール設定の変更: %{link}'
+    signature: Mastodon %{instance} インスタンスからの通知
+    view: 'View:'
+  applications:
+    invalid_url: URLが無効です
+  auth:
+    change_password: ログイン情報
+    didnt_get_confirmation: 確認メールを受信できませんか？
+    forgot_password: パスワードをお忘れですか？
+    login: ログイン
+    logout: ログアウト
+    register: 登録する
+    resend_confirmation: 確認メールを再送する
+    reset_password: パスワードを再発行
+    set_new_password: 新しいパスワード
+  authorize_follow:
+    error: 残念ながら、リモートアカウントにエラーが発生しました。
+    follow: フォロー
+    prompt_html: 'あなた（<strong>%{self}</strong>）は以下のアカウントのフォローをリクエストしました:'
+    title: "%{acct} をフォロー"
+  datetime:
+    distance_in_words:
+      about_x_hours: "%{count}時間"
+      about_x_months: "%{count}月"
+      about_x_years: "%{count}年"
+      almost_x_years: "%{count}年"
+      half_a_minute: 今
+      less_than_x_minutes: "%{count}分"
+      less_than_x_seconds: 今
+      over_x_years: "%{count}年"
+      x_days: "%{count}日"
+      x_minutes: "%{count}分"
+      x_months: "%{count}月"
+      x_seconds: "%{count}秒"
+  errors:
+    '403': このページを表示する権限がありません
+    '404': お探しのページは見つかりませんでした。
+    '410': お探しのページはもう存在しません。
+    '422':
+      content: セキュリティ認証に失敗しました。Cookieをブロックしていませんか？
+      title: セキュリティ認証に失敗
+  exports:
+    blocks: ブロック
+    csv: CSV
+    follows: フォロー
+    mutes: "だまっとけ☆"
+    storage: メディア
+  followers:
+    domain: ドメイン
+    explanation_html: あなたのあふぅのプライバシーを確保したい場合、誰があなたをフォローしているのかを把握している必要があります。 <strong>プライベートあふぅは、あなたのフォロワーがいる全てのインスタンスに配信されます</strong>。 フォロワーのインスタンスの管理者やソフトウェアがあなたのプライバシーを尊重してくれるかどうか怪しい場合は、そのフォロワーを削除した方がよいかもしれません。
+    followers_count: フォロワー数
+    lock_link: 非公開アカウント
+    purge: フォロワーから削除する
+    success:
+      one: 1個のドメインからソフトブロックするフォロワーを処理中...
+      other: "%{count} 個のドメインからソフトブロックするフォロワーを処理中..."
+    true_privacy_html: <strong>プライバシーの保護はエンドツーエンドの暗号化でのみ実現可能</strong>であることに留意ください。
+    unlocked_warning_html: 誰でもあなたをフォローすることができ、あなたのプライベート投稿をすぐに見ることができます。フォローする人を限定したい場合は%{lock_link}に設定してください。
+    unlocked_warning_title: このアカウントは非公開アカウントに設定されていません。
+  generic:
+    changes_saved_msg: 正常に変更されました
+    powered_by: powered by %{link}
+    save_changes: 変更を保存
+    validation_errors:
+      one: エラーが発生しました。以下のエラーを確認してください
+      other: エラーが発生しました。以下の%{count}個のエラーを確認してください
+  imports:
+    preface: 他のインスタンスでエクスポートされたファイルから、フォロー/ブロックした情報をこのインスタンス上のアカウントにインポートできます。
+    success: ファイルは正常にアップロードされ、現在処理中です。しばらくしてから確認してください
+    types:
+      blocking: ブロックしたアカウントリスト
+      following: フォロー中のアカウントリスト
+      muting: "だまっとけ☆リストにいるアカウントリスト"
+    upload: アップロード
+  landing_strip_html: <strong>%{name}</strong> さんはインスタンス %{link_to_root_path} のユーザーです。アカウントさえ持っていればフォローしたり会話したりできます。もしお持ちでないなら <a href="%{sign_up_path}">こちら</a> からサインアップできます。
+  media_attachments:
+    validations:
+      images_and_video: 既に画像が追加されているため、動画を追加することはできません。
+      too_many: 追加できるファイルは4つまでです。
+  notification_mailer:
+    digest:
+      body: "%{instance} での最後のログインからの出来事:"
+      mention: "%{name} さんがあなたにReあふぅしました:"
+      new_followers_summary:
+        one: 新たなフォロワーを獲得しました！
+        other: "%{count} 人の新たなフォロワーを獲得しました！"
+      subject:
+        one: "新しい1件の通知 \U0001F418"
+        other: "新しい%{count}件の通知 \U0001F418"
+    favourite:
+      body: 'あなたのあふぅが %{name} さんの頭にティンときたようです:'
+      subject: "%{name} さんがあなたのあふぅにティンときたようです"
+    follow:
+      body: "%{name} さんにフォローされています"
+      subject: "%{name} さんにフォローされています"
+    follow_request:
+      body: "%{name} さんがあなたにフォローをリクエストしました。"
+      subject: "%{name} さんからのフォローリクエスト"
+    mention:
+      body: "%{name} さんからReあふぅがありました:"
+      subject: "%{name} さんにReあふぅされました"
+    reblog:
+      body: 'あなたのあふぅが %{name} さんに同意されました:'
+      subject: あなたのあふぅが %{name} さんに同意されました。わかるわ
+  pagination:
+    next: 次
+    prev: 前
+    truncate: "&hellip;"
+  remote_follow:
+    acct: あなたの ユーザー名@ドメイン を入力してください
+    missing_resource: リダイレクト先が見つかりませんでした
+    proceed: フォローする
+    prompt: 'フォローしようとしています:'
+  settings:
+    authorized_apps: 認証済みアプリ
+    back: 戻る
+    edit_profile: プロフィールを編集
+    export: データのエクスポート
+    followers: 信頼済みのインスタンス
+    import: データのインポート
+    preferences: ユーザー設定
+    settings: 設定
+    two_factor_authentication: 二段階認証
+  statuses:
+    open_in_web: Webで開く
+    over_character_limit: 上限は %{max}文字までです
+    show_more: もっと見る
+    visibilities:
+      private: 私的資料
+      private_long: フォロワーにのみ表示されます
+      public: 公開資料
+      public_long: 誰でも見ることができ、かつ楽屋に表示されます
+      unlisted: 社内資料
+      unlisted_long: 誰でも見ることができますが、ライブステージには表示されません
+  stream_entries:
+    click_to_show: クリックして表示
+    reblogged: わかられました
+    sensitive_content: 閲覧注意
+  time:
+    formats:
+      default: "%Y年%m月%d日 %H:%M"
+  two_factor_authentication:
+    code_hint: 確認するには認証アプリで表示されたコードを入力してください
+    description_html: "<strong>二段階認証</strong>を有効にするとログイン時、電話でコードを受け取る必要があります。"
+    disable: 無効
+    enable: 有効
+    enabled_success: 二段階認証が有効になりました
+    generate_recovery_codes: リカバリーコードを生成
+    instructions_html: "<strong>Google Authenticatorか、もしくはほかのTOTPアプリでこのQRコードをスキャンしてください。</strong>これ以降、ログインするときはそのアプリで生成されるコードが必要になります。"
+    lost_recovery_codes: リカバリーコードを使用すると携帯電話を紛失した場合でもアカウントにアクセスできるようになります。 リカバリーコードを紛失した場合もここで再生成することができますが、古いリカバリーコードは無効になります。
+    manual_instructions: 'QRコードがスキャンできず、手動での登録を希望の場合はこのシークレットコードを利用してください。:'
+    recovery_codes_regenerated: リカバリーコードが再生成されました。
+    recovery_instructions: 携帯電話を紛失した場合、以下の内どれかのリカバリーコードを使用してアカウントへアクセスすることができます。 リカバリーコードは印刷して安全に保管してください。
+    setup: 初期設定
+    wrong_code: コードが間違っています。サーバー上の時間とデバイス上の時間が一致していることを確認してください。
+  users:
+    invalid_email: メールアドレスが無効です
+    invalid_otp_token: 二段階認証コードが間違っています

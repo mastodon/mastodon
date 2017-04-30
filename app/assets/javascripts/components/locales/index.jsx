@@ -22,6 +22,7 @@ import zh_hk from './zh-hk';
 import zh_cn from './zh-cn';
 import bg from './bg';
 import id from './id';
+import ja_im from './ja-im';
 
 const locales = {
   ar,
@@ -48,6 +49,7 @@ const locales = {
   'zh-CN': zh_cn,
   bg,
   id,
+  'ja-IM': ja_im,
 };
 
 export default function getMessagesForLocale (locale) {

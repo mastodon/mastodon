@@ -61,6 +61,7 @@ import uk from 'react-intl/locale-data/uk';
 import zh from 'react-intl/locale-data/zh';
 import bg from 'react-intl/locale-data/bg';
 import id from 'react-intl/locale-data/id';
+import ja_im from '../locales/ja-im';
 import { localeData as zh_hk } from '../locales/zh-hk';
 import { localeData as zh_cn } from '../locales/zh-cn';
 import pt_br from '../locales/pt-br';
@@ -99,6 +100,7 @@ addLocaleData([
   ...zh_cn,
   ...bg,
   ...id,
+  ...ja_im,
 ]);
 
 const getTopWhenReplacing = (previous, { location }) => location && location.action === 'REPLACE' && [0, 0];
