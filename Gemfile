@@ -35,9 +35,10 @@ gem 'http_accept_language'
 gem 'httplog'
 gem 'kaminari'
 gem 'link_header'
+gem 'local_time'
 gem 'nokogiri'
 gem 'oj'
-gem 'ostatus2'
+gem 'ostatus2', '~> 1.1'
 gem 'ox'
 gem 'rabl'
 gem 'rack-attack'
@@ -48,14 +49,16 @@ gem 'rails-settings-cached'
 gem 'redis', '~>3.2', require: ['redis', 'redis/connection/hiredis']
 gem 'rqrcode'
 gem 'ruby-oembed', require: 'oembed'
+gem 'sanitize'
 gem 'sidekiq'
 gem 'sidekiq-unique-jobs'
 gem 'simple-navigation'
 gem 'simple_form'
-gem 'sprockets-rails', :require => 'sprockets/railtie'
+gem 'sprockets-rails', require: 'sprockets/railtie'
 gem 'statsd-instrument'
 gem 'twitter-text'
 gem 'tzinfo-data'
+gem 'whatlanguage'
 
 gem 'react-rails'
 gem 'browserify-rails'
@@ -80,7 +83,7 @@ group :test do
 end
 
 group :development do
-  gem 'rubocop', require: false
+  gem 'rubocop', '0.46.0', require: false
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'letter_opener'

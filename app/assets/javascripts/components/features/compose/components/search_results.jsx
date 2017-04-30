@@ -1,17 +1,10 @@
-import PureRenderMixin from 'react-addons-pure-render-mixin';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import AccountContainer from '../../../containers/account_container';
 import StatusContainer from '../../../containers/status_container';
 import { Link } from 'react-router';
 
-const SearchResults = React.createClass({
-
-  propTypes: {
-    results: ImmutablePropTypes.map.isRequired
-  },
-
-  mixins: [PureRenderMixin],
+class SearchResults extends React.PureComponent {
 
   render () {
     const { results } = this.props;
@@ -53,7 +46,7 @@ const SearchResults = React.createClass({
     return (
       <div className='search-results'>
         <div className='search-results__header'>
-          <FormattedMessage id='search_results.total' defaultMessage='{count} {count, plural, one {result} other {results}}' values={{ count }} />
+          <FormattedMessage id='search_results.total' defaultMessage='{count, number} {count, plural, one {result} other {results}}' values={{ count }} />
         </div>
 
         {accounts}
@@ -63,6 +56,10 @@ const SearchResults = React.createClass({
     );
   }
 
-});
+}
+
+SearchResults.propTypes = {
+  results: ImmutablePropTypes.map.isRequired
+};
 
 export default SearchResults;

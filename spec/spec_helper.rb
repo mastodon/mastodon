@@ -21,10 +21,6 @@ RSpec.configure do |config|
     end
   end
 
-  config.before :each do
-    stub_request(:post, 'https://fcm.googleapis.com/fcm/send').to_return(status: 200, body: '')
-  end
-
   config.after :suite do
     FileUtils.rm_rf(Dir["#{Rails.root}/spec/test_files/"])
   end

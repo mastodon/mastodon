@@ -93,7 +93,7 @@ it:
       blocking: Lista dei bloccati
       following: Lista dei seguaci
     upload: Carica
-  landing_strip_html: <strong>%{name}</strong> è un utente su <strong>%{domain}</strong>. Puoi seguirlo o interagire con lui se possiedi un account ovunque nel fediverse. Se non possiedi un account, puoi <a href="%{sign_up_path}">iscriverti qui</a>.
+  landing_strip_html: <strong>%{name}</strong> è un utente su %{link_to_root_path}. Puoi seguirlo o interagire con lui se possiedi un account ovunque nel fediverse. Se non possiedi un account, puoi <a href="%{sign_up_path}">iscriverti qui</a>.
   media_attachments:
     validations:
       images_and_video: Impossibile allegare video a un post che contiene già immagini
@@ -140,7 +140,7 @@ it:
     import: Importa
     preferences: Preferenze
     settings: Impostazioni
-    two_factor_auth: Autenticazione a Due Fattori
+    two_factor_authentication: Autenticazione a Due Fattori
   statuses:
     open_in_web: Apri sul Web
     over_character_limit: Limite caratteri superato di %{max}
@@ -156,7 +156,7 @@ it:
   time:
     formats:
       default: "%b %d, %Y, %H:%M"
-  two_factor_auth:
+  two_factor_authentication:
     code_hint: Inserisci il codice generato dalla tua app di autenticazione
     description_html: Se abiliti <strong>l'autorizzazione a due fattori</strong>, entrare nel tuo account ti richiederà di avere vicino il tuo telefono, il quale ti genererà un codice per eseguire l'accesso.
     disable: Disabilita
@@ -165,7 +165,6 @@ it:
     instructions_html: "<strong>Scannerizza questo QR code con Google Authenticator o un'app TOTP simile sul tuo telefono</strong>. Da ora in poi, quell'applicazione genererà codici da inserire necessariamente per eseguire l'accesso."
     manual_instructions: 'Se non puoi scannerizzare il QR code e hai bisogno di inserirlo manualmente, questo è il codice segreto in chiaro:'
     setup: Configura
-    warning: Se non puoi convalidare immediatamente la tua app di autenticazione, dovresti selezionare "disabilita" o non sarai più in grado di eseguire l'accesso.
     wrong_code: Il codice inserito non è corretto! Assicurati che l'orario del server e l'orario del telefono siano corretti.
   users:
     invalid_email: L'indirizzo e-mail inserito non è valido

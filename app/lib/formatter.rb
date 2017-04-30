@@ -1,22 +1,21 @@
 # frozen_string_literal: true
 
 require 'singleton'
+require_relative './sanitize_config'
 
 class Formatter
   include Singleton
   include RoutingHelper
 
   include ActionView::Helpers::TextHelper
-  include ActionView::Helpers::SanitizeHelper
 
   def format(status)
     return reformat(status.content) unless status.local?
 
     html = status.text
-    html = encode(html)
+    html = encode_and_link_urls(html)
     html = simple_format(html, {}, sanitize: false)
     html = html.delete("\n")
-    html = link_urls(html)
     html = link_mentions(html, status.mentions)
     html = link_hashtags(html)
 
@@ -24,7 +23,7 @@ class Formatter
   end
 
   def reformat(html)
-    sanitize(html, tags: %w(a br p span), attributes: %w(href rel class))
+    sanitize(html, Sanitize::Config::MASTODON_STRICT).html_safe # rubocop:disable Rails/OutputSafety
   end
 
   def plaintext(status)
@@ -35,12 +34,17 @@ class Formatter
   def simplified_format(account)
     return reformat(account.note) unless account.local?
 
-    html = encode(account.note)
-    html = link_urls(html)
+    html = encode_and_link_urls(account.note)
+    html = simple_format(html, {}, sanitize: false)
+    html = html.delete("\n")
     html = link_accounts(html)
     html = link_hashtags(html)
 
     html.html_safe # rubocop:disable Rails/OutputSafety
+  end
+
+  def sanitize(html, config)
+    Sanitize.fragment(html, config)
   end
 
   private
@@ -49,10 +53,25 @@ class Formatter
     HTMLEntities.new.encode(html)
   end
 
-  def link_urls(html)
-    Twitter::Autolink.auto_link_urls(html, url_target: '_blank',
-                                           link_attribute_block: lambda { |_, a| a[:rel] << ' noopener' },
-                                           link_text_block: lambda { |_, text| link_html(text) })
+  def encode_and_link_urls(html)
+    entities = Twitter::Extractor.extract_urls_with_indices(html, extract_url_without_protocol: false)
+    entities = entities.sort_by { |entity| entity[:indices].first }
+
+    chars = html.to_s.to_char_a
+    html_attrs = {
+      target: '_blank',
+      rel: 'nofollow noopener',
+    }
+    result = ''
+
+    last_index = entities.reduce(0) do |index, entity|
+      normalized_url = Addressable::URI.parse(entity[:url]).normalize
+      indices = entity[:indices]
+      result += encode(chars[index...indices.first].join)
+      result += Twitter::Autolink.send(:link_to_text, entity, link_html(entity[:url]), normalized_url, html_attrs)
+      indices.last
+    end
+    result += encode(chars[last_index..-1].join)
   end
 
   def link_mentions(html, mentions)
@@ -82,6 +101,7 @@ class Formatter
   end
 
   def link_html(url)
+    url = Addressable::URI.parse(url).display_uri.to_s
     prefix = url.match(/\Ahttps?:\/\/(www\.)?/).to_s
     text   = url[prefix.length, 30]
     suffix = url[prefix.length + 30..-1]
@@ -91,7 +111,7 @@ class Formatter
   end
 
   def hashtag_html(match)
-    prefix, affix = match.split('#')
+    prefix, _, affix = match.rpartition('#')
     "#{prefix}<a href=\"#{tag_url(affix.downcase)}\" class=\"mention hashtag\">#<span>#{affix}</span></a>"
   end
 

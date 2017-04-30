@@ -4,7 +4,7 @@ class Subscription < ApplicationRecord
   MIN_EXPIRATION = 3600 * 24 * 7
   MAX_EXPIRATION = 3600 * 24 * 30
 
-  belongs_to :account
+  belongs_to :account, required: true
 
   validates :callback_url, presence: true
   validates :callback_url, uniqueness: { scope: :account_id }

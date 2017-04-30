@@ -8,7 +8,7 @@ class Account < ApplicationRecord
 
   # Local users
   has_one :user, inverse_of: :account
-  validates :username, presence: true, format: { with: /\A[a-z0-9_]+\z/i, message: 'only letters, numbers and underscores' }, uniqueness: { scope: :domain, case_sensitive: false }, length: { maximum: 30 }, if: 'local?'
+  validates :username, presence: true, format: { with: /\A[a-z0-9_]+\z/i }, uniqueness: { scope: :domain, case_sensitive: false }, length: { maximum: 30 }, if: 'local?'
   validates :username, presence: true, uniqueness: { scope: :domain, case_sensitive: true }, unless: 'local?'
 
   # Avatar upload
@@ -20,6 +20,8 @@ class Account < ApplicationRecord
   has_attached_file :header, styles: ->(f) { header_styles(f) }, convert_options: { all: '-quality 80 -strip' }
   validates_attachment_content_type :header, content_type: IMAGE_MIME_TYPES
   validates_attachment_size :header, less_than: 2.megabytes
+
+  before_post_process :set_file_extensions
 
   # Local user profile validations
   validates :display_name, length: { maximum: 30 }, if: 'local?'
@@ -44,6 +46,8 @@ class Account < ApplicationRecord
   # Block relationships
   has_many :block_relationships, class_name: 'Block', foreign_key: 'account_id', dependent: :destroy
   has_many :blocking, -> { order('blocks.id desc') }, through: :block_relationships, source: :target_account
+  has_many :blocked_by_relationships, class_name: 'Block', foreign_key: :target_account_id, dependent: :destroy
+  has_many :blocked_by, -> { order('blocks.id desc') }, through: :blocked_by_relationships, source: :account
 
   # Mute relationships
   has_many :mute_relationships, class_name: 'Mute', foreign_key: 'account_id', dependent: :destroy
@@ -55,6 +59,10 @@ class Account < ApplicationRecord
   # PuSH subscriptions
   has_many :subscriptions, dependent: :destroy
 
+  # Report relationships
+  has_many :reports
+  has_many :targeted_reports, class_name: 'Report', foreign_key: :target_account_id
+
   scope :remote, -> { where.not(domain: nil) }
   scope :local, -> { where(domain: nil) }
   scope :without_followers, -> { where('(select count(f.id) from follows as f where f.target_account_id = accounts.id) = 0') }
@@ -64,17 +72,26 @@ class Account < ApplicationRecord
   scope :suspended, -> { where(suspended: true) }
   scope :recent, -> { reorder(id: :desc) }
   scope :alphabetic, -> { order(domain: :asc, username: :asc) }
+  scope :by_domain_accounts, -> { group(:domain).select(:domain, 'COUNT(*) AS accounts_count').order('accounts_count desc') }
+
+  delegate :email,
+    :current_sign_in_ip,
+    :current_sign_in_at,
+    :confirmed?,
+    to: :user,
+    prefix: true,
+    allow_nil: true
 
   def follow!(other_account)
     active_relationships.where(target_account: other_account).first_or_create!(target_account: other_account)
   end
 
   def block!(other_account)
-    block_relationships.where(target_account: other_account).first_or_create!(target_account: other_account)
+    block_relationships.where(target_account: other_account).first_or_create!(target_account: other_account, block: true)
   end
 
   def mute!(other_account)
-    mute_relationships.where(target_account: other_account).first_or_create!(target_account: other_account)
+    mute_relationships.where(target_account: other_account).first_or_create!(target_account: other_account, block: false)
   end
 
   def unfollow!(other_account)
@@ -108,10 +125,6 @@ class Account < ApplicationRecord
     follow_requests.where(target_account: other_account).exists?
   end
 
-  def followers_domains
-    followers.reorder('').select('DISTINCT accounts.domain').map(&:domain)
-  end
-
   def local?
     domain.nil?
   end
@@ -130,6 +143,10 @@ class Account < ApplicationRecord
 
   def subscribed?
     !subscription_expires_at.blank?
+  end
+
+  def followers_domains
+    followers.reorder(nil).pluck('distinct accounts.domain')
   end
 
   def favourited?(status)
@@ -175,22 +192,22 @@ class Account < ApplicationRecord
   end
 
   def avatar_remote_url=(url)
-    parsed_url = URI.parse(url)
+    parsed_url = Addressable::URI.parse(url).normalize
 
     return if !%w(http https).include?(parsed_url.scheme) || parsed_url.host.empty? || self[:avatar_remote_url] == url
 
-    self.avatar              = parsed_url
+    self.avatar              = URI.parse(parsed_url.to_s)
     self[:avatar_remote_url] = url
   rescue OpenURI::HTTPError => e
     Rails.logger.debug "Error fetching remote avatar: #{e}"
   end
 
   def header_remote_url=(url)
-    parsed_url = URI.parse(url)
+    parsed_url = Addressable::URI.parse(url).normalize
 
     return if !%w(http https).include?(parsed_url.scheme) || parsed_url.host.empty? || self[:header_remote_url] == url
 
-    self.header              = parsed_url
+    self.header              = URI.parse(parsed_url.to_s)
     self[:header_remote_url] = url
   rescue OpenURI::HTTPError => e
     Rails.logger.debug "Error fetching remote header: #{e}"
@@ -202,6 +219,10 @@ class Account < ApplicationRecord
 
   def to_param
     username
+  end
+
+  def excluded_from_timeline_account_ids
+    Rails.cache.fetch("exclude_account_ids_for:#{id}") { blocking.pluck(:target_account_id) + blocked_by.pluck(:account_id) + muting.pluck(:target_account_id) }
   end
 
   class << self
@@ -231,18 +252,20 @@ class Account < ApplicationRecord
         WITH first_degree AS (
             SELECT target_account_id
             FROM follows
-            WHERE account_id = ?
+            WHERE account_id = :account_id
           )
         SELECT accounts.*
         FROM follows
         INNER JOIN accounts ON follows.target_account_id = accounts.id
-        WHERE account_id IN (SELECT * FROM first_degree) AND target_account_id NOT IN (SELECT * FROM first_degree) AND target_account_id <> ?
+        WHERE account_id IN (SELECT * FROM first_degree) AND target_account_id NOT IN (SELECT * FROM first_degree) AND target_account_id <> :account_id
         GROUP BY target_account_id, accounts.id
         ORDER BY count(account_id) DESC
-        LIMIT ?
+        LIMIT :limit
       SQL
 
-      Account.find_by_sql([sql, account.id, account.id, limit])
+      find_by_sql(
+        [sql, { account_id: account.id, limit: limit }]
+      )
     end
 
     def search_for(terms, limit = 10)
@@ -322,11 +345,36 @@ class Account < ApplicationRecord
     end
   end
 
-  before_create do
-    if local?
-      keypair = OpenSSL::PKey::RSA.new(Rails.env.test? ? 1024 : 2048)
-      self.private_key = keypair.to_pem
-      self.public_key  = keypair.public_key.to_pem
+  before_create :generate_keys
+  before_validation :normalize_domain
+
+  private
+
+  def generate_keys
+    return unless local?
+
+    keypair = OpenSSL::PKey::RSA.new(Rails.env.test? ? 1024 : 2048)
+    self.private_key = keypair.to_pem
+    self.public_key  = keypair.public_key.to_pem
+  end
+
+  def normalize_domain
+    return if local?
+
+    self.domain = TagManager.instance.normalize_domain(domain)
+  end
+
+  def set_file_extensions
+    unless avatar.blank?
+      extension = Paperclip::Interpolations.content_type_extension(avatar, :original)
+      basename  = Paperclip::Interpolations.basename(avatar, :original)
+      avatar.instance_write :file_name, [basename, extension].delete_if(&:empty?).join('.')
+    end
+
+    unless header.blank?
+      extension = Paperclip::Interpolations.content_type_extension(header, :original)
+      basename  = Paperclip::Interpolations.basename(header, :original)
+      header.instance_write :file_name, [basename, extension].delete_if(&:empty?).join('.')
     end
   end
 end

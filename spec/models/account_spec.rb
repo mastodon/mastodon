@@ -190,6 +190,21 @@ RSpec.describe Account, type: :model do
     end
   end
 
+  describe '#excluded_from_timeline_account_ids' do
+    it 'includes account ids of blockings, blocked_bys and mutes' do
+      account = Fabricate(:account)
+      block = Fabricate(:block, account: account, block: true)
+      mute = Fabricate(:mute, account: account, block: false)
+      block_by = Fabricate(:block, target_account: account, block: true)
+
+      results = account.excluded_from_timeline_account_ids
+      expect(results.size).to eq 3
+      expect(results).to include(block.target_account.id)
+      expect(results).to include(mute.target_account.id)
+      expect(results).to include(block_by.account.id)
+    end
+  end
+
   describe '.search_for' do
     before do
       @match = Fabricate(
@@ -242,6 +257,23 @@ RSpec.describe Account, type: :model do
       results = Account.advanced_search_for("match", account)
       expect(results).to eq [followed_match, match]
       expect(results.first.rank).to be > results.last.rank
+    end
+  end
+
+  describe '.triadic_closures' do
+    it 'finds accounts you dont follow which are followed by accounts you do follow' do
+      me = Fabricate(:account)
+      friend = Fabricate(:account)
+      friends_friend = Fabricate(:account)
+      me.follow!(friend)
+      friend.follow!(friends_friend)
+
+      both_follow = Fabricate(:account)
+      me.follow!(both_follow)
+      friend.follow!(both_follow)
+
+      results = Account.triadic_closures(me)
+      expect(results).to eq [friends_friend]
     end
   end
 
@@ -390,6 +422,20 @@ RSpec.describe Account, type: :model do
         account_1 = Fabricate(:account, domain: nil)
         account_2 = Fabricate(:account, domain: 'example.com')
         expect(Account.remote).to match_array([account_2])
+      end
+    end
+
+    describe 'by_domain_accounts' do
+      it 'returns accounts grouped by domain sorted by accounts' do
+        2.times { Fabricate(:account, domain: 'example.com') }
+        Fabricate(:account, domain: 'example2.com')
+
+        results = Account.by_domain_accounts
+        expect(results.length).to eq 2
+        expect(results.first.domain).to eq 'example.com'
+        expect(results.first.accounts_count).to eq 2
+        expect(results.last.domain).to eq 'example2.com'
+        expect(results.last.accounts_count).to eq 1
       end
     end
 

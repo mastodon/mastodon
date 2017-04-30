@@ -2,21 +2,15 @@
 
 module Admin
   class SettingsController < BaseController
+    BOOLEAN_SETTINGS = %w(open_registrations).freeze
+
     def index
       @settings = Setting.all_as_records
     end
 
     def update
       @setting = Setting.where(var: params[:id]).first_or_initialize(var: params[:id])
-      value    = settings_params[:value]
-
-      # Special cases
-      value = value == 'true' if @setting.var == 'open_registrations'
-
-      if @setting.value != value
-        @setting.value = value
-        @setting.save
-      end
+      @setting.update(value: value_for_update)
 
       respond_to do |format|
         format.html { redirect_to admin_settings_path }
@@ -28,6 +22,18 @@ module Admin
 
     def settings_params
       params.require(:setting).permit(:value)
+    end
+
+    def value_for_update
+      if updating_boolean_setting?
+        settings_params[:value] == 'true'
+      else
+        settings_params[:value]
+      end
+    end
+
+    def updating_boolean_setting?
+      BOOLEAN_SETTINGS.include?(params[:id])
     end
   end
 end

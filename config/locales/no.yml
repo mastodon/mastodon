@@ -242,11 +242,7 @@
       following: Følgeliste
       muting: Muting list
     upload: Opplastning
-  landing_strip_html: >-
-    <strong>%{name}</strong> er en bruker på <strong>%{domain}</strong>. Du kan
-    følge dem eller kommunisere med dem hvis du har en konto hvor som helst i
-    fediverset. Hvis du ikke har en konto så kan du <a
-    href="%{sign_up_path}">registrere deg her</a>.
+  landing_strip_html: <strong>%{name}</strong> er en bruker på %{link_to_root_path}. Du kan følge dem eller kommunisere med dem hvis du har en konto hvor som helst i fediverset. Hvis du ikke har en konto så kan du <a href="%{sign_up_path}">registrere deg her</a>.
   media_attachments:
     validations:
       images_and_video: Kan ikke legge ved video på en status som allerede inneholder bilder
@@ -313,7 +309,7 @@
     import: Importér
     preferences: Preferanser
     settings: Innstillinger
-    two_factor_auth: Tofaktorautentisering
+    two_factor_authentication: Tofaktorautentisering
   statuses:
     open_in_web: Åpne i nettleser
     over_character_limit: 'grense på %{max} tegn overskredet'
@@ -328,20 +324,15 @@
     sensitive_content: Følsomt innhold
   time:
     formats:
-      default: '%d, %b %Y, %H:%M'
-  two_factor_auth:
+      default: '%-d. %b %Y, %H:%M'
+  two_factor_authentication:
     code_hint: Tast koden som ble generert av din autentiseringsapp for å bekrefte
-    description_html: >-
-      Hvis du skrur på <strong>tofaktorautentisering</strong> må du ha din
-      telefon for å logge inn. Denne vil generere koder som du må taste inn.
+    description_html: Hvis du skrur på <strong>tofaktorautentisering</strong> må du ha din telefon for å logge inn. Denne vil generere koder som du må taste inn.
     disable: Skru av
     enable: Skru på
     enabled_success: Aktivering av tofaktorautentisering vellykket
     generate_recovery_codes: Generér gjenopprettingskoder
-    instructions_html: >-
-      <strong>Scan denne QR-koden i Google Authenticator eller en lignende app
-      på telefonen din</strong>. Fra nå av vil denne applikasjonen generere
-      koder for deg som skal brukes under innlogging
+    instructions_html: "<strong>Scan denne QR-koden i Google Authenticator eller en lignende app på telefonen din</strong>. Fra nå av vil denne applikasjonen generere koder for deg som skal brukes under innlogging"
     lost_recovery_codes: >-
       Gjenopprettingskoder lar deg gjenoppnå tilgang til din konto hvis du mister din
       telefon. Hvis du har mistet gjenopprettingskodene, kan du regenerere dem her.

@@ -47,8 +47,8 @@ class ProcessFeedService < BaseService
       return status unless just_created
 
       if verb == :share
-        original_status, = status_from_xml(@xml.at_xpath('.//activity:object', activity: TagManager::AS_XMLNS))
-        status.reblog    = original_status
+        original_status = shared_status_from_xml(@xml.at_xpath('.//activity:object', activity: TagManager::AS_XMLNS))
+        status.reblog   = original_status
 
         if original_status.nil?
           status.destroy
@@ -90,6 +90,14 @@ class ProcessFeedService < BaseService
       !([:post, :share, :delete].include?(verb) && [:activity, :note, :comment].include?(type))
     end
 
+    def shared_status_from_xml(entry)
+      status = find_status(id(entry))
+
+      return status unless status.nil?
+
+      FetchRemoteStatusService.new.call(url(entry))
+    end
+
     def status_from_xml(entry)
       # Return early if status already exists in db
       status = find_status(id(entry))
@@ -119,6 +127,7 @@ class ProcessFeedService < BaseService
         spoiler_text: content_warning(entry),
         created_at: published(entry),
         reply: thread?(entry),
+        language: content_language(entry),
         visibility: visibility_scope(entry)
       )
 
@@ -161,13 +170,7 @@ class ProcessFeedService < BaseService
       xml.xpath('./xmlns:link[@rel="mentioned"]', xmlns: TagManager::XMLNS).each do |link|
         next if [TagManager::TYPES[:group], TagManager::TYPES[:collection]].include? link['ostatus:object-type']
 
-        url = Addressable::URI.parse(link['href'])
-
-        mentioned_account = if TagManager.instance.web_domain?(url.host)
-                              Account.find_local(url.path.gsub('/users/', ''))
-                            else
-                              Account.find_by(url: link['href']) || FetchRemoteAccountService.new.call(link['href'])
-                            end
+        mentioned_account = account_from_href(link['href'])
 
         next if mentioned_account.nil? || processed_account_ids.include?(mentioned_account.id)
 
@@ -175,6 +178,16 @@ class ProcessFeedService < BaseService
 
         # So we can skip duplicate mentions
         processed_account_ids << mentioned_account.id
+      end
+    end
+
+    def account_from_href(href)
+      url = Addressable::URI.parse(href).normalize
+
+      if TagManager.instance.web_domain?(url.host)
+        Account.find_local(url.path.gsub('/users/', ''))
+      else
+        Account.find_by(uri: href) || Account.find_by(url: href) || FetchRemoteAccountService.new.call(href)
       end
     end
 
@@ -190,9 +203,9 @@ class ProcessFeedService < BaseService
         next unless link['href']
 
         media = MediaAttachment.where(status: parent, remote_url: link['href']).first_or_initialize(account: parent.account, status: parent, remote_url: link['href'])
-        parsed_url = URI.parse(link['href'])
+        parsed_url = Addressable::URI.parse(link['href']).normalize
 
-        next if !%w[http https].include?(parsed_url.scheme) || parsed_url.host.empty?
+        next if !%w(http https).include?(parsed_url.scheme) || parsed_url.host.empty?
 
         media.save
 
@@ -234,6 +247,10 @@ class ProcessFeedService < BaseService
       xml.at_xpath('./xmlns:content', xmlns: TagManager::XMLNS).content
     end
 
+    def content_language(xml = @xml)
+      xml.at_xpath('./xmlns:content', xmlns: TagManager::XMLNS)['xml:lang']&.presence || 'en'
+    end
+
     def content_warning(xml = @xml)
       xml.at_xpath('./xmlns:summary', xmlns: TagManager::XMLNS)&.content || ''
     end
@@ -262,7 +279,7 @@ class ProcessFeedService < BaseService
     def acct(xml = @xml)
       username = xml.at_xpath('./xmlns:author/xmlns:name', xmlns: TagManager::XMLNS).content
       url      = xml.at_xpath('./xmlns:author/xmlns:uri', xmlns: TagManager::XMLNS).content
-      domain   = Addressable::URI.parse(url).host
+      domain   = Addressable::URI.parse(url).normalize.host
 
       "#{username}@#{domain}"
     end

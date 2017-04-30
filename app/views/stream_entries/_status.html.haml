@@ -26,7 +26,7 @@
           %strong.emojify= display_name(status.account)
         = t('stream_entries.reblogged')
 
-  = render partial: centered ? 'stream_entries/detailed_status' : 'stream_entries/simple_status', locals: { status: status.proper }
+  = render (centered ? 'stream_entries/detailed_status' : 'stream_entries/simple_status'), status: status.proper
 
 - if include_threads
   = render partial: 'stream_entries/status', collection: @descendants, as: :status, locals: { is_successor: true, parent_id: status.id}

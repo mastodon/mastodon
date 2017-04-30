@@ -29,6 +29,7 @@ ja:
     terms: プライバシーポリシー
     user_count_after: 人
     user_count_before: ユーザー数
+    version: バージョン
   accounts:
     follow: フォロー
     followers: フォロワー
@@ -39,14 +40,25 @@ ja:
     posts: 投稿
     remote_follow: リモートフォロー
     unfollow: フォロー解除
+  activitypub:
+    activity:
+      announce:
+        name: "%{account_name} さんがアクティビティをシェアしました"
+      create:
+        name: "%{account_name} さんがノートを作成しました"
+    outbox:
+      name: "%{account_name} さんの送信トレイ"
+      summary: "%{account_name} さんからのアクティビティコレクション"
   admin:
     accounts:
       are_you_sure: 本当に実行しますか?
+      confirm: 確認
+      confirmed: 確認済み
       display_name: 表示名
       domain: ドメイン
       edit: 編集
       email: E-mail
-      feed_url: Feed URL
+      feed_url: フィードURL
       followers: フォロワー数
       follows: フォロー数
       location:
@@ -73,6 +85,10 @@ ja:
       push_subscription_expires: PuSH購読期限切れ
       reset_password: パスワード再設定
       salmon_url: Salmon URL
+      show:
+        created_reports: このアカウントで作られたレポート
+        report: レポート
+        targeted_reports: このアカウントについてのレポート
       silence: サイレンス
       statuses: トゥート数
       title: アカウント
@@ -80,7 +96,7 @@ ja:
       undo_suspension: 停止から戻す
       username: ユーザー名
       web: Web
-    domain_block:
+    domain_blocks:
       add_new: 新規追加
       created_msg: ドメインブロック処理を完了しました
       destroyed_msg: ドメインブロックを外しました
@@ -94,13 +110,15 @@ ja:
           suspend: 停止
         title: 新規ドメインブロック
       reject_media: メディアファイルを拒否
-      reject_media_hint: ローカルに保村されたメディアファイルを削除し、今後のダウンロードを拒否します。停止とは無関係です。
+      reject_media_hint: ローカルに保存されたメディアファイルを削除し、今後のダウンロードを拒否します。停止とは無関係です。
       severities:
         silence: サイレンス
         suspend: 停止
       severity: 深刻度
       show:
-        affected_accounts: "データベース中の%{count}個のアカウントに影響します"
+        affected_accounts:
+          one: "データベース中の一つのアカウントに影響します"
+          other: "データベース中の%{count}個のアカウントに影響します"
         retroactive:
           silence: このドメインからの存在するすべてのアカウントのサイレンスを戻す
           suspend: このドメインからの存在するすべてのアカウントの停止を戻す
@@ -108,6 +126,10 @@ ja:
         undo: 元に戻す
       title: ドメインブロック
       undo: 元に戻す
+    instances:
+      account_count: 既知のアカウント数
+      domain_name: ドメイン名
+      title: 既知のインスタンス
     pubsubhubbub:
       callback_url: コールバックURL
       confirmed: 確認済み
@@ -125,6 +147,7 @@ ja:
       report: レポート#%{id}
       reported_account: 報告対象アカウント
       reported_by: 報告者
+      report_contents: 内容
       resolved: 解決済み
       silence_account: アカウントをサイレンス
       status: ステータス
@@ -193,6 +216,7 @@ ja:
       x_months: "%{count}月"
       x_seconds: "%{count}秒"
   errors:
+    '403': このページを表示する権限がありません
     '404': お探しのページは見つかりませんでした。
     '410': お探しのページはもう存在しません。
     '422':
@@ -204,6 +228,18 @@ ja:
     follows: フォロー
     mutes: ミュート
     storage: メディア
+  followers:
+    domain: ドメイン
+    explanation_html: あなたの投稿のプライバシーを確保したい場合、誰があなたをフォローしているのかを把握している必要があります。 <strong>プライベート投稿は、あなたのフォロワーがいる全てのインスタンスに配信されます</strong>。 フォロワーのインスタンスの管理者やソフトウェアがあなたのプライバシーを尊重してくれるかどうか怪しい場合は、そのフォロワーを削除した方がよいかもしれません。
+    followers_count: フォロワー数
+    lock_link: 非公開アカウント
+    purge: フォロワーから削除する
+    success:
+      one: 1個のドメインからソフトブロックするフォロワーを処理中...
+      other: "%{count} 個のドメインからソフトブロックするフォロワーを処理中..."
+    true_privacy_html: <strong>プライバシーの保護はエンドツーエンドの暗号化でのみ実現可能</strong>であることに留意ください。
+    unlocked_warning_html: 誰でもあなたをフォローすることができ、あなたのプライベート投稿をすぐに見ることができます。フォローする人を限定したい場合は%{lock_link}に設定してください。
+    unlocked_warning_title: このアカウントは非公開アカウントに設定されていません。
   generic:
     changes_saved_msg: 正常に変更されました
     powered_by: powered by %{link}
@@ -219,7 +255,7 @@ ja:
       following: フォロー中のアカウントリスト
       muting: ミュートしたアカウントリスト
     upload: アップロード
-  landing_strip_html: <strong>%{name}</strong> さんはインスタンス <strong>%{domain}</strong> のユーザーです。アカウントさえ持っていればフォローしたり会話したりできます。もしお持ちでないなら <a href="%{sign_up_path}">こちら</a> からサインアップできます。
+  landing_strip_html: <strong>%{name}</strong> さんはインスタンス %{link_to_root_path} のユーザーです。アカウントさえ持っていればフォローしたり会話したりできます。もしお持ちでないなら <a href="%{sign_up_path}">こちら</a> からサインアップできます。
   media_attachments:
     validations:
       images_and_video: 既に画像が追加されているため、動画を追加することはできません。
@@ -258,63 +294,47 @@ ja:
     missing_resource: リダイレクト先が見つかりませんでした
     proceed: フォローする
     prompt: 'フォローしようとしています:'
-  reports:
-    comment:
-      label: コメント
-      none: なし
-    delete: 削除
-    id: ID
-    mark_as_resolved: 解決する
-    report: '通報 #%{id}'
-    reported_account: 通報されているユーザー
-    reported_by: 通報者
-    reports: 通報
-    resolved: 解決済み
-    silence_account: ユーザーをサイレンスする
-    status: 現状
-    suspend_account: ユーザーを停止する
-    target: 通報されているユーザー
-    unresolved: 未決
-    view: 見る
   settings:
     authorized_apps: 認証済みアプリ
     back: 戻る
     edit_profile: プロフィールを編集
     export: データのエクスポート
+    followers: 信頼済みのインスタンス
     import: データのインポート
     preferences: ユーザー設定
     settings: 設定
-    two_factor_auth: 二段階認証
+    two_factor_authentication: 二段階認証
   statuses:
     open_in_web: Webで開く
     over_character_limit: 上限は %{max}文字までです
     show_more: もっと見る
     visibilities:
-      private: Private - フォロワーだけに見せる
-      public: Public - 全体に公開する
-      unlisted: Unlisted - トゥートは公開するが、公開タイムラインには表示しない
+      private: 非公開
+      private_long: フォロワーにのみ表示されます
+      public: 公開
+      public_long: 誰でも見ることができ、かつ公開タイムラインに表示されます
+      unlisted: 未収載
+      unlisted_long: 誰でも見ることができますが、公開タイムラインには表示されません
   stream_entries:
     click_to_show: クリックして表示
     reblogged: ブーストされました
-    sensitive_content: 不適切なコンテンツの可能性があります
+    sensitive_content: 閲覧注意
   time:
     formats:
       default: "%Y年%m月%d日 %H:%M"
-  two_factor_auth:
+  two_factor_authentication:
     code_hint: 確認するには認証アプリで表示されたコードを入力してください
     description_html: "<strong>二段階認証</strong>を有効にするとログイン時、電話でコードを受け取る必要があります。"
     disable: 無効
     enable: 有効
     enabled_success: 二段階認証が有効になりました
-    generate_recovery_codes: 復元コードを生成
+    generate_recovery_codes: リカバリーコードを生成
     instructions_html: "<strong>Google Authenticatorか、もしくはほかのTOTPアプリでこのQRコードをスキャンしてください。</strong>これ以降、ログインするときはそのアプリで生成されるコードが必要になります。"
-    lost_recovery_codes: リカバリコードを使用すると携帯電話を紛失した場合でもアカウントにアクセスできるようになります。 リカバリーコードを紛失した場合もここで再生成することができますが、古いリカバリコードは無効になります。
+    lost_recovery_codes: リカバリーコードを使用すると携帯電話を紛失した場合でもアカウントにアクセスできるようになります。 リカバリーコードを紛失した場合もここで再生成することができますが、古いリカバリーコードは無効になります。
     manual_instructions: 'QRコードがスキャンできず、手動での登録を希望の場合はこのシークレットコードを利用してください。:'
-    recovery_codes: リカバリーコード
     recovery_codes_regenerated: リカバリーコードが再生成されました。
-    recovery_instructions: 携帯電話を紛失した場合、以下の内どれかのリカバリコードを使用してアカウントへアクセスすることができます。 リカバリコードは印刷して安全に保管してください。
+    recovery_instructions: 携帯電話を紛失した場合、以下の内どれかのリカバリーコードを使用してアカウントへアクセスすることができます。 リカバリーコードは印刷して安全に保管してください。
     setup: 初期設定
-    warning: 現在認証アプリを設定できない場合、無効に設定して、有効にしないでください。
     wrong_code: コードが間違っています。サーバー上の時間とデバイス上の時間が一致していることを確認してください。
   users:
     invalid_email: メールアドレスが無効です

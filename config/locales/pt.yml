@@ -1,65 +1,78 @@
 ---
 pt:
   about:
-    about_mastodon: Mastodon é um servidor de rede social <em>grátis, e open-source</em>. Uma alternativa <em>descentralizada</em> ás plataformas comerciais, que evita o risco de uma única empresa monopolizar a sua comunicação. Qualquer um pode ter uma instância Mastodon e assim participar na <em>rede social federada</em> sem problemas.
-    about_this: Sobre essa instância
-    get_started: Como começar
+    about_mastodon: Mastodon é uma rede social <em>grátis e em código aberto</em>. Uma alternativa <em>descentralizada</em> às plataformas comerciais, que evita o risco de uma única empresa monopolizar a tua comunicação. Escolhe um servidor que confies, não importa qual, pois vais poder comunicar com todos os outros. Qualquer um pode criar uma instância Mastodon e participar nesta <em>rede social</em>.
+    about_this: Sobre esta instância
     apps: Aplicações
     business_email: 'Email comercial:'
-    closed_registrations: Registros estão fechadas para essa instância.
-    contact: Contato
-    description_headline: O que é %{domain}?
+    closed_registrations: Novos registos estão fechados nesta instância.
+    contact: Contacto
+    description_headline: O que é o %{domain}?
     domain_count_after: outras instâncias
-    domain_count_before: Conectado a
+    domain_count_before: Ligado a
     features:
-      api: Aberto para API de aplicações e serviços
-      blocks: Bloqueos e ferramentas para mudar
+      api: API aberta para aplicações e serviços
+      blocks: Ferramentas para silenciar e bloquear
       characters: 500 caracteres por post
-      chronology: Timeline são cronologicas
-      ethics: 'Design ético: sem propaganda, sem tracking'
-      gifv: GIFV e vídeos curtos
-      privacy: Granular, privacidade setada por post
+      chronology: Timelines cronológicas
+      ethics: 'Design ético: sem públicidade ou tracking'
+      gifv: GIFV e pequenos vídeos
+      privacy: Privacidade granular por post
       public: Timelines públicas
     features_headline: O que torna Mastodon diferente
-    get_started: Comece aqui
+    get_started: Começar
     links: Links
-    source_code: Source code
     other_instances: Outras instâncias
+    source_code: Código fonte
+    status_count_after: publicações
+    status_count_before: Que fizeram
     terms: Termos
-    user_count_after: usuários
-    user_count_before: Lugar de
+    user_count_after: utilizadores
+    user_count_before: Casa para
+    version: Versão
   accounts:
     follow: Seguir
     followers: Seguidores
-    following: Seguindo
+    following: A seguir
     nothing_here: Não há nada aqui!
     people_followed_by: Pessoas seguidas por %{name}
     people_who_follow: Pessoas que seguem %{name}
     posts: Posts
-    remote_follow: Acesso remoto
-    unfollow: Unfollow
+    remote_follow: Seguir remotamente
+    unfollow: Deixar de seguir
+  activitypub:
+    activity:
+      announce:
+        name: "%{account_name} anunciou uma atividade."
+      create:
+        name: "%{account_name} criou uma nota."
+    outbox:
+      name: "%{account_name}'s Outbox"
+      summary: Uma coleção de atividades do usuário %{account_name}.
   admin:
     accounts:
-      are_you_sure: Você tem certeza?
-      display_name: Nome mostrado
-      domain: Domain
+      are_you_sure: Tens a certeza?
+      confirm: Confirme
+      confirmed: Confirmado
+      display_name: Nome a mostrar
+      domain: Domínio
       edit: Editar
       email: E-mail
       feed_url: URL do Feed
       followers: Seguidores
-      follows: Seguindo
+      follows: A seguir
       location:
         all: Todos
         local: Local
         remote: Remoto
         title: Local
-      media_attachments: Mídia anexadas
+      media_attachments: Media anexa
       moderation:
         all: Todos
-        silenced: Silenciado
-        suspended: Supenso
+        silenced: Silenciados
+        suspended: Supensos
         title: Moderação
-      most_recent_activity: Atividade mais recente
+      most_recent_activity: Actividade mais recente
       most_recent_ip: IP mais recente
       not_subscribed: Não inscrito
       order:
@@ -70,6 +83,7 @@ pt:
       profile_url: URL do perfil
       public: Público
       push_subscription_expires: PuSH subscription expires
+      reset_password: Reset palavra-passe
       salmon_url: Salmon URL
       silence: Silêncio
       statuses: Status
@@ -78,45 +92,165 @@ pt:
       undo_suspension: Desfazer supensão
       username: Usuário
       web: Web
-    domain_block:
-      add_new: Adicionar nova
-      created_msg: Bloqueio do domínio está sendo processado
-      destroyed_msg: Bloqueio de domínio está sendo desfeito
+    domain_blocks:
+      add_new: Adicionar novo
+      created_msg: Bloqueio do domínio está a ser processado
+      destroyed_msg: Bloqueio de domínio está a ser removido
       domain: Domínio
+      new:
+        create: Criar bloqueio
+        hint: O bloqueio de dominio não vai previnir a criação de entradas na base de dados, mas irá retroativamente e automaticamente aplicar métodos de moderação específica nessas contas.
+        severity:
+          desc_html: "<strong>Silenciar</strong> irá fazer com que os posts dessas contas sejam invisíveis para todos que não a seguem. <strong>Supender</strong> irá eliminar todo o conteúdo guardado dessa conta, mídia e informação de perfil."
+          silence: Silenciar
+          suspend: Suspender
+        title: Novo bloqueio de domínio
+      reject_media: Rejeitar ficheiros de mídia
+      reject_media_hint: Remove localmente arquivos armazenados e rejeita fazer guardar novos no futuro. Irrelevante na suspensão.
+      severities:
+        silence: Silenciar
+        suspend: Suspender
+      severity: Severidade
+      show:
+        affected_accounts:
+          one: Uma conta na base de dados afectada
+          other: "%{count} contas na base de dados afectadas"
+        retroactive:
+          silence: Não silenciar todas as contas existentes nesse domínio
+          suspend: Não suspender todas as contas existentes nesse domínio
+        title: Remover o bloqueio de domínio de %{domain}
+        undo: Anular
+      title: Bloqueio de domínio
+      undo: Anular
+    instances:
+      account_count: Contas conhecidas
+      domain_name: Domínio
+      title: Instâncias conhecidas
+    pubsubhubbub:
+      callback_url: URL de Callback
+      confirmed: Confirmado
+      expires_in: Expira em
+      last_delivery: Última entrega
+      title: PubSubHubbub
+      topic: Tópico
+    reports:
+      comment:
+        label: Comentário
+        none: Nenhum
+      delete: Eliminar
+      id: ID
+      mark_as_resolved: Marcar como resolvido
+      report: 'Denúncia #%{id}'
+      reported_account: Conta denunciada
+      reported_by: Denúnciada por
+      resolved: Resolvido
+      silence_account: Conta silenciada
+      status: Estado
+      suspend_account: Conta suspensa
+      target: Target
+      title: Denúncias
+      unresolved: Por resolver
+      view: Ver
+    settings:
+      click_to_edit: Clique para editar
+      contact_information:
+        email: Inserir um endereço de email para tornar público
+        label: Informação de contacto
+        username: Insira um nome de utilizador
+      registrations:
+        closed_message:
+          desc_html: Mostrar na página inicial quando registos estão encerrados<br/>Podes usar tags HTML
+          title: Mensagem de registos encerrados
+        open:
+          disabled: Desabilitado
+          enabled: Habilitado
+          title: Aceitar novos registos
+      setting: Preferências
+      site_description:
+        desc_html: Mostrar como parágrafo na página inicial e usado como meta tag.<br/>Podes usar tags HTML, em particular <code>&lt;a&gt;</code> e <code>&lt;em&gt;</code>.
+        title: Descrição do site
+      site_description_extended:
+        desc_html: Mostrar na página de mais informações<br/>Podes usar tags HTML
+        title: Página de mais informações
+      site_title: Título do site
+      title: Preferências do site
+    title: Administração
   application_mailer:
-    signature: notificações Mastodon de %{instance}
+    settings: 'Alterar preferências de email: %{link}'
+    signature: notificações Mastodon do %{instance}
+    view: 'Ver:'
+  applications:
+    invalid_url: O URL é inválido
   auth:
-    change_password: Mudar senha
-    didnt_get_confirmation: Não recebeu instruções de confirmação?
-    forgot_password: Esqueceu a senha?
+    change_password: Alterar palavra-passe
+    didnt_get_confirmation: Não recebeu o email de confirmação?
+    forgot_password: Esqueceste a palavra-passe?
     login: Entrar
     register: Registar
     resend_confirmation: Reenviar instruções de confirmação
-    reset_password: Resetar senha
-    set_new_password: Editar password
+    reset_password: Criar nova palavra-passe
+    set_new_password: Editar palavra-passe
   generic:
-    changes_saved_msg: Mudanças guardadas!
+    changes_saved_msg: Alteraçes guardadas!
     powered_by: powered by %{link}
     save_changes: Guardar alterações
     validation_errors:
-      one: Algo não está correto. Por favor reveja o erro abaixo
-      other: Algo não está correto. Por favor reveja os %{count} erros abaixo
+      one: Algo não está correcto. Por favor vê o erro abaixo
+      other: Algo não está correto. Por favor vê os %{count} erros abaixo
   notification_mailer:
     favourite:
-      body: 'O seu post foi favoritado por %{name}:'
-      subject: "%{name} favouritou o seu post"
+      body: 'O teu post foi adicionado aos favoritos por %{name}:'
+      subject: "%{name} adicionou o teu post aos favoritos"
     follow:
-      body: "%{name} seguiu você!"
-      subject: "%{name} segue você"
+      body: "%{name} é teu seguidor!"
+      subject: "%{name} começou a seguir-te"
     mention:
-      body: 'Você foi mencionado por %{name} em:'
-      subject: Foi mencionado por %{name}
+      body: 'Foste mencionado por %{name}:'
+      subject: "%{name} mencionou-te"
     reblog:
-      body: 'O seu post foi reblogado por %{name}:'
-      subject: "%{name} reblogou o seu post"
+      body: 'O teu post foi partilhado por %{name}:'
+      subject: "%{name} partilhou o teu post"
   pagination:
-    next: Next
-    prev: Prev
+    next: Seguinte
+    prev: Anterior
+    truncate: "&hellip;"
+  remote_follow:
+    acct: Entre seu usuário@domínio do qual quer seguir
+    missing_resource: Não foi possível achar a URL de redirecionamento para sua conta
+    proceed: Prossiga para seguir
+    prompt: 'Você vai seguir:'
   settings:
+    authorized_apps: Aplicativos autorizados
+    back: Voltar ao Mastodon
     edit_profile: Editar perfil
+    export: Importar dados
+    import: Importar
     preferences: Preferências
+    settings: Settings
+    two_factor_authentication: Autenticação Two-factor
+  statuses:
+    open_in_web: Abrir no browser
+    over_character_limit: limite de caracter excedeu %{max}
+    show_more: Mostrar mais
+    visibilities:
+      private: Mostrar apenas para seguidores
+      public: Público
+      unlisted: Público, mas não mostre no timeline público
+  stream_entries:
+    click_to_show: Clique pra mostrar
+    reblogged: boosted
+    sensitive_content: Conteúdo sensível
+  time:
+    formats:
+      default: "%b %d, %Y, %H:%M"
+  two_factor_authentication:
+    code_hint: Entre o código gerado pelo seu aplicativo para confirmar
+    description_html: Se você habilitar <strong>autenticação two-factor </strong>, quando logar será necessário o seu telefone que vai gerar os tokens usado.
+    disable: Disabilitar
+    enable: Habilitar
+    enabled_success: Autenticador Two-factor habilitador com sucesso
+    generate_recovery_codes: Gerar códigos para recuperar conta
+    instructions_html: "<strong>Scaneie este código QR no seu Google Authenticator ou aplicativo similar no seu telefone</strong>. A partir de agora seu aplicativo irá gerar tokens que deverão ser digitados para você logar."
+    lost_recovery_codes: Códigos de recuperação permite que você recupere o acesso a sua conta se você perder seu telefone. Se você perder os códigos de recuperação, você pode regera-los aqui. Seus códigos antigos serão invalidados.
+    manual_instructions: 'Se você não puder scanear o código QR e precisa digita-los manualmente, aqui está o segredo em texto.:'
+    recovery_codes_regenerated: Códigos de recuperação foram gerados com sucesso
