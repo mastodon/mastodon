@@ -51,6 +51,9 @@ const normalizeStatus = (state, status) => {
   const linebreakComplemented = status.content.replace(/<br \/>/g, '\n').replace(/<\/p><p>/g, '\n\n');
   normalStatus.unescaped_content = new DOMParser().parseFromString(linebreakComplemented, 'text/html').documentElement.textContent;
 
+  const linebreakComplementedSpoiler = status.spoiler_text.replace(/<br \/>/g, '\n').replace(/<\/p><p>/g, '\n\n');
+  normalStatus.unescaped_spoiler_content = new DOMParser().parseFromString(linebreakComplementedSpoiler, 'text/html').documentElement.textContent;
+
   return state.update(status.id, Immutable.Map(), map => map.mergeDeep(Immutable.fromJS(normalStatus)));
 };
 
