@@ -1106,6 +1106,11 @@ a.status__content__spoiler-link {
   justify-content: flex-start;
   overflow-x: auto;
   position:   relative;
+  background: $color1 image-url('background-photo.png');
+
+  > div {
+    opacity: 0.9;
+  }
 }
 
 @media screen and (min-width: 360px) {
@@ -1196,6 +1201,7 @@ a.status__content__spoiler-link {
     padding: 10px;
     padding-left: 5px;
     padding-right: 5px;
+    width: 25%;
 
     &:first-child {
       padding-left: 10px;
@@ -1220,7 +1226,7 @@ a.status__content__spoiler-link {
   }
 
   .column, .drawer {
-    width: 350px;
+    //width: 350px;
     border-radius: 4px;
     height: 90vh;
     margin-top: 5vh;
@@ -1668,7 +1674,7 @@ a.status__content__spoiler-link {
 .getting-started {
   box-sizing: border-box;
   padding-bottom: 235px;
-  background: image-url('mastodon-getting-started.png') no-repeat 0 100%/contain local;
+  background: image-url('mastodon-getting-started.png') no-repeat 100% 100%/contain local;
   flex: 1 0 auto;
 
   p {
