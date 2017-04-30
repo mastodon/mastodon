@@ -83,7 +83,7 @@ group :development do
   gem 'bullet'
   gem 'letter_opener'
   gem 'letter_opener_web'
-  gem 'rubocop', require: false
+  gem 'rubocop', '0.46.0', require: false
 
   gem 'capistrano', '3.8.0'
   gem 'capistrano-rails'

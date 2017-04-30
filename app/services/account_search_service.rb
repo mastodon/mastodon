@@ -63,10 +63,12 @@ class AccountSearchService < BaseService
   end
 
   def search_results
-    @_search_results ||= if account
-      advanced_search_results
-    else
-      simple_search_results
+    @_search_results ||= begin
+      if account
+        advanced_search_results
+      else
+        simple_search_results
+      end
     end
   end
 
