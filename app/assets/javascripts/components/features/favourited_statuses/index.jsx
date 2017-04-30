@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
+import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import LoadingIndicator from '../../components/loading_indicator';
 import { fetchFavouritedStatuses, expandFavouritedStatuses } from '../../actions/favourites';
@@ -18,26 +18,20 @@ const mapStateToProps = state => ({
   me: state.getIn(['meta', 'me'])
 });
 
-const Favourites = React.createClass({
+class Favourites extends React.PureComponent {
 
-  propTypes: {
-    params: React.PropTypes.object.isRequired,
-    dispatch: React.PropTypes.func.isRequired,
-    statusIds: ImmutablePropTypes.list.isRequired,
-    loaded: React.PropTypes.bool,
-    intl: React.PropTypes.object.isRequired,
-    me: React.PropTypes.number.isRequired
-  },
-
-  mixins: [PureRenderMixin],
+  constructor (props, context) {
+    super(props, context);
+    this.handleScrollToBottom = this.handleScrollToBottom.bind(this);
+  }
 
   componentWillMount () {
     this.props.dispatch(fetchFavouritedStatuses());
-  },
+  }
 
   handleScrollToBottom () {
     this.props.dispatch(expandFavouritedStatuses());
-  },
+  }
 
   render () {
     const { statusIds, loaded, intl, me } = this.props;
@@ -53,11 +47,20 @@ const Favourites = React.createClass({
     return (
       <Column icon='star' heading={intl.formatMessage(messages.heading)}>
         <ColumnBackButtonSlim />
-        <StatusList statusIds={statusIds} me={me} onScrollToBottom={this.handleScrollToBottom} />
+        <StatusList {...this.props} onScrollToBottom={this.handleScrollToBottom} />
       </Column>
     );
   }
 
-});
+}
+
+Favourites.propTypes = {
+  params: PropTypes.object.isRequired,
+  dispatch: PropTypes.func.isRequired,
+  statusIds: ImmutablePropTypes.list.isRequired,
+  loaded: PropTypes.bool,
+  intl: PropTypes.object.isRequired,
+  me: PropTypes.number.isRequired
+};
 
 export default connect(mapStateToProps)(injectIntl(Favourites));

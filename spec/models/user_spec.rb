@@ -24,6 +24,37 @@ RSpec.describe User, type: :model do
     end
   end
 
+  describe 'settings' do
+    it 'inherits default settings from default yml' do
+      expect(Setting.boost_modal).to eq false
+      expect(Setting.interactions['must_be_follower']).to eq false
+
+      user = User.new
+      expect(user.settings.boost_modal).to eq false
+      expect(user.settings.interactions['must_be_follower']).to eq false
+    end
+
+    it 'can update settings' do
+      user = Fabricate(:user)
+      expect(user.settings['interactions']['must_be_follower']).to eq false
+      user.settings['interactions'] = user.settings['interactions'].merge('must_be_follower' => true)
+      user.reload
+
+      expect(user.settings['interactions']['must_be_follower']).to eq true
+    end
+
+    xit 'does not mutate defaults via the cache' do
+      user = Fabricate(:user)
+      user.settings['interactions']['must_be_follower'] = true
+      # TODO
+      # This mutates the global settings default such that future user
+      # instances will inherit the incorrect starting values
+
+      other = Fabricate(:user)
+      expect(other.settings['interactions']['must_be_follower']).to eq false
+    end
+  end
+
   describe 'scopes' do
     describe 'recent' do
       it 'returns an array of recent users ordered by id' do
@@ -54,6 +85,16 @@ RSpec.describe User, type: :model do
   let(:password) { 'abcd1234' }
 
   describe 'blacklist' do
+    around(:each) do |example|
+      old_blacklist = Rails.configuration.x.email_blacklist
+
+      Rails.configuration.x.email_domains_blacklist = 'mvrht.com'
+
+      example.run
+
+      Rails.configuration.x.email_domains_blacklist = old_blacklist
+    end
+
     it 'should allow a non-blacklisted user to be created' do
       user = User.new(email: 'foo@example.com', account: account, password: password)
 
@@ -64,6 +105,24 @@ RSpec.describe User, type: :model do
       user = User.new(email: 'foo@mvrht.com', account: account, password: password)
 
       expect(user.valid?).to be_falsey
+    end
+
+    it 'should not allow a subdomain blacklisted user to be created' do
+      user = User.new(email: 'foo@mvrht.com.topdomain.tld', account: account, password: password)
+
+      expect(user.valid?).to be_falsey
+    end
+  end
+
+  describe '#confirmed?' do
+    it 'returns true when a confirmed_at is set' do
+      user = Fabricate.build(:user, confirmed_at: Time.now.utc)
+      expect(user.confirmed?).to be true
+    end
+
+    it 'returns false if a confirmed_at is nil' do
+      user = Fabricate.build(:user, confirmed_at: nil)
+      expect(user.confirmed?).to be false
     end
   end
 
@@ -86,6 +145,21 @@ RSpec.describe User, type: :model do
     it 'should allow a user to be created if they are whitelisted' do
       user = User.new(email: 'foo@mastodon.space', account: account, password: password)
       expect(user.valid?).to be_truthy
+    end
+
+    it 'should not allow a user with a whitelisted top domain as subdomain in their email address to be created' do
+      user = User.new(email: 'foo@mastodon.space.userdomain.com', account: account, password: password)
+      expect(user.valid?).to be_falsey
+    end
+
+    it 'should not allow a user to be created with a specific blacklisted subdomain even if the top domain is whitelisted' do
+      old_blacklist = Rails.configuration.x.email_blacklist
+      Rails.configuration.x.email_domains_blacklist = 'blacklisted.mastodon.space'
+
+      user = User.new(email: 'foo@blacklisted.mastodon.space', account: account, password: password)
+      expect(user.valid?).to be_falsey
+
+      Rails.configuration.x.email_domains_blacklist = old_blacklist
     end
   end
 end

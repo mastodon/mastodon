@@ -1,0 +1,26 @@
+- content_for :page_title do
+  = t('settings.two_factor_authentication')
+
+.simple_form
+  %p.hint
+    = t('two_factor_authentication.description_html')
+
+  - if current_user.otp_required_for_login
+    = link_to t('two_factor_authentication.disable'),
+      settings_two_factor_authentication_path,
+      data: { method: :delete },
+      class: 'block-button'
+  - else
+    = link_to t('two_factor_authentication.setup'),
+      settings_two_factor_authentication_path,
+      data: { method: :post },
+      class: 'block-button'
+
+- if current_user.otp_required_for_login
+  .simple_form
+    %p.hint
+      = t('two_factor_authentication.lost_recovery_codes')
+    = link_to t('two_factor_authentication.generate_recovery_codes'),
+      settings_two_factor_authentication_recovery_codes_path,
+      data: { method: :post },
+      class: 'block-button'

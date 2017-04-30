@@ -1,7 +1,7 @@
 .status.light
   .status__header
     .status__meta
-      = link_to time_ago_in_words(status.created_at), TagManager.instance.url_for(status), class: 'status__relative-time u-url u-uid', title: l(status.created_at), target: stream_link_target, rel: 'noopener'
+      = link_to local_time_ago(status.created_at), TagManager.instance.url_for(status), class: 'status__relative-time u-url u-uid', title: l(status.created_at), target: stream_link_target, rel: 'noopener'
       %data.dt-published{ value: status.created_at.to_time.iso8601 }
 
     = link_to TagManager.instance.url_for(status.account), class: 'status__display-name p-author h-card', target: stream_link_target, rel: 'noopener' do
@@ -17,7 +17,7 @@
       %p{ style: 'margin-bottom: 0' }<
         %span.p-summary>= "#{status.spoiler_text} "
         %a.status__content__spoiler-link{ href: '#' }= t('statuses.show_more')
-    %div.e-content{ style: "display: #{status.spoiler_text? ? 'none' : 'block'}; direction: #{rtl?(status.content) ? 'rtl' : 'ltr'}" }= Formatter.instance.format(status)
+    %div.e-content{ lang: status.language, style: "display: #{status.spoiler_text? ? 'none' : 'block'}; direction: #{rtl?(status.content) ? 'rtl' : 'ltr'}" }= Formatter.instance.format(status)
 
   - unless status.media_attachments.empty?
     .status__attachments

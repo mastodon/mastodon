@@ -3,11 +3,16 @@
 namespace :mastodon do
   desc 'Execute daily tasks'
   task :daily do
-    Rake::Task['mastodon:feeds:clear'].invoke
-    Rake::Task['mastodon:media:clear'].invoke
-    Rake::Task['mastodon:users:clear'].invoke
-
-    Rake::Task['mastodon:push:refresh'].invoke
+    %w(
+      mastodon:feeds:clear
+      mastodon:media:clear
+      mastodon:users:clear
+      mastodon:push:refresh
+    ).each do |task|
+      puts "Starting #{task} at #{Time.now.utc}"
+      Rake::Task[task].invoke
+    end
+    puts "Completed daily tasks at #{Time.now.utc}"
   end
 
   desc 'Turn a user into an admin, identified by the USERNAME environment variable'
@@ -48,7 +53,17 @@ namespace :mastodon do
     task remove_remote: :environment do
       MediaAttachment.where.not(remote_url: '').where('created_at < ?', 1.week.ago).find_each do |media|
         media.file.destroy
+        media.type = :unknown
+        media.save
       end
+    end
+
+    desc 'Set unknown attachment type for remote-only attachments'
+    task set_unknown: :environment do
+      Rails.logger.debug 'Setting unknown attachment type for remote-only attachments...'
+      # rubocop:disable Rails/SkipsModelValidations
+      MediaAttachment.where(file_file_name: nil).where.not(type: :unknown).in_batches.update_all(type: :unknown)
+      Rails.logger.debug 'Done!'
     end
   end
 
