@@ -75,12 +75,12 @@ class Account < ApplicationRecord
   scope :by_domain_accounts, -> { group(:domain).select(:domain, 'COUNT(*) AS accounts_count').order('accounts_count desc') }
 
   delegate :email,
-    :current_sign_in_ip,
-    :current_sign_in_at,
-    :confirmed?,
-    to: :user,
-    prefix: true,
-    allow_nil: true
+           :current_sign_in_ip,
+           :current_sign_in_at,
+           :confirmed?,
+           to: :user,
+           prefix: true,
+           allow_nil: true
 
   def follow!(other_account)
     active_relationships.where(target_account: other_account).first_or_create!(target_account: other_account)
@@ -329,7 +329,7 @@ class Account < ApplicationRecord
     private
 
     def follow_mapping(query, field)
-      query.pluck(field).inject({}) { |mapping, id| mapping[id] = true; mapping }
+      query.pluck(field).each_with_object({}) { |id, mapping| mapping[id] = true }
     end
 
     def avatar_styles(file)
