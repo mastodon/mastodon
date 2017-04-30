@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180428000000) do
+ActiveRecord::Schema.define(version: 20170428000001) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -54,7 +54,7 @@ ActiveRecord::Schema.define(version: 20180428000000) do
     t.index ["username", "domain"], name: "index_accounts_on_username_and_domain", unique: true, using: :btree
   end
 
-  create_table "block_mutes", force: :cascade, id: false do |t|
+  create_table "block_mutes", id: false, force: :cascade do |t|
     t.integer  "account_id",        null: false
     t.integer  "target_account_id", null: false
     t.boolean  "block",             null: false
@@ -65,12 +65,11 @@ ActiveRecord::Schema.define(version: 20180428000000) do
   create_table "blocks", force: :cascade do |t|
     t.integer  "account_id",        null: false
     t.integer  "target_account_id", null: false
-    t.boolean  "block",             null: false
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
+    t.boolean  "block",             null: false
     t.index ["account_id", "target_account_id"], name: "index_blocks_on_account_id_and_target_account_id", unique: true, using: :btree
   end
-  execute   "ALTER TABLE blocks ADD CONSTRAINT check_blocks_on_block CHECK(block = TRUE), INHERIT block_mutes"
 
   create_table "domain_blocks", force: :cascade do |t|
     t.string   "domain",       default: "", null: false
@@ -147,12 +146,11 @@ ActiveRecord::Schema.define(version: 20180428000000) do
   create_table "mutes", force: :cascade do |t|
     t.integer  "account_id",        null: false
     t.integer  "target_account_id", null: false
-    t.boolean  "block",             null: false
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
+    t.boolean  "block",             null: false
     t.index ["account_id", "target_account_id"], name: "index_mutes_on_account_id_and_target_account_id", unique: true, using: :btree
   end
-  execute   "ALTER TABLE mutes ADD CONSTRAINT check_mutes_on_block CHECK(block = FALSE), INHERIT block_mutes"
 
   create_table "notifications", force: :cascade do |t|
     t.integer  "account_id"
