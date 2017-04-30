@@ -61,7 +61,7 @@ class Api::V1::StatusesController < ApiController
                                          status_params[:status],
                                          status_params[:in_reply_to_id].blank? ? nil : Status.find(status_params[:in_reply_to_id]),
                                          media_ids: status_params[:media_ids],
-                                         sensitive: status_params[:sensitive],
+                                         sensitive: status_params[:spoiler_text].blank? ? status_params[:sensitive] : true,
                                          spoiler_text: status_params[:spoiler_text],
                                          visibility: status_params[:visibility],
                                          application: doorkeeper_token.application,

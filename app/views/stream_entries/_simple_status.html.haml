@@ -21,7 +21,7 @@
 
   - unless status.media_attachments.empty?
     .status__attachments
-      - if status.sensitive?
+      - if status.sensitive_content?
         = render partial: 'stream_entries/content_spoiler'
       - if status.media_attachments.first.video?
         .status__attachments__inner
