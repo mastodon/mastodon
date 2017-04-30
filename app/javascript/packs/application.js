@@ -16,6 +16,12 @@ window.jQuery = window.$ = require('jquery');
 require('jquery-ujs');
 require.context('../images/', true);
 
+const customContext = require.context('../../assets/stylesheets/', false);
+
+if (customContext.keys().indexOf('./custom.scss') !== -1) {
+  customContext('./custom.scss');
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   const mountNode = document.getElementById('mastodon');
   const props = JSON.parse(mountNode.getAttribute('data-props'));
