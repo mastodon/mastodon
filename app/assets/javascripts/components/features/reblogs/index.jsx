@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
+import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import LoadingIndicator from '../../components/loading_indicator';
 import { fetchReblogs } from '../../actions/interactions';
@@ -12,25 +12,17 @@ const mapStateToProps = (state, props) => ({
   accountIds: state.getIn(['user_lists', 'reblogged_by', Number(props.params.statusId)])
 });
 
-const Reblogs = React.createClass({
-
-  propTypes: {
-    params: React.PropTypes.object.isRequired,
-    dispatch: React.PropTypes.func.isRequired,
-    accountIds: ImmutablePropTypes.list
-  },
-
-  mixins: [PureRenderMixin],
+class Reblogs extends React.PureComponent {
 
   componentWillMount () {
     this.props.dispatch(fetchReblogs(Number(this.props.params.statusId)));
-  },
+  }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.params.statusId !== this.props.params.statusId && nextProps.params.statusId) {
       this.props.dispatch(fetchReblogs(Number(nextProps.params.statusId)));
     }
-  },
+  }
 
   render () {
     const { accountIds } = this.props;
@@ -48,7 +40,7 @@ const Reblogs = React.createClass({
         <ColumnBackButton />
 
         <ScrollContainer scrollKey='reblogs'>
-          <div className='scrollable'>
+          <div className='scrollable reblogs'>
             {accountIds.map(id => <AccountContainer key={id} id={id} withNote={false} />)}
           </div>
         </ScrollContainer>
@@ -56,6 +48,12 @@ const Reblogs = React.createClass({
     );
   }
 
-});
+}
+
+Reblogs.propTypes = {
+  params: PropTypes.object.isRequired,
+  dispatch: PropTypes.func.isRequired,
+  accountIds: ImmutablePropTypes.list
+};
 
 export default connect(mapStateToProps)(Reblogs);

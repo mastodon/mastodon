@@ -1,36 +1,23 @@
-import PureRenderMixin from 'react-addons-pure-render-mixin';
+import PropTypes from 'prop-types';
 
-const Avatar = React.createClass({
+class Avatar extends React.PureComponent {
 
-  propTypes: {
-    src: React.PropTypes.string.isRequired,
-    staticSrc: React.PropTypes.string,
-    size: React.PropTypes.number.isRequired,
-    style: React.PropTypes.object,
-    animate: React.PropTypes.bool
-  },
-
-  getDefaultProps () {
-    return {
-      animate: false
-    };
-  },
-
-  getInitialState () {
-    return {
+  constructor (props, context) {
+    super(props, context);
+    this.state = {
       hovering: false
     };
-  },
-
-  mixins: [PureRenderMixin],
+    this.handleMouseEnter = this.handleMouseEnter.bind(this);
+    this.handleMouseLeave = this.handleMouseLeave.bind(this);
+  }
 
   handleMouseEnter () {
     this.setState({ hovering: true });
-  },
+  }
 
   handleMouseLeave () {
     this.setState({ hovering: false });
-  },
+  }
 
   render () {
     const { src, size, staticSrc, animate } = this.props;
@@ -51,7 +38,7 @@ const Avatar = React.createClass({
 
     return (
       <div
-        className='avatar'
+        className='account__avatar'
         onMouseEnter={this.handleMouseEnter}
         onMouseLeave={this.handleMouseLeave}
         style={style}
@@ -59,6 +46,18 @@ const Avatar = React.createClass({
     );
   }
 
-});
+}
+
+Avatar.propTypes = {
+  src: PropTypes.string.isRequired,
+  staticSrc: PropTypes.string,
+  size: PropTypes.number.isRequired,
+  style: PropTypes.object,
+  animate: PropTypes.bool
+};
+
+Avatar.defaultProps = {
+  animate: false
+};
 
 export default Avatar;

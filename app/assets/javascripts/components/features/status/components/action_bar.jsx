@@ -1,4 +1,4 @@
-import PureRenderMixin from 'react-addons-pure-render-mixin';
+import PropTypes from 'prop-types';
 import IconButton from '../../../components/icon_button';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import DropdownMenu from '../../../components/dropdown_menu';
@@ -8,55 +8,48 @@ const messages = defineMessages({
   delete: { id: 'status.delete', defaultMessage: 'Delete' },
   mention: { id: 'status.mention', defaultMessage: 'Mention @{name}' },
   reply: { id: 'status.reply', defaultMessage: 'Reply' },
-  reblog: { id: 'status.reblog', defaultMessage: 'Reblog' },
+  reblog: { id: 'status.reblog', defaultMessage: 'Boost' },
+  cannot_reblog: { id: 'status.cannot_reblog', defaultMessage: 'This post cannot be boosted' },
   favourite: { id: 'status.favourite', defaultMessage: 'Favourite' },
   report: { id: 'status.report', defaultMessage: 'Report @{name}' }
 });
 
-const ActionBar = React.createClass({
+class ActionBar extends React.PureComponent {
 
-  contextTypes: {
-    router: React.PropTypes.object
-  },
-
-  propTypes: {
-    status: ImmutablePropTypes.map.isRequired,
-    onReply: React.PropTypes.func.isRequired,
-    onReblog: React.PropTypes.func.isRequired,
-    onFavourite: React.PropTypes.func.isRequired,
-    onDelete: React.PropTypes.func.isRequired,
-    onMention: React.PropTypes.func.isRequired,
-    onReport: React.PropTypes.func,
-    me: React.PropTypes.number.isRequired,
-    intl: React.PropTypes.object.isRequired
-  },
-
-  mixins: [PureRenderMixin],
+  constructor (props, context) {
+    super(props, context);
+    this.handleReplyClick = this.handleReplyClick.bind(this);
+    this.handleReblogClick = this.handleReblogClick.bind(this);
+    this.handleFavouriteClick = this.handleFavouriteClick.bind(this);
+    this.handleDeleteClick = this.handleDeleteClick.bind(this);
+    this.handleMentionClick = this.handleMentionClick.bind(this);
+    this.handleReport = this.handleReport.bind(this);
+  }
 
   handleReplyClick () {
     this.props.onReply(this.props.status);
-  },
+  }
 
   handleReblogClick (e) {
     this.props.onReblog(this.props.status, e);
-  },
+  }
 
   handleFavouriteClick () {
     this.props.onFavourite(this.props.status);
-  },
+  }
 
   handleDeleteClick () {
     this.props.onDelete(this.props.status);
-  },
+  }
 
   handleMentionClick () {
     this.props.onMention(this.props.status.get('account'), this.context.router);
-  },
+  }
 
   handleReport () {
     this.props.onReport(this.props.status);
     this.context.router.push('/report');
-  },
+  }
 
   render () {
     const { status, me, intl } = this.props;
@@ -75,16 +68,34 @@ const ActionBar = React.createClass({
     if (status.get('visibility') === 'direct') reblogIcon = 'envelope';
     else if (status.get('visibility') === 'private') reblogIcon = 'lock';
 
+    let reblog_disabled = (status.get('visibility') === 'direct' || status.get('visibility') === 'private');
+
     return (
       <div className='detailed-status__action-bar'>
-        <div style={{ flex: '1 1 auto', textAlign: 'center' }}><IconButton title={intl.formatMessage(messages.reply)} icon={status.get('in_reply_to_id', null) === null ? 'reply' : 'reply-all'} onClick={this.handleReplyClick} /></div>
-        <div style={{ flex: '1 1 auto', textAlign: 'center' }}><IconButton disabled={status.get('visibility') === 'direct' || status.get('visibility') === 'private'} active={status.get('reblogged')} title={intl.formatMessage(messages.reblog)} icon={reblogIcon} onClick={this.handleReblogClick} /></div>
-        <div style={{ flex: '1 1 auto', textAlign: 'center' }}><IconButton animate={true} active={status.get('favourited')} title={intl.formatMessage(messages.favourite)} icon='star' onClick={this.handleFavouriteClick} activeStyle={{ color: '#ca8f04' }} /></div>
-        <div style={{ flex: '1 1 auto', textAlign: 'center' }}><DropdownMenu size={18} icon='ellipsis-h' items={menu} direction="left" /></div>
+        <div className='detailed-status__button'><IconButton title={intl.formatMessage(messages.reply)} icon={status.get('in_reply_to_id', null) === null ? 'reply' : 'reply-all'} onClick={this.handleReplyClick} /></div>
+        <div className='detailed-status__button'><IconButton disabled={reblog_disabled} active={status.get('reblogged')} title={reblog_disabled ? intl.formatMessage(messages.cannot_reblog) : intl.formatMessage(messages.reblog)} icon={reblogIcon} onClick={this.handleReblogClick} /></div>
+        <div className='detailed-status__button'><IconButton animate={true} active={status.get('favourited')} title={intl.formatMessage(messages.favourite)} icon='star' onClick={this.handleFavouriteClick} activeStyle={{ color: '#ca8f04' }} /></div>
+        <div className='detailed-status__button'><DropdownMenu size={18} icon='ellipsis-h' items={menu} direction="left" ariaLabel="More" /></div>
       </div>
     );
   }
 
-});
+}
+
+ActionBar.contextTypes = {
+  router: PropTypes.object
+};
+
+ActionBar.propTypes = {
+  status: ImmutablePropTypes.map.isRequired,
+  onReply: PropTypes.func.isRequired,
+  onReblog: PropTypes.func.isRequired,
+  onFavourite: PropTypes.func.isRequired,
+  onDelete: PropTypes.func.isRequired,
+  onMention: PropTypes.func.isRequired,
+  onReport: PropTypes.func,
+  me: PropTypes.number.isRequired,
+  intl: PropTypes.object.isRequired
+};
 
 export default injectIntl(ActionBar);

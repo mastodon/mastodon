@@ -6,10 +6,12 @@ oc:
         avatar: PNG, GIF o JPG. Maximum 2 Mo. Serà retalhat en 120x120px
         display_name: Maximum 30 caractèrs
         header: PNG, GIF o JPG. Maximum 2 Mo. Serà retalhat en 700x335px
-        locked: Demanda qu’accepetatz manualament lo mond que vos sègon e botarà la visibilitat de vòstras publicacions coma accessiblas a vòstres abonats solament
+        locked: Demanda qu’acceptatz manualament lo mond que vos sègon e botarà la visibilitat de vòstras publicacions coma accessiblas a vòstres abonats solament
         note: Maximum 160 caractèrs
       imports:
         data: Fichièr CSV exportat d’una autra instància Mastodon
+      sessions:
+        otp: Picatz lo còdi d’autentificacion en dos temps (Two factor code) de vòstre mobil o utilizatz un de vòstres còdis de recuperacion.
     labels:
       defaults:
         avatar: Avatar
@@ -26,7 +28,10 @@ oc:
         note: Bio
         otp_attempt: Còdi Two-factor
         password: Senhal
+        setting_auto_play_gif: Lectura automatica dels GIFS animats
+        setting_boost_modal: Afichar una fenèstra de confirmacion abans de partejar un estatut
         setting_default_privacy: Confidencialitat de las publicacions
+        severity: Severitat
         type: Tip d’impòrt
         username: Nom d’utilizaire
       interactions:

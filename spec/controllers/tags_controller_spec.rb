@@ -12,5 +12,11 @@ RSpec.describe TagsController, type: :controller do
       get :show, params: { id: 'test' }
       expect(response).to have_http_status(:success)
     end
+
+    it 'returns http missing for non-existent tag' do
+      get :show, params: { id: 'none' }
+
+      expect(response).to have_http_status(:missing)
+    end
   end
 end

@@ -9,6 +9,7 @@ Bundler.require(*Rails.groups)
 require_relative '../app/lib/exceptions'
 require_relative '../lib/paperclip/gif_transcoder'
 require_relative '../lib/paperclip/video_transcoder'
+require_relative '../lib/mastodon/version'
 
 Dotenv::Railtie.load
 
@@ -26,29 +27,34 @@ module Mastodon
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     config.i18n.available_locales = [
       :en,
+      :ar,
       :bg,
       :de,
       :eo,
       :es,
+      :fa,
       :fi,
       :fr,
       :hr,
       :hu,
+      :id,
+      :io,
       :it,
       :ja,
       :nl,
       :no,
       :oc,
+      :pl,
       :pt,
       :'pt-BR',
       :ru,
       :uk,
-      'zh-CN',
+      :'zh-CN',
       :'zh-HK',
       :'zh-TW',
     ]
 
-    config.i18n.default_locale    = :en
+    config.i18n.default_locale = :en
 
     # config.paths.add File.join('app', 'api'), glob: File.join('**', '*.rb')
     # config.autoload_paths += Dir[Rails.root.join('app', 'api', '*')]
@@ -58,8 +64,8 @@ module Mastodon
     config.middleware.insert_before 0, Rack::Cors do
       allow do
         origins  '*'
-
-        resource '/api/*',       headers: :any, methods: [:post, :put, :delete, :get, :options], credentials: false, expose: ['Link', 'X-RateLimit-Reset', 'X-RateLimit-Limit', 'X-RateLimit-Remaining', 'X-Request-Id']
+        resource '/@:username',  headers: :any, methods: [:get], credentials: false
+        resource '/api/*',       headers: :any, methods: [:post, :put, :delete, :get, :patch, :options], credentials: false, expose: ['Link', 'X-RateLimit-Reset', 'X-RateLimit-Limit', 'X-RateLimit-Remaining', 'X-Request-Id']
         resource '/oauth/token', headers: :any, methods: [:post], credentials: false
       end
     end
@@ -67,8 +73,8 @@ module Mastodon
     config.middleware.use Rack::Attack
     config.middleware.use Rack::Deflater
 
-    config.browserify_rails.source_map_environments << 'development'
-    config.browserify_rails.commandline_options   = '--transform [ babelify --presets [ es2015 react ] ] --extension=".jsx"'
+    # babel config can be found in .babelrc
+    config.browserify_rails.commandline_options   = '--transform babelify --extension=".jsx"'
     config.browserify_rails.evaluate_node_modules = true
 
     config.to_prepare do
