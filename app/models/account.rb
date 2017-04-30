@@ -87,11 +87,11 @@ class Account < ApplicationRecord
   end
 
   def block!(other_account)
-    block_relationships.where(target_account: other_account).first_or_create!(target_account: other_account, block: true)
+    block_relationships.where(target_account: other_account).first_or_create!(target_account: other_account)
   end
 
   def mute!(other_account)
-    mute_relationships.where(target_account: other_account).first_or_create!(target_account: other_account, block: false)
+    mute_relationships.where(target_account: other_account).first_or_create!(target_account: other_account)
   end
 
   def unfollow!(other_account)
