@@ -176,4 +176,25 @@ RSpec.describe User, type: :model do
       Rails.configuration.x.email_domains_blacklist = old_blacklist
     end
   end
+
+  describe 'token_for_app' do
+    let(:user) { Fabricate(:user) }
+    let(:app) { Fabricate(:application, owner: user) }
+
+    it 'returns a token' do
+      expect(user.token_for_app(app)).to be_a(Doorkeeper::AccessToken)
+    end
+
+    it 'persists a token' do
+      t = user.token_for_app(app)
+      expect(user.token_for_app(app)).to eql(t)
+    end
+
+    it 'is nil if user does not own app' do
+      app.owner = nil
+      app.save!
+
+      expect(user.token_for_app(app)).to be_nil
+    end
+  end
 end

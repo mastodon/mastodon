@@ -65,6 +65,10 @@ Rails.application.routes.draw do
     end
 
     resource :follower_domains, only: [:show, :update]
+
+    resources :applications do
+      put :regenerate
+    end
   end
 
   resources :media, only: [:show]
