@@ -89,4 +89,22 @@ describe RemoteFollowController do
       end
     end
   end
+
+  describe 'with a suspended account' do
+    before do
+      @account = Fabricate(:account, suspended: true)
+    end
+
+    it 'returns 410 gone on GET to #new' do
+      get :new, params: { account_username: @account.to_param }
+
+      expect(response).to have_http_status(:gone)
+    end
+
+    it 'returns 410 gone on POST to #create' do
+      post :create, params: { account_username: @account.to_param }
+
+      expect(response).to have_http_status(:gone)
+    end
+  end
 end
