@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import emojify from '../../../emoji';
 const loadScriptOnce = require('load-script-once');
 
 class LivePreview extends React.PureComponent {
@@ -11,8 +12,8 @@ class LivePreview extends React.PureComponent {
   }
   
   render () {
-    const text = this.props.text;
-    return <div>{text}</div>
+    const text = this.props.text.replace(/\n/, '<br>');
+    return <div dangerouslySetInnerHTML={{ __html: emojify(text)}} />
   }
 
 }
