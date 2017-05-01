@@ -97,7 +97,7 @@ class EmojiPickerDropdown extends React.PureComponent {
           <img draggable="false" className="emojione" alt="🙂" src="/emoji/1f602.svg" />
         </DropdownTrigger>
 
-        <DropdownContent className='dropdown__left light'>
+        <DropdownContent className='dropdown__left'>
           <EmojiPicker emojione={settings} onChange={this.handleChange} searchPlaceholder={intl.formatMessage(messages.emoji_search)} categories={categories} search={true} />
         </DropdownContent>
       </Dropdown>

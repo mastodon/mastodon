@@ -11,6 +11,8 @@ class PreviewCard < ApplicationRecord
 
   has_attached_file :image, styles: { original: '120x120#' }, convert_options: { all: '-quality 80 -strip' }
 
+  include Attachmentable
+
   validates :url, presence: true
   validates_attachment_content_type :image, content_type: IMAGE_MIME_TYPES
   validates_attachment_size :image, less_than: 1.megabytes
