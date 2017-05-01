@@ -48,21 +48,24 @@ module StreamEntriesHelper
   end
 
   def rtl?(text)
-    rtl_characters = /[\p{Hebrew}|\p{Arabic}|\p{Syriac}|\p{Thaana}|\p{Nko}]+/m.match(text)
+    rtl_charcount = text.gsub(/[^\p{Hebrew}|\p{Arabic}|\p{Syriac}|\p{Thaana}|\p{Nko}]/m, '').strip.size.to_f
 
-    if rtl_characters.present?
-      total_size = text.strip.size.to_f
-      rtl_size(rtl_characters.to_a) / total_size > 0.3
+    if rtl_charcount.positive?
+      # Remove mentions before counting characters to decide RTL ratio
+      justtext = text.gsub(Account::MENTION_RE, '')
+      # Remove Email addresses
+      justtext = justtext.gsub(/^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/, '')
+      # Naiive catcher for URLs
+      justtext = justtext.gsub(/[-A-Za-z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-A-Za-z0-9@:%_\+.~#?&\/=]*)/, '')
+
+      total_size = justtext.strip.size.to_f
+      rtl_charcount / total_size > 0.3
     else
       false
     end
   end
 
   private
-
-  def rtl_size(characters)
-    characters.reduce(0) { |acc, elem| acc + elem.size }.to_f
-  end
 
   def embedded_view?
     params[:controller] == EMBEDDED_CONTROLLER && params[:action] == EMBEDDED_ACTION
