@@ -22,8 +22,24 @@ describe RemoteFollowController do
 
     context 'with a valid acct' do
       context 'when webfinger values are wrong' do
-        it 'renders new when redirect url is nil'
-        it 'renders new when template is nil'
+        it 'renders new when redirect url is nil' do
+          resource_with_nil_link = double(link: nil)
+          allow(Goldfinger).to receive(:finger).with('acct:user@example.com').and_return(resource_with_nil_link)
+          post :create, params: { account_username: @account.to_param, remote_follow: { acct: 'user@example.com' } }
+
+          expect(response).to render_template(:new)
+          expect(response.body).to include(I18n.t('remote_follow.missing_resource'))
+        end
+
+        it 'renders new when template is nil' do
+          link_with_nil_template = double(template: nil)
+          resource_with_link = double(link: link_with_nil_template)
+          allow(Goldfinger).to receive(:finger).with('acct:user@example.com').and_return(resource_with_link)
+          post :create, params: { account_username: @account.to_param, remote_follow: { acct: 'user@example.com' } }
+
+          expect(response).to render_template(:new)
+          expect(response.body).to include(I18n.t('remote_follow.missing_resource'))
+        end
       end
 
       context 'when webfinger values are good' do
