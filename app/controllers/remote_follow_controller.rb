@@ -13,7 +13,7 @@ class RemoteFollowController < ApplicationController
   def create
     @remote_follow = RemoteFollow.new(resource_params)
 
-    if @remote_follow.valid?
+    if @remote_follow.save
       resource          = Goldfinger.finger("acct:#{@remote_follow.acct}")
       redirect_url_link = resource&.link('http://ostatus.org/schema/1.0/subscribe')
 

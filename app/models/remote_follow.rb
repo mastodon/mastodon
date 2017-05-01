@@ -10,4 +10,8 @@ class RemoteFollow
   def initialize(attrs = {})
     @acct = attrs[:acct].strip unless attrs[:acct].nil?
   end
+
+  def save
+    valid?
+  end
 end
