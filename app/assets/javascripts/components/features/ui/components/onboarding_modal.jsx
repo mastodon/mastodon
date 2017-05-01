@@ -25,7 +25,7 @@ const PageOne = ({ acct, domain }) => (
 
     <div>
       <h1><FormattedMessage id='onboarding.page_one.welcome' defaultMessage='Welcome to Mastodon!' /></h1>
-      <p><FormattedMessage id='onboarding.page_one.federation' defaultMessage='Mastodon is a network of independent servers joining up to make one larger social network. We call these servers: <em>Instances</em>' /></p>
+      <p><FormattedMessage id='onboarding.page_one.federation' defaultMessage='Mastodon is a network of independent servers joining up to make one larger social network. We call these servers instances.' /></p>
       <p><FormattedMessage id='onboarding.page_one.handle' defaultMessage='You are on {domain}, so your full handle is {handle}' values={{ domain, handle: <strong>{acct}@{domain}</strong> }}/></p>
     </div>
   </div>
@@ -36,12 +36,12 @@ PageOne.propTypes = {
   domain: PropTypes.string.isRequired
 };
 
-const PageTwo = () => (
+const PageTwo = ({ me }) => (
   <div className='onboarding-modal__page onboarding-modal__page-two'>
     <div className='figure non-interactive'>
-       <div className='pseudo-drawer'>
+      <div className='pseudo-drawer'>
         <NavigationBar account={me} />
-        </div>
+      </div>
       <ComposeForm
         text='Awoo! #introductions'
         suggestions={Immutable.List()}
@@ -61,6 +61,10 @@ const PageTwo = () => (
     <p><FormattedMessage id='onboarding.page_two.compose' defaultMessage='Write posts from the compose column. You can upload images, change privacy settings, and add content warnings with the icons below.' /></p>
   </div>
 );
+
+PageTwo.propTypes = {
+  me: ImmutablePropTypes.map.isRequired,
+};
 
 const PageThree = ({ me, domain }) => (
   <div className='onboarding-modal__page onboarding-modal__page-three'>
@@ -123,7 +127,7 @@ PageFour.propTypes = {
   intl: PropTypes.object.isRequired
 };
 
-const PageSix = ({ admin }) => {
+const PageSix = ({ admin, domain }) => {
   let adminSection = '';
 
   if (admin) {
@@ -148,7 +152,8 @@ const PageSix = ({ admin }) => {
 };
 
 PageSix.propTypes = {
-  admin: ImmutablePropTypes.map
+  admin: ImmutablePropTypes.map,
+  domain: PropTypes.string.isRequired
 };
 
 const mapStateToProps = state => ({
@@ -194,10 +199,10 @@ class OnboardingModal extends React.PureComponent {
 
     const pages = [
       <PageOne acct={me.get('acct')} domain={domain} />,
-      <PageTwo />,
+      <PageTwo me={me} />,
       <PageThree me={me} domain={domain} />,
       <PageFour domain={domain} intl={intl} />,
-      <PageSix admin={admin} />
+      <PageSix admin={admin} domain={domain} />
     ];
 
     const { currentIndex } = this.state;
@@ -208,7 +213,7 @@ class OnboardingModal extends React.PureComponent {
     if(hasMore) {
       nextOrDoneBtn = <a href='#' onClick={this.handleNext.bind(null, pages.length)} className='onboarding-modal__nav onboarding-modal__next'><FormattedMessage id='onboarding.next' defaultMessage='Next' /></a>;
     } else {
-      nextOrDoneBtn = <a href='#' onClick={this.handleNext.bind(null, pages.length)} className='onboarding-modal__nav onboarding-modal__done'><FormattedMessage id='onboarding.next' defaultMessage='Done' /></a>;
+      nextOrDoneBtn = <a href='#' onClick={this.handleNext.bind(null, pages.length)} className='onboarding-modal__nav onboarding-modal__done'><FormattedMessage id='onboarding.done' defaultMessage='Done' /></a>;
     }
 
     const styles = pages.map((page, i) => ({

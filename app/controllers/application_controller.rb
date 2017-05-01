@@ -5,9 +5,10 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
-  force_ssl if: "Rails.env.production? && ENV['LOCAL_HTTPS'] == 'true'"
+  force_ssl if: :https_enabled?
 
   include Localized
+  include UserTrackingConcern
 
   helper_method :current_account
   helper_method :single_user_mode?
@@ -17,7 +18,6 @@ class ApplicationController < ActionController::Base
   rescue_from ActionController::InvalidAuthenticityToken, with: :unprocessable_entity
 
   before_action :store_current_location, except: :raise_not_found, unless: :devise_controller?
-  before_action :set_user_activity
   before_action :check_suspension, if: :user_signed_in?
 
   def raise_not_found
@@ -26,22 +26,16 @@ class ApplicationController < ActionController::Base
 
   private
 
+  def https_enabled?
+    Rails.env.production? && ENV['LOCAL_HTTPS'] == 'true'
+  end
+
   def store_current_location
     store_location_for(:user, request.url)
   end
 
   def require_admin!
     redirect_to root_path unless current_user&.admin?
-  end
-
-  def set_user_activity
-    return unless !current_user.nil? && (current_user.current_sign_in_at.nil? || current_user.current_sign_in_at < 24.hours.ago)
-
-    # Mark user as signed-in today
-    current_user.update_tracked_fields(request)
-
-    # If the sign in is after a two week break, we need to regenerate their feed
-    RegenerationWorker.perform_async(current_user.account_id) if current_user.last_sign_in_at < 14.days.ago
   end
 
   def check_suspension
@@ -61,6 +55,13 @@ class ApplicationController < ActionController::Base
     respond_to do |format|
       format.any  { head 410 }
       format.html { respond_with_error(410) }
+    end
+  end
+
+  def forbidden
+    respond_to do |format|
+      format.any  { head 403 }
+      format.html { render 'errors/403', layout: 'error', status: 403 }
     end
   end
 
@@ -104,8 +105,7 @@ class ApplicationController < ActionController::Base
   end
 
   def respond_with_error(code)
-    set_locale do
-      render "errors/#{code}", layout: 'error', status: code
-    end
+    set_locale
+    render "errors/#{code}", layout: 'error', status: code
   end
 end

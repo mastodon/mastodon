@@ -11,4 +11,8 @@ class Report < ApplicationRecord
   def statuses
     Status.where(id: status_ids)
   end
+
+  def media_attachments
+    MediaAttachment.where(status_id: status_ids)
+  end
 end

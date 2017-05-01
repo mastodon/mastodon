@@ -1,7 +1,10 @@
 require 'rails_helper'
 
 describe Settings::PreferencesController do
+  render_views
+
   let(:user) { Fabricate(:user) }
+
   before do
     sign_in user, scope: :user
   end
@@ -9,13 +12,12 @@ describe Settings::PreferencesController do
   describe 'GET #show' do
     it 'returns http success' do
       get :show
-
       expect(response).to have_http_status(:success)
     end
   end
 
   describe 'PUT #update' do
-    it 'udpates the user record' do
+    it 'updates the user record' do
       put :update, params: { user: { locale: 'en' } }
 
       expect(response).to redirect_to(settings_preferences_path)
@@ -31,7 +33,7 @@ describe Settings::PreferencesController do
         user: {
           setting_boost_modal: '1',
           notification_emails: { follow: '1' },
-          interactions: { must_be_follower: '0' }
+          interactions: { must_be_follower: '0' },
         }
       }
 

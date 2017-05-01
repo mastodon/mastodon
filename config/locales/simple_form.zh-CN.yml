@@ -3,40 +3,46 @@ zh-CN:
   simple_form:
     hints:
       defaults:
-        avatar: 不超过 2MB，限 PNG, GIF 或 JPG 格式，将缩到 120x120px
+        avatar: 最大 2MB，限 PNG, GIF 或 JPG 格式，将缩到 120x120px
         display_name: 不起过 30 个字符
-        header: 不超过 2MB，限 PNG, GIF 或 JPG 格式，将缩到 700x335px
-        locked: 默认仅向粉丝公开，需要手工设置通过的粉丝。
-        note: 不起过 160 个字符
+        header: 最大 2MB，限 PNG, GIF 或 JPG 格式，将缩到 700x335px
+        locked: 默认仅向粉丝公开嘟文，需要手工批准粉丝关注请求。
+        note: 最多 160 个字符
+      imports:
+        data: 自其他服务站导出的 CSV 文件
     labels:
       defaults:
         avatar: 头像
         confirm_new_password: 确认新密码
         confirm_password: 确认密码
         current_password: 当前密码
+        data: 数据
         display_name: 显示名
         email: 邮箱
-        header: 头
+        header: 个人页面顶部
         locale: 语言
-        locked: 隐私模式
+        locked: 隐私模式（锁嘟）
         new_password: 新密码
-        note: Bio
-        otp_attempt: 两步难码
+        note: 简介
+        otp_attempt: 两步认证码
         password: 密码
-        setting_default_privacy: 推文隐私
+        setting_boost_modal: 在转嘟前询问我
+        setting_default_privacy: 嘟文默认隐私度
+        severity: 等级
+        type: 导入数据类型
         username: 用户名
       interactions:
-        must_be_follower: 仅粉丝可私信
-        must_be_following: 仅关注中可私信
+        must_be_follower: 隐藏没有关注你的用户的通知
+        must_be_following: 隐藏你不关注的用户的通知
       notification_emails:
         digest: 发送摘要邮件
-        favourite: 有人收藏你的发送邮件通知
-        follow: 有人关注你时发送邮件通知
-        follow_request: 有人请求关注你时发送邮件通知
-        mention: 有人 AT 你时发送邮件通知
-        reblog: 有人转发时发送邮件通知
+        favourite: 当有用户喜欢你的嘟文时，发电邮通知
+        follow: 当有用户关注你时，发电邮通知
+        follow_request: 当有用户要求关注你时，发电邮通知
+        mention: 当有用户在嘟文提及你时，发电邮通知
+        reblog: 当有用户转嘟你时，发电邮通知
     'no': '否'
     required:
       mark: "*"
-      text: 必须
+      text: 必填
     'yes': '是'

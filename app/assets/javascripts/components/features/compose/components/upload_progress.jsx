@@ -13,11 +13,11 @@ class UploadProgress extends React.PureComponent {
 
     return (
       <div className='upload-progress'>
-        <div>
+        <div className='upload-progress__icon'>
           <i className='fa fa-upload' />
         </div>
 
-        <div style={{ flex: '1 1 auto' }}>
+        <div className='upload-progress__message'>
           <FormattedMessage id='upload_progress.label' defaultMessage='Uploading...' />
 
           <div className='upload-progress__backdrop'>

@@ -19,7 +19,7 @@ dotenv.config({
 if (cluster.isMaster) {
   // cluster master
 
-  const core = +process.env.STREAMING_CLUSTER_NUM || (env === 'development' ? 1 : (os.cpus().length > 1 ? os.cpus().length - 1 : 1))
+  const core = +process.env.STREAMING_CLUSTER_NUM || (env === 'development' ? 1 : Math.max(os.cpus().length - 1, 1))
   const fork = () => {
     const worker = cluster.fork();
     worker.on('exit', (code, signal) => {
@@ -330,7 +330,7 @@ if (cluster.isMaster) {
 
   server.listen(process.env.PORT || 4000, () => {
     log.level = process.env.LOG_LEVEL || 'verbose'
-    log.info(`Starting streaming API server worker on ${server.address()}`)
+    log.info(`Starting streaming API server worker on ${server.address().address}:${server.address().port}`)
   })
 
   process.on('SIGINT', exit)

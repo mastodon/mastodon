@@ -9,13 +9,6 @@ const messages = defineMessages({
   close: { id: 'lightbox.close', defaultMessage: 'Close' }
 });
 
-const closeStyle = {
-  position: 'absolute',
-  zIndex: '100',
-  top: '4px',
-  right: '4px'
-};
-
 class VideoModal extends React.PureComponent {
 
   render () {
@@ -26,7 +19,7 @@ class VideoModal extends React.PureComponent {
     return (
       <div className='modal-root__modal media-modal'>
         <div>
-          <div style={closeStyle}><IconButton title={intl.formatMessage(messages.close)} icon='times' overlay onClick={onClose} /></div>
+          <div className='media-modal__close'><IconButton title={intl.formatMessage(messages.close)} icon='times' overlay onClick={onClose} /></div>
           <ExtendedVideoPlayer src={url} muted={false} controls={true} time={time} />
         </div>
       </div>
