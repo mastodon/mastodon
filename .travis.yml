@@ -40,7 +40,7 @@ install:
   - yarn install
 
 before_script:
-  - bundle exec rails db:create db:migrate
+  - bundle exec rails db:create db:schema:load
   - bundle exec rails assets:precompile
 
 script:
