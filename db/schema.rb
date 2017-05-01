@@ -326,7 +326,9 @@ ActiveRecord::Schema.define(version: 20170425202925) do
     t.boolean  "otp_required_for_login"
     t.datetime "last_emailed_at"
     t.string   "otp_backup_codes",                                       array: true
+    t.string   "allowed_languages",         default: [],    null: false, array: true
     t.index ["account_id"], name: "index_users_on_account_id", using: :btree
+    t.index ["allowed_languages"], name: "index_users_on_allowed_languages", using: :gin
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree

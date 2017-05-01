@@ -119,6 +119,10 @@ class Status < ApplicationRecord
   end
 
   class << self
+    def in_allowed_languages(account)
+      where(language: account.allowed_languages)
+    end
+
     def as_home_timeline(account)
       where(account: [account] + account.following)
     end
@@ -198,6 +202,7 @@ class Status < ApplicationRecord
 
     def filter_timeline_for_account(query, account)
       query = query.not_excluded_by_account(account)
+      query = query.in_allowed_languages(account) if account.allowed_languages.present?
       query.merge(account_silencing_filter(account))
     end
 
