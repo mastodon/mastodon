@@ -44,12 +44,13 @@ class ComposeForm extends React.PureComponent {
 
   handleKeyDown (e) {
     if (e.keyCode === 13 && (e.ctrlKey || e.metaKey)) {
+      this.autosuggestTextarea.reset();
       this.props.onSubmit();
     }
   }
 
   handleSubmit () {
-    this.autosuggestTextarea.textarea.style.height = "auto";
+    this.autosuggestTextarea.reset();
     this.props.onSubmit();
   }
 
