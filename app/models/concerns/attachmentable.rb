@@ -12,11 +12,10 @@ module Attachmentable
   def set_file_extensions
     self.class.attachment_definitions.each_key do |attachment_name|
       attachment = send(attachment_name)
-      unless attachment.blank?
-        extension = Paperclip::Interpolations.content_type_extension(attachment, :original)
-        basename  = Paperclip::Interpolations.basename(attachment, :original)
-        attachment.instance_write :file_name, [basename, extension].delete_if(&:empty?).join('.')
-      end
+      next if attachment.blank?
+      extension = Paperclip::Interpolations.content_type_extension(attachment, :original)
+      basename  = Paperclip::Interpolations.basename(attachment, :original)
+      attachment.instance_write :file_name, [basename, extension].delete_if(&:empty?).join('.')
     end
   end
 end
