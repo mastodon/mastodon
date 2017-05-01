@@ -576,12 +576,6 @@ a.status__content__spoiler-link {
   .status__display-name strong {
     color: lighten($color1, 26%);
   }
-
-  .status__avatar-boost {
-    display: inline-block;
-    vertical-align: middle;
-    margin-right: 5px;
-  }
 }
 
 .status__action-bar {
@@ -684,6 +678,12 @@ a.status__content__spoiler-link {
   background-position: 50%;
   background-clip: padding-box;
   position: relative;
+}
+
+.account__avatar-boost {
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 5px;
 }
 
 .account__relationship {
@@ -940,12 +940,6 @@ a.status__content__spoiler-link {
 
   .fa {
     color: $color4;
-  }
-
-  .notification__avatar {
-    display: inline-block;
-    vertical-align: middle;
-    margin-right: 5px;
   }
 }
 
