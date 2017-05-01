@@ -1202,7 +1202,6 @@ a.status__content__spoiler-link {
 @media screen and (min-width: 1025px) {
   .columns-area {
     padding: 0;
-    margin: 0 auto;
   }
 
   .column, .drawer {
@@ -1225,6 +1224,13 @@ a.status__content__spoiler-link {
       padding-left: 5px;
       padding-right: 5px;
     }
+  }
+}
+
+@media screen and (min-width: 1397px) { /* Width of 4 columns with margins */
+  .columns-area {
+    margin-left: auto;
+    margin-right: auto;
   }
 }
 
