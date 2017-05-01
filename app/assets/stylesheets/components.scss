@@ -1,3 +1,4 @@
+
 @import 'variables';
 
 .app-body {
@@ -995,6 +996,22 @@ a.status__content__spoiler-link {
 .dropdown__content {
   display: none;
   position: absolute;
+  width: 25vw;
+  * {
+    width: 25vw;
+  }
+  @media screen and (max-width: 1025px) {
+    width: 50vw;
+    * {
+      width: 50vw;
+    }
+  }
+  @media screen and (max-width: 500px) {
+    width: 90vw;
+    * {
+      width: 90vw;
+    }
+  }
 }
 
 .dropdown__sep {
@@ -1112,7 +1129,6 @@ a.status__content__spoiler-link {
 }
 
 .column {
-  width: 330px;
   position: relative;
   box-sizing: border-box;
   display: flex;
@@ -1133,7 +1149,9 @@ a.status__content__spoiler-link {
 }
 
 .drawer {
-  width: 300px;
+  width: 19vw;
+  max-width: 400px;
+  height: 100vh;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
@@ -1203,6 +1221,12 @@ a.status__content__spoiler-link {
     }
   }
 
+  .column{
+    width: 27vw !important;
+    max-width: 800px;
+    height:100vh;
+  }
+
   .columns-area > div {
     .column, .drawer {
       padding-left: 5px;
@@ -1217,10 +1241,9 @@ a.status__content__spoiler-link {
   }
 
   .column, .drawer {
-    width: 350px;
     border-radius: 4px;
-    height: 90vh;
-    margin-top: 5vh;
+    height: 100vh;
+    margin: 0;
   }
 }
 
