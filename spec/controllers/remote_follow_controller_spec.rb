@@ -6,12 +6,23 @@ describe RemoteFollowController do
   render_views
 
   describe '#new' do
-    it 'returns a success' do
+    it 'returns success when session is empty' do
       account = Fabricate(:account)
       get :new, params: { account_username: account.to_param }
 
       expect(response).to have_http_status(:success)
       expect(response).to render_template(:new)
+      expect(assigns(:remote_follow).acct).to be_nil
+    end
+
+    it 'populates the remote follow with session data when session exists' do
+      session[:remote_follow] = 'user@example.com'
+      account = Fabricate(:account)
+      get :new, params: { account_username: account.to_param }
+
+      expect(response).to have_http_status(:success)
+      expect(response).to render_template(:new)
+      expect(assigns(:remote_follow).acct).to eq 'user@example.com'
     end
   end
 
