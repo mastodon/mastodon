@@ -51,7 +51,9 @@ module StreamEntriesHelper
     rtl_characters = /[\p{Hebrew}|\p{Arabic}|\p{Syriac}|\p{Thaana}|\p{Nko}]+/m.match(text)
 
     if rtl_characters.present?
-      total_size = text.strip.size.to_f
+      # Remove mentions before counting characters to decide RTL ratio
+      justtext = text.gsub(/@[0-9A-Za-z_@]+/, '')
+      total_size = justtext.strip.size.to_f
       rtl_size(rtl_characters.to_a) / total_size > 0.3
     else
       false
