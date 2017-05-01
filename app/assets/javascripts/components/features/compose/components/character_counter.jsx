@@ -4,7 +4,7 @@ import { length } from 'stringz';
 class CharacterCounter extends React.PureComponent {
 
   checkRemainingText (diff) {
-    if (diff <= 0) {
+    if (diff < 0) {
       return <span className='character-counter character-counter--over'>{diff}</span>;
     }
     return <span className='character-counter'>{diff}</span>;

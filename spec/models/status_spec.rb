@@ -226,7 +226,7 @@ RSpec.describe Status, type: :model do
 
       it 'excludes statuses from accounts blocked by the account' do
         blocked = Fabricate(:account)
-        Fabricate(:block, account: @account, target_account: blocked, block: true)
+        Fabricate(:block, account: @account, target_account: blocked)
         blocked_status = Fabricate(:status, account: blocked)
 
         results = Status.as_public_timeline(@account)
@@ -235,7 +235,7 @@ RSpec.describe Status, type: :model do
 
       it 'excludes statuses from accounts who have blocked the account' do
         blocked = Fabricate(:account)
-        Fabricate(:block, account: blocked, target_account: @account, block: true)
+        Fabricate(:block, account: blocked, target_account: @account)
         blocked_status = Fabricate(:status, account: blocked)
 
         results = Status.as_public_timeline(@account)
@@ -244,11 +244,36 @@ RSpec.describe Status, type: :model do
 
       it 'excludes statuses from accounts muted by the account' do
         muted = Fabricate(:account)
-        Fabricate(:mute, account: @account, target_account: muted, block: false)
+        Fabricate(:mute, account: @account, target_account: muted)
         muted_status = Fabricate(:status, account: muted)
 
         results = Status.as_public_timeline(@account)
         expect(results).not_to include(muted_status)
+      end
+
+      context 'with language preferences' do
+        it 'excludes statuses in languages not allowed by the account user' do
+          user = Fabricate(:user, allowed_languages: [:en, :es])
+          @account.update(user: user)
+          en_status = Fabricate(:status, language: 'en')
+          es_status = Fabricate(:status, language: 'es')
+          fr_status = Fabricate(:status, language: 'fr')
+
+          results = Status.as_public_timeline(@account)
+          expect(results).to include(en_status)
+          expect(results).to include(es_status)
+          expect(results).not_to include(fr_status)
+        end
+
+        it 'includes all languages when account does not have a user' do
+          expect(@account.user).to be_nil
+          en_status = Fabricate(:status, language: 'en')
+          es_status = Fabricate(:status, language: 'es')
+
+          results = Status.as_public_timeline(@account)
+          expect(results).to include(en_status)
+          expect(results).to include(es_status)
+        end
       end
 
       context 'where that account is silenced' do
