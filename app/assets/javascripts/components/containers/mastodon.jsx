@@ -86,6 +86,7 @@ addLocaleData([
   ...fa,
   ...fi,
   ...fr,
+  ...hr,
   ...hu,
   ...it,
   ...ja,
