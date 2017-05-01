@@ -13,24 +13,12 @@ class RemoteFollowController < ApplicationController
   def create
     @remote_follow = RemoteFollow.new(resource_params)
 
-    if @remote_follow.save
-      resource          = Goldfinger.finger("acct:#{@remote_follow.acct}")
-      redirect_url_link = resource&.link('http://ostatus.org/schema/1.0/subscribe')
-
-      if redirect_url_link.nil? || redirect_url_link.template.nil?
-        @remote_follow.errors.add(:acct, I18n.t('remote_follow.missing_resource'))
-        render(:new) && return
-      end
-
+    if @remote_follow.valid?
       session[:remote_follow] = @remote_follow.acct
-
-      redirect_to Addressable::Template.new(redirect_url_link.template).expand(uri: @account.to_webfinger_s).to_s
+      redirect_to @remote_follow.subscribe_address_for(@account)
     else
       render :new
     end
-  rescue Goldfinger::Error
-    @remote_follow.errors.add(:acct, I18n.t('remote_follow.missing_resource'))
-    render :new
   end
 
   private
