@@ -8,6 +8,7 @@
 #  target_account_id :integer          not null
 #  created_at        :datetime         not null
 #  updated_at        :datetime         not null
+#  block             :boolean          default(FALSE), not null
 #
 
 class Mute < ApplicationRecord
