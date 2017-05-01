@@ -1721,11 +1721,12 @@ a.status__content__spoiler-link {
 @import 'boost';
 
 button.icon-button i.fa-retweet {
-  height: 19px;
-  width: 22px;
   background-position: 0 0;
+  height: 19px;
   transition: background-position 0.9s steps(10);
   transition-duration: 0s;
+  vertical-align: middle;
+  width: 22px;
 
   &::before {
     display: none !important;
