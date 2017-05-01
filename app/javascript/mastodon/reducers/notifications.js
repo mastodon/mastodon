@@ -49,7 +49,7 @@ const normalizeNotifications = (state, notifications, next) => {
   }
 
   return state
-    .update('items', list => loaded ? list.unshift(...items) : list.push(...items))
+    .update('items', list => loaded ? items.concat(list) : list.concat(items))
     .set('loaded', true)
     .set('isLoading', false);
 };
@@ -62,7 +62,7 @@ const appendNormalizedNotifications = (state, notifications, next) => {
   });
 
   return state
-    .update('items', list => list.push(...items))
+    .update('items', list => list.concat(items))
     .set('next', next)
     .set('isLoading', false);
 };

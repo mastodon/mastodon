@@ -116,7 +116,7 @@ const normalizeTimeline = (state, timeline, statuses, next) => {
     state = state.setIn([timeline, 'next'], next);
   }
 
-  return state.updateIn([timeline, 'items'], Immutable.List(), list => (loaded ? list.unshift(...ids) : ids));
+  return state.updateIn([timeline, 'items'], Immutable.List(), list => (loaded ? ids.concat(list) : ids));
 };
 
 const appendNormalizedTimeline = (state, timeline, statuses, next) => {
@@ -130,7 +130,7 @@ const appendNormalizedTimeline = (state, timeline, statuses, next) => {
   state = state.setIn([timeline, 'isLoading'], false);
   state = state.setIn([timeline, 'next'], next);
 
-  return state.updateIn([timeline, 'items'], Immutable.List(), list => list.push(...moreIds));
+  return state.updateIn([timeline, 'items'], Immutable.List(), list => list.concat(moreIds));
 };
 
 const normalizeAccountTimeline = (state, accountId, statuses, replace = false) => {
@@ -145,7 +145,7 @@ const normalizeAccountTimeline = (state, accountId, statuses, replace = false) =
     .set('isLoading', false)
     .set('loaded', true)
     .set('next', true)
-    .update('items', Immutable.List(), list => (replace ? ids : list.unshift(...ids))));
+    .update('items', Immutable.List(), list => (replace ? ids : ids.concat(list))));
 };
 
 const appendNormalizedAccountTimeline = (state, accountId, statuses, next) => {
@@ -159,7 +159,7 @@ const appendNormalizedAccountTimeline = (state, accountId, statuses, next) => {
   return state.updateIn(['accounts_timelines', accountId], Immutable.Map(), map => map
     .set('isLoading', false)
     .set('next', next)
-    .update('items', list => list.push(...moreIds)));
+    .update('items', list => list.concat(moreIds)));
 };
 
 const updateTimeline = (state, timeline, status, references) => {

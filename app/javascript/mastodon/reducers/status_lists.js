@@ -23,7 +23,7 @@ const normalizeList = (state, listType, statuses, next) => {
 const appendToList = (state, listType, statuses, next) => {
   return state.update(listType, listMap => listMap.withMutations(map => {
     map.set('next', next);
-    map.set('items', map.get('items').push(...statuses.map(item => item.id)));
+    map.set('items', map.get('items').concat(statuses.map(item => item.id)));
   }));
 };
 
