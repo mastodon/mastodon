@@ -1,30 +1,32 @@
 - content_for :header_tags do
-  = javascript_include_tag 'application_public', integrity: true, crossorigin: 'anonymous'
+  = javascript_include_tag 'application_public', integrity: true
 
 - content_for :page_title do
-  = site_hostname
+  = Rails.configuration.x.local_domain
 
 - content_for :header_tags do
-  %meta{ property: 'og:site_name', content: site_title }/
-  %meta{ property: 'og:url', content: about_url }/
+  %meta{ property: 'og:site_name', content: 'Mastodon.Cloud' }/
   %meta{ property: 'og:type', content: 'website' }/
-  %meta{ property: 'og:title', content: site_hostname }/
-  %meta{ property: 'og:description', content: strip_tags(@instance_presenter.site_description.presence || t('about.about_mastodon')) }/
+  %meta{ property: 'og:title', content: 'Mastodon.Cloud' }/
+  %meta{ property: 'og:description', content: strip_tags(@instance_presenter.site_description.blank? ? t('mastodon-cloud.presentation') : @instance_presenter.site_description) }/
   %meta{ property: 'og:image', content: asset_url('mastodon_small.jpg') }/
   %meta{ property: 'og:image:width', content: '400' }/
   %meta{ property: 'og:image:height', content: '400' }/
   %meta{ property: 'twitter:card', content: 'summary' }/
 
-.wrapper
-  %h1
-    = image_tag 'logo.png'
-    = Setting.site_title
 
-  %p= t('about.about_mastodon').html_safe
+.wrapper
+
+  =image_tag "headlogo.png"
+
+  %br
+  %br
+
+  - unless @instance_presenter.site_description.blank?
+    %h2= t('about.description_headline', domain: Rails.configuration.x.local_domain)
+    %p= t('mastodon-cloud.presentation')
 
   .screenshot-with-signup
-    .mascot= image_tag 'fluffy-elephant-friend.png'
-
     - if @instance_presenter.open_registrations
       = render 'registration'
     - else
@@ -37,10 +39,42 @@
           = link_to t('auth.login'), new_user_session_path, class: 'webapp-btn'
           ·
           = link_to t('about.other_instances'), 'https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/List-of-Mastodon-instances.md'
-          ·
-          = link_to t('about.about_this'), about_more_path
 
-  %h3= t('about.features_headline')
+    .mascot= image_tag "fluffy-elephant-friend.png"
+
+  %br
+  %h2= t('mastodon-cloud.rules_headline')
+
+  .features-list
+    .features-list__column
+      %ul.fa-ul
+        %li
+          = fa_icon('li check-square')
+          = t 'mastodon-cloud.rules.a'
+        %li
+          = fa_icon('li check-square')
+          = t 'mastodon-cloud.rules.b'
+        %li
+          = fa_icon('li check-square')
+          = t 'mastodon-cloud.rules.c'
+        %li
+          = fa_icon('li check-square')
+          = t 'mastodon-cloud.rules.d'
+        %li
+          = fa_icon('li check-square')
+          = t 'mastodon-cloud.rules.e'
+        %li
+          = fa_icon('li check-square')
+          = t 'mastodon-cloud.rules.f'
+        %li
+          = fa_icon('li check-square')
+          = t 'mastodon-cloud.rules.g'
+        %li
+          = fa_icon('li check-square')
+          = t 'mastodon-cloud.rules.h'
+
+  %br
+  %h2= t('about.features_headline')
 
   .features-list
     .features-list__column
@@ -72,16 +106,47 @@
           = fa_icon('li check-square')
           = t 'about.features.api'
 
-  - unless @instance_presenter.site_description.blank?
-    %h3= t('about.description_headline', domain: site_hostname)
-    %p= @instance_presenter.site_description.html_safe
+
+  %br
+  %h2= t('mastodon-cloud.usercount_headline')
+
+  .information-board
+    .section
+      %span= t 'about.user_count_before'
+      %strong= number_with_delimiter @instance_presenter.user_count
+      %span= t 'about.user_count_after'
+    .section
+      %span= t 'about.status_count_before'
+      %strong= number_with_delimiter @instance_presenter.status_count
+      %span= t 'about.status_count_after'
+    .section
+      %span= t 'about.domain_count_before'
+      %strong= number_with_delimiter @instance_presenter.domain_count
+      %span= t 'about.domain_count_after'
+
+
+  %br
+  %h2= t('mastodon-cloud.contribute_headline')
+  = link_to image_tag('patreon.png'), 'https://www.patreon.com/ValentinOuvrard'
+  %p= 'BTC : 1  MP5gpJNmfT2V48aAVsGknbqhDkmj5JF61'
+  
+  %br
+  %h2= t('mastodon-cloud.thanks_headline')
+  %p= t('mastodon-cloud.thanks')
+
+
+  %br
+  %h2= t('mastodon-cloud.sponsors_headline')
+  = link_to image_tag('stickermule.png'), 'https://www.stickermule.com/'
+  = link_to image_tag('cloudflare.png'), 'https://www.cloudflare.com/'
 
   .actions
     .info
       = link_to t('about.terms'), terms_path
       ·
-      = link_to t('about.apps'), 'https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/Apps.md'
+      = link_to t('about.apps'), 'https://github.com/tootsuite/mastodon/blob/master/docs/Using-Mastodon/Apps.md'
       ·
-      = link_to t('about.source_code'), 'https://github.com/tootsuite/mastodon'
+      = link_to t('about.source_code'), 'https://github.com/MastodonCloud/mastodon'
       ·
-      = link_to t('about.other_instances'), 'https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/List-of-Mastodon-instances.md'
+      = link_to t('about.other_instances'), 'https://github.com/tootsuite/mastodon/blob/master/docs/Using-Mastodon/List-of-Mastodon-instances.md'
+
