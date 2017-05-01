@@ -1,4 +1,16 @@
 # frozen_string_literal: true
+# == Schema Information
+#
+# Table name: stream_entries
+#
+#  id            :integer          not null, primary key
+#  account_id    :integer
+#  activity_id   :integer
+#  activity_type :string
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
+#  hidden        :boolean          default(FALSE), not null
+#
 
 class StreamEntry < ApplicationRecord
   include Paginable
