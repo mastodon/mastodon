@@ -1,3 +1,4 @@
+import React from 'react';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import escapeTextContentForBrowser from 'escape-html';
 import emojify from '../emoji';

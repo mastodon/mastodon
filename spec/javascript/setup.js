@@ -21,6 +21,3 @@ Object.keys(document.defaultView).forEach((property) => {
 global.navigator = {
   userAgent: 'node.js'
 };
-
-var React    = window.React    = global.React    = require('react');
-var ReactDOM = window.ReactDOM = global.ReactDOM = require('react-dom');

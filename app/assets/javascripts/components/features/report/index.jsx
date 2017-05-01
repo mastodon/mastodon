@@ -1,3 +1,4 @@
+import React from 'react';
 import { connect } from 'react-redux';
 import { cancelReport, changeReportComment, submitReport } from '../../actions/reports';
 import { fetchAccountTimeline } from '../../actions/accounts';

@@ -1,3 +1,4 @@
+import React from 'react';
 import PropTypes from 'prop-types';
 import MediaModal from './media_modal';
 import OnboardingModal from './onboarding_modal';

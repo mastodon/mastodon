@@ -1,3 +1,4 @@
+import React from 'react';
 import Dropdown, { DropdownTrigger, DropdownContent } from 'react-simple-dropdown';
 import PropTypes from 'prop-types';
 

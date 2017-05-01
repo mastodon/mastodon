@@ -1,3 +1,4 @@
+import React from 'react';
 import AutosuggestAccountContainer from '../features/compose/containers/autosuggest_account_container';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';

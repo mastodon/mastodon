@@ -1,3 +1,4 @@
+import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import StatusListContainer from '../ui/containers/status_list_container';

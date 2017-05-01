@@ -1,3 +1,4 @@
+import React from 'react';
 import ColumnsArea from './components/columns_area';
 import NotificationsContainer from './containers/notifications_container';
 import PropTypes from 'prop-types';

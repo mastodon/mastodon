@@ -1,3 +1,4 @@
+import React from 'react';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 
 const filename = url => url.split('/').pop().split('#')[0].split('?')[0];

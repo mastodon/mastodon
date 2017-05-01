@@ -1,3 +1,4 @@
+import React from 'react';
 import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import Avatar from '../../../components/avatar';
