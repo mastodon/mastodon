@@ -43,6 +43,9 @@ GEM
       public_suffix (~> 2.0, >= 2.0.2)
     airbrussh (1.2.0)
       sshkit (>= 1.6.1, != 1.7.0)
+    annotate (2.7.1)
+      activerecord (>= 3.2, < 6.0)
+      rake (>= 10.4, < 12.0)
     arel (7.1.4)
     ast (2.3.0)
     attr_encrypted (3.0.3)
@@ -345,7 +348,7 @@ GEM
       thor (>= 0.18.1, < 2.0)
     rainbow (2.2.2)
       rake
-    rake (12.0.0)
+    rake (11.3.0)
     react-rails (1.11.0)
       babel-transpiler (>= 0.7.0)
       connection_pool
@@ -483,6 +486,7 @@ PLATFORMS
 DEPENDENCIES
   active_record_query_trace
   addressable
+  annotate
   autoprefixer-rails
   aws-sdk (>= 2.0)
   best_in_place (~> 3.0.1)

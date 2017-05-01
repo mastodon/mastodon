@@ -90,6 +90,7 @@ group :development do
   gem 'letter_opener_web'
   gem 'bullet'
   gem 'active_record_query_trace'
+  gem 'annotate'
 
   gem 'capistrano', '3.8.0'
   gem 'capistrano-rails'
