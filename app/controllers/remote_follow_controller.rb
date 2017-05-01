@@ -7,8 +7,7 @@ class RemoteFollowController < ApplicationController
   before_action :check_account_suspension
 
   def new
-    @remote_follow = RemoteFollow.new
-    @remote_follow.acct = session[:remote_follow] if session.key?(:remote_follow)
+    @remote_follow = RemoteFollow.new(session_params)
   end
 
   def create
@@ -38,6 +37,10 @@ class RemoteFollowController < ApplicationController
 
   def resource_params
     params.require(:remote_follow).permit(:acct)
+  end
+
+  def session_params
+    { acct: session[:remote_follow] }
   end
 
   def set_account
