@@ -330,6 +330,12 @@
 
 .compose-form__autosuggest-wrapper {
   position: relative;
+
+  .dropdown--active:after {
+    border-color: transparent transparent $color5 transparent;
+    bottom: -1px;
+    right: 8px;
+  }
 }
 
 .compose-form__publish {
@@ -1039,12 +1045,6 @@ a.status__content__spoiler-link {
   right: 0;
   text-align: left;
   z-index: 9999;
-
-  &.light {
-    &:before {
-      border-color: transparent transparent $color5 transparent;
-    }
-  }
 
   & > ul {
     list-style: none;
