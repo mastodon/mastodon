@@ -181,6 +181,19 @@
   color: $color4;
 }
 
+.dropdown--active:after {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 4.5px 7.8px 4.5px;
+  border-color: transparent transparent $color2 transparent;
+  bottom: 8px;
+  right: 104px;
+}
+
 .invisible {
   font-size: 0;
   line-height: 0;
@@ -317,6 +330,12 @@
 
 .compose-form__autosuggest-wrapper {
   position: relative;
+
+  .dropdown--active:after {
+    border-color: transparent transparent $color5 transparent;
+    bottom: -1px;
+    right: 8px;
+  }
 }
 
 .compose-form__publish {
@@ -563,7 +582,6 @@ a.status__content__spoiler-link {
   align-items: center;
   display: flex;
   margin-top: 10px;
-  overflow: hidden;
 }
 
 .status__action-bar-button-wrapper {
@@ -737,6 +755,20 @@ a.status__content__spoiler-link {
 .account__action-bar-dropdown {
   flex: 1 1 auto;
   padding: 10px;
+
+  .dropdown--active {
+    .dropdown__content.dropdown__right {
+      left: 6px;
+      right: initial;
+    }
+
+    &:after {
+      bottom: initial;
+      margin-left: 11px;
+      margin-top: -7px;
+      right: initial;
+    }
+  }
 }
 
 .account__action-bar-links {
@@ -1009,27 +1041,10 @@ a.status__content__spoiler-link {
 .dropdown--active .dropdown__content {
   display: block;
   line-height: 18px;
+  max-width: 311px;
+  right: 0;
   text-align: left;
   z-index: 9999;
-
-  &:before {
-    content: "";
-    display: block;
-    position: absolute;
-    width: 0;
-    height: 0;
-    border-style: solid;
-    border-width: 0 4.5px 7.8px 4.5px;
-    border-color: transparent transparent $color2 transparent;
-    top: -7px;
-    left: 8px;
-  }
-
-  &.light {
-    &:before {
-      border-color: transparent transparent $color5 transparent;
-    }
-  }
 
   & > ul {
     list-style: none;
@@ -1039,16 +1054,15 @@ a.status__content__spoiler-link {
     box-shadow: 0 0 15px rgba($color8, 0.4);
     min-width: 140px;
     position: relative;
-    left: -10px;
+  }
+
+  &.dropdown__right {
+    right: 0;
   }
 
   &.dropdown__left {
     & > ul {
       left: -98px;
-    }
-
-    & > .emoji-dialog {
-      left: -210px;
     }
   }
 
@@ -1058,7 +1072,6 @@ a.status__content__spoiler-link {
     display: block;
     padding: 4px 14px;
     box-sizing: border-box;
-    width: 140px;
     text-decoration: none;
     background: $color2;
     color: $color1;
