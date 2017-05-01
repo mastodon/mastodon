@@ -12,7 +12,7 @@ class LivePreview extends React.PureComponent {
   }
   
   render () {
-    const text = this.props.text.replace(/\n/, '<br>');
+    const text = this.props.text.replace(/\n/g, '<br>');
     return <div dangerouslySetInnerHTML={{ __html: emojify(text)}} />
   }
 
