@@ -17,7 +17,7 @@ describe RemoteFollowController do
 
   describe '#create' do
     before do
-      @account = Fabricate(:account)
+      @account = Fabricate(:account, username: 'test_user')
     end
 
     context 'with a valid acct' do
@@ -43,8 +43,22 @@ describe RemoteFollowController do
       end
 
       context 'when webfinger values are good' do
-        it 'saves the session'
-        it 'redirects to the remote location'
+        before do
+          link_with_template = double(template: 'http://example.com/follow_me?acct={uri}')
+          resource_with_link = double(link: link_with_template)
+          allow(Goldfinger).to receive(:finger).with('acct:user@example.com').and_return(resource_with_link)
+          post :create, params: { account_username: @account.to_param, remote_follow: { acct: 'user@example.com' } }
+        end
+
+        it 'saves the session' do
+          expect(session[:remote_follow]).to eq 'user@example.com'
+        end
+
+        it 'redirects to the remote location' do
+          address = "http://example.com/follow_me?acct=acct%3Atest_user%40#{Rails.configuration.x.local_domain}"
+
+          expect(response).to redirect_to(address)
+        end
       end
     end
 
