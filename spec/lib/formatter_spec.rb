@@ -107,6 +107,20 @@ RSpec.describe Formatter do
         expect(subject).to match '<p>&lt;img src=&quot;javascript:alert(&apos;XSS&apos;);&quot;&gt;</p>'
       end
     end
+
+    context 'contains single line code block' do
+      let(:local_text) { "`program`" }
+      it 'has code block' do
+        expect(subject).to match '<p><code class="singleline">program</code></p>'
+      end
+    end
+
+    context 'contains multi line code block' do
+      let(:local_text) { "```ruby\nputs 'Hello, World!'\n```" }
+      it 'has code block' do
+        expect(subject).to match '<p><pre><code data-language="ruby">puts \'Hello, World!\'</code></pre></p>'
+      end
+    end
   end
 
   describe '#reformat' do

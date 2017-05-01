@@ -14,10 +14,12 @@ class Formatter
 
     html = status.text
     html = encode_and_link_urls(html)
+    html, marks = swap_code_literal_to_marker(html)
     html = simple_format(html, {}, sanitize: false)
     html = html.delete("\n")
     html = link_mentions(html, status.mentions)
     html = link_hashtags(html)
+    html = swap_marker_to_code_blocks(html, marks)
 
     html.html_safe # rubocop:disable Rails/OutputSafety
   end
@@ -117,5 +119,35 @@ class Formatter
 
   def mention_html(match, account)
     "#{match.split('@').first}<span class=\"h-card\"><a href=\"#{TagManager.instance.url_for(account)}\" class=\"u-url mention\">@<span>#{account.username}</span></a></span>"
+  end
+
+  def swap_code_literal_to_marker(html)
+    marks = []
+    index = html.scan(/\[\[\[codeblock(\d+)\]\]\]/).map(&:to_i).max || 0
+
+    html = html.gsub(/^```(?<lang>[^\n]*)\n(?<code>.*)\n```$/m) do |match|
+      lang = $1
+      code = $2
+      marker = "[[[codeblock#{index += 1}]]]"
+      block_html = "<pre><code #{ lang ? "data-language=\"#{ sanitize(lang, Sanitize::Config::MASTODON_STRICT).gsub(/["']/, '') }\"" : "" }>#{ sanitize(code, Sanitize::Config::MASTODON_STRICT) }</code></pre>"
+      marks << [marker, block_html]
+      marker
+    end
+
+    html = html.gsub(/`(?<code>[^`\n]+)`/) do |match|
+      code = $1
+      marker = "[[[codeblock#{index += 1}]]]"
+      block_html = "<code class=\"singleline\">#{ sanitize(code, Sanitize::Config::MASTODON_STRICT) }</code>"
+      marks << [marker, block_html]
+      marker
+    end
+
+    [html, marks]
+  end
+
+  def swap_marker_to_code_blocks(html, marks)
+    marks.reverse.reduce(html) do |html, (marker, block_html)|
+      html.gsub(marker, block_html)
+    end
   end
 end
