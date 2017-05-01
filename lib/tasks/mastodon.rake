@@ -61,7 +61,6 @@ namespace :mastodon do
     desc 'Set unknown attachment type for remote-only attachments'
     task set_unknown: :environment do
       Rails.logger.debug 'Setting unknown attachment type for remote-only attachments...'
-      # rubocop:disable Rails/SkipsModelValidations
       MediaAttachment.where(file_file_name: nil).where.not(type: :unknown).in_batches.update_all(type: :unknown)
       Rails.logger.debug 'Done!'
     end

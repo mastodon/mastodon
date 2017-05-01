@@ -27,7 +27,7 @@ module Admin
 
     def destroy
       @domain_block = DomainBlock.find(params[:id])
-      UnblockDomainService.new.call(@domain_block, resource_params[:retroactive])
+      UnblockDomainService.new.call(@domain_block, retroactive_unblock?)
       redirect_to admin_domain_blocks_path, notice: I18n.t('admin.domain_blocks.destroyed_msg')
     end
 
@@ -35,6 +35,10 @@ module Admin
 
     def resource_params
       params.require(:domain_block).permit(:domain, :severity, :reject_media, :retroactive)
+    end
+
+    def retroactive_unblock?
+      resource_params[:retroactive] == '1'
     end
   end
 end
