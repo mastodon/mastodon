@@ -83,7 +83,7 @@ group :test do
 end
 
 group :development do
-  gem 'rubocop', require: false
+  gem 'rubocop', '0.46.0', require: false
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'letter_opener'

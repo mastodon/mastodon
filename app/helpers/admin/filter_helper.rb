@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 module Admin::FilterHelper
-  ACCOUNT_FILTERS = %i[local remote by_domain silenced suspended recent].freeze
-  REPORT_FILTERS = %i[resolved account_id target_account_id].freeze
+  ACCOUNT_FILTERS = %i(local remote by_domain silenced suspended recent).freeze
+  REPORT_FILTERS = %i(resolved account_id target_account_id).freeze
 
   FILTERS = ACCOUNT_FILTERS + REPORT_FILTERS
 

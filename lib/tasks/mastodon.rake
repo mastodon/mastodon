@@ -53,7 +53,16 @@ namespace :mastodon do
     task remove_remote: :environment do
       MediaAttachment.where.not(remote_url: '').where('created_at < ?', 1.week.ago).find_each do |media|
         media.file.destroy
+        media.type = :unknown
+        media.save
       end
+    end
+
+    desc 'Set unknown attachment type for remote-only attachments'
+    task set_unknown: :environment do
+      Rails.logger.debug 'Setting unknown attachment type for remote-only attachments...'
+      MediaAttachment.where(file_file_name: nil).where.not(type: :unknown).in_batches.update_all(type: :unknown)
+      Rails.logger.debug 'Done!'
     end
   end
 

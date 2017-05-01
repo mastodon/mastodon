@@ -22,7 +22,8 @@ class ModalRoot extends React.PureComponent {
   }
 
   handleKeyUp (e) {
-    if (e.key === 'Escape' && !!this.props.type) {
+    if ((e.key === 'Escape' || e.key === 'Esc' || e.keyCode === 27)
+         && !!this.props.type) {
       this.props.onClose();
     }
   }
