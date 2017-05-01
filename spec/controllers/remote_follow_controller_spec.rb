@@ -38,7 +38,14 @@ describe RemoteFollowController do
 
         expect(response).to render_template(:new)
       end
-      it 'renders new with error when goldfinger fails'
+
+      it 'renders new with error when goldfinger fails' do
+        allow(Goldfinger).to receive(:finger).with('acct:user@example.com').and_raise(Goldfinger::Error)
+        post :create, params: { account_username: @account.to_param, remote_follow: { acct: 'user@example.com' } }
+
+        expect(response).to render_template(:new)
+        expect(response.body).to include(I18n.t('remote_follow.missing_resource'))
+      end
     end
   end
 end
