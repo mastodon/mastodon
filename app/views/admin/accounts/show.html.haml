@@ -16,15 +16,15 @@
     - if @account.local?
       %tr
         %th= t('admin.accounts.email')
-        %td= @account.user.email
+        %td= @account.user_email
       %tr
         %th= t('admin.accounts.most_recent_ip')
-        %td= @account.user.current_sign_in_ip
+        %td= @account.user_current_sign_in_ip
       %tr
         %th= t('admin.accounts.most_recent_activity')
         %td
-          - if @account.user.current_sign_in_at
-            = l @account.user.current_sign_in_at
+          - if @account.user_current_sign_in_at
+            = l @account.user_current_sign_in_at
           - else
             Never
     - else
@@ -78,7 +78,7 @@
     = link_to t('admin.accounts.silence'), admin_account_silence_path(@account.id), method: :post, class: 'button'
 
   - if @account.local?
-    - unless @account.user.confirmed?
+    - unless @account.user_confirmed?
       = link_to t('admin.accounts.confirm'), admin_account_confirmation_path(@account.id), method: :post, class: 'button'
 
   - if @account.suspended?

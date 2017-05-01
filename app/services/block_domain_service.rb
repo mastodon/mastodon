@@ -39,12 +39,15 @@ class BlockDomainService < BaseService
     blocked_domain_accounts.find_each do |account|
       account.avatar.destroy
       account.header.destroy
+      account.save
     end
   end
 
   def clear_account_attachments
     media_from_blocked_domain.find_each do |attachment|
       attachment.file.destroy
+      attachment.type = :unknown
+      attachment.save
     end
   end
 

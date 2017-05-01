@@ -37,6 +37,12 @@ class Status < ApplicationRecord
 
   scope :without_replies, -> { where('statuses.reply = FALSE OR statuses.in_reply_to_account_id = statuses.account_id') }
   scope :without_reblogs, -> { where('statuses.reblog_of_id IS NULL') }
+  scope :with_public_visibility, -> { where(visibility: :public) }
+  scope :tagged_with, ->(tag) { joins(:statuses_tags).where(statuses_tags: { tag_id: tag }) }
+  scope :local_only, -> { left_outer_joins(:account).where(accounts: { domain: nil }) }
+  scope :excluding_silenced_accounts, -> { left_outer_joins(:account).where(accounts: { silenced: false }) }
+  scope :including_silenced_accounts, -> { left_outer_joins(:account).where(accounts: { silenced: true }) }
+  scope :not_excluded_by_account, ->(account) { where.not(account_id: account.excluded_from_timeline_account_ids) }
 
   cache_associated :account, :application, :media_attachments, :tags, :stream_entry, mentions: :account, reblog: [:account, :application, :stream_entry, :tags, :media_attachments, mentions: :account], thread: :account
 
@@ -118,25 +124,15 @@ class Status < ApplicationRecord
     end
 
     def as_public_timeline(account = nil, local_only = false)
-      query = joins('LEFT OUTER JOIN accounts ON statuses.account_id = accounts.id')
-              .where(visibility: :public)
-              .without_replies
-              .without_reblogs
+      query = timeline_scope(local_only).without_replies
 
-      query = query.where('accounts.domain IS NULL') if local_only
-
-      account.nil? ? filter_timeline_default(query) : filter_timeline_default(filter_timeline(query, account))
+      apply_timeline_filters(query, account)
     end
 
     def as_tag_timeline(tag, account = nil, local_only = false)
-      query = tag.statuses
-                 .joins('LEFT OUTER JOIN accounts ON statuses.account_id = accounts.id')
-                 .where(visibility: :public)
-                 .without_reblogs
+      query = timeline_scope(local_only).tagged_with(tag)
 
-      query = query.where('accounts.domain IS NULL') if local_only
-
-      account.nil? ? filter_timeline_default(query) : filter_timeline_default(filter_timeline(query, account))
+      apply_timeline_filters(query, account)
     end
 
     def as_outbox_timeline(account)
@@ -185,15 +181,36 @@ class Status < ApplicationRecord
 
     private
 
-    def filter_timeline(query, account)
-      blocked = Rails.cache.fetch("exclude_account_ids_for:#{account.id}") { Block.where(account: account).pluck(:target_account_id) + Block.where(target_account: account).pluck(:account_id) + Mute.where(account: account).pluck(:target_account_id) }
-      query   = query.where('statuses.account_id NOT IN (?)', blocked) unless blocked.empty?  # Only give us statuses from people we haven't blocked, or muted, or that have blocked us
-      query   = query.where('accounts.silenced = TRUE') if account.silenced?                  # and if we're hellbanned, only people who are also hellbanned
-      query
+    def timeline_scope(local_only = false)
+      starting_scope = local_only ? Status.local_only : Status
+      starting_scope
+        .with_public_visibility
+        .without_reblogs
+    end
+
+    def apply_timeline_filters(query, account)
+      if account.nil?
+        filter_timeline_default(query)
+      else
+        filter_timeline_for_account(query, account)
+      end
+    end
+
+    def filter_timeline_for_account(query, account)
+      query = query.not_excluded_by_account(account)
+      query.merge(account_silencing_filter(account))
     end
 
     def filter_timeline_default(query)
-      query.where('accounts.silenced = FALSE')
+      query.excluding_silenced_accounts
+    end
+
+    def account_silencing_filter(account)
+      if account.silenced?
+        including_silenced_accounts
+      else
+        excluding_silenced_accounts
+      end
     end
   end
 
