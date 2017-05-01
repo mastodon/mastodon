@@ -21,7 +21,7 @@ class Account < ApplicationRecord
   validates_attachment_content_type :header, content_type: IMAGE_MIME_TYPES
   validates_attachment_size :header, less_than: 2.megabytes
 
-  before_post_process :set_file_extensions
+  include Attachmentable
 
   # Local user profile validations
   validates :display_name, length: { maximum: 30 }, if: 'local?'
@@ -75,12 +75,14 @@ class Account < ApplicationRecord
   scope :by_domain_accounts, -> { group(:domain).select(:domain, 'COUNT(*) AS accounts_count').order('accounts_count desc') }
 
   delegate :email,
-    :current_sign_in_ip,
-    :current_sign_in_at,
-    :confirmed?,
-    to: :user,
-    prefix: true,
-    allow_nil: true
+           :current_sign_in_ip,
+           :current_sign_in_at,
+           :confirmed?,
+           to: :user,
+           prefix: true,
+           allow_nil: true
+
+  delegate :allowed_languages, to: :user, prefix: false, allow_nil: true
 
   def follow!(other_account)
     active_relationships.where(target_account: other_account).first_or_create!(target_account: other_account)
@@ -329,7 +331,7 @@ class Account < ApplicationRecord
     private
 
     def follow_mapping(query, field)
-      query.pluck(field).inject({}) { |mapping, id| mapping[id] = true; mapping }
+      query.pluck(field).each_with_object({}) { |id, mapping| mapping[id] = true }
     end
 
     def avatar_styles(file)
@@ -362,19 +364,5 @@ class Account < ApplicationRecord
     return if local?
 
     self.domain = TagManager.instance.normalize_domain(domain)
-  end
-
-  def set_file_extensions
-    unless avatar.blank?
-      extension = Paperclip::Interpolations.content_type_extension(avatar, :original)
-      basename  = Paperclip::Interpolations.basename(avatar, :original)
-      avatar.instance_write :file_name, [basename, extension].delete_if(&:empty?).join('.')
-    end
-
-    unless header.blank?
-      extension = Paperclip::Interpolations.content_type_extension(header, :original)
-      basename  = Paperclip::Interpolations.basename(header, :original)
-      header.instance_write :file_name, [basename, extension].delete_if(&:empty?).join('.')
-    end
   end
 end
