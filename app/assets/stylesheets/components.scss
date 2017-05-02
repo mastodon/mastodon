@@ -1889,7 +1889,6 @@ button.icon-button.active i.fa-retweet {
   }
 }
 
-.media-spoiler,
 .video-error-cover {
   align-items: center;
   background: $color8;
@@ -1900,6 +1899,20 @@ button.icon-button.active i.fa-retweet {
   height: 100%;
   justify-content: center;
   margin-top: 8px;
+  position: relative;
+  text-align: center;
+  z-index: 100;
+}
+
+.media-spoiler {
+  align-items: center;
+  background: $color8;
+  color: $color5;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: center;
   position: relative;
   text-align: center;
   z-index: 100;
