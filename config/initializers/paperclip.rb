@@ -40,6 +40,18 @@ if ENV['S3_ENABLED'] == 'true'
     Paperclip::Attachment.default_options[:url]           = ':s3_alias_url'
     Paperclip::Attachment.default_options[:s3_host_alias] = ENV['S3_CLOUDFRONT_HOST']
   end
+elsif ENV['OPEN_STACK_OBJECT_STORAGE_ENABLED'] == 'true'
+  Paperclip::Attachment.default_options[:storage]         = :fog
+  Paperclip::Attachment.default_options[:fog_public]      = true
+  Paperclip::Attachment.default_options[:fog_directory]   = ENV.fetch('OPEN_STACK_OBJECT_STORAGE_DIRECTORY')
+  Paperclip::Attachment.default_options[:fog_host]        = ENV.fetch('OPEN_STACK_OBJECT_STORAGE_HOST')
+  Paperclip::Attachment.default_options[:fog_credentials] = {
+    provider: 'OpenStack',
+    openstack_username: ENV.fetch('OPEN_STACK_OBJECT_STORAGE_USERNAME'),
+    openstack_api_key:  ENV.fetch('OPEN_STACK_OBJECT_STORAGE_PASSWORD'),
+    openstack_auth_url: ENV.fetch('OPEN_STACK_OBJECT_STORAGE_AUTH_URL'),
+    openstack_tenant:   ENV.fetch('OPEN_STACK_OBJECT_STORAGE_TENANT')
+  }
 else
   Paperclip::Attachment.default_options[:path] = (ENV['PAPERCLIP_ROOT_PATH'] || ':rails_root/public/system') + '/:class/:attachment/:id_partition/:style/:filename'
   Paperclip::Attachment.default_options[:url]  = (ENV['PAPERCLIP_ROOT_URL'] || '/system') + '/:class/:attachment/:id_partition/:style/:filename'
