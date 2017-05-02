@@ -7,13 +7,17 @@ module Admin
     end
 
     def show
-      @instance = DomainPresenter.new(params[:id])
+      @instance = InstancePresenter.new(domain)
     end
 
     private
 
     def ordered_instances
-      Account.remote.by_domain_accounts
+      InstancePresenter.all
+    end
+
+    def domain
+      params[:id]
     end
   end
 end

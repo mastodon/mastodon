@@ -1,32 +1,25 @@
 # frozen_string_literal: true
 
 class InstancePresenter
-  delegate(
-    :closed_registrations_message,
-    :site_contact_email,
-    :open_registrations,
-    :site_description,
-    :site_extended_description,
-    to: Setting
-  )
+  attr_accessor :domain
 
-  def contact_account
-    Account.find_local(Setting.site_contact_username)
+  def self.all
+    Account.remote.by_domain_accounts
   end
 
-  def user_count
-    Rails.cache.fetch('user_count') { User.confirmed.count }
+  def initialize(domain)
+    @domain = domain
   end
 
-  def status_count
-    Rails.cache.fetch('local_status_count') { Status.local.count }
+  def accounts_count
+    Account.where(domain: domain).count
   end
 
-  def domain_count
-    Rails.cache.fetch('distinct_domain_count') { Account.distinct.count(:domain) }
+  def reports_count
+    Report.joins(:target_account).where(accounts: { domain: domain }).count
   end
 
-  def version_number
-    Mastodon::Version
+  def reported_accounts_count
+    Account.joins(:targeted_reports).where(domain: domain).distinct.count
   end
 end

@@ -1,74 +1,47 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 describe InstancePresenter do
-  let(:instance_presenter) { InstancePresenter.new }
-
-  it "delegates site_description to Setting" do
-    Setting.site_description = "Site desc"
-
-    expect(instance_presenter.site_description).to eq "Site desc"
+  before do
+    one = Fabricate(:account, domain: 'example.com')
+    two = Fabricate(:account, domain: 'example.com')
+    Fabricate(:account, domain: 'example2.com')
+    Fabricate(:account, domain: nil)
+    2.times { Fabricate(:report, target_account: one) }
   end
 
-  it "delegates site_extended_description to Setting" do
-    Setting.site_extended_description = "Extended desc"
+  describe '.all' do
+    it 'returns remote domains with account counts' do
+      results = described_class.all
 
-    expect(instance_presenter.site_extended_description).to eq "Extended desc"
-  end
-
-  it "delegates open_registrations to Setting" do
-    Setting.open_registrations = false
-
-    expect(instance_presenter.open_registrations).to eq false
-  end
-
-  it "delegates closed_registrations_message to Setting" do
-    Setting.closed_registrations_message = "Closed message"
-
-    expect(instance_presenter.closed_registrations_message).to eq "Closed message"
-  end
-
-  it "delegates contact_email to Setting" do
-    Setting.site_contact_email = "admin@example.com"
-
-    expect(instance_presenter.site_contact_email).to eq "admin@example.com"
-  end
-
-  describe "contact_account" do
-    it "returns the account for the site contact username" do
-      Setting.site_contact_username = "aaa"
-      account = Fabricate(:account, username: "aaa")
-
-      expect(instance_presenter.contact_account).to eq(account)
+      expect(results.length).to eq(2)
+      expect(results.first.domain).to eq 'example.com'
+      expect(results.first.accounts_count).to eq(2)
     end
   end
 
-  describe "user_count" do
-    it "returns the number of site users" do
-      cache = double
-      allow(Rails).to receive(:cache).and_return(cache)
-      allow(cache).to receive(:fetch).with("user_count").and_return(123)
+  describe '#accounts_count' do
+    it 'returns the count of accounts on a domain' do
+      instance = described_class.new('example.com')
 
-      expect(instance_presenter.user_count).to eq(123)
+      expect(instance.accounts_count).to eq 2
     end
   end
 
-  describe "status_count" do
-    it "returns the number of local statuses" do
-      cache = double
-      allow(Rails).to receive(:cache).and_return(cache)
-      allow(cache).to receive(:fetch).with("local_status_count").and_return(234)
+  describe '#reports_count' do
+    it 'returns the count of reports on a domain' do
+      instance = described_class.new('example.com')
 
-      expect(instance_presenter.status_count).to eq(234)
+      expect(instance.reports_count).to eq 2
     end
   end
 
-  describe "domain_count" do
-    it "returns the number of known domains" do
-      cache = double
-      allow(Rails).to receive(:cache).and_return(cache)
-      allow(cache).to receive(:fetch).with("distinct_domain_count").and_return(345)
+  describe '#reported_accounts_count' do
+    it 'returns the count of reported accounts on a domain' do
+      instance = described_class.new('example.com')
 
-      expect(instance_presenter.domain_count).to eq(345)
+      expect(instance.reported_accounts_count).to eq 1
     end
   end
 end
