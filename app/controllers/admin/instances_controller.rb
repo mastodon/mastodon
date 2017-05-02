@@ -6,6 +6,10 @@ module Admin
       @instances = ordered_instances.page(params[:page])
     end
 
+    def show
+      @instance = DomainPresenter.new(params[:id])
+    end
+
     private
 
     def ordered_instances
