@@ -1,12 +1,3 @@
-GIT
-  remote: git://github.com/rails/webpacker.git
-  revision: a32633d0850f854db5e82c9749c7a350ae5bc2ee
-  specs:
-    webpacker (1.2)
-      activesupport (>= 4.2)
-      multi_json (~> 1.2)
-      railties (>= 4.2)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -52,6 +43,9 @@ GEM
       public_suffix (~> 2.0, >= 2.0.2)
     airbrussh (1.2.0)
       sshkit (>= 1.6.1, != 1.7.0)
+    annotate (2.6.5)
+      activerecord (>= 2.3.0)
+      rake (>= 0.8.7)
     arel (7.1.4)
     ast (2.3.0)
     attr_encrypted (3.0.3)
@@ -459,6 +453,10 @@ GEM
       addressable (>= 2.3.6)
       crack (>= 0.3.2)
       hashdiff
+    webpacker (1.2)
+      activesupport (>= 4.2)
+      multi_json (~> 1.2)
+      railties (>= 4.2)
     websocket-driver (0.6.5)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.2)
@@ -472,6 +470,7 @@ PLATFORMS
 DEPENDENCIES
   active_record_query_trace
   addressable
+  annotate
   aws-sdk (>= 2.0)
   best_in_place (~> 3.0.1)
   better_errors
@@ -545,7 +544,7 @@ DEPENDENCIES
   tzinfo-data
   uglifier (>= 1.3.0)
   webmock
-  webpacker!
+  webpacker (~> 1.2)
   whatlanguage
 
 RUBY VERSION

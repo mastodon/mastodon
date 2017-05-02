@@ -55,7 +55,7 @@ gem 'sprockets-rails', require: 'sprockets/railtie'
 gem 'statsd-instrument'
 gem 'twitter-text'
 gem 'tzinfo-data'
-gem 'webpacker', github: 'rails/webpacker'
+gem 'webpacker', '~>1.2'
 gem 'whatlanguage'
 
 # For some reason the view specs start failing without this
@@ -81,6 +81,7 @@ end
 
 group :development do
   gem 'active_record_query_trace'
+  gem 'annotate'
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'bullet'
