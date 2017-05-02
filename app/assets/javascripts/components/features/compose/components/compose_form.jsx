@@ -44,7 +44,7 @@ class ComposeForm extends React.PureComponent {
 
   handleKeyDown (e) {
     if (e.keyCode === 13 && (e.ctrlKey || e.metaKey)) {
-      this.props.handleSubmit();
+      this.handleSubmit();
     }
   }
 
