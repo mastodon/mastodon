@@ -1,10 +1,10 @@
 .about-body {
   .wrapper {
-    max-width: 600px;
-    margin: 0 auto;
+    background: rgba(darken($color1, 7%), 0.5);
     color: $color3;
-    padding-top: 50px;
-    padding-bottom: 50px;
+    margin: 0 auto;
+    max-width: 600px;
+    padding: 1em 50px;
 
     &.thicc {
       max-width: 700px;
@@ -336,10 +336,7 @@
   .simple_form, .closed-registrations-message {
     width: 300px;
     flex: 0 0 auto;
-    background: rgba(darken($color1, 7%), 0.5);
     padding: 14px;
-    border-radius: 4px;
-    box-shadow: 0 0 15px rgba($color8, 0.4);
 
     .actions {
       margin-bottom: 0;
