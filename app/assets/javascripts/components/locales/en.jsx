@@ -90,6 +90,7 @@ const en = {
   "navigation_bar.info": "Extended information",
   "navigation_bar.logout": "Logout",
   "navigation_bar.mutes": "Muted users",
+  "navigation_bar.onboarding": "Take the tour",
   "navigation_bar.preferences": "Preferences",
   "navigation_bar.public_timeline": "Federated timeline",
   "notification.favourite": "{name} favourited your status",

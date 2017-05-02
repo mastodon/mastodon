@@ -4,6 +4,7 @@ import ColumnSubheading from '../ui/components/column_subheading';
 import { Link } from 'react-router';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
+import { openModal } from '../../actions/modal';
 import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 
@@ -19,6 +20,7 @@ const messages = defineMessages({
   favourites: { id: 'navigation_bar.favourites', defaultMessage: 'Favourites' },
   blocks: { id: 'navigation_bar.blocks', defaultMessage: 'Blocked users' },
   mutes: { id: 'navigation_bar.mutes', defaultMessage: 'Muted users' },
+  onboarding: { id: 'navigation_bar.onboarding', defaultMessage: 'Take the tour' },
   info: { id: 'navigation_bar.info', defaultMessage: 'Extended information' }
 });
 
@@ -26,7 +28,11 @@ const mapStateToProps = state => ({
   me: state.getIn(['accounts', state.getIn(['meta', 'me'])])
 });
 
-const GettingStarted = ({ intl, me }) => {
+const showOnboardingModal = (dispatch) => () => {
+  dispatch(openModal('ONBOARDING'));
+};
+
+const GettingStarted = ({ intl, me, dispatch }) => {
   let followRequests = '';
 
   if (me.get('locked')) {
@@ -45,6 +51,7 @@ const GettingStarted = ({ intl, me }) => {
         <ColumnLink icon='ban' text={intl.formatMessage(messages.blocks)} to='/blocks' />
         <ColumnSubheading text={intl.formatMessage(messages.settings_subheading)}/>
         <ColumnLink icon='book' text={intl.formatMessage(messages.info)} href='/about/more' />
+        <ColumnLink icon='question-circle' text={intl.formatMessage(messages.onboarding)} onClick={showOnboardingModal(dispatch)} />
         <ColumnLink icon='cog' text={intl.formatMessage(messages.preferences)} href='/settings/preferences' />
         <ColumnLink icon='sign-out' text={intl.formatMessage(messages.sign_out)} href='/auth/sign_out' method='delete' />
       </div>
@@ -60,7 +67,8 @@ const GettingStarted = ({ intl, me }) => {
 
 GettingStarted.propTypes = {
   intl: PropTypes.object.isRequired,
-  me: ImmutablePropTypes.map.isRequired
+  me: ImmutablePropTypes.map.isRequired,
+  dispatch: PropTypes.func.isRequired
 };
 
 export default connect(mapStateToProps)(injectIntl(GettingStarted));
