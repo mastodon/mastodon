@@ -60,7 +60,6 @@ class AutosuggestTextarea extends ImmutablePureComponent {
     }
 
     // auto-resize textarea
-    e.target.style.height = 'auto';
     e.target.style.height = `${e.target.scrollHeight}px`;
 
     this.props.onChange(e);
@@ -147,6 +146,10 @@ class AutosuggestTextarea extends ImmutablePureComponent {
       this.props.onPaste(e.clipboardData.files)
       e.preventDefault();
     }
+  }
+
+  reset () {
+    this.textarea.style.height = 'auto';
   }
 
   render () {

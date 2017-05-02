@@ -126,6 +126,20 @@ RSpec.describe User, type: :model do
     end
   end
 
+  describe '#disable_two_factor!' do
+    it 'sets otp_required_for_login to false' do
+      user = Fabricate.build(:user, otp_required_for_login: true)
+      user.disable_two_factor!
+      expect(user.otp_required_for_login).to be false
+    end
+
+    it 'clears otp_backup_codes' do
+      user = Fabricate.build(:user, otp_backup_codes: %w[dummy dummy])
+      user.disable_two_factor!
+      expect(user.otp_backup_codes.empty?).to be true
+    end
+  end
+
   describe 'whitelist' do
     around(:each) do |example|
       old_whitelist = Rails.configuration.x.email_whitelist
