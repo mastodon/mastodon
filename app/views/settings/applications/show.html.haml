@@ -2,7 +2,7 @@
   = t('doorkeeper.applications.show.title', name: @application.name)
 
 %h3= t('access_token.your_token')
-%code= @access_token.token
+%code= current_user.token_for_app(@application).token
 
 = link_to t('access_token.regenerate'), settings_application_regenerate_path(@application), method: :put,  class: 'button'
 

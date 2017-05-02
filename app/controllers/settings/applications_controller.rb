@@ -12,18 +12,21 @@ class Settings::ApplicationsController < ApplicationController
   def new
     @application = Doorkeeper::Application.new
     @application.redirect_uri ||= Doorkeeper.configuration.native_redirect_uri
-    @application.scopes ||= "read write follow"
+
+    if @application.scopes.blank?
+      @application.scopes = "read write follow"
+    end
   end
   
   def show
     @application = current_user.applications.find(params[:id])
-    @access_token = current_user.token_for_app(@application)
   end
 
   def create
     @application = current_user.applications.build(application_params)
+
     if @application.save
-      redirect_to settings_applications_path, notice: 'app created'
+      redirect_to settings_applications_path, notice: I18n.t('application.created')
     else
       render :new
     end
@@ -31,8 +34,8 @@ class Settings::ApplicationsController < ApplicationController
   
   def update
     @application = current_user.applications.find(params[:id])
-    if @application.update_attributes!(application_params)
-      redirect_to settings_applications_path, notice: 'app updated'
+    if @application.update_attributes(application_params)
+      redirect_to settings_applications_path, notice: I18n.t('generic.changes_saved_msg')
     else
       render :show
     end
@@ -41,7 +44,7 @@ class Settings::ApplicationsController < ApplicationController
   def destroy
     @application = current_user.applications.find(params[:id])
     @application.destroy
-    redirect_to settings_applications_path, notice: 'app destroyed'
+    redirect_to settings_applications_path, notice: t('application.destroyed')
   end
 
   def regenerate
