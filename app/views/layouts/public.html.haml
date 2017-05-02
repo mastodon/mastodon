@@ -1,5 +1,8 @@
 - content_for :header_tags do
   = javascript_include_tag 'application_public', integrity: true, crossorigin: 'anonymous'
+  = render 'layouts/mathjax'
+  = mathjax_tag
+  = render 'layouts/setinterval'
 
 - content_for :content do
   .container= yield

@@ -4,6 +4,7 @@
 require 'sidekiq/web'
 
 Rails.application.routes.draw do
+  mathjax 'mathjax'
   mount LetterOpenerWeb::Engine, at: 'letter_opener' if Rails.env.development?
 
   authenticate :user, lambda { |u| u.admin? } do
@@ -204,4 +205,7 @@ Rails.application.routes.draw do
     via: :all,
     to: 'application#raise_not_found',
     format: false
+
 end
+
+
