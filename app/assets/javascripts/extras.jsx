@@ -46,4 +46,12 @@ $(() => {
   $('.account_note').on('input', e => {
     $('.note-counter').text(160 - length($(e.target).val()));
   });
+
+  // used on /admin/domain_blocks/new
+  $('#domain_block_severity').change(function () {
+    let sel = $('#domain_block_reject_media');
+    let suspended = this.value === "suspend";
+    sel.prop('checked', suspended);
+    sel.prop('disabled', suspended);
+  });
 });
