@@ -29,6 +29,7 @@ export const COMPOSE_SPOILERNESS_CHANGE = 'COMPOSE_SPOILERNESS_CHANGE';
 export const COMPOSE_SPOILER_TEXT_CHANGE = 'COMPOSE_SPOILER_TEXT_CHANGE';
 export const COMPOSE_VISIBILITY_CHANGE  = 'COMPOSE_VISIBILITY_CHANGE';
 export const COMPOSE_LISTABILITY_CHANGE = 'COMPOSE_LISTABILITY_CHANGE';
+export const COMPOSE_MONOLOGUING_CHANGE = 'COMPOSE_MONOLOGUING_CHANGE';
 
 export const COMPOSE_EMOJI_INSERT = 'COMPOSE_EMOJI_INSERT';
 
@@ -80,6 +81,7 @@ export function submitCompose() {
     dispatch(submitComposeRequest());
     api(getState).post('/api/v1/statuses', {
       status,
+      monologuing: getState().getIn(['compose', 'monologuing']),
       in_reply_to_id: getState().getIn(['compose', 'in_reply_to'], null),
       media_ids: getState().getIn(['compose', 'media_attachments']).map(item => item.get('id')),
       sensitive: getState().getIn(['compose', 'sensitive']),
@@ -260,6 +262,12 @@ export function changeComposeSpoilerText(text) {
   return {
     type: COMPOSE_SPOILER_TEXT_CHANGE,
     text
+  };
+};
+
+export function changeComposeMonologuing() {
+  return {
+    type: COMPOSE_MONOLOGUING_CHANGE
   };
 };
 

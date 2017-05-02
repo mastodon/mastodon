@@ -12,7 +12,9 @@
       %p{ style: 'margin-bottom: 0' }<
         %span.p-summary>= "#{status.spoiler_text} "
         %a.status__content__spoiler-link{ href: '#' }= t('statuses.show_more')
-    %div.e-content{ lang: status.language, style: "display: #{status.spoiler_text? ? 'none' : 'block'}; direction: #{rtl?(status.content) ? 'rtl' : 'ltr'}" }= Formatter.instance.format(status)
+    - formatted_status = status.full_status_text? ? Formatter.instance.markdown_format(status) : Formatter.instance.format(status)
+    %div.e-content{ lang: status.language, style: "display: #{status.spoiler_text? ? 'none' : 'block'}; direction: #{rtl?(status.content) ? 'rtl' : 'ltr'}" }= formatted_status
+
 
 
   - unless status.media_attachments.empty?

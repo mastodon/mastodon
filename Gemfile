@@ -46,6 +46,7 @@ gem 'rack-cors', require: 'rack/cors'
 gem 'rack-timeout'
 gem 'rails-i18n'
 gem 'rails-settings-cached'
+gem 'redcarpet'
 gem 'redis', '~>3.2', require: ['redis', 'redis/connection/hiredis']
 gem 'rqrcode'
 gem 'ruby-oembed', require: 'oembed'

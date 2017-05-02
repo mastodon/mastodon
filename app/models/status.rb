@@ -245,6 +245,7 @@ class Status < ApplicationRecord
   before_validation do
     text&.strip!
     spoiler_text&.strip!
+    full_status_text&.strip!
 
     self.reply                  = !(in_reply_to_id.nil? && thread.nil?) unless reply
     self.reblog                 = reblog.reblog if reblog? && reblog.reblog?

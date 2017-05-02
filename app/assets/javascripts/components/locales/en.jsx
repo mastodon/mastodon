@@ -33,6 +33,8 @@ const en = {
   "column.mutes": "Muted users",
   "column.notifications": "Notifications",
   "column.public": "Federated timeline",
+  "compose_form.monologuing": "Monologue mode",
+  "compose_form.monologuing_on": "You are monologuing. Your entire status will be saved on the server, however only the first paragraph (400 characters max) will be displayed on timelines. You can format your text using Markdown.",
   "column_back_button.label": "Back",
   "column_subheading.navigation": "Navigation",
   "column_subheading.settings": "Settings",

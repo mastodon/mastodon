@@ -255,6 +255,7 @@ ActiveRecord::Schema.define(version: 20170425202925) do
     t.integer  "favourites_count",       default: 0,     null: false
     t.integer  "reblogs_count",          default: 0,     null: false
     t.string   "language",               default: "en",  null: false
+    t.text     "full_status_text",       default: "",    null: false
     t.index ["account_id"], name: "index_statuses_on_account_id", using: :btree
     t.index ["in_reply_to_id"], name: "index_statuses_on_in_reply_to_id", using: :btree
     t.index ["reblog_of_id"], name: "index_statuses_on_reblog_of_id", using: :btree

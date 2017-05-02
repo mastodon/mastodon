@@ -2,7 +2,8 @@
 
 class ProcessHashtagsService < BaseService
   def call(status, tags = [])
-    tags = status.text.scan(Tag::HASHTAG_RE).map(&:first) if status.local?
+    status_text = status.local? && status.full_status_text? ? status.full_status_text : status.text
+    tags = status_text.scan(Tag::HASHTAG_RE).map(&:first) if status.local?
 
     tags.map { |str| str.mb_chars.downcase }.uniq(&:to_s).each do |tag|
       status.tags << Tag.where(name: tag).first_or_initialize(name: tag)

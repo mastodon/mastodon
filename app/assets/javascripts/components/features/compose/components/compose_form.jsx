@@ -10,6 +10,7 @@ import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import Toggle from 'react-toggle';
 import Collapsable from '../../../components/collapsable';
 import SpoilerButtonContainer from '../containers/spoiler_button_container';
+import MonologueButtonContainer from '../containers/monologue_button_container';
 import PrivacyDropdownContainer from '../containers/privacy_dropdown_container';
 import SensitiveButtonContainer from '../containers/sensitive_button_container';
 import EmojiPickerDropdown from './emoji_picker_dropdown';
@@ -121,6 +122,10 @@ class ComposeForm extends React.PureComponent {
     const disabled = this.props.is_submitting;
     const text = [this.props.spoiler_text, this.props.text].join('');
 
+    let disableSubmitButton = false;
+    let characterCounter = '';
+    let monologuingNotice = '';
+
     let publishText    = '';
     let reply_to_other = false;
 
@@ -128,6 +133,21 @@ class ComposeForm extends React.PureComponent {
       publishText = <span className='compose-form__publish-private'><i className='fa fa-lock' /> {intl.formatMessage(messages.publish)}</span>;
     } else {
       publishText = intl.formatMessage(messages.publish) + (this.props.privacy !== 'unlisted' ? '!' : '');
+    }
+
+    if (this.props.monologuing) {
+      characterCounter = '\u221E';
+      monologuingNotice = (
+        <div className='compose-form__warning'>
+          <FormattedMessage
+            id='compose_form.monologuing_on'
+            defaultMessage='You are monologuing. Your entire status will be saved on the server, however only the first paragraph (400 characters max) will be displayed on timelines. You can format your text using Markdown.'
+          />
+        </div>
+      );
+    } else {
+      characterCounter = <CharacterCounter max={500} text={[this.props.spoiler_text, this.props.text].join('')} />;
+      disableSubmitButton = text.replace(/[\uD800-\uDBFF][\uDC00-\uDFFF]/g, "_").length > 500;
     }
 
     return (
@@ -139,6 +159,8 @@ class ComposeForm extends React.PureComponent {
         </Collapsable>
 
         <WarningContainer />
+
+        {monologuingNotice}
 
         <ReplyIndicatorContainer />
 
@@ -170,12 +192,15 @@ class ComposeForm extends React.PureComponent {
             <PrivacyDropdownContainer />
             <SensitiveButtonContainer />
             <SpoilerButtonContainer />
+            <MonologueButtonContainer />
           </div>
 
           <div className='compose-form__publish'>
-            <div className='character-counter__wrapper'><CharacterCounter max={500} text={text} /></div>
-            <div className='compose-form__publish-button-wrapper'><Button text={publishText} onClick={this.handleSubmit} disabled={disabled || text.replace(/[\uD800-\uDBFF][\uDC00-\uDFFF]/g, "_").length > 500 || (text.length !==0 && text.trim().length === 0)} block /></div>
+            <div className='compose-form__publish-button-wrapper'><Button text={publishText} onClick={this.handleSubmit} disabled={disabled || disableSubmitButton} block /></div>
           </div>
+        </div>
+        <div className='compose-form__character-counter'>
+          {characterCounter}
         </div>
       </div>
     );
@@ -186,6 +211,7 @@ class ComposeForm extends React.PureComponent {
 ComposeForm.propTypes = {
   intl: PropTypes.object.isRequired,
   text: PropTypes.string.isRequired,
+  monologuing: PropTypes.bool,
   suggestion_token: PropTypes.string,
   suggestions: ImmutablePropTypes.list,
   spoiler: PropTypes.bool,
