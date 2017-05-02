@@ -23,7 +23,7 @@ class Formatter
   end
 
   def markdown_format(status)
-    html_r = MarkdownFormatRender.new(escape_html: true, safe_links_only: true)
+    html_r = MarkdownFormatRenderer.new(escape_html: true, safe_links_only: true)
     markdown = Redcarpet::Markdown.new(html_r, autolink: true, space_after_headers: true, no_intra_emphasis: true, strikethrough: true)
 
     html = status.full_status_text
