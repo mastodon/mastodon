@@ -6,10 +6,18 @@ module Admin
       @instances = ordered_instances.page(params[:page])
     end
 
+    def show
+      @instance = InstancePresenter.new(domain)
+    end
+
     private
 
     def ordered_instances
-      Account.remote.by_domain_accounts
+      InstancePresenter.all
+    end
+
+    def domain
+      params[:id]
     end
   end
 end

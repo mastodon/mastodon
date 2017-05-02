@@ -7,27 +7,27 @@
       .panel
         %h2= site_hostname
 
-        - unless @instance_presenter.site_description.blank?
-          %p= @instance_presenter.site_description.html_safe
+        - unless @site.site_description.blank?
+          %p= @site.site_description.html_safe
 
       .information-board
         .section
           %span= t 'about.user_count_before'
-          %strong= number_with_delimiter @instance_presenter.user_count
+          %strong= number_with_delimiter @site.user_count
           %span= t 'about.user_count_after'
         .section
           %span= t 'about.status_count_before'
-          %strong= number_with_delimiter @instance_presenter.status_count
+          %strong= number_with_delimiter @site.status_count
           %span= t 'about.status_count_after'
         .section
           %span= t 'about.domain_count_before'
-          %strong= number_with_delimiter @instance_presenter.domain_count
+          %strong= number_with_delimiter @site.domain_count
           %span= t 'about.domain_count_after'
 
-      - unless @instance_presenter.site_extended_description.blank?
-        .panel= @instance_presenter.site_extended_description.html_safe
+      - unless @site.site_extended_description.blank?
+        .panel= @site.site_extended_description.html_safe
 
     .sidebar
-      = render 'contact', contact: @instance_presenter
-      = render 'links', instance: @instance_presenter
-      = render 'version', version: @instance_presenter
+      = render 'contact', site: @site
+      = render 'links', site: @site
+      = render 'version', site: @site

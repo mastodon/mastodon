@@ -1,0 +1,17 @@
+- content_for :page_title do
+  = @instance.domain
+
+%table.table
+  %tbody
+    %tr
+      %th= t('admin.instances.domain')
+      %td= @instance.domain
+    %tr
+      %th= t('admin.instances.accounts_count')
+      %td= @instance.accounts_count
+    %tr
+      %th= t('admin.instances.reports_count')
+      %td= @instance.reports_count
+    %tr
+      %th= t('admin.instances.reported_accounts_count')
+      %td= @instance.reported_accounts_count

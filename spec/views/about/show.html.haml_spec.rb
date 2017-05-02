@@ -7,12 +7,12 @@ describe 'about/show.html.haml' do
   end
 
   it 'has valid open graph tags' do
-    instance_presenter = double(:instance_presenter,
+    site_presenter = double(:site_presenter,
 				site_description: 'something',
 				open_registrations: false,
 				closed_registrations_message: 'yes',
 			       )
-    assign(:instance_presenter, instance_presenter)
+    assign(:site, site_presenter)
     render
 
     header_tags = view.content_for(:header_tags)

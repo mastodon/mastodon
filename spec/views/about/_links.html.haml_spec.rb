@@ -9,7 +9,7 @@ describe 'about/_links.html.haml' do
     end
 
     it 'does not show sign in link' do
-      render 'about/links', instance: InstancePresenter.new
+      render 'about/links', site: SitePresenter.new
 
       expect(rendered).to have_content(I18n.t('about.get_started'))
       expect(rendered).not_to have_content(I18n.t('auth.login'))
@@ -22,14 +22,14 @@ describe 'about/_links.html.haml' do
     end
 
     it 'shows get started link when registrations are allowed' do
-      render 'about/links', instance: double(open_registrations: true)
+      render 'about/links', site: double(open_registrations: true)
 
       expect(rendered).to have_content(I18n.t('about.get_started'))
       expect(rendered).to have_content(I18n.t('auth.login'))
     end
 
     it 'hides get started link when registrations are closed' do
-      render 'about/links', instance: double(open_registrations: false)
+      render 'about/links', site: double(open_registrations: false)
 
       expect(rendered).not_to have_content(I18n.t('about.get_started'))
       expect(rendered).to have_content(I18n.t('auth.login'))
