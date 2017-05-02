@@ -93,7 +93,7 @@ bg:
       blocking: Списък на блокираните
       following: Списък на последователите
     upload: Качване
-  landing_strip_html: <strong>%{name}</strong> е потребител от <strong>%{domain}</strong>. Можеш да ги следваш, или да контактуваш с тях, ако имаш акаунт където и да е из федерираната вселена на Mastodon. Ако нямаш акаунт, можеш да си <a href="%{sign_up_path}">създадеш ето тук</a>.
+  landing_strip_html: <strong>%{name}</strong> е потребител от %{link_to_root_path}. Можеш да ги следваш, или да контактуваш с тях, ако имаш акаунт където и да е из федерираната вселена на Mastodon. Ако нямаш акаунт, можеш да си <a href="%{sign_up_path}">създадеш ето тук</a>.
   media_attachments:
     validations:
       images_and_video: Не мога да прикача видеоклип към публикация, която вече съдържа изображения
@@ -139,7 +139,7 @@ bg:
     import: Импортиране
     preferences: Предпочитания
     settings: Настройки
-    two_factor_auth: Двустепенно удостоверяване
+    two_factor_authentication: Двустепенно удостоверяване
   statuses:
     open_in_web: Отвори в уеб
     over_character_limit: прехвърлен лимит от %{max} символа
@@ -155,7 +155,7 @@ bg:
   time:
     formats:
       default: "%d %b, %Y, %H:%M"
-  two_factor_auth:
+  two_factor_authentication:
     description_html: При активация на <strong>двустепенно удостоверяване</strong>, за да влезеш в приложението, ще трябва да използваш телефона си. През него ще се генерира код, който да въвеждаш при влизане.
     disable: Деактивирай
     enable: Активирай

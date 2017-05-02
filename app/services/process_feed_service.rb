@@ -47,8 +47,8 @@ class ProcessFeedService < BaseService
       return status unless just_created
 
       if verb == :share
-        original_status, = status_from_xml(@xml.at_xpath('.//activity:object', activity: TagManager::AS_XMLNS))
-        status.reblog    = original_status
+        original_status = shared_status_from_xml(@xml.at_xpath('.//activity:object', activity: TagManager::AS_XMLNS))
+        status.reblog   = original_status
 
         if original_status.nil?
           status.destroy
@@ -88,6 +88,14 @@ class ProcessFeedService < BaseService
 
     def skip_unsupported_type?
       !([:post, :share, :delete].include?(verb) && [:activity, :note, :comment].include?(type))
+    end
+
+    def shared_status_from_xml(entry)
+      status = find_status(id(entry))
+
+      return status unless status.nil?
+
+      FetchRemoteStatusService.new.call(url(entry))
     end
 
     def status_from_xml(entry)
@@ -174,7 +182,7 @@ class ProcessFeedService < BaseService
     end
 
     def account_from_href(href)
-      url = Addressable::URI.parse(href)
+      url = Addressable::URI.parse(href).normalize
 
       if TagManager.instance.web_domain?(url.host)
         Account.find_local(url.path.gsub('/users/', ''))
@@ -195,7 +203,7 @@ class ProcessFeedService < BaseService
         next unless link['href']
 
         media = MediaAttachment.where(status: parent, remote_url: link['href']).first_or_initialize(account: parent.account, status: parent, remote_url: link['href'])
-        parsed_url = URI.parse(link['href'])
+        parsed_url = Addressable::URI.parse(link['href']).normalize
 
         next if !%w[http https].include?(parsed_url.scheme) || parsed_url.host.empty?
 
@@ -271,7 +279,7 @@ class ProcessFeedService < BaseService
     def acct(xml = @xml)
       username = xml.at_xpath('./xmlns:author/xmlns:name', xmlns: TagManager::XMLNS).content
       url      = xml.at_xpath('./xmlns:author/xmlns:uri', xmlns: TagManager::XMLNS).content
-      domain   = Addressable::URI.parse(url).host
+      domain   = Addressable::URI.parse(url).normalize.host
 
       "#{username}@#{domain}"
     end

@@ -1,5 +1,5 @@
-import PureRenderMixin from 'react-addons-pure-render-mixin';
 import ImmutablePropTypes from 'react-immutable-proptypes';
+import PropTypes from 'prop-types';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import IconButton from '../../../components/icon_button';
 import Button from '../../../components/button';
@@ -12,24 +12,18 @@ const messages = defineMessages({
   reblog: { id: 'status.reblog', defaultMessage: 'Boost' }
 });
 
-const BoostModal = React.createClass({
-  contextTypes: {
-    router: React.PropTypes.object
-  },
+class BoostModal extends React.PureComponent {
 
-  propTypes: {
-    status: ImmutablePropTypes.map.isRequired,
-    onReblog: React.PropTypes.func.isRequired,
-    onClose: React.PropTypes.func.isRequired,
-    intl: React.PropTypes.object.isRequired
-  },
-
-  mixins: [PureRenderMixin],
+  constructor (props, context) {
+    super(props, context);
+    this.handleReblog = this.handleReblog.bind(this);
+    this.handleAccountClick = this.handleAccountClick.bind(this);
+  }
 
   handleReblog() {
     this.props.onReblog(this.props.status);
     this.props.onClose();
-  },
+  }
 
   handleAccountClick (e) {
     if (e.button === 0) {
@@ -37,7 +31,7 @@ const BoostModal = React.createClass({
       this.props.onClose();
       this.context.router.push(`/accounts/${this.props.status.getIn(['account', 'id'])}`);
     }
-  },
+  }
 
   render () {
     const { status, intl, onClose } = this.props;
@@ -46,13 +40,13 @@ const BoostModal = React.createClass({
       <div className='modal-root__modal boost-modal'>
         <div className='boost-modal__container'>
           <div className='status light'>
-            <div style={{ fontSize: '15px' }}>
-              <div style={{ float: 'right', fontSize: '14px' }}>
+            <div className='boost-modal__status-header'>
+              <div className='boost-modal__status-time'>
                 <a href={status.get('url')} className='status__relative-time' target='_blank' rel='noopener'><RelativeTimestamp timestamp={status.get('created_at')} /></a>
               </div>
 
-              <a onClick={this.handleAccountClick} href={status.getIn(['account', 'url'])} className='status__display-name' style={{ display: 'block', maxWidth: '100%', paddingRight: '25px' }}>
-                <div className='status__avatar' style={{ position: 'absolute', left: '10px', top: '10px', width: '48px', height: '48px' }}>
+              <a onClick={this.handleAccountClick} href={status.getIn(['account', 'url'])} className='status__display-name'>
+                <div className='status__avatar'>
                   <Avatar src={status.getIn(['account', 'avatar'])} staticSrc={status.getIn(['account', 'avatar_static'])} size={48} />
                 </div>
 
@@ -72,6 +66,17 @@ const BoostModal = React.createClass({
     );
   }
 
-});
+}
+
+BoostModal.contextTypes = {
+  router: PropTypes.object
+};
+
+BoostModal.propTypes = {
+  status: ImmutablePropTypes.map.isRequired,
+  onReblog: PropTypes.func.isRequired,
+  onClose: PropTypes.func.isRequired,
+  intl: PropTypes.object.isRequired
+};
 
 export default injectIntl(BoostModal);

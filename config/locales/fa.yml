@@ -1,0 +1,324 @@
+---
+fa:
+  about:
+    about_mastodon: ماستدون (Mastodon) یک شبکهٔ اجتماعی <em>آزاد و کدباز</em> است. یک جایگزین <em>غیرمتمرکز</em> برای شبکه‌های تجاری، که نمی‌گذارد ارتباط‌های شما را یک شرکت در انحصار خود بگیرد. یک سرور مورد اعتماد را انتخاب کنید&mdash;هر سروری که باشد، همچنان می‌توانید با سرورهای دیگر ارتباط داشته باشید. هر کسی می‌تواند سرور ماستدون خود را راه بیندازد و در <em>شبکهٔ اجتماعی</em> سهیم شود.
+    about_this: دربارهٔ این سرور
+    apps: برنامه‌ها
+    business_email: 'ایمیل کاری:'
+    closed_registrations: "امکان ثبت نام روی این سرور هم‌اینک فعال نیست."
+    contact: تماس
+    description_headline: "%{domain} چیست؟"
+    domain_count_after: سرورهای دیگر
+    domain_count_before: متصل به
+    features:
+      api: رابط برنامه‌نویسی برای برنامه‌ها و سرویس‌های دیگر
+      blocks: ابزارهای قدرتمند برای مسدود یا بی‌صدا کردن دیگران
+      characters: ۵۰۰ حرف برای هر نوشته
+      chronology: نمایش نوشته‌های دیگران به ترتیب زمانی
+      ethics: 'اخلاق‌مدار: بدون تبلیغات، بدون ردگیری'
+      gifv: تصاویر متحرک و ویدیوهای کوتاه
+      privacy: تنظیمات حریم خصوصی جداگانه برای هر نوشته
+      public: نمایش نوشته‌های عمومی دیگران از همه‌جا
+    features_headline: برگ‌های برندهٔ ماستدون
+    get_started: آغاز کنید
+    links: پیوندها
+    other_instances: سرورهای دیگر
+    source_code: کدهای منبع
+    status_count_after: چیز نوشته‌اند
+    status_count_before: که جمعاً
+    terms: شرایط استفاده
+    user_count_after: کاربر
+    user_count_before: دارای
+    version: نسخه
+  accounts:
+    follow: پی بگیرید
+    followers: پیگیران
+    following: پی می‌گیرد
+    nothing_here: این‌جا چیزی نیست!
+    people_followed_by: کسانی که %{name} پی می‌گیرد
+    people_who_follow: کسانی که %{name} را پی می‌گیرند
+    posts: نوشته
+    remote_follow: پیگیری غیرمستقیم
+    unfollow: پایان پیگیری
+  activitypub:
+    outbox:
+      name: "صندوق خروجی %{account_name}"
+      summary: "مجموعه‌ای از فعالیت‌های کاربر %{account_name}."
+    activity:
+      create:
+        name: "%{account_name} یادداشتی نوشت."
+      announce:
+        name: "%{account_name} فعالیتی آغاز کرد."
+  admin:
+    accounts:
+      are_you_sure: آیا مطمئن هستید؟
+      confirm: تأیید
+      confirmed: تأیید شد
+      display_name: نمایش به نام
+      domain: دامین
+      edit: ویرایش
+      email: ایمیل
+      feed_url: نشانی فید
+      followers: پیگیران
+      follows: پی می‌گیرد
+      location:
+        all: همه
+        local: محلی
+        remote: غیرمستقیم
+        title: مکان
+      media_attachments: ضمیمه‌های تصویری
+      moderation:
+        all: همه
+        silenced: بی‌صدا شده
+        suspended: معلق شده
+        title: مدیریت
+      most_recent_activity: آخرین فعالیت‌ها
+      most_recent_ip: آخرین IP ها
+      not_subscribed: عضو نیست
+      order:
+        alphabetic: الفبایی
+        most_recent: تازه‌ترین‌ها
+        title: ترتیب
+      perform_full_suspension: Perform full suspension
+      profile_url: نشانی نمایه
+      public: عمومی
+      push_subscription_expires: عضویت از راه PuSH منقضی شد
+      reset_password: بازنشانی رمز
+      salmon_url: نشانی Salmon
+      show:
+        created_reports: گزارش‌ها از طرف این حساب
+        report: گزارش
+        targeted_reports: گزارش‌ها دربارهٔ این حساب
+      silence: بی‌صدا
+      statuses: نوشته‌ها
+      title: حساب‌ها
+      undo_silenced: واگردانی بی‌صداکردن
+      undo_suspension: واگردانی تعلیق
+      username: نام کاربری
+      web: وب
+    domain_blocks:
+      add_new: افزودن تازه
+      created_msg: مسدودکردن دامین در حال انجام است
+      destroyed_msg: مسدودکردن دامین واگردانده شد
+      domain: دامین
+      new:
+        create: مسدودسازی
+        hint: مسدودسازی دامین جلوی فهرست‌شدن حساب‌ها در پایگاه داده را نمی‌گیرد، بلکه به طور خودکار روش‌های مدیریتی را روی فعالیت‌های فعلی و گذشتهٔ آن حساب‌ها اعمال می‌کند.
+        severity:
+          desc_html: "<strong>بی‌صداکردن</strong> یک حساب نوشته‌های آن را برای همه (به جز پیگیرانش) ناپدید می‌کند. <strong>معلق‌کردن</strong> حساب همهٔ نوشته‌ها، تصویرها، و اطلاعات حساب را پاک می‌کند."
+          silence: بی‌صداکردن
+          suspend: معلق‌کردن
+        title: مسدودسازی دامین دیگر
+      reject_media: نپذیرفتن پرونده‌های تصویری
+      reject_media_hint: تصویرهای ذخیره‌شده در این‌جا را پاک می‌کند و جلوی دریافت تصویرها را در آینده می‌گیرد. بی‌تأثیر برای معلق‌شده‌ها
+      severities:
+        silence: بی‌صداکردن
+        suspend: معلق‌کردن
+      severity: شدت
+      show:
+        affected_accounts:
+          one: روی یک حساب در پایگاه داده تأثیر گذاشت
+          other: "روی %{count} حساب در پایگاه داده تأثیر گذاشت"
+        retroactive:
+          silence: بی‌صداشدن همهٔ حساب‌های این دامین را لغو کن
+          suspend: معلق‌شدن همهٔ حساب‌های این دامین را لغو کن
+        title: واگردانی مسدودسازی دامنه برای %{domain}
+        undo: واگردانی
+      title: دامین‌های مسدودشده
+      undo: واگردانی
+    instances:
+      account_count: حساب‌های شناخته‌شده
+      domain_name: دامین
+      title: سرورهای شناخته‌شده
+    pubsubhubbub:
+      callback_url: نشانی Callback
+      confirmed: تأییدشده
+      expires_in: مهلت منقضی‌شدن
+      last_delivery: آخرین ارسال
+      title: PubSubHubbub
+      topic: موضوع
+    reports:
+      comment:
+        label: توضیح
+        none: خالی
+      delete: پاک‌کردن
+      id: شناسه
+      mark_as_resolved: علامت‌گذاری به عنوان حل‌شده
+      report: 'گزارش #%{id}'
+      reported_account: حساب گزارش‌شده
+      reported_by: گزارش از طرف
+      resolved: حل‌شده
+      silence_account: بی‌صدا کردن حساب
+      status: نوشته
+      suspend_account: معلق‌کردن حساب
+      target: هدف
+      title: گزارش‌ها
+      unresolved: حل‌نشده
+      view: نمایش
+    settings:
+      click_to_edit: برای ویرایش کلیک کنید
+      contact_information:
+        email: یک نشانی ایمیل عمومی وارد کنید
+        label: اطلاعات تماس
+        username: یک نام کاربری وارد کنید
+      registrations:
+        closed_message:
+          desc_html: وقتی امکان ثبت نام روی سرور فعال نباشد در صفحهٔ اصلی نمایش می‌یابد<br>می‌توانید HTML بنویسید
+          title: پیغام برای فعال‌نبودن ثبت نام
+        open:
+          disabled: غیرفعال
+          enabled: فعال
+          title: امکان ثبت نام
+      setting: تنظیمات
+      site_description:
+        desc_html: روی صفحهٔ اصلی نمایش می‌یابد و همچنین به عنوان تگ‌های HTML.<br>می‌توانید HTML بنویسید, به‌ویژه <code>&lt;a&gt;</code> و <code>&lt;em&gt;</code>.
+        title: دربارهٔ سایت
+      site_description_extended:
+        desc_html: در صفحهٔ اطلاعات تکمیلی نشان داده می‌شود<br>می‌توانید HTML بنویسید
+        title: اطلاعات بیشتر دربارهٔ سایت
+      site_title: نام سایت
+      title: تنظیمات سایت
+    title: مدیریت
+  application_mailer:
+    settings: 'تغییر تنظیمات ایمیل: %{link}'
+    signature: اعلان‌های ماستدون از %{instance}
+    view: 'نمایش:'
+  applications:
+    invalid_url: نشانی واردشده معتبر نیست
+  auth:
+    change_password: اطلاعات حساب
+    didnt_get_confirmation: راهنمایی برای تأیید را دریافت نکردید؟
+    forgot_password: رمزتان را گم کرده‌اید؟
+    login: ورود
+    logout: خروج
+    register: عضو شوید
+    resend_confirmation: راهنمایی برای تأیید را دوباره بفرست
+    reset_password: بازنشانی رمز
+    set_new_password: تعیین رمز تازه
+  authorize_follow:
+    error: متأسفانه حین یافتن آن حساب خطایی رخ داد
+    follow: پی بگیرید
+    prompt_html: 'شما (<strong>%{self}</strong>) می‌خواهید این حساب را پی بگیرید:'
+    title: پیگیری %{acct}
+  datetime:
+    distance_in_words:
+      about_x_hours: "%{count} ساعت"
+      about_x_months: "%{count} ماه"
+      about_x_years: "%{count} سال"
+      almost_x_years: "%{count} سال"
+      half_a_minute: همین الان
+      less_than_x_minutes: "%{count} دقیقه"
+      less_than_x_seconds: همین الان
+      over_x_years: "%{count} سال"
+      x_days: "%{count} روز"
+      x_minutes: "%{count} دقیقه"
+      x_months: "%{count} ماه"
+      x_seconds: "%{count} ثانیه"
+  errors:
+    '403': شما اجازهٔ دیدن این صفحه را ندارید.
+    '404': صفحه‌ای که می‌خواستید ببینید وجود ندارد.
+    '410': صفحه‌ای که می‌خواستید ببینید دیگر وجود ندارد.
+    '422':
+      content: تأیید امنیتی انجام نشد. آیا مرورگر شما کوکی‌ها را مسدود می‌کند؟
+      title: تأیید امنیتی شکست خورد
+  exports:
+    blocks: حساب‌های مسدودشده
+    csv: CSV
+    follows: حساب‌های پی‌گرفته
+    mutes: حساب‌های بی‌صداشده
+    storage: تصویرهای ذخیره‌شده
+  generic:
+    changes_saved_msg: تغییرات با موفقیت ذخیره شدند!
+    powered_by: نیرو گرفته از %{link}
+    save_changes: ذخیرهٔ تغییرات
+    validation_errors:
+      one: یک چیزی هنوز درست نیست! لطفاً خطاهای زیر را ببینید
+      other: یک چیزی هنوز درست نیست! لطفاً %{count} خطای زیر را ببینید
+  imports:
+    preface: شما می‌توانید داده‌هایی از قبیل کاربرانی که پی می‌گرفتید یا مسدود می‌کردید را در حساب خود روی این سرور درون‌ریزی کنید. برای این کار پرونده‌هایی که از سرور دیگر برون‌سپاری کرده‌اید را به‌کار ببرید.
+    success: داده‌های شما با موفقیت بارگذاری شد و به زودی پردازش می‌شود
+    types:
+      blocking: فهرست مسدودشده‌ها
+      following: فهرست پی‌گیری‌ها
+      muting: فهرست بی‌صداشده‌ها
+    upload: بارگذاری
+  landing_strip_html: <strong>%{name}</strong> کاربری روی <strong>%{domain}</strong> است. شما با داشتن حساب روی هر سروری می‌توانید نوشته‌های او را پیگیری کرده یا با او ارتباط داشته باشید. اگر هنوز حسابی ندارید <a href="%{sign_up_path}">این‌جا حساب باز کنید</a>.
+  media_attachments:
+    validations:
+      images_and_video: نمی‌توان برای نوشته‌ای که تصویر دارد ویدیو بارگذاری کرد
+      too_many: نمی‌توان بیشتر از ۴ تصویر بارگذاری کرد
+  notification_mailer:
+    digest:
+      body: 'خلاصه‌ای از آن‌چه از زمان آخرین بازدید شما در %{since} روی %{instance} رخ داد :'
+      mention: "%{name} این‌جا از شما نام برد:"
+      new_followers_summary:
+        one: شما یک پیگیر تازه دارید! ای ول!
+        other: شما %{count} پیگیر تازه دارید! چه عالی!
+      subject:
+        one: "یک اعلان تازه از زمان آخرین بازدید شما \U0001F418"
+        other: "%{count} اعلان تازه از زمان آخرین بازدید شما \U0001F418"
+    favourite:
+      body: '%{name} این نوشتهٔ شما را پسندید:'
+      subject: "%{name} نوشتهٔ شما را پسندید"
+    follow:
+      body: "%{name} هم‌اینک پیگیر شماست!"
+      subject: "%{name} هم‌اینک پیگیر شماست"
+    follow_request:
+      body: "%{name} می‌خواهد پیگیر نوشته‌های شما باشد"
+      subject: 'منتظر پیگیری: %{name}'
+    mention:
+      body: '%{name} در این‌جا از شما نام برد:'
+      subject: '%{name} از شما نام برد'
+    reblog:
+      body: '%{name} نوشتهٔ شما را بازبوقید:'
+      subject: "%{name} نوشتهٔ شما را بازبوقید"
+  pagination:
+    next: بعدی
+    prev: قبلی
+    truncate: "&hellip;"
+  remote_follow:
+    acct: نشانی حساب username@domain خود را این‌جا بنویسید
+    missing_resource: نشانی اینترنتی برای رسیدن به حساب شما پیدا نشد
+    proceed: درخواست پیگیری
+    prompt: 'شما قرار است این حساب را پیگیری کنید:'
+  settings:
+    authorized_apps: برنامه‌های مجاز
+    back: بازگشت به ماستدون
+    edit_profile: ویرایش نمایه
+    export: برون‌سپاری داده‌ها
+    import: درون‌ریزی
+    preferences: ترجیحات
+    settings: تنظیمات
+    two_factor_authentication: ورود دومرحله‌ای
+  statuses:
+    open_in_web: بازکردن در وب
+    over_character_limit: از حد مجاز %{max} حرف فراتر رفتید
+    show_more: نمایش
+    visibilities:
+      private: نمایش تنها به پیگیران
+      public: عمومی
+      unlisted: عمومی، ولی در فهرست نوشته‌ها نمایش نده 
+  stream_entries:
+    click_to_show: برای نمایش کلیک کنید
+    reblogged: بازبوقیده
+    sensitive_content: محتوای حساس
+  time:
+    formats:
+      default: "%b %d, %Y, %H:%M"
+  two_factor_authentication:
+    code_hint: برای تأیید، کدی را که برنامهٔ تأییدکننده ساخته است وارد کنید
+    description_html: اگر <strong>ورود دومرحله‌ای</strong> را فعال کنید، برای ورود به سیستم به تلفن خود نیاز خواهید داشت تا برایتان یک کد موقتی بسازد
+    disable: غیرفعال‌کردن
+    enable: فعال‌کردن
+    enabled_success: ورود دومرحله‌ای با موفقیت فعال شد
+    generate_recovery_codes: ساخت کدهای بازیابی
+    instructions_html: "<strong>این کد QR را با برنامهٔ Google Authenticator یا برنامه‌های TOTP مشابه اسکن کنید</strong>. از این به بعد، آن برنامه کدهایی موقتی خواهد ساخت که برای ورود باید آن‌ها را وارد کنید."
+    lost_recovery_codes: با کدهای بازیابی می‌توانید اگر تلفن خود را گم کردید به حساب خود دسترسی داشته باشید. اگر کدهای بازیابی خود را گم کردید، آن‌ها را این‌جا دوباره بسازید. کدهای بازیابی قبلی شما نامعتبر خواهند شد.
+    manual_instructions: 'اگر نمی‌توانید کدها را اسکن کنید و باید آن‌ها را دستی وارد کنید، متن کد امنیتی این‌جاست:'
+    recovery_codes_regenerated: کدهای بازیابی با موفقیت ساخته شدند
+    recovery_instructions: اگر تلفن خود را گم کردید، می‌توانید با یکی از کدهای بازیابی زیر کنترل حساب خود را به دست بگیرید. این کدها را در جای امنی نگه دارید، مثلاً آن‌ها را چاپ کنید و کنار سایر مدارک مهم خود قرار دهید
+    setup: راه اندازی
+    wrong_code: کدی که وارد کردید نامعتبر بود! آیا ساعت سرور و ساعت دستگاه شما درست تنظیم شده‌اند؟
+  users:
+    invalid_email: نشانی ایمیل نامعتبر است
+    invalid_otp_token: کد ورود دومرحله‌ای نامعتبر است

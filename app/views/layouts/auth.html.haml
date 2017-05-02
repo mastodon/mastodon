@@ -9,13 +9,7 @@
           = image_tag 'logo.png'
 
     .form-container
-      - if flash[:notice]
-        .flash-message.notice
-          %strong= flash[:notice]
-
-      - if flash[:alert]
-        .flash-message.alert
-          %strong= flash[:alert]
+      = render 'flashes'
 
       = yield
 

@@ -35,22 +35,12 @@ sudo apt-get install \
   libreadline-dev \
   -y
 
-# Install rbenv
-git clone https://github.com/rbenv/rbenv.git ~/.rbenv
-cd ~/.rbenv && src/configure && make -C src
-echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bash_profile
-echo 'eval "$(rbenv init -)"' >> ~/.bash_profile
-
-git clone https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build
-
-export PATH="$HOME/.rbenv/bin:$PATH"
-eval "$(rbenv init -)"
-
+# Install rvm
 cd /vagrant
-
-echo "Compiling Ruby $(cat .ruby-version): warning, this takes a while!!!"
-rbenv install $(cat .ruby-version)
-rbenv global $(cat .ruby-version)
+read RUBY_VERSION < .ruby-version
+gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3
+curl -sSL https://get.rvm.io | bash -s stable --ruby=$RUBY_VERSION
+source /home/vagrant/.rvm/scripts/rvm
 
 # Configure database
 sudo -u postgres createuser -U postgres vagrant -s
@@ -62,6 +52,7 @@ bundle install
 yarn install
 
 # Build Mastodon
+export $(cat ".env.vagrant" | xargs)
 bundle exec rails db:setup
 bundle exec rails assets:precompile
 

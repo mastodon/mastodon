@@ -5,7 +5,8 @@
       - if user_signed_in?
         %li= link_to t('about.get_started'), root_path
       - else
-        %li= link_to t('about.get_started'), new_user_registration_path
+        - if instance.open_registrations
+          %li= link_to t('about.get_started'), new_user_registration_path
         %li= link_to t('auth.login'), new_user_session_path
       %li= link_to t('about.terms'), terms_path
       %li= link_to t('about.source_code'), 'https://github.com/tootsuite/mastodon'

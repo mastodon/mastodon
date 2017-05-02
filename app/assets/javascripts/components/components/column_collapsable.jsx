@@ -1,33 +1,16 @@
-import PureRenderMixin from 'react-addons-pure-render-mixin';
 import { Motion, spring } from 'react-motion';
+import PropTypes from 'prop-types';
 
-const iconStyle = {
-  fontSize: '16px',
-  padding: '15px',
-  position: 'absolute',
-  right: '0',
-  top: '-48px',
-  cursor: 'pointer',
-  zIndex: '3'
-};
+class ColumnCollapsable extends React.PureComponent {
 
-const ColumnCollapsable = React.createClass({
-
-  propTypes: {
-    icon: React.PropTypes.string.isRequired,
-    title: React.PropTypes.string,
-    fullHeight: React.PropTypes.number.isRequired,
-    children: React.PropTypes.node,
-    onCollapse: React.PropTypes.func
-  },
-
-  getInitialState () {
-    return {
+  constructor (props, context) {
+    super(props, context);
+    this.state = {
       collapsed: true
     };
-  },
 
-  mixins: [PureRenderMixin],
+    this.handleToggleCollapsed = this.handleToggleCollapsed.bind(this);
+  }
 
   handleToggleCollapsed () {
     const currentState = this.state.collapsed;
@@ -37,7 +20,7 @@ const ColumnCollapsable = React.createClass({
     if (!currentState && this.props.onCollapse) {
       this.props.onCollapse();
     }
-  },
+  }
 
   render () {
     const { icon, title, fullHeight, children } = this.props;
@@ -45,8 +28,8 @@ const ColumnCollapsable = React.createClass({
     const collapsedClassName = collapsed ? 'collapsable-collapsed' : 'collapsable';
 
     return (
-      <div style={{ position: 'relative' }}>
-        <div role='button' tabIndex='0' title={`${title}`} style={{...iconStyle }} className={`column-icon ${collapsedClassName}`} onClick={this.handleToggleCollapsed}>
+      <div className='column-collapsable'>
+        <div role='button' tabIndex='0' title={`${title}`} className={`column-icon ${collapsedClassName}`} onClick={this.handleToggleCollapsed}>
           <i className={`fa fa-${icon}`} />
         </div>
 
@@ -60,6 +43,14 @@ const ColumnCollapsable = React.createClass({
       </div>
     );
   }
-});
+}
+
+ColumnCollapsable.propTypes = {
+  icon: PropTypes.string.isRequired,
+  title: PropTypes.string,
+  fullHeight: PropTypes.number.isRequired,
+  children: PropTypes.node,
+  onCollapse: PropTypes.func
+};
 
 export default ColumnCollapsable;
