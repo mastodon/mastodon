@@ -1,3 +1,6 @@
+.bg-profile
+  .bg-profile-img{ style: "background-image: url(#{@account.header_static_url})" }
+
 .card.h-card.p-author{ style: "background-image: url(#{account.header.url( :original)})" }
   - if user_signed_in? && current_account.id != account.id && !current_account.requested?(account)
     .controls

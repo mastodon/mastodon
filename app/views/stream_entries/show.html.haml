@@ -15,5 +15,8 @@
 - if show_landing_strip?
   = render partial: 'shared/landing_strip', locals: { account: @stream_entry.account }
 
+.bg-profile
+  .bg-profile-img{ style: "background-image: url(#{@account.header_static_url})" }
+
 .activity-stream.activity-stream-headless.h-entry
   = render partial: "stream_entries/#{@type}", locals: { @type.to_sym => @stream_entry.activity, include_threads: true }
