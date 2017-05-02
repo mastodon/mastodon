@@ -11,7 +11,7 @@
       %th= t('admin.pubsubhubbub.last_delivery')
   %tbody
     - @subscriptions.each do |subscription|
-      - expired = Time.now.utc < subscription.expires_at
+      - expired = Time.now.utc > subscription.expires_at
       %tr
         %td
           %samp= subscription.account.acct
