@@ -2,7 +2,7 @@
   = javascript_include_tag 'application_public', integrity: true
 
 - content_for :page_title do
-  = Mastodon.cloud
+  = site_hostname
 
 - content_for :header_tags do
   %meta{ property: 'og:site_name', content: 'Mastodon.Cloud' }/
