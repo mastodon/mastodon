@@ -1,4 +1,42 @@
 # frozen_string_literal: true
+# == Schema Information
+#
+# Table name: accounts
+#
+#  id                      :integer          not null, primary key
+#  username                :string           default(""), not null
+#  domain                  :string
+#  secret                  :string           default(""), not null
+#  private_key             :text
+#  public_key              :text             default(""), not null
+#  remote_url              :string           default(""), not null
+#  salmon_url              :string           default(""), not null
+#  hub_url                 :string           default(""), not null
+#  created_at              :datetime         not null
+#  updated_at              :datetime         not null
+#  note                    :text             default(""), not null
+#  display_name            :string           default(""), not null
+#  uri                     :string           default(""), not null
+#  url                     :string
+#  avatar_file_name        :string
+#  avatar_content_type     :string
+#  avatar_file_size        :integer
+#  avatar_updated_at       :datetime
+#  header_file_name        :string
+#  header_content_type     :string
+#  header_file_size        :integer
+#  header_updated_at       :datetime
+#  avatar_remote_url       :string
+#  subscription_expires_at :datetime
+#  silenced                :boolean          default(FALSE), not null
+#  suspended               :boolean          default(FALSE), not null
+#  locked                  :boolean          default(FALSE), not null
+#  header_remote_url       :string           default(""), not null
+#  statuses_count          :integer          default(0), not null
+#  followers_count         :integer          default(0), not null
+#  following_count         :integer          default(0), not null
+#  last_webfingered_at     :datetime
+#
 
 class Account < ApplicationRecord
   include Targetable
