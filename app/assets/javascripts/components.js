@@ -3,7 +3,11 @@
 
 window.React    = require('react');
 window.ReactDOM = require('react-dom');
-window.Perf     = require('react-addons-perf');
+
+if (process.env.NODE_ENV !== 'production') {
+  // perf tracking (aka marks/measures) not needed in production mode
+  window.Perf = require('react-addons-perf');
+}
 
 if (!window.Intl) {
   require('intl');
