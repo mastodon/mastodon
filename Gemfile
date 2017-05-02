@@ -63,6 +63,7 @@ gem 'whatlanguage'
 gem 'react-rails'
 gem 'browserify-rails'
 gem 'autoprefixer-rails'
+gem 'actionview', '>= 5.0.2'
 
 group :development, :test do
   gem 'rspec-rails'
