@@ -11,7 +11,6 @@
       %th= t('admin.pubsubhubbub.last_delivery')
   %tbody
     - @subscriptions.each do |subscription|
-      - expired = Time.now.utc > subscription.expires_at
       %tr
         %td
           %samp= subscription.account.acct
@@ -20,8 +19,8 @@
         %td
           - if subscription.confirmed?
             %i.fa.fa-check
-        %td{ style: "color: #{expired ? 'red' : 'inherit'};" }
-          = precede expired ? '-' : '' do
+        %td{ style: "color: #{subscription.expired? ? 'red' : 'inherit'};" }
+          = precede subscription.expired? ? '-' : '' do
             = time_ago_in_words(subscription.expires_at)
         %td
           - if subscription.last_successful_delivery_at?
