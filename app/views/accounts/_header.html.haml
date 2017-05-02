@@ -15,6 +15,9 @@
     %small
       %span= "@#{account.username}"
       = fa_icon('lock') if account.locked?
+  %small.joined-at
+    = fa_icon('calendar-o')
+    = l(account.created_at, format: :joined)
   .details
     .bio
       .account__header__content.p-note.emojify= Formatter.instance.simplified_format(account)
