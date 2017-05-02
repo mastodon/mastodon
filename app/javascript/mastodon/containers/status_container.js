@@ -1,3 +1,4 @@
+import React from 'react';
 import { connect } from 'react-redux';
 import Status from '../components/status';
 import { makeGetStatus } from '../selectors';
