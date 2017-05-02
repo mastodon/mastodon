@@ -10,6 +10,7 @@ node(:meta) do
     admin: @admin.try(:id),
     boost_modal: current_account.user.setting_boost_modal,
     auto_play_gif: current_account.user.setting_auto_play_gif,
+    piwik_enabled: ENV.has_key?('PIWIK_DOMAIN') ? 'true' : 'false'
   }
 end
 
