@@ -28,6 +28,7 @@ class DetailedStatus extends React.PureComponent {
 
   render () {
     const status = this.props.status.get('reblog') ? this.props.status.get('reblog') : this.props.status;
+    const sensitive = status.get('sensitive') || status.get('spoiler_text').length > 0;
 
     let media           = '';
     let applicationLink = '';
@@ -36,9 +37,9 @@ class DetailedStatus extends React.PureComponent {
       if (status.get('media_attachments').some(item => item.get('type') === 'unknown')) {
         media = <AttachmentList media={status.get('media_attachments')} />;
       } else if (status.getIn(['media_attachments', 0, 'type']) === 'video') {
-        media = <VideoPlayer sensitive={status.get('sensitive')} media={status.getIn(['media_attachments', 0])} width={300} height={150} onOpenVideo={this.props.onOpenVideo} autoplay />;
+        media = <VideoPlayer sensitive={sensitive} media={status.getIn(['media_attachments', 0])} width={300} height={150} onOpenVideo={this.props.onOpenVideo} autoplay />;
       } else {
-        media = <MediaGallery sensitive={status.get('sensitive')} media={status.get('media_attachments')} height={300} onOpenMedia={this.props.onOpenMedia} autoPlayGif={this.props.autoPlayGif} />;
+        media = <MediaGallery sensitive={sensitive} media={status.get('media_attachments')} height={300} onOpenMedia={this.props.onOpenMedia} autoPlayGif={this.props.autoPlayGif} />;
       }
     } else if (status.get('spoiler_text').length === 0) {
       media = <CardContainer statusId={status.get('id')} />;

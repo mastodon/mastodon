@@ -137,8 +137,12 @@ class Status < ApplicationRecord
     results
   end
 
+  def sensitive_content?
+    sensitive? || !spoiler_text.blank?
+  end
+
   def non_sensitive_with_media?
-    !sensitive? && media_attachments.any?
+    !sensitive_content? && media_attachments.any?
   end
 
   class << self
