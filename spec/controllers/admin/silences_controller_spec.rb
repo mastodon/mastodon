@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 describe Admin::SilencesController do
+  render_views
+
   let(:account) { Fabricate(:account) }
   before do
     sign_in Fabricate(:user, admin: true), scope: :user
