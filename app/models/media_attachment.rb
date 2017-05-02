@@ -96,7 +96,7 @@ class MediaAttachment < ApplicationRecord
   private
 
   def set_shortcode
-    self.type = :unknown if file.blank? && type.blank?
+    self.type = :unknown if file.blank? && !type_changed?
 
     return unless local?
 

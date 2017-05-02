@@ -111,7 +111,7 @@ const en = {
   "onboarding.page_five.public_timelines": "The local timeline shows public posts from everyone on {domain}. The federated timeline shows public posts from everyone who people on {domain} follow. These are the Public Timelines, a great way to discover new people.",
   "onboarding.page_four.home": "The home timeline shows posts from people you follow.",
   "onboarding.page_four.notifications": "The notifications column shows when someone interacts with you.",
-  "onboarding.page_one.federation": "Mastodon is a network of independent servers joining up to make one larger social network. We call these servers: <em>Instances</em>",
+  "onboarding.page_one.federation": "Mastodon is a network of independent servers joining up to make one larger social network. We call these servers instances.",
   "onboarding.page_one.handle": "You are on {domain}, so your full handle is {handle}",
   "onboarding.page_one.welcome": "Welcome to Mastodon!",
   "onboarding.page_six.admin": "Your instance's admin is {admin}.",
