@@ -17,6 +17,7 @@ import EmojiPickerDropdown from './emoji_picker_dropdown';
 import UploadFormContainer from '../containers/upload_form_container';
 import TextIconButton from './text_icon_button';
 import WarningContainer from '../containers/warning_container';
+import ImmutablePureComponent from 'react-immutable-pure-component';
 
 const messages = defineMessages({
   placeholder: { id: 'compose_form.placeholder', defaultMessage: 'What is on your mind?' },
@@ -24,7 +25,7 @@ const messages = defineMessages({
   publish: { id: 'compose_form.publish', defaultMessage: 'Toot' }
 });
 
-class ComposeForm extends React.PureComponent {
+class ComposeForm extends ImmutablePureComponent {
 
   constructor (props, context) {
     super(props, context);

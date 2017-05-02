@@ -13,6 +13,7 @@ import Column from '../ui/components/column';
 import HeaderContainer from './containers/header_container';
 import ColumnBackButton from '../../components/column_back_button';
 import Immutable from 'immutable';
+import ImmutablePureComponent from 'react-immutable-pure-component';
 
 const mapStateToProps = (state, props) => ({
   statusIds: state.getIn(['timelines', 'accounts_timelines', Number(props.params.accountId), 'items'], Immutable.List()),
@@ -21,7 +22,7 @@ const mapStateToProps = (state, props) => ({
   me: state.getIn(['meta', 'me'])
 });
 
-class AccountTimeline extends React.PureComponent {
+class AccountTimeline extends ImmutablePureComponent {
 
   constructor (props, context) {
     super(props, context);

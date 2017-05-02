@@ -8,12 +8,13 @@ import { ScrollContainer } from 'react-router-scroll';
 import AccountContainer from '../../containers/account_container';
 import Column from '../ui/components/column';
 import ColumnBackButton from '../../components/column_back_button';
+import ImmutablePureComponent from 'react-immutable-pure-component';
 
 const mapStateToProps = (state, props) => ({
   accountIds: state.getIn(['user_lists', 'reblogged_by', Number(props.params.statusId)])
 });
 
-class Reblogs extends React.PureComponent {
+class Reblogs extends ImmutablePureComponent {
 
   componentWillMount () {
     this.props.dispatch(fetchReblogs(Number(this.props.params.statusId)));

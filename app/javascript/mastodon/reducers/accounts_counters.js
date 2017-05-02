@@ -7,7 +7,9 @@ import {
   ACCOUNT_TIMELINE_FETCH_SUCCESS,
   ACCOUNT_TIMELINE_EXPAND_SUCCESS,
   FOLLOW_REQUESTS_FETCH_SUCCESS,
-  FOLLOW_REQUESTS_EXPAND_SUCCESS
+  FOLLOW_REQUESTS_EXPAND_SUCCESS,
+  ACCOUNT_FOLLOW_SUCCESS,
+  ACCOUNT_UNFOLLOW_SUCCESS
 } from '../actions/accounts';
 import {
   BLOCKS_FETCH_SUCCESS,
@@ -48,15 +50,11 @@ import {
 import { STORE_HYDRATE } from '../actions/store';
 import Immutable from 'immutable';
 
-const normalizeAccount = (state, account) => {
-  account = { ...account };
-
-  delete account.followers_count;
-  delete account.following_count;
-  delete account.statuses_count;
-
-  return state.set(account.id, Immutable.fromJS(account))
-};
+const normalizeAccount = (state, account) => state.set(account.id, Immutable.fromJS({
+  followers_count: account.followers_count,
+  following_count: account.following_count,
+  statuses_count: account.statuses_count,
+}));
 
 const normalizeAccounts = (state, accounts) => {
   accounts.forEach(account => {
@@ -86,10 +84,10 @@ const normalizeAccountsFromStatuses = (state, statuses) => {
 
 const initialState = Immutable.Map();
 
-export default function accounts(state = initialState, action) {
+export default function accountsCounters(state = initialState, action) {
   switch(action.type) {
   case STORE_HYDRATE:
-    return state.merge(action.state.get('accounts'));
+    return state.merge(action.state.get('accounts_counters'));
   case ACCOUNT_FETCH_SUCCESS:
   case NOTIFICATIONS_UPDATE:
     return normalizeAccount(state, action.account);
@@ -127,6 +125,10 @@ export default function accounts(state = initialState, action) {
   case TIMELINE_UPDATE:
   case STATUS_FETCH_SUCCESS:
     return normalizeAccountFromStatus(state, action.status);
+  case ACCOUNT_FOLLOW_SUCCESS:
+    return state.updateIn([action.relationship.id, 'followers_count'], num => num + 1);
+  case ACCOUNT_UNFOLLOW_SUCCESS:
+    return state.updateIn([action.relationship.id, 'followers_count'], num => Math.max(0, num - 1));
   default:
     return state;
   }

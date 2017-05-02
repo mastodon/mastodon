@@ -14,12 +14,13 @@ import Column from '../ui/components/column';
 import HeaderContainer from '../account_timeline/containers/header_container';
 import LoadMore from '../../components/load_more';
 import ColumnBackButton from '../../components/column_back_button';
+import ImmutablePureComponent from 'react-immutable-pure-component';
 
 const mapStateToProps = (state, props) => ({
   accountIds: state.getIn(['user_lists', 'following', Number(props.params.accountId), 'items'])
 });
 
-class Following extends React.PureComponent {
+class Following extends ImmutablePureComponent {
 
   constructor (props, context) {
     super(props, context);

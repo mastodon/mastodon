@@ -9,6 +9,7 @@ import ColumnBackButtonSlim from '../../components/column_back_button_slim';
 import AccountContainer from '../../containers/account_container';
 import { fetchMutes, expandMutes } from '../../actions/mutes';
 import { defineMessages, injectIntl } from 'react-intl';
+import ImmutablePureComponent from 'react-immutable-pure-component';
 
 const messages = defineMessages({
   heading: { id: 'column.mutes', defaultMessage: 'Muted users' }
@@ -18,7 +19,7 @@ const mapStateToProps = state => ({
   accountIds: state.getIn(['user_lists', 'mutes', 'items'])
 });
 
-class Mutes extends React.PureComponent {
+class Mutes extends ImmutablePureComponent {
 
   constructor (props, context) {
     super(props, context);

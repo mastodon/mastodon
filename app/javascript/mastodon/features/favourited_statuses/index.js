@@ -8,6 +8,7 @@ import Column from '../ui/components/column';
 import StatusList from '../../components/status_list';
 import ColumnBackButtonSlim from '../../components/column_back_button_slim';
 import { defineMessages, injectIntl } from 'react-intl';
+import ImmutablePureComponent from 'react-immutable-pure-component';
 
 const messages = defineMessages({
   heading: { id: 'column.favourites', defaultMessage: 'Favourites' }
@@ -19,7 +20,7 @@ const mapStateToProps = state => ({
   me: state.getIn(['meta', 'me'])
 });
 
-class Favourites extends React.PureComponent {
+class Favourites extends ImmutablePureComponent {
 
   constructor (props, context) {
     super(props, context);
@@ -48,7 +49,7 @@ class Favourites extends React.PureComponent {
     return (
       <Column icon='star' heading={intl.formatMessage(messages.heading)}>
         <ColumnBackButtonSlim />
-        <StatusList {...this.props} onScrollToBottom={this.handleScrollToBottom} />
+        <StatusList {...this.props} scrollKey='favourited_statuses' onScrollToBottom={this.handleScrollToBottom} />
       </Column>
     );
   }
@@ -56,7 +57,6 @@ class Favourites extends React.PureComponent {
 }
 
 Favourites.propTypes = {
-  params: PropTypes.object.isRequired,
   dispatch: PropTypes.func.isRequired,
   statusIds: ImmutablePropTypes.list.isRequired,
   loaded: PropTypes.bool,

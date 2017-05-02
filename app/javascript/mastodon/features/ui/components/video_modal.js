@@ -5,12 +5,13 @@ import PropTypes from 'prop-types';
 import ExtendedVideoPlayer from '../../../components/extended_video_player';
 import { defineMessages, injectIntl } from 'react-intl';
 import IconButton from '../../../components/icon_button';
+import ImmutablePureComponent from 'react-immutable-pure-component';
 
 const messages = defineMessages({
   close: { id: 'lightbox.close', defaultMessage: 'Close' }
 });
 
-class VideoModal extends React.PureComponent {
+class VideoModal extends ImmutablePureComponent {
 
   render () {
     const { media, intl, time, onClose } = this.props;

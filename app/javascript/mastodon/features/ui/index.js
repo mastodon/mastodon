@@ -16,6 +16,8 @@ import { refreshTimeline } from '../../actions/timelines';
 import { refreshNotifications } from '../../actions/notifications';
 import UploadArea from './components/upload_area';
 
+const noOp = () => false;
+
 class UI extends React.PureComponent {
 
   constructor (props, context) {
@@ -136,8 +138,8 @@ class UI extends React.PureComponent {
       mountedColumns = (
         <ColumnsArea>
           <Compose withHeader={true} />
-          <HomeTimeline shouldUpdateScroll={() => false} />
-          <Notifications shouldUpdateScroll={() => false} />
+          <HomeTimeline shouldUpdateScroll={noOp} />
+          <Notifications shouldUpdateScroll={noOp} />
           <div style={{display: 'flex', flex: '1 1 auto', position: 'relative'}}>{children}</div>
         </ColumnsArea>
       );

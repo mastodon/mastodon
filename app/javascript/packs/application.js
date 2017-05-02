@@ -10,6 +10,8 @@ if (!window.Intl) {
 }
 
 window.jQuery = window.$ = require('jquery');
+window.Perf = require('react-addons-perf');
+
 require('jquery-ujs');
 require.context('../images/', true);
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-class Permalink extends React.Component {
+class Permalink extends React.PureComponent {
 
   constructor (props, context) {
     super(props, context);
@@ -18,7 +18,11 @@ class Permalink extends React.Component {
   render () {
     const { href, children, className, ...other } = this.props;
 
-    return <a href={href} onClick={this.handleClick} {...other} className={'permalink ' + className}>{children}</a>;
+    return (
+      <a href={href} onClick={this.handleClick} {...other} className={'permalink ' + className}>
+        {children}
+      </a>
+    );
   }
 
 }

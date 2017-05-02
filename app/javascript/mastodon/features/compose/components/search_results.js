@@ -4,8 +4,9 @@ import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import AccountContainer from '../../../containers/account_container';
 import StatusContainer from '../../../containers/status_container';
 import { Link } from 'react-router';
+import ImmutablePureComponent from 'react-immutable-pure-component';
 
-class SearchResults extends React.PureComponent {
+class SearchResults extends ImmutablePureComponent {
 
   render () {
     const { results } = this.props;

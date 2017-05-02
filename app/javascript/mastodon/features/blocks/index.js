@@ -9,6 +9,7 @@ import ColumnBackButtonSlim from '../../components/column_back_button_slim';
 import AccountContainer from '../../containers/account_container';
 import { fetchBlocks, expandBlocks } from '../../actions/blocks';
 import { defineMessages, injectIntl } from 'react-intl';
+import ImmutablePureComponent from 'react-immutable-pure-component';
 
 const messages = defineMessages({
   heading: { id: 'column.blocks', defaultMessage: 'Blocked users' }
@@ -18,7 +19,7 @@ const mapStateToProps = state => ({
   accountIds: state.getIn(['user_lists', 'blocks', 'items'])
 });
 
-class Blocks extends React.PureComponent {
+class Blocks extends ImmutablePureComponent {
 
   constructor (props, context) {
     super(props, context);

@@ -5,8 +5,9 @@ import { ScrollContainer } from 'react-router-scroll';
 import PropTypes from 'prop-types';
 import StatusContainer from '../containers/status_container';
 import LoadMore from './load_more';
+import ImmutablePureComponent from 'react-immutable-pure-component';
 
-class StatusList extends React.PureComponent {
+class StatusList extends ImmutablePureComponent {
 
   constructor (props, context) {
     super(props, context);

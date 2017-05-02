@@ -32,6 +32,7 @@ import StatusContainer from '../../containers/status_container';
 import { openModal } from '../../actions/modal';
 import { isMobile } from '../../is_mobile'
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
+import ImmutablePureComponent from 'react-immutable-pure-component';
 
 const messages = defineMessages({
   deleteConfirm: { id: 'confirmations.delete.confirm', defaultMessage: 'Delete' },
@@ -53,7 +54,7 @@ const makeMapStateToProps = () => {
   return mapStateToProps;
 };
 
-class Status extends React.PureComponent {
+class Status extends ImmutablePureComponent {
 
   constructor (props, context) {
     super(props, context);

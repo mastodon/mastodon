@@ -9,6 +9,7 @@ import ColumnBackButtonSlim from '../../components/column_back_button_slim';
 import AccountAuthorizeContainer from './containers/account_authorize_container';
 import { fetchFollowRequests, expandFollowRequests } from '../../actions/accounts';
 import { defineMessages, injectIntl } from 'react-intl';
+import ImmutablePureComponent from 'react-immutable-pure-component';
 
 const messages = defineMessages({
   heading: { id: 'column.follow_requests', defaultMessage: 'Follow requests' }
@@ -18,7 +19,7 @@ const mapStateToProps = state => ({
   accountIds: state.getIn(['user_lists', 'follow_requests', 'items'])
 });
 
-class FollowRequests extends React.PureComponent {
+class FollowRequests extends ImmutablePureComponent {
 
   constructor (props, context) {
     super(props, context);

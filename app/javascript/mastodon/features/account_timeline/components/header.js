@@ -4,8 +4,9 @@ import PropTypes from 'prop-types';
 import InnerHeader from '../../account/components/header';
 import ActionBar from '../../account/components/action_bar';
 import MissingIndicator from '../../../components/missing_indicator';
+import ImmutablePureComponent from 'react-immutable-pure-component';
 
-class Header extends React.PureComponent {
+class Header extends ImmutablePureComponent {
 
   constructor (props, context) {
     super(props, context);

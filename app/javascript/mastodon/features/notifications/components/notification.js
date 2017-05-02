@@ -6,8 +6,9 @@ import { FormattedMessage } from 'react-intl';
 import Permalink from '../../../components/permalink';
 import emojify from '../../../emoji';
 import escapeTextContentForBrowser from 'escape-html';
+import ImmutablePureComponent from 'react-immutable-pure-component';
 
-class Notification extends React.PureComponent {
+class Notification extends ImmutablePureComponent {
 
   renderFollow (account, link) {
     return (

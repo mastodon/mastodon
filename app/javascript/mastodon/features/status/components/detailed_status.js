@@ -10,8 +10,9 @@ import AttachmentList from '../../../components/attachment_list';
 import { Link } from 'react-router';
 import { FormattedDate, FormattedNumber } from 'react-intl';
 import CardContainer from '../containers/card_container';
+import ImmutablePureComponent from 'react-immutable-pure-component';
 
-class DetailedStatus extends React.PureComponent {
+class DetailedStatus extends ImmutablePureComponent {
 
   constructor (props, context) {
     super(props, context);

@@ -7,6 +7,7 @@ import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import IconButton from '../../../components/icon_button';
 import { Motion, spring } from 'react-motion';
 import { connect } from 'react-redux';
+import ImmutablePureComponent from 'react-immutable-pure-component';
 
 const messages = defineMessages({
   unfollow: { id: 'account.unfollow', defaultMessage: 'Unfollow' },
@@ -22,7 +23,7 @@ const makeMapStateToProps = () => {
   return mapStateToProps;
 };
 
-class Avatar extends React.PureComponent {
+class Avatar extends ImmutablePureComponent {
 
   constructor (props, context) {
     super(props, context);
@@ -75,7 +76,7 @@ Avatar.propTypes = {
   autoPlayGif: PropTypes.bool.isRequired
 };
 
-class Header extends React.Component {
+class Header extends ImmutablePureComponent {
 
   render () {
     const { account, me, intl } = this.props;

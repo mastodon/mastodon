@@ -8,12 +8,13 @@ import StatusContent from '../../../components/status_content';
 import Avatar from '../../../components/avatar';
 import RelativeTimestamp from '../../../components/relative_timestamp';
 import DisplayName from '../../../components/display_name';
+import ImmutablePureComponent from 'react-immutable-pure-component';
 
 const messages = defineMessages({
   reblog: { id: 'status.reblog', defaultMessage: 'Boost' }
 });
 
-class BoostModal extends React.PureComponent {
+class BoostModal extends ImmutablePureComponent {
 
   constructor (props, context) {
     super(props, context);

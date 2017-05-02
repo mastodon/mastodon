@@ -6,6 +6,7 @@ import DisplayName from './display_name';
 import Permalink from './permalink';
 import IconButton from './icon_button';
 import { defineMessages, injectIntl } from 'react-intl';
+import ImmutablePureComponent from 'react-immutable-pure-component';
 
 const messages = defineMessages({
   follow: { id: 'account.follow', defaultMessage: 'Follow' },
@@ -15,7 +16,7 @@ const messages = defineMessages({
   unmute: { id: 'account.unmute', defaultMessage: 'Unmute @{name}' }
 });
 
-class Account extends React.PureComponent {
+class Account extends ImmutablePureComponent {
 
   constructor (props, context) {
     super(props, context);

@@ -3,6 +3,7 @@ import AutosuggestAccountContainer from '../features/compose/containers/autosugg
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
 import { isRtl } from '../rtl';
+import ImmutablePureComponent from 'react-immutable-pure-component';
 
 const textAtCursorMatchesToken = (str, caretPosition) => {
   let word;
@@ -29,7 +30,7 @@ const textAtCursorMatchesToken = (str, caretPosition) => {
   }
 };
 
-class AutosuggestTextarea extends React.Component {
+class AutosuggestTextarea extends ImmutablePureComponent {
 
   constructor (props, context) {
     super(props, context);

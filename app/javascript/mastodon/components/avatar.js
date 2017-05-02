@@ -5,18 +5,22 @@ class Avatar extends React.PureComponent {
 
   constructor (props, context) {
     super(props, context);
+
     this.state = {
       hovering: false
     };
+
     this.handleMouseEnter = this.handleMouseEnter.bind(this);
     this.handleMouseLeave = this.handleMouseLeave.bind(this);
   }
 
   handleMouseEnter () {
+    if (this.props.animate) return;
     this.setState({ hovering: true });
   }
 
   handleMouseLeave () {
+    if (this.props.animate) return;
     this.setState({ hovering: false });
   }
 

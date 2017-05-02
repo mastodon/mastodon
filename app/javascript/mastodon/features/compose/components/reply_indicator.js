@@ -6,12 +6,13 @@ import IconButton from '../../../components/icon_button';
 import DisplayName from '../../../components/display_name';
 import emojify from '../../../emoji';
 import { defineMessages, injectIntl } from 'react-intl';
+import ImmutablePureComponent from 'react-immutable-pure-component';
 
 const messages = defineMessages({
   cancel: { id: 'reply_indicator.cancel', defaultMessage: 'Cancel' }
 });
 
-class ReplyIndicator extends React.PureComponent {
+class ReplyIndicator extends ImmutablePureComponent {
 
   constructor (props, context) {
     super(props, context);

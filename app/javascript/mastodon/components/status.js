@@ -12,8 +12,9 @@ import StatusActionBar from './status_action_bar';
 import { FormattedMessage } from 'react-intl';
 import emojify from '../emoji';
 import escapeTextContentForBrowser from 'escape-html';
+import ImmutablePureComponent from 'react-immutable-pure-component';
 
-class Status extends React.PureComponent {
+class Status extends ImmutablePureComponent {
 
   constructor (props, context) {
     super(props, context);

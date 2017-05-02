@@ -6,12 +6,13 @@ import ExtendedVideoPlayer from '../../../components/extended_video_player';
 import ImageLoader from 'react-imageloader';
 import { defineMessages, injectIntl } from 'react-intl';
 import IconButton from '../../../components/icon_button';
+import ImmutablePureComponent from 'react-immutable-pure-component';
 
 const messages = defineMessages({
   close: { id: 'lightbox.close', defaultMessage: 'Close' }
 });
 
-class MediaModal extends React.PureComponent {
+class MediaModal extends ImmutablePureComponent {
 
   constructor (props, context) {
     super(props, context);

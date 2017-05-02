@@ -277,8 +277,7 @@ class Mastodon extends React.Component {
         <Provider store={store}>
           <Router history={browserHistory} render={applyRouterMiddleware(useScroll())}>
             <Route path='/' component={Container}>
-              <IndexRedirect to="/getting-started" />
-
+              <IndexRedirect to='/getting-started' />
               <Route path='getting-started' component={GettingStarted} />
               <Route path='timelines/tag/:id' component={HashtagTimeline} />
 
