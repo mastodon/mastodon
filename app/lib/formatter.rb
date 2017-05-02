@@ -9,14 +9,25 @@ class Formatter
 
   include ActionView::Helpers::TextHelper
 
-  def markdown_format(status)
-    html_r = Redcarpet::Render::HTML.new(escape_html: true, safe_links_only: true)
-    markdown = Redcarpet::Markdown.new(html_r, space_after_headers: true, no_intra_emphasis: true, strikethrough: true)
+  class MarkdownFormatRenderer < Redcarpet::Render::HTML
+    def autolink(link, link_type)
+      return link unless link_type == :url && link[0..3] == 'http' && link[6] == '/'
+      prefix = link.match(/\Ahttps?:\/\/(www\.)?/).to_s
+      text   = link[prefix.length, 30]
+      suffix = link[prefix.length + 30..-1]
+      cutoff = link[prefix.length..-1].length > 30
 
-    html = markdown.render(status.full_status_text)
-    html = html.gsub('<a href="http', "<a href=\"ht\u10FAFAtp")
-    html = link_urls(html)
-    html = html.gsub("<a href=\"ht\u10FAFAtp", '<a href="http')
+      span = "<span class=\"invisible\">#{prefix}</span><span class=\"#{cutoff ? 'ellipsis' : ''}\">#{text}</span><span class=\"invisible\">#{suffix}</span>"
+      "<a href=\"#{link}\" rel=\"nofollow noopener\" target=\"_blank\">#{span}</a>"
+    end
+  end
+
+  def markdown_format(status)
+    html_r = MarkdownFormatRender.new(escape_html: true, safe_links_only: true)
+    markdown = Redcarpet::Markdown.new(html_r, autolink: true, space_after_headers: true, no_intra_emphasis: true, strikethrough: true)
+
+    html = status.full_status_text
+    html = markdown.render(html)
     html = link_mentions(html, status.mentions)
     html = link_hashtags(html)
 
