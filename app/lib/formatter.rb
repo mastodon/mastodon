@@ -125,7 +125,7 @@ class Formatter
     marks = []
     index = html.scan(/\[\[\[codeblock(\d+)\]\]\]/).map(&:to_i).max || 0
 
-    html = html.gsub(/^```(?<lang>[^\n]*)\n(?<code>.*)\n```$/m) do |match|
+    html = html.gsub(/^```(?<lang>[^\n]*)\n(?<code>.*?)\n```$/m) do |match|
       lang = $1
       code = $2
       marker = "[[[codeblock#{index += 1}]]]"
@@ -134,7 +134,7 @@ class Formatter
       marker
     end
 
-    html = html.gsub(/`(?<code>[^`\n]+)`/) do |match|
+    html = html.gsub(/`(?<code>[^`\n]+?)`/) do |match|
       code = $1
       marker = "[[[codeblock#{index += 1}]]]"
       block_html = "<code class=\"singleline\">#{ sanitize(code, Sanitize::Config::MASTODON_STRICT) }</code>"

@@ -115,10 +115,25 @@ RSpec.describe Formatter do
       end
     end
 
+    context 'contains multiple inline code blocks' do
+      let(:local_text) { "`hoge` `piyo`" }
+      it 'has code block' do
+        expect(subject).to match('<p><code class="singleline">hoge</code> <code class="singleline">piyo</code></p>')
+      end
+    end
+
     context 'contains multi line code block' do
       let(:local_text) { "```ruby\nputs 'Hello, World!'\n```" }
       it 'has code block' do
         expect(subject).to match '<p><pre><code data-language="ruby">puts \'Hello, World!\'</code></pre></p>'
+      end
+    end
+
+    context 'contains multiple code blocks' do
+      let(:local_text) { "```ruby\nputs 'Hello, World!'\n```\n```js\nconsole.log('Hello, World!');\n```" }
+      it 'has code block' do
+        expect(subject).to include('<pre><code data-language="ruby">puts \'Hello, World!\'</code></pre>')
+        expect(subject).to include('<pre><code data-language="js">console.log(\'Hello, World!\');</code></pre>')
       end
     end
   end
