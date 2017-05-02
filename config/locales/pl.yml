@@ -49,6 +49,138 @@ pl:
     outbox:
       name: "Skrzynka %{account_name}"
       summary: "Zbiór aktywności użytkownika %{account_name}."
+  admin:
+    accounts:
+      are_you_sure: Jesteś tego pewien?
+      confirm: Potwierdź
+      confirmed: Potwierdzono
+      display_name: Wyświetlana nazwa
+      domain: Domena
+      edit: Edytuj
+      email: Adres e-mail
+      feed_url: Adres kanału
+      followers: Obserwujący
+      follows: Obserwacje
+      location:
+        all: Wszystkie
+        local: Lokalne
+        remote: Zdalne
+        title: Położenie
+      media_attachments: Załączniki multimedialne
+      moderation:
+        all: Wszystko
+        silenced: Wyciszone
+        suspended: Zawieszone
+        title: Moderacja
+      most_recent_activity: Najnowsza aktywność
+      most_recent_ip: Najnowsze IP
+      not_subscribed: Nie zasubskrybowano
+      order:
+        alphabetic: Alfabetycznie
+        most_recent: Najnowsze
+        title: Kolejność
+      perform_full_suspension: Całkowicie zawieś
+      profile_url: Adres profilu
+      public: Publiczne
+      push_subscription_expires: Subskrypcja PuSH wygasza
+      reset_password: Resetuj hasło
+      disable_two_factor_authentication: Wyłącz uwierzytelnianie dwuetapowe
+      salmon_url: Adres Salmon
+      show:
+        created_reports: Zgłoszenia tego użytkownika
+        report: zgłoszenie
+        targeted_reports: Zgłoszenia dotyczące tego użytkownika
+      silence: Cisza
+      statuses: Statusy
+      title: Konta
+      undo_silenced: Cofnij wyciszenie
+      undo_suspension: Cofnij zawieszenie
+      username: Nazwa użytkownika
+      web: Sieć
+    domain_blocks:
+      add_new: Dodaj nową
+      created_msg: Blokada domen jest przetwarzana
+      destroyed_msg: Blokada domeny nie może zostać odwrócona
+      domain: Domena
+      new:
+        create: Utwórz blokadę
+        hint: Blokada domen nie zabroni tworzenia wpisów kont w bazie danych, ale pozwoli na automatyczną moderację kont do nich należących.
+        severity:
+          desc_html: "<strong>Wyciszenie</strong> uczyni wpisy użytkownika niewidoczne dla osób, które go nie obserwują. <strong>Zawieszenie</strong> spowoduje usunięcie całej zawartości dodanej przez użytkownika."
+          silence: Wycisz
+          suspend: Zawieś
+        title: Nowa blokada domen
+      reject_media: Odrzucaj pliki multimedialne
+      reject_media_hint: Usuwa przechowywane lokalnie pliki multimedialne i nie pozwala na ich pobieranie. Nieprzydatne przy zawieszeniu
+      severities:
+        silence: Wycisz
+        suspend: Zawieś
+      severity: Priorytet
+      show:
+        affected_accounts:
+          one: Dotyczy jednego konta w bazie danych
+          other: "Dotyczy %{count} kont w bazie danych"
+        retroactive:
+          silence: Odwołaj wyciszenie wszystkich kont w tej domenie
+          suspend: Odwołaj zawieszenie wszystkich kont w tej domenie
+        title: Odwołaj blokadę dla domeny %{domain}
+        undo: Cofnij
+      title: Blokady domen
+      undo: Cofnij
+    instances:
+      account_count: Znane konta
+      domain_name: Domena
+      title: Znane instancje
+    pubsubhubbub:
+      callback_url: URL zwrotny
+      confirmed: Potwierdzono
+      expires_in: Wygasa
+      last_delivery: Ostatnio doręczono
+      title: PubSubHubbub
+      topic: Temat
+    reports:
+      comment:
+        label: Komentarz
+        none: Brak
+      delete: Usuń
+      id: Identyfikator
+      mark_as_resolved: Oznacz jako rozwiązane
+      report: 'Zgłoszenie #%{id}'
+      report_contents: Zawartość
+      reported_account: Zgłoszone konto
+      reported_by: Zgłoszone przez
+      resolved: Rozwiązano
+      silence_account: Wycisz konto
+      status: Status
+      suspend_account: Zawieś konto
+      target: Cel
+      title: Zgłoszenia
+      unresolved: Nierozwiązane
+      view: Wyświetl
+    settings:
+      click_to_edit: Naciśnij, aby edytować
+      contact_information:
+        email: Wprowadź publiczny adres e-mail
+        label: Informacje kontaktowe
+        username: Wprowadź nazwę użytkownika
+      registrations:
+        closed_message:
+          desc_html: Wyświetlana na stronie głównej, gdy możliwość otwarej rejestracji<br>nie jest dostępna. Możesz korzystać z tagów HTML
+          title: Wiadomość o nieaktywnej rejestracji
+        open:
+          disabled: Nieaktywna
+          enabled: Aktywna
+          title: Otwarta rejestracja
+      setting: Ustawienie
+      site_description:
+        desc_html: Wyświetlany jako nagłówek na stronie głównej oraz jako meta tag.<br>Możesz korzystać z tagów HTML, w szczególności z <code>&lt;a&gt;</code> i <code>&lt;em&gt;</code>.
+        title: Opis strony
+      site_description_extended:
+        desc_html: Wyświetlany w rozszerzonych informacjach o stronie<br>Możesz korzystać z tagów HTML
+        title: Extended site description
+      site_title: Tytuł strony
+      title: Ustawienia strony
+    title: Administracja
   application_mailer:
     settings: 'Zmień ustawienia powiadamiania: %{link}'
     signature: Powiadomienie Mastodona, wysłane przez %{instance}
