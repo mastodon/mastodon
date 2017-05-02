@@ -1,0 +1,50 @@
+---
+id:
+  simple_form:
+    hints:
+      defaults:
+        avatar: PNG, GIF atau JPG. Maksimal 2MB. Ukuran dikecilkan menjadi 120x120px
+        display_name: Maksimal 30 karakter
+        header: PNG, GIF atau JPG. Maksimal 2MB. Ukuran dikecilkan menjadi 700x335px
+        locked: Anda harus menerima permintaan pengikut secara manual dan setting privasi postingan akan diubah khusus untuk pengikut
+        note: Maksimum 160 karakter
+      imports:
+        data: File CSV yang diexpor dari server Mastodon lain
+      sessions:
+        otp: Masukkan kode dua-faktor dari handphone atau gunakan kode pemulihan anda.
+    labels:
+      defaults:
+        avatar: Avatar
+        confirm_new_password: Konfirmasi kata sandi baru
+        confirm_password: Konfirmasi kata sandi
+        current_password: Kata sandi sekarang
+        data: Data
+        display_name: Nama yang ditampilkan
+        email: Alamat e-mail
+        header: Header
+        locale: Bahasa
+        locked: Buat akun menjadi pribadi
+        new_password: Password baru
+        note: Bio
+        otp_attempt: Kode dua-faktor
+        password: Kata sandi
+        setting_boost_modal: Tampilkan dialog konfirmasi dialog sebelum boost
+        setting_default_privacy: Privasi postingan
+        severity: Keparahan
+        type: Tipe impor
+        username: Nama pengguna
+      interactions:
+        must_be_follower: Blokir notifikasi dari non-pengikut
+        must_be_following: Blokir notifikasi dari orang yang tidak anda ikuti
+      notification_emails:
+        digest: Kirim email berisi rangkuman
+        favourite: Kirim email saat seseorang menyukai status anda
+        follow: Kirim email saat seseorang mengikuti anda
+        follow_request: Kirim email saat seseorang meminta untuk mengikuti anda
+        mention: Kirim email saat seseorang menyebut anda
+        reblog: Kirim email saat seseorang mem-boost status anda
+    'no': 'Tidak'
+    required:
+      mark: "*"
+      text: wajib
+    'yes': 'Ya'

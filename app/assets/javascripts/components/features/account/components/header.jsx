@@ -1,5 +1,5 @@
-import PureRenderMixin from 'react-addons-pure-render-mixin';
 import ImmutablePropTypes from 'react-immutable-proptypes';
+import PropTypes from 'prop-types';
 import emojify from '../../../emoji';
 import escapeTextContentForBrowser from 'escape-html';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
@@ -21,30 +21,28 @@ const makeMapStateToProps = () => {
   return mapStateToProps;
 };
 
-const Avatar = React.createClass({
+class Avatar extends React.PureComponent {
 
-  propTypes: {
-    account: ImmutablePropTypes.map.isRequired,
-    autoPlayGif: React.PropTypes.bool.isRequired
-  },
+  constructor (props, context) {
+    super(props, context);
 
-  getInitialState () {
-    return {
+    this.state = {
       isHovered: false
     };
-  },
 
-  mixins: [PureRenderMixin],
+    this.handleMouseOver = this.handleMouseOver.bind(this);
+    this.handleMouseOut = this.handleMouseOut.bind(this);
+  }
 
   handleMouseOver () {
     if (this.state.isHovered) return;
     this.setState({ isHovered: true });
-  },
+  }
 
   handleMouseOut () {
     if (!this.state.isHovered) return;
     this.setState({ isHovered: false });
-  },
+  }
 
   render () {
     const { account, autoPlayGif }   = this.props;
@@ -58,7 +56,7 @@ const Avatar = React.createClass({
             className='account__header__avatar'
             target='_blank'
             rel='noopener'
-            style={{ display: 'block', width: '90px', height: '90px', margin: '0 auto', marginBottom: '10px', borderRadius: `${radius}px`, overflow: 'hidden', backgroundSize: '90px 90px', backgroundImage: `url(${autoPlayGif || isHovered ? account.get('avatar') : account.get('avatar_static')})` }}
+            style={{ borderRadius: `${radius}px`, backgroundImage: `url(${autoPlayGif || isHovered ? account.get('avatar') : account.get('avatar_static')})` }}
             onMouseOver={this.handleMouseOver}
             onMouseOut={this.handleMouseOut}
             onFocus={this.handleMouseOver}
@@ -69,19 +67,14 @@ const Avatar = React.createClass({
     );
   }
 
-});
+}
 
-const Header = React.createClass({
+Avatar.propTypes = {
+  account: ImmutablePropTypes.map.isRequired,
+  autoPlayGif: PropTypes.bool.isRequired
+};
 
-  propTypes: {
-    account: ImmutablePropTypes.map,
-    me: React.PropTypes.number.isRequired,
-    onFollow: React.PropTypes.func.isRequired,
-    intl: React.PropTypes.object.isRequired,
-    autoPlayGif: React.PropTypes.bool.isRequired
-  },
-
-  mixins: [PureRenderMixin],
+class Header extends React.Component {
 
   render () {
     const { account, me, intl } = this.props;
@@ -142,6 +135,14 @@ const Header = React.createClass({
     );
   }
 
-});
+}
+
+Header.propTypes = {
+  account: ImmutablePropTypes.map,
+  me: PropTypes.number.isRequired,
+  onFollow: PropTypes.func.isRequired,
+  intl: PropTypes.object.isRequired,
+  autoPlayGif: PropTypes.bool.isRequired
+};
 
 export default connect(makeMapStateToProps)(injectIntl(Header));

@@ -46,6 +46,8 @@ class Account < ApplicationRecord
   # Block relationships
   has_many :block_relationships, class_name: 'Block', foreign_key: 'account_id', dependent: :destroy
   has_many :blocking, -> { order('blocks.id desc') }, through: :block_relationships, source: :target_account
+  has_many :blocked_by_relationships, class_name: 'Block', foreign_key: :target_account_id, dependent: :destroy
+  has_many :blocked_by, -> { order('blocks.id desc') }, through: :blocked_by_relationships, source: :account
 
   # Mute relationships
   has_many :mute_relationships, class_name: 'Mute', foreign_key: 'account_id', dependent: :destroy
@@ -71,6 +73,14 @@ class Account < ApplicationRecord
   scope :recent, -> { reorder(id: :desc) }
   scope :alphabetic, -> { order(domain: :asc, username: :asc) }
   scope :by_domain_accounts, -> { group(:domain).select(:domain, 'COUNT(*) AS accounts_count').order('accounts_count desc') }
+
+  delegate :email,
+    :current_sign_in_ip,
+    :current_sign_in_at,
+    :confirmed?,
+    to: :user,
+    prefix: true,
+    allow_nil: true
 
   def follow!(other_account)
     active_relationships.where(target_account: other_account).first_or_create!(target_account: other_account)
@@ -135,6 +145,10 @@ class Account < ApplicationRecord
     !subscription_expires_at.blank?
   end
 
+  def followers_domains
+    followers.reorder(nil).pluck('distinct accounts.domain')
+  end
+
   def favourited?(status)
     status.proper.favourites.where(account: self).count.positive?
   end
@@ -178,22 +192,22 @@ class Account < ApplicationRecord
   end
 
   def avatar_remote_url=(url)
-    parsed_url = URI.parse(url)
+    parsed_url = Addressable::URI.parse(url).normalize
 
     return if !%w(http https).include?(parsed_url.scheme) || parsed_url.host.empty? || self[:avatar_remote_url] == url
 
-    self.avatar              = parsed_url
+    self.avatar              = URI.parse(parsed_url.to_s)
     self[:avatar_remote_url] = url
   rescue OpenURI::HTTPError => e
     Rails.logger.debug "Error fetching remote avatar: #{e}"
   end
 
   def header_remote_url=(url)
-    parsed_url = URI.parse(url)
+    parsed_url = Addressable::URI.parse(url).normalize
 
     return if !%w(http https).include?(parsed_url.scheme) || parsed_url.host.empty? || self[:header_remote_url] == url
 
-    self.header              = parsed_url
+    self.header              = URI.parse(parsed_url.to_s)
     self[:header_remote_url] = url
   rescue OpenURI::HTTPError => e
     Rails.logger.debug "Error fetching remote header: #{e}"
@@ -205,6 +219,10 @@ class Account < ApplicationRecord
 
   def to_param
     username
+  end
+
+  def excluded_from_timeline_account_ids
+    Rails.cache.fetch("exclude_account_ids_for:#{id}") { blocking.pluck(:target_account_id) + blocked_by.pluck(:account_id) + muting.pluck(:target_account_id) }
   end
 
   class << self
@@ -327,15 +345,24 @@ class Account < ApplicationRecord
     end
   end
 
-  before_create do
-    if local?
-      keypair = OpenSSL::PKey::RSA.new(Rails.env.test? ? 1024 : 2048)
-      self.private_key = keypair.to_pem
-      self.public_key  = keypair.public_key.to_pem
-    end
-  end
+  before_create :generate_keys
+  before_validation :normalize_domain
 
   private
+
+  def generate_keys
+    return unless local?
+
+    keypair = OpenSSL::PKey::RSA.new(Rails.env.test? ? 1024 : 2048)
+    self.private_key = keypair.to_pem
+    self.public_key  = keypair.public_key.to_pem
+  end
+
+  def normalize_domain
+    return if local?
+
+    self.domain = TagManager.instance.normalize_domain(domain)
+  end
 
   def set_file_extensions
     unless avatar.blank?
