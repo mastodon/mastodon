@@ -678,12 +678,12 @@ a.status__content__spoiler-link {
   background-position: 50%;
   background-clip: padding-box;
   position: relative;
-}
 
-.account__avatar-boost {
-  display: inline-block;
-  vertical-align: middle;
-  margin-right: 5px;
+  &-inline {
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 5px;
+  }
 }
 
 .account__relationship {

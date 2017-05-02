@@ -38,9 +38,7 @@ class Notification extends ImmutablePureComponent {
           <div className='notification__favourite-icon-wrapper'>
             <i className='fa fa-fw fa-star star-icon'/>
           </div>
-          <div className='account__avatar-boost'>
-            <Avatar src={notification.getIn(['account', 'avatar'])} staticSrc={notification.getIn(['account', 'avatar_static'])} size={20} />
-          </div>
+          <Avatar src={notification.getIn(['account', 'avatar'])} staticSrc={notification.getIn(['account', 'avatar_static'])} inline />
           <FormattedMessage id='notification.favourite' defaultMessage='{name} favourited your status' values={{ name: link }} />
         </div>
 
@@ -56,9 +54,7 @@ class Notification extends ImmutablePureComponent {
           <div className='notification__favourite-icon-wrapper'>
             <i className='fa fa-fw fa-retweet' />
           </div>
-          <div className='account__avatar-boost'>
-            <Avatar src={notification.getIn(['account', 'avatar'])} staticSrc={notification.getIn(['account', 'avatar_static'])} size={20} />
-          </div>
+          <Avatar src={notification.getIn(['account', 'avatar'])} staticSrc={notification.getIn(['account', 'avatar_static'])} inline />
           <FormattedMessage id='notification.reblog' defaultMessage='{name} boosted your status' values={{ name: link }} />
         </div>
 
