@@ -71,8 +71,11 @@ class Status extends React.PureComponent {
       }
     }
 
+    let visible_direct = false;
+    if (status.get('visibility') === 'direct') visible_direct = true;
+
     return (
-      <div className={this.props.muted ? 'status muted' : 'status'}>
+      <div className={this.props.muted ? 'status muted' : visible_direct ? 'status direct' : 'status'}>
         <div className='status__info'>
           <div className='status__info-time'>
             <a href={status.get('url')} className='status__relative-time' target='_blank' rel='noopener'><RelativeTimestamp timestamp={status.get('created_at')} /></a>

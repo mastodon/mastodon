@@ -35,6 +35,10 @@ class IconButton extends React.PureComponent {
       classes.push('active');
     }
 
+    if (this.props.highlight) {
+      classes.push('highlight');
+    } 
+
     if (this.props.disabled) {
       classes.push('disabled');
     }
