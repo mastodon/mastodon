@@ -44,6 +44,7 @@ import Report from '../features/report';
 import { IntlProvider, addLocaleData } from 'react-intl';
 import ar from 'react-intl/locale-data/ar';
 import en from 'react-intl/locale-data/en';
+import el from 'react-intl/locale-data/el';
 import de from 'react-intl/locale-data/de';
 import eo from 'react-intl/locale-data/eo';
 import es from 'react-intl/locale-data/es';
@@ -81,6 +82,7 @@ addLocaleData([
   ...en,
   ...ar,
   ...de,
+  ...el,
   ...eo,
   ...es,
   ...fa,

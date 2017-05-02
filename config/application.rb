@@ -30,6 +30,7 @@ module Mastodon
       :ar,
       :bg,
       :de,
+	  :el,
       :eo,
       :es,
       :fa,
