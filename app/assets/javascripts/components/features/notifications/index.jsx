@@ -78,7 +78,7 @@ class Notifications extends React.PureComponent {
 
   handleChange (type) {
     this.props.dispatch(changeNotificationType([type]));
-  },
+  }
 
   setRef (c) {
     this.node = c;
