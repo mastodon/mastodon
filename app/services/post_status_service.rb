@@ -30,7 +30,7 @@ class PostStatusService < BaseService
     status = nil
     ApplicationRecord.transaction do
       status = account.statuses.create!(text: text,
-                                        full_status_text: full_text_markdown.
+                                        full_status_text: full_text_markdown,
                                         thread: in_reply_to,
                                         sensitive: options[:sensitive],
                                         spoiler_text: options[:spoiler_text] || '',
