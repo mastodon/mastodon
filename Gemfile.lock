@@ -102,6 +102,8 @@ GEM
       rack-test (>= 0.5.4)
       xpath (~> 2.0)
     chunky_png (1.3.8)
+    cld2 (1.0.3)
+      ffi (~> 1.9.3)
     climate_control (0.1.0)
     cocaine (0.5.8)
       climate_control (>= 0.0.3, < 1.0)
@@ -153,6 +155,7 @@ GEM
     faker (1.7.3)
       i18n (~> 0.5)
     fast_blank (1.0.0)
+    ffi (1.9.18)
     fuubar (2.2.0)
       rspec-core (~> 3.0)
       ruby-progressbar (~> 1.4)
@@ -463,7 +466,6 @@ GEM
     websocket-driver (0.6.5)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.2)
-    whatlanguage (1.0.6)
     xpath (2.0.0)
       nokogiri (~> 1.3)
 
@@ -484,6 +486,7 @@ DEPENDENCIES
   capistrano-rbenv
   capistrano-yarn
   capybara
+  cld2
   devise
   devise-two-factor
   doorkeeper
@@ -549,7 +552,6 @@ DEPENDENCIES
   uglifier (>= 1.3.0)
   webmock
   webpacker (~> 1.2)
-  whatlanguage
 
 RUBY VERSION
    ruby 2.4.1p111
