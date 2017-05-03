@@ -1,0 +1,41 @@
+FROM ruby:2.4.1-alpine
+
+LABEL maintainer="https://github.com/increments/mastodon" \
+      description="A GNU Social-compatible microblogging server"
+
+EXPOSE 3000 4000
+
+WORKDIR /mastodon
+
+RUN echo "@edge https://nl.alpinelinux.org/alpine/edge/main" >> /etc/apk/repositories \
+ && BUILD_DEPS=" \
+    cmake \
+    postgresql-dev \
+    libxml2-dev \
+    libxslt-dev \
+    python \
+    build-base" \
+ && apk -U upgrade && apk add \
+    $BUILD_DEPS \
+    nodejs@edge \
+    nodejs-npm@edge \
+    libpq \
+    libxml2 \
+    libxslt \
+    ffmpeg \
+    file \
+    imagemagick@edge \
+ && rm -rf /tmp/* /var/cache/apk/*
+
+COPY Gemfile Gemfile.lock /mastodon/
+RUN bundle install
+
+COPY package.json yarn.lock /mastodon/
+RUN npm install -g yarn \
+ && yarn --ignore-optional \
+ && yarn cache clean \
+ && npm -g cache clean
+
+COPY . /mastodon
+
+VOLUME /mastodon/public/system /mastodon/public/assets
