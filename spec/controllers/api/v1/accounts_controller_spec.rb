@@ -27,14 +27,11 @@ RSpec.describe Api::V1::AccountsController, type: :controller do
   describe 'PATCH #update_credentials' do
     describe 'with valid data' do
       before do
-        avatar = File.read(Rails.root.join('app', 'assets', 'images', 'logo.png'))
-        header = File.read(Rails.root.join('app', 'assets', 'images', 'mastodon-getting-started.png'))
-
         patch :update_credentials, params: {
           display_name: "Alice Isn't Dead",
           note: "Hi!\n\nToot toot!",
-          avatar: "data:image/png;base64,#{Base64.encode64(avatar)}",
-          header: "data:image/png;base64,#{Base64.encode64(header)}",
+          avatar: fixture_file_upload('files/avatar.gif', 'image/gif'),
+          header: fixture_file_upload('files/attachment.jpg', 'image/jpeg'),
         }
       end
 

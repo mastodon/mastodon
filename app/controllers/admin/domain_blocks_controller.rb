@@ -3,7 +3,7 @@
 module Admin
   class DomainBlocksController < BaseController
     def index
-      @blocks = DomainBlock.page(params[:page])
+      @domain_blocks = DomainBlock.page(params[:page])
     end
 
     def new
