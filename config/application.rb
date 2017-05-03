@@ -74,10 +74,6 @@ module Mastodon
     config.middleware.use Rack::Attack
     config.middleware.use Rack::Deflater
 
-    # babel config can be found in .babelrc
-    config.browserify_rails.commandline_options   = '--transform babelify --extension=".jsx"'
-    config.browserify_rails.evaluate_node_modules = true
-
     config.to_prepare do
       Doorkeeper::AuthorizationsController.layout 'public'
       Doorkeeper::AuthorizedApplicationsController.layout 'admin'

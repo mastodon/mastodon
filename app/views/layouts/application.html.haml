@@ -19,7 +19,9 @@
         = ' - '
       = title
 
-    = stylesheet_link_tag stylesheet_for_layout, media: 'all'
+    = stylesheet_pack_tag 'vendor', media: 'all'
+    = stylesheet_pack_tag 'application', media: 'all'
+    = javascript_pack_tag 'vendor', integrity: true, crossorigin: 'anonymous'
     = csrf_meta_tags
 
     = yield :header_tags

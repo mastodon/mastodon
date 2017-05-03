@@ -1,7 +1,25 @@
 {
-  "presets": ["es2015", "react"],
+  "presets": [
+    "es2015",
+    "react",
+    [
+      "env",
+      {
+        "loose": true,
+        "modules": false
+      }
+    ]
+  ],
   "plugins": [
+    "transform-react-jsx-source",
+    "transform-react-jsx-self",
     "transform-decorators-legacy",
-    "transform-object-rest-spread"
+    "transform-object-rest-spread",
+    [
+      "react-intl",
+      {
+        "messagesDir": "./build/messages"
+      }
+    ]
   ]
 }
