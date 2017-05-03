@@ -1,0 +1,33 @@
+#!/usr/bin/env ruby
+$stdout.sync = true
+
+require "shellwords"
+require "yaml"
+
+ENV["RAILS_ENV"] ||= "development"
+RAILS_ENV   = ENV["RAILS_ENV"]
+
+ENV["NODE_ENV"] ||= RAILS_ENV
+NODE_ENV    = ENV["NODE_ENV"]
+
+APP_PATH               = File.expand_path("../", __dir__)
+CONFIG_PATH            = File.join(APP_PATH, "config/webpack/paths.yml")
+
+begin
+  paths            = YAML.load(File.read(CONFIG_PATH))[NODE_ENV]
+
+  NODE_MODULES_PATH   = File.join(APP_PATH.shellescape, paths["node_modules"])
+  WEBPACK_CONFIG_PATH = File.join(APP_PATH.shellescape, paths["config"])
+rescue Errno::ENOENT, NoMethodError
+  puts "Configuration not found in config/webpack/paths.yml"
+  puts "Please run bundle exec rails webpacker:install to install webpacker"
+  exit!
+end
+
+WEBPACK_BIN    = "#{NODE_MODULES_PATH}/.bin/webpack"
+WEBPACK_CONFIG = "#{WEBPACK_CONFIG_PATH}/#{NODE_ENV}.js"
+
+Dir.chdir(APP_PATH) do
+  exec "NODE_PATH=#{NODE_MODULES_PATH} #{WEBPACK_BIN} --config #{WEBPACK_CONFIG}" \
+    " #{ARGV.join(" ")}"
+end

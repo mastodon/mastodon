@@ -5,22 +5,19 @@ ruby '>= 2.3.0', '< 2.5.0'
 
 gem 'pkg-config'
 
-gem 'rails', '~> 5.0.2'
-gem 'sass-rails', '~> 5.0'
-gem 'uglifier', '>= 1.3.0'
-gem 'jquery-rails'
 gem 'puma'
+gem 'rails', '~> 5.0.2'
+gem 'uglifier', '>= 1.3.0'
 
 gem 'hamlit-rails'
 gem 'pg'
 gem 'pghero'
 gem 'dotenv-rails'
-gem 'font-awesome-rails'
 gem 'best_in_place', '~> 3.0.1'
 
+gem 'aws-sdk', '>= 2.0'
 gem 'paperclip', '~> 5.1'
 gem 'paperclip-av-transcoder'
-gem 'aws-sdk', '>= 2.0'
 
 gem 'addressable'
 gem 'devise'
@@ -58,18 +55,18 @@ gem 'sprockets-rails', require: 'sprockets/railtie'
 gem 'statsd-instrument'
 gem 'twitter-text'
 gem 'tzinfo-data'
+gem 'webpacker', '~>1.2'
 gem 'whatlanguage'
 
+# For some reason the view specs start failing without this
 gem 'react-rails'
-gem 'browserify-rails'
-gem 'autoprefixer-rails'
 
 group :development, :test do
-  gem 'rspec-rails'
-  gem 'pry-rails'
-  gem 'fuubar'
   gem 'fabrication'
+  gem 'fuubar'
   gem 'i18n-tasks', '~> 0.9.6'
+  gem 'pry-rails'
+  gem 'rspec-rails'
 end
 
 group :test do
@@ -83,24 +80,23 @@ group :test do
 end
 
 group :development do
-  gem 'rubocop', '0.46.0', require: false
-  gem 'better_errors'
-  gem 'binding_of_caller'
-  gem 'letter_opener'
-  gem 'letter_opener_web'
-  gem 'bullet'
   gem 'active_record_query_trace'
   gem 'annotate'
+  gem 'better_errors'
+  gem 'binding_of_caller'
+  gem 'bullet'
+  gem 'letter_opener'
+  gem 'letter_opener_web'
+  gem 'rubocop', '0.46.0', require: false
 
   gem 'capistrano', '3.8.0'
   gem 'capistrano-rails'
   gem 'capistrano-rbenv'
   gem 'capistrano-yarn'
-  gem 'capistrano-faster-assets', '~> 1.0'
 end
 
 group :production do
+  gem 'lograge'
   gem 'rails_12factor'
   gem 'redis-rails'
-  gem 'lograge'
 end
