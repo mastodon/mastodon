@@ -7,6 +7,9 @@ default: &default
 development:
   <<: *default
   database: mastodon_development
+  username: <%= ENV['DB_USER'] || 'postgres' %>
+  password: <%= ENV['DB_PASS'] || '' %>
+  host: <%= ENV['DB_HOST'] || 'localhost' %>
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
@@ -14,11 +17,14 @@ development:
 test:
   <<: *default
   database: mastodon_test
+  username: <%= ENV['DB_USER'] || 'postgres' %>
+  password: <%= ENV['DB_PASS'] || '' %>
+  host: <%= ENV['DB_HOST'] || 'localhost' %>
 
 production:
   <<: *default
   database: <%= ENV['DB_NAME'] || 'mastodon_production' %>
-  username: <%= ENV['DB_USER'] || 'mastodon' %>
+  username: <%= ENV['DB_USER'] || '' %>
   password: <%= ENV['DB_PASS'] || '' %>
   host: <%= ENV['DB_HOST'] || 'localhost' %>
   port: <%= ENV['DB_PORT'] || 5432 %>
