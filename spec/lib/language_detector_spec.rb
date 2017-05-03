@@ -25,15 +25,15 @@ describe LanguageDetector do
 
     describe 'when language can\'t be detected' do
       it 'confirm language engine cant detect' do
-        result = WhatLanguage.new(:all).language_iso('')
-        expect(result).to be_nil
+        result = CLD.detect_language('')
+        expect(result[:reliable]).to be false
       end
 
       describe 'because of a URL' do
         it 'uses default locale when sent just a URL' do
           string = 'http://example.com/media/2kFTgOJLXhQf0g2nKB4'
-          wl_result = WhatLanguage.new(:all).language_iso(string)
-          expect(wl_result).not_to eq :en
+          cld_result = CLD.detect_language(string)[:code]
+          expect(cld_result).not_to eq :en
 
           result = described_class.new(string).to_iso_s
 

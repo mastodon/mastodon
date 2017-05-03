@@ -57,7 +57,6 @@ gem 'statsd-instrument'
 gem 'twitter-text'
 gem 'tzinfo-data'
 gem 'webpacker', '~>1.2'
-gem 'whatlanguage'
 
 # For some reason the view specs start failing without this
 gem 'react-rails'
