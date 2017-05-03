@@ -3,11 +3,17 @@ require 'rails_helper'
 
 describe LanguageDetector do
   describe 'to_iso_s' do
-    it 'detects english language' do
-      string = 'Hello and welcome to mastodon'
-      result = described_class.new(string).to_iso_s
+    it 'detects english language for basic strings' do
+      strings = [
+        "Hello and welcome to mastodon",
+        "I'd rather not!",
+        "a lot of people just want to feel righteous all the time and that's all that matters",
+      ]
+      strings.each do |string|
+        result = described_class.new(string).to_iso_s
 
-      expect(result).to eq :en
+        expect(result).to eq(:en), string
+      end
     end
 
     it 'detects spanish language' do
