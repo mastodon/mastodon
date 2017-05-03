@@ -25,8 +25,14 @@ class Avatar extends React.PureComponent {
   }
 
   render () {
-    const { src, size, staticSrc, animate } = this.props;
+    const { src, size, staticSrc, animate, inline } = this.props;
     const { hovering } = this.state;
+
+    let className = 'account__avatar';
+
+    if (inline) {
+      className = className + ' account__avatar-inline';
+    }
 
     const style = {
       ...this.props.style,
@@ -43,7 +49,7 @@ class Avatar extends React.PureComponent {
 
     return (
       <div
-        className='account__avatar'
+        className={className}
         onMouseEnter={this.handleMouseEnter}
         onMouseLeave={this.handleMouseLeave}
         style={style}
@@ -58,11 +64,14 @@ Avatar.propTypes = {
   staticSrc: PropTypes.string,
   size: PropTypes.number.isRequired,
   style: PropTypes.object,
-  animate: PropTypes.bool
+  animate: PropTypes.bool,
+  inline: PropTypes.bool
 };
 
 Avatar.defaultProps = {
-  animate: false
+  animate: false,
+  size: 20,
+  inline: false
 };
 
 export default Avatar;

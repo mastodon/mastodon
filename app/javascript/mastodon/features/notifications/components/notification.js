@@ -2,6 +2,7 @@ import React from 'react';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import StatusContainer from '../../../containers/status_container';
 import AccountContainer from '../../../containers/account_container';
+import Avatar from '../../../components/avatar';
 import { FormattedMessage } from 'react-intl';
 import Permalink from '../../../components/permalink';
 import emojify from '../../../emoji';
@@ -37,11 +38,10 @@ class Notification extends ImmutablePureComponent {
           <div className='notification__favourite-icon-wrapper'>
             <i className='fa fa-fw fa-star star-icon'/>
           </div>
-
           <FormattedMessage id='notification.favourite' defaultMessage='{name} favourited your status' values={{ name: link }} />
         </div>
 
-        <StatusContainer id={notification.get('status')} muted={true} />
+        <StatusContainer id={notification.get('status')} account={notification.get('account')} muted={true} />
       </div>
     );
   }
@@ -53,11 +53,10 @@ class Notification extends ImmutablePureComponent {
           <div className='notification__favourite-icon-wrapper'>
             <i className='fa fa-fw fa-retweet' />
           </div>
-
           <FormattedMessage id='notification.reblog' defaultMessage='{name} boosted your status' values={{ name: link }} />
         </div>
 
-        <StatusContainer id={notification.get('status')} muted={true} />
+        <StatusContainer id={notification.get('status')} account={notification.get('account')} muted={true} />
       </div>
     );
   }

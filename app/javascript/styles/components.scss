@@ -673,11 +673,33 @@ a.status__content__spoiler-link {
 }
 
 .account__avatar {
-  border-radius: 4px;
-  background: transparent no-repeat;
-  background-position: 50%;
-  background-clip: padding-box;
+  @include avatar-radius();
   position: relative;
+
+  &-inline {
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 5px;
+  }
+}
+
+.account__avatar-overlay {
+  @include avatar-size(48px);
+
+  &-base {
+    @include avatar-radius();
+    @include avatar-size(36px);
+  }
+
+  &-overlay {
+    @include avatar-radius();
+    @include avatar-size(24px);
+
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    z-index: 1;
+  }
 }
 
 .account__relationship {
@@ -2947,7 +2969,11 @@ button.icon-button.active i.fa-retweet {
 }
 
 .confirmation-modal {
-  max-width: 380px;
+  max-width: 280px;
+
+  @media screen and (min-width: 480px) {
+    max-width: 380px;
+  }
 }
 
 .confirmation-modal__action-bar {
