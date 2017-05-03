@@ -158,27 +158,29 @@ en:
       unresolved: Unresolved
       view: View
     settings:
-      click_to_edit: Click to edit
-      contact_information:
-        email: Enter a public e-mail address
-        label: Contact information
-        username: Enter a username
-      registrations:
-        closed_message:
-          desc_html: Displayed on frontpage when registrations are closed<br>You can use HTML tags
-          title: Closed registration message
-        open:
-          disabled: Disabled
-          enabled: Enabled
-          title: Open registration
+      closed_registrations_message:
+        desc_html: Displayed on frontpage when registrations are closed. You can use HTML tags.
+        title: Closed registration message
+      description: Where is this used?
+      open_registrations:
+        title: Open registration
+        desc_html: Boolean value which determines if new account creation is allowed.
       setting: Setting
+      site_contact_email:
+        desc_html: The email address to contact with instance questions.
+        title: Public email address
+      site_contact_username:
+        desc_html: The account username to contact with instance questions.
+        title: Public account username
       site_description:
-        desc_html: Displayed as a paragraph on the frontpage and used as a meta tag.<br>You can use HTML tags, in particular <code>&lt;a&gt;</code> and <code>&lt;em&gt;</code>.
+        desc_html: Displayed as a paragraph on the frontpage and used as a meta tag. You can use HTML tags, in particular <code>&lt;a&gt;</code> and <code>&lt;em&gt;</code>.
         title: Site description
-      site_description_extended:
-        desc_html: Displayed on extended information page<br>You can use HTML tags
+      site_extended_description:
+        desc_html: Displayed on extended information page. You can use HTML tags.
         title: Extended site description
-      site_title: Site title
+      site_title:
+        title: Site title
+        desc_html: The name for this instance, shown on page titles.
       title: Site Settings
     title: Administration
   application_mailer:

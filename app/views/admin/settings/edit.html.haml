@@ -1,0 +1,12 @@
+- content_for :page_title do
+  = t('settings.preferences')
+
+= simple_form_for @setting, url: admin_setting_path(@setting.var), html: { method: :put } do |f|
+  .fields-group
+    %label
+      = t("admin.settings.#{@setting.var}.title")
+    = f.input :value,
+      as: typecast_setting(@setting.var)
+
+  .actions
+    = f.button :button, t('generic.save_changes'), type: :submit
