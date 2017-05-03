@@ -1,7 +1,7 @@
 /**
  * Polskie tłumaczenie Mastodonta ;)
  * Autorzy:
- * m4sk1n (2017
+ * m4sk1n (2017)
  */
 const pl = {
   "account.block": "Blokuj @{name}",
@@ -124,7 +124,7 @@ const pl = {
   "privacy.change": "Dostosuj widoczność postów",
   "privacy.direct.long": "Widoczne tylko dla oznaczonych",
   "privacy.direct.short": "Bezpośrednio",
-  "privacy.private.long": "Widoczne tylko dla obserwującycj",
+  "privacy.private.long": "Widoczne tylko dla obserwujących",
   "privacy.private.short": "Tylko obserwujący",
   "privacy.public.long": "Widoczne na publicznych osiach czasu",
   "privacy.public.short": "Publiczne",
