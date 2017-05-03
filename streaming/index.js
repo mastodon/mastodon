@@ -60,6 +60,7 @@ if (cluster.isMaster) {
     port:     process.env.REDIS_PORT     || 6379,
     password: process.env.REDIS_PASSWORD
   })
+  const redisPubSubPrefix = process.env.REDIS_PUBSUB_PREFIX || ''
 
   const subs = {}
 
@@ -75,7 +76,7 @@ if (cluster.isMaster) {
     callbacks.forEach(callback => callback(message))
   })
 
-  redisClient.psubscribe('timeline:*')
+  redisClient.psubscribe(`${redisPubSubPrefix}timeline:*`)
 
   const subscribe = (channel, callback) => {
     log.silly(`Adding listener for ${channel}`)
@@ -163,7 +164,8 @@ if (cluster.isMaster) {
   const placeholders = (arr, shift = 0) => arr.map((_, i) => `$${i + 1 + shift}`).join(', ');
 
   const streamFrom = (id, req, output, attachCloseHandler, needsFiltering = false) => {
-    log.verbose(req.requestId, `Starting stream from ${id} for ${req.accountId}`)
+    const pubSubId = redisPubSubPrefix + id;
+    log.verbose(req.requestId, `Starting stream from ${pubSubId} for ${req.accountId}`)
 
     const listener = message => {
       const { event, payload, queued_at } = JSON.parse(message)
@@ -208,8 +210,8 @@ if (cluster.isMaster) {
       }
     }
 
-    subscribe(id, listener)
-    attachCloseHandler(id, listener)
+    subscribe(pubSubId, listener)
+    attachCloseHandler(pubSubId, listener)
   }
 
   // Setup stream output to HTTP
@@ -309,10 +311,10 @@ if (cluster.isMaster) {
         streamFrom(`timeline:${req.accountId}`, req, streamToWs(req, ws), streamWsEnd(ws))
         break;
       case 'public':
-        streamFrom('timeline:public', req, streamToWs(req, ws), streamWsEnd(ws), true)
+        streamFrom("timeline:public", req, streamToWs(req, ws), streamWsEnd(ws), true)
         break;
       case 'public:local':
-        streamFrom('timeline:public:local', req, streamToWs(req, ws), streamWsEnd(ws), true)
+        streamFrom("timeline:public:local", req, streamToWs(req, ws), streamWsEnd(ws), true)
         break;
       case 'hashtag':
         streamFrom(`timeline:hashtag:${location.query.tag}`, req, streamToWs(req, ws), streamWsEnd(ws), true)
