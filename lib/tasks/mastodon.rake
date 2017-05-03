@@ -33,56 +33,19 @@ namespace :mastodon do
     end
   end
 
-  module AvatarHeader
-    require 'fileutils'
-
-    def get_loop(field, method)
-      Account.remote.find_each do |account|
-        send(method, field, account)
-      end
-    end
-
-    def re_get(field, account)
-      return unless account.send(field + '_file_name').present? && account.send(field + '_remote_url').present?
-      return if File.exist?(account.send(field).path)
-      kind = 'refetch'
-      puts "#{kind} #{field} of #{account.username}"
-      mkdir_p(File.dirname(account.send(field).path))
-      open(account.send(field).path, 'wb') do |out|
-        open(account.send(field + '_remote_url')) do |data|
-          out.write(data.read)
-        end
-      end
-    rescue => ex
-      _raise_(field, account, ex, kind)
-    end
-
-    def re_save(field, account)
-      return unless account.send(field).exists? && account.send(field + '_remote_url').present?
-      kind = 'refresh'
-      puts "#{kind} #{field} of #{account.username}"
-      account.send(field + '=', URI.parse(account.send(field + '_remote_url')))
-      account.save
-    rescue => ex
-      _raise_(field, account, ex, kind)
-    end
-
-    def _raise_(field, account, ex, kind)
-      # need to think about "404"
-      puts "can't #{kind} #{field} of #{account.username} due to " + ex.inspect
-    end
-  end
-
   desc 'Refetch missing avatar and header'
   task refetch_avatar_header: :environment do
-    include AvatarHeader
-    %w(avatar header).each { |e| get_loop e, :re_get }
-  end
-
-  desc 'Refresh All avatar and header'
-  task refresh_avatar_header: :environment do
-    include AvatarHeader
-    %w(avatar header).each { |e| get_loop e, :re_save }
+    Account.remote.find_each do |account|
+      %w[avatar header].each do |field|
+        next unless account.send(field + '_file_name').present? && account.send(field + '_remote_url').present?
+        begin
+          account.send(field + '=', URI.parse(account.send(field + '_remote_url')))
+        rescue => ex
+          p ex
+        end
+        account.save
+      end
+    end
   end
 
   namespace :media do
