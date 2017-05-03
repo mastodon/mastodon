@@ -20,6 +20,8 @@ class ProcessFeedService < BaseService
   end
 
   class ProcessEntry
+    include AuthorExtractor
+
     def call(xml, account)
       @account = account
       @xml     = xml
@@ -119,7 +121,7 @@ class ProcessFeedService < BaseService
       # If that author cannot be found, don't record the status (do not misattribute)
       if account?(entry)
         begin
-          account = find_or_resolve_account(acct(entry))
+          account = author_from_xml(entry)
           return [nil, false] if account.nil?
         rescue Goldfinger::Error
           return [nil, false]
@@ -152,10 +154,6 @@ class ProcessFeedService < BaseService
       media_from_xml(status, entry)
 
       [status, true]
-    end
-
-    def find_or_resolve_account(acct)
-      FollowRemoteAccountService.new.call(acct)
     end
 
     def find_or_resolve_status(parent, uri, url)
@@ -285,14 +283,6 @@ class ProcessFeedService < BaseService
 
     def account?(xml = @xml)
       !xml.at_xpath('./xmlns:author', xmlns: TagManager::XMLNS).nil?
-    end
-
-    def acct(xml = @xml)
-      username = xml.at_xpath('./xmlns:author/xmlns:name', xmlns: TagManager::XMLNS).content
-      url      = xml.at_xpath('./xmlns:author/xmlns:uri', xmlns: TagManager::XMLNS).content
-      domain   = Addressable::URI.parse(url).normalize.host
-
-      "#{username}@#{domain}"
     end
 
     def redis
