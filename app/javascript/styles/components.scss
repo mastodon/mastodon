@@ -2947,7 +2947,11 @@ button.icon-button.active i.fa-retweet {
 }
 
 .confirmation-modal {
-  max-width: 380px;
+  max-width: 280px;
+
+  @media screen and (min-width: 480px) {
+    max-width: 380px;
+  }
 }
 
 .confirmation-modal__action-bar {
