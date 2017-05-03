@@ -216,11 +216,31 @@ pl:
       x_minutes: "%{count}min"
       x_months: "%{count} miesięcy"
       x_seconds: "%{count}s"
+  errors:
+    '403': Nie masz uprawnień, aby wyświetlić tą stronę.
+    '404': Strona, którą próbujesz odwiedzić, nie istnieje.
+    '410': Strona, którą próbujesz odwiedzić, już nie istnieje.
+    '422':
+      content: Sprawdzanie bezpieczeństwa nie powiodło się. Czy blokujesz pliki cookie?
+      title: Sprawdzanie bezpieczeństwa nie powiodło się
   exports:
     blocks: Blokujesz
     csv: CSV
     follows: Śledzisz
-    storage: Media storage
+    mutes: Wyciszyłeś
+    storage: Urządzenie przechowujące dane
+  followers:
+    domain: Domena
+    explanation_html: Jeżeli chcesz mieć pewność, kto może przeczytać Twoje statusy, musisz kontrolować, kto Cię obserwuje. <strong>Twoje prywatne statusy są dostarczane na te instancje, na których jesteś obserwowany</strong>. Możesz sprawdzać swoich obserwowanych i blokować ich, jeśli nie ufasz właścicielom lub oprogramowaniu danej instancji.
+    followers_count: Liczba obserwujących
+    lock_link: Zablokuj swoje konto
+    purge: Usuń z obserwujących
+    success:
+      one: W procesie usuwania obserwujcych z jednej domeny...
+      other: W procesie usuwania obserwujących z %{count} domen...
+    true_privacy_html: Pamiętaj, że <strong>rzeczywista prywatność może zostać uzyskana wyłącznie dzięki szyfrowaniu end-to-end</strong>.
+    unlocked_warning_html: Każdy może cię zaobserwować, aby natychmiastowo zobaczyć twoje statusy. %{lock_link} aby móc kontrolować obserwujących.
+    unlocked_warning_title: Twoje konto nie jest zablokowane
   generic:
     changes_saved_msg: Ustawienia zapisane!
     powered_by: uruchomione na %{link}
@@ -234,8 +254,13 @@ pl:
     types:
       blocking: Lista blokowanych
       following: Lista śledzonych
+      muting: Lista wyciszonych
     upload: Załaduj
   landing_strip_html: <strong>%{name}</strong> ma konto na %{link_to_root_path}. Możesz je śledzić i wejść z nim w interakcję jeśli masz konto gdziekolwiek w Fediwersie. Jeśli jeszcze go nie masz, możesz <a href="%{sign_up_path}">stworzyć konto</a>.
+  media_attachments:
+    validations:
+      images_and_video: Nie możesz załączyć pliku wideo do statusu, który zawiera już zdjęcia
+      too_many: Nie możesz załączyć więcej niż 4 plików
   notification_mailer:
     digest:
       body: 'Oto krótkie podsumowanie co Cię ominęło na %{instance} od Twojej ostatniej wizyty (%{since}):'
@@ -264,6 +289,7 @@ pl:
   pagination:
     next: Następna
     prev: Poprzednia
+    truncate: "&hellip;"
   remote_follow:
     acct: Podaj swój adres (nazwa@domena), z którego chcesz śledzić
     missing_resource: Nie udało się znaleźć adresu przekierowania z Twojej domeny
@@ -290,14 +316,27 @@ pl:
     click_to_show: Kliknij aby pokazać
     reblogged: podbity
     sensitive_content: Wrażliwa treść
+  stream_entries:
+    click_to_show: Naciśnij aby wyświetlić
+    reblogged: podbito
+    sensitive_content: Wrażliwa zawartość
   time:
     formats:
       default: "%b %d, %Y, %H:%M"
   two_factor_authentication:
+    code_hint: Aby kontynuować, wprowadź kod wyświetlany przez aplikację uwierzytelniającą
     description_html: Jeśli włączysz <strong>uwierzytelnianie dwustopniowe</strong>, logowanie się będzie wymagało podania tokenu wyświetlonego na Twoim telefone.
     disable: Wyłącz
     enable: Włącz
+    enabled_success: Pomyślnie aktywowano uwierzytelnianie dwuetapowe
+    generate_recovery_codes: Generuj kody zapasowe
     instructions_html: "<strong>Zeskanuj ten kod QR na swoim urządzeniu za pomocą Google Authenticator, FreeOTP lub podobnej aplikacji</strong>. Od teraz będzie ona generowała kody wymagane przy logowaniu."
+    lost_recovery_codes: Kody zapasowe pozwolą uzyskać dostęp do portalu, jeżeli utracisz dostęp do telefonu. Jeżeli utracisz dostęp do nich, możesz wygenerować je ponownie tutaj. Poprzednie zostaną unieważnione
+    manual_instructions: 'Jeżeli nie możesz zeskanować kodu QR, musisz wprowadzić ten kod ręcznie:'
+    recovery_codes_regenerated: Pomyślnie wygenerowano ponownie kody zapasowe
+    recovery_instructions: Jeżeli kiedykolwiek utracisz dostęp do telefonu, możesz wykorzystać jeden z kodów zapasowych, aby odzyskać dostęp do konta./ Trzymaj je w bezpiecznym miejscu. (Na przykład, wydrukuj je i przechowuj z ważnymu dokumentami.)
+    setup: Skonfiguruj
+    wrong_code: Wprowadzony kod jest niepoprawny! Czy czas serwera i urządzenia jest poprawny?
   users:
     invalid_email: Adres e-mail jest niepoprawny
     invalid_otp_token: Kod uwierzytelniający jest niepoprawny
