@@ -1,9 +1,7 @@
 language: ruby
 cache:
   bundler: true
-  yarn: true
-  directories:
-    - node_modules
+  yarn: false
 dist: trusty
 sudo: false
 
@@ -46,6 +44,7 @@ install:
 
 before_script:
   - bundle exec rake parallel:create parallel:load_schema parallel:prepare
+  - bundle exec rails assets:precompile
 
 script:
   - bundle exec parallel_test spec/ --group-by filesize --type rspec

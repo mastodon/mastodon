@@ -5,16 +5,17 @@ pl:
     about_this: O tej instancji
     apps: Aplikacje
     business_email: 'Służbowy adres e-mail:'
+    closed_registrations: Rejestracja na tej instancji jest obecnie zamknięta.
     contact: Kontakt
     description_headline: Czym jest %{domain}?
-    domain_count_after: inne instancje
-    domain_count_before: Połączone z
+    domain_count_after: instancji
+    domain_count_before: Serwer połączony z
     features:
       api: Otwarte API dla aplikacji i usług
-      blocks: Rozbudowane narzędzia blokowania i wyciszania
+      blocks: Rozbudowane narzędzia blokowania i ukrywania 
       characters: 500 znaków na wpis
       chronology: Chronologiczny porządek wyświetlania
-      ethics: 'Etyczne założenia: bez reklam, bez śledzenia'
+      ethics: 'Etyczne założenia: nie śledzimy, bez reklam'
       gifv: obsługa GIFV i krótkich wideo
       privacy: Precyzyjne ustawienia widoczności poszczególnych postów
       public: Publiczne osie czasu
@@ -24,10 +25,11 @@ pl:
     other_instances: Inne instancje
     source_code: Kod źródłowy
     status_count_after: wpisów
-    status_count_before: Kto jest autorem
+    status_count_before: Są autorami
     terms: Regulamin
-    user_count_after: tootujących
-    user_count_before: Dom dla
+    user_count_after: użytkowników
+    user_count_before: Z serwera korzysta
+    version: Wersja
   accounts:
     follow: Śledź
     followers: Śledzących
@@ -38,6 +40,15 @@ pl:
     posts: Wpisy
     remote_follow: Zdalne śledzenie
     unfollow: Przestań śledzić
+  activitypub:
+    activity:
+      announce:
+        name: "%{account_name} udostępnił(a) aktywność."
+      create:
+        name: "%{account_name} utworzył(a) wpis."
+    outbox:
+      name: "Skrzynka %{account_name}"
+      summary: "Zbiór aktywności użytkownika %{account_name}."
   application_mailer:
     settings: 'Zmień ustawienia powiadamiania: %{link}'
     signature: Powiadomienie Mastodona, wysłane przez %{instance}

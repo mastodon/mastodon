@@ -1,0 +1,3 @@
+web: bundle exec puma -C config/puma.rb
+stream: yarn run start
+webpack: ./bin/webpack-dev-server
