@@ -270,6 +270,9 @@ GEM
     paperclip-av-transcoder (0.6.4)
       av (~> 0.9.0)
       paperclip (>= 2.5.2)
+    parallel (1.11.1)
+    parallel_tests (2.14.1)
+      parallel
     parser (2.4.0.0)
       ast (~> 2.2)
     pg (0.20.0)
@@ -510,6 +513,7 @@ DEPENDENCIES
   ox
   paperclip (~> 5.1)
   paperclip-av-transcoder
+  parallel_tests
   pg
   pghero
   pkg-config
