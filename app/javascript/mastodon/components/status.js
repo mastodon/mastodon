@@ -2,6 +2,7 @@ import React from 'react';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
 import Avatar from './avatar';
+import AvatarOverlay from './avatar_overlay';
 import RelativeTimestamp from './relative_timestamp';
 import DisplayName from './display_name';
 import MediaGallery from './media_gallery';
@@ -36,7 +37,8 @@ class Status extends ImmutablePureComponent {
 
   render () {
     let media = '';
-    const { status, ...other } = this.props;
+    let statusAvatar;
+    const { status, account, ...other } = this.props;
 
     if (status === null) {
       return <div />;
@@ -55,11 +57,10 @@ class Status extends ImmutablePureComponent {
         <div className='status__wrapper'>
           <div className='status__prepend'>
             <div className='status__prepend-icon-wrapper'><i className='fa fa-fw fa-retweet status__prepend-icon' /></div>
-            <Avatar src={status.getIn(['account', 'avatar'])} staticSrc={status.getIn(['account', 'avatar_static'])} inline />
             <FormattedMessage id='status.reblogged_by' defaultMessage='{name} boosted' values={{ name: <a onClick={this.handleAccountClick.bind(this, status.getIn(['account', 'id']))} href={status.getIn(['account', 'url'])} className='status__display-name muted'><strong dangerouslySetInnerHTML={displayNameHTML} /></a> }} />
           </div>
 
-          <Status {...other} wrapped={true} status={status.get('reblog')} />
+          <Status {...other} wrapped={true} status={status.get('reblog')} account={status.get('account')} />
         </div>
       );
     }
@@ -74,6 +75,12 @@ class Status extends ImmutablePureComponent {
       }
     }
 
+    if (account === undefined || account === null) {
+      statusAvatar = <Avatar src={status.getIn(['account', 'avatar'])} staticSrc={status.getIn(['account', 'avatar_static'])} size={48}/>;
+    }else{
+      statusAvatar = <AvatarOverlay staticSrc={status.getIn(['account', 'avatar_static'])} overlaySrc={account.get('avatar_static')} />;
+    }
+
     return (
       <div className={this.props.muted ? 'status muted' : 'status'}>
         <div className='status__info'>
@@ -83,7 +90,7 @@ class Status extends ImmutablePureComponent {
 
           <a onClick={this.handleAccountClick.bind(this, status.getIn(['account', 'id']))} href={status.getIn(['account', 'url'])} className='status__display-name'>
             <div className='status__avatar'>
-              <Avatar src={status.getIn(['account', 'avatar'])} staticSrc={status.getIn(['account', 'avatar_static'])} size={48} />
+              {statusAvatar}
             </div>
 
             <DisplayName account={status.get('account')} />
@@ -107,6 +114,7 @@ Status.contextTypes = {
 
 Status.propTypes = {
   status: ImmutablePropTypes.map,
+  account: ImmutablePropTypes.map,
   wrapped: PropTypes.bool,
   onReply: PropTypes.func,
   onFavourite: PropTypes.func,
