@@ -46,7 +46,7 @@ class User < ApplicationRecord
   accepts_nested_attributes_for :account
 
   has_many :applications, class_name: 'Doorkeeper::Application', as: :owner
-  
+
   validates :locale, inclusion: I18n.available_locales.map(&:to_s), unless: 'locale.nil?'
   validates :email, email: true
 
@@ -82,10 +82,9 @@ class User < ApplicationRecord
 
   def token_for_app(a)
     return nil if a.nil? || a.owner != self
-    Doorkeeper::AccessToken.find_or_create_by(
-      application_id:a.id,
-      resource_owner_id: self.id) do |t|
-      
+    Doorkeeper::AccessToken
+      .find_or_create_by(application_id: a.id, resource_owner_id: id) do |t|
+
       t.scopes = a.scopes
       t.expires_in = Doorkeeper.configuration.access_token_expires_in
       t.use_refresh_token = Doorkeeper.configuration.refresh_token_enabled?

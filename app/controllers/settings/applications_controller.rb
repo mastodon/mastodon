@@ -10,14 +10,12 @@ class Settings::ApplicationsController < ApplicationController
   end
 
   def new
-    @application = Doorkeeper::Application.new
-    @application.redirect_uri ||= Doorkeeper.configuration.native_redirect_uri
-
-    if @application.scopes.blank?
-      @application.scopes = "read write follow"
-    end
+    @application = Doorkeeper::Application.new(
+      redirect_uri: Doorkeeper.configuration.native_redirect_uri,
+      scopes: 'read write follow'
+    )
   end
-  
+
   def show
     @application = current_user.applications.find(params[:id])
   end
@@ -31,7 +29,7 @@ class Settings::ApplicationsController < ApplicationController
       render :new
     end
   end
-  
+
   def update
     @application = current_user.applications.find(params[:id])
     if @application.update_attributes(application_params)
@@ -52,9 +50,9 @@ class Settings::ApplicationsController < ApplicationController
     @access_token = current_user.token_for_app(@application)
     @access_token.destroy
 
-    redirect_to settings_application_path(@application), notice:t('access_token.regenerated')
+    redirect_to settings_application_path(@application), notice: t('access_token.regenerated')
   end
-  
+
   private
 
   def application_params
