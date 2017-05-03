@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'cld'
+
 class LanguageDetector
   attr_reader :text, :account
 
@@ -9,7 +11,9 @@ class LanguageDetector
   end
 
   def to_iso_s
-    WhatLanguage.new(:all).language_iso(text_without_urls) || default_locale.to_sym
+    cld_lang = CLD.detect_language(text_without_urls)
+    return cld_lang[:code].to_sym if cld_lang[:reliable]
+    default_locale.to_sym
   end
 
   private
