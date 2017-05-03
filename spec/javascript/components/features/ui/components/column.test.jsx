@@ -2,8 +2,8 @@ import { expect } from 'chai';
 import { mount } from 'enzyme';
 import sinon from 'sinon';
 
-import Column from '../../../../../../app/assets/javascripts/components/features/ui/components/column';
-import ColumnHeader from '../../../../../../app/assets/javascripts/components/features/ui/components/column_header';
+import Column from '../../../../../../app/javascript/mastodon/features/ui/components/column';
+import ColumnHeader from '../../../../../../app/javascript/mastodon/features/ui/components/column_header';
 
 describe('<Column />', () => {
   describe('<ColumnHeader /> click handler', () => {

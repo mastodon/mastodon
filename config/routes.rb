@@ -89,6 +89,10 @@ Rails.application.routes.draw do
       resource :suspension, only: [:create, :destroy]
       resource :confirmation, only: [:create]
     end
+
+    resources :users, only: [] do
+      resource :two_factor_authentication, only: [:destroy]
+    end
   end
 
   get '/admin', to: redirect('/admin/settings', status: 302)

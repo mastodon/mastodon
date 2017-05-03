@@ -33,6 +33,10 @@ class Subscription < ApplicationRecord
     (expires_at - Time.now.utc).to_i
   end
 
+  def expired?
+    Time.now.utc > expires_at
+  end
+
   before_validation :set_min_expiration
 
   private
