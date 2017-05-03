@@ -217,20 +217,34 @@ Container.propTypes = {
   children: PropTypes.node,
 };
 
-class Mastodon extends React.Component {
+class Mastodon extends React.PureComponent {
 
   componentDidMount() {
     const { locale }  = this.props;
     const streamingAPIBaseURL = store.getState().getIn(['meta', 'streaming_api_base_url']);
     const accessToken = store.getState().getIn(['meta', 'access_token']);
 
+    const setupPolling = () => {
+      this.polling = setInterval(() => {
+        store.dispatch(refreshTimeline('home'));
+        store.dispatch(refreshNotifications());
+      }, 20000);
+    };
+
+    const clearPolling = () => {
+      clearInterval(this.polling);
+      this.polling = undefined;
+    };
+
     this.subscription = createStream(streamingAPIBaseURL, accessToken, 'user', {
 
       connected () {
+        clearPolling();
         store.dispatch(connectTimeline('home'));
       },
 
       disconnected () {
+        setupPolling();
         store.dispatch(disconnectTimeline('home'));
       },
 
@@ -249,6 +263,7 @@ class Mastodon extends React.Component {
       },
 
       reconnected () {
+        clearPolling();
         store.dispatch(connectTimeline('home'));
         store.dispatch(refreshTimeline('home'));
         store.dispatch(refreshNotifications());
@@ -268,6 +283,11 @@ class Mastodon extends React.Component {
     if (typeof this.subscription !== 'undefined') {
       this.subscription.close();
       this.subscription = null;
+    }
+
+    if (typeof this.polling !== 'undefined') {
+      clearInterval(this.polling);
+      this.polling = null;
     }
   }
 

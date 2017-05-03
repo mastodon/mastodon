@@ -86,6 +86,8 @@ export function refreshTimeline(timeline, id = null) {
 
       params          = { ...params, since_id: newestId };
       skipLoading     = true;
+    } else if (getState().getIn(['timelines', timeline, 'loaded'])) {
+      skipLoading = true;
     }
 
     dispatch(refreshTimelineRequest(timeline, id, skipLoading));

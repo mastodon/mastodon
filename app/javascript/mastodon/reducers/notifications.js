@@ -29,11 +29,19 @@ const notificationToMap = notification => Immutable.Map({
 });
 
 const normalizeNotification = (state, notification) => {
-  if (!state.get('top')) {
+  const top = state.get('top');
+
+  if (!top) {
     state = state.update('unread', unread => unread + 1);
   }
 
-  return state.update('items', list => list.unshift(notificationToMap(notification)));
+  return state.update('items', list => {
+    if (top && list.size > 40) {
+      list = list.take(20);
+    }
+
+    return list.unshift(notificationToMap(notification));
+  });
 };
 
 const normalizeNotifications = (state, notifications, next) => {

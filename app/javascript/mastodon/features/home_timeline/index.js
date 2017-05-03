@@ -12,18 +12,31 @@ const messages = defineMessages({
 });
 
 const mapStateToProps = state => ({
-  hasUnread: state.getIn(['timelines', 'home', 'unread']) > 0
+  hasUnread: state.getIn(['timelines', 'home', 'unread']) > 0,
+  hasFollows: state.getIn(['accounts_counters', state.getIn(['meta', 'me']), 'following_count']) > 0
 });
 
 class HomeTimeline extends React.PureComponent {
 
   render () {
-    const { intl, hasUnread } = this.props;
+    const { intl, hasUnread, hasFollows } = this.props;
+
+    let emptyMessage = <FormattedMessage id='empty_column.home' defaultMessage="You aren't following anyone yet. Visit {public} or use search to get started and meet other users." values={{ public: <Link to='/timelines/public'><FormattedMessage id='empty_column.home.public_timeline' defaultMessage='the public timeline' /></Link> }} />;
+
+    if (hasFollows) {
+      emptyMessage = <FormattedMessage id='empty_column.home.inactivity' defaultMessage="Your home feed is empty. If you have been inactive for a while, it will be regenerated for you soon." />
+    }
 
     return (
       <Column icon='home' active={hasUnread} heading={intl.formatMessage(messages.title)}>
         <ColumnSettingsContainer />
-        <StatusListContainer {...this.props} scrollKey='home_timeline' type='home' emptyMessage={<FormattedMessage id='empty_column.home' defaultMessage="You aren't following anyone yet. Visit {public} or use search to get started and meet other users." values={{ public: <Link to='/timelines/public'><FormattedMessage id='empty_column.home.public_timeline' defaultMessage='the public timeline' /></Link> }} />} />
+
+        <StatusListContainer
+          {...this.props}
+          scrollKey='home_timeline'
+          type='home'
+          emptyMessage={emptyMessage}
+        />
       </Column>
     );
   }
@@ -32,7 +45,8 @@ class HomeTimeline extends React.PureComponent {
 
 HomeTimeline.propTypes = {
   intl: PropTypes.object.isRequired,
-  hasUnread: PropTypes.bool
+  hasUnread: PropTypes.bool,
+  hasFollows: PropTypes.bool
 };
 
 export default connect(mapStateToProps)(injectIntl(HomeTimeline));

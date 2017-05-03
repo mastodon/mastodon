@@ -87,7 +87,11 @@ const initialState = Immutable.Map();
 export default function accountsCounters(state = initialState, action) {
   switch(action.type) {
   case STORE_HYDRATE:
-    return state.merge(action.state.get('accounts_counters'));
+    return state.merge(action.state.get('accounts').map(item => Immutable.fromJS({
+      followers_count: item.get('followers_count'),
+      following_count: item.get('following_count'),
+      statuses_count: item.get('statuses_count')
+    })));
   case ACCOUNT_FETCH_SUCCESS:
   case NOTIFICATIONS_UPDATE:
     return normalizeAccount(state, action.account);
