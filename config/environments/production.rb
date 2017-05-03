@@ -56,15 +56,23 @@ Rails.application.configure do
     ENV['REDIS_DB'] = db_num if db_num.present?
   end
 
+  # Allow connecting via Unix socket
+  redis_config = if ENV['REDIS_SOCKET']
+    { path: ENV['REDIS_SOCKET'] }
+  else
+    {
+      host: ENV.fetch('REDIS_HOST') { 'localhost' },
+      port: ENV.fetch('REDIS_PORT') { 6379 },
+      password: ENV.fetch('REDIS_PASSWORD') { false }
+    }
+  end
+
   # Use a different cache store in production.
-  config.cache_store = :redis_store, {
-    host: ENV.fetch('REDIS_HOST') { 'localhost' },
-    port: ENV.fetch('REDIS_PORT') { 6379 },
-    password: ENV.fetch('REDIS_PASSWORD') { false },
+  config.cache_store = :redis_store, redis_config.merge({
     db: ENV.fetch('REDIS_DB') { 0 },
     namespace: 'cache',
-    expires_in: 10.minutes,
-  }
+    expires_in: 10.minutes
+  })
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server.
   # config.action_controller.asset_host = 'http://assets.example.com'
