@@ -32,14 +32,16 @@ class FetchRemoteStatusService < BaseService
 
   def extract_author(url, xml)
     url_parts = Addressable::URI.parse(url).normalize
-    username  = xml.at_xpath('//xmlns:author/xmlns:name').try(:content)
     domain    = url_parts.host
 
-    return nil if username.nil?
+    follow_remote_account_service = FollowRemoteAccountService.new
+    uri = follow_remote_account_service.acct_uri_from_atom(xml)
 
-    Rails.logger.debug "Going to webfinger #{username}@#{domain}"
+    return nil if uri.nil?
 
-    account = FollowRemoteAccountService.new.call("#{username}@#{domain}")
+    Rails.logger.debug "Going to webfinger #{uri}"
+
+    account = follow_remote_account_service.call(uri)
 
     # If the author's confirmed URLs do not match the domain of the URL
     # we are reading this from, abort

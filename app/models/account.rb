@@ -181,6 +181,10 @@ class Account < ApplicationRecord
     "acct:#{local_username_and_domain}"
   end
 
+  def needs_webfinger_update?
+    last_webfingered_at.nil? || last_webfingered_at <= 1.day.ago
+  end
+
   def subscribed?
     !subscription_expires_at.blank?
   end

@@ -18,21 +18,12 @@ class FetchRemoteAccountService < BaseService
   def process_atom(url, body)
     xml = Nokogiri::XML(body)
     xml.encoding = 'utf-8'
+    follow_remote_account_service = FollowRemoteAccountService.new
+    uri = follow_remote_account_service.acct_uri_from_atom(xml)
 
-    email = xml.at_xpath('//xmlns:author/xmlns:email').try(:content)
-    if email.nil?
-      url_parts = Addressable::URI.parse(url).normalize
-      username  = xml.at_xpath('//xmlns:author/xmlns:name').try(:content)
-      domain    = url_parts.host
-    else
-      username, domain = email.split('@')
-    end
+    Rails.logger.debug "Going to webfinger #{uri}"
 
-    return nil if username.nil? || domain.nil?
-
-    Rails.logger.debug "Going to webfinger #{username}@#{domain}"
-
-    account = FollowRemoteAccountService.new.call("#{username}@#{domain}")
+    account = follow_remote_account_service.call(uri)
     UpdateRemoteProfileService.new.call(xml, account) unless account.nil?
     account
   rescue TypeError

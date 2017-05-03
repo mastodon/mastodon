@@ -12,12 +12,14 @@ class FollowRemoteAccountService < BaseService
   # @param [String] uri User URI in the form of username@domain
   # @return [Account]
   def call(uri, redirected = nil)
+    return nil if uri.nil?
+
     username, domain = uri.split('@')
 
     return Account.find_local(username) if TagManager.instance.local_domain?(domain)
 
     account = Account.find_remote(username, domain)
-    return account unless account_needs_webfinger_update?(account)
+    return account unless account.nil? || account.needs_webfinger_update?
 
     Rails.logger.debug "Looking up webfinger for #{uri}"
 
@@ -61,17 +63,55 @@ class FollowRemoteAccountService < BaseService
     account.uri     = get_account_uri(xml)
     account.hub_url = hubs.first.attribute('href').value
 
+    # Verify that account.uri maps back to confirmed_username@confirmed_domain, to avoid user URI duplication
+    raise Goldfinger::Error, 'Author URI does not map back to account name' unless acct_uri_from_user_uri(account.uri) == "#{confirmed_username}@#{confirmed_domain}"
+
+    # TODO: delete other accounts sharing the same uri
+
     account.save!
     get_profile(body, account)
 
     account
   end
 
-  private
+  # TODO: should it really be public? This breaks the "service" approach taken so far,
+  # but it's the easiest way to refactor this
+  def acct_uri_from_atom(xml, enforced_account_uri = nil)
+    # If the feed has an "email" field, use that
+    email = xml.at_xpath('.//xmlns:author/xmlns:email', xmlns: TagManager::XMLNS).try(:content)
+    return email unless email.nil?
 
-  def account_needs_webfinger_update?(account)
-    account&.last_webfingered_at.nil? || account.last_webfingered_at <= 1.day.ago
+    # Otherwise, build acct URI from author URI + name
+    account_uri = get_account_uri(xml)
+    # Sanity check when verifying account URI:
+    return nil unless enforced_account_uri.nil? || enforced_account_uri == account_uri
+
+    # Do not perform HTTP requests if it is not needed
+    account = Account.find_by(uri: account_uri)
+    return "#{account.username}@#{account.domain}" unless account.nil? || account.needs_webfinger_update?
+
+    url_parts = Addressable::URI.parse(account_uri).normalize
+    username  = xml.at_xpath('.//xmlns:author/xmlns:name', xmlns: TagManager::XMLNS).try(:content)
+    domain    = url_parts.host
+    "#{username}@#{domain}"
   end
+
+  # Get a "canonical" acct URI from an unknown user URI if possible.
+  # May perform HTTP requests in case the user URI is an URL
+  def acct_uri_from_user_uri(uri)
+    # Is the author URI an acct: URI?
+    return uri.gsub(/\Aacct:/, '') if /\Aacct:(.*)/ =~ uri
+
+    # Otherwise, we expect an URL to a profile page or a feed
+    atom_url, body = FetchAtomService.new.call(uri)
+    return nil if atom_url.nil?
+
+    xml = Nokogiri::XML(body)
+    xml.encoding = 'utf-8'
+    acct_uri_from_atom(xml, uri)
+  end
+
+  private
 
   def get_feed(url)
     response = http_client(write: 20, connect: 20, read: 50).get(Addressable::URI.parse(url).normalize)
@@ -85,11 +125,11 @@ class FollowRemoteAccountService < BaseService
   end
 
   def get_account_uri(xml)
-    author_uri = xml.at_xpath('/xmlns:feed/xmlns:author/xmlns:uri')
+    author_uri = xml.at_xpath('.//xmlns:author/xmlns:uri', xmlns: TagManager::XMLNS)
 
     if author_uri.nil?
-      owner = xml.at_xpath('/xmlns:feed').at_xpath('./dfrn:owner', dfrn: DFRN_NS)
-      author_uri = owner.at_xpath('./xmlns:uri') unless owner.nil?
+      owner = xml.at_xpath('./xmlns:feed', xmlns: TagManager::XMLNS)&.at_xpath('./dfrn:owner', dfrn: DFRN_NS)
+      author_uri = owner.at_xpath('./xmlns:uri', xmlns: TagManager::XMLNS) unless owner.nil?
     end
 
     raise Goldfinger::Error, 'Author URI could not be found' if author_uri.nil?
