@@ -75,8 +75,6 @@ Rails.application.configure do
 
     Bullet.add_whitelist type: :n_plus_one_query, class_name: 'User', association: :account
   end
-
-  config.react.variant = :development
 end
 
 require 'sidekiq/testing'

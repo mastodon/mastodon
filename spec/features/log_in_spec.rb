@@ -11,6 +11,6 @@ feature "Log in" do
     fill_in "user_password", with: password
     click_on "Log in"
 
-    expect(page).to have_css "div.app-holder[data-react-class=Mastodon]"
+    expect(page).to have_css "div.app-holder"
   end
 end
