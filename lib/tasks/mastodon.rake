@@ -36,7 +36,7 @@ namespace :mastodon do
   desc 'Refetch missing avatar and header'
   task refetch_avatar_header: :environment do
     Account.remote.find_each do |account|
-      %w[avatar header].each do |field|
+      %w(avatar header).each do |field|
         next unless account.send(field + '_file_name').present? && account.send(field + '_remote_url').present?
         begin
           account.send(field + '=', URI.parse(account.send(field + '_remote_url')))
