@@ -9,6 +9,7 @@ import log from 'npmlog'
 import url from 'url'
 import WebSocket from 'ws'
 import uuid from 'uuid'
+import { parse as parseDatabaseUrl } from 'pg-connection-string'
 
 const env = process.env.NODE_ENV || 'development'
 
@@ -35,11 +36,8 @@ if (cluster.isMaster) {
 
   const pgConfigs = {
     development: {
-      user:     process.env.DB_USER || 'postgres',
-      password: process.env.DB_PASS || '',
       database: 'mastodon_development',
-      host:     process.env.DB_HOST || 'localhost',
-      port:     process.env.DB_PORT || 5432,
+      host:     '/var/run/postgresql',
       max:      10
     },
 
@@ -53,8 +51,18 @@ if (cluster.isMaster) {
     }
   }
 
+  const pgConfig = pgConfigs[env];
+  if (process.env.DATABASE_URL) {
+    const parsedConfig = parseDatabaseUrl(process.env.DATABASE_URL);
+    for (const key of Object.keys(parsedConfig)) {
+      if (parsedConfig[key] !== null) {
+        pgConfig[key] = parsedConfig[key]
+      }
+    }
+  }
+
   const app    = express()
-  const pgPool = new pg.Pool(pgConfigs[env])
+  const pgPool = new pg.Pool(pgConfig)
   const server = http.createServer(app)
   const wss    = new WebSocket.Server({ server })
 
