@@ -38,3 +38,7 @@
         %strong= t('admin.settings.registrations.closed_message.title')
         %p= t('admin.settings.registrations.closed_message.desc_html')
       %td= best_in_place @settings['closed_registrations_message'], :value, as: :textarea, url: admin_setting_path(@settings['closed_registrations_message'])
+    %tr
+      %td
+        %strong= t('admin.settings.status_max_length')
+      %td= best_in_place @settings['status_max_length'], :value, url: admin_setting_path(@settings['status_max_length'])
