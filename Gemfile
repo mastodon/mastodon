@@ -57,9 +57,6 @@ gem 'twitter-text'
 gem 'tzinfo-data'
 gem 'webpacker', '~>1.2'
 
-# For some reason the view specs start failing without this
-gem 'react-rails'
-
 group :development, :test do
   gem 'fabrication'
   gem 'fuubar'
