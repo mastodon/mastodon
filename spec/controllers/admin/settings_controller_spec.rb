@@ -5,10 +5,6 @@ require 'rails_helper'
 RSpec.describe Admin::SettingsController, type: :controller do
   render_views
 
-  before do
-    Rails.cache.clear
-  end
-
   describe 'When signed in as an admin' do
     before do
       sign_in Fabricate(:user, admin: true), scope: :user
@@ -24,12 +20,16 @@ RSpec.describe Admin::SettingsController, type: :controller do
 
     describe 'PUT #update' do
       describe 'for a record that doesnt exist' do
-        after do
+        around do |example|
+          before = Setting.site_extended_description
+          Setting.site_extended_description = nil
+          example.run
+          Setting.site_extended_description = before
           Setting.new_setting_key = nil
         end
 
         it 'cannot create a setting value for a non-admin key' do
-          expect(Setting.new_setting_key).to be_nil
+          expect(Setting.new_setting_key).to be_blank
 
           patch :update, params: { new_setting_key: 'New key value' }
 
