@@ -77,7 +77,8 @@ namespace :mastodon do
 
     desc 'Re-subscribes to soon expiring PuSH subscriptions'
     task refresh: :environment do
-      Scheduler::SubscriptionsScheduler.new.perform
+      # No-op
+      # This task is now executed via sidekiq-scheduler
     end
   end
 
