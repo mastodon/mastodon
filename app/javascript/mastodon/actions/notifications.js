@@ -54,54 +54,64 @@ const excludeTypesFromSettings = state => state.getIn(['settings', 'notification
 
 export function refreshNotifications() {
   return (dispatch, getState) => {
-    dispatch(refreshNotificationsRequest());
-
     const params = {};
     const ids    = getState().getIn(['notifications', 'items']);
+
+    let skipLoading = false;
 
     if (ids.size > 0) {
       params.since_id = ids.first().get('id');
     }
 
+    if (getState().getIn(['notifications', 'loaded'])) {
+      skipLoading = true;
+    }
+
     params.exclude_types = excludeTypesFromSettings(getState());
+
+    dispatch(refreshNotificationsRequest(skipLoading));
 
     api(getState).get('/api/v1/notifications', { params }).then(response => {
       const next = getLinks(response).refs.find(link => link.rel === 'next');
 
-      dispatch(refreshNotificationsSuccess(response.data, next ? next.uri : null));
+      dispatch(refreshNotificationsSuccess(response.data, skipLoading, next ? next.uri : null));
       fetchRelatedRelationships(dispatch, response.data);
     }).catch(error => {
-      dispatch(refreshNotificationsFail(error));
+      dispatch(refreshNotificationsFail(error, skipLoading));
     });
   };
 };
 
-export function refreshNotificationsRequest() {
+export function refreshNotificationsRequest(skipLoading) {
   return {
-    type: NOTIFICATIONS_REFRESH_REQUEST
+    type: NOTIFICATIONS_REFRESH_REQUEST,
+    skipLoading
   };
 };
 
-export function refreshNotificationsSuccess(notifications, next) {
+export function refreshNotificationsSuccess(notifications, skipLoading, next) {
   return {
     type: NOTIFICATIONS_REFRESH_SUCCESS,
     notifications,
     accounts: notifications.map(item => item.account),
     statuses: notifications.map(item => item.status).filter(status => !!status),
+    skipLoading,
     next
   };
 };
 
-export function refreshNotificationsFail(error) {
+export function refreshNotificationsFail(error, skipLoading) {
   return {
     type: NOTIFICATIONS_REFRESH_FAIL,
-    error
+    error,
+    skipLoading
   };
 };
 
 export function expandNotifications() {
   return (dispatch, getState) => {
-    const url = getState().getIn(['notifications', 'next'], null);
+    const url    = getState().getIn(['notifications', 'next'], null);
+    const lastId = getState().getIn(['notifications', 'items']).last();
 
     if (url === null || getState().getIn(['notifications', 'isLoading'])) {
       return;
@@ -109,7 +119,10 @@ export function expandNotifications() {
 
     dispatch(expandNotificationsRequest());
 
-    const params = {};
+    const params = {
+      max_id: lastId,
+      limit: 20
+    };
 
     params.exclude_types = excludeTypesFromSettings(getState());
 
