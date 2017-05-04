@@ -1,11 +1,15 @@
 import React from 'react';
 import ImmutablePropTypes from 'react-immutable-proptypes';
+import punycode from 'punycode'
 
-const hostStyle = {
-  display: 'block',
-  marginTop: '5px',
-  fontSize: '13px'
-};
+const IDNA_PREFIX = 'xn--';
+
+const decodeIDNA = domain => {
+  return domain
+    .split('.')
+    .map(part => part.indexOf(IDNA_PREFIX) === 0 ? punycode.decode(part.slice(IDNA_PREFIX.length)) : part)
+    .join('.');
+}
 
 const getHostname = url => {
   const parser = document.createElement('a');
@@ -30,7 +34,7 @@ class Card extends React.PureComponent {
     }
 
     if (provider.length < 1) {
-      provider = getHostname(card.get('url'))
+      provider = decodeIDNA(getHostname(card.get('url')));
     }
 
     return (
@@ -40,7 +44,7 @@ class Card extends React.PureComponent {
         <div className='status-card__content'>
           <strong className='status-card__title' title={card.get('title')}>{card.get('title')}</strong>
           <p className='status-card__description'>{(card.get('description') || '').substring(0, 50)}</p>
-          <span className='status-card__host' style={hostStyle}>{provider}</span>
+          <span className='status-card__host'>{provider}</span>
         </div>
       </a>
     );

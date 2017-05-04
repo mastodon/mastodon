@@ -1,4 +1,4 @@
-version: '2'
+version: '3'
 services:
 
   db:
@@ -15,13 +15,9 @@ services:
 #    volumes:
 #      - ./redis:/data
 
-  app:
+  web:
     build: .
     image: gargron/mastodon
-
-  web:
-    extends:
-      service: app
     restart: always
     env_file: .env.production
     command: bundle exec rails s -p 3000 -b '0.0.0.0'
@@ -36,8 +32,8 @@ services:
       - ./public/system:/mastodon/public/system
 
   streaming:
-    extends:
-      service: app
+    build: .
+    image: gargron/mastodon
     restart: always
     env_file: .env.production
     command: npm run start
@@ -48,8 +44,8 @@ services:
       - redis
 
   sidekiq:
-    extends:
-      service: app
+    build: .
+    image: gargron/mastodon
     restart: always
     env_file: .env.production
     command: bundle exec sidekiq -q default -q mailers -q pull -q push
