@@ -104,9 +104,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     config.vm.synced_folder ".", "/vagrant"
   end
 
-  # Otherwise, you can access the site at http://localhost:3000 and http://localhost:3100 , http://localhost:8080
+  # Otherwise, you can access the site at http://localhost:3000 and http://localhost:4000 , http://localhost:8080
   config.vm.network :forwarded_port, guest: 3000, host: 3000
-  config.vm.network :forwarded_port, guest: 3100, host: 3100
+  config.vm.network :forwarded_port, guest: 4000, host: 4000
   config.vm.network :forwarded_port, guest: 8080, host: 8080
 
   # Full provisioning script, only runs on first 'vagrant up' or with 'vagrant provision'
