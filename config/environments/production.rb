@@ -50,6 +50,17 @@ Rails.application.configure do
   # Use a different logger for distributed setups.
   # config.logger = ActiveSupport::TaggedLogging.new(SyslogLogger.new)
 
+  # Parse and split the REDIS_URL if passed (used with hosting platforms such as Heroku).
+  # Set ENV variables because they are used elsewhere.
+  if ENV['REDIS_URL']
+    redis_url = URI.parse(ENV['REDIS_URL'])
+    ENV['REDIS_HOST'] = redis_url.host
+    ENV['REDIS_PORT'] = redis_url.port.to_s
+    ENV['REDIS_PASSWORD'] = redis_url.password
+    db_num = redis_url.path[1..-1]
+    ENV['REDIS_DB'] = db_num if db_num.present?
+  end
+
   # Enable serving of images, stylesheets, and JavaScripts from an asset server.
   # config.action_controller.asset_host = 'http://assets.example.com'
 
