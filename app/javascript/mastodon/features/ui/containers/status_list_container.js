@@ -26,10 +26,7 @@ const makeGetStatusIds = () => createSelector([
     try {
       if (showStatus) {
         const regex = new RegExp(columnSettings.getIn(['regex', 'body']).trim(), 'i');
-        showStatus = !regex.test(statusForId.get('reblog') ? statuses.getIn([statusForId.get('reblog'), 'unescaped_content']) : statusForId.get('unescaped_content'));
-        if (showStatus && statusForId.get('spoiler_text').length > 0) {
-          showStatus = !regex.test(statusForId.get('reblog') ? statuses.getIn([statusForId.get('reblog'), 'unescaped_spoiler_content']) : statusForId.get('unescaped_spoiler_content'));
-        }
+        showStatus = !regex.test(statusForId.get('reblog') ? statuses.getIn([statusForId.get('reblog'), 'search_index']) : statusForId.get('search_index'));
       }
     } catch(e) {
       // Bad regex, don't affect filters
