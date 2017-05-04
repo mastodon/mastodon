@@ -42,6 +42,11 @@ class ProcessFeedService < BaseService
     private
 
     def create_status
+      if redis.exists("delete_upon_arrival:#{id}")
+        Rails.logger.debug "Delete for status #{id} was queued, ignoring"
+        return
+      end
+
       Rails.logger.debug "Creating remote status #{id}"
       status, just_created = status_from_xml(@xml)
 
@@ -84,7 +89,13 @@ class ProcessFeedService < BaseService
     def delete_status
       Rails.logger.debug "Deleting remote status #{id}"
       status = Status.find_by(uri: id)
-      RemoveStatusService.new.call(status) unless status.nil?
+
+      if status.nil?
+        redis.setex("delete_upon_arrival:#{id}", 6 * 3_600, id)
+      else
+        RemoveStatusService.new.call(status)
+      end
+
       nil
     end
 
@@ -272,6 +283,10 @@ class ProcessFeedService < BaseService
 
     def account?(xml = @xml)
       !xml.at_xpath('./xmlns:author', xmlns: TagManager::XMLNS).nil?
+    end
+
+    def redis
+      Redis.current
     end
   end
 end
