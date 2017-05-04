@@ -7,6 +7,16 @@
   .fields-group
     = f.input :locale, collection: I18n.available_locales, wrapper: :with_label, include_blank: false, label_method: lambda { |locale| human_locale(locale) }
 
+    = f.input :allowed_languages,
+      collection: I18n.available_locales,
+      wrapper: :with_label,
+      include_blank: false,
+      label_method: lambda { |locale| human_locale(locale) },
+      required: false,
+      as: :check_boxes,
+      collection_wrapper_tag: 'ul',
+      item_wrapper_tag: 'li'
+
     = f.input :setting_default_privacy, collection: Status.visibilities.keys - ['direct'], wrapper: :with_label, include_blank: false, label_method: lambda { |visibility| safe_join([I18n.t("statuses.visibilities.#{visibility}"), content_tag(:span, I18n.t("statuses.visibilities.#{visibility}_long"), class: 'hint')]) }, required: false, as: :radio_buttons, collection_wrapper_tag: 'ul', item_wrapper_tag: 'li'
 
   .fields-group

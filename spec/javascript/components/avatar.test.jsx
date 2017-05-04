@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 import { render } from 'enzyme';
 
-import Avatar from '../../../app/assets/javascripts/components/components/avatar'
+import Avatar from '../../../app/javascript/mastodon/components/avatar'
 
 describe('<Avatar />', () => {
   const src = '/path/to/image.jpg';

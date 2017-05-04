@@ -47,6 +47,10 @@ If you would like, you can [support the development of this project on Patreon][
   Mastodon tries to be as fast and responsive as possible, so all long-running tasks that can be delegated to background processing, are
 - **Deployable via Docker**
   You don't need to mess with dependencies and configuration if you want to try Mastodon, if you have Docker and Docker Compose the deployment is extremely easy
+  
+## Development
+
+Please follow the [development guide](https://github.com/tootsuite/documentation/blob/master/Running-Mastodon/Development-guide.md) from the documentation repository.
 
 ## Deployment
 

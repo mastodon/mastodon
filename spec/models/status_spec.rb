@@ -251,6 +251,31 @@ RSpec.describe Status, type: :model do
         expect(results).not_to include(muted_status)
       end
 
+      context 'with language preferences' do
+        it 'excludes statuses in languages not allowed by the account user' do
+          user = Fabricate(:user, allowed_languages: [:en, :es])
+          @account.update(user: user)
+          en_status = Fabricate(:status, language: 'en')
+          es_status = Fabricate(:status, language: 'es')
+          fr_status = Fabricate(:status, language: 'fr')
+
+          results = Status.as_public_timeline(@account)
+          expect(results).to include(en_status)
+          expect(results).to include(es_status)
+          expect(results).not_to include(fr_status)
+        end
+
+        it 'includes all languages when account does not have a user' do
+          expect(@account.user).to be_nil
+          en_status = Fabricate(:status, language: 'en')
+          es_status = Fabricate(:status, language: 'es')
+
+          results = Status.as_public_timeline(@account)
+          expect(results).to include(en_status)
+          expect(results).to include(es_status)
+        end
+      end
+
       context 'where that account is silenced' do
         it 'includes statuses from other accounts that are silenced' do
           @account.update(silenced: true)

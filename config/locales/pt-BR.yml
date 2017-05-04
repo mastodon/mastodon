@@ -43,12 +43,12 @@ pt-BR:
   activitypub:
     activity:
       announce:
-        name: "%{account_name} anunciou uma atividade."
+        name: "%{account_name} compartilhou uma atividade."
       create:
         name: "%{account_name} criou uma nota."
     outbox:
       name: "%{account_name}'s Outbox"
-      summary: Uma coleção de atividades do usuário %{account_name}.
+      summary: "Uma coleção de atividades do usuário %{account_name}."
   admin:
     accounts:
       are_you_sure: Você tem certeza?
@@ -84,6 +84,7 @@ pt-BR:
       public: Público
       push_subscription_expires: PuSH subscription expires
       reset_password: Resetar senha
+      disable_two_factor_authentication: Desabilitar senha de 2 passos
       salmon_url: Salmon URL
       show:
         created_reports: Reports criados por esta conta
@@ -156,7 +157,6 @@ pt-BR:
       unresolved: Unresolved
       view: View
     settings:
-      click_to_edit: Clique para editar
       contact_information:
         email: Entre um endereço de email público
         label: Informação de contato
