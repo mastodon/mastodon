@@ -20,6 +20,7 @@ gem 'paperclip', '~> 5.1'
 gem 'paperclip-av-transcoder'
 
 gem 'addressable'
+gem 'cld2', require: 'cld'
 gem 'devise'
 gem 'devise-two-factor'
 gem 'doorkeeper'
@@ -56,7 +57,6 @@ gem 'statsd-instrument'
 gem 'twitter-text'
 gem 'tzinfo-data'
 gem 'webpacker', '~>1.2'
-gem 'whatlanguage'
 
 # For some reason the view specs start failing without this
 gem 'react-rails'
