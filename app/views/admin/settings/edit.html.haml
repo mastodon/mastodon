@@ -1,7 +1,7 @@
 - content_for :page_title do
   = t('admin.settings.title')
 
-= form_tag(admin_settings_path, method: :put) do
+= form_tag(admin_settings_path, method: :put, class: 'simple_form', style: 'max-width: 100%') do
   %table.table
     %thead
       %tr
