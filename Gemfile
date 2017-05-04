@@ -13,7 +13,6 @@ gem 'hamlit-rails'
 gem 'pg'
 gem 'pghero'
 gem 'dotenv-rails'
-gem 'best_in_place', '~> 3.0.1'
 
 gem 'aws-sdk', '>= 2.0'
 gem 'paperclip', '~> 5.1'
