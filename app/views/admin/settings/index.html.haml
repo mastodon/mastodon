@@ -31,6 +31,11 @@
       %td= best_in_place @settings['site_extended_description'], :value, as: :textarea, url: admin_setting_path(@settings['site_extended_description'])
     %tr
       %td
+        %strong= t('admin.settings.site_terms.title')
+        %p= t('admin.settings.site_terms.desc_html')
+      %td= best_in_place @settings['site_terms'], :value, as: :textarea, url: admin_setting_path(@settings['site_terms'])
+    %tr
+      %td
         %strong= t('admin.settings.registrations.open.title')
       %td= best_in_place @settings['open_registrations'], :value, as: :checkbox, collection: { false: t('admin.settings.registrations.open.disabled'), true: t('admin.settings.registrations.open.enabled')}, url: admin_setting_path(@settings['open_registrations'])
     %tr
