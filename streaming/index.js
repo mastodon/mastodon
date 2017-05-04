@@ -17,23 +17,42 @@ dotenv.config({
   path: env === 'production' ? '.env.production' : '.env'
 })
 
-if (cluster.isMaster) {
-  // cluster master
+const dbUrlToConfig = (dbUrl) => {
+  if (!dbUrl) {
+    return {}
+  }
 
+  const params = url.parse(dbUrl)
+  const auth   = params.auth ? params.auth.split(':') : []
+
+  return {
+    user: auth[0],
+    password: auth[1],
+    host: params.hostname,
+    port: params.port,
+    database: params.pathname ? params.pathname.split('/')[1] : null,
+    ssl: true
+  }
+}
+
+if (cluster.isMaster) {
+  // Cluster master
   const core = +process.env.STREAMING_CLUSTER_NUM || (env === 'development' ? 1 : Math.max(os.cpus().length - 1, 1))
+
   const fork = () => {
     const worker = cluster.fork();
+
     worker.on('exit', (code, signal) => {
       log.error(`Worker died with exit code ${code}, signal ${signal} received.`);
       setTimeout(() => fork(), 0);
     });
   };
+
   for (let i = 0; i < core; i++) fork();
+
   log.info(`Starting streaming API server master with ${core} workers`)
-
 } else {
-  // cluster worker
-
+  // Cluster worker
   const pgConfigs = {
     development: {
       database: 'mastodon_development',
@@ -62,14 +81,15 @@ if (cluster.isMaster) {
   }
 
   const app    = express()
-  const pgPool = new pg.Pool(pgConfig)
+  const pgPool = new pg.Pool(Object.assign(dbUrlToConfig(process.env.DB_URL), pgConfigs[env]))
   const server = http.createServer(app)
   const wss    = new WebSocket.Server({ server })
 
   const redisClient = redis.createClient({
     host:     process.env.REDIS_HOST     || '127.0.0.1',
     port:     process.env.REDIS_PORT     || 6379,
-    password: process.env.REDIS_PASSWORD
+    password: process.env.REDIS_PASSWORD,
+    url:      process.env.REDIS_URL      || null
   })
 
   const subs = {}

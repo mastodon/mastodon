@@ -673,11 +673,33 @@ a.status__content__spoiler-link {
 }
 
 .account__avatar {
-  border-radius: 4px;
-  background: transparent no-repeat;
-  background-position: 50%;
-  background-clip: padding-box;
+  @include avatar-radius();
   position: relative;
+
+  &-inline {
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 5px;
+  }
+}
+
+.account__avatar-overlay {
+  @include avatar-size(48px);
+
+  &-base {
+    @include avatar-radius();
+    @include avatar-size(36px);
+  }
+
+  &-overlay {
+    @include avatar-radius();
+    @include avatar-size(24px);
+
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    z-index: 1;
+  }
 }
 
 .account__relationship {
@@ -2805,6 +2827,19 @@ button.icon-button.active i.fa-retweet {
   margin-right: 10px;
 }
 
+@media screen and (max-width: 400px) {
+  .onboarding-modal__page-one {
+    flex-direction: column;
+  }
+
+  .onboarding-modal__page-one__elephant-friend {
+    width: 100%;
+    height: 30vh;
+    max-height: 160px;
+    margin-bottom: 5vh;
+  }
+}
+
 .onboarding-modal__page-two,
 .onboarding-modal__page-three,
 .onboarding-modal__page-four,
@@ -2864,6 +2899,30 @@ button.icon-button.active i.fa-retweet {
 
   .column-header {
     color: $color5;
+  }
+}
+
+@media screen and (max-width: 320px) and (max-height: 600px) {
+  .onboarding-modal__page p {
+    font-size: 14px;
+    line-height: 20px;
+  }
+
+  .onboarding-modal__page-two .figure,
+  .onboarding-modal__page-three .figure,
+  .onboarding-modal__page-four .figure,
+  .onboarding-modal__page-five .figure {
+    font-size: 12px;
+    margin-bottom: 10px;
+  }
+
+  .onboarding-modal__page-four__columns .row {
+    margin-bottom: 10px;
+  }
+
+  .onboarding-modal__page-four__columns .column-header {
+    padding: 5px;
+    font-size: 12px;
   }
 }
 
@@ -2947,7 +3006,11 @@ button.icon-button.active i.fa-retweet {
 }
 
 .confirmation-modal {
-  max-width: 380px;
+  max-width: 280px;
+
+  @media screen and (min-width: 480px) {
+    max-width: 380px;
+  }
 }
 
 .confirmation-modal__action-bar {
