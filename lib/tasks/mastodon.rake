@@ -22,7 +22,7 @@ namespace :mastodon do
     user = Account.find_local(ENV.fetch('USERNAME')).user
     user.update(admin: true)
 
-    puts "Congrats! #{user.account.username} is now an admin. \\o/\nNavigate to #{admin_settings_url} to get started"
+    puts "Congrats! #{user.account.username} is now an admin. \\o/\nNavigate to #{edit_admin_settings_url} to get started"
   end
 
   desc 'Manually confirms a user with associated user email address stored in USER_EMAIL environment variable.'

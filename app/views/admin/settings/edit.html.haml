@@ -43,8 +43,9 @@
       %tr
         %td
           %strong= t('admin.settings.registrations.open.title')
-        %td= select_tag :open_registrations,
-          options_from_collection_for_select({ false: t('admin.settings.registrations.open.disabled'), true: t('admin.settings.registrations.open.enabled')}, :first, :last)
+        %td
+          = select_tag :open_registrations,
+          options_for_select({ t('admin.settings.registrations.open.disabled') => false, t('admin.settings.registrations.open.enabled') => true }, @settings['open_registrations'].value)
       %tr
         %td
           %strong= t('admin.settings.registrations.closed_message.title')
