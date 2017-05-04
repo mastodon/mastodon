@@ -4,11 +4,12 @@ import Warning from '../components/warning';
 import { createSelector } from 'reselect';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
+import { OrderedSet } from 'immutable';
 
 const getMentionedUsernames = createSelector(state => state.getIn(['compose', 'text']), text => text.match(/(?:^|[^\/\w])@([a-z0-9_]+@[a-z0-9\.\-]+)/ig));
 
 const getMentionedDomains = createSelector(getMentionedUsernames, mentionedUsernamesWithDomains => {
-  return mentionedUsernamesWithDomains !== null ? [...new Set(mentionedUsernamesWithDomains.map(item => item.split('@')[2]))] : [];
+  return OrderedSet(mentionedUsernamesWithDomains !== null ? mentionedUsernamesWithDomains.map(item => item.split('@')[2]) : []);
 });
 
 const mapStateToProps = state => {
@@ -31,7 +32,7 @@ const WarningWrapper = ({ needsLeakWarning, needsLockWarning, mentionedDomains }
         message={<FormattedMessage
           id='compose_form.privacy_disclaimer'
           defaultMessage='Your private status will be delivered to mentioned users on {domains}. Do you trust {domainsCount, plural, one {that server} other {those servers}}? Post privacy only works on Mastodon instances. If {domains} {domainsCount, plural, one {is not a Mastodon instance} other {are not Mastodon instances}}, there will be no indication that your post is private, and it may be boosted or otherwise made visible to unintended recipients.'
-          values={{ domains: <strong>{mentionedDomains.join(', ')}</strong>, domainsCount: mentionedDomains.length }}
+          values={{ domains: <strong>{mentionedDomains.join(', ')}</strong>, domainsCount: mentionedDomains.size }}
         />}
       />
     );

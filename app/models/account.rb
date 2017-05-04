@@ -182,7 +182,7 @@ class Account < ApplicationRecord
   end
 
   def subscribed?
-    !subscription_expires_at.blank?
+    subscription_expires_at.present?
   end
 
   def followers_domains
