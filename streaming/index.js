@@ -9,7 +9,6 @@ import log from 'npmlog'
 import url from 'url'
 import WebSocket from 'ws'
 import uuid from 'uuid'
-import { parse as parseDatabaseUrl } from 'pg-connection-string'
 
 const env = process.env.NODE_ENV || 'development'
 
@@ -67,16 +66,6 @@ if (cluster.isMaster) {
       host:     process.env.DB_HOST || 'localhost',
       port:     process.env.DB_PORT || 5432,
       max:      10
-    }
-  }
-
-  const pgConfig = pgConfigs[env];
-  if (process.env.DATABASE_URL) {
-    const parsedConfig = parseDatabaseUrl(process.env.DATABASE_URL);
-    for (const key of Object.keys(parsedConfig)) {
-      if (parsedConfig[key] !== null) {
-        pgConfig[key] = parsedConfig[key]
-      }
     }
   }
 
