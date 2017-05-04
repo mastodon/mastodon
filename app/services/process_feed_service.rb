@@ -284,7 +284,7 @@ class ProcessFeedService < BaseService
     def account?(xml = @xml)
       !xml.at_xpath('./xmlns:author', xmlns: TagManager::XMLNS).nil?
     end
-    
+
     def redis
       Redis.current
     end
