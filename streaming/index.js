@@ -22,16 +22,30 @@ const dbUrlToConfig = (dbUrl) => {
   }
 
   const params = url.parse(dbUrl)
-  const auth   = params.auth ? params.auth.split(':') : []
+  const config = {}
 
-  return {
-    user: auth[0],
-    password: auth[1],
-    host: params.hostname,
-    port: params.port,
-    database: params.pathname ? params.pathname.split('/')[1] : null,
-    ssl: true
+  if (params.auth) {
+    [config.user, config.password] = params.auth.split(':')
   }
+
+  if (params.hostname) {
+    config.host = params.hostname
+  }
+
+  if (params.port) {
+    config.port = params.port
+  }
+
+  if (params.pathname) {
+    config.database = params.params.pathname.split('/')[1]
+  }
+
+  const ssl = params.query && params.query.ssl
+  if (ssl) {
+    config.ssl = ssl === 'true' || ssl === '1'
+  }
+
+  return config
 }
 
 if (cluster.isMaster) {
@@ -70,7 +84,7 @@ if (cluster.isMaster) {
   }
 
   const app    = express()
-  const pgPool = new pg.Pool(Object.assign(dbUrlToConfig(process.env.DB_URL), pgConfigs[env]))
+  const pgPool = new pg.Pool(Object.assign(pgConfigs[env], dbUrlToConfig(process.env.DATABASE_URL)))
   const server = http.createServer(app)
   const wss    = new WebSocket.Server({ server })
 
