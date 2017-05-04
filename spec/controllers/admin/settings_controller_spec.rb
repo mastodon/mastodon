@@ -16,6 +16,15 @@ RSpec.describe Admin::SettingsController, type: :controller do
       end
     end
 
+    describe 'GET #edit' do
+      it 'finds the setting value' do
+        get :edit, params: { id: 'open_registrations' }
+
+        expect(response).to have_http_status(:success)
+        expect(response).to render_template(:edit)
+      end
+    end
+
     describe 'PUT #update' do
 
       describe 'for a record that doesnt exist' do
@@ -43,7 +52,7 @@ RSpec.describe Admin::SettingsController, type: :controller do
 
       it 'typecasts open_registrations to boolean' do
         Setting.open_registrations = false
-        patch :update, params: { id: 'open_registrations', setting: { value: 'true' } }
+        patch :update, params: { id: 'open_registrations', setting: { value: '1' } }
 
         expect(response).to redirect_to(admin_settings_path)
         expect(Setting.open_registrations).to eq true
