@@ -1,4 +1,22 @@
 # frozen_string_literal: true
+# == Schema Information
+#
+# Table name: media_attachments
+#
+#  id                :integer          not null, primary key
+#  status_id         :integer
+#  file_file_name    :string
+#  file_content_type :string
+#  file_file_size    :integer
+#  file_updated_at   :datetime
+#  remote_url        :string           default(""), not null
+#  account_id        :integer
+#  created_at        :datetime         not null
+#  updated_at        :datetime         not null
+#  shortcode         :string
+#  type              :integer          default("image"), not null
+#  file_meta         :json
+#
 
 class MediaAttachment < ApplicationRecord
   self.inheritance_column = nil
@@ -96,7 +114,7 @@ class MediaAttachment < ApplicationRecord
   private
 
   def set_shortcode
-    self.type = :unknown if file.blank? && type.blank?
+    self.type = :unknown if file.blank? && !type_changed?
 
     return unless local?
 

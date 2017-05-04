@@ -151,10 +151,19 @@
     formats:
       default: "%d, %b %Y, %H:%M"
   two_factor_authentication:
-    description_html: Hvis du skrur på <strong>tofaktorautentisering</strong> må du ha din telefon for å logge inn. Denne vil generere koder som du må taste inn.
+    code_hint: Skriv inn koden generert av autentiserings-appen for å bekrefte
+    enabled_success: To-faktor autentisering er aktivert
+    generate_recovery_codes: Lag gjennopprettingskoder
+    lost_recovery_codes: Gjennopprettingskoder lar deg få tilgang til kontoen din hvis du har mistet din telefon. Hvis du har mistet din gjennopprettingskoder kan du lage nye her. Dine gamle koder vil ikke lenger kunne brukes.
+    manual_instructions: 'Hvis du ikke får scannet QR-koden må du skrive inn følgende kode manuelt:'
+    recovery_codes_regenerated: Gjennopprettingskoder ble opprettet
+    recovery_instructions: Hvis du mister din telefon kan du bruke en av kodene under for å få tilgang til din konto. Oppbevar gjennopprettingskodene sikkert, for eksempel kan du skrive de ut og oppbevare de med andre sensitive dokumenter.
+    setup: Sett opp
+    wrong_code: Koden du skrev inn var ugyldig. Er klokken på serveren og enhten riktig?
+    description_html: Hvis du skrur på <strong>to-faktor autentisering</strong> må du ha din telefon for å logge inn. Denne vil generere koder som du må taste inn.
     disable: Skru av
     enable: Skru på
     instructions_html: "<strong>Scan denne QR-koden i Google Authenticator eller en lignende app på telefonen din</strong>. Fra nå av vil denne applikasjonen generere koder for deg som skal brukes under innlogging"
   users:
     invalid_email: E-postaddressen er ugyldig
-    invalid_otp_token: Ugyldig tofaktorkode
+    invalid_otp_token: Ugyldig to-faktorkode

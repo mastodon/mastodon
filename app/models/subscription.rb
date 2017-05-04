@@ -1,4 +1,18 @@
 # frozen_string_literal: true
+# == Schema Information
+#
+# Table name: subscriptions
+#
+#  id                          :integer          not null, primary key
+#  callback_url                :string           default(""), not null
+#  secret                      :string
+#  expires_at                  :datetime
+#  confirmed                   :boolean          default(FALSE), not null
+#  account_id                  :integer          not null
+#  created_at                  :datetime         not null
+#  updated_at                  :datetime         not null
+#  last_successful_delivery_at :datetime
+#
 
 class Subscription < ApplicationRecord
   MIN_EXPIRATION = 3600 * 24 * 7
@@ -17,6 +31,10 @@ class Subscription < ApplicationRecord
 
   def lease_seconds
     (expires_at - Time.now.utc).to_i
+  end
+
+  def expired?
+    Time.now.utc > expires_at
   end
 
   before_validation :set_min_expiration

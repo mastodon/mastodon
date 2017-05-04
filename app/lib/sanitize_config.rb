@@ -12,6 +12,13 @@ class Sanitize
         'span' => %w(class),
       },
 
+      add_attributes: {
+        'a' => {
+          'rel' => 'nofollow noopener',
+          'target' => '_blank',
+        },
+      },
+
       protocols: {
         'a' => { 'href' => HTTP_PROTOCOLS },
       }

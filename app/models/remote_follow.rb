@@ -3,11 +3,47 @@
 class RemoteFollow
   include ActiveModel::Validations
 
-  attr_accessor :acct
-
-  validates :acct, presence: true
+  attr_accessor :acct, :addressable_template
 
   def initialize(attrs = {})
     @acct = attrs[:acct].strip unless attrs[:acct].nil?
+  end
+
+  def valid?
+    populate_template
+    errors.empty?
+  end
+
+  def subscribe_address_for(account)
+    addressable_template.expand(uri: account.to_webfinger_s).to_s
+  end
+
+  private
+
+  def populate_template
+    if acct.blank? || redirect_url_link.nil? || redirect_url_link.template.nil?
+      missing_resource_error
+    else
+      @addressable_template = Addressable::Template.new(redirect_uri_template)
+    end
+  end
+
+  def redirect_uri_template
+    redirect_url_link.template
+  end
+
+  def redirect_url_link
+    acct_resource&.link('http://ostatus.org/schema/1.0/subscribe')
+  end
+
+  def acct_resource
+    @_acct_resource ||= Goldfinger.finger("acct:#{acct}")
+  rescue Goldfinger::Error
+    missing_resource_error
+    nil
+  end
+
+  def missing_resource_error
+    errors.add(:acct, I18n.t('remote_follow.missing_resource'))
   end
 end
