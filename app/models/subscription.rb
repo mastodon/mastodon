@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: subscriptions
@@ -15,18 +16,25 @@
 #
 
 class Subscription < ApplicationRecord
-  MIN_EXPIRATION = 3600 * 24 * 7
-  MAX_EXPIRATION = 3600 * 24 * 30
+  SECONDS_IN_HOUR = 3600
+  HOURS_IN_DAY = 24
+  DAYS_IN_WEEK = 7
+  DAYS_IN_MONTH = 30
+
+  MIN_EXPIRATION = SECONDS_IN_HOUR * HOURS_IN_DAY * DAYS_IN_WEEK
+  MAX_EXPIRATION = SECONDS_IN_HOUR * HOURS_IN_DAY * DAYS_IN_MONTH
 
   belongs_to :account, required: true
 
   validates :callback_url, presence: true
   validates :callback_url, uniqueness: { scope: :account_id }
 
-  scope :active, -> { where(confirmed: true).where('expires_at > ?', Time.now.utc) }
+  scope :confirmed, -> { where(confirmed: true) }
+  scope :future_expiration, -> { where(arel_table[:expires_at].gt(Time.now.utc)) }
+  scope :active, -> { confirmed.future_expiration }
 
-  def lease_seconds=(str)
-    self.expires_at = Time.now.utc + [[MIN_EXPIRATION, str.to_i].max, MAX_EXPIRATION].min.seconds
+  def lease_seconds=(value)
+    self.expires_at = future_expiration(value)
   end
 
   def lease_seconds
@@ -40,6 +48,17 @@ class Subscription < ApplicationRecord
   before_validation :set_min_expiration
 
   private
+
+  def future_expiration(value)
+    Time.now.utc + future_offset(value).seconds
+  end
+
+  def future_offset(seconds)
+    [
+      [MIN_EXPIRATION, seconds.to_i].max,
+      MAX_EXPIRATION,
+    ].min
+  end
 
   def set_min_expiration
     self.lease_seconds = 0 unless expires_at
