@@ -275,12 +275,12 @@ if (cluster.isMaster) {
   const streamToWs = (req, ws) => {
     const heartbeat = setInterval(() => {
         //ToDo: Can't add multiple listeners, due to the limitation of uws.
-        if (ws.readyState !== ws.OPEN) {
-            log.verbose(req.requestId, `Ending stream for ${req.accountId}`)
-            clearInterval(heartbeat)
-            return
-        }
-        ws.ping()
+      if (ws.readyState !== ws.OPEN) {
+        log.verbose(req.requestId, `Ending stream for ${req.accountId}`)
+        clearInterval(heartbeat)
+        return
+      }
+      ws.ping()
     }, 15000)
 
     return (event, payload) => {
