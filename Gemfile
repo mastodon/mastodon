@@ -83,6 +83,7 @@ group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'bullet'
+  gem 'foreman'
   gem 'letter_opener'
   gem 'letter_opener_web'
   gem 'rubocop', '0.46.0', require: false
