@@ -104,7 +104,7 @@ zh-HK:
       domain: 域名阻隔
       new:
         create: 新增域名阻隔
-        hint: "「域名阻隔」不會隔絕該域名用戶的賬戶進入本站資料庫，而是會在時候自動套用特定的審批操作。"
+        hint: "「域名阻隔」不會隔絕該域名用戶的用戶進入本站資料庫，而是會在時候自動套用特定的審批操作。"
         severity:
           desc_html: "「<strong>自動靜音</strong>」令該域名用戶的文章，設為只對關注者顯示，沒有關注的人會看不到。 「<strong>自動刪除</strong>」會自動將該域名用戶的文章、媒體檔案、個人資料自本服務站刪除。"
           silence: 自動靜音
@@ -118,10 +118,10 @@ zh-HK:
       severity: 阻隔分級
       show:
         affected_accounts:
-          other: 資料庫中有%{count}個賬戶受影響
+          other: 資料庫中有%{count}個用戶受影響
         retroactive:
-          silence: 對此域名的所有賬戶取消靜音
-          suspend: 對此域名的所有賬戶取消除名
+          silence: 對此域名的所有用戶取消靜音
+          suspend: 對此域名的所有用戶取消除名
         title: 撤銷 %{domain} 的域名阻隔
         undo: 撤銷
       title: 域名阻隔
