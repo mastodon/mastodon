@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170425202925) do
+ActiveRecord::Schema.define(version: 20170504103736) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -192,6 +192,16 @@ ActiveRecord::Schema.define(version: 20170425202925) do
     t.index ["uid"], name: "index_oauth_applications_on_uid", unique: true, using: :btree
   end
 
+  create_table "oauth_authorizations", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "provider"
+    t.string   "uid"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["provider", "uid"], name: "index_oauth_authorizations_on_provider_and_uid", using: :btree
+    t.index ["user_id"], name: "index_oauth_authorizations_on_user_id", using: :btree
+  end
+
   create_table "preview_cards", force: :cascade do |t|
     t.bigint   "status_id"
     t.string   "url",                default: "", null: false
@@ -340,5 +350,6 @@ ActiveRecord::Schema.define(version: 20170425202925) do
     t.index ["user_id"], name: "index_web_settings_on_user_id", unique: true, using: :btree
   end
 
+  add_foreign_key "oauth_authorizations", "users"
   add_foreign_key "statuses", "statuses", column: "reblog_of_id", on_delete: :cascade
 end
