@@ -58,7 +58,7 @@ const NotificationTypeDropdown = React.createClass({
 
     return (
       <div ref={this.setRef} className={`column-icon-change notification-type-dropdown ${open ? 'active' : ''}`}>
-        <IconButton icon='search-plus' title={intl.formatMessage(messages.change_notification)} size={18} active={open} inverted onClick={this.handleToggle} style={iconStyle} />
+        <IconButton icon='filter' title={intl.formatMessage(messages.change_notification)} size={18} active={open} inverted onClick={this.handleToggle} style={iconStyle} />
         <div className='notification-type-dropdown__dropdown'>
           {options.map(item =>
             <div role='button' tabIndex='0' key={item.value} onClick={this.handleClick.bind(this, item.value)} className={`notification-type-dropdown__option ${item.value === value ? 'active' : ''}`}>
