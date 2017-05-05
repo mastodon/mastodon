@@ -1,6 +1,10 @@
 - content_for :page_title do
   = t('auth.login')
 
+= render 'shared/qiita_authentication'
+
+%hr
+
 = simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
   = f.input :email, autofocus: true, placeholder: t('simple_form.labels.defaults.email'), required: true, input_html: { 'aria-label' => t('simple_form.labels.defaults.email') }
   = f.input :password, placeholder: t('simple_form.labels.defaults.password'), required: true, input_html: { 'aria-label' => t('simple_form.labels.defaults.password') }
