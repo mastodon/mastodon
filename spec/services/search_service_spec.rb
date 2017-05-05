@@ -7,15 +7,31 @@ describe SearchService do
 
   describe '#call' do
     describe 'with a blank query' do
-      it 'returns an empty hash' do
+      it 'returns empty results without searching' do
+        allow(AccountSearchService).to receive(:new)
+        allow(Tag).to receive(:search_for)
         results = subject.call('', 10)
 
         expect(results).to eq(empty_results)
+        expect(AccountSearchService).not_to have_received(:new)
+        expect(Tag).not_to have_received(:search_for)
       end
     end
+
     describe 'with an url query' do
       before do
         @query = 'http://test.host/query'
+      end
+
+      context 'that does not find anything' do
+        it 'returns the empty results' do
+          service = double(call: nil)
+          allow(FetchRemoteResourceService).to receive(:new).and_return(service)
+          results = subject.call(@query, 10)
+
+          expect(service).to have_received(:call).with(@query)
+          expect(results).to eq empty_results
+        end
       end
 
       context 'that finds an account' do
@@ -42,6 +58,7 @@ describe SearchService do
         end
       end
     end
+
     describe 'with a non-url query' do
       context 'that matches an account' do
         it 'includes the account in the results' do
