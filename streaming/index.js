@@ -280,7 +280,7 @@ if (cluster.isMaster) {
         clearInterval(heartbeat)
         return
       }
-      
+
       ws.ping()
     }, 15000)
 
