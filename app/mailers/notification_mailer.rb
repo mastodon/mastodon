@@ -7,7 +7,7 @@ class NotificationMailer < ApplicationMailer
     @me     = recipient
     @status = notification.target_status
 
-    I18n.with_locale(@me.user.locale || I18n.default_locale) do
+    locale_for_account(@me) do
       mail to: @me.user.email, subject: I18n.t('notification_mailer.mention.subject', name: @status.account.acct)
     end
   end
@@ -16,7 +16,7 @@ class NotificationMailer < ApplicationMailer
     @me      = recipient
     @account = notification.from_account
 
-    I18n.with_locale(@me.user.locale || I18n.default_locale) do
+    locale_for_account(@me) do
       mail to: @me.user.email, subject: I18n.t('notification_mailer.follow.subject', name: @account.acct)
     end
   end
@@ -26,7 +26,7 @@ class NotificationMailer < ApplicationMailer
     @account = notification.from_account
     @status  = notification.target_status
 
-    I18n.with_locale(@me.user.locale || I18n.default_locale) do
+    locale_for_account(@me) do
       mail to: @me.user.email, subject: I18n.t('notification_mailer.favourite.subject', name: @account.acct)
     end
   end
@@ -36,7 +36,7 @@ class NotificationMailer < ApplicationMailer
     @account = notification.from_account
     @status  = notification.target_status
 
-    I18n.with_locale(@me.user.locale || I18n.default_locale) do
+    locale_for_account(@me) do
       mail to: @me.user.email, subject: I18n.t('notification_mailer.reblog.subject', name: @account.acct)
     end
   end
@@ -45,7 +45,7 @@ class NotificationMailer < ApplicationMailer
     @me      = recipient
     @account = notification.from_account
 
-    I18n.with_locale(@me.user.locale || I18n.default_locale) do
+    locale_for_account(@me) do
       mail to: @me.user.email, subject: I18n.t('notification_mailer.follow_request.subject', name: @account.acct)
     end
   end
@@ -58,13 +58,21 @@ class NotificationMailer < ApplicationMailer
 
     return if @notifications.empty?
 
-    I18n.with_locale(@me.user.locale || I18n.default_locale) do
+    locale_for_account(@me) do
       mail to: @me.user.email,
            subject: I18n.t(
              :subject,
              scope: [:notification_mailer, :digest],
              count: @notifications.size
            )
+    end
+  end
+
+  private
+
+  def locale_for_account(account)
+    I18n.with_locale(account.user.locale || I18n.default_locale) do
+      yield
     end
   end
 end
