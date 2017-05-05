@@ -89,7 +89,7 @@ export function refreshTimeline(timeline, id = null) {
     }
     dispatch(refreshTimelineRequest(timeline, id, skipLoading));
 
-    params = {id: id}
+    params = { ...params, id: id}
     api(getState).get(path, { params }).then(response => {
       const next = getLinks(response).refs.find(link => link.rel === 'next');
       dispatch(refreshTimelineSuccess(timeline, response.data, skipLoading, next ? next.uri : null));
