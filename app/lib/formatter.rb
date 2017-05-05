@@ -23,7 +23,7 @@ class Formatter
   end
 
   def reformat(html)
-    sanitize(html, tags: %w(a br p span), attributes: %w(href rel class))
+    sanitize(html, Sanitize::Config::MASTODON_STRICT).html_safe # rubocop:disable Rails/OutputSafety
   end
 
   def plaintext(status)

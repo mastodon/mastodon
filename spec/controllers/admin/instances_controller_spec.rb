@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe Admin::InstancesController, type: :controller do
+  render_views
+
   before do
     sign_in Fabricate(:user, admin: true), scope: :user
   end

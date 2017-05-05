@@ -191,16 +191,19 @@ nl:
     over_character_limit: Limiet van %{max} tekens overschreden
     show_more: Toon meer
     visibilities:
-      private: Privé – alleen aan volgers (en vermeldingen) tonen
-      public: Openbaar – op openbare tijdlijnen tonen
-      unlisted: Minder openbaar – niet op openbare tijdlijnen tonen
+      private: Alleen volgers
+      private_long: Alleen aan volgers tonen
+      public: Openbaar
+      public_long: Aan iedereen tonen, ook op openbare tijdlijnen
+      unlisted: Minder openbaar
+      unlisted_long: Aan iedereen tonen, maar niet op openbare tijdlijnen
   stream_entries:
     click_to_show: Klik om te tonen
     reblogged: boostte
     sensitive_content: Gevoelige inhoud
   time:
     formats:
-      default: "%d %B %J om %U:%M"
+      default: "%d %B %Y om %H:%M"
   two_factor_authentication:
     description_html: Na het instellen van <strong>tweestapsverificatie</strong>, kun jij je alleen aanmelden als je jouw mobiele telefoon bij je hebt. Hiermee genereer je namelijk de in te voeren aanmeldcode.
     disable: Uitschakelen
