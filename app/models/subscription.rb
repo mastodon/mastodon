@@ -16,13 +16,8 @@
 #
 
 class Subscription < ApplicationRecord
-  SECONDS_IN_HOUR = 3600
-  HOURS_IN_DAY = 24
-  DAYS_IN_WEEK = 7
-  DAYS_IN_MONTH = 30
-
-  MIN_EXPIRATION = SECONDS_IN_HOUR * HOURS_IN_DAY * DAYS_IN_WEEK
-  MAX_EXPIRATION = SECONDS_IN_HOUR * HOURS_IN_DAY * DAYS_IN_MONTH
+  MIN_EXPIRATION = 7.days.seconds.to_i
+  MAX_EXPIRATION = 30.days.seconds.to_i
 
   belongs_to :account, required: true
 
