@@ -5,13 +5,13 @@ class Api::SalmonController < ApiController
   respond_to :txt
 
   def update
-    body = request.body.read
+    payload = request.body.read
 
-    if body.nil?
-      head 200
-    else
-      SalmonWorker.perform_async(@account.id, body.force_encoding('UTF-8'))
+    if !payload.nil? && verify?(payload)
+      SalmonWorker.perform_async(@account.id, payload.force_encoding('UTF-8'))
       head 201
+    else
+      head 202
     end
   end
 
@@ -19,5 +19,9 @@ class Api::SalmonController < ApiController
 
   def set_account
     @account = Account.find(params[:id])
+  end
+
+  def verify?(payload)
+    VerifySalmonService.new.call(payload)
   end
 end

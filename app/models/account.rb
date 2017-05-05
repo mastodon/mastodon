@@ -1,4 +1,42 @@
 # frozen_string_literal: true
+# == Schema Information
+#
+# Table name: accounts
+#
+#  id                      :integer          not null, primary key
+#  username                :string           default(""), not null
+#  domain                  :string
+#  secret                  :string           default(""), not null
+#  private_key             :text
+#  public_key              :text             default(""), not null
+#  remote_url              :string           default(""), not null
+#  salmon_url              :string           default(""), not null
+#  hub_url                 :string           default(""), not null
+#  created_at              :datetime         not null
+#  updated_at              :datetime         not null
+#  note                    :text             default(""), not null
+#  display_name            :string           default(""), not null
+#  uri                     :string           default(""), not null
+#  url                     :string
+#  avatar_file_name        :string
+#  avatar_content_type     :string
+#  avatar_file_size        :integer
+#  avatar_updated_at       :datetime
+#  header_file_name        :string
+#  header_content_type     :string
+#  header_file_size        :integer
+#  header_updated_at       :datetime
+#  avatar_remote_url       :string
+#  subscription_expires_at :datetime
+#  silenced                :boolean          default(FALSE), not null
+#  suspended               :boolean          default(FALSE), not null
+#  locked                  :boolean          default(FALSE), not null
+#  header_remote_url       :string           default(""), not null
+#  statuses_count          :integer          default(0), not null
+#  followers_count         :integer          default(0), not null
+#  following_count         :integer          default(0), not null
+#  last_webfingered_at     :datetime
+#
 
 class Account < ApplicationRecord
   include Targetable
@@ -21,7 +59,7 @@ class Account < ApplicationRecord
   validates_attachment_content_type :header, content_type: IMAGE_MIME_TYPES
   validates_attachment_size :header, less_than: 2.megabytes
 
-  before_post_process :set_file_extensions
+  include Attachmentable
 
   # Local user profile validations
   validates :display_name, length: { maximum: 30 }, if: 'local?'
@@ -65,9 +103,10 @@ class Account < ApplicationRecord
 
   scope :remote, -> { where.not(domain: nil) }
   scope :local, -> { where(domain: nil) }
-  scope :without_followers, -> { where('(select count(f.id) from follows as f where f.target_account_id = accounts.id) = 0') }
-  scope :with_followers, -> { where('(select count(f.id) from follows as f where f.target_account_id = accounts.id) > 0') }
+  scope :without_followers, -> { where(followers_count: 0) }
+  scope :with_followers, -> { where('followers_count > 0') }
   scope :expiring, ->(time) { where(subscription_expires_at: nil).or(where('subscription_expires_at < ?', time)).remote.with_followers }
+  scope :partitioned, -> { order('row_number() over (partition by domain)') }
   scope :silenced, -> { where(silenced: true) }
   scope :suspended, -> { where(suspended: true) }
   scope :recent, -> { reorder(id: :desc) }
@@ -75,12 +114,14 @@ class Account < ApplicationRecord
   scope :by_domain_accounts, -> { group(:domain).select(:domain, 'COUNT(*) AS accounts_count').order('accounts_count desc') }
 
   delegate :email,
-    :current_sign_in_ip,
-    :current_sign_in_at,
-    :confirmed?,
-    to: :user,
-    prefix: true,
-    allow_nil: true
+           :current_sign_in_ip,
+           :current_sign_in_at,
+           :confirmed?,
+           to: :user,
+           prefix: true,
+           allow_nil: true
+
+  delegate :allowed_languages, to: :user, prefix: false, allow_nil: true
 
   def follow!(other_account)
     active_relationships.where(target_account: other_account).first_or_create!(target_account: other_account)
@@ -142,7 +183,7 @@ class Account < ApplicationRecord
   end
 
   def subscribed?
-    !subscription_expires_at.blank?
+    subscription_expires_at.present?
   end
 
   def followers_domains
@@ -329,7 +370,7 @@ class Account < ApplicationRecord
     private
 
     def follow_mapping(query, field)
-      query.pluck(field).inject({}) { |mapping, id| mapping[id] = true; mapping }
+      query.pluck(field).each_with_object({}) { |id, mapping| mapping[id] = true }
     end
 
     def avatar_styles(file)
@@ -362,19 +403,5 @@ class Account < ApplicationRecord
     return if local?
 
     self.domain = TagManager.instance.normalize_domain(domain)
-  end
-
-  def set_file_extensions
-    unless avatar.blank?
-      extension = Paperclip::Interpolations.content_type_extension(avatar, :original)
-      basename  = Paperclip::Interpolations.basename(avatar, :original)
-      avatar.instance_write :file_name, [basename, extension].delete_if(&:empty?).join('.')
-    end
-
-    unless header.blank?
-      extension = Paperclip::Interpolations.content_type_extension(header, :original)
-      basename  = Paperclip::Interpolations.basename(header, :original)
-      header.instance_write :file_name, [basename, extension].delete_if(&:empty?).join('.')
-    end
   end
 end

@@ -1,13 +1,13 @@
 # frozen_string_literal: true
 
 require 'singleton'
+require_relative './sanitize_config'
 
 class Formatter
   include Singleton
   include RoutingHelper
 
   include ActionView::Helpers::TextHelper
-  include ActionView::Helpers::SanitizeHelper
 
   def format(status)
     return reformat(status.content) unless status.local?
@@ -41,6 +41,10 @@ class Formatter
     html = link_hashtags(html)
 
     html.html_safe # rubocop:disable Rails/OutputSafety
+  end
+
+  def sanitize(html, config)
+    Sanitize.fragment(html, config)
   end
 
   private

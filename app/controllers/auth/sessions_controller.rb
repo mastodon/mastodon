@@ -6,6 +6,7 @@ class Auth::SessionsController < Devise::SessionsController
   layout 'auth'
 
   skip_before_action :require_no_authentication, only: [:create]
+  skip_before_action :check_suspension, only: [:destroy]
   prepend_before_action :authenticate_with_two_factor, if: :two_factor_enabled?, only: [:create]
 
   def create
@@ -51,6 +52,8 @@ class Auth::SessionsController < Devise::SessionsController
   def valid_otp_attempt?(user)
     user.validate_and_consume_otp!(user_params[:otp_attempt]) ||
       user.invalidate_otp_backup_code!(user_params[:otp_attempt])
+  rescue OpenSSL::Cipher::CipherError => _error
+    false
   end
 
   def authenticate_with_two_factor
