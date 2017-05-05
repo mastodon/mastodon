@@ -16,6 +16,6 @@ module RoutingHelper
   end
 
   def hostname(url)
-    URI(url).host
+    Addressable::URI.parse(url).display_uri.hostname
   end
 end
