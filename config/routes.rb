@@ -133,6 +133,7 @@ Rails.application.routes.draw do
       get '/timelines/home',     to: 'timelines#home', as: :home_timeline
       get '/timelines/public',   to: 'timelines#public', as: :public_timeline
       get '/timelines/tag/:id',  to: 'timelines#tag', as: :hashtag_timeline
+      get '/timelines/search',   to: 'timelines#search', as: :search_timeline
 
       get '/search', to: 'search#index', as: :search
 

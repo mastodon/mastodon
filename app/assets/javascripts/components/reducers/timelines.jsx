@@ -78,6 +78,17 @@ const initialState = Immutable.Map({
     items: Immutable.List()
   }),
 
+  search: Immutable.Map({
+    path: () => '/api/v1/timelines/search',
+    next: null,
+    isLoading: false,
+    id: null,
+    loaded: false,
+    top: true,
+    unread: 0,
+    items: Immutable.List()
+  }),
+
   accounts_timelines: Immutable.Map(),
   ancestors: Immutable.Map(),
   descendants: Immutable.Map()
@@ -251,7 +262,7 @@ const normalizeContext = (state, id, ancestors, descendants) => {
 };
 
 const resetTimeline = (state, timeline, id) => {
-  if (timeline === 'tag' && typeof id !== 'undefined' && state.getIn([timeline, 'id']) !== id) {
+  if ((timeline === 'tag' || timeline === 'search') && typeof id !== 'undefined' && state.getIn([timeline, 'id']) !== id) {
     state = state.update(timeline, map => map
         .set('id', id)
         .set('isLoading', true)

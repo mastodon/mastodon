@@ -28,6 +28,7 @@ import PublicTimeline from '../features/public_timeline';
 import CommunityTimeline from '../features/community_timeline';
 import AccountTimeline from '../features/account_timeline';
 import HomeTimeline from '../features/home_timeline';
+import SearchTimeline from '../features/search_timeline';
 import Compose from '../features/compose';
 import Followers from '../features/followers';
 import Following from '../features/following';
@@ -286,6 +287,7 @@ class Mastodon extends React.Component {
 
               <Route path='getting-started' component={GettingStarted} />
               <Route path='timelines/tag/:id' component={HashtagTimeline} />
+              <Route path='timelines/search' component={SearchTimeline} />
 
               <Route path='statuses/new' component={Compose} />
               <Route path='statuses/:statusId' component={Status} />
