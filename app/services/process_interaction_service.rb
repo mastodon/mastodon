@@ -88,7 +88,7 @@ class ProcessInteractionService < BaseService
   def authorize_follow_request!(account, target_account)
     follow_request = FollowRequest.find_by(account: target_account, target_account: account)
     follow_request&.authorize!
-    SubscribeService.new.call(account) unless account.subscribed?
+    Pubsubhubbub::SubscribeWorker.perform_async(account.id) unless account.subscribed?
   end
 
   def reject_follow_request!(account, target_account)
