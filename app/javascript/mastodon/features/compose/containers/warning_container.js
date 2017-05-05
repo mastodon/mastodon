@@ -1,4 +1,5 @@
 import React from 'react';
+import ImmutablePropTypes from 'react-immutable-proptypes';
 import { connect } from 'react-redux';
 import Warning from '../components/warning';
 import { createSelector } from 'reselect';
@@ -44,7 +45,7 @@ const WarningWrapper = ({ needsLeakWarning, needsLockWarning, mentionedDomains }
 WarningWrapper.propTypes = {
   needsLeakWarning: PropTypes.bool,
   needsLockWarning: PropTypes.bool,
-  mentionedDomains: PropTypes.array.isRequired,
+  mentionedDomains: ImmutablePropTypes.orderedSet.isRequired,
 };
 
 export default connect(mapStateToProps)(WarningWrapper);
