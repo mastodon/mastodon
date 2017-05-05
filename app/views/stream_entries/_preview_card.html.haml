@@ -1,8 +1,8 @@
 %a{:class => 'status-card', :href => card.url, :rel => 'noopener', :target => '_blank'}
   - unless card.image_file_name.nil?
     .status-card__image
-      %img{:alt => card.title, :src => card.image, :style => 'display: block, width: 100%, height: auto, margin: 0, border-radius: 4px 0 0 4px'}
-  .status-card__content{:style => 'flex: 1 1 auto; padding: 8px; padding-left: 14px; overflow: hidden'}
-    %strong{:class => 'status-card__title', :title => card.title} #{card.title}
-    %p{:class => 'status-card__description'} #{card.description}
-    %span{:class => 'status-card__host', :style => 'display: block; margin-top: 5px; font-size: 13px'} #{hostname(card.url)}
+      %img.status-card__image-image{:alt => card.title, :src => card.image}
+  .status-card__content
+    %strong.status-card__title{ title: card.title } #{card.title}
+    %p.status-card__description #{card.description}
+    %span.status-card__host #{hostname(card.url)}
