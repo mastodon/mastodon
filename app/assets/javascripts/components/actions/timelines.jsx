@@ -87,9 +87,9 @@ export function refreshTimeline(timeline, id = null) {
       params          = { ...params, since_id: newestId };
       skipLoading     = true;
     }
-
     dispatch(refreshTimelineRequest(timeline, id, skipLoading));
 
+    params = {id: id}
     api(getState).get(path, { params }).then(response => {
       const next = getLinks(response).refs.find(link => link.rel === 'next');
       dispatch(refreshTimelineSuccess(timeline, response.data, skipLoading, next ? next.uri : null));
@@ -108,7 +108,7 @@ export function refreshTimelineFail(timeline, error, skipLoading) {
   };
 };
 
-export function expandTimeline(timeline) {
+export function expandTimeline(timeline, id = null) {
   return (dispatch, getState) => {
     if (getState().getIn(['timelines', timeline, 'isLoading'])) {
       return;
@@ -127,6 +127,7 @@ export function expandTimeline(timeline) {
     api(getState).get(path, {
       params: {
         ...params,
+        id: id,
         max_id: lastId,
         limit: 10
       }

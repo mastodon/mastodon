@@ -49,6 +49,21 @@ class Api::V1::TimelinesController < ApiController
     render :index
   end
 
+  def search
+    @q = params['id']
+    @statuses = Status.as_search_timeline(current_account, @q).paginate_by_max_id(limit_param(DEFAULT_STATUSES_LIMIT), params[:max_id], params[:since_id])
+#    @statuses = Status.as_search_timeline(current_account, q)
+    @statuses = cache_collection(@statuses)
+
+    set_maps(@statuses)
+
+    next_path = api_v1_home_timeline_url(pagination_params(max_id: @statuses.last.id))    unless @statuses.empty?
+    prev_path = api_v1_home_timeline_url(pagination_params(since_id: @statuses.first.id)) unless @statuses.empty?
+
+    set_pagination_headers(next_path, prev_path)
+    render :index
+  end
+
   private
 
   def cache_collection(raw)
