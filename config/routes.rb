@@ -23,7 +23,14 @@ Rails.application.routes.draw do
     registrations:      'auth/registrations',
     passwords:          'auth/passwords',
     confirmations:      'auth/confirmations',
+    omniauth_callbacks: 'auth/omniauth_callbacks',
   }
+
+  devise_scope :user do
+    with_devise_exclusive_scope('/auth', :user, {}) do
+      resource :oauth_registration, only: [:new, :create], path: 'oauth/oauth_registrations'
+    end
+  end
 
   get '/users/:username', to: redirect('/@%{username}'), constraints: { format: :html }
 
