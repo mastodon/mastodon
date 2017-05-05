@@ -34,12 +34,10 @@ rvm:
 services:
   - redis-server
 
-bundler_args: --without development production --retry=3 --jobs=16
-
 install:
   - nvm install
   - npm install -g yarn
-  - bundle install
+  - bundle install --without development production --retry=3 --jobs=16
   - yarn install
 
 before_script:
