@@ -379,6 +379,10 @@ RSpec.describe Account, type: :model do
     it 'does not match URLs' do
       expect(subject.match('Check this out https://medium.com/@alice/some-article#.abcdef123')).to be_nil
     end
+
+    xit 'does not match URL querystring' do
+      expect(subject.match('https://example.com/?x=@alice')).to be_nil
+    end
   end
 
   describe 'validations' do
