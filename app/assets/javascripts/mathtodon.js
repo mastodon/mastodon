@@ -20,8 +20,8 @@ loadScript('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?conf
     skipStartupTypeset: true,
     showProcessingMessages: false,
     messageStyle: "none",
-    showMathMenu: false,
-    showMathMenuMSIE: false,
+    showMathMenu: true,
+    showMathMenuMSIE: true,
     "SVG": {
 	  font:
 	  "TeX"

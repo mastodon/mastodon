@@ -105,8 +105,8 @@ class StatusContent extends React.PureComponent {
 		      skipStartupTypeset: true,
 		      showProcessingMessages: false,
 		      messageStyle: "none",
-		      showMathMenu: false,
-		      showMathMenuMSIE: false,
+		      showMathMenu: true,
+		      showMathMenuMSIE: true,
 		      "SVG": {
 			  font:
 			  "TeX"
