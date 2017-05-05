@@ -1,6 +1,6 @@
 language: ruby
 cache:
-  bundler: true
+  bundler: false
   yarn: false
 dist: trusty
 sudo: false
@@ -34,12 +34,10 @@ rvm:
 services:
   - redis-server
 
-bundler_args: --without development production --retry=3 --jobs=16
-
 install:
   - nvm install
   - npm install -g yarn
-  - bundle install
+  - bundle install --path=vendor/bundle --without development production --retry=3 --jobs=16
   - yarn install
 
 before_script:
@@ -49,4 +47,4 @@ before_script:
 script:
   - bundle exec parallel_test spec/ --group-by filesize --type rspec
   - npm test
-  - i18n-tasks unused
+  - bundle exec i18n-tasks unused
