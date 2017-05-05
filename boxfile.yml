@@ -42,7 +42,7 @@ run.config:
 
 deploy.config:
   extra_steps:
-    - bundle exec rake assets:precompile
+    - NODE_ENV=production bundle exec rake assets:precompile
     - "[ -r /app/.env.production ] || sed 's/LOCAL_HTTPS=.*/LOCAL_HTTPS=true/i' /app/.env.nanobox > /app/.env.production"
   transform:
     - envsubst < /app/.env.production > /tmp/.env.production && mv /tmp/.env.production /app/.env.production
