@@ -16,7 +16,7 @@ services:
   web:
     restart: always
     build: &build
-      context: ..
+      context: .
       dockerfile: Dockerfile-development
     image: mastodon-development
     env_file: .env
@@ -39,13 +39,15 @@ services:
       - ./docs:/mastodon/docs
       - ./Gemfile:/mastodon/Gemfile
       - ./Gemfile.lock:/mastodon/Gemfile.lock
+      - ./package.json:/mastodon/package.json
+      - ./yarn.lock:/mastodon/yarn.lock
       - ./lib:/mastodon/lib
       - ./public:/mastodon/public
       - ./spec:/mastodon/spec
       - ./storybook:/mastodon/storybook
       - ./streaming:/mastodon/streaming
       - ./vendor/assets:/mastodon/vendor/assets
-
+      - ./tmp/letter_opener:/mastodon/tmp/letter_opener
 
   streaming:
     restart: always
