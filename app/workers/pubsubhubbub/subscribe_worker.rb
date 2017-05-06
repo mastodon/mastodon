@@ -7,7 +7,7 @@ class Pubsubhubbub::SubscribeWorker
 
   def perform(account_id)
     account = Account.find(account_id)
-    Rails.logger.debug "PuSH re-subscribing to #{account.acct}"
+    logger.debug "PuSH re-subscribing to #{account.acct}"
     ::SubscribeService.new.call(account)
   end
 end
