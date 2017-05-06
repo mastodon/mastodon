@@ -1,6 +1,5 @@
 import React from 'react';
 import Dropdown, { DropdownTrigger, DropdownContent } from 'react-simple-dropdown';
-import EmojiPicker from 'emojione-picker';
 import PropTypes from 'prop-types';
 import { defineMessages, injectIntl } from 'react-intl';
 
@@ -37,12 +36,20 @@ const dropdownTriggerStyle = {
   width: '24px'
 }
 
+let EmojiPicker; // load asynchronously
+
 class EmojiPickerDropdown extends React.PureComponent {
 
   constructor (props, context) {
     super(props, context);
     this.setRef = this.setRef.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.onHideDropdown = this.onHideDropdown.bind(this);
+    this.onShowDropdown = this.onShowDropdown.bind(this);
+    this.state = {
+      active: false,
+      loading: false
+    };
   }
 
   setRef (c) {
@@ -52,6 +59,24 @@ class EmojiPickerDropdown extends React.PureComponent {
   handleChange (data) {
     this.dropdown.hide();
     this.props.onPickEmoji(data);
+  }
+
+  onShowDropdown () {
+    this.setState({active: true});
+    if (!EmojiPicker) {
+      this.setState({loading: true});
+      import('emojione-picker').then(TheEmojiPicker => {
+        EmojiPicker = TheEmojiPicker.default;
+        this.setState({loading: false});
+      }).catch(err => {
+        // TODO: show the user an error?
+        this.setState({loading: false});
+      });
+    }
+  }
+
+  onHideDropdown () {
+    this.setState({active: false});
   }
 
   render () {
@@ -92,14 +117,20 @@ class EmojiPickerDropdown extends React.PureComponent {
       }
     }
 
-    return (
-      <Dropdown ref={this.setRef} style={dropdownStyle}>
-        <DropdownTrigger className='emoji-button' title={intl.formatMessage(messages.emoji)} style={dropdownTriggerStyle}>
-          <img draggable="false" className="emojione" alt="🙂" src="/emoji/1f602.svg" />
-        </DropdownTrigger>
+    const { active, loading } = this.state;
 
+    return (
+      <Dropdown ref={this.setRef} style={dropdownStyle} onShow={this.onShowDropdown} onHide={this.onHideDropdown}>
+        <DropdownTrigger className='emoji-button' title={intl.formatMessage(messages.emoji)} style={dropdownTriggerStyle}>
+          <img draggable="false"
+               className={`emojione ${active && loading ? "pulse-loading" : ''}`}
+               alt="🙂" src="/emoji/1f602.svg" />
+        </DropdownTrigger>
         <DropdownContent className='dropdown__left'>
-          <EmojiPicker emojione={settings} onChange={this.handleChange} searchPlaceholder={intl.formatMessage(messages.emoji_search)} categories={categories} search={true} />
+          {
+            this.state.active && !this.state.loading &&
+            (<EmojiPicker emojione={settings} onChange={this.handleChange} searchPlaceholder={intl.formatMessage(messages.emoji_search)} categories={categories} search={true} />)
+          }
         </DropdownContent>
       </Dropdown>
     );
