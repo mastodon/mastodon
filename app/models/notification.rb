@@ -41,6 +41,11 @@ class Notification < ApplicationRecord
 
   scope :cache_ids, -> { select(:id, :updated_at, :activity_type, :activity_id) }
 
+  scope :browserable, ->(exclude_types = []) {
+    types = TYPE_CLASS_MAP.values - activity_types_from_types(exclude_types + [:follow_request])
+    where(activity_type: types)
+  }
+
   cache_associated :from_account, status: STATUS_INCLUDES, mention: [status: STATUS_INCLUDES], favourite: [:account, status: STATUS_INCLUDES], follow: :account
 
   def activity(eager_loaded = true)
@@ -65,11 +70,6 @@ class Notification < ApplicationRecord
   end
 
   class << self
-    def browserable(types = [])
-      types.concat([:follow_request])
-      where.not(activity_type: activity_types_from_types(types))
-    end
-
     def reload_stale_associations!(cached_items)
       account_ids = cached_items.map(&:from_account_id).uniq
       accounts    = Account.where(id: account_ids).map { |a| [a.id, a] }.to_h
