@@ -76,6 +76,7 @@ const argv = require('minimist')(process.argv.slice(2), {
   },
 });
 const translationsDirectory = 'app/javascript/mastodon/locales';
+const messagesDirectory = 'build/messages';
 const localeFn = /^([a-z]{2,3}(|\-[A-Z]+))\.json$/;
 const reRFC5646 = /^[a-z]{2,3}(|\-[A-Z]+)$/;
 const availableLanguages = fs.readdirSync(`${process.cwd()}/${translationsDirectory}`).reduce((acc, fn) => {
@@ -91,6 +92,13 @@ if (argv.help === true) {
   process.exit(0);
 }
 
+// check if message directory exists
+if (!fs.existsSync(`${process.cwd()}/${messagesDirectory}`)) {
+  console.error(`\nError: messageDirectory not exists\n(${process.cwd()}/${messagesDirectory})\n`);
+  console.error(`Try to run "yarn build:development" first`);
+  process.exit(1);
+}
+
 // determine the languages list
 const languages = (argv._.length === 0) ? availableLanguages : argv._;
 
@@ -102,7 +110,7 @@ validateLanguages(languages, [
 
 // manage translations
 manageTranslations({
-  messagesDirectory: 'build/messages',
+  messagesDirectory,
   translationsDirectory,
   detectDuplicateIds: false,
   singleMessagesFile: true,
