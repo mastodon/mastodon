@@ -1,8 +1,17 @@
 /*eslint no-console: "off"*/
 const manageTranslations = require('react-intl-translations-manager').default;
-const argv = require('minimist')(process.argv.slice(2));
 const fs = require('fs');
 
+const argv = require('minimist')(process.argv.slice(2), {
+  'boolean': [
+    'force',
+    'help'
+  ],
+  'alias': {
+    'f': 'force',
+    'h': 'help',
+  },
+});
 const translationsDirectory = 'app/javascript/mastodon/locales';
 const localeFn = /^([a-z]{2,3}(|\-[A-Z]+))\.json$/;
 const reRFC5646 = /^[a-z]{2,3}(|\-[A-Z]+)$/;
@@ -14,7 +23,7 @@ const availableLanguages = fs.readdirSync(`${process.cwd()}/${translationsDirect
 }, []);
 
 // print help message
-if (argv.help !== undefined) {
+if (argv.help === true) {
   console.log(
 `Usage: yarn manage:translations -- [OPTIONS] [LANGUAGES]
 
@@ -22,9 +31,9 @@ Manage javascript translation files in mastodon. Generates and update
 translations in translationsDirectory: ${translationsDirectory}
 
 OPTIONS
-  --help    show this message
-  --force   force using the provided languages. create files if not exists.
-            default: false
+  -h,--help    show this message
+  -f,--force   force using the provided languages. create files if not exists.
+               default: false
 
 LANGUAGES
 The RFC5646 language tag for the language you want to test or fix. If you want
