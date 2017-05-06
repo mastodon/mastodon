@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe MuteService do
+RSpec.describe AfterBlockService do
   subject do
     -> { described_class.new.call(account, target_account) }
   end
@@ -25,11 +25,5 @@ RSpec.describe MuteService do
         Redis.current.zrange(home_timeline_key, 0, -1)
       }.from([status.id.to_s, other_account_status.id.to_s]).to([other_account_status.id.to_s])
     end
-  end
-
-  it 'mutes account' do
-    is_expected.to change {
-      account.muting?(target_account)
-    }.from(false).to(true)
   end
 end

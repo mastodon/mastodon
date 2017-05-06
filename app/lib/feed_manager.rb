@@ -76,6 +76,14 @@ class FeedManager
     end
   end
 
+  def clear_from_timeline(account, target_account)
+    timeline_key = key(:home, account.id)
+    timeline_status_ids = redis.zrange(timeline_key, 0, -1)
+    target_status_ids = Status.where(id: timeline_status_ids, account: target_account).ids
+
+    redis.zrem(timeline_key, target_status_ids) if target_status_ids.present?
+  end
+
   private
 
   def redis
