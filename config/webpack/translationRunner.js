@@ -2,6 +2,69 @@
 const manageTranslations = require('react-intl-translations-manager').default;
 const fs = require('fs');
 
+const testRFC5626 = function (reRFC5646) {
+  return function (language) {
+    if (!language.match(reRFC5646)) {
+      throw 'Not RFC5626 name';
+    }
+  }
+}
+
+const testAvailability = function (availableLanguages) {
+  return function (language) {
+    if ((argv.force !== true) && availableLanguages.indexOf(language) < 0) {
+      throw 'Not an available language';
+    }
+  }
+}
+
+const validateLanguages = function (languages, validators) {
+  let invalidLanguages = languages.reduce((acc, language) => {
+    try {
+      for (let validator of validators) {
+        validator(language);
+      }
+    } catch (error) {
+      acc.push({
+        language,
+        error,
+      });
+    }
+    return acc;
+  }, []);
+
+  if (invalidLanguages.length > 0) {
+    console.log(`\nError: Specified invalid LANGUAGES:`);
+    for (let {language, error} of invalidLanguages) {
+      console.error(`* ${language}: ${error}`);
+    }
+    console.log(`\nUse yarn "manage:translations -- --help" for usage information\n`);
+    process.exit(1);
+  }
+}
+
+const printHelpMessages = function () {
+  console.log(
+`Usage: yarn manage:translations -- [OPTIONS] [LANGUAGES]
+
+Manage javascript translation files in mastodon. Generates and update
+translations in translationsDirectory: ${translationsDirectory}
+
+OPTIONS
+  -h,--help    show this message
+  -f,--force   force using the provided languages. create files if not exists.
+               default: false
+
+LANGUAGES
+The RFC5646 language tag for the language you want to test or fix. If you want
+to input multiple languages, separate them with space.
+
+Available languages:
+${availableLanguages}
+`);
+}
+
+// parse arguments
 const argv = require('minimist')(process.argv.slice(2), {
   'boolean': [
     'force',
@@ -24,66 +87,20 @@ const availableLanguages = fs.readdirSync(`${process.cwd()}/${translationsDirect
 
 // print help message
 if (argv.help === true) {
-  console.log(
-`Usage: yarn manage:translations -- [OPTIONS] [LANGUAGES]
-
-Manage javascript translation files in mastodon. Generates and update
-translations in translationsDirectory: ${translationsDirectory}
-
-OPTIONS
-  -h,--help    show this message
-  -f,--force   force using the provided languages. create files if not exists.
-               default: false
-
-LANGUAGES
-The RFC5646 language tag for the language you want to test or fix. If you want
-to input multiple languages, separate them with space.
-
-Available languages:
-${availableLanguages}
-`);
+  printHelpMessages();
   process.exit(0);
 }
 
 // determine the languages list
 const languages = (argv._.length === 0) ? availableLanguages : argv._;
 
-// check if the languages provided are RFC5626 compliant
-(function() {
-  let invalidLanguages = languages.reduce((acc, language) => {
-    if (!language.match(reRFC5646)) {
-      acc.push(language);
-    }
-    return acc;
-  }, []);
-  if (invalidLanguages.length > 0) {
-    console.log(`Error:`);
-    for (let language of invalidLanguages) {
-      console.error(`* Not RFC5626 name: ${language}`);
-    }
-    console.log(`\nUse yarn "manage:translations -- --help" for usage information\n`);
-    process.exit(1);
-  }
-})();
+// validate languages
+validateLanguages(languages, [
+  testRFC5626(reRFC5646),
+  testAvailability(availableLanguages),
+]);
 
-// make sure the language exists. Unless force to create locale file.
-if (argv.force !== true) {
-  let invalidLanguages = languages.reduce((acc, language) => {
-    if (availableLanguages.indexOf(language) < 0) {
-      acc.push(language);
-    }
-    return acc;
-  }, []);
-  if (invalidLanguages.length > 0) {
-    console.log(`Error:`);
-    for (let language of invalidLanguages) {
-      console.error(`* Language not available: ${language}`);
-    }
-    console.log(`\nIf you want to force creating the language(s) above, please add the --force option.\n`);
-    process.exit(1);
-  }
-}
-
+// manage translations
 manageTranslations({
   messagesDirectory: 'build/messages',
   translationsDirectory,
