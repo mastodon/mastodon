@@ -10,7 +10,7 @@ import ModalContainer from './containers/modal_container';
 import Notifications from '../notifications';
 import { connect } from 'react-redux';
 import { isMobile } from '../../is_mobile';
-import { debounce } from 'react-decoration';
+import { debounce } from 'lodash';
 import { uploadCompose } from '../../actions/compose';
 import { refreshTimeline } from '../../actions/timelines';
 import { refreshNotifications } from '../../actions/notifications';
@@ -26,7 +26,7 @@ class UI extends React.PureComponent {
       width: window.innerWidth,
       draggingOver: false
     };
-    this.handleResize = this.handleResize.bind(this);
+    this.handleResize = debounce(this.handleResize.bind(this), 500);
     this.handleDragEnter = this.handleDragEnter.bind(this);
     this.handleDragOver = this.handleDragOver.bind(this);
     this.handleDrop = this.handleDrop.bind(this);
@@ -36,7 +36,6 @@ class UI extends React.PureComponent {
     this.setRef = this.setRef.bind(this);
   }
 
-  @debounce(500)
   handleResize () {
     this.setState({ width: window.innerWidth });
   }
