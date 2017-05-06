@@ -3,10 +3,12 @@
 class UnblockDomainService < BaseService
   def call(domain_block, retroactive)
     if retroactive
+      accounts = Account.where(domain: domain_block.domain).in_batches
+
       if domain_block.silence?
-        Account.where(domain: domain_block.domain).update_all(silenced: false)
+        accounts.update_all(silenced: false)
       else
-        Account.where(domain: domain_block.domain).update_all(suspended: false)
+        accounts.update_all(suspended: false)
       end
     end
 
