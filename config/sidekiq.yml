@@ -1,2 +1,11 @@
 ---
 :concurrency: 5
+:queues:
+  - default
+  - push
+  - pull
+  - mailers
+:schedule:
+  subscriptions_scheduler:
+    cron: '0 5 * * *'
+    class: Scheduler::SubscriptionsScheduler

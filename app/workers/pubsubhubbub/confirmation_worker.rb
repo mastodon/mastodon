@@ -25,7 +25,7 @@ class Pubsubhubbub::ConfirmationWorker
 
     body = response.body.to_s
 
-    Rails.logger.debug "Confirming PuSH subscription for #{subscription.callback_url} with challenge #{challenge}: #{body}"
+    logger.debug "Confirming PuSH subscription for #{subscription.callback_url} with challenge #{challenge}: #{body}"
 
     if mode == 'subscribe' && body == challenge
       subscription.save!
