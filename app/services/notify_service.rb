@@ -54,7 +54,7 @@ class NotifyService < BaseService
   end
 
   def send_email
-    NotificationMailer.send(@notification.type, @recipient, @notification).deliver_later
+    NotificationMailer.public_send(@notification.type, @recipient, @notification).deliver_later
   end
 
   def email_enabled?
