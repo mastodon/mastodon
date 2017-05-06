@@ -1,0 +1,61 @@
+---
+he:
+  devise:
+    confirmations:
+      confirmed: 'כתובת הדוא"ל אומתה בהצלחה.'
+      send_instructions: 'נשלח אליך דוא"ל עם הוראות לאימות כתובת הדוא"ל שאמור להתקבל בדקות הקרובות.'
+      send_paranoid_instructions: 'אם כתובת הדוא"ל שלך קיימת במסד הנתונים, יתקבל בדקות הקרובות דוא"ל עם הוראות לאימות כתובתך.'
+    failure:
+      already_authenticated: 'חשבון זה כבר מחובר.'
+      inactive: 'חשבון זה טרם הופעל.'
+      invalid: '%{authentication_keys} או סיסמא לא נכונים.'
+      last_attempt: 'יש לך עוד ניסיון אחד לפני נעילת החשבון.'
+      locked: 'חשבון זה נעול.'
+      not_found_in_database: "%{authentication_keys} או סיסמא לא נכונים."
+      timeout: 'פג תוקף השהיה בחשבון. נא להכנס מחדש על מנת להמשיך.'
+      unauthenticated: 'יש להרשם או להכנס לחשבון על מנת להמשיך.'
+      unconfirmed: 'יש לאמת את כתובת הדוא"ל על מנת להמשיך.'
+    mailer:
+      confirmation_instructions:
+        subject: 'מסטודון: הוראות אימות'
+      password_change:
+        subject: 'מסטודון: הסיסמא שונתה'
+      reset_password_instructions:
+        subject: 'מסטודון: הוראות לאיפוס סיסמא'
+      unlock_instructions:
+        subject: 'מסטודון: הוראות לביטול נעילה'
+    omniauth_callbacks:
+      failure: "לא ניתן לאמת את חשבונך מ־%{kind} מהסיבה: \"%{reason}\"."
+      success: "נכשל אימות מחשבון %{kind}."
+    passwords:
+      no_token: 'לא ניתן לגשת לעמוד זה, אלא מדוא"ל איפוס סיסמא. אם לא הגעת מדוא"ל איפוס סיסמא, יש לוודא שכתובת הקישורית הוקלדה בשלמותה.'
+      send_instructions: 'בדקות הקרובות יתקבל דוא"ל עם הוראות לאיפוס סיסמתך.'
+      send_paranoid_instructions: 'אם כתובת הדוא"ל שלך קיימת במסד הנתונים, יתקבל בדקות הקרובות דוא"ל עם הוראות לאחזור סיסמא.'
+      updated: 'סיסמתך שונתה בהצלחה. הינך כעת במצב מחובר.'
+      updated_not_active: 'סיסמתך שונתה בהצלחה.'
+    registrations:
+      destroyed: 'בייוש! חשבונך בוטל בהצלחה. אנחנו מקווים לראות אותך שוב בקרוב.'
+      signed_up: 'ברוכים הבאים! נרשמת בהצלחה.'
+      signed_up_but_inactive: 'נרשמת בהצלחה. למרות זאת לא הצליחה הכניסה לחשבון מאחר וחשבונך עוד לא הופעל.'
+      signed_up_but_locked: 'נרשמת בהצלחה. למרות זאת לא הצליחה הכניסה לחשבון מאחר וחשבונך נעול.'
+      signed_up_but_unconfirmed: 'דוא"ל עם קישורית לאימות נשלך לכתובתך. נא לעקוב אחר הקישורית על מנת להפעיל את החשבון.'
+      update_needs_confirmation: 'עדכת את חשבונך בהצלחה, אך יש צורך לאמת את כתובת הדוא"ל החדשה שלך. נא לבדוק בחשבון הדוא"ל לקבלת קישורית אימות על מנת לאמת את הכתובת החדשה.'
+      updated: חשבונך עודכן בהצלחה.
+    sessions:
+      already_signed_out: יצאת מהחשבון בהצלחה.
+      signed_in: נכנסת לחשבון בהצלחה.
+      signed_out: יצאת מהחשבון בהצלחה.
+    unlocks:
+      send_instructions: 'בדקות הקרובות ישלח אליך דוא"ל עם הוראות לביטול נעילת החשבון.'
+      send_paranoid_instructions: 'אם חשבונך קיים, בדקות הקרובות ישלח אליך דוא"ל עם הוראות לביטול נעילת החשבון.'
+      unlocked: נעילת חשבונך בוטלה בהצלחה. נא להכנס לחשבון על מנת להמשיך.
+  errors:
+    messages:
+      already_confirmed: כבר אושר. נא לנסות להכנס לחשבון.
+      confirmation_period_expired: האישור צריך להתקבל תוך %{period}, נא לבקש חדש.
+      expired: פג תוקפו. נא לבקש חדש.
+      not_found: לא נמצא
+      not_locked: לא היה נעול
+      not_saved:
+        one: 'שגיאה אחת מנעה את שמירת %{resource} זה:'
+        other: "%{count} שגיאות מנעו את שמירת %{resource} זה:"
