@@ -16,6 +16,16 @@ class Notification < ApplicationRecord
   include Paginable
   include Cacheable
 
+  TYPE_CLASS_MAP = {
+    mention:        'Mention',
+    reblog:         'Status',
+    follow:         'Follow',
+    follow_request: 'FollowRequest',
+    favourite:      'Favourite',
+  }.freeze
+
+  STATUS_INCLUDES = [:account, :stream_entry, :media_attachments, :tags, mentions: :account, reblog: [:stream_entry, :account, :media_attachments, :tags, mentions: :account]].freeze
+
   belongs_to :account
   belongs_to :from_account, class_name: 'Account'
   belongs_to :activity, polymorphic: true
@@ -27,16 +37,7 @@ class Notification < ApplicationRecord
   belongs_to :favourite,      foreign_type: 'Favourite',     foreign_key: 'activity_id'
 
   validates :account_id, uniqueness: { scope: [:activity_type, :activity_id] }
-
-  TYPE_CLASS_MAP = {
-    mention:        'Mention',
-    reblog:         'Status',
-    follow:         'Follow',
-    follow_request: 'FollowRequest',
-    favourite:      'Favourite',
-  }.freeze
-
-  STATUS_INCLUDES = [:account, :stream_entry, :media_attachments, :tags, mentions: :account, reblog: [:stream_entry, :account, :media_attachments, :tags, mentions: :account]].freeze
+  validates :activity_type, inclusion: { in: TYPE_CLASS_MAP.values }
 
   scope :cache_ids, -> { select(:id, :updated_at, :activity_type, :activity_id) }
 
