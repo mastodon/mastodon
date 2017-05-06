@@ -41,7 +41,7 @@ module Admin
     end
 
     def retroactive_unblock?
-      resource_params[:retroactive] == '1'
+      ActiveRecord::Type.lookup(:boolean).cast(resource_params[:retroactive])
     end
   end
 end
