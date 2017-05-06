@@ -7,7 +7,7 @@ import redis from 'redis'
 import pg from 'pg'
 import log from 'npmlog'
 import url from 'url'
-import WebSocket from 'ws'
+import WebSocket from 'uws'
 import uuid from 'uuid'
 
 const env = process.env.NODE_ENV || 'development'
@@ -273,12 +273,16 @@ if (cluster.isMaster) {
 
   // Setup stream output to WebSockets
   const streamToWs = (req, ws) => {
-    const heartbeat = setInterval(() => ws.ping(), 15000)
+    const heartbeat = setInterval(() => {
+      // TODO: Can't add multiple listeners, due to the limitation of uws.
+      if (ws.readyState !== ws.OPEN) {
+        log.verbose(req.requestId, `Ending stream for ${req.accountId}`)
+        clearInterval(heartbeat)
+        return
+      }
 
-    ws.on('close', () => {
-      log.verbose(req.requestId, `Ending stream for ${req.accountId}`)
-      clearInterval(heartbeat)
-    })
+      ws.ping()
+    }, 15000)
 
     return (event, payload) => {
       if (ws.readyState !== ws.OPEN) {
