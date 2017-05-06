@@ -4,6 +4,6 @@ class FollowerAccountsController < ApplicationController
   include AccountControllerConcern
 
   def index
-    @accounts = @account.followers.page(params[:page]).per(FOLLOW_PER_PAGE)
+    @follows = Follow.where(target_account: @account).order(id: :desc).page(params[:page]).per(FOLLOW_PER_PAGE).preload(:account)
   end
 end
