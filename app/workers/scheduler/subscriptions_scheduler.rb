@@ -5,9 +5,9 @@ class Scheduler::SubscriptionsScheduler
   include Sidekiq::Worker
 
   def perform
-    Rails.logger.debug 'Queueing PuSH re-subscriptions'
+    logger.info 'Queueing PuSH re-subscriptions'
 
-    expiring_accounts.pluck(:id) do |id|
+    expiring_accounts.pluck(:id).each do |id|
       Pubsubhubbub::SubscribeWorker.perform_async(id)
     end
   end
