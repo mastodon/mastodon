@@ -87,7 +87,7 @@ const availableLanguages = fs.readdirSync(`${process.cwd()}/${translationsDirect
 }, []);
 
 // print help message
-if (argv.help === true) {
+if (argv.help) {
   printHelpMessages();
   process.exit(0);
 }
