@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: stream_entries
@@ -26,6 +27,10 @@ class StreamEntry < ApplicationRecord
   default_scope { where(activity_type: 'Status') }
   scope :with_includes, -> { includes(:account, status: STATUS_INCLUDES) }
 
+  delegate :target, :title, :content, :thread,
+           to: :status,
+           allow_nil: true
+
   def object_type
     orphaned? || targeted? ? :activity : status.object_type
   end
@@ -38,24 +43,8 @@ class StreamEntry < ApplicationRecord
     [:follow, :request_friend, :authorize, :reject, :unfollow, :block, :unblock, :share, :favorite].include? verb
   end
 
-  def target
-    orphaned? ? nil : status.target
-  end
-
-  def title
-    orphaned? ? nil : status.title
-  end
-
-  def content
-    orphaned? ? nil : status.content
-  end
-
   def threaded?
     (verb == :favorite || object_type == :comment) && !thread.nil?
-  end
-
-  def thread
-    orphaned? ? nil : status.thread
   end
 
   def mentions
