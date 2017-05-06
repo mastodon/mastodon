@@ -99,8 +99,8 @@ GEM
       rack-test (>= 0.5.4)
       xpath (~> 2.0)
     chunky_png (1.3.8)
-    cld2 (1.0.3)
-      ffi (~> 1.9.3)
+    cld3 (3.1.0)
+      ffi (>= 1.1.0, < 1.10.0)
     climate_control (0.1.0)
     cocaine (0.5.8)
       climate_control (>= 0.0.3, < 1.0)
@@ -480,7 +480,7 @@ DEPENDENCIES
   capistrano-rbenv
   capistrano-yarn
   capybara
-  cld2
+  cld3 (~> 3.1.0)
   devise
   devise-two-factor
   doorkeeper
