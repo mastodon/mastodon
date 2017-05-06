@@ -5,7 +5,7 @@ const fs = require('fs');
 const testRFC5626 = function (reRFC5646) {
   return function (language) {
     if (!language.match(reRFC5646)) {
-      throw 'Not RFC5626 name';
+      throw new Error('Not RFC5626 name');
     }
   }
 }
@@ -13,7 +13,7 @@ const testRFC5626 = function (reRFC5646) {
 const testAvailability = function (availableLanguages) {
   return function (language) {
     if ((argv.force !== true) && availableLanguages.indexOf(language) < 0) {
-      throw 'Not an available language';
+      throw new Error('Not an available language');
     }
   }
 }
