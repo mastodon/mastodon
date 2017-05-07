@@ -48,12 +48,16 @@ class Account < ApplicationRecord
 
   # Local users
   has_one :user, inverse_of: :account
-  validates :username, presence: true, format: { with: /\A[a-z0-9_]+\z/i }, uniqueness: { scope: :domain, case_sensitive: false }, length: { maximum: 30 }, if: 'local?'
-  validates :username, presence: true, uniqueness: { scope: :domain, case_sensitive: true }, unless: 'local?'
 
-  # Local user profile validations
-  validates :display_name, length: { maximum: 30 }, if: 'local?'
-  validates :note, length: { maximum: 160 }, if: 'local?'
+  validates :username, presence: true
+  validates :username, uniqueness: { scope: :domain, case_sensitive: true }, unless: 'local?'
+
+  # Local user validations
+  with_options if: 'local?' do
+    validates :username, format: { with: /\A[a-z0-9_]+\z/i }, uniqueness: { scope: :domain, case_sensitive: false }, length: { maximum: 30 }
+    validates :display_name, length: { maximum: 30 }
+    validates :note, length: { maximum: 160 }
+  end
 
   # Timelines
   has_many :stream_entries, inverse_of: :account, dependent: :destroy
