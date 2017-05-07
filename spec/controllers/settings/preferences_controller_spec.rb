@@ -1,7 +1,9 @@
 require 'rails_helper'
 
 describe Settings::PreferencesController do
-  let(:user) { Fabricate(:user) }
+  render_views
+
+  let(:user) { Fabricate(:user, allowed_languages: []) }
 
   before do
     sign_in user, scope: :user
@@ -16,10 +18,12 @@ describe Settings::PreferencesController do
 
   describe 'PUT #update' do
     it 'updates the user record' do
-      put :update, params: { user: { locale: 'en' } }
+      put :update, params: { user: { locale: 'en', allowed_languages: ['es', 'fr'] } }
 
       expect(response).to redirect_to(settings_preferences_path)
-      expect(user.reload.locale).to eq 'en'
+      user.reload
+      expect(user.locale).to eq 'en'
+      expect(user.allowed_languages).to eq ['es', 'fr']
     end
 
     it 'updates user settings' do

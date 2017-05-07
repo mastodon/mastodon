@@ -2,7 +2,7 @@ import { expect } from 'chai';
 import { shallow, mount } from 'enzyme';
 import sinon from 'sinon';
 
-import DropdownMenu from '../../../app/assets/javascripts/components/components/dropdown_menu';
+import DropdownMenu from '../../../app/javascript/mastodon/components/dropdown_menu';
 import Dropdown, { DropdownTrigger, DropdownContent } from 'react-simple-dropdown';
 
 describe('<DropdownMenu />', () => {

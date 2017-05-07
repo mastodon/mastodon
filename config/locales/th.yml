@@ -1,0 +1,340 @@
+---
+th:
+  about:
+    about_mastodon: แมสโทดอน เป็น  <em>ดีเซ็นทรัลไลซ์</em><em>ฟรีโอเพ่นซอร์ส</em> โซเชี่ยวเน็ตเวริ์ค.  เป็นทางเลือกทดแทนโซเชี่ยวเน็ตเวิร์คที่ทำเป็นธุรกิจการค้า, ป้องกันการผูกขาดช่องทางการสื่อสารของคุณ. เลือกเซร์ฟเวอร์ที่คุณไว้ใจ &mdash; ที่คุณเลือกได้เอง, สื่อสารกับคนที่คุณต้องการได้เสมอ. ใครๆก็รันแมสโทดอนอินซะแตนซ์ได้ และ เชื่อมต่อกับ<em>โซเชี่ยวเน็ตเวิร์ค</em> โดยไม่มีอะไรมาขวางกั้น.
+    about_this: เกี่ยวกับอินซะแตนซ์นี้
+    apps: แอ๊ฟ
+    business_email: 'อีเมล์ธุรกิจ:'
+    closed_registrations: อินซะแตนซ์นี้ปิดรับลงทะเบียนแล้ว.
+    contact: ติดต่อ
+    description_headline: โดเมนคือ %{domain} ?
+    domain_count_after: อินซะแตนซ์อื่นๆ
+    domain_count_before: เชื่อมต่อกับ
+    features:
+      api: API เปิดสำหรับ Apps และ Services
+      blocks: มีเครื่องมือสำหรับ Block และ Mute
+      characters: เขียนได้ 500 ตัวอักษรต่อโพสต์
+      chronology: Timelines are chronological
+      ethics: 'ออกแบบด้วยจรรยาบรรณ: ไม่มีโฆษณา, ไม่มีการแทรค'
+      gifv: รองรับภาพ GIFV และ วีดีโอสั้น
+      privacy: Granular, per-post privacy settings
+      public: ไทม์ไลน์สาธารณะ
+    features_headline: What sets Mastodon apart
+    get_started: เริ่มกันเลย
+    links: ลิงก์
+    other_instances: อินซะแตนซ์อื่นๆ
+    source_code: ซอร์สโค๊ด
+    status_count_after: สถานะ
+    status_count_before: Who authored
+    terms: เงื่อนไข
+    user_count_after: ผู้ใช้
+    user_count_before: Home to
+    version: เวอร์ชั่น
+  accounts:
+    follow: ติดตาม
+    followers: ผู้ติดตาม
+    following: กำลังติดตาม
+    nothing_here: ไม่พบสิ่งใดที่นี่!
+    people_followed_by: ถูกติดตามโดย %{name}
+    people_who_follow: คนที่ติดตาม %{name}
+    posts: โพสต์
+    remote_follow: Remote follow
+    unfollow: เลิกติดตาม
+  activitypub:
+    activity:
+      announce:
+        name: "%{account_name} แชร์กิจกรรม."
+      create:
+        name: "%{account_name} สร้างโน๊ต."
+    outbox:
+      name: "%{account_name}'s Outbox"
+      summary: "รวมกิจกรรมของผู้ใช้ %{account_name}."
+  admin:
+    accounts:
+      are_you_sure: แน่ใจนะ?
+      confirm: ยืนยัน
+      confirmed: ยึนยันแล้ว
+      display_name: ชื่อสำหรับดีสเพล
+      domain: โดแมน
+      edit: แก้ไข
+      email: อีเมล์
+      feed_url: Feed URL
+      followers: ผู้ติดตาม
+      follows: ติดตาม
+      location:
+        all: ทั้งหมด
+        local: โลคอล
+        remote: รีโมทย์
+        title: สถานที่
+      media_attachments: สื่อที่แนบมา
+      moderation:
+        all: ทั้งหมด
+        silenced: ปิดเสียง
+        suspended: หยุดไว้
+        title: Moderation
+      most_recent_activity: กิจกรรมล่าสุด
+      most_recent_ip: IP ล่าสุด
+      not_subscribed: Not subscribed
+      order:
+        alphabetic: ตามตัวอักษร
+        most_recent: ล่าสุด
+        title: จัดเรียง
+      perform_full_suspension: Perform full suspension
+      profile_url: Profile URL
+      public: สาธารณะ
+      push_subscription_expires: PuSH subscription expires
+      reset_password: รีเซ็ตรหัสผ่าน
+      salmon_url: Salmon URL
+      show:
+        created_reports: รายงานที่ถูกสร้างโดย แอคเคาท์นี้
+        report: รายงาน
+        targeted_reports: รายงานเกี่ยวกับแอคเคาท์นี้
+      silence: ปิดเสียง
+      statuses: สถานะ
+      title: บัญชี
+      undo_silenced: ยกเลิกการปิดเสียง
+      undo_suspension: ยกเลิกการหยุด
+      username: ชื่อผู้ใช้
+      web: เว็บ
+    domain_blocks:
+      add_new: เพิ่มใหม่
+      created_msg: กำลังบล๊อกโดเมน
+      destroyed_msg: ยกเลิกการบล๊อกโดเมน
+      domain: โดเมน
+      new:
+        create: สร้างการบล๊อก
+        hint: การบล๊อคโดเมนไม่สามารถป้องกันการสร้างแอคเค๊าท์ในฐานข้อมูล, but will retroactively and automatically apply specific moderation methods on those accounts.
+        severity:
+          desc_html: "<strong>การปิดเสียง</strong> จะทำให้ผู้ที่ไมไ่ด้ติดตามไม่เห็นโพสต์ของเขา. <strong>การหยุด</strong> จะนำเนื้อหา สื่อ และ โปรไฟล์ ออก."
+          silence: ปิดเสียง
+          suspend: หยุดไว้
+        title: การบล๊อกโดเมนใหม่
+      reject_media: ไม่อนุมัติไฟล์สื่อ
+      reject_media_hint: ลบไฟล์สื่อที่เก็บไว้ในเครื่อง และ ป้องกันการดาวน์โหลดในอนาคต. Irrelevant for suspensions
+      severities:
+        silence: ปิดเสียง
+        suspend: หยุดไว้
+      severity: Severity
+      show:
+        affected_accounts:
+          one: มีผลต่อหนึ่งแอคเค๊าท์ในฐานข้อมูล
+          other: "มีผลต่อแอคเค๊าท์ในฐานข้อมูลจำนวน %{count}"
+        retroactive:
+          silence: ยกเลิกการปิดเสียงทุกแอคเค๊าท์จากโดเมน
+          suspend: ยกเลิกการหยุดทุกแอคเค๊าท์จากโดเมน
+        title: ยกเลิกการบล๊อกโดเมน %{domain}
+        undo: ยกเลิก
+      title: บล๊อกโดเมน
+      undo: ยกเลิก
+    instances:
+      account_count: Known accounts
+      domain_name: ชื่อโดเมน
+      title: Known Instances
+    pubsubhubbub:
+      callback_url: Callback URL
+      confirmed: ยืนยัน
+      expires_in: หมดอายุภายใน
+      last_delivery: จัดส่งครั้งล่าสุด
+      title: PubSubHubbub
+      topic: ชื่อเรื่อง
+    reports:
+      comment:
+        label: คอมเม้นต์
+        none: None
+      delete: ลบ
+      id: ไอดี
+      mark_as_resolved: ทำเครื่องหมายว่าจัดการแล้ว
+      report: 'Report #%{id}'
+      report_contents: เนื้อหา
+      reported_account: รายงานแอคเคาท์
+      reported_by: รายงานโดย
+      resolved: จัดการแล้ว
+      silence_account: แอคเค๊าท์ที่ปิดเสียง
+      status: สถานะ
+      suspend_account: แอคเค๊าท์ที่หยุดไว้
+      target: เป้าหมาย
+      title: รายงาน
+      unresolved: Unresolved
+      view: วิว
+    settings:
+      contact_information:
+        email: กรอกที่อยู่อีเมล์สาธารณะ
+        label: ข้อมูลที่ติดต่อ
+        username: กรอกชื่อผู้ใช้
+      registrations:
+        closed_message:
+          desc_html: Displayed on frontpage when registrations are closed<br> ใช้ HTML tags ได้
+          title: ปิดข้อความลงทะเบียน
+        open:
+          disabled: ปิดการใช้งาน
+          enabled: ปิดใช้งาน
+          title: เปิดรับลงทะเบียน
+      setting: ตั้งค่า
+      site_description:
+        desc_html: Displayed as a paragraph on the frontpage and used as a meta tag.<br> ใช้ HTML tags ได้, in particular <code>&lt;a&gt;</code> และ <code>&lt;em&gt;</code>.
+        title: คำอธิบายไซต์
+      site_description_extended:
+        desc_html: Displayed on extended information page<br>You can use HTML tags
+        title: คำอธิบายไซต์เพิ่มเติม
+      site_title: ชื่อไซต์
+      title: ตั้งค่าไซต์
+    title: แอดมิน
+  application_mailer:
+    settings: 'เปลี่ยนอีเมล์ preferences: %{link}'
+    signature: ฟอร์มการแจ้งเตือนแมสโทดอน %{instance}
+    view: 'วิว:'
+  applications:
+    invalid_url: URL ที่ระบุไม่ถูกตั้ง
+  auth:
+    change_password: Credentials
+    didnt_get_confirmation: Didn't receive confirmation instructions?
+    forgot_password: คุณลืมพาสเวริ์ดใช่ัม้ย?
+    login: ล๊อคอิน
+    logout: ล๊อคเอาท์
+    register: สมัคร
+    resend_confirmation: ส่งขั้นตอนวิธีการยืนยันใหม่อีกครั้ง
+    reset_password: เปลี่ยนรหัสผ่าน
+    set_new_password: ตั้งรหัสผ่านใหม่
+  authorize_follow:
+    error: Unfortunately, there was an error looking up the remote account
+    follow: ติดตาม
+    prompt_html: 'คุณ (<strong>%{self}</strong>) ขอติดตาม:'
+    title: ติดตาม %{acct}
+  datetime:
+    distance_in_words:
+      about_x_hours: "%{count}ช"
+      about_x_months: "%{count}ด"
+      about_x_years: "%{count}ป"
+      almost_x_years: "%{count}ป"
+      half_a_minute: ครึ่งนาที
+      less_than_x_minutes: "%{count}ม"
+      less_than_x_seconds: ไม่ถึงนาที
+      over_x_years: "%{count}ป"
+      x_days: "%{count}ด"
+      x_minutes: "%{count}น"
+      x_months: "%{count}ด"
+      x_seconds: "%{count}ว"
+  errors:
+    '403': คุณไม่มีสิทธิ์เข้าดูหน้านี้.
+    '404': ไม่พบเพจที่คุณต้องการดู.
+    '410': เพจที่คุณต้องการดูไม่มีแล้ว.
+    '422':
+      content: การตรวจสอบความปลอดภัยล้มเหลว. คุณกำลังบล๊อกคุกกี้อยู่?
+      title: การตรวจสอบความปลอดภัยล้มเหลว
+  exports:
+    blocks: คุณบล๊อก
+    csv: CSV
+    follows: คุณติดตาม
+    mutes: คุณปิดเสียง
+    storage: ที่เก็บสื่อ
+  followers:
+    domain: โดเมน
+    explanation_html: If you want to ensure the privacy of your statuses, you must be aware of who is following you. <strong>Your private statuses are delivered to all instances where you have followers</strong>. You may wish to review them, and remove followers if you do not trust your privacy to be respected by the staff or software of those instances.
+    followers_count: จำนวนผู้ติดตาม
+    lock_link: ล๊อคแอคเค๊าท์ของคุณ
+    purge: นำผู้ติดตามออก
+    success:
+      one: In the process of soft-blocking followers from one domain...
+      other: In the process of soft-blocking followers from %{count} domains...
+    true_privacy_html: Please mind that <strong>true privacy can only be achieved with end-to-end encryption</strong>.
+    unlocked_warning_html: Anyone can follow you to immediately view your private statuses. %{lock_link} to be able to review and reject followers.
+    unlocked_warning_title: แอคเค๊าท์ของคุณไม่ได้ล๊อค
+  generic:
+    changes_saved_msg: บันทึกการแก้ไขแล้ว!
+    powered_by: powered by %{link}
+    save_changes: บันทึกการเปลี่ยนแปลง
+    validation_errors:
+      one: Something isn't quite right yet! Please review the error below
+      other: Something isn't quite right yet! Please review %{count} errors below
+  imports:
+    preface: You can import certain data like all the people you are following or blocking into your account on this instance, from files created by an export on another instance.
+    success: Your data was successfully uploaded and will now be processed in due time
+    types:
+      blocking: Blocking list
+      following: Following list
+      muting: Muting list
+    upload: Upload
+  landing_strip_html: <strong>%{name}</strong> is a user on %{link_to_root_path}. You can follow them or interact with them if you have an account anywhere in the fediverse. If you don't, you can <a href="%{sign_up_path}">sign up here</a>.
+  media_attachments:
+    validations:
+      images_and_video: Cannot attach a video to a status that already contains images
+      too_many: แนบมากกว่า 4 ไฟล์ไม่ได้
+  notification_mailer:
+    digest:
+      body: 'Here is a brief summary of what you missed on %{instance} since your last visit on %{since}:'
+      mention: "%{name} ส่งข้อความถึงคุณ:"
+      new_followers_summary:
+        one: ยินดีด้วยคุณได้ผู้ติดตามคนใหม่! Yay!
+        other: You have gotten %{count} new followers! Amazing!
+      subject:
+        one: "1 new notification since your last visit \U0001F418"
+        other: "%{count} new notifications since your last visit \U0001F418"
+    favourite:
+      body: 'สเตตัสของคุณได้รับการกดถูกใจโดย %{name} :'
+      subject: "%{name} กดถูกใจสเตตัสของคุณ"
+    follow:
+      body: "%{name} กำลังติดตามคุณ"
+      subject: "%{name} ได้ติดตามคุณแล้ว"
+    follow_request:
+      body: "%{name} ได้ขอติดตามคุณ"
+      subject: 'Pending follower: %{name}'
+    mention:
+      body: 'You were mentioned by %{name} in:'
+      subject: You were mentioned by %{name}
+    reblog:
+      body: 'Your status was boosted by %{name}:'
+      subject: "%{name} boosted your status"
+  pagination:
+    next: ต่อไป
+    prev: ย้อนกลับ
+    truncate: "&hellip;"
+  remote_follow:
+    acct: Enter your username@domain you want to follow from
+    missing_resource: Could not find the required redirect URL for your account
+    proceed: Proceed to follow
+    prompt: 'You are going to follow:'
+  settings:
+    authorized_apps: Authorized apps
+    back: กลับไปที่แมสโทดอน
+    edit_profile: แก้ไขโปรไฟล์
+    export: นำข้อมูลออก
+    followers: Authorized followers
+    import: นำเข้า
+    preferences: Preferences
+    settings: ตั้งค่า
+    two_factor_authentication: Two-factor Authentication
+  statuses:
+    open_in_web: เปิดในเว็บ
+    over_character_limit: character limit of %{max} exceeded
+    show_more: แสดงเพิ่มอีก
+    visibilities:
+      private: สำหรับผู้ติดตามเท่านั้น
+      private_long: ให้เห็นเฉพาะผู้ติดตาม
+      public: Public
+      public_long: เปิดให้ทุกคนเห็นได้
+      unlisted: Unlisted
+      unlisted_long: Everyone can see, but not listed on public timelines
+  stream_entries:
+    click_to_show: คลิกเพื่อแสดง
+    reblogged: boosted
+    sensitive_content: Sensitive content
+  time:
+    formats:
+      default: "%b %d, %Y, %H:%M"
+  two_factor_authentication:
+    code_hint: Enter the code generated by your authenticator app to confirm
+    description_html: If you enable <strong>two-factor authentication</strong>, logging in will require you to be in possession of your phone, which will generate tokens for you to enter.
+    disable: ปิด
+    enable: เปิด
+    enabled_success: Two-factor authentication successfully enabled
+    generate_recovery_codes: สร้าง Recovery Codes
+    instructions_html: "<strong>Scan this QR code into Google Authenticator or a similiar TOTP app on your phone</strong>. From now on, that app will generate tokens that you will have to enter when logging in."
+    lost_recovery_codes: Recovery codes allow you to regain access to your account if you lose your phone. If you've lost your recovery codes, you can regenerate them here. Your old recovery codes will be invalidated.
+    manual_instructions: 'If you can''t scan the QR code and need to enter it manually, here is the plain-text secret:'
+    recovery_codes_regenerated: Recovery codes successfully regenerated
+    recovery_instructions: If you ever lose access to your phone, you can use one of the recovery codes below to regain access to your account. Keep the recovery codes safe, for example by printing them and storing them with other important documents.
+    setup: ตั้งค่า
+    wrong_code: รหัสที่กรอกไม่ถูกต้อง! Are server time and device time correct?
+  users:
+    invalid_email: อีเมล์ไม่ถูกต้อง
+    invalid_otp_token: two-factor code ไม่ถูกต้อง

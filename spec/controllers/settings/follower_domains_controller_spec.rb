@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 describe Settings::FollowerDomainsController do
+  render_views
+
   let(:user) { Fabricate(:user) }
 
   before do

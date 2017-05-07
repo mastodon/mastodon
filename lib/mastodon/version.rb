@@ -1,5 +1,31 @@
 # frozen_string_literal: true
 
 module Mastodon
-  VERSION = '1.2.2'
+  module Version
+    module_function
+
+    def major
+      1
+    end
+
+    def minor
+      3
+    end
+
+    def patch
+      2
+    end
+
+    def pre
+      nil
+    end
+
+    def to_a
+      [major, minor, patch, pre].compact
+    end
+
+    def to_s
+      to_a.join('.')
+    end
+  end
 end
