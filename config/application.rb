@@ -49,6 +49,7 @@ module Mastodon
       :pt,
       :'pt-BR',
       :ru,
+      :tr,
       :uk,
       :'zh-CN',
       :'zh-HK',
