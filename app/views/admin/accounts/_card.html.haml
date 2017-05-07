@@ -11,6 +11,6 @@
         %td= t('admin.accounts.moderation.title')
         %td
           - if account.silenced?
-            %p= t('admin.moderation.silenced')
+            %p= t('admin.accounts.moderation.silenced')
           - if account.suspended?
-            %p= t('admin.moderation.suspended')
+            %p= t('admin.accounts.moderation.suspended')
