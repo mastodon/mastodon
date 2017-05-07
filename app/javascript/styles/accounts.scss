@@ -13,7 +13,7 @@
     box-shadow: none;
   }
 
-  &:after {
+  &::after {
     background: linear-gradient(rgba($color8, 0.5), rgba($color8, 0.8));
     display: block;
     content: "";
@@ -83,7 +83,7 @@
   .counter {
     width: 80px;
     color: $color3;
-    padding: 5px 10px 0px;
+    padding: 5px 10px 0;
     margin-bottom: 10px;
     border-right: 1px solid $color3;
     cursor: default;
@@ -93,7 +93,7 @@
       display: block;
     }
 
-    &:after {
+    &::after {
       display: block;
       content: "";
       position: absolute;
@@ -106,14 +106,14 @@
     }
 
     &.active {
-      &:after {
+      &::after {
         border-bottom: 4px solid $color4;
         opacity: 1;
       }
     }
 
     &:hover {
-      &:after {
+      &::after {
         opacity: 1;
         transition-duration: 0.2s;
       }
@@ -173,7 +173,12 @@
   text-align: center;
   overflow: hidden;
 
-  a, .current, .next, .prev, .page, .gap {
+  a,
+  .current,
+  .next,
+  .prev,
+  .page,
+  .gap {
     font-size: 14px;
     color: $color5;
     font-weight: 500;
@@ -194,7 +199,8 @@
     cursor: default;
   }
 
-  .prev, .next {
+  .prev,
+  .next {
     text-transform: uppercase;
     color: $color2;
   }
@@ -227,11 +233,16 @@
   @media screen and (max-width: 360px) {
     padding: 30px 20px;
 
-    a, .current, .next, .prev, .gap {
+    a,
+    .current,
+    .next,
+    .prev,
+    .gap {
       display: none;
     }
 
-    .next, .prev {
+    .next,
+    .prev {
       display: inline-block;
     }
   }

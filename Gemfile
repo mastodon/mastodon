@@ -26,6 +26,7 @@ gem 'doorkeeper'
 gem 'fast_blank'
 gem 'goldfinger'
 gem 'hiredis'
+gem 'redis-namespace'
 gem 'htmlentities'
 gem 'http'
 gem 'http_accept_language'
@@ -87,6 +88,7 @@ group :development do
   gem 'rubocop', '0.46.0', require: false
   gem 'brakeman', '~> 3.6.0', require: false
   gem 'bundler-audit', '~> 0.4.0', require: false
+  gem 'scss_lint', '0.42.2', require: false
 
   gem 'capistrano', '3.8.0'
   gem 'capistrano-rails'

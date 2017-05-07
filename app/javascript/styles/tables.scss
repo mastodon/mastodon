@@ -5,7 +5,8 @@
   border-collapse: collapse;
   margin-bottom: 20px;
 
-  th, td {
+  th,
+  td {
     padding: 8px;
     line-height: 18px;
     vertical-align: top;
@@ -24,7 +25,8 @@
     font-weight: 500;
   }
 
-  & > tbody > tr:nth-child(odd) > td, & > tbody > tr:nth-child(odd) > th {
+  & > tbody > tr:nth-child(odd) > td,
+  & > tbody > tr:nth-child(odd) > th {
     background: $color1;
   }
 

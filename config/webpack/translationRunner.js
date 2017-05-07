@@ -115,4 +115,7 @@ manageTranslations({
   detectDuplicateIds: false,
   singleMessagesFile: true,
   languages,
+  jsonOptions: {
+    trailingNewline: true,
+  },
 });
