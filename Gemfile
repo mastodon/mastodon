@@ -86,6 +86,7 @@ group :development do
   gem 'letter_opener'
   gem 'letter_opener_web'
   gem 'rubocop', '0.46.0', require: false
+  gem 'brakeman', '~> 3.6.0', require: false
   gem 'bundler-audit', '~> 0.4.0', require: false
 
   gem 'capistrano', '3.8.0'
