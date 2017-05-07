@@ -2329,14 +2329,16 @@ emoji-regex@^6.1.0:
   version "6.4.2"
   resolved "https://registry.yarnpkg.com/emoji-regex/-/emoji-regex-6.4.2.tgz#a30b6fee353d406d96cfb9fa765bdc82897eff6e"
 
-emojione-picker@^2.1.2:
-  version "2.1.2"
-  resolved "https://registry.yarnpkg.com/emojione-picker/-/emojione-picker-2.1.2.tgz#2b12bc74dcb1bd180a8628f7656c09a92ca70e9b"
+emojione-picker@^2.2.1:
+  version "2.2.1"
+  resolved "https://registry.yarnpkg.com/emojione-picker/-/emojione-picker-2.2.1.tgz#c06823126d3239a84ba2a39c5e84a44f0da8ad5c"
   dependencies:
     emojione "^2.2.6"
     escape-string-regexp "^1.0.5"
     lodash "^4.15.0"
-    react-virtualized "^8.11.4"
+    react ">=0.14.0"
+    react-addons-shallow-compare ">=0.14.0"
+    react-virtualized "^9.7.4"
     store "^1.3.20"
 
 emojione@^2.2.6, emojione@^2.2.7:
@@ -5436,7 +5438,7 @@ react-addons-pure-render-mixin@>=0.14.0:
     fbjs "^0.8.4"
     object-assign "^4.1.0"
 
-react-addons-shallow-compare@^15.5.2:
+react-addons-shallow-compare@>=0.14.0, react-addons-shallow-compare@^15.5.2:
   version "15.5.2"
   resolved "https://registry.yarnpkg.com/react-addons-shallow-compare/-/react-addons-shallow-compare-15.5.2.tgz#7cb0ee7acc8d7c93fcc202df0bf47ba916a7bdad"
   dependencies:
@@ -5675,16 +5677,17 @@ react-toggle@^2.1.1:
     classnames "~2.2"
     react-addons-pure-render-mixin ">=0.14.0"
 
-react-virtualized@^8.11.4:
-  version "8.11.4"
-  resolved "https://registry.yarnpkg.com/react-virtualized/-/react-virtualized-8.11.4.tgz#0bb94f1ecbd286d07145ce63983d0a11724522c0"
+react-virtualized@^9.7.4:
+  version "9.7.4"
+  resolved "https://registry.yarnpkg.com/react-virtualized/-/react-virtualized-9.7.4.tgz#1b5b25c1397282c6ffc651b416befc69e282df12"
   dependencies:
     babel-runtime "^6.11.6"
     classnames "^2.2.3"
     dom-helpers "^2.4.0 || ^3.0.0"
     loose-envify "^1.3.0"
+    prop-types "^15.5.4"
 
-react@^15.4.2, react@^15.5.4:
+react@>=0.14.0, react@^15.4.2, react@^15.5.4:
   version "15.5.4"
   resolved "https://registry.yarnpkg.com/react/-/react-15.5.4.tgz#fa83eb01506ab237cdc1c8c3b1cea8de012bf047"
   dependencies:
