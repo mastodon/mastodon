@@ -95,7 +95,7 @@ Rails.application.routes.draw do
     end
   end
 
-  get '/admin', to: redirect('/admin/settings', status: 302)
+  get '/admin', to: redirect('/admin/settings/edit', status: 302)
 
   namespace :api do
     # PubSubHubbub outgoing subscriptions
