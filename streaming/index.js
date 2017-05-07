@@ -95,6 +95,8 @@ if (cluster.isMaster) {
     url:      process.env.REDIS_URL      || null
   })
 
+  const redisPubSubPrefix = process.env.REDIS_PUBSUB_PREFIX || ''
+
   const subs = {}
 
   redisClient.on('pmessage', (_, channel, message) => {
@@ -109,7 +111,7 @@ if (cluster.isMaster) {
     callbacks.forEach(callback => callback(message))
   })
 
-  redisClient.psubscribe('timeline:*')
+  redisClient.psubscribe(`${redisPubSubPrefix}timeline:*`)
 
   const subscribe = (channel, callback) => {
     log.silly(`Adding listener for ${channel}`)
@@ -197,7 +199,8 @@ if (cluster.isMaster) {
   const placeholders = (arr, shift = 0) => arr.map((_, i) => `$${i + 1 + shift}`).join(', ');
 
   const streamFrom = (id, req, output, attachCloseHandler, needsFiltering = false) => {
-    log.verbose(req.requestId, `Starting stream from ${id} for ${req.accountId}`)
+    const pubSubId = redisPubSubPrefix + id;
+    log.verbose(req.requestId, `Starting stream from ${pubSubId} for ${req.accountId}`)
 
     const listener = message => {
       const { event, payload, queued_at } = JSON.parse(message)
@@ -242,8 +245,8 @@ if (cluster.isMaster) {
       }
     }
 
-    subscribe(id, listener)
-    attachCloseHandler(id, listener)
+    subscribe(pubSubId, listener)
+    attachCloseHandler(pubSubId, listener)
   }
 
   // Setup stream output to HTTP
