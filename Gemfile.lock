@@ -67,10 +67,14 @@ GEM
       rack (>= 0.9.0)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
+    brakeman (3.6.1)
     builder (3.2.3)
     bullet (5.5.1)
       activesupport (>= 3.0.0)
       uniform_notifier (~> 1.10.0)
+    bundler-audit (0.4.0)
+      bundler (~> 1.2)
+      thor (~> 0.18)
     capistrano (3.8.0)
       airbrussh (>= 1.0.0)
       i18n
@@ -476,7 +480,9 @@ DEPENDENCIES
   aws-sdk (>= 2.0)
   better_errors
   binding_of_caller
+  brakeman (~> 3.6.0)
   bullet
+  bundler-audit (~> 0.4.0)
   capistrano (= 3.8.0)
   capistrano-rails
   capistrano-rbenv
