@@ -62,8 +62,7 @@ ActiveRecord::Schema.define(version: 20170507141759) do
     t.index ["account_id", "target_account_id"], name: "index_blocks_on_account_id_and_target_account_id", unique: true, using: :btree
   end
 
-  create_table "conversations", id: false, force: :cascade do |t|
-    t.bigint   "id"
+  create_table "conversations", id: :bigserial, force: :cascade do |t|
     t.string   "uri"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
