@@ -45,27 +45,6 @@ Rails.application.configure do
   # Use a different logger for distributed setups.
   # config.logger = ActiveSupport::TaggedLogging.new(SyslogLogger.new)
 
-  # Parse and split the REDIS_URL if passed (used with hosting platforms such as Heroku).
-  # Set ENV variables because they are used elsewhere.
-  if ENV['REDIS_URL']
-    redis_url = URI.parse(ENV['REDIS_URL'])
-    ENV['REDIS_HOST'] = redis_url.host
-    ENV['REDIS_PORT'] = redis_url.port.to_s
-    ENV['REDIS_PASSWORD'] = redis_url.password
-    db_num = redis_url.path[1..-1]
-    ENV['REDIS_DB'] = db_num if db_num.present?
-  end
-
-  # Use a different cache store in production.
-  config.cache_store = :redis_store, {
-    host: ENV.fetch('REDIS_HOST') { 'localhost' },
-    port: ENV.fetch('REDIS_PORT') { 6379 },
-    password: ENV.fetch('REDIS_PASSWORD') { false },
-    db: ENV.fetch('REDIS_DB') { 0 },
-    namespace: 'cache',
-    expires_in: 10.minutes,
-  }
-
   # Enable serving of images, stylesheets, and JavaScripts from an asset server.
   # config.action_controller.asset_host = 'http://assets.example.com'
 
@@ -99,16 +78,16 @@ Rails.application.configure do
     :password             => ENV['SMTP_PASSWORD'].presence,
     :domain               => ENV['SMTP_DOMAIN'] || ENV['LOCAL_DOMAIN'],
     :authentication       => ENV['SMTP_AUTH_METHOD'] == 'none' ? nil : ENV['SMTP_AUTH_METHOD'] || :plain,
+    :ca_file              => ENV['SMTP_CA_FILE'].presence,
     :openssl_verify_mode  => ENV['SMTP_OPENSSL_VERIFY_MODE'],
     :enable_starttls_auto => ENV['SMTP_ENABLE_STARTTLS_AUTO'] || true,
   }
 
   config.action_mailer.delivery_method = ENV.fetch('SMTP_DELIVERY_METHOD', 'smtp').to_sym
 
-  config.react.variant = :production
-
   config.to_prepare do
     StatsD.backend = StatsD::Instrument::Backends::NullBackend.new if ENV['STATSD_ADDR'].blank?
+    Sidekiq::Logging.logger.level = Logger::WARN
   end
 
   config.action_dispatch.default_headers = {

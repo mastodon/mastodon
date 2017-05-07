@@ -9,11 +9,14 @@ ja:
         locked: フォロワーを手動で承認する必要があります。デフォルトではトゥートの公開範囲はフォロワーのみです。
         note: あと%{counter}文字入力できます。
       imports:
-        data: 他の Mastodon サーバーからエクスポートしたCSVファイルを選択して下さい
+        data: 他の Mastodon インスタンスからエクスポートしたCSVファイルを選択して下さい
       sessions:
         otp: 携帯電話に表示された2段階認証コードを入力するか、生成したリカバリーコードを使用してください。
+      user:
+        allowed_languages: 選択した言語があなたの公開タイムラインに表示されます。選択していない言語は取り除かれます。
     labels:
       defaults:
+        allowed_languages: 許可する言語
         avatar: アイコン
         confirm_new_password: 新しいパスワード（確認用）
         confirm_password: パスワード（確認用）

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170425202925) do
+ActiveRecord::Schema.define(version: 20170507141759) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -288,7 +288,7 @@ ActiveRecord::Schema.define(version: 20170425202925) do
     t.datetime "created_at",                                  null: false
     t.datetime "updated_at",                                  null: false
     t.datetime "last_successful_delivery_at"
-    t.index ["callback_url", "account_id"], name: "index_subscriptions_on_callback_url_and_account_id", unique: true, using: :btree
+    t.index ["account_id", "callback_url"], name: "index_subscriptions_on_account_id_and_callback_url", unique: true, using: :btree
   end
 
   create_table "tags", force: :cascade do |t|
@@ -326,7 +326,9 @@ ActiveRecord::Schema.define(version: 20170425202925) do
     t.boolean  "otp_required_for_login"
     t.datetime "last_emailed_at"
     t.string   "otp_backup_codes",                                       array: true
+    t.string   "allowed_languages",         default: [],    null: false, array: true
     t.index ["account_id"], name: "index_users_on_account_id", using: :btree
+    t.index ["allowed_languages"], name: "index_users_on_allowed_languages", using: :gin
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree

@@ -22,7 +22,7 @@ public/assets
 .env
 .env.production
 node_modules/
-neo4j/
+build/
 
 # Ignore Vagrant files
 .vagrant/
@@ -43,3 +43,13 @@ redis
 # Ignore vim files
 *~
 *.swp
+/public/packs
+/node_modules
+
+
+# Ignore npm debug log
+npm-debug.log
+
+# Ignore Docker option files
+docker-compose.override.yml
+
