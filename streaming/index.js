@@ -89,7 +89,7 @@ if (cluster.isMaster) {
   const wss    = new WebSocket.Server({ server })
   const redisNamespace = process.env.REDIS_NAMESPACE || null
 
-  const redis_params = {
+  const redisParams = {
     host:     process.env.REDIS_HOST     || '127.0.0.1',
     port:     process.env.REDIS_PORT     || 6379,
     password: process.env.REDIS_PASSWORD,
@@ -97,11 +97,11 @@ if (cluster.isMaster) {
   }
 
   if (redisNamespace) {
-    redis_params.namespace = redisNamespace
+    redisParams.namespace = redisNamespace
   }
   const redisPrefix = redisNamespace ? `${redisNamespace}:` : ''
 
-  const redisClient = redis.createClient(redis_params)
+  const redisClient = redis.createClient(redisParams)
 
   const subs = {}
 
