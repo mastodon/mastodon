@@ -390,6 +390,10 @@ GEM
       crass (~> 1.0.2)
       nokogiri (>= 1.4.4)
       nokogumbo (~> 1.4.1)
+    sass (3.4.23)
+    scss_lint (0.42.2)
+      rainbow (~> 2.0)
+      sass (~> 3.4.15)
     sidekiq (5.0.0)
       concurrent-ruby (~> 1.0)
       connection_pool (~> 2.2, >= 2.2.0)
@@ -531,6 +535,7 @@ DEPENDENCIES
   rubocop (= 0.46.0)
   ruby-oembed
   sanitize
+  scss_lint (= 0.42.2)
   sidekiq
   sidekiq-scheduler
   sidekiq-unique-jobs
