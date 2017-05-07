@@ -2141,6 +2141,20 @@ button.icon-button.active i.fa-retweet {
   background: radial-gradient(ellipse, rgba($color4, 0.23) 0%, rgba($color4, 0) 60%);
 }
 
+@keyframes pulse {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.5;
+  }
+}
+
+.pulse-loading {
+  animation: pulse 1s ease-in-out infinite;
+  animation-direction: alternate;
+}
+
 .emoji-dialog {
   width: 245px;
   height: 270px;
