@@ -25,49 +25,6 @@ RSpec.describe Api::V1::AccountsController, type: :controller do
     end
   end
 
-  describe 'GET #verify_credentials' do
-    it 'returns http success' do
-      get :verify_credentials
-      expect(response).to have_http_status(:success)
-    end
-  end
-
-  describe 'PATCH #update_credentials' do
-    describe 'with valid data' do
-      before do
-        patch :update_credentials, params: {
-          display_name: "Alice Isn't Dead",
-          note: "Hi!\n\nToot toot!",
-          avatar: fixture_file_upload('files/avatar.gif', 'image/gif'),
-          header: fixture_file_upload('files/attachment.jpg', 'image/jpeg'),
-        }
-      end
-
-      it 'returns http success' do
-        expect(response).to have_http_status(:success)
-      end
-
-      it 'updates account info' do
-        user.account.reload
-
-        expect(user.account.display_name).to eq("Alice Isn't Dead")
-        expect(user.account.note).to eq("Hi!\n\nToot toot!")
-        expect(user.account.avatar).to exist
-        expect(user.account.header).to exist
-      end
-    end
-
-    describe 'with invalid data' do
-      before do
-        patch :update_credentials, params: { note: 'This is too long. ' * 10 }
-      end
-
-      it 'returns http unprocessable entity' do
-        expect(response).to have_http_status(:unprocessable_entity)
-      end
-    end
-  end
-
   describe 'GET #statuses' do
     it 'returns http success' do
       get :statuses, params: { id: user.account.id }

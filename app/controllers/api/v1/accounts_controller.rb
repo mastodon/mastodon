@@ -1,26 +1,14 @@
 # frozen_string_literal: true
 
 class Api::V1::AccountsController < ApiController
-  before_action -> { doorkeeper_authorize! :read }, except: [:follow, :unfollow, :block, :unblock, :mute, :unmute, :update_credentials]
+  before_action -> { doorkeeper_authorize! :read }, except: [:follow, :unfollow, :block, :unblock, :mute, :unmute]
   before_action -> { doorkeeper_authorize! :follow }, only: [:follow, :unfollow, :block, :unblock, :mute, :unmute]
-  before_action -> { doorkeeper_authorize! :write }, only: [:update_credentials]
   before_action :require_user!, except: [:show, :following, :followers, :statuses]
-  before_action :set_account, except: [:verify_credentials, :update_credentials, :suggestions, :search]
+  before_action :set_account, except: [:suggestions, :search]
 
   respond_to :json
 
   def show; end
-
-  def verify_credentials
-    @account = current_user.account
-    render :show
-  end
-
-  def update_credentials
-    current_account.update!(account_params)
-    @account = current_account
-    render :show
-  end
 
   def following
     @accounts = Account.includes(:passive_relationships)
@@ -150,9 +138,5 @@ class Api::V1::AccountsController < ApiController
 
   def statuses_pagination_params(core_params)
     params.permit(:limit, :only_media, :exclude_replies).merge(core_params)
-  end
-
-  def account_params
-    params.permit(:display_name, :note, :avatar, :header)
   end
 end
