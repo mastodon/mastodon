@@ -8,6 +8,9 @@ const CompressionPlugin = require('compression-webpack-plugin')
 const sharedConfig = require('./shared.js')
 
 module.exports = merge(sharedConfig, {
+
+  devtool: 'source-map', // separate sourcemap file, suitable for production
+
   output: { filename: '[name]-[chunkhash].js' },
 
   plugins: [
@@ -19,7 +22,7 @@ module.exports = merge(sharedConfig, {
         comments: false
       },
 
-      sourceMap: false
+      sourceMap: true
     }),
     new CompressionPlugin({
       asset: '[path].gz[query]',
