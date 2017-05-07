@@ -271,7 +271,7 @@ class Status < ApplicationRecord
       self.in_reply_to_account_id = (thread.account_id == account_id && thread.reply? ? thread.in_reply_to_account_id : thread.account_id)
       self.conversation_id        = thread.conversation_id
     else
-      self.conversation = Conversation.new
+      build_conversation
     end
   end
 
