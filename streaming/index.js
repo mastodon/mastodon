@@ -87,15 +87,21 @@ if (cluster.isMaster) {
   const pgPool = new pg.Pool(Object.assign(pgConfigs[env], dbUrlToConfig(process.env.DATABASE_URL)))
   const server = http.createServer(app)
   const wss    = new WebSocket.Server({ server })
-  const redis_namespace = process.env.REDIS_NAMESPACE || ''
+  const redis_namespace = process.env.REDIS_NAMESPACE || null
   
-  const redisClient = redis.createClient({
+  const redis_params = {
     host:     process.env.REDIS_HOST     || '127.0.0.1',
     port:     process.env.REDIS_PORT     || 6379,
-    prefix:   redis_namespace,
     password: process.env.REDIS_PASSWORD,
     url:      process.env.REDIS_URL      || null
-  })
+  }
+
+  if (redis_namespace) {
+    redis_params.namespace = redis_namespace
+  }
+  const redis_prefix = redis_namespace ? `${redis_namespace}:` : ''
+
+  const redisClient = redis.createClient(redis_params)
 
   const subs = {}
 
@@ -110,7 +116,7 @@ if (cluster.isMaster) {
     callbacks.forEach(callback => callback(message))
   })
 
-  redisClient.psubscribe(`${redis_namespace}:timeline:*`)
+  redisClient.psubscribe(`${redis_prefix}timeline:*`)
 
   const subscribe = (channel, callback) => {
     log.silly(`Adding listener for ${channel}`)
@@ -243,8 +249,8 @@ if (cluster.isMaster) {
       }
     }
 
-    subscribe(`${redis_namespace}:${id}`, listener)
-    attachCloseHandler(`${redis_namespace}:${id}`, listener)
+    subscribe(`${redis_prefix}${id}`, listener)
+    attachCloseHandler(`${redis_prefix}${id}`, listener)
   }
 
   // Setup stream output to HTTP
