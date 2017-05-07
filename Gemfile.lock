@@ -105,13 +105,6 @@ GEM
     cocaine (0.5.8)
       climate_control (>= 0.0.3, < 1.0)
     coderay (1.1.1)
-    coffee-rails (4.2.1)
-      coffee-script (>= 2.2.0)
-      railties (>= 4.0.0, < 5.2.x)
-    coffee-script (2.4.1)
-      coffee-script-source
-      execjs
-    coffee-script-source (1.12.2)
     colorize (0.8.1)
     concurrent-ruby (1.0.5)
     connection_pool (2.2.1)
@@ -224,8 +217,6 @@ GEM
       letter_opener (~> 1.0)
       railties (>= 3.2)
     link_header (0.0.8)
-    local_time (1.0.3)
-      coffee-rails
     lograge (0.5.0)
       actionpack (>= 4, <= 5.1.0)
       activesupport (>= 4, <= 5.1.0)
@@ -349,9 +340,11 @@ GEM
     redis-activesupport (5.0.2)
       activesupport (>= 3, < 6)
       redis-store (~> 1.3.0)
+    redis-namespace (1.5.3)
+      redis (~> 3.0, >= 3.0.4)
+      redis-store (>= 1.2, < 1.4)
     redis-rack (2.0.2)
       rack (>= 1.5, < 3)
-      redis-store (>= 1.2, < 1.4)
     redis-rails (5.0.2)
       redis-actionpack (>= 5.0, < 6)
       redis-activesupport (>= 5.0, < 6)
@@ -399,6 +392,10 @@ GEM
       crass (~> 1.0.2)
       nokogiri (>= 1.4.4)
       nokogumbo (~> 1.4.1)
+    sass (3.4.23)
+    scss_lint (0.42.2)
+      rainbow (~> 2.0)
+      sass (~> 3.4.15)
     sidekiq (5.0.0)
       concurrent-ruby (~> 1.0)
       connection_pool (~> 2.2, >= 2.2.0)
@@ -509,7 +506,6 @@ DEPENDENCIES
   letter_opener
   letter_opener_web
   link_header
-  local_time
   lograge
   microformats2
   nokogiri
@@ -534,6 +530,7 @@ DEPENDENCIES
   rails-settings-cached
   rails_12factor
   redis (~> 3.2)
+  redis-namespace
   redis-rails
   rqrcode
   rspec-rails
@@ -541,6 +538,7 @@ DEPENDENCIES
   rubocop (= 0.46.0)
   ruby-oembed
   sanitize
+  scss_lint (= 0.42.2)
   sidekiq
   sidekiq-scheduler
   sidekiq-unique-jobs

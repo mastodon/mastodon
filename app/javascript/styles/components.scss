@@ -1,8 +1,8 @@
 @import 'variables';
 
 .app-body {
- -webkit-overflow-scrolling: touch;
- -ms-overflow-style: -ms-autohiding-scrollbar;
+  -webkit-overflow-scrolling: touch;
+  -ms-overflow-style: -ms-autohiding-scrollbar;
 }
 
 .button {
@@ -91,7 +91,9 @@
   cursor: pointer;
   transition: color 100ms ease-in;
 
-  &:hover, &:active, &:focus {
+  &:hover,
+  &:active,
+  &:focus {
     color: lighten($color1, 33%);
     transition: color 200ms ease-out;
   }
@@ -109,14 +111,18 @@
     border: 0;
   }
 
-  &::-moz-focus-inner, &:focus, &:active {
+  &::-moz-focus-inner,
+  &:focus,
+  &:active {
     outline: 0 !important;
   }
 
   &.inverted {
     color: lighten($color1, 33%);
 
-    &:hover, &:active, &:focus {
+    &:hover,
+    &:active,
+    &:focus {
       color: lighten($color1, 26%);
     }
 
@@ -154,7 +160,9 @@
   outline: 0;
   transition: color 100ms ease-in;
 
-  &:hover, &:active, &:focus {
+  &:hover,
+  &:active,
+  &:focus {
     color: lighten($color1, 26%);
     transition: color 200ms ease-out;
   }
@@ -172,7 +180,9 @@
     border: 0;
   }
 
-  &::-moz-focus-inner, &:focus, &:active {
+  &::-moz-focus-inner,
+  &:focus,
+  &:active {
     outline: 0 !important;
   }
 }
@@ -181,15 +191,15 @@
   color: $color4;
 }
 
-.dropdown--active:after {
+.dropdown--active::after {
   content: "";
   display: block;
   position: absolute;
   width: 0;
   height: 0;
   border-style: solid;
-  border-width: 0 4.5px 7.8px 4.5px;
-  border-color: transparent transparent $color2 transparent;
+  border-width: 0 4.5px 7.8px;
+  border-color: transparent transparent $color2;
   bottom: 8px;
   right: 104px;
 }
@@ -202,7 +212,7 @@
 }
 
 .ellipsis {
-  &:after {
+  &::after {
     content: "…";
   }
 }
@@ -235,7 +245,9 @@
     font-weight: 500;
     text-decoration: underline;
 
-    &:hover, &:active, &:focus {
+    &:hover,
+    &:active,
+    &:focus {
       text-decoration: none;
     }
   }
@@ -246,7 +258,7 @@
   font-family: inherit;
   font-size: 14px;
   background: $color5;
-  border-radius: 0 0 4px 0;
+  border-radius: 0 0 4px;
 }
 
 .compose-form__buttons-wrapper {
@@ -320,7 +332,8 @@
   }
 }
 
-.compose-form__textarea, .follow-form__input {
+.compose-form__textarea,
+.follow-form__input {
   background: $color5;
 
   &:disabled {
@@ -331,8 +344,8 @@
 .compose-form__autosuggest-wrapper {
   position: relative;
 
-  .dropdown--active:after {
-    border-color: transparent transparent $color5 transparent;
+  .dropdown--active::after {
+    border-color: transparent transparent $color5;
     bottom: -1px;
     right: 8px;
   }
@@ -467,7 +480,7 @@ a.status__content__spoiler-link {
   color: lighten($color1, 8%);
   font-weight: 500;
   font-size: 11px;
-  padding: 0px 6px;
+  padding: 0 6px;
   text-transform: uppercase;
   line-height: inherit;
 }
@@ -784,7 +797,7 @@ a.status__content__spoiler-link {
       right: initial;
     }
 
-    &:after {
+    &::after {
       bottom: initial;
       margin-left: 11px;
       margin-top: -7px;
@@ -964,12 +977,12 @@ a.status__content__spoiler-link {
   position: absolute;
 
   .star-icon {
-    color: #ca8f04;
+    color: $color10;
   }
 }
 
 .star-icon.active {
-  color: #ca8f04;
+  color: $color10;
 }
 
 .notification__display-name {
@@ -1006,7 +1019,8 @@ a.status__content__spoiler-link {
   }
 }
 
-.transparent-background, .imageloader {
+.transparent-background,
+.imageloader {
   background: url('../images/void.png');
 }
 
@@ -1147,7 +1161,7 @@ a.status__content__spoiler-link {
   flex-direction: row;
   justify-content: flex-start;
   overflow-x: auto;
-  position:   relative;
+  position: relative;
 }
 
 @media screen and (min-width: 360px) {
@@ -1195,7 +1209,8 @@ a.status__content__spoiler-link {
   border-bottom: 2px solid transparent;
 }
 
-.column, .drawer {
+.column,
+.drawer {
   flex: 1 1 100%;
   overflow: hidden;
 }
@@ -1212,7 +1227,8 @@ a.status__content__spoiler-link {
 }
 
 @media screen and (max-width: 1024px) {
-  .column, .drawer {
+  .column,
+  .drawer {
     width: 100%;
     padding: 0;
   }
@@ -1221,7 +1237,8 @@ a.status__content__spoiler-link {
     flex-direction: column;
   }
 
-  .search__input, .autosuggest-textarea__textarea {
+  .search__input,
+  .autosuggest-textarea__textarea {
     font-size: 16px;
   }
 }
@@ -1231,7 +1248,8 @@ a.status__content__spoiler-link {
     padding: 0;
   }
 
-  .column, .drawer {
+  .column,
+  .drawer {
     flex: 0 0 auto;
     padding: 10px;
     padding-left: 5px;
@@ -1248,7 +1266,8 @@ a.status__content__spoiler-link {
   }
 
   .columns-area > div {
-    .column, .drawer {
+    .column,
+    .drawer {
       padding-left: 5px;
       padding-right: 5px;
     }
@@ -1269,7 +1288,6 @@ a.status__content__spoiler-link {
     margin-right: auto;
   }
 }
-
 
 .drawer__pager {
   box-sizing: border-box;
@@ -1352,7 +1370,9 @@ a.status__content__spoiler-link {
     color: $color4;
   }
 
-  &:hover, &:focus, &:active {
+  &:hover,
+  &:focus,
+  &:active {
     background: lighten($color1, 14%);
     transition: all 100ms linear;
   }
@@ -1514,8 +1534,8 @@ a.status__content__spoiler-link {
   position: absolute;
   width: 14px;
   height: 10px;
-  top: 0px;
-  bottom: 0px;
+  top: 0;
+  bottom: 0;
   margin-top: auto;
   margin-bottom: auto;
   line-height: 0;
@@ -1533,8 +1553,8 @@ a.status__content__spoiler-link {
   position: absolute;
   width: 10px;
   height: 10px;
-  top: 0px;
-  bottom: 0px;
+  top: 0;
+  bottom: 0;
   margin-top: auto;
   margin-bottom: auto;
   line-height: 0;
@@ -1702,7 +1722,7 @@ a.status__content__spoiler-link {
 }
 
 .character-counter--over {
-  color: #ff5050;
+  color: $color9;
 }
 
 .getting-started__wrapper {
@@ -1712,7 +1732,7 @@ a.status__content__spoiler-link {
 .getting-started {
   box-sizing: border-box;
   padding-bottom: 235px;
-  background: url('../images/mastodon-getting-started.png') no-repeat 0 100%/contain local;
+  background: url('../images/mastodon-getting-started.png') no-repeat 0 100% / contain local;
   flex: 1 0 auto;
 
   p {
@@ -1733,10 +1753,11 @@ a.status__content__spoiler-link {
   display: block;
   font-family: inherit;
   margin-bottom: 10px;
-  padding: 7px 0px;
+  padding: 7px 0;
   width: 100%;
 
-  &:focus, &:active {
+  &:focus,
+  &:active {
     color: $color5;
     border-bottom-color: $color4;
   }
@@ -1782,7 +1803,9 @@ button.icon-button.active i.fa-retweet {
   }
 }
 
-.status-card-video, .status-card-rich, .status-card-photo {
+.status-card-video,
+.status-card-rich,
+.status-card-photo {
   margin-top: 14px;
   overflow: hidden;
 
@@ -1801,6 +1824,26 @@ button.icon-button.active i.fa-retweet {
     width: 100%;
     height: auto;
     margin: 0;
+  }
+}
+
+.status-card-video {
+  position: relative;
+  width: 100%;
+  height: auto;
+  padding-top: 56.25%;
+
+  iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    width: 1px;
+    min-width: 100%;
+    height: 1px;
+    min-height: 100%;
+    margin: auto;
   }
 }
 
@@ -1836,7 +1879,7 @@ button.icon-button.active i.fa-retweet {
 }
 
 .status-card__image-image {
-  border-radius: 4px 0px 0px 4px;
+  border-radius: 4px 0 0 4px;
   display: block;
   height: auto;
   margin: 0;
@@ -1899,7 +1942,8 @@ button.icon-button.active i.fa-retweet {
     }
   }
 
-  &:focus, &:active {
+  &:focus,
+  &:active {
     outline: 0;
   }
 }
@@ -1975,7 +2019,7 @@ button.icon-button.active i.fa-retweet {
 .spoiler-button {
   left: 4px;
   position: absolute;
-  text-shadow: 0px 1px 1px #000, 1px 0px 1px #000;
+  text-shadow: 0 1px 1px $color8, 1px 0 1px $color8;
   top: 4px;
   z-index: 100;
 }
@@ -1990,7 +2034,7 @@ button.icon-button.active i.fa-retweet {
   border-bottom: 1px solid lighten($color1, 8%);
   display: flex;
   flex-direction: row;
-  padding: 10px 0px;
+  padding: 10px 0;
 }
 
 .account--panel__button,
@@ -2014,7 +2058,7 @@ button.icon-button.active i.fa-retweet {
 
 .modal-container__nav {
   align-items: center;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba($color8, 0.5);
   box-sizing: border-box;
   color: $color5;
   cursor: pointer;
@@ -2097,7 +2141,8 @@ button.icon-button.active i.fa-retweet {
   resize: vertical;
   width: 100%;
 
-  &:active, &:focus {
+  &:active,
+  &:focus {
     border-bottom-color: $color4;
     background: rgba($color8, 0.1);
   }
@@ -2134,7 +2179,8 @@ button.icon-button.active i.fa-retweet {
   }
 }
 
-.status-list__unread-indicator, .notifications__unread-indicator {
+.status-list__unread-indicator,
+.notifications__unread-indicator {
   position: absolute;
   top: 35px;
   left: 0;
@@ -2151,6 +2197,7 @@ button.icon-button.active i.fa-retweet {
   0% {
     opacity: 1;
   }
+
   100% {
     opacity: 0.5;
   }
@@ -2198,14 +2245,16 @@ button.icon-button.active i.fa-retweet {
         height: 18px;
       }
 
-      img, svg {
+      img,
+      svg {
         width: 18px;
         height: 18px;
         filter: grayscale(100%);
       }
 
       &:hover {
-        img, svg {
+        img,
+        svg {
           filter: grayscale(0);
         }
       }
@@ -2213,7 +2262,8 @@ button.icon-button.active i.fa-retweet {
       &.active {
         border-bottom-color: $color4;
 
-        img, svg {
+        img,
+        svg {
           filter: grayscale(0);
         }
       }
@@ -2281,7 +2331,7 @@ button.icon-button.active i.fa-retweet {
       position: relative;
       cursor: pointer;
 
-      &.active:after {
+      &.active::after {
         content: "";
         display: block;
         position: absolute;
@@ -2326,14 +2376,16 @@ button.icon-button.active i.fa-retweet {
   }
 
   .emoji-row .emoji {
-    img, svg {
+    img,
+    svg {
       transition: transform 60ms ease-in-out;
     }
 
     &:hover {
       background: lighten($color2, 3%);
 
-      img, svg {
+      img,
+      svg {
         transform: translateZ(0) scale(1.2);
       }
     }
@@ -2446,7 +2498,8 @@ button.icon-button.active i.fa-retweet {
 .emoji-button {
   outline: 0;
 
-  &:active, &:focus {
+  &:active,
+  &:focus {
     outline: 0 !important;
   }
 
@@ -2460,7 +2513,9 @@ button.icon-button.active i.fa-retweet {
     margin-top: 2px;
   }
 
-  &:hover, &:active, &:focus {
+  &:hover,
+  &:active,
+  &:focus {
     img {
       opacity: 1;
       filter: none;
@@ -2484,7 +2539,7 @@ button.icon-button.active i.fa-retweet {
   top: 27px;
   width: 230px;
   background: $color5;
-  border-radius: 0 4px 4px 4px;
+  border-radius: 0 4px 4px;
   z-index: 2;
   overflow: hidden;
 }
@@ -2495,7 +2550,8 @@ button.icon-button.active i.fa-retweet {
   cursor: pointer;
   display: flex;
 
-  &:hover, &.active {
+  &:hover,
+  &.active {
     background: $color4;
     color: $color5;
 
@@ -2568,7 +2624,9 @@ button.icon-button.active i.fa-retweet {
     border: 0;
   }
 
-  &::-moz-focus-inner, &:focus, &:active {
+  &::-moz-focus-inner,
+  &:focus,
+  &:active {
     outline: 0 !important;
   }
 
@@ -2642,7 +2700,9 @@ button.icon-button.active i.fa-retweet {
   color: $color2;
   text-decoration: none;
 
-  &:hover, &:active, &:focus {
+  &:hover,
+  &:active,
+  &:focus {
     color: lighten($color2, 4%);
     text-decoration: underline;
   }
@@ -2657,7 +2717,7 @@ button.icon-button.active i.fa-retweet {
   z-index: 9999;
   opacity: 0;
   background: rgba($color8, 0.7);
-  transform: translateZ(0px);
+  transform: translateZ(0);
 }
 
 .modal-root__container {
@@ -2688,7 +2748,8 @@ button.icon-button.active i.fa-retweet {
   max-height: 80vh;
   position: relative;
 
-  img, video {
+  img,
+  video {
     max-width: 80vw;
     max-height: 80vh;
   }
@@ -2767,11 +2828,14 @@ button.icon-button.active i.fa-retweet {
     font-size: 14px;
     font-weight: 500;
 
-    &:hover, &:focus, &:active {
+    &:hover,
+    &:focus,
+    &:active {
       color: darken($color2, 38%);
     }
 
-    &.onboarding-modal__done, &.onboarding-modal__next {
+    &.onboarding-modal__done,
+    &.onboarding-modal__next {
       color: $color4;
     }
   }
@@ -2816,7 +2880,9 @@ button.icon-button.active i.fa-retweet {
   a {
     color: $color4;
 
-    &:hover, &:focus, &:active {
+    &:hover,
+    &:focus,
+    &:active {
       color: lighten($color4, 4%);
     }
   }
@@ -2847,7 +2913,7 @@ button.icon-button.active i.fa-retweet {
 }
 
 .onboarding-modal__page-one__elephant-friend {
-  background: url('../images/elephant-friend.png') no-repeat center center/contain;
+  background: url('../images/elephant-friend.png') no-repeat center center / contain;
   width: 147px;
   height: 160px;
   margin-right: 10px;
@@ -2969,7 +3035,8 @@ button.icon-button.active i.fa-retweet {
   margin-left: 10px;
 }
 
-.boost-modal, .confirmation-modal {
+.boost-modal,
+.confirmation-modal {
   background: lighten($color2, 8%);
   color: $color1;
   border-radius: 8px;
@@ -3004,7 +3071,8 @@ button.icon-button.active i.fa-retweet {
   }
 }
 
-.boost-modal__action-bar, .confirmation-modal__action-bar {
+.boost-modal__action-bar,
+.confirmation-modal__action-bar {
   display: flex;
   background: $color2;
   padding: 10px;
@@ -3051,7 +3119,9 @@ button.icon-button.active i.fa-retweet {
     font-size: 14px;
     font-weight: 500;
 
-    &:hover, &:focus, &:active {
+    &:hover,
+    &:focus,
+    &:active {
       color: darken($color2, 38%);
     }
   }
@@ -3212,7 +3282,7 @@ button.icon-button.active i.fa-retweet {
 
 /* Status Video Player */
 .status__video-player {
-  background: #000;
+  background: $color8;
   box-sizing: border-box;
   cursor: default; /* May not be needed */
   margin-top: 8px;
@@ -3232,18 +3302,18 @@ button.icon-button.active i.fa-retweet {
 
 .status__video-player-expand,
 .status__video-player-mute {
-  color: #fff;
+  color: $color5;
   opacity: 0.8;
   position: absolute;
   right: 4px;
-  text-shadow: 0px 1px 1px #000, 1px 0px 1px #000;
+  text-shadow: 0 1px 1px $color8, 1px 0 1px $color8;
 }
 
 .status__video-player-spoiler {
-  color: #fff;
+  color: $color5;
   left: 4px;
   position: absolute;
-  text-shadow: 0px 1px 1px #000, 1px 0px 1px #000;
+  text-shadow: 0 1px 1px $color8, 1px 0 1px $color8;
   top: 4px;
   z-index: 100;
 }
@@ -3267,7 +3337,7 @@ button.icon-button.active i.fa-retweet {
 
 .media-spoiler-video-play-icon {
   border-radius: 100px;
-  color: rgba(255, 255, 255, 0.8);
+  color: rgba($color5, 0.8);
   font-size: 36px;
   left: 50%;
   padding: 5px;
