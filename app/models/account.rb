@@ -189,7 +189,7 @@ class Account < ApplicationRecord
   end
 
   def keypair
-    private_key.nil? ? OpenSSL::PKey::RSA.new(public_key) : OpenSSL::PKey::RSA.new(private_key)
+    OpenSSL::PKey::RSA.new(private_key || public_key)
   end
 
   def subscription(webhook_url)
