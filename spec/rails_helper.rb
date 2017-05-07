@@ -25,6 +25,7 @@ RSpec.configure do |config|
   config.include Devise::Test::ControllerHelpers, type: :controller
   config.include Devise::Test::ControllerHelpers, type: :view
   config.include Paperclip::Shoulda::Matchers
+  config.include ActiveSupport::Testing::TimeHelpers
 
   config.before :each, type: :feature do
     https = ENV['LOCAL_HTTPS'] == 'true'

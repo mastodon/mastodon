@@ -1,4 +1,27 @@
 # frozen_string_literal: true
+# == Schema Information
+#
+# Table name: statuses
+#
+#  id                     :integer          not null, primary key
+#  uri                    :string
+#  account_id             :integer          not null
+#  text                   :text             default(""), not null
+#  created_at             :datetime         not null
+#  updated_at             :datetime         not null
+#  in_reply_to_id         :integer
+#  reblog_of_id           :integer
+#  url                    :string
+#  sensitive              :boolean          default(FALSE)
+#  visibility             :integer          default("public"), not null
+#  in_reply_to_account_id :integer
+#  application_id         :integer
+#  spoiler_text           :text             default(""), not null
+#  reply                  :boolean          default(FALSE)
+#  favourites_count       :integer          default(0), not null
+#  reblogs_count          :integer          default(0), not null
+#  language               :string           default("en"), not null
+#
 
 class Status < ApplicationRecord
   include Paginable
@@ -119,6 +142,10 @@ class Status < ApplicationRecord
   end
 
   class << self
+    def in_allowed_languages(account)
+      where(language: account.allowed_languages)
+    end
+
     def as_home_timeline(account)
       where(account: [account] + account.following)
     end
@@ -198,6 +225,7 @@ class Status < ApplicationRecord
 
     def filter_timeline_for_account(query, account)
       query = query.not_excluded_by_account(account)
+      query = query.in_allowed_languages(account) if account.allowed_languages.present?
       query.merge(account_silencing_filter(account))
     end
 

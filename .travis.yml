@@ -1,9 +1,7 @@
 language: ruby
 cache:
-  bundler: true
-  yarn: true
-  directories:
-    - node_modules
+  bundler: false
+  yarn: false
 dist: trusty
 sudo: false
 
@@ -16,6 +14,9 @@ env:
     - LOCAL_HTTPS=true
     - RAILS_ENV=test
     - CXX=g++-4.8
+    - NOKOGIRI_USE_SYSTEM_LIBRARIES=true
+    - PARALLEL_TEST_PROCESSORS=2
+
 addons:
   postgresql: 9.4
   apt:
@@ -33,18 +34,17 @@ rvm:
 services:
   - redis-server
 
-bundler_args: --without development production --retry=3 --jobs=3
-
 install:
   - nvm install
   - npm install -g yarn
-  - bundle install
+  - bundle install --path=vendor/bundle --without development production --retry=3 --jobs=16
   - yarn install
 
 before_script:
-  - bundle exec rails db:create db:migrate
+  - bundle exec rake parallel:create parallel:load_schema parallel:prepare
+  - bundle exec rails assets:precompile
 
 script:
-  - bundle exec rspec
+  - bundle exec parallel_test spec/ --group-by filesize --type rspec
   - npm test
-  - i18n-tasks unused
+  - bundle exec i18n-tasks unused

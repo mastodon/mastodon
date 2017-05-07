@@ -5,24 +5,21 @@ ruby '>= 2.3.0', '< 2.5.0'
 
 gem 'pkg-config'
 
-gem 'rails', '~> 5.0.2'
-gem 'sass-rails', '~> 5.0'
-gem 'uglifier', '>= 1.3.0'
-gem 'jquery-rails'
 gem 'puma'
+gem 'rails', '~> 5.0.2'
+gem 'uglifier', '>= 1.3.0'
 
 gem 'hamlit-rails'
 gem 'pg'
 gem 'pghero'
 gem 'dotenv-rails'
-gem 'font-awesome-rails'
-gem 'best_in_place', '~> 3.0.1'
 
+gem 'aws-sdk', '>= 2.0'
 gem 'paperclip', '~> 5.1'
 gem 'paperclip-av-transcoder'
-gem 'aws-sdk', '>= 2.0'
 
 gem 'addressable'
+gem 'cld2', require: 'cld'
 gem 'devise'
 gem 'devise-two-factor'
 gem 'doorkeeper'
@@ -38,7 +35,7 @@ gem 'link_header'
 gem 'local_time'
 gem 'nokogiri'
 gem 'oj'
-gem 'ostatus2', '~> 1.1'
+gem 'ostatus2', '~> 2.0'
 gem 'ox'
 gem 'rabl'
 gem 'rack-attack'
@@ -51,6 +48,7 @@ gem 'rqrcode'
 gem 'ruby-oembed', require: 'oembed'
 gem 'sanitize'
 gem 'sidekiq'
+gem 'sidekiq-scheduler'
 gem 'sidekiq-unique-jobs'
 gem 'simple-navigation'
 gem 'simple_form'
@@ -58,18 +56,14 @@ gem 'sprockets-rails', require: 'sprockets/railtie'
 gem 'statsd-instrument'
 gem 'twitter-text'
 gem 'tzinfo-data'
-gem 'whatlanguage'
-
-gem 'react-rails'
-gem 'browserify-rails'
-gem 'autoprefixer-rails'
+gem 'webpacker', '~>1.2'
 
 group :development, :test do
-  gem 'rspec-rails'
-  gem 'pry-rails'
-  gem 'fuubar'
   gem 'fabrication'
+  gem 'fuubar'
   gem 'i18n-tasks', '~> 0.9.6'
+  gem 'pry-rails'
+  gem 'rspec-rails'
 end
 
 group :test do
@@ -80,26 +74,29 @@ group :test do
   gem 'rspec-sidekiq'
   gem 'simplecov', require: false
   gem 'webmock'
+  gem 'parallel_tests'
 end
 
 group :development do
-  gem 'rubocop', require: false
+  gem 'active_record_query_trace'
+  gem 'annotate'
   gem 'better_errors'
   gem 'binding_of_caller'
+  gem 'bullet'
   gem 'letter_opener'
   gem 'letter_opener_web'
-  gem 'bullet'
-  gem 'active_record_query_trace'
+  gem 'rubocop', '0.46.0', require: false
+  gem 'brakeman', '~> 3.6.0', require: false
+  gem 'bundler-audit', '~> 0.4.0', require: false
 
   gem 'capistrano', '3.8.0'
   gem 'capistrano-rails'
   gem 'capistrano-rbenv'
   gem 'capistrano-yarn'
-  gem 'capistrano-faster-assets', '~> 1.0'
 end
 
 group :production do
+  gem 'lograge'
   gem 'rails_12factor'
   gem 'redis-rails'
-  gem 'lograge'
 end

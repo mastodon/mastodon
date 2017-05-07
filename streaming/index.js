@@ -7,7 +7,7 @@ import redis from 'redis'
 import pg from 'pg'
 import log from 'npmlog'
 import url from 'url'
-import WebSocket from 'ws'
+import WebSocket from 'uws'
 import uuid from 'uuid'
 
 const env = process.env.NODE_ENV || 'development'
@@ -16,23 +16,56 @@ dotenv.config({
   path: env === 'production' ? '.env.production' : '.env'
 })
 
-if (cluster.isMaster) {
-  // cluster master
+const dbUrlToConfig = (dbUrl) => {
+  if (!dbUrl) {
+    return {}
+  }
 
+  const params = url.parse(dbUrl)
+  const config = {}
+
+  if (params.auth) {
+    [config.user, config.password] = params.auth.split(':')
+  }
+
+  if (params.hostname) {
+    config.host = params.hostname
+  }
+
+  if (params.port) {
+    config.port = params.port
+  }
+
+  if (params.pathname) {
+    config.database = params.params.pathname.split('/')[1]
+  }
+
+  const ssl = params.query && params.query.ssl
+  if (ssl) {
+    config.ssl = ssl === 'true' || ssl === '1'
+  }
+
+  return config
+}
+
+if (cluster.isMaster) {
+  // Cluster master
   const core = +process.env.STREAMING_CLUSTER_NUM || (env === 'development' ? 1 : Math.max(os.cpus().length - 1, 1))
+
   const fork = () => {
     const worker = cluster.fork();
+
     worker.on('exit', (code, signal) => {
       log.error(`Worker died with exit code ${code}, signal ${signal} received.`);
       setTimeout(() => fork(), 0);
     });
   };
+
   for (let i = 0; i < core; i++) fork();
+
   log.info(`Starting streaming API server master with ${core} workers`)
-
 } else {
-  // cluster worker
-
+  // Cluster worker
   const pgConfigs = {
     development: {
       database: 'mastodon_development',
@@ -51,14 +84,15 @@ if (cluster.isMaster) {
   }
 
   const app    = express()
-  const pgPool = new pg.Pool(pgConfigs[env])
+  const pgPool = new pg.Pool(Object.assign(pgConfigs[env], dbUrlToConfig(process.env.DATABASE_URL)))
   const server = http.createServer(app)
   const wss    = new WebSocket.Server({ server })
 
   const redisClient = redis.createClient({
     host:     process.env.REDIS_HOST     || '127.0.0.1',
     port:     process.env.REDIS_PORT     || 6379,
-    password: process.env.REDIS_PASSWORD
+    password: process.env.REDIS_PASSWORD,
+    url:      process.env.REDIS_URL      || null
   })
 
   const subs = {}
@@ -239,12 +273,16 @@ if (cluster.isMaster) {
 
   // Setup stream output to WebSockets
   const streamToWs = (req, ws) => {
-    const heartbeat = setInterval(() => ws.ping(), 15000)
+    const heartbeat = setInterval(() => {
+      // TODO: Can't add multiple listeners, due to the limitation of uws.
+      if (ws.readyState !== ws.OPEN) {
+        log.verbose(req.requestId, `Ending stream for ${req.accountId}`)
+        clearInterval(heartbeat)
+        return
+      }
 
-    ws.on('close', () => {
-      log.verbose(req.requestId, `Ending stream for ${req.accountId}`)
-      clearInterval(heartbeat)
-    })
+      ws.ping()
+    }, 15000)
 
     return (event, payload) => {
       if (ws.readyState !== ws.OPEN) {
@@ -328,7 +366,7 @@ if (cluster.isMaster) {
 
   server.listen(process.env.PORT || 4000, () => {
     log.level = process.env.LOG_LEVEL || 'verbose'
-    log.info(`Starting streaming API server worker on ${server.address()}`)
+    log.info(`Starting streaming API server worker on ${server.address().address}:${server.address().port}`)
   })
 
   process.on('SIGINT', exit)
