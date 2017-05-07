@@ -5,24 +5,31 @@
   .entry {
     background: $color5;
 
-    .detailed-status.light, .status.light {
+    .detailed-status.light,
+    .status.light {
       border-bottom: 1px solid $color2;
     }
 
     &:last-child {
-      &, .detailed-status.light, .status.light {
+      &,
+      .detailed-status.light,
+      .status.light {
         border-bottom: 0;
         border-radius: 0 0 4px 4px;
       }
     }
 
     &:first-child {
-      &, .detailed-status.light, .status.light {
+      &,
+      .detailed-status.light,
+      .status.light {
         border-radius: 4px 4px 0 0;
       }
 
       &:last-child {
-        &, .detailed-status.light, .status.light {
+        &,
+        .detailed-status.light,
+        .status.light {
           border-radius: 4px;
         }
       }
@@ -30,7 +37,7 @@
   }
 
   .status.light {
-    padding: 14px 14px 14px (48px + 14px*2);
+    padding: 14px 14px 14px (48px + 14px * 2);
     position: relative;
     min-height: 48px;
     cursor: default;
@@ -232,7 +239,8 @@
     }
   }
 
-  .media-item, .video-item {
+  .media-item,
+  .video-item {
     box-sizing: border-box;
     position: relative;
     left: auto;
@@ -323,8 +331,8 @@
   }
 
   .pre-header {
-    padding: 14px 0px;
-    padding-left: (48px + 14px*2);
+    padding: 14px 0;
+    padding-left: (48px + 14px * 2);
     padding-bottom: 0;
     margin-bottom: -4px;
     color: $color3;
@@ -333,7 +341,7 @@
 
     .pre-header__icon {
       position: absolute;
-      left: (48px + 14px*2 - 30px);
+      left: (48px + 14px * 2 - 30px);
     }
 
     .status__display-name.muted strong {
