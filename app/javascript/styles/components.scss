@@ -1063,7 +1063,6 @@ a.status__content__spoiler-link {
 .dropdown--active .dropdown__content {
   display: block;
   line-height: 18px;
-  max-width: 311px;
   right: 0;
   text-align: left;
   z-index: 9999;
@@ -1074,7 +1073,6 @@ a.status__content__spoiler-link {
     padding: 4px 0;
     border-radius: 4px;
     box-shadow: 0 0 15px rgba($color8, 0.4);
-    min-width: 140px;
     position: relative;
   }
 
@@ -1100,6 +1098,15 @@ a.status__content__spoiler-link {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+    width: 25vw;
+
+    @media screen and (max-width: 1024px) {
+      width: 50vw;
+    }
+
+    @media screen and (max-width: 500px) {
+      width: 90vw;
+    }
 
     &:focus {
       outline: 0;
@@ -1150,7 +1157,6 @@ a.status__content__spoiler-link {
 }
 
 .column {
-  width: 330px;
   position: relative;
   box-sizing: border-box;
   display: flex;
@@ -1171,7 +1177,6 @@ a.status__content__spoiler-link {
 }
 
 .drawer {
-  width: 300px;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
@@ -1231,6 +1236,7 @@ a.status__content__spoiler-link {
     padding: 10px;
     padding-left: 5px;
     padding-right: 5px;
+    height: 100vh;
 
     &:first-child {
       padding-left: 10px;
@@ -1247,6 +1253,14 @@ a.status__content__spoiler-link {
       padding-right: 5px;
     }
   }
+  .column{
+    width: 27vw;
+    max-width: 800px;
+  }
+  .drawer{
+    width: 19vw;
+    max-width: 400px;
+  }
 }
 
 @media screen and (min-width: 1397px) { /* Width of 4 columns with margins */
@@ -1256,14 +1270,6 @@ a.status__content__spoiler-link {
   }
 }
 
-@media screen and (min-width: 1900px) {
-  .column, .drawer {
-    width: 400px;
-    border-radius: 4px;
-    height: 96vh;
-    margin-top: 2vh;
-  }
-}
 
 .drawer__pager {
   box-sizing: border-box;
