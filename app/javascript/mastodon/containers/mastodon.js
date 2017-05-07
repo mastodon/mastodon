@@ -64,6 +64,7 @@ import pt from 'react-intl/locale-data/pt';
 import ru from 'react-intl/locale-data/ru';
 import uk from 'react-intl/locale-data/uk';
 import zh from 'react-intl/locale-data/zh';
+import tr from 'react-intl/locale-data/tr';
 import getMessagesForLocale from '../locales';
 import { hydrateStore } from '../actions/store';
 import createStream from '../stream';
@@ -98,6 +99,7 @@ addLocaleData([
   ...ru,
   ...uk,
   ...zh,
+  ...tr,
 ]);
 
 const getTopWhenReplacing = (previous, { location }) => location && location.action === 'REPLACE' && [0, 0];
