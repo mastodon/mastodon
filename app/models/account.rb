@@ -262,9 +262,7 @@ class Account < ApplicationRecord
     end
 
     def search_for(terms, limit = 10)
-      terms      = Arel.sql(connection.quote(terms.gsub(/['?\\:]/, ' ')))
-      textsearch = "(setweight(to_tsvector('simple', accounts.display_name), 'A') || setweight(to_tsvector('simple', accounts.username), 'B') || setweight(to_tsvector('simple', coalesce(accounts.domain, '')), 'C'))"
-      query      = "to_tsquery('simple', ''' ' || #{terms} || ' ''' || ':*')"
+      textsearch, query = generate_query_for_search(terms)
 
       sql = <<-SQL.squish
         SELECT
@@ -280,9 +278,7 @@ class Account < ApplicationRecord
     end
 
     def advanced_search_for(terms, account, limit = 10)
-      terms      = Arel.sql(connection.quote(terms.gsub(/['?\\:]/, ' ')))
-      textsearch = "(setweight(to_tsvector('simple', accounts.display_name), 'A') || setweight(to_tsvector('simple', accounts.username), 'B') || setweight(to_tsvector('simple', coalesce(accounts.domain, '')), 'C'))"
-      query      = "to_tsquery('simple', ''' ' || #{terms} || ' ''' || ':*')"
+      textsearch, query = generate_query_for_search(terms)
 
       sql = <<-SQL.squish
         SELECT
@@ -320,6 +316,14 @@ class Account < ApplicationRecord
     end
 
     private
+
+    def generate_query_for_search(terms)
+      terms      = Arel.sql(connection.quote(terms.gsub(/['?\\:]/, ' ')))
+      textsearch = "(setweight(to_tsvector('simple', accounts.display_name), 'A') || setweight(to_tsvector('simple', accounts.username), 'B') || setweight(to_tsvector('simple', coalesce(accounts.domain, '')), 'C'))"
+      query      = "to_tsquery('simple', ''' ' || #{terms} || ' ''' || ':*')"
+
+      [textsearch, query]
+    end
 
     def follow_mapping(query, field)
       query.pluck(field).each_with_object({}) { |id, mapping| mapping[id] = true }
