@@ -278,7 +278,7 @@ class Account < ApplicationRecord
         LIMIT ?
       SQL
 
-      Account.find_by_sql([sql, limit])
+      find_by_sql([sql, limit])
     end
 
     def advanced_search_for(terms, account, limit = 10)
@@ -296,7 +296,7 @@ class Account < ApplicationRecord
         LIMIT ?
       SQL
 
-      Account.find_by_sql([sql, account.id, account.id, limit])
+      find_by_sql([sql, account.id, account.id, limit])
     end
 
     def following_map(target_account_ids, account_id)
