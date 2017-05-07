@@ -5,7 +5,7 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
 import ReplyIndicatorContainer from '../containers/reply_indicator_container';
 import AutosuggestTextarea from '../../../components/autosuggest_textarea';
-import { debounce } from 'react-decoration';
+import { debounce } from 'lodash';
 import UploadButtonContainer from '../containers/upload_button_container';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import Toggle from 'react-toggle';
@@ -33,7 +33,7 @@ class ComposeForm extends ImmutablePureComponent {
     this.handleKeyDown = this.handleKeyDown.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.onSuggestionsClearRequested = this.onSuggestionsClearRequested.bind(this);
-    this.onSuggestionsFetchRequested = this.onSuggestionsFetchRequested.bind(this);
+    this.onSuggestionsFetchRequested = debounce(this.onSuggestionsFetchRequested.bind(this), 500);
     this.onSuggestionSelected = this.onSuggestionSelected.bind(this);
     this.handleChangeSpoilerText = this.handleChangeSpoilerText.bind(this);
     this.setAutosuggestTextarea = this.setAutosuggestTextarea.bind(this);
@@ -59,7 +59,6 @@ class ComposeForm extends ImmutablePureComponent {
     this.props.onClearSuggestions();
   }
 
-  @debounce(500)
   onSuggestionsFetchRequested (token) {
     this.props.onFetchSuggestions(token);
   }

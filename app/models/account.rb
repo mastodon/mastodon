@@ -48,12 +48,16 @@ class Account < ApplicationRecord
 
   # Local users
   has_one :user, inverse_of: :account
-  validates :username, presence: true, format: { with: /\A[a-z0-9_]+\z/i }, uniqueness: { scope: :domain, case_sensitive: false }, length: { maximum: 30 }, if: 'local?'
-  validates :username, presence: true, uniqueness: { scope: :domain, case_sensitive: true }, unless: 'local?'
 
-  # Local user profile validations
-  validates :display_name, length: { maximum: 30 }, if: 'local?'
-  validates :note, length: { maximum: 160 }, if: 'local?'
+  validates :username, presence: true
+  validates :username, uniqueness: { scope: :domain, case_sensitive: true }, unless: 'local?'
+
+  # Local user validations
+  with_options if: 'local?' do
+    validates :username, format: { with: /\A[a-z0-9_]+\z/i }, uniqueness: { scope: :domain, case_sensitive: false }, length: { maximum: 30 }
+    validates :display_name, length: { maximum: 30 }
+    validates :note, length: { maximum: 160 }
+  end
 
   # Timelines
   has_many :stream_entries, inverse_of: :account, dependent: :destroy
@@ -114,15 +118,15 @@ class Account < ApplicationRecord
   delegate :allowed_languages, to: :user, prefix: false, allow_nil: true
 
   def follow!(other_account)
-    active_relationships.where(target_account: other_account).first_or_create!(target_account: other_account)
+    active_relationships.find_or_create_by!(target_account: other_account)
   end
 
   def block!(other_account)
-    block_relationships.where(target_account: other_account).first_or_create!(target_account: other_account)
+    block_relationships.find_or_create_by!(target_account: other_account)
   end
 
   def mute!(other_account)
-    mute_relationships.where(target_account: other_account).first_or_create!(target_account: other_account)
+    mute_relationships.find_or_create_by!(target_account: other_account)
   end
 
   def unfollow!(other_account)
@@ -181,15 +185,15 @@ class Account < ApplicationRecord
   end
 
   def favourited?(status)
-    status.proper.favourites.where(account: self).count.positive?
+    status.proper.favourites.where(account: self).exists?
   end
 
   def reblogged?(status)
-    status.proper.reblogs.where(account: self).count.positive?
+    status.proper.reblogs.where(account: self).exists?
   end
 
   def keypair
-    private_key.nil? ? OpenSSL::PKey::RSA.new(public_key) : OpenSSL::PKey::RSA.new(private_key)
+    OpenSSL::PKey::RSA.new(private_key || public_key)
   end
 
   def subscription(webhook_url)
@@ -262,9 +266,7 @@ class Account < ApplicationRecord
     end
 
     def search_for(terms, limit = 10)
-      terms      = Arel.sql(connection.quote(terms.gsub(/['?\\:]/, ' ')))
-      textsearch = '(setweight(to_tsvector(\'simple\', accounts.display_name), \'A\') || setweight(to_tsvector(\'simple\', accounts.username), \'B\') || setweight(to_tsvector(\'simple\', coalesce(accounts.domain, \'\')), \'C\'))'
-      query      = 'to_tsquery(\'simple\', \'\'\' \' || ' + terms + ' || \' \'\'\' || \':*\')'
+      textsearch, query = generate_query_for_search(terms)
 
       sql = <<-SQL.squish
         SELECT
@@ -276,13 +278,11 @@ class Account < ApplicationRecord
         LIMIT ?
       SQL
 
-      Account.find_by_sql([sql, limit])
+      find_by_sql([sql, limit])
     end
 
     def advanced_search_for(terms, account, limit = 10)
-      terms      = Arel.sql(connection.quote(terms.gsub(/['?\\:]/, ' ')))
-      textsearch = '(setweight(to_tsvector(\'simple\', accounts.display_name), \'A\') || setweight(to_tsvector(\'simple\', accounts.username), \'B\') || setweight(to_tsvector(\'simple\', coalesce(accounts.domain, \'\')), \'C\'))'
-      query      = 'to_tsquery(\'simple\', \'\'\' \' || ' + terms + ' || \' \'\'\' || \':*\')'
+      textsearch, query = generate_query_for_search(terms)
 
       sql = <<-SQL.squish
         SELECT
@@ -296,7 +296,7 @@ class Account < ApplicationRecord
         LIMIT ?
       SQL
 
-      Account.find_by_sql([sql, account.id, account.id, limit])
+      find_by_sql([sql, account.id, account.id, limit])
     end
 
     def following_map(target_account_ids, account_id)
@@ -320,6 +320,14 @@ class Account < ApplicationRecord
     end
 
     private
+
+    def generate_query_for_search(terms)
+      terms      = Arel.sql(connection.quote(terms.gsub(/['?\\:]/, ' ')))
+      textsearch = "(setweight(to_tsvector('simple', accounts.display_name), 'A') || setweight(to_tsvector('simple', accounts.username), 'B') || setweight(to_tsvector('simple', coalesce(accounts.domain, '')), 'C'))"
+      query      = "to_tsquery('simple', ''' ' || #{terms} || ' ''' || ':*')"
+
+      [textsearch, query]
+    end
 
     def follow_mapping(query, field)
       query.pluck(field).each_with_object({}) { |id, mapping| mapping[id] = true }

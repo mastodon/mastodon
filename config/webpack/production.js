@@ -8,32 +8,21 @@ const CompressionPlugin = require('compression-webpack-plugin')
 const sharedConfig = require('./shared.js')
 
 module.exports = merge(sharedConfig, {
+
+  devtool: 'source-map', // separate sourcemap file, suitable for production
+
   output: { filename: '[name]-[chunkhash].js' },
 
   plugins: [
     new webpack.optimize.UglifyJsPlugin({
-      compress: {
-        unused: true,
-        evaluate: true,
-        booleans: true,
-        drop_debugger: true,
-        dead_code: true,
-        pure_getters: true,
-        negate_iife: true,
-        conditionals: true,
-        loops: true,
-        cascade: true,
-        keep_fargs: false,
-        warnings: true
-      },
-
-      mangle: false,
+      compress: true,
+      mangle: true,
 
       output: {
         comments: false
       },
 
-      sourceMap: false
+      sourceMap: true
     }),
     new CompressionPlugin({
       asset: '[path].gz[query]',

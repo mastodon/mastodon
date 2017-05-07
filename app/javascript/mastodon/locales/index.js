@@ -23,6 +23,7 @@ import zh_hk from './zh-HK.json';
 import zh_cn from './zh-CN.json';
 import bg from './bg.json';
 import id from './id.json';
+import tr from './tr.json';
 
 const locales = {
   ar,
@@ -50,6 +51,7 @@ const locales = {
   'zh-CN': zh_cn,
   bg,
   id,
+  tr,
 };
 
 export default function getMessagesForLocale(locale) {

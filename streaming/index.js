@@ -7,7 +7,7 @@ import redis from 'redis'
 import pg from 'pg'
 import log from 'npmlog'
 import url from 'url'
-import WebSocket from 'ws'
+import WebSocket from 'uws'
 import uuid from 'uuid'
 
 const env = process.env.NODE_ENV || 'development'
@@ -87,13 +87,21 @@ if (cluster.isMaster) {
   const pgPool = new pg.Pool(Object.assign(pgConfigs[env], dbUrlToConfig(process.env.DATABASE_URL)))
   const server = http.createServer(app)
   const wss    = new WebSocket.Server({ server })
+  const redisNamespace = process.env.REDIS_NAMESPACE || null
 
-  const redisClient = redis.createClient({
+  const redisParams = {
     host:     process.env.REDIS_HOST     || '127.0.0.1',
     port:     process.env.REDIS_PORT     || 6379,
     password: process.env.REDIS_PASSWORD,
     url:      process.env.REDIS_URL      || null
-  })
+  }
+
+  if (redisNamespace) {
+    redisParams.namespace = redisNamespace
+  }
+  const redisPrefix = redisNamespace ? `${redisNamespace}:` : ''
+
+  const redisClient = redis.createClient(redisParams)
 
   const subs = {}
 
@@ -105,11 +113,10 @@ if (cluster.isMaster) {
     if (!callbacks) {
       return
     }
-
     callbacks.forEach(callback => callback(message))
   })
 
-  redisClient.psubscribe('timeline:*')
+  redisClient.psubscribe(`${redisPrefix}timeline:*`)
 
   const subscribe = (channel, callback) => {
     log.silly(`Adding listener for ${channel}`)
@@ -242,8 +249,8 @@ if (cluster.isMaster) {
       }
     }
 
-    subscribe(id, listener)
-    attachCloseHandler(id, listener)
+    subscribe(`${redisPrefix}${id}`, listener)
+    attachCloseHandler(`${redisPrefix}${id}`, listener)
   }
 
   // Setup stream output to HTTP
@@ -273,12 +280,16 @@ if (cluster.isMaster) {
 
   // Setup stream output to WebSockets
   const streamToWs = (req, ws) => {
-    const heartbeat = setInterval(() => ws.ping(), 15000)
+    const heartbeat = setInterval(() => {
+      // TODO: Can't add multiple listeners, due to the limitation of uws.
+      if (ws.readyState !== ws.OPEN) {
+        log.verbose(req.requestId, `Ending stream for ${req.accountId}`)
+        clearInterval(heartbeat)
+        return
+      }
 
-    ws.on('close', () => {
-      log.verbose(req.requestId, `Ending stream for ${req.accountId}`)
-      clearInterval(heartbeat)
-    })
+      ws.ping()
+    }, 15000)
 
     return (event, payload) => {
       if (ws.readyState !== ws.OPEN) {

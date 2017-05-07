@@ -26,13 +26,13 @@ gem 'doorkeeper'
 gem 'fast_blank'
 gem 'goldfinger'
 gem 'hiredis'
+gem 'redis-namespace'
 gem 'htmlentities'
 gem 'http'
 gem 'http_accept_language'
 gem 'httplog'
 gem 'kaminari'
 gem 'link_header'
-gem 'local_time'
 gem 'nokogiri'
 gem 'oj'
 gem 'ostatus2', '~> 2.0'
@@ -86,6 +86,9 @@ group :development do
   gem 'letter_opener'
   gem 'letter_opener_web'
   gem 'rubocop', '0.46.0', require: false
+  gem 'brakeman', '~> 3.6.0', require: false
+  gem 'bundler-audit', '~> 0.4.0', require: false
+  gem 'scss_lint', '0.42.2', require: false
 
   gem 'capistrano', '3.8.0'
   gem 'capistrano-rails'

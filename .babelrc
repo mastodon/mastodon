@@ -1,19 +1,18 @@
 {
   "presets": [
-    "es2015",
     "react",
     [
       "env",
       {
         "loose": true,
-        "modules": false
+        "targets": {
+          "browsers": ["last 2 versions", "IE >= 11", "iOS >= 9"]
+        }
       }
     ]
   ],
   "plugins": [
-    "transform-react-jsx-source",
-    "transform-react-jsx-self",
-    "transform-decorators-legacy",
+    "syntax-dynamic-import",
     "transform-object-rest-spread",
     [
       "react-intl",
@@ -21,5 +20,18 @@
         "messagesDir": "./build/messages"
       }
     ]
-  ]
+  ],
+  "env": {
+    "development": {
+      "plugins": [
+        "transform-react-jsx-source",
+        "transform-react-jsx-self"
+      ]
+    },
+    "production": {
+      "plugins": [
+        "lodash"
+      ]
+    }
+  }
 }
