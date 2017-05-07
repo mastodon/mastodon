@@ -16,7 +16,7 @@
     height: 100%;
     padding: 0;
     overflow-y: auto;
-    
+
     .logo {
       display: block;
       margin: 40px auto;
@@ -50,7 +50,7 @@
 
         &.selected {
           background: darken($color1, 2%);
-          border-radius: 4px 0 0 0;
+          border-radius: 4px 0 0;
         }
       }
 
@@ -118,10 +118,12 @@
 
   .simple_form {
     max-width: 400px;
+
     .label_input {
       label.select {
         width: 50%;
       }
+
       select {
         width: 50%;
         float: right;
@@ -134,7 +136,8 @@
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
 
-    .sidebar-wrapper, .content-wrapper {
+    .sidebar-wrapper,
+    .content-wrapper {
       flex: 0 0 auto;
       height: auto;
       overflow: initial;

@@ -42,7 +42,9 @@ code {
     }
   }
 
-  .input.file, .input.select, .input.radio_buttons {
+  .input.file,
+  .input.select,
+  .input.radio_buttons {
     padding: 15px 0;
     margin-bottom: 0;
 
@@ -63,7 +65,7 @@ code {
     margin-bottom: 5px;
     font-family: inherit;
     font-size: 14px;
-    color: white;
+    color: $color5;
     display: block;
     width: auto;
   }
@@ -74,7 +76,7 @@ code {
     label {
       font-family: inherit;
       font-size: 14px;
-      color: white;
+      color: $color5;
       display: block;
       width: auto;
     }
@@ -86,8 +88,8 @@ code {
     }
 
     input[type=checkbox] {
-	    position: absolute;
-	    left: 0;
+      position: absolute;
+      left: 0;
       top: 1px;
       margin: 0;
     }
@@ -98,7 +100,11 @@ code {
     }
   }
 
-  input[type=text], input[type=number], input[type=email], input[type=password], textarea {
+  input[type=text],
+  input[type=number],
+  input[type=email],
+  input[type=password],
+  textarea {
     background: transparent;
     box-sizing: border-box;
     border: 0;
@@ -125,7 +131,8 @@ code {
       border-bottom-color: $color7;
     }
 
-    &:active, &:focus {
+    &:active,
+    &:focus {
       border-bottom-color: $color4;
       background: rgba($color8, 0.1);
     }
@@ -136,7 +143,9 @@ code {
       color: $color6;
     }
 
-    input[type=text], input[type=email], input[type=password] {
+    input[type=text],
+    input[type=email],
+    input[type=password] {
       border-bottom-color: $color6;
     }
 
@@ -152,7 +161,8 @@ code {
     margin-top: 30px;
   }
 
-  button, .block-button {
+  button,
+  .block-button {
     display: block;
     width: 100%;
     border: 0;
@@ -174,7 +184,8 @@ code {
       background-color: lighten($color4, 5%);
     }
 
-    &:active, &:focus {
+    &:active,
+    &:focus {
       position: relative;
       top: 1px;
       background-color: darken($color4, 5%);
@@ -187,7 +198,8 @@ code {
         background-color: lighten($color6, 5%);
       }
 
-      &:active, &:focus {
+      &:active,
+      &:focus {
         background-color: darken($color6, 5%);
       }
     }
@@ -226,7 +238,8 @@ code {
   }
 }
 
-.oauth-prompt, .follow-prompt {
+.oauth-prompt,
+.follow-prompt {
   margin-bottom: 30px;
   text-align: center;
   color: $color3;
@@ -248,7 +261,7 @@ code {
 
 .qr-code {
   flex: 0 0 auto;
-  background: #fff;
+  background: $color5;
   padding: 4px;
   margin-bottom: 20px;
   box-shadow: 0 0 15px rgba($color8, 0.2);
@@ -295,7 +308,9 @@ code {
       color: $color5;
       text-decoration: underline;
 
-      &:hover, &:focus, &:active {
+      &:hover,
+      &:focus,
+      &:active {
         text-decoration: none;
       }
     }
@@ -316,7 +331,8 @@ code {
   display: flex;
   align-items: center;
 
-  .actions, .pagination {
+  .actions,
+  .pagination {
     flex: 1 1 auto;
   }
 
