@@ -114,15 +114,15 @@ class Account < ApplicationRecord
   delegate :allowed_languages, to: :user, prefix: false, allow_nil: true
 
   def follow!(other_account)
-    active_relationships.where(target_account: other_account).first_or_create!(target_account: other_account)
+    active_relationships.find_or_create_by!(target_account: other_account)
   end
 
   def block!(other_account)
-    block_relationships.where(target_account: other_account).first_or_create!(target_account: other_account)
+    block_relationships.find_or_create_by!(target_account: other_account)
   end
 
   def mute!(other_account)
-    mute_relationships.where(target_account: other_account).first_or_create!(target_account: other_account)
+    mute_relationships.find_or_create_by!(target_account: other_account)
   end
 
   def unfollow!(other_account)
@@ -181,11 +181,11 @@ class Account < ApplicationRecord
   end
 
   def favourited?(status)
-    status.proper.favourites.where(account: self).count.positive?
+    status.proper.favourites.where(account: self).exists?
   end
 
   def reblogged?(status)
-    status.proper.reblogs.where(account: self).count.positive?
+    status.proper.reblogs.where(account: self).exists?
   end
 
   def keypair
