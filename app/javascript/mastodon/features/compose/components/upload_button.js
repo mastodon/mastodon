@@ -43,7 +43,16 @@ class UploadButton extends React.PureComponent {
     return (
       <div className='compose-form__upload-button'>
         <IconButton icon='camera' title={intl.formatMessage(messages.upload)} disabled={disabled} onClick={this.handleClick} className='compose-form__upload-button-icon' size={18} inverted style={iconStyle}/>
-        <input key={resetFileKey} ref={this.setRef} type='file' multiple={false} onChange={this.handleChange} disabled={disabled} style={{ display: 'none' }} />
+        <input
+          key={resetFileKey}
+          ref={this.setRef}
+          type='file'
+          multiple={false}
+          accept='image/gif,image/jpeg,image/png'
+          onChange={this.handleChange}
+          disabled={disabled}
+          style={{ display: 'none' }}
+        />
       </div>
     );
   }
