@@ -271,7 +271,7 @@ class Status < ApplicationRecord
       self.in_reply_to_account_id = carried_over_reply_to_account_id
       self.conversation_id        = thread.conversation_id
     else
-      create_conversation
+      create_conversation!
     end
   end
 
