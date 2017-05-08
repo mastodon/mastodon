@@ -35,6 +35,6 @@ class LanguageDetector
   end
 
   def default_locale
-    account&.user&.locale || I18n.default_locale
+    account&.user_locale || I18n.default_locale
   end
 end
