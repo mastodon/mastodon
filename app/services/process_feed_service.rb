@@ -132,8 +132,6 @@ class ProcessFeedService < BaseService
 
       return [nil, false] if account.suspended?
 
-      conversation = find_or_create_conversation(entry)
-
       status = Status.create!(
         uri: id(entry),
         url: url(entry),
@@ -144,7 +142,7 @@ class ProcessFeedService < BaseService
         reply: thread?(entry),
         language: content_language(entry),
         visibility: visibility_scope(entry),
-        conversation: conversation
+        conversation: find_or_create_conversation(entry)
       )
 
       if thread?(entry)
