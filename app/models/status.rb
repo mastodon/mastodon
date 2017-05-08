@@ -268,10 +268,18 @@ class Status < ApplicationRecord
     self.reply = !(in_reply_to_id.nil? && thread.nil?) unless reply
 
     if reply? && !thread.nil?
-      self.in_reply_to_account_id = (thread.account_id == account_id && thread.reply? ? thread.in_reply_to_account_id : thread.account_id)
+      self.in_reply_to_account_id = carried_over_reply_to_account_id
       self.conversation_id        = thread.conversation_id
     else
       create_conversation
+    end
+  end
+
+  def carried_over_reply_to_account_id
+    if thread.account_id == account_id && thread.reply?
+      thread.in_reply_to_account_id
+    else
+      thread.account_id
     end
   end
 
