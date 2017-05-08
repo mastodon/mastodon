@@ -47,11 +47,12 @@ class User < ApplicationRecord
 
   validates :locale, inclusion: I18n.available_locales.map(&:to_s), unless: 'locale.nil?'
   validates :email, email: true
-  validate :verify_allowed_languages
 
   scope :recent,    -> { order('id desc') }
   scope :admins,    -> { where(admin: true) }
   scope :confirmed, -> { where.not(confirmed_at: nil) }
+
+  before_validation :sanitize_languages
 
   def confirmed?
     confirmed_at.present?
@@ -81,9 +82,7 @@ class User < ApplicationRecord
 
   private
 
-  def verify_allowed_languages
-    if allowed_languages.any?(&:blank?)
-      errors.add(:allowed_languages)
-    end
+  def sanitize_languages
+    allowed_languages.reject!(&:blank?)
   end
 end
