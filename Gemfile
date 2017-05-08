@@ -61,7 +61,7 @@ gem 'webpacker', '~>1.2'
 group :development, :test do
   gem 'fabrication'
   gem 'fuubar'
-  gem 'i18n-tasks', '~> 0.9.6'
+  gem 'i18n-tasks'
   gem 'pry-rails'
   gem 'rspec-rails'
 end
@@ -85,10 +85,10 @@ group :development do
   gem 'bullet'
   gem 'letter_opener'
   gem 'letter_opener_web'
-  gem 'rubocop', '0.46.0', require: false
+  gem 'rubocop', require: false
   gem 'brakeman', '~> 3.6.0', require: false
-  gem 'bundler-audit', '~> 0.4.0', require: false
-  gem 'scss_lint', '0.42.2', require: false
+  gem 'bundler-audit', require: false
+  gem 'scss_lint', require: false
 
   gem 'capistrano', '3.8.0'
   gem 'capistrano-rails'

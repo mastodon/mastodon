@@ -25,6 +25,7 @@ module SettingsHelper
     pt: 'Português',
     'pt-BR': 'Português do Brasil',
     ru: 'Русский',
+    th: 'ภาษาไทย',
     tr: 'Türkçe',
     uk: 'Українська',
     'zh-CN': '简体中文',

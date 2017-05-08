@@ -48,12 +48,13 @@ th:
         name: "%{account_name} สร้างโน๊ต."
     outbox:
       name: "%{account_name}'s Outbox"
-      summary: "รวมกิจกรรมของผู้ใช้ %{account_name}."
+      summary: รวมกิจกรรมของผู้ใช้ %{account_name}.
   admin:
     accounts:
       are_you_sure: แน่ใจนะ?
       confirm: ยืนยัน
       confirmed: ยึนยันแล้ว
+      disable_two_factor_authentication: Disable 2FA
       display_name: ชื่อสำหรับดีสเพล
       domain: โดแมน
       edit: แก้ไข
@@ -118,7 +119,7 @@ th:
       show:
         affected_accounts:
           one: มีผลต่อหนึ่งแอคเค๊าท์ในฐานข้อมูล
-          other: "มีผลต่อแอคเค๊าท์ในฐานข้อมูลจำนวน %{count}"
+          other: มีผลต่อแอคเค๊าท์ในฐานข้อมูลจำนวน %{count}
         retroactive:
           silence: ยกเลิกการปิดเสียงทุกแอคเค๊าท์จากโดเมน
           suspend: ยกเลิกการหยุดทุกแอคเค๊าท์จากโดเมน
@@ -221,6 +222,7 @@ th:
     '422':
       content: การตรวจสอบความปลอดภัยล้มเหลว. คุณกำลังบล๊อกคุกกี้อยู่?
       title: การตรวจสอบความปลอดภัยล้มเหลว
+    '429': Throttled
   exports:
     blocks: คุณบล๊อก
     csv: CSV

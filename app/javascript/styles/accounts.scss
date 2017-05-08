@@ -1,10 +1,10 @@
 .card {
-  background: $color1;
+  background: $ui-base-color;
   background-size: cover;
   padding: 60px 0;
   padding-bottom: 0;
   border-radius: 4px 4px 0 0;
-  box-shadow: 0 0 15px rgba($color8, 0.2);
+  box-shadow: 0 0 15px rgba($base-shadow-color, 0.2);
   overflow: hidden;
   position: relative;
 
@@ -14,7 +14,7 @@
   }
 
   &::after {
-    background: linear-gradient(rgba($color8, 0.5), rgba($color8, 0.8));
+    background: linear-gradient(rgba($base-shadow-color, 0.5), rgba($base-shadow-color, 0.8));
     display: block;
     content: "";
     position: absolute;
@@ -29,17 +29,17 @@
     display: block;
     font-size: 20px;
     line-height: 18px * 1.5;
-    color: $color5;
+    color: $primary-text-color;
     font-weight: 500;
     text-align: center;
     position: relative;
     z-index: 2;
-    text-shadow: 0 0 2px $color8;
+    text-shadow: 0 0 2px $base-shadow-color;
 
     small {
       display: block;
       font-size: 14px;
-      color: $color4;
+      color: $ui-highlight-color;
       font-weight: 400;
     }
   }
@@ -82,10 +82,10 @@
 
   .counter {
     width: 80px;
-    color: $color3;
+    color: $ui-primary-color;
     padding: 5px 10px 0;
     margin-bottom: 10px;
-    border-right: 1px solid $color3;
+    border-right: 1px solid $ui-primary-color;
     cursor: default;
     position: relative;
 
@@ -100,14 +100,14 @@
       bottom: -10px;
       left: 0;
       width: 100%;
-      border-bottom: 4px solid $color3;
+      border-bottom: 4px solid $ui-primary-color;
       opacity: 0.5;
       transition: all 0.8s ease;
     }
 
     &.active {
       &::after {
-        border-bottom: 4px solid $color4;
+        border-bottom: 4px solid $ui-highlight-color;
         opacity: 1;
       }
     }
@@ -129,13 +129,13 @@
       text-transform: uppercase;
       display: block;
       margin-bottom: 5px;
-      text-shadow: 0 0 2px $color8;
+      text-shadow: 0 0 2px $base-shadow-color;
     }
 
     .counter-number {
       font-weight: 500;
       font-size: 18px;
-      color: $color5;
+      color: $primary-text-color;
     }
   }
 
@@ -144,7 +144,7 @@
     font-size: 14px;
     line-height: 18px;
     padding: 5px 10px;
-    color: $color2;
+    color: $ui-secondary-color;
     order: 1;
   }
 
@@ -180,7 +180,7 @@
   .page,
   .gap {
     font-size: 14px;
-    color: $color5;
+    color: $primary-text-color;
     font-weight: 500;
     display: inline-block;
     padding: 6px 10px;
@@ -188,9 +188,9 @@
   }
 
   .current {
-    background: $color5;
+    background: $simple-background-color;
     border-radius: 100px;
-    color: $color1;
+    color: $ui-base-color;
     cursor: default;
     margin: 0 10px;
   }
@@ -202,7 +202,7 @@
   .prev,
   .next {
     text-transform: uppercase;
-    color: $color2;
+    color: $ui-secondary-color;
   }
 
   .prev {
@@ -227,7 +227,7 @@
 
   .disabled {
     cursor: default;
-    color: lighten($color1, 10%);
+    color: lighten($ui-base-color, 10%);
   }
 
   @media screen and (max-width: 360px) {
@@ -249,8 +249,8 @@
 }
 
 .accounts-grid {
-  box-shadow: 0 0 15px rgba($color8, 0.2);
-  background: $color5;
+  box-shadow: 0 0 15px rgba($base-shadow-color, 0.2);
+  background: $simple-background-color;
   border-radius: 0 0 4px 4px;
   padding: 20px 10px;
   padding-bottom: 10px;
@@ -266,9 +266,9 @@
   .account-grid-card {
     box-sizing: border-box;
     width: 335px;
-    border: 1px solid $color2;
+    border: 1px solid $ui-secondary-color;
     border-radius: 4px;
-    color: $color1;
+    color: $ui-base-color;
     margin-bottom: 10px;
 
     &:nth-child(odd) {
@@ -278,7 +278,7 @@
     .account-grid-card__header {
       overflow: hidden;
       padding: 10px;
-      border-bottom: 1px solid $color2;
+      border-bottom: 1px solid $ui-secondary-color;
     }
 
     .avatar {
@@ -300,7 +300,7 @@
 
       a {
         display: block;
-        color: $color1;
+        color: $ui-base-color;
         text-decoration: none;
 
         &:hover {
@@ -317,20 +317,20 @@
     }
 
     .username {
-      color: $color4;
+      color: $ui-highlight-color;
     }
 
     .note {
       padding: 10px;
       padding-top: 15px;
-      color: $color3;
+      color: $ui-primary-color;
       word-wrap: break-word;
     }
   }
 }
 
 .nothing-here {
-  color: $color3;
+  color: $ui-primary-color;
   font-size: 14px;
   font-weight: 500;
   text-align: center;
@@ -341,10 +341,10 @@
 
 .account-card {
   padding: 14px 10px;
-  background: $color5;
+  background: $simple-background-color;
   border-radius: 4px;
   text-align: left;
-  box-shadow: 0 0 15px rgba($color8, 0.2);
+  box-shadow: 0 0 15px rgba($base-shadow-color, 0.2);
 
   .detailed-status__display-name {
     display: block;
@@ -377,12 +377,12 @@
 
       strong {
         font-weight: 500;
-        color: $color1;
+        color: $ui-base-color;
       }
 
       span {
         font-size: 14px;
-        color: $color3;
+        color: $ui-primary-color;
       }
     }
 
@@ -397,6 +397,6 @@
 
   .account__header__content {
     font-size: 14px;
-    color: $color1;
+    color: $ui-base-color;
   }
 }
