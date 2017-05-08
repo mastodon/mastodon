@@ -377,4 +377,23 @@ RSpec.describe Status, type: :model do
       expect(results).to include(status)
     end
   end
+
+  describe 'before_create' do
+    it 'sets account being replied to correctly over intermediary nodes' do
+      first_status = Fabricate(:status, account: bob)
+      intermediary = Fabricate(:status, thread: first_status, account: alice)
+      final        = Fabricate(:status, thread: intermediary, account: alice)
+
+      expect(final.in_reply_to_account_id).to eq bob.id
+    end
+
+    it 'creates new conversation for stand-alone status' do
+      expect(Status.create(account: alice, text: 'First').conversation_id).to_not be_nil
+    end
+
+    it 'keeps conversation of parent node' do
+      parent = Fabricate(:status, text: 'First')
+      expect(Status.create(account: alice, thread: parent, text: 'Response').conversation_id).to eq parent.conversation_id
+    end
+  end
 end
