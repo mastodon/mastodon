@@ -6,7 +6,7 @@
     %tr
       %td= t('admin.accounts.show.targeted_reports')
       %td= link_to pluralize(account.targeted_reports.count, t('admin.accounts.show.report')), admin_reports_path(target_account_id: account.id)
-    - if account.silenced? or account.suspended?
+    - if account.silenced? || account.suspended?
       %tr
         %td= t('admin.accounts.moderation.title')
         %td

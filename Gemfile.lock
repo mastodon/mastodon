@@ -157,6 +157,13 @@ GEM
       addressable (~> 2.4)
       http (~> 2.0)
       nokogiri (~> 1.6)
+    haml (4.0.7)
+      tilt
+    haml_lint (0.19.0)
+      haml (~> 4.0)
+      rake (>= 10, < 13)
+      rubocop (>= 0.36.0)
+      sysexits (~> 1.1)
     hamlit (2.8.1)
       temple (>= 0.8.0)
       thor
@@ -431,6 +438,7 @@ GEM
       net-scp (>= 1.1.2)
       net-ssh (>= 2.8.0)
     statsd-instrument (2.1.2)
+    sysexits (1.2.0)
     temple (0.8.0)
     terminal-table (1.7.3)
       unicode-display_width (~> 1.1.1)
@@ -495,6 +503,7 @@ DEPENDENCIES
   fast_blank
   fuubar
   goldfinger
+  haml_lint (~> 0.19.0)
   hamlit-rails
   hiredis
   htmlentities

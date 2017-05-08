@@ -9,6 +9,7 @@ import user_lists from './user_lists';
 import accounts from './accounts';
 import accounts_counters from './accounts_counters';
 import statuses from './statuses';
+import media_attachments from './media_attachments';
 import relationships from './relationships';
 import search from './search';
 import notifications from './notifications';
@@ -28,6 +29,7 @@ export default combineReducers({
   status_lists,
   accounts,
   accounts_counters,
+  media_attachments,
   statuses,
   relationships,
   search,
