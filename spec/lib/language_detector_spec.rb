@@ -43,16 +43,14 @@ describe LanguageDetector do
 
       describe 'with an account' do
         it 'uses the account locale when present' do
-          user    = double(:user, locale: 'fr')
-          account = double(:account, user: user)
+          account = double(user_locale: 'fr')
           result  = described_class.new('', account).to_iso_s
 
           expect(result).to eq :fr
         end
 
         it 'uses default locale when account is present but has no locale' do
-          user    = double(:user, locale: nil)
-          account = double(:accunt, user: user)
+          account = double(user_locale: nil)
           result  = described_class.new('', account).to_iso_s
 
           expect(result).to eq :en
