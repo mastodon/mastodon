@@ -89,7 +89,7 @@ group :development do
   gem 'rubocop', require: false
   gem 'brakeman', '~> 3.6.0', require: false
   gem 'bundler-audit', require: false
-  gem 'scss_lint', '0.42.2', require: false
+  gem 'scss_lint', require: false
   gem 'haml_lint', require: false
 
   gem 'capistrano', '3.8.0'
