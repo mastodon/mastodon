@@ -53,6 +53,11 @@ module StreamEntriesHelper
     if rtl_characters.present?
       # Remove mentions before counting characters to decide RTL ratio
       justtext = text.gsub(Account::MENTION_RE, '')
+      # Naiive catcher for URLs
+      justtext = justtext.gsub(/\<(http|ftp|mailto|git|irc)s?:\S+\>/, '')
+      # Naiive catcher for HTML tags
+      justtext = justtext.gsub(/<[A-Za-z\/]+[^>]*>/, '')
+
       total_size = justtext.strip.size.to_f
       rtl_size(rtl_characters.to_a) / total_size > 0.3
     else
