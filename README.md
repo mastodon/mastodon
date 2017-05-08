@@ -1,3 +1,5 @@
+**Please read this page to develop -> https://github.com/increments/mastodon/wiki**
+
 Mastodon
 ========
 
