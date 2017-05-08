@@ -15,12 +15,7 @@ window.Perf = require('react-addons-perf');
 Rails.start();
 
 require.context('../images/', true);
-
-const customContext = require.context('../../assets/stylesheets/', false);
-
-if (customContext.keys().indexOf('./custom.scss') !== -1) {
-  customContext('./custom.scss');
-}
+require.context('../../assets/stylesheets/', false, /custom.*\.scss$/);
 
 document.addEventListener('DOMContentLoaded', () => {
   const mountNode = document.getElementById('mastodon');
