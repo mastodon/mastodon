@@ -1,0 +1,12 @@
+ยินดีต้อนรับ <%= @resource.email %> !
+
+คุณได้สร้างแอ็คเค้าท์แล้ว <%= @instance %>.
+
+เพื่อยืนยันการเข้าร่วมของคุณ, กรุณาคลิ๊กที่ลิงค์ด้านล้างนี้ :
+<%= confirmation_url(@resource, confirmation_token: @token) %>
+
+กรุณาอ่านข้อตกลงและเงื่อนไขการใช้งาน <%= terms_url %>
+
+Sincerely,
+
+The <%= @instance %> team
