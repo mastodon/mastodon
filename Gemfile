@@ -27,7 +27,6 @@ gem 'fast_blank'
 gem 'goldfinger'
 gem 'hiredis'
 gem 'redis-namespace'
-gem 'haml'
 gem 'htmlentities'
 gem 'http'
 gem 'http_accept_language'
@@ -90,7 +89,6 @@ group :development do
   gem 'brakeman', '~> 3.6.0', require: false
   gem 'bundler-audit', require: false
   gem 'scss_lint', require: false
-  gem 'haml_lint', require: false
 
   gem 'capistrano', '3.8.0'
   gem 'capistrano-rails'
