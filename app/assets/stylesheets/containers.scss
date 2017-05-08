@@ -13,7 +13,8 @@
   display: flex;
   height: 100%;
   width: 100%;
-
+  position: absolute;
+  
   // 707568 - height 100% doesn't work on child of a flex item - chromium - Monorail
   // https://bugs.chromium.org/p/chromium/issues/detail?id=707568
   flex: 1 1 auto;
