@@ -16,7 +16,8 @@ const messages = defineMessages({
   cannot_reblog: { id: 'status.cannot_reblog', defaultMessage: 'This post cannot be boosted' },
   favourite: { id: 'status.favourite', defaultMessage: 'Favourite' },
   open: { id: 'status.open', defaultMessage: 'Expand this status' },
-  report: { id: 'status.report', defaultMessage: 'Report @{name}' }
+  report: { id: 'status.report', defaultMessage: 'Report @{name}' },
+  muteConversation: { id: 'status.mute_conversation', defaultMessage: 'Disable notifications' },
 });
 
 class StatusActionBar extends React.PureComponent {
@@ -35,6 +36,7 @@ class StatusActionBar extends React.PureComponent {
     onMute: PropTypes.func,
     onBlock: PropTypes.func,
     onReport: PropTypes.func,
+    onMuteConversation: PropTypes.func,
     me: PropTypes.number.isRequired,
     intl: PropTypes.object.isRequired
   };
@@ -76,6 +78,10 @@ class StatusActionBar extends React.PureComponent {
     this.context.router.push('/report');
   }
 
+  handleConversationMuteClick = () => {
+    this.props.onMuteConversation(this.props.status);
+  }
+
   render () {
     const { status, me, intl } = this.props;
     const reblogDisabled = status.get('visibility') === 'private' || status.get('visibility') === 'direct';
@@ -89,6 +95,8 @@ class StatusActionBar extends React.PureComponent {
     menu.push(null);
 
     if (status.getIn(['account', 'id']) === me) {
+      menu.push({ text: intl.formatMessage(messages.muteConversation), action: this.handleConversationMuteClick });
+      menu.push(null);
       menu.push({ text: intl.formatMessage(messages.delete), action: this.handleDeleteClick });
     } else {
       menu.push({ text: intl.formatMessage(messages.mention, { name: status.getIn(['account', 'username']) }), action: this.handleMentionClick });

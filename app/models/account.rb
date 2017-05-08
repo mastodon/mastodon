@@ -130,6 +130,10 @@ class Account < ApplicationRecord
     mute_relationships.find_or_create_by!(target_account: other_account)
   end
 
+  def mute_conversation!(conversation)
+    ConversationMute.find_or_create_by!(account: self, conversation: conversation)
+  end
+
   def unfollow!(other_account)
     follow = active_relationships.find_by(target_account: other_account)
     follow&.destroy
@@ -143,6 +147,11 @@ class Account < ApplicationRecord
   def unmute!(other_account)
     mute = mute_relationships.find_by(target_account: other_account)
     mute&.destroy
+  end
+
+  def unmute_conversation!(conversation)
+    mute = ConversationMute.find_by(account: self, conversation_id: conversation)
+    mute&.destroy!
   end
 
   def following?(other_account)

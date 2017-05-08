@@ -10,7 +10,7 @@
 #
 
 class Conversation < ApplicationRecord
-  validates :uri, uniqueness: true
+  validates :uri, uniqueness: true, unless: 'uri.nil?'
 
   has_many :statuses
 

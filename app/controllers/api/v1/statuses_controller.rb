@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
 class Api::V1::StatusesController < ApiController
-  before_action :authorize_if_got_token, except:            [:create, :destroy, :reblog, :unreblog, :favourite, :unfavourite]
-  before_action -> { doorkeeper_authorize! :write }, only:  [:create, :destroy, :reblog, :unreblog, :favourite, :unfavourite]
+  before_action :authorize_if_got_token, except:            [:create, :destroy, :reblog, :unreblog, :favourite, :unfavourite, :mute, :unmute]
+  before_action -> { doorkeeper_authorize! :write }, only:  [:create, :destroy, :reblog, :unreblog, :favourite, :unfavourite, :mute, :unmute]
   before_action :require_user!, except: [:show, :context, :card, :reblogged_by, :favourited_by]
-  before_action :set_status, only:      [:show, :context, :card, :reblogged_by, :favourited_by]
+  before_action :set_status, only:      [:show, :context, :card, :reblogged_by, :favourited_by, :mute, :unmute]
 
   respond_to :json
 
@@ -103,6 +103,16 @@ class Api::V1::StatusesController < ApiController
     UnfavouriteWorker.perform_async(current_user.account_id, @status.id)
 
     render :show
+  end
+
+  def mute
+    current_account.mute_conversation!(@status.conversation) unless @status.conversation.nil?
+    render_empty
+  end
+
+  def unmute
+    current_account.unmute_conversation!(@status.conversation) unless @status.conversation.nil?
+    render_empty
   end
 
   private
