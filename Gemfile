@@ -27,6 +27,7 @@ gem 'fast_blank'
 gem 'goldfinger'
 gem 'hiredis'
 gem 'redis-namespace'
+gem 'haml'
 gem 'htmlentities'
 gem 'http'
 gem 'http_accept_language'
@@ -85,11 +86,11 @@ group :development do
   gem 'bullet'
   gem 'letter_opener'
   gem 'letter_opener_web'
-  gem 'rubocop', '0.46.0', require: false
+  gem 'rubocop', require: false
   gem 'brakeman', '~> 3.6.0', require: false
   gem 'bundler-audit', require: false
   gem 'scss_lint', '0.42.2', require: false
-  gem 'haml_lint', '~> 0.19.0', require: false
+  gem 'haml_lint', require: false
 
   gem 'capistrano', '3.8.0'
   gem 'capistrano-rails'
