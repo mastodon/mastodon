@@ -19,10 +19,9 @@ class Api::SubscriptionsController < ApiController
 
     if subscription.verify(body, request.headers['HTTP_X_HUB_SIGNATURE'])
       ProcessingWorker.perform_async(@account.id, body.force_encoding('UTF-8'))
-      head 201
-    else
-      head 202
     end
+
+    head 200
   end
 
   private
