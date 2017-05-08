@@ -1,0 +1,13 @@
+version: '2'
+services:
+  db:
+    restart: always
+    image: postgres:alpine
+    ports:
+      - "5432:5432"
+
+  redis:
+    restart: always
+    image: redis:alpine
+    ports:
+      - "6379:6379"

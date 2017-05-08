@@ -48,6 +48,49 @@ If you would like, you can [support the development of this project on Patreon][
 - **Deployable via Docker**
   You don't need to mess with dependencies and configuration if you want to try Mastodon, if you have Docker and Docker Compose the deployment is extremely easy
 
+## Development
+
+### init
+
+```
+$ bundle install --with development
+$ yarn install --pure-lockfile
+$ bundle exec rails db:create
+$ bundle exec rails db:schema:load
+$ bundle exec rails db:seed
+```
+
+### start
+
+```
+$ docker-compose -f docker-compose.dev.yml up -d
+$ foreman start
+```
+
+### test
+
+```
+$ bundle exec rspec
+```
+
+### check localization status
+
+```
+$ bundle exec i18n-tasks health
+```
+
+### check code quality
+
+```
+$ bundle exec rubocop
+```
+
+- 参考
+  - [Running-Mastodon / Development-guide](https://github.com/tootsuite/documentation/blob/master/Running-Mastodon/Development-guide.md)
+  - [Mastodonの開発環境の構築まとめ
+](http://qiita.com/ABCanG1015/items/8075ecd20be66a5659ec)
+    - mastodon_test テーブルの作成でコケてるので `bundle exec rspec` もコケる
+
 ## Deployment
 
 There are guides in the documentation repository for [deploying on various platforms](https://github.com/tootsuite/documentation#running-mastodon).
