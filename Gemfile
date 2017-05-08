@@ -62,7 +62,7 @@ gem 'webpacker', '~>1.2'
 group :development, :test do
   gem 'fabrication'
   gem 'fuubar'
-  gem 'i18n-tasks', '~> 0.9.6'
+  gem 'i18n-tasks'
   gem 'pry-rails'
   gem 'rspec-rails'
 end
