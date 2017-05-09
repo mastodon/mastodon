@@ -13,7 +13,6 @@ const messages = defineMessages({
   cannot_reblog: { id: 'status.cannot_reblog', defaultMessage: 'This post cannot be boosted' },
   favourite: { id: 'status.favourite', defaultMessage: 'Favourite' },
   report: { id: 'status.report', defaultMessage: 'Report @{name}' },
-  muteConversation: { id: 'status.mute_conversation', defaultMessage: 'Disable notifications' },
 });
 
 class ActionBar extends React.PureComponent {
@@ -26,7 +25,6 @@ class ActionBar extends React.PureComponent {
     this.handleDeleteClick = this.handleDeleteClick.bind(this);
     this.handleMentionClick = this.handleMentionClick.bind(this);
     this.handleReport = this.handleReport.bind(this);
-    this.handleConversationMuteClick = this.handleConversationMuteClick.bind(this);
   }
 
   handleReplyClick () {
@@ -49,10 +47,6 @@ class ActionBar extends React.PureComponent {
     this.props.onMention(this.props.status.get('account'), this.context.router);
   }
 
-  handleConversationMuteClick () {
-    this.props.onMuteConversation(this.props.status);
-  }
-
   handleReport () {
     this.props.onReport(this.props.status);
     this.context.router.push('/report');
@@ -64,8 +58,6 @@ class ActionBar extends React.PureComponent {
     let menu = [];
 
     if (me === status.getIn(['account', 'id'])) {
-      menu.push({ text: intl.formatMessage(messages.muteConversation), action: this.handleConversationMuteClick });
-      menu.push(null);
       menu.push({ text: intl.formatMessage(messages.delete), action: this.handleDeleteClick });
     } else {
       menu.push({ text: intl.formatMessage(messages.mention, { name: status.getIn(['account', 'username']) }), action: this.handleMentionClick });
@@ -103,7 +95,6 @@ ActionBar.propTypes = {
   onDelete: PropTypes.func.isRequired,
   onMention: PropTypes.func.isRequired,
   onReport: PropTypes.func,
-  onMuteConversation: PropTypes.func,
   me: PropTypes.number.isRequired,
   intl: PropTypes.object.isRequired
 };

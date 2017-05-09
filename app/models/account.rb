@@ -150,7 +150,7 @@ class Account < ApplicationRecord
   end
 
   def unmute_conversation!(conversation)
-    mute = ConversationMute.find_by(account: self, conversation_id: conversation)
+    mute = ConversationMute.find_by(account: self, conversation: conversation)
     mute&.destroy!
   end
 
@@ -164,6 +164,10 @@ class Account < ApplicationRecord
 
   def muting?(other_account)
     muting.include?(other_account)
+  end
+
+  def muting_conversation?(conversation)
+    ConversationMute.where(account: self, conversation: conversation).exists?
   end
 
   def requested?(other_account)

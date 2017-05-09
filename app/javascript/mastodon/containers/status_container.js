@@ -16,7 +16,7 @@ import {
   blockAccount,
   muteAccount
 } from '../actions/accounts';
-import { muteStatus, deleteStatus } from '../actions/statuses';
+import { muteStatus, unmuteStatus, deleteStatus } from '../actions/statuses';
 import { initReport } from '../actions/reports';
 import { openModal } from '../actions/modal';
 import { createSelector } from 'reselect'
@@ -114,7 +114,11 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
   },
 
   onMuteConversation (status) {
-    dispatch(muteStatus(status.get('id')));
+    if (status.get('muted')) {
+      dispatch(unmuteStatus(status.get('id')));
+    } else {
+      dispatch(muteStatus(status.get('id')));
+    }
   },
 
 });
