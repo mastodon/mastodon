@@ -16,9 +16,9 @@ services:
       - ./redis:/data
 
   web:
-    restart: always
     build: .
     image: gargron/mastodon
+    restart: always
     env_file: .env.production
     command: bundle exec rails s -p 3000 -b '0.0.0.0'
     ports:
@@ -28,12 +28,13 @@ services:
       - redis
     volumes:
       - ./public/assets:/mastodon/public/assets
+      - ./public/packs:/mastodon/public/packs
       - ./public/system:/mastodon/public/system
 
   streaming:
-    restart: always
     build: .
     image: gargron/mastodon
+    restart: always
     env_file: .env.production
     command: npm run start
     ports:
@@ -42,21 +43,10 @@ services:
       - db
       - redis
 
-#  sidekiq:
-#    restart: always
-#    build: .
-#    image: gargron/mastodon
-#    env_file: .env.production
-#    command: bundle exec sidekiq -q default -q mailers -q pull -q push
-#    depends_on:
-#      - db
-#      - redis
-#    volumes:
-#      - ./public/system:/mastodon/public/system
-
   sidekiq1:
-    restart: always
     build: .
+    image: gargron/mastodon
+    restart: always
     env_file: .env.production
     command: bundle exec sidekiq -c 40 -q default 
     depends_on:
@@ -68,6 +58,7 @@ services:
   sidekiq2:
     restart: always
     build: .
+    image: gargron/mastodon
     env_file: .env.production
     command: bundle exec sidekiq -c 5 -q mailers
     depends_on:
@@ -79,6 +70,7 @@ services:
   sidekiq3:
     restart: always
     build: .
+    image: gargron/mastodon
     env_file: .env.production
     command: bundle exec sidekiq -c 10 -q pull
     depends_on:
@@ -90,6 +82,7 @@ services:
   sidekiq4:
     restart: always
     build: .
+    image: gargron/mastodon
     command: bundle exec sidekiq -c 15 -q push
     env_file: .env.production
     depends_on:
@@ -101,6 +94,7 @@ services:
   sidekiq5:
     restart: always
     build: .
+    image: gargron/mastodon
     env_file: .env.production
     command: bundle exec sidekiq -c 40 -q default 
     depends_on:

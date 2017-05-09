@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170425131920) do
+ActiveRecord::Schema.define(version: 20170425202925) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -203,6 +203,14 @@ ActiveRecord::Schema.define(version: 20170425131920) do
     t.datetime "image_updated_at"
     t.datetime "created_at",                      null: false
     t.datetime "updated_at",                      null: false
+    t.integer  "type",               default: 0,  null: false
+    t.text     "html",               default: "", null: false
+    t.string   "author_name",        default: "", null: false
+    t.string   "author_url",         default: "", null: false
+    t.string   "provider_name",      default: "", null: false
+    t.string   "provider_url",       default: "", null: false
+    t.integer  "width",              default: 0,  null: false
+    t.integer  "height",             default: 0,  null: false
     t.index ["status_id"], name: "index_preview_cards_on_status_id", unique: true, using: :btree
   end
 
@@ -318,7 +326,9 @@ ActiveRecord::Schema.define(version: 20170425131920) do
     t.boolean  "otp_required_for_login"
     t.datetime "last_emailed_at"
     t.string   "otp_backup_codes",                                       array: true
+    t.string   "allowed_languages",         default: [],    null: false, array: true
     t.index ["account_id"], name: "index_users_on_account_id", using: :btree
+    t.index ["allowed_languages"], name: "index_users_on_allowed_languages", using: :gin
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
