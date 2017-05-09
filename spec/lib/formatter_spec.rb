@@ -123,6 +123,13 @@ RSpec.describe Formatter do
         expect(subject).to match '<p>&lt;img src=&quot;javascript:alert(&apos;XSS&apos;);&quot;&gt;</p>'
       end
     end
+
+    context 'contains invalid URL' do
+      let(:local_text) { 'http://www\.google\.com' }
+      it 'has valid url' do
+        expect(subject).to eq '<p>http://www\.google\.com</p>'
+      end
+    end
   end
 
   describe '#reformat' do

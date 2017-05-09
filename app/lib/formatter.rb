@@ -92,6 +92,8 @@ class Formatter
       rel: 'nofollow noopener',
     }
     Twitter::Autolink.send(:link_to_text, entity, link_html(entity[:url]), normalized_url, html_attrs)
+  rescue Addressable::URI::InvalidURIError
+    encode(entity[:url])
   end
 
   def link_to_mention(entity, mentions)
