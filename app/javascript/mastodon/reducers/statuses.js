@@ -10,7 +10,9 @@ import {
 } from '../actions/interactions';
 import {
   STATUS_FETCH_SUCCESS,
-  CONTEXT_FETCH_SUCCESS
+  CONTEXT_FETCH_SUCCESS,
+  STATUS_MUTE_SUCCESS,
+  STATUS_UNMUTE_SUCCESS
 } from '../actions/statuses';
 import {
   TIMELINE_REFRESH_SUCCESS,
@@ -103,6 +105,10 @@ export default function statuses(state = initialState, action) {
     return state.setIn([action.status.get('id'), 'reblogged'], true);
   case REBLOG_FAIL:
     return state.setIn([action.status.get('id'), 'reblogged'], false);
+  case STATUS_MUTE_SUCCESS:
+    return state.setIn([action.id, 'muted'], true);
+  case STATUS_UNMUTE_SUCCESS:
+    return state.setIn([action.id, 'muted'], false);
   case TIMELINE_REFRESH_SUCCESS:
   case TIMELINE_EXPAND_SUCCESS:
   case ACCOUNT_TIMELINE_FETCH_SUCCESS:

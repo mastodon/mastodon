@@ -13,7 +13,6 @@ const messages = defineMessages({
   cannot_reblog: { id: 'status.cannot_reblog', defaultMessage: 'This post cannot be boosted' },
   favourite: { id: 'status.favourite', defaultMessage: 'Favourite' },
   report: { id: 'status.report', defaultMessage: 'Report @{name}' },
-  muteConversation: { id: 'status.mute_conversation', defaultMessage: 'Disable notifications' },
 });
 
 class ActionBar extends React.PureComponent {

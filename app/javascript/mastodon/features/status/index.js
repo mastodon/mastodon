@@ -19,7 +19,7 @@ import {
   replyCompose,
   mentionCompose
 } from '../../actions/compose';
-import { muteStatus, deleteStatus } from '../../actions/statuses';
+import { deleteStatus } from '../../actions/statuses';
 import { initReport } from '../../actions/reports';
 import {
   makeGetStatus,
@@ -188,7 +188,6 @@ class Status extends ImmutablePureComponent {
               onDelete={this.handleDeleteClick}
               onMention={this.handleMentionClick}
               onReport={this.handleReport}
-              onMuteConversation={this.handleConversationMuteClick}
             />
 
             {descendants}

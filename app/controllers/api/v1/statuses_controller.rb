@@ -107,12 +107,18 @@ class Api::V1::StatusesController < ApiController
 
   def mute
     current_account.mute_conversation!(@status.conversation) unless @status.conversation.nil?
-    render_empty
+
+    @mutes_map = { @status.conversation_id => true }
+
+    render :show
   end
 
   def unmute
     current_account.unmute_conversation!(@status.conversation) unless @status.conversation.nil?
-    render_empty
+
+    @mutes_map = { @status.conversation_id => false }
+
+    render :show
   end
 
   private

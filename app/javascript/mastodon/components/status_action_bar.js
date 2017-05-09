@@ -18,6 +18,7 @@ const messages = defineMessages({
   open: { id: 'status.open', defaultMessage: 'Expand this status' },
   report: { id: 'status.report', defaultMessage: 'Report @{name}' },
   muteConversation: { id: 'status.mute_conversation', defaultMessage: 'Disable notifications' },
+  unmuteConversation: { id: 'status.unmute_conversation', defaultMessage: 'Re-enable notifications' },
 });
 
 class StatusActionBar extends React.PureComponent {
@@ -86,6 +87,7 @@ class StatusActionBar extends React.PureComponent {
   render () {
     const { status, me, intl, withDismiss } = this.props;
     const reblogDisabled = status.get('visibility') === 'private' || status.get('visibility') === 'direct';
+    const mutingConversation = status.get('muted');
 
     let menu = [];
     let reblogIcon = 'retweet';
@@ -96,7 +98,7 @@ class StatusActionBar extends React.PureComponent {
     menu.push(null);
 
     if (withDismiss) {
-      menu.push({ text: intl.formatMessage(messages.muteConversation), action: this.handleConversationMuteClick });
+      menu.push({ text: intl.formatMessage(mutingConversation ? messages.unmuteConversation : messages.muteConversation), action: this.handleConversationMuteClick });
       menu.push(null);
     }
 
