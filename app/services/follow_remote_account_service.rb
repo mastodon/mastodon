@@ -75,6 +75,7 @@ class FollowRemoteAccountService < BaseService
 
   def get_feed(url)
     response = http_client(write: 20, connect: 20, read: 50).get(Addressable::URI.parse(url).normalize)
+    raise Goldfinger::Error, "Feed attempt failed for #{url}: HTTP #{response.code}" unless response.code == 200
     [response.to_s, Nokogiri::XML(response)]
   end
 

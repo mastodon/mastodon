@@ -22,6 +22,12 @@ RSpec.describe User, type: :model do
       user.valid?
       expect(user).to model_have_error_on_field(:email)
     end
+
+    it 'cleans out empty string from languages' do
+      user = Fabricate.build(:user, allowed_languages: [''])
+      user.valid?
+      expect(user.allowed_languages).to eq []
+    end
   end
 
   describe 'settings' do
@@ -123,6 +129,20 @@ RSpec.describe User, type: :model do
     it 'returns false if a confirmed_at is nil' do
       user = Fabricate.build(:user, confirmed_at: nil)
       expect(user.confirmed?).to be false
+    end
+  end
+
+  describe '#disable_two_factor!' do
+    it 'sets otp_required_for_login to false' do
+      user = Fabricate.build(:user, otp_required_for_login: true)
+      user.disable_two_factor!
+      expect(user.otp_required_for_login).to be false
+    end
+
+    it 'clears otp_backup_codes' do
+      user = Fabricate.build(:user, otp_backup_codes: %w[dummy dummy])
+      user.disable_two_factor!
+      expect(user.otp_backup_codes.empty?).to be true
     end
   end
 

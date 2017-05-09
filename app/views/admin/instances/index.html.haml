@@ -7,9 +7,6 @@
       %th= t('admin.instances.domain_name')
       %th= t('admin.instances.account_count')
   %tbody
-    - @instances.each do |instance|
-      %tr
-        %td= instance.domain
-        %td= instance.accounts_count
+    = render partial: 'instance', collection: @instances
 
 = paginate @instances

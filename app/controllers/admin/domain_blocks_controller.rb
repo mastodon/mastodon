@@ -2,8 +2,10 @@
 
 module Admin
   class DomainBlocksController < BaseController
+    before_action :set_domain_block, only: [:show, :destroy]
+
     def index
-      @blocks = DomainBlock.page(params[:page])
+      @domain_blocks = DomainBlock.page(params[:page])
     end
 
     def new
@@ -21,24 +23,25 @@ module Admin
       end
     end
 
-    def show
-      @domain_block = DomainBlock.find(params[:id])
-    end
+    def show; end
 
     def destroy
-      @domain_block = DomainBlock.find(params[:id])
       UnblockDomainService.new.call(@domain_block, retroactive_unblock?)
       redirect_to admin_domain_blocks_path, notice: I18n.t('admin.domain_blocks.destroyed_msg')
     end
 
     private
 
+    def set_domain_block
+      @domain_block = DomainBlock.find(params[:id])
+    end
+
     def resource_params
       params.require(:domain_block).permit(:domain, :severity, :reject_media, :retroactive)
     end
 
     def retroactive_unblock?
-      resource_params[:retroactive] == '1'
+      ActiveRecord::Type.lookup(:boolean).cast(resource_params[:retroactive])
     end
   end
 end

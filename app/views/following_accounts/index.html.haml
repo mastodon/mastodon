@@ -6,4 +6,4 @@
 
 = render 'accounts/header', account: @account
 
-= render 'accounts/follow_grid', accounts: @accounts
+= render 'accounts/follow_grid', follows: @follows, accounts: @follows.map(&:target_account)

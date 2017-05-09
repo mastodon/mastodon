@@ -1,14 +1,21 @@
 engines:
- duplication:
-   enabled: false
- rubocop:
-   enabled: true
- eslint:
-   enabled: true
+  brakeman:
+    enabled: true
+  bundler-audit:
+    enabled: true
+  duplication:
+    enabled: false
+  eslint:
+    enabled: true
+  rubocop:
+    enabled: true
+  scss-lint:
+    enabled: true
 ratings:
- paths:
- - "**.rb"
- - "**.js"
+  paths:
+  - "**.rb"
+  - "**.js"
+  - "**.scss"
 exclude_paths:
 - spec/
 - vendor/asset

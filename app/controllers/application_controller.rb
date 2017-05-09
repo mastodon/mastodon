@@ -44,32 +44,20 @@ class ApplicationController < ActionController::Base
 
   protected
 
+  def forbidden
+    respond_with_error(403)
+  end
+
   def not_found
-    respond_to do |format|
-      format.any  { head 404 }
-      format.html { respond_with_error(404) }
-    end
+    respond_with_error(404)
   end
 
   def gone
-    respond_to do |format|
-      format.any  { head 410 }
-      format.html { respond_with_error(410) }
-    end
-  end
-
-  def forbidden
-    respond_to do |format|
-      format.any  { head 403 }
-      format.html { render 'errors/403', layout: 'error', status: 403 }
-    end
+    respond_with_error(410)
   end
 
   def unprocessable_entity
-    respond_to do |format|
-      format.any  { head 422 }
-      format.html { respond_with_error(422) }
-    end
+    respond_with_error(422)
   end
 
   def single_user_mode?
@@ -105,7 +93,12 @@ class ApplicationController < ActionController::Base
   end
 
   def respond_with_error(code)
-    set_locale
-    render "errors/#{code}", layout: 'error', status: code
+    respond_to do |format|
+      format.any  { head code }
+      format.html do
+        set_locale
+        render "errors/#{code}", layout: 'error', status: code
+      end
+    end
   end
 end

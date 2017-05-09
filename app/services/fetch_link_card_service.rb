@@ -11,6 +11,7 @@ class FetchLinkCardService < BaseService
 
     return if url.nil?
 
+    url = Addressable::URI.parse(url).normalize.to_s
     card = PreviewCard.where(status: status).first_or_initialize(status: status, url: url)
     attempt_opengraph(card, url) unless attempt_oembed(card, url)
   end
