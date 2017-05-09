@@ -27,4 +27,10 @@ node(:accounts) do
   store
 end
 
+node(:media_attachments) do
+  {
+    accept_content_types: MediaAttachment::IMAGE_MIME_TYPES + MediaAttachment::VIDEO_MIME_TYPES
+  }
+end
+
 node(:settings) { @web_settings }

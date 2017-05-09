@@ -1,15 +1,31 @@
 # frozen_string_literal: true
 
 class Pubsubhubbub::UnsubscribeService < BaseService
-  def call(account, callback)
-    return ['Invalid topic URL', 422] if account.nil?
+  attr_reader :account, :callback_url
 
-    subscription = Subscription.find_by(account: account, callback_url: callback)
+  def call(account, callback_url)
+    @account = account
+    @callback_url = callback_url
 
-    unless subscription.nil?
-      Pubsubhubbub::ConfirmationWorker.perform_async(subscription.id, 'unsubscribe')
+    process_unsubscribe
+  end
+
+  private
+
+  def process_unsubscribe
+    if account.nil?
+      ['Invalid topic URL', 422]
+    else
+      confirm_unsubscribe unless subscription.nil?
+      ['', 202]
     end
+  end
 
-    ['', 202]
+  def confirm_unsubscribe
+    Pubsubhubbub::ConfirmationWorker.perform_async(subscription.id, 'unsubscribe')
+  end
+
+  def subscription
+    @_subscription ||= Subscription.find_by(account: account, callback_url: callback_url)
   end
 end

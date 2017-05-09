@@ -18,6 +18,7 @@ class Pubsubhubbub::DeliveryWorker
     return if DomainBlock.blocked?(host)
 
     headers['User-Agent']      = 'Mastodon/PubSubHubbub'
+    headers['Content-Type']    = 'application/atom+xml'
     headers['Link']            = LinkHeader.new([[api_push_url, [%w(rel hub)]], [account_url(subscription.account, format: :atom), [%w(rel self)]]]).to_s
     headers['X-Hub-Signature'] = signature(subscription.secret, payload) if subscription.secret?
 

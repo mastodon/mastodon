@@ -10,13 +10,13 @@
     padding: 8px;
     line-height: 18px;
     vertical-align: top;
-    border-top: 1px solid $color1;
+    border-top: 1px solid $ui-base-color;
     text-align: left;
   }
 
   & > thead > tr > th {
     vertical-align: bottom;
-    border-bottom: 2px solid $color1;
+    border-bottom: 2px solid $ui-base-color;
     border-top: 0;
     font-weight: 500;
   }
@@ -27,11 +27,11 @@
 
   & > tbody > tr:nth-child(odd) > td,
   & > tbody > tr:nth-child(odd) > th {
-    background: $color1;
+    background: $ui-base-color;
   }
 
   a {
-    color: $color4;
+    color: $ui-highlight-color;
     text-decoration: underline;
 
     &:hover {
@@ -53,11 +53,11 @@ a.table-action-link {
   display: inline-block;
   margin-right: 5px;
   padding: 0 10px;
-  color: rgba($color5, 0.7);
+  color: rgba($primary-text-color, 0.7);
   font-weight: 500;
 
   &:hover {
-    color: $color5;
+    color: $primary-text-color;
   }
 
   i.fa {
