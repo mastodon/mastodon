@@ -18,11 +18,15 @@ namespace :mastodon do
   desc 'Turn a user into an admin, identified by the USERNAME environment variable'
   task make_admin: :environment do
     include RoutingHelper
+    account_username = ENV.fetch('USERNAME')
+    user = User.joins(:account).where(accounts: { username: account_username })
 
-    user = Account.find_local(ENV.fetch('USERNAME')).user
-    user.update(admin: true)
-
-    puts "Congrats! #{user.account.username} is now an admin. \\o/\nNavigate to #{edit_admin_settings_url} to get started"
+    if user.present?
+      user.update(admin: true)
+      puts "Congrats! #{account_username} is now an admin. \\o/\nNavigate to #{edit_admin_settings_url} to get started"
+    else
+      puts "User could not be found; please make sure an Account with the `#{account_username}` username exists."
+    end
   end
 
   desc 'Manually confirms a user with associated user email address stored in USER_EMAIL environment variable.'
