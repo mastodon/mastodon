@@ -13,9 +13,9 @@ env:
     - LOCAL_DOMAIN=cb6e6126.ngrok.io
     - LOCAL_HTTPS=true
     - RAILS_ENV=test
-    - CXX=g++-4.8
     - NOKOGIRI_USE_SYSTEM_LIBRARIES=true
     - PARALLEL_TEST_PROCESSORS=2
+    - "PATH=$HOME:$PATH"
 
 addons:
   postgresql: 9.4
@@ -24,8 +24,10 @@ addons:
     - ubuntu-toolchain-r-test
     - trusty-media
     packages:
-    - g++-4.8
     - ffmpeg
+    - g++-6
+    - libprotobuf-dev
+    - protobuf-compiler
 
 rvm:
   - 2.3.4
@@ -43,6 +45,7 @@ install:
 before_script:
   - bundle exec rake parallel:create parallel:load_schema parallel:prepare
   - bundle exec rails assets:precompile
+  - ln -s /usr/bin/x86_64-linux-gnu-g++-6 "$HOME/g++"
 
 script:
   - bundle exec parallel_test spec/ --group-by filesize --type rspec
