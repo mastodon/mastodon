@@ -19,7 +19,7 @@ gem 'paperclip', '~> 5.1'
 gem 'paperclip-av-transcoder'
 
 gem 'addressable'
-gem 'cld2', require: 'cld'
+gem 'cld3', '~> 3.1.0'
 gem 'devise'
 gem 'devise-two-factor'
 gem 'doorkeeper'
