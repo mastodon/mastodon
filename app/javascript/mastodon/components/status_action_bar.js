@@ -78,16 +78,19 @@ class StatusActionBar extends React.PureComponent {
   }
 
   render () {
-    const { status, me, intl } = this.props;
+    const { status, me, intl, withDismiss } = this.props;
     const reblog_disabled = status.get('visibility') === 'private' || status.get('visibility') === 'direct';
     let menu = [];
 
     menu.push({ text: intl.formatMessage(messages.open), action: this.handleOpen });
     menu.push(null);
 
-    if (status.getIn(['account', 'id']) === me) {
+    if (withDismiss) {
       menu.push({ text: intl.formatMessage(messages.muteConversation), action: this.handleConversationMuteClick });
       menu.push(null);
+    }
+
+    if (status.getIn(['account', 'id']) === me) {
       menu.push({ text: intl.formatMessage(messages.delete), action: this.handleDeleteClick });
     } else {
       menu.push({ text: intl.formatMessage(messages.mention, { name: status.getIn(['account', 'username']) }), action: this.handleMentionClick });
@@ -141,7 +144,8 @@ StatusActionBar.propTypes = {
   onReport: PropTypes.func,
   onMuteConversation: PropTypes.func,
   me: PropTypes.number.isRequired,
-  intl: PropTypes.object.isRequired
+  intl: PropTypes.object.isRequired,
+  withDismiss: PropTypes.bool
 };
 
 export default injectIntl(StatusActionBar);
