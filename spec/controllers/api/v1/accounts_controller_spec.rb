@@ -28,7 +28,7 @@ RSpec.describe Api::V1::AccountsController, type: :controller do
     describe 'with valid data' do
       before do
         avatar = File.read(Rails.root.join('app', 'assets', 'images', 'logo.png'))
-        header = File.read(Rails.root.join('app', 'assets', 'images', 'mastodon-getting-started.png'))
+        header = File.read(Rails.root.join('app', 'assets', 'images', 'qiitan-gray.png'))
 
         patch :update_credentials, params: {
           display_name: "Alice Isn't Dead",
