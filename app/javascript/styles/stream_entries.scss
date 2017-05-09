@@ -361,15 +361,15 @@
     display: flex;
     cursor: pointer;
     font-size: 14px;
-    border: 1px solid lighten($color3, 8%);
+    border: 1px solid lighten($ui-primary-color, 8%);
     border-radius: 4px;
-    color: lighten($color1, 26%);
+    color: lighten($ui-base-color, 26%);
     margin-top: 14px;
     text-decoration: none;
     overflow: hidden;
 
     &:hover {
-      background: lighten($color2, 8%);
+      background: lighten($ui-secondary-color, 8%);
     }
   }
 
@@ -377,19 +377,19 @@
     display: block;
     font-weight: 500;
     margin-bottom: 5px;
-    color: $color1;
+    color: $ui-base-color;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
   }
 
   .status-card__description {
-    color: $color1;
+    color: $ui-base-color;
   }
 
   .status-card__image {
     flex: 0 0 100px;
-    background: lighten($color2, 8%);
+    background: lighten($ui-secondary-color, 8%);
   }
 }
 
