@@ -5,8 +5,8 @@ class UnsubscribeService < BaseService
     subscription = account.subscription(api_subscription_url(account.id))
     response = subscription.unsubscribe
 
-    unless response.successful?
-      Rails.logger.debug "PuSH unsubscribe for #{account.acct} failed: #{response.message}"
+    unless response_successful?(response)
+      Rails.logger.debug "PuSH unsubscribe for #{account.acct} (#{account.hub_url}) failed: HTTP #{response.code}"
     end
 
     account.secret = ''
@@ -14,5 +14,9 @@ class UnsubscribeService < BaseService
     account.save!
   rescue HTTP::Error, OpenSSL::SSL::SSLError
     Rails.logger.debug "PuSH subscription request for #{account.acct} could not be made due to HTTP or SSL error"
+  end
+
+  def response_successful?(response)
+    response.code > 199 && response.code < 300
   end
 end
