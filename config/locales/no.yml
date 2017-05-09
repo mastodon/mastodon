@@ -5,6 +5,7 @@
     about_this: Om denne instansen
     apps: Applikasjoner
     business_email: 'Bedriftsepost:'
+    closed_registrations: Registreringer er for øyeblikket lukket på denne instansen.
     contact: Kontakt
     description_headline: Hva er %{domain}?
     domain_count_after: andre instanser
@@ -28,6 +29,7 @@
     terms: Betingelser
     user_count_after: brukere
     user_count_before: Her bor
+    version: Versjon
   accounts:
     follow: Følg
     followers: Følgere
@@ -38,8 +40,148 @@
     posts: Poster
     remote_follow: Følg fra andre instanser
     unfollow: Avfølg
+  activitypub:
+    activity:
+      announce:
+        name: "%{account_name} delte en aktivitet."
+      create:
+        name: "%{account_name} laget en aktivitet."
+    outbox:
+      name: "%{account_name} sin utboks"
+      summary: En samling aktiviteter fra brukeren %{account_name}.
+  admin:
+    accounts:
+      are_you_sure: Er du sikker?
+      confirm: Bekreft
+      confirmed: Bekreftet
+      disable_two_factor_authentication: Disable 2FA
+      display_name: Visningsnavn
+      domain: Domene
+      edit: Redigér
+      email: E-post
+      feed_url: Feed-URL
+      followers: Følgere
+      follows: Følginger
+      location:
+        all: Alle
+        local: Lokalt
+        remote: Fjernt
+        title: Sted
+      media_attachments: Mediavedlegg
+      moderation:
+        all: Alle
+        silenced: Målbundet
+        suspended: Utvist
+        title: Moderasjon
+      most_recent_activity: Nyligste aktivitet
+      most_recent_ip: Nyligste IP
+      not_subscribed: Ikke abonnért
+      order:
+        alphabetic: Alfabetisk
+        most_recent: Nyligst
+        title: Rekkefølge
+      perform_full_suspension: Utfør full utvisning
+      profile_url: Profil-URL
+      public: Offentlig
+      push_subscription_expires: PuSH-abonnent utløper
+      reset_password: Nullstill passord
+      salmon_url: Salmon-URL
+      show:
+        created_reports: Rapporter laget av denne kontoen
+        report: rapport
+        targeted_reports: Rapporter laget om denne kontoen
+      silence: Målbind
+      statuses: Statuser
+      title: Kontoer
+      undo_silenced: Angre målbinding
+      undo_suspension: Angre utvisning
+      username: Brukernavn
+      web: Web
+    domain_blocks:
+      add_new: Lag ny
+      created_msg: Domeneblokkering blir nå behandlet
+      destroyed_msg: Domeneblokkering har nå blitt angret
+      domain: Domene
+      new:
+        create: Lag blokkering
+        hint: Domeneblokkeringen vil ikke hindre opprettelse av kontooppføringer i databasen, men vil retroaktivt og automatisk benytte spesifikke moderasjonsmetoder på de kontoene.
+        severity:
+          desc_html: "<strong>Målbind</strong> vil gjøre kontoens poster usynlige for alle som ikke følger den. <strong>Utvis</storng> fjerner alt innhold, media og profildata fra kontoen."
+          silence: Målbind
+          suspend: Utvis
+        title: Ny domeneblokkering
+      reject_media: Avvis mediefiler
+      reject_media_hint: Fjerner lokalt lagrede mediefiler og nekter å laste dem ned i fremtiden. Irrelevant for utvisninger.
+      severities:
+        silence: Målbind
+        suspend: Utvis
+      severity: Alvorlighet
+      show:
+        affected_accounts:
+          one: En konto i databasen påvirket
+          other: "%{count} kontoer i databasen påvirket"
+        retroactive:
+          silence: Avmålbind alle eksisterende kontoer fre dette domenet
+          suspend: Avutvis alle eksisterende kontoer fra dette domenet
+        title: Angre domeneblokkering for %{domain}
+        undo: Angre
+      title: Domeneblokkeringer
+      undo: Angre
+    instances:
+      account_count: Kjente kontoer
+      domain_name: Domene
+      title: Kjente instanser
+    pubsubhubbub:
+      callback_url: Callback-URL
+      confirmed: Bekreftet
+      expires_in: Utløper om
+      last_delivery: Siste levering
+      title: PubSubHubbub
+      topic: Emne
+    reports:
+      comment:
+        label: Kommentar
+        none: Ingen
+      delete: Slett
+      id: ID
+      mark_as_resolved: Merk som løst
+      report: 'Rapportér #%{id}'
+      report_contents: Innhold
+      reported_account: Rapportert konto
+      reported_by: Rapportert av
+      resolved: Løst
+      silence_account: Målbind konto
+      status: Status
+      suspend_account: Utvis konto
+      target: Mål
+      title: Rapporter
+      unresolved: Uløst
+      view: Vis
+    settings:
+      contact_information:
+        email: Skriv en offentlig e-postadresse
+        label: Kontaktinformasjon
+        username: Skriv brukernavn
+      registrations:
+        closed_message:
+          desc_html: Vises på forsiden når registreringer er lukket<br>Du kan bruke HTML-tagger
+          title: Melding for lukket registrering
+        open:
+          disabled: På
+          enabled: Av
+          title: Åpen registrering
+      setting: Innstilling
+      site_description:
+        desc_html: Vises som et avsnitt på forsiden og brukes som en meta-tagg.<br> Du kan bruke HTML-tagger, spesielt <code>&lt;a&gt;</code> og <code>&lt;em&gt;</code>.
+        title: Nettstedsbeskrivelse
+      site_description_extended:
+        desc_html: Vises på side for utvidet informasjon.<br>Du kan bruke HTML-tagger
+        title: Utvidet nettstedsinformasjon
+      site_title: Nettstedstittel
+      title: Nettstedsinnstillinger
+    title: Administrasjon
   application_mailer:
-    settings: 'Endre foretrukne epost innstillinger: %{link}'
+    settings: 'Endre foretrukne e-postinnstillinger: %{link}'
     signature: Mastodon-notiser fra %{instance}
     view: 'Se:'
   applications:
@@ -73,11 +215,32 @@
       x_minutes: "%{count} min"
       x_months: "%{count} mnd"
       x_seconds: "%{count} sek"
+  errors:
+    '403': Du har ikke tillatelse til å vise denne siden.
+    '404': Siden du leter etter finnes ikke.
+    '410': Siden du leter etter finnes ikke lenger.
+    '422':
+      content: Sikkerhetsverifisering feilet. Blokkerer du informasjonskapsler?
+      title: Sikkerhetsverifisering feilet.
+    '429': Throttled
   exports:
     blocks: Du blokkerer
     csv: CSV
     follows: Du følger
+    mutes: Du demper
     storage: Medialagring
+  followers:
+    domain: Domene
+    explanation_html: Hvis du vil styre hvem som ser statusene dine, må du være klar over hvem som følger deg. <strong>Dine private statuser leveres til alle instanser der du har følgere</strong>. Du bør kanskje se over dem, og fjerne følgere hvis du ikke stoler på at ditt privatliv vil bli respektert av staben eller programvaren på de instansene.
+    followers_count: Antall følgere
+    lock_link: Lås kontoen din
+    purge: Fjern fra følgere
+    success:
+      one: I ferd med å mykblokkere følgere fra ett domene...
+      other: I ferd med å mykblokkere følgere fra %{count} domener...
+    true_privacy_html: Vennligst forstå at <strong>virkelig privatliv kun kan oppnås med ende-til-ende-kryptering.</strong>
+    unlocked_warning_html: Alle kan følge deg for å umiddelbart se dine private statuser. %{lock_link} for å kunne se over og avvise følgere.
+    unlocked_warning_title: Din konto er ikke låst
   generic:
     changes_saved_msg: Vellykket lagring av endringer!
     powered_by: drevet av %{link}
@@ -91,8 +254,13 @@
     types:
       blocking: Blokkeringsliste
       following: Følgeliste
+      muting: Dempeliste
     upload: Opplastning
   landing_strip_html: <strong>%{name}</strong> er en bruker på %{link_to_root_path}. Du kan følge dem eller kommunisere med dem hvis du har en konto hvor som helst i fediverset. Hvis du ikke har en konto så kan du <a href="%{sign_up_path}">registrere deg her</a>.
+  media_attachments:
+    validations:
+      images_and_video: Kan ikke legge ved video på en status som allerede inneholder bilder
+      too_many: Kan ikke legge ved mer enn 4 filer
   notification_mailer:
     digest:
       body: 'Her er en kort oppsummering av hva du har gått glipp av på %{instance} siden du logget deg inn sist den %{since}:'
@@ -121,6 +289,7 @@
   pagination:
     next: Neste
     prev: Forrige
+    truncate: "&hellip;"
   remote_follow:
     acct: Tast inn brukernavn@domene som du vil følge fra
     missing_resource: Kunne ikke finne URLen for din konto
@@ -131,6 +300,7 @@
     back: Tilbake til Mastodon
     edit_profile: Endre profil
     export: Dataeksport
+    followers: Godkjente følgere
     import: Importér
     preferences: Preferanser
     settings: Innstillinger
@@ -140,30 +310,33 @@
     over_character_limit: grense på %{max} tegn overskredet
     show_more: Vis mer
     visibilities:
-      private: Vis kun til følgere
+      private: Privat
+      private_long: Synlig kun for følgere
       public: Offentlig
-      unlisted: Offentlig, men vis ikke på felles tidslinje
+      public_long: Synlig for alle
+      unlisted: Uoppført
+      unlisted_long: Synlig for alle, men ikke på offentlige tidslinjer
   stream_entries:
     click_to_show: Klikk for å vise
     reblogged: fremhevde
     sensitive_content: Følsomt innhold
   time:
     formats:
-      default: "%d, %b %Y, %H:%M"
+      default: "%-d. %b %Y, %H:%M"
   two_factor_authentication:
-    code_hint: Skriv inn koden generert av autentiserings-appen for å bekrefte
-    description_html: Hvis du skrur på <strong>to-faktor autentisering</strong> må du ha din telefon for å logge inn. Denne vil generere koder som du må taste inn.
+    code_hint: Tast koden som ble generert av din autentiseringsapp for å bekrefte
+    description_html: Hvis du skrur på <strong>tofaktorautentisering</strong> må du ha din telefon for å logge inn. Denne vil generere koder som du må taste inn.
     disable: Skru av
     enable: Skru på
-    enabled_success: To-faktor autentisering er aktivert
-    generate_recovery_codes: Lag gjennopprettingskoder
+    enabled_success: Aktivering av tofaktorautentisering vellykket
+    generate_recovery_codes: Generér gjenopprettingskoder
     instructions_html: "<strong>Scan denne QR-koden i Google Authenticator eller en lignende app på telefonen din</strong>. Fra nå av vil denne applikasjonen generere koder for deg som skal brukes under innlogging"
-    lost_recovery_codes: Gjennopprettingskoder lar deg få tilgang til kontoen din hvis du har mistet din telefon. Hvis du har mistet din gjennopprettingskoder kan du lage nye her. Dine gamle koder vil ikke lenger kunne brukes.
+    lost_recovery_codes: Gjenopprettingskoder lar deg gjenoppnå tilgang til din konto hvis du mister din telefon. Hvis du har mistet gjenopprettingskodene, kan du regenerere dem her. Dine gamle gjenopprettingskoder vil bli ugyldige.
     manual_instructions: 'Hvis du ikke får scannet QR-koden må du skrive inn følgende kode manuelt:'
-    recovery_codes_regenerated: Gjennopprettingskoder ble opprettet
-    recovery_instructions: Hvis du mister din telefon kan du bruke en av kodene under for å få tilgang til din konto. Oppbevar gjennopprettingskodene sikkert, for eksempel kan du skrive de ut og oppbevare de med andre sensitive dokumenter.
+    recovery_codes_regenerated: Generering av gjenopprettingskoder vellykket
+    recovery_instructions: Hvis du skulle miste tilgang til telefonen din, kan du bruke en av gjenopprettingskodene nedenfor til å gjenopprette tilgang til din konto. Oppbevar gjenopprettingskodene sikkert, for eksempel ved å skrive dem ut og lagre dem sammen med andre viktige dokumenter.
     setup: Sett opp
-    wrong_code: Koden du skrev inn var ugyldig. Er klokken på serveren og enhten riktig?
+    wrong_code: Den angitte koden var ugyldig! Stemmer instansens tid overalt med enhetens tid?
   users:
     invalid_email: E-postaddressen er ugyldig
     invalid_otp_token: Ugyldig to-faktorkode
