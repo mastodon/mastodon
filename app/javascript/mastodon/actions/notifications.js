@@ -3,6 +3,7 @@ import Immutable from 'immutable';
 import IntlMessageFormat from 'intl-messageformat';
 import { unescape } from 'lodash';
 import { fetchRelationships } from './accounts';
+import { defineMessages } from 'react-intl';
 
 export const NOTIFICATIONS_UPDATE = 'NOTIFICATIONS_UPDATE';
 
@@ -16,6 +17,10 @@ export const NOTIFICATIONS_EXPAND_FAIL    = 'NOTIFICATIONS_EXPAND_FAIL';
 
 export const NOTIFICATIONS_CLEAR      = 'NOTIFICATIONS_CLEAR';
 export const NOTIFICATIONS_SCROLL_TOP = 'NOTIFICATIONS_SCROLL_TOP';
+
+const messages = defineMessages({
+  mention: { id: 'notification.mention', defaultMessage: '{name} mentioned you' },
+});
 
 const fetchRelatedRelationships = (dispatch, notifications) => {
   const accountIds = notifications.filter(item => item.type === 'follow').map(item => item.account.id);
