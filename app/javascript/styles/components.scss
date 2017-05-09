@@ -688,6 +688,7 @@ a.status__content__spoiler-link {
 .account__avatar {
   @include avatar-radius();
   position: relative;
+  cursor: pointer;
 
   &-inline {
     display: inline-block;
