@@ -25,6 +25,18 @@ class Formatter
     sanitize(html, Sanitize::Config::MASTODON_STRICT).html_safe # rubocop:disable Rails/OutputSafety
   end
 
+  def format_spoiler(status)
+    return reformat(status.spoiler_text) unless status.local?
+
+    html = status.spoiler_text
+    html = encode_and_link_urls(html)
+
+    html = simple_format(html, {}, sanitize: false)
+    html = html.delete("\n")
+
+    html.html_safe # rubocop:disable Rails/OutputSafety
+  end
+
   def plaintext(status)
     return status.text if status.local?
     strip_tags(status.text)

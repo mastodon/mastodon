@@ -6,9 +6,9 @@ class Pubsubhubbub::SubscribeService < BaseService
   attr_reader :account, :callback, :secret, :lease_seconds
 
   def call(account, callback, secret, lease_seconds)
-    @account = account
-    @callback = callback
-    @secret = secret
+    @account       = account
+    @callback      = Addressable::URI.parse(callback).normalize.to_s
+    @secret        = secret
     @lease_seconds = lease_seconds
 
     process_subscribe
@@ -52,7 +52,7 @@ class Pubsubhubbub::SubscribeService < BaseService
   end
 
   def blocked_domain?
-    DomainBlock.blocked? Addressable::URI.parse(callback).normalize.host
+    DomainBlock.blocked? Addressable::URI.parse(callback).host
   end
 
   def locate_subscription
