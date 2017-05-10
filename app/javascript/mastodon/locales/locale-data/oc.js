@@ -3,13 +3,8 @@
 
 export default [{
   locale: "oc",
-  pluralRuleFunction: function(e, a) {
-    var n = String(e).split("."),
-      l = !n[1],
-      o = Number(n[0]) == e,
-      t = o && n[0].slice(-1),
-      r = o && n[0].slice(-2);
-    return a ? 1 == t && 11 != r ? "un" : 2 == t && 12 != r ? "dos" : 3 == t && 13 != r ? "pauc" : "autre" : 1 == e && l ? "un" : "autre"
+  pluralRuleFunction: function (e, a) {
+    return a ? 1 == e ? "one" : "other" : e >= 0 && e < 2 ? "one" : "other";
   },
   fields: {
     year: {
