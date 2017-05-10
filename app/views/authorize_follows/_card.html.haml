@@ -6,7 +6,7 @@
     %span.display-name
       = link_to TagManager.instance.url_for(account), class: 'detailed-status__display-name p-author h-card', target: '_blank', rel: 'noopener' do
         %strong.emojify= display_name(account)
-        %span= "@#{account.acct}"
+        %span @#{account.acct}
 
   - if account.note?
     .account__header__content.emojify= Formatter.instance.simplified_format(account)

@@ -1,5 +1,5 @@
 code {
-  font-family: 'Roboto Mono', monospace;
+  font-family: 'mastodon-font-monospace', monospace;
   font-weight: 400;
 }
 
@@ -16,7 +16,7 @@ code {
 
   span.hint {
     display: block;
-    color: $color3;
+    color: $ui-primary-color;
     font-size: 12px;
     margin-top: 4px;
   }
@@ -42,14 +42,16 @@ code {
     }
   }
 
-  .input.file, .input.select, .input.radio_buttons {
+  .input.file,
+  .input.select,
+  .input.radio_buttons {
     padding: 15px 0;
     margin-bottom: 0;
 
     label {
       font-family: inherit;
       font-size: 16px;
-      color: $color5;
+      color: $primary-text-color;
       display: block;
       padding-top: 5px;
     }
@@ -63,7 +65,7 @@ code {
     margin-bottom: 5px;
     font-family: inherit;
     font-size: 14px;
-    color: white;
+    color: $primary-text-color;
     display: block;
     width: auto;
   }
@@ -74,7 +76,7 @@ code {
     label {
       font-family: inherit;
       font-size: 14px;
-      color: white;
+      color: $primary-text-color;
       display: block;
       width: auto;
     }
@@ -86,8 +88,8 @@ code {
     }
 
     input[type=checkbox] {
-	    position: absolute;
-	    left: 0;
+      position: absolute;
+      left: 0;
       top: 1px;
       margin: 0;
     }
@@ -98,15 +100,19 @@ code {
     }
   }
 
-  input[type=text], input[type=number], input[type=email], input[type=password], textarea {
+  input[type=text],
+  input[type=number],
+  input[type=email],
+  input[type=password],
+  textarea {
     background: transparent;
     box-sizing: border-box;
     border: 0;
-    border-bottom: 2px solid $color3;
+    border-bottom: 2px solid $ui-primary-color;
     border-radius: 2px 2px 0 0;
     padding: 7px 4px;
     font-size: 16px;
-    color: $color5;
+    color: $primary-text-color;
     display: block;
     width: 100%;
     outline: 0;
@@ -118,32 +124,35 @@ code {
     }
 
     &:focus:invalid {
-      border-bottom-color: $color6;
+      border-bottom-color: $error-value-color;
     }
 
     &:required:valid {
-      border-bottom-color: $color7;
+      border-bottom-color: $valid-value-color;
     }
 
-    &:active, &:focus {
-      border-bottom-color: $color4;
-      background: rgba($color8, 0.1);
+    &:active,
+    &:focus {
+      border-bottom-color: $ui-highlight-color;
+      background: rgba($base-overlay-background, 0.1);
     }
   }
 
   .input.field_with_errors {
     label {
-      color: $color6;
+      color: $error-value-color;
     }
 
-    input[type=text], input[type=email], input[type=password] {
-      border-bottom-color: $color6;
+    input[type=text],
+    input[type=email],
+    input[type=password] {
+      border-bottom-color: $error-value-color;
     }
 
     .error {
       display: block;
       font-weight: 500;
-      color: $color6;
+      color: $error-value-color;
       margin-top: 4px;
     }
   }
@@ -152,13 +161,14 @@ code {
     margin-top: 30px;
   }
 
-  button, .block-button {
+  button,
+  .block-button {
     display: block;
     width: 100%;
     border: 0;
     border-radius: 4px;
-    background: $color4;
-    color: $color5;
+    background: $ui-highlight-color;
+    color: $primary-text-color;
     font-size: 18px;
     padding: 10px;
     text-transform: uppercase;
@@ -171,24 +181,26 @@ code {
     margin-bottom: 10px;
 
     &:hover {
-      background-color: lighten($color4, 5%);
+      background-color: lighten($ui-highlight-color, 5%);
     }
 
-    &:active, &:focus {
+    &:active,
+    &:focus {
       position: relative;
       top: 1px;
-      background-color: darken($color4, 5%);
+      background-color: darken($ui-highlight-color, 5%);
     }
 
     &.negative {
-      background: $color6;
+      background: $error-value-color;
 
       &:hover {
-        background-color: lighten($color6, 5%);
+        background-color: lighten($error-value-color, 5%);
       }
 
-      &:active, &:focus {
-        background-color: darken($color6, 5%);
+      &:active,
+      &:focus {
+        background-color: darken($error-value-color, 5%);
       }
     }
   }
@@ -199,12 +211,12 @@ code {
 }
 
 .flash-message {
-  background: $color1;
-  color: $color3;
+  background: $ui-base-color;
+  color: $ui-primary-color;
   border-radius: 4px;
   padding: 15px 10px;
   margin-bottom: 30px;
-  box-shadow: 0 0 5px rgba($color8, 0.2);
+  box-shadow: 0 0 5px rgba($base-shadow-color, 0.2);
   text-align: center;
 
   strong {
@@ -217,7 +229,7 @@ code {
   text-align: center;
 
   a {
-    color: $color5;
+    color: $primary-text-color;
     text-decoration: none;
 
     &:hover {
@@ -226,10 +238,11 @@ code {
   }
 }
 
-.oauth-prompt, .follow-prompt {
+.oauth-prompt,
+.follow-prompt {
   margin-bottom: 30px;
   text-align: center;
-  color: $color3;
+  color: $ui-primary-color;
 
   h2 {
     font-size: 16px;
@@ -237,7 +250,7 @@ code {
   }
 
   strong {
-    color: $color2;
+    color: $ui-secondary-color;
     font-weight: 500;
   }
 }
@@ -248,10 +261,10 @@ code {
 
 .qr-code {
   flex: 0 0 auto;
-  background: #fff;
+  background: $simple-background-color;
   padding: 4px;
   margin-bottom: 20px;
-  box-shadow: 0 0 15px rgba($color8, 0.2);
+  box-shadow: 0 0 15px rgba($base-shadow-color, 0.2);
   display: inline-block;
 
   svg {
@@ -262,7 +275,7 @@ code {
 
 .qr-alternative {
   margin-left: 10px;
-  color: $color3;
+  color: $ui-primary-color;
 
   samp {
     display: block;
@@ -283,19 +296,21 @@ code {
   .warning {
     max-width: 400px;
     box-sizing: border-box;
-    background: rgba($color6, 0.5);
-    color: $color5;
-    text-shadow: 1px 1px 0 rgba($color8, 0.3);
-    box-shadow: 0 2px 6px rgba($color8, 0.4);
+    background: rgba($error-value-color, 0.5);
+    color: $primary-text-color;
+    text-shadow: 1px 1px 0 rgba($base-shadow-color, 0.3);
+    box-shadow: 0 2px 6px rgba($base-shadow-color, 0.4);
     border-radius: 4px;
     padding: 10px;
     margin-bottom: 15px;
 
     a {
-      color: $color5;
+      color: $primary-text-color;
       text-decoration: underline;
 
-      &:hover, &:focus, &:active {
+      &:hover,
+      &:focus,
+      &:active {
         text-decoration: none;
       }
     }
@@ -316,7 +331,8 @@ code {
   display: flex;
   align-items: center;
 
-  .actions, .pagination {
+  .actions,
+  .pagination {
     flex: 1 1 auto;
   }
 

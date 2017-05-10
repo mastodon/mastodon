@@ -6,6 +6,7 @@ class LanguageDetector
   def initialize(text, account = nil)
     @text = text
     @account = account
+    @identifier = CLD3::NNetLanguageIdentifier.new(1, 2048)
   end
 
   def to_iso_s
@@ -15,15 +16,15 @@ class LanguageDetector
   private
 
   def detected_language_code
-    detected_language[:code].to_sym if detected_language_reliable?
+    result.language.to_sym if detected_language_reliable?
   end
 
-  def detected_language
-    @_detected_language ||= CLD.detect_language(text_without_urls)
+  def result
+    @result ||= @identifier.find_language(text_without_urls)
   end
 
   def detected_language_reliable?
-    detected_language[:reliable]
+    result.reliable?
   end
 
   def text_without_urls
@@ -35,6 +36,6 @@ class LanguageDetector
   end
 
   def default_locale
-    account&.user&.locale || I18n.default_locale
+    account&.user_locale || I18n.default_locale
   end
 end

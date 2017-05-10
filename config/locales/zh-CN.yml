@@ -154,7 +154,6 @@ zh-CN:
       unresolved: 未处理
       view: 查看
     settings:
-      click_to_edit: 点击编辑
       contact_information:
         email: 输入一个公开的电邮地址
         label: 联系数据
@@ -232,7 +231,7 @@ zh-CN:
     lock_link: 保护你的账户
     purge: 从关注者中移除
     success: 从 %{count} 个域名中移除了关注者。
-    true_privacy_html: <strong>真正的隐私只能靠端到端加密来实现</strong>！
+    true_privacy_html: "<strong>真正的隐私只能靠端到端加密来实现</strong>！"
     unlocked_warning_html: 任何人都可以关注你然后查看被保护的嘟文， %{lock_link} 可以复核和拒绝关注请求。
     unlocked_warning_title: 你的账户没被保护
   generic:
@@ -300,10 +299,10 @@ zh-CN:
     show_more: 显示更多
     visibilities:
       private: 限关注者
-      public: 公开
-      unlisted: 于公共时间线中隐藏
       private_long: 仅向关注者公开
+      public: 公开
       public_long: 向所有人公开
+      unlisted: 于公共时间线中隐藏
       unlisted_long: 公开，但不显示在公共时间线中
   stream_entries:
     click_to_show: 显示
@@ -318,10 +317,10 @@ zh-CN:
     disable: 停用
     enable: 启用
     enabled_success: 已成功启用两步认证
-    lost_recovery_codes: 如果你丢了手机，你可以用恢复代码重新访问你的账户。如果你丢了恢复代码，也可以在这里重新生成一个，不过以前的恢复代码就失效了。<del>（废话）</del>
-    recovery_codes_regenerated: 已成功重新生成恢复代码
     instructions_html: "<strong>请用你手机的认证器应用（如 Google Authenticator、Authy），扫描这里的 QR 二维码</strong>。在两步认证启用后，你登录时将需要使用此应用程序产生的认证码。"
+    lost_recovery_codes: 如果你丢了手机，你可以用恢复代码重新访问你的账户。如果你丢了恢复代码，也可以在这里重新生成一个，不过以前的恢复代码就失效了。<del>（废话）</del>
     manual_instructions: 如果你无法扫描 QR 二维码，请手动输入这个文本密码︰
+    recovery_codes_regenerated: 已成功重新生成恢复代码
     setup: 设置
     wrong_code: 你输入的认证码并不正确！可能服务器时间和你手机不一致，请检查你手机的时钟，或与本站管理员联系。
   users:

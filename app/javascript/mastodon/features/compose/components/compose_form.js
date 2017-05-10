@@ -5,7 +5,7 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
 import ReplyIndicatorContainer from '../containers/reply_indicator_container';
 import AutosuggestTextarea from '../../../components/autosuggest_textarea';
-import { debounce } from 'react-decoration';
+import { debounce } from 'lodash';
 import UploadButtonContainer from '../containers/upload_button_container';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import Toggle from 'react-toggle';
@@ -33,7 +33,7 @@ class ComposeForm extends ImmutablePureComponent {
     this.handleKeyDown = this.handleKeyDown.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.onSuggestionsClearRequested = this.onSuggestionsClearRequested.bind(this);
-    this.onSuggestionsFetchRequested = this.onSuggestionsFetchRequested.bind(this);
+    this.onSuggestionsFetchRequested = debounce(this.onSuggestionsFetchRequested.bind(this), 500);
     this.onSuggestionSelected = this.onSuggestionSelected.bind(this);
     this.handleChangeSpoilerText = this.handleChangeSpoilerText.bind(this);
     this.setAutosuggestTextarea = this.setAutosuggestTextarea.bind(this);
@@ -59,7 +59,6 @@ class ComposeForm extends ImmutablePureComponent {
     this.props.onClearSuggestions();
   }
 
-  @debounce(500)
   onSuggestionsFetchRequested (token) {
     this.props.onFetchSuggestions(token);
   }
@@ -119,7 +118,7 @@ class ComposeForm extends ImmutablePureComponent {
   }
 
   render () {
-    const { intl, onPaste } = this.props;
+    const { intl, onPaste, showSearch } = this.props;
     const disabled = this.props.is_submitting;
     const text = [this.props.spoiler_text, this.props.text].join('');
 
@@ -157,6 +156,7 @@ class ComposeForm extends ImmutablePureComponent {
             onSuggestionsClearRequested={this.onSuggestionsClearRequested}
             onSuggestionSelected={this.onSuggestionSelected}
             onPaste={onPaste}
+            autoFocus={!showSearch}
           />
 
           <EmojiPickerDropdown onPickEmoji={this.handleEmojiPick} />
@@ -176,7 +176,7 @@ class ComposeForm extends ImmutablePureComponent {
 
           <div className='compose-form__publish'>
             <div className='character-counter__wrapper'><CharacterCounter max={500} text={text} /></div>
-            <div className='compose-form__publish-button-wrapper'><Button text={publishText} onClick={this.handleSubmit} disabled={disabled || text.replace(/[\uD800-\uDBFF][\uDC00-\uDFFF]/g, "_").length > 500 || (text.length !==0 && text.trim().length === 0)} block /></div>
+            <div className='compose-form__publish-button-wrapper'><Button text={publishText} onClick={this.handleSubmit} disabled={disabled || this.props.is_uploading || text.replace(/[\uD800-\uDBFF][\uDC00-\uDFFF]/g, "_").length > 500 || (text.length !==0 && text.trim().length === 0)} block /></div>
           </div>
         </div>
       </div>
@@ -205,7 +205,12 @@ ComposeForm.propTypes = {
   onSuggestionSelected: PropTypes.func.isRequired,
   onChangeSpoilerText: PropTypes.func.isRequired,
   onPaste: PropTypes.func.isRequired,
-  onPickEmoji: PropTypes.func.isRequired
+  onPickEmoji: PropTypes.func.isRequired,
+  showSearch: PropTypes.bool,
+};
+
+ComposeForm.defaultProps = {
+  showSearch: false
 };
 
 export default injectIntl(ComposeForm);

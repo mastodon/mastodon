@@ -652,12 +652,24 @@
         "id": "navigation_bar.info"
       },
       {
-        "defaultMessage": "Mastodon is open source software. You can contribute or report issues on GitHub at {github}. {apps}.",
-        "id": "getting_started.open_source_notice"
+        "defaultMessage": "{faq} • {userguide} • {apps}",
+        "id": "getting_started.support"
       },
       {
-        "defaultMessage": "Various apps are available",
-        "id": "getting_started.apps"
+        "defaultMessage": "FAQ",
+        "id": "getting_started.faq"
+      },
+      {
+        "defaultMessage": "User Guide",
+        "id": "getting_started.userguide"
+      },
+      {
+        "defaultMessage": "Apps",
+        "id": "getting_started.appsshort"
+      },
+      {
+        "defaultMessage": "Mastodon is open source software. You can contribute or report issues on GitHub at {github}.",
+        "id": "getting_started.open_source_notice"
       }
     ],
     "path": "app/javascript/mastodon/features/getting_started/index.json"
@@ -705,6 +717,10 @@
       {
         "defaultMessage": "Home",
         "id": "column.home"
+      },
+      {
+        "defaultMessage": "Your home feed is empty. If you have been inactive for a while, it will be regenerated for you soon.",
+        "id": "empty_column.home.inactivity"
       },
       {
         "defaultMessage": "You aren't following anyone yet. Visit {public} or use search to get started and meet other users.",

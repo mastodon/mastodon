@@ -52,12 +52,13 @@ en:
         name: "%{account_name} created a note."
     outbox:
       name: "%{account_name}'s Outbox"
-      summary: "A collection of activities from user %{account_name}."
+      summary: A collection of activities from user %{account_name}.
   admin:
     accounts:
       are_you_sure: Are you sure?
       confirm: Confirm
       confirmed: Confirmed
+      disable_two_factor_authentication: Disable 2FA
       display_name: Display name
       domain: Domain
       edit: Edit
@@ -88,7 +89,6 @@ en:
       public: Public
       push_subscription_expires: PuSH subscription expires
       reset_password: Reset password
-      disable_two_factor_authentication: Disable 2FA
       salmon_url: Salmon URL
       show:
         created_reports: Reports created by this account
@@ -162,7 +162,6 @@ en:
       unresolved: Unresolved
       view: View
     settings:
-      click_to_edit: Click to edit
       contact_information:
         email: Enter a public e-mail address
         label: Contact information
@@ -232,6 +231,7 @@ en:
     '422':
       content: Security verification failed. Are you blocking cookies?
       title: Security verification failed
+    '429': Throttled
   exports:
     blocks: You block
     csv: CSV

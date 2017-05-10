@@ -1,53 +1,107 @@
 import emojify from 'mastodon/emoji';
 import { length } from 'stringz';
+import { default as dateFormat } from 'date-fns/format';
+import distanceInWordsStrict from 'date-fns/distance_in_words_strict';
+import { delegate } from 'rails-ujs';
 
-window.jQuery = window.$ = require('jquery');
-require('jquery-ujs');
 require.context('../images/', true);
 
-$(() => {
-  $.each($('.emojify'), (_, content) => {
-    const $content = $(content);
-    $content.html(emojify($content.html()));
-  });
+const parseFormat = (format) => format.replace(/%(\w)/g, (_, modifier) => {
+  switch (modifier) {
+  case '%':
+    return '%';
+  case 'a':
+    return 'ddd';
+  case 'A':
+    return 'ddd';
+  case 'b':
+    return 'MMM';
+  case 'B':
+    return 'MMMM';
+  case 'd':
+    return 'DD';
+  case 'H':
+    return 'HH';
+  case 'I':
+    return 'hh';
+  case 'l':
+    return 'H';
+  case 'm':
+    return 'M';
+  case 'M':
+    return 'mm';
+  case 'p':
+    return 'A';
+  case 'S':
+    return 'ss';
+  case 'w':
+    return 'd';
+  case 'y':
+    return 'YY';
+  case 'Y':
+    return 'YYYY';
+  default:
+    return `%${modifier}`;
+  }
+});
 
-  $('.video-player video').on('click', e => {
-    if (e.target.paused) {
-      e.target.play();
+document.addEventListener('DOMContentLoaded', () => {
+  for (const content of document.getElementsByClassName('emojify')) {
+    content.innerHTML = emojify(content.innerHTML);
+  }
+
+  for (const content of document.querySelectorAll('time[data-format]')) {
+    const format = parseFormat(content.dataset.format);
+    const formattedDate = dateFormat(content.getAttribute('datetime'), format);
+    content.textContent = formattedDate;
+  }
+
+  for (const content of document.querySelectorAll('time.time-ago')) {
+    const timeAgo = distanceInWordsStrict(new Date(), content.getAttribute('datetime'), {
+      addSuffix: true,
+    });
+    content.textContent = timeAgo;
+  }
+
+  delegate(document, '.video-player video', 'click', ({ target }) => {
+    if (target.paused) {
+      target.play();
     } else {
-      e.target.pause();
+      target.pause();
     }
   });
 
-  $('.media-spoiler').on('click', e => {
-    $(e.target).hide();
+  delegate(document, '.media-spoiler', 'click', ({ target }) => {
+    target.style.display = 'none';
   });
 
-  $('.webapp-btn').on('click', e => {
-    if (e.button === 0) {
-      e.preventDefault();
-      window.location.href = $(e.target).attr('href');
+  delegate(document, '.webapp-btn', 'click', ({ target, button }) => {
+    if (button !== 0) {
+      return true;
     }
+    window.location.href = target.href;
+    return false;
   });
 
-  $('.status__content__spoiler-link').on('click', e => {
-    e.preventDefault();
-    const contentEl = $(e.target).parent().parent().find('div');
-
-    if (contentEl.is(':visible')) {
-      contentEl.hide();
-      $(e.target).parent().attr('style', 'margin-bottom: 0');
+  delegate(document, '.status__content__spoiler-link', 'click', ({ target }) => {
+    const contentEl = target.parentNode.parentNode.querySelector('.e-content');
+    if (contentEl.style.display === 'block') {
+      contentEl.style.display = 'none';
+      target.parentNode.style.marginBottom = 0;
     } else {
-      contentEl.show();
-      $(e.target).parent().attr('style', null);
+      contentEl.style.display = 'block';
+      target.parentNode.style.marginBottom = null;
     }
+    return false;
   });
 
-  $('.account_display_name').on('input', e => {
-    $('.name-counter').text(30 - length($(e.target).val()));
+  delegate(document, '.account_display_name', 'input', ({ target }) => {
+    const [nameCounter, ] = document.getElementsByClassName('name-counter');
+    nameCounter.textContent = 30 - length(target.value);
   });
 
-  $('.account_note').on('input', e => {
-    $('.note-counter').text(160 - length($(e.target).val()));
+  delegate(document, '.account_note', 'input', ({ target }) => {
+    const [noteCounter, ] = document.getElementsByClassName('.note-counter');
+    noteCounter.textContent = 160 - length(target.value);
   });
 });

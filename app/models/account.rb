@@ -39,31 +39,25 @@
 #
 
 class Account < ApplicationRecord
-  include Targetable
-
   MENTION_RE = /(?:^|[^\/\w])@([a-z0-9_]+(?:@[a-z0-9\.\-]+[a-z0-9]+)?)/i
-  IMAGE_MIME_TYPES = ['image/jpeg', 'image/png', 'image/gif'].freeze
+
+  include AccountAvatar
+  include AccountHeader
+  include Attachmentable
+  include Targetable
 
   # Local users
   has_one :user, inverse_of: :account
-  validates :username, presence: true, format: { with: /\A[a-z0-9_]+\z/i }, uniqueness: { scope: :domain, case_sensitive: false }, length: { maximum: 30 }, if: 'local?'
-  validates :username, presence: true, uniqueness: { scope: :domain, case_sensitive: true }, unless: 'local?'
 
-  # Avatar upload
-  has_attached_file :avatar, styles: ->(f) { avatar_styles(f) }, convert_options: { all: '-quality 80 -strip' }
-  validates_attachment_content_type :avatar, content_type: IMAGE_MIME_TYPES
-  validates_attachment_size :avatar, less_than: 2.megabytes
+  validates :username, presence: true
+  validates :username, uniqueness: { scope: :domain, case_sensitive: true }, unless: 'local?'
 
-  # Header upload
-  has_attached_file :header, styles: ->(f) { header_styles(f) }, convert_options: { all: '-quality 80 -strip' }
-  validates_attachment_content_type :header, content_type: IMAGE_MIME_TYPES
-  validates_attachment_size :header, less_than: 2.megabytes
-
-  include Attachmentable
-
-  # Local user profile validations
-  validates :display_name, length: { maximum: 30 }, if: 'local?'
-  validates :note, length: { maximum: 160 }, if: 'local?'
+  # Local user validations
+  with_options if: 'local?' do
+    validates :username, format: { with: /\A[a-z0-9_]+\z/i }, uniqueness: { scope: :domain, case_sensitive: false }, length: { maximum: 30 }
+    validates :display_name, length: { maximum: 30 }
+    validates :note, length: { maximum: 160 }
+  end
 
   # Timelines
   has_many :stream_entries, inverse_of: :account, dependent: :destroy
@@ -103,9 +97,10 @@ class Account < ApplicationRecord
 
   scope :remote, -> { where.not(domain: nil) }
   scope :local, -> { where(domain: nil) }
-  scope :without_followers, -> { where('(select count(f.id) from follows as f where f.target_account_id = accounts.id) = 0') }
-  scope :with_followers, -> { where('(select count(f.id) from follows as f where f.target_account_id = accounts.id) > 0') }
+  scope :without_followers, -> { where(followers_count: 0) }
+  scope :with_followers, -> { where('followers_count > 0') }
   scope :expiring, ->(time) { where(subscription_expires_at: nil).or(where('subscription_expires_at < ?', time)).remote.with_followers }
+  scope :partitioned, -> { order('row_number() over (partition by domain)') }
   scope :silenced, -> { where(silenced: true) }
   scope :suspended, -> { where(suspended: true) }
   scope :recent, -> { reorder(id: :desc) }
@@ -116,6 +111,7 @@ class Account < ApplicationRecord
            :current_sign_in_ip,
            :current_sign_in_at,
            :confirmed?,
+           :locale,
            to: :user,
            prefix: true,
            allow_nil: true
@@ -123,15 +119,15 @@ class Account < ApplicationRecord
   delegate :allowed_languages, to: :user, prefix: false, allow_nil: true
 
   def follow!(other_account)
-    active_relationships.where(target_account: other_account).first_or_create!(target_account: other_account)
+    active_relationships.find_or_create_by!(target_account: other_account)
   end
 
   def block!(other_account)
-    block_relationships.where(target_account: other_account).first_or_create!(target_account: other_account)
+    block_relationships.find_or_create_by!(target_account: other_account)
   end
 
   def mute!(other_account)
-    mute_relationships.where(target_account: other_account).first_or_create!(target_account: other_account)
+    mute_relationships.find_or_create_by!(target_account: other_account)
   end
 
   def unfollow!(other_account)
@@ -182,7 +178,7 @@ class Account < ApplicationRecord
   end
 
   def subscribed?
-    !subscription_expires_at.blank?
+    subscription_expires_at.present?
   end
 
   def followers_domains
@@ -190,22 +186,22 @@ class Account < ApplicationRecord
   end
 
   def favourited?(status)
-    status.proper.favourites.where(account: self).count.positive?
+    status.proper.favourites.where(account: self).exists?
   end
 
   def reblogged?(status)
-    status.proper.reblogs.where(account: self).count.positive?
+    status.proper.reblogs.where(account: self).exists?
   end
 
   def keypair
-    private_key.nil? ? OpenSSL::PKey::RSA.new(public_key) : OpenSSL::PKey::RSA.new(private_key)
+    OpenSSL::PKey::RSA.new(private_key || public_key)
   end
 
   def subscription(webhook_url)
     OStatus2::Subscription.new(remote_url, secret: secret, lease_seconds: 86_400 * 30, webhook: webhook_url, hub: hub_url)
   end
 
-  def save_with_optional_avatar!
+  def save_with_optional_media!
     save!
   rescue ActiveRecord::RecordInvalid
     self.avatar              = nil
@@ -213,44 +209,6 @@ class Account < ApplicationRecord
     self[:avatar_remote_url] = ''
     self[:header_remote_url] = ''
     save!
-  end
-
-  def avatar_original_url
-    avatar.url(:original)
-  end
-
-  def avatar_static_url
-    avatar_content_type == 'image/gif' ? avatar.url(:static) : avatar_original_url
-  end
-
-  def header_original_url
-    header.url(:original)
-  end
-
-  def header_static_url
-    header_content_type == 'image/gif' ? header.url(:static) : header_original_url
-  end
-
-  def avatar_remote_url=(url)
-    parsed_url = Addressable::URI.parse(url).normalize
-
-    return if !%w(http https).include?(parsed_url.scheme) || parsed_url.host.empty? || self[:avatar_remote_url] == url
-
-    self.avatar              = URI.parse(parsed_url.to_s)
-    self[:avatar_remote_url] = url
-  rescue OpenURI::HTTPError => e
-    Rails.logger.debug "Error fetching remote avatar: #{e}"
-  end
-
-  def header_remote_url=(url)
-    parsed_url = Addressable::URI.parse(url).normalize
-
-    return if !%w(http https).include?(parsed_url.scheme) || parsed_url.host.empty? || self[:header_remote_url] == url
-
-    self.header              = URI.parse(parsed_url.to_s)
-    self[:header_remote_url] = url
-  rescue OpenURI::HTTPError => e
-    Rails.logger.debug "Error fetching remote header: #{e}"
   end
 
   def object_type
@@ -309,9 +267,7 @@ class Account < ApplicationRecord
     end
 
     def search_for(terms, limit = 10)
-      terms      = Arel.sql(connection.quote(terms.gsub(/['?\\:]/, ' ')))
-      textsearch = '(setweight(to_tsvector(\'simple\', accounts.display_name), \'A\') || setweight(to_tsvector(\'simple\', accounts.username), \'B\') || setweight(to_tsvector(\'simple\', coalesce(accounts.domain, \'\')), \'C\'))'
-      query      = 'to_tsquery(\'simple\', \'\'\' \' || ' + terms + ' || \' \'\'\' || \':*\')'
+      textsearch, query = generate_query_for_search(terms)
 
       sql = <<-SQL.squish
         SELECT
@@ -323,13 +279,11 @@ class Account < ApplicationRecord
         LIMIT ?
       SQL
 
-      Account.find_by_sql([sql, limit])
+      find_by_sql([sql, limit])
     end
 
     def advanced_search_for(terms, account, limit = 10)
-      terms      = Arel.sql(connection.quote(terms.gsub(/['?\\:]/, ' ')))
-      textsearch = '(setweight(to_tsvector(\'simple\', accounts.display_name), \'A\') || setweight(to_tsvector(\'simple\', accounts.username), \'B\') || setweight(to_tsvector(\'simple\', coalesce(accounts.domain, \'\')), \'C\'))'
-      query      = 'to_tsquery(\'simple\', \'\'\' \' || ' + terms + ' || \' \'\'\' || \':*\')'
+      textsearch, query = generate_query_for_search(terms)
 
       sql = <<-SQL.squish
         SELECT
@@ -343,7 +297,7 @@ class Account < ApplicationRecord
         LIMIT ?
       SQL
 
-      Account.find_by_sql([sql, account.id, account.id, limit])
+      find_by_sql([sql, account.id, account.id, limit])
     end
 
     def following_map(target_account_ids, account_id)
@@ -368,20 +322,16 @@ class Account < ApplicationRecord
 
     private
 
+    def generate_query_for_search(terms)
+      terms      = Arel.sql(connection.quote(terms.gsub(/['?\\:]/, ' ')))
+      textsearch = "(setweight(to_tsvector('simple', accounts.display_name), 'A') || setweight(to_tsvector('simple', accounts.username), 'B') || setweight(to_tsvector('simple', coalesce(accounts.domain, '')), 'C'))"
+      query      = "to_tsquery('simple', ''' ' || #{terms} || ' ''' || ':*')"
+
+      [textsearch, query]
+    end
+
     def follow_mapping(query, field)
       query.pluck(field).each_with_object({}) { |id, mapping| mapping[id] = true }
-    end
-
-    def avatar_styles(file)
-      styles = { original: '120x120#' }
-      styles[:static] = { format: 'png' } if file.content_type == 'image/gif'
-      styles
-    end
-
-    def header_styles(file)
-      styles = { original: '700x335#' }
-      styles[:static] = { format: 'png' } if file.content_type == 'image/gif'
-      styles
     end
   end
 

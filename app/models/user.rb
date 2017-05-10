@@ -54,6 +54,8 @@ class User < ApplicationRecord
   scope :admins,    -> { where(admin: true) }
   scope :confirmed, -> { where.not(confirmed_at: nil) }
 
+  before_validation :sanitize_languages
+
   def confirmed?
     confirmed_at.present?
   end
@@ -89,5 +91,10 @@ class User < ApplicationRecord
       t.expires_in = Doorkeeper.configuration.access_token_expires_in
       t.use_refresh_token = Doorkeeper.configuration.refresh_token_enabled?
     end
+
+  private
+
+  def sanitize_languages
+    allowed_languages.reject!(&:blank?)
   end
 end

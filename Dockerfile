@@ -16,7 +16,8 @@ RUN echo "@edge https://nl.alpinelinux.org/alpine/edge/main" >> /etc/apk/reposit
     libxml2-dev \
     libxslt-dev \
     python \
-    build-base" \
+    build-base \
+    protobuf-dev" \
  && apk -U upgrade && apk add \
     $BUILD_DEPS \
     nodejs@edge \
@@ -29,6 +30,7 @@ RUN echo "@edge https://nl.alpinelinux.org/alpine/edge/main" >> /etc/apk/reposit
     file \
     imagemagick@edge \
     ca-certificates \
+    protobuf \
  && npm install -g npm@3 && npm install -g yarn \
  && update-ca-certificates \
  && rm -rf /tmp/* /var/cache/apk/*

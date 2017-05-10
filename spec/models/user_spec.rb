@@ -22,6 +22,12 @@ RSpec.describe User, type: :model do
       user.valid?
       expect(user).to model_have_error_on_field(:email)
     end
+
+    it 'cleans out empty string from languages' do
+      user = Fabricate.build(:user, allowed_languages: [''])
+      user.valid?
+      expect(user.allowed_languages).to eq []
+    end
   end
 
   describe 'settings' do

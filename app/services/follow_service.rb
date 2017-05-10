@@ -40,7 +40,7 @@ class FollowService < BaseService
     if target_account.local?
       NotifyService.new.call(target_account, follow)
     else
-      SubscribeService.new.call(target_account) unless target_account.subscribed?
+      Pubsubhubbub::SubscribeWorker.perform_async(target_account.id) unless target_account.subscribed?
       NotificationWorker.perform_async(build_follow_xml(follow), source_account.id, target_account.id)
       AfterRemoteFollowWorker.perform_async(follow.id)
     end
