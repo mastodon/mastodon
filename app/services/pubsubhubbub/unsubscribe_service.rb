@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
 class Pubsubhubbub::UnsubscribeService < BaseService
-  attr_reader :account, :callback_url
+  attr_reader :account, :callback
 
-  def call(account, callback_url)
-    @account = account
-    @callback_url = callback_url
+  def call(account, callback)
+    @account  = account
+    @callback = Addressable::URI.parse(callback).normalize.to_s
 
     process_unsubscribe
   end
@@ -26,6 +26,6 @@ class Pubsubhubbub::UnsubscribeService < BaseService
   end
 
   def subscription
-    @_subscription ||= Subscription.find_by(account: account, callback_url: callback_url)
+    @_subscription ||= Subscription.find_by(account: account, callback_url: callback)
   end
 end
