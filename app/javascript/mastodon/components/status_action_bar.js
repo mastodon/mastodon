@@ -73,8 +73,12 @@ class StatusActionBar extends React.PureComponent {
 
   render () {
     const { status, me, intl } = this.props;
-    const reblog_disabled = status.get('visibility') === 'private' || status.get('visibility') === 'direct';
+    const reblogDisabled = status.get('visibility') === 'private' || status.get('visibility') === 'direct';
+
     let menu = [];
+    let reblogIcon = 'retweet';
+    let replyIcon;
+    let replyTitle;
 
     menu.push({ text: intl.formatMessage(messages.open), action: this.handleOpen });
     menu.push(null);
@@ -89,23 +93,24 @@ class StatusActionBar extends React.PureComponent {
       menu.push({ text: intl.formatMessage(messages.report, { name: status.getIn(['account', 'username']) }), action: this.handleReport });
     }
 
-    let reblogIcon = 'retweet';
-    if (status.get('visibility') === 'direct') reblogIcon = 'envelope';
-    else if (status.get('visibility') === 'private') reblogIcon = 'lock';
-    let reply_icon;
-    let reply_title;
+    if (status.get('visibility') === 'direct') {
+      reblogIcon = 'envelope';
+    } else if (status.get('visibility') === 'private') {
+      reblogIcon = 'lock';
+    }
+
     if (status.get('in_reply_to_id', null) === null) {
-      reply_icon = "reply";
-      reply_title = intl.formatMessage(messages.reply);
+      replyIcon = "reply";
+      replyTitle = intl.formatMessage(messages.reply);
     } else {
-      reply_icon = "reply-all";
-      reply_title = intl.formatMessage(messages.replyAll);
+      replyIcon = "reply-all";
+      replyTitle = intl.formatMessage(messages.replyAll);
     }
 
     return (
       <div className='status__action-bar'>
-        <div className='status__action-bar-button-wrapper'><IconButton title={reply_title} icon={reply_icon} onClick={this.handleReplyClick} /></div>
-        <div className='status__action-bar-button-wrapper'><IconButton disabled={reblog_disabled} active={status.get('reblogged')} title={reblog_disabled ? intl.formatMessage(messages.cannot_reblog) : intl.formatMessage(messages.reblog)} icon={reblogIcon} onClick={this.handleReblogClick} /></div>
+        <div className='status__action-bar-button-wrapper'><IconButton title={replyTitle} icon={replyIcon} onClick={this.handleReplyClick} /></div>
+        <div className='status__action-bar-button-wrapper'><IconButton disabled={reblogDisabled} active={status.get('reblogged')} title={reblogDisabled ? intl.formatMessage(messages.cannot_reblog) : intl.formatMessage(messages.reblog)} icon={reblogIcon} onClick={this.handleReblogClick} /></div>
         <div className='status__action-bar-button-wrapper'><IconButton animate={true} active={status.get('favourited')} title={intl.formatMessage(messages.favourite)} icon='star' onClick={this.handleFavouriteClick} className='star-icon' /></div>
 
         <div className='status__action-bar-dropdown'>
