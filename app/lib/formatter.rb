@@ -9,13 +9,15 @@ class Formatter
 
   include ActionView::Helpers::TextHelper
 
-  def format(status)
-    return reformat(status.content) unless status.local?
+  def format(status, attribute = :text, paragraphize = true)
+    raw_content = status.public_send(attribute)
 
-    html = status.text
+    return '' if raw_content.blank?
+    return reformat(raw_content) unless status.local?
+
+    html = raw_content
     html = encode_and_link_urls(html, status.mentions)
-
-    html = simple_format(html, {}, sanitize: false)
+    html = simple_format(html, {}, sanitize: false) if paragraphize
     html = html.delete("\n")
 
     html.html_safe # rubocop:disable Rails/OutputSafety
@@ -23,18 +25,6 @@ class Formatter
 
   def reformat(html)
     sanitize(html, Sanitize::Config::MASTODON_STRICT).html_safe # rubocop:disable Rails/OutputSafety
-  end
-
-  def format_spoiler(status)
-    return reformat(status.spoiler_text) unless status.local?
-
-    html = status.spoiler_text
-    html = encode_and_link_urls(html)
-
-    html = simple_format(html, {}, sanitize: false)
-    html = html.delete("\n")
-
-    html.html_safe # rubocop:disable Rails/OutputSafety
   end
 
   def plaintext(status)

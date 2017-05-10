@@ -69,11 +69,9 @@ RSpec.describe Formatter do
       end
     end
 
-=begin
-    it 'matches a URL without closing paranthesis' do
+    xit 'matches a URL without closing paranthesis' do
       expect(subject.match('(http://google.com/)')[0]).to eq 'http://google.com'
     end
-=end
 
     context 'matches a URL without exclamation point' do
       let(:local_text) { 'http://www.google.com!' }
