@@ -1,26 +1,47 @@
 ---
 uk:
   simple_form:
+    hints:
+      defaults:
+        avatar: PNG, GIF, або JPG. Максимум - 2МБ. Буде зменшено до 120x120px
+        display_name: 'Залишилося символів: %{counter}'
+        header: PNG, GIF, або JPG. Максимум - 2МБ. Буде зменшено до 700x335px
+        locked: Буде вимагати від Вас самостійного підтверждення підписників, змінить приватність постів за замовчуванням на "тільки для підписників"
+        note: 'Осталось символов: %{counter}'
+      imports:
+        data: Файл CSV, экспортированный с другого узла Mastodon
+      sessions:
+        otp: Введите код двухфакторной аутентификации или используйте один из Ваших кодов восстановления.
     labels:
       defaults:
         avatar: Аватар
-        confirm_new_password: Підтвердження нового паролю
-        confirm_password: Новий пароль
+        confirm_new_password: Підтвердіть новий пароль
+        confirm_password: Підтвердіть пароль
         current_password: Поточний пароль
+        data: Дані
         display_name: Ім'я
-        email: Поштова адреса
+        email: Email адреса
         header: Заголовок
         locale: Мова
+        locked: Зробити акаунт приватним
         new_password: Новий пароль
-        note: Біографія
+        note: Про Вас
+        otp_attempt: Двофакторний код
         password: Пароль
-        username: Ім'я користувача
+        setting_auto_play_gif: Автоматично відтворювати анімовані GIF
+        setting_boost_modal: Показывать диалог подтверждения перед продвижением
+        setting_default_privacy: Видимость постов
+        severity: Строгость
+        type: Тип импорта
+        username: Имя пользователя
       interactions:
         must_be_follower: Блокувати сповіщення від непідписаних людей
         must_be_following: Блокувати сповіщення від людей, на яких ви не підписані
       notification_emails:
+        digest: Присылать дайджест по e-mail
         favourite: Надсилати листа, коли комусь подобається Ваш статус
         follow: Надсилати листа, коли хтось підписується на Вас
+        follow_request: Надсилати листа, коли хтось запитує дозволу на підписку
         mention: Надсилати листа, коли хтось згадує Вас
         reblog: Надсилати листа, коли хтось передмухує Ваш статус
     'no': 'Ні'

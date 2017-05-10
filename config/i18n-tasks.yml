@@ -31,8 +31,10 @@ search:
     - app/assets/fonts
     - app/assets/videos
 
-ignore_unused:
+ignore_missing:
+  - 'activemodel.errors.*'
   - 'activerecord.attributes.*'
+  - 'activerecord.errors.*'
   - '{devise,pagination,doorkeeper}.*'
   - '{datetime,time}.*'
   - 'simple_form.{yes,no}'
@@ -40,3 +42,16 @@ ignore_unused:
   - 'simple_form.{error_notification,required}.:'
   - 'errors.messages.*'
   - 'activerecord.errors.models.doorkeeper/*'
+
+ignore_unused:
+  - 'activemodel.errors.*'
+  - 'activerecord.attributes.*'
+  - 'activerecord.errors.*'
+  - '{devise,pagination,doorkeeper}.*'
+  - '{datetime,time}.*'
+  - 'simple_form.{yes,no}'
+  - 'simple_form.{placeholders,hints,labels}.*'
+  - 'simple_form.{error_notification,required}.:'
+  - 'errors.messages.*'
+  - 'activerecord.errors.models.doorkeeper/*'
+  - 'errors.429'

@@ -6,7 +6,7 @@ class NotifyService < BaseService
     @activity     = activity
     @notification = Notification.new(account: @recipient, activity: @activity)
 
-    return if blocked? || recipient.user.nil?
+    return if recipient.user.nil? || blocked?
 
     create_notification
     send_email if email_enabled?
@@ -54,10 +54,10 @@ class NotifyService < BaseService
   end
 
   def send_email
-    NotificationMailer.send(@notification.type, @recipient, @notification).deliver_later
+    NotificationMailer.public_send(@notification.type, @recipient, @notification).deliver_later
   end
 
   def email_enabled?
-    @recipient.user.settings.notification_emails[@notification.type]
+    @recipient.user.settings.notification_emails[@notification.type.to_s]
   end
 end

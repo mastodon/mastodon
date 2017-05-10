@@ -1,0 +1,17 @@
+- content_for :page_title do
+  = t('settings.two_factor_authentication')
+
+= simple_form_for @confirmation, url: settings_two_factor_authentication_confirmation_path, method: :post do |f|
+  %p.hint= t('two_factor_authentication.instructions_html')
+
+  .qr-wrapper
+    .qr-code!= @qrcode.as_svg(padding: 0, module_size: 4)
+
+    .qr-alternative
+      %p.hint= t('two_factor_authentication.manual_instructions')
+      %samp.qr-alternative__code= current_user.otp_secret.scan(/.{4}/).join(' ')
+
+  = f.input :code, hint: t('two_factor_authentication.code_hint'), placeholder: t('simple_form.labels.defaults.otp_attempt')
+
+  .actions
+    = f.button :button, t('two_factor_authentication.enable'), type: :submit

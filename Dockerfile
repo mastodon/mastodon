@@ -10,30 +10,36 @@ EXPOSE 3000 4000
 
 WORKDIR /mastodon
 
-COPY Gemfile Gemfile.lock package.json yarn.lock /mastodon/
-
-RUN BUILD_DEPS=" \
+RUN echo "@edge https://nl.alpinelinux.org/alpine/edge/main" >> /etc/apk/repositories \
+ && BUILD_DEPS=" \
     postgresql-dev \
     libxml2-dev \
     libxslt-dev \
-    build-base" \
+    python \
+    build-base \
+    protobuf-dev" \
  && apk -U upgrade && apk add \
     $BUILD_DEPS \
-    nodejs \
+    nodejs@edge \
+    nodejs-npm@edge \
+    git \
     libpq \
     libxml2 \
     libxslt \
     ffmpeg \
     file \
-    imagemagick \
+    imagemagick@edge \
+    ca-certificates \
+    protobuf \
  && npm install -g npm@3 && npm install -g yarn \
- && bundle install --deployment --without test development \
- && yarn \
- && yarn cache clean \
- && npm -g cache clean \
- && apk del $BUILD_DEPS \
+ && update-ca-certificates \
  && rm -rf /tmp/* /var/cache/apk/*
+
+COPY Gemfile Gemfile.lock package.json yarn.lock /mastodon/
+
+RUN bundle install --deployment --without test development \
+ && yarn --ignore-optional --pure-lockfile
 
 COPY . /mastodon
 
-VOLUME /mastodon/public/system /mastodon/public/assets
+VOLUME /mastodon/public/system /mastodon/public/assets /mastodon/public/packs

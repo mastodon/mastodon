@@ -3,8 +3,8 @@
 
 .compact-header
   %h1<
-    = link_to 'Mastodon', root_path
-    %small= "##{@tag.name}"
+    = link_to site_title, root_path
+    %small ##{@tag.name}
 
 - if @statuses.empty?
   .accounts-grid

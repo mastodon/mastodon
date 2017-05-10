@@ -12,16 +12,21 @@ class SuspendAccountService < BaseService
   private
 
   def purge_content
-    @account.statuses.find_each do |status|
+    @account.statuses.reorder(nil).find_each do |status|
+      # This federates out deletes to previous followers
       RemoveStatusService.new.call(status)
     end
 
-    @account.media_attachments.destroy_all
-    @account.stream_entries.destroy_all
-    @account.notifications.destroy_all
-    @account.favourites.destroy_all
-    @account.active_relationships.destroy_all
-    @account.passive_relationships.destroy_all
+    [
+      @account.media_attachments,
+      @account.stream_entries,
+      @account.notifications,
+      @account.favourites,
+      @account.active_relationships,
+      @account.passive_relationships
+    ].each do |association|
+      destroy_all(association)
+    end
   end
 
   def purge_profile
@@ -29,13 +34,15 @@ class SuspendAccountService < BaseService
     @account.display_name = ''
     @account.note         = ''
     @account.avatar.destroy
-    @account.avatar.clear
     @account.header.destroy
-    @account.header.clear
     @account.save!
   end
 
   def unsubscribe_push_subscribers
-    @account.subscriptions.destroy_all
+    destroy_all(@account.subscriptions)
+  end
+
+  def destroy_all(association)
+    association.in_batches.destroy_all
   end
 end
