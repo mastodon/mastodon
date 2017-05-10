@@ -82,9 +82,11 @@ module Mastodon
       Doorkeeper::Application.send :include, ApplicationExtension
     end
 
-    ActiveSupport::Logger.new(STDOUT).tap do |logger|
-      logger.formatter = config.log_formatter
-      config.logger    = ActiveSupport::TaggedLogging.new(logger)
+    unless Rails.env.test?
+      ActiveSupport::Logger.new(STDOUT).tap do |logger|
+        logger.formatter = config.log_formatter
+        config.logger    = ActiveSupport::TaggedLogging.new(logger)
+      end
     end
   end
 end
