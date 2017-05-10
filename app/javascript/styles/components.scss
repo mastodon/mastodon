@@ -474,15 +474,18 @@
   }
 }
 
-a.status__content__spoiler-link {
+.status__content__spoiler-link {
   display: inline-block;
   border-radius: 2px;
+  background: transparent;
+  border: 0;
   color: lighten($ui-base-color, 8%);
   font-weight: 500;
   font-size: 11px;
   padding: 0 6px;
   text-transform: uppercase;
   line-height: inherit;
+  cursor: pointer;
 }
 
 .status__prepend-icon-wrapper {
@@ -606,6 +609,34 @@ a.status__content__spoiler-link {
   float: left;
   height: 18px;
   width: 18px;
+}
+
+.detailed-status__action-bar-dropdown {
+  flex: 1 1 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+
+  .dropdown {
+    display: block;
+    width: 18px;
+    height: 18px;
+  }
+
+  .dropdown--active {
+    .dropdown__content.dropdown__left {
+      left: 20px;
+      right: initial;
+    }
+
+    &::after {
+      bottom: initial;
+      margin-left: 7px;
+      margin-top: -7px;
+      right: initial;
+    }
+  }
 }
 
 .detailed-status {
@@ -2165,6 +2196,7 @@ button.icon-button.active i.fa-retweet {
   display: flex;
   flex: 1 1 auto;
   align-items: center;
+  justify-content: center;
 
   a {
     color: $ui-highlight-color;
