@@ -91,6 +91,7 @@ class User < ApplicationRecord
       t.expires_in = Doorkeeper.configuration.access_token_expires_in
       t.use_refresh_token = Doorkeeper.configuration.refresh_token_enabled?
     end
+  end
 
   private
 
