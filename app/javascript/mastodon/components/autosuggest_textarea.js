@@ -153,7 +153,7 @@ class AutosuggestTextarea extends ImmutablePureComponent {
   }
 
   render () {
-    const { value, suggestions, disabled, placeholder, onKeyUp } = this.props;
+    const { value, suggestions, disabled, placeholder, onKeyUp, autoFocus } = this.props;
     const { suggestionsHidden, selectedSuggestion } = this.state;
     const style = { direction: 'ltr' };
 
@@ -168,7 +168,7 @@ class AutosuggestTextarea extends ImmutablePureComponent {
           className='autosuggest-textarea__textarea'
           disabled={disabled}
           placeholder={placeholder}
-          autoFocus={true}
+          autoFocus={autoFocus}
           value={value}
           onChange={this.onChange}
           onKeyDown={this.onKeyDown}
@@ -208,6 +208,11 @@ AutosuggestTextarea.propTypes = {
   onKeyUp: PropTypes.func,
   onKeyDown: PropTypes.func,
   onPaste: PropTypes.func.isRequired,
+  autoFocus: PropTypes.bool
+};
+
+AutosuggestTextarea.defaultProps = {
+  autoFucus: true,
 };
 
 export default AutosuggestTextarea;
