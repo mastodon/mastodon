@@ -38,6 +38,7 @@ class Notifications extends React.PureComponent {
     this.handleScroll = this.handleScroll.bind(this);
     this.handleLoadMore = this.handleLoadMore.bind(this);
     this.handleClear = this.handleClear.bind(this);
+    this.handleChange = this.handleChange.bind(this);
     this.setRef = this.setRef.bind(this);
   }
 
