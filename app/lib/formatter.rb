@@ -29,9 +29,10 @@ class Formatter
     return reformat(status.spoiler_text) unless status.local?
 
     html = status.spoiler_text
-    html = encode(html)
+    html = encode_and_link_urls(html)
+
+    html = simple_format(html, {}, sanitize: false)
     html = html.delete("\n")
-    html = link_hashtags(html)
 
     html.html_safe # rubocop:disable Rails/OutputSafety
   end
