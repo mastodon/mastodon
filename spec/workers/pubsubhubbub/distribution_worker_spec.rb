@@ -5,8 +5,8 @@ describe Pubsubhubbub::DistributionWorker do
 
   let!(:alice) { Fabricate(:account, username: 'alice') }
   let!(:bob) { Fabricate(:account, username: 'bob', domain: 'example2.com') }
-  let!(:anonymous_subscription) { Fabricate(:subscription, account_id: alice.id, callback_url: 'http://example1.com', confirmed: true, lease_seconds: 3600) }
-  let!(:subscription_with_follower) { Fabricate(:subscription, account_id: alice.id, callback_url: 'http://example2.com', confirmed: true, lease_seconds: 3600) }
+  let!(:anonymous_subscription) { Fabricate(:subscription, account: alice, callback_url: 'http://example1.com', confirmed: true, lease_seconds: 3600) }
+  let!(:subscription_with_follower) { Fabricate(:subscription, account: alice, callback_url: 'http://example2.com', confirmed: true, lease_seconds: 3600) }
 
   before do
     bob.follow!(alice)

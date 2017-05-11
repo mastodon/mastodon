@@ -8,7 +8,7 @@ describe Pubsubhubbub::ConfirmationWorker do
   subject { described_class.new }
 
   let!(:alice) { Fabricate(:account, username: 'alice') }
-  let!(:subscription) { Fabricate(:subscription, account_id: alice.id, callback_url: 'http://example.com/api', confirmed: false, expires_at: 3.days.from_now, secret: nil) }
+  let!(:subscription) { Fabricate(:subscription, account: alice, callback_url: 'http://example.com/api', confirmed: false, expires_at: 3.days.from_now, secret: nil) }
 
   describe 'perform' do
     describe 'with subscribe mode' do
