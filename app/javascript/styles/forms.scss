@@ -29,19 +29,6 @@ code {
     font-weight: 500;
   }
 
-  .label_input {
-    display: flex;
-
-    label {
-      flex: 0 0 auto;
-      width: 100px;
-    }
-
-    input {
-      flex: 1 1 auto;
-    }
-  }
-
   .input.file,
   .input.select,
   .input.radio_buttons {
@@ -54,6 +41,7 @@ code {
       color: $color5;
       display: block;
       padding-top: 5px;
+      padding-bottom: 5px;
     }
   }
 
