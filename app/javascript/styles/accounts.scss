@@ -302,6 +302,8 @@
         display: block;
         color: $ui-base-color;
         text-decoration: none;
+        text-overflow: ellipsis;
+        overflow: hidden;
 
         &:hover {
           .display_name {

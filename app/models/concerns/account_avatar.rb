@@ -34,7 +34,7 @@ module AccountAvatar
 
       self.avatar              = URI.parse(parsed_url.to_s)
       self[:avatar_remote_url] = url
-    rescue OpenURI::HTTPError => e
+    rescue OpenURI::HTTPError, OpenSSL::SSL::SSLError, Paperclip::Errors::NotIdentifiedByImageMagickError => e
       Rails.logger.debug "Error fetching remote avatar: #{e}"
     end
   end

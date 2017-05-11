@@ -223,7 +223,7 @@ class ProcessFeedService < BaseService
         begin
           media.file_remote_url = link['href']
           media.save
-        rescue OpenURI::HTTPError, Paperclip::Errors::NotIdentifiedByImageMagickError
+        rescue OpenURI::HTTPError, OpenSSL::SSL::SSLError, Paperclip::Errors::NotIdentifiedByImageMagickError
           next
         end
       end
