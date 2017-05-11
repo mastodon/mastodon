@@ -496,7 +496,7 @@ a.status__content__spoiler-link {
   }
 
   .account__header__username {
-    color: $color4;
+    color: #ca8f04;
   }
 }
 
@@ -645,7 +645,7 @@ a.status__content__spoiler-link {
   position: relative;
 
   .fa {
-    color: $color4;
+    color: #ca8f04;
   }
 }
 
@@ -763,7 +763,7 @@ a.status__content__spoiler-link {
     }
 
     &:hover {
-      background: $color4;
+      background: #ca8f04;
       color: $color2;
     }
   }
@@ -1307,13 +1307,23 @@ button.icon-button.active i.fa-retweet {
   background-position: 0 100%;
 }
 
+button.icon-button.active i.fa-cloud {
+  color: lighten($color9, 20%);
+
+}
+
+button.icon-button i.fa-cloud {
+  color: (#ca8f04);
+
+}
+
+
 .status-card {
   display: flex;
   cursor: pointer;
   font-size: 14px;
   border: 1px solid lighten($color1, 8%);
   border-radius: 4px;
-  color: lighten($color1, 26%);
   margin-top: 14px;
   text-decoration: none;
   overflow: hidden;
