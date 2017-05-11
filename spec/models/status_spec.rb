@@ -120,7 +120,63 @@ RSpec.describe Status, type: :model do
   end
 
   describe '#permitted?' do
-    pending
+    it 'returns true when direct and account is viewer' do
+      subject.visibility = :direct
+      expect(subject.permitted?(subject.account)).to be true
+    end
+
+    it 'returns true when direct and viewer is mentioned' do
+      subject.visibility = :direct
+      subject.mentions = [Fabricate(:mention, account: alice)]
+
+      expect(subject.permitted?(alice)).to be true
+    end
+
+    it 'returns false when direct and viewer is not mentioned' do
+      viewer = Fabricate(:account)
+      subject.visibility = :direct
+
+      expect(subject.permitted?(viewer)).to be false
+    end
+
+    it 'returns true when private and account is viewer' do
+      subject.visibility = :direct
+      expect(subject.permitted?(subject.account)).to be true
+    end
+
+    it 'returns true when private and account is following viewer' do
+      follow = Fabricate(:follow)
+      subject.visibility = :private
+      subject.account = follow.target_account
+
+      expect(subject.permitted?(follow.account)).to be true
+    end
+
+    it 'returns true when private and viewer is mentioned' do
+      subject.visibility = :private
+      subject.mentions = [Fabricate(:mention, account: alice)]
+
+      expect(subject.permitted?(alice)).to be true
+    end
+
+    it 'returns false when private and viewer is not mentioned or followed' do
+      viewer = Fabricate(:account)
+      subject.visibility = :private
+
+      expect(subject.permitted?(viewer)).to be false
+    end
+
+    it 'returns true when no viewer' do
+      expect(subject.permitted?).to be true
+    end
+
+    it 'returns false when viewer is blocked' do
+      block = Fabricate(:block)
+      subject.visibility = :private
+      subject.account = block.target_account
+
+      expect(subject.permitted?(block.account)).to be false
+    end
   end
 
   describe '#filter_from_context?' do
