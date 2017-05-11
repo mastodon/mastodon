@@ -1,7 +1,6 @@
 import api, { getLinks } from '../api'
 import Immutable from 'immutable';
 import IntlMessageFormat from 'intl-messageformat';
-import { unescape } from 'lodash';
 import { fetchRelationships } from './accounts';
 
 export const NOTIFICATIONS_UPDATE = 'NOTIFICATIONS_UPDATE';
@@ -25,7 +24,11 @@ const fetchRelatedRelationships = (dispatch, notifications) => {
   }
 };
 
-const unescapeHTML = (html) => unescape(html).replace(/<\/?\w+(?:\s[^>]*)?>/g, '');
+const unescapeHTML = (html) => {
+  const wrapper = document.createElement('div');
+  wrapper.innerHTML = html;
+  return wrapper.textContent;
+}
 
 export function updateNotifications(notification, intlMessages, intlLocale) {
   return (dispatch, getState) => {
