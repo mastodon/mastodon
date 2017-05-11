@@ -8,7 +8,7 @@ class Sanitize
       elements: %w(p br span a),
 
       attributes: {
-        'a'    => %w(href),
+        'a'    => %w(href rel),
         'span' => %w(class),
       },
 

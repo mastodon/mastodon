@@ -34,7 +34,7 @@ module AccountHeader
 
       self.header              = URI.parse(parsed_url.to_s)
       self[:header_remote_url] = url
-    rescue OpenURI::HTTPError => e
+    rescue OpenURI::HTTPError, OpenSSL::SSL::SSLError, Paperclip::Errors::NotIdentifiedByImageMagickError => e
       Rails.logger.debug "Error fetching remote header: #{e}"
     end
   end
