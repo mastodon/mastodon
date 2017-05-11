@@ -24,8 +24,8 @@ class AtomSerializer
     append_element(author, 'email', account.local? ? account.local_username_and_domain : account.acct)
     append_element(author, 'summary', Formatter.instance.simplified_format(account).to_str, type: :html) if account.note?
     append_element(author, 'link', nil, rel: :alternate, type: 'text/html', href: TagManager.instance.url_for(account))
-    append_element(author, 'link', nil, rel: :avatar, type: account.avatar_content_type, 'media:width': 120, 'media:height': 120, href: full_asset_url(account.avatar.url(:original)))
-    append_element(author, 'link', nil, rel: :header, type: account.header_content_type, 'media:width': 700, 'media:height': 335, href: full_asset_url(account.header.url(:original)))
+    append_element(author, 'link', nil, rel: :avatar, type: account.avatar_content_type, 'media:width': 120, 'media:height': 120, href: full_asset_url(account.avatar.url(:original))) if account.avatar?
+    append_element(author, 'link', nil, rel: :header, type: account.header_content_type, 'media:width': 700, 'media:height': 335, href: full_asset_url(account.header.url(:original))) if account.header?
     append_element(author, 'poco:preferredUsername', account.username)
     append_element(author, 'poco:displayName', account.display_name) if account.display_name?
     append_element(author, 'poco:note', account.local? ? account.note : strip_tags(account.note)) if account.note?
@@ -68,7 +68,7 @@ class AtomSerializer
     append_element(entry, 'id', TagManager.instance.unique_tag(stream_entry.created_at, stream_entry.activity_id, stream_entry.activity_type))
     append_element(entry, 'published', stream_entry.created_at.iso8601)
     append_element(entry, 'updated', stream_entry.updated_at.iso8601)
-    append_element(entry, 'title', stream_entry&.status&.title || 'Delete')
+    append_element(entry, 'title', stream_entry&.status&.title || "#{stream_entry.account.acct} deleted status")
 
     entry << author(stream_entry.account) if root
 
@@ -77,7 +77,11 @@ class AtomSerializer
 
     entry << object(stream_entry.target) if stream_entry.targeted?
 
-    serialize_status_attributes(entry, stream_entry.status) unless stream_entry.status.nil?
+    if stream_entry.status.nil?
+      append_element(entry, 'content', 'Deleted status')
+    else
+      serialize_status_attributes(entry, stream_entry.status)
+    end
 
     append_element(entry, 'link', nil, rel: :alternate, type: 'text/html', href: account_stream_entry_url(stream_entry.account, stream_entry))
     append_element(entry, 'link', nil, rel: :self, type: 'application/atom+xml', href: account_stream_entry_url(stream_entry.account, stream_entry, format: 'atom'))
