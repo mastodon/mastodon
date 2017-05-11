@@ -51,7 +51,7 @@ const Favourites = React.createClass({
     }
 
     return (
-      <Column icon='star' heading={intl.formatMessage(messages.heading)}>
+      <Column icon='cloud' heading={intl.formatMessage(messages.heading)}>
         <ColumnBackButtonSlim />
         <StatusList statusIds={statusIds} me={me} onScrollToBottom={this.handleScrollToBottom} />
       </Column>
