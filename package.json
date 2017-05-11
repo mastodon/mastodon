@@ -10,7 +10,8 @@
     "storybook": "start-storybook -p 9001 -c storybook",
     "test": "npm run test:lint && npm run test:mocha",
     "test:lint": "eslint -c .eslintrc.yml --ext=js --ext=jsx app/javascript/",
-    "test:mocha": "mocha --require ./spec/javascript/setup.js --compilers js:babel-register ./spec/javascript/components/*.test.jsx"
+    "test:mocha": "mocha --require ./spec/javascript/setup.js --compilers js:babel-register ./spec/javascript/components/*.test.jsx",
+    "postinstall": "npm rebuild node-sass"
   },
   "repository": {
     "type": "git",
