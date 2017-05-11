@@ -35,6 +35,7 @@ module Mastodon
       :fa,
       :fi,
       :fr,
+      :he,
       :hr,
       :hu,
       :id,
@@ -48,6 +49,8 @@ module Mastodon
       :pt,
       :'pt-BR',
       :ru,
+      :th,
+      :tr,
       :uk,
       :'zh-CN',
       :'zh-HK',
@@ -64,7 +67,7 @@ module Mastodon
     config.middleware.insert_before 0, Rack::Cors do
       allow do
         origins  '*'
-
+        resource '/@:username',  headers: :any, methods: [:get], credentials: false
         resource '/api/*',       headers: :any, methods: [:post, :put, :delete, :get, :patch, :options], credentials: false, expose: ['Link', 'X-RateLimit-Reset', 'X-RateLimit-Limit', 'X-RateLimit-Remaining', 'X-Request-Id']
         resource '/oauth/token', headers: :any, methods: [:post], credentials: false
       end
@@ -72,10 +75,6 @@ module Mastodon
 
     config.middleware.use Rack::Attack
     config.middleware.use Rack::Deflater
-
-    # babel config can be found in .babelrc
-    config.browserify_rails.commandline_options   = '--transform babelify --extension=".jsx"'
-    config.browserify_rails.evaluate_node_modules = true
 
     config.to_prepare do
       Doorkeeper::AuthorizationsController.layout 'public'

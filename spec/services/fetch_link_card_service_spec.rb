@@ -2,6 +2,7 @@ require 'rails_helper'
 
 RSpec.describe FetchLinkCardService do
   before do
+    stub_request(:head, 'http://example.xn--fiqs8s/').to_return(status: 200, headers: { 'Content-Type' => 'text/html' })
     stub_request(:get, 'http://example.xn--fiqs8s/').to_return(request_fixture('idn.txt'))
   end
 
@@ -9,6 +10,6 @@ RSpec.describe FetchLinkCardService do
     status = Fabricate(:status, text: 'Check out http://example.中国')
 
     FetchLinkCardService.new.call(status)
-    expect(a_request(:get, 'http://example.xn--fiqs8s/')).to have_been_made
+    expect(a_request(:get, 'http://example.xn--fiqs8s/')).to have_been_made.at_least_once
   end
 end

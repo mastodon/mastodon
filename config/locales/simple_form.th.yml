@@ -1,0 +1,53 @@
+---
+th:
+  simple_form:
+    hints:
+      defaults:
+        avatar: PNG, GIF or JPG. At most 2MB. Will be downscaled to 120x120px
+        display_name: '%{counter} characters left'
+        header: PNG, GIF or JPG. At most 2MB. Will be downscaled to 700x335px
+        locked: Requires you to manually approve followers and defaults post privacy to followers-only
+        note: '%{counter} characters left'
+      imports:
+        data: CSV file exported from another Mastodon instance
+      sessions:
+        otp: Enter the Two-factor code from your phone or use one of your recovery codes.
+      user:
+        allowed_languages: These languages will be allowed in your public timelines. Languages that are not selected will be filtered out.
+    labels:
+      defaults:
+        avatar: Avatar
+        confirm_new_password: Confirm new password
+        confirm_password: Confirm password
+        current_password: Current password
+        data: ข้อมูล
+        display_name: Display name
+        email: E-mail address
+        header: Header
+        locale: ภาษา
+        locked: Lock account
+        new_password: New password
+        note: Bio
+        otp_attempt: Two-factor code
+        password: พาร์สเวิร์ด
+        setting_auto_play_gif: Auto-play animated GIFs
+        setting_boost_modal: Show confirmation dialog before boosting
+        setting_default_privacy: Post privacy
+        severity: Severity
+        type: Import type
+        username: Username
+      interactions:
+        must_be_follower: Block notifications from non-followers
+        must_be_following: Block notifications from people you don't follow
+      notification_emails:
+        digest: Send digest e-mails
+        favourite: Send e-mail when someone favourites your status
+        follow: Send e-mail when someone follows you
+        follow_request: Send e-mail when someone requests to follow you
+        mention: Send e-mail when someone mentions you
+        reblog: Send e-mail when someone boosts your status
+    'no': 'ไม่'
+    required:
+      mark: "*"
+      text: required
+    'yes': 'ใช่'

@@ -2,7 +2,7 @@ import { expect } from 'chai';
 import { shallow } from 'enzyme';
 import sinon from 'sinon';
 
-import Button from '../../../app/assets/javascripts/components/components/button';
+import Button from '../../../app/javascript/mastodon/components/button';
 
 describe('<Button />', () => {
   it('renders a button element', () => {

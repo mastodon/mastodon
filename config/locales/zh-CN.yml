@@ -5,6 +5,7 @@ zh-CN:
     about_this: 关于本实例
     apps: 应用程序
     business_email: 商业电邮︰
+    closed_registrations: 这个实例目前不开放注册 _(:3」∠)_
     contact: 联络
     description_headline: 关于 %{domain}
     domain_count_after: 个其它实例
@@ -28,6 +29,7 @@ zh-CN:
     terms: 条款
     user_count_after: 位用户
     user_count_before: 这里共注册有
+    version: 版本
   accounts:
     follow: 关注
     followers: 粉丝
@@ -38,9 +40,20 @@ zh-CN:
     posts: 嘟文
     remote_follow: 跨站关注
     unfollow: 取消关注
+  activitypub:
+    activity:
+      announce:
+        name: "%{account_name} 分享了一个活动。"
+      create:
+        name: "%{account_name} 创建了一个记事。"
+    outbox:
+      name: "%{account_name} 的集合"
+      summary: "%{account_name} 的活动集合"
   admin:
     accounts:
       are_you_sure: 你确定吗？
+      confirm: 确认
+      confirmed: 已确认
       display_name: 显示名称
       domain: 域名
       edit: 编辑
@@ -71,6 +84,10 @@ zh-CN:
       public: 公共
       push_subscription_expires: 推送订阅过期
       salmon_url: Salmon 反馈 URL
+      show:
+        created_reports: 这个账户创建的报告
+        report: 报告
+        targeted_reports: 关于这个账户的报告
       silence: 静音
       statuses: 嘟文
       title: 用户
@@ -137,7 +154,6 @@ zh-CN:
       unresolved: 未处理
       view: 查看
     settings:
-      click_to_edit: 点击编辑
       contact_information:
         email: 输入一个公开的电邮地址
         label: 联系数据
@@ -196,6 +212,7 @@ zh-CN:
       x_months: "%{count} 个月"
       x_seconds: "%{count} 秒"
   errors:
+    '403': 无权查看
     '404': 找不到页面
     '410': 内容已被删除
     '422':
@@ -207,6 +224,16 @@ zh-CN:
     follows: 你所关注的用户
     mutes: 你所静音的用户
     storage: 媒体容量大小
+  followers:
+    domain: 域名
+    explanation_html: 想要保护你的嘟文的话，请慎重考虑关注你的人。<strong>你的受保护的嘟文会发送到有你的关注者的所有实例上</strong>。你也许想要复查一下关注者列表来移除那些你无法信任的关注者。
+    followers_count: 关注者数量
+    lock_link: 保护你的账户
+    purge: 从关注者中移除
+    success: 从 %{count} 个域名中移除了关注者。
+    true_privacy_html: "<strong>真正的隐私只能靠端到端加密来实现</strong>！"
+    unlocked_warning_html: 任何人都可以关注你然后查看被保护的嘟文， %{lock_link} 可以复核和拒绝关注请求。
+    unlocked_warning_title: 你的账户没被保护
   generic:
     changes_saved_msg: 更改已被保存。
     powered_by: 基于 %{link} 构建
@@ -260,7 +287,9 @@ zh-CN:
     authorized_apps: 已授权的应用
     back: 回到 Mastodon
     edit_profile: 更改个人信息
-    export: 数据导出
+    export: 导出
+    followers: 授权的关注者
+    import: 导入
     preferences: 首选项
     settings: 设置
     two_factor_authentication: 两步认证
@@ -269,9 +298,12 @@ zh-CN:
     over_character_limit: 超过了 %{max} 字的限制
     show_more: 显示更多
     visibilities:
-      private: 仅向粉丝公开
+      private: 限关注者
+      private_long: 仅向关注者公开
       public: 公开
-      unlisted: 公开，但不显示在公共时间线中
+      public_long: 向所有人公开
+      unlisted: 于公共时间线中隐藏
+      unlisted_long: 公开，但不显示在公共时间线中
   stream_entries:
     click_to_show: 显示
     reblogged: 转发
@@ -286,7 +318,9 @@ zh-CN:
     enable: 启用
     enabled_success: 已成功启用两步认证
     instructions_html: "<strong>请用你手机的认证器应用（如 Google Authenticator、Authy），扫描这里的 QR 二维码</strong>。在两步认证启用后，你登录时将需要使用此应用程序产生的认证码。"
+    lost_recovery_codes: 如果你丢了手机，你可以用恢复代码重新访问你的账户。如果你丢了恢复代码，也可以在这里重新生成一个，不过以前的恢复代码就失效了。<del>（废话）</del>
     manual_instructions: 如果你无法扫描 QR 二维码，请手动输入这个文本密码︰
+    recovery_codes_regenerated: 已成功重新生成恢复代码
     setup: 设置
     wrong_code: 你输入的认证码并不正确！可能服务器时间和你手机不一致，请检查你手机的时钟，或与本站管理员联系。
   users:

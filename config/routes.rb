@@ -1,7 +1,7 @@
-
 # frozen_string_literal: true
 
 require 'sidekiq/web'
+require 'sidekiq-scheduler/web'
 
 Rails.application.routes.draw do
   mount LetterOpenerWeb::Engine, at: 'letter_opener' if Rails.env.development?
@@ -71,13 +71,12 @@ Rails.application.routes.draw do
   resources :tags,  only: [:show]
 
   # Remote follow
-  get  :authorize_follow, to: 'authorize_follow#new'
-  post :authorize_follow, to: 'authorize_follow#create'
+  resource :authorize_follow, only: [:show, :create]
 
   namespace :admin do
     resources :pubsubhubbub, only: [:index]
     resources :domain_blocks, only: [:index, :new, :create, :show, :destroy]
-    resources :settings, only: [:index, :update]
+    resource :settings, only: [:edit, :update]
     resources :instances, only: [:index]
 
     resources :reports, only: [:index, :show, :update] do
@@ -90,9 +89,13 @@ Rails.application.routes.draw do
       resource :suspension, only: [:create, :destroy]
       resource :confirmation, only: [:create]
     end
+
+    resources :users, only: [] do
+      resource :two_factor_authentication, only: [:destroy]
+    end
   end
 
-  get '/admin', to: redirect('/admin/settings', status: 302)
+  get '/admin', to: redirect('/admin/settings/edit', status: 302)
 
   namespace :api do
     # PubSubHubbub outgoing subscriptions
