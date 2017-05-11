@@ -28,30 +28,30 @@ ja:
     status_count_before: トゥート数
     terms: プライバシーポリシー
     user_count_after: 人
-    user_count_before: ユーザー数
+    user_count_before: ブンター数
   accounts:
-    follow: フォロー
-    followers: フォロワー
-    following: フォロー中
+    follow: ホゴ
+    followers: ホゴ者
+    following: ホゴ中
     nothing_here: 何もありません
-    people_followed_by: "%{name} さんがフォロー中のアカウント"
-    people_who_follow: "%{name} さんをフォロー中のアカウント"
-    posts: 投稿
+    people_followed_by: "%{name} さんがホゴ中のブンター"
+    people_who_follow: "%{name} さんをホゴ中のホゴ者"
+    posts: ウコ
     remote_follow: リモートフォロー
-    unfollow: フォロー解除
+    unfollow: ホゴ解除
   admin:
     accounts:
-      are_you_sure: 本当に実行しますか?
+      are_you_sure: 本当に実行するの?
       display_name: 表示名
       domain: ドメイン
       edit: 編集
       email: E-mail
       feed_url: Feed URL
-      followers: フォロワー数
-      follows: フォロー数
+      followers: ホゴ者数
+      follows: ホゴ数
       location:
         all: すべて
-        local: ローカル
+        local: 地域
         remote: リモート
         title: ロケーション
       media_attachments: 添付されたメディア
@@ -74,24 +74,24 @@ ja:
       reset_password: パスワード再設定
       salmon_url: Salmon URL
       show:
-        created_reports: このアカウントで作られたレポート
+        created_reports: このブンターで作られたレポート
         report: レポート
-        targeted_reports: このアカウントについてのレポート
+        targeted_reports: このブンターについてのレポート
       silence: サイレンス
       statuses: トゥート数
-      title: アカウント
+      title: ブンター
       undo_silenced: サイレンスから戻す
       undo_suspension: 停止から戻す
-      username: ユーザー名
+      username: ブンター名
       web: Web
     domain_blocks:
       add_new: 新規追加
-      created_msg: ドメインブロック処理を完了しました
-      destroyed_msg: ドメインブロックを外しました
+      created_msg: ドメインシャァァァ処理を完了しました
+      destroyed_msg: ドメインシャァァァを外しました
       domain: ドメイン
       new:
-        create: ブロックを作成
-        hint: ドメインブロックはデータベース中のアカウント項目の作成を妨げませんが、遡って自動的に指定されたモデレーションをそれらのアカウントに適用します。
+        create: シャァァァを作成
+        hint: ドメインシャァァァはデータベース中のアカウント項目の作成を妨げませんが、遡って自動的に指定されたモデレーションをそれらのアカウントに適用します。
         severity:
           desc_html: "<strong>サイレンス</strong>はアカウントのトゥートをフォローしていない人から隠します。<strong>停止</strong>はそのアカウントのコンテンツ、メディア、プロフィールデータをすべて削除します。"
           silence: サイレンス
@@ -115,7 +115,7 @@ ja:
       title: ドメインブロック
       undo: 元に戻す
     instances:
-      account_count: 既知のアカウント数
+      account_count: 既知のブンター数
       domain_name: ドメイン名
       title: 既知のインスタンス
     pubsubhubbub:
@@ -148,7 +148,7 @@ ja:
       contact_information:
         email: 公開するメールアドレスを入力
         label: 連絡先情報
-        username: ユーザー名を入力
+        username: ブンター名を入力
       registrations:
         closed_message:
           desc_html: 新規登録を停止しているときにフロントページに表示されます。<br>HTMLタグが利用可能です。
@@ -186,7 +186,7 @@ ja:
   authorize_follow:
     error: 残念ながら、リモートアカウントにエラーが発生しました。
     follow: フォロー
-    prompt_html: 'あなた（<strong>%{self}</strong>）は以下のアカウントのフォローをリクエストしました:'
+    prompt_html: 'あなた（<strong>%{self}</strong>）は以下のブンターのホゴを申し出ました:'
     title: "%{acct} をフォロー"
   datetime:
     distance_in_words:
@@ -206,12 +206,12 @@ ja:
     '404': お探しのページは見つかりませんでした。
     '410': お探しのページはもう存在しません。
     '422':
-      content: セキュリティ認証に失敗しました。Cookieをブロックしていませんか？
+      content: セキュリティ認証に失敗しました。Cookieをシャァァァしていませんか？
       title: セキュリティ認証に失敗
   exports:
-    blocks: ブロック
+    blocks: シャァァァ
     csv: CSV
-    follows: フォロー
+    follows: ホゴ
     mutes: ミュート
     storage: メディア
   generic:
@@ -225,9 +225,9 @@ ja:
     preface: 他のインスタンスでエクスポートされたファイルから、フォロー/ブロックした情報をこのインスタンス上のアカウントにインポートできます。
     success: ファイルは正常にアップロードされ、現在処理中です。しばらくしてから確認してください
     types:
-      blocking: ブロックしたアカウントリスト
-      following: フォロー中のアカウントリスト
-      muting: ミュートしたアカウントリスト
+      blocking: シャァァァしたアカウントリスト
+      following: ホゴ中のブンターリスト
+      muting: ミュートしたブンターリスト
     upload: アップロード
   landing_strip_html: <strong>%{name}</strong> さんはインスタンス <strong>%{domain}</strong> のユーザーです。アカウントさえ持っていればフォローしたり会話したりできます。もしお持ちでないなら <a href="%{sign_up_path}">こちら</a> からサインアップできます。
   media_attachments:
@@ -239,20 +239,20 @@ ja:
       body: "%{instance} での最後のログインからの出来事:"
       mention: "%{name} さんがあなたに返信しました:"
       new_followers_summary:
-        one: 新たなフォロワーを獲得しました！
-        other: "%{count} 人の新たなフォロワーを獲得しました！"
+        one: 新たなホゴ者を獲得しました！
+        other: "%{count} 人の新たなホゴ者を獲得しました！"
       subject:
         one: "新しい1件の通知 \U0001F418"
         other: "新しい%{count}件の通知 \U0001F418"
     favourite:
-      body: 'あなたのトゥートが %{name} さんにお気に入り登録されました:'
-      subject: "%{name} さんがあなたのトゥートをお気に入りに登録しました"
+      body: 'あなたのブンターが %{name} さんにお世話になりました:'
+      subject: "%{name} さんがあなたのブンターの面倒をみました"
     follow:
-      body: "%{name} さんにフォローされています"
-      subject: "%{name} さんにフォローされています"
+      body: "%{name} さんにホゴされています"
+      subject: "%{name} さんにホゴされています"
     follow_request:
-      body: "%{name} さんがあなたにフォローをリクエストしました。"
-      subject: "%{name} さんからのフォローリクエスト"
+      body: "%{name} さんがあなたのブンターのホゴを申し出ました。"
+      subject: "%{name} さんからのホゴの申し出"
     mention:
       body: "%{name} さんから返信がありました:"
       subject: "%{name} さんに返信されました"
@@ -264,10 +264,10 @@ ja:
     prev: 前
     truncate: "&hellip;"
   remote_follow:
-    acct: あなたの ユーザー名@ドメイン を入力してください
+    acct: あなたの ブンター名@ドメイン を入力してください
     missing_resource: リダイレクト先が見つかりませんでした
-    proceed: フォローする
-    prompt: 'フォローしようとしています:'
+    proceed: ホゴする
+    prompt: 'ホゴしようとしています:'
   settings:
     authorized_apps: 認証済みアプリ
     back: 戻る
