@@ -135,7 +135,7 @@ class MediaGallery extends React.PureComponent {
   };
 
   state = {
-    visible: !props.sensitive
+    visible: !this.props.sensitive
   };
 
   handleOpen = (e) => {
