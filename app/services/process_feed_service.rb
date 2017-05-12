@@ -141,7 +141,8 @@ class ProcessFeedService < BaseService
         created_at: published(entry),
         reply: thread?(entry),
         language: content_language(entry),
-        visibility: visibility_scope(entry)
+        visibility: visibility_scope(entry),
+        conversation: find_or_create_conversation(entry)
       )
 
       if thread?(entry)
@@ -162,6 +163,18 @@ class ProcessFeedService < BaseService
       ThreadResolveWorker.perform_async(parent.id, url) if status.nil?
 
       status
+    end
+
+    def find_or_create_conversation(xml)
+      uri = xml.at_xpath('./ostatus:conversation', ostatus: TagManager::OS_XMLNS)&.attribute('ref')&.content
+      return if uri.nil?
+
+      if TagManager.instance.local_id?(uri)
+        local_id = TagManager.instance.unique_tag_to_local_id(uri, 'Conversation')
+        return Conversation.find_by(id: local_id)
+      end
+
+      Conversation.find_by(uri: uri)
     end
 
     def find_status(uri)

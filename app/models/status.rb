@@ -21,6 +21,7 @@
 #  favourites_count       :integer          default(0), not null
 #  reblogs_count          :integer          default(0), not null
 #  language               :string           default("en"), not null
+#  conversation_id        :integer
 #
 
 class Status < ApplicationRecord
@@ -34,6 +35,7 @@ class Status < ApplicationRecord
 
   belongs_to :account, inverse_of: :statuses, counter_cache: true, required: true
   belongs_to :in_reply_to_account, foreign_key: 'in_reply_to_account_id', class_name: 'Account'
+  belongs_to :conversation
 
   belongs_to :thread, foreign_key: 'in_reply_to_id', class_name: 'Status', inverse_of: :replies
   belongs_to :reblog, foreign_key: 'reblog_of_id', class_name: 'Status', inverse_of: :reblogs, counter_cache: :reblogs_count
@@ -141,6 +143,11 @@ class Status < ApplicationRecord
     !sensitive? && media_attachments.any?
   end
 
+  before_validation :prepare_contents
+  before_create     :set_reblog
+  before_create     :set_visibility
+  before_create     :set_conversation
+
   class << self
     def in_allowed_languages(account)
       where(language: account.allowed_languages)
@@ -242,17 +249,39 @@ class Status < ApplicationRecord
     end
   end
 
-  before_validation do
+  private
+
+  def prepare_contents
     text&.strip!
     spoiler_text&.strip!
-
-    self.reply                  = !(in_reply_to_id.nil? && thread.nil?) unless reply
-    self.reblog                 = reblog.reblog if reblog? && reblog.reblog?
-    self.in_reply_to_account_id = (thread.account_id == account_id && thread.reply? ? thread.in_reply_to_account_id : thread.account_id) if reply? && !thread.nil?
-    self.visibility             = (account.locked? ? :private : :public) if visibility.nil?
   end
 
-  private
+  def set_reblog
+    self.reblog = reblog.reblog if reblog? && reblog.reblog?
+  end
+
+  def set_visibility
+    self.visibility = (account.locked? ? :private : :public) if visibility.nil?
+  end
+
+  def set_conversation
+    self.reply = !(in_reply_to_id.nil? && thread.nil?) unless reply
+
+    if reply? && !thread.nil?
+      self.in_reply_to_account_id = carried_over_reply_to_account_id
+      self.conversation_id        = thread.conversation_id if conversation_id.nil?
+    elsif conversation_id.nil?
+      create_conversation
+    end
+  end
+
+  def carried_over_reply_to_account_id
+    if thread.account_id == account_id && thread.reply?
+      thread.in_reply_to_account_id
+    else
+      thread.account_id
+    end
+  end
 
   def filter_from_context?(status, account)
     account&.blocking?(status.account_id) || account&.muting?(status.account_id) || (status.account.silenced? && !account&.following?(status.account_id)) || !status.permitted?(account)
