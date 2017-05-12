@@ -11,6 +11,10 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 
 class Notification extends ImmutablePureComponent {
 
+  static propTypes = {
+    notification: ImmutablePropTypes.map.isRequired
+  };
+
   renderFollow (account, link) {
     return (
       <div className='notification notification-follow'>
@@ -81,9 +85,5 @@ class Notification extends ImmutablePureComponent {
   }
 
 }
-
-Notification.propTypes = {
-  notification: ImmutablePropTypes.map.isRequired
-};
 
 export default Notification;

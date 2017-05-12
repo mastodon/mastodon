@@ -3,6 +3,10 @@ import PropTypes from 'prop-types';
 
 class ColumnsArea extends React.PureComponent {
 
+  static propTypes = {
+    children: PropTypes.node
+  };
+
   render () {
     return (
       <div className='columns-area'>
@@ -12,9 +16,5 @@ class ColumnsArea extends React.PureComponent {
   }
 
 }
-
-ColumnsArea.propTypes = {
-  children: PropTypes.node
-};
 
 export default ColumnsArea;

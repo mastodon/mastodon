@@ -14,25 +14,26 @@ const messages = defineMessages({
 
 class MediaModal extends ImmutablePureComponent {
 
-  constructor (props, context) {
-    super(props, context);
-    this.state = {
-      index: null
-    };
-    this.handleNextClick = this.handleNextClick.bind(this);
-    this.handlePrevClick = this.handlePrevClick.bind(this);
-    this.handleKeyUp = this.handleKeyUp.bind(this);
-  }
+  static propTypes = {
+    media: ImmutablePropTypes.list.isRequired,
+    index: PropTypes.number.isRequired,
+    onClose: PropTypes.func.isRequired,
+    intl: PropTypes.object.isRequired
+  };
 
-  handleNextClick () {
+  state = {
+    index: null
+  };
+
+  handleNextClick = () => {
     this.setState({ index: (this.getIndex() + 1) % this.props.media.size});
   }
 
-  handlePrevClick () {
+  handlePrevClick = () => {
     this.setState({ index: (this.getIndex() - 1) % this.props.media.size});
   }
 
-  handleKeyUp (e) {
+  handleKeyUp = (e) => {
     switch(e.key) {
     case 'ArrowLeft':
       this.handlePrevClick();
@@ -92,12 +93,5 @@ class MediaModal extends ImmutablePureComponent {
   }
 
 }
-
-MediaModal.propTypes = {
-  media: ImmutablePropTypes.list.isRequired,
-  index: PropTypes.number.isRequired,
-  onClose: PropTypes.func.isRequired,
-  intl: PropTypes.object.isRequired
-};
 
 export default injectIntl(MediaModal);

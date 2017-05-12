@@ -21,52 +21,57 @@ const messages = defineMessages({
 
 class StatusActionBar extends React.PureComponent {
 
-  constructor (props, context) {
-    super(props, context);
-    this.handleReplyClick = this.handleReplyClick.bind(this);
-    this.handleFavouriteClick = this.handleFavouriteClick.bind(this);
-    this.handleReblogClick = this.handleReblogClick.bind(this);
-    this.handleDeleteClick = this.handleDeleteClick.bind(this);
-    this.handleMentionClick = this.handleMentionClick.bind(this);
-    this.handleMuteClick = this.handleMuteClick.bind(this);
-    this.handleBlockClick = this.handleBlockClick.bind(this);
-    this.handleOpen = this.handleOpen.bind(this);
-    this.handleReport = this.handleReport.bind(this);
-  }
+  static contextTypes = {
+    router: PropTypes.object
+  };
 
-  handleReplyClick () {
+  static propTypes = {
+    status: ImmutablePropTypes.map.isRequired,
+    onReply: PropTypes.func,
+    onFavourite: PropTypes.func,
+    onReblog: PropTypes.func,
+    onDelete: PropTypes.func,
+    onMention: PropTypes.func,
+    onMute: PropTypes.func,
+    onBlock: PropTypes.func,
+    onReport: PropTypes.func,
+    me: PropTypes.number.isRequired,
+    intl: PropTypes.object.isRequired
+  };
+
+  handleReplyClick = () => {
     this.props.onReply(this.props.status, this.context.router);
   }
 
-  handleFavouriteClick () {
+  handleFavouriteClick = () => {
     this.props.onFavourite(this.props.status);
   }
 
-  handleReblogClick (e) {
+  handleReblogClick = (e) => {
     this.props.onReblog(this.props.status, e);
   }
 
-  handleDeleteClick () {
+  handleDeleteClick = () => {
     this.props.onDelete(this.props.status);
   }
 
-  handleMentionClick () {
+  handleMentionClick = () => {
     this.props.onMention(this.props.status.get('account'), this.context.router);
   }
 
-  handleMuteClick () {
+  handleMuteClick = () => {
     this.props.onMute(this.props.status.get('account'));
   }
 
-  handleBlockClick () {
+  handleBlockClick = () => {
     this.props.onBlock(this.props.status.get('account'));
   }
 
-  handleOpen () {
+  handleOpen = () => {
     this.context.router.push(`/statuses/${this.props.status.get('id')}`);
   }
 
-  handleReport () {
+  handleReport = () => {
     this.props.onReport(this.props.status);
     this.context.router.push('/report');
   }
@@ -121,23 +126,5 @@ class StatusActionBar extends React.PureComponent {
   }
 
 }
-
-StatusActionBar.contextTypes = {
-  router: PropTypes.object
-};
-
-StatusActionBar.propTypes = {
-  status: ImmutablePropTypes.map.isRequired,
-  onReply: PropTypes.func,
-  onFavourite: PropTypes.func,
-  onReblog: PropTypes.func,
-  onDelete: PropTypes.func,
-  onMention: PropTypes.func,
-  onMute: PropTypes.func,
-  onBlock: PropTypes.func,
-  onReport: PropTypes.func,
-  me: PropTypes.number.isRequired,
-  intl: PropTypes.object.isRequired
-};
 
 export default injectIntl(StatusActionBar);

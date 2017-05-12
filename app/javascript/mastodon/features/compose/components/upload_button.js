@@ -23,24 +23,26 @@ const iconStyle = {
 
 class UploadButton extends React.PureComponent {
 
-  constructor (props, context) {
-    super(props, context);
-    this.handleChange = this.handleChange.bind(this);
-    this.handleClick = this.handleClick.bind(this);
-    this.setRef = this.setRef.bind(this);
-  }
+  static propTypes = {
+    disabled: PropTypes.bool,
+    onSelectFile: PropTypes.func.isRequired,
+    style: PropTypes.object,
+    resetFileKey: PropTypes.number,
+    acceptContentTypes: PropTypes.arrayOf(PropTypes.string).isRequired,
+    intl: PropTypes.object.isRequired
+  };
 
-  handleChange (e) {
+  handleChange = (e) => {
     if (e.target.files.length > 0) {
       this.props.onSelectFile(e.target.files);
     }
   }
 
-  handleClick () {
+  handleClick = () => {
     this.fileElement.click();
   }
 
-  setRef (c) {
+  setRef = (c) => {
     this.fileElement = c;
   }
 
@@ -66,14 +68,5 @@ class UploadButton extends React.PureComponent {
   }
 
 }
-
-UploadButton.propTypes = {
-  disabled: PropTypes.bool,
-  onSelectFile: PropTypes.func.isRequired,
-  style: PropTypes.object,
-  resetFileKey: PropTypes.number,
-  acceptContentTypes: PropTypes.arrayOf(PropTypes.string).isRequired,
-  intl: PropTypes.object.isRequired
-};
 
 export default connect(makeMapStateToProps)(injectIntl(UploadButton));

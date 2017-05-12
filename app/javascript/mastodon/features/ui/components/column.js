@@ -32,14 +32,15 @@ const scrollTop = (node) => {
 
 class Column extends React.PureComponent {
 
-  constructor (props, context) {
-    super(props, context);
-    this.handleHeaderClick = this.handleHeaderClick.bind(this);
-    this.handleWheel = this.handleWheel.bind(this);
-    this.setRef = this.setRef.bind(this);
-  }
+  static propTypes = {
+    heading: PropTypes.string,
+    icon: PropTypes.string,
+    children: PropTypes.node,
+    active: PropTypes.bool,
+    hideHeadingOnMobile: PropTypes.bool
+  };
 
-  handleHeaderClick () {
+  handleHeaderClick = () => {
     const scrollable = this.node.querySelector('.scrollable');
     if (!scrollable) {
       return;
@@ -47,13 +48,13 @@ class Column extends React.PureComponent {
     this._interruptScrollAnimation = scrollTop(scrollable);
   }
 
-  handleWheel () {
+  handleWheel = () => {
     if (typeof this._interruptScrollAnimation !== 'undefined') {
       this._interruptScrollAnimation();
     }
   }
 
-  setRef (c) {
+  setRef = (c) => {
     this.node = c;
   }
 
@@ -81,13 +82,5 @@ class Column extends React.PureComponent {
   }
 
 }
-
-Column.propTypes = {
-  heading: PropTypes.string,
-  icon: PropTypes.string,
-  children: PropTypes.node,
-  active: PropTypes.bool,
-  hideHeadingOnMobile: PropTypes.bool
-};
 
 export default Column;

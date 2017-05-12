@@ -25,6 +25,13 @@ const mapStateToProps = state => ({
 
 class Compose extends React.PureComponent {
 
+  static propTypes = {
+    dispatch: PropTypes.func.isRequired,
+    withHeader: PropTypes.bool,
+    showSearch: PropTypes.bool,
+    intl: PropTypes.object.isRequired
+  };
+
   componentDidMount () {
     this.props.dispatch(mountCompose());
   }
@@ -75,12 +82,5 @@ class Compose extends React.PureComponent {
   }
 
 }
-
-Compose.propTypes = {
-  dispatch: PropTypes.func.isRequired,
-  withHeader: PropTypes.bool,
-  showSearch: PropTypes.bool,
-  intl: PropTypes.object.isRequired
-};
 
 export default connect(mapStateToProps)(injectIntl(Compose));

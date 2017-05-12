@@ -3,12 +3,22 @@ import PropTypes from 'prop-types';
 
 class Button extends React.PureComponent {
 
-  constructor (props, context) {
-    super(props, context);
-    this.handleClick = this.handleClick.bind(this);
-  }
+  static propTypes = {
+    text: PropTypes.node,
+    onClick: PropTypes.func,
+    disabled: PropTypes.bool,
+    block: PropTypes.bool,
+    secondary: PropTypes.bool,
+    size: PropTypes.number,
+    style: PropTypes.object,
+    children: PropTypes.node
+  };
 
-  handleClick (e) {
+  static defaultProps = {
+    size: 36
+  };
+
+  handleClick = (e) => {
     if (!this.props.disabled) {
       this.props.onClick();
     }
@@ -31,20 +41,5 @@ class Button extends React.PureComponent {
   }
 
 }
-
-Button.propTypes = {
-  text: PropTypes.node,
-  onClick: PropTypes.func,
-  disabled: PropTypes.bool,
-  block: PropTypes.bool,
-  secondary: PropTypes.bool,
-  size: PropTypes.number,
-  style: PropTypes.object,
-  children: PropTypes.node
-};
-
-Button.defaultProps = {
-  size: 36
-};
 
 export default Button;

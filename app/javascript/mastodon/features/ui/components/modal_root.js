@@ -17,12 +17,13 @@ const MODAL_COMPONENTS = {
 
 class ModalRoot extends React.PureComponent {
 
-  constructor (props, context) {
-    super(props, context);
-    this.handleKeyUp = this.handleKeyUp.bind(this);
-  }
+  static propTypes = {
+    type: PropTypes.string,
+    props: PropTypes.object,
+    onClose: PropTypes.func.isRequired
+  };
 
-  handleKeyUp (e) {
+  handleKeyUp = (e) => {
     if ((e.key === 'Escape' || e.key === 'Esc' || e.keyCode === 27)
          && !!this.props.type) {
       this.props.onClose();
@@ -83,11 +84,5 @@ class ModalRoot extends React.PureComponent {
   }
 
 }
-
-ModalRoot.propTypes = {
-  type: PropTypes.string,
-  props: PropTypes.object,
-  onClose: PropTypes.func.isRequired
-};
 
 export default ModalRoot;

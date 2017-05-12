@@ -4,20 +4,27 @@ import PropTypes from 'prop-types';
 
 class DropdownMenu extends React.PureComponent {
 
-  constructor (props, context) {
-    super(props, context);
-    this.state = {
-      direction: 'left'
-    };
-    this.setRef = this.setRef.bind(this);
-    this.renderItem = this.renderItem.bind(this);
-  }
+  static propTypes = {
+    icon: PropTypes.string.isRequired,
+    items: PropTypes.array.isRequired,
+    size: PropTypes.number.isRequired,
+    direction: PropTypes.string,
+    ariaLabel: PropTypes.string
+  };
 
-  setRef (c) {
+  static defaultProps = {
+    ariaLabel: "Menu"
+  };
+
+  state = {
+    direction: 'left'
+  };
+
+  setRef = (c) => {
     this.dropdown = c;
   }
 
-  handleClick (i, e) {
+  handleClick = (i, e) => {
     const { action } = this.props.items[i];
 
     if (typeof action === 'function') {
@@ -27,7 +34,7 @@ class DropdownMenu extends React.PureComponent {
     }
   }
 
-  renderItem (item, i) {
+  renderItem = (item, i) => {
     if (item === null) {
       return <li key={ 'sep' + i } className='dropdown__sep' />;
     }
@@ -63,17 +70,5 @@ class DropdownMenu extends React.PureComponent {
   }
 
 }
-
-DropdownMenu.propTypes = {
-  icon: PropTypes.string.isRequired,
-  items: PropTypes.array.isRequired,
-  size: PropTypes.number.isRequired,
-  direction: PropTypes.string,
-  ariaLabel: PropTypes.string
-};
-
-DropdownMenu.defaultProps = {
-  ariaLabel: "Menu"
-};
 
 export default DropdownMenu;

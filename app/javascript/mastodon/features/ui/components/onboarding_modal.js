@@ -165,27 +165,29 @@ const mapStateToProps = state => ({
 
 class OnboardingModal extends React.PureComponent {
 
-  constructor (props, context) {
-    super(props, context);
-    this.state = {
-      currentIndex: 0
-    };
-    this.handleSkip = this.handleSkip.bind(this);
-    this.handleDot = this.handleDot.bind(this);
-    this.handleNext = this.handleNext.bind(this);
-  }
+  static propTypes = {
+    onClose: PropTypes.func.isRequired,
+    intl: PropTypes.object.isRequired,
+    me: ImmutablePropTypes.map.isRequired,
+    domain: PropTypes.string.isRequired,
+    admin: ImmutablePropTypes.map
+  };
 
-  handleSkip (e) {
+  state = {
+    currentIndex: 0
+  };
+
+  handleSkip = (e) => {
     e.preventDefault();
     this.props.onClose();
   }
 
-  handleDot (i, e) {
+  handleDot = (i, e) => {
     e.preventDefault();
     this.setState({ currentIndex: i });
   }
 
-  handleNext (maxNum, e) {
+  handleNext = (maxNum, e) => {
     e.preventDefault();
 
     if (this.state.currentIndex < maxNum - 1) {
@@ -251,14 +253,6 @@ class OnboardingModal extends React.PureComponent {
     );
   }
 
-}
-
-OnboardingModal.propTypes = {
-  onClose: PropTypes.func.isRequired,
-  intl: PropTypes.object.isRequired,
-  me: ImmutablePropTypes.map.isRequired,
-  domain: PropTypes.string.isRequired,
-  admin: ImmutablePropTypes.map
 }
 
 export default connect(mapStateToProps)(injectIntl(OnboardingModal));

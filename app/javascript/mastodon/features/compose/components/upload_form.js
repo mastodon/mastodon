@@ -12,6 +12,12 @@ const messages = defineMessages({
 
 class UploadForm extends React.PureComponent {
 
+  static propTypes = {
+    media: ImmutablePropTypes.list.isRequired,
+    onRemoveFile: PropTypes.func.isRequired,
+    intl: PropTypes.object.isRequired
+  };
+
   render () {
     const { intl, media } = this.props;
 
@@ -36,11 +42,5 @@ class UploadForm extends React.PureComponent {
   }
 
 }
-
-UploadForm.propTypes = {
-  media: ImmutablePropTypes.list.isRequired,
-  onRemoveFile: PropTypes.func.isRequired,
-  intl: PropTypes.object.isRequired
-};
 
 export default injectIntl(UploadForm);

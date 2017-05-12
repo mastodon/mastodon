@@ -22,16 +22,19 @@ const mapStateToProps = state => ({
 
 class Favourites extends ImmutablePureComponent {
 
-  constructor (props, context) {
-    super(props, context);
-    this.handleScrollToBottom = this.handleScrollToBottom.bind(this);
-  }
+  static propTypes = {
+    dispatch: PropTypes.func.isRequired,
+    statusIds: ImmutablePropTypes.list.isRequired,
+    loaded: PropTypes.bool,
+    intl: PropTypes.object.isRequired,
+    me: PropTypes.number.isRequired
+  };
 
   componentWillMount () {
     this.props.dispatch(fetchFavouritedStatuses());
   }
 
-  handleScrollToBottom () {
+  handleScrollToBottom = () => {
     this.props.dispatch(expandFavouritedStatuses());
   }
 
@@ -55,13 +58,5 @@ class Favourites extends ImmutablePureComponent {
   }
 
 }
-
-Favourites.propTypes = {
-  dispatch: PropTypes.func.isRequired,
-  statusIds: ImmutablePropTypes.list.isRequired,
-  loaded: PropTypes.bool,
-  intl: PropTypes.object.isRequired,
-  me: PropTypes.number.isRequired
-};
 
 export default connect(mapStateToProps)(injectIntl(Favourites));

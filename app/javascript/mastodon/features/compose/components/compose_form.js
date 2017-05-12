@@ -27,48 +27,63 @@ const messages = defineMessages({
 
 class ComposeForm extends ImmutablePureComponent {
 
-  constructor (props, context) {
-    super(props, context);
-    this.handleChange = this.handleChange.bind(this);
-    this.handleKeyDown = this.handleKeyDown.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.onSuggestionsClearRequested = this.onSuggestionsClearRequested.bind(this);
-    this.onSuggestionsFetchRequested = debounce(this.onSuggestionsFetchRequested.bind(this), 500);
-    this.onSuggestionSelected = this.onSuggestionSelected.bind(this);
-    this.handleChangeSpoilerText = this.handleChangeSpoilerText.bind(this);
-    this.setAutosuggestTextarea = this.setAutosuggestTextarea.bind(this);
-    this.handleEmojiPick = this.handleEmojiPick.bind(this);
-  }
+  static propTypes = {
+    intl: PropTypes.object.isRequired,
+    text: PropTypes.string.isRequired,
+    suggestion_token: PropTypes.string,
+    suggestions: ImmutablePropTypes.list,
+    spoiler: PropTypes.bool,
+    privacy: PropTypes.string,
+    spoiler_text: PropTypes.string,
+    focusDate: PropTypes.instanceOf(Date),
+    preselectDate: PropTypes.instanceOf(Date),
+    is_submitting: PropTypes.bool,
+    is_uploading: PropTypes.bool,
+    me: PropTypes.number,
+    onChange: PropTypes.func.isRequired,
+    onSubmit: PropTypes.func.isRequired,
+    onClearSuggestions: PropTypes.func.isRequired,
+    onFetchSuggestions: PropTypes.func.isRequired,
+    onSuggestionSelected: PropTypes.func.isRequired,
+    onChangeSpoilerText: PropTypes.func.isRequired,
+    onPaste: PropTypes.func.isRequired,
+    onPickEmoji: PropTypes.func.isRequired,
+    showSearch: PropTypes.bool,
+  };
 
-  handleChange (e) {
+  static defaultProps = {
+    showSearch: false
+  };
+
+  handleChange = (e) => {
     this.props.onChange(e.target.value);
   }
 
-  handleKeyDown (e) {
+  handleKeyDown = (e) => {
     if (e.keyCode === 13 && (e.ctrlKey || e.metaKey)) {
       this.handleSubmit();
     }
   }
 
-  handleSubmit () {
+  handleSubmit = () => {
     this.autosuggestTextarea.reset();
     this.props.onSubmit();
   }
 
-  onSuggestionsClearRequested () {
+  onSuggestionsClearRequested = () => {
     this.props.onClearSuggestions();
   }
 
-  onSuggestionsFetchRequested (token) {
+  onSuggestionsFetchRequested = (token) => {
     this.props.onFetchSuggestions(token);
   }
 
-  onSuggestionSelected (tokenStart, token, value) {
+  onSuggestionSelected = (tokenStart, token, value) => {
     this._restoreCaret = null;
     this.props.onSuggestionSelected(tokenStart, token, value);
   }
 
-  handleChangeSpoilerText (e) {
+  handleChangeSpoilerText = (e) => {
     this.props.onChangeSpoilerText(e.target.value);
   }
 
@@ -107,11 +122,11 @@ class ComposeForm extends ImmutablePureComponent {
     }
   }
 
-  setAutosuggestTextarea (c) {
+  setAutosuggestTextarea = (c) => {
     this.autosuggestTextarea = c;
   }
 
-  handleEmojiPick (data) {
+  handleEmojiPick = (data) => {
     const position     = this.autosuggestTextarea.textarea.selectionStart;
     this._restoreCaret = position + data.shortname.length + 1;
     this.props.onPickEmoji(position, data);
@@ -184,33 +199,5 @@ class ComposeForm extends ImmutablePureComponent {
   }
 
 }
-
-ComposeForm.propTypes = {
-  intl: PropTypes.object.isRequired,
-  text: PropTypes.string.isRequired,
-  suggestion_token: PropTypes.string,
-  suggestions: ImmutablePropTypes.list,
-  spoiler: PropTypes.bool,
-  privacy: PropTypes.string,
-  spoiler_text: PropTypes.string,
-  focusDate: PropTypes.instanceOf(Date),
-  preselectDate: PropTypes.instanceOf(Date),
-  is_submitting: PropTypes.bool,
-  is_uploading: PropTypes.bool,
-  me: PropTypes.number,
-  onChange: PropTypes.func.isRequired,
-  onSubmit: PropTypes.func.isRequired,
-  onClearSuggestions: PropTypes.func.isRequired,
-  onFetchSuggestions: PropTypes.func.isRequired,
-  onSuggestionSelected: PropTypes.func.isRequired,
-  onChangeSpoilerText: PropTypes.func.isRequired,
-  onPaste: PropTypes.func.isRequired,
-  onPickEmoji: PropTypes.func.isRequired,
-  showSearch: PropTypes.bool,
-};
-
-ComposeForm.defaultProps = {
-  showSearch: false
-};
 
 export default injectIntl(ComposeForm);

@@ -16,6 +16,13 @@ const messages = defineMessages({
 
 class AccountAuthorize extends ImmutablePureComponent {
 
+  static propTypes = {
+    account: ImmutablePropTypes.map.isRequired,
+    onAuthorize: PropTypes.func.isRequired,
+    onReject: PropTypes.func.isRequired,
+    intl: PropTypes.object.isRequired
+  };
+
   render () {
     const { intl, account, onAuthorize, onReject } = this.props;
     const content = { __html: emojify(account.get('note')) };
@@ -40,12 +47,5 @@ class AccountAuthorize extends ImmutablePureComponent {
   }
 
 }
-
-AccountAuthorize.propTypes = {
-  account: ImmutablePropTypes.map.isRequired,
-  onAuthorize: PropTypes.func.isRequired,
-  onReject: PropTypes.func.isRequired,
-  intl: PropTypes.object.isRequired
-};
 
 export default injectIntl(AccountAuthorize);

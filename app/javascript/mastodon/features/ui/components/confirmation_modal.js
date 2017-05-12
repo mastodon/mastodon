@@ -5,18 +5,20 @@ import Button from '../../../components/button';
 
 class ConfirmationModal extends React.PureComponent {
 
-  constructor (props, context) {
-    super(props, context);
-    this.handleClick = this.handleClick.bind(this);
-    this.handleCancel = this.handleCancel.bind(this);
-  }
+  static propTypes = {
+    message: PropTypes.node.isRequired,
+    confirm: PropTypes.string.isRequired,
+    onClose: PropTypes.func.isRequired,
+    onConfirm: PropTypes.func.isRequired,
+    intl: PropTypes.object.isRequired
+  };
 
-  handleClick () {
+  handleClick = () => {
     this.props.onClose();
     this.props.onConfirm();
   }
 
-  handleCancel (e) {
+  handleCancel = (e) => {
     e.preventDefault();
     this.props.onClose();
   }
@@ -39,13 +41,5 @@ class ConfirmationModal extends React.PureComponent {
   }
 
 }
-
-ConfirmationModal.propTypes = {
-  message: PropTypes.node.isRequired,
-  confirm: PropTypes.string.isRequired,
-  onClose: PropTypes.func.isRequired,
-  onConfirm: PropTypes.func.isRequired,
-  intl: PropTypes.object.isRequired
-};
 
 export default injectIntl(ConfirmationModal);

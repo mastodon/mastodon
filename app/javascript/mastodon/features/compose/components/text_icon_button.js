@@ -3,12 +3,15 @@ import PropTypes from 'prop-types';
 
 class TextIconButton extends React.PureComponent {
 
-  constructor (props, context) {
-    super(props, context);
-    this.handleClick = this.handleClick.bind(this);
-  }
+  static propTypes = {
+    label: PropTypes.string.isRequired,
+    title: PropTypes.string,
+    active: PropTypes.bool,
+    onClick: PropTypes.func.isRequired,
+    ariaControls: PropTypes.string
+  };
 
-  handleClick (e) {
+  handleClick = (e) => {
     e.preventDefault();
     this.props.onClick();
   }
@@ -24,13 +27,5 @@ class TextIconButton extends React.PureComponent {
   }
 
 }
-
-TextIconButton.propTypes = {
-  label: PropTypes.string.isRequired,
-  title: PropTypes.string,
-  active: PropTypes.bool,
-  onClick: PropTypes.func.isRequired,
-  ariaControls: PropTypes.string
-};
 
 export default TextIconButton;

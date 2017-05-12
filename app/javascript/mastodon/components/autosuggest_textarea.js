@@ -32,6 +32,25 @@ const textAtCursorMatchesToken = (str, caretPosition) => {
 
 class AutosuggestTextarea extends ImmutablePureComponent {
 
+  static propTypes = {
+    value: PropTypes.string,
+    suggestions: ImmutablePropTypes.list,
+    disabled: PropTypes.bool,
+    placeholder: PropTypes.string,
+    onSuggestionSelected: PropTypes.func.isRequired,
+    onSuggestionsClearRequested: PropTypes.func.isRequired,
+    onSuggestionsFetchRequested: PropTypes.func.isRequired,
+    onChange: PropTypes.func.isRequired,
+    onKeyUp: PropTypes.func,
+    onKeyDown: PropTypes.func,
+    onPaste: PropTypes.func.isRequired,
+    autoFocus: PropTypes.bool
+  };
+
+  static defaultProps = {
+    autoFucus: true
+  };
+
   constructor (props, context) {
     super(props, context);
     this.state = {
@@ -194,25 +213,6 @@ class AutosuggestTextarea extends ImmutablePureComponent {
     );
   }
 
-};
-
-AutosuggestTextarea.propTypes = {
-  value: PropTypes.string,
-  suggestions: ImmutablePropTypes.list,
-  disabled: PropTypes.bool,
-  placeholder: PropTypes.string,
-  onSuggestionSelected: PropTypes.func.isRequired,
-  onSuggestionsClearRequested: PropTypes.func.isRequired,
-  onSuggestionsFetchRequested: PropTypes.func.isRequired,
-  onChange: PropTypes.func.isRequired,
-  onKeyUp: PropTypes.func,
-  onKeyDown: PropTypes.func,
-  onPaste: PropTypes.func.isRequired,
-  autoFocus: PropTypes.bool
-};
-
-AutosuggestTextarea.defaultProps = {
-  autoFucus: true,
-};
+}
 
 export default AutosuggestTextarea;

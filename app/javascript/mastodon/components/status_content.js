@@ -9,19 +9,17 @@ import Permalink from './permalink';
 
 class StatusContent extends React.PureComponent {
 
-  constructor (props, context) {
-    super(props, context);
+  static contextTypes = {
+    router: PropTypes.object
+  };
 
-    this.state = {
-      hidden: true
-    };
+  static propTypes = {
+    status: ImmutablePropTypes.map.isRequired,
+    onClick: PropTypes.func
+  };
 
-    this.onMentionClick = this.onMentionClick.bind(this);
-    this.onHashtagClick = this.onHashtagClick.bind(this);
-    this.handleMouseDown = this.handleMouseDown.bind(this)
-    this.handleMouseUp = this.handleMouseUp.bind(this);
-    this.handleSpoilerClick = this.handleSpoilerClick.bind(this);
-    this.setRef = this.setRef.bind(this);
+  state = {
+    hidden: true
   };
 
   componentDidMount () {
@@ -46,14 +44,14 @@ class StatusContent extends React.PureComponent {
     }
   }
 
-  onMentionClick (mention, e) {
+  onMentionClick = (mention, e) => {
     if (e.button === 0) {
       e.preventDefault();
       this.context.router.push(`/accounts/${mention.get('id')}`);
     }
   }
 
-  onHashtagClick (hashtag, e) {
+  onHashtagClick = (hashtag, e) => {
     hashtag = hashtag.replace(/^#/, '').toLowerCase();
 
     if (e.button === 0) {
@@ -62,11 +60,11 @@ class StatusContent extends React.PureComponent {
     }
   }
 
-  handleMouseDown (e) {
+  handleMouseDown = (e) => {
     this.startXY = [e.clientX, e.clientY];
   }
 
-  handleMouseUp (e) {
+  handleMouseUp = (e) => {
     const [ startX, startY ] = this.startXY;
     const [ deltaX, deltaY ] = [Math.abs(e.clientX - startX), Math.abs(e.clientY - startY)];
 
@@ -81,12 +79,12 @@ class StatusContent extends React.PureComponent {
     this.startXY = null;
   }
 
-  handleSpoilerClick (e) {
+  handleSpoilerClick = (e) => {
     e.preventDefault();
     this.setState({ hidden: !this.state.hidden });
   }
 
-  setRef (c) {
+  setRef = (c) => {
     this.node = c;
   }
 
@@ -157,14 +155,5 @@ class StatusContent extends React.PureComponent {
   }
 
 }
-
-StatusContent.contextTypes = {
-  router: PropTypes.object
-};
-
-StatusContent.propTypes = {
-  status: ImmutablePropTypes.map.isRequired,
-  onClick: PropTypes.func
-};
 
 export default StatusContent;

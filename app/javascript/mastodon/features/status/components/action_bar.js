@@ -17,37 +17,43 @@ const messages = defineMessages({
 
 class ActionBar extends React.PureComponent {
 
-  constructor (props, context) {
-    super(props, context);
-    this.handleReplyClick = this.handleReplyClick.bind(this);
-    this.handleReblogClick = this.handleReblogClick.bind(this);
-    this.handleFavouriteClick = this.handleFavouriteClick.bind(this);
-    this.handleDeleteClick = this.handleDeleteClick.bind(this);
-    this.handleMentionClick = this.handleMentionClick.bind(this);
-    this.handleReport = this.handleReport.bind(this);
-  }
+  static contextTypes = {
+    router: PropTypes.object
+  };
 
-  handleReplyClick () {
+  static propTypes = {
+    status: ImmutablePropTypes.map.isRequired,
+    onReply: PropTypes.func.isRequired,
+    onReblog: PropTypes.func.isRequired,
+    onFavourite: PropTypes.func.isRequired,
+    onDelete: PropTypes.func.isRequired,
+    onMention: PropTypes.func.isRequired,
+    onReport: PropTypes.func,
+    me: PropTypes.number.isRequired,
+    intl: PropTypes.object.isRequired
+  };
+
+  handleReplyClick = () => {
     this.props.onReply(this.props.status);
   }
 
-  handleReblogClick (e) {
+  handleReblogClick = (e) => {
     this.props.onReblog(this.props.status, e);
   }
 
-  handleFavouriteClick () {
+  handleFavouriteClick = () => {
     this.props.onFavourite(this.props.status);
   }
 
-  handleDeleteClick () {
+  handleDeleteClick = () => {
     this.props.onDelete(this.props.status);
   }
 
-  handleMentionClick () {
+  handleMentionClick = () => {
     this.props.onMention(this.props.status.get('account'), this.context.router);
   }
 
-  handleReport () {
+  handleReport = () => {
     this.props.onReport(this.props.status);
     this.context.router.push('/report');
   }
@@ -85,21 +91,5 @@ class ActionBar extends React.PureComponent {
   }
 
 }
-
-ActionBar.contextTypes = {
-  router: PropTypes.object
-};
-
-ActionBar.propTypes = {
-  status: ImmutablePropTypes.map.isRequired,
-  onReply: PropTypes.func.isRequired,
-  onReblog: PropTypes.func.isRequired,
-  onFavourite: PropTypes.func.isRequired,
-  onDelete: PropTypes.func.isRequired,
-  onMention: PropTypes.func.isRequired,
-  onReport: PropTypes.func,
-  me: PropTypes.number.isRequired,
-  intl: PropTypes.object.isRequired
-};
 
 export default injectIntl(ActionBar);

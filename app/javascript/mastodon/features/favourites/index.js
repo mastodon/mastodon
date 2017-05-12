@@ -16,6 +16,12 @@ const mapStateToProps = (state, props) => ({
 
 class Favourites extends ImmutablePureComponent {
 
+  static propTypes = {
+    params: PropTypes.object.isRequired,
+    dispatch: PropTypes.func.isRequired,
+    accountIds: ImmutablePropTypes.list
+  };
+
   componentWillMount () {
     this.props.dispatch(fetchFavourites(Number(this.props.params.statusId)));
   }
@@ -51,11 +57,5 @@ class Favourites extends ImmutablePureComponent {
   }
 
 }
-
-Favourites.propTypes = {
-  params: PropTypes.object.isRequired,
-  dispatch: PropTypes.func.isRequired,
-  accountIds: ImmutablePropTypes.list
-};
 
 export default connect(mapStateToProps)(Favourites);
