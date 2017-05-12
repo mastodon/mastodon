@@ -63,6 +63,7 @@ module Mastodon
     # config.autoload_paths += Dir[Rails.root.join('app', 'api', '*')]
 
     config.active_job.queue_adapter = :sidekiq
+    config.active_record.schema_format = :sql
 
     config.middleware.insert_before 0, Rack::Cors do
       allow do

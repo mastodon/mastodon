@@ -18,7 +18,11 @@ env:
     - "PATH=$HOME:$PATH"
 
 addons:
-  postgresql: 9.4
+  # The latest version provided by CentOS 7. Make sure the structure could be
+  # imported to the database of the version. (structures dumped from later
+  # versions are not.)
+  postgresql: 9.2
+
   apt:
     sources:
     - ubuntu-toolchain-r-test
@@ -43,7 +47,7 @@ install:
   - yarn install
 
 before_script:
-  - bundle exec rake parallel:create parallel:load_schema parallel:prepare
+  - bundle exec rake parallel:create parallel:load_structure
   - bundle exec rails assets:precompile
   - ln -s /usr/bin/x86_64-linux-gnu-g++-6 "$HOME/g++"
 

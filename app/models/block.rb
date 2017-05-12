@@ -8,6 +8,7 @@
 #  target_account_id :integer          not null
 #  created_at        :datetime         not null
 #  updated_at        :datetime         not null
+#  block             :boolean          default(TRUE), not null
 #
 
 class Block < ApplicationRecord
