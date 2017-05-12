@@ -9,7 +9,6 @@ const messages = defineMessages({
   toggle_sound: { id: 'video_player.toggle_sound', defaultMessage: 'Toggle sound' },
   toggle_visible: { id: 'video_player.toggle_visible', defaultMessage: 'Toggle visibility' },
   expand_video: { id: 'video_player.expand', defaultMessage: 'Expand video' },
-  expand_video: { id: 'video_player.video_error', defaultMessage: 'Video could not be played' }
 });
 
 class VideoPlayer extends React.PureComponent {
