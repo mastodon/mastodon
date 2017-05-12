@@ -32,13 +32,8 @@ class Notification extends React.PureComponent {
     return (
       <div className='notification notification-favourite'>
         <div className='notification__message'>
-<<<<<<< HEAD
-          <div style={{ position: 'absolute', 'left': '-26px'}}>
-            <i className='fa fa-fw fa-cloud' style={{ color: '#9baec8' }} />
-=======
           <div className='notification__favourite-icon-wrapper'>
-            <i className='fa fa-fw fa-star star-icon'/>
->>>>>>> 7406404fa3c3ff921bf4501eb365932b0553ebeb
+            <i className='fa fa-fw fa-cloud cloud-icon'/>
           </div>
 
           <FormattedMessage id='notification.favourite' defaultMessage='{name} favourited your status' values={{ name: link }} />
