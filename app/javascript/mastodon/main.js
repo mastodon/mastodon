@@ -1,3 +1,7 @@
+// allow override variables here
+require.context('../../assets/stylesheets/', false, /variables.*\.scss$/);
+
+// import default stylesheet with variables
 require('font-awesome/css/font-awesome.css');
 require('../styles/application.scss');
 
@@ -19,6 +23,8 @@ function main() {
   Rails.start();
 
   require.context('../images/', true);
+
+  // import customization styles
   require.context('../../assets/stylesheets/', false, /custom.*\.scss$/);
 
   onDomContentLoaded(() => {
