@@ -10,13 +10,24 @@ class Formatter
   include ActionView::Helpers::TextHelper
 
   def format(status, attribute = :text, paragraphize = true)
+    if status.reblog?
+      prepend_reblog = status.reblog.account.acct
+      status         = status.proper
+    else
+      prepend_reblog = false
+    end
+
     raw_content = status.public_send(attribute)
 
     return '' if raw_content.blank?
     return reformat(raw_content) unless status.local?
 
+    linkable_accounts = status.mentions.map(&:account)
+    linkable_accounts << status.account
+
     html = raw_content
-    html = encode_and_link_urls(html, status.mentions)
+    html = "RT @#{prepend_reblog} #{html}" if prepend_reblog
+    html = encode_and_link_urls(html, linkable_accounts)
     html = simple_format(html, {}, sanitize: false) if paragraphize
     html = html.delete("\n")
 
@@ -52,7 +63,7 @@ class Formatter
     HTMLEntities.new.encode(html)
   end
 
-  def encode_and_link_urls(html, mentions = nil)
+  def encode_and_link_urls(html, accounts = nil)
     entities = Extractor.extract_entities_with_indices(html, extract_url_without_protocol: false)
 
     rewrite(html.dup, entities) do |entity|
@@ -61,7 +72,7 @@ class Formatter
       elsif entity[:hashtag]
         link_to_hashtag(entity)
       elsif entity[:screen_name]
-        link_to_mention(entity, mentions)
+        link_to_mention(entity, accounts)
       end
     end
   end
@@ -69,19 +80,21 @@ class Formatter
   def rewrite(text, entities)
     chars = text.to_s.to_char_a
 
-    # sort by start index
+    # Sort by start index
     entities = entities.sort_by do |entity|
       indices = entity.respond_to?(:indices) ? entity.indices : entity[:indices]
       indices.first
     end
 
     result = []
+
     last_index = entities.reduce(0) do |index, entity|
       indices = entity.respond_to?(:indices) ? entity.indices : entity[:indices]
       result << encode(chars[index...indices.first].join)
       result << yield(entity)
       indices.last
     end
+
     result << encode(chars[last_index..-1].join)
 
     result.flatten.join
@@ -89,26 +102,28 @@ class Formatter
 
   def link_to_url(entity)
     normalized_url = Addressable::URI.parse(entity[:url]).normalize
-    html_attrs = {
-      target: '_blank',
-      rel: 'nofollow noopener',
-    }
+    html_attrs     = { target: '_blank', rel: 'nofollow noopener' }
+
     Twitter::Autolink.send(:link_to_text, entity, link_html(entity[:url]), normalized_url, html_attrs)
   rescue Addressable::URI::InvalidURIError
     encode(entity[:url])
   end
 
-  def link_to_mention(entity, mentions)
+  def link_to_mention(entity, linkable_accounts)
     acct = entity[:screen_name]
-    return link_to_account(acct) unless mentions
-    mention = mentions.find { |item| TagManager.instance.same_acct?(item.account.acct, acct) }
-    mention ? mention_html(mention.account) : "@#{acct}"
+
+    return link_to_account(acct) unless linkable_accounts
+
+    account = linkable_accounts.find { |item| TagManager.instance.same_acct?(item.acct, acct) }
+    account ? mention_html(account) : "@#{acct}"
   end
 
   def link_to_account(acct)
     username, domain = acct.split('@')
-    domain = nil if TagManager.instance.local_domain?(domain)
+
+    domain  = nil if TagManager.instance.local_domain?(domain)
     account = Account.find_remote(username, domain)
+
     account ? mention_html(account) : "@#{acct}"
   end
 
@@ -117,7 +132,7 @@ class Formatter
   end
 
   def link_html(url)
-    url = Addressable::URI.parse(url).display_uri.to_s
+    url    = Addressable::URI.parse(url).display_uri.to_s
     prefix = url.match(/\Ahttps?:\/\/(www\.)?/).to_s
     text   = url[prefix.length, 30]
     suffix = url[prefix.length + 30..-1]
@@ -127,7 +142,7 @@ class Formatter
   end
 
   def hashtag_html(tag)
-    "<a href=\"#{tag_url(tag.downcase)}\" class=\"mention hashtag\">#<span>#{tag}</span></a>"
+    "<a href=\"#{tag_url(tag.downcase)}\" class=\"mention hashtag\" rel=\"tag\">#<span>#{tag}</span></a>"
   end
 
   def mention_html(account)
