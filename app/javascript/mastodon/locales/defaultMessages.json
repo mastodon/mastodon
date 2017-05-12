@@ -2,6 +2,15 @@
   {
     "descriptors": [
       {
+        "defaultMessage": "{name} mentioned you",
+        "id": "notification.mention"
+      }
+    ],
+    "path": "app/javascript/mastodon/actions/notifications.json"
+  },
+  {
+    "descriptors": [
+      {
         "defaultMessage": "Follow",
         "id": "account.follow"
       },
@@ -135,6 +144,10 @@
       {
         "defaultMessage": "Report @{name}",
         "id": "status.report"
+      },
+      {
+        "defaultMessage": "Disable notifications",
+        "id": "status.mute_conversation"
       }
     ],
     "path": "app/javascript/mastodon/components/status_action_bar.json"
@@ -889,6 +902,10 @@
       {
         "defaultMessage": "Report @{name}",
         "id": "status.report"
+      },
+      {
+        "defaultMessage": "Disable notifications",
+        "id": "status.mute_conversation"
       }
     ],
     "path": "app/javascript/mastodon/features/status/components/action_bar.json"

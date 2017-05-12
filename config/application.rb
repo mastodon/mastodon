@@ -81,5 +81,12 @@ module Mastodon
       Doorkeeper::AuthorizedApplicationsController.layout 'admin'
       Doorkeeper::Application.send :include, ApplicationExtension
     end
+
+    unless Rails.env.test?
+      ActiveSupport::Logger.new(STDOUT).tap do |logger|
+        logger.formatter = config.log_formatter
+        config.logger    = ActiveSupport::TaggedLogging.new(logger)
+      end
+    end
   end
 end

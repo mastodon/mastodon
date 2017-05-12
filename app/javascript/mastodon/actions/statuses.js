@@ -15,6 +15,14 @@ export const CONTEXT_FETCH_REQUEST = 'CONTEXT_FETCH_REQUEST';
 export const CONTEXT_FETCH_SUCCESS = 'CONTEXT_FETCH_SUCCESS';
 export const CONTEXT_FETCH_FAIL    = 'CONTEXT_FETCH_FAIL';
 
+export const STATUS_MUTE_REQUEST = 'STATUS_MUTE_REQUEST';
+export const STATUS_MUTE_SUCCESS = 'STATUS_MUTE_SUCCESS';
+export const STATUS_MUTE_FAIL    = 'STATUS_MUTE_FAIL';
+
+export const STATUS_UNMUTE_REQUEST = 'STATUS_UNMUTE_REQUEST';
+export const STATUS_UNMUTE_SUCCESS = 'STATUS_UNMUTE_SUCCESS';
+export const STATUS_UNMUTE_FAIL    = 'STATUS_UNMUTE_FAIL';
+
 export function fetchStatusRequest(id, skipLoading) {
   return {
     type: STATUS_FETCH_REQUEST,
@@ -137,5 +145,73 @@ export function fetchContextFail(id, error) {
     id,
     error,
     skipAlert: true
+  };
+};
+
+export function muteStatus(id) {
+  return (dispatch, getState) => {
+    dispatch(muteStatusRequest(id));
+
+    api(getState).post(`/api/v1/statuses/${id}/mute`).then(response => {
+      dispatch(muteStatusSuccess(id));
+    }).catch(error => {
+      dispatch(muteStatusFail(id, error));
+    });
+  };
+};
+
+export function muteStatusRequest(id) {
+  return {
+    type: STATUS_MUTE_REQUEST,
+    id
+  };
+};
+
+export function muteStatusSuccess(id) {
+  return {
+    type: STATUS_MUTE_SUCCESS,
+    id
+  };
+};
+
+export function muteStatusFail(id, error) {
+  return {
+    type: STATUS_MUTE_FAIL,
+    id,
+    error
+  };
+};
+
+export function unmuteStatus(id) {
+  return (dispatch, getState) => {
+    dispatch(unmuteStatusRequest(id));
+
+    api(getState).post(`/api/v1/statuses/${id}/unmute`).then(response => {
+      dispatch(unmuteStatusSuccess(id));
+    }).catch(error => {
+      dispatch(unmuteStatusFail(id, error));
+    });
+  };
+};
+
+export function unmuteStatusRequest(id) {
+  return {
+    type: STATUS_UNMUTE_REQUEST,
+    id
+  };
+};
+
+export function unmuteStatusSuccess(id) {
+  return {
+    type: STATUS_UNMUTE_SUCCESS,
+    id
+  };
+};
+
+export function unmuteStatusFail(id, error) {
+  return {
+    type: STATUS_UNMUTE_FAIL,
+    id,
+    error
   };
 };

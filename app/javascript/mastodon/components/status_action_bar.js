@@ -16,7 +16,9 @@ const messages = defineMessages({
   cannot_reblog: { id: 'status.cannot_reblog', defaultMessage: 'This post cannot be boosted' },
   favourite: { id: 'status.favourite', defaultMessage: 'Favourite' },
   open: { id: 'status.open', defaultMessage: 'Expand this status' },
-  report: { id: 'status.report', defaultMessage: 'Report @{name}' }
+  report: { id: 'status.report', defaultMessage: 'Report @{name}' },
+  muteConversation: { id: 'status.mute_conversation', defaultMessage: 'Disable notifications' },
+  unmuteConversation: { id: 'status.unmute_conversation', defaultMessage: 'Re-enable notifications' },
 });
 
 class StatusActionBar extends React.PureComponent {
@@ -32,6 +34,7 @@ class StatusActionBar extends React.PureComponent {
     this.handleBlockClick = this.handleBlockClick.bind(this);
     this.handleOpen = this.handleOpen.bind(this);
     this.handleReport = this.handleReport.bind(this);
+    this.handleConversationMuteClick = this.handleConversationMuteClick.bind(this);
   }
 
   handleReplyClick () {
@@ -71,9 +74,14 @@ class StatusActionBar extends React.PureComponent {
     this.context.router.push('/report');
   }
 
+  handleConversationMuteClick () {
+    this.props.onMuteConversation(this.props.status);
+  }
+
   render () {
-    const { status, me, intl } = this.props;
+    const { status, me, intl, withDismiss } = this.props;
     const reblogDisabled = status.get('visibility') === 'private' || status.get('visibility') === 'direct';
+    const mutingConversation = status.get('muted');
 
     let menu = [];
     let reblogIcon = 'retweet';
@@ -82,6 +90,11 @@ class StatusActionBar extends React.PureComponent {
 
     menu.push({ text: intl.formatMessage(messages.open), action: this.handleOpen });
     menu.push(null);
+
+    if (withDismiss) {
+      menu.push({ text: intl.formatMessage(mutingConversation ? messages.unmuteConversation : messages.muteConversation), action: this.handleConversationMuteClick });
+      menu.push(null);
+    }
 
     if (status.getIn(['account', 'id']) === me) {
       menu.push({ text: intl.formatMessage(messages.delete), action: this.handleDeleteClick });
@@ -136,8 +149,10 @@ StatusActionBar.propTypes = {
   onMute: PropTypes.func,
   onBlock: PropTypes.func,
   onReport: PropTypes.func,
+  onMuteConversation: PropTypes.func,
   me: PropTypes.number.isRequired,
-  intl: PropTypes.object.isRequired
+  intl: PropTypes.object.isRequired,
+  withDismiss: PropTypes.bool
 };
 
 export default injectIntl(StatusActionBar);
