@@ -85,10 +85,10 @@ ar:
           unknown: رمز المصادقة غير صالح
         resource_owner_authenticator_not_configured: Resource Owner find failed due to Doorkeeper.configure.resource_owner_authenticator being unconfiged.
         server_error: The authorization server encountered an unexpected condition which prevented it from fulfilling the request.
-        temporarily_unavailable: The authorization server is currently unable to handle the request due to a temporary overloading or maintenance of the server.
-        unauthorized_client: The client is not authorized to perform this request using this method.
-        unsupported_grant_type: The authorization grant type is not supported by the authorization server.
-        unsupported_response_type: The authorization server does not support this response type.
+        temporarily_unavailable: تعذر على خادم التفويض معالجة الطلب و ذلك بسبب زيادة مؤقتة في التحميل أو عملية صيانة مبرمجة على الخادم.
+        unauthorized_client: لا يصرح للعميل بتنفيذ هذا الطلب باستخدام هذه الطريقة.
+        unsupported_grant_type: هذا النوع من منح التصريح غير معتمد في خادم الترخيص.
+        unsupported_response_type: لا يدعم خادم التصريح هذا النوع من الإجابات و الردود.
     flash:
       applications:
         create:
