@@ -34,21 +34,13 @@ const GettingStarted = ({ intl, me }) => {
   }
 
   return (
-<<<<<<< HEAD
-    <Column icon='asterisk' heading={intl.formatMessage(messages.heading)}>
-      <div style={{ position: 'relative' }}>
-        <ColumnLink icon='users' text={intl.formatMessage(messages.community_timeline)} to='/timelines/public/local' />
-        <ColumnLink icon='globe' text={intl.formatMessage(messages.public_timeline)} to='/timelines/public' />
-        <ColumnLink icon='cog' text={intl.formatMessage(messages.preferences)} href='/settings/preferences' />
-        <ColumnLink icon='cloud' text={intl.formatMessage(messages.favourites)} to='/favourites' />
-=======
+
     <Column icon='asterisk' heading={intl.formatMessage(messages.heading)} hideHeadingOnMobile={true}>
       <div className='getting-started__wrapper'>
         <ColumnSubheading text={intl.formatMessage(messages.navigation_subheading)}/>
         <ColumnLink icon='users' hideOnMobile={true} text={intl.formatMessage(messages.community_timeline)} to='/timelines/public/local' />
         <ColumnLink icon='globe' hideOnMobile={true} text={intl.formatMessage(messages.public_timeline)} to='/timelines/public' />
-        <ColumnLink icon='star' text={intl.formatMessage(messages.favourites)} to='/favourites' />
->>>>>>> 7406404fa3c3ff921bf4501eb365932b0553ebeb
+        <ColumnLink icon='cloud' text={intl.formatMessage(messages.favourites)} to='/favourites' />
         {followRequests}
         <ColumnLink icon='volume-off' text={intl.formatMessage(messages.mutes)} to='/mutes' />
         <ColumnLink icon='ban' text={intl.formatMessage(messages.blocks)} to='/blocks' />
