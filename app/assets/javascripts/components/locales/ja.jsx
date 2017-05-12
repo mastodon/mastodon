@@ -146,11 +146,7 @@ const ja = {
   "status.replyAll": "全員に返信",
   "status.report": "通報",
   "status.sensitive_toggle": "クリックして表示",
-<<<<<<< HEAD
   "status.sensitive_warning": "不適切なウコ",
-=======
-  "status.sensitive_warning": "閲覧注意",
->>>>>>> 7406404fa3c3ff921bf4501eb365932b0553ebeb
   "status.show_less": "隠す",
   "status.show_more": "もっと見る",
   "tabs_bar.compose": "ウコ",
