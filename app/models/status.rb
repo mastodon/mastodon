@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class Status < ApplicationRecord
-  include ActiveModel::Validations
   include Paginable
   include Streamable
   include Cacheable
@@ -92,7 +91,7 @@ class Status < ApplicationRecord
   end
 
   def ancestors(account = nil)
-    ids      = (Status.find_by_sql(['WITH RECURSIVE search_tree(id, in_reply_to_id, path) AS (SELECT id, in_reply_to_id, ARRAY[id] FROM statuses WHERE id = ? UNION ALL SELECT statuses.id, statuses.in_reply_to_id, path || statuses.id FROM search_tree JOIN statuses ON statuses.id = search_tree.in_reply_to_id WHERE NOT statuses.id = ANY(path)) SELECT id FROM search_tree ORDER BY path DESC', id]) - [self]).pluck(:id)
+    ids      = Rails.cache.fetch("ancestors:#{id}") { (Status.find_by_sql(['WITH RECURSIVE search_tree(id, in_reply_to_id, path) AS (SELECT id, in_reply_to_id, ARRAY[id] FROM statuses WHERE id = ? UNION ALL SELECT statuses.id, statuses.in_reply_to_id, path || statuses.id FROM search_tree JOIN statuses ON statuses.id = search_tree.in_reply_to_id WHERE NOT statuses.id = ANY(path)) SELECT id FROM search_tree ORDER BY path DESC', id]) - [self]).pluck(:id) }
     statuses = Status.where(id: ids).group_by(&:id)
     results  = ids.map { |id| statuses[id].first }
     results  = results.reject { |status| filter_from_context?(status, account) }
@@ -138,6 +137,10 @@ class Status < ApplicationRecord
       query = query.where('accounts.domain IS NULL') if local_only
 
       account.nil? ? filter_timeline_default(query) : filter_timeline_default(filter_timeline(query, account))
+    end
+
+    def as_outbox_timeline(account)
+      where(account: account, visibility: :public)
     end
 
     def favourites_map(status_ids, account_id)

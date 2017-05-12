@@ -1,27 +1,19 @@
-import PureRenderMixin from 'react-addons-pure-render-mixin';
+import PropTypes from 'prop-types';
 
-const style = {
-  display: 'flex',
-  flex: '1 1 auto',
-  overflowX: 'auto'
-};
-
-const ColumnsArea = React.createClass({
-
-  propTypes: {
-    children: React.PropTypes.node
-  },
-
-  mixins: [PureRenderMixin],
+class ColumnsArea extends React.PureComponent {
 
   render () {
     return (
-      <div className='columns-area' style={style}>
+      <div className='columns-area'>
         {this.props.children}
       </div>
     );
   }
 
-});
+}
+
+ColumnsArea.propTypes = {
+  children: PropTypes.node
+};
 
 export default ColumnsArea;

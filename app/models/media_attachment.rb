@@ -42,7 +42,7 @@ class MediaAttachment < ApplicationRecord
   end
 
   def file_remote_url=(url)
-    self.file = URI.parse(url)
+    self.file = URI.parse(Addressable::URI.parse(url).normalize.to_s)
   end
 
   def to_param
@@ -51,6 +51,7 @@ class MediaAttachment < ApplicationRecord
 
   before_create :set_shortcode
   before_post_process :set_type_and_extension
+  before_save :set_meta
 
   class << self
     private
@@ -110,6 +111,30 @@ class MediaAttachment < ApplicationRecord
     extension = appropriate_extension
     basename  = Paperclip::Interpolations.basename(file, :original)
     file.instance_write :file_name, [basename, extension].delete_if(&:empty?).join('.')
+  end
+
+  def set_meta
+    meta = populate_meta
+    return if meta == {}
+    file.instance_write :meta, meta
+  end
+
+  def populate_meta
+    meta = {}
+    file.queued_for_write.each do |style, file|
+      begin
+        geo = Paperclip::Geometry.from_file file
+        meta[style] = {
+          width: geo.width.to_i,
+          height: geo.height.to_i,
+          size: "#{geo.width.to_i}x#{geo.height.to_i}",
+          aspect: geo.width.to_f / geo.height.to_f,
+        }
+      rescue Paperclip::Errors::NotIdentifiedByImageMagickError
+        meta[style] = {}
+      end
+    end
+    meta
   end
 
   def appropriate_extension

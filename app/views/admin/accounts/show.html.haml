@@ -30,10 +30,10 @@
     - else
       %tr
         %th= t('admin.accounts.profile_url')
-        %td= link_to @account.url
+        %td= link_to @account.url, @account.url
       %tr
         %th= t('admin.accounts.feed_url')
-        %td= link_to @account.remote_url
+        %td= link_to @account.remote_url, @account.remote_url
       %tr
         %th= t('admin.accounts.push_subscription_expires')
         %td
@@ -43,7 +43,7 @@
             = t('admin.accounts.not_subscribed')
       %tr
         %th= t('admin.accounts.salmon_url')
-        %td= link_to @account.salmon_url
+        %td= link_to @account.salmon_url, @account.salmon_url
 
     %tr
       %th= t('admin.accounts.follows')
@@ -76,6 +76,10 @@
     = link_to t('admin.accounts.undo_silenced'), admin_account_silence_path(@account.id), method: :delete, class: 'button'
   - else
     = link_to t('admin.accounts.silence'), admin_account_silence_path(@account.id), method: :post, class: 'button'
+
+  - if @account.local?
+    - unless @account.user.confirmed?
+      = link_to t('admin.accounts.confirm'), admin_account_confirmation_path(@account.id), method: :post, class: 'button'
 
   - if @account.suspended?
     = link_to t('admin.accounts.undo_suspension'), admin_account_suspension_path(@account.id), method: :delete, class: 'button'

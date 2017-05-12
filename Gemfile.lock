@@ -111,11 +111,19 @@ GEM
     cocaine (0.5.8)
       climate_control (>= 0.0.3, < 1.0)
     coderay (1.1.1)
+    coffee-rails (4.2.1)
+      coffee-script (>= 2.2.0)
+      railties (>= 4.0.0, < 5.2.x)
+    coffee-script (2.4.1)
+      coffee-script-source
+      execjs
+    coffee-script-source (1.12.2)
     colorize (0.8.1)
     concurrent-ruby (1.0.5)
     connection_pool (2.2.1)
     crack (0.4.3)
       safe_yaml (~> 1.0.0)
+    crass (1.0.2)
     debug_inspector (0.0.2)
     devise (4.2.1)
       bcrypt (~> 3.0)
@@ -157,7 +165,7 @@ GEM
       ruby-progressbar (~> 1.4)
     globalid (0.3.7)
       activesupport (>= 4.1.0)
-    goldfinger (1.1.2)
+    goldfinger (1.2.0)
       addressable (~> 2.4)
       http (~> 2.0)
       nokogiri (~> 1.6)
@@ -224,6 +232,8 @@ GEM
       letter_opener (~> 1.0)
       railties (>= 3.2)
     link_header (0.0.8)
+    local_time (1.0.3)
+      coffee-rails
     lograge (0.4.1)
       actionpack (>= 4, < 5.1)
       activesupport (>= 4, < 5.1)
@@ -249,6 +259,8 @@ GEM
     nio4r (2.0.0)
     nokogiri (1.7.1)
       mini_portile2 (~> 2.1.0)
+    nokogumbo (1.4.10)
+      nokogiri
     oj (2.18.5)
     openssl (2.0.3)
     orm_adapter (0.5.0)
@@ -389,6 +401,10 @@ GEM
     ruby-oembed (0.12.0)
     ruby-progressbar (1.8.1)
     safe_yaml (1.0.4)
+    sanitize (4.4.0)
+      crass (~> 1.0.2)
+      nokogiri (>= 1.4.4)
+      nokogumbo (~> 1.4.1)
     sass (3.4.23)
     sass-rails (5.0.6)
       railties (>= 4.0.0, < 6)
@@ -443,7 +459,7 @@ GEM
       execjs (>= 0.3.0, < 3)
     unf (0.1.4)
       unf_ext
-    unf_ext (0.0.7.3)
+    unf_ext (0.0.7.4)
     unicode-display_width (1.1.3)
     uniform_notifier (1.10.0)
     warden (1.2.7)
@@ -500,6 +516,7 @@ DEPENDENCIES
   letter_opener
   letter_opener_web
   link_header
+  local_time
   lograge
   microformats2
   nokogiri
@@ -530,6 +547,7 @@ DEPENDENCIES
   rspec-sidekiq
   rubocop
   ruby-oembed
+  sanitize
   sass-rails (~> 5.0)
   sidekiq
   sidekiq-unique-jobs

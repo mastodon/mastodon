@@ -3,24 +3,45 @@ pt-BR:
   simple_form:
     labels:
       defaults:
+        avatar: PNG, GIF or JPG. Máximo 2MB. Será reduzido para 120x120px
+        display_name: '%{counter} caracteres restantes'
+        header: PNG, GIF or JPG. Máximo 2MB. Será reduzido para 700x335px
+        locked: Requer você aprovação manualmente seguidores e posts padrão de privacidade para seguidores-apenas
+        note: '%{counter} caracteres restantes'
+      imports:
+        data: Arquivo CSV exportado de outra instancia Mastodon
+      sessions:
+        otp: Entre com o código de 2 passos do seu telefone ou use os códiogos de recuperação.
+    labels:
+      defaults:
         avatar: Avatar
         confirm_new_password: Confirme nova senha
         confirm_password: Confirme a senha
         current_password: Senha atual
+        data: Dados
         display_name: Nome
         email: Endereço de email
         header: Header
         locale: Linguagem
+        locked: Conta bloqueada
         new_password: Nova senha
         note: Biografia
+        otp_attempt: Autenticação 2 passos
         password: Senha
+        setting_auto_play_gif: Tocar GIFs animados automaticamente
+        setting_boost_modal: Mostrar dialogo de confirmação antes de fazer boost
+        setting_default_privacy: Postar privacidade
+        severity: Severidade
+        type: Importar tipo
         username: Usuário
       interactions:
         must_be_follower: Bloquear notificações de não-seguidores
         must_be_following: Bloquear notificações de pessoas que você
       notification_emails:
+        digest: Enviar resumo de emails
         favourite: Enviar email quando alguém favorita um post seu
         follow: Enviar email quando alguém seguir você
+        follow_request: Enviar email quando alguém requisitar te seguir
         mention: Enviar email quando alguém mencionar você
         reblog: Enviar email quando alguém reblogar um post seu
     'no': 'Não'

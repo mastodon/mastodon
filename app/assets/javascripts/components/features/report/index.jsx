@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import { cancelReport, changeReportComment, submitReport } from '../../actions/reports';
 import { fetchAccountTimeline } from '../../actions/accounts';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
+import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import Column from '../ui/components/column';
 import Button from '../../components/button';
@@ -34,32 +34,19 @@ const makeMapStateToProps = () => {
   return mapStateToProps;
 };
 
-const textareaStyle = {
-  marginBottom: '10px'
-};
+class Report extends React.PureComponent {
 
-const Report = React.createClass({
-
-  contextTypes: {
-    router: React.PropTypes.object
-  },
-
-  propTypes: {
-    isSubmitting: React.PropTypes.bool,
-    account: ImmutablePropTypes.map,
-    statusIds: ImmutablePropTypes.orderedSet.isRequired,
-    comment: React.PropTypes.string.isRequired,
-    dispatch: React.PropTypes.func.isRequired,
-    intl: React.PropTypes.object.isRequired
-  },
-
-  mixins: [PureRenderMixin],
+  constructor (props, context) {
+    super(props, context);
+    this.handleCommentChange = this.handleCommentChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
 
   componentWillMount () {
     if (!this.props.account) {
       this.context.router.replace('/');
     }
-  },
+  }
 
   componentDidMount () {
     if (!this.props.account) {
@@ -67,22 +54,22 @@ const Report = React.createClass({
     }
 
     this.props.dispatch(fetchAccountTimeline(this.props.account.get('id')));
-  },
+  }
 
   componentWillReceiveProps (nextProps) {
     if (this.props.account !== nextProps.account && nextProps.account) {
       this.props.dispatch(fetchAccountTimeline(nextProps.account.get('id')));
     }
-  },
+  }
 
   handleCommentChange (e) {
     this.props.dispatch(changeReportComment(e.target.value));
-  },
+  }
 
   handleSubmit () {
     this.props.dispatch(submitReport());
     this.context.router.replace('/');
-  },
+  }
 
   render () {
     const { account, comment, intl, statusIds, isSubmitting } = this.props;
@@ -95,30 +82,29 @@ const Report = React.createClass({
       <Column heading={intl.formatMessage(messages.heading)} icon='flag'>
         <ColumnBackButtonSlim />
 
-        <div className='report scrollable' style={{ display: 'flex', flexDirection: 'column', maxHeight: '100%', boxSizing: 'border-box' }}>
-          <div className='report__target' style={{ flex: '0 0 auto', padding: '10px' }}>
+        <div className='report scrollable'>
+          <div className='report__target'>
             <FormattedMessage id='report.target' defaultMessage='Reporting' />
             <strong>{account.get('acct')}</strong>
           </div>
 
-          <div style={{ flex: '1 1 auto' }} className='scrollable'>
+          <div className='scrollable report__statuses'>
             <div>
               {statusIds.map(statusId => <StatusCheckBox id={statusId} key={statusId} disabled={isSubmitting} />)}
             </div>
           </div>
 
-          <div style={{ flex: '0 0 100px', padding: '10px' }}>
+          <div className='report__textarea-wrapper'>
             <textarea
               className='report__textarea'
               placeholder={intl.formatMessage(messages.placeholder)}
               value={comment}
               onChange={this.handleCommentChange}
-              style={textareaStyle}
               disabled={isSubmitting}
             />
 
-            <div style={{ marginTop: '10px', overflow: 'hidden' }}>
-              <div style={{ float: 'right' }}><Button disabled={isSubmitting} text={intl.formatMessage(messages.submit)} onClick={this.handleSubmit} /></div>
+            <div className='report__submit'>
+              <div className='report__submit-button'><Button disabled={isSubmitting} text={intl.formatMessage(messages.submit)} onClick={this.handleSubmit} /></div>
             </div>
           </div>
         </div>
@@ -126,6 +112,19 @@ const Report = React.createClass({
     );
   }
 
-});
+}
+
+Report.contextTypes = {
+  router: PropTypes.object
+};
+
+Report.propTypes = {
+  isSubmitting: PropTypes.bool,
+  account: ImmutablePropTypes.map,
+  statusIds: ImmutablePropTypes.orderedSet.isRequired,
+  comment: PropTypes.string.isRequired,
+  dispatch: PropTypes.func.isRequired,
+  intl: PropTypes.object.isRequired
+};
 
 export default connect(makeMapStateToProps)(injectIntl(Report));

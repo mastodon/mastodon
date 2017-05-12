@@ -20,6 +20,14 @@ import { initReport } from '../actions/reports';
 import { openModal } from '../actions/modal';
 import { createSelector } from 'reselect'
 import { isMobile } from '../is_mobile'
+import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
+
+const messages = defineMessages({
+  deleteConfirm: { id: 'confirmations.delete.confirm', defaultMessage: 'Delete' },
+  deleteMessage: { id: 'confirmations.delete.message', defaultMessage: 'Are you sure you want to delete this status?' },
+  blockConfirm: { id: 'confirmations.block.confirm', defaultMessage: 'Block' },
+  muteConfirm: { id: 'confirmations.mute.confirm', defaultMessage: 'Mute' },
+});
 
 const makeMapStateToProps = () => {
   const getStatus = makeGetStatus();
@@ -34,7 +42,7 @@ const makeMapStateToProps = () => {
   return mapStateToProps;
 };
 
-const mapDispatchToProps = (dispatch) => ({
+const mapDispatchToProps = (dispatch, { intl }) => ({
 
   onReply (status, router) {
     dispatch(replyCompose(status, router));
@@ -65,7 +73,11 @@ const mapDispatchToProps = (dispatch) => ({
   },
 
   onDelete (status) {
-    dispatch(deleteStatus(status.get('id')));
+    dispatch(openModal('CONFIRM', {
+      message: intl.formatMessage(messages.deleteMessage),
+      confirm: intl.formatMessage(messages.deleteConfirm),
+      onConfirm: () => dispatch(deleteStatus(status.get('id')))
+    }));
   },
 
   onMention (account, router) {
@@ -81,7 +93,11 @@ const mapDispatchToProps = (dispatch) => ({
   },
 
   onBlock (account) {
-    dispatch(blockAccount(account.get('id')));
+    dispatch(openModal('CONFIRM', {
+      message: <FormattedMessage id='confirmations.block.message' defaultMessage='Are you sure you want to block {name}?' values={{ name: <strong>@{account.get('acct')}</strong> }} />,
+      confirm: intl.formatMessage(messages.blockConfirm),
+      onConfirm: () => dispatch(blockAccount(account.get('id')))
+    }));
   },
 
   onReport (status) {
@@ -89,9 +105,13 @@ const mapDispatchToProps = (dispatch) => ({
   },
 
   onMute (account) {
-    dispatch(muteAccount(account.get('id')));
+    dispatch(openModal('CONFIRM', {
+      message: <FormattedMessage id='confirmations.mute.message' defaultMessage='Are you sure you want to mute {name}?' values={{ name: <strong>@{account.get('acct')}</strong> }} />,
+      confirm: intl.formatMessage(messages.muteConfirm),
+      onConfirm: () => dispatch(muteAccount(account.get('id')))
+    }));
   },
 
 });
 
-export default connect(makeMapStateToProps, mapDispatchToProps)(Status);
+export default injectIntl(connect(makeMapStateToProps, mapDispatchToProps)(Status));
