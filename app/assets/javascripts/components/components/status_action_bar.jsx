@@ -102,17 +102,11 @@ class StatusActionBar extends React.PureComponent {
     }
 
     return (
-<<<<<<< HEAD
-      <div style={{ marginTop: '10px', overflow: 'hidden' }}>
-        <div style={{ float: 'left', marginRight: '18px'}}><IconButton title={reply_title} icon={reply_icon} onClick={this.handleReplyClick} /></div>
-        <div style={{ float: 'left', marginRight: '18px'}}><IconButton disabled={status.get('visibility') === 'private' || status.get('visibility') === 'direct'} active={status.get('reblogged')} title={intl.formatMessage(messages.reblog)} icon={reblogIcon} onClick={this.handleReblogClick} /></div>
-        <div style={{ float: 'left', marginRight: '18px'}}><IconButton animate={true} active={status.get('favourited')} title={intl.formatMessage(messages.favourite)} icon='cloud' onClick={this.handleFavouriteClick} activeStyle={{ color: '#9baec8' }} /></div>
-=======
+
       <div className='status__action-bar'>
         <div className='status__action-bar-button-wrapper'><IconButton title={reply_title} icon={reply_icon} onClick={this.handleReplyClick} /></div>
         <div className='status__action-bar-button-wrapper'><IconButton disabled={reblog_disabled} active={status.get('reblogged')} title={reblog_disabled ? intl.formatMessage(messages.cannot_reblog) : intl.formatMessage(messages.reblog)} icon={reblogIcon} onClick={this.handleReblogClick} /></div>
-        <div className='status__action-bar-button-wrapper'><IconButton animate={true} active={status.get('favourited')} title={intl.formatMessage(messages.favourite)} icon='star' onClick={this.handleFavouriteClick} className='star-icon' /></div>
->>>>>>> 7406404fa3c3ff921bf4501eb365932b0553ebeb
+        <div className='status__action-bar-button-wrapper'><IconButton animate={true} active={status.get('favourited')} title={intl.formatMessage(messages.favourite)} icon='cloud' onClick={this.handleFavouriteClick} className='cloud-icon' /></div>
 
         <div className='status__action-bar-dropdown'>
           <DropdownMenu items={menu} icon='ellipsis-h' size={18} direction="right" ariaLabel="More"/>
