@@ -22,28 +22,27 @@ const iconStyle = {
 
 class PrivacyDropdown extends React.PureComponent {
 
-  constructor (props, context) {
-    super(props, context);
-    this.state = {
-      open: false
-    };
-    this.handleToggle = this.handleToggle.bind(this);
-    this.handleClick = this.handleClick.bind(this);
-    this.onGlobalClick = this.onGlobalClick.bind(this);
-    this.setRef = this.setRef.bind(this);
-  }
+  static propTypes = {
+    value: PropTypes.string.isRequired,
+    onChange: PropTypes.func.isRequired,
+    intl: PropTypes.object.isRequired
+  };
 
-  handleToggle () {
+  state = {
+    open: false
+  };
+
+  handleToggle = () => {
     this.setState({ open: !this.state.open });
   }
 
-  handleClick (value, e) {
+  handleClick = (value, e) => {
     e.preventDefault();
     this.setState({ open: false });
     this.props.onChange(value);
   }
 
-  onGlobalClick (e) {
+  onGlobalClick = (e) => {
     if (e.target !== this.node && !this.node.contains(e.target) && this.state.open) {
       this.setState({ open: false });
     }
@@ -59,7 +58,7 @@ class PrivacyDropdown extends React.PureComponent {
     window.removeEventListener('touchstart', this.onGlobalClick);
   }
 
-  setRef (c) {
+  setRef = (c) => {
     this.node = c;
   }
 
@@ -95,11 +94,5 @@ class PrivacyDropdown extends React.PureComponent {
   }
 
 }
-
-PrivacyDropdown.propTypes = {
-  value: PropTypes.string.isRequired,
-  onChange: PropTypes.func.isRequired,
-  intl: PropTypes.object.isRequired
-};
 
 export default injectIntl(PrivacyDropdown);

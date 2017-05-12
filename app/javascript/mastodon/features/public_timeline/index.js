@@ -28,6 +28,14 @@ let subscription;
 
 class PublicTimeline extends React.PureComponent {
 
+  static propTypes = {
+    dispatch: PropTypes.func.isRequired,
+    intl: PropTypes.object.isRequired,
+    streamingAPIBaseURL: PropTypes.string.isRequired,
+    accessToken: PropTypes.string.isRequired,
+    hasUnread: PropTypes.bool
+  };
+
   componentDidMount () {
     const { dispatch, streamingAPIBaseURL, accessToken } = this.props;
 
@@ -84,13 +92,5 @@ class PublicTimeline extends React.PureComponent {
   }
 
 }
-
-PublicTimeline.propTypes = {
-  dispatch: PropTypes.func.isRequired,
-  intl: PropTypes.object.isRequired,
-  streamingAPIBaseURL: PropTypes.string.isRequired,
-  accessToken: PropTypes.string.isRequired,
-  hasUnread: PropTypes.bool
-};
 
 export default connect(mapStateToProps)(injectIntl(PublicTimeline));

@@ -5,6 +5,10 @@ const filename = url => url.split('/').pop().split('#')[0].split('?')[0];
 
 class AttachmentList extends React.PureComponent {
 
+  static propTypes = {
+    media: ImmutablePropTypes.list.isRequired
+  };
+
   render () {
     const { media } = this.props;
 
@@ -24,10 +28,7 @@ class AttachmentList extends React.PureComponent {
       </div>
     );
   }
-}
 
-AttachmentList.propTypes = {
-  media: ImmutablePropTypes.list.isRequired
-};
+}
 
 export default AttachmentList;

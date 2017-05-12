@@ -19,6 +19,10 @@ const getHostname = url => {
 
 class Card extends React.PureComponent {
 
+  static propTypes = {
+    card: ImmutablePropTypes.map
+  };
+
   renderLink () {
     const { card } = this.props;
 
@@ -92,9 +96,5 @@ class Card extends React.PureComponent {
     }
   }
 }
-
-Card.propTypes = {
-  card: ImmutablePropTypes.map
-};
 
 export default Card;

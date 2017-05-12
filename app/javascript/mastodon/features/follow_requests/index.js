@@ -21,16 +21,18 @@ const mapStateToProps = state => ({
 
 class FollowRequests extends ImmutablePureComponent {
 
-  constructor (props, context) {
-    super(props, context);
-    this.handleScroll = this.handleScroll.bind(this);
-  }
+  static propTypes = {
+    params: PropTypes.object.isRequired,
+    dispatch: PropTypes.func.isRequired,
+    accountIds: ImmutablePropTypes.list,
+    intl: PropTypes.object.isRequired
+  };
 
   componentWillMount () {
     this.props.dispatch(fetchFollowRequests());
   }
 
-  handleScroll (e) {
+  handleScroll = (e) => {
     const { scrollTop, scrollHeight, clientHeight } = e.target;
 
     if (scrollTop === scrollHeight - clientHeight) {
@@ -62,13 +64,7 @@ class FollowRequests extends ImmutablePureComponent {
       </Column>
     );
   }
-}
 
-FollowRequests.propTypes = {
-  params: PropTypes.object.isRequired,
-  dispatch: PropTypes.func.isRequired,
-  accountIds: ImmutablePropTypes.list,
-  intl: PropTypes.object.isRequired
-};
+}
 
 export default connect(mapStateToProps)(injectIntl(FollowRequests));

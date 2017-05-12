@@ -5,6 +5,11 @@ import { FormattedMessage } from 'react-intl';
 
 class UploadProgress extends React.PureComponent {
 
+  static propTypes = {
+    active: PropTypes.bool,
+    progress: PropTypes.number
+  };
+
   render () {
     const { active, progress } = this.props;
 
@@ -34,10 +39,5 @@ class UploadProgress extends React.PureComponent {
   }
 
 }
-
-UploadProgress.propTypes = {
-  active: PropTypes.bool,
-  progress: PropTypes.number
-};
 
 export default UploadProgress;

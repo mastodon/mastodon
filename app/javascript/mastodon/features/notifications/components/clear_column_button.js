@@ -8,6 +8,11 @@ const messages = defineMessages({
 
 class ClearColumnButton extends React.Component {
 
+  static propTypes = {
+    onClick: PropTypes.func.isRequired,
+    intl: PropTypes.object.isRequired
+  };
+
   render () {
     const { intl } = this.props;
 
@@ -18,10 +23,5 @@ class ClearColumnButton extends React.Component {
     );
   }
 }
-
-ClearColumnButton.propTypes = {
-  onClick: PropTypes.func.isRequired,
-  intl: PropTypes.object.isRequired
-};
 
 export default injectIntl(ClearColumnButton);

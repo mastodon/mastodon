@@ -4,12 +4,30 @@ import PropTypes from 'prop-types';
 
 class IconButton extends React.PureComponent {
 
-  constructor (props, context) {
-    super(props, context);
-    this.handleClick = this.handleClick.bind(this);
-  }
+  static propTypes = {
+    className: PropTypes.string,
+    title: PropTypes.string.isRequired,
+    icon: PropTypes.string.isRequired,
+    onClick: PropTypes.func,
+    size: PropTypes.number,
+    active: PropTypes.bool,
+    style: PropTypes.object,
+    activeStyle: PropTypes.object,
+    disabled: PropTypes.bool,
+    inverted: PropTypes.bool,
+    animate: PropTypes.bool,
+    overlay: PropTypes.bool
+  };
 
-  handleClick (e) {
+  static defaultProps = {
+    size: 18,
+    active: false,
+    disabled: false,
+    animate: false,
+    overlay: false
+  };
+
+  handleClick = (e) =>  {
     e.preventDefault();
 
     if (!this.props.disabled) {
@@ -69,28 +87,5 @@ class IconButton extends React.PureComponent {
   }
 
 }
-
-IconButton.propTypes = {
-  className: PropTypes.string,
-  title: PropTypes.string.isRequired,
-  icon: PropTypes.string.isRequired,
-  onClick: PropTypes.func,
-  size: PropTypes.number,
-  active: PropTypes.bool,
-  style: PropTypes.object,
-  activeStyle: PropTypes.object,
-  disabled: PropTypes.bool,
-  inverted: PropTypes.bool,
-  animate: PropTypes.bool,
-  overlay: PropTypes.bool
-};
-
-IconButton.defaultProps = {
-  size: 18,
-  active: false,
-  disabled: false,
-  animate: false,
-  overlay: false
-};
 
 export default IconButton;

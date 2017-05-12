@@ -20,6 +20,14 @@ const mapStateToProps = state => ({
 
 class HashtagTimeline extends React.PureComponent {
 
+  static propTypes = {
+    params: PropTypes.object.isRequired,
+    dispatch: PropTypes.func.isRequired,
+    streamingAPIBaseURL: PropTypes.string.isRequired,
+    accessToken: PropTypes.string.isRequired,
+    hasUnread: PropTypes.bool
+  };
+
   _subscribe (dispatch, id) {
     const { streamingAPIBaseURL, accessToken } = this.props;
 
@@ -78,13 +86,5 @@ class HashtagTimeline extends React.PureComponent {
   }
 
 }
-
-HashtagTimeline.propTypes = {
-  params: PropTypes.object.isRequired,
-  dispatch: PropTypes.func.isRequired,
-  streamingAPIBaseURL: PropTypes.string.isRequired,
-  accessToken: PropTypes.string.isRequired,
-  hasUnread: PropTypes.bool
-};
 
 export default connect(mapStateToProps)(HashtagTimeline);

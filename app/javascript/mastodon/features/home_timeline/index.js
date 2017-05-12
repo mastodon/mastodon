@@ -18,6 +18,12 @@ const mapStateToProps = state => ({
 
 class HomeTimeline extends React.PureComponent {
 
+  static propTypes = {
+    intl: PropTypes.object.isRequired,
+    hasUnread: PropTypes.bool,
+    hasFollows: PropTypes.bool
+  };
+
   render () {
     const { intl, hasUnread, hasFollows } = this.props;
 
@@ -44,11 +50,5 @@ class HomeTimeline extends React.PureComponent {
   }
 
 }
-
-HomeTimeline.propTypes = {
-  intl: PropTypes.object.isRequired,
-  hasUnread: PropTypes.bool,
-  hasFollows: PropTypes.bool
-};
 
 export default connect(mapStateToProps)(injectIntl(HomeTimeline));

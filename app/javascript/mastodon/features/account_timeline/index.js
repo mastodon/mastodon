@@ -24,24 +24,28 @@ const mapStateToProps = (state, props) => ({
 
 class AccountTimeline extends ImmutablePureComponent {
 
-  constructor (props, context) {
-    super(props, context);
-    this.handleScrollToBottom = this.handleScrollToBottom.bind(this);
-  }
+  static propTypes = {
+    params: PropTypes.object.isRequired,
+    dispatch: PropTypes.func.isRequired,
+    statusIds: ImmutablePropTypes.list,
+    isLoading: PropTypes.bool,
+    hasMore: PropTypes.bool,
+    me: PropTypes.number.isRequired
+  };
 
   componentWillMount () {
     this.props.dispatch(fetchAccount(Number(this.props.params.accountId)));
     this.props.dispatch(fetchAccountTimeline(Number(this.props.params.accountId)));
   }
 
-  componentWillReceiveProps(nextProps) {
+  componentWillReceiveProps (nextProps) {
     if (nextProps.params.accountId !== this.props.params.accountId && nextProps.params.accountId) {
       this.props.dispatch(fetchAccount(Number(nextProps.params.accountId)));
       this.props.dispatch(fetchAccountTimeline(Number(nextProps.params.accountId)));
     }
   }
 
-  handleScrollToBottom () {
+  handleScrollToBottom = () => {
     if (!this.props.isLoading && this.props.hasMore) {
       this.props.dispatch(expandAccountTimeline(Number(this.props.params.accountId)));
     }
@@ -76,14 +80,5 @@ class AccountTimeline extends ImmutablePureComponent {
   }
 
 }
-
-AccountTimeline.propTypes = {
-  params: PropTypes.object.isRequired,
-  dispatch: PropTypes.func.isRequired,
-  statusIds: ImmutablePropTypes.list,
-  isLoading: PropTypes.bool,
-  hasMore: PropTypes.bool,
-  me: PropTypes.number.isRequired
-};
 
 export default connect(mapStateToProps)(AccountTimeline);

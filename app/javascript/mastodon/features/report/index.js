@@ -37,11 +37,18 @@ const makeMapStateToProps = () => {
 
 class Report extends React.PureComponent {
 
-  constructor (props, context) {
-    super(props, context);
-    this.handleCommentChange = this.handleCommentChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
+  static contextTypes = {
+    router: PropTypes.object
+  };
+
+  static propTypes = {
+    isSubmitting: PropTypes.bool,
+    account: ImmutablePropTypes.map,
+    statusIds: ImmutablePropTypes.orderedSet.isRequired,
+    comment: PropTypes.string.isRequired,
+    dispatch: PropTypes.func.isRequired,
+    intl: PropTypes.object.isRequired
+  };
 
   componentWillMount () {
     if (!this.props.account) {
@@ -63,11 +70,11 @@ class Report extends React.PureComponent {
     }
   }
 
-  handleCommentChange (e) {
+  handleCommentChange = (e) => {
     this.props.dispatch(changeReportComment(e.target.value));
   }
 
-  handleSubmit () {
+  handleSubmit = () => {
     this.props.dispatch(submitReport());
     this.context.router.replace('/');
   }
@@ -114,18 +121,5 @@ class Report extends React.PureComponent {
   }
 
 }
-
-Report.contextTypes = {
-  router: PropTypes.object
-};
-
-Report.propTypes = {
-  isSubmitting: PropTypes.bool,
-  account: ImmutablePropTypes.map,
-  statusIds: ImmutablePropTypes.orderedSet.isRequired,
-  comment: PropTypes.string.isRequired,
-  dispatch: PropTypes.func.isRequired,
-  intl: PropTypes.object.isRequired
-};
 
 export default connect(makeMapStateToProps)(injectIntl(Report));

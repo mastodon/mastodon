@@ -5,13 +5,12 @@ import { FormattedMessage } from 'react-intl';
 
 class UploadArea extends React.PureComponent {
 
-  constructor (props, context) {
-    super(props, context);
+  static propTypes = {
+    active: PropTypes.bool,
+    onClose: PropTypes.func
+  };
 
-    this.handleKeyUp = this.handleKeyUp.bind(this);
-  }
-
-  handleKeyUp (e) {
+  handleKeyUp = (e) => {
     e.preventDefault();
     e.stopPropagation();
 
@@ -51,10 +50,5 @@ class UploadArea extends React.PureComponent {
   }
 
 }
-
-UploadArea.propTypes = {
-  active: PropTypes.bool,
-  onClose: PropTypes.func
-};
 
 export default UploadArea;

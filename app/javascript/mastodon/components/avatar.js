@@ -3,23 +3,31 @@ import PropTypes from 'prop-types';
 
 class Avatar extends React.PureComponent {
 
-  constructor (props, context) {
-    super(props, context);
+  static propTypes = {
+    src: PropTypes.string.isRequired,
+    staticSrc: PropTypes.string,
+    size: PropTypes.number.isRequired,
+    style: PropTypes.object,
+    animate: PropTypes.bool,
+    inline: PropTypes.bool
+  };
 
-    this.state = {
-      hovering: false
-    };
+  static defaultProps = {
+    animate: false,
+    size: 20,
+    inline: false
+  };
 
-    this.handleMouseEnter = this.handleMouseEnter.bind(this);
-    this.handleMouseLeave = this.handleMouseLeave.bind(this);
-  }
+  state = {
+    hovering: true
+  };
 
-  handleMouseEnter () {
+  handleMouseEnter = () => {
     if (this.props.animate) return;
     this.setState({ hovering: true });
   }
 
-  handleMouseLeave () {
+  handleMouseLeave = () => {
     if (this.props.animate) return;
     this.setState({ hovering: false });
   }
@@ -58,20 +66,5 @@ class Avatar extends React.PureComponent {
   }
 
 }
-
-Avatar.propTypes = {
-  src: PropTypes.string.isRequired,
-  staticSrc: PropTypes.string,
-  size: PropTypes.number.isRequired,
-  style: PropTypes.object,
-  animate: PropTypes.bool,
-  inline: PropTypes.bool
-};
-
-Avatar.defaultProps = {
-  animate: false,
-  size: 20,
-  inline: false
-};
 
 export default Avatar;

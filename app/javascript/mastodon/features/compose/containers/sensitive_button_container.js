@@ -25,6 +25,13 @@ const mapDispatchToProps = dispatch => ({
 
 class SensitiveButton extends React.PureComponent {
 
+  static propTypes = {
+    visible: PropTypes.bool,
+    active: PropTypes.bool,
+    onClick: PropTypes.func.isRequired,
+    intl: PropTypes.object.isRequired
+  };
+
   render () {
     const { visible, active, onClick, intl } = this.props;
 
@@ -40,12 +47,5 @@ class SensitiveButton extends React.PureComponent {
   }
 
 }
-
-SensitiveButton.propTypes = {
-  visible: PropTypes.bool,
-  active: PropTypes.bool,
-  onClick: PropTypes.func.isRequired,
-  intl: PropTypes.object.isRequired
-};
 
 export default connect(mapStateToProps, mapDispatchToProps)(injectIntl(SensitiveButton));
