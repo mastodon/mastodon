@@ -36,8 +36,6 @@ class StatusContent extends React.PureComponent {
         link.setAttribute('title', mention.get('acct'));
       } else if (link.textContent[0] === '#' || (link.previousSibling && link.previousSibling.textContent && link.previousSibling.textContent[link.previousSibling.textContent.length - 1] === '#')) {
         link.addEventListener('click', this.onHashtagClick.bind(this, link.text), false);
-      } else if (media) {
-        link.innerHTML = '<i class="fa fa-fw fa-photo"></i>';
       } else {
         link.setAttribute('target', '_blank');
         link.setAttribute('rel', 'noopener');
@@ -70,11 +68,11 @@ class StatusContent extends React.PureComponent {
     const [ startX, startY ] = this.startXY;
     const [ deltaX, deltaY ] = [Math.abs(e.clientX - startX), Math.abs(e.clientY - startY)];
 
-    if (e.target.localName === 'a' || (e.target.parentNode && e.target.parentNode.localName === 'a')) {
+    if (e.target.localName === 'button' || e.target.localName === 'a' || (e.target.parentNode && e.target.parentNode.localName === 'a')) {
       return;
     }
 
-    if (deltaX + deltaY < 5 && e.button === 0) {
+    if (deltaX + deltaY < 5 && e.button === 0 && this.props.onClick) {
       this.props.onClick();
     }
 
@@ -118,14 +116,16 @@ class StatusContent extends React.PureComponent {
       }
 
       return (
-        <div className='status__content' onMouseDown={this.handleMouseDown} onMouseUp={this.handleMouseUp}>
+        <div className='status__content' ref={this.setRef} onMouseDown={this.handleMouseDown} onMouseUp={this.handleMouseUp}>
           <p style={{ marginBottom: hidden && status.get('mentions').size === 0 ? '0px' : '' }} >
-            <span dangerouslySetInnerHTML={spoilerContent} />  <a tabIndex='0' className='status__content__spoiler-link' role='button' onClick={this.handleSpoilerClick}>{toggleText}</a>
+            <span dangerouslySetInnerHTML={spoilerContent} /> <button tabIndex='0' className='status__content__spoiler-link' onClick={this.handleSpoilerClick}>{toggleText}</button>
+
           </p>
 
           {mentionsPlaceholder}
 
-          <div ref={this.setRef} style={{ display: hidden ? 'none' : 'block', ...directionStyle }} dangerouslySetInnerHTML={content} />
+          <div style={{ display: hidden ? 'none' : 'block', ...directionStyle }} dangerouslySetInnerHTML={content} />
+
         </div>
       );
     } else if (this.props.onClick) {
