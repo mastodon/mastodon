@@ -133,7 +133,7 @@ class UI extends React.PureComponent {
           <Compose withHeader={true} />
           <HomeTimeline shouldUpdateScroll={noOp} />
           <Notifications shouldUpdateScroll={noOp} />
-          <div style={{display: 'flex', flex: '1 1 auto', position: 'relative'}}>{children}</div>
+          <div className='mastodon-column'>{children}</div>
         </ColumnsArea>
       );
     }

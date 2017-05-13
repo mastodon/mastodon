@@ -106,13 +106,6 @@ addLocaleData([
 
 const getTopWhenReplacing = (previous, { location }) => location && location.action === 'REPLACE' && [0, 0];
 
-const hiddenColumnContainerStyle = {
-  position: 'absolute',
-  left: '0',
-  top:  '0',
-  visibility: 'hidden'
-};
-
 class Container extends React.PureComponent {
 
   constructor(props) {
@@ -205,7 +198,7 @@ class Container extends React.PureComponent {
     // Hide some components rather than unmounting them to allow to show again
     // quickly and keep the view state such as the scrolled offset.
     const persistentsView = this.state.renderedPersistents.map((persistent) =>
-      <div aria-hidden={persistent.hidden} key={persistent.pathname} className='mastodon-column-container' style={persistent.hidden ? hiddenColumnContainerStyle : null}>
+      <div aria-hidden={persistent.hidden} key={persistent.pathname} className={`mastodon-column-container ${ persistent.hidden ? 'mastodon-column-container--hidden' : '' }`}>
         <persistent.component shouldUpdateScroll={persistent.hidden ? Function.prototype : getTopWhenReplacing} />
       </div>
     );

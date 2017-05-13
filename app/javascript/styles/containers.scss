@@ -9,9 +9,27 @@
   }
 }
 
+.mastodon-column {
+  display: flex;
+  flex: 1 1 auto;
+  padding-bottom: 10px;
+  padding-top: 10px;
+  position: relative;
+
+  .column {
+    overflow-y: auto;
+    padding-bottom: 0;
+    padding-top: 0;
+  }
+}
+
 .mastodon-column-container {
   display: flex;
   flex: 1 1 auto;
+}
+
+.mastodon-column-container--hidden {
+  display: none;
 }
 
 .logo-container {
