@@ -50,7 +50,7 @@ class NotifyService < BaseService
 
   def conversation_muted?
     if @notification.target_status
-      !@notification.target_status.conversation_id.nil? && ConversationMute.where(account: @recipient, conversation_id: @notification.target_status.conversation_id).exists?
+      @recipient.muting_conversation?(@notification.target_status.conversation)
     else
       false
     end

@@ -84,6 +84,7 @@ class Account < ApplicationRecord
   # Mute relationships
   has_many :mute_relationships, class_name: 'Mute', foreign_key: 'account_id', dependent: :destroy
   has_many :muting, -> { order('mutes.id desc') }, through: :mute_relationships, source: :target_account
+  has_many :conversation_mutes
 
   # Media
   has_many :media_attachments, dependent: :destroy
@@ -131,7 +132,7 @@ class Account < ApplicationRecord
   end
 
   def mute_conversation!(conversation)
-    ConversationMute.find_or_create_by!(account: self, conversation: conversation)
+    conversation_mutes.find_or_create_by!(conversation: conversation)
   end
 
   def unfollow!(other_account)
@@ -150,7 +151,7 @@ class Account < ApplicationRecord
   end
 
   def unmute_conversation!(conversation)
-    mute = ConversationMute.find_by(account: self, conversation: conversation)
+    mute = conversation_mutes.find_by(conversation: conversation)
     mute&.destroy!
   end
 
@@ -167,7 +168,7 @@ class Account < ApplicationRecord
   end
 
   def muting_conversation?(conversation)
-    ConversationMute.where(account: self, conversation: conversation).exists?
+    conversation_mutes.where(conversation: conversation).exists?
   end
 
   def requested?(other_account)

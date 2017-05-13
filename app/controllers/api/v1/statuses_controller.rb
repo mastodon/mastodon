@@ -3,8 +3,9 @@
 class Api::V1::StatusesController < ApiController
   before_action :authorize_if_got_token, except:            [:create, :destroy, :reblog, :unreblog, :favourite, :unfavourite, :mute, :unmute]
   before_action -> { doorkeeper_authorize! :write }, only:  [:create, :destroy, :reblog, :unreblog, :favourite, :unfavourite, :mute, :unmute]
-  before_action :require_user!, except: [:show, :context, :card, :reblogged_by, :favourited_by]
-  before_action :set_status, only:      [:show, :context, :card, :reblogged_by, :favourited_by, :mute, :unmute]
+  before_action :require_user!, except:  [:show, :context, :card, :reblogged_by, :favourited_by]
+  before_action :set_status, only:       [:show, :context, :card, :reblogged_by, :favourited_by, :mute, :unmute]
+  before_action :set_conversation, only: [:mute, :unmute]
 
   respond_to :json
 
@@ -106,17 +107,17 @@ class Api::V1::StatusesController < ApiController
   end
 
   def mute
-    current_account.mute_conversation!(@status.conversation) unless @status.conversation.nil?
+    current_account.mute_conversation!(@conversation)
 
-    @mutes_map = { @status.conversation_id => true }
+    @mutes_map = { @conversation.id => true }
 
     render :show
   end
 
   def unmute
-    current_account.unmute_conversation!(@status.conversation) unless @status.conversation.nil?
+    current_account.unmute_conversation!(@conversation)
 
-    @mutes_map = { @status.conversation_id => false }
+    @mutes_map = { @conversation.id => false }
 
     render :show
   end
@@ -126,6 +127,11 @@ class Api::V1::StatusesController < ApiController
   def set_status
     @status = Status.find(params[:id])
     raise ActiveRecord::RecordNotFound unless @status.permitted?(current_account)
+  end
+
+  def set_conversation
+    @conversation = @status.conversation
+    raise ActiveRecord::RecordNotFound if @conversation.nil?
   end
 
   def status_params
