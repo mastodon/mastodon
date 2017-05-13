@@ -97,7 +97,7 @@ class Status extends ImmutablePureComponent {
     }
 
     return (
-      <div className={this.props.muted ? 'status muted' : 'status'}>
+      <div className={`status ${this.props.muted ? 'muted' : ''} status-${status.get('visibility')}`}>
         <div className='status__info'>
           <div className='status__info-time'>
             <a href={status.get('url')} className='status__relative-time' target='_blank' rel='noopener'><RelativeTimestamp timestamp={status.get('created_at')} /></a>

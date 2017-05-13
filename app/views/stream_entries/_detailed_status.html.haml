@@ -10,7 +10,7 @@
   .status__content.p-name.emojify<
     - if status.spoiler_text?
       %p{ style: 'margin-bottom: 0' }<
-        %span.p-summary> #{Formatter.instance.format(status, :spoiler_text, false)}&nbsp;
+        %span.p-summary> #{status.spoiler_text}&nbsp;
         %a.status__content__spoiler-link{ href: '#' }= t('statuses.show_more')
     .e-content{ lang: status.language, style: "display: #{status.spoiler_text? ? 'none' : 'block'}; direction: #{rtl?(status.content) ? 'rtl' : 'ltr'}" }= Formatter.instance.format(status)
 

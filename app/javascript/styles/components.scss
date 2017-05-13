@@ -501,6 +501,18 @@
   border-bottom: 1px solid lighten($ui-base-color, 8%);
   cursor: default;
 
+  &.status-direct {
+    background: lighten($ui-base-color, 8%);
+
+    .status__display-name strong {
+      color: $primary-text-color;
+    }
+
+    .icon-button.disabled {
+      color: lighten($ui-base-color, 16%);
+    }
+  }
+
   &.light {
     .status__relative-time {
       color: $ui-primary-color;

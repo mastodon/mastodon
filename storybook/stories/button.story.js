@@ -1,5 +1,6 @@
-import { storiesOf } from '@kadira/storybook';
-import Button from '../../app/assets/javascripts/components/components/button.jsx'
+import React from 'react';
+import { action, storiesOf } from '@kadira/storybook';
+import Button from 'mastodon/components/button';
 
 storiesOf('Button', module)
   .add('default state', () => (
