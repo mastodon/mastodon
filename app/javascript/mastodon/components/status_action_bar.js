@@ -17,8 +17,8 @@ const messages = defineMessages({
   favourite: { id: 'status.favourite', defaultMessage: 'Favourite' },
   open: { id: 'status.open', defaultMessage: 'Expand this status' },
   report: { id: 'status.report', defaultMessage: 'Report @{name}' },
-  muteConversation: { id: 'status.mute_conversation', defaultMessage: 'Disable notifications' },
-  unmuteConversation: { id: 'status.unmute_conversation', defaultMessage: 'Re-enable notifications' },
+  muteConversation: { id: 'status.mute_conversation', defaultMessage: 'Mute conversation' },
+  unmuteConversation: { id: 'status.unmute_conversation', defaultMessage: 'Unmute conversation' },
 });
 
 class StatusActionBar extends React.PureComponent {
