@@ -1,0 +1,12 @@
+Benvingut <%= @resource.email %> !
+
+Acabes de crear un compte a <%= @instance %>.
+
+Per confirmar la subscripció, si us plua fes clic en el següent vincle :
+<%= confirmation_url(@resource, confirmation_token: @token) %>
+
+Si us plau també fes un cop d'ull als nostres termes i condicions <%= terms_url %>
+
+Sincerament,
+
+L'equip <%= @instance %>
