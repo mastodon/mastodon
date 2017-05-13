@@ -179,6 +179,19 @@ RSpec.describe Status, type: :model do
     end
   end
 
+  describe '#ancestors' do
+    it 'ignores deleted records' do
+      first_status = Fabricate(:status, account: bob)
+      second_status = Fabricate(:status, thread: first_status, account: alice)
+
+      # Create cache and delete cached record
+      second_status.ancestors
+      first_status.destroy
+
+      expect(second_status.ancestors).to eq([])
+    end
+  end
+
   describe '#filter_from_context?' do
     pending
   end
