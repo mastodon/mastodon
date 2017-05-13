@@ -46,6 +46,9 @@ class Account < ApplicationRecord
   include Attachmentable
   include Targetable
 
+  word_data = ReservedUsernameList.all
+  VALID_RESERVED_WORDS = word_data.map{ |word| word.word }
+
   # Local users
   has_one :user, inverse_of: :account
 
@@ -54,7 +57,7 @@ class Account < ApplicationRecord
 
   # Local user validations
   with_options if: 'local?' do
-    validates :username, format: { with: /\A[a-z0-9_]+\z/i }, uniqueness: { scope: :domain, case_sensitive: false }, length: { maximum: 30 }
+    validates :username, format: { with: /\A[a-z0-9_]+\z/i }, uniqueness: { scope: :domain, case_sensitive: false }, length: { maximum: 30 }, exclusion: {in: VALID_RESERVED_WORDS}
     validates :display_name, length: { maximum: 30 }
     validates :note, length: { maximum: 160 }
   end
