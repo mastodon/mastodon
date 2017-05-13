@@ -15,7 +15,7 @@ module Attachmentable
       next if attachment.blank?
       extension = Paperclip::Interpolations.content_type_extension(attachment, :original)
       basename  = Paperclip::Interpolations.basename(attachment, :original)
-      attachment.instance_write :file_name, [basename, extension].delete_if(&:empty?).join('.')
+      attachment.instance_write :file_name, [basename, extension].delete_if(&:blank?).join('.')
     end
   end
 end

@@ -39,27 +39,17 @@
 #
 
 class Account < ApplicationRecord
-  include Targetable
-
   MENTION_RE = /(?:^|[^\/\w])@([a-z0-9_]+(?:@[a-z0-9\.\-]+[a-z0-9]+)?)/i
-  IMAGE_MIME_TYPES = ['image/jpeg', 'image/png', 'image/gif'].freeze
+
+  include AccountAvatar
+  include AccountHeader
+  include Attachmentable
+  include Targetable
 
   # Local users
   has_one :user, inverse_of: :account
   validates :username, presence: true, format: { with: /\A[a-z0-9_]+\z/i }, uniqueness: { scope: :domain, case_sensitive: false }, length: { maximum: 30 }, if: 'local?'
   validates :username, presence: true, uniqueness: { scope: :domain, case_sensitive: true }, unless: 'local?'
-
-  # Avatar upload
-  has_attached_file :avatar, styles: ->(f) { avatar_styles(f) }, convert_options: { all: '-quality 80 -strip' }
-  validates_attachment_content_type :avatar, content_type: IMAGE_MIME_TYPES
-  validates_attachment_size :avatar, less_than: 2.megabytes
-
-  # Header upload
-  has_attached_file :header, styles: ->(f) { header_styles(f) }, convert_options: { all: '-quality 80 -strip' }
-  validates_attachment_content_type :header, content_type: IMAGE_MIME_TYPES
-  validates_attachment_size :header, less_than: 2.megabytes
-
-  include Attachmentable
 
   # Local user profile validations
   validates :display_name, length: { maximum: 30 }, if: 'local?'
@@ -206,7 +196,7 @@ class Account < ApplicationRecord
     OStatus2::Subscription.new(remote_url, secret: secret, lease_seconds: 86_400 * 30, webhook: webhook_url, hub: hub_url)
   end
 
-  def save_with_optional_avatar!
+  def save_with_optional_media!
     save!
   rescue ActiveRecord::RecordInvalid
     self.avatar              = nil
@@ -214,44 +204,6 @@ class Account < ApplicationRecord
     self[:avatar_remote_url] = ''
     self[:header_remote_url] = ''
     save!
-  end
-
-  def avatar_original_url
-    avatar.url(:original)
-  end
-
-  def avatar_static_url
-    avatar_content_type == 'image/gif' ? avatar.url(:static) : avatar_original_url
-  end
-
-  def header_original_url
-    header.url(:original)
-  end
-
-  def header_static_url
-    header_content_type == 'image/gif' ? header.url(:static) : header_original_url
-  end
-
-  def avatar_remote_url=(url)
-    parsed_url = Addressable::URI.parse(url).normalize
-
-    return if !%w(http https).include?(parsed_url.scheme) || parsed_url.host.empty? || self[:avatar_remote_url] == url
-
-    self.avatar              = URI.parse(parsed_url.to_s)
-    self[:avatar_remote_url] = url
-  rescue OpenURI::HTTPError => e
-    Rails.logger.debug "Error fetching remote avatar: #{e}"
-  end
-
-  def header_remote_url=(url)
-    parsed_url = Addressable::URI.parse(url).normalize
-
-    return if !%w(http https).include?(parsed_url.scheme) || parsed_url.host.empty? || self[:header_remote_url] == url
-
-    self.header              = URI.parse(parsed_url.to_s)
-    self[:header_remote_url] = url
-  rescue OpenURI::HTTPError => e
-    Rails.logger.debug "Error fetching remote header: #{e}"
   end
 
   def object_type
@@ -371,18 +323,6 @@ class Account < ApplicationRecord
 
     def follow_mapping(query, field)
       query.pluck(field).each_with_object({}) { |id, mapping| mapping[id] = true }
-    end
-
-    def avatar_styles(file)
-      styles = { original: '120x120#' }
-      styles[:static] = { format: 'png' } if file.content_type == 'image/gif'
-      styles
-    end
-
-    def header_styles(file)
-      styles = { original: '700x335#' }
-      styles[:static] = { format: 'png' } if file.content_type == 'image/gif'
-      styles
     end
   end
 

@@ -11,9 +11,6 @@
     ]
   ],
   "plugins": [
-    "transform-react-jsx-source",
-    "transform-react-jsx-self",
-    "transform-decorators-legacy",
     "transform-object-rest-spread",
     [
       "react-intl",
@@ -21,5 +18,18 @@
         "messagesDir": "./build/messages"
       }
     ]
-  ]
+  ],
+  "env": {
+    "development": {
+      "plugins": [
+        "transform-react-jsx-source",
+        "transform-react-jsx-self"
+      ]
+    },
+    "production": {
+      "plugins": [
+        "lodash"
+      ]
+    }
+  }
 }

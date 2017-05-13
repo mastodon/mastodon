@@ -6,6 +6,10 @@ RSpec.describe Formatter do
   let(:local_status)  { Fabricate(:status, text: local_text, account: account) }
   let(:remote_status) { Fabricate(:status, text: '<script>alert("Hello")</script> Beep boop', uri: 'beepboop', account: account) }
 
+  let(:local_text_with_mention) { "@#{account.username} @#{account.username}@example.com #{local_text}?x=@#{account.username} #hashtag" }
+  let(:local_status_with_mention) { Fabricate(:status, text: local_text_with_mention,
+                                              account: account, mentions: [Fabricate(:mention, account: account)]) }
+
   describe '#format' do
     subject { Formatter.instance.format(local_status) }
 
@@ -19,6 +23,18 @@ RSpec.describe Formatter do
 
     it 'contains a link' do
       expect(subject).to match('<a href="http://google.com/" rel="nofollow noopener" target="_blank"><span class="invisible">http://</span><span class="">google.com/</span><span class="invisible"></span></a>')
+    end
+
+    it 'contains a mention' do
+      result = Formatter.instance.format(local_status_with_mention)
+      expect(result).to match "<a href=\"#{TagManager.instance.url_for(account)}\" class=\"u-url mention\">@<span>#{account.username}</span></a></span>"
+      expect(result).to match %r{href=\"http://google.com/\?x=@#{account.username}}
+      expect(result).not_to match "href=\"https://example.com/@#{account.username}"
+    end
+
+    it 'contains a hashtag' do
+      result = Formatter.instance.format(local_status_with_mention)
+      expect(result).to match("/tags/hashtag\" class=\"mention hashtag\">#<span>hashtag</span></a>")
     end
 
     context 'matches a stand-alone medium URL' do
