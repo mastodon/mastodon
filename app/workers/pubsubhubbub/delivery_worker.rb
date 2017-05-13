@@ -25,8 +25,6 @@ class Pubsubhubbub::DeliveryWorker
 
     if response_successful?
       subscription.touch(:last_successful_delivery_at)
-    elsif response_failed_permanently?
-      subscription.destroy!
     else
       raise "Delivery failed for #{subscription.callback_url}: HTTP #{payload_delivery.code}"
     end
@@ -80,10 +78,6 @@ class Pubsubhubbub::DeliveryWorker
 
   def hmac_payload_digest
     OpenSSL::HMAC.hexdigest(OpenSSL::Digest.new('sha1'), subscription.secret, payload)
-  end
-
-  def response_failed_permanently?
-    payload_delivery.code > 299 && payload_delivery.code < 500 && payload_delivery.code != 429
   end
 
   def response_successful?
