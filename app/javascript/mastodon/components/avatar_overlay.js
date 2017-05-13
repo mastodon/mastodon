@@ -2,6 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 class AvatarOverlay extends React.PureComponent {
+  static propTypes = {
+    staticSrc: PropTypes.string.isRequired,
+    overlaySrc: PropTypes.string.isRequired
+  };
+
   render() {
     const {staticSrc, overlaySrc} = this.props;
 
@@ -20,11 +25,7 @@ class AvatarOverlay extends React.PureComponent {
       </div>
     );
   }
-}
 
-AvatarOverlay.propTypes = {
-  staticSrc: PropTypes.string.isRequired,
-  overlaySrc: PropTypes.string.isRequired,
-};
+}
 
 export default AvatarOverlay;

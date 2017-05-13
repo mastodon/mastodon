@@ -120,7 +120,63 @@ RSpec.describe Status, type: :model do
   end
 
   describe '#permitted?' do
-    pending
+    it 'returns true when direct and account is viewer' do
+      subject.visibility = :direct
+      expect(subject.permitted?(subject.account)).to be true
+    end
+
+    it 'returns true when direct and viewer is mentioned' do
+      subject.visibility = :direct
+      subject.mentions = [Fabricate(:mention, account: alice)]
+
+      expect(subject.permitted?(alice)).to be true
+    end
+
+    it 'returns false when direct and viewer is not mentioned' do
+      viewer = Fabricate(:account)
+      subject.visibility = :direct
+
+      expect(subject.permitted?(viewer)).to be false
+    end
+
+    it 'returns true when private and account is viewer' do
+      subject.visibility = :direct
+      expect(subject.permitted?(subject.account)).to be true
+    end
+
+    it 'returns true when private and account is following viewer' do
+      follow = Fabricate(:follow)
+      subject.visibility = :private
+      subject.account = follow.target_account
+
+      expect(subject.permitted?(follow.account)).to be true
+    end
+
+    it 'returns true when private and viewer is mentioned' do
+      subject.visibility = :private
+      subject.mentions = [Fabricate(:mention, account: alice)]
+
+      expect(subject.permitted?(alice)).to be true
+    end
+
+    it 'returns false when private and viewer is not mentioned or followed' do
+      viewer = Fabricate(:account)
+      subject.visibility = :private
+
+      expect(subject.permitted?(viewer)).to be false
+    end
+
+    it 'returns true when no viewer' do
+      expect(subject.permitted?).to be true
+    end
+
+    it 'returns false when viewer is blocked' do
+      block = Fabricate(:block)
+      subject.visibility = :private
+      subject.account = block.target_account
+
+      expect(subject.permitted?(block.account)).to be false
+    end
   end
 
   describe '#filter_from_context?' do
@@ -319,6 +375,25 @@ RSpec.describe Status, type: :model do
 
       results = Status.as_tag_timeline(tag)
       expect(results).to include(status)
+    end
+  end
+
+  describe 'before_create' do
+    it 'sets account being replied to correctly over intermediary nodes' do
+      first_status = Fabricate(:status, account: bob)
+      intermediary = Fabricate(:status, thread: first_status, account: alice)
+      final        = Fabricate(:status, thread: intermediary, account: alice)
+
+      expect(final.in_reply_to_account_id).to eq bob.id
+    end
+
+    it 'creates new conversation for stand-alone status' do
+      expect(Status.create(account: alice, text: 'First').conversation_id).to_not be_nil
+    end
+
+    it 'keeps conversation of parent node' do
+      parent = Fabricate(:status, text: 'First')
+      expect(Status.create(account: alice, thread: parent, text: 'Response').conversation_id).to eq parent.conversation_id
     end
   end
 end

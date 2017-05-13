@@ -226,7 +226,7 @@
 }
 
 .compose-form__warning {
-  color: darken($ui-secondary-color, 33%);
+  color: darken($ui-secondary-color, 65%);
   margin-bottom: 15px;
   background: $ui-primary-color;
   box-shadow: 0 2px 6px rgba($base-shadow-color, 0.3);
@@ -236,7 +236,7 @@
   font-weight: 400;
 
   strong {
-    color: darken($primary-text-color, 33%);
+    color: darken($ui-secondary-color, 65%);
     font-weight: 500;
   }
 
@@ -474,15 +474,18 @@
   }
 }
 
-a.status__content__spoiler-link {
+.status__content__spoiler-link {
   display: inline-block;
   border-radius: 2px;
+  background: transparent;
+  border: 0;
   color: lighten($ui-base-color, 8%);
   font-weight: 500;
   font-size: 11px;
   padding: 0 6px;
   text-transform: uppercase;
   line-height: inherit;
+  cursor: pointer;
 }
 
 .status__prepend-icon-wrapper {
@@ -497,6 +500,18 @@ a.status__content__spoiler-link {
   min-height: 48px;
   border-bottom: 1px solid lighten($ui-base-color, 8%);
   cursor: default;
+
+  &.status-direct {
+    background: lighten($ui-base-color, 8%);
+
+    .status__display-name strong {
+      color: $primary-text-color;
+    }
+
+    .icon-button.disabled {
+      color: lighten($ui-base-color, 16%);
+    }
+  }
 
   &.light {
     .status__relative-time {
@@ -606,6 +621,34 @@ a.status__content__spoiler-link {
   float: left;
   height: 18px;
   width: 18px;
+}
+
+.detailed-status__action-bar-dropdown {
+  flex: 1 1 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+
+  .dropdown {
+    display: block;
+    width: 18px;
+    height: 18px;
+  }
+
+  .dropdown--active {
+    .dropdown__content.dropdown__left {
+      left: 20px;
+      right: initial;
+    }
+
+    &::after {
+      bottom: initial;
+      margin-left: 7px;
+      margin-top: -7px;
+      right: initial;
+    }
+  }
 }
 
 .detailed-status {
@@ -1474,7 +1517,7 @@ a.status__content__spoiler-link {
   padding: 15px;
   position: absolute;
   right: 0;
-  top: -49px;
+  top: -48px;
 }
 
 .react-toggle {
@@ -2165,6 +2208,7 @@ button.icon-button.active i.fa-retweet {
   display: flex;
   flex: 1 1 auto;
   align-items: center;
+  justify-content: center;
 
   a {
     color: $ui-highlight-color;

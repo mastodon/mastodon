@@ -4,12 +4,14 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 
 class SettingText extends React.PureComponent {
 
-  constructor (props, context) {
-    super(props, context);
-    this.handleChange = this.handleChange.bind(this);
-  }
+  static propTypes = {
+    settings: ImmutablePropTypes.map.isRequired,
+    settingKey: PropTypes.array.isRequired,
+    label: PropTypes.string.isRequired,
+    onChange: PropTypes.func.isRequired
+  };
 
-  handleChange (e) {
+  handleChange = (e) => {
     this.props.onChange(this.props.settingKey, e.target.value)
   }
 
@@ -27,12 +29,5 @@ class SettingText extends React.PureComponent {
   }
 
 }
-
-SettingText.propTypes = {
-  settings: ImmutablePropTypes.map.isRequired,
-  settingKey: PropTypes.array.isRequired,
-  label: PropTypes.string.isRequired,
-  onChange: PropTypes.func.isRequired
-};
 
 export default SettingText;

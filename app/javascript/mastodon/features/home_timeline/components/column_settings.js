@@ -13,6 +13,13 @@ const messages = defineMessages({
 
 class ColumnSettings extends React.PureComponent {
 
+  static propTypes = {
+    settings: ImmutablePropTypes.map.isRequired,
+    onChange: PropTypes.func.isRequired,
+    onSave: PropTypes.func.isRequired,
+    intl: PropTypes.object.isRequired
+  };
+
   render () {
     const { settings, onChange, onSave, intl } = this.props;
 
@@ -39,13 +46,6 @@ class ColumnSettings extends React.PureComponent {
     );
   }
 
-}
-
-ColumnSettings.propTypes = {
-  settings: ImmutablePropTypes.map.isRequired,
-  onChange: PropTypes.func.isRequired,
-  onSave: PropTypes.func.isRequired,
-  intl: PropTypes.object.isRequired
 }
 
 export default injectIntl(ColumnSettings);

@@ -9,14 +9,25 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 
 class StatusList extends ImmutablePureComponent {
 
-  constructor (props, context) {
-    super(props, context);
-    this.handleScroll = this.handleScroll.bind(this);
-    this.setRef = this.setRef.bind(this);
-    this.handleLoadMore = this.handleLoadMore.bind(this);
-  }
+  static propTypes = {
+    scrollKey: PropTypes.string.isRequired,
+    statusIds: ImmutablePropTypes.list.isRequired,
+    onScrollToBottom: PropTypes.func,
+    onScrollToTop: PropTypes.func,
+    onScroll: PropTypes.func,
+    shouldUpdateScroll: PropTypes.func,
+    isLoading: PropTypes.bool,
+    isUnread: PropTypes.bool,
+    hasMore: PropTypes.bool,
+    prepend: PropTypes.node,
+    emptyMessage: PropTypes.node
+  };
 
-  handleScroll (e) {
+  static defaultProps = {
+    trackScroll: true
+  };
+
+  handleScroll = (e) => {
     const { scrollTop, scrollHeight, clientHeight } = e.target;
     const offset = scrollHeight - scrollTop - clientHeight;
     this._oldScrollPosition = scrollHeight - scrollTop;
@@ -52,11 +63,11 @@ class StatusList extends ImmutablePureComponent {
     this.node.removeEventListener('scroll', this.handleScroll);
   }
 
-  setRef (c) {
+  setRef = (c) => {
     this.node = c;
   }
 
-  handleLoadMore (e) {
+  handleLoadMore = (e) => {
     e.preventDefault();
     this.props.onScrollToBottom();
   }
@@ -108,23 +119,5 @@ class StatusList extends ImmutablePureComponent {
   }
 
 }
-
-StatusList.propTypes = {
-  scrollKey: PropTypes.string.isRequired,
-  statusIds: ImmutablePropTypes.list.isRequired,
-  onScrollToBottom: PropTypes.func,
-  onScrollToTop: PropTypes.func,
-  onScroll: PropTypes.func,
-  shouldUpdateScroll: PropTypes.func,
-  isLoading: PropTypes.bool,
-  isUnread: PropTypes.bool,
-  hasMore: PropTypes.bool,
-  prepend: PropTypes.node,
-  emptyMessage: PropTypes.node
-};
-
-StatusList.defaultProps = {
-  trackScroll: true
-};
 
 export default StatusList;

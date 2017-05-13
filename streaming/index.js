@@ -37,7 +37,7 @@ const dbUrlToConfig = (dbUrl) => {
   }
 
   if (params.pathname) {
-    config.database = params.params.pathname.split('/')[1]
+    config.database = params.pathname.split('/')[1]
   }
 
   const ssl = params.query && params.query.ssl

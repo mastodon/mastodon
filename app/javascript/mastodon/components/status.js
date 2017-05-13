@@ -17,18 +17,33 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 
 class Status extends ImmutablePureComponent {
 
-  constructor (props, context) {
-    super(props, context);
-    this.handleClick = this.handleClick.bind(this);
-    this.handleAccountClick = this.handleAccountClick.bind(this);
-  }
+  static contextTypes = {
+    router: PropTypes.object
+  };
 
-  handleClick () {
+  static propTypes = {
+    status: ImmutablePropTypes.map,
+    account: ImmutablePropTypes.map,
+    wrapped: PropTypes.bool,
+    onReply: PropTypes.func,
+    onFavourite: PropTypes.func,
+    onReblog: PropTypes.func,
+    onDelete: PropTypes.func,
+    onOpenMedia: PropTypes.func,
+    onOpenVideo: PropTypes.func,
+    onBlock: PropTypes.func,
+    me: PropTypes.number,
+    boostModal: PropTypes.bool,
+    autoPlayGif: PropTypes.bool,
+    muted: PropTypes.bool
+  };
+
+  handleClick = () => {
     const { status } = this.props;
     this.context.router.push(`/statuses/${status.getIn(['reblog', 'id'], status.get('id'))}`);
   }
 
-  handleAccountClick (id, e) {
+  handleAccountClick = (id, e) => {
     if (e.button === 0) {
       e.preventDefault();
       this.context.router.push(`/accounts/${id}`);
@@ -82,7 +97,7 @@ class Status extends ImmutablePureComponent {
     }
 
     return (
-      <div className={this.props.muted ? 'status muted' : 'status'}>
+      <div className={`status ${this.props.muted ? 'muted' : ''} status-${status.get('visibility')}`}>
         <div className='status__info'>
           <div className='status__info-time'>
             <a href={status.get('url')} className='status__relative-time' target='_blank' rel='noopener'><RelativeTimestamp timestamp={status.get('created_at')} /></a>
@@ -107,26 +122,5 @@ class Status extends ImmutablePureComponent {
   }
 
 }
-
-Status.contextTypes = {
-  router: PropTypes.object
-};
-
-Status.propTypes = {
-  status: ImmutablePropTypes.map,
-  account: ImmutablePropTypes.map,
-  wrapped: PropTypes.bool,
-  onReply: PropTypes.func,
-  onFavourite: PropTypes.func,
-  onReblog: PropTypes.func,
-  onDelete: PropTypes.func,
-  onOpenMedia: PropTypes.func,
-  onOpenVideo: PropTypes.func,
-  onBlock: PropTypes.func,
-  me: PropTypes.number,
-  boostModal: PropTypes.bool,
-  autoPlayGif: PropTypes.bool,
-  muted: PropTypes.bool
-};
 
 export default Status;

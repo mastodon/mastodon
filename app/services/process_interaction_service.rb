@@ -123,7 +123,9 @@ class ProcessInteractionService < BaseService
   end
 
   def status(xml)
-    Status.find(TagManager.instance.unique_tag_to_local_id(activity_id(xml), 'Status'))
+    uri = activity_id(xml)
+    return nil unless TagManager.instance.local_id?(uri)
+    Status.find(TagManager.instance.unique_tag_to_local_id(uri, 'Status'))
   end
 
   def activity_id(xml)

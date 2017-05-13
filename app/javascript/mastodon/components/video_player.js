@@ -9,36 +9,38 @@ const messages = defineMessages({
   toggle_sound: { id: 'video_player.toggle_sound', defaultMessage: 'Toggle sound' },
   toggle_visible: { id: 'video_player.toggle_visible', defaultMessage: 'Toggle visibility' },
   expand_video: { id: 'video_player.expand', defaultMessage: 'Expand video' },
-  expand_video: { id: 'video_player.video_error', defaultMessage: 'Video could not be played' }
 });
 
 class VideoPlayer extends React.PureComponent {
 
-  constructor (props, context) {
-    super(props, context);
-    this.state = {
-      visible: !this.props.sensitive,
-      preview: true,
-      muted: true,
-      hasAudio: true,
-      videoError: false
-    };
+  static propTypes = {
+    media: ImmutablePropTypes.map.isRequired,
+    width: PropTypes.number,
+    height: PropTypes.number,
+    sensitive: PropTypes.bool,
+    intl: PropTypes.object.isRequired,
+    autoplay: PropTypes.bool,
+    onOpenVideo: PropTypes.func.isRequired
+  };
 
-    this.handleClick = this.handleClick.bind(this);
-    this.handleVideoClick = this.handleVideoClick.bind(this);
-    this.handleOpen = this.handleOpen.bind(this);
-    this.handleVisibility = this.handleVisibility.bind(this);
-    this.handleExpand = this.handleExpand.bind(this);
-    this.setRef = this.setRef.bind(this);
-    this.handleLoadedData = this.handleLoadedData.bind(this);
-    this.handleVideoError = this.handleVideoError.bind(this);
-  }
+  static defaultProps = {
+    width: 239,
+    height: 110
+  };
 
-  handleClick () {
+  state = {
+    visible: !this.props.sensitive,
+    preview: true,
+    muted: true,
+    hasAudio: true,
+    videoError: false
+  };
+
+  handleClick = () => {
     this.setState({ muted: !this.state.muted });
   }
 
-  handleVideoClick (e) {
+  handleVideoClick = (e) => {
     e.stopPropagation();
 
     const node = this.video;
@@ -50,33 +52,33 @@ class VideoPlayer extends React.PureComponent {
     }
   }
 
-  handleOpen () {
+  handleOpen = () => {
     this.setState({ preview: !this.state.preview });
   }
 
-  handleVisibility () {
+  handleVisibility = () => {
     this.setState({
       visible: !this.state.visible,
       preview: true
     });
   }
 
-  handleExpand () {
+  handleExpand = () => {
     this.video.pause();
     this.props.onOpenVideo(this.props.media, this.video.currentTime);
   }
 
-  setRef (c) {
+  setRef = (c) => {
     this.video = c;
   }
 
-  handleLoadedData () {
+  handleLoadedData = () => {
     if (('WebkitAppearance' in document.documentElement.style && this.video.audioTracks.length === 0) || this.video.mozHasAudio === false) {
       this.setState({ hasAudio: false });
     }
   }
 
-  handleVideoError () {
+  handleVideoError = () => {
     this.setState({ videoError: true });
   }
 
@@ -191,20 +193,5 @@ class VideoPlayer extends React.PureComponent {
   }
 
 }
-
-VideoPlayer.propTypes = {
-  media: ImmutablePropTypes.map.isRequired,
-  width: PropTypes.number,
-  height: PropTypes.number,
-  sensitive: PropTypes.bool,
-  intl: PropTypes.object.isRequired,
-  autoplay: PropTypes.bool,
-  onOpenVideo: PropTypes.func.isRequired
-};
-
-VideoPlayer.defaultProps = {
-  width: 239,
-  height: 110
-};
 
 export default injectIntl(VideoPlayer);

@@ -25,23 +25,21 @@ const makeMapStateToProps = () => {
 
 class Avatar extends ImmutablePureComponent {
 
-  constructor (props, context) {
-    super(props, context);
+  static propTypes = {
+    account: ImmutablePropTypes.map.isRequired,
+    autoPlayGif: PropTypes.bool.isRequired
+  };
 
-    this.state = {
-      isHovered: false
-    };
+  state = {
+    isHovered: false
+  };
 
-    this.handleMouseOver = this.handleMouseOver.bind(this);
-    this.handleMouseOut = this.handleMouseOut.bind(this);
-  }
-
-  handleMouseOver () {
+  handleMouseOver = () => {
     if (this.state.isHovered) return;
     this.setState({ isHovered: true });
   }
 
-  handleMouseOut () {
+  handleMouseOut = () => {
     if (!this.state.isHovered) return;
     this.setState({ isHovered: false });
   }
@@ -71,12 +69,15 @@ class Avatar extends ImmutablePureComponent {
 
 }
 
-Avatar.propTypes = {
-  account: ImmutablePropTypes.map.isRequired,
-  autoPlayGif: PropTypes.bool.isRequired
-};
-
 class Header extends ImmutablePureComponent {
+
+  static propTypes = {
+    account: ImmutablePropTypes.map,
+    me: PropTypes.number.isRequired,
+    onFollow: PropTypes.func.isRequired,
+    intl: PropTypes.object.isRequired,
+    autoPlayGif: PropTypes.bool.isRequired
+  };
 
   render () {
     const { account, me, intl } = this.props;
@@ -138,13 +139,5 @@ class Header extends ImmutablePureComponent {
   }
 
 }
-
-Header.propTypes = {
-  account: ImmutablePropTypes.map,
-  me: PropTypes.number.isRequired,
-  onFollow: PropTypes.func.isRequired,
-  intl: PropTypes.object.isRequired,
-  autoPlayGif: PropTypes.bool.isRequired
-};
 
 export default connect(makeMapStateToProps)(injectIntl(Header));

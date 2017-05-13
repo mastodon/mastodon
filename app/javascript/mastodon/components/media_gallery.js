@@ -10,12 +10,16 @@ const messages = defineMessages({
 });
 
 class Item extends React.PureComponent {
-  constructor (props, context) {
-    super(props, context);
-    this.handleClick = this.handleClick.bind(this);
-  }
 
-  handleClick (e) {
+  static propTypes = {
+    attachment: ImmutablePropTypes.map.isRequired,
+    index: PropTypes.number.isRequired,
+    size: PropTypes.number.isRequired,
+    onClick: PropTypes.func.isRequired,
+    autoPlayGif: PropTypes.bool.isRequired
+  };
+
+  handleClick = (e) => {
     const { index, onClick } = this.props;
 
     if (e.button === 0) {
@@ -119,30 +123,26 @@ class Item extends React.PureComponent {
 
 }
 
-Item.propTypes = {
-  attachment: ImmutablePropTypes.map.isRequired,
-  index: PropTypes.number.isRequired,
-  size: PropTypes.number.isRequired,
-  onClick: PropTypes.func.isRequired,
-  autoPlayGif: PropTypes.bool.isRequired
-};
-
 class MediaGallery extends React.PureComponent {
 
-  constructor (props, context) {
-    super(props, context);
-    this.state = {
-      visible: !props.sensitive
-    };
-    this.handleOpen = this.handleOpen.bind(this);
-    this.handleClick = this.handleClick.bind(this);
-  }
+  static propTypes = {
+    sensitive: PropTypes.bool,
+    media: ImmutablePropTypes.list.isRequired,
+    height: PropTypes.number.isRequired,
+    onOpenMedia: PropTypes.func.isRequired,
+    intl: PropTypes.object.isRequired,
+    autoPlayGif: PropTypes.bool.isRequired
+  };
 
-  handleOpen (e) {
+  state = {
+    visible: !this.props.sensitive
+  };
+
+  handleOpen = (e) => {
     this.setState({ visible: !this.state.visible });
   }
 
-  handleClick (index) {
+  handleClick = (index) => {
     this.props.onOpenMedia(this.props.media, index);
   }
 
@@ -183,14 +183,5 @@ class MediaGallery extends React.PureComponent {
   }
 
 }
-
-MediaGallery.propTypes = {
-  sensitive: PropTypes.bool,
-  media: ImmutablePropTypes.list.isRequired,
-  height: PropTypes.number.isRequired,
-  onOpenMedia: PropTypes.func.isRequired,
-  intl: PropTypes.object.isRequired,
-  autoPlayGif: PropTypes.bool.isRequired
-};
 
 export default injectIntl(MediaGallery);

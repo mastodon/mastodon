@@ -8,6 +8,10 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 
 class SearchResults extends ImmutablePureComponent {
 
+  static propTypes = {
+    results: ImmutablePropTypes.map.isRequired
+  };
+
   render () {
     const { results } = this.props;
 
@@ -59,9 +63,5 @@ class SearchResults extends ImmutablePureComponent {
   }
 
 }
-
-SearchResults.propTypes = {
-  results: ImmutablePropTypes.map.isRequired
-};
 
 export default SearchResults;

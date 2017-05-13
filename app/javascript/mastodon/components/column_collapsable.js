@@ -4,16 +4,19 @@ import PropTypes from 'prop-types';
 
 class ColumnCollapsable extends React.PureComponent {
 
-  constructor (props, context) {
-    super(props, context);
-    this.state = {
-      collapsed: true
-    };
+  static propTypes = {
+    icon: PropTypes.string.isRequired,
+    title: PropTypes.string,
+    fullHeight: PropTypes.number.isRequired,
+    children: PropTypes.node,
+    onCollapse: PropTypes.func
+  };
 
-    this.handleToggleCollapsed = this.handleToggleCollapsed.bind(this);
-  }
+  state = {
+    collapsed: true
+  };
 
-  handleToggleCollapsed () {
+  handleToggleCollapsed = () => {
     const currentState = this.state.collapsed;
 
     this.setState({ collapsed: !currentState });
@@ -45,13 +48,5 @@ class ColumnCollapsable extends React.PureComponent {
     );
   }
 }
-
-ColumnCollapsable.propTypes = {
-  icon: PropTypes.string.isRequired,
-  title: PropTypes.string,
-  fullHeight: PropTypes.number.isRequired,
-  children: PropTypes.node,
-  onCollapse: PropTypes.func
-};
 
 export default ColumnCollapsable;

@@ -10,6 +10,7 @@ import {
   NOTIFICATIONS_SCROLL_TOP
 } from '../actions/notifications';
 import { ACCOUNT_BLOCK_SUCCESS } from '../actions/accounts';
+import { TIMELINE_DELETE } from '../actions/timelines';
 import Immutable from 'immutable';
 
 const initialState = Immutable.Map({
@@ -87,6 +88,10 @@ const updateTop = (state, top) => {
   return state.set('top', top);
 };
 
+const deleteByStatus = (state, statusId) => {
+  return state.update('items', list => list.filterNot(item => item.get('status') === statusId));
+};
+
 export default function notifications(state = initialState, action) {
   switch(action.type) {
   case NOTIFICATIONS_REFRESH_REQUEST:
@@ -106,6 +111,8 @@ export default function notifications(state = initialState, action) {
     return filterNotifications(state, action.relationship);
   case NOTIFICATIONS_CLEAR:
     return state.set('items', Immutable.List()).set('next', null);
+  case TIMELINE_DELETE:
+    return deleteByStatus(state, action.id);
   default:
     return state;
   }

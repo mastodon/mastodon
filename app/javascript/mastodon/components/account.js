@@ -18,6 +18,15 @@ const messages = defineMessages({
 
 class Account extends ImmutablePureComponent {
 
+  static propTypes = {
+    account: ImmutablePropTypes.map.isRequired,
+    me: PropTypes.number.isRequired,
+    onFollow: PropTypes.func.isRequired,
+    onBlock: PropTypes.func.isRequired,
+    onMute: PropTypes.func.isRequired,
+    intl: PropTypes.object.isRequired
+  };
+
   constructor (props, context) {
     super(props, context);
     this.handleFollow = this.handleFollow.bind(this);
@@ -79,15 +88,6 @@ class Account extends ImmutablePureComponent {
     );
   }
 
-}
-
-Account.propTypes = {
-  account: ImmutablePropTypes.map.isRequired,
-  me: PropTypes.number.isRequired,
-  onFollow: PropTypes.func.isRequired,
-  onBlock: PropTypes.func.isRequired,
-  onMute: PropTypes.func.isRequired,
-  intl: PropTypes.object.isRequired
 }
 
 export default injectIntl(Account);

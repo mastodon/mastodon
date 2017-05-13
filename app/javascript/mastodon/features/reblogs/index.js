@@ -16,6 +16,12 @@ const mapStateToProps = (state, props) => ({
 
 class Reblogs extends ImmutablePureComponent {
 
+  static propTypes = {
+    params: PropTypes.object.isRequired,
+    dispatch: PropTypes.func.isRequired,
+    accountIds: ImmutablePropTypes.list
+  };
+
   componentWillMount () {
     this.props.dispatch(fetchReblogs(Number(this.props.params.statusId)));
   }
@@ -51,11 +57,5 @@ class Reblogs extends ImmutablePureComponent {
   }
 
 }
-
-Reblogs.propTypes = {
-  params: PropTypes.object.isRequired,
-  dispatch: PropTypes.func.isRequired,
-  accountIds: ImmutablePropTypes.list
-};
 
 export default connect(mapStateToProps)(Reblogs);

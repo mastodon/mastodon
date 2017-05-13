@@ -21,6 +21,13 @@ const mapStateToProps = state => ({
 
 class Blocks extends ImmutablePureComponent {
 
+  static propTypes = {
+    params: PropTypes.object.isRequired,
+    dispatch: PropTypes.func.isRequired,
+    accountIds: ImmutablePropTypes.list,
+    intl: PropTypes.object.isRequired
+  };
+
   constructor (props, context) {
     super(props, context);
     this.handleScroll = this.handleScroll.bind(this);
@@ -63,12 +70,5 @@ class Blocks extends ImmutablePureComponent {
     );
   }
 }
-
-Blocks.propTypes = {
-  params: PropTypes.object.isRequired,
-  dispatch: PropTypes.func.isRequired,
-  accountIds: ImmutablePropTypes.list,
-  intl: PropTypes.object.isRequired
-};
 
 export default connect(mapStateToProps)(injectIntl(Blocks));

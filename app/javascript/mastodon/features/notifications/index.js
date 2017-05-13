@@ -33,15 +33,20 @@ const mapStateToProps = state => ({
 
 class Notifications extends React.PureComponent {
 
-  constructor (props, context) {
-    super(props, context);
-    this.handleScroll = this.handleScroll.bind(this);
-    this.handleLoadMore = this.handleLoadMore.bind(this);
-    this.handleClear = this.handleClear.bind(this);
-    this.setRef = this.setRef.bind(this);
-  }
+  static propTypes = {
+    notifications: ImmutablePropTypes.list.isRequired,
+    dispatch: PropTypes.func.isRequired,
+    shouldUpdateScroll: PropTypes.func,
+    intl: PropTypes.object.isRequired,
+    isLoading: PropTypes.bool,
+    isUnread: PropTypes.bool
+  };
 
-  handleScroll (e) {
+  static defaultProps = {
+    trackScroll: true
+  };
+
+  handleScroll = (e) => {
     const { scrollTop, scrollHeight, clientHeight } = e.target;
     const offset = scrollHeight - scrollTop - clientHeight;
     this._oldScrollPosition = scrollHeight - scrollTop;
@@ -61,12 +66,12 @@ class Notifications extends React.PureComponent {
     }
   }
 
-  handleLoadMore (e) {
+  handleLoadMore = (e) => {
     e.preventDefault();
     this.props.dispatch(expandNotifications());
   }
 
-  handleClear () {
+  handleClear = () => {
     const { dispatch, intl } = this.props;
 
     dispatch(openModal('CONFIRM', {
@@ -76,7 +81,7 @@ class Notifications extends React.PureComponent {
     }));
   }
 
-  setRef (c) {
+  setRef = (c) => {
     this.node = c;
   }
 
@@ -126,18 +131,5 @@ class Notifications extends React.PureComponent {
   }
 
 }
-
-Notifications.propTypes = {
-  notifications: ImmutablePropTypes.list.isRequired,
-  dispatch: PropTypes.func.isRequired,
-  shouldUpdateScroll: PropTypes.func,
-  intl: PropTypes.object.isRequired,
-  isLoading: PropTypes.bool,
-  isUnread: PropTypes.bool
-};
-
-Notifications.defaultProps = {
-  trackScroll: true
-};
 
 export default connect(mapStateToProps)(injectIntl(Notifications));

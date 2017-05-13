@@ -30,6 +30,11 @@ const mapStateToProps = state => ({
 
 class GettingStarted extends ImmutablePureComponent {
 
+  static propTypes = {
+    intl: PropTypes.object.isRequired,
+    me: ImmutablePropTypes.map.isRequired
+  };
+
   render () {
     const { intl, me } = this.props;
 
@@ -65,10 +70,5 @@ class GettingStarted extends ImmutablePureComponent {
     );
   }
 }
-
-GettingStarted.propTypes = {
-  intl: PropTypes.object.isRequired,
-  me: ImmutablePropTypes.map.isRequired
-};
 
 export default connect(mapStateToProps)(injectIntl(GettingStarted));

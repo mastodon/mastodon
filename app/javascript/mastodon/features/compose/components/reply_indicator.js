@@ -14,17 +14,21 @@ const messages = defineMessages({
 
 class ReplyIndicator extends ImmutablePureComponent {
 
-  constructor (props, context) {
-    super(props, context);
-    this.handleClick = this.handleClick.bind(this);
-    this.handleAccountClick = this.handleAccountClick.bind(this);
-  }
+  static contextTypes = {
+    router: PropTypes.object
+  };
 
-  handleClick () {
+  static propTypes = {
+    status: ImmutablePropTypes.map,
+    onCancel: PropTypes.func.isRequired,
+    intl: PropTypes.object.isRequired
+  };
+
+  handleClick = () => {
     this.props.onCancel();
   }
 
-  handleAccountClick (e) {
+  handleAccountClick = (e) => {
     if (e.button === 0) {
       e.preventDefault();
       this.context.router.push(`/accounts/${this.props.status.getIn(['account', 'id'])}`);
@@ -57,15 +61,5 @@ class ReplyIndicator extends ImmutablePureComponent {
   }
 
 }
-
-ReplyIndicator.contextTypes = {
-  router: PropTypes.object
-};
-
-ReplyIndicator.propTypes = {
-  status: ImmutablePropTypes.map,
-  onCancel: PropTypes.func.isRequired,
-  intl: PropTypes.object.isRequired
-};
 
 export default injectIntl(ReplyIndicator);
