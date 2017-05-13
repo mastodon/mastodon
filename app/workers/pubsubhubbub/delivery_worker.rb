@@ -23,11 +23,9 @@ class Pubsubhubbub::DeliveryWorker
   def process_delivery
     payload_delivery
 
-    if response_successful?
-      subscription.touch(:last_successful_delivery_at)
-    else
-      raise "Delivery failed for #{subscription.callback_url}: HTTP #{payload_delivery.code}"
-    end
+    raise "Delivery failed for #{subscription.callback_url}: HTTP #{payload_delivery.code}" unless response_successful?
+
+    subscription.touch(:last_successful_delivery_at)
   end
 
   def payload_delivery
