@@ -93,7 +93,7 @@ class StatusContent extends React.PureComponent {
     const { hidden } = this.state;
 
     const content = { __html: emojify(status.get('content')) };
-    const spoilerContent = { __html: emojify(status.get('spoiler_text', '')) };
+    const spoilerContent = { __html: emojify(escapeTextContentForBrowser(status.get('spoiler_text', ''))) };
     const directionStyle = { direction: 'ltr' };
 
     if (isRtl(status.get('content'))) {
@@ -116,19 +116,16 @@ class StatusContent extends React.PureComponent {
       }
 
       return (
-        <div
-          ref={this.setRef}
-          className='status__content'
-          onMouseDown={this.handleMouseDown}
-          onMouseUp={this.handleMouseUp}
-        >
+        <div className='status__content' ref={this.setRef} onMouseDown={this.handleMouseDown} onMouseUp={this.handleMouseUp}>
           <p style={{ marginBottom: hidden && status.get('mentions').size === 0 ? '0px' : '' }} >
             <span dangerouslySetInnerHTML={spoilerContent} /> <button tabIndex='0' className='status__content__spoiler-link' onClick={this.handleSpoilerClick}>{toggleText}</button>
+
           </p>
 
           {mentionsPlaceholder}
 
           <div style={{ display: hidden ? 'none' : 'block', ...directionStyle }} dangerouslySetInnerHTML={content} />
+
         </div>
       );
     } else if (this.props.onClick) {

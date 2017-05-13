@@ -343,7 +343,7 @@ class AtomSerializer
   end
 
   def serialize_status_attributes(entry, status)
-    append_element(entry, 'summary', Formatter.instance.format(status.proper, :spoiler_text, false).to_str, 'xml:lang': status.language, type: 'html') if status.spoiler_text?
+    append_element(entry, 'summary', status.spoiler_text, 'xml:lang': status.language) if status.spoiler_text?
     append_element(entry, 'content', Formatter.instance.format(status).to_str, type: 'html', 'xml:lang': status.language)
 
     status.mentions.each do |mentioned|
