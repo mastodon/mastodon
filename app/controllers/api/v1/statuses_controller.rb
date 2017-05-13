@@ -131,7 +131,7 @@ class Api::V1::StatusesController < ApiController
 
   def set_conversation
     @conversation = @status.conversation
-    raise ActiveRecord::RecordNotFound if @conversation.nil?
+    raise Mastodon::ValidationError if @conversation.nil?
   end
 
   def status_params
