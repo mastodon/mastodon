@@ -124,7 +124,7 @@ class UI extends React.PureComponent {
     if (isMobile(width)) {
       mountedColumns = (
         <ColumnsArea>
-          {children}
+          <div className='mastodon-column'>{children}</div>
         </ColumnsArea>
       );
     } else {

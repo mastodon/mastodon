@@ -1194,6 +1194,7 @@
 
 .columns-area {
   display: flex;
+  height: 100%;
   flex: 1 1 auto;
   flex-direction: row;
   justify-content: flex-start;
@@ -1220,12 +1221,13 @@
 }
 
 .ui {
-  flex: 0 0 auto;
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  height: 100%;
   background: darken($ui-base-color, 7%);
+  box-sizing: border-box;
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
 }
 
 .drawer {
@@ -1273,7 +1275,13 @@
   }
 
   .columns-area {
+    box-sizing: border-box;
     flex-direction: column;
+  }
+
+  .mastodon-column {
+    padding-bottom: 0;
+    padding-top: 0;
   }
 
   .search__input,

@@ -10,13 +10,13 @@
 }
 
 .mastodon-column {
-  display: flex;
-  flex: 1 1 auto;
+  box-sizing: border-box;
+  height: 100%;
   padding-bottom: 10px;
   padding-top: 10px;
-  position: relative;
 
   .column {
+    height: 100%;
     overflow-y: auto;
     padding-bottom: 0;
     padding-top: 0;
@@ -26,6 +26,15 @@
 .mastodon-column-container {
   display: flex;
   flex: 1 1 auto;
+  height: 100%;
+  visibility: visible;
+}
+
+.mastodon-column-container--hidden {
+  left: 0;
+  position: absolute;
+  top: 0;
+  visibility: hidden;
 }
 
 .mastodon-column-container--hidden {

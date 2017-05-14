@@ -198,15 +198,15 @@ class Container extends React.PureComponent {
     // Hide some components rather than unmounting them to allow to show again
     // quickly and keep the view state such as the scrolled offset.
     const persistentsView = this.state.renderedPersistents.map((persistent) =>
-      <div aria-hidden={persistent.hidden} key={persistent.pathname} className={`mastodon-column-container ${ persistent.hidden ? 'mastodon-column-container--hidden' : '' }`}>
+      <div className={`mastodon-column-container ${persistent.hidden ? 'mastodon-column-container--hidden' : ''}` } aria-hidden={persistent.hidden} key={persistent.pathname}>
         <persistent.component shouldUpdateScroll={persistent.hidden ? Function.prototype : getTopWhenReplacing} />
       </div>
     );
 
     return (
       <UI>
-        {this.state.mountImpersistent && this.props.children}
         {persistentsView}
+        {this.state.mountImpersistent && this.props.children}
       </UI>
     );
   }
