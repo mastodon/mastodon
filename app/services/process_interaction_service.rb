@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class ProcessInteractionService < BaseService
+  include AuthorExtractor
+
   # Record locally the remote interaction with our user
   # @param [String] envelope Salmon envelope
   # @param [Account] target_account Account the Salmon was addressed to
@@ -10,18 +12,9 @@ class ProcessInteractionService < BaseService
     xml = Nokogiri::XML(body)
     xml.encoding = 'utf-8'
 
-    return unless contains_author?(xml)
+    account = author_from_xml(xml.at_xpath('/xmlns:entry', xmlns: TagManager::XMLNS))
 
-    username = xml.at_xpath('/xmlns:entry/xmlns:author/xmlns:name', xmlns: TagManager::XMLNS).content
-    url      = xml.at_xpath('/xmlns:entry/xmlns:author/xmlns:uri', xmlns: TagManager::XMLNS).content
-    domain   = Addressable::URI.parse(url).normalize.host
-    account  = Account.find_by(username: username, domain: domain)
-
-    if account.nil?
-      account = follow_remote_account_service.call("#{username}@#{domain}")
-    end
-
-    return if account.suspended?
+    return if account.nil? || account.suspended?
 
     if salmon.verify(envelope, account.keypair)
       RemoteProfileUpdateWorker.perform_async(account.id, body.force_encoding('UTF-8'), true)
@@ -59,10 +52,6 @@ class ProcessInteractionService < BaseService
 
   private
 
-  def contains_author?(xml)
-    !(xml.at_xpath('/xmlns:entry/xmlns:author/xmlns:name', xmlns: TagManager::XMLNS).nil? || xml.at_xpath('/xmlns:entry/xmlns:author/xmlns:uri', xmlns: TagManager::XMLNS).nil?)
-  end
-
   def mentions_account?(xml, account)
     xml.xpath('/xmlns:entry/xmlns:link[@rel="mentioned"]', xmlns: TagManager::XMLNS).each { |mention_link| return true if [TagManager.instance.uri_for(account), TagManager.instance.url_for(account)].include?(mention_link.attribute('href').value) }
     false
@@ -88,7 +77,7 @@ class ProcessInteractionService < BaseService
   def authorize_follow_request!(account, target_account)
     follow_request = FollowRequest.find_by(account: target_account, target_account: account)
     follow_request&.authorize!
-    SubscribeService.new.call(account) unless account.subscribed?
+    Pubsubhubbub::SubscribeWorker.perform_async(account.id) unless account.subscribed?
   end
 
   def reject_follow_request!(account, target_account)
@@ -143,17 +132,5 @@ class ProcessInteractionService < BaseService
 
   def salmon
     @salmon ||= OStatus2::Salmon.new
-  end
-
-  def follow_remote_account_service
-    @follow_remote_account_service ||= FollowRemoteAccountService.new
-  end
-
-  def process_feed_service
-    @process_feed_service ||= ProcessFeedService.new
-  end
-
-  def remove_status_service
-    @remove_status_service ||= RemoveStatusService.new
   end
 end
