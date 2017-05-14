@@ -6,6 +6,7 @@ const ja = {
   "account.followers": "フォロワー",
   "account.follows": "フォロー",
   "account.follows_you": "フォローされています",
+  "account.media": "メディア",
   "account.mention": "返信",
   "account.mute": "ミュート",
   "account.posts": "投稿",
