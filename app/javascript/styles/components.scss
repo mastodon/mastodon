@@ -1194,6 +1194,7 @@
 
 .columns-area {
   display: flex;
+  height: 100%;
   flex: 1 1 auto;
   flex-direction: row;
   justify-content: flex-start;
@@ -1220,12 +1221,13 @@
 }
 
 .ui {
-  flex: 0 0 auto;
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  height: 100%;
   background: darken($ui-base-color, 7%);
+  box-sizing: border-box;
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
 }
 
 .drawer {
@@ -1268,12 +1270,23 @@
 @media screen and (max-width: 1024px) {
   .column,
   .drawer {
-    width: 100%;
+    height: 100%;
     padding: 0;
+    width: 100%;
   }
 
   .columns-area {
+    box-sizing: border-box;
     flex-direction: column;
+  }
+
+  .mastodon-column {
+    padding-bottom: 0;
+    padding-top: 0;
+  }
+
+  .drawer__inner {
+    height: 100%;
   }
 
   .search__input,
@@ -1331,26 +1344,25 @@
 
 .drawer__pager {
   box-sizing: border-box;
-  padding: 0;
-  flex-grow: 1;
-  position: relative;
-  overflow: hidden;
   display: flex;
+  flex-grow: 1;
+  height: 100%;
+  overflow: hidden;
+  padding: 0;
+  position: relative;
 }
 
 .drawer__inner {
-  position: absolute;
-  top: 0;
-  left: 0;
   background: lighten($ui-base-color, 13%);
   box-sizing: border-box;
-  padding: 0;
   display: flex;
+  flex: 0 0 auto;
   flex-direction: column;
   overflow: hidden;
   overflow-y: auto;
+  padding: 0;
+  position: relative;
   width: 100%;
-  height: 100%;
 
   &.darker {
     background: $ui-base-color;

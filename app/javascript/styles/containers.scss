@@ -9,14 +9,32 @@
   }
 }
 
+.mastodon-column {
+  box-sizing: border-box;
+  height: 100%;
+  padding-bottom: 10px;
+  padding-top: 10px;
+
+  .column {
+    height: 100%;
+    overflow-y: auto;
+    padding-bottom: 0;
+    padding-top: 0;
+  }
+}
+
 .mastodon-column-container {
   display: flex;
-  height: 100%;
-  width: 100%;
-
-  // 707568 - height 100% doesn't work on child of a flex item - chromium - Monorail
-  // https://bugs.chromium.org/p/chromium/issues/detail?id=707568
   flex: 1 1 auto;
+  height: 100%;
+  visibility: visible;
+}
+
+.mastodon-column-container--hidden {
+  left: 0;
+  position: absolute;
+  top: 0;
+  visibility: hidden;
 }
 
 .logo-container {
