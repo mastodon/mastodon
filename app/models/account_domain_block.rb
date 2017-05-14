@@ -10,8 +10,9 @@
 #  updated_at :datetime         not null
 #
 
-
 class AccountDomainBlock < ApplicationRecord
+  include Paginable
+
   belongs_to :account, required: true
 
   after_create  :remove_blocking_cache

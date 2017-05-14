@@ -150,7 +150,8 @@ Rails.application.routes.draw do
       resources :favourites, only: [:index]
       resources :reports,    only: [:index, :create]
 
-      resource :instance, only: [:show]
+      resource  :instance,      only: [:show]
+      resources :domain_blocks, only: [:index, :create, :destroy]
 
       resources :follow_requests, only: [:index] do
         member do
