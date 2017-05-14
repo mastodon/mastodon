@@ -22,15 +22,6 @@ describe Pubsubhubbub::DeliveryWorker do
       expect(subscription.reload.last_successful_delivery_at).to be_within(2).of(2.days.ago)
     end
 
-    it 'destroys subscription when request fails permanently' do
-      subscription = Fabricate(:subscription)
-
-      stub_request_to_respond_with(subscription, 404)
-      subject.perform(subscription.id, payload)
-
-      expect { subscription.reload }.to raise_error(ActiveRecord::RecordNotFound)
-    end
-
     it 'raises when request fails' do
       subscription = Fabricate(:subscription)
 
