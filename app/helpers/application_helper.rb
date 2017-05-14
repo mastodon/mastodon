@@ -9,6 +9,10 @@ module ApplicationHelper
     !user_signed_in? && !single_user_mode?
   end
 
+  def open_registrations?
+    Setting.open_registrations
+  end
+
   def add_rtl_body_class(other_classes)
     other_classes = "#{other_classes} rtl" if [:ar, :fa, :he].include?(I18n.locale)
     other_classes
