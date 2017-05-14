@@ -27,6 +27,7 @@ import GettingStarted from '../features/getting_started';
 import PublicTimeline from '../features/public_timeline';
 import CommunityTimeline from '../features/community_timeline';
 import AccountTimeline from '../features/account_timeline';
+import AccountMediaTimeline from '../features/account_media_timeline';
 import HomeTimeline from '../features/home_timeline';
 import Compose from '../features/compose';
 import Followers from '../features/followers';
@@ -293,6 +294,7 @@ class Mastodon extends React.Component {
               <Route path='statuses/:statusId/favourites' component={Favourites} />
 
               <Route path='accounts/:accountId' component={AccountTimeline} />
+              <Route path='accounts/:accountId/media' component={AccountMediaTimeline} />
               <Route path='accounts/:accountId/followers' component={Followers} />
               <Route path='accounts/:accountId/following' component={Following} />
 
