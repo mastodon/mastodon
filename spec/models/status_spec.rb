@@ -368,6 +368,15 @@ RSpec.describe Status, type: :model do
         expect(results).not_to include(muted_status)
       end
 
+      it 'excludes statuses from accounts from personally blocked domains' do
+        blocked = Fabricate(:account, domain: 'example.com')
+        @account.block_domain!(blocked.domain)
+        blocked_status = Fabricate(:status, account: blocked)
+
+        results = Status.as_public_timeline(@account)
+        expect(results).not_to include(blocked_status)
+      end
+
       context 'with language preferences' do
         it 'excludes statuses in languages not allowed by the account user' do
           user = Fabricate(:user, allowed_languages: [:en, :es])

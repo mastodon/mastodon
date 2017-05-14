@@ -109,7 +109,9 @@ class FeedManager
       should_filter &&= !(status.account_id == status.in_reply_to_account_id)                                            # and it's not a self-reply
       return should_filter
     elsif status.reblog?                                                                                                 # Filter out a reblog
-      return Block.where(account_id: status.reblog.account_id, target_account_id: receiver_id).exists?                   # or if the author of the reblogged status is blocking me
+      should_filter   = Block.where(account_id: status.reblog.account_id, target_account_id: receiver_id).exists?        # or if the author of the reblogged status is blocking me
+      should_filter ||= AccountDomainBlock.where(account_id: receiver_id, domain: status.reblog.account.domain).exists?  # or the author's domain is blocked
+      return should_filter
     end
 
     false

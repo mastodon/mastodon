@@ -2,6 +2,7 @@
 
 module AccountAvatar
   extend ActiveSupport::Concern
+
   IMAGE_MIME_TYPES = ['image/jpeg', 'image/png', 'image/gif'].freeze
 
   class_methods do
@@ -10,6 +11,7 @@ module AccountAvatar
       styles[:static] = { format: 'png' } if file.content_type == 'image/gif'
       styles
     end
+
     private :avatar_styles
   end
 

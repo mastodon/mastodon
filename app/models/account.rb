@@ -43,6 +43,7 @@ class Account < ApplicationRecord
 
   include AccountAvatar
   include AccountHeader
+  include AccountInteractions
   include Attachmentable
   include Targetable
 
@@ -65,26 +66,6 @@ class Account < ApplicationRecord
   has_many :favourites, inverse_of: :account, dependent: :destroy
   has_many :mentions, inverse_of: :account, dependent: :destroy
   has_many :notifications, inverse_of: :account, dependent: :destroy
-
-  # Follow relations
-  has_many :follow_requests, dependent: :destroy
-
-  has_many :active_relationships,  class_name: 'Follow', foreign_key: 'account_id',        dependent: :destroy
-  has_many :passive_relationships, class_name: 'Follow', foreign_key: 'target_account_id', dependent: :destroy
-
-  has_many :following, -> { order('follows.id desc') }, through: :active_relationships,  source: :target_account
-  has_many :followers, -> { order('follows.id desc') }, through: :passive_relationships, source: :account
-
-  # Block relationships
-  has_many :block_relationships, class_name: 'Block', foreign_key: 'account_id', dependent: :destroy
-  has_many :blocking, -> { order('blocks.id desc') }, through: :block_relationships, source: :target_account
-  has_many :blocked_by_relationships, class_name: 'Block', foreign_key: :target_account_id, dependent: :destroy
-  has_many :blocked_by, -> { order('blocks.id desc') }, through: :blocked_by_relationships, source: :account
-
-  # Mute relationships
-  has_many :mute_relationships, class_name: 'Mute', foreign_key: 'account_id', dependent: :destroy
-  has_many :muting, -> { order('mutes.id desc') }, through: :mute_relationships, source: :target_account
-  has_many :conversation_mutes
 
   # Media
   has_many :media_attachments, dependent: :destroy
@@ -119,66 +100,6 @@ class Account < ApplicationRecord
 
   delegate :allowed_languages, to: :user, prefix: false, allow_nil: true
 
-  def follow!(other_account)
-    active_relationships.find_or_create_by!(target_account: other_account)
-  end
-
-  def block!(other_account)
-    block_relationships.find_or_create_by!(target_account: other_account)
-  end
-
-  def mute!(other_account)
-    mute_relationships.find_or_create_by!(target_account: other_account)
-  end
-
-  def mute_conversation!(conversation)
-    conversation_mutes.find_or_create_by!(conversation: conversation)
-  end
-
-  def unfollow!(other_account)
-    follow = active_relationships.find_by(target_account: other_account)
-    follow&.destroy
-  end
-
-  def unblock!(other_account)
-    block = block_relationships.find_by(target_account: other_account)
-    block&.destroy
-  end
-
-  def unmute!(other_account)
-    mute = mute_relationships.find_by(target_account: other_account)
-    mute&.destroy
-  end
-
-  def unmute_conversation!(conversation)
-    mute = conversation_mutes.find_by(conversation: conversation)
-    mute&.destroy!
-  end
-
-  def following?(other_account)
-    following.include?(other_account)
-  end
-
-  def blocking?(other_account)
-    blocking.include?(other_account)
-  end
-
-  def domain_blocking?(other_account)
-    AccountDomainBlock.where(account: self, domain: other_account.domain).exists?
-  end
-
-  def muting?(other_account)
-    muting.include?(other_account)
-  end
-
-  def muting_conversation?(conversation)
-    conversation_mutes.where(conversation: conversation).exists?
-  end
-
-  def requested?(other_account)
-    follow_requests.where(target_account: other_account).exists?
-  end
-
   def local?
     domain.nil?
   end
@@ -201,14 +122,6 @@ class Account < ApplicationRecord
 
   def followers_domains
     followers.reorder(nil).pluck('distinct accounts.domain')
-  end
-
-  def favourited?(status)
-    status.proper.favourites.where(account: self).exists?
-  end
-
-  def reblogged?(status)
-    status.proper.reblogs.where(account: self).exists?
   end
 
   def keypair
@@ -239,6 +152,10 @@ class Account < ApplicationRecord
 
   def excluded_from_timeline_account_ids
     Rails.cache.fetch("exclude_account_ids_for:#{id}") { blocking.pluck(:target_account_id) + blocked_by.pluck(:account_id) + muting.pluck(:target_account_id) }
+  end
+
+  def excluded_from_timeline_domains
+    Rails.cache.fetch("exclude_domains_for:#{id}") { domain_blocks.pluck(:domain) }
   end
 
   class << self
@@ -316,26 +233,6 @@ class Account < ApplicationRecord
       SQL
 
       find_by_sql([sql, account.id, account.id, limit])
-    end
-
-    def following_map(target_account_ids, account_id)
-      follow_mapping(Follow.where(target_account_id: target_account_ids, account_id: account_id), :target_account_id)
-    end
-
-    def followed_by_map(target_account_ids, account_id)
-      follow_mapping(Follow.where(account_id: target_account_ids, target_account_id: account_id), :account_id)
-    end
-
-    def blocking_map(target_account_ids, account_id)
-      follow_mapping(Block.where(target_account_id: target_account_ids, account_id: account_id), :target_account_id)
-    end
-
-    def muting_map(target_account_ids, account_id)
-      follow_mapping(Mute.where(target_account_id: target_account_ids, account_id: account_id), :target_account_id)
-    end
-
-    def requested_map(target_account_ids, account_id)
-      follow_mapping(FollowRequest.where(target_account_id: target_account_ids, account_id: account_id), :target_account_id)
     end
 
     private
