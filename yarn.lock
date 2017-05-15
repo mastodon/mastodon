@@ -5388,13 +5388,6 @@ react-addons-perf@^15.4.2:
     fbjs "^0.8.4"
     object-assign "^4.1.0"
 
-react-addons-pure-render-mixin@>=0.14.0:
-  version "15.4.2"
-  resolved "https://registry.yarnpkg.com/react-addons-pure-render-mixin/-/react-addons-pure-render-mixin-15.4.2.tgz#a8433c71c45e2368503721921dc47bdaf1fbabcd"
-  dependencies:
-    fbjs "^0.8.4"
-    object-assign "^4.1.0"
-
 react-addons-shallow-compare@>=0.14.0, react-addons-shallow-compare@^15.5.2:
   version "15.5.2"
   resolved "https://registry.yarnpkg.com/react-addons-shallow-compare/-/react-addons-shallow-compare-15.5.2.tgz#7cb0ee7acc8d7c93fcc202df0bf47ba916a7bdad"
@@ -5596,12 +5589,17 @@ react-textarea-autosize@^5.0.6:
   dependencies:
     prop-types "^15.5.8"
 
-react-toggle@^2.1.1:
-  version "2.1.1"
-  resolved "https://registry.yarnpkg.com/react-toggle/-/react-toggle-2.1.1.tgz#80600a64417a1acc8aaa4c1477f7fbdb88b988fb"
+react-themeable@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/react-themeable/-/react-themeable-1.1.0.tgz#7d4466dd9b2b5fa75058727825e9f152ba379a0e"
   dependencies:
-    classnames "~2.2"
-    react-addons-pure-render-mixin ">=0.14.0"
+    object-assign "^3.0.0"
+
+react-toggle@^3.0.1:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/react-toggle/-/react-toggle-3.0.1.tgz#60d462007ea52ad13442eee4fef262fa53c5ec6f"
+  dependencies:
+    classnames "^2.2.5"
 
 react-virtualized@^9.7.4:
   version "9.7.4"
