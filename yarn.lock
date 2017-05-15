@@ -2094,7 +2094,7 @@ deep-eql@^0.1.3:
   dependencies:
     type-detect "0.1.1"
 
-deep-equal@^1.0.0, deep-equal@^1.0.1:
+deep-equal@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/deep-equal/-/deep-equal-1.0.1.tgz#f5d260292b660e084eff4cdbc9f08ad3247448b5"
 
@@ -2190,9 +2190,13 @@ doctrine@^2.0.0:
     esutils "^2.0.2"
     isarray "^1.0.0"
 
-dom-helpers@^2.4.0, "dom-helpers@^2.4.0 || ^3.0.0":
+"dom-helpers@^2.4.0 || ^3.0.0":
   version "2.4.0"
   resolved "https://registry.yarnpkg.com/dom-helpers/-/dom-helpers-2.4.0.tgz#9bb4b245f637367b1fa670274272aa28fe06c367"
+
+dom-helpers@^3.0.0:
+  version "3.2.1"
+  resolved "https://registry.yarnpkg.com/dom-helpers/-/dom-helpers-3.2.1.tgz#3203e07fed217bd1f424b019735582fc37b2825a"
 
 dom-serializer@0, dom-serializer@~0.1.0:
   version "0.1.0"
@@ -3119,15 +3123,6 @@ hawk@~3.1.3:
     cryptiles "2.x.x"
     hoek "2.x.x"
     sntp "1.x.x"
-
-history@^2.1.2:
-  version "2.1.2"
-  resolved "https://registry.yarnpkg.com/history/-/history-2.1.2.tgz#4aa2de897a0e4867e4539843be6ecdb2986bfdec"
-  dependencies:
-    deep-equal "^1.0.0"
-    invariant "^2.0.0"
-    query-string "^3.0.0"
-    warning "^2.0.0"
 
 history@^3.0.0, history@^3.3.0:
   version "3.3.0"
@@ -5324,12 +5319,6 @@ qs@~6.3.0:
   version "6.3.1"
   resolved "https://registry.yarnpkg.com/qs/-/qs-6.3.1.tgz#918c0b3bcd36679772baf135b1acb4c1651ed79d"
 
-query-string@^3.0.0:
-  version "3.0.3"
-  resolved "https://registry.yarnpkg.com/query-string/-/query-string-3.0.3.tgz#ae2e14b4d05071d4e9b9eb4873c35b0dcd42e638"
-  dependencies:
-    strict-uri-encode "^1.0.0"
-
 query-string@^4.1.0, query-string@^4.2.2:
   version "4.2.3"
   resolved "https://registry.yarnpkg.com/query-string/-/query-string-4.2.3.tgz#9f27273d207a25a8ee4c7b8c74dcd45d556db822"
@@ -5544,12 +5533,12 @@ react-redux@^5.0.4:
     loose-envify "^1.1.0"
     prop-types "^15.0.0"
 
-react-router-scroll@^0.3.2:
-  version "0.3.2"
-  resolved "https://registry.yarnpkg.com/react-router-scroll/-/react-router-scroll-0.3.2.tgz#ba8b1d01b3681dc5a68d72865d35c10e84065e52"
+react-router-scroll@^0.4.2:
+  version "0.4.2"
+  resolved "https://registry.yarnpkg.com/react-router-scroll/-/react-router-scroll-0.4.2.tgz#4b90e8707edf96eba7f066d94c5b4338bd6848b7"
   dependencies:
-    history "^2.1.2"
-    scroll-behavior "^0.8.0"
+    prop-types "^15.5.6"
+    scroll-behavior "^0.9.3"
     warning "^3.0.0"
 
 react-router@^3.0.5:
@@ -5992,11 +5981,11 @@ schema-utils@^0.x:
   dependencies:
     ajv "^5.0.0"
 
-scroll-behavior@^0.8.0:
-  version "0.8.2"
-  resolved "https://registry.yarnpkg.com/scroll-behavior/-/scroll-behavior-0.8.2.tgz#ace13e40b001d8d4d007aec0e7fb668cf9043546"
+scroll-behavior@^0.9.3:
+  version "0.9.3"
+  resolved "https://registry.yarnpkg.com/scroll-behavior/-/scroll-behavior-0.9.3.tgz#e48bcc8af364f3f07176e8dbca3968bd5e71557b"
   dependencies:
-    dom-helpers "^2.4.0"
+    dom-helpers "^3.0.0"
     invariant "^2.2.1"
 
 seed-random@2.2.0:
@@ -6754,12 +6743,6 @@ vm-browserify@0.0.4:
   resolved "https://registry.yarnpkg.com/vm-browserify/-/vm-browserify-0.0.4.tgz#5d7ea45bbef9e4a6ff65f95438e0a87c357d5a73"
   dependencies:
     indexof "0.0.1"
-
-warning@^2.0.0:
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/warning/-/warning-2.1.0.tgz#21220d9c63afc77a8c92111e011af705ce0c6901"
-  dependencies:
-    loose-envify "^1.0.0"
 
 warning@^3.0.0:
   version "3.0.0"
