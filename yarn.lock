@@ -5259,7 +5259,7 @@ promise@^7.1.1:
   dependencies:
     asap "~2.0.3"
 
-prop-types@^15.0.0, prop-types@^15.5.10, prop-types@^15.5.4, prop-types@^15.5.7, prop-types@^15.5.8, prop-types@~15.5.7:
+prop-types@^15.0.0, prop-types@^15.5.10, prop-types@^15.5.4, prop-types@^15.5.6, prop-types@^15.5.7, prop-types@^15.5.8, prop-types@~15.5.7:
   version "15.5.10"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.5.10.tgz#2797dfc3126182e3a95e3dfbb2e893ddd7456154"
   dependencies:
@@ -5524,9 +5524,11 @@ react-notification@^6.7.0:
   dependencies:
     prop-types "^15.5.8"
 
-react-redux-loading-bar@2.4.1:
-  version "2.4.1"
-  resolved "https://registry.yarnpkg.com/react-redux-loading-bar/-/react-redux-loading-bar-2.4.1.tgz#8df64db362f065b5453fbbb7379a5cf62440129a"
+react-redux-loading-bar@^2.9.0:
+  version "2.9.0"
+  resolved "https://registry.yarnpkg.com/react-redux-loading-bar/-/react-redux-loading-bar-2.9.0.tgz#408fffb02775203ee6e97e168b57cbd8264e66c3"
+  dependencies:
+    prop-types "^15.5.6"
 
 react-redux@^5.0.4:
   version "5.0.4"
