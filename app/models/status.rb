@@ -72,7 +72,7 @@ class Status < ApplicationRecord
   cache_associated :account, :application, :media_attachments, :tags, :stream_entry, mentions: :account, reblog: [:account, :application, :stream_entry, :tags, :media_attachments, mentions: :account], thread: :account
 
   def reply?
-    !in_reply_to_id.nil? || super
+    !in_reply_to_id.nil? || attributes['reply']
   end
 
   def local?
@@ -144,9 +144,9 @@ class Status < ApplicationRecord
   end
 
   before_validation :prepare_contents
-  before_create     :set_reblog
-  before_create     :set_visibility
-  before_create     :set_conversation
+  before_validation :set_reblog
+  before_validation :set_visibility
+  before_validation :set_conversation
 
   class << self
     def in_allowed_languages(account)

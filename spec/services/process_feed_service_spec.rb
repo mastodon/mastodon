@@ -31,6 +31,16 @@ RSpec.describe ProcessFeedService do
         expect(Status.find_by(uri: 'tag:kickass.zone,2016-10-10:objectId=2:objectType=Status')).to_not be_nil
       end
 
+      it 'marks replies as replies' do
+        status = Status.find_by(uri: 'tag:kickass.zone,2016-10-10:objectId=2:objectType=Status')
+        expect(status.reply?).to be true
+      end
+
+      it 'sets account being replied to when possible' do
+        status = Status.find_by(uri: 'tag:kickass.zone,2016-10-10:objectId=2:objectType=Status')
+        expect(status.in_reply_to_account_id).to eq status.account_id
+      end
+
       it 'ignores delete statuses unless they existed before' do
         expect(Status.find_by(uri: 'tag:kickass.zone,2016-10-10:objectId=3:objectType=Status')).to be_nil
         expect(Status.find_by(uri: 'tag:kickass.zone,2016-10-10:objectId=12:objectType=Status')).to be_nil
