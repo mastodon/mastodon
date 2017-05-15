@@ -217,6 +217,7 @@ class Status < ApplicationRecord
 
         joins("LEFT OUTER JOIN mentions ON statuses.id = mentions.status_id AND mentions.account_id = #{account.id}")
           .where(arel_table[:visibility].in(visibility).or(Mention.arel_table[:id].not_eq(nil)))
+          .order(visibility: :desc)
       end
     end
 
