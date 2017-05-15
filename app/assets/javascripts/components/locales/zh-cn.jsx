@@ -49,11 +49,11 @@ const zh_cn = {
   "compose_form.placeholder": "在想啥？",
   "compose_form.privacy_disclaimer": "你的私人嘟文，将被发送至你所提及的 {domains} 用户。你是否信任{domainsCount, plural, one {这个网站} other {这些网站}}？请留意，嘟文隐私设置只适用于各 Mastodon 服务站，如果 {domains} {domainsCount, plural, one {不是 Mastodon 服务站} other {之中有些不是 Mastodon 服务站}}，对方将无法收到这篇嘟文的隐私设置，然后可能被转嘟给不能预知的用户阅读。",
   "compose_form.private": "标示为“只有关注你的人能看”",
-  // Going "toot-toot!" here below.
-  "compose_form.publish": "嘟嘟！",
+  // Going "toot-toot" here below.
+  "compose_form.publish": "嘟嘟",
   "compose_form.sensitive": "将媒体文件标示为“敏感内容”",
   "compose_form.spoiler_placeholder": "敏感内容的警告消息",
-  "compose_form.spoiler": "将部份文本藏于警告消息之后",
+  "compose_form.spoiler": "将部分文本藏于警告消息之后",
   "compose_form.unlisted": "请勿在公共时间轴显示",
   "emoji_button.label": "加入表情符号",
   "empty_column.community": "本站时间轴暂时未有内容，快贴文来抢头香啊！",
@@ -77,7 +77,7 @@ const zh_cn = {
   "home.column_settings.show_replies": "显示回应嘟文",
   "home.settings": "字段设置",
   "lightbox.close": "关闭",
-  "loading_indicator.label": "加载中...",
+  "loading_indicator.label": "加载中……",
   "media_gallery.toggle_visible": "打开或关上",
   "missing_indicator.label": "找不到内容",
   "navigation_bar.blocks": "被屏蔽的用户",

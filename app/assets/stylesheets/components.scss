@@ -274,6 +274,9 @@
 
 .compose-form__upload-thumbnail {
   border-radius: 4px;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
   height: 100px;
   width: 100%;
 }
@@ -3094,7 +3097,7 @@ button.icon-button.active i.fa-retweet {
   object-fit: cover;
   position: relative;
   top: 50%;
-  transform: translateY(-50%);
+  transform: translateY(-35%);
   width: 100%;
   z-index: 1;
 }
@@ -3106,19 +3109,24 @@ button.icon-button.active i.fa-retweet {
   position: absolute;
   right: 4px;
   text-shadow: 0px 1px 1px #000, 1px 0px 1px #000;
-  top: 4px;
 }
 
 .status__video-player-spoiler {
   color: #fff;
+  left: 4px;
+  position: absolute;
   text-shadow: 0px 1px 1px #000, 1px 0px 1px #000;
+  top: 4px;
+  z-index: 100;
 }
 
 .status__video-player-expand {
+  bottom: 4px;
   z-index: 100;
 }
 
 .status__video-player-mute {
+  top: 4px;
   z-index: 5;
 }
 
@@ -3133,6 +3141,7 @@ button.icon-button.active i.fa-retweet {
   border-radius: 100px;
   color: rgba(255, 255, 255, 0.8);
   font-size: 36px;
+  left: 50%;
   padding: 5px;
   position: absolute;
   top: 50%;

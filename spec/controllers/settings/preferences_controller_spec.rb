@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 describe Settings::PreferencesController do
+  render_views
+
   let(:user) { Fabricate(:user) }
 
   before do

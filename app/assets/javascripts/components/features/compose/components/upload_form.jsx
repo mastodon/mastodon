@@ -18,7 +18,7 @@ class UploadForm extends React.PureComponent {
       <div className='compose-form__upload' key={attachment.get('id')}>
         <Motion defaultStyle={{ scale: 0.8 }} style={{ scale: spring(1, { stiffness: 180, damping: 12 }) }}>
           {({ scale }) =>
-            <div className='compose-form__upload-thumbnail' style={{ transform: `translateZ(0) scale(${scale})`, background: `url(${attachment.get('preview_url')}) no-repeat center` }}>
+            <div className='compose-form__upload-thumbnail' style={{ transform: `translateZ(0) scale(${scale})`, backgroundImage: `url(${attachment.get('preview_url')})` }}>
               <IconButton icon='times' title={intl.formatMessage(messages.undo)} size={36} onClick={this.props.onRemoveFile.bind(this, attachment.get('id'))} />
             </div>
           }
