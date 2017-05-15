@@ -491,15 +491,6 @@ babel-helper-builder-react-jsx@^6.24.1:
     babel-types "^6.24.1"
     esutils "^2.0.0"
 
-babel-helper-builder-react-jsx@^6.8.0:
-  version "6.9.0"
-  resolved "https://registry.yarnpkg.com/babel-helper-builder-react-jsx/-/babel-helper-builder-react-jsx-6.9.0.tgz#a633978d669c4c9dcad716cc577ee3e0bb8ae723"
-  dependencies:
-    babel-runtime "^6.9.0"
-    babel-types "^6.9.0"
-    esutils "^2.0.0"
-    lodash "^4.2.0"
-
 babel-helper-call-delegate@^6.24.1, babel-helper-call-delegate@^6.8.0:
   version "6.24.1"
   resolved "https://registry.yarnpkg.com/babel-helper-call-delegate/-/babel-helper-call-delegate-6.24.1.tgz#ece6aacddc76e41c3461f88bfc575bd0daa2df8d"
@@ -666,13 +657,9 @@ babel-plugin-syntax-exponentiation-operator@^6.8.0:
   version "6.13.0"
   resolved "https://registry.yarnpkg.com/babel-plugin-syntax-exponentiation-operator/-/babel-plugin-syntax-exponentiation-operator-6.13.0.tgz#9ee7e8337290da95288201a6a57f4170317830de"
 
-babel-plugin-syntax-flow@^6.18.0:
+babel-plugin-syntax-flow@^6.18.0, babel-plugin-syntax-flow@^6.3.13:
   version "6.18.0"
   resolved "https://registry.yarnpkg.com/babel-plugin-syntax-flow/-/babel-plugin-syntax-flow-6.18.0.tgz#4c3ab20a2af26aa20cd25995c398c4eb70310c8d"
-
-babel-plugin-syntax-flow@^6.3.13, babel-plugin-syntax-flow@^6.8.0:
-  version "6.13.0"
-  resolved "https://registry.yarnpkg.com/babel-plugin-syntax-flow/-/babel-plugin-syntax-flow-6.13.0.tgz#9af0cd396087bf7677053e1afa52f206c0416f17"
 
 babel-plugin-syntax-jsx@^6.3.13, babel-plugin-syntax-jsx@^6.8.0:
   version "6.13.0"
@@ -912,19 +899,12 @@ babel-plugin-transform-exponentiation-operator@^6.22.0, babel-plugin-transform-e
     babel-plugin-syntax-exponentiation-operator "^6.8.0"
     babel-runtime "^6.22.0"
 
-babel-plugin-transform-flow-strip-types@^6.22.0:
+babel-plugin-transform-flow-strip-types@^6.22.0, babel-plugin-transform-flow-strip-types@^6.3.13:
   version "6.22.0"
   resolved "https://registry.yarnpkg.com/babel-plugin-transform-flow-strip-types/-/babel-plugin-transform-flow-strip-types-6.22.0.tgz#84cb672935d43714fdc32bce84568d87441cf7cf"
   dependencies:
     babel-plugin-syntax-flow "^6.18.0"
     babel-runtime "^6.22.0"
-
-babel-plugin-transform-flow-strip-types@^6.3.13:
-  version "6.14.0"
-  resolved "https://registry.yarnpkg.com/babel-plugin-transform-flow-strip-types/-/babel-plugin-transform-flow-strip-types-6.14.0.tgz#35ceb03f8770934044bab1a76f7e4ee0aa9220f9"
-  dependencies:
-    babel-plugin-syntax-flow "^6.8.0"
-    babel-runtime "^6.0.0"
 
 babel-plugin-transform-object-rest-spread@6.16.0:
   version "6.16.0"
@@ -946,17 +926,11 @@ babel-plugin-transform-react-constant-elements@6.9.1:
   dependencies:
     babel-runtime "^6.9.1"
 
-babel-plugin-transform-react-display-name@^6.23.0:
+babel-plugin-transform-react-display-name@^6.23.0, babel-plugin-transform-react-display-name@^6.3.13:
   version "6.23.0"
   resolved "https://registry.yarnpkg.com/babel-plugin-transform-react-display-name/-/babel-plugin-transform-react-display-name-6.23.0.tgz#4398910c358441dc4cef18787264d0412ed36b37"
   dependencies:
     babel-runtime "^6.22.0"
-
-babel-plugin-transform-react-display-name@^6.3.13:
-  version "6.8.0"
-  resolved "https://registry.yarnpkg.com/babel-plugin-transform-react-display-name/-/babel-plugin-transform-react-display-name-6.8.0.tgz#f7a084977383d728bdbdc2835bba0159577f660e"
-  dependencies:
-    babel-runtime "^6.0.0"
 
 babel-plugin-transform-react-jsx-self@6.11.0:
   version "6.11.0"
@@ -986,21 +960,13 @@ babel-plugin-transform-react-jsx-source@^6.22.0, babel-plugin-transform-react-js
     babel-plugin-syntax-jsx "^6.8.0"
     babel-runtime "^6.22.0"
 
-babel-plugin-transform-react-jsx@^6.24.1:
+babel-plugin-transform-react-jsx@^6.24.1, babel-plugin-transform-react-jsx@^6.3.13:
   version "6.24.1"
   resolved "https://registry.yarnpkg.com/babel-plugin-transform-react-jsx/-/babel-plugin-transform-react-jsx-6.24.1.tgz#840a028e7df460dfc3a2d29f0c0d91f6376e66a3"
   dependencies:
     babel-helper-builder-react-jsx "^6.24.1"
     babel-plugin-syntax-jsx "^6.8.0"
     babel-runtime "^6.22.0"
-
-babel-plugin-transform-react-jsx@^6.3.13:
-  version "6.8.0"
-  resolved "https://registry.yarnpkg.com/babel-plugin-transform-react-jsx/-/babel-plugin-transform-react-jsx-6.8.0.tgz#94759942f70af18c617189aa7f3593f1644a71ab"
-  dependencies:
-    babel-helper-builder-react-jsx "^6.8.0"
-    babel-plugin-syntax-jsx "^6.8.0"
-    babel-runtime "^6.0.0"
 
 babel-plugin-transform-react-remove-prop-types@^0.4.5:
   version "0.4.5"
@@ -1270,7 +1236,7 @@ babel-traverse@^6.16.0, babel-traverse@^6.22.0, babel-traverse@^6.23.1, babel-tr
     invariant "^2.2.0"
     lodash "^4.2.0"
 
-babel-types@^6.16.0, babel-types@^6.19.0, babel-types@^6.22.0, babel-types@^6.23.0, babel-types@^6.24.1, babel-types@^6.9.0:
+babel-types@^6.16.0, babel-types@^6.19.0, babel-types@^6.22.0, babel-types@^6.23.0, babel-types@^6.24.1:
   version "6.24.1"
   resolved "https://registry.yarnpkg.com/babel-types/-/babel-types-6.24.1.tgz#a136879dc15b3606bda0d90c1fc74304c2ff0975"
   dependencies:
@@ -1672,9 +1638,9 @@ coffee-loader@^0.7.3:
   dependencies:
     loader-utils "^1.0.2"
 
-coffee-script@^1.12.5:
-  version "1.12.5"
-  resolved "https://registry.yarnpkg.com/coffee-script/-/coffee-script-1.12.5.tgz#809f4585419112bbfe46a073ad7543af18c27346"
+coffee-script@^1.12.6:
+  version "1.12.6"
+  resolved "https://registry.yarnpkg.com/coffee-script/-/coffee-script-1.12.6.tgz#285a3f7115689065064d6bf9ef4572db66695cbf"
 
 collapse-white-space@^1.0.0:
   version "1.0.2"
