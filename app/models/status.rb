@@ -181,6 +181,10 @@ class Status < ApplicationRecord
       select('reblog_of_id').where(reblog_of_id: status_ids).where(account_id: account_id).map { |s| [s.reblog_of_id, true] }.to_h
     end
 
+    def mutes_map(conversation_ids, account_id)
+      ConversationMute.select('conversation_id').where(conversation_id: conversation_ids).where(account_id: account_id).map { |m| [m.conversation_id, true] }.to_h
+    end
+
     def reload_stale_associations!(cached_items)
       account_ids = []
 

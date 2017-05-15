@@ -131,6 +131,8 @@ Rails.application.routes.draw do
           post :unreblog
           post :favourite
           post :unfavourite
+          post :mute
+          post :unmute
         end
       end
 

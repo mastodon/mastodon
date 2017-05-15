@@ -171,8 +171,24 @@ class Status extends ImmutablePureComponent {
           <div className='scrollable detailed-status__wrapper'>
             {ancestors}
 
-            <DetailedStatus status={status} autoPlayGif={autoPlayGif} me={me} onOpenVideo={this.handleOpenVideo} onOpenMedia={this.handleOpenMedia} />
-            <ActionBar status={status} me={me} onReply={this.handleReplyClick} onFavourite={this.handleFavouriteClick} onReblog={this.handleReblogClick} onDelete={this.handleDeleteClick} onMention={this.handleMentionClick} onReport={this.handleReport} />
+            <DetailedStatus
+              status={status}
+              autoPlayGif={autoPlayGif}
+              me={me}
+              onOpenVideo={this.handleOpenVideo}
+              onOpenMedia={this.handleOpenMedia}
+            />
+
+            <ActionBar
+              status={status}
+              me={me}
+              onReply={this.handleReplyClick}
+              onFavourite={this.handleFavouriteClick}
+              onReblog={this.handleReblogClick}
+              onDelete={this.handleDeleteClick}
+              onMention={this.handleMentionClick}
+              onReport={this.handleReport}
+            />
 
             {descendants}
           </div>

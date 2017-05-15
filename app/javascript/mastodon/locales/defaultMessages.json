@@ -144,6 +144,14 @@
       {
         "defaultMessage": "Report @{name}",
         "id": "status.report"
+      },
+      {
+        "defaultMessage": "Mute conversation",
+        "id": "status.mute_conversation"
+      },
+      {
+        "defaultMessage": "Unmute conversation",
+        "id": "status.unmute_conversation"
       }
     ],
     "path": "app/javascript/mastodon/components/status_action_bar.json"
@@ -185,10 +193,6 @@
         "id": "video_player.expand"
       },
       {
-        "defaultMessage": "Video could not be played",
-        "id": "video_player.video_error"
-      },
-      {
         "defaultMessage": "Sensitive content",
         "id": "status.sensitive_warning"
       },
@@ -199,6 +203,10 @@
       {
         "defaultMessage": "Media hidden",
         "id": "status.media_hidden"
+      },
+      {
+        "defaultMessage": "Video could not be played",
+        "id": "video_player.video_error"
       }
     ],
     "path": "app/javascript/mastodon/components/video_player.json"

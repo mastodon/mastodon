@@ -196,6 +196,54 @@ RSpec.describe Status, type: :model do
     pending
   end
 
+  describe '.mutes_map' do
+    let(:status)  { Fabricate(:status) }
+    let(:account) { Fabricate(:account) }
+
+    subject { Status.mutes_map([status.conversation.id], account) }
+
+    it 'returns a hash' do
+      expect(subject).to be_a Hash
+    end
+
+    it 'contains true value' do
+      account.mute_conversation!(status.conversation)
+      expect(subject[status.conversation.id]).to be true
+    end
+  end
+
+  describe '.favourites_map' do
+    let(:status)  { Fabricate(:status) }
+    let(:account) { Fabricate(:account) }
+
+    subject { Status.favourites_map([status], account) }
+
+    it 'returns a hash' do
+      expect(subject).to be_a Hash
+    end
+
+    it 'contains true value' do
+      Fabricate(:favourite, status: status, account: account)
+      expect(subject[status.id]).to be true
+    end
+  end
+
+  describe '.reblogs_map' do
+    let(:status)  { Fabricate(:status) }
+    let(:account) { Fabricate(:account) }
+
+    subject { Status.reblogs_map([status], account) }
+
+    it 'returns a hash' do
+      expect(subject).to be_a Hash
+    end
+
+    it 'contains true value' do
+      Fabricate(:status, account: account, reblog: status)
+      expect(subject[status.id]).to be true
+    end
+  end
+
   describe '.local_only' do
     it 'returns only statuses from local accounts' do
       local_account = Fabricate(:account, domain: nil)

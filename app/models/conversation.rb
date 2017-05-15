@@ -10,7 +10,7 @@
 #
 
 class Conversation < ApplicationRecord
-  validates :uri, uniqueness: true
+  validates :uri, uniqueness: true, if: :uri
 
   has_many :statuses
 
