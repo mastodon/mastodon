@@ -259,24 +259,30 @@ class Account < ApplicationRecord
       nil
     end
 
-    def triadic_closures(account, limit = 5)
+    def triadic_closures(account, limit: 5, offset: 0)
       sql = <<-SQL.squish
         WITH first_degree AS (
-            SELECT target_account_id
-            FROM follows
-            WHERE account_id = :account_id
-          )
+          SELECT target_account_id
+          FROM follows
+          WHERE account_id = :account_id
+        )
         SELECT accounts.*
         FROM follows
         INNER JOIN accounts ON follows.target_account_id = accounts.id
-        WHERE account_id IN (SELECT * FROM first_degree) AND target_account_id NOT IN (SELECT * FROM first_degree) AND target_account_id <> :account_id
+        WHERE
+          account_id IN (SELECT * FROM first_degree)
+          AND target_account_id NOT IN (SELECT * FROM first_degree)
+          AND target_account_id NOT IN (:excluded_account_ids)
         GROUP BY target_account_id, accounts.id
         ORDER BY count(account_id) DESC
+        OFFSET :offset
         LIMIT :limit
       SQL
 
+      excluded_account_ids = account.excluded_from_timeline_account_ids + [account.id]
+
       find_by_sql(
-        [sql, { account_id: account.id, limit: limit }]
+        [sql, { account_id: account.id, excluded_account_ids: excluded_account_ids, limit: limit, offset: offset }]
       )
     end
 
