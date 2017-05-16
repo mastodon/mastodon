@@ -209,7 +209,7 @@ class ProcessFeedService < BaseService
       if TagManager.instance.web_domain?(url.host)
         Account.find_local(url.path.gsub('/users/', ''))
       else
-        Account.find_by(uri: href) || Account.find_by(url: href) || FetchRemoteAccountService.new.call(href)
+        Account.where(uri: href).or(Account.where(url: href)).first || FetchRemoteAccountService.new.call(href)
       end
     end
 
