@@ -45,11 +45,11 @@ import Report from '../features/report';
 import { IntlProvider, addLocaleData } from 'react-intl';
 import ar from 'react-intl/locale-data/ar';
 import bg from 'react-intl/locale-data/bg';
+import ca from 'react-intl/locale-data/ca';
 import de from 'react-intl/locale-data/de';
 import en from 'react-intl/locale-data/en';
 import eo from 'react-intl/locale-data/eo';
 import es from 'react-intl/locale-data/es';
-import ca from 'react-intl/locale-data/ca';
 import fa from 'react-intl/locale-data/fa';
 import fi from 'react-intl/locale-data/fi';
 import fr from 'react-intl/locale-data/fr';
@@ -82,11 +82,11 @@ const browserHistory = useRouterHistory(createBrowserHistory)({
 addLocaleData([
   ...ar,
   ...bg,
+  ...ca,
   ...de,
   ...en,
   ...eo,
   ...es,
-  ...ca,
   ...fa,
   ...fi,
   ...fr,
