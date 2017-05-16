@@ -6,6 +6,10 @@ class Rack::Attack
     req.ip if req.path =~ /\A\/api\/v/
   end
 
+  throttle('toot', limit: 150, period: 5.minutes) do |req|
+    req.env['HTTP_AUTHORIZATION'].split(' ').last if req.path == '/api/v1/statuses' && req.post?
+  end
+
   # Rate limit logins
   throttle('login', limit: 5, period: 5.minutes) do |req|
     req.ip if req.path == '/auth/sign_in' && req.post?
