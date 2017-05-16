@@ -48,6 +48,32 @@
 
 .column-collapsable {
   position: relative;
+
+  .column-collapsable__content {
+    overflow: auto;
+    transition: 300ms ease;
+    opacity: 1;
+  }
+
+  &.collapsed .column-collapsable__content {
+    height: 0 !important;
+    opacity: 0;
+  }
+
+  .column-collapsable__button {
+    color: $primary-text-color;
+    background: lighten($ui-base-color, 8%);
+
+    &:hover {
+      color: $primary-text-color;
+      background: lighten($ui-base-color, 8%);
+    }
+  }
+
+  &.collapsed .column-collapsable__button {
+    color: $ui-primary-color;
+    background: lighten($ui-base-color, 4%);
+  }
 }
 
 .column-icon {
@@ -1982,21 +2008,6 @@ button.icon-button.active i.fa-retweet {
   font-weight: 500;
   padding-top: 120px;
   text-align: center;
-}
-
-.collapsable-collapsed {
-  color: $ui-primary-color;
-  background: lighten($ui-base-color, 4%);
-}
-
-.collapsable {
-  color: $primary-text-color;
-  background: lighten($ui-base-color, 8%);
-
-  &:hover {
-    color: $primary-text-color;
-    background: lighten($ui-base-color, 8%);
-  }
 }
 
 .video-error-cover {
