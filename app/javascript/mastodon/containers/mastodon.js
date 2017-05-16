@@ -45,6 +45,7 @@ import Report from '../features/report';
 import { IntlProvider, addLocaleData } from 'react-intl';
 import ar from 'react-intl/locale-data/ar';
 import bg from 'react-intl/locale-data/bg';
+import ca from 'react-intl/locale-data/ca';
 import de from 'react-intl/locale-data/de';
 import en from 'react-intl/locale-data/en';
 import eo from 'react-intl/locale-data/eo';
@@ -81,6 +82,7 @@ const browserHistory = useRouterHistory(createBrowserHistory)({
 addLocaleData([
   ...ar,
   ...bg,
+  ...ca,
   ...de,
   ...en,
   ...eo,

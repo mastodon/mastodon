@@ -5,6 +5,7 @@ module SettingsHelper
     en: 'English',
     ar: 'العربية',
     bg: 'Български',
+    ca: 'Català',
     de: 'Deutsch',
     eo: 'Esperanto',
     es: 'Español',

@@ -1,0 +1,49 @@
+---
+ca:
+  simple_form:
+    hints:
+      defaults:
+        avatar: PNG, GIF o JPG. Màxim 2MB. Serà escalat a 120x120px
+        display_name: Màxim 30 caràcters
+        header: PNG, GIF o JPG. Màxim 2MB. Serà escalat a 700x335px
+        locked: Requereix que aprovis manualment seguidors i les publicacions seran mostrades només als teus seguidors 
+        note: Màxim 160 caràcters
+      imports:
+        data: Arxiu CSV exportat desde una altra instància de Mastodon
+    labels:
+      defaults:
+        avatar: Avatar
+        confirm_new_password: Confirmar nova contrasenya
+        confirm_password: Confirmar contrasenya
+        current_password: Contrasenya actual
+        data: Informació
+        display_name: Mostrar nom
+        email: Direcció de correu electrònic
+        header: Img. capçalera
+        locale: Idioma
+        locked: Fer privat aquest compte
+        new_password: Nova contrasenya
+        note: Biografia
+        otp_attempt: Codi de dos factors
+        password: Contrasenya
+        setting_auto_play_gif: Auto-reproducció de GIFs animats
+        setting_boost_modal: Mostrar finestra de confirmació abans d'un Retoot
+        setting_default_privacy: Privacitat de publicacions
+        severity: Severitat
+        type: Importar tipus
+        username: Nom d´usuari
+      interactions:
+        must_be_follower: Bloquejar notificacions de persones que no et segueixen
+        must_be_following: Bloquejar notificacions de persones que no segueixes
+      notification_emails:
+        digest: Enviar resum de correus electrònics
+        favourite: Enviar correu electrònic quan algú marqui com a favorit en la teva publicació
+        follow: Enviar correu electrònic quan algú et segueixi
+        follow_request: Enviar correu electrònic quan algú sol·liciti seguir-te
+        mention: Enviar correu electrònic quan algú et mencioni
+        reblog: Enviar correu electrònic quan algú comparteixi la seva publicació
+    'no': 'No'
+    required:
+      mark: "*"
+      text: necessari
+    'yes': Sí

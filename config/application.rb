@@ -29,6 +29,7 @@ module Mastodon
       :en,
       :ar,
       :bg,
+      :ca,
       :de,
       :eo,
       :es,
