@@ -60,7 +60,7 @@ class Account < ApplicationRecord
   validates :username, format: { with: /\A[a-z0-9_]+\z/i }, uniqueness: { scope: :domain, case_sensitive: false }, length: { maximum: 30 }, if: -> { local? && will_save_change_to_username? }
   validates_with UnreservedUsernameValidator, if: -> { local? && will_save_change_to_username? }
   validates :display_name, length: { maximum: 30 }, if: -> { local? && will_save_change_to_display_name? }
-  validates :note, length: { maximum: 160 }, if: -> { local? && will_save_change_to_note? }
+  validates :note, length: { maximum: 500 }, if: -> { local? && will_save_change_to_note? }
 
   # Timelines
   has_many :stream_entries, inverse_of: :account, dependent: :destroy
