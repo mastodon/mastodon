@@ -153,6 +153,8 @@ GEM
       thread_safe
     encryptor (3.0.0)
     erubis (2.7.0)
+    et-orbi (1.0.3)
+      tzinfo
     execjs (2.7.0)
     fabrication (2.16.1)
     faker (1.7.3)
@@ -265,7 +267,7 @@ GEM
     oj (3.0.2)
     openssl (2.0.3)
     orm_adapter (0.5.0)
-    ostatus2 (1.1.0)
+    ostatus2 (2.0.0)
       addressable (~> 2.4)
       http (~> 2.0)
       nokogiri (~> 1.6)
@@ -402,6 +404,8 @@ GEM
       unicode-display_width (~> 1.0, >= 1.0.1)
     ruby-oembed (0.12.0)
     ruby-progressbar (1.8.1)
+    rufus-scheduler (3.4.0)
+      et-orbi (~> 1.0)
     safe_yaml (1.0.4)
     sanitize (4.4.0)
       crass (~> 1.0.2)
@@ -419,6 +423,11 @@ GEM
       connection_pool (~> 2.2, >= 2.2.0)
       rack-protection (>= 1.5.0)
       redis (~> 3.2, >= 3.2.1)
+    sidekiq-scheduler (2.1.4)
+      redis (~> 3)
+      rufus-scheduler (~> 3.2)
+      sidekiq (>= 3)
+      tilt (>= 1.4.0)
     sidekiq-unique-jobs (5.0.0)
       sidekiq (>= 4.0)
       thor
@@ -523,7 +532,7 @@ DEPENDENCIES
   microformats2
   nokogiri
   oj
-  ostatus2 (~> 1.1)
+  ostatus2 (~> 2.0)
   ox
   paperclip (~> 5.1)
   paperclip-av-transcoder
@@ -552,6 +561,7 @@ DEPENDENCIES
   sanitize
   sass-rails (~> 5.0)
   sidekiq
+  sidekiq-scheduler
   sidekiq-unique-jobs
   simple-navigation
   simple_form
