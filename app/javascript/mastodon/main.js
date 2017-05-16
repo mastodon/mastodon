@@ -17,10 +17,7 @@ function main() {
   const Mastodon = require('mastodon/containers/mastodon').default;
   const React = require('react');
   const ReactDOM = require('react-dom');
-  const Rails = require('rails-ujs');
   window.Perf = require('react-addons-perf');
-
-  Rails.start();
 
   require.context('../images/', true);
 

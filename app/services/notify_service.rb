@@ -43,8 +43,17 @@ class NotifyService < BaseService
     blocked ||= (@notification.from_account.silenced? && !@recipient.following?(@notification.from_account))                       # Hellban
     blocked ||= (@recipient.user.settings.interactions['must_be_follower']  && !@notification.from_account.following?(@recipient)) # Options
     blocked ||= (@recipient.user.settings.interactions['must_be_following'] && !@recipient.following?(@notification.from_account)) # Options
+    blocked ||= conversation_muted?
     blocked ||= send("blocked_#{@notification.type}?")                                                                             # Type-dependent filters
     blocked
+  end
+
+  def conversation_muted?
+    if @notification.target_status
+      @recipient.muting_conversation?(@notification.target_status.conversation)
+    else
+      false
+    end
   end
 
   def create_notification

@@ -1312,23 +1312,6 @@
   }
 }
 
-@media screen and (min-width: 1397px) { /* Width of 4 columns with margins */
-  .columns-area {
-    margin-left: auto;
-    margin-right: auto;
-  }
-}
-
-@media screen and (min-width: 1900px) {
-  .column,
-  .drawer {
-    width: 400px;
-    border-radius: 4px;
-    height: 96vh;
-    margin-top: 2vh;
-  }
-}
-
 .drawer__pager {
   box-sizing: border-box;
   padding: 0;
@@ -1772,7 +1755,7 @@
 .getting-started {
   box-sizing: border-box;
   padding-bottom: 235px;
-  background: url('../images/mastodon-getting-started.png') no-repeat 0 100% / contain local;
+  background: url('../images/mastodon-getting-started.png') no-repeat 0 100%;
   flex: 1 0 auto;
 
   p {

@@ -48,9 +48,10 @@ class ModalRoot extends React.PureComponent {
 
   render () {
     const { type, props, onClose } = this.props;
+    const visible = !!type;
     const items = [];
 
-    if (!!type) {
+    if (visible) {
       items.push({
         key: type,
         data: { type, props },
@@ -69,7 +70,7 @@ class ModalRoot extends React.PureComponent {
               const SpecificComponent = MODAL_COMPONENTS[type];
 
               return (
-                <div key={key}>
+                <div key={key} style={{ pointerEvents: visible ? 'auto' : 'none' }}>
                   <div role='presentation' className='modal-root__overlay' style={{ opacity: style.opacity }} onClick={onClose} />
                   <div className='modal-root__container' style={{ opacity: style.opacity, transform: `translateZ(0px) scale(${style.scale})` }}>
                     <SpecificComponent {...props} onClose={onClose} />

@@ -15,7 +15,7 @@ class Permalink extends React.PureComponent {
   };
 
   handleClick = (e) => {
-    if (e.button === 0) {
+    if (e.button === 0 && !(e.ctrlKey || e.metaKey)) {
       e.preventDefault();
       this.context.router.push(this.props.to);
     }

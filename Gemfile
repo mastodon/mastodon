@@ -69,7 +69,7 @@ end
 group :test do
   gem 'capybara', '~> 2.14'
   gem 'faker', '~> 1.7'
-  gem 'microformats2', '~> 2.1'
+  gem 'microformats2', '~> 3.0'
   gem 'rails-controller-testing', '~> 1.0'
   gem 'rspec-sidekiq', '~> 3.0'
   gem 'simplecov', '~> 0.14', require: false

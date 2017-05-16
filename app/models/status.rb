@@ -55,7 +55,7 @@ class Status < ApplicationRecord
   validates_with StatusLengthValidator
   validates :reblog, uniqueness: { scope: :account }, if: 'reblog?'
 
-  default_scope { order('id desc') }
+  default_scope { order(id: :desc) }
 
   scope :remote, -> { where.not(uri: nil) }
   scope :local, -> { where(uri: nil) }
@@ -72,7 +72,7 @@ class Status < ApplicationRecord
   cache_associated :account, :application, :media_attachments, :tags, :stream_entry, mentions: :account, reblog: [:account, :application, :stream_entry, :tags, :media_attachments, mentions: :account], thread: :account
 
   def reply?
-    !in_reply_to_id.nil? || super
+    !in_reply_to_id.nil? || attributes['reply']
   end
 
   def local?
@@ -144,9 +144,9 @@ class Status < ApplicationRecord
   end
 
   before_validation :prepare_contents
-  before_create     :set_reblog
-  before_create     :set_visibility
-  before_create     :set_conversation
+  before_validation :set_reblog
+  before_validation :set_visibility
+  before_validation :set_conversation
 
   class << self
     def in_allowed_languages(account)
@@ -181,6 +181,10 @@ class Status < ApplicationRecord
       select('reblog_of_id').where(reblog_of_id: status_ids).where(account_id: account_id).map { |s| [s.reblog_of_id, true] }.to_h
     end
 
+    def mutes_map(conversation_ids, account_id)
+      ConversationMute.select('conversation_id').where(conversation_id: conversation_ids).where(account_id: account_id).map { |m| [m.conversation_id, true] }.to_h
+    end
+
     def reload_stale_associations!(cached_items)
       account_ids = []
 
@@ -198,18 +202,22 @@ class Status < ApplicationRecord
     end
 
     def permitted_for(target_account, account)
-      return where.not(visibility: [:private, :direct]) if account.nil?
+      visibility = [:public, :unlisted]
 
-      if target_account.blocking?(account) # get rid of blocked peeps
+      if account.nil?
+        where(visibility: visibility)
+      elsif target_account.blocking?(account) # get rid of blocked peeps
         none
       elsif account.id == target_account.id # author can see own stuff
         all
-      elsif account.following?(target_account) # followers can see followers-only stuff, but also things they are mentioned in
-        joins('LEFT OUTER JOIN mentions ON statuses.id = mentions.status_id AND mentions.account_id = ' + account.id.to_s)
-          .where('statuses.visibility != ? OR mentions.id IS NOT NULL', Status.visibilities[:direct])
-      else # non-followers can see everything that isn't private/direct, but can see stuff they are mentioned in
-        joins('LEFT OUTER JOIN mentions ON statuses.id = mentions.status_id AND mentions.account_id = ' + account.id.to_s)
-          .where('statuses.visibility NOT IN (?) OR mentions.id IS NOT NULL', [Status.visibilities[:direct], Status.visibilities[:private]])
+      else
+        # followers can see followers-only stuff, but also things they are mentioned in.
+        # non-followers can see everything that isn't private/direct, but can see stuff they are mentioned in.
+        visibility.push(:private) if account.following?(target_account)
+
+        joins("LEFT OUTER JOIN mentions ON statuses.id = mentions.status_id AND mentions.account_id = #{account.id}")
+          .where(arel_table[:visibility].in(visibility).or(Mention.arel_table[:id].not_eq(nil)))
+          .order(visibility: :desc)
       end
     end
 
