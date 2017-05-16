@@ -34,7 +34,7 @@ ca:
     follow: Seguir
     followers: Seguidors
     following: Seguint
-    nothing_here: "¡No hi ha res aquí!"
+    nothing_here: "No hi ha res aquí!"
     people_followed_by: Usuaris a qui %{name} segueix
     people_who_follow: Usuaris que segueixn a %{name}
     posts: Toots
@@ -54,6 +54,7 @@ ca:
       are_you_sure: Estàs segur?
       confirm: Confirma
       confirmed: Confirmat
+      disable_two_factor_authentication: Desactivar 2FA
       display_name: Nom de visualització
       domain: Domini
       edit: Editar
@@ -157,7 +158,6 @@ ca:
       unresolved: No resolt
       view: Vista
     settings:
-      click_to_edit: Clic per editar
       contact_information:
         email: Introduir una adreça de correu electrònic pùblica
         label: Informació de contacte
@@ -222,6 +222,7 @@ ca:
     '422':
       content: La verificació de seguretat ha fallat. Bloquejes les galetes?
       title: La verificació de seguretat ha fallat
+      '429': Estrangulat
   exports:
     blocks: Persones que has bloquejat
     csv: CSV
@@ -271,7 +272,7 @@ ca:
         one: "1 nova notificació desde la teva darrera visita \U0001F418"
         other: "%{count} noves notificacions desde la teva darrera visita \U0001F418"
     favourite:
-      body: 'E teu estat ha estat marcat com ao favorit per %{name}:'
+      body: 'El teu estat ha estat marcat com a favorit per %{name}:'
       subject: "%{name} ha marcat com a favorit el teu estat"
     follow:
       body: "¡%{name} t'està seguint!"
