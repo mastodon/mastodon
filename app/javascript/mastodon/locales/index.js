@@ -1,8 +1,8 @@
 import ar from './ar.json';
 import en from './en.json';
+import ca from './ca.json';
 import de from './de.json';
 import es from './es.json';
-import ca from './ca.json';
 import fa from './fa.json';
 import he from './he.json';
 import hr from './hr.json';
@@ -29,9 +29,9 @@ import tr from './tr.json';
 const locales = {
   ar,
   en,
+  ca,
   de,
   es,
-  ca,
   fa,
   he,
   hr,
