@@ -3,4 +3,3 @@ class AddIndexAccountsOnUri < ActiveRecord::Migration[5.0]
     add_index :accounts, :uri
   end
 end
-
