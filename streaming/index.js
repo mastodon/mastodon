@@ -68,8 +68,11 @@ if (cluster.isMaster) {
   // Cluster worker
   const pgConfigs = {
     development: {
+      user:     process.env.DB_USER || null,
+      password: process.env.DB_PASS || null,
       database: 'mastodon_development',
-      host:     '/var/run/postgresql',
+      host:     process.env.DB_HOST || '/var/run/postgresql',
+      port:     process.env.DB_PORT || null,
       max:      10
     },
 
