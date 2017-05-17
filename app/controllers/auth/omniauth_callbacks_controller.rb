@@ -29,6 +29,6 @@ class Auth::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   private
 
   def store_omniauth_auth
-    session[:devise_omniauth_auth] = request.env['omniauth.auth'].to_json,
+    session[:devise_omniauth_auth] = request.env['omniauth.auth']
   end
 end

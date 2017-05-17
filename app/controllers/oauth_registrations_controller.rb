@@ -27,9 +27,7 @@ class OauthRegistrationsController < DeviseController
   private
 
   def omniauth_auth
-    @omniauth_auth ||= JSON.parse(session[:devise_omniauth_auth], symbolize_names: true)
-  rescue TypeError, JSON::ParserError
-    nil
+    @omniauth_auth ||= session[:devise_omniauth_auth].try(:deep_symbolize_keys)
   end
 
   def check_enabled_registrations
