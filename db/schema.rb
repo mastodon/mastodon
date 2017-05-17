@@ -192,16 +192,6 @@ ActiveRecord::Schema.define(version: 20170504103736) do
     t.index ["uid"], name: "index_oauth_applications_on_uid", unique: true, using: :btree
   end
 
-  create_table "oauth_authorizations", force: :cascade do |t|
-    t.integer  "user_id"
-    t.string   "provider"
-    t.string   "uid"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["provider", "uid"], name: "index_oauth_authorizations_on_provider_and_uid", using: :btree
-    t.index ["user_id"], name: "index_oauth_authorizations_on_user_id", using: :btree
-  end
-
   create_table "preview_cards", force: :cascade do |t|
     t.bigint   "status_id"
     t.string   "url",                default: "", null: false
@@ -222,6 +212,16 @@ ActiveRecord::Schema.define(version: 20170504103736) do
     t.integer  "width",              default: 0,  null: false
     t.integer  "height",             default: 0,  null: false
     t.index ["status_id"], name: "index_preview_cards_on_status_id", unique: true, using: :btree
+  end
+
+  create_table "qiita_authorizations", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "uid"
+    t.string   "token"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["uid"], name: "index_qiita_authorizations_on_uid", unique: true, using: :btree
+    t.index ["user_id"], name: "index_qiita_authorizations_on_user_id", using: :btree
   end
 
   create_table "reports", force: :cascade do |t|
@@ -350,6 +350,6 @@ ActiveRecord::Schema.define(version: 20170504103736) do
     t.index ["user_id"], name: "index_web_settings_on_user_id", unique: true, using: :btree
   end
 
-  add_foreign_key "oauth_authorizations", "users"
+  add_foreign_key "qiita_authorizations", "users"
   add_foreign_key "statuses", "statuses", column: "reblog_of_id", on_delete: :cascade
 end

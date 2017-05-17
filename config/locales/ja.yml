@@ -203,6 +203,8 @@ ja:
     resend_confirmation: 確認メールを再送する
     reset_password: パスワードを再発行
     set_new_password: 新しいパスワード
+    qiita_authorization: Qiita連携
+    oauth_registration: ユーザー登録
   authorize_follow:
     error: 残念ながら、リモートアカウントにエラーが発生しました。
     follow: フォロー
@@ -311,6 +313,7 @@ ja:
     preferences: ユーザー設定
     settings: 設定
     two_factor_authentication: 二段階認証
+    qiita_authorization: Qiita連携
   statuses:
     open_in_web: Webで開く
     over_character_limit: 上限は %{max}文字までです
@@ -346,5 +349,8 @@ ja:
   users:
     invalid_email: メールアドレスが無効です
     invalid_otp_token: 二段階認証コードが間違っています
+  omniauth_callbacks:
+    success: 連携に成功しました
+    failure: 連携に失敗しました
   oauth_registration:
     success: ユーザー登録しました

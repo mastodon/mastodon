@@ -72,7 +72,7 @@ Rails.application.routes.draw do
     end
 
     resource :follower_domains, only: [:show, :update]
-    resource :oauth_authorizations, only: [:show]
+    resource :qiita_authorizations, only: [:show]
   end
 
   resources :media, only: [:show]

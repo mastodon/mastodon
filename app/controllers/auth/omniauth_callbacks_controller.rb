@@ -5,7 +5,7 @@ class Auth::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     auth_hash = request.env['omniauth.auth']
 
     if current_user
-      authorization = OauthAuthorization.find_or_initialize_by(provider: auth_hash[:provider], uid: auth_hash[:uid]) do |qiita_authorization|
+      authorization = QiitaAuthorization.find_or_initialize_by(uid: auth_hash[:uid]) do |qiita_authorization|
         authorization.user = current_user
       end
 
@@ -14,9 +14,9 @@ class Auth::OmniauthCallbacksController < Devise::OmniauthCallbacksController
       else
         flash[:alert] = I18n.t('omniauth_callbacks.failure')
       end
-        redirect_to settings_oauth_authorizations_path
+        redirect_to settings_qiita_authorizations_path
     else
-      if authorization = OauthAuthorization.find_by(provider: auth_hash[:provider], uid: auth_hash[:uid])
+      if authorization = QiitaAuthorization.find_by(uid: auth_hash[:uid])
         sign_in(authorization.user)
         redirect_to web_path
       else

@@ -11,7 +11,7 @@ class User < ApplicationRecord
          otp_number_of_backup_codes: 10
 
   belongs_to :account, inverse_of: :user, required: true
-  has_many :oauth_authorizations, inverse_of: :user
+  has_one :qiita_authorization, inverse_of: :user, dependent: :destroy
   accepts_nested_attributes_for :account
 
   validates :locale, inclusion: I18n.available_locales.map(&:to_s), unless: 'locale.nil?'

@@ -12,7 +12,7 @@ class OauthRegistrationsController < DeviseController
   def create
     @oauth_registration = Form::OauthRegistration.from_omniauth_auth(omniauth_auth)
     @oauth_registration.assign_attributes(
-      params.require(:form_oauth_registration).permit(:email, :username).merge(locale: I18n.locale)
+      params.require(:form_oauth_registration).permit(:email, :username, :password, :password_confirmation).merge(locale: I18n.locale)
     )
 
     if @oauth_registration.save

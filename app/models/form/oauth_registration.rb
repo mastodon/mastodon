@@ -3,7 +3,7 @@
 class Form::OauthRegistration
   include ActiveModel::Model
 
-  attr_accessor :user, :provider, :locale, :avatar, :email, :uid, :username
+  attr_accessor :user, :provider, :locale, :avatar, :email, :uid, :username, :token
   validate :validate_user
 
   class UnsupportedProviderError < StandardError; end
@@ -17,6 +17,7 @@ class Form::OauthRegistration
           avatar: auth[:info][:image],
           uid: auth[:uid],
           username: normalize_username(auth[:uid]),
+          token: auth[:credentials][:token],
         )
       else
         fail UnsupportedProviderError
@@ -75,10 +76,10 @@ class Form::OauthRegistration
   def build_authorization(user)
     case provider
     when 'qiita'
-      OauthAuthorization.new(
-        provider: provider,
+      QiitaAuthorization.new(
         uid: uid,
         user: user,
+        token: token,
       )
     else
       fail UnsupportedProviderError
