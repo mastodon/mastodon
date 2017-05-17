@@ -50,8 +50,7 @@ class FanOutOnWriteService < BaseService
   end
 
   def render_anonymous_payload(status)
-    @payload = InlineRenderer.render(status, nil, 'api/v1/statuses/show')
-    @payload = Oj.dump(event: :update, payload: @payload)
+    @payload = InlineRenderer.render(Event.new(status), nil, 'streaming/update')
   end
 
   def deliver_to_hashtags(status)

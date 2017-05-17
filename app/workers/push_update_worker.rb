@@ -6,9 +6,14 @@ class PushUpdateWorker
   def perform(account_id, status_id)
     account = Account.find(account_id)
     status  = Status.find(status_id)
-    message = InlineRenderer.render(status, account, 'api/v1/statuses/show')
-
-    Redis.current.publish("timeline:#{account.id}", Oj.dump(event: :update, payload: message, queued_at: (Time.now.to_f * 1000.0).to_i))
+    Redis.current.publish(
+      "timeline:#{account.id}",
+      InlineRenderer.render(
+        Event.new(status, (Time.now.to_f * 1000.0).to_i),
+        account,
+        'streaming/update'
+      )
+    )
   rescue ActiveRecord::RecordNotFound
     true
   end

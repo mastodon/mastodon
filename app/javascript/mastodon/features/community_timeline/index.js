@@ -62,7 +62,7 @@ class CommunityTimeline extends React.PureComponent {
       received (data) {
         switch(data.event) {
         case 'update':
-          dispatch(updateTimeline('community', JSON.parse(data.payload)));
+          dispatch(updateTimeline('community', data.payload));
           break;
         case 'delete':
           dispatch(deleteFromTimelines(data.payload));

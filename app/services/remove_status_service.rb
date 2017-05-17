@@ -4,7 +4,7 @@ class RemoveStatusService < BaseService
   include StreamEntryRenderer
 
   def call(status)
-    @payload = Oj.dump(event: :delete, payload: status.id)
+    @payload = InlineRenderer.render(Event.new(status), nil, 'streaming/delete')
 
     remove_from_self(status) if status.account.local?
     remove_from_followers(status)

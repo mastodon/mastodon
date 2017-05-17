@@ -62,7 +62,7 @@ class PublicTimeline extends React.PureComponent {
       received (data) {
         switch(data.event) {
         case 'update':
-          dispatch(updateTimeline('public', JSON.parse(data.payload)));
+          dispatch(updateTimeline('public', data.payload));
           break;
         case 'delete':
           dispatch(deleteFromTimelines(data.payload));
