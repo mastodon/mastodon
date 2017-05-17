@@ -31,13 +31,14 @@
 #  last_emailed_at           :datetime
 #  otp_backup_codes          :string           is an Array
 #  allowed_languages         :string           default([]), not null, is an Array
+#  external                  :boolean          default(FALSE), not null
 #
 
 class User < ApplicationRecord
   include Settings::Extend
 
   devise :registerable, :recoverable,
-         :rememberable, :trackable, :validatable, :confirmable,
+         :rememberable, :trackable, :confirmable,
          :two_factor_authenticatable, :two_factor_backupable,
          otp_secret_encryption_key: ENV['OTP_SECRET'],
          otp_number_of_backup_codes: 10
@@ -45,8 +46,9 @@ class User < ApplicationRecord
   belongs_to :account, inverse_of: :user, required: true
   accepts_nested_attributes_for :account
 
-  validates :locale, inclusion: I18n.available_locales.map(&:to_s), unless: 'locale.nil?'
-  validates :email, email: true
+  validates :locale, inclusion: I18n.available_locales.map(&:to_s), if: :locale
+  validates :email, presence: true, email: true, format: { with: Devise.email_regexp, allow_blank: true }, uniqueness: true, if: :email_required?
+  validates :password, presence: true, confirmation: true, length: { within: Devise.password_length, allow_blank: true }, if: :password_required?
 
   scope :recent,    -> { order(id: :desc) }
   scope :admins,    -> { where(admin: true) }
@@ -78,6 +80,17 @@ class User < ApplicationRecord
 
   def setting_auto_play_gif
     settings.auto_play_gif
+  end
+
+  protected
+
+  def password_required?
+    return false if external?
+    !persisted? || !password.nil? || !password_confirmation.nil?
+  end
+
+  def email_required?
+    !external?
   end
 
   private
