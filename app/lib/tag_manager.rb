@@ -48,6 +48,7 @@ class TagManager
   end
 
   def unique_tag_to_local_id(tag, expected_type)
+    return nil unless local_id?(tag)
     matches = Regexp.new("objectId=([\\d]+):objectType=#{expected_type}").match(tag)
     return matches[1] unless matches.nil?
   end
@@ -64,6 +65,14 @@ class TagManager
     domain.nil? || domain.gsub(/[\/]/, '').casecmp(Rails.configuration.x.local_domain).zero?
   end
 
+  def normalize_domain(domain)
+    return if domain.nil?
+
+    uri = Addressable::URI.new
+    uri.host = domain.gsub(/[\/]/, '')
+    uri.normalize.host
+  end
+
   def same_acct?(canonical, needle)
     return true if canonical.casecmp(needle).zero?
     username, domain = needle.split('@')
@@ -71,7 +80,7 @@ class TagManager
   end
 
   def local_url?(url)
-    uri    = Addressable::URI.parse(url)
+    uri    = Addressable::URI.parse(url).normalize
     domain = uri.host + (uri.port ? ":#{uri.port}" : '')
     TagManager.instance.local_domain?(domain)
   end

@@ -22,6 +22,12 @@ RSpec.describe User, type: :model do
       user.valid?
       expect(user).to model_have_error_on_field(:email)
     end
+
+    it 'cleans out empty string from languages' do
+      user = Fabricate.build(:user, allowed_languages: [''])
+      user.valid?
+      expect(user.allowed_languages).to eq []
+    end
   end
 
   describe 'settings' do
@@ -85,6 +91,16 @@ RSpec.describe User, type: :model do
   let(:password) { 'abcd1234' }
 
   describe 'blacklist' do
+    around(:each) do |example|
+      old_blacklist = Rails.configuration.x.email_blacklist
+
+      Rails.configuration.x.email_domains_blacklist = 'mvrht.com'
+
+      example.run
+
+      Rails.configuration.x.email_domains_blacklist = old_blacklist
+    end
+
     it 'should allow a non-blacklisted user to be created' do
       user = User.new(email: 'foo@example.com', account: account, password: password)
 
@@ -93,6 +109,12 @@ RSpec.describe User, type: :model do
 
     it 'should not allow a blacklisted user to be created' do
       user = User.new(email: 'foo@mvrht.com', account: account, password: password)
+
+      expect(user.valid?).to be_falsey
+    end
+
+    it 'should not allow a subdomain blacklisted user to be created' do
+      user = User.new(email: 'foo@mvrht.com.topdomain.tld', account: account, password: password)
 
       expect(user.valid?).to be_falsey
     end
@@ -107,6 +129,20 @@ RSpec.describe User, type: :model do
     it 'returns false if a confirmed_at is nil' do
       user = Fabricate.build(:user, confirmed_at: nil)
       expect(user.confirmed?).to be false
+    end
+  end
+
+  describe '#disable_two_factor!' do
+    it 'sets otp_required_for_login to false' do
+      user = Fabricate.build(:user, otp_required_for_login: true)
+      user.disable_two_factor!
+      expect(user.otp_required_for_login).to be false
+    end
+
+    it 'clears otp_backup_codes' do
+      user = Fabricate.build(:user, otp_backup_codes: %w[dummy dummy])
+      user.disable_two_factor!
+      expect(user.otp_backup_codes.empty?).to be true
     end
   end
 
@@ -129,6 +165,21 @@ RSpec.describe User, type: :model do
     it 'should allow a user to be created if they are whitelisted' do
       user = User.new(email: 'foo@mastodon.space', account: account, password: password)
       expect(user.valid?).to be_truthy
+    end
+
+    it 'should not allow a user with a whitelisted top domain as subdomain in their email address to be created' do
+      user = User.new(email: 'foo@mastodon.space.userdomain.com', account: account, password: password)
+      expect(user.valid?).to be_falsey
+    end
+
+    it 'should not allow a user to be created with a specific blacklisted subdomain even if the top domain is whitelisted' do
+      old_blacklist = Rails.configuration.x.email_blacklist
+      Rails.configuration.x.email_domains_blacklist = 'blacklisted.mastodon.space'
+
+      user = User.new(email: 'foo@blacklisted.mastodon.space', account: account, password: password)
+      expect(user.valid?).to be_falsey
+
+      Rails.configuration.x.email_domains_blacklist = old_blacklist
     end
   end
 end

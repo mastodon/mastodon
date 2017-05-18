@@ -3,21 +3,30 @@
 namespace :mastodon do
   desc 'Execute daily tasks'
   task :daily do
-    Rake::Task['mastodon:feeds:clear'].invoke
-    Rake::Task['mastodon:media:clear'].invoke
-    Rake::Task['mastodon:users:clear'].invoke
-
-    Rake::Task['mastodon:push:refresh'].invoke
+    %w(
+      mastodon:feeds:clear
+      mastodon:media:clear
+      mastodon:users:clear
+      mastodon:push:refresh
+    ).each do |task|
+      puts "Starting #{task} at #{Time.now.utc}"
+      Rake::Task[task].invoke
+    end
+    puts "Completed daily tasks at #{Time.now.utc}"
   end
 
   desc 'Turn a user into an admin, identified by the USERNAME environment variable'
   task make_admin: :environment do
     include RoutingHelper
+    account_username = ENV.fetch('USERNAME')
+    user = User.joins(:account).where(accounts: { username: account_username })
 
-    user = Account.find_local(ENV.fetch('USERNAME')).user
-    user.update(admin: true)
-
-    puts "Congrats! #{user.account.username} is now an admin. \\o/\nNavigate to #{admin_settings_url} to get started"
+    if user.present?
+      user.update(admin: true)
+      puts "Congrats! #{account_username} is now an admin. \\o/\nNavigate to #{edit_admin_settings_url} to get started"
+    else
+      puts "User could not be found; please make sure an Account with the `#{account_username}` username exists."
+    end
   end
 
   desc 'Manually confirms a user with associated user email address stored in USER_EMAIL environment variable.'
@@ -48,7 +57,16 @@ namespace :mastodon do
     task remove_remote: :environment do
       MediaAttachment.where.not(remote_url: '').where('created_at < ?', 1.week.ago).find_each do |media|
         media.file.destroy
+        media.type = :unknown
+        media.save
       end
+    end
+
+    desc 'Set unknown attachment type for remote-only attachments'
+    task set_unknown: :environment do
+      Rails.logger.debug 'Setting unknown attachment type for remote-only attachments...'
+      MediaAttachment.where(file_file_name: nil).where.not(type: :unknown).in_batches.update_all(type: :unknown)
+      Rails.logger.debug 'Done!'
     end
   end
 
@@ -63,10 +81,8 @@ namespace :mastodon do
 
     desc 'Re-subscribes to soon expiring PuSH subscriptions'
     task refresh: :environment do
-      Account.expiring(1.day.from_now).find_each do |a|
-        Rails.logger.debug "PuSH re-subscribing to #{a.acct}"
-        SubscribeService.new.call(a)
-      end
+      # No-op
+      # This task is now executed via sidekiq-scheduler
     end
   end
 

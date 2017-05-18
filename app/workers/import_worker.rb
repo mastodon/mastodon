@@ -4,6 +4,7 @@ require 'csv'
 
 class ImportWorker
   include Sidekiq::Worker
+
   sidekiq_options queue: 'pull', retry: false
 
   attr_reader :import

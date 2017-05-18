@@ -1,10 +1,11 @@
 # frozen_string_literal: true
 
 class Api::V1::StatusesController < ApiController
-  before_action -> { doorkeeper_authorize_if_got_token! :read }, except: [:create, :destroy, :reblog, :unreblog, :favourite, :unfavourite]
-  before_action -> { doorkeeper_authorize! :write }, only: [:create, :destroy, :reblog, :unreblog, :favourite, :unfavourite]
-  before_action :require_user!, except: [:show, :context, :card, :reblogged_by, :favourited_by]
-  before_action :set_status, only:      [:show, :context, :card, :reblogged_by, :favourited_by]
+  before_action -> { doorkeeper_authorize_if_got_token! :read }, except: [:create, :destroy, :reblog, :unreblog, :favourite, :unfavourite, :mute, :unmute]
+  before_action -> { doorkeeper_authorize! :write }, only: [:create, :destroy, :reblog, :unreblog, :favourite, :unfavourite, :mute, :unmute]
+  before_action :require_user!, except:  [:show, :context, :card, :reblogged_by, :favourited_by]
+  before_action :set_status, only:       [:show, :context, :card, :reblogged_by, :favourited_by, :mute, :unmute]
+  before_action :set_conversation, only: [:mute, :unmute]
 
   respond_to :json
 
@@ -57,11 +58,16 @@ class Api::V1::StatusesController < ApiController
   end
 
   def create
-    @status = PostStatusService.new.call(current_user.account, status_params[:status], status_params[:in_reply_to_id].blank? ? nil : Status.find(status_params[:in_reply_to_id]), media_ids: status_params[:media_ids],
-                                                                                                                                                                                  sensitive: status_params[:sensitive],
-                                                                                                                                                                                  spoiler_text: status_params[:spoiler_text],
-                                                                                                                                                                                  visibility: status_params[:visibility],
-                                                                                                                                                                                  application: doorkeeper_token.application)
+    @status = PostStatusService.new.call(current_user.account,
+                                         status_params[:status],
+                                         status_params[:in_reply_to_id].blank? ? nil : Status.find(status_params[:in_reply_to_id]),
+                                         media_ids: status_params[:media_ids],
+                                         sensitive: status_params[:sensitive],
+                                         spoiler_text: status_params[:spoiler_text],
+                                         visibility: status_params[:visibility],
+                                         application: doorkeeper_token.application,
+                                         idempotency: request.headers['Idempotency-Key'])
+
     render :show
   end
 
@@ -100,11 +106,32 @@ class Api::V1::StatusesController < ApiController
     render :show
   end
 
+  def mute
+    current_account.mute_conversation!(@conversation)
+
+    @mutes_map = { @conversation.id => true }
+
+    render :show
+  end
+
+  def unmute
+    current_account.unmute_conversation!(@conversation)
+
+    @mutes_map = { @conversation.id => false }
+
+    render :show
+  end
+
   private
 
   def set_status
     @status = Status.find(params[:id])
     raise ActiveRecord::RecordNotFound unless @status.permitted?(current_account)
+  end
+
+  def set_conversation
+    @conversation = @status.conversation
+    raise Mastodon::ValidationError if @conversation.nil?
   end
 
   def status_params

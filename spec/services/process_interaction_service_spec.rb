@@ -3,6 +3,7 @@ require 'rails_helper'
 RSpec.describe ProcessInteractionService do
   let(:receiver) { Fabricate(:user, email: 'alice@example.com', account: Fabricate(:account, username: 'alice')).account }
   let(:sender)   { Fabricate(:user, email: 'bob@example.com', account: Fabricate(:account, username: 'bob')).account }
+  let(:remote_sender) { Fabricate(:account, username: 'carol', domain: 'localdomain.com', uri: 'https://webdomain.com/users/carol') }
 
   subject { ProcessInteractionService.new }
 
@@ -30,6 +31,35 @@ XML
       expect(FollowRequest.find_by(account: sender, target_account: receiver)).to_not be_nil
     end
   end
+
+  describe 'follow request slap from known remote user identified by email' do
+    before do
+      receiver.update(locked: true)
+      # Copy already-generated key
+      remote_sender.update(private_key: sender.private_key, public_key: remote_sender.public_key)
+
+      payload = <<XML
+<entry xmlns="http://www.w3.org/2005/Atom" xmlns:activity="http://activitystrea.ms/spec/1.0/">
+  <author>
+    <email>carol@localdomain.com</email>
+    <name>carol</name>
+    <uri>https://webdomain.com/users/carol</uri>
+  </author>
+
+  <id>someIdHere</id>
+  <activity:verb>http://activitystrea.ms/schema/1.0/request-friend</activity:verb>
+</entry>
+XML
+
+      envelope = OStatus2::Salmon.new.pack(payload, remote_sender.keypair)
+      subject.call(envelope, receiver)
+    end
+
+    it 'creates a record' do
+      expect(FollowRequest.find_by(account: remote_sender, target_account: receiver)).to_not be_nil
+    end
+  end
+
 
   describe 'follow request authorization slap' do
     before do

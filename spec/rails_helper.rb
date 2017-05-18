@@ -12,8 +12,9 @@ require 'capybara/rspec'
 Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
 
 ActiveRecord::Migration.maintain_test_schema!
-WebMock.disable_net_connect!(allow: 'localhost:7575')
+WebMock.disable_net_connect!
 Sidekiq::Testing.inline!
+Sidekiq::Logging.logger = nil
 
 RSpec.configure do |config|
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
@@ -25,6 +26,7 @@ RSpec.configure do |config|
   config.include Devise::Test::ControllerHelpers, type: :controller
   config.include Devise::Test::ControllerHelpers, type: :view
   config.include Paperclip::Shoulda::Matchers
+  config.include ActiveSupport::Testing::TimeHelpers
 
   config.before :each, type: :feature do
     https = ENV['LOCAL_HTTPS'] == 'true'

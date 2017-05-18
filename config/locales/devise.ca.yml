@@ -1,0 +1,61 @@
+---
+ca:
+  devise:
+    confirmations:
+      confirmed: La seva adreça de correu ha estat confirmada amb èxit.
+      send_instructions: Rebrà un correu electrònic amb instruccions sobre com confirmar la seva adreça de correu en pocs minuts.
+      send_paranoid_instructions: Si la seva adreça de correu electrònic existeix en la nostre base de dades, rebrà un correu electrònic amb instruccions sobre com confirmar la seva adreça de correu en pocs minuts.
+    failure:
+      already_authenticated: Vosté ja està registrat.
+      inactive: el seu compte encara no està actiu.
+      invalid: Invàlid %{authentication_keys} o contrassenya.
+      last_attempt: Té un intent més abans que el seu compte sigui bloquejat.
+      locked: el seu compte ha estat bloquejat.
+      not_found_in_database: Invàlit %{authentication_keys} o contrassenya.
+      timeout: la sessió ha expirat. Si us plau iniciï sessió de nou per a continuar.
+      unauthenticated: Necessita iniciar sessió o registrar-se abans de continuar.
+      unconfirmed: Ha de confirmar la seva adreça de correu electrònic abans de continuar.
+    mailer:
+      confirmation_instructions:
+        subject: 'Mastodon: Instruccions de confirmació'
+      password_change:
+        subject: 'Mastodon: Contrassenya canviada'
+      reset_password_instructions:
+        subject: 'Mastodon: Instruccions per a reiniciar contrassenya'
+      unlock_instructions:
+        subject: 'Mastodon: Instruccions per a desbloquejar'
+    omniauth_callbacks:
+      failure: No podem autentificar-lo desde %{kind} degut a "%{reason}".
+      success: Autentificat amb èxit desde el compte %{kind} .
+    passwords:
+      no_token: No pot accedir aquesta pàgina sense provenir desde el correu de reinici de contrassenya. Si ve desde el correu de reinici de contrassenya, si us pla asseguri que està emprant la adreça complerta proporcionada.
+      send_instructions: Rebrà un correu electrònic amb instruccions sobre com reiniciar la seva contrassenya en pocs minuts.
+      send_paranoid_instructions: Si el seu correu electrònic existeix en la nostre base de dades, rebrà un enllaç de recuperació de contrassenya en la seva adreça de correu en pocs minuts.
+      updated: La seva contrassenya ha estat canviada amb èxit. Ara ja està registrat.
+      updated_not_active: La seva contrassenya ha estat canviada amb èxit.
+    registrations:
+      destroyed: Adéu! el seu compte ha estat cancel·lat amb èxit. Esperem veure'l aviat de nou.
+      signed_up: Benvingut! S'ha registrat amb èxit.
+      signed_up_but_inactive: S´ha registrat amb èxit. No obstant, no podem identificar-lo perque el seu compte no ha estat activat encara.
+      signed_up_but_locked: S´ha registrat amb èxit. No obstant, no podem identificar-lo perque el seu compte està bloquejat.
+      signed_up_but_unconfirmed: Un missatge amb un enllaç de confirmació ha estat enviat per correu electrònic. Si us plau segueixi l'enllaç per activar el seu compte.
+      update_needs_confirmation: Ha actualitzat el seu compte amb èxit, però necessitem verificar la nova adreça de correu. Si us plau comprovi el correu i segueixi l'enllaç per confirmar la nova adreça de correu.
+      updated: el seu compte ha estat actualitzat amb èxit.
+    sessions:
+      already_signed_out: Ha tancat la sessió amb èxit.
+      signed_in: S'ha registrat amb èxit.
+      signed_out: Ha tancat la sessió amb èxit.
+    unlocks:
+      send_instructions: Rebrà un correu electrònic amb instruccions sobre com desbloquejar el seu compte en pocs minuts.
+      send_paranoid_instructions: Si el seu compte existeix, rebrà un correu electrònic amb instruccions sobre com desbloquejarla en pocs minuts.
+      unlocked: El seu compte ha estat bloquejat amb èxit. Si us plau iniciï sessió per continuar.
+  errors:
+    messages:
+      already_confirmed: ja ha estat confirmat, si us plau intenti iniciar sessió
+      confirmation_period_expired: necessita ser confirmat dins de %{period}, si us plau demani una nova
+      expired: ha expirat, si us plau demani una nova
+      not_found: no trobat
+      not_locked: no va ser bloquejada
+      not_saved:
+        one: '1 error ha prohibit aquest %{resource} de ser guardat:'
+        other: "%{count} errors va prohibir aquest %{resource} de ser guardat:"

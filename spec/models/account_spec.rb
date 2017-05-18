@@ -190,6 +190,21 @@ RSpec.describe Account, type: :model do
     end
   end
 
+  describe '#excluded_from_timeline_account_ids' do
+    it 'includes account ids of blockings, blocked_bys and mutes' do
+      account = Fabricate(:account)
+      block = Fabricate(:block, account: account)
+      mute = Fabricate(:mute, account: account)
+      block_by = Fabricate(:block, target_account: account)
+
+      results = account.excluded_from_timeline_account_ids
+      expect(results.size).to eq 3
+      expect(results).to include(block.target_account.id)
+      expect(results).to include(mute.target_account.id)
+      expect(results).to include(block_by.account.id)
+    end
+  end
+
   describe '.search_for' do
     before do
       @match = Fabricate(
@@ -246,19 +261,43 @@ RSpec.describe Account, type: :model do
   end
 
   describe '.triadic_closures' do
-    it 'finds accounts you dont follow which are followed by accounts you do follow' do
-      me = Fabricate(:account)
-      friend = Fabricate(:account)
-      friends_friend = Fabricate(:account)
+    subject { described_class.triadic_closures(me) }
+
+    let!(:me) { Fabricate(:account) }
+    let!(:friend) { Fabricate(:account) }
+    let!(:friends_friend) { Fabricate(:account) }
+    let!(:both_follow) { Fabricate(:account) }
+
+    before do
       me.follow!(friend)
       friend.follow!(friends_friend)
 
-      both_follow = Fabricate(:account)
       me.follow!(both_follow)
       friend.follow!(both_follow)
+    end
 
-      results = Account.triadic_closures(me)
-      expect(results).to eq [friends_friend]
+    it 'finds accounts you dont follow which are followed by accounts you do follow' do
+      is_expected.to eq [friends_friend]
+    end
+
+    context 'when you block account' do
+      before do
+        me.block!(friends_friend)
+      end
+
+      it 'rejects blocked accounts' do
+        is_expected.to be_empty
+      end
+    end
+
+    context 'when you mute account' do
+      before do
+        me.mute!(friends_friend)
+      end
+
+      it 'rejects muted accounts' do
+        is_expected.to be_empty
+      end
     end
   end
 
@@ -363,6 +402,10 @@ RSpec.describe Account, type: :model do
 
     it 'does not match URLs' do
       expect(subject.match('Check this out https://medium.com/@alice/some-article#.abcdef123')).to be_nil
+    end
+
+    xit 'does not match URL querystring' do
+      expect(subject.match('https://example.com/?x=@alice')).to be_nil
     end
   end
 

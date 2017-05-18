@@ -1,0 +1,14 @@
+<div lang="he" dir="rtl">
+<p>שלום <%= @resource.email %> !</p>
+
+<p>הרגע יצרת חשבון בקהילה <%= @instance %>.</p>
+
+<p>כדי לוודא את הרשמתך, יש ללחוץ על הקישורית הבאה : <br>
+<%= link_to 'Confirm my account', confirmation_url(@resource, confirmation_token: @token) %>
+
+<p>יש לעבור גם על תנאי השימוש <%= link_to 'terms and conditions', terms_url %>.</p>
+
+<p>בתודה מראש,<p>
+
+<p>צוות ניהול <%= @instance %></p>
+</div>

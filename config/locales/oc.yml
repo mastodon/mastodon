@@ -146,7 +146,6 @@ oc:
       unresolved: Pas resolguts
       view: Veire
     settings:
-      click_to_edit: Clicatz per modificar
       contact_information:
         email: Picatz una adreça de corrièl
         label: Informacions de contacte
@@ -242,9 +241,9 @@ oc:
       following: Lista de mond que seguètz
       muting: Muting list
     upload: Importar
-  landing_strip_html: <strong>%{name}</strong> es un utilizaire de <strong>%{domain}</strong>.
+  landing_strip_html: <strong>%{name}</strong> es un utilizaire de %{link_to_root_path}.
     Podètz lo sègre o interagir amb eles s’avètz un compte ont que siasgue sul fediverse.
-    Autrament podètz <a href="%{sign_up_path}">vos marcar aquí</a>.
+  landing_strip_signup_html: Autrament podètz <a href="%{sign_up_path}">vos marcar aquí</a>.
   media_attachments:
     validations:
       images_and_video: Cannot attach a video to a status that already contains images

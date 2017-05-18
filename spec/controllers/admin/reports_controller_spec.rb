@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 describe Admin::ReportsController do
+  render_views
+
   let(:user) { Fabricate(:user, admin: true) }
   before do
     sign_in user, scope: :user

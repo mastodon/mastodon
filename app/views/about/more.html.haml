@@ -8,7 +8,7 @@
         %h2= site_hostname
 
         - unless @instance_presenter.site_description.blank?
-          %p= @instance_presenter.site_description.html_safe
+          %p!= @instance_presenter.site_description
 
       .information-board
         .section
@@ -25,9 +25,9 @@
           %span= t 'about.domain_count_after'
 
       - unless @instance_presenter.site_extended_description.blank?
-        .panel= @instance_presenter.site_extended_description.html_safe
+        .panel!= @instance_presenter.site_extended_description
 
     .sidebar
       = render 'contact', contact: @instance_presenter
-      = render 'links'
+      = render 'links', instance: @instance_presenter
       = render 'version', version: @instance_presenter

@@ -29,13 +29,15 @@ module Mastodon
       :en,
       :ar,
       :bg,
+      :ca,
       :de,
       :eo,
       :es,
+      :fa,
       :fi,
       :fr,
+      :he,
       :hr,
-      :id,
       :hu,
       :id,
       :io,
@@ -48,6 +50,8 @@ module Mastodon
       :pt,
       :'pt-BR',
       :ru,
+      :th,
+      :tr,
       :uk,
       :'zh-CN',
       :'zh-HK',
@@ -64,17 +68,14 @@ module Mastodon
     config.middleware.insert_before 0, Rack::Cors do
       allow do
         origins  '*'
-
-        resource '/api/*',       headers: :any, methods: [:post, :put, :delete, :get, :options], credentials: false, expose: ['Link', 'X-RateLimit-Reset', 'X-RateLimit-Limit', 'X-RateLimit-Remaining', 'X-Request-Id']
+        resource '/@:username',  headers: :any, methods: [:get], credentials: false
+        resource '/api/*',       headers: :any, methods: [:post, :put, :delete, :get, :patch, :options], credentials: false, expose: ['Link', 'X-RateLimit-Reset', 'X-RateLimit-Limit', 'X-RateLimit-Remaining', 'X-Request-Id']
         resource '/oauth/token', headers: :any, methods: [:post], credentials: false
       end
     end
 
     config.middleware.use Rack::Attack
     config.middleware.use Rack::Deflater
-
-    config.browserify_rails.commandline_options   = '--transform [ babelify --presets [ es2015 react ] --plugins [ transform-decorators-legacy ] ] --extension=".jsx"'
-    config.browserify_rails.evaluate_node_modules = true
 
     config.to_prepare do
       Doorkeeper::AuthorizationsController.layout 'public'

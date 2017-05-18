@@ -1,4 +1,22 @@
 # frozen_string_literal: true
+# == Schema Information
+#
+# Table name: media_attachments
+#
+#  id                :integer          not null, primary key
+#  status_id         :integer
+#  file_file_name    :string
+#  file_content_type :string
+#  file_file_size    :integer
+#  file_updated_at   :datetime
+#  remote_url        :string           default(""), not null
+#  account_id        :integer
+#  created_at        :datetime         not null
+#  updated_at        :datetime         not null
+#  shortcode         :string
+#  type              :integer          default("image"), not null
+#  file_meta         :json
+#
 
 class MediaAttachment < ApplicationRecord
   self.inheritance_column = nil
@@ -35,14 +53,14 @@ class MediaAttachment < ApplicationRecord
 
   scope :attached, -> { where.not(status_id: nil) }
   scope :local, -> { where(remote_url: '') }
-  default_scope { order('id asc') }
+  default_scope { order(id: :asc) }
 
   def local?
     remote_url.blank?
   end
 
   def file_remote_url=(url)
-    self.file = URI.parse(url)
+    self.file = URI.parse(Addressable::URI.parse(url).normalize.to_s)
   end
 
   def to_param
@@ -51,6 +69,7 @@ class MediaAttachment < ApplicationRecord
 
   before_create :set_shortcode
   before_post_process :set_type_and_extension
+  before_save :set_meta
 
   class << self
     private
@@ -95,7 +114,7 @@ class MediaAttachment < ApplicationRecord
   private
 
   def set_shortcode
-    self.type = :unknown if file.blank? && type.blank?
+    self.type = :unknown if file.blank? && !type_changed?
 
     return unless local?
 
@@ -109,7 +128,31 @@ class MediaAttachment < ApplicationRecord
     self.type = VIDEO_MIME_TYPES.include?(file_content_type) ? :video : :image
     extension = appropriate_extension
     basename  = Paperclip::Interpolations.basename(file, :original)
-    file.instance_write :file_name, [basename, extension].delete_if(&:empty?).join('.')
+    file.instance_write :file_name, [basename, extension].delete_if(&:blank?).join('.')
+  end
+
+  def set_meta
+    meta = populate_meta
+    return if meta == {}
+    file.instance_write :meta, meta
+  end
+
+  def populate_meta
+    meta = {}
+    file.queued_for_write.each do |style, file|
+      begin
+        geo = Paperclip::Geometry.from_file file
+        meta[style] = {
+          width: geo.width.to_i,
+          height: geo.height.to_i,
+          size: "#{geo.width.to_i}x#{geo.height.to_i}",
+          aspect: geo.width.to_f / geo.height.to_f,
+        }
+      rescue Paperclip::Errors::NotIdentifiedByImageMagickError
+        meta[style] = {}
+      end
+    end
+    meta
   end
 
   def appropriate_extension

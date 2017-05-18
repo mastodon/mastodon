@@ -1,29 +1,30 @@
 !!! 5
-%html{:lang => I18n.locale}
+%html{ lang: I18n.locale }
   %head
-    %meta{:charset => 'utf-8'}/
-    %meta{:name => 'viewport', :content => 'width=device-width, initial-scale=1'}/
-    %meta{'http-equiv' => 'X-UA-Compatible', :content => 'IE=edge'}/
-
-    %link{:rel => "apple-touch-icon", :sizes => "180x180", :href => "/apple-touch-icon.png"}/
-    %link{:rel => "mask-icon", :href => "/mask-icon.svg", :color => "#2B90D9"}/
-    %link{:rel => "manifest", :href => "/manifest.json"}/
-    %meta{:name => "msapplication-config", :content => "/browserconfig.xml"}/
-    %meta{:name => "theme-color", :content => "#282c37"}/
-    %meta{:name => "apple-mobile-web-app-capable", :content => "yes"}/
+    %meta{ charset: 'utf-8' }/
+    %meta{ name: 'viewport', content: 'width=device-width, initial-scale=1' }/
+    %meta{ 'http-equiv' => 'X-UA-Compatible', content: 'IE=edge' }/
+    %link{ rel: 'icon', href: favicon_path, type: 'image/x-icon' }/
+    %link{ rel: 'apple-touch-icon', sizes: '180x180', href: '/apple-touch-icon.png' }/
+    %link{ rel: 'mask-icon', href: '/mask-icon.svg', color: '#2B90D9' }/
+    %link{ rel: 'manifest', href: '/manifest.json' }/
+    %meta{ name: 'msapplication-config', content: '/browserconfig.xml' }/
+    %meta{ name: 'theme-color', content: '#282c37' }/
+    %meta{ name: 'apple-mobile-web-app-capable', content: 'yes' }/
 
     %title<
       - if content_for?(:page_title)
         = yield(:page_title)
         = ' - '
-      = site_title
+      = title
 
-    = stylesheet_link_tag stylesheet_for_layout, media: 'all'
+    = stylesheet_pack_tag 'application', media: 'all'
+    = javascript_pack_tag 'common', integrity: true, crossorigin: 'anonymous'
     = csrf_meta_tags
 
     = yield :header_tags
 
   - body_classes ||= @body_classes
 
-  %body{ class: body_classes }
+  %body{ class: add_rtl_body_class(body_classes) }
     = content_for?(:content) ? yield(:content) : yield

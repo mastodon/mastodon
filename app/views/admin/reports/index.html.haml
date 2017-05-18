@@ -13,20 +13,14 @@
   %table.table
     %thead
       %tr
-        %th
+        -# %th
         %th= t('admin.reports.id')
         %th= t('admin.reports.target')
         %th= t('admin.reports.reported_by')
         %th= t('admin.reports.comment.label')
+        %th= t('admin.reports.report_contents')
         %th
     %tbody
-      - @reports.each do |report|
-        %tr
-          %td= check_box_tag 'select', report.id
-          %td= "##{report.id}"
-          %td= link_to report.target_account.acct, admin_account_path(report.target_account.id)
-          %td= link_to report.account.acct, admin_account_path(report.account.id)
-          %td= truncate(report.comment, length: 30, separator: ' ')
-          %td= table_link_to 'circle', t('admin.reports.view'), admin_report_path(report)
+      = render @reports
 
 = paginate @reports

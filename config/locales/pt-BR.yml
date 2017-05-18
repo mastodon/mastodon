@@ -22,8 +22,10 @@ pt-BR:
     features_headline: O que torna Mastodon diferente
     get_started: Comece aqui
     links: Links
-    source_code: Source code
     other_instances: Outras instâncias
+    source_code: Source code
+    status_count_after: status
+    status_count_before: Quem autorizou
     terms: Termos
     user_count_after: usuários
     user_count_before: Lugar de
@@ -38,9 +40,21 @@ pt-BR:
     posts: Posts
     remote_follow: Acesso remoto
     unfollow: Unfollow
+  activitypub:
+    activity:
+      announce:
+        name: "%{account_name} compartilhou uma atividade."
+      create:
+        name: "%{account_name} criou uma nota."
+    outbox:
+      name: "%{account_name}'s Outbox"
+      summary: Uma coleção de atividades do usuário %{account_name}.
   admin:
     accounts:
       are_you_sure: Você tem certeza?
+      confirm: Confirme
+      confirmed: Confirmado
+      disable_two_factor_authentication: Desabilitar senha de 2 passos
       display_name: Nome mostrado
       domain: Domain
       edit: Editar
@@ -70,7 +84,12 @@ pt-BR:
       profile_url: URL do perfil
       public: Público
       push_subscription_expires: PuSH subscription expires
+      reset_password: Resetar senha
       salmon_url: Salmon URL
+      show:
+        created_reports: Reports criados por esta conta
+        report: report
+        targeted_reports: Reports feitos sobre esta conta
       silence: Silêncio
       statuses: Status
       title: Contas
@@ -126,6 +145,7 @@ pt-BR:
       id: ID
       mark_as_resolved: Marque como resolvido
       report: 'Report #%{id}'
+      report_contents: Conteúdo
       reported_account: Conta reportada
       reported_by: Reportado por
       resolved: Resolvido
@@ -137,7 +157,6 @@ pt-BR:
       unresolved: Unresolved
       view: View
     settings:
-      click_to_edit: Clique para editar
       contact_information:
         email: Entre um endereço de email público
         label: Informação de contato
@@ -171,10 +190,55 @@ pt-BR:
     didnt_get_confirmation: Não recebeu instruções de confirmação?
     forgot_password: Esqueceu a senha?
     login: Entrar
+    logout: Sair
     register: Registar
     resend_confirmation: Reenviar instruções de confirmação
     reset_password: Resetar senha
     set_new_password: Editar password
+  authorize_follow:
+    error: Infelizmente houve um erro olhando uma conta remota
+    follow: Seguir
+    prompt_html: 'Você (<strong>%{self}</strong>) pediu pra seguir:'
+    title: Seguir %{acct}
+  datetime:
+    distance_in_words:
+      about_x_hours: "%{count}h"
+      about_x_months: "%{count}mo"
+      about_x_years: "%{count}y"
+      almost_x_years: "%{count}y"
+      half_a_minute: Agora
+      less_than_x_minutes: "%{count}m"
+      less_than_x_seconds: Agora
+      over_x_years: "%{count}y"
+      x_days: "%{count}d"
+      x_minutes: "%{count}m"
+      x_months: "%{count}mo"
+      x_seconds: "%{count}s"
+  errors:
+    '403': Você não tem permissão para ver essa página.
+    '404': A página que você procura não existe.
+    '410': A página que você procura não existe mais.
+    '422':
+      content: Verificação de segurança falhou. Você está bloqueando cookies?
+      title: Verificação de segurança falhou
+  exports:
+    blocks: Você bloqueia
+    csv: CSV
+    follows: Você segue
+    mutes: Você selencia
+    storage: Mídia de dados
+  followers:
+    domain: Domínio
+    explanation_html: Se você quer garantir a privacidade doe seu status, você precisa saber quem te segue. <strong>Seu status privado é enviado a todas as instancias que você tem seguidores</strong>. Você pode querer reavaliar e remover os seguidores que você não confia que sua privacidade vai ser mantida pelos administradores ou softwares de outras instancias.
+    followers_count: Númbero de seguidores
+    lock_link: Bloquear sua conta
+    purge: Remove dos seguidores
+    success:
+      one: Em processo de bloquear seguidores de um domínio...
+      other: Em processo de bloqueio-leve dos seguidores de %{count} domínios...
+    true_privacy_html: Saiba que <strong>privaicade de verdade só pode ser atingida com criptografia ponto-a-ponto</strong>.
+    unlocked_warning_html: Qualquer um que te seguir para ver seus status privado imediatamente. %{lock_link} para poder rever e rejeitar seguidores.
+    unlocked_warning_title: Sua conta não está bloqueada
   generic:
     changes_saved_msg: Mudanças guardadas!
     powered_by: powered by %{link}
@@ -182,13 +246,39 @@ pt-BR:
     validation_errors:
       one: Algo não está correto. Por favor reveja o erro abaixo
       other: Algo não está correto. Por favor reveja os %{count} erros abaixo
+  imports:
+    preface: Você pode importar certos dados, como as pessoas que você segue ou estão bloqueadas para sua conta nessa instancia, de arquivos com dados criados por outra instancia.
+    success: Seus dados foram carregados com sucesso and serão processados em algum tempo
+    types:
+      blocking: Lista de bloqueio
+      following: Lista de seguidos
+      muting: Lista de silenciados
+    upload: Carregar
+  landing_strip_html: <strong>%{name}</strong> is a user on %{link_to_root_path}. You can follow them or interact with them if you have an account anywhere in the fediverse.
+  landing_strip_signup_html: If you don't, you can <a href="%{sign_up_path}">sign up here</a>.
+  media_attachments:
+    validations:
+      images_and_video: Cannot attach a video to a status that already contains images
+      too_many: Cannot attach more than 4 files
   notification_mailer:
+    digest:
+      body: 'Isto é um resumo do que você perdeu em %{instance} desde sua última visita %{since}:'
+      mention: "%{name} mencionou você em:"
+      new_followers_summary:
+        one: Você tem um novo seguidor!
+        other: Você conseguiu %{count} novos seguidores! Incrível
+      subject:
+        one: "1 nova notificação desde sua última visita \U0001F418"
+        other: "%{count} novas notificações desde a última visita \U0001F418"
     favourite:
       body: 'O seu post foi favoritado por %{name}:'
       subject: "%{name} favouritou o seu post"
     follow:
       body: "%{name} seguiu você!"
       subject: "%{name} segue você"
+    follow_request:
+      body: "%{name} pediu para te seguir"
+      subject: 'Seguidor pendente: %{name}'
     mention:
       body: 'Você foi mencionado por %{name} em:'
       subject: Foi mencionado por %{name}
@@ -198,6 +288,54 @@ pt-BR:
   pagination:
     next: Next
     prev: Prev
+    truncate: "&hellip;"
+  remote_follow:
+    acct: Entre seu usuário@domínio do qual quer seguir
+    missing_resource: Não foi possível achar a URL de redirecionamento para sua conta
+    proceed: Prossiga para seguir
+    prompt: 'Você vai seguir:'
   settings:
+    authorized_apps: Aplicativos autorizados
+    back: Voltar ao Mastodon
     edit_profile: Editar perfil
+    export: Importar dados
+    followers: Seguidores autorizados
+    import: Importar
     preferences: Preferências
+    settings: Settings
+    two_factor_authentication: Autenticação Two-factor
+  statuses:
+    open_in_web: Abrir no browser
+    over_character_limit: limite de caracter excedeu %{max}
+    show_more: Mostrar mais
+    visibilities:
+      private: Seguidores-apenas
+      private_long: Mostrar apenas para seguidores
+      public: Público
+      public_long: Qualquer um pode ver
+      unlisted: Público, mas não mostre no timeline público
+      unlisted_long: Todo mundo pode ver mas não será listado nas timeline públicas
+  stream_entries:
+    click_to_show: Clique pra mostrar
+    reblogged: boosted
+    sensitive_content: Conteúdo sensível
+  time:
+    formats:
+      default: "%d %b, %Y, %H:%M"
+  two_factor_authentication:
+    code_hint: Entre o código gerado pelo seu aplicativo para confirmar
+    description_html: Se você habilitar <strong>autenticação two-factor </strong>, quando logar será necessário o seu telefone que vai gerar os tokens usado.
+    disable: Disabilitar
+    enable: Habilitar
+    enabled_success: Autenticador Two-factor habilitador com sucesso
+    generate_recovery_codes: Gerar códigos para recuperar conta
+    instructions_html: "<strong>Scaneie este código QR no seu Google Authenticator ou aplicativo similar no seu telefone</strong>. A partir de agora seu aplicativo irá gerar tokens que deverão ser digitados para você logar."
+    lost_recovery_codes: Códigos de recuperação permite que você recupere o acesso a sua conta se você perder seu telefone. Se você perder os códigos de recuperação, você pode regera-los aqui. Seus códigos antigos serão invalidados.
+    manual_instructions: 'Se você não puder scanear o código QR e precisa digita-los manualmente, aqui está o segredo em texto.:'
+    recovery_codes_regenerated: Códigos de recuperação foram gerados com sucesso
+    recovery_instructions: Se algum dia você perder o acesso ao seu telefone, você pode usar um dos códigos de abaixo para recupera o acesso a sua conta. Guarde os códigos de acesso em local seguro, por exemplo imprimindo ou guardados com documentos importantes.
+    setup: Configurar
+    wrong_code: O código digitado é inválido! Os relógios do servidor e do dispositivo estão corretos?
+  users:
+    invalid_email: Endereço e-mail inválido
+    invalid_otp_token: Código two-factor inválido

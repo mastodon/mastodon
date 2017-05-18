@@ -3,6 +3,8 @@
 require 'rails_helper'
 
 describe MediaController do
+  render_views
+
   describe '#show' do
     it 'redirects to the file url when attached to a status' do
       status = Fabricate(:status)

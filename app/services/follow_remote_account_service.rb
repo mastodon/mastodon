@@ -2,6 +2,7 @@
 
 class FollowRemoteAccountService < BaseService
   include OStatus2::MagicKey
+  include HttpHelper
 
   DFRN_NS = 'http://purl.org/macgirvin/dfrn/1.0'
 
@@ -73,7 +74,8 @@ class FollowRemoteAccountService < BaseService
   end
 
   def get_feed(url)
-    response = http_client.get(Addressable::URI.parse(url))
+    response = http_client(write: 20, connect: 20, read: 50).get(Addressable::URI.parse(url).normalize)
+    raise Goldfinger::Error, "Feed attempt failed for #{url}: HTTP #{response.code}" unless response.code == 200
     [response.to_s, Nokogiri::XML(response)]
   end
 
@@ -97,9 +99,5 @@ class FollowRemoteAccountService < BaseService
 
   def get_profile(body, account)
     RemoteProfileUpdateWorker.perform_async(account.id, body.force_encoding('UTF-8'), false)
-  end
-
-  def http_client
-    HTTP.timeout(:per_operation, write: 20, connect: 20, read: 50)
   end
 end
