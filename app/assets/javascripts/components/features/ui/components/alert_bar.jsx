@@ -23,5 +23,5 @@ export default class AlertBar extends React.Component {
 }
 
 AlertBar.propTypes = {
-  isEmailConfirmed: PropTypes.bool,
+  isEmailConfirmed: PropTypes.bool.isRequired,
 };
