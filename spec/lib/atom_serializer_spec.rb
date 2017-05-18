@@ -190,8 +190,24 @@ RSpec.describe AtomSerializer do
   end
 
   describe '#follow_request_salmon' do
-    it 'returns dumpable XML'
-    it 'triggers follow request when processed'
+    let(:follow_request) { Fabricate(:follow_request, account: author, target_account: receiver) }
+    let(:atom_serializer) { described_class.new }
+    subject { atom_serializer.follow_request_salmon(follow_request) }
+
+    it { is_expected.to be_instance_of Ox::Element }
+
+    describe 'with .render' do
+      let(:rendered) { described_class.render(subject) }
+      it 'returns dumpable XML' do
+        expect(rendered).to be_a String
+      end
+
+      it 'triggers follow request when processed' do
+        envelope = OStatus2::Salmon.new.pack(rendered, author.keypair)
+        ProcessInteractionService.new.call(envelope, receiver)
+        expect(author.requested?(receiver)).to be true
+      end
+    end
   end
 
   describe '#authorize_follow_request_salmon' do
