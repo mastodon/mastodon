@@ -45,7 +45,7 @@ class User < ApplicationRecord
   belongs_to :account, inverse_of: :user, required: true
   accepts_nested_attributes_for :account
 
-  validates :locale, inclusion: I18n.available_locales.map(&:to_s), unless: 'locale.nil?'
+  validates :locale, inclusion: I18n.available_locales.map(&:to_s), if: :locale?
   validates :email, email: true
 
   scope :recent,    -> { order(id: :desc) }
