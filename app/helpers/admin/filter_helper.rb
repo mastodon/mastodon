@@ -18,14 +18,18 @@ module Admin::FilterHelper
   private
 
   def filter_params(more_params)
-    params.permit(FILTERS).merge(more_params)
+    controller_request_params.merge(more_params)
   end
 
   def filter_link_class(new_url)
-    filtered_url_for(params) == new_url ? 'selected' : ''
+    filtered_url_for(controller_request_params) == new_url ? 'selected' : ''
   end
 
-  def filtered_url_for(params)
-    url_for filter_params(params)
+  def filtered_url_for(url_params)
+    url_for filter_params(url_params)
+  end
+
+  def controller_request_params
+    params.permit(FILTERS)
   end
 end
