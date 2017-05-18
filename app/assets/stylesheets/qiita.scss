@@ -31,3 +31,26 @@
     text-transform: none;
   }
 }
+
+.registrations {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  .qiita {
+    width: 300px;
+    margin: 5px auto;
+    text-align: center;
+  }
+
+  .password_registration_closed_caution {
+    width: 300px;
+    margin: 10px auto;
+  }
+
+  .info a {
+    color: white;
+    text-transform: none;
+  }
+}

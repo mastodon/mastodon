@@ -31,6 +31,10 @@
       %td= best_in_place @settings['site_extended_description'], :value, as: :textarea, url: admin_setting_path(@settings['site_extended_description'])
     %tr
       %td
+        %strong= t('admin.settings.prohibit_registrations_except_qiita_oauth.title')
+      %td= best_in_place @settings['prohibit_registrations_except_qiita_oauth'], :value, as: :checkbox, collection: { false: t('admin.settings.prohibit_registrations_except_qiita_oauth.disabled'), true: t('admin.settings.prohibit_registrations_except_qiita_oauth.enabled')}, url: admin_setting_path(@settings['prohibit_registrations_except_qiita_oauth'])
+    %tr
+      %td
         %strong= t('admin.settings.registrations.open.title')
       %td= best_in_place @settings['open_registrations'], :value, as: :checkbox, collection: { false: t('admin.settings.registrations.open.disabled'), true: t('admin.settings.registrations.open.enabled')}, url: admin_setting_path(@settings['open_registrations'])
     %tr

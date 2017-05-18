@@ -170,6 +170,10 @@ en:
           disabled: Disabled
           enabled: Enabled
           title: Open registration
+      prohibit_registrations_except_qiita_oauth:
+        title: Prohibit registration except Qiita OAuth
+        disabled: Don't Prohibit
+        enabled: Prohibit
       setting: Setting
       site_description:
         desc_html: Displayed as a paragraph on the frontpage and used as a meta tag.<br>You can use HTML tags, in particular <code>&lt;a&gt;</code> and <code>&lt;em&gt;</code>.
@@ -196,6 +200,8 @@ en:
     resend_confirmation: Resend confirmation instructions
     reset_password: Reset password
     set_new_password: Set new password
+    oauth_registration: User Registration
+    password_signup_closed_caution: For now, we allow registrations only with Qiita account.
   authorize_follow:
     error: Unfortunately, there was an error looking up the remote account
     follow: Follow
@@ -304,8 +310,7 @@ en:
     preferences: Preferences
     settings: Settings
     two_factor_authentication: Two-factor Authentication
-    qiita_authorization: Qiita Authorization
-    oauth_registration: User Registration
+    qiita_authorizations: Qiita Authorizations
   statuses:
     open_in_web: Open in web
     over_character_limit: character limit of %{max} exceeded
