@@ -67,7 +67,7 @@ class Status < ApplicationRecord
   scope :local_only, -> { left_outer_joins(:account).where(accounts: { domain: nil }) }
   scope :excluding_silenced_accounts, -> { left_outer_joins(:account).where(accounts: { silenced: false }) }
   scope :including_silenced_accounts, -> { left_outer_joins(:account).where(accounts: { silenced: true }) }
-  scope :not_excluded_by_account, ->(account) { where.not(account_id: account.excluded_from_timeline_account_ids) }
+  scope :not_excluded_by_account, ->(account) { where.not(account_id: account.excluded_from_timeline_account_ids, accounts: { domain: account.excluded_from_timeline_domains }) }
 
   cache_associated :account, :application, :media_attachments, :tags, :stream_entry, mentions: :account, reblog: [:account, :application, :stream_entry, :tags, :media_attachments, mentions: :account], thread: :account
 
@@ -284,7 +284,9 @@ class Status < ApplicationRecord
   end
 
   def find_statuses_from_tree_path(ids, account)
-    statuses = Status.where(id: ids).to_a
+    statuses = Status.where(id: ids).includes(:account).to_a
+
+    # FIXME: n+1 bonanza
     statuses.reject! { |status| filter_from_context?(status, account) }
 
     # Order ancestors/descendants by tree path
@@ -292,6 +294,11 @@ class Status < ApplicationRecord
   end
 
   def filter_from_context?(status, account)
-    account&.blocking?(status.account_id) || account&.muting?(status.account_id) || (status.account.silenced? && !account&.following?(status.account_id)) || !status.permitted?(account)
+    should_filter   = account&.blocking?(status.account_id)
+    should_filter ||= account&.domain_blocking?(status.account.domain)
+    should_filter ||= account&.muting?(status.account_id)
+    should_filter ||= (status.account.silenced? && !account&.following?(status.account_id))
+    should_filter ||= !status.permitted?(account)
+    should_filter
   end
 end
