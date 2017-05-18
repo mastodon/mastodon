@@ -113,7 +113,7 @@ class VideoPlayer extends React.PureComponent {
     const { media, intl, width, height, sensitive, autoplay } = this.props;
 
     let spoilerButton = (
-      <div className='status__video-player-spoiler' style={{ display: !this.state.visible ? 'none' : 'block' }} >
+      <div className={`status__video-player-spoiler ${this.state.visible ? 'status__video-player-spoiler--visible' : ''}`}>
         <IconButton overlay title={intl.formatMessage(messages.toggle_visible)} icon={this.state.visible ? 'eye' : 'eye-slash'} onClick={this.handleVisibility} />
       </div>
     );
@@ -156,7 +156,7 @@ class VideoPlayer extends React.PureComponent {
 
     if (this.state.preview && !autoplay) {
       return (
-        <div role='button' tabIndex='0' className='media-spoiler-video' style={{ width: `${width}px`, height: `${height}px`, background: `url(${media.get('preview_url')}) no-repeat center` }} onClick={this.handleOpen}>
+        <div role='button' tabIndex='0' className='media-spoiler-video' style={{ width: `${width}px`, height: `${height}px`, backgroundImage: `url(${media.get('preview_url')})` }} onClick={this.handleOpen}>
           {spoilerButton}
           <div className='media-spoiler-video-play-icon'><i className='fa fa-play' /></div>
         </div>

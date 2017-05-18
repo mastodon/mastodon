@@ -36,17 +36,14 @@ class IconButton extends React.PureComponent {
   }
 
   render () {
-    let style = {
+    const style = {
       fontSize: `${this.props.size}px`,
       width: `${this.props.size * 1.28571429}px`,
       height: `${this.props.size * 1.28571429}px`,
       lineHeight: `${this.props.size}px`,
-      ...this.props.style
+      ...this.props.style,
+      ...(this.props.active ? this.props.activeStyle : {})
     };
-
-    if (this.props.active) {
-      style = { ...style, ...this.props.activeStyle };
-    }
 
     const classes = ['icon-button'];
 

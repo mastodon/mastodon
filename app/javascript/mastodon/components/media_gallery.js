@@ -173,7 +173,7 @@ class MediaGallery extends React.PureComponent {
 
     return (
       <div className='media-gallery' style={{ height: `${this.props.height}px` }}>
-        <div className='spoiler-button' style={{ display: !this.state.visible ? 'none' : 'block' }}>
+        <div className={`spoiler-button ${this.state.visible ? 'spoiler-button--visible' : ''}`}>
           <IconButton title={intl.formatMessage(messages.toggle_visible)} icon={this.state.visible ? 'eye' : 'eye-slash'} overlay onClick={this.handleOpen} />
         </div>
 
