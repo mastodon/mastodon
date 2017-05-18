@@ -58,6 +58,11 @@ class User < ApplicationRecord
 
   before_validation :sanitize_languages
 
+  # This avoids a deprecation warning from Rails 5.1
+  # It seems possible that a future release of devise-two-factor will
+  # handle this itself, and this can be removed from our User class.
+  attribute :otp_secret
+
   def confirmed?
     confirmed_at.present?
   end
