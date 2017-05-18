@@ -62,6 +62,7 @@ he:
       feed_url: כתובת פיד
       followers: עוקבים
       follows: נעקבים
+      ip: כתובת IP
       location:
         all: הכל
         local: מקומי
@@ -84,8 +85,10 @@ he:
       profile_url: כתובת פרופיל
       public: פומבי
       push_subscription_expires: הרשמה להודעות בדחיפה פגה
+      reset: איפוס
       reset_password: אתחול סיסמא
       salmon_url: כתובת סלמון
+      search: חיפוש
       show:
         created_reports: דיווחים מאת חשבון זה
         report: דו"ח
@@ -256,8 +259,8 @@ he:
       following: רשימת נעקבים
       muting: רשימת השתקות
     upload: יבוא
-  landing_strip_html: <strong>%{name}</strong> על השרת <strong>%{domain}</strong>. ניתן לעקוב אחריהם או לדבר איתם בעזרת חשבון על כל שרת קהילה ברחבי הפדרציה. ליצירת חשבון, ניתן<a href="%{sign_up_path}">להרשם כאן</a>.
-  landing_strip_signup_html: If you don't, you can <a href="%{sign_up_path}">sign up here</a>.
+  landing_strip_html: <strong>%{name}</strong> מזהה משתמש(ת) מהקהילה %{link_to_root_path}. ניתן לעקוב אחריהם או לדבר איתם בעזרת חשבון על כל שרת קהילה ברחבי הפדרציה.
+  landing_strip_signup_html: לחלופין , ניתן <a href="%{sign_up_path}">להרשם מקומית כאן</a>.
   media_attachments:
     validations:
       images_and_video: לא ניתן להוסיף וידאו לחצרוץ שכבר מכיל תמונות

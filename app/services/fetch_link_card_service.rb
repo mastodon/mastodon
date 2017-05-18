@@ -7,11 +7,11 @@ class FetchLinkCardService < BaseService
 
   def call(status)
     # Get first http/https URL that isn't local
-    url = status.text.match(URL_PATTERN).to_a.reject { |uri| TagManager.instance.local_url?(uri) }.first
+    url = parse_urls(status)
 
     return if url.nil?
 
-    url  = Addressable::URI.parse(url).normalize.to_s
+    url  = url.to_s
     card = PreviewCard.where(status: status).first_or_initialize(status: status, url: url)
     res  = http_client.head(url)
 
@@ -21,6 +21,28 @@ class FetchLinkCardService < BaseService
   end
 
   private
+
+  def parse_urls(status)
+    if status.local?
+      urls = status.text.match(URL_PATTERN).to_a.map { |uri| Addressable::URI.parse(uri).normalize }
+    else
+      html  = Nokogiri::HTML(status.text)
+      links = html.css('a')
+      urls  = links.map { |a| Addressable::URI.parse(a['href']).normalize unless skip_link?(a) }.compact
+    end
+
+    urls.reject { |uri| bad_url?(uri) }.first
+  end
+
+  def bad_url?(uri)
+    # Avoid local instance URLs and invalid URLs
+    TagManager.instance.local_url?(uri.to_s) || !%w(http https).include?(uri.scheme) || uri.host.blank?
+  end
+
+  def skip_link?(a)
+    # Avoid links for hashtags and mentions (microformats)
+    a['rel']&.include?('tag') || a['class']&.include?('u-url')
+  end
 
   def attempt_oembed(card, url)
     response = OEmbed::Providers.get(url)
@@ -62,10 +84,10 @@ class FetchLinkCardService < BaseService
 
     page = Nokogiri::HTML(response.to_s)
 
-    card.type        = :link
-    card.title       = meta_property(page, 'og:title') || page.at_xpath('//title')&.content
-    card.description = meta_property(page, 'og:description') || meta_property(page, 'description')
-    card.image       = URI.parse(Addressable::URI.parse(meta_property(page, 'og:image')).normalize.to_s) if meta_property(page, 'og:image')
+    card.type             = :link
+    card.title            = meta_property(page, 'og:title') || page.at_xpath('//title')&.content
+    card.description      = meta_property(page, 'og:description') || meta_property(page, 'description')
+    card.image_remote_url = meta_property(page, 'og:image') if meta_property(page, 'og:image')
 
     return if card.title.blank?
 
