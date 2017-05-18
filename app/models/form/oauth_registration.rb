@@ -66,6 +66,7 @@ class Form::OauthRegistration
       locale: locale,
       password: password,
       password_confirmation: password,
+      dummy_password_flag: true,
       account_attributes: {
         username: username,
         avatar: avatar

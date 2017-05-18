@@ -21,6 +21,8 @@ class User < ApplicationRecord
   scope :admins,    -> { where(admin: true) }
   scope :confirmed, -> { where.not(confirmed_at: nil) }
 
+  before_validation :disable_dummy_password_flag, on: :update, if: :encrypted_password_changed?
+
   def confirmed?
     confirmed_at.present?
   end
@@ -39,5 +41,26 @@ class User < ApplicationRecord
 
   def setting_auto_play_gif
     settings.auto_play_gif
+  end
+
+  def has_dummy_password?
+    dummy_password_flag
+  end
+
+  def disable_dummy_password_flag
+    self.dummy_password_flag = false
+    true
+  end
+
+  def update_without_current_password(params, *options)
+    if params[:password].blank?
+      params.delete(:password)
+      params.delete(:password_confirmation) if params[:password_confirmation].blank?
+    end
+    p params
+
+    result = update_attributes(params, *options)
+    clean_up_passwords
+    result
   end
 end
