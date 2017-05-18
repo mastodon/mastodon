@@ -17,7 +17,7 @@ class OauthRegistrationsController < DeviseController
 
     if @oauth_registration.save
       sign_in(@oauth_registration.user)
-      redirect_to after_sign_in_path_for(@oauth_registration.user)
+      redirect_to web_path
       flash[:notice] = I18n.t('oauth_registration.success')
     else
       render :new, status: :unprocessable_entity
