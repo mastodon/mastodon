@@ -26,16 +26,5 @@ module AccountAvatar
     def avatar_static_url
       avatar_content_type == 'image/gif' ? avatar.url(:static) : avatar_original_url
     end
-
-    def avatar_remote_url=(url)
-      parsed_url = Addressable::URI.parse(url).normalize
-
-      return if !%w(http https).include?(parsed_url.scheme) || parsed_url.host.empty? || self[:avatar_remote_url] == url
-
-      self.avatar              = URI.parse(parsed_url.to_s)
-      self[:avatar_remote_url] = url
-    rescue OpenURI::HTTPError, OpenSSL::SSL::SSLError, Paperclip::Errors::NotIdentifiedByImageMagickError => e
-      Rails.logger.debug "Error fetching remote avatar: #{e}"
-    end
   end
 end

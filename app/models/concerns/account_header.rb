@@ -26,16 +26,5 @@ module AccountHeader
     def header_static_url
       header_content_type == 'image/gif' ? header.url(:static) : header_original_url
     end
-
-    def header_remote_url=(url)
-      parsed_url = Addressable::URI.parse(url).normalize
-
-      return if !%w(http https).include?(parsed_url.scheme) || parsed_url.host.empty? || self[:header_remote_url] == url
-
-      self.header              = URI.parse(parsed_url.to_s)
-      self[:header_remote_url] = url
-    rescue OpenURI::HTTPError, OpenSSL::SSL::SSLError, Paperclip::Errors::NotIdentifiedByImageMagickError => e
-      Rails.logger.debug "Error fetching remote header: #{e}"
-    end
   end
 end
