@@ -44,6 +44,7 @@ class Account < ApplicationRecord
   include AccountAvatar
   include AccountHeader
   include Attachmentable
+  include Remotable
   include Targetable
 
   # Local users
