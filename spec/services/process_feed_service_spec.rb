@@ -210,4 +210,42 @@ XML
 
     expect(created_statuses).to be_empty
   end
+
+  context 'when mentioning' do
+    let(:asshole)  { Fabricate(:account, username: 'asshole') }
+    let(:recipient) { Fabricate(:user, account: Fabricate(:account, username: 'recipient', domain: nil)).account }
+    let(:sender) { Fabricate(:account, username: 'sender', domain: 'kickass.zone') }
+
+    let(:body) do <<XML
+<?xml version="1.0"?>
+<entry xmlns="http://www.w3.org/2005/Atom" xmlns:thr="http://purl.org/syndication/thread/1.0" xmlns:activity="http://activitystrea.ms/spec/1.0/" xmlns:poco="http://portablecontacts.net/spec/1.0" xmlns:media="http://purl.org/syndication/atommedia" xmlns:ostatus="http://ostatus.org/schema/1.0" xmlns:mastodon="http://kickass.zone/schema/1.0">
+  <id>tag:kickass.zone,2016-10-10:objectId=2:objectType=Status</id>
+  <published>2016-10-10T00:02:18Z</published>
+  <updated>2016-10-10T00:02:18Z</updated>
+  <title>@localhost</title>
+  <content type="html">&lt;p&gt;&lt;a href="http://#{Rails.configuration.x.local_domain}/users/recipient"&gt;@localhost&lt;/a&gt;&lt;/p&gt;</content>
+  <activity:verb>http://activitystrea.ms/schema/1.0/post</activity:verb>
+  <link rel="self" type="application/atom+xml" href="http://kickass.zone/users/localhost/updates/2.atom"/>
+  <link rel="alternate" type="text/html" href="http://kickass.zone/users/localhost/updates/2"/>
+  <activity:object-type>http://activitystrea.ms/schema/1.0/comment</activity:object-type>
+  <thr:in-reply-to ref="tag:kickass.zone,2016-10-10:objectId=1:objectType=Status" href="http://kickass.zone/users/localhost/updates/1" type="text/html"/>
+  <link rel="mentioned" ostatus:object-type="http://activitystrea.ms/schema/1.0/person" href="http://#{Rails.configuration.x.local_domain}/users/recipient"/>
+</entry>
+XML
+    end
+
+    before do
+      Fabricate(:status, account: asshole, uri: 'tag:kickass.zone,2016-10-10:objectId=1:objectType=Status')
+      recipient.follow!(sender)
+    end
+
+    it 'notifies about mentions' do
+      expect(-> { subject.call(body, sender) }).to change(Notification, :count).by(1)
+    end
+
+    it 'does not notify about mentions when they are replies to blocked users' do
+      recipient.block!(asshole)
+      expect(-> { subject.call(body, sender) }).not_to change(Notification, :count)
+    end
+  end
 end

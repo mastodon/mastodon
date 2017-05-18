@@ -36,21 +36,25 @@ class FanOutOnWriteService < BaseService
   def deliver_to_followers(status)
     Rails.logger.debug "Delivering status #{status.id} to followers"
 
-    status.account.followers.where(domain: nil).joins(:user).where('users.current_sign_in_at > ?', 14.days.ago).select(:id).reorder(nil).find_in_batches do |followers|
-      FeedInsertWorker.push_bulk(followers) do |follower|
-        [status.id, follower.id]
-      end
-    end
+    active_local_followers = status.account.followers
+                                   .where(domain: nil)
+                                   .joins(:user).where('users.current_sign_in_at > ?', 14.days.ago)
+                                   .reorder(nil)
+
+    filtered_active_local_followrs = FeedManager.instance.filter_subscribers(status, active_local_followers)
+
+    FeedManager.instance.push_bulk(:home, filtered_active_local_followrs, status)
   end
 
   def deliver_to_mentioned_followers(status)
     Rails.logger.debug "Delivering status #{status.id} to mentioned followers"
 
-    status.mentions.includes(:account).each do |mention|
-      mentioned_account = mention.account
-      next if !mentioned_account.local? || !mentioned_account.following?(status.account) || FeedManager.instance.filter?(:home, status, mention.account_id)
-      FeedManager.instance.push(:home, mentioned_account, status)
-    end
+    mentioned_accounts = Account.where(domain: nil, id: status.mentions.pluck(:account_id))
+                                .joins(:following).where(follows: { id: status.account.id })
+
+    filtered_mentioned_accounts = FeedManager.instance.filter_subscribers(status, mentioned_accounts)
+
+    FeedManager.instance.push_bulk(:home, filtered_mentioned_accounts, status)
   end
 
   def render_anonymous_payload(status)

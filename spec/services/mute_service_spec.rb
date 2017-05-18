@@ -18,6 +18,8 @@ RSpec.describe MuteService do
     end
 
     it "clears account's statuses" do
+      Redis.current.set("subscribed:timeline:#{account.id}", '1')
+
       FeedManager.instance.push(:home, account, status)
       FeedManager.instance.push(:home, account, other_account_status)
 

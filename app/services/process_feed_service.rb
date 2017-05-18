@@ -86,7 +86,7 @@ class ProcessFeedService < BaseService
     end
 
     def notify_about_mentions!(status)
-      status.mentions.includes(:account).each do |mention|
+      FeedManager.instance.filter_mentions(status).each do |mention|
         mentioned_account = mention.account
         next unless mentioned_account.local?
         NotifyService.new.call(mentioned_account, mention)

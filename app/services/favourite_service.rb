@@ -17,7 +17,8 @@ class FavouriteService < BaseService
     favourite = Favourite.create!(account: account, status: status)
 
     if status.local?
-      NotifyService.new.call(favourite.status.account, favourite)
+      recipient = favourite.status.account
+      NotifyService.new.call(recipient, favourite) unless recipient.muting?(favourite.account)
     else
       NotificationWorker.perform_async(build_xml(favourite), account.id, status.account_id)
     end
