@@ -18,6 +18,8 @@ module AccountAvatar
     has_attached_file :avatar, styles: ->(f) { avatar_styles(f) }, convert_options: { all: '-quality 80 -strip' }
     validates_attachment_content_type :avatar, content_type: IMAGE_MIME_TYPES
     validates_attachment_size :avatar, less_than: 2.megabytes
+    attr_accessor :delete_avatar
+    before_validation :destroy_avatar_if_requested
 
     def avatar_original_url
       avatar.url(:original)
@@ -36,6 +38,10 @@ module AccountAvatar
       self[:avatar_remote_url] = url
     rescue OpenURI::HTTPError, OpenSSL::SSL::SSLError, Paperclip::Errors::NotIdentifiedByImageMagickError => e
       Rails.logger.debug "Error fetching remote avatar: #{e}"
+    end
+
+    def destroy_avatar_if_requested
+      avatar.destroy if delete_avatar == '1' && !avatar.dirty?
     end
   end
 end

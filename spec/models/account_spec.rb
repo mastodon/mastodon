@@ -511,4 +511,82 @@ RSpec.describe Account, type: :model do
       end
     end
   end
+
+  describe 'delete_avatar' do
+    before { subject.avatar = attachment_fixture('avatar.gif') }
+
+    context 'when avatar is dirty' do
+      it 'preserves avatar when set to 1' do
+
+        subject.delete_avatar = '1'
+        subject.valid?
+        
+        expect(subject.avatar).to be_present
+      end
+
+      it 'preserves avatar when set to 0' do
+        subject.delete_avatar = '0'
+        subject.valid?
+        
+        expect(subject.avatar).to be_present
+      end
+    end
+
+    context 'when avatar is not dirty' do
+      before { subject.avatar.save }
+
+      it 'deletes avatar when set to 1' do
+
+        subject.delete_avatar = '1'
+        subject.valid?
+        
+        expect(subject.avatar).to be_blank
+      end
+
+      it 'preserves avatar when set to 0' do
+        subject.delete_avatar = '0'
+        subject.valid?
+        
+        expect(subject.avatar).to be_present
+      end
+    end
+  end
+
+  describe 'delete_header' do
+    before { subject.header = attachment_fixture('attachment.jpg') }
+
+    context 'when header is dirty' do
+      it 'preserves header when set to 1' do
+        subject.delete_header = '1'
+        subject.valid?
+        
+        expect(subject.header).to be_present
+      end
+
+      it 'preserves header when set to 0' do
+        subject.delete_header = '0'
+        subject.valid?
+        
+        expect(subject.header).to be_present
+      end
+    end
+
+    context 'when header is not dirty' do
+      before { subject.header.save }
+
+      it 'deletes header when set to 1' do
+        subject.delete_header = '1'
+        subject.valid?
+        
+        expect(subject.header).to be_blank
+      end
+
+      it 'preserves header when set to 0' do
+        subject.delete_header = '0'
+        subject.valid?
+        
+        expect(subject.header).to be_present
+      end
+    end
+  end
 end

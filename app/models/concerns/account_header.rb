@@ -18,6 +18,8 @@ module AccountHeader
     has_attached_file :header, styles: ->(f) { header_styles(f) }, convert_options: { all: '-quality 80 -strip' }
     validates_attachment_content_type :header, content_type: IMAGE_MIME_TYPES
     validates_attachment_size :header, less_than: 2.megabytes
+    attr_accessor :delete_header
+    before_validation :destroy_header_if_requested
 
     def header_original_url
       header.url(:original)
@@ -36,6 +38,10 @@ module AccountHeader
       self[:header_remote_url] = url
     rescue OpenURI::HTTPError, OpenSSL::SSL::SSLError, Paperclip::Errors::NotIdentifiedByImageMagickError => e
       Rails.logger.debug "Error fetching remote header: #{e}"
+    end
+
+    def destroy_header_if_requested
+      header.destroy if delete_header == '1' && !header.dirty?
     end
   end
 end
