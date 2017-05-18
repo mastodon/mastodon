@@ -53,7 +53,7 @@ class MediaAttachment < ApplicationRecord
 
   scope :attached, -> { where.not(status_id: nil) }
   scope :local, -> { where(remote_url: '') }
-  default_scope { order('id asc') }
+  default_scope { order(id: :asc) }
 
   def local?
     remote_url.blank?

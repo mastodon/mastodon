@@ -48,7 +48,7 @@ class User < ApplicationRecord
   validates :locale, inclusion: I18n.available_locales.map(&:to_s), unless: 'locale.nil?'
   validates :email, email: true
 
-  scope :recent,    -> { order('id desc') }
+  scope :recent,    -> { order(id: :desc) }
   scope :admins,    -> { where(admin: true) }
   scope :confirmed, -> { where.not(confirmed_at: nil) }
 

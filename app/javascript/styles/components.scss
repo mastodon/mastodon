@@ -48,6 +48,32 @@
 
 .column-collapsable {
   position: relative;
+
+  .column-collapsable__content {
+    overflow: auto;
+    transition: 300ms ease;
+    opacity: 1;
+  }
+
+  &.collapsed .column-collapsable__content {
+    height: 0 !important;
+    opacity: 0;
+  }
+
+  .column-collapsable__button {
+    color: $primary-text-color;
+    background: lighten($ui-base-color, 8%);
+
+    &:hover {
+      color: $primary-text-color;
+      background: lighten($ui-base-color, 8%);
+    }
+  }
+
+  &.collapsed .column-collapsable__button {
+    color: $ui-primary-color;
+    background: lighten($ui-base-color, 4%);
+  }
 }
 
 .column-icon {
@@ -1312,23 +1338,6 @@
   }
 }
 
-@media screen and (min-width: 1397px) { /* Width of 4 columns with margins */
-  .columns-area {
-    margin-left: auto;
-    margin-right: auto;
-  }
-}
-
-@media screen and (min-width: 1900px) {
-  .column,
-  .drawer {
-    width: 400px;
-    border-radius: 4px;
-    height: 96vh;
-    margin-top: 2vh;
-  }
-}
-
 .drawer__pager {
   box-sizing: border-box;
   padding: 0;
@@ -1772,7 +1781,7 @@
 .getting-started {
   box-sizing: border-box;
   padding-bottom: 235px;
-  background: url('../images/mastodon-getting-started.png') no-repeat 0 100% / contain local;
+  background: url('../images/mastodon-getting-started.png') no-repeat 0 100%;
   flex: 1 0 auto;
 
   p {
@@ -1999,21 +2008,6 @@ button.icon-button.active i.fa-retweet {
   font-weight: 500;
   padding-top: 120px;
   text-align: center;
-}
-
-.collapsable-collapsed {
-  color: $ui-primary-color;
-  background: lighten($ui-base-color, 4%);
-}
-
-.collapsable {
-  color: $primary-text-color;
-  background: lighten($ui-base-color, 8%);
-
-  &:hover {
-    color: $primary-text-color;
-    background: lighten($ui-base-color, 8%);
-  }
 }
 
 .video-error-cover {

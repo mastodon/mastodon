@@ -69,8 +69,12 @@ class ProcessFeedService < BaseService
 
       notify_about_mentions!(status) unless status.reblog?
       notify_about_reblog!(status) if status.reblog? && status.reblog.account.local?
+
       Rails.logger.debug "Queuing remote status #{status.id} (#{id}) for distribution"
+
+      LinkCrawlWorker.perform_async(status.id) unless status.spoiler_text.present?
       DistributionWorker.perform_async(status.id)
+
       status
     end
 
@@ -209,7 +213,7 @@ class ProcessFeedService < BaseService
       if TagManager.instance.web_domain?(url.host)
         Account.find_local(url.path.gsub('/users/', ''))
       else
-        Account.find_by(uri: href) || Account.find_by(url: href) || FetchRemoteAccountService.new.call(href)
+        Account.where(uri: href).or(Account.where(url: href)).first || FetchRemoteAccountService.new.call(href)
       end
     end
 

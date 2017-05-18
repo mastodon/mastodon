@@ -48,7 +48,7 @@ class AutosuggestTextarea extends ImmutablePureComponent {
   };
 
   static defaultProps = {
-    autoFucus: true
+    autoFocus: true
   };
 
   constructor (props, context) {

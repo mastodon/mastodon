@@ -22,7 +22,8 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 const messages = defineMessages({
   placeholder: { id: 'compose_form.placeholder', defaultMessage: 'What is on your mind?' },
   spoiler_placeholder: { id: 'compose_form.spoiler_placeholder', defaultMessage: 'Content warning' },
-  publish: { id: 'compose_form.publish', defaultMessage: 'Toot' }
+  publish: { id: 'compose_form.publish', defaultMessage: 'Toot' },
+  publishLoud: { id: 'compose_form.publish_loud', defaultMessage: '{publish}!' },
 });
 
 class ComposeForm extends ImmutablePureComponent {
@@ -143,7 +144,7 @@ class ComposeForm extends ImmutablePureComponent {
     if (this.props.privacy === 'private' || this.props.privacy === 'direct') {
       publishText = <span className='compose-form__publish-private'><i className='fa fa-lock' /> {intl.formatMessage(messages.publish)}</span>;
     } else {
-      publishText = intl.formatMessage(messages.publish) + (this.props.privacy !== 'unlisted' ? '!' : '');
+      publishText = this.props.privacy !== 'unlisted' ? intl.formatMessage(messages.publishLoud, { publish: intl.formatMessage(messages.publish) }) : intl.formatMessage(messages.publish);
     }
 
     return (

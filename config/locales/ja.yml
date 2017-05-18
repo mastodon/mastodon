@@ -54,6 +54,7 @@ ja:
       are_you_sure: 本当に実行しますか?
       confirm: 確認
       confirmed: 確認済み
+      disable_two_factor_authentication: 二段階認証を無効にする
       display_name: 表示名
       domain: ドメイン
       edit: 編集
@@ -61,6 +62,7 @@ ja:
       feed_url: フィードURL
       followers: フォロワー数
       follows: フォロー数
+      ip: IP
       location:
         all: すべて
         local: ローカル
@@ -85,6 +87,7 @@ ja:
       push_subscription_expires: PuSH購読期限切れ
       reset_password: パスワード再設定
       salmon_url: Salmon URL
+      search: 検索
       show:
         created_reports: このアカウントで作られたレポート
         report: レポート
@@ -255,7 +258,8 @@ ja:
       following: フォロー中のアカウントリスト
       muting: ミュートしたアカウントリスト
     upload: アップロード
-  landing_strip_html: <strong>%{name}</strong> さんはインスタンス %{link_to_root_path} のユーザーです。アカウントさえ持っていればフォローしたり会話したりできます。もしお持ちでないなら <a href="%{sign_up_path}">こちら</a> からサインアップできます。
+  landing_strip_html: <strong>%{name}</strong> さんはインスタンス %{link_to_root_path} のユーザーです。アカウントさえ持っていればフォローしたり会話したりできます。
+  landing_strip_signup_html: もしお持ちでないなら <a href="%{sign_up_path}">こちら</a> からサインアップできます。
   media_attachments:
     validations:
       images_and_video: 既に画像が追加されているため、動画を追加することはできません。

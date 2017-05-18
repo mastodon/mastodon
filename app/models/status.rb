@@ -55,7 +55,7 @@ class Status < ApplicationRecord
   validates_with StatusLengthValidator
   validates :reblog, uniqueness: { scope: :account }, if: 'reblog?'
 
-  default_scope { order('id desc') }
+  default_scope { order(id: :desc) }
 
   scope :remote, -> { where.not(uri: nil) }
   scope :local, -> { where(uri: nil) }
@@ -72,7 +72,7 @@ class Status < ApplicationRecord
   cache_associated :account, :application, :media_attachments, :tags, :stream_entry, mentions: :account, reblog: [:account, :application, :stream_entry, :tags, :media_attachments, mentions: :account], thread: :account
 
   def reply?
-    !in_reply_to_id.nil? || super
+    !in_reply_to_id.nil? || attributes['reply']
   end
 
   def local?
@@ -122,21 +122,13 @@ class Status < ApplicationRecord
   end
 
   def ancestors(account = nil)
-    ids      = Rails.cache.fetch("ancestors:#{id}") { (Status.find_by_sql(['WITH RECURSIVE search_tree(id, in_reply_to_id, path) AS (SELECT id, in_reply_to_id, ARRAY[id] FROM statuses WHERE id = ? UNION ALL SELECT statuses.id, statuses.in_reply_to_id, path || statuses.id FROM search_tree JOIN statuses ON statuses.id = search_tree.in_reply_to_id WHERE NOT statuses.id = ANY(path)) SELECT id FROM search_tree ORDER BY path DESC', id]) - [self]).pluck(:id) }
-    statuses = Status.where(id: ids).group_by(&:id)
-    results  = ids.map { |id| statuses[id]&.first }.compact
-    results  = results.reject { |status| filter_from_context?(status, account) }
-
-    results
+    ids = Rails.cache.fetch("ancestors:#{id}") { (Status.find_by_sql(['WITH RECURSIVE search_tree(id, in_reply_to_id, path) AS (SELECT id, in_reply_to_id, ARRAY[id] FROM statuses WHERE id = ? UNION ALL SELECT statuses.id, statuses.in_reply_to_id, path || statuses.id FROM search_tree JOIN statuses ON statuses.id = search_tree.in_reply_to_id WHERE NOT statuses.id = ANY(path)) SELECT id FROM search_tree ORDER BY path DESC', id]) - [self]).pluck(:id) }
+    find_statuses_from_tree_path(ids, account)
   end
 
   def descendants(account = nil)
-    ids      = (Status.find_by_sql(['WITH RECURSIVE search_tree(id, path) AS (SELECT id, ARRAY[id] FROM statuses WHERE id = ? UNION ALL SELECT statuses.id, path || statuses.id FROM search_tree JOIN statuses ON statuses.in_reply_to_id = search_tree.id WHERE NOT statuses.id = ANY(path)) SELECT id FROM search_tree ORDER BY path', id]) - [self]).pluck(:id)
-    statuses = Status.where(id: ids).group_by(&:id)
-    results  = ids.map { |id| statuses[id].first }
-    results  = results.reject { |status| filter_from_context?(status, account) }
-
-    results
+    ids = (Status.find_by_sql(['WITH RECURSIVE search_tree(id, path) AS (SELECT id, ARRAY[id] FROM statuses WHERE id = ? UNION ALL SELECT statuses.id, path || statuses.id FROM search_tree JOIN statuses ON statuses.in_reply_to_id = search_tree.id WHERE NOT statuses.id = ANY(path)) SELECT id FROM search_tree ORDER BY path', id]) - [self]).pluck(:id)
+    find_statuses_from_tree_path(ids, account)
   end
 
   def non_sensitive_with_media?
@@ -144,9 +136,9 @@ class Status < ApplicationRecord
   end
 
   before_validation :prepare_contents
-  before_create     :set_reblog
-  before_create     :set_visibility
-  before_create     :set_conversation
+  before_validation :set_reblog
+  before_validation :set_visibility
+  before_validation :set_conversation
 
   class << self
     def in_allowed_languages(account)
@@ -202,18 +194,22 @@ class Status < ApplicationRecord
     end
 
     def permitted_for(target_account, account)
-      return where.not(visibility: [:private, :direct]) if account.nil?
+      visibility = [:public, :unlisted]
 
-      if target_account.blocking?(account) # get rid of blocked peeps
+      if account.nil?
+        where(visibility: visibility)
+      elsif target_account.blocking?(account) # get rid of blocked peeps
         none
       elsif account.id == target_account.id # author can see own stuff
         all
-      elsif account.following?(target_account) # followers can see followers-only stuff, but also things they are mentioned in
-        joins('LEFT OUTER JOIN mentions ON statuses.id = mentions.status_id AND mentions.account_id = ' + account.id.to_s)
-          .where('statuses.visibility != ? OR mentions.id IS NOT NULL', Status.visibilities[:direct])
-      else # non-followers can see everything that isn't private/direct, but can see stuff they are mentioned in
-        joins('LEFT OUTER JOIN mentions ON statuses.id = mentions.status_id AND mentions.account_id = ' + account.id.to_s)
-          .where('statuses.visibility NOT IN (?) OR mentions.id IS NOT NULL', [Status.visibilities[:direct], Status.visibilities[:private]])
+      else
+        # followers can see followers-only stuff, but also things they are mentioned in.
+        # non-followers can see everything that isn't private/direct, but can see stuff they are mentioned in.
+        visibility.push(:private) if account.following?(target_account)
+
+        joins("LEFT OUTER JOIN mentions ON statuses.id = mentions.status_id AND mentions.account_id = #{account.id}")
+          .where(arel_table[:visibility].in(visibility).or(Mention.arel_table[:id].not_eq(nil)))
+          .order(visibility: :desc)
       end
     end
 
@@ -285,6 +281,14 @@ class Status < ApplicationRecord
     else
       thread.account_id
     end
+  end
+
+  def find_statuses_from_tree_path(ids, account)
+    statuses = Status.where(id: ids).to_a
+    statuses.reject! { |status| filter_from_context?(status, account) }
+
+    # Order ancestors/descendants by tree path
+    statuses.sort_by! { |status| ids.index(status.id) }
   end
 
   def filter_from_context?(status, account)
