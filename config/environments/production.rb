@@ -40,21 +40,15 @@ Rails.application.configure do
   # Allow to specify public IP of reverse proxy if it's needed
   config.action_dispatch.trusted_proxies = [IPAddr.new(ENV['TRUSTED_PROXY_IP'])] unless ENV['TRUSTED_PROXY_IP'].blank?
 
-  # By default, use the lowest log level to ensure availability of diagnostic information
+  # Use the lowest log level to ensure availability of diagnostic information
   # when problems arise.
   config.log_level = ENV.fetch('RAILS_LOG_LEVEL', 'info').to_sym
 
   # Prepend all log lines with the following tags.
   config.log_tags = [:request_id]
 
-  # Use a different logger for distributed setups.
-  # config.logger = ActiveSupport::TaggedLogging.new(SyslogLogger.new)
-
   # Use a different cache store in production.
   config.cache_store = :redis_store, ENV['REDIS_URL'], REDIS_CACHE_PARAMS
-
-  # Enable serving of images, stylesheets, and JavaScripts from an asset server.
-  # config.action_controller.asset_host = 'http://assets.example.com'
 
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
