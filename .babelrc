@@ -32,7 +32,15 @@
     },
     "production": {
       "plugins": [
-        "lodash"
+        "lodash",
+        [
+          "transform-runtime",
+          {
+            "helpers": true,
+            "polyfill": false,
+            "regenerator": false
+          }
+        ]
       ]
     },
     "test": {
