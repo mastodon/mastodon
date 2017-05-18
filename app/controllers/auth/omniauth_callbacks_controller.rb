@@ -14,7 +14,7 @@ class Auth::OmniauthCallbacksController < Devise::OmniauthCallbacksController
       else
         flash[:alert] = I18n.t('omniauth_callbacks.failure')
       end
-        redirect_to settings_qiita_authorizations_path
+      redirect_to settings_qiita_authorizations_path
     else
       if authorization = QiitaAuthorization.find_by(uid: auth_hash[:uid])
         sign_in(authorization.user)
