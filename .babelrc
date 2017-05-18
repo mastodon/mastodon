@@ -33,6 +33,13 @@
     "production": {
       "plugins": [
         "lodash",
+        ["transform-react-remove-prop-types", {
+          "mode": "remove",
+          "removeImport": true,
+          "additionalLibraries": [
+            "react-immutable-proptypes"
+          ]
+        }],
         [
           "transform-runtime",
           {
