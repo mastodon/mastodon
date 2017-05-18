@@ -93,11 +93,11 @@ module AccountInteractions
     end
 
     def following?(other_account)
-      following.include?(other_account)
+      active_relationships.where(target_account: other_account).exists?
     end
 
     def blocking?(other_account)
-      blocking.include?(other_account)
+      block_relationships.where(target_account: other_account).exists?
     end
 
     def domain_blocking?(other_domain)
@@ -105,7 +105,7 @@ module AccountInteractions
     end
 
     def muting?(other_account)
-      muting.include?(other_account)
+      mute_relationships.where(target_account: other_account).exists?
     end
 
     def muting_conversation?(conversation)

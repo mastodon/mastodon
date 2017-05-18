@@ -284,7 +284,9 @@ class Status < ApplicationRecord
   end
 
   def find_statuses_from_tree_path(ids, account)
-    statuses = Status.where(id: ids).to_a
+    statuses = Status.where(id: ids).includes(:account).to_a
+
+    # FIXME: n+1 bonanza
     statuses.reject! { |status| filter_from_context?(status, account) }
 
     # Order ancestors/descendants by tree path
@@ -292,6 +294,11 @@ class Status < ApplicationRecord
   end
 
   def filter_from_context?(status, account)
-    account&.blocking?(status.account_id) || account&.muting?(status.account_id) || (status.account.silenced? && !account&.following?(status.account_id)) || !status.permitted?(account)
+    should_filter   = account&.blocking?(status.account_id)
+    should_filter ||= account&.domain_blocking?(status.account.domain)
+    should_filter ||= account&.muting?(status.account_id)
+    should_filter ||= (status.account.silenced? && !account&.following?(status.account_id))
+    should_filter ||= !status.permitted?(account)
+    should_filter
   end
 end

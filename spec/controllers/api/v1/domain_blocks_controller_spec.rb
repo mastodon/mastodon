@@ -11,13 +11,17 @@ RSpec.describe Api::V1::DomainBlocksController, type: :controller do
     allow(controller).to receive(:doorkeeper_token) { token }
   end
 
-  describe 'GET #index' do
+  describe 'GET #show' do
     before do
-      get :index
+      get :show
     end
 
     it 'returns http success' do
       expect(response).to have_http_status(:success)
+    end
+
+    it 'returns blocked domains' do
+      expect(body_as_json.first).to eq 'example.com'
     end
   end
 
@@ -32,6 +36,20 @@ RSpec.describe Api::V1::DomainBlocksController, type: :controller do
 
     it 'creates a domain block' do
       expect(user.account.domain_blocking?('example.org')).to be true
+    end
+  end
+
+  describe 'DELETE #destroy' do
+    before do
+      delete :destroy, params: { domain: 'example.com' }
+    end
+
+    it 'returns http success' do
+      expect(response).to have_http_status(:success)
+    end
+
+    it 'deletes a domain block' do
+      expect(user.account.domain_blocking?('example.com')).to be false
     end
   end
 end
