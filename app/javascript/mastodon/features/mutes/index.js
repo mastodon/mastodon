@@ -30,7 +30,7 @@ class Mutes extends ImmutablePureComponent {
     this.props.dispatch(fetchMutes());
   }
 
-  handleScroll (e) {
+  handleScroll = (e) => {
     const { scrollTop, scrollHeight, clientHeight } = e.target;
 
     if (scrollTop === scrollHeight - clientHeight) {

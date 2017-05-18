@@ -37,7 +37,7 @@ class Blocks extends ImmutablePureComponent {
     this.props.dispatch(fetchBlocks());
   }
 
-  handleScroll (e) {
+  handleScroll = (e) => {
     const { scrollTop, scrollHeight, clientHeight } = e.target;
 
     if (scrollTop === scrollHeight - clientHeight) {
