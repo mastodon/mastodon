@@ -5,7 +5,7 @@ import StatusListContainer from '../ui/containers/status_list_container';
 import Column from '../ui/components/column';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import ColumnSettingsContainer from './containers/column_settings_container';
-import { Link } from 'react-router';
+import Link from 'react-router/lib/Link';
 
 const messages = defineMessages({
   title: { id: 'column.home', defaultMessage: 'Home' }
