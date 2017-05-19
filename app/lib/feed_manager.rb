@@ -23,8 +23,8 @@ class FeedManager
 
   def push(timeline_type, accounts, status)
     accounts = Array.wrap(accounts)
-    accounts = accounts.reject do |account|
-      filter?(timeline_type, status, account.id) || !insert_and_check(timeline_type, status, account)
+    accounts = accounts.select do |account|
+      insert_and_check(timeline_type, status, account)
     end
 
     PushUpdateWorker.perform_async(accounts.map(&:id), status.id) unless accounts.empty?
