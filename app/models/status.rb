@@ -113,16 +113,6 @@ class Status < ApplicationRecord
     private_visibility? || direct_visibility?
   end
 
-  def permitted?(other_account = nil)
-    if direct_visibility?
-      account.id == other_account&.id || mentions.where(account: other_account).exists?
-    elsif private_visibility?
-      account.id == other_account&.id || other_account&.following?(account) || mentions.where(account: other_account).exists?
-    else
-      other_account.nil? || !account.blocking?(other_account)
-    end
-  end
-
   def ancestors(account = nil)
     ids = Rails.cache.fetch("ancestors:#{id}") { (Status.find_by_sql(['WITH RECURSIVE search_tree(id, in_reply_to_id, path) AS (SELECT id, in_reply_to_id, ARRAY[id] FROM statuses WHERE id = ? UNION ALL SELECT statuses.id, statuses.in_reply_to_id, path || statuses.id FROM search_tree JOIN statuses ON statuses.id = search_tree.in_reply_to_id WHERE NOT statuses.id = ANY(path)) SELECT id FROM search_tree ORDER BY path DESC', id]) - [self]).pluck(:id) }
     find_statuses_from_tree_path(ids, account)
@@ -301,7 +291,7 @@ class Status < ApplicationRecord
     should_filter ||= account&.domain_blocking?(status.account.domain)
     should_filter ||= account&.muting?(status.account_id)
     should_filter ||= (status.account.silenced? && !account&.following?(status.account_id))
-    should_filter ||= !status.permitted?(account)
+    should_filter ||= !StatusPolicy.new(account, status).show?
     should_filter
   end
 end
