@@ -67,8 +67,12 @@ class ActionBar extends React.PureComponent {
       extraInfo = <abbr title={intl.formatMessage(messages.disclaimer)}>*</abbr>;
 
       menu.push(null);
-      menu.push({ text: intl.formatMessage(messages.blockDomain, { domain }), action: this.props.onBlockDomain });
-      menu.push({ text: intl.formatMessage(messages.unblockDomain, { domain }), action: this.props.onUnblockDomain });
+
+      if (account.getIn(['relationship', 'domain_blocking'])) {
+        menu.push({ text: intl.formatMessage(messages.unblockDomain, { domain }), action: this.props.onUnblockDomain });
+      } else {
+        menu.push({ text: intl.formatMessage(messages.blockDomain, { domain }), action: this.props.onBlockDomain });
+      }
     }
 
     return (

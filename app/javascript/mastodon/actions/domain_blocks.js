@@ -12,12 +12,12 @@ export const DOMAIN_BLOCKS_FETCH_REQUEST = 'DOMAIN_BLOCKS_FETCH_REQUEST';
 export const DOMAIN_BLOCKS_FETCH_SUCCESS = 'DOMAIN_BLOCKS_FETCH_SUCCESS';
 export const DOMAIN_BLOCKS_FETCH_FAIL    = 'DOMAIN_BLOCKS_FETCH_FAIL';
 
-export function blockDomain(domain) {
+export function blockDomain(domain, accountId) {
   return (dispatch, getState) => {
     dispatch(blockDomainRequest(domain));
 
     api(getState).post('/api/v1/domain_blocks', { domain }).then(response => {
-      dispatch(blockDomainSuccess(domain));
+      dispatch(blockDomainSuccess(domain, accountId));
     }).catch(err => {
       dispatch(blockDomainFail(domain, err));
     });
@@ -31,10 +31,11 @@ export function blockDomainRequest(domain) {
   };
 };
 
-export function blockDomainSuccess(domain) {
+export function blockDomainSuccess(domain, accountId) {
   return {
     type: DOMAIN_BLOCK_SUCCESS,
-    domain
+    domain,
+    accountId
   };
 };
 
@@ -46,12 +47,12 @@ export function blockDomainFail(domain, error) {
   };
 };
 
-export function unblockDomain(domain) {
+export function unblockDomain(domain, accountId) {
   return (dispatch, getState) => {
     dispatch(unblockDomainRequest(domain));
 
-    api(getState).delete('/api/v1/domain_blocks', { domain }).then(response => {
-      dispatch(unblockDomainSuccess(domain));
+    api(getState).delete('/api/v1/domain_blocks', { params: { domain } }).then(response => {
+      dispatch(unblockDomainSuccess(domain, accountId));
     }).catch(err => {
       dispatch(unblockDomainFail(domain, err));
     });
@@ -65,10 +66,11 @@ export function unblockDomainRequest(domain) {
   };
 };
 
-export function unblockDomainSuccess(domain) {
+export function unblockDomainSuccess(domain, accountId) {
   return {
     type: DOMAIN_UNBLOCK_SUCCESS,
-    domain
+    domain,
+    accountId
   };
 };
 

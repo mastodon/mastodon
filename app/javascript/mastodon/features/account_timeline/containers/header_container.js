@@ -19,7 +19,7 @@ import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 const messages = defineMessages({
   blockConfirm: { id: 'confirmations.block.confirm', defaultMessage: 'Block' },
   muteConfirm: { id: 'confirmations.mute.confirm', defaultMessage: 'Mute' },
-  blockDomainConfirm: { id: 'confirmations.domain_block.confirm', defaultMessage: 'Block entire domain' },
+  blockDomainConfirm: { id: 'confirmations.domain_block.confirm', defaultMessage: 'Hide entire domain' },
 });
 
 const makeMapStateToProps = () => {
@@ -74,16 +74,16 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
     }
   },
 
-  onBlockDomain (domain) {
+  onBlockDomain (domain, accountId) {
     dispatch(openModal('CONFIRM', {
       message: <FormattedMessage id='confirmations.domain_block.message' defaultMessage='Are you really, really sure you want to block the entire {domain}? In most cases a few targeted blocks or mutes are sufficient and preferable.' values={{ domain: <strong>{domain}</strong> }} />,
       confirm: intl.formatMessage(messages.blockDomainConfirm),
-      onConfirm: () => dispatch(blockDomain(domain))
+      onConfirm: () => dispatch(blockDomain(domain, accountId))
     }));
   },
 
-  onUnblockDomain (domain) {
-    dispatch(unblockDomain(domain));
+  onUnblockDomain (domain, accountId) {
+    dispatch(unblockDomain(domain, accountId));
   }
 });
 

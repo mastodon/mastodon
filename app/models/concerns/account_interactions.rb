@@ -23,6 +23,12 @@ module AccountInteractions
     def requested_map(target_account_ids, account_id)
       follow_mapping(FollowRequest.where(target_account_id: target_account_ids, account_id: account_id), :target_account_id)
     end
+
+    def domain_blocking_map(target_account_ids, account_id)
+      accounts_map    = Account.where(id: target_account_ids).select('id, domain').map { |a| [a.id, a.domain] }.to_h
+      blocked_domains = AccountDomainBlock.where(account_id: account_id, domain: accounts_map.values).pluck(:domain)
+      accounts_map.map { |id, domain| [id, blocked_domains.include?(domain)] }.to_h
+    end
   end
 
   included do
