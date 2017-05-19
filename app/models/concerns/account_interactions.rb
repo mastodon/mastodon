@@ -46,82 +46,82 @@ module AccountInteractions
     has_many :muting, -> { order('mutes.id desc') }, through: :mute_relationships, source: :target_account
     has_many :conversation_mutes, dependent: :destroy
     has_many :domain_blocks, class_name: 'AccountDomainBlock', dependent: :destroy
+  end
 
-    def follow!(other_account)
-      active_relationships.find_or_create_by!(target_account: other_account)
-    end
+  def follow!(other_account)
+    active_relationships.find_or_create_by!(target_account: other_account)
+  end
 
-    def block!(other_account)
-      block_relationships.find_or_create_by!(target_account: other_account)
-    end
+  def block!(other_account)
+    block_relationships.find_or_create_by!(target_account: other_account)
+  end
 
-    def mute!(other_account)
-      mute_relationships.find_or_create_by!(target_account: other_account)
-    end
+  def mute!(other_account)
+    mute_relationships.find_or_create_by!(target_account: other_account)
+  end
 
-    def mute_conversation!(conversation)
-      conversation_mutes.find_or_create_by!(conversation: conversation)
-    end
+  def mute_conversation!(conversation)
+    conversation_mutes.find_or_create_by!(conversation: conversation)
+  end
 
-    def block_domain!(other_domain)
-      domain_blocks.find_or_create_by!(domain: other_domain)
-    end
+  def block_domain!(other_domain)
+    domain_blocks.find_or_create_by!(domain: other_domain)
+  end
 
-    def unfollow!(other_account)
-      follow = active_relationships.find_by(target_account: other_account)
-      follow&.destroy
-    end
+  def unfollow!(other_account)
+    follow = active_relationships.find_by(target_account: other_account)
+    follow&.destroy
+  end
 
-    def unblock!(other_account)
-      block = block_relationships.find_by(target_account: other_account)
-      block&.destroy
-    end
+  def unblock!(other_account)
+    block = block_relationships.find_by(target_account: other_account)
+    block&.destroy
+  end
 
-    def unmute!(other_account)
-      mute = mute_relationships.find_by(target_account: other_account)
-      mute&.destroy
-    end
+  def unmute!(other_account)
+    mute = mute_relationships.find_by(target_account: other_account)
+    mute&.destroy
+  end
 
-    def unmute_conversation!(conversation)
-      mute = conversation_mutes.find_by(conversation: conversation)
-      mute&.destroy!
-    end
+  def unmute_conversation!(conversation)
+    mute = conversation_mutes.find_by(conversation: conversation)
+    mute&.destroy!
+  end
 
-    def unblock_domain!(other_domain)
-      block = domain_blocks.find_by(domain: other_domain)
-      block&.destroy
-    end
+  def unblock_domain!(other_domain)
+    block = domain_blocks.find_by(domain: other_domain)
+    block&.destroy
+  end
 
-    def following?(other_account)
-      active_relationships.where(target_account: other_account).exists?
-    end
+  def following?(other_account)
+    active_relationships.where(target_account: other_account).exists?
+  end
 
-    def blocking?(other_account)
-      block_relationships.where(target_account: other_account).exists?
-    end
+  def blocking?(other_account)
+    block_relationships.where(target_account: other_account).exists?
+  end
 
-    def domain_blocking?(other_domain)
-      domain_blocks.where(domain: other_domain).exists?
-    end
+  def domain_blocking?(other_domain)
+    domain_blocks.where(domain: other_domain).exists?
+  end
 
-    def muting?(other_account)
-      mute_relationships.where(target_account: other_account).exists?
-    end
+  def muting?(other_account)
+    mute_relationships.where(target_account: other_account).exists?
+  end
 
-    def muting_conversation?(conversation)
-      conversation_mutes.where(conversation: conversation).exists?
-    end
+  def muting_conversation?(conversation)
+    conversation_mutes.where(conversation: conversation).exists?
+  end
 
-    def requested?(other_account)
-      follow_requests.where(target_account: other_account).exists?
-    end
+  def requested?(other_account)
+    follow_requests.where(target_account: other_account).exists?
+  end
 
-    def favourited?(status)
-      status.proper.favourites.where(account: self).exists?
-    end
+  def favourited?(status)
+    status.proper.favourites.where(account: self).exists?
+  end
 
-    def reblogged?(status)
-      status.proper.reblogs.where(account: self).exists?
-    end
+  def reblogged?(status)
+    status.proper.reblogs.where(account: self).exists?
   end
 end

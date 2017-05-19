@@ -20,13 +20,13 @@ module AccountHeader
     has_attached_file :header, styles: ->(f) { header_styles(f) }, convert_options: { all: '-quality 80 -strip' }
     validates_attachment_content_type :header, content_type: IMAGE_MIME_TYPES
     validates_attachment_size :header, less_than: 2.megabytes
+  end
 
-    def header_original_url
-      header.url(:original)
-    end
+  def header_original_url
+    header.url(:original)
+  end
 
-    def header_static_url
-      header_content_type == 'image/gif' ? header.url(:static) : header_original_url
-    end
+  def header_static_url
+    header_content_type == 'image/gif' ? header.url(:static) : header_original_url
   end
 end
