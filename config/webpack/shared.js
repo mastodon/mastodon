@@ -42,6 +42,7 @@ module.exports = {
     new webpack.optimize.CommonsChunkPlugin({
       name: 'common',
       minChunks: 2,
+      chunks: ['application', 'public'], // extract common modules only from these chunks
     }),
   ],
 
