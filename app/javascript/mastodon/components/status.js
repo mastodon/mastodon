@@ -43,8 +43,9 @@ class Status extends ImmutablePureComponent {
     this.context.router.push(`/statuses/${status.getIn(['reblog', 'id'], status.get('id'))}`);
   }
 
-  handleAccountClick = (id, e) => {
+  handleAccountClick = (e) => {
     if (e.button === 0) {
+      const id = Number(e.currentTarget.getAttribute('data-id'));
       e.preventDefault();
       this.context.router.push(`/accounts/${id}`);
     }
@@ -72,7 +73,7 @@ class Status extends ImmutablePureComponent {
         <div className='status__wrapper'>
           <div className='status__prepend'>
             <div className='status__prepend-icon-wrapper'><i className='fa fa-fw fa-retweet status__prepend-icon' /></div>
-            <FormattedMessage id='status.reblogged_by' defaultMessage='{name} boosted' values={{ name: <a onClick={this.handleAccountClick.bind(this, status.getIn(['account', 'id']))} href={status.getIn(['account', 'url'])} className='status__display-name muted'><strong dangerouslySetInnerHTML={displayNameHTML} /></a> }} />
+            <FormattedMessage id='status.reblogged_by' defaultMessage='{name} boosted' values={{ name: <a onClick={this.handleAccountClick} data-id={status.getIn(['account', 'id'])} href={status.getIn(['account', 'url'])} className='status__display-name muted'><strong dangerouslySetInnerHTML={displayNameHTML} /></a> }} />
           </div>
 
           <Status {...other} wrapped={true} status={status.get('reblog')} account={status.get('account')} />
@@ -103,7 +104,7 @@ class Status extends ImmutablePureComponent {
             <a href={status.get('url')} className='status__relative-time' target='_blank' rel='noopener'><RelativeTimestamp timestamp={status.get('created_at')} /></a>
           </div>
 
-          <a onClick={this.handleAccountClick.bind(this, status.getIn(['account', 'id']))} href={status.getIn(['account', 'url'])} className='status__display-name'>
+          <a onClick={this.handleAccountClick} data-id={status.getIn(['account', 'id'])} href={status.getIn(['account', 'url'])} className='status__display-name'>
             <div className='status__avatar'>
               {statusAvatar}
             </div>

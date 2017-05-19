@@ -36,7 +36,8 @@ class PrivacyDropdown extends React.PureComponent {
     this.setState({ open: !this.state.open });
   }
 
-  handleClick = (value, e) => {
+  handleClick = (e) => {
+    const value = e.currentTarget.getAttribute('data-index');
     e.preventDefault();
     this.setState({ open: false });
     this.props.onChange(value);
@@ -80,7 +81,7 @@ class PrivacyDropdown extends React.PureComponent {
         <div className='privacy-dropdown__value'><IconButton className='privacy-dropdown__value-icon' icon={valueOption.icon} title={intl.formatMessage(messages.change_privacy)} size={18} active={open} inverted onClick={this.handleToggle} style={iconStyle}/></div>
         <div className='privacy-dropdown__dropdown'>
           {options.map(item =>
-            <div role='button' tabIndex='0' key={item.value} onClick={this.handleClick.bind(this, item.value)} className={`privacy-dropdown__option ${item.value === value ? 'active' : ''}`}>
+            <div role='button' tabIndex='0' key={item.value} data-index={item.value} onClick={this.handleClick} className={`privacy-dropdown__option ${item.value === value ? 'active' : ''}`}>
               <div className='privacy-dropdown__option__icon'><i className={`fa fa-fw fa-${item.icon}`} /></div>
               <div className='privacy-dropdown__option__content'>
                 <strong>{item.shortText}</strong>

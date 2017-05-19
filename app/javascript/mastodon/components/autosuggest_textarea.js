@@ -145,7 +145,8 @@ class AutosuggestTextarea extends ImmutablePureComponent {
     }, 100);
   }
 
-  onSuggestionClick (suggestion, e) {
+  onSuggestionClick (e) {
+    const suggestion = Number(e.currentTarget.getAttribute('data-index'));
     e.preventDefault();
     this.props.onSuggestionSelected(this.state.tokenStart, this.state.lastToken, suggestion);
     this.textarea.focus();
@@ -204,8 +205,9 @@ class AutosuggestTextarea extends ImmutablePureComponent {
               role='button'
               tabIndex='0'
               key={suggestion}
+              data-index={suggestion}
               className={`autosuggest-textarea__suggestions__item ${i === selectedSuggestion ? 'selected' : ''}`}
-              onClick={this.onSuggestionClick.bind(this, suggestion)}>
+              onClick={this.onSuggestionClick}>
               <AutosuggestAccountContainer id={suggestion} />
             </div>
           ))}
