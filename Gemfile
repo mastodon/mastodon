@@ -3,9 +3,7 @@
 source 'https://rubygems.org'
 ruby '>= 2.3.0', '< 2.5.0'
 
-group :pkgconfig do
-  gem 'pkg-config', '~> 1.2'
-end
+gem 'pkg-config', '~> 1.2'
 
 gem 'puma', '~> 3.8'
 gem 'rails', '~> 5.0'

@@ -35,7 +35,7 @@ run.config:
     - gem install bundler
     - bundle config build.nokogiri --with-iconv-dir=/data/ --with-zlib-dir=/data/
     - bundle config build.nokogumbo --with-iconv-dir=/data/ --with-zlib-dir=/data/
-    - bundle install --without=pkgconfig --clean
+    - bundle install --clean
     - yarn
 
   fs_watch: true
@@ -46,6 +46,14 @@ deploy.config:
     - "[ -r /app/.env.production ] || sed 's/LOCAL_HTTPS=.*/LOCAL_HTTPS=true/i' /app/.env.nanobox > /app/.env.production"
   transform:
     - envsubst < /app/.env.production > /tmp/.env.production && mv /tmp/.env.production /app/.env.production
+    - |-
+        if [ -z "$LOCAL_DOMAIN" ]
+        then
+          . /app/.env.production
+          export LOCAL_DOMAIN
+        fi
+        erb /app/nanobox/nginx-web.conf.erb > /app/nanobox/nginx-web.conf
+        erb /app/nanobox/nginx-stream.conf.erb > /app/nanobox/nginx-stream.conf
     - touch /app/log/production.log
   before_live:
     web.web:
