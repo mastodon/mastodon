@@ -35,7 +35,7 @@ class ColumnCollapsable extends React.PureComponent {
           <i className={`fa fa-${icon}`} />
         </div>
 
-        <div className='column-collapsable__content' style={{ height: `${fullHeight}px`, maxHeight: '70vh' }}>
+        <div className='column-collapsable__content' style={{ height: `${fullHeight}px` }}>
           {children}
         </div>
       </div>

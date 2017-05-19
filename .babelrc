@@ -32,7 +32,25 @@
     },
     "production": {
       "plugins": [
-        "lodash"
+        "lodash",
+        [
+          "transform-react-remove-prop-types",
+          {
+            "mode": "remove",
+            "removeImport": true,
+            "additionalLibraries": [
+              "react-immutable-proptypes"
+            ]
+          }
+        ],
+        [
+          "transform-runtime",
+          {
+            "helpers": true,
+            "polyfill": false,
+            "regenerator": false
+          }
+        ]
       ]
     },
     "test": {

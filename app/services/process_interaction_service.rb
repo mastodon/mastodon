@@ -21,9 +21,9 @@ class ProcessInteractionService < BaseService
 
       case verb(xml)
       when :follow
-        follow!(account, target_account) unless target_account.locked? || target_account.blocking?(account)
+        follow!(account, target_account) unless target_account.locked? || target_account.blocking?(account) || target_account.domain_blocking?(account.domain)
       when :request_friend
-        follow_request!(account, target_account) unless !target_account.locked? || target_account.blocking?(account)
+        follow_request!(account, target_account) unless !target_account.locked? || target_account.blocking?(account) || target_account.domain_blocking?(account.domain)
       when :authorize
         authorize_follow_request!(account, target_account)
       when :reject

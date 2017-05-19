@@ -13,11 +13,13 @@ import {
 import { mentionCompose } from '../../../actions/compose';
 import { initReport } from '../../../actions/reports';
 import { openModal } from '../../../actions/modal';
+import { blockDomain, unblockDomain } from '../../../actions/domain_blocks';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 
 const messages = defineMessages({
   blockConfirm: { id: 'confirmations.block.confirm', defaultMessage: 'Block' },
-  muteConfirm: { id: 'confirmations.mute.confirm', defaultMessage: 'Mute' }
+  muteConfirm: { id: 'confirmations.mute.confirm', defaultMessage: 'Mute' },
+  blockDomainConfirm: { id: 'confirmations.domain_block.confirm', defaultMessage: 'Hide entire domain' },
 });
 
 const makeMapStateToProps = () => {
@@ -70,6 +72,18 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
         onConfirm: () => dispatch(muteAccount(account.get('id')))
       }));
     }
+  },
+
+  onBlockDomain (domain, accountId) {
+    dispatch(openModal('CONFIRM', {
+      message: <FormattedMessage id='confirmations.domain_block.message' defaultMessage='Are you really, really sure you want to block the entire {domain}? In most cases a few targeted blocks or mutes are sufficient and preferable.' values={{ domain: <strong>{domain}</strong> }} />,
+      confirm: intl.formatMessage(messages.blockDomainConfirm),
+      onConfirm: () => dispatch(blockDomain(domain, accountId))
+    }));
+  },
+
+  onUnblockDomain (domain, accountId) {
+    dispatch(unblockDomain(domain, accountId));
   }
 });
 

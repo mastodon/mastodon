@@ -26,15 +26,19 @@ class Button extends React.PureComponent {
 
   render () {
     const style = {
-      display: this.props.block ? 'block' : 'inline-block',
-      width: this.props.block ? '100%' : 'auto',
       padding: `0 ${this.props.size / 2.25}px`,
       height: `${this.props.size}px`,
-      lineHeight: `${this.props.size}px`
+      lineHeight: `${this.props.size}px`,
+      ...this.props.style
     };
 
     return (
-      <button className={`button ${this.props.secondary ? 'button-secondary' : ''}`} disabled={this.props.disabled} onClick={this.handleClick} style={{ ...style, ...this.props.style }}>
+      <button
+        className={`button ${this.props.secondary ? 'button-secondary' : ''} ${this.props.block ? 'button--block' : ''}`}
+        disabled={this.props.disabled}
+        onClick={this.handleClick}
+        style={style}
+      >
         {this.props.text || this.props.children}
       </button>
     );

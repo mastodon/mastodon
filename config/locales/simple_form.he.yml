@@ -4,10 +4,14 @@ he:
     hints:
       defaults:
         avatar: 'PNG, GIF או JPG. מקסימום 2MB. גודל התמונה יוקטן ל-120x120px'
-        display_name: 'מקסימום 30 תווים'
+        display_name:
+            one: 'נותרה אות<span class="name-counter">אחת</span>'
+            other: 'נותרו<span class="name-counter">%{count}</span> אותיות'
         header: 'PNG, GIF או JPG. מקסימום 2MB. גודל התמונה יוקטן 700x335px'
         locked: 'מחייב אישור עוקבים באופן ידני. פרטיות ההודעות תהיה עוקבים-בלבד אלא אם יצוין אחרת'
-        note: 'מקסימום 160 תווים'
+        note:
+            one: 'נותרה אות<span class="note-counter">אחת</span>'
+            other: 'נותרו <span class="note-counter">%{count}</span> אותיות'
       imports:
         data: 'קובץ CSV שיוצא משרת מסטודון אחר'
       sessions:

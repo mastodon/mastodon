@@ -239,8 +239,8 @@ class ProcessFeedService < BaseService
 
         begin
           media.file_remote_url = link['href']
-          media.save
-        rescue OpenURI::HTTPError, OpenSSL::SSL::SSLError, Paperclip::Errors::NotIdentifiedByImageMagickError
+          media.save!
+        rescue ActiveRecord::RecordInvalid
           next
         end
       end

@@ -13,14 +13,12 @@ import {
 import { showOnboardingOnce } from '../actions/onboarding';
 import { updateNotifications, refreshNotifications } from '../actions/notifications';
 import createBrowserHistory from 'history/lib/createBrowserHistory';
-import {
-  applyRouterMiddleware,
-  useRouterHistory,
-  Router,
-  Route,
-  IndexRedirect,
-  IndexRoute
-} from 'react-router';
+import applyRouterMiddleware from 'react-router/lib/applyRouterMiddleware';
+import useRouterHistory from 'react-router/lib/useRouterHistory';
+import Router from 'react-router/lib/Router';
+import Route from 'react-router/lib/Route';
+import IndexRedirect from 'react-router/lib/IndexRedirect';
+import IndexRoute from 'react-router/lib/IndexRoute';
 import { useScroll } from 'react-router-scroll';
 import UI from '../features/ui';
 import Status from '../features/status';

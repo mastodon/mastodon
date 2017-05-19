@@ -1,7 +1,9 @@
 language: ruby
 cache:
-  bundler: false
-  yarn: false
+  bundler: true
+  yarn: true
+  directories:
+  - node_modules
 dist: trusty
 sudo: false
 

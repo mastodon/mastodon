@@ -20,7 +20,7 @@
       %li= filter_link_to t('admin.accounts.order.alphabetic'), recent: nil
       %li= filter_link_to t('admin.accounts.order.most_recent'), recent: '1'
 
-= form_tag(admin_accounts_url, { method: 'GET', class: 'simple_form' }) do
+= form_tag admin_accounts_url, method: 'GET', class: 'simple_form' do
   .fields-group
     - Admin::FilterHelper::ACCOUNT_FILTERS.each do |key|
       - if params[key].present?
@@ -28,12 +28,11 @@
 
     - %i(username display_name email ip).each do |key|
       .input.string.optional
-        .label_input
-          %label.string.optional= t("admin.accounts.#{key}")
-          = text_field_tag key, params[key], class: 'string optional'
+        = text_field_tag key, params[key], class: 'string optional', placeholder: I18n.t("admin.accounts.#{key}")
 
     .actions
-      %button.btn= t('admin.accounts.search')
+      %button= t('admin.accounts.search')
+      = link_to t('admin.accounts.reset'), admin_accounts_path, class: 'button negative'
 
 %table.table
   %thead

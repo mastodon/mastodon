@@ -101,7 +101,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   delegate(document, '.account_note', 'input', ({ target }) => {
-    const [noteCounter, ] = document.getElementsByClassName('.note-counter');
+    const [noteCounter, ] = document.getElementsByClassName('note-counter');
     noteCounter.textContent = 160 - length(target.value);
   });
 });

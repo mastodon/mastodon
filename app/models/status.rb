@@ -50,10 +50,10 @@ class Status < ApplicationRecord
   has_one :notification, as: :activity, dependent: :destroy
   has_one :preview_card, dependent: :destroy
 
-  validates :uri, uniqueness: true, unless: 'local?'
-  validates :text, presence: true, unless: 'reblog?'
+  validates :uri, uniqueness: true, unless: :local?
+  validates :text, presence: true, unless: :reblog?
   validates_with StatusLengthValidator
-  validates :reblog, uniqueness: { scope: :account }, if: 'reblog?'
+  validates :reblog, uniqueness: { scope: :account }, if: :reblog?
 
   default_scope { order(id: :desc) }
 
@@ -68,6 +68,7 @@ class Status < ApplicationRecord
   scope :excluding_silenced_accounts, -> { left_outer_joins(:account).where(accounts: { silenced: false }) }
   scope :including_silenced_accounts, -> { left_outer_joins(:account).where(accounts: { silenced: true }) }
   scope :not_excluded_by_account, ->(account) { where.not(account_id: account.excluded_from_timeline_account_ids) }
+  scope :not_domain_blocked_by_account, ->(account) { left_outer_joins(:account).where.not(accounts: { domain: account.excluded_from_timeline_domains }) }
 
   cache_associated :account, :application, :media_attachments, :tags, :stream_entry, mentions: :account, reblog: [:account, :application, :stream_entry, :tags, :media_attachments, mentions: :account], thread: :account
 
@@ -152,13 +153,13 @@ class Status < ApplicationRecord
     def as_public_timeline(account = nil, local_only = false)
       query = timeline_scope(local_only).without_replies
 
-      apply_timeline_filters(query, account)
+      apply_timeline_filters(query, account, local_only)
     end
 
     def as_tag_timeline(tag, account = nil, local_only = false)
       query = timeline_scope(local_only).tagged_with(tag)
 
-      apply_timeline_filters(query, account)
+      apply_timeline_filters(query, account, local_only)
     end
 
     def as_outbox_timeline(account)
@@ -222,16 +223,17 @@ class Status < ApplicationRecord
         .without_reblogs
     end
 
-    def apply_timeline_filters(query, account)
+    def apply_timeline_filters(query, account, local_only)
       if account.nil?
         filter_timeline_default(query)
       else
-        filter_timeline_for_account(query, account)
+        filter_timeline_for_account(query, account, local_only)
       end
     end
 
-    def filter_timeline_for_account(query, account)
+    def filter_timeline_for_account(query, account, local_only)
       query = query.not_excluded_by_account(account)
+      query = query.not_domain_blocked_by_account(account) unless local_only
       query = query.in_allowed_languages(account) if account.allowed_languages.present?
       query.merge(account_silencing_filter(account))
     end
@@ -284,7 +286,9 @@ class Status < ApplicationRecord
   end
 
   def find_statuses_from_tree_path(ids, account)
-    statuses = Status.where(id: ids).to_a
+    statuses = Status.where(id: ids).includes(:account).to_a
+
+    # FIXME: n+1 bonanza
     statuses.reject! { |status| filter_from_context?(status, account) }
 
     # Order ancestors/descendants by tree path
@@ -292,6 +296,11 @@ class Status < ApplicationRecord
   end
 
   def filter_from_context?(status, account)
-    account&.blocking?(status.account_id) || account&.muting?(status.account_id) || (status.account.silenced? && !account&.following?(status.account_id)) || !status.permitted?(account)
+    should_filter   = account&.blocking?(status.account_id)
+    should_filter ||= account&.domain_blocking?(status.account.domain)
+    should_filter ||= account&.muting?(status.account_id)
+    should_filter ||= (status.account.silenced? && !account&.following?(status.account_id))
+    should_filter ||= !status.permitted?(account)
+    should_filter
   end
 end

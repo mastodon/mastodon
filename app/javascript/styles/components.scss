@@ -28,6 +28,7 @@
   text-overflow: ellipsis;
   transition: all 100ms ease-in;
   white-space: nowrap;
+  width: auto;
 
   &:active,
   &:focus,
@@ -44,6 +45,17 @@
   &.button-secondary {
     //
   }
+
+  &.button--block {
+    display: block;
+    width: 100%;
+  }
+}
+
+.column__wrapper {
+  display: flex;
+  flex: 1 1 auto;
+  position: relative;
 }
 
 .column-collapsable {
@@ -53,6 +65,7 @@
     overflow: auto;
     transition: 300ms ease;
     opacity: 1;
+    max-height: 70vh;
   }
 
   &.collapsed .column-collapsable__content {
@@ -370,10 +383,16 @@
 .compose-form__autosuggest-wrapper {
   position: relative;
 
-  .dropdown--active::after {
-    border-color: transparent transparent $base-border-color;
-    bottom: -1px;
-    right: 8px;
+  .emoji-picker__dropdown {
+    position: absolute;
+    right: 5px;
+    top: 5px;
+
+    &.dropdown--active::after {
+      border-color: transparent transparent $base-border-color;
+      bottom: -1px;
+      right: 8px;
+    }
   }
 }
 
@@ -496,6 +515,14 @@
     &:hover {
       background: lighten($ui-base-color, 33%);
       text-decoration: none;
+    }
+  }
+
+  .status__content__text {
+    display: none;
+
+    &.status__content__text--visible {
+      display: block;
     }
   }
 }
@@ -800,6 +827,7 @@
 
   & > div {
     background: rgba(lighten($ui-base-color, 4%), 0.9);
+    padding: 20px 10px;
   }
 
   .account__header__content {
@@ -808,10 +836,18 @@
 
   .account__header__display-name {
     color: $primary-text-color;
+    display: inline-block;
+    font-size: 20px;
+    line-height: 27px;
+    font-weight: 500;
   }
 
   .account__header__username {
     color: $ui-highlight-color;
+    font-size: 14px;
+    font-weight: 400;
+    display: block;
+    margin-bottom: 10px;
   }
 }
 
@@ -1446,44 +1482,6 @@
   }
 }
 
-.react-autosuggest__container {
-  position: relative;
-}
-
-.react-autosuggest__suggestions-container {
-  position: absolute;
-  top: 100%;
-  width: 100%;
-  z-index: 99;
-  box-shadow: 0 0 15px rgba($base-shadow-color, 0.4);
-}
-
-.react-autosuggest__section-title {
-  background: $ui-primary-color;
-  padding: 4px 10px;
-  font-weight: 500;
-  cursor: default;
-  color: $ui-base-color;
-  text-transform: uppercase;
-  font-size: 11px;
-}
-
-.react-autosuggest__suggestions-list {
-  background: $ui-secondary-color;
-  color: $ui-base-color;
-  font-size: 14px;
-}
-
-.react-autosuggest__suggestion {
-  padding: 10px;
-  cursor: pointer;
-}
-
-.react-autosuggest__suggestion--focused {
-  background: $ui-highlight-color;
-  color: $primary-text-color;
-}
-
 .scrollable {
   overflow-y: scroll;
   overflow-x: hidden;
@@ -1716,6 +1714,7 @@
 }
 
 .autosuggest-textarea__suggestions {
+  display: none;
   position: absolute;
   top: 100%;
   width: 100%;
@@ -1724,6 +1723,10 @@
   background: $ui-secondary-color;
   color: $ui-base-color;
   font-size: 14px;
+
+  &.autosuggest-textarea__suggestions--visible {
+    display: block;
+  }
 }
 
 .autosuggest-textarea__suggestions__item {
@@ -1776,6 +1779,11 @@
 
 .getting-started__wrapper {
   position: relative;
+}
+
+.getting-started__footer {
+  display: flex;
+  flex-direction: column;
 }
 
 .getting-started {
@@ -2051,11 +2059,16 @@ button.icon-button.active i.fa-retweet {
 }
 
 .spoiler-button {
+  display: none;
   left: 4px;
   position: absolute;
   text-shadow: 0 1px 1px $base-shadow-color, 1px 0 1px $base-shadow-color;
   top: 4px;
   z-index: 100;
+
+  &.spoiler-button--visible {
+    display: block;
+  }
 }
 
 .modal-container--preloader {
@@ -2114,6 +2127,24 @@ button.icon-button.active i.fa-retweet {
 
 .account--follows-info {
   color: $primary-text-color;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  opacity: 0.7;
+  display: inline-block;
+  vertical-align: top;
+  background-color: rgba($base-overlay-background, 0.4);
+  text-transform: uppercase;
+  font-size: 11px;
+  font-weight: 500;
+  padding: 4px;
+  border-radius: 4px;
+}
+
+.account--action-button {
+  position: absolute;
+  top: 10px;
+  left: 20px;
 }
 
 .setting-toggle__label {
@@ -2531,6 +2562,11 @@ button.icon-button.active i.fa-retweet {
 }
 
 .emoji-button {
+  display: block;
+  font-size: 24px;
+  line-height: 24px;
+  margin-left: 2px;
+  width: 24px;
   outline: 0;
 
   &:active,
@@ -3345,12 +3381,17 @@ button.icon-button.active i.fa-retweet {
 }
 
 .status__video-player-spoiler {
+  display: none;
   color: $primary-text-color;
   left: 4px;
   position: absolute;
   text-shadow: 0 1px 1px $base-shadow-color, 1px 0 1px $base-shadow-color;
   top: 4px;
   z-index: 100;
+
+  &.status__video-player-spoiler--visible {
+    display: block;
+  }
 }
 
 .status__video-player-expand {
@@ -3365,6 +3406,8 @@ button.icon-button.active i.fa-retweet {
 
 .media-spoiler-video {
   background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
   cursor: pointer;
   margin-top: 8px;
   position: relative;

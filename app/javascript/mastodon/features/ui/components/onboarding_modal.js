@@ -11,6 +11,8 @@ import NavigationBar from '../../compose/components/navigation_bar';
 import ColumnHeader from './column_header';
 import Immutable from 'immutable';
 
+const noop = () => { };
+
 const messages = defineMessages({
   home_title: { id: 'column.home', defaultMessage: 'Home' },
   notifications_title: { id: 'column.notifications', defaultMessage: 'Notifications' },
@@ -48,14 +50,14 @@ const PageTwo = ({ me }) => (
         suggestions={Immutable.List()}
         mentionedDomains={[]}
         spoiler={false}
-        onChange={() => {}}
-        onSubmit={() => {}}
-        onPaste={() => {}}
-        onPickEmoji={() => {}}
-        onChangeSpoilerText={() => {}}
-        onClearSuggestions={() => {}}
-        onFetchSuggestions={() => {}}
-        onSuggestionSelected={() => {}}
+        onChange={noop}
+        onSubmit={noop}
+        onPaste={noop}
+        onPickEmoji={noop}
+        onChangeSpoilerText={noop}
+        onClearSuggestions={noop}
+        onFetchSuggestions={noop}
+        onSuggestionSelected={noop}
       />
     </div>
 
@@ -72,10 +74,10 @@ const PageThree = ({ me, domain }) => (
     <div className='figure non-interactive'>
       <Search
         value=''
-        onChange={() => {}}
-        onSubmit={() => {}}
-        onClear={() => {}}
-        onShow={() => {}}
+        onChange={noop}
+        onSubmit={noop}
+        onClear={noop}
+        onShow={noop}
       />
 
       <div className='pseudo-drawer'>
@@ -182,12 +184,14 @@ class OnboardingModal extends React.PureComponent {
     this.props.onClose();
   }
 
-  handleDot = (i, e) => {
+  handleDot = (e) => {
+    const i = Number(e.currentTarget.getAttribute('data-index'));
     e.preventDefault();
     this.setState({ currentIndex: i });
   }
 
-  handleNext = (maxNum, e) => {
+  handleNext = (e) => {
+    const maxNum = Number(e.currentTarget.getAttribute('data-length'));
     e.preventDefault();
 
     if (this.state.currentIndex < maxNum - 1) {
@@ -214,9 +218,9 @@ class OnboardingModal extends React.PureComponent {
     let nextOrDoneBtn;
 
     if(hasMore) {
-      nextOrDoneBtn = <a href='#' onClick={this.handleNext.bind(null, pages.length)} className='onboarding-modal__nav onboarding-modal__next'><FormattedMessage id='onboarding.next' defaultMessage='Next' /></a>;
+      nextOrDoneBtn = <a href='#' data-length={pages.length} onClick={this.handleNext} className='onboarding-modal__nav onboarding-modal__next'><FormattedMessage id='onboarding.next' defaultMessage='Next' /></a>;
     } else {
-      nextOrDoneBtn = <a href='#' onClick={this.handleNext.bind(null, pages.length)} className='onboarding-modal__nav onboarding-modal__done'><FormattedMessage id='onboarding.done' defaultMessage='Done' /></a>;
+      nextOrDoneBtn = <a href='#' data-length={pages.length} onClick={this.handleNext} className='onboarding-modal__nav onboarding-modal__done'><FormattedMessage id='onboarding.done' defaultMessage='Done' /></a>;
     }
 
     const styles = pages.map((page, i) => ({
@@ -242,7 +246,7 @@ class OnboardingModal extends React.PureComponent {
           </div>
 
           <div className='onboarding-modal__dots'>
-            {pages.map((_, i) => <div key={i} onClick={this.handleDot.bind(null, i)} className={`onboarding-modal__dot ${i === currentIndex ? 'active' : ''}`} />)}
+            {pages.map((_, i) => <div key={i} role='button' tabIndex='0' data-index={i} onClick={this.handleDot} className={`onboarding-modal__dot ${i === currentIndex ? 'active' : ''}`} />)}
           </div>
 
           <div>

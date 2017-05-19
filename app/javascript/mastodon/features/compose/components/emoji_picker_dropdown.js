@@ -22,20 +22,6 @@ const settings = {
   imagePathPNG: '/emoji/'
 };
 
-const dropdownStyle = {
-  position: 'absolute',
-  right: '5px',
-  top: '5px'
-};
-
-const dropdownTriggerStyle = {
-  display: 'block',
-  fontSize: '24px',
-  lineHeight: '24px',
-  marginLeft: '2px',
-  width: '24px'
-}
-
 let EmojiPicker; // load asynchronously
 
 class EmojiPickerDropdown extends React.PureComponent {
@@ -118,8 +104,8 @@ class EmojiPickerDropdown extends React.PureComponent {
     const { active, loading } = this.state;
 
     return (
-      <Dropdown ref={this.setRef} style={dropdownStyle} onShow={this.onShowDropdown} onHide={this.onHideDropdown}>
-        <DropdownTrigger className='emoji-button' title={intl.formatMessage(messages.emoji)} style={dropdownTriggerStyle}>
+      <Dropdown ref={this.setRef} className='emoji-picker__dropdown' onShow={this.onShowDropdown} onHide={this.onHideDropdown}>
+        <DropdownTrigger className='emoji-button' title={intl.formatMessage(messages.emoji)}>
           <img draggable="false"
                className={`emojione ${active && loading ? "pulse-loading" : ''}`}
                alt="🙂" src="/emoji/1f602.svg" />

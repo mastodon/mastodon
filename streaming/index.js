@@ -229,20 +229,26 @@ if (cluster.isMaster) {
 
           const unpackedPayload  = JSON.parse(payload)
           const targetAccountIds = [unpackedPayload.account.id].concat(unpackedPayload.mentions.map(item => item.id)).concat(unpackedPayload.reblog ? [unpackedPayload.reblog.account.id] : [])
+          const accountDomain    = unpackedPayload.account.acct.split('@')[1]
 
-          client.query(`SELECT target_account_id FROM blocks WHERE account_id = $1 AND target_account_id IN (${placeholders(targetAccountIds, 1)}) UNION SELECT target_account_id FROM mutes WHERE account_id = $1 AND target_account_id IN (${placeholders(targetAccountIds, 1)})`, [req.accountId].concat(targetAccountIds), (err, result) => {
+          const queries = [
+            client.query(`SELECT 1 FROM blocks WHERE account_id = $1 AND target_account_id IN (${placeholders(targetAccountIds, 1)}) UNION SELECT 1 FROM mutes WHERE account_id = $1 AND target_account_id IN (${placeholders(targetAccountIds, 1)})`, [req.accountId].concat(targetAccountIds)),
+          ]
+
+          if (accountDomain) {
+            queries.push(client.query('SELECT 1 FROM account_domain_blocks WHERE account_id = $1 AND domain = $2', [req.accountId, accountDomain]))
+          }
+
+          Promise.all(queries).then(values => {
             done()
 
-            if (err) {
-              log.error(err)
-              return
-            }
-
-            if (result.rows.length > 0) {
+            if (values[0].rows.length > 0 || (values.length > 1 && values[1].rows.length > 0)) {
               return
             }
 
             transmit()
+          }).catch(err => {
+            log.error(err)
           })
         })
       } else {
