@@ -44,9 +44,9 @@ import Report from '../features/report';
 import { hydrateStore } from '../actions/store';
 import createStream from '../stream';
 import { IntlProvider, addLocaleData } from 'react-intl';
-
-const localeMessages = window.__mastodonLocaleData.messages;
-addLocaleData(window.__mastodonLocaleData.locale);
+import { getLocale } from '../locales';
+const { localeData, messages } = getLocale();
+addLocaleData(localeData);
 
 const store = configureStore();
 const initialState = JSON.parse(document.getElementById("initial-state").textContent);
@@ -96,7 +96,7 @@ class Mastodon extends React.PureComponent {
           store.dispatch(deleteFromTimelines(data.payload));
           break;
         case 'notification':
-          store.dispatch(updateNotifications(JSON.parse(data.payload), localeMessages, locale));
+          store.dispatch(updateNotifications(JSON.parse(data.payload), messages, locale));
           break;
         }
       },
@@ -134,7 +134,7 @@ class Mastodon extends React.PureComponent {
     const { locale } = this.props;
 
     return (
-      <IntlProvider locale={locale} messages={localeMessages}>
+      <IntlProvider locale={locale} messages={messages}>
         <Provider store={store}>
           <Router history={browserHistory} render={applyRouterMiddleware(useScroll())}>
             <Route path='/' component={UI}>
