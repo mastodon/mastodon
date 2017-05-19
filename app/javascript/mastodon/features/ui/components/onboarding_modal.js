@@ -242,7 +242,7 @@ class OnboardingModal extends React.PureComponent {
           </div>
 
           <div className='onboarding-modal__dots'>
-            {pages.map((_, i) => <div key={i} onClick={this.handleDot.bind(null, i)} className={`onboarding-modal__dot ${i === currentIndex ? 'active' : ''}`} />)}
+            {pages.map((_, i) => <div key={i} role='button' tabIndex='0' onClick={this.handleDot.bind(null, i)} className={`onboarding-modal__dot ${i === currentIndex ? 'active' : ''}`} />)}
           </div>
 
           <div>
