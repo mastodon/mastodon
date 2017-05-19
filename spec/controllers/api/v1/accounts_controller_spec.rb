@@ -17,6 +17,14 @@ RSpec.describe Api::V1::AccountsController, type: :controller do
     end
   end
 
+  describe 'GET #search' do
+    it 'returns http success' do
+      get :search, params: { q: 'query' }
+
+      expect(response).to have_http_status(:success)
+    end
+  end
+
   describe 'GET #verify_credentials' do
     it 'returns http success' do
       get :verify_credentials
