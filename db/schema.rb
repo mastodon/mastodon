@@ -351,6 +351,7 @@ ActiveRecord::Schema.define(version: 20170517205741) do
     t.datetime "last_emailed_at"
     t.string   "otp_backup_codes",                                       array: true
     t.string   "allowed_languages",         default: [],    null: false, array: true
+    t.boolean  "external",                  default: false, null: false
     t.index ["account_id"], name: "index_users_on_account_id", using: :btree
     t.index ["allowed_languages"], name: "index_users_on_allowed_languages", using: :gin
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree

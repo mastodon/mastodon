@@ -11,7 +11,7 @@ class Auth::SessionsController < Devise::SessionsController
 
   def create
     super do |resource|
-      remember_me(resource)
+      remember_me(resource) unless resource.external?
       flash[:notice] = nil
     end
   end
