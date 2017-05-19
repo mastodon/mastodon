@@ -103,4 +103,9 @@ class ApiController < ApplicationController
     @favourites_map  = Status.favourites_map(status_ids, current_account)
     @mutes_map       = Status.mutes_map(conversation_ids, current_account)
   end
+
+  def doorkeeper_authorize_if_got_token!(*scopes)
+    request_token = Doorkeeper::OAuth::Token.from_request(request, *Doorkeeper.configuration.access_token_methods)
+    doorkeeper_authorize!(*scopes) if request_token
+  end
 end

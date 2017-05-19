@@ -5,10 +5,12 @@ RSpec.describe Api::V1::StatusesController, type: :controller do
 
   let(:user)  { Fabricate(:user, account: Fabricate(:account, username: 'alice')) }
   let(:app)   { Fabricate(:application, name: 'Test app', website: 'http://testapp.com') }
-  let(:token) { double acceptable?: true, resource_owner_id: user.id, application: app }
 
   context 'with an oauth token' do
+    let(:token) { double acceptable?: true, resource_owner_id: user.id, application: app }
+
     before do
+      request.headers['Authorization'] = "Bearer blah"
       allow(controller).to receive(:doorkeeper_token) { token }
     end
 
@@ -219,15 +221,11 @@ RSpec.describe Api::V1::StatusesController, type: :controller do
   end
 
   context 'without an oauth token' do
-    before do
-      allow(controller).to receive(:doorkeeper_token) { nil }
-    end
-
     context 'with a private status' do
       let(:status) { Fabricate(:status, account: user.account, visibility: :private) }
 
       describe 'GET #show' do
-        it 'returns http unautharized' do
+        it 'returns http missing' do
           get :show, params: { id: status.id }
           expect(response).to have_http_status(:missing)
         end
@@ -238,14 +236,14 @@ RSpec.describe Api::V1::StatusesController, type: :controller do
           Fabricate(:status, account: user.account, thread: status)
         end
 
-        it 'returns http unautharized' do
+        it 'returns http missing' do
           get :context, params: { id: status.id }
           expect(response).to have_http_status(:missing)
         end
       end
 
       describe 'GET #card' do
-        it 'returns http unautharized' do
+        it 'returns http missing' do
           get :card, params: { id: status.id }
           expect(response).to have_http_status(:missing)
         end
@@ -256,7 +254,7 @@ RSpec.describe Api::V1::StatusesController, type: :controller do
           post :reblog, params: { id: status.id }
         end
 
-        it 'returns http unautharized' do
+        it 'returns http missing' do
           get :reblogged_by, params: { id: status.id }
           expect(response).to have_http_status(:missing)
         end
@@ -267,7 +265,7 @@ RSpec.describe Api::V1::StatusesController, type: :controller do
           post :favourite, params: { id: status.id }
         end
 
-        it 'returns http unautharized' do
+        it 'returns http missing' do
           get :favourited_by, params: { id: status.id }
           expect(response).to have_http_status(:missing)
         end
@@ -322,6 +320,61 @@ RSpec.describe Api::V1::StatusesController, type: :controller do
           get :favourited_by, params: { id: status.id }
           expect(response).to have_http_status(:success)
         end
+      end
+    end
+  end
+
+  context 'with a bogus oauth token' do
+    let(:status) { Fabricate(:status, account: user.account) }
+
+    before do
+      request.headers['Authorization'] = "Bearer blah"
+    end
+
+    describe 'GET #show' do
+      it 'returns http unauthorized' do
+        get :show, params: { id: status.id }
+        expect(response).to have_http_status(401)
+      end
+    end
+
+    describe 'GET #context' do
+      before do
+        Fabricate(:status, account: user.account, thread: status)
+      end
+
+      it 'returns http unauthorized' do
+        get :context, params: { id: status.id }
+        expect(response).to have_http_status(401)
+      end
+    end
+
+    describe 'GET #card' do
+      it 'returns http unauthorized' do
+        get :card, params: { id: status.id }
+        expect(response).to have_http_status(401)
+      end
+    end
+
+    describe 'GET #reblogged_by' do
+      before do
+        post :reblog, params: { id: status.id }
+      end
+
+      it 'returns http unauthorized' do
+        get :reblogged_by, params: { id: status.id }
+        expect(response).to have_http_status(401)
+      end
+    end
+
+    describe 'GET #favourited_by' do
+      before do
+        post :favourite, params: { id: status.id }
+      end
+
+      it 'returns http unauthorized' do
+        get :favourited_by, params: { id: status.id }
+        expect(response).to have_http_status(401)
       end
     end
   end

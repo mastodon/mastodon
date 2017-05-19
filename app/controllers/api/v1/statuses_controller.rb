@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 class Api::V1::StatusesController < ApiController
-  before_action :authorize_if_got_token, except:            [:create, :destroy, :reblog, :unreblog, :favourite, :unfavourite, :mute, :unmute]
-  before_action -> { doorkeeper_authorize! :write }, only:  [:create, :destroy, :reblog, :unreblog, :favourite, :unfavourite, :mute, :unmute]
+  before_action -> { doorkeeper_authorize_if_got_token! :read }, except: [:create, :destroy, :reblog, :unreblog, :favourite, :unfavourite, :mute, :unmute]
+  before_action -> { doorkeeper_authorize! :write }, only: [:create, :destroy, :reblog, :unreblog, :favourite, :unfavourite, :mute, :unmute]
   before_action :require_user!, except:  [:show, :context, :card, :reblogged_by, :favourited_by]
   before_action :set_status, only:       [:show, :context, :card, :reblogged_by, :favourited_by, :mute, :unmute]
   before_action :set_conversation, only: [:mute, :unmute]
@@ -140,10 +140,5 @@ class Api::V1::StatusesController < ApiController
 
   def pagination_params(core_params)
     params.permit(:limit).merge(core_params)
-  end
-
-  def authorize_if_got_token
-    request_token = Doorkeeper::OAuth::Token.from_request(request, *Doorkeeper.configuration.access_token_methods)
-    doorkeeper_authorize! :read if request_token
   end
 end
