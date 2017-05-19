@@ -45,6 +45,7 @@ class ActionBar extends React.PureComponent {
     menu.push({ text: intl.formatMessage(messages.mention, { name: account.get('username') }), action: this.props.onMention });
     menu.push(null);
     menu.push({ text: intl.formatMessage(messages.media), to: `/accounts/${account.get('id')}/media` });
+    menu.push(null);
 
     if (account.get('id') === me) {
       menu.push({ text: intl.formatMessage(messages.edit_profile), href: '/settings/profile' });
