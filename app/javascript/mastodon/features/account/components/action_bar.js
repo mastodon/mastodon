@@ -15,7 +15,9 @@ const messages = defineMessages({
   mute: { id: 'account.mute', defaultMessage: 'Mute @{name}' },
   follow: { id: 'account.follow', defaultMessage: 'Follow' },
   report: { id: 'account.report', defaultMessage: 'Report @{name}' },
-  disclaimer: { id: 'account.disclaimer', defaultMessage: 'This user is from another instance. This number may be larger.' }
+  disclaimer: { id: 'account.disclaimer', defaultMessage: 'This user is from another instance. This number may be larger.' },
+  blockDomain: { id: 'account.block_domain', defaultMessage: 'Hide everything from {domain}' },
+  unblockDomain: { id: 'account.unblock_domain', defaultMessage: 'Unhide {domain}' },
 });
 
 class ActionBar extends React.PureComponent {
@@ -28,6 +30,8 @@ class ActionBar extends React.PureComponent {
     onMention: PropTypes.func.isRequired,
     onReport: PropTypes.func.isRequired,
     onMute: PropTypes.func.isRequired,
+    onBlockDomain: PropTypes.func.isRequired,
+    onUnblockDomain: PropTypes.func.isRequired,
     intl: PropTypes.object.isRequired
   };
 
@@ -59,7 +63,12 @@ class ActionBar extends React.PureComponent {
     }
 
     if (account.get('acct') !== account.get('username')) {
+      const domain = account.get('acct').split('@')[1];
       extraInfo = <abbr title={intl.formatMessage(messages.disclaimer)}>*</abbr>;
+
+      menu.push(null);
+      menu.push({ text: intl.formatMessage(messages.blockDomain, { domain }), action: this.props.onBlockDomain });
+      menu.push({ text: intl.formatMessage(messages.unblockDomain, { domain }), action: this.props.onUnblockDomain });
     }
 
     return (

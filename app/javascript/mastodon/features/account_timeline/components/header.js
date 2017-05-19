@@ -15,7 +15,9 @@ class Header extends ImmutablePureComponent {
     onBlock: PropTypes.func.isRequired,
     onMention: PropTypes.func.isRequired,
     onReport: PropTypes.func.isRequired,
-    onMute: PropTypes.func.isRequired
+    onMute: PropTypes.func.isRequired,
+    onBlockDomain: PropTypes.func.isRequired,
+    onUnblockDomain: PropTypes.func.isRequired,
   };
 
   static contextTypes = {
@@ -43,6 +45,22 @@ class Header extends ImmutablePureComponent {
     this.props.onMute(this.props.account);
   }
 
+  handleBlockDomain = () => {
+    const domain = this.props.account.get('acct').split('@')[1];
+
+    if (!domain) return;
+
+    this.props.onBlockDomain(domain);
+  }
+
+  handleUnblockDomain = () => {
+    const domain = this.props.account.get('acct').split('@')[1];
+
+    if (!domain) return;
+
+    this.props.onUnblockDomain(domain);
+  }
+
   render () {
     const { account, me } = this.props;
 
@@ -65,6 +83,8 @@ class Header extends ImmutablePureComponent {
           onMention={this.handleMention}
           onReport={this.handleReport}
           onMute={this.handleMute}
+          onBlockDomain={this.handleBlockDomain}
+          onUnblockDomain={this.handleUnblockDomain}
         />
       </div>
     );
