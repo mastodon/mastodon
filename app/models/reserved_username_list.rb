@@ -1,0 +1,2 @@
+class ReservedUsernameList < ApplicationRecord
+end
