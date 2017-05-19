@@ -15,6 +15,7 @@ const messages = defineMessages({
   mute: { id: 'account.mute', defaultMessage: 'Mute @{name}' },
   follow: { id: 'account.follow', defaultMessage: 'Follow' },
   report: { id: 'account.report', defaultMessage: 'Report @{name}' },
+  media: { id: 'account.media', defaultMessage: 'Media' },
   disclaimer: { id: 'account.disclaimer', defaultMessage: 'This user is from another instance. This number may be larger.' },
   blockDomain: { id: 'account.block_domain', defaultMessage: 'Hide everything from {domain}' },
   unblockDomain: { id: 'account.unblock_domain', defaultMessage: 'Unhide {domain}' },
@@ -43,6 +44,7 @@ class ActionBar extends React.PureComponent {
 
     menu.push({ text: intl.formatMessage(messages.mention, { name: account.get('username') }), action: this.props.onMention });
     menu.push(null);
+    menu.push({ text: intl.formatMessage(messages.media), to: `/accounts/${account.get('id')}/media` });
 
     if (account.get('id') === me) {
       menu.push({ text: intl.formatMessage(messages.edit_profile), href: '/settings/profile' });

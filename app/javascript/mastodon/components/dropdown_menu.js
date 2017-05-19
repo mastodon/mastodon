@@ -4,6 +4,10 @@ import PropTypes from 'prop-types';
 
 class DropdownMenu extends React.PureComponent {
 
+  static contextTypes = {
+    router: PropTypes.object
+  };
+
   static propTypes = {
     icon: PropTypes.string.isRequired,
     items: PropTypes.array.isRequired,
@@ -26,13 +30,17 @@ class DropdownMenu extends React.PureComponent {
 
   handleClick = (e) => {
     const i = Number(e.currentTarget.getAttribute('data-index'));
-    const { action } = this.props.items[i];
+    const { action, to } = this.props.items[i];
+
+    e.preventDefault();
 
     if (typeof action === 'function') {
-      e.preventDefault();
       action();
-      this.dropdown.hide();
+    } else if (to) {
+      this.context.router.push(to);
     }
+
+    this.dropdown.hide();
   }
 
   renderItem = (item, i) => {

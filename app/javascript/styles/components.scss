@@ -3457,16 +3457,17 @@ button.icon-button.active i.fa-retweet {
   position: relative;
   cursor: default;
 
-  &::before, &::after {
+  &::before,
+  &::after {
     display: block;
     content: "";
     position: absolute;
-    bottom: 0px;
+    bottom: 0;
     left: 18px;
     width: 0;
     height: 0;
     border-style: solid;
-    border-width: 0 10px 10px 10px;
+    border-width: 0 10px 10px;
     border-color: transparent transparent lighten($ui-base-color, 4%);
   }
 

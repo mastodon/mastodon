@@ -21,11 +21,6 @@ const mapStateToProps = state => ({
 
 class Mutes extends ImmutablePureComponent {
 
-  constructor (props, context) {
-    super(props, context);
-    this.handleScroll = this.handleScroll.bind(this);
-  }
-
   componentWillMount () {
     this.props.dispatch(fetchMutes());
   }
