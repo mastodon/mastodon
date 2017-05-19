@@ -175,13 +175,6 @@ class OnboardingModal extends React.PureComponent {
     admin: ImmutablePropTypes.map
   };
 
-  constructor(props) {
-    super(props);
-
-    this.handleNext = this.handleNext.bind(this);
-    this.handleDot = this.handleDot.bind(this);
-  }
-
   state = {
     currentIndex: 0
   };
@@ -192,13 +185,13 @@ class OnboardingModal extends React.PureComponent {
   }
 
   handleDot = (e) => {
-    const i = parseInt(e.currentTarget.getAttribute('data-index'), 10);
+    const i = Number(e.currentTarget.getAttribute('data-index'));
     e.preventDefault();
     this.setState({ currentIndex: i });
   }
 
   handleNext = (e) => {
-    const maxNum = parseInt(e.currentTarget.getAttribute('data-length'), 10);
+    const maxNum = Number(e.currentTarget.getAttribute('data-length'));
     e.preventDefault();
 
     if (this.state.currentIndex < maxNum - 1) {

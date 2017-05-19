@@ -16,12 +16,6 @@ class DropdownMenu extends React.PureComponent {
     ariaLabel: "Menu"
   };
 
-  constructor(props) {
-    super(props);
-
-    this.handleClick = this.handleClick.bind(this);
-  }
-
   state = {
     direction: 'left'
   };
@@ -31,7 +25,7 @@ class DropdownMenu extends React.PureComponent {
   }
 
   handleClick = (e) => {
-    const i = parseInt(e.currentTarget.getAttribute('data-index'), 10);
+    const i = Number(e.currentTarget.getAttribute('data-index'));
     const { action } = this.props.items[i];
 
     if (typeof action === 'function') {

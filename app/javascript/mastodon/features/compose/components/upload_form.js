@@ -18,14 +18,8 @@ class UploadForm extends React.PureComponent {
     intl: PropTypes.object.isRequired
   };
 
-  constructor(props) {
-    super(props);
-
-    this.onRemoveFile = this.onRemoveFile.bind(this);
-  }
-
-  onRemoveFile (e) {
-    const id = parseInt(e.currentTarget.parentElement.getAttribute('data-id'), 10);
+  onRemoveFile = (e) => {
+    const id = Number(e.currentTarget.parentElement.getAttribute('data-id'));
     this.props.onRemoveFile(id);
   }
 

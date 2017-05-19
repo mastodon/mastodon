@@ -4,13 +4,7 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import Toggle from 'react-toggle';
 
 class SettingToggle extends React.PureComponent {
-  constructor (props) {
-    super(props);
-
-    this.onChange = this.onChange.bind(this);
-  }
-
-  onChange (e) {
+  onChange = (e) => {
     this.props.onChange(this.props.settingKey, e.target.checked);
   }
 
