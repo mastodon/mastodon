@@ -6,47 +6,34 @@ describe FeedInsertWorker do
   subject { described_class.new }
 
   describe 'perform' do
-    let(:follower) { Fabricate(:account) }
+    let(:followers) { [Fabricate(:account), Fabricate(:account)] }
     let(:status) { Fabricate(:status) }
 
-    context 'when there are no records' do
-      it 'skips push with missing status' do
-        instance = double(push: nil)
-        allow(FeedManager).to receive(:instance).and_return(instance)
-        result = subject.perform(nil, follower.id)
+    it 'skips push when there are no records' do
+      instance = double(push: nil)
+      allow(FeedManager).to receive(:instance).and_return(instance)
+      result = subject.perform(nil, followers.map(&:id))
 
-        expect(result).to eq true
-        expect(instance).not_to have_received(:push)
-      end
-
-      it 'skips push with missing account' do
-        instance = double(push: nil)
-        allow(FeedManager).to receive(:instance).and_return(instance)
-        result = subject.perform(status.id, nil)
-
-        expect(result).to eq true
-        expect(instance).not_to have_received(:push)
-      end
+      expect(result).to eq true
+      expect(instance).not_to have_received(:push)
     end
 
-    context 'when there are real records' do
-      it 'skips the push when there is a filter' do
-        instance = double(push: nil, filter?: true)
-        allow(FeedManager).to receive(:instance).and_return(instance)
-        result = subject.perform(status.id, follower.id)
+    it 'skips push when there are no accounts' do
+      instance = double(push: nil)
+      allow(FeedManager).to receive(:instance).and_return(instance)
+      result = subject.perform(status, [])
 
-        expect(result).to be_nil
-        expect(instance).not_to have_received(:push)
-      end
+      expect(result).to eq true
+      expect(instance).not_to have_received(:push)
+    end
 
-      it 'pushes the status onto the home timeline without filter' do
-        instance = double(push: nil, filter?: false)
-        allow(FeedManager).to receive(:instance).and_return(instance)
-        result = subject.perform(status.id, follower.id)
+    it 'pushes with records' do
+      instance = double(push: nil)
+      allow(FeedManager).to receive(:instance).and_return(instance)
+      result = subject.perform(status.id, followers.map(&:id))
 
-        expect(result).to be_nil
-        expect(instance).to have_received(:push).with(:home, follower, status)
-      end
+      expect(result).to be_nil
+      expect(instance).to have_received(:push).with(:home, followers, status)
     end
   end
 end

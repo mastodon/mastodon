@@ -3,34 +3,24 @@
 class FeedInsertWorker
   include Sidekiq::Worker
 
-  attr_reader :status, :follower
+  def perform(status_id, follower_ids)
+    status = Status.find_by(id: status_id)
+    followers = Account.where(id: follower_ids)
 
-  def perform(status_id, follower_id)
-    @status = Status.find_by(id: status_id)
-    @follower = Account.find_by(id: follower_id)
-
-    check_and_insert
-  end
-
-  private
-
-  def check_and_insert
-    if records_available?
-      perform_push unless feed_filtered?
+    if records_available?(status, followers)
+      perform_push(status, followers)
     else
       true
     end
   end
 
-  def records_available?
-    status.present? && follower.present?
+  private
+
+  def records_available?(status, followers)
+    status.present? && followers.present?
   end
 
-  def feed_filtered?
-    FeedManager.instance.filter?(:home, status, follower.id)
-  end
-
-  def perform_push
-    FeedManager.instance.push(:home, follower, status)
+  def perform_push(status, followers)
+    FeedManager.instance.push(:home, followers, status)
   end
 end
