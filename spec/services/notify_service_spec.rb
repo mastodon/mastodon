@@ -22,6 +22,12 @@ RSpec.describe NotifyService do
     is_expected.to_not change(Notification, :count)
   end
 
+  it 'does still notify when sender\'s domain is blocked but sender is followed' do
+    recipient.block_domain!(sender.domain)
+    recipient.follow!(sender)
+    is_expected.to change(Notification, :count)
+  end
+
   it 'does not notify when sender is silenced and not followed' do
     sender.update(silenced: true)
     is_expected.to_not change(Notification, :count)

@@ -37,15 +37,15 @@ class NotifyService < BaseService
   end
 
   def blocked?
-    blocked   = @recipient.suspended?                                                                                              # Skip if the recipient account is suspended anyway
-    blocked ||= @recipient.id == @notification.from_account.id                                                                     # Skip for interactions with self
-    blocked ||= @recipient.domain_blocking?(@notification.from_account.domain)                                                     # Skip for domain blocked accounts
-    blocked ||= @recipient.blocking?(@notification.from_account)                                                                   # Skip for blocked accounts
-    blocked ||= (@notification.from_account.silenced? && !@recipient.following?(@notification.from_account))                       # Hellban
-    blocked ||= (@recipient.user.settings.interactions['must_be_follower']  && !@notification.from_account.following?(@recipient)) # Options
-    blocked ||= (@recipient.user.settings.interactions['must_be_following'] && !@recipient.following?(@notification.from_account)) # Options
+    blocked   = @recipient.suspended?                                                                                                # Skip if the recipient account is suspended anyway
+    blocked ||= @recipient.id == @notification.from_account.id                                                                       # Skip for interactions with self
+    blocked ||= @recipient.domain_blocking?(@notification.from_account.domain) && !@recipient.following?(@notification.from_account) # Skip for domain blocked accounts
+    blocked ||= @recipient.blocking?(@notification.from_account)                                                                     # Skip for blocked accounts
+    blocked ||= (@notification.from_account.silenced? && !@recipient.following?(@notification.from_account))                         # Hellban
+    blocked ||= (@recipient.user.settings.interactions['must_be_follower']  && !@notification.from_account.following?(@recipient))   # Options
+    blocked ||= (@recipient.user.settings.interactions['must_be_following'] && !@recipient.following?(@notification.from_account))   # Options
     blocked ||= conversation_muted?
-    blocked ||= send("blocked_#{@notification.type}?")                                                                             # Type-dependent filters
+    blocked ||= send("blocked_#{@notification.type}?")                                                                               # Type-dependent filters
     blocked
   end
 

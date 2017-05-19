@@ -71,11 +71,12 @@ class Api::V1::AccountsController < ApiController
   def block
     BlockService.new.call(current_user.account, @account)
 
-    @following   = { @account.id => false }
-    @followed_by = { @account.id => false }
-    @blocking    = { @account.id => true }
-    @requested   = { @account.id => false }
-    @muting      = { @account.id => current_user.account.muting?(@account.id) }
+    @following       = { @account.id => false }
+    @followed_by     = { @account.id => false }
+    @blocking        = { @account.id => true }
+    @requested       = { @account.id => false }
+    @muting          = { @account.id => current_account.muting?(@account.id) }
+    @domain_blocking = { @account.id => current_account.domain_blocking?(@account.domain) }
 
     render :relationship
   end
@@ -107,12 +108,13 @@ class Api::V1::AccountsController < ApiController
   def relationships
     ids = params[:id].is_a?(Enumerable) ? params[:id].map(&:to_i) : [params[:id].to_i]
 
-    @accounts    = Account.where(id: ids).select('id')
-    @following   = Account.following_map(ids, current_user.account_id)
-    @followed_by = Account.followed_by_map(ids, current_user.account_id)
-    @blocking    = Account.blocking_map(ids, current_user.account_id)
-    @muting      = Account.muting_map(ids, current_user.account_id)
-    @requested   = Account.requested_map(ids, current_user.account_id)
+    @accounts        = Account.where(id: ids).select('id')
+    @following       = Account.following_map(ids, current_user.account_id)
+    @followed_by     = Account.followed_by_map(ids, current_user.account_id)
+    @blocking        = Account.blocking_map(ids, current_user.account_id)
+    @muting          = Account.muting_map(ids, current_user.account_id)
+    @requested       = Account.requested_map(ids, current_user.account_id)
+    @domain_blocking = Account.domain_blocking_map(ids, current_user.account_id)
   end
 
   def search
@@ -128,11 +130,12 @@ class Api::V1::AccountsController < ApiController
   end
 
   def set_relationship
-    @following   = Account.following_map([@account.id], current_user.account_id)
-    @followed_by = Account.followed_by_map([@account.id], current_user.account_id)
-    @blocking    = Account.blocking_map([@account.id], current_user.account_id)
-    @muting      = Account.muting_map([@account.id], current_user.account_id)
-    @requested   = Account.requested_map([@account.id], current_user.account_id)
+    @following       = Account.following_map([@account.id], current_user.account_id)
+    @followed_by     = Account.followed_by_map([@account.id], current_user.account_id)
+    @blocking        = Account.blocking_map([@account.id], current_user.account_id)
+    @muting          = Account.muting_map([@account.id], current_user.account_id)
+    @requested       = Account.requested_map([@account.id], current_user.account_id)
+    @domain_blocking = Account.domain_blocking_map([@account.id], current_user.account_id)
   end
 
   def pagination_params(core_params)
