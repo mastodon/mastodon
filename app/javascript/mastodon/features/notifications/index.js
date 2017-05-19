@@ -100,7 +100,9 @@ class Notifications extends React.PureComponent {
       unread = <div className='notifications__unread-indicator' />;
     }
 
-    if (isLoading || notifications.size > 0) {
+    if (isLoading && this.scrollableArea) {
+      scrollableArea = this.scrollableArea;
+    } else if (notifications.size > 0) {
       scrollableArea = (
         <div className='scrollable' onScroll={this.handleScroll} ref={this.setRef}>
           {unread}
@@ -118,6 +120,8 @@ class Notifications extends React.PureComponent {
         </div>
       );
     }
+
+    this.scrollableArea = scrollableArea;
 
     return (
       <Column icon='bell' active={isUnread} heading={intl.formatMessage(messages.title)}>
