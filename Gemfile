@@ -50,6 +50,7 @@ gem 'redis', '~>3.2', require: ['redis', 'redis/connection/hiredis']
 gem 'rqrcode'
 gem 'ruby-oembed', require: 'oembed'
 gem 'sanitize'
+gem 'sentry-raven'
 gem 'sidekiq'
 gem 'sidekiq-scheduler'
 gem 'sidekiq-unique-jobs'
