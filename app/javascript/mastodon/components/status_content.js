@@ -117,15 +117,15 @@ class StatusContent extends React.PureComponent {
 
       return (
         <div className='status__content' ref={this.setRef} onMouseDown={this.handleMouseDown} onMouseUp={this.handleMouseUp}>
-          <p style={{ marginBottom: hidden && status.get('mentions').size === 0 ? '0px' : '' }} >
-            <span dangerouslySetInnerHTML={spoilerContent} /> <button tabIndex='0' className='status__content__spoiler-link' onClick={this.handleSpoilerClick}>{toggleText}</button>
-
+          <p style={{ marginBottom: hidden && status.get('mentions').isEmpty() ? '0px' : null }}>
+            <span dangerouslySetInnerHTML={spoilerContent} />
+            {' '}
+            <button tabIndex='0' className='status__content__spoiler-link' onClick={this.handleSpoilerClick}>{toggleText}</button>
           </p>
 
           {mentionsPlaceholder}
 
-          <div style={{ display: hidden ? 'none' : 'block', ...directionStyle }} dangerouslySetInnerHTML={content} />
-
+          <div className={`status__content__text ${!hidden ? 'status__content__text--visible' : ''}`} style={directionStyle} dangerouslySetInnerHTML={content} />
         </div>
       );
     } else if (this.props.onClick) {
@@ -133,7 +133,7 @@ class StatusContent extends React.PureComponent {
         <div
           ref={this.setRef}
           className='status__content'
-          style={{ ...directionStyle }}
+          style={directionStyle}
           onMouseDown={this.handleMouseDown}
           onMouseUp={this.handleMouseUp}
           dangerouslySetInnerHTML={content}
@@ -144,7 +144,7 @@ class StatusContent extends React.PureComponent {
         <div
           ref={this.setRef}
           className='status__content status__content--no-action'
-          style={{ ...directionStyle }}
+          style={directionStyle}
           dangerouslySetInnerHTML={content}
         />
       );

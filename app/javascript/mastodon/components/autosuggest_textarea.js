@@ -79,6 +79,7 @@ class AutosuggestTextarea extends ImmutablePureComponent {
     }
 
     // auto-resize textarea
+    e.target.style.height = 'auto';
     e.target.style.height = `${e.target.scrollHeight}px`;
 
     this.props.onChange(e);
@@ -197,7 +198,7 @@ class AutosuggestTextarea extends ImmutablePureComponent {
           style={style}
         />
 
-        <div style={{ display: (suggestions.size > 0 && !suggestionsHidden) ? 'block' : 'none' }} className='autosuggest-textarea__suggestions'>
+        <div className={`autosuggest-textarea__suggestions ${suggestionsHidden || suggestions.isEmpty() ? '' : 'autosuggest-textarea__suggestions--visible'}`}>
           {suggestions.map((suggestion, i) => (
             <div
               role='button'

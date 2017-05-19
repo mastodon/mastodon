@@ -96,19 +96,19 @@ class Header extends ImmutablePureComponent {
     }
 
     if (me !== account.get('id') && account.getIn(['relationship', 'followed_by'])) {
-      info = <span className='account--follows-info' style={{ position: 'absolute', top: '10px', right: '10px', opacity: '0.7', display: 'inline-block', verticalAlign: 'top', background: 'rgba(0, 0, 0, 0.4)', textTransform: 'uppercase', fontSize: '11px', fontWeight: '500', padding: '4px', borderRadius: '4px' }}><FormattedMessage id='account.follows_you' defaultMessage='Follows you' /></span>
+      info = <span className='account--follows-info'><FormattedMessage id='account.follows_you' defaultMessage='Follows you' /></span>
     }
 
     if (me !== account.get('id')) {
       if (account.getIn(['relationship', 'requested'])) {
         actionBtn = (
-          <div style={{ position: 'absolute', top: '10px', left: '20px' }}>
+          <div className='account--action-button'>
             <IconButton size={26} disabled={true} icon='hourglass' title={intl.formatMessage(messages.requested)} />
           </div>
         );
       } else if (!account.getIn(['relationship', 'blocking'])) {
         actionBtn = (
-          <div style={{ position: 'absolute', top: '10px', left: '20px' }}>
+          <div className='account--action-button'>
             <IconButton size={26} icon={account.getIn(['relationship', 'following']) ? 'user-times' : 'user-plus'} active={account.getIn(['relationship', 'following'])} title={intl.formatMessage(account.getIn(['relationship', 'following']) ? messages.unfollow : messages.follow)} onClick={this.props.onFollow} />
           </div>
         );
@@ -124,12 +124,12 @@ class Header extends ImmutablePureComponent {
 
     return (
       <div className='account__header' style={{ backgroundImage: `url(${account.get('header')})` }}>
-        <div style={{ padding: '20px 10px' }}>
+        <div>
           <Avatar account={account} autoPlayGif={this.props.autoPlayGif} />
 
-          <span style={{ display: 'inline-block', fontSize: '20px', lineHeight: '27px', fontWeight: '500' }} className='account__header__display-name' dangerouslySetInnerHTML={displayNameHTML} />
-          <span className='account__header__username' style={{ fontSize: '14px', fontWeight: '400', display: 'block', marginBottom: '10px' }}>@{account.get('acct')} {lockedIcon}</span>
-          <div style={{ fontSize: '14px' }} className='account__header__content' dangerouslySetInnerHTML={content} />
+          <span className='account__header__display-name' dangerouslySetInnerHTML={displayNameHTML} />
+          <span className='account__header__username'>@{account.get('acct')} {lockedIcon}</span>
+          <div className='account__header__content' dangerouslySetInnerHTML={content} />
 
           {info}
           {actionBtn}

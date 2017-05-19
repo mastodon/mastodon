@@ -60,7 +60,7 @@ class GettingStarted extends ImmutablePureComponent {
           <ColumnLink icon='sign-out' text={intl.formatMessage(messages.sign_out)} href='/auth/sign_out' method='delete' />
         </div>
 
-        <div className='scrollable optionally-scrollable' style={{ display: 'flex', flexDirection: 'column' }}>
+        <div className='getting-started__footer scrollable optionally-scrollable'>
           <div className='static-content getting-started'>
             <p>
               <FormattedMessage
