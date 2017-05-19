@@ -22,6 +22,7 @@ class ColumnBackButtonSlim extends React.PureComponent {
       </div>
     );
   }
+
 }
 
 export default ColumnBackButtonSlim;

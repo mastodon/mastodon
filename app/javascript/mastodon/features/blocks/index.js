@@ -64,6 +64,7 @@ class Blocks extends ImmutablePureComponent {
       </Column>
     );
   }
+
 }
 
 export default connect(mapStateToProps)(injectIntl(Blocks));

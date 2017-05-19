@@ -22,6 +22,7 @@ class ClearColumnButton extends React.Component {
       </div>
     );
   }
+
 }
 
 export default injectIntl(ClearColumnButton);

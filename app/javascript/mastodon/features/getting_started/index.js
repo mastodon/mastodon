@@ -85,6 +85,7 @@ class GettingStarted extends ImmutablePureComponent {
       </Column>
     );
   }
+
 }
 
 export default connect(mapStateToProps)(injectIntl(GettingStarted));

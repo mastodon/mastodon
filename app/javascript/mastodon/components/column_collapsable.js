@@ -41,6 +41,7 @@ class ColumnCollapsable extends React.PureComponent {
       </div>
     );
   }
+
 }
 
 export default ColumnCollapsable;

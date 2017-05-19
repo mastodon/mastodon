@@ -48,6 +48,9 @@ rules:
   no-nested-ternary: warn
   no-trailing-spaces: warn
   semi: error
+  padded-blocks:
+  - error
+  - classes: always
 
   react/jsx-wrap-multilines: error
   react/jsx-no-bind: error

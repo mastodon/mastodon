@@ -95,6 +95,7 @@ class Card extends React.PureComponent {
       return null;
     }
   }
+
 }
 
 export default Card;
