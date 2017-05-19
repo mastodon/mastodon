@@ -1,6 +1,3 @@
-= link_to root_path, class: 'service-logo' do
-  = image_tag 'service_logo.png'
-
 .card.h-card.p-author{ style: "background-image: url(#{account.header.url( :original)})" }
   - if user_signed_in? && current_account.id != account.id && !current_account.requested?(account)
     .controls
