@@ -99,7 +99,7 @@ class EmojiPickerDropdown extends React.PureComponent {
         title: intl.formatMessage(messages.flags),
         emoji: 'flag_gb',
       }
-    }
+    };
 
     const { active, loading } = this.state;
 

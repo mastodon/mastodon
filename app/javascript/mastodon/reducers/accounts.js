@@ -55,7 +55,7 @@ const normalizeAccount = (state, account) => {
   delete account.following_count;
   delete account.statuses_count;
 
-  return state.set(account.id, Immutable.fromJS(account))
+  return state.set(account.id, Immutable.fromJS(account));
 };
 
 const normalizeAccounts = (state, accounts) => {

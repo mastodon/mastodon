@@ -18,7 +18,7 @@ const messages = defineMessages({
 const iconStyle = {
   height: null,
   lineHeight: '27px'
-}
+};
 
 class PrivacyDropdown extends React.PureComponent {
 

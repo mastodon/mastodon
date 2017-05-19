@@ -107,7 +107,7 @@ class StatusContent extends React.PureComponent {
         <Permalink to={`/accounts/${item.get('id')}`} href={item.get('url')} key={item.get('id')} className='mention'>
           @<span>{item.get('username')}</span>
         </Permalink>
-      )).reduce((aggregate, item) => [...aggregate, item, ' '], [])
+      )).reduce((aggregate, item) => [...aggregate, item, ' '], []);
 
       const toggleText = hidden ? <FormattedMessage id='status.show_more' defaultMessage='Show more' /> : <FormattedMessage id='status.show_less' defaultMessage='Show less' />;
 

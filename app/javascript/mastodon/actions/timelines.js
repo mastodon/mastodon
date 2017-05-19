@@ -1,4 +1,4 @@
-import api, { getLinks } from '../api'
+import api, { getLinks } from '../api';
 import Immutable from 'immutable';
 
 export const TIMELINE_UPDATE  = 'TIMELINE_UPDATE';

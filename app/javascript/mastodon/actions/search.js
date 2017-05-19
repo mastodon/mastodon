@@ -1,4 +1,4 @@
-import api from '../api'
+import api from '../api';
 
 export const SEARCH_CHANGE = 'SEARCH_CHANGE';
 export const SEARCH_CLEAR  = 'SEARCH_CLEAR';

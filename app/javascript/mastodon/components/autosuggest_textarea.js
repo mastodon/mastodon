@@ -164,7 +164,7 @@ class AutosuggestTextarea extends ImmutablePureComponent {
 
   onPaste (e) {
     if (e.clipboardData && e.clipboardData.files.length === 1) {
-      this.props.onPaste(e.clipboardData.files)
+      this.props.onPaste(e.clipboardData.files);
       e.preventDefault();
     }
   }

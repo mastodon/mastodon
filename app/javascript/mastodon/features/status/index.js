@@ -30,7 +30,7 @@ import { ScrollContainer } from 'react-router-scroll';
 import ColumnBackButton from '../../components/column_back_button';
 import StatusContainer from '../../containers/status_container';
 import { openModal } from '../../actions/modal';
-import { isMobile } from '../../is_mobile'
+import { isMobile } from '../../is_mobile';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 

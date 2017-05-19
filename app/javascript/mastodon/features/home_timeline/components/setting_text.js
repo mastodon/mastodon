@@ -12,7 +12,7 @@ class SettingText extends React.PureComponent {
   };
 
   handleChange = (e) => {
-    this.props.onChange(this.props.settingKey, e.target.value)
+    this.props.onChange(this.props.settingKey, e.target.value);
   }
 
   render () {

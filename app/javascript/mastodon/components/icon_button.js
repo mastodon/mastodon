@@ -64,7 +64,7 @@ class IconButton extends React.PureComponent {
     }
 
     if (this.props.className) {
-      classes.push(this.props.className)
+      classes.push(this.props.className);
     }
 
     return (

@@ -62,7 +62,7 @@ class Account extends ImmutablePureComponent {
       const muting  = account.getIn(['relationship', 'muting']);
 
       if (requested) {
-        buttons = <IconButton disabled={true} icon='hourglass' title={intl.formatMessage(messages.requested)} />
+        buttons = <IconButton disabled={true} icon='hourglass' title={intl.formatMessage(messages.requested)} />;
       } else if (blocking) {
         buttons = <IconButton active={true} icon='unlock-alt' title={intl.formatMessage(messages.unblock, { name: account.get('username') })} onClick={this.handleBlock} />;
       } else if (muting) {

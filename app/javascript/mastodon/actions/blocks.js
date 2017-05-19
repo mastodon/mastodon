@@ -1,4 +1,4 @@
-import api, { getLinks } from '../api'
+import api, { getLinks } from '../api';
 import { fetchRelationships } from './accounts';
 
 export const BLOCKS_FETCH_REQUEST = 'BLOCKS_FETCH_REQUEST';

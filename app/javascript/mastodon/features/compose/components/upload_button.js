@@ -14,12 +14,12 @@ const makeMapStateToProps = () => {
   });
 
   return mapStateToProps;
-}
+};
 
 const iconStyle = {
   height: null,
   lineHeight: '27px'
-}
+};
 
 class UploadButton extends React.PureComponent {
 

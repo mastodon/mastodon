@@ -1,4 +1,4 @@
-import api, { getLinks } from '../api'
+import api, { getLinks } from '../api';
 import Immutable from 'immutable';
 import IntlMessageFormat from 'intl-messageformat';
 import { fetchRelationships } from './accounts';
@@ -33,7 +33,7 @@ const unescapeHTML = (html) => {
   const wrapper = document.createElement('div');
   wrapper.innerHTML = html;
   return wrapper.textContent;
-}
+};
 
 export function updateNotifications(notification, intlMessages, intlLocale) {
   return (dispatch, getState) => {

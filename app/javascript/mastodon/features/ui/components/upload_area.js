@@ -14,7 +14,7 @@ class UploadArea extends React.PureComponent {
     e.preventDefault();
     e.stopPropagation();
 
-    const keyCode = e.keyCode
+    const keyCode = e.keyCode;
     if (this.props.active) {
       switch(keyCode) {
       case 27:

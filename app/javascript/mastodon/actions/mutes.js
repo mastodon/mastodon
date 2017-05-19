@@ -1,4 +1,4 @@
-import api, { getLinks } from '../api'
+import api, { getLinks } from '../api';
 import { fetchRelationships } from './accounts';
 
 export const MUTES_FETCH_REQUEST = 'MUTES_FETCH_REQUEST';

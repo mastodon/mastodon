@@ -1,4 +1,4 @@
-import api, { getLinks } from '../api'
+import api, { getLinks } from '../api';
 import Immutable from 'immutable';
 
 export const ACCOUNT_FETCH_REQUEST = 'ACCOUNT_FETCH_REQUEST';
@@ -230,7 +230,7 @@ export function unfollowAccount(id) {
     }).catch(error => {
       dispatch(unfollowAccountFail(error));
     });
-  }
+  };
 };
 
 export function followAccountRequest(id) {
@@ -734,7 +734,7 @@ export function fetchFollowRequests() {
 
     api(getState).get('/api/v1/follow_requests').then(response => {
       const next = getLinks(response).refs.find(link => link.rel === 'next');
-      dispatch(fetchFollowRequestsSuccess(response.data, next ? next.uri : null))
+      dispatch(fetchFollowRequestsSuccess(response.data, next ? next.uri : null));
     }).catch(error => dispatch(fetchFollowRequestsFail(error)));
   };
 };
@@ -772,7 +772,7 @@ export function expandFollowRequests() {
 
     api(getState).get(url).then(response => {
       const next = getLinks(response).refs.find(link => link.rel === 'next');
-      dispatch(expandFollowRequestsSuccess(response.data, next ? next.uri : null))
+      dispatch(expandFollowRequestsSuccess(response.data, next ? next.uri : null));
     }).catch(error => dispatch(expandFollowRequestsFail(error)));
   };
 };

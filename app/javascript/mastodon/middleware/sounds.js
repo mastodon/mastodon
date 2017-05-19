@@ -7,7 +7,7 @@ const createAudio = sources => {
     audio.appendChild(source);
   });
   return audio;
-}
+};
 
 const play = audio => {
   if (!audio.paused) {

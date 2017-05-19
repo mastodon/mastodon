@@ -1,4 +1,4 @@
-import api from '../api'
+import api from '../api';
 
 export const REBLOG_REQUEST = 'REBLOG_REQUEST';
 export const REBLOG_SUCCESS = 'REBLOG_SUCCESS';
