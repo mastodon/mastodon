@@ -146,7 +146,7 @@ class AutosuggestTextarea extends ImmutablePureComponent {
   }
 
   onSuggestionClick (e) {
-    const suggestion = parseInt(e.currentTarget.getAttribute('data-index'), 10);
+    const suggestion = Number(e.currentTarget.getAttribute('data-index'));
     e.preventDefault();
     this.props.onSuggestionSelected(this.state.tokenStart, this.state.lastToken, suggestion);
     this.textarea.focus();
