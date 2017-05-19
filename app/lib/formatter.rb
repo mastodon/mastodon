@@ -137,7 +137,7 @@ class Formatter
     html = html.gsub(/`(?<code>[^`\n]+?)`/) do |match|
       code = $1
       marker = "[[[codeblock#{index += 1}]]]"
-      block_html = "<code class=\"singleline\">#{ sanitize(code, Sanitize::Config::MASTODON_STRICT) }</code>"
+      block_html = "<code class=\"inline\">#{ sanitize(code, Sanitize::Config::MASTODON_STRICT) }</code>"
       marks << [marker, block_html]
       marker
     end

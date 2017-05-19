@@ -111,14 +111,14 @@ RSpec.describe Formatter do
     context 'contains single line code block' do
       let(:local_text) { "`program`" }
       it 'has code block' do
-        expect(subject).to match '<p><code class="singleline">program</code></p>'
+        expect(subject).to match '<p><code class="inline">program</code></p>'
       end
     end
 
     context 'contains multiple inline code blocks' do
       let(:local_text) { "`hoge` `piyo`" }
       it 'has code block' do
-        expect(subject).to match('<p><code class="singleline">hoge</code> <code class="singleline">piyo</code></p>')
+        expect(subject).to match('<p><code class="inline">hoge</code> <code class="inline">piyo</code></p>')
       end
     end
 
