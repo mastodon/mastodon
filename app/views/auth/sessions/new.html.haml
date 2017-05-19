@@ -8,4 +8,16 @@
   .actions
     = f.button :button, t('auth.login'), type: :submit
 
+  - if devise_mapping.omniauthable? and resource_class.omniauth_providers.any?
+    %p{style:"text-align: center"}
+      = t('auth.or_log_in_with')
+    .actions{style:"margin-top: 12px"}
+      - resource_class.omniauth_providers.each do |provider|
+        - _provider = provider.to_s.chomp "_oauth2"
+        - _icon = {cas: 'share-alt-square'}[_provider.to_sym]
+        = link_to omniauth_authorize_path(resource_name, provider), class: "button button-#{_provider}" do
+          %i.fa{class:_icon}
+          %span.hidden-xs
+            = _provider.capitalize
+
 .form-footer= render 'auth/shared/links'

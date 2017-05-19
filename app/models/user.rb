@@ -35,10 +35,12 @@
 
 class User < ApplicationRecord
   include Settings::Extend
+  include Omniauthable
 
   devise :registerable, :recoverable,
          :rememberable, :trackable, :validatable, :confirmable,
          :two_factor_authenticatable, :two_factor_backupable,
+         :omniauthable,
          otp_secret_encryption_key: ENV['OTP_SECRET'],
          otp_number_of_backup_codes: 10
 

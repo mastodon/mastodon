@@ -19,11 +19,16 @@ Rails.application.routes.draw do
   get '.well-known/webfinger', to: 'well_known/webfinger#show', as: :webfinger
 
   devise_for :users, path: 'auth', controllers: {
+    omniauth_callbacks: 'auth/omniauth_callbacks',
     sessions:           'auth/sessions',
     registrations:      'auth/registrations',
     passwords:          'auth/passwords',
     confirmations:      'auth/confirmations',
   }
+
+  devise_scope :user do
+    match '/auth/finish_signup' => 'auth/confirmations#finish_signup', via: [:get, :patch], as: :finish_signup
+  end
 
   get '/users/:username', to: redirect('/@%{username}'), constraints: { format: :html }
 
