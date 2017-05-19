@@ -46,7 +46,7 @@ const parseFormat = (format) => format.replace(/%(\w)/g, (_, modifier) => {
 });
 
 document.addEventListener('DOMContentLoaded', () => {
-  for (const content of document.getElementsByClassName('emojify')) {
+  for (const content of document.querySelectorAll('.emojify')) {
     content.innerHTML = emojify(content.innerHTML);
   }
 
