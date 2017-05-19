@@ -7,7 +7,7 @@ import UploadProgressContainer from '../containers/upload_progress_container';
 import { Motion, spring } from 'react-motion';
 
 const messages = defineMessages({
-  undo: { id: 'upload_form.undo', defaultMessage: 'Undo' }
+  undo: { id: 'upload_form.undo', defaultMessage: 'Undo' },
 });
 
 class UploadForm extends React.PureComponent {
@@ -15,7 +15,7 @@ class UploadForm extends React.PureComponent {
   static propTypes = {
     media: ImmutablePropTypes.list.isRequired,
     onRemoveFile: PropTypes.func.isRequired,
-    intl: PropTypes.object.isRequired
+    intl: PropTypes.object.isRequired,
   };
 
   onRemoveFile = (e) => {

@@ -12,7 +12,7 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 class Notification extends ImmutablePureComponent {
 
   static propTypes = {
-    notification: ImmutablePropTypes.map.isRequired
+    notification: ImmutablePropTypes.map.isRequired,
   };
 
   renderFollow (account, link) {

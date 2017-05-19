@@ -8,11 +8,11 @@ class ColumnCollapsable extends React.PureComponent {
     title: PropTypes.string,
     fullHeight: PropTypes.number.isRequired,
     children: PropTypes.node,
-    onCollapse: PropTypes.func
+    onCollapse: PropTypes.func,
   };
 
   state = {
-    collapsed: true
+    collapsed: true,
   };
 
   handleToggleCollapsed = () => {

@@ -51,6 +51,9 @@ rules:
   padded-blocks:
   - error
   - classes: always
+  comma-dangle:
+  - error
+  - always-multiline
 
   react/jsx-wrap-multilines: error
   react/jsx-no-bind: error

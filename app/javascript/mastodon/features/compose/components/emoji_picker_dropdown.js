@@ -13,13 +13,13 @@ const messages = defineMessages({
   travel: { id: 'emoji_button.travel', defaultMessage: 'Travel & Places' },
   objects: { id: 'emoji_button.objects', defaultMessage: 'Objects' },
   symbols: { id: 'emoji_button.symbols', defaultMessage: 'Symbols' },
-  flags: { id: 'emoji_button.flags', defaultMessage: 'Flags' }
+  flags: { id: 'emoji_button.flags', defaultMessage: 'Flags' },
 });
 
 const settings = {
   imageType: 'png',
   sprites: false,
-  imagePathPNG: '/emoji/'
+  imagePathPNG: '/emoji/',
 };
 
 let EmojiPicker; // load asynchronously
@@ -28,12 +28,12 @@ class EmojiPickerDropdown extends React.PureComponent {
 
   static propTypes = {
     intl: PropTypes.object.isRequired,
-    onPickEmoji: PropTypes.func.isRequired
+    onPickEmoji: PropTypes.func.isRequired,
   };
 
   state = {
     active: false,
-    loading: false
+    loading: false,
   };
 
   setRef = (c) => {
@@ -98,7 +98,7 @@ class EmojiPickerDropdown extends React.PureComponent {
       flags: {
         title: intl.formatMessage(messages.flags),
         emoji: 'flag_gb',
-      }
+      },
     };
 
     const { active, loading } = this.state;

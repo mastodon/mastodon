@@ -11,20 +11,20 @@ import DisplayName from '../../../components/display_name';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
 const messages = defineMessages({
-  reblog: { id: 'status.reblog', defaultMessage: 'Boost' }
+  reblog: { id: 'status.reblog', defaultMessage: 'Boost' },
 });
 
 class BoostModal extends ImmutablePureComponent {
 
   static contextTypes = {
-    router: PropTypes.object
+    router: PropTypes.object,
   };
 
   static propTypes = {
     status: ImmutablePropTypes.map.isRequired,
     onReblog: PropTypes.func.isRequired,
     onClose: PropTypes.func.isRequired,
-    intl: PropTypes.object.isRequired
+    intl: PropTypes.object.isRequired,
   };
 
   constructor (props, context) {

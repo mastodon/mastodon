@@ -8,7 +8,7 @@ import {
   deleteFromTimelines,
   refreshTimeline,
   connectTimeline,
-  disconnectTimeline
+  disconnectTimeline,
 } from '../actions/timelines';
 import { showOnboardingOnce } from '../actions/onboarding';
 import { updateNotifications, refreshNotifications } from '../actions/notifications';
@@ -75,7 +75,7 @@ const initialState = JSON.parse(document.getElementById("initial-state").textCon
 store.dispatch(hydrateStore(initialState));
 
 const browserHistory = useRouterHistory(createBrowserHistory)({
-  basename: '/web'
+  basename: '/web',
 });
 
 addLocaleData([
@@ -155,7 +155,7 @@ class Mastodon extends React.PureComponent {
         store.dispatch(connectTimeline('home'));
         store.dispatch(refreshTimeline('home'));
         store.dispatch(refreshNotifications());
-      }
+      },
 
     });
 
@@ -223,7 +223,7 @@ class Mastodon extends React.PureComponent {
 }
 
 Mastodon.propTypes = {
-  locale: PropTypes.string.isRequired
+  locale: PropTypes.string.isRequired,
 };
 
 export default Mastodon;

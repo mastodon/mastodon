@@ -9,7 +9,7 @@ class ColumnHeader extends React.PureComponent {
     active: PropTypes.bool,
     onClick: PropTypes.func,
     hideOnMobile: PropTypes.bool,
-    columnHeaderId: PropTypes.string
+    columnHeaderId: PropTypes.string,
   };
 
   handleClick = () => {

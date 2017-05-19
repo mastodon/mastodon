@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 class ColumnsArea extends React.PureComponent {
 
   static propTypes = {
-    children: PropTypes.node
+    children: PropTypes.node,
   };
 
   render () {

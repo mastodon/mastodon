@@ -20,7 +20,7 @@ const mapStateToProps = state => {
   return {
     needsLeakWarning: (state.getIn(['compose', 'privacy']) === 'private' || state.getIn(['compose', 'privacy']) === 'direct') && mentionedUsernames !== null,
     mentionedDomains: mentionedUsernamesWithDomains,
-    needsLockWarning: state.getIn(['compose', 'privacy']) === 'private' && !state.getIn(['accounts', state.getIn(['meta', 'me']), 'locked'])
+    needsLockWarning: state.getIn(['compose', 'privacy']) === 'private' && !state.getIn(['accounts', state.getIn(['meta', 'me']), 'locked']),
   };
 };
 

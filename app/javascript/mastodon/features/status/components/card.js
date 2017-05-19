@@ -20,7 +20,7 @@ const getHostname = url => {
 class Card extends React.PureComponent {
 
   static propTypes = {
-    card: ImmutablePropTypes.map
+    card: ImmutablePropTypes.map,
   };
 
   renderLink () {

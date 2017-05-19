@@ -7,7 +7,7 @@ class UploadArea extends React.PureComponent {
 
   static propTypes = {
     active: PropTypes.bool,
-    onClose: PropTypes.func
+    onClose: PropTypes.func,
   };
 
   handleKeyUp = (e) => {

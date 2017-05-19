@@ -8,12 +8,12 @@ import ColumnSettingsContainer from './containers/column_settings_container';
 import Link from 'react-router/lib/Link';
 
 const messages = defineMessages({
-  title: { id: 'column.home', defaultMessage: 'Home' }
+  title: { id: 'column.home', defaultMessage: 'Home' },
 });
 
 const mapStateToProps = state => ({
   hasUnread: state.getIn(['timelines', 'home', 'unread']) > 0,
-  hasFollows: state.getIn(['accounts_counters', state.getIn(['meta', 'me']), 'following_count']) > 0
+  hasFollows: state.getIn(['accounts_counters', state.getIn(['meta', 'me']), 'following_count']) > 0,
 });
 
 class HomeTimeline extends React.PureComponent {
@@ -21,7 +21,7 @@ class HomeTimeline extends React.PureComponent {
   static propTypes = {
     intl: PropTypes.object.isRequired,
     hasUnread: PropTypes.bool,
-    hasFollows: PropTypes.bool
+    hasFollows: PropTypes.bool,
   };
 
   render () {

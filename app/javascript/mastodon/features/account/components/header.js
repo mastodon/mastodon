@@ -12,12 +12,12 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 const messages = defineMessages({
   unfollow: { id: 'account.unfollow', defaultMessage: 'Unfollow' },
   follow: { id: 'account.follow', defaultMessage: 'Follow' },
-  requested: { id: 'account.requested', defaultMessage: 'Awaiting approval' }
+  requested: { id: 'account.requested', defaultMessage: 'Awaiting approval' },
 });
 
 const makeMapStateToProps = () => {
   const mapStateToProps = (state, props) => ({
-    autoPlayGif: state.getIn(['meta', 'auto_play_gif'])
+    autoPlayGif: state.getIn(['meta', 'auto_play_gif']),
   });
 
   return mapStateToProps;
@@ -27,11 +27,11 @@ class Avatar extends ImmutablePureComponent {
 
   static propTypes = {
     account: ImmutablePropTypes.map.isRequired,
-    autoPlayGif: PropTypes.bool.isRequired
+    autoPlayGif: PropTypes.bool.isRequired,
   };
 
   state = {
-    isHovered: false
+    isHovered: false,
   };
 
   handleMouseOver = () => {
@@ -76,7 +76,7 @@ class Header extends ImmutablePureComponent {
     me: PropTypes.number.isRequired,
     onFollow: PropTypes.func.isRequired,
     intl: PropTypes.object.isRequired,
-    autoPlayGif: PropTypes.bool.isRequired
+    autoPlayGif: PropTypes.bool.isRequired,
   };
 
   render () {

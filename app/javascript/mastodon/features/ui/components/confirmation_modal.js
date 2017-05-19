@@ -10,7 +10,7 @@ class ConfirmationModal extends React.PureComponent {
     confirm: PropTypes.string.isRequired,
     onClose: PropTypes.func.isRequired,
     onConfirm: PropTypes.func.isRequired,
-    intl: PropTypes.object.isRequired
+    intl: PropTypes.object.isRequired,
   };
 
   handleClick = () => {

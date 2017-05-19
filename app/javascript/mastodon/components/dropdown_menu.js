@@ -13,15 +13,15 @@ class DropdownMenu extends React.PureComponent {
     items: PropTypes.array.isRequired,
     size: PropTypes.number.isRequired,
     direction: PropTypes.string,
-    ariaLabel: PropTypes.string
+    ariaLabel: PropTypes.string,
   };
 
   static defaultProps = {
-    ariaLabel: "Menu"
+    ariaLabel: "Menu",
   };
 
   state = {
-    direction: 'left'
+    direction: 'left',
   };
 
   setRef = (c) => {

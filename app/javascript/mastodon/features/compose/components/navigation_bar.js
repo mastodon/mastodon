@@ -11,7 +11,7 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 class NavigationBar extends ImmutablePureComponent {
 
   static propTypes = {
-    account: ImmutablePropTypes.map.isRequired
+    account: ImmutablePropTypes.map.isRequired,
   };
 
   render () {

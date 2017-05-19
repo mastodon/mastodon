@@ -53,7 +53,7 @@ class ComposeForm extends ImmutablePureComponent {
   };
 
   static defaultProps = {
-    showSearch: false
+    showSearch: false,
   };
 
   handleChange = (e) => {

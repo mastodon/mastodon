@@ -6,7 +6,7 @@ import ColumnCollapsable from '../../../components/column_collapsable';
 import SettingToggle from './setting_toggle';
 
 const messages = defineMessages({
-  settings: { id: 'notifications.settings', defaultMessage: 'Column settings' }
+  settings: { id: 'notifications.settings', defaultMessage: 'Column settings' },
 });
 
 class ColumnSettings extends React.PureComponent {
@@ -16,8 +16,8 @@ class ColumnSettings extends React.PureComponent {
     onChange: PropTypes.func.isRequired,
     onSave: PropTypes.func.isRequired,
     intl: PropTypes.shape({
-      formatMessage: PropTypes.func.isRequired
-    }).isRequired
+      formatMessage: PropTypes.func.isRequired,
+    }).isRequired,
   };
 
   render () {

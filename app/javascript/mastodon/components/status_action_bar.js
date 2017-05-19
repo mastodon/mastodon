@@ -24,7 +24,7 @@ const messages = defineMessages({
 class StatusActionBar extends React.PureComponent {
 
   static contextTypes = {
-    router: PropTypes.object
+    router: PropTypes.object,
   };
 
   static propTypes = {
@@ -40,7 +40,7 @@ class StatusActionBar extends React.PureComponent {
     onMuteConversation: PropTypes.func,
     me: PropTypes.number.isRequired,
     withDismiss: PropTypes.bool,
-    intl: PropTypes.object.isRequired
+    intl: PropTypes.object.isRequired,
   };
 
   handleReplyClick = () => {

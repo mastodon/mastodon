@@ -154,8 +154,8 @@ export function expandAccountTimeline(id) {
     api(getState).get(`/api/v1/accounts/${id}/statuses`, {
       params: {
         limit: 10,
-        max_id: lastId
-      }
+        max_id: lastId,
+      },
     }).then(response => {
       const next = getLinks(response).refs.find(link => link.rel === 'next');
       dispatch(expandAccountTimelineSuccess(id, response.data, next));
@@ -189,14 +189,14 @@ export function expandAccountMediaTimeline(id) {
 export function fetchAccountRequest(id) {
   return {
     type: ACCOUNT_FETCH_REQUEST,
-    id
+    id,
   };
 };
 
 export function fetchAccountSuccess(account) {
   return {
     type: ACCOUNT_FETCH_SUCCESS,
-    account
+    account,
   };
 };
 
@@ -205,7 +205,7 @@ export function fetchAccountFail(id, error) {
     type: ACCOUNT_FETCH_FAIL,
     id,
     error,
-    skipAlert: true
+    skipAlert: true,
   };
 };
 
@@ -236,42 +236,42 @@ export function unfollowAccount(id) {
 export function followAccountRequest(id) {
   return {
     type: ACCOUNT_FOLLOW_REQUEST,
-    id
+    id,
   };
 };
 
 export function followAccountSuccess(relationship) {
   return {
     type: ACCOUNT_FOLLOW_SUCCESS,
-    relationship
+    relationship,
   };
 };
 
 export function followAccountFail(error) {
   return {
     type: ACCOUNT_FOLLOW_FAIL,
-    error
+    error,
   };
 };
 
 export function unfollowAccountRequest(id) {
   return {
     type: ACCOUNT_UNFOLLOW_REQUEST,
-    id
+    id,
   };
 };
 
 export function unfollowAccountSuccess(relationship) {
   return {
     type: ACCOUNT_UNFOLLOW_SUCCESS,
-    relationship
+    relationship,
   };
 };
 
 export function unfollowAccountFail(error) {
   return {
     type: ACCOUNT_UNFOLLOW_FAIL,
-    error
+    error,
   };
 };
 
@@ -279,7 +279,7 @@ export function fetchAccountTimelineRequest(id, skipLoading) {
   return {
     type: ACCOUNT_TIMELINE_FETCH_REQUEST,
     id,
-    skipLoading
+    skipLoading,
   };
 };
 
@@ -289,7 +289,7 @@ export function fetchAccountTimelineSuccess(id, statuses, replace, skipLoading) 
     id,
     statuses,
     replace,
-    skipLoading
+    skipLoading,
   };
 };
 
@@ -299,7 +299,7 @@ export function fetchAccountTimelineFail(id, error, skipLoading) {
     id,
     error,
     skipLoading,
-    skipAlert: error.response.status === 404
+    skipAlert: error.response.status === 404,
   };
 };
 
@@ -334,7 +334,7 @@ export function fetchAccountMediaTimelineFail(id, error, skipLoading) {
 export function expandAccountTimelineRequest(id) {
   return {
     type: ACCOUNT_TIMELINE_EXPAND_REQUEST,
-    id
+    id,
   };
 };
 
@@ -343,7 +343,7 @@ export function expandAccountTimelineSuccess(id, statuses, next) {
     type: ACCOUNT_TIMELINE_EXPAND_SUCCESS,
     id,
     statuses,
-    next
+    next,
   };
 };
 
@@ -351,7 +351,7 @@ export function expandAccountTimelineFail(id, error) {
   return {
     type: ACCOUNT_TIMELINE_EXPAND_FAIL,
     id,
-    error
+    error,
   };
 };
 
@@ -407,7 +407,7 @@ export function unblockAccount(id) {
 export function blockAccountRequest(id) {
   return {
     type: ACCOUNT_BLOCK_REQUEST,
-    id
+    id,
   };
 };
 
@@ -415,35 +415,35 @@ export function blockAccountSuccess(relationship, statuses) {
   return {
     type: ACCOUNT_BLOCK_SUCCESS,
     relationship,
-    statuses
+    statuses,
   };
 };
 
 export function blockAccountFail(error) {
   return {
     type: ACCOUNT_BLOCK_FAIL,
-    error
+    error,
   };
 };
 
 export function unblockAccountRequest(id) {
   return {
     type: ACCOUNT_UNBLOCK_REQUEST,
-    id
+    id,
   };
 };
 
 export function unblockAccountSuccess(relationship) {
   return {
     type: ACCOUNT_UNBLOCK_SUCCESS,
-    relationship
+    relationship,
   };
 };
 
 export function unblockAccountFail(error) {
   return {
     type: ACCOUNT_UNBLOCK_FAIL,
-    error
+    error,
   };
 };
 
@@ -476,7 +476,7 @@ export function unmuteAccount(id) {
 export function muteAccountRequest(id) {
   return {
     type: ACCOUNT_MUTE_REQUEST,
-    id
+    id,
   };
 };
 
@@ -484,35 +484,35 @@ export function muteAccountSuccess(relationship, statuses) {
   return {
     type: ACCOUNT_MUTE_SUCCESS,
     relationship,
-    statuses
+    statuses,
   };
 };
 
 export function muteAccountFail(error) {
   return {
     type: ACCOUNT_MUTE_FAIL,
-    error
+    error,
   };
 };
 
 export function unmuteAccountRequest(id) {
   return {
     type: ACCOUNT_UNMUTE_REQUEST,
-    id
+    id,
   };
 };
 
 export function unmuteAccountSuccess(relationship) {
   return {
     type: ACCOUNT_UNMUTE_SUCCESS,
-    relationship
+    relationship,
   };
 };
 
 export function unmuteAccountFail(error) {
   return {
     type: ACCOUNT_UNMUTE_FAIL,
-    error
+    error,
   };
 };
 
@@ -535,7 +535,7 @@ export function fetchFollowers(id) {
 export function fetchFollowersRequest(id) {
   return {
     type: FOLLOWERS_FETCH_REQUEST,
-    id
+    id,
   };
 };
 
@@ -544,7 +544,7 @@ export function fetchFollowersSuccess(id, accounts, next) {
     type: FOLLOWERS_FETCH_SUCCESS,
     id,
     accounts,
-    next
+    next,
   };
 };
 
@@ -552,7 +552,7 @@ export function fetchFollowersFail(id, error) {
   return {
     type: FOLLOWERS_FETCH_FAIL,
     id,
-    error
+    error,
   };
 };
 
@@ -580,7 +580,7 @@ export function expandFollowers(id) {
 export function expandFollowersRequest(id) {
   return {
     type: FOLLOWERS_EXPAND_REQUEST,
-    id
+    id,
   };
 };
 
@@ -589,7 +589,7 @@ export function expandFollowersSuccess(id, accounts, next) {
     type: FOLLOWERS_EXPAND_SUCCESS,
     id,
     accounts,
-    next
+    next,
   };
 };
 
@@ -597,7 +597,7 @@ export function expandFollowersFail(id, error) {
   return {
     type: FOLLOWERS_EXPAND_FAIL,
     id,
-    error
+    error,
   };
 };
 
@@ -619,7 +619,7 @@ export function fetchFollowing(id) {
 export function fetchFollowingRequest(id) {
   return {
     type: FOLLOWING_FETCH_REQUEST,
-    id
+    id,
   };
 };
 
@@ -628,7 +628,7 @@ export function fetchFollowingSuccess(id, accounts, next) {
     type: FOLLOWING_FETCH_SUCCESS,
     id,
     accounts,
-    next
+    next,
   };
 };
 
@@ -636,7 +636,7 @@ export function fetchFollowingFail(id, error) {
   return {
     type: FOLLOWING_FETCH_FAIL,
     id,
-    error
+    error,
   };
 };
 
@@ -664,7 +664,7 @@ export function expandFollowing(id) {
 export function expandFollowingRequest(id) {
   return {
     type: FOLLOWING_EXPAND_REQUEST,
-    id
+    id,
   };
 };
 
@@ -673,7 +673,7 @@ export function expandFollowingSuccess(id, accounts, next) {
     type: FOLLOWING_EXPAND_SUCCESS,
     id,
     accounts,
-    next
+    next,
   };
 };
 
@@ -681,7 +681,7 @@ export function expandFollowingFail(id, error) {
   return {
     type: FOLLOWING_EXPAND_FAIL,
     id,
-    error
+    error,
   };
 };
 
@@ -708,7 +708,7 @@ export function fetchRelationshipsRequest(ids) {
   return {
     type: RELATIONSHIPS_FETCH_REQUEST,
     ids,
-    skipLoading: true
+    skipLoading: true,
   };
 };
 
@@ -716,7 +716,7 @@ export function fetchRelationshipsSuccess(relationships) {
   return {
     type: RELATIONSHIPS_FETCH_SUCCESS,
     relationships,
-    skipLoading: true
+    skipLoading: true,
   };
 };
 
@@ -724,7 +724,7 @@ export function fetchRelationshipsFail(error) {
   return {
     type: RELATIONSHIPS_FETCH_FAIL,
     error,
-    skipLoading: true
+    skipLoading: true,
   };
 };
 
@@ -741,7 +741,7 @@ export function fetchFollowRequests() {
 
 export function fetchFollowRequestsRequest() {
   return {
-    type: FOLLOW_REQUESTS_FETCH_REQUEST
+    type: FOLLOW_REQUESTS_FETCH_REQUEST,
   };
 };
 
@@ -749,14 +749,14 @@ export function fetchFollowRequestsSuccess(accounts, next) {
   return {
     type: FOLLOW_REQUESTS_FETCH_SUCCESS,
     accounts,
-    next
+    next,
   };
 };
 
 export function fetchFollowRequestsFail(error) {
   return {
     type: FOLLOW_REQUESTS_FETCH_FAIL,
-    error
+    error,
   };
 };
 
@@ -779,7 +779,7 @@ export function expandFollowRequests() {
 
 export function expandFollowRequestsRequest() {
   return {
-    type: FOLLOW_REQUESTS_EXPAND_REQUEST
+    type: FOLLOW_REQUESTS_EXPAND_REQUEST,
   };
 };
 
@@ -787,14 +787,14 @@ export function expandFollowRequestsSuccess(accounts, next) {
   return {
     type: FOLLOW_REQUESTS_EXPAND_SUCCESS,
     accounts,
-    next
+    next,
   };
 };
 
 export function expandFollowRequestsFail(error) {
   return {
     type: FOLLOW_REQUESTS_EXPAND_FAIL,
-    error
+    error,
   };
 };
 
@@ -812,14 +812,14 @@ export function authorizeFollowRequest(id) {
 export function authorizeFollowRequestRequest(id) {
   return {
     type: FOLLOW_REQUEST_AUTHORIZE_REQUEST,
-    id
+    id,
   };
 };
 
 export function authorizeFollowRequestSuccess(id) {
   return {
     type: FOLLOW_REQUEST_AUTHORIZE_SUCCESS,
-    id
+    id,
   };
 };
 
@@ -827,7 +827,7 @@ export function authorizeFollowRequestFail(id, error) {
   return {
     type: FOLLOW_REQUEST_AUTHORIZE_FAIL,
     id,
-    error
+    error,
   };
 };
 
@@ -846,14 +846,14 @@ export function rejectFollowRequest(id) {
 export function rejectFollowRequestRequest(id) {
   return {
     type: FOLLOW_REQUEST_REJECT_REQUEST,
-    id
+    id,
   };
 };
 
 export function rejectFollowRequestSuccess(id) {
   return {
     type: FOLLOW_REQUEST_REJECT_SUCCESS,
-    id
+    id,
   };
 };
 
@@ -861,6 +861,6 @@ export function rejectFollowRequestFail(id, error) {
   return {
     type: FOLLOW_REQUEST_REJECT_FAIL,
     id,
-    error
+    error,
   };
 };

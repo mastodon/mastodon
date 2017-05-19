@@ -10,16 +10,16 @@ import Permalink from './permalink';
 class StatusContent extends React.PureComponent {
 
   static contextTypes = {
-    router: PropTypes.object
+    router: PropTypes.object,
   };
 
   static propTypes = {
     status: ImmutablePropTypes.map.isRequired,
-    onClick: PropTypes.func
+    onClick: PropTypes.func,
   };
 
   state = {
-    hidden: true
+    hidden: true,
   };
 
   componentDidMount () {

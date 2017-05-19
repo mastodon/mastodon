@@ -12,12 +12,12 @@ const messages = defineMessages({
   private_long: { id: 'privacy.private.long', defaultMessage: 'Post to followers only' },
   direct_short: { id: 'privacy.direct.short', defaultMessage: 'Direct' },
   direct_long: { id: 'privacy.direct.long', defaultMessage: 'Post to mentioned users only' },
-  change_privacy: { id: 'privacy.change', defaultMessage: 'Adjust status privacy' }
+  change_privacy: { id: 'privacy.change', defaultMessage: 'Adjust status privacy' },
 });
 
 const iconStyle = {
   height: null,
-  lineHeight: '27px'
+  lineHeight: '27px',
 };
 
 class PrivacyDropdown extends React.PureComponent {
@@ -25,11 +25,11 @@ class PrivacyDropdown extends React.PureComponent {
   static propTypes = {
     value: PropTypes.string.isRequired,
     onChange: PropTypes.func.isRequired,
-    intl: PropTypes.object.isRequired
+    intl: PropTypes.object.isRequired,
   };
 
   state = {
-    open: false
+    open: false,
   };
 
   handleToggle = () => {
@@ -71,7 +71,7 @@ class PrivacyDropdown extends React.PureComponent {
       { icon: 'globe', value: 'public', shortText: intl.formatMessage(messages.public_short), longText: intl.formatMessage(messages.public_long) },
       { icon: 'unlock-alt', value: 'unlisted', shortText: intl.formatMessage(messages.unlisted_short), longText: intl.formatMessage(messages.unlisted_long) },
       { icon: 'lock', value: 'private', shortText: intl.formatMessage(messages.private_short), longText: intl.formatMessage(messages.private_long) },
-      { icon: 'envelope', value: 'direct', shortText: intl.formatMessage(messages.direct_short), longText: intl.formatMessage(messages.direct_long) }
+      { icon: 'envelope', value: 'direct', shortText: intl.formatMessage(messages.direct_short), longText: intl.formatMessage(messages.direct_long) },
     ];
 
     const valueOption = options.find(item => item.value === value);

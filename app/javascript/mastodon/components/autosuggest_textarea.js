@@ -44,11 +44,11 @@ class AutosuggestTextarea extends ImmutablePureComponent {
     onKeyUp: PropTypes.func,
     onKeyDown: PropTypes.func,
     onPaste: PropTypes.func.isRequired,
-    autoFocus: PropTypes.bool
+    autoFocus: PropTypes.bool,
   };
 
   static defaultProps = {
-    autoFocus: true
+    autoFocus: true,
   };
 
   constructor (props, context) {
@@ -57,7 +57,7 @@ class AutosuggestTextarea extends ImmutablePureComponent {
       suggestionsHidden: false,
       selectedSuggestion: 0,
       lastToken: null,
-      tokenStart: 0
+      tokenStart: 0,
     };
     this.onChange = this.onChange.bind(this);
     this.onKeyDown = this.onKeyDown.bind(this);

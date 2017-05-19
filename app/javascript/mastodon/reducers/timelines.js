@@ -9,13 +9,13 @@ import {
   TIMELINE_EXPAND_FAIL,
   TIMELINE_SCROLL_TOP,
   TIMELINE_CONNECT,
-  TIMELINE_DISCONNECT
+  TIMELINE_DISCONNECT,
 } from '../actions/timelines';
 import {
   REBLOG_SUCCESS,
   UNREBLOG_SUCCESS,
   FAVOURITE_SUCCESS,
-  UNFAVOURITE_SUCCESS
+  UNFAVOURITE_SUCCESS,
 } from '../actions/interactions';
 import {
   ACCOUNT_TIMELINE_FETCH_REQUEST,
@@ -31,10 +31,10 @@ import {
   ACCOUNT_MEDIA_TIMELINE_EXPAND_SUCCESS,
   ACCOUNT_MEDIA_TIMELINE_EXPAND_FAIL,
   ACCOUNT_BLOCK_SUCCESS,
-  ACCOUNT_MUTE_SUCCESS
+  ACCOUNT_MUTE_SUCCESS,
 } from '../actions/accounts';
 import {
-  CONTEXT_FETCH_SUCCESS
+  CONTEXT_FETCH_SUCCESS,
 } from '../actions/statuses';
 import Immutable from 'immutable';
 
@@ -47,7 +47,7 @@ const initialState = Immutable.Map({
     loaded: false,
     top: true,
     unread: 0,
-    items: Immutable.List()
+    items: Immutable.List(),
   }),
 
   public: Immutable.Map({
@@ -58,7 +58,7 @@ const initialState = Immutable.Map({
     loaded: false,
     top: true,
     unread: 0,
-    items: Immutable.List()
+    items: Immutable.List(),
   }),
 
   community: Immutable.Map({
@@ -70,7 +70,7 @@ const initialState = Immutable.Map({
     loaded: false,
     top: true,
     unread: 0,
-    items: Immutable.List()
+    items: Immutable.List(),
   }),
 
   tag: Immutable.Map({
@@ -81,13 +81,13 @@ const initialState = Immutable.Map({
     loaded: false,
     top: true,
     unread: 0,
-    items: Immutable.List()
+    items: Immutable.List(),
   }),
 
   accounts_timelines: Immutable.Map(),
   accounts_media_timelines: Immutable.Map(),
   ancestors: Immutable.Map(),
-  descendants: Immutable.Map()
+  descendants: Immutable.Map(),
 });
 
 const normalizeStatus = (state, status) => {

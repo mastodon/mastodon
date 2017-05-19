@@ -22,12 +22,12 @@ class UI extends React.PureComponent {
 
   static propTypes = {
     dispatch: PropTypes.func.isRequired,
-    children: PropTypes.node
+    children: PropTypes.node,
   };
 
   state = {
     width: window.innerWidth,
-    draggingOver: false
+    draggingOver: false,
   };
 
   handleResize = () => {

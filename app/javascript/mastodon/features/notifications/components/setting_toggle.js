@@ -10,7 +10,7 @@ class SettingToggle extends React.PureComponent {
     settingKey: PropTypes.array.isRequired,
     label: PropTypes.node.isRequired,
     onChange: PropTypes.func.isRequired,
-    htmlFor: PropTypes.string
+    htmlFor: PropTypes.string,
   }
 
   onChange = (e) => {

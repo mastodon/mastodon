@@ -12,11 +12,11 @@ import { defineMessages, injectIntl } from 'react-intl';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
 const messages = defineMessages({
-  heading: { id: 'column.follow_requests', defaultMessage: 'Follow requests' }
+  heading: { id: 'column.follow_requests', defaultMessage: 'Follow requests' },
 });
 
 const mapStateToProps = state => ({
-  accountIds: state.getIn(['user_lists', 'follow_requests', 'items'])
+  accountIds: state.getIn(['user_lists', 'follow_requests', 'items']),
 });
 
 class FollowRequests extends ImmutablePureComponent {
@@ -25,7 +25,7 @@ class FollowRequests extends ImmutablePureComponent {
     params: PropTypes.object.isRequired,
     dispatch: PropTypes.func.isRequired,
     accountIds: ImmutablePropTypes.list,
-    intl: PropTypes.object.isRequired
+    intl: PropTypes.object.isRequired,
   };
 
   componentWillMount () {

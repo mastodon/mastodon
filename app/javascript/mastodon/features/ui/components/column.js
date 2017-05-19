@@ -37,7 +37,7 @@ class Column extends React.PureComponent {
     icon: PropTypes.string,
     children: PropTypes.node,
     active: PropTypes.bool,
-    hideHeadingOnMobile: PropTypes.bool
+    hideHeadingOnMobile: PropTypes.bool,
   };
 
   handleHeaderClick = () => {

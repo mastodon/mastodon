@@ -26,7 +26,7 @@ ColumnLink.propTypes = {
   to: PropTypes.string,
   href: PropTypes.string,
   method: PropTypes.string,
-  hideOnMobile: PropTypes.bool
+  hideOnMobile: PropTypes.bool,
 };
 
 export default ColumnLink;

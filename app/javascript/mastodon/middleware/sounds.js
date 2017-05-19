@@ -27,7 +27,7 @@ export default function soundsMiddleware() {
       },
       {
         src: '/sounds/boop.mp3',
-        type: 'audio/mpeg'
+        type: 'audio/mpeg',
       },
     ]),
   };

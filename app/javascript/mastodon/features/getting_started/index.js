@@ -21,18 +21,18 @@ const messages = defineMessages({
   favourites: { id: 'navigation_bar.favourites', defaultMessage: 'Favourites' },
   blocks: { id: 'navigation_bar.blocks', defaultMessage: 'Blocked users' },
   mutes: { id: 'navigation_bar.mutes', defaultMessage: 'Muted users' },
-  info: { id: 'navigation_bar.info', defaultMessage: 'Extended information' }
+  info: { id: 'navigation_bar.info', defaultMessage: 'Extended information' },
 });
 
 const mapStateToProps = state => ({
-  me: state.getIn(['accounts', state.getIn(['meta', 'me'])])
+  me: state.getIn(['accounts', state.getIn(['meta', 'me'])]),
 });
 
 class GettingStarted extends ImmutablePureComponent {
 
   static propTypes = {
     intl: PropTypes.object.isRequired,
-    me: ImmutablePropTypes.map.isRequired
+    me: ImmutablePropTypes.map.isRequired,
   };
 
   render () {
@@ -69,7 +69,7 @@ class GettingStarted extends ImmutablePureComponent {
                 values={{
                   faq: <a href="https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/FAQ.md" rel="noopener" target="_blank"><FormattedMessage id='getting_started.faq' defaultMessage='FAQ' /></a>,
                   userguide: <a href="https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/User-guide.md" rel="noopener" target="_blank"><FormattedMessage id='getting_started.userguide' defaultMessage='User Guide' /></a>,
-                  apps: <a href="https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/Apps.md" rel="noopener" target="_blank"><FormattedMessage id='getting_started.appsshort' defaultMessage='Apps' /></a>
+                  apps: <a href="https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/Apps.md" rel="noopener" target="_blank"><FormattedMessage id='getting_started.appsshort' defaultMessage='Apps' /></a>,
                 }}
               />
             </p>

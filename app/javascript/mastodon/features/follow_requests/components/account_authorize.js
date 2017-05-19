@@ -11,7 +11,7 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 
 const messages = defineMessages({
   authorize: { id: 'follow_request.authorize', defaultMessage: 'Authorize' },
-  reject: { id: 'follow_request.reject', defaultMessage: 'Reject' }
+  reject: { id: 'follow_request.reject', defaultMessage: 'Reject' },
 });
 
 class AccountAuthorize extends ImmutablePureComponent {
@@ -20,7 +20,7 @@ class AccountAuthorize extends ImmutablePureComponent {
     account: ImmutablePropTypes.map.isRequired,
     onAuthorize: PropTypes.func.isRequired,
     onReject: PropTypes.func.isRequired,
-    intl: PropTypes.object.isRequired
+    intl: PropTypes.object.isRequired,
   };
 
   render () {

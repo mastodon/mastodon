@@ -10,7 +10,7 @@ class StatusCheckBox extends React.PureComponent {
     status: ImmutablePropTypes.map.isRequired,
     checked: PropTypes.bool,
     onToggle: PropTypes.func.isRequired,
-    disabled: PropTypes.bool
+    disabled: PropTypes.bool,
   };
 
   render () {

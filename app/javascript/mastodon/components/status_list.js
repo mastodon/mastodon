@@ -20,11 +20,11 @@ class StatusList extends ImmutablePureComponent {
     isUnread: PropTypes.bool,
     hasMore: PropTypes.bool,
     prepend: PropTypes.node,
-    emptyMessage: PropTypes.node
+    emptyMessage: PropTypes.node,
   };
 
   static defaultProps = {
-    trackScroll: true
+    trackScroll: true,
   };
 
   handleScroll = (e) => {

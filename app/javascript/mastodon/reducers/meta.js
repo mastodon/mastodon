@@ -4,7 +4,7 @@ import Immutable from 'immutable';
 const initialState = Immutable.Map({
   streaming_api_base_url: null,
   access_token: null,
-  me: null
+  me: null,
 });
 
 export default function meta(state = initialState, action) {
