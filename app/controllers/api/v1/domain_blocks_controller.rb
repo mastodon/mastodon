@@ -17,7 +17,7 @@ class Api::V1::DomainBlocksController < ApiController
   end
 
   def create
-    current_account.block_domain!(domain_block_params[:domain])
+    BlockDomainFromAccountService.new.call(current_account, domain_block_params[:domain])
     render_empty
   end
 
