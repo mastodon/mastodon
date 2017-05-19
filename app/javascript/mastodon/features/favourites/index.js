@@ -26,7 +26,7 @@ class Favourites extends ImmutablePureComponent {
     this.props.dispatch(fetchFavourites(Number(this.props.params.statusId)));
   }
 
-  componentWillReceiveProps(nextProps) {
+  componentWillReceiveProps (nextProps) {
     if (nextProps.params.statusId !== this.props.params.statusId && nextProps.params.statusId) {
       this.props.dispatch(fetchFavourites(Number(nextProps.params.statusId)));
     }
