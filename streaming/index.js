@@ -41,11 +41,28 @@ const dbUrlToConfig = (dbUrl) => {
   }
 
   const ssl = params.query && params.query.ssl;
+
   if (ssl) {
     config.ssl = ssl === 'true' || ssl === '1';
   }
 
   return config;
+};
+
+const redisUrlToClient = (defaultConfig, redisUrl) => {
+  const config = defaultConfig;
+
+  if (!redisUrl) {
+    return redis.createClient(config);
+  }
+
+  if (redisUrl.startsWith('unix://')) {
+    return redis.createClient(redisUrl.slice(7), config);
+  }
+
+  return redis.createClient(Object.assign(config, {
+    url: redisUrl,
+  }));
 };
 
 if (cluster.isMaster) {
@@ -94,15 +111,15 @@ if (cluster.isMaster) {
     port:     process.env.REDIS_PORT     || 6379,
     db:       process.env.REDIS_DB       || 0,
     password: process.env.REDIS_PASSWORD,
-    url:      process.env.REDIS_URL      || null,
   };
 
   if (redisNamespace) {
     redisParams.namespace = redisNamespace;
   }
+
   const redisPrefix = redisNamespace ? `${redisNamespace}:` : '';
 
-  const redisClient = redis.createClient(redisParams);
+  const redisClient = redisUrlToClient(redisParams, process.env.REDIS_URL);
 
   const subs = {};
 
