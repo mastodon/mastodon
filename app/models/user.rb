@@ -30,7 +30,7 @@
 #  otp_required_for_login    :boolean
 #  last_emailed_at           :datetime
 #  otp_backup_codes          :string           is an Array
-#  allowed_languages         :string           default([]), not null, is an Array
+#  filtered_languages        :string           default([]), not null, is an Array
 #
 
 class User < ApplicationRecord
@@ -83,6 +83,6 @@ class User < ApplicationRecord
   private
 
   def sanitize_languages
-    allowed_languages.reject!(&:blank?)
+    filtered_languages.reject!(&:blank?)
   end
 end

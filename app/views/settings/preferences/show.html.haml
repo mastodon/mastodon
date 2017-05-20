@@ -12,7 +12,7 @@
       label_method: lambda { |locale| human_locale(locale) },
       selected: I18n.locale
 
-    = f.input :allowed_languages,
+    = f.input :filtered_languages,
       collection: I18n.available_locales,
       wrapper: :with_label,
       include_blank: false,

@@ -142,8 +142,8 @@ class Status < ApplicationRecord
   before_validation :set_conversation
 
   class << self
-    def in_allowed_languages(account)
-      where(language: account.allowed_languages)
+    def not_in_filtered_languages(account)
+      where.not(language: account.filtered_languages)
     end
 
     def as_home_timeline(account)
@@ -234,7 +234,7 @@ class Status < ApplicationRecord
     def filter_timeline_for_account(query, account, local_only)
       query = query.not_excluded_by_account(account)
       query = query.not_domain_blocked_by_account(account) unless local_only
-      query = query.in_allowed_languages(account) if account.allowed_languages.present?
+      query = query.not_in_filtered_languages(account) if account.filtered_languages.present?
       query.merge(account_silencing_filter(account))
     end
 

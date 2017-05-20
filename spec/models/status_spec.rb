@@ -512,7 +512,7 @@ RSpec.describe Status, type: :model do
 
       context 'with language preferences' do
         it 'excludes statuses in languages not allowed by the account user' do
-          user = Fabricate(:user, allowed_languages: [:en, :es])
+          user = Fabricate(:user, filtered_languages: [:fr])
           @account.update(user: user)
           en_status = Fabricate(:status, language: 'en')
           es_status = Fabricate(:status, language: 'es')
@@ -525,7 +525,7 @@ RSpec.describe Status, type: :model do
         end
 
         it 'includes all languages when user does not have a setting' do
-          user = Fabricate(:user, allowed_languages: [])
+          user = Fabricate(:user, filtered_languages: [])
           @account.update(user: user)
 
           en_status = Fabricate(:status, language: 'en')
