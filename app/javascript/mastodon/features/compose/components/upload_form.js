@@ -4,7 +4,8 @@ import PropTypes from 'prop-types';
 import IconButton from '../../../components/icon_button';
 import { defineMessages, injectIntl } from 'react-intl';
 import UploadProgressContainer from '../containers/upload_progress_container';
-import { Motion, spring } from 'react-motion';
+import Motion from 'react-motion/lib/Motion';
+import spring from 'react-motion/lib/spring';
 
 const messages = defineMessages({
   undo: { id: 'upload_form.undo', defaultMessage: 'Undo' }

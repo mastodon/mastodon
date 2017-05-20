@@ -8,7 +8,8 @@ import { mountCompose, unmountCompose } from '../../actions/compose';
 import Link from 'react-router/lib/Link';
 import { injectIntl, defineMessages } from 'react-intl';
 import SearchContainer from './containers/search_container';
-import { Motion, spring } from 'react-motion';
+import Motion from 'react-motion/lib/Motion';
+import spring from 'react-motion/lib/spring';
 import SearchResultsContainer from './containers/search_results_container';
 
 const messages = defineMessages({
