@@ -606,6 +606,8 @@
 
 .status__relative-time {
   color: lighten($ui-base-color, 26%);
+  float: right;
+  font-size: 14px;
 }
 
 .status__display-name {
@@ -620,11 +622,6 @@
 
 .status__info {
   font-size: 15px;
-}
-
-.status__info-time {
-  float: right;
-  font-size: 14px;
 }
 
 .status-check-box {
