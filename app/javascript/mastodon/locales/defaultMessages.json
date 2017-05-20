@@ -1,0 +1,1134 @@
+[
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "{name} mentioned you",
+        "id": "notification.mention"
+      }
+    ],
+    "path": "app/javascript/mastodon/actions/notifications.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "Follow",
+        "id": "account.follow"
+      },
+      {
+        "defaultMessage": "Unfollow",
+        "id": "account.unfollow"
+      },
+      {
+        "defaultMessage": "Awaiting approval",
+        "id": "account.requested"
+      },
+      {
+        "defaultMessage": "Unblock @{name}",
+        "id": "account.unblock"
+      },
+      {
+        "defaultMessage": "Unmute @{name}",
+        "id": "account.unmute"
+      }
+    ],
+    "path": "app/javascript/mastodon/components/account.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "Back",
+        "id": "column_back_button.label"
+      }
+    ],
+    "path": "app/javascript/mastodon/components/column_back_button_slim.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "Back",
+        "id": "column_back_button.label"
+      }
+    ],
+    "path": "app/javascript/mastodon/components/column_back_button.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "Load more",
+        "id": "status.load_more"
+      }
+    ],
+    "path": "app/javascript/mastodon/components/load_more.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "Loading...",
+        "id": "loading_indicator.label"
+      }
+    ],
+    "path": "app/javascript/mastodon/components/loading_indicator.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "Toggle visibility",
+        "id": "media_gallery.toggle_visible"
+      },
+      {
+        "defaultMessage": "Sensitive content",
+        "id": "status.sensitive_warning"
+      },
+      {
+        "defaultMessage": "Media hidden",
+        "id": "status.media_hidden"
+      },
+      {
+        "defaultMessage": "Click to view",
+        "id": "status.sensitive_toggle"
+      }
+    ],
+    "path": "app/javascript/mastodon/components/media_gallery.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "Not found",
+        "id": "missing_indicator.label"
+      }
+    ],
+    "path": "app/javascript/mastodon/components/missing_indicator.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "Delete",
+        "id": "status.delete"
+      },
+      {
+        "defaultMessage": "Mention @{name}",
+        "id": "status.mention"
+      },
+      {
+        "defaultMessage": "Mute @{name}",
+        "id": "account.mute"
+      },
+      {
+        "defaultMessage": "Block @{name}",
+        "id": "account.block"
+      },
+      {
+        "defaultMessage": "Reply",
+        "id": "status.reply"
+      },
+      {
+        "defaultMessage": "Reply to thread",
+        "id": "status.replyAll"
+      },
+      {
+        "defaultMessage": "Boost",
+        "id": "status.reblog"
+      },
+      {
+        "defaultMessage": "This post cannot be boosted",
+        "id": "status.cannot_reblog"
+      },
+      {
+        "defaultMessage": "Favourite",
+        "id": "status.favourite"
+      },
+      {
+        "defaultMessage": "Expand this status",
+        "id": "status.open"
+      },
+      {
+        "defaultMessage": "Report @{name}",
+        "id": "status.report"
+      },
+      {
+        "defaultMessage": "Mute conversation",
+        "id": "status.mute_conversation"
+      },
+      {
+        "defaultMessage": "Unmute conversation",
+        "id": "status.unmute_conversation"
+      }
+    ],
+    "path": "app/javascript/mastodon/components/status_action_bar.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "Show more",
+        "id": "status.show_more"
+      },
+      {
+        "defaultMessage": "Show less",
+        "id": "status.show_less"
+      }
+    ],
+    "path": "app/javascript/mastodon/components/status_content.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "{name} boosted",
+        "id": "status.reblogged_by"
+      }
+    ],
+    "path": "app/javascript/mastodon/components/status.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "Toggle sound",
+        "id": "video_player.toggle_sound"
+      },
+      {
+        "defaultMessage": "Toggle visibility",
+        "id": "video_player.toggle_visible"
+      },
+      {
+        "defaultMessage": "Expand video",
+        "id": "video_player.expand"
+      },
+      {
+        "defaultMessage": "Sensitive content",
+        "id": "status.sensitive_warning"
+      },
+      {
+        "defaultMessage": "Click to view",
+        "id": "status.sensitive_toggle"
+      },
+      {
+        "defaultMessage": "Media hidden",
+        "id": "status.media_hidden"
+      },
+      {
+        "defaultMessage": "Video could not be played",
+        "id": "video_player.video_error"
+      }
+    ],
+    "path": "app/javascript/mastodon/components/video_player.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "Delete",
+        "id": "confirmations.delete.confirm"
+      },
+      {
+        "defaultMessage": "Are you sure you want to delete this status?",
+        "id": "confirmations.delete.message"
+      },
+      {
+        "defaultMessage": "Block",
+        "id": "confirmations.block.confirm"
+      },
+      {
+        "defaultMessage": "Mute",
+        "id": "confirmations.mute.confirm"
+      },
+      {
+        "defaultMessage": "Are you sure you want to block {name}?",
+        "id": "confirmations.block.message"
+      },
+      {
+        "defaultMessage": "Are you sure you want to mute {name}?",
+        "id": "confirmations.mute.message"
+      }
+    ],
+    "path": "app/javascript/mastodon/containers/status_container.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "Media",
+        "id": "account.media"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/account_gallery/index.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "Block",
+        "id": "confirmations.block.confirm"
+      },
+      {
+        "defaultMessage": "Mute",
+        "id": "confirmations.mute.confirm"
+      },
+      {
+        "defaultMessage": "Hide entire domain",
+        "id": "confirmations.domain_block.confirm"
+      },
+      {
+        "defaultMessage": "Are you sure you want to block {name}?",
+        "id": "confirmations.block.message"
+      },
+      {
+        "defaultMessage": "Are you sure you want to mute {name}?",
+        "id": "confirmations.mute.message"
+      },
+      {
+        "defaultMessage": "Are you really, really sure you want to block the entire {domain}? In most cases a few targeted blocks or mutes are sufficient and preferable.",
+        "id": "confirmations.domain_block.message"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/account_timeline/containers/header_container.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "Mention @{name}",
+        "id": "account.mention"
+      },
+      {
+        "defaultMessage": "Edit profile",
+        "id": "account.edit_profile"
+      },
+      {
+        "defaultMessage": "Unblock @{name}",
+        "id": "account.unblock"
+      },
+      {
+        "defaultMessage": "Unfollow",
+        "id": "account.unfollow"
+      },
+      {
+        "defaultMessage": "Unmute @{name}",
+        "id": "account.unmute"
+      },
+      {
+        "defaultMessage": "Block @{name}",
+        "id": "account.block"
+      },
+      {
+        "defaultMessage": "Mute @{name}",
+        "id": "account.mute"
+      },
+      {
+        "defaultMessage": "Follow",
+        "id": "account.follow"
+      },
+      {
+        "defaultMessage": "Report @{name}",
+        "id": "account.report"
+      },
+      {
+        "defaultMessage": "Media",
+        "id": "account.media"
+      },
+      {
+        "defaultMessage": "This user is from another instance. This number may be larger.",
+        "id": "account.disclaimer"
+      },
+      {
+        "defaultMessage": "Hide everything from {domain}",
+        "id": "account.block_domain"
+      },
+      {
+        "defaultMessage": "Unhide {domain}",
+        "id": "account.unblock_domain"
+      },
+      {
+        "defaultMessage": "Posts",
+        "id": "account.posts"
+      },
+      {
+        "defaultMessage": "Follows",
+        "id": "account.follows"
+      },
+      {
+        "defaultMessage": "Followers",
+        "id": "account.followers"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/account/components/action_bar.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "Unfollow",
+        "id": "account.unfollow"
+      },
+      {
+        "defaultMessage": "Follow",
+        "id": "account.follow"
+      },
+      {
+        "defaultMessage": "Awaiting approval",
+        "id": "account.requested"
+      },
+      {
+        "defaultMessage": "Follows you",
+        "id": "account.follows_you"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/account/components/header.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "Blocked users",
+        "id": "column.blocks"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/blocks/index.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "Local timeline",
+        "id": "column.community"
+      },
+      {
+        "defaultMessage": "The local timeline is empty. Write something publicly to get the ball rolling!",
+        "id": "empty_column.community"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/community_timeline/index.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "What is on your mind?",
+        "id": "compose_form.placeholder"
+      },
+      {
+        "defaultMessage": "Content warning",
+        "id": "compose_form.spoiler_placeholder"
+      },
+      {
+        "defaultMessage": "Toot",
+        "id": "compose_form.publish"
+      },
+      {
+        "defaultMessage": "{publish}!",
+        "id": "compose_form.publish_loud"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/compose/components/compose_form.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "Insert emoji",
+        "id": "emoji_button.label"
+      },
+      {
+        "defaultMessage": "Search...",
+        "id": "emoji_button.search"
+      },
+      {
+        "defaultMessage": "People",
+        "id": "emoji_button.people"
+      },
+      {
+        "defaultMessage": "Nature",
+        "id": "emoji_button.nature"
+      },
+      {
+        "defaultMessage": "Food & Drink",
+        "id": "emoji_button.food"
+      },
+      {
+        "defaultMessage": "Activity",
+        "id": "emoji_button.activity"
+      },
+      {
+        "defaultMessage": "Travel & Places",
+        "id": "emoji_button.travel"
+      },
+      {
+        "defaultMessage": "Objects",
+        "id": "emoji_button.objects"
+      },
+      {
+        "defaultMessage": "Symbols",
+        "id": "emoji_button.symbols"
+      },
+      {
+        "defaultMessage": "Flags",
+        "id": "emoji_button.flags"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/compose/components/emoji_picker_dropdown.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "Edit profile",
+        "id": "navigation_bar.edit_profile"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/compose/components/navigation_bar.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "Public",
+        "id": "privacy.public.short"
+      },
+      {
+        "defaultMessage": "Post to public timelines",
+        "id": "privacy.public.long"
+      },
+      {
+        "defaultMessage": "Unlisted",
+        "id": "privacy.unlisted.short"
+      },
+      {
+        "defaultMessage": "Do not show in public timelines",
+        "id": "privacy.unlisted.long"
+      },
+      {
+        "defaultMessage": "Followers-only",
+        "id": "privacy.private.short"
+      },
+      {
+        "defaultMessage": "Post to followers only",
+        "id": "privacy.private.long"
+      },
+      {
+        "defaultMessage": "Direct",
+        "id": "privacy.direct.short"
+      },
+      {
+        "defaultMessage": "Post to mentioned users only",
+        "id": "privacy.direct.long"
+      },
+      {
+        "defaultMessage": "Adjust status privacy",
+        "id": "privacy.change"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/compose/components/privacy_dropdown.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "Cancel",
+        "id": "reply_indicator.cancel"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/compose/components/reply_indicator.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "{count, number} {count, plural, one {result} other {results}}",
+        "id": "search_results.total"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/compose/components/search_results.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "Search",
+        "id": "search.placeholder"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/compose/components/search.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "Add media",
+        "id": "upload_button.label"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/compose/components/upload_button.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "Undo",
+        "id": "upload_form.undo"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/compose/components/upload_form.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "Uploading...",
+        "id": "upload_progress.label"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/compose/components/upload_progress.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "Mark media as sensitive",
+        "id": "compose_form.sensitive"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/compose/containers/sensitive_button_container.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "Hide text behind warning",
+        "id": "compose_form.spoiler"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/compose/containers/spoiler_button_container.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "Your account is not {locked}. Anyone can follow you to view your follower-only posts.",
+        "id": "compose_form.lock_disclaimer"
+      },
+      {
+        "defaultMessage": "locked",
+        "id": "compose_form.lock_disclaimer.lock"
+      },
+      {
+        "defaultMessage": "Your private status will be delivered to mentioned users on {domains}. Do you trust {domainsCount, plural, one {that server} other {those servers}}? Post privacy only works on Mastodon instances. If {domains} {domainsCount, plural, one {is not a Mastodon instance} other {are not Mastodon instances}}, there will be no indication that your post is private, and it may be boosted or otherwise made visible to unintended recipients.",
+        "id": "compose_form.privacy_disclaimer"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/compose/containers/warning_container.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "Getting started",
+        "id": "getting_started.heading"
+      },
+      {
+        "defaultMessage": "Federated timeline",
+        "id": "navigation_bar.public_timeline"
+      },
+      {
+        "defaultMessage": "Local timeline",
+        "id": "navigation_bar.community_timeline"
+      },
+      {
+        "defaultMessage": "Preferences",
+        "id": "navigation_bar.preferences"
+      },
+      {
+        "defaultMessage": "Logout",
+        "id": "navigation_bar.logout"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/compose/index.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "Favourites",
+        "id": "column.favourites"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/favourited_statuses/index.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "Authorize",
+        "id": "follow_request.authorize"
+      },
+      {
+        "defaultMessage": "Reject",
+        "id": "follow_request.reject"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/follow_requests/components/account_authorize.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "Follow requests",
+        "id": "column.follow_requests"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/follow_requests/index.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "Getting started",
+        "id": "getting_started.heading"
+      },
+      {
+        "defaultMessage": "Federated timeline",
+        "id": "navigation_bar.public_timeline"
+      },
+      {
+        "defaultMessage": "Navigation",
+        "id": "column_subheading.navigation"
+      },
+      {
+        "defaultMessage": "Settings",
+        "id": "column_subheading.settings"
+      },
+      {
+        "defaultMessage": "Local timeline",
+        "id": "navigation_bar.community_timeline"
+      },
+      {
+        "defaultMessage": "Preferences",
+        "id": "navigation_bar.preferences"
+      },
+      {
+        "defaultMessage": "Follow requests",
+        "id": "navigation_bar.follow_requests"
+      },
+      {
+        "defaultMessage": "Logout",
+        "id": "navigation_bar.logout"
+      },
+      {
+        "defaultMessage": "Favourites",
+        "id": "navigation_bar.favourites"
+      },
+      {
+        "defaultMessage": "Blocked users",
+        "id": "navigation_bar.blocks"
+      },
+      {
+        "defaultMessage": "Muted users",
+        "id": "navigation_bar.mutes"
+      },
+      {
+        "defaultMessage": "Extended information",
+        "id": "navigation_bar.info"
+      },
+      {
+        "defaultMessage": "{faq} • {userguide} • {apps}",
+        "id": "getting_started.support"
+      },
+      {
+        "defaultMessage": "FAQ",
+        "id": "getting_started.faq"
+      },
+      {
+        "defaultMessage": "User Guide",
+        "id": "getting_started.userguide"
+      },
+      {
+        "defaultMessage": "Apps",
+        "id": "getting_started.appsshort"
+      },
+      {
+        "defaultMessage": "Mastodon is open source software. You can contribute or report issues on GitHub at {github}.",
+        "id": "getting_started.open_source_notice"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/getting_started/index.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "There is nothing in this hashtag yet.",
+        "id": "empty_column.hashtag"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/hashtag_timeline/index.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "Filter out by regular expressions",
+        "id": "home.column_settings.filter_regex"
+      },
+      {
+        "defaultMessage": "Column settings",
+        "id": "home.settings"
+      },
+      {
+        "defaultMessage": "Basic",
+        "id": "home.column_settings.basic"
+      },
+      {
+        "defaultMessage": "Show boosts",
+        "id": "home.column_settings.show_reblogs"
+      },
+      {
+        "defaultMessage": "Show replies",
+        "id": "home.column_settings.show_replies"
+      },
+      {
+        "defaultMessage": "Advanced",
+        "id": "home.column_settings.advanced"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/home_timeline/components/column_settings.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "Home",
+        "id": "column.home"
+      },
+      {
+        "defaultMessage": "Your home feed is empty. If you have been inactive for a while, it will be regenerated for you soon.",
+        "id": "empty_column.home.inactivity"
+      },
+      {
+        "defaultMessage": "You aren't following anyone yet. Visit {public} or use search to get started and meet other users.",
+        "id": "empty_column.home"
+      },
+      {
+        "defaultMessage": "the public timeline",
+        "id": "empty_column.home.public_timeline"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/home_timeline/index.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "Muted users",
+        "id": "column.mutes"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/mutes/index.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "Clear notifications",
+        "id": "notifications.clear"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/notifications/components/clear_column_button.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "Column settings",
+        "id": "notifications.settings"
+      },
+      {
+        "defaultMessage": "Desktop notifications",
+        "id": "notifications.column_settings.alert"
+      },
+      {
+        "defaultMessage": "Show in column",
+        "id": "notifications.column_settings.show"
+      },
+      {
+        "defaultMessage": "Play sound",
+        "id": "notifications.column_settings.sound"
+      },
+      {
+        "defaultMessage": "New followers:",
+        "id": "notifications.column_settings.follow"
+      },
+      {
+        "defaultMessage": "Favourites:",
+        "id": "notifications.column_settings.favourite"
+      },
+      {
+        "defaultMessage": "Mentions:",
+        "id": "notifications.column_settings.mention"
+      },
+      {
+        "defaultMessage": "Boosts:",
+        "id": "notifications.column_settings.reblog"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/notifications/components/column_settings.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "{name} followed you",
+        "id": "notification.follow"
+      },
+      {
+        "defaultMessage": "{name} favourited your status",
+        "id": "notification.favourite"
+      },
+      {
+        "defaultMessage": "{name} boosted your status",
+        "id": "notification.reblog"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/notifications/components/notification.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "Notifications",
+        "id": "column.notifications"
+      },
+      {
+        "defaultMessage": "Are you sure you want to permanently clear all your notifications?",
+        "id": "notifications.clear_confirmation"
+      },
+      {
+        "defaultMessage": "Clear notifications",
+        "id": "notifications.clear"
+      },
+      {
+        "defaultMessage": "You don't have any notifications yet. Interact with others to start the conversation.",
+        "id": "empty_column.notifications"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/notifications/index.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "Federated timeline",
+        "id": "column.public"
+      },
+      {
+        "defaultMessage": "There is nothing here! Write something publicly, or manually follow users from other instances to fill it up",
+        "id": "empty_column.public"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/public_timeline/index.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "New report",
+        "id": "report.heading"
+      },
+      {
+        "defaultMessage": "Additional comments",
+        "id": "report.placeholder"
+      },
+      {
+        "defaultMessage": "Submit",
+        "id": "report.submit"
+      },
+      {
+        "defaultMessage": "Reporting",
+        "id": "report.target"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/report/index.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "Delete",
+        "id": "status.delete"
+      },
+      {
+        "defaultMessage": "Mention @{name}",
+        "id": "status.mention"
+      },
+      {
+        "defaultMessage": "Reply",
+        "id": "status.reply"
+      },
+      {
+        "defaultMessage": "Boost",
+        "id": "status.reblog"
+      },
+      {
+        "defaultMessage": "This post cannot be boosted",
+        "id": "status.cannot_reblog"
+      },
+      {
+        "defaultMessage": "Favourite",
+        "id": "status.favourite"
+      },
+      {
+        "defaultMessage": "Report @{name}",
+        "id": "status.report"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/status/components/action_bar.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "Delete",
+        "id": "confirmations.delete.confirm"
+      },
+      {
+        "defaultMessage": "Are you sure you want to delete this status?",
+        "id": "confirmations.delete.message"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/status/index.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "Boost",
+        "id": "status.reblog"
+      },
+      {
+        "defaultMessage": "You can press {combo} to skip this next time",
+        "id": "boost_modal.combo"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/ui/components/boost_modal.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "Cancel",
+        "id": "confirmation_modal.cancel"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/ui/components/confirmation_modal.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "Close",
+        "id": "lightbox.close"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/ui/components/media_modal.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "Home",
+        "id": "column.home"
+      },
+      {
+        "defaultMessage": "Notifications",
+        "id": "column.notifications"
+      },
+      {
+        "defaultMessage": "Local timeline",
+        "id": "column.community"
+      },
+      {
+        "defaultMessage": "Federated timeline",
+        "id": "column.public"
+      },
+      {
+        "defaultMessage": "Welcome to Mastodon!",
+        "id": "onboarding.page_one.welcome"
+      },
+      {
+        "defaultMessage": "Mastodon is a network of independent servers joining up to make one larger social network. We call these servers instances.",
+        "id": "onboarding.page_one.federation"
+      },
+      {
+        "defaultMessage": "You are on {domain}, so your full handle is {handle}",
+        "id": "onboarding.page_one.handle"
+      },
+      {
+        "defaultMessage": "Write posts from the compose column. You can upload images, change privacy settings, and add content warnings with the icons below.",
+        "id": "onboarding.page_two.compose"
+      },
+      {
+        "defaultMessage": "Use the search bar to find people and look at hashtags, such as {illustration} and {introductions}. To look for a person who is not on this instance, use their full handle.",
+        "id": "onboarding.page_three.search"
+      },
+      {
+        "defaultMessage": "Edit your profile to change your avatar, bio, and display name. There, you will also find other preferences.",
+        "id": "onboarding.page_three.profile"
+      },
+      {
+        "defaultMessage": "The home timeline shows posts from people you follow.",
+        "id": "onboarding.page_four.home"
+      },
+      {
+        "defaultMessage": "The notifications column shows when someone interacts with you.",
+        "id": "onboarding.page_four.notifications"
+      },
+      {
+        "defaultMessage": "The local timeline shows public posts from everyone on {domain}. The federated timeline shows public posts from everyone who people on {domain} follow. These are the Public Timelines, a great way to discover new people.",
+        "id": "onboarding.page_five.public_timelines"
+      },
+      {
+        "defaultMessage": "Your instance's admin is {admin}.",
+        "id": "onboarding.page_six.admin"
+      },
+      {
+        "defaultMessage": "Please read {domain}'s {guidelines}!",
+        "id": "onboarding.page_six.read_guidelines"
+      },
+      {
+        "defaultMessage": "community guidelines",
+        "id": "onboarding.page_six.guidelines"
+      },
+      {
+        "defaultMessage": "Almost done...",
+        "id": "onboarding.page_six.almost_done"
+      },
+      {
+        "defaultMessage": "Mastodon is free open-source software. You can report bugs, request features, or contribute to the code on {github}.",
+        "id": "onboarding.page_six.github"
+      },
+      {
+        "defaultMessage": "There are {apps} available for iOS, Android and other platforms.",
+        "id": "onboarding.page_six.apps_available"
+      },
+      {
+        "defaultMessage": "mobile apps",
+        "id": "onboarding.page_six.various_app"
+      },
+      {
+        "defaultMessage": "Bon Appetoot!",
+        "id": "onboarding.page_six.appetoot"
+      },
+      {
+        "defaultMessage": "Next",
+        "id": "onboarding.next"
+      },
+      {
+        "defaultMessage": "Done",
+        "id": "onboarding.done"
+      },
+      {
+        "defaultMessage": "Skip",
+        "id": "onboarding.skip"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/ui/components/onboarding_modal.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "Compose",
+        "id": "tabs_bar.compose"
+      },
+      {
+        "defaultMessage": "Home",
+        "id": "tabs_bar.home"
+      },
+      {
+        "defaultMessage": "Notifications",
+        "id": "tabs_bar.notifications"
+      },
+      {
+        "defaultMessage": "Local",
+        "id": "tabs_bar.local_timeline"
+      },
+      {
+        "defaultMessage": "Federated",
+        "id": "tabs_bar.federated_timeline"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/ui/components/tabs_bar.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "Drag & drop to upload",
+        "id": "upload_area.title"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/ui/components/upload_area.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "Close",
+        "id": "lightbox.close"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/ui/components/video_modal.json"
+  }
+]

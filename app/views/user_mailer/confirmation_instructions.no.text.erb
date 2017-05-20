@@ -1,0 +1,12 @@
+Velkommen <%= @resource.email %> !
+
+Du har akkurat opprettet en konto på <%= @instance %>.
+
+For å bekrefte innskriving i manntallet vennligst trykk på følgende lenke :
+<%= confirmation_url(@resource, confirmation_token: @token) %>
+
+Vennligst også les våre brukervilkår <%= terms_url %>
+
+Med vennlig hilsen,
+
+Gjengen bak <%= @instance %>

@@ -2,7 +2,7 @@ import { expect } from 'chai';
 import { render } from 'enzyme';
 import Immutable  from 'immutable';
 
-import DisplayName from '../../../app/assets/javascripts/components/components/display_name'
+import DisplayName from '../../../app/javascript/mastodon/components/display_name'
 
 describe('<DisplayName />', () => {
   it('renders display name + account name', () => {

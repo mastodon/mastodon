@@ -5,7 +5,7 @@
   %p.hint= t('two_factor_authentication.instructions_html')
 
   .qr-wrapper
-    .qr-code= raw @qrcode.as_svg(padding: 0, module_size: 4)
+    .qr-code!= @qrcode.as_svg(padding: 0, module_size: 4)
 
     .qr-alternative
       %p.hint= t('two_factor_authentication.manual_instructions')

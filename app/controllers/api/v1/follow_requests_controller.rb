@@ -5,12 +5,14 @@ class Api::V1::FollowRequestsController < ApiController
   before_action :require_user!
 
   def index
-    results   = FollowRequest.where(target_account: current_account).paginate_by_max_id(DEFAULT_ACCOUNTS_LIMIT, params[:max_id], params[:since_id])
-    accounts  = Account.where(id: results.map(&:account_id)).map { |a| [a.id, a] }.to_h
-    @accounts = results.map { |f| accounts[f.account_id] }
+    @accounts = Account.includes(:follow_requests)
+                       .references(:follow_requests)
+                       .merge(FollowRequest.where(target_account: current_account)
+                                           .paginate_by_max_id(DEFAULT_ACCOUNTS_LIMIT, params[:max_id], params[:since_id]))
+                       .to_a
 
-    next_path = api_v1_follow_requests_url(pagination_params(max_id: results.last.id))    if results.size == DEFAULT_ACCOUNTS_LIMIT
-    prev_path = api_v1_follow_requests_url(pagination_params(since_id: results.first.id)) unless results.empty?
+    next_path = api_v1_follow_requests_url(pagination_params(max_id: @accounts.last.follow_requests.last.id))     if @accounts.size == DEFAULT_ACCOUNTS_LIMIT
+    prev_path = api_v1_follow_requests_url(pagination_params(since_id: @accounts.first.follow_requests.first.id)) unless @accounts.empty?
 
     set_pagination_headers(next_path, prev_path)
   end

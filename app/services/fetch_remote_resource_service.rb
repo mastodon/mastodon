@@ -1,18 +1,41 @@
 # frozen_string_literal: true
 
 class FetchRemoteResourceService < BaseService
+  attr_reader :url
+
   def call(url)
-    atom_url, body = FetchAtomService.new.call(url)
+    @url = url
+    process_url unless atom_url.nil?
+  end
 
-    return nil if atom_url.nil?
+  private
 
-    xml = Nokogiri::XML(body)
-    xml.encoding = 'utf-8'
-
-    if xml.root.name == 'feed'
+  def process_url
+    case xml_root
+    when 'feed'
       FetchRemoteAccountService.new.call(atom_url, body)
-    elsif xml.root.name == 'entry'
+    when 'entry'
       FetchRemoteStatusService.new.call(atom_url, body)
     end
+  end
+
+  def fetched_atom_feed
+    @_fetched_atom_feed ||= FetchAtomService.new.call(url)
+  end
+
+  def atom_url
+    fetched_atom_feed.first
+  end
+
+  def body
+    fetched_atom_feed.last
+  end
+
+  def xml_root
+    xml_data.root.name
+  end
+
+  def xml_data
+    @_xml_data ||= Nokogiri::XML(body, nil, 'utf-8')
   end
 end
