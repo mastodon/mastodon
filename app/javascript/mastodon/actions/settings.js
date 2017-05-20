@@ -6,14 +6,14 @@ export function changeSetting(key, value) {
   return {
     type: SETTING_CHANGE,
     key,
-    value
+    value,
   };
 };
 
 export function saveSettings() {
   return (_, getState) => {
     axios.put('/api/web/settings', {
-      data: getState().get('settings').toJS()
+      data: getState().get('settings').toJS(),
     });
   };
 };

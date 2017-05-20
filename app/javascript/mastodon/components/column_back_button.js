@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 class ColumnBackButton extends React.PureComponent {
 
   static contextTypes = {
-    router: PropTypes.object
+    router: PropTypes.object,
   };
 
   handleClick = () => {

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 class Warning extends React.PureComponent {
 
   static propTypes = {
-    message: PropTypes.node.isRequired
+    message: PropTypes.node.isRequired,
   };
 
   render () {

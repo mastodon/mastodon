@@ -16,7 +16,7 @@ const Collapsable = ({ fullHeight, isVisible, children }) => (
 Collapsable.propTypes = {
   fullHeight: PropTypes.number.isRequired,
   isVisible: PropTypes.bool.isRequired,
-  children: PropTypes.node.isRequired
+  children: PropTypes.node.isRequired,
 };
 
 export default Collapsable;

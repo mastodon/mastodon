@@ -18,7 +18,7 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 class Status extends ImmutablePureComponent {
 
   static contextTypes = {
-    router: PropTypes.object
+    router: PropTypes.object,
   };
 
   static propTypes = {
@@ -35,7 +35,7 @@ class Status extends ImmutablePureComponent {
     me: PropTypes.number,
     boostModal: PropTypes.bool,
     autoPlayGif: PropTypes.bool,
-    muted: PropTypes.bool
+    muted: PropTypes.bool,
   };
 
   handleClick = () => {

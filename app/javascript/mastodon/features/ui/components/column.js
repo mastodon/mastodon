@@ -37,7 +37,7 @@ class Column extends React.PureComponent {
     icon: PropTypes.string,
     children: PropTypes.node,
     active: PropTypes.bool,
-    hideHeadingOnMobile: PropTypes.bool
+    hideHeadingOnMobile: PropTypes.bool,
   };
 
   handleHeaderClick = () => {
@@ -61,11 +61,11 @@ class Column extends React.PureComponent {
   render () {
     const { heading, icon, children, active, hideHeadingOnMobile } = this.props;
 
-    let columnHeaderId = null
+    let columnHeaderId = null;
     let header = '';
 
     if (heading) {
-      columnHeaderId = heading.replace(/ /g, '-')
+      columnHeaderId = heading.replace(/ /g, '-');
       header = <ColumnHeader icon={icon} active={active} type={heading} onClick={this.handleHeaderClick} hideOnMobile={hideHeadingOnMobile} columnHeaderId={columnHeaderId}/>;
     }
     return (

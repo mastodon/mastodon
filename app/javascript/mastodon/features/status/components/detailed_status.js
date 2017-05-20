@@ -15,7 +15,7 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 class DetailedStatus extends ImmutablePureComponent {
 
   static contextTypes = {
-    router: PropTypes.object
+    router: PropTypes.object,
   };
 
   static propTypes = {

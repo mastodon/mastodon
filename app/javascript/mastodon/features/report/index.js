@@ -15,7 +15,7 @@ import ColumnBackButtonSlim from '../../components/column_back_button_slim';
 const messages = defineMessages({
   heading: { id: 'report.heading', defaultMessage: 'New report' },
   placeholder: { id: 'report.placeholder', defaultMessage: 'Additional comments' },
-  submit: { id: 'report.submit', defaultMessage: 'Submit' }
+  submit: { id: 'report.submit', defaultMessage: 'Submit' },
 });
 
 const makeMapStateToProps = () => {
@@ -28,7 +28,7 @@ const makeMapStateToProps = () => {
       isSubmitting: state.getIn(['reports', 'new', 'isSubmitting']),
       account: getAccount(state, accountId),
       comment: state.getIn(['reports', 'new', 'comment']),
-      statusIds: Immutable.OrderedSet(state.getIn(['timelines', 'accounts_timelines', accountId, 'items'])).union(state.getIn(['reports', 'new', 'status_ids']))
+      statusIds: Immutable.OrderedSet(state.getIn(['timelines', 'accounts_timelines', accountId, 'items'])).union(state.getIn(['reports', 'new', 'status_ids'])),
     };
   };
 
@@ -38,7 +38,7 @@ const makeMapStateToProps = () => {
 class Report extends React.PureComponent {
 
   static contextTypes = {
-    router: PropTypes.object
+    router: PropTypes.object,
   };
 
   static propTypes = {
@@ -47,7 +47,7 @@ class Report extends React.PureComponent {
     statusIds: ImmutablePropTypes.orderedSet.isRequired,
     comment: PropTypes.string.isRequired,
     dispatch: PropTypes.func.isRequired,
-    intl: PropTypes.object.isRequired
+    intl: PropTypes.object.isRequired,
   };
 
   componentWillMount () {

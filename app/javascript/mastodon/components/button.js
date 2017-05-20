@@ -11,11 +11,11 @@ class Button extends React.PureComponent {
     secondary: PropTypes.bool,
     size: PropTypes.number,
     style: PropTypes.object,
-    children: PropTypes.node
+    children: PropTypes.node,
   };
 
   static defaultProps = {
-    size: 36
+    size: 36,
   };
 
   handleClick = (e) => {
@@ -29,7 +29,7 @@ class Button extends React.PureComponent {
       padding: `0 ${this.props.size / 2.25}px`,
       height: `${this.props.size}px`,
       lineHeight: `${this.props.size}px`,
-      ...this.props.style
+      ...this.props.style,
     };
 
     return (

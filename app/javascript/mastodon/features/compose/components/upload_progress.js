@@ -8,7 +8,7 @@ class UploadProgress extends React.PureComponent {
 
   static propTypes = {
     active: PropTypes.bool,
-    progress: PropTypes.number
+    progress: PropTypes.number,
   };
 
   render () {

@@ -6,7 +6,7 @@ import Column from '../ui/components/column';
 import {
   refreshTimeline,
   updateTimeline,
-  deleteFromTimelines
+  deleteFromTimelines,
 } from '../../actions/timelines';
 import ColumnBackButtonSlim from '../../components/column_back_button_slim';
 import { FormattedMessage } from 'react-intl';
@@ -15,7 +15,7 @@ import createStream from '../../stream';
 const mapStateToProps = state => ({
   hasUnread: state.getIn(['timelines', 'tag', 'unread']) > 0,
   streamingAPIBaseURL: state.getIn(['meta', 'streaming_api_base_url']),
-  accessToken: state.getIn(['meta', 'access_token'])
+  accessToken: state.getIn(['meta', 'access_token']),
 });
 
 class HashtagTimeline extends React.PureComponent {
@@ -25,7 +25,7 @@ class HashtagTimeline extends React.PureComponent {
     dispatch: PropTypes.func.isRequired,
     streamingAPIBaseURL: PropTypes.string.isRequired,
     accessToken: PropTypes.string.isRequired,
-    hasUnread: PropTypes.bool
+    hasUnread: PropTypes.bool,
   };
 
   _subscribe (dispatch, id) {
@@ -42,7 +42,7 @@ class HashtagTimeline extends React.PureComponent {
           dispatch(deleteFromTimelines(data.payload));
           break;
         }
-      }
+      },
 
     });
   }

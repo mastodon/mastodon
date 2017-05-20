@@ -6,7 +6,7 @@ const makeMapStateToProps = () => {
   const getNotification = makeGetNotification();
 
   const mapStateToProps = (state, props) => ({
-    notification: getNotification(state, props.notification, props.accountId)
+    notification: getNotification(state, props.notification, props.accountId),
   });
 
   return mapStateToProps;

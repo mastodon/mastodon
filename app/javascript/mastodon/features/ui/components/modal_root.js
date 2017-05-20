@@ -13,7 +13,7 @@ const MODAL_COMPONENTS = {
   'ONBOARDING': OnboardingModal,
   'VIDEO': VideoModal,
   'BOOST': BoostModal,
-  'CONFIRM': ConfirmationModal
+  'CONFIRM': ConfirmationModal,
 };
 
 class ModalRoot extends React.PureComponent {
@@ -21,7 +21,7 @@ class ModalRoot extends React.PureComponent {
   static propTypes = {
     type: PropTypes.string,
     props: PropTypes.object,
-    onClose: PropTypes.func.isRequired
+    onClose: PropTypes.func.isRequired,
   };
 
   handleKeyUp = (e) => {
@@ -56,7 +56,7 @@ class ModalRoot extends React.PureComponent {
       items.push({
         key: type,
         data: { type, props },
-        style: { opacity: spring(1), scale: spring(1, { stiffness: 120, damping: 14 }) }
+        style: { opacity: spring(1), scale: spring(1, { stiffness: 120, damping: 14 }) },
       });
     }
 

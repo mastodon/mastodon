@@ -2,20 +2,21 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 class AvatarOverlay extends React.PureComponent {
+
   static propTypes = {
     staticSrc: PropTypes.string.isRequired,
-    overlaySrc: PropTypes.string.isRequired
+    overlaySrc: PropTypes.string.isRequired,
   };
 
   render() {
     const {staticSrc, overlaySrc} = this.props;
 
     const baseStyle = {
-      backgroundImage: `url(${staticSrc})`
+      backgroundImage: `url(${staticSrc})`,
     };
 
     const overlayStyle = {
-      backgroundImage: `url(${overlaySrc})`
+      backgroundImage: `url(${overlaySrc})`,
     };
 
     return (

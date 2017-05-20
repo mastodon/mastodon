@@ -8,7 +8,7 @@ import {
   blockAccount,
   unblockAccount,
   muteAccount,
-  unmuteAccount
+  unmuteAccount,
 } from '../../../actions/accounts';
 import { mentionCompose } from '../../../actions/compose';
 import { initReport } from '../../../actions/reports';
@@ -27,7 +27,7 @@ const makeMapStateToProps = () => {
 
   const mapStateToProps = (state, { accountId }) => ({
     account: getAccount(state, Number(accountId)),
-    me: state.getIn(['meta', 'me'])
+    me: state.getIn(['meta', 'me']),
   });
 
   return mapStateToProps;
@@ -49,7 +49,7 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
       dispatch(openModal('CONFIRM', {
         message: <FormattedMessage id='confirmations.block.message' defaultMessage='Are you sure you want to block {name}?' values={{ name: <strong>@{account.get('acct')}</strong> }} />,
         confirm: intl.formatMessage(messages.blockConfirm),
-        onConfirm: () => dispatch(blockAccount(account.get('id')))
+        onConfirm: () => dispatch(blockAccount(account.get('id'))),
       }));
     }
   },
@@ -69,7 +69,7 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
       dispatch(openModal('CONFIRM', {
         message: <FormattedMessage id='confirmations.mute.message' defaultMessage='Are you sure you want to mute {name}?' values={{ name: <strong>@{account.get('acct')}</strong> }} />,
         confirm: intl.formatMessage(messages.muteConfirm),
-        onConfirm: () => dispatch(muteAccount(account.get('id')))
+        onConfirm: () => dispatch(muteAccount(account.get('id'))),
       }));
     }
   },
@@ -78,13 +78,13 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
     dispatch(openModal('CONFIRM', {
       message: <FormattedMessage id='confirmations.domain_block.message' defaultMessage='Are you really, really sure you want to block the entire {domain}? In most cases a few targeted blocks or mutes are sufficient and preferable.' values={{ domain: <strong>{domain}</strong> }} />,
       confirm: intl.formatMessage(messages.blockDomainConfirm),
-      onConfirm: () => dispatch(blockDomain(domain, accountId))
+      onConfirm: () => dispatch(blockDomain(domain, accountId)),
     }));
   },
 
   onUnblockDomain (domain, accountId) {
     dispatch(unblockDomain(domain, accountId));
-  }
+  },
 });
 
 export default injectIntl(connect(makeMapStateToProps, mapDispatchToProps)(Header));

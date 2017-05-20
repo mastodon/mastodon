@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 class DropdownMenu extends React.PureComponent {
 
   static contextTypes = {
-    router: PropTypes.object
+    router: PropTypes.object,
   };
 
   static propTypes = {
@@ -13,11 +13,11 @@ class DropdownMenu extends React.PureComponent {
     items: PropTypes.array.isRequired,
     size: PropTypes.number.isRequired,
     direction: PropTypes.string,
-    ariaLabel: PropTypes.string
+    ariaLabel: PropTypes.string,
   };
 
   static defaultProps = {
-    ariaLabel: "Menu"
+    ariaLabel: "Menu",
   };
 
   state = {

@@ -1,4 +1,4 @@
-import api, { getLinks } from '../api'
+import api, { getLinks } from '../api';
 
 export const DOMAIN_BLOCK_REQUEST = 'DOMAIN_BLOCK_REQUEST';
 export const DOMAIN_BLOCK_SUCCESS = 'DOMAIN_BLOCK_SUCCESS';
@@ -27,7 +27,7 @@ export function blockDomain(domain, accountId) {
 export function blockDomainRequest(domain) {
   return {
     type: DOMAIN_BLOCK_REQUEST,
-    domain
+    domain,
   };
 };
 
@@ -35,7 +35,7 @@ export function blockDomainSuccess(domain, accountId) {
   return {
     type: DOMAIN_BLOCK_SUCCESS,
     domain,
-    accountId
+    accountId,
   };
 };
 
@@ -43,7 +43,7 @@ export function blockDomainFail(domain, error) {
   return {
     type: DOMAIN_BLOCK_FAIL,
     domain,
-    error
+    error,
   };
 };
 
@@ -62,7 +62,7 @@ export function unblockDomain(domain, accountId) {
 export function unblockDomainRequest(domain) {
   return {
     type: DOMAIN_UNBLOCK_REQUEST,
-    domain
+    domain,
   };
 };
 
@@ -70,7 +70,7 @@ export function unblockDomainSuccess(domain, accountId) {
   return {
     type: DOMAIN_UNBLOCK_SUCCESS,
     domain,
-    accountId
+    accountId,
   };
 };
 
@@ -78,7 +78,7 @@ export function unblockDomainFail(domain, error) {
   return {
     type: DOMAIN_UNBLOCK_FAIL,
     domain,
-    error
+    error,
   };
 };
 
@@ -97,7 +97,7 @@ export function fetchDomainBlocks() {
 
 export function fetchDomainBlocksRequest() {
   return {
-    type: DOMAIN_BLOCKS_FETCH_REQUEST
+    type: DOMAIN_BLOCKS_FETCH_REQUEST,
   };
 };
 
@@ -105,13 +105,13 @@ export function fetchDomainBlocksSuccess(domains, next) {
   return {
     type: DOMAIN_BLOCKS_FETCH_SUCCESS,
     domains,
-    next
+    next,
   };
 };
 
 export function fetchDomainBlocksFail(error) {
   return {
     type: DOMAIN_BLOCKS_FETCH_FAIL,
-    error
+    error,
   };
 };

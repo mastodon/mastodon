@@ -7,7 +7,7 @@ class ExtendedVideoPlayer extends React.PureComponent {
     src: PropTypes.string.isRequired,
     time: PropTypes.number,
     controls: PropTypes.bool.isRequired,
-    muted: PropTypes.bool.isRequired
+    muted: PropTypes.bool.isRequired,
   };
 
   handleLoadedData = () => {

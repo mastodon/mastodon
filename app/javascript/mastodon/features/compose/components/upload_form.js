@@ -8,7 +8,7 @@ import Motion from 'react-motion/lib/Motion';
 import spring from 'react-motion/lib/spring';
 
 const messages = defineMessages({
-  undo: { id: 'upload_form.undo', defaultMessage: 'Undo' }
+  undo: { id: 'upload_form.undo', defaultMessage: 'Undo' },
 });
 
 class UploadForm extends React.PureComponent {
@@ -16,7 +16,7 @@ class UploadForm extends React.PureComponent {
   static propTypes = {
     media: ImmutablePropTypes.list.isRequired,
     onRemoveFile: PropTypes.func.isRequired,
-    intl: PropTypes.object.isRequired
+    intl: PropTypes.object.isRequired,
   };
 
   onRemoveFile = (e) => {

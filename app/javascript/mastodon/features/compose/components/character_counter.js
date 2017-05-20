@@ -6,7 +6,7 @@ class CharacterCounter extends React.PureComponent {
 
   static propTypes = {
     text: PropTypes.string.isRequired,
-    max: PropTypes.number.isRequired
+    max: PropTypes.number.isRequired,
   };
 
   checkRemainingText (diff) {

@@ -18,7 +18,7 @@ const messages = defineMessages({
   home_title: { id: 'column.home', defaultMessage: 'Home' },
   notifications_title: { id: 'column.notifications', defaultMessage: 'Notifications' },
   local_title: { id: 'column.community', defaultMessage: 'Local timeline' },
-  federated_title: { id: 'column.public', defaultMessage: 'Federated timeline' }
+  federated_title: { id: 'column.public', defaultMessage: 'Federated timeline' },
 });
 
 const PageOne = ({ acct, domain }) => (
@@ -37,7 +37,7 @@ const PageOne = ({ acct, domain }) => (
 
 PageOne.propTypes = {
   acct: PropTypes.string.isRequired,
-  domain: PropTypes.string.isRequired
+  domain: PropTypes.string.isRequired,
 };
 
 const PageTwo = ({ me }) => (
@@ -93,7 +93,7 @@ const PageThree = ({ me, domain }) => (
 
 PageThree.propTypes = {
   me: ImmutablePropTypes.map.isRequired,
-  domain: PropTypes.string.isRequired
+  domain: PropTypes.string.isRequired,
 };
 
 const PageFour = ({ domain, intl }) => (
@@ -128,7 +128,7 @@ const PageFour = ({ domain, intl }) => (
 
 PageFour.propTypes = {
   domain: PropTypes.string.isRequired,
-  intl: PropTypes.object.isRequired
+  intl: PropTypes.object.isRequired,
 };
 
 const PageSix = ({ admin, domain }) => {
@@ -157,13 +157,13 @@ const PageSix = ({ admin, domain }) => {
 
 PageSix.propTypes = {
   admin: ImmutablePropTypes.map,
-  domain: PropTypes.string.isRequired
+  domain: PropTypes.string.isRequired,
 };
 
 const mapStateToProps = state => ({
   me: state.getIn(['accounts', state.getIn(['meta', 'me'])]),
   admin: state.getIn(['accounts', state.getIn(['meta', 'admin'])]),
-  domain: state.getIn(['meta', 'domain'])
+  domain: state.getIn(['meta', 'domain']),
 });
 
 class OnboardingModal extends React.PureComponent {
@@ -173,11 +173,11 @@ class OnboardingModal extends React.PureComponent {
     intl: PropTypes.object.isRequired,
     me: ImmutablePropTypes.map.isRequired,
     domain: PropTypes.string.isRequired,
-    admin: ImmutablePropTypes.map
+    admin: ImmutablePropTypes.map,
   };
 
   state = {
-    currentIndex: 0
+    currentIndex: 0,
   };
 
   handleSkip = (e) => {
@@ -210,7 +210,7 @@ class OnboardingModal extends React.PureComponent {
       <PageTwo me={me} />,
       <PageThree me={me} domain={domain} />,
       <PageFour domain={domain} intl={intl} />,
-      <PageSix admin={admin} domain={domain} />
+      <PageSix admin={admin} domain={domain} />,
     ];
 
     const { currentIndex } = this.state;
@@ -226,7 +226,7 @@ class OnboardingModal extends React.PureComponent {
 
     const styles = pages.map((page, i) => ({
       key: `page-${i}`,
-      style: { opacity: spring(i === currentIndex ? 1 : 0) }
+      style: { opacity: spring(i === currentIndex ? 1 : 0) },
     }));
 
     return (

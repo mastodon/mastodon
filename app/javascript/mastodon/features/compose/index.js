@@ -17,11 +17,11 @@ const messages = defineMessages({
   public: { id: 'navigation_bar.public_timeline', defaultMessage: 'Federated timeline' },
   community: { id: 'navigation_bar.community_timeline', defaultMessage: 'Local timeline' },
   preferences: { id: 'navigation_bar.preferences', defaultMessage: 'Preferences' },
-  logout: { id: 'navigation_bar.logout', defaultMessage: 'Logout' }
+  logout: { id: 'navigation_bar.logout', defaultMessage: 'Logout' },
 });
 
 const mapStateToProps = state => ({
-  showSearch: state.getIn(['search', 'submitted']) && !state.getIn(['search', 'hidden'])
+  showSearch: state.getIn(['search', 'submitted']) && !state.getIn(['search', 'hidden']),
 });
 
 class Compose extends React.PureComponent {
@@ -30,7 +30,7 @@ class Compose extends React.PureComponent {
     dispatch: PropTypes.func.isRequired,
     withHeader: PropTypes.bool,
     showSearch: PropTypes.bool,
-    intl: PropTypes.object.isRequired
+    intl: PropTypes.object.isRequired,
   };
 
   componentDidMount () {

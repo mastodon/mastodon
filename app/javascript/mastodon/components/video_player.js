@@ -20,12 +20,12 @@ class VideoPlayer extends React.PureComponent {
     sensitive: PropTypes.bool,
     intl: PropTypes.object.isRequired,
     autoplay: PropTypes.bool,
-    onOpenVideo: PropTypes.func.isRequired
+    onOpenVideo: PropTypes.func.isRequired,
   };
 
   static defaultProps = {
     width: 239,
-    height: 110
+    height: 110,
   };
 
   state = {
@@ -33,7 +33,7 @@ class VideoPlayer extends React.PureComponent {
     preview: true,
     muted: true,
     hasAudio: true,
-    videoError: false
+    videoError: false,
   };
 
   handleClick = () => {
@@ -59,7 +59,7 @@ class VideoPlayer extends React.PureComponent {
   handleVisibility = () => {
     this.setState({
       visible: !this.state.visible,
-      preview: true
+      preview: true,
     });
   }
 

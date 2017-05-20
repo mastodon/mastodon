@@ -58,8 +58,8 @@ export const getAlerts = createSelector([getAlertsBase], (base) => {
       key: item.get('key'),
       dismissAfter: 5000,
       barStyle: {
-        zIndex: 200
-      }
+        zIndex: 200,
+      },
     });
   });
 
@@ -69,7 +69,7 @@ export const getAlerts = createSelector([getAlertsBase], (base) => {
 export const makeGetNotification = () => {
   return createSelector([
     (_, base)             => base,
-    (state, _, accountId) => state.getIn(['accounts', accountId])
+    (state, _, accountId) => state.getIn(['accounts', accountId]),
   ], (base, account) => {
     return base.set('account', account);
   });

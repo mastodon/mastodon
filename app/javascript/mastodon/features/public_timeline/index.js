@@ -8,20 +8,20 @@ import {
   updateTimeline,
   deleteFromTimelines,
   connectTimeline,
-  disconnectTimeline
+  disconnectTimeline,
 } from '../../actions/timelines';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import ColumnBackButtonSlim from '../../components/column_back_button_slim';
 import createStream from '../../stream';
 
 const messages = defineMessages({
-  title: { id: 'column.public', defaultMessage: 'Federated timeline' }
+  title: { id: 'column.public', defaultMessage: 'Federated timeline' },
 });
 
 const mapStateToProps = state => ({
   hasUnread: state.getIn(['timelines', 'public', 'unread']) > 0,
   streamingAPIBaseURL: state.getIn(['meta', 'streaming_api_base_url']),
-  accessToken: state.getIn(['meta', 'access_token'])
+  accessToken: state.getIn(['meta', 'access_token']),
 });
 
 let subscription;
@@ -33,7 +33,7 @@ class PublicTimeline extends React.PureComponent {
     intl: PropTypes.object.isRequired,
     streamingAPIBaseURL: PropTypes.string.isRequired,
     accessToken: PropTypes.string.isRequired,
-    hasUnread: PropTypes.bool
+    hasUnread: PropTypes.bool,
   };
 
   componentDidMount () {
@@ -68,7 +68,7 @@ class PublicTimeline extends React.PureComponent {
           dispatch(deleteFromTimelines(data.payload));
           break;
         }
-      }
+      },
 
     });
   }

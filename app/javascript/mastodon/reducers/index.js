@@ -36,5 +36,5 @@ export default combineReducers({
   notifications,
   settings,
   cards,
-  reports
+  reports,
 });

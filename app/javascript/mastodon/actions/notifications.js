@@ -1,4 +1,4 @@
-import api, { getLinks } from '../api'
+import api, { getLinks } from '../api';
 import Immutable from 'immutable';
 import IntlMessageFormat from 'intl-messageformat';
 import { fetchRelationships } from './accounts';
@@ -33,7 +33,7 @@ const unescapeHTML = (html) => {
   const wrapper = document.createElement('div');
   wrapper.innerHTML = html;
   return wrapper.textContent;
-}
+};
 
 export function updateNotifications(notification, intlMessages, intlLocale) {
   return (dispatch, getState) => {
@@ -45,7 +45,7 @@ export function updateNotifications(notification, intlMessages, intlLocale) {
       notification,
       account: notification.account,
       status: notification.status,
-      meta: playSound ? { sound: 'boop' } : undefined
+      meta: playSound ? { sound: 'boop' } : undefined,
     });
 
     fetchRelatedRelationships(dispatch, [notification]);
@@ -99,7 +99,7 @@ export function refreshNotifications() {
 export function refreshNotificationsRequest(skipLoading) {
   return {
     type: NOTIFICATIONS_REFRESH_REQUEST,
-    skipLoading
+    skipLoading,
   };
 };
 
@@ -110,7 +110,7 @@ export function refreshNotificationsSuccess(notifications, skipLoading, next) {
     accounts: notifications.map(item => item.account),
     statuses: notifications.map(item => item.status).filter(status => !!status),
     skipLoading,
-    next
+    next,
   };
 };
 
@@ -118,7 +118,7 @@ export function refreshNotificationsFail(error, skipLoading) {
   return {
     type: NOTIFICATIONS_REFRESH_FAIL,
     error,
-    skipLoading
+    skipLoading,
   };
 };
 
@@ -135,7 +135,7 @@ export function expandNotifications() {
 
     const params = {
       max_id: lastId,
-      limit: 20
+      limit: 20,
     };
 
     params.exclude_types = excludeTypesFromSettings(getState());
@@ -153,7 +153,7 @@ export function expandNotifications() {
 
 export function expandNotificationsRequest() {
   return {
-    type: NOTIFICATIONS_EXPAND_REQUEST
+    type: NOTIFICATIONS_EXPAND_REQUEST,
   };
 };
 
@@ -163,21 +163,21 @@ export function expandNotificationsSuccess(notifications, next) {
     notifications,
     accounts: notifications.map(item => item.account),
     statuses: notifications.map(item => item.status).filter(status => !!status),
-    next
+    next,
   };
 };
 
 export function expandNotificationsFail(error) {
   return {
     type: NOTIFICATIONS_EXPAND_FAIL,
-    error
+    error,
   };
 };
 
 export function clearNotifications() {
   return (dispatch, getState) => {
     dispatch({
-      type: NOTIFICATIONS_CLEAR
+      type: NOTIFICATIONS_CLEAR,
     });
 
     api(getState).post('/api/v1/notifications/clear');
@@ -187,6 +187,6 @@ export function clearNotifications() {
 export function scrollTopNotifications(top) {
   return {
     type: NOTIFICATIONS_SCROLL_TOP,
-    top
+    top,
   };
 };

@@ -6,7 +6,7 @@ import Permalink from '../../../components/permalink';
 class MediaItem extends ImmutablePureComponent {
 
   static propTypes = {
-    media: ImmutablePropTypes.map.isRequired
+    media: ImmutablePropTypes.map.isRequired,
   };
 
   render () {
@@ -34,6 +34,7 @@ class MediaItem extends ImmutablePureComponent {
       </div>
     );
   }
+
 }
 
 export default MediaItem;

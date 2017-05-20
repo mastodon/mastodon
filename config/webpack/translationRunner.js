@@ -7,16 +7,16 @@ const testRFC5626 = function (reRFC5646) {
     if (!language.match(reRFC5646)) {
       throw new Error('Not RFC5626 name');
     }
-  }
-}
+  };
+};
 
 const testAvailability = function (availableLanguages) {
   return function (language) {
     if ((argv.force !== true) && availableLanguages.indexOf(language) < 0) {
       throw new Error('Not an available language');
     }
-  }
-}
+  };
+};
 
 const validateLanguages = function (languages, validators) {
   let invalidLanguages = languages.reduce((acc, language) => {
@@ -41,7 +41,7 @@ const validateLanguages = function (languages, validators) {
     console.log(`\nUse yarn "manage:translations -- --help" for usage information\n`);
     process.exit(1);
   }
-}
+};
 
 const printHelpMessages = function () {
   console.log(
@@ -62,13 +62,13 @@ to input multiple languages, separate them with space.
 Available languages:
 ${availableLanguages}
 `);
-}
+};
 
 // parse arguments
 const argv = require('minimist')(process.argv.slice(2), {
   'boolean': [
     'force',
-    'help'
+    'help',
   ],
   'alias': {
     'f': 'force',

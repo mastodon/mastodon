@@ -5,7 +5,7 @@ import { defineMessages, injectIntl } from 'react-intl';
 import { connect } from 'react-redux';
 
 const messages = defineMessages({
-  upload: { id: 'upload_button.label', defaultMessage: 'Add media' }
+  upload: { id: 'upload_button.label', defaultMessage: 'Add media' },
 });
 
 const makeMapStateToProps = () => {
@@ -14,12 +14,12 @@ const makeMapStateToProps = () => {
   });
 
   return mapStateToProps;
-}
+};
 
 const iconStyle = {
   height: null,
-  lineHeight: '27px'
-}
+  lineHeight: '27px',
+};
 
 class UploadButton extends React.PureComponent {
 
@@ -29,7 +29,7 @@ class UploadButton extends React.PureComponent {
     style: PropTypes.object,
     resetFileKey: PropTypes.number,
     acceptContentTypes: PropTypes.arrayOf(PropTypes.string).isRequired,
-    intl: PropTypes.object.isRequired
+    intl: PropTypes.object.isRequired,
   };
 
   handleChange = (e) => {

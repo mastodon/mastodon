@@ -21,7 +21,7 @@ class Header extends ImmutablePureComponent {
   };
 
   static contextTypes = {
-    router: PropTypes.object
+    router: PropTypes.object,
   };
 
   handleFollow = () => {

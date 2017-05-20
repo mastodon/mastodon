@@ -8,7 +8,7 @@ import SettingText from './setting_text';
 
 const messages = defineMessages({
   filter_regex: { id: 'home.column_settings.filter_regex', defaultMessage: 'Filter out by regular expressions' },
-  settings: { id: 'home.settings', defaultMessage: 'Column settings' }
+  settings: { id: 'home.settings', defaultMessage: 'Column settings' },
 });
 
 class ColumnSettings extends React.PureComponent {
@@ -17,7 +17,7 @@ class ColumnSettings extends React.PureComponent {
     settings: ImmutablePropTypes.map.isRequired,
     onChange: PropTypes.func.isRequired,
     onSave: PropTypes.func.isRequired,
-    intl: PropTypes.object.isRequired
+    intl: PropTypes.object.isRequired,
   };
 
   render () {

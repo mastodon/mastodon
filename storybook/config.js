@@ -13,7 +13,7 @@ addLocaleData(en);
 let req = require.context('./stories/', true, /.story.js$/);
 
 function loadStories () {
-  req.keys().forEach((filename) => req(filename))
+  req.keys().forEach((filename) => req(filename));
 }
 
 configure(loadStories, module);

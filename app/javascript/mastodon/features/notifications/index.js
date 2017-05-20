@@ -17,18 +17,18 @@ import { openModal } from '../../actions/modal';
 const messages = defineMessages({
   title: { id: 'column.notifications', defaultMessage: 'Notifications' },
   clearMessage: { id: 'notifications.clear_confirmation', defaultMessage: 'Are you sure you want to permanently clear all your notifications?' },
-  clearConfirm: { id: 'notifications.clear', defaultMessage: 'Clear notifications' }
+  clearConfirm: { id: 'notifications.clear', defaultMessage: 'Clear notifications' },
 });
 
 const getNotifications = createSelector([
   state => Immutable.List(state.getIn(['settings', 'notifications', 'shows']).filter(item => !item).keys()),
-  state => state.getIn(['notifications', 'items'])
+  state => state.getIn(['notifications', 'items']),
 ], (excludedTypes, notifications) => notifications.filterNot(item => excludedTypes.includes(item.get('type'))));
 
 const mapStateToProps = state => ({
   notifications: getNotifications(state),
   isLoading: state.getIn(['notifications', 'isLoading'], true),
-  isUnread: state.getIn(['notifications', 'unread']) > 0
+  isUnread: state.getIn(['notifications', 'unread']) > 0,
 });
 
 class Notifications extends React.PureComponent {
@@ -39,11 +39,11 @@ class Notifications extends React.PureComponent {
     shouldUpdateScroll: PropTypes.func,
     intl: PropTypes.object.isRequired,
     isLoading: PropTypes.bool,
-    isUnread: PropTypes.bool
+    isUnread: PropTypes.bool,
   };
 
   static defaultProps = {
-    trackScroll: true
+    trackScroll: true,
   };
 
   handleScroll = (e) => {
@@ -77,7 +77,7 @@ class Notifications extends React.PureComponent {
     dispatch(openModal('CONFIRM', {
       message: intl.formatMessage(messages.clearMessage),
       confirm: intl.formatMessage(messages.clearConfirm),
-      onConfirm: () => dispatch(clearNotifications())
+      onConfirm: () => dispatch(clearNotifications()),
     }));
   }
 
