@@ -3,8 +3,8 @@ FROM ruby:2.4.1-alpine
 LABEL maintainer="https://github.com/tootsuite/mastodon" \
       description="A GNU Social-compatible microblogging server"
 
-ENV RAILS_ENV=production \
-    NODE_ENV=production
+ENV UID=991 GID=991 \
+    RAILS_ENV=production NODE_ENV=production
 
 EXPOSE 3000 4000
 
@@ -31,6 +31,8 @@ RUN echo "@edge https://nl.alpinelinux.org/alpine/edge/main" >> /etc/apk/reposit
     imagemagick@edge \
     ca-certificates \
     protobuf \
+    tini \
+    su-exec \
  && npm install -g npm@3 && npm install -g yarn \
  && update-ca-certificates \
  && rm -rf /tmp/* /var/cache/apk/*
@@ -42,4 +44,10 @@ RUN bundle install --deployment --without test development \
 
 COPY . /mastodon
 
+COPY docker_entrypoint.sh /usr/local/bin/run
+
+RUN chmod +x /usr/local/bin/run
+
 VOLUME /mastodon/public/system /mastodon/public/assets /mastodon/public/packs
+
+ENTRYPOINT ["/usr/local/bin/run"]
