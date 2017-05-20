@@ -401,16 +401,71 @@ RSpec.describe Status, type: :model do
       expect(results).not_to include(silenced_status)
     end
 
-    context 'with a local_only option set' do
-      it 'does not include remote instances statuses' do
-        local_account = Fabricate(:account, domain: nil)
-        remote_account = Fabricate(:account, domain: 'test.com')
-        local_status = Fabricate(:status, account: local_account)
-        remote_status = Fabricate(:status, account: remote_account)
+    context 'without local_only option' do
+      let(:viewer) { nil }
 
-        results = Status.as_public_timeline(nil, true)
-        expect(results).to include(local_status)
-        expect(results).not_to include(remote_status)
+      let!(:local_account)  { Fabricate(:account, domain: nil) }
+      let!(:remote_account) { Fabricate(:account, domain: 'test.com') }
+      let!(:local_status)   { Fabricate(:status, account: local_account) }
+      let!(:remote_status)  { Fabricate(:status, account: remote_account) }
+
+      subject { Status.as_public_timeline(viewer, false) }
+
+      context 'without a viewer' do
+        let(:viewer) { nil }
+
+        it 'includes remote instances statuses' do
+          expect(subject).to include(remote_status)
+        end
+
+        it 'includes local statuses' do
+          expect(subject).to include(local_status)
+        end
+      end
+
+      context 'with a viewer' do
+        let(:viewer) { Fabricate(:account, username: 'viewer') }
+
+        it 'includes remote instances statuses' do
+          expect(subject).to include(remote_status)
+        end
+
+        it 'includes local statuses' do
+          expect(subject).to include(local_status)
+        end
+      end
+    end
+
+    context 'with a local_only option set' do
+      let!(:local_account)  { Fabricate(:account, domain: nil) }
+      let!(:remote_account) { Fabricate(:account, domain: 'test.com') }
+      let!(:local_status)   { Fabricate(:status, account: local_account) }
+      let!(:remote_status)  { Fabricate(:status, account: remote_account) }
+
+      subject { Status.as_public_timeline(viewer, true) }
+
+      context 'without a viewer' do
+        let(:viewer) { nil }
+
+        it 'does not include remote instances statuses' do
+          expect(subject).to include(local_status)
+          expect(subject).not_to include(remote_status)
+        end
+      end
+
+      context 'with a viewer' do
+        let(:viewer) { Fabricate(:account, username: 'viewer') }
+
+        it 'does not include remote instances statuses' do
+          expect(subject).to include(local_status)
+          expect(subject).not_to include(remote_status)
+        end
+
+        it 'is not affected by personal domain blocks' do
+          viewer.block_domain!('test.com')
+          expect(subject).to include(local_status)
+          expect(subject).not_to include(remote_status)
+        end
       end
     end
 
