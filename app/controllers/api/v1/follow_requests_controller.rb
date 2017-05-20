@@ -9,6 +9,7 @@ class Api::V1::FollowRequestsController < ApiController
                        .references(:follow_requests)
                        .merge(FollowRequest.where(target_account: current_account)
                                            .paginate_by_max_id(DEFAULT_ACCOUNTS_LIMIT, params[:max_id], params[:since_id]))
+                       .to_a
 
     next_path = api_v1_follow_requests_url(pagination_params(max_id: @accounts.last.follow_requests.last.id))     if @accounts.size == DEFAULT_ACCOUNTS_LIMIT
     prev_path = api_v1_follow_requests_url(pagination_params(since_id: @accounts.first.follow_requests.first.id)) unless @accounts.empty?
