@@ -17,8 +17,9 @@ redis_connection = Redis.new(
 cache_params = { expires_in: 10.minutes }
 
 namespace = ENV.fetch('REDIS_NAMESPACE') { nil }
+
 if namespace
-  Redis.current = Redis::Namespace.new(namespace, :redis => redis_connection)
+  Redis.current = Redis::Namespace.new(namespace, redis: redis_connection)
   cache_params[:namespace] = namespace + '_cache'
 else
   Redis.current = redis_connection
