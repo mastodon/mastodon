@@ -92,16 +92,14 @@ delegate(document, '.u-video', 'click', ({ target }) => {
     video.controls  = true;
   } else if (target.getAttribute('src')) {
     video.src = target.getAttribute('src');
-  } else if (target.getElementsByTagName('video')) {
-    video.src = target.getElementsByTagName('video')[0].getAttribute('src');
   } else {
-    return false;
+    video.src = target.getElementsByTagName('video')[0].getAttribute('src');
   }
   video.loop = true;
   video.volume = 0;
   video.autoplay = true;
   video.onclick = function(e) {
-    if (window.navigator.userAgent.toLowerCase().indexOf('firefox') == -1) {
+    if (window.navigator.userAgent.toLowerCase().indexOf('firefox') === -1) {
       if (this.paused) {
         this.play();
       } else {
