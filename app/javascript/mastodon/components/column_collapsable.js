@@ -36,7 +36,7 @@ class ColumnCollapsable extends React.PureComponent {
         </div>
 
         <div className='column-collapsable__content' style={{ height: `${fullHeight}px` }}>
-          {children}
+          {!collapsed && children}
         </div>
       </div>
     );
