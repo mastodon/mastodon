@@ -94,7 +94,6 @@ if (cluster.isMaster) {
     port:     process.env.REDIS_PORT     || 6379,
     db:       process.env.REDIS_DB       || 0,
     password: process.env.REDIS_PASSWORD,
-    url:      process.env.REDIS_URL      || null
   }
 
   if (redisNamespace) {
