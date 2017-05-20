@@ -4,6 +4,7 @@ LABEL maintainer="https://github.com/tootsuite/mastodon" \
       description="A GNU Social-compatible microblogging server"
 
 ENV UID=991 GID=991 \
+    RAILS_SERVE_STATIC_FILES=true \
     RAILS_ENV=production NODE_ENV=production
 
 EXPOSE 3000 4000
@@ -11,28 +12,28 @@ EXPOSE 3000 4000
 WORKDIR /mastodon
 
 RUN echo "@edge https://nl.alpinelinux.org/alpine/edge/main" >> /etc/apk/repositories \
- && BUILD_DEPS=" \
-    postgresql-dev \
+ && apk -U upgrade \
+ && apk add -t build-dependencies \
+    build-base \
     libxml2-dev \
     libxslt-dev \
+    postgresql-dev \
+    protobuf-dev \
     python \
-    build-base \
-    protobuf-dev" \
- && apk -U upgrade && apk add \
-    $BUILD_DEPS \
-    nodejs@edge \
-    nodejs-npm@edge \
+ && apk add \
+    ca-certificates \
+    ffmpeg \
+    file \
     git \
+    imagemagick@edge \
     libpq \
     libxml2 \
     libxslt \
-    ffmpeg \
-    file \
-    imagemagick@edge \
-    ca-certificates \
+    nodejs-npm@edge \
+    nodejs@edge \
     protobuf \
-    tini \
     su-exec \
+    tini \
  && npm install -g npm@3 && npm install -g yarn \
  && update-ca-certificates \
  && rm -rf /tmp/* /var/cache/apk/*
