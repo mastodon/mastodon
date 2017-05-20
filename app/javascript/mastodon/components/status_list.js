@@ -46,7 +46,7 @@ class StatusList extends ImmutablePureComponent {
   }
 
   componentDidUpdate (prevProps) {
-    if (this.node.scrollTop > 0 && (prevProps.statusIds.size < this.props.statusIds.size && prevProps.statusIds.first() !== this.props.statusIds.first() && !!this._oldScrollPosition)) {
+    if ((prevProps.statusIds.size < this.props.statusIds.size && prevProps.statusIds.first() !== this.props.statusIds.first() && !!this._oldScrollPosition) && this.node.scrollTop > 0) {
       this.node.scrollTop = this.node.scrollHeight - this._oldScrollPosition;
     }
   }

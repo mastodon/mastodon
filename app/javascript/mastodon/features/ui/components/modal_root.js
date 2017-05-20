@@ -5,7 +5,8 @@ import OnboardingModal from './onboarding_modal';
 import VideoModal from './video_modal';
 import BoostModal from './boost_modal';
 import ConfirmationModal from './confirmation_modal';
-import { TransitionMotion, spring } from 'react-motion';
+import TransitionMotion from 'react-motion/lib/TransitionMotion';
+import spring from 'react-motion/lib/spring';
 
 const MODAL_COMPONENTS = {
   'MEDIA': MediaModal,

@@ -22,6 +22,7 @@ class DropdownMenu extends React.PureComponent {
 
   state = {
     direction: 'left',
+    expanded: false,
   };
 
   setRef = (c) => {
@@ -43,6 +44,10 @@ class DropdownMenu extends React.PureComponent {
     this.dropdown.hide();
   }
 
+  handleShow = () => this.setState({ expanded: true })
+
+  handleHide = () => this.setState({ expanded: false })
+
   renderItem = (item, i) => {
     if (item === null) {
       return <li key={ 'sep' + i } className='dropdown__sep' />;
@@ -61,18 +66,23 @@ class DropdownMenu extends React.PureComponent {
 
   render () {
     const { icon, items, size, direction, ariaLabel } = this.props;
+    const { expanded } = this.state;
     const directionClass = (direction === "left") ? "dropdown__left" : "dropdown__right";
 
+    const dropdownItems = expanded && (
+      <ul className='dropdown__content-list'>
+        {items.map(this.renderItem)}
+      </ul>
+    );
+
     return (
-      <Dropdown ref={this.setRef}>
+      <Dropdown ref={this.setRef} onShow={this.handleShow} onHide={this.handleHide}>
         <DropdownTrigger className='icon-button' style={{ fontSize: `${size}px`, width: `${size}px`, lineHeight: `${size}px` }} aria-label={ariaLabel}>
           <i className={ `fa fa-fw fa-${icon} dropdown__icon` }  aria-hidden={true} />
         </DropdownTrigger>
 
         <DropdownContent className={directionClass}>
-          <ul className='dropdown__content-list'>
-            {items.map(this.renderItem)}
-          </ul>
+          {dropdownItems}
         </DropdownContent>
       </Dropdown>
     );
