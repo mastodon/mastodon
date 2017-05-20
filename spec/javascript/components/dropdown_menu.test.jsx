@@ -38,7 +38,40 @@ describe('<DropdownMenu />', () => {
     expect(wrapper.find(DropdownTrigger).find('i')).to.have.className(`fa-${icon}`)
   });
 
-  it('renders list elements for each props.items', () => {
+  it('is not expanded by default', () => {
+    expect(wrapper.state('expanded')).to.be.equal(false);
+  })
+
+  it('does not render the list elements if not expanded', () => {
+    const lis = wrapper.find(DropdownContent).find('li');
+    expect(lis.length).to.be.equal(0);
+  })
+
+  it('sets expanded to true when clicking the trigger', () => {
+    const wrapper = mount(<DropdownMenu icon={icon} items={items} size={size} />);
+    wrapper.find(DropdownTrigger).first().simulate('click');
+    expect(wrapper.state('expanded')).to.be.equal(true);
+  })
+
+  // Error: ReactWrapper::state() can only be called on the root
+  /*it('sets expanded to false when clicking outside', () => {
+    const wrapper = mount((
+      <div>
+        <DropdownMenu icon={icon} items={items} size={size} />
+        <span />
+      </div>
+    ));
+
+    wrapper.find(DropdownTrigger).first().simulate('click');
+    expect(wrapper.find(DropdownMenu).first().state('expanded')).to.be.equal(true);
+
+    wrapper.find('span').first().simulate('click');
+    expect(wrapper.find(DropdownMenu).first().state('expanded')).to.be.equal(false);
+  })*/
+
+  it('renders list elements for each props.items if expanded', () => {
+    const wrapper = mount(<DropdownMenu icon={icon} items={items} size={size} />);
+    wrapper.find(DropdownTrigger).first().simulate('click');
     const lis = wrapper.find(DropdownContent).find('li');
     expect(lis.length).to.be.equal(items.length);
   });
@@ -57,7 +90,7 @@ describe('<DropdownMenu />', () => {
 
   it('uses the action passed in via props.items as click handler', () => {
     const wrapper = mount(<DropdownMenu icon={icon} items={items} size={size} />);
-
+    wrapper.find(DropdownTrigger).first().simulate('click');
     wrapper.find(DropdownContent).find('li a').first().simulate('click');
     expect(action.calledOnce).to.equal(true);
   });
