@@ -83,6 +83,6 @@ class User < ApplicationRecord
   private
 
   def sanitize_languages
-    allowed_languages.reject!(&:blank?)
+    filtered_languages.reject!(&:blank?)
   end
 end
