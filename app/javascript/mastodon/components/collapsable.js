@@ -1,5 +1,6 @@
 import React from 'react';
-import { Motion, spring } from 'react-motion';
+import Motion from 'react-motion/lib/Motion';
+import spring from 'react-motion/lib/spring';
 import PropTypes from 'prop-types';
 
 const Collapsable = ({ fullHeight, isVisible, children }) => (
