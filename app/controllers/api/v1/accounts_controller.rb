@@ -23,12 +23,14 @@ class Api::V1::AccountsController < ApiController
   end
 
   def following
-    results   = Follow.where(account: @account).paginate_by_max_id(limit_param(DEFAULT_ACCOUNTS_LIMIT), params[:max_id], params[:since_id])
-    accounts  = Account.where(id: results.map(&:target_account_id)).map { |a| [a.id, a] }.to_h
-    @accounts = results.map { |f| accounts[f.target_account_id] }
+    @accounts = Account.includes(:followers)
+                       .references(:followers)
+                       .merge(Follow.where(account: @account)
+                                    .paginate_by_max_id(limit_param(DEFAULT_ACCOUNTS_LIMIT), params[:max_id], params[:since_id]))
+                       .to_a
 
-    next_path = following_api_v1_account_url(pagination_params(max_id: results.last.id))    if results.size == limit_param(DEFAULT_ACCOUNTS_LIMIT)
-    prev_path = following_api_v1_account_url(pagination_params(since_id: results.first.id)) unless results.empty?
+    next_path = following_api_v1_account_url(pagination_params(max_id: @accounts.last.followers.last.id))     if @accounts.size == limit_param(DEFAULT_ACCOUNTS_LIMIT)
+    prev_path = following_api_v1_account_url(pagination_params(since_id: @accounts.first.followers.first.id)) unless @accounts.empty?
 
     set_pagination_headers(next_path, prev_path)
 
@@ -36,12 +38,16 @@ class Api::V1::AccountsController < ApiController
   end
 
   def followers
-    results   = Follow.where(target_account: @account).paginate_by_max_id(limit_param(DEFAULT_ACCOUNTS_LIMIT), params[:max_id], params[:since_id])
-    accounts  = Account.where(id: results.map(&:account_id)).map { |a| [a.id, a] }.to_h
-    @accounts = results.map { |f| accounts[f.account_id] }
+    @accounts = Account.includes(:following)
+                       .references(:following)
+                       .merge(Follow.where(target_account: @account)
+                                    .paginate_by_max_id(limit_param(DEFAULT_ACCOUNTS_LIMIT),
+                                                        params[:max_id],
+                                                        params[:since_id]))
+                       .to_a
 
-    next_path = followers_api_v1_account_url(pagination_params(max_id: results.last.id))    if results.size == limit_param(DEFAULT_ACCOUNTS_LIMIT)
-    prev_path = followers_api_v1_account_url(pagination_params(since_id: results.first.id)) unless results.empty?
+    next_path = followers_api_v1_account_url(pagination_params(max_id: @accounts.last.following.last.id))     if @accounts.size == limit_param(DEFAULT_ACCOUNTS_LIMIT)
+    prev_path = followers_api_v1_account_url(pagination_params(since_id: @accounts.first.following.first.id)) unless @accounts.empty?
 
     set_pagination_headers(next_path, prev_path)
 
