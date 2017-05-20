@@ -9,7 +9,7 @@ import {
 } from '../actions/accounts';
 import {
   DOMAIN_BLOCK_SUCCESS,
-  DOMAIN_UNBLOCK_SUCCESS
+  DOMAIN_UNBLOCK_SUCCESS,
 } from '../actions/domain_blocks';
 import Immutable from 'immutable';
 

@@ -175,8 +175,8 @@ export function expandAccountMediaTimeline(id) {
       params: {
         limit: 12,
         only_media: 'true',
-        max_id: lastId
-      }
+        max_id: lastId,
+      },
     }).then(response => {
       const next = getLinks(response).refs.find(link => link.rel === 'next');
       dispatch(expandAccountMediaTimelineSuccess(id, response.data, next));
@@ -307,7 +307,7 @@ export function fetchAccountMediaTimelineRequest(id, skipLoading) {
   return {
     type: ACCOUNT_MEDIA_TIMELINE_FETCH_REQUEST,
     id,
-    skipLoading
+    skipLoading,
   };
 };
 
@@ -317,7 +317,7 @@ export function fetchAccountMediaTimelineSuccess(id, statuses, replace, skipLoad
     id,
     statuses,
     replace,
-    skipLoading
+    skipLoading,
   };
 };
 
@@ -327,7 +327,7 @@ export function fetchAccountMediaTimelineFail(id, error, skipLoading) {
     id,
     error,
     skipLoading,
-    skipAlert: error.response.status === 404
+    skipAlert: error.response.status === 404,
   };
 };
 
@@ -358,7 +358,7 @@ export function expandAccountTimelineFail(id, error) {
 export function expandAccountMediaTimelineRequest(id) {
   return {
     type: ACCOUNT_MEDIA_TIMELINE_EXPAND_REQUEST,
-    id
+    id,
   };
 };
 
@@ -367,7 +367,7 @@ export function expandAccountMediaTimelineSuccess(id, statuses, next) {
     type: ACCOUNT_MEDIA_TIMELINE_EXPAND_SUCCESS,
     id,
     statuses,
-    next
+    next,
   };
 };
 
@@ -375,7 +375,7 @@ export function expandAccountMediaTimelineFail(id, error) {
   return {
     type: ACCOUNT_MEDIA_TIMELINE_EXPAND_FAIL,
     id,
-    error
+    error,
   };
 };
 

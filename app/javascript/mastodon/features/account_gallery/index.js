@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import {
   fetchAccount,
   fetchAccountMediaTimeline,
-  expandAccountMediaTimeline
+  expandAccountMediaTimeline,
 } from '../../actions/accounts';
 import LoadingIndicator from '../../components/loading_indicator';
 import Column from '../ui/components/column';
