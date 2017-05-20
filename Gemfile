@@ -19,6 +19,7 @@ gem 'paperclip', '~> 5.1'
 gem 'paperclip-av-transcoder', '~> 0.6'
 
 gem 'addressable', '~> 2.5'
+gem 'bootsnap'
 gem 'cld3', '~> 3.1'
 gem 'devise', '~> 4.2'
 gem 'devise-two-factor', '~> 3.0'
