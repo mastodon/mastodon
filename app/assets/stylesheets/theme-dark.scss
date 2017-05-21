@@ -311,7 +311,17 @@ $accent-border-color: #444;
 }
 
 .detailed-status__action-bar {
-  @extend %box-styles;
+  background-color: $background-color;
+  border-top: 1px solid $border-color;
+  border-bottom: 1px solid $border-color;
+}
+
+.detailed-status__display-name strong {
+  color: $text-color;
+}
+
+.detailed-status__display-name span {
+  color: $sub-text-color;
 }
 
 .notification {
