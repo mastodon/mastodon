@@ -9,12 +9,17 @@ import {
   selectComposeSuggestion,
   changeComposeSpoilerText,
   insertEmojiCompose,
+  clearComposeHashTagSuggestions,
+  fetchComposeHashTagSuggestions,
+  selectComposeHashTagSuggestion,
 } from '../../../actions/compose';
 
 const mapStateToProps = state => ({
   text: state.getIn(['compose', 'text']),
   suggestion_token: state.getIn(['compose', 'suggestion_token']),
   suggestions: state.getIn(['compose', 'suggestions']),
+  hash_tag_suggestions: state.getIn(['compose', 'hash_tag_suggestions']),
+  hash_tag_token: state.getIn(['compose', 'hash_tag_token']),
   spoiler: state.getIn(['compose', 'spoiler']),
   spoiler_text: state.getIn(['compose', 'spoiler_text']),
   privacy: state.getIn(['compose', 'privacy']),
@@ -46,6 +51,18 @@ const mapDispatchToProps = (dispatch) => ({
 
   onSuggestionSelected (position, token, accountId) {
     dispatch(selectComposeSuggestion(position, token, accountId));
+  },
+
+  onHashTagSuggestionsClearRequested() {
+    dispatch(clearComposeHashTagSuggestions());
+  },
+
+  onHashTagSuggestionsFetchRequested(token) {
+    dispatch(fetchComposeHashTagSuggestions(token));
+  },
+
+  onHashTagSuggestionsSelected(tokenStart, token, value) {
+    dispatch(selectComposeHashTagSuggestion(tokenStart, token, value));
   },
 
   onChangeSpoilerText (checked) {
