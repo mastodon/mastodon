@@ -22,10 +22,11 @@ class HomeTimeline extends React.PureComponent {
     intl: PropTypes.object.isRequired,
     hasUnread: PropTypes.bool,
     hasFollows: PropTypes.bool,
+    key: PropTypes.string,
   };
 
   render () {
-    const { intl, hasUnread, hasFollows } = this.props;
+    const { intl, hasUnread, hasFollows, key } = this.props;
 
     let emptyMessage;
 
@@ -37,11 +38,11 @@ class HomeTimeline extends React.PureComponent {
 
     return (
       <Column icon='home' active={hasUnread} heading={intl.formatMessage(messages.title)}>
-        <ColumnSettingsContainer />
+        <ColumnSettingsContainer columnKey={key} />
 
         <StatusListContainer
           {...this.props}
-          scrollKey='home_timeline'
+          scrollKey={`home_timeline-${key}`}
           type='home'
           emptyMessage={emptyMessage}
         />

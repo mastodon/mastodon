@@ -22,6 +22,7 @@ class HashtagTimeline extends React.PureComponent {
 
   static propTypes = {
     params: PropTypes.object.isRequired,
+    key: PropTypes.string,
     dispatch: PropTypes.func.isRequired,
     streamingAPIBaseURL: PropTypes.string.isRequired,
     accessToken: PropTypes.string.isRequired,
@@ -75,12 +76,18 @@ class HashtagTimeline extends React.PureComponent {
   }
 
   render () {
-    const { id, hasUnread } = this.props.params;
+    const { id, key, hasUnread } = this.props.params;
 
     return (
       <Column icon='hashtag' active={hasUnread} heading={id}>
         <ColumnBackButtonSlim />
-        <StatusListContainer scrollKey='hashtag_timeline' type='tag' id={id} emptyMessage={<FormattedMessage id='empty_column.hashtag' defaultMessage='There is nothing in this hashtag yet.' />} />
+
+        <StatusListContainer
+          scrollKey={`hashtag_timeline-${key}`}
+          type='tag'
+          id={id}
+          emptyMessage={<FormattedMessage id='empty_column.hashtag' defaultMessage='There is nothing in this hashtag yet.' />}
+        />
       </Column>
     );
   }

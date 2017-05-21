@@ -28,7 +28,7 @@ class Compose extends React.PureComponent {
 
   static propTypes = {
     dispatch: PropTypes.func.isRequired,
-    withHeader: PropTypes.bool,
+    multiColumn: PropTypes.bool,
     showSearch: PropTypes.bool,
     intl: PropTypes.object.isRequired,
   };
@@ -42,11 +42,11 @@ class Compose extends React.PureComponent {
   }
 
   render () {
-    const { withHeader, showSearch, intl } = this.props;
+    const { multiColumn, showSearch, intl } = this.props;
 
     let header = '';
 
-    if (withHeader) {
+    if (multiColumn) {
       header = (
         <div className='drawer__header'>
           <Link to='/getting-started' className='drawer__tab' title={intl.formatMessage(messages.start)}><i role="img" aria-label={intl.formatMessage(messages.start)} className='fa fa-fw fa-asterisk' /></Link>
