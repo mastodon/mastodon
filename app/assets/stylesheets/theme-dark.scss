@@ -115,11 +115,16 @@ $accent-border-color: #444;
 
 .button {
   background-color: $primary-accent-color;
+
+  &:disabled {
+    background-color: desaturate($primary-accent-color, 80%);
+  }
 }
 
 .button:hover,
-.button:focus {
-  background-color: darken($primary-accent-color, 3%);
+.button:focus,
+.button:active {
+  background-color: darken($primary-accent-color, 10%);
 }
 
 .icon-button.inverted,
@@ -127,8 +132,18 @@ $accent-border-color: #444;
   color: $sub-text-color;
 }
 
+.icon-button.inverted:hover,
+.icon-button.inverted:focus {
+  color: $text-color;
+}
+
 .icon-button.inverted.active {
   color: $primary-accent-color;
+}
+
+.text-icon-button:hover,
+.text-icon-button:focus {
+  color: $text-color;
 }
 
 .text-icon-button.active {
