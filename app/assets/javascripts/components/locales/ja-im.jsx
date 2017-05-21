@@ -162,6 +162,7 @@ const ja_im = {
   "video_player.toggle_sound": "音の切り替え",
   "video_player.toggle_visible": "表示切り替え",
   "video_player.video_error": "動画の再生に失敗しました",
+  "welcome.message": "初めましての方へ\n\nいらっしゃいませ。{domain}は全てのアイマスを歓迎します。ローカルタイムラインで話に乗るもよし、まったく関係ない発言をするもよし。ぜひ、概ねアイマスの話しか流れてこないこのサーバを楽しんでください。\n\nフォローしたい人を探すにあたっては、下記のタグが参考になるでしょう。",
 };
 
 export default ja_im;
