@@ -1,23 +1,23 @@
-@import '../../../node_modules/highlight.js/styles/arta';
+@import '../../../node_modules/highlight.js/styles/github';
 
 // Dark theme colors
 
-$text-color: #ddd;
-$sub-text-color: #555;
+$text-color: #333;
+$sub-text-color: #aaa;
 $sub-text-color-strong: #aaa;
-$border-color: #444;
-$base-background-color: #111;
-$background-color: #111;
-$sub-background-color: #222;
-$primary-accent-color: #2bd000;
-$secondary-accent-color: #ff2e88;
-$caret-color: #c62db7;
-$star-color: #dddc01;
-$retweet-color: #00efff;
-$accent-background-color: #111;
-$accent-text-color: #ddd;
-$accent-sub-text-color: #555;
-$accent-border-color: #444;
+$border-color: #ddd;
+$base-background-color: #eee;
+$background-color: #fff;
+$sub-background-color: #ddd;
+$primary-accent-color: #52b03b;
+$secondary-accent-color: #009af4;
+$caret-color: #333;
+$star-color: #ffbc00;
+$retweet-color: #009af4;
+$accent-background-color: #52b03b;
+$accent-text-color: #fff;
+$accent-sub-text-color: #fff;
+$accent-border-color: #52b03b;
 
 %box-styles {
   background-color: $background-color;
@@ -25,12 +25,13 @@ $accent-border-color: #444;
 }
 
 %accent-box-styles {
-  background-color: $accent-background-color;
-  border: 1px solid $border-color;
+  background-color: $primary-accent-color;
+  border: 1px solid $accent-border-color;
+  color: $accent-text-color;
 }
 
 %text-area-styles {
-  background-color: $sub-background-color;
+  background-color: $background-color;
   border: 1px solid $border-color;
   caret-color: $caret-color;
 }
