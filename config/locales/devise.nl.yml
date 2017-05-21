@@ -3,8 +3,8 @@ nl:
   devise:
     confirmations:
       confirmed: Je account is bevestigd.
-      send_instructions: Je ontvangt via e-mail instructies hoe je jouw account kan bevestigen.
-      send_paranoid_instructions: Als jouw e-mailadres in de database staat, ontvang je via e-mail instructies hoe je jouw account kan bevestigen.
+      send_instructions: Je ontvangt via e-mail instructies hoe je jouw account kunt bevestigen. Kijk tussen je spam wanneer niks werd ontvangen.
+      send_paranoid_instructions: Als jouw e-mailadres in de database staat, ontvang je via e-mail instructies hoe je jouw account kunt bevestigen. Kijk tussen je spam wanneer niks werd ontvangen.
     failure:
       already_authenticated: Je bent al ingelogd.
       inactive: Jouw account is nog niet geactiveerd.
@@ -29,9 +29,9 @@ nl:
       failure: Kon je niet aanmelden met jouw %{kind} account, omdat "%{reason}".
       success: Successvol aangemeld met jouw %{kind} account.
     passwords:
-      no_token: Je kan deze pagina niet benaderen zonder dat je een e-mail om je wachtwoord opnieuw in te stellen hebt ontvangen.
-      send_instructions: Je ontvangt via e-mail instructies hoe je jouw wachtwoord opnieuw moet instellen.
-      send_paranoid_instructions: Als jouw e-mailadres in de database staat, ontvang je via e-mail instructies hoe je jouw wachtwoord opnieuw moet instellen.
+      no_token: Je kunt deze pagina niet benaderen zonder dat je een e-mail om je wachtwoord opnieuw in te stellen hebt ontvangen.
+      send_instructions: Je ontvangt via e-mail instructies hoe je jouw wachtwoord opnieuw moet instellen. Kijk tussen je spam wanneer niks werd ontvangen.
+      send_paranoid_instructions: Als jouw e-mailadres in de database staat, ontvang je via e-mail instructies hoe je jouw wachtwoord opnieuw moet instellen. Kijk tussen je spam wanneer niks werd ontvangen.
       updated: Jouw wachtwoord is gewijzigd. Je bent nu ingelogd.
       updated_not_active: Jouw wachtwoord is gewijzigd.
     registrations:
@@ -39,16 +39,16 @@ nl:
       signed_up: Je bent geregistreerd.
       signed_up_but_inactive: Je bent geregistreerd. Je kon alleen niet automatisch ingelogd worden omdat jouw account nog niet geactiveerd is.
       signed_up_but_locked: Je bent ingeschreven. Je kon alleen niet automatisch ingelogd worden omdat jouw account geblokkeerd is.
-      signed_up_but_unconfirmed: Je ontvangt via e-mail instructies hoe je jouw account kunt activeren.
-      update_needs_confirmation: Je hebt je e-mailadres succesvol gewijzigd, maar we moeten je nieuwe mailadres nog bevestigen. Controleer jouw e-mail en klik op de link in de mail om jouw e-mailadres te bevestigen.
+      signed_up_but_unconfirmed: Je ontvangt via e-mail instructies hoe je jouw account kunt activeren. Kijk tussen je spam wanneer niks werd ontvangen.
+      update_needs_confirmation: Je hebt je e-mailadres succesvol gewijzigd, maar we moeten je nieuwe mailadres nog bevestigen. Controleer jouw e-mail en klik op de link in de mail om jouw e-mailadres te bevestigen. Kijk tussen je spam wanneer niks werd ontvangen.
       updated: Jouw accountgegevens zijn opgeslagen.
     sessions:
       signed_in: Je bent succesvol ingelogd.
       signed_out: Je bent succesvol uitgelogd.
     unlocks:
-      send_instructions: Je ontvangt via e-mail instructies hoe je jouw account kan deblokkeren.
-      send_paranoid_instructions: Als jouw e-mailadres in de database staat, ontvang je via e-mail instructies hoe je jouw account kan deblokkeren.
-      unlocked: Jouw account is gedeblokkeerd. Je kan nu weer inloggen.
+      send_instructions: Je ontvangt via e-mail instructies hoe je jouw account kunt deblokkeren. Kijk tussen je spam wanneer niks werd ontvangen.
+      send_paranoid_instructions: Als jouw e-mailadres in de database staat, ontvang je via e-mail instructies hoe je jouw account kunt deblokkeren. Kijk tussen je spam wanneer niks werd ontvangen.
+      unlocked: Jouw account is gedeblokkeerd. Je kunt nu weer inloggen.
   errors:
     messages:
       already_confirmed: is reeds bevestigd

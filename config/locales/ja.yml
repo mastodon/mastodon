@@ -54,6 +54,7 @@ ja:
       are_you_sure: 本当に実行しますか?
       confirm: 確認
       confirmed: 確認済み
+      disable_two_factor_authentication: 二段階認証を無効にする
       display_name: 表示名
       domain: ドメイン
       edit: 編集
@@ -61,6 +62,7 @@ ja:
       feed_url: フィードURL
       followers: フォロワー数
       follows: フォロー数
+      ip: IP
       location:
         all: すべて
         local: ローカル
@@ -83,8 +85,10 @@ ja:
       profile_url: プロフィールURL
       public: パブリック
       push_subscription_expires: PuSH購読期限切れ
+      reset: リセット
       reset_password: パスワード再設定
       salmon_url: Salmon URL
+      search: 検索
       show:
         created_reports: このアカウントで作られたレポート
         report: レポート
@@ -117,8 +121,8 @@ ja:
       severity: 深刻度
       show:
         affected_accounts:
-          one: "データベース中の一つのアカウントに影響します"
-          other: "データベース中の%{count}個のアカウントに影響します"
+          one: データベース中の一つのアカウントに影響します
+          other: データベース中の%{count}個のアカウントに影響します
         retroactive:
           silence: このドメインからの存在するすべてのアカウントのサイレンスを戻す
           suspend: このドメインからの存在するすべてのアカウントの停止を戻す
@@ -145,9 +149,9 @@ ja:
       id: ID
       mark_as_resolved: 解決済みとしてマーク
       report: レポート#%{id}
+      report_contents: 内容
       reported_account: 報告対象アカウント
       reported_by: 報告者
-      report_contents: 内容
       resolved: 解決済み
       silence_account: アカウントをサイレンス
       status: ステータス
@@ -157,7 +161,6 @@ ja:
       unresolved: 未解決
       view: 表示
     settings:
-      click_to_edit: クリックして編集
       contact_information:
         email: 公開するメールアドレスを入力
         label: 連絡先情報
@@ -222,6 +225,7 @@ ja:
     '422':
       content: セキュリティ認証に失敗しました。Cookieをブロックしていませんか？
       title: セキュリティ認証に失敗
+    '429': リクエストの制限に達しました。
   exports:
     blocks: ブロック
     csv: CSV
@@ -237,7 +241,7 @@ ja:
     success:
       one: 1個のドメインからソフトブロックするフォロワーを処理中...
       other: "%{count} 個のドメインからソフトブロックするフォロワーを処理中..."
-    true_privacy_html: <strong>プライバシーの保護はエンドツーエンドの暗号化でのみ実現可能</strong>であることに留意ください。
+    true_privacy_html: "<strong>プライバシーの保護はエンドツーエンドの暗号化でのみ実現可能</strong>であることに留意ください。"
     unlocked_warning_html: 誰でもあなたをフォローすることができ、あなたのプライベート投稿をすぐに見ることができます。フォローする人を限定したい場合は%{lock_link}に設定してください。
     unlocked_warning_title: このアカウントは非公開アカウントに設定されていません。
   generic:
@@ -255,7 +259,8 @@ ja:
       following: フォロー中のアカウントリスト
       muting: ミュートしたアカウントリスト
     upload: アップロード
-  landing_strip_html: <strong>%{name}</strong> さんはインスタンス %{link_to_root_path} のユーザーです。アカウントさえ持っていればフォローしたり会話したりできます。もしお持ちでないなら <a href="%{sign_up_path}">こちら</a> からサインアップできます。
+  landing_strip_html: <strong>%{name}</strong> さんはインスタンス %{link_to_root_path} のユーザーです。アカウントさえ持っていればフォローしたり会話したりできます。
+  landing_strip_signup_html: もしお持ちでないなら <a href="%{sign_up_path}">こちら</a> からサインアップできます。
   media_attachments:
     validations:
       images_and_video: 既に画像が追加されているため、動画を追加することはできません。

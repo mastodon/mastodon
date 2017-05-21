@@ -13,7 +13,7 @@ An alternative implementation of the GNU social project. Based on [ActivityStrea
 
 Click on the screenshot to watch a demo of the UI:
 
-[![Screenshot](https://i.imgur.com/T2q5V65.png)][youtube_demo]
+[![Screenshot](http://puu.sh/vMcvm/290f459dd4.jpg)][youtube_demo]
 
 [youtube_demo]: https://www.youtube.com/watch?v=YO1jQ8_rAMU
 
@@ -47,6 +47,10 @@ If you would like, you can [support the development of this project on Patreon][
   Mastodon tries to be as fast and responsive as possible, so all long-running tasks that can be delegated to background processing, are
 - **Deployable via Docker**
   You don't need to mess with dependencies and configuration if you want to try Mastodon, if you have Docker and Docker Compose the deployment is extremely easy
+  
+## Development
+
+Please follow the [development guide](https://github.com/tootsuite/documentation/blob/master/Running-Mastodon/Development-guide.md) from the documentation repository.
 
 ## Deployment
 

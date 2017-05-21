@@ -25,10 +25,11 @@ id:
     other_instances: Server lain
     source_code: Kode sumber
     status_count_after: status
-    status_count_before: Siapa yang membuat
+    status_count_before: Yang telah menulis
     terms: Ketentuan
     user_count_after: pengguna
     user_count_before: Tempat bernaung bagi
+    version: Versi
   accounts:
     follow: Ikuti
     followers: Pengikut
@@ -39,9 +40,20 @@ id:
     posts: Postingan
     remote_follow: Mengikuti
     unfollow: Berhenti mengikuti
+  activitypub:
+    activity:
+      announce:
+        name: "%{account_name} membagikan aktivitas."
+      create:
+        name: "%{account_name} membuat catatan."
+    outbox:
+      name: "%{account_name} Outbox"
+      summary: "Koleksi aktivitas dari pengguna %{account_name}."
   admin:
     accounts:
       are_you_sure: Anda yakin?
+      confirm: Konfirmasi
+      confirmed: Dikonfirmasi
       display_name: Nama
       domain: Domain
       edit: Ubah
@@ -70,17 +82,24 @@ id:
       perform_full_suspension: Lakukan suspen penuh
       profile_url: URL profil
       public: Publik
-      push_subscription_expires: Langganan push telah kadaluarsa
+      push_subscription_expires: Langganan PuSH telah kadaluarsa
+      reset_password: Reset kata sandi
       salmon_url: URL Salmon
+      show:
+        created_reports: Laporan yang dibuat oleh akun ini
+        report: laporan
+        targeted_reports: Laporan yang dibuat tentang akun ini
       silence: Diam
       statuses: Status
       title: Akun
-      undo_silenced: Undo diamkan
+      undo_silenced: Undo mendiamkan
       undo_suspension: Undo suspen
       username: Nama pengguna
       web: Web
     domain_blocks:
       add_new: Tambah
+      created_msg: Pemblokiran domain sedang diproses
+      destroyed_msg: Pemblokiran domain telah dibatalkan
       domain: Domain
       new:
         create: Buat pemblokiran
@@ -90,8 +109,26 @@ id:
           silence: Pendiaman
           suspend: Suspen
         title: Pemblokiran domain baru
+      reject_media: Tolak berkas media
+      reject_media_hint: Hapus file media yang tersimpan dan menolak semua unduhan nantinya. Tidak terpengaruh dengan suspen
+      severities:
+        silence: Diamkan
+        suspend: Suspen
       severity: Keparahan
+      show:
+        affected_accounts:
+          one: Satu akun di dalam database terpengaruh
+          other: "%{count} akun dalam database terpengaruh"
+        retroactive:
+          silence: Hapus pendiaman terhadap akun pada domain ini
+          suspend: Hapus suspen terhadap akun pada domain ini
+        title: Hapus pemblokiran domain %{domain}
+        undo: Undo
       title: Pemblokiran Domain
+    instances:
+      account_count: Akun yang diketahui
+      domain_name: Domain
+      title: Server yang diketahui
     pubsubhubbub:
       callback_url: Callback URL
       confirmed: Dikonfirmasi
@@ -107,6 +144,7 @@ id:
       id: ID
       mark_as_resolved: Tandai telah diseleseikan
       report: 'Laporkan #%{id}'
+      report_contents: Konten
       reported_account: Akun yang dilaporkan
       reported_by: Dilaporkan oleh
       resolved: Terseleseikan
@@ -118,7 +156,6 @@ id:
       unresolved: Belum Terseleseikan
       view: Tampilan
     settings:
-      click_to_edit: Klik untuk mengubah
       contact_information:
         email: Masukkan alamat email
         label: Informasi kontak
@@ -177,17 +214,30 @@ id:
       x_months: "%{count}bln"
       x_seconds: "%{count}dtk"
   errors:
+    '403': Anda tidak mempunyai izin untuk melihat halaman ini.
     '404': Halaman yang anda cari tidak ditemukan
     '410': Halaman yang anda cari sudah tidak dapat ditemukan lagi.
     '422':
       content: Verifikasi keamanan gagal. Apa anda memblokir cookie?
       title: Verifikasi keamanan gagal.
   exports:
-    blocks: Anda memblokir
+    blocks: Anda blokir
     csv: CSV
-    follows: Anda mengikuti
-    mutes: Anda membisukan
+    follows: Anda ikuti
+    mutes: Anda bisukan
     storage: Penyimpanan media
+  followers:
+    domain: Domain
+    explanation_html: Jika anda ingin memastikan privasi dari status anda, anda harus tahu siapa yang mengikuti anda. <strong>Status pribadi anda dikirim ke semua server dimana pengikut anda berada</strong>. Anda mungkin ingin untuk mengkaji ulang dan menghapus pengikut jika anda tidak mempercayai bahwa privasi anda di tangan staf atau software di server tersebut.
+    followers_count: Jumlah pengikut
+    lock_link: Kunci akun anda
+    purge: Hapus dari pengikut
+    success:
+      one: Dalam proses memblokir pengikut dari satu domain...
+      other: Dalam proses memblokir pengikut dari %{count} domain...
+    true_privacy_html: Mohon diingat bahwa <strong>privasi yang sebenarnya hanya dapat dicapai dengan enkripsi end-to-end</strong>.
+    unlocked_warning_html: Semua orang dapat mengikuti anda untuk langsung dapat melihat status pribadi anda. %{lock_link} untuk dapat meninjau dan menolak calon pengikut.
+    unlocked_warning_title: Akun anda tidak dikunci
   generic:
     changes_saved_msg: Perubahan berhasil disimpan!
     powered_by: didukung oleh %{link}
@@ -203,7 +253,8 @@ id:
       following: Daftar diikuti
       muting: Daftar didiamkan
     upload: Unggah
-  landing_strip_html: <strong>%{name}</strong> adalah pengguna di %{link_to_root_path}.Anda dapat mengikuti mereka atau berinteraksi dengan mereka jika anda memiliki akun di fediverse. Jika anda tidak punya, anda bisa <a href="%{sign_up_path}">daftar disini</a>.
+  landing_strip_html: <strong>%{name}</strong> adalah pengguna di %{link_to_root_path}.Anda dapat mengikuti mereka atau berinteraksi dengan mereka jika anda memiliki akun di fediverse.
+  landing_strip_signup_html: Jika anda tidak punya, anda bisa <a href="%{sign_up_path}">daftar disini</a>.
   media_attachments:
     validations:
       images_and_video: Tidak bisa melampirkan video pada status yang telah memiliki gambar
@@ -247,6 +298,7 @@ id:
     back: Kembali ke Mastodon
     edit_profile: Ubah profil
     export: Expor data
+    followers: Pengikut yang diizinkan
     import: Impor
     preferences: Pilihan
     settings: Pengaturan
@@ -256,9 +308,12 @@ id:
     over_character_limit: melebihi %{max} karakter
     show_more: Tampilkan selengkapnya
     visibilities:
-      private: Hanya tampilkan ke pengikut
+      private: Khusus pengikut
+      private_long: Hanya tampilkan ke pengikut
       public: Publik
-      unlisted: Publik, tapi tidak ditampilkan di linimasa publik
+      public_long: Bisa dilihat semua orang
+      unlisted: Tidak Tercantum
+      unlisted: Bisa dilihat semua orang, tapi tidak ditampilkan di linimasa publik
   stream_entries:
     click_to_show: Klik untuk menampilkan
     reblogged: di-boost-kan
