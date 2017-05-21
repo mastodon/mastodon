@@ -1,6 +1,6 @@
 .activity-stream {
   clear: both;
-  box-shadow: 0 0 15px rgba($base-shadow-color, 0.2);
+  box-shadow: 0 0 15px $base-shadow-color--l100-a020;
 
   .entry {
     background: $simple-background-color;
@@ -110,7 +110,7 @@
         background: $ui-primary-color;
 
         &:hover {
-          background: lighten($ui-primary-color, 8%);
+          background: $ui-primary-color--l108-a100;
         }
       }
     }
@@ -185,7 +185,7 @@
         background: $ui-primary-color;
 
         &:hover {
-          background: lighten($ui-primary-color, 8%);
+          background: $ui-primary-color--l108-a100;
         }
       }
     }
@@ -291,7 +291,7 @@
       transform: translate(-50%, -50%);
       padding: 5px;
       border-radius: 100px;
-      color: rgba($primary-text-color, 0.8);
+      color: $primary-text-color--l100-a080;
       z-index: 1;
     }
   }
@@ -313,7 +313,7 @@
     z-index: 2;
 
     &:hover {
-      background: darken($ui-primary-color, 5%);
+      background: $ui-primary-color--l095-a100;
     }
 
     span {

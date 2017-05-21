@@ -136,7 +136,7 @@ code {
     &:active,
     &:focus {
       border-bottom-color: $ui-highlight-color;
-      background: rgba($base-overlay-background, 0.1);
+      background: $base-overlay-background--l100-a010;
     }
   }
 
@@ -192,26 +192,26 @@ code {
     }
 
     &:hover {
-      background-color: lighten($ui-highlight-color, 5%);
+      background-color: $ui-highlight-color--l105-a100;
     }
 
     &:active,
     &:focus {
       position: relative;
       top: 1px;
-      background-color: darken($ui-highlight-color, 5%);
+      background-color: $ui-highlight-color--l095-a100;
     }
 
     &.negative {
       background: $error-value-color;
 
       &:hover {
-        background-color: lighten($error-value-color, 5%);
+        background-color: $error-value-color--l105-a100;
       }
 
       &:active,
       &:focus {
-        background-color: darken($error-value-color, 5%);
+        background-color: $error-value-color--l095-a100;
       }
     }
   }
@@ -227,7 +227,7 @@ code {
   border-radius: 4px;
   padding: 15px 10px;
   margin-bottom: 30px;
-  box-shadow: 0 0 5px rgba($base-shadow-color, 0.2);
+  box-shadow: 0 0 5px $base-shadow-color--l100-a020;
   text-align: center;
 
   strong {
@@ -275,7 +275,7 @@ code {
   background: $simple-background-color;
   padding: 4px;
   margin-bottom: 20px;
-  box-shadow: 0 0 15px rgba($base-shadow-color, 0.2);
+  box-shadow: 0 0 15px $base-shadow-color--l100-a020;
   display: inline-block;
 
   svg {
@@ -307,10 +307,10 @@ code {
   .warning {
     max-width: 400px;
     box-sizing: border-box;
-    background: rgba($error-value-color, 0.5);
+    background: $error-value-color--l100-a050;
     color: $primary-text-color;
-    text-shadow: 1px 1px 0 rgba($base-shadow-color, 0.3);
-    box-shadow: 0 2px 6px rgba($base-shadow-color, 0.4);
+    text-shadow: 1px 1px 0 $base-shadow-color--l100-a030;
+    box-shadow: 0 2px 6px $base-shadow-color--l100-a040;
     border-radius: 4px;
     padding: 10px;
     margin-bottom: 15px;

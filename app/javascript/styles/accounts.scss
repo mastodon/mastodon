@@ -4,7 +4,7 @@
   padding: 60px 0;
   padding-bottom: 0;
   border-radius: 4px 4px 0 0;
-  box-shadow: 0 0 15px rgba($base-shadow-color, 0.2);
+  box-shadow: 0 0 15px $base-shadow-color--l100-a020;
   overflow: hidden;
   position: relative;
 
@@ -14,7 +14,7 @@
   }
 
   &::after {
-    background: linear-gradient(rgba($base-shadow-color, 0.5), rgba($base-shadow-color, 0.8));
+    background: linear-gradient($base-shadow-color--l100-a050, $base-shadow-color--l100-a080);
     display: block;
     content: "";
     position: absolute;
@@ -227,7 +227,7 @@
 
   .disabled {
     cursor: default;
-    color: lighten($ui-base-color, 10%);
+    color: $ui-base-color--l110-a100;
   }
 
   @media screen and (max-width: 360px) {
@@ -249,7 +249,7 @@
 }
 
 .accounts-grid {
-  box-shadow: 0 0 15px rgba($base-shadow-color, 0.2);
+  box-shadow: 0 0 15px $base-shadow-color--l100-a020;
   background: $simple-background-color;
   border-radius: 0 0 4px 4px;
   padding: 20px 10px;
@@ -346,7 +346,7 @@
   background: $simple-background-color;
   border-radius: 4px;
   text-align: left;
-  box-shadow: 0 0 15px rgba($base-shadow-color, 0.2);
+  box-shadow: 0 0 15px $base-shadow-color--l100-a020;
 
   .detailed-status__display-name {
     display: block;
