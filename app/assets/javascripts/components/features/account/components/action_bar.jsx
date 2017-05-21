@@ -62,11 +62,6 @@ class ActionBar extends React.PureComponent {
             <strong><FormattedNumber value={account.get('statuses_count')} /> {extraInfo}</strong>
           </Link>
 
-          <Link className='account__action-bar__tab' to={`/accounts/${account.get('id')}/media`}>
-            <span><FormattedMessage id='account.media' defaultMessage='Media' /></span>
-            <strong/>
-          </Link>
-
           <Link className='account__action-bar__tab' to={`/accounts/${account.get('id')}/following`}>
             <span><FormattedMessage id='account.follows' defaultMessage='Follows' /></span>
             <strong><FormattedNumber value={account.get('following_count')} /> {extraInfo}</strong>
