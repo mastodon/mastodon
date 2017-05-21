@@ -6,7 +6,7 @@ const makeMapStateToProps = () => {
   const getStatus = makeGetStatus();
 
   const mapStateToProps = (state, { id }) => ({
-    status: getStatus(state, id)
+    status: getStatus(state, id),
   });
 
   return mapStateToProps;

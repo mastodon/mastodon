@@ -47,13 +47,14 @@ pl:
       create:
         name: "%{account_name} utworzył(a) wpis."
     outbox:
-      name: "Skrzynka %{account_name}"
-      summary: "Zbiór aktywności użytkownika %{account_name}."
+      name: Skrzynka %{account_name}
+      summary: Zbiór aktywności użytkownika %{account_name}.
   admin:
     accounts:
       are_you_sure: Jesteś tego pewien?
       confirm: Potwierdź
       confirmed: Potwierdzono
+      disable_two_factor_authentication: Wyłącz uwierzytelnianie dwuetapowe
       display_name: Wyświetlana nazwa
       domain: Domena
       edit: Edytuj
@@ -84,7 +85,6 @@ pl:
       public: Publiczne
       push_subscription_expires: Subskrypcja PuSH wygasa
       reset_password: Resetuj hasło
-      disable_two_factor_authentication: Wyłącz uwierzytelnianie dwuetapowe
       salmon_url: Adres Salmon
       show:
         created_reports: Zgłoszenia tego użytkownika
@@ -119,7 +119,7 @@ pl:
       show:
         affected_accounts:
           one: Dotyczy jednego konta w bazie danych
-          other: "Dotyczy %{count} kont w bazie danych"
+          other: Dotyczy %{count} kont w bazie danych
         retroactive:
           silence: Odwołaj wyciszenie wszystkich kont w tej domenie
           suspend: Odwołaj zawieszenie wszystkich kont w tej domenie
@@ -255,7 +255,8 @@ pl:
       following: Lista śledzonych
       muting: Lista wyciszonych
     upload: Załaduj
-  landing_strip_html: <strong>%{name}</strong> ma konto na %{link_to_root_path}. Możesz je śledzić i wejść z nim w interakcję jeśli masz konto gdziekolwiek w Fediwersie. Jeśli jeszcze go nie masz, możesz <a href="%{sign_up_path}">stworzyć konto</a>.
+  landing_strip_html: <strong>%{name}</strong> ma konto na %{link_to_root_path}. Możesz je śledzić i wejść z nim w interakcję jeśli masz konto gdziekolwiek w Fediwersie.
+  landing_strip_signup_html: Jeśli jeszcze go nie masz, możesz <a href="%{sign_up_path}">stworzyć konto</a>.
   media_attachments:
     validations:
       images_and_video: Nie możesz załączyć pliku wideo do statusu, który zawiera już zdjęcia
@@ -280,11 +281,11 @@ pl:
       body: "%{name} poprosił o możliwość śledzenia Cię"
       subject: 'Prośba o możliwość śledzenia: %{name}'
     mention:
-      body: '%{name} wspomniał Cię w:'
-      subject: '%{name} Cię wspomniał'
+      body: "%{name} wspomniał Cię w:"
+      subject: "%{name} Cię wspomniał"
     reblog:
       body: 'Twój wpis został podbity przez %{name}:'
-      subject: "Twój wpis został podbity przez %{name}"
+      subject: Twój wpis został podbity przez %{name}
   pagination:
     next: Następna
     prev: Poprzednia
@@ -311,10 +312,6 @@ pl:
       private: Tylko dla śledzących
       public: Publiczny
       unlisted: Publiczny, ale nie wyświetlaj na publicznych osiach czasu
-  stream_entries:
-    click_to_show: Kliknij aby pokazać
-    reblogged: podbity
-    sensitive_content: Wrażliwa treść
   stream_entries:
     click_to_show: Naciśnij aby wyświetlić
     reblogged: podbito

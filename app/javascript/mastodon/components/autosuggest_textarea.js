@@ -32,13 +32,32 @@ const textAtCursorMatchesToken = (str, caretPosition) => {
 
 class AutosuggestTextarea extends ImmutablePureComponent {
 
+  static propTypes = {
+    value: PropTypes.string,
+    suggestions: ImmutablePropTypes.list,
+    disabled: PropTypes.bool,
+    placeholder: PropTypes.string,
+    onSuggestionSelected: PropTypes.func.isRequired,
+    onSuggestionsClearRequested: PropTypes.func.isRequired,
+    onSuggestionsFetchRequested: PropTypes.func.isRequired,
+    onChange: PropTypes.func.isRequired,
+    onKeyUp: PropTypes.func,
+    onKeyDown: PropTypes.func,
+    onPaste: PropTypes.func.isRequired,
+    autoFocus: PropTypes.bool,
+  };
+
+  static defaultProps = {
+    autoFocus: true,
+  };
+
   constructor (props, context) {
     super(props, context);
     this.state = {
       suggestionsHidden: false,
       selectedSuggestion: 0,
       lastToken: null,
-      tokenStart: 0
+      tokenStart: 0,
     };
     this.onChange = this.onChange.bind(this);
     this.onKeyDown = this.onKeyDown.bind(this);
@@ -60,6 +79,7 @@ class AutosuggestTextarea extends ImmutablePureComponent {
     }
 
     // auto-resize textarea
+    e.target.style.height = 'auto';
     e.target.style.height = `${e.target.scrollHeight}px`;
 
     this.props.onChange(e);
@@ -125,7 +145,8 @@ class AutosuggestTextarea extends ImmutablePureComponent {
     }, 100);
   }
 
-  onSuggestionClick (suggestion, e) {
+  onSuggestionClick (e) {
+    const suggestion = Number(e.currentTarget.getAttribute('data-index'));
     e.preventDefault();
     this.props.onSuggestionSelected(this.state.tokenStart, this.state.lastToken, suggestion);
     this.textarea.focus();
@@ -143,7 +164,7 @@ class AutosuggestTextarea extends ImmutablePureComponent {
 
   onPaste (e) {
     if (e.clipboardData && e.clipboardData.files.length === 1) {
-      this.props.onPaste(e.clipboardData.files)
+      this.props.onPaste(e.clipboardData.files);
       e.preventDefault();
     }
   }
@@ -153,7 +174,7 @@ class AutosuggestTextarea extends ImmutablePureComponent {
   }
 
   render () {
-    const { value, suggestions, disabled, placeholder, onKeyUp } = this.props;
+    const { value, suggestions, disabled, placeholder, onKeyUp, autoFocus } = this.props;
     const { suggestionsHidden, selectedSuggestion } = this.state;
     const style = { direction: 'ltr' };
 
@@ -168,7 +189,7 @@ class AutosuggestTextarea extends ImmutablePureComponent {
           className='autosuggest-textarea__textarea'
           disabled={disabled}
           placeholder={placeholder}
-          autoFocus={true}
+          autoFocus={autoFocus}
           value={value}
           onChange={this.onChange}
           onKeyDown={this.onKeyDown}
@@ -178,14 +199,15 @@ class AutosuggestTextarea extends ImmutablePureComponent {
           style={style}
         />
 
-        <div style={{ display: (suggestions.size > 0 && !suggestionsHidden) ? 'block' : 'none' }} className='autosuggest-textarea__suggestions'>
+        <div className={`autosuggest-textarea__suggestions ${suggestionsHidden || suggestions.isEmpty() ? '' : 'autosuggest-textarea__suggestions--visible'}`}>
           {suggestions.map((suggestion, i) => (
             <div
               role='button'
               tabIndex='0'
               key={suggestion}
+              data-index={suggestion}
               className={`autosuggest-textarea__suggestions__item ${i === selectedSuggestion ? 'selected' : ''}`}
-              onClick={this.onSuggestionClick.bind(this, suggestion)}>
+              onClick={this.onSuggestionClick}>
               <AutosuggestAccountContainer id={suggestion} />
             </div>
           ))}
@@ -194,20 +216,6 @@ class AutosuggestTextarea extends ImmutablePureComponent {
     );
   }
 
-};
-
-AutosuggestTextarea.propTypes = {
-  value: PropTypes.string,
-  suggestions: ImmutablePropTypes.list,
-  disabled: PropTypes.bool,
-  placeholder: PropTypes.string,
-  onSuggestionSelected: PropTypes.func.isRequired,
-  onSuggestionsClearRequested: PropTypes.func.isRequired,
-  onSuggestionsFetchRequested: PropTypes.func.isRequired,
-  onChange: PropTypes.func.isRequired,
-  onKeyUp: PropTypes.func,
-  onKeyDown: PropTypes.func,
-  onPaste: PropTypes.func.isRequired,
-};
+}
 
 export default AutosuggestTextarea;

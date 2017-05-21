@@ -6,10 +6,19 @@ import ColumnCollapsable from '../../../components/column_collapsable';
 import SettingToggle from './setting_toggle';
 
 const messages = defineMessages({
-  settings: { id: 'notifications.settings', defaultMessage: 'Column settings' }
+  settings: { id: 'notifications.settings', defaultMessage: 'Column settings' },
 });
 
 class ColumnSettings extends React.PureComponent {
+
+  static propTypes = {
+    settings: ImmutablePropTypes.map.isRequired,
+    onChange: PropTypes.func.isRequired,
+    onSave: PropTypes.func.isRequired,
+    intl: PropTypes.shape({
+      formatMessage: PropTypes.func.isRequired,
+    }).isRequired,
+  };
 
   render () {
     const { settings, intl, onChange, onSave } = this.props;
@@ -58,14 +67,5 @@ class ColumnSettings extends React.PureComponent {
   }
 
 }
-
-ColumnSettings.propTypes = {
-  settings: ImmutablePropTypes.map.isRequired,
-  onChange: PropTypes.func.isRequired,
-  onSave: PropTypes.func.isRequired,
-  intl: PropTypes.shape({
-    formatMessage: PropTypes.func.isRequired
-  }).isRequired
-};
 
 export default injectIntl(ColumnSettings);

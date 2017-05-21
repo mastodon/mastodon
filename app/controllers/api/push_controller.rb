@@ -2,36 +2,66 @@
 
 class Api::PushController < ApiController
   def update
-    mode          = params['hub.mode']
-    topic         = params['hub.topic']
-    callback      = params['hub.callback']
-    lease_seconds = params['hub.lease_seconds']
-    secret        = params['hub.secret']
-
-    case mode
-    when 'subscribe'
-      response, status = Pubsubhubbub::SubscribeService.new.call(topic_to_account(topic), callback, secret, lease_seconds)
-    when 'unsubscribe'
-      response, status = Pubsubhubbub::UnsubscribeService.new.call(topic_to_account(topic), callback)
-    else
-      response = "Unknown mode: #{mode}"
-      status   = 422
-    end
-
+    response, status = process_push_request
     render plain: response, status: status
   end
 
   private
 
-  def topic_to_account(topic_url)
-    return if topic_url.blank?
+  def process_push_request
+    case hub_mode
+    when 'subscribe'
+      Pubsubhubbub::SubscribeService.new.call(account_from_topic, hub_callback, hub_secret, hub_lease_seconds)
+    when 'unsubscribe'
+      Pubsubhubbub::UnsubscribeService.new.call(account_from_topic, hub_callback)
+    else
+      ["Unknown mode: #{hub_mode}", 422]
+    end
+  end
 
-    uri    = Addressable::URI.parse(topic_url).normalize
-    params = Rails.application.routes.recognize_path(uri.path)
-    domain = uri.host + (uri.port ? ":#{uri.port}" : '')
+  def hub_mode
+    params['hub.mode']
+  end
 
-    return unless TagManager.instance.web_domain?(domain) && params[:controller] == 'accounts' && params[:action] == 'show' && params[:format] == 'atom'
+  def hub_topic
+    params['hub.topic']
+  end
 
-    Account.find_local(params[:username])
+  def hub_callback
+    params['hub.callback']
+  end
+
+  def hub_lease_seconds
+    params['hub.lease_seconds']
+  end
+
+  def hub_secret
+    params['hub.secret']
+  end
+
+  def account_from_topic
+    if hub_topic.present? && local_domain? && account_feed_path?
+      Account.find_local(hub_topic_params[:username])
+    end
+  end
+
+  def hub_topic_params
+    @_hub_topic_params ||= Rails.application.routes.recognize_path(hub_topic_uri.path)
+  end
+
+  def hub_topic_uri
+    @_hub_topic_uri ||= Addressable::URI.parse(hub_topic).normalize
+  end
+
+  def local_domain?
+    TagManager.instance.web_domain?(hub_topic_domain)
+  end
+
+  def hub_topic_domain
+    hub_topic_uri.host + (hub_topic_uri.port ? ":#{hub_topic_uri.port}" : '')
+  end
+
+  def account_feed_path?
+    hub_topic_params[:controller] == 'accounts' && hub_topic_params[:action] == 'show' && hub_topic_params[:format] == 'atom'
   end
 end

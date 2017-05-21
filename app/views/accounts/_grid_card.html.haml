@@ -4,5 +4,5 @@
     .name
       = link_to TagManager.instance.url_for(account) do
         %span.display_name.emojify= display_name(account)
-        %span.username= "@#{account.acct}"
+        %span.username @#{account.acct}
   %p.note.emojify= truncate(strip_tags(account.note), length: 150)

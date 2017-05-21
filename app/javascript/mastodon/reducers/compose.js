@@ -21,7 +21,7 @@ import {
   COMPOSE_SPOILER_TEXT_CHANGE,
   COMPOSE_VISIBILITY_CHANGE,
   COMPOSE_LISTABILITY_CHANGE,
-  COMPOSE_EMOJI_INSERT
+  COMPOSE_EMOJI_INSERT,
 } from '../actions/compose';
 import { TIMELINE_DELETE } from '../actions/timelines';
 import { STORE_HYDRATE } from '../actions/store';
@@ -47,7 +47,7 @@ const initialState = Immutable.Map({
   me: null,
   default_privacy: 'public',
   resetFileKey: Math.floor((Math.random() * 0x10000)),
-  idempotencyKey: null
+  idempotencyKey: null,
 });
 
 function statusToTextMentions(state, status) {

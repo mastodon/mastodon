@@ -24,15 +24,15 @@ describe LanguageDetector do
     end
 
     describe 'when language can\'t be detected' do
-      it 'confirm language engine cant detect' do
-        result = CLD.detect_language('')
-        expect(result[:reliable]).to be false
+      it 'uses default locale when sent an empty document' do
+        result = described_class.new('').to_iso_s
+        expect(result).to eq :en
       end
 
       describe 'because of a URL' do
         it 'uses default locale when sent just a URL' do
           string = 'http://example.com/media/2kFTgOJLXhQf0g2nKB4'
-          cld_result = CLD.detect_language(string)[:code]
+          cld_result = CLD3::NNetLanguageIdentifier.new(0, 2048).find_language(string)
           expect(cld_result).not_to eq :en
 
           result = described_class.new(string).to_iso_s
@@ -43,16 +43,14 @@ describe LanguageDetector do
 
       describe 'with an account' do
         it 'uses the account locale when present' do
-          user    = double(:user, locale: 'fr')
-          account = double(:account, user: user)
+          account = double(user_locale: 'fr')
           result  = described_class.new('', account).to_iso_s
 
           expect(result).to eq :fr
         end
 
         it 'uses default locale when account is present but has no locale' do
-          user    = double(:user, locale: nil)
-          account = double(:accunt, user: user)
+          account = double(user_locale: nil)
           result  = described_class.new('', account).to_iso_s
 
           expect(result).to eq :en

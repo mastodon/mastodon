@@ -1,4 +1,5 @@
 import React from 'react';
+import ImmutablePropTypes from 'react-immutable-proptypes';
 import { connect } from 'react-redux';
 import Warning from '../components/warning';
 import { createSelector } from 'reselect';
@@ -19,7 +20,7 @@ const mapStateToProps = state => {
   return {
     needsLeakWarning: (state.getIn(['compose', 'privacy']) === 'private' || state.getIn(['compose', 'privacy']) === 'direct') && mentionedUsernames !== null,
     mentionedDomains: mentionedUsernamesWithDomains,
-    needsLockWarning: state.getIn(['compose', 'privacy']) === 'private' && !state.getIn(['accounts', state.getIn(['meta', 'me']), 'locked'])
+    needsLockWarning: state.getIn(['compose', 'privacy']) === 'private' && !state.getIn(['accounts', state.getIn(['meta', 'me']), 'locked']),
   };
 };
 
@@ -44,7 +45,7 @@ const WarningWrapper = ({ needsLeakWarning, needsLockWarning, mentionedDomains }
 WarningWrapper.propTypes = {
   needsLeakWarning: PropTypes.bool,
   needsLockWarning: PropTypes.bool,
-  mentionedDomains: PropTypes.array.isRequired,
+  mentionedDomains: ImmutablePropTypes.orderedSet.isRequired,
 };
 
 export default connect(mapStateToProps)(WarningWrapper);

@@ -9,13 +9,13 @@ import {
   TIMELINE_EXPAND_FAIL,
   TIMELINE_SCROLL_TOP,
   TIMELINE_CONNECT,
-  TIMELINE_DISCONNECT
+  TIMELINE_DISCONNECT,
 } from '../actions/timelines';
 import {
   REBLOG_SUCCESS,
   UNREBLOG_SUCCESS,
   FAVOURITE_SUCCESS,
-  UNFAVOURITE_SUCCESS
+  UNFAVOURITE_SUCCESS,
 } from '../actions/interactions';
 import {
   ACCOUNT_TIMELINE_FETCH_REQUEST,
@@ -24,11 +24,17 @@ import {
   ACCOUNT_TIMELINE_EXPAND_REQUEST,
   ACCOUNT_TIMELINE_EXPAND_SUCCESS,
   ACCOUNT_TIMELINE_EXPAND_FAIL,
+  ACCOUNT_MEDIA_TIMELINE_FETCH_REQUEST,
+  ACCOUNT_MEDIA_TIMELINE_FETCH_SUCCESS,
+  ACCOUNT_MEDIA_TIMELINE_FETCH_FAIL,
+  ACCOUNT_MEDIA_TIMELINE_EXPAND_REQUEST,
+  ACCOUNT_MEDIA_TIMELINE_EXPAND_SUCCESS,
+  ACCOUNT_MEDIA_TIMELINE_EXPAND_FAIL,
   ACCOUNT_BLOCK_SUCCESS,
-  ACCOUNT_MUTE_SUCCESS
+  ACCOUNT_MUTE_SUCCESS,
 } from '../actions/accounts';
 import {
-  CONTEXT_FETCH_SUCCESS
+  CONTEXT_FETCH_SUCCESS,
 } from '../actions/statuses';
 import Immutable from 'immutable';
 
@@ -41,7 +47,7 @@ const initialState = Immutable.Map({
     loaded: false,
     top: true,
     unread: 0,
-    items: Immutable.List()
+    items: Immutable.List(),
   }),
 
   public: Immutable.Map({
@@ -52,7 +58,7 @@ const initialState = Immutable.Map({
     loaded: false,
     top: true,
     unread: 0,
-    items: Immutable.List()
+    items: Immutable.List(),
   }),
 
   community: Immutable.Map({
@@ -64,7 +70,7 @@ const initialState = Immutable.Map({
     loaded: false,
     top: true,
     unread: 0,
-    items: Immutable.List()
+    items: Immutable.List(),
   }),
 
   tag: Immutable.Map({
@@ -75,12 +81,13 @@ const initialState = Immutable.Map({
     loaded: false,
     top: true,
     unread: 0,
-    items: Immutable.List()
+    items: Immutable.List(),
   }),
 
   accounts_timelines: Immutable.Map(),
+  accounts_media_timelines: Immutable.Map(),
   ancestors: Immutable.Map(),
-  descendants: Immutable.Map()
+  descendants: Immutable.Map(),
 });
 
 const normalizeStatus = (state, status) => {
@@ -148,6 +155,20 @@ const normalizeAccountTimeline = (state, accountId, statuses, replace = false) =
     .update('items', Immutable.List(), list => (replace ? ids : ids.concat(list))));
 };
 
+const normalizeAccountMediaTimeline = (state, accountId, statuses, next) => {
+  let ids = Immutable.List();
+
+  statuses.forEach((status, i) => {
+    state = normalizeStatus(state, status);
+    ids   = ids.set(i, status.get('id'));
+  });
+
+  return state.updateIn(['accounts_media_timelines', accountId], Immutable.Map(), map => map
+    .set('isLoading', false)
+    .set('next', next)
+    .update('items', Immutable.List(), list => ids.concat(list)));
+};
+
 const appendNormalizedAccountTimeline = (state, accountId, statuses, next) => {
   let moreIds = Immutable.List([]);
 
@@ -157,6 +178,20 @@ const appendNormalizedAccountTimeline = (state, accountId, statuses, next) => {
   });
 
   return state.updateIn(['accounts_timelines', accountId], Immutable.Map(), map => map
+    .set('isLoading', false)
+    .set('next', next)
+    .update('items', list => list.concat(moreIds)));
+};
+
+const appendNormalizedAccountMediaTimeline = (state, accountId, statuses, next) => {
+  let moreIds = Immutable.List([]);
+
+  statuses.forEach((status, i) => {
+    state   = normalizeStatus(state, status);
+    moreIds = moreIds.set(i, status.get('id'));
+  });
+
+  return state.updateIn(['accounts_media_timelines', accountId], Immutable.Map(), map => map
     .set('isLoading', false)
     .set('next', next)
     .update('items', list => list.concat(moreIds)));
@@ -205,6 +240,7 @@ const deleteStatus = (state, id, accountId, references, reblogOf) => {
 
   // Remove references from account timelines
   state = state.updateIn(['accounts_timelines', accountId, 'items'], Immutable.List([]), list => list.filterNot(item => item === id));
+  state = state.updateIn(['accounts_media_timelines', accountId, 'items'], Immutable.List([]), list => list.filterNot(item => item === id));
 
   // Remove references from context
   state.getIn(['descendants', id], Immutable.List()).forEach(descendantId => {
@@ -302,6 +338,16 @@ export default function timelines(state = initialState, action) {
     return normalizeAccountTimeline(state, action.id, Immutable.fromJS(action.statuses), action.replace);
   case ACCOUNT_TIMELINE_EXPAND_SUCCESS:
     return appendNormalizedAccountTimeline(state, action.id, Immutable.fromJS(action.statuses), action.next);
+  case ACCOUNT_MEDIA_TIMELINE_FETCH_REQUEST:
+  case ACCOUNT_MEDIA_TIMELINE_EXPAND_REQUEST:
+    return state.updateIn(['accounts_media_timelines', action.id], Immutable.Map(), map => map.set('isLoading', true));
+  case ACCOUNT_MEDIA_TIMELINE_FETCH_FAIL:
+  case ACCOUNT_MEDIA_TIMELINE_EXPAND_FAIL:
+    return state.updateIn(['accounts_media_timelines', action.id], Immutable.Map(), map => map.set('isLoading', false));
+  case ACCOUNT_MEDIA_TIMELINE_FETCH_SUCCESS:
+    return normalizeAccountMediaTimeline(state, action.id, Immutable.fromJS(action.statuses), action.next);
+  case ACCOUNT_MEDIA_TIMELINE_EXPAND_SUCCESS:
+    return appendNormalizedAccountMediaTimeline(state, action.id, Immutable.fromJS(action.statuses), action.next);
   case ACCOUNT_BLOCK_SUCCESS:
   case ACCOUNT_MUTE_SUCCESS:
     return filterTimelines(state, action.relationship, action.statuses);

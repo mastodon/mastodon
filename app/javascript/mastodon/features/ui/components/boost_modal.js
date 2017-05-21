@@ -11,10 +11,21 @@ import DisplayName from '../../../components/display_name';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
 const messages = defineMessages({
-  reblog: { id: 'status.reblog', defaultMessage: 'Boost' }
+  reblog: { id: 'status.reblog', defaultMessage: 'Boost' },
 });
 
 class BoostModal extends ImmutablePureComponent {
+
+  static contextTypes = {
+    router: PropTypes.object,
+  };
+
+  static propTypes = {
+    status: ImmutablePropTypes.map.isRequired,
+    onReblog: PropTypes.func.isRequired,
+    onClose: PropTypes.func.isRequired,
+    intl: PropTypes.object.isRequired,
+  };
 
   constructor (props, context) {
     super(props, context);
@@ -22,12 +33,12 @@ class BoostModal extends ImmutablePureComponent {
     this.handleAccountClick = this.handleAccountClick.bind(this);
   }
 
-  handleReblog() {
+  handleReblog = () => {
     this.props.onReblog(this.props.status);
     this.props.onClose();
   }
 
-  handleAccountClick (e) {
+  handleAccountClick = (e) => {
     if (e.button === 0) {
       e.preventDefault();
       this.props.onClose();
@@ -69,16 +80,5 @@ class BoostModal extends ImmutablePureComponent {
   }
 
 }
-
-BoostModal.contextTypes = {
-  router: PropTypes.object
-};
-
-BoostModal.propTypes = {
-  status: ImmutablePropTypes.map.isRequired,
-  onReblog: PropTypes.func.isRequired,
-  onClose: PropTypes.func.isRequired,
-  intl: PropTypes.object.isRequired
-};
 
 export default injectIntl(BoostModal);

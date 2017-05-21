@@ -2,7 +2,7 @@
   .wrapper {
     max-width: 600px;
     margin: 0 auto;
-    color: $color3;
+    color: $ui-primary-color;
     padding-top: 50px;
     padding-bottom: 50px;
 
@@ -12,10 +12,10 @@
   }
 
   h1 {
-    font: 46px/52px 'Roboto', sans-serif;
+    font: 46px/52px 'mastodon-font-sans-serif', sans-serif;
     font-weight: 600;
     margin-bottom: 20px;
-    color: $color4;
+    color: $ui-highlight-color;
     padding: 20px 0;
 
     img {
@@ -27,24 +27,25 @@
   }
 
   h2 {
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'mastodon-font-display', sans-serif;
     font-size: 24px;
     line-height: 28px;
     font-weight: 400;
     margin-bottom: 20px;
-    color: $color5;
+    color: $primary-text-color;
   }
 
   h3 {
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'mastodon-font-display', sans-serif;
     font-size: 20px;
     line-height: 28px;
     font-weight: 400;
     margin-bottom: 20px;
-    color: $color2;
+    color: $ui-secondary-color;
   }
 
-  ul, ol {
+  ul,
+  ol {
     list-style: inherit;
     margin-left: 20px;
 
@@ -57,33 +58,35 @@
     }
   }
 
-  li > ol, li > ul {
+  li > ol,
+  li > ul {
     margin-top: 20px;
   }
 
-  p, li {
-    font: 16px/28px 'Montserrat', sans-serif;
+  p,
+  li {
+    font: 16px/28px 'mastodon-font-sans-serif', sans-serif;
     font-weight: 400;
     margin-bottom: 12px;
 
     a {
-      color: $color4;
+      color: $ui-highlight-color;
       text-decoration: underline;
     }
   }
 
   em {
     display: inline-block;
-    padding: 7px 7px 5px 7px;
+    padding: 7px 7px 5px;
     margin: 0 2px;
-    background: $color3;
-    color: $color1;
-    font: 16px/16px 'Montserrat', sans-serif;
+    background: $ui-primary-color;
+    color: $ui-base-color;
+    font: 16px/16px 'mastodon-font-sans-serif', sans-serif;
     font-weight: 300;
   }
 
   .screenshot {
-    box-shadow: 0 0 15px rgba($color8, 0.4);
+    box-shadow: 0 0 15px rgba($base-shadow-color, 0.4);
     margin-bottom: 26px;
 
     img {
@@ -103,7 +106,7 @@
       line-height: 36px;
 
       a {
-        color: $color3;
+        color: $ui-primary-color;
         text-decoration: underline;
       }
     }
@@ -124,17 +127,18 @@
   margin: 20px 0;
   display: flex;
   justify-content: space-between;
-  border-top: 1px solid lighten($color1, 10%);
-  border-bottom: 1px solid lighten($color1, 10%);
+  border-top: 1px solid lighten($ui-base-color, 10%);
+  border-bottom: 1px solid lighten($ui-base-color, 10%);
   padding-right: 14px;
 
   .section {
     flex: 1 0 0;
     padding: 14px;
     text-align: right;
-    font: 16px/28px 'Montserrat', sans-serif;
+    font: 16px/28px 'mastodon-font-sans-serif', sans-serif;
 
-    span, strong {
+    span,
+    strong {
       display: block;
     }
 
@@ -142,7 +146,7 @@
       font-size: 16px;
 
       &:last-child {
-        color: $color2;
+        color: $ui-secondary-color;
         font-size: 14px;
       }
     }
@@ -151,7 +155,7 @@
       font-weight: 500;
       font-size: 32px;
       line-height: 48px;
-      color: $color5;
+      color: $primary-text-color;
     }
   }
 
@@ -186,7 +190,7 @@
 
     a {
       display: block;
-      color: $color5;
+      color: $primary-text-color;
       text-decoration: none;
 
       &:hover {
@@ -198,7 +202,7 @@
 
     .username {
       display: block;
-      color: $color3;
+      color: $ui-primary-color;
     }
   }
 }
@@ -209,7 +213,7 @@
 
   strong {
     display: block;
-    color: $color5;
+    color: $primary-text-color;
     word-break: break-word;
   }
 }
@@ -227,14 +231,14 @@
   }
 
   .sidebar {
-    border-left: 1px solid lighten($color1, 10%);
+    border-left: 1px solid lighten($ui-base-color, 10%);
     width: 200px;
     flex: 0 0 auto;
   }
 
   .panel {
     .panel-header {
-      background: lighten($color1, 10%);
+      background: lighten($ui-base-color, 10%);
       padding: 7px 14px;
       text-transform: uppercase;
       font-size: 12px;
@@ -259,7 +263,7 @@
           a {
             display: block;
             padding: 7px 14px;
-            color: rgba($color5, 0.7);
+            color: rgba($primary-text-color, 0.7);
             text-decoration: none;
             transition: all 200ms linear;
 
@@ -268,17 +272,17 @@
             }
 
             &:hover {
-              color: $color5;
-              background-color: darken($color1, 5%);
+              color: $primary-text-color;
+              background-color: darken($ui-base-color, 5%);
               transition: all 100ms linear;
             }
 
             &.selected {
-              color: $color5;
-              background-color: $color4;
+              color: $primary-text-color;
+              background-color: $ui-highlight-color;
 
               &:hover {
-                background-color: lighten($color4, 5%);
+                background-color: lighten($ui-highlight-color, 5%);
               }
             }
           }
@@ -291,7 +295,7 @@
     flex-direction: column;
 
     .sidebar {
-      border: 1px solid lighten($color1, 10%);
+      border: 1px solid lighten($ui-base-color, 10%);
       width: auto;
     }
   }
@@ -333,13 +337,14 @@
     }
   }
 
-  .simple_form, .closed-registrations-message {
+  .simple_form,
+  .closed-registrations-message {
     width: 300px;
     flex: 0 0 auto;
-    background: rgba(darken($color1, 7%), 0.5);
+    background: rgba(darken($ui-base-color, 7%), 0.5);
     padding: 14px;
     border-radius: 4px;
-    box-shadow: 0 0 15px rgba($color8, 0.4);
+    box-shadow: 0 0 15px rgba($base-shadow-color, 0.4);
 
     .actions {
       margin-bottom: 0;
@@ -349,7 +354,7 @@
       text-align: center;
 
       a {
-        color: $color2;
+        color: $ui-secondary-color;
       }
     }
   }
@@ -359,7 +364,8 @@
       display: none;
     }
 
-    .simple_form, .closed-registrations-message {
+    .simple_form,
+    .closed-registrations-message {
       flex: auto;
     }
   }

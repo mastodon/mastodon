@@ -1,5 +1,6 @@
 import ar from './ar.json';
 import en from './en.json';
+import ca from './ca.json';
 import de from './de.json';
 import es from './es.json';
 import fa from './fa.json';
@@ -23,10 +24,12 @@ import zh_hk from './zh-HK.json';
 import zh_cn from './zh-CN.json';
 import bg from './bg.json';
 import id from './id.json';
+import tr from './tr.json';
 
 const locales = {
   ar,
   en,
+  ca,
   de,
   es,
   fa,
@@ -50,6 +53,7 @@ const locales = {
   'zh-CN': zh_cn,
   bg,
   id,
+  tr,
 };
 
 export default function getMessagesForLocale(locale) {

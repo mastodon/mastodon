@@ -3,17 +3,19 @@ he:
   simple_form:
     hints:
       defaults:
-        avatar: '&rlm;PNG, GIF או JPG. מקסימום 2MB. גודל התמונה יוקטן ל-120x120px'
-        display_name: '&rlm;מקסימום 30 תווים'
-        header: '&rlm;PNG, GIF או JPG. מקסימום 2MB. גודל התמונה יוקטן 700x335px'
-        locked: '&rlm;מחייב אישור עוקבים באופן ידני. פרטיות ההודעות תהיה עוקבים-בלבד אלא אם יצוין אחרת'
-        note: '&rlm;מקסימום 160 תווים'
+        avatar: 'PNG, GIF או JPG. מקסימום 2MB. גודל התמונה יוקטן ל-120x120px'
+        display_name:
+            one: 'נותרה אות<span class="name-counter">אחת</span>'
+            other: 'נותרו<span class="name-counter">%{count}</span> אותיות'
+        header: 'PNG, GIF או JPG. מקסימום 2MB. גודל התמונה יוקטן 700x335px'
+        locked: 'מחייב אישור עוקבים באופן ידני. פרטיות ההודעות תהיה עוקבים-בלבד אלא אם יצוין אחרת'
+        note:
+            one: 'נותרה אות<span class="note-counter">אחת</span>'
+            other: 'נותרו <span class="note-counter">%{count}</span> אותיות'
       imports:
-        data: '&rlm;קובץ CSV שיוצא משרת מסטודון אחר'
+        data: 'קובץ CSV שיוצא משרת מסטודון אחר'
       sessions:
-        otp: '&rlm;נא להקליד קוד אימות דו-שלבי ממכשירך או קוד אחזור גישה.'
-      user:
-        allowed_languages: אלו השפות שיהיה מותרות בצירי הזמן הציבוריים שלך. שפות שלא ייבחרו יפולטרו מעיני הקוראים.
+        otp: 'נא להקליד קוד אימות דו-שלבי ממכשירך או קוד אחזור גישה.'
     labels:
       defaults:
         avatar: תמונת פרופיל

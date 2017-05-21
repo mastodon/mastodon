@@ -5,7 +5,7 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
 import ReplyIndicatorContainer from '../containers/reply_indicator_container';
 import AutosuggestTextarea from '../../../components/autosuggest_textarea';
-import { debounce } from 'react-decoration';
+import { debounce } from 'lodash';
 import UploadButtonContainer from '../containers/upload_button_container';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import Toggle from 'react-toggle';
@@ -22,54 +22,69 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 const messages = defineMessages({
   placeholder: { id: 'compose_form.placeholder', defaultMessage: 'What is on your mind?' },
   spoiler_placeholder: { id: 'compose_form.spoiler_placeholder', defaultMessage: 'Content warning' },
-  publish: { id: 'compose_form.publish', defaultMessage: 'Toot' }
+  publish: { id: 'compose_form.publish', defaultMessage: 'Toot' },
+  publishLoud: { id: 'compose_form.publish_loud', defaultMessage: '{publish}!' },
 });
 
 class ComposeForm extends ImmutablePureComponent {
 
-  constructor (props, context) {
-    super(props, context);
-    this.handleChange = this.handleChange.bind(this);
-    this.handleKeyDown = this.handleKeyDown.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.onSuggestionsClearRequested = this.onSuggestionsClearRequested.bind(this);
-    this.onSuggestionsFetchRequested = this.onSuggestionsFetchRequested.bind(this);
-    this.onSuggestionSelected = this.onSuggestionSelected.bind(this);
-    this.handleChangeSpoilerText = this.handleChangeSpoilerText.bind(this);
-    this.setAutosuggestTextarea = this.setAutosuggestTextarea.bind(this);
-    this.handleEmojiPick = this.handleEmojiPick.bind(this);
-  }
+  static propTypes = {
+    intl: PropTypes.object.isRequired,
+    text: PropTypes.string.isRequired,
+    suggestion_token: PropTypes.string,
+    suggestions: ImmutablePropTypes.list,
+    spoiler: PropTypes.bool,
+    privacy: PropTypes.string,
+    spoiler_text: PropTypes.string,
+    focusDate: PropTypes.instanceOf(Date),
+    preselectDate: PropTypes.instanceOf(Date),
+    is_submitting: PropTypes.bool,
+    is_uploading: PropTypes.bool,
+    me: PropTypes.number,
+    onChange: PropTypes.func.isRequired,
+    onSubmit: PropTypes.func.isRequired,
+    onClearSuggestions: PropTypes.func.isRequired,
+    onFetchSuggestions: PropTypes.func.isRequired,
+    onSuggestionSelected: PropTypes.func.isRequired,
+    onChangeSpoilerText: PropTypes.func.isRequired,
+    onPaste: PropTypes.func.isRequired,
+    onPickEmoji: PropTypes.func.isRequired,
+    showSearch: PropTypes.bool,
+  };
 
-  handleChange (e) {
+  static defaultProps = {
+    showSearch: false,
+  };
+
+  handleChange = (e) => {
     this.props.onChange(e.target.value);
   }
 
-  handleKeyDown (e) {
+  handleKeyDown = (e) => {
     if (e.keyCode === 13 && (e.ctrlKey || e.metaKey)) {
       this.handleSubmit();
     }
   }
 
-  handleSubmit () {
+  handleSubmit = () => {
     this.autosuggestTextarea.reset();
     this.props.onSubmit();
   }
 
-  onSuggestionsClearRequested () {
+  onSuggestionsClearRequested = () => {
     this.props.onClearSuggestions();
   }
 
-  @debounce(500)
-  onSuggestionsFetchRequested (token) {
+  onSuggestionsFetchRequested = (token) => {
     this.props.onFetchSuggestions(token);
   }
 
-  onSuggestionSelected (tokenStart, token, value) {
+  onSuggestionSelected = (tokenStart, token, value) => {
     this._restoreCaret = null;
     this.props.onSuggestionSelected(tokenStart, token, value);
   }
 
-  handleChangeSpoilerText (e) {
+  handleChangeSpoilerText = (e) => {
     this.props.onChangeSpoilerText(e.target.value);
   }
 
@@ -108,18 +123,18 @@ class ComposeForm extends ImmutablePureComponent {
     }
   }
 
-  setAutosuggestTextarea (c) {
+  setAutosuggestTextarea = (c) => {
     this.autosuggestTextarea = c;
   }
 
-  handleEmojiPick (data) {
+  handleEmojiPick = (data) => {
     const position     = this.autosuggestTextarea.textarea.selectionStart;
     this._restoreCaret = position + data.shortname.length + 1;
     this.props.onPickEmoji(position, data);
   }
 
   render () {
-    const { intl, onPaste } = this.props;
+    const { intl, onPaste, showSearch } = this.props;
     const disabled = this.props.is_submitting;
     const text = [this.props.spoiler_text, this.props.text].join('');
 
@@ -129,7 +144,7 @@ class ComposeForm extends ImmutablePureComponent {
     if (this.props.privacy === 'private' || this.props.privacy === 'direct') {
       publishText = <span className='compose-form__publish-private'><i className='fa fa-lock' /> {intl.formatMessage(messages.publish)}</span>;
     } else {
-      publishText = intl.formatMessage(messages.publish) + (this.props.privacy !== 'unlisted' ? '!' : '');
+      publishText = this.props.privacy !== 'unlisted' ? intl.formatMessage(messages.publishLoud, { publish: intl.formatMessage(messages.publish) }) : intl.formatMessage(messages.publish);
     }
 
     return (
@@ -157,6 +172,7 @@ class ComposeForm extends ImmutablePureComponent {
             onSuggestionsClearRequested={this.onSuggestionsClearRequested}
             onSuggestionSelected={this.onSuggestionSelected}
             onPaste={onPaste}
+            autoFocus={!showSearch}
           />
 
           <EmojiPickerDropdown onPickEmoji={this.handleEmojiPick} />
@@ -176,7 +192,7 @@ class ComposeForm extends ImmutablePureComponent {
 
           <div className='compose-form__publish'>
             <div className='character-counter__wrapper'><CharacterCounter max={500} text={text} /></div>
-            <div className='compose-form__publish-button-wrapper'><Button text={publishText} onClick={this.handleSubmit} disabled={disabled || text.replace(/[\uD800-\uDBFF][\uDC00-\uDFFF]/g, "_").length > 500 || (text.length !==0 && text.trim().length === 0)} block /></div>
+            <div className='compose-form__publish-button-wrapper'><Button text={publishText} onClick={this.handleSubmit} disabled={disabled || this.props.is_uploading || text.replace(/[\uD800-\uDBFF][\uDC00-\uDFFF]/g, "_").length > 500 || (text.length !==0 && text.trim().length === 0)} block /></div>
           </div>
         </div>
       </div>
@@ -184,28 +200,5 @@ class ComposeForm extends ImmutablePureComponent {
   }
 
 }
-
-ComposeForm.propTypes = {
-  intl: PropTypes.object.isRequired,
-  text: PropTypes.string.isRequired,
-  suggestion_token: PropTypes.string,
-  suggestions: ImmutablePropTypes.list,
-  spoiler: PropTypes.bool,
-  privacy: PropTypes.string,
-  spoiler_text: PropTypes.string,
-  focusDate: PropTypes.instanceOf(Date),
-  preselectDate: PropTypes.instanceOf(Date),
-  is_submitting: PropTypes.bool,
-  is_uploading: PropTypes.bool,
-  me: PropTypes.number,
-  onChange: PropTypes.func.isRequired,
-  onSubmit: PropTypes.func.isRequired,
-  onClearSuggestions: PropTypes.func.isRequired,
-  onFetchSuggestions: PropTypes.func.isRequired,
-  onSuggestionSelected: PropTypes.func.isRequired,
-  onChangeSpoilerText: PropTypes.func.isRequired,
-  onPaste: PropTypes.func.isRequired,
-  onPickEmoji: PropTypes.func.isRequired
-};
 
 export default injectIntl(ComposeForm);

@@ -1,4 +1,4 @@
-import api, { getLinks } from '../api'
+import api, { getLinks } from '../api';
 import Immutable from 'immutable';
 
 export const ACCOUNT_FETCH_REQUEST = 'ACCOUNT_FETCH_REQUEST';
@@ -36,6 +36,14 @@ export const ACCOUNT_TIMELINE_FETCH_FAIL    = 'ACCOUNT_TIMELINE_FETCH_FAIL';
 export const ACCOUNT_TIMELINE_EXPAND_REQUEST = 'ACCOUNT_TIMELINE_EXPAND_REQUEST';
 export const ACCOUNT_TIMELINE_EXPAND_SUCCESS = 'ACCOUNT_TIMELINE_EXPAND_SUCCESS';
 export const ACCOUNT_TIMELINE_EXPAND_FAIL    = 'ACCOUNT_TIMELINE_EXPAND_FAIL';
+
+export const ACCOUNT_MEDIA_TIMELINE_FETCH_REQUEST = 'ACCOUNT_MEDIA_TIMELINE_FETCH_REQUEST';
+export const ACCOUNT_MEDIA_TIMELINE_FETCH_SUCCESS = 'ACCOUNT_MEDIA_TIMELINE_FETCH_SUCCESS';
+export const ACCOUNT_MEDIA_TIMELINE_FETCH_FAIL    = 'ACCOUNT_MEDIA_TIMELINE_FETCH_FAIL';
+
+export const ACCOUNT_MEDIA_TIMELINE_EXPAND_REQUEST = 'ACCOUNT_MEDIA_TIMELINE_EXPAND_REQUEST';
+export const ACCOUNT_MEDIA_TIMELINE_EXPAND_SUCCESS = 'ACCOUNT_MEDIA_TIMELINE_EXPAND_SUCCESS';
+export const ACCOUNT_MEDIA_TIMELINE_EXPAND_FAIL    = 'ACCOUNT_MEDIA_TIMELINE_EXPAND_FAIL';
 
 export const FOLLOWERS_FETCH_REQUEST = 'FOLLOWERS_FETCH_REQUEST';
 export const FOLLOWERS_FETCH_SUCCESS = 'FOLLOWERS_FETCH_SUCCESS';
@@ -96,20 +104,43 @@ export function fetchAccountTimeline(id, replace = false) {
     const ids      = getState().getIn(['timelines', 'accounts_timelines', id, 'items'], Immutable.List());
     const newestId = ids.size > 0 ? ids.first() : null;
 
-    let params = '';
+    let params = {};
     let skipLoading = false;
 
     if (newestId !== null && !replace) {
-      params      = `?since_id=${newestId}`;
+      params.since_id = newestId;
       skipLoading = true;
     }
 
     dispatch(fetchAccountTimelineRequest(id, skipLoading));
 
-    api(getState).get(`/api/v1/accounts/${id}/statuses${params}`).then(response => {
+    api(getState).get(`/api/v1/accounts/${id}/statuses`, { params }).then(response => {
       dispatch(fetchAccountTimelineSuccess(id, response.data, replace, skipLoading));
     }).catch(error => {
       dispatch(fetchAccountTimelineFail(id, error, skipLoading));
+    });
+  };
+};
+
+export function fetchAccountMediaTimeline(id, replace = false) {
+  return (dispatch, getState) => {
+    const ids      = getState().getIn(['timelines', 'accounts_media_timelines', id, 'items'], Immutable.List());
+    const newestId = ids.size > 0 ? ids.first() : null;
+
+    let params = { only_media: 'true', limit: 12 };
+    let skipLoading = false;
+
+    if (newestId !== null && !replace) {
+      params.since_id = newestId;
+      skipLoading = true;
+    }
+
+    dispatch(fetchAccountMediaTimelineRequest(id, skipLoading));
+
+    api(getState).get(`/api/v1/accounts/${id}/statuses`, { params }).then(response => {
+      dispatch(fetchAccountMediaTimelineSuccess(id, response.data, replace, skipLoading));
+    }).catch(error => {
+      dispatch(fetchAccountMediaTimelineFail(id, error, skipLoading));
     });
   };
 };
@@ -123,8 +154,8 @@ export function expandAccountTimeline(id) {
     api(getState).get(`/api/v1/accounts/${id}/statuses`, {
       params: {
         limit: 10,
-        max_id: lastId
-      }
+        max_id: lastId,
+      },
     }).then(response => {
       const next = getLinks(response).refs.find(link => link.rel === 'next');
       dispatch(expandAccountTimelineSuccess(id, response.data, next));
@@ -134,17 +165,38 @@ export function expandAccountTimeline(id) {
   };
 };
 
+export function expandAccountMediaTimeline(id) {
+  return (dispatch, getState) => {
+    const lastId = getState().getIn(['timelines', 'accounts_media_timelines', id, 'items'], Immutable.List()).last();
+
+    dispatch(expandAccountMediaTimelineRequest(id));
+
+    api(getState).get(`/api/v1/accounts/${id}/statuses`, {
+      params: {
+        limit: 12,
+        only_media: 'true',
+        max_id: lastId,
+      },
+    }).then(response => {
+      const next = getLinks(response).refs.find(link => link.rel === 'next');
+      dispatch(expandAccountMediaTimelineSuccess(id, response.data, next));
+    }).catch(error => {
+      dispatch(expandAccountMediaTimelineFail(id, error));
+    });
+  };
+};
+
 export function fetchAccountRequest(id) {
   return {
     type: ACCOUNT_FETCH_REQUEST,
-    id
+    id,
   };
 };
 
 export function fetchAccountSuccess(account) {
   return {
     type: ACCOUNT_FETCH_SUCCESS,
-    account
+    account,
   };
 };
 
@@ -153,7 +205,7 @@ export function fetchAccountFail(id, error) {
     type: ACCOUNT_FETCH_FAIL,
     id,
     error,
-    skipAlert: true
+    skipAlert: true,
   };
 };
 
@@ -178,48 +230,48 @@ export function unfollowAccount(id) {
     }).catch(error => {
       dispatch(unfollowAccountFail(error));
     });
-  }
+  };
 };
 
 export function followAccountRequest(id) {
   return {
     type: ACCOUNT_FOLLOW_REQUEST,
-    id
+    id,
   };
 };
 
 export function followAccountSuccess(relationship) {
   return {
     type: ACCOUNT_FOLLOW_SUCCESS,
-    relationship
+    relationship,
   };
 };
 
 export function followAccountFail(error) {
   return {
     type: ACCOUNT_FOLLOW_FAIL,
-    error
+    error,
   };
 };
 
 export function unfollowAccountRequest(id) {
   return {
     type: ACCOUNT_UNFOLLOW_REQUEST,
-    id
+    id,
   };
 };
 
 export function unfollowAccountSuccess(relationship) {
   return {
     type: ACCOUNT_UNFOLLOW_SUCCESS,
-    relationship
+    relationship,
   };
 };
 
 export function unfollowAccountFail(error) {
   return {
     type: ACCOUNT_UNFOLLOW_FAIL,
-    error
+    error,
   };
 };
 
@@ -227,7 +279,7 @@ export function fetchAccountTimelineRequest(id, skipLoading) {
   return {
     type: ACCOUNT_TIMELINE_FETCH_REQUEST,
     id,
-    skipLoading
+    skipLoading,
   };
 };
 
@@ -237,7 +289,7 @@ export function fetchAccountTimelineSuccess(id, statuses, replace, skipLoading) 
     id,
     statuses,
     replace,
-    skipLoading
+    skipLoading,
   };
 };
 
@@ -247,14 +299,42 @@ export function fetchAccountTimelineFail(id, error, skipLoading) {
     id,
     error,
     skipLoading,
-    skipAlert: error.response.status === 404
+    skipAlert: error.response.status === 404,
+  };
+};
+
+export function fetchAccountMediaTimelineRequest(id, skipLoading) {
+  return {
+    type: ACCOUNT_MEDIA_TIMELINE_FETCH_REQUEST,
+    id,
+    skipLoading,
+  };
+};
+
+export function fetchAccountMediaTimelineSuccess(id, statuses, replace, skipLoading) {
+  return {
+    type: ACCOUNT_MEDIA_TIMELINE_FETCH_SUCCESS,
+    id,
+    statuses,
+    replace,
+    skipLoading,
+  };
+};
+
+export function fetchAccountMediaTimelineFail(id, error, skipLoading) {
+  return {
+    type: ACCOUNT_MEDIA_TIMELINE_FETCH_FAIL,
+    id,
+    error,
+    skipLoading,
+    skipAlert: error.response.status === 404,
   };
 };
 
 export function expandAccountTimelineRequest(id) {
   return {
     type: ACCOUNT_TIMELINE_EXPAND_REQUEST,
-    id
+    id,
   };
 };
 
@@ -263,7 +343,7 @@ export function expandAccountTimelineSuccess(id, statuses, next) {
     type: ACCOUNT_TIMELINE_EXPAND_SUCCESS,
     id,
     statuses,
-    next
+    next,
   };
 };
 
@@ -271,7 +351,31 @@ export function expandAccountTimelineFail(id, error) {
   return {
     type: ACCOUNT_TIMELINE_EXPAND_FAIL,
     id,
-    error
+    error,
+  };
+};
+
+export function expandAccountMediaTimelineRequest(id) {
+  return {
+    type: ACCOUNT_MEDIA_TIMELINE_EXPAND_REQUEST,
+    id,
+  };
+};
+
+export function expandAccountMediaTimelineSuccess(id, statuses, next) {
+  return {
+    type: ACCOUNT_MEDIA_TIMELINE_EXPAND_SUCCESS,
+    id,
+    statuses,
+    next,
+  };
+};
+
+export function expandAccountMediaTimelineFail(id, error) {
+  return {
+    type: ACCOUNT_MEDIA_TIMELINE_EXPAND_FAIL,
+    id,
+    error,
   };
 };
 
@@ -303,7 +407,7 @@ export function unblockAccount(id) {
 export function blockAccountRequest(id) {
   return {
     type: ACCOUNT_BLOCK_REQUEST,
-    id
+    id,
   };
 };
 
@@ -311,35 +415,35 @@ export function blockAccountSuccess(relationship, statuses) {
   return {
     type: ACCOUNT_BLOCK_SUCCESS,
     relationship,
-    statuses
+    statuses,
   };
 };
 
 export function blockAccountFail(error) {
   return {
     type: ACCOUNT_BLOCK_FAIL,
-    error
+    error,
   };
 };
 
 export function unblockAccountRequest(id) {
   return {
     type: ACCOUNT_UNBLOCK_REQUEST,
-    id
+    id,
   };
 };
 
 export function unblockAccountSuccess(relationship) {
   return {
     type: ACCOUNT_UNBLOCK_SUCCESS,
-    relationship
+    relationship,
   };
 };
 
 export function unblockAccountFail(error) {
   return {
     type: ACCOUNT_UNBLOCK_FAIL,
-    error
+    error,
   };
 };
 
@@ -372,7 +476,7 @@ export function unmuteAccount(id) {
 export function muteAccountRequest(id) {
   return {
     type: ACCOUNT_MUTE_REQUEST,
-    id
+    id,
   };
 };
 
@@ -380,35 +484,35 @@ export function muteAccountSuccess(relationship, statuses) {
   return {
     type: ACCOUNT_MUTE_SUCCESS,
     relationship,
-    statuses
+    statuses,
   };
 };
 
 export function muteAccountFail(error) {
   return {
     type: ACCOUNT_MUTE_FAIL,
-    error
+    error,
   };
 };
 
 export function unmuteAccountRequest(id) {
   return {
     type: ACCOUNT_UNMUTE_REQUEST,
-    id
+    id,
   };
 };
 
 export function unmuteAccountSuccess(relationship) {
   return {
     type: ACCOUNT_UNMUTE_SUCCESS,
-    relationship
+    relationship,
   };
 };
 
 export function unmuteAccountFail(error) {
   return {
     type: ACCOUNT_UNMUTE_FAIL,
-    error
+    error,
   };
 };
 
@@ -431,7 +535,7 @@ export function fetchFollowers(id) {
 export function fetchFollowersRequest(id) {
   return {
     type: FOLLOWERS_FETCH_REQUEST,
-    id
+    id,
   };
 };
 
@@ -440,7 +544,7 @@ export function fetchFollowersSuccess(id, accounts, next) {
     type: FOLLOWERS_FETCH_SUCCESS,
     id,
     accounts,
-    next
+    next,
   };
 };
 
@@ -448,7 +552,7 @@ export function fetchFollowersFail(id, error) {
   return {
     type: FOLLOWERS_FETCH_FAIL,
     id,
-    error
+    error,
   };
 };
 
@@ -476,7 +580,7 @@ export function expandFollowers(id) {
 export function expandFollowersRequest(id) {
   return {
     type: FOLLOWERS_EXPAND_REQUEST,
-    id
+    id,
   };
 };
 
@@ -485,7 +589,7 @@ export function expandFollowersSuccess(id, accounts, next) {
     type: FOLLOWERS_EXPAND_SUCCESS,
     id,
     accounts,
-    next
+    next,
   };
 };
 
@@ -493,7 +597,7 @@ export function expandFollowersFail(id, error) {
   return {
     type: FOLLOWERS_EXPAND_FAIL,
     id,
-    error
+    error,
   };
 };
 
@@ -515,7 +619,7 @@ export function fetchFollowing(id) {
 export function fetchFollowingRequest(id) {
   return {
     type: FOLLOWING_FETCH_REQUEST,
-    id
+    id,
   };
 };
 
@@ -524,7 +628,7 @@ export function fetchFollowingSuccess(id, accounts, next) {
     type: FOLLOWING_FETCH_SUCCESS,
     id,
     accounts,
-    next
+    next,
   };
 };
 
@@ -532,7 +636,7 @@ export function fetchFollowingFail(id, error) {
   return {
     type: FOLLOWING_FETCH_FAIL,
     id,
-    error
+    error,
   };
 };
 
@@ -560,7 +664,7 @@ export function expandFollowing(id) {
 export function expandFollowingRequest(id) {
   return {
     type: FOLLOWING_EXPAND_REQUEST,
-    id
+    id,
   };
 };
 
@@ -569,7 +673,7 @@ export function expandFollowingSuccess(id, accounts, next) {
     type: FOLLOWING_EXPAND_SUCCESS,
     id,
     accounts,
-    next
+    next,
   };
 };
 
@@ -577,7 +681,7 @@ export function expandFollowingFail(id, error) {
   return {
     type: FOLLOWING_EXPAND_FAIL,
     id,
-    error
+    error,
   };
 };
 
@@ -604,7 +708,7 @@ export function fetchRelationshipsRequest(ids) {
   return {
     type: RELATIONSHIPS_FETCH_REQUEST,
     ids,
-    skipLoading: true
+    skipLoading: true,
   };
 };
 
@@ -612,7 +716,7 @@ export function fetchRelationshipsSuccess(relationships) {
   return {
     type: RELATIONSHIPS_FETCH_SUCCESS,
     relationships,
-    skipLoading: true
+    skipLoading: true,
   };
 };
 
@@ -620,7 +724,7 @@ export function fetchRelationshipsFail(error) {
   return {
     type: RELATIONSHIPS_FETCH_FAIL,
     error,
-    skipLoading: true
+    skipLoading: true,
   };
 };
 
@@ -630,14 +734,14 @@ export function fetchFollowRequests() {
 
     api(getState).get('/api/v1/follow_requests').then(response => {
       const next = getLinks(response).refs.find(link => link.rel === 'next');
-      dispatch(fetchFollowRequestsSuccess(response.data, next ? next.uri : null))
+      dispatch(fetchFollowRequestsSuccess(response.data, next ? next.uri : null));
     }).catch(error => dispatch(fetchFollowRequestsFail(error)));
   };
 };
 
 export function fetchFollowRequestsRequest() {
   return {
-    type: FOLLOW_REQUESTS_FETCH_REQUEST
+    type: FOLLOW_REQUESTS_FETCH_REQUEST,
   };
 };
 
@@ -645,14 +749,14 @@ export function fetchFollowRequestsSuccess(accounts, next) {
   return {
     type: FOLLOW_REQUESTS_FETCH_SUCCESS,
     accounts,
-    next
+    next,
   };
 };
 
 export function fetchFollowRequestsFail(error) {
   return {
     type: FOLLOW_REQUESTS_FETCH_FAIL,
-    error
+    error,
   };
 };
 
@@ -668,14 +772,14 @@ export function expandFollowRequests() {
 
     api(getState).get(url).then(response => {
       const next = getLinks(response).refs.find(link => link.rel === 'next');
-      dispatch(expandFollowRequestsSuccess(response.data, next ? next.uri : null))
+      dispatch(expandFollowRequestsSuccess(response.data, next ? next.uri : null));
     }).catch(error => dispatch(expandFollowRequestsFail(error)));
   };
 };
 
 export function expandFollowRequestsRequest() {
   return {
-    type: FOLLOW_REQUESTS_EXPAND_REQUEST
+    type: FOLLOW_REQUESTS_EXPAND_REQUEST,
   };
 };
 
@@ -683,14 +787,14 @@ export function expandFollowRequestsSuccess(accounts, next) {
   return {
     type: FOLLOW_REQUESTS_EXPAND_SUCCESS,
     accounts,
-    next
+    next,
   };
 };
 
 export function expandFollowRequestsFail(error) {
   return {
     type: FOLLOW_REQUESTS_EXPAND_FAIL,
-    error
+    error,
   };
 };
 
@@ -708,14 +812,14 @@ export function authorizeFollowRequest(id) {
 export function authorizeFollowRequestRequest(id) {
   return {
     type: FOLLOW_REQUEST_AUTHORIZE_REQUEST,
-    id
+    id,
   };
 };
 
 export function authorizeFollowRequestSuccess(id) {
   return {
     type: FOLLOW_REQUEST_AUTHORIZE_SUCCESS,
-    id
+    id,
   };
 };
 
@@ -723,7 +827,7 @@ export function authorizeFollowRequestFail(id, error) {
   return {
     type: FOLLOW_REQUEST_AUTHORIZE_FAIL,
     id,
-    error
+    error,
   };
 };
 
@@ -742,14 +846,14 @@ export function rejectFollowRequest(id) {
 export function rejectFollowRequestRequest(id) {
   return {
     type: FOLLOW_REQUEST_REJECT_REQUEST,
-    id
+    id,
   };
 };
 
 export function rejectFollowRequestSuccess(id) {
   return {
     type: FOLLOW_REQUEST_REJECT_SUCCESS,
-    id
+    id,
   };
 };
 
@@ -757,6 +861,6 @@ export function rejectFollowRequestFail(id, error) {
   return {
     type: FOLLOW_REQUEST_REJECT_FAIL,
     id,
-    error
+    error,
   };
 };

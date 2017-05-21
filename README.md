@@ -13,7 +13,7 @@ An alternative implementation of the GNU social project. Based on [ActivityStrea
 
 Click on the screenshot to watch a demo of the UI:
 
-[![Screenshot](https://i.imgur.com/T2q5V65.png)][youtube_demo]
+[![Screenshot](http://puu.sh/vMcvm/290f459dd4.jpg)][youtube_demo]
 
 [youtube_demo]: https://www.youtube.com/watch?v=YO1jQ8_rAMU
 

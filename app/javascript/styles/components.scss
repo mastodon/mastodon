@@ -1,16 +1,16 @@
 @import 'variables';
 
 .app-body {
- -webkit-overflow-scrolling: touch;
- -ms-overflow-style: -ms-autohiding-scrollbar;
+  -webkit-overflow-scrolling: touch;
+  -ms-overflow-style: -ms-autohiding-scrollbar;
 }
 
 .button {
-  background-color: darken($color4, 3%);
+  background-color: darken($ui-highlight-color, 3%);
   border: 10px none;
   border-radius: 4px;
   box-sizing: border-box;
-  color: $color5;
+  color: $primary-text-color;
   cursor: pointer;
   display: inline-block;
   font-family: inherit;
@@ -28,31 +28,70 @@
   text-overflow: ellipsis;
   transition: all 100ms ease-in;
   white-space: nowrap;
+  width: auto;
 
   &:active,
   &:focus,
   &:hover {
-    background-color: lighten($color4, 7%);
+    background-color: lighten($ui-highlight-color, 7%);
     transition: all 200ms ease-out;
   }
 
   &:disabled {
-    background-color: $color3;
+    background-color: $ui-primary-color;
     cursor: default;
   }
 
   &.button-secondary {
     //
   }
+
+  &.button--block {
+    display: block;
+    width: 100%;
+  }
+}
+
+.column__wrapper {
+  display: flex;
+  flex: 1 1 auto;
+  position: relative;
 }
 
 .column-collapsable {
   position: relative;
+
+  .column-collapsable__content {
+    overflow: auto;
+    transition: 300ms ease;
+    opacity: 1;
+    max-height: 70vh;
+  }
+
+  &.collapsed .column-collapsable__content {
+    height: 0 !important;
+    opacity: 0;
+  }
+
+  .column-collapsable__button {
+    color: $primary-text-color;
+    background: lighten($ui-base-color, 8%);
+
+    &:hover {
+      color: $primary-text-color;
+      background: lighten($ui-base-color, 8%);
+    }
+  }
+
+  &.collapsed .column-collapsable__button {
+    color: $ui-primary-color;
+    background: lighten($ui-base-color, 4%);
+  }
 }
 
 .column-icon {
-  background: lighten($color1, 4%);
-  color: $color3;
+  background: lighten($ui-base-color, 4%);
+  color: $ui-primary-color;
   cursor: pointer;
   font-size: 16px;
   padding: 15px;
@@ -62,7 +101,7 @@
   z-index: 3;
 
   &:hover {
-    color: lighten($color3, 7%);
+    color: lighten($ui-primary-color, 7%);
   }
 }
 
@@ -85,65 +124,71 @@
 .icon-button {
   display: inline-block;
   padding: 0;
-  color: lighten($color1, 26%);
+  color: lighten($ui-base-color, 26%);
   border: none;
   background: transparent;
   cursor: pointer;
   transition: color 100ms ease-in;
 
-  &:hover, &:active, &:focus {
-    color: lighten($color1, 33%);
+  &:hover,
+  &:active,
+  &:focus {
+    color: lighten($ui-base-color, 33%);
     transition: color 200ms ease-out;
   }
 
   &.disabled {
-    color: lighten($color1, 13%);
+    color: lighten($ui-base-color, 13%);
     cursor: default;
   }
 
   &.active {
-    color: $color4;
+    color: $ui-highlight-color;
   }
 
   &::-moz-focus-inner {
     border: 0;
   }
 
-  &::-moz-focus-inner, &:focus, &:active {
+  &::-moz-focus-inner,
+  &:focus,
+  &:active {
     outline: 0 !important;
   }
 
   &.inverted {
-    color: lighten($color1, 33%);
+    color: lighten($ui-base-color, 33%);
 
-    &:hover, &:active, &:focus {
-      color: lighten($color1, 26%);
+    &:hover,
+    &:active,
+    &:focus {
+      color: lighten($ui-base-color, 26%);
     }
 
     &.active {
-      color: $color4;
+      color: $ui-highlight-color;
     }
 
     &.disabled {
-      color: $color3;
+      color: $ui-primary-color;
     }
   }
 
   &.overlayed {
     box-sizing: content-box;
-    background: rgba($color8, 0.6);
-    color: rgba($color5, 0.7);
+    background: rgba($base-overlay-background, 0.6);
+    color: rgba($primary-text-color, 0.7);
     border-radius: 4px;
     padding: 2px;
 
     &:hover {
-      background: rgba($color8, 0.9);
+      background: rgba($base-overlay-background, 0.9);
     }
   }
 }
 
 .text-icon-button {
-  color: lighten($color1, 33%);
+  color: lighten($ui-base-color, 33%);
   border: none;
   background: transparent;
   cursor: pointer;
@@ -154,42 +199,46 @@
   outline: 0;
   transition: color 100ms ease-in;
 
-  &:hover, &:active, &:focus {
-    color: lighten($color1, 26%);
+  &:hover,
+  &:active,
+  &:focus {
+    color: lighten($ui-base-color, 26%);
     transition: color 200ms ease-out;
   }
 
   &.disabled {
-    color: lighten($color1, 13%);
+    color: lighten($ui-base-color, 13%);
     cursor: default;
   }
 
   &.active {
-    color: $color4;
+    color: $ui-highlight-color;
   }
 
   &::-moz-focus-inner {
     border: 0;
   }
 
-  &::-moz-focus-inner, &:focus, &:active {
+  &::-moz-focus-inner,
+  &:focus,
+  &:active {
     outline: 0 !important;
   }
 }
 
 .dropdown--active .icon-button {
-  color: $color4;
+  color: $ui-highlight-color;
 }
 
-.dropdown--active:after {
+.dropdown--active::after {
   content: "";
   display: block;
   position: absolute;
   width: 0;
   height: 0;
   border-style: solid;
-  border-width: 0 4.5px 7.8px 4.5px;
-  border-color: transparent transparent $color2 transparent;
+  border-width: 0 4.5px 7.8px;
+  border-color: transparent transparent $ui-secondary-color;
   bottom: 8px;
   right: 104px;
 }
@@ -202,13 +251,13 @@
 }
 
 .ellipsis {
-  &:after {
+  &::after {
     content: "…";
   }
 }
 
 .lightbox .icon-button {
-  color: $color1;
+  color: $ui-base-color;
 }
 
 .compose-form {
@@ -216,37 +265,39 @@
 }
 
 .compose-form__warning {
-  color: darken($color3, 33%);
+  color: darken($ui-secondary-color, 65%);
   margin-bottom: 15px;
-  background: $color3;
-  box-shadow: 0 2px 6px rgba($color8, 0.3);
+  background: $ui-primary-color;
+  box-shadow: 0 2px 6px rgba($base-shadow-color, 0.3);
   padding: 8px 10px;
   border-radius: 4px;
   font-size: 13px;
   font-weight: 400;
 
   strong {
-    color: darken($color3, 33%);
+    color: darken($ui-secondary-color, 65%);
     font-weight: 500;
   }
 
   a {
-    color: darken($color3, 33%);
+    color: darken($ui-primary-color, 33%);
     font-weight: 500;
     text-decoration: underline;
 
-    &:hover, &:active, &:focus {
+    &:hover,
+    &:active,
+    &:focus {
       text-decoration: none;
     }
   }
 }
 
 .compose-form__modifiers {
-  color: $color1;
+  color: $ui-base-color;
   font-family: inherit;
   font-size: 14px;
-  background: $color5;
-  border-radius: 0 0 4px 0;
+  background: $simple-background-color;
+  border-radius: 0 0 4px;
 }
 
 .compose-form__buttons-wrapper {
@@ -256,8 +307,8 @@
 
 .compose-form__buttons {
   padding: 10px;
-  background: darken($color5, 8%);
-  box-shadow: inset 0 5px 5px rgba($color8, 0.05);
+  background: darken($simple-background-color, 8%);
+  box-shadow: inset 0 5px 5px rgba($base-shadow-color, 0.05);
   border-radius: 0 0 4px 4px;
   display: flex;
 
@@ -307,7 +358,7 @@
   vertical-align: middle;
 
   &.with-border {
-    border-top: 1px solid $color1;
+    border-top: 1px solid $ui-base-color;
     padding-top: 10px;
   }
 
@@ -316,25 +367,32 @@
     vertical-align: middle;
     margin-bottom: 14px;
     margin-left: 8px;
-    color: $color3;
+    color: $ui-primary-color;
   }
 }
 
-.compose-form__textarea, .follow-form__input {
-  background: $color5;
+.compose-form__textarea,
+.follow-form__input {
+  background: $simple-background-color;
 
   &:disabled {
-    background: $color2;
+    background: $ui-secondary-color;
   }
 }
 
 .compose-form__autosuggest-wrapper {
   position: relative;
 
-  .dropdown--active:after {
-    border-color: transparent transparent $color5 transparent;
-    bottom: -1px;
-    right: 8px;
+  .emoji-picker__dropdown {
+    position: absolute;
+    right: 5px;
+    top: 5px;
+
+    &.dropdown--active::after {
+      border-color: transparent transparent $base-border-color;
+      bottom: -1px;
+      right: 8px;
+    }
   }
 }
 
@@ -365,7 +423,7 @@
   border-radius: 4px 4px 0 0;
   position: relative;
   bottom: -2px;
-  background: $color3;
+  background: $ui-primary-color;
   padding: 10px;
 }
 
@@ -380,7 +438,7 @@
 }
 
 .reply-indicator__display-name {
-  color: $color1;
+  color: $ui-base-color;
   display: block;
   max-width: 100%;
   line-height: 24px;
@@ -425,14 +483,14 @@
   }
 
   a {
-    color: $color2;
+    color: $ui-secondary-color;
     text-decoration: none;
 
     &:hover {
       text-decoration: underline;
 
       .fa {
-        color: lighten($color1, 40%);
+        color: lighten($ui-base-color, 40%);
       }
     }
 
@@ -447,29 +505,40 @@
     }
 
     .fa {
-      color: lighten($color1, 30%);
+      color: lighten($ui-base-color, 30%);
     }
   }
 
   .status__content__spoiler-link {
-    background: lighten($color1, 30%);
+    background: lighten($ui-base-color, 30%);
 
     &:hover {
-      background: lighten($color1, 33%);
+      background: lighten($ui-base-color, 33%);
       text-decoration: none;
+    }
+  }
+
+  .status__content__text {
+    display: none;
+
+    &.status__content__text--visible {
+      display: block;
     }
   }
 }
 
-a.status__content__spoiler-link {
+.status__content__spoiler-link {
   display: inline-block;
   border-radius: 2px;
-  color: lighten($color1, 8%);
+  background: transparent;
+  border: 0;
+  color: lighten($ui-base-color, 8%);
   font-weight: 500;
   font-size: 11px;
-  padding: 0px 6px;
+  padding: 0 6px;
   text-transform: uppercase;
   line-height: inherit;
+  cursor: pointer;
 }
 
 .status__prepend-icon-wrapper {
@@ -482,41 +551,53 @@ a.status__content__spoiler-link {
   padding-left: 68px;
   position: relative;
   min-height: 48px;
-  border-bottom: 1px solid lighten($color1, 8%);
+  border-bottom: 1px solid lighten($ui-base-color, 8%);
   cursor: default;
+
+  &.status-direct {
+    background: lighten($ui-base-color, 8%);
+
+    .status__display-name strong {
+      color: $primary-text-color;
+    }
+
+    .icon-button.disabled {
+      color: lighten($ui-base-color, 16%);
+    }
+  }
 
   &.light {
     .status__relative-time {
-      color: $color3;
+      color: $ui-primary-color;
     }
 
     .status__display-name {
-      color: $color1;
+      color: $ui-base-color;
     }
 
     .display-name {
       strong {
-        color: $color1;
+        color: $ui-base-color;
       }
 
       span {
-        color: $color3;
+        color: $ui-primary-color;
       }
     }
 
     .status__content {
-      color: $color1;
+      color: $ui-base-color;
 
       a {
-        color: $color4;
+        color: $ui-highlight-color;
       }
 
       a.status__content__spoiler-link {
-        color: $color5;
-        background: $color3;
+        color: $primary-text-color;
+        background: $ui-primary-color;
 
         &:hover {
-          background: lighten($color3, 8%);
+          background: lighten($ui-primary-color, 8%);
         }
       }
     }
@@ -524,11 +605,13 @@ a.status__content__spoiler-link {
 }
 
 .status__relative-time {
-  color: lighten($color1, 26%);
+  color: lighten($ui-base-color, 26%);
+  float: right;
+  font-size: 14px;
 }
 
 .status__display-name {
-  color: lighten($color1, 26%);
+  color: lighten($ui-base-color, 26%);
 }
 
 .status__info .status__display-name {
@@ -541,17 +624,12 @@ a.status__content__spoiler-link {
   font-size: 15px;
 }
 
-.status__info-time {
-  float: right;
-  font-size: 14px;
-}
-
 .status-check-box {
-  border-bottom: 1px solid lighten($color1, 8%);
+  border-bottom: 1px solid lighten($ui-base-color, 8%);
   display: flex;
 
   .status__content {
-    background: lighten($color1, 4%);
+    background: lighten($ui-base-color, 4%);
     flex: 1 1 auto;
     padding: 10px;
   }
@@ -567,14 +645,14 @@ a.status__content__spoiler-link {
 
 .status__prepend {
   margin-left: 68px;
-  color: lighten($color1, 26%);
+  color: lighten($ui-base-color, 26%);
   padding: 8px 0;
   padding-bottom: 2px;
   font-size: 14px;
   position: relative;
 
   .status__display-name strong {
-    color: lighten($color1, 26%);
+    color: lighten($ui-base-color, 26%);
   }
 }
 
@@ -595,8 +673,36 @@ a.status__content__spoiler-link {
   width: 18px;
 }
 
+.detailed-status__action-bar-dropdown {
+  flex: 1 1 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+
+  .dropdown {
+    display: block;
+    width: 18px;
+    height: 18px;
+  }
+
+  .dropdown--active {
+    .dropdown__content.dropdown__left {
+      left: 20px;
+      right: initial;
+    }
+
+    &::after {
+      bottom: initial;
+      margin-left: 7px;
+      margin-top: -7px;
+      right: initial;
+    }
+  }
+}
+
 .detailed-status {
-  background: lighten($color1, 4%);
+  background: lighten($ui-base-color, 4%);
   padding: 14px 10px;
 
   .status__content {
@@ -612,15 +718,15 @@ a.status__content__spoiler-link {
 
 .detailed-status__meta {
   margin-top: 15px;
-  color: lighten($color1, 26%);
+  color: lighten($ui-base-color, 26%);
   font-size: 14px;
   line-height: 18px;
 }
 
 .detailed-status__action-bar {
-  background: lighten($color1, 4%);
-  border-top: 1px solid lighten($color1, 8%);
-  border-bottom: 1px solid lighten($color1, 8%);
+  background: lighten($ui-base-color, 4%);
+  border-top: 1px solid lighten($ui-base-color, 8%);
+  border-bottom: 1px solid lighten($ui-base-color, 8%);
   display: flex;
   flex-direction: row;
   padding: 10px 0;
@@ -640,22 +746,22 @@ a.status__content__spoiler-link {
 }
 
 .reply-indicator__content {
-  color: $color1;
+  color: $ui-base-color;
   font-size: 14px;
 
   a {
-    color: lighten($color1, 20%);
+    color: lighten($ui-base-color, 20%);
   }
 }
 
 .account {
   padding: 10px;
-  border-bottom: 1px solid lighten($color1, 8%);
+  border-bottom: 1px solid lighten($ui-base-color, 8%);
 
   .account__display-name {
     flex: 1 1 auto;
     display: block;
-    color: $color3;
+    color: $ui-primary-color;
     overflow: hidden;
     text-decoration: none;
     font-size: 14px;
@@ -675,6 +781,7 @@ a.status__content__spoiler-link {
 .account__avatar {
   @include avatar-radius();
   position: relative;
+  cursor: pointer;
 
   &-inline {
     display: inline-block;
@@ -709,31 +816,40 @@ a.status__content__spoiler-link {
 
 .account__header {
   flex: 0 0 auto;
-  background: lighten($color1, 4%);
+  background: lighten($ui-base-color, 4%);
   text-align: center;
   background-size: cover;
   background-position: center;
   position: relative;
 
   & > div {
-    background: rgba(lighten($color1, 4%), 0.9);
+    background: rgba(lighten($ui-base-color, 4%), 0.9);
+    padding: 20px 10px;
   }
 
   .account__header__content {
-    color: $color2;
+    color: $ui-secondary-color;
   }
 
   .account__header__display-name {
-    color: $color5;
+    color: $primary-text-color;
+    display: inline-block;
+    font-size: 20px;
+    line-height: 27px;
+    font-weight: 500;
   }
 
   .account__header__username {
-    color: $color4;
+    color: $ui-highlight-color;
+    font-size: 14px;
+    font-weight: 400;
+    display: block;
+    margin-bottom: 10px;
   }
 }
 
 .account__header__content {
-  color: $color3;
+  color: $ui-primary-color;
   font-size: 14px;
   font-weight: 400;
   overflow: hidden;
@@ -766,8 +882,8 @@ a.status__content__spoiler-link {
 }
 
 .account__action-bar {
-  border-top: 1px solid lighten($color1, 8%);
-  border-bottom: 1px solid lighten($color1, 8%);
+  border-top: 1px solid lighten($ui-base-color, 8%);
+  border-bottom: 1px solid lighten($ui-base-color, 8%);
   line-height: 36px;
   overflow: hidden;
   flex: 0 0 auto;
@@ -784,7 +900,7 @@ a.status__content__spoiler-link {
       right: initial;
     }
 
-    &:after {
+    &::after {
       bottom: initial;
       margin-left: 11px;
       margin-top: -7px;
@@ -803,25 +919,25 @@ a.status__content__spoiler-link {
   text-decoration: none;
   overflow: hidden;
   width: 80px;
-  border-left: 1px solid lighten($color1, 8%);
+  border-left: 1px solid lighten($ui-base-color, 8%);
   padding: 10px 5px;
 
   & > span {
     display: block;
     text-transform: uppercase;
     font-size: 11px;
-    color: $color3;
+    color: $ui-primary-color;
   }
 
   strong {
     display: block;
     font-size: 15px;
     font-weight: 500;
-    color: $color5;
+    color: $primary-text-color;
   }
 
   abbr {
-    color: lighten($color1, 26%);
+    color: lighten($ui-base-color, 26%);
   }
 }
 
@@ -861,7 +977,7 @@ a.status__content__spoiler-link {
 .status__display-name,
 .account__display-name {
   strong {
-    color: $color5;
+    color: $primary-text-color;
   }
 
   &.muted {
@@ -890,7 +1006,7 @@ a.status__content__spoiler-link {
 }
 
 .detailed-status__display-name {
-  color: $color2;
+  color: $ui-secondary-color;
   display: block;
   line-height: 24px;
   margin-bottom: 15px;
@@ -903,7 +1019,7 @@ a.status__content__spoiler-link {
 
   strong {
     font-size: 16px;
-    color: $color5;
+    color: $primary-text-color;
   }
 }
 
@@ -923,11 +1039,11 @@ a.status__content__spoiler-link {
 .muted {
   .status__content p,
   .status__content a {
-    color: lighten($color1, 26%);
+    color: lighten($ui-base-color, 26%);
   }
 
   .status__display-name strong {
-    color: lighten($color1, 26%);
+    color: lighten($ui-base-color, 26%);
   }
 
   .status__avatar {
@@ -935,11 +1051,11 @@ a.status__content__spoiler-link {
   }
 
   a.status__content__spoiler-link {
-    background: lighten($color1, 26%);
-    color: lighten($color1, 4%);
+    background: lighten($ui-base-color, 26%);
+    color: lighten($ui-base-color, 4%);
 
     &:hover {
-      background: lighten($color1, 29%);
+      background: lighten($ui-base-color, 29%);
       text-decoration: none;
     }
   }
@@ -950,12 +1066,12 @@ a.status__content__spoiler-link {
   padding: 8px 0;
   padding-bottom: 0;
   cursor: default;
-  color: $color3;
+  color: $ui-primary-color;
   font-size: 15px;
   position: relative;
 
   .fa {
-    color: $color4;
+    color: $ui-highlight-color;
   }
 }
 
@@ -964,12 +1080,12 @@ a.status__content__spoiler-link {
   position: absolute;
 
   .star-icon {
-    color: #ca8f04;
+    color: $gold-star;
   }
 }
 
 .star-icon.active {
-  color: #ca8f04;
+  color: $gold-star;
 }
 
 .notification__display-name {
@@ -978,7 +1094,7 @@ a.status__content__spoiler-link {
   text-decoration: none;
 
   &:hover {
-    color: $color5;
+    color: $primary-text-color;
     text-decoration: underline;
   }
 }
@@ -1006,7 +1122,8 @@ a.status__content__spoiler-link {
   }
 }
 
-.transparent-background, .imageloader {
+.transparent-background,
+.imageloader {
   background: url('../images/void.png');
 }
 
@@ -1019,10 +1136,10 @@ a.status__content__spoiler-link {
   display: flex;
   flex-shrink: 0;
   cursor: default;
-  color: $color3;
+  color: $ui-primary-color;
 
   strong {
-    color: $color5;
+    color: $primary-text-color;
   }
 
   .permalink {
@@ -1055,7 +1172,7 @@ a.status__content__spoiler-link {
 }
 
 .dropdown__sep {
-  border-bottom: 1px solid darken($color2, 8%);
+  border-bottom: 1px solid darken($ui-secondary-color, 8%);
   margin: 5px 7px 6px;
   padding-top: 1px;
 }
@@ -1070,10 +1187,10 @@ a.status__content__spoiler-link {
 
   & > ul {
     list-style: none;
-    background: $color2;
+    background: $ui-secondary-color;
     padding: 4px 0;
     border-radius: 4px;
-    box-shadow: 0 0 15px rgba($color8, 0.4);
+    box-shadow: 0 0 15px rgba($base-shadow-color, 0.4);
     min-width: 140px;
     position: relative;
   }
@@ -1095,8 +1212,8 @@ a.status__content__spoiler-link {
     padding: 4px 14px;
     box-sizing: border-box;
     text-decoration: none;
-    background: $color2;
-    color: $color1;
+    background: $ui-secondary-color;
+    color: $ui-base-color;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -1106,8 +1223,8 @@ a.status__content__spoiler-link {
     }
 
     &:hover {
-      background: $color4;
-      color: $color2;
+      background: $ui-highlight-color;
+      color: $ui-secondary-color;
     }
   }
 }
@@ -1119,7 +1236,7 @@ a.status__content__spoiler-link {
 .static-content {
   padding: 10px;
   padding-top: 20px;
-  color: lighten($color1, 26%);
+  color: lighten($ui-base-color, 26%);
 
   h1 {
     font-size: 16px;
@@ -1140,7 +1257,7 @@ a.status__content__spoiler-link {
   flex-direction: row;
   justify-content: flex-start;
   overflow-x: auto;
-  position:   relative;
+  position: relative;
 }
 
 @media screen and (min-width: 360px) {
@@ -1157,7 +1274,7 @@ a.status__content__spoiler-link {
   flex-direction: column;
 
   > .scrollable {
-    background: $color1;
+    background: $ui-base-color;
   }
 }
 
@@ -1167,7 +1284,7 @@ a.status__content__spoiler-link {
   flex-direction: column;
   width: 100%;
   height: 100%;
-  background: darken($color1, 7%);
+  background: darken($ui-base-color, 7%);
 }
 
 .drawer {
@@ -1183,16 +1300,18 @@ a.status__content__spoiler-link {
   flex: 1 1 auto;
   padding: 15px;
   padding-bottom: 13px;
-  color: $color3;
+  color: $ui-primary-color;
   text-decoration: none;
   text-align: center;
   font-size: 16px;
   border-bottom: 2px solid transparent;
 }
 
-.column, .drawer {
+.column,
+.drawer {
   flex: 1 1 100%;
   overflow: hidden;
+  contain: strict;
 }
 
 @media screen and (min-width: 360px) {
@@ -1207,7 +1326,8 @@ a.status__content__spoiler-link {
 }
 
 @media screen and (max-width: 1024px) {
-  .column, .drawer {
+  .column,
+  .drawer {
     width: 100%;
     padding: 0;
   }
@@ -1216,7 +1336,8 @@ a.status__content__spoiler-link {
     flex-direction: column;
   }
 
-  .search__input, .autosuggest-textarea__textarea {
+  .search__input,
+  .autosuggest-textarea__textarea {
     font-size: 16px;
   }
 }
@@ -1226,7 +1347,8 @@ a.status__content__spoiler-link {
     padding: 0;
   }
 
-  .column, .drawer {
+  .column,
+  .drawer {
     flex: 0 0 auto;
     padding: 10px;
     padding-left: 5px;
@@ -1242,26 +1364,11 @@ a.status__content__spoiler-link {
   }
 
   .columns-area > div {
-    .column, .drawer {
+    .column,
+    .drawer {
       padding-left: 5px;
       padding-right: 5px;
     }
-  }
-}
-
-@media screen and (min-width: 1397px) { /* Width of 4 columns with margins */
-  .columns-area {
-    margin-left: auto;
-    margin-right: auto;
-  }
-}
-
-@media screen and (min-width: 1900px) {
-  .column, .drawer {
-    width: 400px;
-    border-radius: 4px;
-    height: 96vh;
-    margin-top: 2vh;
   }
 }
 
@@ -1278,7 +1385,7 @@ a.status__content__spoiler-link {
   position: absolute;
   top: 0;
   left: 0;
-  background: lighten($color1, 13%);
+  background: lighten($ui-base-color, 13%);
   box-sizing: border-box;
   padding: 0;
   display: flex;
@@ -1289,12 +1396,12 @@ a.status__content__spoiler-link {
   height: 100%;
 
   &.darker {
-    background: $color1;
+    background: $ui-base-color;
   }
 }
 
 .pseudo-drawer {
-  background: lighten($color1, 13%);
+  background: lighten($ui-base-color, 13%);
   font-size: 13px;
   text-align: left;
 }
@@ -1302,7 +1409,7 @@ a.status__content__spoiler-link {
 .drawer__header {
   flex: 0 0 auto;
   font-size: 16px;
-  background: lighten($color1, 8%);
+  background: lighten($ui-base-color, 8%);
   margin-bottom: 10px;
   display: flex;
   flex-direction: row;
@@ -1311,7 +1418,7 @@ a.status__content__spoiler-link {
     transition: background 100ms ease-in;
 
     &:hover {
-      background: lighten($color1, 3%);
+      background: lighten($ui-base-color, 3%);
       transition: background 200ms ease-out;
     }
   }
@@ -1319,7 +1426,7 @@ a.status__content__spoiler-link {
 
 .tabs-bar {
   display: flex;
-  background: lighten($color1, 8%);
+  background: lighten($ui-base-color, 8%);
   flex: 0 0 auto;
   overflow-y: auto;
 }
@@ -1328,12 +1435,12 @@ a.status__content__spoiler-link {
   display: block;
   flex: 1 1 auto;
   padding: 15px 10px;
-  color: $color5;
+  color: $primary-text-color;
   text-decoration: none;
   text-align: center;
   font-size: 14px;
   font-weight: 500;
-  border-bottom: 2px solid lighten($color1, 8%);
+  border-bottom: 2px solid lighten($ui-base-color, 8%);
   transition: all 200ms linear;
 
   .fa {
@@ -1342,12 +1449,14 @@ a.status__content__spoiler-link {
   }
 
   &.active {
-    border-bottom: 2px solid $color4;
-    color: $color4;
+    border-bottom: 2px solid $ui-highlight-color;
+    color: $ui-highlight-color;
   }
 
-  &:hover, &:focus, &:active {
-    background: lighten($color1, 14%);
+  &:hover,
+  &:focus,
+  &:active {
+    background: lighten($ui-base-color, 14%);
     transition: all 100ms linear;
   }
 
@@ -1371,50 +1480,13 @@ a.status__content__spoiler-link {
   }
 }
 
-.react-autosuggest__container {
-  position: relative;
-}
-
-.react-autosuggest__suggestions-container {
-  position: absolute;
-  top: 100%;
-  width: 100%;
-  z-index: 99;
-  box-shadow: 0 0 15px rgba($color8, 0.4);
-}
-
-.react-autosuggest__section-title {
-  background: $color3;
-  padding: 4px 10px;
-  font-weight: 500;
-  cursor: default;
-  color: $color1;
-  text-transform: uppercase;
-  font-size: 11px;
-}
-
-.react-autosuggest__suggestions-list {
-  background: $color2;
-  color: $color1;
-  font-size: 14px;
-}
-
-.react-autosuggest__suggestion {
-  padding: 10px;
-  cursor: pointer;
-}
-
-.react-autosuggest__suggestion--focused {
-  background: $color4;
-  color: $color5;
-}
-
 .scrollable {
   overflow-y: scroll;
   overflow-x: hidden;
   flex: 1 1 auto;
   backface-visibility: hidden;
   -webkit-overflow-scrolling: touch;
+  contain: strict;
 
   &.optionally-scrollable {
     overflow-y: auto;
@@ -1422,8 +1494,8 @@ a.status__content__spoiler-link {
 }
 
 .column-back-button {
-  background: lighten($color1, 4%);
-  color: $color4;
+  background: lighten($ui-base-color, 4%);
+  color: $ui-highlight-color;
   cursor: pointer;
   flex: 0 0 auto;
   font-size: 16px;
@@ -1462,7 +1534,7 @@ a.status__content__spoiler-link {
   border: 0;
   padding: 0;
   user-select: none;
-  -webkit-tap-highlight-color: rgba($color8, 0);
+  -webkit-tap-highlight-color: rgba($base-overlay-background, 0);
   -webkit-tap-highlight-color: transparent;
 }
 
@@ -1488,28 +1560,28 @@ a.status__content__spoiler-link {
   height: 24px;
   padding: 0;
   border-radius: 30px;
-  background-color: $color1;
+  background-color: $ui-base-color;
   transition: all 0.2s ease;
 }
 
 .react-toggle:hover:not(.react-toggle--disabled) .react-toggle-track {
-  background-color: darken($color1, 10%);
+  background-color: darken($ui-base-color, 10%);
 }
 
 .react-toggle--checked .react-toggle-track {
-  background-color: $color4;
+  background-color: $ui-highlight-color;
 }
 
 .react-toggle--checked:hover:not(.react-toggle--disabled) .react-toggle-track {
-  background-color: lighten($color4, 10%);
+  background-color: lighten($ui-highlight-color, 10%);
 }
 
 .react-toggle-track-check {
   position: absolute;
   width: 14px;
   height: 10px;
-  top: 0px;
-  bottom: 0px;
+  top: 0;
+  bottom: 0;
   margin-top: auto;
   margin-bottom: auto;
   line-height: 0;
@@ -1527,8 +1599,8 @@ a.status__content__spoiler-link {
   position: absolute;
   width: 10px;
   height: 10px;
-  top: 0px;
-  bottom: 0px;
+  top: 0;
+  bottom: 0;
   margin-top: auto;
   margin-bottom: auto;
   line-height: 0;
@@ -1548,28 +1620,28 @@ a.status__content__spoiler-link {
   left: 1px;
   width: 22px;
   height: 22px;
-  border: 1px solid $color1;
+  border: 1px solid $ui-base-color;
   border-radius: 50%;
-  background-color: darken($color5, 2%);
+  background-color: darken($simple-background-color, 2%);
   box-sizing: border-box;
   transition: all 0.25s ease;
 }
 
 .react-toggle--checked .react-toggle-thumb {
   left: 27px;
-  border-color: $color4;
+  border-color: $ui-highlight-color;
 }
 
 .column-link {
-  background: lighten($color1, 8%);
-  color: $color5;
+  background: lighten($ui-base-color, 8%);
+  color: $primary-text-color;
   display: block;
   font-size: 16px;
   padding: 15px;
   text-decoration: none;
 
   &:hover {
-    background: lighten($color1, 11%);
+    background: lighten($ui-base-color, 11%);
   }
 
   &.hidden-on-mobile {
@@ -1585,8 +1657,8 @@ a.status__content__spoiler-link {
 }
 
 .column-subheading {
-  background: $color1;
-  color: lighten($color1, 26%);
+  background: $ui-base-color;
+  color: lighten($ui-base-color, 26%);
   padding: 8px 20px;
   font-size: 12px;
   font-weight: 500;
@@ -1605,7 +1677,7 @@ a.status__content__spoiler-link {
   box-sizing: border-box;
   width: 100%;
   margin: 0;
-  color: $color1;
+  color: $ui-base-color;
   padding: 10px;
   font-family: inherit;
   font-size: 14px;
@@ -1628,7 +1700,7 @@ a.status__content__spoiler-link {
 
 .autosuggest-textarea__textarea {
   min-height: 100px;
-  background: $color5;
+  background: $simple-background-color;
   border-radius: 4px 4px 0 0;
   padding-bottom: 0;
   padding-right: 10px + 22px;
@@ -1641,14 +1713,19 @@ a.status__content__spoiler-link {
 }
 
 .autosuggest-textarea__suggestions {
+  display: none;
   position: absolute;
   top: 100%;
   width: 100%;
   z-index: 99;
-  box-shadow: 0 0 15px rgba($color8, 0.4);
-  background: $color2;
-  color: $color1;
+  box-shadow: 0 0 15px rgba($base-shadow-color, 0.4);
+  background: $ui-secondary-color;
+  color: $ui-base-color;
   font-size: 14px;
+
+  &.autosuggest-textarea__suggestions--visible {
+    display: block;
+  }
 }
 
 .autosuggest-textarea__suggestions__item {
@@ -1656,12 +1733,12 @@ a.status__content__spoiler-link {
   cursor: pointer;
 
   &:hover {
-    background: darken($color2, 10%);
+    background: darken($ui-secondary-color, 10%);
   }
 
   &.selected {
-    background: $color4;
-    color: $color5;
+    background: $ui-highlight-color;
+    color: $base-border-color;
   }
 }
 
@@ -1696,43 +1773,49 @@ a.status__content__spoiler-link {
 }
 
 .character-counter--over {
-  color: #ff5050;
+  color: $warning-red;
 }
 
 .getting-started__wrapper {
   position: relative;
 }
 
+.getting-started__footer {
+  display: flex;
+  flex-direction: column;
+}
+
 .getting-started {
   box-sizing: border-box;
   padding-bottom: 235px;
-  background: url('../images/mastodon-getting-started.png') no-repeat 0 100%/contain local;
+  background: url('../images/mastodon-getting-started.png') no-repeat 0 100%;
   flex: 1 0 auto;
 
   p {
-    color: $color2;
+    color: $ui-secondary-color;
   }
 
   a {
-    color: lighten($color1, 26%);
+    color: lighten($ui-base-color, 26%);
   }
 }
 
 .setting-text {
-  color: $color3;
+  color: $ui-primary-color;
   background: transparent;
   border: none;
-  border-bottom: 2px solid $color3;
+  border-bottom: 2px solid $ui-primary-color;
   box-sizing: border-box;
   display: block;
   font-family: inherit;
   margin-bottom: 10px;
-  padding: 7px 0px;
+  padding: 7px 0;
   width: 100%;
 
-  &:focus, &:active {
-    color: $color5;
-    border-bottom-color: $color4;
+  &:focus,
+  &:active {
+    color: $primary-text-color;
+    border-bottom-color: $ui-highlight-color;
   }
 
   @media screen and (max-width: 600px) {
@@ -1764,19 +1847,21 @@ button.icon-button.active i.fa-retweet {
   display: flex;
   cursor: pointer;
   font-size: 14px;
-  border: 1px solid lighten($color1, 8%);
+  border: 1px solid lighten($ui-base-color, 8%);
   border-radius: 4px;
-  color: lighten($color1, 26%);
+  color: lighten($ui-base-color, 26%);
   margin-top: 14px;
   text-decoration: none;
   overflow: hidden;
 
   &:hover {
-    background: lighten($color1, 8%);
+    background: lighten($ui-base-color, 8%);
   }
 }
 
-.status-card-video, .status-card-rich, .status-card-photo {
+.status-card-video,
+.status-card-rich,
+.status-card-photo {
   margin-top: 14px;
   overflow: hidden;
 
@@ -1798,11 +1883,31 @@ button.icon-button.active i.fa-retweet {
   }
 }
 
+.status-card-video {
+  position: relative;
+  width: 100%;
+  height: auto;
+  padding-top: 56.25%;
+
+  iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    width: 1px;
+    min-width: 100%;
+    height: 1px;
+    min-height: 100%;
+    margin: auto;
+  }
+}
+
 .status-card__title {
   display: block;
   font-weight: 500;
   margin-bottom: 5px;
-  color: $color3;
+  color: $ui-primary-color;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -1815,7 +1920,7 @@ button.icon-button.active i.fa-retweet {
 }
 
 .status-card__description {
-  color: $color3;
+  color: $ui-primary-color;
 }
 
 .status-card__host {
@@ -1826,11 +1931,11 @@ button.icon-button.active i.fa-retweet {
 
 .status-card__image {
   flex: 0 0 100px;
-  background: lighten($color1, 8%);
+  background: lighten($ui-base-color, 8%);
 }
 
 .status-card__image-image {
-  border-radius: 4px 0px 0px 4px;
+  border-radius: 4px 0 0 4px;
   display: block;
   height: auto;
   margin: 0;
@@ -1839,13 +1944,13 @@ button.icon-button.active i.fa-retweet {
 
 .load-more {
   display: block;
-  color: lighten($color1, 26%);
+  color: lighten($ui-base-color, 26%);
   text-align: center;
   padding: 15px;
   text-decoration: none;
 
   &:hover {
-    background: lighten($color1, 2%);
+    background: lighten($ui-base-color, 2%);
   }
 }
 
@@ -1853,8 +1958,8 @@ button.icon-button.active i.fa-retweet {
   text-align: center;
   font-size: 16px;
   font-weight: 500;
-  color: lighten($color1, 16%);
-  background: $color1;
+  color: lighten($ui-base-color, 16%);
+  background: $ui-base-color;
   cursor: default;
   display: flex;
   flex: 1 1 auto;
@@ -1871,7 +1976,7 @@ button.icon-button.active i.fa-retweet {
 .column-header {
   padding: 15px;
   font-size: 16px;
-  background: lighten($color1, 4%);
+  background: lighten($ui-base-color, 4%);
   flex: 0 0 auto;
   cursor: pointer;
   position: relative;
@@ -1879,12 +1984,12 @@ button.icon-button.active i.fa-retweet {
   outline: 0;
 
   &.active {
-    box-shadow: 0 1px 0 rgba($color4, 0.3);
+    box-shadow: 0 1px 0 rgba($ui-highlight-color, 0.3);
   }
 
   &.active .fa {
-    color: $color4;
-    text-shadow: 0 0 10px rgba($color4, 0.4);
+    color: $ui-highlight-color;
+    text-shadow: 0 0 10px rgba($ui-highlight-color, 0.4);
   }
 
   &.hidden-on-mobile {
@@ -1893,7 +1998,8 @@ button.icon-button.active i.fa-retweet {
     }
   }
 
-  &:focus, &:active {
+  &:focus,
+  &:active {
     outline: 0;
   }
 }
@@ -1904,32 +2010,17 @@ button.icon-button.active i.fa-retweet {
 }
 
 .loading-indicator {
-  color: $color2;
+  color: $ui-secondary-color;
   font-size: 16px;
   font-weight: 500;
   padding-top: 120px;
   text-align: center;
 }
 
-.collapsable-collapsed {
-  color: $color3;
-  background: lighten($color1, 4%);
-}
-
-.collapsable {
-  color: $color5;
-  background: lighten($color1, 8%);
-
-  &:hover {
-    color: $color5;
-    background: lighten($color1, 8%);
-  }
-}
-
 .video-error-cover {
   align-items: center;
-  background: $color8;
-  color: $color5;
+  background: $base-overlay-background;
+  color: $primary-text-color;
   cursor: pointer;
   display: flex;
   flex-direction: column;
@@ -1943,8 +2034,8 @@ button.icon-button.active i.fa-retweet {
 
 .media-spoiler {
   align-items: center;
-  background: $color8;
-  color: $color5;
+  background: $base-overlay-background;
+  color: $primary-text-color;
   cursor: pointer;
   display: flex;
   flex-direction: column;
@@ -1967,24 +2058,29 @@ button.icon-button.active i.fa-retweet {
 }
 
 .spoiler-button {
+  display: none;
   left: 4px;
   position: absolute;
-  text-shadow: 0px 1px 1px #000, 1px 0px 1px #000;
+  text-shadow: 0 1px 1px $base-shadow-color, 1px 0 1px $base-shadow-color;
   top: 4px;
   z-index: 100;
+
+  &.spoiler-button--visible {
+    display: block;
+  }
 }
 
 .modal-container--preloader {
-  background: lighten($color1, 8%);
+  background: lighten($ui-base-color, 8%);
 }
 
 .account--panel {
-  background: lighten($color1, 4%);
-  border-top: 1px solid lighten($color1, 8%);
-  border-bottom: 1px solid lighten($color1, 8%);
+  background: lighten($ui-base-color, 4%);
+  border-top: 1px solid lighten($ui-base-color, 8%);
+  border-bottom: 1px solid lighten($ui-base-color, 8%);
   display: flex;
   flex-direction: row;
-  padding: 10px 0px;
+  padding: 10px 0;
 }
 
 .account--panel__button,
@@ -1994,12 +2090,12 @@ button.icon-button.active i.fa-retweet {
 }
 
 .column-settings__outer {
-  background: lighten($color1, 8%);
+  background: lighten($ui-base-color, 8%);
   padding: 15px;
 }
 
 .column-settings__section {
-  color: $color3;
+  color: $ui-primary-color;
   cursor: default;
   display: block;
   font-weight: 500;
@@ -2008,9 +2104,9 @@ button.icon-button.active i.fa-retweet {
 
 .modal-container__nav {
   align-items: center;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba($base-overlay-background, 0.5);
   box-sizing: border-box;
-  color: $color5;
+  color: $primary-text-color;
   cursor: pointer;
   display: flex;
   font-size: 24px;
@@ -2029,7 +2125,25 @@ button.icon-button.active i.fa-retweet {
 }
 
 .account--follows-info {
-  color: $color5;
+  color: $primary-text-color;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  opacity: 0.7;
+  display: inline-block;
+  vertical-align: top;
+  background-color: rgba($base-overlay-background, 0.4);
+  text-transform: uppercase;
+  font-size: 11px;
+  font-weight: 500;
+  padding: 4px;
+  border-radius: 4px;
+}
+
+.account--action-button {
+  position: absolute;
+  top: 10px;
+  left: 20px;
 }
 
 .setting-toggle__label {
@@ -2039,7 +2153,7 @@ button.icon-button.active i.fa-retweet {
 }
 
 .setting-toggle {
-  color: $color3;
+  color: $ui-primary-color;
   display: inline-block;
   margin-bottom: 14px;
   margin-left: 8px;
@@ -2054,14 +2168,14 @@ button.icon-button.active i.fa-retweet {
 }
 
 .report__target {
-  border-bottom: 1px solid lighten($color1, 4%);
-  color: $color2;
+  border-bottom: 1px solid lighten($ui-base-color, 4%);
+  color: $ui-secondary-color;
   flex: 0 0 auto;
   padding: 10px;
 
   strong {
     display: block;
-    color: $color5;
+    color: $primary-text-color;
     font-weight: 500;
   }
 }
@@ -2079,9 +2193,9 @@ button.icon-button.active i.fa-retweet {
   background: transparent;
   box-sizing: border-box;
   border: 0;
-  border-bottom: 2px solid $color3;
+  border-bottom: 2px solid $ui-primary-color;
   border-radius: 2px 2px 0 0;
-  color: $color5;
+  color: $primary-text-color;
   display: block;
   font-family: inherit;
   font-size: 14px;
@@ -2091,9 +2205,10 @@ button.icon-button.active i.fa-retweet {
   resize: vertical;
   width: 100%;
 
-  &:active, &:focus {
-    border-bottom-color: $color4;
-    background: rgba($color8, 0.1);
+  &:active,
+  &:focus {
+    border-bottom-color: $ui-highlight-color;
+    background: rgba($base-overlay-background, 0.1);
   }
 }
 
@@ -2107,8 +2222,8 @@ button.icon-button.active i.fa-retweet {
 }
 
 .empty-column-indicator {
-  color: lighten($color1, 20%);
-  background: $color1;
+  color: lighten($ui-base-color, 20%);
+  background: $ui-base-color;
   text-align: center;
   padding: 20px;
   font-size: 15px;
@@ -2117,9 +2232,11 @@ button.icon-button.active i.fa-retweet {
   display: flex;
   flex: 1 1 auto;
   align-items: center;
+  justify-content: center;
+  contain: strict;
 
   a {
-    color: $color4;
+    color: $ui-highlight-color;
     text-decoration: none;
 
     &:hover {
@@ -2128,7 +2245,8 @@ button.icon-button.active i.fa-retweet {
   }
 }
 
-.status-list__unread-indicator, .notifications__unread-indicator {
+.status-list__unread-indicator,
+.notifications__unread-indicator {
   position: absolute;
   top: 35px;
   left: 0;
@@ -2138,18 +2256,33 @@ button.icon-button.active i.fa-retweet {
   pointer-events: none;
   height: 28px;
   z-index: 1;
-  background: radial-gradient(ellipse, rgba($color4, 0.23) 0%, rgba($color4, 0) 60%);
+  background: radial-gradient(ellipse, rgba($ui-highlight-color, 0.23) 0%, rgba($ui-highlight-color, 0) 60%);
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0.5;
+  }
+}
+
+.pulse-loading {
+  animation: pulse 1s ease-in-out infinite;
+  animation-direction: alternate;
 }
 
 .emoji-dialog {
   width: 245px;
   height: 270px;
-  background: $color5;
+  background: $simple-background-color;
   box-sizing: border-box;
   border-radius: 4px;
   overflow: hidden;
   position: relative;
-  box-shadow: 0 0 8px rgba($color8, 0.2);
+  box-shadow: 0 0 8px rgba($base-shadow-color, 0.2);
 
   .emojione {
     margin: 0;
@@ -2178,22 +2311,25 @@ button.icon-button.active i.fa-retweet {
         height: 18px;
       }
 
-      img, svg {
+      img,
+      svg {
         width: 18px;
         height: 18px;
         filter: grayscale(100%);
       }
 
       &:hover {
-        img, svg {
+        img,
+        svg {
           filter: grayscale(0);
         }
       }
 
       &.active {
-        border-bottom-color: $color4;
+        border-bottom-color: $ui-highlight-color;
 
-        img, svg {
+        img,
+        svg {
           filter: grayscale(0);
         }
       }
@@ -2228,7 +2364,7 @@ button.icon-button.active i.fa-retweet {
     font-size: 12px;
     text-transform: uppercase;
     font-weight: 500;
-    color: darken($color2, 18%);
+    color: darken($ui-secondary-color, 18%);
     cursor: default;
   }
 
@@ -2261,14 +2397,14 @@ button.icon-button.active i.fa-retweet {
       position: relative;
       cursor: pointer;
 
-      &.active:after {
+      &.active::after {
         content: "";
         display: block;
         position: absolute;
         width: 7px;
         height: 7px;
         border-radius: 10px;
-        border: 2px solid $color5;
+        border: 2px solid $base-border-color;
         top: 2px;
         left: 2px;
       }
@@ -2277,7 +2413,7 @@ button.icon-button.active i.fa-retweet {
 
   .emoji-search-wrapper {
     padding: 10px;
-    border-bottom: 1px solid lighten($color2, 4%);
+    border-bottom: 1px solid lighten($ui-secondary-color, 4%);
   }
 
   .emoji-search {
@@ -2287,9 +2423,9 @@ button.icon-button.active i.fa-retweet {
     font-family: inherit;
     display: block;
     width: 100%;
-    background: rgba($color2, 0.3);
-    color: darken($color2, 18%);
-    border: 1px solid $color2;
+    background: rgba($ui-secondary-color, 0.3);
+    color: darken($ui-secondary-color, 18%);
+    border: 1px solid $ui-secondary-color;
     border-radius: 4px;
   }
 
@@ -2306,14 +2442,16 @@ button.icon-button.active i.fa-retweet {
   }
 
   .emoji-row .emoji {
-    img, svg {
+    img,
+    svg {
       transition: transform 60ms ease-in-out;
     }
 
     &:hover {
-      background: lighten($color2, 3%);
+      background: lighten($ui-secondary-color, 3%);
 
-      img, svg {
+      img,
+      svg {
         transform: translateZ(0) scale(1.2);
       }
     }
@@ -2332,7 +2470,7 @@ button.icon-button.active i.fa-retweet {
 
 .upload-area {
   align-items: center;
-  background: rgba($color8, 0.8);
+  background: rgba($base-overlay-background, 0.8);
   display: flex;
   height: 100%;
   justify-content: center;
@@ -2366,8 +2504,8 @@ button.icon-button.active i.fa-retweet {
   left: 0;
   z-index: -1;
   border-radius: 4px;
-  background: $color1;
-  box-shadow: 0 0 5px rgba($color8, 0.2);
+  background: $ui-base-color;
+  box-shadow: 0 0 5px rgba($base-shadow-color, 0.2);
 }
 
 .upload-area__content {
@@ -2375,16 +2513,16 @@ button.icon-button.active i.fa-retweet {
   display: flex;
   align-items: center;
   justify-content: center;
-  color: $color2;
+  color: $ui-secondary-color;
   font-size: 18px;
   font-weight: 500;
-  border: 2px dashed lighten($color1, 26%);
+  border: 2px dashed lighten($ui-base-color, 26%);
   border-radius: 4px;
 }
 
 .upload-progress {
   padding: 10px;
-  color: lighten($color1, 26%);
+  color: lighten($ui-base-color, 26%);
   overflow: hidden;
   display: flex;
 
@@ -2409,7 +2547,7 @@ button.icon-button.active i.fa-retweet {
   width: 100%;
   height: 6px;
   border-radius: 6px;
-  background: lighten($color1, 26%);
+  background: lighten($ui-base-color, 26%);
   position: relative;
   margin-top: 5px;
 }
@@ -2419,14 +2557,20 @@ button.icon-button.active i.fa-retweet {
   left: 0;
   top: 0;
   height: 6px;
-  background: $color4;
+  background: $ui-highlight-color;
   border-radius: 6px;
 }
 
 .emoji-button {
+  display: block;
+  font-size: 24px;
+  line-height: 24px;
+  margin-left: 2px;
+  width: 24px;
   outline: 0;
 
-  &:active, &:focus {
+  &:active,
+  &:focus {
     outline: 0 !important;
   }
 
@@ -2440,7 +2584,9 @@ button.icon-button.active i.fa-retweet {
     margin-top: 2px;
   }
 
-  &:hover, &:active, &:focus {
+  &:hover,
+  &:active,
+  &:focus {
     img {
       opacity: 1;
       filter: none;
@@ -2463,33 +2609,34 @@ button.icon-button.active i.fa-retweet {
   left: 0;
   top: 27px;
   width: 230px;
-  background: $color5;
-  border-radius: 0 4px 4px 4px;
+  background: $simple-background-color;
+  border-radius: 0 4px 4px;
   z-index: 2;
   overflow: hidden;
 }
 
 .privacy-dropdown__option {
-  color: $color1;
+  color: $ui-base-color;
   padding: 10px;
   cursor: pointer;
   display: flex;
 
-  &:hover, &.active {
-    background: $color4;
-    color: $color5;
+  &:hover,
+  &.active {
+    background: $ui-highlight-color;
+    color: $primary-text-color;
 
     .privacy-dropdown__option__content {
-      color: $color5;
+      color: $primary-text-color;
 
       strong {
-        color: $color5;
+        color: $primary-text-color;
       }
     }
   }
 
   &.active:hover {
-    background: lighten($color4, 4%);
+    background: lighten($ui-highlight-color, 4%);
   }
 }
 
@@ -2502,25 +2649,25 @@ button.icon-button.active i.fa-retweet {
 
 .privacy-dropdown__option__content {
   flex: 1 1 auto;
-  color: darken($color3, 24%);
+  color: darken($ui-primary-color, 24%);
 
   strong {
     font-weight: 500;
     display: block;
-    color: $color1;
+    color: $ui-base-color;
   }
 }
 
 .privacy-dropdown.active {
   .privacy-dropdown__value {
-    background: $color5;
+    background: $simple-background-color;
     border-radius: 4px 4px 0 0;
-    box-shadow: 0 -4px 4px rgba($color8, 0.1);
+    box-shadow: 0 -4px 4px rgba($base-shadow-color, 0.1);
   }
 
   .privacy-dropdown__dropdown {
     display: block;
-    box-shadow: 2px 4px 6px rgba($color8, 0.1);
+    box-shadow: 2px 4px 6px rgba($base-shadow-color, 0.1);
   }
 }
 
@@ -2530,7 +2677,7 @@ button.icon-button.active i.fa-retweet {
 
 .search__input {
   padding-right: 30px;
-  color: $color2;
+  color: $ui-secondary-color;
   outline: 0;
   box-sizing: border-box;
   display: block;
@@ -2539,8 +2686,8 @@ button.icon-button.active i.fa-retweet {
   padding: 10px;
   padding-right: 30px;
   font-family: inherit;
-  background: $color1;
-  color: $color3;
+  background: $ui-base-color;
+  color: $ui-primary-color;
   font-size: 14px;
   margin: 0;
 
@@ -2548,12 +2695,14 @@ button.icon-button.active i.fa-retweet {
     border: 0;
   }
 
-  &::-moz-focus-inner, &:focus, &:active {
+  &::-moz-focus-inner,
+  &:focus,
+  &:active {
     outline: 0 !important;
   }
 
   &:focus {
-    background: lighten($color1, 4%);
+    background: lighten($ui-base-color, 4%);
   }
 
   @media screen and (max-width: 600px) {
@@ -2573,7 +2722,7 @@ button.icon-button.active i.fa-retweet {
     font-size: 18px;
     width: 18px;
     height: 18px;
-    color: $color2;
+    color: $ui-secondary-color;
     cursor: default;
     pointer-events: none;
 
@@ -2602,15 +2751,15 @@ button.icon-button.active i.fa-retweet {
     }
 
     &:hover {
-      color: $color5;
+      color: $primary-text-color;
     }
   }
 }
 
 .search-results__header {
-  color: lighten($color1, 26%);
-  background: lighten($color1, 2%);
-  border-bottom: 1px solid darken($color1, 4%);
+  color: lighten($ui-base-color, 26%);
+  background: lighten($ui-base-color, 2%);
+  border-bottom: 1px solid darken($ui-base-color, 4%);
   padding: 15px 10px;
   font-size: 14px;
   font-weight: 500;
@@ -2619,11 +2768,13 @@ button.icon-button.active i.fa-retweet {
 .search-results__hashtag {
   display: block;
   padding: 10px;
-  color: $color2;
+  color: $ui-secondary-color;
   text-decoration: none;
 
-  &:hover, &:active, &:focus {
-    color: lighten($color2, 4%);
+  &:hover,
+  &:active,
+  &:focus {
+    color: lighten($ui-secondary-color, 4%);
     text-decoration: underline;
   }
 }
@@ -2636,8 +2787,8 @@ button.icon-button.active i.fa-retweet {
   bottom: 0;
   z-index: 9999;
   opacity: 0;
-  background: rgba($color8, 0.7);
-  transform: translateZ(0px);
+  background: rgba($base-overlay-background, 0.7);
+  transform: translateZ(0);
 }
 
 .modal-root__container {
@@ -2668,7 +2819,8 @@ button.icon-button.active i.fa-retweet {
   max-height: 80vh;
   position: relative;
 
-  img, video {
+  img,
+  video {
     max-width: 80vw;
     max-height: 80vh;
   }
@@ -2682,8 +2834,8 @@ button.icon-button.active i.fa-retweet {
 }
 
 .onboarding-modal {
-  background: $color2;
-  color: $color1;
+  background: $ui-secondary-color;
+  color: $ui-base-color;
   border-radius: 8px;
   overflow: hidden;
   display: flex;
@@ -2733,7 +2885,7 @@ button.icon-button.active i.fa-retweet {
 
 .onboarding-modal__paginator {
   flex: 0 0 auto;
-  background: darken($color2, 8%);
+  background: darken($ui-secondary-color, 8%);
   display: flex;
   padding: 25px;
 
@@ -2742,17 +2894,20 @@ button.icon-button.active i.fa-retweet {
   }
 
   a {
-    color: darken($color2, 34%);
+    color: darken($ui-secondary-color, 34%);
     text-decoration: none;
     font-size: 14px;
     font-weight: 500;
 
-    &:hover, &:focus, &:active {
-      color: darken($color2, 38%);
+    &:hover,
+    &:focus,
+    &:active {
+      color: darken($ui-secondary-color, 38%);
     }
 
-    &.onboarding-modal__done, &.onboarding-modal__next {
-      color: $color4;
+    &.onboarding-modal__done,
+    &.onboarding-modal__next {
+      color: $ui-highlight-color;
     }
   }
 }
@@ -2768,17 +2923,17 @@ button.icon-button.active i.fa-retweet {
   width: 14px;
   height: 14px;
   border-radius: 14px;
-  background: darken($color2, 16%);
+  background: darken($ui-secondary-color, 16%);
   margin: 0 3px;
   cursor: pointer;
 
   &:hover {
-    background: darken($color2, 18%);
+    background: darken($ui-secondary-color, 18%);
   }
 
   &.active {
     cursor: default;
-    background: darken($color2, 24%);
+    background: darken($ui-secondary-color, 24%);
   }
 }
 
@@ -2789,21 +2944,23 @@ button.icon-button.active i.fa-retweet {
   h1 {
     font-size: 18px;
     font-weight: 500;
-    color: $color1;
+    color: $ui-base-color;
     margin-bottom: 20px;
   }
 
   a {
-    color: $color4;
+    color: $ui-highlight-color;
 
-    &:hover, &:focus, &:active {
-      color: lighten($color4, 4%);
+    &:hover,
+    &:focus,
+    &:active {
+      color: lighten($ui-highlight-color, 4%);
     }
   }
 
   p {
     font-size: 16px;
-    color: lighten($color1, 8%);
+    color: lighten($ui-base-color, 8%);
     margin-top: 10px;
     margin-bottom: 10px;
 
@@ -2813,8 +2970,8 @@ button.icon-button.active i.fa-retweet {
 
     strong {
       font-weight: 500;
-      background: $color1;
-      color: $color2;
+      background: $ui-base-color;
+      color: $ui-secondary-color;
       border-radius: 4px;
       font-size: 14px;
       padding: 3px 6px;
@@ -2827,7 +2984,7 @@ button.icon-button.active i.fa-retweet {
 }
 
 .onboarding-modal__page-one__elephant-friend {
-  background: url('../images/elephant-friend.png') no-repeat center center/contain;
+  background: url('../images/elephant-friend.png') no-repeat center center / contain;
   width: 147px;
   height: 160px;
   margin-right: 10px;
@@ -2855,14 +3012,14 @@ button.icon-button.active i.fa-retweet {
   }
 
   .figure {
-    background: darken($color1, 8%);
-    color: $color2;
+    background: darken($ui-base-color, 8%);
+    color: $ui-secondary-color;
     margin-bottom: 20px;
     border-radius: 4px;
     padding: 10px;
     text-align: center;
     font-size: 14px;
-    box-shadow: 1px 2px 6px rgba($color8, 0.3);
+    box-shadow: 1px 2px 6px rgba($base-shadow-color, 0.3);
 
     .onboarding-modal__image {
       border-radius: 4px;
@@ -2904,7 +3061,7 @@ button.icon-button.active i.fa-retweet {
   }
 
   .column-header {
-    color: $color5;
+    color: $primary-text-color;
   }
 }
 
@@ -2949,9 +3106,10 @@ button.icon-button.active i.fa-retweet {
   margin-left: 10px;
 }
 
-.boost-modal, .confirmation-modal {
-  background: lighten($color2, 8%);
-  color: $color1;
+.boost-modal,
+.confirmation-modal {
+  background: lighten($ui-secondary-color, 8%);
+  color: $ui-base-color;
   border-radius: 8px;
   overflow: hidden;
   max-width: 90vw;
@@ -2984,16 +3142,17 @@ button.icon-button.active i.fa-retweet {
   }
 }
 
-.boost-modal__action-bar, .confirmation-modal__action-bar {
+.boost-modal__action-bar,
+.confirmation-modal__action-bar {
   display: flex;
-  background: $color2;
+  background: $ui-secondary-color;
   padding: 10px;
   line-height: 36px;
 
   & > div {
     flex: 1 1 auto;
     text-align: right;
-    color: lighten($color1, 33%);
+    color: lighten($ui-base-color, 33%);
     padding-right: 10px;
   }
 
@@ -3026,13 +3185,15 @@ button.icon-button.active i.fa-retweet {
   }
 
   a {
-    color: darken($color2, 34%);
+    color: darken($ui-secondary-color, 34%);
     text-decoration: none;
     font-size: 14px;
     font-weight: 500;
 
-    &:hover, &:focus, &:active {
-      color: darken($color2, 38%);
+    &:hover,
+    &:focus,
+    &:active {
+      color: darken($ui-secondary-color, 38%);
     }
   }
 }
@@ -3048,7 +3209,7 @@ button.icon-button.active i.fa-retweet {
 }
 
 .loading-bar {
-  background-color: $color4;
+  background-color: $ui-highlight-color;
   height: 3px;
   position: absolute;
   top: 0;
@@ -3058,8 +3219,8 @@ button.icon-button.active i.fa-retweet {
 .media-gallery__gifv__label {
   display: block;
   position: absolute;
-  color: $color5;
-  background: rgba($color8, 0.5);
+  color: $primary-text-color;
+  background: rgba($base-overlay-background, 0.5);
   bottom: 6px;
   left: 6px;
   padding: 2px 6px;
@@ -3089,7 +3250,7 @@ button.icon-button.active i.fa-retweet {
 .attachment-list {
   display: flex;
   font-size: 14px;
-  border: 1px solid lighten($color1, 8%);
+  border: 1px solid lighten($ui-base-color, 8%);
   border-radius: 4px;
   margin-top: 14px;
   overflow: hidden;
@@ -3097,10 +3258,10 @@ button.icon-button.active i.fa-retweet {
 
 .attachment-list__icon {
   flex: 0 0 auto;
-  color: lighten($color1, 26%);
+  color: lighten($ui-base-color, 26%);
   padding: 8px 18px;
   cursor: default;
-  border-right: 1px solid lighten($color1, 8%);
+  border-right: 1px solid lighten($ui-base-color, 8%);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -3127,7 +3288,7 @@ button.icon-button.active i.fa-retweet {
 
   a {
     text-decoration: none;
-    color: lighten($color1, 26%);
+    color: lighten($ui-base-color, 26%);
     font-weight: 500;
 
     &:hover {
@@ -3192,7 +3353,7 @@ button.icon-button.active i.fa-retweet {
 
 /* Status Video Player */
 .status__video-player {
-  background: #000;
+  background: $base-overlay-background;
   box-sizing: border-box;
   cursor: default; /* May not be needed */
   margin-top: 8px;
@@ -3212,20 +3373,25 @@ button.icon-button.active i.fa-retweet {
 
 .status__video-player-expand,
 .status__video-player-mute {
-  color: #fff;
+  color: $primary-text-color;
   opacity: 0.8;
   position: absolute;
   right: 4px;
-  text-shadow: 0px 1px 1px #000, 1px 0px 1px #000;
+  text-shadow: 0 1px 1px $base-shadow-color, 1px 0 1px $base-shadow-color;
 }
 
 .status__video-player-spoiler {
-  color: #fff;
+  display: none;
+  color: $primary-text-color;
   left: 4px;
   position: absolute;
-  text-shadow: 0px 1px 1px #000, 1px 0px 1px #000;
+  text-shadow: 0 1px 1px $base-shadow-color, 1px 0 1px $base-shadow-color;
   top: 4px;
   z-index: 100;
+
+  &.status__video-player-spoiler--visible {
+    display: block;
+  }
 }
 
 .status__video-player-expand {
@@ -3240,6 +3406,8 @@ button.icon-button.active i.fa-retweet {
 
 .media-spoiler-video {
   background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
   cursor: pointer;
   margin-top: 8px;
   position: relative;
@@ -3247,7 +3415,7 @@ button.icon-button.active i.fa-retweet {
 
 .media-spoiler-video-play-icon {
   border-radius: 100px;
-  color: rgba(255, 255, 255, 0.8);
+  color: rgba($primary-text-color, 0.8);
   font-size: 36px;
   left: 50%;
   padding: 5px;
@@ -3256,3 +3424,55 @@ button.icon-button.active i.fa-retweet {
   transform: translate(-50%, -50%);
 }
 /* End Video Player */
+
+.account-gallery__container {
+  margin: -2px;
+  padding: 4px;
+}
+
+.account-gallery__item {
+  float: left;
+  width: 96px;
+  height: 96px;
+  margin: 2px;
+
+  a {
+    display: block;
+    width: 100%;
+    height: 100%;
+    background-color: $base-overlay-background;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+  }
+}
+
+.account-section-headline {
+  color: lighten($ui-base-color, 26%);
+  background: lighten($ui-base-color, 2%);
+  border-bottom: 1px solid lighten($ui-base-color, 4%);
+  padding: 15px 10px;
+  font-size: 14px;
+  font-weight: 500;
+  position: relative;
+  cursor: default;
+
+  &::before,
+  &::after {
+    display: block;
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 18px;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 10px 10px;
+    border-color: transparent transparent lighten($ui-base-color, 4%);
+  }
+
+  &::after {
+    bottom: -1px;
+    border-color: transparent transparent $ui-base-color;
+  }
+}

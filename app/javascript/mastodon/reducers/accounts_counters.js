@@ -9,15 +9,15 @@ import {
   FOLLOW_REQUESTS_FETCH_SUCCESS,
   FOLLOW_REQUESTS_EXPAND_SUCCESS,
   ACCOUNT_FOLLOW_SUCCESS,
-  ACCOUNT_UNFOLLOW_SUCCESS
+  ACCOUNT_UNFOLLOW_SUCCESS,
 } from '../actions/accounts';
 import {
   BLOCKS_FETCH_SUCCESS,
-  BLOCKS_EXPAND_SUCCESS
+  BLOCKS_EXPAND_SUCCESS,
 } from '../actions/blocks';
 import {
   MUTES_FETCH_SUCCESS,
-  MUTES_EXPAND_SUCCESS
+  MUTES_EXPAND_SUCCESS,
 } from '../actions/mutes';
 import { COMPOSE_SUGGESTIONS_READY } from '../actions/compose';
 import {
@@ -26,26 +26,26 @@ import {
   FAVOURITE_SUCCESS,
   UNFAVOURITE_SUCCESS,
   REBLOGS_FETCH_SUCCESS,
-  FAVOURITES_FETCH_SUCCESS
+  FAVOURITES_FETCH_SUCCESS,
 } from '../actions/interactions';
 import {
   TIMELINE_REFRESH_SUCCESS,
   TIMELINE_UPDATE,
-  TIMELINE_EXPAND_SUCCESS
+  TIMELINE_EXPAND_SUCCESS,
 } from '../actions/timelines';
 import {
   STATUS_FETCH_SUCCESS,
-  CONTEXT_FETCH_SUCCESS
+  CONTEXT_FETCH_SUCCESS,
 } from '../actions/statuses';
 import { SEARCH_FETCH_SUCCESS } from '../actions/search';
 import {
   NOTIFICATIONS_UPDATE,
   NOTIFICATIONS_REFRESH_SUCCESS,
-  NOTIFICATIONS_EXPAND_SUCCESS
+  NOTIFICATIONS_EXPAND_SUCCESS,
 } from '../actions/notifications';
 import {
   FAVOURITED_STATUSES_FETCH_SUCCESS,
-  FAVOURITED_STATUSES_EXPAND_SUCCESS
+  FAVOURITED_STATUSES_EXPAND_SUCCESS,
 } from '../actions/favourites';
 import { STORE_HYDRATE } from '../actions/store';
 import Immutable from 'immutable';
@@ -90,7 +90,7 @@ export default function accountsCounters(state = initialState, action) {
     return state.merge(action.state.get('accounts').map(item => Immutable.fromJS({
       followers_count: item.get('followers_count'),
       following_count: item.get('following_count'),
-      statuses_count: item.get('statuses_count')
+      statuses_count: item.get('statuses_count'),
     })));
   case ACCOUNT_FETCH_SUCCESS:
   case NOTIFICATIONS_UPDATE:

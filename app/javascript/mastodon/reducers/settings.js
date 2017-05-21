@@ -8,12 +8,12 @@ const initialState = Immutable.Map({
   home: Immutable.Map({
     shows: Immutable.Map({
       reblog: true,
-      reply: true
+      reply: true,
     }),
 
     regex: Immutable.Map({
-      body: ''
-    })
+      body: '',
+    }),
   }),
 
   notifications: Immutable.Map({
@@ -21,23 +21,23 @@ const initialState = Immutable.Map({
       follow: true,
       favourite: true,
       reblog: true,
-      mention: true
+      mention: true,
     }),
 
     shows: Immutable.Map({
       follow: true,
       favourite: true,
       reblog: true,
-      mention: true
+      mention: true,
     }),
 
     sounds: Immutable.Map({
       follow: true,
       favourite: true,
       reblog: true,
-      mention: true
-    })
-  })
+      mention: true,
+    }),
+  }),
 });
 
 export default function settings(state = initialState, action) {

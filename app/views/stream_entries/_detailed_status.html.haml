@@ -1,7 +1,7 @@
 .detailed-status.light
   = link_to TagManager.instance.url_for(status.account), class: 'detailed-status__display-name p-author h-card', target: stream_link_target, rel: 'noopener' do
     %div
-      %div.avatar
+      .avatar
         = image_tag status.account.avatar.url(:original), width: 48, height: 48, alt: '', class: 'u-photo'
     %span.display-name
       %strong.p-name.emojify= display_name(status.account)
@@ -10,17 +10,16 @@
   .status__content.p-name.emojify<
     - if status.spoiler_text?
       %p{ style: 'margin-bottom: 0' }<
-        %span.p-summary>= "#{status.spoiler_text} "
+        %span.p-summary> #{status.spoiler_text}&nbsp;
         %a.status__content__spoiler-link{ href: '#' }= t('statuses.show_more')
-    %div.e-content{ lang: status.language, style: "display: #{status.spoiler_text? ? 'none' : 'block'}; direction: #{rtl?(status.content) ? 'rtl' : 'ltr'}" }= Formatter.instance.format(status)
-
+    .e-content{ lang: status.language, style: "display: #{status.spoiler_text? ? 'none' : 'block'}; direction: #{rtl?(status.content) ? 'rtl' : 'ltr'}" }= Formatter.instance.format(status)
 
   - unless status.media_attachments.empty?
     - if status.media_attachments.first.video?
       .video-player
         - if status.sensitive?
           = render partial: 'stream_entries/content_spoiler'
-        %video{ src: status.media_attachments.first.file.url(:original), loop: true, class: 'u-video' }
+        %video.u-video{ src: status.media_attachments.first.file.url(:original), loop: true }
     - else
       .detailed-status__attachments
         - if status.sensitive?
@@ -29,10 +28,10 @@
           - status.media_attachments.each do |media|
             = render partial: 'stream_entries/media', locals: { media: media }
 
-  %div.detailed-status__meta
+  .detailed-status__meta
     %data.dt-published{ value: status.created_at.to_time.iso8601 }
     = link_to TagManager.instance.url_for(status), class: 'detailed-status__datetime u-url u-uid', target: stream_link_target, rel: 'noopener' do
-      %span= local_time(status.created_at, format: :default)
+      %time{ datetime: status.created_at.iso8601, title: l(status.created_at), data: { format: t('time.formats.default') } }= l(status.created_at)
     ·
     - if status.application
       - if status.application.website.blank?

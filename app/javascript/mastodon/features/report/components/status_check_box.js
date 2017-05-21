@@ -6,6 +6,13 @@ import Toggle from 'react-toggle';
 
 class StatusCheckBox extends React.PureComponent {
 
+  static propTypes = {
+    status: ImmutablePropTypes.map.isRequired,
+    checked: PropTypes.bool,
+    onToggle: PropTypes.func.isRequired,
+    disabled: PropTypes.bool,
+  };
+
   render () {
     const { status, checked, onToggle, disabled } = this.props;
     const content = { __html: emojify(status.get('content')) };
@@ -29,12 +36,5 @@ class StatusCheckBox extends React.PureComponent {
   }
 
 }
-
-StatusCheckBox.propTypes = {
-  status: ImmutablePropTypes.map.isRequired,
-  checked: PropTypes.bool,
-  onToggle: PropTypes.func.isRequired,
-  disabled: PropTypes.bool
-};
 
 export default StatusCheckBox;

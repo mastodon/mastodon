@@ -14,7 +14,7 @@ const RelativeTimestamp = ({ intl, timestamp }) => {
 
 RelativeTimestamp.propTypes = {
   intl: PropTypes.object.isRequired,
-  timestamp: PropTypes.string.isRequired
+  timestamp: PropTypes.string.isRequired,
 };
 
 export default injectIntl(RelativeTimestamp);

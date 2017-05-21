@@ -8,10 +8,17 @@ import SettingText from './setting_text';
 
 const messages = defineMessages({
   filter_regex: { id: 'home.column_settings.filter_regex', defaultMessage: 'Filter out by regular expressions' },
-  settings: { id: 'home.settings', defaultMessage: 'Column settings' }
+  settings: { id: 'home.settings', defaultMessage: 'Column settings' },
 });
 
 class ColumnSettings extends React.PureComponent {
+
+  static propTypes = {
+    settings: ImmutablePropTypes.map.isRequired,
+    onChange: PropTypes.func.isRequired,
+    onSave: PropTypes.func.isRequired,
+    intl: PropTypes.object.isRequired,
+  };
 
   render () {
     const { settings, onChange, onSave, intl } = this.props;
@@ -39,13 +46,6 @@ class ColumnSettings extends React.PureComponent {
     );
   }
 
-}
-
-ColumnSettings.propTypes = {
-  settings: ImmutablePropTypes.map.isRequired,
-  onChange: PropTypes.func.isRequired,
-  onSave: PropTypes.func.isRequired,
-  intl: PropTypes.object.isRequired
 }
 
 export default injectIntl(ColumnSettings);
