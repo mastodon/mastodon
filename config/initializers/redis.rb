@@ -27,4 +27,7 @@ end
 
 Rails.application.configure do
   config.cache_store = :redis_store, ENV['REDIS_URL'], cache_params
+  if Rails.env.production?
+    Rails.cache = ActiveSupport::Cache.lookup_store(Rails.application.config.cache_store)
+  end
 end
