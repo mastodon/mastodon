@@ -64,16 +64,16 @@ class StatusList extends ImmutablePureComponent {
 
   attachIntersectionObserver () {
     const onIntersection = (entries) => {
-      const isIntersecting = { };
-
       this.setState(state => {
+        const isIntersecting = { };
+
         entries.forEach(entry => {
           const statusId = entry.target.getAttribute('data-id');
 
           state.isIntersecting[0][statusId] = entry.isIntersecting;
         });
 
-        return [state.isIntersecting[0]];
+        return { isIntersecting: [state.isIntersecting[0]] };
       });
     };
 
