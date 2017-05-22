@@ -27,5 +27,5 @@
 
   - body_classes ||= @body_classes
 
-  %body{ class: add_rtl_body_class(body_classes) }
+  %body{ class: add_rtl_body_class([*body_classes, theme_class_name]) }
     = content_for?(:content) ? yield(:content) : yield
