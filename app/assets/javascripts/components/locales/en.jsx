@@ -172,6 +172,7 @@ const en = {
   "video_player.toggle_sound": "Toggle sound",
   "video_player.toggle_visible": "Toggle visibility",
   "video_player.video_error": "Video could not be played",
+  "welcome.message": "Welcome to {domain}!\n\nLet's search followers by using lower hashtags.",
 };
 
 export default en;
