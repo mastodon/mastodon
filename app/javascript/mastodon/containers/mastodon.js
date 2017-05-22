@@ -41,34 +41,12 @@ import FavouritedStatuses from '../features/favourited_statuses';
 import Blocks from '../features/blocks';
 import Mutes from '../features/mutes';
 import Report from '../features/report';
-import { IntlProvider, addLocaleData } from 'react-intl';
-import ar from 'react-intl/locale-data/ar';
-import bg from 'react-intl/locale-data/bg';
-import ca from 'react-intl/locale-data/ca';
-import de from 'react-intl/locale-data/de';
-import en from 'react-intl/locale-data/en';
-import eo from 'react-intl/locale-data/eo';
-import es from 'react-intl/locale-data/es';
-import fa from 'react-intl/locale-data/fa';
-import fi from 'react-intl/locale-data/fi';
-import fr from 'react-intl/locale-data/fr';
-import he from 'react-intl/locale-data/he';
-import hr from 'react-intl/locale-data/hr';
-import hu from 'react-intl/locale-data/hu';
-import id from 'react-intl/locale-data/id';
-import it from 'react-intl/locale-data/it';
-import ja from 'react-intl/locale-data/ja';
-import nl from 'react-intl/locale-data/nl';
-import no from 'react-intl/locale-data/no';
-import oc from '../locales/locale-data/oc';
-import pt from 'react-intl/locale-data/pt';
-import ru from 'react-intl/locale-data/ru';
-import uk from 'react-intl/locale-data/uk';
-import zh from 'react-intl/locale-data/zh';
-import tr from 'react-intl/locale-data/tr';
-import getMessagesForLocale from '../locales';
 import { hydrateStore } from '../actions/store';
 import createStream from '../stream';
+import { IntlProvider, addLocaleData } from 'react-intl';
+import { getLocale } from '../locales';
+const { localeData, messages } = getLocale();
+addLocaleData(localeData);
 
 const store = configureStore();
 const initialState = JSON.parse(document.getElementById("initial-state").textContent);
@@ -77,33 +55,6 @@ store.dispatch(hydrateStore(initialState));
 const browserHistory = useRouterHistory(createBrowserHistory)({
   basename: '/web',
 });
-
-addLocaleData([
-  ...ar,
-  ...bg,
-  ...ca,
-  ...de,
-  ...en,
-  ...eo,
-  ...es,
-  ...fa,
-  ...fi,
-  ...fr,
-  ...he,
-  ...hr,
-  ...hu,
-  ...id,
-  ...it,
-  ...ja,
-  ...nl,
-  ...no,
-  ...oc,
-  ...pt,
-  ...ru,
-  ...uk,
-  ...zh,
-  ...tr,
-]);
 
 class Mastodon extends React.PureComponent {
 
@@ -145,7 +96,7 @@ class Mastodon extends React.PureComponent {
           store.dispatch(deleteFromTimelines(data.payload));
           break;
         case 'notification':
-          store.dispatch(updateNotifications(JSON.parse(data.payload), getMessagesForLocale(locale), locale));
+          store.dispatch(updateNotifications(JSON.parse(data.payload), messages, locale));
           break;
         }
       },
@@ -183,7 +134,7 @@ class Mastodon extends React.PureComponent {
     const { locale } = this.props;
 
     return (
-      <IntlProvider locale={locale} messages={getMessagesForLocale(locale)}>
+      <IntlProvider locale={locale} messages={messages}>
         <Provider store={store}>
           <Router history={browserHistory} render={applyRouterMiddleware(useScroll())}>
             <Route path='/' component={UI}>

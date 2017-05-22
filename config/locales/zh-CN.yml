@@ -104,7 +104,7 @@ zh-CN:
         create: 添加域名阻隔
         hint: "「域名阻隔」不会隔绝该域名用户的嘟账户入本站数据库，但会嘟文抵达后，自动套用特定的审批操作。"
         severity:
-          desc_html: "「<strong>自动静音</strong>」令该域名用户的嘟文，设为只对关注者显示，没有关注的人会看不到。 「<strong>自动除名</strong>」会自动将该域名用户的嘟文、媒体文件、个人资料自本服务站删除。"
+          desc_html: "「<strong>自动静音</strong>」令该域名用户的嘟文，设为只对关注者显示，没有关注的人会看不到。 「<strong>自动除名</strong>」会自动将该域名用户的嘟文、媒体文件、个人资料从本服务器实例删除。"
           silence: 自动静音
           suspend: 自动除名
         title: 添加域名阻隔
@@ -239,16 +239,16 @@ zh-CN:
     powered_by: 基于 %{link} 构建
     save_changes: 保存
     validation_errors:
-      other: 出错了！请看一看以下 %{count} 处闹鬼现场：
+      other: 出错啦！请确认以下 %{count} 处出错的地方，修改之后再来一次：
   imports:
-    preface: 你可以在此导入你在其他服务站所导出的数据文件，包括︰你所关注、封锁的用户。
+    preface: 你可以在此导入你在其他服务器实例所导出的数据文件，包括︰你所关注、封锁的用户。
     success: 你已成功上载数据文件，我们正将数据导入，请稍候
     types:
       blocking: 封锁名单
       following: 关注名单
       muting: 静音名单
     upload: 上载
-  landing_strip_html: <strong>%{name}</strong> 是一个在 %{link_to_root_path} 的用户。只要你是象毛世界里（Mastodon、GNU social）任一服务站的用户，便可以跨站关注此站用户并与其沟通。
+  landing_strip_html: <strong>%{name}</strong> 是一个在 %{link_to_root_path} 的用户。只要你是象毛世界里（Mastodon、GNU social）任一服务器实例的用户，便可以跨站关注此站用户并与其沟通。
   landing_strip_signup_html: 如果你没有这类账户，欢迎在<a href="%{sign_up_path}">此处登记</a>。
   notification_mailer:
     digest:
@@ -307,7 +307,7 @@ zh-CN:
       unlisted_long: 公开，但不显示在公共时间线中
   stream_entries:
     click_to_show: 显示
-    reblogged: 转发
+    reblogged: 转嘟
     sensitive_content: 敏感内容
   time:
     formats:

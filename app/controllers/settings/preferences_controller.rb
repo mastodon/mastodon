@@ -11,6 +11,7 @@ class Settings::PreferencesController < ApplicationController
     user_settings.update(user_settings_params.to_h)
 
     if current_user.update(user_params)
+      I18n.locale = current_user.locale
       redirect_to settings_preferences_path, notice: I18n.t('generic.changes_saved_msg')
     else
       render :show
