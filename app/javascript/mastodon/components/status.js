@@ -70,7 +70,7 @@ class Status extends ImmutablePureComponent {
       return <div ref={this.handleRef} data-id={status.get('id')} />;
     }
 
-    if (!isIntersecting) {
+    if (isIntersecting === false) {
       return (
         <div ref={this.handleRef} data-id={status.get('id')} style={{ height: `${this.height}px`, opacity: 0 }}>
           {status.getIn(['account', 'display_name']) || status.getIn(['account', 'username'])}
