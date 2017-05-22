@@ -5,6 +5,7 @@ class InstancePresenter
     :closed_registrations_message,
     :site_contact_email,
     :open_registrations,
+    :prohibit_registrations_except_qiita_oauth,
     :site_description,
     :site_extended_description,
     to: Setting
@@ -28,5 +29,9 @@ class InstancePresenter
 
   def version_number
     Mastodon::Version
+  end
+
+  def open_password_registrations
+    open_registrations && !prohibit_registrations_except_qiita_oauth
   end
 end

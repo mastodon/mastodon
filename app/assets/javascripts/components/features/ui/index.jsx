@@ -5,6 +5,7 @@ import LoadingBarContainer from './containers/loading_bar_container';
 import HomeTimeline from '../home_timeline';
 import Compose from '../compose';
 import TabsBar from './components/tabs_bar';
+import AlertBarContainer from './containers/alert_bar_container';
 import ModalContainer from './containers/modal_container';
 import Notifications from '../notifications';
 import { connect } from 'react-redux';
@@ -144,6 +145,7 @@ class UI extends React.PureComponent {
 
     return (
       <div className='ui' ref={this.setRef}>
+        <AlertBarContainer />
         <TabsBar />
 
         {mountedColumns}

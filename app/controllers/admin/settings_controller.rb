@@ -2,7 +2,7 @@
 
 module Admin
   class SettingsController < BaseController
-    BOOLEAN_SETTINGS = %w(open_registrations).freeze
+    BOOLEAN_SETTINGS = %w(open_registrations prohibit_registrations_except_qiita_oauth).freeze
 
     def index
       @settings = Setting.all_as_records

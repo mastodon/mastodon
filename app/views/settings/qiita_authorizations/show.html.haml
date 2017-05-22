@@ -1,0 +1,11 @@
+- content_for :page_title do
+  = t('settings.qiita_authorizations')
+
+%table.table
+  %tbody
+    %tr
+      %th User ID
+      %th Status
+    %tr
+      %td= @qiita_authorization.try(:uid)
+      %td= @qiita_authorization ? '連携中' : link_to('連携する', '/auth/auth/qiita')

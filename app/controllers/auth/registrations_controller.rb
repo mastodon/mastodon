@@ -29,7 +29,15 @@ class Auth::RegistrationsController < Devise::RegistrationsController
   end
 
   def check_enabled_registrations
-    redirect_to root_path if single_user_mode? || !Setting.open_registrations
+    redirect_to root_path if single_user_mode? || !Setting.open_registrations || Setting.prohibit_registrations_except_qiita_oauth
+  end
+
+  def update_resource(resource, params)
+    if resource.try(:has_dummy_password?)
+      resource.update_without_current_password(params)
+    else
+      super
+    end
   end
 
   private

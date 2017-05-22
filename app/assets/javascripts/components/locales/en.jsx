@@ -24,6 +24,7 @@ const en = {
   "account.unblock": "Unblock @{name}",
   "account.unfollow": "Unfollow",
   "account.unmute": "Unmute @{name}",
+  "alert_bar.email_confirm_alert": "Your email address is not confirmed. Please confirm the sent email in 24 hours after registration.",
   "boost_modal.combo": "You can press {combo} to skip this next time",
   "column.blocks": "Blocked users",
   "column.community": "Local timeline",

@@ -14,6 +14,7 @@ const ja = {
   "account.unblock": "ブロック解除",
   "account.unfollow": "フォロー解除",
   "account.unmute": "ミュート解除",
+  "alert_bar.email_confirm_alert": "メールアドレスの確認が完了していません。登録後24時間以内に、登録したアドレス宛に送信されたメールを確認してください。",
   "boost_modal.combo": "次からは{combo}を押せば、これをスキップできます。",
   "column.blocks": "ブロックしたユーザー",
   "column.community": "ローカルタイムライン",
