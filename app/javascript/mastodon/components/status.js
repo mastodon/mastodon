@@ -17,6 +17,8 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 
 class Status extends ImmutablePureComponent {
 
+  static RECYCLE_TIMEOUT = 2000
+
   static contextTypes = {
     router: PropTypes.object,
   };
@@ -39,6 +41,26 @@ class Status extends ImmutablePureComponent {
     autoPlayGif: PropTypes.bool,
     muted: PropTypes.bool,
   };
+
+  state = {
+    isHidden: false,
+  }
+
+  componentWillReceiveProps (nextProps) {
+    if (nextProps.isIntersecting === false && this.props.isIntersecting !== false) {
+      setTimeout(() => this.setState({ isHidden: true }), this.RECYCLE_TIMEOUT);
+    } else {
+      this.setState({ isHidden: !nextProps.isIntersecting });
+    }
+  }
+
+  shouldComponentUpdate (nextProps, nextState) {
+    if (nextProps.isIntersecting === false && this.props.isIntersecting !== false) {
+      return nextState.isHidden;
+    }
+
+    return true;
+  }
 
   handleRef = (node) => {
     this.props.onRef(node);
@@ -65,12 +87,13 @@ class Status extends ImmutablePureComponent {
     let media = null;
     let statusAvatar;
     const { status, account, isIntersecting, onRef, ...other } = this.props;
+    const { isHidden } = this.state;
 
     if (status === null) {
       return <div ref={this.handleRef} data-id={status.get('id')} />;
     }
 
-    if (isIntersecting === false) {
+    if (isIntersecting === false && isHidden) {
       return (
         <div ref={this.handleRef} data-id={status.get('id')} style={{ height: `${this.height}px`, opacity: 0 }}>
           {status.getIn(['account', 'display_name']) || status.getIn(['account', 'username'])}
