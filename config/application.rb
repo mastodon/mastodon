@@ -13,6 +13,8 @@ require_relative '../lib/mastodon/version'
 
 Dotenv::Railtie.load
 
+require_relative '../lib/mastodon/redis_config'
+
 module Mastodon
   class Application < Rails::Application
     # Settings in config/environments/* take precedence over those specified here.
@@ -76,6 +78,8 @@ module Mastodon
 
     config.middleware.use Rack::Attack
     config.middleware.use Rack::Deflater
+
+    config.cache_store = :redis_store, ENV['REDIS_URL'], REDIS_CACHE_PARAMS if Rails.env.production?
 
     config.to_prepare do
       Doorkeeper::AuthorizationsController.layout 'public'
