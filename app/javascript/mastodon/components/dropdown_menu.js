@@ -33,11 +33,14 @@ class DropdownMenu extends React.PureComponent {
     const i = Number(e.currentTarget.getAttribute('data-index'));
     const { action, to } = this.props.items[i];
 
-    e.preventDefault();
+    // Don't call e.preventDefault() when the item uses 'href' property.
+    // ex. "Edit profile" on the account action bar
 
     if (typeof action === 'function') {
+      e.preventDefault();
       action();
     } else if (to) {
+      e.preventDefault();
       this.context.router.push(to);
     }
 
