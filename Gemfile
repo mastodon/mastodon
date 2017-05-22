@@ -58,6 +58,7 @@ gem 'statsd-instrument', '~> 2.1'
 gem 'twitter-text', '~> 1.14'
 gem 'tzinfo-data', '~> 1.2017'
 gem 'webpacker', '~> 1.2'
+gem 'redis-rails', '~> 5.0'
 
 group :development, :test do
   gem 'fabrication', '~> 2.16'
@@ -99,5 +100,4 @@ end
 
 group :production do
   gem 'lograge', '~> 0.5'
-  gem 'redis-rails', '~> 5.0'
 end
