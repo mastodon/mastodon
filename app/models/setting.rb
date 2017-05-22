@@ -35,7 +35,6 @@ class Setting < RailsSettings::Base
           default_settings[key]
         end
       end
-
       val
     end
 
