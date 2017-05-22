@@ -27,7 +27,7 @@ class StatusList extends ImmutablePureComponent {
   };
 
   state = {
-    isIntersecting: { },
+    isIntersecting: [{ }],
   }
 
   statusRefQueue = []
@@ -66,15 +66,15 @@ class StatusList extends ImmutablePureComponent {
     const onIntersection = (entries) => {
       const isIntersecting = { };
 
-      entries.forEach(entry => {
-        const statusId = entry.target.getAttribute('data-id');
+      this.setState(state => {
+        entries.forEach(entry => {
+          const statusId = entry.target.getAttribute('data-id');
 
-        isIntersecting[statusId] = entry.isIntersecting;
+          state.isIntersecting[0][statusId] = entry.isIntersecting;
+        });
+
+        return [state.isIntersecting[0]];
       });
-
-      this.setState(state => ({
-        isIntersecting: Object.assign({ }, state.isIntersecting, isIntersecting),
-      }));
     };
 
     const options = {
@@ -122,7 +122,7 @@ class StatusList extends ImmutablePureComponent {
 
   render () {
     const { statusIds, onScrollToBottom, scrollKey, shouldUpdateScroll, isLoading, isUnread, hasMore, prepend, emptyMessage } = this.props;
-    const { isIntersecting } = this.state;
+    const isIntersecting = this.state.isIntersecting[0];
 
     let loadMore       = null;
     let scrollableArea = null;
