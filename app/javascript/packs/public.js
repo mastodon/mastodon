@@ -2,9 +2,8 @@ import emojify from 'mastodon/emoji';
 import { length } from 'stringz';
 import { default as dateFormat } from 'date-fns/format';
 import distanceInWordsStrict from 'date-fns/distance_in_words_strict';
+import { delegate } from 'rails-ujs';
 
-window.jQuery = window.$ = require('jquery');
-require('jquery-ujs');
 require.context('../images/', true);
 
 const parseFormat = (format) => format.replace(/%(\w)/g, (_, modifier) => {
@@ -46,62 +45,67 @@ const parseFormat = (format) => format.replace(/%(\w)/g, (_, modifier) => {
   }
 });
 
-$(() => {
-  $.each($('.emojify'), (_, content) => {
-    const $content = $(content);
-    $content.html(emojify($content.html()));
+document.addEventListener('DOMContentLoaded', () => {
+  [].forEach.call(document.querySelectorAll('.emojify'), (content) => {
+    content.innerHTML = emojify(content.innerHTML);
   });
 
-  $('time[data-format]').each((_, content) => {
-    const $content = $(content);
-    const format = parseFormat($content.data('format'));
-    const formattedDate = dateFormat($content.attr('datetime'), format);
-    $content.text(formattedDate);
+  [].forEach.call(document.querySelectorAll('time[data-format]'), (content) => {
+    const format = parseFormat(content.dataset.format);
+    const formattedDate = dateFormat(content.getAttribute('datetime'), format);
+    content.textContent = formattedDate;
   });
 
-  $('time.time-ago').each((_, content) => {
-    const $content = $(content);
-    const timeAgo = distanceInWordsStrict(new Date(), $content.attr('datetime'), { addSuffix: true });
-    $content.text(timeAgo);
+  [].forEach.call(document.querySelectorAll('time.time-ago'), (content) => {
+    const timeAgo = distanceInWordsStrict(new Date(), content.getAttribute('datetime'), {
+      addSuffix: true,
+    });
+    content.textContent = timeAgo;
   });
+});
 
-  $('.video-player video').on('click', e => {
-    if (e.target.paused) {
-      e.target.play();
-    } else {
-      e.target.pause();
-    }
-  });
+delegate(document, '.video-player video', 'click', ({ target }) => {
+  if (target.paused) {
+    target.play();
+  } else {
+    target.pause();
+  }
+});
 
-  $('.media-spoiler').on('click', e => {
-    $(e.target).hide();
-  });
+delegate(document, '.media-spoiler', 'click', ({ target }) => {
+  target.style.display = 'none';
+});
 
-  $('.webapp-btn').on('click', e => {
-    if (e.button === 0) {
-      e.preventDefault();
-      window.location.href = $(e.target).attr('href');
-    }
-  });
+delegate(document, '.webapp-btn', 'click', ({ target, button }) => {
+  if (button !== 0) {
+    return true;
+  }
+  window.location.href = target.href;
+  return false;
+});
 
-  $('.status__content__spoiler-link').on('click', e => {
-    e.preventDefault();
-    const contentEl = $(e.target).parent().parent().find('div');
+delegate(document, '.status__content__spoiler-link', 'click', ({ target }) => {
+  const contentEl = target.parentNode.parentNode.querySelector('.e-content');
+  if (contentEl.style.display === 'block') {
+    contentEl.style.display = 'none';
+    target.parentNode.style.marginBottom = 0;
+  } else {
+    contentEl.style.display = 'block';
+    target.parentNode.style.marginBottom = null;
+  }
+  return false;
+});
 
-    if (contentEl.is(':visible')) {
-      contentEl.hide();
-      $(e.target).parent().attr('style', 'margin-bottom: 0');
-    } else {
-      contentEl.show();
-      $(e.target).parent().attr('style', null);
-    }
-  });
+delegate(document, '.account_display_name', 'input', ({ target }) => {
+  const nameCounter = document.querySelector('.name-counter');
+  if (nameCounter) {
+    nameCounter.textContent = 30 - length(target.value);
+  }
+});
 
-  $('.account_display_name').on('input', e => {
-    $('.name-counter').text(30 - length($(e.target).val()));
-  });
-
-  $('.account_note').on('input', e => {
-    $('.note-counter').text(160 - length($(e.target).val()));
-  });
+delegate(document, '.account_note', 'input', ({ target }) => {
+  const noteCounter = document.querySelector('.note-counter');
+  if (noteCounter) {
+    noteCounter.textContent = 160 - length(target.value);
+  }
 });

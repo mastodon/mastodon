@@ -1,7 +1,7 @@
-
 # frozen_string_literal: true
 
 require 'sidekiq/web'
+require 'sidekiq-scheduler/web'
 
 Rails.application.routes.draw do
   mount LetterOpenerWeb::Engine, at: 'letter_opener' if Rails.env.development?
@@ -131,6 +131,8 @@ Rails.application.routes.draw do
           post :unreblog
           post :favourite
           post :unfavourite
+          post :mute
+          post :unmute
         end
       end
 
@@ -148,7 +150,8 @@ Rails.application.routes.draw do
       resources :favourites, only: [:index]
       resources :reports,    only: [:index, :create]
 
-      resource :instance, only: [:show]
+      resource :instance,      only: [:show]
+      resource :domain_blocks, only: [:show, :create, :destroy]
 
       resources :follow_requests, only: [:index] do
         member do

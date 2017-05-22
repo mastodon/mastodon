@@ -10,10 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170507141759) do
+ActiveRecord::Schema.define(version: 20170520145338) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "account_domain_blocks", force: :cascade do |t|
+    t.integer  "account_id"
+    t.string   "domain"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["account_id", "domain"], name: "index_account_domain_blocks_on_account_id_and_domain", unique: true, using: :btree
+  end
 
   create_table "accounts", force: :cascade do |t|
     t.string   "username",                default: "",    null: false
@@ -50,6 +58,7 @@ ActiveRecord::Schema.define(version: 20170507141759) do
     t.datetime "last_webfingered_at"
     t.index "(((setweight(to_tsvector('simple'::regconfig, (display_name)::text), 'A'::\"char\") || setweight(to_tsvector('simple'::regconfig, (username)::text), 'B'::\"char\")) || setweight(to_tsvector('simple'::regconfig, (COALESCE(domain, ''::character varying))::text), 'C'::\"char\")))", name: "search_index", using: :gin
     t.index "lower((username)::text), lower((domain)::text)", name: "index_accounts_on_username_and_domain_lower", using: :btree
+    t.index ["uri"], name: "index_accounts_on_uri", using: :btree
     t.index ["url"], name: "index_accounts_on_url", using: :btree
     t.index ["username", "domain"], name: "index_accounts_on_username_and_domain", unique: true, using: :btree
   end
@@ -60,6 +69,19 @@ ActiveRecord::Schema.define(version: 20170507141759) do
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
     t.index ["account_id", "target_account_id"], name: "index_blocks_on_account_id_and_target_account_id", unique: true, using: :btree
+  end
+
+  create_table "conversation_mutes", force: :cascade do |t|
+    t.integer "account_id",      null: false
+    t.bigint  "conversation_id", null: false
+    t.index ["account_id", "conversation_id"], name: "index_conversation_mutes_on_account_id_and_conversation_id", unique: true, using: :btree
+  end
+
+  create_table "conversations", id: :bigserial, force: :cascade do |t|
+    t.string   "uri"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["uri"], name: "index_conversations_on_uri", unique: true, using: :btree
   end
 
   create_table "domain_blocks", force: :cascade do |t|
@@ -255,7 +277,9 @@ ActiveRecord::Schema.define(version: 20170507141759) do
     t.integer  "favourites_count",       default: 0,     null: false
     t.integer  "reblogs_count",          default: 0,     null: false
     t.string   "language",               default: "en",  null: false
+    t.bigint   "conversation_id"
     t.index ["account_id"], name: "index_statuses_on_account_id", using: :btree
+    t.index ["conversation_id"], name: "index_statuses_on_conversation_id", using: :btree
     t.index ["in_reply_to_id"], name: "index_statuses_on_in_reply_to_id", using: :btree
     t.index ["reblog_of_id"], name: "index_statuses_on_reblog_of_id", using: :btree
     t.index ["uri"], name: "index_statuses_on_uri", unique: true, using: :btree
@@ -326,11 +350,11 @@ ActiveRecord::Schema.define(version: 20170507141759) do
     t.boolean  "otp_required_for_login"
     t.datetime "last_emailed_at"
     t.string   "otp_backup_codes",                                       array: true
-    t.string   "allowed_languages",         default: [],    null: false, array: true
+    t.string   "filtered_languages",        default: [],    null: false, array: true
     t.index ["account_id"], name: "index_users_on_account_id", using: :btree
-    t.index ["allowed_languages"], name: "index_users_on_allowed_languages", using: :gin
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
+    t.index ["filtered_languages"], name: "index_users_on_filtered_languages", using: :gin
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 

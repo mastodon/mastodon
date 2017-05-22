@@ -16,9 +16,9 @@
   .status__content.p-name.emojify<
     - if status.spoiler_text?
       %p{ style: 'margin-bottom: 0' }<
-        %span.p-summary>= "#{status.spoiler_text} "
+        %span.p-summary> #{status.spoiler_text}&nbsp;
         %a.status__content__spoiler-link{ href: '#' }= t('statuses.show_more')
-    %div.e-content{ lang: status.language, style: "display: #{status.spoiler_text? ? 'none' : 'block'}; direction: #{rtl?(status.content) ? 'rtl' : 'ltr'}" }= Formatter.instance.format(status)
+    .e-content{ lang: status.language, style: "display: #{status.spoiler_text? ? 'none' : 'block'}; direction: #{rtl?(status.content) ? 'rtl' : 'ltr'}" }= Formatter.instance.format(status)
 
   - unless status.media_attachments.empty?
     .status__attachments

@@ -4,7 +4,7 @@ class RemoteFollowController < ApplicationController
   layout 'public'
 
   before_action :set_account
-  before_action :gone, if: -> { @account.suspended? }
+  before_action :gone, if: :suspended_account?
 
   def new
     @remote_follow = RemoteFollow.new(session_params)
@@ -33,5 +33,9 @@ class RemoteFollowController < ApplicationController
 
   def set_account
     @account = Account.find_local!(params[:account_username])
+  end
+
+  def suspended_account?
+    @account.suspended?
   end
 end

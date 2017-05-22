@@ -2,7 +2,7 @@ import React from 'react';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
 import DropdownMenu from '../../../components/dropdown_menu';
-import { Link } from 'react-router';
+import Link from 'react-router/lib/Link';
 import { defineMessages, injectIntl, FormattedMessage, FormattedNumber } from 'react-intl';
 
 const messages = defineMessages({
@@ -15,10 +15,26 @@ const messages = defineMessages({
   mute: { id: 'account.mute', defaultMessage: 'Mute @{name}' },
   follow: { id: 'account.follow', defaultMessage: 'Follow' },
   report: { id: 'account.report', defaultMessage: 'Report @{name}' },
-  disclaimer: { id: 'account.disclaimer', defaultMessage: 'This user is from another instance. This number may be larger.' }
+  media: { id: 'account.media', defaultMessage: 'Media' },
+  disclaimer: { id: 'account.disclaimer', defaultMessage: 'This user is from another instance. This number may be larger.' },
+  blockDomain: { id: 'account.block_domain', defaultMessage: 'Hide everything from {domain}' },
+  unblockDomain: { id: 'account.unblock_domain', defaultMessage: 'Unhide {domain}' },
 });
 
 class ActionBar extends React.PureComponent {
+
+  static propTypes = {
+    account: ImmutablePropTypes.map.isRequired,
+    me: PropTypes.number.isRequired,
+    onFollow: PropTypes.func,
+    onBlock: PropTypes.func.isRequired,
+    onMention: PropTypes.func.isRequired,
+    onReport: PropTypes.func.isRequired,
+    onMute: PropTypes.func.isRequired,
+    onBlockDomain: PropTypes.func.isRequired,
+    onUnblockDomain: PropTypes.func.isRequired,
+    intl: PropTypes.object.isRequired,
+  };
 
   render () {
     const { account, me, intl } = this.props;
@@ -27,6 +43,8 @@ class ActionBar extends React.PureComponent {
     let extraInfo = '';
 
     menu.push({ text: intl.formatMessage(messages.mention, { name: account.get('username') }), action: this.props.onMention });
+    menu.push(null);
+    menu.push({ text: intl.formatMessage(messages.media), to: `/accounts/${account.get('id')}/media` });
     menu.push(null);
 
     if (account.get('id') === me) {
@@ -48,7 +66,16 @@ class ActionBar extends React.PureComponent {
     }
 
     if (account.get('acct') !== account.get('username')) {
+      const domain = account.get('acct').split('@')[1];
       extraInfo = <abbr title={intl.formatMessage(messages.disclaimer)}>*</abbr>;
+
+      menu.push(null);
+
+      if (account.getIn(['relationship', 'domain_blocking'])) {
+        menu.push({ text: intl.formatMessage(messages.unblockDomain, { domain }), action: this.props.onUnblockDomain });
+      } else {
+        menu.push({ text: intl.formatMessage(messages.blockDomain, { domain }), action: this.props.onBlockDomain });
+      }
     }
 
     return (
@@ -78,16 +105,5 @@ class ActionBar extends React.PureComponent {
   }
 
 }
-
-ActionBar.propTypes = {
-  account: ImmutablePropTypes.map.isRequired,
-  me: PropTypes.number.isRequired,
-  onFollow: PropTypes.func,
-  onBlock: PropTypes.func.isRequired,
-  onMention: PropTypes.func.isRequired,
-  onReport: PropTypes.func.isRequired,
-  onMute: PropTypes.func.isRequired,
-  intl: PropTypes.object.isRequired
-};
 
 export default injectIntl(ActionBar);

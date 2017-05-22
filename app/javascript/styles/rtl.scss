@@ -1,7 +1,8 @@
 body.rtl {
   direction: rtl;
 
-  .column-link__icon, .column-header__icon {
+  .column-link__icon,
+  .column-header__icon {
     margin-right: 0;
     margin-left: 5px;
   }
@@ -61,7 +62,7 @@ body.rtl {
     left: 0;
   }
 
-  .status__info-time {
+  .status__relative-time {
     float: left;
   }
 
@@ -105,13 +106,25 @@ body.rtl {
     float: right;
   }
 
-  .detailed-status__favorites, .detailed-status__reblogs {
+  .detailed-status__favorites,
+  .detailed-status__reblogs {
     margin-left: 0;
     margin-right: 6px;
   }
 
+  .fa-ul {
+    margin-left: 0;
+    margin-left: 2.14285714em;
+  }
+
+  .fa-li {
+    left: auto;
+    right: -2.14285714em;
+  }
+
   @media screen and (min-width: 1025px) {
-    .column, .drawer {
+    .column,
+    .drawer {
       padding-left: 5px;
       padding-right: 5px;
 
@@ -121,13 +134,14 @@ body.rtl {
       }
 
       &:last-child {
-        padding-right: 0px;
+        padding-right: 0;
         padding-left: 10px;
       }
     }
 
     .columns-area > div {
-      .column, .drawer {
+      .column,
+      .drawer {
         padding-left: 5px;
         padding-right: 5px;
       }

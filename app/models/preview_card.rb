@@ -36,6 +36,7 @@ class PreviewCard < ApplicationRecord
   has_attached_file :image, styles: { original: '120x120#' }, convert_options: { all: '-quality 80 -strip' }
 
   include Attachmentable
+  include Remotable
 
   validates :url, presence: true
   validates_attachment_content_type :image, content_type: IMAGE_MIME_TYPES

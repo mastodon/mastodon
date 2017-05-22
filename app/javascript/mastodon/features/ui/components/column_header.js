@@ -1,14 +1,18 @@
 import React from 'react';
-import PropTypes from 'prop-types'
+import PropTypes from 'prop-types';
 
 class ColumnHeader extends React.PureComponent {
 
-  constructor (props, context) {
-    super(props, context);
-    this.handleClick = this.handleClick.bind(this);
-  }
+  static propTypes = {
+    icon: PropTypes.string,
+    type: PropTypes.string,
+    active: PropTypes.bool,
+    onClick: PropTypes.func,
+    hideOnMobile: PropTypes.bool,
+    columnHeaderId: PropTypes.string,
+  };
 
-  handleClick () {
+  handleClick = () => {
     this.props.onClick();
   }
 
@@ -30,14 +34,5 @@ class ColumnHeader extends React.PureComponent {
   }
 
 }
-
-ColumnHeader.propTypes = {
-  icon: PropTypes.string,
-  type: PropTypes.string,
-  active: PropTypes.bool,
-  onClick: PropTypes.func,
-  hideOnMobile: PropTypes.bool,
-  columnHeaderId: PropTypes.string
-};
 
 export default ColumnHeader;

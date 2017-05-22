@@ -7,9 +7,60 @@ RSpec.describe NotifyService do
 
   let(:user) { Fabricate(:user) }
   let(:recipient) { user.account }
-  let(:activity) { Fabricate(:follow, target_account: recipient) }
+  let(:sender) { Fabricate(:account, domain: 'example.com') }
+  let(:activity) { Fabricate(:follow, account: sender, target_account: recipient) }
 
   it { is_expected.to change(Notification, :count).by(1) }
+
+  it 'does not notify when sender is blocked' do
+    recipient.block!(sender)
+    is_expected.to_not change(Notification, :count)
+  end
+
+  it 'does not notify when sender\'s domain is blocked' do
+    recipient.block_domain!(sender.domain)
+    is_expected.to_not change(Notification, :count)
+  end
+
+  it 'does still notify when sender\'s domain is blocked but sender is followed' do
+    recipient.block_domain!(sender.domain)
+    recipient.follow!(sender)
+    is_expected.to change(Notification, :count)
+  end
+
+  it 'does not notify when sender is silenced and not followed' do
+    sender.update(silenced: true)
+    is_expected.to_not change(Notification, :count)
+  end
+
+  it 'does not notify when recipient is suspended' do
+    recipient.update(suspended: true)
+    is_expected.to_not change(Notification, :count)
+  end
+
+  context do
+    let(:asshole)  { Fabricate(:account, username: 'asshole') }
+    let(:reply_to) { Fabricate(:status, account: asshole) }
+    let(:activity) { Fabricate(:mention, account: recipient, status: Fabricate(:status, account: sender, thread: reply_to)) }
+
+    it 'does not notify when conversation is muted' do
+      recipient.mute_conversation!(activity.status.conversation)
+      is_expected.to_not change(Notification, :count)
+    end
+
+    it 'does not notify when it is a reply to a blocked user' do
+      recipient.block!(asshole)
+      is_expected.to_not change(Notification, :count)
+    end
+  end
+
+  context do
+    let(:sender) { recipient }
+
+    it 'does not notify when recipient is the sender' do
+      is_expected.to_not change(Notification, :count)
+    end
+  end
 
   describe 'email' do
     before do

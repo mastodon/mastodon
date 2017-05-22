@@ -98,22 +98,22 @@ fr:
         title: Vos applications autorisées
     errors:
       messages:
-        access_denied: Le propriétaire de la ressource ou le serveur d'autorisation a refusé la demande.
+        access_denied: Le propriétaire de la ressource ou le serveur d'autorisation a refusé la requête.
         credential_flow_not_configured: Le flux des identifiants du mot de passe du propriétaire de la ressource a échoué car Doorkeeper.configure.resource_owner_from_credentials n'est pas configuré.
-        invalid_client: L'authentification du client a échoué à cause d'un client inconnu, d'aucune authentification de client incluse, ou d'une méthode d'authentification non prise en charge.
-        invalid_grant: Le consentement d'autorisation accordé n'est pas valide, a expiré, est annulé, ne concorde pas avec l'URL de redirection utilisée dans la demande d'autorisation, ou a été émis à un autre client.
+        invalid_client: L'authentification du client a échoué à cause d'un client inconnu, d'aucune authentification de client incluse ou d'une méthode d'authentification non prise en charge.
+        invalid_grant: Le consentement d'autorisation accordé n'est pas valide, a expiré, est annulé, ne concorde pas avec l'URL de redirection utilisée dans la requête d'autorisation ou a été émis à un autre client.
         invalid_redirect_uri: L'URL de redirection n'est pas valide.
-        invalid_request: La demande manque un paramètre requis, inclut une valeur de paramètre non prise en charge, ou est autrement mal formée.
-        invalid_resource_owner: Les identifiants fournis par le propriétaire de la ressource ne sont pas valides, ou le propriétaire de la ressource ne peut être trouvé
-        invalid_scope: La portée demandée n'est pas valide, est inconnue, ou est mal formée.
+        invalid_request: La requête omet un paramètre requis, inclut une valeur de paramètre non prise en charge ou est autrement mal formée.
+        invalid_resource_owner: Les identifiants fournis par le propriétaire de la ressource ne sont pas valides ou le propriétaire de la ressource ne peut être trouvé
+        invalid_scope: La portée demandée n'est pas valide, est inconnue ou mal formée.
         invalid_token:
           expired: Le jeton d'accès a expiré
           revoked: Le jeton d'accès a été révoqué
           unknown: Le jeton d'accès n'est pas valide
         resource_owner_authenticator_not_configured: La recherche du propriétaire de la ressource a échoué car Doorkeeper.configure.resource_owner_authenticator n'est pas configuré.
-        server_error: Le serveur d'autorisation a rencontré une condition inattendue l'empêchant de remplir la demande.
-        temporarily_unavailable: Le serveur d'autorisation est actuellement incapable de traiter la demande à cause d'une surcharge ou d'un entretien temporaire du serveur.
-        unauthorized_client: Le client n'est pas autorisé à effectuer cette demande à l'aide de cette méthode.
+        server_error: Le serveur d'autorisation a rencontré une condition inattendue l'empêchant de faire aboutir la requête.
+        temporarily_unavailable: Le serveur d'autorisation est actuellement incapable de traiter la requête à cause d'une surcharge ou d'une maintenance temporaire du serveur.
+        unauthorized_client: Le client n'est pas autorisé à effectuer cette requête à l'aide de cette méthode.
         unsupported_grant_type: Le type de consentement d'autorisation n'est pas pris en charge par le serveur d'autorisation.
         unsupported_response_type: Le serveur d'autorisation ne prend pas en charge ce type de réponse.
     flash:
@@ -135,6 +135,6 @@ fr:
       application:
         title: Autorisation OAuth requise
     scopes:
-      follow: s’abonner, se désabonner, bloquer, et débloquer des comptes
+      follow: s’abonner, se désabonner, bloquer et débloquer des comptes
       read: lire les données de votre compte
       write: poster en tant que vous

@@ -19,6 +19,7 @@
 coverage
 public/system
 public/assets
+public/packs
 .env
 .env.production
 node_modules/
@@ -43,12 +44,13 @@ redis
 # Ignore vim files
 *~
 *.swp
-/public/packs
-/node_modules
-
 
 # Ignore npm debug log
 npm-debug.log
+
+# Ignore yarn log files
+yarn-error.log
+yarn-debug.log
 
 # Ignore Docker option files
 docker-compose.override.yml

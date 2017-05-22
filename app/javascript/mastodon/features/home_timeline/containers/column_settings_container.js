@@ -3,7 +3,7 @@ import ColumnSettings from '../components/column_settings';
 import { changeSetting, saveSettings } from '../../../actions/settings';
 
 const mapStateToProps = state => ({
-  settings: state.getIn(['settings', 'home'])
+  settings: state.getIn(['settings', 'home']),
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -14,7 +14,7 @@ const mapDispatchToProps = dispatch => ({
 
   onSave () {
     dispatch(saveSettings());
-  }
+  },
 
 });
 

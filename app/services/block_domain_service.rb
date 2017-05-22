@@ -60,6 +60,6 @@ class BlockDomainService < BaseService
   end
 
   def media_from_blocked_domain
-    MediaAttachment.where(account: blocked_domain_accounts).reorder(nil)
+    MediaAttachment.joins(:account).merge(blocked_domain_accounts).reorder(nil)
   end
 end

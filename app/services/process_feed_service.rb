@@ -69,8 +69,12 @@ class ProcessFeedService < BaseService
 
       notify_about_mentions!(status) unless status.reblog?
       notify_about_reblog!(status) if status.reblog? && status.reblog.account.local?
+
       Rails.logger.debug "Queuing remote status #{status.id} (#{id}) for distribution"
+
+      LinkCrawlWorker.perform_async(status.id) unless status.spoiler_text.present?
       DistributionWorker.perform_async(status.id)
+
       status
     end
 
@@ -141,7 +145,8 @@ class ProcessFeedService < BaseService
         created_at: published(entry),
         reply: thread?(entry),
         language: content_language(entry),
-        visibility: visibility_scope(entry)
+        visibility: visibility_scope(entry),
+        conversation: find_or_create_conversation(entry)
       )
 
       if thread?(entry)
@@ -162,6 +167,18 @@ class ProcessFeedService < BaseService
       ThreadResolveWorker.perform_async(parent.id, url) if status.nil?
 
       status
+    end
+
+    def find_or_create_conversation(xml)
+      uri = xml.at_xpath('./ostatus:conversation', ostatus: TagManager::OS_XMLNS)&.attribute('ref')&.content
+      return if uri.nil?
+
+      if TagManager.instance.local_id?(uri)
+        local_id = TagManager.instance.unique_tag_to_local_id(uri, 'Conversation')
+        return Conversation.find_by(id: local_id)
+      end
+
+      Conversation.find_by(uri: uri)
     end
 
     def find_status(uri)
@@ -196,7 +213,7 @@ class ProcessFeedService < BaseService
       if TagManager.instance.web_domain?(url.host)
         Account.find_local(url.path.gsub('/users/', ''))
       else
-        Account.find_by(uri: href) || Account.find_by(url: href) || FetchRemoteAccountService.new.call(href)
+        Account.where(uri: href).or(Account.where(url: href)).first || FetchRemoteAccountService.new.call(href)
       end
     end
 
@@ -222,8 +239,8 @@ class ProcessFeedService < BaseService
 
         begin
           media.file_remote_url = link['href']
-          media.save
-        rescue OpenURI::HTTPError, Paperclip::Errors::NotIdentifiedByImageMagickError
+          media.save!
+        rescue ActiveRecord::RecordInvalid
           next
         end
       end

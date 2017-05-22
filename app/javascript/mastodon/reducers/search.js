@@ -2,7 +2,7 @@ import {
   SEARCH_CHANGE,
   SEARCH_CLEAR,
   SEARCH_FETCH_SUCCESS,
-  SEARCH_SHOW
+  SEARCH_SHOW,
 } from '../actions/search';
 import { COMPOSE_MENTION, COMPOSE_REPLY } from '../actions/compose';
 import Immutable from 'immutable';
@@ -11,7 +11,7 @@ const initialState = Immutable.Map({
   value: '',
   submitted: false,
   hidden: false,
-  results: Immutable.Map()
+  results: Immutable.Map(),
 });
 
 const normalizeSuggestions = (state, value, accounts, hashtags, statuses) => {
@@ -23,8 +23,8 @@ const normalizeSuggestions = (state, value, accounts, hashtags, statuses) => {
       items: accounts.map(item => ({
         type: 'account',
         id: item.id,
-        value: item.acct
-      }))
+        value: item.acct,
+      })),
     });
   }
 
@@ -32,21 +32,21 @@ const normalizeSuggestions = (state, value, accounts, hashtags, statuses) => {
     let hashtagItems = hashtags.map(item => ({
       type: 'hashtag',
       id: item,
-      value: `#${item}`
+      value: `#${item}`,
     }));
 
     if (value.indexOf('@') === -1 && value.indexOf(' ') === -1 && !value.startsWith('http://') && !value.startsWith('https://') && hashtags.indexOf(value) === -1) {
       hashtagItems.unshift({
         type: 'hashtag',
         id: value,
-        value: `#${value}`
+        value: `#${value}`,
       });
     }
 
     if (hashtagItems.length > 0) {
       newSuggestions.push({
         title: 'hashtag',
-        items: hashtagItems
+        items: hashtagItems,
       });
     }
   }
@@ -57,8 +57,8 @@ const normalizeSuggestions = (state, value, accounts, hashtags, statuses) => {
       items: statuses.map(item => ({
         type: 'status',
         id: item.id,
-        value: item.id
-      }))
+        value: item.id,
+      })),
     });
   }
 
@@ -88,7 +88,7 @@ export default function search(state = initialState, action) {
     return state.set('results', Immutable.Map({
       accounts: Immutable.List(action.results.accounts.map(item => item.id)),
       statuses: Immutable.List(action.results.statuses.map(item => item.id)),
-      hashtags: Immutable.List(action.results.hashtags)
+      hashtags: Immutable.List(action.results.hashtags),
     })).set('submitted', true);
   default:
     return state;

@@ -17,31 +17,36 @@ import { openModal } from '../../actions/modal';
 const messages = defineMessages({
   title: { id: 'column.notifications', defaultMessage: 'Notifications' },
   clearMessage: { id: 'notifications.clear_confirmation', defaultMessage: 'Are you sure you want to permanently clear all your notifications?' },
-  clearConfirm: { id: 'notifications.clear', defaultMessage: 'Clear notifications' }
+  clearConfirm: { id: 'notifications.clear', defaultMessage: 'Clear notifications' },
 });
 
 const getNotifications = createSelector([
   state => Immutable.List(state.getIn(['settings', 'notifications', 'shows']).filter(item => !item).keys()),
-  state => state.getIn(['notifications', 'items'])
+  state => state.getIn(['notifications', 'items']),
 ], (excludedTypes, notifications) => notifications.filterNot(item => excludedTypes.includes(item.get('type'))));
 
 const mapStateToProps = state => ({
   notifications: getNotifications(state),
   isLoading: state.getIn(['notifications', 'isLoading'], true),
-  isUnread: state.getIn(['notifications', 'unread']) > 0
+  isUnread: state.getIn(['notifications', 'unread']) > 0,
 });
 
 class Notifications extends React.PureComponent {
 
-  constructor (props, context) {
-    super(props, context);
-    this.handleScroll = this.handleScroll.bind(this);
-    this.handleLoadMore = this.handleLoadMore.bind(this);
-    this.handleClear = this.handleClear.bind(this);
-    this.setRef = this.setRef.bind(this);
-  }
+  static propTypes = {
+    notifications: ImmutablePropTypes.list.isRequired,
+    dispatch: PropTypes.func.isRequired,
+    shouldUpdateScroll: PropTypes.func,
+    intl: PropTypes.object.isRequired,
+    isLoading: PropTypes.bool,
+    isUnread: PropTypes.bool,
+  };
 
-  handleScroll (e) {
+  static defaultProps = {
+    trackScroll: true,
+  };
+
+  handleScroll = (e) => {
     const { scrollTop, scrollHeight, clientHeight } = e.target;
     const offset = scrollHeight - scrollTop - clientHeight;
     this._oldScrollPosition = scrollHeight - scrollTop;
@@ -61,22 +66,22 @@ class Notifications extends React.PureComponent {
     }
   }
 
-  handleLoadMore (e) {
+  handleLoadMore = (e) => {
     e.preventDefault();
     this.props.dispatch(expandNotifications());
   }
 
-  handleClear () {
+  handleClear = () => {
     const { dispatch, intl } = this.props;
 
     dispatch(openModal('CONFIRM', {
       message: intl.formatMessage(messages.clearMessage),
       confirm: intl.formatMessage(messages.clearConfirm),
-      onConfirm: () => dispatch(clearNotifications())
+      onConfirm: () => dispatch(clearNotifications()),
     }));
   }
 
-  setRef (c) {
+  setRef = (c) => {
     this.node = c;
   }
 
@@ -95,7 +100,9 @@ class Notifications extends React.PureComponent {
       unread = <div className='notifications__unread-indicator' />;
     }
 
-    if (isLoading || notifications.size > 0) {
+    if (isLoading && this.scrollableArea) {
+      scrollableArea = this.scrollableArea;
+    } else if (notifications.size > 0) {
       scrollableArea = (
         <div className='scrollable' onScroll={this.handleScroll} ref={this.setRef}>
           {unread}
@@ -114,6 +121,8 @@ class Notifications extends React.PureComponent {
       );
     }
 
+    this.scrollableArea = scrollableArea;
+
     return (
       <Column icon='bell' active={isUnread} heading={intl.formatMessage(messages.title)}>
         <ColumnSettingsContainer />
@@ -126,18 +135,5 @@ class Notifications extends React.PureComponent {
   }
 
 }
-
-Notifications.propTypes = {
-  notifications: ImmutablePropTypes.list.isRequired,
-  dispatch: PropTypes.func.isRequired,
-  shouldUpdateScroll: PropTypes.func,
-  intl: PropTypes.object.isRequired,
-  isLoading: PropTypes.bool,
-  isUnread: PropTypes.bool
-};
-
-Notifications.defaultProps = {
-  trackScroll: true
-};
 
 export default connect(mapStateToProps)(injectIntl(Notifications));

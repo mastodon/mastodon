@@ -13,55 +13,39 @@ const messages = defineMessages({
   travel: { id: 'emoji_button.travel', defaultMessage: 'Travel & Places' },
   objects: { id: 'emoji_button.objects', defaultMessage: 'Objects' },
   symbols: { id: 'emoji_button.symbols', defaultMessage: 'Symbols' },
-  flags: { id: 'emoji_button.flags', defaultMessage: 'Flags' }
+  flags: { id: 'emoji_button.flags', defaultMessage: 'Flags' },
 });
 
 const settings = {
   imageType: 'png',
   sprites: false,
-  imagePathPNG: '/emoji/'
+  imagePathPNG: '/emoji/',
 };
-
-const dropdownStyle = {
-  position: 'absolute',
-  right: '5px',
-  top: '5px'
-};
-
-const dropdownTriggerStyle = {
-  display: 'block',
-  fontSize: '24px',
-  lineHeight: '24px',
-  marginLeft: '2px',
-  width: '24px'
-}
 
 let EmojiPicker; // load asynchronously
 
 class EmojiPickerDropdown extends React.PureComponent {
 
-  constructor (props, context) {
-    super(props, context);
-    this.setRef = this.setRef.bind(this);
-    this.handleChange = this.handleChange.bind(this);
-    this.onHideDropdown = this.onHideDropdown.bind(this);
-    this.onShowDropdown = this.onShowDropdown.bind(this);
-    this.state = {
-      active: false,
-      loading: false
-    };
-  }
+  static propTypes = {
+    intl: PropTypes.object.isRequired,
+    onPickEmoji: PropTypes.func.isRequired,
+  };
 
-  setRef (c) {
+  state = {
+    active: false,
+    loading: false,
+  };
+
+  setRef = (c) => {
     this.dropdown = c;
   }
 
-  handleChange (data) {
+  handleChange = (data) => {
     this.dropdown.hide();
     this.props.onPickEmoji(data);
   }
 
-  onShowDropdown () {
+  onShowDropdown = () => {
     this.setState({active: true});
     if (!EmojiPicker) {
       this.setState({loading: true});
@@ -75,7 +59,7 @@ class EmojiPickerDropdown extends React.PureComponent {
     }
   }
 
-  onHideDropdown () {
+  onHideDropdown = () => {
     this.setState({active: false});
   }
 
@@ -114,14 +98,14 @@ class EmojiPickerDropdown extends React.PureComponent {
       flags: {
         title: intl.formatMessage(messages.flags),
         emoji: 'flag_gb',
-      }
-    }
+      },
+    };
 
     const { active, loading } = this.state;
 
     return (
-      <Dropdown ref={this.setRef} style={dropdownStyle} onShow={this.onShowDropdown} onHide={this.onHideDropdown}>
-        <DropdownTrigger className='emoji-button' title={intl.formatMessage(messages.emoji)} style={dropdownTriggerStyle}>
+      <Dropdown ref={this.setRef} className='emoji-picker__dropdown' onShow={this.onShowDropdown} onHide={this.onHideDropdown}>
+        <DropdownTrigger className='emoji-button' title={intl.formatMessage(messages.emoji)}>
           <img draggable="false"
                className={`emojione ${active && loading ? "pulse-loading" : ''}`}
                alt="🙂" src="/emoji/1f602.svg" />
@@ -137,10 +121,5 @@ class EmojiPickerDropdown extends React.PureComponent {
   }
 
 }
-
-EmojiPickerDropdown.propTypes = {
-  intl: PropTypes.object.isRequired,
-  onPickEmoji: PropTypes.func.isRequired
-};
 
 export default injectIntl(EmojiPickerDropdown);

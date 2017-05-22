@@ -46,6 +46,9 @@ class MediaAttachment < ApplicationRecord
                     styles: ->(f) { file_styles f },
                     processors: ->(f) { file_processors f },
                     convert_options: { all: '-quality 90 -strip' }
+
+  include Remotable
+
   validates_attachment_content_type :file, content_type: IMAGE_MIME_TYPES + VIDEO_MIME_TYPES
   validates_attachment_size :file, less_than: 8.megabytes
 
@@ -53,14 +56,10 @@ class MediaAttachment < ApplicationRecord
 
   scope :attached, -> { where.not(status_id: nil) }
   scope :local, -> { where(remote_url: '') }
-  default_scope { order('id asc') }
+  default_scope { order(id: :asc) }
 
   def local?
     remote_url.blank?
-  end
-
-  def file_remote_url=(url)
-    self.file = URI.parse(Addressable::URI.parse(url).normalize.to_s)
   end
 
   def to_param

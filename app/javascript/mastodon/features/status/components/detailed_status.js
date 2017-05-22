@@ -7,19 +7,25 @@ import StatusContent from '../../../components/status_content';
 import MediaGallery from '../../../components/media_gallery';
 import VideoPlayer from '../../../components/video_player';
 import AttachmentList from '../../../components/attachment_list';
-import { Link } from 'react-router';
+import Link from 'react-router/lib/Link';
 import { FormattedDate, FormattedNumber } from 'react-intl';
 import CardContainer from '../containers/card_container';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
 class DetailedStatus extends ImmutablePureComponent {
 
-  constructor (props, context) {
-    super(props, context);
-    this.handleAccountClick = this.handleAccountClick.bind(this);
-  }
+  static contextTypes = {
+    router: PropTypes.object,
+  };
 
-  handleAccountClick (e) {
+  static propTypes = {
+    status: ImmutablePropTypes.map.isRequired,
+    onOpenMedia: PropTypes.func.isRequired,
+    onOpenVideo: PropTypes.func.isRequired,
+    autoPlayGif: PropTypes.bool,
+  };
+
+  handleAccountClick = (e) => {
     if (e.button === 0) {
       e.preventDefault();
       this.context.router.push(`/accounts/${this.props.status.getIn(['account', 'id'])}`);
@@ -81,16 +87,5 @@ class DetailedStatus extends ImmutablePureComponent {
   }
 
 }
-
-DetailedStatus.contextTypes = {
-  router: PropTypes.object
-};
-
-DetailedStatus.propTypes = {
-  status: ImmutablePropTypes.map.isRequired,
-  onOpenMedia: PropTypes.func.isRequired,
-  onOpenVideo: PropTypes.func.isRequired,
-  autoPlayGif: PropTypes.bool,
-};
 
 export default DetailedStatus;
