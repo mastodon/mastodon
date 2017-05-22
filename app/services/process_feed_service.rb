@@ -47,25 +47,30 @@ class ProcessFeedService < BaseService
         return
       end
 
+      status, just_created = nil
+
       Rails.logger.debug "Creating remote status #{id}"
-      status, just_created = status_from_xml(@xml)
 
-      return if status.nil?
-      return status unless just_created
+      ApplicationRecord.transaction do
+        status, just_created = status_from_xml(@xml)
 
-      if verb == :share
-        original_status = shared_status_from_xml(@xml.at_xpath('.//activity:object', activity: TagManager::AS_XMLNS))
-        status.reblog   = original_status
+        return if status.nil?
+        return status unless just_created
 
-        if original_status.nil?
-          status.destroy
-          return nil
-        elsif original_status.reblog?
-          status.reblog = original_status.reblog
+        if verb == :share
+          original_status = shared_status_from_xml(@xml.at_xpath('.//activity:object', activity: TagManager::AS_XMLNS))
+          status.reblog   = original_status
+
+          if original_status.nil?
+            status.destroy
+            return nil
+          elsif original_status.reblog?
+            status.reblog = original_status.reblog
+          end
         end
-      end
 
-      status.save!
+        status.save!
+      end
 
       notify_about_mentions!(status) unless status.reblog?
       notify_about_reblog!(status) if status.reblog? && status.reblog.account.local?
