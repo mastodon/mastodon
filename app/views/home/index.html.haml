@@ -1,6 +1,6 @@
 - content_for :header_tags do
-  %script#initial-state{:type => 'application/json'}!= json_escape(render(file: 'home/initial_state', formats: :json))
+  %script#initial-state{ type: 'application/json' }!= json_escape(render(file: 'home/initial_state', formats: :json))
 
-  = javascript_include_tag 'application', integrity: true, crossorigin: 'anonymous'
+  = javascript_pack_tag 'application', integrity: true, crossorigin: 'anonymous'
 
-= react_component 'Mastodon', default_props, class: 'app-holder', prerender: false
+.app-holder#mastodon{ data: { props: Oj.dump(default_props) } }

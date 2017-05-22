@@ -17,6 +17,14 @@ RSpec.describe Api::V1::AccountsController, type: :controller do
     end
   end
 
+  describe 'GET #search' do
+    it 'returns http success' do
+      get :search, params: { q: 'query' }
+
+      expect(response).to have_http_status(:success)
+    end
+  end
+
   describe 'GET #verify_credentials' do
     it 'returns http success' do
       get :verify_credentials
@@ -27,14 +35,11 @@ RSpec.describe Api::V1::AccountsController, type: :controller do
   describe 'PATCH #update_credentials' do
     describe 'with valid data' do
       before do
-        avatar = File.read(Rails.root.join('app', 'assets', 'images', 'logo.png'))
-        header = File.read(Rails.root.join('app', 'assets', 'images', 'mastodon-getting-started.png'))
-
         patch :update_credentials, params: {
           display_name: "Alice Isn't Dead",
           note: "Hi!\n\nToot toot!",
-          avatar: "data:image/png;base64,#{Base64.encode64(avatar)}",
-          header: "data:image/png;base64,#{Base64.encode64(header)}",
+          avatar: fixture_file_upload('files/avatar.gif', 'image/gif'),
+          header: fixture_file_upload('files/attachment.jpg', 'image/jpeg'),
         }
       end
 
@@ -229,8 +234,23 @@ RSpec.describe Api::V1::AccountsController, type: :controller do
         expect(response).to have_http_status(:success)
       end
 
-      xit 'returns JSON with correct data' do
-        # todo
+      it 'returns JSON with correct data' do
+        json = body_as_json
+
+        expect(json).to be_a Enumerable
+        expect(json.first[:id]).to be simon.id
+        expect(json.first[:following]).to be true
+        expect(json.first[:followed_by]).to be false
+        expect(json.first[:muting]).to be false
+        expect(json.first[:requested]).to be false
+        expect(json.first[:domain_blocking]).to be false
+
+        expect(json.second[:id]).to be lewis.id
+        expect(json.second[:following]).to be false
+        expect(json.second[:followed_by]).to be true
+        expect(json.second[:muting]).to be false
+        expect(json.second[:requested]).to be false
+        expect(json.second[:domain_blocking]).to be false
       end
     end
   end
