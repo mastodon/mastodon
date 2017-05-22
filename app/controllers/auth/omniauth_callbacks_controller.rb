@@ -5,11 +5,12 @@ class Auth::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     auth_hash = request.env['omniauth.auth']
 
     if current_user
-      authorization = QiitaAuthorization.find_or_initialize_by(uid: auth_hash[:uid]) do |qiita_authorization|
-        authorization.user = current_user
+      qiita_authorization = QiitaAuthorization.find_or_initialize_by(uid: auth_hash[:uid]) do |qiita_authorization|
+        qiita_authorization.token = auth_hash[:credentials][:token]
+        qiita_authorization.user = current_user
       end
 
-      if authorization.save
+      if qiita_authorization.save
         flash[:notice] = I18n.t('omniauth_callbacks.success')
       else
         flash[:alert] = I18n.t('omniauth_callbacks.failure')
