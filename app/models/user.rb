@@ -35,6 +35,7 @@
 
 class User < ApplicationRecord
   include Settings::Extend
+  ACTIVE_DURATION = 14.days
 
   devise :registerable, :recoverable,
          :rememberable, :trackable, :validatable, :confirmable,
@@ -51,6 +52,7 @@ class User < ApplicationRecord
   scope :recent,    -> { order(id: :desc) }
   scope :admins,    -> { where(admin: true) }
   scope :confirmed, -> { where.not(confirmed_at: nil) }
+  scope :inactive, -> { where(arel_table[:current_sign_in_at].lt(ACTIVE_DURATION.ago)) }
 
   before_validation :sanitize_languages
 
