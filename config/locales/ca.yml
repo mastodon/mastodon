@@ -256,7 +256,8 @@ ca:
       following: Llista de seguits
       muting: Llista d'apagats
     upload: Carregar
-  landing_strip_html: <strong>%{name}</strong> és un usuari/a de <strong>%{domain}</strong>. Pots seguir-lo/la o interactuar amb ell/a si tens un compte a qualsevol node del fediverse. Si no en tens, pots <a href="%{sign_up_path}">registrar-te aquí</a>.
+  landing_strip_html: <strong>%{name}</strong> és un usuari/a de %{link_to_root_path}. Pots seguir-lo/la o interactuar amb ell/a si tens un compte a qualsevol node del fediverse.
+  landing_strip_signup_html: Si no en tens, pots <a href="%{sign_up_path}">registrar-te aquí</a>.
   media_attachments:
     validations:
       images_and_video: No es pot adjuntar un vídeo a un estat que ja contingui imatges
@@ -300,7 +301,7 @@ ca:
     back: Tornar al inici
     edit_profile: Editar perfil
     export: Exportar informació
-    followers: Seguidors autoritzats  
+    followers: Seguidors autoritzats
     import: Importar
     preferences: Preferències
     settings: Configuració
