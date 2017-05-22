@@ -62,6 +62,7 @@ pl:
       feed_url: Adres kanału
       followers: Obserwujący
       follows: Obserwacje
+      ip: Adres IP
       location:
         all: Wszystkie
         local: Lokalne
@@ -84,8 +85,10 @@ pl:
       profile_url: Adres profilu
       public: Publiczne
       push_subscription_expires: Subskrypcja PuSH wygasa
+      reset: Resetuj
       reset_password: Resetuj hasło
       salmon_url: Adres Salmon
+      search: Szukaj
       show:
         created_reports: Zgłoszenia tego użytkownika
         report: zgłoszenie
@@ -222,6 +225,7 @@ pl:
     '422':
       content: Sprawdzanie bezpieczeństwa nie powiodło się. Czy blokujesz pliki cookie?
       title: Sprawdzanie bezpieczeństwa nie powiodło się
+    '429': Uduszono
   exports:
     blocks: Blokujesz
     csv: CSV
@@ -300,6 +304,7 @@ pl:
     back: Powrót do Mastodona
     edit_profile: Edytuj profil
     export: Exportuj dane
+    followers: Autoryzowani obserwujący
     import: Importuj dane
     preferences: Preferencje
     settings: Ustawienia
@@ -310,8 +315,11 @@ pl:
     show_more: Pokaż więcej
     visibilities:
       private: Tylko dla śledzących
+      private_long: Widoczne tylko obserwowanych
       public: Publiczny
-      unlisted: Publiczny, ale nie wyświetlaj na publicznych osiach czasu
+      public_long: Widoczne dla wszystkich
+      unlisted: Niewypisany
+      unlisted_long: Widoczne dla wszystkich, ale nie wyświetlane na publicznych osiach czasu
   stream_entries:
     click_to_show: Naciśnij aby wyświetlić
     reblogged: podbito

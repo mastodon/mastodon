@@ -98,10 +98,14 @@ delegate(document, '.status__content__spoiler-link', 'click', ({ target }) => {
 
 delegate(document, '.account_display_name', 'input', ({ target }) => {
   const nameCounter = document.querySelector('.name-counter');
-  nameCounter.textContent = 30 - length(target.value);
+  if (nameCounter) {
+    nameCounter.textContent = 30 - length(target.value);
+  }
 });
 
 delegate(document, '.account_note', 'input', ({ target }) => {
   const noteCounter = document.querySelector('.note-counter');
-  noteCounter.textContent = 160 - length(target.value);
+  if (noteCounter) {
+    noteCounter.textContent = 160 - length(target.value);
+  }
 });

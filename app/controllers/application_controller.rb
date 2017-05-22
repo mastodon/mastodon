@@ -61,7 +61,7 @@ class ApplicationController < ActionController::Base
   end
 
   def single_user_mode?
-    @single_user_mode ||= Rails.configuration.x.single_user_mode && Account.first
+    @single_user_mode ||= Rails.configuration.x.single_user_mode && Account.exists?
   end
 
   def current_account

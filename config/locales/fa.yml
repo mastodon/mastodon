@@ -133,7 +133,7 @@ fa:
     pubsubhubbub:
       callback_url: نشانی Callback
       confirmed: تأییدشده
-      expires_in: مهلت منقضی‌شدن
+      expires_in: مهلت انقضا
       last_delivery: آخرین ارسال
       title: PubSubHubbub
       topic: موضوع
@@ -232,14 +232,14 @@ fa:
     domain: دامین
     explanation_html: اگر می‌خواهید از خصوصی‌بودن نوشته‌های خود مطمئن شوید، باید بدانید که چه کسانی پیگیر شما هستند. <strong>نوشته‌های خصوصی شما به همهٔ سرورهایی که در آن‌ها پیگیر دارید فرستاده می‌شود</strong>. شاید بخواهید این سرورها را بررسی کنید، و اگر به مسئولان یا نرم‌افزارهای آن‌ها در رعایت حریم خصوصی خود اعتماد ندارید، می‌توانید آن‌ها را حذف کنید.
     followers_count: تعداد پیگیران
-    lock_link: حساب خود را قفل کنید
+    lock_link: حساب خود را خصوصی کنید
     purge: برداشتن پیگیری
     success:
       one: در حال انجام مسدودسازی نرم روی کاربران یک دامین...
       other: در حال انجام مسدودسازی نرم روی کاربران %{count} دامین...
     true_privacy_html: لطفاً بدانید که <strong>داشتن حریم خصوصی واقعی تنها با رمزگذاری سرتاسر (end-to-end encryption) ممکن است</strong>.
     unlocked_warning_html: هر کسی می‌تواند پیگیر شما شود تا بلافاصله نوشته‌های خصوصی شما را ببیند. اگر  %{lock_link} خواهید توانست درخواست‌های پیگیری را بررسی کرده و نپذیرید.
-    unlocked_warning_title: حساب شما قفل نیست
+    unlocked_warning_title: حساب شما خصوصی نیست
   generic:
     changes_saved_msg: تغییرات با موفقیت ذخیره شدند!
     powered_by: نیرو گرفته از %{link}
@@ -255,8 +255,8 @@ fa:
       following: فهرست پی‌گیری‌ها
       muting: فهرست بی‌صداشده‌ها
     upload: بارگذاری
-  landing_strip_html: <strong>%{name}</strong> کاربری روی <strong>%{domain}</strong> است. شما با داشتن حساب روی هر سروری می‌توانید نوشته‌های او را پیگیری کرده یا با او ارتباط داشته باشید. اگر هنوز حسابی ندارید <a href="%{sign_up_path}">این‌جا حساب باز کنید</a>.
-  landing_strip_signup_html: If you don't, you can <a href="%{sign_up_path}">sign up here</a>.
+  landing_strip_html: <strong>%{name}</strong> کاربری روی %{link_to_root_path} است. شما با داشتن حساب روی هر سروری می‌توانید نوشته‌های او را پیگیری کرده یا با او ارتباط داشته باشید.
+  landing_strip_signup_html: اگر هنوز حسابی ندارید <a href="%{sign_up_path}">این‌جا حساب باز کنید</a>.
   media_attachments:
     validations:
       images_and_video: نمی‌توان برای نوشته‌ای که تصویر دارد ویدیو بارگذاری کرد
@@ -314,11 +314,11 @@ fa:
       private_long: نمایش تنها به پیگیران
       public: عمومی
       public_long: همه می‌توانند ببینند
-      unlisted: فهرست‌نشده 
-      unlisted_long: عمومی، ولی در فهرست نوشته‌ها نمایش نده
+      unlisted: فهرست‌نشده
+      unlisted_long: عمومی، ولی در فهرست نوشته‌ها نمایش نمی‌یابد
   stream_entries:
     click_to_show: برای نمایش کلیک کنید
-    reblogged: بازبوقیده
+    reblogged: بازبوقید
     sensitive_content: محتوای حساس
   time:
     formats:
