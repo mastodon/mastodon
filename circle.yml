@@ -1,0 +1,31 @@
+machine:
+  services:
+    - docker
+database:
+  override:
+    - echo "Skip database phase"
+dependencies:
+  override:
+    - echo "Skip dependencies phase"
+deployment:
+  qiitadon:
+    branch: qiitadon
+    commands:
+      - docker build --tag mastodon .
+      - docker run --env SECRET_KEY_BASE=dummy --volume $(pwd)/public/assets:/mastodon/public/assets mastodon bundle exec rake assets:precompile
+      - rm .dockerignore
+      - docker build --tag ${AWS_ECR_URL_QIITADON}:${CIRCLE_BUILD_NUM} .
+      - eval $(aws ecr get-login)
+      - docker push ${AWS_ECR_URL_QIITADON}:${CIRCLE_BUILD_NUM}
+  increments-mastodon:
+    branch: increments-mastodon
+    commands:
+      - docker build --tag mastodon .
+      - docker run --env SECRET_KEY_BASE=dummy --volume $(pwd)/public/assets:/mastodon/public/assets mastodon bundle exec rake assets:precompile
+      - rm .dockerignore
+      - docker build --tag ${AWS_ECR_URL_INCREMENTS_MASTODON}:${CIRCLE_BUILD_NUM} .
+      - eval $(aws ecr get-login)
+      - docker push ${AWS_ECR_URL_INCREMENTS_MASTODON}:${CIRCLE_BUILD_NUM}
+test:
+  override:
+    - echo "Skip test phase"
