@@ -11,5 +11,10 @@ describe 'API routes' do
       expect(patch('/api/v1/accounts/update_credentials')).
         to route_to('api/v1/accounts/credentials#update')
     end
+
+    it 'routes account statuses' do
+      expect(get('/api/v1/accounts/user/statuses')).
+        to route_to('api/v1/accounts/statuses#index', account_id: 'user')
+    end
   end
 end

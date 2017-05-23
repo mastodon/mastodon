@@ -3,7 +3,7 @@
 class Api::V1::AccountsController < ApiController
   before_action -> { doorkeeper_authorize! :read }, except: [:follow, :unfollow, :block, :unblock, :mute, :unmute]
   before_action -> { doorkeeper_authorize! :follow }, only: [:follow, :unfollow, :block, :unblock, :mute, :unmute]
-  before_action :require_user!, except: [:show, :following, :followers, :statuses]
+  before_action :require_user!, except: [:show, :following, :followers]
   before_action :set_account, except: [:suggestions, :search]
 
   respond_to :json
@@ -40,20 +40,6 @@ class Api::V1::AccountsController < ApiController
     set_pagination_headers(next_path, prev_path)
 
     render :index
-  end
-
-  def statuses
-    @statuses = @account.statuses.permitted_for(@account, current_account).paginate_by_max_id(limit_param(DEFAULT_STATUSES_LIMIT), params[:max_id], params[:since_id])
-    @statuses = @statuses.where(id: MediaAttachment.where(account: @account).where.not(status_id: nil).reorder('').select('distinct status_id')) if params[:only_media]
-    @statuses = @statuses.without_replies if params[:exclude_replies]
-    @statuses = cache_collection(@statuses, Status)
-
-    set_maps(@statuses)
-
-    next_path = statuses_api_v1_account_url(statuses_pagination_params(max_id: @statuses.last.id))    if @statuses.size == limit_param(DEFAULT_STATUSES_LIMIT)
-    prev_path = statuses_api_v1_account_url(statuses_pagination_params(since_id: @statuses.first.id)) unless @statuses.empty?
-
-    set_pagination_headers(next_path, prev_path)
   end
 
   def follow
@@ -134,9 +120,5 @@ class Api::V1::AccountsController < ApiController
 
   def pagination_params(core_params)
     params.permit(:limit).merge(core_params)
-  end
-
-  def statuses_pagination_params(core_params)
-    params.permit(:limit, :only_media, :exclude_replies).merge(core_params)
   end
 end

@@ -17,21 +17,6 @@ RSpec.describe Api::V1::AccountsController, type: :controller do
     end
   end
 
-  describe 'GET #search' do
-    it 'returns http success' do
-      get :search, params: { q: 'query' }
-
-      expect(response).to have_http_status(:success)
-    end
-  end
-
-  describe 'GET #statuses' do
-    it 'returns http success' do
-      get :statuses, params: { id: user.account.id }
-      expect(response).to have_http_status(:success)
-    end
-  end
-
   describe 'GET #followers' do
     it 'returns http success' do
       get :followers, params: { id: user.account.id }
