@@ -79,7 +79,7 @@ class StatusList extends ImmutablePureComponent {
 
     const options = {
       root: this.node,
-      rootMargin: '100% 0px',
+      rootMargin: '300% 0px',
     };
 
     this.intersectionObserver = new IntersectionObserver(onIntersection, options);
