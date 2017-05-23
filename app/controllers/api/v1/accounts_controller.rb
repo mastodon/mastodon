@@ -4,7 +4,7 @@ class Api::V1::AccountsController < ApiController
   before_action -> { doorkeeper_authorize! :read }, except: [:follow, :unfollow, :block, :unblock, :mute, :unmute]
   before_action -> { doorkeeper_authorize! :follow }, only: [:follow, :unfollow, :block, :unblock, :mute, :unmute]
   before_action :require_user!, except: [:show, :following, :followers]
-  before_action :set_account, except: [:suggestions]
+  before_action :set_account
 
   respond_to :json
 
