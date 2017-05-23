@@ -84,7 +84,7 @@ Rails.application.routes.draw do
     resources :instances, only: [:index]
 
     resources :reports, only: [:index, :show, :update] do
-      resources :reported_statuses, only: :destroy
+      resources :reported_statuses, only: [:update, :destroy]
     end
 
     resources :accounts, only: [:index, :show] do
