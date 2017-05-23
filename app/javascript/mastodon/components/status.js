@@ -17,8 +17,6 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 
 class Status extends ImmutablePureComponent {
 
-  static RECYCLE_TIMEOUT = 2000
-
   static contextTypes = {
     router: PropTypes.object,
   };
@@ -48,7 +46,7 @@ class Status extends ImmutablePureComponent {
 
   componentWillReceiveProps (nextProps) {
     if (nextProps.isIntersecting === false && this.props.isIntersecting !== false) {
-      setTimeout(() => this.setState({ isHidden: true }), this.RECYCLE_TIMEOUT);
+      requestIdleCallback(() => this.setState({ isHidden: true }));
     } else {
       this.setState({ isHidden: !nextProps.isIntersecting });
     }
