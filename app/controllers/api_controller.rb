@@ -4,8 +4,6 @@ class ApiController < ApplicationController
   DEFAULT_STATUSES_LIMIT = 20
   DEFAULT_ACCOUNTS_LIMIT = 40
 
-  protect_from_forgery with: :null_session
-
   skip_before_action :verify_authenticity_token
   skip_before_action :store_current_location
 

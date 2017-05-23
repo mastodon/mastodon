@@ -37,6 +37,16 @@ describe ApplicationController, type: :controller do
     end
   end
 
+  context 'forgery' do
+    subject do
+      ActionController::Base.allow_forgery_protection = true
+      routes.draw { post 'success' => 'anonymous#success' }
+      post 'success'
+    end
+
+    include_examples 'respond_with_error', 422
+  end
+
   it "does not force ssl if LOCAL_HTTPS is not 'true'" do
     routes.draw { get 'success' => 'anonymous#success' }
     ENV['LOCAL_HTTPS'] = ''
