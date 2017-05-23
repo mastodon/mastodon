@@ -75,6 +75,9 @@ class Account < ApplicationRecord
   # PuSH subscriptions
   has_many :subscriptions, dependent: :destroy
 
+  # Web push subscriptions
+  has_many :web_push_subscriptions, dependent: :destroy
+
   # Report relationships
   has_many :reports
   has_many :targeted_reports, class_name: 'Report', foreign_key: :target_account_id
