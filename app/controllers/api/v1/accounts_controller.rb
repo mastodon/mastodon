@@ -4,7 +4,7 @@ class Api::V1::AccountsController < ApiController
   before_action -> { doorkeeper_authorize! :read }, except: [:follow, :unfollow, :block, :unblock, :mute, :unmute]
   before_action -> { doorkeeper_authorize! :follow }, only: [:follow, :unfollow, :block, :unblock, :mute, :unmute]
   before_action :require_user!, except: [:show, :following, :followers]
-  before_action :set_account, except: [:suggestions, :search]
+  before_action :set_account, except: [:suggestions]
 
   respond_to :json
 
@@ -95,12 +95,6 @@ class Api::V1::AccountsController < ApiController
     @muting          = Account.muting_map(ids, current_user.account_id)
     @requested       = Account.requested_map(ids, current_user.account_id)
     @domain_blocking = Account.domain_blocking_map(ids, current_user.account_id)
-  end
-
-  def search
-    @accounts = AccountSearchService.new.call(params[:q], limit_param(DEFAULT_ACCOUNTS_LIMIT), params[:resolve] == 'true', current_account)
-
-    render :index
   end
 
   private

@@ -172,12 +172,12 @@ Rails.application.routes.draw do
       namespace :accounts do
         get :verify_credentials, to: 'credentials#show'
         patch :update_credentials, to: 'credentials#update'
+        resource :search, only: :show, controller: :search
       end
       resources :accounts, only: [:show] do
         resources :statuses, only: :index, controller: 'accounts/statuses'
         collection do
           get :relationships
-          get :search
         end
 
         member do
