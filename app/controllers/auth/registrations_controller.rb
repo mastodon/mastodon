@@ -6,6 +6,10 @@ class Auth::RegistrationsController < Devise::RegistrationsController
   before_action :check_enabled_registrations, only: [:new, :create]
   before_action :configure_sign_up_params, only: [:create]
 
+  def destroy
+    not_found
+  end
+
   protected
 
   def build_resource(hash = nil)

@@ -35,4 +35,22 @@ RSpec.describe Auth::RegistrationsController, type: :controller do
       expect(user.locale).to eq(accept_language)
     end
   end
+
+  describe 'DELETE #destroy' do
+    let(:user) { Fabricate(:user) }
+
+    before do
+      request.env['devise.mapping'] = Devise.mappings[:user]
+      sign_in(user, scope: :user)
+      delete :destroy
+    end
+
+    it 'returns http not found' do
+      expect(response).to have_http_status(:not_found)
+    end
+
+    it 'does not delete user' do
+      expect(User.find(user.id)).to_not be_nil
+    end
+  end
 end
