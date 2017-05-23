@@ -3145,6 +3145,7 @@ button.icon-button.active i.fa-retweet {
 .boost-modal__action-bar,
 .confirmation-modal__action-bar {
   display: flex;
+  justify-content: space-between;
   background: $ui-secondary-color;
   padding: 10px;
   line-height: 36px;
@@ -3179,14 +3180,9 @@ button.icon-button.active i.fa-retweet {
 }
 
 .confirmation-modal__action-bar {
-  & > div {
-    text-align: left;
-    padding: 0 16px;
-  }
-
-  a {
+  .confirmation-modal__cancel-button {
+    background-color: transparent;
     color: darken($ui-secondary-color, 34%);
-    text-decoration: none;
     font-size: 14px;
     font-weight: 500;
 
