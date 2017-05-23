@@ -136,9 +136,11 @@ Rails.application.routes.draw do
         end
       end
 
-      get '/timelines/home',     to: 'timelines#home', as: :home_timeline
-      get '/timelines/public',   to: 'timelines#public', as: :public_timeline
-      get '/timelines/tag/:id',  to: 'timelines#tag', as: :hashtag_timeline
+      namespace :timelines do
+        resource :home, only: :show, controller: :home
+        resource :public, only: :show, controller: :public
+        resources :tag, only: :show
+      end
 
       get '/search', to: 'search#index', as: :search
 
