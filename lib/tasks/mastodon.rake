@@ -45,7 +45,8 @@ namespace :mastodon do
   namespace :media do
     desc 'Removes media attachments that have not been assigned to any status for longer than a day'
     task clear: :environment do
-      MediaAttachment.where(status_id: nil).where('created_at < ?', 1.day.ago).find_each(&:destroy)
+      # No-op
+      # This task is now executed via sidekiq-scheduler
     end
 
     desc 'Remove media attachments attributed to silenced accounts'
@@ -89,9 +90,8 @@ namespace :mastodon do
   namespace :feeds do
     desc 'Clear timelines of inactive users'
     task clear: :environment do
-      User.confirmed.where('current_sign_in_at < ?', 14.days.ago).find_each do |user|
-        Redis.current.del(FeedManager.instance.key(:home, user.account_id))
-      end
+      # No-op
+      # This task is now executed via sidekiq-scheduler
     end
 
     desc 'Clears all timelines'

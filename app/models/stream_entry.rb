@@ -22,9 +22,10 @@ class StreamEntry < ApplicationRecord
 
   validates :account, :activity, presence: true
 
-  STATUS_INCLUDES = [:account, :stream_entry, :media_attachments, :tags, mentions: :account, reblog: [:stream_entry, :account, :media_attachments, :tags, mentions: :account], thread: [:stream_entry, :account]].freeze
+  STATUS_INCLUDES = [:account, :stream_entry, :conversation, :media_attachments, :tags, mentions: :account, reblog: [:stream_entry, :account, :conversation, :media_attachments, :tags, mentions: :account], thread: [:stream_entry, :account]].freeze
 
   default_scope { where(activity_type: 'Status') }
+  scope :recent, -> { reorder(id: :desc) }
   scope :with_includes, -> { includes(:account, status: STATUS_INCLUDES) }
 
   delegate :target, :title, :content, :thread,

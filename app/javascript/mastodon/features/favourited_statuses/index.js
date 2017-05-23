@@ -11,27 +11,30 @@ import { defineMessages, injectIntl } from 'react-intl';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
 const messages = defineMessages({
-  heading: { id: 'column.favourites', defaultMessage: 'Favourites' }
+  heading: { id: 'column.favourites', defaultMessage: 'Favourites' },
 });
 
 const mapStateToProps = state => ({
   statusIds: state.getIn(['status_lists', 'favourites', 'items']),
   loaded: state.getIn(['status_lists', 'favourites', 'loaded']),
-  me: state.getIn(['meta', 'me'])
+  me: state.getIn(['meta', 'me']),
 });
 
 class Favourites extends ImmutablePureComponent {
 
-  constructor (props, context) {
-    super(props, context);
-    this.handleScrollToBottom = this.handleScrollToBottom.bind(this);
-  }
+  static propTypes = {
+    dispatch: PropTypes.func.isRequired,
+    statusIds: ImmutablePropTypes.list.isRequired,
+    loaded: PropTypes.bool,
+    intl: PropTypes.object.isRequired,
+    me: PropTypes.number.isRequired,
+  };
 
   componentWillMount () {
     this.props.dispatch(fetchFavouritedStatuses());
   }
 
-  handleScrollToBottom () {
+  handleScrollToBottom = () => {
     this.props.dispatch(expandFavouritedStatuses());
   }
 
@@ -55,13 +58,5 @@ class Favourites extends ImmutablePureComponent {
   }
 
 }
-
-Favourites.propTypes = {
-  dispatch: PropTypes.func.isRequired,
-  statusIds: ImmutablePropTypes.list.isRequired,
-  loaded: PropTypes.bool,
-  intl: PropTypes.object.isRequired,
-  me: PropTypes.number.isRequired
-};
 
 export default connect(mapStateToProps)(injectIntl(Favourites));

@@ -23,7 +23,11 @@ module Admin
         :by_domain,
         :silenced,
         :recent,
-        :suspended
+        :suspended,
+        :username,
+        :display_name,
+        :email,
+        :ip
       )
     end
   end

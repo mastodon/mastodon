@@ -1,15 +1,34 @@
 import React from 'react';
-import { Motion, spring } from 'react-motion';
+import Motion from 'react-motion/lib/Motion';
+import spring from 'react-motion/lib/spring';
 import PropTypes from 'prop-types';
 
 class IconButton extends React.PureComponent {
 
-  constructor (props, context) {
-    super(props, context);
-    this.handleClick = this.handleClick.bind(this);
-  }
+  static propTypes = {
+    className: PropTypes.string,
+    title: PropTypes.string.isRequired,
+    icon: PropTypes.string.isRequired,
+    onClick: PropTypes.func,
+    size: PropTypes.number,
+    active: PropTypes.bool,
+    style: PropTypes.object,
+    activeStyle: PropTypes.object,
+    disabled: PropTypes.bool,
+    inverted: PropTypes.bool,
+    animate: PropTypes.bool,
+    overlay: PropTypes.bool,
+  };
 
-  handleClick (e) {
+  static defaultProps = {
+    size: 18,
+    active: false,
+    disabled: false,
+    animate: false,
+    overlay: false,
+  };
+
+  handleClick = (e) =>  {
     e.preventDefault();
 
     if (!this.props.disabled) {
@@ -18,17 +37,14 @@ class IconButton extends React.PureComponent {
   }
 
   render () {
-    let style = {
+    const style = {
       fontSize: `${this.props.size}px`,
       width: `${this.props.size * 1.28571429}px`,
       height: `${this.props.size * 1.28571429}px`,
       lineHeight: `${this.props.size}px`,
-      ...this.props.style
+      ...this.props.style,
+      ...(this.props.active ? this.props.activeStyle : {}),
     };
-
-    if (this.props.active) {
-      style = { ...style, ...this.props.activeStyle };
-    }
 
     const classes = ['icon-button'];
 
@@ -49,7 +65,7 @@ class IconButton extends React.PureComponent {
     }
 
     if (this.props.className) {
-      classes.push(this.props.className)
+      classes.push(this.props.className);
     }
 
     return (
@@ -69,28 +85,5 @@ class IconButton extends React.PureComponent {
   }
 
 }
-
-IconButton.propTypes = {
-  className: PropTypes.string,
-  title: PropTypes.string.isRequired,
-  icon: PropTypes.string.isRequired,
-  onClick: PropTypes.func,
-  size: PropTypes.number,
-  active: PropTypes.bool,
-  style: PropTypes.object,
-  activeStyle: PropTypes.object,
-  disabled: PropTypes.bool,
-  inverted: PropTypes.bool,
-  animate: PropTypes.bool,
-  overlay: PropTypes.bool
-};
-
-IconButton.defaultProps = {
-  size: 18,
-  active: false,
-  disabled: false,
-  animate: false,
-  overlay: false
-};
 
 export default IconButton;

@@ -1,7 +1,7 @@
 import {
   ALERT_SHOW,
   ALERT_DISMISS,
-  ALERT_CLEAR
+  ALERT_CLEAR,
 } from '../actions/alerts';
 import Immutable from 'immutable';
 
@@ -13,7 +13,7 @@ export default function alerts(state = initialState, action) {
     return state.push(Immutable.Map({
       key: state.size > 0 ? state.last().get('key') + 1 : 0,
       title: action.title,
-      message: action.message
+      message: action.message,
     }));
   case ALERT_DISMISS:
     return state.filterNot(item => item.get('key') === action.alert.key);

@@ -8,34 +8,57 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 
 class Header extends ImmutablePureComponent {
 
-  constructor (props, context) {
-    super(props, context);
-    this.handleFollow = this.handleFollow.bind(this);
-    this.handleBlock = this.handleBlock.bind(this);
-    this.handleMention = this.handleMention.bind(this);
-    this.handleReport = this.handleReport.bind(this);
-    this.handleMute = this.handleMute.bind(this);
-  }
+  static propTypes = {
+    account: ImmutablePropTypes.map,
+    me: PropTypes.number.isRequired,
+    onFollow: PropTypes.func.isRequired,
+    onBlock: PropTypes.func.isRequired,
+    onMention: PropTypes.func.isRequired,
+    onReport: PropTypes.func.isRequired,
+    onMute: PropTypes.func.isRequired,
+    onBlockDomain: PropTypes.func.isRequired,
+    onUnblockDomain: PropTypes.func.isRequired,
+  };
 
-  handleFollow () {
+  static contextTypes = {
+    router: PropTypes.object,
+  };
+
+  handleFollow = () => {
     this.props.onFollow(this.props.account);
   }
 
-  handleBlock () {
+  handleBlock = () => {
     this.props.onBlock(this.props.account);
   }
 
-  handleMention () {
+  handleMention = () => {
     this.props.onMention(this.props.account, this.context.router);
   }
 
-  handleReport () {
+  handleReport = () => {
     this.props.onReport(this.props.account);
     this.context.router.push('/report');
   }
 
-  handleMute() {
+  handleMute = () => {
     this.props.onMute(this.props.account);
+  }
+
+  handleBlockDomain = () => {
+    const domain = this.props.account.get('acct').split('@')[1];
+
+    if (!domain) return;
+
+    this.props.onBlockDomain(domain, this.props.account.get('id'));
+  }
+
+  handleUnblockDomain = () => {
+    const domain = this.props.account.get('acct').split('@')[1];
+
+    if (!domain) return;
+
+    this.props.onUnblockDomain(domain, this.props.account.get('id'));
   }
 
   render () {
@@ -60,24 +83,13 @@ class Header extends ImmutablePureComponent {
           onMention={this.handleMention}
           onReport={this.handleReport}
           onMute={this.handleMute}
+          onBlockDomain={this.handleBlockDomain}
+          onUnblockDomain={this.handleUnblockDomain}
         />
       </div>
     );
   }
+
 }
-
-Header.propTypes = {
-  account: ImmutablePropTypes.map,
-  me: PropTypes.number.isRequired,
-  onFollow: PropTypes.func.isRequired,
-  onBlock: PropTypes.func.isRequired,
-  onMention: PropTypes.func.isRequired,
-  onReport: PropTypes.func.isRequired,
-  onMute: PropTypes.func.isRequired
-};
-
-Header.contextTypes = {
-  router: PropTypes.object
-};
 
 export default Header;

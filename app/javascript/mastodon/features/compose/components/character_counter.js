@@ -4,6 +4,11 @@ import { length } from 'stringz';
 
 class CharacterCounter extends React.PureComponent {
 
+  static propTypes = {
+    text: PropTypes.string.isRequired,
+    max: PropTypes.number.isRequired,
+  };
+
   checkRemainingText (diff) {
     if (diff < 0) {
       return <span className='character-counter character-counter--over'>{diff}</span>;
@@ -17,11 +22,6 @@ class CharacterCounter extends React.PureComponent {
     return this.checkRemainingText(diff);
   }
 
-}
-
-CharacterCounter.propTypes = {
-  text: PropTypes.string.isRequired,
-  max: PropTypes.number.isRequired
 }
 
 export default CharacterCounter;

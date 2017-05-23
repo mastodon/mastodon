@@ -5,6 +5,7 @@
       "env",
       {
         "loose": true,
+        "modules": false,
         "targets": {
           "browsers": ["last 2 versions", "IE >= 11", "iOS >= 9"]
         }
@@ -14,6 +15,7 @@
   "plugins": [
     "syntax-dynamic-import",
     "transform-object-rest-spread",
+    "transform-class-properties",
     [
       "react-intl",
       {
@@ -30,7 +32,30 @@
     },
     "production": {
       "plugins": [
-        "lodash"
+        "lodash",
+        [
+          "transform-react-remove-prop-types",
+          {
+            "mode": "remove",
+            "removeImport": true,
+            "additionalLibraries": [
+              "react-immutable-proptypes"
+            ]
+          }
+        ],
+        [
+          "transform-runtime",
+          {
+            "helpers": true,
+            "polyfill": false,
+            "regenerator": false
+          }
+        ]
+      ]
+    },
+    "test": {
+      "plugins": [
+        "transform-es2015-modules-commonjs"
       ]
     }
   }

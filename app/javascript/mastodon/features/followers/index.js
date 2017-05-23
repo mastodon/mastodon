@@ -6,7 +6,7 @@ import LoadingIndicator from '../../components/loading_indicator';
 import {
   fetchAccount,
   fetchFollowers,
-  expandFollowers
+  expandFollowers,
 } from '../../actions/accounts';
 import { ScrollContainer } from 'react-router-scroll';
 import AccountContainer from '../../containers/account_container';
@@ -17,30 +17,30 @@ import ColumnBackButton from '../../components/column_back_button';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
 const mapStateToProps = (state, props) => ({
-  accountIds: state.getIn(['user_lists', 'followers', Number(props.params.accountId), 'items'])
+  accountIds: state.getIn(['user_lists', 'followers', Number(props.params.accountId), 'items']),
 });
 
 class Followers extends ImmutablePureComponent {
 
-  constructor (props, context) {
-    super(props, context);
-    this.handleScroll = this.handleScroll.bind(this);
-    this.handleLoadMore = this.handleLoadMore.bind(this);
-  }
+  static propTypes = {
+    params: PropTypes.object.isRequired,
+    dispatch: PropTypes.func.isRequired,
+    accountIds: ImmutablePropTypes.list,
+  };
 
   componentWillMount () {
     this.props.dispatch(fetchAccount(Number(this.props.params.accountId)));
     this.props.dispatch(fetchFollowers(Number(this.props.params.accountId)));
   }
 
-  componentWillReceiveProps(nextProps) {
+  componentWillReceiveProps (nextProps) {
     if (nextProps.params.accountId !== this.props.params.accountId && nextProps.params.accountId) {
       this.props.dispatch(fetchAccount(Number(nextProps.params.accountId)));
       this.props.dispatch(fetchFollowers(Number(nextProps.params.accountId)));
     }
   }
 
-  handleScroll (e) {
+  handleScroll = (e) => {
     const { scrollTop, scrollHeight, clientHeight } = e.target;
 
     if (scrollTop === scrollHeight - clientHeight) {
@@ -48,7 +48,7 @@ class Followers extends ImmutablePureComponent {
     }
   }
 
-  handleLoadMore (e) {
+  handleLoadMore = (e) => {
     e.preventDefault();
     this.props.dispatch(expandFollowers(Number(this.props.params.accountId)));
   }
@@ -82,11 +82,5 @@ class Followers extends ImmutablePureComponent {
   }
 
 }
-
-Followers.propTypes = {
-  params: PropTypes.object.isRequired,
-  dispatch: PropTypes.func.isRequired,
-  accountIds: ImmutablePropTypes.list
-};
 
 export default connect(mapStateToProps)(Followers);

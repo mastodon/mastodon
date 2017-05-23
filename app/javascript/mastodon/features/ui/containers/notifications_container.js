@@ -2,19 +2,19 @@ import { connect } from 'react-redux';
 import { NotificationStack } from 'react-notification';
 import {
   dismissAlert,
-  clearAlerts
+  clearAlerts,
 } from '../../../actions/alerts';
 import { getAlerts } from '../../../selectors';
 
 const mapStateToProps = (state, props) => ({
-  notifications: getAlerts(state)
+  notifications: getAlerts(state),
 });
 
 const mapDispatchToProps = (dispatch) => {
   return {
     onDismiss: alert => {
       dispatch(dismissAlert(alert));
-    }
+    },
   };
 };
 

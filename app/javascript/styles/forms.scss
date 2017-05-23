@@ -12,6 +12,7 @@ code {
 .simple_form {
   .input {
     margin-bottom: 15px;
+    overflow: hidden;
   }
 
   span.hint {
@@ -44,11 +45,12 @@ code {
 
   .input.file,
   .input.select,
-  .input.radio_buttons {
+  .input.radio_buttons,
+  .input.check_boxes {
     padding: 15px 0;
     margin-bottom: 0;
 
-    label {
+    .label_input > label {
       font-family: inherit;
       font-size: 16px;
       color: $primary-text-color;
@@ -159,9 +161,11 @@ code {
 
   .actions {
     margin-top: 30px;
+    display: flex;
   }
 
   button,
+  .button,
   .block-button {
     display: block;
     width: 100%;
@@ -170,6 +174,8 @@ code {
     background: $ui-highlight-color;
     color: $primary-text-color;
     font-size: 18px;
+    line-height: inherit;
+    height: auto;
     padding: 10px;
     text-transform: uppercase;
     text-decoration: none;
@@ -179,6 +185,11 @@ code {
     font-weight: 500;
     outline: 0;
     margin-bottom: 10px;
+    margin-right: 10px;
+
+    &:last-child {
+      margin-right: 0;
+    }
 
     &:hover {
       background-color: lighten($ui-highlight-color, 5%);
@@ -343,7 +354,20 @@ code {
   }
 }
 
-.user_allowed_languages {
+.user_filtered_languages {
+
+  & > label {
+    font-family: inherit;
+    font-size: 16px;
+    color: $primary-text-color;
+    display: block;
+    padding-top: 5px;
+  }
+
+  .hint {
+    margin-bottom: 15px;
+  }
+
   li {
     float: left;
     width: 50%;

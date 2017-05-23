@@ -13,6 +13,8 @@ require_relative '../lib/mastodon/version'
 
 Dotenv::Railtie.load
 
+require_relative '../lib/mastodon/redis_config'
+
 module Mastodon
   class Application < Rails::Application
     # Settings in config/environments/* take precedence over those specified here.
@@ -29,6 +31,7 @@ module Mastodon
       :en,
       :ar,
       :bg,
+      :ca,
       :de,
       :eo,
       :es,

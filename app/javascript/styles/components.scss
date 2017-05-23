@@ -28,6 +28,7 @@
   text-overflow: ellipsis;
   transition: all 100ms ease-in;
   white-space: nowrap;
+  width: auto;
 
   &:active,
   &:focus,
@@ -44,10 +45,48 @@
   &.button-secondary {
     //
   }
+
+  &.button--block {
+    display: block;
+    width: 100%;
+  }
+}
+
+.column__wrapper {
+  display: flex;
+  flex: 1 1 auto;
+  position: relative;
 }
 
 .column-collapsable {
   position: relative;
+
+  .column-collapsable__content {
+    overflow: auto;
+    transition: 300ms ease;
+    opacity: 1;
+    max-height: 70vh;
+  }
+
+  &.collapsed .column-collapsable__content {
+    height: 0 !important;
+    opacity: 0;
+  }
+
+  .column-collapsable__button {
+    color: $primary-text-color;
+    background: lighten($ui-base-color, 8%);
+
+    &:hover {
+      color: $primary-text-color;
+      background: lighten($ui-base-color, 8%);
+    }
+  }
+
+  &.collapsed .column-collapsable__button {
+    color: $ui-primary-color;
+    background: lighten($ui-base-color, 4%);
+  }
 }
 
 .column-icon {
@@ -226,7 +265,7 @@
 }
 
 .compose-form__warning {
-  color: darken($ui-secondary-color, 33%);
+  color: darken($ui-secondary-color, 65%);
   margin-bottom: 15px;
   background: $ui-primary-color;
   box-shadow: 0 2px 6px rgba($base-shadow-color, 0.3);
@@ -236,7 +275,7 @@
   font-weight: 400;
 
   strong {
-    color: darken($primary-text-color, 33%);
+    color: darken($ui-secondary-color, 65%);
     font-weight: 500;
   }
 
@@ -344,10 +383,16 @@
 .compose-form__autosuggest-wrapper {
   position: relative;
 
-  .dropdown--active::after {
-    border-color: transparent transparent $base-border-color;
-    bottom: -1px;
-    right: 8px;
+  .emoji-picker__dropdown {
+    position: absolute;
+    right: 5px;
+    top: 5px;
+
+    &.dropdown--active::after {
+      border-color: transparent transparent $base-border-color;
+      bottom: -1px;
+      right: 8px;
+    }
   }
 }
 
@@ -472,17 +517,28 @@
       text-decoration: none;
     }
   }
+
+  .status__content__text {
+    display: none;
+
+    &.status__content__text--visible {
+      display: block;
+    }
+  }
 }
 
-a.status__content__spoiler-link {
+.status__content__spoiler-link {
   display: inline-block;
   border-radius: 2px;
+  background: transparent;
+  border: 0;
   color: lighten($ui-base-color, 8%);
   font-weight: 500;
   font-size: 11px;
   padding: 0 6px;
   text-transform: uppercase;
   line-height: inherit;
+  cursor: pointer;
 }
 
 .status__prepend-icon-wrapper {
@@ -497,6 +553,18 @@ a.status__content__spoiler-link {
   min-height: 48px;
   border-bottom: 1px solid lighten($ui-base-color, 8%);
   cursor: default;
+
+  &.status-direct {
+    background: lighten($ui-base-color, 8%);
+
+    .status__display-name strong {
+      color: $primary-text-color;
+    }
+
+    .icon-button.disabled {
+      color: lighten($ui-base-color, 16%);
+    }
+  }
 
   &.light {
     .status__relative-time {
@@ -538,6 +606,8 @@ a.status__content__spoiler-link {
 
 .status__relative-time {
   color: lighten($ui-base-color, 26%);
+  float: right;
+  font-size: 14px;
 }
 
 .status__display-name {
@@ -552,11 +622,6 @@ a.status__content__spoiler-link {
 
 .status__info {
   font-size: 15px;
-}
-
-.status__info-time {
-  float: right;
-  font-size: 14px;
 }
 
 .status-check-box {
@@ -606,6 +671,34 @@ a.status__content__spoiler-link {
   float: left;
   height: 18px;
   width: 18px;
+}
+
+.detailed-status__action-bar-dropdown {
+  flex: 1 1 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+
+  .dropdown {
+    display: block;
+    width: 18px;
+    height: 18px;
+  }
+
+  .dropdown--active {
+    .dropdown__content.dropdown__left {
+      left: 20px;
+      right: initial;
+    }
+
+    &::after {
+      bottom: initial;
+      margin-left: 7px;
+      margin-top: -7px;
+      right: initial;
+    }
+  }
 }
 
 .detailed-status {
@@ -731,6 +824,7 @@ a.status__content__spoiler-link {
 
   & > div {
     background: rgba(lighten($ui-base-color, 4%), 0.9);
+    padding: 20px 10px;
   }
 
   .account__header__content {
@@ -739,10 +833,18 @@ a.status__content__spoiler-link {
 
   .account__header__display-name {
     color: $primary-text-color;
+    display: inline-block;
+    font-size: 20px;
+    line-height: 27px;
+    font-weight: 500;
   }
 
   .account__header__username {
     color: $ui-highlight-color;
+    font-size: 14px;
+    font-weight: 400;
+    display: block;
+    margin-bottom: 10px;
   }
 }
 
@@ -1209,6 +1311,7 @@ a.status__content__spoiler-link {
 .drawer {
   flex: 1 1 100%;
   overflow: hidden;
+  contain: strict;
 }
 
 @media screen and (min-width: 360px) {
@@ -1266,23 +1369,6 @@ a.status__content__spoiler-link {
       padding-left: 5px;
       padding-right: 5px;
     }
-  }
-}
-
-@media screen and (min-width: 1397px) { /* Width of 4 columns with margins */
-  .columns-area {
-    margin-left: auto;
-    margin-right: auto;
-  }
-}
-
-@media screen and (min-width: 1900px) {
-  .column,
-  .drawer {
-    width: 400px;
-    border-radius: 4px;
-    height: 96vh;
-    margin-top: 2vh;
   }
 }
 
@@ -1394,50 +1480,13 @@ a.status__content__spoiler-link {
   }
 }
 
-.react-autosuggest__container {
-  position: relative;
-}
-
-.react-autosuggest__suggestions-container {
-  position: absolute;
-  top: 100%;
-  width: 100%;
-  z-index: 99;
-  box-shadow: 0 0 15px rgba($base-shadow-color, 0.4);
-}
-
-.react-autosuggest__section-title {
-  background: $ui-primary-color;
-  padding: 4px 10px;
-  font-weight: 500;
-  cursor: default;
-  color: $ui-base-color;
-  text-transform: uppercase;
-  font-size: 11px;
-}
-
-.react-autosuggest__suggestions-list {
-  background: $ui-secondary-color;
-  color: $ui-base-color;
-  font-size: 14px;
-}
-
-.react-autosuggest__suggestion {
-  padding: 10px;
-  cursor: pointer;
-}
-
-.react-autosuggest__suggestion--focused {
-  background: $ui-highlight-color;
-  color: $primary-text-color;
-}
-
 .scrollable {
   overflow-y: scroll;
   overflow-x: hidden;
   flex: 1 1 auto;
   backface-visibility: hidden;
   -webkit-overflow-scrolling: touch;
+  contain: strict;
 
   &.optionally-scrollable {
     overflow-y: auto;
@@ -1664,6 +1713,7 @@ a.status__content__spoiler-link {
 }
 
 .autosuggest-textarea__suggestions {
+  display: none;
   position: absolute;
   top: 100%;
   width: 100%;
@@ -1672,6 +1722,10 @@ a.status__content__spoiler-link {
   background: $ui-secondary-color;
   color: $ui-base-color;
   font-size: 14px;
+
+  &.autosuggest-textarea__suggestions--visible {
+    display: block;
+  }
 }
 
 .autosuggest-textarea__suggestions__item {
@@ -1726,10 +1780,15 @@ a.status__content__spoiler-link {
   position: relative;
 }
 
+.getting-started__footer {
+  display: flex;
+  flex-direction: column;
+}
+
 .getting-started {
   box-sizing: border-box;
   padding-bottom: 235px;
-  background: url('../images/mastodon-getting-started.png') no-repeat 0 100% / contain local;
+  background: url('../images/mastodon-getting-started.png') no-repeat 0 100%;
   flex: 1 0 auto;
 
   p {
@@ -1958,21 +2017,6 @@ button.icon-button.active i.fa-retweet {
   text-align: center;
 }
 
-.collapsable-collapsed {
-  color: $ui-primary-color;
-  background: lighten($ui-base-color, 4%);
-}
-
-.collapsable {
-  color: $primary-text-color;
-  background: lighten($ui-base-color, 8%);
-
-  &:hover {
-    color: $primary-text-color;
-    background: lighten($ui-base-color, 8%);
-  }
-}
-
 .video-error-cover {
   align-items: center;
   background: $base-overlay-background;
@@ -2014,11 +2058,16 @@ button.icon-button.active i.fa-retweet {
 }
 
 .spoiler-button {
+  display: none;
   left: 4px;
   position: absolute;
   text-shadow: 0 1px 1px $base-shadow-color, 1px 0 1px $base-shadow-color;
   top: 4px;
   z-index: 100;
+
+  &.spoiler-button--visible {
+    display: block;
+  }
 }
 
 .modal-container--preloader {
@@ -2077,6 +2126,24 @@ button.icon-button.active i.fa-retweet {
 
 .account--follows-info {
   color: $primary-text-color;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  opacity: 0.7;
+  display: inline-block;
+  vertical-align: top;
+  background-color: rgba($base-overlay-background, 0.4);
+  text-transform: uppercase;
+  font-size: 11px;
+  font-weight: 500;
+  padding: 4px;
+  border-radius: 4px;
+}
+
+.account--action-button {
+  position: absolute;
+  top: 10px;
+  left: 20px;
 }
 
 .setting-toggle__label {
@@ -2165,6 +2232,8 @@ button.icon-button.active i.fa-retweet {
   display: flex;
   flex: 1 1 auto;
   align-items: center;
+  justify-content: center;
+  contain: strict;
 
   a {
     color: $ui-highlight-color;
@@ -2493,6 +2562,11 @@ button.icon-button.active i.fa-retweet {
 }
 
 .emoji-button {
+  display: block;
+  font-size: 24px;
+  line-height: 24px;
+  margin-left: 2px;
+  width: 24px;
   outline: 0;
 
   &:active,
@@ -3071,6 +3145,7 @@ button.icon-button.active i.fa-retweet {
 .boost-modal__action-bar,
 .confirmation-modal__action-bar {
   display: flex;
+  justify-content: space-between;
   background: $ui-secondary-color;
   padding: 10px;
   line-height: 36px;
@@ -3105,14 +3180,9 @@ button.icon-button.active i.fa-retweet {
 }
 
 .confirmation-modal__action-bar {
-  & > div {
-    text-align: left;
-    padding: 0 16px;
-  }
-
-  a {
+  .confirmation-modal__cancel-button {
+    background-color: transparent;
     color: darken($ui-secondary-color, 34%);
-    text-decoration: none;
     font-size: 14px;
     font-weight: 500;
 
@@ -3307,12 +3377,17 @@ button.icon-button.active i.fa-retweet {
 }
 
 .status__video-player-spoiler {
+  display: none;
   color: $primary-text-color;
   left: 4px;
   position: absolute;
   text-shadow: 0 1px 1px $base-shadow-color, 1px 0 1px $base-shadow-color;
   top: 4px;
   z-index: 100;
+
+  &.status__video-player-spoiler--visible {
+    display: block;
+  }
 }
 
 .status__video-player-expand {
@@ -3327,6 +3402,8 @@ button.icon-button.active i.fa-retweet {
 
 .media-spoiler-video {
   background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
   cursor: pointer;
   margin-top: 8px;
   position: relative;
@@ -3343,3 +3420,55 @@ button.icon-button.active i.fa-retweet {
   transform: translate(-50%, -50%);
 }
 /* End Video Player */
+
+.account-gallery__container {
+  margin: -2px;
+  padding: 4px;
+}
+
+.account-gallery__item {
+  float: left;
+  width: 96px;
+  height: 96px;
+  margin: 2px;
+
+  a {
+    display: block;
+    width: 100%;
+    height: 100%;
+    background-color: $base-overlay-background;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+  }
+}
+
+.account-section-headline {
+  color: lighten($ui-base-color, 26%);
+  background: lighten($ui-base-color, 2%);
+  border-bottom: 1px solid lighten($ui-base-color, 4%);
+  padding: 15px 10px;
+  font-size: 14px;
+  font-weight: 500;
+  position: relative;
+  cursor: default;
+
+  &::before,
+  &::after {
+    display: block;
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 18px;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 10px 10px;
+    border-color: transparent transparent lighten($ui-base-color, 4%);
+  }
+
+  &::after {
+    bottom: -1px;
+    border-color: transparent transparent $ui-base-color;
+  }
+}

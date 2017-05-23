@@ -6,7 +6,7 @@ class RemoteFollow
   attr_accessor :acct, :addressable_template
 
   def initialize(attrs = {})
-    @acct = attrs[:acct].strip unless attrs[:acct].nil?
+    @acct = attrs[:acct].gsub(/\A@/, '').strip unless attrs[:acct].nil?
   end
 
   def valid?
@@ -15,7 +15,7 @@ class RemoteFollow
   end
 
   def subscribe_address_for(account)
-    addressable_template.expand(uri: account.to_webfinger_s).to_s
+    addressable_template.expand(uri: account.local_username_and_domain).to_s
   end
 
   private

@@ -47,15 +47,22 @@ rules:
   no-mixed-spaces-and-tabs: warn
   no-nested-ternary: warn
   no-trailing-spaces: warn
+  semi: error
+  padded-blocks:
+  - error
+  - classes: always
+  comma-dangle:
+  - error
+  - always-multiline
 
   react/jsx-wrap-multilines: error
+  react/jsx-no-bind: error
   react/self-closing-comp: error
   react/prop-types: error
   react/no-multi-comp: off
 
   jsx-a11y/accessible-emoji: warn
   jsx-a11y/anchor-has-content: warn
-  jsx-a11y/alt-text: warn
   jsx-a11y/aria-activedescendant-has-tabindex: warn
   jsx-a11y/aria-props: warn
   jsx-a11y/aria-proptypes: warn
@@ -65,15 +72,16 @@ rules:
   jsx-a11y/href-no-hash: warn
   jsx-a11y/html-has-lang: warn
   jsx-a11y/iframe-has-title: warn
+  jsx-a11y/img-has-alt: warn
   jsx-a11y/img-redundant-alt: warn
-  jsx-a11y/interactive-supports-focus: warn
   jsx-a11y/label-has-for: warn
   jsx-a11y/mouse-events-have-key-events: warn
   jsx-a11y/no-access-key: warn
   jsx-a11y/no-distracting-elements: warn
-  jsx-a11y/no-noninteractive-element-interactions: warn
   jsx-a11y/no-onchange: warn
   jsx-a11y/no-redundant-roles: warn
+  jsx-a11y/onclick-has-focus: warn
+  jsx-a11y/onclick-has-role: warn
   jsx-a11y/role-has-required-aria-props: warn
   jsx-a11y/role-supports-aria-props: warn
   jsx-a11y/scope: warn

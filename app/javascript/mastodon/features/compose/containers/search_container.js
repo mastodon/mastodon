@@ -3,13 +3,13 @@ import {
   changeSearch,
   clearSearch,
   submitSearch,
-  showSearch
+  showSearch,
 } from '../../../actions/search';
 import Search from '../components/search';
 
 const mapStateToProps = state => ({
   value: state.getIn(['search', 'value']),
-  submitted: state.getIn(['search', 'submitted'])
+  submitted: state.getIn(['search', 'submitted']),
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -28,7 +28,7 @@ const mapDispatchToProps = dispatch => ({
 
   onShow () {
     dispatch(showSearch());
-  }
+  },
 
 });
 

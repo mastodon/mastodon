@@ -9,11 +9,11 @@ zh-CN:
         locked: 默认仅向粉丝公开嘟文，需要手工批准粉丝关注请求。
         note: 最多 160 个字符
       imports:
-        data: 自其他服务站导出的 CSV 文件
+        data: 从其他服务器节点导出的 CSV 文件
       sessions:
         otp: 输入你手机生成的两步验证码，或者恢复代码。
       user:
-        allowed_languages: 允许下列语言的内容出现在你的公共时间线上。
+        filtered_languages: 下列被选择的语言的嘟文将不会出现在你的公共时间轴上。
     labels:
       defaults:
         avatar: 头像
@@ -23,6 +23,7 @@ zh-CN:
         data: 数据
         display_name: 显示名
         email: 邮箱
+        filtered_languages: 屏蔽下列语言的嘟文
         header: 个人页面顶部
         locale: 语言
         locked: 隐私模式（锁嘟）
@@ -40,11 +41,11 @@ zh-CN:
         must_be_following: 隐藏你不关注的用户的通知
       notification_emails:
         digest: 发送摘要邮件
-        favourite: 当有用户喜欢你的嘟文时，发电邮通知
+        favourite: 当有用户赞了你的嘟文时，发电邮通知
         follow: 当有用户关注你时，发电邮通知
         follow_request: 当有用户要求关注你时，发电邮通知
-        mention: 当有用户在嘟文提及你时，发电邮通知
-        reblog: 当有用户转嘟你时，发电邮通知
+        mention: 当有用户在嘟文中提及你时，发电邮通知
+        reblog: 当有用户转嘟了你的嘟文时，发电邮通知
     'no': '否'
     required:
       mark: "*"

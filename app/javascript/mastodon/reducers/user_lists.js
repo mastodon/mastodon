@@ -6,19 +6,19 @@ import {
   FOLLOW_REQUESTS_FETCH_SUCCESS,
   FOLLOW_REQUESTS_EXPAND_SUCCESS,
   FOLLOW_REQUEST_AUTHORIZE_SUCCESS,
-  FOLLOW_REQUEST_REJECT_SUCCESS
+  FOLLOW_REQUEST_REJECT_SUCCESS,
 } from '../actions/accounts';
 import {
   REBLOGS_FETCH_SUCCESS,
-  FAVOURITES_FETCH_SUCCESS
+  FAVOURITES_FETCH_SUCCESS,
 } from '../actions/interactions';
 import {
   BLOCKS_FETCH_SUCCESS,
-  BLOCKS_EXPAND_SUCCESS
+  BLOCKS_EXPAND_SUCCESS,
 } from '../actions/blocks';
 import {
   MUTES_FETCH_SUCCESS,
-  MUTES_EXPAND_SUCCESS
+  MUTES_EXPAND_SUCCESS,
 } from '../actions/mutes';
 import Immutable from 'immutable';
 
@@ -29,13 +29,13 @@ const initialState = Immutable.Map({
   favourited_by: Immutable.Map(),
   follow_requests: Immutable.Map(),
   blocks: Immutable.Map(),
-  mutes: Immutable.Map()
+  mutes: Immutable.Map(),
 });
 
 const normalizeList = (state, type, id, accounts, next) => {
   return state.setIn([type, id], Immutable.Map({
     next,
-    items: Immutable.List(accounts.map(item => item.id))
+    items: Immutable.List(accounts.map(item => item.id)),
   }));
 };
 

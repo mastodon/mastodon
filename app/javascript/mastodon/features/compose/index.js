@@ -5,10 +5,11 @@ import NavigationContainer from './containers/navigation_container';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { mountCompose, unmountCompose } from '../../actions/compose';
-import { Link } from 'react-router';
+import Link from 'react-router/lib/Link';
 import { injectIntl, defineMessages } from 'react-intl';
 import SearchContainer from './containers/search_container';
-import { Motion, spring } from 'react-motion';
+import Motion from 'react-motion/lib/Motion';
+import spring from 'react-motion/lib/spring';
 import SearchResultsContainer from './containers/search_results_container';
 
 const messages = defineMessages({
@@ -16,14 +17,21 @@ const messages = defineMessages({
   public: { id: 'navigation_bar.public_timeline', defaultMessage: 'Federated timeline' },
   community: { id: 'navigation_bar.community_timeline', defaultMessage: 'Local timeline' },
   preferences: { id: 'navigation_bar.preferences', defaultMessage: 'Preferences' },
-  logout: { id: 'navigation_bar.logout', defaultMessage: 'Logout' }
+  logout: { id: 'navigation_bar.logout', defaultMessage: 'Logout' },
 });
 
 const mapStateToProps = state => ({
-  showSearch: state.getIn(['search', 'submitted']) && !state.getIn(['search', 'hidden'])
+  showSearch: state.getIn(['search', 'submitted']) && !state.getIn(['search', 'hidden']),
 });
 
 class Compose extends React.PureComponent {
+
+  static propTypes = {
+    dispatch: PropTypes.func.isRequired,
+    withHeader: PropTypes.bool,
+    showSearch: PropTypes.bool,
+    intl: PropTypes.object.isRequired,
+  };
 
   componentDidMount () {
     this.props.dispatch(mountCompose());
@@ -75,12 +83,5 @@ class Compose extends React.PureComponent {
   }
 
 }
-
-Compose.propTypes = {
-  dispatch: PropTypes.func.isRequired,
-  withHeader: PropTypes.bool,
-  showSearch: PropTypes.bool,
-  intl: PropTypes.object.isRequired
-};
 
 export default connect(mapStateToProps)(injectIntl(Compose));

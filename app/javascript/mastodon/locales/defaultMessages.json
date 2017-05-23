@@ -2,6 +2,15 @@
   {
     "descriptors": [
       {
+        "defaultMessage": "{name} mentioned you",
+        "id": "notification.mention"
+      }
+    ],
+    "path": "app/javascript/mastodon/actions/notifications.json"
+  },
+  {
+    "descriptors": [
+      {
         "defaultMessage": "Follow",
         "id": "account.follow"
       },
@@ -135,6 +144,14 @@
       {
         "defaultMessage": "Report @{name}",
         "id": "status.report"
+      },
+      {
+        "defaultMessage": "Mute conversation",
+        "id": "status.mute_conversation"
+      },
+      {
+        "defaultMessage": "Unmute conversation",
+        "id": "status.unmute_conversation"
       }
     ],
     "path": "app/javascript/mastodon/components/status_action_bar.json"
@@ -176,10 +193,6 @@
         "id": "video_player.expand"
       },
       {
-        "defaultMessage": "Video could not be played",
-        "id": "video_player.video_error"
-      },
-      {
         "defaultMessage": "Sensitive content",
         "id": "status.sensitive_warning"
       },
@@ -190,6 +203,10 @@
       {
         "defaultMessage": "Media hidden",
         "id": "status.media_hidden"
+      },
+      {
+        "defaultMessage": "Video could not be played",
+        "id": "video_player.video_error"
       }
     ],
     "path": "app/javascript/mastodon/components/video_player.json"
@@ -226,6 +243,15 @@
   {
     "descriptors": [
       {
+        "defaultMessage": "Media",
+        "id": "account.media"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/account_gallery/index.json"
+  },
+  {
+    "descriptors": [
+      {
         "defaultMessage": "Block",
         "id": "confirmations.block.confirm"
       },
@@ -234,12 +260,20 @@
         "id": "confirmations.mute.confirm"
       },
       {
+        "defaultMessage": "Hide entire domain",
+        "id": "confirmations.domain_block.confirm"
+      },
+      {
         "defaultMessage": "Are you sure you want to block {name}?",
         "id": "confirmations.block.message"
       },
       {
         "defaultMessage": "Are you sure you want to mute {name}?",
         "id": "confirmations.mute.message"
+      },
+      {
+        "defaultMessage": "Are you really, really sure you want to block the entire {domain}? In most cases a few targeted blocks or mutes are sufficient and preferable.",
+        "id": "confirmations.domain_block.message"
       }
     ],
     "path": "app/javascript/mastodon/features/account_timeline/containers/header_container.json"
@@ -283,8 +317,20 @@
         "id": "account.report"
       },
       {
+        "defaultMessage": "Media",
+        "id": "account.media"
+      },
+      {
         "defaultMessage": "This user is from another instance. This number may be larger.",
         "id": "account.disclaimer"
+      },
+      {
+        "defaultMessage": "Hide everything from {domain}",
+        "id": "account.block_domain"
+      },
+      {
+        "defaultMessage": "Unhide {domain}",
+        "id": "account.unblock_domain"
       },
       {
         "defaultMessage": "Posts",
@@ -357,6 +403,10 @@
       {
         "defaultMessage": "Toot",
         "id": "compose_form.publish"
+      },
+      {
+        "defaultMessage": "{publish}!",
+        "id": "compose_form.publish_loud"
       }
     ],
     "path": "app/javascript/mastodon/features/compose/components/compose_form.json"

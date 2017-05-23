@@ -13,13 +13,13 @@ $classic-secondary-color: #d9e1e8;    // Pattens Blue
 $classic-highlight-color: #2b90d9;    // Summer Sky
 
 // Variables for defaults in UI
-$base-shadow-color: $black;
-$base-overlay-background: $black;
-$base-border-color: $white;
-$simple-background-color: $white;
-$primary-text-color: $white;
-$valid-value-color: $success-green;
-$error-value-color: $error-red;
+$base-shadow-color: $black !default;
+$base-overlay-background: $black !default;
+$base-border-color: $white !default;
+$simple-background-color: $white !default;
+$primary-text-color: $white !default;
+$valid-value-color: $success-green !default;
+$error-value-color: $error-red !default;
 
 // Tell UI to use selected colors
 $ui-base-color: $classic-base-color !default;             // Darkest

@@ -135,12 +135,16 @@ Rails.application.routes.draw do
           post :unreblog
           post :favourite
           post :unfavourite
+          post :mute
+          post :unmute
         end
       end
 
-      get '/timelines/home',     to: 'timelines#home', as: :home_timeline
-      get '/timelines/public',   to: 'timelines#public', as: :public_timeline
-      get '/timelines/tag/:id',  to: 'timelines#tag', as: :hashtag_timeline
+      namespace :timelines do
+        resource :home, only: :show, controller: :home
+        resource :public, only: :show, controller: :public
+        resources :tag, only: :show
+      end
 
       get '/search', to: 'search#index', as: :search
 
@@ -152,7 +156,8 @@ Rails.application.routes.draw do
       resources :favourites, only: [:index]
       resources :reports,    only: [:index, :create]
 
-      resource :instance, only: [:show]
+      resource :instance,      only: [:show]
+      resource :domain_blocks, only: [:show, :create, :destroy]
 
       resources :follow_requests, only: [:index] do
         member do

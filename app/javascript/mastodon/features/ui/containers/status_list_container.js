@@ -9,7 +9,7 @@ const makeGetStatusIds = () => createSelector([
   (state, { type }) => state.getIn(['settings', type], Immutable.Map()),
   (state, { type }) => state.getIn(['timelines', type, 'items'], Immutable.List()),
   (state)           => state.get('statuses'),
-  (state)           => state.getIn(['meta', 'me'])
+  (state)           => state.getIn(['meta', 'me']),
 ], (columnSettings, statusIds, statuses, me) => statusIds.filter(id => {
   const statusForId = statuses.get(id);
   let showStatus    = true;
@@ -45,7 +45,7 @@ const makeMapStateToProps = () => {
     statusIds: getStatusIds(state, props),
     isLoading: state.getIn(['timelines', props.type, 'isLoading'], true),
     isUnread: state.getIn(['timelines', props.type, 'unread']) > 0,
-    hasMore: !!state.getIn(['timelines', props.type, 'next'])
+    hasMore: !!state.getIn(['timelines', props.type, 'next']),
   });
 
   return mapStateToProps;
@@ -64,7 +64,7 @@ const mapDispatchToProps = (dispatch, { type, id }) => ({
 
   onScroll: debounce(() => {
     dispatch(scrollTopTimeline(type, false));
-  }, 100)
+  }, 100),
 
 });
 

@@ -13,7 +13,7 @@ export const getLinks = response => {
 
 export default getState => axios.create({
   headers: {
-    'Authorization': `Bearer ${getState().getIn(['meta', 'access_token'], '')}`
+    'Authorization': `Bearer ${getState().getIn(['meta', 'access_token'], '')}`,
   },
 
   transformResponse: [function (data) {
@@ -22,5 +22,5 @@ export default getState => axios.create({
     } catch(Exception) {
       return data;
     }
-  }]
+  }],
 });

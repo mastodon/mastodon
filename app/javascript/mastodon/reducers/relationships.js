@@ -5,8 +5,12 @@ import {
   ACCOUNT_UNBLOCK_SUCCESS,
   ACCOUNT_MUTE_SUCCESS,
   ACCOUNT_UNMUTE_SUCCESS,
-  RELATIONSHIPS_FETCH_SUCCESS
+  RELATIONSHIPS_FETCH_SUCCESS,
 } from '../actions/accounts';
+import {
+  DOMAIN_BLOCK_SUCCESS,
+  DOMAIN_UNBLOCK_SUCCESS,
+} from '../actions/domain_blocks';
 import Immutable from 'immutable';
 
 const normalizeRelationship = (state, relationship) => state.set(relationship.id, Immutable.fromJS(relationship));
@@ -32,6 +36,10 @@ export default function relationships(state = initialState, action) {
     return normalizeRelationship(state, action.relationship);
   case RELATIONSHIPS_FETCH_SUCCESS:
     return normalizeRelationships(state, action.relationships);
+  case DOMAIN_BLOCK_SUCCESS:
+    return state.setIn([action.accountId, 'domain_blocking'], true);
+  case DOMAIN_UNBLOCK_SUCCESS:
+    return state.setIn([action.accountId, 'domain_blocking'], false);
   default:
     return state;
   }

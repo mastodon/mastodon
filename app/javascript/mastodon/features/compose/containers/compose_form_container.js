@@ -8,7 +8,7 @@ import {
   fetchComposeSuggestions,
   selectComposeSuggestion,
   changeComposeSpoilerText,
-  insertEmojiCompose
+  insertEmojiCompose,
 } from '../../../actions/compose';
 
 const mapStateToProps = state => ({
@@ -23,7 +23,7 @@ const mapStateToProps = state => ({
   is_submitting: state.getIn(['compose', 'is_submitting']),
   is_uploading: state.getIn(['compose', 'is_uploading']),
   me: state.getIn(['compose', 'me']),
-  showSearch: state.getIn(['search', 'submitted']) && !state.getIn(['search', 'hidden'])
+  showSearch: state.getIn(['search', 'submitted']) && !state.getIn(['search', 'hidden']),
 });
 
 const mapDispatchToProps = (dispatch) => ({
