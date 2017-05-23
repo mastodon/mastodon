@@ -86,7 +86,6 @@ if (cluster.isMaster) {
   const pgConfigs = {
     development: {
       database: 'mastodon_development',
-      host:     '/var/run/postgresql',
       max:      10,
     },
 
@@ -199,8 +198,9 @@ if (cluster.isMaster) {
     }
 
     const authorization = req.get('Authorization');
+    const accessToken = req.query.access_token;
 
-    if (!authorization) {
+    if (!authorization && !accessToken) {
       const err = new Error('Missing access token');
       err.statusCode = 401;
 
@@ -208,7 +208,7 @@ if (cluster.isMaster) {
       return;
     }
 
-    const token = authorization.replace(/^Bearer /, '');
+    const token = authorization ? authorization.replace(/^Bearer /, '') : accessToken;
 
     accountFromToken(token, req, next);
   };

@@ -55,6 +55,7 @@ class MediaAttachment < ApplicationRecord
   validates :account, presence: true
 
   scope :attached, -> { where.not(status_id: nil) }
+  scope :unattached, -> { where(status_id: nil) }
   scope :local, -> { where(remote_url: '') }
   default_scope { order(id: :asc) }
 
