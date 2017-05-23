@@ -173,12 +173,10 @@ Rails.application.routes.draw do
         get :verify_credentials, to: 'credentials#show'
         patch :update_credentials, to: 'credentials#update'
         resource :search, only: :show, controller: :search
+        resources :relationships, only: :index
       end
       resources :accounts, only: [:show] do
         resources :statuses, only: :index, controller: 'accounts/statuses'
-        collection do
-          get :relationships
-        end
 
         member do
           get :followers

@@ -21,5 +21,10 @@ describe 'API routes' do
       expect(get('/api/v1/accounts/search')).
         to route_to('api/v1/accounts/search#show')
     end
+
+    it 'routes account relationships' do
+      expect(get('/api/v1/accounts/relationships')).
+        to route_to('api/v1/accounts/relationships#index')
+    end
   end
 end

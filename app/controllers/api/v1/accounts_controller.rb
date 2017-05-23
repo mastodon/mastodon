@@ -85,18 +85,6 @@ class Api::V1::AccountsController < ApiController
     render :relationship
   end
 
-  def relationships
-    ids = params[:id].is_a?(Enumerable) ? params[:id].map(&:to_i) : [params[:id].to_i]
-
-    @accounts        = Account.where(id: ids).select('id')
-    @following       = Account.following_map(ids, current_user.account_id)
-    @followed_by     = Account.followed_by_map(ids, current_user.account_id)
-    @blocking        = Account.blocking_map(ids, current_user.account_id)
-    @muting          = Account.muting_map(ids, current_user.account_id)
-    @requested       = Account.requested_map(ids, current_user.account_id)
-    @domain_blocking = Account.domain_blocking_map(ids, current_user.account_id)
-  end
-
   private
 
   def set_account
