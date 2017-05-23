@@ -15,7 +15,7 @@ const hashtags = Immutable.fromJS([
 ]);
 
 const mapStateToProps = state => ({
-  isEmptyHome: state.getIn(['timelines', 'home', 'items']).size == 0
+  isEmptyHome: state.getIn(['timelines', 'home', 'items']).size < 5
 });
 
 const Announcements = React.createClass({
