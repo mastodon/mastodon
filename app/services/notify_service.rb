@@ -21,7 +21,7 @@ class NotifyService < BaseService
   end
 
   def blocked_favourite?
-    false
+    @recipient.muting?(@notification.from_account)
   end
 
   def blocked_follow?
