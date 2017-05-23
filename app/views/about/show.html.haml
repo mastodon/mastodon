@@ -72,19 +72,15 @@
           = fa_icon('li check-square')
           = t 'about.features.api'
 
-  %h3= t('about.rules_headline')
+  %h3= t('about.messages_headline')
 
   %ul
     %li
-      = t 'about.rules.delete'
+      = t 'about.messages.code'
     %li
-      = t 'about.rules.crime'
+      = t 'about.messages.qiita'
     %li
-      = t 'about.rules.right'
-    %li
-      = t 'about.rules.moral'
-    %li
-      = t 'about.rules.ban'
+      = t 'about.messages.trial'
 
   - unless @instance_presenter.site_description.blank?
     %h3= t('about.description_headline', domain: site_hostname)
