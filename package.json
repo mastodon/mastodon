@@ -6,7 +6,7 @@
     "build:development": "NODE_ENV=development yarn webpack -- --config config/webpack/development.js",
     "build:production": "NODE_ENV=production yarn webpack -- --config config/webpack/production.js",
     "manage:translations": "node ./config/webpack/translationRunner.js",
-    "start": "babel-node ./streaming/index.js",
+    "start": "rimraf ./tmp/streaming && babel ./streaming/index.js --out-dir ./tmp && node ./tmp/streaming/index.js",
     "storybook": "start-storybook -p 9001 -c storybook",
     "test": "npm run test:lint && npm run test:mocha",
     "test:lint": "eslint -c .eslintrc.yml --ext=js app/javascript/ config/webpack/ storyboard/ streaming/",
