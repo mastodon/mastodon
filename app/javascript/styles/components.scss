@@ -2080,12 +2080,22 @@ button.icon-button.active i.fa-retweet {
   max-height: 70vh;
   overflow: hidden;
   overflow-y: auto;
-  background: lighten($ui-base-color, 8%);
-  padding: 15px;
   color: $ui-primary-color;
+  transition: max-height 150ms ease-in-out, opacity 300ms linear;
+  opacity: 1;
+
+  & > div {
+    background: lighten($ui-base-color, 8%);
+    padding: 15px;
+  }
 
   &.collapsed {
-    display: none;
+    max-height: 0;
+    opacity: 0.5;
+  }
+
+  &.animating {
+    overflow-y: hidden;
   }
 }
 

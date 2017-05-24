@@ -61,6 +61,7 @@ class ColumnHeader extends React.PureComponent {
 
     const collapsibleClassName = classNames('column-header__collapsible', {
       'collapsed': collapsed,
+      'animating': animating,
     });
 
     const collapsibleButtonClassName = classNames('column-header__button', {
@@ -97,7 +98,7 @@ class ColumnHeader extends React.PureComponent {
       );
     }
 
-    const collapsedContent = (!collapsed || animating) && [
+    const collapsedContent = [
       extraContent,
       moveButtons,
       pinButton,
@@ -116,7 +117,9 @@ class ColumnHeader extends React.PureComponent {
         </div>
 
         <div className={collapsibleClassName} onTransitionEnd={this.handleTransitionEnd}>
-          {collapsedContent}
+          <div>
+            {(!collapsed || animating) && collapsedContent}
+          </div>
         </div>
       </div>
     );
