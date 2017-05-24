@@ -27,22 +27,15 @@ class Account extends ImmutablePureComponent {
     intl: PropTypes.object.isRequired,
   };
 
-  constructor (props, context) {
-    super(props, context);
-    this.handleFollow = this.handleFollow.bind(this);
-    this.handleBlock = this.handleBlock.bind(this);
-    this.handleMute = this.handleMute.bind(this);
-  }
-
-  handleFollow () {
+  handleFollow = () => {
     this.props.onFollow(this.props.account);
   }
 
-  handleBlock () {
+  handleBlock = () => {
     this.props.onBlock(this.props.account);
   }
 
-  handleMute () {
+  handleMute = () => {
     this.props.onMute(this.props.account);
   }
 
