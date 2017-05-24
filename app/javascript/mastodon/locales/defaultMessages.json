@@ -29,6 +29,10 @@
       {
         "defaultMessage": "Unmute @{name}",
         "id": "account.unmute"
+      },
+      {
+        "defaultMessage": "Unmute boosts from @{name}",
+        "id": "account.unmuteBoosts"
       }
     ],
     "path": "app/javascript/mastodon/components/account.json"
@@ -112,6 +116,10 @@
       {
         "defaultMessage": "Mute @{name}",
         "id": "account.mute"
+      },
+      {
+        "defaultMessage": "Mute boosts from @{name}",
+        "id": "account.mute.boosts"
       },
       {
         "defaultMessage": "Block @{name}",
@@ -230,12 +238,20 @@
         "id": "confirmations.mute.confirm"
       },
       {
+        "defaultMessage": "Mute boosts",
+        "id": "confirmations.mute.boosts.confirm"
+      },
+      {
         "defaultMessage": "Are you sure you want to block {name}?",
         "id": "confirmations.block.message"
       },
       {
         "defaultMessage": "Are you sure you want to mute {name}?",
         "id": "confirmations.mute.message"
+      },
+      {
+        "defaultMessage": "Are you sure you want to mute boosts from {name}?",
+        "id": "confirmations.mute.boosts.message"
       }
     ],
     "path": "app/javascript/mastodon/containers/status_container.json"
@@ -260,6 +276,10 @@
         "id": "confirmations.mute.confirm"
       },
       {
+        "defaultMessage": "Mute boosts",
+        "id": "confirmations.mute.boosts.confirm"
+      },
+      {
         "defaultMessage": "Hide entire domain",
         "id": "confirmations.domain_block.confirm"
       },
@@ -270,6 +290,10 @@
       {
         "defaultMessage": "Are you sure you want to mute {name}?",
         "id": "confirmations.mute.message"
+      },
+      {
+        "defaultMessage": "Are you sure you want to mute boosts from {name}?",
+        "id": "confirmations.mute.boosts.message"
       },
       {
         "defaultMessage": "Are you really, really sure you want to block the entire {domain}? In most cases a few targeted blocks or mutes are sufficient and preferable.",
@@ -301,12 +325,20 @@
         "id": "account.unmute"
       },
       {
+        "defaultMessage": "Unmute boosts from @{name}",
+        "id": "account.unmute.boosts"
+      },
+      {
         "defaultMessage": "Block @{name}",
         "id": "account.block"
       },
       {
         "defaultMessage": "Mute @{name}",
         "id": "account.mute"
+      },
+      {
+        "defaultMessage": "Mute boosts from @{name}",
+        "id": "account.mute.boosts"
       },
       {
         "defaultMessage": "Follow",

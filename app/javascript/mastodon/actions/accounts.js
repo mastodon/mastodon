@@ -29,6 +29,14 @@ export const ACCOUNT_UNMUTE_REQUEST = 'ACCOUNT_UNMUTE_REQUEST';
 export const ACCOUNT_UNMUTE_SUCCESS = 'ACCOUNT_UNMUTE_SUCCESS';
 export const ACCOUNT_UNMUTE_FAIL    = 'ACCOUNT_UNMUTE_FAIL';
 
+export const ACCOUNT_MUTE_BOOSTS_REQUEST = 'ACCOUNT_MUTE_BOOSTS_REQUEST';
+export const ACCOUNT_MUTE_BOOSTS_SUCCESS = 'ACCOUNT_MUTE_BOOSTS_SUCCESS';
+export const ACCOUNT_MUTE_BOOSTS_FAIL    = 'ACCOUNT_MUTE_BOOSTS_FAIL';
+
+export const ACCOUNT_UNMUTE_BOOSTS_REQUEST = 'ACCOUNT_UNMUTE_BOOSTS_REQUEST';
+export const ACCOUNT_UNMUTE_BOOSTS_SUCCESS = 'ACCOUNT_UNMUTE_BOOSTS_SUCCESS';
+export const ACCOUNT_UNMUTE_BOOSTS_FAIL    = 'ACCOUNT_UNMUTE_BOOSTS_FAIL';
+
 export const ACCOUNT_TIMELINE_FETCH_REQUEST = 'ACCOUNT_TIMELINE_FETCH_REQUEST';
 export const ACCOUNT_TIMELINE_FETCH_SUCCESS = 'ACCOUNT_TIMELINE_FETCH_SUCCESS';
 export const ACCOUNT_TIMELINE_FETCH_FAIL    = 'ACCOUNT_TIMELINE_FETCH_FAIL';
@@ -516,6 +524,75 @@ export function unmuteAccountSuccess(relationship) {
 export function unmuteAccountFail(error) {
   return {
     type: ACCOUNT_UNMUTE_FAIL,
+    error,
+  };
+};
+
+
+export function muteBoostsFromAccount(id) {
+  return (dispatch, getState) => {
+    dispatch(muteBoostsFromAccountRequest(id));
+
+    api(getState).post(`/api/v1/accounts/${id}/mute_boosts`).then(response => {
+      // Pass in entire statuses map so we can use it to filter stuff in different parts of the reducers
+      dispatch(muteBoostsFromAccountSuccess(response.data, getState().get('statuses')));
+    }).catch(error => {
+      dispatch(muteBoostsFromAccountFail(id, error));
+    });
+  };
+};
+
+export function unmuteBoostsFromAccount(id) {
+  return (dispatch, getState) => {
+    dispatch(unmuteBoostsFromAccountRequest(id));
+
+    api(getState).post(`/api/v1/accounts/${id}/unmute_boosts`).then(response => {
+      dispatch(unmuteBoostsFromAccountSuccess(response.data));
+    }).catch(error => {
+      dispatch(unmuteBoostsFromAccountFail(id, error));
+    });
+  };
+};
+
+export function muteBoostsFromAccountRequest(id) {
+  return {
+    type: ACCOUNT_MUTE_BOOSTS_REQUEST,
+    id,
+  };
+};
+
+export function muteBoostsFromAccountSuccess(relationship, statuses) {
+  return {
+    type: ACCOUNT_MUTE_BOOSTS_SUCCESS,
+    relationship,
+    statuses,
+  };
+};
+
+export function muteBoostsFromAccountFail(error) {
+  return {
+    type: ACCOUNT_MUTE_BOOSTS_FAIL,
+    error,
+  };
+};
+
+export function unmuteBoostsFromAccountRequest(id) {
+  return {
+    type: ACCOUNT_UNMUTE_BOOSTS_REQUEST,
+    id,
+  };
+};
+
+export function unmuteBoostsFromAccountSuccess(relationship) {
+  return {
+    type: ACCOUNT_UNMUTE_BOOSTS_SUCCESS,
+    relationship,
+  };
+};
+
+export function unmuteBoostsFromAccountFail(error) {
+  return {
+    type: ACCOUNT_UNMUTE_BOOSTS_FAIL,
     error,
   };
 };

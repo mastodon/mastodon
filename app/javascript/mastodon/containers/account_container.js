@@ -8,6 +8,8 @@ import {
   unblockAccount,
   muteAccount,
   unmuteAccount,
+  muteBoostsFromAccount,
+  unmuteBoostsFromAccount,
 } from '../actions/accounts';
 
 const makeMapStateToProps = () => {
@@ -43,6 +45,14 @@ const mapDispatchToProps = (dispatch) => ({
       dispatch(unmuteAccount(account.get('id')));
     } else {
       dispatch(muteAccount(account.get('id')));
+    }
+  },
+
+  onMuteBoosts (account) {
+    if (account.getIn(['relationship', 'muting_boosts'])) {
+      dispatch(unmuteBoostsFromAccount(account.get('id')));
+    } else {
+      dispatch(muteBoostsFromAccount(account.get('id')));
     }
   },
 });

@@ -36,6 +36,14 @@ RSpec.describe FeedManager do
         expect(FeedManager.instance.filter?(:home, reblog, bob.id)).to be true
       end
 
+      it 'returns true for reblog by account for which reblogs are muted' do
+        status = Fabricate(:status, text: 'Hello world', account: jeff)
+        reblog = Fabricate(:status, reblog: status, account: alice)
+        bob.follow!(alice)
+        bob.mute_boosts!(alice)
+        expect(FeedManager.instance.filter?(:home, reblog, bob.id)).to be true
+      end
+
       it 'returns true for reblog by followee of muted account' do
         status = Fabricate(:status, text: 'Hello world', account: jeff)
         reblog = Fabricate(:status, reblog: status, account: alice)

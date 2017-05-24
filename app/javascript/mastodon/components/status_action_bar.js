@@ -9,6 +9,7 @@ const messages = defineMessages({
   delete: { id: 'status.delete', defaultMessage: 'Delete' },
   mention: { id: 'status.mention', defaultMessage: 'Mention @{name}' },
   mute: { id: 'account.mute', defaultMessage: 'Mute @{name}' },
+  muteBoosts: { id: 'account.mute.boosts', defaultMessage: 'Mute boosts from @{name}' },
   block: { id: 'account.block', defaultMessage: 'Block @{name}' },
   reply: { id: 'status.reply', defaultMessage: 'Reply' },
   replyAll: { id: 'status.replyAll', defaultMessage: 'Reply to thread' },
@@ -29,12 +30,15 @@ class StatusActionBar extends React.PureComponent {
 
   static propTypes = {
     status: ImmutablePropTypes.map.isRequired,
+    account: ImmutablePropTypes.map,
+    wrapped: PropTypes.bool,
     onReply: PropTypes.func,
     onFavourite: PropTypes.func,
     onReblog: PropTypes.func,
     onDelete: PropTypes.func,
     onMention: PropTypes.func,
     onMute: PropTypes.func,
+    onMuteBoosts: PropTypes.func,
     onBlock: PropTypes.func,
     onReport: PropTypes.func,
     onMuteConversation: PropTypes.func,
@@ -67,6 +71,10 @@ class StatusActionBar extends React.PureComponent {
     this.props.onMute(this.props.status.get('account'));
   }
 
+  handleMuteBoostsClick = () => {
+    this.props.onMuteBoosts(this.props.account);
+  }
+
   handleBlockClick = () => {
     this.props.onBlock(this.props.status.get('account'));
   }
@@ -85,7 +93,7 @@ class StatusActionBar extends React.PureComponent {
   }
 
   render () {
-    const { status, me, intl, withDismiss } = this.props;
+    const { status, account, wrapped, me, intl, withDismiss } = this.props;
     const reblogDisabled = status.get('visibility') === 'private' || status.get('visibility') === 'direct';
     const mutingConversation = status.get('muted');
 
@@ -108,6 +116,11 @@ class StatusActionBar extends React.PureComponent {
       menu.push({ text: intl.formatMessage(messages.mention, { name: status.getIn(['account', 'username']) }), action: this.handleMentionClick });
       menu.push(null);
       menu.push({ text: intl.formatMessage(messages.mute, { name: status.getIn(['account', 'username']) }), action: this.handleMuteClick });
+
+      if (wrapped) {
+        menu.push({ text: intl.formatMessage(messages.muteBoosts, { name: account.get('username') }), action: this.handleMuteBoostsClick });
+      }
+
       menu.push({ text: intl.formatMessage(messages.block, { name: status.getIn(['account', 'username']) }), action: this.handleBlockClick });
       menu.push({ text: intl.formatMessage(messages.report, { name: status.getIn(['account', 'username']) }), action: this.handleReport });
     }

@@ -69,6 +69,7 @@ class Status < ApplicationRecord
   scope :excluding_silenced_accounts, -> { left_outer_joins(:account).where(accounts: { silenced: false }) }
   scope :including_silenced_accounts, -> { left_outer_joins(:account).where(accounts: { silenced: true }) }
   scope :not_excluded_by_account, ->(account) { where.not(account_id: account.excluded_from_timeline_account_ids) }
+  scope :not_boosts_excluded_by_account, ->(account) { account.boosts_excluded_from_timeline_account_ids.blank? ? all : where('statuses.reblog_of_id IS NULL OR statuses.account_id NOT IN (?)', account.boosts_excluded_from_timeline_account_ids) }
   scope :not_domain_blocked_by_account, ->(account) { account.excluded_from_timeline_domains.blank? ? left_outer_joins(:account) : left_outer_joins(:account).where('accounts.domain IS NULL OR accounts.domain NOT IN (?)', account.excluded_from_timeline_domains) }
 
   cache_associated :account, :application, :media_attachments, :tags, :stream_entry, mentions: :account, reblog: [:account, :application, :stream_entry, :tags, :media_attachments, mentions: :account], thread: :account
@@ -234,6 +235,7 @@ class Status < ApplicationRecord
 
     def filter_timeline_for_account(query, account, local_only)
       query = query.not_excluded_by_account(account)
+      query = query.not_boosts_excluded_by_account(account)
       query = query.not_domain_blocked_by_account(account) unless local_only
       query = query.not_in_filtered_languages(account) if account.filtered_languages.present?
       query.merge(account_silencing_filter(account))
@@ -300,6 +302,7 @@ class Status < ApplicationRecord
     should_filter   = account&.blocking?(status.account_id)
     should_filter ||= account&.domain_blocking?(status.account.domain)
     should_filter ||= account&.muting?(status.account_id)
+    should_filter ||= status.reblog? && account&.muting_boosts?(status.account_id)
     should_filter ||= (status.account.silenced? && !account&.following?(status.account_id))
     should_filter ||= !status.permitted?(account)
     should_filter
