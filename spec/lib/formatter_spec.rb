@@ -165,6 +165,14 @@ RSpec.describe Formatter do
         expect(subject).to eq '<p>http://www\.google\.com</p>'
       end
     end
+
+    context 'concatenates hashtag and URL' do
+      let(:local_text) { '#hashtaghttps://www.google.com' }
+
+      it 'has valid hashtag' do
+        expect(subject).to match('/tags/hashtag" class="mention hashtag" rel="tag">#<span>hashtag</span></a>')
+      end
+    end
   end
 
   describe '#reformat' do
