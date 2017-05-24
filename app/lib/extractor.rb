@@ -56,4 +56,8 @@ module Extractor
     tags.each { |tag| yield tag[:hashtag], tag[:indices].first, tag[:indices].last } if block_given?
     tags
   end
+
+  def extract_cashtags_with_indices(_text)
+    [] # always returns empty array
+  end
 end
