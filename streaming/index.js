@@ -118,11 +118,12 @@ if (cluster.isMaster) {
 
   const redisPrefix = redisNamespace ? `${redisNamespace}:` : '';
 
+  const redisSubscribeClient = redisUrlToClient(redisParams, process.env.REDIS_URL);
   const redisClient = redisUrlToClient(redisParams, process.env.REDIS_URL);
 
   const subs = {};
 
-  redisClient.on('pmessage', (_, channel, message) => {
+  redisSubscribeClient.on('pmessage', (_, channel, message) => {
     const callbacks = subs[channel];
 
     log.silly(`New message on channel ${channel}`);
@@ -133,7 +134,19 @@ if (cluster.isMaster) {
     callbacks.forEach(callback => callback(message));
   });
 
-  redisClient.psubscribe(`${redisPrefix}timeline:*`);
+  redisSubscribeClient.psubscribe(`${redisPrefix}timeline:*`);
+
+  const subscriptionHeartbeat = (channel) => {
+    const interval = 6*60;
+    const tellSubscribed = () => {
+      redisClient.set(`${redisPrefix}subscribed:${channel}`, '1', 'EX', interval*3);
+    };
+    tellSubscribed();
+    const heartbeat = setInterval(tellSubscribed, interval*1000);
+    return () => {
+      clearInterval(heartbeat);
+    };
+  };
 
   const subscribe = (channel, callback) => {
     log.silly(`Adding listener for ${channel}`);
@@ -278,7 +291,7 @@ if (cluster.isMaster) {
   };
 
   // Setup stream output to HTTP
-  const streamToHttp = (req, res) => {
+  const streamToHttp = (req, res, closeHandler = false) => {
     res.setHeader('Content-Type', 'text/event-stream');
     res.setHeader('Transfer-Encoding', 'chunked');
 
@@ -287,6 +300,9 @@ if (cluster.isMaster) {
     req.on('close', () => {
       log.verbose(req.requestId, `Ending stream for ${req.accountId}`);
       clearInterval(heartbeat);
+      if (closeHandler) {
+        closeHandler();
+      }
     });
 
     return (event, payload) => {
@@ -303,12 +319,15 @@ if (cluster.isMaster) {
   };
 
   // Setup stream output to WebSockets
-  const streamToWs = (req, ws) => {
+  const streamToWs = (req, ws, closeHandler = false) => {
     const heartbeat = setInterval(() => {
       // TODO: Can't add multiple listeners, due to the limitation of uws.
       if (ws.readyState !== ws.OPEN) {
         log.verbose(req.requestId, `Ending stream for ${req.accountId}`);
         clearInterval(heartbeat);
+        if (closeHandler) {
+          closeHandler();
+        }
         return;
       }
 
@@ -342,7 +361,8 @@ if (cluster.isMaster) {
   app.use(errorMiddleware);
 
   app.get('/api/v1/streaming/user', (req, res) => {
-    streamFrom(`timeline:${req.accountId}`, req, streamToHttp(req, res), streamHttpEnd(req));
+    const channel = `timeline:${req.accountId}`;
+    streamFrom(channel, req, streamToHttp(req, res, subscriptionHeartbeat(channel)), streamHttpEnd(req));
   });
 
   app.get('/api/v1/streaming/public', (req, res) => {
@@ -375,7 +395,8 @@ if (cluster.isMaster) {
 
       switch(location.query.stream) {
       case 'user':
-        streamFrom(`timeline:${req.accountId}`, req, streamToWs(req, ws), streamWsEnd(ws));
+        const channel = `timeline:${req.accountId}`;
+        streamFrom(channel, req, streamToWs(req, ws, subscriptionHeartbeat(channel)), streamWsEnd(ws));
         break;
       case 'public':
         streamFrom('timeline:public', req, streamToWs(req, ws), streamWsEnd(ws), true);
