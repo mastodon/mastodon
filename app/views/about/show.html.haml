@@ -81,6 +81,8 @@
       = t 'about.messages.qiita'
     %li
       = t 'about.messages.trial'
+    %li
+      = t 'about.messages.delete'
 
   - unless @instance_presenter.site_description.blank?
     %h3= t('about.description_headline', domain: site_hostname)
