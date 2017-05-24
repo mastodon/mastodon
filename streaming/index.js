@@ -234,7 +234,7 @@ if (cluster.isMaster) {
 
   const placeholders = (arr, shift = 0) => arr.map((_, i) => `$${i + 1 + shift}`).join(', ');
 
-  const streamFrom = (id, req, output, attachCloseHandler, needsFiltering = false) => {
+  const streamFrom = (id, req, output, attachCloseHandler, needsFiltering = false, notificationOnly = false) => {
     log.verbose(req.requestId, `Starting stream from ${id} for ${req.accountId}`);
 
     const listener = message => {
@@ -247,6 +247,10 @@ if (cluster.isMaster) {
         log.silly(req.requestId, `Transmitting for ${req.accountId}: ${event} ${payload} Delay: ${delta}ms`);
         output(event, payload);
       };
+
+      if (notificationOnly && event !== 'notification') {
+        return;
+      }
 
       // Only messages that may require filtering are statuses, since notifications
       // are already personalized and deletes do not matter
@@ -365,6 +369,10 @@ if (cluster.isMaster) {
     streamFrom(channel, req, streamToHttp(req, res, subscriptionHeartbeat(channel)), streamHttpEnd(req));
   });
 
+  app.get('/api/v1/streaming/user/notification', (req, res) => {
+    streamFrom(`timeline:${req.accountId}`, req, streamToHttp(req, res), streamHttpEnd(req), false, true);
+  });
+
   app.get('/api/v1/streaming/public', (req, res) => {
     streamFrom('timeline:public', req, streamToHttp(req, res), streamHttpEnd(req), true);
   });
@@ -397,6 +405,9 @@ if (cluster.isMaster) {
       case 'user':
         const channel = `timeline:${req.accountId}`;
         streamFrom(channel, req, streamToWs(req, ws, subscriptionHeartbeat(channel)), streamWsEnd(ws));
+        break;
+      case 'user:notification':
+        streamFrom(`timeline:${req.accountId}`, req, streamToWs(req, ws), streamWsEnd(ws), false, true);
         break;
       case 'public':
         streamFrom('timeline:public', req, streamToWs(req, ws), streamWsEnd(ws), true);
