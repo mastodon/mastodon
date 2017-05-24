@@ -68,6 +68,7 @@ class ComposeForm extends ImmutablePureComponent {
 
   handleSubmit = () => {
     this.autosuggestTextarea.reset();
+    this.refs.spoilerTextarea.style.height = '100px';
     this.props.onSubmit();
   }
 
@@ -85,6 +86,8 @@ class ComposeForm extends ImmutablePureComponent {
   }
 
   handleChangeSpoilerText = (e) => {
+    e.target.style.height = 'auto';
+    e.target.style.height = `${e.target.scrollHeight}px`;
     this.props.onChangeSpoilerText(e.target.value);
   }
 
@@ -149,9 +152,9 @@ class ComposeForm extends ImmutablePureComponent {
 
     return (
       <div className='compose-form'>
-        <Collapsable isVisible={this.props.spoiler} fullHeight={50}>
+        <Collapsable isVisible={this.props.spoiler}>
           <div className="spoiler-input">
-            <input placeholder={intl.formatMessage(messages.spoiler_placeholder)} value={this.props.spoiler_text} onChange={this.handleChangeSpoilerText} onKeyDown={this.handleKeyDown} type="text" className="spoiler-input__input"  id='cw-spoiler-input'/>
+            <textarea placeholder={intl.formatMessage(messages.spoiler_placeholder)} value={this.props.spoiler_text} onChange={this.handleChangeSpoilerText} onKeyDown={this.handleKeyDown} className="spoiler-textarea__textarea" id='cw-spoiler-textarea' ref='spoilerTextarea' />
           </div>
         </Collapsable>
 
