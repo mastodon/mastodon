@@ -125,7 +125,10 @@ class Header extends React.Component {
           <Avatar account={account} autoPlayGif={this.props.autoPlayGif} />
 
           <span style={{ display: 'inline-block', fontSize: '20px', lineHeight: '27px', fontWeight: '500' }} className='account__header__display-name' dangerouslySetInnerHTML={displayNameHTML} />
-          <span className='account__header__username' style={{ fontSize: '14px', fontWeight: '400', display: 'block', marginBottom: '10px' }}>@{account.get('acct')} {lockedIcon}</span>
+          <span className='account__header__usernames' style={{ display: 'block', display: 'block', marginBottom: '10px' }} >
+            <span className='account__header__username' style={{ fontSize: '14px', fontWeight: '400' }}>@{account.get('acct')} {lockedIcon}</span>
+            { this.renderQiitaUsername() }
+          </span>
           <div style={{ fontSize: '14px' }} className='account__header__content' dangerouslySetInnerHTML={content} />
 
           {info}
@@ -135,6 +138,19 @@ class Header extends React.Component {
     );
   }
 
+  renderQiitaUsername() {
+    const { account, me, intl } = this.props;
+    if (!account.get('qiita_username')) { return null; }
+    const qiita_link = `http://qiita.com/${account.get('qiita_username')}`;
+
+    return (
+      <span className='account__header__qiita--username' style={{ fontSize: '14px', fontWeight: '400' }}>
+        <a href={qiita_link} target='_blank'>
+          {account.get('qiita_username')}
+        </a>
+      </span>
+    );
+  }
 }
 
 Header.propTypes = {
