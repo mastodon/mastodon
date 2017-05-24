@@ -46,14 +46,22 @@ class Api::V1::FavouritesController < ApiController
 
   def next_path
     if records_continue?
-      api_v1_favourites_url pagination_params(max_id: results.last.id)
+      api_v1_favourites_url pagination_params(max_id: pagination_max_id)
     end
   end
 
   def prev_path
     unless results.empty?
-      api_v1_favourites_url pagination_params(since_id: results.first.id)
+      api_v1_favourites_url pagination_params(since_id: pagination_since_id)
     end
+  end
+
+  def pagination_max_id
+    results.last.id
+  end
+
+  def pagination_since_id
+    results.first.id
   end
 
   def records_continue?

@@ -40,14 +40,22 @@ class Api::V1::Accounts::FollowingAccountsController < ApiController
 
   def next_path
     if records_continue?
-      api_v1_account_following_index_url pagination_params(max_id: @accounts.last.passive_relationships.first.id)
+      api_v1_account_following_index_url pagination_params(max_id: pagination_max_id)
     end
   end
 
   def prev_path
     unless @accounts.empty?
-      api_v1_account_following_index_url pagination_params(since_id: @accounts.first.passive_relationships.first.id)
+      api_v1_account_following_index_url pagination_params(since_id: pagination_since_id)
     end
+  end
+
+  def pagination_max_id
+    @accounts.last.passive_relationships.first.id
+  end
+
+  def pagination_since_id
+    @accounts.first.passive_relationships.first.id
   end
 
   def records_continue?

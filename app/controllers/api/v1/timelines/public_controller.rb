@@ -31,11 +31,19 @@ module Api::V1::Timelines
     end
 
     def next_path
-      api_v1_timelines_public_url pagination_params(max_id: @statuses.last.id)
+      api_v1_timelines_public_url pagination_params(max_id: pagination_max_id)
     end
 
     def prev_path
-      api_v1_timelines_public_url pagination_params(since_id: @statuses.first.id)
+      api_v1_timelines_public_url pagination_params(since_id: pagination_since_id)
+    end
+
+    def pagination_max_id
+      @statuses.last.id
+    end
+
+    def pagination_since_id
+      @statuses.first.id
     end
   end
 end

@@ -35,14 +35,22 @@ class Api::V1::BlocksController < ApiController
 
   def next_path
     if records_continue?
-      api_v1_blocks_url pagination_params(max_id: @accounts.last.blocked_by_ids.last)
+      api_v1_blocks_url pagination_params(max_id: pagination_max_id)
     end
   end
 
   def prev_path
     unless @accounts.empty?
-      api_v1_blocks_url pagination_params(since_id: @accounts.first.blocked_by_ids.first)
+      api_v1_blocks_url pagination_params(since_id: pagination_since_id)
     end
+  end
+
+  def pagination_max_id
+    @accounts.last.blocked_by_ids.last
+  end
+
+  def pagination_since_id
+    @accounts.first.blocked_by_ids.first
   end
 
   def records_continue?

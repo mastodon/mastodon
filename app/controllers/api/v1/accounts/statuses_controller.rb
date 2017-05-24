@@ -68,17 +68,25 @@ class Api::V1::Accounts::StatusesController < ApiController
 
   def next_path
     if records_continue?
-      api_v1_account_statuses_url pagination_params(max_id: @statuses.last.id)
+      api_v1_account_statuses_url pagination_params(max_id: pagination_max_id)
     end
   end
 
   def prev_path
     unless @statuses.empty?
-      api_v1_account_statuses_url pagination_params(since_id: @statuses.first.id)
+      api_v1_account_statuses_url pagination_params(since_id: pagination_since_id)
     end
   end
 
   def records_continue?
     @statuses.size == limit_param(DEFAULT_STATUSES_LIMIT)
+  end
+
+  def pagination_max_id
+    @statuses.last.id
+  end
+
+  def pagination_since_id
+    @statuses.first.id
   end
 end
