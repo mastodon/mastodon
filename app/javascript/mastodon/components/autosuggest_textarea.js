@@ -72,7 +72,7 @@ class AutosuggestTextarea extends ImmutablePureComponent {
     selectedSuggestion: 0,
     lastToken: null,
     tokenStart: 0,
-    ashTagSuggestionsHidden: false,
+    hashTagSuggestionsHidden: false,
     selectedHashTagSuggestion: 0,
     lastHashTagToken: null,
     hashTagTokenStart: 0,
@@ -194,7 +194,7 @@ class AutosuggestTextarea extends ImmutablePureComponent {
     this.textarea.focus();
   }
 
-  onHashTagSuggestionClick(tag, e) {
+  onHashTagSuggestionClick = (tag, e) => {
     e.preventDefault();
     this.props.onHashTagSuggestionsSelected(this.state.hashTagTokenStart, this.state.lastHashTagToken, tag);
     this.textarea.focus();
