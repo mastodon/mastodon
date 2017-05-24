@@ -99,8 +99,16 @@ class Notifications extends React.PureComponent {
     dispatch(moveColumn(columnId, dir));
   }
 
+  handleHeaderClick = () => {
+    this.column.scrollTop();
+  }
+
   setRef = (c) => {
     this.node = c;
+  }
+
+  setColumnRef = c => {
+    this.column = c;
   }
 
   render () {
@@ -143,13 +151,14 @@ class Notifications extends React.PureComponent {
     this.scrollableArea = scrollableArea;
 
     return (
-      <Column>
+      <Column ref={this.setColumnRef}>
         <ColumnHeader
           icon='bell'
           active={isUnread}
           title={intl.formatMessage(messages.title)}
           onPin={this.handlePin}
           onMove={this.handleMove}
+          onClick={this.handleHeaderClick}
           pinned={pinned}
         >
           <ColumnSettingsContainer />

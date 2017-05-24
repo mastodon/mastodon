@@ -43,6 +43,14 @@ class HomeTimeline extends React.PureComponent {
     dispatch(moveColumn(columnId, dir));
   }
 
+  handleHeaderClick = () => {
+    this.column.scrollTop();
+  }
+
+  setRef = c => {
+    this.column = c;
+  }
+
   render () {
     const { intl, hasUnread, hasFollows, columnId } = this.props;
     const pinned = !!columnId;
@@ -56,13 +64,14 @@ class HomeTimeline extends React.PureComponent {
     }
 
     return (
-      <Column>
+      <Column ref={this.setRef}>
         <ColumnHeader
           icon='home'
           active={hasUnread}
           title={intl.formatMessage(messages.title)}
           onPin={this.handlePin}
           onMove={this.handleMove}
+          onClick={this.handleHeaderClick}
           pinned={pinned}
         >
           <ColumnSettingsContainer />

@@ -46,6 +46,10 @@ class HashtagTimeline extends React.PureComponent {
     dispatch(moveColumn(columnId, dir));
   }
 
+  handleHeaderClick = () => {
+    this.column.scrollTop();
+  }
+
   _subscribe (dispatch, id) {
     const { streamingAPIBaseURL, accessToken } = this.props;
 
@@ -92,19 +96,24 @@ class HashtagTimeline extends React.PureComponent {
     this._unsubscribe();
   }
 
+  setRef = c => {
+    this.column = c;
+  }
+
   render () {
     const { hasUnread, columnId } = this.props;
     const { id } = this.props.params;
     const pinned = !!columnId;
 
     return (
-      <Column>
+      <Column ref={this.setRef}>
         <ColumnHeader
           icon='hashtag'
           active={hasUnread}
           title={id}
           onPin={this.handlePin}
           onMove={this.handleMove}
+          onClick={this.handleHeaderClick}
           pinned={pinned}
         />
 

@@ -54,6 +54,10 @@ class PublicTimeline extends React.PureComponent {
     dispatch(moveColumn(columnId, dir));
   }
 
+  handleHeaderClick = () => {
+    this.column.scrollTop();
+  }
+
   componentDidMount () {
     const { dispatch, streamingAPIBaseURL, accessToken } = this.props;
 
@@ -98,18 +102,23 @@ class PublicTimeline extends React.PureComponent {
     }
   }
 
+  setRef = c => {
+    this.column = c;
+  }
+
   render () {
     const { intl, columnId, hasUnread } = this.props;
     const pinned = !!columnId;
 
     return (
-      <Column>
+      <Column ref={this.setRef}>
         <ColumnHeader
           icon='globe'
           active={hasUnread}
           title={intl.formatMessage(messages.title)}
           onPin={this.handlePin}
           onMove={this.handleMove}
+          onClick={this.handleHeaderClick}
           pinned={pinned}
         />
 
