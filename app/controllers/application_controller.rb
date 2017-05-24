@@ -39,7 +39,7 @@ class ApplicationController < ActionController::Base
   end
 
   def check_suspension
-    head 403 if current_user.account.suspended?
+    forbidden if current_user.account.suspended?
   end
 
   protected
