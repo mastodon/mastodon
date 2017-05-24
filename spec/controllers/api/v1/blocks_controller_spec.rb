@@ -7,6 +7,7 @@ RSpec.describe Api::V1::BlocksController, type: :controller do
   let(:token) { double acceptable?: true, resource_owner_id: user.id }
 
   before do
+    Fabricate(:block, account: user.account)
     allow(controller).to receive(:doorkeeper_token) { token }
   end
 
