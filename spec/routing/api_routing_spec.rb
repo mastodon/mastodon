@@ -19,6 +19,16 @@ describe 'API routes' do
         to route_to('api/v1/accounts/statuses#index', account_id: 'user')
     end
 
+    it 'routes to followers' do
+      expect(get('/api/v1/accounts/user/followers')).
+        to route_to('api/v1/accounts/follower_accounts#index', account_id: 'user')
+    end
+
+    it 'routes to following' do
+      expect(get('/api/v1/accounts/user/following')).
+        to route_to('api/v1/accounts/following_accounts#index', account_id: 'user')
+    end
+
     it 'routes to search' do
       expect(get('/api/v1/accounts/search')).
         to route_to('api/v1/accounts/search#show')

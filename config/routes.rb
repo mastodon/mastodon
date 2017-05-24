@@ -177,11 +177,10 @@ Rails.application.routes.draw do
       end
       resources :accounts, only: [:show] do
         resources :statuses, only: :index, controller: 'accounts/statuses'
+        resources :followers, only: :index, controller: 'accounts/follower_accounts'
+        resources :following, only: :index, controller: 'accounts/following_accounts'
 
         member do
-          get :followers
-          get :following
-
           post :follow
           post :unfollow
           post :block

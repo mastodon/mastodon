@@ -17,20 +17,6 @@ RSpec.describe Api::V1::AccountsController, type: :controller do
     end
   end
 
-  describe 'GET #followers' do
-    it 'returns http success' do
-      get :followers, params: { id: user.account.id }
-      expect(response).to have_http_status(:success)
-    end
-  end
-
-  describe 'GET #following' do
-    it 'returns http success' do
-      get :following, params: { id: user.account.id }
-      expect(response).to have_http_status(:success)
-    end
-  end
-
   describe 'POST #follow' do
     let(:other_account) { Fabricate(:user, email: 'bob@example.com', account: Fabricate(:account, username: 'bob')).account }
 

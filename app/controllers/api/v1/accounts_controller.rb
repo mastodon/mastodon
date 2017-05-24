@@ -10,38 +10,6 @@ class Api::V1::AccountsController < ApiController
 
   def show; end
 
-  def following
-    @accounts = Account.includes(:passive_relationships)
-                       .references(:passive_relationships)
-                       .merge(Follow.where(account: @account)
-                                    .paginate_by_max_id(limit_param(DEFAULT_ACCOUNTS_LIMIT), params[:max_id], params[:since_id]))
-                       .to_a
-
-    next_path = following_api_v1_account_url(pagination_params(max_id: @accounts.last.passive_relationships.first.id))     if @accounts.size == limit_param(DEFAULT_ACCOUNTS_LIMIT)
-    prev_path = following_api_v1_account_url(pagination_params(since_id: @accounts.first.passive_relationships.first.id)) unless @accounts.empty?
-
-    set_pagination_headers(next_path, prev_path)
-
-    render :index
-  end
-
-  def followers
-    @accounts = Account.includes(:active_relationships)
-                       .references(:active_relationships)
-                       .merge(Follow.where(target_account: @account)
-                                    .paginate_by_max_id(limit_param(DEFAULT_ACCOUNTS_LIMIT),
-                                                        params[:max_id],
-                                                        params[:since_id]))
-                       .to_a
-
-    next_path = followers_api_v1_account_url(pagination_params(max_id: @accounts.last.active_relationships.first.id))     if @accounts.size == limit_param(DEFAULT_ACCOUNTS_LIMIT)
-    prev_path = followers_api_v1_account_url(pagination_params(since_id: @accounts.first.active_relationships.first.id)) unless @accounts.empty?
-
-    set_pagination_headers(next_path, prev_path)
-
-    render :index
-  end
-
   def follow
     FollowService.new.call(current_user.account, @account.acct)
     set_relationship
@@ -98,9 +66,5 @@ class Api::V1::AccountsController < ApiController
     @muting          = Account.muting_map([@account.id], current_user.account_id)
     @requested       = Account.requested_map([@account.id], current_user.account_id)
     @domain_blocking = Account.domain_blocking_map([@account.id], current_user.account_id)
-  end
-
-  def pagination_params(core_params)
-    params.permit(:limit).merge(core_params)
   end
 end
