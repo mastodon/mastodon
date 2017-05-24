@@ -7,7 +7,7 @@ export default function highlightCode(text) {
     doc.querySelectorAll('code').forEach((el) => {
       el.classList.add('hljs');
       if (el.dataset.language && !el.dataset.highlighted) {
-        el.innerHTML = hljs.highlight(el.dataset.language, el.innerHTML).value;
+        el.innerHTML = hljs.highlight(el.dataset.language, el.innerText).value;
         el.dataset.highlighted = true;
       }
     })
