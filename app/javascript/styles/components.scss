@@ -557,10 +557,6 @@
   &.status-direct {
     background: lighten($ui-base-color, 8%);
 
-    .status__display-name strong {
-      color: $primary-text-color;
-    }
-
     .icon-button.disabled {
       color: lighten($ui-base-color, 16%);
     }
@@ -600,6 +596,16 @@
           background: lighten($ui-primary-color, 8%);
         }
       }
+    }
+  }
+}
+
+.notification-favourite {
+  .status.status-direct {
+    background: transparent;
+
+    .icon-button.disabled {
+      color: lighten($ui-base-color, 13%);
     }
   }
 }
