@@ -51,23 +51,14 @@ class AutosuggestTextarea extends ImmutablePureComponent {
     autoFocus: true,
   };
 
-  constructor (props, context) {
-    super(props, context);
-    this.state = {
-      suggestionsHidden: false,
-      selectedSuggestion: 0,
-      lastToken: null,
-      tokenStart: 0,
-    };
-    this.onChange = this.onChange.bind(this);
-    this.onKeyDown = this.onKeyDown.bind(this);
-    this.onBlur = this.onBlur.bind(this);
-    this.onSuggestionClick = this.onSuggestionClick.bind(this);
-    this.setTextarea = this.setTextarea.bind(this);
-    this.onPaste = this.onPaste.bind(this);
-  }
+  state = {
+    suggestionsHidden: false,
+    selectedSuggestion: 0,
+    lastToken: null,
+    tokenStart: 0,
+  };
 
-  onChange (e) {
+  onChange = (e) => {
     const [ tokenStart, token ] = textAtCursorMatchesToken(e.target.value, e.target.selectionStart);
 
     if (token !== null && this.state.lastToken !== token) {
@@ -85,7 +76,7 @@ class AutosuggestTextarea extends ImmutablePureComponent {
     this.props.onChange(e);
   }
 
-  onKeyDown (e) {
+  onKeyDown = (e) => {
     const { suggestions, disabled } = this.props;
     const { selectedSuggestion, suggestionsHidden } = this.state;
 
@@ -135,7 +126,7 @@ class AutosuggestTextarea extends ImmutablePureComponent {
     this.props.onKeyDown(e);
   }
 
-  onBlur () {
+  onBlur = () => {
     // If we hide the suggestions immediately, then this will prevent the
     // onClick for the suggestions themselves from firing.
     // Setting a short window for that to take place before hiding the
@@ -145,7 +136,7 @@ class AutosuggestTextarea extends ImmutablePureComponent {
     }, 100);
   }
 
-  onSuggestionClick (e) {
+  onSuggestionClick = (e) => {
     const suggestion = Number(e.currentTarget.getAttribute('data-index'));
     e.preventDefault();
     this.props.onSuggestionSelected(this.state.tokenStart, this.state.lastToken, suggestion);
@@ -158,11 +149,11 @@ class AutosuggestTextarea extends ImmutablePureComponent {
     }
   }
 
-  setTextarea (c) {
+  setTextarea = (c) => {
     this.textarea = c;
   }
 
-  onPaste (e) {
+  onPaste = (e) => {
     if (e.clipboardData && e.clipboardData.files.length === 1) {
       this.props.onPaste(e.clipboardData.files);
       e.preventDefault();
