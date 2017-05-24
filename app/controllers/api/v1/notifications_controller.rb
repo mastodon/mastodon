@@ -15,16 +15,16 @@ class Api::V1::NotificationsController < ApiController
   end
 
   def show
-    @notification = Notification.where(account: current_account).find(params[:id])
+    @notification = current_account.notifications.find(params[:id])
   end
 
   def clear
-    Notification.where(account: current_account).delete_all
+    current_account.notifications.delete_all
     render_empty
   end
 
   def dismiss
-    Notification.find_by!(account: current_account, id: params[:id]).destroy!
+    current_account.notifications.find_by!(id: params[:id]).destroy!
     render_empty
   end
 
@@ -43,7 +43,7 @@ class Api::V1::NotificationsController < ApiController
   end
 
   def browserable_account_notifications
-    Notification.where(account: current_account).browserable(exclude_types)
+    current_account.notifications.browserable(exclude_types)
   end
 
   def set_maps_for_notification_target_statuses

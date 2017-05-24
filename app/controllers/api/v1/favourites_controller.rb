@@ -37,7 +37,7 @@ class Api::V1::FavouritesController < ApiController
   end
 
   def account_favourites
-    Favourite.where(account: current_account)
+    current_account.favourites
   end
 
   def insert_pagination_headers

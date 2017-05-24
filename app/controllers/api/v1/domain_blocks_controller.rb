@@ -35,7 +35,7 @@ class Api::V1::DomainBlocksController < ApiController
   end
 
   def account_domain_blocks
-    AccountDomainBlock.where(account: current_account)
+    current_account.domain_blocks
   end
 
   def insert_pagination_headers

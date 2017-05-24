@@ -8,7 +8,7 @@ class Api::V1::ReportsController < ApiController
   respond_to :json
 
   def index
-    @reports = Report.where(account: current_account)
+    @reports = current_account.reports
   end
 
   def create
