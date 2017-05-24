@@ -2,12 +2,14 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import StatusListContainer from '../ui/containers/status_list_container';
-import Column from '../ui/components/column';
+import Column from '../../components/column';
+import ColumnHeader from '../../components/column_header';
 import {
   refreshTimeline,
   updateTimeline,
   deleteFromTimelines,
 } from '../../actions/timelines';
+import { addColumn, removeColumn, moveColumn } from '../../actions/columns';
 import ColumnBackButtonSlim from '../../components/column_back_button_slim';
 import { FormattedMessage } from 'react-intl';
 import createStream from '../../stream';
@@ -22,12 +24,27 @@ class HashtagTimeline extends React.PureComponent {
 
   static propTypes = {
     params: PropTypes.object.isRequired,
-    key: PropTypes.string,
+    columnId: PropTypes.string,
     dispatch: PropTypes.func.isRequired,
     streamingAPIBaseURL: PropTypes.string.isRequired,
     accessToken: PropTypes.string.isRequired,
     hasUnread: PropTypes.bool,
   };
+
+  handlePin = () => {
+    const { columnId, dispatch } = this.props;
+
+    if (columnId) {
+      dispatch(removeColumn(columnId));
+    } else {
+      dispatch(addColumn('HASHTAG', { id: this.props.params.id }));
+    }
+  }
+
+  handleMove = (dir) => {
+    const { columnId, dispatch } = this.props;
+    dispatch(moveColumn(columnId, dir));
+  }
 
   _subscribe (dispatch, id) {
     const { streamingAPIBaseURL, accessToken } = this.props;
@@ -76,14 +93,23 @@ class HashtagTimeline extends React.PureComponent {
   }
 
   render () {
-    const { id, key, hasUnread } = this.props.params;
+    const { hasUnread, columnId } = this.props;
+    const { id } = this.props.params;
+    const pinned = !!columnId;
 
     return (
-      <Column icon='hashtag' active={hasUnread} heading={id}>
-        <ColumnBackButtonSlim />
+      <Column>
+        <ColumnHeader
+          icon='hashtag'
+          active={hasUnread}
+          title={id}
+          onPin={this.handlePin}
+          onMove={this.handleMove}
+          pinned={pinned}
+        />
 
         <StatusListContainer
-          scrollKey={`hashtag_timeline-${key}`}
+          scrollKey={`hashtag_timeline-${columnId}`}
           type='tag'
           id={id}
           emptyMessage={<FormattedMessage id='empty_column.hashtag' defaultMessage='There is nothing in this hashtag yet.' />}

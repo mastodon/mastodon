@@ -42,7 +42,7 @@ class ColumnsArea extends ImmutablePureComponent {
         {columns.map(column => {
           const SpecificComponent = componentMap[column.get('id')];
           const params = column.get('params', null) === null ? null : column.get('params').toJS();
-          return <SpecificComponent key={column.get('uuid')} params={params} multiColumn />;
+          return <SpecificComponent key={column.get('uuid')} columnId={column.get('uuid')} params={params} multiColumn />;
         })}
 
         {children}

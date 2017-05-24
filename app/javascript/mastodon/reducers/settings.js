@@ -1,5 +1,5 @@
 import { SETTING_CHANGE } from '../actions/settings';
-import { COLUMN_ADD, COLUMN_REMOVE } from '../actions/columns';
+import { COLUMN_ADD, COLUMN_REMOVE, COLUMN_MOVE } from '../actions/columns';
 import { STORE_HYDRATE } from '../actions/store';
 import Immutable from 'immutable';
 import uuid from '../uuid';
@@ -48,6 +48,19 @@ const initialState = Immutable.Map({
   }),
 });
 
+const moveColumn = (state, uuid, direction) => {
+  const columns  = state.get('columns');
+  const index    = columns.findIndex(item => item.get('uuid') === uuid);
+  const newIndex = index + direction;
+
+  let newColumns;
+
+  newColumns = columns.splice(index, 1);
+  newColumns = newColumns.splice(newIndex, 0, columns.get(index));
+
+  return state.set('columns', newColumns);
+};
+
 export default function settings(state = initialState, action) {
   switch(action.type) {
   case STORE_HYDRATE:
@@ -58,6 +71,8 @@ export default function settings(state = initialState, action) {
     return state.update('columns', list => list.push(Immutable.fromJS({ id: action.id, uuid: uuid(), params: action.params })));
   case COLUMN_REMOVE:
     return state.update('columns', list => list.filterNot(item => item.get('uuid') === action.uuid));
+  case COLUMN_MOVE:
+    return moveColumn(state, action.uuid, action.direction);
   default:
     return state;
   }
