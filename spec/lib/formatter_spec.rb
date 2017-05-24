@@ -46,6 +46,14 @@ RSpec.describe Formatter do
       end
     end
 
+    context 'with cashtag' do
+      let(:local_text) { 'Hello world $AAPL' }
+
+      it 'skip cashtag' do
+        expect(subject).to match '<p>Hello world $AAPL</p>'
+      end
+    end
+
     context 'with reblog' do
       let(:local_status) { Fabricate(:status, account: account, reblog: Fabricate(:status, text: 'Hello world', account: account)) }
 
