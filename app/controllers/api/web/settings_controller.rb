@@ -35,7 +35,9 @@ class Api::Web::SettingsController < Api::BaseController
     Webpush.payload_send(
       message: JSON.generate({
         title: 'Subscription registered!',
-        body: 'You will now receive push notification.',
+        options: {
+          body: 'You will now receive push notifications.',
+        },
       }),
       endpoint: web_subscription.endpoint,
       p256dh: web_subscription.key_p256dh,

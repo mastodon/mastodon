@@ -35,26 +35,6 @@ class ProcessMentionsService < BaseService
       else
         NotificationWorker.perform_async(stream_entry_to_xml(status.stream_entry), status.account_id, mentioned_account.id)
       end
-
-      mentioned_account.web_push_subscriptions.each do |web_subscription|
-        begin
-          Webpush.payload_send(
-            message: JSON.generate({
-              title: "#{status.account.username} mentioned you!",
-              body: status.text,
-            }),
-            endpoint: web_subscription.endpoint,
-            p256dh: web_subscription.key_p256dh,
-            auth: web_subscription.key_auth,
-            vapid: {
-              private_key: Redis.current.get('vapid_private_key'),
-              public_key: Redis.current.get('vapid_public_key')
-            }
-          )
-        rescue Webpush::InvalidSubscription
-          web_subscription.destroy
-        end
-      end
     end
   end
 

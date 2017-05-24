@@ -9,6 +9,7 @@ class NotifyService < BaseService
     return if recipient.user.nil? || blocked?
 
     create_notification
+    send_push_notifications
     send_email if email_enabled?
   rescue ActiveRecord::RecordInvalid
     return
@@ -61,6 +62,59 @@ class NotifyService < BaseService
     @notification.save!
     return unless @notification.browserable?
     Redis.current.publish("timeline:#{@recipient.id}", Oj.dump(event: :notification, payload: InlineRenderer.render(@notification, @recipient, :notification)))
+  end
+
+  def send_push_notifications
+    @recipient.web_push_subscriptions.each do |web_subscription|
+        push_to_subscriber(web_subscription)
+      end
+  end
+
+  def push_to_subscriber(web_subscription)
+    begin
+      # TODO: Why is @notification.from_account.hub_url nil?
+      name = if @notification.from_account.display_name.empty? then
+               "#{@notification.from_account.username}@#{@notification.from_account.hub_url}"
+             else
+               @notification.from_account.display_name
+             end
+
+      # TODO: Move somewhere else
+      titles = {
+        'Mention' => "#{name} mentioned you",
+        'Follow' => "#{name} followed you",
+        'FollowRequest' => "#{name} requested to follow you",
+        'Favourite' => "#{name} favourited your status",
+        'Status' => "#{name} boosted your status",
+      }
+
+      title = titles[@notification.activity_type]
+
+      Webpush.payload_send(
+        message: JSON.generate(
+          title: title,
+          options: {
+            body: @notification.status.text,
+            timestamp: @notification.from_account.created_at,
+            icon: @notification.from_account.avatar_static_url,
+            data: {
+              url: @notification.status.url # TODO: Why is this nil?
+            }
+          }
+        ),
+        endpoint: web_subscription.endpoint,
+        p256dh: web_subscription.key_p256dh,
+        auth: web_subscription.key_auth,
+        vapid: {
+          private_key: Redis.current.get('vapid_private_key'),
+          public_key: Redis.current.get('vapid_public_key')
+        }
+      )
+    rescue Webpush::InvalidSubscription
+      web_subscription.destroy
+    rescue Webpush::ResponseError
+      web_subscription.destroy
+    end
   end
 
   def send_email
