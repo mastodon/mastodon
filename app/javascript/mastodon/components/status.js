@@ -61,10 +61,12 @@ class Status extends ImmutablePureComponent {
   }
 
   handleRef = (node) => {
-    this.props.onRef(node);
+    if (this.props.onRef) {
+      this.props.onRef(node);
 
-    if (node && node.children.length !== 0) {
-      this.height = node.clientHeight;
+      if (node && node.children.length !== 0) {
+        this.height = node.clientHeight;
+      }
     }
   }
 
