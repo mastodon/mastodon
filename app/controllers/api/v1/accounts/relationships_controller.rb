@@ -19,6 +19,6 @@ class Api::V1::Accounts::RelationshipsController < ApiController
   private
 
   def account_ids
-    @_account_ids ||= params[:id].is_a?(Enumerable) ? params[:id].map(&:to_i) : [params[:id].to_i]
+    @_account_ids ||= Array(params[:id]).map(&:to_i)
   end
 end
