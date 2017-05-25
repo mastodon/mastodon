@@ -29,6 +29,9 @@ const subscribe = (registration) =>
     applicationServerKey: urlBase64ToUint8Array(getApplicationServerKey()),
   });
 
+const unsubscribe = ({ registration, subscription }) =>
+  subscription.unsubscribe().then(() => registration);
+
 const sendSubscriptionToBackend = (subscription) => {
   return fetch('/api/web/settings', {
     method: 'PUT',
@@ -46,9 +49,16 @@ const sendSubscriptionToBackend = (subscription) => {
 
 getRegistration()
   .then(getPushSubscription)
-  .then(({ registration, subscription }) => {
+  .then(({ registration, subscription }) => {;
     if (subscription !== null) {
-      return subscription;
+      const currentServerKey = (new Uint8Array(subscription.options.applicationServerKey)).toString();
+      const subscriptionServerKey = urlBase64ToUint8Array(getApplicationServerKey()).toString();
+
+      if (subscriptionServerKey === currentServerKey) {
+        return subscription;
+      } else {
+        return unsubscribe({ registration, subscription }).then(subscribe).then(sendSubscriptionToBackend);
+      }
     }
 
     return subscribe(registration).then(sendSubscriptionToBackend);
