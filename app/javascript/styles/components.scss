@@ -1326,7 +1326,9 @@
 .drawer {
   flex: 1 1 100%;
   overflow: hidden;
-  contain: strict;
+  @supports(display: grid) { // hack to fix Chrome <57
+    contain: strict;
+  }
 }
 
 @media screen and (min-width: 360px) {
@@ -1501,7 +1503,9 @@
   flex: 1 1 auto;
   backface-visibility: hidden;
   -webkit-overflow-scrolling: touch;
-  contain: strict;
+  @supports(display: grid) { // hack to fix Chrome <57
+    contain: strict;
+  }
 
   &.optionally-scrollable {
     overflow-y: auto;
@@ -2250,7 +2254,9 @@ button.icon-button.active i.fa-retweet {
   flex: 1 1 auto;
   align-items: center;
   justify-content: center;
-  contain: strict;
+  @supports(display: grid) { // hack to fix Chrome <57
+    contain: strict;
+  }
 
   a {
     color: $ui-highlight-color;
