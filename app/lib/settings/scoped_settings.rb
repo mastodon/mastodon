@@ -39,9 +39,8 @@ module Settings
 
     def []=(key, value)
       key = key.to_s
-      record = thing_scoped.find_by(var: key) || thing_scoped.new(var: key)
-      record.value = value
-      record.save!
+      record = thing_scoped.find_or_initialize_by(var: key)
+      record.update!(value: value)
 
       Rails.cache.write(Setting.cache_key(key, @object), value)
       value
