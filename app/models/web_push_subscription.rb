@@ -13,39 +13,41 @@
 
 class WebPushSubscription < ApplicationRecord
   include RoutingHelper
+  include StreamEntriesHelper
 
   def push(notification)
     begin
-      # TODO: Why is notification.from_account.hub_url nil?
-      name = if notification.from_account.display_name.empty? then
-               "#{notification.from_account.username}@#{notification.from_account.hub_url}"
-             else
-               notification.from_account.display_name
-             end
+      name = display_name(notification.from_account)
 
-      # TODO: Move somewhere else
-      titles = {
-        'Mention' => "#{name} mentioned you",
-        'Follow' => "#{name} followed you",
-        'FollowRequest' => "#{name} requested to follow you",
-        'Favourite' => "#{name} favourited your status",
-        'Status' => "#{name} boosted your status",
-      }
+      title = case notification.activity_type
+        when 'Mention' then "#{name} mentioned you"
+        when 'Follow' then "#{name} followed you"
+        when 'FollowRequest' then "#{name} requested to follow you"
+        when 'Favourite' then "#{name} favourited your status"
+        when 'Status' then "#{name} boosted your status"
+      end
 
-      title = titles[notification.activity_type]
+      body = case notification.activity_type
+         when 'Mention' then notification.target_status.text
+         when 'Follow' then notification.from_account.note
+         when 'FollowRequest' then notification.from_account.note
+         when 'Favourite' then notification.target_status.text
+         when 'Status' then notification.target_status.text
+      end
+
       url = case notification.activity_type
-              when 'Mention' then web_url("statuses/#{notification.target_status.id}")
-              when 'Follow' then web_url("accounts/#{notification.follow.id}")
-              when 'FollowRequest' then web_url('follow_requests')
-              when 'Favourite' then web_url("statuses/#{notification.target_status.id}")
-              when 'Status' then web_url("statuses/#{notification.target_status.id}")
-            end
+        when 'Mention' then web_url("statuses/#{notification.target_status.id}")
+        when 'Follow' then web_url("accounts/#{notification.follow.id}")
+        when 'FollowRequest' then web_url('follow_requests')
+        when 'Favourite' then web_url("statuses/#{notification.target_status.id}")
+        when 'Status' then web_url("statuses/#{notification.target_status.id}")
+      end
 
       Webpush.payload_send(
         message: JSON.generate(
           title: title,
           options: {
-            body: notification.status.text,
+            body: body,
             tag: notification.id,
             timestamp: notification.created_at,
             icon: notification.from_account.avatar_static_url,
