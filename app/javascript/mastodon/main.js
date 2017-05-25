@@ -4,8 +4,6 @@ const perf = require('./performance');
 require('font-awesome/css/font-awesome.css');
 require('mastodon-application-style');
 
-require('./web_push');
-
 function onDomContentLoaded(callback) {
   if (document.readyState !== 'loading') {
     callback();
@@ -40,6 +38,7 @@ function main() {
 
   if ('serviceWorker' in navigator && 'PushManager' in window) {
     require('offline-plugin/runtime').install();
+    require('./web_push');
   }
 }
 
