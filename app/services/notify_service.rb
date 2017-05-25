@@ -9,7 +9,7 @@ class NotifyService < BaseService
     return if recipient.user.nil? || blocked?
 
     create_notification
-    send_push_notifications
+    send_push_notifications if push_enabled?
     send_email if email_enabled?
   rescue ActiveRecord::RecordInvalid
     return
@@ -78,6 +78,11 @@ class NotifyService < BaseService
 
   def send_email
     NotificationMailer.public_send(@notification.type, @recipient, @notification).deliver_later
+  end
+
+  def push_enabled?
+    web_setting = Web::Setting.where(user: @recipient).first
+    web_setting[:data]['notifications']['push'][@notification.type.to_s]
   end
 
   def email_enabled?
