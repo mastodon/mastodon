@@ -47,31 +47,47 @@ const sendSubscriptionToBackend = (subscription) => {
   });
 };
 
-getRegistration()
-  .then(getPushSubscription)
-  .then(({ registration, subscription }) => {;
-    if (subscription !== null) {
-      const currentServerKey = (new Uint8Array(subscription.options.applicationServerKey)).toString();
-      const subscriptionServerKey = urlBase64ToUint8Array(getApplicationServerKey()).toString();
+const supportsPushNotifications = ('serviceWorker' in navigator && 'PushManager' in window);
 
-      if (subscriptionServerKey === currentServerKey) {
-        return subscription;
-      } else {
-        return unsubscribe({ registration, subscription }).then(subscribe).then(sendSubscriptionToBackend);
+export const checkPushSubscriptionStatus = () => new Promise(resolve => {
+  if (!supportsPushNotifications) {
+    return resolve(false);
+  }
+
+  return getRegistration()
+    .then(getPushSubscription)
+    .then(({ subscription }) => resolve(subscription !== null))
+    .catch(() => resolve(false));
+});
+
+if (supportsPushNotifications) {
+  getRegistration()
+    .then(getPushSubscription)
+    .then(({ registration, subscription }) => {;
+      if (subscription !== null) {
+        const currentServerKey = (new Uint8Array(subscription.options.applicationServerKey)).toString();
+        const subscriptionServerKey = urlBase64ToUint8Array(getApplicationServerKey()).toString();
+
+        if (subscriptionServerKey === currentServerKey) {
+          return subscription;
+        } else {
+          return unsubscribe({ registration, subscription }).then(subscribe).then(sendSubscriptionToBackend);
+        }
       }
-    }
 
-    return subscribe(registration).then(sendSubscriptionToBackend);
-  })
-  .then(() => console.log('Ready to receive push notifications'))
-  .catch(error => {
-    console.error('You will not receive push notifications', error);
+      return subscribe(registration).then(sendSubscriptionToBackend);
+    })
+    .then(() => console.log('Ready to receive push notifications'))
+    .catch(error => {
+      console.error('You will not receive push notifications', error);
 
-    try {
-      getRegistration()
-        .then(getPushSubscription())
-        .then(unsubscribe);
-    } catch (e) {
+      try {
+        getRegistration()
+          .then(getPushSubscription())
+          .then(unsubscribe);
+      } catch (e) {
 
-    }
-  });
+      }
+    });
+}
+

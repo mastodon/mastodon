@@ -102,6 +102,7 @@ class NotifyService < BaseService
           title: title,
           options: {
             body: @notification.status.text,
+            tag: @notification.id,
             timestamp: @notification.created_at,
             icon: @notification.from_account.avatar_static_url,
             data: {
