@@ -1,6 +1,5 @@
 .landing-strip
-  = t('landing_strip_html',
-    name: content_tag(:span, display_name(account), class: :emojify),
-    link_to_root_path: link_to(content_tag(:strong, site_hostname), root_path))
+  = t('landing_strip_html', name: content_tag(:span, display_name(account), class: :emojify), link_to_root_path: link_to(content_tag(:strong, site_hostname), root_path))
+
   - if open_registrations?
     = t('landing_strip_signup_html', sign_up_path: new_user_registration_path)
