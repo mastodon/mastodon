@@ -40,7 +40,7 @@ class Account extends ImmutablePureComponent {
     this.props.onMute(this.props.account);
   }
 
-  handleMuteBoosts () {
+  handleMuteBoosts = () => {
     this.props.onMuteBoosts(this.props.account);
   }
 
