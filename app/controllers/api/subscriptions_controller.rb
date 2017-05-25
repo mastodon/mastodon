@@ -5,18 +5,15 @@ class Api::SubscriptionsController < ApiController
   respond_to :txt
 
   def show
-    if @account.subscription(api_subscription_url(@account.id)).valid?(params['hub.topic'])
-      @account.update(subscription_expires_at: Time.now.utc + (params['hub.lease_seconds'] || 86_400).to_i.seconds)
-      render plain: HTMLEntities.new.encode(params['hub.challenge']), status: 200
+    if subscription.valid?(params['hub.topic'])
+      @account.update(subscription_expires_at: future_expires)
+      render plain: encoded_challenge, status: 200
     else
       head 404
     end
   end
 
   def update
-    body = request.body.read
-    subscription = @account.subscription(api_subscription_url(@account.id))
-
     if subscription.verify(body, request.headers['HTTP_X_HUB_SIGNATURE'])
       ProcessingWorker.perform_async(@account.id, body.force_encoding('UTF-8'))
     end
@@ -25,6 +22,28 @@ class Api::SubscriptionsController < ApiController
   end
 
   private
+
+  def subscription
+    @_subscription ||= @account.subscription(
+      api_subscription_url(@account.id)
+    )
+  end
+
+  def body
+    @_body ||= request.body.read
+  end
+
+  def encoded_challenge
+    HTMLEntities.new.encode(params['hub.challenge'])
+  end
+
+  def future_expires
+    Time.now.utc + lease_seconds_or_default
+  end
+
+  def lease_seconds_or_default
+    (params['hub.lease_seconds'] || 86_400).to_i.seconds
+  end
 
   def set_account
     @account = Account.find(params[:id])
