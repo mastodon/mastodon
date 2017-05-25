@@ -10,16 +10,24 @@ class Api::V1::MediaController < ApiController
   respond_to :json
 
   def create
-    @media = MediaAttachment.create!(account: current_user.account, file: media_params[:file])
+    @media = current_account.media_attachments.create!(file: media_params[:file])
   rescue Paperclip::Errors::NotIdentifiedByImageMagickError
-    render json: { error: 'File type of uploaded media could not be verified' }, status: 422
+    render json: file_type_error, status: 422
   rescue Paperclip::Error
-    render json: { error: 'Error processing thumbnail for uploaded media' }, status: 500
+    render json: processing_error, status: 500
   end
 
   private
 
   def media_params
     params.permit(:file)
+  end
+
+  def file_type_error
+    { error: 'File type of uploaded media could not be verified' }
+  end
+
+  def processing_error
+    { error: 'Error processing thumbnail for uploaded media' }
   end
 end

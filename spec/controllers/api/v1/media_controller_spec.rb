@@ -14,7 +14,7 @@ RSpec.describe Api::V1::MediaController, type: :controller do
     describe 'with paperclip errors' do
       context 'when imagemagick cant identify the file type' do
         before do
-          allow(MediaAttachment).to receive(:create!).and_raise(Paperclip::Errors::NotIdentifiedByImageMagickError)
+          expect_any_instance_of(Account).to receive_message_chain(:media_attachments, :create!).and_raise(Paperclip::Errors::NotIdentifiedByImageMagickError)
           post :create, params: { file: fixture_file_upload('files/attachment.jpg', 'image/jpeg') }
         end
 
@@ -25,7 +25,7 @@ RSpec.describe Api::V1::MediaController, type: :controller do
 
       context 'when there is a generic error' do
         before do
-          allow(MediaAttachment).to receive(:create!).and_raise(Paperclip::Error)
+          expect_any_instance_of(Account).to receive_message_chain(:media_attachments, :create!).and_raise(Paperclip::Error)
           post :create, params: { file: fixture_file_upload('files/attachment.jpg', 'image/jpeg') }
         end
 
