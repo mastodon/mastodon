@@ -18,13 +18,13 @@ const needsExtraPolyfills = !(
 // This avoids shipping them all the polyfills.
 if (needsBasePolyfills) {
   Promise.all([
-    import('../mastodon/base_polyfills'),
-    import('../mastodon/extra_polyfills'),
+    import(/* webpackChunkName: "base_polyfills" */ '../mastodon/base_polyfills'),
+    import(/* webpackChunkName: "extra_polyfills" */ '../mastodon/extra_polyfills'),
   ]).then(main).catch(e => {
     console.error(e); // eslint-disable-line no-console
   });
 } else if (needsExtraPolyfills) {
-  import('../mastodon/extra_polyfills').then(main).catch(e => {
+  import(/* webpackChunkName: "extra_polyfills" */ '../mastodon/extra_polyfills').then(main).catch(e => {
     console.error(e); // eslint-disable-line no-console
   });
 } else {
