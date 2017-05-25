@@ -245,7 +245,7 @@ if (cluster.isMaster) {
           }
 
           const unpackedPayload  = JSON.parse(payload);
-          const targetAccountIds = [unpackedPayload.account.id].concat(unpackedPayload.mentions.map(item => item.id)).concat(unpackedPayload.reblog ? [unpackedPayload.reblog.account.id] : []);
+          const targetAccountIds = [unpackedPayload.account.id].concat(unpackedPayload.mentions.map(item => item.id));
           const accountDomain    = unpackedPayload.account.acct.split('@')[1];
 
           const queries = [
