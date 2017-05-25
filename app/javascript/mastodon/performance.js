@@ -7,6 +7,11 @@
 let marky;
 
 if (process.env.NODE_ENV === 'development') {
+  if (typeof performance !== 'undefined' && performance.setResourceTimingBufferSize) {
+    // Increase Firefox's performance entry limit; otherwise it's capped to 150.
+    // See: https://bugzilla.mozilla.org/show_bug.cgi?id=1331135
+    performance.setResourceTimingBufferSize(Infinity);
+  }
   marky = require('marky');
   require('react-addons-perf').start();
 }
