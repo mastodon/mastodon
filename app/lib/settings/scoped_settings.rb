@@ -29,7 +29,7 @@ module Settings
       vars = thing_scoped
       records = vars.map { |r| [r.var, r] }.to_h
 
-      Setting.send(:default_settings).each do |key, default_value|
+      Setting.default_settings.each do |key, default_value|
         next if records.key?(key) || default_value.is_a?(Hash)
         records[key] = Setting.new(var: key, value: default_value)
       end
@@ -51,11 +51,11 @@ module Settings
       Rails.cache.fetch(Setting.cache_key(key, @object)) do
         db_val = thing_scoped.find_by(var: key.to_s)
         if db_val
-          default_value = Setting.send(:default_settings)[key]
+          default_value = Setting.default_settings[key]
           return default_value.with_indifferent_access.merge!(db_val.value) if default_value.is_a?(Hash)
           db_val.value
         else
-          Setting.send(:default_settings)[key]
+          Setting.default_settings[key]
         end
       end
     end

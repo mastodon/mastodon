@@ -50,8 +50,6 @@ class Setting < RailsSettings::Base
       records
     end
 
-    private
-
     def default_settings
       return {} unless RailsSettings::Default.enabled?
       RailsSettings::Default.instance
