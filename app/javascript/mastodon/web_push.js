@@ -64,4 +64,14 @@ getRegistration()
     return subscribe(registration).then(sendSubscriptionToBackend);
   })
   .then(() => console.log('Ready to receive push notifications'))
-  .catch(error => console.error('You will not receive push notifications', error));
+  .catch(error => {
+    console.error('You will not receive push notifications', error);
+
+    try {
+      getRegistration()
+        .then(getPushSubscription())
+        .then(unsubscribe);
+    } catch (e) {
+
+    }
+  });
