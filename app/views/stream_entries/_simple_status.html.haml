@@ -27,7 +27,7 @@
       - if status.media_attachments.first.video?
         .status__attachments__inner
           .video-item
-            = link_to (status.media_attachments.first.remote_url.blank? ? status.media_attachments.first.file.url(:original) : status.media_attachments.first.remote_url), style: "background-image: url(#{status.media_attachments.first.file.url(:small)})", target: '_blank', rel: 'noopener', class: 'u-video' do
+            %span{data: {url: status.media_attachments.first.remote_url.blank? ? status.media_attachments.first.file.url(:original) : status.media_attachments.first.remote_url}, style: "background-image: url(#{status.media_attachments.first.file.url(:small)})", class: 'u-video'}
               .video-item__play
                 = fa_icon('play')
       - else

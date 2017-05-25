@@ -16,10 +16,13 @@
 
   - unless status.media_attachments.empty?
     - if status.media_attachments.first.video?
-      .video-player
+      .video-item
         - if status.sensitive?
           = render partial: 'stream_entries/content_spoiler'
-        %video.u-video{ src: status.media_attachments.first.file.url(:original), loop: true }
+        %span.u-video{data: {url: status.media_attachments.first.file.url(:original)}, style: "background-image: url(#{status.media_attachments.first.file.url(:small)})"}
+          .video-item__play
+            = fa_icon('play')
+        
     - else
       .detailed-status__attachments
         - if status.sensitive?
