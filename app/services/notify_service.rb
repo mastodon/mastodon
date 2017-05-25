@@ -89,16 +89,23 @@ class NotifyService < BaseService
       }
 
       title = titles[@notification.activity_type]
+      url = case @notification.activity_type
+        when 'Mention' then web_url("statuses/#{@notification.target_status.id}")
+        when 'Follow' then web_url("accounts/#{@notification.follow.id}")
+        when 'FollowRequest' then web_url('follow_requests')
+        when 'Favourite' then web_url("statuses/#{@notification.target_status.id}")
+        when 'Status' then web_url("statuses/#{@notification.target_status.id}")
+      end
 
       Webpush.payload_send(
         message: JSON.generate(
           title: title,
           options: {
             body: @notification.status.text,
-            timestamp: @notification.from_account.created_at,
+            timestamp: @notification.created_at,
             icon: @notification.from_account.avatar_static_url,
             data: {
-              url: @notification.status.url # TODO: Why is this nil?
+              url: url,
             }
           }
         ),
