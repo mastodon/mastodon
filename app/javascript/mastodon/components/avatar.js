@@ -19,7 +19,7 @@ class Avatar extends React.PureComponent {
   };
 
   state = {
-    hovering: true,
+    hovering: false,
   };
 
   handleMouseEnter = () => {
