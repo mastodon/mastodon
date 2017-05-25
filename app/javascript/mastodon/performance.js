@@ -13,7 +13,9 @@ if (process.env.NODE_ENV === 'development') {
     performance.setResourceTimingBufferSize(Infinity);
   }
   marky = require('marky');
-  require('react-addons-perf').start();
+
+  // FIXME: Firefox error
+  // require('react-addons-perf').start();
 }
 
 export function start(name) {
