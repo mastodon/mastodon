@@ -1,5 +1,4 @@
 const handlePush = (event) => {
-  console.log('push', event.data.json());
   const { title, options } = event.data.json();
 
   options.icon = options.icon || '/android-chrome-192x192.png';
@@ -9,14 +8,13 @@ const handlePush = (event) => {
 };
 
 const handleNotificationClick = (event) => {
-  console.log('click', event);
   event.notification.close();
 
   const reactToNotificationClick = self.clients.matchAll().then(clientList => {
     if (clientList.length !== 0) {
       clientList[0].focus();
     } else {
-      self.clients.openWindow(event.notification.data.url)
+      self.clients.openWindow(event.notification.data.url);
     }
   });
 

@@ -66,7 +66,13 @@ class NotifyService < BaseService
 
   def send_push_notifications
     @recipient.web_push_subscriptions.each do |web_subscription|
-      web_subscription.push(@notification)
+      begin
+        web_subscription.push(@notification)
+      rescue Webpush::InvalidSubscription
+        web_subscription.destroy!
+      rescue Webpush::ResponseError
+        web_subscription.destroy!
+      end
     end
   end
 

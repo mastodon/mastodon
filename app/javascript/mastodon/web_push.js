@@ -63,7 +63,7 @@ export const checkPushSubscriptionStatus = () => new Promise(resolve => {
 if (supportsPushNotifications) {
   getRegistration()
     .then(getPushSubscription)
-    .then(({ registration, subscription }) => {;
+    .then(({ registration, subscription }) => {
       if (subscription !== null) {
         const currentServerKey = (new Uint8Array(subscription.options.applicationServerKey)).toString();
         const subscriptionServerKey = urlBase64ToUint8Array(getApplicationServerKey()).toString();
@@ -77,10 +77,7 @@ if (supportsPushNotifications) {
 
       return subscribe(registration).then(sendSubscriptionToBackend);
     })
-    .then(() => console.log('Ready to receive push notifications'))
     .catch(error => {
-      console.error('You will not receive push notifications', error);
-
       try {
         getRegistration()
           .then(getPushSubscription())
