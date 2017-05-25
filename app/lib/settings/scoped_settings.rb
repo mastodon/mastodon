@@ -21,7 +21,7 @@ module Settings
     end
     # rubocop:enable Style/MethodMissing
 
-    def respond_to?(_method_name, _include_private = false)
+    def respond_to_missing?(*)
       true
     end
 
