@@ -8,7 +8,9 @@ let marky;
 
 if (process.env.NODE_ENV === 'development') {
   marky = require('marky');
-  require('react-addons-perf').start();
+
+  // FIXME: Firefox error
+  // require('react-addons-perf').start();
 }
 
 export function start(name) {
