@@ -14,17 +14,18 @@
 class WebPushSubscription < ApplicationRecord
   include RoutingHelper
   include StreamEntriesHelper
+  include ActionView::Helpers::TranslationHelper
 
   def push(notification)
     begin
       name = display_name(notification.from_account)
 
       title = case notification.activity_type
-        when 'Mention' then "#{name} mentioned you"
-        when 'Follow' then "#{name} followed you"
-        when 'FollowRequest' then "#{name} requested to follow you"
-        when 'Favourite' then "#{name} favourited your status"
-        when 'Status' then "#{name} boosted your status"
+        when 'Mention' then translate('push_notifications.mention.title', { name: name })
+        when 'Follow' then translate('push_notifications.follow.title', { name: name })
+        when 'FollowRequest' then translate('push_notifications.follow_request.title', { name: name })
+        when 'Favourite' then translate('push_notifications.favourite.title', { name: name })
+        when 'Status' then translate('push_notifications.reblog.title', { name: name })
       end
 
       body = case notification.activity_type

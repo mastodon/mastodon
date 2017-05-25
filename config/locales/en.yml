@@ -293,6 +293,20 @@ en:
     validations:
       images_and_video: Cannot attach a video to a status that already contains images
       too_many: Cannot attach more than 4 files
+  push_notifications:
+    subscribed:
+      title: "Subscription registered!"
+      body: "You will now receive push notifications."
+    favourite:
+      title: "%{name} favourited your status"
+    follow:
+      title: "%{name} is now following you"
+    follow_request:
+      title: "%{name} requested to follow you"
+    mention:
+      title: "%{name} mentioned you"
+    reblog:
+      title: "%{name} boosted your status"
   notification_mailer:
     digest:
       body: 'Here is a brief summary of what you missed on %{instance} since your last visit on %{since}:'

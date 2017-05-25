@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Api::Web::SettingsController < Api::BaseController
+  include ActionView::Helpers::TranslationHelper
+
   respond_to :json
 
   before_action :require_user!
@@ -34,9 +36,9 @@ class Api::Web::SettingsController < Api::BaseController
 
     Webpush.payload_send(
       message: JSON.generate({
-        title: 'Subscription registered!',
+        title: translate('push_notifications.subscribed.title'),
         options: {
-          body: 'You will now receive push notifications.',
+          body: translate('push_notifications.subscribed.body'),
         },
       }),
       endpoint: web_subscription.endpoint,
