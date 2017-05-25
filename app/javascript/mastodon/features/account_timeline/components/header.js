@@ -16,7 +16,7 @@ class Header extends ImmutablePureComponent {
     onMention: PropTypes.func.isRequired,
     onReport: PropTypes.func.isRequired,
     onMute: PropTypes.func.isRequired,
-    onMuteBoosts: PropTypes.func.isRequired,
+    onMuteReblogs: PropTypes.func.isRequired,
     onBlockDomain: PropTypes.func.isRequired,
     onUnblockDomain: PropTypes.func.isRequired,
   };
@@ -46,8 +46,8 @@ class Header extends ImmutablePureComponent {
     this.props.onMute(this.props.account);
   }
 
-  handleMuteBoosts = () => {
-    this.props.onMuteBoosts(this.props.account);
+  handleMuteReblogs = () => {
+    this.props.onMuteReblogs(this.props.account);
   }
 
   handleBlockDomain = () => {
@@ -88,7 +88,7 @@ class Header extends ImmutablePureComponent {
           onMention={this.handleMention}
           onReport={this.handleReport}
           onMute={this.handleMute}
-          onMuteBoosts={this.handleMuteBoosts}
+          onMuteReblogs={this.handleMuteReblogs}
           onBlockDomain={this.handleBlockDomain}
           onUnblockDomain={this.handleUnblockDomain}
         />

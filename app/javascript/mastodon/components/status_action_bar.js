@@ -9,7 +9,7 @@ const messages = defineMessages({
   delete: { id: 'status.delete', defaultMessage: 'Delete' },
   mention: { id: 'status.mention', defaultMessage: 'Mention @{name}' },
   mute: { id: 'account.mute', defaultMessage: 'Mute @{name}' },
-  muteBoosts: { id: 'account.mute.boosts', defaultMessage: 'Mute boosts from @{name}' },
+  muteReblogs: { id: 'account.mute.reblogs', defaultMessage: 'Mute boosts from @{name}' },
   block: { id: 'account.block', defaultMessage: 'Block @{name}' },
   reply: { id: 'status.reply', defaultMessage: 'Reply' },
   replyAll: { id: 'status.replyAll', defaultMessage: 'Reply to thread' },
@@ -38,7 +38,7 @@ class StatusActionBar extends React.PureComponent {
     onDelete: PropTypes.func,
     onMention: PropTypes.func,
     onMute: PropTypes.func,
-    onMuteBoosts: PropTypes.func,
+    onMuteReblogs: PropTypes.func,
     onBlock: PropTypes.func,
     onReport: PropTypes.func,
     onMuteConversation: PropTypes.func,
@@ -71,8 +71,8 @@ class StatusActionBar extends React.PureComponent {
     this.props.onMute(this.props.status.get('account'));
   }
 
-  handleMuteBoostsClick = () => {
-    this.props.onMuteBoosts(this.props.account);
+  handleMuteReblogsClick = () => {
+    this.props.onMuteReblogs(this.props.account);
   }
 
   handleBlockClick = () => {
@@ -118,7 +118,7 @@ class StatusActionBar extends React.PureComponent {
       menu.push({ text: intl.formatMessage(messages.mute, { name: status.getIn(['account', 'username']) }), action: this.handleMuteClick });
 
       if (wrapped) {
-        menu.push({ text: intl.formatMessage(messages.muteBoosts, { name: account.get('username') }), action: this.handleMuteBoostsClick });
+        menu.push({ text: intl.formatMessage(messages.muteReblogs, { name: account.get('username') }), action: this.handleMuteReblogsClick });
       }
 
       menu.push({ text: intl.formatMessage(messages.block, { name: status.getIn(['account', 'username']) }), action: this.handleBlockClick });

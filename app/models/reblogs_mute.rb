@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 # == Schema Information
 #
-# Table name: boosts_mutes
+# Table name: reblogs_mutes
 #
 #  id                :integer          not null, primary key
 #  account_id        :integer          not null
@@ -10,7 +10,7 @@
 #  updated_at        :datetime         not null
 #
 
-class BoostsMute < ApplicationRecord
+class ReblogsMute < ApplicationRecord
   include Paginable
 
   belongs_to :account, required: true

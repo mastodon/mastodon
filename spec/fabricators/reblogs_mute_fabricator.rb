@@ -1,4 +1,4 @@
-Fabricator(:boosts_mute) do
+Fabricator(:reblogs_mute) do
   account
   target_account { Fabricate(:account) }
 end

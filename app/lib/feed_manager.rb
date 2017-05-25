@@ -84,7 +84,7 @@ class FeedManager
     redis.zrem(timeline_key, target_status_ids) if target_status_ids.present?
   end
 
-  def clear_boosts_from_timeline(account, target_account)
+  def clear_reblogs_from_timeline(account, target_account)
     timeline_key = key(:home, account.id)
     oldest_home_score = redis.zrange(timeline_key, 0, 0, with_scores: true)&.first&.last&.to_i || 0
 
@@ -112,7 +112,7 @@ class FeedManager
 
     return true if Mute.where(account_id: receiver_id, target_account_id: check_for_mutes).any?
 
-    return true if status.reblog? && BoostsMute.where(account_id: receiver_id, target_account_id: status.account_id).exists?
+    return true if status.reblog? && ReblogsMute.where(account_id: receiver_id, target_account_id: status.account_id).exists?
 
     check_for_blocks = status.mentions.pluck(:account_id)
     check_for_blocks.concat([status.reblog.account_id]) if status.reblog?

@@ -40,7 +40,7 @@ RSpec.describe FeedManager do
         status = Fabricate(:status, text: 'Hello world', account: jeff)
         reblog = Fabricate(:status, reblog: status, account: alice)
         bob.follow!(alice)
-        bob.mute_boosts!(alice)
+        bob.mute_reblogs!(alice)
         expect(FeedManager.instance.filter?(:home, reblog, bob.id)).to be true
       end
 

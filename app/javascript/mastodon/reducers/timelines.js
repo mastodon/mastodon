@@ -32,7 +32,7 @@ import {
   ACCOUNT_MEDIA_TIMELINE_EXPAND_FAIL,
   ACCOUNT_BLOCK_SUCCESS,
   ACCOUNT_MUTE_SUCCESS,
-  ACCOUNT_MUTE_BOOSTS_SUCCESS,
+  ACCOUNT_MUTE_REBLOGS_SUCCESS,
 } from '../actions/accounts';
 import {
   CONTEXT_FETCH_SUCCESS,
@@ -355,8 +355,8 @@ export default function timelines(state = initialState, action) {
     return appendNormalizedAccountMediaTimeline(state, action.id, Immutable.fromJS(action.statuses), action.next);
   case ACCOUNT_BLOCK_SUCCESS:
   case ACCOUNT_MUTE_SUCCESS:
-  case ACCOUNT_MUTE_BOOSTS_SUCCESS:
-    return filterTimelines(state, action.relationship, action.statuses, action.type === ACCOUNT_MUTE_BOOSTS_SUCCESS);
+  case ACCOUNT_MUTE_REBLOGS_SUCCESS:
+    return filterTimelines(state, action.relationship, action.statuses, action.type === ACCOUNT_MUTE_REBLOGS_SUCCESS);
   case TIMELINE_SCROLL_TOP:
     return updateTop(state, action.timeline, action.top);
   case TIMELINE_CONNECT:

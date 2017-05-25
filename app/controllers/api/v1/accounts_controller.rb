@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 class Api::V1::AccountsController < ApiController
-  before_action -> { doorkeeper_authorize! :read }, except: [:follow, :unfollow, :block, :unblock, :mute, :unmute, :mute_boosts, :unmute_boosts, :update_credentials]
-  before_action -> { doorkeeper_authorize! :follow }, only: [:follow, :unfollow, :block, :unblock, :mute, :unmute, :mute_boosts, :unmute_boosts]
+  before_action -> { doorkeeper_authorize! :read }, except: [:follow, :unfollow, :block, :unblock, :mute, :unmute, :mute_reblogs, :unmute_reblogs, :update_credentials]
+  before_action -> { doorkeeper_authorize! :follow }, only: [:follow, :unfollow, :block, :unblock, :mute, :unmute, :mute_reblogs, :unmute_reblogs]
   before_action -> { doorkeeper_authorize! :write }, only: [:update_credentials]
   before_action :require_user!, except: [:show, :following, :followers, :statuses]
   before_action :set_account, except: [:verify_credentials, :update_credentials, :suggestions, :search]
@@ -82,7 +82,7 @@ class Api::V1::AccountsController < ApiController
     @blocking        = { @account.id => true }
     @requested       = { @account.id => false }
     @muting          = { @account.id => current_account.muting?(@account.id) }
-    @muting_boosts   = { @account.id => current_account.muting_boosts?(@account.id) }
+    @muting_reblogs  = { @account.id => current_account.muting_reblogs?(@account.id) }
     @domain_blocking = { @account.id => current_account.domain_blocking?(@account.domain) }
 
     render :relationship
@@ -94,8 +94,8 @@ class Api::V1::AccountsController < ApiController
     render :relationship
   end
 
-  def mute_boosts
-    MuteBoostsService.new.call(current_user.account, @account)
+  def mute_reblogs
+    MuteReblogsService.new.call(current_user.account, @account)
     set_relationship
     render :relationship
   end
@@ -118,8 +118,8 @@ class Api::V1::AccountsController < ApiController
     render :relationship
   end
 
-  def unmute_boosts
-    UnmuteBoostsService.new.call(current_user.account, @account)
+  def unmute_reblogs
+    UnmuteReblogsService.new.call(current_user.account, @account)
     set_relationship
     render :relationship
   end
@@ -132,7 +132,7 @@ class Api::V1::AccountsController < ApiController
     @followed_by     = Account.followed_by_map(ids, current_user.account_id)
     @blocking        = Account.blocking_map(ids, current_user.account_id)
     @muting          = Account.muting_map(ids, current_user.account_id)
-    @muting_boosts   = Account.muting_boosts_map(ids, current_user.account_id)
+    @muting_reblogs  = Account.muting_reblogs_map(ids, current_user.account_id)
     @requested       = Account.requested_map(ids, current_user.account_id)
     @domain_blocking = Account.domain_blocking_map(ids, current_user.account_id)
   end
@@ -154,7 +154,7 @@ class Api::V1::AccountsController < ApiController
     @followed_by     = Account.followed_by_map([@account.id], current_user.account_id)
     @blocking        = Account.blocking_map([@account.id], current_user.account_id)
     @muting          = Account.muting_map([@account.id], current_user.account_id)
-    @muting_boosts   = Account.muting_boosts_map([@account.id], current_user.account_id)
+    @muting_reblogs  = Account.muting_reblogs_map([@account.id], current_user.account_id)
     @requested       = Account.requested_map([@account.id], current_user.account_id)
     @domain_blocking = Account.domain_blocking_map([@account.id], current_user.account_id)
   end

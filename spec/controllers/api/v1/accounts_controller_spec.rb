@@ -198,12 +198,12 @@ RSpec.describe Api::V1::AccountsController, type: :controller do
     end
   end
 
-  describe 'POST #mute_boosts' do
+  describe 'POST #mute_reblogs' do
     let(:other_account) { Fabricate(:user, email: 'bob@example.com', account: Fabricate(:account, username: 'bob')).account }
 
     before do
       user.account.follow!(other_account)
-      post :mute_boosts, params: {id: other_account.id }
+      post :mute_reblogs, params: {id: other_account.id }
     end
 
     it 'returns http success' do
@@ -214,25 +214,25 @@ RSpec.describe Api::V1::AccountsController, type: :controller do
       expect(user.account.following?(other_account)).to be true
     end
 
-    it 'creates a boosts-muting relation' do
-      expect(user.account.muting_boosts?(other_account)).to be true
+    it 'creates a reblogs-muting relation' do
+      expect(user.account.muting_reblogs?(other_account)).to be true
     end
   end
 
-  describe 'POST #unmute_boosts' do
+  describe 'POST #unmute_reblogs' do
     let(:other_account) { Fabricate(:user, email: 'bob@example.com', account: Fabricate(:account, username: 'bob')).account }
 
     before do
-      user.account.mute_boosts!(other_account)
-      post :unmute_boosts, params: { id: other_account.id }
+      user.account.mute_reblogs!(other_account)
+      post :unmute_reblogs, params: { id: other_account.id }
     end
 
     it 'returns http success' do
       expect(response).to have_http_status(:success)
     end
 
-    it 'removes the boosts-muting relation between user and target user' do
-      expect(user.account.muting_boosts?(other_account)).to be false
+    it 'removes the reblogs-muting relation between user and target user' do
+      expect(user.account.muting_reblogs?(other_account)).to be false
     end
   end
 
@@ -280,7 +280,7 @@ RSpec.describe Api::V1::AccountsController, type: :controller do
         expect(json.first[:following]).to be true
         expect(json.first[:followed_by]).to be false
         expect(json.first[:muting]).to be false
-        expect(json.first[:muting_boosts]).to be false
+        expect(json.first[:muting_reblogs]).to be false
         expect(json.first[:requested]).to be false
         expect(json.first[:domain_blocking]).to be false
 
@@ -288,7 +288,7 @@ RSpec.describe Api::V1::AccountsController, type: :controller do
         expect(json.second[:following]).to be false
         expect(json.second[:followed_by]).to be true
         expect(json.second[:muting]).to be false
-        expect(json.second[:muting_boosts]).to be false
+        expect(json.second[:muting_reblogs]).to be false
         expect(json.second[:requested]).to be false
         expect(json.second[:domain_blocking]).to be false
       end

@@ -205,14 +205,14 @@ RSpec.describe Account, type: :model do
     end
   end
 
-  describe '#boosts_excluded_from_timeline_account_ids' do
-    it 'includes account ids for which boosts are muted' do
+  describe '#reblogs_excluded_from_timeline_account_ids' do
+    it 'includes account ids for which reblogs are muted' do
       account = Fabricate(:account)
-      boosts_mute = Fabricate(:boosts_mute, account: account)
+      reblogs_mute = Fabricate(:reblogs_mute, account: account)
 
-      results = account.boosts_excluded_from_timeline_account_ids
+      results = account.reblogs_excluded_from_timeline_account_ids
       expect(results.size).to eq 1
-      expect(results).to include(boosts_mute.target_account.id)
+      expect(results).to include(reblogs_mute.target_account.id)
     end
   end
 

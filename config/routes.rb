@@ -188,8 +188,8 @@ Rails.application.routes.draw do
           post :unblock
           post :mute
           post :unmute
-          post :mute_boosts
-          post :unmute_boosts
+          post :mute_reblogs
+          post :unmute_reblogs
         end
       end
     end

@@ -20,8 +20,8 @@ module AccountInteractions
       follow_mapping(Mute.where(target_account_id: target_account_ids, account_id: account_id), :target_account_id)
     end
 
-    def muting_boosts_map(target_account_ids, account_id)
-      follow_mapping(BoostsMute.where(target_account_id: target_account_ids, account_id: account_id), :target_account_id)
+    def muting_reblogs_map(target_account_ids, account_id)
+      follow_mapping(ReblogsMute.where(target_account_id: target_account_ids, account_id: account_id), :target_account_id)
     end
 
     def requested_map(target_account_ids, account_id)
@@ -57,11 +57,11 @@ module AccountInteractions
     has_many :muted_by_relationships, class_name: 'Mute', foreign_key: :target_account_id, dependent: :destroy
     has_many :muted_by, -> { order('mutes.id desc') }, through: :muted_by_relationships, source: :account
 
-    # Boosts Mute relationships
-    has_many :boosts_mute_relationships, class_name: 'BoostsMute', foreign_key: 'account_id', dependent: :destroy
-    has_many :muting_boosts, -> { order('boosts_mutes.id desc') }, through: :boosts_mute_relationships, source: :target_account
-    has_many :boosts_muted_by_relationships, class_name: 'BoostsMute', foreign_key: :target_account_id, dependent: :destroy
-    has_many :boosts_muted_by, -> { order('boosts_mutes.id desc') }, through: :boosts_muted_by_relationships, source: :account
+    # Reblogs Mute relationships
+    has_many :reblogs_mute_relationships, class_name: 'ReblogsMute', foreign_key: 'account_id', dependent: :destroy
+    has_many :muting_reblogs, -> { order('reblogs_mutes.id desc') }, through: :reblogs_mute_relationships, source: :target_account
+    has_many :reblogs_muted_by_relationships, class_name: 'ReblogsMute', foreign_key: :target_account_id, dependent: :destroy
+    has_many :reblogs_muted_by, -> { order('reblogs_mutes.id desc') }, through: :reblogs_muted_by_relationships, source: :account
 
     # Other Mute relationships
     has_many :conversation_mutes, dependent: :destroy
@@ -80,8 +80,8 @@ module AccountInteractions
     mute_relationships.find_or_create_by!(target_account: other_account)
   end
 
-  def mute_boosts!(other_account)
-    boosts_mute_relationships.find_or_create_by!(target_account: other_account)
+  def mute_reblogs!(other_account)
+    reblogs_mute_relationships.find_or_create_by!(target_account: other_account)
   end
 
   def mute_conversation!(conversation)
@@ -107,9 +107,9 @@ module AccountInteractions
     mute&.destroy
   end
 
-  def unmute_boosts!(other_account)
-    boosts_mute = boosts_mute_relationships.find_by(target_account: other_account)
-    boosts_mute&.destroy
+  def unmute_reblogs!(other_account)
+    reblogs_mute = reblogs_mute_relationships.find_by(target_account: other_account)
+    reblogs_mute&.destroy
   end
 
   def unmute_conversation!(conversation)
@@ -138,8 +138,8 @@ module AccountInteractions
     mute_relationships.where(target_account: other_account).exists?
   end
 
-  def muting_boosts?(other_account)
-    boosts_mute_relationships.where(target_account: other_account).exists?
+  def muting_reblogs?(other_account)
+    reblogs_mute_relationships.where(target_account: other_account).exists?
   end
 
   def muting_conversation?(conversation)

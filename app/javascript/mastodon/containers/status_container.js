@@ -15,7 +15,7 @@ import {
 import {
   blockAccount,
   muteAccount,
-  muteBoostsFromAccount,
+  muteReblogsFromAccount,
 } from '../actions/accounts';
 import { muteStatus, unmuteStatus, deleteStatus } from '../actions/statuses';
 import { initReport } from '../actions/reports';
@@ -29,7 +29,7 @@ const messages = defineMessages({
   deleteMessage: { id: 'confirmations.delete.message', defaultMessage: 'Are you sure you want to delete this status?' },
   blockConfirm: { id: 'confirmations.block.confirm', defaultMessage: 'Block' },
   muteConfirm: { id: 'confirmations.mute.confirm', defaultMessage: 'Mute' },
-  muteBoostsConfirm: { id: 'confirmations.mute.boosts.confirm', defaultMessage: 'Mute boosts' },
+  muteReblogsConfirm: { id: 'confirmations.mute.reblogs.confirm', defaultMessage: 'Mute boosts' },
 });
 
 const makeMapStateToProps = () => {
@@ -115,11 +115,11 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
     }));
   },
 
-  onMuteBoosts (account) {
+  onMuteReblogs (account) {
     dispatch(openModal('CONFIRM', {
-      message: <FormattedMessage id='confirmations.mute.boosts.message' defaultMessage='Are you sure you want to mute boosts from {name}?' values={{ name: <strong>@{account.get('acct')}</strong> }} />,
-      confirm: intl.formatMessage(messages.muteBoostsConfirm),
-      onConfirm: () => dispatch(muteBoostsFromAccount(account.get('id'))),
+      message: <FormattedMessage id='confirmations.mute.reblogs.message' defaultMessage='Are you sure you want to mute boosts from {name}?' values={{ name: <strong>@{account.get('acct')}</strong> }} />,
+      confirm: intl.formatMessage(messages.muteReblogsConfirm),
+      onConfirm: () => dispatch(muteReblogsFromAccount(account.get('id'))),
     }));
   },
 

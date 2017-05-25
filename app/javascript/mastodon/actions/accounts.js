@@ -29,13 +29,13 @@ export const ACCOUNT_UNMUTE_REQUEST = 'ACCOUNT_UNMUTE_REQUEST';
 export const ACCOUNT_UNMUTE_SUCCESS = 'ACCOUNT_UNMUTE_SUCCESS';
 export const ACCOUNT_UNMUTE_FAIL    = 'ACCOUNT_UNMUTE_FAIL';
 
-export const ACCOUNT_MUTE_BOOSTS_REQUEST = 'ACCOUNT_MUTE_BOOSTS_REQUEST';
-export const ACCOUNT_MUTE_BOOSTS_SUCCESS = 'ACCOUNT_MUTE_BOOSTS_SUCCESS';
-export const ACCOUNT_MUTE_BOOSTS_FAIL    = 'ACCOUNT_MUTE_BOOSTS_FAIL';
+export const ACCOUNT_MUTE_REBLOGS_REQUEST = 'ACCOUNT_MUTE_REBLOGS_REQUEST';
+export const ACCOUNT_MUTE_REBLOGS_SUCCESS = 'ACCOUNT_MUTE_REBLOGS_SUCCESS';
+export const ACCOUNT_MUTE_REBLOGS_FAIL    = 'ACCOUNT_MUTE_REBLOGS_FAIL';
 
-export const ACCOUNT_UNMUTE_BOOSTS_REQUEST = 'ACCOUNT_UNMUTE_BOOSTS_REQUEST';
-export const ACCOUNT_UNMUTE_BOOSTS_SUCCESS = 'ACCOUNT_UNMUTE_BOOSTS_SUCCESS';
-export const ACCOUNT_UNMUTE_BOOSTS_FAIL    = 'ACCOUNT_UNMUTE_BOOSTS_FAIL';
+export const ACCOUNT_UNMUTE_REBLOGS_REQUEST = 'ACCOUNT_UNMUTE_REBLOGS_REQUEST';
+export const ACCOUNT_UNMUTE_REBLOGS_SUCCESS = 'ACCOUNT_UNMUTE_REBLOGS_SUCCESS';
+export const ACCOUNT_UNMUTE_REBLOGS_FAIL    = 'ACCOUNT_UNMUTE_REBLOGS_FAIL';
 
 export const ACCOUNT_TIMELINE_FETCH_REQUEST = 'ACCOUNT_TIMELINE_FETCH_REQUEST';
 export const ACCOUNT_TIMELINE_FETCH_SUCCESS = 'ACCOUNT_TIMELINE_FETCH_SUCCESS';
@@ -529,70 +529,70 @@ export function unmuteAccountFail(error) {
 };
 
 
-export function muteBoostsFromAccount(id) {
+export function muteReblogsFromAccount(id) {
   return (dispatch, getState) => {
-    dispatch(muteBoostsFromAccountRequest(id));
+    dispatch(muteReblogsFromAccountRequest(id));
 
-    api(getState).post(`/api/v1/accounts/${id}/mute_boosts`).then(response => {
+    api(getState).post(`/api/v1/accounts/${id}/mute_reblogs`).then(response => {
       // Pass in entire statuses map so we can use it to filter stuff in different parts of the reducers
-      dispatch(muteBoostsFromAccountSuccess(response.data, getState().get('statuses')));
+      dispatch(muteReblogsFromAccountSuccess(response.data, getState().get('statuses')));
     }).catch(error => {
-      dispatch(muteBoostsFromAccountFail(id, error));
+      dispatch(muteReblogsFromAccountFail(id, error));
     });
   };
 };
 
-export function unmuteBoostsFromAccount(id) {
+export function unmuteReblogsFromAccount(id) {
   return (dispatch, getState) => {
-    dispatch(unmuteBoostsFromAccountRequest(id));
+    dispatch(unmuteReblogsFromAccountRequest(id));
 
-    api(getState).post(`/api/v1/accounts/${id}/unmute_boosts`).then(response => {
-      dispatch(unmuteBoostsFromAccountSuccess(response.data));
+    api(getState).post(`/api/v1/accounts/${id}/unmute_reblogs`).then(response => {
+      dispatch(unmuteReblogsFromAccountSuccess(response.data));
     }).catch(error => {
-      dispatch(unmuteBoostsFromAccountFail(id, error));
+      dispatch(unmuteReblogsFromAccountFail(id, error));
     });
   };
 };
 
-export function muteBoostsFromAccountRequest(id) {
+export function muteReblogsFromAccountRequest(id) {
   return {
-    type: ACCOUNT_MUTE_BOOSTS_REQUEST,
+    type: ACCOUNT_MUTE_REBLOGS_REQUEST,
     id,
   };
 };
 
-export function muteBoostsFromAccountSuccess(relationship, statuses) {
+export function muteReblogsFromAccountSuccess(relationship, statuses) {
   return {
-    type: ACCOUNT_MUTE_BOOSTS_SUCCESS,
+    type: ACCOUNT_MUTE_REBLOGS_SUCCESS,
     relationship,
     statuses,
   };
 };
 
-export function muteBoostsFromAccountFail(error) {
+export function muteReblogsFromAccountFail(error) {
   return {
-    type: ACCOUNT_MUTE_BOOSTS_FAIL,
+    type: ACCOUNT_MUTE_REBLOGS_FAIL,
     error,
   };
 };
 
-export function unmuteBoostsFromAccountRequest(id) {
+export function unmuteReblogsFromAccountRequest(id) {
   return {
-    type: ACCOUNT_UNMUTE_BOOSTS_REQUEST,
+    type: ACCOUNT_UNMUTE_REBLOGS_REQUEST,
     id,
   };
 };
 
-export function unmuteBoostsFromAccountSuccess(relationship) {
+export function unmuteReblogsFromAccountSuccess(relationship) {
   return {
-    type: ACCOUNT_UNMUTE_BOOSTS_SUCCESS,
+    type: ACCOUNT_UNMUTE_REBLOGS_SUCCESS,
     relationship,
   };
 };
 
-export function unmuteBoostsFromAccountFail(error) {
+export function unmuteReblogsFromAccountFail(error) {
   return {
-    type: ACCOUNT_UNMUTE_BOOSTS_FAIL,
+    type: ACCOUNT_UNMUTE_REBLOGS_FAIL,
     error,
   };
 };

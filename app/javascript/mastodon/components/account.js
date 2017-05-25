@@ -24,7 +24,7 @@ class Account extends ImmutablePureComponent {
     onFollow: PropTypes.func.isRequired,
     onBlock: PropTypes.func.isRequired,
     onMute: PropTypes.func.isRequired,
-    onMuteBoosts: PropTypes.func.isRequired,
+    onMuteReblogs: PropTypes.func.isRequired,
     intl: PropTypes.object.isRequired,
   };
 
@@ -40,8 +40,8 @@ class Account extends ImmutablePureComponent {
     this.props.onMute(this.props.account);
   }
 
-  handleMuteBoosts = () => {
-    this.props.onMuteBoosts(this.props.account);
+  handleMuteReblogs = () => {
+    this.props.onMuteReblogs(this.props.account);
   }
 
   render () {

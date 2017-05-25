@@ -9,8 +9,8 @@ import {
   unblockAccount,
   muteAccount,
   unmuteAccount,
-  muteBoostsFromAccount,
-  unmuteBoostsFromAccount,
+  muteReblogsFromAccount,
+  unmuteReblogsFromAccount,
 } from '../../../actions/accounts';
 import { mentionCompose } from '../../../actions/compose';
 import { initReport } from '../../../actions/reports';
@@ -21,7 +21,7 @@ import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 const messages = defineMessages({
   blockConfirm: { id: 'confirmations.block.confirm', defaultMessage: 'Block' },
   muteConfirm: { id: 'confirmations.mute.confirm', defaultMessage: 'Mute' },
-  muteBoostsConfirm: { id: 'confirmations.mute.boosts.confirm', defaultMessage: 'Mute boosts' },
+  muteReblogsConfirm: { id: 'confirmations.mute.reblogs.confirm', defaultMessage: 'Mute boosts' },
   blockDomainConfirm: { id: 'confirmations.domain_block.confirm', defaultMessage: 'Hide entire domain' },
 });
 
@@ -77,14 +77,14 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
     }
   },
 
-  onMuteBoosts (account) {
-    if (account.getIn(['relationship', 'muting_boosts'])) {
-      dispatch(unmuteBoostsFromAccount(account.get('id')));
+  onMuteReblogs (account) {
+    if (account.getIn(['relationship', 'muting_reblogs'])) {
+      dispatch(unmuteReblogsFromAccount(account.get('id')));
     } else {
       dispatch(openModal('CONFIRM', {
-        message: <FormattedMessage id='confirmations.mute.boosts.message' defaultMessage='Are you sure you want to mute boosts from {name}?' values={{ name: <strong>@{account.get('acct')}</strong> }} />,
-        confirm: intl.formatMessage(messages.muteBoostsConfirm),
-        onConfirm: () => dispatch(muteBoostsFromAccount(account.get('id'))),
+        message: <FormattedMessage id='confirmations.mute.reblogs.message' defaultMessage='Are you sure you want to mute boosts from {name}?' values={{ name: <strong>@{account.get('acct')}</strong> }} />,
+        confirm: intl.formatMessage(messages.muteReblogsConfirm),
+        onConfirm: () => dispatch(muteReblogsFromAccount(account.get('id'))),
       }));
     }
   },

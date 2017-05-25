@@ -157,8 +157,8 @@ class Account < ApplicationRecord
     Rails.cache.fetch("exclude_account_ids_for:#{id}") { blocking.pluck(:target_account_id) + blocked_by.pluck(:account_id) + muting.pluck(:target_account_id) }
   end
 
-  def boosts_excluded_from_timeline_account_ids
-    Rails.cache.fetch("boosts_exclude_account_ids_for:#{id}") { muting_boosts.pluck(:target_account_id) }
+  def reblogs_excluded_from_timeline_account_ids
+    Rails.cache.fetch("reblogs_exclude_account_ids_for:#{id}") { muting_reblogs.pluck(:target_account_id) }
   end
 
   def excluded_from_timeline_domains
