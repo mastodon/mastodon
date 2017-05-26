@@ -82,7 +82,7 @@ class NotifyService < BaseService
 
   def push_enabled?
     web_setting = Web::Setting.where(user: @recipient).first
-    web_setting[:data]['notifications']['push'][@notification.type.to_s]
+    web_setting[:data].dig('notifications', 'push', @notification.type.to_s)
   end
 
   def email_enabled?
