@@ -32,11 +32,64 @@ class Status extends ImmutablePureComponent {
     onOpenMedia: PropTypes.func,
     onOpenVideo: PropTypes.func,
     onBlock: PropTypes.func,
+    onRef: PropTypes.func,
+    isIntersecting: PropTypes.bool,
     me: PropTypes.number,
     boostModal: PropTypes.bool,
     autoPlayGif: PropTypes.bool,
     muted: PropTypes.bool,
   };
+
+  state = {
+    isHidden: false,
+  }
+
+  // Avoid checking props that are functions (and whose equality will always
+  // evaluate to false. See react-immutable-pure-component for usage.
+  updateOnProps = [
+    'status',
+    'account',
+    'wrapped',
+    'me',
+    'boostModal',
+    'autoPlayGif',
+    'muted',
+  ]
+
+  updateOnStates = []
+
+  shouldComponentUpdate (nextProps, nextState) {
+    if (nextProps.isIntersecting === false && nextState.isHidden) {
+      // It's only if we're not intersecting (i.e. offscreen) and isHidden is true
+      // that either "isIntersecting" or "isHidden" matter, and then they're
+      // the only things that matter.
+      return this.props.isIntersecting !== false || !this.state.isHidden;
+    } else if (nextProps.isIntersecting !== false && this.props.isIntersecting === false) {
+      // If we're going from a non-intersecting state to an intersecting state,
+      // (i.e. offscreen to onscreen), then we definitely need to re-render
+      return true;
+    }
+    // Otherwise, diff based on "updateOnProps" and "updateOnStates"
+    return super.shouldComponentUpdate(nextProps, nextState);
+  }
+
+  componentWillReceiveProps (nextProps) {
+    if (nextProps.isIntersecting === false && this.props.isIntersecting !== false) {
+      requestIdleCallback(() => this.setState({ isHidden: true }));
+    } else {
+      this.setState({ isHidden: !nextProps.isIntersecting });
+    }
+  }
+
+  handleRef = (node) => {
+    if (this.props.onRef) {
+      this.props.onRef(node);
+
+      if (node && node.children.length !== 0) {
+        this.height = node.clientHeight;
+      }
+    }
+  }
 
   handleClick = () => {
     const { status } = this.props;
@@ -52,12 +105,22 @@ class Status extends ImmutablePureComponent {
   }
 
   render () {
-    let media = '';
+    let media = null;
     let statusAvatar;
-    const { status, account, ...other } = this.props;
+    const { status, account, isIntersecting, onRef, ...other } = this.props;
+    const { isHidden } = this.state;
 
     if (status === null) {
-      return <div />;
+      return null;
+    }
+
+    if (isIntersecting === false && isHidden) {
+      return (
+        <div ref={this.handleRef} data-id={status.get('id')} style={{ height: `${this.height}px`, opacity: 0, overflow: 'hidden' }}>
+          {status.getIn(['account', 'display_name']) || status.getIn(['account', 'username'])}
+          {status.get('content')}
+        </div>
+      );
     }
 
     if (status.get('reblog', null) !== null && typeof status.get('reblog') === 'object') {
@@ -70,7 +133,7 @@ class Status extends ImmutablePureComponent {
       const displayNameHTML = { __html: emojify(escapeTextContentForBrowser(displayName)) };
 
       return (
-        <div className='status__wrapper'>
+        <div className='status__wrapper' ref={this.handleRef} data-id={status.get('id')} >
           <div className='status__prepend'>
             <div className='status__prepend-icon-wrapper'><i className='fa fa-fw fa-retweet status__prepend-icon' /></div>
             <FormattedMessage id='status.reblogged_by' defaultMessage='{name} boosted' values={{ name: <a onClick={this.handleAccountClick} data-id={status.getIn(['account', 'id'])} href={status.getIn(['account', 'url'])} className='status__display-name muted'><strong dangerouslySetInnerHTML={displayNameHTML} /></a> }} />
@@ -98,7 +161,7 @@ class Status extends ImmutablePureComponent {
     }
 
     return (
-      <div className={`status ${this.props.muted ? 'muted' : ''} status-${status.get('visibility')}`}>
+      <div className={`status ${this.props.muted ? 'muted' : ''} status-${status.get('visibility')}`} data-id={status.get('id')} ref={this.handleRef}>
         <div className='status__info'>
           <a href={status.get('url')} className='status__relative-time' target='_blank' rel='noopener'><RelativeTimestamp timestamp={status.get('created_at')} /></a>
 

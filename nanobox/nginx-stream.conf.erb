@@ -1,0 +1,57 @@
+worker_processes 1;
+daemon off;
+
+events {
+    worker_connections 1024;
+}
+
+http {
+    include /data/etc/nginx/mime.types;
+    sendfile on;
+
+    gzip on;
+    gzip_http_version 1.1;
+    gzip_proxied any;
+    gzip_min_length 500;
+    gzip_disable "MSIE [1-6]\.";
+    gzip_types text/plain text/xml text/javascript text/css text/comma-separated-values application/xml+rss application/xml application/x-javascript application/json application/javascript application/atom+xml;
+
+    # Proxy upstream to the node process
+    upstream node {
+        server 127.0.0.1:4000;
+    }
+
+    map $http_upgrade $connection_upgrade {
+      default upgrade;
+      ''      close;
+    }
+
+    # Configuration for Nginx
+    server {
+        # Listen on port 8080
+        listen 8080;
+
+        add_header Strict-Transport-Security "max-age=31536000";
+        add_header Content-Security-Policy "style-src 'self' 'unsafe-inline'; script-src 'self'; object-src 'self'; img-src data: https:; media-src data: https:; connect-src 'self' wss://<%= ENV["LOCAL_DOMAIN"] %>; upgrade-insecure-requests";
+
+        root /app/public;
+
+        location / {
+            try_files $uri @node;
+        }
+
+        # Proxy connections to node
+        location @node {
+            proxy_set_header Host $host;
+
+            proxy_pass http://node;
+            proxy_buffering off;
+            proxy_redirect off;
+            proxy_http_version 1.1;
+            proxy_set_header Upgrade $http_upgrade;
+            proxy_set_header Connection $connection_upgrade;
+
+            tcp_nodelay on;
+        }
+    }
+}

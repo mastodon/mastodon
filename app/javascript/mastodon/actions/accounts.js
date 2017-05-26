@@ -115,7 +115,8 @@ export function fetchAccountTimeline(id, replace = false) {
     dispatch(fetchAccountTimelineRequest(id, skipLoading));
 
     api(getState).get(`/api/v1/accounts/${id}/statuses`, { params }).then(response => {
-      dispatch(fetchAccountTimelineSuccess(id, response.data, replace, skipLoading));
+      const next = getLinks(response).refs.find(link => link.rel === 'next');
+      dispatch(fetchAccountTimelineSuccess(id, response.data, replace, skipLoading, next));
     }).catch(error => {
       dispatch(fetchAccountTimelineFail(id, error, skipLoading));
     });
@@ -138,7 +139,8 @@ export function fetchAccountMediaTimeline(id, replace = false) {
     dispatch(fetchAccountMediaTimelineRequest(id, skipLoading));
 
     api(getState).get(`/api/v1/accounts/${id}/statuses`, { params }).then(response => {
-      dispatch(fetchAccountMediaTimelineSuccess(id, response.data, replace, skipLoading));
+      const next = getLinks(response).refs.find(link => link.rel === 'next');
+      dispatch(fetchAccountMediaTimelineSuccess(id, response.data, replace, skipLoading, next));
     }).catch(error => {
       dispatch(fetchAccountMediaTimelineFail(id, error, skipLoading));
     });
@@ -283,13 +285,14 @@ export function fetchAccountTimelineRequest(id, skipLoading) {
   };
 };
 
-export function fetchAccountTimelineSuccess(id, statuses, replace, skipLoading) {
+export function fetchAccountTimelineSuccess(id, statuses, replace, skipLoading, next) {
   return {
     type: ACCOUNT_TIMELINE_FETCH_SUCCESS,
     id,
     statuses,
     replace,
     skipLoading,
+    next,
   };
 };
 
@@ -311,13 +314,14 @@ export function fetchAccountMediaTimelineRequest(id, skipLoading) {
   };
 };
 
-export function fetchAccountMediaTimelineSuccess(id, statuses, replace, skipLoading) {
+export function fetchAccountMediaTimelineSuccess(id, statuses, replace, skipLoading, next) {
   return {
     type: ACCOUNT_MEDIA_TIMELINE_FETCH_SUCCESS,
     id,
     statuses,
     replace,
     skipLoading,
+    next,
   };
 };
 
