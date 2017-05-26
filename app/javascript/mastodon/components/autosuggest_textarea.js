@@ -4,6 +4,7 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
 import { isRtl } from '../rtl';
 import ImmutablePureComponent from 'react-immutable-pure-component';
+import Textarea from 'react-textarea-autosize';
 
 const textAtCursorMatchesToken = (str, caretPosition) => {
   let word;
@@ -68,10 +69,6 @@ class AutosuggestTextarea extends ImmutablePureComponent {
       this.setState({ lastToken: null });
       this.props.onSuggestionsClearRequested();
     }
-
-    // auto-resize textarea
-    e.target.style.height = 'auto';
-    e.target.style.height = `${e.target.scrollHeight}px`;
 
     this.props.onChange(e);
   }
@@ -160,10 +157,6 @@ class AutosuggestTextarea extends ImmutablePureComponent {
     }
   }
 
-  reset () {
-    this.textarea.style.height = 'auto';
-  }
-
   render () {
     const { value, suggestions, disabled, placeholder, onKeyUp, autoFocus } = this.props;
     const { suggestionsHidden, selectedSuggestion } = this.state;
@@ -175,8 +168,8 @@ class AutosuggestTextarea extends ImmutablePureComponent {
 
     return (
       <div className='autosuggest-textarea'>
-        <textarea
-          ref={this.setTextarea}
+        <Textarea
+          inputRef={this.setTextarea}
           className='autosuggest-textarea__textarea'
           disabled={disabled}
           placeholder={placeholder}
