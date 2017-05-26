@@ -505,6 +505,25 @@ $accent-border-color: #52b03b;
   color: $text-color;
 }
 
+.tabs-bar {
+  background-color: $accent-background-color;
+}
+
+.tabs-bar__link {
+  border-color: darken($accent-background-color, 10%);
+}
+
+.tabs-bar__link.active {
+  border-color: $accent-text-color;
+  color: $accent-text-color;
+}
+
+.tabs-bar__link:hover,
+.tabs-bar__link:focus,
+.tabs-bar__link:active {
+  background-color: lighten($accent-background-color, 5%);
+}
+
 // Customize retweet button
 
 button.icon-button i.fa-retweet {
