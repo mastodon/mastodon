@@ -1,3 +1,5 @@
+const perf = require('./performance');
+
 // allow override variables here
 require.context('../../assets/stylesheets/', false, /variables.*\.scss$/);
 
@@ -14,10 +16,10 @@ function onDomContentLoaded(callback) {
 }
 
 function main() {
+  perf.start('main()');
   const Mastodon = require('mastodon/containers/mastodon').default;
   const React = require('react');
   const ReactDOM = require('react-dom');
-  window.Perf = require('react-addons-perf');
 
   require.context('../images/', true);
 
@@ -29,6 +31,7 @@ function main() {
     const props = JSON.parse(mountNode.getAttribute('data-props'));
 
     ReactDOM.render(<Mastodon {...props} />, mountNode);
+    perf.stop('main()');
   });
 }
 

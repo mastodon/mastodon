@@ -27,12 +27,6 @@ class BoostModal extends ImmutablePureComponent {
     intl: PropTypes.object.isRequired,
   };
 
-  constructor (props, context) {
-    super(props, context);
-    this.handleReblog = this.handleReblog.bind(this);
-    this.handleAccountClick = this.handleAccountClick.bind(this);
-  }
-
   handleReblog = () => {
     this.props.onReblog(this.props.status);
     this.props.onClose();

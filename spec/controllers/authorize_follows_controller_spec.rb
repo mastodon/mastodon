@@ -48,7 +48,7 @@ describe AuthorizeFollowsController do
         get :show, params: { acct: 'http://example.com' }
 
         expect(response).to have_http_status(:success)
-        expect(service).to have_received(:call).with('http://example.com')
+        expect(assigns(:account)).to eq account
       end
 
       it 'sets account from acct uri' do
@@ -60,7 +60,7 @@ describe AuthorizeFollowsController do
         get :show, params: { acct: 'acct:found@hostname' }
 
         expect(response).to have_http_status(:success)
-        expect(service).to have_received(:call).with('found@hostname')
+        expect(assigns(:account)).to eq account
       end
     end
   end

@@ -17,6 +17,7 @@ import MediaItem from './components/media_item';
 import HeaderContainer from '../account_timeline/containers/header_container';
 import { FormattedMessage } from 'react-intl';
 import { ScrollContainer } from 'react-router-scroll';
+import LoadMore from '../../components/load_more';
 
 const mapStateToProps = (state, props) => ({
   medias: getAccountGallery(state, Number(props.params.accountId)),
@@ -48,16 +49,30 @@ class AccountGallery extends ImmutablePureComponent {
     }
   }
 
-  handleScroll = (e) => {
-    const { scrollTop, scrollHeight, clientHeight } = e.target;
-
-    if (scrollTop === scrollHeight - clientHeight) {
+  handleScrollToBottom = () => {
+    if (this.props.hasMore) {
       this.props.dispatch(expandAccountMediaTimeline(Number(this.props.params.accountId)));
     }
   }
 
+  handleScroll = (e) => {
+    const { scrollTop, scrollHeight, clientHeight } = e.target;
+    const offset = scrollHeight - scrollTop - clientHeight;
+
+    if (150 > offset && !this.props.isLoading) {
+      this.handleScrollToBottom();
+    }
+  }
+
+  handleLoadMore = (e) => {
+    e.preventDefault();
+    this.handleScrollToBottom();
+  }
+
   render () {
-    const { medias, autoPlayGif, isLoading } = this.props;
+    const { medias, autoPlayGif, isLoading, hasMore } = this.props;
+
+    let loadMore = null;
 
     if (!medias && isLoading) {
       return (
@@ -65,6 +80,10 @@ class AccountGallery extends ImmutablePureComponent {
           <LoadingIndicator />
         </Column>
       );
+    }
+
+    if (!isLoading && medias.size > 0 && hasMore) {
+      loadMore = <LoadMore onClick={this.handleLoadMore} />;
     }
 
     return (
@@ -87,6 +106,7 @@ class AccountGallery extends ImmutablePureComponent {
                   autoPlayGif={autoPlayGif}
                 />
               )}
+              {loadMore}
             </div>
           </div>
         </ScrollContainer>

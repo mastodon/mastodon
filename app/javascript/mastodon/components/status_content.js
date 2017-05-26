@@ -65,6 +65,10 @@ class StatusContent extends React.PureComponent {
   }
 
   handleMouseUp = (e) => {
+    if (!this.startXY) {
+      return;
+    }
+
     const [ startX, startY ] = this.startXY;
     const [ deltaX, deltaY ] = [Math.abs(e.clientX - startX), Math.abs(e.clientY - startY)];
 
