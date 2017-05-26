@@ -49,11 +49,11 @@ class Column extends React.PureComponent {
     this._interruptScrollAnimation = scrollTop(scrollable);
   }
 
-  handleScroll = () => {
+  handleScroll = debounce(() => {
     if (typeof this._interruptScrollAnimation !== 'undefined') {
       this._interruptScrollAnimation();
     }
-  }
+  }, 200)
 
   setRef = (c) => {
     this.node = c;
@@ -75,7 +75,7 @@ class Column extends React.PureComponent {
         role='region'
         aria-labelledby={columnHeaderId}
         className='column'
-        onScroll={debounce(this.handleScroll, 200)}>
+        onScroll={this.handleScroll}>
         {header}
         {children}
       </div>
