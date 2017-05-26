@@ -74,8 +74,6 @@ ActiveRecord::Schema.define(version: 20170525214746) do
   create_table "boosts_mutes", force: :cascade do |t|
     t.integer  "account_id",        null: false
     t.integer  "target_account_id", null: false
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
     t.index ["account_id", "target_account_id"], name: "index_boosts_mutes_on_account_id_and_target_account_id", unique: true, using: :btree
   end
 
