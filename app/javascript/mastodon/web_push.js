@@ -1,3 +1,7 @@
+import axios from 'axios';
+import { store } from './containers/mastodon';
+import { setBrowserSupport, setSubscription, clearSubscription } from './actions/push_notifications';
+
 // Taken from https://www.npmjs.com/package/web-push
 const urlBase64ToUint8Array = (base64String) => {
   const padding = '='.repeat((4 - base64String.length % 4) % 4);
@@ -32,20 +36,12 @@ const subscribe = (registration) =>
 const unsubscribe = ({ registration, subscription }) =>
   subscription.unsubscribe().then(() => registration);
 
-const sendSubscriptionToBackend = (subscription) => {
-  return fetch('/api/web/settings', {
-    method: 'PUT',
-    credentials: 'same-origin',
-    headers: {
-      'Content-Type': 'application/json',
+const sendSubscriptionToBackend = (subscription) =>
+  axios.put('/api/web/settings', {
+    data: {
+      web_push_subscription: subscription,
     },
-    body: JSON.stringify({
-      data: {
-        web_push_subscription: subscription,
-      },
-    }),
-  });
-};
+  }).then(response => response.data);
 
 const supportsPushNotifications = ('serviceWorker' in navigator && 'PushManager' in window);
 
@@ -59,6 +55,8 @@ export const checkPushSubscriptionStatus = () => new Promise(resolve => {
     .then(({ subscription }) => resolve(subscription !== null))
     .catch(() => resolve(false));
 });
+
+store.dispatch(setBrowserSupport(supportsPushNotifications));
 
 if (supportsPushNotifications) {
   getRegistration()
@@ -77,7 +75,10 @@ if (supportsPushNotifications) {
 
       return subscribe(registration).then(sendSubscriptionToBackend);
     })
+    .then(subscription => store.dispatch(setSubscription(subscription)))
     .catch(error => {
+      store.dispatch(clearSubscription());
+
       try {
         getRegistration()
           .then(getPushSubscription())

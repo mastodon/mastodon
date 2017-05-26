@@ -5,6 +5,7 @@ class CreateWebPushSubscriptions < ActiveRecord::Migration[5.0]
       t.string :endpoint
       t.string :key_p256dh
       t.string :key_auth
+      t.json :data
 
       t.timestamps
     end

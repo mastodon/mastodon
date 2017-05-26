@@ -2306,12 +2306,18 @@ button.icon-button.active i.fa-retweet {
   line-height: 24px;
 }
 
-.setting-toggle__label {
+.setting-toggle__label,
+.setting-meta {
   color: $ui-primary-color;
   display: inline-block;
   margin-bottom: 14px;
   margin-left: 8px;
   vertical-align: middle;
+}
+
+.setting-meta {
+  color: $ui-secondary-color; // TODO: Maybe it should be a bit lighter?
+  float: right;
 }
 
 .empty-column-indicator,

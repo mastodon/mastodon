@@ -9,18 +9,26 @@ export default class ColumnSettings extends React.PureComponent {
 
   static propTypes = {
     settings: ImmutablePropTypes.map.isRequired,
+    pushSettings: ImmutablePropTypes.map.isRequired,
     onChange: PropTypes.func.isRequired,
     onSave: PropTypes.func.isRequired,
     onClear: PropTypes.func.isRequired,
   };
 
+  onPushChange = (key, checked) => {
+    this.props.onChange(['push', ...key], checked);
+  }
+
   render () {
-    const { settings, onChange, onClear } = this.props;
+    const { settings, pushSettings, onChange, onClear } = this.props;
 
     const alertStr = <FormattedMessage id='notifications.column_settings.alert' defaultMessage='Desktop notifications' />;
-    const pushStr = <FormattedMessage id='notifications.column_settings.push' defaultMessage='Push notifications' />;
     const showStr  = <FormattedMessage id='notifications.column_settings.show' defaultMessage='Show in column' />;
     const soundStr = <FormattedMessage id='notifications.column_settings.sound' defaultMessage='Play sound' />;
+
+    const showPushSettings = pushSettings.get('browserSupport') && pushSettings.get('isSubscribed');
+    const pushStr = showPushSettings && <FormattedMessage id='notifications.column_settings.push' defaultMessage='Push notifications' />;
+    const pushMeta = showPushSettings && <FormattedMessage id='notifications.column_settings.push_meta' defaultMessage='This device' />;
 
     return (
       <div>
@@ -32,7 +40,7 @@ export default class ColumnSettings extends React.PureComponent {
 
         <div className='column-settings__row'>
           <SettingToggle prefix='notifications' settings={settings} settingKey={['alerts', 'follow']} onChange={onChange} label={alertStr} />
-          <SettingToggle prefix='notifications' settings={settings} settingKey={['push', 'follow']} onChange={onChange} label={pushStr} />
+          {showPushSettings && <SettingToggle prefix='notifications' settings={pushSettings} settingKey={['alerts', 'follow']} meta={pushMeta} onChange={this.onPushChange} label={pushStr} />}
           <SettingToggle prefix='notifications' settings={settings} settingKey={['shows', 'follow']} onChange={onChange} label={showStr} />
           <SettingToggle prefix='notifications' settings={settings} settingKey={['sounds', 'follow']} onChange={onChange} label={soundStr} />
         </div>
@@ -41,7 +49,7 @@ export default class ColumnSettings extends React.PureComponent {
 
         <div className='column-settings__row'>
           <SettingToggle prefix='notifications' settings={settings} settingKey={['alerts', 'favourite']} onChange={onChange} label={alertStr} />
-          <SettingToggle prefix='notifications' settings={settings} settingKey={['push', 'favourite']} onChange={onChange} label={pushStr} />
+          {showPushSettings && <SettingToggle prefix='notifications' settings={pushSettings} settingKey={['alerts', 'favourite']} meta={pushMeta} onChange={this.onPushChange} label={pushStr} />}
           <SettingToggle prefix='notifications' settings={settings} settingKey={['shows', 'favourite']} onChange={onChange} label={showStr} />
           <SettingToggle prefix='notifications' settings={settings} settingKey={['sounds', 'favourite']} onChange={onChange} label={soundStr} />
         </div>
@@ -50,7 +58,7 @@ export default class ColumnSettings extends React.PureComponent {
 
         <div className='column-settings__row'>
           <SettingToggle prefix='notifications' settings={settings} settingKey={['alerts', 'mention']} onChange={onChange} label={alertStr} />
-          <SettingToggle prefix='notifications' settings={settings} settingKey={['push', 'mention']} onChange={onChange} label={pushStr} />
+          {showPushSettings && <SettingToggle prefix='notifications' settings={pushSettings} settingKey={['alerts', 'mention']} meta={pushMeta} onChange={this.onPushChange} label={pushStr} />}
           <SettingToggle prefix='notifications' settings={settings} settingKey={['shows', 'mention']} onChange={onChange} label={showStr} />
           <SettingToggle prefix='notifications' settings={settings} settingKey={['sounds', 'mention']} onChange={onChange} label={soundStr} />
         </div>
@@ -59,7 +67,7 @@ export default class ColumnSettings extends React.PureComponent {
 
         <div className='column-settings__row'>
           <SettingToggle prefix='notifications' settings={settings} settingKey={['alerts', 'reblog']} onChange={onChange} label={alertStr} />
-          <SettingToggle prefix='notifications' settings={settings} settingKey={['push', 'reblog']} onChange={onChange} label={pushStr} />
+          {showPushSettings && <SettingToggle prefix='notifications' settings={pushSettings} settingKey={['alerts', 'reblog']} meta={pushMeta} onChange={this.onPushChange} label={pushStr} />}
           <SettingToggle prefix='notifications' settings={settings} settingKey={['shows', 'reblog']} onChange={onChange} label={showStr} />
           <SettingToggle prefix='notifications' settings={settings} settingKey={['sounds', 'reblog']} onChange={onChange} label={soundStr} />
         </div>

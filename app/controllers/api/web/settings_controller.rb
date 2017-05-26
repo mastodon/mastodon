@@ -8,8 +8,11 @@ class Api::Web::SettingsController < Api::BaseController
   before_action :require_user!
 
   def update
+    # TODO: Move someplace else, something like web/push_subscriptions
     if params[:data].key?(:web_push_subscription)
       save_subscription
+    elsif params[:data].key?(:web_push_subscription_id)
+      update_subscription
     else
       setting.data = params[:data]
       setting.save!
@@ -34,20 +37,13 @@ class Api::Web::SettingsController < Api::BaseController
     current_account.web_push_subscriptions << web_subscription
     current_account.save!
 
-    Webpush.payload_send(
-      message: JSON.generate(
-        title: translate('push_notifications.subscribed.title'),
-        options: {
-          body: translate('push_notifications.subscribed.body'),
-        }
-      ),
-      endpoint: web_subscription.endpoint,
-      p256dh: web_subscription.key_p256dh,
-      auth: web_subscription.key_auth,
-      vapid: {
-        private_key: Redis.current.get('vapid_private_key'),
-        public_key: Redis.current.get('vapid_public_key'),
-      }
-    )
+    render json: web_subscription.as_payload, status: 200
+  end
+
+  def update_subscription
+    web_subscription = WebPushSubscription.find(params[:data][:web_push_subscription_id])
+
+    web_subscription.data = params[:data]
+    web_subscription.save!
   end
 end
