@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import IconButton from './icon_button';
 import DropdownMenu from './dropdown_menu';
 import { defineMessages, injectIntl } from 'react-intl';
+import ImmutablePureComponent from 'react-immutable-pure-component';
 
 const messages = defineMessages({
   delete: { id: 'status.delete', defaultMessage: 'Delete' },
@@ -21,7 +22,7 @@ const messages = defineMessages({
   unmuteConversation: { id: 'status.unmute_conversation', defaultMessage: 'Unmute conversation' },
 });
 
-class StatusActionBar extends React.PureComponent {
+class StatusActionBar extends ImmutablePureComponent {
 
   static contextTypes = {
     router: PropTypes.object,
@@ -42,6 +43,14 @@ class StatusActionBar extends React.PureComponent {
     withDismiss: PropTypes.bool,
     intl: PropTypes.object.isRequired,
   };
+
+  // Avoid checking props that are functions (and whose equality will always
+  // evaluate to false. See react-immutable-pure-component for usage.
+  updateOnProps = [
+    'status',
+    'me',
+    'withDismiss',
+  ]
 
   handleReplyClick = () => {
     this.props.onReply(this.props.status, this.context.router);
