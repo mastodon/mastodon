@@ -111,7 +111,7 @@ class Status extends ImmutablePureComponent {
     const { isHidden } = this.state;
 
     if (status === null) {
-      return <div ref={this.handleRef} data-id={status.get('id')} />;
+      return null;
     }
 
     if (isIntersecting === false && isHidden) {
