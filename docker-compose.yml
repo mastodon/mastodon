@@ -6,7 +6,7 @@ services:
     image: postgres:alpine
 ### Uncomment to enable DB persistance
     volumes:
-      - ./postgres/data:/var/lib/postgresql/data
+      - ./../../home/mastodon/postgresql/data:/var/lib/postgresql/data
 
   redis:
     restart: always
