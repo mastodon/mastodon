@@ -1,6 +1,7 @@
 import React from 'react';
 import ColumnHeader from './column_header';
 import PropTypes from 'prop-types';
+import { debounce } from 'lodash';
 
 const easingOutQuint = (x, t, b, c, d) => c*((t=t/d-1)*t*t*t*t + 1) + b;
 
@@ -48,11 +49,11 @@ class Column extends React.PureComponent {
     this._interruptScrollAnimation = scrollTop(scrollable);
   }
 
-  handleWheel = () => {
+  handleScroll = debounce(() => {
     if (typeof this._interruptScrollAnimation !== 'undefined') {
       this._interruptScrollAnimation();
     }
-  }
+  }, 200)
 
   setRef = (c) => {
     this.node = c;
@@ -74,7 +75,7 @@ class Column extends React.PureComponent {
         role='region'
         aria-labelledby={columnHeaderId}
         className='column'
-        onWheel={this.handleWheel}>
+        onScroll={this.handleScroll}>
         {header}
         {children}
       </div>
