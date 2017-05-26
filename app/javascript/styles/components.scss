@@ -1691,7 +1691,7 @@
 }
 
 .autosuggest-textarea__textarea,
-.spoiler-input__input {
+.spoiler-textarea__textarea {
   display: block;
   box-sizing: border-box;
   width: 100%;
@@ -1703,6 +1703,7 @@
   resize: vertical;
   border: 0;
   outline: 0;
+  resize: none;
 
   &:focus {
     outline: 0;
@@ -1713,7 +1714,8 @@
   }
 }
 
-.spoiler-input__input {
+.spoiler-textarea__textarea {
+  min-height: 100px;
   border-radius: 4px;
 }
 
