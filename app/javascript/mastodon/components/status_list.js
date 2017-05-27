@@ -70,7 +70,9 @@ class StatusList extends ImmutablePureComponent {
         entries.forEach(entry => {
           const statusId = entry.target.getAttribute('data-id');
 
-          state.isIntersecting[statusId] = entry.isIntersecting;
+          // Edge 15 doesn't support isIntersecting, but we can infer it from intersectionRatio
+          // https://developer.microsoft.com/en-us/microsoft-edge/platform/issues/12156111/
+          state.isIntersecting[statusId] = entry.intersectionRatio > 0;
         });
 
         // isIntersecting is a map of DOM data-id's to booleans (true for
