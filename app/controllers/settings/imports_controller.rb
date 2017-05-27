@@ -11,24 +11,27 @@ class Settings::ImportsController < ApplicationController
   end
 
   def create
-    @import = Import.new(import_params)
+    if params[:import].nil?
+      @import = Import.new
+      render :show
+      return
+    end
+
+    @import = Import.new(params[:import].permit(:data, :type))
     @import.account = @account
 
-    if @import.save
-      ImportWorker.perform_async(@import.id)
-      redirect_to settings_import_path, notice: I18n.t('imports.success')
-    else
+    unless @import.save
       render :show
+      return
     end
+
+    ImportWorker.perform_async(@import.id)
+    redirect_to settings_import_path, notice: I18n.t('imports.success')
   end
 
   private
 
   def set_account
     @account = current_user.account
-  end
-
-  def import_params
-    params.require(:import).permit(:data, :type)
   end
 end

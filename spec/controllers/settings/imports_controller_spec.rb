@@ -40,5 +40,10 @@ RSpec.describe Settings::ImportsController, type: :controller do
 
       expect(response).to redirect_to(settings_import_path)
     end
+
+    it 'renders :show if import parameter is missing' do
+      post :create
+      expect(response).to render_template :show
+    end
   end
 end
