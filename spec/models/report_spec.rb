@@ -21,4 +21,6 @@ describe Report do
       expect(report.media_attachments).to eq [media_attachment]
     end
   end
+
+  it_behaves_like 'RecentOrderable', :report
 end
