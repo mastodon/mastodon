@@ -27,7 +27,7 @@ class Api::V1::DomainBlocksController < Api::BaseController
   private
 
   def load_domain_blocks
-    account_domain_blocks.paginate_by_max_id(
+    account_domain_blocks.paginate_by_recent(
       limit_param(BLOCK_LIMIT),
       params[:max_id],
       params[:since_id]

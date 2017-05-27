@@ -27,7 +27,7 @@ class Api::V1::Accounts::FollowerAccountsController < Api::BaseController
   end
 
   def paginated_follows
-    Follow.where(target_account: @account).paginate_by_max_id(
+    Follow.where(target_account: @account).paginate_by_recent(
       limit_param(DEFAULT_ACCOUNTS_LIMIT),
       params[:max_id],
       params[:since_id]

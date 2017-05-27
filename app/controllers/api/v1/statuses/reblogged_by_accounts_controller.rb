@@ -25,7 +25,7 @@ class Api::V1::Statuses::RebloggedByAccountsController < Api::BaseController
   end
 
   def paginated_statuses
-    Status.where(reblog_of_id: @status.id).paginate_by_max_id(
+    Status.where(reblog_of_id: @status.id).paginate_by_recent(
       limit_param(DEFAULT_ACCOUNTS_LIMIT),
       params[:max_id],
       params[:since_id]

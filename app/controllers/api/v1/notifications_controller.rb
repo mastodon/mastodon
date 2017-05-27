@@ -35,7 +35,7 @@ class Api::V1::NotificationsController < Api::BaseController
   end
 
   def paginated_notifications
-    browserable_account_notifications.paginate_by_max_id(
+    browserable_account_notifications.paginate_by_recent(
       limit_param(DEFAULT_NOTIFICATIONS_LIMIT),
       params[:max_id],
       params[:since_id]

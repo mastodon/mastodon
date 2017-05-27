@@ -513,4 +513,6 @@ RSpec.describe Status, type: :model do
       expect(Status.create(account: alice, thread: parent, text: 'Response').conversation_id).to eq parent.conversation_id
     end
   end
+
+  it_behaves_like 'RecentOrderable', :status
 end

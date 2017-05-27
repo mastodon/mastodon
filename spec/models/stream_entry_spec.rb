@@ -74,4 +74,6 @@ RSpec.describe StreamEntry, type: :model do
       end
     end
   end
+
+  it_behaves_like 'RecentOrderable', :stream_entry
 end

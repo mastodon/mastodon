@@ -1,5 +1,3 @@
 Fabricator(:stream_entry) do
-  account
-  activity { Fabricate(:status) }
-  hidden { [true, false].sample }
+  initialize_with { Fabricate(:status).stream_entry }
 end

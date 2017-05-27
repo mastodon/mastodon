@@ -34,6 +34,7 @@
 #
 
 class User < ApplicationRecord
+  include RecentOrderable
   include Settings::Extend
   ACTIVE_DURATION = 14.days
 
@@ -49,7 +50,6 @@ class User < ApplicationRecord
   validates :locale, inclusion: I18n.available_locales.map(&:to_s), if: :locale?
   validates_with BlacklistedEmailValidator, if: :email_changed?
 
-  scope :recent,    -> { order(id: :desc) }
   scope :admins,    -> { where(admin: true) }
   scope :confirmed, -> { where.not(confirmed_at: nil) }
   scope :inactive, -> { where(arel_table[:current_sign_in_at].lt(ACTIVE_DURATION.ago)) }

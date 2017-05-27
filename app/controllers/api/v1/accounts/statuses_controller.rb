@@ -35,7 +35,7 @@ class Api::V1::Accounts::StatusesController < Api::BaseController
   end
 
   def default_statuses
-    permitted_account_statuses.paginate_by_max_id(
+    permitted_account_statuses.paginate_by_recent(
       limit_param(DEFAULT_STATUSES_LIMIT),
       params[:max_id],
       params[:since_id]

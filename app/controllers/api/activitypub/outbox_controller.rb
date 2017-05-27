@@ -28,7 +28,7 @@ class Api::ActivityPub::OutboxController < Api::BaseController
 
   def show_outbox_page
     all_statuses = Status.as_outbox_timeline(@account)
-    @statuses = all_statuses.paginate_by_max_id(limit_param(DEFAULT_STATUSES_LIMIT), params[:max_id], params[:since_id])
+    @statuses = all_statuses.paginate_by_recent(limit_param(DEFAULT_STATUSES_LIMIT), params[:max_id], params[:since_id])
 
     all_statuses = cache_collection(all_statuses)
     @statuses = cache_collection(@statuses)

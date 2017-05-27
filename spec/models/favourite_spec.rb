@@ -26,4 +26,6 @@ RSpec.describe Favourite, type: :model do
       expect(favourite.status).to eq status
     end
   end
+
+  it_behaves_like 'RecentOrderable', :favourite
 end

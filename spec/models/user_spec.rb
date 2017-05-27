@@ -48,14 +48,6 @@ RSpec.describe User, type: :model do
   end
 
   describe 'scopes' do
-    describe 'recent' do
-      it 'returns an array of recent users ordered by id' do
-        user_1 = Fabricate(:user)
-        user_2 = Fabricate(:user)
-        expect(User.recent).to eq [user_2, user_1]
-      end
-    end
-
     describe 'admins' do
       it 'returns an array of users who are admin' do
         user_1 = Fabricate(:user, admin: false)
@@ -260,6 +252,8 @@ RSpec.describe User, type: :model do
       end
     end
   end
+
+  it_behaves_like 'RecentOrderable', :user
 
   it_behaves_like 'Settings-extended' do
     def create!

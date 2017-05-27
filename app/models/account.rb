@@ -46,6 +46,7 @@ class Account < ApplicationRecord
   include AccountHeader
   include AccountInteractions
   include Attachmentable
+  include RecentOrderable
   include Remotable
 
   # Local users
@@ -87,7 +88,6 @@ class Account < ApplicationRecord
   scope :partitioned, -> { order('row_number() over (partition by domain)') }
   scope :silenced, -> { where(silenced: true) }
   scope :suspended, -> { where(suspended: true) }
-  scope :recent, -> { reorder(id: :desc) }
   scope :alphabetic, -> { order(domain: :asc, username: :asc) }
   scope :by_domain_accounts, -> { group(:domain).select(:domain, 'COUNT(*) AS accounts_count').order('accounts_count desc') }
   scope :matches_username, ->(value) { where(arel_table[:username].matches("#{value}%")) }
