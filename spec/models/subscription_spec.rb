@@ -64,4 +64,6 @@ RSpec.describe Subscription, type: :model do
       expect(subscription.expires_at).to be_within(1.0).of(expected)
     end
   end
+
+  it_behaves_like 'RecentOrderable', :subscription
 end

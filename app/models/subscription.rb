@@ -16,6 +16,8 @@
 #
 
 class Subscription < ApplicationRecord
+  include RecentOrderable
+
   MIN_EXPIRATION = 7.days.seconds.to_i
   MAX_EXPIRATION = 30.days.seconds.to_i
 
