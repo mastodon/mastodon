@@ -27,9 +27,9 @@ services:
       - db
       - redis
     volumes:
-      - ./../../home/mastodon/public/assets:/mastodon/public/assets
-      - ./../../home/mastodon/public/packs:/mastodon/public/packs
-      - ./../../home/mastodon/public/system:/mastodon/public/system
+      - ./public/assets:/mastodon/public/assets
+      - ./public/packs:/mastodon/public/packs
+      - ./public/system:/mastodon/public/system
 
   streaming:
     build: .
@@ -53,7 +53,7 @@ services:
       - db
       - redis
     volumes:
-      - ./../../home/mastodon/public/system:/mastodon/public/system
+      - ./public/system:/mastodon/public/system
 
   sidekiq2:
     restart: always
@@ -65,7 +65,7 @@ services:
       - db
       - redis
     volumes:
-      - ./../../home/mastodon/public/system:/mastodon/public/system
+      - ./public/system:/mastodon/public/system
 
   sidekiq3:
     restart: always
@@ -77,7 +77,7 @@ services:
       - db
       - redis
     volumes:
-      - ./../../home/mastodon/public/system:/mastodon/public/system
+      - ./public/system:/mastodon/public/system
 
   sidekiq4:
     restart: always
@@ -89,7 +89,7 @@ services:
       - db
       - redis
     volumes:
-      - ./../../home/mastodon/public/system:/mastodon/public/system
+      - ./public/system:/mastodon/public/system
 
   sidekiq5:
     restart: always
@@ -101,7 +101,7 @@ services:
       - db
       - redis
     volumes:
-      - ./../../home/mastodon/public/system:/mastodon/public/system
+      - ./public/system:/mastodon/public/system
 
 #  sidekiq6:
 #    restart: always
