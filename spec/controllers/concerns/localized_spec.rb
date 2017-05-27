@@ -61,6 +61,17 @@ describe ApplicationController, type: :controller do
     end
   end
 
+  context 'user with valid locale has signed in' do
+    it "sets user's locale" do
+      user = Fabricate(:user, locale: :ca)
+
+      sign_in(user)
+      get 'success'
+
+      expect(I18n.locale).to eq :ca
+    end
+  end
+
   context 'user with invalid locale has signed in' do
     before do
       user = Fabricate.build(:user, locale: :invalid)
