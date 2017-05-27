@@ -8,8 +8,9 @@ RSpec.describe Settings::ImportsController, type: :controller do
   end
 
   describe "GET #show" do
-    it "returns http success" do
+    it "renders import" do
       get :show
+      expect(assigns(:import)).to be_instance_of Import
       expect(response).to have_http_status(:success)
     end
   end
@@ -17,7 +18,8 @@ RSpec.describe Settings::ImportsController, type: :controller do
   describe 'POST #create' do
     it 'redirects to settings path with successful following import' do
       service = double(call: nil)
-      allow(ResolveRemoteAccountService).to receive(:new).and_return(service)
+      expect(ResolveRemoteAccountService).to receive(:new).and_return(service).twice
+
       post :create, params: {
         import: {
           type: 'following',
@@ -30,7 +32,8 @@ RSpec.describe Settings::ImportsController, type: :controller do
 
     it 'redirects to settings path with successful blocking import' do
       service = double(call: nil)
-      allow(ResolveRemoteAccountService).to receive(:new).and_return(service)
+      expect(ResolveRemoteAccountService).to receive(:new).and_return(service).twice
+
       post :create, params: {
         import: {
           type: 'blocking',
@@ -39,6 +42,11 @@ RSpec.describe Settings::ImportsController, type: :controller do
       }
 
       expect(response).to redirect_to(settings_import_path)
+    end
+
+    it 'renders :show if failed to save' do
+      post :create, params: { import: { } }
+      expect(response).to render_template :show
     end
 
     it 'renders :show if import parameter is missing' do
