@@ -1,8 +1,5 @@
 const perf = require('./performance');
 
-// allow override variables here
-require.context('../../assets/stylesheets/', false, /variables.*\.scss$/);
-
 // import default stylesheet with variables
 require('font-awesome/css/font-awesome.css');
 require('../styles/application.scss');
@@ -22,9 +19,6 @@ function main() {
   const ReactDOM = require('react-dom');
 
   require.context('../images/', true);
-
-  // import customization styles
-  require.context('../../assets/stylesheets/', false, /custom.*\.scss$/);
 
   onDomContentLoaded(() => {
     const mountNode = document.getElementById('mastodon');

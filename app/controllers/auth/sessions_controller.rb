@@ -12,13 +12,13 @@ class Auth::SessionsController < Devise::SessionsController
   def create
     super do |resource|
       remember_me(resource)
-      flash[:notice] = nil
+      flash.delete(:notice)
     end
   end
 
   def destroy
     super
-    flash[:notice] = nil
+    flash.delete(:notice)
   end
 
   protected
