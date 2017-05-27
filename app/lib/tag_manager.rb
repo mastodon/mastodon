@@ -90,7 +90,7 @@ class TagManager
 
     case target.object_type
     when :person
-      account_url(target)
+      account_url(target).gsub(Rails.configuration.x.web_domain, Rails.configuration.x.local_domain)
     when :note, :comment, :activity
       unique_tag(target.created_at, target.id, 'Status')
     else
