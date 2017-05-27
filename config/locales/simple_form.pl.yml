@@ -6,11 +6,15 @@ pl:
         avatar: PNG, GIF lub JPG. Maksymalnie 2MB. Zostanie zmniejszony do 120x120px
         display_name:
           one: 'Pozostał <span class="name-counter">1</span> znak.'
+          few: 'Pozostały <span class="name-counter">%{count}</span> znaki.'
+          many: 'Pozostało <span class="name-counter">%{count}</span> znaków'
           other: 'Pozostało <span class="name-counter">%{count}</span> znaków'
         header: PNG, GIF lub JPG. Maksymalnie 2MB. Zostanie zmniejszony do 700x335px
         locked: Musisz akceptować obserwacje; Twoje wpisy są domyślnie widoczne tylko dla Twoich obserwujących
         note:
           one: 'Pozostał <span class="name-counter">1</span> znak.'
+          few: 'Pozostały <span class="name-counter">%{count}</span> znaki.'
+          many: 'Pozostało <span class="name-counter">%{count}</span> znaków'
           other: 'Pozostało <span class="name-counter">%{count}</span> znaków'
       imports:
         data: Plik CSV wyeksportowany z innej instancji Mastodona

@@ -243,8 +243,8 @@ pl:
     lock_link: Zablokuj swoje konto
     purge: Usuń z obserwujących
     success:
-      one: W procesie usuwania obserwujcych z jednej domeny…
-      other: W procesie usuwania obserwujących z %{count} domen…
+      one: W trakcie usuwania obserwujcych z jednej domeny…
+      other: W trakcie usuwania obserwujących z %{count} domen…
     true_privacy_html: Pamiętaj, że <strong>rzeczywista prywatność może zostać uzyskana wyłącznie dzięki szyfrowaniu end-to-end</strong>.
     unlocked_warning_html: Każdy może cię zaobserwować, aby natychmiastowo zobaczyć twoje statusy. %{lock_link} aby móc kontrolować obserwujących.
     unlocked_warning_title: Twoje konto nie jest zablokowane
@@ -275,9 +275,13 @@ pl:
       mention: "%{name} wspomniał o Tobie w:"
       new_followers_summary:
         one: Śledzi Cię nowa osoba! Gratulacje!
-        other: Kilka (%{count}) nowych osób Cię śledzi! Wspaniale!
+        few: (%{count}) nowe osoby śledzą Cię!
+        many: (%{count}) nowych osób Cię śledzi! Wspaniale!
+        other: (%{count}) nowych osób Cię śledzi! Wspaniale!
       subject:
         one: "1 nowe powiadomienie od Twojej ostatniej wizyty \U0001F418"
+        few: "%{count} nowe powiadomienia od Twojej ostatniej wizyty \U0001F418"
+        many: "%{count} nowych powiadomień od Twojej ostatniej wizyty \U0001F418"
         other: "%{count} nowych powiadomień od Twojej ostatniej wizyty \U0001F418"
     favourite:
       body: 'Twój wpis został polubiony przez %{name}:'
