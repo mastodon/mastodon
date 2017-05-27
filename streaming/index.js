@@ -1,5 +1,5 @@
 import os from 'os';
-import cluster from 'cluster';
+import throng from 'throng';
 import dotenv from 'dotenv';
 import express from 'express';
 import http from 'http';
@@ -65,24 +65,15 @@ const redisUrlToClient = (defaultConfig, redisUrl) => {
   }));
 };
 
-if (cluster.isMaster) {
-  // Cluster master
-  const core = +process.env.STREAMING_CLUSTER_NUM || (env === 'development' ? 1 : Math.max(os.cpus().length - 1, 1));
+const numWorkers = +process.env.STREAMING_CLUSTER_NUM || (env === 'development' ? 1 : Math.max(os.cpus().length - 1, 1));
 
-  const fork = () => {
-    const worker = cluster.fork();
+const startMaster = () => {
+  log.info(`Starting streaming API server master with ${numWorkers} workers`);
+};
 
-    worker.on('exit', (code, signal) => {
-      log.error(`Worker died with exit code ${code}, signal ${signal} received.`);
-      setTimeout(() => fork(), 0);
-    });
-  };
+const startWorker = (workerId) => {
+  log.info(`Starting worker ${workerId}`);
 
-  for (let i = 0; i < core; i++) fork();
-
-  log.info(`Starting streaming API server master with ${core} workers`);
-} else {
-  // Cluster worker
   const pgConfigs = {
     development: {
       database: 'mastodon_development',
@@ -403,14 +394,27 @@ if (cluster.isMaster) {
 
   server.listen(process.env.PORT || 4000, () => {
     log.level = process.env.LOG_LEVEL || 'verbose';
-    log.info(`Starting streaming API server worker on ${server.address().address}:${server.address().port}`);
+    log.info(`Worker ${workerId} now listening on ${server.address().address}:${server.address().port}`);
   });
 
-  process.on('SIGINT', exit);
-  process.on('SIGTERM', exit);
-  process.on('exit', exit);
-
-  function exit() {
+  const onExit = () => {
+    log.error(`Worker ${workerId} exiting, bye bye`);
     server.close();
-  }
-}
+  };
+
+  const onError = (err) => {
+    log.error(err);
+  };
+
+  process.on('SIGINT', onExit);
+  process.on('SIGTERM', onExit);
+  process.on('exit', onExit);
+  process.on('error', onError);
+};
+
+throng({
+  workers: numWorkers,
+  lifetime: Infinity,
+  start: startWorker,
+  master: startMaster,
+});
