@@ -561,7 +561,7 @@
   }
 
   opacity: 1;
-  animation: fade 0.3s linear;
+  animation: fade 150ms linear;
 
   &.status-direct {
     background: lighten($ui-base-color, 8%);
@@ -3013,13 +3013,14 @@ button.icon-button.active i.fa-retweet {
 
 .onboarding-modal__page-one {
   display: flex;
+  align-items: center;
 }
 
 .onboarding-modal__page-one__elephant-friend {
-  background: url('../images/elephant-friend.png') no-repeat center center / contain;
-  width: 147px;
-  height: 160px;
-  margin-right: 10px;
+  background: url('../images/elephant-friend-1.png') no-repeat center center / contain;
+  width: 155px;
+  height: 193px;
+  margin-right: 15px;
 }
 
 @media screen and (max-width: 400px) {

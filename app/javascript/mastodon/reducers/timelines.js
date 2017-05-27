@@ -91,19 +91,6 @@ const initialState = Immutable.Map({
 });
 
 const normalizeStatus = (state, status) => {
-  const replyToId = status.get('in_reply_to_id');
-  const id        = status.get('id');
-
-  if (replyToId) {
-    if (!state.getIn(['descendants', replyToId], Immutable.List()).includes(id)) {
-      state = state.updateIn(['descendants', replyToId], Immutable.List(), set => set.push(id));
-    }
-
-    if (!state.getIn(['ancestors', id], Immutable.List()).includes(replyToId)) {
-      state = state.updateIn(['ancestors', id], Immutable.List(), set => set.push(replyToId));
-    }
-  }
-
   return state;
 };
 
