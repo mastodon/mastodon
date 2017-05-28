@@ -81,7 +81,7 @@ if (supportsPushNotifications) {
 
       try {
         getRegistration()
-          .then(getPushSubscription())
+          .then(getPushSubscription)
           .then(unsubscribe);
       } catch (e) {
 

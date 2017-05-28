@@ -37,7 +37,7 @@ class Api::Web::SettingsController < Api::BaseController
     current_account.web_push_subscriptions << web_subscription
     current_account.save!
 
-    render json: web_subscription.as_payload, status: 200
+    render json: web_subscription.as_payload
   end
 
   def update_subscription
