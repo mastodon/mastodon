@@ -25,5 +25,10 @@ RSpec.describe Settings::ProfilesController, type: :controller do
       expect(response).to redirect_to(settings_profile_path)
       expect(ActivityPub::UpdateDistributionWorker).to have_received(:perform_async).with(account.id)
     end
+
+    it 'renders :show if parameter is missing' do
+      put :update
+      expect(response).to render_template :show
+    end
   end
 end
