@@ -245,6 +245,7 @@ const startWorker = (workerId) => {
 
           if (Array.isArray(req.filteredLanguages) && req.filteredLanguages.includes(unpackedPayload.language)) {
             log.silly(req.requestId, `Message ${unpackedPayload.id} filtered by language (${unpackedPayload.language})`);
+            done();
             return;
           }
 
