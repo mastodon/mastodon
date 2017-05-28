@@ -44,20 +44,41 @@ class Status extends ImmutablePureComponent {
     isHidden: false,
   }
 
+  // Avoid checking props that are functions (and whose equality will always
+  // evaluate to false. See react-immutable-pure-component for usage.
+  updateOnProps = [
+    'status',
+    'account',
+    'wrapped',
+    'me',
+    'boostModal',
+    'autoPlayGif',
+    'muted',
+  ]
+
+  updateOnStates = []
+
+  shouldComponentUpdate (nextProps, nextState) {
+    if (nextProps.isIntersecting === false && nextState.isHidden) {
+      // It's only if we're not intersecting (i.e. offscreen) and isHidden is true
+      // that either "isIntersecting" or "isHidden" matter, and then they're
+      // the only things that matter.
+      return this.props.isIntersecting !== false || !this.state.isHidden;
+    } else if (nextProps.isIntersecting !== false && this.props.isIntersecting === false) {
+      // If we're going from a non-intersecting state to an intersecting state,
+      // (i.e. offscreen to onscreen), then we definitely need to re-render
+      return true;
+    }
+    // Otherwise, diff based on "updateOnProps" and "updateOnStates"
+    return super.shouldComponentUpdate(nextProps, nextState);
+  }
+
   componentWillReceiveProps (nextProps) {
     if (nextProps.isIntersecting === false && this.props.isIntersecting !== false) {
       requestIdleCallback(() => this.setState({ isHidden: true }));
     } else {
       this.setState({ isHidden: !nextProps.isIntersecting });
     }
-  }
-
-  shouldComponentUpdate (nextProps, nextState) {
-    if (nextProps.isIntersecting === false && this.props.isIntersecting !== false) {
-      return nextState.isHidden;
-    }
-
-    return true;
   }
 
   handleRef = (node) => {
@@ -90,7 +111,7 @@ class Status extends ImmutablePureComponent {
     const { isHidden } = this.state;
 
     if (status === null) {
-      return <div ref={this.handleRef} data-id={status.get('id')} />;
+      return null;
     }
 
     if (isIntersecting === false && isHidden) {

@@ -189,7 +189,7 @@ class ProcessFeedService < BaseService
     def find_status(uri)
       if TagManager.instance.local_id?(uri)
         local_id = TagManager.instance.unique_tag_to_local_id(uri, 'Status')
-        return Status.find(local_id)
+        return Status.find_by(id: local_id)
       end
 
       Status.find_by(uri: uri)
