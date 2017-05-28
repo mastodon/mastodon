@@ -8,35 +8,37 @@ class Settings::PreferencesController < ApplicationController
   def show; end
 
   def update
-    user_settings.update(user_settings_params.to_h)
-
-    if current_user.update(user_params)
-      redirect_to settings_preferences_path, notice: I18n.t('generic.changes_saved_msg')
-    else
+    if params[:user].nil?
       render :show
+      return
     end
-  end
 
-  private
-
-  def user_settings
-    UserSettingsDecorator.new(current_user)
-  end
-
-  def user_params
-    params.require(:user).permit(
-      :locale,
-      filtered_languages: []
-    )
-  end
-
-  def user_settings_params
-    params.require(:user).permit(
+    user_settings_params = params[:user].permit(
       :setting_default_privacy,
       :setting_boost_modal,
       :setting_auto_play_gif,
       notification_emails: %i(follow follow_request reblog favourite mention digest),
       interactions: %i(must_be_follower must_be_following)
     )
+
+    user_settings.update(user_settings_params.to_h)
+
+    user_params = params[:user].permit(
+      :locale,
+      filtered_languages: []
+    )
+
+    unless current_user.update(user_params)
+      render :show
+      return
+    end
+
+    redirect_to settings_preferences_path, notice: I18n.t('generic.changes_saved_msg')
+  end
+
+  private
+
+  def user_settings
+    UserSettingsDecorator.new(current_user)
   end
 end

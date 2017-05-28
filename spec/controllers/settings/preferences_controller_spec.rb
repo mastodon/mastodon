@@ -45,5 +45,10 @@ describe Settings::PreferencesController do
       expect(user.settings['notification_emails']['follow']).to be true
       expect(user.settings['interactions']['must_be_follower']).to be false
     end
+
+    it 'renders :show if user parameter is missing' do
+      put :update
+      expect(response).to render_template :show
+    end
   end
 end
