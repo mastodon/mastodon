@@ -1,20 +1,27 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import MediaModal from './media_modal';
-import OnboardingModal from './onboarding_modal';
-import VideoModal from './video_modal';
-import BoostModal from './boost_modal';
-import ConfirmationModal from './confirmation_modal';
 import TransitionMotion from 'react-motion/lib/TransitionMotion';
 import spring from 'react-motion/lib/spring';
 
-const MODAL_COMPONENTS = {
-  'MEDIA': MediaModal,
-  'ONBOARDING': OnboardingModal,
-  'VIDEO': VideoModal,
-  'BOOST': BoostModal,
-  'CONFIRM': ConfirmationModal,
+const FETCH_COMPONENTS = {
+  'MEDIA': () =>
+    import(/* webpackChunkName: "media_modal" */ './media_modal')
+      .then(Component => MODAL_COMPONENTS.MEDIA = Component.default),
+  'ONBOARDING': () =>
+    import(/* webpackChunkName: "onboarding_modal" */ './onboarding_modal')
+      .then(Component => MODAL_COMPONENTS.ONBOARDING = Component.default),
+  'VIDEO': () =>
+    import(/* webpackChunkName: "video_modal" */ './video_modal')
+      .then(Component => MODAL_COMPONENTS.VIDEO = Component.default),
+  'BOOST': () =>
+    import(/* webpackChunkName: "boost_modal" */ './boost_modal')
+      .then(Component => MODAL_COMPONENTS.BOOST = Component.default),
+  'CONFIRM': () =>
+    import(/* webpackChunkName: "confirmation_modal" */ './confirmation_modal')
+      .then(Component => MODAL_COMPONENTS.CONFIRM = Component.default),
 };
+
+const MODAL_COMPONENTS = { };
 
 class ModalRoot extends React.PureComponent {
 
@@ -69,6 +76,11 @@ class ModalRoot extends React.PureComponent {
           <div className='modal-root'>
             {interpolatedStyles.map(({ key, data: { type, props }, style }) => {
               const SpecificComponent = MODAL_COMPONENTS[type];
+
+              if (!SpecificComponent) {
+                // TODO: Handle error
+                FETCH_COMPONENTS[type]();
+              }
 
               return (
                 <div key={key} style={{ pointerEvents: visible ? 'auto' : 'none' }}>

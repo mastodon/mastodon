@@ -3,11 +3,8 @@ import ColumnsArea from './components/columns_area';
 import NotificationsContainer from './containers/notifications_container';
 import PropTypes from 'prop-types';
 import LoadingBarContainer from './containers/loading_bar_container';
-import HomeTimeline from '../home_timeline';
-import Compose from '../compose';
 import TabsBar from './components/tabs_bar';
 import ModalContainer from './containers/modal_container';
-import Notifications from '../notifications';
 import { connect } from 'react-redux';
 import { isMobile } from '../../is_mobile';
 import { debounce } from 'lodash';
@@ -15,6 +12,14 @@ import { uploadCompose } from '../../actions/compose';
 import { refreshTimeline } from '../../actions/timelines';
 import { refreshNotifications } from '../../actions/notifications';
 import UploadArea from './components/upload_area';
+
+const staticColumns = { };
+
+const lazyLoadStaticColumns = () => {
+  import(/* webpackChunkName: "features/home_timeline" */ '../home_timeline').then(Component => staticColumns.HomeTimeline = Component.default);
+  import(/* webpackChunkName: "features/compose" */ '../compose').then(Component => staticColumns.Compose = Component.default);
+  import(/* webpackChunkName: "features/notifications" */ '../notifications').then(Component => staticColumns.Notifications = Component.default);
+};
 
 const noOp = () => false;
 
@@ -128,11 +133,18 @@ class UI extends React.PureComponent {
         </ColumnsArea>
       );
     } else {
+      // TODO: Better check & error handling
+      if (Object.keys(staticColumns).length !== 3) {
+        lazyLoadStaticColumns();
+      }
+
+      const { Compose, HomeTimeline, Notifications } = staticColumns;
+
       mountedColumns = (
         <ColumnsArea>
-          <Compose withHeader={true} />
-          <HomeTimeline shouldUpdateScroll={noOp} />
-          <Notifications shouldUpdateScroll={noOp} />
+          {Compose && <Compose withHeader={true} />}
+          {HomeTimeline && <HomeTimeline shouldUpdateScroll={noOp} />}
+          {Notifications && <Notifications shouldUpdateScroll={noOp} />}
           <div className="column__wrapper">{children}</div>
         </ColumnsArea>
       );
