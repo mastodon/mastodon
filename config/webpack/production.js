@@ -34,6 +34,7 @@ module.exports = merge(sharedConfig, {
       analyzerMode: 'static',
       generateStatsFile: true,
       openAnalyzer: false,
+      logLevel: 'silent', // do not bother Webpacker, who runs with --json and parses stdout
     }),
   ],
 });
