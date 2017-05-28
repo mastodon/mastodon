@@ -16,6 +16,8 @@ dotenv.config({
   path: env === 'production' ? '.env.production' : '.env',
 });
 
+log.level = process.env.LOG_LEVEL || 'verbose';
+
 const dbUrlToConfig = (dbUrl) => {
   if (!dbUrl) {
     return {};
@@ -121,6 +123,7 @@ const startWorker = (workerId) => {
     if (!callbacks) {
       return;
     }
+
     callbacks.forEach(callback => callback(message));
   });
 
@@ -240,7 +243,7 @@ const startWorker = (workerId) => {
           const targetAccountIds = [unpackedPayload.account.id].concat(unpackedPayload.mentions.map(item => item.id)).concat(unpackedPayload.reblog ? [unpackedPayload.reblog.account.id] : []);
           const accountDomain    = unpackedPayload.account.acct.split('@')[1];
 
-          if (req.filteredLanguages instanceof Array && req.filteredLanguages.indexOf(unpackedPayload.language) !== -1) {
+          if (Array.isArray(req.filteredLanguages) && req.filteredLanguages.includes(unpackedPayload.language)) {
             log.silly(req.requestId, `Message ${unpackedPayload.id} filtered by language (${unpackedPayload.language})`);
             return;
           }
@@ -262,6 +265,7 @@ const startWorker = (workerId) => {
 
             transmit();
           }).catch(err => {
+            done();
             log.error(err);
           });
         });
@@ -300,26 +304,13 @@ const startWorker = (workerId) => {
   };
 
   // Setup stream output to WebSockets
-  const streamToWs = (req, ws) => {
-    const heartbeat = setInterval(() => {
-      // TODO: Can't add multiple listeners, due to the limitation of uws.
-      if (ws.readyState !== ws.OPEN) {
-        log.verbose(req.requestId, `Ending stream for ${req.accountId}`);
-        clearInterval(heartbeat);
-        return;
-      }
+  const streamToWs = (req, ws) => (event, payload) => {
+    if (ws.readyState !== ws.OPEN) {
+      log.error(req.requestId, 'Tried writing to closed socket');
+      return;
+    }
 
-      ws.ping();
-    }, 15000);
-
-    return (event, payload) => {
-      if (ws.readyState !== ws.OPEN) {
-        log.error(req.requestId, 'Tried writing to closed socket');
-        return;
-      }
-
-      ws.send(JSON.stringify({ event, payload }));
-    };
+    ws.send(JSON.stringify({ event, payload }));
   };
 
   // Setup stream end for WebSockets
@@ -363,6 +354,12 @@ const startWorker = (workerId) => {
     const token    = location.query.access_token;
     const req      = { requestId: uuid.v4() };
 
+    ws.isAlive = true;
+
+    ws.on('pong', () => {
+      ws.isAlive = true;
+    });
+
     accountFromToken(token, req, err => {
       if (err) {
         log.error(req.requestId, err);
@@ -392,8 +389,19 @@ const startWorker = (workerId) => {
     });
   });
 
+  const wsInterval = setInterval(() => {
+    wss.clients.forEach(ws => {
+      if (ws.isAlive === false) {
+        ws.terminate();
+        return;
+      }
+
+      ws.isAlive = false;
+      ws.ping('', false, true);
+    });
+  }, 30000);
+
   server.listen(process.env.PORT || 4000, () => {
-    log.level = process.env.LOG_LEVEL || 'verbose';
     log.info(`Worker ${workerId} now listening on ${server.address().address}:${server.address().port}`);
   });
 
