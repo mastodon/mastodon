@@ -315,9 +315,12 @@ const startWorker = (workerId) => {
   };
 
   // Setup stream end for HTTP
-  const streamHttpEnd = req => (id, listener) => {
+  const streamHttpEnd = (req, closeHandler = false) => (id, listener) => {
     req.on('close', () => {
       unsubscribe(id, listener);
+      if (closeHandler) {
+        closeHandler();
+      }
     });
   };
 
@@ -332,13 +335,19 @@ const startWorker = (workerId) => {
   };
 
   // Setup stream end for WebSockets
-  const streamWsEnd = ws => (id, listener) => {
+  const streamWsEnd = (ws, closeHandler = false) => (id, listener) => {
     ws.on('close', () => {
       unsubscribe(id, listener);
+      if (closeHandler) {
+        closeHandler();
+      }
     });
 
     ws.on('error', e => {
       unsubscribe(id, listener);
+      if (closeHandler) {
+        closeHandler();
+      }
     });
   };
 
@@ -349,7 +358,7 @@ const startWorker = (workerId) => {
 
   app.get('/api/v1/streaming/user', (req, res) => {
     const channel = `timeline:${req.accountId}`;
-    streamFrom(channel, req, streamToHttp(req, res), streamHttpEnd(req));
+    streamFrom(channel, req, streamToHttp(req, res), streamHttpEnd(req, subscriptionHeartbeat(channel)));
   });
 
   app.get('/api/v1/streaming/user/notification', (req, res) => {
@@ -393,7 +402,7 @@ const startWorker = (workerId) => {
       switch(location.query.stream) {
       case 'user':
         const channel = `timeline:${req.accountId}`;
-        streamFrom(channel, req, streamToWs(req, ws), streamWsEnd(ws));
+        streamFrom(channel, req, streamToWs(req, ws), streamWsEnd(ws, subscriptionHeartbeat(channel)));
         break;
       case 'user:notification':
         streamFrom(`timeline:${req.accountId}`, req, streamToWs(req, ws), streamWsEnd(ws), false, true);
