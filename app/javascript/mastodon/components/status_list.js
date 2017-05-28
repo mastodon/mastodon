@@ -27,7 +27,8 @@ class StatusList extends ImmutablePureComponent {
   };
 
   state = {
-    isIntersecting: [{ }],
+    isIntersecting: {},
+    intersectionCount: 0,
   }
 
   statusRefQueue = []
@@ -65,15 +66,31 @@ class StatusList extends ImmutablePureComponent {
   attachIntersectionObserver () {
     const onIntersection = (entries) => {
       this.setState(state => {
-        const isIntersecting = { };
 
         entries.forEach(entry => {
           const statusId = entry.target.getAttribute('data-id');
 
-          state.isIntersecting[0][statusId] = entry.isIntersecting;
+          state.isIntersecting[statusId] = entry.isIntersecting;
         });
 
-        return { isIntersecting: [state.isIntersecting[0]] };
+        // isIntersecting is a map of DOM data-id's to booleans (true for
+        // intersecting, false for non-intersecting).
+        //
+        // We always want to return true in shouldComponentUpdate() if
+        // this object changes, because onIntersection() is only called if
+        // something has changed.
+        //
+        // Now, we *could* use an immutable map or some other structure to
+        // diff the full map, but that would be pointless because the browser
+        // has already informed us that something has changed. So we can just
+        // use a regular object, which will be diffed by ImmutablePureComponent
+        // based on reference equality (i.e. it's always "unchanged") and
+        // then we just increment intersectionCount to force a change.
+
+        return {
+          isIntersecting: state.isIntersecting,
+          intersectionCount: state.intersectionCount + 1,
+        };
       });
     };
 
@@ -122,7 +139,7 @@ class StatusList extends ImmutablePureComponent {
 
   render () {
     const { statusIds, onScrollToBottom, scrollKey, shouldUpdateScroll, isLoading, isUnread, hasMore, prepend, emptyMessage } = this.props;
-    const isIntersecting = this.state.isIntersecting[0];
+    const { isIntersecting } = this.state;
 
     let loadMore       = null;
     let scrollableArea = null;

@@ -17,7 +17,7 @@ module Mastodon
     end
 
     def pre
-      5
+      6
     end
 
     def to_a
