@@ -3,6 +3,7 @@
 /* eslint global-require: 0 */
 /* eslint import/no-dynamic-require: 0 */
 
+const { existsSync } = require('fs');
 const webpack = require('webpack');
 const { basename, dirname, join, relative, resolve } = require('path');
 const { sync } = require('glob');
@@ -15,6 +16,9 @@ const localePackPaths = require('./generateLocalePacks');
 const extensionGlob = `**/*{${paths.extensions.join(',')}}*`;
 const packPaths = sync(join(paths.source, paths.entry, extensionGlob));
 const entryPacks = [].concat(packPaths).concat(localePackPaths);
+
+const customApplicationStyle = resolve(join(paths.source, 'styles/custom.scss'));
+const originalApplicationStyle = resolve(join(paths.source, 'styles/application.scss'));
 
 module.exports = {
   entry: entryPacks.reduce(
@@ -53,18 +57,16 @@ module.exports = {
           // be loaded together
           return false;
         }
-
-        if (module.resource && /node_modules\/font-awesome/.test(module.resource)) {
-          // extract vendor css into common module
-          return true;
-        }
-
         return count >= 2;
       },
     }),
   ],
 
   resolve: {
+    alias: {
+      'mastodon-application-style': existsSync(customApplicationStyle) ?
+                                    customApplicationStyle : originalApplicationStyle,
+    },
     extensions: paths.extensions,
     modules: [
       resolve(paths.source),
