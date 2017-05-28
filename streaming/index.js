@@ -315,12 +315,14 @@ const startWorker = (workerId) => {
   };
 
   // Setup stream end for WebSockets
-  const streamWsEnd = ws => (id, listener) => {
+  const streamWsEnd = (req, ws) => (id, listener) => {
     ws.on('close', () => {
+      log.verbose(req.requestId, `Ending stream for ${req.accountId}`);
       unsubscribe(id, listener);
     });
 
     ws.on('error', e => {
+      log.verbose(req.requestId, `Ending stream for ${req.accountId}`);
       unsubscribe(id, listener);
     });
   };
@@ -370,19 +372,19 @@ const startWorker = (workerId) => {
 
       switch(location.query.stream) {
       case 'user':
-        streamFrom(`timeline:${req.accountId}`, req, streamToWs(req, ws), streamWsEnd(ws));
+        streamFrom(`timeline:${req.accountId}`, req, streamToWs(req, ws), streamWsEnd(req, ws));
         break;
       case 'public':
-        streamFrom('timeline:public', req, streamToWs(req, ws), streamWsEnd(ws), true);
+        streamFrom('timeline:public', req, streamToWs(req, ws), streamWsEnd(req, ws), true);
         break;
       case 'public:local':
-        streamFrom('timeline:public:local', req, streamToWs(req, ws), streamWsEnd(ws), true);
+        streamFrom('timeline:public:local', req, streamToWs(req, ws), streamWsEnd(req, ws), true);
         break;
       case 'hashtag':
-        streamFrom(`timeline:hashtag:${location.query.tag}`, req, streamToWs(req, ws), streamWsEnd(ws), true);
+        streamFrom(`timeline:hashtag:${location.query.tag}`, req, streamToWs(req, ws), streamWsEnd(req, ws), true);
         break;
       case 'hashtag:local':
-        streamFrom(`timeline:hashtag:${location.query.tag}:local`, req, streamToWs(req, ws), streamWsEnd(ws), true);
+        streamFrom(`timeline:hashtag:${location.query.tag}:local`, req, streamToWs(req, ws), streamWsEnd(req, ws), true);
         break;
       default:
         ws.close();
