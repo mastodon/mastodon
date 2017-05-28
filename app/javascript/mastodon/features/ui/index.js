@@ -8,18 +8,11 @@ import ModalContainer from './containers/modal_container';
 import { connect } from 'react-redux';
 import { isMobile } from '../../is_mobile';
 import { debounce } from 'lodash';
+import Immutable from 'immutable';
 import { uploadCompose } from '../../actions/compose';
 import { refreshTimeline } from '../../actions/timelines';
 import { refreshNotifications } from '../../actions/notifications';
 import UploadArea from './components/upload_area';
-
-const staticColumns = { };
-
-const lazyLoadStaticColumns = () => {
-  import(/* webpackChunkName: "features/home_timeline" */ '../home_timeline').then(Component => staticColumns.HomeTimeline = Component.default);
-  import(/* webpackChunkName: "features/compose" */ '../compose').then(Component => staticColumns.Compose = Component.default);
-  import(/* webpackChunkName: "features/notifications" */ '../notifications').then(Component => staticColumns.Notifications = Component.default);
-};
 
 const noOp = () => false;
 
@@ -32,11 +25,16 @@ class UI extends React.PureComponent {
 
   state = {
     width: window.innerWidth,
+    columns: new Immutable.Map(),
     draggingOver: false,
   };
 
   handleResize = () => {
     this.setState({ width: window.innerWidth });
+
+    if (!isMobile(window.innerWidth)) {
+      this.lazyLoadStaticColumns();
+    }
   }
 
   handleDragEnter = (e) => {
@@ -95,6 +93,15 @@ class UI extends React.PureComponent {
     this.setState({ draggingOver: false });
   }
 
+  lazyLoadStaticColumns = () => {
+    import(/* webpackChunkName: "features/home_timeline" */ '../home_timeline')
+      .then(Component => this.setState(state => ({ columns: state.columns.set('HomeTimeline', Component.default) })));
+    import(/* webpackChunkName: "features/compose" */ '../compose')
+      .then(Component => this.setState(state => ({ columns: state.columns.set('Compose', Component.default) })));
+    import(/* webpackChunkName: "features/notifications" */ '../notifications')
+      .then(Component => this.setState(state => ({ columns: state.columns.set('Notifications', Component.default) })));
+  };
+
   componentWillMount () {
     window.addEventListener('resize', this.handleResize, { passive: true });
     document.addEventListener('dragenter', this.handleDragEnter, false);
@@ -105,6 +112,12 @@ class UI extends React.PureComponent {
 
     this.props.dispatch(refreshTimeline('home'));
     this.props.dispatch(refreshNotifications());
+  }
+
+  componentDidMount () {
+    if (!isMobile(this.state.width)) {
+      this.lazyLoadStaticColumns();
+    }
   }
 
   componentWillUnmount () {
@@ -121,7 +134,7 @@ class UI extends React.PureComponent {
   }
 
   render () {
-    const { width, draggingOver } = this.state;
+    const { columns, width, draggingOver } = this.state;
     const { children } = this.props;
 
     let mountedColumns;
@@ -133,12 +146,9 @@ class UI extends React.PureComponent {
         </ColumnsArea>
       );
     } else {
-      // TODO: Better check & error handling
-      if (Object.keys(staticColumns).length !== 3) {
-        lazyLoadStaticColumns();
-      }
-
-      const { Compose, HomeTimeline, Notifications } = staticColumns;
+      const Compose = columns.get('Compose');
+      const HomeTimeline = columns.get('HomeTimeline');
+      const Notifications = columns.get('Notifications');
 
       mountedColumns = (
         <ColumnsArea>

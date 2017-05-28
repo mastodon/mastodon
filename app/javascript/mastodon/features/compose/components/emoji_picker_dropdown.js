@@ -3,6 +3,9 @@ import Dropdown, { DropdownTrigger, DropdownContent } from 'react-simple-dropdow
 import PropTypes from 'prop-types';
 import { defineMessages, injectIntl } from 'react-intl';
 
+import { store } from '../../../containers/mastodon';
+import { fetchBundleRequest, fetchBundleSuccess, fetchBundleFail } from '../../../actions/bundles';
+
 const messages = defineMessages({
   emoji: { id: 'emoji_button.label', defaultMessage: 'Insert emoji' },
   emoji_search: { id: 'emoji_button.search', defaultMessage: 'Search...' },
@@ -48,12 +51,14 @@ class EmojiPickerDropdown extends React.PureComponent {
   onShowDropdown = () => {
     this.setState({active: true});
     if (!EmojiPicker) {
+      store.dispatch(fetchBundleRequest());
       this.setState({loading: true});
       import(/* webpackChunkName: "emojione_picker" */ 'emojione-picker').then(TheEmojiPicker => {
         EmojiPicker = TheEmojiPicker.default;
+        store.dispatch(fetchBundleSuccess());
         this.setState({loading: false});
       }).catch(err => {
-        // TODO: show the user an error?
+        store.dispatch(fetchBundleFail(err));
         this.setState({loading: false});
       });
     }

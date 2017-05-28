@@ -3,22 +3,55 @@ import PropTypes from 'prop-types';
 import TransitionMotion from 'react-motion/lib/TransitionMotion';
 import spring from 'react-motion/lib/spring';
 
+import { store } from '../../../containers/mastodon';
+import { fetchBundleRequest, fetchBundleSuccess, fetchBundleFail } from '../../../actions/bundles';
+
 const FETCH_COMPONENTS = {
-  'MEDIA': () =>
+  'MEDIA': () => {
+    store.dispatch(fetchBundleRequest());
     import(/* webpackChunkName: "media_modal" */ './media_modal')
-      .then(Component => MODAL_COMPONENTS.MEDIA = Component.default),
-  'ONBOARDING': () =>
+      .then(Component => {
+        MODAL_COMPONENTS.MEDIA = Component.default;
+        store.dispatch(fetchBundleSuccess());
+      })
+      .catch(error => store.dispatch(fetchBundleFail(error)));
+  },
+  'ONBOARDING': () => {
+    store.dispatch(fetchBundleRequest());
     import(/* webpackChunkName: "onboarding_modal" */ './onboarding_modal')
-      .then(Component => MODAL_COMPONENTS.ONBOARDING = Component.default),
-  'VIDEO': () =>
+      .then(Component => {
+        MODAL_COMPONENTS.ONBOARDING = Component.default;
+        store.dispatch(fetchBundleSuccess());
+      })
+      .catch(error => store.dispatch(fetchBundleFail(error)));
+  },
+  'VIDEO': () => {
+    store.dispatch(fetchBundleRequest());
     import(/* webpackChunkName: "video_modal" */ './video_modal')
-      .then(Component => MODAL_COMPONENTS.VIDEO = Component.default),
-  'BOOST': () =>
+      .then(Component => {
+        MODAL_COMPONENTS.VIDEO = Component.default;
+        store.dispatch(fetchBundleSuccess());
+      })
+      .catch(error => store.dispatch(fetchBundleFail(error)));
+  },
+  'BOOST': () => {
+    store.dispatch(fetchBundleRequest());
     import(/* webpackChunkName: "boost_modal" */ './boost_modal')
-      .then(Component => MODAL_COMPONENTS.BOOST = Component.default),
-  'CONFIRM': () =>
+      .then(Component => {
+        MODAL_COMPONENTS.BOOST = Component.default;
+        store.dispatch(fetchBundleSuccess());
+      })
+      .catch(error => store.dispatch(fetchBundleFail(error)));
+  },
+  'CONFIRM': () => {
+    store.dispatch(fetchBundleRequest());
     import(/* webpackChunkName: "confirmation_modal" */ './confirmation_modal')
-      .then(Component => MODAL_COMPONENTS.CONFIRM = Component.default),
+      .then(Component => {
+        MODAL_COMPONENTS.CONFIRM = Component.default;
+        store.dispatch(fetchBundleSuccess());
+      })
+      .catch(error => store.dispatch(fetchBundleFail(error)));
+  },
 };
 
 const MODAL_COMPONENTS = { };
@@ -40,6 +73,12 @@ class ModalRoot extends React.PureComponent {
 
   componentDidMount () {
     window.addEventListener('keyup', this.handleKeyUp, false);
+  }
+
+  componentWillReceiveProps ({ type }) {
+    if (!!type && !MODAL_COMPONENTS[type]) {
+      FETCH_COMPONENTS[type]();
+    }
   }
 
   componentWillUnmount () {
@@ -77,16 +116,11 @@ class ModalRoot extends React.PureComponent {
             {interpolatedStyles.map(({ key, data: { type, props }, style }) => {
               const SpecificComponent = MODAL_COMPONENTS[type];
 
-              if (!SpecificComponent) {
-                // TODO: Handle error
-                FETCH_COMPONENTS[type]();
-              }
-
               return (
                 <div key={key} style={{ pointerEvents: visible ? 'auto' : 'none' }}>
                   <div role='presentation' className='modal-root__overlay' style={{ opacity: style.opacity }} onClick={onClose} />
                   <div className='modal-root__container' style={{ opacity: style.opacity, transform: `translateZ(0px) scale(${style.scale})` }}>
-                    <SpecificComponent {...props} onClose={onClose} />
+                    {SpecificComponent && <SpecificComponent {...props} onClose={onClose} />}
                   </div>
                 </div>
               );
