@@ -46,6 +46,14 @@ RSpec.describe Formatter do
       end
     end
 
+    context 'with cashtag' do
+      let(:local_text) { 'Hello world $AAPL' }
+
+      it 'skip cashtag' do
+        expect(subject).to match '<p>Hello world $AAPL</p>'
+      end
+    end
+
     context 'with reblog' do
       let(:local_status) { Fabricate(:status, account: account, reblog: Fabricate(:status, text: 'Hello world', account: account)) }
 
@@ -155,6 +163,14 @@ RSpec.describe Formatter do
 
       it 'has valid url' do
         expect(subject).to eq '<p>http://www\.google\.com</p>'
+      end
+    end
+
+    context 'concatenates hashtag and URL' do
+      let(:local_text) { '#hashtaghttps://www.google.com' }
+
+      it 'has valid hashtag' do
+        expect(subject).to match('/tags/hashtag" class="mention hashtag" rel="tag">#<span>hashtag</span></a>')
       end
     end
   end

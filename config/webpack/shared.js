@@ -53,6 +53,12 @@ module.exports = {
           // be loaded together
           return false;
         }
+
+        if (module.resource && /node_modules\/font-awesome/.test(module.resource)) {
+          // extract vendor css into common module
+          return true;
+        }
+
         return count >= 2;
       },
     }),

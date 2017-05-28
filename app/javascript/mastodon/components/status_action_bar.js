@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import IconButton from './icon_button';
 import DropdownMenu from './dropdown_menu';
 import { defineMessages, injectIntl } from 'react-intl';
+import ImmutablePureComponent from 'react-immutable-pure-component';
 
 const messages = defineMessages({
   delete: { id: 'status.delete', defaultMessage: 'Delete' },
@@ -21,7 +22,7 @@ const messages = defineMessages({
   unmuteConversation: { id: 'status.unmute_conversation', defaultMessage: 'Unmute conversation' },
 });
 
-class StatusActionBar extends React.PureComponent {
+class StatusActionBar extends ImmutablePureComponent {
 
   static contextTypes = {
     router: PropTypes.object,
@@ -42,6 +43,14 @@ class StatusActionBar extends React.PureComponent {
     withDismiss: PropTypes.bool,
     intl: PropTypes.object.isRequired,
   };
+
+  // Avoid checking props that are functions (and whose equality will always
+  // evaluate to false. See react-immutable-pure-component for usage.
+  updateOnProps = [
+    'status',
+    'me',
+    'withDismiss',
+  ]
 
   handleReplyClick = () => {
     this.props.onReply(this.props.status, this.context.router);
@@ -128,9 +137,9 @@ class StatusActionBar extends React.PureComponent {
 
     return (
       <div className='status__action-bar'>
-        <div className='status__action-bar-button-wrapper'><IconButton title={replyTitle} icon={replyIcon} onClick={this.handleReplyClick} /></div>
-        <div className='status__action-bar-button-wrapper'><IconButton disabled={reblogDisabled} active={status.get('reblogged')} title={reblogDisabled ? intl.formatMessage(messages.cannot_reblog) : intl.formatMessage(messages.reblog)} icon={reblogIcon} onClick={this.handleReblogClick} /></div>
-        <div className='status__action-bar-button-wrapper'><IconButton animate={true} active={status.get('favourited')} title={intl.formatMessage(messages.favourite)} icon='star' onClick={this.handleFavouriteClick} className='star-icon' /></div>
+        <IconButton className='status__action-bar-button' title={replyTitle} icon={replyIcon} onClick={this.handleReplyClick} />
+        <IconButton className='status__action-bar-button' disabled={reblogDisabled} active={status.get('reblogged')} title={reblogDisabled ? intl.formatMessage(messages.cannot_reblog) : intl.formatMessage(messages.reblog)} icon={reblogIcon} onClick={this.handleReblogClick} />
+        <IconButton className='status__action-bar-button star-icon' animate={true} active={status.get('favourited')} title={intl.formatMessage(messages.favourite)} icon='star' onClick={this.handleFavouriteClick} />
 
         <div className='status__action-bar-dropdown'>
           <DropdownMenu items={menu} icon='ellipsis-h' size={18} direction="right" ariaLabel="More"/>

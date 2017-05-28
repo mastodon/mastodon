@@ -22,7 +22,7 @@ class Button extends React.PureComponent {
 
   handleClick = (e) => {
     if (!this.props.disabled) {
-      this.props.onClick();
+      this.props.onClick(e);
     }
   }
 
