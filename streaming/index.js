@@ -206,9 +206,9 @@ const startWorker = (workerId) => {
   };
 
   const errorMiddleware = (err, req, res, next) => {
-    log.error(req.requestId, `${err}`);
+    log.error(req.requestId, err.toString());
     res.writeHead(err.statusCode || 500, { 'Content-Type': 'application/json' });
-    res.end(JSON.stringify({ error: err.statusCode ? `${err}` : 'An unexpected error occurred' }));
+    res.end(JSON.stringify({ error: err.statusCode ? err.toString() : 'An unexpected error occurred' }));
   };
 
   const placeholders = (arr, shift = 0) => arr.map((_, i) => `$${i + 1 + shift}`).join(', ');
