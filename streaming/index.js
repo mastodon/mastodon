@@ -206,7 +206,7 @@ const startWorker = (workerId) => {
   };
 
   const errorMiddleware = (err, req, res, next) => {
-    log.error(req.requestId, err);
+    log.error(req.requestId, `${err}`);
     res.writeHead(err.statusCode || 500, { 'Content-Type': 'application/json' });
     res.end(JSON.stringify({ error: err.statusCode ? `${err}` : 'An unexpected error occurred' }));
   };
@@ -398,7 +398,7 @@ const startWorker = (workerId) => {
   });
 
   const onExit = () => {
-    log.error(`Worker ${workerId} exiting, bye bye`);
+    log.info(`Worker ${workerId} exiting, bye bye`);
     server.close();
   };
 
