@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module CodeBlockFormatter
-  MULTILINE_CODEBLOCK_REGEXP = /^```(?<language>[^:\n]*)\n(?<code>.*?)\n```$/m
+  MULTILINE_CODEBLOCK_REGEXP = /^```(?<language>[^:\n]*)(?::(?<filename>[^\n]*))?\n(?<code>.*?)\n```$/m
   INLINE_CODEBLOCK_REGEXP = /`(?<code>[^`\n]+?)`/
 
   module_function
@@ -13,10 +13,11 @@ module CodeBlockFormatter
     html = html.gsub(MULTILINE_CODEBLOCK_REGEXP) do
       match_data = Regexp.last_match
       language = sanitize(match_data[:language], Sanitize::Config::MASTODON_STRICT).gsub(/["']/, '')
+      filename = sanitize(match_data[:filename] || '', Sanitize::Config::MASTODON_STRICT).gsub(/["']/, '')
       code = sanitize(match_data[:code], Sanitize::Config::MASTODON_STRICT)
 
       marker = "[[[codeblock#{index += 1}]]]"
-      block_html = "<pre><code#{ language.present? ? " data-language=\"#{ language }\"" : '' }>#{ code }</code></pre>"
+      block_html = "<pre><code#{ language.present? ? " data-language=\"#{ language }\"" : '' }#{ filename.present? ? " data-filename=\"#{ filename }\"" : '' }>#{ code }</code></pre>"
       marker_and_contents << [marker, block_html]
       marker
     end
