@@ -240,7 +240,7 @@ const startWorker = (workerId) => {
           const targetAccountIds = [unpackedPayload.account.id].concat(unpackedPayload.mentions.map(item => item.id)).concat(unpackedPayload.reblog ? [unpackedPayload.reblog.account.id] : []);
           const accountDomain    = unpackedPayload.account.acct.split('@')[1];
 
-          if (req.filteredLanguages.indexOf(unpackedPayload.language) !== -1) {
+          if (req.filteredLanguages instanceof Array && req.filteredLanguages.indexOf(unpackedPayload.language) !== -1) {
             log.silly(req.requestId, `Message ${unpackedPayload.id} filtered by language (${unpackedPayload.language})`);
             return;
           }
