@@ -230,7 +230,8 @@ const startWorker = (workerId) => {
   const placeholders = (arr, shift = 0) => arr.map((_, i) => `$${i + 1 + shift}`).join(', ');
 
   const streamFrom = (id, req, output, attachCloseHandler, needsFiltering = false, notificationOnly = false) => {
-    log.verbose(req.requestId, `Starting stream from ${id} for ${req.accountId}`);
+    const streamType = notificationOnly ? ' (notification)' : '';
+    log.verbose(req.requestId, `Starting stream from ${id} for ${req.accountId}${streamType}`);
 
     const listener = message => {
       const { event, payload, queued_at } = JSON.parse(message);
