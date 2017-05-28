@@ -54,7 +54,7 @@ module StreamEntriesHelper
       # Remove mentions before counting characters to decide RTL ratio
       justtext = text.gsub(Account::MENTION_RE, '')
       # Remove Email addresses
-      justtext = justtext.gsub(/^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/, '')
+      # justtext = justtext.gsub(/^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/, '')
       # Naiive catcher for URLs
       justtext = justtext.gsub(/[-A-Za-z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-A-Za-z0-9@:%_\+.~#?&\/=]*)/, '')
 
