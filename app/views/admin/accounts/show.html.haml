@@ -70,6 +70,8 @@
 - if @account.local?
   %div{ style: 'float: right' }
     = link_to t('admin.accounts.reset_password'), admin_account_reset_path(@account.id), method: :create, class: 'button'
+    - if @account.user&.otp_required_for_login?
+      = link_to t('admin.accounts.disable_two_factor_authentication'), admin_user_two_factor_authentication_path(@account.user.id), method: :delete, class: 'button'
 
 %div{ style: 'float: left' }
   - if @account.silenced?

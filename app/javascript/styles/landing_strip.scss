@@ -1,0 +1,18 @@
+.landing-strip {
+  background: rgba(darken($ui-base-color, 7%), 0.8);
+  color: $ui-primary-color;
+  font-weight: 400;
+  padding: 14px;
+  border-radius: 4px;
+  margin-bottom: 20px;
+
+  strong,
+  a {
+    font-weight: 500;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: underline;
+  }
+}

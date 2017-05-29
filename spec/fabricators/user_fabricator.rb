@@ -1,6 +1,6 @@
 Fabricator(:user) do
   account
-  email        { Faker::Internet.email }
+  email        { sequence(:email) { |i| "#{i}#{Faker::Internet.email}" } }
   password     "123456789"
   confirmed_at { Time.now }
 end

@@ -1,0 +1,53 @@
+
+---
+tr:
+  simple_form:
+    hints:
+      defaults:
+        avatar: En fazla 2MB olacak şekilde PNG, GIF veya JPG formatında yükleyiniz. 120x120px büyüklüğüne indirgenecektir
+        display_name: '<span class="name-counter">%{count}</span> karakter kaldı'
+        header: En fazla 2MB olacak şekilde PNG, GIF veya JPG formatında yükleyiniz. 700x335px büyüklüğüne indirgenecektir.
+        locked: Takipçilerinizi manuel olarak kabul etmenizi ve gönderilerinizi varsayılan olarak sadece takipçilerinizin göreceği şekilde paylaşmanızı sağlar.
+        note: '<span class="note-counter">%{count}</span> karakter kaldı'
+      imports:
+        data: Diğer Mastodon sunucusundan dışarı aktardığınız CSV dosyası
+      sessions:
+        otp: Telefonunuzdaki two-factor kodunuzu giriniz veya kurtarma kodlarınızdan birini giriniz.
+    labels:
+      defaults:
+        avatar: Profil resmi
+        confirm_new_password: Yeni parolanız (tekrar)
+        confirm_password: Parolanız (tekrar)
+        current_password: Mevcut parolanız
+        data: Dosya
+        display_name: Görünen adınız
+        email: E-posta adresiniz
+        header: Kapak resmi
+        locale: Dil
+        locked: Hesabımı kilitle
+        new_password: Yeni parolanız
+        note: Kişisel bilgiler
+        otp_attempt: İki-faktörlü kod
+        password: Parolanız
+        setting_auto_play_gif: GIF'leri otomatik oynatt
+        setting_boost_modal: Boost etmeden önce onay diyaloğu göster
+        setting_default_privacy: Gönderi gizliliği
+        severity: Zorluk
+        type: Dosya türü
+        username: Kullanıcı adınız
+      interactions:
+        must_be_follower: Takipçim olmayan kişilerden gelen bildirimleri engelle
+        must_be_following: Takip etmediğim kişilerden gelen bildirimleri engelle
+      notification_emails:
+        digest: Özet e-postaları gönder
+        favourite: Biri durumumu favorilerine eklediginde bana e-posta gönder
+        follow: Biri beni takip ettiğinde bana e-posta gönder
+        follow_request: Biri bana takip isteği gönderdiğinde, bana e-posta gönder
+        mention: Biri benden bahsettiğinde, bana e-posta gönder
+        reblog: Biri durumumu paylaştığında, bana e-posta gönder
+    'no': 'Hayır'
+    required:
+      mark: "*"
+      text: gerekli
+    'yes': 'Evet'
+

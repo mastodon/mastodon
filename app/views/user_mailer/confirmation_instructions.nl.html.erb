@@ -1,0 +1,12 @@
+<p>Welkom <%= @resource.email %> !</p>
+
+<p>Je hebt zojuist een account aangemaakt op <%= @instance %>.</p>
+
+<p>Klik op de volgende link om jouw registratie te bevestigen :<br />
+<%= link_to 'Confirm my account', confirmation_url(@resource, confirmation_token: @token) %> </p>
+
+<p>Lees ook onze gebruikersvoorwaarden op <%= link_to 'terms and conditions', terms_url %>.</p>
+
+<p>Vriendelijke groet,</p>
+
+<p>De beheerder(s) van <%= @instance %></p>

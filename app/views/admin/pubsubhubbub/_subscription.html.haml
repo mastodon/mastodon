@@ -1,0 +1,16 @@
+%tr
+  %td
+    %samp= subscription.account.acct
+  %td
+    %samp= subscription.callback_url
+  %td
+    - if subscription.confirmed?
+      %i.fa.fa-check
+  %td{ style: "color: #{subscription.expired? ? 'red' : 'inherit'};" }
+    = precede subscription.expired? ? '-' : '' do
+      = time_ago_in_words(subscription.expires_at)
+  %td
+    - if subscription.last_successful_delivery_at?
+      = l subscription.last_successful_delivery_at
+    - else
+      %i.fa.fa-times

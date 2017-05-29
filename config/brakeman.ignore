@@ -1,0 +1,102 @@
+{
+  "ignored_warnings": [
+    {
+      "warning_type": "Dynamic Render Path",
+      "warning_code": 15,
+      "fingerprint": "9f31d941f3910dba2e9bfcd81aef4513249bd24c02d0f98e13ad44fdeeccd0e8",
+      "check_name": "Render",
+      "message": "Render path contains parameter value",
+      "file": "app/views/admin/accounts/index.html.haml",
+      "line": 32,
+      "link": "http://brakemanscanner.org/docs/warning_types/dynamic_render_path/",
+      "code": "render(action => filtered_accounts.page(params[:page]), {})",
+      "render_path": [{"type":"controller","class":"Admin::AccountsController","method":"index","line":7,"file":"app/controllers/admin/accounts_controller.rb"}],
+      "location": {
+        "type": "template",
+        "template": "admin/accounts/index"
+      },
+      "user_input": "params[:page]",
+      "confidence": "Weak",
+      "note": ""
+    },
+    {
+      "warning_type": "Redirect",
+      "warning_code": 18,
+      "fingerprint": "bb7e94e60af41decb811bb32171f1b27e9bf3f4d01e9e511127362e22510eb11",
+      "check_name": "Redirect",
+      "message": "Possible unprotected redirect",
+      "file": "app/controllers/remote_follow_controller.rb",
+      "line": 18,
+      "link": "http://brakemanscanner.org/docs/warning_types/redirect/",
+      "code": "redirect_to(RemoteFollow.new(resource_params).subscribe_address_for(Account.find_local!(params[:account_username])))",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "RemoteFollowController",
+        "method": "create"
+      },
+      "user_input": "RemoteFollow.new(resource_params).subscribe_address_for(Account.find_local!(params[:account_username]))",
+      "confidence": "High",
+      "note": ""
+    },
+    {
+      "warning_type": "Dynamic Render Path",
+      "warning_code": 15,
+      "fingerprint": "c417f9d44ab05dd9cf3d5ec9df2324a5036774c151181787b32c4c940623191b",
+      "check_name": "Render",
+      "message": "Render path contains parameter value",
+      "file": "app/views/stream_entries/embed.html.haml",
+      "line": 2,
+      "link": "http://brakemanscanner.org/docs/warning_types/dynamic_render_path/",
+      "code": "render(action => Account.find_local!(params[:account_username]).stream_entries.where(:activity_type => \"Status\").find(params[:id]).activity_type.downcase, { Account.find_local!(params[:account_username]).stream_entries.where(:activity_type => \"Status\").find(params[:id]).activity_type.downcase.to_sym => Account.find_local!(params[:account_username]).stream_entries.where(:activity_type => \"Status\").find(params[:id]).activity, :centered => true })",
+      "render_path": [{"type":"controller","class":"StreamEntriesController","method":"embed","line":32,"file":"app/controllers/stream_entries_controller.rb"}],
+      "location": {
+        "type": "template",
+        "template": "stream_entries/embed"
+      },
+      "user_input": "params[:id]",
+      "confidence": "Weak",
+      "note": ""
+    },
+    {
+      "warning_type": "Dynamic Render Path",
+      "warning_code": 15,
+      "fingerprint": "c5d6945d63264af106d49367228d206aa2f176699ecdce2b98fac101bc6a96cf",
+      "check_name": "Render",
+      "message": "Render path contains parameter value",
+      "file": "app/views/admin/reports/index.html.haml",
+      "line": 24,
+      "link": "http://brakemanscanner.org/docs/warning_types/dynamic_render_path/",
+      "code": "render(action => filtered_reports.page(params[:page]), {})",
+      "render_path": [{"type":"controller","class":"Admin::ReportsController","method":"index","line":9,"file":"app/controllers/admin/reports_controller.rb"}],
+      "location": {
+        "type": "template",
+        "template": "admin/reports/index"
+      },
+      "user_input": "params[:page]",
+      "confidence": "Weak",
+      "note": ""
+    },
+    {
+      "warning_type": "Dynamic Render Path",
+      "warning_code": 15,
+      "fingerprint": "fbd0fc59adb5c6d44b60e02debb31d3af11719f534c9881e21435bbff87404d6",
+      "check_name": "Render",
+      "message": "Render path contains parameter value",
+      "file": "app/views/stream_entries/show.html.haml",
+      "line": 19,
+      "link": "http://brakemanscanner.org/docs/warning_types/dynamic_render_path/",
+      "code": "render(partial => \"stream_entries/#{Account.find_local!(params[:account_username]).statuses.find(params[:id]).stream_entry.activity_type.downcase}\", { :locals => ({ Account.find_local!(params[:account_username]).statuses.find(params[:id]).stream_entry.activity_type.downcase.to_sym => Account.find_local!(params[:account_username]).statuses.find(params[:id]).stream_entry.activity, :include_threads => true }) })",
+      "render_path": [{"type":"controller","class":"StatusesController","method":"show","line":15,"file":"app/controllers/statuses_controller.rb"}],
+      "location": {
+        "type": "template",
+        "template": "stream_entries/show"
+      },
+      "user_input": "params[:id]",
+      "confidence": "Weak",
+      "note": ""
+    }
+  ],
+  "updated": "2017-05-07 08:26:06 +0900",
+  "brakeman_version": "3.6.1"
+}

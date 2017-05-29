@@ -6,7 +6,7 @@ de:
     apps: Apps
     business_email: 'Geschäftliche E-Mail:'
     closed_registrations: Die Registrierung ist auf dieser Instanz momentan geschlossen.
-    contact: Kontact
+    contact: Kontakt
     description_headline: Was ist %{domain}?
     domain_count_after: andere Instanzen
     domain_count_before: Verbunden mit
@@ -145,7 +145,6 @@ de:
       unresolved: Ungelöst
       view: Ansehen
     settings:
-      click_to_edit: Klicken zum Bearbeiten
       contact_information:
         email: Eine öffentliche E-Mail-Adresse angeben
         label: Kontaktinformationen
@@ -230,7 +229,8 @@ de:
       following: Folgeliste
       muting: Stummschaltungsliste
     upload: Hochladen
-  landing_strip_html: <strong>%{name}</strong> ist ein Benutzer auf <strong>%{domain}</strong>. Du kannst ihm folgen oder mit ihm interagieren, sofern du ein Konto irgendwo im Fediverse hast. Wenn nicht, kannst du dich <a href="%{sign_up_path}">hier anmelden</a>.
+  landing_strip_html: <strong>%{name}</strong> ist ein Benutzer auf %{link_to_root_path}. Du kannst ihm folgen oder mit ihm interagieren, sofern du ein Konto irgendwo in der Fediverse hast.
+  landing_strip_signup_html: Wenn nicht, kannst du dich <a href="%{sign_up_path}">hier anmelden</a>.
   media_attachments:
     validations:
       images_and_video: Es kann kein Video an einen Beitrag, der bereits Bilder enthält, angehängt werden
