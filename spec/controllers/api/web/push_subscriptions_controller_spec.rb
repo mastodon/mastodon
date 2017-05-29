@@ -42,7 +42,7 @@ describe Api::Web::PushSubscriptionsController do
 
       user.reload
 
-      push_subscription = WebPushSubscription.find_by(endpoint: create_payload[:data][:endpoint])
+      push_subscription = Web::PushSubscription.find_by(endpoint: create_payload[:data][:endpoint])
 
       expect(push_subscription['endpoint']).to eq(create_payload[:data][:endpoint])
       expect(push_subscription['key_p256dh']).to eq(create_payload[:data][:keys][:p256dh])
@@ -64,11 +64,11 @@ describe Api::Web::PushSubscriptionsController do
 
       post :create, format: :json, params: create_payload
 
-      alerts_payload[:data][:id] = WebPushSubscription.find_by(endpoint: create_payload[:data][:endpoint]).id
+      alerts_payload[:data][:id] = Web::PushSubscription.find_by(endpoint: create_payload[:data][:endpoint]).id
 
       post :create, format: :json, params: alerts_payload
 
-      push_subscription = WebPushSubscription.find_by(endpoint: create_payload[:data][:endpoint])
+      push_subscription = Web::PushSubscription.find_by(endpoint: create_payload[:data][:endpoint])
 
       expect(push_subscription.data['follow']).to eq(alerts_payload[:data][:follow])
       expect(push_subscription.data['favourite']).to eq(alerts_payload[:data][:favourite])

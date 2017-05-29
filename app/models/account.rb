@@ -76,7 +76,7 @@ class Account < ApplicationRecord
   has_many :subscriptions, dependent: :destroy
 
   # Web push subscriptions
-  has_many :web_push_subscriptions, dependent: :destroy
+  has_many :web_push_subscriptions, class_name: 'Web::PushSubscription', dependent: :destroy
 
   # Report relationships
   has_many :reports

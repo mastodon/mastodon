@@ -13,7 +13,7 @@
 #  updated_at :datetime         not null
 #
 
-class WebPushSubscription < ApplicationRecord
+class Web::PushSubscription < ApplicationRecord
   include RoutingHelper
   include StreamEntriesHelper
   include ActionView::Helpers::TranslationHelper
