@@ -80,6 +80,10 @@ class User < ApplicationRecord
     settings.boost_modal
   end
 
+  def setting_delete_modal
+    settings.delete_modal
+  end
+
   def setting_auto_play_gif
     settings.auto_play_gif
   end
