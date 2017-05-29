@@ -3,10 +3,10 @@
 module StyleHelper
   def stylesheet_for_layout
     if asset_exist? 'custom.css'
-      'custom'
-    else
-      'application'
-    end
+       'custom'
+     else
+       'application'
+     end
   end
 
   def asset_exist?(path)

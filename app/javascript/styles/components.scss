@@ -116,8 +116,18 @@
   z-index: 2;
 }
 
+.column-icon-change {
+  font-size: 16px;
+  padding: 10.5px;
+  position: absolute;
+  right: 96px;
+  top: 0;
+  cursor: pointer;
+  z-index: 2;
+}
+
 @media screen and (min-width: 1025px) {
-  .column-icon-clear {
+  .column-icon-clear, .column-icon-change {
     top: 10px;
   }
 }
@@ -1339,6 +1349,10 @@
 
   .search {
     margin-bottom: 10px;
+  }
+
+  .search-timeline {
+    margin: 10px 0px;
   }
 }
 
@@ -2699,7 +2713,78 @@ button.icon-button.active i.fa-retweet {
   }
 }
 
-.search {
+.notification-type-dropdown__dropdown {
+  display: none;
+  position: absolute;
+  left: -100px;
+  top: 50px;
+  width: 230px;
+  background: $primary-text-color;
+  border-radius: 0 4px 4px 4px;
+  z-index: 2;
+  overflow: hidden;
+}
+
+.notification-type-dropdown__option {
+  color: $ui-base-color;
+  padding: 10px;
+  cursor: pointer;
+  display: flex;
+
+  &:hover, &.active {
+    background: $ui-highlight-color;
+    color: $primary-text-color;
+
+    .notification-type-dropdown__option__content {
+      color: $primary-text-color;
+
+      strong {
+        color: $primary-text-color;
+      }
+    }
+  }
+
+  &.active:hover {
+    background: lighten($ui-highlight-color, 4%);
+  }
+}
+
+.notification-type-dropdown__option__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 10px;
+}
+
+.notification-type-dropdown__option__content {
+  flex: 1 1 auto;
+  color: darken($ui-primary-color, 24%);
+
+  strong {
+    font-weight: 500;
+    display: block;
+    color: $ui-base-color;
+  }
+}
+
+.notification-type-dropdown.active {
+  .notification-type-dropdown__value {
+    background: $primary-text-color;
+    border-radius: 4px 4px 0 0;
+    box-shadow: 0 -4px 4px rgba($base-overlay-background, 0.1);
+  }
+
+  .notification-type-dropdown__dropdown {
+    display: block;
+    box-shadow: 2px 4px 6px rgba($base-overlay-background, 0.1);
+  }
+}
+
+.notification-type-dropdown::after {
+  display: none;
+}
+
+.search, .search-timeline {
   position: relative;
 }
 

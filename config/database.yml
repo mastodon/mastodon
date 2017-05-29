@@ -3,10 +3,14 @@ default: &default
   pool: <%= ENV["DB_POOL"] || ENV['MAX_THREADS'] || 5 %>
   timeout: 5000
   encoding: unicode
+  username: postgres
+  password: postgres
+  host: 127.0.0.1
 
 development:
   <<: *default
-  database: mastodon_development
+#  database: mastodon_development
+  database: postgres
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".

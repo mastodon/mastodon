@@ -167,6 +167,14 @@ class Status < ApplicationRecord
       where(account: account, visibility: :public)
     end
 
+    def as_search_timeline(q, account)
+      if q.present?
+        where(account: account).where('text like (?)', "%#{q}%")
+      else
+        where(account: account)
+      end
+    end
+
     def favourites_map(status_ids, account_id)
       Favourite.select('status_id').where(status_id: status_ids).where(account_id: account_id).map { |f| [f.status_id, true] }.to_h
     end
