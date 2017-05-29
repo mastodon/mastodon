@@ -20,7 +20,7 @@
     = image_tag asset_pack_path('logo.png')
     = Setting.site_title
 
-  %p= t('about.about_mastodon').html_safe
+  %p!= t('about.about_mastodon')
 
   .screenshot-with-signup
     .mascot= image_tag asset_pack_path('fluffy-elephant-friend.png')
@@ -32,7 +32,7 @@
         - if @instance_presenter.closed_registrations_message.blank?
           %p= t('about.closed_registrations')
         - else
-          = @instance_presenter.closed_registrations_message.html_safe
+          != @instance_presenter.closed_registrations_message
         .info
           = link_to t('auth.login'), new_user_session_path, class: 'webapp-btn'
           ·
@@ -74,7 +74,7 @@
 
   - unless @instance_presenter.site_description.blank?
     %h3= t('about.description_headline', domain: site_hostname)
-    %p= @instance_presenter.site_description.html_safe
+    %p!= @instance_presenter.site_description
 
   .actions
     .info

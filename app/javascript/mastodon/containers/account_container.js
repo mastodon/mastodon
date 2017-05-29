@@ -15,7 +15,7 @@ const makeMapStateToProps = () => {
 
   const mapStateToProps = (state, props) => ({
     account: getAccount(state, props.id),
-    me: state.getIn(['meta', 'me'])
+    me: state.getIn(['meta', 'me']),
   });
 
   return mapStateToProps;
@@ -44,7 +44,7 @@ const mapDispatchToProps = (dispatch) => ({
     } else {
       dispatch(muteAccount(account.get('id')));
     }
-  }
+  },
 });
 
 export default connect(makeMapStateToProps, mapDispatchToProps)(Account);

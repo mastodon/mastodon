@@ -12,7 +12,7 @@ pl:
     domain_count_before: Serwer połączony z
     features:
       api: Otwarte API dla aplikacji i usług
-      blocks: Rozbudowane narzędzia blokowania i ukrywania 
+      blocks: Rozbudowane narzędzia blokowania i ukrywania
       characters: 500 znaków na wpis
       chronology: Chronologiczny porządek wyświetlania
       ethics: 'Etyczne założenia: nie śledzimy, bez reklam'
@@ -47,13 +47,14 @@ pl:
       create:
         name: "%{account_name} utworzył(a) wpis."
     outbox:
-      name: "Skrzynka %{account_name}"
-      summary: "Zbiór aktywności użytkownika %{account_name}."
+      name: Skrzynka %{account_name}
+      summary: Zbiór aktywności użytkownika %{account_name}.
   admin:
     accounts:
       are_you_sure: Jesteś tego pewien?
       confirm: Potwierdź
       confirmed: Potwierdzono
+      disable_two_factor_authentication: Wyłącz uwierzytelnianie dwuetapowe
       display_name: Wyświetlana nazwa
       domain: Domena
       edit: Edytuj
@@ -61,6 +62,7 @@ pl:
       feed_url: Adres kanału
       followers: Obserwujący
       follows: Obserwacje
+      ip: Adres IP
       location:
         all: Wszystkie
         local: Lokalne
@@ -82,10 +84,11 @@ pl:
       perform_full_suspension: Całkowicie zawieś
       profile_url: Adres profilu
       public: Publiczne
-      push_subscription_expires: Subskrypcja PuSH wygasza
+      push_subscription_expires: Subskrypcja PuSH wygasa
+      reset: Resetuj
       reset_password: Resetuj hasło
-      disable_two_factor_authentication: Wyłącz uwierzytelnianie dwuetapowe
       salmon_url: Adres Salmon
+      search: Szukaj
       show:
         created_reports: Zgłoszenia tego użytkownika
         report: zgłoszenie
@@ -119,7 +122,7 @@ pl:
       show:
         affected_accounts:
           one: Dotyczy jednego konta w bazie danych
-          other: "Dotyczy %{count} kont w bazie danych"
+          other: Dotyczy %{count} kont w bazie danych
         retroactive:
           silence: Odwołaj wyciszenie wszystkich kont w tej domenie
           suspend: Odwołaj zawieszenie wszystkich kont w tej domenie
@@ -158,7 +161,6 @@ pl:
       unresolved: Nierozwiązane
       view: Wyświetl
     settings:
-      click_to_edit: Naciśnij, aby edytować
       contact_information:
         email: Wprowadź publiczny adres e-mail
         label: Informacje kontaktowe
@@ -223,6 +225,7 @@ pl:
     '422':
       content: Sprawdzanie bezpieczeństwa nie powiodło się. Czy blokujesz pliki cookie?
       title: Sprawdzanie bezpieczeństwa nie powiodło się
+    '429': Uduszono
   exports:
     blocks: Blokujesz
     csv: CSV
@@ -236,8 +239,8 @@ pl:
     lock_link: Zablokuj swoje konto
     purge: Usuń z obserwujących
     success:
-      one: W procesie usuwania obserwujcych z jednej domeny...
-      other: W procesie usuwania obserwujących z %{count} domen...
+      one: W procesie usuwania obserwujcych z jednej domeny…
+      other: W procesie usuwania obserwujących z %{count} domen…
     true_privacy_html: Pamiętaj, że <strong>rzeczywista prywatność może zostać uzyskana wyłącznie dzięki szyfrowaniu end-to-end</strong>.
     unlocked_warning_html: Każdy może cię zaobserwować, aby natychmiastowo zobaczyć twoje statusy. %{lock_link} aby móc kontrolować obserwujących.
     unlocked_warning_title: Twoje konto nie jest zablokowane
@@ -256,7 +259,8 @@ pl:
       following: Lista śledzonych
       muting: Lista wyciszonych
     upload: Załaduj
-  landing_strip_html: <strong>%{name}</strong> ma konto na %{link_to_root_path}. Możesz je śledzić i wejść z nim w interakcję jeśli masz konto gdziekolwiek w Fediwersie. Jeśli jeszcze go nie masz, możesz <a href="%{sign_up_path}">stworzyć konto</a>.
+  landing_strip_html: <strong>%{name}</strong> ma konto na %{link_to_root_path}. Możesz je śledzić i wejść z nim w interakcję jeśli masz konto gdziekolwiek w Fediwersie.
+  landing_strip_signup_html: Jeśli jeszcze go nie masz, możesz <a href="%{sign_up_path}">stworzyć konto</a>.
   media_attachments:
     validations:
       images_and_video: Nie możesz załączyć pliku wideo do statusu, który zawiera już zdjęcia
@@ -281,11 +285,11 @@ pl:
       body: "%{name} poprosił o możliwość śledzenia Cię"
       subject: 'Prośba o możliwość śledzenia: %{name}'
     mention:
-      body: '%{name} wspomniał Cię w:'
-      subject: '%{name} Cię wspomniał'
+      body: "%{name} wspomniał Cię w:"
+      subject: "%{name} Cię wspomniał"
     reblog:
       body: 'Twój wpis został podbity przez %{name}:'
-      subject: "Twój wpis został podbity przez %{name}"
+      subject: Twój wpis został podbity przez %{name}
   pagination:
     next: Następna
     prev: Poprzednia
@@ -300,6 +304,7 @@ pl:
     back: Powrót do Mastodona
     edit_profile: Edytuj profil
     export: Exportuj dane
+    followers: Autoryzowani obserwujący
     import: Importuj dane
     preferences: Preferencje
     settings: Ustawienia
@@ -310,12 +315,11 @@ pl:
     show_more: Pokaż więcej
     visibilities:
       private: Tylko dla śledzących
+      private_long: Widoczne tylko obserwowanych
       public: Publiczny
-      unlisted: Publiczny, ale nie wyświetlaj na publicznych osiach czasu
-  stream_entries:
-    click_to_show: Kliknij aby pokazać
-    reblogged: podbity
-    sensitive_content: Wrażliwa treść
+      public_long: Widoczne dla wszystkich
+      unlisted: Niewypisany
+      unlisted_long: Widoczne dla wszystkich, ale nie wyświetlane na publicznych osiach czasu
   stream_entries:
     click_to_show: Naciśnij aby wyświetlić
     reblogged: podbito

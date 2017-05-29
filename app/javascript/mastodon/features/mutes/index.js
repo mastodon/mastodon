@@ -12,25 +12,20 @@ import { defineMessages, injectIntl } from 'react-intl';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
 const messages = defineMessages({
-  heading: { id: 'column.mutes', defaultMessage: 'Muted users' }
+  heading: { id: 'column.mutes', defaultMessage: 'Muted users' },
 });
 
 const mapStateToProps = state => ({
-  accountIds: state.getIn(['user_lists', 'mutes', 'items'])
+  accountIds: state.getIn(['user_lists', 'mutes', 'items']),
 });
 
 class Mutes extends ImmutablePureComponent {
-
-  constructor (props, context) {
-    super(props, context);
-    this.handleScroll = this.handleScroll.bind(this);
-  }
 
   componentWillMount () {
     this.props.dispatch(fetchMutes());
   }
 
-  handleScroll (e) {
+  handleScroll = (e) => {
     const { scrollTop, scrollHeight, clientHeight } = e.target;
 
     if (scrollTop === scrollHeight - clientHeight) {
@@ -69,7 +64,7 @@ Mutes.propTypes = {
   params: PropTypes.object.isRequired,
   dispatch: PropTypes.func.isRequired,
   accountIds: ImmutablePropTypes.list,
-  intl: PropTypes.object.isRequired
+  intl: PropTypes.object.isRequired,
 };
 
 export default connect(mapStateToProps)(injectIntl(Mutes));

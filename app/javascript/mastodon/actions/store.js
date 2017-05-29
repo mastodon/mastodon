@@ -12,6 +12,6 @@ export function hydrateStore(rawState) {
 
   return {
     type: STORE_HYDRATE,
-    state
+    state,
   };
 };

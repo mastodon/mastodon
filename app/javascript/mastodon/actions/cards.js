@@ -28,7 +28,7 @@ export function fetchStatusCardRequest(id) {
   return {
     type: STATUS_CARD_FETCH_REQUEST,
     id,
-    skipLoading: true
+    skipLoading: true,
   };
 };
 
@@ -37,7 +37,7 @@ export function fetchStatusCardSuccess(id, card) {
     type: STATUS_CARD_FETCH_SUCCESS,
     id,
     card,
-    skipLoading: true
+    skipLoading: true,
   };
 };
 
@@ -47,6 +47,6 @@ export function fetchStatusCardFail(id, error) {
     id,
     error,
     skipLoading: true,
-    skipAlert: true
+    skipAlert: true,
   };
 };

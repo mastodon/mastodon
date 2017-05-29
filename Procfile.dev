@@ -1,3 +1,4 @@
-web: bundle exec puma -C config/puma.rb
-stream: yarn run start
-webpack: ./bin/webpack-dev-server
+web: PORT=3000 bundle exec puma -C config/puma.rb
+sidekiq: PORT=3000 bundle exec sidekiq
+stream: PORT=4000 yarn run start
+webpack: ./bin/webpack-dev-server --host 0.0.0.0

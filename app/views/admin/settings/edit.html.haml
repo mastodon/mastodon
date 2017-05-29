@@ -1,0 +1,58 @@
+- content_for :page_title do
+  = t('admin.settings.title')
+
+= form_tag(admin_settings_path, method: :put, class: 'simple_form', style: 'max-width: 100%') do
+  %table.table
+    %thead
+      %tr
+        %th{ width: '40%' }
+          = t('admin.settings.setting')
+        %th
+    %tbody
+      %tr
+        %td
+          %strong= t('admin.settings.contact_information.label')
+        %td= text_field_tag :site_contact_username,
+          @settings['site_contact_username'].value,
+          place_holder: t('admin.settings.contact_information.username')
+      %tr
+        %td
+          %strong= t('admin.accounts.email')
+        %td= text_field_tag :site_contact_email,
+          @settings['site_contact_email'].value,
+          place_holder: t('admin.settings.contact_information.email')
+      %tr
+        %td
+          %strong= t('admin.settings.site_title')
+        %td= text_field_tag :site_title,
+          @settings['site_title'].value
+      %tr
+        %td
+          %strong= t('admin.settings.site_description.title')
+          %p= t('admin.settings.site_description.desc_html')
+        %td= text_area_tag :site_description,
+          @settings['site_description'].value,
+          rows: 8
+      %tr
+        %td
+          %strong= t('admin.settings.site_description_extended.title')
+          %p= t('admin.settings.site_description_extended.desc_html')
+        %td= text_area_tag :site_extended_description,
+          @settings['site_extended_description'].value,
+          rows: 8
+      %tr
+        %td
+          %strong= t('admin.settings.registrations.open.title')
+        %td
+          = select_tag :open_registrations,
+          options_for_select({ t('admin.settings.registrations.open.disabled') => false, t('admin.settings.registrations.open.enabled') => true }, @settings['open_registrations'].value)
+      %tr
+        %td
+          %strong= t('admin.settings.registrations.closed_message.title')
+          %p= t('admin.settings.registrations.closed_message.desc_html')
+        %td= text_area_tag :closed_registrations_message,
+          @settings['closed_registrations_message'].value,
+          rows: 8
+
+  .simple_form.actions
+    = button_tag t('generic.save_changes'), type: :submit, class: :btn

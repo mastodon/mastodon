@@ -15,6 +15,10 @@ RSpec.describe FollowRemoteAccountService do
     stub_request(:get, "https://quitter.no/.well-known/webfinger?resource=acct:catsrgr8@quitter.no").to_return(status: 404)
     stub_request(:get, "https://quitter.no/api/statuses/user_timeline/7477.atom").to_return(request_fixture('feed.txt'))
     stub_request(:get, "https://quitter.no/avatar/7477-300-20160211190340.png").to_return(request_fixture('avatar.txt'))
+    stub_request(:get, "https://localdomain.com/.well-known/host-meta").to_return(request_fixture('localdomain-hostmeta.txt'))
+    stub_request(:get, "https://localdomain.com/.well-known/webfinger?resource=acct:foo@localdomain.com").to_return(status: 404)
+    stub_request(:get, "https://webdomain.com/.well-known/webfinger?resource=acct:foo@localdomain.com").to_return(request_fixture('localdomain-webfinger.txt'))
+    stub_request(:get, "https://webdomain.com/users/foo.atom").to_return(request_fixture('localdomain-feed.txt'))
   end
 
   it 'raises error if no such user can be resolved via webfinger' do
@@ -55,5 +59,13 @@ RSpec.describe FollowRemoteAccountService do
 
   it 'prevents hijacking inexisting accounts' do
     expect { subject.call('hacker2@redirected.com') }.to raise_error Goldfinger::Error
+  end
+
+  it 'returns a new remote account' do
+    account = subject.call('foo@localdomain.com')
+
+    expect(account.username).to eq 'foo'
+    expect(account.domain).to eq 'localdomain.com'
+    expect(account.remote_url).to eq 'https://webdomain.com/users/foo.atom'
   end
 end

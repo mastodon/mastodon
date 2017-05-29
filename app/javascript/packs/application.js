@@ -1,29 +1,11 @@
-import Mastodon from 'mastodon/containers/mastodon';
-import React from 'react';
-import ReactDOM from 'react-dom';
-import 'font-awesome/css/font-awesome.css';
-import '../styles/application.scss';
+import main from '../mastodon/main';
 
-if (!window.Intl) {
-  require('intl');
-  require('intl/locale-data/jsonp/en.js');
+if (!window.Intl || !Object.assign || !Number.isNaN ||
+    !window.Symbol || !Array.prototype.includes) {
+  // load polyfills dynamically
+  import('../mastodon/polyfills').then(main).catch(e => {
+    console.error(e); // eslint-disable-line no-console
+  });
+} else {
+  main();
 }
-
-window.jQuery = window.$ = require('jquery');
-window.Perf = require('react-addons-perf');
-
-require('jquery-ujs');
-require.context('../images/', true);
-
-const customContext = require.context('../../assets/stylesheets/', false);
-
-if (customContext.keys().indexOf('./custom.scss') !== -1) {
-  customContext('./custom.scss');
-}
-
-document.addEventListener('DOMContentLoaded', () => {
-  const mountNode = document.getElementById('mastodon');
-  const props = JSON.parse(mountNode.getAttribute('data-props'));
-
-  ReactDOM.render(<Mastodon {...props} />, mountNode);
-});

@@ -5,6 +5,10 @@ import emojify from '../emoji';
 
 class DisplayName extends React.PureComponent {
 
+  static propTypes = {
+    account: ImmutablePropTypes.map.isRequired,
+  };
+
   render () {
     const displayName     = this.props.account.get('display_name').length === 0 ? this.props.account.get('username') : this.props.account.get('display_name');
     const displayNameHTML = { __html: emojify(escapeTextContentForBrowser(displayName)) };
@@ -16,10 +20,6 @@ class DisplayName extends React.PureComponent {
     );
   }
 
-};
-
-DisplayName.propTypes = {
-  account: ImmutablePropTypes.map.isRequired
 }
 
 export default DisplayName;

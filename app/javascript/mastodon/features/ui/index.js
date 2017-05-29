@@ -10,7 +10,7 @@ import ModalContainer from './containers/modal_container';
 import Notifications from '../notifications';
 import { connect } from 'react-redux';
 import { isMobile } from '../../is_mobile';
-import { debounce } from 'react-decoration';
+import { debounce } from 'lodash';
 import { uploadCompose } from '../../actions/compose';
 import { refreshTimeline } from '../../actions/timelines';
 import { refreshNotifications } from '../../actions/notifications';
@@ -20,28 +20,21 @@ const noOp = () => false;
 
 class UI extends React.PureComponent {
 
-  constructor (props, context) {
-    super(props, context);
-    this.state = {
-      width: window.innerWidth,
-      draggingOver: false
-    };
-    this.handleResize = this.handleResize.bind(this);
-    this.handleDragEnter = this.handleDragEnter.bind(this);
-    this.handleDragOver = this.handleDragOver.bind(this);
-    this.handleDrop = this.handleDrop.bind(this);
-    this.handleDragLeave = this.handleDragLeave.bind(this);
-    this.handleDragEnd = this.handleDragLeave.bind(this)
-    this.closeUploadModal = this.closeUploadModal.bind(this)
-    this.setRef = this.setRef.bind(this);
-  }
+  static propTypes = {
+    dispatch: PropTypes.func.isRequired,
+    children: PropTypes.node,
+  };
 
-  @debounce(500)
-  handleResize () {
+  state = {
+    width: window.innerWidth,
+    draggingOver: false,
+  };
+
+  handleResize = () => {
     this.setState({ width: window.innerWidth });
   }
 
-  handleDragEnter (e) {
+  handleDragEnter = (e) => {
     e.preventDefault();
 
     if (!this.dragTargets) {
@@ -57,7 +50,7 @@ class UI extends React.PureComponent {
     }
   }
 
-  handleDragOver (e) {
+  handleDragOver = (e) => {
     e.preventDefault();
     e.stopPropagation();
 
@@ -70,7 +63,7 @@ class UI extends React.PureComponent {
     return false;
   }
 
-  handleDrop (e) {
+  handleDrop = (e) => {
     e.preventDefault();
 
     this.setState({ draggingOver: false });
@@ -80,7 +73,7 @@ class UI extends React.PureComponent {
     }
   }
 
-  handleDragLeave (e) {
+  handleDragLeave = (e) => {
     e.preventDefault();
     e.stopPropagation();
 
@@ -93,7 +86,7 @@ class UI extends React.PureComponent {
     this.setState({ draggingOver: false });
   }
 
-  closeUploadModal() {
+  closeUploadModal = () => {
     this.setState({ draggingOver: false });
   }
 
@@ -118,7 +111,7 @@ class UI extends React.PureComponent {
     document.removeEventListener('dragend', this.handleDragEnd);
   }
 
-  setRef (c) {
+  setRef = (c) => {
     this.node = c;
   }
 
@@ -140,7 +133,7 @@ class UI extends React.PureComponent {
           <Compose withHeader={true} />
           <HomeTimeline shouldUpdateScroll={noOp} />
           <Notifications shouldUpdateScroll={noOp} />
-          <div style={{display: 'flex', flex: '1 1 auto', position: 'relative'}}>{children}</div>
+          <div className="column__wrapper">{children}</div>
         </ColumnsArea>
       );
     }
@@ -160,10 +153,5 @@ class UI extends React.PureComponent {
   }
 
 }
-
-UI.propTypes = {
-  dispatch: PropTypes.func.isRequired,
-  children: PropTypes.node
-};
 
 export default connect()(UI);

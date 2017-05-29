@@ -9,17 +9,17 @@ import Permalink from './permalink';
 
 class StatusContent extends React.PureComponent {
 
-  constructor (props, context) {
-    super(props, context);
-    this.state = {
-      hidden: true
-    };
-    this.onMentionClick = this.onMentionClick.bind(this);
-    this.onHashtagClick = this.onHashtagClick.bind(this);
-    this.handleMouseDown = this.handleMouseDown.bind(this)
-    this.handleMouseUp = this.handleMouseUp.bind(this);
-    this.handleSpoilerClick = this.handleSpoilerClick.bind(this);
-    this.setRef = this.setRef.bind(this);
+  static contextTypes = {
+    router: PropTypes.object,
+  };
+
+  static propTypes = {
+    status: ImmutablePropTypes.map.isRequired,
+    onClick: PropTypes.func,
+  };
+
+  state = {
+    hidden: true,
   };
 
   componentDidMount () {
@@ -36,8 +36,6 @@ class StatusContent extends React.PureComponent {
         link.setAttribute('title', mention.get('acct'));
       } else if (link.textContent[0] === '#' || (link.previousSibling && link.previousSibling.textContent && link.previousSibling.textContent[link.previousSibling.textContent.length - 1] === '#')) {
         link.addEventListener('click', this.onHashtagClick.bind(this, link.text), false);
-      } else if (media) {
-        link.innerHTML = '<i class="fa fa-fw fa-photo"></i>';
       } else {
         link.setAttribute('target', '_blank');
         link.setAttribute('rel', 'noopener');
@@ -46,14 +44,14 @@ class StatusContent extends React.PureComponent {
     }
   }
 
-  onMentionClick (mention, e) {
+  onMentionClick = (mention, e) => {
     if (e.button === 0) {
       e.preventDefault();
       this.context.router.push(`/accounts/${mention.get('id')}`);
     }
   }
 
-  onHashtagClick (hashtag, e) {
+  onHashtagClick = (hashtag, e) => {
     hashtag = hashtag.replace(/^#/, '').toLowerCase();
 
     if (e.button === 0) {
@@ -62,31 +60,31 @@ class StatusContent extends React.PureComponent {
     }
   }
 
-  handleMouseDown (e) {
+  handleMouseDown = (e) => {
     this.startXY = [e.clientX, e.clientY];
   }
 
-  handleMouseUp (e) {
+  handleMouseUp = (e) => {
     const [ startX, startY ] = this.startXY;
     const [ deltaX, deltaY ] = [Math.abs(e.clientX - startX), Math.abs(e.clientY - startY)];
 
-    if (e.target.localName === 'a' || (e.target.parentNode && e.target.parentNode.localName === 'a')) {
+    if (e.target.localName === 'button' || e.target.localName === 'span' || e.target.localName === 'a' || (e.target.parentNode && e.target.parentNode.localName === 'a')) {
       return;
     }
 
-    if (deltaX + deltaY < 5 && e.button === 0) {
+    if (deltaX + deltaY < 5 && e.button === 0 && this.props.onClick) {
       this.props.onClick();
     }
 
     this.startXY = null;
   }
 
-  handleSpoilerClick (e) {
+  handleSpoilerClick = (e) => {
     e.preventDefault();
     this.setState({ hidden: !this.state.hidden });
   }
 
-  setRef (c) {
+  setRef = (c) => {
     this.node = c;
   }
 
@@ -109,7 +107,7 @@ class StatusContent extends React.PureComponent {
         <Permalink to={`/accounts/${item.get('id')}`} href={item.get('url')} key={item.get('id')} className='mention'>
           @<span>{item.get('username')}</span>
         </Permalink>
-      )).reduce((aggregate, item) => [...aggregate, item, ' '], [])
+      )).reduce((aggregate, item) => [...aggregate, item, ' '], []);
 
       const toggleText = hidden ? <FormattedMessage id='status.show_more' defaultMessage='Show more' /> : <FormattedMessage id='status.show_less' defaultMessage='Show less' />;
 
@@ -118,14 +116,16 @@ class StatusContent extends React.PureComponent {
       }
 
       return (
-        <div className='status__content' onMouseDown={this.handleMouseDown} onMouseUp={this.handleMouseUp}>
-          <p style={{ marginBottom: hidden && status.get('mentions').size === 0 ? '0px' : '' }} >
-            <span dangerouslySetInnerHTML={spoilerContent} />  <a tabIndex='0' className='status__content__spoiler-link' role='button' onClick={this.handleSpoilerClick}>{toggleText}</a>
+        <div className='status__content' ref={this.setRef} onMouseDown={this.handleMouseDown} onMouseUp={this.handleMouseUp}>
+          <p style={{ marginBottom: hidden && status.get('mentions').isEmpty() ? '0px' : null }}>
+            <span dangerouslySetInnerHTML={spoilerContent} />
+            {' '}
+            <button tabIndex='0' className='status__content__spoiler-link' onClick={this.handleSpoilerClick}>{toggleText}</button>
           </p>
 
           {mentionsPlaceholder}
 
-          <div ref={this.setRef} style={{ display: hidden ? 'none' : 'block', ...directionStyle }} dangerouslySetInnerHTML={content} />
+          <div className={`status__content__text ${!hidden ? 'status__content__text--visible' : ''}`} style={directionStyle} dangerouslySetInnerHTML={content} />
         </div>
       );
     } else if (this.props.onClick) {
@@ -133,7 +133,7 @@ class StatusContent extends React.PureComponent {
         <div
           ref={this.setRef}
           className='status__content'
-          style={{ ...directionStyle }}
+          style={directionStyle}
           onMouseDown={this.handleMouseDown}
           onMouseUp={this.handleMouseUp}
           dangerouslySetInnerHTML={content}
@@ -144,7 +144,7 @@ class StatusContent extends React.PureComponent {
         <div
           ref={this.setRef}
           className='status__content status__content--no-action'
-          style={{ ...directionStyle }}
+          style={directionStyle}
           dangerouslySetInnerHTML={content}
         />
       );
@@ -152,14 +152,5 @@ class StatusContent extends React.PureComponent {
   }
 
 }
-
-StatusContent.contextTypes = {
-  router: PropTypes.object
-};
-
-StatusContent.propTypes = {
-  status: ImmutablePropTypes.map.isRequired,
-  onClick: PropTypes.func
-};
 
 export default StatusContent;

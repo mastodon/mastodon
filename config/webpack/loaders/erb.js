@@ -4,6 +4,6 @@ module.exports = {
   exclude: /node_modules/,
   loader: 'rails-erb-loader',
   options: {
-    runner: 'bin/rails runner'
-  }
-}
+    runner: 'bin/rails runner',
+  },
+};

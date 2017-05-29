@@ -7,9 +7,10 @@ import {
   NOTIFICATIONS_REFRESH_FAIL,
   NOTIFICATIONS_EXPAND_FAIL,
   NOTIFICATIONS_CLEAR,
-  NOTIFICATIONS_SCROLL_TOP
+  NOTIFICATIONS_SCROLL_TOP,
 } from '../actions/notifications';
 import { ACCOUNT_BLOCK_SUCCESS } from '../actions/accounts';
+import { TIMELINE_DELETE } from '../actions/timelines';
 import Immutable from 'immutable';
 
 const initialState = Immutable.Map({
@@ -18,22 +19,30 @@ const initialState = Immutable.Map({
   top: true,
   unread: 0,
   loaded: false,
-  isLoading: true
+  isLoading: true,
 });
 
 const notificationToMap = notification => Immutable.Map({
   id: notification.id,
   type: notification.type,
   account: notification.account.id,
-  status: notification.status ? notification.status.id : null
+  status: notification.status ? notification.status.id : null,
 });
 
 const normalizeNotification = (state, notification) => {
-  if (!state.get('top')) {
+  const top = state.get('top');
+
+  if (!top) {
     state = state.update('unread', unread => unread + 1);
   }
 
-  return state.update('items', list => list.unshift(notificationToMap(notification)));
+  return state.update('items', list => {
+    if (top && list.size > 40) {
+      list = list.take(20);
+    }
+
+    return list.unshift(notificationToMap(notification));
+  });
 };
 
 const normalizeNotifications = (state, notifications, next) => {
@@ -79,6 +88,10 @@ const updateTop = (state, top) => {
   return state.set('top', top);
 };
 
+const deleteByStatus = (state, statusId) => {
+  return state.update('items', list => list.filterNot(item => item.get('status') === statusId));
+};
+
 export default function notifications(state = initialState, action) {
   switch(action.type) {
   case NOTIFICATIONS_REFRESH_REQUEST:
@@ -98,6 +111,8 @@ export default function notifications(state = initialState, action) {
     return filterNotifications(state, action.relationship);
   case NOTIFICATIONS_CLEAR:
     return state.set('items', Immutable.List()).set('next', null);
+  case TIMELINE_DELETE:
+    return deleteByStatus(state, action.id);
   default:
     return state;
   }
