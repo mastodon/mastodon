@@ -4,7 +4,7 @@
 /* eslint import/no-dynamic-require: 0 */
 
 const webpack = require('webpack');
-const { basename, dirname, join, relative, resolve } = require('path');
+const { basename, dirname, join, relative, resolve, sep } = require('path');
 const { sync } = require('glob');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const ManifestPlugin = require('webpack-manifest-plugin');
@@ -47,14 +47,14 @@ module.exports = {
     new webpack.optimize.CommonsChunkPlugin({
       name: 'common',
       minChunks: (module, count) => {
-        const reactIntlPathRegexp = new RegExp(`node_modules\\${path.sep}react-intl`);
+        const reactIntlPathRegexp = new RegExp(`node_modules\\${sep}react-intl`);
         if (module.resource && reactIntlPathRegexp.test(module.resource)) {
           // skip react-intl because it's useless to put in the common chunk,
           // e.g. because "shared" modules between zh-TW and zh-CN will never
           // be loaded together
           return false;
         }
-        const fontAwesomePathRegexp = new RegExp(`node_modules\\${path.sep}font-awesome`);
+        const fontAwesomePathRegexp = new RegExp(`node_modules\\${sep}font-awesome`);
         if (module.resource && fontAwesomePathRegexp.test(module.resource)) {
           // extract vendor css into common module
           return true;
