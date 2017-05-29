@@ -41,7 +41,7 @@ class NotificationTypeDropdown extends React.Component {
   handleClick = (value, e) => {
     e.preventDefault();
     this.setState({ open: false });
-    console.log(this.dropdown);
+
     this.dropdown.hide();
     this.props.onClick(value);
   }
