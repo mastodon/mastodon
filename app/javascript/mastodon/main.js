@@ -1,5 +1,4 @@
-// allow override variables here
-require.context('../../assets/stylesheets/', false, /variables.*\.scss$/);
+const perf = require('./performance');
 
 // import default stylesheet with variables
 require('font-awesome/css/font-awesome.css');
@@ -14,21 +13,19 @@ function onDomContentLoaded(callback) {
 }
 
 function main() {
+  perf.start('main()');
   const Mastodon = require('mastodon/containers/mastodon').default;
   const React = require('react');
   const ReactDOM = require('react-dom');
-  window.Perf = require('react-addons-perf');
 
   require.context('../images/', true);
-
-  // import customization styles
-  require.context('../../assets/stylesheets/', false, /custom.*\.scss$/);
 
   onDomContentLoaded(() => {
     const mountNode = document.getElementById('mastodon');
     const props = JSON.parse(mountNode.getAttribute('data-props'));
 
     ReactDOM.render(<Mastodon {...props} />, mountNode);
+    perf.stop('main()');
   });
 }
 

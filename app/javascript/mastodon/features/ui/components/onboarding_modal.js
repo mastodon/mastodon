@@ -191,15 +191,14 @@ class OnboardingModal extends React.PureComponent {
     this.setState({ currentIndex: i });
   }
 
-  handleNext = (e) => {
-    const maxNum = Number(e.currentTarget.getAttribute('data-length'));
-    e.preventDefault();
+  handleNext = () => {
+    this.setState(({ currentIndex }) => ({
+      currentIndex: currentIndex + 1,
+    }));
+  }
 
-    if (this.state.currentIndex < maxNum - 1) {
-      this.setState({ currentIndex: this.state.currentIndex + 1 });
-    } else {
-      this.props.onClose();
-    }
+  handleClose = () => {
+    this.props.onClose();
   }
 
   render () {
@@ -216,13 +215,21 @@ class OnboardingModal extends React.PureComponent {
     const { currentIndex } = this.state;
     const hasMore = currentIndex < pages.length - 1;
 
-    let nextOrDoneBtn;
-
-    if(hasMore) {
-      nextOrDoneBtn = <a href='#' data-length={pages.length} onClick={this.handleNext} className='onboarding-modal__nav onboarding-modal__next'><FormattedMessage id='onboarding.next' defaultMessage='Next' /></a>;
-    } else {
-      nextOrDoneBtn = <a href='#' data-length={pages.length} onClick={this.handleNext} className='onboarding-modal__nav onboarding-modal__done'><FormattedMessage id='onboarding.done' defaultMessage='Done' /></a>;
-    }
+    const nextOrDoneBtn = hasMore ? (
+      <button
+        onClick={this.handleNext}
+        className='onboarding-modal__nav onboarding-modal__next'
+      >
+        <FormattedMessage id='onboarding.next' defaultMessage='Next' />
+      </button>
+    ) : (
+      <button
+        onClick={this.handleClose}
+        className='onboarding-modal__nav onboarding-modal__done'
+      >
+        <FormattedMessage id='onboarding.done' defaultMessage='Done' />
+      </button>
+    );
 
     const styles = pages.map((page, i) => ({
       key: `page-${i}`,
@@ -243,7 +250,12 @@ class OnboardingModal extends React.PureComponent {
 
         <div className='onboarding-modal__paginator'>
           <div>
-            <a href='#' className='onboarding-modal__skip' onClick={this.handleSkip}><FormattedMessage id='onboarding.skip' defaultMessage='Skip' /></a>
+            <button
+              onClick={this.handleSkip}
+              className='onboarding-modal__nav onboarding-modal__skip'
+            >
+              <FormattedMessage id='onboarding.skip' defaultMessage='Skip' />
+            </button>
           </div>
 
           <div className='onboarding-modal__dots'>

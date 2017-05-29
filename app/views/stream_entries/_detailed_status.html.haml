@@ -31,7 +31,7 @@
   .detailed-status__meta
     %data.dt-published{ value: status.created_at.to_time.iso8601 }
     = link_to TagManager.instance.url_for(status), class: 'detailed-status__datetime u-url u-uid', target: stream_link_target, rel: 'noopener' do
-      %time{ datetime: status.created_at.iso8601, title: l(status.created_at), data: { format: t('time.formats.default') } }= l(status.created_at)
+      %time.formatted{ datetime: status.created_at.iso8601, title: l(status.created_at) }= l(status.created_at)
     ·
     - if status.application
       - if status.application.website.blank?

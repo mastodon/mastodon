@@ -108,12 +108,18 @@ class ProcessInteractionService < BaseService
 
   def favourite!(xml, from_account)
     current_status = status(xml)
+
+    return if current_status.nil?
+
     favourite = current_status.favourites.where(account: from_account).first_or_create!(account: from_account)
     NotifyService.new.call(current_status.account, favourite)
   end
 
   def unfavourite!(xml, from_account)
     current_status = status(xml)
+
+    return if current_status.nil?
+
     favourite = current_status.favourites.where(account: from_account).first
     favourite&.destroy
   end

@@ -60,6 +60,7 @@
 
 .column-collapsable {
   position: relative;
+  flex: 0 0 auto;
 
   .column-collapsable__content {
     overflow: auto;
@@ -554,6 +555,14 @@
   border-bottom: 1px solid lighten($ui-base-color, 8%);
   cursor: default;
 
+  @keyframes fade {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+  }
+
+  opacity: 1;
+  animation: fade 150ms linear;
+
   &.status-direct {
     background: lighten($ui-base-color, 8%);
 
@@ -668,7 +677,7 @@
   margin-top: 10px;
 }
 
-.status__action-bar-button-wrapper {
+.status__action-bar-button {
   float: left;
   margin-right: 18px;
 }
@@ -1317,7 +1326,9 @@
 .drawer {
   flex: 1 1 100%;
   overflow: hidden;
-  contain: strict;
+  @supports(display: grid) { // hack to fix Chrome <57
+    contain: strict;
+  }
 }
 
 @media screen and (min-width: 360px) {
@@ -1492,7 +1503,9 @@
   flex: 1 1 auto;
   backface-visibility: hidden;
   -webkit-overflow-scrolling: touch;
-  contain: strict;
+  @supports(display: grid) { // hack to fix Chrome <57
+    contain: strict;
+  }
 
   &.optionally-scrollable {
     overflow-y: auto;
@@ -1784,6 +1797,7 @@
 
 .getting-started__wrapper {
   position: relative;
+  flex: 0 0 auto;
 }
 
 .getting-started__footer {
@@ -1951,9 +1965,15 @@ button.icon-button.active i.fa-retweet {
 .load-more {
   display: block;
   color: lighten($ui-base-color, 26%);
+  background-color: transparent;
+  border: 0;
+  font-size: inherit;
   text-align: center;
+  line-height: inherit;
+  margin: 0;
   padding: 15px;
-  text-decoration: none;
+  width: 100%;
+  clear: both;
 
   &:hover {
     background: lighten($ui-base-color, 2%);
@@ -2239,7 +2259,9 @@ button.icon-button.active i.fa-retweet {
   flex: 1 1 auto;
   align-items: center;
   justify-content: center;
-  contain: strict;
+  @supports(display: grid) { // hack to fix Chrome <57
+    contain: strict;
+  }
 
   a {
     color: $ui-highlight-color;
@@ -2899,11 +2921,15 @@ button.icon-button.active i.fa-retweet {
     min-width: 33px;
   }
 
-  a {
+  .onboarding-modal__nav {
     color: darken($ui-secondary-color, 34%);
-    text-decoration: none;
+    background-color: transparent;
+    border: 0;
     font-size: 14px;
     font-weight: 500;
+    padding: 0;
+    line-height: inherit;
+    height: auto;
 
     &:hover,
     &:focus,
@@ -2987,13 +3013,14 @@ button.icon-button.active i.fa-retweet {
 
 .onboarding-modal__page-one {
   display: flex;
+  align-items: center;
 }
 
 .onboarding-modal__page-one__elephant-friend {
-  background: url('../images/elephant-friend.png') no-repeat center center / contain;
-  width: 147px;
-  height: 160px;
-  margin-right: 10px;
+  background: url('../images/elephant-friend-1.png') no-repeat center center / contain;
+  width: 155px;
+  height: 193px;
+  margin-right: 15px;
 }
 
 @media screen and (max-width: 400px) {
@@ -3368,7 +3395,7 @@ button.icon-button.active i.fa-retweet {
   object-fit: cover;
   position: relative;
   top: 50%;
-  transform: translateY(-35%);
+  transform: translateY(-50%);
   width: 100%;
   z-index: 1;
 }

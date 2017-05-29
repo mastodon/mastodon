@@ -67,7 +67,6 @@ class ComposeForm extends ImmutablePureComponent {
   }
 
   handleSubmit = () => {
-    this.autosuggestTextarea.reset();
     this.props.onSubmit();
   }
 

@@ -45,8 +45,13 @@ body {
   }
 }
 
-button:focus {
-  outline: none;
+button {
+  font-family: inherit;
+  cursor: pointer;
+
+  &:focus {
+    outline: none;
+  }
 }
 
 .app-holder {

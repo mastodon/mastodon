@@ -49,7 +49,7 @@ class Notification < ApplicationRecord
   cache_associated :from_account, status: STATUS_INCLUDES, mention: [status: STATUS_INCLUDES], favourite: [:account, status: STATUS_INCLUDES], follow: :account
 
   def activity(eager_loaded = true)
-    eager_loaded ? send(activity_type.downcase) : super
+    eager_loaded ? send(activity_type.underscore) : super()
   end
 
   def type
