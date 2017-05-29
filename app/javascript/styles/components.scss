@@ -1137,15 +1137,6 @@
   }
 }
 
-.transparent-background,
-.imageloader {
-  background: url('../images/void.png');
-}
-
-.imageloader {
-  display: block;
-}
-
 .navigation-bar {
   padding: 10px;
   display: flex;
@@ -2851,6 +2842,11 @@ button.icon-button.active i.fa-retweet {
   video {
     max-width: 80vw;
     max-height: 80vh;
+  }
+
+  img {
+    display: block;
+    background: url('../images/void.png') repeat;
   }
 }
 

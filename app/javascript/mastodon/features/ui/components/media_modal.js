@@ -3,7 +3,6 @@ import LoadingIndicator from '../../../components/loading_indicator';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
 import ExtendedVideoPlayer from '../../../components/extended_video_player';
-import ImageLoader from 'react-imageloader';
 import { defineMessages, injectIntl } from 'react-intl';
 import IconButton from '../../../components/icon_button';
 import ImmutablePureComponent from 'react-immutable-pure-component';
@@ -73,7 +72,7 @@ class MediaModal extends ImmutablePureComponent {
     }
 
     if (attachment.get('type') === 'image') {
-      content = <ImageLoader src={url} imgProps={{ style: { display: 'block' } }} />;
+      content = <img src={url} />;
     } else if (attachment.get('type') === 'gifv') {
       content = <ExtendedVideoPlayer src={url} muted={true} controls={false} />;
     }
