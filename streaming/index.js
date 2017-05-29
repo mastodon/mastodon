@@ -370,8 +370,9 @@ const startWorker = (workerId) => {
   const wss    = new WebSocket.Server({ server, verifyClient: wsVerifyClient });
 
   wss.on('connection', ws => {
-    const location  = url.parse(ws.upgradeReq.url, true);
-    const req       = { requestId: uuid.v4(), accountId: ws.upgradeReq.accountId };
+    const req      = ws.upgradeReq;
+    const location = url.parse(req.url, true);
+    req.requestId  = uuid.v4();
 
     ws.isAlive = true;
 
