@@ -39,9 +39,9 @@ export function saveSettings() {
 
     const backendSubscription = subscriptions.find(sub => sub.endpoint === subscription.endpoint);
 
-    axios.put(`/api/web/settings`, {
+    axios.put(`/api/web/push_subscriptions`, {
       data: {
-        web_push_subscription_id: subscription.id || backendSubscription.id,
+        id: subscription.id || backendSubscription.id,
         alerts,
       },
     });

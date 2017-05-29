@@ -37,10 +37,8 @@ const unsubscribe = ({ registration, subscription }) =>
   subscription.unsubscribe().then(() => registration);
 
 const sendSubscriptionToBackend = (subscription) =>
-  axios.put('/api/web/settings', {
-    data: {
-      web_push_subscription: subscription,
-    },
+  axios.post('/api/web/push_subscriptions', {
+    data: subscription,
   }).then(response => response.data);
 
 const supportsPushNotifications = ('serviceWorker' in navigator && 'PushManager' in window);
