@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import StatusContainer from '../containers/status_container';
 import LoadMore from './load_more';
 import ImmutablePureComponent from 'react-immutable-pure-component';
+import IntersectionObserverWrapper from '../features/ui/util/intersection_observer_wrapper';
 
 class StatusList extends ImmutablePureComponent {
 
@@ -26,12 +27,7 @@ class StatusList extends ImmutablePureComponent {
     trackScroll: true,
   };
 
-  state = {
-    isIntersecting: {},
-    intersectionCount: 0,
-  }
-
-  statusRefQueue = []
+  intersectionObserverWrapper = new IntersectionObserverWrapper();
 
   handleScroll = (e) => {
     const { scrollTop, scrollHeight, clientHeight } = e.target;
@@ -64,53 +60,14 @@ class StatusList extends ImmutablePureComponent {
   }
 
   attachIntersectionObserver () {
-    const onIntersection = (entries) => {
-      this.setState(state => {
-
-        entries.forEach(entry => {
-          const statusId = entry.target.getAttribute('data-id');
-
-          // Edge 15 doesn't support isIntersecting, but we can infer it from intersectionRatio
-          // https://developer.microsoft.com/en-us/microsoft-edge/platform/issues/12156111/
-          state.isIntersecting[statusId] = entry.intersectionRatio > 0;
-        });
-
-        // isIntersecting is a map of DOM data-id's to booleans (true for
-        // intersecting, false for non-intersecting).
-        //
-        // We always want to return true in shouldComponentUpdate() if
-        // this object changes, because onIntersection() is only called if
-        // something has changed.
-        //
-        // Now, we *could* use an immutable map or some other structure to
-        // diff the full map, but that would be pointless because the browser
-        // has already informed us that something has changed. So we can just
-        // use a regular object, which will be diffed by ImmutablePureComponent
-        // based on reference equality (i.e. it's always "unchanged") and
-        // then we just increment intersectionCount to force a change.
-
-        return {
-          isIntersecting: state.isIntersecting,
-          intersectionCount: state.intersectionCount + 1,
-        };
-      });
-    };
-
-    const options = {
+    this.intersectionObserverWrapper.connect({
       root: this.node,
       rootMargin: '300% 0px',
-    };
-
-    this.intersectionObserver = new IntersectionObserver(onIntersection, options);
-
-    if (this.statusRefQueue.length) {
-      this.statusRefQueue.forEach(node => this.intersectionObserver.observe(node));
-      this.statusRefQueue = [];
-    }
+    });
   }
 
   detachIntersectionObserver () {
-    this.intersectionObserver.disconnect();
+    this.intersectionObserverWrapper.disconnect();
   }
 
   attachScrollListener () {
@@ -125,15 +82,6 @@ class StatusList extends ImmutablePureComponent {
     this.node = c;
   }
 
-  handleStatusRef = (node) => {
-    if (node && this.intersectionObserver) {
-      const statusId = node.getAttribute('data-id');
-      this.intersectionObserver.observe(node);
-    } else {
-      this.statusRefQueue.push(node);
-    }
-  }
-
   handleLoadMore = (e) => {
     e.preventDefault();
     this.props.onScrollToBottom();
@@ -141,7 +89,6 @@ class StatusList extends ImmutablePureComponent {
 
   render () {
     const { statusIds, onScrollToBottom, scrollKey, shouldUpdateScroll, isLoading, isUnread, hasMore, prepend, emptyMessage } = this.props;
-    const { isIntersecting } = this.state;
 
     let loadMore       = null;
     let scrollableArea = null;
@@ -164,7 +111,7 @@ class StatusList extends ImmutablePureComponent {
             {prepend}
 
             {statusIds.map((statusId) => {
-              return <StatusContainer key={statusId} id={statusId} isIntersecting={isIntersecting[statusId]} onRef={this.handleStatusRef} />;
+              return <StatusContainer key={statusId} id={statusId} intersectionObserverWrapper={this.intersectionObserverWrapper} />;
             })}
 
             {loadMore}
