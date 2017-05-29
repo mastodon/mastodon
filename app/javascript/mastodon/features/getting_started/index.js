@@ -10,19 +10,19 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 
 const messages = defineMessages({
   heading: { id: 'getting_started.heading', defaultMessage: 'Getting started' },
-  home_timeline: { id: 'tabs_bar.home', defaultMessage: 'Home' },
-  notifications: { id: 'tabs_bar.notifications', defaultMessage: 'Notifications' },
-  public_timeline: { id: 'navigation_bar.public_timeline', defaultMessage: 'Federated timeline' },
+  home_timeline: { id: 'tabs_bar.home', defaultMessage: '/timelines/home' },
+  notifications: { id: 'tabs_bar.notifications', defaultMessage: '~/.notifications' },
+  public_timeline: { id: 'navigation_bar.public_timeline', defaultMessage: '/timelines/federated' },
   navigation_subheading: { id: 'column_subheading.navigation', defaultMessage: 'Navigation' },
   settings_subheading: { id: 'column_subheading.settings', defaultMessage: 'Settings' },
-  community_timeline: { id: 'navigation_bar.community_timeline', defaultMessage: 'Local timeline' },
+  community_timeline: { id: 'navigation_bar.community_timeline', defaultMessage: '/timelines/local' },
   preferences: { id: 'navigation_bar.preferences', defaultMessage: 'Preferences' },
-  follow_requests: { id: 'navigation_bar.follow_requests', defaultMessage: 'Follow requests' },
-  sign_out: { id: 'navigation_bar.logout', defaultMessage: 'Logout' },
-  favourites: { id: 'navigation_bar.favourites', defaultMessage: 'Favourites' },
-  blocks: { id: 'navigation_bar.blocks', defaultMessage: 'Blocked users' },
-  mutes: { id: 'navigation_bar.mutes', defaultMessage: 'Muted users' },
-  info: { id: 'navigation_bar.info', defaultMessage: 'Extended information' },
+  follow_requests: { id: 'navigation_bar.follow_requests', defaultMessage: '~/.follow-requests' },
+  sign_out: { id: 'navigation_bar.logout', defaultMessage: 'exit' },
+  favourites: { id: 'navigation_bar.favourites', defaultMessage: '~/.florps' },
+  blocks: { id: 'navigation_bar.blocks', defaultMessage: '~/.blocked' },
+  mutes: { id: 'navigation_bar.mutes', defaultMessage: '~/.muted' },
+  info: { id: 'navigation_bar.info', defaultMessage: '/about/more' },
 });
 
 const mapStateToProps = state => ({
@@ -65,7 +65,7 @@ export default class GettingStarted extends ImmutablePureComponent {
     }
 
     navItems = navItems.concat([
-      <ColumnLink key='4' icon='star' text={intl.formatMessage(messages.favourites)} to='/favourites' />,
+      <ColumnLink key='4' icon='floppy-o' text={intl.formatMessage(messages.favourites)} to='/favourites' />,
     ]);
 
     if (me.get('locked')) {

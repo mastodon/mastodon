@@ -8,7 +8,7 @@ en:
           one: <span class="name-counter">1</span> character left
           other: <span class="name-counter">%{count}</span> characters left
         header: PNG, GIF or JPG. At most 2MB. Will be downscaled to 700x335px
-        locked: Requires you to manually approve followers and defaults post privacy to followers-only
+        locked: Requires you to manually approve followers and defaults ping privacy to followers-only
         note:
           one: <span class="note-counter">1</span> character left
           other: <span class="note-counter">%{count}</span> characters left
@@ -46,11 +46,11 @@ en:
         must_be_following: Block notifications from people you don't follow
       notification_emails:
         digest: Send digest e-mails
-        favourite: Send e-mail when someone favourites your status
+        favourite: Send e-mail when someone florps your ping
         follow: Send e-mail when someone follows you
         follow_request: Send e-mail when someone requests to follow you
         mention: Send e-mail when someone mentions you
-        reblog: Send e-mail when someone boosts your status
+        reblog: Send e-mail when someone boosts your ping
     'no': 'No'
     required:
       mark: "*"
