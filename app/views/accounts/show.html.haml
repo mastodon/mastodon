@@ -6,7 +6,7 @@
   %link{ rel: 'alternate', type: 'application/atom+xml', href: account_url(@account, format: 'atom') }/
 
   %meta{ property: 'og:type', content: 'profile' }/
-  = render 'og', account: @account, url: account_url(@account, only_path: false)
+  = render 'og', account: @account, url: short_account_url(@account, only_path: false)
 
 - if show_landing_strip?
   = render partial: 'shared/landing_strip', locals: { account: @account }

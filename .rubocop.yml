@@ -74,7 +74,13 @@ Style/RegexpLiteral:
 Style/Lambda:
   Enabled: false
 
+Style/GuardClause:
+  Enabled: false
+
 Rails/HasAndBelongsToMany:
+  Enabled: false
+
+Bundler/OrderedGems:
   Enabled: false
 
 AllCops:
@@ -88,3 +94,4 @@ AllCops:
   - 'Rakefile'
   - 'node_modules/**/*'
   - 'Vagrantfile'
+  - 'vendor/**/*'

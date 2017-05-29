@@ -4,7 +4,7 @@ fr:
     confirmations:
       confirmed: Votre compte a été validé.
       send_instructions: Vous allez recevoir les instructions nécessaires à la confirmation de votre compte dans quelques minutes.
-      send_paranoid_instructions: Si votre e-mail existe dans notre base de données, vous allez bientôt recevoir un e-mail contenant les instructions de confirmation de votre compte.
+      send_paranoid_instructions: Si votre adresse e-mail existe dans notre base de données, vous allez bientôt recevoir un courriel contenant les instructions de confirmation de votre compte.
     failure:
       already_authenticated: Vous êtes déjà connecté⋅e
       inactive: Votre compte n’est pas encore activé.
@@ -28,9 +28,9 @@ fr:
       failure: 'Nous n’avons pas pu vous authentifier via %{kind} : ''%{reason}''.'
       success: Authentifié avec succès via %{kind}.
     passwords:
-      no_token: Vous ne pouvez accéder à cette page sans passer par un e-mail de réinitialisation de mot de passe. Si vous êtes passé⋅e par un e-mail de ce type, assurez-vous d'utiliser l'URL complète.
+      no_token: Vous ne pouvez accéder à cette page sans passer par un courriel de réinitialisation de mot de passe. Si vous êtes passé⋅e par un courriel de ce type, assurez-vous d'utiliser l'URL complète.
       send_instructions: Vous allez recevoir les instructions de réinitialisation du mot de passe dans quelques instants
-      send_paranoid_instructions: Si votre e-mail existe dans notre base de données, vous allez recevoir un lien de réinitialisation par e-mail
+      send_paranoid_instructions: Si votre addresse e-mail existe dans notre base de données, vous allez recevoir un lien de réinitialisation par courriel
       updated: Votre mot de passe a été modifié avec succès, vous êtes maintenant connecté⋅e
       updated_not_active: Votre mot de passe a été modifié avec succès.
     registrations:
@@ -57,5 +57,5 @@ fr:
       not_found: n’a pas été trouvé⋅e
       not_locked: n’était pas verrouillé⋅e
       not_saved:
-        one: '1 erreur a empêché ce(tte) %{resource} d’être sauvegardé⋅e :'
+        one: 'Une erreur a empêché ce(tte) %{resource} d’être sauvegardé⋅e :'
         other: '%{count} erreurs ont empêché %{resource} d’être sauvegardé⋅e :'

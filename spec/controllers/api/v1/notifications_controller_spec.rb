@@ -11,6 +11,35 @@ RSpec.describe Api::V1::NotificationsController, type: :controller do
     allow(controller).to receive(:doorkeeper_token) { token }
   end
 
+  describe 'GET #show' do
+    it 'returns http success' do
+      notification = Fabricate(:notification, account: user.account)
+      get :show, params: { id: notification.id }
+
+      expect(response).to have_http_status(:success)
+    end
+  end
+
+  describe 'POST #dismiss' do
+    it 'destroys the notification' do
+      notification = Fabricate(:notification, account: user.account)
+      post :dismiss, params: { id: notification.id }
+
+      expect(response).to have_http_status(:success)
+      expect { notification.reload }.to raise_error(ActiveRecord::RecordNotFound)
+    end
+  end
+
+  describe 'POST #clear' do
+    it 'clears notifications for the account' do
+      notification = Fabricate(:notification, account: user.account)
+      post :clear
+
+      expect(notification.account.reload.notifications).to be_empty
+      expect(response).to have_http_status(:success)
+    end
+  end
+
   describe 'GET #index' do
     before do
       first_status = PostStatusService.new.call(user.account, 'Test')

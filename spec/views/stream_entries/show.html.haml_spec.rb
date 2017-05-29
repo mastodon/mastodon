@@ -1,12 +1,17 @@
-require 'rails_helper'
-$LOAD_PATH << '../lib'
-require 'tag_manager'
+# frozen_string_literal: true
 
-describe 'stream_entries/show.html.haml' do
+require 'rails_helper'
+
+describe 'stream_entries/show.html.haml', without_verify_partial_doubles: true do
   before do
     double(:api_oembed_url => '')
     double(:account_stream_entry_url => '')
     allow(view).to receive(:show_landing_strip?).and_return(true)
+    allow(view).to receive(:site_title).and_return('example site')
+    allow(view).to receive(:site_hostname).and_return('example.com')
+    allow(view).to receive(:full_asset_url).and_return('//asset.host/image.svg')
+    allow(view).to receive(:local_time)
+    allow(view).to receive(:local_time_ago)
   end
 
   it 'has valid author h-card and basic data for a detailed_status' do
@@ -27,8 +32,8 @@ describe 'stream_entries/show.html.haml' do
     expect(mf2.entry.name.to_s).to eq status.text
     expect(mf2.entry.url.to_s).not_to be_empty
 
-    expect(mf2.entry.author.format.name.to_s).to eq alice.display_name
-    expect(mf2.entry.author.format.url.to_s).not_to be_empty
+    expect(mf2.entry.author.name.to_s).to eq alice.display_name
+    expect(mf2.entry.author.url.to_s).not_to be_empty
   end
 
   it 'has valid h-cites for p-in-reply-to and p-comment' do
@@ -53,13 +58,13 @@ describe 'stream_entries/show.html.haml' do
     expect(mf2.entry.name.to_s).to eq reply.text
     expect(mf2.entry.url.to_s).not_to be_empty
 
-    expect(mf2.entry.comment.format.url.to_s).not_to be_empty
-    expect(mf2.entry.comment.format.author.format.name.to_s).to eq carl.display_name
-    expect(mf2.entry.comment.format.author.format.url.to_s).not_to be_empty
+    expect(mf2.entry.comment.url.to_s).not_to be_empty
+    expect(mf2.entry.comment.author.name.to_s).to eq carl.display_name
+    expect(mf2.entry.comment.author.url.to_s).not_to be_empty
 
-    expect(mf2.entry.in_reply_to.format.url.to_s).not_to be_empty
-    expect(mf2.entry.in_reply_to.format.author.format.name.to_s).to eq alice.display_name
-    expect(mf2.entry.in_reply_to.format.author.format.url.to_s).not_to be_empty
+    expect(mf2.entry.in_reply_to.url.to_s).not_to be_empty
+    expect(mf2.entry.in_reply_to.author.name.to_s).to eq alice.display_name
+    expect(mf2.entry.in_reply_to.author.url.to_s).not_to be_empty
   end
 
   it 'has valid opengraph tags' do

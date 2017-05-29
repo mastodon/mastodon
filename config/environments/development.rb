@@ -16,14 +16,6 @@ Rails.application.configure do
   if Rails.root.join('tmp/caching-dev.txt').exist?
     config.action_controller.perform_caching = true
 
-    config.cache_store = :redis_store, {
-      host: ENV['REDIS_HOST'] || 'localhost',
-      port: ENV['REDIS_PORT'] || 6379,
-      db: 0,
-      namespace: 'cache',
-      expires_in: 1.minute,
-    }
-
     config.public_file_server.headers = {
       'Cache-Control' => 'public, max-age=172800',
     }
@@ -31,6 +23,11 @@ Rails.application.configure do
     config.action_controller.perform_caching = false
 
     config.cache_store = :null_store
+  end
+
+  ActiveSupport::Logger.new(STDOUT).tap do |logger|
+    logger.formatter = config.log_formatter
+    config.logger = ActiveSupport::TaggedLogging.new(logger)
   end
 
   # Don't care if the mailer can't send.
@@ -75,8 +72,6 @@ Rails.application.configure do
 
     Bullet.add_whitelist type: :n_plus_one_query, class_name: 'User', association: :account
   end
-
-  config.react.variant = :development
 end
 
 ActiveRecordQueryTrace.enabled = ENV.fetch('QUERY_TRACE_ENABLED') { false }

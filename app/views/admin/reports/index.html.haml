@@ -21,24 +21,6 @@
         %th= t('admin.reports.report_contents')
         %th
     %tbody
-      - @reports.each do |report|
-        %tr
-          -# %td= check_box_tag 'select', report.id
-          %td= "##{report.id}"
-          %td= link_to report.target_account.acct, admin_account_path(report.target_account.id)
-          %td= link_to report.account.acct, admin_account_path(report.account.id)
-          %td
-            %span{title: report.comment}
-              = truncate(report.comment, length: 30, separator: ' ')
-          %td
-            - unless report.statuses.empty?
-              %span{title: t('admin.accounts.statuses')}
-                = fa_icon('comment')
-                = report.statuses.count
-            - unless report.media_attachments.empty?
-              %span{title: t('admin.accounts.media_attachments')}
-                = fa_icon('camera')
-                = report.media_attachments.count
-          %td= table_link_to 'circle', t('admin.reports.view'), admin_report_path(report)
+      = render @reports
 
 = paginate @reports

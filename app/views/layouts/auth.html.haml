@@ -1,16 +1,16 @@
 - content_for :header_tags do
-  = javascript_include_tag 'application_public', integrity: true, crossorigin: 'anonymous'
+  = javascript_pack_tag 'public', integrity: true, crossorigin: 'anonymous'
 
 - content_for :content do
   .container
     .logo-container
       %h1
         = link_to root_path do
-          = image_tag 'logo.png'
+          = image_tag asset_pack_path('logo.png')
 
     .form-container
       = render 'flashes'
 
       = yield
 
-= render template: "layouts/application"
+= render template: 'layouts/application'

@@ -57,6 +57,14 @@ SimpleForm.setup do |config|
     b.use :error, wrap_with: { tag: :span, class: :error }
   end
 
+  config.wrappers :with_block_label, class: :input, hint_class: :field_with_hint, error_class: :field_with_errors do |b|
+    b.use :html5
+    b.use :label
+    b.use :hint, wrap_with: { tag: :span, class: :hint }
+    b.use :input
+    b.use :error, wrap_with: { tag: :span, class: :error }
+  end
+
   # The default wrapper to be used by the FormBuilder.
   config.default_wrapper = :default
 
