@@ -129,6 +129,13 @@ RSpec.describe Formatter do
       end
     end
 
+    context 'contains multi line code block with filename' do
+      let(:local_text) { "```ruby:hello.rb\nputs 'Hello, World!'\n```" }
+      it 'has code block' do
+        expect(subject).to match '<p><pre><code data-language="ruby" data-filename="hello.rb">puts \'Hello, World!\'</code></pre></p>'
+      end
+    end
+
     context 'contains multiple code blocks' do
       let(:local_text) { "```ruby\nputs 'Hello, World!'\n```\n```js\nconsole.log('Hello, World!');\n```" }
       it 'has code block' do
