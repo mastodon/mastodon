@@ -12,12 +12,6 @@ export default function highlightCode(text) {
       }
     });
 
-    [].forEach.call(doc.querySelectorAll('p'), (el) => {
-      if (el.innerHTML.length === 0) {
-        el.remove();
-      }
-    });
-
     return doc.body.innerHTML;
   } catch(e) {
     return text;
