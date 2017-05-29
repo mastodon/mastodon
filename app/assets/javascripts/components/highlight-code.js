@@ -4,15 +4,15 @@ export default function highlightCode(text) {
   try {
     const doc = new DOMParser().parseFromString(text, 'text/html');
 
-    doc.querySelectorAll('code').forEach((el) => {
+    [].forEach.call(doc.querySelectorAll('code'), (el) => {
       el.classList.add('hljs');
       if (el.dataset.language && !el.dataset.highlighted) {
         el.innerHTML = hljs.highlight(el.dataset.language, el.innerText).value;
         el.dataset.highlighted = true;
       }
-    })
+    });
 
-    doc.querySelectorAll('p').forEach((el) => {
+    [].forEach.call(doc.querySelectorAll('p'), (el) => {
       if (el.innerHTML.length === 0) {
         el.remove();
       }
