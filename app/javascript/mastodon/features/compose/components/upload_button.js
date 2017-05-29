@@ -3,6 +3,8 @@ import IconButton from '../../../components/icon_button';
 import PropTypes from 'prop-types';
 import { defineMessages, injectIntl } from 'react-intl';
 import { connect } from 'react-redux';
+import ImmutablePureComponent from 'react-immutable-pure-component';
+import ImmutablePropTypes from 'react-immutable-proptypes';
 
 const messages = defineMessages({
   upload: { id: 'upload_button.label', defaultMessage: 'Add media' },
@@ -10,7 +12,7 @@ const messages = defineMessages({
 
 const makeMapStateToProps = () => {
   const mapStateToProps = (state, props) => ({
-    acceptContentTypes: state.getIn(['media_attachments', 'accept_content_types']).toArray(),
+    acceptContentTypes: state.getIn(['media_attachments', 'accept_content_types']),
   });
 
   return mapStateToProps;
@@ -21,14 +23,14 @@ const iconStyle = {
   lineHeight: '27px',
 };
 
-class UploadButton extends React.PureComponent {
+class UploadButton extends ImmutablePureComponent {
 
   static propTypes = {
     disabled: PropTypes.bool,
     onSelectFile: PropTypes.func.isRequired,
     style: PropTypes.object,
     resetFileKey: PropTypes.number,
-    acceptContentTypes: PropTypes.arrayOf(PropTypes.string).isRequired,
+    acceptContentTypes: ImmutablePropTypes.listOf(PropTypes.string).isRequired,
     intl: PropTypes.object.isRequired,
   };
 
@@ -58,7 +60,7 @@ class UploadButton extends React.PureComponent {
           ref={this.setRef}
           type='file'
           multiple={false}
-          accept={ acceptContentTypes.join(',')}
+          accept={ acceptContentTypes.toArray().join(',')}
           onChange={this.handleChange}
           disabled={disabled}
           style={{ display: 'none' }}
