@@ -47,14 +47,14 @@ module.exports = {
     new webpack.optimize.CommonsChunkPlugin({
       name: 'common',
       minChunks: (module, count) => {
-        const reactIntlPathRegexp = new RegExp(join('node_modules', 'react-intl'));
+        const reactIntlPathRegexp = new RegExp(`node_modules\\${path.sep}react-intl`);
         if (module.resource && reactIntlPathRegexp.test(module.resource)) {
           // skip react-intl because it's useless to put in the common chunk,
           // e.g. because "shared" modules between zh-TW and zh-CN will never
           // be loaded together
           return false;
         }
-        const fontAwesomePathRegexp = new RegExp(join('node_modules', 'font-awesome'));
+        const fontAwesomePathRegexp = new RegExp(`node_modules\\${path.sep}font-awesome`);
         if (module.resource && fontAwesomePathRegexp.test(module.resource)) {
           // extract vendor css into common module
           return true;
