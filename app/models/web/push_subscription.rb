@@ -27,12 +27,14 @@ class Web::PushSubscription < ApplicationRecord
     title = title_str(name, notification)
     body = body_str notification
     url = url_str notification
+    image = image_str notification
 
     Webpush.payload_send(
       message: JSON.generate(
         title: title,
         options: {
           body: body,
+          image: image,
           tag: notification.id,
           timestamp: notification.created_at,
           icon: notification.from_account.avatar_static_url,
@@ -92,6 +94,12 @@ class Web::PushSubscription < ApplicationRecord
     when :favourite then web_url("statuses/#{notification.target_status.id}")
     when :reblog then web_url("statuses/#{notification.target_status.id}")
     end
+  end
+
+  def image_str(notification)
+    return nil if notification.target_status.nil? || notification.target_status.media_attachments.empty?
+
+    full_asset_url(notification.target_status.media_attachments.first.file.url(:small))
   end
 
   def pushable?(notification)
