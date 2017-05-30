@@ -26,6 +26,8 @@ class StatusPolicy
     admin? || owned?
   end
 
+  alias unreblog? destroy?
+
   private
 
   def admin?

@@ -96,7 +96,7 @@ class Api::V1::StatusesController < ApiController
     @status      = reblog.reblog
     @reblogs_map = { @status.id => false }
 
-    authorize reblog, :destroy?
+    authorize reblog, :unreblog?
 
     RemovalWorker.perform_async(reblog.id)
 

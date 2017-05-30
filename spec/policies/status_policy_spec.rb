@@ -88,7 +88,7 @@ RSpec.describe StatusPolicy, type: :model do
     end
   end
 
-  permissions :destroy? do
+  permissions :destroy?, :unreblog? do
     it 'grants access when account is deleter' do
       expect(subject).to permit(status.account, status)
     end
