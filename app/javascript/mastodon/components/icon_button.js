@@ -1,5 +1,6 @@
 import React from 'react';
-import { Motion, spring } from 'react-motion';
+import Motion from 'react-motion/lib/Motion';
+import spring from 'react-motion/lib/spring';
 import PropTypes from 'prop-types';
 
 class IconButton extends React.PureComponent {
@@ -16,7 +17,7 @@ class IconButton extends React.PureComponent {
     disabled: PropTypes.bool,
     inverted: PropTypes.bool,
     animate: PropTypes.bool,
-    overlay: PropTypes.bool
+    overlay: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -24,7 +25,7 @@ class IconButton extends React.PureComponent {
     active: false,
     disabled: false,
     animate: false,
-    overlay: false
+    overlay: false,
   };
 
   handleClick = (e) =>  {
@@ -36,17 +37,14 @@ class IconButton extends React.PureComponent {
   }
 
   render () {
-    let style = {
+    const style = {
       fontSize: `${this.props.size}px`,
       width: `${this.props.size * 1.28571429}px`,
       height: `${this.props.size * 1.28571429}px`,
       lineHeight: `${this.props.size}px`,
-      ...this.props.style
+      ...this.props.style,
+      ...(this.props.active ? this.props.activeStyle : {}),
     };
-
-    if (this.props.active) {
-      style = { ...style, ...this.props.activeStyle };
-    }
 
     const classes = ['icon-button'];
 
@@ -67,7 +65,7 @@ class IconButton extends React.PureComponent {
     }
 
     if (this.props.className) {
-      classes.push(this.props.className)
+      classes.push(this.props.className);
     }
 
     return (

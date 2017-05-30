@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import {
   fetchAccount,
   fetchAccountTimeline,
-  expandAccountTimeline
+  expandAccountTimeline,
 } from '../../actions/accounts';
 import StatusList from '../../components/status_list';
 import LoadingIndicator from '../../components/loading_indicator';
@@ -19,7 +19,7 @@ const mapStateToProps = (state, props) => ({
   statusIds: state.getIn(['timelines', 'accounts_timelines', Number(props.params.accountId), 'items'], Immutable.List()),
   isLoading: state.getIn(['timelines', 'accounts_timelines', Number(props.params.accountId), 'isLoading']),
   hasMore: !!state.getIn(['timelines', 'accounts_timelines', Number(props.params.accountId), 'next']),
-  me: state.getIn(['meta', 'me'])
+  me: state.getIn(['meta', 'me']),
 });
 
 class AccountTimeline extends ImmutablePureComponent {
@@ -30,7 +30,7 @@ class AccountTimeline extends ImmutablePureComponent {
     statusIds: ImmutablePropTypes.list,
     isLoading: PropTypes.bool,
     hasMore: PropTypes.bool,
-    me: PropTypes.number.isRequired
+    me: PropTypes.number.isRequired,
   };
 
   componentWillMount () {

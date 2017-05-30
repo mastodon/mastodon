@@ -8,7 +8,7 @@ class TextIconButton extends React.PureComponent {
     title: PropTypes.string,
     active: PropTypes.bool,
     onClick: PropTypes.func.isRequired,
-    ariaControls: PropTypes.string
+    ariaControls: PropTypes.string,
   };
 
   handleClick = (e) => {

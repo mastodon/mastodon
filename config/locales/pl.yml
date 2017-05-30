@@ -62,6 +62,7 @@ pl:
       feed_url: Adres kanału
       followers: Obserwujący
       follows: Obserwacje
+      ip: Adres IP
       location:
         all: Wszystkie
         local: Lokalne
@@ -84,8 +85,10 @@ pl:
       profile_url: Adres profilu
       public: Publiczne
       push_subscription_expires: Subskrypcja PuSH wygasa
+      reset: Resetuj
       reset_password: Resetuj hasło
       salmon_url: Adres Salmon
+      search: Szukaj
       show:
         created_reports: Zgłoszenia tego użytkownika
         report: zgłoszenie
@@ -157,6 +160,10 @@ pl:
       title: Zgłoszenia
       unresolved: Nierozwiązane
       view: Wyświetl
+      nsfw:
+        'true': NSFW będzie wyświetlane
+        'false': NSFW nie będzie wyświetlane
+      are_you_sure: Czy na pewno?
     settings:
       contact_information:
         email: Wprowadź publiczny adres e-mail
@@ -222,6 +229,7 @@ pl:
     '422':
       content: Sprawdzanie bezpieczeństwa nie powiodło się. Czy blokujesz pliki cookie?
       title: Sprawdzanie bezpieczeństwa nie powiodło się
+    '429': Uduszono
   exports:
     blocks: Blokujesz
     csv: CSV
@@ -235,8 +243,8 @@ pl:
     lock_link: Zablokuj swoje konto
     purge: Usuń z obserwujących
     success:
-      one: W procesie usuwania obserwujcych z jednej domeny…
-      other: W procesie usuwania obserwujących z %{count} domen…
+      one: W trakcie usuwania obserwujcych z jednej domeny…
+      other: W trakcie usuwania obserwujących z %{count} domen…
     true_privacy_html: Pamiętaj, że <strong>rzeczywista prywatność może zostać uzyskana wyłącznie dzięki szyfrowaniu end-to-end</strong>.
     unlocked_warning_html: Każdy może cię zaobserwować, aby natychmiastowo zobaczyć twoje statusy. %{lock_link} aby móc kontrolować obserwujących.
     unlocked_warning_title: Twoje konto nie jest zablokowane
@@ -267,9 +275,13 @@ pl:
       mention: "%{name} wspomniał o Tobie w:"
       new_followers_summary:
         one: Śledzi Cię nowa osoba! Gratulacje!
-        other: Kilka (%{count}) nowych osób Cię śledzi! Wspaniale!
+        few: (%{count}) nowe osoby śledzą Cię!
+        many: (%{count}) nowych osób Cię śledzi! Wspaniale!
+        other: (%{count}) nowych osób Cię śledzi! Wspaniale!
       subject:
         one: "1 nowe powiadomienie od Twojej ostatniej wizyty \U0001F418"
+        few: "%{count} nowe powiadomienia od Twojej ostatniej wizyty \U0001F418"
+        many: "%{count} nowych powiadomień od Twojej ostatniej wizyty \U0001F418"
         other: "%{count} nowych powiadomień od Twojej ostatniej wizyty \U0001F418"
     favourite:
       body: 'Twój wpis został polubiony przez %{name}:'
@@ -300,6 +312,7 @@ pl:
     back: Powrót do Mastodona
     edit_profile: Edytuj profil
     export: Exportuj dane
+    followers: Autoryzowani obserwujący
     import: Importuj dane
     preferences: Preferencje
     settings: Ustawienia
@@ -310,8 +323,11 @@ pl:
     show_more: Pokaż więcej
     visibilities:
       private: Tylko dla śledzących
+      private_long: Widoczne tylko obserwowanych
       public: Publiczny
-      unlisted: Publiczny, ale nie wyświetlaj na publicznych osiach czasu
+      public_long: Widoczne dla wszystkich
+      unlisted: Niewypisany
+      unlisted_long: Widoczne dla wszystkich, ale nie wyświetlane na publicznych osiach czasu
   stream_entries:
     click_to_show: Naciśnij aby wyświetlić
     reblogged: podbito

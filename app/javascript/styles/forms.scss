@@ -12,6 +12,7 @@ code {
 .simple_form {
   .input {
     margin-bottom: 15px;
+    overflow: hidden;
   }
 
   span.hint {
@@ -44,11 +45,12 @@ code {
 
   .input.file,
   .input.select,
-  .input.radio_buttons {
+  .input.radio_buttons,
+  .input.check_boxes {
     padding: 15px 0;
     margin-bottom: 0;
 
-    label {
+    .label_input > label {
       font-family: inherit;
       font-size: 16px;
       color: $primary-text-color;
@@ -352,7 +354,20 @@ code {
   }
 }
 
-.user_allowed_languages {
+.user_filtered_languages {
+
+  & > label {
+    font-family: inherit;
+    font-size: 16px;
+    color: $primary-text-color;
+    display: block;
+    padding-top: 5px;
+  }
+
+  .hint {
+    margin-bottom: 15px;
+  }
+
   li {
     float: left;
     width: 50%;

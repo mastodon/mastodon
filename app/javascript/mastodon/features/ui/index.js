@@ -22,12 +22,12 @@ class UI extends React.PureComponent {
 
   static propTypes = {
     dispatch: PropTypes.func.isRequired,
-    children: PropTypes.node
+    children: PropTypes.node,
   };
 
   state = {
     width: window.innerWidth,
-    draggingOver: false
+    draggingOver: false,
   };
 
   handleResize = () => {
@@ -133,7 +133,7 @@ class UI extends React.PureComponent {
           <Compose withHeader={true} />
           <HomeTimeline shouldUpdateScroll={noOp} />
           <Notifications shouldUpdateScroll={noOp} />
-          <div style={{display: 'flex', flex: '1 1 auto', position: 'relative'}}>{children}</div>
+          <div className="column__wrapper">{children}</div>
         </ColumnsArea>
       );
     }

@@ -11,7 +11,7 @@ import ColumnBackButton from '../../components/column_back_button';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
 const mapStateToProps = (state, props) => ({
-  accountIds: state.getIn(['user_lists', 'reblogged_by', Number(props.params.statusId)])
+  accountIds: state.getIn(['user_lists', 'reblogged_by', Number(props.params.statusId)]),
 });
 
 class Reblogs extends ImmutablePureComponent {
@@ -19,7 +19,7 @@ class Reblogs extends ImmutablePureComponent {
   static propTypes = {
     params: PropTypes.object.isRequired,
     dispatch: PropTypes.func.isRequired,
-    accountIds: ImmutablePropTypes.list
+    accountIds: ImmutablePropTypes.list,
   };
 
   componentWillMount () {

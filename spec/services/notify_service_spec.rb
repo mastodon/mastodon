@@ -7,7 +7,7 @@ RSpec.describe NotifyService do
 
   let(:user) { Fabricate(:user) }
   let(:recipient) { user.account }
-  let(:sender) { Fabricate(:account) }
+  let(:sender) { Fabricate(:account, domain: 'example.com') }
   let(:activity) { Fabricate(:follow, account: sender, target_account: recipient) }
 
   it { is_expected.to change(Notification, :count).by(1) }
@@ -15,6 +15,17 @@ RSpec.describe NotifyService do
   it 'does not notify when sender is blocked' do
     recipient.block!(sender)
     is_expected.to_not change(Notification, :count)
+  end
+
+  it 'does not notify when sender\'s domain is blocked' do
+    recipient.block_domain!(sender.domain)
+    is_expected.to_not change(Notification, :count)
+  end
+
+  it 'does still notify when sender\'s domain is blocked but sender is followed' do
+    recipient.block_domain!(sender.domain)
+    recipient.follow!(sender)
+    is_expected.to change(Notification, :count)
   end
 
   it 'does not notify when sender is silenced and not followed' do

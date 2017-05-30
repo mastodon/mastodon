@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 
 const messages = defineMessages({
-  placeholder: { id: 'search.placeholder', defaultMessage: 'Search' }
+  placeholder: { id: 'search.placeholder', defaultMessage: 'Search' },
 });
 
 class Search extends React.PureComponent {
@@ -15,7 +15,7 @@ class Search extends React.PureComponent {
     onSubmit: PropTypes.func.isRequired,
     onClear: PropTypes.func.isRequired,
     onShow: PropTypes.func.isRequired,
-    intl: PropTypes.object.isRequired
+    intl: PropTypes.object.isRequired,
   };
 
   handleChange = (e) => {

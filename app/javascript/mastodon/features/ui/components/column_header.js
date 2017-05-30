@@ -1,5 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types'
+import PropTypes from 'prop-types';
 
 class ColumnHeader extends React.PureComponent {
 
@@ -9,7 +9,7 @@ class ColumnHeader extends React.PureComponent {
     active: PropTypes.bool,
     onClick: PropTypes.func,
     hideOnMobile: PropTypes.bool,
-    columnHeaderId: PropTypes.string
+    columnHeaderId: PropTypes.string,
   };
 
   handleClick = () => {

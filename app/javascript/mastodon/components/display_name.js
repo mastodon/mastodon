@@ -6,7 +6,7 @@ import emojify from '../emoji';
 class DisplayName extends React.PureComponent {
 
   static propTypes = {
-    account: ImmutablePropTypes.map.isRequired
+    account: ImmutablePropTypes.map.isRequired,
   };
 
   render () {

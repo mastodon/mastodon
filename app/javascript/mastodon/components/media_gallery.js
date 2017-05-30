@@ -6,7 +6,7 @@ import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import { isIOS } from '../is_mobile';
 
 const messages = defineMessages({
-  toggle_visible: { id: 'media_gallery.toggle_visible', defaultMessage: 'Toggle visibility' }
+  toggle_visible: { id: 'media_gallery.toggle_visible', defaultMessage: 'Toggle visibility' },
 });
 
 class Item extends React.PureComponent {
@@ -16,7 +16,7 @@ class Item extends React.PureComponent {
     index: PropTypes.number.isRequired,
     size: PropTypes.number.isRequired,
     onClick: PropTypes.func.isRequired,
-    autoPlayGif: PropTypes.bool.isRequired
+    autoPlayGif: PropTypes.bool.isRequired,
   };
 
   handleClick = (e) => {
@@ -131,11 +131,11 @@ class MediaGallery extends React.PureComponent {
     height: PropTypes.number.isRequired,
     onOpenMedia: PropTypes.func.isRequired,
     intl: PropTypes.object.isRequired,
-    autoPlayGif: PropTypes.bool.isRequired
+    autoPlayGif: PropTypes.bool.isRequired,
   };
 
   state = {
-    visible: !this.props.sensitive
+    visible: !this.props.sensitive,
   };
 
   handleOpen = (e) => {
@@ -173,7 +173,7 @@ class MediaGallery extends React.PureComponent {
 
     return (
       <div className='media-gallery' style={{ height: `${this.props.height}px` }}>
-        <div className='spoiler-button' style={{ display: !this.state.visible ? 'none' : 'block' }}>
+        <div className={`spoiler-button ${this.state.visible ? 'spoiler-button--visible' : ''}`}>
           <IconButton title={intl.formatMessage(messages.toggle_visible)} icon={this.state.visible ? 'eye' : 'eye-slash'} overlay onClick={this.handleOpen} />
         </div>
 

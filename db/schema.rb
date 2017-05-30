@@ -10,10 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170516072309) do
+ActiveRecord::Schema.define(version: 20170520145338) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "account_domain_blocks", force: :cascade do |t|
+    t.integer  "account_id"
+    t.string   "domain"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["account_id", "domain"], name: "index_account_domain_blocks_on_account_id_and_domain", unique: true, using: :btree
+  end
 
   create_table "accounts", force: :cascade do |t|
     t.string   "username",                default: "",    null: false
@@ -342,11 +350,11 @@ ActiveRecord::Schema.define(version: 20170516072309) do
     t.boolean  "otp_required_for_login"
     t.datetime "last_emailed_at"
     t.string   "otp_backup_codes",                                       array: true
-    t.string   "allowed_languages",         default: [],    null: false, array: true
+    t.string   "filtered_languages",        default: [],    null: false, array: true
     t.index ["account_id"], name: "index_users_on_account_id", using: :btree
-    t.index ["allowed_languages"], name: "index_users_on_allowed_languages", using: :gin
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
+    t.index ["filtered_languages"], name: "index_users_on_filtered_languages", using: :gin
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 

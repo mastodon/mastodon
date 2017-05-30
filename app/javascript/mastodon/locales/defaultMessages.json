@@ -243,6 +243,15 @@
   {
     "descriptors": [
       {
+        "defaultMessage": "Media",
+        "id": "account.media"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/account_gallery/index.json"
+  },
+  {
+    "descriptors": [
+      {
         "defaultMessage": "Block",
         "id": "confirmations.block.confirm"
       },
@@ -251,12 +260,20 @@
         "id": "confirmations.mute.confirm"
       },
       {
+        "defaultMessage": "Hide entire domain",
+        "id": "confirmations.domain_block.confirm"
+      },
+      {
         "defaultMessage": "Are you sure you want to block {name}?",
         "id": "confirmations.block.message"
       },
       {
         "defaultMessage": "Are you sure you want to mute {name}?",
         "id": "confirmations.mute.message"
+      },
+      {
+        "defaultMessage": "Are you really, really sure you want to block the entire {domain}? In most cases a few targeted blocks or mutes are sufficient and preferable.",
+        "id": "confirmations.domain_block.message"
       }
     ],
     "path": "app/javascript/mastodon/features/account_timeline/containers/header_container.json"
@@ -300,8 +317,20 @@
         "id": "account.report"
       },
       {
+        "defaultMessage": "Media",
+        "id": "account.media"
+      },
+      {
         "defaultMessage": "This user is from another instance. This number may be larger.",
         "id": "account.disclaimer"
+      },
+      {
+        "defaultMessage": "Hide everything from {domain}",
+        "id": "account.block_domain"
+      },
+      {
+        "defaultMessage": "Unhide {domain}",
+        "id": "account.unblock_domain"
       },
       {
         "defaultMessage": "Posts",

@@ -14,13 +14,13 @@ export function initReport(account, status) {
   return {
     type: REPORT_INIT,
     account,
-    status
+    status,
   };
 };
 
 export function cancelReport() {
   return {
-    type: REPORT_CANCEL
+    type: REPORT_CANCEL,
   };
 };
 
@@ -39,34 +39,34 @@ export function submitReport() {
     api(getState).post('/api/v1/reports', {
       account_id: getState().getIn(['reports', 'new', 'account_id']),
       status_ids: getState().getIn(['reports', 'new', 'status_ids']),
-      comment: getState().getIn(['reports', 'new', 'comment'])
+      comment: getState().getIn(['reports', 'new', 'comment']),
     }).then(response => dispatch(submitReportSuccess(response.data))).catch(error => dispatch(submitReportFail(error)));
   };
 };
 
 export function submitReportRequest() {
   return {
-    type: REPORT_SUBMIT_REQUEST
+    type: REPORT_SUBMIT_REQUEST,
   };
 };
 
 export function submitReportSuccess(report) {
   return {
     type: REPORT_SUBMIT_SUCCESS,
-    report
+    report,
   };
 };
 
 export function submitReportFail(error) {
   return {
     type: REPORT_SUBMIT_FAIL,
-    error
+    error,
   };
 };
 
 export function changeReportComment(comment) {
   return {
     type: REPORT_COMMENT_CHANGE,
-    comment
+    comment,
   };
 };

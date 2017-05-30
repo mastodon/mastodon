@@ -13,30 +13,30 @@ import {
   favourite,
   unfavourite,
   reblog,
-  unreblog
+  unreblog,
 } from '../../actions/interactions';
 import {
   replyCompose,
-  mentionCompose
+  mentionCompose,
 } from '../../actions/compose';
 import { deleteStatus } from '../../actions/statuses';
 import { initReport } from '../../actions/reports';
 import {
   makeGetStatus,
   getStatusAncestors,
-  getStatusDescendants
+  getStatusDescendants,
 } from '../../selectors';
 import { ScrollContainer } from 'react-router-scroll';
 import ColumnBackButton from '../../components/column_back_button';
 import StatusContainer from '../../containers/status_container';
 import { openModal } from '../../actions/modal';
-import { isMobile } from '../../is_mobile'
+import { isMobile } from '../../is_mobile';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
 const messages = defineMessages({
   deleteConfirm: { id: 'confirmations.delete.confirm', defaultMessage: 'Delete' },
-  deleteMessage: { id: 'confirmations.delete.message', defaultMessage: 'Are you sure you want to delete this status?' }
+  deleteMessage: { id: 'confirmations.delete.message', defaultMessage: 'Are you sure you want to delete this status?' },
 });
 
 const makeMapStateToProps = () => {
@@ -48,7 +48,8 @@ const makeMapStateToProps = () => {
     descendantsIds: state.getIn(['timelines', 'descendants', Number(props.params.statusId)]),
     me: state.getIn(['meta', 'me']),
     boostModal: state.getIn(['meta', 'boost_modal']),
-    autoPlayGif: state.getIn(['meta', 'auto_play_gif'])
+    deleteModal: state.getIn(['meta', 'delete_modal']),
+    autoPlayGif: state.getIn(['meta', 'auto_play_gif']),
   });
 
   return mapStateToProps;
@@ -57,7 +58,7 @@ const makeMapStateToProps = () => {
 class Status extends ImmutablePureComponent {
 
   static contextTypes = {
-    router: PropTypes.object
+    router: PropTypes.object,
   };
 
   static propTypes = {
@@ -68,8 +69,9 @@ class Status extends ImmutablePureComponent {
     descendantsIds: ImmutablePropTypes.list,
     me: PropTypes.number,
     boostModal: PropTypes.bool,
+    deleteModal: PropTypes.bool,
     autoPlayGif: PropTypes.bool,
-    intl: PropTypes.object.isRequired
+    intl: PropTypes.object.isRequired,
   };
 
   componentWillMount () {
@@ -113,11 +115,15 @@ class Status extends ImmutablePureComponent {
   handleDeleteClick = (status) => {
     const { dispatch, intl } = this.props;
 
-    dispatch(openModal('CONFIRM', {
-      message: intl.formatMessage(messages.deleteMessage),
-      confirm: intl.formatMessage(messages.deleteConfirm),
-      onConfirm: () => dispatch(deleteStatus(status.get('id')))
-    }));
+    if (!this.props.deleteModal) {
+      dispatch(deleteStatus(status.get('id')));
+    } else {
+      dispatch(openModal('CONFIRM', {
+        message: intl.formatMessage(messages.deleteMessage),
+        confirm: intl.formatMessage(messages.deleteConfirm),
+        onConfirm: () => dispatch(deleteStatus(status.get('id'))),
+      }));
+    }
   }
 
   handleMentionClick = (account, router) => {

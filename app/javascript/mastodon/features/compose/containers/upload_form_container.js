@@ -10,7 +10,7 @@ const mapDispatchToProps = dispatch => ({
 
   onRemoveFile (media_id) {
     dispatch(undoUploadCompose(media_id));
-  }
+  },
 
 });
 

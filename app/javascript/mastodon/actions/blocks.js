@@ -1,4 +1,4 @@
-import api, { getLinks } from '../api'
+import api, { getLinks } from '../api';
 import { fetchRelationships } from './accounts';
 
 export const BLOCKS_FETCH_REQUEST = 'BLOCKS_FETCH_REQUEST';
@@ -23,7 +23,7 @@ export function fetchBlocks() {
 
 export function fetchBlocksRequest() {
   return {
-    type: BLOCKS_FETCH_REQUEST
+    type: BLOCKS_FETCH_REQUEST,
   };
 };
 
@@ -31,14 +31,14 @@ export function fetchBlocksSuccess(accounts, next) {
   return {
     type: BLOCKS_FETCH_SUCCESS,
     accounts,
-    next
+    next,
   };
 };
 
 export function fetchBlocksFail(error) {
   return {
     type: BLOCKS_FETCH_FAIL,
-    error
+    error,
   };
 };
 
@@ -62,7 +62,7 @@ export function expandBlocks() {
 
 export function expandBlocksRequest() {
   return {
-    type: BLOCKS_EXPAND_REQUEST
+    type: BLOCKS_EXPAND_REQUEST,
   };
 };
 
@@ -70,13 +70,13 @@ export function expandBlocksSuccess(accounts, next) {
   return {
     type: BLOCKS_EXPAND_SUCCESS,
     accounts,
-    next
+    next,
   };
 };
 
 export function expandBlocksFail(error) {
   return {
     type: BLOCKS_EXPAND_FAIL,
-    error
+    error,
   };
 };

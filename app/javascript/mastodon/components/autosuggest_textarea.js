@@ -4,6 +4,7 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
 import { isRtl } from '../rtl';
 import ImmutablePureComponent from 'react-immutable-pure-component';
+import Textarea from 'react-textarea-autosize';
 
 const textAtCursorMatchesToken = (str, caretPosition) => {
   let word;
@@ -44,30 +45,21 @@ class AutosuggestTextarea extends ImmutablePureComponent {
     onKeyUp: PropTypes.func,
     onKeyDown: PropTypes.func,
     onPaste: PropTypes.func.isRequired,
-    autoFocus: PropTypes.bool
+    autoFocus: PropTypes.bool,
   };
 
   static defaultProps = {
-    autoFocus: true
+    autoFocus: true,
   };
 
-  constructor (props, context) {
-    super(props, context);
-    this.state = {
-      suggestionsHidden: false,
-      selectedSuggestion: 0,
-      lastToken: null,
-      tokenStart: 0
-    };
-    this.onChange = this.onChange.bind(this);
-    this.onKeyDown = this.onKeyDown.bind(this);
-    this.onBlur = this.onBlur.bind(this);
-    this.onSuggestionClick = this.onSuggestionClick.bind(this);
-    this.setTextarea = this.setTextarea.bind(this);
-    this.onPaste = this.onPaste.bind(this);
-  }
+  state = {
+    suggestionsHidden: false,
+    selectedSuggestion: 0,
+    lastToken: null,
+    tokenStart: 0,
+  };
 
-  onChange (e) {
+  onChange = (e) => {
     const [ tokenStart, token ] = textAtCursorMatchesToken(e.target.value, e.target.selectionStart);
 
     if (token !== null && this.state.lastToken !== token) {
@@ -78,13 +70,10 @@ class AutosuggestTextarea extends ImmutablePureComponent {
       this.props.onSuggestionsClearRequested();
     }
 
-    // auto-resize textarea
-    e.target.style.height = `${e.target.scrollHeight}px`;
-
     this.props.onChange(e);
   }
 
-  onKeyDown (e) {
+  onKeyDown = (e) => {
     const { suggestions, disabled } = this.props;
     const { selectedSuggestion, suggestionsHidden } = this.state;
 
@@ -134,7 +123,7 @@ class AutosuggestTextarea extends ImmutablePureComponent {
     this.props.onKeyDown(e);
   }
 
-  onBlur () {
+  onBlur = () => {
     // If we hide the suggestions immediately, then this will prevent the
     // onClick for the suggestions themselves from firing.
     // Setting a short window for that to take place before hiding the
@@ -144,7 +133,8 @@ class AutosuggestTextarea extends ImmutablePureComponent {
     }, 100);
   }
 
-  onSuggestionClick (suggestion, e) {
+  onSuggestionClick = (e) => {
+    const suggestion = Number(e.currentTarget.getAttribute('data-index'));
     e.preventDefault();
     this.props.onSuggestionSelected(this.state.tokenStart, this.state.lastToken, suggestion);
     this.textarea.focus();
@@ -156,19 +146,15 @@ class AutosuggestTextarea extends ImmutablePureComponent {
     }
   }
 
-  setTextarea (c) {
+  setTextarea = (c) => {
     this.textarea = c;
   }
 
-  onPaste (e) {
+  onPaste = (e) => {
     if (e.clipboardData && e.clipboardData.files.length === 1) {
-      this.props.onPaste(e.clipboardData.files)
+      this.props.onPaste(e.clipboardData.files);
       e.preventDefault();
     }
-  }
-
-  reset () {
-    this.textarea.style.height = 'auto';
   }
 
   render () {
@@ -182,8 +168,8 @@ class AutosuggestTextarea extends ImmutablePureComponent {
 
     return (
       <div className='autosuggest-textarea'>
-        <textarea
-          ref={this.setTextarea}
+        <Textarea
+          inputRef={this.setTextarea}
           className='autosuggest-textarea__textarea'
           disabled={disabled}
           placeholder={placeholder}
@@ -197,14 +183,15 @@ class AutosuggestTextarea extends ImmutablePureComponent {
           style={style}
         />
 
-        <div style={{ display: (suggestions.size > 0 && !suggestionsHidden) ? 'block' : 'none' }} className='autosuggest-textarea__suggestions'>
+        <div className={`autosuggest-textarea__suggestions ${suggestionsHidden || suggestions.isEmpty() ? '' : 'autosuggest-textarea__suggestions--visible'}`}>
           {suggestions.map((suggestion, i) => (
             <div
               role='button'
               tabIndex='0'
               key={suggestion}
+              data-index={suggestion}
               className={`autosuggest-textarea__suggestions__item ${i === selectedSuggestion ? 'selected' : ''}`}
-              onClick={this.onSuggestionClick.bind(this, suggestion)}>
+              onClick={this.onSuggestionClick}>
               <AutosuggestAccountContainer id={suggestion} />
             </div>
           ))}

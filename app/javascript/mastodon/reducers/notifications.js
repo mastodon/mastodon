@@ -7,7 +7,7 @@ import {
   NOTIFICATIONS_REFRESH_FAIL,
   NOTIFICATIONS_EXPAND_FAIL,
   NOTIFICATIONS_CLEAR,
-  NOTIFICATIONS_SCROLL_TOP
+  NOTIFICATIONS_SCROLL_TOP,
 } from '../actions/notifications';
 import { ACCOUNT_BLOCK_SUCCESS } from '../actions/accounts';
 import { TIMELINE_DELETE } from '../actions/timelines';
@@ -19,14 +19,14 @@ const initialState = Immutable.Map({
   top: true,
   unread: 0,
   loaded: false,
-  isLoading: true
+  isLoading: true,
 });
 
 const notificationToMap = notification => Immutable.Map({
   id: notification.id,
   type: notification.type,
   account: notification.account.id,
-  status: notification.status ? notification.status.id : null
+  status: notification.status ? notification.status.id : null,
 });
 
 const normalizeNotification = (state, notification) => {

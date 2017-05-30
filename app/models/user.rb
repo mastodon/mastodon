@@ -30,11 +30,12 @@
 #  otp_required_for_login    :boolean
 #  last_emailed_at           :datetime
 #  otp_backup_codes          :string           is an Array
-#  allowed_languages         :string           default([]), not null, is an Array
+#  filtered_languages        :string           default([]), not null, is an Array
 #
 
 class User < ApplicationRecord
   include Settings::Extend
+  ACTIVE_DURATION = 14.days
 
   devise :registerable, :recoverable,
          :rememberable, :trackable, :validatable, :confirmable,
@@ -45,12 +46,15 @@ class User < ApplicationRecord
   belongs_to :account, inverse_of: :user, required: true
   accepts_nested_attributes_for :account
 
-  validates :locale, inclusion: I18n.available_locales.map(&:to_s), unless: 'locale.nil?'
+  validates :locale, inclusion: I18n.available_locales.map(&:to_s), if: :locale?
   validates :email, email: true
 
   scope :recent,    -> { order(id: :desc) }
   scope :admins,    -> { where(admin: true) }
   scope :confirmed, -> { where.not(confirmed_at: nil) }
+  scope :inactive, -> { where(arel_table[:current_sign_in_at].lt(ACTIVE_DURATION.ago)) }
+  scope :matches_email, ->(value) { where(arel_table[:email].matches("#{value}%")) }
+  scope :with_recent_ip_address, ->(value) { where(arel_table[:current_sign_in_ip].eq(value).or(arel_table[:last_sign_in_ip].eq(value))) }
 
   before_validation :sanitize_languages
 
@@ -64,10 +68,6 @@ class User < ApplicationRecord
     save!
   end
 
-  def send_devise_notification(notification, *args)
-    devise_mailer.send(notification, self, *args).deliver_later
-  end
-
   def setting_default_privacy
     settings.default_privacy || (account.locked? ? 'private' : 'public')
   end
@@ -76,13 +76,23 @@ class User < ApplicationRecord
     settings.boost_modal
   end
 
+  def setting_delete_modal
+    settings.delete_modal
+  end
+
   def setting_auto_play_gif
     settings.auto_play_gif
+  end
+
+  protected
+
+  def send_devise_notification(notification, *args)
+    devise_mailer.send(notification, self, *args).deliver_later
   end
 
   private
 
   def sanitize_languages
-    allowed_languages.reject!(&:blank?)
+    filtered_languages.reject!(&:blank?)
   end
 end

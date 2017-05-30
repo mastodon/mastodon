@@ -4,16 +4,14 @@ ar:
     hints:
       defaults:
         avatar: PNG, GIF أو JPG. على الأكثر 2 ميغابيت . سوف يتم تصغيرها إلى 120x120px
-        display_name: "%{count} أحرف متبقية"
+        display_name: '<span class="name-counter">%{count}</span> أحرف متبقية'
         header: PNG, GIF or JPG. على الأكثر 2 ميغابيت . سوف يتم تصغيرها إلى 700x335px
         locked: يتطلب منك الموافقة يدويا على كل طلب للإشتراك بحسابك و منشوراتك تعرض لمتابعيك فقط دون غيرهم
-        note: "%{count} أحرف متبقية"
+        note: '<span class="note-counter">%{count}</span> أحرف متبقية'
       imports:
         data: ملف CSV تم تصديره من خادوم مثيل  آخر لماستدون
       sessions:
         otp: أدخل الرمز الثنائي من هاتفك أو استخدم أحد رموز الاسترداد.
-      user:
-        allowed_languages: سوف يتم السماح بعرض اللغات المختارة على خيوطك المتسلسلة العامة أما التي لم يتم تحديدها فسوف تصفّى.
     labels:
       defaults:
         avatar: الصورة الرمزية

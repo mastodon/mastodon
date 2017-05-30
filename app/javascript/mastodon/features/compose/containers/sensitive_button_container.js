@@ -3,23 +3,24 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import TextIconButton from '../components/text_icon_button';
 import { changeComposeSensitivity } from '../../../actions/compose';
-import { Motion, spring } from 'react-motion';
+import Motion from 'react-motion/lib/Motion';
+import spring from 'react-motion/lib/spring';
 import { injectIntl, defineMessages } from 'react-intl';
 
 const messages = defineMessages({
-  title: { id: 'compose_form.sensitive', defaultMessage: 'Mark media as sensitive' }
+  title: { id: 'compose_form.sensitive', defaultMessage: 'Mark media as sensitive' },
 });
 
 const mapStateToProps = state => ({
   visible: state.getIn(['compose', 'media_attachments']).size > 0,
-  active: state.getIn(['compose', 'sensitive'])
+  active: state.getIn(['compose', 'sensitive']),
 });
 
 const mapDispatchToProps = dispatch => ({
 
   onClick () {
     dispatch(changeComposeSensitivity());
-  }
+  },
 
 });
 
@@ -29,7 +30,7 @@ class SensitiveButton extends React.PureComponent {
     visible: PropTypes.bool,
     active: PropTypes.bool,
     onClick: PropTypes.func.isRequired,
-    intl: PropTypes.object.isRequired
+    intl: PropTypes.object.isRequired,
   };
 
   render () {

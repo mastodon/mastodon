@@ -9,7 +9,7 @@ import IconButton from '../../../components/icon_button';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
 const messages = defineMessages({
-  close: { id: 'lightbox.close', defaultMessage: 'Close' }
+  close: { id: 'lightbox.close', defaultMessage: 'Close' },
 });
 
 class MediaModal extends ImmutablePureComponent {
@@ -18,11 +18,11 @@ class MediaModal extends ImmutablePureComponent {
     media: ImmutablePropTypes.list.isRequired,
     index: PropTypes.number.isRequired,
     onClose: PropTypes.func.isRequired,
-    intl: PropTypes.object.isRequired
+    intl: PropTypes.object.isRequired,
   };
 
   state = {
-    index: null
+    index: null,
   };
 
   handleNextClick = () => {

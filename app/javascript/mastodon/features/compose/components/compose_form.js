@@ -53,7 +53,7 @@ class ComposeForm extends ImmutablePureComponent {
   };
 
   static defaultProps = {
-    showSearch: false
+    showSearch: false,
   };
 
   handleChange = (e) => {
@@ -67,7 +67,6 @@ class ComposeForm extends ImmutablePureComponent {
   }
 
   handleSubmit = () => {
-    this.autosuggestTextarea.reset();
     this.props.onSubmit();
   }
 

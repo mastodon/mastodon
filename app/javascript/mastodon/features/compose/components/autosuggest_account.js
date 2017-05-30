@@ -7,7 +7,7 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 class AutosuggestAccount extends ImmutablePureComponent {
 
   static propTypes = {
-    account: ImmutablePropTypes.map.isRequired
+    account: ImmutablePropTypes.map.isRequired,
   };
 
   render () {

@@ -2,14 +2,20 @@ import React from 'react';
 import { FormattedMessage } from 'react-intl';
 import PropTypes from 'prop-types';
 
-const LoadMore = ({ onClick }) => (
-  <a href="#" className='load-more' role='button' onClick={onClick}>
-    <FormattedMessage id='status.load_more' defaultMessage='Load more' />
-  </a>
-);
+class LoadMore extends React.PureComponent {
 
-LoadMore.propTypes = {
-  onClick: PropTypes.func
-};
+  static propTypes = {
+    onClick: PropTypes.func,
+  }
+
+  render() {
+    return (
+      <button className='load-more' onClick={this.props.onClick}>
+        <FormattedMessage id='status.load_more' defaultMessage='Load more' />
+      </button>
+    );
+  }
+
+}
 
 export default LoadMore;

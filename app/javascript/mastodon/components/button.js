@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 
 class Button extends React.PureComponent {
 
@@ -10,31 +11,50 @@ class Button extends React.PureComponent {
     block: PropTypes.bool,
     secondary: PropTypes.bool,
     size: PropTypes.number,
+    className: PropTypes.string,
     style: PropTypes.object,
-    children: PropTypes.node
+    children: PropTypes.node,
   };
 
   static defaultProps = {
-    size: 36
+    size: 36,
   };
 
   handleClick = (e) => {
     if (!this.props.disabled) {
-      this.props.onClick();
+      this.props.onClick(e);
     }
+  }
+
+  setRef = (c) => {
+    this.node = c;
+  }
+
+  focus() {
+    this.node.focus();
   }
 
   render () {
     const style = {
-      display: this.props.block ? 'block' : 'inline-block',
-      width: this.props.block ? '100%' : 'auto',
       padding: `0 ${this.props.size / 2.25}px`,
       height: `${this.props.size}px`,
-      lineHeight: `${this.props.size}px`
+      lineHeight: `${this.props.size}px`,
+      ...this.props.style,
     };
 
+    const className = classNames('button', this.props.className, {
+      'button-secondary': this.props.secondary,
+      'button--block': this.props.block,
+    });
+
     return (
-      <button className={`button ${this.props.secondary ? 'button-secondary' : ''}`} disabled={this.props.disabled} onClick={this.handleClick} style={{ ...style, ...this.props.style }}>
+      <button
+        className={className}
+        disabled={this.props.disabled}
+        onClick={this.handleClick}
+        ref={this.setRef}
+        style={style}
+      >
         {this.props.text || this.props.children}
       </button>
     );

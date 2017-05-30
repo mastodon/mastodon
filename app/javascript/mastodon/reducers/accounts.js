@@ -7,15 +7,15 @@ import {
   ACCOUNT_TIMELINE_FETCH_SUCCESS,
   ACCOUNT_TIMELINE_EXPAND_SUCCESS,
   FOLLOW_REQUESTS_FETCH_SUCCESS,
-  FOLLOW_REQUESTS_EXPAND_SUCCESS
+  FOLLOW_REQUESTS_EXPAND_SUCCESS,
 } from '../actions/accounts';
 import {
   BLOCKS_FETCH_SUCCESS,
-  BLOCKS_EXPAND_SUCCESS
+  BLOCKS_EXPAND_SUCCESS,
 } from '../actions/blocks';
 import {
   MUTES_FETCH_SUCCESS,
-  MUTES_EXPAND_SUCCESS
+  MUTES_EXPAND_SUCCESS,
 } from '../actions/mutes';
 import { COMPOSE_SUGGESTIONS_READY } from '../actions/compose';
 import {
@@ -24,26 +24,26 @@ import {
   FAVOURITE_SUCCESS,
   UNFAVOURITE_SUCCESS,
   REBLOGS_FETCH_SUCCESS,
-  FAVOURITES_FETCH_SUCCESS
+  FAVOURITES_FETCH_SUCCESS,
 } from '../actions/interactions';
 import {
   TIMELINE_REFRESH_SUCCESS,
   TIMELINE_UPDATE,
-  TIMELINE_EXPAND_SUCCESS
+  TIMELINE_EXPAND_SUCCESS,
 } from '../actions/timelines';
 import {
   STATUS_FETCH_SUCCESS,
-  CONTEXT_FETCH_SUCCESS
+  CONTEXT_FETCH_SUCCESS,
 } from '../actions/statuses';
 import { SEARCH_FETCH_SUCCESS } from '../actions/search';
 import {
   NOTIFICATIONS_UPDATE,
   NOTIFICATIONS_REFRESH_SUCCESS,
-  NOTIFICATIONS_EXPAND_SUCCESS
+  NOTIFICATIONS_EXPAND_SUCCESS,
 } from '../actions/notifications';
 import {
   FAVOURITED_STATUSES_FETCH_SUCCESS,
-  FAVOURITED_STATUSES_EXPAND_SUCCESS
+  FAVOURITED_STATUSES_EXPAND_SUCCESS,
 } from '../actions/favourites';
 import { STORE_HYDRATE } from '../actions/store';
 import Immutable from 'immutable';
@@ -55,7 +55,7 @@ const normalizeAccount = (state, account) => {
   delete account.following_count;
   delete account.statuses_count;
 
-  return state.set(account.id, Immutable.fromJS(account))
+  return state.set(account.id, Immutable.fromJS(account));
 };
 
 const normalizeAccounts = (state, accounts) => {

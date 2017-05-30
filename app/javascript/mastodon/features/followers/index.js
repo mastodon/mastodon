@@ -6,7 +6,7 @@ import LoadingIndicator from '../../components/loading_indicator';
 import {
   fetchAccount,
   fetchFollowers,
-  expandFollowers
+  expandFollowers,
 } from '../../actions/accounts';
 import { ScrollContainer } from 'react-router-scroll';
 import AccountContainer from '../../containers/account_container';
@@ -17,7 +17,7 @@ import ColumnBackButton from '../../components/column_back_button';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
 const mapStateToProps = (state, props) => ({
-  accountIds: state.getIn(['user_lists', 'followers', Number(props.params.accountId), 'items'])
+  accountIds: state.getIn(['user_lists', 'followers', Number(props.params.accountId), 'items']),
 });
 
 class Followers extends ImmutablePureComponent {
@@ -25,7 +25,7 @@ class Followers extends ImmutablePureComponent {
   static propTypes = {
     params: PropTypes.object.isRequired,
     dispatch: PropTypes.func.isRequired,
-    accountIds: ImmutablePropTypes.list
+    accountIds: ImmutablePropTypes.list,
   };
 
   componentWillMount () {

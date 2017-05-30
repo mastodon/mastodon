@@ -3,14 +3,14 @@ import PropTypes from 'prop-types';
 import { defineMessages, injectIntl } from 'react-intl';
 
 const messages = defineMessages({
-  clear: { id: 'notifications.clear', defaultMessage: 'Clear notifications' }
+  clear: { id: 'notifications.clear', defaultMessage: 'Clear notifications' },
 });
 
 class ClearColumnButton extends React.Component {
 
   static propTypes = {
     onClick: PropTypes.func.isRequired,
-    intl: PropTypes.object.isRequired
+    intl: PropTypes.object.isRequired,
   };
 
   render () {
@@ -22,6 +22,7 @@ class ClearColumnButton extends React.Component {
       </div>
     );
   }
+
 }
 
 export default injectIntl(ClearColumnButton);

@@ -24,7 +24,10 @@
       .activity-stream.activity-stream-headless
         .entry= render partial: 'stream_entries/simple_status', locals: { status: status }
       .report-status__actions
-        = link_to admin_report_reported_status_path(@report, status), method: :delete, class: 'icon-button', style: 'font-size: 24px; width: 24px; height: 24px', title: t('admin.reports.delete') do
+        - unless status.media_attachments.empty?
+          = link_to admin_report_reported_status_path(@report, status, status: { sensitive: !status.sensitive }), method: :patch, class: 'nsfw-button', title: t("admin.reports.nsfw.#{!status.sensitive}") do
+            = t("admin.reports.nsfw.#{!status.sensitive}")
+        = link_to admin_report_reported_status_path(@report, status), method: :delete, class: 'icon-button trash-button', title: t('admin.reports.delete'), data: { confirm: t('admin.reports.are_you_sure') } do
           = fa_icon 'trash'
 
 - if !@report.action_taken?

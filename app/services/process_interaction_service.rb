@@ -21,9 +21,9 @@ class ProcessInteractionService < BaseService
 
       case verb(xml)
       when :follow
-        follow!(account, target_account) unless target_account.locked? || target_account.blocking?(account)
+        follow!(account, target_account) unless target_account.locked? || target_account.blocking?(account) || target_account.domain_blocking?(account.domain)
       when :request_friend
-        follow_request!(account, target_account) unless !target_account.locked? || target_account.blocking?(account)
+        follow_request!(account, target_account) unless !target_account.locked? || target_account.blocking?(account) || target_account.domain_blocking?(account.domain)
       when :authorize
         authorize_follow_request!(account, target_account)
       when :reject
@@ -108,12 +108,18 @@ class ProcessInteractionService < BaseService
 
   def favourite!(xml, from_account)
     current_status = status(xml)
+
+    return if current_status.nil?
+
     favourite = current_status.favourites.where(account: from_account).first_or_create!(account: from_account)
     NotifyService.new.call(current_status.account, favourite)
   end
 
   def unfavourite!(xml, from_account)
     current_status = status(xml)
+
+    return if current_status.nil?
+
     favourite = current_status.favourites.where(account: from_account).first
     favourite&.destroy
   end
