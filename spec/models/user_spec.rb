@@ -146,6 +146,19 @@ RSpec.describe User, type: :model do
     end
   end
 
+  describe '#send_confirmation_instructions' do
+    around do |example|
+      queue_adapter = ActiveJob::Base.queue_adapter
+      example.run
+      ActiveJob::Base.queue_adapter = queue_adapter
+    end
+
+    it 'delivers confirmation instructions later' do
+      ActiveJob::Base.queue_adapter = :test
+      expect { Fabricate(:user).send_confirmation_instructions }.to have_enqueued_job(ActionMailer::DeliveryJob)
+    end
+  end
+
   describe 'whitelist' do
     around(:each) do |example|
       old_whitelist = Rails.configuration.x.email_whitelist
