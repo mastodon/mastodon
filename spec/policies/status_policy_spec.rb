@@ -7,6 +7,20 @@ RSpec.describe StatusPolicy, type: :model do
   let(:alice) { Fabricate(:account, username: 'alice') }
   let(:status) { Fabricate(:status, account: alice) }
 
+  permissions :show?, :reblog? do
+    it 'grants access when no viewer' do
+      expect(subject).to permit(nil, status)
+    end
+
+    it 'denies access when viewer is blocked' do
+      block = Fabricate(:block)
+      status.visibility = :private
+      status.account = block.target_account
+
+      expect(subject).to_not permit(block.account, status)
+    end
+  end
+
   permissions :show? do
     it 'grants access when direct and account is viewer' do
       status.visibility = :direct
@@ -54,17 +68,21 @@ RSpec.describe StatusPolicy, type: :model do
 
       expect(subject).to_not permit(viewer, status)
     end
+  end
 
-    it 'grants access when no viewer' do
-      expect(subject).to permit(nil, status)
+  permissions :reblog? do
+    it 'denies access when private' do
+      viewer = Fabricate(:account)
+      status.visibility = :private
+
+      expect(subject).to_not permit(viewer, status)
     end
 
-    it 'denies access when viewer is blocked' do
-      block = Fabricate(:block)
-      status.visibility = :private
-      status.account = block.target_account
+    it 'denies access when direct' do
+      viewer = Fabricate(:account)
+      status.visibility = :direct
 
-      expect(subject).to_not permit(block.account, status)
+      expect(subject).to_not permit(viewer, status)
     end
   end
 end
