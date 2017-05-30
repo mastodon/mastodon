@@ -33,12 +33,16 @@ class Auth::RegistrationsController < Devise::RegistrationsController
   end
 
   def check_enabled_registrations
-    redirect_to root_path if single_user_mode? || !Setting.open_registrations
+    redirect_to root_path if single_user_or_registrations_closed?
   end
 
   private
 
   def determine_layout
     %w(edit update).include?(action_name) ? 'admin' : 'auth'
+  end
+
+  def single_user_or_registrations_closed?
+    Rails.configuration.x.single_user_mode || !InstancePresenter.new.open_registrations
   end
 end

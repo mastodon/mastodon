@@ -3,8 +3,8 @@
 class InstancePresenter
   delegate(
     :closed_registrations_message,
+    :contact_email,
     :site_contact_email,
-    :open_registrations,
     :site_description,
     :site_extended_description,
     to: Setting
@@ -24,6 +24,12 @@ class InstancePresenter
 
   def domain_count
     Rails.cache.fetch('distinct_domain_count') { Account.distinct.count(:domain) }
+  end
+
+  def open_registrations
+    return false unless Setting.open_registrations
+    return true unless Setting.max_users
+    user_count < Setting.max_users
   end
 
   def version_number

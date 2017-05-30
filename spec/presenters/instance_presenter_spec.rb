@@ -15,12 +15,6 @@ describe InstancePresenter do
     expect(instance_presenter.site_extended_description).to eq "Extended desc"
   end
 
-  it "delegates open_registrations to Setting" do
-    Setting.open_registrations = false
-
-    expect(instance_presenter.open_registrations).to eq false
-  end
-
   it "delegates closed_registrations_message to Setting" do
     Setting.closed_registrations_message = "Closed message"
 
@@ -31,6 +25,40 @@ describe InstancePresenter do
     Setting.site_contact_email = "admin@example.com"
 
     expect(instance_presenter.site_contact_email).to eq "admin@example.com"
+  end
+  
+  context "when Setting.open_registrations is false" do
+    it "closes registrations" do
+      Setting.open_registrations = false
+
+      expect(instance_presenter.open_registrations).to eq false
+    end
+  end
+  
+  context "when Setting.open_registrations is true" do
+    before :all do
+      Setting.open_registrations = true
+    end
+      
+    it "closes registrations when user_count >= max_users" do
+      Setting.max_users = 100
+      allow(Rails.cache).to receive(:fetch).and_call_original
+      allow(Rails.cache).to receive(:fetch).with("user_count").and_return(100)
+      expect(instance_presenter.open_registrations).to eq false
+    end
+    
+    it "opens registrations when user_count < max_users" do
+      Setting.max_users = 100
+      allow(Rails.cache).to receive(:fetch).and_call_original
+      allow(Rails.cache).to receive(:fetch).with("user_count").and_return(99)
+      expect(instance_presenter.open_registrations).to eq true
+    end
+    
+    it "opens registrations when max_users is nil" do
+      Setting.max_users = nil
+
+      expect(instance_presenter.open_registrations).to eq true
+    end
   end
 
   describe "contact_account" do
