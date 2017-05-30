@@ -2,8 +2,6 @@ import React from 'react';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import PropTypes from 'prop-types';
 
-import notFoundPng from '../../../../images/mastodon-not-found.png';
-
 class ImageLoader extends ImmutablePureComponent {
 
   static propTypes = {
