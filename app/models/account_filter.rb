@@ -18,8 +18,6 @@ class AccountFilter
   private
 
   def scope_for(key, value)
-    accounts = Account.arel_table
-
     case key.to_s
     when 'local'
       Account.local
@@ -34,19 +32,24 @@ class AccountFilter
     when 'suspended'
       Account.suspended
     when 'username'
-      Account.where(accounts[:username].matches("#{value}%"))
+      Account.matches_username(value)
     when 'display_name'
-      Account.where(accounts[:display_name].matches("#{value}%"))
+      Account.matches_display_name(value)
     when 'email'
-      users = User.arel_table
-      Account.joins(:user).merge(User.where(users[:email].matches("#{value}%")))
+      accounts_with_users.merge User.matches_email(value)
     when 'ip'
-      return Account.default_scoped unless valid_ip?(value)
-      matches_ip = User.where(current_sign_in_ip: value).or(User.where(last_sign_in_ip: value))
-      Account.joins(:user).merge(matches_ip)
+      if valid_ip?(value)
+        accounts_with_users.merge User.with_recent_ip_address(value)
+      else
+        Account.default_scoped
+      end
     else
       raise "Unknown filter: #{key}"
     end
+  end
+
+  def accounts_with_users
+    Account.joins(:user)
   end
 
   def valid_ip?(value)
