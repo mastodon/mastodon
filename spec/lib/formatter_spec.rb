@@ -158,39 +158,41 @@ RSpec.describe Formatter do
       end
     end
 
-    context 'contains single line code block' do
-      let(:local_text) { "`program`" }
-      it 'has code block' do
-        expect(subject).to match '<p><code class="inline">program</code></p>'
+    describe 'code block' do
+      context 'contains single line code block' do
+        let(:local_text) { "`program`" }
+        it 'has code block' do
+          expect(subject).to match '<span><code class="inline">program</code></span>'
+        end
       end
-    end
 
-    context 'contains multiple inline code blocks' do
-      let(:local_text) { "`hoge` `piyo`" }
-      it 'has code block' do
-        expect(subject).to match('<p><code class="inline">hoge</code> <code class="inline">piyo</code></p>')
+      context 'contains multiple inline code blocks' do
+        let(:local_text) { "`hoge` `piyo`" }
+        it 'has code block' do
+          expect(subject).to match('<span><code class="inline">hoge</code></span> <span><code class="inline">piyo</code></span>')
+        end
       end
-    end
 
-    context 'contains multi line code block' do
-      let(:local_text) { "```ruby\nputs 'Hello, World!'\n```" }
-      it 'has code block' do
-        expect(subject).to match '<p><pre><code data-language="ruby">puts \'Hello, World!\'</code></pre></p>'
+      context 'contains multi line code block' do
+        let(:local_text) { "```ruby\nputs 'Hello, World!'\n```" }
+        it 'has code block' do
+          expect(subject).to match '<p><code data-language="ruby">puts \'Hello, World!\'</code></p>'
+        end
       end
-    end
 
-    context 'contains multi line code block with filename' do
-      let(:local_text) { "```ruby:hello.rb\nputs 'Hello, World!'\n```" }
-      it 'has code block' do
-        expect(subject).to match '<p><pre><code data-language="ruby" data-filename="hello.rb">puts \'Hello, World!\'</code></pre></p>'
+      context 'contains multi line code block with filename' do
+        let(:local_text) { "```ruby:hello.rb\nputs 'Hello, World!'\n```" }
+        it 'has code block' do
+          expect(subject).to match '<p><code data-language="ruby" data-filename="hello.rb">puts \'Hello, World!\'</code></p>'
+        end
       end
-    end
 
-    context 'contains multiple code blocks' do
-      let(:local_text) { "```ruby\nputs 'Hello, World!'\n```\n```js\nconsole.log('Hello, World!');\n```" }
-      it 'has code block' do
-        expect(subject).to include('<pre><code data-language="ruby">puts \'Hello, World!\'</code></pre>')
-        expect(subject).to include('<pre><code data-language="js">console.log(\'Hello, World!\');</code></pre>')
+      context 'contains multiple code blocks' do
+        let(:local_text) { "```ruby\nputs 'Hello, World!'\n```\n```js\nconsole.log('Hello, World!');\n```" }
+        it 'has code block' do
+          expect(subject).to include('<p><code data-language="ruby">puts \'Hello, World!\'</code></p>')
+          expect(subject).to include('<p><code data-language="js">console.log(\'Hello, World!\');</code></p>')
+        end
       end
     end
 

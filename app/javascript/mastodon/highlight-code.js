@@ -1,4 +1,4 @@
-import hljs from 'highlight.js';
+import { highlight } from 'highlight.js';
 
 export default function highlightCode(text) {
   try {
@@ -7,14 +7,12 @@ export default function highlightCode(text) {
     [].forEach.call(doc.querySelectorAll('code'), (el) => {
       el.classList.add('hljs');
       if (el.dataset.language && !el.dataset.highlighted) {
-        el.innerHTML = hljs.highlight(el.dataset.language, el.innerText).value;
-        el.dataset.highlighted = true;
-      }
-    });
-
-    [].forEach.call(doc.querySelectorAll('p'), (el) => {
-      if (el.innerHTML.length === 0) {
-        el.remove();
+        try {
+          el.innerHTML = highlight(el.dataset.language, getTextContent(el)).value;
+          el.dataset.highlighted = true;
+        } catch(e) {
+          // unsupported syntax for highlight.js
+        }
       }
     });
 
@@ -23,3 +21,9 @@ export default function highlightCode(text) {
     return text;
   }
 };
+
+function getTextContent(el) {
+  const contentEl = document.createElement('div');
+  contentEl.innerHTML = el.innerHTML.replace(/<br\s*\/?>/g, "\n");
+  return contentEl.textContent;
+}
