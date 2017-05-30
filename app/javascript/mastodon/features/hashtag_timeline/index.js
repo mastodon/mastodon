@@ -29,6 +29,7 @@ class HashtagTimeline extends React.PureComponent {
     streamingAPIBaseURL: PropTypes.string.isRequired,
     accessToken: PropTypes.string.isRequired,
     hasUnread: PropTypes.bool,
+    multiColumn: PropTypes.bool,
   };
 
   handlePin = () => {
@@ -101,7 +102,7 @@ class HashtagTimeline extends React.PureComponent {
   }
 
   render () {
-    const { hasUnread, columnId } = this.props;
+    const { hasUnread, columnId, multiColumn } = this.props;
     const { id } = this.props.params;
     const pinned = !!columnId;
 
@@ -115,6 +116,7 @@ class HashtagTimeline extends React.PureComponent {
           onMove={this.handleMove}
           onClick={this.handleHeaderClick}
           pinned={pinned}
+          multiColumn={multiColumn}
         />
 
         <StatusListContainer

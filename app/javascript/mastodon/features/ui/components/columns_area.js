@@ -45,7 +45,7 @@ class ColumnsArea extends ImmutablePureComponent {
           return <SpecificComponent key={column.get('uuid')} columnId={column.get('uuid')} params={params} multiColumn />;
         })}
 
-        {children}
+        {React.Children.map(children, child => React.cloneElement(child, { multiColumn: true }))}
       </div>
     );
   }

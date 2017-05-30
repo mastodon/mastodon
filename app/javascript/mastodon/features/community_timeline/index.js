@@ -37,6 +37,7 @@ class CommunityTimeline extends React.PureComponent {
     streamingAPIBaseURL: PropTypes.string.isRequired,
     accessToken: PropTypes.string.isRequired,
     hasUnread: PropTypes.bool,
+    multiColumn: PropTypes.bool,
   };
 
   handlePin = () => {
@@ -107,7 +108,7 @@ class CommunityTimeline extends React.PureComponent {
   }
 
   render () {
-    const { intl, hasUnread, columnId } = this.props;
+    const { intl, hasUnread, columnId, multiColumn } = this.props;
     const pinned = !!columnId;
 
     return (
@@ -120,6 +121,7 @@ class CommunityTimeline extends React.PureComponent {
           onMove={this.handleMove}
           onClick={this.handleHeaderClick}
           pinned={pinned}
+          multiColumn={multiColumn}
         />
 
         <StatusListContainer

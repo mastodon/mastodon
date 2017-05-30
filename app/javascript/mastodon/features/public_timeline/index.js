@@ -34,6 +34,7 @@ class PublicTimeline extends React.PureComponent {
     dispatch: PropTypes.func.isRequired,
     intl: PropTypes.object.isRequired,
     columnId: PropTypes.string,
+    multiColumn: PropTypes.bool,
     streamingAPIBaseURL: PropTypes.string.isRequired,
     accessToken: PropTypes.string.isRequired,
     hasUnread: PropTypes.bool,
@@ -107,7 +108,7 @@ class PublicTimeline extends React.PureComponent {
   }
 
   render () {
-    const { intl, columnId, hasUnread } = this.props;
+    const { intl, columnId, hasUnread, multiColumn } = this.props;
     const pinned = !!columnId;
 
     return (
@@ -120,6 +121,7 @@ class PublicTimeline extends React.PureComponent {
           onMove={this.handleMove}
           onClick={this.handleHeaderClick}
           pinned={pinned}
+          multiColumn={multiColumn}
         />
 
         <StatusListContainer

@@ -43,6 +43,7 @@ class Notifications extends React.PureComponent {
     intl: PropTypes.object.isRequired,
     isLoading: PropTypes.bool,
     isUnread: PropTypes.bool,
+    multiColumn: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -112,7 +113,7 @@ class Notifications extends React.PureComponent {
   }
 
   render () {
-    const { intl, notifications, shouldUpdateScroll, isLoading, isUnread, columnId } = this.props;
+    const { intl, notifications, shouldUpdateScroll, isLoading, isUnread, columnId, multiColumn } = this.props;
     const pinned = !!columnId;
 
     let loadMore       = '';
@@ -160,6 +161,7 @@ class Notifications extends React.PureComponent {
           onMove={this.handleMove}
           onClick={this.handleHeaderClick}
           pinned={pinned}
+          multiColumn={multiColumn}
         >
           <ColumnSettingsContainer />
         </ColumnHeader>

@@ -12,7 +12,7 @@ export function addColumn(id, params) {
       params,
     });
 
-    saveSettings();
+    dispatch(saveSettings());
   };
 };
 
@@ -23,7 +23,7 @@ export function removeColumn(uuid) {
       uuid,
     });
 
-    saveSettings();
+    dispatch(saveSettings());
   };
 };
 
@@ -35,6 +35,6 @@ export function moveColumn(uuid, direction) {
       direction,
     });
 
-    saveSettings();
+    dispatch(saveSettings());
   };
 };

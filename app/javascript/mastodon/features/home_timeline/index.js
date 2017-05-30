@@ -26,6 +26,7 @@ class HomeTimeline extends React.PureComponent {
     hasUnread: PropTypes.bool,
     hasFollows: PropTypes.bool,
     columnId: PropTypes.string,
+    multiColumn: PropTypes.bool,
   };
 
   handlePin = () => {
@@ -52,7 +53,7 @@ class HomeTimeline extends React.PureComponent {
   }
 
   render () {
-    const { intl, hasUnread, hasFollows, columnId } = this.props;
+    const { intl, hasUnread, hasFollows, columnId, multiColumn } = this.props;
     const pinned = !!columnId;
 
     let emptyMessage;
@@ -73,6 +74,7 @@ class HomeTimeline extends React.PureComponent {
           onMove={this.handleMove}
           onClick={this.handleHeaderClick}
           pinned={pinned}
+          multiColumn={multiColumn}
         >
           <ColumnSettingsContainer />
         </ColumnHeader>
