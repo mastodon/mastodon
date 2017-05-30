@@ -12,7 +12,7 @@ deployment:
     branch: qiitadon
     commands:
       - docker build --tag mastodon .
-      - docker run --env SECRET_KEY_BASE=dummy --volume $(pwd)/public/assets:/mastodon/public/assets mastodon bundle exec rake assets:precompile
+      - docker run --env SECRET_KEY_BASE=dummy --volume $(pwd)/public/assets:/mastodon/public/assets --volume $(pwd)/public/packs:/mastodon/public/packs mastodon bundle exec rake assets:precompile
       - rm .dockerignore
       - docker build --tag ${AWS_ECR_URL_QIITADON}:${CIRCLE_BUILD_NUM} .
       - eval $(aws ecr get-login)
@@ -21,7 +21,7 @@ deployment:
     branch: increments-mastodon
     commands:
       - docker build --tag mastodon .
-      - docker run --env SECRET_KEY_BASE=dummy --volume $(pwd)/public/assets:/mastodon/public/assets mastodon bundle exec rake assets:precompile
+      - docker run --env SECRET_KEY_BASE=dummy --volume $(pwd)/public/assets:/mastodon/public/assets --volume $(pwd)/public/packs:/mastodon/public/packs mastodon bundle exec rake assets:precompile
       - rm .dockerignore
       - docker build --tag ${AWS_ECR_URL_INCREMENTS_MASTODON}:${CIRCLE_BUILD_NUM} .
       - eval $(aws ecr get-login)
