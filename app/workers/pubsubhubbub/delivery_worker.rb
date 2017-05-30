@@ -81,12 +81,4 @@ class Pubsubhubbub::DeliveryWorker
   def response_successful?
     payload_delivery.code > 199 && payload_delivery.code < 300
   end
-
-  def response_failed_permanently?(response)
-    response.code > 299 && response.code < 500 && response.code != 429
-  end
-
-  def response_successful?(response)
-    response.code > 199 && response.code < 300
-  end
 end
