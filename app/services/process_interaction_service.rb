@@ -2,6 +2,7 @@
 
 class ProcessInteractionService < BaseService
   include AuthorExtractor
+  include Authorization
 
   # Record locally the remote interaction with our user
   # @param [String] envelope Salmon envelope
@@ -46,7 +47,7 @@ class ProcessInteractionService < BaseService
         reflect_unblock!(account, target_account)
       end
     end
-  rescue Goldfinger::Error, HTTP::Error, OStatus2::BadSalmonError
+  rescue Goldfinger::Error, HTTP::Error, OStatus2::BadSalmonError, Mastodon::NotPermittedError
     nil
   end
 
@@ -103,7 +104,9 @@ class ProcessInteractionService < BaseService
 
     return if status.nil?
 
-    RemovalWorker.perform_async(status.id) if account.id == status.account_id
+    authorize_with account, status, :destroy?
+
+    RemovalWorker.perform_async(status.id)
   end
 
   def favourite!(xml, from_account)
