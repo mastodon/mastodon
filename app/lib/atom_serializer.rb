@@ -328,7 +328,7 @@ class AtomSerializer
   end
 
   def conversation_uri(conversation)
-    return conversation.uri if conversation.uri.present?
+    return conversation.uri if conversation.uri?
     TagManager.instance.unique_tag(conversation.created_at, conversation.id, 'Conversation')
   end
 
