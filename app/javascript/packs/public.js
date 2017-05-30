@@ -1,8 +1,8 @@
-import emojify from 'mastodon/emoji';
-import { getLocale } from 'mastodon/locales';
 import { length } from 'stringz';
 import IntlRelativeFormat from 'intl-relativeformat';
 import { delegate } from 'rails-ujs';
+import emojify from '../mastodon/emoji';
+import { getLocale } from '../mastodon/locales';
 
 require.context('../images/', true);
 
