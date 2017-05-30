@@ -24,6 +24,7 @@ RSpec.describe StatusPolicy, type: :model do
   permissions :show? do
     it 'grants access when direct and account is viewer' do
       status.visibility = :direct
+
       expect(subject).to permit(status.account, status)
     end
 
@@ -42,7 +43,7 @@ RSpec.describe StatusPolicy, type: :model do
     end
 
     it 'grants access when private and account is viewer' do
-      status.visibility = :direct
+      status.visibility = :private
 
       expect(subject).to permit(status.account, status)
     end
