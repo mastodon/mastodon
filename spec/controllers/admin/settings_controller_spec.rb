@@ -47,20 +47,36 @@ RSpec.describe Admin::SettingsController, type: :controller do
         end
       end
 
-      it 'updates a settings value' do
-        Setting.site_title = 'Original'
-        patch :update, params: { site_title: 'New title' }
+      context do
+        around do |example|
+          site_title = Setting.site_title
+          example.run
+          Setting.site_title = site_title
+        end
 
-        expect(response).to redirect_to(edit_admin_settings_path)
-        expect(Setting.site_title).to eq 'New title'
+        it 'updates a settings value' do
+          Setting.site_title = 'Original'
+          patch :update, params: { site_title: 'New title' }
+
+          expect(response).to redirect_to(edit_admin_settings_path)
+          expect(Setting.site_title).to eq 'New title'
+        end
       end
 
-      it 'typecasts open_registrations to boolean' do
-        Setting.open_registrations = false
-        patch :update, params: { open_registrations: 'true' }
+      context do
+        around do |example|
+          open_registrations = Setting.open_registrations
+          example.run
+          Setting.open_registrations = open_registrations
+        end
 
-        expect(response).to redirect_to(edit_admin_settings_path)
-        expect(Setting.open_registrations).to eq true
+        it 'typecasts open_registrations to boolean' do
+          Setting.open_registrations = false
+          patch :update, params: { open_registrations: 'true' }
+
+          expect(response).to redirect_to(edit_admin_settings_path)
+          expect(Setting.open_registrations).to eq true
+        end
       end
     end
   end
