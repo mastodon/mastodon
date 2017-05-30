@@ -121,8 +121,8 @@ ca:
       severity: Severitat
       show:
         affected_accounts:
-          one: Un compte en la base de dades afectat
-          other: "%{count} comptes en la base de dades afectats"
+          one: Un compte afectat en la base de dades
+          other: "%{count} comptes afectats en la base de dades"
         retroactive:
           silence: Desfer el silenci a tots els comptes existents d'aquest domini
           suspend: Desfer la suspensió de tots els comptes d'aquest domini
@@ -142,12 +142,16 @@ ca:
       title: PubSubHubbub
       topic: Tòpic
     reports:
+      are_you_sure: Estàs segur?
       comment:
         label: Comentari
         none: Cap
       delete: Esborra
       id: ID
       mark_as_resolved: Marca com a resolt
+      nsfw:
+        'false': NSFW OFF
+        'true': NSFW ON
       report: 'Informe #%{id}'
       report_contents: Continguts
       reported_account: Compte reportat
@@ -259,13 +263,8 @@ ca:
       following: Llista de seguits
       muting: Llista d'apagats
     upload: Carregar
-<<<<<<< HEAD
   landing_strip_html: <strong>%{name}</strong> és un usuari/a de <strong>%{domain}</strong>. Pots seguir-lo/la o interactuar amb ell/a si tens un compte a qualsevol node del fediverse. Si no en tens, pots <a href="%{sign_up_path}">registrar-te aquí</a>.
   landing_strip_signup_html: Si encara no ho has fet, pots <a href="%{sign_up_path}">registrar-te aquí</a>.
-=======
-  landing_strip_html: <strong>%{name}</strong> és un usuari/a de %{link_to_root_path}. Pots seguir-lo/la o interactuar amb ell/a si tens un compte a qualsevol node del fediverse.
-  landing_strip_signup_html: Si no en tens, pots <a href="%{sign_up_path}">registrar-te aquí</a>.
->>>>>>> upstream/master
   media_attachments:
     validations:
       images_and_video: No es pot adjuntar un vídeo a un estat que ja contingui imatges
