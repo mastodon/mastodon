@@ -1137,6 +1137,15 @@
   }
 }
 
+.image-loader__img {
+  transition: opacity 0.3s linear;
+  opacity: 1;
+}
+
+.image-loader__img-loading {
+  opacity: 0.7;
+}
+
 .navigation-bar {
   padding: 10px;
   display: flex;
