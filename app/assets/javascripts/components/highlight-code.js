@@ -8,7 +8,7 @@ export default function highlightCode(text) {
       el.classList.add('hljs');
       if (el.dataset.language && !el.dataset.highlighted) {
         try {
-          el.innerHTML = highlight(el.dataset.language, el.innerText).value;
+          el.innerHTML = highlight(el.dataset.language, getTextContent(el)).value;
           el.dataset.highlighted = true;
         } catch(e) {
           // unsupported syntax for highlight.js
@@ -21,3 +21,9 @@ export default function highlightCode(text) {
     return text;
   }
 };
+
+function getTextContent(el) {
+  const contentEl = document.createElement('div');
+  contentEl.innerHTML = el.innerHTML.replace(/<br\s*\/?>/g, "\n");
+  return contentEl.textContent;
+}
