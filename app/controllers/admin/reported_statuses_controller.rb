@@ -2,6 +2,8 @@
 
 module Admin
   class ReportedStatusesController < BaseController
+    include Authorization
+
     before_action :set_report
     before_action :set_status
 
@@ -11,6 +13,7 @@ module Admin
     end
 
     def destroy
+      authorize @status, :destroy?
       RemovalWorker.perform_async(@status.id)
       redirect_to admin_report_path(@report)
     end
