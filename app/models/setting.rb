@@ -1,4 +1,16 @@
 # frozen_string_literal: true
+# == Schema Information
+#
+# Table name: settings
+#
+#  id         :integer          not null, primary key
+#  var        :string           not null
+#  value      :text
+#  thing_type :string
+#  thing_id   :integer
+#  created_at :datetime
+#  updated_at :datetime
+#
 
 class Setting < RailsSettings::Base
   source Rails.root.join('config/settings.yml')
@@ -11,7 +23,7 @@ class Setting < RailsSettings::Base
     def [](key)
       return super(key) unless rails_initialized?
 
-      val = Rails.cache.fetch(cache_key(key, @object)) do
+      val = Rails.cache.fetch(cache_key(key, nil)) do
         db_val = object(key)
 
         if db_val
@@ -23,7 +35,6 @@ class Setting < RailsSettings::Base
           default_settings[key]
         end
       end
-
       val
     end
 
@@ -38,8 +49,6 @@ class Setting < RailsSettings::Base
 
       records
     end
-
-    private
 
     def default_settings
       return {} unless RailsSettings::Default.enabled?

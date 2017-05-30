@@ -1,4 +1,14 @@
 # frozen_string_literal: true
+# == Schema Information
+#
+# Table name: follows
+#
+#  id                :integer          not null, primary key
+#  account_id        :integer          not null
+#  target_account_id :integer          not null
+#  created_at        :datetime         not null
+#  updated_at        :datetime         not null
+#
 
 class Follow < ApplicationRecord
   include Paginable
@@ -13,4 +23,6 @@ class Follow < ApplicationRecord
   has_one :notification, as: :activity, dependent: :destroy
 
   validates :account_id, uniqueness: { scope: :target_account_id }
+
+  scope :recent, -> { reorder(id: :desc) }
 end

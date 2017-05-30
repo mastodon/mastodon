@@ -2,7 +2,7 @@ import { expect } from 'chai';
 import { shallow } from 'enzyme';
 import sinon from 'sinon';
 
-import Button from '../../../app/assets/javascripts/components/components/button';
+import Button from '../../../app/javascript/mastodon/components/button';
 
 describe('<Button />', () => {
   it('renders a button element', () => {
@@ -51,14 +51,12 @@ describe('<Button />', () => {
 
   it('renders style="display: block; width: 100%;" if props.block given', () => {
     const wrapper = shallow(<Button block />);
-    expect(wrapper.find('button')).to.have.style('display', 'block');
-    expect(wrapper.find('button')).to.have.style('width', '100%');
+    expect(wrapper.find('button')).to.have.className('button--block');
   });
 
   it('renders style="display: inline-block; width: auto;" by default', () => {
     const wrapper = shallow(<Button />);
-    expect(wrapper.find('button')).to.have.style('display', 'inline-block');
-    expect(wrapper.find('button')).to.have.style('width', 'auto');
+    expect(wrapper.find('button')).to.not.have.className('button--block');
   });
 
   it('adds class "button-secondary" if props.secondary given', () => {

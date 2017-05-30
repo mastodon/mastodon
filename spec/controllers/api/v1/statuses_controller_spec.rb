@@ -183,6 +183,39 @@ RSpec.describe Api::V1::StatusesController, type: :controller do
         expect(user.account.favourited?(status)).to be false
       end
     end
+
+    describe 'POST #mute' do
+      let(:status) { Fabricate(:status, account: user.account) }
+
+      before do
+        post :mute, params: { id: status.id }
+      end
+
+      it 'returns http success' do
+        expect(response).to have_http_status(:success)
+      end
+
+      it 'creates a conversation mute' do
+        expect(ConversationMute.find_by(account: user.account, conversation_id: status.conversation_id)).to_not be_nil
+      end
+    end
+
+    describe 'POST #unmute' do
+      let(:status) { Fabricate(:status, account: user.account) }
+
+      before do
+        post :mute,   params: { id: status.id }
+        post :unmute, params: { id: status.id }
+      end
+
+      it 'returns http success' do
+        expect(response).to have_http_status(:success)
+      end
+
+      it 'destroys the conversation mute' do
+        expect(ConversationMute.find_by(account: user.account, conversation_id: status.conversation_id)).to be_nil
+      end
+    end
   end
 
   context 'without an oauth token' do

@@ -1,14 +1,14 @@
 ---
 fa:
   about:
-    about_mastodon: ماستدون (Mastodon) یک شبکهٔ اجتماعی <em>آزاد و کدباز</em> است. یک جایگزین <em>غیرمتمرکز</em> برای شبکه‌های تجاری، که نمی‌گذارد ارتباط‌های شما را یک شرکت در انحصار خود بگیرد. یک سرور مورد اعتماد را انتخاب کنید&mdash;هر سروری که باشد، همچنان می‌توانید با سرورهای دیگر ارتباط داشته باشید. هر کسی می‌تواند سرور ماستدون خود را راه بیندازد و در <em>شبکهٔ اجتماعی</em> سهیم شود.
+    about_mastodon: ماستدون (Mastodon) یک شبکهٔ اجتماعی <em>آزاد و کدباز</em> است. یک جایگزین <em>غیرمتمرکز</em> برای شبکه‌های تجاری، که نمی‌گذارد ارتباط‌های شما را یک شرکت در انحصار خود بگیرد. یک سرور مورد اعتماد را انتخاب کنید &mdash; هر سروری که باشد، همچنان می‌توانید با سرورهای دیگر ارتباط داشته باشید. هر کسی می‌تواند سرور ماستدون خود را راه بیندازد و در <em>شبکهٔ اجتماعی</em> سهیم شود.
     about_this: دربارهٔ این سرور
     apps: برنامه‌ها
     business_email: 'ایمیل کاری:'
     closed_registrations: "امکان ثبت نام روی این سرور هم‌اینک فعال نیست."
     contact: تماس
     description_headline: "%{domain} چیست؟"
-    domain_count_after: سرورهای دیگر
+    domain_count_after: سرور دیگر
     domain_count_before: متصل به
     features:
       api: رابط برنامه‌نویسی برای برنامه‌ها و سرویس‌های دیگر
@@ -41,14 +41,14 @@ fa:
     remote_follow: پیگیری غیرمستقیم
     unfollow: پایان پیگیری
   activitypub:
+    activity:
+      announce:
+        name: "%{account_name} فعالیتی آغاز کرد."
+      create:
+        name: "%{account_name} یادداشتی نوشت."
     outbox:
       name: "صندوق خروجی %{account_name}"
       summary: "مجموعه‌ای از فعالیت‌های کاربر %{account_name}."
-    activity:
-      create:
-        name: "%{account_name} یادداشتی نوشت."
-      announce:
-        name: "%{account_name} فعالیتی آغاز کرد."
   admin:
     accounts:
       are_you_sure: آیا مطمئن هستید؟
@@ -79,7 +79,7 @@ fa:
         alphabetic: الفبایی
         most_recent: تازه‌ترین‌ها
         title: ترتیب
-      perform_full_suspension: Perform full suspension
+      perform_full_suspension: انجام تعلیق کامل
       profile_url: نشانی نمایه
       public: عمومی
       push_subscription_expires: عضویت از راه PuSH منقضی شد
@@ -133,7 +133,7 @@ fa:
     pubsubhubbub:
       callback_url: نشانی Callback
       confirmed: تأییدشده
-      expires_in: مهلت منقضی‌شدن
+      expires_in: مهلت انقضا
       last_delivery: آخرین ارسال
       title: PubSubHubbub
       topic: موضوع
@@ -145,6 +145,7 @@ fa:
       id: شناسه
       mark_as_resolved: علامت‌گذاری به عنوان حل‌شده
       report: 'گزارش #%{id}'
+      report_contents: محتوا
       reported_account: حساب گزارش‌شده
       reported_by: گزارش از طرف
       resolved: حل‌شده
@@ -156,7 +157,6 @@ fa:
       unresolved: حل‌نشده
       view: نمایش
     settings:
-      click_to_edit: برای ویرایش کلیک کنید
       contact_information:
         email: یک نشانی ایمیل عمومی وارد کنید
         label: اطلاعات تماس
@@ -216,17 +216,30 @@ fa:
       x_seconds: "%{count} ثانیه"
   errors:
     '403': شما اجازهٔ دیدن این صفحه را ندارید.
-    '404': صفحه‌ای که می‌خواستید ببینید وجود ندارد.
-    '410': صفحه‌ای که می‌خواستید ببینید دیگر وجود ندارد.
+    '404': صفحه‌ای که به دنبالش بودید وجود ندارد.
+    '410': صفحه‌ای که به دنبالش بودید دیگر وجود ندارد.
     '422':
       content: تأیید امنیتی انجام نشد. آیا مرورگر شما کوکی‌ها را مسدود می‌کند؟
       title: تأیید امنیتی شکست خورد
+    '429': درخواست‌های بیش از حد
   exports:
     blocks: حساب‌های مسدودشده
     csv: CSV
     follows: حساب‌های پی‌گرفته
     mutes: حساب‌های بی‌صداشده
     storage: تصویرهای ذخیره‌شده
+  followers:
+    domain: دامین
+    explanation_html: اگر می‌خواهید از خصوصی‌بودن نوشته‌های خود مطمئن شوید، باید بدانید که چه کسانی پیگیر شما هستند. <strong>نوشته‌های خصوصی شما به همهٔ سرورهایی که در آن‌ها پیگیر دارید فرستاده می‌شود</strong>. شاید بخواهید این سرورها را بررسی کنید، و اگر به مسئولان یا نرم‌افزارهای آن‌ها در رعایت حریم خصوصی خود اعتماد ندارید، می‌توانید آن‌ها را حذف کنید.
+    followers_count: تعداد پیگیران
+    lock_link: حساب خود را خصوصی کنید
+    purge: برداشتن پیگیری
+    success:
+      one: در حال انجام مسدودسازی نرم روی کاربران یک دامین...
+      other: در حال انجام مسدودسازی نرم روی کاربران %{count} دامین...
+    true_privacy_html: لطفاً بدانید که <strong>داشتن حریم خصوصی واقعی تنها با رمزگذاری سرتاسر (end-to-end encryption) ممکن است</strong>.
+    unlocked_warning_html: هر کسی می‌تواند پیگیر شما شود تا بلافاصله نوشته‌های خصوصی شما را ببیند. اگر  %{lock_link} خواهید توانست درخواست‌های پیگیری را بررسی کرده و نپذیرید.
+    unlocked_warning_title: حساب شما خصوصی نیست
   generic:
     changes_saved_msg: تغییرات با موفقیت ذخیره شدند!
     powered_by: نیرو گرفته از %{link}
@@ -242,7 +255,8 @@ fa:
       following: فهرست پی‌گیری‌ها
       muting: فهرست بی‌صداشده‌ها
     upload: بارگذاری
-  landing_strip_html: <strong>%{name}</strong> کاربری روی <strong>%{domain}</strong> است. شما با داشتن حساب روی هر سروری می‌توانید نوشته‌های او را پیگیری کرده یا با او ارتباط داشته باشید. اگر هنوز حسابی ندارید <a href="%{sign_up_path}">این‌جا حساب باز کنید</a>.
+  landing_strip_html: <strong>%{name}</strong> کاربری روی %{link_to_root_path} است. شما با داشتن حساب روی هر سروری می‌توانید نوشته‌های او را پیگیری کرده یا با او ارتباط داشته باشید.
+  landing_strip_signup_html: اگر هنوز حسابی ندارید <a href="%{sign_up_path}">این‌جا حساب باز کنید</a>.
   media_attachments:
     validations:
       images_and_video: نمی‌توان برای نوشته‌ای که تصویر دارد ویدیو بارگذاری کرد
@@ -286,6 +300,7 @@ fa:
     back: بازگشت به ماستدون
     edit_profile: ویرایش نمایه
     export: برون‌سپاری داده‌ها
+    followers: پیگیران مورد تأیید
     import: درون‌ریزی
     preferences: ترجیحات
     settings: تنظیمات
@@ -295,16 +310,19 @@ fa:
     over_character_limit: از حد مجاز %{max} حرف فراتر رفتید
     show_more: نمایش
     visibilities:
-      private: نمایش تنها به پیگیران
+      private: خصوصی
+      private_long: نمایش تنها به پیگیران
       public: عمومی
-      unlisted: عمومی، ولی در فهرست نوشته‌ها نمایش نده 
+      public_long: همه می‌توانند ببینند
+      unlisted: فهرست‌نشده
+      unlisted_long: عمومی، ولی در فهرست نوشته‌ها نمایش نمی‌یابد
   stream_entries:
     click_to_show: برای نمایش کلیک کنید
-    reblogged: بازبوقیده
+    reblogged: بازبوقید
     sensitive_content: محتوای حساس
   time:
     formats:
-      default: "%b %d, %Y, %H:%M"
+      default: "%d %b %Y, %H:%M"
   two_factor_authentication:
     code_hint: برای تأیید، کدی را که برنامهٔ تأییدکننده ساخته است وارد کنید
     description_html: اگر <strong>ورود دومرحله‌ای</strong> را فعال کنید، برای ورود به سیستم به تلفن خود نیاز خواهید داشت تا برایتان یک کد موقتی بسازد
