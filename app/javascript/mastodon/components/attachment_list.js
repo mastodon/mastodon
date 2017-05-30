@@ -4,7 +4,7 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 
 const filename = url => url.split('/').pop().split('#')[0].split('?')[0];
 
-class AttachmentList extends React.ImmutablePureComponent {
+class AttachmentList extends ImmutablePureComponent {
 
   static propTypes = {
     media: ImmutablePropTypes.list.isRequired,
