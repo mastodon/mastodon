@@ -72,7 +72,7 @@ class MediaModal extends ImmutablePureComponent {
     }
 
     if (attachment.get('type') === 'image') {
-      content = <img src={url} />;
+      content = <img src={url} />; // eslint-disable-line jsx-a11y/img-has-alt
     } else if (attachment.get('type') === 'gifv') {
       content = <ExtendedVideoPlayer src={url} muted={true} controls={false} />;
     }
