@@ -14,12 +14,12 @@ module CodeBlockFormatter
       match_data = Regexp.last_match
       language = sanitize(match_data[:language], Sanitize::Config::MASTODON_STRICT).gsub(/["']/, '')
       filename = sanitize(match_data[:filename] || '', Sanitize::Config::MASTODON_STRICT).gsub(/["']/, '')
-      code = sanitize(match_data[:code], Sanitize::Config::MASTODON_STRICT)
+      code = sanitize(match_data[:code], Sanitize::Config::MASTODON_STRICT).split("\n").join("<br>")
 
       marker = "[[[codeblock#{index += 1}]]]"
-      block_html = "<pre><code#{ language.present? ? " data-language=\"#{ language }\"" : '' }#{ filename.present? ? " data-filename=\"#{ filename }\"" : '' }>#{ code }</code></pre>"
+      block_html = "<code#{ language.present? ? " data-language=\"#{ language }\"" : '' }#{ filename.present? ? " data-filename=\"#{ filename }\"" : '' }>#{ code }</code>"
       marker_and_contents << [marker, block_html]
-      marker
+      "\n#{marker}\n"
     end
 
     html = html.gsub(INLINE_CODEBLOCK_REGEXP) do |match|
@@ -27,7 +27,7 @@ module CodeBlockFormatter
       code = sanitize(match_data[:code], Sanitize::Config::MASTODON_STRICT)
 
       marker = "[[[codeblock#{index += 1}]]]"
-      block_html = "<code class=\"inline\">#{ code }</code>"
+      block_html = "<span><code class=\"inline\">#{ code }</code></span>"
       marker_and_contents << [marker, block_html]
       marker
     end
@@ -37,7 +37,7 @@ module CodeBlockFormatter
 
   def swap_marker_to_code_blocks(html, marker_and_contents)
     marker_and_contents.reverse.reduce(html) do |html, (marker, block_html)|
-      html.gsub(marker, block_html)
+      html.sub(marker, block_html)
     end
   end
 
