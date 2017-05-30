@@ -2,8 +2,12 @@
 
 require 'rails_helper'
 
-describe Settings::Exports::BaseController do
+describe ApplicationController, type: :controller do
   controller do
+    include ExportControllerConcern
+    def index
+      send_export_file
+    end
     def export_data
       @export.account.username
     end
@@ -17,7 +21,7 @@ describe Settings::Exports::BaseController do
 
       expect(response).to have_http_status(:success)
       expect(response.content_type).to eq 'text/csv'
-      expect(response.headers['Content-Disposition']).to eq 'attachment; filename="base.csv"'
+      expect(response.headers['Content-Disposition']).to eq 'attachment; filename="anonymous.csv"'
       expect(response.body).to eq user.account.username
     end
 
