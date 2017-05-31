@@ -37,24 +37,18 @@ describe ApplicationController, type: :controller do
     end
   end
 
-  context do
-    around do |example|
-      original_local_https = ENV['LOCAL_HTTPS']
-      example.run
-      ENV['LOCAL_HTTPS'] = original_local_https
-    end
-
-    it "does not force ssl if LOCAL_HTTPS is not 'true'" do
-      routes.draw { get 'success' => 'anonymous#success' }
-      ENV['LOCAL_HTTPS'] = ''
+  it "does not force ssl if LOCAL_HTTPS is not 'true'" do
+    routes.draw { get 'success' => 'anonymous#success' }
+    ClimateControl.modify LOCAL_HTTPS: '' do
       allow(Rails.env).to receive(:production?).and_return(true)
       get 'success'
       expect(response).to have_http_status(:success)
     end
+  end
 
-    it "forces ssl if LOCAL_HTTPS is 'true'" do
-      routes.draw { get 'success' => 'anonymous#success' }
-      ENV['LOCAL_HTTPS'] = 'true'
+  it "forces ssl if LOCAL_HTTPS is 'true'" do
+    routes.draw { get 'success' => 'anonymous#success' }
+    ClimateControl.modify LOCAL_HTTPS: 'true' do
       allow(Rails.env).to receive(:production?).and_return(true)
       get 'success'
       expect(response).to redirect_to('https://test.host/success')
