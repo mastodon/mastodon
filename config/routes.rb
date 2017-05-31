@@ -140,6 +140,7 @@ Rails.application.routes.draw do
         resource :home, only: :show, controller: :home
         resource :public, only: :show, controller: :public
         resources :tag, only: :show
+        resource :search, only: :show, controller: :search
       end
 
       get '/search', to: 'search#index', as: :search

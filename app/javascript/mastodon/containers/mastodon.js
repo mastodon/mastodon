@@ -28,6 +28,7 @@ import CommunityTimeline from '../features/community_timeline';
 import AccountTimeline from '../features/account_timeline';
 import AccountGallery from '../features/account_gallery';
 import HomeTimeline from '../features/home_timeline';
+import SearchTimeline from '../features/search_timeline';
 import Compose from '../features/compose';
 import Followers from '../features/followers';
 import Following from '../features/following';
@@ -144,6 +145,7 @@ class Mastodon extends React.PureComponent {
               <Route path='timelines/public' component={PublicTimeline} />
               <Route path='timelines/public/local' component={CommunityTimeline} />
               <Route path='timelines/tag/:id' component={HashtagTimeline} />
+              <Route path='timelines/search' component={SearchTimeline} />
 
               <Route path='notifications' component={Notifications} />
               <Route path='favourites' component={FavouritedStatuses} />

@@ -20,6 +20,7 @@ const messages = defineMessages({
   sign_out: { id: 'navigation_bar.logout', defaultMessage: 'Logout' },
   favourites: { id: 'navigation_bar.favourites', defaultMessage: 'Favourites' },
   blocks: { id: 'navigation_bar.blocks', defaultMessage: 'Blocked users' },
+  search_timeline: { id: 'navigation_bar.search_timeline', defaultMessage: 'Search toot' },
   mutes: { id: 'navigation_bar.mutes', defaultMessage: 'Muted users' },
   info: { id: 'navigation_bar.info', defaultMessage: 'Extended information' },
 });
@@ -54,6 +55,7 @@ class GettingStarted extends ImmutablePureComponent {
           {followRequests}
           <ColumnLink icon='volume-off' text={intl.formatMessage(messages.mutes)} to='/mutes' />
           <ColumnLink icon='ban' text={intl.formatMessage(messages.blocks)} to='/blocks' />
+          <ColumnLink icon='search' text={intl.formatMessage(messages.search_timeline)} to='/timelines/search' />
           <ColumnSubheading text={intl.formatMessage(messages.settings_subheading)}/>
           <ColumnLink icon='book' text={intl.formatMessage(messages.info)} href='/about/more' />
           <ColumnLink icon='cog' text={intl.formatMessage(messages.preferences)} href='/settings/preferences' />

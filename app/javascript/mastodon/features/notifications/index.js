@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import Column from '../ui/components/column';
-import { expandNotifications, clearNotifications, scrollTopNotifications } from '../../actions/notifications';
+import { expandNotifications, changeNotificationType, clearNotifications, scrollTopNotifications } from '../../actions/notifications';
 import NotificationContainer from './containers/notification_container';
 import { ScrollContainer } from 'react-router-scroll';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
@@ -13,6 +13,7 @@ import Immutable from 'immutable';
 import LoadMore from '../../components/load_more';
 import ClearColumnButton from './components/clear_column_button';
 import { openModal } from '../../actions/modal';
+import NotificationTypeDropdown from './components/notification_type_dropdown';
 
 const messages = defineMessages({
   title: { id: 'column.notifications', defaultMessage: 'Notifications' },
@@ -45,6 +46,15 @@ class Notifications extends React.PureComponent {
   static defaultProps = {
     trackScroll: true,
   };
+
+  constructor (props, context) {
+    super(props, context);
+    this.handleScroll = this.handleScroll.bind(this);
+    this.handleLoadMore = this.handleLoadMore.bind(this);
+    this.handleClear = this.handleClear.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+    this.setRef = this.setRef.bind(this);
+  }
 
   handleScroll = (e) => {
     const { scrollTop, scrollHeight, clientHeight } = e.target;
@@ -79,6 +89,10 @@ class Notifications extends React.PureComponent {
       confirm: intl.formatMessage(messages.clearConfirm),
       onConfirm: () => dispatch(clearNotifications()),
     }));
+  }
+
+  handleChange = (type) => {
+    this.props.dispatch(changeNotificationType([type]));
   }
 
   setRef = (c) => {
@@ -127,6 +141,7 @@ class Notifications extends React.PureComponent {
       <Column icon='bell' active={isUnread} heading={intl.formatMessage(messages.title)}>
         <ColumnSettingsContainer />
         <ClearColumnButton onClick={this.handleClear} />
+        <NotificationTypeDropdown onClick={this.handleChange} />
         <ScrollContainer scrollKey='notifications' shouldUpdateScroll={shouldUpdateScroll}>
           {scrollableArea}
         </ScrollContainer>

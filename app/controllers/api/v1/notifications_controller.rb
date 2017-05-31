@@ -9,7 +9,16 @@ class Api::V1::NotificationsController < ApiController
   DEFAULT_NOTIFICATIONS_LIMIT = 15
 
   def index
-    @notifications = Notification.where(account: current_account).browserable(exclude_types).paginate_by_max_id(limit_param(DEFAULT_NOTIFICATIONS_LIMIT), params[:max_id], params[:since_id])
+    types = if params[:types]&.reject(&:blank?).present?
+             params[:types]
+           else
+             nil
+           end
+    if types.present?
+      @notifications = Notification.where(account: current_account, activity_type: types).browserable(exclude_types).paginate_by_max_id(limit_param(DEFAULT_NOTIFICATIONS_LIMIT), params[:max_id], params[:since_id])
+    else
+      @notifications = Notification.where(account: current_account).browserable(exclude_types).paginate_by_max_id(limit_param(DEFAULT_NOTIFICATIONS_LIMIT), params[:max_id], params[:since_id])
+    end
     @notifications = cache_collection(@notifications, Notification)
     statuses       = @notifications.select { |n| !n.target_status.nil? }.map(&:target_status)
 
@@ -38,7 +47,7 @@ class Api::V1::NotificationsController < ApiController
   private
 
   def exclude_types
-    val = params.permit(exclude_types: [])[:exclude_types] || []
+    val = params.permit(types: [], exclude_types: [])[:exclude_types] || []
     val = [val] unless val.is_a?(Enumerable)
     val
   end
