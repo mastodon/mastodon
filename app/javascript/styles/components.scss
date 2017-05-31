@@ -854,12 +854,37 @@
     font-weight: 500;
   }
 
+  .account__header__usernames {
+    display: block;
+    margin-bottom: 10px;
+  }
+
   .account__header__username {
     color: $ui-highlight-color;
     font-size: 14px;
     font-weight: 400;
-    display: block;
+    display: inline;
     margin-bottom: 10px;
+  }
+
+  .account__header__qiita--username:before {
+    content: ' ';
+    display: inline-block;
+    height: 14px;
+    width: 14px;
+    vertical-align: middle;
+    background: url('../images/qiita-icon.png');
+    background-size: 14px;
+    margin: 0 2px;
+  }
+
+  .account__header__qiita--username a {
+    text-decoration: none;
+    color: inherit;
+
+    &:hover {
+      text-decoration: underline;
+    }
   }
 }
 
