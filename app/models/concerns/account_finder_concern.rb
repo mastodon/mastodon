@@ -3,6 +3,11 @@
 module AccountFinderConcern
   extend ActiveSupport::Concern
 
+  included do
+    private_class_method :matching_username
+    private_class_method :matching_domain
+  end
+
   class_methods do
     def find_local!(username)
       find_remote!(username, nil)
@@ -10,7 +15,7 @@ module AccountFinderConcern
 
     def find_remote!(username, domain)
       raise ActiveRecord::RecordNotFound if username.blank?
-      where('lower(accounts.username) = ?', username.downcase).where(domain.nil? ? { domain: nil } : 'lower(accounts.domain) = ?', domain&.downcase).take!
+      matching_username(username).merge(matching_domain(domain)).take!
     end
 
     def find_local(username)
@@ -23,6 +28,14 @@ module AccountFinderConcern
       find_remote!(username, domain)
     rescue ActiveRecord::RecordNotFound
       nil
+    end
+
+    def matching_username(username)
+      where('lower(accounts.username) = ?', username.downcase)
+    end
+
+    def matching_domain(domain)
+      where(domain.nil? ? { domain: nil } : 'lower(accounts.domain) = ?', domain&.downcase)
     end
   end
 end
