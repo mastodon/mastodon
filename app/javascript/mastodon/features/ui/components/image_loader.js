@@ -12,9 +12,8 @@ class ImageLoader extends React.PureComponent {
     error: false,
   }
 
-  constructor(props) {
-    super(props);
-    this.loadImage(props.src);
+  componentWillMount() {
+    this.loadImage(this.props.src);
   }
 
   componentWillReceiveProps(props) {
