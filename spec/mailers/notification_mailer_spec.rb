@@ -62,4 +62,34 @@ RSpec.describe NotificationMailer, type: :mailer do
     end
   end
 
+  describe 'follow_request' do
+    let(:follow_request) { Fabricate(:follow_request, account: sender, target_account: receiver.account) }
+    let(:mail) { NotificationMailer.follow_request(receiver.account, Notification.create!(account: receiver.account, activity: follow_request)) }
+
+    it 'renders the headers' do
+      expect(mail.subject).to eq('Pending follower: bob')
+      expect(mail.to).to eq([receiver.email])
+    end
+
+    it 'renders the body' do
+      expect(mail.body.encoded).to match("bob has requested to follow you")
+    end
+  end
+
+  describe 'digest' do
+    before do
+      mention = Fabricate(:mention, account: receiver.account)
+      Fabricate(:notification, account: receiver.account, activity: mention)
+    end
+    let(:mail) { NotificationMailer.digest(receiver.account, since: 5.days.ago) }
+
+    it 'renders the headers' do
+      expect(mail.subject).to match('notification since your last')
+      expect(mail.to).to eq([receiver.email])
+    end
+
+    it 'renders the body' do
+      expect(mail.body.encoded).to match('brief summary')
+    end
+  end
 end

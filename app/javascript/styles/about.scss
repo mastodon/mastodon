@@ -1,0 +1,380 @@
+.about-body {
+  .wrapper {
+    max-width: 600px;
+    margin: 0 auto;
+    color: $ui-primary-color;
+    padding-top: 50px;
+    padding-bottom: 50px;
+
+    &.thicc {
+      max-width: 800px;
+    }
+  }
+
+  h1 {
+    font: 46px/52px 'mastodon-font-sans-serif', sans-serif;
+    font-weight: 600;
+    margin-bottom: 20px;
+    color: $ui-highlight-color;
+    padding: 20px 0;
+
+    img {
+      margin-bottom: -5px;
+      margin-right: 5px;
+      width: 46px;
+      height: 46px;
+    }
+  }
+
+  h2 {
+    font-family: 'mastodon-font-display', sans-serif;
+    font-size: 24px;
+    line-height: 28px;
+    font-weight: 400;
+    margin-bottom: 20px;
+    color: $primary-text-color;
+  }
+
+  h3 {
+    font-family: 'mastodon-font-display', sans-serif;
+    font-size: 20px;
+    line-height: 28px;
+    font-weight: 400;
+    margin-bottom: 20px;
+    color: $ui-secondary-color;
+  }
+
+  ul,
+  ol {
+    list-style: inherit;
+    margin-left: 20px;
+
+    &[type='a'] {
+      list-style-type: lower-alpha;
+    }
+
+    &[type='i'] {
+      list-style-type: lower-roman;
+    }
+  }
+
+  li > ol,
+  li > ul {
+    margin-top: 20px;
+  }
+
+  p,
+  li {
+    font: 16px/28px 'mastodon-font-sans-serif', sans-serif;
+    font-weight: 400;
+    margin-bottom: 12px;
+
+    a {
+      color: $ui-highlight-color;
+      text-decoration: underline;
+    }
+  }
+
+  em {
+    display: inline-block;
+    padding: 7px 7px 5px;
+    margin: 0 2px;
+    background: $ui-primary-color;
+    color: $ui-base-color;
+    font: 16px/16px 'mastodon-font-sans-serif', sans-serif;
+    font-weight: 300;
+  }
+
+  .screenshot {
+    box-shadow: 0 0 15px rgba($base-shadow-color, 0.4);
+    margin-bottom: 26px;
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+  }
+
+  .actions {
+    overflow: hidden;
+    margin-bottom: 20px;
+
+    .info {
+      float: right;
+      text-align: right;
+      line-height: 36px;
+
+      a {
+        color: $ui-primary-color;
+        text-decoration: underline;
+      }
+    }
+  }
+
+  @media screen and (max-width: 625px) {
+    .wrapper {
+      padding: 20px;
+    }
+
+    .features-list {
+      display: block;
+    }
+  }
+}
+
+.information-board {
+  margin: 20px 0;
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid lighten($ui-base-color, 10%);
+  border-bottom: 1px solid lighten($ui-base-color, 10%);
+  padding-right: 14px;
+
+  .section {
+    flex: 1 0 0;
+    padding: 14px;
+    text-align: right;
+    font: 16px/28px 'mastodon-font-sans-serif', sans-serif;
+
+    span,
+    strong {
+      display: block;
+    }
+
+    span {
+      font-size: 16px;
+
+      &:last-child {
+        color: $ui-secondary-color;
+        font-size: 14px;
+      }
+    }
+
+    strong {
+      font-weight: 500;
+      font-size: 32px;
+      line-height: 48px;
+      color: $primary-text-color;
+    }
+  }
+
+  @media screen and (max-width: 500px) {
+    flex-direction: column;
+
+    .section {
+      text-align: left;
+    }
+  }
+}
+
+.owner {
+  text-align: center;
+
+  .avatar {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto;
+    margin-bottom: 15px;
+
+    img {
+      display: block;
+      width: 80px;
+      height: 80px;
+      border-radius: 48px;
+    }
+  }
+
+  .name {
+    font-size: 14px;
+
+    a {
+      display: block;
+      color: $primary-text-color;
+      text-decoration: none;
+
+      &:hover {
+        .display_name {
+          text-decoration: underline;
+        }
+      }
+    }
+
+    .username {
+      display: block;
+      color: $ui-primary-color;
+    }
+  }
+}
+
+.contact-email {
+  text-align: center;
+  margin: 40px 0;
+
+  strong {
+    display: block;
+    color: $primary-text-color;
+    word-break: break-word;
+  }
+}
+
+.sidebar-layout {
+  display: flex;
+
+  .main {
+    flex: 1 1 auto;
+    padding: 14px 0;
+
+    .panel {
+      padding-right: 14px;
+    }
+  }
+
+  .sidebar {
+    border-left: 1px solid lighten($ui-base-color, 10%);
+    width: 200px;
+    flex: 0 0 auto;
+  }
+
+  .panel {
+    .panel-header {
+      background: lighten($ui-base-color, 10%);
+      padding: 7px 14px;
+      text-transform: uppercase;
+      font-size: 12px;
+      font-weight: 500;
+    }
+
+    .panel-body {
+      padding: 14px;
+    }
+
+    .panel-list {
+      ul {
+        list-style: none;
+        margin: 0;
+
+        li {
+          margin: 0;
+          font-family: inherit;
+          font-size: 13px;
+          line-height: 18px;
+
+          a {
+            display: block;
+            padding: 7px 14px;
+            color: rgba($primary-text-color, 0.7);
+            text-decoration: none;
+            transition: all 200ms linear;
+
+            i.fa {
+              margin-right: 5px;
+            }
+
+            &:hover {
+              color: $primary-text-color;
+              background-color: darken($ui-base-color, 5%);
+              transition: all 100ms linear;
+            }
+
+            &.selected {
+              color: $primary-text-color;
+              background-color: $ui-highlight-color;
+
+              &:hover {
+                background-color: lighten($ui-highlight-color, 5%);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  @media screen and (max-width: 625px) {
+    flex-direction: column;
+
+    .sidebar {
+      border: 1px solid lighten($ui-base-color, 10%);
+      width: auto;
+    }
+  }
+}
+
+.features-list {
+  display: flex;
+  margin-bottom: 20px;
+
+  .features-list__column {
+    flex: 1 1 0;
+
+    ul {
+      list-style: none;
+    }
+
+    li {
+      margin: 0;
+    }
+  }
+}
+
+.screenshot-with-signup {
+  display: flex;
+  margin-bottom: 20px;
+
+  .mascot {
+    flex: 1 1 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    img {
+      display: block;
+      margin: 0 auto;
+      max-width: 100%;
+      height: auto;
+    }
+  }
+
+  .simple_form,
+  .closed-registrations-message {
+    width: 300px;
+    flex: 0 0 auto;
+    background: rgba(darken($ui-base-color, 7%), 0.5);
+    padding: 14px;
+    border-radius: 4px;
+    box-shadow: 0 0 15px rgba($base-shadow-color, 0.4);
+
+    .actions {
+      margin-bottom: 0;
+    }
+
+    .info {
+      text-align: center;
+
+      a {
+        color: $ui-secondary-color;
+      }
+    }
+  }
+
+  @media screen and (max-width: 625px) {
+    .mascot {
+      display: none;
+    }
+
+    .simple_form,
+    .closed-registrations-message {
+      flex: auto;
+    }
+  }
+}
+
+.closed-registrations-message {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}

@@ -17,9 +17,9 @@ module Localized
   end
 
   def default_locale
-    ENV.fetch('DEFAULT_LOCALE') {
+    ENV.fetch('DEFAULT_LOCALE') do
       user_supplied_locale || I18n.default_locale
-    }
+    end
   end
 
   def user_supplied_locale

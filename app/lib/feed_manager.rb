@@ -76,6 +76,14 @@ class FeedManager
     end
   end
 
+  def clear_from_timeline(account, target_account)
+    timeline_key = key(:home, account.id)
+    timeline_status_ids = redis.zrange(timeline_key, 0, -1)
+    target_status_ids = Status.where(id: timeline_status_ids, account: target_account).ids
+
+    redis.zrem(timeline_key, target_status_ids) if target_status_ids.present?
+  end
+
   private
 
   def redis
@@ -90,7 +98,7 @@ class FeedManager
 
     return true if Mute.where(account_id: receiver_id, target_account_id: check_for_mutes).any?
 
-    check_for_blocks = status.mentions.map(&:account_id)
+    check_for_blocks = status.mentions.pluck(:account_id)
     check_for_blocks.concat([status.reblog.account_id]) if status.reblog?
 
     return true if Block.where(account_id: receiver_id, target_account_id: check_for_blocks).any?
@@ -101,7 +109,9 @@ class FeedManager
       should_filter &&= !(status.account_id == status.in_reply_to_account_id)                                            # and it's not a self-reply
       return should_filter
     elsif status.reblog?                                                                                                 # Filter out a reblog
-      return Block.where(account_id: status.reblog.account_id, target_account_id: receiver_id).exists?                   # or if the author of the reblogged status is blocking me
+      should_filter   = Block.where(account_id: status.reblog.account_id, target_account_id: receiver_id).exists?        # or if the author of the reblogged status is blocking me
+      should_filter ||= AccountDomainBlock.where(account_id: receiver_id, domain: status.reblog.account.domain).exists?  # or the author's domain is blocked
+      return should_filter
     end
 
     false

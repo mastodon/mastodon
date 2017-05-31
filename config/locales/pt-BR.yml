@@ -43,7 +43,7 @@ pt-BR:
   activitypub:
     activity:
       announce:
-        name: "%{account_name} anunciou uma atividade."
+        name: "%{account_name} compartilhou uma atividade."
       create:
         name: "%{account_name} criou uma nota."
     outbox:
@@ -54,6 +54,7 @@ pt-BR:
       are_you_sure: Você tem certeza?
       confirm: Confirme
       confirmed: Confirmado
+      disable_two_factor_authentication: Desabilitar senha de 2 passos
       display_name: Nome mostrado
       domain: Domain
       edit: Editar
@@ -156,7 +157,6 @@ pt-BR:
       unresolved: Unresolved
       view: View
     settings:
-      click_to_edit: Clique para editar
       contact_information:
         email: Entre um endereço de email público
         label: Informação de contato
@@ -254,7 +254,8 @@ pt-BR:
       following: Lista de seguidos
       muting: Lista de silenciados
     upload: Carregar
-  landing_strip_html: <strong>%{name}</strong> is a user on %{link_to_root_path}. You can follow them or interact with them if you have an account anywhere in the fediverse. If you don't, you can <a href="%{sign_up_path}">sign up here</a>.
+  landing_strip_html: <strong>%{name}</strong> is a user on %{link_to_root_path}. You can follow them or interact with them if you have an account anywhere in the fediverse.
+  landing_strip_signup_html: If you don't, you can <a href="%{sign_up_path}">sign up here</a>.
   media_attachments:
     validations:
       images_and_video: Cannot attach a video to a status that already contains images

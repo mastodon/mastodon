@@ -1,7 +1,62 @@
 {
-  "presets": ["es2015", "react"],
+  "presets": [
+    "react",
+    [
+      "env",
+      {
+        "loose": true,
+        "modules": false,
+        "targets": {
+          "browsers": ["last 2 versions", "IE >= 11", "iOS >= 9"]
+        }
+      }
+    ]
+  ],
   "plugins": [
-    "transform-decorators-legacy",
-    "transform-object-rest-spread"
-  ]
+    "syntax-dynamic-import",
+    "transform-object-rest-spread",
+    "transform-class-properties",
+    [
+      "react-intl",
+      {
+        "messagesDir": "./build/messages"
+      }
+    ]
+  ],
+  "env": {
+    "development": {
+      "plugins": [
+        "transform-react-jsx-source",
+        "transform-react-jsx-self"
+      ]
+    },
+    "production": {
+      "plugins": [
+        "lodash",
+        [
+          "transform-react-remove-prop-types",
+          {
+            "mode": "remove",
+            "removeImport": true,
+            "additionalLibraries": [
+              "react-immutable-proptypes"
+            ]
+          }
+        ],
+        [
+          "transform-runtime",
+          {
+            "helpers": true,
+            "polyfill": false,
+            "regenerator": false
+          }
+        ]
+      ]
+    },
+    "test": {
+      "plugins": [
+        "transform-es2015-modules-commonjs"
+      ]
+    }
+  }
 }

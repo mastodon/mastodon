@@ -10,6 +10,10 @@ nl:
         note: Maximaal 160 tekens
       imports:
         data: CSV-bestand dat op een andere Mastodon-server werd geëxporteerd 
+      sessions:
+        otp: Voer de tweestaps-aanmeldcode vanaf jouw mobiele telefoon in of gebruik een van jouw herstelcode's.        
+      user:
+        filtered_languages: De geselecteerde talen worden uit de lokale en globale tijdlijn verwijderd.        
     labels:
       defaults:
         avatar: Avatar
@@ -19,6 +23,7 @@ nl:
         data: Gegevens
         display_name: Weergavenaam
         email: E-mailadres
+        filtered_languages: Talen filteren
         header: Omslagfoto
         locale: Taal
         locked: Maak account besloten
