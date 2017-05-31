@@ -37,20 +37,28 @@ describe ApplicationController, type: :controller do
     end
   end
 
-  it "does not force ssl if LOCAL_HTTPS is not 'true'" do
-    routes.draw { get 'success' => 'anonymous#success' }
-    ENV['LOCAL_HTTPS'] = ''
-    allow(Rails.env).to receive(:production?).and_return(true)
-    get 'success'
-    expect(response).to have_http_status(:success)
-  end
+  context do
+    around do |example|
+      original_local_https = ENV['LOCAL_HTTPS']
+      example.run
+      ENV['LOCAL_HTTPS'] = original_local_https
+    end
 
-  it "forces ssl if LOCAL_HTTPS is 'true'" do
-    routes.draw { get 'success' => 'anonymous#success' }
-    ENV['LOCAL_HTTPS'] = 'true'
-    allow(Rails.env).to receive(:production?).and_return(true)
-    get 'success'
-    expect(response).to redirect_to('https://test.host/success')
+    it "does not force ssl if LOCAL_HTTPS is not 'true'" do
+      routes.draw { get 'success' => 'anonymous#success' }
+      ENV['LOCAL_HTTPS'] = ''
+      allow(Rails.env).to receive(:production?).and_return(true)
+      get 'success'
+      expect(response).to have_http_status(:success)
+    end
+
+    it "forces ssl if LOCAL_HTTPS is 'true'" do
+      routes.draw { get 'success' => 'anonymous#success' }
+      ENV['LOCAL_HTTPS'] = 'true'
+      allow(Rails.env).to receive(:production?).and_return(true)
+      get 'success'
+      expect(response).to redirect_to('https://test.host/success')
+    end
   end
 
   describe 'helper_method :current_account' do
