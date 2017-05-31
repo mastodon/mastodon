@@ -35,7 +35,11 @@ module AccountFinderConcern
     end
 
     def matching_domain(domain)
-      where(domain.nil? ? { domain: nil } : 'lower(accounts.domain) = ?', domain&.downcase)
+      if domain.nil?
+        where(domain: nil)
+      else
+        where(arel_table[:domain].lower.eq domain.downcase)
+      end
     end
   end
 end
