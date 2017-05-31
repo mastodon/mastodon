@@ -7,12 +7,14 @@ RSpec.describe Api::V1::MutesController, type: :controller do
   let(:token) { double acceptable?: true, resource_owner_id: user.id }
 
   before do
+    Fabricate(:mute, account: user.account)
     allow(controller).to receive(:doorkeeper_token) { token }
   end
 
   describe 'GET #index' do
     it 'returns http success' do
-      get :index
+      get :index, params: { limit: 1 }
+
       expect(response).to have_http_status(:success)
     end
   end
