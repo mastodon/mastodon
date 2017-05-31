@@ -31,7 +31,7 @@ module AccountFinderConcern
     end
 
     def matching_username(username)
-      where('lower(accounts.username) = ?', username.downcase)
+      where(arel_table[:username].lower.eq username.downcase)
     end
 
     def matching_domain(domain)
