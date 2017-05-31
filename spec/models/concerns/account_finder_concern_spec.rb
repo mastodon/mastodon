@@ -5,15 +5,15 @@ require 'rails_helper'
 describe AccountFinderConcern do
   describe '.find_local' do
     before do
-      Fabricate(:account, username: 'Alice')
+      @account = Fabricate(:account, username: 'Alice')
     end
 
     it 'returns case-insensitive result' do
-      expect(Account.find_local('alice')).to_not be_nil
+      expect(Account.find_local('alice')).to eq(@account)
     end
 
     it 'returns correctly cased result' do
-      expect(Account.find_local('Alice')).to_not be_nil
+      expect(Account.find_local('Alice')).to eq(@account)
     end
 
     it 'returns nil without a match' do
@@ -27,15 +27,15 @@ describe AccountFinderConcern do
 
   describe '.find_remote' do
     before do
-      Fabricate(:account, username: 'Alice', domain: 'mastodon.social')
+      @account = Fabricate(:account, username: 'Alice', domain: 'mastodon.social')
     end
 
     it 'returns exact match result' do
-      expect(Account.find_remote('alice', 'mastodon.social')).to_not be_nil
+      expect(Account.find_remote('alice', 'mastodon.social')).to eq(@account)
     end
 
     it 'returns case-insensitive result' do
-      expect(Account.find_remote('ALICE', 'MASTODON.SOCIAL')).to_not be_nil
+      expect(Account.find_remote('ALICE', 'MASTODON.SOCIAL')).to eq(@account)
     end
 
     it 'returns nil when username does not match' do
