@@ -77,7 +77,7 @@ class ProcessFeedService < BaseService
 
       Rails.logger.debug "Queuing remote status #{status.id} (#{id}) for distribution"
 
-      LinkCrawlWorker.perform_async(status.id) unless status.spoiler_text.present?
+      LinkCrawlWorker.perform_async(status.id) unless status.spoiler_text?
       DistributionWorker.perform_async(status.id)
 
       status
