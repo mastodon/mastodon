@@ -10,27 +10,23 @@ module AccountFinderConcern
 
   class_methods do
     def find_local!(username)
-      find_remote!(username, nil)
+      find_local(username) || raise(ActiveRecord::RecordNotFound)
     end
 
     def find_remote!(username, domain)
-      raise ActiveRecord::RecordNotFound if username.blank?
-      matching_username(username).merge(matching_domain(domain)).take!
+      find_remote(username, domain) || raise(ActiveRecord::RecordNotFound)
     end
 
     def find_local(username)
-      find_local!(username)
-    rescue ActiveRecord::RecordNotFound
-      nil
+      find_remote(username, nil)
     end
 
     def find_remote(username, domain)
-      find_remote!(username, domain)
-    rescue ActiveRecord::RecordNotFound
-      nil
+      matching_username(username).merge(matching_domain(domain)).take
     end
 
     def matching_username(username)
+      raise(ActiveRecord::RecordNotFound) if username.blank?
       where(arel_table[:username].lower.eq username.downcase)
     end
 
