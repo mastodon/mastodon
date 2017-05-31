@@ -1,8 +1,7 @@
 import React from 'react';
-import ImmutablePureComponent from 'react-immutable-pure-component';
 import PropTypes from 'prop-types';
 
-class ImageLoader extends ImmutablePureComponent {
+class ImageLoader extends React.PureComponent {
 
   static propTypes = {
     src: PropTypes.string.isRequired,
