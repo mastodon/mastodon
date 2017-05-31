@@ -9,6 +9,8 @@ import {
   unblockAccount,
   muteAccount,
   unmuteAccount,
+  muteReblogsFromAccount,
+  unmuteReblogsFromAccount,
 } from '../../../actions/accounts';
 import { mentionCompose } from '../../../actions/compose';
 import { initReport } from '../../../actions/reports';
@@ -19,6 +21,7 @@ import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 const messages = defineMessages({
   blockConfirm: { id: 'confirmations.block.confirm', defaultMessage: 'Block' },
   muteConfirm: { id: 'confirmations.mute.confirm', defaultMessage: 'Mute' },
+  muteReblogsConfirm: { id: 'confirmations.mute.reblogs.confirm', defaultMessage: 'Mute boosts' },
   blockDomainConfirm: { id: 'confirmations.domain_block.confirm', defaultMessage: 'Hide entire domain' },
 });
 
@@ -70,6 +73,18 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
         message: <FormattedMessage id='confirmations.mute.message' defaultMessage='Are you sure you want to mute {name}?' values={{ name: <strong>@{account.get('acct')}</strong> }} />,
         confirm: intl.formatMessage(messages.muteConfirm),
         onConfirm: () => dispatch(muteAccount(account.get('id'))),
+      }));
+    }
+  },
+
+  onMuteReblogs (account) {
+    if (account.getIn(['relationship', 'muting_reblogs'])) {
+      dispatch(unmuteReblogsFromAccount(account.get('id')));
+    } else {
+      dispatch(openModal('CONFIRM', {
+        message: <FormattedMessage id='confirmations.mute.reblogs.message' defaultMessage='Are you sure you want to mute boosts from {name}?' values={{ name: <strong>@{account.get('acct')}</strong> }} />,
+        confirm: intl.formatMessage(messages.muteReblogsConfirm),
+        onConfirm: () => dispatch(muteReblogsFromAccount(account.get('id'))),
       }));
     }
   },

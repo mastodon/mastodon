@@ -8,6 +8,8 @@ import {
   unblockAccount,
   muteAccount,
   unmuteAccount,
+  muteReblogsFromAccount,
+  unmuteReblogsFromAccount,
 } from '../actions/accounts';
 
 const makeMapStateToProps = () => {
@@ -43,6 +45,14 @@ const mapDispatchToProps = (dispatch) => ({
       dispatch(unmuteAccount(account.get('id')));
     } else {
       dispatch(muteAccount(account.get('id')));
+    }
+  },
+
+  onMuteReblogs (account) {
+    if (account.getIn(['relationship', 'muting_reblogs'])) {
+      dispatch(unmuteReblogsFromAccount(account.get('id')));
+    } else {
+      dispatch(muteReblogsFromAccount(account.get('id')));
     }
   },
 });

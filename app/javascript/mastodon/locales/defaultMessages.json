@@ -114,6 +114,10 @@
         "id": "account.mute"
       },
       {
+        "defaultMessage": "Mute boosts from @{name}",
+        "id": "account.mute.reblogs"
+      },
+      {
         "defaultMessage": "Block @{name}",
         "id": "account.block"
       },
@@ -230,12 +234,20 @@
         "id": "confirmations.mute.confirm"
       },
       {
+        "defaultMessage": "Mute boosts",
+        "id": "confirmations.mute.reblogs.confirm"
+      },
+      {
         "defaultMessage": "Are you sure you want to block {name}?",
         "id": "confirmations.block.message"
       },
       {
         "defaultMessage": "Are you sure you want to mute {name}?",
         "id": "confirmations.mute.message"
+      },
+      {
+        "defaultMessage": "Are you sure you want to mute boosts from {name}?",
+        "id": "confirmations.mute.reblogs.message"
       }
     ],
     "path": "app/javascript/mastodon/containers/status_container.json"
@@ -260,6 +272,10 @@
         "id": "confirmations.mute.confirm"
       },
       {
+        "defaultMessage": "Mute boosts",
+        "id": "confirmations.mute.reblogs.confirm"
+      },
+      {
         "defaultMessage": "Hide entire domain",
         "id": "confirmations.domain_block.confirm"
       },
@@ -270,6 +286,10 @@
       {
         "defaultMessage": "Are you sure you want to mute {name}?",
         "id": "confirmations.mute.message"
+      },
+      {
+        "defaultMessage": "Are you sure you want to mute boosts from {name}?",
+        "id": "confirmations.mute.reblogs.message"
       },
       {
         "defaultMessage": "Are you really, really sure you want to block the entire {domain}? In most cases a few targeted blocks or mutes are sufficient and preferable.",
@@ -307,6 +327,14 @@
       {
         "defaultMessage": "Mute @{name}",
         "id": "account.mute"
+      },
+      {
+        "defaultMessage": "Mute boosts from @{name}",
+        "id": "account.mute.reblogs"
+      },
+      {
+        "defaultMessage": "Unmute boosts from @{name}",
+        "id": "account.unmute.reblogs"
       },
       {
         "defaultMessage": "Follow",

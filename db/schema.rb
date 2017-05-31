@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170520145338) do
+ActiveRecord::Schema.define(version: 20170525214746) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -69,6 +69,12 @@ ActiveRecord::Schema.define(version: 20170520145338) do
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
     t.index ["account_id", "target_account_id"], name: "index_blocks_on_account_id_and_target_account_id", unique: true, using: :btree
+  end
+
+  create_table "boosts_mutes", force: :cascade do |t|
+    t.integer  "account_id",        null: false
+    t.integer  "target_account_id", null: false
+    t.index ["account_id", "target_account_id"], name: "index_boosts_mutes_on_account_id_and_target_account_id", unique: true, using: :btree
   end
 
   create_table "conversation_mutes", force: :cascade do |t|
@@ -234,6 +240,14 @@ ActiveRecord::Schema.define(version: 20170520145338) do
     t.integer  "width",              default: 0,  null: false
     t.integer  "height",             default: 0,  null: false
     t.index ["status_id"], name: "index_preview_cards_on_status_id", unique: true, using: :btree
+  end
+
+  create_table "reblogs_mutes", force: :cascade do |t|
+    t.integer  "account_id",        null: false
+    t.integer  "target_account_id", null: false
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+    t.index ["account_id", "target_account_id"], name: "index_reblogs_mutes_on_account_id_and_target_account_id", unique: true, using: :btree
   end
 
   create_table "reports", force: :cascade do |t|

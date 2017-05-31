@@ -29,6 +29,14 @@ export const ACCOUNT_UNMUTE_REQUEST = 'ACCOUNT_UNMUTE_REQUEST';
 export const ACCOUNT_UNMUTE_SUCCESS = 'ACCOUNT_UNMUTE_SUCCESS';
 export const ACCOUNT_UNMUTE_FAIL    = 'ACCOUNT_UNMUTE_FAIL';
 
+export const ACCOUNT_MUTE_REBLOGS_REQUEST = 'ACCOUNT_MUTE_REBLOGS_REQUEST';
+export const ACCOUNT_MUTE_REBLOGS_SUCCESS = 'ACCOUNT_MUTE_REBLOGS_SUCCESS';
+export const ACCOUNT_MUTE_REBLOGS_FAIL    = 'ACCOUNT_MUTE_REBLOGS_FAIL';
+
+export const ACCOUNT_UNMUTE_REBLOGS_REQUEST = 'ACCOUNT_UNMUTE_REBLOGS_REQUEST';
+export const ACCOUNT_UNMUTE_REBLOGS_SUCCESS = 'ACCOUNT_UNMUTE_REBLOGS_SUCCESS';
+export const ACCOUNT_UNMUTE_REBLOGS_FAIL    = 'ACCOUNT_UNMUTE_REBLOGS_FAIL';
+
 export const ACCOUNT_TIMELINE_FETCH_REQUEST = 'ACCOUNT_TIMELINE_FETCH_REQUEST';
 export const ACCOUNT_TIMELINE_FETCH_SUCCESS = 'ACCOUNT_TIMELINE_FETCH_SUCCESS';
 export const ACCOUNT_TIMELINE_FETCH_FAIL    = 'ACCOUNT_TIMELINE_FETCH_FAIL';
@@ -520,6 +528,75 @@ export function unmuteAccountSuccess(relationship) {
 export function unmuteAccountFail(error) {
   return {
     type: ACCOUNT_UNMUTE_FAIL,
+    error,
+  };
+};
+
+
+export function muteReblogsFromAccount(id) {
+  return (dispatch, getState) => {
+    dispatch(muteReblogsFromAccountRequest(id));
+
+    api(getState).post(`/api/v1/accounts/${id}/mute_reblogs`).then(response => {
+      // Pass in entire statuses map so we can use it to filter stuff in different parts of the reducers
+      dispatch(muteReblogsFromAccountSuccess(response.data, getState().get('statuses')));
+    }).catch(error => {
+      dispatch(muteReblogsFromAccountFail(id, error));
+    });
+  };
+};
+
+export function unmuteReblogsFromAccount(id) {
+  return (dispatch, getState) => {
+    dispatch(unmuteReblogsFromAccountRequest(id));
+
+    api(getState).post(`/api/v1/accounts/${id}/unmute_reblogs`).then(response => {
+      dispatch(unmuteReblogsFromAccountSuccess(response.data));
+    }).catch(error => {
+      dispatch(unmuteReblogsFromAccountFail(id, error));
+    });
+  };
+};
+
+export function muteReblogsFromAccountRequest(id) {
+  return {
+    type: ACCOUNT_MUTE_REBLOGS_REQUEST,
+    id,
+  };
+};
+
+export function muteReblogsFromAccountSuccess(relationship, statuses) {
+  return {
+    type: ACCOUNT_MUTE_REBLOGS_SUCCESS,
+    relationship,
+    statuses,
+  };
+};
+
+export function muteReblogsFromAccountFail(error) {
+  return {
+    type: ACCOUNT_MUTE_REBLOGS_FAIL,
+    error,
+  };
+};
+
+export function unmuteReblogsFromAccountRequest(id) {
+  return {
+    type: ACCOUNT_UNMUTE_REBLOGS_REQUEST,
+    id,
+  };
+};
+
+export function unmuteReblogsFromAccountSuccess(relationship) {
+  return {
+    type: ACCOUNT_UNMUTE_REBLOGS_SUCCESS,
+    relationship,
+  };
+};
+
+export function unmuteReblogsFromAccountFail(error) {
+  return {
+    type: ACCOUNT_UNMUTE_REBLOGS_FAIL,
     error,
   };
 };

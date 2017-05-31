@@ -205,6 +205,17 @@ RSpec.describe Account, type: :model do
     end
   end
 
+  describe '#reblogs_excluded_from_timeline_account_ids' do
+    it 'includes account ids for which reblogs are muted' do
+      account = Fabricate(:account)
+      reblogs_mute = Fabricate(:reblogs_mute, account: account)
+
+      results = account.reblogs_excluded_from_timeline_account_ids
+      expect(results.size).to eq 1
+      expect(results).to include(reblogs_mute.target_account.id)
+    end
+  end
+
   describe '.search_for' do
     before do
       @match = Fabricate(

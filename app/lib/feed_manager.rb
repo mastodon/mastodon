@@ -84,6 +84,20 @@ class FeedManager
     redis.zrem(timeline_key, target_status_ids) if target_status_ids.present?
   end
 
+  def clear_reblogs_from_timeline(account, target_account)
+    timeline_key = key(:home, account.id)
+    oldest_home_score = redis.zrange(timeline_key, 0, 0, with_scores: true)&.first&.last&.to_i || 0
+
+    target_account.statuses.select('id').where('reblog_of_id IS NOT NULL AND id > ?', oldest_home_score).reorder(nil).find_in_batches do |statuses|
+      redis.pipelined do
+        statuses.each do |status|
+          redis.zrem(timeline_key, status.id)
+          redis.zremrangebyscore(timeline_key, status.id, status.id)
+        end
+      end
+    end
+  end
+
   private
 
   def redis
@@ -97,6 +111,8 @@ class FeedManager
     check_for_mutes.concat([status.reblog.account_id]) if status.reblog?
 
     return true if Mute.where(account_id: receiver_id, target_account_id: check_for_mutes).any?
+
+    return true if status.reblog? && ReblogsMute.where(account_id: receiver_id, target_account_id: status.account_id).exists?
 
     check_for_blocks = status.mentions.pluck(:account_id)
     check_for_blocks.concat([status.reblog.account_id]) if status.reblog?

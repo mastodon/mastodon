@@ -13,6 +13,8 @@ const messages = defineMessages({
   unmute: { id: 'account.unmute', defaultMessage: 'Unmute @{name}' },
   block: { id: 'account.block', defaultMessage: 'Block @{name}' },
   mute: { id: 'account.mute', defaultMessage: 'Mute @{name}' },
+  muteReblogs: { id: 'account.mute.reblogs', defaultMessage: 'Mute boosts from @{name}' },
+  unmuteReblogs: { id: 'account.unmute.reblogs', defaultMessage: 'Unmute boosts from @{name}' },
   follow: { id: 'account.follow', defaultMessage: 'Follow' },
   report: { id: 'account.report', defaultMessage: 'Report @{name}' },
   media: { id: 'account.media', defaultMessage: 'Media' },
@@ -31,6 +33,7 @@ class ActionBar extends React.PureComponent {
     onMention: PropTypes.func.isRequired,
     onReport: PropTypes.func.isRequired,
     onMute: PropTypes.func.isRequired,
+    onMuteReblogs: PropTypes.func.isRequired,
     onBlockDomain: PropTypes.func.isRequired,
     onUnblockDomain: PropTypes.func.isRequired,
     intl: PropTypes.object.isRequired,
@@ -54,6 +57,12 @@ class ActionBar extends React.PureComponent {
         menu.push({ text: intl.formatMessage(messages.unmute, { name: account.get('username') }), action: this.props.onMute });
       } else {
         menu.push({ text: intl.formatMessage(messages.mute, { name: account.get('username') }), action: this.props.onMute });
+      }
+
+      if (account.getIn(['relationship', 'muting_reblogs'])) {
+        menu.push({ text: intl.formatMessage(messages.unmuteReblogs, { name: account.get('username') }), action: this.props.onMuteReblogs });
+      } else {
+        menu.push({ text: intl.formatMessage(messages.muteReblogs, { name: account.get('username') }), action: this.props.onMuteReblogs });
       }
 
       if (account.getIn(['relationship', 'blocking'])) {
