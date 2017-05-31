@@ -43,18 +43,30 @@ services:
       - ./yarn.lock:/mastodon/yarn.lock
       - ./lib:/mastodon/lib
       - ./public:/mastodon/public
+      - ./public/packs:/mastodon/public/packs
       - ./spec:/mastodon/spec
       - ./storybook:/mastodon/storybook
       - ./streaming:/mastodon/streaming
       - ./vendor/assets:/mastodon/vendor/assets
       - ./tmp/letter_opener:/mastodon/tmp/letter_opener
 
+  webpack:
+    restart: always
+    build: *build
+    image: mastodon-development
+    env_file: .env
+    command: /mastodon/bin/webpack-dev-server --host 0.0.0.0
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+      - redis
+    volumes: *app
+
   streaming:
     restart: always
     build: *build
     image: mastodon-development
-    ports:
-      - "4000:4000"
     env_file: .env
     command: npm run start
     ports:

@@ -30,6 +30,7 @@
 #  otp_required_for_login    :boolean
 #  last_emailed_at           :datetime
 #  otp_backup_codes          :string           is an Array
+#  dummy_password_flag       :boolean          default(FALSE), not null
 #  filtered_languages        :string           default([]), not null, is an Array
 #
 
