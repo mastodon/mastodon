@@ -167,7 +167,7 @@ class Account < ApplicationRecord
     end
 
     def find_remote!(username, domain)
-      return if username.blank?
+      raise ActiveRecord::RecordNotFound if username.blank?
       where('lower(accounts.username) = ?', username.downcase).where(domain.nil? ? { domain: nil } : 'lower(accounts.domain) = ?', domain&.downcase).take!
     end
 
