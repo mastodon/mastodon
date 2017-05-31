@@ -14,6 +14,7 @@ import { FormattedMessage } from 'react-intl';
 import emojify from '../emoji';
 import escapeTextContentForBrowser from 'escape-html';
 import ImmutablePureComponent from 'react-immutable-pure-component';
+import scheduleIdleTask from '../features/ui/util/schedule_idle_task';
 
 class Status extends ImmutablePureComponent {
 
@@ -92,7 +93,7 @@ class Status extends ImmutablePureComponent {
     const isIntersecting = entry.intersectionRatio > 0;
     this.setState((prevState) => {
       if (prevState.isIntersecting && !isIntersecting) {
-        requestIdleCallback(this.hideIfNotIntersecting);
+        scheduleIdleTask(this.hideIfNotIntersecting);
       }
       return {
         isIntersecting: isIntersecting,
