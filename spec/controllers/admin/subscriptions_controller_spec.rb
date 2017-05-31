@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 require 'rails_helper'
 
-RSpec.describe Admin::PubsubhubbubController, type: :controller do
+RSpec.describe Admin::SubscriptionsController, type: :controller do
   render_views
 
   describe 'GET #index' do

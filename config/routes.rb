@@ -74,7 +74,7 @@ Rails.application.routes.draw do
   resource :authorize_follow, only: [:show, :create]
 
   namespace :admin do
-    resources :pubsubhubbub, only: [:index]
+    resources :subscriptions, only: [:index]
     resources :domain_blocks, only: [:index, :new, :create, :show, :destroy]
     resource :settings, only: [:edit, :update]
     resources :instances, only: [:index]
