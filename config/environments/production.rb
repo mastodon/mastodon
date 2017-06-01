@@ -45,7 +45,7 @@ Rails.application.configure do
   config.log_level = ENV.fetch('RAILS_LOG_LEVEL', 'info').to_sym
 
   # Prepend all log lines with the following tags.
-  config.log_tags = [:request_id]
+  config.log_tags = [:request_id, :remote_ip]
 
   # Use a different logger for distributed setups.
   # config.logger = ActiveSupport::TaggedLogging.new(SyslogLogger.new)
