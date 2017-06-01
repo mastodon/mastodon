@@ -3,14 +3,12 @@ import ColumnsArea from './components/columns_area';
 import NotificationsContainer from './containers/notifications_container';
 import PropTypes from 'prop-types';
 import LoadingBarContainer from './containers/loading_bar_container';
-import HomeTimeline from '../home_timeline';
-import Compose from '../compose';
 import TabsBar from './components/tabs_bar';
 import ModalContainer from './containers/modal_container';
-import Notifications from '../notifications';
 import { connect } from 'react-redux';
 import { isMobile } from '../../is_mobile';
 import { debounce } from 'lodash';
+import Immutable from 'immutable';
 import { uploadCompose } from '../../actions/compose';
 import { refreshTimeline } from '../../actions/timelines';
 import { refreshNotifications } from '../../actions/notifications';
@@ -27,11 +25,16 @@ class UI extends React.PureComponent {
 
   state = {
     width: window.innerWidth,
+    columns: new Immutable.Map(),
     draggingOver: false,
   };
 
   handleResize = () => {
     this.setState({ width: window.innerWidth });
+
+    if (!isMobile(window.innerWidth)) {
+      this.lazyLoadStaticColumns();
+    }
   }
 
   handleDragEnter = (e) => {
@@ -90,6 +93,15 @@ class UI extends React.PureComponent {
     this.setState({ draggingOver: false });
   }
 
+  lazyLoadStaticColumns = () => {
+    import(/* webpackChunkName: "features/home_timeline" */ '../home_timeline')
+      .then(Component => this.setState(state => ({ columns: state.columns.set('HomeTimeline', Component.default) })));
+    import(/* webpackChunkName: "features/compose" */ '../compose')
+      .then(Component => this.setState(state => ({ columns: state.columns.set('Compose', Component.default) })));
+    import(/* webpackChunkName: "features/notifications" */ '../notifications')
+      .then(Component => this.setState(state => ({ columns: state.columns.set('Notifications', Component.default) })));
+  };
+
   componentWillMount () {
     window.addEventListener('resize', this.handleResize, { passive: true });
     document.addEventListener('dragenter', this.handleDragEnter, false);
@@ -100,6 +112,12 @@ class UI extends React.PureComponent {
 
     this.props.dispatch(refreshTimeline('home'));
     this.props.dispatch(refreshNotifications());
+  }
+
+  componentDidMount () {
+    if (!isMobile(this.state.width)) {
+      this.lazyLoadStaticColumns();
+    }
   }
 
   componentWillUnmount () {
@@ -116,7 +134,7 @@ class UI extends React.PureComponent {
   }
 
   render () {
-    const { width, draggingOver } = this.state;
+    const { columns, width, draggingOver } = this.state;
     const { children } = this.props;
 
     let mountedColumns;
@@ -128,11 +146,15 @@ class UI extends React.PureComponent {
         </ColumnsArea>
       );
     } else {
+      const Compose = columns.get('Compose');
+      const HomeTimeline = columns.get('HomeTimeline');
+      const Notifications = columns.get('Notifications');
+
       mountedColumns = (
         <ColumnsArea>
-          <Compose withHeader={true} />
-          <HomeTimeline shouldUpdateScroll={noOp} />
-          <Notifications shouldUpdateScroll={noOp} />
+          {Compose && <Compose withHeader={true} />}
+          {HomeTimeline && <HomeTimeline shouldUpdateScroll={noOp} />}
+          {Notifications && <Notifications shouldUpdateScroll={noOp} />}
           <div className="column__wrapper">{children}</div>
         </ColumnsArea>
       );
