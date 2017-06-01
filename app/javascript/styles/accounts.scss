@@ -403,23 +403,3 @@
     color: $ui-base-color;
   }
 }
-
-.account__header__qiita--username:before {
-  content: ' ';
-  display: inline-block;
-  height: 14px;
-  width: 14px;
-  vertical-align: middle;
-  background: image-url('qiita-icon.png');
-  background-size: 14px;
-  margin: 0 2px;
-}
-
-.account__header__qiita--username a {
-  text-decoration: none;
-  color: inherit;
-
-  &:hover {
-    text-decoration: underline;
-  }
-}

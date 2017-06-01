@@ -129,8 +129,9 @@ class Header extends ImmutablePureComponent {
           <Avatar account={account} autoPlayGif={this.props.autoPlayGif} />
 
           <span className='account__header__display-name' dangerouslySetInnerHTML={displayNameHTML} />
-          <span className='account__header__usernames' style={{ display: 'block', marginBottom: '10px' }} >
+          <span className='account__header__usernames'>
             <span className='account__header__username'>@{account.get('acct')} {lockedIcon}</span>
+            { this.renderQiitaUsername() }
           </span>
           <div className='account__header__content' dangerouslySetInnerHTML={content} />
 
