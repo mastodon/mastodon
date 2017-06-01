@@ -74,7 +74,7 @@ Rails.application.routes.draw do
   resource :authorize_follow, only: [:show, :create]
 
   namespace :admin do
-    resources :pubsubhubbub, only: [:index]
+    resources :subscriptions, only: [:index]
     resources :domain_blocks, only: [:index, :new, :create, :show, :destroy]
     resource :settings, only: [:edit, :update]
     resources :instances, only: [:index]
@@ -169,19 +169,18 @@ Rails.application.routes.draw do
         end
       end
 
+      namespace :accounts do
+        get :verify_credentials, to: 'credentials#show'
+        patch :update_credentials, to: 'credentials#update'
+        resource :search, only: :show, controller: :search
+        resources :relationships, only: :index
+      end
       resources :accounts, only: [:show] do
-        collection do
-          get :relationships
-          get :verify_credentials
-          patch :update_credentials
-          get :search
-        end
+        resources :statuses, only: :index, controller: 'accounts/statuses'
+        resources :followers, only: :index, controller: 'accounts/follower_accounts'
+        resources :following, only: :index, controller: 'accounts/following_accounts'
 
         member do
-          get :statuses
-          get :followers
-          get :following
-
           post :follow
           post :unfollow
           post :block

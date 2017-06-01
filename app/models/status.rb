@@ -73,6 +73,8 @@ class Status < ApplicationRecord
 
   cache_associated :account, :application, :media_attachments, :tags, :stream_entry, mentions: :account, reblog: [:account, :application, :stream_entry, :tags, :media_attachments, mentions: :account], thread: :account
 
+  delegate :domain, to: :account, prefix: true
+
   def reply?
     !in_reply_to_id.nil? || attributes['reply']
   end
@@ -111,16 +113,6 @@ class Status < ApplicationRecord
 
   def hidden?
     private_visibility? || direct_visibility?
-  end
-
-  def permitted?(other_account = nil)
-    if direct_visibility?
-      account.id == other_account&.id || mentions.where(account: other_account).exists?
-    elsif private_visibility?
-      account.id == other_account&.id || other_account&.following?(account) || mentions.where(account: other_account).exists?
-    else
-      other_account.nil? || !account.blocking?(other_account)
-    end
   end
 
   def ancestors(account = nil)
@@ -298,10 +290,10 @@ class Status < ApplicationRecord
 
   def filter_from_context?(status, account)
     should_filter   = account&.blocking?(status.account_id)
-    should_filter ||= account&.domain_blocking?(status.account.domain)
+    should_filter ||= account&.domain_blocking?(status.account_domain)
     should_filter ||= account&.muting?(status.account_id)
     should_filter ||= (status.account.silenced? && !account&.following?(status.account_id))
-    should_filter ||= !status.permitted?(account)
+    should_filter ||= !StatusPolicy.new(account, status).show?
     should_filter
   end
 end

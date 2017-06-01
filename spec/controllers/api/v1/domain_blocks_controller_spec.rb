@@ -13,7 +13,7 @@ RSpec.describe Api::V1::DomainBlocksController, type: :controller do
 
   describe 'GET #show' do
     before do
-      get :show
+      get :show, params: { limit: 1 }
     end
 
     it 'returns http success' do

@@ -1,8 +1,9 @@
-import emojify from 'mastodon/emoji';
-import { getLocale } from 'mastodon/locales';
 import { length } from 'stringz';
 import IntlRelativeFormat from 'intl-relativeformat';
 import { delegate } from 'rails-ujs';
+import emojify from '../mastodon/emoji';
+import { getLocale } from '../mastodon/locales';
+import loadPolyfills from '../mastodon/load_polyfills';
 
 require.context('../images/', true);
 
@@ -85,12 +86,6 @@ function main() {
   });
 }
 
-if (!window.Intl) {
-  import(/* webpackChunkName: "base_polyfills" */ 'mastodon/base_polyfills').then(() => {
-    main();
-  }).catch(error => {
-    console.log(error); // eslint-disable-line no-console
-  });
-} else {
-  main();
-}
+loadPolyfills().then(main).catch(error => {
+  console.log(error); // eslint-disable-line no-console
+});
