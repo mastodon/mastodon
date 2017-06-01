@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 import { shallow } from 'enzyme';
 import sinon from 'sinon';
-
+import React from 'react';
 import Button from '../../../app/javascript/mastodon/components/button';
 
 describe('<Button />', () => {

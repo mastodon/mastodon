@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 import { mount } from 'enzyme';
 import sinon from 'sinon';
-
+import React from 'react';
 import Column from '../../../../../../app/javascript/mastodon/features/ui/components/column';
 import ColumnHeader from '../../../../../../app/javascript/mastodon/features/ui/components/column_header';
 
