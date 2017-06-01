@@ -1,10 +1,13 @@
 # frozen_string_literal: true
 
 class Api::V1::StatusesController < ApiController
-  before_action :authorize_if_got_token, except:            [:create, :destroy, :reblog, :unreblog, :favourite, :unfavourite]
-  before_action -> { doorkeeper_authorize! :write }, only:  [:create, :destroy, :reblog, :unreblog, :favourite, :unfavourite]
-  before_action :require_user!, except: [:show, :context, :card, :reblogged_by, :favourited_by]
-  before_action :set_status, only:      [:show, :context, :card, :reblogged_by, :favourited_by]
+  include Authorization
+
+  before_action :authorize_if_got_token, except:            [:create, :destroy, :reblog, :unreblog, :favourite, :unfavourite, :mute, :unmute]
+  before_action -> { doorkeeper_authorize! :write }, only:  [:create, :destroy, :reblog, :unreblog, :favourite, :unfavourite, :mute, :unmute]
+  before_action :require_user!, except:  [:show, :context, :card, :reblogged_by, :favourited_by]
+  before_action :set_status, only:       [:show, :context, :card, :reblogged_by, :favourited_by, :mute, :unmute]
+  before_action :set_conversation, only: [:mute, :unmute]
 
   respond_to :json
 
@@ -31,12 +34,14 @@ class Api::V1::StatusesController < ApiController
   end
 
   def reblogged_by
-    results   = @status.reblogs.paginate_by_max_id(limit_param(DEFAULT_ACCOUNTS_LIMIT), params[:max_id], params[:since_id])
-    accounts  = Account.where(id: results.map(&:account_id)).map { |a| [a.id, a] }.to_h
-    @accounts = results.map { |r| accounts[r.account_id] }
+    @accounts = Account.includes(:statuses)
+                       .references(:statuses)
+                       .merge(Status.where(reblog_of_id: @status.id)
+                                    .paginate_by_max_id(limit_param(DEFAULT_ACCOUNTS_LIMIT), params[:max_id], params[:since_id]))
+                       .to_a
 
-    next_path = reblogged_by_api_v1_status_url(pagination_params(max_id: results.last.id))    if results.size == limit_param(DEFAULT_ACCOUNTS_LIMIT)
-    prev_path = reblogged_by_api_v1_status_url(pagination_params(since_id: results.first.id)) unless results.empty?
+    next_path = reblogged_by_api_v1_status_url(pagination_params(max_id: @accounts.last.statuses.last.id))     if @accounts.size == limit_param(DEFAULT_ACCOUNTS_LIMIT)
+    prev_path = reblogged_by_api_v1_status_url(pagination_params(since_id: @accounts.first.statuses.first.id)) unless @accounts.empty?
 
     set_pagination_headers(next_path, prev_path)
 
@@ -44,12 +49,14 @@ class Api::V1::StatusesController < ApiController
   end
 
   def favourited_by
-    results   = @status.favourites.paginate_by_max_id(limit_param(DEFAULT_ACCOUNTS_LIMIT), params[:max_id], params[:since_id])
-    accounts  = Account.where(id: results.map(&:account_id)).map { |a| [a.id, a] }.to_h
-    @accounts = results.map { |f| accounts[f.account_id] }
+    @accounts = Account.includes(:favourites)
+                       .references(:favourites)
+                       .where(favourites: { status_id: @status.id })
+                       .merge(Favourite.paginate_by_max_id(limit_param(DEFAULT_ACCOUNTS_LIMIT), params[:max_id], params[:since_id]))
+                       .to_a
 
-    next_path = favourited_by_api_v1_status_url(pagination_params(max_id: results.last.id))    if results.size == limit_param(DEFAULT_ACCOUNTS_LIMIT)
-    prev_path = favourited_by_api_v1_status_url(pagination_params(since_id: results.first.id)) unless results.empty?
+    next_path = favourited_by_api_v1_status_url(pagination_params(max_id: @accounts.last.favourites.last.id))     if @accounts.size == limit_param(DEFAULT_ACCOUNTS_LIMIT)
+    prev_path = favourited_by_api_v1_status_url(pagination_params(since_id: @accounts.first.favourites.first.id)) unless @accounts.empty?
 
     set_pagination_headers(next_path, prev_path)
 
@@ -72,7 +79,10 @@ class Api::V1::StatusesController < ApiController
 
   def destroy
     @status = Status.where(account_id: current_user.account).find(params[:id])
+    authorize @status, :destroy?
+
     RemovalWorker.perform_async(@status.id)
+
     render_empty
   end
 
@@ -85,6 +95,8 @@ class Api::V1::StatusesController < ApiController
     reblog       = Status.where(account_id: current_user.account, reblog_of_id: params[:id]).first!
     @status      = reblog.reblog
     @reblogs_map = { @status.id => false }
+
+    authorize reblog, :unreblog?
 
     RemovalWorker.perform_async(reblog.id)
 
@@ -105,11 +117,35 @@ class Api::V1::StatusesController < ApiController
     render :show
   end
 
+  def mute
+    current_account.mute_conversation!(@conversation)
+
+    @mutes_map = { @conversation.id => true }
+
+    render :show
+  end
+
+  def unmute
+    current_account.unmute_conversation!(@conversation)
+
+    @mutes_map = { @conversation.id => false }
+
+    render :show
+  end
+
   private
 
   def set_status
     @status = Status.find(params[:id])
-    raise ActiveRecord::RecordNotFound unless @status.permitted?(current_account)
+    authorize @status, :show?
+  rescue Mastodon::NotPermittedError
+    # Reraise in order to get a 404 instead of a 403 error code
+    raise ActiveRecord::RecordNotFound
+  end
+
+  def set_conversation
+    @conversation = @status.conversation
+    raise Mastodon::ValidationError if @conversation.nil?
   end
 
   def status_params

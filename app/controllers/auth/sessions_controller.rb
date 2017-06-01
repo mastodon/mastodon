@@ -6,18 +6,19 @@ class Auth::SessionsController < Devise::SessionsController
   layout 'auth'
 
   skip_before_action :require_no_authentication, only: [:create]
+  skip_before_action :check_suspension, only: [:destroy]
   prepend_before_action :authenticate_with_two_factor, if: :two_factor_enabled?, only: [:create]
 
   def create
     super do |resource|
       remember_me(resource)
-      flash[:notice] = nil
+      flash.delete(:notice)
     end
   end
 
   def destroy
     super
-    flash[:notice] = nil
+    flash.delete(:notice)
   end
 
   protected
@@ -34,10 +35,10 @@ class Auth::SessionsController < Devise::SessionsController
     params.require(:user).permit(:email, :password, :otp_attempt)
   end
 
-  def after_sign_in_path_for(_resource)
+  def after_sign_in_path_for(resource)
     last_url = stored_location_for(:user)
 
-    if [about_path].include?(last_url)
+    if home_paths(resource).include?(last_url)
       root_path
     else
       last_url || root_path
@@ -51,7 +52,7 @@ class Auth::SessionsController < Devise::SessionsController
   def valid_otp_attempt?(user)
     user.validate_and_consume_otp!(user_params[:otp_attempt]) ||
       user.invalidate_otp_backup_code!(user_params[:otp_attempt])
-  rescue OpenSSL::Cipher::CipherError => error
+  rescue OpenSSL::Cipher::CipherError => _error
     false
   end
 
@@ -79,5 +80,15 @@ class Auth::SessionsController < Devise::SessionsController
   def prompt_for_two_factor(user)
     session[:otp_user_id] = user.id
     render :two_factor
+  end
+
+  private
+
+  def home_paths(resource)
+    paths = [about_path]
+    if single_user_mode? && resource.is_a?(User)
+      paths << short_account_path(username: resource.account)
+    end
+    paths
   end
 end

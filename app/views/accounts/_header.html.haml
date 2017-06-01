@@ -1,4 +1,4 @@
-.card.h-card.p-author{ style: "background-image: url(#{account.header.url( :original)})" }
+.card.h-card.p-author{ style: "background-image: url(#{account.header.url(:original)})" }
   - if user_signed_in? && current_account.id != account.id && !current_account.requested?(account)
     .controls
       - if current_account.following?(account)
@@ -13,7 +13,7 @@
   %h1.name
     %span.p-name.emojify= display_name(account)
     %small
-      %span= "@#{account.username}"
+      %span @#{account.username}
       = fa_icon('lock') if account.locked?
   .details
     .bio

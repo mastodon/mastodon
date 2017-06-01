@@ -1,22 +1,24 @@
-Rails:
-  Enabled: true
+AllCops:
+  TargetRubyVersion: 2.3
+  Exclude:
+  - 'spec/**/*'
+  - 'db/**/*'
+  - 'app/views/**/*'
+  - 'config/**/*'
+  - 'bin/*'
+  - 'Rakefile'
+  - 'node_modules/**/*'
+  - 'Vagrantfile'
+  - 'vendor/**/*'
 
-Style/PerlBackrefs:
-  AutoCorrect: false
-
-Style/ClassAndModuleChildren:
+Bundler/OrderedGems:
   Enabled: false
 
-Metrics/BlockNesting:
-  Max: 2
+Layout/AccessModifierIndentation:
+  EnforcedStyle: indent
 
-Metrics/LineLength:
-  AllowURI: true
-  Enabled: false
-
-Metrics/MethodLength:
-  CountComments: false
-  Max: 10
+Layout/SpaceInsideHashLiteralBraces:
+  EnforcedStyle: space
 
 Metrics/AbcSize:
   Max: 100
@@ -31,22 +33,33 @@ Metrics/ClassLength:
 Metrics/CyclomaticComplexity:
   Max: 15
 
+Metrics/LineLength:
+  AllowURI: true
+  Enabled: false
+
 Metrics/MethodLength:
+  CountComments: false
   Max: 55
 
 Metrics/ModuleLength:
   CountComments: false
   Max: 200
 
-Metrics/PerceivedComplexity:
-  Max: 10
-
 Metrics/ParameterLists:
   Max: 4
   CountKeywordArgs: true
 
-Style/AccessModifierIndentation:
-  EnforcedStyle: indent
+Metrics/PerceivedComplexity:
+  Max: 10
+
+Rails:
+  Enabled: true
+
+Rails/HasAndBelongsToMany:
+  Enabled: false
+
+Style/ClassAndModuleChildren:
+  Enabled: false
 
 Style/CollectionMethods:
   Enabled: true
@@ -62,29 +75,17 @@ Style/DoubleNegation:
 Style/FrozenStringLiteralComment:
   Enabled: true
 
-Style/SpaceInsideHashLiteralBraces:
-  EnforcedStyle: space
-
-Style/TrailingCommaInLiteral:
-  EnforcedStyleForMultiline: 'comma'
-
-Style/RegexpLiteral:
+Style/GuardClause:
   Enabled: false
 
 Style/Lambda:
   Enabled: false
 
-Rails/HasAndBelongsToMany:
+Style/PerlBackrefs:
+  AutoCorrect: false
+
+Style/RegexpLiteral:
   Enabled: false
 
-AllCops:
-  TargetRubyVersion: 2.3
-  Exclude:
-  - 'spec/**/*'
-  - 'db/**/*'
-  - 'app/views/**/*'
-  - 'config/**/*'
-  - 'bin/*'
-  - 'Rakefile'
-  - 'node_modules/**/*'
-  - 'Vagrantfile'
+Style/TrailingCommaInLiteral:
+  EnforcedStyleForMultiline: 'comma'

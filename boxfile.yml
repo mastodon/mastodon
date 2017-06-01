@@ -1,0 +1,160 @@
+run.config:
+  engine: ruby
+  engine.config:
+    runtime: ruby-2.4.1
+
+  extra_packages:
+    # basic servers:
+    - nginx
+    - nodejs
+
+    # for images:
+    - ImageMagick
+
+    # for videos:
+    - ffmpeg3
+
+    # to prep the .env file:
+    - gettext-tools
+
+    # for node-gyp, used in the asset compilation process:
+    - python-2
+
+  cache_dirs:
+    - node_modules
+
+  extra_path_dirs:
+    - node_modules/.bin
+
+  build_triggers:
+    - .ruby-version
+    - Gemfile
+    - Gemfile.lock
+    - package.json
+    - yarn.lock
+
+  extra_steps:
+    - envsubst < .env.nanobox > .env
+    - gem install bundler
+    - bundle config build.nokogiri --with-iconv-dir=/data/ --with-zlib-dir=/data/
+    - bundle config build.nokogumbo --with-iconv-dir=/data/ --with-zlib-dir=/data/
+    - bundle install --clean
+    - yarn
+
+  fs_watch: true
+
+deploy.config:
+  extra_steps:
+    - NODE_ENV=production bundle exec rake assets:precompile
+  transform:
+    - "sed 's/LOCAL_HTTPS=.*/LOCAL_HTTPS=true/i' /app/.env.nanobox | envsubst > /app/.env.production"
+    - |-
+        if [ -z "$LOCAL_DOMAIN" ]
+        then
+          . /app/.env.production
+          export LOCAL_DOMAIN
+        fi
+        erb /app/nanobox/nginx-web.conf.erb > /app/nanobox/nginx-web.conf
+        erb /app/nanobox/nginx-stream.conf.erb > /app/nanobox/nginx-stream.conf
+    - touch /app/log/production.log
+  before_live:
+    web.web:
+      - bundle exec rake db:migrate:setup
+
+web.web:
+  start:
+    nginx: nginx -c /app/nanobox/nginx-web.conf
+    rails: bundle exec puma -C /app/config/puma.rb
+
+  routes:
+    - '/'
+
+  writable_dirs:
+    - tmp
+
+  log_watch:
+    rails: 'log/production.log'
+
+  network_dirs:
+    data.storage:
+      - public/system
+
+web.stream:
+  start:
+    nginx: nginx -c /app/nanobox/nginx-stream.conf
+    node: yarn run start
+
+  routes:
+    - '/api/v1/streaming*'
+    # Somehow we're getting requests for scheme://domain//api/v1/streaming* - match those, too
+    - '//api/v1/streaming*'
+
+  writable_dirs:
+    - tmp
+
+worker.sidekiq:
+  start: bundle exec sidekiq -c 5 -q default -q mailers -q pull -q push -L /app/log/sidekiq.log
+
+  writable_dirs:
+    - tmp
+
+  log_watch:
+    rails: 'log/production.log'
+    sidekiq: 'log/sidekiq.log'
+
+  network_dirs:
+    data.storage:
+      - public/system
+
+  cron:
+    - id: generate_static_gifs
+      schedule: '*/15 * * * *'
+      command: 'bundle exec rake mastodon:maintenance:add_static_avatars'
+
+    - id: update_counter_caches
+      schedule: '50 * * * *'
+      command: 'bundle exec rake mastodon:maintenance:update_counter_caches'
+
+    # runs feeds:clear, media:clear, users:clear, and push:refresh
+    - id: do_daily_tasks
+      schedule: '00 00 * * *'
+      command: 'bundle exec rake mastodon:daily'
+
+    - id: clear_silenced_media
+      schedule: '10 00 * * *'
+      command: 'bundle exec rake mastodon:media:remove_silenced'
+
+    - id: clear_remote_media
+      schedule: '20 00 * * *'
+      command: 'bundle exec rake mastodon:media:remove_remote'
+
+    - id: clear_unfollowed_subs
+      schedule: '30 00 * * *'
+      command: 'bundle exec rake mastodon:push:clear'
+
+    - id: send_digest_emails
+      schedule: '00 20 * * *'
+      command: 'bundle exec rake mastodon:emails:digest'
+
+    # The following two tasks can be uncommented to automatically open and close
+    # registrations on a schedule. The format of 'schedule' is a standard cron
+    # time expression: minute hour day month day-of-week; search for "cron
+    # time expressions" for more info on how to set these up. The examples here
+    # open registration only from 8 am to 4 pm, server time.
+    #
+    # - id: open_registrations
+    #   schedule: '00 08 * * *'
+    #   command: 'bundle exec rake mastodon:settings:open_registrations'
+    #
+    # - id: close_registrations
+    #   schedule: '00 16 * * *'
+    #   command: 'bundle exec rake mastodon:settings:close_registrations'
+
+data.db:
+  image: nanobox/postgresql:9.5
+
+data.redis:
+  image: nanobox/redis:3.0
+
+data.storage:
+  image: nanobox/unfs:0.9

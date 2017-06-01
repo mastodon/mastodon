@@ -1,4 +1,22 @@
 # frozen_string_literal: true
+# == Schema Information
+#
+# Table name: media_attachments
+#
+#  id                :integer          not null, primary key
+#  status_id         :integer
+#  file_file_name    :string
+#  file_content_type :string
+#  file_file_size    :integer
+#  file_updated_at   :datetime
+#  remote_url        :string           default(""), not null
+#  account_id        :integer
+#  created_at        :datetime         not null
+#  updated_at        :datetime         not null
+#  shortcode         :string
+#  type              :integer          default("image"), not null
+#  file_meta         :json
+#
 
 class MediaAttachment < ApplicationRecord
   self.inheritance_column = nil
@@ -28,21 +46,21 @@ class MediaAttachment < ApplicationRecord
                     styles: ->(f) { file_styles f },
                     processors: ->(f) { file_processors f },
                     convert_options: { all: '-quality 90 -strip' }
+
+  include Remotable
+
   validates_attachment_content_type :file, content_type: IMAGE_MIME_TYPES + VIDEO_MIME_TYPES
   validates_attachment_size :file, less_than: 8.megabytes
 
   validates :account, presence: true
 
   scope :attached, -> { where.not(status_id: nil) }
+  scope :unattached, -> { where(status_id: nil) }
   scope :local, -> { where(remote_url: '') }
-  default_scope { order('id asc') }
+  default_scope { order(id: :asc) }
 
   def local?
     remote_url.blank?
-  end
-
-  def file_remote_url=(url)
-    self.file = URI.parse(Addressable::URI.parse(url).normalize.to_s)
   end
 
   def to_param
@@ -110,7 +128,7 @@ class MediaAttachment < ApplicationRecord
     self.type = VIDEO_MIME_TYPES.include?(file_content_type) ? :video : :image
     extension = appropriate_extension
     basename  = Paperclip::Interpolations.basename(file, :original)
-    file.instance_write :file_name, [basename, extension].delete_if(&:empty?).join('.')
+    file.instance_write :file_name, [basename, extension].delete_if(&:blank?).join('.')
   end
 
   def set_meta

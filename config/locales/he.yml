@@ -1,0 +1,350 @@
+---
+he:
+  about:
+    about_mastodon: מסטודון היא רשת חברתית <em>חופשית, מבוססת תוכנה חופשית ("קוד פתוח")</em>. כאלטרנטיבה <em>בלתי ריכוזית</em> לפלטפרומות המסחריות, מסטודון מאפשרת להמנע מהסיכונים הנלווים להפקדת התקשורת שלך בידי חברה יחידה. שמת את מבטחך בשרת אחד &mdash; לא משנה במי בחרת, תמיד אפשר לדבר עם כל שאר המשתמשים. לכל מי שרוצה יש את האפשרות להקים שרת מסטודון עצמאי, ולהשתתף ב<em>רשת החברתית</em> באופן חלק.
+    about_this: אודות שרת זה
+    apps: ישומים
+    business_email: 'דוא"ל עסקי:'
+    closed_registrations: הרשמות סגורות לשרת זה לעת עתה.
+    contact: צור קשר
+    description_headline: מהו %{domain}?
+    domain_count_after: שרתים אחרים
+    domain_count_before: מחובר אל
+    features:
+      api: API פתוח לישומים ושירותים
+      blocks: כלי חסימה והשתקה חזקים
+      characters: 500 תווים להודעה
+      chronology: הטורים כרונולוגיים
+      ethics: 'תכנון מוסרי: אין פרסומות, אין מעקב'
+      gifv: GIFV וסרטונים קצרים
+      privacy: אפשרויות פרטיוּת נפרדות לכל הודעה
+      public: טורים פומביים
+    features_headline: מה מייחד קהילות מבוססות מסטודון
+    get_started: בואו נתחיל
+    links: קישורים
+    other_instances: שרתים אחרים
+    source_code: קוד מקור
+    status_count_after: הודעות
+    status_count_before: שכתבו
+    terms: תנאים
+    user_count_after: משתמשים
+    user_count_before: ביתם של
+    version: גרסה
+  accounts:
+    follow: לעקוב
+    followers: עוקבים
+    following: נעקבים
+    nothing_here: אין פה שום דבר!
+    people_followed_by: הנעקבים של %{name}
+    people_who_follow: העוקבים של %{name}
+    posts: הודעות
+    remote_follow: מעקב מרחוק
+    unfollow: הפסקת מעקב
+  activitypub:
+    activity:
+      announce:
+        name: הודעה שותפה על ידי %{account_name}.
+      create:
+        name: הודעה חדשה מאת %{account_name}.
+    outbox:
+      name: תיבת הדוא"ל היוצא של %{account_name}
+      summary: אוסף הפעילויות של %{account_name}.
+  admin:
+    accounts:
+      are_you_sure: בטוח?
+      confirm: אשר
+      confirmed: אושר
+      disable_two_factor_authentication: ביטול הזדהות דו-שלבית
+      display_name: שם לתצוגה
+      domain: תחום
+      edit: עריכה
+      email: דוא"ל
+      feed_url: כתובת פיד
+      followers: עוקבים
+      follows: נעקבים
+      ip: כתובת IP
+      location:
+        all: הכל
+        local: מקומי
+        remote: מרחוק
+        title: מיקום
+      media_attachments: תוספות מדיה
+      moderation:
+        all: הכל
+        silenced: מושתקים
+        suspended: מושהים
+        title: ניהול קהילה
+      most_recent_activity: פעילות עדכנית
+      most_recent_ip: כתובות אחרונות
+      not_subscribed: לא רשום
+      order:
+        alphabetic: אלפביתי
+        most_recent: עדכני
+        title: סידור
+      perform_full_suspension: ביצוע השעייה מלאה
+      profile_url: כתובת פרופיל
+      public: פומבי
+      push_subscription_expires: הרשמה להודעות בדחיפה פגה
+      reset: איפוס
+      reset_password: אתחול סיסמא
+      salmon_url: כתובת סלמון
+      search: חיפוש
+      show:
+        created_reports: דיווחים מאת חשבון זה
+        report: דו"ח
+        targeted_reports: דיווחים נגד חשבון זה
+      silence: השתקה
+      statuses: הודעות
+      title: חשבונות
+      undo_silenced: ביטול השתקה
+      undo_suspension: ביטול השעייה
+      username: שם משתמש
+      web: רשת
+    domain_blocks:
+      add_new: הוספת חדש
+      created_msg: חסימת שרת בתהליך
+      destroyed_msg: חסימת שרת בוטלה
+      domain: שרת
+      new:
+        create: יצירת חסימה
+        hint: חסימת השרת לא תמנע יצירת רישומי חשבון במסד הנתונים, אבל תבצע פעולות ניהול קהילה מסוימות על חשבונות אלו אוטומטית ורטרואקטיבית.
+        severity:
+          desc_html: "<strong>השתקה</strong> תחביא הודעות מחשבון זה לכל מי שלא עוקב אחריו. <strong>השעייה</strong> תסיר מהשרת את כל התוכן, מדיה ותכונות הפרופיל שמקושרות לחשבון זה."
+          silence: השתקה
+          suspend: השעייה
+        title: חסימת שרת חדשה
+      reject_media: חסימת קבצי מדיה
+      reject_media_hint: מסירה קבצי מדיה השמורים מקומית ומונעת מהורדת קבצים נוספים בעתיד. לא רלוונטי להשעיות.
+      severities:
+        silence: השתקה
+        suspend: השעייה
+      severity: חוּמרה
+      show:
+        affected_accounts:
+          one: חשבון אחד במסד הנתונים מושפע
+          other: "%{count} חשהבונות במסד הנתונים מושפעים"
+        retroactive:
+          silence: הסרת השתקה מכל החשבונות על שרת זה
+          suspend: הסרת השעייה מכל החשבונות על שרת זה
+        title: ביטול חסימת שרת עבור %{domain}
+        undo: ביטול
+      title: חסימת שרתים
+      undo: ביטול
+    instances:
+      account_count: חשבונות מוכרים
+      domain_name: שם מתחם
+      title: שרתים מוכרים
+    subscriptions:
+      callback_url: קישורית Callback
+      confirmed: מאושר
+      expires_in: פג תוקף ב-
+      last_delivery: משלוח אחרון
+      title: PubSubHubbub
+      topic: נושא
+    reports:
+      comment:
+        label: הערה
+        none: ללא
+      delete: מחיקה
+      id: ID
+      mark_as_resolved: סימון כפתור
+      report: 'דווח על #%{id}'
+      report_contents: תוכן
+      reported_account: חשבון מדווח
+      reported_by: דווח על ידי
+      resolved: פתור
+      silence_account: השתקת חשבון
+      status: הודעה
+      suspend_account: השעיית חשבון
+      target: מטרה
+      title: דיווחים
+      unresolved: לא פתור
+      view: תצוגה
+      nsfw:
+        'true': תוכן רגיש
+        'false': לכל המשפחה
+      are_you_sure: 100% על בטוח?
+    settings:
+      contact_information:
+        email: נא להקליד כתובת דוא"ל פומבית
+        label: פרטי התקשרות
+        username: נא להכניס שם משתמש
+      registrations:
+        closed_message:
+          desc_html: מוצג על הדף הראשי כאשר ההרשמות סגורות<br>ניתן להשתמש בתגיות HTML
+          title: מסר סגירת הרשמות
+        open:
+          disabled: מבוטל
+          enabled: מופעל
+          title: הרשמה פתוחה
+      setting: הגדרה
+      site_description:
+        desc_html: מוצג כפסקה על הדף הראשי ומשמש כתגית מטא.<br>ניתן להשתמש בתגיות HTML, ובמיוחד ב־<code>&lt;a&gt;</code> ו־<code>&lt;em&gt;</code>.
+        title: תיאור האתר
+      site_description_extended:
+        desc_html: מוצג על עמוד המידע הנוסף<br>ניתן להשתמש בתגיות HTML
+        title: תיאור אתר מורחב
+      site_title: כותרת האתר
+      title: הגדרות אתר
+    title: ניהול
+  application_mailer:
+    settings: 'שינוי הגדרות דוא"ל: %{link}'
+    signature: התראות מסטודון מקהילת %{instance}
+    view: 'תצוגה:'
+  applications:
+    invalid_url: כתובת הקישורית אינה חוקית
+  auth:
+    change_password: החלפת סיסמא
+    didnt_get_confirmation: לא התקבלו הוראות אימות?
+    forgot_password: הנשתכחה סיסמתך?
+    login: כניסה
+    logout: יציאה
+    register: הרשמה
+    resend_confirmation: שלח הוראות אימות בשנית
+    reset_password: איפוס סיסמא
+    set_new_password: שינוי סיסמא
+  authorize_follow:
+    error: למרבה הצער, היתה שגיאה בחיפוש החשבון המרוחק
+    follow: לעקוב
+    prompt_html: 'בקשת מעקב ממך (<strong>%{self}</strong>) אחרי:'
+    title: לעקוב אחרי %{acct}
+  datetime:
+    distance_in_words:
+      about_x_hours: "%{count} שעות"
+      about_x_months: "%{count} חודשים"
+      about_x_years: "%{count} שנים"
+      almost_x_years: "%{count} שנים"
+      half_a_minute: ממש הרגע
+      less_than_x_minutes: "%{count} דקות"
+      less_than_x_seconds: ממש עכשיו
+      over_x_years: "%{count} שנים"
+      x_days: "%{count} ימים"
+      x_minutes: "%{count} דקות"
+      x_months: "%{count} חודשים"
+      x_seconds: "%{count} שניות"
+  errors:
+    '403': חסרות לך הרשאות לצפיה בעמוד זה.
+    '404': הדף המבוקש לא קיים.
+    '410': הדף המבוקש כבר לא קיים.
+    '422':
+      content: בדיקת אבטחה נכשלה. החסמת עוגיותיך מפנינו?
+      title: בדיקת בטיחות נכשלה
+    '429': הוחנק
+  exports:
+    blocks: רשימת חסימות
+    csv: CSV
+    follows: רשימת נעקבים
+    mutes: רשימת השתקות
+    storage: אחסון מדיה
+  followers:
+    domain: קהילה
+    explanation_html: אם ברצונך להבטיח את הפרטיות של הודעותיך, יש לשים לב מי עוקב אחריך. <strong>הודעותיך הפרטיות יועברו לכל השרתים בהם יש לך עוקבים</strong>. כדאי לעבור על הרשימה ולהסיר עוקבים אם אין לך אמון בתוכנה או בצוות המפעילים של השרת הרחוק שיכבד את פרטיותך.
+    followers_count: מספר העוקבים
+    lock_link: לנעול את חשבונך
+    purge: הסרה מהעוקבים
+    success:
+      one: בתהליך חסימה של עוקבים ממתחם אחד...
+      other: בתהליך חסימה של עוקבים המגיעים מ־%{count} מתחמים...
+    true_privacy_html: 'לתשומת ליבך: <strong>פרטיות אמיתית ניתן להשיג אך ורק על ידי הצפנה מקצה לקצה</strong>.'
+    unlocked_warning_html: כל אחד יכול לעקוב אחריך כדי לראות מיידית את חצרוציך הפרטיים. %{lock_link} כדי לבחון ולדחות עוקבים.
+    unlocked_warning_title: חשבונך אינו נעול
+  generic:
+    changes_saved_msg: השינויים נשמרו בהצלחה!
+    powered_by: רץ על %{link}
+    save_changes: שמור שינויים
+    validation_errors:
+      one: משהו לא לגמרי בסדר עדיין! אנא הציצו על השגיאה מטה
+      other: משהו לא לגמרי בסדר עדיין! אנא הציצו על %{count} השגיאות מטה
+  imports:
+    preface: ניתן ליבא מידע מסויים כגון כל הנעקבים או המשתמשים החסומים לתוך חשבונך על שרת זה, מתוך קבצים שנוצרו על ידי יצוא משרת אחר כגון רשימת הנעקבים והחסומים שלך.
+    success: כל המידע יובא בהצלחה, ויעובד בזמן הקרוב
+    types:
+      blocking: רשימת חסימות
+      following: רשימת נעקבים
+      muting: רשימת השתקות
+    upload: יבוא
+  landing_strip_html: <strong>%{name}</strong> מזהה משתמש(ת) מהקהילה %{link_to_root_path}. ניתן לעקוב אחריהם או לדבר איתם בעזרת חשבון על כל שרת קהילה ברחבי הפדרציה.
+  landing_strip_signup_html: לחלופין , ניתן <a href="%{sign_up_path}">להרשם מקומית כאן</a>.
+  media_attachments:
+    validations:
+      images_and_video: לא ניתן להוסיף וידאו לחצרוץ שכבר מכיל תמונות
+      too_many: לא ניתן להוסיף יותר מארבעה קבצים
+  notification_mailer:
+    digest:
+      body: 'להלן סיכום זריז של הדברים שקרו על %{instance} מאז ביקורך האחרון ב-%{since}:'
+      mention: "%{name} פנה אליך ב:"
+      new_followers_summary:
+        one: נוסף לך עוקב! סחתיין!
+        other: נוספו לך %{count} עוקבים חדשים! מעולה!
+      subject:
+        one: "התראה חדשה אחת מאז ביקורך האחרון \U0001F418"
+        other: "%{count} התראות חדשות \U0001F418"
+    favourite:
+      body: 'חצרוצך חובב על ידי %{name}:'
+      subject: חצרוצך חובב על ידי %{name}
+    follow:
+      body: "%{name} עכשיו במעקב אחריך!"
+      subject: "%{name} עכשיו במעקב אחריך"
+    follow_request:
+      body: התקבלה בקשת מעקב מ־%{name}
+      subject: 'בקשת מעקב בהמתנה: %{name}'
+    mention:
+      body: 'התקבלה פניה עבורך מאת %{name} ב:'
+      subject: התקבלה פניה עבורך מאת %{name}
+    reblog:
+      body: 'חצרוצך הודהד על ידי %{name}:'
+      subject: חצרוצך הודהד על ידי%{name}
+  pagination:
+    next: הבא
+    prev: הקודם
+    truncate: "&hellip;"
+  remote_follow:
+    acct: נא להקליד שם_משתמש@קהילה מהם ברצונך לעקוב
+    missing_resource: לא ניתן למצוא קישורית להפניה לחשבונך
+    proceed: להמשיך ולעקוב
+    prompt: 'לעקוב אחרי:'
+  settings:
+    authorized_apps: ישומים מאושרים
+    back: חזרה למסטודון
+    edit_profile: עריכת פרופיל
+    export: יצוא מידע
+    followers: עוקבים מאושרים
+    import: יבוא
+    preferences: העדפות
+    settings: הגדרות
+    two_factor_authentication: אימות דו-שלבי
+  statuses:
+    open_in_web: פתח ברשת
+    over_character_limit: חריגה מגבול התווים של %{max}
+    show_more: עוד
+    visibilities:
+      private: לעוקבים בלבד
+      private_long: להצגה לעוקבים בלבד
+      public: פומבי
+      public_long: כולם יוכלו לקרוא
+      unlisted: מוסתר
+      unlisted_long: פומבי, אבל לא להצגה בפיד הציבורי
+  stream_entries:
+    click_to_show: ללחוץ להצגה
+    reblogged: הודהד
+    sensitive_content: תוכן רגיש
+  time:
+    formats:
+      default: "%d %b %Y, %H:%M"
+  two_factor_authentication:
+    code_hint: לאישור, יש להקליד את הקוד שיוצר על ידי ישום האימות
+    description_html: לאחר הפעלת <strong>אימות דו-שלבי</strong>, ניתן יהיה להכנס רק כל עוד ברשותך טלפון, שייצר עבורך קודים שיאפשרו כניסה.
+    disable: כיבוי
+    enable: הפעלה
+    enabled_success: אימות דו-שלבי הופעל בהצלחה
+    generate_recovery_codes: ייצור קודי אחזור
+    instructions_html: "<strong>יש לסרוק קוד QR זה בעזרת Google Authenticator או ישום TOTP דומה על טלפונך</strong>. מעתה ואילך, ישום זה יוכל ליצר קודים לשימוש לצורך כניסה."
+    lost_recovery_codes: קודי האחזור מאפשרים אחזור גישה לחשבון במידה ומכשירך אבד. במידה וקודי האחזור אבדו, ניתן לייצרם מחדש כאן. תוקף קודי האחזור הישנים יפוג.
+    manual_instructions: 'במידה ולא ניתן לסרוק את קוד ה-QR אלא יש צורך להקליד אותו ידנית, להלן סוד כמוס בלתי מוצפן:'
+    recovery_codes_regenerated: קודי האחזור יוצרו בהצלחה
+    recovery_instructions: במידה והגישה למכשירך תאבד, ניתן לייצר קודי אחזור למטה על מנת לאחזר גישה לחשבונך בכל עת. נא לשמור על קודי הגישה במקום בטוח )לדוגמא על ידי הדפסתם ושמירתם עם מסמכים חשובים אחרים, או שימוש בתוכנה ייעודית לניהול סיסמאות וסודות(
+    setup: הכנה
+    wrong_code: הקוד שהוזן שגוי! האם הזמן בשרת והזמן במכשירך נכונים?
+  users:
+    invalid_email: כתובת הדוא"ל אינה חוקית
+    invalid_otp_token: קוד דו-שלבי שגוי

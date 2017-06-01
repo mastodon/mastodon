@@ -33,25 +33,25 @@ describe AccountSearchService do
     describe 'searching local and remote users' do
       describe "when only '@'" do
         before do
-          allow(Account).to receive(:find_remote)
+          allow(Account).to receive(:find_local)
           allow(Account).to receive(:search_for)
           subject.call('@', 10)
         end
 
-        it 'uses find_remote with empty query to look for local accounts' do
-          expect(Account).to have_received(:find_remote).with('', nil)
+        it 'uses find_local with empty query to look for local accounts' do
+          expect(Account).to have_received(:find_local).with('')
         end
       end
 
       describe 'when no domain' do
         before do
-          allow(Account).to receive(:find_remote)
+          allow(Account).to receive(:find_local)
           allow(Account).to receive(:search_for)
           subject.call('one', 10)
         end
 
-        it 'uses find_remote with nil domain to look for local accounts' do
-          expect(Account).to have_received(:find_remote).with('one', nil)
+        it 'uses find_local to look for local accounts' do
+          expect(Account).to have_received(:find_local).with('one')
         end
 
         it 'uses search_for to find matches' do
@@ -98,6 +98,25 @@ describe AccountSearchService do
         results = subject.call('exact', 10)
         expect(results.size).to eq 2
         expect(results).to eq [exact, partial]
+      end
+    end
+
+    describe 'when there is a local domain' do
+      around do |example|
+        before = Rails.configuration.x.local_domain
+        example.run
+        Rails.configuration.x.local_domain = before
+      end
+
+      it 'returns exact match first' do
+        remote     = Fabricate(:account, username: 'a', domain: 'remote', display_name: 'e')
+        remote_too = Fabricate(:account, username: 'b', domain: 'remote', display_name: 'e')
+        exact = Fabricate(:account, username: 'e')
+        Rails.configuration.x.local_domain = 'example.com'
+
+        results = subject.call('e@example.com', 2)
+        expect(results.size).to eq 2
+        expect(results).to eq([exact, remote]).or eq([exact, remote_too])
       end
     end
 
