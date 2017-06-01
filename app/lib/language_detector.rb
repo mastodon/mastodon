@@ -13,6 +13,10 @@ class LanguageDetector
     detected_language_code || default_locale.to_sym
   end
 
+  def prepared_text
+    text_without_urls.strip
+  end
+
   private
 
   def detected_language_code
@@ -20,7 +24,7 @@ class LanguageDetector
   end
 
   def result
-    @result ||= @identifier.find_language(text_without_urls)
+    @result ||= @identifier.find_language(prepared_text)
   end
 
   def detected_language_reliable?

@@ -2,6 +2,36 @@
 require 'rails_helper'
 
 describe LanguageDetector do
+  describe 'prepared_text' do
+    it 'returns unmodified string without special cases' do
+      string = 'just a regular string'
+      result = described_class.new(string).prepared_text
+
+      expect(result).to eq string
+    end
+
+    it 'strips usernames from strings before detection' do
+      string = '@slooploon Yeah, very surreal...!'
+
+      result = described_class.new(string).prepared_text
+      expect(result).to eq 'Yeah, very surreal...!'
+    end
+
+    it 'strips URLs from strings before detection' do
+      string = 'Our website is https://example.com'
+
+      result = described_class.new(string).prepared_text
+      expect(result).to eq 'Our website is'
+    end
+
+    it 'strips #hashtags from strings before detection' do
+      string = 'Hey look at all the #animals'
+
+      result = described_class.new(string).prepared_text
+      expect(result).to eq 'Hey look at all the'
+    end
+  end
+
   describe 'to_iso_s' do
     it 'detects english language for basic strings' do
       strings = [
