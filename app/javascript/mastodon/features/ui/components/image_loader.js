@@ -22,11 +22,11 @@ class ImageLoader extends React.PureComponent {
 
   loadImage(src) {
     const image = new Image();
-    image.onerror = () => this.setState({loading: false, error: true});
-    image.onload = () => this.setState({loading: false, error: false});
+    image.onerror = () => this.setState({ loading: false, error: true });
+    image.onload = () => this.setState({ loading: false, error: false });
     image.src = src;
     this.lastSrc = src;
-    this.setState({loading: true});
+    this.setState({ loading: true });
   }
 
   render() {

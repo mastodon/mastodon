@@ -35,7 +35,7 @@ const validateLanguages = function (languages, validators) {
 
   if (invalidLanguages.length > 0) {
     console.log(`\nError: Specified invalid LANGUAGES:`);
-    for (let {language, error} of invalidLanguages) {
+    for (let { language, error } of invalidLanguages) {
       console.error(`* ${language}: ${error}`);
     }
     console.log(`\nUse yarn "manage:translations -- --help" for usage information\n`);

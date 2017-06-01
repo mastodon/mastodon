@@ -56,7 +56,7 @@ const mapDispatchToProps = (dispatch, { type, id }) => ({
   onScrollToBottom: debounce(() => {
     dispatch(scrollTopTimeline(type, false));
     dispatch(expandTimeline(type, id));
-  }, 300, {leading: true}),
+  }, 300, { leading: true }),
 
   onScrollToTop: debounce(() => {
     dispatch(scrollTopTimeline(type, true));
