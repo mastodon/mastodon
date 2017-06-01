@@ -38,6 +38,7 @@ class LanguageDetector
       end
       new_text.gsub!(Account::MENTION_RE, '')
       new_text.gsub!(Tag::HASHTAG_RE, '')
+      new_text.gsub!(/\s+/, ' ')
     end
   end
 

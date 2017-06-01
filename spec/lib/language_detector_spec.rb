@@ -11,25 +11,32 @@ describe LanguageDetector do
       expect(result).to eq string
     end
 
-    it 'strips usernames from strings before detection' do
-      string = '@slooploon Yeah, very surreal...!'
+    it 'collapses spacing in strings' do
+      string = 'The formatting   in    this is very        odd'
 
       result = described_class.new(string).prepared_text
-      expect(result).to eq 'Yeah, very surreal...!'
+      expect(result).to eq 'The formatting in this is very odd'
+    end
+
+    it 'strips usernames from strings before detection' do
+      string = '@username Yeah, very surreal...! also @friend'
+
+      result = described_class.new(string).prepared_text
+      expect(result).to eq 'Yeah, very surreal...! also'
     end
 
     it 'strips URLs from strings before detection' do
-      string = 'Our website is https://example.com'
+      string = 'Our website is https://example.com and also http://localhost.dev'
 
       result = described_class.new(string).prepared_text
-      expect(result).to eq 'Our website is'
+      expect(result).to eq 'Our website is and also'
     end
 
     it 'strips #hashtags from strings before detection' do
-      string = 'Hey look at all the #animals'
+      string = 'Hey look at all the #animals and #fish'
 
       result = described_class.new(string).prepared_text
-      expect(result).to eq 'Hey look at all the'
+      expect(result).to eq 'Hey look at all the and'
     end
   end
 
