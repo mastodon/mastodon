@@ -14,7 +14,7 @@ class LanguageDetector
   end
 
   def prepared_text
-    text_without_urls.strip
+    simplified_text.strip
   end
 
   private
@@ -31,11 +31,13 @@ class LanguageDetector
     result.reliable?
   end
 
-  def text_without_urls
+  def simplified_text
     text.dup.tap do |new_text|
       URI.extract(new_text).each do |url|
         new_text.gsub!(url, '')
       end
+      new_text.gsub!(Account::MENTION_RE, '')
+      new_text.gsub!(Tag::HASHTAG_RE, '')
     end
   end
 
