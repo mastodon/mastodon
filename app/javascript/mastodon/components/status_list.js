@@ -63,6 +63,9 @@ class StatusList extends ImmutablePureComponent {
     this.intersectionObserverWrapper.connect({
       root: this.node,
       rootMargin: '300% 0px',
+      // Sometimes intersectionRatio will be 0 even on isIntersecting === true.
+      // To avoid this edge case, set a clearly greater value than 0.
+      threshold: 1,
     });
   }
 
