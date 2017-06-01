@@ -3,6 +3,7 @@
 /* eslint global-require: 0 */
 /* eslint import/no-dynamic-require: 0 */
 
+const { existsSync } = require('fs');
 const webpack = require('webpack');
 const { basename, dirname, join, relative, resolve, sep } = require('path');
 const { sync } = require('glob');
@@ -15,6 +16,9 @@ const localePackPaths = require('./generateLocalePacks');
 const extensionGlob = `**/*{${paths.extensions.join(',')}}*`;
 const packPaths = sync(join(paths.source, paths.entry, extensionGlob));
 const entryPacks = [].concat(packPaths).concat(localePackPaths);
+
+const customApplicationStyle = resolve(join(paths.source, 'styles/custom.scss'));
+const originalApplicationStyle = resolve(join(paths.source, 'styles/application.scss'));
 
 module.exports = {
   entry: entryPacks.reduce(
@@ -48,16 +52,12 @@ module.exports = {
       name: 'common',
       minChunks: (module, count) => {
         const reactIntlPathRegexp = new RegExp(`node_modules\\${sep}react-intl`);
+
         if (module.resource && reactIntlPathRegexp.test(module.resource)) {
           // skip react-intl because it's useless to put in the common chunk,
           // e.g. because "shared" modules between zh-TW and zh-CN will never
           // be loaded together
           return false;
-        }
-        const fontAwesomePathRegexp = new RegExp(`node_modules\\${sep}font-awesome`);
-        if (module.resource && fontAwesomePathRegexp.test(module.resource)) {
-          // extract vendor css into common module
-          return true;
         }
 
         return count >= 2;
@@ -66,6 +66,10 @@ module.exports = {
   ],
 
   resolve: {
+    alias: {
+      'mastodon-application-style': existsSync(customApplicationStyle) ?
+                                    customApplicationStyle : originalApplicationStyle,
+    },
     extensions: paths.extensions,
     modules: [
       resolve(paths.source),
