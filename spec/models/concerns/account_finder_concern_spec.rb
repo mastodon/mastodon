@@ -24,6 +24,10 @@ describe AccountFinderConcern do
       it 'returns nil for regex style username value' do
         expect(Account.find_local('al%')).to be_nil
       end
+
+      it 'returns nil with blank username' do
+        expect(Account.find_local('')).to be_nil
+      end
     end
 
     describe '.find_local!' do

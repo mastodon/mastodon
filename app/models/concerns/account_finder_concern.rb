@@ -30,7 +30,7 @@ module AccountFinderConcern
     end
 
     def account
-      scoped_accounts.take
+      scoped_accounts.take unless username.blank?
     end
 
     private
@@ -43,7 +43,6 @@ module AccountFinderConcern
     end
 
     def matching_username
-      raise(ActiveRecord::RecordNotFound) if username.blank?
       Account.where(Account.arel_table[:username].lower.eq username.downcase)
     end
 
