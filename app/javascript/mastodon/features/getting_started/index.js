@@ -12,8 +12,8 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 const messages = defineMessages({
   heading: { id: 'getting_started.heading', defaultMessage: 'Getting started' },
   public_timeline: { id: 'navigation_bar.public_timeline', defaultMessage: 'Federated timeline' },
-  navigation_subheading: { id: 'column_subheading.navigation', defaultMessage: 'Navigation'},
-  settings_subheading: { id: 'column_subheading.settings', defaultMessage: 'Settings'},
+  navigation_subheading: { id: 'column_subheading.navigation', defaultMessage: 'Navigation' },
+  settings_subheading: { id: 'column_subheading.settings', defaultMessage: 'Settings' },
   community_timeline: { id: 'navigation_bar.community_timeline', defaultMessage: 'Local timeline' },
   preferences: { id: 'navigation_bar.preferences', defaultMessage: 'Preferences' },
   follow_requests: { id: 'navigation_bar.follow_requests', defaultMessage: 'Follow requests' },

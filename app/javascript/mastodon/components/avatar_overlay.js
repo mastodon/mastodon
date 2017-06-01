@@ -9,7 +9,7 @@ class AvatarOverlay extends React.PureComponent {
   };
 
   render() {
-    const {staticSrc, overlaySrc} = this.props;
+    const { staticSrc, overlaySrc } = this.props;
 
     const baseStyle = {
       backgroundImage: `url(${staticSrc})`,

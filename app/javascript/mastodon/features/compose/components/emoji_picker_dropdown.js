@@ -46,21 +46,21 @@ class EmojiPickerDropdown extends React.PureComponent {
   }
 
   onShowDropdown = () => {
-    this.setState({active: true});
+    this.setState({ active: true });
     if (!EmojiPicker) {
-      this.setState({loading: true});
+      this.setState({ loading: true });
       import(/* webpackChunkName: "emojione_picker" */ 'emojione-picker').then(TheEmojiPicker => {
         EmojiPicker = TheEmojiPicker.default;
-        this.setState({loading: false});
+        this.setState({ loading: false });
       }).catch(err => {
         // TODO: show the user an error?
-        this.setState({loading: false});
+        this.setState({ loading: false });
       });
     }
   }
 
   onHideDropdown = () => {
-    this.setState({active: false});
+    this.setState({ active: false });
   }
 
   render () {
