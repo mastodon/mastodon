@@ -3073,6 +3073,14 @@ button.icon-button.active i.fa-retweet {
   }
 }
 
+.onboarding-modal__page__wrapper {
+  pointer-events: none;
+
+  &.onboading-modal__page__wrapper--active {
+    pointer-events: auto;
+  }
+}
+
 .onboarding-modal__page {
   cursor: default;
   line-height: 21px;
