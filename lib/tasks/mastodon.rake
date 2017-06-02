@@ -42,6 +42,32 @@ namespace :mastodon do
     end
   end
 
+  desc 'Refetch missing avatar'
+  task refetch_avatar: :environment do
+    require 'fileutils'
+    all = Account.all
+    all.each do |account|
+      if account.avatar_remote_url.present? 
+        if account.avatar_file_name.present? && ! File.exist?(account.avatar.path)
+          begin
+            FileUtils.mkdir_p(File.dirname(account.avatar.path))
+          rescue => ex
+            # this means directory already exists,so we can ignore exception
+          end
+          begin
+            open(account.avatar.path,'wb') do |out|
+              open(account.avatar_remote_url) do |data|
+                out.write(data.read)
+              end
+            end
+          rescue => ex
+            # can't fetch remote url,so skip
+          end
+        end
+      end
+    end
+  end
+
   namespace :media do
     desc 'Removes media attachments that have not been assigned to any status for longer than a day'
     task clear: :environment do
