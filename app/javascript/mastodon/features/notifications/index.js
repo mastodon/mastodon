@@ -2,8 +2,10 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
-import Column from '../ui/components/column';
+import Column from '../../components/column';
+import ColumnHeader from '../../components/column_header';
 import { expandNotifications, clearNotifications, scrollTopNotifications } from '../../actions/notifications';
+import { addColumn, removeColumn, moveColumn } from '../../actions/columns';
 import NotificationContainer from './containers/notification_container';
 import { ScrollContainer } from 'react-router-scroll';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
@@ -34,12 +36,14 @@ const mapStateToProps = state => ({
 class Notifications extends React.PureComponent {
 
   static propTypes = {
+    columnId: PropTypes.string,
     notifications: ImmutablePropTypes.list.isRequired,
     dispatch: PropTypes.func.isRequired,
     shouldUpdateScroll: PropTypes.func,
     intl: PropTypes.object.isRequired,
     isLoading: PropTypes.bool,
     isUnread: PropTypes.bool,
+    multiColumn: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -81,12 +85,36 @@ class Notifications extends React.PureComponent {
     }));
   }
 
+  handlePin = () => {
+    const { columnId, dispatch } = this.props;
+
+    if (columnId) {
+      dispatch(removeColumn(columnId));
+    } else {
+      dispatch(addColumn('NOTIFICATIONS', {}));
+    }
+  }
+
+  handleMove = (dir) => {
+    const { columnId, dispatch } = this.props;
+    dispatch(moveColumn(columnId, dir));
+  }
+
+  handleHeaderClick = () => {
+    this.column.scrollTop();
+  }
+
   setRef = (c) => {
     this.node = c;
   }
 
+  setColumnRef = c => {
+    this.column = c;
+  }
+
   render () {
-    const { intl, notifications, shouldUpdateScroll, isLoading, isUnread } = this.props;
+    const { intl, notifications, shouldUpdateScroll, isLoading, isUnread, columnId, multiColumn } = this.props;
+    const pinned = !!columnId;
 
     let loadMore       = '';
     let scrollableArea = '';
@@ -124,10 +152,21 @@ class Notifications extends React.PureComponent {
     this.scrollableArea = scrollableArea;
 
     return (
-      <Column icon='bell' active={isUnread} heading={intl.formatMessage(messages.title)}>
-        <ColumnSettingsContainer />
-        <ClearColumnButton onClick={this.handleClear} />
-        <ScrollContainer scrollKey='notifications' shouldUpdateScroll={shouldUpdateScroll}>
+      <Column ref={this.setColumnRef}>
+        <ColumnHeader
+          icon='bell'
+          active={isUnread}
+          title={intl.formatMessage(messages.title)}
+          onPin={this.handlePin}
+          onMove={this.handleMove}
+          onClick={this.handleHeaderClick}
+          pinned={pinned}
+          multiColumn={multiColumn}
+        >
+          <ColumnSettingsContainer />
+        </ColumnHeader>
+
+        <ScrollContainer scrollKey={`notifications-${columnId}`} shouldUpdateScroll={shouldUpdateScroll}>
           {scrollableArea}
         </ScrollContainer>
       </Column>

@@ -2,7 +2,9 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import StatusListContainer from '../ui/containers/status_list_container';
-import Column from '../ui/components/column';
+import Column from '../../components/column';
+import ColumnHeader from '../../components/column_header';
+import { addColumn, removeColumn, moveColumn } from '../../actions/columns';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import ColumnSettingsContainer from './containers/column_settings_container';
 import Link from 'react-router/lib/Link';
@@ -19,13 +21,40 @@ const mapStateToProps = state => ({
 class HomeTimeline extends React.PureComponent {
 
   static propTypes = {
+    dispatch: PropTypes.func.isRequired,
     intl: PropTypes.object.isRequired,
     hasUnread: PropTypes.bool,
     hasFollows: PropTypes.bool,
+    columnId: PropTypes.string,
+    multiColumn: PropTypes.bool,
   };
 
+  handlePin = () => {
+    const { columnId, dispatch } = this.props;
+
+    if (columnId) {
+      dispatch(removeColumn(columnId));
+    } else {
+      dispatch(addColumn('HOME', {}));
+    }
+  }
+
+  handleMove = (dir) => {
+    const { columnId, dispatch } = this.props;
+    dispatch(moveColumn(columnId, dir));
+  }
+
+  handleHeaderClick = () => {
+    this.column.scrollTop();
+  }
+
+  setRef = c => {
+    this.column = c;
+  }
+
   render () {
-    const { intl, hasUnread, hasFollows } = this.props;
+    const { intl, hasUnread, hasFollows, columnId, multiColumn } = this.props;
+    const pinned = !!columnId;
 
     let emptyMessage;
 
@@ -36,12 +65,23 @@ class HomeTimeline extends React.PureComponent {
     }
 
     return (
-      <Column icon='home' active={hasUnread} heading={intl.formatMessage(messages.title)}>
-        <ColumnSettingsContainer />
+      <Column ref={this.setRef}>
+        <ColumnHeader
+          icon='home'
+          active={hasUnread}
+          title={intl.formatMessage(messages.title)}
+          onPin={this.handlePin}
+          onMove={this.handleMove}
+          onClick={this.handleHeaderClick}
+          pinned={pinned}
+          multiColumn={multiColumn}
+        >
+          <ColumnSettingsContainer />
+        </ColumnHeader>
 
         <StatusListContainer
           {...this.props}
-          scrollKey='home_timeline'
+          scrollKey={`home_timeline-${columnId}`}
           type='home'
           emptyMessage={emptyMessage}
         />

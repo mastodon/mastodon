@@ -11,6 +11,8 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 
 const messages = defineMessages({
   heading: { id: 'getting_started.heading', defaultMessage: 'Getting started' },
+  home_timeline: { id: 'tabs_bar.home', defaultMessage: 'Home' },
+  notifications: { id: 'tabs_bar.notifications', defaultMessage: 'Notifications' },
   public_timeline: { id: 'navigation_bar.public_timeline', defaultMessage: 'Federated timeline' },
   navigation_subheading: { id: 'column_subheading.navigation', defaultMessage: 'Navigation' },
   settings_subheading: { id: 'column_subheading.settings', defaultMessage: 'Settings' },
@@ -26,6 +28,7 @@ const messages = defineMessages({
 
 const mapStateToProps = state => ({
   me: state.getIn(['accounts', state.getIn(['meta', 'me'])]),
+  columns: state.getIn(['settings', 'columns']),
 });
 
 class GettingStarted extends ImmutablePureComponent {
@@ -33,27 +36,51 @@ class GettingStarted extends ImmutablePureComponent {
   static propTypes = {
     intl: PropTypes.object.isRequired,
     me: ImmutablePropTypes.map.isRequired,
+    columns: ImmutablePropTypes.list,
+    multiColumn: PropTypes.bool,
   };
 
   render () {
-    const { intl, me } = this.props;
+    const { intl, me, columns, multiColumn } = this.props;
 
-    let followRequests = '';
+    let navItems = [];
+
+    if (multiColumn) {
+      if (!columns.find(item => item.get('id') === 'HOME')) {
+        navItems.push(<ColumnLink key='0' icon='home' text={intl.formatMessage(messages.home_timeline)} to='/timelines/home' />);
+      }
+
+      if (!columns.find(item => item.get('id') === 'NOTIFICATIONS')) {
+        navItems.push(<ColumnLink key='1' icon='bell' text={intl.formatMessage(messages.notifications)} to='/notifications' />);
+      }
+
+      if (!columns.find(item => item.get('id') === 'COMMUNITY')) {
+        navItems.push(<ColumnLink key='2' icon='users' text={intl.formatMessage(messages.community_timeline)} to='/timelines/public/local' />);
+      }
+
+      if (!columns.find(item => item.get('id') === 'PUBLIC')) {
+        navItems.push(<ColumnLink key='3' icon='globe' text={intl.formatMessage(messages.public_timeline)} to='/timelines/public' />);
+      }
+    }
+
+    navItems = navItems.concat([
+      <ColumnLink key='4' icon='star' text={intl.formatMessage(messages.favourites)} to='/favourites' />,
+    ]);
 
     if (me.get('locked')) {
-      followRequests = <ColumnLink icon='users' text={intl.formatMessage(messages.follow_requests)} to='/follow_requests' />;
+      navItems.push(<ColumnLink key='5' icon='users' text={intl.formatMessage(messages.follow_requests)} to='/follow_requests' />);
     }
+
+    navItems = navItems.concat([
+      <ColumnLink key='6' icon='volume-off' text={intl.formatMessage(messages.mutes)} to='/mutes' />,
+      <ColumnLink key='7' icon='ban' text={intl.formatMessage(messages.blocks)} to='/blocks' />,
+    ]);
 
     return (
       <Column icon='asterisk' heading={intl.formatMessage(messages.heading)} hideHeadingOnMobile={true}>
         <div className='getting-started__wrapper'>
           <ColumnSubheading text={intl.formatMessage(messages.navigation_subheading)}/>
-          <ColumnLink icon='users' hideOnMobile={true} text={intl.formatMessage(messages.community_timeline)} to='/timelines/public/local' />
-          <ColumnLink icon='globe' hideOnMobile={true} text={intl.formatMessage(messages.public_timeline)} to='/timelines/public' />
-          <ColumnLink icon='star' text={intl.formatMessage(messages.favourites)} to='/favourites' />
-          {followRequests}
-          <ColumnLink icon='volume-off' text={intl.formatMessage(messages.mutes)} to='/mutes' />
-          <ColumnLink icon='ban' text={intl.formatMessage(messages.blocks)} to='/blocks' />
+          {navItems}
           <ColumnSubheading text={intl.formatMessage(messages.settings_subheading)}/>
           <ColumnLink icon='book' text={intl.formatMessage(messages.info)} href='/about/more' />
           <ColumnLink icon='cog' text={intl.formatMessage(messages.preferences)} href='/settings/preferences' />
