@@ -402,6 +402,9 @@ GEM
       connection_pool (~> 2.2, >= 2.2.0)
       rack-protection (>= 1.5.0)
       redis (~> 3.3, >= 3.3.3)
+    sidekiq-bulk (0.1.1)
+      activesupport
+      sidekiq
     sidekiq-scheduler (2.1.4)
       redis (~> 3)
       rufus-scheduler (~> 3.2)
@@ -543,6 +546,7 @@ DEPENDENCIES
   sanitize (~> 4.4)
   scss_lint (~> 0.53)
   sidekiq (~> 5.0)
+  sidekiq-bulk (~> 0.1.1)
   sidekiq-scheduler (~> 2.1)
   sidekiq-unique-jobs (~> 5.0)
   simple-navigation (~> 4.0)
