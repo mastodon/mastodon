@@ -110,11 +110,12 @@ const startWorker = (workerId) => {
 
   const redisPrefix = redisNamespace ? `${redisNamespace}:` : '';
 
+  const redisSubscribeClient = redisUrlToClient(redisParams, process.env.REDIS_URL);
   const redisClient = redisUrlToClient(redisParams, process.env.REDIS_URL);
 
   const subs = {};
 
-  redisClient.on('pmessage', (_, channel, message) => {
+  redisSubscribeClient.on('pmessage', (_, channel, message) => {
     const callbacks = subs[channel];
 
     log.silly(`New message on channel ${channel}`);
@@ -126,7 +127,19 @@ const startWorker = (workerId) => {
     callbacks.forEach(callback => callback(message));
   });
 
-  redisClient.psubscribe(`${redisPrefix}timeline:*`);
+  redisSubscribeClient.psubscribe(`${redisPrefix}timeline:*`);
+
+  const subscriptionHeartbeat = (channel) => {
+    const interval = 6*60;
+    const tellSubscribed = () => {
+      redisClient.set(`${redisPrefix}subscribed:${channel}`, '1', 'EX', interval*3);
+    };
+    tellSubscribed();
+    const heartbeat = setInterval(tellSubscribed, interval*1000);
+    return () => {
+      clearInterval(heartbeat);
+    };
+  };
 
   const subscribe = (channel, callback) => {
     log.silly(`Adding listener for ${channel}`);
@@ -231,8 +244,9 @@ const startWorker = (workerId) => {
 
   const placeholders = (arr, shift = 0) => arr.map((_, i) => `$${i + 1 + shift}`).join(', ');
 
-  const streamFrom = (id, req, output, attachCloseHandler, needsFiltering = false) => {
-    log.verbose(req.requestId, `Starting stream from ${id} for ${req.accountId}`);
+  const streamFrom = (id, req, output, attachCloseHandler, needsFiltering = false, notificationOnly = false) => {
+    const streamType = notificationOnly ? ' (notification)' : '';
+    log.verbose(req.requestId, `Starting stream from ${id} for ${req.accountId}${streamType}`);
 
     const listener = message => {
       const { event, payload, queued_at } = JSON.parse(message);
@@ -244,6 +258,10 @@ const startWorker = (workerId) => {
         log.silly(req.requestId, `Transmitting for ${req.accountId}: ${event} ${payload} Delay: ${delta}ms`);
         output(event, payload);
       };
+
+      if (notificationOnly && event !== 'notification') {
+        return;
+      }
 
       // Only messages that may require filtering are statuses, since notifications
       // are already personalized and deletes do not matter
@@ -313,9 +331,12 @@ const startWorker = (workerId) => {
   };
 
   // Setup stream end for HTTP
-  const streamHttpEnd = req => (id, listener) => {
+  const streamHttpEnd = (req, closeHandler = false) => (id, listener) => {
     req.on('close', () => {
       unsubscribe(id, listener);
+      if (closeHandler) {
+        closeHandler();
+      }
     });
   };
 
@@ -330,15 +351,21 @@ const startWorker = (workerId) => {
   };
 
   // Setup stream end for WebSockets
-  const streamWsEnd = (req, ws) => (id, listener) => {
+  const streamWsEnd = (req, ws, closeHandler = false) => (id, listener) => {
     ws.on('close', () => {
       log.verbose(req.requestId, `Ending stream for ${req.accountId}`);
       unsubscribe(id, listener);
+      if (closeHandler) {
+        closeHandler();
+      }
     });
 
     ws.on('error', e => {
       log.verbose(req.requestId, `Ending stream for ${req.accountId}`);
       unsubscribe(id, listener);
+      if (closeHandler) {
+        closeHandler();
+      }
     });
   };
 
@@ -348,7 +375,12 @@ const startWorker = (workerId) => {
   app.use(errorMiddleware);
 
   app.get('/api/v1/streaming/user', (req, res) => {
-    streamFrom(`timeline:${req.accountId}`, req, streamToHttp(req, res), streamHttpEnd(req));
+    const channel = `timeline:${req.accountId}`;
+    streamFrom(channel, req, streamToHttp(req, res), streamHttpEnd(req, subscriptionHeartbeat(channel)));
+  });
+
+  app.get('/api/v1/streaming/user/notification', (req, res) => {
+    streamFrom(`timeline:${req.accountId}`, req, streamToHttp(req, res), streamHttpEnd(req), false, true);
   });
 
   app.get('/api/v1/streaming/public', (req, res) => {
@@ -382,7 +414,11 @@ const startWorker = (workerId) => {
 
     switch(location.query.stream) {
     case 'user':
-      streamFrom(`timeline:${req.accountId}`, req, streamToWs(req, ws), streamWsEnd(req, ws));
+      const channel = `timeline:${req.accountId}`;
+      streamFrom(channel, req, streamToWs(req, ws), streamWsEnd(req, ws, subscriptionHeartbeat(channel)));
+      break;
+    case 'user:notification':
+      streamFrom(`timeline:${req.accountId}`, req, streamToWs(req, ws), streamWsEnd(req, ws), false, true);
       break;
     case 'public':
       streamFrom('timeline:public', req, streamToWs(req, ws), streamWsEnd(req, ws), true);

@@ -34,13 +34,17 @@ class FeedManager
       trim(timeline_type, account.id)
     end
 
-    PushUpdateWorker.perform_async(account.id, status.id)
+    PushUpdateWorker.perform_async(account.id, status.id) if push_update_required?(timeline_type, account.id)
   end
 
   def trim(type, account_id)
     return unless redis.zcard(key(type, account_id)) > FeedManager::MAX_ITEMS
     last = redis.zrevrange(key(type, account_id), FeedManager::MAX_ITEMS - 1, FeedManager::MAX_ITEMS - 1)
     redis.zremrangebyscore(key(type, account_id), '-inf', "(#{last.last}")
+  end
+
+  def push_update_required?(timeline_type, account_id)
+    timeline_type != :home || redis.get("subscribed:timeline:#{account_id}").present?
   end
 
   def merge_into_timeline(from_account, into_account)
