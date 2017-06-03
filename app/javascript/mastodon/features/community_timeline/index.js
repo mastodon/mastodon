@@ -26,8 +26,6 @@ const mapStateToProps = state => ({
   accessToken: state.getIn(['meta', 'access_token']),
 });
 
-let subscription;
-
 class CommunityTimeline extends React.PureComponent {
 
   static propTypes = {
@@ -64,11 +62,11 @@ class CommunityTimeline extends React.PureComponent {
 
     dispatch(refreshTimeline('community'));
 
-    if (typeof subscription !== 'undefined') {
+    if (typeof this._subscription !== 'undefined') {
       return;
     }
 
-    subscription = createStream(streamingAPIBaseURL, accessToken, 'public:local', {
+    this._subscription = createStream(streamingAPIBaseURL, accessToken, 'public:local', {
 
       connected () {
         dispatch(connectTimeline('community'));
@@ -97,9 +95,9 @@ class CommunityTimeline extends React.PureComponent {
   }
 
   componentWillUnmount () {
-    if (typeof subscription !== 'undefined') {
-      subscription.close();
-      subscription = null;
+    if (typeof this._subscription !== 'undefined') {
+      this._subscription.close();
+      this._subscription = null;
     }
   }
 
