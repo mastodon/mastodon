@@ -90,7 +90,7 @@ class Status extends ImmutablePureComponent {
   handleIntersection = (entry) => {
     // Edge 15 doesn't support isIntersecting, but we can infer it from intersectionRatio
     // https://developer.microsoft.com/en-us/microsoft-edge/platform/issues/12156111/
-    const isIntersecting = entry.intersectionRatio > 0;
+    const isIntersecting = entry.intersectionRatio >= 0.01;
     this.setState((prevState) => {
       if (prevState.isIntersecting && !isIntersecting) {
         scheduleIdleTask(this.hideIfNotIntersecting);
