@@ -21,20 +21,29 @@ class FeedManager
     end
   end
 
-  def push(timeline_type, account, status)
-    timeline_key = key(timeline_type, account.id)
+  def push(timeline_type, accounts, status)
+    accounts = Array.wrap(accounts)
+    accounts = accounts.select do |account|
+      insert_and_check(timeline_type, status, account)
+    end
+
+    PushUpdateWorker.perform_async(accounts.map(&:id), status.id) unless accounts.empty?
+  end
+
+  def insert_and_check(type, status, account)
+    timeline_key = key(type, account.id)
 
     if status.reblog?
       # If the original status is within 40 statuses from top, do not re-insert it into the feed
       rank = redis.zrevrank(timeline_key, status.reblog_of_id)
-      return if !rank.nil? && rank < 40
+      return false if !rank.nil? && rank < 40
       redis.zadd(timeline_key, status.id, status.reblog_of_id)
     else
       redis.zadd(timeline_key, status.id, status.id)
-      trim(timeline_type, account.id)
+      trim(type, account.id)
     end
 
-    PushUpdateWorker.perform_async(account.id, status.id)
+    true
   end
 
   def trim(type, account_id)

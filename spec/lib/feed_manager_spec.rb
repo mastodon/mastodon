@@ -131,4 +131,25 @@ RSpec.describe FeedManager do
       end
     end
   end
+
+  describe 'push' do
+    let(:accounts) { [Fabricate(:account), Fabricate(:account)] }
+    let(:status) { Fabricate(:status) }
+    let(:instance) { FeedManager.instance }
+
+    it 'performs pushing updates into home timelines' do
+      allow(instance).to receive(:insert_and_check).and_return true
+      expect(PushUpdateWorker).to receive(:perform_async).with(accounts.map(&:id), status.id)
+
+      instance.push(:home, accounts, status)
+    end
+
+    it 'skips pushing update if the status is reblog and within top 40 statuses' do
+      allow(instance).to receive(:insert_and_check).and_return false
+      expect(PushUpdateWorker).to_not receive(:perform_async)
+
+      reblog = Fabricate(:status, reblog: status)
+      instance.push(:home, accounts, reblog)
+    end
+  end
 end
