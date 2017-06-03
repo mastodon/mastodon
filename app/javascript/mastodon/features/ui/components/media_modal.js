@@ -26,11 +26,11 @@ class MediaModal extends ImmutablePureComponent {
   };
 
   handleNextClick = () => {
-    this.setState({ index: (this.getIndex() + 1) % this.props.media.size});
+    this.setState({ index: (this.getIndex() + 1) % this.props.media.size });
   }
 
   handlePrevClick = () => {
-    this.setState({ index: (this.getIndex() - 1) % this.props.media.size});
+    this.setState({ index: (this.getIndex() - 1) % this.props.media.size });
   }
 
   handleKeyUp = (e) => {

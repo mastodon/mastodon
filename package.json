@@ -9,8 +9,8 @@
     "start": "rimraf ./tmp/streaming && babel ./streaming/index.js --out-dir ./tmp && node ./tmp/streaming/index.js",
     "storybook": "NODE_ENV=test start-storybook -p 9001 -c storybook",
     "test": "npm run test:lint && npm run test:mocha",
-    "test:lint": "eslint -c .eslintrc.yml --ext=js app/javascript/ config/webpack/ storyboard/ streaming/",
-    "test:mocha": "NODE_ENV=test mocha --require ./spec/javascript/setup.js --compilers js:babel-register ./spec/javascript/components/*.test.jsx",
+    "test:lint": "eslint -c .eslintrc.yml --ext=js app/javascript/ config/webpack/ spec/javascript/ storyboard/ streaming/",
+    "test:mocha": "NODE_ENV=test mocha --require ./spec/javascript/setup.js --compilers js:babel-register ./spec/javascript/components/*.test.js",
     "postinstall": "npm rebuild node-sass"
   },
   "repository": {
@@ -39,8 +39,6 @@
     "babel-preset-env": "^1.4.0",
     "babel-preset-react": "^6.24.1",
     "classnames": "^2.2.5",
-    "coffee-loader": "^0.7.3",
-    "coffee-script": "^1.12.6",
     "compression-webpack-plugin": "^0.4.0",
     "css-loader": "^0.28.1",
     "dotenv": "^4.0.0",
@@ -75,7 +73,6 @@
     "precss": "^1.4.0",
     "prop-types": "^15.5.10",
     "punycode": "^2.1.0",
-    "rails-erb-loader": "^5.0.0",
     "rails-ujs": "^5.1.1",
     "react": "^15.5.4",
     "react-addons-perf": "^15.4.2",
@@ -116,8 +113,8 @@
   "devDependencies": {
     "@kadira/storybook": "^2.35.3",
     "babel-eslint": "^7.2.3",
-    "chai": "^3.5.0",
-    "chai-enzyme": "^0.6.1",
+    "chai": "^4.0.1",
+    "chai-enzyme": "^0.7.1",
     "enzyme": "^2.8.2",
     "eslint": "^3.19.0",
     "eslint-plugin-jsx-a11y": "^4.0.0",
@@ -127,7 +124,7 @@
     "mocha": "^3.4.1",
     "react-intl-translations-manager": "^5.0.0",
     "react-test-renderer": "^15.5.4",
-    "sinon": "^2.2.0",
+    "sinon": "^2.3.2",
     "webpack-dev-server": "^2.4.5"
   },
   "optionalDependencies": {

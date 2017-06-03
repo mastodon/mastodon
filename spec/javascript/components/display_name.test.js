@@ -1,15 +1,15 @@
 import { expect } from 'chai';
 import { render } from 'enzyme';
 import Immutable  from 'immutable';
-
-import DisplayName from '../../../app/javascript/mastodon/components/display_name'
+import React from 'react';
+import DisplayName from '../../../app/javascript/mastodon/components/display_name';
 
 describe('<DisplayName />', () => {
   it('renders display name + account name', () => {
     const account = Immutable.fromJS({
       username: 'bar',
       acct: 'bar@baz',
-      display_name: 'Foo'
+      display_name: 'Foo',
     });
     const wrapper = render(<DisplayName account={account} />);
     expect(wrapper).to.have.text('Foo @bar@baz');
@@ -19,7 +19,7 @@ describe('<DisplayName />', () => {
     const account = Immutable.fromJS({
       username: 'bar',
       acct: 'bar@baz',
-      display_name: ''
+      display_name: '',
     });
     const wrapper = render(<DisplayName account={account} />);
     expect(wrapper).to.have.text('bar @bar@baz');

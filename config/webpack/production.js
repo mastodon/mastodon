@@ -33,6 +33,10 @@ module.exports = merge(sharedConfig, {
     new BundleAnalyzerPlugin({ // generates report.html and stats.json
       analyzerMode: 'static',
       generateStatsFile: true,
+      statsOptions: {
+        // allows usage with http://chrisbateman.github.io/webpack-visualizer/
+        chunkModules: true,
+      },
       openAnalyzer: false,
       logLevel: 'silent', // do not bother Webpacker, who runs with --json and parses stdout
     }),

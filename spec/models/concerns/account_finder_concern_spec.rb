@@ -24,6 +24,14 @@ describe AccountFinderConcern do
       it 'returns nil for regex style username value' do
         expect(Account.find_local('al%')).to be_nil
       end
+
+      it 'returns nil for nil username value' do
+        expect(Account.find_local(nil)).to be_nil
+      end
+
+      it 'returns nil for blank username value' do
+        expect(Account.find_local('')).to be_nil
+      end
     end
 
     describe '.find_local!' do
@@ -69,6 +77,14 @@ describe AccountFinderConcern do
 
       it 'returns nil for regex style domain value' do
         expect(Account.find_remote('alice', 'm%')).to be_nil
+      end
+
+      it 'returns nil for nil username value' do
+        expect(Account.find_remote(nil, 'domain')).to be_nil
+      end
+
+      it 'returns nil for blank username value' do
+        expect(Account.find_remote('', 'domain')).to be_nil
       end
     end
 

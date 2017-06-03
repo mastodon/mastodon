@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 import { shallow, mount } from 'enzyme';
 import sinon from 'sinon';
-
+import React from 'react';
 import DropdownMenu from '../../../app/javascript/mastodon/components/dropdown_menu';
 import Dropdown, { DropdownTrigger, DropdownContent } from 'react-simple-dropdown';
 
@@ -12,7 +12,7 @@ describe('<DropdownMenu />', () => {
 
   const items = [
     { text: 'first item',  action: action, href: '/some/url' },
-    { text: 'second item', action: 'noop' }
+    { text: 'second item', action: 'noop' },
   ];
   const wrapper = shallow(<DropdownMenu icon={icon} items={items} size={size} />);
 
@@ -35,23 +35,23 @@ describe('<DropdownMenu />', () => {
   });
 
   it('uses props.icon as icon class name', () => {
-    expect(wrapper.find(DropdownTrigger).find('i')).to.have.className(`fa-${icon}`)
+    expect(wrapper.find(DropdownTrigger).find('i')).to.have.className(`fa-${icon}`);
   });
 
   it('is not expanded by default', () => {
     expect(wrapper.state('expanded')).to.be.equal(false);
-  })
+  });
 
   it('does not render the list elements if not expanded', () => {
     const lis = wrapper.find(DropdownContent).find('li');
     expect(lis.length).to.be.equal(0);
-  })
+  });
 
   it('sets expanded to true when clicking the trigger', () => {
     const wrapper = mount(<DropdownMenu icon={icon} items={items} size={size} />);
     wrapper.find(DropdownTrigger).first().simulate('click');
     expect(wrapper.state('expanded')).to.be.equal(true);
-  })
+  });
 
   // Error: ReactWrapper::state() can only be called on the root
   /*it('sets expanded to false when clicking outside', () => {
