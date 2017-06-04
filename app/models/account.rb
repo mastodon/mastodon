@@ -47,7 +47,6 @@ class Account < ApplicationRecord
   include AccountInteractions
   include Attachmentable
   include Remotable
-  include Targetable
 
   # Local users
   has_one :user, inverse_of: :account
