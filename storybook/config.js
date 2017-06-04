@@ -1,6 +1,5 @@
-import { configure, setAddon } from '@kadira/storybook';
+import { configure } from '@storybook/react';
 import React from 'react';
-import { storiesOf, action } from '@kadira/storybook';
 import { addLocaleData } from 'react-intl';
 import en from 'react-intl/locale-data/en';
 import '../app/javascript/styles/application.scss';
