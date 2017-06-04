@@ -65,7 +65,7 @@ class Api::V1::FavouritesController < ApiController
   end
 
   def records_continue?
-    results.size == limit_param(DEFAULT_ACCOUNTS_LIMIT)
+    results.size == limit_param(DEFAULT_STATUSES_LIMIT)
   end
 
   def pagination_params(core_params)
