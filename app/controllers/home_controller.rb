@@ -9,6 +9,7 @@ class HomeController < ApplicationController
     @web_settings           = Web::Setting.find_by(user: current_user)&.data || {}
     @admin                  = Account.find_local(Setting.site_contact_username)
     @streaming_api_base_url = Rails.configuration.x.streaming_api_base_url
+    @admin_announcement     = Setting.find_by(var: 'admin_announcement')&.value || ''
   end
 
   private
