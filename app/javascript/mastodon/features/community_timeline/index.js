@@ -14,6 +14,7 @@ import {
 import { addColumn, removeColumn, moveColumn } from '../../actions/columns';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import ColumnBackButtonSlim from '../../components/column_back_button_slim';
+import ColumnSettingsContainer from './containers/column_settings_container';
 import createStream from '../../stream';
 
 const messages = defineMessages({
@@ -120,8 +121,10 @@ class CommunityTimeline extends React.PureComponent {
           onClick={this.handleHeaderClick}
           pinned={pinned}
           multiColumn={multiColumn}
-        />
-
+        >
+          <ColumnSettingsContainer />
+        </ColumnHeader>
+        
         <StatusListContainer
           {...this.props}
           scrollKey={`community_timeline-${columnId}`}

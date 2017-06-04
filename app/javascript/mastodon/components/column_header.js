@@ -92,7 +92,7 @@ class ColumnHeader extends React.PureComponent {
       pinButton = <button key='pin-button' className='text-btn column-header__setting-btn' onClick={onPin}><i className='fa fa fa-plus' /> <FormattedMessage id='column_header.pin' defaultMessage='Pin' /></button>;
 
       backButton = (
-        <button onClick={this.handleBackClick} className='column-header__back-button'>
+        <button onClick={this.handleBackClick} className='column-header__back-button-slim'>
           <i className='fa fa-fw fa-chevron-left column-back-button__icon' />
           <FormattedMessage id='column_back_button.label' defaultMessage='Back' />
         </button>
