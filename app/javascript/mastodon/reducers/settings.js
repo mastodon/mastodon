@@ -46,13 +46,13 @@ const initialState = Immutable.Map({
       mention: true,
     }),
   }),
-  
+
   community: Immutable.Map({
     regex: Immutable.Map({
       body: '',
     }),
   }),
-  
+
   public: Immutable.Map({
     regex: Immutable.Map({
       body: '',
