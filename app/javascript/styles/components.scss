@@ -1534,7 +1534,7 @@
   cursor: pointer;
   flex: 0 0 auto;
   font-size: 16px;
-  padding: 15px;
+  padding: 0 15px;
   z-index: 3;
 
   &:hover {
@@ -2029,7 +2029,7 @@ button.icon-button.active i.fa-retweet {
     box-shadow: 0 1px 0 rgba($ui-highlight-color, 0.3);
   }
 
-  &.active .fa {
+  &.active .column-header__icon {
     color: $ui-highlight-color;
     text-shadow: 0 0 10px rgba($ui-highlight-color, 0.4);
   }
@@ -2050,6 +2050,7 @@ button.icon-button.active i.fa-retweet {
   position: absolute;
   right: 0;
   top: 0;
+  height: 100%;
   display: flex;
 }
 
@@ -2059,7 +2060,7 @@ button.icon-button.active i.fa-retweet {
   color: $ui-primary-color;
   cursor: pointer;
   font-size: 16px;
-  padding: 15px;
+  padding: 0 15px;
 
   &:hover {
     color: lighten($ui-primary-color, 7%);
