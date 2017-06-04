@@ -2,7 +2,7 @@ const path = require('path');
 
 module.exports = {
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.(jpg|jpeg|png|gif|svg|eot|ttf|woff|woff2)$/i,
         loader: 'url-loader',
@@ -14,10 +14,8 @@ module.exports = {
     ],
   },
   resolve: {
-    modulesDirectories: [
-      path.resolve(__dirname, '..', 'storybook'),
-      path.resolve(__dirname, '..', 'app', 'javascript'),
-      path.resolve(__dirname, '..', 'node_modules'),
-    ],
+    alias: {
+      mastodon: path.resolve(__dirname, '..', 'app', 'javascript', 'mastodon'),
+    },
   },
 };

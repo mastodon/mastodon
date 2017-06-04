@@ -1,5 +1,6 @@
 import React from 'react';
-import { action, storiesOf } from '@kadira/storybook';
+import { storiesOf } from '@storybook/react';
+import { action } from '@storybook/addon-actions';
 import Button from 'mastodon/components/button';
 
 storiesOf('Button', module)
