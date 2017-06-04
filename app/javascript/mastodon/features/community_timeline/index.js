@@ -124,7 +124,7 @@ class CommunityTimeline extends React.PureComponent {
         >
           <ColumnSettingsContainer />
         </ColumnHeader>
-        
+
         <StatusListContainer
           {...this.props}
           scrollKey={`community_timeline-${columnId}`}
