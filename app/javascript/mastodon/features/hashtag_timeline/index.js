@@ -117,6 +117,7 @@ class HashtagTimeline extends React.PureComponent {
           onClick={this.handleHeaderClick}
           pinned={pinned}
           multiColumn={multiColumn}
+          showBackButton={true}
         />
 
         <StatusListContainer

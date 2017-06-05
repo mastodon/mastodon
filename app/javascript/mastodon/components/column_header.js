@@ -14,6 +14,7 @@ class ColumnHeader extends React.PureComponent {
     icon: PropTypes.string.isRequired,
     active: PropTypes.bool,
     multiColumn: PropTypes.bool,
+    showBackButton: PropTypes.bool,
     children: PropTypes.node,
     pinned: PropTypes.bool,
     onPin: PropTypes.func,
@@ -53,7 +54,7 @@ class ColumnHeader extends React.PureComponent {
   }
 
   render () {
-    const { title, icon, active, children, pinned, onPin, multiColumn } = this.props;
+    const { title, icon, active, children, pinned, onPin, multiColumn, showBackButton } = this.props;
     const { collapsed, animating } = this.state;
 
     const buttonClassName = classNames('column-header', {
@@ -90,7 +91,9 @@ class ColumnHeader extends React.PureComponent {
       );
     } else if (multiColumn) {
       pinButton = <button key='pin-button' className='text-btn column-header__setting-btn' onClick={onPin}><i className='fa fa fa-plus' /> <FormattedMessage id='column_header.pin' defaultMessage='Pin' /></button>;
+    }
 
+    if (!pinned && (multiColumn || showBackButton)) {
       backButton = (
         <button onClick={this.handleBackClick} className='column-header__back-button'>
           <i className='fa fa-fw fa-chevron-left column-back-button__icon' />
