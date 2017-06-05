@@ -21,6 +21,9 @@ import {
   COMPOSE_SPOILER_TEXT_CHANGE,
   COMPOSE_VISIBILITY_CHANGE,
   COMPOSE_LISTABILITY_CHANGE,
+  COMPOSE_HASH_TAG_CLEAR,
+  COMPOSE_HASH_TAG_READY,
+  COMPOSE_HASH_TAG_SELECT,
   COMPOSE_EMOJI_INSERT,
 } from '../actions/compose';
 import { TIMELINE_DELETE } from '../actions/timelines';
@@ -44,6 +47,7 @@ const initialState = Immutable.Map({
   media_attachments: Immutable.List(),
   suggestion_token: null,
   suggestions: Immutable.List(),
+  hash_tag_suggestions: Immutable.List(),
   me: null,
   default_privacy: 'public',
   resetFileKey: Math.floor((Math.random() * 0x10000)),
@@ -106,6 +110,16 @@ const insertSuggestion = (state, position, token, completion) => {
     map.update('text', oldText => `${oldText.slice(0, position)}${completion} ${oldText.slice(position + token.length)}`);
     map.set('suggestion_token', null);
     map.update('suggestions', Immutable.List(), list => list.clear());
+    map.set('focusDate', new Date());
+    map.set('idempotencyKey', uuid());
+  });
+};
+
+const insertHashTag = (state, position, token, completion) => {
+  return state.withMutations(map => {
+    map.update('text', oldText => `${oldText.slice(0, position)}${completion} ${oldText.slice(position + token.length)}`);
+    map.set('hash_tag_token', null);
+    map.update('hash_tag_suggestions', Immutable.List(), list => list.clear());
     map.set('focusDate', new Date());
     map.set('idempotencyKey', uuid());
   });
@@ -218,6 +232,12 @@ export default function compose(state = initialState, action) {
     return state.set('suggestions', Immutable.List(action.accounts.map(item => item.id))).set('suggestion_token', action.token);
   case COMPOSE_SUGGESTION_SELECT:
     return insertSuggestion(state, action.position, action.token, action.completion);
+  case COMPOSE_HASH_TAG_CLEAR:
+    return state.update('hash_tag_suggestions', Immutable.List(), list => list.clear()).set('hash_tag_token', null);
+  case COMPOSE_HASH_TAG_READY:
+    return state.set('hash_tag_suggestions', Immutable.List(action.tags)).set('hash_tag_token', action.token);
+  case COMPOSE_HASH_TAG_SELECT:
+    return insertHashTag(state, action.position, action.token, action.completion);
   case TIMELINE_DELETE:
     if (action.id === state.get('in_reply_to')) {
       return state.set('in_reply_to', null);

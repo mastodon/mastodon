@@ -33,6 +33,8 @@ class ComposeForm extends ImmutablePureComponent {
     text: PropTypes.string.isRequired,
     suggestion_token: PropTypes.string,
     suggestions: ImmutablePropTypes.list,
+    hash_tag_suggestions: ImmutablePropTypes.list,
+    hash_tag_token: PropTypes.string,
     spoiler: PropTypes.bool,
     privacy: PropTypes.string,
     spoiler_text: PropTypes.string,
@@ -50,6 +52,9 @@ class ComposeForm extends ImmutablePureComponent {
     onPaste: PropTypes.func.isRequired,
     onPickEmoji: PropTypes.func.isRequired,
     showSearch: PropTypes.bool,
+    onHashTagSuggestionsClearRequested: PropTypes.func.isRequired,
+    onHashTagSuggestionsFetchRequested: PropTypes.func.isRequired,
+    onHashTagSuggestionsSelected: PropTypes.func.isRequired,
   };
 
   static defaultProps = {
@@ -81,6 +86,19 @@ class ComposeForm extends ImmutablePureComponent {
   onSuggestionSelected = (tokenStart, token, value) => {
     this._restoreCaret = null;
     this.props.onSuggestionSelected(tokenStart, token, value);
+  }
+
+  onHashTagSuggestionsClearRequested = () => {
+    this.props.onHashTagSuggestionsClearRequested();
+  }
+
+  onHashTagSuggestionsFetchRequested = (token) => {
+    this.props.onHashTagSuggestionsFetchRequested(token);
+  }
+
+  onHashTagSuggestionsSelected = (tokenStart, token, value) => {
+    this._restoreCaret = null;
+    this.props.onHashTagSuggestionsSelected(tokenStart, token, value);
   }
 
   handleChangeSpoilerText = (e) => {
@@ -147,7 +165,6 @@ class ComposeForm extends ImmutablePureComponent {
     } else {
       publishText = this.props.privacy !== 'unlisted' ? intl.formatMessage(messages.publishLoud, { publish: intl.formatMessage(messages.publish) }) : intl.formatMessage(messages.publish);
     }
-
     return (
       <div className='compose-form'>
         <Collapsable isVisible={this.props.spoiler} fullHeight={50}>
@@ -166,12 +183,16 @@ class ComposeForm extends ImmutablePureComponent {
             placeholder={intl.formatMessage(messages.placeholder)}
             disabled={disabled}
             value={this.props.text}
+            hash_tag_suggestions={this.props.hash_tag_suggestions}
             onChange={this.handleChange}
             suggestions={this.props.suggestions}
             onKeyDown={this.handleKeyDown}
             onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
             onSuggestionsClearRequested={this.onSuggestionsClearRequested}
             onSuggestionSelected={this.onSuggestionSelected}
+            onHashTagSuggestionsFetchRequested={this.onHashTagSuggestionsFetchRequested}
+            onHashTagSuggestionsClearRequested={this.onHashTagSuggestionsClearRequested}
+            onHashTagSuggestionsSelected={this.onHashTagSuggestionsSelected}
             onPaste={onPaste}
             autoFocus={!showSearch}
           />
