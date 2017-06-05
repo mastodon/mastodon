@@ -15,6 +15,7 @@ class StatusList extends ImmutablePureComponent {
     onScrollToBottom: PropTypes.func,
     onScrollToTop: PropTypes.func,
     onScroll: PropTypes.func,
+    trackScroll: PropTypes.bool,
     shouldUpdateScroll: PropTypes.func,
     isLoading: PropTypes.bool,
     isUnread: PropTypes.bool,
@@ -88,7 +89,7 @@ class StatusList extends ImmutablePureComponent {
   }
 
   render () {
-    const { statusIds, onScrollToBottom, scrollKey, shouldUpdateScroll, isLoading, isUnread, hasMore, prepend, emptyMessage } = this.props;
+    const { statusIds, onScrollToBottom, scrollKey, trackScroll, shouldUpdateScroll, isLoading, isUnread, hasMore, prepend, emptyMessage } = this.props;
 
     let loadMore       = null;
     let scrollableArea = null;
@@ -126,11 +127,15 @@ class StatusList extends ImmutablePureComponent {
       );
     }
 
-    return (
-      <ScrollContainer scrollKey={scrollKey} shouldUpdateScroll={shouldUpdateScroll}>
-        {scrollableArea}
-      </ScrollContainer>
-    );
+    if (trackScroll) {
+      return (
+        <ScrollContainer scrollKey={scrollKey} shouldUpdateScroll={shouldUpdateScroll}>
+          {scrollableArea}
+        </ScrollContainer>
+      );
+    } else {
+      return scrollableArea;
+    }
   }
 
 }

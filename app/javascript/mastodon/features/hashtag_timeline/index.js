@@ -120,6 +120,7 @@ class HashtagTimeline extends React.PureComponent {
         />
 
         <StatusListContainer
+          trackScroll={!pinned}
           scrollKey={`hashtag_timeline-${columnId}`}
           type='tag'
           id={id}
