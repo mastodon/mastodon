@@ -31,6 +31,7 @@ const mapStateToProps = state => ({
   notifications: getNotifications(state),
   isLoading: state.getIn(['notifications', 'isLoading'], true),
   isUnread: state.getIn(['notifications', 'unread']) > 0,
+  hasMore: !!state.getIn(['notifications', 'next']),
 });
 
 class Notifications extends React.PureComponent {
@@ -44,6 +45,7 @@ class Notifications extends React.PureComponent {
     isLoading: PropTypes.bool,
     isUnread: PropTypes.bool,
     multiColumn: PropTypes.bool,
+    hasMore: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -56,7 +58,9 @@ class Notifications extends React.PureComponent {
     this._oldScrollPosition = scrollHeight - scrollTop;
 
     if (250 > offset && !this.props.isLoading) {
-      this.props.dispatch(expandNotifications());
+      if (this.props.hasMore) {
+        this.props.dispatch(expandNotifications());
+      }
     } else if (scrollTop < 100) {
       this.props.dispatch(scrollTopNotifications(true));
     } else {
@@ -113,7 +117,7 @@ class Notifications extends React.PureComponent {
   }
 
   render () {
-    const { intl, notifications, shouldUpdateScroll, isLoading, isUnread, columnId, multiColumn } = this.props;
+    const { intl, notifications, shouldUpdateScroll, isLoading, isUnread, columnId, multiColumn, hasMore } = this.props;
     const pinned = !!columnId;
 
     let loadMore       = '';
@@ -121,7 +125,7 @@ class Notifications extends React.PureComponent {
     let unread         = '';
     let scrollContainer = '';
 
-    if (!isLoading && notifications.size > 0) {
+    if (!isLoading && notifications.size > 0 && hasMore) {
       loadMore = <LoadMore onClick={this.handleLoadMore} />;
     }
 
