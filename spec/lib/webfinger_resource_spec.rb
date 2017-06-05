@@ -6,7 +6,7 @@ describe WebfingerResource do
     before_web = Rails.configuration.x.web_domain
     example.run
     Rails.configuration.x.local_domain = before_local
-    Rails.configuration.x.webdomain = before_web
+    Rails.configuration.x.web_domain = before_web
   end
 
   describe '#username' do
