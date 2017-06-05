@@ -180,19 +180,17 @@ class OnboardingModal extends React.PureComponent {
 
   state = {
     currentIndex: 0,
-    pages: [],
   };
 
   componentWillMount() {
     const { me, admin, domain, intl } = this.props;
-    const pages = [
+    this.pages = [
       <PageOne acct={me.get('acct')} domain={domain} />,
       <PageTwo me={me} />,
       <PageThree me={me} domain={domain} />,
       <PageFour domain={domain} intl={intl} />,
       <PageSix admin={admin} domain={domain} />,
     ];
-    this.setState({ pages });
   };
 
   componentDidMount() {
@@ -221,7 +219,7 @@ class OnboardingModal extends React.PureComponent {
   }
 
   handleNext = () => {
-    const { pages } = this.state;
+    const { pages } = this;
     this.setState(({ currentIndex }) => ({
       currentIndex: Math.min(currentIndex + 1, pages.length - 1),
     }));
@@ -243,7 +241,8 @@ class OnboardingModal extends React.PureComponent {
   }
 
   render () {
-    const { currentIndex, pages } = this.state;
+    const { pages } = this;
+    const { currentIndex } = this.state;
     const hasMore = currentIndex < pages.length - 1;
 
     const nextOrDoneBtn = hasMore ? (
