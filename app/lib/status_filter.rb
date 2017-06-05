@@ -9,12 +9,18 @@ class StatusFilter
   end
 
   def filtered?
-    unless account.nil?
-      blocking_account? || blocking_domain? || muting_account? || silenced_account? || blocked_by_policy?
-    end
+    account_present? && filtered_status?
   end
 
   private
+
+  def account_present?
+    !account.nil?
+  end
+
+  def filtered_status?
+    blocking_account? || blocking_domain? || muting_account? || silenced_account? || blocked_by_policy?
+  end
 
   def blocking_account?
     account.blocking? status.account_id
