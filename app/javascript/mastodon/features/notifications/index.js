@@ -119,6 +119,7 @@ class Notifications extends React.PureComponent {
     let loadMore       = '';
     let scrollableArea = '';
     let unread         = '';
+    let scrollContainer = '';
 
     if (!isLoading && notifications.size > 0) {
       loadMore = <LoadMore onClick={this.handleLoadMore} />;
@@ -149,6 +150,16 @@ class Notifications extends React.PureComponent {
       );
     }
 
+    if (pinned) {
+      scrollContainer = scrollableArea;
+    } else {
+      scrollContainer = (
+        <ScrollContainer scrollKey={`notifications-${columnId}`} shouldUpdateScroll={shouldUpdateScroll}>
+          {scrollableArea}
+        </ScrollContainer>
+      );
+    }
+
     this.scrollableArea = scrollableArea;
 
     return (
@@ -166,9 +177,7 @@ class Notifications extends React.PureComponent {
           <ColumnSettingsContainer />
         </ColumnHeader>
 
-        <ScrollContainer scrollKey={`notifications-${columnId}`} shouldUpdateScroll={shouldUpdateScroll}>
-          {scrollableArea}
-        </ScrollContainer>
+        {scrollContainer}
       </Column>
     );
   }

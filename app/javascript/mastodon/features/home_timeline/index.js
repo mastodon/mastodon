@@ -81,6 +81,7 @@ class HomeTimeline extends React.PureComponent {
 
         <StatusListContainer
           {...this.props}
+          trackScroll={!pinned}
           scrollKey={`home_timeline-${columnId}`}
           type='home'
           emptyMessage={emptyMessage}

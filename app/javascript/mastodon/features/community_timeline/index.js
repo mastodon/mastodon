@@ -124,6 +124,7 @@ class CommunityTimeline extends React.PureComponent {
 
         <StatusListContainer
           {...this.props}
+          trackScroll={!pinned}
           scrollKey={`community_timeline-${columnId}`}
           type='community'
           emptyMessage={<FormattedMessage id='empty_column.community' defaultMessage='The local timeline is empty. Write something publicly to get the ball rolling!' />}
