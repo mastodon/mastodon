@@ -18,6 +18,7 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 
 const mapStateToProps = (state, props) => ({
   accountIds: state.getIn(['user_lists', 'following', Number(props.params.accountId), 'items']),
+  hasMore: !!state.getIn(['user_lists', 'following', Number(props.params.accountId), 'next']),
 });
 
 class Following extends ImmutablePureComponent {
@@ -54,7 +55,9 @@ class Following extends ImmutablePureComponent {
   }
 
   render () {
-    const { accountIds } = this.props;
+    const { accountIds, hasMore } = this.props;
+
+    let loadMore = null;
 
     if (!accountIds) {
       return (
@@ -62,6 +65,10 @@ class Following extends ImmutablePureComponent {
           <LoadingIndicator />
         </Column>
       );
+    }
+
+    if (hasMore) {
+      loadMore = <LoadMore onClick={this.handleLoadMore} />;
     }
 
     return (
@@ -73,7 +80,7 @@ class Following extends ImmutablePureComponent {
             <div className='following'>
               <HeaderContainer accountId={this.props.params.accountId} />
               {accountIds.map(id => <AccountContainer key={id} id={id} withNote={false} />)}
-              <LoadMore onClick={this.handleLoadMore} />
+              {loadMore}
             </div>
           </div>
         </ScrollContainer>
