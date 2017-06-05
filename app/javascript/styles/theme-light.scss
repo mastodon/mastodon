@@ -1,6 +1,6 @@
 @import '../../../node_modules/highlight.js/styles/github';
 
-// Dark theme colors
+// Light theme colors
 
 $text-color: #333;
 $sub-text-color: #aaa;
@@ -164,6 +164,11 @@ $accent-border-color: #52b03b;
   background-color: transparent;
   color: $accent-sub-text-color;
   border-top-right-radius: 2px;
+}
+
+.column-collapsable .column-collapsable__button {
+  @extend %accent-box-styles;
+  border: 0;
 }
 
 .collapsable:hover {
