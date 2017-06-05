@@ -54,6 +54,23 @@
   {
     "descriptors": [
       {
+        "defaultMessage": "Unpin",
+        "id": "column_header.unpin"
+      },
+      {
+        "defaultMessage": "Pin",
+        "id": "column_header.pin"
+      },
+      {
+        "defaultMessage": "Back",
+        "id": "column_back_button.label"
+      }
+    ],
+    "path": "app/javascript/mastodon/components/column_header.json"
+  },
+  {
+    "descriptors": [
+      {
         "defaultMessage": "Load more",
         "id": "status.load_more"
       }
@@ -658,6 +675,14 @@
         "id": "getting_started.heading"
       },
       {
+        "defaultMessage": "Home",
+        "id": "tabs_bar.home"
+      },
+      {
+        "defaultMessage": "Notifications",
+        "id": "tabs_bar.notifications"
+      },
+      {
         "defaultMessage": "Federated timeline",
         "id": "navigation_bar.public_timeline"
       },
@@ -737,64 +762,30 @@
     "descriptors": [
       {
         "defaultMessage": "Filter out by regular expressions",
-        "id": "home.column_settings.filter_regex"
+        "id": "column_settings.filter_regex"
       },
       {
         "defaultMessage": "Column settings",
-        "id": "home.settings"
+        "id": "column_settings.title"
       },
       {
         "defaultMessage": "Basic",
-        "id": "home.column_settings.basic"
+        "id": "column_settings.basic"
       },
       {
         "defaultMessage": "Show boosts",
-        "id": "home.column_settings.show_reblogs"
+        "id": "column_settings.show_reblogs"
       },
       {
         "defaultMessage": "Show replies",
-        "id": "home.column_settings.show_replies"
+        "id": "column_settings.show_replies"
       },
       {
         "defaultMessage": "Advanced",
-        "id": "home.column_settings.advanced"
+        "id": "column_settings.advanced"
       }
     ],
-    "path": "app/javascript/mastodon/features/home_timeline/components/column_settings.json"
-  },
-  {
-    "descriptors": [
-      {
-        "defaultMessage": "Filter out by regular expressions",
-        "id": "community.column_settings.filter_regex"
-      },
-      {
-        "defaultMessage": "Column settings",
-        "id": "community.settings"
-      },
-      {
-        "defaultMessage": "Advanced",
-        "id": "community.column_settings.advanced"
-      }
-    ],
-    "path": "app/javascript/mastodon/features/community_timeline/components/column_settings.json"
-  },
-  {
-    "descriptors": [
-      {
-        "defaultMessage": "Filter out by regular expressions",
-        "id": "public.column_settings.filter_regex"
-      },
-      {
-        "defaultMessage": "Column settings",
-        "id": "public.settings"
-      },
-      {
-        "defaultMessage": "Advanced",
-        "id": "public.column_settings.advanced"
-      }
-    ],
-    "path": "app/javascript/mastodon/features/public_timeline/components/column_settings.json"
+    "path": "app/javascript/mastodon/components/column_settings.json"
   },
   {
     "descriptors": [
