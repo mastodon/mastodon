@@ -72,6 +72,12 @@ class ProcessFeedService < BaseService
         status.save!
       end
 
+      if thread?(@xml)
+        Rails.logger.debug "Trying to attach #{status.id} (#{id(@xml)}) to #{thread(@xml).first}"
+        status.thread = find_or_resolve_status(status, *thread(@xml))
+        status.save!
+      end
+
       notify_about_mentions!(status) unless status.reblog?
       notify_about_reblog!(status) if status.reblog? && status.reblog.account.local?
 
@@ -153,11 +159,6 @@ class ProcessFeedService < BaseService
         visibility: visibility_scope(entry),
         conversation: find_or_create_conversation(entry)
       )
-
-      if thread?(entry)
-        Rails.logger.debug "Trying to attach #{status.id} (#{id(entry)}) to #{thread(entry).first}"
-        status.thread = find_or_resolve_status(status, *thread(entry))
-      end
 
       mentions_from_xml(status, entry)
       hashtags_from_xml(status, entry)
