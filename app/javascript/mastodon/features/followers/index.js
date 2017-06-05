@@ -27,6 +27,7 @@ class Followers extends ImmutablePureComponent {
     params: PropTypes.object.isRequired,
     dispatch: PropTypes.func.isRequired,
     accountIds: ImmutablePropTypes.list,
+    hasMore: PropTypes.bool,
   };
 
   componentWillMount () {
@@ -44,7 +45,7 @@ class Followers extends ImmutablePureComponent {
   handleScroll = (e) => {
     const { scrollTop, scrollHeight, clientHeight } = e.target;
 
-    if (scrollTop === scrollHeight - clientHeight) {
+    if (scrollTop === scrollHeight - clientHeight && this.props.hasMore) {
       this.props.dispatch(expandFollowers(Number(this.props.params.accountId)));
     }
   }
