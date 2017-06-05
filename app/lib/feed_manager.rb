@@ -95,6 +95,12 @@ class FeedManager
   end
 
   def filter_from_home?(status, receiver_id)
+    # extremely violent filtering code BEGIN
+    #filter_string = 'e'
+    #reggie = Regexp.new(filter_string)
+    #return true if reggie === status.content || reggie === status.spoiler_text
+    # extremely violent filtering code END
+
     return true if status.reply? && status.in_reply_to_id.nil?
 
     check_for_mutes = [status.account_id]

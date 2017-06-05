@@ -36,7 +36,10 @@ class PostStatusService < BaseService
 
     LinkCrawlWorker.perform_async(status.id) unless status.spoiler_text?
     DistributionWorker.perform_async(status.id)
-    Pubsubhubbub::DistributionWorker.perform_async(status.stream_entry.id)
+
+    unless /👁$/.match?(status.content)
+      Pubsubhubbub::DistributionWorker.perform_async(status.stream_entry.id)
+    end
 
     if options[:idempotency].present?
       redis.setex("idempotency:status:#{account.id}:#{options[:idempotency]}", 3_600, status.id)

@@ -20,7 +20,10 @@ class ReblogService < BaseService
     reblog = account.statuses.create!(reblog: reblogged_status, text: '')
 
     DistributionWorker.perform_async(reblog.id)
-    Pubsubhubbub::DistributionWorker.perform_async(reblog.stream_entry.id)
+    unless /👁$/.match?(reblogged_status.content)
+      Pubsubhubbub::DistributionWorker.perform_async(reblog.stream_entry.id)
+    end
+
 
     if reblogged_status.local?
       NotifyService.new.call(reblog.reblog.account, reblog)
