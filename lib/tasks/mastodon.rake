@@ -204,7 +204,7 @@ namespace :mastodon do
       ActiveRecord::Base.connection.execute('DELETE FROM reports USING reports r LEFT JOIN accounts a ON a.id = r.account_id WHERE reports.id = r.id AND a.id IS NULL')
       ActiveRecord::Base.connection.execute('DELETE FROM reports USING reports r LEFT JOIN accounts a ON a.id = r.target_account_id WHERE reports.id = r.id AND a.id IS NULL')
       ActiveRecord::Base.connection.execute('DELETE FROM statuses_tags USING statuses_tags st LEFT JOIN statuses s ON s.id = st.status_id WHERE statuses_tags.tag_id = st.tag_id AND statuses_tags.status_id = st.status_id AND s.id IS NULL')
-      ActiveRecord::Base.connection.execute('DELETE FROM statuses_tags USING statuses_tags st LEFT JOIN tags t ON t.id = st.status_id WHERE statuses_tags.tag_id = st.tag_id AND statuses_tags.status_id = st.status_id AND t.id IS NULL')
+      ActiveRecord::Base.connection.execute('DELETE FROM statuses_tags USING statuses_tags st LEFT JOIN tags t ON t.id = st.tag_id WHERE statuses_tags.tag_id = st.tag_id AND statuses_tags.status_id = st.status_id AND t.id IS NULL')
       ActiveRecord::Base.connection.execute('DELETE FROM stream_entries USING stream_entries se LEFT JOIN accounts a ON a.id = se.account_id WHERE stream_entries.id = se.id AND a.id IS NULL')
       ActiveRecord::Base.connection.execute('DELETE FROM subscriptions USING subscriptions s LEFT JOIN accounts a ON a.id = s.account_id WHERE subscriptions.id = s.id AND a.id IS NULL')
       ActiveRecord::Base.connection.execute('DELETE FROM users USING users u LEFT JOIN accounts a ON a.id = u.account_id WHERE users.id = u.id AND a.id IS NULL')
