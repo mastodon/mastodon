@@ -104,7 +104,7 @@ class Header extends ImmutablePureComponent {
       if (account.getIn(['relationship', 'requested'])) {
         actionBtn = (
           <div className='account--action-button'>
-            <IconButton size={26} disabled={true} icon='hourglass' title={intl.formatMessage(messages.requested)} />
+            <IconButton size={26} disabled icon='hourglass' title={intl.formatMessage(messages.requested)} />
           </div>
         );
       } else if (!account.getIn(['relationship', 'blocking'])) {

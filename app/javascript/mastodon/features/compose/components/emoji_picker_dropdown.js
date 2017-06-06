@@ -113,7 +113,7 @@ class EmojiPickerDropdown extends React.PureComponent {
         <DropdownContent className='dropdown__left'>
           {
             this.state.active && !this.state.loading &&
-            (<EmojiPicker emojione={settings} onChange={this.handleChange} searchPlaceholder={intl.formatMessage(messages.emoji_search)} categories={categories} search={true} />)
+            (<EmojiPicker emojione={settings} onChange={this.handleChange} searchPlaceholder={intl.formatMessage(messages.emoji_search)} categories={categories} search />)
           }
         </DropdownContent>
       </Dropdown>

@@ -81,7 +81,7 @@ class DropdownMenu extends React.PureComponent {
     return (
       <Dropdown ref={this.setRef} onShow={this.handleShow} onHide={this.handleHide}>
         <DropdownTrigger className='icon-button' style={{ fontSize: `${size}px`, width: `${size}px`, lineHeight: `${size}px` }} aria-label={ariaLabel}>
-          <i className={ `fa fa-fw fa-${icon} dropdown__icon` }  aria-hidden={true} />
+          <i className={ `fa fa-fw fa-${icon} dropdown__icon` }  aria-hidden />
         </DropdownTrigger>
 
         <DropdownContent className={directionClass}>
