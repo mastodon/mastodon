@@ -40,12 +40,12 @@ class Notification extends ImmutablePureComponent {
       <div className='notification notification-favourite'>
         <div className='notification__message'>
           <div className='notification__favourite-icon-wrapper'>
-            <i className='fa fa-fw fa-star star-icon'/>
+            <i className='fa fa-fw fa-star star-icon' />
           </div>
           <FormattedMessage id='notification.favourite' defaultMessage='{name} favourited your status' values={{ name: link }} />
         </div>
 
-        <StatusContainer id={notification.get('status')} account={notification.get('account')} muted={true} withDismiss />
+        <StatusContainer id={notification.get('status')} account={notification.get('account')} muted withDismiss />
       </div>
     );
   }
@@ -60,7 +60,7 @@ class Notification extends ImmutablePureComponent {
           <FormattedMessage id='notification.reblog' defaultMessage='{name} boosted your status' values={{ name: link }} />
         </div>
 
-        <StatusContainer id={notification.get('status')} account={notification.get('account')} muted={true} withDismiss />
+        <StatusContainer id={notification.get('status')} account={notification.get('account')} muted withDismiss />
       </div>
     );
   }

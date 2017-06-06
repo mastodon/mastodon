@@ -10,7 +10,7 @@ module.exports = merge(devConfig, {
   devServer: {
     host: env.LOCAL_DOMAIN ? '0.0.0.0' : devServer.host,
     port: devServer.port,
-    headers: { "Access-Control-Allow-Origin": "*" },
+    headers: { 'Access-Control-Allow-Origin': '*' },
     compress: true,
     historyApiFallback: true,
     contentBase: resolve(paths.output, paths.entry),

@@ -141,6 +141,7 @@ Rails.application.routes.draw do
         resource :public, only: :show, controller: :public
         resources :tag, only: :show
       end
+      resources :streaming,  only: [:index]
 
       get '/search', to: 'search#index', as: :search
 

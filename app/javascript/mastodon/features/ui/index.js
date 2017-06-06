@@ -121,7 +121,7 @@ class UI extends React.PureComponent {
         <TabsBar />
         <ColumnsAreaContainer singleColumn={isMobile(width)}>{children}</ColumnsAreaContainer>
         <NotificationsContainer />
-        <LoadingBarContainer className="loading-bar" />
+        <LoadingBarContainer className='loading-bar' />
         <ModalContainer />
         <UploadArea active={draggingOver} onClose={this.closeUploadModal} />
       </div>

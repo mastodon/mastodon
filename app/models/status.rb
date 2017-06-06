@@ -28,6 +28,7 @@ class Status < ApplicationRecord
   include Paginable
   include Streamable
   include Cacheable
+  include StatusThreadingConcern
 
   enum visibility: [:public, :unlisted, :private, :direct], _suffix: :visibility
 
@@ -113,16 +114,6 @@ class Status < ApplicationRecord
 
   def hidden?
     private_visibility? || direct_visibility?
-  end
-
-  def ancestors(account = nil)
-    ids = Rails.cache.fetch("ancestors:#{id}") { (Status.find_by_sql(['WITH RECURSIVE search_tree(id, in_reply_to_id, path) AS (SELECT id, in_reply_to_id, ARRAY[id] FROM statuses WHERE id = ? UNION ALL SELECT statuses.id, statuses.in_reply_to_id, path || statuses.id FROM search_tree JOIN statuses ON statuses.id = search_tree.in_reply_to_id WHERE NOT statuses.id = ANY(path)) SELECT id FROM search_tree ORDER BY path DESC', id]) - [self]).pluck(:id) }
-    find_statuses_from_tree_path(ids, account)
-  end
-
-  def descendants(account = nil)
-    ids = (Status.find_by_sql(['WITH RECURSIVE search_tree(id, path) AS (SELECT id, ARRAY[id] FROM statuses WHERE id = ? UNION ALL SELECT statuses.id, path || statuses.id FROM search_tree JOIN statuses ON statuses.in_reply_to_id = search_tree.id WHERE NOT statuses.id = ANY(path)) SELECT id FROM search_tree ORDER BY path', id]) - [self]).pluck(:id)
-    find_statuses_from_tree_path(ids, account)
   end
 
   def non_sensitive_with_media?
@@ -276,24 +267,5 @@ class Status < ApplicationRecord
     else
       thread.account_id
     end
-  end
-
-  def find_statuses_from_tree_path(ids, account)
-    statuses = Status.where(id: ids).includes(:account).to_a
-
-    # FIXME: n+1 bonanza
-    statuses.reject! { |status| filter_from_context?(status, account) }
-
-    # Order ancestors/descendants by tree path
-    statuses.sort_by! { |status| ids.index(status.id) }
-  end
-
-  def filter_from_context?(status, account)
-    should_filter   = account&.blocking?(status.account_id)
-    should_filter ||= account&.domain_blocking?(status.account_domain)
-    should_filter ||= account&.muting?(status.account_id)
-    should_filter ||= (status.account.silenced? && !account&.following?(status.account_id))
-    should_filter ||= !StatusPolicy.new(account, status).show?
-    should_filter
   end
 end

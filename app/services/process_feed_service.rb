@@ -69,7 +69,14 @@ class ProcessFeedService < BaseService
           end
         end
 
+        status.thread = find_status(thread(@xml).first) if thread?(@xml)
+
         status.save!
+      end
+
+      if thread?(@xml) && status.thread.nil?
+        Rails.logger.debug "Trying to attach #{status.id} (#{id(@xml)}) to #{thread(@xml).first}"
+        ThreadResolveWorker.perform_async(status.id, thread(@xml).second)
       end
 
       notify_about_mentions!(status) unless status.reblog?
@@ -154,24 +161,11 @@ class ProcessFeedService < BaseService
         conversation: find_or_create_conversation(entry)
       )
 
-      if thread?(entry)
-        Rails.logger.debug "Trying to attach #{status.id} (#{id(entry)}) to #{thread(entry).first}"
-        status.thread = find_or_resolve_status(status, *thread(entry))
-      end
-
       mentions_from_xml(status, entry)
       hashtags_from_xml(status, entry)
       media_from_xml(status, entry)
 
       [status, true]
-    end
-
-    def find_or_resolve_status(parent, uri, url)
-      status = find_status(uri)
-
-      ThreadResolveWorker.perform_async(parent.id, url) if status.nil?
-
-      status
     end
 
     def find_or_create_conversation(xml)

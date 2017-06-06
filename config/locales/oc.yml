@@ -208,6 +208,59 @@ oc:
     follow: Sègre
     prompt_html: 'Avètz (<strong>%{self}</strong>) demandat de sègre :'
     title: Sègre %{acct}
+  date:
+    abbr_day_names:
+    - dg
+    - dl
+    - dm
+    - dc
+    - dj
+    - dv
+    - ds
+    abbr_month_names:
+    -
+    - gen
+    - feb
+    - mar
+    - mai
+    - mai
+    - jun
+    - jul
+    - ag
+    - set
+    - oct
+    - nov
+    - dec
+    day_names:
+    - dimenge
+    - diluns
+    - dimars
+    - dimècres
+    - dijòus
+    - divendres
+    - dissabte
+    formats:
+      default: "%d/%m/%Y"
+      long: "Lo %B %d de %Y"
+      short: "%b %d"
+    month_names:
+      -
+      - de genièr
+      - de febrièr
+      - de març
+      - d’abrial
+      - de mai
+      - de junh
+      - de julhet
+      - d’agost
+      - de setembre
+      - d’octòbre
+      - de novembre
+      - de decembre
+    order:
+      - :day
+      - :month
+      - :year
   datetime:
     distance_in_words:
       about_x_hours: "Fa %{count} oras"
@@ -332,11 +385,11 @@ oc:
       unlisted_long: Tot lo mond pòt veire mai serà pas visible sul flux public
   stream_entries:
     click_to_show: Clic per afichar
-    reblogged: partejat
+    reblogged: a partejat
     sensitive_content: Contengut sensible
   time:
     formats:
-      default: "%b %d %Y a %Ho%M"
+      default: "Lo %d %b de %Y a %Ho%M"
   two_factor_authentication:
     code_hint: Picatz lo còdi generat per vòstra aplicacion d’autentificacion per confirmar
     description_html: S’activatz <strong> l’autentificacion two-factor</strong>, vos caldrà vòstre mobil per vos connectar perque generarà un geton per vos daissar dintrar.

@@ -389,7 +389,6 @@ RSpec.describe AtomSerializer do
 
         enclosure = entry.nodes.find { |node| node.name == 'link' && node[:rel] == 'enclosure' }
         expect(enclosure[:type]).to eq 'image/jpeg'
-        expect(enclosure[:length]).to eq '57822'
         expect(enclosure[:href]).to match /^https:\/\/cb6e6126.ngrok.io\/system\/media_attachments\/files\/.+\/original\/attachment.jpg$/
       end
 

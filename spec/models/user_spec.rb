@@ -41,37 +41,6 @@ RSpec.describe User, type: :model do
     end
   end
 
-  describe 'settings' do
-    it 'inherits default settings from default yml' do
-      expect(Setting.boost_modal).to eq false
-      expect(Setting.interactions['must_be_follower']).to eq false
-
-      user = User.new
-      expect(user.settings.boost_modal).to eq false
-      expect(user.settings.interactions['must_be_follower']).to eq false
-    end
-
-    it 'can update settings' do
-      user = Fabricate(:user)
-      expect(user.settings['interactions']['must_be_follower']).to eq false
-      user.settings['interactions'] = user.settings['interactions'].merge('must_be_follower' => true)
-      user.reload
-
-      expect(user.settings['interactions']['must_be_follower']).to eq true
-    end
-
-    xit 'does not mutate defaults via the cache' do
-      user = Fabricate(:user)
-      user.settings['interactions']['must_be_follower'] = true
-      # TODO
-      # This mutates the global settings default such that future user
-      # instances will inherit the incorrect starting values
-
-      other = Fabricate(:user)
-      expect(other.settings['interactions']['must_be_follower']).to eq false
-    end
-  end
-
   describe 'scopes' do
     describe 'recent' do
       it 'returns an array of recent users ordered by id' do
@@ -283,6 +252,16 @@ RSpec.describe User, type: :model do
         user = User.new(email: 'foo@blacklisted.mastodon.space', account: account, password: password)
         expect(user.valid?).to be_falsey
       end
+    end
+  end
+
+  it_behaves_like 'Settings-extended' do
+    def create!
+      User.create!(account: Fabricate(:account), email: 'foo@mastodon.space', password: 'abcd1234' )
+    end
+
+    def fabricate
+      Fabricate(:user)
     end
   end
 end
