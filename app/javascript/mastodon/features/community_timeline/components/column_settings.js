@@ -7,8 +7,8 @@ import SettingToggle from '../../notifications/components/setting_toggle';
 import SettingText from '../../../components/setting_text';
 
 const messages = defineMessages({
-  filter_regex: { id: 'column_settings.filter_regex', defaultMessage: 'Filter out by regular expressions' },
-  settings: { id: 'column_settings.title', defaultMessage: 'Column settings' },
+  filter_regex: { id: 'home.column_settings.filter_regex', defaultMessage: 'Filter out by regular expressions' },
+  settings: { id: 'home.settings', defaultMessage: 'Column settings' },
 });
 
 class ColumnSettings extends React.PureComponent {
@@ -25,7 +25,7 @@ class ColumnSettings extends React.PureComponent {
 
     return (
       <div>
-        <span className='column-settings__section'><FormattedMessage id='column_settings.advanced' defaultMessage='Advanced' /></span>
+        <span className='column-settings__section'><FormattedMessage id='home.column_settings.advanced' defaultMessage='Advanced' /></span>
 
         <div className='column-settings__row'>
           <SettingText settings={settings} settingKey={['regex', 'body']} onChange={onChange} label={intl.formatMessage(messages.filter_regex)} />
