@@ -59,7 +59,7 @@ class HomeTimeline extends React.PureComponent {
     let emptyMessage;
 
     if (hasFollows) {
-      emptyMessage = <FormattedMessage id='empty_column.home.inactivity' defaultMessage="Your home feed is empty. If you have been inactive for a while, it will be regenerated for you soon." />;
+      emptyMessage = <FormattedMessage id='empty_column.home.inactivity' defaultMessage='Your home feed is empty. If you have been inactive for a while, it will be regenerated for you soon.' />;
     } else {
       emptyMessage = <FormattedMessage id='empty_column.home' defaultMessage="You aren't following anyone yet. Visit {public} or use search to get started and meet other users." values={{ public: <Link to='/timelines/public'><FormattedMessage id='empty_column.home.public_timeline' defaultMessage='the public timeline' /></Link> }} />;
     }
