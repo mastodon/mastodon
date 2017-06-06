@@ -128,10 +128,10 @@ class StatusActionBar extends ImmutablePureComponent {
     }
 
     if (status.get('in_reply_to_id', null) === null) {
-      replyIcon = "reply";
+      replyIcon = 'reply';
       replyTitle = intl.formatMessage(messages.reply);
     } else {
-      replyIcon = "reply-all";
+      replyIcon = 'reply-all';
       replyTitle = intl.formatMessage(messages.replyAll);
     }
 

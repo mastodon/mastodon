@@ -34,11 +34,11 @@ const validateLanguages = function (languages, validators) {
   }, []);
 
   if (invalidLanguages.length > 0) {
-    console.log(`\nError: Specified invalid LANGUAGES:`);
+    console.log('\nError: Specified invalid LANGUAGES:');
     for (let { language, error } of invalidLanguages) {
       console.error(`* ${language}: ${error}`);
     }
-    console.log(`\nUse yarn "manage:translations -- --help" for usage information\n`);
+    console.log('\nUse yarn "manage:translations -- --help" for usage information\n');
     process.exit(1);
   }
 };
@@ -95,7 +95,7 @@ if (argv.help) {
 // check if message directory exists
 if (!fs.existsSync(`${process.cwd()}/${messagesDirectory}`)) {
   console.error(`\nError: messageDirectory not exists\n(${process.cwd()}/${messagesDirectory})\n`);
-  console.error(`Try to run "yarn build:development" first`);
+  console.error('Try to run "yarn build:development" first');
   process.exit(1);
 }
 
