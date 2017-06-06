@@ -52,7 +52,7 @@ class Avatar extends ImmutablePureComponent {
     return (
       <Motion defaultStyle={{ radius: 90 }} style={{ radius: spring(isHovered ? 30 : 90, { stiffness: 180, damping: 12 }) }}>
         {({ radius }) =>
-          <a
+          <a // eslint-disable-line jsx-a11y/anchor-has-content
             href={account.get('url')}
             className='account__header__avatar'
             target='_blank'

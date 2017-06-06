@@ -86,7 +86,7 @@ class Item extends React.PureComponent {
 
     if (attachment.get('type') === 'image') {
       thumbnail = (
-        <a
+        <a // eslint-disable-line jsx-a11y/anchor-has-content
           className='media-gallery__item-thumbnail'
           href={attachment.get('remote_url') || attachment.get('url')}
           onClick={this.handleClick}
