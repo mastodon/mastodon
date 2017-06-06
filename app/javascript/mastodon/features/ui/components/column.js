@@ -50,7 +50,8 @@ class Column extends React.PureComponent {
         role='region'
         aria-labelledby={columnHeaderId}
         className='column'
-        onScroll={this.handleScroll}>
+        onScroll={this.handleScroll}
+      >
         {header}
         {children}
       </div>

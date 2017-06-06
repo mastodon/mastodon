@@ -191,7 +191,8 @@ class AutosuggestTextarea extends ImmutablePureComponent {
               key={suggestion}
               data-index={suggestion}
               className={`autosuggest-textarea__suggestions__item ${i === selectedSuggestion ? 'selected' : ''}`}
-              onClick={this.onSuggestionClick}>
+              onClick={this.onSuggestionClick}
+            >
               <AutosuggestAccountContainer id={suggestion} />
             </div>
           ))}
