@@ -54,23 +54,6 @@
   {
     "descriptors": [
       {
-        "defaultMessage": "Unpin",
-        "id": "column_header.unpin"
-      },
-      {
-        "defaultMessage": "Pin",
-        "id": "column_header.pin"
-      },
-      {
-        "defaultMessage": "Back",
-        "id": "column_back_button.label"
-      }
-    ],
-    "path": "app/javascript/mastodon/components/column_header.json"
-  },
-  {
-    "descriptors": [
-      {
         "defaultMessage": "Load more",
         "id": "status.load_more"
       }
@@ -675,14 +658,6 @@
         "id": "getting_started.heading"
       },
       {
-        "defaultMessage": "Home",
-        "id": "tabs_bar.home"
-      },
-      {
-        "defaultMessage": "Notifications",
-        "id": "tabs_bar.notifications"
-      },
-      {
         "defaultMessage": "Federated timeline",
         "id": "navigation_bar.public_timeline"
       },
@@ -762,30 +737,30 @@
     "descriptors": [
       {
         "defaultMessage": "Filter out by regular expressions",
-        "id": "column_settings.filter_regex"
+        "id": "home.column_settings.filter_regex"
       },
       {
         "defaultMessage": "Column settings",
-        "id": "column_settings.title"
+        "id": "home.settings"
       },
       {
         "defaultMessage": "Basic",
-        "id": "column_settings.basic"
+        "id": "home.column_settings.basic"
       },
       {
         "defaultMessage": "Show boosts",
-        "id": "column_settings.show_reblogs"
+        "id": "home.column_settings.show_reblogs"
       },
       {
         "defaultMessage": "Show replies",
-        "id": "column_settings.show_replies"
+        "id": "home.column_settings.show_replies"
       },
       {
         "defaultMessage": "Advanced",
-        "id": "column_settings.advanced"
+        "id": "home.column_settings.advanced"
       }
     ],
-    "path": "app/javascript/mastodon/components/column_settings.json"
+    "path": "app/javascript/mastodon/features/home_timeline/components/column_settings.json"
   },
   {
     "descriptors": [
