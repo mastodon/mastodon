@@ -5,6 +5,9 @@ class ImageLoader extends React.PureComponent {
 
   static propTypes = {
     src: PropTypes.string.isRequired,
+    previewSrc: PropTypes.string.isRequired,
+    width: PropTypes.number.isRequired,
+    height: PropTypes.number.isRequired,
   }
 
   state = {
@@ -13,31 +16,45 @@ class ImageLoader extends React.PureComponent {
   }
 
   componentWillMount() {
-    this.loadImage(this.props.src);
+    this._loadImage(this.props.src);
   }
 
   componentWillReceiveProps(props) {
-    this.loadImage(props.src);
+    this._loadImage(props.src);
   }
 
-  loadImage(src) {
+  _loadImage(src) {
     const image = new Image();
+
     image.onerror = () => this.setState({ loading: false, error: true });
-    image.onload = () => this.setState({ loading: false, error: false });
+    image.onload  = () => this.setState({ loading: false, error: false });
+
     image.src = src;
-    this.lastSrc = src;
+
     this.setState({ loading: true });
   }
 
   render() {
-    const { src } = this.props;
+    const { src, previewSrc, width, height } = this.props;
     const { loading, error } = this.state;
 
-    // TODO: handle image error state
+    return (
+      <div className='image-loader'>
+        <img // eslint-disable-line jsx-a11y/img-has-alt
+          className='image-loader__img'
+          src={src}
+          width={width}
+          height={height}
+        />
 
-    const imageClass = `image-loader__img ${loading ? 'image-loader__img-loading' : ''}`;
-
-    return <img className={imageClass} src={src} />; // eslint-disable-line jsx-a11y/img-has-alt
+        {loading &&
+          <img // eslint-disable-line jsx-a11y/img-has-alt
+            src={previewSrc}
+            className='image-loader__preview-img'
+          />
+        }
+      </div>
+    );
   }
 
 }
