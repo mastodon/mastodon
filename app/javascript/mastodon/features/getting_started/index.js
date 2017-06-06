@@ -79,9 +79,9 @@ class GettingStarted extends ImmutablePureComponent {
     return (
       <Column icon='asterisk' heading={intl.formatMessage(messages.heading)} hideHeadingOnMobile>
         <div className='getting-started__wrapper'>
-          <ColumnSubheading text={intl.formatMessage(messages.navigation_subheading)}/>
+          <ColumnSubheading text={intl.formatMessage(messages.navigation_subheading)} />
           {navItems}
-          <ColumnSubheading text={intl.formatMessage(messages.settings_subheading)}/>
+          <ColumnSubheading text={intl.formatMessage(messages.settings_subheading)} />
           <ColumnLink icon='book' text={intl.formatMessage(messages.info)} href='/about/more' />
           <ColumnLink icon='cog' text={intl.formatMessage(messages.preferences)} href='/settings/preferences' />
           <ColumnLink icon='sign-out' text={intl.formatMessage(messages.sign_out)} href='/auth/sign_out' method='delete' />
