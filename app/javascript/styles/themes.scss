@@ -5,3 +5,11 @@ body.theme-light {
 body.theme-dark {
   @import 'theme-dark';
 }
+
+@media screen and (min-width: 1025px) {
+  .columns-area>div:last-child>.column,
+  .mastodon-column-container>.column {
+    flex: 1;
+    max-width: 640px;
+  }
+}
