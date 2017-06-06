@@ -13,8 +13,8 @@ describe('<Column />', () => {
 
     it('runs the scroll animation if the column contains scrollable content', () => {
       const wrapper = mount(
-        <Column heading="notifications">
-          <div className="scrollable" />
+        <Column heading='notifications'>
+          <div className='scrollable' />
         </Column>
       );
       wrapper.find(ColumnHeader).simulate('click');
@@ -22,7 +22,7 @@ describe('<Column />', () => {
     });
 
     it('does not try to scroll if there is no scrollable content', () => {
-      const wrapper = mount(<Column heading="notifications" />);
+      const wrapper = mount(<Column heading='notifications' />);
       wrapper.find(ColumnHeader).simulate('click');
       expect(global.requestAnimationFrame.called).to.equal(false);
     });

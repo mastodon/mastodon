@@ -17,7 +17,7 @@ class DropdownMenu extends React.PureComponent {
   };
 
   static defaultProps = {
-    ariaLabel: "Menu",
+    ariaLabel: 'Menu',
   };
 
   state = {
@@ -70,7 +70,7 @@ class DropdownMenu extends React.PureComponent {
   render () {
     const { icon, items, size, direction, ariaLabel } = this.props;
     const { expanded } = this.state;
-    const directionClass = (direction === "left") ? "dropdown__left" : "dropdown__right";
+    const directionClass = (direction === 'left') ? 'dropdown__left' : 'dropdown__right';
 
     const dropdownItems = expanded && (
       <ul className='dropdown__content-list'>
