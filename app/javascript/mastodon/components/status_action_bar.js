@@ -139,10 +139,10 @@ class StatusActionBar extends ImmutablePureComponent {
       <div className='status__action-bar'>
         <IconButton className='status__action-bar-button' title={replyTitle} icon={replyIcon} onClick={this.handleReplyClick} />
         <IconButton className='status__action-bar-button' disabled={reblogDisabled} active={status.get('reblogged')} title={reblogDisabled ? intl.formatMessage(messages.cannot_reblog) : intl.formatMessage(messages.reblog)} icon={reblogIcon} onClick={this.handleReblogClick} />
-        <IconButton className='status__action-bar-button star-icon' animate={true} active={status.get('favourited')} title={intl.formatMessage(messages.favourite)} icon='star' onClick={this.handleFavouriteClick} />
+        <IconButton className='status__action-bar-button star-icon' animate active={status.get('favourited')} title={intl.formatMessage(messages.favourite)} icon='star' onClick={this.handleFavouriteClick} />
 
         <div className='status__action-bar-dropdown'>
-          <DropdownMenu items={menu} icon='ellipsis-h' size={18} direction='right' ariaLabel='More'/>
+          <DropdownMenu items={menu} icon='ellipsis-h' size={18} direction='right' ariaLabel='More' />
         </div>
       </div>
     );

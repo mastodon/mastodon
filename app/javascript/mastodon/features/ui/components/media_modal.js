@@ -75,7 +75,7 @@ class MediaModal extends ImmutablePureComponent {
     if (attachment.get('type') === 'image') {
       content = <ImageLoader src={url} />;
     } else if (attachment.get('type') === 'gifv') {
-      content = <ExtendedVideoPlayer src={url} muted={true} controls={false} />;
+      content = <ExtendedVideoPlayer src={url} muted controls={false} />;
     }
 
     return (

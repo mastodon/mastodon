@@ -42,7 +42,7 @@ class Column extends React.PureComponent {
 
     if (heading) {
       columnHeaderId = heading.replace(/ /g, '-');
-      header = <ColumnHeader icon={icon} active={active} type={heading} onClick={this.handleHeaderClick} hideOnMobile={hideHeadingOnMobile} columnHeaderId={columnHeaderId}/>;
+      header = <ColumnHeader icon={icon} active={active} type={heading} onClick={this.handleHeaderClick} hideOnMobile={hideHeadingOnMobile} columnHeaderId={columnHeaderId} />;
     }
     return (
       <div
@@ -50,7 +50,8 @@ class Column extends React.PureComponent {
         role='region'
         aria-labelledby={columnHeaderId}
         className='column'
-        onScroll={this.handleScroll}>
+        onScroll={this.handleScroll}
+      >
         {header}
         {children}
       </div>

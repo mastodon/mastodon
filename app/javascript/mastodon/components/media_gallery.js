@@ -105,8 +105,8 @@ class Item extends React.PureComponent {
             src={attachment.get('url')}
             onClick={this.handleClick}
             autoPlay={autoPlay}
-            loop={true}
-            muted={true}
+            loop
+            muted
           />
 
           <span className='media-gallery__gifv__label'>GIF</span>
