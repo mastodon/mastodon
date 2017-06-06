@@ -362,42 +362,99 @@ RSpec.describe Account, type: :model do
   end
 
   describe 'validations' do
-    it 'has a valid fabricator' do
-      account = Fabricate.build(:account)
-      account.valid?
-      expect(account).to be_valid
+    subject { account }
+    let(:account) { Fabricate.build(:account, username: username, display_name: display_name, note: note, domain: domain) }
+    let(:domain) { nil } # domain = nil means the account is local.
+    let(:username) { 'Gargron' }
+    let(:display_name) { 'Eugen Rochko' }
+    let(:note) { 'Mastodon is a GNU Social-compatible microblogging server.' }
+
+    it { is_expected.to be_valid }
+
+    shared_examples 'check username validation' do
+      describe 'username should be present' do
+        let(:username) { nil }
+        it { is_expected.not_to be_valid }
+      end
+      describe 'username should be unique' do
+        before { Fabricate(:account, username: username, domain: domain) }
+        it { is_expected.not_to be_valid }
+      end
     end
 
-    it 'is invalid without a username' do
-      account = Fabricate.build(:account, username: nil)
-      account.valid?
-      expect(account).to model_have_error_on_field(:username)
+    shared_examples 'not allowed duplicate username' do
+      before { Fabricate(:account, username: 'TootSuite', domain: domain) }
+      it { is_expected.to be_valid }
+
+      context 'when the username is already exists' do
+        let(:username) { 'TootSuite' }
+        it { is_expected.not_to be_valid }
+      end
     end
 
-    it 'is invalid if the username already exists' do
-      account_1 = Fabricate(:account, username: 'the_doctor')
-      account_2 = Fabricate.build(:account, username: 'the_doctor')
-      account_2.valid?
-      expect(account_2).to model_have_error_on_field(:username)
+    shared_examples 'not enabled for existing record' do
+      before { subject.save!(validate: false) }
+      it { is_expected.to be_valid }
     end
 
-    it 'is invalid if the username is reserved' do
-      account = Fabricate.build(:account, username: 'support')
-      account.valid?
-      expect(account).to model_have_error_on_field(:username)
+    it_behaves_like 'check username validation'
+    it_behaves_like 'not allowed duplicate username'
+
+    context 'when username contains invalid character' do
+      let(:username) { 'the-doctor' }
+      it { is_expected.not_to be_valid }
+      it_behaves_like 'not enabled for existing record'
     end
 
-    context 'when is local' do
-      it 'is invalid if the username doesn\'t only contains letters, numbers and underscores' do
-        account = Fabricate.build(:account, username: 'the-doctor')
-        account.valid?
-        expect(account).to model_have_error_on_field(:username)
+    context 'when username is longer than 30 characters' do
+      let(:username) { Faker::Lorem.characters(31) }
+      it { is_expected.not_to be_valid }
+      it_behaves_like 'not enabled for existing record'
+    end
+
+    context 'when display name is longer than 30 characters' do
+      let(:display_name) { Faker::Lorem.characters(31) }
+      it { is_expected.not_to be_valid }
+      it_behaves_like 'not enabled for existing record'
+    end
+
+    context 'when note is longer than 160 characters' do
+      let(:note) { Faker::Lorem.characters(161) }
+      it { is_expected.not_to be_valid }
+      it_behaves_like 'not enabled for existing record'
+    end
+
+    describe 'reserved username' do
+      let(:username) { 'support' }
+
+      it { is_expected.not_to be_valid }
+      it_behaves_like 'not enabled for existing record'
+    end
+
+    context 'A remote account' do
+      let(:domain) { 'mastodon.social' }
+
+      it_behaves_like 'check username validation'
+      it_behaves_like 'not allowed duplicate username'
+
+      describe 'not interested in username format.' do
+        let(:username) { 'the-doctor' }
+        it { is_expected.to be_valid }
       end
 
-      it 'is invalid if the username is longer then 30 characters' do
-        account = Fabricate.build(:account, username: Faker::Lorem.characters(31))
-        account.valid?
-        expect(account).to model_have_error_on_field(:username)
+      describe 'not interested in username length.' do
+        let(:username) { Faker::Lorem.characters(31) }
+        it { is_expected.to be_valid }
+      end
+
+      describe 'not interested in display_name length.' do
+        let(:display_name) { Faker::Lorem.characters(31) }
+        it { is_expected.to be_valid }
+      end
+
+      describe 'not interested in note length.' do
+        let(:note) { Faker::Lorem.characters(161) }
+        it { is_expected.to be_valid }
       end
     end
   end
