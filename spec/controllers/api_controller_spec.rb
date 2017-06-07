@@ -9,9 +9,12 @@ describe ApiController, type: :controller do
     end
   end
 
+  before do
+    routes.draw { post 'success' => 'api#success' }
+  end
+
   it 'does not protect from forgery' do
     ActionController::Base.allow_forgery_protection = true
-    routes.draw { post 'success' => 'api#success' }
     post 'success'
     expect(response).to have_http_status(:success)
   end
