@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Api::V1::SearchController < ApiController
+class Api::V1::SearchController < Api::BaseController
   RESULTS_LIMIT = 5
 
   respond_to :json
