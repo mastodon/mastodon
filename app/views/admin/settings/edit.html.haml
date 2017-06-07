@@ -53,6 +53,13 @@
         %td= text_area_tag :closed_registrations_message,
           @settings['closed_registrations_message'].value,
           rows: 8
+      %tr
+        %td
+          %strong= t('admin.settings.admin_announcement.title')
+          %p= t('admin.settings.admin_announcement.desc_html')
+        %td= text_area_tag :admin_announcement,
+          @settings['admin_announcement'].value,
+          rows: 8
 
   .simple_form.actions
     = button_tag t('generic.save_changes'), type: :submit, class: :btn

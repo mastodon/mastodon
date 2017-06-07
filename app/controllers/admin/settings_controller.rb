@@ -10,6 +10,7 @@ module Admin
       site_extended_description
       open_registrations
       closed_registrations_message
+      admin_announcement
     ).freeze
     BOOLEAN_SETTINGS = %w(open_registrations).freeze
 

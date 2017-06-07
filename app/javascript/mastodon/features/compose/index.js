@@ -12,6 +12,7 @@ import Motion from 'react-motion/lib/Motion';
 import spring from 'react-motion/lib/spring';
 import SearchResultsContainer from './containers/search_results_container';
 import Announcements from './components/announcements';
+import AdminAnnouncements from './components/admin_announcements';
 
 const messages = defineMessages({
   start: { id: 'getting_started.heading', defaultMessage: 'Getting started' },
@@ -67,6 +68,7 @@ class Compose extends React.PureComponent {
 
         <div className='drawer__pager'>
           <div className='drawer__inner'>
+            <AdminAnnouncements />
             <NavigationContainer />
             <ComposeFormContainer />
             <Announcements />
