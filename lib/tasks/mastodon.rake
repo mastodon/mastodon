@@ -209,10 +209,10 @@ namespace :mastodon do
       ActiveRecord::Base.connection.execute('DELETE FROM subscriptions USING subscriptions s LEFT JOIN accounts a ON a.id = s.account_id WHERE subscriptions.id = s.id AND a.id IS NULL')
       ActiveRecord::Base.connection.execute('DELETE FROM users USING users u LEFT JOIN accounts a ON a.id = u.account_id WHERE users.id = u.id AND a.id IS NULL')
       ActiveRecord::Base.connection.execute('DELETE FROM web_settings USING web_settings ws LEFT JOIN users u ON u.id = ws.user_id WHERE web_settings.id = ws.id AND u.id IS NULL')
-      ActiveRecord::Base.connection.execute('DELETE FROM oauth_access_grants USING oauth_access_grants oag LEFT JOIN users u ON u.id = oag.resource_owner_id WHERE oauth_access_grants.id = oag.id AND u.id IS NULL')
-      ActiveRecord::Base.connection.execute('DELETE FROM oauth_access_grants USING oauth_access_grants oag LEFT JOIN oauth_applications a ON a.id = oag.application_id WHERE oauth_access_grants.id = oag.id AND a.id IS NULL')
-      ActiveRecord::Base.connection.execute('DELETE FROM oauth_access_tokens USING oauth_access_tokens oat LEFT JOIN users u ON u.id = oat.resource_owner_id WHERE oauth_access_tokens.id = oat.id AND u.id IS NULL')
-      ActiveRecord::Base.connection.execute('DELETE FROM oauth_access_tokens USING oauth_access_tokens oat LEFT JOIN oauth_applications a ON a.id = oat.application_id WHERE oauth_access_tokens.id = oat.id AND a.id IS NULL')
+      ActiveRecord::Base.connection.execute('DELETE FROM oauth_access_grants USING oauth_access_grants oag LEFT JOIN users u ON u.id = oag.resource_owner_id WHERE oauth_access_grants.id = oag.id AND oag.resource_owner_id IS NOT NULL AND u.id IS NULL')
+      ActiveRecord::Base.connection.execute('DELETE FROM oauth_access_grants USING oauth_access_grants oag LEFT JOIN oauth_applications a ON a.id = oag.application_id WHERE oauth_access_grants.id = oag.id AND oag.application_id IS NOT NULL AND a.id IS NULL')
+      ActiveRecord::Base.connection.execute('DELETE FROM oauth_access_tokens USING oauth_access_tokens oat LEFT JOIN users u ON u.id = oat.resource_owner_id WHERE oauth_access_tokens.id = oat.id AND oat.resource_owner_id IS NOT NULL AND u.id IS NULL')
+      ActiveRecord::Base.connection.execute('DELETE FROM oauth_access_tokens USING oauth_access_tokens oat LEFT JOIN oauth_applications a ON a.id = oat.application_id WHERE oauth_access_tokens.id = oat.id AND oag.application_id IS NOT NULL AND a.id IS NULL')
 
       # All the nullifies:
       ActiveRecord::Base.connection.execute('UPDATE statuses SET in_reply_to_id = NULL FROM statuses s LEFT JOIN statuses rs ON rs.id = s.in_reply_to_id WHERE statuses.id = s.id AND s.in_reply_to_id IS NOT NULL AND rs.id IS NULL')
