@@ -43,12 +43,12 @@ describe 'API routes' do
   describe 'Statuses routes' do
     it 'routes reblogged_by' do
       expect(get('/api/v1/statuses/123/reblogged_by')).
-        to route_to('api/v1/statuses#reblogged_by', id: '123')
+        to route_to('api/v1/statuses/reblogged_by_accounts#index', status_id: '123')
     end
 
     it 'routes favourited_by' do
       expect(get('/api/v1/statuses/123/favourited_by')).
-        to route_to('api/v1/statuses#favourited_by', id: '123')
+        to route_to('api/v1/statuses/favourited_by_accounts#index', status_id: '123')
     end
   end
 
