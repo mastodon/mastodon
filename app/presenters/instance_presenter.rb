@@ -15,18 +15,24 @@ class InstancePresenter
   end
 
   def user_count
-    Rails.cache.fetch('user_count') { User.confirmed.count }
+    Rails.cache.fetch('user_count', expires_in: cache_expires) { User.confirmed.count }
   end
 
   def status_count
-    Rails.cache.fetch('local_status_count') { Status.local.count }
+    Rails.cache.fetch('local_status_count', expires_in: cache_expires) { Status.local.count }
   end
 
   def domain_count
-    Rails.cache.fetch('distinct_domain_count') { Account.distinct.count(:domain) }
+    Rails.cache.fetch('distinct_domain_count', expires_in: cache_expires) { Account.distinct.count(:domain) }
   end
 
   def version_number
     Mastodon::Version
+  end
+
+  private
+
+  def cache_expires
+    10.minutes
   end
 end
