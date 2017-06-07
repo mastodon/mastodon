@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Api::SalmonController < ApiController
+class Api::SalmonController < Api::BaseController
   before_action :set_account
   respond_to :txt
 

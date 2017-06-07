@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Api::V1::ReportsController < ApiController
+class Api::V1::ReportsController < Api::BaseController
   before_action -> { doorkeeper_authorize! :read }, except: [:create]
   before_action -> { doorkeeper_authorize! :write }, only:  [:create]
   before_action :require_user!

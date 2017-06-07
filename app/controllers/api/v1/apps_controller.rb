@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Api::V1::AppsController < ApiController
+class Api::V1::AppsController < Api::BaseController
   respond_to :json
 
   def create
