@@ -10,13 +10,37 @@ module RateLimitHeaders
   private
 
   def set_rate_limit_headers
-    response.headers['X-RateLimit-Limit']     = api_throttle_data[:limit].to_s
-    response.headers['X-RateLimit-Remaining'] = (api_throttle_data[:limit] - api_throttle_data[:count]).to_s
-    response.headers['X-RateLimit-Reset']     = (request_time + reset_period_offset).iso8601(6)
+    apply_header_limit
+    apply_header_remaining
+    apply_header_reset
   end
 
   def rate_limited_request?
     !request.env['rack.attack.throttle_data'].nil?
+  end
+
+  def apply_header_limit
+    response.headers['X-RateLimit-Limit'] = rate_limit_limit
+  end
+
+  def rate_limit_limit
+    api_throttle_data[:limit].to_s
+  end
+
+  def apply_header_remaining
+    response.headers['X-RateLimit-Remaining'] = rate_limit_remaining
+  end
+
+  def rate_limit_remaining
+    (api_throttle_data[:limit] - api_throttle_data[:count]).to_s
+  end
+
+  def apply_header_reset
+    response.headers['X-RateLimit-Reset'] = rate_limit_reset
+  end
+
+  def rate_limit_reset
+    (request_time + reset_period_offset).iso8601(6)
   end
 
   def api_throttle_data
