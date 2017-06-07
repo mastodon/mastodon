@@ -20,6 +20,20 @@
       %li= filter_link_to t('admin.accounts.order.alphabetic'), recent: nil
       %li= filter_link_to t('admin.accounts.order.most_recent'), recent: '1'
 
+= form_tag admin_accounts_url, method: 'GET', class: 'simple_form' do
+  .fields-group
+    - Admin::FilterHelper::ACCOUNT_FILTERS.each do |key|
+      - if params[key].present?
+        = hidden_field_tag key, params[key]
+
+    - %i(username display_name email ip).each do |key|
+      .input.string.optional
+        = text_field_tag key, params[key], class: 'string optional', placeholder: I18n.t("admin.accounts.#{key}")
+
+    .actions
+      %button= t('admin.accounts.search')
+      = link_to t('admin.accounts.reset'), admin_accounts_path, class: 'button negative'
+
 %table.table
   %thead
     %tr
@@ -29,28 +43,6 @@
       %th= fa_icon 'paper-plane-o'
       %th
   %tbody
-    - @accounts.each do |account|
-      %tr
-        %td= account.username
-        %td
-          - unless account.local?
-            = link_to account.domain, admin_accounts_path(by_domain: account.domain)
-        %td
-          - if account.local?
-            - if account.user.present? && account.user.confirmed?
-              %i.fa.fa-check
-            - else 
-              %i.fa.fa-times
-        %td
-          - if account.local?
-            = t('admin.accounts.location.local')
-          - elsif account.subscribed?
-            %i.fa.fa-check
-          - else
-            %i.fa.fa-times
-        %td
-          = table_link_to 'circle', t('admin.accounts.web'), web_path("accounts/#{account.id}")
-          = table_link_to 'globe', t('admin.accounts.public'), TagManager.instance.url_for(account)
-          = table_link_to 'pencil', t('admin.accounts.edit'), admin_account_path(account.id)
+    = render @accounts
 
 = paginate @accounts

@@ -48,12 +48,13 @@ en:
         name: "%{account_name} created a note."
     outbox:
       name: "%{account_name}'s Outbox"
-      summary: "A collection of activities from user %{account_name}."
+      summary: A collection of activities from user %{account_name}.
   admin:
     accounts:
       are_you_sure: Are you sure?
       confirm: Confirm
       confirmed: Confirmed
+      disable_two_factor_authentication: Disable 2FA
       display_name: Display name
       domain: Domain
       edit: Edit
@@ -61,6 +62,7 @@ en:
       feed_url: Feed URL
       followers: Followers
       follows: Follows
+      ip: IP
       location:
         all: All
         local: Local
@@ -83,8 +85,10 @@ en:
       profile_url: Profile URL
       public: Public
       push_subscription_expires: PuSH subscription expires
+      reset: Reset
       reset_password: Reset password
       salmon_url: Salmon URL
+      search: Search
       show:
         created_reports: Reports created by this account
         report: report
@@ -156,8 +160,11 @@ en:
       title: Reports
       unresolved: Unresolved
       view: View
+      nsfw:
+        'true': NSFW ON
+        'false': NSFW OFF
+      are_you_sure: Are you sure?
     settings:
-      click_to_edit: Click to edit
       contact_information:
         email: Enter a public e-mail address
         label: Contact information
@@ -222,6 +229,7 @@ en:
     '422':
       content: Security verification failed. Are you blocking cookies?
       title: Security verification failed
+    '429': Throttled
   exports:
     blocks: You block
     csv: CSV
@@ -248,14 +256,15 @@ en:
       one: Something isn't quite right yet! Please review the error below
       other: Something isn't quite right yet! Please review %{count} errors below
   imports:
-    preface: You can import certain data like all the people you are following or blocking into your account on this instance, from files created by an export on another instance.
+    preface: You can import data that you have exported from another instance, such as a list of the people you are following or blocking.
     success: Your data was successfully uploaded and will now be processed in due time
     types:
       blocking: Blocking list
       following: Following list
       muting: Muting list
     upload: Upload
-  landing_strip_html: <strong>%{name}</strong> is a user on %{link_to_root_path}. You can follow them or interact with them if you have an account anywhere in the fediverse. If you don't, you can <a href="%{sign_up_path}">sign up here</a>.
+  landing_strip_html: <strong>%{name}</strong> is a user on %{link_to_root_path}. You can follow them or interact with them if you have an account anywhere in the fediverse.
+  landing_strip_signup_html: If you don't, you can <a href="%{sign_up_path}">sign up here</a>.
   media_attachments:
     validations:
       images_and_video: Cannot attach a video to a status that already contains images
@@ -333,7 +342,7 @@ en:
     lost_recovery_codes: Recovery codes allow you to regain access to your account if you lose your phone. If you've lost your recovery codes, you can regenerate them here. Your old recovery codes will be invalidated.
     manual_instructions: 'If you can''t scan the QR code and need to enter it manually, here is the plain-text secret:'
     recovery_codes_regenerated: Recovery codes successfully regenerated
-    recovery_instructions: If you ever lose access to your phone, you can use one of the recovery codes below to regain access to your account. Keep the recovery codes safe, for example by printing them and storing them with other important documents.
+    recovery_instructions: If you ever lose access to your phone, you can use one of the recovery codes below to regain access to your account. Keep the recovery codes safe. (For example, you may print them and store them with other important documents.)
     setup: Set up
     wrong_code: The entered code was invalid! Are server time and device time correct?
   users:

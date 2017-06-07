@@ -19,7 +19,7 @@ class BlockDomainService < BaseService
   end
 
   def silence_accounts!
-    blocked_domain_accounts.update_all(silenced: true)
+    blocked_domain_accounts.in_batches.update_all(silenced: true)
     clear_media! if domain_block.reject_media?
   end
 
@@ -60,6 +60,6 @@ class BlockDomainService < BaseService
   end
 
   def media_from_blocked_domain
-    MediaAttachment.where(account: blocked_domain_accounts).reorder(nil)
+    MediaAttachment.joins(:account).merge(blocked_domain_accounts).reorder(nil)
   end
 end

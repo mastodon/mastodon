@@ -4,14 +4,16 @@ ja:
     hints:
       defaults:
         avatar: 2MBまでのPNGやGIF、JPGが利用可能です。120x120pxまで縮小されます。
-        display_name: あと%{counter}文字入力できます。
+        display_name: あと<span class="name-counter">%{count}</span>文字入力できます。
         header: 2MBまでのPNGやGIF、JPGが利用可能です。 700x335pxまで縮小されます。
         locked: フォロワーを手動で承認する必要があります。デフォルトではトゥートの公開範囲はフォロワーのみです。
-        note: あと%{counter}文字入力できます。
+        note: あと<span class="note-counter">%{count}</span>文字入力できます。
       imports:
-        data: 他の Mastodon サーバーからエクスポートしたCSVファイルを選択して下さい
+        data: 他の Mastodon インスタンスからエクスポートしたCSVファイルを選択して下さい
       sessions:
         otp: 携帯電話に表示された2段階認証コードを入力するか、生成したリカバリーコードを使用してください。
+      user:
+        filtered_languages: 選択した言語があなたの公開タイムラインから取り除かれます。
     labels:
       defaults:
         avatar: アイコン
@@ -21,6 +23,7 @@ ja:
         data: データ
         display_name: 表示名
         email: メールアドレス
+        filtered_languages: 除外する言語
         header: ヘッダー
         locale: 言語
         locked: 非公開アカウントにする

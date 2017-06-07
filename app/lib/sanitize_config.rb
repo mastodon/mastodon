@@ -8,8 +8,15 @@ class Sanitize
       elements: %w(p br span a),
 
       attributes: {
-        'a'    => %w(href),
+        'a'    => %w(href rel),
         'span' => %w(class),
+      },
+
+      add_attributes: {
+        'a' => {
+          'rel' => 'nofollow noopener',
+          'target' => '_blank',
+        },
       },
 
       protocols: {

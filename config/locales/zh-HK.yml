@@ -1,10 +1,10 @@
 ---
 zh-HK:
   about:
-    about_mastodon: Mastodon（長毛象）是一個<em>自由、開放源碼</em>的社交網站。它是一個分散式的服務，避免你的通訊被單一商業機構壟斷操控。請你選擇一家你信任的 Mastodon 服務站，在上面建立帳號，然後你就可以和任一 Mastodon 服務站上的用戶互通，享受無縫的<em>社交網絡</em>交流。
+    about_mastodon: Mastodon（萬象）是<em>自由、開源</em>的社交網絡。服務站<em>各自獨立而互連</em>，避免單一商業機構壟斷。找你所信任的服務站，建立帳號，你即可與任何服務站上的用戶溝通，享受無縫的<em>網絡交流</em>。
     about_this: 關於本服務站
     apps: 應用程式
-    business_email: 商業電郵︰
+    business_email: 聯絡網站管理者︰
     closed_registrations: 本服務站暫時停止接受登記。
     contact: 聯絡
     description_headline: 關於 %{domain}
@@ -14,8 +14,8 @@ zh-HK:
       api: 開放 API，供各式應用程式及服務連入
       blocks: 完善的封鎖用戶、靜音功能
       characters: 每篇文章最多 500 字
-      chronology: 時間軸忠實按時序顯示文章，不作多餘處理
-      ethics: 良心設計︰沒有廣告，不追蹤你的使用行為
+      chronology: 時間軸忠實按時排序，不多餘處理
+      ethics: 良心設計︰無廣告，不追蹤用戶
       gifv: 支援顯示 GIFV 短片圖組
       privacy: 可逐篇文章設定私隱度
       public: 公共時間軸
@@ -29,6 +29,7 @@ zh-HK:
     terms: 使用條款
     user_count_after: 位使用者
     user_count_before: 這裏共註冊有
+    version: 版本
   accounts:
     follow: 關注
     followers: 關注者
@@ -39,9 +40,21 @@ zh-HK:
     posts: 文章
     remote_follow: 跨站關注
     unfollow: 取消關注
+  activitypub:
+    activity:
+      announce:
+        name: "%{account_name} 分享了一項活動。"
+      create:
+        name: "%{account_name} 新增了一篇筆記。"
+    outbox:
+      name: "%{account_name} 的活動"
+      summary: "%{account_name} 分享的活動列表。"
   admin:
     accounts:
       are_you_sure: 你確定嗎？
+      confirm: 確定
+      confirmed: 已確定
+      disable_two_factor_authentication: 停用雙重認證
       display_name: 顯示名稱
       domain: 域名
       edit: 編輯
@@ -70,8 +83,13 @@ zh-HK:
       perform_full_suspension: 實行完全暫停
       profile_url: 個人檔案 URL
       public: 公共
-      push_subscription_expires: PuSH subscription expires
+      push_subscription_expires: PuSH 訂閱過期
+      reset_password: 重設密碼
       salmon_url: Salmon 反饋 URL
+      show:
+        created_reports: 此用戶所提舉報的紀錄
+        report: 舉報
+        targeted_reports: 此用戶被舉報的紀錄
       silence: 靜音
       statuses: 文章
       title: 用戶
@@ -86,10 +104,9 @@ zh-HK:
       domain: 域名阻隔
       new:
         create: 新增域名阻隔
-        hint: 「域名阻隔」不會隔絕該域名用戶的賬戶進入本站資料庫，而是會在時候自動套用特定的審批操作。
+        hint: "「域名阻隔」不會隔絕該域名用戶的用戶進入本站資料庫，而是會在時候自動套用特定的審批操作。"
         severity:
-          desc_html: 「<strong>自動靜音</strong>」令該域名用戶的文章，設為只對關注者顯示，沒有關注的人會看不到。
-            「<strong>自動刪除</strong>」會自動將該域名用戶的文章、媒體檔案、個人資料自本服務站刪除。
+          desc_html: "「<strong>自動靜音</strong>」令該域名用戶的文章，設為只對關注者顯示，沒有關注的人會看不到。 「<strong>自動刪除</strong>」會自動將該域名用戶的文章、媒體檔案、個人資料自本服務站刪除。"
           silence: 自動靜音
           suspend: 自動刪除
         title: 新增域名阻隔
@@ -100,13 +117,11 @@ zh-HK:
         suspend: 自動刪除
       severity: 阻隔分級
       show:
-        # It turns out that Chinese only uses an "other"
-        # Well, we don't have these -s magic anyway...
         affected_accounts:
-          other: "資料庫中有%{count}個賬戶受影響"
+          other: 資料庫中有%{count}個用戶受影響
         retroactive:
-          silence: 對此域名的所有賬戶取消靜音
-          suspend: 對此域名的所有賬戶取消除名
+          silence: 對此域名的所有用戶取消靜音
+          suspend: 對此域名的所有用戶取消除名
         title: 撤銷 %{domain} 的域名阻隔
         undo: 撤銷
       title: 域名阻隔
@@ -120,7 +135,7 @@ zh-HK:
       confirmed: 確定
       expires_in: 期限
       last_delivery: 資料最後送抵時間
-      title: PubSubHubbub 訂閱
+      title: PuSH 訂閱
       topic: 所訂閱資源
     reports:
       comment:
@@ -130,6 +145,7 @@ zh-HK:
       id: ID
       mark_as_resolved: 標示為「已處理」
       report: '舉報 #%{id}'
+      report_contents: 舉報內容
       reported_account: 舉報用戶
       reported_by: 舉報者
       resolved: 已處理
@@ -141,15 +157,13 @@ zh-HK:
       unresolved: 未處理
       view: 檢視
     settings:
-      click_to_edit: 點擊編輯
       contact_information:
         email: 輸入一個公開的電郵地址
         label: 聯絡資料
         username: 輸入用戶名稱
       registrations:
         closed_message:
-          desc_html: 當本站暫停接受註冊時，會顯示這個訊息。<br/>
-            可使用 HTML
+          desc_html: 當本站暫停接受註冊時，會顯示這個訊息。<br/> 可使用 HTML
           title: 暫停註冊訊息
         open:
           disabled: 停用
@@ -157,8 +171,7 @@ zh-HK:
           title: 開放註冊
       setting: 設定
       site_description:
-        desc_html: 在首頁顯示，及在 meta 標籤使用作網站介紹。<br/>
-          你可以在此使用 <code>&lt;a&gt;</code> 和 <code>&lt;em&gt;</code> 等 HTML 標籤。
+        desc_html: 在首頁顯示，及在 meta 標籤使用作網站介紹。<br/> 你可以在此使用 <code>&lt;a&gt;</code> 和 <code>&lt;em&gt;</code> 等 HTML 標籤。
         title: 本站介紹
       site_description_extended:
         desc_html: 本站詳細資訊頁的內文<br/>你可以在此使用 HTML
@@ -202,17 +215,31 @@ zh-HK:
       x_months: "%{count}個月"
       x_seconds: "%{count}秒"
   errors:
+    '403': 你沒有觀看本頁的權限
     '404': 找不到內容
     '410': 內容已被刪除
     '422':
       content: 無法確認登入資訊。會不會你阻擋了本站使用 Cookies 的權限？
       title: 無法確認登入資訊
+    '429': 伺服器繁忙
   exports:
     blocks: 被你封鎖的用戶
     csv: CSV
     follows: 你所關注的用戶
     mutes: 你所靜音的用戶
     storage: 媒體容量大小
+  followers:
+    domain: 網域
+    explanation_html: 如果你想確保你的私隱，請留意是甚麼用戶在關注你。<strong>即使你的將文章設定「私人文章」，它仍為會被遞送至你所有關注者的服務站</strong>。如果你不信任某些用戶、或其服務站的管理者會尊重你私隱，請將他們自關注者名單私除。
+    followers_count: 關注者數目
+    lock_link: 將用戶轉為「私人」
+    purge: 私除關注者
+    success:
+      one: 正準備軟性阻擋 1 個網域的關注者……
+      other: 正準備軟性阻擋 %{count} 個網域的關注者……
+    true_privacy_html: 請謹記，唯有<strong>點對點加密方可以真正確保你的私隱</strong>。
+    unlocked_warning_html: 目前任何人都可以看到你的私人文章，若%{lock_link}的話，你將可以審批關注者。
+    unlocked_warning_title: 你的用戶目前為「公共」
   generic:
     changes_saved_msg: 已成功儲存修改
     powered_by: 網站由 %{link} 開發
@@ -228,8 +255,8 @@ zh-HK:
       following: 你所關注的用戶名單
       muting: 靜音名單
     upload: 上載
-  landing_strip_html: <strong>%{name}</strong> 是一個在 %{link_to_root_path} 的用戶。只要你有任何
-    Mastodon 服務站、或者聯盟網站的用戶，便可以跨站關注此站用戶，或者與他們互動。如果你沒有這類用戶，歡迎在<a href="%{sign_up_path}">此處登記</a>。
+  landing_strip_html: <strong>%{name}</strong> 是一個在 %{link_to_root_path} 的用戶。只要你有任何 Mastodon 服務站、或者聯盟網站的用戶，便可以跨站關注此站用戶，或者與他們互動。
+  landing_strip_signup_html: 如果你沒有這類用戶，歡迎在<a href="%{sign_up_path}">此處登記</a>。
   media_attachments:
     validations:
       images_and_video: 不能在已有圖片的文章上加入影片
@@ -273,6 +300,7 @@ zh-HK:
     back: 回到 Mastodon
     edit_profile: 修改個人資料
     export: 匯出
+    followers: 授權關注
     import: 匯入
     preferences: 偏好設定
     settings: 設定
@@ -282,9 +310,12 @@ zh-HK:
     over_character_limit: 超過了 %{max} 字的限制
     show_more: 顯示更多
     visibilities:
-      private: 只有關注你的人能看
+      private: 關注者觀看
+      private_long: 只有關注你的人能看到
       public: 公開
+      public_long: 所有人都能看到
       unlisted: 公開，但不在公共時間軸顯示
+      unlisted_long: 所有人都能看到，但不在公共時間軸（本站時間軸、跨站時間軸）顯示
   stream_entries:
     click_to_show: 點擊顯示
     reblogged: 轉推
@@ -298,8 +329,12 @@ zh-HK:
     disable: 停用
     enable: 啟用
     enabled_success: 已成功啟用雙重認證
+    generate_recovery_codes: 產生備用驗證碼
     instructions_html: "<strong>請用你手機的認證器應用程式（如 Google Authenticator、Authy），掃描這裏的QR 圖形碼</strong>。在雙重認證啟用後，你登入時將須要使用此應用程式產生的認證碼。"
+    lost_recovery_codes: 讓你可以在遺失電話時，使用備用驗證碼登入。如果你遺失了備用驗證碼，可以在這裏產生一批新的，舊有的備用驗證碼將會失效。
     manual_instructions: 如果你無法掃描 QR 圖形碼，請手動輸入這個文字密碼︰
+    recovery_codes_regenerated: 成功產生新的備用驗證碼
+    recovery_instructions: 如果你遺失了安裝認證器的裝置（如︰你的電話），你可以使用備用驗證碼進行登入。請確保將備用驗證碼收藏穩當，（如列印出來，和你其他重要文件一起存放）
     setup: 設定
     wrong_code: 你輸入的認證碼並不正確！可能伺服器時間和你手機不一致，請檢查你手機的時鐘，或與本站管理員聯絡。
   users:
