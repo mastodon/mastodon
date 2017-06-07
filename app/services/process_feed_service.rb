@@ -63,11 +63,7 @@ class ProcessFeedService < BaseService
         return status unless just_created
 
         if verb == :share
-          if original_status.reblog?
-            status.reblog = original_status.reblog
-          else
-            status.reblog = original_status
-          end
+          status.reblog = original_status.reblog? ? original_status.reblog : original_status
         end
 
         status.thread = find_status(thread(@xml).first) if thread?(@xml)
