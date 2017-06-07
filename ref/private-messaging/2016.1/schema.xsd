@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema targetNamespace="https://raw.githubusercontent.com/Gargron/mastodon/master/ref/private-messaging/2016.1/schema.xsd"
+    elementFormDefault="qualified"
+    xmlns:atom="http://www.w3.org/2005/Atom"
+    xmlns="https://raw.githubusercontent.com/Gargron/mastodon/master/ref/private-messaging/2016.1/schema.xsd"
+    xmlns:mstns="https://raw.githubusercontent.com/Gargron/mastodon/master/ref/private-messaging/2016.1/schema.xsd"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+>
+
+  <!--
+    This element is expected to appear within an Atom feed element.
+  -->
+  <xs:element name="publicKeyUri" type="xs:string" />
+
+  <!--
+    This element is expected to appear within an Atom entry element.
+  -->
+  <xs:element name="private">
+    <xs:complexType>
+      <xs:sequence minOccurs="1" maxOccurs="1">
+        <xs:element name="encryptedContentBase64">
+          <xs:complexType>
+            <xs:simpleContent>
+              <xs:extension base="xs:base64Binary">
+                <xs:attribute name="encoding" type="xs:string" use="required" />
+              </xs:extension>
+            </xs:simpleContent>
+          </xs:complexType>
+        </xs:element>
+        <xs:sequence minOccurs="0" maxOccurs="unbounded">
+          <xs:element name="recipient">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="canonicalUri" type="xs:anyURI" />
+                <xs:element name="publicKeyUri" type="xs:anyURI" />
+                <xs:element name="encryptedSymmetricKey">
+                  <xs:complexType>
+                    <xs:simpleContent>
+                      <xs:extension base="xs:base64Binary">
+                        <xs:attribute name="format" type="xs:string" use="required" />
+                      </xs:extension>
+                    </xs:simpleContent>
+                  </xs:complexType>
+                </xs:element>
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:sequence>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  
+</xs:schema>
