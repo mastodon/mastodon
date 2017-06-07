@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe ApiController, type: :controller do
+describe Api::BaseController do
   controller do
     def success
       head 200
@@ -10,7 +10,7 @@ describe ApiController, type: :controller do
   end
 
   before do
-    routes.draw { post 'success' => 'api#success' }
+    routes.draw { post 'success' => 'api/base#success' }
   end
 
   it 'does not protect from forgery' do

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class ApiController < ApplicationController
+class Api::BaseController < ApplicationController
   DEFAULT_STATUSES_LIMIT = 20
   DEFAULT_ACCOUNTS_LIMIT = 40
 
