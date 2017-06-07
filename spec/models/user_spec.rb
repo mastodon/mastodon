@@ -46,7 +46,7 @@ RSpec.describe User, type: :model do
       it 'returns an array of recent users ordered by id' do
         user_1 = Fabricate(:user)
         user_2 = Fabricate(:user)
-        expect(User.recent).to match_array([user_2, user_1])
+        expect(User.recent).to eq [user_2, user_1]
       end
     end
 
@@ -92,7 +92,7 @@ RSpec.describe User, type: :model do
         ]
         Fabricate(:user, current_sign_in_ip: '0.0.0.0', last_sign_in_ip: '0.0.0.0')
 
-        expect(User.with_recent_ip_address('0.0.0.42')).to eq specifieds
+        expect(User.with_recent_ip_address('0.0.0.42')).to match_array(specifieds)
       end
     end
   end
