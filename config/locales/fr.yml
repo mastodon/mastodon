@@ -110,13 +110,6 @@ fr:
         undo: Annuler
       title: Blocage de domaines
       undo: Annuler
-    subscriptions:
-      callback_url: URL de rappel
-      confirmed: Confirmé
-      expires_in: Expire dans
-      last_delivery: Dernière livraison
-      title: PubSubHubbub
-      topic: Sujet
     reports:
       comment:
         label: Commentaire
@@ -157,6 +150,13 @@ fr:
         title: Description étendue du site
       site_title: Titre du site
       title: Paramètres du site
+    subscriptions:
+      callback_url: URL de rappel
+      confirmed: Confirmé
+      expires_in: Expire dans
+      last_delivery: Dernière livraison
+      title: PubSubHubbub
+      topic: Sujet
     title: Administration
   application_mailer:
     settings: 'Changer les préférences courriel : %{link}'
@@ -298,7 +298,7 @@ fr:
     generate_recovery_codes: Générer les codes de récupération
     instructions_html: "<strong>Scannez ce QR code grâce à Google Authenticator, Authy ou une application similaire sur votre téléphone</strong>. Désormais, cette application générera des jetons que vous devrez saisir à chaque connexion."
     lost_recovery_codes: Les codes de récupération vous permettent de retrouver les accès à votre comptre si vous perdez votre téléphone. Si vous perdez vos codes de récupération, vous pouvez les générer à nouveau ici. Vos anciens codes de récupération seront invalidés.
-    manual_instructions: "Si vous ne pouvez pas scanner ce QR code et devez l'entrer manuellement, voici le secret en clair :"
+    manual_instructions: 'Si vous ne pouvez pas scanner ce QR code et devez l''entrer manuellement, voici le secret en clair :'
     recovery_codes_regenerated: Codes de récupération régénérés avec succès
     recovery_instructions: Si vous perdez l'accès à votre téléphone, vous pouvez utiliser un des codes de récupération ci-dessous pour récupérer l'accès à votre compte. Conservez les codes de récupération en toute sécurité, par exemple, en les imprimant et en les stockant avec vos autres documents importants.
     setup: Installer

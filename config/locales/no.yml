@@ -131,13 +131,6 @@
       account_count: Kjente kontoer
       domain_name: Domene
       title: Kjente instanser
-    subscriptions:
-      callback_url: Callback-URL
-      confirmed: Bekreftet
-      expires_in: Utløper om
-      last_delivery: Siste levering
-      title: PubSubHubbub
-      topic: Emne
     reports:
       comment:
         label: Kommentar
@@ -179,6 +172,13 @@
         title: Utvidet nettstedsinformasjon
       site_title: Nettstedstittel
       title: Nettstedsinnstillinger
+    subscriptions:
+      callback_url: Callback-URL
+      confirmed: Bekreftet
+      expires_in: Utløper om
+      last_delivery: Siste levering
+      title: PubSubHubbub
+      topic: Emne
     title: Administrasjon
   application_mailer:
     settings: 'Endre foretrukne e-postinnstillinger: %{link}'
@@ -256,7 +256,7 @@
       following: Følgeliste
       muting: Dempeliste
     upload: Opplastning
-  landing_strip_html: <strong>%{name}</strong> er en bruker på %{link_to_root_path}. Du kan følge dem eller kommunisere med dem hvis du har en konto hvor som helst i fediverset.
+  landing_strip_html: "<strong>%{name}</strong> er en bruker på %{link_to_root_path}. Du kan følge dem eller kommunisere med dem hvis du har en konto hvor som helst i fediverset."
   landing_strip_signup_html: Hvis du ikke har en konto så kan du <a href="%{sign_up_path}">registrere deg her</a>.
   media_attachments:
     validations:

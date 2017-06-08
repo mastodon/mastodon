@@ -134,13 +134,6 @@ ca:
       account_count: Comptes coneguts
       domain_name: Domini
       title: Instàncies conegudes
-    subscriptions:
-      callback_url: Callback URL
-      confirmed: Confirmat
-      expires_in: Expira en
-      last_delivery: Últim lliurament
-      title: PubSubHubbub
-      topic: Tòpic
     reports:
       are_you_sure: Estàs segur?
       comment:
@@ -186,6 +179,13 @@ ca:
         title: Descripció estesa del lloc
       site_title: Títol del lloc
       title: Configuració del lloc
+    subscriptions:
+      callback_url: Callback URL
+      confirmed: Confirmat
+      expires_in: Expira en
+      last_delivery: Últim lliurament
+      title: PubSubHubbub
+      topic: Tòpic
     title: Administració
   application_mailer:
     settings: 'Canviar preferències de correu: %{link}'
@@ -263,7 +263,7 @@ ca:
       following: Llista de seguits
       muting: Llista d'apagats
     upload: Carregar
-  landing_strip_html: <strong>%{name}</strong> és un usuari/a de %{link_to_root_path}. Pots seguir-lo/la o interactuar amb ell/a si tens un compte a qualsevol node del fediverse.
+  landing_strip_html: "<strong>%{name}</strong> és un usuari/a de %{link_to_root_path}. Pots seguir-lo/la o interactuar amb ell/a si tens un compte a qualsevol node del fediverse."
   landing_strip_signup_html: Si no en tens, pots <a href="%{sign_up_path}">registrar-te aquí</a>.
   media_attachments:
     validations:

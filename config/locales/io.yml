@@ -118,13 +118,6 @@ io:
       account_count: Known accounts
       domain_name: Domain
       title: Known Instances
-    subscriptions:
-      callback_url: Callback URL
-      confirmed: Confirmed
-      expires_in: Expires in
-      last_delivery: Last delivery
-      title: PubSubHubbub
-      topic: Topic
     reports:
       comment:
         label: Comment
@@ -165,6 +158,13 @@ io:
         title: Extended site description
       site_title: Site title
       title: Site Settings
+    subscriptions:
+      callback_url: Callback URL
+      confirmed: Confirmed
+      expires_in: Expires in
+      last_delivery: Last delivery
+      title: PubSubHubbub
+      topic: Topic
     title: Administration
   application_mailer:
     settings: 'Chanjar la retpost-mesajala preferi: %{link}'
@@ -228,7 +228,7 @@ io:
       following: Listo de sequati
       muting: Muting list
     upload: Kargar
-  landing_strip_html: <strong>%{name}</strong> esas uzero en %{link_to_root_path}. Tu povas sequar lu o komunikar kun lu, se tu havas konto irgaloke en la Fediverse.
+  landing_strip_html: "<strong>%{name}</strong> esas uzero en %{link_to_root_path}. Tu povas sequar lu o komunikar kun lu, se tu havas konto irgaloke en la Fediverse."
   landing_strip_signup_html: Se tu ne havas, tu povas <a href="%{sign_up_path}">membreskar hike</a>.
   media_attachments:
     validations:
@@ -245,19 +245,19 @@ io:
         one: "1 nova savigo depos tua lasta vizito \U0001F418"
         other: "%{count} nova savigi depos tua lasta vizito \U0001F418"
     favourite:
-      body: '%{name} favoris tua mesajo:'
+      body: "%{name} favoris tua mesajo:"
       subject: "%{name} favoris tua mesajo"
     follow:
       body: "%{name} sequeskas tu!"
       subject: "%{name} sequeskas tu"
     follow_request:
       body: "%{name} demandis sequar tu"
-      subject: '%{name} demandis sequar tu'
+      subject: "%{name} demandis sequar tu"
     mention:
-      body: '%{name} mencionis tu en:'
-      subject: '%{name} mencionis tu'
+      body: "%{name} mencionis tu en:"
+      subject: "%{name} mencionis tu"
     reblog:
-      body: '%{name} diskonocigis tua mesajo:'
+      body: "%{name} diskonocigis tua mesajo:"
       subject: "%{name} diskonocigis tua mesajo"
   pagination:
     next: Sequanta

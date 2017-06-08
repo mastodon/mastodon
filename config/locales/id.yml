@@ -48,7 +48,7 @@ id:
         name: "%{account_name} membuat catatan."
     outbox:
       name: "%{account_name} Outbox"
-      summary: "Koleksi aktivitas dari pengguna %{account_name}."
+      summary: Koleksi aktivitas dari pengguna %{account_name}.
   admin:
     accounts:
       are_you_sure: Anda yakin?
@@ -129,13 +129,6 @@ id:
       account_count: Akun yang diketahui
       domain_name: Domain
       title: Server yang diketahui
-    subscriptions:
-      callback_url: Callback URL
-      confirmed: Dikonfirmasi
-      expires_in: Kadaluarsa dalam
-      last_delivery: Terakhir dikirim
-      title: PubSubHubbub
-      topic: Topik
     reports:
       comment:
         label: Komentar
@@ -177,6 +170,13 @@ id:
         title: Deskripsi situs tambahan
       site_title: Judul Situs
       title: Pengaturan situs
+    subscriptions:
+      callback_url: Callback URL
+      confirmed: Dikonfirmasi
+      expires_in: Kadaluarsa dalam
+      last_delivery: Terakhir dikirim
+      title: PubSubHubbub
+      topic: Topik
     title: Administrasi
   application_mailer:
     settings: 'Ubah pilihan email: %{link}'
@@ -253,7 +253,7 @@ id:
       following: Daftar diikuti
       muting: Daftar didiamkan
     upload: Unggah
-  landing_strip_html: <strong>%{name}</strong> adalah pengguna di %{link_to_root_path}.Anda dapat mengikuti mereka atau berinteraksi dengan mereka jika anda memiliki akun di fediverse.
+  landing_strip_html: "<strong>%{name}</strong> adalah pengguna di %{link_to_root_path}.Anda dapat mengikuti mereka atau berinteraksi dengan mereka jika anda memiliki akun di fediverse."
   landing_strip_signup_html: Jika anda tidak punya, anda bisa <a href="%{sign_up_path}">daftar disini</a>.
   media_attachments:
     validations:
@@ -312,7 +312,6 @@ id:
       private_long: Hanya tampilkan ke pengikut
       public: Publik
       public_long: Bisa dilihat semua orang
-      unlisted: Tidak Tercantum
       unlisted: Bisa dilihat semua orang, tapi tidak ditampilkan di linimasa publik
   stream_entries:
     click_to_show: Klik untuk menampilkan

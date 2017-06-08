@@ -113,13 +113,6 @@ uk:
         undo: Відмінити
       title: Доменні блокування
       undo: Відмінити
-    subscriptions:
-      callback_url: Callback URL
-      confirmed: Підтверджено
-      expires_in: Спливає через
-      last_delivery: Остання доставка
-      title: PubSubHubbub
-      topic: Тема
     reports:
       comment:
         label: Коментар
@@ -160,6 +153,13 @@ uk:
         title: Розширений опис сайту
       site_title: Назва сайту
       title: Налаштування сайту
+    subscriptions:
+      callback_url: Callback URL
+      confirmed: Підтверджено
+      expires_in: Спливає через
+      last_delivery: Остання доставка
+      title: PubSubHubbub
+      topic: Тема
     title: Адміністрування
   application_mailer:
     settings: 'Змінити налаштування email: %{link}'
@@ -236,7 +236,7 @@ uk:
       following: Підписки
       muting: Список глушення
     upload: Завантажити
-  landing_strip_html: <strong>%{name}</strong> - користувач на %{link_to_root_path}. Ви можете підписатися на нього/неї та спілкуватися з ним/нею, якщо у Вас є акаунт на будь-якій інстанції загальної мережі.
+  landing_strip_html: "<strong>%{name}</strong> - користувач на %{link_to_root_path}. Ви можете підписатися на нього/неї та спілкуватися з ним/нею, якщо у Вас є акаунт на будь-якій інстанції загальної мережі."
   landing_strip_signup_html: Якщо його у Вас немає, Ви можете <a href="%{sign_up_path}">зареєструватися тут</a>.
   media_attachments:
     validations:
