@@ -9,8 +9,9 @@ export function openModal(type, props) {
   };
 };
 
-export function closeModal() {
+export function closeModal({ skipGoingBack = false } = { }) {
   return {
     type: MODAL_CLOSE,
+    skipGoingBack,
   };
 };
