@@ -5,8 +5,8 @@ class Api::V1::StatusesController < Api::BaseController
 
   before_action :authorize_if_got_token, except:            [:create, :destroy, :reblog, :unreblog, :favourite, :unfavourite, :mute, :unmute]
   before_action -> { doorkeeper_authorize! :write }, only:  [:create, :destroy, :reblog, :unreblog, :favourite, :unfavourite, :mute, :unmute]
-  before_action :require_user!, except:  [:show, :context, :card, :reblogged_by, :favourited_by]
-  before_action :set_status, only:       [:show, :context, :card, :reblogged_by, :favourited_by, :mute, :unmute]
+  before_action :require_user!, except:  [:show, :context, :card]
+  before_action :set_status, only:       [:show, :context, :card, :mute, :unmute]
   before_action :set_conversation, only: [:mute, :unmute]
 
   respond_to :json
