@@ -54,16 +54,12 @@ class Account < ApplicationRecord
   validates :username, presence: true
 
   # Remote user validations
-  with_options unless: :local? do
-    validates :username, uniqueness: { scope: :domain, case_sensitive: true }, if: :username_changed?
-  end
+  validates :username, uniqueness: { scope: :domain, case_sensitive: true }, if: -> { !local? && username_changed? }
 
   # Local user validations
-  with_options if: :local? do
-    validates :username, format: { with: /\A[a-z0-9_]+\z/i }, uniqueness: { scope: :domain, case_sensitive: false }, length: { maximum: 30 }, unreserved: true, if: :username_changed?
-    validates :display_name, length: { maximum: 30 }, if: :display_name_changed?
-    validates :note, length: { maximum: 160 }, if: :note_changed?
-  end
+  validates :username, format: { with: /\A[a-z0-9_]+\z/i }, uniqueness: { scope: :domain, case_sensitive: false }, length: { maximum: 30 }, unreserved: true, if: -> { local? && username_changed? }
+  validates :display_name, length: { maximum: 30 }, if: -> { local? && display_name_changed? }
+  validates :note, length: { maximum: 160 }, if: -> { local? && note_changed? }
 
   # Timelines
   has_many :stream_entries, inverse_of: :account, dependent: :destroy
