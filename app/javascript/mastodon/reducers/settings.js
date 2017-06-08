@@ -50,12 +50,14 @@ const initialState = Immutable.Map({
 
   community: Immutable.Map({
     regex: Immutable.Map({
+      mode: false,
       body: '',
     }),
   }),
 
   public: Immutable.Map({
     regex: Immutable.Map({
+      mode: false,
       body: '',
     }),
   }),
