@@ -24,7 +24,7 @@ const messages = defineMessages({
   blocks: { id: 'navigation_bar.blocks', defaultMessage: 'Blocked users' },
   mutes: { id: 'navigation_bar.mutes', defaultMessage: 'Muted users' },
   info: { id: 'navigation_bar.info', defaultMessage: 'Extended information' },
-  library: { id: 'navigation_bar.library', defaultMessage: 'Library (Wiki)' }
+  library: { id: 'navigation_bar.library', defaultMessage: 'Library (Wiki)' },
 });
 
 const mapStateToProps = state => ({
