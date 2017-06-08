@@ -22,11 +22,22 @@ class Api::V1::Statuses::FavouritedByAccountsController < Api::BaseController
   private
 
   def load_accounts
-    @accounts = Account.includes(:favourites)
-                       .references(:favourites)
-                       .where(favourites: { status_id: @status.id })
-                       .merge(Favourite.paginate_by_max_id(limit_param(DEFAULT_ACCOUNTS_LIMIT), params[:max_id], params[:since_id]))
-                       .to_a
+    default_accounts.merge(paginated_favourites).to_a
+  end
+
+  def default_accounts
+    Account
+      .includes(:favourites)
+      .references(:favourites)
+      .where(favourites: { status_id: @status.id })
+  end
+
+  def paginated_favourites
+    Favourite.paginate_by_max_id(
+      limit_param(DEFAULT_ACCOUNTS_LIMIT),
+      params[:max_id],
+      params[:since_id]
+    )
   end
 
   def set_status

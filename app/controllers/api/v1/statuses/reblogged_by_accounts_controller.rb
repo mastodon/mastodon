@@ -22,11 +22,19 @@ class Api::V1::Statuses::RebloggedByAccountsController < Api::BaseController
   private
 
   def load_accounts
-    @accounts = Account.includes(:statuses)
-                       .references(:statuses)
-                       .merge(Status.where(reblog_of_id: @status.id)
-                                    .paginate_by_max_id(limit_param(DEFAULT_ACCOUNTS_LIMIT), params[:max_id], params[:since_id]))
-                       .to_a
+    default_accounts.merge(paginated_statuses).to_a
+  end
+
+  def default_accounts
+    Account.includes(:statuses).references(:statuses)
+  end
+
+  def paginated_statuses
+    Status.where(reblog_of_id: @status.id).paginate_by_max_id(
+      limit_param(DEFAULT_ACCOUNTS_LIMIT),
+      params[:max_id],
+      params[:since_id]
+    )
   end
 
   def set_status
