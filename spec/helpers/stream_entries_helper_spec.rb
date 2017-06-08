@@ -219,5 +219,9 @@ RSpec.describe StreamEntriesHelper, type: :helper do
     it 'is true if right to left characters are greater than 1/3 of total text' do
       expect(helper).to be_rtl 'aaݟ'
     end
+
+    it 'is true if right to left characters are greater than 1/3 of total text after removing mentions, Emails and HTML' do
+      expect(helper).to be_rtl 'mastodon@something.social <span><a href="https://nothing.org">goooooogle.com</a></span> @u1 @_2 @U3@space @4_fathers עברית שפה יפה, תתעלמו מהלטינית'
+    end
   end
 end

@@ -23,5 +23,12 @@ export function isRtl(text) {
     return false;
   }
 
+  // Remove mentions before counting characters to decide RTL ratio
+  text = text.replace(/@[0-9A-Za-z_@]+/g, '');
+  // Remove Email addresses
+  // text = text.replace(/^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/, '');
+  // Naiive catcher for URLs
+  text = text.replace(/[-A-Za-z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-A-Za-z0-9@:%_\+.~#?&//=]*)/g, '');
+
   return matches.length / text.trim().length > 0.3;
 };
