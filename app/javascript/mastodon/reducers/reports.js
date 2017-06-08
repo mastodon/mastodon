@@ -5,7 +5,7 @@ import {
   REPORT_SUBMIT_FAIL,
   REPORT_CANCEL,
   REPORT_STATUS_TOGGLE,
-  REPORT_COMMENT_CHANGE
+  REPORT_COMMENT_CHANGE,
 } from '../actions/reports';
 import Immutable from 'immutable';
 
@@ -14,8 +14,8 @@ const initialState = Immutable.Map({
     isSubmitting: false,
     account_id: null,
     status_ids: Immutable.Set(),
-    comment: ''
-  })
+    comment: '',
+  }),
 });
 
 export default function reports(state = initialState, action) {

@@ -9,7 +9,7 @@ const LoadMore = ({ onClick }) => (
 );
 
 LoadMore.propTypes = {
-  onClick: PropTypes.func
+  onClick: PropTypes.func,
 };
 
 export default LoadMore;

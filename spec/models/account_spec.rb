@@ -261,19 +261,43 @@ RSpec.describe Account, type: :model do
   end
 
   describe '.triadic_closures' do
-    it 'finds accounts you dont follow which are followed by accounts you do follow' do
-      me = Fabricate(:account)
-      friend = Fabricate(:account)
-      friends_friend = Fabricate(:account)
+    subject { described_class.triadic_closures(me) }
+
+    let!(:me) { Fabricate(:account) }
+    let!(:friend) { Fabricate(:account) }
+    let!(:friends_friend) { Fabricate(:account) }
+    let!(:both_follow) { Fabricate(:account) }
+
+    before do
       me.follow!(friend)
       friend.follow!(friends_friend)
 
-      both_follow = Fabricate(:account)
       me.follow!(both_follow)
       friend.follow!(both_follow)
+    end
 
-      results = Account.triadic_closures(me)
-      expect(results).to eq [friends_friend]
+    it 'finds accounts you dont follow which are followed by accounts you do follow' do
+      is_expected.to eq [friends_friend]
+    end
+
+    context 'when you block account' do
+      before do
+        me.block!(friends_friend)
+      end
+
+      it 'rejects blocked accounts' do
+        is_expected.to be_empty
+      end
+    end
+
+    context 'when you mute account' do
+      before do
+        me.mute!(friends_friend)
+      end
+
+      it 'rejects muted accounts' do
+        is_expected.to be_empty
+      end
     end
   end
 

@@ -4,18 +4,21 @@ import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import Permalink from '../../../components/permalink';
-import { TransitionMotion, spring } from 'react-motion';
+import TransitionMotion from 'react-motion/lib/TransitionMotion';
+import spring from 'react-motion/lib/spring';
 import ComposeForm from '../../compose/components/compose_form';
 import Search from '../../compose/components/search';
 import NavigationBar from '../../compose/components/navigation_bar';
 import ColumnHeader from './column_header';
 import Immutable from 'immutable';
 
+const noop = () => { };
+
 const messages = defineMessages({
   home_title: { id: 'column.home', defaultMessage: 'Home' },
   notifications_title: { id: 'column.notifications', defaultMessage: 'Notifications' },
   local_title: { id: 'column.community', defaultMessage: 'Local timeline' },
-  federated_title: { id: 'column.public', defaultMessage: 'Federated timeline' }
+  federated_title: { id: 'column.public', defaultMessage: 'Federated timeline' },
 });
 
 const PageOne = ({ acct, domain }) => (
@@ -34,7 +37,7 @@ const PageOne = ({ acct, domain }) => (
 
 PageOne.propTypes = {
   acct: PropTypes.string.isRequired,
-  domain: PropTypes.string.isRequired
+  domain: PropTypes.string.isRequired,
 };
 
 const PageTwo = ({ me }) => (
@@ -48,14 +51,14 @@ const PageTwo = ({ me }) => (
         suggestions={Immutable.List()}
         mentionedDomains={[]}
         spoiler={false}
-        onChange={() => {}}
-        onSubmit={() => {}}
-        onPaste={() => {}}
-        onPickEmoji={() => {}}
-        onChangeSpoilerText={() => {}}
-        onClearSuggestions={() => {}}
-        onFetchSuggestions={() => {}}
-        onSuggestionSelected={() => {}}
+        onChange={noop}
+        onSubmit={noop}
+        onPaste={noop}
+        onPickEmoji={noop}
+        onChangeSpoilerText={noop}
+        onClearSuggestions={noop}
+        onFetchSuggestions={noop}
+        onSuggestionSelected={noop}
       />
     </div>
 
@@ -72,10 +75,10 @@ const PageThree = ({ me, domain }) => (
     <div className='figure non-interactive'>
       <Search
         value=''
-        onChange={() => {}}
-        onSubmit={() => {}}
-        onClear={() => {}}
-        onShow={() => {}}
+        onChange={noop}
+        onSubmit={noop}
+        onClear={noop}
+        onShow={noop}
       />
 
       <div className='pseudo-drawer'>
@@ -90,7 +93,7 @@ const PageThree = ({ me, domain }) => (
 
 PageThree.propTypes = {
   me: ImmutablePropTypes.map.isRequired,
-  domain: PropTypes.string.isRequired
+  domain: PropTypes.string.isRequired,
 };
 
 const PageFour = ({ domain, intl }) => (
@@ -125,7 +128,7 @@ const PageFour = ({ domain, intl }) => (
 
 PageFour.propTypes = {
   domain: PropTypes.string.isRequired,
-  intl: PropTypes.object.isRequired
+  intl: PropTypes.object.isRequired,
 };
 
 const PageSix = ({ admin, domain }) => {
@@ -154,38 +157,42 @@ const PageSix = ({ admin, domain }) => {
 
 PageSix.propTypes = {
   admin: ImmutablePropTypes.map,
-  domain: PropTypes.string.isRequired
+  domain: PropTypes.string.isRequired,
 };
 
 const mapStateToProps = state => ({
   me: state.getIn(['accounts', state.getIn(['meta', 'me'])]),
   admin: state.getIn(['accounts', state.getIn(['meta', 'admin'])]),
-  domain: state.getIn(['meta', 'domain'])
+  domain: state.getIn(['meta', 'domain']),
 });
 
 class OnboardingModal extends React.PureComponent {
 
-  constructor (props, context) {
-    super(props, context);
-    this.state = {
-      currentIndex: 0
-    };
-    this.handleSkip = this.handleSkip.bind(this);
-    this.handleDot = this.handleDot.bind(this);
-    this.handleNext = this.handleNext.bind(this);
-  }
+  static propTypes = {
+    onClose: PropTypes.func.isRequired,
+    intl: PropTypes.object.isRequired,
+    me: ImmutablePropTypes.map.isRequired,
+    domain: PropTypes.string.isRequired,
+    admin: ImmutablePropTypes.map,
+  };
 
-  handleSkip (e) {
+  state = {
+    currentIndex: 0,
+  };
+
+  handleSkip = (e) => {
     e.preventDefault();
     this.props.onClose();
   }
 
-  handleDot (i, e) {
+  handleDot = (e) => {
+    const i = Number(e.currentTarget.getAttribute('data-index'));
     e.preventDefault();
     this.setState({ currentIndex: i });
   }
 
-  handleNext (maxNum, e) {
+  handleNext = (e) => {
+    const maxNum = Number(e.currentTarget.getAttribute('data-length'));
     e.preventDefault();
 
     if (this.state.currentIndex < maxNum - 1) {
@@ -203,7 +210,7 @@ class OnboardingModal extends React.PureComponent {
       <PageTwo me={me} />,
       <PageThree me={me} domain={domain} />,
       <PageFour domain={domain} intl={intl} />,
-      <PageSix admin={admin} domain={domain} />
+      <PageSix admin={admin} domain={domain} />,
     ];
 
     const { currentIndex } = this.state;
@@ -212,14 +219,14 @@ class OnboardingModal extends React.PureComponent {
     let nextOrDoneBtn;
 
     if(hasMore) {
-      nextOrDoneBtn = <a href='#' onClick={this.handleNext.bind(null, pages.length)} className='onboarding-modal__nav onboarding-modal__next'><FormattedMessage id='onboarding.next' defaultMessage='Next' /></a>;
+      nextOrDoneBtn = <a href='#' data-length={pages.length} onClick={this.handleNext} className='onboarding-modal__nav onboarding-modal__next'><FormattedMessage id='onboarding.next' defaultMessage='Next' /></a>;
     } else {
-      nextOrDoneBtn = <a href='#' onClick={this.handleNext.bind(null, pages.length)} className='onboarding-modal__nav onboarding-modal__done'><FormattedMessage id='onboarding.done' defaultMessage='Done' /></a>;
+      nextOrDoneBtn = <a href='#' data-length={pages.length} onClick={this.handleNext} className='onboarding-modal__nav onboarding-modal__done'><FormattedMessage id='onboarding.done' defaultMessage='Done' /></a>;
     }
 
     const styles = pages.map((page, i) => ({
       key: `page-${i}`,
-      style: { opacity: spring(i === currentIndex ? 1 : 0) }
+      style: { opacity: spring(i === currentIndex ? 1 : 0) },
     }));
 
     return (
@@ -240,7 +247,7 @@ class OnboardingModal extends React.PureComponent {
           </div>
 
           <div className='onboarding-modal__dots'>
-            {pages.map((_, i) => <div key={i} onClick={this.handleDot.bind(null, i)} className={`onboarding-modal__dot ${i === currentIndex ? 'active' : ''}`} />)}
+            {pages.map((_, i) => <div key={i} role='button' tabIndex='0' data-index={i} onClick={this.handleDot} className={`onboarding-modal__dot ${i === currentIndex ? 'active' : ''}`} />)}
           </div>
 
           <div>
@@ -251,14 +258,6 @@ class OnboardingModal extends React.PureComponent {
     );
   }
 
-}
-
-OnboardingModal.propTypes = {
-  onClose: PropTypes.func.isRequired,
-  intl: PropTypes.object.isRequired,
-  me: ImmutablePropTypes.map.isRequired,
-  domain: PropTypes.string.isRequired,
-  admin: ImmutablePropTypes.map
 }
 
 export default connect(mapStateToProps)(injectIntl(OnboardingModal));

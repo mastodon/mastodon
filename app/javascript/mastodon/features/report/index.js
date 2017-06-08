@@ -15,7 +15,7 @@ import ColumnBackButtonSlim from '../../components/column_back_button_slim';
 const messages = defineMessages({
   heading: { id: 'report.heading', defaultMessage: 'New report' },
   placeholder: { id: 'report.placeholder', defaultMessage: 'Additional comments' },
-  submit: { id: 'report.submit', defaultMessage: 'Submit' }
+  submit: { id: 'report.submit', defaultMessage: 'Submit' },
 });
 
 const makeMapStateToProps = () => {
@@ -28,7 +28,7 @@ const makeMapStateToProps = () => {
       isSubmitting: state.getIn(['reports', 'new', 'isSubmitting']),
       account: getAccount(state, accountId),
       comment: state.getIn(['reports', 'new', 'comment']),
-      statusIds: Immutable.OrderedSet(state.getIn(['timelines', 'accounts_timelines', accountId, 'items'])).union(state.getIn(['reports', 'new', 'status_ids']))
+      statusIds: Immutable.OrderedSet(state.getIn(['timelines', 'accounts_timelines', accountId, 'items'])).union(state.getIn(['reports', 'new', 'status_ids'])),
     };
   };
 
@@ -37,11 +37,18 @@ const makeMapStateToProps = () => {
 
 class Report extends React.PureComponent {
 
-  constructor (props, context) {
-    super(props, context);
-    this.handleCommentChange = this.handleCommentChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
+  static contextTypes = {
+    router: PropTypes.object,
+  };
+
+  static propTypes = {
+    isSubmitting: PropTypes.bool,
+    account: ImmutablePropTypes.map,
+    statusIds: ImmutablePropTypes.orderedSet.isRequired,
+    comment: PropTypes.string.isRequired,
+    dispatch: PropTypes.func.isRequired,
+    intl: PropTypes.object.isRequired,
+  };
 
   componentWillMount () {
     if (!this.props.account) {
@@ -63,11 +70,11 @@ class Report extends React.PureComponent {
     }
   }
 
-  handleCommentChange (e) {
+  handleCommentChange = (e) => {
     this.props.dispatch(changeReportComment(e.target.value));
   }
 
-  handleSubmit () {
+  handleSubmit = () => {
     this.props.dispatch(submitReport());
     this.context.router.replace('/');
   }
@@ -114,18 +121,5 @@ class Report extends React.PureComponent {
   }
 
 }
-
-Report.contextTypes = {
-  router: PropTypes.object
-};
-
-Report.propTypes = {
-  isSubmitting: PropTypes.bool,
-  account: ImmutablePropTypes.map,
-  statusIds: ImmutablePropTypes.orderedSet.isRequired,
-  comment: PropTypes.string.isRequired,
-  dispatch: PropTypes.func.isRequired,
-  intl: PropTypes.object.isRequired
-};
 
 export default connect(makeMapStateToProps)(injectIntl(Report));

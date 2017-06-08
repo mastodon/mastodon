@@ -6,6 +6,9 @@ class RegenerationWorker
   sidekiq_options queue: 'pull', backtrace: true, unique: :until_executed
 
   def perform(account_id, _ = :home)
-    PrecomputeFeedService.new.call(:home, Account.find(account_id))
+    account = Account.find(account_id)
+    PrecomputeFeedService.new.call(account)
+  rescue ActiveRecord::RecordNotFound
+    true
   end
 end

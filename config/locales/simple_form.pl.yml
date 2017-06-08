@@ -4,16 +4,20 @@ pl:
     hints:
       defaults:
         avatar: PNG, GIF lub JPG. Maksymalnie 2MB. Zostanie zmniejszony do 120x120px
-        display_name: Maksymalnie 30 znaków
+        display_name:
+          one: 'Pozostał <span class="name-counter">1</span> znak.'
+          other: 'Pozostało <span class="name-counter">%{count}</span> znaków'
         header: PNG, GIF lub JPG. Maksymalnie 2MB. Zostanie zmniejszony do 700x335px
         locked: Musisz akceptować obserwacje; Twoje wpisy są domyślnie widoczne tylko dla Twoich obserwujących
-        note: Maksymalnie 160 znaków
+        note:
+          one: 'Pozostał <span class="name-counter">1</span> znak.'
+          other: 'Pozostało <span class="name-counter">%{count}</span> znaków'
       imports:
         data: Plik CSV wyeksportowany z innej instancji Mastodona
       sessions:
         otp: Wprowadź kod weryfikacji dwuetapowej z telefonu lub wykorzystaj jeden z kodów zapasowych.
       user:
-        allowed_languages: Te języki będą wyświetlać się na Twojej osi czasu. Wpisy w niezaznaczonych językach nie będą widoczne.
+        filtered_languages: Wybrane języki nie będą się pojawiać na publicznych osiach czasu.
     labels:
       defaults:
         avatar: Awatar

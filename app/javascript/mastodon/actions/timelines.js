@@ -1,4 +1,4 @@
-import api, { getLinks } from '../api'
+import api, { getLinks } from '../api';
 import Immutable from 'immutable';
 
 export const TIMELINE_UPDATE  = 'TIMELINE_UPDATE';
@@ -23,7 +23,7 @@ export function refreshTimelineSuccess(timeline, statuses, skipLoading, next) {
     timeline,
     statuses,
     skipLoading,
-    next
+    next,
   };
 };
 
@@ -35,7 +35,7 @@ export function updateTimeline(timeline, status) {
       type: TIMELINE_UPDATE,
       timeline,
       status,
-      references
+      references,
     });
   };
 };
@@ -51,7 +51,7 @@ export function deleteFromTimelines(id) {
       id,
       accountId,
       references,
-      reblogOf
+      reblogOf,
     });
   };
 };
@@ -61,7 +61,7 @@ export function refreshTimelineRequest(timeline, id, skipLoading) {
     type: TIMELINE_REFRESH_REQUEST,
     timeline,
     id,
-    skipLoading
+    skipLoading,
   };
 };
 
@@ -106,7 +106,7 @@ export function refreshTimelineFail(timeline, error, skipLoading) {
     type: TIMELINE_REFRESH_FAIL,
     timeline,
     error,
-    skipLoading
+    skipLoading,
   };
 };
 
@@ -130,8 +130,8 @@ export function expandTimeline(timeline) {
       params: {
         ...params,
         max_id: lastId,
-        limit: 10
-      }
+        limit: 10,
+      },
     }).then(response => {
       const next = getLinks(response).refs.find(link => link.rel === 'next');
       dispatch(expandTimelineSuccess(timeline, response.data, next ? next.uri : null));
@@ -144,7 +144,7 @@ export function expandTimeline(timeline) {
 export function expandTimelineRequest(timeline) {
   return {
     type: TIMELINE_EXPAND_REQUEST,
-    timeline
+    timeline,
   };
 };
 
@@ -153,7 +153,7 @@ export function expandTimelineSuccess(timeline, statuses, next) {
     type: TIMELINE_EXPAND_SUCCESS,
     timeline,
     statuses,
-    next
+    next,
   };
 };
 
@@ -161,7 +161,7 @@ export function expandTimelineFail(timeline, error) {
   return {
     type: TIMELINE_EXPAND_FAIL,
     timeline,
-    error
+    error,
   };
 };
 
@@ -169,20 +169,20 @@ export function scrollTopTimeline(timeline, top) {
   return {
     type: TIMELINE_SCROLL_TOP,
     timeline,
-    top
+    top,
   };
 };
 
 export function connectTimeline(timeline) {
   return {
     type: TIMELINE_CONNECT,
-    timeline
+    timeline,
   };
 };
 
 export function disconnectTimeline(timeline) {
   return {
     type: TIMELINE_DISCONNECT,
-    timeline
+    timeline,
   };
 };

@@ -1,29 +1,32 @@
-import Mastodon from 'mastodon/containers/mastodon';
-import React from 'react';
-import ReactDOM from 'react-dom';
-import 'font-awesome/css/font-awesome.css';
-import '../styles/application.scss';
+import main from '../mastodon/main';
 
-if (!window.Intl) {
-  require('intl');
-  require('intl/locale-data/jsonp/en.js');
+const needsBasePolyfills = !(
+  window.Intl &&
+  Object.assign &&
+  Number.isNaN &&
+  window.Symbol &&
+  Array.prototype.includes
+);
+
+const needsExtraPolyfills = !(
+  window.IntersectionObserver &&
+  window.requestIdleCallback
+);
+
+// Latest version of Firefox and Safari do not have IntersectionObserver.
+// Edge does not have requestIdleCallback.
+// This avoids shipping them all the polyfills.
+if (needsBasePolyfills) {
+  Promise.all([
+    import(/* webpackChunkName: "base_polyfills" */ '../mastodon/base_polyfills'),
+    import(/* webpackChunkName: "extra_polyfills" */ '../mastodon/extra_polyfills'),
+  ]).then(main).catch(e => {
+    console.error(e); // eslint-disable-line no-console
+  });
+} else if (needsExtraPolyfills) {
+  import(/* webpackChunkName: "extra_polyfills" */ '../mastodon/extra_polyfills').then(main).catch(e => {
+    console.error(e); // eslint-disable-line no-console
+  });
+} else {
+  main();
 }
-
-window.jQuery = window.$ = require('jquery');
-window.Perf = require('react-addons-perf');
-
-require('jquery-ujs');
-require.context('../images/', true);
-
-const customContext = require.context('../../assets/stylesheets/', false);
-
-if (customContext.keys().indexOf('./custom.scss') !== -1) {
-  customContext('./custom.scss');
-}
-
-document.addEventListener('DOMContentLoaded', () => {
-  const mountNode = document.getElementById('mastodon');
-  const props = JSON.parse(mountNode.getAttribute('data-props'));
-
-  ReactDOM.render(<Mastodon {...props} />, mountNode);
-});

@@ -48,12 +48,13 @@ pt-BR:
         name: "%{account_name} criou uma nota."
     outbox:
       name: "%{account_name}'s Outbox"
-      summary: "Uma coleção de atividades do usuário %{account_name}."
+      summary: Uma coleção de atividades do usuário %{account_name}.
   admin:
     accounts:
       are_you_sure: Você tem certeza?
       confirm: Confirme
       confirmed: Confirmado
+      disable_two_factor_authentication: Desabilitar senha de 2 passos
       display_name: Nome mostrado
       domain: Domain
       edit: Editar
@@ -84,7 +85,6 @@ pt-BR:
       public: Público
       push_subscription_expires: PuSH subscription expires
       reset_password: Resetar senha
-      disable_two_factor_authentication: Desabilitar senha de 2 passos
       salmon_url: Salmon URL
       show:
         created_reports: Reports criados por esta conta
@@ -254,7 +254,8 @@ pt-BR:
       following: Lista de seguidos
       muting: Lista de silenciados
     upload: Carregar
-  landing_strip_html: <strong>%{name}</strong> is a user on %{link_to_root_path}. You can follow them or interact with them if you have an account anywhere in the fediverse. If you don't, you can <a href="%{sign_up_path}">sign up here</a>.
+  landing_strip_html: <strong>%{name}</strong> is a user on %{link_to_root_path}. You can follow them or interact with them if you have an account anywhere in the fediverse.
+  landing_strip_signup_html: If you don't, you can <a href="%{sign_up_path}">sign up here</a>.
   media_attachments:
     validations:
       images_and_video: Cannot attach a video to a status that already contains images

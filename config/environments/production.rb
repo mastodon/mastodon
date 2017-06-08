@@ -19,6 +19,11 @@ Rails.application.configure do
   # Apache or NGINX already handles this.
   config.public_file_server.enabled = ENV['RAILS_SERVE_STATIC_FILES'].present?
 
+  ActiveSupport::Logger.new(STDOUT).tap do |logger|
+    logger.formatter = config.log_formatter
+    config.logger = ActiveSupport::TaggedLogging.new(logger)
+  end
+
   # Compress JavaScripts and CSS.
   config.assets.js_compressor = Uglifier.new(mangle: false)
   # config.assets.css_compressor = :sass
@@ -44,6 +49,9 @@ Rails.application.configure do
 
   # Use a different logger for distributed setups.
   # config.logger = ActiveSupport::TaggedLogging.new(SyslogLogger.new)
+
+  # Use a different cache store in production.
+  config.cache_store = :redis_store, ENV['REDIS_URL'], REDIS_CACHE_PARAMS
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server.
   # config.action_controller.asset_host = 'http://assets.example.com'
@@ -87,6 +95,7 @@ Rails.application.configure do
 
   config.to_prepare do
     StatsD.backend = StatsD::Instrument::Backends::NullBackend.new if ENV['STATSD_ADDR'].blank?
+    Sidekiq::Logging.logger.level = Logger::WARN
   end
 
   config.action_dispatch.default_headers = {

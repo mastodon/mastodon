@@ -1,4 +1,4 @@
-import api, { getLinks } from '../api'
+import api, { getLinks } from '../api';
 import { fetchRelationships } from './accounts';
 
 export const MUTES_FETCH_REQUEST = 'MUTES_FETCH_REQUEST';
@@ -23,7 +23,7 @@ export function fetchMutes() {
 
 export function fetchMutesRequest() {
   return {
-    type: MUTES_FETCH_REQUEST
+    type: MUTES_FETCH_REQUEST,
   };
 };
 
@@ -31,14 +31,14 @@ export function fetchMutesSuccess(accounts, next) {
   return {
     type: MUTES_FETCH_SUCCESS,
     accounts,
-    next
+    next,
   };
 };
 
 export function fetchMutesFail(error) {
   return {
     type: MUTES_FETCH_FAIL,
-    error
+    error,
   };
 };
 
@@ -62,7 +62,7 @@ export function expandMutes() {
 
 export function expandMutesRequest() {
   return {
-    type: MUTES_EXPAND_REQUEST
+    type: MUTES_EXPAND_REQUEST,
   };
 };
 
@@ -70,13 +70,13 @@ export function expandMutesSuccess(accounts, next) {
   return {
     type: MUTES_EXPAND_SUCCESS,
     accounts,
-    next
+    next,
   };
 };
 
 export function expandMutesFail(error) {
   return {
     type: MUTES_EXPAND_FAIL,
-    error
+    error,
   };
 };

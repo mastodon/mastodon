@@ -9,3 +9,9 @@
   subscriptions_scheduler:
     cron: '0 5 * * *'
     class: Scheduler::SubscriptionsScheduler
+  media_cleanup_scheduler:
+    cron: '5 4 * * *'
+    class: Scheduler::MediaCleanupScheduler
+  feed_cleanup_scheduler:
+    cron: '0 0 * * *'
+    class: Scheduler::FeedCleanupScheduler

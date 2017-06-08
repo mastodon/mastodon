@@ -1,9 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Motion, spring } from 'react-motion';
+import Motion from 'react-motion/lib/Motion';
+import spring from 'react-motion/lib/spring';
 import { FormattedMessage } from 'react-intl';
 
 class UploadProgress extends React.PureComponent {
+
+  static propTypes = {
+    active: PropTypes.bool,
+    progress: PropTypes.number,
+  };
 
   render () {
     const { active, progress } = this.props;
@@ -34,10 +40,5 @@ class UploadProgress extends React.PureComponent {
   }
 
 }
-
-UploadProgress.propTypes = {
-  active: PropTypes.bool,
-  progress: PropTypes.number
-};
 
 export default UploadProgress;

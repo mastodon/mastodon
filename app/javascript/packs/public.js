@@ -1,53 +1,96 @@
 import emojify from 'mastodon/emoji';
+import { getLocale } from 'mastodon/locales';
 import { length } from 'stringz';
+import IntlRelativeFormat from 'intl-relativeformat';
+import { delegate } from 'rails-ujs';
 
-window.jQuery = window.$ = require('jquery');
-require('jquery-ujs');
 require.context('../images/', true);
 
-$(() => {
-  $.each($('.emojify'), (_, content) => {
-    const $content = $(content);
-    $content.html(emojify($content.html()));
+const { localeData } = getLocale();
+localeData.forEach(IntlRelativeFormat.__addLocaleData);
+
+function main() {
+  const locale = document.documentElement.lang;
+  const dateTimeFormat = new Intl.DateTimeFormat(locale, {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+    hour: 'numeric',
+    minute: 'numeric',
+  });
+  const relativeFormat = new IntlRelativeFormat(locale);
+
+  document.addEventListener('DOMContentLoaded', () => {
+    [].forEach.call(document.querySelectorAll('.emojify'), (content) => {
+      content.innerHTML = emojify(content.innerHTML);
+    });
+
+    [].forEach.call(document.querySelectorAll('time.formatted'), (content) => {
+      const datetime = new Date(content.getAttribute('datetime'));
+      const formattedDate = dateTimeFormat.format(datetime);
+      content.title = formattedDate;
+      content.textContent = formattedDate;
+    });
+
+    [].forEach.call(document.querySelectorAll('time.time-ago'), (content) => {
+      const datetime = new Date(content.getAttribute('datetime'));
+      content.textContent = relativeFormat.format(datetime);;
+    });
   });
 
-  $('.video-player video').on('click', e => {
-    if (e.target.paused) {
-      e.target.play();
+  delegate(document, '.video-player video', 'click', ({ target }) => {
+    if (target.paused) {
+      target.play();
     } else {
-      e.target.pause();
+      target.pause();
     }
   });
 
-  $('.media-spoiler').on('click', e => {
-    $(e.target).hide();
+  delegate(document, '.media-spoiler', 'click', ({ target }) => {
+    target.style.display = 'none';
   });
 
-  $('.webapp-btn').on('click', e => {
-    if (e.button === 0) {
-      e.preventDefault();
-      window.location.href = $(e.target).attr('href');
+  delegate(document, '.webapp-btn', 'click', ({ target, button }) => {
+    if (button !== 0) {
+      return true;
     }
+    window.location.href = target.href;
+    return false;
   });
 
-  $('.status__content__spoiler-link').on('click', e => {
-    e.preventDefault();
-    const contentEl = $(e.target).parent().parent().find('div');
-
-    if (contentEl.is(':visible')) {
-      contentEl.hide();
-      $(e.target).parent().attr('style', 'margin-bottom: 0');
+  delegate(document, '.status__content__spoiler-link', 'click', ({ target }) => {
+    const contentEl = target.parentNode.parentNode.querySelector('.e-content');
+    if (contentEl.style.display === 'block') {
+      contentEl.style.display = 'none';
+      target.parentNode.style.marginBottom = 0;
     } else {
-      contentEl.show();
-      $(e.target).parent().attr('style', null);
+      contentEl.style.display = 'block';
+      target.parentNode.style.marginBottom = null;
+    }
+    return false;
+  });
+
+  delegate(document, '.account_display_name', 'input', ({ target }) => {
+    const nameCounter = document.querySelector('.name-counter');
+    if (nameCounter) {
+      nameCounter.textContent = 30 - length(target.value);
     }
   });
 
-  $('.account_display_name').on('input', e => {
-    $('.name-counter').text(30 - length($(e.target).val()));
+  delegate(document, '.account_note', 'input', ({ target }) => {
+    const noteCounter = document.querySelector('.note-counter');
+    if (noteCounter) {
+      noteCounter.textContent = 160 - length(target.value);
+    }
   });
+}
 
-  $('.account_note').on('input', e => {
-    $('.note-counter').text(160 - length($(e.target).val()));
+if (!window.Intl) {
+  import(/* webpackChunkName: "base_polyfills" */ 'mastodon/base_polyfills').then(() => {
+    main();
+  }).catch(error => {
+    console.log(error); // eslint-disable-line no-console
   });
-});
+} else {
+  main();
+}

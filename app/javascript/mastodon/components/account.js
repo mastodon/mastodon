@@ -13,27 +13,29 @@ const messages = defineMessages({
   unfollow: { id: 'account.unfollow', defaultMessage: 'Unfollow' },
   requested: { id: 'account.requested', defaultMessage: 'Awaiting approval' },
   unblock: { id: 'account.unblock', defaultMessage: 'Unblock @{name}' },
-  unmute: { id: 'account.unmute', defaultMessage: 'Unmute @{name}' }
+  unmute: { id: 'account.unmute', defaultMessage: 'Unmute @{name}' },
 });
 
 class Account extends ImmutablePureComponent {
 
-  constructor (props, context) {
-    super(props, context);
-    this.handleFollow = this.handleFollow.bind(this);
-    this.handleBlock = this.handleBlock.bind(this);
-    this.handleMute = this.handleMute.bind(this);
-  }
+  static propTypes = {
+    account: ImmutablePropTypes.map.isRequired,
+    me: PropTypes.number.isRequired,
+    onFollow: PropTypes.func.isRequired,
+    onBlock: PropTypes.func.isRequired,
+    onMute: PropTypes.func.isRequired,
+    intl: PropTypes.object.isRequired,
+  };
 
-  handleFollow () {
+  handleFollow = () => {
     this.props.onFollow(this.props.account);
   }
 
-  handleBlock () {
+  handleBlock = () => {
     this.props.onBlock(this.props.account);
   }
 
-  handleMute () {
+  handleMute = () => {
     this.props.onMute(this.props.account);
   }
 
@@ -53,7 +55,7 @@ class Account extends ImmutablePureComponent {
       const muting  = account.getIn(['relationship', 'muting']);
 
       if (requested) {
-        buttons = <IconButton disabled={true} icon='hourglass' title={intl.formatMessage(messages.requested)} />
+        buttons = <IconButton disabled={true} icon='hourglass' title={intl.formatMessage(messages.requested)} />;
       } else if (blocking) {
         buttons = <IconButton active={true} icon='unlock-alt' title={intl.formatMessage(messages.unblock, { name: account.get('username') })} onClick={this.handleBlock} />;
       } else if (muting) {
@@ -79,15 +81,6 @@ class Account extends ImmutablePureComponent {
     );
   }
 
-}
-
-Account.propTypes = {
-  account: ImmutablePropTypes.map.isRequired,
-  me: PropTypes.number.isRequired,
-  onFollow: PropTypes.func.isRequired,
-  onBlock: PropTypes.func.isRequired,
-  onMute: PropTypes.func.isRequired,
-  intl: PropTypes.object.isRequired
 }
 
 export default injectIntl(Account);

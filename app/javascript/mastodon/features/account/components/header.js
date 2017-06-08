@@ -5,19 +5,20 @@ import emojify from '../../../emoji';
 import escapeTextContentForBrowser from 'escape-html';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import IconButton from '../../../components/icon_button';
-import { Motion, spring } from 'react-motion';
+import Motion from 'react-motion/lib/Motion';
+import spring from 'react-motion/lib/spring';
 import { connect } from 'react-redux';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
 const messages = defineMessages({
   unfollow: { id: 'account.unfollow', defaultMessage: 'Unfollow' },
   follow: { id: 'account.follow', defaultMessage: 'Follow' },
-  requested: { id: 'account.requested', defaultMessage: 'Awaiting approval' }
+  requested: { id: 'account.requested', defaultMessage: 'Awaiting approval' },
 });
 
 const makeMapStateToProps = () => {
   const mapStateToProps = (state, props) => ({
-    autoPlayGif: state.getIn(['meta', 'auto_play_gif'])
+    autoPlayGif: state.getIn(['meta', 'auto_play_gif']),
   });
 
   return mapStateToProps;
@@ -25,23 +26,21 @@ const makeMapStateToProps = () => {
 
 class Avatar extends ImmutablePureComponent {
 
-  constructor (props, context) {
-    super(props, context);
+  static propTypes = {
+    account: ImmutablePropTypes.map.isRequired,
+    autoPlayGif: PropTypes.bool.isRequired,
+  };
 
-    this.state = {
-      isHovered: false
-    };
+  state = {
+    isHovered: false,
+  };
 
-    this.handleMouseOver = this.handleMouseOver.bind(this);
-    this.handleMouseOut = this.handleMouseOut.bind(this);
-  }
-
-  handleMouseOver () {
+  handleMouseOver = () => {
     if (this.state.isHovered) return;
     this.setState({ isHovered: true });
   }
 
-  handleMouseOut () {
+  handleMouseOut = () => {
     if (!this.state.isHovered) return;
     this.setState({ isHovered: false });
   }
@@ -71,12 +70,15 @@ class Avatar extends ImmutablePureComponent {
 
 }
 
-Avatar.propTypes = {
-  account: ImmutablePropTypes.map.isRequired,
-  autoPlayGif: PropTypes.bool.isRequired
-};
-
 class Header extends ImmutablePureComponent {
+
+  static propTypes = {
+    account: ImmutablePropTypes.map,
+    me: PropTypes.number.isRequired,
+    onFollow: PropTypes.func.isRequired,
+    intl: PropTypes.object.isRequired,
+    autoPlayGif: PropTypes.bool.isRequired,
+  };
 
   render () {
     const { account, me, intl } = this.props;
@@ -95,19 +97,19 @@ class Header extends ImmutablePureComponent {
     }
 
     if (me !== account.get('id') && account.getIn(['relationship', 'followed_by'])) {
-      info = <span className='account--follows-info' style={{ position: 'absolute', top: '10px', right: '10px', opacity: '0.7', display: 'inline-block', verticalAlign: 'top', background: 'rgba(0, 0, 0, 0.4)', textTransform: 'uppercase', fontSize: '11px', fontWeight: '500', padding: '4px', borderRadius: '4px' }}><FormattedMessage id='account.follows_you' defaultMessage='Follows you' /></span>
+      info = <span className='account--follows-info'><FormattedMessage id='account.follows_you' defaultMessage='Follows you' /></span>;
     }
 
     if (me !== account.get('id')) {
       if (account.getIn(['relationship', 'requested'])) {
         actionBtn = (
-          <div style={{ position: 'absolute', top: '10px', left: '20px' }}>
+          <div className='account--action-button'>
             <IconButton size={26} disabled={true} icon='hourglass' title={intl.formatMessage(messages.requested)} />
           </div>
         );
       } else if (!account.getIn(['relationship', 'blocking'])) {
         actionBtn = (
-          <div style={{ position: 'absolute', top: '10px', left: '20px' }}>
+          <div className='account--action-button'>
             <IconButton size={26} icon={account.getIn(['relationship', 'following']) ? 'user-times' : 'user-plus'} active={account.getIn(['relationship', 'following'])} title={intl.formatMessage(account.getIn(['relationship', 'following']) ? messages.unfollow : messages.follow)} onClick={this.props.onFollow} />
           </div>
         );
@@ -123,12 +125,12 @@ class Header extends ImmutablePureComponent {
 
     return (
       <div className='account__header' style={{ backgroundImage: `url(${account.get('header')})` }}>
-        <div style={{ padding: '20px 10px' }}>
+        <div>
           <Avatar account={account} autoPlayGif={this.props.autoPlayGif} />
 
-          <span style={{ display: 'inline-block', fontSize: '20px', lineHeight: '27px', fontWeight: '500' }} className='account__header__display-name' dangerouslySetInnerHTML={displayNameHTML} />
-          <span className='account__header__username' style={{ fontSize: '14px', fontWeight: '400', display: 'block', marginBottom: '10px' }}>@{account.get('acct')} {lockedIcon}</span>
-          <div style={{ fontSize: '14px' }} className='account__header__content' dangerouslySetInnerHTML={content} />
+          <span className='account__header__display-name' dangerouslySetInnerHTML={displayNameHTML} />
+          <span className='account__header__username'>@{account.get('acct')} {lockedIcon}</span>
+          <div className='account__header__content' dangerouslySetInnerHTML={content} />
 
           {info}
           {actionBtn}
@@ -138,13 +140,5 @@ class Header extends ImmutablePureComponent {
   }
 
 }
-
-Header.propTypes = {
-  account: ImmutablePropTypes.map,
-  me: PropTypes.number.isRequired,
-  onFollow: PropTypes.func.isRequired,
-  intl: PropTypes.object.isRequired,
-  autoPlayGif: PropTypes.bool.isRequired
-};
 
 export default connect(makeMapStateToProps)(injectIntl(Header));

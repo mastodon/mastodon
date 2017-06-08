@@ -56,7 +56,10 @@ export const getAlerts = createSelector([getAlertsBase], (base) => {
       message: item.get('message'),
       title: item.get('title'),
       key: item.get('key'),
-      dismissAfter: 5000
+      dismissAfter: 5000,
+      barStyle: {
+        zIndex: 200,
+      },
     });
   });
 
@@ -66,8 +69,22 @@ export const getAlerts = createSelector([getAlertsBase], (base) => {
 export const makeGetNotification = () => {
   return createSelector([
     (_, base)             => base,
-    (state, _, accountId) => state.getIn(['accounts', accountId])
+    (state, _, accountId) => state.getIn(['accounts', accountId]),
   ], (base, account) => {
     return base.set('account', account);
   });
 };
+
+export const getAccountGallery = createSelector([
+  (state, id) => state.getIn(['timelines', 'accounts_media_timelines', id, 'items'], Immutable.List()),
+  state       => state.get('statuses'),
+], (statusIds, statuses) => {
+  let medias = Immutable.List();
+
+  statusIds.forEach(statusId => {
+    const status = statuses.get(statusId);
+    medias = medias.concat(status.get('media_attachments').map(media => media.set('status', status)));
+  });
+
+  return medias;
+});

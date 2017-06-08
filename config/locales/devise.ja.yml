@@ -8,7 +8,7 @@ ja:
     failure:
       already_authenticated: 既にログイン済みです。
       inactive: あなたのアカウントはまだ有効化されていません。
-      invalid: '%{authentication_keys}かパスワードが誤っています'
+      invalid: '%{authentication_keys}かパスワードが誤っています。'
       last_attempt: あと1回失敗するとアカウントがロックされます。
       locked: アカウントはロックされました。
       not_found_in_database: '%{authentication_keys}かパスワードが誤っています'
@@ -42,7 +42,7 @@ ja:
       update_needs_confirmation: アカウント情報の更新に成功しました。しかし、メールアドレスの確認が必要です。送信されたメール内のリンクをクリックしてメールアドレスを確認してください。
       updated: アカウント情報の更新に成功しました。
     sessions:
-      already_signed_out: ログアウトしました。
+      already_signed_out: 既にログアウトしています。
       signed_in: ログインしました。
       signed_out: ログアウトしました。
     unlocks:
@@ -54,8 +54,8 @@ ja:
       already_confirmed: は確認されました。ログインを試してください。
       confirmation_period_expired: '%{period}以内に確認が必要です。再度試してください。'
       expired: は期限切れです。再度試してください。
-      not_found: 見つかりません
-      not_locked: ロックされていません
+      not_found: 見つかりません。
+      not_locked: ロックされていません。
       not_saved:
         one: 'エラーが発生したため、%{resource}の保存に失敗しました。'
         other: "%{count}個のエラーが発生したため、保存に失敗しました。 %{resource}"
