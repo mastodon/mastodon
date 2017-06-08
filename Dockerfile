@@ -3,8 +3,10 @@ FROM ruby:2.4.1-alpine
 LABEL maintainer="https://github.com/tootsuite/mastodon" \
       description="A GNU Social-compatible microblogging server"
 
-ENV UID=991 GID=991 \
-    RAILS_SERVE_STATIC_FILES=true \
+ARG UID=991 
+ARG GID=991
+
+ENV RAILS_SERVE_STATIC_FILES=true \
     RAILS_ENV=production NODE_ENV=production
 
 EXPOSE 3000 4000
@@ -45,10 +47,12 @@ RUN bundle install --deployment --without test development \
 
 COPY . /mastodon
 
-COPY docker_entrypoint.sh /usr/local/bin/run
-
-RUN chmod +x /usr/local/bin/run
-
 VOLUME /mastodon/public/system /mastodon/public/assets /mastodon/public/packs
 
-ENTRYPOINT ["/usr/local/bin/run"]
+RUN addgroup -g ${GID} mastodon \
+ && adduser -h /mastodon -s /bin/sh -D -G mastodon -u ${UID} mastodon \
+ && find /mastodon -path /mastodon/public/system -prune -o -not -user mastodon -not -group mastodon -print0 | xargs -0 chown -f mastodon:mastodon
+
+USER mastodon
+
+ENTRYPOINT /sbin/tini -- "$@"
