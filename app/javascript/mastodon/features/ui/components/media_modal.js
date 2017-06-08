@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactSwipeable from 'react-swipeable';
 import LoadingIndicator from '../../../components/loading_indicator';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
@@ -84,7 +85,9 @@ class MediaModal extends ImmutablePureComponent {
 
         <div className='media-modal__content'>
           <IconButton className='media-modal__close' title={intl.formatMessage(messages.close)} icon='times' onClick={onClose} size={16} />
-          {content}
+          <ReactSwipeable onSwipedRight={this.handlePrevClick} onSwipedLeft={this.handleNextClick}>
+            {content}
+          </ReactSwipeable>
         </div>
 
         {rightNav}
