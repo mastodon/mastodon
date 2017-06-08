@@ -13,6 +13,10 @@ class LanguageDetector
     detected_language_code || default_locale.to_sym
   end
 
+  def prepared_text
+    simplified_text.strip
+  end
+
   private
 
   def detected_language_code
@@ -20,18 +24,21 @@ class LanguageDetector
   end
 
   def result
-    @result ||= @identifier.find_language(text_without_urls)
+    @result ||= @identifier.find_language(prepared_text)
   end
 
   def detected_language_reliable?
     result.reliable?
   end
 
-  def text_without_urls
+  def simplified_text
     text.dup.tap do |new_text|
       URI.extract(new_text).each do |url|
         new_text.gsub!(url, '')
       end
+      new_text.gsub!(Account::MENTION_RE, '')
+      new_text.gsub!(Tag::HASHTAG_RE, '')
+      new_text.gsub!(/\s+/, ' ')
     end
   end
 

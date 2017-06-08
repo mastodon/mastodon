@@ -47,7 +47,7 @@ class User < ApplicationRecord
   accepts_nested_attributes_for :account
 
   validates :locale, inclusion: I18n.available_locales.map(&:to_s), if: :locale?
-  validates :email, email: true
+  validates :email, email: true, if: :email_changed?
 
   scope :recent,    -> { order(id: :desc) }
   scope :admins,    -> { where(admin: true) }
@@ -57,6 +57,11 @@ class User < ApplicationRecord
   scope :with_recent_ip_address, ->(value) { where(arel_table[:current_sign_in_ip].eq(value).or(arel_table[:last_sign_in_ip].eq(value))) }
 
   before_validation :sanitize_languages
+
+  # This avoids a deprecation warning from Rails 5.1
+  # It seems possible that a future release of devise-two-factor will
+  # handle this itself, and this can be removed from our User class.
+  attribute :otp_secret
 
   def confirmed?
     confirmed_at.present?
@@ -68,10 +73,6 @@ class User < ApplicationRecord
     save!
   end
 
-  def send_devise_notification(notification, *args)
-    devise_mailer.send(notification, self, *args).deliver_later
-  end
-
   def setting_default_privacy
     settings.default_privacy || (account.locked? ? 'private' : 'public')
   end
@@ -80,8 +81,18 @@ class User < ApplicationRecord
     settings.boost_modal
   end
 
+  def setting_delete_modal
+    settings.delete_modal
+  end
+
   def setting_auto_play_gif
     settings.auto_play_gif
+  end
+
+  protected
+
+  def send_devise_notification(notification, *args)
+    devise_mailer.send(notification, self, *args).deliver_later
   end
 
   private

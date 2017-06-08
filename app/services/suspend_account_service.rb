@@ -23,7 +23,7 @@ class SuspendAccountService < BaseService
       @account.notifications,
       @account.favourites,
       @account.active_relationships,
-      @account.passive_relationships
+      @account.passive_relationships,
     ].each do |association|
       destroy_all(association)
     end

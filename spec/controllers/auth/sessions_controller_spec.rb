@@ -92,6 +92,30 @@ RSpec.describe Auth::SessionsController, type: :controller do
           expect(flash[:alert]).to eq(I18n.t('devise.failure.unconfirmed', locale: accept_language))
         end
       end
+
+      context "logging in from the user's page" do
+        before do
+          allow(controller).to receive(:single_user_mode?).and_return(single_user_mode)
+          allow(controller).to receive(:stored_location_for).with(:user).and_return("/@#{user.account.username}")
+          post :create, params: { user: { email: user.email, password: user.password } }
+        end
+
+        context "in single user mode" do
+          let(:single_user_mode) { true }
+
+          it 'redirects to home' do
+            expect(response).to redirect_to(root_path)
+          end
+        end
+
+        context "in non-single user mode" do
+          let(:single_user_mode) { false }
+
+          it "redirects back to the user's page" do
+            expect(response).to redirect_to(short_account_path(username: user.account))
+          end
+        end
+      end
     end
 
     context 'using two-factor authentication' do

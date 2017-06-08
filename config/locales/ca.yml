@@ -7,7 +7,7 @@ ca:
     business_email: 'Correu de negocis:'
     closed_registrations: Els registres estan actualment tancats en aquesta instància.
     contact: Contacte
-    description_headline: "Què es %{domain}?"
+    description_headline: Què es %{domain}?
     domain_count_after: altres instàncies
     domain_count_before: Connectat a
     features:
@@ -34,7 +34,7 @@ ca:
     follow: Seguir
     followers: Seguidors
     following: Seguint
-    nothing_here: "No hi ha res aquí!"
+    nothing_here: No hi ha res aquí!
     people_followed_by: Usuaris a qui %{name} segueix
     people_who_follow: Usuaris que segueixn a %{name}
     posts: Toots
@@ -48,7 +48,7 @@ ca:
         name: "%{account_name} created a note."
     outbox:
       name: "%{account_name}'s Outbox"
-      summary: "A collection of activities from user %{account_name}."
+      summary: A collection of activities from user %{account_name}.
   admin:
     accounts:
       are_you_sure: Estàs segur?
@@ -62,6 +62,7 @@ ca:
       feed_url: URL del feed
       followers: Seguidors
       follows: Segueix
+      ip: IP
       location:
         all: Tot
         local: Local
@@ -84,8 +85,10 @@ ca:
       profile_url: URL del perfil
       public: Públic
       push_subscription_expires: La subscripció PuSH expira
+      reset: Reajustar
       reset_password: Restablir la contrasenya
       salmon_url: URL Salmon
+      search: Cerca
       show:
         created_reports: Informes creats per aquest compte
         report: informe
@@ -118,8 +121,8 @@ ca:
       severity: Severitat
       show:
         affected_accounts:
-          one: Un compte en la base de dades afectat
-          other: "%{count} comptes en la base de dades afectats"
+          one: Un compte afectat en la base de dades
+          other: "%{count} comptes afectats en la base de dades"
         retroactive:
           silence: Desfer el silenci a tots els comptes existents d'aquest domini
           suspend: Desfer la suspensió de tots els comptes d'aquest domini
@@ -131,20 +134,17 @@ ca:
       account_count: Comptes coneguts
       domain_name: Domini
       title: Instàncies conegudes
-    pubsubhubbub:
-      callback_url: Callback URL
-      confirmed: Confirmat
-      expires_in: Expira en
-      last_delivery: Últim lliurament
-      title: PubSubHubbub
-      topic: Tòpic
     reports:
+      are_you_sure: Estàs segur?
       comment:
         label: Comentari
         none: Cap
       delete: Esborra
       id: ID
       mark_as_resolved: Marca com a resolt
+      nsfw:
+        'false': NSFW OFF
+        'true': NSFW ON
       report: 'Informe #%{id}'
       report_contents: Continguts
       reported_account: Compte reportat
@@ -179,6 +179,13 @@ ca:
         title: Descripció estesa del lloc
       site_title: Títol del lloc
       title: Configuració del lloc
+    subscriptions:
+      callback_url: Callback URL
+      confirmed: Confirmat
+      expires_in: Expira en
+      last_delivery: Últim lliurament
+      title: PubSubHubbub
+      topic: Tòpic
     title: Administració
   application_mailer:
     settings: 'Canviar preferències de correu: %{link}'
@@ -242,12 +249,12 @@ ca:
     unlocked_warning_html: Tothom pot seguir-te per veure inmediatament les teves publicacions privades. %{lock_link} per poder revisar i rebutjar seguidors.
     unlocked_warning_title: El teu compte no està bloquejat
   generic:
-    changes_saved_msg: "Canvis guardats amb èxit!"
+    changes_saved_msg: Canvis guardats amb èxit!
     powered_by: powered by %{link}
     save_changes: Guardar canvis
     validation_errors:
-      one: "Alguna cosa no esta bé! Si us plau, revisi l'error"
-      other: "Alguna cosa no esta bé! Si us plau, revisi %{count} errors més a baix"
+      one: Alguna cosa no esta bé! Si us plau, revisi l'error
+      other: Alguna cosa no esta bé! Si us plau, revisi %{count} errors més a baix
   imports:
     preface: Pots importar algunes dades, com ara totes les persones que estàs seguint o bloquejant, en el teu compte en aquesta instància, desde arxius exportats desde una altra instància.
     success: Dades rebudes correctament i seran processades en breu
@@ -256,7 +263,7 @@ ca:
       following: Llista de seguits
       muting: Llista d'apagats
     upload: Carregar
-  landing_strip_html: <strong>%{name}</strong> és un usuari/a de %{link_to_root_path}. Pots seguir-lo/la o interactuar amb ell/a si tens un compte a qualsevol node del fediverse.
+  landing_strip_html: "<strong>%{name}</strong> és un usuari/a de %{link_to_root_path}. Pots seguir-lo/la o interactuar amb ell/a si tens un compte a qualsevol node del fediverse."
   landing_strip_signup_html: Si no en tens, pots <a href="%{sign_up_path}">registrar-te aquí</a>.
   media_attachments:
     validations:
@@ -267,8 +274,8 @@ ca:
       body: 'Un resum del que et vas perdre en %{instance} desde la teva darrera visita el %{since}:'
       mention: "%{name} t'ha mencionat en:"
       new_followers_summary:
-        one: "Visca!. Algú més t´ha començat a seguir"
-        other: "Genial!. T'han seguit %{count} noves persones"
+        one: Visca!. Algú més t´ha començat a seguir
+        other: Genial!. T'han seguit %{count} noves persones
       subject:
         one: "1 nova notificació desde la teva darrera visita \U0001F418"
         other: "%{count} noves notificacions desde la teva darrera visita \U0001F418"

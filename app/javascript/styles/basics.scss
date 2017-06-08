@@ -47,10 +47,11 @@ body {
 
 button {
   font-family: inherit;
-}
+  cursor: pointer;
 
-button:focus {
-  outline: none;
+  &:focus {
+    outline: none;
+  }
 }
 
 .app-holder {
