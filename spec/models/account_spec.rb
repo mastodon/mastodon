@@ -362,29 +362,26 @@ RSpec.describe Account, type: :model do
   end
 
   describe 'validations' do
-    it 'has a valid fabricator' do
-      account = Fabricate.build(:account)
-      account.valid?
-      expect(account).to be_valid
+    subject { account }
+    let(:account) { Fabricate.build(:account, username: username) }
+    let(:username) { 'Gargron' }
+
+    it { is_expected.to be_valid }
+
+    describe 'without a username' do
+      let(:username) { nil }
+      it 'should be invalid' do
+        is_expected.not_to be_valid
+        expect(account).to model_have_error_on_field(:username)
+      end
     end
 
-    it 'is invalid without a username' do
-      account = Fabricate.build(:account, username: nil)
-      account.valid?
-      expect(account).to model_have_error_on_field(:username)
-    end
-
-    it 'is invalid if the username already exists' do
-      account_1 = Fabricate(:account, username: 'the_doctor')
-      account_2 = Fabricate.build(:account, username: 'the_doctor')
-      account_2.valid?
-      expect(account_2).to model_have_error_on_field(:username)
-    end
-
-    it 'is invalid if the username is reserved' do
-      account = Fabricate.build(:account, username: 'support')
-      account.valid?
-      expect(account).to model_have_error_on_field(:username)
+    describe 'with an existing username' do
+      before { Fabricate(:account, username: username) }
+      it 'should be invalid' do
+        is_expected.not_to be_valid
+        expect(account).to model_have_error_on_field(:username)
+      end
     end
 
     context 'when is local' do
@@ -398,6 +395,21 @@ RSpec.describe Account, type: :model do
         account = Fabricate.build(:account, username: Faker::Lorem.characters(31))
         account.valid?
         expect(account).to model_have_error_on_field(:username)
+      end
+
+      describe 'reserved username' do
+        let(:username) { 'support' }
+        it 'should be invalid' do
+          is_expected.not_to be_valid
+          expect(account).to model_have_error_on_field(:username)
+        end
+
+        context 'when existing model' do
+          before { account.save(validate: false) }
+          it 'should be valid' do
+            is_expected.to be_valid
+          end
+        end
       end
     end
   end
