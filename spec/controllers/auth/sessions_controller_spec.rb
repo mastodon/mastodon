@@ -16,6 +16,33 @@ RSpec.describe Auth::SessionsController, type: :controller do
     end
   end
 
+  describe 'DELETE #destroy' do
+    let(:user) { Fabricate(:user) }
+
+    before do
+      request.env['devise.mapping'] = Devise.mappings[:user]
+    end
+
+    context 'with a regular user' do
+      it 'redirects to home after sign out' do
+        sign_in(user, scope: :user)
+        delete :destroy
+
+        expect(response).to redirect_to(root_path)
+      end
+    end
+
+    context 'with a suspended user' do
+      it 'redirects to home after sign out' do
+        Fabricate(:account, user: user, suspended: true)
+        sign_in(user, scope: :user)
+        delete :destroy
+
+        expect(response).to redirect_to(root_path)
+      end
+    end
+  end
+
   describe 'POST #create' do
     before do
       request.env['devise.mapping'] = Devise.mappings[:user]
@@ -63,6 +90,30 @@ RSpec.describe Auth::SessionsController, type: :controller do
 
         it 'shows a translated login error' do
           expect(flash[:alert]).to eq(I18n.t('devise.failure.unconfirmed', locale: accept_language))
+        end
+      end
+
+      context "logging in from the user's page" do
+        before do
+          allow(controller).to receive(:single_user_mode?).and_return(single_user_mode)
+          allow(controller).to receive(:stored_location_for).with(:user).and_return("/@#{user.account.username}")
+          post :create, params: { user: { email: user.email, password: user.password } }
+        end
+
+        context "in single user mode" do
+          let(:single_user_mode) { true }
+
+          it 'redirects to home' do
+            expect(response).to redirect_to(root_path)
+          end
+        end
+
+        context "in non-single user mode" do
+          let(:single_user_mode) { false }
+
+          it "redirects back to the user's page" do
+            expect(response).to redirect_to(short_account_path(username: user.account))
+          end
         end
       end
     end

@@ -4,14 +4,20 @@ fa:
     hints:
       defaults:
         avatar: یکی از قالب‌های PNG یا  GIF یا JPG. بیشترین اندازه ۲ مگابایت. تصویر به اندازهٔ ۱۲۰×۱۲۰ پیکسل تبدیل خواهد شد.
-        display_name: '%{counter} حرف باقی مانده'
+        display_name:
+          one: '<span class="name-counter">1</span> حرف باقی مانده'
+          other: '<span class="name-counter">%{count}</span> حرف باقی مانده'
         header: یکی از قالب‌های PNG یا  GIF یا JPG. بیشترین اندازه ۲ مگابایت. تصویر به اندازهٔ ۳۳۵×۷۰۰ پیکسل تبدیل خواهد شد
         locked: باید پیگیران تازه را خودتان تأیید کنید. حریم خصوصی پیش‌فرض نوشته‌ها را روی پیگیران تنظیم می‌کند
-        note: '%{counter} حرف باقی مانده'
+        note:
+          one: '<span class="note-counter">1</span> حرف باقی مانده'
+          other: '<span class="note-counter">%{count}</span> حرف باقی مانده'
       imports:
         data: پروندهٔ CSV که از سرور ماستدون دیگری برون‌سپاری شده
       sessions:
         otp: کد تأیید دومرحله‌ای را از تلفن خود وارد کنید یا یکی از کدهای بازیابی را به کار ببرید.
+      user:
+        filtered_languages: زبان‌های انتخاب‌شده از فهرست عمومی نوشته‌هایی که می‌بینید حذف می‌شوند.
     labels:
       defaults:
         avatar: تصویر نمایه
@@ -21,8 +27,8 @@ fa:
         data: داده‌ها
         display_name: نمایش به نام
         email: نشانی ایمیل
-        header: موضوع
-        locale: تصویر زمینه
+        header: تصویر زمینه
+        locale: زبان
         locked: خصوصی‌کردن حساب
         new_password: رمز تازه
         note: دربارهٔ شما
@@ -33,7 +39,7 @@ fa:
         setting_default_privacy: حریم خصوصی نوشته‌ها
         severity: شدت
         type: نوع درون‌ریزی
-        username: نام کاربری
+        username: نام کاربری (تنها حروف انگلیسی)
       interactions:
         must_be_follower: مسدودکردن اعلان‌های همه به جز پیگیران
         must_be_following: مسدودکردن اعلان‌های کسانی که شما پی نمی‌گیرید

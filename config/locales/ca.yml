@@ -1,0 +1,343 @@
+---
+ca:
+  about:
+    about_mastodon: Mastodon és un servidor de xarxa social <em>lliure i de codi obert</em>. Una alternativa <em>descentralitzada</em> a plataformes comercials, que evita el risc que una única companyia monopolitzi la teva comunicació. Qualsevol pot executar Mastodon i participar sense problemes en la <em>xarxa social</em>.
+    about_this: Sobre aquesta instància
+    apps: Apps
+    business_email: 'Correu de negocis:'
+    closed_registrations: Els registres estan actualment tancats en aquesta instància.
+    contact: Contacte
+    description_headline: "Què es %{domain}?"
+    domain_count_after: altres instàncies
+    domain_count_before: Connectat a
+    features:
+      api: API pública per a aplicacions i serveis
+      blocks: Moderació de contingut
+      characters: 500 caràcters per publicació
+      chronology: Les histories son cronològiques
+      ethics: 'Disseny ètic: sense anuncis, sense rastrejos'
+      gifv: Vídeos curts i GIFV
+      privacy: Configuracions de privacitat ajustables
+      public: Història federada
+    features_headline: El que distingeix a Mastodon
+    get_started: Començar
+    links: Vincles
+    other_instances: Altres instàncies
+    source_code: Codi font
+    status_count_after: estats
+    status_count_before: Que han escrit
+    terms: Termes
+    user_count_after: usuaris registrats
+    user_count_before: Tenim
+    version: Versió
+  accounts:
+    follow: Seguir
+    followers: Seguidors
+    following: Seguint
+    nothing_here: "No hi ha res aquí!"
+    people_followed_by: Usuaris a qui %{name} segueix
+    people_who_follow: Usuaris que segueixn a %{name}
+    posts: Toots
+    remote_follow: Seguir
+    unfollow: Deixar de seguir
+  activitypub:
+    activity:
+      announce:
+        name: "%{account_name} shared an activity."
+      create:
+        name: "%{account_name} created a note."
+    outbox:
+      name: "%{account_name}'s Outbox"
+      summary: "A collection of activities from user %{account_name}."
+  admin:
+    accounts:
+      are_you_sure: Estàs segur?
+      confirm: Confirma
+      confirmed: Confirmat
+      disable_two_factor_authentication: Desactivar 2FA
+      display_name: Nom de visualització
+      domain: Domini
+      edit: Editar
+      email: E-mail
+      feed_url: URL del feed
+      followers: Seguidors
+      follows: Segueix
+      location:
+        all: Tot
+        local: Local
+        remote: Remot
+        title: Localització
+      media_attachments: Adjunts multimèdia
+      moderation:
+        all: Tot
+        silenced: Silenciat
+        suspended: Suspès
+        title: Moderació
+      most_recent_activity: Activitat més recent
+      most_recent_ip: IP més recent
+      not_subscribed: No subscrit
+      order:
+        alphabetic: Alfabètic
+        most_recent: Més recent
+        title: Ordre
+      perform_full_suspension: Aplicar suspensió completa
+      profile_url: URL del perfil
+      public: Públic
+      push_subscription_expires: La subscripció PuSH expira
+      reset_password: Restablir la contrasenya
+      salmon_url: URL Salmon
+      show:
+        created_reports: Informes creats per aquest compte
+        report: informe
+        targeted_reports: Informes realitzats sobre aquest compte
+      silence: Silenci
+      statuses: Estats
+      title: Comptes
+      undo_silenced: Desfer silenci
+      undo_suspension: Desfer suspensió
+      username: Nom d'usuari
+      web: Web
+    domain_blocks:
+      add_new: Afegir nou
+      created_msg: El bloqueig de domini ara s'està processant
+      destroyed_msg: El bloqueig de domini s'ha desfet
+      domain: Domini
+      new:
+        create: Crear bloqueig
+        hint: El bloqueig de domini no impedirà la creació de nous comptes en la base de dades, però s´aplicaran mètodes de moderació específics sobre aquests comptes
+        severity:
+          desc_html: "<strong>Silenci</strong> farà les publicacions del compte invisibles a tothom que no l'estigui seguint. Suspendre eliminarà tots els continguts, multimèdia i les dades del perfil del compte."
+          silence: Silenci
+          suspend: Suspendre
+        title: Nou bloqueig de domini
+      reject_media: Rebutjar arxius multimèdia
+      reject_media_hint: Elimina arxius multimèdia emmagatzamats localment i impideix descarregar cap en el futur. Irrellevant per suspensions
+      severities:
+        silence: Silenci
+        suspend: Suspendre
+      severity: Severitat
+      show:
+        affected_accounts:
+          one: Un compte en la base de dades afectat
+          other: "%{count} comptes en la base de dades afectats"
+        retroactive:
+          silence: Desfer el silenci a tots els comptes existents d'aquest domini
+          suspend: Desfer la suspensió de tots els comptes d'aquest domini
+        title: Desfer el bloqueig de domini de %{domain}
+        undo: Desfer
+      title: Bloquejos de domini
+      undo: Desfer
+    instances:
+      account_count: Comptes coneguts
+      domain_name: Domini
+      title: Instàncies conegudes
+    pubsubhubbub:
+      callback_url: Callback URL
+      confirmed: Confirmat
+      expires_in: Expira en
+      last_delivery: Últim lliurament
+      title: PubSubHubbub
+      topic: Tòpic
+    reports:
+      comment:
+        label: Comentari
+        none: Cap
+      delete: Esborra
+      id: ID
+      mark_as_resolved: Marca com a resolt
+      report: 'Informe #%{id}'
+      report_contents: Continguts
+      reported_account: Compte reportat
+      reported_by: Reportat per
+      resolved: Resolt
+      silence_account: Silenciar compte
+      status: Estat
+      suspend_account: Suspendre compte
+      target: Objectiu
+      title: Informes
+      unresolved: No resolt
+      view: Vista
+    settings:
+      contact_information:
+        email: Introduir una adreça de correu electrònic pùblica
+        label: Informació de contacte
+        username: Introduir un nom d'usuari
+      registrations:
+        closed_message:
+          desc_html: Apareix en la primera pàgina quan es tanquen els registres<br>Pot utilitzar etiquetes HTML
+          title: Missatge de registre tancat
+        open:
+          disabled: Desactivat
+          enabled: Activat
+          title: Registre obert
+      setting: Ajust
+      site_description:
+        desc_html: Es mostra com un paràgraf a la pàgina principal i s'utilitza com una etiqueta meta.<br>Pots utilitzar etiquetes HTML, en particular <code>&lt;a&gt;</code> i <code>&lt;em&gt;</code>.
+        title: Descripció del lloc
+      site_description_extended:
+        desc_html: Apareix a la pàgina d'informació estesa<br>Pot utilitzar etiquetes HTML
+        title: Descripció estesa del lloc
+      site_title: Títol del lloc
+      title: Configuració del lloc
+    title: Administració
+  application_mailer:
+    settings: 'Canviar preferències de correu: %{link}'
+    signature: Notificacions de Mastodon desde %{instance}
+    view: 'Vista:'
+  applications:
+    invalid_url: La URL proporcionada es incorrecte
+  auth:
+    change_password: Canviar contrasenya
+    didnt_get_confirmation: "¿No vas rebre el correu de confirmació?"
+    forgot_password: "¿Has oblidat la contrassenya?"
+    login: Iniciar sessió
+    logout: Tancar sessió
+    register: Enregistrarse
+    resend_confirmation: Tornar a enviar el correu de confirmació
+    reset_password: Restablir contrasenya
+    set_new_password: Establir nova contrasenya
+  authorize_follow:
+    error: Malauradament, ha ocorregut un error buscant el compte remot
+    follow: Seguir
+    prompt_html: 'Tú (<strong>%{self}</strong>) has solicitat seguir:'
+    title: Seguir %{acct}
+  datetime:
+    distance_in_words:
+      about_x_hours: "%{count}h"
+      about_x_months: "%{count}m"
+      about_x_years: "%{count}y"
+      almost_x_years: "%{count}y"
+      half_a_minute: Ara mateix
+      less_than_x_minutes: "%{count}m"
+      less_than_x_seconds: Ara mateix
+      over_x_years: "%{count}y"
+      x_days: "%{count}d"
+      x_minutes: "%{count}m"
+      x_months: "%{count}m"
+      x_seconds: "%{count}s"
+  errors:
+    '403': No tens permís per veure aquesta pàgina.
+    '404': La pàgina que estàs buscant no existeix.
+    '410': La pàgina que estaves buscant ja no existeix.
+    '422':
+      content: La verificació de seguretat ha fallat. Bloquejes les galetes?
+      title: La verificació de seguretat ha fallat
+    '429': Estrangulat
+  exports:
+    blocks: Persones que has bloquejat
+    csv: CSV
+    follows: Persones que segueixes
+    mutes: Persones apagades (muted)
+    storage: Emmagatzematge
+  followers:
+    domain: Domini
+    explanation_html: Si desitges garantir la privacitat de les teves publicacions, has de ser conscient de qui t'està seguint. <strong> Les teves publicacions privades es lliuren a totes les instàncies on es té seguidors </ strong>. És possible que vulguis revisar-los i eliminar seguidors si no confies en que la teva privacitat sigui respectada pel personal o el programari d'aquests casos
+    followers_count: Nombre de seguidors
+    lock_link: Bloqueja el teu compte
+    purge: Eliminar de seguidors
+    success:
+      one: En el procés de bloqueig suau de seguidors d'un domini...
+      other: En el procés de bloqueig suau de seguidors de %{count} dominis...
+    true_privacy_html: Si us plau considera que <strong>la autèntica privacitat només es pot aconseguir amb xifrat d'extrem a extrem</strong>.
+    unlocked_warning_html: Tothom pot seguir-te per veure inmediatament les teves publicacions privades. %{lock_link} per poder revisar i rebutjar seguidors.
+    unlocked_warning_title: El teu compte no està bloquejat
+  generic:
+    changes_saved_msg: "Canvis guardats amb èxit!"
+    powered_by: powered by %{link}
+    save_changes: Guardar canvis
+    validation_errors:
+      one: "Alguna cosa no esta bé! Si us plau, revisi l'error"
+      other: "Alguna cosa no esta bé! Si us plau, revisi %{count} errors més a baix"
+  imports:
+    preface: Pots importar algunes dades, com ara totes les persones que estàs seguint o bloquejant, en el teu compte en aquesta instància, desde arxius exportats desde una altra instància.
+    success: Dades rebudes correctament i seran processades en breu
+    types:
+      blocking: Llista de bloqueajats
+      following: Llista de seguits
+      muting: Llista d'apagats
+    upload: Carregar
+  landing_strip_html: <strong>%{name}</strong> és un usuari/a de %{link_to_root_path}. Pots seguir-lo/la o interactuar amb ell/a si tens un compte a qualsevol node del fediverse.
+  landing_strip_signup_html: Si no en tens, pots <a href="%{sign_up_path}">registrar-te aquí</a>.
+  media_attachments:
+    validations:
+      images_and_video: No es pot adjuntar un vídeo a un estat que ja contingui imatges
+      too_many: No es poden adjuntar més de 4 arxius
+  notification_mailer:
+    digest:
+      body: 'Un resum del que et vas perdre en %{instance} desde la teva darrera visita el %{since}:'
+      mention: "%{name} t'ha mencionat en:"
+      new_followers_summary:
+        one: "Visca!. Algú més t´ha començat a seguir"
+        other: "Genial!. T'han seguit %{count} noves persones"
+      subject:
+        one: "1 nova notificació desde la teva darrera visita \U0001F418"
+        other: "%{count} noves notificacions desde la teva darrera visita \U0001F418"
+    favourite:
+      body: 'El teu estat ha estat marcat com a favorit per %{name}:'
+      subject: "%{name} ha marcat com a favorit el teu estat"
+    follow:
+      body: "¡%{name} t'està seguint!"
+      subject: "%{name} t'està seguint"
+    follow_request:
+      body: "%{name} ha sol·licitat seguir-te"
+      subject: 'Seguidor pendent: %{name}'
+    mention:
+      body: 'Has estat mencionat per %{name} en:'
+      subject: Has estat mencionat per %{name}
+    reblog:
+      body: "%{name} ha retootejat el teu estat"
+      subject: "%{name} ha retootejat el teu estat"
+  pagination:
+    next: Pròxim
+    prev: Anterior
+    truncate: "&hellip;"
+  remote_follow:
+    acct: Escriu el usuari@domini de la persona que vols seguir
+    missing_resource: No s'ha pogut trobar la URL de redirecció necessaria per el compte.
+    proceed: Procedir a seguir
+    prompt: 'Seguiràs a:'
+  settings:
+    authorized_apps: Aplicacions autoritzades
+    back: Tornar al inici
+    edit_profile: Editar perfil
+    export: Exportar informació
+    followers: Seguidors autoritzats
+    import: Importar
+    preferences: Preferències
+    settings: Configuració
+    two_factor_authentication: Autenticació de dos factors
+  statuses:
+    open_in_web: Obrir en la web
+    over_character_limit: Límit de caràcters de %{max} superat
+    show_more: Mostrar més
+    visibilities:
+      private: Només seguidors
+      private_long: Només mostrar a seguidors
+      public: Públic
+      public_long: Tothom pot veure-ho
+      unlisted: No llistat
+      unlisted_long: Tothom ho pot veure, però no es mostra en la història federada
+  stream_entries:
+    click_to_show: Clic per mostrar
+    reblogged: retooteado
+    sensitive_content: Contingut sensible
+  time:
+    formats:
+      default: "%b %d, %Y, %H:%M"
+  two_factor_authentication:
+    code_hint: Introdueix el codi generat per l'aplicació autenticadora per a confirmar
+    description_html: Si habilites la <strong>autenticació de dos factors</strong>, et caldrà tenir el teu telèfon, que generarà tokens per a que puguis iniciar sessió.
+    disable: Deshabilitar
+    enable: Habilitar
+    enabled_success: Autenticació de dos factors activada amb èxit
+    generate_recovery_codes: Generar codis de recuperació
+    instructions_html: "<strong>Escaneja aquest codi QR desde Google Authenticator o una aplicació similar del teu telèfon</strong>. Desde ara, aquesta aplicació generarà tokens que tens que ingresar quan volguis iniciar sessió."
+    lost_recovery_codes: Els codis de recuperació et permeten recuperar l'accés al teu compte si perds el telèfon. Si has perdut els teus codis de recuperació els pots regenerar aquí. Els codis de recuperació anteriors seran anul·lats.
+    manual_instructions: 'Si no pots escanejar el codi QR code i necessites introduir-lo manualment, aquí tens el secret en text plà:'
+    recovery_codes_regenerated: Codis de recuperació regenerats amb èxit
+    recovery_instructions: Si alguna vegada perds l'accéss al telèfon pots utilitzar un dels codis de recuperació a continuació per recuperar l'accés al teu compte. Cal mantenir els codis de recuperació en lloc segur, per exemple imprimint-los i guardar-los amb altres documents importants.
+    setup: Establir
+    wrong_code: El codi introduït es invalid! Es correcta la hora del servidor i del dispositiu?
+  users:
+    invalid_email: La direcció de correu es incorrecte
+    invalid_otp_token: Codi de dos factors incorrecte
