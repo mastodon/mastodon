@@ -34,6 +34,12 @@ RSpec.describe User, type: :model do
       expect(user).to model_have_error_on_field(:email)
     end
 
+    it 'is valid with an invalid e-mail that has already been saved' do
+      user = Fabricate.build(:user, email: 'invalid-email')
+      user.save(validate: false)
+      expect(user.valid?).to be true
+    end
+
     it 'cleans out empty string from languages' do
       user = Fabricate.build(:user, filtered_languages: [''])
       user.valid?

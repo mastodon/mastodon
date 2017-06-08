@@ -52,13 +52,17 @@ class Account < ApplicationRecord
   has_one :user, inverse_of: :account
 
   validates :username, presence: true
-  validates :username, uniqueness: { scope: :domain, case_sensitive: true }, unless: :local?
+
+  # Remote user validations
+  with_options unless: :local? do
+    validates :username, uniqueness: { scope: :domain, case_sensitive: true }, if: :username_changed?
+  end
 
   # Local user validations
   with_options if: :local? do
-    validates :username, format: { with: /\A[a-z0-9_]+\z/i }, uniqueness: { scope: :domain, case_sensitive: false }, length: { maximum: 30 }, unreserved: true
-    validates :display_name, length: { maximum: 30 }
-    validates :note, length: { maximum: 160 }
+    validates :username, format: { with: /\A[a-z0-9_]+\z/i }, uniqueness: { scope: :domain, case_sensitive: false }, length: { maximum: 30 }, unreserved: true, if: :username_changed?
+    validates :display_name, length: { maximum: 30 }, if: :display_name_changed?
+    validates :note, length: { maximum: 160 }, if: :note_changed?
   end
 
   # Timelines
