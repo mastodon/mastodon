@@ -9,11 +9,7 @@ class Api::V1::Statuses::FavouritedByAccountsController < Api::BaseController
   respond_to :json
 
   def index
-    @accounts = Account.includes(:favourites)
-                       .references(:favourites)
-                       .where(favourites: { status_id: @status.id })
-                       .merge(Favourite.paginate_by_max_id(limit_param(DEFAULT_ACCOUNTS_LIMIT), params[:max_id], params[:since_id]))
-                       .to_a
+    @accounts = load_accounts
 
     next_path = api_v1_status_favourited_by_index_url(pagination_params(max_id: @accounts.last.favourites.last.id))     if @accounts.size == limit_param(DEFAULT_ACCOUNTS_LIMIT)
     prev_path = api_v1_status_favourited_by_index_url(pagination_params(since_id: @accounts.first.favourites.first.id)) unless @accounts.empty?
@@ -24,6 +20,14 @@ class Api::V1::Statuses::FavouritedByAccountsController < Api::BaseController
   end
 
   private
+
+  def load_accounts
+    @accounts = Account.includes(:favourites)
+                       .references(:favourites)
+                       .where(favourites: { status_id: @status.id })
+                       .merge(Favourite.paginate_by_max_id(limit_param(DEFAULT_ACCOUNTS_LIMIT), params[:max_id], params[:since_id]))
+                       .to_a
+  end
 
   def set_status
     @status = Status.find(params[:status_id])

@@ -9,11 +9,7 @@ class Api::V1::Statuses::RebloggedByAccountsController < Api::BaseController
   respond_to :json
 
   def index
-    @accounts = Account.includes(:statuses)
-                       .references(:statuses)
-                       .merge(Status.where(reblog_of_id: @status.id)
-                                    .paginate_by_max_id(limit_param(DEFAULT_ACCOUNTS_LIMIT), params[:max_id], params[:since_id]))
-                       .to_a
+    @accounts = load_accounts
 
     next_path = api_v1_status_reblogged_by_index_url(pagination_params(max_id: @accounts.last.statuses.last.id))     if @accounts.size == limit_param(DEFAULT_ACCOUNTS_LIMIT)
     prev_path = api_v1_status_reblogged_by_index_url(pagination_params(since_id: @accounts.first.statuses.first.id)) unless @accounts.empty?
@@ -24,6 +20,14 @@ class Api::V1::Statuses::RebloggedByAccountsController < Api::BaseController
   end
 
   private
+
+  def load_accounts
+    @accounts = Account.includes(:statuses)
+                       .references(:statuses)
+                       .merge(Status.where(reblog_of_id: @status.id)
+                                    .paginate_by_max_id(limit_param(DEFAULT_ACCOUNTS_LIMIT), params[:max_id], params[:since_id]))
+                       .to_a
+  end
 
   def set_status
     @status = Status.find(params[:status_id])
