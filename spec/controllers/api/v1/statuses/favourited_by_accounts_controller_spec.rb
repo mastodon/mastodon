@@ -20,8 +20,9 @@ RSpec.describe Api::V1::Statuses::FavouritedByAccountsController, type: :control
       end
 
       it 'returns http success' do
-        get :index, params: { status_id: status.id }
+        get :index, params: { status_id: status.id, limit: 1 }
         expect(response).to have_http_status(:success)
+        expect(response.headers['Link'].links.size).to eq(2)
       end
     end
 
