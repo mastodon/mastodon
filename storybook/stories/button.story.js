@@ -1,17 +1,18 @@
 import React from 'react';
-import { action, storiesOf } from '@kadira/storybook';
+import { storiesOf } from '@storybook/react';
+import { action } from '@storybook/addon-actions';
 import Button from 'mastodon/components/button';
 
 storiesOf('Button', module)
   .add('default state', () => (
-    <Button text="submit" onClick={action('clicked')} />
+    <Button text='submit' onClick={action('clicked')} />
   ))
   .add('secondary', () => (
-    <Button secondary text="submit" onClick={action('clicked')} />
+    <Button secondary text='submit' onClick={action('clicked')} />
   ))
   .add('disabled', () => (
-    <Button disabled text="submit" onClick={action('clicked')} />
+    <Button disabled text='submit' onClick={action('clicked')} />
   ))
   .add('block', () => (
-    <Button block text="submit" onClick={action('clicked')} />
+    <Button block text='submit' onClick={action('clicked')} />
   ));

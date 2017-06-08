@@ -39,6 +39,7 @@ en:
     people_who_follow: People who follow %{name}
     posts: Posts
     remote_follow: Remote follow
+    reserved_username: The username is reserved
     unfollow: Unfollow
   activitypub:
     activity:
@@ -85,8 +86,10 @@ en:
       profile_url: Profile URL
       public: Public
       push_subscription_expires: PuSH subscription expires
+      redownload: Refresh avatar
       reset: Reset
       reset_password: Reset password
+      resubscribe: Resubscribe
       salmon_url: Salmon URL
       search: Search
       show:
@@ -95,9 +98,11 @@ en:
         targeted_reports: Reports made about this account
       silence: Silence
       statuses: Statuses
+      subscribe: Subscribe
       title: Accounts
       undo_silenced: Undo silence
       undo_suspension: Undo suspension
+      unsubscribe: Unsubscribe
       username: Username
       web: Web
     domain_blocks:
@@ -134,20 +139,17 @@ en:
       account_count: Known accounts
       domain_name: Domain
       title: Known Instances
-    pubsubhubbub:
-      callback_url: Callback URL
-      confirmed: Confirmed
-      expires_in: Expires in
-      last_delivery: Last delivery
-      title: PubSubHubbub
-      topic: Topic
     reports:
+      are_you_sure: Are you sure?
       comment:
         label: Comment
         none: None
       delete: Delete
       id: ID
       mark_as_resolved: Mark as resolved
+      nsfw:
+        'false': Unhide media attachments
+        'true': Hide media attachments
       report: 'Report #%{id}'
       report_contents: Contents
       reported_account: Reported account
@@ -160,10 +162,6 @@ en:
       title: Reports
       unresolved: Unresolved
       view: View
-      nsfw:
-        'true': NSFW ON
-        'false': NSFW OFF
-      are_you_sure: Are you sure?
     settings:
       contact_information:
         email: Enter a public e-mail address
@@ -186,6 +184,13 @@ en:
         title: Extended site description
       site_title: Site title
       title: Site Settings
+    subscriptions:
+      callback_url: Callback URL
+      confirmed: Confirmed
+      expires_in: Expires in
+      last_delivery: Last delivery
+      title: PubSubHubbub
+      topic: Topic
     title: Administration
   application_mailer:
     settings: 'Change e-mail preferences: %{link}'
@@ -230,6 +235,7 @@ en:
       content: Security verification failed. Are you blocking cookies?
       title: Security verification failed
     '429': Throttled
+    noscript: To use Mastodon, please enable JavaScript.
   exports:
     blocks: You block
     csv: CSV
@@ -263,7 +269,7 @@ en:
       following: Following list
       muting: Muting list
     upload: Upload
-  landing_strip_html: <strong>%{name}</strong> is a user on %{link_to_root_path}. You can follow them or interact with them if you have an account anywhere in the fediverse.
+  landing_strip_html: "<strong>%{name}</strong> is a user on %{link_to_root_path}. You can follow them or interact with them if you have an account anywhere in the fediverse."
   landing_strip_signup_html: If you don't, you can <a href="%{sign_up_path}">sign up here</a>.
   media_attachments:
     validations:

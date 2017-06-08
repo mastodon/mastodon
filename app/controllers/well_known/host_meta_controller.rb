@@ -2,6 +2,8 @@
 
 module WellKnown
   class HostMetaController < ApplicationController
+    include RoutingHelper
+
     def show
       @webfinger_template = "#{webfinger_url}?resource={uri}"
 

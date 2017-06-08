@@ -17,6 +17,7 @@ Rails.application.routes.draw do
 
   get '.well-known/host-meta', to: 'well_known/host_meta#show', as: :host_meta, defaults: { format: 'xml' }
   get '.well-known/webfinger', to: 'well_known/webfinger#show', as: :webfinger
+  get 'manifest', to: 'manifests#show', defaults: { format: 'json' }
 
   devise_for :users, path: 'auth', controllers: {
     sessions:           'auth/sessions',
@@ -74,7 +75,7 @@ Rails.application.routes.draw do
   resource :authorize_follow, only: [:show, :create]
 
   namespace :admin do
-    resources :pubsubhubbub, only: [:index]
+    resources :subscriptions, only: [:index]
     resources :domain_blocks, only: [:index, :new, :create, :show, :destroy]
     resource :settings, only: [:edit, :update]
     resources :instances, only: [:index]
@@ -84,6 +85,12 @@ Rails.application.routes.draw do
     end
 
     resources :accounts, only: [:index, :show] do
+      member do
+        post :subscribe
+        post :unsubscribe
+        post :redownload
+      end
+
       resource :reset, only: [:create]
       resource :silence, only: [:create, :destroy]
       resource :suspension, only: [:create, :destroy]
@@ -141,6 +148,7 @@ Rails.application.routes.draw do
         resource :public, only: :show, controller: :public
         resources :tag, only: :show
       end
+      resources :streaming,  only: [:index]
 
       get '/search', to: 'search#index', as: :search
 
@@ -169,19 +177,18 @@ Rails.application.routes.draw do
         end
       end
 
+      namespace :accounts do
+        get :verify_credentials, to: 'credentials#show'
+        patch :update_credentials, to: 'credentials#update'
+        resource :search, only: :show, controller: :search
+        resources :relationships, only: :index
+      end
       resources :accounts, only: [:show] do
-        collection do
-          get :relationships
-          get :verify_credentials
-          patch :update_credentials
-          get :search
-        end
+        resources :statuses, only: :index, controller: 'accounts/statuses'
+        resources :followers, only: :index, controller: 'accounts/follower_accounts'
+        resources :following, only: :index, controller: 'accounts/following_accounts'
 
         member do
-          get :statuses
-          get :followers
-          get :following
-
           post :follow
           post :unfollow
           post :block

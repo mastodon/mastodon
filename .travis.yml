@@ -4,6 +4,8 @@ cache:
   yarn: true
   directories:
   - node_modules
+  - public/assets
+  - public/packs
 dist: trusty
 sudo: false
 
@@ -50,6 +52,6 @@ before_script:
   - ln -s /usr/bin/x86_64-linux-gnu-g++-6 "$HOME/g++"
 
 script:
-  - bundle exec parallel_test spec/ --group-by filesize --type rspec
+  - travis_retry bundle exec parallel_test spec/ --group-by filesize --type rspec
   - npm test
   - bundle exec i18n-tasks unused

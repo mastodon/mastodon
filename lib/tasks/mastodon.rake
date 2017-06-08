@@ -177,5 +177,49 @@ namespace :mastodon do
 
       Rails.logger.debug 'Done!'
     end
+
+    desc 'Ensure referencial integrity'
+    task prepare_for_foreign_keys: :environment do
+      # All the deletes:
+      ActiveRecord::Base.connection.execute('DELETE FROM statuses USING statuses s LEFT JOIN accounts a ON a.id = s.account_id WHERE statuses.id = s.id AND a.id IS NULL')
+      ActiveRecord::Base.connection.execute('DELETE FROM account_domain_blocks USING account_domain_blocks adb LEFT JOIN accounts a ON a.id = adb.account_id WHERE account_domain_blocks.id = adb.id AND a.id IS NULL')
+      ActiveRecord::Base.connection.execute('DELETE FROM conversation_mutes USING conversation_mutes cm LEFT JOIN accounts a ON a.id = cm.account_id WHERE conversation_mutes.id = cm.id AND a.id IS NULL')
+      ActiveRecord::Base.connection.execute('DELETE FROM conversation_mutes USING conversation_mutes cm LEFT JOIN conversations c ON c.id = cm.conversation_id WHERE conversation_mutes.id = cm.id AND c.id IS NULL')
+      ActiveRecord::Base.connection.execute('DELETE FROM favourites USING favourites f LEFT JOIN accounts a ON a.id = f.account_id WHERE favourites.id = f.id AND a.id IS NULL')
+      ActiveRecord::Base.connection.execute('DELETE FROM favourites USING favourites f LEFT JOIN statuses s ON s.id = f.status_id WHERE favourites.id = f.id AND s.id IS NULL')
+      ActiveRecord::Base.connection.execute('DELETE FROM blocks USING blocks b LEFT JOIN accounts a ON a.id = b.account_id WHERE blocks.id = b.id AND a.id IS NULL')
+      ActiveRecord::Base.connection.execute('DELETE FROM blocks USING blocks b LEFT JOIN accounts a ON a.id = b.target_account_id WHERE blocks.id = b.id AND a.id IS NULL')
+      ActiveRecord::Base.connection.execute('DELETE FROM follow_requests USING follow_requests fr LEFT JOIN accounts a ON a.id = fr.account_id WHERE follow_requests.id = fr.id AND a.id IS NULL')
+      ActiveRecord::Base.connection.execute('DELETE FROM follow_requests USING follow_requests fr LEFT JOIN accounts a ON a.id = fr.target_account_id WHERE follow_requests.id = fr.id AND a.id IS NULL')
+      ActiveRecord::Base.connection.execute('DELETE FROM follows USING follows f LEFT JOIN accounts a ON a.id = f.account_id WHERE follows.id = f.id AND a.id IS NULL')
+      ActiveRecord::Base.connection.execute('DELETE FROM follows USING follows f LEFT JOIN accounts a ON a.id = f.target_account_id WHERE follows.id = f.id AND a.id IS NULL')
+      ActiveRecord::Base.connection.execute('DELETE FROM mutes USING mutes m LEFT JOIN accounts a ON a.id = m.account_id WHERE mutes.id = m.id AND a.id IS NULL')
+      ActiveRecord::Base.connection.execute('DELETE FROM mutes USING mutes m LEFT JOIN accounts a ON a.id = m.target_account_id WHERE mutes.id = m.id AND a.id IS NULL')
+      ActiveRecord::Base.connection.execute('DELETE FROM imports USING imports i LEFT JOIN accounts a ON a.id = i.account_id WHERE imports.id = i.id AND a.id IS NULL')
+      ActiveRecord::Base.connection.execute('DELETE FROM mentions USING mentions m LEFT JOIN accounts a ON a.id = m.account_id WHERE mentions.id = m.id AND a.id IS NULL')
+      ActiveRecord::Base.connection.execute('DELETE FROM mentions USING mentions m LEFT JOIN statuses s ON s.id = m.status_id WHERE mentions.id = m.id AND s.id IS NULL')
+      ActiveRecord::Base.connection.execute('DELETE FROM notifications USING notifications n LEFT JOIN accounts a ON a.id = n.account_id WHERE notifications.id = n.id AND a.id IS NULL')
+      ActiveRecord::Base.connection.execute('DELETE FROM notifications USING notifications n LEFT JOIN accounts a ON a.id = n.from_account_id WHERE notifications.id = n.id AND a.id IS NULL')
+      ActiveRecord::Base.connection.execute('DELETE FROM preview_cards USING preview_cards pc LEFT JOIN statuses s ON s.id = pc.status_id WHERE preview_cards.id = pc.id AND s.id IS NULL')
+      ActiveRecord::Base.connection.execute('DELETE FROM reports USING reports r LEFT JOIN accounts a ON a.id = r.account_id WHERE reports.id = r.id AND a.id IS NULL')
+      ActiveRecord::Base.connection.execute('DELETE FROM reports USING reports r LEFT JOIN accounts a ON a.id = r.target_account_id WHERE reports.id = r.id AND a.id IS NULL')
+      ActiveRecord::Base.connection.execute('DELETE FROM statuses_tags USING statuses_tags st LEFT JOIN statuses s ON s.id = st.status_id WHERE statuses_tags.tag_id = st.tag_id AND statuses_tags.status_id = st.status_id AND s.id IS NULL')
+      ActiveRecord::Base.connection.execute('DELETE FROM statuses_tags USING statuses_tags st LEFT JOIN tags t ON t.id = st.tag_id WHERE statuses_tags.tag_id = st.tag_id AND statuses_tags.status_id = st.status_id AND t.id IS NULL')
+      ActiveRecord::Base.connection.execute('DELETE FROM stream_entries USING stream_entries se LEFT JOIN accounts a ON a.id = se.account_id WHERE stream_entries.id = se.id AND a.id IS NULL')
+      ActiveRecord::Base.connection.execute('DELETE FROM subscriptions USING subscriptions s LEFT JOIN accounts a ON a.id = s.account_id WHERE subscriptions.id = s.id AND a.id IS NULL')
+      ActiveRecord::Base.connection.execute('DELETE FROM users USING users u LEFT JOIN accounts a ON a.id = u.account_id WHERE users.id = u.id AND a.id IS NULL')
+      ActiveRecord::Base.connection.execute('DELETE FROM web_settings USING web_settings ws LEFT JOIN users u ON u.id = ws.user_id WHERE web_settings.id = ws.id AND u.id IS NULL')
+      ActiveRecord::Base.connection.execute('DELETE FROM oauth_access_grants USING oauth_access_grants oag LEFT JOIN users u ON u.id = oag.resource_owner_id WHERE oauth_access_grants.id = oag.id AND oag.resource_owner_id IS NOT NULL AND u.id IS NULL')
+      ActiveRecord::Base.connection.execute('DELETE FROM oauth_access_grants USING oauth_access_grants oag LEFT JOIN oauth_applications a ON a.id = oag.application_id WHERE oauth_access_grants.id = oag.id AND oag.application_id IS NOT NULL AND a.id IS NULL')
+      ActiveRecord::Base.connection.execute('DELETE FROM oauth_access_tokens USING oauth_access_tokens oat LEFT JOIN users u ON u.id = oat.resource_owner_id WHERE oauth_access_tokens.id = oat.id AND oat.resource_owner_id IS NOT NULL AND u.id IS NULL')
+      ActiveRecord::Base.connection.execute('DELETE FROM oauth_access_tokens USING oauth_access_tokens oat LEFT JOIN oauth_applications a ON a.id = oat.application_id WHERE oauth_access_tokens.id = oat.id AND oat.application_id IS NOT NULL AND a.id IS NULL')
+
+      # All the nullifies:
+      ActiveRecord::Base.connection.execute('UPDATE statuses SET in_reply_to_id = NULL FROM statuses s LEFT JOIN statuses rs ON rs.id = s.in_reply_to_id WHERE statuses.id = s.id AND s.in_reply_to_id IS NOT NULL AND rs.id IS NULL')
+      ActiveRecord::Base.connection.execute('UPDATE statuses SET in_reply_to_account_id = NULL FROM statuses s LEFT JOIN accounts a ON a.id = s.in_reply_to_account_id WHERE statuses.id = s.id AND s.in_reply_to_account_id IS NOT NULL AND a.id IS NULL')
+      ActiveRecord::Base.connection.execute('UPDATE media_attachments SET status_id = NULL FROM media_attachments ma LEFT JOIN statuses s ON s.id = ma.status_id WHERE media_attachments.id = ma.id AND ma.status_id IS NOT NULL AND s.id IS NULL')
+      ActiveRecord::Base.connection.execute('UPDATE media_attachments SET account_id = NULL FROM media_attachments ma LEFT JOIN accounts a ON a.id = ma.account_id WHERE media_attachments.id = ma.id AND ma.account_id IS NOT NULL AND a.id IS NULL')
+      ActiveRecord::Base.connection.execute('UPDATE reports SET action_taken_by_account_id = NULL FROM reports r LEFT JOIN accounts a ON a.id = r.action_taken_by_account_id WHERE reports.id = r.id AND r.action_taken_by_account_id IS NOT NULL AND a.id IS NULL')
+    end
   end
 end

@@ -30,7 +30,7 @@ locales.forEach(locale => {
     // then check locales/locale-data
     `../../app/javascript/mastodon/locales/locale-data/${baseLocale}.js`,
     // fall back to English (this is what react-intl does anyway)
-    `../../node_modules/react-intl/locale-data/en.js`,
+    '../../node_modules/react-intl/locale-data/en.js',
   ].filter(filename => fs.existsSync(path.join(outPath, filename)))
     .map(filename => filename.replace(/..\/..\/node_modules\//, ''))[0];
 

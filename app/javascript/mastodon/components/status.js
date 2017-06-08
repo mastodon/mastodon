@@ -14,6 +14,7 @@ import { FormattedMessage } from 'react-intl';
 import emojify from '../emoji';
 import escapeTextContentForBrowser from 'escape-html';
 import ImmutablePureComponent from 'react-immutable-pure-component';
+import scheduleIdleTask from '../features/ui/util/schedule_idle_task';
 
 class Status extends ImmutablePureComponent {
 
@@ -32,41 +33,90 @@ class Status extends ImmutablePureComponent {
     onOpenMedia: PropTypes.func,
     onOpenVideo: PropTypes.func,
     onBlock: PropTypes.func,
-    onRef: PropTypes.func,
-    isIntersecting: PropTypes.bool,
     me: PropTypes.number,
     boostModal: PropTypes.bool,
     autoPlayGif: PropTypes.bool,
     muted: PropTypes.bool,
+    intersectionObserverWrapper: PropTypes.object,
   };
 
   state = {
-    isHidden: false,
+    isIntersecting: true, // assume intersecting until told otherwise
+    isHidden: false, // set to true in requestIdleCallback to trigger un-render
   }
 
-  componentWillReceiveProps (nextProps) {
-    if (nextProps.isIntersecting === false && this.props.isIntersecting !== false) {
-      requestIdleCallback(() => this.setState({ isHidden: true }));
-    } else {
-      this.setState({ isHidden: !nextProps.isIntersecting });
-    }
-  }
+  // Avoid checking props that are functions (and whose equality will always
+  // evaluate to false. See react-immutable-pure-component for usage.
+  updateOnProps = [
+    'status',
+    'account',
+    'wrapped',
+    'me',
+    'boostModal',
+    'autoPlayGif',
+    'muted',
+  ]
+
+  updateOnStates = []
 
   shouldComponentUpdate (nextProps, nextState) {
-    if (nextProps.isIntersecting === false && this.props.isIntersecting !== false) {
-      return nextState.isHidden;
+    if (!nextState.isIntersecting && nextState.isHidden) {
+      // It's only if we're not intersecting (i.e. offscreen) and isHidden is true
+      // that either "isIntersecting" or "isHidden" matter, and then they're
+      // the only things that matter.
+      return this.state.isIntersecting || !this.state.isHidden;
+    } else if (nextState.isIntersecting && !this.state.isIntersecting) {
+      // If we're going from a non-intersecting state to an intersecting state,
+      // (i.e. offscreen to onscreen), then we definitely need to re-render
+      return true;
     }
-
-    return true;
+    // Otherwise, diff based on "updateOnProps" and "updateOnStates"
+    return super.shouldComponentUpdate(nextProps, nextState);
   }
 
-  handleRef = (node) => {
-    if (this.props.onRef) {
-      this.props.onRef(node);
+  componentDidMount () {
+    if (!this.props.intersectionObserverWrapper) {
+      // TODO: enable IntersectionObserver optimization for notification statuses.
+      // These are managed in notifications/index.js rather than status_list.js
+      return;
+    }
+    this.props.intersectionObserverWrapper.observe(
+      this.props.id,
+      this.node,
+      this.handleIntersection
+    );
+  }
 
-      if (node && node.children.length !== 0) {
-        this.height = node.clientHeight;
+  handleIntersection = (entry) => {
+    // Edge 15 doesn't support isIntersecting, but we can infer it
+    // https://developer.microsoft.com/en-us/microsoft-edge/platform/issues/12156111/
+    // https://github.com/WICG/IntersectionObserver/issues/211
+    const isIntersecting = (typeof entry.isIntersecting === 'boolean') ?
+      entry.isIntersecting : entry.intersectionRect.height > 0;
+    this.setState((prevState) => {
+      if (prevState.isIntersecting && !isIntersecting) {
+        scheduleIdleTask(this.hideIfNotIntersecting);
       }
+      return {
+        isIntersecting: isIntersecting,
+        isHidden: false,
+      };
+    });
+  }
+
+  hideIfNotIntersecting = () => {
+    // When the browser gets a chance, test if we're still not intersecting,
+    // and if so, set our isHidden to true to trigger an unrender. The point of
+    // this is to save DOM nodes and avoid using up too much memory.
+    // See: https://github.com/tootsuite/mastodon/issues/2900
+    this.setState((prevState) => ({ isHidden: !prevState.isIntersecting }));
+  }
+
+
+  handleRef = (node) => {
+    this.node = node;
+    if (node && node.children.length !== 0) {
+      this.height = node.clientHeight;
     }
   }
 
@@ -86,14 +136,14 @@ class Status extends ImmutablePureComponent {
   render () {
     let media = null;
     let statusAvatar;
-    const { status, account, isIntersecting, onRef, ...other } = this.props;
-    const { isHidden } = this.state;
+    const { status, account, ...other } = this.props;
+    const { isIntersecting, isHidden } = this.state;
 
     if (status === null) {
-      return <div ref={this.handleRef} data-id={status.get('id')} />;
+      return null;
     }
 
-    if (isIntersecting === false && isHidden) {
+    if (!isIntersecting && isHidden) {
       return (
         <div ref={this.handleRef} data-id={status.get('id')} style={{ height: `${this.height}px`, opacity: 0, overflow: 'hidden' }}>
           {status.getIn(['account', 'display_name']) || status.getIn(['account', 'username'])}
@@ -118,7 +168,7 @@ class Status extends ImmutablePureComponent {
             <FormattedMessage id='status.reblogged_by' defaultMessage='{name} boosted' values={{ name: <a onClick={this.handleAccountClick} data-id={status.getIn(['account', 'id'])} href={status.getIn(['account', 'url'])} className='status__display-name muted'><strong dangerouslySetInnerHTML={displayNameHTML} /></a> }} />
           </div>
 
-          <Status {...other} wrapped={true} status={status.get('reblog')} account={status.get('account')} />
+          <Status {...other} wrapped status={status.get('reblog')} account={status.get('account')} />
         </div>
       );
     }
@@ -134,7 +184,7 @@ class Status extends ImmutablePureComponent {
     }
 
     if (account === undefined || account === null) {
-      statusAvatar = <Avatar src={status.getIn(['account', 'avatar'])} staticSrc={status.getIn(['account', 'avatar_static'])} size={48}/>;
+      statusAvatar = <Avatar src={status.getIn(['account', 'avatar'])} staticSrc={status.getIn(['account', 'avatar_static'])} size={48} />;
     }else{
       statusAvatar = <AvatarOverlay staticSrc={status.getIn(['account', 'avatar_static'])} overlaySrc={account.get('avatar_static')} />;
     }

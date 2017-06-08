@@ -73,8 +73,8 @@ RSpec.describe StreamEntriesController, type: :controller do
 
       get :show, params: { account_username: status.account.username, id: status.stream_entry.id }
 
-      expect(assigns(:ancestors)).to match_array([ancestor])
-      expect(assigns(:descendants)).to match_array([descendant])
+      expect(assigns(:ancestors)).to eq [ancestor]
+      expect(assigns(:descendants)).to eq [descendant]
       expect(response).to have_http_status(:success)
     end
 
