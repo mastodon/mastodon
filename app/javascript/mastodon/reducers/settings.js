@@ -20,6 +20,7 @@ const initialState = Immutable.Map({
     }),
 
     regex: Immutable.Map({
+      mode: false,
       body: '',
     }),
   }),
