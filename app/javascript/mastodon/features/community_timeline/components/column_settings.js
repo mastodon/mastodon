@@ -30,7 +30,7 @@ class ColumnSettings extends React.PureComponent {
         <div className='column-settings__row'>
           <SettingToggle settings={settings} settingKey={['regex', 'mode']} onChange={onChange} label={<FormattedMessage id='column_settings.regex_mode' defaultMessage='Search mode' />} />
         </div>
-        
+
         <div className='column-settings__row'>
           <SettingText settings={settings} settingKey={['regex', 'body']} onChange={onChange} label={intl.formatMessage(messages.filter_regex)} />
         </div>
