@@ -51,7 +51,7 @@ class Api::V1::NotificationsController < Api::BaseController
   end
 
   def target_statuses_from_notifications
-    @notifications.select { |notification| !notification.target_status.nil? }.map(&:target_status)
+    @notifications.reject { |notification| notification.target_status.nil? }.map(&:target_status)
   end
 
   def insert_pagination_headers

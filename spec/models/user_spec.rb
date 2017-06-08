@@ -150,7 +150,7 @@ RSpec.describe User, type: :model do
     end
 
     it 'saves cleared otp_backup_codes' do
-      user = Fabricate.build(:user, otp_backup_codes: %w[dummy dummy])
+      user = Fabricate.build(:user, otp_backup_codes: %w(dummy dummy))
       user.disable_two_factor!
       expect(user.reload.otp_backup_codes.empty?).to be true
     end
