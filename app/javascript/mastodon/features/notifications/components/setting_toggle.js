@@ -10,7 +10,6 @@ class SettingToggle extends React.PureComponent {
     settingKey: PropTypes.array.isRequired,
     label: PropTypes.node.isRequired,
     onChange: PropTypes.func.isRequired,
-    htmlFor: PropTypes.string,
   }
 
   onChange = (e) => {
@@ -18,13 +17,14 @@ class SettingToggle extends React.PureComponent {
   }
 
   render () {
-    const { settings, settingKey, label, onChange, htmlFor = '' } = this.props;
+    const { settings, settingKey, label, onChange } = this.props;
+    const id = `setting-toggle-${settingKey.join('-')}`;
 
     return (
-      <label htmlFor={htmlFor} className='setting-toggle__label'>
-        <Toggle checked={settings.getIn(settingKey)} onChange={this.onChange} />
-        <span className='setting-toggle'>{label}</span>
-      </label>
+      <div className='setting-toggle'>
+        <Toggle id={id} checked={settings.getIn(settingKey)} onChange={this.onChange} />
+        <label htmlFor={id} className='setting-toggle__label'>{label}</label>
+      </div>
     );
   }
 

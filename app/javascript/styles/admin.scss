@@ -245,19 +245,13 @@
 
 .report-status__actions {
   flex: 0 0 auto;
-  position: relative;
+  display: flex;
+  flex-direction: column;
 
-  .nsfw-button {
-    color: $white;
-    font-size: 11px;
-    width: 11px;
-    display: block;
-  }
-
-  .trash-button {
-    position: absolute;
-    bottom: 10px;
+  .icon-button {
     font-size: 24px;
     width: 24px;
+    text-align: center;
+    margin-bottom: 10px;
   }
 }

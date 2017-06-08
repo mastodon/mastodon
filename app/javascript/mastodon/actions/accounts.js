@@ -107,7 +107,9 @@ export function fetchAccountTimeline(id, replace = false) {
     let params = {};
     let skipLoading = false;
 
-    if (newestId !== null && !replace) {
+    replace = replace || newestId === null;
+
+    if (!replace) {
       params.since_id = newestId;
       skipLoading = true;
     }
@@ -131,7 +133,9 @@ export function fetchAccountMediaTimeline(id, replace = false) {
     let params = { only_media: 'true', limit: 12 };
     let skipLoading = false;
 
-    if (newestId !== null && !replace) {
+    replace = replace || newestId === null;
+
+    if (!replace) {
       params.since_id = newestId;
       skipLoading = true;
     }

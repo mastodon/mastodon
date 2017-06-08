@@ -2,8 +2,10 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
-import Column from '../ui/components/column';
+import Column from '../../components/column';
+import ColumnHeader from '../../components/column_header';
 import { expandNotifications, clearNotifications, scrollTopNotifications } from '../../actions/notifications';
+import { addColumn, removeColumn, moveColumn } from '../../actions/columns';
 import NotificationContainer from './containers/notification_container';
 import { ScrollContainer } from 'react-router-scroll';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
@@ -29,17 +31,21 @@ const mapStateToProps = state => ({
   notifications: getNotifications(state),
   isLoading: state.getIn(['notifications', 'isLoading'], true),
   isUnread: state.getIn(['notifications', 'unread']) > 0,
+  hasMore: !!state.getIn(['notifications', 'next']),
 });
 
 class Notifications extends React.PureComponent {
 
   static propTypes = {
+    columnId: PropTypes.string,
     notifications: ImmutablePropTypes.list.isRequired,
     dispatch: PropTypes.func.isRequired,
     shouldUpdateScroll: PropTypes.func,
     intl: PropTypes.object.isRequired,
     isLoading: PropTypes.bool,
     isUnread: PropTypes.bool,
+    multiColumn: PropTypes.bool,
+    hasMore: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -52,7 +58,9 @@ class Notifications extends React.PureComponent {
     this._oldScrollPosition = scrollHeight - scrollTop;
 
     if (250 > offset && !this.props.isLoading) {
-      this.props.dispatch(expandNotifications());
+      if (this.props.hasMore) {
+        this.props.dispatch(expandNotifications());
+      }
     } else if (scrollTop < 100) {
       this.props.dispatch(scrollTopNotifications(true));
     } else {
@@ -81,18 +89,43 @@ class Notifications extends React.PureComponent {
     }));
   }
 
+  handlePin = () => {
+    const { columnId, dispatch } = this.props;
+
+    if (columnId) {
+      dispatch(removeColumn(columnId));
+    } else {
+      dispatch(addColumn('NOTIFICATIONS', {}));
+    }
+  }
+
+  handleMove = (dir) => {
+    const { columnId, dispatch } = this.props;
+    dispatch(moveColumn(columnId, dir));
+  }
+
+  handleHeaderClick = () => {
+    this.column.scrollTop();
+  }
+
   setRef = (c) => {
     this.node = c;
   }
 
+  setColumnRef = c => {
+    this.column = c;
+  }
+
   render () {
-    const { intl, notifications, shouldUpdateScroll, isLoading, isUnread } = this.props;
+    const { intl, notifications, shouldUpdateScroll, isLoading, isUnread, columnId, multiColumn, hasMore } = this.props;
+    const pinned = !!columnId;
 
     let loadMore       = '';
     let scrollableArea = '';
     let unread         = '';
+    let scrollContainer = '';
 
-    if (!isLoading && notifications.size > 0) {
+    if (!isLoading && notifications.size > 0 && hasMore) {
       loadMore = <LoadMore onClick={this.handleLoadMore} />;
     }
 
@@ -121,15 +154,34 @@ class Notifications extends React.PureComponent {
       );
     }
 
+    if (pinned) {
+      scrollContainer = scrollableArea;
+    } else {
+      scrollContainer = (
+        <ScrollContainer scrollKey={`notifications-${columnId}`} shouldUpdateScroll={shouldUpdateScroll}>
+          {scrollableArea}
+        </ScrollContainer>
+      );
+    }
+
     this.scrollableArea = scrollableArea;
 
     return (
-      <Column icon='bell' active={isUnread} heading={intl.formatMessage(messages.title)}>
-        <ColumnSettingsContainer />
-        <ClearColumnButton onClick={this.handleClear} />
-        <ScrollContainer scrollKey='notifications' shouldUpdateScroll={shouldUpdateScroll}>
-          {scrollableArea}
-        </ScrollContainer>
+      <Column ref={this.setColumnRef}>
+        <ColumnHeader
+          icon='bell'
+          active={isUnread}
+          title={intl.formatMessage(messages.title)}
+          onPin={this.handlePin}
+          onMove={this.handleMove}
+          onClick={this.handleHeaderClick}
+          pinned={pinned}
+          multiColumn={multiColumn}
+        >
+          <ColumnSettingsContainer />
+        </ColumnHeader>
+
+        {scrollContainer}
       </Column>
     );
   }
