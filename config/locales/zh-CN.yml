@@ -134,20 +134,17 @@ zh-CN:
       account_count: 已知帐号
       domain_name: 域名
       title: 已知实例
-    subscriptions:
-      callback_url: 回调 URL
-      confirmed: 确定
-      expires_in: 期限
-      last_delivery: 数据最后送抵时间
-      title: PubSubHubbub 订阅
-      topic: 所订阅资源
     reports:
+      are_you_sure: 你确定吗?
       comment:
         label: 备注
         none: 没有
       delete: 删除
       id: ID
       mark_as_resolved: 标示为「已处理」
+      nsfw:
+        'false': NSFW无效
+        'true': NSFW有效
       report: '举报 #%{id}'
       reported_account: 举报用户
       reported_by: 举报者
@@ -159,10 +156,6 @@ zh-CN:
       title: 举报
       unresolved: 未处理
       view: 查看
-      nsfw:
-        'true': NSFW有效
-        'false': NSFW无效
-      are_you_sure: 你确定吗?
     settings:
       contact_information:
         email: 输入一个公开的电邮地址
@@ -185,6 +178,13 @@ zh-CN:
         title: 本站详细信息
       site_title: 本站名称
       title: 网站设置
+    subscriptions:
+      callback_url: 回调 URL
+      confirmed: 确定
+      expires_in: 期限
+      last_delivery: 数据最后送抵时间
+      title: PubSubHubbub 订阅
+      topic: 所订阅资源
     title: 管理
   application_mailer:
     settings: 更改电邮设置︰%{link}
@@ -260,7 +260,7 @@ zh-CN:
       following: 关注名单
       muting: 静音名单
     upload: 上载
-  landing_strip_html: <strong>%{name}</strong> 是一个在 %{link_to_root_path} 的用户。只要你是象毛世界里（Mastodon、GNU social）任一服务器实例的用户，便可以跨站关注此站用户并与其沟通。
+  landing_strip_html: "<strong>%{name}</strong> 是一个在 %{link_to_root_path} 的用户。只要你是象毛世界里（Mastodon、GNU social）任一服务器实例的用户，便可以跨站关注此站用户并与其沟通。"
   landing_strip_signup_html: 如果你没有这类账户，欢迎在<a href="%{sign_up_path}">此处登记</a>。
   media_attachments:
     validations:
