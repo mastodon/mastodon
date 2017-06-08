@@ -5,17 +5,12 @@ class Api::V1::Statuses::FavouritedByAccountsController < Api::BaseController
 
   before_action :authorize_if_got_token
   before_action :set_status
+  after_action :insert_pagination_headers
 
   respond_to :json
 
   def index
     @accounts = load_accounts
-
-    next_path = api_v1_status_favourited_by_index_url(pagination_params(max_id: @accounts.last.favourites.last.id))     if @accounts.size == limit_param(DEFAULT_ACCOUNTS_LIMIT)
-    prev_path = api_v1_status_favourited_by_index_url(pagination_params(since_id: @accounts.first.favourites.first.id)) unless @accounts.empty?
-
-    set_pagination_headers(next_path, prev_path)
-
     render 'api/v1/statuses/accounts'
   end
 
@@ -38,6 +33,34 @@ class Api::V1::Statuses::FavouritedByAccountsController < Api::BaseController
       params[:max_id],
       params[:since_id]
     )
+  end
+
+  def insert_pagination_headers
+    set_pagination_headers(next_path, prev_path)
+  end
+
+  def next_path
+    if records_continue?
+      api_v1_status_favourited_by_index_url pagination_params(max_id: pagination_max_id)
+    end
+  end
+
+  def prev_path
+    unless @accounts.empty?
+      api_v1_status_favourited_by_index_url pagination_params(since_id: pagination_since_id)
+    end
+  end
+
+  def pagination_max_id
+    @accounts.last.favourites.last.id
+  end
+
+  def pagination_since_id
+    @accounts.first.favourites.first.id
+  end
+
+  def records_continue?
+    @accounts.size == limit_param(DEFAULT_ACCOUNTS_LIMIT)
   end
 
   def set_status
