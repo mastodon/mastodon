@@ -34,32 +34,6 @@ RSpec.describe Api::V1::StatusesController, type: :controller do
       end
     end
 
-    describe 'GET #reblogged_by' do
-      let(:status) { Fabricate(:status, account: user.account) }
-
-      before do
-        post :reblog, params: { id: status.id }
-      end
-
-      it 'returns http success' do
-        get :reblogged_by, params: { id: status.id }
-        expect(response).to have_http_status(:success)
-      end
-    end
-
-    describe 'GET #favourited_by' do
-      let(:status) { Fabricate(:status, account: user.account) }
-
-      before do
-        post :favourite, params: { id: status.id }
-      end
-
-      it 'returns http success' do
-        get :favourited_by, params: { id: status.id }
-        expect(response).to have_http_status(:success)
-      end
-    end
-
     describe 'POST #create' do
       before do
         post :create, params: { status: 'Hello world' }
@@ -250,28 +224,6 @@ RSpec.describe Api::V1::StatusesController, type: :controller do
           expect(response).to have_http_status(:missing)
         end
       end
-
-      describe 'GET #reblogged_by' do
-        before do
-          post :reblog, params: { id: status.id }
-        end
-
-        it 'returns http unautharized' do
-          get :reblogged_by, params: { id: status.id }
-          expect(response).to have_http_status(:missing)
-        end
-      end
-
-      describe 'GET #favourited_by' do
-        before do
-          post :favourite, params: { id: status.id }
-        end
-
-        it 'returns http unautharized' do
-          get :favourited_by, params: { id: status.id }
-          expect(response).to have_http_status(:missing)
-        end
-      end
     end
 
     context 'with a public status' do
@@ -298,28 +250,6 @@ RSpec.describe Api::V1::StatusesController, type: :controller do
       describe 'GET #card' do
         it 'returns http success' do
           get :card, params: { id: status.id }
-          expect(response).to have_http_status(:success)
-        end
-      end
-
-      describe 'GET #reblogged_by' do
-        before do
-          post :reblog, params: { id: status.id }
-        end
-
-        it 'returns http success' do
-          get :reblogged_by, params: { id: status.id }
-          expect(response).to have_http_status(:success)
-        end
-      end
-
-      describe 'GET #favourited_by' do
-        before do
-          post :favourite, params: { id: status.id }
-        end
-
-        it 'returns http success' do
-          get :favourited_by, params: { id: status.id }
           expect(response).to have_http_status(:success)
         end
       end
