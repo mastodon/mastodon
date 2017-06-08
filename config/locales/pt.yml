@@ -126,13 +126,6 @@ pt:
       account_count: Contas conhecidas
       domain_name: Domínio
       title: Instâncias conhecidas
-    subscriptions:
-      callback_url: URL de Callback
-      confirmed: Confirmado
-      expires_in: Expira em
-      last_delivery: Última entrega
-      title: PubSubHubbub
-      topic: Tópico
     reports:
       comment:
         label: Comentário
@@ -173,6 +166,13 @@ pt:
         title: Página de mais informações
       site_title: Título do site
       title: Preferências do site
+    subscriptions:
+      callback_url: URL de Callback
+      confirmed: Confirmado
+      expires_in: Expira em
+      last_delivery: Última entrega
+      title: PubSubHubbub
+      topic: Tópico
     title: Administração
   application_mailer:
     settings: 'Alterar preferências de email: %{link}'
@@ -196,7 +196,7 @@ pt:
     validation_errors:
       one: Algo não está correcto. Por favor vê o erro abaixo
       other: Algo não está correto. Por favor vê os %{count} erros abaixo
-  landing_strip_html: <strong>%{name}</strong> is a user on %{link_to_root_path}. You can follow them or interact with them if you have an account anywhere in the fediverse.
+  landing_strip_html: "<strong>%{name}</strong> is a user on %{link_to_root_path}. You can follow them or interact with them if you have an account anywhere in the fediverse."
   landing_strip_signup_html: If you don't, you can <a href="%{sign_up_path}">sign up here</a>.
   notification_mailer:
     favourite:

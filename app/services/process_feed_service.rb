@@ -51,6 +51,11 @@ class ProcessFeedService < BaseService
 
       Rails.logger.debug "Creating remote status #{id}"
 
+      if verb == :share
+        original_status = shared_status_from_xml(@xml.at_xpath('.//activity:object', activity: TagManager::AS_XMLNS))
+        return nil if original_status.nil?
+      end
+
       ApplicationRecord.transaction do
         status, just_created = status_from_xml(@xml)
 
@@ -58,15 +63,7 @@ class ProcessFeedService < BaseService
         return status unless just_created
 
         if verb == :share
-          original_status = shared_status_from_xml(@xml.at_xpath('.//activity:object', activity: TagManager::AS_XMLNS))
-          status.reblog   = original_status
-
-          if original_status.nil?
-            status.destroy
-            return nil
-          elsif original_status.reblog?
-            status.reblog = original_status.reblog
-          end
+          status.reblog = original_status.reblog? ? original_status.reblog : original_status
         end
 
         status.thread = find_status(thread(@xml).first) if thread?(@xml)

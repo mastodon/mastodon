@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Api::V1::Accounts::CredentialsController < ApiController
+class Api::V1::Accounts::CredentialsController < Api::BaseController
   before_action -> { doorkeeper_authorize! :write }, only: [:update]
   before_action :require_user!
 

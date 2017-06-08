@@ -131,13 +131,6 @@ th:
       account_count: Known accounts
       domain_name: ชื่อโดเมน
       title: Known Instances
-    subscriptions:
-      callback_url: Callback URL
-      confirmed: ยืนยัน
-      expires_in: หมดอายุภายใน
-      last_delivery: จัดส่งครั้งล่าสุด
-      title: PubSubHubbub
-      topic: ชื่อเรื่อง
     reports:
       comment:
         label: คอมเม้นต์
@@ -179,6 +172,13 @@ th:
         title: คำอธิบายไซต์เพิ่มเติม
       site_title: ชื่อไซต์
       title: ตั้งค่าไซต์
+    subscriptions:
+      callback_url: Callback URL
+      confirmed: ยืนยัน
+      expires_in: หมดอายุภายใน
+      last_delivery: จัดส่งครั้งล่าสุด
+      title: PubSubHubbub
+      topic: ชื่อเรื่อง
     title: แอดมิน
   application_mailer:
     settings: 'เปลี่ยนอีเมล์ preferences: %{link}'
@@ -256,7 +256,7 @@ th:
       following: Following list
       muting: Muting list
     upload: Upload
-  landing_strip_html: <strong>%{name}</strong> is a user on %{link_to_root_path}. You can follow them or interact with them if you have an account anywhere in the fediverse.
+  landing_strip_html: "<strong>%{name}</strong> is a user on %{link_to_root_path}. You can follow them or interact with them if you have an account anywhere in the fediverse."
   landing_strip_signup_html: If you don't, you can <a href="%{sign_up_path}">sign up here</a>.
   media_attachments:
     validations:

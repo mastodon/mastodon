@@ -119,13 +119,6 @@ de:
       account_count: Bekannte Konten
       domain_name: Domain
       title: Bekannte Instanzen
-    subscriptions:
-      callback_url: Callback-URL
-      confirmed: Bestätigt
-      expires_in: Verfällt in
-      last_delivery: Letzte Zustellung
-      title: PubSubHubbub
-      topic: Thema
     reports:
       comment:
         label: Kommentar
@@ -133,7 +126,7 @@ de:
       delete: Löschen
       id: ID
       mark_as_resolved: Als gelöst markieren
-      report: '#%{id} melden'
+      report: "#%{id} melden"
       reported_account: Gemeldetes Konto
       reported_by: Gemeldet von
       resolved: Gelöst
@@ -166,6 +159,13 @@ de:
         title: Erweiterte Seitenbeschreibung
       site_title: Seitentitel
       title: Seiteneinstellungen
+    subscriptions:
+      callback_url: Callback-URL
+      confirmed: Bestätigt
+      expires_in: Verfällt in
+      last_delivery: Letzte Zustellung
+      title: PubSubHubbub
+      topic: Thema
     title: Administration
   application_mailer:
     settings: 'E-Mail-Einstellungen ändern: %{link}'
@@ -229,7 +229,7 @@ de:
       following: Folgeliste
       muting: Stummschaltungsliste
     upload: Hochladen
-  landing_strip_html: <strong>%{name}</strong> ist ein Benutzer auf %{link_to_root_path}. Du kannst ihm folgen oder mit ihm interagieren, sofern du ein Konto irgendwo in der Fediverse hast.
+  landing_strip_html: "<strong>%{name}</strong> ist ein Benutzer auf %{link_to_root_path}. Du kannst ihm folgen oder mit ihm interagieren, sofern du ein Konto irgendwo in der Fediverse hast."
   landing_strip_signup_html: Wenn nicht, kannst du dich <a href="%{sign_up_path}">hier anmelden</a>.
   media_attachments:
     validations:

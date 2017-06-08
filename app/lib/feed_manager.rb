@@ -109,8 +109,8 @@ class FeedManager
 
     if status.reply? && !status.in_reply_to_account_id.nil?                                                              # Filter out if it's a reply
       should_filter   = !Follow.where(account_id: receiver_id, target_account_id: status.in_reply_to_account_id).exists? # and I'm not following the person it's a reply to
-      should_filter &&= !(receiver_id == status.in_reply_to_account_id)                                                  # and it's not a reply to me
-      should_filter &&= !(status.account_id == status.in_reply_to_account_id)                                            # and it's not a self-reply
+      should_filter &&= receiver_id != status.in_reply_to_account_id                                                     # and it's not a reply to me
+      should_filter &&= status.account_id != status.in_reply_to_account_id                                               # and it's not a self-reply
       return should_filter
     elsif status.reblog?                                                                                                 # Filter out a reblog
       should_filter   = Block.where(account_id: status.reblog.account_id, target_account_id: receiver_id).exists?        # or if the author of the reblogged status is blocking me

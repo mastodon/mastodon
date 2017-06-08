@@ -5,7 +5,7 @@ fa:
     about_this: دربارهٔ این سرور
     apps: برنامه‌ها
     business_email: 'ایمیل کاری:'
-    closed_registrations: "امکان ثبت نام روی این سرور هم‌اینک فعال نیست."
+    closed_registrations: امکان ثبت نام روی این سرور هم‌اینک فعال نیست.
     contact: تماس
     description_headline: "%{domain} چیست؟"
     domain_count_after: سرور دیگر
@@ -47,8 +47,8 @@ fa:
       create:
         name: "%{account_name} یادداشتی نوشت."
     outbox:
-      name: "صندوق خروجی %{account_name}"
-      summary: "مجموعه‌ای از فعالیت‌های کاربر %{account_name}."
+      name: صندوق خروجی %{account_name}
+      summary: مجموعه‌ای از فعالیت‌های کاربر %{account_name}.
   admin:
     accounts:
       are_you_sure: آیا مطمئن هستید؟
@@ -118,7 +118,7 @@ fa:
       show:
         affected_accounts:
           one: روی یک حساب در پایگاه داده تأثیر گذاشت
-          other: "روی %{count} حساب در پایگاه داده تأثیر گذاشت"
+          other: روی %{count} حساب در پایگاه داده تأثیر گذاشت
         retroactive:
           silence: بی‌صداشدن همهٔ حساب‌های این دامین را لغو کن
           suspend: معلق‌شدن همهٔ حساب‌های این دامین را لغو کن
@@ -130,13 +130,6 @@ fa:
       account_count: حساب‌های شناخته‌شده
       domain_name: دامین
       title: سرورهای شناخته‌شده
-    subscriptions:
-      callback_url: نشانی Callback
-      confirmed: تأییدشده
-      expires_in: مهلت انقضا
-      last_delivery: آخرین ارسال
-      title: PubSubHubbub
-      topic: موضوع
     reports:
       comment:
         label: توضیح
@@ -178,6 +171,13 @@ fa:
         title: اطلاعات بیشتر دربارهٔ سایت
       site_title: نام سایت
       title: تنظیمات سایت
+    subscriptions:
+      callback_url: نشانی Callback
+      confirmed: تأییدشده
+      expires_in: مهلت انقضا
+      last_delivery: آخرین ارسال
+      title: PubSubHubbub
+      topic: موضوع
     title: مدیریت
   application_mailer:
     settings: 'تغییر تنظیمات ایمیل: %{link}'
@@ -255,7 +255,7 @@ fa:
       following: فهرست پی‌گیری‌ها
       muting: فهرست بی‌صداشده‌ها
     upload: بارگذاری
-  landing_strip_html: <strong>%{name}</strong> کاربری روی %{link_to_root_path} است. شما با داشتن حساب روی هر سروری می‌توانید نوشته‌های او را پیگیری کرده یا با او ارتباط داشته باشید.
+  landing_strip_html: "<strong>%{name}</strong> کاربری روی %{link_to_root_path} است. شما با داشتن حساب روی هر سروری می‌توانید نوشته‌های او را پیگیری کرده یا با او ارتباط داشته باشید."
   landing_strip_signup_html: اگر هنوز حسابی ندارید <a href="%{sign_up_path}">این‌جا حساب باز کنید</a>.
   media_attachments:
     validations:
@@ -272,7 +272,7 @@ fa:
         one: "یک اعلان تازه از زمان آخرین بازدید شما \U0001F418"
         other: "%{count} اعلان تازه از زمان آخرین بازدید شما \U0001F418"
     favourite:
-      body: '%{name} این نوشتهٔ شما را پسندید:'
+      body: "%{name} این نوشتهٔ شما را پسندید:"
       subject: "%{name} نوشتهٔ شما را پسندید"
     follow:
       body: "%{name} هم‌اینک پیگیر شماست!"
@@ -281,10 +281,10 @@ fa:
       body: "%{name} می‌خواهد پیگیر نوشته‌های شما باشد"
       subject: 'منتظر پیگیری: %{name}'
     mention:
-      body: '%{name} در این‌جا از شما نام برد:'
-      subject: '%{name} از شما نام برد'
+      body: "%{name} در این‌جا از شما نام برد:"
+      subject: "%{name} از شما نام برد"
     reblog:
-      body: '%{name} نوشتهٔ شما را بازبوقید:'
+      body: "%{name} نوشتهٔ شما را بازبوقید:"
       subject: "%{name} نوشتهٔ شما را بازبوقید"
   pagination:
     next: بعدی

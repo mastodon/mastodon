@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Api::V1::StreamingController < ApiController
+class Api::V1::StreamingController < Api::BaseController
   respond_to :json
 
   def index

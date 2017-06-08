@@ -39,8 +39,8 @@ pl:
     people_who_follow: Osoby, które śledzą konto %{name}
     posts: Wpisy
     remote_follow: Zdalne śledzenie
-    unfollow: Przestań śledzić
     reserved_username: Ta nazwa użytkownika jest zarezerwowana.
+    unfollow: Przestań śledzić
   activitypub:
     activity:
       announce:
@@ -135,20 +135,17 @@ pl:
       account_count: Znane konta
       domain_name: Domena
       title: Znane instancje
-    subscriptions:
-      callback_url: URL zwrotny
-      confirmed: Potwierdzono
-      expires_in: Wygasa
-      last_delivery: Ostatnio doręczono
-      title: PubSubHubbub
-      topic: Temat
     reports:
+      are_you_sure: Czy na pewno?
       comment:
         label: Komentarz
         none: Brak
       delete: Usuń
       id: Identyfikator
       mark_as_resolved: Oznacz jako rozwiązane
+      nsfw:
+        'false': NSFW nie będzie wyświetlane
+        'true': NSFW będzie wyświetlane
       report: 'Zgłoszenie #%{id}'
       report_contents: Zawartość
       reported_account: Zgłoszone konto
@@ -161,10 +158,6 @@ pl:
       title: Zgłoszenia
       unresolved: Nierozwiązane
       view: Wyświetl
-      nsfw:
-        'true': NSFW będzie wyświetlane
-        'false': NSFW nie będzie wyświetlane
-      are_you_sure: Czy na pewno?
     settings:
       contact_information:
         email: Wprowadź publiczny adres e-mail
@@ -187,6 +180,13 @@ pl:
         title: Extended site description
       site_title: Tytuł strony
       title: Ustawienia strony
+    subscriptions:
+      callback_url: URL zwrotny
+      confirmed: Potwierdzono
+      expires_in: Wygasa
+      last_delivery: Ostatnio doręczono
+      title: PubSubHubbub
+      topic: Temat
     title: Administracja
   application_mailer:
     settings: 'Zmień ustawienia powiadamiania: %{link}'
@@ -231,6 +231,7 @@ pl:
       content: Sprawdzanie bezpieczeństwa nie powiodło się. Czy blokujesz pliki cookie?
       title: Sprawdzanie bezpieczeństwa nie powiodło się
     '429': Uduszono
+    noscript: Aby korzystać z Mastodona, włącz JavaScript.
   exports:
     blocks: Blokujesz
     csv: CSV
@@ -264,7 +265,7 @@ pl:
       following: Lista śledzonych
       muting: Lista wyciszonych
     upload: Załaduj
-  landing_strip_html: <strong>%{name}</strong> ma konto na %{link_to_root_path}. Możesz je śledzić i wejść z nim w interakcję jeśli masz konto gdziekolwiek w Fediwersie.
+  landing_strip_html: "<strong>%{name}</strong> ma konto na %{link_to_root_path}. Możesz je śledzić i wejść z nim w interakcję jeśli masz konto gdziekolwiek w Fediwersie."
   landing_strip_signup_html: Jeśli jeszcze go nie masz, możesz <a href="%{sign_up_path}">stworzyć konto</a>.
   media_attachments:
     validations:
@@ -275,14 +276,14 @@ pl:
       body: 'Oto krótkie podsumowanie co Cię ominęło na %{instance} od Twojej ostatniej wizyty (%{since}):'
       mention: "%{name} wspomniał o Tobie w:"
       new_followers_summary:
+        few: "(%{count}) nowe osoby śledzą Cię!"
+        many: "(%{count}) nowych osób Cię śledzi! Wspaniale!"
         one: Śledzi Cię nowa osoba! Gratulacje!
-        few: (%{count}) nowe osoby śledzą Cię!
-        many: (%{count}) nowych osób Cię śledzi! Wspaniale!
-        other: (%{count}) nowych osób Cię śledzi! Wspaniale!
+        other: "(%{count}) nowych osób Cię śledzi! Wspaniale!"
       subject:
-        one: "1 nowe powiadomienie od Twojej ostatniej wizyty \U0001F418"
         few: "%{count} nowe powiadomienia od Twojej ostatniej wizyty \U0001F418"
         many: "%{count} nowych powiadomień od Twojej ostatniej wizyty \U0001F418"
+        one: "1 nowe powiadomienie od Twojej ostatniej wizyty \U0001F418"
         other: "%{count} nowych powiadomień od Twojej ostatniej wizyty \U0001F418"
     favourite:
       body: 'Twój wpis został polubiony przez %{name}:'

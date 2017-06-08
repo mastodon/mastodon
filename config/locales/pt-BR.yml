@@ -130,13 +130,6 @@ pt-BR:
       account_count: Contas conhecidas
       domain_name: Domínio
       title: Instâncias conhecidas
-    subscriptions:
-      callback_url: URL de Callback
-      confirmed: Confirmado
-      expires_in: Expira em
-      last_delivery: Última entrega
-      title: PubSubHubbub
-      topic: Tópico
     reports:
       comment:
         label: Commentário
@@ -178,6 +171,13 @@ pt-BR:
         title: Descrição extendida do site
       site_title: Título do site
       title: Preferências do site
+    subscriptions:
+      callback_url: URL de Callback
+      confirmed: Confirmado
+      expires_in: Expira em
+      last_delivery: Última entrega
+      title: PubSubHubbub
+      topic: Tópico
     title: Administração
   application_mailer:
     settings: 'Mudar preferências de email: %{link}'
@@ -254,7 +254,7 @@ pt-BR:
       following: Lista de seguidos
       muting: Lista de silenciados
     upload: Carregar
-  landing_strip_html: <strong>%{name}</strong> is a user on %{link_to_root_path}. You can follow them or interact with them if you have an account anywhere in the fediverse.
+  landing_strip_html: "<strong>%{name}</strong> is a user on %{link_to_root_path}. You can follow them or interact with them if you have an account anywhere in the fediverse."
   landing_strip_signup_html: If you don't, you can <a href="%{sign_up_path}">sign up here</a>.
   media_attachments:
     validations:

@@ -387,6 +387,12 @@ RSpec.describe Account, type: :model do
       expect(account).to model_have_error_on_field(:username)
     end
 
+    it 'is valid when username is reserved but record has already been created' do
+      account = Fabricate.build(:account, username: 'support')
+      account.save(validate: false)
+      expect(account.valid?).to be true
+    end
+
     context 'when is local' do
       it 'is invalid if the username doesn\'t only contains letters, numbers and underscores' do
         account = Fabricate.build(:account, username: 'the-doctor')

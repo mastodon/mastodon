@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Api::V1::StatusesController < ApiController
+class Api::V1::StatusesController < Api::BaseController
   include Authorization
 
   before_action :authorize_if_got_token, except:            [:create, :destroy, :reblog, :unreblog, :favourite, :unfavourite, :mute, :unmute]

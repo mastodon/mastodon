@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 module StreamEntriesHelper
-  EMBEDDED_CONTROLLER = 'stream_entries'.freeze
-  EMBEDDED_ACTION = 'embed'.freeze
+  EMBEDDED_CONTROLLER = 'stream_entries'
+  EMBEDDED_ACTION = 'embed'
 
   def display_name(account)
     account.display_name.presence || account.username

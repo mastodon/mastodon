@@ -113,13 +113,6 @@ ru:
         undo: Отменить
       title: Доменные блокировки
       undo: Отемнить
-    subscriptions:
-      callback_url: Callback URL
-      confirmed: Подтверждено
-      expires_in: Истекает через
-      last_delivery: Последняя доставка
-      title: PubSubHubbub
-      topic: Тема
     reports:
       comment:
         label: Комментарий
@@ -160,6 +153,13 @@ ru:
         title: Расширенное описание сайта
       site_title: Название сайта
       title: Настройки сайта
+    subscriptions:
+      callback_url: Callback URL
+      confirmed: Подтверждено
+      expires_in: Истекает через
+      last_delivery: Последняя доставка
+      title: PubSubHubbub
+      topic: Тема
     title: Администрирование
   application_mailer:
     settings: 'Изменить настройки e-mail: %{link}'
@@ -236,7 +236,7 @@ ru:
       following: Подписки
       muting: Список глушения
     upload: Загрузить
-  landing_strip_html: <strong>%{name}</strong> - пользователь на %{link_to_root_path}. Вы можете подписаться на него/нее и общаться с ним/ней, если у Вас есть аккаунт на любом узле общей сети.
+  landing_strip_html: "<strong>%{name}</strong> - пользователь на %{link_to_root_path}. Вы можете подписаться на него/нее и общаться с ним/ней, если у Вас есть аккаунт на любом узле общей сети."
   landing_strip_signup_html: Если у Вас его нет, вы можете <a href="%{sign_up_path}">зарегистрироваться здесь</a>.
   media_attachments:
     validations:

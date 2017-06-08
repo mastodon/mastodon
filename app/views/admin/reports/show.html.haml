@@ -25,8 +25,8 @@
         .entry= render partial: 'stream_entries/simple_status', locals: { status: status }
       .report-status__actions
         - unless status.media_attachments.empty?
-          = link_to admin_report_reported_status_path(@report, status, status: { sensitive: !status.sensitive }), method: :patch, class: 'nsfw-button', title: t("admin.reports.nsfw.#{!status.sensitive}") do
-            = t("admin.reports.nsfw.#{!status.sensitive}")
+          = link_to admin_report_reported_status_path(@report, status, status: { sensitive: !status.sensitive }), method: :patch, class: 'icon-button nsfw-button', title: t("admin.reports.nsfw.#{!status.sensitive}") do
+            = fa_icon status.sensitive? ? 'eye' : 'eye-slash'
         = link_to admin_report_reported_status_path(@report, status), method: :delete, class: 'icon-button trash-button', title: t('admin.reports.delete'), data: { confirm: t('admin.reports.are_you_sure') } do
           = fa_icon 'trash'
 
