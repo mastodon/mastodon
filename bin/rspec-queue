@@ -1,0 +1,22 @@
+#!/usr/bin/env ruby
+ENV["RAILS_ENV"] ||= "test"
+
+require File.expand_path("../../config/environment", __FILE__)
+require "test_queue"
+require "test_queue/runner/rspec"
+
+class MastodonRSpecRunner < TestQueue::Runner::RSpec
+
+  def after_fork(num)
+    ENV.update("TEST_ENV_NUMBER" => num.to_s)
+    ActiveRecord::Base.configurations["test"]["database"] << ENV["TEST_ENV_NUMBER"]
+    ActiveRecord::Tasks::DatabaseTasks.create_current
+    ActiveRecord::Base.establish_connection(:test)
+
+    Rails.application.load_tasks
+    Rake::Task["db:reset"].invoke
+  end
+
+end
+
+MastodonRSpecRunner.new.execute

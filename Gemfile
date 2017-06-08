@@ -67,6 +67,7 @@ group :development, :test do
   gem 'i18n-tasks', '~> 0.9', require: false
   gem 'pry-rails', '~> 0.3'
   gem 'rspec-rails', '~> 3.6'
+  gem 'test-queue', '~> 0.4.2'
 end
 
 group :test do
