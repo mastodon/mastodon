@@ -57,7 +57,8 @@ class Account < ApplicationRecord
   validates :username, uniqueness: { scope: :domain, case_sensitive: true }, if: -> { !local? && username_changed? }
 
   # Local user validations
-  validates :username, format: { with: /\A[a-z0-9_]+\z/i }, uniqueness: { scope: :domain, case_sensitive: false }, length: { maximum: 30 }, unreserved: true, if: -> { local? && username_changed? }
+  validates :username, format: { with: /\A[a-z0-9_]+\z/i }, uniqueness: { scope: :domain, case_sensitive: false }, length: { maximum: 30 }, if: -> { local? && username_changed? }
+  validates_with UnreservedUsernameValidator, if: -> { local? && username_changed? }
   validates :display_name, length: { maximum: 30 }, if: -> { local? && display_name_changed? }
   validates :note, length: { maximum: 160 }, if: -> { local? && note_changed? }
 
