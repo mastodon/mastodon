@@ -3,11 +3,10 @@
 class Api::V1::StatusesController < Api::BaseController
   include Authorization
 
-  before_action :authorize_if_got_token, except:            [:create, :destroy, :reblog, :unreblog, :favourite, :unfavourite, :mute, :unmute]
-  before_action -> { doorkeeper_authorize! :write }, only:  [:create, :destroy, :reblog, :unreblog, :favourite, :unfavourite, :mute, :unmute]
+  before_action :authorize_if_got_token, except:            [:create, :destroy]
+  before_action -> { doorkeeper_authorize! :write }, only:  [:create, :destroy]
   before_action :require_user!, except:  [:show, :context, :card]
-  before_action :set_status, only:       [:show, :context, :card, :mute, :unmute]
-  before_action :set_conversation, only: [:mute, :unmute]
+  before_action :set_status, only:       [:show, :context, :card]
 
   respond_to :json
 
@@ -56,53 +55,6 @@ class Api::V1::StatusesController < Api::BaseController
     render_empty
   end
 
-  def reblog
-    @status = ReblogService.new.call(current_user.account, Status.find(params[:id]))
-    render :show
-  end
-
-  def unreblog
-    reblog       = Status.where(account_id: current_user.account, reblog_of_id: params[:id]).first!
-    @status      = reblog.reblog
-    @reblogs_map = { @status.id => false }
-
-    authorize reblog, :unreblog?
-
-    RemovalWorker.perform_async(reblog.id)
-
-    render :show
-  end
-
-  def favourite
-    @status = FavouriteService.new.call(current_user.account, Status.find(params[:id])).status.reload
-    render :show
-  end
-
-  def unfavourite
-    @status         = Status.find(params[:id])
-    @favourites_map = { @status.id => false }
-
-    UnfavouriteWorker.perform_async(current_user.account_id, @status.id)
-
-    render :show
-  end
-
-  def mute
-    current_account.mute_conversation!(@conversation)
-
-    @mutes_map = { @conversation.id => true }
-
-    render :show
-  end
-
-  def unmute
-    current_account.unmute_conversation!(@conversation)
-
-    @mutes_map = { @conversation.id => false }
-
-    render :show
-  end
-
   private
 
   def set_status
@@ -111,11 +63,6 @@ class Api::V1::StatusesController < Api::BaseController
   rescue Mastodon::NotPermittedError
     # Reraise in order to get a 404 instead of a 403 error code
     raise ActiveRecord::RecordNotFound
-  end
-
-  def set_conversation
-    @conversation = @status.conversation
-    raise Mastodon::ValidationError if @conversation.nil?
   end
 
   def status_params
