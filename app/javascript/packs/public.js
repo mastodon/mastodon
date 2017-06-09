@@ -39,7 +39,7 @@ function loaded() {
 }
 
 function main() {
-  if (document.readyState === 'complete') {
+  if (['interactive', 'complete'].includes(document.readyState)) {
     loaded();
   } else {
     document.addEventListener('DOMContentLoaded', loaded);
