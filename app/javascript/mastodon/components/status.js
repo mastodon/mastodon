@@ -3,7 +3,7 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
 import Avatar from './avatar';
 import AvatarOverlay from './avatar_overlay';
-import RelativeTimestamp from './relative_timestamp';
+import SelectiveTimestamp from './selective_timestamp';
 import DisplayName from './display_name';
 import MediaGallery from './media_gallery';
 import VideoPlayer from './video_player';
@@ -35,6 +35,7 @@ class Status extends ImmutablePureComponent {
     onBlock: PropTypes.func,
     me: PropTypes.number,
     boostModal: PropTypes.bool,
+    absoluteTime: PropTypes.bool,
     autoPlayGif: PropTypes.bool,
     muted: PropTypes.bool,
     intersectionObserverWrapper: PropTypes.object,
@@ -53,6 +54,7 @@ class Status extends ImmutablePureComponent {
     'wrapped',
     'me',
     'boostModal',
+    'absoluteTime',
     'autoPlayGif',
     'muted',
   ]
@@ -192,7 +194,7 @@ class Status extends ImmutablePureComponent {
     return (
       <div className={`status ${this.props.muted ? 'muted' : ''} status-${status.get('visibility')}`} data-id={status.get('id')} ref={this.handleRef}>
         <div className='status__info'>
-          <a href={status.get('url')} className='status__relative-time' target='_blank' rel='noopener'><RelativeTimestamp timestamp={status.get('created_at')} /></a>
+          <a href={status.get('url')} className='status__relative-time' target='_blank' rel='noopener'><SelectiveTimestamp timestamp={status.get('created_at')} absoluteTime={this.props.absoluteTime} /></a>
 
           <a onClick={this.handleAccountClick} data-id={status.getIn(['account', 'id'])} href={status.getIn(['account', 'url'])} className='status__display-name'>
             <div className='status__avatar'>

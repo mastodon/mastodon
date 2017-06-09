@@ -81,6 +81,10 @@ class User < ApplicationRecord
     settings.boost_modal
   end
 
+  def setting_absolute_time
+    settings.absolute_time
+  end
+
   def setting_delete_modal
     settings.delete_modal
   end

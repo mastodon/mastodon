@@ -37,6 +37,7 @@ const makeMapStateToProps = () => {
     status: getStatus(state, props.id),
     me: state.getIn(['meta', 'me']),
     boostModal: state.getIn(['meta', 'boost_modal']),
+    absoluteTime: state.getIn(['meta', 'absolute_time']),
     deleteModal: state.getIn(['meta', 'delete_modal']),
     autoPlayGif: state.getIn(['meta', 'auto_play_gif']),
   });
