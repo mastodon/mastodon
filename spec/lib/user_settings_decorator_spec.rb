@@ -35,6 +35,13 @@ describe UserSettingsDecorator do
       expect(user.settings['boost_modal']).to eq true
     end
 
+    it 'updates the user settings value for absolute time' do
+      values = { 'setting_absolute_time' => '1' }
+
+      settings.update(values)
+      expect(user.settings['absolute_time']).to eq true
+    end
+
     it 'updates the user settings value for delete toot modal' do
       values = { 'setting_delete_modal' => '0' }
 

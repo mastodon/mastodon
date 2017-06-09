@@ -9,6 +9,7 @@ node(:meta) do
     me: current_account.id,
     admin: @admin.try(:id),
     boost_modal: current_account.user.setting_boost_modal,
+    absolute_time: current_account.user.setting_absolute_time,
     delete_modal: current_account.user.setting_delete_modal,
     auto_play_gif: current_account.user.setting_auto_play_gif,
   }
