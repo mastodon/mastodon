@@ -37,7 +37,7 @@ module CodeBlockFormatter
 
   def swap_marker_to_code_blocks(html, marker_and_contents)
     marker_and_contents.reverse.reduce(html) do |html, (marker, block_html)|
-      html.sub(marker, block_html)
+      html.sub(marker) { block_html }
     end
   end
 
