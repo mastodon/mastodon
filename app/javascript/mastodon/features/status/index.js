@@ -26,7 +26,7 @@ import {
   getStatusAncestors,
   getStatusDescendants,
 } from '../../selectors';
-import { ScrollContainer } from 'react-router-scroll';
+// import { ScrollContainer } from 'react-router-scroll';
 import ColumnBackButton from '../../components/column_back_button';
 import StatusContainer from '../../containers/status_container';
 import { openModal } from '../../actions/modal';
@@ -173,7 +173,7 @@ class Status extends ImmutablePureComponent {
       <Column>
         <ColumnBackButton />
 
-        <ScrollContainer scrollKey='thread'>
+        <div scrollKey='thread'>
           <div className='scrollable detailed-status__wrapper'>
             {ancestors}
 
@@ -198,7 +198,7 @@ class Status extends ImmutablePureComponent {
 
             {descendants}
           </div>
-        </ScrollContainer>
+        </div>
       </Column>
     );
   }

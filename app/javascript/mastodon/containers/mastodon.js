@@ -19,7 +19,7 @@ import Router from 'react-router/lib/Router';
 import Route from 'react-router/lib/Route';
 import IndexRedirect from 'react-router/lib/IndexRedirect';
 import IndexRoute from 'react-router/lib/IndexRoute';
-import { useScroll } from 'react-router-scroll';
+// import { useScroll } from 'react-router-scroll';
 import UI from '../features/ui';
 import Status from '../features/status';
 import GettingStarted from '../features/getting_started';
@@ -136,7 +136,7 @@ class Mastodon extends React.PureComponent {
     return (
       <IntlProvider locale={locale} messages={messages}>
         <Provider store={store}>
-          <Router history={browserHistory} render={applyRouterMiddleware(useScroll())}>
+          <Router history={browserHistory}>
             <Route path='/' component={UI}>
               <IndexRedirect to='/getting-started' />
               <Route path='getting-started' component={GettingStarted} />

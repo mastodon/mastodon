@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import LoadingIndicator from '../../components/loading_indicator';
 import { fetchReblogs } from '../../actions/interactions';
-import { ScrollContainer } from 'react-router-scroll';
+// import { ScrollContainer } from 'react-router-scroll';
 import AccountContainer from '../../containers/account_container';
 import Column from '../ui/components/column';
 import ColumnBackButton from '../../components/column_back_button';
@@ -47,11 +47,11 @@ class Reblogs extends ImmutablePureComponent {
       <Column>
         <ColumnBackButton />
 
-        <ScrollContainer scrollKey='reblogs'>
+        <div scrollKey='reblogs'>
           <div className='scrollable reblogs'>
             {accountIds.map(id => <AccountContainer key={id} id={id} withNote={false} />)}
           </div>
-        </ScrollContainer>
+        </div>
       </Column>
     );
   }
