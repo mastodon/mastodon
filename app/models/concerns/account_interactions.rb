@@ -3,34 +3,6 @@
 module AccountInteractions
   extend ActiveSupport::Concern
 
-  class_methods do
-    def following_map(target_account_ids, account_id)
-      follow_mapping(Follow.where(target_account_id: target_account_ids, account_id: account_id), :target_account_id)
-    end
-
-    def followed_by_map(target_account_ids, account_id)
-      follow_mapping(Follow.where(account_id: target_account_ids, target_account_id: account_id), :account_id)
-    end
-
-    def blocking_map(target_account_ids, account_id)
-      follow_mapping(Block.where(target_account_id: target_account_ids, account_id: account_id), :target_account_id)
-    end
-
-    def muting_map(target_account_ids, account_id)
-      follow_mapping(Mute.where(target_account_id: target_account_ids, account_id: account_id), :target_account_id)
-    end
-
-    def requested_map(target_account_ids, account_id)
-      follow_mapping(FollowRequest.where(target_account_id: target_account_ids, account_id: account_id), :target_account_id)
-    end
-
-    def domain_blocking_map(target_account_ids, account_id)
-      accounts_map    = Account.where(id: target_account_ids).select('id, domain').map { |a| [a.id, a.domain] }.to_h
-      blocked_domains = AccountDomainBlock.where(account_id: account_id, domain: accounts_map.values).pluck(:domain)
-      accounts_map.map { |id, domain| [id, blocked_domains.include?(domain)] }.to_h
-    end
-  end
-
   included do
     # Follow relations
     has_many :follow_requests, dependent: :destroy

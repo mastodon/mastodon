@@ -233,10 +233,6 @@ class Account < ApplicationRecord
 
       [textsearch, query]
     end
-
-    def follow_mapping(query, field)
-      query.pluck(field).each_with_object({}) { |id, mapping| mapping[id] = true }
-    end
   end
 
   before_create :generate_keys
