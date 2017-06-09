@@ -20,7 +20,7 @@
 #  reply                  :boolean          default(FALSE)
 #  favourites_count       :integer          default(0), not null
 #  reblogs_count          :integer          default(0), not null
-#  language               :string           default("en"), not null
+#  language               :string
 #  conversation_id        :integer
 #
 
