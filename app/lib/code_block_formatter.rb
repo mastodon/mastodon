@@ -8,7 +8,7 @@ module CodeBlockFormatter
 
   def swap_code_literal_to_marker(html)
     marker_and_contents = []
-    index = html.scan(/\[\[\[codeblock(\d+)\]\]\]/).map(&:to_i).max || 0
+    index = html.scan(/\[\[\[codeblock(\d+)\]\]\]/).flatten.map(&:to_i).max || 0
 
     html = html.gsub(MULTILINE_CODEBLOCK_REGEXP) do
       match_data = Regexp.last_match

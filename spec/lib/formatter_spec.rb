@@ -201,6 +201,14 @@ RSpec.describe Formatter do
           expect(subject).to include('<span><code class="inline">\1</code></span>')
         end
       end
+
+      context '' do
+        let(:local_text) { '[[[codeblock0]]]hoge[[[codeblock1]]]hoge[[[codeblock2]]]`hi`' }
+        it 'has code block' do
+          expect(subject).to include('<span><code class="inline">hi</code></span>')
+        end
+
+      end
     end
 
     context 'contains invalid URL' do
