@@ -194,6 +194,13 @@ RSpec.describe Formatter do
           expect(subject).to include('<p><code data-language="js">console.log(\'Hello, World!\');</code></p>')
         end
       end
+
+      context 'contains capture literals in code block' do
+        let(:local_text) { '`\1`' }
+        it 'has code block' do
+          expect(subject).to include('<span><code class="inline">\1</code></span>')
+        end
+      end
     end
 
     context 'contains invalid URL' do
