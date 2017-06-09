@@ -5,8 +5,8 @@ class Api::V1::StatusesController < Api::BaseController
 
   before_action :authorize_if_got_token, except:            [:create, :destroy, :reblog, :unreblog, :favourite, :unfavourite, :mute, :unmute]
   before_action -> { doorkeeper_authorize! :write }, only:  [:create, :destroy, :reblog, :unreblog, :favourite, :unfavourite, :mute, :unmute]
-  before_action :require_user!, except:  [:show, :context, :card, :reblogged_by, :favourited_by]
-  before_action :set_status, only:       [:show, :context, :card, :reblogged_by, :favourited_by, :mute, :unmute]
+  before_action :require_user!, except:  [:show, :context, :card]
+  before_action :set_status, only:       [:show, :context, :card, :mute, :unmute]
   before_action :set_conversation, only: [:mute, :unmute]
 
   respond_to :json
@@ -31,36 +31,6 @@ class Api::V1::StatusesController < Api::BaseController
   def card
     @card = PreviewCard.find_by(status: @status)
     render_empty if @card.nil?
-  end
-
-  def reblogged_by
-    @accounts = Account.includes(:statuses)
-                       .references(:statuses)
-                       .merge(Status.where(reblog_of_id: @status.id)
-                                    .paginate_by_max_id(limit_param(DEFAULT_ACCOUNTS_LIMIT), params[:max_id], params[:since_id]))
-                       .to_a
-
-    next_path = reblogged_by_api_v1_status_url(pagination_params(max_id: @accounts.last.statuses.last.id))     if @accounts.size == limit_param(DEFAULT_ACCOUNTS_LIMIT)
-    prev_path = reblogged_by_api_v1_status_url(pagination_params(since_id: @accounts.first.statuses.first.id)) unless @accounts.empty?
-
-    set_pagination_headers(next_path, prev_path)
-
-    render :accounts
-  end
-
-  def favourited_by
-    @accounts = Account.includes(:favourites)
-                       .references(:favourites)
-                       .where(favourites: { status_id: @status.id })
-                       .merge(Favourite.paginate_by_max_id(limit_param(DEFAULT_ACCOUNTS_LIMIT), params[:max_id], params[:since_id]))
-                       .to_a
-
-    next_path = favourited_by_api_v1_status_url(pagination_params(max_id: @accounts.last.favourites.last.id))     if @accounts.size == limit_param(DEFAULT_ACCOUNTS_LIMIT)
-    prev_path = favourited_by_api_v1_status_url(pagination_params(since_id: @accounts.first.favourites.first.id)) unless @accounts.empty?
-
-    set_pagination_headers(next_path, prev_path)
-
-    render :accounts
   end
 
   def create

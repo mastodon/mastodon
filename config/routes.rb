@@ -128,11 +128,16 @@ Rails.application.routes.draw do
     # JSON / REST API
     namespace :v1 do
       resources :statuses, only: [:create, :show, :destroy] do
+        scope module: :statuses do
+          with_options only: :index do
+            resources :reblogged_by, controller: :reblogged_by_accounts
+            resources :favourited_by, controller: :favourited_by_accounts
+          end
+        end
+
         member do
           get :context
           get :card
-          get :reblogged_by
-          get :favourited_by
 
           post :reblog
           post :unreblog
