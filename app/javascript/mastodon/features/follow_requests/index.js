@@ -54,12 +54,10 @@ class FollowRequests extends ImmutablePureComponent {
     return (
       <Column icon='users' heading={intl.formatMessage(messages.heading)}>
         <ColumnBackButtonSlim />
-        <div scrollKey='follow_requests'>
-          <div className='scrollable' onScroll={this.handleScroll}>
-            {accountIds.map(id =>
-              <AccountAuthorizeContainer key={id} id={id} />
-            )}
-          </div>
+        <div className='scrollable' onScroll={this.handleScroll}>
+          {accountIds.map(id =>
+            <AccountAuthorizeContainer key={id} id={id} />
+          )}
         </div>
       </Column>
     );

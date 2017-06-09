@@ -144,9 +144,7 @@ class Notifications extends React.PureComponent {
       scrollContainer = scrollableArea;
     } else {
       scrollContainer = (
-        <div scrollKey={`notifications-${columnId}`} shouldUpdateScroll={shouldUpdateScroll}>
-          {scrollableArea}
-        </div>
+        scrollableArea
       );
     }
 

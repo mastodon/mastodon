@@ -7,7 +7,7 @@ import StatusContent from '../../../components/status_content';
 import MediaGallery from '../../../components/media_gallery';
 import VideoPlayer from '../../../components/video_player';
 import AttachmentList from '../../../components/attachment_list';
-import Link from 'react-router/lib/Link';
+import Link from 'react-router-dom/Link';
 import { FormattedDate, FormattedNumber } from 'react-intl';
 import CardContainer from '../containers/card_container';
 import ImmutablePureComponent from 'react-immutable-pure-component';
@@ -28,7 +28,7 @@ class DetailedStatus extends ImmutablePureComponent {
   handleAccountClick = (e) => {
     if (e.button === 0) {
       e.preventDefault();
-      this.context.router.push(`/accounts/${this.props.status.getIn(['account', 'id'])}`);
+      this.context.router.history.push(`/accounts/${this.props.status.getIn(['account', 'id'])}`);
     }
 
     e.stopPropagation();

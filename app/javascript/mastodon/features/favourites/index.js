@@ -47,10 +47,8 @@ class Favourites extends ImmutablePureComponent {
       <Column>
         <ColumnBackButton />
 
-        <div scrollKey='favourites'>
-          <div className='scrollable'>
-            {accountIds.map(id => <AccountContainer key={id} id={id} withNote={false} />)}
-          </div>
+        <div className='scrollable'>
+          {accountIds.map(id => <AccountContainer key={id} id={id} withNote={false} />)}
         </div>
       </Column>
     );

@@ -54,12 +54,10 @@ class Blocks extends ImmutablePureComponent {
     return (
       <Column icon='ban' heading={intl.formatMessage(messages.heading)}>
         <ColumnBackButtonSlim />
-        <div scrollKey='blocks'>
-          <div className='scrollable' onScroll={this.handleScroll}>
-            {accountIds.map(id =>
-              <AccountContainer key={id} id={id} />
-            )}
-          </div>
+        <div className='scrollable' onScroll={this.handleScroll}>
+          {accountIds.map(id =>
+            <AccountContainer key={id} id={id} />
+          )}
         </div>
       </Column>
     );

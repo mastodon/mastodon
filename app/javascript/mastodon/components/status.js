@@ -126,14 +126,14 @@ class Status extends ImmutablePureComponent {
 
   handleClick = () => {
     const { status } = this.props;
-    this.context.router.push(`/statuses/${status.getIn(['reblog', 'id'], status.get('id'))}`);
+    this.context.router.history.push(`/statuses/${status.getIn(['reblog', 'id'], status.get('id'))}`);
   }
 
   handleAccountClick = (e) => {
     if (e.button === 0) {
       const id = Number(e.currentTarget.getAttribute('data-id'));
       e.preventDefault();
-      this.context.router.push(`/accounts/${id}`);
+      this.context.router.history.push(`/accounts/${id}`);
     }
   }
 

@@ -47,12 +47,10 @@ class Mutes extends ImmutablePureComponent {
     return (
       <Column icon='volume-off' heading={intl.formatMessage(messages.heading)}>
         <ColumnBackButtonSlim />
-        <div scrollKey='mutes'>
-          <div className='scrollable mutes' onScroll={this.handleScroll}>
-            {accountIds.map(id =>
-              <AccountContainer key={id} id={id} />
-            )}
-          </div>
+        <div className='scrollable mutes' onScroll={this.handleScroll}>
+          {accountIds.map(id =>
+            <AccountContainer key={id} id={id} />
+          )}
         </div>
       </Column>
     );

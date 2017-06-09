@@ -87,24 +87,22 @@ class AccountGallery extends ImmutablePureComponent {
       <Column>
         <ColumnBackButton />
 
-        <div scrollKey='account_gallery'>
-          <div className='scrollable' onScroll={this.handleScroll}>
-            <HeaderContainer accountId={this.props.params.accountId} />
+        <div className='scrollable' onScroll={this.handleScroll}>
+          <HeaderContainer accountId={this.props.params.accountId} />
 
-            <div className='account-section-headline'>
-              <FormattedMessage id='account.media' defaultMessage='Media' />
-            </div>
+          <div className='account-section-headline'>
+            <FormattedMessage id='account.media' defaultMessage='Media' />
+          </div>
 
-            <div className='account-gallery__container'>
-              {medias.map(media =>
-                <MediaItem
-                  key={media.get('id')}
-                  media={media}
-                  autoPlayGif={autoPlayGif}
-                />
-              )}
-              {loadMore}
-            </div>
+          <div className='account-gallery__container'>
+            {medias.map(media =>
+              <MediaItem
+                key={media.get('id')}
+                media={media}
+                autoPlayGif={autoPlayGif}
+              />
+            )}
+            {loadMore}
           </div>
         </div>
       </Column>

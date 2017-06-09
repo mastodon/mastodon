@@ -93,7 +93,7 @@ class Status extends ImmutablePureComponent {
   }
 
   handleReplyClick = (status) => {
-    this.props.dispatch(replyCompose(status, this.context.router));
+    this.props.dispatch(replyCompose(status, this.context.router.history));
   }
 
   handleModalReblog = (status) => {
@@ -173,31 +173,29 @@ class Status extends ImmutablePureComponent {
       <Column>
         <ColumnBackButton />
 
-        <div scrollKey='thread'>
-          <div className='scrollable detailed-status__wrapper'>
-            {ancestors}
+        <div className='scrollable detailed-status__wrapper'>
+          {ancestors}
 
-            <DetailedStatus
-              status={status}
-              autoPlayGif={autoPlayGif}
-              me={me}
-              onOpenVideo={this.handleOpenVideo}
-              onOpenMedia={this.handleOpenMedia}
-            />
+          <DetailedStatus
+            status={status}
+            autoPlayGif={autoPlayGif}
+            me={me}
+            onOpenVideo={this.handleOpenVideo}
+            onOpenMedia={this.handleOpenMedia}
+          />
 
-            <ActionBar
-              status={status}
-              me={me}
-              onReply={this.handleReplyClick}
-              onFavourite={this.handleFavouriteClick}
-              onReblog={this.handleReblogClick}
-              onDelete={this.handleDeleteClick}
-              onMention={this.handleMentionClick}
-              onReport={this.handleReport}
-            />
+          <ActionBar
+            status={status}
+            me={me}
+            onReply={this.handleReplyClick}
+            onFavourite={this.handleFavouriteClick}
+            onReblog={this.handleReblogClick}
+            onDelete={this.handleDeleteClick}
+            onMention={this.handleMentionClick}
+            onReport={this.handleReport}
+          />
 
-            {descendants}
-          </div>
+          {descendants}
         </div>
       </Column>
     );

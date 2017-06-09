@@ -47,10 +47,8 @@ class Reblogs extends ImmutablePureComponent {
       <Column>
         <ColumnBackButton />
 
-        <div scrollKey='reblogs'>
-          <div className='scrollable reblogs'>
-            {accountIds.map(id => <AccountContainer key={id} id={id} withNote={false} />)}
-          </div>
+        <div className='scrollable reblogs'>
+          {accountIds.map(id => <AccountContainer key={id} id={id} withNote={false} />)}
         </div>
       </Column>
     );

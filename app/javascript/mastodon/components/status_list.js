@@ -132,9 +132,7 @@ class StatusList extends ImmutablePureComponent {
 
     if (trackScroll) {
       return (
-        <div scrollKey={scrollKey} shouldUpdateScroll={shouldUpdateScroll}>
-          {scrollableArea}
-        </div>
+        scrollableArea
       );
     } else {
       return scrollableArea;

@@ -76,13 +76,11 @@ class Following extends ImmutablePureComponent {
       <Column>
         <ColumnBackButton />
 
-        <div scrollKey='following'>
-          <div className='scrollable' onScroll={this.handleScroll}>
-            <div className='following'>
-              <HeaderContainer accountId={this.props.params.accountId} />
-              {accountIds.map(id => <AccountContainer key={id} id={id} withNote={false} />)}
-              {loadMore}
-            </div>
+        <div className='scrollable' onScroll={this.handleScroll}>
+          <div className='following'>
+            <HeaderContainer accountId={this.props.params.accountId} />
+            {accountIds.map(id => <AccountContainer key={id} id={id} withNote={false} />)}
+            {loadMore}
           </div>
         </div>
       </Column>
