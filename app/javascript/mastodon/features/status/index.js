@@ -26,7 +26,7 @@ import {
   getStatusAncestors,
   getStatusDescendants,
 } from '../../selectors';
-// import { ScrollContainer } from 'react-router-scroll';
+import { ScrollContainer } from 'react-router-scroll';
 import ColumnBackButton from '../../components/column_back_button';
 import StatusContainer from '../../containers/status_container';
 import { openModal } from '../../actions/modal';
@@ -173,30 +173,32 @@ class Status extends ImmutablePureComponent {
       <Column>
         <ColumnBackButton />
 
-        <div className='scrollable detailed-status__wrapper'>
-          {ancestors}
+        <ScrollContainer scrollKey='thread'>
+          <div className='scrollable detailed-status__wrapper'>
+            {ancestors}
 
-          <DetailedStatus
-            status={status}
-            autoPlayGif={autoPlayGif}
-            me={me}
-            onOpenVideo={this.handleOpenVideo}
-            onOpenMedia={this.handleOpenMedia}
-          />
+            <DetailedStatus
+              status={status}
+              autoPlayGif={autoPlayGif}
+              me={me}
+              onOpenVideo={this.handleOpenVideo}
+              onOpenMedia={this.handleOpenMedia}
+            />
 
-          <ActionBar
-            status={status}
-            me={me}
-            onReply={this.handleReplyClick}
-            onFavourite={this.handleFavouriteClick}
-            onReblog={this.handleReblogClick}
-            onDelete={this.handleDeleteClick}
-            onMention={this.handleMentionClick}
-            onReport={this.handleReport}
-          />
+            <ActionBar
+              status={status}
+              me={me}
+              onReply={this.handleReplyClick}
+              onFavourite={this.handleFavouriteClick}
+              onReblog={this.handleReblogClick}
+              onDelete={this.handleDeleteClick}
+              onMention={this.handleMentionClick}
+              onReport={this.handleReport}
+            />
 
-          {descendants}
-        </div>
+            {descendants}
+          </div>
+        </ScrollContainer>
       </Column>
     );
   }

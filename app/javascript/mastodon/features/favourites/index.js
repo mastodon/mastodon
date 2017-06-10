@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import LoadingIndicator from '../../components/loading_indicator';
 import { fetchFavourites } from '../../actions/interactions';
-// import { ScrollContainer } from 'react-router-scroll';
+import { ScrollContainer } from 'react-router-scroll';
 import AccountContainer from '../../containers/account_container';
 import Column from '../ui/components/column';
 import ColumnBackButton from '../../components/column_back_button';
@@ -47,9 +47,11 @@ class Favourites extends ImmutablePureComponent {
       <Column>
         <ColumnBackButton />
 
-        <div className='scrollable'>
-          {accountIds.map(id => <AccountContainer key={id} id={id} withNote={false} />)}
-        </div>
+        <ScrollContainer scrollKey='favourites'>
+          <div className='scrollable'>
+            {accountIds.map(id => <AccountContainer key={id} id={id} withNote={false} />)}
+          </div>
+        </ScrollContainer>
       </Column>
     );
   }

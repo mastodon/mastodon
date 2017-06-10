@@ -13,7 +13,7 @@ import { getAccountGallery } from '../../selectors';
 import MediaItem from './components/media_item';
 import HeaderContainer from '../account_timeline/containers/header_container';
 import { FormattedMessage } from 'react-intl';
-// import { ScrollContainer } from 'react-router-scroll';
+import { ScrollContainer } from 'react-router-scroll';
 import LoadMore from '../../components/load_more';
 
 const mapStateToProps = (state, props) => ({
@@ -87,24 +87,26 @@ class AccountGallery extends ImmutablePureComponent {
       <Column>
         <ColumnBackButton />
 
-        <div className='scrollable' onScroll={this.handleScroll}>
-          <HeaderContainer accountId={this.props.params.accountId} />
+        <ScrollContainer scrollKey='account_gallery'>
+          <div className='scrollable' onScroll={this.handleScroll}>
+            <HeaderContainer accountId={this.props.params.accountId} />
 
-          <div className='account-section-headline'>
-            <FormattedMessage id='account.media' defaultMessage='Media' />
-          </div>
+            <div className='account-section-headline'>
+              <FormattedMessage id='account.media' defaultMessage='Media' />
+            </div>
 
-          <div className='account-gallery__container'>
-            {medias.map(media =>
-              <MediaItem
-                key={media.get('id')}
-                media={media}
-                autoPlayGif={autoPlayGif}
-              />
-            )}
-            {loadMore}
+            <div className='account-gallery__container'>
+              {medias.map(media =>
+                <MediaItem
+                  key={media.get('id')}
+                  media={media}
+                  autoPlayGif={autoPlayGif}
+                />
+              )}
+              {loadMore}
+            </div>
           </div>
-        </div>
+        </ScrollContainer>
       </Column>
     );
   }

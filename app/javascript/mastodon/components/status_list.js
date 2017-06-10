@@ -1,6 +1,6 @@
 import React from 'react';
 import ImmutablePropTypes from 'react-immutable-proptypes';
-// import { ScrollContainer } from 'react-router-scroll';
+import { ScrollContainer } from 'react-router-scroll';
 import PropTypes from 'prop-types';
 import StatusContainer from '../containers/status_container';
 import LoadMore from './load_more';
@@ -132,7 +132,9 @@ class StatusList extends ImmutablePureComponent {
 
     if (trackScroll) {
       return (
-        scrollableArea
+        <ScrollContainer scrollKey={scrollKey} shouldUpdateScroll={shouldUpdateScroll}>
+          {scrollableArea}
+        </ScrollContainer>
       );
     } else {
       return scrollableArea;

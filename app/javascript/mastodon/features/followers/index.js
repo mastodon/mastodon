@@ -8,7 +8,7 @@ import {
   fetchFollowers,
   expandFollowers,
 } from '../../actions/accounts';
-// import { ScrollContainer } from 'react-router-scroll';
+import { ScrollContainer } from 'react-router-scroll';
 import AccountContainer from '../../containers/account_container';
 import Column from '../ui/components/column';
 import HeaderContainer from '../account_timeline/containers/header_container';
@@ -76,13 +76,15 @@ class Followers extends ImmutablePureComponent {
       <Column>
         <ColumnBackButton />
 
-        <div className='scrollable' onScroll={this.handleScroll}>
-          <div className='followers'>
-            <HeaderContainer accountId={this.props.params.accountId} />
-            {accountIds.map(id => <AccountContainer key={id} id={id} withNote={false} />)}
-            {loadMore}
+        <ScrollContainer scrollKey='followers'>
+          <div className='scrollable' onScroll={this.handleScroll}>
+            <div className='followers'>
+              <HeaderContainer accountId={this.props.params.accountId} />
+              {accountIds.map(id => <AccountContainer key={id} id={id} withNote={false} />)}
+              {loadMore}
+            </div>
           </div>
-        </div>
+        </ScrollContainer>
       </Column>
     );
   }

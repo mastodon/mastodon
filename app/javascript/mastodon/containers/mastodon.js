@@ -14,7 +14,7 @@ import { showOnboardingOnce } from '../actions/onboarding';
 import { updateNotifications, refreshNotifications } from '../actions/notifications';
 import BrowserRouter from 'react-router-dom/BrowserRouter';
 import Route from 'react-router-dom/Route';
-// import { useScroll } from 'react-router-scroll';
+import ScrollContext from 'react-router-scroll/lib/ScrollBehaviorContext';
 import UI from '../features/ui';
 import { hydrateStore } from '../actions/store';
 import createStream from '../stream';
@@ -108,7 +108,9 @@ class Mastodon extends React.PureComponent {
       <IntlProvider locale={locale} messages={messages}>
         <Provider store={store}>
           <BrowserRouter basename='/web'>
-            <Route path='/' component={UI} />
+            <ScrollContext>
+              <Route path='/' component={UI} />
+            </ScrollContext>
           </BrowserRouter>
         </Provider>
       </IntlProvider>
