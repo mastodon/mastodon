@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { expandHomeTimeline } from '../../actions/timelines';
 import PropTypes from 'prop-types';
 import StatusListContainer from '../ui/containers/status_list_container';
 import Column from '../../components/column';
@@ -52,6 +53,10 @@ class HomeTimeline extends React.PureComponent {
     this.column = c;
   }
 
+  handleLoadMore = () => {
+    this.props.dispatch(expandHomeTimeline());
+  }
+
   render () {
     const { intl, hasUnread, hasFollows, columnId, multiColumn } = this.props;
     const pinned = !!columnId;
@@ -80,10 +85,10 @@ class HomeTimeline extends React.PureComponent {
         </ColumnHeader>
 
         <StatusListContainer
-          {...this.props}
           trackScroll={!pinned}
           scrollKey={`home_timeline-${columnId}`}
-          type='home'
+          loadMore={this.handleLoadMore}
+          timelineId='home'
           emptyMessage={emptyMessage}
         />
       </Column>
