@@ -39,12 +39,12 @@ class SelectiveTimestamp extends React.Component {
       minute: '2-digit',
       second: '2-digit',
     };
-    if (date.getFullYear() == now.getFullYear() && date.getMonth() == now.getMonth() && date.getDate() == now.getDate()) {
-      delete shortFormatOptions['month'];
-      delete shortFormatOptions['day'];
+    if (date.getFullYear() === now.getFullYear() && date.getMonth() === now.getMonth() && date.getDate() === now.getDate()) {
+      delete shortFormatOptions.month;
+      delete shortFormatOptions.day;
     }
-    if (date.getFullYear() == now.getFullYear()) {
-      delete shortFormatOptions['year'];
+    if (date.getFullYear() === now.getFullYear()) {
+      delete shortFormatOptions.year;
     }
 
     if (absoluteTime) {
