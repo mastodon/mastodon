@@ -129,22 +129,21 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :statuses, only: [:create, :show, :destroy] do
         scope module: :statuses do
-          with_options only: :index do
-            resources :reblogged_by, controller: :reblogged_by_accounts
-            resources :favourited_by, controller: :favourited_by_accounts
-          end
+          resources :reblogged_by, controller: :reblogged_by_accounts, only: :index
+          resources :favourited_by, controller: :favourited_by_accounts, only: :index
+          resource :reblog, only: :create
+          post :unreblog, to: 'reblogs#destroy'
+
+          resource :favourite, only: :create
+          post :unfavourite, to: 'favourites#destroy'
+
+          resource :mute, only: :create
+          post :unmute, to: 'mutes#destroy'
         end
 
         member do
           get :context
           get :card
-
-          post :reblog
-          post :unreblog
-          post :favourite
-          post :unfavourite
-          post :mute
-          post :unmute
         end
       end
 
