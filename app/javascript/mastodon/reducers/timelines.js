@@ -33,9 +33,6 @@ import {
   ACCOUNT_BLOCK_SUCCESS,
   ACCOUNT_MUTE_SUCCESS,
 } from '../actions/accounts';
-import {
-  CONTEXT_FETCH_SUCCESS,
-} from '../actions/statuses';
 import Immutable from 'immutable';
 
 const initialState = Immutable.Map({
@@ -86,8 +83,6 @@ const initialState = Immutable.Map({
 
   accounts_timelines: Immutable.Map(),
   accounts_media_timelines: Immutable.Map(),
-  ancestors: Immutable.Map(),
-  descendants: Immutable.Map(),
 });
 
 const normalizeStatus = (state, status) => {
@@ -229,17 +224,6 @@ const deleteStatus = (state, id, accountId, references, reblogOf) => {
   state = state.updateIn(['accounts_timelines', accountId, 'items'], Immutable.List([]), list => list.filterNot(item => item === id));
   state = state.updateIn(['accounts_media_timelines', accountId, 'items'], Immutable.List([]), list => list.filterNot(item => item === id));
 
-  // Remove references from context
-  state.getIn(['descendants', id], Immutable.List()).forEach(descendantId => {
-    state = state.updateIn(['ancestors', descendantId], Immutable.List(), list => list.filterNot(itemId => itemId === id));
-  });
-
-  state.getIn(['ancestors', id], Immutable.List()).forEach(ancestorId => {
-    state = state.updateIn(['descendants', ancestorId], Immutable.List(), list => list.filterNot(itemId => itemId === id));
-  });
-
-  state = state.deleteIn(['descendants', id]).deleteIn(['ancestors', id]);
-
   // Remove reblogs of deleted status
   references.forEach(ref => {
     state = deleteStatus(state, ref[0], ref[1], []);
@@ -261,16 +245,6 @@ const filterTimelines = (state, relationship, statuses) => {
   });
 
   return state;
-};
-
-const normalizeContext = (state, id, ancestors, descendants) => {
-  const ancestorsIds   = ancestors.map(ancestor => ancestor.get('id'));
-  const descendantsIds = descendants.map(descendant => descendant.get('id'));
-
-  return state.withMutations(map => {
-    map.setIn(['ancestors', id], ancestorsIds);
-    map.setIn(['descendants', id], descendantsIds);
-  });
 };
 
 const resetTimeline = (state, timeline, id) => {
@@ -313,8 +287,6 @@ export default function timelines(state = initialState, action) {
     return updateTimeline(state, action.timeline, Immutable.fromJS(action.status), action.references);
   case TIMELINE_DELETE:
     return deleteStatus(state, action.id, action.accountId, action.references, action.reblogOf);
-  case CONTEXT_FETCH_SUCCESS:
-    return normalizeContext(state, action.id, Immutable.fromJS(action.ancestors), Immutable.fromJS(action.descendants));
   case ACCOUNT_TIMELINE_FETCH_REQUEST:
   case ACCOUNT_TIMELINE_EXPAND_REQUEST:
     return state.updateIn(['accounts_timelines', action.id], Immutable.Map(), map => map.set('isLoading', true));
