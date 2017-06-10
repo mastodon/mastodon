@@ -13,7 +13,8 @@
         %span.p-summary> #{status.spoiler_text}&nbsp;
         %a.status__content__spoiler-link{ href: '#' }= t('statuses.show_more')
     .e-content{ lang: status.language, style: "display: #{status.spoiler_text? ? 'none' : 'block'}; direction: #{rtl?(status.content) ? 'rtl' : 'ltr'}" }= Formatter.instance.format(status)
-
+  - unless card.nil?
+    = render 'stream_entries/preview_card', card: card
   - unless status.media_attachments.empty?
     - if status.media_attachments.first.video?
       .video-player

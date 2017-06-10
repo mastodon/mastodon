@@ -14,4 +14,8 @@ module RoutingHelper
   def full_asset_url(source)
     Rails.configuration.x.use_s3 ? source : URI.join(root_url, ActionController::Base.helpers.asset_url(source)).to_s
   end
+
+  def hostname(url)
+    Addressable::URI.parse(url).display_uri.hostname
+  end
 end

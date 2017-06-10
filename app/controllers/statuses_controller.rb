@@ -7,6 +7,7 @@ class StatusesController < ApplicationController
 
   before_action :set_account
   before_action :set_status
+  before_action :set_card
   before_action :set_link_headers
   before_action :check_account_suspension
 
@@ -36,6 +37,10 @@ class StatusesController < ApplicationController
   rescue Mastodon::NotPermittedError
     # Reraise in order to get a 404
     raise ActiveRecord::RecordNotFound
+  end
+
+  def set_card
+    @card = PreviewCard.find_by(status: @status)
   end
 
   def check_account_suspension
