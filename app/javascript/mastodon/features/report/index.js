@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { cancelReport, changeReportComment, submitReport } from '../../actions/reports';
-import { refreshAccountTimeline } from '../../actions/accounts';
+import { refreshAccountTimeline } from '../../actions/timelines';
 import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import Column from '../ui/components/column';
