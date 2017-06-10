@@ -47,7 +47,7 @@ class User < ApplicationRecord
   accepts_nested_attributes_for :account
 
   validates :locale, inclusion: I18n.available_locales.map(&:to_s), if: :locale?
-  validates :email, email: true, if: :email_changed?
+  validates_with BlacklistedEmailValidator, if: :email_changed?
 
   scope :recent,    -> { order(id: :desc) }
   scope :admins,    -> { where(admin: true) }

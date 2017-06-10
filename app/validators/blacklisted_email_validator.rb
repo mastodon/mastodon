@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-class EmailValidator < ActiveModel::EachValidator
-  def validate_each(record, attribute, value)
-    record.errors.add(attribute, I18n.t('users.invalid_email')) if blocked_email?(value)
+class BlacklistedEmailValidator < ActiveModel::Validator
+  def validate(user)
+    user.errors.add(:email, I18n.t('users.invalid_email')) if blocked_email?(user.email)
   end
 
   private
@@ -15,7 +15,7 @@ class EmailValidator < ActiveModel::EachValidator
     return false if Rails.configuration.x.email_domains_blacklist.blank?
 
     domains = Rails.configuration.x.email_domains_blacklist.gsub('.', '\.')
-    regexp = Regexp.new("@(.+\\.)?(#{domains})", true)
+    regexp  = Regexp.new("@(.+\\.)?(#{domains})", true)
 
     value =~ regexp
   end
@@ -24,7 +24,7 @@ class EmailValidator < ActiveModel::EachValidator
     return false if Rails.configuration.x.email_domains_whitelist.blank?
 
     domains = Rails.configuration.x.email_domains_whitelist.gsub('.', '\.')
-    regexp = Regexp.new("@(.+\\.)?(#{domains})$", true)
+    regexp  = Regexp.new("@(.+\\.)?(#{domains})$", true)
 
     value !~ regexp
   end

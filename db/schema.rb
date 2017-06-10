@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170606113804) do
+ActiveRecord::Schema.define(version: 20170609145826) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -277,7 +277,7 @@ ActiveRecord::Schema.define(version: 20170606113804) do
     t.boolean "reply", default: false
     t.integer "favourites_count", default: 0, null: false
     t.integer "reblogs_count", default: 0, null: false
-    t.string "language", default: "en", null: false
+    t.string "language"
     t.bigint "conversation_id"
     t.index ["account_id"], name: "index_statuses_on_account_id"
     t.index ["conversation_id"], name: "index_statuses_on_conversation_id"
