@@ -105,6 +105,7 @@ export function refreshTimelineFail(timeline, error, skipLoading) {
     timeline,
     error,
     skipLoading,
+    skipAlert: error.response.status === 404,
   };
 };
 

@@ -72,7 +72,13 @@ const updateTimeline = (state, timeline, status, references) => {
 
 const deleteStatus = (state, id, accountId, references, reblogOf) => {
   state.keySeq().forEach(timeline => {
-    state = state.updateIn([timeline, 'items'], list => list.filterNot(item => item === id));
+    state = state.updateIn([timeline, 'items'], list => {
+      if (reblogOf && !list.includes(reblogOf)) {
+        return list.map(item => item === id ? reblogOf : item);
+      } else {
+        return list.filterNot(item => item === id);
+      }
+    });
   });
 
   // Remove reblogs of deleted status
