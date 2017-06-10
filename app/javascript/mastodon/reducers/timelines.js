@@ -65,7 +65,7 @@ const updateTimeline = (state, timeline, status, references) => {
   return state.update(timeline, Immutable.Map(), map => map.withMutations(mMap => {
     if (!top) mMap.set('unread', unread + 1);
     if (top && ids.size > 40) newIds = newIds.take(20);
-    if (status.getIn(['reblog', 'id'], null) !== null) newIds = newIds.filterNot(item => references.include(item));
+    if (status.getIn(['reblog', 'id'], null) !== null) newIds = newIds.filterNot(item => references.includes(item));
     mMap.set('items', newIds.unshift(status.get('id')));
   }));
 };
