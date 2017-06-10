@@ -100,7 +100,7 @@ class StatusContent extends React.PureComponent {
     const spoilerContent = { __html: emojify(escapeTextContentForBrowser(status.get('spoiler_text', ''))) };
     const directionStyle = { direction: 'ltr' };
 
-    if (isRtl(status.get('content'))) {
+    if (isRtl(status.get('search_index'))) {
       directionStyle.direction = 'rtl';
     }
 
