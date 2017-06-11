@@ -43,7 +43,10 @@ rules:
   - prefer-single
   no-catch-shadow: error
   no-cond-assign: error
-  no-console: warn
+  no-console:
+  - warn
+  - allow:
+    - error
   no-fallthrough: error
   no-irregular-whitespace: error
   no-mixed-spaces-and-tabs: warn
