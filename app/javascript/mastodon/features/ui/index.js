@@ -8,7 +8,7 @@ import { connect } from 'react-redux';
 import { isMobile } from '../../is_mobile';
 import { debounce } from 'lodash';
 import { uploadCompose } from '../../actions/compose';
-import { refreshTimeline } from '../../actions/timelines';
+import { refreshHomeTimeline } from '../../actions/timelines';
 import { refreshNotifications } from '../../actions/notifications';
 import UploadArea from './components/upload_area';
 import ColumnsAreaContainer from './containers/columns_area_container';
@@ -95,7 +95,7 @@ class UI extends React.PureComponent {
     document.addEventListener('dragleave', this.handleDragLeave, false);
     document.addEventListener('dragend', this.handleDragEnd, false);
 
-    this.props.dispatch(refreshTimeline('home'));
+    this.props.dispatch(refreshHomeTimeline());
     this.props.dispatch(refreshNotifications());
   }
 
