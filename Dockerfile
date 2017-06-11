@@ -1,26 +1,15 @@
 FROM ruby:2.4.1-alpine
 
-LABEL maintainer="https://github.com/tootsuite/mastodon" \
-      description="A GNU Social-compatible microblogging server"
-
 ENV UID=991 GID=991 \
+    RUN_DB_MIGRATIONS=false \
     RAILS_SERVE_STATIC_FILES=true \
-    RAILS_ENV=production NODE_ENV=production
-
-EXPOSE 3000 4000
+    RAILS_ENV=production \
+    NODE_ENV=production
 
 WORKDIR /mastodon
 
 RUN echo "@edge https://nl.alpinelinux.org/alpine/edge/main" >> /etc/apk/repositories \
- && apk -U upgrade \
- && apk add -t build-dependencies \
-    build-base \
-    libxml2-dev \
-    libxslt-dev \
-    postgresql-dev \
-    protobuf-dev \
-    python \
- && apk add \
+ && apk -U add --no-cache \
     ca-certificates \
     ffmpeg \
     file \
@@ -34,21 +23,40 @@ RUN echo "@edge https://nl.alpinelinux.org/alpine/edge/main" >> /etc/apk/reposit
     protobuf \
     su-exec \
     tini \
- && npm install -g npm@3 && npm install -g yarn \
- && update-ca-certificates \
- && rm -rf /tmp/* /var/cache/apk/*
+ && update-ca-certificates
 
 COPY Gemfile Gemfile.lock package.json yarn.lock /mastodon/
 
-RUN bundle install --deployment --without test development \
- && yarn --ignore-optional --pure-lockfile
+RUN apk -U add --no-cache -t build-dependencies \
+    build-base \
+    libxml2-dev \
+    libxslt-dev \
+    postgresql-dev \
+    protobuf-dev \
+    python \
+ && bundle install --deployment --no-cache --without test development \
+ && npm install -g npm@3 && npm install -g yarn \
+ && yarn --ignore-optional --pure-lockfile \
+ && npm -g cache clean && yarn cache clean \
+ && apk del build-dependencies
 
 COPY . /mastodon
 
-COPY docker_entrypoint.sh /usr/local/bin/run
-
-RUN chmod +x /usr/local/bin/run
+RUN apk -U add --no-cache -t build-dependencies \
+    build-base \
+    python \
+ && SECRET_KEY_BASE=$(rake secret) rake assets:precompile \
+ && mv public/assets /tmp/assets \
+ && mv public/packs /tmp/packs \
+ && yarn cache clean \
+ && apk del build-dependencies \
+ && chmod +x docker_entrypoint.sh
 
 VOLUME /mastodon/public/system /mastodon/public/assets /mastodon/public/packs
 
-ENTRYPOINT ["/usr/local/bin/run"]
+EXPOSE 3000 4000
+
+LABEL maintainer="https://github.com/tootsuite/mastodon" \
+      description="A GNU Social-compatible microblogging server"
+
+ENTRYPOINT ["/mastodon/docker_entrypoint.sh"]
