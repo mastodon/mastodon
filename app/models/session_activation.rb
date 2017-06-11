@@ -11,7 +11,7 @@
 #
 
 class SessionActivation < ApplicationRecord
-  LIMIT = 20
+  LIMIT = Rails.configuration.x.max_session_activations
 
   def self.active?(id)
     id && where(session_id: id).exists?
