@@ -28,13 +28,13 @@ const initialState = Immutable.Map();
 const normalizeTimeline = (state, timeline, statuses, next) => {
   const ids       = Immutable.List(statuses.map(status => status.get('id')));
   const wasLoaded = state.getIn([timeline, 'loaded']);
-  const hadNext   = state.getIn([timeline, 'next']) === null;
+  const hadNext   = state.getIn([timeline, 'next']);
   const oldIds    = state.getIn([timeline, 'items'], Immutable.List());
 
   return state.update(timeline, Immutable.Map(), map => map.withMutations(mMap => {
     mMap.set('loaded', true);
     mMap.set('isLoading', false);
-    mMap.set('next', next);
+    if (!hadNext) mMap.set('next', next);
     mMap.set('items', wasLoaded ? ids.concat(oldIds) : ids);
   }));
 };

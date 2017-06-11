@@ -124,10 +124,9 @@ export function refreshNotificationsFail(error, skipLoading) {
 
 export function expandNotifications() {
   return (dispatch, getState) => {
-    const url    = getState().getIn(['notifications', 'next'], null);
     const lastId = getState().getIn(['notifications', 'items']).last();
 
-    if (url === null || getState().getIn(['notifications', 'isLoading'])) {
+    if (getState().getIn(['notifications', 'isLoading'])) {
       return;
     }
 
@@ -140,9 +139,8 @@ export function expandNotifications() {
 
     params.exclude_types = excludeTypesFromSettings(getState());
 
-    api(getState).get(url, params).then(response => {
+    api(getState).get('/api/v1/notifications', { params }).then(response => {
       const next = getLinks(response).refs.find(link => link.rel === 'next');
-
       dispatch(expandNotificationsSuccess(response.data, next ? next.uri : null));
       fetchRelatedRelationships(dispatch, response.data);
     }).catch(error => {
