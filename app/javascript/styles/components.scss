@@ -90,6 +90,20 @@
   }
 }
 
+.column-collapsable__button, .column-icon-clear {
+    background-color: $classic-base-color !important;
+    border-top-right-radius: 5px;
+    -moz-border-top-right-radius: 5px;
+    -webkit-border-top-right-radius: 5px;
+}
+
+.column-collapsable__button:hover {
+    background-color: #3B434E !important;
+    border-top-right-radius: 5px;
+    -moz-border-top-right-radius: 5px;
+    -webkit-border-top-right-radius: 5px;
+}
+
 .column-icon {
   background: lighten($ui-base-color, 4%);
   color: $ui-primary-color;
@@ -114,6 +128,27 @@
   top: 0;
   cursor: pointer;
   z-index: 2;
+}
+
+.column {
+  border-radius: 10px;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  width: 330px;
+}
+
+.column-link[data-method="delete"]:hover {
+  background: #404657 !important;
+}
+
+.column-header, .column-back-button {
+    background-color: #282C37;
+    -webkit-border-top-left-radius: 5px;
+    -webkit-border-top-right-radius: 5px;
+    -moz-border-radius-topleft: 5px;
+    -moz-border-radius-topright: 5px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
 }
 
 @media screen and (min-width: 1025px) {
@@ -797,6 +832,9 @@
   @include avatar-radius();
   position: relative;
   cursor: pointer;
+  border-radius: 50% !important;
+  -moz-border-radius: 50% !important;
+  -webkit-border-radius: 50% !important;
 
   &-inline {
     display: inline-block;
@@ -1255,6 +1293,7 @@
 
 .dropdown__icon {
   vertical-align: middle;
+  margin: -3px;
 }
 
 .static-content {
@@ -1300,6 +1339,15 @@
   > .scrollable {
     background: $ui-base-color;
   }
+}
+
+.scrollable {
+    -webkit-border-bottom-right-radius: 5px;
+    -webkit-border-bottom-left-radius: 5px;
+    -moz-border-radius-bottomright: 5px;
+    -moz-border-radius-bottomleft: 5px;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
 }
 
 .ui {
@@ -1420,6 +1468,9 @@
   overflow-y: auto;
   width: 100%;
   height: 100%;
+  border-radius: 6px;
+  -moz-border-radius: 6px;
+  -webkit-border-radius: 6px;
 
   &.darker {
     background: $ui-base-color;
@@ -1439,6 +1490,9 @@
   margin-bottom: 10px;
   display: flex;
   flex-direction: row;
+  border-radius: 5px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;  
 
   a {
     transition: background 100ms ease-in;
@@ -1448,6 +1502,15 @@
       transition: background 200ms ease-out;
     }
   }
+}
+
+div.drawer__header a:first-child:hover {
+  border-top-left-radius: 5px !important;
+  -moz-border-top-left-radius: 5px !important;
+  -webkit-border-top-left-radius: 5px !important;
+  border-bottom-left-radius: 5px !important;
+  -moz-border-bottom-left-radius: 5px !important;
+  -webkit-border-bottom-left-radius: 5px !important; 
 }
 
 .tabs-bar {
@@ -1677,7 +1740,7 @@
 }
 
 .column-link {
-  background: lighten($ui-base-color, 8%);
+  background-color: #282C37;
   color: $primary-text-color;
   display: block;
   font-size: 16px;
@@ -1835,6 +1898,7 @@
   padding-bottom: 235px;
   background: url('../images/mastodon-getting-started.png') no-repeat 0 100%;
   flex: 1 0 auto;
+  overflow: hidden;
 
   p {
     color: $ui-secondary-color;
@@ -2065,12 +2129,15 @@ button.icon-button.active i.fa-retweet {
 }
 
 .column-header__button {
-  background: lighten($ui-base-color, 4%);
+  background: background-color: #282C37;
   border: 0;
   color: $ui-primary-color;
   cursor: pointer;
   font-size: 16px;
   padding: 0 15px;
+  border-top-right-radius: 4px !important;
+  -moz-border-top-right-radius: 4px !important;
+  -webkit-border-top-right-radius: 4px !important;
 
   &:hover {
     color: lighten($ui-primary-color, 7%);
@@ -2085,6 +2152,10 @@ button.icon-button.active i.fa-retweet {
       background: lighten($ui-base-color, 8%);
     }
   }
+}
+
+.column-header__button:hover {
+  background-color: #3B434E !important;
 }
 
 .column-header__collapsible {
@@ -3637,4 +3708,39 @@ noscript {
     font-size: 20px;
     margin: 20px 0;
   }
+}
+
+span img {
+  border-radius: 10px !important;
+  -moz-border-radius: 10px !important;
+  -webkit-border-radius: 10px !important;
+}
+
+img[alt="Screenshot"], img[alt="Logo"], img[alt="Fluffy elephant friend"] {
+  border-radius: 0 !important;
+  -moz-border-radius: 0 !important;
+  -webkit-border-radius: 0 !important;
+}
+
+div[style="position: relative;"] {
+    background-color: $classic-base-color;
+}
+
+.activity-stream {
+  margin-top: 10px;
+}
+
+.card {
+  border-radius: 4px !important;
+  -moz-border-radius: 4px !important;
+  -webkit-border-radius: 4px !important;
+}
+
+.dropdown__content-list-item {
+  width: 200px !important;
+}
+
+.drawer__tab[data-method="delete"]:hover {
+    background: #2E3340 !important;
+    color: $classic-primary-color !important;
 }

@@ -373,3 +373,28 @@ code {
     width: 50%;
   }
 }
+
+.user.simple_form {
+  -webkit-box-shadow: none !important;
+  -moz-box-shadow: none !important;
+  box-shadow: none !important;
+  border-radius: 10px !important;
+  -webkit-border-radius: 10px !important;
+  -moz-border-radius: 10px !important;
+  background: #1d2026 !important;
+}
+
+.search__input {
+  border-radius: 5px !important;
+  -moz-border-radius: 5px !important;
+  -webkit-border-radius: 5px !important;
+}
+
+.simple_form .label_input label {
+    width: auto !important;
+    margin-left: 15px;
+}
+
+select[name="user[locale]"] {
+    margin-left: 10px;
+}
