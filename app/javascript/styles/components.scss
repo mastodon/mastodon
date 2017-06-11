@@ -90,15 +90,16 @@
   }
 }
 
-.column-collapsable__button, .column-icon-clear {
-    background-color: $classic-base-color !important;
-    border-top-right-radius: 5px;
-    -moz-border-top-right-radius: 5px;
-    -webkit-border-top-right-radius: 5px;
+.column-collapsable__button,
+.column-icon-clear {
+  background-color: $classic-base-color !important;
+  border-top-right-radius: 5px;
+  -moz-border-top-right-radius: 5px;
+  -webkit-border-top-right-radius: 5px;
 }
 
 .column-collapsable__button:hover {
-    background-color: #3B434E !important;
+    background-color: $column-button-hover !important;
     border-top-right-radius: 5px;
     -moz-border-top-right-radius: 5px;
     -webkit-border-top-right-radius: 5px;
@@ -141,14 +142,15 @@
   background: #404657 !important;
 }
 
-.column-header, .column-back-button {
-    background-color: #282C37;
-    -webkit-border-top-left-radius: 5px;
-    -webkit-border-top-right-radius: 5px;
-    -moz-border-radius-topleft: 5px;
-    -moz-border-radius-topright: 5px;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
+.column-header,
+.column-back-button {
+  background-color: $classic-base-color;
+  -webkit-border-top-left-radius: 5px;
+  -webkit-border-top-right-radius: 5px;
+  -moz-border-radius-topleft: 5px;
+  -moz-border-radius-topright: 5px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
 }
 
 @media screen and (min-width: 1025px) {
@@ -1342,12 +1344,12 @@
 }
 
 .scrollable {
-    -webkit-border-bottom-right-radius: 5px;
-    -webkit-border-bottom-left-radius: 5px;
-    -moz-border-radius-bottomright: 5px;
-    -moz-border-radius-bottomleft: 5px;
-    border-bottom-right-radius: 5px;
-    border-bottom-left-radius: 5px;
+  -webkit-border-bottom-right-radius: 5px;
+  -webkit-border-bottom-left-radius: 5px;
+  -moz-border-radius-bottomright: 5px;
+  -moz-border-radius-bottomleft: 5px;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
 }
 
 .ui {
@@ -1492,7 +1494,7 @@
   flex-direction: row;
   border-radius: 5px;
   -moz-border-radius: 5px;
-  -webkit-border-radius: 5px;  
+  -webkit-border-radius: 5px;
 
   a {
     transition: background 100ms ease-in;
@@ -1510,7 +1512,7 @@ div.drawer__header a:first-child:hover {
   -webkit-border-top-left-radius: 5px !important;
   border-bottom-left-radius: 5px !important;
   -moz-border-bottom-left-radius: 5px !important;
-  -webkit-border-bottom-left-radius: 5px !important; 
+  -webkit-border-bottom-left-radius: 5px !important;
 }
 
 .tabs-bar {
@@ -1740,7 +1742,7 @@ div.drawer__header a:first-child:hover {
 }
 
 .column-link {
-  background-color: #282C37;
+  background-color: $classic-base-color;
   color: $primary-text-color;
   display: block;
   font-size: 16px;
@@ -2155,7 +2157,7 @@ button.icon-button.active i.fa-retweet {
 }
 
 .column-header__button:hover {
-  background-color: #3B434E !important;
+  background-color: $column-button-hover !important;
 }
 
 .column-header__collapsible {
@@ -3716,7 +3718,9 @@ span img {
   -webkit-border-radius: 10px !important;
 }
 
-img[alt="Screenshot"], img[alt="Logo"], img[alt="Fluffy elephant friend"] {
+img[alt="Screenshot"],
+img[alt="Logo"],
+img[alt="Fluffy elephant friend"] {
   border-radius: 0 !important;
   -moz-border-radius: 0 !important;
   -webkit-border-radius: 0 !important;
@@ -3741,6 +3745,6 @@ div[style="position: relative;"] {
 }
 
 .drawer__tab[data-method="delete"]:hover {
-    background: #2E3340 !important;
-    color: $classic-primary-color !important;
+  background: $tab-delete !important;
+  color: $classic-primary-color !important;
 }
