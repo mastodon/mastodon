@@ -25,7 +25,7 @@ module Mastodon
     # Run "rake -D time" for a list of tasks for finding time zone names. Default is UTC.
     # config.time_zone = 'Central Time (US & Canada)'
 
-    # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
+    # All translations from config/locales/*.rb,yml are auto loaded.
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     config.i18n.available_locales = [
       :en,
@@ -60,7 +60,8 @@ module Mastodon
       :'zh-TW',
     ]
 
-    config.i18n.default_locale = :en
+    config.i18n.default_locale = ENV['DEFAULT_LOCALE']&.to_sym
+    config.i18n.default_locale = :en unless config.i18n.available_locales.include?(config.i18n.default_locale)
 
     # config.paths.add File.join('app', 'api'), glob: File.join('**', '*.rb')
     # config.autoload_paths += Dir[Rails.root.join('app', 'api', '*')]
