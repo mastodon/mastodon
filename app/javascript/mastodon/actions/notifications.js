@@ -124,20 +124,19 @@ export function refreshNotificationsFail(error, skipLoading) {
 
 export function expandNotifications() {
   return (dispatch, getState) => {
-    const lastId = getState().getIn(['notifications', 'items']).last();
+    const items  = getState().getIn(['notifications', 'items'], Immutable.List());
 
-    if (getState().getIn(['notifications', 'isLoading'])) {
+    if (getState().getIn(['notifications', 'isLoading']) || items.size === 0) {
       return;
     }
 
-    dispatch(expandNotificationsRequest());
-
     const params = {
-      max_id: lastId,
+      max_id: items.last().get('id'),
       limit: 20,
+      exclude_types: excludeTypesFromSettings(getState()),
     };
 
-    params.exclude_types = excludeTypesFromSettings(getState());
+    dispatch(expandNotificationsRequest());
 
     api(getState).get('/api/v1/notifications', { params }).then(response => {
       const next = getLinks(response).refs.find(link => link.rel === 'next');

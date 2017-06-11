@@ -25,13 +25,23 @@ import Immutable from 'immutable';
 
 const initialState = Immutable.Map();
 
+const initialTimeline = Immutable.Map({
+  unread: 0,
+  online: false,
+  top: true,
+  loaded: false,
+  isLoading: false,
+  next: false,
+  items: Immutable.List(),
+});
+
 const normalizeTimeline = (state, timeline, statuses, next) => {
   const ids       = Immutable.List(statuses.map(status => status.get('id')));
   const wasLoaded = state.getIn([timeline, 'loaded']);
   const hadNext   = state.getIn([timeline, 'next']);
   const oldIds    = state.getIn([timeline, 'items'], Immutable.List());
 
-  return state.update(timeline, Immutable.Map(), map => map.withMutations(mMap => {
+  return state.update(timeline, initialTimeline, map => map.withMutations(mMap => {
     mMap.set('loaded', true);
     mMap.set('isLoading', false);
     if (!hadNext) mMap.set('next', next);
@@ -43,7 +53,7 @@ const appendNormalizedTimeline = (state, timeline, statuses, next) => {
   const ids    = Immutable.List(statuses.map(status => status.get('id')));
   const oldIds = state.getIn([timeline, 'items'], Immutable.List());
 
-  return state.update(timeline, Immutable.Map(), map => map.withMutations(mMap => {
+  return state.update(timeline, initialTimeline, map => map.withMutations(mMap => {
     mMap.set('isLoading', false);
     mMap.set('next', next);
     mMap.set('items', oldIds.concat(ids));
@@ -62,7 +72,7 @@ const updateTimeline = (state, timeline, status, references) => {
 
   let newIds = ids;
 
-  return state.update(timeline, Immutable.Map(), map => map.withMutations(mMap => {
+  return state.update(timeline, initialTimeline, map => map.withMutations(mMap => {
     if (!top) mMap.set('unread', unread + 1);
     if (top && ids.size > 40) newIds = newIds.take(20);
     if (status.getIn(['reblog', 'id'], null) !== null) newIds = newIds.filterNot(item => references.includes(item));
@@ -105,7 +115,7 @@ const filterTimelines = (state, relationship, statuses) => {
 };
 
 const updateTop = (state, timeline, top) => {
-  return state.update(timeline, Immutable.Map(), map => map.withMutations(mMap => {
+  return state.update(timeline, initialTimeline, map => map.withMutations(mMap => {
     if (top) mMap.set('unread', 0);
     mMap.set('top', top);
   }));
@@ -115,10 +125,10 @@ export default function timelines(state = initialState, action) {
   switch(action.type) {
   case TIMELINE_REFRESH_REQUEST:
   case TIMELINE_EXPAND_REQUEST:
-    return state.setIn([action.timeline, 'isLoading'], true);
+    return state.update(action.timeline, initialTimeline, map => map.set('isLoading', true));
   case TIMELINE_REFRESH_FAIL:
   case TIMELINE_EXPAND_FAIL:
-    return state.setIn([action.timeline, 'isLoading'], false);
+    return state.update(action.timeline, initialTimeline, map => map.set('isLoading', false));
   case TIMELINE_REFRESH_SUCCESS:
     return normalizeTimeline(state, action.timeline, Immutable.fromJS(action.statuses), action.next);
   case TIMELINE_EXPAND_SUCCESS:
@@ -133,9 +143,9 @@ export default function timelines(state = initialState, action) {
   case TIMELINE_SCROLL_TOP:
     return updateTop(state, action.timeline, action.top);
   case TIMELINE_CONNECT:
-    return state.setIn([action.timeline, 'online'], true);
+    return state.update(action.timeline, initialTimeline, map => map.set('online', true));
   case TIMELINE_DISCONNECT:
-    return state.setIn([action.timeline, 'online'], false);
+    return state.update(action.timeline, initialTimeline, map => map.set('online', false));
   default:
     return state;
   }
