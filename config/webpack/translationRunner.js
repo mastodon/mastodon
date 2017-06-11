@@ -38,7 +38,6 @@ const validateLanguages = (languages, validators) => {
   }, []);
 
   if (invalidLanguages.length > 0) {
-    // eslint-disable-next-line no-console
     console.error(`
 Error: Specified invalid LANGUAGES:
 ${invalidLanguages.map(({ language, error }) => `* ${language}: ${error.message}`).join('\n')}
@@ -73,7 +72,6 @@ ${availableLanguages.join(', ')}
 
 // check if message directory exists
 if (!fs.existsSync(messagesDirectory)) {
-  // eslint-disable-next-line no-console
   console.error(`
 Error: messagesDirectory not exists
 (${messagesDirectory})
