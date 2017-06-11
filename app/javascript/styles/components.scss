@@ -99,10 +99,10 @@
 }
 
 .column-collapsable__button:hover {
-    background-color: $column-button-hover !important;
-    border-top-right-radius: 5px;
-    -moz-border-top-right-radius: 5px;
-    -webkit-border-top-right-radius: 5px;
+  background-color: $column-button-hover !important;
+  border-top-right-radius: 5px;
+  -moz-border-top-right-radius: 5px;
+  -webkit-border-top-right-radius: 5px;
 }
 
 .column-icon {
@@ -139,7 +139,7 @@
 }
 
 .column-link[data-method="delete"]:hover {
-  background: #404657 !important;
+  background: $column-link !important;
 }
 
 .column-header,
@@ -2131,7 +2131,7 @@ button.icon-button.active i.fa-retweet {
 }
 
 .column-header__button {
-  background: #282C37;
+  background: $classic-base-color;
   border: 0;
   color: $ui-primary-color;
   cursor: pointer;
@@ -3727,7 +3727,7 @@ img[alt="Fluffy elephant friend"] {
 }
 
 div[style="position: relative;"] {
-    background-color: $classic-base-color;
+  background-color: $classic-base-color;
 }
 
 .activity-stream {
