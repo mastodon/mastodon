@@ -7,23 +7,23 @@ import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import IconButton from '../../../components/icon_button';
 
 const messages = defineMessages({
-  welcome: { id: 'welcome.message', defaultMessage: 'Welcome to {domain}!' }
+  welcome: { id: 'welcome.message', defaultMessage: 'Welcome to {domain}!' },
 });
 
 const hashtags = Immutable.fromJS([
   'Pの自己紹介',
-  'みんなのP名刺'
+  'みんなのP名刺',
 ]);
 
 const mapStateToProps = state => ({
-  isEmptyHome: state.getIn(['timelines', 'home', 'items']).size < 5
+  isEmptyHome: state.getIn(['timelines', 'home', 'items']).size < 5,
 });
 
 class Announcements extends React.PureComponent {
 
   static propTypes = {
     intl: PropTypes.object.isRequired,
-    isEmptyHome: PropTypes.bool
+    isEmptyHome: PropTypes.bool,
   };
 
   state = {
@@ -37,7 +37,7 @@ class Announcements extends React.PureComponent {
   nl2br (text) {
     return text.split(/(\n)/g).map(function (line) {
       if (line.match(/(\n)/g)) {
-        return React.createElement('br')
+        return React.createElement('br');
       }
       return line;
     });
@@ -68,6 +68,7 @@ class Announcements extends React.PureComponent {
       </ul>
     );
   }
+
 }
 
 export default connect(mapStateToProps)(injectIntl(Announcements));
