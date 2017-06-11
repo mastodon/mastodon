@@ -98,4 +98,9 @@ Rails.application.configure do
     'X-Content-Type-Options' => 'nosniff',
     'X-XSS-Protection'       => '1; mode=block',
   }
+
+  config.i18n.default_locale = ENV.fetch('DEFAULT_LOCALE', :en)
+  unless I18n.available_locales.include?(config.i18n.default_locale)
+    config.logger.warn "Locale #{config.i18n.default_locale} is not supported. Fall backs to 'en'."
+  end
 end

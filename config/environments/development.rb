@@ -67,6 +67,11 @@ Rails.application.configure do
   # Otherwise, use letter_opener, which launches a browser window to view sent mail.
   config.action_mailer.delivery_method = (ENV['HEROKU'] || ENV['VAGRANT'] || ENV['REMOTE_DEV']) ? :letter_opener_web : :letter_opener
 
+  config.i18n.default_locale = ENV.fetch('DEFAULT_LOCALE', :en)
+  unless I18n.available_locales.include?(config.i18n.default_locale)
+    config.logger.warn "Locale #{config.i18n.default_locale} is not supported. Fall backs to 'en'."
+  end
+
   config.after_initialize do
     Bullet.enable        = true
     Bullet.bullet_logger = true
