@@ -829,18 +829,6 @@
   {
     "descriptors": [
       {
-        "defaultMessage": "Column settings",
-        "id": "notifications.settings"
-      },
-      {
-        "defaultMessage": "Are you sure you want to permanently clear all your notifications?",
-        "id": "notifications.clear_confirmation"
-      },
-      {
-        "defaultMessage": "Clear notifications",
-        "id": "notifications.clear"
-      },
-      {
         "defaultMessage": "Desktop notifications",
         "id": "notifications.column_settings.alert"
       },
@@ -887,6 +875,19 @@
       }
     ],
     "path": "app/javascript/mastodon/features/notifications/components/notification.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "Are you sure you want to permanently clear all your notifications?",
+        "id": "notifications.clear_confirmation"
+      },
+      {
+        "defaultMessage": "Clear notifications",
+        "id": "notifications.clear"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/notifications/containers/column_settings_container.json"
   },
   {
     "descriptors": [
