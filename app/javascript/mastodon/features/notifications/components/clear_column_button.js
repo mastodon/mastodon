@@ -13,15 +13,7 @@ class ClearColumnButton extends React.Component {
     const { intl } = this.props;
 
     return (
-      <button
-        className='text-btn column-header__setting-btn'
-        tabIndex='0'
-        onClick={this.props.onClick}
-      >
-        <i className='fa fa-eraser' />
-        {' '}
-        <FormattedMessage id='notifications.clear' defaultMessage='Clear notifications' />
-      </button>
+      <button className='text-btn column-header__setting-btn' tabIndex='0' onClick={this.props.onClick}><i className='fa fa-eraser' /> <FormattedMessage id='notifications.clear' defaultMessage='Clear notifications' /></button>
     );
   }
 
