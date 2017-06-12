@@ -17,7 +17,7 @@ class Scheduler::FeedCleanupScheduler
   private
 
   def inactive_users
-    User.confirmed.where('current_sign_in_at < ?', 14.days.ago)
+    User.confirmed.inactive
   end
 
   def redis

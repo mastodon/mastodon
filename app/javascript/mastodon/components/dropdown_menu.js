@@ -17,7 +17,7 @@ class DropdownMenu extends React.PureComponent {
   };
 
   static defaultProps = {
-    ariaLabel: "Menu",
+    ariaLabel: 'Menu',
   };
 
   state = {
@@ -33,11 +33,14 @@ class DropdownMenu extends React.PureComponent {
     const i = Number(e.currentTarget.getAttribute('data-index'));
     const { action, to } = this.props.items[i];
 
-    e.preventDefault();
+    // Don't call e.preventDefault() when the item uses 'href' property.
+    // ex. "Edit profile" on the account action bar
 
     if (typeof action === 'function') {
+      e.preventDefault();
       action();
     } else if (to) {
+      e.preventDefault();
       this.context.router.push(to);
     }
 
@@ -50,13 +53,13 @@ class DropdownMenu extends React.PureComponent {
 
   renderItem = (item, i) => {
     if (item === null) {
-      return <li key={ 'sep' + i } className='dropdown__sep' />;
+      return <li key={`sep-${i}`} className='dropdown__sep' />;
     }
 
     const { text, action, href = '#' } = item;
 
     return (
-      <li className='dropdown__content-list-item' key={ text + i }>
+      <li className='dropdown__content-list-item' key={`${text}-${i}`}>
         <a href={href} target='_blank' rel='noopener' onClick={this.handleClick} data-index={i} className='dropdown__content-list-link'>
           {text}
         </a>
@@ -67,7 +70,7 @@ class DropdownMenu extends React.PureComponent {
   render () {
     const { icon, items, size, direction, ariaLabel } = this.props;
     const { expanded } = this.state;
-    const directionClass = (direction === "left") ? "dropdown__left" : "dropdown__right";
+    const directionClass = (direction === 'left') ? 'dropdown__left' : 'dropdown__right';
 
     const dropdownItems = expanded && (
       <ul className='dropdown__content-list'>
@@ -78,7 +81,7 @@ class DropdownMenu extends React.PureComponent {
     return (
       <Dropdown ref={this.setRef} onShow={this.handleShow} onHide={this.handleHide}>
         <DropdownTrigger className='icon-button' style={{ fontSize: `${size}px`, width: `${size}px`, lineHeight: `${size}px` }} aria-label={ariaLabel}>
-          <i className={ `fa fa-fw fa-${icon} dropdown__icon` }  aria-hidden={true} />
+          <i className={`fa fa-fw fa-${icon} dropdown__icon`}  aria-hidden />
         </DropdownTrigger>
 
         <DropdownContent className={directionClass}>

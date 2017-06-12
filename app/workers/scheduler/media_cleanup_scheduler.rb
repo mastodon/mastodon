@@ -12,6 +12,6 @@ class Scheduler::MediaCleanupScheduler
   private
 
   def unattached_media
-    MediaAttachment.reorder(nil).where(status_id: nil).where('created_at < ?', 1.day.ago)
+    MediaAttachment.reorder(nil).unattached.where('created_at < ?', 1.day.ago)
   end
 end

@@ -22,5 +22,14 @@ RSpec.describe Tag, type: :model do
 
       expect(results).to eq [tag]
     end
+
+    it 'finds the exact matching tag as the first item' do
+      similar_tag = Fabricate(:tag, name: "matchlater")
+      tag = Fabricate(:tag, name: "match")
+
+      results = Tag.search_for("match")
+
+      expect(results).to eq [tag, similar_tag]
+    end
   end
 end

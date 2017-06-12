@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class StreamEntriesController < ApplicationController
+  include Authorization
+
   layout 'public'
 
   before_action :set_account
@@ -11,12 +13,8 @@ class StreamEntriesController < ApplicationController
   def show
     respond_to do |format|
       format.html do
-        return gone if @stream_entry.activity.nil?
-
-        if @stream_entry.activity_type == 'Status'
-          @ancestors   = @stream_entry.activity.reply? ? cache_collection(@stream_entry.activity.ancestors(current_account), Status) : []
-          @descendants = cache_collection(@stream_entry.activity.descendants(current_account), Status)
-        end
+        @ancestors   = @stream_entry.activity.reply? ? cache_collection(@stream_entry.activity.ancestors(current_account), Status) : []
+        @descendants = cache_collection(@stream_entry.activity.descendants(current_account), Status)
       end
 
       format.atom do
@@ -46,7 +44,11 @@ class StreamEntriesController < ApplicationController
     @stream_entry = @account.stream_entries.where(activity_type: 'Status').find(params[:id])
     @type         = @stream_entry.activity_type.downcase
 
-    raise ActiveRecord::RecordNotFound if @stream_entry.activity.nil? || (@stream_entry.hidden? && (@stream_entry.activity_type != 'Status' || (@stream_entry.activity_type == 'Status' && !@stream_entry.activity.permitted?(current_account))))
+    raise ActiveRecord::RecordNotFound if @stream_entry.activity.nil?
+    authorize @stream_entry.activity, :show? if @stream_entry.hidden?
+  rescue Mastodon::NotPermittedError
+    # Reraise in order to get a 404
+    raise ActiveRecord::RecordNotFound
   end
 
   def check_account_suspension

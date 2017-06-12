@@ -39,6 +39,7 @@ pl:
     people_who_follow: Osoby, które śledzą konto %{name}
     posts: Wpisy
     remote_follow: Zdalne śledzenie
+    reserved_username: Ta nazwa użytkownika jest zarezerwowana.
     unfollow: Przestań śledzić
   activitypub:
     activity:
@@ -62,6 +63,7 @@ pl:
       feed_url: Adres kanału
       followers: Obserwujący
       follows: Obserwacje
+      ip: Adres IP
       location:
         all: Wszystkie
         local: Lokalne
@@ -84,8 +86,10 @@ pl:
       profile_url: Adres profilu
       public: Publiczne
       push_subscription_expires: Subskrypcja PuSH wygasa
+      reset: Resetuj
       reset_password: Resetuj hasło
       salmon_url: Adres Salmon
+      search: Szukaj
       show:
         created_reports: Zgłoszenia tego użytkownika
         report: zgłoszenie
@@ -131,20 +135,18 @@ pl:
       account_count: Znane konta
       domain_name: Domena
       title: Znane instancje
-    pubsubhubbub:
-      callback_url: URL zwrotny
-      confirmed: Potwierdzono
-      expires_in: Wygasa
-      last_delivery: Ostatnio doręczono
-      title: PubSubHubbub
-      topic: Temat
     reports:
+      action_taken_by: Akcja podjęta przez
+      are_you_sure: Czy na pewno?
       comment:
         label: Komentarz
         none: Brak
       delete: Usuń
       id: Identyfikator
       mark_as_resolved: Oznacz jako rozwiązane
+      nsfw:
+        'false': NSFW nie będzie wyświetlane
+        'true': NSFW będzie wyświetlane
       report: 'Zgłoszenie #%{id}'
       report_contents: Zawartość
       reported_account: Zgłoszone konto
@@ -179,6 +181,13 @@ pl:
         title: Extended site description
       site_title: Tytuł strony
       title: Ustawienia strony
+    subscriptions:
+      callback_url: URL zwrotny
+      confirmed: Potwierdzono
+      expires_in: Wygasa
+      last_delivery: Ostatnio doręczono
+      title: PubSubHubbub
+      topic: Temat
     title: Administracja
   application_mailer:
     settings: 'Zmień ustawienia powiadamiania: %{link}'
@@ -222,6 +231,8 @@ pl:
     '422':
       content: Sprawdzanie bezpieczeństwa nie powiodło się. Czy blokujesz pliki cookie?
       title: Sprawdzanie bezpieczeństwa nie powiodło się
+    '429': Uduszono
+    noscript: Aby korzystać z Mastodona, włącz JavaScript.
   exports:
     blocks: Blokujesz
     csv: CSV
@@ -235,8 +246,8 @@ pl:
     lock_link: Zablokuj swoje konto
     purge: Usuń z obserwujących
     success:
-      one: W procesie usuwania obserwujcych z jednej domeny…
-      other: W procesie usuwania obserwujących z %{count} domen…
+      one: W trakcie usuwania obserwujcych z jednej domeny…
+      other: W trakcie usuwania obserwujących z %{count} domen…
     true_privacy_html: Pamiętaj, że <strong>rzeczywista prywatność może zostać uzyskana wyłącznie dzięki szyfrowaniu end-to-end</strong>.
     unlocked_warning_html: Każdy może cię zaobserwować, aby natychmiastowo zobaczyć twoje statusy. %{lock_link} aby móc kontrolować obserwujących.
     unlocked_warning_title: Twoje konto nie jest zablokowane
@@ -248,14 +259,14 @@ pl:
       one: Coś jest wciąż nie tak! Przyjrzyj się błędowi poniżej
       other: Coś jest wciąż nie tak! Przejrzyj błędy (%{count}) poniżej
   imports:
-    preface: Możesz zaimportować pewne dane (jak dane kont, które śledzisz lub blokujesz) do swojego konta na tym serwerze, korzystająć z danych wyeksportowanych z innego serwera.
+    preface: Możesz zaimportować pewne dane (jak dane kont, które śledzisz lub blokujesz) do swojego konta na tym serwerze, korzystając z danych wyeksportowanych z innego serwera.
     success: Twoje dane zostały załadowane i zostaną niebawem przetworzone
     types:
       blocking: Lista blokowanych
       following: Lista śledzonych
       muting: Lista wyciszonych
     upload: Załaduj
-  landing_strip_html: <strong>%{name}</strong> ma konto na %{link_to_root_path}. Możesz je śledzić i wejść z nim w interakcję jeśli masz konto gdziekolwiek w Fediwersie.
+  landing_strip_html: "<strong>%{name}</strong> ma konto na %{link_to_root_path}. Możesz je śledzić i wejść z nim w interakcję jeśli masz konto gdziekolwiek w Fediwersie."
   landing_strip_signup_html: Jeśli jeszcze go nie masz, możesz <a href="%{sign_up_path}">stworzyć konto</a>.
   media_attachments:
     validations:
@@ -266,9 +277,13 @@ pl:
       body: 'Oto krótkie podsumowanie co Cię ominęło na %{instance} od Twojej ostatniej wizyty (%{since}):'
       mention: "%{name} wspomniał o Tobie w:"
       new_followers_summary:
+        few: "(%{count}) nowe osoby śledzą Cię!"
+        many: "(%{count}) nowych osób Cię śledzi! Wspaniale!"
         one: Śledzi Cię nowa osoba! Gratulacje!
-        other: Kilka (%{count}) nowych osób Cię śledzi! Wspaniale!
+        other: "(%{count}) nowych osób Cię śledzi! Wspaniale!"
       subject:
+        few: "%{count} nowe powiadomienia od Twojej ostatniej wizyty \U0001F418"
+        many: "%{count} nowych powiadomień od Twojej ostatniej wizyty \U0001F418"
         one: "1 nowe powiadomienie od Twojej ostatniej wizyty \U0001F418"
         other: "%{count} nowych powiadomień od Twojej ostatniej wizyty \U0001F418"
     favourite:
@@ -299,7 +314,8 @@ pl:
     authorized_apps: Uwierzytelnione aplikacje
     back: Powrót do Mastodona
     edit_profile: Edytuj profil
-    export: Exportuj dane
+    export: Eksportuj dane
+    followers: Autoryzowani obserwujący
     import: Importuj dane
     preferences: Preferencje
     settings: Ustawienia
@@ -310,8 +326,11 @@ pl:
     show_more: Pokaż więcej
     visibilities:
       private: Tylko dla śledzących
+      private_long: Widoczne tylko obserwowanych
       public: Publiczny
-      unlisted: Publiczny, ale nie wyświetlaj na publicznych osiach czasu
+      public_long: Widoczne dla wszystkich
+      unlisted: Niewypisany
+      unlisted_long: Widoczne dla wszystkich, ale nie wyświetlane na publicznych osiach czasu
   stream_entries:
     click_to_show: Naciśnij aby wyświetlić
     reblogged: podbito
@@ -321,16 +340,16 @@ pl:
       default: "%b %d, %Y, %H:%M"
   two_factor_authentication:
     code_hint: Aby kontynuować, wprowadź kod wyświetlany przez aplikację uwierzytelniającą
-    description_html: Jeśli włączysz <strong>uwierzytelnianie dwustopniowe</strong>, logowanie się będzie wymagało podania tokenu wyświetlonego na Twoim telefone.
+    description_html: Jeśli włączysz <strong>uwierzytelnianie dwuetapowe</strong>, logowanie się będzie wymagało podania tokenu wyświetlonego na Twoim telefone.
     disable: Wyłącz
     enable: Włącz
     enabled_success: Pomyślnie aktywowano uwierzytelnianie dwuetapowe
     generate_recovery_codes: Generuj kody zapasowe
     instructions_html: "<strong>Zeskanuj ten kod QR na swoim urządzeniu za pomocą Google Authenticator, FreeOTP lub podobnej aplikacji</strong>. Od teraz będzie ona generowała kody wymagane przy logowaniu."
-    lost_recovery_codes: Kody zapasowe pozwolą uzyskać dostęp do portalu, jeżeli utracisz dostęp do telefonu. Jeżeli utracisz dostęp do nich, możesz wygenerować je ponownie tutaj. Poprzednie zostaną unieważnione
+    lost_recovery_codes: Kody zapasowe pozwolą uzyskać dostęp do portalu, jeżeli utracisz dostęp do telefonu. Jeżeli utracisz dostęp do nich, możesz wygenerować je ponownie tutaj. Poprzednie zostaną unieważnione.
     manual_instructions: 'Jeżeli nie możesz zeskanować kodu QR, musisz wprowadzić ten kod ręcznie:'
     recovery_codes_regenerated: Pomyślnie wygenerowano ponownie kody zapasowe
-    recovery_instructions: Jeżeli kiedykolwiek utracisz dostęp do telefonu, możesz wykorzystać jeden z kodów zapasowych, aby odzyskać dostęp do konta./ Trzymaj je w bezpiecznym miejscu. (Na przykład, wydrukuj je i przechowuj z ważnymu dokumentami.)
+    recovery_instructions: Jeżeli kiedykolwiek utracisz dostęp do telefonu, możesz wykorzystać jeden z kodów zapasowych, aby odzyskać dostęp do konta. Trzymaj je w bezpiecznym miejscu. (Na przykład, wydrukuj je i przechowuj z ważnymu dokumentami.)
     setup: Skonfiguruj
     wrong_code: Wprowadzony kod jest niepoprawny! Czy czas serwera i urządzenia jest poprawny?
   users:

@@ -64,7 +64,8 @@ class ModalRoot extends React.PureComponent {
       <TransitionMotion
         styles={items}
         willEnter={this.willEnter}
-        willLeave={this.willLeave}>
+        willLeave={this.willLeave}
+      >
         {interpolatedStyles =>
           <div className='modal-root'>
             {interpolatedStyles.map(({ key, data: { type, props }, style }) => {

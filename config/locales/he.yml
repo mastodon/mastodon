@@ -15,7 +15,7 @@ he:
       blocks: כלי חסימה והשתקה חזקים
       characters: 500 תווים להודעה
       chronology: הטורים כרונולוגיים
-      ethics: 'עיצוב מוסרי: אין פרסומות, אין מעקב'
+      ethics: 'תכנון מוסרי: אין פרסומות, אין מעקב'
       gifv: GIFV וסרטונים קצרים
       privacy: אפשרויות פרטיוּת נפרדות לכל הודעה
       public: טורים פומביים
@@ -134,20 +134,17 @@ he:
       account_count: חשבונות מוכרים
       domain_name: שם מתחם
       title: שרתים מוכרים
-    pubsubhubbub:
-      callback_url: קישורית Callback
-      confirmed: מאושר
-      expires_in: פג תוקף ב-
-      last_delivery: משלוח אחרון
-      title: PubSubHubbub
-      topic: נושא
     reports:
+      are_you_sure: 100% על בטוח?
       comment:
         label: הערה
         none: ללא
       delete: מחיקה
       id: ID
       mark_as_resolved: סימון כפתור
+      nsfw:
+        'false': לכל המשפחה
+        'true': תוכן רגיש
       report: 'דווח על #%{id}'
       report_contents: תוכן
       reported_account: חשבון מדווח
@@ -182,6 +179,13 @@ he:
         title: תיאור אתר מורחב
       site_title: כותרת האתר
       title: הגדרות אתר
+    subscriptions:
+      callback_url: קישורית Callback
+      confirmed: מאושר
+      expires_in: פג תוקף ב-
+      last_delivery: משלוח אחרון
+      title: PubSubHubbub
+      topic: נושא
     title: ניהול
   application_mailer:
     settings: 'שינוי הגדרות דוא"ל: %{link}'
@@ -259,7 +263,7 @@ he:
       following: רשימת נעקבים
       muting: רשימת השתקות
     upload: יבוא
-  landing_strip_html: <strong>%{name}</strong> מזהה משתמש(ת) מהקהילה %{link_to_root_path}. ניתן לעקוב אחריהם או לדבר איתם בעזרת חשבון על כל שרת קהילה ברחבי הפדרציה.
+  landing_strip_html: "<strong>%{name}</strong> מזהה משתמש(ת) מהקהילה %{link_to_root_path}. ניתן לעקוב אחריהם או לדבר איתם בעזרת חשבון על כל שרת קהילה ברחבי הפדרציה."
   landing_strip_signup_html: לחלופין , ניתן <a href="%{sign_up_path}">להרשם מקומית כאן</a>.
   media_attachments:
     validations:

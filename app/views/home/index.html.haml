@@ -4,3 +4,7 @@
   = javascript_pack_tag 'application', integrity: true, crossorigin: 'anonymous'
 
 .app-holder#mastodon{ data: { props: Oj.dump(default_props) } }
+  %noscript
+    = image_tag asset_pack_path('logo.png')
+    %div
+      = t('errors.noscript')

@@ -2,6 +2,8 @@
 
 module AuthorExtractor
   def author_from_xml(xml)
+    return nil if xml.nil?
+
     # Try <email> for acct
     acct = xml.at_xpath('./xmlns:author/xmlns:email', xmlns: TagManager::XMLNS)&.content
 

@@ -65,6 +65,10 @@ class StatusContent extends React.PureComponent {
   }
 
   handleMouseUp = (e) => {
+    if (!this.startXY) {
+      return;
+    }
+
     const [ startX, startY ] = this.startXY;
     const [ deltaX, deltaY ] = [Math.abs(e.clientX - startX), Math.abs(e.clientY - startY)];
 
@@ -96,7 +100,7 @@ class StatusContent extends React.PureComponent {
     const spoilerContent = { __html: emojify(escapeTextContentForBrowser(status.get('spoiler_text', ''))) };
     const directionStyle = { direction: 'ltr' };
 
-    if (isRtl(status.get('content'))) {
+    if (isRtl(status.get('search_index'))) {
       directionStyle.direction = 'rtl';
     }
 

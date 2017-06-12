@@ -1,11 +1,6 @@
 import main from '../mastodon/main';
+import loadPolyfills from '../mastodon/load_polyfills';
 
-if (!window.Intl || !Object.assign || !Number.isNaN ||
-    !window.Symbol || !Array.prototype.includes) {
-  // load polyfills dynamically
-  import('../mastodon/polyfills').then(main).catch(e => {
-    console.error(e); // eslint-disable-line no-console
-  });
-} else {
-  main();
-}
+loadPolyfills().then(main).catch(e => {
+  console.error(e);
+});

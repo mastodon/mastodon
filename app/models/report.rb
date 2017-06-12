@@ -23,7 +23,7 @@ class Report < ApplicationRecord
   scope :resolved,   -> { where(action_taken: true) }
 
   def statuses
-    Status.where(id: status_ids)
+    Status.where(id: status_ids).includes(:account, :media_attachments, :mentions)
   end
 
   def media_attachments

@@ -20,6 +20,7 @@
 
     = stylesheet_pack_tag 'application', media: 'all'
     = javascript_pack_tag 'common', integrity: true, crossorigin: 'anonymous'
+    = javascript_pack_tag "locale_#{I18n.locale}", integrity: true, crossorigin: 'anonymous'
     = csrf_meta_tags
 
     = yield :header_tags
