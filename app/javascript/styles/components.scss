@@ -60,7 +60,6 @@
 
 .column-collapsable {
   position: relative;
-  flex: 0 0 auto;
 
   .column-collapsable__content {
     overflow: auto;
@@ -2010,6 +2009,7 @@ button.icon-button.active i.fa-retweet {
 
 .column-header__wrapper {
   position: relative;
+  flex: 0 0 auto;
 
   &.active {
     &::before {
