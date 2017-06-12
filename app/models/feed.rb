@@ -7,7 +7,7 @@ class Feed
   end
 
   def get(limit, max_id = nil, since_id = nil)
-    if redis.zcard(key).zero?
+    if redis.exists("account:#{@account.id}:regeneration")
       from_database(limit, max_id, since_id)
     else
       from_redis(limit, max_id, since_id)
