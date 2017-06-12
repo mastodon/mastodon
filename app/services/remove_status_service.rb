@@ -33,10 +33,8 @@ class RemoveStatusService < BaseService
   end
 
   def remove_from_followers
-    redis.pipelined do
-      @account.followers.local.find_each do |follower|
-        unpush(:home, follower, @status)
-      end
+    @account.followers.local.find_each do |follower|
+      unpush(:home, follower, @status)
     end
   end
 
