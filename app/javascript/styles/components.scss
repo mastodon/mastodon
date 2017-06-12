@@ -106,22 +106,6 @@
   }
 }
 
-.column-icon-clear {
-  font-size: 16px;
-  padding: 15px;
-  position: absolute;
-  right: 48px;
-  top: 0;
-  cursor: pointer;
-  z-index: 2;
-}
-
-@media screen and (min-width: 1025px) {
-  .column-icon-clear {
-    top: 10px;
-  }
-}
-
 .icon-button {
   display: inline-block;
   padding: 0;
@@ -2236,6 +2220,12 @@ button.icon-button.active i.fa-retweet {
   display: block;
   font-weight: 500;
   margin-bottom: 10px;
+}
+
+.column-settings__row {
+  .text-btn {
+    margin-bottom: 15px;
+  }
 }
 
 .modal-container__nav {

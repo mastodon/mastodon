@@ -1,10 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { defineMessages, injectIntl } from 'react-intl';
-
-const messages = defineMessages({
-  clear: { id: 'notifications.clear', defaultMessage: 'Clear notifications' },
-});
+import { injectIntl, FormattedMessage } from 'react-intl';
 
 class ClearColumnButton extends React.Component {
 
@@ -17,9 +13,15 @@ class ClearColumnButton extends React.Component {
     const { intl } = this.props;
 
     return (
-      <div role='button' title={intl.formatMessage(messages.clear)} className='column-icon column-icon-clear' tabIndex='0' onClick={this.props.onClick}>
+      <button
+        className='text-btn column-header__setting-btn'
+        tabIndex='0'
+        onClick={this.props.onClick}
+      >
         <i className='fa fa-eraser' />
-      </div>
+        {' '}
+        <FormattedMessage id='notifications.clear' defaultMessage='Clear notifications' />
+      </button>
     );
   }
 
