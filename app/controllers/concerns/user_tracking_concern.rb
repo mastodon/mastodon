@@ -29,7 +29,7 @@ module UserTrackingConcern
   end
 
   def regenerate_feed!
-    Redis.current.setnx("account:#{current_user.account_id}:regeneration", 3_600 * 24, true)
+    Redis.current.setnx("account:#{current_user.account_id}:regeneration", true) == 1 && Redis.current.expire("account:#{current_user.account_id}:regeneration", 3_600 * 24)
     RegenerationWorker.perform_async(current_user.account_id)
   end
 end
