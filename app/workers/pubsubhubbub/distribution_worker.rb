@@ -5,13 +5,13 @@ class Pubsubhubbub::DistributionWorker
 
   sidekiq_options queue: 'push'
 
-  def perform(stream_entry_id)
-    stream_entry = StreamEntry.find(stream_entry_id)
+  def perform(stream_entry_ids)
+    stream_entries = StreamEntry.where(id: stream_entry_ids).includes(:status).reject { |e| e.status&.direct_visibility? }
 
-    return if stream_entry.status&.direct_visibility?
+    return if stream_entries.empty?
 
-    @account = stream_entry.account
-    @payload = AtomSerializer.render(AtomSerializer.new.feed(@account, [stream_entry]))
+    @account = stream_entries.first.account
+    @payload = AtomSerializer.render(AtomSerializer.new.feed(@account, stream_entries))
     @domains = @account.followers_domains
 
     Subscription.where(account: @account).active.select('id, callback_url').find_each do |subscription|
