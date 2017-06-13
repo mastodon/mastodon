@@ -10,19 +10,39 @@ class Pubsubhubbub::DistributionWorker
 
     return if stream_entries.empty?
 
-    @account = stream_entries.first.account
-    @payload = AtomSerializer.render(AtomSerializer.new.feed(@account, stream_entries))
-    @domains = @account.followers_domains
+    @account       = stream_entries.first.account
+    @subscriptions = active_subscriptions.to_a
 
-    Subscription.where(account: @account).active.select('id, callback_url').find_each do |subscription|
-      next if stream_entry.hidden? && !allowed_to_receive?(subscription.callback_url)
-      Pubsubhubbub::DeliveryWorker.perform_async(subscription.id, @payload)
-    end
-  rescue ActiveRecord::RecordNotFound
-    true
+    distribute_public!(stream_entries.reject(&:hidden?))
+    distribute_hidden!(stream_entries.reject { |s| !s.hidden? })
   end
 
   private
+
+  def distribute_public!(stream_entries)
+    return if stream_entries.empty?
+
+    @payload = AtomSerializer.render(AtomSerializer.new.feed(@account, stream_entries))
+
+    Pubsubhubbub::DeliveryWorker.push_bulk(@subscriptions) do |subscription|
+      [subscription.id, @payload]
+    end
+  end
+
+  def distribute_hidden!(stream_entries)
+    return if stream_entries.empty?
+
+    @payload = AtomSerializer.render(AtomSerializer.new.feed(@account, stream_entries))
+    @domains = @account.followers_domains
+
+    Pubsubhubbub::DeliveryWorker.push_bulk(@subscriptions.reject { |s| !allowed_to_receive?(s.callback_url) }) do |subscription|
+      [subscription.id, @payload]
+    end
+  end
+
+  def active_subscriptions
+    Subscription.where(account: @account).active.select('id, callback_url')
+  end
 
   def allowed_to_receive?(callback_url)
     @domains.include?(Addressable::URI.parse(callback_url).host)
