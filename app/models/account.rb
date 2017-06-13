@@ -177,6 +177,7 @@ class Account < ApplicationRecord
           account_id IN (SELECT * FROM first_degree)
           AND target_account_id NOT IN (SELECT * FROM first_degree)
           AND target_account_id NOT IN (:excluded_account_ids)
+          AND accounts.suspended = false
         GROUP BY target_account_id, accounts.id
         ORDER BY count(account_id) DESC
         OFFSET :offset
@@ -199,6 +200,7 @@ class Account < ApplicationRecord
           ts_rank_cd(#{textsearch}, #{query}, 32) AS rank
         FROM accounts
         WHERE #{query} @@ #{textsearch}
+          AND accounts.suspended = false
         ORDER BY rank DESC
         LIMIT ?
       SQL
@@ -216,6 +218,7 @@ class Account < ApplicationRecord
         FROM accounts
         LEFT OUTER JOIN follows AS f ON (accounts.id = f.account_id AND f.target_account_id = ?) OR (accounts.id = f.target_account_id AND f.account_id = ?)
         WHERE #{query} @@ #{textsearch}
+          AND accounts.suspended = false
         GROUP BY accounts.id
         ORDER BY rank DESC
         LIMIT ?
