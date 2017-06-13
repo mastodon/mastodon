@@ -11,7 +11,7 @@ class Settings::DeletesController < ApplicationController
 
   def destroy
     if current_user.valid_password?(delete_params[:password])
-      Admin::SuspensionWorker.perform_async(current_user.account_id)
+      Admin::SuspensionWorker.perform_async(current_user.account_id, true)
       sign_out
       redirect_to new_user_session_path, notice: I18n.t('deletes.success_msg')
     else
