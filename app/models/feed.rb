@@ -25,9 +25,9 @@ class Feed
   end
 
   def from_database(limit, max_id, since_id)
-    results = Status.as_home_timeline(@account).paginate_by_max_id(limit, max_id, since_id).to_a
-    results.reject! { |status| FeedManager.instance.filter?(:home, status, @account.id) }
-    results
+    Status.as_home_timeline(@account)
+          .paginate_by_max_id(limit, max_id, since_id)
+          .reject { |status| FeedManager.instance.filter?(:home, status, @account.id) }
   end
 
   def key
