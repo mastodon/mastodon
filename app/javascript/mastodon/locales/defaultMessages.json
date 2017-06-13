@@ -397,6 +397,23 @@
   {
     "descriptors": [
       {
+        "defaultMessage": "Filter out by regular expressions",
+        "id": "home.column_settings.filter_regex"
+      },
+      {
+        "defaultMessage": "Column settings",
+        "id": "home.settings"
+      },
+      {
+        "defaultMessage": "Advanced",
+        "id": "home.column_settings.advanced"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/community_timeline/components/column_settings.json"
+  },
+  {
+    "descriptors": [
+      {
         "defaultMessage": "Local timeline",
         "id": "column.community"
       },
@@ -727,10 +744,6 @@
         "id": "navigation_bar.info"
       },
       {
-        "defaultMessage": "{faq} • {userguide} • {apps}",
-        "id": "getting_started.support"
-      },
-      {
         "defaultMessage": "FAQ",
         "id": "getting_started.faq"
       },
@@ -829,10 +842,6 @@
   {
     "descriptors": [
       {
-        "defaultMessage": "Column settings",
-        "id": "notifications.settings"
-      },
-      {
         "defaultMessage": "Desktop notifications",
         "id": "notifications.column_settings.alert"
       },
@@ -883,16 +892,21 @@
   {
     "descriptors": [
       {
-        "defaultMessage": "Notifications",
-        "id": "column.notifications"
-      },
-      {
         "defaultMessage": "Are you sure you want to permanently clear all your notifications?",
         "id": "notifications.clear_confirmation"
       },
       {
         "defaultMessage": "Clear notifications",
         "id": "notifications.clear"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/notifications/containers/column_settings_container.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "Notifications",
+        "id": "column.notifications"
       },
       {
         "defaultMessage": "You don't have any notifications yet. Interact with others to start the conversation.",

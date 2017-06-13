@@ -12,7 +12,7 @@ const localePackPaths = require('./generateLocalePacks');
 
 const extensionGlob = `**/*{${paths.extensions.join(',')}}*`;
 const packPaths = sync(join(paths.source, paths.entry, extensionGlob));
-const entryPacks = [].concat(packPaths).concat(localePackPaths);
+const entryPacks = [].concat(packPaths).concat(localePackPaths).filter(path => path !== join(paths.source, paths.entry, 'custom.js'));
 
 const customApplicationStyle = resolve(join(paths.source, 'styles/custom.scss'));
 const originalApplicationStyle = resolve(join(paths.source, 'styles/application.scss'));

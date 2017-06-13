@@ -1,13 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
-import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
+import { FormattedMessage } from 'react-intl';
 import ColumnCollapsable from '../../../components/column_collapsable';
+import ClearColumnButton from './clear_column_button';
 import SettingToggle from './setting_toggle';
-
-const messages = defineMessages({
-  settings: { id: 'notifications.settings', defaultMessage: 'Column settings' },
-});
 
 class ColumnSettings extends React.PureComponent {
 
@@ -15,13 +12,11 @@ class ColumnSettings extends React.PureComponent {
     settings: ImmutablePropTypes.map.isRequired,
     onChange: PropTypes.func.isRequired,
     onSave: PropTypes.func.isRequired,
-    intl: PropTypes.shape({
-      formatMessage: PropTypes.func.isRequired,
-    }).isRequired,
+    onClear: PropTypes.func.isRequired,
   };
 
   render () {
-    const { settings, intl, onChange, onSave } = this.props;
+    const { settings, onChange, onSave, onClear } = this.props;
 
     const alertStr = <FormattedMessage id='notifications.column_settings.alert' defaultMessage='Desktop notifications' />;
     const showStr  = <FormattedMessage id='notifications.column_settings.show' defaultMessage='Show in column' />;
@@ -29,6 +24,10 @@ class ColumnSettings extends React.PureComponent {
 
     return (
       <div>
+        <div className='column-settings__row'>
+          <ClearColumnButton onClick={onClear} />
+        </div>
+
         <span className='column-settings__section'><FormattedMessage id='notifications.column_settings.follow' defaultMessage='New followers:' /></span>
 
         <div className='column-settings__row'>
@@ -66,4 +65,4 @@ class ColumnSettings extends React.PureComponent {
 
 }
 
-export default injectIntl(ColumnSettings);
+export default ColumnSettings;

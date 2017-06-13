@@ -5,7 +5,8 @@ import StatusListContainer from '../ui/containers/status_list_container';
 import Column from '../../components/column';
 import ColumnHeader from '../../components/column_header';
 import {
-  refreshTimeline,
+  refreshHashtagTimeline,
+  expandHashtagTimeline,
   updateTimeline,
   deleteFromTimelines,
 } from '../../actions/timelines';
@@ -81,13 +82,13 @@ class HashtagTimeline extends React.PureComponent {
     const { dispatch } = this.props;
     const { id } = this.props.params;
 
-    dispatch(refreshTimeline('tag', id));
+    dispatch(refreshHashtagTimeline(id));
     this._subscribe(dispatch, id);
   }
 
   componentWillReceiveProps (nextProps) {
     if (nextProps.params.id !== this.props.params.id) {
-      this.props.dispatch(refreshTimeline('tag', nextProps.params.id));
+      this.props.dispatch(refreshHashtagTimeline(nextProps.params.id));
       this._unsubscribe();
       this._subscribe(this.props.dispatch, nextProps.params.id);
     }
@@ -99,6 +100,10 @@ class HashtagTimeline extends React.PureComponent {
 
   setRef = c => {
     this.column = c;
+  }
+
+  handleLoadMore = () => {
+    this.props.dispatch(expandHashtagTimeline(this.props.params.id));
   }
 
   render () {
@@ -123,8 +128,8 @@ class HashtagTimeline extends React.PureComponent {
         <StatusListContainer
           trackScroll={!pinned}
           scrollKey={`hashtag_timeline-${columnId}`}
-          type='tag'
-          id={id}
+          timelineId={`hashtag:${id}`}
+          loadMore={this.handleLoadMore}
           emptyMessage={<FormattedMessage id='empty_column.hashtag' defaultMessage='There is nothing in this hashtag yet.' />}
         />
       </Column>

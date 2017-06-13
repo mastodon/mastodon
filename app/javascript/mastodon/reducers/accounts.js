@@ -4,8 +4,6 @@ import {
   FOLLOWERS_EXPAND_SUCCESS,
   FOLLOWING_FETCH_SUCCESS,
   FOLLOWING_EXPAND_SUCCESS,
-  ACCOUNT_TIMELINE_FETCH_SUCCESS,
-  ACCOUNT_TIMELINE_EXPAND_SUCCESS,
   FOLLOW_REQUESTS_FETCH_SUCCESS,
   FOLLOW_REQUESTS_EXPAND_SUCCESS,
 } from '../actions/accounts';
@@ -113,8 +111,6 @@ export default function accounts(state = initialState, action) {
     return normalizeAccountsFromStatuses(normalizeAccounts(state, action.accounts), action.statuses);
   case TIMELINE_REFRESH_SUCCESS:
   case TIMELINE_EXPAND_SUCCESS:
-  case ACCOUNT_TIMELINE_FETCH_SUCCESS:
-  case ACCOUNT_TIMELINE_EXPAND_SUCCESS:
   case CONTEXT_FETCH_SUCCESS:
   case FAVOURITED_STATUSES_FETCH_SUCCESS:
   case FAVOURITED_STATUSES_EXPAND_SUCCESS:
