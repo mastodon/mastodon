@@ -18,7 +18,7 @@ const componentMap = {
   'HASHTAG': HashtagTimeline,
 };
 
-class ColumnsArea extends ImmutablePureComponent {
+export default class ColumnsArea extends ImmutablePureComponent {
 
   static propTypes = {
     columns: ImmutablePropTypes.list.isRequired,
@@ -51,5 +51,3 @@ class ColumnsArea extends ImmutablePureComponent {
   }
 
 }
-
-export default ColumnsArea;

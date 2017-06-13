@@ -21,7 +21,8 @@ const mapStateToProps = state => ({
   accessToken: state.getIn(['meta', 'access_token']),
 });
 
-class HashtagTimeline extends React.PureComponent {
+@connect(mapStateToProps)
+export default class HashtagTimeline extends React.PureComponent {
 
   static propTypes = {
     params: PropTypes.object.isRequired,
@@ -137,5 +138,3 @@ class HashtagTimeline extends React.PureComponent {
   }
 
 }
-
-export default connect(mapStateToProps)(HashtagTimeline);

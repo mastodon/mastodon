@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-class ColumnCollapsable extends React.PureComponent {
+export default class ColumnCollapsable extends React.PureComponent {
 
   static propTypes = {
     icon: PropTypes.string.isRequired,
@@ -48,5 +48,3 @@ class ColumnCollapsable extends React.PureComponent {
   }
 
 }
-
-export default ColumnCollapsable;

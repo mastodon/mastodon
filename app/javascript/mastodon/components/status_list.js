@@ -8,7 +8,7 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 import IntersectionObserverWrapper from '../features/ui/util/intersection_observer_wrapper';
 import { debounce } from 'lodash';
 
-class StatusList extends ImmutablePureComponent {
+export default class StatusList extends ImmutablePureComponent {
 
   static propTypes = {
     scrollKey: PropTypes.string.isRequired,
@@ -142,5 +142,3 @@ class StatusList extends ImmutablePureComponent {
   }
 
 }
-
-export default StatusList;

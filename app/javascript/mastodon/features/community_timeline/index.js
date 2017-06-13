@@ -28,7 +28,9 @@ const mapStateToProps = state => ({
   accessToken: state.getIn(['meta', 'access_token']),
 });
 
-class CommunityTimeline extends React.PureComponent {
+@connect(mapStateToProps)
+@injectIntl
+export default class CommunityTimeline extends React.PureComponent {
 
   static propTypes = {
     dispatch: PropTypes.func.isRequired,
@@ -142,5 +144,3 @@ class CommunityTimeline extends React.PureComponent {
   }
 
 }
-
-export default connect(mapStateToProps)(injectIntl(CommunityTimeline));

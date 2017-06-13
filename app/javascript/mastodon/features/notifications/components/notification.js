@@ -9,7 +9,7 @@ import emojify from '../../../emoji';
 import escapeTextContentForBrowser from 'escape-html';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
-class Notification extends ImmutablePureComponent {
+export default class Notification extends ImmutablePureComponent {
 
   static propTypes = {
     notification: ImmutablePropTypes.map.isRequired,
@@ -87,5 +87,3 @@ class Notification extends ImmutablePureComponent {
   }
 
 }
-
-export default Notification;

@@ -2,7 +2,7 @@ import React from 'react';
 import Dropdown, { DropdownTrigger, DropdownContent } from 'react-simple-dropdown';
 import PropTypes from 'prop-types';
 
-class DropdownMenu extends React.PureComponent {
+export default class DropdownMenu extends React.PureComponent {
 
   static contextTypes = {
     router: PropTypes.object,
@@ -92,5 +92,3 @@ class DropdownMenu extends React.PureComponent {
   }
 
 }
-
-export default DropdownMenu;

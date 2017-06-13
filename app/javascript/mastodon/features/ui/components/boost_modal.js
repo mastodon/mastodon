@@ -14,7 +14,8 @@ const messages = defineMessages({
   reblog: { id: 'status.reblog', defaultMessage: 'Boost' },
 });
 
-class BoostModal extends ImmutablePureComponent {
+@injectIntl
+export default class BoostModal extends ImmutablePureComponent {
 
   static contextTypes = {
     router: PropTypes.object,
@@ -82,5 +83,3 @@ class BoostModal extends ImmutablePureComponent {
   }
 
 }
-
-export default injectIntl(BoostModal);

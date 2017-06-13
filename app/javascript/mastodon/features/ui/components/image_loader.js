@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-class ImageLoader extends React.PureComponent {
+export default class ImageLoader extends React.PureComponent {
 
   static propTypes = {
     alt: PropTypes.string,
@@ -65,5 +65,3 @@ class ImageLoader extends React.PureComponent {
   }
 
 }
-
-export default ImageLoader;

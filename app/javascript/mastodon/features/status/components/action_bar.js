@@ -15,7 +15,8 @@ const messages = defineMessages({
   report: { id: 'status.report', defaultMessage: 'Report @{name}' },
 });
 
-class ActionBar extends React.PureComponent {
+@injectIntl
+export default class ActionBar extends React.PureComponent {
 
   static contextTypes = {
     router: PropTypes.object,
@@ -91,5 +92,3 @@ class ActionBar extends React.PureComponent {
   }
 
 }
-
-export default injectIntl(ActionBar);

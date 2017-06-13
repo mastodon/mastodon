@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import Toggle from 'react-toggle';
 
-class SettingToggle extends React.PureComponent {
+export default class SettingToggle extends React.PureComponent {
 
   static propTypes = {
     settings: ImmutablePropTypes.map.isRequired,
@@ -29,5 +29,3 @@ class SettingToggle extends React.PureComponent {
   }
 
 }
-
-export default SettingToggle;

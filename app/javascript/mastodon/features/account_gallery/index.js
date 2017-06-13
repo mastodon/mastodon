@@ -23,7 +23,8 @@ const mapStateToProps = (state, props) => ({
   autoPlayGif: state.getIn(['meta', 'auto_play_gif']),
 });
 
-class AccountGallery extends ImmutablePureComponent {
+@connect(mapStateToProps)
+export default class AccountGallery extends ImmutablePureComponent {
 
   static propTypes = {
     params: PropTypes.object.isRequired,
@@ -112,5 +113,3 @@ class AccountGallery extends ImmutablePureComponent {
   }
 
 }
-
-export default connect(mapStateToProps)(AccountGallery);

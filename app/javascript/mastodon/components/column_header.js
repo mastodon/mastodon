@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { FormattedMessage } from 'react-intl';
 
-class ColumnHeader extends React.PureComponent {
+export default class ColumnHeader extends React.PureComponent {
 
   static contextTypes = {
     router: PropTypes.object,
@@ -141,5 +141,3 @@ class ColumnHeader extends React.PureComponent {
   }
 
 }
-
-export default ColumnHeader;

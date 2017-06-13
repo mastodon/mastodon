@@ -8,7 +8,7 @@ import { FormattedMessage } from 'react-intl';
 import Link from 'react-router-dom/Link';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
-class NavigationBar extends ImmutablePureComponent {
+export default class NavigationBar extends ImmutablePureComponent {
 
   static propTypes = {
     account: ImmutablePropTypes.map.isRequired,
@@ -33,5 +33,3 @@ class NavigationBar extends ImmutablePureComponent {
   }
 
 }
-
-export default NavigationBar;

@@ -6,7 +6,7 @@ import ColumnCollapsable from '../../../components/column_collapsable';
 import ClearColumnButton from './clear_column_button';
 import SettingToggle from './setting_toggle';
 
-class ColumnSettings extends React.PureComponent {
+export default class ColumnSettings extends React.PureComponent {
 
   static propTypes = {
     settings: ImmutablePropTypes.map.isRequired,
@@ -64,5 +64,3 @@ class ColumnSettings extends React.PureComponent {
   }
 
 }
-
-export default ColumnSettings;
