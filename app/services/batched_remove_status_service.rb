@@ -54,7 +54,7 @@ class BatchedRemoveStatusService < BaseService
     account    = statuses.first.account
     recipients = account.followers.local.pluck(:id)
 
-    recipients << account if account.local?
+    recipients << account.id if account.local?
 
     recipients.each do |follower_id|
       unpush(follower_id, statuses)
