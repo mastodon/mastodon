@@ -35,7 +35,7 @@ describe Settings::DeletesController do
 
       context 'with correct password' do
         before do
-          delete :destroy, params: { password: 'petsmoldoggos' }
+          delete :destroy, params: { form_delete_confirmation: { password: 'petsmoldoggos' } }
         end
 
         it 'redirects to sign in page' do
@@ -53,7 +53,7 @@ describe Settings::DeletesController do
 
       context 'with incorrect password' do
         before do
-          delete :destroy, params: { password: 'blaze420' }
+          delete :destroy, params: { form_delete_confirmation: { password: 'blaze420' } }
         end
 
         it 'redirects back to confirmation page' do

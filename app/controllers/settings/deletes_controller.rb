@@ -22,6 +22,6 @@ class Settings::DeletesController < ApplicationController
   private
 
   def delete_params
-    params.permit(:password)
+    params.require(:form_delete_confirmation).permit(:password)
   end
 end

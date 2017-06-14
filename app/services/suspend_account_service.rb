@@ -5,8 +5,8 @@ class SuspendAccountService < BaseService
     @account = account
 
     purge_user if remove_user
-    purge_content
     purge_profile
+    purge_content
     unsubscribe_push_subscribers
   end
 
