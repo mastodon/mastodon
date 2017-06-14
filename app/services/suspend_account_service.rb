@@ -1,15 +1,20 @@
 # frozen_string_literal: true
 
 class SuspendAccountService < BaseService
-  def call(account)
+  def call(account, remove_user = false)
     @account = account
 
+    purge_user if remove_user
     purge_content
     purge_profile
     unsubscribe_push_subscribers
   end
 
   private
+
+  def purge_user
+    @account.user.destroy
+  end
 
   def purge_content
     @account.statuses.reorder(nil).find_each do |status|
