@@ -12,25 +12,13 @@ body {
 @media screen and (min-width: 1300px) { 
   .column {
     flex-grow: 1 !important;
-    max-width: 500px;
+    max-width: 400px;
   }
 
   .drawer {
-    width: 20%;
+    width: 17%;
+    max-width: 400px;
   }
-
-  .columns-area { 
-    justify-content: center; 
-  } 
-}
-
-@media screen and (min-width: 1900px) { 
-  .column, .drawer { 
-    width: 400px; 
-    border-radius: 4px; 
-    height: 96vh; 
-    margin-top: 2vh; 
-  } 
 }
 
 .muted {
