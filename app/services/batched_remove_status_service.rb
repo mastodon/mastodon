@@ -26,14 +26,14 @@ class BatchedRemoveStatusService < BaseService
     statuses.group_by(&:account_id).each do |_, account_statuses|
       account = account_statuses.first.account
 
-      batch_feed_removal(account_statuses)
-      batch_push_updates(account_statuses) if account.local?
+      unpush_from_home_timelines(account_statuses)
+      batch_stream_entries(account_statuses) if account.local?
     end
 
     # Cannot be batched
     statuses.each do |status|
-      remove_from_public_timelines(status)
-      batch_salmon_updates(status) if status.local?
+      unpush_from_public_timelines(status)
+      batch_salmon_slaps(status) if status.local?
     end
 
     Pubsubhubbub::DistributionWorker.push_bulk(@stream_entry_batches)
@@ -42,7 +42,7 @@ class BatchedRemoveStatusService < BaseService
 
   private
 
-  def batch_push_updates(statuses)
+  def batch_stream_entries(statuses)
     stream_entry_ids = statuses.map { |s| s.stream_entry.id }
 
     stream_entry_ids.each_slice(69) do |batch_of_stream_entry_ids|
@@ -50,7 +50,7 @@ class BatchedRemoveStatusService < BaseService
     end
   end
 
-  def batch_feed_removal(statuses)
+  def unpush_from_home_timelines(statuses)
     account    = statuses.first.account
     recipients = account.followers.local.pluck(:id)
 
@@ -61,7 +61,7 @@ class BatchedRemoveStatusService < BaseService
     end
   end
 
-  def remove_from_public_timelines(status)
+  def unpush_from_public_timelines(status)
     payload = @json_payloads[status.id]
 
     redis.pipelined do
@@ -75,7 +75,7 @@ class BatchedRemoveStatusService < BaseService
     end
   end
 
-  def batch_salmon_updates(status)
+  def batch_salmon_slaps(status)
     return if @mentions[status.id].empty?
 
     payload    = stream_entry_to_xml(status.stream_entry.reload)
