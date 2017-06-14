@@ -45,7 +45,7 @@ class BatchedRemoveStatusService < BaseService
   def batch_stream_entries(statuses)
     stream_entry_ids = statuses.map { |s| s.stream_entry.id }
 
-    stream_entry_ids.each_slice(69) do |batch_of_stream_entry_ids|
+    stream_entry_ids.each_slice(100) do |batch_of_stream_entry_ids|
       @stream_entry_batches << [batch_of_stream_entry_ids]
     end
   end
