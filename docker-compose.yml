@@ -49,6 +49,9 @@ services:
     restart: always
     env_file: .env.production
     command: bundle exec sidekiq -q default -q mailers -q pull -q push
+### Uncomment to run rake db:migrate whenever the container starts
+#    environment:
+#      - RUN_DB_MIGRATIONS=true
     depends_on:
       - db
       - redis
