@@ -36,8 +36,8 @@ class BatchedRemoveStatusService < BaseService
       batch_salmon_slaps(status) if status.local?
     end
 
-    Pubsubhubbub::DistributionWorker.push_bulk(@stream_entry_batches)
-    NotificationWorker.push_bulk(@salmon_batches)
+    Pubsubhubbub::DistributionWorker.push_bulk(@stream_entry_batches) { |batch| batch }
+    NotificationWorker.push_bulk(@salmon_batches) { |batch| batch }
   end
 
   private
@@ -79,7 +79,7 @@ class BatchedRemoveStatusService < BaseService
     return if @mentions[status.id].empty?
 
     payload    = stream_entry_to_xml(status.stream_entry.reload)
-    recipients = @mentions[status.id].map(&:account).reject(&:local?).uniq(:domain).map(&:id)
+    recipients = @mentions[status.id].map(&:account).reject(&:local?).uniq(&:domain).map(&:id)
 
     recipients.each do |recipient_id|
       @salmon_batches << [payload, status.account_id, recipient_id]
