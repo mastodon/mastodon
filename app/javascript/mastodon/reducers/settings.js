@@ -60,12 +60,7 @@ const defaultColumns = Immutable.fromJS([
   { id: 'NOTIFICATIONS', uuid: uuid(), params: {} },
 ]);
 
-const hydrate = (settings) => {
-  return initialState.withMutations((state) => {
-    state.mergeDeep(settings);
-    state.update('columns', defaultColumns, val => val);
-  });
-};
+const hydrate = (state, settings) => state.mergeDeep(settings).update('columns', (val = defaultColumns) => val);
 
 const moveColumn = (state, uuid, direction) => {
   const columns  = state.get('columns');
@@ -83,7 +78,7 @@ const moveColumn = (state, uuid, direction) => {
 export default function settings(state = initialState, action) {
   switch(action.type) {
   case STORE_HYDRATE:
-    return hydrate(action.state.get('settings'));
+    return hydrate(state, action.state.get('settings'));
   case SETTING_CHANGE:
     return state.setIn(action.key, action.value);
   case COLUMN_ADD:
