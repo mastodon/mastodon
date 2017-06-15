@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Api::V1::FollowsController < ApiController
+class Api::V1::FollowsController < Api::BaseController
   before_action -> { doorkeeper_authorize! :follow }
   before_action :require_user!
 

@@ -5,17 +5,17 @@ ru:
       defaults:
         avatar: PNG, GIF или JPG. Максимально 2MB. Будет уменьшено до 120x120px
         display_name:
-          one: 'Остался <span class="name-counter">1</span> символ'
-          few: 'Осталось <span class="name-counter">%{count}</span> символа'
-          many: 'Осталось <span class="name-counter">%{count}</span> символов'
-          other: 'Осталось <span class="name-counter">%{count}</span> символов'
+          few: Осталось <span class="name-counter">%{count}</span> символа
+          many: Осталось <span class="name-counter">%{count}</span> символов
+          one: Остался <span class="name-counter">1</span> символ
+          other: Осталось <span class="name-counter">%{count}</span> символов
         header: PNG, GIF или JPG. Максимально 2MB. Будет уменьшено до 700x335px
         locked: Потребует от Вас ручного подтверждения подписчиков, изменит приватность постов по умолчанию на "только для подписчиков"
         note:
-          one: 'Остался <span class="name-counter">1</span> символ'
-          few: 'Осталось <span class="name-counter">%{count}</span> символа'
-          many: 'Осталось <span class="name-counter">%{count}</span> символов'
-          other: 'Осталось <span class="name-counter">%{count}</span> символов'
+          few: Осталось <span class="name-counter">%{count}</span> символа
+          many: Осталось <span class="name-counter">%{count}</span> символов
+          one: Остался <span class="name-counter">1</span> символ
+          other: Осталось <span class="name-counter">%{count}</span> символов
       imports:
         data: Файл CSV, экспортированный с другого узла Mastodon
       sessions:
@@ -42,6 +42,7 @@ ru:
         setting_auto_play_gif: Автоматически проигрывать анимированные GIF
         setting_boost_modal: Показывать диалог подтверждения перед продвижением
         setting_default_privacy: Видимость постов
+        setting_delete_modal: Показывать диалог подтверждения перед удалением
         severity: Строгость
         type: Тип импорта
         username: Имя пользователя
@@ -55,8 +56,8 @@ ru:
         follow_request: Уведомлять по e-mail, когда кто-то запрашивает разрешение на подписку
         mention: Уведомлять по e-mail, когда кто-то упомянул Вас
         reblog: Уведомлять по e-mail, когда кто-то продвинул Ваш статус
-    'no': 'Нет'
+    'no': Нет
     required:
       mark: "*"
       text: обязательно
-    'yes': 'Да'
+    'yes': Да

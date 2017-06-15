@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { cancelReport, changeReportComment, submitReport } from '../../actions/reports';
-import { fetchAccountTimeline } from '../../actions/accounts';
+import { refreshAccountTimeline } from '../../actions/timelines';
 import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import Column from '../ui/components/column';
@@ -28,7 +28,7 @@ const makeMapStateToProps = () => {
       isSubmitting: state.getIn(['reports', 'new', 'isSubmitting']),
       account: getAccount(state, accountId),
       comment: state.getIn(['reports', 'new', 'comment']),
-      statusIds: Immutable.OrderedSet(state.getIn(['timelines', 'accounts_timelines', accountId, 'items'])).union(state.getIn(['reports', 'new', 'status_ids'])),
+      statusIds: Immutable.OrderedSet(state.getIn(['timelines', `account:${accountId}`, 'items'])).union(state.getIn(['reports', 'new', 'status_ids'])),
     };
   };
 
@@ -61,12 +61,12 @@ class Report extends React.PureComponent {
       return;
     }
 
-    this.props.dispatch(fetchAccountTimeline(this.props.account.get('id')));
+    this.props.dispatch(refreshAccountTimeline(this.props.account.get('id')));
   }
 
   componentWillReceiveProps (nextProps) {
     if (this.props.account !== nextProps.account && nextProps.account) {
-      this.props.dispatch(fetchAccountTimeline(nextProps.account.get('id')));
+      this.props.dispatch(refreshAccountTimeline(nextProps.account.get('id')));
     }
   }
 

@@ -1,14 +1,12 @@
 # frozen_string_literal: true
 
-class Api::SalmonController < ApiController
+class Api::SalmonController < Api::BaseController
   before_action :set_account
   respond_to :txt
 
   def update
-    payload = request.body.read
-
-    if !payload.nil? && verify?(payload)
-      SalmonWorker.perform_async(@account.id, payload.force_encoding('UTF-8'))
+    if verify_payload?
+      process_salmon
       head 201
     else
       head 202
@@ -21,7 +19,15 @@ class Api::SalmonController < ApiController
     @account = Account.find(params[:id])
   end
 
-  def verify?(payload)
-    VerifySalmonService.new.call(payload)
+  def payload
+    @_payload ||= request.body.read
+  end
+
+  def verify_payload?
+    payload.present? && VerifySalmonService.new.call(payload)
+  end
+
+  def process_salmon
+    SalmonWorker.perform_async(@account.id, payload.force_encoding('UTF-8'))
   end
 end

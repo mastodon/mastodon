@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
+import classNames from 'classnames';
 import Permalink from '../../../components/permalink';
 import TransitionMotion from 'react-motion/lib/TransitionMotion';
 import spring from 'react-motion/lib/spring';
@@ -30,7 +31,7 @@ const PageOne = ({ acct, domain }) => (
     <div>
       <h1><FormattedMessage id='onboarding.page_one.welcome' defaultMessage='Welcome to Mastodon!' /></h1>
       <p><FormattedMessage id='onboarding.page_one.federation' defaultMessage='Mastodon is a network of independent servers joining up to make one larger social network. We call these servers instances.' /></p>
-      <p><FormattedMessage id='onboarding.page_one.handle' defaultMessage='You are on {domain}, so your full handle is {handle}' values={{ domain, handle: <strong>{acct}@{domain}</strong> }}/></p>
+      <p><FormattedMessage id='onboarding.page_one.handle' defaultMessage='You are on {domain}, so your full handle is {handle}' values={{ domain, handle: <strong>{acct}@{domain}</strong> }} /></p>
     </div>
   </div>
 );
@@ -59,6 +60,7 @@ const PageTwo = ({ me }) => (
         onClearSuggestions={noop}
         onFetchSuggestions={noop}
         onSuggestionSelected={noop}
+        showSearch
       />
     </div>
 
@@ -86,7 +88,7 @@ const PageThree = ({ me, domain }) => (
       </div>
     </div>
 
-    <p><FormattedMessage id='onboarding.page_three.search' defaultMessage='Use the search bar to find people and look at hashtags, such as {illustration} and {introductions}. To look for a person who is not on this instance, use their full handle.' values={{ illustration: <Permalink to='/timelines/tag/illustration' href='/tags/illustration'>#illustration</Permalink>, introductions: <Permalink to='/timelines/tag/introductions' href='/tags/introductions'>#introductions</Permalink> }}/></p>
+    <p><FormattedMessage id='onboarding.page_three.search' defaultMessage='Use the search bar to find people and look at hashtags, such as {illustration} and {introductions}. To look for a person who is not on this instance, use their full handle.' values={{ illustration: <Permalink to='/timelines/tag/illustration' href='/tags/illustration'>#illustration</Permalink>, introductions: <Permalink to='/timelines/tag/introductions' href='/tags/introductions'>#introductions</Permalink> }} /></p>
     <p><FormattedMessage id='onboarding.page_three.profile' defaultMessage='Edit your profile to change your avatar, bio, and display name. There, you will also find other preferences.' /></p>
   </div>
 );
@@ -102,7 +104,7 @@ const PageFour = ({ domain, intl }) => (
       <div className='row'>
         <div>
           <div className='figure non-interactive'><ColumnHeader icon='home' type={intl.formatMessage(messages.home_title)} /></div>
-          <p><FormattedMessage id='onboarding.page_four.home' defaultMessage='The home timeline shows posts from people you follow.'/></p>
+          <p><FormattedMessage id='onboarding.page_four.home' defaultMessage='The home timeline shows posts from people you follow.' /></p>
         </div>
 
         <div>
@@ -139,7 +141,7 @@ const PageSix = ({ admin, domain }) => {
       <p>
         <FormattedMessage id='onboarding.page_six.admin' defaultMessage="Your instance's admin is {admin}." values={{ admin: <Permalink href={admin.get('url')} to={`/accounts/${admin.get('id')}`}>@{admin.get('acct')}</Permalink> }} />
         <br />
-        <FormattedMessage id='onboarding.page_six.read_guidelines' defaultMessage="Please read {domain}'s {guidelines}!" values={{domain, guidelines: <a href='/about/more' target='_blank'><FormattedMessage id='onboarding.page_six.guidelines' defaultMessage='community guidelines' /></a> }}/>
+        <FormattedMessage id='onboarding.page_six.read_guidelines' defaultMessage="Please read {domain}'s {guidelines}!" values={{ domain, guidelines: <a href='/about/more' target='_blank'><FormattedMessage id='onboarding.page_six.guidelines' defaultMessage='community guidelines' /></a> }} />
       </p>
     );
   }
@@ -180,6 +182,25 @@ class OnboardingModal extends React.PureComponent {
     currentIndex: 0,
   };
 
+  componentWillMount() {
+    const { me, admin, domain, intl } = this.props;
+    this.pages = [
+      <PageOne acct={me.get('acct')} domain={domain} />,
+      <PageTwo me={me} />,
+      <PageThree me={me} domain={domain} />,
+      <PageFour domain={domain} intl={intl} />,
+      <PageSix admin={admin} domain={domain} />,
+    ];
+  };
+
+  componentDidMount() {
+    window.addEventListener('keyup', this.handleKeyUp);
+  }
+
+  componentWillUnmount() {
+    window.addEventListener('keyup', this.handleKeyUp);
+  }
+
   handleSkip = (e) => {
     e.preventDefault();
     this.props.onClose();
@@ -191,10 +212,28 @@ class OnboardingModal extends React.PureComponent {
     this.setState({ currentIndex: i });
   }
 
-  handleNext = () => {
+  handlePrev = () => {
     this.setState(({ currentIndex }) => ({
-      currentIndex: currentIndex + 1,
+      currentIndex: Math.max(0, currentIndex - 1),
     }));
+  }
+
+  handleNext = () => {
+    const { pages } = this;
+    this.setState(({ currentIndex }) => ({
+      currentIndex: Math.min(currentIndex + 1, pages.length - 1),
+    }));
+  }
+
+  handleKeyUp = ({ key }) => {
+    switch (key) {
+    case 'ArrowLeft':
+      this.handlePrev();
+      break;
+    case 'ArrowRight':
+      this.handleNext();
+      break;
+    }
   }
 
   handleClose = () => {
@@ -202,16 +241,7 @@ class OnboardingModal extends React.PureComponent {
   }
 
   render () {
-    const { me, admin, domain, intl } = this.props;
-
-    const pages = [
-      <PageOne acct={me.get('acct')} domain={domain} />,
-      <PageTwo me={me} />,
-      <PageThree me={me} domain={domain} />,
-      <PageFour domain={domain} intl={intl} />,
-      <PageSix admin={admin} domain={domain} />,
-    ];
-
+    const { pages } = this;
     const { currentIndex } = this.state;
     const hasMore = currentIndex < pages.length - 1;
 
@@ -231,21 +261,29 @@ class OnboardingModal extends React.PureComponent {
       </button>
     );
 
-    const styles = pages.map((page, i) => ({
+    const styles = pages.map((data, i) => ({
       key: `page-${i}`,
-      style: { opacity: spring(i === currentIndex ? 1 : 0) },
+      data,
+      style: {
+        opacity: spring(i === currentIndex ? 1 : 0),
+      },
     }));
 
     return (
       <div className='modal-root__modal onboarding-modal'>
         <TransitionMotion styles={styles}>
-          {interpolatedStyles =>
+          {interpolatedStyles => (
             <div className='onboarding-modal__pager'>
-              {pages.map((page, i) =>
-                <div key={`page-${i}`} style={{ opacity: interpolatedStyles[i].style.opacity, pointerEvents: i === currentIndex ? 'auto' : 'none' }}>{page}</div>
-              )}
+              {interpolatedStyles.map(({ key, data, style }, i) => {
+                const className = classNames('onboarding-modal__page__wrapper', {
+                  'onboarding-modal__page__wrapper--active': i === currentIndex,
+                });
+                return (
+                  <div key={key} style={style} className={className}>{data}</div>
+                );
+              })}
             </div>
-          }
+          )}
         </TransitionMotion>
 
         <div className='onboarding-modal__paginator'>
@@ -259,7 +297,21 @@ class OnboardingModal extends React.PureComponent {
           </div>
 
           <div className='onboarding-modal__dots'>
-            {pages.map((_, i) => <div key={i} role='button' tabIndex='0' data-index={i} onClick={this.handleDot} className={`onboarding-modal__dot ${i === currentIndex ? 'active' : ''}`} />)}
+            {pages.map((_, i) => {
+              const className = classNames('onboarding-modal__dot', {
+                active: i === currentIndex,
+              });
+              return (
+                <div
+                  key={`dot-${i}`}
+                  role='button'
+                  tabIndex='0'
+                  data-index={i}
+                  onClick={this.handleDot}
+                  className={className}
+                />
+              );
+            })}
           </div>
 
           <div>

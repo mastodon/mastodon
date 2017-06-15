@@ -81,7 +81,7 @@ class ActionBar extends React.PureComponent {
     return (
       <div className='account__action-bar'>
         <div className='account__action-bar-dropdown'>
-          <DropdownMenu items={menu} icon='bars' size={24} direction="right" />
+          <DropdownMenu items={menu} icon='bars' size={24} direction='right' />
         </div>
 
         <div className='account__action-bar-links'>

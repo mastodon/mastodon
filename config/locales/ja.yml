@@ -39,6 +39,7 @@ ja:
     people_who_follow: "%{name} さんをフォロー中のアカウント"
     posts: 投稿
     remote_follow: リモートフォロー
+    reserved_username: このユーザー名は予約されています。
     unfollow: フォロー解除
   activitypub:
     activity:
@@ -85,8 +86,10 @@ ja:
       profile_url: プロフィールURL
       public: パブリック
       push_subscription_expires: PuSH購読期限切れ
+      redownload: アバターの更新
       reset: リセット
       reset_password: パスワード再設定
+      resubscribe: 再講読
       salmon_url: Salmon URL
       search: 検索
       show:
@@ -95,9 +98,11 @@ ja:
         targeted_reports: このアカウントについてのレポート
       silence: サイレンス
       statuses: トゥート数
+      subscribe: 購読する
       title: アカウント
       undo_silenced: サイレンスから戻す
       undo_suspension: 停止から戻す
+      unsubscribe: 購読の解除
       username: ユーザー名
       web: Web
     domain_blocks:
@@ -134,20 +139,17 @@ ja:
       account_count: 既知のアカウント数
       domain_name: ドメイン名
       title: 既知のインスタンス
-    pubsubhubbub:
-      callback_url: コールバックURL
-      confirmed: 確認済み
-      expires_in: 期限
-      last_delivery: 最終配送
-      title: PubSubHubbub
-      topic: トピック
     reports:
+      are_you_sure: 本当に実行しますか？
       comment:
         label: コメント
         none: なし
       delete: 削除
       id: ID
       mark_as_resolved: 解決済みとしてマーク
+      nsfw:
+        'false': NSFW オフ
+        'true': NSFW オン
       report: レポート#%{id}
       report_contents: 内容
       reported_account: 報告対象アカウント
@@ -182,6 +184,13 @@ ja:
         title: サイトの詳細な説明
       site_title: サイトのタイトル
       title: サイト設定
+    subscriptions:
+      callback_url: コールバックURL
+      confirmed: 確認済み
+      expires_in: 期限
+      last_delivery: 最終配送
+      title: PubSubHubbub
+      topic: トピック
     title: 管理
   application_mailer:
     settings: 'メール設定の変更: %{link}'
@@ -191,6 +200,8 @@ ja:
     invalid_url: URLが無効です
   auth:
     change_password: ログイン情報
+    delete_account: アカウントの削除
+    delete_account_html: アカウントを削除したい場合、<a href="%{path}">こちら</a>から手続きが行えます。削除前には確認画面があります。
     didnt_get_confirmation: 確認メールを受信できませんか？
     forgot_password: パスワードをお忘れですか？
     login: ログイン
@@ -218,6 +229,14 @@ ja:
       x_minutes: "%{count}分"
       x_months: "%{count}月"
       x_seconds: "%{count}秒"
+  deletes:
+    bad_password_msg: パスワードが違います
+    confirm_password: 本人確認のため、現在のパスワードを入力してください。
+    description_html: あなたのアカウントに含まれるコンテンツは全て削除され、アカウントは無効化されます。これは恒久的なもので、<strong>取り消すことはできません</strong>。なりすましを防ぐために、同じユーザー名で再度登録することはできなくなります。
+    proceed: アカウントを削除する
+    success_msg: アカウントは正常に削除されました
+    warning_html: 削除が保証されるのはこのインスタンス上のコンテンツのみです。他のインスタンス等、外部に広く共有されたコンテンツについては痕跡が残ることがあります。また、現在接続できないサーバーや、あなたの更新を受け取らなくなったサーバーに対しては、削除は反映されません。
+    warning_title: 共有されたコンテンツについて
   errors:
     '403': このページを表示する権限がありません
     '404': お探しのページは見つかりませんでした。
@@ -226,6 +245,7 @@ ja:
       content: セキュリティ認証に失敗しました。Cookieをブロックしていませんか？
       title: セキュリティ認証に失敗
     '429': リクエストの制限に達しました。
+    noscript: Mastodonを利用する場合はJavaScriptを有効にしてください。
   exports:
     blocks: ブロック
     csv: CSV
@@ -259,7 +279,7 @@ ja:
       following: フォロー中のアカウントリスト
       muting: ミュートしたアカウントリスト
     upload: アップロード
-  landing_strip_html: <strong>%{name}</strong> さんはインスタンス %{link_to_root_path} のユーザーです。アカウントさえ持っていればフォローしたり会話したりできます。
+  landing_strip_html: "<strong>%{name}</strong> さんはインスタンス %{link_to_root_path} のユーザーです。アカウントさえ持っていればフォローしたり会話したりできます。"
   landing_strip_signup_html: もしお持ちでないなら <a href="%{sign_up_path}">こちら</a> からサインアップできます。
   media_attachments:
     validations:
@@ -302,6 +322,7 @@ ja:
   settings:
     authorized_apps: 認証済みアプリ
     back: 戻る
+    delete: アカウントの削除
     edit_profile: プロフィールを編集
     export: データのエクスポート
     followers: 信頼済みのインスタンス
