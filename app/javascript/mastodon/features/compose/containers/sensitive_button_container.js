@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 import IconButton from '../../../components/icon_button';
 import { changeComposeSensitivity } from '../../../actions/compose';
 import Motion from 'react-motion/lib/Motion';
@@ -38,11 +39,26 @@ class SensitiveButton extends React.PureComponent {
 
     return (
       <Motion defaultStyle={{ scale: 0.87 }} style={{ scale: spring(visible ? 1 : 0.87, { stiffness: 200, damping: 3 }) }}>
-        {({ scale }) =>
-          <div style={{ display: visible ? 'block' : 'none', transform: `translateZ(0) scale(${scale})` }}>
-            <IconButton onClick={onClick} icon={`eye${active ? '-slash' : ''}`} title={intl.formatMessage(messages.title)} active={active} />
-          </div>
-        }
+        {({ scale }) => {
+          const icon = active ? 'eye-slash' : 'eye';
+          const className = classNames('compose-form__sensitive-button', {
+            'compose-form__sensitive-button--visible': visible,
+          });
+          return (
+            <div className={className} style={{ transform: `translateZ(0) scale(${scale})` }}>
+              <IconButton
+                className='compose-form__sensitive-button__icon'
+                title={intl.formatMessage(messages.title)}
+                icon={icon}
+                onClick={onClick}
+                size={18}
+                active={active}
+                style={{ lineHeight: null, height: null }}
+                inverted
+              />
+            </div>
+          );
+        }}
       </Motion>
     );
   }
