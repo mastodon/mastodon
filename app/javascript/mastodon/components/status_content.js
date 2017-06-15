@@ -24,7 +24,7 @@ class StatusContent extends React.PureComponent {
 
   state = {
     hidden: true,
-    collapsed: null  //  `null` indicates that an element doesn't need collapsing, while `true` or `false` indicates that it does (and is/isn't).
+    collapsed: null,  //  `null` indicates that an element doesn't need collapsing, while `true` or `false` indicates that it does (and is/isn't).
   };
 
   componentDidMount () {
@@ -125,7 +125,16 @@ class StatusContent extends React.PureComponent {
     const spoilerContent = { __html: emojify(escapeTextContentForBrowser(status.get('spoiler_text', ''))) };
     const directionStyle = { direction: 'ltr' };
 
-    const collapsedClass = this.state.collapsed === true ? "status__content--collapsed" : this.state.collapsed === false ? "status__content--expanded" : "";
+    const collapsedClass =
+      if (this.state.collapsed === true) {
+        'status__content--collapsed'
+      }
+      else if (this.state.collapsed === false) {
+        'status__content--expanded'
+      }
+      else {
+        ''
+      };
 
     if (isRtl(status.get('search_index'))) {
       directionStyle.direction = 'rtl';
@@ -166,12 +175,14 @@ class StatusContent extends React.PureComponent {
           className={('status__content ' + collapsedClass).trim()}
           style={directionStyle}
           onMouseDown={this.handleMouseDown}
-          onMouseUp={this.handleMouseUp}>
+          onMouseUp={this.handleMouseUp}
+        >
           <div dangerouslySetInnerHTML={content} />
           {this.state.collapsed !== null ?
             <a
-              className="status__content__collapse-button"
+              className='status__content__collapse-button'
               onClick={this.handleCollapsedClick}
+              role='button'
             >
               <i className='fa fa-fw fa-angle-double-down' />
             </a>
