@@ -15,6 +15,9 @@ class StatusContent extends React.PureComponent {
 
   static propTypes = {
     status: ImmutablePropTypes.map.isRequired,
+    expanded: PropTypes.bool,
+    onExpandedToggle: PropTypes.func,
+    onHeightUpdate: PropTypes.func,
     onClick: PropTypes.func,
   };
 
@@ -41,6 +44,12 @@ class StatusContent extends React.PureComponent {
         link.setAttribute('rel', 'noopener');
         link.setAttribute('title', link.href);
       }
+    }
+  }
+
+  componentDidUpdate () {
+    if (this.props.onHeightUpdate) {
+      this.props.onHeightUpdate();
     }
   }
 
@@ -85,7 +94,13 @@ class StatusContent extends React.PureComponent {
 
   handleSpoilerClick = (e) => {
     e.preventDefault();
-    this.setState({ hidden: !this.state.hidden });
+
+    if (this.props.onExpandedToggle) {
+      // The parent manages the state
+      this.props.onExpandedToggle();
+    } else {
+      this.setState({ hidden: !this.state.hidden });
+    }
   }
 
   setRef = (c) => {
@@ -94,13 +109,14 @@ class StatusContent extends React.PureComponent {
 
   render () {
     const { status } = this.props;
-    const { hidden } = this.state;
+
+    const hidden = this.props.onExpandedToggle ? !this.props.expanded : this.state.hidden;
 
     const content = { __html: emojify(status.get('content')) };
     const spoilerContent = { __html: emojify(escapeTextContentForBrowser(status.get('spoiler_text', ''))) };
     const directionStyle = { direction: 'ltr' };
 
-    if (isRtl(status.get('content'))) {
+    if (isRtl(status.get('search_index'))) {
       directionStyle.direction = 'rtl';
     }
 

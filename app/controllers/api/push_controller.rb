@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Api::PushController < ApiController
+class Api::PushController < Api::BaseController
   def update
     response, status = process_push_request
     render plain: response, status: status

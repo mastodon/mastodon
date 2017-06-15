@@ -3,37 +3,83 @@ require 'rails_helper'
 describe InstancePresenter do
   let(:instance_presenter) { InstancePresenter.new }
 
-  it "delegates site_description to Setting" do
-    Setting.site_description = "Site desc"
+  context do
+    around do |example|
+      site_description = Setting.site_description
+      example.run
+      Setting.site_description = site_description
+    end
 
-    expect(instance_presenter.site_description).to eq "Site desc"
+    it "delegates site_description to Setting" do
+      Setting.site_description = "Site desc"
+
+      expect(instance_presenter.site_description).to eq "Site desc"
+    end
   end
 
-  it "delegates site_extended_description to Setting" do
-    Setting.site_extended_description = "Extended desc"
+  context do
+    around do |example|
+      site_extended_description = Setting.site_extended_description
+      example.run
+      Setting.site_extended_description = site_extended_description
+    end
 
-    expect(instance_presenter.site_extended_description).to eq "Extended desc"
+    it "delegates site_extended_description to Setting" do
+      Setting.site_extended_description = "Extended desc"
+
+      expect(instance_presenter.site_extended_description).to eq "Extended desc"
+    end
   end
 
-  it "delegates open_registrations to Setting" do
-    Setting.open_registrations = false
+  context do
+    around do |example|
+      open_registrations = Setting.open_registrations
+      example.run
+      Setting.open_registrations = open_registrations
+    end
 
-    expect(instance_presenter.open_registrations).to eq false
+    it "delegates open_registrations to Setting" do
+      Setting.open_registrations = false
+
+      expect(instance_presenter.open_registrations).to eq false
+    end
   end
 
-  it "delegates closed_registrations_message to Setting" do
-    Setting.closed_registrations_message = "Closed message"
+  context do
+    around do |example|
+      closed_registrations_message = Setting.closed_registrations_message
+      example.run
+      Setting.closed_registrations_message = closed_registrations_message
+    end
 
-    expect(instance_presenter.closed_registrations_message).to eq "Closed message"
+    it "delegates closed_registrations_message to Setting" do
+      Setting.closed_registrations_message = "Closed message"
+
+      expect(instance_presenter.closed_registrations_message).to eq "Closed message"
+    end
   end
 
-  it "delegates contact_email to Setting" do
-    Setting.site_contact_email = "admin@example.com"
+  context do
+    around do |example|
+      site_contact_email = Setting.site_contact_email
+      example.run
+      Setting.site_contact_email = site_contact_email
+    end
 
-    expect(instance_presenter.site_contact_email).to eq "admin@example.com"
+    it "delegates contact_email to Setting" do
+      Setting.site_contact_email = "admin@example.com"
+
+      expect(instance_presenter.site_contact_email).to eq "admin@example.com"
+    end
   end
 
   describe "contact_account" do
+    around do |example|
+      site_contact_username = Setting.site_contact_username
+      example.run
+      Setting.site_contact_username = site_contact_username
+    end
+
     it "returns the account for the site contact username" do
       Setting.site_contact_username = "aaa"
       account = Fabricate(:account, username: "aaa")

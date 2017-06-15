@@ -17,6 +17,8 @@ class PrecomputeFeedService < BaseService
       statuses.each do |status|
         process_status(status)
       end
+
+      redis.del("account:#{@account.id}:regeneration")
     end
   end
 

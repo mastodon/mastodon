@@ -41,7 +41,7 @@ class SearchResults extends ImmutablePureComponent {
       hashtags = (
         <div className='search-results__section'>
           {results.get('hashtags').map(hashtag =>
-            <Link className='search-results__hashtag' to={`/timelines/tag/${hashtag}`}>
+            <Link key={hashtag} className='search-results__hashtag' to={`/timelines/tag/${hashtag}`}>
               #{hashtag}
             </Link>
           )}
