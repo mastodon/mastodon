@@ -61,7 +61,7 @@ describe StatusesController do
 
         get :show, params: { account_username: status.account.username, id: status.id }
 
-        expect(assigns(:ancestors)).to match_array([ancestor])
+        expect(assigns(:ancestors)).to eq [ancestor]
       end
 
       it 'assigns @ancestors for [] if it is not a reply' do

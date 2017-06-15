@@ -76,7 +76,7 @@ export const makeGetNotification = () => {
 };
 
 export const getAccountGallery = createSelector([
-  (state, id) => state.getIn(['timelines', 'accounts_media_timelines', id, 'items'], Immutable.List()),
+  (state, id) => state.getIn(['timelines', `account:${id}:media`, 'items'], Immutable.List()),
   state       => state.get('statuses'),
 ], (statusIds, statuses) => {
   let medias = Immutable.List();

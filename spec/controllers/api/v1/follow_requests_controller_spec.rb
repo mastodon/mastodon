@@ -14,7 +14,7 @@ RSpec.describe Api::V1::FollowRequestsController, type: :controller do
 
   describe 'GET #index' do
     before do
-      get :index
+      get :index, params: { limit: 1 }
     end
 
     it 'returns http success' do

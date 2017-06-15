@@ -134,20 +134,17 @@ oc:
       account_count: Comptes coneguts
       domain_name: Domeni
       title: Instàncias conegudas
-    pubsubhubbub:
-      callback_url: URL de rapèl
-      confirmed: Confirmat
-      expires_in: S’acaba dins
-      last_delivery: Darrièra distribucion
-      title: PubSubHubbub
-      topic: Subjècte
     reports:
+      are_you_sure: Es segur ?
       comment:
         label: Comentari
         none: Pas cap
       delete: Suprimir
       id: ID
       mark_as_resolved: Marcat coma resolgut
+      nsfw:
+        'false': Sens contengut sensible
+        'true': Contengut sensible activat
       report: 'enhalament #%{id}'
       report_contents: Contenguts
       reported_account: Compte senhalat
@@ -160,10 +157,6 @@ oc:
       title: Senhalament
       unresolved: Pas resolguts
       view: Veire
-      nsfw:
-        'true': Contengut sensible activat
-        'false': Sens contengut sensible
-      are_you_sure: Es segur ?
     settings:
       contact_information:
         email: Picatz una adreça de corrièl
@@ -186,6 +179,13 @@ oc:
         title: Descripcion espandida del site
       site_title: Títol del site
       title: Paramètres del site
+    subscriptions:
+      callback_url: URL de rapèl
+      confirmed: Confirmat
+      expires_in: S’acaba dins
+      last_delivery: Darrièra distribucion
+      title: PubSubHubbub
+      topic: Subjècte
     title: Administracion
   application_mailer:
     settings: 'Cambiar las preferéncias de corrièl : %{link}'
@@ -208,28 +208,80 @@ oc:
     follow: Sègre
     prompt_html: 'Avètz (<strong>%{self}</strong>) demandat de sègre :'
     title: Sègre %{acct}
+  date:
+    abbr_day_names:
+    - dg
+    - dl
+    - dm
+    - dc
+    - dj
+    - dv
+    - ds
+    abbr_month_names:
+    - 
+    - gen
+    - feb
+    - mar
+    - mai
+    - mai
+    - jun
+    - jul
+    - ag
+    - set
+    - oct
+    - nov
+    - dec
+    day_names:
+    - dimenge
+    - diluns
+    - dimars
+    - dimècres
+    - dijòus
+    - divendres
+    - dissabte
+    formats:
+      default: "%d/%m/%Y"
+      long: Lo %B %d de %Y
+      short: "%b %d"
+    month_names:
+    - 
+    - de genièr
+    - de febrièr
+    - de març
+    - d’abrial
+    - de mai
+    - de junh
+    - de julhet
+    - d’agost
+    - de setembre
+    - d’octòbre
+    - de novembre
+    - de decembre
+    order:
+    - :day
+    - :month
+    - :year
   datetime:
     distance_in_words:
-      about_x_hours: "Fa %{count} oras"
-      about_x_months: "Fa %{count} meses"
+      about_x_hours: Fa %{count} oras
+      about_x_months: Fa %{count} meses
       about_x_years:
         one: Fa un an
-        other: "Fa %{count} ans"
+        other: Fa %{count} ans
       almost_x_years:
         one: Fa un an
-        other: "Fa %{count} ans"
+        other: Fa %{count} ans
       half_a_minute: Ara
-      less_than_x_minutes: "Fa %{count} minutas"
+      less_than_x_minutes: Fa %{count} minutas
       less_than_x_seconds: Ara
       over_x_years:
         one: Fa un an
-        other: "Fa %{count} ans"
-      x_days: "Fa %{count} jorns"
-      x_minutes: "Fa %{count} minutas"
-      x_months: "Fa %{count} meses"
-      x_seconds: "Fa %{count} segondas"
+        other: Fa %{count} ans
+      x_days: Fa %{count} jorns
+      x_minutes: Fa %{count} minutas
+      x_months: Fa %{count} meses
+      x_seconds: Fa %{count} segondas
   errors:
-    '404': Avètz pas la permission per veire aquesta pagina.
     '404': La pagina que recercatz existís pas.
     '410': La pagina que cercatz existís pas mai.
     '422':
@@ -269,7 +321,7 @@ oc:
       following: Lista de mond que seguètz
       muting: Lista de mond que volètz pas legir
     upload: Importar
-  landing_strip_html: <strong>%{name}</strong> es un utilizaire de %{link_to_root_path}. Podètz lo/la sègre o interagir amb el o ela s’avètz un compte ont que siasgue sul fediverse.
+  landing_strip_html: "<strong>%{name}</strong> es un utilizaire de %{link_to_root_path}. Podètz lo/la sègre o interagir amb el o ela s’avètz un compte ont que siasgue sul fediverse."
   landing_strip_signup_html: S’es pas lo cas, podètz <a href="%{sign_up_path}">vos marcar aquí</a>.
   media_attachments:
     validations:
@@ -332,11 +384,11 @@ oc:
       unlisted_long: Tot lo mond pòt veire mai serà pas visible sul flux public
   stream_entries:
     click_to_show: Clic per afichar
-    reblogged: partejat
+    reblogged: a partejat
     sensitive_content: Contengut sensible
   time:
     formats:
-      default: "%b %d %Y a %Ho%M"
+      default: Lo %d %b de %Y a %Ho%M
   two_factor_authentication:
     code_hint: Picatz lo còdi generat per vòstra aplicacion d’autentificacion per confirmar
     description_html: S’activatz <strong> l’autentificacion two-factor</strong>, vos caldrà vòstre mobil per vos connectar perque generarà un geton per vos daissar dintrar.
