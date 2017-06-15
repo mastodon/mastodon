@@ -17,4 +17,11 @@ class Mention < ApplicationRecord
   has_one :notification, as: :activity, dependent: :destroy
 
   validates :account, uniqueness: { scope: :status }
+
+  delegate(
+    :username,
+    :acct,
+    to: :account,
+    prefix: true
+  )
 end

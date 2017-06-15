@@ -184,7 +184,7 @@ class VideoPlayer extends React.PureComponent {
           ref={this.setRef}
           src={media.get('url')}
           autoPlay={!isIOS()}
-          loop={true}
+          loop
           muted={this.state.muted}
           onClick={this.handleVideoClick}
         />

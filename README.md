@@ -15,7 +15,7 @@ An alternative implementation of the GNU social project. Based on [ActivityStrea
 
 Click on the screenshot to watch a demo of the UI:
 
-[![Screenshot](http://puu.sh/vMcvm/290f459dd4.jpg)][youtube_demo]
+[![Screenshot](https://i.imgur.com/pG3Nnz3.jpg)][youtube_demo]
 
 [youtube_demo]: https://www.youtube.com/watch?v=YO1jQ8_rAMU
 

@@ -28,7 +28,8 @@ class MediaItem extends ImmutablePureComponent {
         <Permalink
           to={`/statuses/${status.get('id')}`}
           href={status.get('url')}
-          style={style}>
+          style={style}
+        >
           {content}
         </Permalink>
       </div>

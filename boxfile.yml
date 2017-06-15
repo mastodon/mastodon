@@ -14,8 +14,11 @@ run.config:
     # for videos:
     - ffmpeg3
 
-    # to prep the .env file
+    # to prep the .env file:
     - gettext-tools
+
+    # for node-gyp, used in the asset compilation process:
+    - python-2
 
   cache_dirs:
     - node_modules
@@ -31,7 +34,7 @@ run.config:
     - yarn.lock
 
   extra_steps:
-    - cp .env.nanobox .env
+    - envsubst < .env.nanobox > .env
     - gem install bundler
     - bundle config build.nokogiri --with-iconv-dir=/data/ --with-zlib-dir=/data/
     - bundle config build.nokogumbo --with-iconv-dir=/data/ --with-zlib-dir=/data/
@@ -43,9 +46,8 @@ run.config:
 deploy.config:
   extra_steps:
     - NODE_ENV=production bundle exec rake assets:precompile
-    - "[ -r /app/.env.production ] || sed 's/LOCAL_HTTPS=.*/LOCAL_HTTPS=true/i' /app/.env.nanobox > /app/.env.production"
   transform:
-    - envsubst < /app/.env.production > /tmp/.env.production && mv /tmp/.env.production /app/.env.production
+    - "sed 's/LOCAL_HTTPS=.*/LOCAL_HTTPS=true/i' /app/.env.nanobox | envsubst > /app/.env.production"
     - |-
         if [ -z "$LOCAL_DOMAIN" ]
         then

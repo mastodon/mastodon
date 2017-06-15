@@ -16,7 +16,7 @@
 - exit
 - eval
 - about
-- account
+- <%= Rails.env.test? 'account-with-test' ? 'account' %>
 - accounts
 - user
 - users

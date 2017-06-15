@@ -17,6 +17,7 @@ import settings from './settings';
 import status_lists from './status_lists';
 import cards from './cards';
 import reports from './reports';
+import contexts from './contexts';
 
 export default combineReducers({
   timelines,
@@ -37,4 +38,5 @@ export default combineReducers({
   settings,
   cards,
   reports,
+  contexts,
 });

@@ -9,7 +9,8 @@ class ColumnBackButtonSlim extends React.PureComponent {
   };
 
   handleClick = () => {
-    this.context.router.push('/');
+    if (window.history && window.history.length === 1) this.context.router.push('/');
+    else this.context.router.goBack();
   }
 
   render () {

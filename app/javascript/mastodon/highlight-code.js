@@ -24,6 +24,6 @@ export default function highlightCode(text) {
 
 function getTextContent(el) {
   const contentEl = document.createElement('div');
-  contentEl.innerHTML = el.innerHTML.replace(/<br\s*\/?>/g, "\n");
+  contentEl.innerHTML = el.innerHTML.replace(/<br\s*\/?>/g, '\n');
   return contentEl.textContent;
 }

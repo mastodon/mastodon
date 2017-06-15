@@ -30,7 +30,7 @@ describe MediaController do
     it 'raises when not permitted to view' do
       status = Fabricate(:status)
       media_attachment = Fabricate(:media_attachment, status: status)
-      allow_any_instance_of(Status).to receive(:permitted?).and_return(false)
+      allow_any_instance_of(MediaController).to receive(:authorize).and_raise(ActiveRecord::RecordNotFound)
       get :show, params: { id: media_attachment.to_param }
 
       expect(response).to have_http_status(:missing)
