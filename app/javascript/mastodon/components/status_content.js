@@ -114,7 +114,7 @@ class StatusContent extends React.PureComponent {
   handleCollapsedClick (e) {
     e.preventDefault();
     this.setState({ collapsed: !this.state.collapsed });
-  },
+  }
 
   render () {
     const { status } = this.props;
