@@ -75,8 +75,8 @@ class ImageButton extends React.PureComponent {
             title={this.props.title}
             className={classes.join(' ')}
             onClick={this.handleClick}
-            style={style}>
-          </button>
+            style={style}
+          >
         }
       </Motion>
     );
