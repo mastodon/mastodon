@@ -1,12 +1,14 @@
 # frozen_string_literal: true
 
-class Api::Activitypub::NotesController < ApiController
+class Api::Activitypub::NotesController < Api::BaseController
+  include Authorization
+
   before_action :set_status
 
   respond_to :activitystreams2
 
   def show
-    forbidden unless @status.permitted?
+    authorize @status, :show?
   end
 
   private

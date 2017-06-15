@@ -18,6 +18,7 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 
 const mapStateToProps = (state, props) => ({
   accountIds: state.getIn(['user_lists', 'followers', Number(props.params.accountId), 'items']),
+  hasMore: !!state.getIn(['user_lists', 'followers', Number(props.params.accountId), 'next']),
 });
 
 class Followers extends ImmutablePureComponent {
@@ -26,6 +27,7 @@ class Followers extends ImmutablePureComponent {
     params: PropTypes.object.isRequired,
     dispatch: PropTypes.func.isRequired,
     accountIds: ImmutablePropTypes.list,
+    hasMore: PropTypes.bool,
   };
 
   componentWillMount () {
@@ -43,7 +45,7 @@ class Followers extends ImmutablePureComponent {
   handleScroll = (e) => {
     const { scrollTop, scrollHeight, clientHeight } = e.target;
 
-    if (scrollTop === scrollHeight - clientHeight) {
+    if (scrollTop === scrollHeight - clientHeight && this.props.hasMore) {
       this.props.dispatch(expandFollowers(Number(this.props.params.accountId)));
     }
   }
@@ -54,7 +56,9 @@ class Followers extends ImmutablePureComponent {
   }
 
   render () {
-    const { accountIds } = this.props;
+    const { accountIds, hasMore } = this.props;
+
+    let loadMore = null;
 
     if (!accountIds) {
       return (
@@ -62,6 +66,10 @@ class Followers extends ImmutablePureComponent {
           <LoadingIndicator />
         </Column>
       );
+    }
+
+    if (hasMore) {
+      loadMore = <LoadMore onClick={this.handleLoadMore} />;
     }
 
     return (
@@ -73,7 +81,7 @@ class Followers extends ImmutablePureComponent {
             <div className='followers'>
               <HeaderContainer accountId={this.props.params.accountId} />
               {accountIds.map(id => <AccountContainer key={id} id={id} withNote={false} />)}
-              <LoadMore onClick={this.handleLoadMore} />
+              {loadMore}
             </div>
           </div>
         </ScrollContainer>

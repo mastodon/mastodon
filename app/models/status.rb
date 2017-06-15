@@ -20,7 +20,7 @@
 #  reply                  :boolean          default(FALSE)
 #  favourites_count       :integer          default(0), not null
 #  reblogs_count          :integer          default(0), not null
-#  language               :string           default("en"), not null
+#  language               :string
 #  conversation_id        :integer
 #
 
@@ -28,6 +28,7 @@ class Status < ApplicationRecord
   include Paginable
   include Streamable
   include Cacheable
+  include StatusThreadingConcern
 
   enum visibility: [:public, :unlisted, :private, :direct], _suffix: :visibility
 
@@ -73,6 +74,8 @@ class Status < ApplicationRecord
 
   cache_associated :account, :application, :media_attachments, :tags, :stream_entry, mentions: :account, reblog: [:account, :application, :stream_entry, :tags, :media_attachments, mentions: :account], thread: :account
 
+  delegate :domain, to: :account, prefix: true
+
   def reply?
     !in_reply_to_id.nil? || attributes['reply']
   end
@@ -111,26 +114,6 @@ class Status < ApplicationRecord
 
   def hidden?
     private_visibility? || direct_visibility?
-  end
-
-  def permitted?(other_account = nil)
-    if direct_visibility?
-      account.id == other_account&.id || mentions.where(account: other_account).exists?
-    elsif private_visibility?
-      account.id == other_account&.id || other_account&.following?(account) || mentions.where(account: other_account).exists?
-    else
-      other_account.nil? || !account.blocking?(other_account)
-    end
-  end
-
-  def ancestors(account = nil)
-    ids = Rails.cache.fetch("ancestors:#{id}") { (Status.find_by_sql(['WITH RECURSIVE search_tree(id, in_reply_to_id, path) AS (SELECT id, in_reply_to_id, ARRAY[id] FROM statuses WHERE id = ? UNION ALL SELECT statuses.id, statuses.in_reply_to_id, path || statuses.id FROM search_tree JOIN statuses ON statuses.id = search_tree.in_reply_to_id WHERE NOT statuses.id = ANY(path)) SELECT id FROM search_tree ORDER BY path DESC', id]) - [self]).pluck(:id) }
-    find_statuses_from_tree_path(ids, account)
-  end
-
-  def descendants(account = nil)
-    ids = (Status.find_by_sql(['WITH RECURSIVE search_tree(id, path) AS (SELECT id, ARRAY[id] FROM statuses WHERE id = ? UNION ALL SELECT statuses.id, path || statuses.id FROM search_tree JOIN statuses ON statuses.in_reply_to_id = search_tree.id WHERE NOT statuses.id = ANY(path)) SELECT id FROM search_tree ORDER BY path', id]) - [self]).pluck(:id)
-    find_statuses_from_tree_path(ids, account)
   end
 
   def non_sensitive_with_media?
@@ -284,24 +267,5 @@ class Status < ApplicationRecord
     else
       thread.account_id
     end
-  end
-
-  def find_statuses_from_tree_path(ids, account)
-    statuses = Status.where(id: ids).includes(:account).to_a
-
-    # FIXME: n+1 bonanza
-    statuses.reject! { |status| filter_from_context?(status, account) }
-
-    # Order ancestors/descendants by tree path
-    statuses.sort_by! { |status| ids.index(status.id) }
-  end
-
-  def filter_from_context?(status, account)
-    should_filter   = account&.blocking?(status.account_id)
-    should_filter ||= account&.domain_blocking?(status.account.domain)
-    should_filter ||= account&.muting?(status.account_id)
-    should_filter ||= (status.account.silenced? && !account&.following?(status.account_id))
-    should_filter ||= !status.permitted?(account)
-    should_filter
   end
 end

@@ -44,10 +44,11 @@ const makeMapStateToProps = () => {
 
   const mapStateToProps = (state, props) => ({
     status: getStatus(state, Number(props.params.statusId)),
-    ancestorsIds: state.getIn(['timelines', 'ancestors', Number(props.params.statusId)]),
-    descendantsIds: state.getIn(['timelines', 'descendants', Number(props.params.statusId)]),
+    ancestorsIds: state.getIn(['contexts', 'ancestors', Number(props.params.statusId)]),
+    descendantsIds: state.getIn(['contexts', 'descendants', Number(props.params.statusId)]),
     me: state.getIn(['meta', 'me']),
     boostModal: state.getIn(['meta', 'boost_modal']),
+    deleteModal: state.getIn(['meta', 'delete_modal']),
     autoPlayGif: state.getIn(['meta', 'auto_play_gif']),
   });
 
@@ -68,6 +69,7 @@ class Status extends ImmutablePureComponent {
     descendantsIds: ImmutablePropTypes.list,
     me: PropTypes.number,
     boostModal: PropTypes.bool,
+    deleteModal: PropTypes.bool,
     autoPlayGif: PropTypes.bool,
     intl: PropTypes.object.isRequired,
   };
@@ -113,11 +115,15 @@ class Status extends ImmutablePureComponent {
   handleDeleteClick = (status) => {
     const { dispatch, intl } = this.props;
 
-    dispatch(openModal('CONFIRM', {
-      message: intl.formatMessage(messages.deleteMessage),
-      confirm: intl.formatMessage(messages.deleteConfirm),
-      onConfirm: () => dispatch(deleteStatus(status.get('id'))),
-    }));
+    if (!this.props.deleteModal) {
+      dispatch(deleteStatus(status.get('id')));
+    } else {
+      dispatch(openModal('CONFIRM', {
+        message: intl.formatMessage(messages.deleteMessage),
+        confirm: intl.formatMessage(messages.deleteConfirm),
+        onConfirm: () => dispatch(deleteStatus(status.get('id'))),
+      }));
+    }
   }
 
   handleMentionClick = (account, router) => {
