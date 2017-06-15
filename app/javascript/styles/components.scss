@@ -1143,7 +1143,10 @@
 }
 
 .sensitive-image {
-  background: url('../images/image-hidden.png');
+  background-image: url('../images/image-hidden.png');
+  border: none;
+  background-color: transparent;
+  background-size: contain;
 }
 
 .imageloader {
