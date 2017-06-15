@@ -27,14 +27,17 @@ body.rtl {
     left: 10px;
   }
 
-  .column-icon-clear {
+  .column-header__buttons {
+    left: 0;
     right: auto;
-    left: 48px;
   }
 
-  .column-icon {
-    right: auto;
-    left: 5px;
+  .column-header__setting-arrows {
+    float: left;
+  }
+
+  .compose-form__modifiers {
+    border-radius: 0 0 0 4px;
   }
 
   .setting-toggle {

@@ -31,7 +31,7 @@ class ProviderDiscovery < OEmbed::ProviderDiscovery
         raise OEmbed::NotFound, url
       end
 
-      OEmbed::Provider.new(provider_endpoint, format || OEmbed::Formatter.default)
+      OEmbed::Provider.new(provider_endpoint, format)
     end
   end
 end

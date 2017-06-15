@@ -2,6 +2,8 @@
 
 module WellKnown
   class WebfingerController < ApplicationController
+    include RoutingHelper
+
     def show
       @account = Account.find_local!(username_from_resource)
       @canonical_account_uri = @account.to_webfinger_s
