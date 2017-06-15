@@ -4,11 +4,16 @@ import PropTypes from 'prop-types';
 class ImageLoader extends React.PureComponent {
 
   static propTypes = {
+    alt: PropTypes.string,
     src: PropTypes.string.isRequired,
     previewSrc: PropTypes.string.isRequired,
     width: PropTypes.number.isRequired,
     height: PropTypes.number.isRequired,
   }
+
+  static defaultProps = {
+    alt: '',
+  };
 
   state = {
     loading: true,
@@ -35,12 +40,13 @@ class ImageLoader extends React.PureComponent {
   }
 
   render() {
-    const { src, previewSrc, width, height } = this.props;
+    const { alt, src, previewSrc, width, height } = this.props;
     const { loading, error } = this.state;
 
     return (
       <div className='image-loader'>
-        <img // eslint-disable-line jsx-a11y/img-has-alt
+        <img
+          alt={alt}
           className='image-loader__img'
           src={src}
           width={width}
@@ -48,7 +54,8 @@ class ImageLoader extends React.PureComponent {
         />
 
         {loading &&
-          <img // eslint-disable-line jsx-a11y/img-has-alt
+          <img
+            alt=''
             src={previewSrc}
             className='image-loader__preview-img'
           />
