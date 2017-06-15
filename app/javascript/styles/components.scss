@@ -1142,13 +1142,6 @@
   background: url('../images/void.png');
 }
 
-.sensitive-image {
-  background-image: url('../images/image-hidden.png');
-  border: none;
-  background-color: transparent;
-  background-size: contain;
-}
-
 .imageloader {
   display: block;
 }
@@ -3511,4 +3504,11 @@ button.icon-button.active i.fa-retweet {
     bottom: -1px;
     border-color: transparent transparent $ui-base-color;
   }
+}
+
+.sensitive-image {
+  background-image: url('../images/image-hidden.png');
+  border: none;
+  background-color: transparent;
+  background-size: contain;
 }
