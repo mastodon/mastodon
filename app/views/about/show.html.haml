@@ -10,7 +10,7 @@
   %meta{ property: 'og:type', content: 'website' }/
   %meta{ property: 'og:title', content: site_hostname }/
   %meta{ property: 'og:description', content: strip_tags(@instance_presenter.site_description.presence || t('about.about_mastodon')) }/
-  %meta{ property: 'og:image', content: asset_pack_path('mastodon_small.jpg') }/
+  %meta{ property: 'og:image', content: asset_pack_path('mastodon_small.jpg', protocol: :request) }/
   %meta{ property: 'og:image:width', content: '400' }/
   %meta{ property: 'og:image:height', content: '400' }/
   %meta{ property: 'twitter:card', content: 'summary' }/
