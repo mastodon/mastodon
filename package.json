@@ -3,14 +3,14 @@
   "license": "AGPL-3.0",
   "scripts": {
     "postversion": "git push --tags",
-    "build:development": "NODE_ENV=development yarn webpack -- --config config/webpack/development.js",
-    "build:production": "NODE_ENV=production yarn webpack -- --config config/webpack/production.js",
+    "build:development": "cross-env NODE_ENV=development yarn webpack -- --config config/webpack/development.js",
+    "build:production": "cross-env NODE_ENV=production yarn webpack -- --config config/webpack/production.js",
     "manage:translations": "node ./config/webpack/translationRunner.js",
     "start": "rimraf ./tmp/streaming && babel ./streaming/index.js --out-dir ./tmp && node ./tmp/streaming/index.js",
-    "storybook": "NODE_ENV=test start-storybook -s ./public -p 9001 -c storybook",
+    "storybook": "cross-env NODE_ENV=test start-storybook -s ./public -p 9001 -c storybook",
     "test": "npm run test:lint && npm run test:mocha",
     "test:lint": "eslint -c .eslintrc.yml --ext=js app/javascript/ config/webpack/ spec/javascript/ storybook/ streaming/",
-    "test:mocha": "NODE_ENV=test mocha --require ./spec/javascript/setup.js --compilers js:babel-register ./spec/javascript/components/*.test.js",
+    "test:mocha": "cross-env NODE_ENV=test mocha --require ./spec/javascript/setup.js --compilers js:babel-register ./spec/javascript/components/*.test.js",
     "postinstall": "npm rebuild node-sass"
   },
   "repository": {
@@ -40,6 +40,7 @@
     "babel-preset-react": "^6.24.1",
     "classnames": "^2.2.5",
     "compression-webpack-plugin": "^0.4.0",
+    "cross-env": "^5.0.1",
     "css-loader": "^0.28.4",
     "dotenv": "^4.0.0",
     "emojione": "^2.2.7",
