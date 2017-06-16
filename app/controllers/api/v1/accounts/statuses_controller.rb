@@ -31,6 +31,7 @@ class Api::V1::Accounts::StatusesController < Api::BaseController
     default_statuses.tap do |statuses|
       statuses.merge!(only_media_scope) if params[:only_media]
       statuses.merge!(no_replies_scope) if params[:exclude_replies]
+      statuses.merge!(filter_with_visibility_scope(params[:visibility])) if params[:visibility]
     end
   end
 
@@ -56,6 +57,10 @@ class Api::V1::Accounts::StatusesController < Api::BaseController
 
   def no_replies_scope
     Status.without_replies
+  end
+
+  def filter_with_visibility_scope(visibility)
+    Status.where(visibility: Status.visibilities[visibility])
   end
 
   def pagination_params(core_params)

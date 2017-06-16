@@ -35,4 +35,21 @@ describe Api::V1::Accounts::StatusesController do
       expect(response).to have_http_status(:success)
     end
   end
+
+  describe 'GET #index with valid visibility' do
+    it 'retures http success' do
+      get :index, params: { account_id: user.account.id, visibility: 'public'}
+
+      expect(response).to have_http_status(:success)
+    end
+  end
+
+  describe 'GET #index with invalid visibility' do
+    it 'retures http success with empty array' do
+      get :index, params: { account_id: user.account.id, visibility: 'invalid_visibility'}
+
+      expect(response).to have_http_status(:success)
+      expect(response.body).to eq '[]'
+    end
+  end
 end
