@@ -217,14 +217,15 @@
 .dropdown--active::after {
   content: "";
   display: block;
-  position: absolute;
+  position: relative;
   width: 0;
   height: 0;
   border-style: solid;
   border-width: 0 4.5px 7.8px;
   border-color: transparent transparent $ui-secondary-color;
-  bottom: 8px;
-  right: 104px;
+  top: -7px;
+  left: 7px;
+  z-index: 101;
 }
 
 .invisible {
@@ -686,14 +687,11 @@
 
   .dropdown--active {
     .dropdown__content.dropdown__left {
-      left: 20px;
       right: initial;
     }
 
     &::after {
       bottom: initial;
-      margin-left: 7px;
-      margin-top: -7px;
       right: initial;
     }
   }
@@ -1188,9 +1186,8 @@
   display: block;
   line-height: 18px;
   max-width: 311px;
-  right: 0;
   text-align: left;
-  z-index: 9999;
+  z-index: 100;
 
   & > ul {
     list-style: none;
@@ -1203,7 +1200,7 @@
   }
 
   &.dropdown__right {
-    right: 0;
+    left: 160px;
   }
 
   &.dropdown__left {
