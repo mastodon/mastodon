@@ -5,7 +5,7 @@ module AccountFilter
 
   included do
     scope(:filter, ->(params) do
-      params.to_enum.inject(alphabetic) do |scope, pair|
+      params.to_enum.reduce(alphabetic) do |scope, pair|
         key = pair[0]
         value = pair[1]
 
