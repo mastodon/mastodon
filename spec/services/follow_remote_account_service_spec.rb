@@ -69,6 +69,6 @@ RSpec.describe FollowRemoteAccountService do
     expect(account.username).to eq 'foo'
     expect(account.domain).to eq 'localdomain.com'
     expect(account.remote_url).to eq 'https://webdomain.com/users/foo.atom'
-    expect(account.activitystreams2_url).to eq 'https://webcomain.com/@foo'
+    expect(account.activitystreams2_url).to eq 'https://webdomain.com/@foo'
   end
 end
