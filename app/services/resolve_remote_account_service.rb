@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class FollowRemoteAccountService < BaseService
+class ResolveRemoteAccountService < BaseService
   include OStatus2::MagicKey
   include HttpHelper
 
