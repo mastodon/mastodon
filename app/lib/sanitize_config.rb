@@ -39,7 +39,7 @@ class Sanitize
       },
 
       transformers: [
-        CLASS_WHITELIST_TRANSFORMER
+        CLASS_WHITELIST_TRANSFORMER,
       ]
     )
 
