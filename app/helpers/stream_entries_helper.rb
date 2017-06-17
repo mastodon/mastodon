@@ -47,11 +47,16 @@ module StreamEntriesHelper
     end
   end
 
+  def rtl_status?(status)
+    status.local? ? rtl?(status.text) : rtl?(strip_tags(status.text))
+  end
+
   def rtl?(text)
+    text = simplified_text(text)
     rtl_characters = /[\p{Hebrew}|\p{Arabic}|\p{Syriac}|\p{Thaana}|\p{Nko}]+/m.match(text)
 
     if rtl_characters.present?
-      total_size = text.strip.size.to_f
+      total_size = text.size.to_f
       rtl_size(rtl_characters.to_a) / total_size > 0.3
     else
       false
@@ -59,6 +64,18 @@ module StreamEntriesHelper
   end
 
   private
+
+  def simplified_text(text)
+    text.dup.tap do |new_text|
+      URI.extract(new_text).each do |url|
+        new_text.gsub!(url, '')
+      end
+
+      new_text.gsub!(Account::MENTION_RE, '')
+      new_text.gsub!(Tag::HASHTAG_RE, '')
+      new_text.gsub!(/\s+/, '')
+    end
+  end
 
   def rtl_size(characters)
     characters.reduce(0) { |acc, elem| acc + elem.size }.to_f
