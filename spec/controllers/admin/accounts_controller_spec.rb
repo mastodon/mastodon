@@ -65,6 +65,17 @@ RSpec.describe Admin::AccountsController, type: :controller do
       get :index
       expect(response).to have_http_status(:success)
     end
+
+    it 'does not filter with IP address if the IP address is invalid' do
+      get :index, params: { ip: 'invalid' }
+      expect(assigns(:accounts)).to eq [user.account]
+    end
+
+    it 'filters with IP address if the IP address is valid' do
+      match = Fabricate(:user, current_sign_in_ip: nil, last_sign_in_ip: '127.0.0.1')
+      get :index, params: { ip: '127.0.0.1' }
+      expect(assigns(:accounts)).to eq [match.account]
+    end
   end
 
   describe 'GET #show' do

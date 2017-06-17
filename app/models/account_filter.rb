@@ -38,11 +38,7 @@ class AccountFilter
     when 'email'
       accounts_with_users.merge User.matches_email(value)
     when 'ip'
-      if valid_ip?(value)
-        accounts_with_users.merge User.with_recent_ip_address(value)
-      else
-        Account.default_scoped
-      end
+      accounts_with_users.merge User.with_recent_ip_address(value)
     else
       raise "Unknown filter: #{key}"
     end
@@ -50,12 +46,5 @@ class AccountFilter
 
   def accounts_with_users
     Account.joins(:user)
-  end
-
-  def valid_ip?(value)
-    IPAddr.new(value)
-    true
-  rescue IPAddr::InvalidAddressError
-    false
   end
 end

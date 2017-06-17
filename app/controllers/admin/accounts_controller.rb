@@ -44,7 +44,7 @@ module Admin
     end
 
     def filter_params
-      params.permit(
+      filters = [
         :local,
         :remote,
         :by_domain,
@@ -54,8 +54,18 @@ module Admin
         :username,
         :display_name,
         :email,
-        :ip
-      )
+      ]
+
+      filters << :ip if valid_ip?(params[:ip])
+
+      params.permit(filters)
+    end
+
+    def valid_ip?(value)
+      IPAddr.new(value)
+      true
+    rescue IPAddr::Error
+      false
     end
   end
 end
