@@ -37,6 +37,18 @@ import Blocks from '../../features/blocks';
 import Mutes from '../../features/mutes';
 import Report from '../../features/report';
 
+// Small wrapper to pass multiColumn to the route components
+const WrappedSwitch = ({ multiColumn, children }) => (
+  <Switch>
+    {React.Children.map(children, child => React.cloneElement(child, { multiColumn }))}
+  </Switch>
+);
+
+WrappedSwitch.propTypes = {
+  multiColumn: PropTypes.bool,
+  children: PropTypes.node,
+};
+
 // Small Wraper to extract the params from the route and pass
 // them to the rendered component, together with the content to
 // be rendered inside (the children)
@@ -45,12 +57,13 @@ class WrappedRoute extends React.Component {
   static propTypes = {
     component: PropTypes.func.isRequired,
     content: PropTypes.node,
+    multiColumn: PropTypes.bool,
   }
 
   renderComponent = ({ match: { params } }) => {
-    const { component: Component, content } = this.props;
+    const { component: Component, content, multiColumn } = this.props;
 
-    return <Component params={params}>{content}</Component>;
+    return <Component params={params} multiColumn={multiColumn}>{content}</Component>;
   }
 
   render () {
@@ -171,7 +184,7 @@ class UI extends React.PureComponent {
       <div className='ui' ref={this.setRef}>
         <TabsBar />
         <ColumnsAreaContainer singleColumn={isMobile(width)}>
-          <Switch>
+          <WrappedSwitch>
             <Redirect from='/' to='/getting-started' exact />
             <WrappedRoute path='/getting-started' component={GettingStarted} content={children} />
             <WrappedRoute path='/timelines/home' component={HomeTimeline} content={children} />
@@ -198,7 +211,7 @@ class UI extends React.PureComponent {
             <WrappedRoute path='/report' component={Report} content={children} />
 
             <WrappedRoute component={GenericNotFound} content={children} />
-          </Switch>
+          </WrappedSwitch>
         </ColumnsAreaContainer>
         <NotificationsContainer />
         <LoadingBarContainer className='loading-bar' />
