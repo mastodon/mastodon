@@ -352,13 +352,13 @@ oc:
       subject: "%{name} a mes vòstre estatut en favorit"
     follow:
       body: "%{name} vos sèc ara !"
-      subject: "%{name} es a vos sègre ara"
+      subject: "%{name} vos sèc ara"
     follow_request:
-      body: "%{name} a demandar a vos sègre"
+      body: "%{name} a demandat a vos sègre"
       subject: 'Demanda d’abonament : %{name}'
     mention:
-      body: 'Sètz estat mencionat per %{name} dins :'
-      subject: Sètz estat mencionat per %{name}
+      body: '%{name} vos a mencionat dins :'
+      subject: %{name} vos a mencionat
     reblog:
       body: "%{name} a tornat partejar vòstre estatut :"
       subject: "%{name} a tornat partejar vòstre estatut"
@@ -394,7 +394,7 @@ oc:
       unlisted: Pas listat
       unlisted_long: Tot lo mond pòt veire mai serà pas visible sul flux public
   stream_entries:
-    click_to_show: Clic per afichar
+    click_to_show: Clicatz per afichar
     reblogged: a partejat
     sensitive_content: Contengut sensible
   time:
