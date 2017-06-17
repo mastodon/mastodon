@@ -11,7 +11,7 @@ class FollowRemoteAccountService < BaseService
   # important information from their feed
   # @param [String] uri User URI in the form of username@domain
   # @return [Account]
-  def call(uri, redirected = nil)
+  def call(uri, update_profile = true, redirected = nil)
     username, domain = uri.split('@')
 
     return Account.find_local(username) if TagManager.instance.local_domain?(domain)
@@ -29,7 +29,7 @@ class FollowRemoteAccountService < BaseService
     confirmed_username, confirmed_domain = data.subject.gsub(/\Aacct:/, '').split('@')
 
     unless confirmed_username.casecmp(username).zero? && confirmed_domain.casecmp(domain).zero?
-      return call("#{confirmed_username}@#{confirmed_domain}", true) if redirected.nil?
+      return call("#{confirmed_username}@#{confirmed_domain}", update_profile, true) if redirected.nil?
       raise Goldfinger::Error, 'Requested and returned acct URI do not match'
     end
 
@@ -63,7 +63,7 @@ class FollowRemoteAccountService < BaseService
 
     begin
       account.save!
-      get_profile(body, account)
+      get_profile(body, account) if update_profile
     rescue ActiveRecord::RecordNotUnique
       # The account has been added by another worker!
       return Account.find_remote(confirmed_username, confirmed_domain)

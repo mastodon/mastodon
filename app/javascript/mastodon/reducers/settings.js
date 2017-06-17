@@ -7,12 +7,6 @@ import uuid from '../uuid';
 const initialState = Immutable.Map({
   onboarded: false,
 
-  columns: Immutable.fromJS([
-    { id: 'COMPOSE', uuid: uuid(), params: {} },
-    { id: 'HOME', uuid: uuid(), params: {} },
-    { id: 'NOTIFICATIONS', uuid: uuid(), params: {} },
-  ]),
-
   home: Immutable.Map({
     shows: Immutable.Map({
       reblog: true,
@@ -60,6 +54,14 @@ const initialState = Immutable.Map({
   }),
 });
 
+const defaultColumns = Immutable.fromJS([
+  { id: 'COMPOSE', uuid: uuid(), params: {} },
+  { id: 'HOME', uuid: uuid(), params: {} },
+  { id: 'NOTIFICATIONS', uuid: uuid(), params: {} },
+]);
+
+const hydrate = (state, settings) => state.mergeDeep(settings).update('columns', (val = defaultColumns) => val);
+
 const moveColumn = (state, uuid, direction) => {
   const columns  = state.get('columns');
   const index    = columns.findIndex(item => item.get('uuid') === uuid);
@@ -76,7 +78,7 @@ const moveColumn = (state, uuid, direction) => {
 export default function settings(state = initialState, action) {
   switch(action.type) {
   case STORE_HYDRATE:
-    return state.mergeDeep(action.state.get('settings'));
+    return hydrate(state, action.state.get('settings'));
   case SETTING_CHANGE:
     return state.setIn(action.key, action.value);
   case COLUMN_ADD:

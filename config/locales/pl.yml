@@ -86,8 +86,10 @@ pl:
       profile_url: Adres profilu
       public: Publiczne
       push_subscription_expires: Subskrypcja PuSH wygasa
+      redownload: Odśwież awatar
       reset: Resetuj
       reset_password: Resetuj hasło
+      resubscribe: Ponów subskrypcję
       salmon_url: Adres Salmon
       search: Szukaj
       show:
@@ -96,9 +98,11 @@ pl:
         targeted_reports: Zgłoszenia dotyczące tego użytkownika
       silence: Cisza
       statuses: Statusy
+      subscribe: Subskrybuj
       title: Konta
       undo_silenced: Cofnij wyciszenie
       undo_suspension: Cofnij zawieszenie
+      unsubscribe: Przestań subskrybować
       username: Nazwa użytkownika
       web: Sieć
     domain_blocks:
@@ -145,8 +149,8 @@ pl:
       id: Identyfikator
       mark_as_resolved: Oznacz jako rozwiązane
       nsfw:
-        'false': NSFW nie będzie wyświetlane
-        'true': NSFW będzie wyświetlane
+        'false': Nie oznaczaj jako NSFW
+        'true': Oznaczaj jako NSFW
       report: 'Zgłoszenie #%{id}'
       report_contents: Zawartość
       reported_account: Zgłoszone konto
@@ -197,6 +201,8 @@ pl:
     invalid_url: Ten URL jest nieprawidłowy
   auth:
     change_password: Uwierzytelnienie
+    delete_account: Usunięcie konta
+    delete_account_html: Jeżeli próbowałeś usunąć konto, <a href="%{path}">przejdź tutaj</a>. Otrzymasz prośbę o potwierdzenie.
     didnt_get_confirmation: Nie otrzymałeś instrukcji weryfikacji?
     forgot_password: Zapomniane hasło
     login: Zaloguj się
@@ -224,6 +230,14 @@ pl:
       x_minutes: "%{count}min"
       x_months: "%{count} miesięcy"
       x_seconds: "%{count}s"
+  deletes:
+    bad_password_msg: Niezła próba, hakerze! Wprowadzono nieprawidłowe hasło
+    confirm_password: Wprowadź aktualne hasło, aby potwierdzić tożsamość
+    description_html: Ta opcja usunie <strong>bezpowrotnie i nieodwracalnie</strong> całą zawartość konta i zdezaktywuje je. Twoja nazwa użytkownika pozostanie zarezerwowana, aby zapobiec nadużyciom.
+    proceed: Usuń konto
+    success_msg: Twoje konto zostało pomyślnie usunięte
+    warning_html: Możemy usunąć zawartość jedynie w obrębie tej instancji. Zawartość udostępniona publicznie pozostawia trwałe ślady. Serwery niepodłączone do sieci, bądź nieśledzące Twoich aktualizacji mogą zachować Twoje dane.
+    warning_title: Dostępność usuniętej zawartości
   errors:
     '403': Nie masz uprawnień, aby wyświetlić tą stronę.
     '404': Strona, którą próbujesz odwiedzić, nie istnieje.
@@ -313,6 +327,7 @@ pl:
   settings:
     authorized_apps: Uwierzytelnione aplikacje
     back: Powrót do Mastodona
+    delete: Usuń konto
     edit_profile: Edytuj profil
     export: Eksportuj dane
     followers: Autoryzowani obserwujący

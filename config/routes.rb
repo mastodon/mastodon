@@ -66,6 +66,7 @@ Rails.application.routes.draw do
     end
 
     resource :follower_domains, only: [:show, :update]
+    resource :delete, only: [:show, :destroy]
   end
 
   resources :media, only: [:show]
