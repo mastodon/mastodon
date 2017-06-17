@@ -1,5 +1,7 @@
 けもふれインスタンス用
 
+https://mstdn.kemono-friends.info
+
 [![Build Status](https://travis-ci.org/maa123/mastodon.svg?branch=master)](https://travis-ci.org/maa123/mastodon)
 
 エラーページの マストドンのフレンズは [桜木李杏](https://mstdn.kemono-friends.info/@cynthia_koko)さんに描いて頂きました。 
