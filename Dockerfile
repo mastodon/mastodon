@@ -45,10 +45,4 @@ RUN bundle install --deployment --without test development \
 
 COPY . /mastodon
 
-COPY docker_entrypoint.sh /usr/local/bin/run
-
-RUN chmod +x /usr/local/bin/run
-
-VOLUME /mastodon/public/system /mastodon/public/assets /mastodon/public/packs
-
-ENTRYPOINT ["/usr/local/bin/run"]
+RUN chmod +x /mastodon/web_boot.sh
