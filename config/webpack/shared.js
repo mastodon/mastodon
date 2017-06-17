@@ -1,8 +1,5 @@
 // Note: You must restart bin/webpack-dev-server for changes to take effect
 
-/* eslint global-require: 0 */
-/* eslint import/no-dynamic-require: 0 */
-
 const { existsSync } = require('fs');
 const webpack = require('webpack');
 const { basename, dirname, join, relative, resolve, sep } = require('path');
@@ -15,7 +12,7 @@ const localePackPaths = require('./generateLocalePacks');
 
 const extensionGlob = `**/*{${paths.extensions.join(',')}}*`;
 const packPaths = sync(join(paths.source, paths.entry, extensionGlob));
-const entryPacks = [].concat(packPaths).concat(localePackPaths);
+const entryPacks = [].concat(packPaths).concat(localePackPaths).filter(path => path !== join(paths.source, paths.entry, 'custom.js'));
 
 const customApplicationStyle = resolve(join(paths.source, 'styles/custom.scss'));
 const originalApplicationStyle = resolve(join(paths.source, 'styles/application.scss'));

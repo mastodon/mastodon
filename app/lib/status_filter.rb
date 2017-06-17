@@ -9,7 +9,7 @@ class StatusFilter
   end
 
   def filtered?
-    account_present? && filtered_status?
+    blocked_by_policy? || (account_present? && filtered_status?) || silenced_account?
   end
 
   private
@@ -19,7 +19,7 @@ class StatusFilter
   end
 
   def filtered_status?
-    blocking_account? || blocking_domain? || muting_account? || silenced_account? || blocked_by_policy?
+    blocking_account? || blocking_domain? || muting_account?
   end
 
   def blocking_account?
@@ -43,7 +43,7 @@ class StatusFilter
   end
 
   def account_following_status_account?
-    account.following? status.account_id
+    account&.following? status.account_id
   end
 
   def blocked_by_policy?

@@ -93,5 +93,5 @@ function main() {
 }
 
 loadPolyfills().then(main).catch(error => {
-  console.log(error); // eslint-disable-line no-console
+  console.error(error);
 });
