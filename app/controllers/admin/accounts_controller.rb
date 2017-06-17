@@ -40,7 +40,7 @@ module Admin
     end
 
     def filtered_accounts
-      AccountFilter.new(filter_params).results
+      Account.filter(filter_params)
     end
 
     def filter_params
