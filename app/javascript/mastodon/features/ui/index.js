@@ -13,8 +13,6 @@ import { refreshNotifications } from '../../actions/notifications';
 import UploadArea from './components/upload_area';
 import ColumnsAreaContainer from './containers/columns_area_container';
 
-const noOp = () => false;
-
 class UI extends React.PureComponent {
 
   static propTypes = {
@@ -27,9 +25,11 @@ class UI extends React.PureComponent {
     draggingOver: false,
   };
 
-  handleResize = () => {
+  handleResize = debounce(() => {
     this.setState({ width: window.innerWidth });
-  }
+  }, 500, {
+    trailing: true,
+  });
 
   handleDragEnter = (e) => {
     e.preventDefault();
