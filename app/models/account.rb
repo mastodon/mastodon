@@ -36,6 +36,7 @@
 #  followers_count         :integer          default(0), not null
 #  following_count         :integer          default(0), not null
 #  last_webfingered_at     :datetime
+#  activitystreams2_url    :string
 #
 
 class Account < ApplicationRecord

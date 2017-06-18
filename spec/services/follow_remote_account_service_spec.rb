@@ -42,6 +42,7 @@ RSpec.describe FollowRemoteAccountService do
     expect(account.username).to eq 'gargron'
     expect(account.domain).to eq 'quitter.no'
     expect(account.remote_url).to eq 'https://quitter.no/api/statuses/user_timeline/7477.atom'
+    expect(account.activitystreams2_url).to eq 'https://quitter.no/user/7477'
   end
 
   it 'follows a legitimate account redirection' do
@@ -50,6 +51,7 @@ RSpec.describe FollowRemoteAccountService do
     expect(account.username).to eq 'gargron'
     expect(account.domain).to eq 'quitter.no'
     expect(account.remote_url).to eq 'https://quitter.no/api/statuses/user_timeline/7477.atom'
+    expect(account.activitystreams2_url).to eq 'https://quitter.no/user/7477'
   end
 
   it 'prevents hijacking existing accounts' do
@@ -67,5 +69,6 @@ RSpec.describe FollowRemoteAccountService do
     expect(account.username).to eq 'foo'
     expect(account.domain).to eq 'localdomain.com'
     expect(account.remote_url).to eq 'https://webdomain.com/users/foo.atom'
+    expect(account.activitystreams2_url).to eq 'https://webdomain.com/@foo'
   end
 end
