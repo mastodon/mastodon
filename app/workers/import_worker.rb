@@ -41,7 +41,7 @@ class ImportWorker
   def process_mutes
     import_rows.each do |row|
       begin
-        target_account = FollowRemoteAccountService.new.call(row.first)
+        target_account = ResolveRemoteAccountService.new.call(row.first)
         next if target_account.nil?
         MuteService.new.call(from_account, target_account)
       rescue Goldfinger::Error, HTTP::Error, OpenSSL::SSL::SSLError
@@ -53,7 +53,7 @@ class ImportWorker
   def process_blocks
     import_rows.each do |row|
       begin
-        target_account = FollowRemoteAccountService.new.call(row.first)
+        target_account = ResolveRemoteAccountService.new.call(row.first)
         next if target_account.nil?
         BlockService.new.call(from_account, target_account)
       rescue Goldfinger::Error, HTTP::Error, OpenSSL::SSL::SSLError
