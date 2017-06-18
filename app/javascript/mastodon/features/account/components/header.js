@@ -5,9 +5,7 @@ import emojify from '../../../emoji';
 import escapeTextContentForBrowser from 'escape-html';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import IconButton from '../../../components/icon_button';
-import Motion from 'react-motion/lib/Motion';
-import spring from 'react-motion/lib/spring';
-import { connect } from 'react-redux';
+import Avatar from '../../../components/avatar';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
 const messages = defineMessages({
@@ -130,7 +128,6 @@ export default class Header extends ImmutablePureComponent {
     me: PropTypes.number.isRequired,
     onFollow: PropTypes.func.isRequired,
     intl: PropTypes.object.isRequired,
-    autoPlayGif: PropTypes.bool.isRequired,
   };
 
   render () {
@@ -180,9 +177,10 @@ export default class Header extends ImmutablePureComponent {
       <div className='account__header__wrapper'>
         <div className='account__header' style={{ backgroundImage: `url(${account.get('header')})` }}>
           <div>
-            <Avatar account={account} autoPlayGif={this.props.autoPlayGif} />
-
-            <span className='account__header__display-name' dangerouslySetInnerHTML={displayNameHTML} />
+            <a href={account.get('url')} target='_blank' rel='noopener'>
+              <span className='account__header__avatar'><Avatar src={account.get('avatar')} animate size={90} /></span>
+              <span className='account__header__display-name' dangerouslySetInnerHTML={displayNameHTML} />
+            </a>
             <span className='account__header__username'>@{account.get('acct')} {lockedIcon}</span>
             <div className='account__header__content' dangerouslySetInnerHTML={{ __html: emojify(text) }} />
 

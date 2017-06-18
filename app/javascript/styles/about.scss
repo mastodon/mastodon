@@ -172,16 +172,14 @@
   text-align: center;
 
   .avatar {
-    width: 80px;
-    height: 80px;
+    @include avatar-size(80px);
     margin: 0 auto;
     margin-bottom: 15px;
 
     img {
+      @include avatar-radius();
+      @include avatar-size(80px);
       display: block;
-      width: 80px;
-      height: 80px;
-      border-radius: 48px;
     }
   }
 
