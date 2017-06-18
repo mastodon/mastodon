@@ -13,6 +13,8 @@ require_relative '../lib/mastodon/version'
 
 Dotenv::Railtie.load
 
+require_relative '../lib/mastodon/redis_config'
+
 module Mastodon
   class Application < Rails::Application
     # Settings in config/environments/* take precedence over those specified here.
@@ -29,12 +31,14 @@ module Mastodon
       :en,
       :ar,
       :bg,
+      :ca,
       :de,
       :eo,
       :es,
       :fa,
       :fi,
       :fr,
+      :he,
       :hr,
       :hu,
       :id,
@@ -48,6 +52,8 @@ module Mastodon
       :pt,
       :'pt-BR',
       :ru,
+      :th,
+      :tr,
       :uk,
       :'zh-CN',
       :'zh-HK',
@@ -72,10 +78,6 @@ module Mastodon
 
     config.middleware.use Rack::Attack
     config.middleware.use Rack::Deflater
-
-    # babel config can be found in .babelrc
-    config.browserify_rails.commandline_options   = '--transform babelify --extension=".jsx"'
-    config.browserify_rails.evaluate_node_modules = true
 
     config.to_prepare do
       Doorkeeper::AuthorizationsController.layout 'public'

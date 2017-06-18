@@ -11,7 +11,7 @@ RSpec.describe FeedManager do
 
   describe '#filter?' do
     let(:alice) { Fabricate(:account, username: 'alice') }
-    let(:bob)   { Fabricate(:account, username: 'bob') }
+    let(:bob)   { Fabricate(:account, username: 'bob', domain: 'example.com') }
     let(:jeff)  { Fabricate(:account, username: 'jeff') }
 
     context 'for home feed' do
@@ -92,6 +92,14 @@ RSpec.describe FeedManager do
         bob.follow!(alice)
         status = PostStatusService.new.call(alice, 'Hey @jeff')
         expect(FeedManager.instance.filter?(:home, status, bob.id)).to be true
+      end
+
+      it 'returns true for reblog of a personally blocked domain' do
+        alice.block_domain!('example.com')
+        alice.follow!(jeff)
+        status = Fabricate(:status, text: 'Hello world', account: bob)
+        reblog = Fabricate(:status, reblog: status, account: jeff)
+        expect(FeedManager.instance.filter?(:home, reblog, alice.id)).to be true
       end
     end
 

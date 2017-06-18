@@ -1,12 +1,7 @@
 ---
 oc:
   about:
-    about_mastodon: Mastodon es un malhum social <em>liure e open-source</em>. Una
-      alternativa <em>decentralizada</em> a las platformas comercialas, aquò evita
-      qu’una sola companiá monopolize vòstra comunicacion. Causissètz une servidor
-      que vos fisatz, quina que siague vòstra causida, podètz interagir amb tot lo
-      mond. Qual que siague pòt aver son instància Mastodon e participar al <em>malhum
-      social</em> sens cap de problèmas.
+    about_mastodon: Mastodon es un malhum social <em>liure e open-source</em>. Una alternativa <em>decentralizada</em> a las platformas comercialas, aquò evita qu’una sola companiá monopolize vòstra comunicacion. Causissètz une servidor que vos fisatz, quina que siague vòstra causida, podètz interagir amb tot lo mond. Qual que siague pòt aver son instància Mastodon e participar al <em>malhum social</em> sens cap de problèmas.
     about_this: A prepaus d’aquesta instància
     apps: Aplicacions
     business_email: 'Corrièl professional :'
@@ -16,27 +11,28 @@ oc:
     domain_count_after: autras instàncias
     domain_count_before: Connectat a
     features:
-      api: API dobèrta per las aplicacions e servicis
+      api: API dubèrta per las aplicacions e servicis
       blocks: Aisinas complètas per blocar e rescondre
       characters: 500 caractèrs per publicacion
       chronology: Flux d’actualitat cronologic
-      ethics: 'Ethical design: pas cap de reclama o traçadors'
+      ethics: 'Ethical design: pas cap de reclama o traçador'
       gifv: Partatge de GIFs e vidèos cortas
       privacy: Nivèl de confidencialitat configurable per cada publicacion
-      public: Fluxes d’actualitat publicsPublic timelines
+      public: Fluxes d’actualitat publics
     features_headline: Çò que fa que Mastodon es diferent
     get_started: Venètz al malhum
     links: Ligams
     other_instances: Autras instàncias
     source_code: Còdi font
-    status_count_after: publicacions
-    status_count_before: a escrich
+    status_count_after: estatuts
+    status_count_before: qu’an escrich
     terms: Tèrmes
-    user_count_after: utilizaires
+    user_count_after: personas
     user_count_before: Ostal de
+    version: Version
   accounts:
     follow: Sègre
-    followers: Abonats
+    followers: Seguidors
     following: Abonaments
     nothing_here: I a pas res aquí !
     people_followed_by: Lo mond que %{name} sèc
@@ -44,89 +40,107 @@ oc:
     posts: Estatuts
     remote_follow: Sègre a distància
     unfollow: Quitar de sègre
+  activitypub:
+    activity:
+      announce:
+        name: "%{account_name} a partejat una activitat."
+      create:
+        name: "%{account_name} a creat una nòta."
+    outbox:
+      name: "%{account_name}'s Outbox"
+      summary: A collection of activities from user %{account_name}.
   admin:
     accounts:
-      are_you_sure: Are you sure?
-      display_name: Display name
-      domain: Domain
-      edit: Edit
-      email: E-mail
-      feed_url: Feed URL
-      followers: Followers
-      follows: Follows
+      are_you_sure: Sètz segur ?
+      confirm: Confirmar
+      confirmed: Confirmat
+      disable_two_factor_authentication: Desactivar 2FA
+      display_name: Escais-nom
+      domain: Domeni
+      edit: Modificar
+      email: Corrièl
+      feed_url: Flux URL
+      followers: Seguidors
+      follows: Abonaments
+      ip: IP
       location:
-        all: All
+        all: Tot
         local: Local
-        remote: Remote
-        title: Location
-      media_attachments: Media attachments
+        remote: Alonhat
+        title: Emplaçament
+      media_attachments: Mèdias ajustats
       moderation:
-        all: All
-        silenced: Silenced
-        suspended: Suspended
-        title: Moderation
-      most_recent_activity: Most recent activity
-      most_recent_ip: Most recent IP
-      not_subscribed: Not subscribed
+        all: Tot
+        silenced: Rescondut
+        suspended: Suspendut
+        title: Moderacion
+      most_recent_activity: Activitat mai recenta
+      most_recent_ip: IP mai recenta
+      not_subscribed: Pas seguidor
       order:
-        alphabetic: Alphabetic
-        most_recent: Most recent
+        alphabetic: Alfabetic
+        most_recent: Mai recent
         title: Order
-      perform_full_suspension: Perform full suspension
-      profile_url: Profile URL
+      perform_full_suspension: Botar en tren la suspension complèta
+      profile_url: URL del perfil
       public: Public
-      push_subscription_expires: PuSH subscription expires
-      reset_password: Reset password
-      salmon_url: Salmon URL
-      silence: Silence
-      statuses: Statuses
-      title: Accounts
-      undo_silenced: Undo silence
-      undo_suspension: Undo suspension
-      username: Username
+      push_subscription_expires: Fin de l’abonament PuSH
+      reset: Reïnicializar
+      reset_password: Reïnicializar lo senhal
+      salmon_url: URL Salmon
+      search: Cercar
+      show:
+        created_reports: Rapòrts creat per aqueste compte
+        report: rapòrt
+        targeted_reports: Rapòrts faches tocant aqueste compte
+      silence: Silenci
+      statuses: Estatuts
+      title: Comptes
+      undo_silenced: Levar lo silenci
+      undo_suspension: Levar la suspension
+      username: Nom d’utilizaire
       web: Web
     domain_blocks:
-      add_new: Add new
-      created_msg: Domain block is now being processed
-      destroyed_msg: Domain block has been undone
-      domain: Domain
+      add_new: Ajustar un nòu
+      created_msg: Domeni blocat es a èsser tractat
+      destroyed_msg: Lo blocatge del domeni es estat levat
+      domain: Domeni
       new:
-        create: Create block
-        hint: The domain block will not prevent creation of account entries in the
-          database, but will retroactively and automatically apply specific moderation
-          methods on those accounts.
+        create: Crear blocatge
+        hint: Lo blocatge empacharà pas la creacion de compte dins la basa de donadas, mai aplicarà la moderacion sus aquestes comptes.
         severity:
-          desc_html: "<strong>Silence</strong> will make the account's posts invisible
-            to anyone who isn't following them. <strong>Suspend</strong> will remove
-            all of the account's content, media, and profile data."
-          silence: Silence
-          suspend: Suspend
-        title: New domain block
-      reject_media: Reject media files
-      reject_media_hint: Removes locally stored media files and refuses to download
-        any in the future. Irrelevant for suspensions
+          desc_html: "<strong>Silenci</strong> farà venir invisibles los estatuts del compte al mond que son pas de seguidors. <strong>Suspendre</strong> levarà tot lo contengut del compte, los mèdias e las donadas de perfil."
+          silence: Silenci
+          suspend: Suspendre
+        title: Nòu blocatge domeni
+      reject_media: Regetar los fichièrs mèdias
+      reject_media_hint: Lèva los fichièrs gardats localament e regeta las demandas de telecargament dins lo futur. Servís pas a res per las suspensions
       severities:
-        silence: Silence
-        suspend: Suspend
-      severity: Severity
+        silence: Silenci
+        suspend: Suspendre
+      severity: Severitat
       show:
         affected_accounts:
-          one: One account in the database affected
-          other: "%{count} accounts in the database affected"
+          one: Un compte de la basa de donadas tocat
+          other: "%{count} compte de la basa de donadas tocat"
         retroactive:
-          silence: Unsilence all existing accounts from this domain
-          suspend: Unsuspend all existing accounts from this domain
-        title: Undo domain block for %{domain}
-        undo: Undo
-      title: Domain Blocks
-      undo: Undo
+          silence: Levar lo silenci de totes los comptes d’aqueste domeni
+          suspend: Levar la suspension de totes los comptes d’aqueste domeni
+        title: Restablir lo blocatge de domeni de %{domain}
+        undo: Restablir
+      title: Bloc de domeni
+      undo: Restablir
+    instances:
+      account_count: Comptes coneguts
+      domain_name: Domeni
+      title: Instàncias conegudas
     pubsubhubbub:
-      callback_url: Callback URL
-      confirmed: Confirmed
-      expires_in: Expires in
-      last_delivery: Last delivery
+      callback_url: URL de rapèl
+      confirmed: Confirmat
+      expires_in: S’acaba dins
+      last_delivery: Darrièra distribucion
       title: PubSubHubbub
-      topic: Topic
+      topic: Subjècte
     reports:
       comment:
         label: Comentari
@@ -135,6 +149,7 @@ oc:
       id: ID
       mark_as_resolved: Marcat coma resolgut
       report: 'enhalament #%{id}'
+      report_contents: Contenguts
       reported_account: Compte senhalat
       reported_by: Senhalat per
       resolved: Resolgut
@@ -145,37 +160,36 @@ oc:
       title: Senhalament
       unresolved: Pas resolguts
       view: Veire
+      nsfw:
+        'true': Contengut sensible activat
+        'false': Sens contengut sensible
+      are_you_sure: Es segur ?
     settings:
-      click_to_edit: Clicatz per modificar
       contact_information:
         email: Picatz una adreça de corrièl
         label: Informacions de contacte
-        username: Picatz un nom d'utilizaire
+        username: Picatz un nom d’utilizaire
       registrations:
         closed_message:
-          desc_html: Affiché sur la page d'accueil lorsque les inscriptions sont fermées<br>Vous
-            pouvez utiliser des balises HTML
-          title: Message de fermeture des inscriptions
+          desc_html: Afichat sus las pagina d’acuèlh quand las inscripcions son tampadas.<br>Podètz utilizar de balisas HTML
+          title: Messatge de barradura de las inscripcions
         open:
           disabled: Desactivadas
           enabled: Activadas
           title: Inscripcions
       setting: Paramètre
       site_description:
-        desc_html: Affichée sous la forme d'un paragraphe sur la page d'accueil et
-          utilisée comme balise meta.<br>Vous pouvez utiliser des balises HTML, en
-          particulier <code>&lt;a&gt;</code> et <code>&lt;em&gt;</code>.
+        desc_html: Afichada jos la forma de paragrafe sus la pagina d’acuèlh e utilizada coma balisa meta.<br> Podètz utilizar de balisas HTML, coma <code>&lt;a&gt;</code> et <code>&lt;em&gt;</code>.
         title: Descripcion del site
       site_description_extended:
-        desc_html: Affichée sur la page d'informations complémentaires du site<br>Vous
-          pouvez utiliser des balises HTML
-        title: Description étendue du site
+        desc_html: Afichada sus la pagina d’informacion complementària del site<br>Podètz utilizar de balisas HTML
+        title: Descripcion espandida del site
       site_title: Títol del site
       title: Paramètres del site
-    title: Administration
+    title: Administracion
   application_mailer:
     settings: 'Cambiar las preferéncias de corrièl : %{link}'
-    signature: Notificacion de Mastodon de %{instance}
+    signature: Notificacion de Mastodon sus %{instance}
     view: 'Veire :'
   applications:
     invalid_url: L’URL donada es invalida
@@ -196,36 +210,50 @@ oc:
     title: Sègre %{acct}
   datetime:
     distance_in_words:
-      about_x_hours: "%{count}oras"
-      about_x_months: "%{count}meses"
+      about_x_hours: "Fa %{count} oras"
+      about_x_months: "Fa %{count} meses"
       about_x_years:
-        one: un an
-        other: "%{count} ans"
+        one: Fa un an
+        other: "Fa %{count} ans"
       almost_x_years:
-        one: un an
-        other: "%{count} ans"
+        one: Fa un an
+        other: "Fa %{count} ans"
       half_a_minute: Ara
-      less_than_x_minutes: "%{count}minutas"
+      less_than_x_minutes: "Fa %{count} minutas"
       less_than_x_seconds: Ara
       over_x_years:
-        one: un an
-        other: "%{count} ans"
-      x_days: "%{count}jorns"
-      x_minutes: "%{count}minutes"
-      x_months: "%{count}meses"
-      x_seconds: "%{count}segondas"
+        one: Fa un an
+        other: "Fa %{count} ans"
+      x_days: "Fa %{count} jorns"
+      x_minutes: "Fa %{count} minutas"
+      x_months: "Fa %{count} meses"
+      x_seconds: "Fa %{count} segondas"
   errors:
+    '404': Avètz pas la permission per veire aquesta pagina.
     '404': La pagina que recercatz existís pas.
     '410': La pagina que cercatz existís pas mai.
     '422':
       content: Verificacion de seguretat fracassada. Blocatz los cookies ?
       title: Verificacion de seguretat fracassada
+    '429': Lo servidor mòla (subrecargada)
   exports:
-    blocks: Blocatz
+    blocks: Personas que blocatz
     csv: CSV
-    follows: Seguètz
-    mutes: You mute
+    follows: Personas que seguètz
+    mutes: Personas rescondudas
     storage: Mèdias gardats
+  followers:
+    domain: Domeni
+    explanation_html: Se volètz vos assegurar de la confidencialitat de vòstres estatuts, vos cal saber qual sèc vòstre compte. <strong>Vòstres estatuts privats son enviats a totas las instàncias qu’an de mond que vos sègon.</strong>. Benlèu que volètz repassar vòstra lista e tirar los seguidors s’avètz de dubtes tocant las politica de confidencialitat de lor instàncias.
+    followers_count: Nombre de seguidors
+    lock_link: Clavar vòstre compte
+    purge: Tirar dels seguidors
+    success:
+      one: Soi a blocar los seguidors d’un domeni...
+      other: Soi a blocar los seguidors de %{count} domenis...
+    true_privacy_html: Mèfi que la <strong>vertadièra confidencialitat pòt solament èsser amb un chiframent del cap a la fin (end-to-end)</strong>.
+    unlocked_warning_html: Tot lo mond pòt vos sègre e veire sulpic vòstres estatuts privats. %{lock_link} per poder repassar e regetar los seguidors.
+    unlocked_warning_title: Vòstre compte es pas clavat
   generic:
     changes_saved_msg: Cambiaments ben realizats !
     powered_by: propulsat per %{link}
@@ -234,29 +262,26 @@ oc:
       one: I a quicòm que truca ! Mercés de corregir l’error çai-jos
       other: I a quicòm que truca ! Mercés de corregir las %{count} errors çai-jos
   imports:
-    preface: Podètz importar qualques donadas coma lo mond que seguètz o blocatz a-n
-      aquesta instància d’un fichièr creat d’una autra instància.
+    preface: Podètz importar qualques donadas coma lo mond que seguètz o blocatz a-n aquesta instància d’un fichièr creat d’una autra instància.
     success: Vòstras donadas son ben estadas mandadas e seràn tractadas tre que possible
     types:
       blocking: Lista de blocatge
       following: Lista de mond que seguètz
-      muting: Muting list
+      muting: Lista de mond que volètz pas legir
     upload: Importar
-  landing_strip_html: <strong>%{name}</strong> es un utilizaire de %{link_to_root_path}.
-    Podètz lo sègre o interagir amb eles s’avètz un compte ont que siasgue sul fediverse.
-    Autrament podètz <a href="%{sign_up_path}">vos marcar aquí</a>.
+  landing_strip_html: <strong>%{name}</strong> es un utilizaire de %{link_to_root_path}. Podètz lo/la sègre o interagir amb el o ela s’avètz un compte ont que siasgue sul fediverse.
+  landing_strip_signup_html: S’es pas lo cas, podètz <a href="%{sign_up_path}">vos marcar aquí</a>.
   media_attachments:
     validations:
-      images_and_video: Cannot attach a video to a status that already contains images
-      too_many: Cannot attach more than 4 files
+      images_and_video: Se pòt pas ajustar una vidèo a un estatut que ten ja d’imatges
+      too_many: Se pòt pas ajustar mai de 4 fichièrs
   notification_mailer:
     digest:
-      body: 'Trobatz aquí un resumit de çò qu’avètz mancat dempuèi vòstra darrièra
-        visita lo %{since}:'
-      mention: "%{name} vos amencionat dins :"
+      body: 'Trobatz aquí un resumit de çò qu’avètz mancat dempuèi vòstra darrièra visita lo %{since}:'
+      mention: "%{name} vos a mencionat dins :"
       new_followers_summary:
-        one: Avètz un nòu abonat ! Ouà !
-        other: Avètz %{count} nòus abonats ! Qué crane !
+        one: Avètz un nòu seguidor ! Ouà !
+        other: Avètz %{count} nòus seguidors ! Qué crane !
       subject:
         one: "Una nòva notificacion dempuèi vòstra darrièra visita \U0001F418"
         other: "%{count} nòvas notificacions dempuèi vòstra darrièra visita \U0001F418"
@@ -280,7 +305,7 @@ oc:
     prev: Precedent
     truncate: "&hellip;"
   remote_follow:
-    acct: Picatz vòstre utilizaire@instància per utilizar per sègre aqueste utilizaire
+    acct: Picatz vòstre utilizaire@instància que cal utilizar per sègre aqueste utilizaire
     missing_resource: URL de redireccion pas trobada
     proceed: Contunhatz per sègre
     prompt: 'Sètz per sègre :'
@@ -289,6 +314,7 @@ oc:
     back: Tornar a Mastodon
     edit_profile: Modificar lo perfil
     export: Export donadas
+    followers: Seguidors autorizats
     import: Import
     preferences: Preferéncias
     settings: Paramètres
@@ -298,40 +324,33 @@ oc:
     over_character_limit: limit de %{max} caractèrs passat
     show_more: Ne veire mai
     visibilities:
-      private: Mostrar pas qu’als abonats
+      private: Seguidors solament
+      private_long: Mostrar pas qu’als seguidors
       public: Public
-      unlisted: Public, mai pas afichat sul flux d’actualitat public
+      public_long: Tot lo mond pòt veire
+      unlisted: Pas listat
+      unlisted_long: Tot lo mond pòt veire mai serà pas visible sul flux public
   stream_entries:
     click_to_show: Clic per afichar
     reblogged: partejat
     sensitive_content: Contengut sensible
   time:
     formats:
-      default: "%b %d %Y a %H o %M"
+      default: "%b %d %Y a %Ho%M"
   two_factor_authentication:
-    code_hint: Enter the code generated by your authenticator app to confirm
-    description_html: S’activatz <strong> l’autentificacion two-factor</strong>, vos
-      caldrà vòstre mobil per vos connectar perque generarà un geton per vos daissar
-      dintrar.
+    code_hint: Picatz lo còdi generat per vòstra aplicacion d’autentificacion per confirmar
+    description_html: S’activatz <strong> l’autentificacion two-factor</strong>, vos caldrà vòstre mobil per vos connectar perque generarà un geton per vos daissar dintrar.
     disable: Desactivar
     enable: Activar
-    enabled_success: Two-factor authentication successfully enabled
-    generate_recovery_codes: Generate Recovery Codes
-    instructions_html: "<strong>Escanatz aqueste còdi QR amb Google Authenticator
-      o una aplicacion similària sus vòstre mobil</strong>. A partir d’ara, aquesta
-      aplicacion generarà un geton que vos caldrà picar per vos connectar."
-    lost_recovery_codes: Recovery codes allow you to regain access to your account
-      if you lose your phone. If you've lost your recovery codes, you can regenerate
-      them here. Your old recovery codes will be invalidated.
-    manual_instructions: 'If you can''t scan the QR code and need to enter it manually,
-      here is the plain-text secret:'
-    recovery_codes_regenerated: Recovery codes successfully regenerated
-    recovery_instructions: If you ever lose access to your phone, you can use one
-      of the recovery codes below to regain access to your account. Keep the recovery
-      codes safe, for example by printing them and storing them with other important
-      documents.
-    setup: Set up
-    wrong_code: The entered code was invalid! Are server time and device time correct?
+    enabled_success: Autentificacion en dos temps Two-factor ben activada
+    generate_recovery_codes: Generar los còdis de recuperacion
+    instructions_html: "<strong>Escanatz aqueste còdi QR amb Google Authenticator o una aplicacion similària sus vòstre mobil</strong>. A partir d’ara, aquesta aplicacion generarà un geton que vos caldrà picar per vos connectar."
+    lost_recovery_codes: Los còdi de recuperacion vos permeton d’accedir a vòstre compte se perdètz vòstre mobil. S’avètz perdut vòstres còdis de recuperacion los podètz tornar generar aquí. Los ancians còdis seràn pas mai valides.
+    manual_instructions: 'Se podètz pas numerizar lo còdi QR e que vos cal picar lo còdi a la man, vaquí lo còdi en clar :'
+    recovery_codes_regenerated: Los còdis de recuperacion son ben estats tornats generar
+    recovery_instructions: Se vos arriba de perdre vòstre mobil, podètz utilizar un dels còdis de recuperacion cai-jos per poder tornar accedir a vòstre compte. Gardatz los còdis en seguretat, per exemple, imprimissètz los e gardatz los amb vòstres documents importants.
+    setup: Paramètres
+    wrong_code: Lo còdi picat es invalid ! L’ora es la bona sul servidor e lo mobil ?
   users:
     invalid_email: L’adreça de corrièl es invalida
     invalid_otp_token: Còdi d’autentificacion en dos temps invalid

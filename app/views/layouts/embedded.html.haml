@@ -1,8 +1,8 @@
 !!! 5
-%html{:lang => I18n.locale}
+%html{ lang: I18n.locale }
   %head
-    %meta{:charset => 'utf-8'}/
-    = stylesheet_link_tag 'application', media: 'all'
-    = javascript_include_tag 'application_public', integrity: true, crossorigin: 'anonymous'
+    %meta{ charset: 'utf-8' }/
+    = stylesheet_pack_tag 'application', media: 'all'
+    = javascript_pack_tag 'public', integrity: true, crossorigin: 'anonymous'
   %body.embed
     = yield
