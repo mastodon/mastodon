@@ -18,6 +18,7 @@ import UploadFormContainer from '../containers/upload_form_container';
 import TextIconButton from './text_icon_button';
 import WarningContainer from '../containers/warning_container';
 import ImmutablePureComponent from 'react-immutable-pure-component';
+import { debounce } from 'lodash';
 
 const messages = defineMessages({
   placeholder: { id: 'compose_form.placeholder', defaultMessage: 'What is on your mind?' },
@@ -74,9 +75,9 @@ class ComposeForm extends ImmutablePureComponent {
     this.props.onClearSuggestions();
   }
 
-  onSuggestionsFetchRequested = (token) => {
+  onSuggestionsFetchRequested = debounce((token) => {
     this.props.onFetchSuggestions(token);
-  }
+  }, 500, { trailing: true })
 
   onSuggestionSelected = (tokenStart, token, value) => {
     this._restoreCaret = null;
