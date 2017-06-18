@@ -26,7 +26,7 @@ Rails.application.routes.draw do
     confirmations:      'auth/confirmations',
   }
 
-  get '/users/:username', to: redirect('/@%{username}'), constraints: { format: :html }
+  get '/users/:username', to: redirect('/@%{username}'), constraints: lambda { |req| req.format.nil? }
 
   resources :accounts, path: 'users', only: [:show], param: :username do
     resources :stream_entries, path: 'updates', only: [:show] do
