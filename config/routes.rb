@@ -42,6 +42,7 @@ Rails.application.routes.draw do
     resources :following, only: [:index], controller: :following_accounts
     resource :follow, only: [:create], controller: :account_follow
     resource :unfollow, only: [:create], controller: :account_unfollow
+    resource :outbox, only: [:show], module: :activitypub
   end
 
   get '/@:username', to: 'accounts#show', as: :short_account
@@ -118,13 +119,6 @@ Rails.application.routes.draw do
 
     # OEmbed
     get '/oembed', to: 'oembed#show', as: :oembed
-
-    # ActivityPub
-    namespace :activitypub do
-      get '/users/:id/outbox', to: 'outbox#show', as: :outbox
-      get '/statuses/:id', to: 'activities#show_status', as: :status
-      resources :notes, only: [:show]
-    end
 
     # JSON / REST API
     namespace :v1 do

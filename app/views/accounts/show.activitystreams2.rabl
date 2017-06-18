@@ -3,7 +3,7 @@ object @account
 node(:'@context') { 'https://www.w3.org/ns/activitystreams' }
 node(:id) { |account| account_url(account) }
 node(:type) { 'Person' }
-node(:outbox) { |account| api_activitypub_outbox_url(account.id) }
+node(:outbox) { |account| account_outbox_url(account) }
 node(:inbox) { nil }
 node(:preferredUsername, &:username)
 node(:name, if: :display_name?, &:display_name)
