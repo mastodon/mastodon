@@ -29,15 +29,6 @@ oc:
     posts: Estatuts
     remote_follow: Sègre a distància
     unfollow: Quitar de sègre
-  activitypub:
-    activity:
-      announce:
-        name: "%{account_name} a partejat una activitat."
-      create:
-        name: "%{account_name} a creat una nòta."
-    outbox:
-      name: "%{account_name}'s Outbox"
-      summary: A collection of activities from user %{account_name}.
   admin:
     accounts:
       are_you_sure: Sètz segur ?

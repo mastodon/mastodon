@@ -29,15 +29,6 @@ tr:
     posts: Gönderiler
     remote_follow: Uzaktan takip et
     unfollow: Takibi bırak
-  activitypub:
-    activity:
-      announce:
-        name: "%{account_name} bir aktivite paylaştı."
-      create:
-        name: "%{account_name} bir not oluşturdu."
-    outbox:
-      name: "%{account_name}'in Gönderdikleri"
-      summary: "%{account_name}'den gelen aktiviteler."
   admin:
     accounts:
       are_you_sure: Emin misiniz?
