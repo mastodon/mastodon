@@ -83,16 +83,15 @@
   }
 
   .avatar {
-    width: 120px;
+    @include avatar-size(120px);
     margin: 0 auto;
     position: relative;
     z-index: 2;
 
     img {
-      width: 120px;
-      height: 120px;
+      @include avatar-radius();
+      @include avatar-size(120px);
       display: block;
-      border-radius: 120px;
       box-shadow: 0 0 15px rgba($base-shadow-color, 0.2);
     }
   }
@@ -408,14 +407,12 @@
     }
 
     .avatar {
-      width: 80px;
-      height: 80px;
+      @include avatar-size(80px);
 
       img {
         display: block;
-        width: 80px;
-        height: 80px;
-        border-radius: 80px;
+        @include avatar-radius();
+        @include avatar-size(80px);
         border: 2px solid $simple-background-color;
         background: $simple-background-color;
       }
@@ -495,15 +492,14 @@
     }
 
     & > div {
+      @include avatar-size(48px);
       float: left;
       margin-right: 10px;
-      width: 48px;
-      height: 48px;
     }
 
     .avatar {
+      @include avatar-radius();
       display: block;
-      border-radius: 4px;
     }
 
     .display-name {
