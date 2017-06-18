@@ -1,11 +1,5 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-
-const mapStateToProps = state => ({
-  settings: state.getIn(['meta', 'admin_announcement']),
-});
-
 
 class AdminAnnouncements extends React.PureComponent {
 
@@ -32,4 +26,4 @@ class AdminAnnouncements extends React.PureComponent {
 
 }
 
-export default connect(mapStateToProps)(AdminAnnouncements);
+export default AdminAnnouncements;
