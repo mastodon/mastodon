@@ -18,7 +18,6 @@ import UploadFormContainer from '../containers/upload_form_container';
 import TextIconButton from './text_icon_button';
 import WarningContainer from '../containers/warning_container';
 import ImmutablePureComponent from 'react-immutable-pure-component';
-import { debounce } from 'lodash';
 
 const messages = defineMessages({
   placeholder: { id: 'compose_form.placeholder', defaultMessage: 'What is on your mind?' },
