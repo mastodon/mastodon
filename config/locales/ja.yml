@@ -200,6 +200,8 @@ ja:
     invalid_url: URLが無効です
   auth:
     change_password: ログイン情報
+    delete_account: アカウントの削除
+    delete_account_html: アカウントを削除したい場合、<a href="%{path}">こちら</a>から手続きが行えます。削除前には確認画面があります。
     didnt_get_confirmation: 確認メールを受信できませんか？
     forgot_password: パスワードをお忘れですか？
     login: ログイン
@@ -227,6 +229,14 @@ ja:
       x_minutes: "%{count}分"
       x_months: "%{count}月"
       x_seconds: "%{count}秒"
+  deletes:
+    bad_password_msg: パスワードが違います
+    confirm_password: 本人確認のため、現在のパスワードを入力してください。
+    description_html: あなたのアカウントに含まれるコンテンツは全て削除され、アカウントは無効化されます。これは恒久的なもので、<strong>取り消すことはできません</strong>。なりすましを防ぐために、同じユーザー名で再度登録することはできなくなります。
+    proceed: アカウントを削除する
+    success_msg: アカウントは正常に削除されました
+    warning_html: 削除が保証されるのはこのインスタンス上のコンテンツのみです。他のインスタンス等、外部に広く共有されたコンテンツについては痕跡が残ることがあります。また、現在接続できないサーバーや、あなたの更新を受け取らなくなったサーバーに対しては、削除は反映されません。
+    warning_title: 共有されたコンテンツについて
   errors:
     '403': このページを表示する権限がありません
     '404': お探しのページは見つかりませんでした。
@@ -312,6 +322,7 @@ ja:
   settings:
     authorized_apps: 認証済みアプリ
     back: 戻る
+    delete: アカウントの削除
     edit_profile: プロフィールを編集
     export: データのエクスポート
     followers: 信頼済みのインスタンス

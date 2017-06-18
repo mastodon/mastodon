@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import Column from '../../components/column';
 import ColumnHeader from '../../components/column_header';
-import { expandNotifications, clearNotifications, scrollTopNotifications } from '../../actions/notifications';
+import { expandNotifications, scrollTopNotifications } from '../../actions/notifications';
 import { addColumn, removeColumn, moveColumn } from '../../actions/columns';
 import NotificationContainer from './containers/notification_container';
 import { ScrollContainer } from 'react-router-scroll';
@@ -13,13 +13,9 @@ import ColumnSettingsContainer from './containers/column_settings_container';
 import { createSelector } from 'reselect';
 import Immutable from 'immutable';
 import LoadMore from '../../components/load_more';
-import ClearColumnButton from './components/clear_column_button';
-import { openModal } from '../../actions/modal';
 
 const messages = defineMessages({
   title: { id: 'column.notifications', defaultMessage: 'Notifications' },
-  clearMessage: { id: 'notifications.clear_confirmation', defaultMessage: 'Are you sure you want to permanently clear all your notifications?' },
-  clearConfirm: { id: 'notifications.clear', defaultMessage: 'Clear notifications' },
 });
 
 const getNotifications = createSelector([
@@ -77,16 +73,6 @@ class Notifications extends React.PureComponent {
   handleLoadMore = (e) => {
     e.preventDefault();
     this.props.dispatch(expandNotifications());
-  }
-
-  handleClear = () => {
-    const { dispatch, intl } = this.props;
-
-    dispatch(openModal('CONFIRM', {
-      message: intl.formatMessage(messages.clearMessage),
-      confirm: intl.formatMessage(messages.clearConfirm),
-      onConfirm: () => dispatch(clearNotifications()),
-    }));
   }
 
   handlePin = () => {

@@ -5,7 +5,8 @@ import StatusListContainer from '../ui/containers/status_list_container';
 import Column from '../../components/column';
 import ColumnHeader from '../../components/column_header';
 import {
-  refreshTimeline,
+  refreshCommunityTimeline,
+  expandCommunityTimeline,
   updateTimeline,
   deleteFromTimelines,
   connectTimeline,
@@ -61,7 +62,7 @@ class CommunityTimeline extends React.PureComponent {
   componentDidMount () {
     const { dispatch, streamingAPIBaseURL, accessToken } = this.props;
 
-    dispatch(refreshTimeline('community'));
+    dispatch(refreshCommunityTimeline());
 
     if (typeof this._subscription !== 'undefined') {
       return;
@@ -106,6 +107,10 @@ class CommunityTimeline extends React.PureComponent {
     this.column = c;
   }
 
+  handleLoadMore = () => {
+    this.props.dispatch(expandCommunityTimeline());
+  }
+
   render () {
     const { intl, hasUnread, columnId, multiColumn } = this.props;
     const pinned = !!columnId;
@@ -126,10 +131,10 @@ class CommunityTimeline extends React.PureComponent {
         </ColumnHeader>
 
         <StatusListContainer
-          {...this.props}
           trackScroll={!pinned}
           scrollKey={`community_timeline-${columnId}`}
-          type='community'
+          timelineId='community'
+          loadMore={this.handleLoadMore}
           emptyMessage={<FormattedMessage id='empty_column.community' defaultMessage='The local timeline is empty. Write something publicly to get the ball rolling!' />}
         />
       </Column>

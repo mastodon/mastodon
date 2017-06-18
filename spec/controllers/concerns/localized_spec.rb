@@ -19,6 +19,7 @@ describe ApplicationController, type: :controller do
     context 'when DEFAULT_LOCALE environment variable is set' do
       around do |example|
         ClimateControl.modify 'DEFAULT_LOCALE' => 'ca', &example.method(:run)
+        I18n.locale = I18n.default_locale
       end
 
       it 'sets language specified by ENV if preferred' do

@@ -57,6 +57,10 @@ class ColumnHeader extends React.PureComponent {
     const { title, icon, active, children, pinned, onPin, multiColumn, showBackButton } = this.props;
     const { collapsed, animating } = this.state;
 
+    const wrapperClassName = classNames('column-header__wrapper', {
+      'active': active,
+    });
+
     const buttonClassName = classNames('column-header', {
       'active': active,
     });
@@ -116,7 +120,7 @@ class ColumnHeader extends React.PureComponent {
     }
 
     return (
-      <div>
+      <div className={wrapperClassName}>
         <div role='button heading' tabIndex='0' className={buttonClassName} onClick={this.handleTitleClick}>
           <i className={`fa fa-fw fa-${icon} column-header__icon`} />
           {title}
