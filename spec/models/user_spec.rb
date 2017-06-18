@@ -34,41 +34,16 @@ RSpec.describe User, type: :model do
       expect(user).to model_have_error_on_field(:email)
     end
 
+    it 'is valid with an invalid e-mail that has already been saved' do
+      user = Fabricate.build(:user, email: 'invalid-email')
+      user.save(validate: false)
+      expect(user.valid?).to be true
+    end
+
     it 'cleans out empty string from languages' do
       user = Fabricate.build(:user, filtered_languages: [''])
       user.valid?
       expect(user.filtered_languages).to eq []
-    end
-  end
-
-  describe 'settings' do
-    it 'inherits default settings from default yml' do
-      expect(Setting.boost_modal).to eq false
-      expect(Setting.interactions['must_be_follower']).to eq false
-
-      user = User.new
-      expect(user.settings.boost_modal).to eq false
-      expect(user.settings.interactions['must_be_follower']).to eq false
-    end
-
-    it 'can update settings' do
-      user = Fabricate(:user)
-      expect(user.settings['interactions']['must_be_follower']).to eq false
-      user.settings['interactions'] = user.settings['interactions'].merge('must_be_follower' => true)
-      user.reload
-
-      expect(user.settings['interactions']['must_be_follower']).to eq true
-    end
-
-    xit 'does not mutate defaults via the cache' do
-      user = Fabricate(:user)
-      user.settings['interactions']['must_be_follower'] = true
-      # TODO
-      # This mutates the global settings default such that future user
-      # instances will inherit the incorrect starting values
-
-      other = Fabricate(:user)
-      expect(other.settings['interactions']['must_be_follower']).to eq false
     end
   end
 
@@ -77,7 +52,7 @@ RSpec.describe User, type: :model do
       it 'returns an array of recent users ordered by id' do
         user_1 = Fabricate(:user)
         user_2 = Fabricate(:user)
-        expect(User.recent).to match_array([user_2, user_1])
+        expect(User.recent).to eq [user_2, user_1]
       end
     end
 
@@ -123,7 +98,7 @@ RSpec.describe User, type: :model do
         ]
         Fabricate(:user, current_sign_in_ip: '0.0.0.0', last_sign_in_ip: '0.0.0.0')
 
-        expect(User.with_recent_ip_address('0.0.0.42')).to eq specifieds
+        expect(User.with_recent_ip_address('0.0.0.42')).to match_array(specifieds)
       end
     end
   end
@@ -181,7 +156,7 @@ RSpec.describe User, type: :model do
     end
 
     it 'saves cleared otp_backup_codes' do
-      user = Fabricate.build(:user, otp_backup_codes: %w[dummy dummy])
+      user = Fabricate.build(:user, otp_backup_codes: %w(dummy dummy))
       user.disable_two_factor!
       expect(user.reload.otp_backup_codes.empty?).to be true
     end
@@ -283,6 +258,16 @@ RSpec.describe User, type: :model do
         user = User.new(email: 'foo@blacklisted.mastodon.space', account: account, password: password)
         expect(user.valid?).to be_falsey
       end
+    end
+  end
+
+  it_behaves_like 'Settings-extended' do
+    def create!
+      User.create!(account: Fabricate(:account), email: 'foo@mastodon.space', password: 'abcd1234' )
+    end
+
+    def fabricate
+      Fabricate(:user)
     end
   end
 end

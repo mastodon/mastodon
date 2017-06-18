@@ -5,7 +5,7 @@ class FetchRemoteResourceService < BaseService
 
   def call(url)
     @url = url
-    process_url unless atom_url.nil?
+    process_url unless fetched_atom_feed.nil?
   end
 
   private

@@ -10,7 +10,7 @@ describe FetchRemoteResourceService do
       url = 'http://example.com/missing-atom'
       service = double
       allow(FetchAtomService).to receive(:new).and_return service
-      allow(service).to receive(:call).with(url).and_return([nil, 'body'])
+      allow(service).to receive(:call).with(url).and_return(nil)
 
       result = subject.call(url)
       expect(result).to be_nil

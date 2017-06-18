@@ -34,7 +34,7 @@ zh-TW:
     followers: 關注者
     following: 正在關注
     nothing_here: 暫時沒有內容可供顯示
-    people_followed_by: '%{name} 關注的人'
+    people_followed_by: "%{name} 關注的人"
     people_who_follow: 關注 %{name} 的人
     posts: 文章
     remote_follow: 跨站關注
@@ -92,13 +92,6 @@ zh-TW:
         title: 新封鎖網域
       severity: 嚴重度
       title: 網域封鎖
-    pubsubhubbub:
-      callback_url: Callback URL
-      confirmed: 已確認
-      expires_in: 期限
-      last_delivery: 最後遞送
-      title: PubSubHubbub
-      topic: 主題
     reports:
       comment:
         label: 留言
@@ -139,11 +132,18 @@ zh-TW:
         title: 長版網站描述
       site_title: 網站標題
       title: 網站設定
+    subscriptions:
+      callback_url: Callback URL
+      confirmed: 已確認
+      expires_in: 期限
+      last_delivery: 最後遞送
+      title: PubSubHubbub
+      topic: 主題
     title: 管理介面
   application_mailer:
-    settings: '修改信箱設定︰ %{link}'
+    settings: 修改信箱設定︰ %{link}
     signature: 來自 %{instance} 的 Mastodon 通知
-    view: '進入瀏覽︰'
+    view: 進入瀏覽︰
   applications:
     invalid_url: 網址不正確
   auth:
@@ -159,16 +159,16 @@ zh-TW:
   authorize_follow:
     error: 對不起，尋找這個跨站使用者的過程發生錯誤
     follow: 關注
-    prompt_html: '您 (<strong>%{self}</strong>) 正準備關注︰'
+    prompt_html: 您 (<strong>%{self}</strong>) 正準備關注︰
     title: 關注 %{acct}
   datetime:
     distance_in_words:
       about_x_hours: "%{count}小時前"
       about_x_months: "%{count}個月前"
       about_x_years: "%{count}年前"
-      almost_x_years: "接近%{count}年前"
+      almost_x_years: 接近%{count}年前
       half_a_minute: 剛剛
-      less_than_x_minutes: "小於%{count}分鐘前"
+      less_than_x_minutes: 小於%{count}分鐘前
       less_than_x_seconds: 剛剛
       over_x_years: "%{count}y"
       x_days: "%{count}天"
@@ -200,7 +200,7 @@ zh-TW:
       blocking: 您封鎖的使用者名單
       following: 您關注的使用者名單
     upload: 上傳
-  landing_strip_html: <strong>%{name}</strong> 是一個在 %{link_to_root_path} 的使用者。只要您有任何 Mastodon 服務站、或者聯盟網站的帳號，便可以跨站關注此站使用者，或者與他們互動。
+  landing_strip_html: "<strong>%{name}</strong> 是一個在 %{link_to_root_path} 的使用者。只要您有任何 Mastodon 服務站、或者聯盟網站的帳號，便可以跨站關注此站使用者，或者與他們互動。"
   landing_strip_signup_html: 如果您沒有這些帳號，歡迎在<a href="%{sign_up_path}">這裡註冊</a>。
   media_attachments:
     validations:
@@ -208,7 +208,7 @@ zh-TW:
       too_many: 無法加入超過 4 個檔案
   notification_mailer:
     digest:
-      body: '這是自從您在%{since}使用%{instance}以後，您錯過的訊息︰'
+      body: 這是自從您在%{since}使用%{instance}以後，您錯過的訊息︰
       mention: "%{name} 在此提及了您︰"
       new_followers_summary:
         one: 您新獲得了 1 位關注者！恭喜！
@@ -217,19 +217,19 @@ zh-TW:
         one: "自從上次登入以來，您收到 1 則新的通知 \U0001F418"
         other: "自從上次登入以來，您收到 %{count} 則新的通知 \U0001F418"
     favourite:
-      body: '您的文章被 %{name} 喜歡'
+      body: 您的文章被 %{name} 喜歡
       subject: "%{name} 喜歡您的文章"
     follow:
       body: "%{name} 開始關注您！"
       subject: "%{name} 開始關注您"
     follow_request:
       body: "%{name} 要求關注您"
-      subject: '等待關注您的使用者︰ %{name}'
+      subject: 等待關注您的使用者︰ %{name}
     mention:
-      body: '%{name} 在文章中提及您︰'
-      subject: '%{name} 在文章中提及您'
+      body: "%{name} 在文章中提及您︰"
+      subject: "%{name} 在文章中提及您"
     reblog:
-      body: '您的文章被 %{name} 轉推'
+      body: 您的文章被 %{name} 轉推
       subject: "%{name} 轉推了您的文章"
   pagination:
     next: 下一頁
@@ -239,7 +239,7 @@ zh-TW:
     acct: 請輸入您的︰使用者名稱@服務點網域
     missing_resource: 無法找到資源
     proceed: 下一步
-    prompt: '您希望關注︰'
+    prompt: 您希望關注︰
   settings:
     authorized_apps: 已授權應用程式
     back: 回到 Mastodon
@@ -270,7 +270,7 @@ zh-TW:
     disable: 停用
     enable: 啟用
     enabled_success: 已成功啟用雙因子認證
-    instructions_html: <strong>請用您手機的認證器應用程式（如 Google Authenticator、Authy），掃描這裡的 QR 圖形碼</strong>。在雙因子認證啟用後，您登入時將須要使用此應用程式產生的認證碼。
+    instructions_html: "<strong>請用您手機的認證器應用程式（如 Google Authenticator、Authy），掃描這裡的 QR 圖形碼</strong>。在雙因子認證啟用後，您登入時將須要使用此應用程式產生的認證碼。"
     manual_instructions: 如果您無法掃描 QR 圖形碼，請手動輸入︰
     setup: 設定
     wrong_code: 您輸入的認證碼並不正確！可能伺服器時間和您手機不一致，請檢查您手機的時間，或與本站管理員聯絡。

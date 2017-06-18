@@ -10,6 +10,10 @@ class FavouriteService < BaseService
   def call(account, status)
     authorize_with account, status, :show?
 
+    favourite = Favourite.find_by(account: account, status: status)
+
+    return favourite unless favourite.nil?
+
     favourite = Favourite.create!(account: account, status: status)
 
     if status.local?

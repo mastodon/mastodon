@@ -50,7 +50,7 @@ PEM
 
       expect(response).to have_http_status(:success)
       expect(response.content_type).to eq 'application/jrd+json'
-      expect(response.body).to eq "{\"subject\":\"acct:alice@cb6e6126.ngrok.io\",\"aliases\":[\"https://cb6e6126.ngrok.io/@alice\",\"https://cb6e6126.ngrok.io/users/alice\"],\"links\":[{\"rel\":\"http://webfinger.net/rel/profile-page\",\"type\":\"text/html\",\"href\":\"https://cb6e6126.ngrok.io/@alice\"},{\"rel\":\"http://schemas.google.com/g/2010#updates-from\",\"type\":\"application/atom+xml\",\"href\":\"http://test.host/users/alice.atom\"},{\"rel\":\"self\",\"type\":\"application/activity+json\",\"href\":\"https://cb6e6126.ngrok.io/@alice\"},{\"rel\":\"salmon\",\"href\":\"#{api_salmon_url(alice.id)}\"},{\"rel\":\"magic-public-key\",\"href\":\"data:application/magic-public-key,RSA.x4D6DyZa3zGa1XLhd_VG1bLGvK-Dmyz93WJfWNezIKeSuJkmA0f2NmoOfLUoumq9szN2Xt0GLDX06tDajdYPPXgLtDG0o1qqTrIJ7UTyYhbo94Wotl9iJvEwa5IjP1Mn00YJ_KvFrzKCm15PC7up6r-NtHsqoYS8X1KAqcbnptU=.AQAB\"},{\"rel\":\"http://ostatus.org/schema/1.0/subscribe\",\"template\":\"http://test.host/authorize_follow?acct={uri}\"}]}"
+      expect(response.body).to eq "{\"subject\":\"acct:alice@cb6e6126.ngrok.io\",\"aliases\":[\"https://cb6e6126.ngrok.io/@alice\",\"https://cb6e6126.ngrok.io/users/alice\"],\"links\":[{\"rel\":\"http://webfinger.net/rel/profile-page\",\"type\":\"text/html\",\"href\":\"https://cb6e6126.ngrok.io/@alice\"},{\"rel\":\"http://schemas.google.com/g/2010#updates-from\",\"type\":\"application/atom+xml\",\"href\":\"https://cb6e6126.ngrok.io/users/alice.atom\"},{\"rel\":\"self\",\"type\":\"application/activity+json\",\"href\":\"https://cb6e6126.ngrok.io/@alice\"},{\"rel\":\"salmon\",\"href\":\"#{api_salmon_url(alice.id)}\"},{\"rel\":\"magic-public-key\",\"href\":\"data:application/magic-public-key,RSA.x4D6DyZa3zGa1XLhd_VG1bLGvK-Dmyz93WJfWNezIKeSuJkmA0f2NmoOfLUoumq9szN2Xt0GLDX06tDajdYPPXgLtDG0o1qqTrIJ7UTyYhbo94Wotl9iJvEwa5IjP1Mn00YJ_KvFrzKCm15PC7up6r-NtHsqoYS8X1KAqcbnptU=.AQAB\"},{\"rel\":\"http://ostatus.org/schema/1.0/subscribe\",\"template\":\"https://cb6e6126.ngrok.io/authorize_follow?acct={uri}\"}]}"
     end
 
     it 'returns JSON when account can be found' do
@@ -65,10 +65,10 @@ PEM
   <Alias>https://cb6e6126.ngrok.io/@alice</Alias>
   <Alias>https://cb6e6126.ngrok.io/users/alice</Alias>
   <Link rel="http://webfinger.net/rel/profile-page" type="text/html" href="https://cb6e6126.ngrok.io/@alice"/>
-  <Link rel="http://schemas.google.com/g/2010#updates-from" type="application/atom+xml" href="http://test.host/users/alice.atom"/>
+  <Link rel="http://schemas.google.com/g/2010#updates-from" type="application/atom+xml" href="https://cb6e6126.ngrok.io/users/alice.atom"/>
   <Link rel="salmon" href="#{api_salmon_url(alice.id)}"/>
   <Link rel="magic-public-key" href="data:application/magic-public-key,RSA.x4D6DyZa3zGa1XLhd_VG1bLGvK-Dmyz93WJfWNezIKeSuJkmA0f2NmoOfLUoumq9szN2Xt0GLDX06tDajdYPPXgLtDG0o1qqTrIJ7UTyYhbo94Wotl9iJvEwa5IjP1Mn00YJ_KvFrzKCm15PC7up6r-NtHsqoYS8X1KAqcbnptU=.AQAB"/>
-  <Link rel="http://ostatus.org/schema/1.0/subscribe" template="http://test.host/authorize_follow?acct={uri}"/>
+  <Link rel="http://ostatus.org/schema/1.0/subscribe" template="https://cb6e6126.ngrok.io/authorize_follow?acct={uri}"/>
 </XRD>
 XML
     end
@@ -87,7 +87,7 @@ XML
 
       expect(response).to have_http_status(:success)
       expect(response.content_type).to eq 'application/jrd+json'
-      expect(response.body).to eq "{\"subject\":\"acct:alice@cb6e6126.ngrok.io\",\"aliases\":[\"https://cb6e6126.ngrok.io/@alice\",\"https://cb6e6126.ngrok.io/users/alice\"],\"links\":[{\"rel\":\"http://webfinger.net/rel/profile-page\",\"type\":\"text/html\",\"href\":\"https://cb6e6126.ngrok.io/@alice\"},{\"rel\":\"http://schemas.google.com/g/2010#updates-from\",\"type\":\"application/atom+xml\",\"href\":\"http://test.host/users/alice.atom\"},{\"rel\":\"self\",\"type\":\"application/activity+json\",\"href\":\"https://cb6e6126.ngrok.io/@alice\"},{\"rel\":\"salmon\",\"href\":\"#{api_salmon_url(alice.id)}\"},{\"rel\":\"magic-public-key\",\"href\":\"data:application/magic-public-key,RSA.x4D6DyZa3zGa1XLhd_VG1bLGvK-Dmyz93WJfWNezIKeSuJkmA0f2NmoOfLUoumq9szN2Xt0GLDX06tDajdYPPXgLtDG0o1qqTrIJ7UTyYhbo94Wotl9iJvEwa5IjP1Mn00YJ_KvFrzKCm15PC7up6r-NtHsqoYS8X1KAqcbnptU=.AQAB\"},{\"rel\":\"http://ostatus.org/schema/1.0/subscribe\",\"template\":\"http://test.host/authorize_follow?acct={uri}\"}]}"
+      expect(response.body).to eq "{\"subject\":\"acct:alice@cb6e6126.ngrok.io\",\"aliases\":[\"https://cb6e6126.ngrok.io/@alice\",\"https://cb6e6126.ngrok.io/users/alice\"],\"links\":[{\"rel\":\"http://webfinger.net/rel/profile-page\",\"type\":\"text/html\",\"href\":\"https://cb6e6126.ngrok.io/@alice\"},{\"rel\":\"http://schemas.google.com/g/2010#updates-from\",\"type\":\"application/atom+xml\",\"href\":\"https://cb6e6126.ngrok.io/users/alice.atom\"},{\"rel\":\"self\",\"type\":\"application/activity+json\",\"href\":\"https://cb6e6126.ngrok.io/@alice\"},{\"rel\":\"salmon\",\"href\":\"#{api_salmon_url(alice.id)}\"},{\"rel\":\"magic-public-key\",\"href\":\"data:application/magic-public-key,RSA.x4D6DyZa3zGa1XLhd_VG1bLGvK-Dmyz93WJfWNezIKeSuJkmA0f2NmoOfLUoumq9szN2Xt0GLDX06tDajdYPPXgLtDG0o1qqTrIJ7UTyYhbo94Wotl9iJvEwa5IjP1Mn00YJ_KvFrzKCm15PC7up6r-NtHsqoYS8X1KAqcbnptU=.AQAB\"},{\"rel\":\"http://ostatus.org/schema/1.0/subscribe\",\"template\":\"https://cb6e6126.ngrok.io/authorize_follow?acct={uri}\"}]}"
     end
 
     it 'returns http not found when account can not be found with alternate domains' do

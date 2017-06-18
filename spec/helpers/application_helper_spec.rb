@@ -18,6 +18,12 @@ describe ApplicationHelper do
   end
 
   describe 'add_rtl_body_class' do
+    around do |example|
+      current_locale = I18n.locale
+      example.run
+      I18n.locale = current_locale
+    end
+
     it 'adds rtl body class if locale is Arabic' do
       I18n.locale = :ar
       expect(helper.add_rtl_body_class('other classes')).to eq 'other classes rtl'
