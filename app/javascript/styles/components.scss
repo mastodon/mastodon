@@ -1265,6 +1265,11 @@
   justify-content: flex-start;
   overflow-x: auto;
   position: relative;
+  background: $color1 image-url('background-photo.png');
+
+  > div {
+    opacity: 0.9;
+  }
 }
 
 @media screen and (min-width: 360px) {
@@ -1373,8 +1378,10 @@
   }
 
   .columns-area > div {
-    .column,
-    .drawer {
+    width: 25%;
+
+    .column, .drawer {
+      width: 100%;
       padding-left: 5px;
       padding-right: 5px;
     }
@@ -1816,7 +1823,7 @@
 .getting-started {
   box-sizing: border-box;
   padding-bottom: 235px;
-  background: url('../images/mastodon-getting-started.png') no-repeat 0 100%;
+  background: url('../images/mastodon-getting-started.png') no-repeat 100% 100%/contain local;
   flex: 1 0 auto;
 
   p {
