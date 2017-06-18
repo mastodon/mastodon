@@ -2,6 +2,7 @@
 
 class ProcessInteractionService < BaseService
   include AuthorExtractor
+  include Authorization
 
   # Record locally the remote interaction with our user
   # @param [String] envelope Salmon envelope
@@ -21,9 +22,9 @@ class ProcessInteractionService < BaseService
 
       case verb(xml)
       when :follow
-        follow!(account, target_account) unless target_account.locked? || target_account.blocking?(account)
+        follow!(account, target_account) unless target_account.locked? || target_account.blocking?(account) || target_account.domain_blocking?(account.domain)
       when :request_friend
-        follow_request!(account, target_account) unless !target_account.locked? || target_account.blocking?(account)
+        follow_request!(account, target_account) unless !target_account.locked? || target_account.blocking?(account) || target_account.domain_blocking?(account.domain)
       when :authorize
         authorize_follow_request!(account, target_account)
       when :reject
@@ -46,7 +47,7 @@ class ProcessInteractionService < BaseService
         reflect_unblock!(account, target_account)
       end
     end
-  rescue Goldfinger::Error, HTTP::Error, OStatus2::BadSalmonError
+  rescue Goldfinger::Error, HTTP::Error, OStatus2::BadSalmonError, Mastodon::NotPermittedError
     nil
   end
 
@@ -103,17 +104,25 @@ class ProcessInteractionService < BaseService
 
     return if status.nil?
 
-    RemovalWorker.perform_async(status.id) if account.id == status.account_id
+    authorize_with account, status, :destroy?
+
+    RemovalWorker.perform_async(status.id)
   end
 
   def favourite!(xml, from_account)
     current_status = status(xml)
+
+    return if current_status.nil?
+
     favourite = current_status.favourites.where(account: from_account).first_or_create!(account: from_account)
     NotifyService.new.call(current_status.account, favourite)
   end
 
   def unfavourite!(xml, from_account)
     current_status = status(xml)
+
+    return if current_status.nil?
+
     favourite = current_status.favourites.where(account: from_account).first
     favourite&.destroy
   end
@@ -123,7 +132,9 @@ class ProcessInteractionService < BaseService
   end
 
   def status(xml)
-    Status.find(TagManager.instance.unique_tag_to_local_id(activity_id(xml), 'Status'))
+    uri = activity_id(xml)
+    return nil unless TagManager.instance.local_id?(uri)
+    Status.find(TagManager.instance.unique_tag_to_local_id(uri, 'Status'))
   end
 
   def activity_id(xml)

@@ -19,6 +19,7 @@ class UserSettingsDecorator
     user.settings['interactions'] = merged_interactions
     user.settings['default_privacy'] = default_privacy_preference
     user.settings['boost_modal'] = boost_modal_preference
+    user.settings['delete_modal'] = delete_modal_preference
     user.settings['auto_play_gif'] = auto_play_gif_preference
   end
 
@@ -36,6 +37,10 @@ class UserSettingsDecorator
 
   def boost_modal_preference
     boolean_cast_setting 'setting_boost_modal'
+  end
+
+  def delete_modal_preference
+    boolean_cast_setting 'setting_delete_modal'
   end
 
   def auto_play_gif_preference

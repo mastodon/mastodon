@@ -2,6 +2,8 @@
 
 module WellKnown
   class WebfingerController < ApplicationController
+    include RoutingHelper
+
     def show
       @account = Account.find_local!(username_from_resource)
       @canonical_account_uri = @account.to_webfinger_s
@@ -23,7 +25,14 @@ module WellKnown
     private
 
     def username_from_resource
-      WebfingerResource.new(resource_param).username
+      resource_user = resource_param
+
+      username, domain = resource_user.split('@')
+      if Rails.configuration.x.alternate_domains.include?(domain)
+        resource_user = "#{username}@#{Rails.configuration.x.local_domain}"
+      end
+
+      WebfingerResource.new(resource_user).username
     end
 
     def pem_to_magic_key(public_key)

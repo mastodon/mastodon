@@ -61,8 +61,13 @@ class FollowRemoteAccountService < BaseService
     account.uri     = get_account_uri(xml)
     account.hub_url = hubs.first.attribute('href').value
 
-    account.save!
-    get_profile(body, account)
+    begin
+      account.save!
+      get_profile(body, account)
+    rescue ActiveRecord::RecordNotUnique
+      # The account has been added by another worker!
+      return Account.find_remote(confirmed_username, confirmed_domain)
+    end
 
     account
   end
@@ -75,6 +80,7 @@ class FollowRemoteAccountService < BaseService
 
   def get_feed(url)
     response = http_client(write: 20, connect: 20, read: 50).get(Addressable::URI.parse(url).normalize)
+    raise Goldfinger::Error, "Feed attempt failed for #{url}: HTTP #{response.code}" unless response.code == 200
     [response.to_s, Nokogiri::XML(response)]
   end
 

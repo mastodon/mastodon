@@ -39,6 +39,7 @@ en:
     people_who_follow: People who follow %{name}
     posts: Posts
     remote_follow: Remote follow
+    reserved_username: The username is reserved
     unfollow: Unfollow
   activitypub:
     activity:
@@ -48,12 +49,13 @@ en:
         name: "%{account_name} created a note."
     outbox:
       name: "%{account_name}'s Outbox"
-      summary: "A collection of activities from user %{account_name}."
+      summary: A collection of activities from user %{account_name}.
   admin:
     accounts:
       are_you_sure: Are you sure?
       confirm: Confirm
       confirmed: Confirmed
+      disable_two_factor_authentication: Disable 2FA
       display_name: Display name
       domain: Domain
       edit: Edit
@@ -61,6 +63,7 @@ en:
       feed_url: Feed URL
       followers: Followers
       follows: Follows
+      ip: IP
       location:
         all: All
         local: Local
@@ -83,17 +86,23 @@ en:
       profile_url: Profile URL
       public: Public
       push_subscription_expires: PuSH subscription expires
+      redownload: Refresh avatar
+      reset: Reset
       reset_password: Reset password
+      resubscribe: Resubscribe
       salmon_url: Salmon URL
+      search: Search
       show:
         created_reports: Reports created by this account
         report: report
         targeted_reports: Reports made about this account
       silence: Silence
       statuses: Statuses
+      subscribe: Subscribe
       title: Accounts
       undo_silenced: Undo silence
       undo_suspension: Undo suspension
+      unsubscribe: Unsubscribe
       username: Username
       web: Web
     domain_blocks:
@@ -130,20 +139,18 @@ en:
       account_count: Known accounts
       domain_name: Domain
       title: Known Instances
-    pubsubhubbub:
-      callback_url: Callback URL
-      confirmed: Confirmed
-      expires_in: Expires in
-      last_delivery: Last delivery
-      title: PubSubHubbub
-      topic: Topic
     reports:
+      action_taken_by: Action taken by
+      are_you_sure: Are you sure?
       comment:
         label: Comment
         none: None
       delete: Delete
       id: ID
       mark_as_resolved: Mark as resolved
+      nsfw:
+        'false': Unhide media attachments
+        'true': Hide media attachments
       report: 'Report #%{id}'
       report_contents: Contents
       reported_account: Reported account
@@ -157,7 +164,6 @@ en:
       unresolved: Unresolved
       view: View
     settings:
-      click_to_edit: Click to edit
       contact_information:
         email: Enter a public e-mail address
         label: Contact information
@@ -179,6 +185,13 @@ en:
         title: Extended site description
       site_title: Site title
       title: Site Settings
+    subscriptions:
+      callback_url: Callback URL
+      confirmed: Confirmed
+      expires_in: Expires in
+      last_delivery: Last delivery
+      title: PubSubHubbub
+      topic: Topic
     title: Administration
   application_mailer:
     settings: 'Change e-mail preferences: %{link}'
@@ -188,6 +201,8 @@ en:
     invalid_url: The provided URL is invalid
   auth:
     change_password: Credentials
+    delete_account: Delete account
+    delete_account_html: If you wish to delete your account, you can <a href="%{path}">proceed here</a>. You will be asked for confirmation.
     didnt_get_confirmation: Didn't receive confirmation instructions?
     forgot_password: Forgot your password?
     login: Log in
@@ -215,6 +230,14 @@ en:
       x_minutes: "%{count}m"
       x_months: "%{count}mo"
       x_seconds: "%{count}s"
+  deletes:
+    bad_password_msg: Nice try, hackers! Incorrect password
+    confirm_password: Enter your current password to verify your identity
+    description_html: This will <strong>permanently, irreversibly</strong> remove content from your account and deactivate it. Your username will remain reserved to prevent future impersonations.
+    proceed: Delete account
+    success_msg: Your account was successfully deleted
+    warning_html: Only deletion of content from this particular instance is guaranteed. Content that has been widely shared is likely to leave traces. Offline servers and servers that have unsubscribed from your updates will not update their databases.
+    warning_title: Disseminated content availability
   errors:
     '403': You don't have permission to view this page.
     '404': The page you were looking for doesn't exist.
@@ -222,6 +245,8 @@ en:
     '422':
       content: Security verification failed. Are you blocking cookies?
       title: Security verification failed
+    '429': Throttled
+    noscript: To use Mastodon, please enable JavaScript.
   exports:
     blocks: You block
     csv: CSV
@@ -248,14 +273,15 @@ en:
       one: Something isn't quite right yet! Please review the error below
       other: Something isn't quite right yet! Please review %{count} errors below
   imports:
-    preface: You can import certain data like all the people you are following or blocking into your account on this instance, from files created by an export on another instance.
+    preface: You can import data that you have exported from another instance, such as a list of the people you are following or blocking.
     success: Your data was successfully uploaded and will now be processed in due time
     types:
       blocking: Blocking list
       following: Following list
       muting: Muting list
     upload: Upload
-  landing_strip_html: <strong>%{name}</strong> is a user on %{link_to_root_path}. You can follow them or interact with them if you have an account anywhere in the fediverse. If you don't, you can <a href="%{sign_up_path}">sign up here</a>.
+  landing_strip_html: "<strong>%{name}</strong> is a user on %{link_to_root_path}. You can follow them or interact with them if you have an account anywhere in the fediverse."
+  landing_strip_signup_html: If you don't, you can <a href="%{sign_up_path}">sign up here</a>.
   media_attachments:
     validations:
       images_and_video: Cannot attach a video to a status that already contains images
@@ -297,6 +323,7 @@ en:
   settings:
     authorized_apps: Authorized apps
     back: Back to Mastodon
+    delete: Account deletion
     edit_profile: Edit profile
     export: Data export
     followers: Authorized followers
@@ -333,7 +360,7 @@ en:
     lost_recovery_codes: Recovery codes allow you to regain access to your account if you lose your phone. If you've lost your recovery codes, you can regenerate them here. Your old recovery codes will be invalidated.
     manual_instructions: 'If you can''t scan the QR code and need to enter it manually, here is the plain-text secret:'
     recovery_codes_regenerated: Recovery codes successfully regenerated
-    recovery_instructions: If you ever lose access to your phone, you can use one of the recovery codes below to regain access to your account. Keep the recovery codes safe, for example by printing them and storing them with other important documents.
+    recovery_instructions: If you ever lose access to your phone, you can use one of the recovery codes below to regain access to your account. Keep the recovery codes safe. (For example, you may print them and store them with other important documents.)
     setup: Set up
     wrong_code: The entered code was invalid! Are server time and device time correct?
   users:

@@ -1,0 +1,12 @@
+<p>Benvingut <%= @resource.email %> !</p>
+
+<p>Has creat un compte a <%= @instance %>.</p>
+
+<p>Per confirmar la subscripció si us plau fes clic en el següent vincle : <br>
+<%= link_to 'Confirmar el meu compte', confirmation_url(@resource, confirmation_token: @token) %>
+
+<p>Si us plau, també fes un cop d'ull als nostres <%= link_to 'termes i condicions', terms_url %>.</p>
+
+<p>Sincerament,<p>
+
+<p>L'equip <%= @instance %> </p>

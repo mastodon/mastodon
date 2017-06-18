@@ -4,14 +4,16 @@ ja:
     hints:
       defaults:
         avatar: 2MBまでのPNGやGIF、JPGが利用可能や。120x120pxまで縮小されるで。
-        display_name: あと%{counter}文字入力できるで。
+        display_name: あと<span class="name-counter">%{count}</span>文字入力できるで。
         header: 2MBまでのPNGやGIF、JPGが利用可能や。 700x335pxまで縮小されるで。
         locked: ツルまれを手動で承認する必要があるで。デフォルトのなんやの公開範囲はツルまれのみや。
-        note: あと%{counter}文字入力できるで。
+        note: あと<span class="note-counter">%{count}</span>文字入力できるで。
       imports:
         data: 他の Mastodon サーバーからエクスポートしたCSVファイルを選択しなはれ
       sessions:
         otp: 携帯電話に表示された2段階認証コードを入力するか、生成したリカバリーコードを使用してください。
+      user:
+        filtered_languages: 選択した言語があなたの公開タイムラインから取り除かれます。
     labels:
       defaults:
         avatar: アイコン
@@ -21,6 +23,7 @@ ja:
         data: データ
         display_name: 表示名
         email: メールアドレス
+        filtered_languages: 除外する言語
         header: ヘッダー
         locale: 言語
         locked: 非公開アカウントにしたろ
@@ -31,6 +34,7 @@ ja:
         setting_auto_play_gif: アニメーションGIFを自動再生する
         setting_boost_modal: しばく前に確認ダイアログを表示する
         setting_default_privacy: 投稿の公開範囲
+        setting_delete_modal: トゥートを削除する前に確認ダイアログを表示する
         severity: 重大性
         type: インポートする項目
         username: ユーザー名

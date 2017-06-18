@@ -4,10 +4,10 @@ pt-BR:
     labels:
       defaults:
         avatar: PNG, GIF or JPG. Máximo 2MB. Será reduzido para 120x120px
-        display_name: '%{counter} caracteres restantes'
+        display_name: '<span class="name-counter">%{count}</span> caracteres restantes'
         header: PNG, GIF or JPG. Máximo 2MB. Será reduzido para 700x335px
         locked: Requer você aprovação manualmente seguidores e posts padrão de privacidade para seguidores-apenas
-        note: '%{counter} caracteres restantes'
+        note: '<span class="note-counter">%{count}</span> caracteres restantes'
       imports:
         data: Arquivo CSV exportado de outra instancia Mastodon
       sessions:

@@ -261,67 +261,43 @@ RSpec.describe Account, type: :model do
   end
 
   describe '.triadic_closures' do
-    it 'finds accounts you dont follow which are followed by accounts you do follow' do
-      me = Fabricate(:account)
-      friend = Fabricate(:account)
-      friends_friend = Fabricate(:account)
+    subject { described_class.triadic_closures(me) }
+
+    let!(:me) { Fabricate(:account) }
+    let!(:friend) { Fabricate(:account) }
+    let!(:friends_friend) { Fabricate(:account) }
+    let!(:both_follow) { Fabricate(:account) }
+
+    before do
       me.follow!(friend)
       friend.follow!(friends_friend)
 
-      both_follow = Fabricate(:account)
       me.follow!(both_follow)
       friend.follow!(both_follow)
-
-      results = Account.triadic_closures(me)
-      expect(results).to eq [friends_friend]
-    end
-  end
-
-  describe '.find_local' do
-    before do
-      Fabricate(:account, username: 'Alice')
     end
 
-    it 'returns Alice for alice' do
-      expect(Account.find_local('alice')).to_not be_nil
+    it 'finds accounts you dont follow which are followed by accounts you do follow' do
+      is_expected.to eq [friends_friend]
     end
 
-    it 'returns Alice for Alice' do
-      expect(Account.find_local('Alice')).to_not be_nil
+    context 'when you block account' do
+      before do
+        me.block!(friends_friend)
+      end
+
+      it 'rejects blocked accounts' do
+        is_expected.to be_empty
+      end
     end
 
-    it 'does not return anything for a_ice' do
-      expect(Account.find_local('a_ice')).to be_nil
-    end
+    context 'when you mute account' do
+      before do
+        me.mute!(friends_friend)
+      end
 
-    it 'does not return anything for al%' do
-      expect(Account.find_local('al%')).to be_nil
-    end
-  end
-
-  describe '.find_remote' do
-    before do
-      Fabricate(:account, username: 'Alice', domain: 'mastodon.social')
-    end
-
-    it 'returns Alice for alice@mastodon.social' do
-      expect(Account.find_remote('alice', 'mastodon.social')).to_not be_nil
-    end
-
-    it 'returns Alice for ALICE@MASTODON.SOCIAL' do
-      expect(Account.find_remote('ALICE', 'MASTODON.SOCIAL')).to_not be_nil
-    end
-
-    it 'does not return anything for a_ice@mastodon.social' do
-      expect(Account.find_remote('a_ice', 'mastodon.social')).to be_nil
-    end
-
-    it 'does not return anything for alice@m_stodon.social' do
-      expect(Account.find_remote('alice', 'm_stodon.social')).to be_nil
-    end
-
-    it 'does not return anything for alice@m%' do
-      expect(Account.find_remote('alice', 'm%')).to be_nil
+      it 'rejects muted accounts' do
+        is_expected.to be_empty
+      end
     end
   end
 
@@ -379,6 +355,10 @@ RSpec.describe Account, type: :model do
     it 'does not match URLs' do
       expect(subject.match('Check this out https://medium.com/@alice/some-article#.abcdef123')).to be_nil
     end
+
+    xit 'does not match URL querystring' do
+      expect(subject.match('https://example.com/?x=@alice')).to be_nil
+    end
   end
 
   describe 'validations' do
@@ -399,6 +379,18 @@ RSpec.describe Account, type: :model do
       account_2 = Fabricate.build(:account, username: 'the_doctor')
       account_2.valid?
       expect(account_2).to model_have_error_on_field(:username)
+    end
+
+    it 'is invalid if the username is reserved' do
+      account = Fabricate.build(:account, username: 'support')
+      account.valid?
+      expect(account).to model_have_error_on_field(:username)
+    end
+
+    it 'is valid when username is reserved but record has already been created' do
+      account = Fabricate.build(:account, username: 'support')
+      account.save(validate: false)
+      expect(account.valid?).to be true
     end
 
     context 'when is local' do

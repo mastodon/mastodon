@@ -22,6 +22,7 @@ class ProviderDiscovery < OEmbed::ProviderDiscovery
         format ||= :xml if provider_endpoint
       end
 
+      raise OEmbed::NotFound, url if provider_endpoint.nil?
       begin
         provider_endpoint = Addressable::URI.parse(provider_endpoint)
         provider_endpoint.query = nil
@@ -30,7 +31,7 @@ class ProviderDiscovery < OEmbed::ProviderDiscovery
         raise OEmbed::NotFound, url
       end
 
-      OEmbed::Provider.new(provider_endpoint, format || OEmbed::Formatter.default)
+      OEmbed::Provider.new(provider_endpoint, format)
     end
   end
 end

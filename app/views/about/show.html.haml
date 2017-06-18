@@ -1,5 +1,5 @@
 - content_for :header_tags do
-  = javascript_include_tag 'application_public', integrity: true, crossorigin: 'anonymous'
+  = javascript_pack_tag 'public', integrity: true, crossorigin: 'anonymous'
 
 - content_for :page_title do
   = site_hostname
@@ -10,20 +10,20 @@
   %meta{ property: 'og:type', content: 'website' }/
   %meta{ property: 'og:title', content: site_hostname }/
   %meta{ property: 'og:description', content: strip_tags(@instance_presenter.site_description.presence || t('about.about_mastodon')) }/
-  %meta{ property: 'og:image', content: asset_url('mastodon_small.jpg') }/
+  %meta{ property: 'og:image', content: asset_pack_path('mastodon_small.jpg') }/
   %meta{ property: 'og:image:width', content: '400' }/
   %meta{ property: 'og:image:height', content: '400' }/
   %meta{ property: 'twitter:card', content: 'summary' }/
 
 .wrapper
   %h1
-    = image_tag 'logo.png'
+    = image_tag asset_pack_path('logo.png')
     = Setting.site_title
 
-  %p= t('about.about_mastodon').html_safe
+  %p!= t('about.about_mastodon')
 
   .screenshot-with-signup
-    .mascot= image_tag 'fluffy-elephant-friend.png'
+    .mascot= image_tag asset_pack_path('fluffy-elephant-friend.png')
 
     - if @instance_presenter.open_registrations
       = render 'registration'
@@ -32,7 +32,7 @@
         - if @instance_presenter.closed_registrations_message.blank?
           %p= t('about.closed_registrations')
         - else
-          = @instance_presenter.closed_registrations_message.html_safe
+          != @instance_presenter.closed_registrations_message
         .info
           = link_to t('auth.login'), new_user_session_path, class: 'webapp-btn'
           ·
@@ -74,7 +74,7 @@
 
   - unless @instance_presenter.site_description.blank?
     %h3= t('about.description_headline', domain: site_hostname)
-    %p= @instance_presenter.site_description.html_safe
+    %p!= @instance_presenter.site_description
 
   .actions
     .info

@@ -47,30 +47,43 @@ class ProcessFeedService < BaseService
         return
       end
 
-      Rails.logger.debug "Creating remote status #{id}"
-      status, just_created = status_from_xml(@xml)
+      status, just_created = nil
 
-      return if status.nil?
-      return status unless just_created
+      Rails.logger.debug "Creating remote status #{id}"
 
       if verb == :share
         original_status = shared_status_from_xml(@xml.at_xpath('.//activity:object', activity: TagManager::AS_XMLNS))
-        status.reblog   = original_status
-
-        if original_status.nil?
-          status.destroy
-          return nil
-        elsif original_status.reblog?
-          status.reblog = original_status.reblog
-        end
+        return nil if original_status.nil?
       end
 
-      status.save!
+      ApplicationRecord.transaction do
+        status, just_created = status_from_xml(@xml)
+
+        return if status.nil?
+        return status unless just_created
+
+        if verb == :share
+          status.reblog = original_status.reblog? ? original_status.reblog : original_status
+        end
+
+        status.thread = find_status(thread(@xml).first) if thread?(@xml)
+
+        status.save!
+      end
+
+      if thread?(@xml) && status.thread.nil?
+        Rails.logger.debug "Trying to attach #{status.id} (#{id(@xml)}) to #{thread(@xml).first}"
+        ThreadResolveWorker.perform_async(status.id, thread(@xml).second)
+      end
 
       notify_about_mentions!(status) unless status.reblog?
       notify_about_reblog!(status) if status.reblog? && status.reblog.account.local?
+
       Rails.logger.debug "Queuing remote status #{status.id} (#{id}) for distribution"
+
+      LinkCrawlWorker.perform_async(status.id) unless status.spoiler_text?
       DistributionWorker.perform_async(status.id)
+
       status
     end
 
@@ -141,13 +154,9 @@ class ProcessFeedService < BaseService
         created_at: published(entry),
         reply: thread?(entry),
         language: content_language(entry),
-        visibility: visibility_scope(entry)
+        visibility: visibility_scope(entry),
+        conversation: find_or_create_conversation(entry)
       )
-
-      if thread?(entry)
-        Rails.logger.debug "Trying to attach #{status.id} (#{id(entry)}) to #{thread(entry).first}"
-        status.thread = find_or_resolve_status(status, *thread(entry))
-      end
 
       mentions_from_xml(status, entry)
       hashtags_from_xml(status, entry)
@@ -156,18 +165,22 @@ class ProcessFeedService < BaseService
       [status, true]
     end
 
-    def find_or_resolve_status(parent, uri, url)
-      status = find_status(uri)
+    def find_or_create_conversation(xml)
+      uri = xml.at_xpath('./ostatus:conversation', ostatus: TagManager::OS_XMLNS)&.attribute('ref')&.content
+      return if uri.nil?
 
-      ThreadResolveWorker.perform_async(parent.id, url) if status.nil?
+      if TagManager.instance.local_id?(uri)
+        local_id = TagManager.instance.unique_tag_to_local_id(uri, 'Conversation')
+        return Conversation.find_by(id: local_id)
+      end
 
-      status
+      Conversation.find_by(uri: uri)
     end
 
     def find_status(uri)
       if TagManager.instance.local_id?(uri)
         local_id = TagManager.instance.unique_tag_to_local_id(uri, 'Status')
-        return Status.find(local_id)
+        return Status.find_by(id: local_id)
       end
 
       Status.find_by(uri: uri)
@@ -196,7 +209,7 @@ class ProcessFeedService < BaseService
       if TagManager.instance.web_domain?(url.host)
         Account.find_local(url.path.gsub('/users/', ''))
       else
-        Account.find_by(uri: href) || Account.find_by(url: href) || FetchRemoteAccountService.new.call(href)
+        Account.where(uri: href).or(Account.where(url: href)).first || FetchRemoteAccountService.new.call(href)
       end
     end
 
@@ -214,7 +227,7 @@ class ProcessFeedService < BaseService
         media = MediaAttachment.where(status: parent, remote_url: link['href']).first_or_initialize(account: parent.account, status: parent, remote_url: link['href'])
         parsed_url = Addressable::URI.parse(link['href']).normalize
 
-        next if !%w[http https].include?(parsed_url.scheme) || parsed_url.host.empty?
+        next if !%w(http https).include?(parsed_url.scheme) || parsed_url.host.empty?
 
         media.save
 
@@ -222,8 +235,8 @@ class ProcessFeedService < BaseService
 
         begin
           media.file_remote_url = link['href']
-          media.save
-        rescue OpenURI::HTTPError, Paperclip::Errors::NotIdentifiedByImageMagickError
+          media.save!
+        rescue ActiveRecord::RecordInvalid
           next
         end
       end

@@ -2,10 +2,8 @@
 
 module Settings
   module Extend
-    extend ActiveSupport::Concern
-
     def settings
-      ScopedSettings.for_thing(self)
+      @settings ||= ScopedSettings.new(self)
     end
   end
 end

@@ -1,4 +1,15 @@
 # frozen_string_literal: true
+# == Schema Information
+#
+# Table name: domain_blocks
+#
+#  id           :integer          not null, primary key
+#  domain       :string           default(""), not null
+#  created_at   :datetime         not null
+#  updated_at   :datetime         not null
+#  severity     :integer          default("silence")
+#  reject_media :boolean
+#
 
 class DomainBlock < ApplicationRecord
   enum severity: [:silence, :suspend]

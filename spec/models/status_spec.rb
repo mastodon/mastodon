@@ -119,12 +119,52 @@ RSpec.describe Status, type: :model do
     end
   end
 
-  describe '#permitted?' do
-    pending
+  describe '.mutes_map' do
+    let(:status)  { Fabricate(:status) }
+    let(:account) { Fabricate(:account) }
+
+    subject { Status.mutes_map([status.conversation.id], account) }
+
+    it 'returns a hash' do
+      expect(subject).to be_a Hash
+    end
+
+    it 'contains true value' do
+      account.mute_conversation!(status.conversation)
+      expect(subject[status.conversation.id]).to be true
+    end
   end
 
-  describe '#filter_from_context?' do
-    pending
+  describe '.favourites_map' do
+    let(:status)  { Fabricate(:status) }
+    let(:account) { Fabricate(:account) }
+
+    subject { Status.favourites_map([status], account) }
+
+    it 'returns a hash' do
+      expect(subject).to be_a Hash
+    end
+
+    it 'contains true value' do
+      Fabricate(:favourite, status: status, account: account)
+      expect(subject[status.id]).to be true
+    end
+  end
+
+  describe '.reblogs_map' do
+    let(:status)  { Fabricate(:status) }
+    let(:account) { Fabricate(:account) }
+
+    subject { Status.reblogs_map([status], account) }
+
+    it 'returns a hash' do
+      expect(subject).to be_a Hash
+    end
+
+    it 'contains true value' do
+      Fabricate(:status, account: account, reblog: status)
+      expect(subject[status.id]).to be true
+    end
   end
 
   describe '.local_only' do
@@ -206,16 +246,71 @@ RSpec.describe Status, type: :model do
       expect(results).not_to include(silenced_status)
     end
 
-    context 'with a local_only option set' do
-      it 'does not include remote instances statuses' do
-        local_account = Fabricate(:account, domain: nil)
-        remote_account = Fabricate(:account, domain: 'test.com')
-        local_status = Fabricate(:status, account: local_account)
-        remote_status = Fabricate(:status, account: remote_account)
+    context 'without local_only option' do
+      let(:viewer) { nil }
 
-        results = Status.as_public_timeline(nil, true)
-        expect(results).to include(local_status)
-        expect(results).not_to include(remote_status)
+      let!(:local_account)  { Fabricate(:account, domain: nil) }
+      let!(:remote_account) { Fabricate(:account, domain: 'test.com') }
+      let!(:local_status)   { Fabricate(:status, account: local_account) }
+      let!(:remote_status)  { Fabricate(:status, account: remote_account) }
+
+      subject { Status.as_public_timeline(viewer, false) }
+
+      context 'without a viewer' do
+        let(:viewer) { nil }
+
+        it 'includes remote instances statuses' do
+          expect(subject).to include(remote_status)
+        end
+
+        it 'includes local statuses' do
+          expect(subject).to include(local_status)
+        end
+      end
+
+      context 'with a viewer' do
+        let(:viewer) { Fabricate(:account, username: 'viewer') }
+
+        it 'includes remote instances statuses' do
+          expect(subject).to include(remote_status)
+        end
+
+        it 'includes local statuses' do
+          expect(subject).to include(local_status)
+        end
+      end
+    end
+
+    context 'with a local_only option set' do
+      let!(:local_account)  { Fabricate(:account, domain: nil) }
+      let!(:remote_account) { Fabricate(:account, domain: 'test.com') }
+      let!(:local_status)   { Fabricate(:status, account: local_account) }
+      let!(:remote_status)  { Fabricate(:status, account: remote_account) }
+
+      subject { Status.as_public_timeline(viewer, true) }
+
+      context 'without a viewer' do
+        let(:viewer) { nil }
+
+        it 'does not include remote instances statuses' do
+          expect(subject).to include(local_status)
+          expect(subject).not_to include(remote_status)
+        end
+      end
+
+      context 'with a viewer' do
+        let(:viewer) { Fabricate(:account, username: 'viewer') }
+
+        it 'does not include remote instances statuses' do
+          expect(subject).to include(local_status)
+          expect(subject).not_to include(remote_status)
+        end
+
+        it 'is not affected by personal domain blocks' do
+          viewer.block_domain!('test.com')
+          expect(subject).to include(local_status)
+          expect(subject).not_to include(remote_status)
+        end
       end
     end
 
@@ -251,6 +346,52 @@ RSpec.describe Status, type: :model do
         expect(results).not_to include(muted_status)
       end
 
+      it 'excludes statuses from accounts from personally blocked domains' do
+        blocked = Fabricate(:account, domain: 'example.com')
+        @account.block_domain!(blocked.domain)
+        blocked_status = Fabricate(:status, account: blocked)
+
+        results = Status.as_public_timeline(@account)
+        expect(results).not_to include(blocked_status)
+      end
+
+      context 'with language preferences' do
+        it 'excludes statuses in languages not allowed by the account user' do
+          user = Fabricate(:user, filtered_languages: [:fr])
+          @account.update(user: user)
+          en_status = Fabricate(:status, language: 'en')
+          es_status = Fabricate(:status, language: 'es')
+          fr_status = Fabricate(:status, language: 'fr')
+
+          results = Status.as_public_timeline(@account)
+          expect(results).to include(en_status)
+          expect(results).to include(es_status)
+          expect(results).not_to include(fr_status)
+        end
+
+        it 'includes all languages when user does not have a setting' do
+          user = Fabricate(:user, filtered_languages: [])
+          @account.update(user: user)
+
+          en_status = Fabricate(:status, language: 'en')
+          es_status = Fabricate(:status, language: 'es')
+
+          results = Status.as_public_timeline(@account)
+          expect(results).to include(en_status)
+          expect(results).to include(es_status)
+        end
+
+        it 'includes all languages when account does not have a user' do
+          expect(@account.user).to be_nil
+          en_status = Fabricate(:status, language: 'en')
+          es_status = Fabricate(:status, language: 'es')
+
+          results = Status.as_public_timeline(@account)
+          expect(results).to include(en_status)
+          expect(results).to include(es_status)
+        end
+      end
+
       context 'where that account is silenced' do
         it 'includes statuses from other accounts that are silenced' do
           @account.update(silenced: true)
@@ -282,6 +423,78 @@ RSpec.describe Status, type: :model do
 
       results = Status.as_tag_timeline(tag)
       expect(results).to include(status)
+    end
+  end
+
+  describe '.permitted_for' do
+    subject { described_class.permitted_for(target_account, account).pluck(:visibility) }
+
+    let(:target_account) { alice }
+    let(:account) { bob }
+    let!(:public_status) { Fabricate(:status, account: target_account, visibility: 'public') }
+    let!(:unlisted_status) { Fabricate(:status, account: target_account, visibility: 'unlisted') }
+    let!(:private_status) { Fabricate(:status, account: target_account, visibility: 'private') }
+
+    let!(:direct_status) do
+      Fabricate(:status, account: target_account, visibility: 'direct').tap do |status|
+        Fabricate(:mention, status: status, account: account)
+      end
+    end
+
+    let!(:other_direct_status) do
+      Fabricate(:status, account: target_account, visibility: 'direct').tap do |status|
+        Fabricate(:mention, status: status)
+      end
+    end
+
+    context 'given nil' do
+      let(:account) { nil }
+      let(:direct_status) { nil }
+      it { is_expected.to eq(%w(unlisted public)) }
+    end
+
+    context 'given blocked account' do
+      before do
+        target_account.block!(account)
+      end
+
+      it { is_expected.to be_empty }
+    end
+
+    context 'given same account' do
+      let(:account) { target_account }
+      it { is_expected.to eq(%w(direct direct private unlisted public)) }
+    end
+
+    context 'given followed account' do
+      before do
+        account.follow!(target_account)
+      end
+
+      it { is_expected.to eq(%w(direct private unlisted public)) }
+    end
+
+    context 'given unfollowed account' do
+      it { is_expected.to eq(%w(direct unlisted public)) }
+    end
+  end
+
+  describe 'before_create' do
+    it 'sets account being replied to correctly over intermediary nodes' do
+      first_status = Fabricate(:status, account: bob)
+      intermediary = Fabricate(:status, thread: first_status, account: alice)
+      final        = Fabricate(:status, thread: intermediary, account: alice)
+
+      expect(final.in_reply_to_account_id).to eq bob.id
+    end
+
+    it 'creates new conversation for stand-alone status' do
+      expect(Status.create(account: alice, text: 'First').conversation_id).to_not be_nil
+    end
+
+    it 'keeps conversation of parent node' do
+      parent = Fabricate(:status, text: 'First')
+      expect(Status.create(account: alice, thread: parent, text: 'Response').conversation_id).to eq parent.conversation_id
     end
   end
 end

@@ -5,8 +5,8 @@ class UnsubscribeService < BaseService
     subscription = account.subscription(api_subscription_url(account.id))
     response = subscription.unsubscribe
 
-    unless response.successful?
-      Rails.logger.debug "PuSH unsubscribe for #{account.acct} failed: #{response.message}"
+    unless response.status.success?
+      Rails.logger.debug "PuSH unsubscribe for #{account.acct} failed: #{response.status}"
     end
 
     account.secret = ''
