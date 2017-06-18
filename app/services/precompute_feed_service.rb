@@ -23,11 +23,7 @@ class PrecomputeFeedService < BaseService
   end
 
   def process_status(status)
-    add_status_to_feed(status) unless skip_status?(status)
-  end
-
-  def skip_status?(status)
-    status.direct_visibility? || status_filtered?(status)
+    add_status_to_feed(status) unless status_filtered?(status)
   end
 
   def add_status_to_feed(status)
