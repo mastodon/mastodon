@@ -4,12 +4,29 @@ require 'pundit/rspec'
 RSpec.describe StatusPolicy, type: :model do
   subject { described_class }
 
+  let(:admin) { Fabricate(:user, admin: true) }
   let(:alice) { Fabricate(:account, username: 'alice') }
+  let(:bob) { Fabricate(:account, username: 'bob') }
   let(:status) { Fabricate(:status, account: alice) }
+
+  permissions :show?, :reblog? do
+    it 'grants access when no viewer' do
+      expect(subject).to permit(nil, status)
+    end
+
+    it 'denies access when viewer is blocked' do
+      block = Fabricate(:block)
+      status.visibility = :private
+      status.account = block.target_account
+
+      expect(subject).to_not permit(block.account, status)
+    end
+  end
 
   permissions :show? do
     it 'grants access when direct and account is viewer' do
       status.visibility = :direct
+
       expect(subject).to permit(status.account, status)
     end
 
@@ -28,7 +45,7 @@ RSpec.describe StatusPolicy, type: :model do
     end
 
     it 'grants access when private and account is viewer' do
-      status.visibility = :direct
+      status.visibility = :private
 
       expect(subject).to permit(status.account, status)
     end
@@ -54,17 +71,39 @@ RSpec.describe StatusPolicy, type: :model do
 
       expect(subject).to_not permit(viewer, status)
     end
+  end
 
-    it 'grants access when no viewer' do
-      expect(subject).to permit(nil, status)
+  permissions :reblog? do
+    it 'denies access when private' do
+      viewer = Fabricate(:account)
+      status.visibility = :private
+
+      expect(subject).to_not permit(viewer, status)
     end
 
-    it 'denies access when viewer is blocked' do
-      block = Fabricate(:block)
-      status.visibility = :private
-      status.account = block.target_account
+    it 'denies access when direct' do
+      viewer = Fabricate(:account)
+      status.visibility = :direct
 
-      expect(subject).to_not permit(block.account, status)
+      expect(subject).to_not permit(viewer, status)
+    end
+  end
+
+  permissions :destroy?, :unreblog? do
+    it 'grants access when account is deleter' do
+      expect(subject).to permit(status.account, status)
+    end
+
+    it 'grants access when account is admin' do
+      expect(subject).to permit(admin.account, status)
+    end
+
+    it 'denies access when account is not deleter' do
+      expect(subject).to_not permit(bob, status)
+    end
+
+    it 'denies access when no deleter' do
+      expect(subject).to_not permit(nil, status)
     end
   end
 end

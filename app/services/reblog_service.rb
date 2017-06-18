@@ -11,8 +11,11 @@ class ReblogService < BaseService
   def call(account, reblogged_status)
     reblogged_status = reblogged_status.reblog if reblogged_status.reblog?
 
-    authorize_with account, reblogged_status, :show?
-    raise Mastodon::NotPermittedError if reblogged_status.direct_visibility? || reblogged_status.private_visibility?
+    authorize_with account, reblogged_status, :reblog?
+
+    reblog = account.statuses.find_by(reblog: reblogged_status)
+
+    return reblog unless reblog.nil?
 
     reblog = account.statuses.create!(reblog: reblogged_status, text: '')
 

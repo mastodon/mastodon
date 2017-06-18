@@ -14,7 +14,7 @@
   ],
   "plugins": [
     "syntax-dynamic-import",
-    "transform-object-rest-spread",
+    ["transform-object-rest-spread", { "useBuiltIns": true }],
     "transform-class-properties",
     [
       "react-intl",

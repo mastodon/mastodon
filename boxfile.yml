@@ -14,8 +14,11 @@ run.config:
     # for videos:
     - ffmpeg3
 
-    # to prep the .env file
+    # to prep the .env file:
     - gettext-tools
+
+    # for node-gyp, used in the asset compilation process:
+    - python-2
 
   cache_dirs:
     - node_modules

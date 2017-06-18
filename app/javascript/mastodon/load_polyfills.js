@@ -1,0 +1,36 @@
+// Convenience function to load polyfills and return a promise when it's done.
+// If there are no polyfills, then this is just Promise.resolve() which means
+// it will execute in the same tick of the event loop (i.e. near-instant).
+
+function importBasePolyfills() {
+  return import(/* webpackChunkName: "base_polyfills" */ './base_polyfills');
+}
+
+function importExtraPolyfills() {
+  return import(/* webpackChunkName: "extra_polyfills" */ './extra_polyfills');
+}
+
+function loadPolyfills() {
+  const needsBasePolyfills = !(
+    window.Intl &&
+    Object.assign &&
+    Number.isNaN &&
+    window.Symbol &&
+    Array.prototype.includes
+  );
+
+  // Latest version of Firefox and Safari do not have IntersectionObserver.
+  // Edge does not have requestIdleCallback.
+  // This avoids shipping them all the polyfills.
+  const needsExtraPolyfills = !(
+    window.IntersectionObserver &&
+    window.requestIdleCallback
+  );
+
+  return Promise.all([
+    needsBasePolyfills && importBasePolyfills(),
+    needsExtraPolyfills && importExtraPolyfills(),
+  ]);
+}
+
+export default loadPolyfills;

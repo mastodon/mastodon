@@ -44,8 +44,8 @@ const makeMapStateToProps = () => {
 
   const mapStateToProps = (state, props) => ({
     status: getStatus(state, Number(props.params.statusId)),
-    ancestorsIds: state.getIn(['timelines', 'ancestors', Number(props.params.statusId)]),
-    descendantsIds: state.getIn(['timelines', 'descendants', Number(props.params.statusId)]),
+    ancestorsIds: state.getIn(['contexts', 'ancestors', Number(props.params.statusId)]),
+    descendantsIds: state.getIn(['contexts', 'descendants', Number(props.params.statusId)]),
     me: state.getIn(['meta', 'me']),
     boostModal: state.getIn(['meta', 'boost_modal']),
     deleteModal: state.getIn(['meta', 'delete_modal']),

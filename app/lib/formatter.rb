@@ -9,7 +9,7 @@ class Formatter
 
   include ActionView::Helpers::TextHelper
 
-  def format(status, attribute = :text, paragraphize = true)
+  def format(status)
     if status.reblog?
       prepend_reblog = status.reblog.account.acct
       status         = status.proper
@@ -17,9 +17,8 @@ class Formatter
       prepend_reblog = false
     end
 
-    raw_content = status.public_send(attribute)
+    raw_content = status.text
 
-    return '' if raw_content.blank?
     return reformat(raw_content) unless status.local?
 
     linkable_accounts = status.mentions.map(&:account)
@@ -28,7 +27,7 @@ class Formatter
     html = raw_content
     html = "RT @#{prepend_reblog} #{html}" if prepend_reblog
     html = encode_and_link_urls(html, linkable_accounts)
-    html = simple_format(html, {}, sanitize: false) if paragraphize
+    html = simple_format(html, {}, sanitize: false)
     html = html.delete("\n")
 
     html.html_safe # rubocop:disable Rails/OutputSafety

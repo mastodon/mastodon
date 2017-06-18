@@ -18,6 +18,12 @@ describe ApplicationHelper do
   end
 
   describe 'add_rtl_body_class' do
+    around do |example|
+      current_locale = I18n.locale
+      example.run
+      I18n.locale = current_locale
+    end
+
     it 'adds rtl body class if locale is Arabic' do
       I18n.locale = :ar
       expect(helper.add_rtl_body_class('other classes')).to eq 'other classes rtl'
@@ -100,6 +106,12 @@ describe ApplicationHelper do
   end
 
   describe 'title' do
+    around do |example|
+      site_title = Setting.site_title
+      example.run
+      Setting.site_title = site_title
+    end
+
     it 'returns site title on production enviroment' do
       Setting.site_title = 'site title'
       expect(Rails.env).to receive(:production?).and_return(true)

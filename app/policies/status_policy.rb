@@ -9,12 +9,40 @@ class StatusPolicy
   end
 
   def show?
-    if status.direct_visibility?
-      status.account.id == account&.id || status.mentions.where(account: account).exists?
-    elsif status.private_visibility?
-      status.account.id == account&.id || account&.following?(status.account) || status.mentions.where(account: account).exists?
+    if direct?
+      owned? || status.mentions.where(account: account).exists?
+    elsif private?
+      owned? || account&.following?(status.account) || status.mentions.where(account: account).exists?
     else
       account.nil? || !status.account.blocking?(account)
     end
+  end
+
+  def reblog?
+    !direct? && !private? && show?
+  end
+
+  def destroy?
+    admin? || owned?
+  end
+
+  alias unreblog? destroy?
+
+  private
+
+  def admin?
+    account&.user&.admin?
+  end
+
+  def direct?
+    status.direct_visibility?
+  end
+
+  def owned?
+    status.account.id == account&.id
+  end
+
+  def private?
+    status.private_visibility?
   end
 end

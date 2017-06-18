@@ -1,20 +1,24 @@
 # frozen_string_literal: true
 
 class SuspendAccountService < BaseService
-  def call(account)
+  def call(account, remove_user = false)
     @account = account
 
-    purge_content
+    purge_user if remove_user
     purge_profile
+    purge_content
     unsubscribe_push_subscribers
   end
 
   private
 
+  def purge_user
+    @account.user.destroy
+  end
+
   def purge_content
-    @account.statuses.reorder(nil).find_each do |status|
-      # This federates out deletes to previous followers
-      RemoveStatusService.new.call(status)
+    @account.statuses.reorder(nil).find_in_batches do |statuses|
+      BatchedRemoveStatusService.new.call(statuses)
     end
 
     [
@@ -23,7 +27,7 @@ class SuspendAccountService < BaseService
       @account.notifications,
       @account.favourites,
       @account.active_relationships,
-      @account.passive_relationships
+      @account.passive_relationships,
     ].each do |association|
       destroy_all(association)
     end
