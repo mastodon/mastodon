@@ -74,9 +74,9 @@ class ComposeForm extends ImmutablePureComponent {
     this.props.onClearSuggestions();
   }
 
-  onSuggestionsFetchRequested = (token) => {
+  onSuggestionsFetchRequested = debounce((token) => {
     this.props.onFetchSuggestions(token);
-  }
+  }, 500, { trailing: true })
 
   onSuggestionSelected = (tokenStart, token, value) => {
     this._restoreCaret = null;

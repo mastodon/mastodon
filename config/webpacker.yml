@@ -1,12 +1,9 @@
 # Note: You must restart bin/webpack-dev-server for changes to take effect
 
 default: &default
-  config: config/webpack
-  entry: packs
-  output: public
-  manifest: manifest.json
-  node_modules: node_modules
-  source: app/javascript
+  source_path: app/javascript
+  source_entry_path: packs
+  public_output_path: packs
   extensions:
     - .js
     - .sass
@@ -21,9 +18,15 @@ default: &default
 development:
   <<: *default
 
+  dev_server:
+    host: 0.0.0.0
+    port: 8080
+    https: false
+
 test:
   <<: *default
-  manifest: manifest-test.json
+
+  public_output_path: packs-test
 
 production:
   <<: *default

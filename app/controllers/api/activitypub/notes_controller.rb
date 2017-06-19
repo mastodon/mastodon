@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Api::Activitypub::NotesController < Api::BaseController
+class Api::ActivityPub::NotesController < Api::BaseController
   include Authorization
 
   before_action :set_status
