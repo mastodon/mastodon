@@ -1,0 +1,140 @@
+$ui-base-color: #181818; // darkest
+$ui-secondary-color: #dae8da; // lightest
+$ui-primary-color: #dae8da; // lighter
+$ui-highlight-color: #1ea21e; // vibrant
+
+@import 'application';
+
+body {
+  background: $ui-base-color url('../images/background-cybre.png');
+}
+
+@media screen and (min-width: 1300px) { 
+  .column {
+    flex-grow: 1 !important;
+    max-width: 400px;
+  }
+
+  .drawer {
+    width: 17%;
+    max-width: 400px;
+  }
+}
+
+.muted {
+  .status__content p, .status__content a {
+    color: lighten($ui-base-color, 35%);
+  }
+
+  .status__display-name strong {
+    color: lighten($ui-base-color, 35%);
+  }
+}
+
+.status time:after,
+.detailed-status__datetime span:after {
+  font: normal normal normal 14px/1 FontAwesome;
+  content: "\00a0\00a0\f08e";
+}
+
+.compose-form__buttons button.active:last-child {
+  color:$ui-secondary-color;
+  background-color: $ui-highlight-color;
+  border-radius:3px;
+}
+
+.about-body .mascot {
+  display:none;
+}
+
+.screenshot-with-signup {
+  min-height:300px;
+}
+
+.screenshot-with-signup .closed-registrations-message,
+.screenshot-with-signup form {
+  background-color: rgba(0,0,0,0.7);
+  margin:auto;
+}
+
+.screenshot-with-signup .closed-registrations-message .clock {
+  font-size:150%;
+}  
+
+.column .static-content.getting-started {
+  background-image: url('../images/logo-cybre.png'), url('../images/background-cybre.png');
+  background-position: 50% 50%;
+  background-size:cover;
+}
+
+.columns-area {
+  background: $ui-base-color url('../images/background-cybre.png');
+}
+
+.drawer .drawer__inner {
+  overflow: visible;
+  height:inherit;
+}
+
+.drawer__pager {
+  overflow-y:auto;
+}
+
+.column {
+  // trying to fix @mdhughes safari problem
+  max-height:100vh;
+}
+
+
+
+.media-gallery {
+  height:auto !important;
+  max-height:30vh;
+  position:relative;
+  margin-top:20px;
+  margin-left:-68px;
+  width: calc(100% + 80px);
+}
+
+.media-gallery:before{
+  content: "";
+  display: block;
+  padding-top: 100%;
+}
+
+.media-gallery__item,
+.media-gallery .media-spoiler{
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0 !important;
+  position:absolute;
+}
+
+.media-spoiler-video:before {
+  content:"";
+  display:block;
+  padding-top:100%;
+}
+
+.media-spoiler-video,
+.status__video-player,
+.detailed-status > .media-spoiler,
+.status > .media-spoiler {
+  height:auto !important;
+  max-height:30vh;
+  position:relative;
+  margin-top:20px;
+  margin-left:-68px;
+  width: calc(100% + 80px) !important;
+}
+
+.status__video-player-video {
+  transform:unset;
+}
+
+.detailed-status > .media-spoiler,
+.status > .media-spoiler {
+  height:30vh !important;
+  vertical-align:middle;
+}
