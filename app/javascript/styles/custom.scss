@@ -1,13 +1,4 @@
-$ui-base-color: #181818; // darkest
-$ui-secondary-color: #dae8da; // lightest
-$ui-primary-color: #dae8da; // lighter
-$ui-highlight-color: #1ea21e; // vibrant
-
 @import 'application';
-
-body {
-  background: $ui-base-color url('../images/background-cybre.png');
-}
 
 @media screen and (min-width: 1300px) { 
   .column {
@@ -59,16 +50,6 @@ body {
 
 .screenshot-with-signup .closed-registrations-message .clock {
   font-size:150%;
-}  
-
-.column .static-content.getting-started {
-  background-image: url('../images/logo-cybre.png'), url('../images/background-cybre.png');
-  background-position: 50% 50%;
-  background-size:cover;
-}
-
-.columns-area {
-  background: $ui-base-color url('../images/background-cybre.png');
 }
 
 .drawer .drawer__inner {

@@ -1,30 +1,30 @@
 ---
 en:
   about:
-    about_mastodon: Cybrespace is an instance of Mastodon, a <em>free, open-source</em> social network. A <em>decentralized</em> alternative to commercial platforms, it avoids the risks of a single company monopolizing your communication. Pick a server that you trust &mdash; whichever you choose, you can interact with everyone else. Anyone can run their own Mastodon instance and participate in the <em>social network</em> seamlessly.
+    about_mastodon: Mastodon is a <em>free, open-source</em> social network. A <em>decentralized</em> alternative to commercial platforms, it avoids the risks of a single company monopolizing your communication. Pick a server that you trust &mdash; whichever you choose, you can interact with everyone else. Anyone can run their own Mastodon instance and participate in the <em>social network</em> seamlessly.
     about_this: About this instance
     apps: Apps
     business_email: 'Business e-mail:'
     closed_registrations: Registrations are currently closed on this instance.
     contact: Contact
-    description_headline: What's special about %{domain}?
+    description_headline: What is %{domain}?
     domain_count_after: other instances
     domain_count_before: Connected to
     features:
       api: Open API for apps and services
       blocks: Rich block and muting tools
-      characters: 512 characters per post
+      characters: 500 characters per post
       chronology: Timelines are chronological
       ethics: 'Ethical design: no ads, no tracking'
       gifv: GIFV sets and short videos
-      privacy: Granular, per-ping privacy settings
+      privacy: Granular, per-post privacy settings
       public: Public timelines
     features_headline: What sets Mastodon apart
     get_started: Get started
     links: Links
     other_instances: Other instances
     source_code: Source code
-    status_count_after: pings 
+    status_count_after: statuses
     status_count_before: Who authored
     terms: Terms
     user_count_after: users
@@ -37,7 +37,7 @@ en:
     nothing_here: There is nothing here!
     people_followed_by: People whom %{name} follows
     people_who_follow: People who follow %{name}
-    posts: Pings
+    posts: Posts
     remote_follow: Remote follow
     reserved_username: The username is reserved
     unfollow: Unfollow
@@ -205,9 +205,9 @@ en:
     delete_account_html: If you wish to delete your account, you can <a href="%{path}">proceed here</a>. You will be asked for confirmation.
     didnt_get_confirmation: Didn't receive confirmation instructions?
     forgot_password: Forgot your password?
-    login: Jack in
-    logout: Jack out
-    register: Apply for upload
+    login: Log in
+    logout: Logout
+    register: Sign up
     resend_confirmation: Resend confirmation instructions
     reset_password: Reset password
     set_new_password: Set new password
@@ -255,7 +255,7 @@ en:
     storage: Media storage
   followers:
     domain: Domain
-    explanation_html: If you want to ensure the privacy of your pings , you must be aware of who is following you. <strong>Your private pings are delivered to all instances where you have followers</strong>. You may wish to review them, and remove followers if you do not trust your privacy to be respected by the staff or software of those instances.
+    explanation_html: If you want to ensure the privacy of your statuses, you must be aware of who is following you. <strong>Your private statuses are delivered to all instances where you have followers</strong>. You may wish to review them, and remove followers if you do not trust your privacy to be respected by the staff or software of those instances.
     followers_count: Number of followers
     lock_link: Lock your account
     purge: Remove from followers
@@ -263,7 +263,7 @@ en:
       one: In the process of soft-blocking followers from one domain...
       other: In the process of soft-blocking followers from %{count} domains...
     true_privacy_html: Please mind that <strong>true privacy can only be achieved with end-to-end encryption</strong>.
-    unlocked_warning_html: Anyone can follow you to immediately view your private pings. %{lock_link} to be able to review and reject followers.
+    unlocked_warning_html: Anyone can follow you to immediately view your private statuses. %{lock_link} to be able to review and reject followers.
     unlocked_warning_title: Your account is not locked
   generic:
     changes_saved_msg: Changes successfully saved!
@@ -284,7 +284,7 @@ en:
   landing_strip_signup_html: If you don't, you can <a href="%{sign_up_path}">sign up here</a>.
   media_attachments:
     validations:
-      images_and_video: Cannot attach a video to a ping that already contains images
+      images_and_video: Cannot attach a video to a status that already contains images
       too_many: Cannot attach more than 4 files
   notification_mailer:
     digest:
@@ -297,8 +297,8 @@ en:
         one: "1 new notification since your last visit \U0001F418"
         other: "%{count} new notifications since your last visit \U0001F418"
     favourite:
-      body: 'Your ping was florped by %{name}:'
-      subject: "%{name} florped your ping"
+      body: 'Your status was favourited by %{name}:'
+      subject: "%{name} favourited your status"
     follow:
       body: "%{name} is now following you!"
       subject: "%{name} is now following you"
@@ -309,8 +309,8 @@ en:
       body: 'You were mentioned by %{name} in:'
       subject: You were mentioned by %{name}
     reblog:
-      body: 'Your ping was relayed by %{name}:'
-      subject: "%{name} relayed your ping"
+      body: 'Your status was boosted by %{name}:'
+      subject: "%{name} boosted your status"
   pagination:
     next: Next
     prev: Prev
@@ -324,7 +324,7 @@ en:
     authorized_apps: Authorized apps
     back: Back to Mastodon
     delete: Account deletion
-    edit_profile: edit ~/.profile
+    edit_profile: Edit profile
     export: Data export
     followers: Authorized followers
     import: Import
@@ -344,7 +344,7 @@ en:
       unlisted_long: Everyone can see, but not listed on public timelines
   stream_entries:
     click_to_show: Click to show
-    reblogged: relayed 
+    reblogged: boosted
     sensitive_content: Sensitive content
   time:
     formats:
