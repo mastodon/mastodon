@@ -7,7 +7,9 @@
   }
 
   .drawer {
-    width: 17%;
+    flex-grow: 1 !important;
+    flex-basis: 200px !important;
+    min-width: 268px;
     max-width: 400px;
   }
 }
