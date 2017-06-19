@@ -41,7 +41,6 @@ nl:
     unfollow: Ontvolgen
   admin:
     settings:
-      click_to_edit: Klik om te bewerken
       contact_information:
         email: Vul een openbaar gebruikt e-mailadres in
         label: Contactgegevens
@@ -128,6 +127,18 @@ nl:
     follows: Jij volgt
     mutes: Jij negeert
     storage: Mediaopslag
+  followers:
+    domain: Domein
+    explanation_html: Wanneer je de privacy van jouw toots wilt garanderen, moet je goed weten wie jouw volgers zijn. <strong>Toots die alleen aan jouw volgers zijn gericht, worden aan de Mastodon-servers van jouw volgers afgeleverd.</strong> Daarom wil je ze misschien controleren en desnoods volgers verwijderen die zich op een Mastodon-server bevinden die jij niet vertrouwd. Bijvoorbeeld omdat de beheerder(s) of de software van zo'n server jouw privacy niet respecteert.
+    followers_count: Aantal volgers
+    lock_link: Maak jouw account besloten
+    purge: Volgers verwijderen
+    success:
+      one: Bezig om volgers van één domein te verwijderen...
+      other: Bezig om volgers van %{count} domeinen te verwijderen...
+    true_privacy_html: Hou er wel rekening mee dat <strong>echte privacy alleen gegarandeerd kan worden met behulp van end-to-end-encryptie</strong>.
+    unlocked_warning_html: Iedereen kan jou volgen en daarmee meteen toots zien die je alleen aan volgers hebt gericht. %{lock_link} om volgers te kunnen beoordelen en desnoods te weigeren.
+    unlocked_warning_title: Jouw account is niet besloten
   generic:
     changes_saved_msg: Wijzigingen succesvol opgeslagen!
     powered_by: mogelijk gemaakt door %{link}
@@ -143,7 +154,8 @@ nl:
       following: Volglijst
       muting: Negeerlijst
     upload: Uploaden
-  landing_strip_html: <strong>%{name}</strong> is een gebruiker op %{link_to_root_path}. Je kunt deze volgen en ermee communiceren als je ergens in deze fediverse een account hebt. Als je dat niet hebt, kun je je <a href="%{sign_up_path}">hier aanmelden</a>.
+  landing_strip_html: <strong>%{name}</strong> is een gebruiker op %{link_to_root_path}. Je kunt deze volgen en ermee communiceren als je ergens in deze fediverse een account hebt.
+  landing_strip_signup_html: Als je dat niet hebt, kun je je <a href="%{sign_up_path}">hier aanmelden</a>.
   notification_mailer:
     digest:
       body: 'Hier is een korte samenvatting van wat je hebt gemist op %{instance} sinds jouw laatste bezoek op %{since}:'
@@ -178,10 +190,11 @@ nl:
     proceed: Ga door om te volgen
     prompt: 'Jij gaat volgen:'
   settings:
-    authorized_apps: Geautoriseerde
+    authorized_apps: Geautoriseerde apps
     back: Terug naar Mastodon
     edit_profile: Profiel bewerken
     export: Export
+    followers: Geautoriseerde volgers
     import: Import
     preferences: Voorkeuren
     settings: Instellingen
@@ -209,6 +222,7 @@ nl:
     disable: Uitschakelen
     enable: Inschakelen
     instructions_html: "<strong>Scan deze QR-code in Google Authenticator of een soortgelijke app op jouw mobiele telefoon</strong>. Van nu af aan genereert deze app aanmeldcodes die je bij het aanmelden moet invoeren."
+    setup: Instellen
   users:
     invalid_email: E-mailadres is ongeldig
     invalid_otp_token: Ongeldige tweestaps-aanmeldcode

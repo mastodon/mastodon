@@ -26,7 +26,7 @@ class UpdateRemoteProfileService < BaseService
     old_hub_url     = account.hub_url
     account.hub_url = hub_link['href'] if !hub_link.nil? && !hub_link['href'].blank? && (hub_link['href'] != old_hub_url)
 
-    account.save_with_optional_avatar!
+    account.save_with_optional_media!
 
     Pubsubhubbub::SubscribeWorker.perform_async(account.id) if resubscribe && (account.hub_url != old_hub_url)
   end

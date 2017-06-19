@@ -1,72 +1,62 @@
 ---
-# Chinese (China) translations for Devise 4.2.1
-# 4.2.0: By HealthGrid at https://gist.github.com/HealthGrid/2d702b38aa6ffe0233f27d3d5be9250f
-# 4.2.1: By Artoria2e5 (this file)
-#  - Fixes pluralization problems (zh only takes "other")
-#  - Misc translation improvements, you know what these grammar things are.
-#  - Should be minor enough to claim CC0 for my changes.
-# Additional translations at https://github.com/plataformatec/devise/wiki/I18n
-
-# Adapted for Mastodon.
-
 zh-CN:
   devise:
     confirmations:
-      confirmed: "成功验证您的邮箱地址。"
-      send_instructions: "您的电子邮箱将在几分钟后收到一封邮箱确认邮件。"
-      send_paranoid_instructions: "如果您的邮箱存在于我们的数据库中，您将收到一封确认帐号的邮件。"
+      confirmed: 成功验证您的邮箱地址。
+      send_instructions: 您的电子邮箱将在几分钟后收到一封邮箱确认邮件。
+      send_paranoid_instructions: 如果您的邮箱存在于我们的数据库中，您将收到一封确认帐号的邮件。
     failure:
-      already_authenticated: "您已经登录。"
-      inactive: "您还没有激活帐户。"
+      already_authenticated: 您已经登录。
+      inactive: 您还没有激活帐户。
       invalid: " %{authentication_keys} 或密码错误。"
-      locked: "您的帐号已被锁定。"
-      last_attempt: "您还有最后一次尝试机会，再次失败您的帐号将被锁定。"
+      last_attempt: 您还有最后一次尝试机会，再次失败您的帐号将被锁定。
+      locked: 您的帐号已被锁定。
       not_found_in_database: "%{authentication_keys}或密码错误。"
-      timeout: "您已登录超时，请重新登录。"
-      unauthenticated: "继续操作前请注册或者登录。"
-      unconfirmed: "继续操作前请先确认您的帐号。"
+      timeout: 您已登录超时，请重新登录。
+      unauthenticated: 继续操作前请注册或者登录。
+      unconfirmed: 继续操作前请先确认您的帐号。
     mailer:
       confirmation_instructions:
-        subject: "Mastodon 帐户确认信息"
-      reset_password_instructions:
-        subject: "Mastodon 重置密码信息"
-      unlock_instructions:
-        subject: "Mastodon 帐户解锁信息"
+        subject: Mastodon 帐户确认信息
       email_changed:
-        subject: "Mastodon 电邮已被修改"
+        subject: Mastodon 电邮已被修改
       password_change:
-        subject: 'Mastodon 密码已被重置'
+        subject: Mastodon 密码已被重置
+      reset_password_instructions:
+        subject: Mastodon 重置密码信息
+      unlock_instructions:
+        subject: Mastodon 帐户解锁信息
     omniauth_callbacks:
-      failure: "由于%{reason}，无法从%{kind}获得授权。"
-      success: "成功地从%{kind}获得授权。"
+      failure: 由于%{reason}，无法从%{kind}获得授权。
+      success: 成功地从%{kind}获得授权。
     passwords:
-      no_token: "无重置邮件不可访问密码重置页面。如果您是从重置邮件来到了这个页面，请确保您输入的URL完整的。"
-      send_instructions: "几分钟后，您将收到重置密码的电子邮件。"
-      send_paranoid_instructions: "如果您的邮箱存在于我们的数据库中，您将收到一封找回密码的邮件。"
-      updated: "您的密码已修改成功，您现在已登录。"
-      updated_not_active: "您的密码已修改成功。"
+      no_token: 无重置邮件不可访问密码重置页面。如果您是从重置邮件来到了这个页面，请确保您输入的URL完整的。
+      send_instructions: 几分钟后，您将收到重置密码的电子邮件。
+      send_paranoid_instructions: 如果您的邮箱存在于我们的数据库中，您将收到一封找回密码的邮件。
+      updated: 您的密码已修改成功，您现在已登录。
+      updated_not_active: 您的密码已修改成功。
     registrations:
-      destroyed: "再见！您的帐户已成功注销。我们希望很快可以再见到您。"
-      signed_up: "欢迎！您已注册成功。"
-      signed_up_but_inactive: "您已注册，但尚未激活帐号。"
-      signed_up_but_locked: "您已注册，但帐号被锁定了。"
-      signed_up_but_unconfirmed: "一封带有确认链接的邮件已经发送至您的邮箱，请检查邮箱（包括垃圾邮箱），并点击该链接激活您的帐号。"
-      update_needs_confirmation: "信息更新成功，但我们需要验证您的新电子邮件地址，请检查邮箱（包括垃圾邮箱），并点击该链接激活您的帐号。"
-      updated: "帐号资料更新成功。"
+      destroyed: 再见！您的帐户已成功注销。我们希望很快可以再见到您。
+      signed_up: 欢迎！您已注册成功。
+      signed_up_but_inactive: 您已注册，但尚未激活帐号。
+      signed_up_but_locked: 您已注册，但帐号被锁定了。
+      signed_up_but_unconfirmed: 一封带有确认链接的邮件已经发送至您的邮箱，请检查邮箱（包括垃圾邮箱），并点击该链接激活您的帐号。
+      update_needs_confirmation: 信息更新成功，但我们需要验证您的新电子邮件地址，请检查邮箱（包括垃圾邮箱），并点击该链接激活您的帐号。
+      updated: 帐号资料更新成功。
     sessions:
-      signed_in: "登录成功。"
-      signed_out: "退出成功。"
-      already_signed_out: "已经退出成功。"
+      already_signed_out: 已经退出成功。
+      signed_in: 登录成功。
+      signed_out: 退出成功。
     unlocks:
-      send_instructions: "几分钟后，您将收到一封解锁帐号的邮件。"
-      send_paranoid_instructions: "如果您的邮箱存在于我们的数据库中，您将收到一封解锁帐号的邮件。"
-      unlocked: "您的帐号已成功解锁，您现在已登录。"
+      send_instructions: 几分钟后，您将收到一封解锁帐号的邮件。
+      send_paranoid_instructions: 如果您的邮箱存在于我们的数据库中，您将收到一封解锁帐号的邮件。
+      unlocked: 您的帐号已成功解锁，您现在已登录。
   errors:
     messages:
-      already_confirmed: "已经确认，请重新登录。"
-      confirmation_period_expired: "注册帐号后须在%{period}以内确认。请重新注册。"
-      expired: "邮件确认已过期，请重新注册。"
-      not_found: "找不到。"
-      not_locked: "未锁定。"
+      already_confirmed: 已经确认，请重新登录。
+      confirmation_period_expired: 注册帐号后须在%{period}以内确认。请重新注册。
+      expired: 邮件确认已过期，请重新注册。
+      not_found: 找不到。
+      not_locked: 未锁定。
       not_saved:
-        other: "发生%{count}个错误，导致%{resource}保存失败："
+        other: 发生%{count}个错误，导致%{resource}保存失败：

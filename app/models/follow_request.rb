@@ -1,4 +1,14 @@
 # frozen_string_literal: true
+# == Schema Information
+#
+# Table name: follow_requests
+#
+#  id                :integer          not null, primary key
+#  account_id        :integer          not null
+#  target_account_id :integer          not null
+#  created_at        :datetime         not null
+#  updated_at        :datetime         not null
+#
 
 class FollowRequest < ApplicationRecord
   include Paginable

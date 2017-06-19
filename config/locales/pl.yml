@@ -5,16 +5,17 @@ pl:
     about_this: O tej instancji
     apps: Aplikacje
     business_email: 'Służbowy adres e-mail:'
+    closed_registrations: Rejestracja na tej instancji jest obecnie zamknięta.
     contact: Kontakt
     description_headline: Czym jest %{domain}?
-    domain_count_after: inne instancje
-    domain_count_before: Połączone z
+    domain_count_after: instancji
+    domain_count_before: Serwer połączony z
     features:
       api: Otwarte API dla aplikacji i usług
-      blocks: Rozbudowane narzędzia blokowania i wyciszania
+      blocks: Rozbudowane narzędzia blokowania i ukrywania
       characters: 500 znaków na wpis
       chronology: Chronologiczny porządek wyświetlania
-      ethics: 'Etyczne założenia: bez reklam, bez śledzenia'
+      ethics: 'Etyczne założenia: nie śledzimy, bez reklam'
       gifv: obsługa GIFV i krótkich wideo
       privacy: Precyzyjne ustawienia widoczności poszczególnych postów
       public: Publiczne osie czasu
@@ -24,10 +25,11 @@ pl:
     other_instances: Inne instancje
     source_code: Kod źródłowy
     status_count_after: wpisów
-    status_count_before: Kto jest autorem
+    status_count_before: Są autorami
     terms: Regulamin
-    user_count_after: tootujących
-    user_count_before: Dom dla
+    user_count_after: użytkowników
+    user_count_before: Z serwera korzysta
+    version: Wersja
   accounts:
     follow: Śledź
     followers: Śledzących
@@ -38,6 +40,153 @@ pl:
     posts: Wpisy
     remote_follow: Zdalne śledzenie
     unfollow: Przestań śledzić
+  activitypub:
+    activity:
+      announce:
+        name: "%{account_name} udostępnił(a) aktywność."
+      create:
+        name: "%{account_name} utworzył(a) wpis."
+    outbox:
+      name: Skrzynka %{account_name}
+      summary: Zbiór aktywności użytkownika %{account_name}.
+  admin:
+    accounts:
+      are_you_sure: Jesteś tego pewien?
+      confirm: Potwierdź
+      confirmed: Potwierdzono
+      disable_two_factor_authentication: Wyłącz uwierzytelnianie dwuetapowe
+      display_name: Wyświetlana nazwa
+      domain: Domena
+      edit: Edytuj
+      email: Adres e-mail
+      feed_url: Adres kanału
+      followers: Obserwujący
+      follows: Obserwacje
+      ip: Adres IP
+      location:
+        all: Wszystkie
+        local: Lokalne
+        remote: Zdalne
+        title: Położenie
+      media_attachments: Załączniki multimedialne
+      moderation:
+        all: Wszystko
+        silenced: Wyciszone
+        suspended: Zawieszone
+        title: Moderacja
+      most_recent_activity: Najnowsza aktywność
+      most_recent_ip: Najnowsze IP
+      not_subscribed: Nie zasubskrybowano
+      order:
+        alphabetic: Alfabetycznie
+        most_recent: Najnowsze
+        title: Kolejność
+      perform_full_suspension: Całkowicie zawieś
+      profile_url: Adres profilu
+      public: Publiczne
+      push_subscription_expires: Subskrypcja PuSH wygasa
+      reset: Resetuj
+      reset_password: Resetuj hasło
+      salmon_url: Adres Salmon
+      search: Szukaj
+      show:
+        created_reports: Zgłoszenia tego użytkownika
+        report: zgłoszenie
+        targeted_reports: Zgłoszenia dotyczące tego użytkownika
+      silence: Cisza
+      statuses: Statusy
+      title: Konta
+      undo_silenced: Cofnij wyciszenie
+      undo_suspension: Cofnij zawieszenie
+      username: Nazwa użytkownika
+      web: Sieć
+    domain_blocks:
+      add_new: Dodaj nową
+      created_msg: Blokada domen jest przetwarzana
+      destroyed_msg: Blokada domeny nie może zostać odwrócona
+      domain: Domena
+      new:
+        create: Utwórz blokadę
+        hint: Blokada domen nie zabroni tworzenia wpisów kont w bazie danych, ale pozwoli na automatyczną moderację kont do nich należących.
+        severity:
+          desc_html: "<strong>Wyciszenie</strong> uczyni wpisy użytkownika niewidoczne dla osób, które go nie obserwują. <strong>Zawieszenie</strong> spowoduje usunięcie całej zawartości dodanej przez użytkownika."
+          silence: Wycisz
+          suspend: Zawieś
+        title: Nowa blokada domen
+      reject_media: Odrzucaj pliki multimedialne
+      reject_media_hint: Usuwa przechowywane lokalnie pliki multimedialne i nie pozwala na ich pobieranie. Nieprzydatne przy zawieszeniu
+      severities:
+        silence: Wycisz
+        suspend: Zawieś
+      severity: Priorytet
+      show:
+        affected_accounts:
+          one: Dotyczy jednego konta w bazie danych
+          other: Dotyczy %{count} kont w bazie danych
+        retroactive:
+          silence: Odwołaj wyciszenie wszystkich kont w tej domenie
+          suspend: Odwołaj zawieszenie wszystkich kont w tej domenie
+        title: Odwołaj blokadę dla domeny %{domain}
+        undo: Cofnij
+      title: Blokady domen
+      undo: Cofnij
+    instances:
+      account_count: Znane konta
+      domain_name: Domena
+      title: Znane instancje
+    pubsubhubbub:
+      callback_url: URL zwrotny
+      confirmed: Potwierdzono
+      expires_in: Wygasa
+      last_delivery: Ostatnio doręczono
+      title: PubSubHubbub
+      topic: Temat
+    reports:
+      comment:
+        label: Komentarz
+        none: Brak
+      delete: Usuń
+      id: Identyfikator
+      mark_as_resolved: Oznacz jako rozwiązane
+      report: 'Zgłoszenie #%{id}'
+      report_contents: Zawartość
+      reported_account: Zgłoszone konto
+      reported_by: Zgłoszone przez
+      resolved: Rozwiązano
+      silence_account: Wycisz konto
+      status: Status
+      suspend_account: Zawieś konto
+      target: Cel
+      title: Zgłoszenia
+      unresolved: Nierozwiązane
+      view: Wyświetl
+      nsfw:
+        'true': NSFW będzie wyświetlane
+        'false': NSFW nie będzie wyświetlane
+      are_you_sure: Czy na pewno?
+    settings:
+      contact_information:
+        email: Wprowadź publiczny adres e-mail
+        label: Informacje kontaktowe
+        username: Wprowadź nazwę użytkownika
+      registrations:
+        closed_message:
+          desc_html: Wyświetlana na stronie głównej, gdy możliwość otwarej rejestracji<br>nie jest dostępna. Możesz korzystać z tagów HTML
+          title: Wiadomość o nieaktywnej rejestracji
+        open:
+          disabled: Nieaktywna
+          enabled: Aktywna
+          title: Otwarta rejestracja
+      setting: Ustawienie
+      site_description:
+        desc_html: Wyświetlany jako nagłówek na stronie głównej oraz jako meta tag.<br>Możesz korzystać z tagów HTML, w szczególności z <code>&lt;a&gt;</code> i <code>&lt;em&gt;</code>.
+        title: Opis strony
+      site_description_extended:
+        desc_html: Wyświetlany w rozszerzonych informacjach o stronie<br>Możesz korzystać z tagów HTML
+        title: Extended site description
+      site_title: Tytuł strony
+      title: Ustawienia strony
+    title: Administracja
   application_mailer:
     settings: 'Zmień ustawienia powiadamiania: %{link}'
     signature: Powiadomienie Mastodona, wysłane przez %{instance}
@@ -73,11 +222,32 @@ pl:
       x_minutes: "%{count}min"
       x_months: "%{count} miesięcy"
       x_seconds: "%{count}s"
+  errors:
+    '403': Nie masz uprawnień, aby wyświetlić tą stronę.
+    '404': Strona, którą próbujesz odwiedzić, nie istnieje.
+    '410': Strona, którą próbujesz odwiedzić, już nie istnieje.
+    '422':
+      content: Sprawdzanie bezpieczeństwa nie powiodło się. Czy blokujesz pliki cookie?
+      title: Sprawdzanie bezpieczeństwa nie powiodło się
+    '429': Uduszono
   exports:
     blocks: Blokujesz
     csv: CSV
     follows: Śledzisz
-    storage: Media storage
+    mutes: Wyciszyłeś
+    storage: Urządzenie przechowujące dane
+  followers:
+    domain: Domena
+    explanation_html: Jeżeli chcesz mieć pewność, kto może przeczytać Twoje statusy, musisz kontrolować, kto Cię obserwuje. <strong>Twoje prywatne statusy są dostarczane na te instancje, na których jesteś obserwowany</strong>. Możesz sprawdzać swoich obserwowanych i blokować ich, jeśli nie ufasz właścicielom lub oprogramowaniu danej instancji.
+    followers_count: Liczba obserwujących
+    lock_link: Zablokuj swoje konto
+    purge: Usuń z obserwujących
+    success:
+      one: W trakcie usuwania obserwujcych z jednej domeny…
+      other: W trakcie usuwania obserwujących z %{count} domen…
+    true_privacy_html: Pamiętaj, że <strong>rzeczywista prywatność może zostać uzyskana wyłącznie dzięki szyfrowaniu end-to-end</strong>.
+    unlocked_warning_html: Każdy może cię zaobserwować, aby natychmiastowo zobaczyć twoje statusy. %{lock_link} aby móc kontrolować obserwujących.
+    unlocked_warning_title: Twoje konto nie jest zablokowane
   generic:
     changes_saved_msg: Ustawienia zapisane!
     powered_by: uruchomione na %{link}
@@ -91,17 +261,27 @@ pl:
     types:
       blocking: Lista blokowanych
       following: Lista śledzonych
+      muting: Lista wyciszonych
     upload: Załaduj
-  landing_strip_html: <strong>%{name}</strong> ma konto na %{link_to_root_path}. Możesz je śledzić i wejść z nim w interakcję jeśli masz konto gdziekolwiek w Fediwersie. Jeśli jeszcze go nie masz, możesz <a href="%{sign_up_path}">stworzyć konto</a>.
+  landing_strip_html: <strong>%{name}</strong> ma konto na %{link_to_root_path}. Możesz je śledzić i wejść z nim w interakcję jeśli masz konto gdziekolwiek w Fediwersie.
+  landing_strip_signup_html: Jeśli jeszcze go nie masz, możesz <a href="%{sign_up_path}">stworzyć konto</a>.
+  media_attachments:
+    validations:
+      images_and_video: Nie możesz załączyć pliku wideo do statusu, który zawiera już zdjęcia
+      too_many: Nie możesz załączyć więcej niż 4 plików
   notification_mailer:
     digest:
       body: 'Oto krótkie podsumowanie co Cię ominęło na %{instance} od Twojej ostatniej wizyty (%{since}):'
       mention: "%{name} wspomniał o Tobie w:"
       new_followers_summary:
         one: Śledzi Cię nowa osoba! Gratulacje!
-        other: Kilka (%{count}) nowych osób Cię śledzi! Wspaniale!
+        few: (%{count}) nowe osoby śledzą Cię!
+        many: (%{count}) nowych osób Cię śledzi! Wspaniale!
+        other: (%{count}) nowych osób Cię śledzi! Wspaniale!
       subject:
         one: "1 nowe powiadomienie od Twojej ostatniej wizyty \U0001F418"
+        few: "%{count} nowe powiadomienia od Twojej ostatniej wizyty \U0001F418"
+        many: "%{count} nowych powiadomień od Twojej ostatniej wizyty \U0001F418"
         other: "%{count} nowych powiadomień od Twojej ostatniej wizyty \U0001F418"
     favourite:
       body: 'Twój wpis został polubiony przez %{name}:'
@@ -113,14 +293,15 @@ pl:
       body: "%{name} poprosił o możliwość śledzenia Cię"
       subject: 'Prośba o możliwość śledzenia: %{name}'
     mention:
-      body: '%{name} wspomniał Cię w:'
-      subject: '%{name} Cię wspomniał'
+      body: "%{name} wspomniał Cię w:"
+      subject: "%{name} Cię wspomniał"
     reblog:
       body: 'Twój wpis został podbity przez %{name}:'
-      subject: "Twój wpis został podbity przez %{name}"
+      subject: Twój wpis został podbity przez %{name}
   pagination:
     next: Następna
     prev: Poprzednia
+    truncate: "&hellip;"
   remote_follow:
     acct: Podaj swój adres (nazwa@domena), z którego chcesz śledzić
     missing_resource: Nie udało się znaleźć adresu przekierowania z Twojej domeny
@@ -131,6 +312,7 @@ pl:
     back: Powrót do Mastodona
     edit_profile: Edytuj profil
     export: Exportuj dane
+    followers: Autoryzowani obserwujący
     import: Importuj dane
     preferences: Preferencje
     settings: Ustawienia
@@ -141,20 +323,32 @@ pl:
     show_more: Pokaż więcej
     visibilities:
       private: Tylko dla śledzących
+      private_long: Widoczne tylko obserwowanych
       public: Publiczny
-      unlisted: Publiczny, ale nie wyświetlaj na publicznych osiach czasu
+      public_long: Widoczne dla wszystkich
+      unlisted: Niewypisany
+      unlisted_long: Widoczne dla wszystkich, ale nie wyświetlane na publicznych osiach czasu
   stream_entries:
-    click_to_show: Kliknij aby pokazać
-    reblogged: podbity
-    sensitive_content: Wrażliwa treść
+    click_to_show: Naciśnij aby wyświetlić
+    reblogged: podbito
+    sensitive_content: Wrażliwa zawartość
   time:
     formats:
       default: "%b %d, %Y, %H:%M"
   two_factor_authentication:
+    code_hint: Aby kontynuować, wprowadź kod wyświetlany przez aplikację uwierzytelniającą
     description_html: Jeśli włączysz <strong>uwierzytelnianie dwustopniowe</strong>, logowanie się będzie wymagało podania tokenu wyświetlonego na Twoim telefone.
     disable: Wyłącz
     enable: Włącz
+    enabled_success: Pomyślnie aktywowano uwierzytelnianie dwuetapowe
+    generate_recovery_codes: Generuj kody zapasowe
     instructions_html: "<strong>Zeskanuj ten kod QR na swoim urządzeniu za pomocą Google Authenticator, FreeOTP lub podobnej aplikacji</strong>. Od teraz będzie ona generowała kody wymagane przy logowaniu."
+    lost_recovery_codes: Kody zapasowe pozwolą uzyskać dostęp do portalu, jeżeli utracisz dostęp do telefonu. Jeżeli utracisz dostęp do nich, możesz wygenerować je ponownie tutaj. Poprzednie zostaną unieważnione
+    manual_instructions: 'Jeżeli nie możesz zeskanować kodu QR, musisz wprowadzić ten kod ręcznie:'
+    recovery_codes_regenerated: Pomyślnie wygenerowano ponownie kody zapasowe
+    recovery_instructions: Jeżeli kiedykolwiek utracisz dostęp do telefonu, możesz wykorzystać jeden z kodów zapasowych, aby odzyskać dostęp do konta./ Trzymaj je w bezpiecznym miejscu. (Na przykład, wydrukuj je i przechowuj z ważnymu dokumentami.)
+    setup: Skonfiguruj
+    wrong_code: Wprowadzony kod jest niepoprawny! Czy czas serwera i urządzenia jest poprawny?
   users:
     invalid_email: Adres e-mail jest niepoprawny
     invalid_otp_token: Kod uwierzytelniający jest niepoprawny

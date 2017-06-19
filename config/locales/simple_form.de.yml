@@ -4,10 +4,10 @@ de:
     hints:
       defaults:
         avatar: PNG, GIF oder JPG. Maximal 2MB. Wird auf 120x120px herunterskaliert
-        display_name: '%{counter} Zeichen verbleiben'
+        display_name: '<span class="name-counter">%{count}</span> Zeichen verbleiben'
         header: PNG, GIF oder JPG. Maximal 2MB. Wird auf 700x335px herunterskaliert
         locked: Erlaubt dir, Nutzer zu überprüfen, bevor sie dir folgen können
-        note: '%{counter} Zeichen verbleiben'
+        note: '<span class="note-counter">%{count}</span> Zeichen verbleiben'
       imports:
         data: CSV-Datei, die von einer anderen Mastodon-Instanz exportiert wurde
       sessions:

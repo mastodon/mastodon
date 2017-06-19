@@ -48,6 +48,7 @@ class TagManager
   end
 
   def unique_tag_to_local_id(tag, expected_type)
+    return nil unless local_id?(tag)
     matches = Regexp.new("objectId=([\\d]+):objectType=#{expected_type}").match(tag)
     return matches[1] unless matches.nil?
   end

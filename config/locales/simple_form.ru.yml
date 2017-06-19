@@ -4,14 +4,24 @@ ru:
     hints:
       defaults:
         avatar: PNG, GIF или JPG. Максимально 2MB. Будет уменьшено до 120x120px
-        display_name: 'Осталось символов: %{counter}'
+        display_name:
+          one: 'Остался <span class="name-counter">1</span> символ'
+          few: 'Осталось <span class="name-counter">%{count}</span> символа'
+          many: 'Осталось <span class="name-counter">%{count}</span> символов'
+          other: 'Осталось <span class="name-counter">%{count}</span> символов'
         header: PNG, GIF или JPG. Максимально 2MB. Будет уменьшено до 700x335px
         locked: Потребует от Вас ручного подтверждения подписчиков, изменит приватность постов по умолчанию на "только для подписчиков"
-        note: 'Осталось символов: %{counter}'
+        note:
+          one: 'Остался <span class="name-counter">1</span> символ'
+          few: 'Осталось <span class="name-counter">%{count}</span> символа'
+          many: 'Осталось <span class="name-counter">%{count}</span> символов'
+          other: 'Осталось <span class="name-counter">%{count}</span> символов'
       imports:
         data: Файл CSV, экспортированный с другого узла Mastodon
       sessions:
         otp: Введите код двухфакторной аутентификации или используйте один из Ваших кодов восстановления.
+      user:
+        filtered_languages: Выбранные языки будут убраны из Ваших публичных лет.
     labels:
       defaults:
         avatar: Аватар
@@ -21,6 +31,7 @@ ru:
         data: Данные
         display_name: Показываемое имя
         email: Адрес e-mail
+        filtered_languages: Фильтруемые языки
         header: Заголовок
         locale: Язык
         locked: Сделать аккаунт приватным

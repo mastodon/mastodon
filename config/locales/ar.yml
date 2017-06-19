@@ -6,28 +6,28 @@ ar:
     apps: التطبيقات
     business_email: 'البريد الإلكتروني المهني :'
     closed_registrations: التسجيلات في مثيل الخادوم هذا مُغلقة حاليًا.
-    contact: Contact
+    contact: للتواصل معنا
     description_headline: ما هو %{domain}?
     domain_count_after: خوادم أخرى
     domain_count_before: متصل بـ
     features:
-      api: Open API for apps and services
-      blocks: Rich block and muting tools
+      api: واجهة برمجة مفتوحة للتطبيقات والخدمات
+      blocks: نص منسق وأدوات كتم
       characters: 500 حرف في كل رسالة
-      chronology: Timelines are chronological
-      ethics: 'Ethical design: no ads, no tracking'
-      gifv: GIFV sets and short videos
-      privacy: Granular, per-post privacy settings
+      chronology: خيوط متسلسلة زمنيا
+      ethics: 'تصميم أخلاقي : لا إعلانات و لا تعقُّب'
+      gifv: مجموعات صور GIFV وأشرطة فيديو قصيرة
+      privacy: إعدادات مدققة لخصوصية كل منشور
       public: الخيوط الزمنية العمومية
     features_headline: ما الذي يجعل ماستدون فريدًا ؟
     get_started: إبدأ الآن
     links: الروابط
     other_instances: خوادم أخرى
     source_code: الشفرة المصدرية
-    status_count_after: منشورات
+    status_count_after: منشورا
     status_count_before: نشروا
     terms: شروط الاستعمال
-    user_count_after: المُستخدِمين
+    user_count_after: مستخدم
     user_count_before: يستضيف
   accounts:
     follow: إتبع
@@ -47,7 +47,7 @@ ar:
     invalid_url: إن الرابط المقدم غير صالح
   auth:
     change_password: الهوية
-    didnt_get_confirmation: Didn't receive confirmation instructions?
+    didnt_get_confirmation: لم تتلق تعليمات التأكيد ؟
     forgot_password: نسيت كلمة المرور ؟
     login: تسجيل الدخول
     logout: خروج
@@ -93,10 +93,11 @@ ar:
       blocking: قائمة المحظورين
       following: قائمة المستخدمين المتبوعين
     upload: تحميل
-  landing_strip_html: <strong>%{name}</strong> is a user on <strong>%{domain}</strong>. You can follow them or interact with them if you have an account anywhere in the fediverse. If you don't, you can <a href="%{sign_up_path}">sign up here</a>.
+  landing_strip_html: <strong>%{name}</strong> is a user on %{link_to_root_path}. You can follow them or interact with them if you have an account anywhere in the fediverse..
+  landing_strip_signup_html: If you don't, you can <a href="%{sign_up_path}">sign up here</a>.
   media_attachments:
     validations:
-      images_and_video: Cannot attach a video to a status that already contains images
+      images_and_video: ليس بالإمكان إرفاق فيديو في منشور يحتوي مسبقا على صور
       too_many: لا يمكن إرفاق أكثر من 4 ملفات
   notification_mailer:
     digest:
@@ -119,7 +120,7 @@ ar:
       subject: 'Pending follower: %{name}'
     mention:
       body: 'You were mentioned by %{name} in:'
-      subject: You were mentioned by %{name}
+      subject: لقد قام %{name} بذِكرك
     reblog:
       body: 'Your status was boosted by %{name}:'
       subject: "%{name} boosted your status"
@@ -139,14 +140,14 @@ ar:
     import: إستيراد
     preferences: التفضيلات
     settings: الإعدادات
-    two_factor_authentication: المصادقة الثنائية
+    two_factor_authentication: اثبات هويّة مزدوج
   statuses:
     open_in_web: إفتح في الويب
     over_character_limit: تم تجاوز حد الـ %{max} حرف المسموح بها
     show_more: أظهر المزيد
     visibilities:
       private: إعرض فقط لمتتبعيك
-      public: عمومي
+      public: للعامة
       unlisted: Public, but do not display on the public timeline
   stream_entries:
     click_to_show: إضغط للعرض
@@ -160,11 +161,11 @@ ar:
     description_html: If you enable <strong>two-factor authentication</strong>, logging in will require you to be in possession of your phone, which will generate tokens for you to enter.
     disable: تعطيل
     enable: تفعيل
-    enabled_success: Two-factor authentication successfully enabled
+    enabled_success: تم تفعيل إثبات الهوية المزدوج بنجاح
     instructions_html: "<strong>Scan this QR code into Google Authenticator or a similiar TOTP app on your phone</strong>. From now on, that app will generate tokens that you will have to enter when logging in."
     manual_instructions: 'If you can''t scan the QR code and need to enter it manually, here is the plain-text secret:'
     setup: Set up
-    wrong_code: The entered code was invalid! Are server time and device time correct?
+    wrong_code: الرمز الذي أدخلته غير صالح. تحقق من صحة الوقت على الخادم و الجهاز.
   users:
     invalid_email: عنوان البريد الإلكتروني غير صالح
     invalid_otp_token: الرمز الثنائي غير صالح
