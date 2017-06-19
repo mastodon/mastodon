@@ -1,10 +1,28 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import Immutable from 'immutable';
 import PropTypes from 'prop-types';
 import Link from 'react-router/lib/Link';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
-import IconButton from '../../../components/icon_button';
+import IconButton from '../../../components/announcement_icon_button';
+import Motion from 'react-motion/lib/Motion';
+import spring from 'react-motion/lib/spring';
+
+const Collapsable = ({ fullHeight, minHeight, isVisible, children }) => (
+  <Motion defaultStyle={{height: isVisible ? fullHeight : minHeight }} style={{height: spring(!isVisible ? minHeight : fullHeight) }}>
+    {({ height }) =>
+      <div style={{ height: `${height}px`, overflow: 'hidden'}}>
+        {children}
+      </div>
+    }
+  </Motion>
+);
+
+Collapsable.propTypes = {
+  fullHeight: PropTypes.number.isRequired,
+  minHeight: PropTypes.number.isRequired,
+  isVisible: PropTypes.bool.isRequired,
+  children: PropTypes.node.isRequired,
+};
 
 const messages = defineMessages({
   welcome: { id: 'welcome.message', defaultMessage: 'Welcome to {domain}!' },
@@ -15,24 +33,20 @@ const hashtags = Immutable.fromJS([
   'みんなのP名刺',
 ]);
 
-const mapStateToProps = state => ({
-  isEmptyHome: state.getIn(['timelines', 'home', 'items']).size < 5,
-});
-
 class Announcements extends React.PureComponent {
 
   static propTypes = {
     intl: PropTypes.object.isRequired,
-    isEmptyHome: PropTypes.bool,
+    homeSize: PropTypes.number,
+    isLoading: PropTypes.bool,
   };
 
   state = {
-    show: true,
+    show: false,
   };
 
   onClick = () => {
-    const currentShow = this.state.show;
-    this.setState({show: !currentShow});
+    this.setState({show: !this.state.show});
   }
   nl2br (text) {
     return text.split(/(\n)/g).map(function (line) {
@@ -44,31 +58,35 @@ class Announcements extends React.PureComponent {
   }
 
   render () {
-    const { intl, isEmptyHome } = this.props;
-    const { show } = this.state;
+    const { intl } = this.props;
 
-    if (!isEmptyHome) {
-      return null;
-    }
     return (
       <ul className='announcements'>
-        <li style={{display: show ? '' : 'none'}}>
-          <div className='announcements__body'>
-            <p>{this.nl2br(intl.formatMessage(messages.welcome, {domain: document.title}))}</p>
-            {hashtags.map(hashtag =>
-              <Link to={`/timelines/tag/${hashtag}`}>
-                #{hashtag}
-              </Link>
-            )}
-          </div>
+        <li>
+          <Collapsable isVisible={this.state.show} fullHeight={300} minHeight={20} >
+            <div className='announcements__body'>
+              <p>{this.nl2br(intl.formatMessage(messages.welcome, {domain: document.title}))}</p>
+              {hashtags.map(hashtag =>
+                <Link to={`/timelines/tag/${hashtag}`}>
+                  #{hashtag}
+                </Link>
+              )}
+            </div>
+          </Collapsable>
           <div className='announcements__icon'>
-            <IconButton icon='times' onClick={this.onClick} size={16} />
+            <IconButton icon='caret-up' onClick={this.onClick} size={20} animate={true} active={this.state.show} />
           </div>
         </li>
       </ul>
     );
   }
 
+  componentWillReceiveProps (nextProps) {
+    if (!nextProps.isLoading && (nextProps.homeSize === 0 || this.props.homeSize !== nextProps.homeSize)) {
+        this.setState({show: nextProps.homeSize < 5});
+    }
+  }
+
 }
 
-export default connect(mapStateToProps)(injectIntl(Announcements));
+export default injectIntl(Announcements);

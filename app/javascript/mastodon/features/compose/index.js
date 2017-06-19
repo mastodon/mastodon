@@ -11,7 +11,7 @@ import SearchContainer from './containers/search_container';
 import Motion from 'react-motion/lib/Motion';
 import spring from 'react-motion/lib/spring';
 import SearchResultsContainer from './containers/search_results_container';
-import Announcements from './components/announcements';
+import AnnouncementsContainer from './containers/announcements_container';
 import AdminAnnouncements from './components/admin_announcements';
 
 const messages = defineMessages({
@@ -71,7 +71,7 @@ class Compose extends React.PureComponent {
             <AdminAnnouncements />
             <NavigationContainer />
             <ComposeFormContainer />
-            <Announcements />
+            <AnnouncementsContainer />
           </div>
 
           <Motion defaultStyle={{ x: -100 }} style={{ x: spring(showSearch ? 0 : -100, { stiffness: 210, damping: 20 }) }}>
