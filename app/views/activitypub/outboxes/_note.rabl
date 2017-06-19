@@ -9,3 +9,4 @@ node(:actor) { |status| ActivityPub::TagManager.instance.uri_for(status.account)
 node(:to) { |status| ActivityPub::TagManager.instance.to(status) }
 node(:cc, if: :unlisted_visibility?) { ActivityPub::TagManager::COLLECTIONS[:public] }
 node(:attachment, if: ->(status) { status.media_attachments.present? }) { |status| status.media_attachments.map { |media| partial('activitypub/outboxes/attachment', object: media) } }
+node(:tag) { |status| status.mentions.map(&:account).map { |a| partial('activitypub/outboxes/mention', object: a) }.concat(status.tags.map { |t| partial('activitypub/outboxes/tag', object: t) }) }
