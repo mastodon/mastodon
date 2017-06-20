@@ -1,6 +1,7 @@
 import React from 'react';
 import { List } from 'immutable';
-import { action, storiesOf } from '@kadira/storybook';
+import { storiesOf } from '@storybook/react';
+import { action } from '@storybook/addon-actions';
 import AutosuggestTextarea from 'mastodon/components/autosuggest_textarea';
 
 const props = {
