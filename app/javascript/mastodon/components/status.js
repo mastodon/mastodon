@@ -91,14 +91,6 @@ class Status extends ImmutablePureComponent {
   }
 
   componentWillUnmount () {
-    if (!this.props.intersectionObserverWrapper) {
-      // TODO: enable IntersectionObserver optimization for notification statuses.
-      // These are managed in notifications/index.js rather than status_list.js
-      return;
-    }
-
-    this.props.intersectionObserverWrapper.unobserve(this.props.id, this.node);
-
     this.componentMounted = false;
   }
 
