@@ -174,7 +174,7 @@ class ProcessFeedService < BaseService
         return Conversation.find_by(id: local_id)
       end
 
-      Conversation.find_by(uri: uri)
+      Conversation.find_by(uri: uri) || Conversation.create!(uri: uri)
     end
 
     def find_status(uri)
