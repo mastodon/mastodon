@@ -66,8 +66,6 @@ class ProcessFeedService < BaseService
           status.reblog = original_status.reblog? ? original_status.reblog : original_status
         end
 
-        status.thread = find_status(thread(@xml).first) if thread?(@xml)
-
         status.save!
       end
 
@@ -155,7 +153,8 @@ class ProcessFeedService < BaseService
         reply: thread?(entry),
         language: content_language(entry),
         visibility: visibility_scope(entry),
-        conversation: find_or_create_conversation(entry)
+        conversation: find_or_create_conversation(entry),
+        thread: thread?(entry) ? find_status(thread(entry).first) : nil
       )
 
       mentions_from_xml(status, entry)
@@ -174,7 +173,7 @@ class ProcessFeedService < BaseService
         return Conversation.find_by(id: local_id)
       end
 
-      Conversation.find_by(uri: uri)
+      Conversation.find_by(uri: uri) || Conversation.create!(uri: uri)
     end
 
     def find_status(uri)
