@@ -64,19 +64,17 @@
 
     .status__avatar {
       position: absolute;
+      @include avatar-size(48px);
       left: 14px;
       top: 14px;
-      width: 48px;
-      height: 48px;
 
       & > div {
-        width: 48px;
-        height: 48px;
+        @include avatar-size(48px);
       }
 
       img {
+        @include avatar-radius();
         display: block;
-        border-radius: 4px;
       }
     }
 
@@ -164,12 +162,11 @@
     }
 
     .avatar {
-      width: 48px;
-      height: 48px;
+      @include avatar-size(48px);
 
       img {
+        @include avatar-radius();
         display: block;
-        border-radius: 4px;
       }
     }
 

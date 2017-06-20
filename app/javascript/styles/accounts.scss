@@ -46,17 +46,16 @@
   }
 
   .avatar {
-    width: 120px;
+    @include avatar-size(120px);
     margin: 0 auto;
     margin-bottom: 15px;
     position: relative;
     z-index: 2;
 
     img {
-      width: 120px;
-      height: 120px;
+      @include avatar-radius();
+      @include avatar-size(120px);
       display: block;
-      border-radius: 120px;
     }
   }
 
@@ -283,16 +282,14 @@
     }
 
     .avatar {
-      width: 60px;
-      height: 60px;
+      @include avatar-size(60px);
       float: left;
       margin-right: 15px;
 
       img {
+        @include avatar-radius();
+        @include avatar-size(60px);
         display: block;
-        width: 60px;
-        height: 60px;
-        border-radius: 60px;
       }
     }
 
@@ -359,15 +356,14 @@
     }
 
     & > div {
+      @include avatar-size(48px);
       float: left;
       margin-right: 10px;
-      width: 48px;
-      height: 48px;
     }
 
     .avatar {
+      @include avatar-radius();
       display: block;
-      border-radius: 4px;
     }
 
     .display-name {
