@@ -2,7 +2,7 @@ import React from 'react';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
 import DropdownMenu from '../../../components/dropdown_menu';
-import Link from 'react-router/lib/Link';
+import Link from 'react-router-dom/Link';
 import { defineMessages, injectIntl, FormattedMessage, FormattedNumber } from 'react-intl';
 
 const messages = defineMessages({

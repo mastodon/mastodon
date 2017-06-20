@@ -52,7 +52,7 @@ class Report extends React.PureComponent {
 
   componentWillMount () {
     if (!this.props.account) {
-      this.context.router.replace('/');
+      this.context.router.history.replace('/');
     }
   }
 
@@ -76,7 +76,7 @@ class Report extends React.PureComponent {
 
   handleSubmit = () => {
     this.props.dispatch(submitReport());
-    this.context.router.replace('/');
+    this.context.router.history.replace('/');
   }
 
   render () {
