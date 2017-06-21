@@ -181,15 +181,18 @@ RSpec.describe Status, type: :model do
   end
 
   describe '.as_home_timeline' do
+    let(:account) { Fabricate(:account) }
+    let(:followed) { Fabricate(:account) }
+    let(:not_followed) { Fabricate(:account) }
+
     before do
-      account = Fabricate(:account)
-      followed = Fabricate(:account)
-      not_followed = Fabricate(:account)
       Fabricate(:follow, account: account, target_account: followed)
 
-      @self_status = Fabricate(:status, account: account)
-      @followed_status = Fabricate(:status, account: followed)
-      @not_followed_status = Fabricate(:status, account: not_followed)
+      @self_status = Fabricate(:status, account: account, visibility: :public)
+      @self_direct_status = Fabricate(:status, account: account, visibility: :direct)
+      @followed_status = Fabricate(:status, account: followed, visibility: :public)
+      @followed_direct_status = Fabricate(:status, account: followed, visibility: :direct)
+      @not_followed_status = Fabricate(:status, account: not_followed, visibility: :public)
 
       @results = Status.as_home_timeline(account)
     end
@@ -198,8 +201,21 @@ RSpec.describe Status, type: :model do
       expect(@results).to include(@self_status)
     end
 
+    it 'includes direct statuses from self' do
+      expect(@results).to include(@self_direct_status)
+    end
+
     it 'includes statuses from followed' do
       expect(@results).to include(@followed_status)
+    end
+
+    it 'includes direct statuses mentioning recipient from followed' do
+      Fabricate(:mention, account: account, status: @followed_direct_status)
+      expect(@results).to include(@followed_direct_status)
+    end
+
+    it 'does not include direct statuses not mentioning recipient from followed' do
+      expect(@results).not_to include(@followed_direct_status)
     end
 
     it 'does not include statuses from non-followed' do

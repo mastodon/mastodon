@@ -41,7 +41,7 @@ class DropdownMenu extends React.PureComponent {
       action();
     } else if (to) {
       e.preventDefault();
-      this.context.router.push(to);
+      this.context.router.history.push(to);
     }
 
     this.dropdown.hide();
