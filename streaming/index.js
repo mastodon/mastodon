@@ -115,7 +115,7 @@ const startWorker = (workerId) => {
 
   const subs = {};
 
-  redisSubscribeClient.on('pmessage', (_, channel, message) => {
+  redisSubscribeClient.on('message', (channel, message) => {
     const callbacks = subs[channel];
 
     log.silly(`New message on channel ${channel}`);
@@ -126,8 +126,6 @@ const startWorker = (workerId) => {
 
     callbacks.forEach(callback => callback(message));
   });
-
-  redisSubscribeClient.psubscribe(`${redisPrefix}timeline:*`);
 
   const subscriptionHeartbeat = (channel) => {
     const interval = 6*60;
@@ -144,12 +142,20 @@ const startWorker = (workerId) => {
   const subscribe = (channel, callback) => {
     log.silly(`Adding listener for ${channel}`);
     subs[channel] = subs[channel] || [];
+    if (subs[channel].length === 0) {
+      log.verbose(`Subscribe ${channel}`);
+      redisSubscribeClient.subscribe(channel);
+    }
     subs[channel].push(callback);
   };
 
   const unsubscribe = (channel, callback) => {
     log.silly(`Removing listener for ${channel}`);
     subs[channel] = subs[channel].filter(item => item !== callback);
+    if (subs[channel].length === 0) {
+      log.verbose(`Unsubscribe ${channel}`);
+      redisSubscribeClient.unsubscribe(channel);
+    }
   };
 
   const allowCrossDomain = (req, res, next) => {

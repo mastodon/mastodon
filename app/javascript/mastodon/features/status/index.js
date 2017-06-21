@@ -93,7 +93,7 @@ class Status extends ImmutablePureComponent {
   }
 
   handleReplyClick = (status) => {
-    this.props.dispatch(replyCompose(status, this.context.router));
+    this.props.dispatch(replyCompose(status, this.context.router.history));
   }
 
   handleModalReblog = (status) => {

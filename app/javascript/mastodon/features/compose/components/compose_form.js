@@ -18,6 +18,7 @@ import UploadFormContainer from '../containers/upload_form_container';
 import TextIconButton from './text_icon_button';
 import WarningContainer from '../containers/warning_container';
 import ImmutablePureComponent from 'react-immutable-pure-component';
+import { length } from 'stringz';
 
 const messages = defineMessages({
   placeholder: { id: 'compose_form.placeholder', defaultMessage: 'What is on your mind?' },
@@ -74,9 +75,9 @@ class ComposeForm extends ImmutablePureComponent {
     this.props.onClearSuggestions();
   }
 
-  onSuggestionsFetchRequested = (token) => {
+  onSuggestionsFetchRequested = debounce((token) => {
     this.props.onFetchSuggestions(token);
-  }
+  }, 500, { trailing: true })
 
   onSuggestionSelected = (tokenStart, token, value) => {
     this._restoreCaret = null;
@@ -193,7 +194,7 @@ class ComposeForm extends ImmutablePureComponent {
 
           <div className='compose-form__publish'>
             <div className='character-counter__wrapper'><CharacterCounter max={500} text={text} /></div>
-            <div className='compose-form__publish-button-wrapper'><Button text={publishText} onClick={this.handleSubmit} disabled={disabled || this.props.is_uploading || text.replace(/[\uD800-\uDBFF][\uDC00-\uDFFF]/g, '_').length > 500 || (text.length !==0 && text.trim().length === 0)} block /></div>
+            <div className='compose-form__publish-button-wrapper'><Button text={publishText} onClick={this.handleSubmit} disabled={disabled || this.props.is_uploading || length(text) > 500 || (text.length !==0 && text.trim().length === 0)} block /></div>
           </div>
         </div>
       </div>
