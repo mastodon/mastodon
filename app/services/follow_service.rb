@@ -7,7 +7,7 @@ class FollowService < BaseService
   # @param [Account] source_account From which to follow
   # @param [String] uri User URI to follow in the form of username@domain
   def call(source_account, uri)
-    target_account = FollowRemoteAccountService.new.call(uri)
+    target_account = ResolveRemoteAccountService.new.call(uri)
 
     raise ActiveRecord::RecordNotFound if target_account.nil? || target_account.id == source_account.id || target_account.suspended?
     raise Mastodon::NotPermittedError  if target_account.blocking?(source_account) || source_account.blocking?(target_account)
