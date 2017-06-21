@@ -92,16 +92,12 @@
 .column-collapsable__button,
 .column-icon-clear {
   background-color: $classic-base-color !important;
-  border-top-right-radius: 5px;
-  -moz-border-top-right-radius: 5px;
-  -webkit-border-top-right-radius: 5px;
+  border-radius: 0 5px 0 0;
 }
 
 .column-collapsable__button:hover {
   background-color: $column-button-hover !important;
-  border-top-right-radius: 5px;
-  -moz-border-top-right-radius: 5px;
-  -webkit-border-top-right-radius: 5px;
+  border-radius: 0 5px 0 0;
 }
 
 .column-icon {
@@ -132,8 +128,6 @@
 
 .column {
   border-radius: 10px;
-  -moz-border-radius: 10px;
-  -webkit-border-radius: 10px;
   width: 330px;
 }
 
@@ -144,12 +138,7 @@
 .column-header,
 .column-back-button {
   background-color: $classic-base-color;
-  -webkit-border-top-left-radius: 5px;
-  -webkit-border-top-right-radius: 5px;
-  -moz-border-radius-topleft: 5px;
-  -moz-border-radius-topright: 5px;
-  border-top-left-radius: 5px;
-  border-top-right-radius: 5px;
+  border-radius: 5px 5px 0px 0px;
 }
 
 @media screen and (min-width: 1025px) {
@@ -1340,12 +1329,7 @@
 }
 
 .scrollable {
-  -webkit-border-bottom-right-radius: 5px;
-  -webkit-border-bottom-left-radius: 5px;
-  -moz-border-radius-bottomright: 5px;
-  -moz-border-radius-bottomleft: 5px;
-  border-bottom-right-radius: 5px;
-  border-bottom-left-radius: 5px;
+  border-radius: 0 0 5px 5px;
 }
 
 .ui {
@@ -1467,8 +1451,6 @@
   width: 100%;
   height: 100%;
   border-radius: 6px;
-  -moz-border-radius: 6px;
-  -webkit-border-radius: 6px;
 
   &.darker {
     background: $ui-base-color;
@@ -1489,8 +1471,6 @@
   display: flex;
   flex-direction: row;
   border-radius: 5px;
-  -moz-border-radius: 5px;
-  -webkit-border-radius: 5px;
 
   a {
     transition: background 100ms ease-in;
@@ -1503,12 +1483,7 @@
 }
 
 div.drawer__header a:first-child:hover {
-  border-top-left-radius: 5px !important;
-  -moz-border-top-left-radius: 5px !important;
-  -webkit-border-top-left-radius: 5px !important;
-  border-bottom-left-radius: 5px !important;
-  -moz-border-bottom-left-radius: 5px !important;
-  -webkit-border-bottom-left-radius: 5px !important;
+  border-radius: 5px 0 0 5px;
 }
 
 .tabs-bar {
@@ -2155,9 +2130,7 @@ button.icon-button.active i.fa-retweet {
   cursor: pointer;
   font-size: 16px;
   padding: 0 15px;
-  border-top-right-radius: 4px !important;
-  -moz-border-top-right-radius: 4px !important;
-  -webkit-border-top-right-radius: 4px !important;
+  border-radius: 0 4px 0 0 !important;
 
   &:hover {
     color: lighten($ui-primary-color, 7%);
@@ -3724,16 +3697,12 @@ noscript {
 
 span img {
   border-radius: 10px !important;
-  -moz-border-radius: 10px !important;
-  -webkit-border-radius: 10px !important;
 }
 
 img[alt="Screenshot"],
 img[alt="Logo"],
 img[alt="Fluffy elephant friend"] {
   border-radius: 0 !important;
-  -moz-border-radius: 0 !important;
-  -webkit-border-radius: 0 !important;
 }
 
 div[style="position: relative;"] {
@@ -3746,8 +3715,6 @@ div[style="position: relative;"] {
 
 .card {
   border-radius: 4px !important;
-  -moz-border-radius: 4px !important;
-  -webkit-border-radius: 4px !important;
 }
 
 .dropdown__content-list-item {
