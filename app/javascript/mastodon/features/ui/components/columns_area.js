@@ -2,22 +2,17 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
+
 import ReactSwipeable from 'react-swipeable';
-import HomeTimeline from '../../home_timeline';
-import Notifications from '../../notifications';
-import PublicTimeline from '../../public_timeline';
-import CommunityTimeline from '../../community_timeline';
-import HashtagTimeline from '../../hashtag_timeline';
-import Compose from '../../compose';
 import { getPreviousLink, getNextLink } from './tabs_bar';
 
 const componentMap = {
-  'COMPOSE': Compose,
-  'HOME': HomeTimeline,
-  'NOTIFICATIONS': Notifications,
-  'PUBLIC': PublicTimeline,
-  'COMMUNITY': CommunityTimeline,
-  'HASHTAG': HashtagTimeline,
+  'COMPOSE': () => import(/* webpackChunkName: "columns/compose" */'../../compose'),
+  'HOME': () => import(/* webpackChunkName: "columns/home_timeline" */'../../home_timeline'),
+  'NOTIFICATIONS': () => import(/* webpackChunkName: "columns/notifications" */'../../notifications'),
+  'PUBLIC': () => import(/* webpackChunkName: "columns/public_timeline" */'../../public_timeline'),
+  'COMMUNITY': () => import(/* webpackChunkName: "columns/community_timeline" */'../../community_timeline'),
+  'HASHTAG': () => import(/* webpackChunkName: "columns/hashtag_timeline" */'../../hashtag_timeline'),
 };
 
 export default class ColumnsArea extends ImmutablePureComponent {
@@ -48,6 +43,10 @@ export default class ColumnsArea extends ImmutablePureComponent {
     }
   };
 
+  renderRetry = (props) => {
+    return <BundleRefetch {...props} />;
+  }
+
   render () {
     const { columns, children, singleColumn } = this.props;
 
@@ -62,9 +61,20 @@ export default class ColumnsArea extends ImmutablePureComponent {
     return (
       <div className='columns-area'>
         {columns.map(column => {
-          const SpecificComponent = componentMap[column.get('id')];
           const params = column.get('params', null) === null ? null : column.get('params').toJS();
-          return <SpecificComponent key={column.get('uuid')} columnId={column.get('uuid')} params={params} multiColumn />;
+
+          return (
+            <Bundle load={componentMap[column.get('id')]} retry={this.renderRetry}>
+              {SpecificComponent => SpecificComponent ?
+                <SpecificComponent key={column.get('uuid')} columnId={column.get('uuid')} params={params} multiColumn /> :
+                (
+                  <Column>
+                    <ColumnHeader icon=' ' title='' multiColumn={false} />
+                    <div className='scrollable' />
+                  </Column>
+                )}
+            </Bundle>
+          );
         })}
 
         {React.Children.map(children, child => React.cloneElement(child, { multiColumn: true }))}
