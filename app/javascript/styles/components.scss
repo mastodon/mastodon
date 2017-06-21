@@ -89,6 +89,17 @@
   }
 }
 
+.column-collapsable__button,
+.column-icon-clear {
+  background-color: $classic-base-color !important;
+  border-radius: 0 5px 0 0;
+}
+
+.column-collapsable__button:hover {
+  background-color: $column-button-hover !important;
+  border-radius: 0 5px 0 0;
+}
+
 .column-icon {
   background: lighten($ui-base-color, 4%);
   color: $ui-primary-color;
@@ -102,6 +113,37 @@
 
   &:hover {
     color: lighten($ui-primary-color, 7%);
+  }
+}
+
+.column-icon-clear {
+  font-size: 16px;
+  padding: 15px;
+  position: absolute;
+  right: 48px;
+  top: 0;
+  cursor: pointer;
+  z-index: 2;
+}
+
+.column {
+  border-radius: 10px;
+  width: 330px;
+}
+
+.column-link[data-method="delete"]:hover {
+  background: $column-link !important;
+}
+
+.column-header,
+.column-back-button {
+  background-color: $classic-base-color;
+  border-radius: 5px 5px 0 0;
+}
+
+@media screen and (min-width: 1025px) {
+  .column-icon-clear {
+    top: 10px;
   }
 }
 
@@ -1246,6 +1288,7 @@
 
 .dropdown__icon {
   vertical-align: middle;
+  margin: -3px;
 }
 
 .static-content {
@@ -1291,6 +1334,10 @@
   > .scrollable {
     background: $ui-base-color;
   }
+}
+
+.scrollable {
+  border-radius: 0 0 5px 5px;
 }
 
 .ui {
@@ -1411,6 +1458,7 @@
   overflow-y: auto;
   width: 100%;
   height: 100%;
+  border-radius: 6px;
 
   &.darker {
     background: $ui-base-color;
@@ -1430,6 +1478,7 @@
   margin-bottom: 10px;
   display: flex;
   flex-direction: row;
+  border-radius: 5px;
 
   a {
     transition: background 100ms ease-in;
@@ -1439,6 +1488,10 @@
       transition: background 200ms ease-out;
     }
   }
+}
+
+div.drawer__header a:first-child:hover {
+  border-radius: 5px 0 0 5px;
 }
 
 .tabs-bar {
@@ -1527,7 +1580,7 @@
 }
 
 .column-header__back-button {
-  background: lighten($ui-base-color, 4%);
+  background: $classic-base-color;
   border: 0;
   font-family: inherit;
   color: $ui-highlight-color;
@@ -1668,7 +1721,7 @@
 }
 
 .column-link {
-  background: lighten($ui-base-color, 8%);
+  background-color: $classic-base-color;
   color: $primary-text-color;
   display: block;
   font-size: 16px;
@@ -1826,6 +1879,7 @@
   padding-bottom: 235px;
   background: url('../images/mastodon-getting-started.png') no-repeat 0 100%;
   flex: 1 0 auto;
+  overflow: hidden;
 
   p {
     color: $ui-secondary-color;
@@ -2078,12 +2132,13 @@ button.icon-button.active i.fa-retweet {
 }
 
 .column-header__button {
-  background: lighten($ui-base-color, 4%);
+  background: $classic-base-color;
   border: 0;
   color: $ui-primary-color;
   cursor: pointer;
   font-size: 16px;
   padding: 0 15px;
+  border-radius: 0 4px 0 0 !important;
 
   &:hover {
     color: lighten($ui-primary-color, 7%);
@@ -2098,6 +2153,10 @@ button.icon-button.active i.fa-retweet {
       background: lighten($ui-base-color, 8%);
     }
   }
+}
+
+.column-header__button:hover {
+  background-color: $column-button-hover !important;
 }
 
 .column-header__collapsible {
@@ -3642,4 +3701,35 @@ noscript {
     font-size: 20px;
     margin: 20px 0;
   }
+}
+
+span img {
+  border-radius: 10px !important;
+}
+
+img[alt="Screenshot"],
+img[alt="Logo"],
+img[alt="Fluffy elephant friend"] {
+  border-radius: 0 !important;
+}
+
+div[style="position: relative;"] {
+  background-color: $classic-base-color;
+}
+
+.activity-stream {
+  margin-top: 10px;
+}
+
+.card {
+  border-radius: 4px !important;
+}
+
+.dropdown__content-list-item {
+  width: 200px !important;
+}
+
+.drawer__tab[data-method="delete"]:hover {
+  background: $tab-delete !important;
+  color: $classic-primary-color !important;
 }
