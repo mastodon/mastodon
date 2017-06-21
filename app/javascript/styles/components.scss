@@ -348,6 +348,18 @@
   line-height: 27px;
 }
 
+.compose-form__sensitive-button {
+  display: none;
+
+  &.compose-form__sensitive-button--visible {
+    display: block;
+  }
+
+  .compose-form__sensitive-button__icon {
+    line-height: 27px;
+  }
+}
+
 .compose-form__upload-wrapper {
   overflow: hidden;
 }
@@ -478,12 +490,8 @@
   margin-right: 5px;
 }
 
-.status__content {
+.status__content--with-action {
   cursor: pointer;
-}
-
-.status__content--no-action {
-  cursor: default;
 }
 
 .status__content,
