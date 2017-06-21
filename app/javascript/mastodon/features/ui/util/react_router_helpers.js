@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Switch from 'react-router-dom/Switch';
 import Route from 'react-router-dom/Route';
 
+import BundleRefetch from '../components/bundle_refetch';
 import Column from '../../../components/column';
 import ColumnHeader from '../../../components/column_header';
 import Bundle from '../components/bundle';
@@ -36,7 +37,7 @@ export class WrappedRoute extends React.Component {
     const { component } = this.props;
 
     return (
-      <Bundle load={component}>{this.renderBundle}</Bundle>
+      <Bundle load={component} retry={this.renderRetry}>{this.renderBundle}</Bundle>
     );
   }
 
@@ -49,6 +50,12 @@ export class WrappedRoute extends React.Component {
         <div className='scrollable' />
       </Column>
     );
+  }
+
+  renderRetry = (props) => {
+    const { multiColumn } = this.props;
+
+    return <BundleRefetch multiColumn={multiColumn} {...props} />;
   }
 
   render () {

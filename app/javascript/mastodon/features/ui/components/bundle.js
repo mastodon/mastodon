@@ -2,8 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import BundleRefetch from './bundle_refetch';
-
 import { fetchBundleRequest, fetchBundleSuccess, fetchBundleFail } from '../../../actions/bundles';
 
 const mapDispatchToProps = dispatch => ({
@@ -23,6 +21,7 @@ class Bundle extends React.Component {
 
   static propTypes = {
     load: PropTypes.func.isRequired,
+    retry: PropTypes.func.isRequired,
     children: PropTypes.func.isRequired,
     onFetch: PropTypes.func.isRequired,
     onFetchSuccess: PropTypes.func.isRequired,
@@ -49,9 +48,6 @@ class Bundle extends React.Component {
 
     return load()
       .then((mod) => {
-        if (this.state.mod) {
-          return;
-        }
         this.setState({ mod: mod.default });
         onFetchSuccess();
       })
@@ -61,8 +57,10 @@ class Bundle extends React.Component {
       });
   }
 
-  retry = ({ multiColumn }) => {
-    return <BundleRefetch onLoad={this.load} multiColumn={multiColumn} />;
+  retry = (props) => {
+    const { retry: Retry } = this.props;
+
+    return <Retry onLoad={this.load} {...props} />;
   }
 
   render() {
