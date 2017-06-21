@@ -6,12 +6,12 @@ import Bundle from './bundle';
 import { ModalBundleRefetch } from './bundle_refetch';
 
 const MODAL_COMPONENTS = {
-  'MEDIA': () => import(/* webpackChunkName: "media_modal" */'./media_modal'),
-  'ONBOARDING': () => import(/* webpackChunkName: "onboarding_modal" */'./onboarding_modal'),
-  'VIDEO': () => import(/* webpackChunkName: "video_modal" */'./video_modal'),
-  'BOOST': () => import(/* webpackChunkName: "boost_modal" */'./boost_modal'),
-  'CONFIRM': () => import(/* webpackChunkName: "confirmation_modal" */'./confirmation_modal'),
-  'REPORT': () => import(/* webpackChunkName: "confirmation_modal" */'./report_modal'),
+  'MEDIA': () => import(/* webpackChunkName: "modals/media_modal" */'./media_modal'),
+  'ONBOARDING': () => import(/* webpackChunkName: "modals/onboarding_modal" */'./onboarding_modal'),
+  'VIDEO': () => import(/* webpackChunkName: "modals/video_modal" */'./video_modal'),
+  'BOOST': () => import(/* webpackChunkName: "modals/boost_modal" */'./boost_modal'),
+  'CONFIRM': () => import(/* webpackChunkName: "modals/confirmation_modal" */'./confirmation_modal'),
+  'REPORT': () => import(/* webpackChunkName: "modals/confirmation_modal" */'./report_modal'),
 };
 
 export default class ModalRoot extends React.PureComponent {
