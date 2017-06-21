@@ -3,10 +3,9 @@ import PropTypes from 'prop-types';
 import Switch from 'react-router-dom/Switch';
 import Route from 'react-router-dom/Route';
 
-import BundleRefetch from '../components/bundle_refetch';
-import Column from '../../../components/column';
-import ColumnHeader from '../../../components/column_header';
-import Bundle from '../components/bundle';
+import ColumnLoading from '../components/column_loading';
+import BundleColumnError from '../components/bundle_column_error';
+import BundleContainer from '../containers/bundle_container';
 
 // Small wrapper to pass multiColumn to the route components
 export const WrappedSwitch = ({ multiColumn, children }) => (
@@ -37,25 +36,24 @@ export class WrappedRoute extends React.Component {
     const { component } = this.props;
 
     return (
-      <Bundle load={component} retry={this.renderRetry}>{this.renderBundle}</Bundle>
+      <BundleContainer fetchComponent={component} loading={this.renderLoading} error={this.renderError}>
+        {this.renderBundle}
+      </BundleContainer>
     );
+  }
+
+  renderLoading = () => {
+    return <ColumnLoading />;
+  }
+
+  renderError = (props) => {
+    return <BundleColumnError {...props} />;
   }
 
   renderBundle = (Component) => {
     const { match: { params }, props: { content, multiColumn } } = this;
 
-    return Component ? <Component params={params} multiColumn={multiColumn}>{content}</Component> : (
-      <Column>
-        <ColumnHeader icon=' ' title='' multiColumn={false} />
-        <div className='scrollable' />
-      </Column>
-    );
-  }
-
-  renderRetry = (props) => {
-    const { multiColumn } = this.props;
-
-    return <BundleRefetch multiColumn={multiColumn} {...props} />;
+    return <Component params={params} multiColumn={multiColumn}>{content}</Component>;
   }
 
   render () {
