@@ -217,7 +217,7 @@ RSpec.describe StreamEntriesHelper, type: :helper do
     end
 
     it 'is true if right to left characters are greater than 1/3 of total text' do
-      expect(helper).to be_rtl 'aaݟ'
+      expect(helper).to be_rtl 'aaݟaaݟ'
     end
   end
 end

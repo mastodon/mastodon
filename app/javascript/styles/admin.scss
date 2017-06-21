@@ -96,6 +96,13 @@
       margin-bottom: 40px;
     }
 
+    h6 {
+      font-size: 16px;
+      color: $ui-primary-color;
+      line-height: 28px;
+      font-weight: 400;
+    }
+
     & > p {
       font-size: 14px;
       line-height: 18px;
@@ -113,6 +120,14 @@
       border: 0;
       background: transparent;
       border-bottom: 1px solid $ui-base-color;
+    }
+
+    .muted-hint {
+      color: lighten($ui-base-color, 27%);
+
+      a {
+        color: $ui-primary-color;
+      }
     }
   }
 

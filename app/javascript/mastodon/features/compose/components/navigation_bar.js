@@ -5,7 +5,7 @@ import IconButton from '../../../components/icon_button';
 import DisplayName from '../../../components/display_name';
 import Permalink from '../../../components/permalink';
 import { FormattedMessage } from 'react-intl';
-import Link from 'react-router/lib/Link';
+import Link from 'react-router-dom/Link';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
 class NavigationBar extends ImmutablePureComponent {

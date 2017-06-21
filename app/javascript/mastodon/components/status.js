@@ -41,6 +41,7 @@ class Status extends ImmutablePureComponent {
   };
 
   state = {
+    isExpanded: false,
     isIntersecting: true, // assume intersecting until told otherwise
     isHidden: false, // set to true in requestIdleCallback to trigger un-render
   }
@@ -57,7 +58,7 @@ class Status extends ImmutablePureComponent {
     'muted',
   ]
 
-  updateOnStates = []
+  updateOnStates = ['isExpanded']
 
   shouldComponentUpdate (nextProps, nextState) {
     if (!nextState.isIntersecting && nextState.isHidden) {
@@ -85,6 +86,12 @@ class Status extends ImmutablePureComponent {
       this.node,
       this.handleIntersection
     );
+
+    this.componentMounted = true;
+  }
+
+  componentWillUnmount () {
+    this.componentMounted = false;
   }
 
   handleIntersection = (entry) => {
@@ -105,6 +112,10 @@ class Status extends ImmutablePureComponent {
   }
 
   hideIfNotIntersecting = () => {
+    if (!this.componentMounted) {
+      return;
+    }
+
     // When the browser gets a chance, test if we're still not intersecting,
     // and if so, set our isHidden to true to trigger an unrender. The point of
     // this is to save DOM nodes and avoid using up too much memory.
@@ -112,32 +123,42 @@ class Status extends ImmutablePureComponent {
     this.setState((prevState) => ({ isHidden: !prevState.isIntersecting }));
   }
 
+  saveHeight = () => {
+    if (this.node && this.node.children.length !== 0) {
+      this.height = this.node.clientHeight;
+    }
+  }
 
   handleRef = (node) => {
     this.node = node;
-    if (node && node.children.length !== 0) {
-      this.height = node.clientHeight;
-    }
+    this.saveHeight();
   }
 
   handleClick = () => {
     const { status } = this.props;
-    this.context.router.push(`/statuses/${status.getIn(['reblog', 'id'], status.get('id'))}`);
+    this.context.router.history.push(`/statuses/${status.getIn(['reblog', 'id'], status.get('id'))}`);
   }
 
   handleAccountClick = (e) => {
     if (e.button === 0) {
       const id = Number(e.currentTarget.getAttribute('data-id'));
       e.preventDefault();
-      this.context.router.push(`/accounts/${id}`);
+      this.context.router.history.push(`/accounts/${id}`);
     }
   }
+
+  handleExpandedToggle = () => {
+    this.setState({ isExpanded: !this.state.isExpanded });
+  };
 
   render () {
     let media = null;
     let statusAvatar;
-    const { status, account, ...other } = this.props;
-    const { isIntersecting, isHidden } = this.state;
+
+    // Exclude intersectionObserverWrapper from `other` variable
+    // because intersection is managed in here.
+    const { status, account, intersectionObserverWrapper, ...other } = this.props;
+    const { isExpanded, isIntersecting, isHidden } = this.state;
 
     if (status === null) {
       return null;
@@ -203,7 +224,7 @@ class Status extends ImmutablePureComponent {
           </a>
         </div>
 
-        <StatusContent status={status} onClick={this.handleClick} />
+        <StatusContent status={status} onClick={this.handleClick} expanded={isExpanded} onExpandedToggle={this.handleExpandedToggle} onHeightUpdate={this.saveHeight} />
 
         {media}
 

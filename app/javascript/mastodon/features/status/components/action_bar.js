@@ -50,12 +50,12 @@ class ActionBar extends React.PureComponent {
   }
 
   handleMentionClick = () => {
-    this.props.onMention(this.props.status.get('account'), this.context.router);
+    this.props.onMention(this.props.status.get('account'), this.context.router.history);
   }
 
   handleReport = () => {
     this.props.onReport(this.props.status);
-    this.context.router.push('/report');
+    this.context.router.history.push('/report');
   }
 
   render () {
