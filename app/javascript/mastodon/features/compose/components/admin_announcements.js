@@ -17,7 +17,7 @@ class AdminAnnouncements extends React.PureComponent {
       <ul className='announcements'>
         <li>
           <div className='announcements__admin'>
-            <p dangerouslySetInnerHTML={{__html: settings}} />
+            <p dangerouslySetInnerHTML={{ __html: settings }} />
           </div>
         </li>
       </ul>

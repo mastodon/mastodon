@@ -8,9 +8,9 @@ import Motion from 'react-motion/lib/Motion';
 import spring from 'react-motion/lib/spring';
 
 const Collapsable = ({ fullHeight, minHeight, isVisible, children }) => (
-  <Motion defaultStyle={{height: isVisible ? fullHeight : minHeight }} style={{height: spring(!isVisible ? minHeight : fullHeight) }}>
+  <Motion defaultStyle={{ height: isVisible ? fullHeight : minHeight }} style={{ height: spring(!isVisible ? minHeight : fullHeight) }}>
     {({ height }) =>
-      <div style={{ height: `${height}px`, overflow: 'hidden'}}>
+      <div style={{ height: `${height}px`, overflow: 'hidden' }}>
         {children}
       </div>
     }
@@ -46,7 +46,7 @@ class Announcements extends React.PureComponent {
   };
 
   onClick = () => {
-    this.setState({show: !this.state.show});
+    this.setState({ show: !this.state.show });
   }
   nl2br (text) {
     return text.split(/(\n)/g).map(function (line) {
@@ -65,7 +65,7 @@ class Announcements extends React.PureComponent {
         <li>
           <Collapsable isVisible={this.state.show} fullHeight={300} minHeight={20} >
             <div className='announcements__body'>
-              <p>{this.nl2br(intl.formatMessage(messages.welcome, {domain: document.title}))}</p>
+              <p>{ this.nl2br(intl.formatMessage(messages.welcome, { domain: document.title }))}</p>
               {hashtags.map(hashtag =>
                 <Link to={`/timelines/tag/${hashtag}`}>
                   #{hashtag}
@@ -74,7 +74,7 @@ class Announcements extends React.PureComponent {
             </div>
           </Collapsable>
           <div className='announcements__icon'>
-            <IconButton icon='caret-up' onClick={this.onClick} size={20} animate={true} active={this.state.show} />
+            <IconButton icon='caret-up' onClick={this.onClick} size={20} animate active={this.state.show} />
           </div>
         </li>
       </ul>
@@ -83,7 +83,7 @@ class Announcements extends React.PureComponent {
 
   componentWillReceiveProps (nextProps) {
     if (!nextProps.isLoading && (nextProps.homeSize === 0 || this.props.homeSize !== nextProps.homeSize)) {
-        this.setState({show: nextProps.homeSize < 5});
+      this.setState({ show: nextProps.homeSize < 5 });
     }
   }
 
