@@ -60,7 +60,9 @@ class Api::V1::Accounts::StatusesController < Api::BaseController
   end
 
   def filter_with_visibility_scope(visibility)
-    Status.where(visibility: Status.visibilities[visibility])
+    permitted_account_statuses.tap do |statuses|
+      statuses.merge!(Status.where(visibility: Status.visibilities[visibility]))
+    end
   end
 
   def pagination_params(core_params)
