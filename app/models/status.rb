@@ -29,6 +29,7 @@ class Status < ApplicationRecord
   include Streamable
   include Cacheable
   include StatusThreadingConcern
+  include StatusTimeline
 
   enum visibility: [:public, :unlisted, :private, :direct], _suffix: :visibility
 
@@ -130,34 +131,6 @@ class Status < ApplicationRecord
       where.not(language: account.filtered_languages)
     end
 
-    def as_home_timeline(account)
-      # 'references' is a workaround for the following issue:
-      # Inconsistent results with #or in ActiveRecord::Relation with respect to documentation Issue #24055 rails/rails
-      # https://github.com/rails/rails/issues/24055
-      references(:mentions)
-        .where.not(visibility: :direct)
-        .or(where(mentions: { account: account }))
-        .where(follows: { account_id: account })
-        .or(references(:mentions, :follows).where(account: account))
-        .left_outer_joins(account: :followers).left_outer_joins(:mentions).group(:id)
-    end
-
-    def as_public_timeline(account = nil, local_only = false)
-      query = timeline_scope(local_only).without_replies
-
-      apply_timeline_filters(query, account, local_only)
-    end
-
-    def as_tag_timeline(tag, account = nil, local_only = false)
-      query = timeline_scope(local_only).tagged_with(tag)
-
-      apply_timeline_filters(query, account, local_only)
-    end
-
-    def as_outbox_timeline(account)
-      where(account: account, visibility: :public)
-    end
-
     def favourites_map(status_ids, account_id)
       Favourite.select('status_id').where(status_id: status_ids).where(account_id: account_id).map { |f| [f.status_id, true] }.to_h
     end
@@ -203,42 +176,6 @@ class Status < ApplicationRecord
         joins("LEFT OUTER JOIN mentions ON statuses.id = mentions.status_id AND mentions.account_id = #{account.id}")
           .where(arel_table[:visibility].in(visibility).or(Mention.arel_table[:id].not_eq(nil)))
           .order(visibility: :desc)
-      end
-    end
-
-    private
-
-    def timeline_scope(local_only = false)
-      starting_scope = local_only ? Status.local_only : Status
-      starting_scope
-        .with_public_visibility
-        .without_reblogs
-    end
-
-    def apply_timeline_filters(query, account, local_only)
-      if account.nil?
-        filter_timeline_default(query)
-      else
-        filter_timeline_for_account(query, account, local_only)
-      end
-    end
-
-    def filter_timeline_for_account(query, account, local_only)
-      query = query.not_excluded_by_account(account)
-      query = query.not_domain_blocked_by_account(account) unless local_only
-      query = query.not_in_filtered_languages(account) if account.filtered_languages.present?
-      query.merge(account_silencing_filter(account))
-    end
-
-    def filter_timeline_default(query)
-      query.excluding_silenced_accounts
-    end
-
-    def account_silencing_filter(account)
-      if account.silenced?
-        including_silenced_accounts
-      else
-        excluding_silenced_accounts
       end
     end
   end

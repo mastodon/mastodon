@@ -39,7 +39,7 @@ class PrecomputeFeedService < BaseService
   end
 
   def statuses
-    Status.as_home_timeline(account).order(account_id: :desc).limit(LIMIT)
+    Status.as_home_timeline(account, limit: LIMIT).order(account_id: :desc)
   end
 
   def redis
