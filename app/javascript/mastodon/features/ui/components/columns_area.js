@@ -6,6 +6,10 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 import ReactSwipeable from 'react-swipeable';
 import { getPreviousLink, getNextLink } from './tabs_bar';
 
+import BundleContainer from '../containers/bundle_container';
+import ColumnLoading from './column_loading';
+import BundleColumnError from './bundle_column_error';
+
 const componentMap = {
   'COMPOSE': () => import(/* webpackChunkName: "columns/compose" */'../../compose'),
   'HOME': () => import(/* webpackChunkName: "columns/home_timeline" */'../../home_timeline'),
@@ -43,8 +47,12 @@ export default class ColumnsArea extends ImmutablePureComponent {
     }
   };
 
-  renderRetry = (props) => {
-    return <BundleRefetch {...props} />;
+  renderLoading = () => {
+    return <ColumnLoading />;
+  }
+
+  renderError = (props) => {
+    return <BundleColumnError {...props} />;
   }
 
   render () {
@@ -64,16 +72,9 @@ export default class ColumnsArea extends ImmutablePureComponent {
           const params = column.get('params', null) === null ? null : column.get('params').toJS();
 
           return (
-            <Bundle load={componentMap[column.get('id')]} retry={this.renderRetry}>
-              {SpecificComponent => SpecificComponent ?
-                <SpecificComponent key={column.get('uuid')} columnId={column.get('uuid')} params={params} multiColumn /> :
-                (
-                  <Column>
-                    <ColumnHeader icon=' ' title='' multiColumn={false} />
-                    <div className='scrollable' />
-                  </Column>
-                )}
-            </Bundle>
+            <BundleContainer key={column.get('uuid')} fetchComponent={componentMap[column.get('id')]} loading={this.renderLoading} error={this.renderError}>
+              {SpecificComponent => <SpecificComponent columnId={column.get('uuid')} params={params} multiColumn />}
+            </BundleContainer>
           );
         })}
 

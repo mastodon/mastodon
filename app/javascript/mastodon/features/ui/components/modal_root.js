@@ -2,8 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import TransitionMotion from 'react-motion/lib/TransitionMotion';
 import spring from 'react-motion/lib/spring';
-import Bundle from './bundle';
-import { ModalBundleRefetch } from './bundle_refetch';
+import BundleContainer from '../containers/bundle_container';
+import BundleModalError from './bundle_modal_error';
+import ModalLoading from './modal_loading';
 
 const MODAL_COMPONENTS = {
   'MEDIA': () => import(/* webpackChunkName: "modals/media_modal" */'./media_modal'),
@@ -48,11 +49,17 @@ export default class ModalRoot extends React.PureComponent {
   renderModal = (SpecificComponent) => {
     const { type, props, onClose } = this.props;
 
-    return SpecificComponent && <SpecificComponent {...props} onClose={onClose} />;
+    return <SpecificComponent {...props} onClose={onClose} />;
   }
 
-  renderRetry = (props) => {
-    return <ModalBundleRefetch {...props} />;
+  renderLoading = () => {
+    return <ModalLoading />;
+  }
+
+  renderError = (props) => {
+    const { onClose } = this.props;
+
+    return <BundleModalError {...props} onClose={onClose} />;
   }
 
   render () {
@@ -80,7 +87,7 @@ export default class ModalRoot extends React.PureComponent {
               <div key={key} style={{ pointerEvents: visible ? 'auto' : 'none' }}>
                 <div role='presentation' className='modal-root__overlay' style={{ opacity: style.opacity }} onClick={onClose} />
                 <div className='modal-root__container' style={{ opacity: style.opacity, transform: `translateZ(0px) scale(${style.scale})` }}>
-                  <Bundle load={MODAL_COMPONENTS[type]} retry={this.renderRetry}>{this.renderModal}</Bundle>
+                  <BundleContainer fetchComponent={MODAL_COMPONENTS[type]} loading={this.renderLoading} error={this.renderError}>{this.renderModal}</BundleContainer>
                 </div>
               </div>
             ))}
