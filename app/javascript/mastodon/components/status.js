@@ -5,8 +5,6 @@ import Avatar from './avatar';
 import AvatarOverlay from './avatar_overlay';
 import RelativeTimestamp from './relative_timestamp';
 import DisplayName from './display_name';
-import MediaGallery from './media_gallery';
-import VideoPlayer from './video_player';
 import StatusContent from './status_content';
 import StatusActionBar from './status_action_bar';
 import { FormattedMessage } from 'react-intl';
@@ -14,6 +12,13 @@ import emojify from '../emoji';
 import escapeTextContentForBrowser from 'escape-html';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import scheduleIdleTask from '../features/ui/util/schedule_idle_task';
+
+// We use the component (and not the container) since we do not want
+// to use the progress bar to show download progress
+import Bundle from '../features/ui/components/bundle';
+
+const MediaGallery = () => import(/* webpackChunkName: "status/MediaGallery" */'./media_gallery');
+const VideoPlayer = () => import(/* webpackChunkName: "status/VideoPlayer" */'./video_player');
 
 export default class Status extends ImmutablePureComponent {
 
@@ -150,6 +155,14 @@ export default class Status extends ImmutablePureComponent {
     this.setState({ isExpanded: !this.state.isExpanded });
   };
 
+  renderLoadingMediaGallery () {
+    return <div className='media_gallery' style={{ height: '110px' }} />;
+  }
+
+  renderLoadingVideoPlayer () {
+    return <div className='media-spoiler-video' style={{ height: '110px' }} />;
+  }
+
   render () {
     let media = null;
     let statusAvatar;
@@ -197,9 +210,17 @@ export default class Status extends ImmutablePureComponent {
       if (status.get('media_attachments').some(item => item.get('type') === 'unknown')) {
 
       } else if (status.getIn(['media_attachments', 0, 'type']) === 'video') {
-        media = <VideoPlayer media={status.getIn(['media_attachments', 0])} sensitive={status.get('sensitive')} onOpenVideo={this.props.onOpenVideo} />;
+        media = (
+          <Bundle fetchComponent={VideoPlayer} loading={this.renderLoadingVideoPlayer} onRender={this.saveHeight} >
+            {Component => <Component media={status.getIn(['media_attachments', 0])} sensitive={status.get('sensitive')} onOpenVideo={this.props.onOpenVideo} />}
+          </Bundle>
+        );
       } else {
-        media = <MediaGallery media={status.get('media_attachments')} sensitive={status.get('sensitive')} height={110} onOpenMedia={this.props.onOpenMedia} autoPlayGif={this.props.autoPlayGif} />;
+        media = (
+          <Bundle fetchComponent={MediaGallery} loading={this.renderLoadingMediaGallery} onRender={this.saveHeight} >
+            {Component => <Component media={status.get('media_attachments')} sensitive={status.get('sensitive')} height={110} onOpenMedia={this.props.onOpenMedia} autoPlayGif={this.props.autoPlayGif} />}
+          </Bundle>
+        );
       }
     }
 

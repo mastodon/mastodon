@@ -35,6 +35,10 @@ const FavouritedStatuses = () => import(/* webpackChunkName: "features/favourite
 const Blocks = () => import(/* webpackChunkName: "features/blocks" */'../../features/blocks');
 const Mutes = () => import(/* webpackChunkName: "features/mutes" */'../../features/mutes');
 
+// Dummy import, to make sure that <Status /> ends up in the application bundle.
+// Without this it ends up in ~8 very commonly used bundles.
+import '../../components/status';
+
 @connect()
 export default class UI extends React.PureComponent {
 
