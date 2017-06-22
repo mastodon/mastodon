@@ -41,7 +41,14 @@ const Following = () => import(/* webpackChunkName: "features/following" */'../.
 const Reblogs = () => import(/* webpackChunkName: "features/reblogs" */'../../features/reblogs');
 const Favourites = () => import(/* webpackChunkName: "features/favourites" */'../../features/favourites');
 const HashtagTimeline = () => import(/* webpackChunkName: "features/hashtag_timeline" */'../../features/hashtag_timeline');
-const Notifications = () => import(/* webpackChunkName: "features/notifications" */'../../features/notifications');
+const Notifications = () => Promise.all([
+  import(/* webpackChunkName: "features/notifications" */'../../features/notifications'),
+  import(/* webpackChunkName: "reducers/notifications" */'../../reducers/notifications'),
+]).then(([component, notificationsReducer]) => {
+  injectAsyncReducer(store, 'notifications', notificationsReducer.default);
+  store.dispatch(refreshNotifications());
+  return component;
+});
 const FollowRequests = () => import(/* webpackChunkName: "features/follow_requests" */'../../features/follow_requests');
 const GenericNotFound = () => import(/* webpackChunkName: "features/generic_not_found" */'../../features/generic_not_found');
 const FavouritedStatuses = () => import(/* webpackChunkName: "features/favourited_statuses" */'../../features/favourited_statuses');
@@ -141,7 +148,6 @@ export default class UI extends React.PureComponent {
     document.addEventListener('dragend', this.handleDragEnd, false);
 
     this.props.dispatch(refreshHomeTimeline());
-    this.props.dispatch(refreshNotifications());
   }
 
   componentWillUnmount () {

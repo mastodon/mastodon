@@ -9,7 +9,6 @@ import accounts from './accounts';
 import accounts_counters from './accounts_counters';
 import statuses from './statuses';
 import relationships from './relationships';
-import notifications from './notifications';
 import settings from './settings';
 import status_lists from './status_lists';
 import cards from './cards';
@@ -28,7 +27,6 @@ const reducers = {
   accounts_counters,
   statuses,
   relationships,
-  notifications,
   settings,
   cards,
   reports,
