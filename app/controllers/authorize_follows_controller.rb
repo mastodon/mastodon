@@ -40,7 +40,7 @@ class AuthorizeFollowsController < ApplicationController
   end
 
   def account_from_remote_follow
-    FollowRemoteAccountService.new.call(acct_without_prefix)
+    ResolveRemoteAccountService.new.call(acct_without_prefix)
   end
 
   def acct_param_is_url?

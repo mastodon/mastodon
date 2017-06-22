@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module AuthorExtractor
-  def author_from_xml(xml)
+  def author_from_xml(xml, update_profile = true)
     return nil if xml.nil?
 
     # Try <email> for acct
@@ -18,6 +18,6 @@ module AuthorExtractor
       acct   = "#{username}@#{domain}"
     end
 
-    FollowRemoteAccountService.new.call(acct)
+    ResolveRemoteAccountService.new.call(acct, update_profile)
   end
 end
