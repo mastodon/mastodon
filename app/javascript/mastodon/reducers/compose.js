@@ -23,7 +23,7 @@ import {
   COMPOSE_EMOJI_INSERT,
 } from '../actions/compose';
 import { TIMELINE_DELETE } from '../actions/timelines';
-import { STORE_HYDRATE } from '../actions/store';
+import { STORE_HYDRATE_LAZY } from '../actions/store';
 import Immutable from 'immutable';
 import uuid from '../uuid';
 
@@ -134,7 +134,7 @@ const privacyPreference = (a, b) => {
 
 export default function compose(state = initialState, action) {
   switch(action.type) {
-  case STORE_HYDRATE:
+  case `${STORE_HYDRATE_LAZY}-compose`:
     return clearAll(state.merge(action.state.get('compose')));
   case COMPOSE_MOUNT:
     return state.set('mounted', true);
