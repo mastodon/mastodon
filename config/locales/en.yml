@@ -201,6 +201,8 @@ en:
     invalid_url: The provided URL is invalid
   auth:
     change_password: Credentials
+    delete_account: Delete account
+    delete_account_html: If you wish to delete your account, you can <a href="%{path}">proceed here</a>. You will be asked for confirmation.
     didnt_get_confirmation: Didn't receive confirmation instructions?
     forgot_password: Forgot your password?
     login: Log in
@@ -228,6 +230,14 @@ en:
       x_minutes: "%{count}m"
       x_months: "%{count}mo"
       x_seconds: "%{count}s"
+  deletes:
+    bad_password_msg: Nice try, hackers! Incorrect password
+    confirm_password: Enter your current password to verify your identity
+    description_html: This will <strong>permanently, irreversibly</strong> remove content from your account and deactivate it. Your username will remain reserved to prevent future impersonations.
+    proceed: Delete account
+    success_msg: Your account was successfully deleted
+    warning_html: Only deletion of content from this particular instance is guaranteed. Content that has been widely shared is likely to leave traces. Offline servers and servers that have unsubscribed from your updates will not update their databases.
+    warning_title: Disseminated content availability
   errors:
     '403': You don't have permission to view this page.
     '404': The page you were looking for doesn't exist.
@@ -313,6 +323,7 @@ en:
   settings:
     authorized_apps: Authorized apps
     back: Back to Mastodon
+    delete: Account deletion
     edit_profile: Edit profile
     export: Data export
     followers: Authorized followers

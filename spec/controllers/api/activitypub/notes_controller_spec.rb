@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Api::Activitypub::NotesController, type: :controller do
+RSpec.describe Api::ActivityPub::NotesController, type: :controller do
   render_views
 
   let(:user_alice)  { Fabricate(:user, account: Fabricate(:account, username: 'alice')) }

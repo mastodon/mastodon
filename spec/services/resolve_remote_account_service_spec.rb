@@ -1,7 +1,7 @@
 require 'rails_helper'
 
-RSpec.describe FollowRemoteAccountService do
-  subject { FollowRemoteAccountService.new }
+RSpec.describe ResolveRemoteAccountService do
+  subject { ResolveRemoteAccountService.new }
 
   before do
     stub_request(:get, "https://quitter.no/.well-known/host-meta").to_return(request_fixture('.host-meta.txt'))
