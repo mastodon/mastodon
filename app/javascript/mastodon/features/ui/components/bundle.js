@@ -47,6 +47,12 @@ class Bundle extends React.Component {
     this.props.onRender();
   }
 
+  componentWillUnmount () {
+    if (this.timeout) {
+      clearTimeout(this.timeout);
+    }
+  }
+
   load = (props) => {
     const { fetchComponent, onFetch, onFetchSuccess, onFetchFail, renderDelay } = props || this.props;
 
@@ -55,7 +61,7 @@ class Bundle extends React.Component {
 
     if (renderDelay !== 0) {
       this.timestamp = new Date();
-      setTimeout(() => this.setState({ forceRender: true }), renderDelay);
+      this.timeout = setTimeout(() => this.setState({ forceRender: true }), renderDelay);
     }
 
     return fetchComponent()
@@ -63,9 +69,9 @@ class Bundle extends React.Component {
         this.setState({ mod: mod.default });
         onFetchSuccess();
       })
-      .catch(() => {
+      .catch((error) => {
         this.setState({ mod: null });
-        onFetchFail();
+        onFetchFail(error);
       });
   }
 
