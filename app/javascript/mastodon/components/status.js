@@ -86,6 +86,10 @@ export default class Status extends ImmutablePureComponent {
     return super.shouldComponentUpdate(nextProps, nextState);
   }
 
+  componentDidUpdate (prevProps, prevState) {
+    if (prevState.isCollapsed !== this.state.isCollapsed) this.saveHeight();
+  }
+
   componentDidMount () {
     const node = this.node;
 
