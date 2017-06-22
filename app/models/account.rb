@@ -124,10 +124,6 @@ class Account < ApplicationRecord
     subscription_expires_at.present?
   end
 
-  def followers_domains
-    followers.reorder(nil).pluck('distinct accounts.domain')
-  end
-
   def keypair
     OpenSSL::PKey::RSA.new(private_key || public_key)
   end
@@ -163,6 +159,10 @@ class Account < ApplicationRecord
   end
 
   class << self
+    def domains
+      reorder(nil).pluck('distinct accounts.domain')
+    end
+
     def triadic_closures(account, limit: 5, offset: 0)
       sql = <<-SQL.squish
         WITH first_degree AS (
@@ -235,10 +235,6 @@ class Account < ApplicationRecord
       query      = "to_tsquery('simple', ''' ' || #{terms} || ' ''' || ':*')"
 
       [textsearch, query]
-    end
-
-    def follow_mapping(query, field)
-      query.pluck(field).each_with_object({}) { |id, mapping| mapping[id] = true }
     end
   end
 
