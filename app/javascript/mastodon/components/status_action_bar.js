@@ -5,6 +5,7 @@ import IconButton from './icon_button';
 import DropdownMenu from './dropdown_menu';
 import { defineMessages, injectIntl } from 'react-intl';
 import ImmutablePureComponent from 'react-immutable-pure-component';
+import RelativeTimestamp from './relative_timestamp';
 
 const messages = defineMessages({
   delete: { id: 'status.delete', defaultMessage: 'Delete' },
@@ -145,6 +146,8 @@ export default class StatusActionBar extends ImmutablePureComponent {
         <div className='status__action-bar-dropdown'>
           <DropdownMenu items={menu} icon='ellipsis-h' size={18} direction='right' ariaLabel='More' />
         </div>
+
+        <a href={status.get('url')} className='status__relative-time' target='_blank' rel='noopener'><RelativeTimestamp timestamp={status.get('created_at')} /></a>
       </div>
     );
   }

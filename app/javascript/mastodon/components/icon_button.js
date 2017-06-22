@@ -17,6 +17,7 @@ export default class IconButton extends React.PureComponent {
     disabled: PropTypes.bool,
     inverted: PropTypes.bool,
     animate: PropTypes.bool,
+    flip: PropTypes.bool,
     overlay: PropTypes.bool,
   };
 
@@ -69,7 +70,7 @@ export default class IconButton extends React.PureComponent {
     }
 
     return (
-      <Motion defaultStyle={{ rotate: this.props.active ? -360 : 0 }} style={{ rotate: this.props.animate ? spring(this.props.active ? -360 : 0, { stiffness: 120, damping: 7 }) : 0 }}>
+      <Motion defaultStyle={{ rotate: this.props.active ? (this.props.flip ? -180 : -360) : 0 }} style={{ rotate: this.props.animate ? spring(this.props.active ? (this.props.flip ? -180 : -360) : 0, { stiffness: 120, damping: 7 }) : 0 }}>
         {({ rotate }) =>
           <button
             aria-label={this.props.title}

@@ -3,18 +3,24 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
 import Avatar from './avatar';
 import AvatarOverlay from './avatar_overlay';
-import RelativeTimestamp from './relative_timestamp';
 import DisplayName from './display_name';
 import MediaGallery from './media_gallery';
 import VideoPlayer from './video_player';
 import StatusContent from './status_content';
 import StatusActionBar from './status_action_bar';
-import { FormattedMessage } from 'react-intl';
+import IconButton from './icon_button';
+import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import emojify from '../emoji';
 import escapeTextContentForBrowser from 'escape-html';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import scheduleIdleTask from '../features/ui/util/schedule_idle_task';
 
+const messages = defineMessages({
+  collapse: { id: 'status.collapse', defaultMessage: 'Collapse' },
+  uncollapse: { id: 'status.uncollapse', defaultMessage: 'Uncollapse' },
+});
+
+@injectIntl
 export default class Status extends ImmutablePureComponent {
 
   static contextTypes = {
@@ -37,12 +43,14 @@ export default class Status extends ImmutablePureComponent {
     autoPlayGif: PropTypes.bool,
     muted: PropTypes.bool,
     intersectionObserverWrapper: PropTypes.object,
+    intl: PropTypes.object.isRequired,
   };
 
   state = {
     isExpanded: false,
     isIntersecting: true, // assume intersecting until told otherwise
     isHidden: false, // set to true in requestIdleCallback to trigger un-render
+    isCollapsed: false,
   }
 
   // Avoid checking props that are functions (and whose equality will always
@@ -60,7 +68,11 @@ export default class Status extends ImmutablePureComponent {
   updateOnStates = ['isExpanded']
 
   shouldComponentUpdate (nextProps, nextState) {
-    if (!nextState.isIntersecting && nextState.isHidden) {
+    if (nextState.isCollapsed !== this.state.isCollapsed) {
+      // If the collapsed state of the element has changed then we definitely
+      // need to re-update.
+      return true;
+    } else if (!nextState.isIntersecting && nextState.isHidden) {
       // It's only if we're not intersecting (i.e. offscreen) and isHidden is true
       // that either "isIntersecting" or "isHidden" matter, and then they're
       // the only things that matter.
@@ -75,6 +87,8 @@ export default class Status extends ImmutablePureComponent {
   }
 
   componentDidMount () {
+    const node = this.node;
+
     if (!this.props.intersectionObserverWrapper) {
       // TODO: enable IntersectionObserver optimization for notification statuses.
       // These are managed in notifications/index.js rather than status_list.js
@@ -85,6 +99,8 @@ export default class Status extends ImmutablePureComponent {
       this.node,
       this.handleIntersection
     );
+
+    if (node.clientHeight > 400) this.setState({ isCollapsed: true });
 
     this.componentMounted = true;
   }
@@ -150,14 +166,18 @@ export default class Status extends ImmutablePureComponent {
     this.setState({ isExpanded: !this.state.isExpanded });
   };
 
+  handleCollapsedClick = () => {
+    this.setState({ isCollapsed: !this.state.isCollapsed });
+  }
+
   render () {
     let media = null;
     let statusAvatar;
 
     // Exclude intersectionObserverWrapper from `other` variable
     // because intersection is managed in here.
-    const { status, account, intersectionObserverWrapper, ...other } = this.props;
-    const { isExpanded, isIntersecting, isHidden } = this.state;
+    const { status, account, intersectionObserverWrapper, intl ...other } = this.props;
+    const { isExpanded, isIntersecting, isHidden, isCollapsed } = this.state;
 
     if (status === null) {
       return null;
@@ -210,9 +230,17 @@ export default class Status extends ImmutablePureComponent {
     }
 
     return (
-      <div className={`status ${this.props.muted ? 'muted' : ''} status-${status.get('visibility')}`} data-id={status.get('id')} ref={this.handleRef}>
+      <div className={`status ${this.props.muted ? 'muted' : ''} status-${status.get('visibility')} ${isCollapsed ? 'status-collapsed' : ''}`} data-id={status.get('id')} ref={this.handleRef}>
         <div className='status__info'>
-          <a href={status.get('url')} className='status__relative-time' target='_blank' rel='noopener'><RelativeTimestamp timestamp={status.get('created_at')} /></a>
+
+          <IconButton
+            className='status__collapse-button'
+            animate flip
+            active={isCollapsed}
+            title={isCollapsed ? intl.formatMessage(messages.uncollapse) : intl.formatMessage(messages.collapse)}
+            icon='angle-double-down'
+            onClick={this.handleCollapsedClick}
+          />
 
           <a onClick={this.handleAccountClick} data-id={status.getIn(['account', 'id'])} href={status.getIn(['account', 'url'])} className='status__display-name'>
             <div className='status__avatar'>
@@ -221,13 +249,14 @@ export default class Status extends ImmutablePureComponent {
 
             <DisplayName account={status.get('account')} />
           </a>
+
         </div>
 
         <StatusContent status={status} onClick={this.handleClick} expanded={isExpanded} onExpandedToggle={this.handleExpandedToggle} onHeightUpdate={this.saveHeight} />
 
-        {media}
+        {isCollapsed ? null : media}
 
-        <StatusActionBar {...this.props} />
+        {isCollapsed ? null : <StatusActionBar {...this.props} />}
       </div>
     );
   }
