@@ -11,8 +11,8 @@ const mapDispatchToProps = dispatch => ({
   onFetchSuccess () {
     dispatch(fetchBundleSuccess());
   },
-  onFetchFail () {
-    dispatch(fetchBundleFail());
+  onFetchFail (error) {
+    dispatch(fetchBundleFail(error));
   },
 });
 
