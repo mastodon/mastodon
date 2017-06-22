@@ -47,7 +47,7 @@ export default class ModalRoot extends React.PureComponent {
   }
 
   renderModal = (SpecificComponent) => {
-    const { type, props, onClose } = this.props;
+    const { props, onClose } = this.props;
 
     return <SpecificComponent {...props} onClose={onClose} />;
   }
@@ -83,7 +83,7 @@ export default class ModalRoot extends React.PureComponent {
       >
         {interpolatedStyles =>
           <div className='modal-root'>
-            {interpolatedStyles.map(({ key, data: { type, props }, style }) => (
+            {interpolatedStyles.map(({ key, data: { type }, style }) => (
               <div key={key} style={{ pointerEvents: visible ? 'auto' : 'none' }}>
                 <div role='presentation' className='modal-root__overlay' style={{ opacity: style.opacity }} onClick={onClose} />
                 <div className='modal-root__container' style={{ opacity: style.opacity, transform: `translateZ(0px) scale(${style.scale})` }}>

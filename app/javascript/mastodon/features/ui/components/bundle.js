@@ -1,16 +1,29 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+const emptyComponent = () => null;
+const noop = () => { };
+
 class Bundle extends React.Component {
 
   static propTypes = {
     fetchComponent: PropTypes.func.isRequired,
-    loading: PropTypes.func.isRequired,
-    error: PropTypes.func.isRequired,
+    loading: PropTypes.func,
+    error: PropTypes.func,
     children: PropTypes.func.isRequired,
-    onFetch: PropTypes.func.isRequired,
-    onFetchSuccess: PropTypes.func.isRequired,
-    onFetchFail: PropTypes.func.isRequired,
+    onRender: PropTypes.func,
+    onFetch: PropTypes.func,
+    onFetchSuccess: PropTypes.func,
+    onFetchFail: PropTypes.func,
+  }
+
+  static defaultProps = {
+    loading: emptyComponent,
+    error: emptyComponent,
+    onRender: noop,
+    onFetch: noop,
+    onFetchSuccess: noop,
+    onFetchFail: noop,
   }
 
   state = {
@@ -25,6 +38,10 @@ class Bundle extends React.Component {
     if (nextProps.fetchComponent !== this.props.fetchComponent) {
       this.load(nextProps);
     }
+  }
+
+  componentDidUpdate (prevProps) {
+    this.props.onRender();
   }
 
   load = (props) => {
