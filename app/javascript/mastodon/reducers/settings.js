@@ -14,6 +14,7 @@ const initialState = Immutable.Map({
     }),
 
     regex: Immutable.Map({
+      mode: false,
       body: '',
     }),
   }),
@@ -43,12 +44,14 @@ const initialState = Immutable.Map({
 
   community: Immutable.Map({
     regex: Immutable.Map({
+      mode: false,
       body: '',
     }),
   }),
 
   public: Immutable.Map({
     regex: Immutable.Map({
+      mode: false,
       body: '',
     }),
   }),
