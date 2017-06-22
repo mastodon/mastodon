@@ -11,6 +11,7 @@ class Bundle extends React.Component {
     loading: PropTypes.func,
     error: PropTypes.func,
     children: PropTypes.func.isRequired,
+    renderDelay: PropTypes.number,
     onRender: PropTypes.func,
     onFetch: PropTypes.func,
     onFetchSuccess: PropTypes.func,
@@ -20,6 +21,7 @@ class Bundle extends React.Component {
   static defaultProps = {
     loading: emptyComponent,
     error: emptyComponent,
+    renderDelay: 0,
     onRender: noop,
     onFetch: noop,
     onFetchSuccess: noop,
@@ -28,6 +30,7 @@ class Bundle extends React.Component {
 
   state = {
     mod: undefined,
+    forceRender: false,
   }
 
   componentWillMount() {
@@ -45,10 +48,15 @@ class Bundle extends React.Component {
   }
 
   load = (props) => {
-    const { fetchComponent, onFetch, onFetchSuccess, onFetchFail } = props || this.props;
+    const { fetchComponent, onFetch, onFetchSuccess, onFetchFail, renderDelay } = props || this.props;
 
     this.setState({ mod: undefined });
     onFetch();
+
+    if (renderDelay !== 0) {
+      this.timestamp = new Date();
+      setTimeout(() => this.setState({ forceRender: true }), renderDelay);
+    }
 
     return fetchComponent()
       .then((mod) => {
@@ -62,11 +70,12 @@ class Bundle extends React.Component {
   }
 
   render() {
-    const { loading: Loading, error: Error, children } = this.props;
-    const { mod } = this.state;
+    const { loading: Loading, error: Error, children, renderDelay } = this.props;
+    const { mod, forceRender } = this.state;
+    const elapsed = new Date() - this.timestamp;
 
     if (mod === undefined) {
-      return <Loading />;
+      return (elapsed >= renderDelay || forceRender) ? <Loading /> : null;
     }
 
     if (mod === null) {
