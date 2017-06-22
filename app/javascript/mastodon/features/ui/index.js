@@ -15,6 +15,8 @@ import { refreshNotifications } from '../../actions/notifications';
 import { WrappedSwitch, WrappedRoute } from './util/react_router_helpers';
 import UploadArea from './components/upload_area';
 import ColumnsAreaContainer from './containers/columns_area_container';
+import { store } from '../../containers/mastodon';
+import { injectAsyncReducer } from '../../store/configureStore';
 
 const Status = () => import(/* webpackChunkName: "features/status" */'../../features/status');
 const GettingStarted = () => import(/* webpackChunkName: "features/getting_started" */'../../features/getting_started');
@@ -23,7 +25,17 @@ const CommunityTimeline = () => import(/* webpackChunkName: "features/community_
 const AccountTimeline = () => import(/* webpackChunkName: "features/account_timeline" */'../../features/account_timeline');
 const AccountGallery = () => import(/* webpackChunkName: "features/account_gallery" */'../../features/account_gallery');
 const HomeTimeline = () => import(/* webpackChunkName: "features/home_timeline" */'../../features/home_timeline');
-const Compose = () => import(/* webpackChunkName: "features/compose" */'../../features/compose');
+const Compose = () => Promise.all([
+  import(/* webpackChunkName: "features/compose" */'../../features/compose'),
+  import(/* webpackChunkName: "reducers/compose" */'../../reducers/compose'),
+  import(/* webpackChunkName: "reducers/media_attachments" */'../../reducers/media_attachments'),
+  import(/* webpackChunkName: "reducers/search" */'../../reducers/search'),
+]).then(([component, composeReducer, mediaAttachmentsReducer, searchReducer]) => {
+  injectAsyncReducer(store, 'compose', composeReducer.default);
+  injectAsyncReducer(store, 'media_attachments', mediaAttachmentsReducer.default);
+  injectAsyncReducer(store, 'search', searchReducer.default);
+  return component;
+});
 const Followers = () => import(/* webpackChunkName: "features/followers" */'../../features/followers');
 const Following = () => import(/* webpackChunkName: "features/following" */'../../features/following');
 const Reblogs = () => import(/* webpackChunkName: "features/reblogs" */'../../features/reblogs');
