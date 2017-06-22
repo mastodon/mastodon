@@ -238,7 +238,7 @@ export default class Status extends ImmutablePureComponent {
             animate flip
             active={isCollapsed}
             title={isCollapsed ? intl.formatMessage(messages.uncollapse) : intl.formatMessage(messages.collapse)}
-            icon='angle-double-down'
+            icon='angle-double-up'
             onClick={this.handleCollapsedClick}
           />
 
