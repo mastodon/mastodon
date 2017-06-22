@@ -9,14 +9,15 @@ import { getPreviousLink, getNextLink } from './tabs_bar';
 import BundleContainer from '../containers/bundle_container';
 import ColumnLoading from './column_loading';
 import BundleColumnError from './bundle_column_error';
+import { Compose, Notifications, HomeTimeline, CommunityTimeline, PublicTimeline, HashtagTimeline } from '../../ui/util/async-components';
 
 const componentMap = {
-  'COMPOSE': () => import(/* webpackChunkName: "columns/compose" */'../../compose'),
-  'HOME': () => import(/* webpackChunkName: "columns/home_timeline" */'../../home_timeline'),
-  'NOTIFICATIONS': () => import(/* webpackChunkName: "columns/notifications" */'../../notifications'),
-  'PUBLIC': () => import(/* webpackChunkName: "columns/public_timeline" */'../../public_timeline'),
-  'COMMUNITY': () => import(/* webpackChunkName: "columns/community_timeline" */'../../community_timeline'),
-  'HASHTAG': () => import(/* webpackChunkName: "columns/hashtag_timeline" */'../../hashtag_timeline'),
+  'COMPOSE': Compose,
+  'HOME': HomeTimeline,
+  'NOTIFICATIONS': Notifications,
+  'PUBLIC': PublicTimeline,
+  'COMMUNITY': CommunityTimeline,
+  'HASHTAG': HashtagTimeline,
 };
 
 export default class ColumnsArea extends ImmutablePureComponent {

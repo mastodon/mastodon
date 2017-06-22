@@ -14,46 +14,34 @@ import { refreshHomeTimeline } from '../../actions/timelines';
 import { refreshNotifications } from '../../actions/notifications';
 import { WrappedSwitch, WrappedRoute } from './util/react_router_helpers';
 import UploadArea from './components/upload_area';
-import ColumnsAreaContainer from './containers/columns_area_container';
 import { store } from '../../containers/mastodon';
-import { injectAsyncReducer } from '../../store/configureStore';
+import ColumnsAreaContainer from './containers/columns_area_container';
+import {
+  Compose,
+  Status,
+  GettingStarted,
+  PublicTimeline,
+  CommunityTimeline,
+  AccountTimeline,
+  AccountGallery,
+  HomeTimeline,
+  Followers,
+  Following,
+  Reblogs,
+  Favourites,
+  HashtagTimeline,
+  Notifications as AsyncNotifications,
+  FollowRequests,
+  GenericNotFound,
+  FavouritedStatuses,
+  Blocks,
+  Mutes,
+} from './util/async-components';
 
-const Status = () => import(/* webpackChunkName: "features/status" */'../../features/status');
-const GettingStarted = () => import(/* webpackChunkName: "features/getting_started" */'../../features/getting_started');
-const PublicTimeline = () => import(/* webpackChunkName: "features/public_timeline" */'../../features/public_timeline');
-const CommunityTimeline = () => import(/* webpackChunkName: "features/community_timeline" */'../../features/community_timeline');
-const AccountTimeline = () => import(/* webpackChunkName: "features/account_timeline" */'../../features/account_timeline');
-const AccountGallery = () => import(/* webpackChunkName: "features/account_gallery" */'../../features/account_gallery');
-const HomeTimeline = () => import(/* webpackChunkName: "features/home_timeline" */'../../features/home_timeline');
-const Compose = () => Promise.all([
-  import(/* webpackChunkName: "features/compose" */'../../features/compose'),
-  import(/* webpackChunkName: "reducers/compose" */'../../reducers/compose'),
-  import(/* webpackChunkName: "reducers/media_attachments" */'../../reducers/media_attachments'),
-  import(/* webpackChunkName: "reducers/search" */'../../reducers/search'),
-]).then(([component, composeReducer, mediaAttachmentsReducer, searchReducer]) => {
-  injectAsyncReducer(store, 'compose', composeReducer.default);
-  injectAsyncReducer(store, 'media_attachments', mediaAttachmentsReducer.default);
-  injectAsyncReducer(store, 'search', searchReducer.default);
-  return component;
-});
-const Followers = () => import(/* webpackChunkName: "features/followers" */'../../features/followers');
-const Following = () => import(/* webpackChunkName: "features/following" */'../../features/following');
-const Reblogs = () => import(/* webpackChunkName: "features/reblogs" */'../../features/reblogs');
-const Favourites = () => import(/* webpackChunkName: "features/favourites" */'../../features/favourites');
-const HashtagTimeline = () => import(/* webpackChunkName: "features/hashtag_timeline" */'../../features/hashtag_timeline');
-const Notifications = () => Promise.all([
-  import(/* webpackChunkName: "features/notifications" */'../../features/notifications'),
-  import(/* webpackChunkName: "reducers/notifications" */'../../reducers/notifications'),
-]).then(([component, notificationsReducer]) => {
-  injectAsyncReducer(store, 'notifications', notificationsReducer.default);
+const Notifications = () => AsyncNotifications().then(component => {
   store.dispatch(refreshNotifications());
   return component;
 });
-const FollowRequests = () => import(/* webpackChunkName: "features/follow_requests" */'../../features/follow_requests');
-const GenericNotFound = () => import(/* webpackChunkName: "features/generic_not_found" */'../../features/generic_not_found');
-const FavouritedStatuses = () => import(/* webpackChunkName: "features/favourited_statuses" */'../../features/favourited_statuses');
-const Blocks = () => import(/* webpackChunkName: "features/blocks" */'../../features/blocks');
-const Mutes = () => import(/* webpackChunkName: "features/mutes" */'../../features/mutes');
 
 // Dummy import, to make sure that <Status /> ends up in the application bundle.
 // Without this it ends up in ~8 very commonly used bundles.
