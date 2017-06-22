@@ -1,6 +1,7 @@
 import Immutable from 'immutable';
 
 export const STORE_HYDRATE = 'STORE_HYDRATE';
+export const STORE_HYDRATE_LAZY = 'STORE_HYDRATE_LAZY';
 
 const convertState = rawState =>
   Immutable.fromJS(rawState, (k, v) =>
@@ -12,6 +13,15 @@ export function hydrateStore(rawState) {
 
   return {
     type: STORE_HYDRATE,
+    state,
+  };
+};
+
+export function hydrateStoreLazy(name, rawState) {
+  const state = convertState(rawState);
+
+  return {
+    type: `${STORE_HYDRATE_LAZY}-${name}`,
     state,
   };
 };
