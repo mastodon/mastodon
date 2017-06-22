@@ -45,6 +45,9 @@ gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB8
 curl -sSL https://get.rvm.io | bash -s stable --ruby=$RUBY_VERSION
 source /home/vagrant/.rvm/scripts/rvm
 
+# Install Ruby
+rvm install ruby-$RUBY_VERSION
+
 # Configure database
 sudo -u postgres createuser -U postgres vagrant -s
 sudo -u postgres createdb -U postgres mastodon_development
