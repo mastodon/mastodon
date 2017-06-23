@@ -180,7 +180,7 @@ export default class Status extends ImmutablePureComponent {
 
     // Exclude intersectionObserverWrapper from `other` variable
     // because intersection is managed in here.
-    const { status, account, intersectionObserverWrapper, intl ...other } = this.props;
+    const { status, account, intersectionObserverWrapper, intl, ...other } = this.props;
     const { isExpanded, isIntersecting, isHidden, isCollapsed } = this.state;
 
     if (status === null) {
