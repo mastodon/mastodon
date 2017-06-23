@@ -11,7 +11,6 @@ import {
   deleteFromTimelines,
 } from '../../actions/timelines';
 import { addColumn, removeColumn, moveColumn } from '../../actions/columns';
-import ColumnBackButtonSlim from '../../components/column_back_button_slim';
 import { FormattedMessage } from 'react-intl';
 import createStream from '../../stream';
 

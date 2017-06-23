@@ -74,9 +74,6 @@ class WrappedRoute extends React.Component {
 
 }
 
-const noOp = () => false;
-
-
 class UI extends React.PureComponent {
 
   static propTypes = {
