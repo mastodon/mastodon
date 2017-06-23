@@ -118,7 +118,7 @@ export function BoostModal () {
   return import(/* webpackChunkName: "modals/boost_modal" */'../components/boost_modal');
 }
 
-export function ConfirmModal () {
+export function ConfirmationModal () {
   return import(/* webpackChunkName: "modals/confirmation_modal" */'../components/confirmation_modal');
 }
 
