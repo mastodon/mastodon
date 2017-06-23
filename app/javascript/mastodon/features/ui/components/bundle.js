@@ -43,7 +43,7 @@ class Bundle extends React.Component {
     }
   }
 
-  componentDidUpdate (prevProps) {
+  componentDidUpdate () {
     this.props.onRender();
   }
 
