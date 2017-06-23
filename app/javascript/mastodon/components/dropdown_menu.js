@@ -56,7 +56,7 @@ class DropdownMenu extends React.PureComponent {
       return <li key={`sep-${i}`} className='dropdown__sep' />;
     }
 
-    const { text, action, href = '#' } = item;
+    const { text, href = '#' } = item;
 
     return (
       <li className='dropdown__content-list-item' key={`${text}-${i}`}>

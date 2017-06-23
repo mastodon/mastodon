@@ -17,7 +17,7 @@ class SettingToggle extends React.PureComponent {
   }
 
   render () {
-    const { settings, settingKey, label, onChange } = this.props;
+    const { settings, settingKey, label } = this.props;
     const id = `setting-toggle-${settingKey.join('-')}`;
 
     return (

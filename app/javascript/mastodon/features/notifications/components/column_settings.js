@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { FormattedMessage } from 'react-intl';
-import ColumnCollapsable from '../../../components/column_collapsable';
 import ClearColumnButton from './clear_column_button';
 import SettingToggle from './setting_toggle';
 
@@ -16,7 +15,7 @@ class ColumnSettings extends React.PureComponent {
   };
 
   render () {
-    const { settings, onChange, onSave, onClear } = this.props;
+    const { settings, onChange, onClear } = this.props;
 
     const alertStr = <FormattedMessage id='notifications.column_settings.alert' defaultMessage='Desktop notifications' />;
     const showStr  = <FormattedMessage id='notifications.column_settings.show' defaultMessage='Show in column' />;
