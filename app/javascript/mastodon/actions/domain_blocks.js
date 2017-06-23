@@ -16,7 +16,7 @@ export function blockDomain(domain, accountId) {
   return (dispatch, getState) => {
     dispatch(blockDomainRequest(domain));
 
-    api(getState).post('/api/v1/domain_blocks', { domain }).then(response => {
+    api(getState).post('/api/v1/domain_blocks', { domain }).then(() => {
       dispatch(blockDomainSuccess(domain, accountId));
     }).catch(err => {
       dispatch(blockDomainFail(domain, err));
@@ -51,7 +51,7 @@ export function unblockDomain(domain, accountId) {
   return (dispatch, getState) => {
     dispatch(unblockDomainRequest(domain));
 
-    api(getState).delete('/api/v1/domain_blocks', { params: { domain } }).then(response => {
+    api(getState).delete('/api/v1/domain_blocks', { params: { domain } }).then(() => {
       dispatch(unblockDomainSuccess(domain, accountId));
     }).catch(err => {
       dispatch(unblockDomainFail(domain, err));

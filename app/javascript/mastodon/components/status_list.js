@@ -99,7 +99,7 @@ class StatusList extends ImmutablePureComponent {
   }
 
   render () {
-    const { statusIds, onScrollToBottom, scrollKey, trackScroll, shouldUpdateScroll, isLoading, hasMore, prepend, emptyMessage } = this.props;
+    const { statusIds, scrollKey, trackScroll, shouldUpdateScroll, isLoading, hasMore, prepend, emptyMessage } = this.props;
 
     let loadMore       = null;
     let scrollableArea = null;

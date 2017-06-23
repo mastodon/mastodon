@@ -242,7 +242,7 @@ const startWorker = (workerId) => {
     accountFromRequest(req, next);
   };
 
-  const errorMiddleware = (err, req, res, next) => {
+  const errorMiddleware = (err, req, res) => {
     log.error(req.requestId, err.toString());
     res.writeHead(err.statusCode || 500, { 'Content-Type': 'application/json' });
     res.end(JSON.stringify({ error: err.statusCode ? err.toString() : 'An unexpected error occurred' }));
@@ -366,7 +366,7 @@ const startWorker = (workerId) => {
       }
     });
 
-    ws.on('error', e => {
+    ws.on('error', () => {
       log.verbose(req.requestId, `Ending stream for ${req.accountId}`);
       unsubscribe(id, listener);
       if (closeHandler) {
@@ -443,7 +443,7 @@ const startWorker = (workerId) => {
     }
   });
 
-  const wsInterval = setInterval(() => {
+  setInterval(() => {
     wss.clients.forEach(ws => {
       if (ws.isAlive === false) {
         ws.terminate();

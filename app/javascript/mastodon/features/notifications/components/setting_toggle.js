@@ -18,7 +18,7 @@ class SettingToggle extends React.PureComponent {
   }
 
   render () {
-    const { prefix, settings, settingKey, label, onChange } = this.props;
+    const { prefix, settings, settingKey, label } = this.props;
     const id = ['setting-toggle', prefix, ...settingKey].filter(Boolean).join('-');
 
     return (
