@@ -26,11 +26,15 @@ export function clearSubscription () {
 }
 
 export function changeAlerts(key, value) {
-  return {
-    type: ALERTS_CHANGE,
-    key,
-    value,
-  };
+  return dispatch => {
+    dispatch({
+      type: ALERTS_CHANGE,
+      key,
+      value,
+    });
+
+    dispatch(saveSettings());
+  }
 }
 
 export function saveSettings() {
@@ -39,7 +43,7 @@ export function saveSettings() {
 
     const backendSubscription = subscriptions.find(sub => sub.endpoint === subscription.endpoint);
 
-    axios.put(`/api/web/push_subscriptions`, {
+    axios.put('/api/web/push_subscriptions', {
       data: {
         id: subscription.id || backendSubscription.id,
         alerts,
