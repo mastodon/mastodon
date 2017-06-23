@@ -113,10 +113,9 @@ class StatusList extends ImmutablePureComponent {
         <div className='scrollable' ref={this.setRef}>
           <div className='status-list'>
             {prepend}
-
             {statusIds.map((statusId) => {
               return <StatusContainer key={statusId} id={statusId} intersectionObserverWrapper={this.intersectionObserverWrapper} />;
-            })}
+            }).toArray()}
 
             {loadMore}
           </div>
