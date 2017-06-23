@@ -65,13 +65,15 @@ class NotifyService < BaseService
   end
 
   def send_push_notifications
-    @recipient.web_push_subscriptions.each do |web_subscription|
+    sessions_with_subscriptions = @recipient.user.session_activations.reject { |session| session.web_push_subscription.nil? }
+
+    sessions_with_subscriptions.each do |session|
       begin
-        web_subscription.push(@notification)
+        session.web_push_subscription.push(@notification)
       rescue Webpush::InvalidSubscription
-        web_subscription.destroy!
+        session.web_push_subscription.destroy!
       rescue Webpush::ResponseError
-        web_subscription.destroy!
+        session.web_push_subscription.destroy!
       end
     end
   end

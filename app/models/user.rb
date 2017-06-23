@@ -95,6 +95,10 @@ class User < ApplicationRecord
     settings.system_font_ui
   end
 
+  def active_session
+    @_active_session ||= session_activations.find_by(user_id: self)
+  end
+
   def activate_session(request)
     session_activations.activate(session_id: SecureRandom.hex,
                                  user_agent: request.user_agent,

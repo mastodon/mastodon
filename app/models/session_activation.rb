@@ -15,6 +15,7 @@
 
 class SessionActivation < ApplicationRecord
   belongs_to :access_token, class_name: 'Doorkeeper::AccessToken', dependent: :destroy
+  belongs_to :web_push_subscription, class_name: 'Web::PushSubscription', dependent: :destroy
 
   delegate :token,
            to: :access_token,

@@ -4,7 +4,6 @@
 # Table name: web_push_subscriptions
 #
 #  id         :integer          not null, primary key
-#  account_id :integer
 #  endpoint   :string
 #  key_p256dh :string
 #  key_auth   :string
@@ -17,6 +16,8 @@ class Web::PushSubscription < ApplicationRecord
   include RoutingHelper
   include StreamEntriesHelper
   include ActionView::Helpers::TranslationHelper
+
+  has_one :session_activation
 
   before_create :send_welcome_notification
 

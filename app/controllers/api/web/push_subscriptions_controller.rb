@@ -14,8 +14,10 @@ class Api::Web::PushSubscriptionsController < Api::BaseController
       key_auth: params[:data][:keys][:auth]
     )
 
-    current_account.web_push_subscriptions << web_subscription
-    current_account.save!
+    web_subscription.save!
+
+    current_account.user.active_session.web_push_subscription = web_subscription
+    current_account.user.active_session.save!
 
     render json: web_subscription.as_payload
   end

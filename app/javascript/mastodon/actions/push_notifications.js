@@ -34,18 +34,16 @@ export function changeAlerts(key, value) {
     });
 
     dispatch(saveSettings());
-  }
+  };
 }
 
 export function saveSettings() {
   return (_, getState) => {
-    const { subscription, alerts, subscriptions } = getState().get('push_notifications').toJS();
-
-    const backendSubscription = subscriptions.find(sub => sub.endpoint === subscription.endpoint);
+    const { subscription, backend_subscription, alerts } = getState().get('push_notifications').toJS();
 
     axios.put('/api/web/push_subscriptions', {
       data: {
-        id: subscription.id || backendSubscription.id,
+        id: subscription.id || backend_subscription.id,
         alerts,
       },
     });

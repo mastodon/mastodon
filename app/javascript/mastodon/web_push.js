@@ -18,7 +18,6 @@ const urlBase64ToUint8Array = (base64String) => {
   return outputArray;
 };
 
-const getCsrfToken = () => document.querySelector('[name="csrf-token"]').getAttribute('content');
 const getApplicationServerKey = () => document.querySelector('[name="applicationServerKey"]').getAttribute('content');
 
 const getRegistration = () => navigator.serviceWorker.ready;
@@ -43,17 +42,6 @@ const sendSubscriptionToBackend = (subscription) =>
 
 const supportsPushNotifications = ('serviceWorker' in navigator && 'PushManager' in window);
 
-export const checkPushSubscriptionStatus = () => new Promise(resolve => {
-  if (!supportsPushNotifications) {
-    return resolve(false);
-  }
-
-  return getRegistration()
-    .then(getPushSubscription)
-    .then(({ subscription }) => resolve(subscription !== null))
-    .catch(() => resolve(false));
-});
-
 store.dispatch(setBrowserSupport(supportsPushNotifications));
 
 if (supportsPushNotifications) {
@@ -75,6 +63,7 @@ if (supportsPushNotifications) {
     })
     .then(subscription => store.dispatch(setSubscription(subscription)))
     .catch(error => {
+      console.error(error);
       store.dispatch(clearSubscription());
 
       try {
