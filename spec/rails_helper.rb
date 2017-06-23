@@ -16,6 +16,17 @@ WebMock.disable_net_connect!
 Sidekiq::Testing.inline!
 Sidekiq::Logging.logger = nil
 
+Devise::Test::ControllerHelpers.module_eval do
+  alias_method :original_sign_in, :sign_in
+
+  def sign_in(resource, deprecated = nil, scope: nil)
+    original_sign_in(resource, scope: scope)
+
+    SessionActivation.deactivate warden.raw_session["auth_id"]
+    warden.raw_session["auth_id"] = resource.activate_session
+  end
+end
+
 RSpec.configure do |config|
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
   config.use_transactional_fixtures = true

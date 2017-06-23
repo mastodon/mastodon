@@ -1473,8 +1473,10 @@
   &:hover,
   &:focus,
   &:active {
-    background: lighten($ui-base-color, 14%);
-    transition: all 100ms linear;
+    @media screen and (min-width: 1025px) {
+      background: lighten($ui-base-color, 14%);
+      transition: all 100ms linear;
+    }
   }
 
   span {

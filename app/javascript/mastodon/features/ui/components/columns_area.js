@@ -2,12 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
+import ReactSwipeable from 'react-swipeable';
 import HomeTimeline from '../../home_timeline';
 import Notifications from '../../notifications';
 import PublicTimeline from '../../public_timeline';
 import CommunityTimeline from '../../community_timeline';
 import HashtagTimeline from '../../hashtag_timeline';
 import Compose from '../../compose';
+import { getPreviousLink, getNextLink } from './tabs_bar';
 
 const componentMap = {
   'COMPOSE': Compose,
@@ -20,10 +22,30 @@ const componentMap = {
 
 export default class ColumnsArea extends ImmutablePureComponent {
 
+  static contextTypes = {
+    router: PropTypes.object.isRequired,
+  };
+
   static propTypes = {
     columns: ImmutablePropTypes.list.isRequired,
     singleColumn: PropTypes.bool,
     children: PropTypes.node,
+  };
+
+  handleRightSwipe = () => {
+    const previousLink = getPreviousLink(this.context.router.history.location.pathname);
+
+    if (previousLink) {
+      this.context.router.history.push(previousLink);
+    }
+  }
+
+  handleLeftSwipe = () => {
+    const previousLink = getNextLink(this.context.router.history.location.pathname);
+
+    if (previousLink) {
+      this.context.router.history.push(previousLink);
+    }
   };
 
   render () {
@@ -31,9 +53,9 @@ export default class ColumnsArea extends ImmutablePureComponent {
 
     if (singleColumn) {
       return (
-        <div className='columns-area'>
+        <ReactSwipeable onSwipedLeft={this.handleLeftSwipe} onSwipedRight={this.handleRightSwipe} className='columns-area'>
           {children}
-        </div>
+        </ReactSwipeable>
       );
     }
 
