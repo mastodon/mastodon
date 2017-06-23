@@ -139,7 +139,7 @@ export default class MediaGallery extends React.PureComponent {
     visible: !this.props.sensitive,
   };
 
-  handleOpen = (e) => {
+  handleOpen = () => {
     this.setState({ visible: !this.state.visible });
   }
 

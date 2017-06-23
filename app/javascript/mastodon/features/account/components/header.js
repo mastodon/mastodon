@@ -17,7 +17,7 @@ const messages = defineMessages({
 });
 
 const makeMapStateToProps = () => {
-  const mapStateToProps = (state, props) => ({
+  const mapStateToProps = state => ({
     autoPlayGif: state.getIn(['meta', 'auto_play_gif']),
   });
 

@@ -131,15 +131,7 @@ class Status < ApplicationRecord
     end
 
     def as_home_timeline(account)
-      # 'references' is a workaround for the following issue:
-      # Inconsistent results with #or in ActiveRecord::Relation with respect to documentation Issue #24055 rails/rails
-      # https://github.com/rails/rails/issues/24055
-      references(:mentions)
-        .where.not(visibility: :direct)
-        .or(where(mentions: { account: account }))
-        .where(follows: { account_id: account })
-        .or(references(:mentions, :follows).where(account: account))
-        .left_outer_joins(account: :followers).left_outer_joins(:mentions).group(:id)
+      where(account: [account] + account.following).where(visibility: [:public, :unlisted, :private])
     end
 
     def as_public_timeline(account = nil, local_only = false)

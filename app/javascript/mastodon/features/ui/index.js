@@ -74,8 +74,6 @@ class WrappedRoute extends React.Component {
 
 }
 
-const noOp = () => false;
-
 @connect()
 export default class UI extends React.PureComponent {
 

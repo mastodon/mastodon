@@ -11,7 +11,7 @@ const messages = defineMessages({
 });
 
 const makeMapStateToProps = () => {
-  const mapStateToProps = (state, props) => ({
+  const mapStateToProps = state => ({
     acceptContentTypes: state.getIn(['media_attachments', 'accept_content_types']),
   });
 

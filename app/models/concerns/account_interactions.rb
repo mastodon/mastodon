@@ -29,6 +29,12 @@ module AccountInteractions
       blocked_domains = AccountDomainBlock.where(account_id: account_id, domain: accounts_map.values).pluck(:domain)
       accounts_map.map { |id, domain| [id, blocked_domains.include?(domain)] }.to_h
     end
+
+    private
+
+    def follow_mapping(query, field)
+      query.pluck(field).each_with_object({}) { |id, mapping| mapping[id] = true }
+    end
   end
 
   included do

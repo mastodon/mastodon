@@ -74,7 +74,7 @@ export function deleteStatus(id) {
   return (dispatch, getState) => {
     dispatch(deleteStatusRequest(id));
 
-    api(getState).delete(`/api/v1/statuses/${id}`).then(response => {
+    api(getState).delete(`/api/v1/statuses/${id}`).then(() => {
       dispatch(deleteStatusSuccess(id));
       dispatch(deleteFromTimelines(id));
     }).catch(error => {
@@ -152,7 +152,7 @@ export function muteStatus(id) {
   return (dispatch, getState) => {
     dispatch(muteStatusRequest(id));
 
-    api(getState).post(`/api/v1/statuses/${id}/mute`).then(response => {
+    api(getState).post(`/api/v1/statuses/${id}/mute`).then(() => {
       dispatch(muteStatusSuccess(id));
     }).catch(error => {
       dispatch(muteStatusFail(id, error));
@@ -186,7 +186,7 @@ export function unmuteStatus(id) {
   return (dispatch, getState) => {
     dispatch(unmuteStatusRequest(id));
 
-    api(getState).post(`/api/v1/statuses/${id}/unmute`).then(response => {
+    api(getState).post(`/api/v1/statuses/${id}/unmute`).then(() => {
       dispatch(unmuteStatusSuccess(id));
     }).catch(error => {
       dispatch(unmuteStatusFail(id, error));

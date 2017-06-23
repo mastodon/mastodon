@@ -53,7 +53,7 @@ export default class EmojiPickerDropdown extends React.PureComponent {
       import(/* webpackChunkName: "emojione_picker" */ 'emojione-picker').then(TheEmojiPicker => {
         EmojiPicker = TheEmojiPicker.default;
         this.setState({ loading: false });
-      }).catch(err => {
+      }).catch(() => {
         // TODO: show the user an error?
         this.setState({ loading: false });
       });

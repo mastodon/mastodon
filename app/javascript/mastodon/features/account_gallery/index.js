@@ -7,7 +7,6 @@ import { refreshAccountMediaTimeline, expandAccountMediaTimeline } from '../../a
 import LoadingIndicator from '../../components/loading_indicator';
 import Column from '../ui/components/column';
 import ColumnBackButton from '../../components/column_back_button';
-import Immutable from 'immutable';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { getAccountGallery } from '../../selectors';
 import MediaItem from './components/media_item';
