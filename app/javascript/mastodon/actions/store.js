@@ -17,9 +17,7 @@ export function hydrateStore(rawState) {
   };
 };
 
-export function hydrateStoreLazy(name, rawState) {
-  const state = convertState(rawState);
-
+export function hydrateStoreLazy(name, state) {
   return {
     type: `${STORE_HYDRATE_LAZY}-${name}`,
     state,

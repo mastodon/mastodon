@@ -23,8 +23,9 @@ const { localeData, messages } = getLocale();
 addLocaleData(localeData);
 
 export const store = configureStore();
-export const initialState = JSON.parse(document.getElementById('initial-state').textContent);
-store.dispatch(hydrateStore(initialState));
+const initialState = JSON.parse(document.getElementById('initial-state').textContent);
+export const hydrateAction = hydrateStore(initialState);
+store.dispatch(hydrateAction);
 
 export default class Mastodon extends React.PureComponent {
 

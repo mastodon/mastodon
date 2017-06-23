@@ -1,6 +1,9 @@
 import { store } from '../../../containers/mastodon';
 import { injectAsyncReducer } from '../../../store/configureStore';
 
+// NOTE: When lazy-loading reducers, make sure to add them
+// to application.html.haml (if the component is preloaded there)
+
 export function EmojiPicker () {
   return import(/* webpackChunkName: "emojione_picker" */'emojione-picker');
 }
