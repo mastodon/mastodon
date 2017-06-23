@@ -10,7 +10,7 @@ import {
   OnboardingModal,
   VideoModal,
   BoostModal,
-  ConfirmModal,
+  ConfirmationModal,
   ReportModal,
 } from '../../../features/ui/util/async-components';
 
@@ -19,7 +19,7 @@ const MODAL_COMPONENTS = {
   'ONBOARDING': OnboardingModal,
   'VIDEO': VideoModal,
   'BOOST': BoostModal,
-  'CONFIRM': ConfirmModal,
+  'CONFIRM': ConfirmationModal,
   'REPORT': ReportModal,
 };
 
