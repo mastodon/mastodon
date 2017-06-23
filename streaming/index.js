@@ -242,7 +242,7 @@ const startWorker = (workerId) => {
     accountFromRequest(req, next);
   };
 
-  const errorMiddleware = (err, req, res) => {
+  const errorMiddleware = (err, req, res, next) => {  // eslint-disable-line no-unused-vars
     log.error(req.requestId, err.toString());
     res.writeHead(err.statusCode || 500, { 'Content-Type': 'application/json' });
     res.end(JSON.stringify({ error: err.statusCode ? err.toString() : 'An unexpected error occurred' }));
