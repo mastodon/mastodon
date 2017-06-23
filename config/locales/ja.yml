@@ -1,7 +1,7 @@
 ---
 ja:
   about:
-    about_mastodon: Mastodon は<em>自由でオープンソース</em>なソーシャルネットワークです。商用プラットフォームの代替となる<em>分散型</em>を採用し、あなたのやりとりが一つの会社によって独占されるのを防ぎます。信頼できるインスタンスを選択してください &mdash; どのインスタンスを選んでも、誰とでもやりとりすることができます。 だれでも自分の Mastodon インスタンスを作ることができ、シームレスに<em>ソーシャルネットワーク</em>に参加できます。
+    about_mastodon: Mastodon っちゅーのは<em>自由でオープンソース</em>なソーシャルネットワークやねん。商売用のプラットフォームの代わりになる<em>分散型</em>を採用しとってな、自分らのやりとりが一つの会社に独り占めされるんを防ぐんや。信頼できるインスタンスを選びや &mdash; どのインスタンス選んでもな、誰とでもやりとりできるんや。 だれでも自分の Mastodon インスタンス作れるしな、スムーズに<em>ソーシャルネットワーク</em>に参加できるんやで。
     about_this: このインスタンスについて
     apps: アプリ
     business_email: 'ビジネスメールアドレス:'
@@ -20,27 +20,27 @@ ja:
       privacy: 投稿ごとに公開範囲を細かく設定可能
       public: 公開タイムライン
     features_headline: Mastodon の特徴
-    get_started: 参加する
+    get_started: ごめんください。どなたですか？お入りください。ありがとう。
     links: リンク
     other_instances: 他のインスタンス
     source_code: ソースコード
-    status_count_after: トゥート
-    status_count_before: トゥート数
+    status_count_after: なんや
+    status_count_before: なんや数
     terms: プライバシーポリシー
     user_count_after: 人
-    user_count_before: ユーザー数
+    user_count_before: osaka人数
     version: バージョン
   accounts:
-    follow: フォロー
-    followers: フォロワー
-    following: フォロー中
+    follow: ツルみ
+    followers: ツルまれ
+    following: ツルみ中
     nothing_here: 何もありません
-    people_followed_by: "%{name} さんがフォロー中のアカウント"
-    people_who_follow: "%{name} さんをフォロー中のアカウント"
+    people_followed_by: "%{name} はんがツルみ中のアカウント"
+    people_who_follow: "%{name} はんをツルみ中のアカウント"
     posts: 投稿
     remote_follow: リモートフォロー
     reserved_username: このユーザー名は予約されています。
-    unfollow: フォロー解除
+    unfollow: ツルみ解除
   activitypub:
     activity:
       announce:
@@ -58,11 +58,11 @@ ja:
       disable_two_factor_authentication: 二段階認証を無効にする
       display_name: 表示名
       domain: ドメイン
-      edit: 編集
+      edit: いらう(編集)
       email: E-mail
       feed_url: フィードURL
-      followers: フォロワー数
-      follows: フォロー数
+      followers: ツルまれ数
+      follows: ツルみ数
       ip: IP
       location:
         all: すべて
@@ -97,7 +97,7 @@ ja:
         report: レポート
         targeted_reports: このアカウントについてのレポート
       silence: サイレンス
-      statuses: トゥート数
+      statuses: なんや数
       subscribe: 購読する
       title: アカウント
       undo_silenced: サイレンスから戻す
@@ -114,7 +114,7 @@ ja:
         create: ブロックを作成
         hint: ドメインブロックはデータベース中のアカウント項目の作成を妨げませんが、遡って自動的に指定されたモデレーションをそれらのアカウントに適用します。
         severity:
-          desc_html: "<strong>サイレンス</strong>はアカウントのトゥートをフォローしていない人から隠します。<strong>停止</strong>はそのアカウントのコンテンツ、メディア、プロフィールデータをすべて削除します。"
+          desc_html: "<strong>サイレンス</strong>はアカウントのなんやをツルんでない人から隠します。<strong>停止</strong>はそのアカウントのコンテンツ、メディア、プロフィールデータをすべて削除します。"
           silence: サイレンス
           suspend: 停止
         title: 新規ドメインブロック
@@ -159,7 +159,7 @@ ja:
       silence_account: アカウントをサイレンス
       status: ステータス
       suspend_account: アカウントを停止
-      target: ターゲット
+      target: チクられ者
       title: レポート
       unresolved: 未解決
       view: 表示
@@ -195,7 +195,7 @@ ja:
     title: 管理
   application_mailer:
     settings: 'メール設定の変更: %{link}'
-    signature: Mastodon %{instance} インスタンスからの通知
+    signature: Mastodon %{instance} インスタンスからのあめちゃん
     view: 'View:'
   applications:
     invalid_url: URLが無効です
@@ -206,16 +206,16 @@ ja:
     didnt_get_confirmation: 確認メールを受信できませんか？
     forgot_password: パスワードをお忘れですか？
     login: ログイン
-    logout: ログアウト
+    logout: ほなさいなら
     register: 登録する
     resend_confirmation: 確認メールを再送する
     reset_password: パスワードを再発行
     set_new_password: 新しいパスワード
   authorize_follow:
     error: 残念ながら、リモートアカウントにエラーが発生しました。
-    follow: フォロー
-    prompt_html: 'あなた（<strong>%{self}</strong>）は以下のアカウントのフォローをリクエストしました:'
-    title: "%{acct} をフォロー"
+    follow: ツルみ
+    prompt_html: 'あなた（<strong>%{self}</strong>）は以下のアカウントのツルみをリクエストしました:'
+    title: "%{acct} をツルみ"
   datetime:
     distance_in_words:
       about_x_hours: "%{count}時間"
@@ -250,7 +250,7 @@ ja:
   exports:
     blocks: ブロック
     csv: CSV
-    follows: フォロー
+    follows: ツルみ
     mutes: ミュート
     storage: メディア
   followers:
@@ -280,7 +280,7 @@ ja:
       following: フォロー中のアカウントリスト
       muting: ミュートしたアカウントリスト
     upload: アップロード
-  landing_strip_html: "<strong>%{name}</strong> さんはインスタンス %{link_to_root_path} のユーザーです。アカウントさえ持っていればフォローしたり会話したりできます。"
+  landing_strip_html: "<strong>%{name}</strong> はんはインスタンス %{link_to_root_path} のosaka人です。アカウントさえ持っていればツルんだり会話したりできます。"
   landing_strip_signup_html: もしお持ちでないなら <a href="%{sign_up_path}">こちら</a> からサインアップできます。
   media_attachments:
     validations:
@@ -289,42 +289,42 @@ ja:
   notification_mailer:
     digest:
       body: "%{instance} での最後のログインからの出来事:"
-      mention: "%{name} さんがあなたに返信しました:"
+      mention: "%{name} はんが自分に返信しました:"
       new_followers_summary:
-        one: 新たなフォロワーを獲得しました！
-        other: "%{count} 人の新たなフォロワーを獲得しました！"
+        one: 新たにツルまれました！
+        other: "%{count} 人に新たにツルまれました！"
       subject:
-        one: "新しい1件の通知 \U0001F418"
-        other: "新しい%{count}件の通知 \U0001F418"
+        one: "新しい1件のあめちゃん \U0001F418"
+        other: "新しい%{count}件のあめちゃん \U0001F418"
     favourite:
-      body: 'あなたのトゥートが %{name} さんにお気に入り登録されました:'
-      subject: "%{name} さんがあなたのトゥートをお気に入りに登録しました"
+      body: '自分のなんやが %{name} はんにええやん思われてるわ:'
+      subject: "%{name} はんが自分のなんやをええやん思た"
     follow:
-      body: "%{name} さんにフォローされています"
-      subject: "%{name} さんにフォローされています"
+      body: "%{name} はんにツルまれています"
+      subject: "%{name} はんにツルまれています"
     follow_request:
-      body: "%{name} さんがあなたにフォローをリクエストしました。"
-      subject: "%{name} さんからのフォローリクエスト"
+      body: "%{name} はんが自分にツルみをリクエストしました。"
+      subject: "%{name} はんからのツルみリクエスト"
     mention:
-      body: "%{name} さんから返信がありました:"
-      subject: "%{name} さんに返信されました"
+      body: "%{name} はんから返信がありました:"
+      subject: "%{name} はんに返信されました"
     reblog:
-      body: 'あなたのトゥートが %{name} さんにブーストされました:'
-      subject: あなたのトゥートが %{name} さんにブーストされました
+      body: '自分のなんやが %{name} はんにしばかれました:'
+      subject: 自分のなんやが %{name} はんにしばかれました
   pagination:
     next: 次
     prev: 前
     truncate: "&hellip;"
   remote_follow:
-    acct: あなたの ユーザー名@ドメイン を入力してください
+    acct: 自分の ユーザー名@ドメイン を入力してください
     missing_resource: リダイレクト先が見つかりませんでした
-    proceed: フォローする
-    prompt: 'フォローしようとしています:'
+    proceed: ツルむ
+    prompt: 'ツルもうとしています:'
   settings:
     authorized_apps: 認証済みアプリ
     back: 戻る
     delete: アカウントの削除
-    edit_profile: プロフィールを編集
+    edit_profile: プロフィールをいらう(編集)
     export: データのエクスポート
     followers: 信頼済みのインスタンス
     import: データのインポート
@@ -337,14 +337,14 @@ ja:
     show_more: もっと見る
     visibilities:
       private: 非公開
-      private_long: フォロワーにのみ表示されます
+      private_long: ツルまれにのみ表示されます
       public: 公開
       public_long: 誰でも見ることができ、かつ公開タイムラインに表示されます
       unlisted: 未収載
       unlisted_long: 誰でも見ることができますが、公開タイムラインには表示されません
   stream_entries:
     click_to_show: クリックして表示
-    reblogged: ブーストされました
+    reblogged: しばかれました
     sensitive_content: 閲覧注意
   time:
     formats:
