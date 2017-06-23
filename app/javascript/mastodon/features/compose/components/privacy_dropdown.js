@@ -64,7 +64,7 @@ class PrivacyDropdown extends React.PureComponent {
   }
 
   render () {
-    const { value, onChange, intl } = this.props;
+    const { value, intl } = this.props;
     const { open } = this.state;
 
     const options = [
