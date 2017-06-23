@@ -5,14 +5,22 @@ import spring from 'react-motion/lib/spring';
 import BundleContainer from '../containers/bundle_container';
 import BundleModalError from './bundle_modal_error';
 import ModalLoading from './modal_loading';
+import {
+  MediaModal,
+  OnboardingModal,
+  VideoModal,
+  BoostModal,
+  ConfirmModal,
+  ReportModal,
+} from '../../../features/ui/util/async-components';
 
 const MODAL_COMPONENTS = {
-  'MEDIA': () => import(/* webpackChunkName: "modals/media_modal" */'./media_modal'),
-  'ONBOARDING': () => import(/* webpackChunkName: "modals/onboarding_modal" */'./onboarding_modal'),
-  'VIDEO': () => import(/* webpackChunkName: "modals/video_modal" */'./video_modal'),
-  'BOOST': () => import(/* webpackChunkName: "modals/boost_modal" */'./boost_modal'),
-  'CONFIRM': () => import(/* webpackChunkName: "modals/confirmation_modal" */'./confirmation_modal'),
-  'REPORT': () => import(/* webpackChunkName: "modals/confirmation_modal" */'./report_modal'),
+  'MEDIA': MediaModal,
+  'ONBOARDING': OnboardingModal,
+  'VIDEO': VideoModal,
+  'BOOST': BoostModal,
+  'CONFIRM': ConfirmModal,
+  'REPORT': ReportModal,
 };
 
 export default class ModalRoot extends React.PureComponent {

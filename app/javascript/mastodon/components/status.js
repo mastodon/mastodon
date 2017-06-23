@@ -12,13 +12,11 @@ import emojify from '../emoji';
 import escapeTextContentForBrowser from 'escape-html';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import scheduleIdleTask from '../features/ui/util/schedule_idle_task';
+import { MediaGallery, VideoPlayer } from '../features/ui/util/async-components';
 
 // We use the component (and not the container) since we do not want
 // to use the progress bar to show download progress
 import Bundle from '../features/ui/components/bundle';
-
-const MediaGallery = () => import(/* webpackChunkName: "status/MediaGallery" */'./media_gallery');
-const VideoPlayer = () => import(/* webpackChunkName: "status/VideoPlayer" */'./video_player');
 
 export default class Status extends ImmutablePureComponent {
 
