@@ -1,21 +1,18 @@
 import React from 'react';
-import ColumnsArea from './components/columns_area';
 import NotificationsContainer from './containers/notifications_container';
 import PropTypes from 'prop-types';
 import LoadingBarContainer from './containers/loading_bar_container';
-import HomeTimeline from '../home_timeline';
-import Compose from '../compose';
 import TabsBar from './components/tabs_bar';
 import AlertBarContainer from './containers/alert_bar_container';
 import ModalContainer from './containers/modal_container';
-import Notifications from '../notifications';
 import { connect } from 'react-redux';
 import { isMobile } from '../../is_mobile';
 import { debounce } from 'lodash';
 import { uploadCompose } from '../../actions/compose';
-import { refreshTimeline } from '../../actions/timelines';
+import { refreshHomeTimeline } from '../../actions/timelines';
 import { refreshNotifications } from '../../actions/notifications';
 import UploadArea from './components/upload_area';
+import ColumnsAreaContainer from './containers/columns_area_container';
 
 const noOp = () => false;
 
@@ -99,7 +96,7 @@ class UI extends React.PureComponent {
     document.addEventListener('dragleave', this.handleDragLeave, false);
     document.addEventListener('dragend', this.handleDragEnd, false);
 
-    this.props.dispatch(refreshTimeline('home'));
+    this.props.dispatch(refreshHomeTimeline());
     this.props.dispatch(refreshNotifications());
   }
 
@@ -120,34 +117,13 @@ class UI extends React.PureComponent {
     const { width, draggingOver } = this.state;
     const { children } = this.props;
 
-    let mountedColumns;
-
-    if (isMobile(width)) {
-      mountedColumns = (
-        <ColumnsArea>
-          {children}
-        </ColumnsArea>
-      );
-    } else {
-      mountedColumns = (
-        <ColumnsArea>
-          <Compose withHeader={true} />
-          <HomeTimeline shouldUpdateScroll={noOp} />
-          <Notifications shouldUpdateScroll={noOp} />
-          <div className="column__wrapper">{children}</div>
-        </ColumnsArea>
-      );
-    }
-
     return (
       <div className='ui' ref={this.setRef}>
         <AlertBarContainer />
         <TabsBar />
-
-        {mountedColumns}
-
+        <ColumnsAreaContainer singleColumn={isMobile(width)}>{children}</ColumnsAreaContainer>
         <NotificationsContainer />
-        <LoadingBarContainer className="loading-bar" />
+        <LoadingBarContainer className='loading-bar' />
         <ModalContainer />
         <UploadArea active={draggingOver} onClose={this.closeUploadModal} />
       </div>

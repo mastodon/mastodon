@@ -93,8 +93,6 @@ class TagManager
       account_url(target)
     when :note, :comment, :activity
       unique_tag(target.created_at, target.id, 'Status')
-    else
-      unique_tag(target.stream_entry.created_at, target.stream_entry.activity_id, target.stream_entry.activity_type)
     end
   end
 
@@ -106,8 +104,6 @@ class TagManager
       short_account_url(target)
     when :note, :comment, :activity
       short_account_status_url(target.account, target)
-    else
-      account_stream_entry_url(target.account, target.stream_entry)
     end
   end
 end

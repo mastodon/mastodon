@@ -1,6 +1,6 @@
 <%= display_name(@me) %>,
 
-<%= raw t('notification_mailer.digest.body', since: @since, instance: root_url) %>
+<%= raw t('notification_mailer.digest.body', since: l(@since), instance: root_url) %>
 <% @notifications.each do |notification| %>
 
 * <%= raw t('notification_mailer.digest.mention', name: notification.from_account.acct) %>

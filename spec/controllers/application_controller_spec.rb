@@ -37,6 +37,16 @@ describe ApplicationController, type: :controller do
     end
   end
 
+  context 'forgery' do
+    subject do
+      ActionController::Base.allow_forgery_protection = true
+      routes.draw { post 'success' => 'anonymous#success' }
+      post 'success'
+    end
+
+    include_examples 'respond_with_error', 422
+  end
+
   it "does not force ssl if LOCAL_HTTPS is not 'true'" do
     routes.draw { get 'success' => 'anonymous#success' }
     ClimateControl.modify LOCAL_HTTPS: '' do
@@ -256,7 +266,7 @@ describe ApplicationController, type: :controller do
     shared_examples 'receives :with_includes' do |fabricator, klass|
       it 'uses raw if it is not an ActiveRecord::Relation' do
         record = Fabricate(fabricator)
-        expect(C.new.cache_collection([record], klass)).to match_array([record])
+        expect(C.new.cache_collection([record], klass)).to eq [record]
       end
     end
 
@@ -267,7 +277,7 @@ describe ApplicationController, type: :controller do
         record = Fabricate(fabricator)
         relation = klass.none
         allow(relation).to receive(:cache_ids).and_return([record])
-        expect(C.new.cache_collection(relation, klass)).to match_array([record])
+        expect(C.new.cache_collection(relation, klass)).to eq [record]
       end
     end
 

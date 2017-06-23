@@ -1,9 +1,10 @@
 import React from 'react';
 import ImmutablePropTypes from 'react-immutable-proptypes';
+import ImmutablePureComponent from 'react-immutable-pure-component';
 
 const filename = url => url.split('/').pop().split('#')[0].split('?')[0];
 
-class AttachmentList extends React.PureComponent {
+class AttachmentList extends ImmutablePureComponent {
 
   static propTypes = {
     media: ImmutablePropTypes.list.isRequired,
