@@ -25,7 +25,8 @@ const messages = defineMessages({
   publishLoud: { id: 'compose_form.publish_loud', defaultMessage: '{publish}!' },
 });
 
-class ComposeForm extends ImmutablePureComponent {
+@injectIntl
+export default class ComposeForm extends ImmutablePureComponent {
 
   static propTypes = {
     intl: PropTypes.object.isRequired,
@@ -199,5 +200,3 @@ class ComposeForm extends ImmutablePureComponent {
   }
 
 }
-
-export default injectIntl(ComposeForm);

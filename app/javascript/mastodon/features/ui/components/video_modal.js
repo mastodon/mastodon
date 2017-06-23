@@ -10,7 +10,8 @@ const messages = defineMessages({
   close: { id: 'lightbox.close', defaultMessage: 'Close' },
 });
 
-class VideoModal extends ImmutablePureComponent {
+@injectIntl
+export default class VideoModal extends ImmutablePureComponent {
 
   static propTypes = {
     media: ImmutablePropTypes.map.isRequired,
@@ -35,5 +36,3 @@ class VideoModal extends ImmutablePureComponent {
   }
 
 }
-
-export default injectIntl(VideoModal);

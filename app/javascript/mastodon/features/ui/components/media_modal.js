@@ -12,7 +12,8 @@ const messages = defineMessages({
   close: { id: 'lightbox.close', defaultMessage: 'Close' },
 });
 
-class MediaModal extends ImmutablePureComponent {
+@injectIntl
+export default class MediaModal extends ImmutablePureComponent {
 
   static propTypes = {
     media: ImmutablePropTypes.list.isRequired,
@@ -95,5 +96,3 @@ class MediaModal extends ImmutablePureComponent {
   }
 
 }
-
-export default injectIntl(MediaModal);

@@ -35,7 +35,9 @@ const makeMapStateToProps = () => {
   return mapStateToProps;
 };
 
-class Report extends React.PureComponent {
+@connect(makeMapStateToProps)
+@injectIntl
+export default class Report extends React.PureComponent {
 
   static contextTypes = {
     router: PropTypes.object,
@@ -121,5 +123,3 @@ class Report extends React.PureComponent {
   }
 
 }
-
-export default connect(makeMapStateToProps)(injectIntl(Report));

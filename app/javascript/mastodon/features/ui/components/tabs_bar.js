@@ -33,7 +33,7 @@ export function getNextLink (path) {
   return null;
 };
 
-class TabsBar extends React.Component {
+export default class TabsBar extends React.Component {
 
   render () {
     return (
@@ -44,5 +44,3 @@ class TabsBar extends React.Component {
   }
 
 }
-
-export default TabsBar;

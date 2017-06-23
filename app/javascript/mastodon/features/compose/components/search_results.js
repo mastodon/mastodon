@@ -6,7 +6,7 @@ import StatusContainer from '../../../containers/status_container';
 import Link from 'react-router-dom/Link';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
-class SearchResults extends ImmutablePureComponent {
+export default class SearchResults extends ImmutablePureComponent {
 
   static propTypes = {
     results: ImmutablePropTypes.map.isRequired,
@@ -63,5 +63,3 @@ class SearchResults extends ImmutablePureComponent {
   }
 
 }
-
-export default SearchResults;

@@ -4,7 +4,7 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import emojify from '../../../emoji';
 import Toggle from 'react-toggle';
 
-class StatusCheckBox extends React.PureComponent {
+export default class StatusCheckBox extends React.PureComponent {
 
   static propTypes = {
     status: ImmutablePropTypes.map.isRequired,
@@ -36,5 +36,3 @@ class StatusCheckBox extends React.PureComponent {
   }
 
 }
-
-export default StatusCheckBox;

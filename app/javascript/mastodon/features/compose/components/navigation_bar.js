@@ -5,7 +5,7 @@ import Permalink from '../../../components/permalink';
 import { FormattedMessage } from 'react-intl';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
-class NavigationBar extends ImmutablePureComponent {
+export default class NavigationBar extends ImmutablePureComponent {
 
   static propTypes = {
     account: ImmutablePropTypes.map.isRequired,
@@ -30,5 +30,3 @@ class NavigationBar extends ImmutablePureComponent {
   }
 
 }
-
-export default NavigationBar;

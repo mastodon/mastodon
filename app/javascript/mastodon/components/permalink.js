@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-class Permalink extends React.PureComponent {
+export default class Permalink extends React.PureComponent {
 
   static contextTypes = {
     router: PropTypes.object,
@@ -32,5 +32,3 @@ class Permalink extends React.PureComponent {
   }
 
 }
-
-export default Permalink;

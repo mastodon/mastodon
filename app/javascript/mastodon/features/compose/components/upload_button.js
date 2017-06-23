@@ -23,7 +23,9 @@ const iconStyle = {
   lineHeight: '27px',
 };
 
-class UploadButton extends ImmutablePureComponent {
+@connect(makeMapStateToProps)
+@injectIntl
+export default class UploadButton extends ImmutablePureComponent {
 
   static propTypes = {
     disabled: PropTypes.bool,
@@ -70,5 +72,3 @@ class UploadButton extends ImmutablePureComponent {
   }
 
 }
-
-export default connect(makeMapStateToProps)(injectIntl(UploadButton));

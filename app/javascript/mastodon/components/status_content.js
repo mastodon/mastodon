@@ -7,7 +7,7 @@ import { isRtl } from '../rtl';
 import { FormattedMessage } from 'react-intl';
 import Permalink from './permalink';
 
-class StatusContent extends React.PureComponent {
+export default class StatusContent extends React.PureComponent {
 
   static contextTypes = {
     router: PropTypes.object,
@@ -171,5 +171,3 @@ class StatusContent extends React.PureComponent {
   }
 
 }
-
-export default StatusContent;

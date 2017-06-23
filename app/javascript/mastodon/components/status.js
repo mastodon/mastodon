@@ -15,7 +15,7 @@ import escapeTextContentForBrowser from 'escape-html';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import scheduleIdleTask from '../features/ui/util/schedule_idle_task';
 
-class Status extends ImmutablePureComponent {
+export default class Status extends ImmutablePureComponent {
 
   static contextTypes = {
     router: PropTypes.object,
@@ -233,5 +233,3 @@ class Status extends ImmutablePureComponent {
   }
 
 }
-
-export default Status;
