@@ -1,6 +1,10 @@
 import { store } from '../../../containers/mastodon';
 import { injectAsyncReducer } from '../../../store/configureStore';
 
+export function EmojiPicker () {
+  return import(/* webpackChunkName: "emojione_picker" */'emojione-picker');
+}
+
 export function Compose () {
   return Promise.all([
     import(/* webpackChunkName: "features/compose" */'../../compose'),
@@ -95,7 +99,34 @@ export function Mutes () {
   return import(/* webpackChunkName: "features/mutes" */'../../mutes');
 }
 
-export function Report () {
-  return import(/* webpackChunkName: "features/report" */'../../report');
+export function MediaModal () {
+  return import(/* webpackChunkName: "modals/media_modal" */'../components/media_modal');
 }
 
+export function OnboardingModal () {
+  return import(/* webpackChunkName: "modals/onboarding_modal" */'../components/onboarding_modal');
+}
+
+export function VideoModal () {
+  return import(/* webpackChunkName: "modals/video_modal" */'../components/video_modal');
+}
+
+export function BoostModal () {
+  return import(/* webpackChunkName: "modals/boost_modal" */'../components/boost_modal');
+}
+
+export function ConfirmModal () {
+  return import(/* webpackChunkName: "modals/confirmation_modal" */'../components/confirmation_modal');
+}
+
+export function ReportModal () {
+  return import(/* webpackChunkName: "modals/report_modal" */'../components/report_modal');
+}
+
+export function MediaGallery () {
+  return import(/* webpackChunkName: "status/MediaGallery" */'../../../components/media_gallery');
+}
+
+export function VideoPlayer () {
+  return import(/* webpackChunkName: "status/VideoPlayer" */'../../../components/video_player');
+}
