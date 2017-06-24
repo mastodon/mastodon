@@ -31,6 +31,11 @@ Rails.application.configure do
     config.logger = ActiveSupport::TaggedLogging.new(logger)
   end
 
+  # Generate random VAPID keys
+  vapid_key = Webpush.generate_key
+  config.x.vapid_private_key = vapid_key.private_key
+  config.x.vapid_public_key = vapid_key.public_key
+
   # Don't care if the mailer can't send.
   config.action_mailer.raise_delivery_errors = false
 

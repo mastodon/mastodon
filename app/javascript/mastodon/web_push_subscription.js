@@ -46,6 +46,11 @@ store.dispatch(setBrowserSupport(supportsPushNotifications));
 
 export function register () {
   if (supportsPushNotifications) {
+    if (!getApplicationServerKey()) {
+      console.error('The VAPID public key is not set. You will not be able to receive push notifications.');
+      return;
+    }
+
     getRegistration()
       .then(getPushSubscription)
       .then(({ registration, subscription }) => {

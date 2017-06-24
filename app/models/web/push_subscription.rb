@@ -50,8 +50,8 @@ class Web::PushSubscription < ApplicationRecord
       p256dh: key_p256dh,
       auth: key_auth,
       vapid: {
-        private_key: Redis.current.get('vapid_private_key'),
-        public_key: Redis.current.get('vapid_public_key'),
+        private_key: Rails.configuration.x.vapid_private_key,
+        public_key: Rails.configuration.x.vapid_public_key,
       }
     )
   end
@@ -128,8 +128,8 @@ class Web::PushSubscription < ApplicationRecord
       p256dh: key_p256dh,
       auth: key_auth,
       vapid: {
-        private_key: Redis.current.get('vapid_private_key'),
-        public_key: Redis.current.get('vapid_public_key'),
+        private_key: Rails.configuration.x.vapid_private_key,
+        public_key: Rails.configuration.x.vapid_public_key,
       }
     )
   end
