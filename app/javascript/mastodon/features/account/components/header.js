@@ -65,61 +65,6 @@ const processBio = (data) => {
   return props;
 };
 
-const makeMapStateToProps = () => {
-  const mapStateToProps = state => ({
-    autoPlayGif: state.getIn(['meta', 'auto_play_gif']),
-  });
-
-  return mapStateToProps;
-};
-
-class Avatar extends ImmutablePureComponent {
-
-  static propTypes = {
-    account: ImmutablePropTypes.map.isRequired,
-    autoPlayGif: PropTypes.bool.isRequired,
-  };
-
-  state = {
-    isHovered: false,
-  };
-
-  handleMouseOver = () => {
-    if (this.state.isHovered) return;
-    this.setState({ isHovered: true });
-  }
-
-  handleMouseOut = () => {
-    if (!this.state.isHovered) return;
-    this.setState({ isHovered: false });
-  }
-
-  render () {
-    const { account, autoPlayGif }   = this.props;
-    const { isHovered } = this.state;
-
-    return (
-      <Motion defaultStyle={{ radius: 90 }} style={{ radius: spring(isHovered ? 30 : 90, { stiffness: 180, damping: 12 }) }}>
-        {({ radius }) =>
-          <a // eslint-disable-line jsx-a11y/anchor-has-content
-            href={account.get('url')}
-            className='account__header__avatar'
-            target='_blank'
-            rel='noopener'
-            style={{ borderRadius: `${radius}px`, backgroundImage: `url(${autoPlayGif || isHovered ? account.get('avatar') : account.get('avatar_static')})` }}
-            onMouseOver={this.handleMouseOver}
-            onMouseOut={this.handleMouseOut}
-            onFocus={this.handleMouseOver}
-            onBlur={this.handleMouseOut}
-          />
-        }
-      </Motion>
-    );
-  }
-
-}
-
-@connect(makeMapStateToProps)
 @injectIntl
 export default class Header extends ImmutablePureComponent {
 
