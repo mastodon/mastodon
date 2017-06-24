@@ -41,27 +41,27 @@ const messages = defineMessages({
                                            @kibi@glitch.social <3
 */
 
-const NEW_LINE    = /(?:^|\r?\n|<br\s*\/?>)/g
+const NEW_LINE    = /(?:^|\r?\n|<br\s*\/?>)/g;
 const YAML_OPENER = /---/;
 const YAML_CLOSER = /(?:---|\.\.\.)/;
 const YAML_STRING = /(?:"(?:[^"\n]){1,32}"|'(?:[^'\n]){1,32}'|(?:[^'":\n]){1,32})/g;
-const YAML_LINE = new RegExp("\\s*" + YAML_STRING.source + "\\s*:\\s*" + YAML_STRING.source + "\\s*", "g");
-const BIO_REGEX = new RegExp(NEW_LINE.source + "*" + YAML_OPENER.source + NEW_LINE.source + "+(?:" + YAML_LINE.source + NEW_LINE.source + "+){0,4}" + YAML_CLOSER.source + NEW_LINE.source + "*");
+const YAML_LINE = new RegExp('\\s*' + YAML_STRING.source + '\\s*:\\s*' + YAML_STRING.source + '\\s*', 'g');
+const BIO_REGEX = new RegExp(NEW_LINE.source + '*' + YAML_OPENER.source + NEW_LINE.source + '+(?:' + YAML_LINE.source + NEW_LINE.source + '+){0,4}' + YAML_CLOSER.source + NEW_LINE.source + '*');
 
 const processBio = (data) => {
-  let props = {text: data, metadata: []};
+  let props = { text: data, metadata: [] };
   let yaml = data.match(BIO_REGEX);
   if (!yaml) return props;
   else yaml = yaml[0];
   let start = props.text.indexOf(yaml);
   let end = start + yaml.length;
   props.text = props.text.substr(0, start) + props.text.substr(end);
-  yaml = yaml.replace(NEW_LINE, "\n");
+  yaml = yaml.replace(NEW_LINE, '\n');
   let metadata = (yaml ? yaml.match(YAML_LINE) : []) || [];
   for (let i = 0; i < metadata.length; i++) {
     let result = metadata[i].match(YAML_STRING);
-    if (result[0][0] === '"' || result[0][0] === "'") result[0] = result[0].substr(1, result[0].length - 2);
-    if (result[1][0] === '"' || result[1][0] === "'") result[0] = result[1].substr(1, result[1].length - 2);
+    if (result[0][0] === '"' || result[0][0] === '\'') result[0] = result[0].substr(1, result[0].length - 2);
+    if (result[1][0] === '"' || result[1][0] === '\'') result[0] = result[1].substr(1, result[1].length - 2);
     props.metadata.push(result);
   }
   return props;
@@ -184,7 +184,7 @@ export default class Header extends ImmutablePureComponent {
 
             <span className='account__header__display-name' dangerouslySetInnerHTML={displayNameHTML} />
             <span className='account__header__username'>@{account.get('acct')} {lockedIcon}</span>
-            <div className='account__header__content' dangerouslySetInnerHTML={{__html: emojify(text)}} />
+            <div className='account__header__content' dangerouslySetInnerHTML={{ __html: emojify(text) }} />
 
             {info}
             {actionBtn}
@@ -199,11 +199,11 @@ export default class Header extends ImmutablePureComponent {
                 data.push(
                   <div
                     className='account__metadata-item'
-                    title={metadata[i][0] + ":" + metadata[i][1]}
+                    title={metadata[i][0] + ':' + metadata[i][1]}
                     key={i}
                   >
-                    <span dangerouslySetInnerHTML={{__html: emojify(metadata[i][0])}} />
-                    <strong dangerouslySetInnerHTML={{__html: emojify(metadata[i][1])}} />
+                    <span dangerouslySetInnerHTML={{ __html: emojify(metadata[i][0]) }} />
+                    <strong dangerouslySetInnerHTML={{ __html: emojify(metadata[i][1]) }} />
                   </div>
                 );
               }
