@@ -44,35 +44,37 @@ const supportsPushNotifications = ('serviceWorker' in navigator && 'PushManager'
 
 store.dispatch(setBrowserSupport(supportsPushNotifications));
 
-if (supportsPushNotifications) {
-  getRegistration()
-    .then(getPushSubscription)
-    .then(({ registration, subscription }) => {
-      if (subscription !== null) {
-        const currentServerKey = (new Uint8Array(subscription.options.applicationServerKey)).toString();
-        const subscriptionServerKey = urlBase64ToUint8Array(getApplicationServerKey()).toString();
+export function register () {
+  if (supportsPushNotifications) {
+    getRegistration()
+      .then(getPushSubscription)
+      .then(({ registration, subscription }) => {
+        if (subscription !== null) {
+          const currentServerKey = (new Uint8Array(subscription.options.applicationServerKey)).toString();
+          const subscriptionServerKey = urlBase64ToUint8Array(getApplicationServerKey()).toString();
 
-        if (subscriptionServerKey === currentServerKey) {
-          return subscription;
-        } else {
-          return unsubscribe({ registration, subscription }).then(subscribe).then(sendSubscriptionToBackend);
+          if (subscriptionServerKey === currentServerKey) {
+            return subscription;
+          } else {
+            return unsubscribe({ registration, subscription }).then(subscribe).then(sendSubscriptionToBackend);
+          }
         }
-      }
 
-      return subscribe(registration).then(sendSubscriptionToBackend);
-    })
-    .then(subscription => store.dispatch(setSubscription(subscription)))
-    .catch(error => {
-      console.error(error);
-      store.dispatch(clearSubscription());
+        return subscribe(registration).then(sendSubscriptionToBackend);
+      })
+      .then(subscription => store.dispatch(setSubscription(subscription)))
+      .catch(error => {
+        console.error(error);
+        store.dispatch(clearSubscription());
 
-      try {
-        getRegistration()
-          .then(getPushSubscription)
-          .then(unsubscribe);
-      } catch (e) {
+        try {
+          getRegistration()
+            .then(getPushSubscription)
+            .then(unsubscribe);
+        } catch (e) {
 
-      }
-    });
+        }
+      });
+  }
 }
 

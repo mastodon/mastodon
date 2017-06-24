@@ -2307,7 +2307,7 @@ button.icon-button.active i.fa-retweet {
 }
 
 .setting-toggle__label,
-.setting-meta {
+.setting-meta__label {
   color: $ui-primary-color;
   display: inline-block;
   margin-bottom: 14px;
@@ -2315,8 +2315,8 @@ button.icon-button.active i.fa-retweet {
   vertical-align: middle;
 }
 
-.setting-meta {
-  color: $ui-secondary-color; // TODO: Maybe it should be a bit lighter?
+.setting-meta__label {
+  color: $ui-primary-color;
   float: right;
 }
 

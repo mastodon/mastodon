@@ -4,7 +4,6 @@ const { existsSync } = require('fs');
 const webpack = require('webpack');
 const { basename, dirname, join, relative, resolve, sep } = require('path');
 const { sync } = require('glob');
-const OfflinePlugin = require('offline-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const ManifestPlugin = require('webpack-manifest-plugin');
 const extname = require('path-complete-extname');
@@ -64,9 +63,6 @@ module.exports = {
 
         return count >= 2;
       },
-    }),
-    new OfflinePlugin({
-      publicPath: '/',
     }),
   ],
 
