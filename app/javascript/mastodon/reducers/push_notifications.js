@@ -25,7 +25,7 @@ export default function push_subscriptions(state = initialState, action) {
           id: push_subscription.get('id'),
           endpoint: push_subscription.get('endpoint'),
         }))
-        .set('alerts', push_subscription.get('alerts'))
+        .set('alerts', push_subscription.get('alerts') || initialState.get('alerts'))
         .set('isSubscribed', true);
     }
 

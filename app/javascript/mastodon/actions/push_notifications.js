@@ -43,7 +43,7 @@ export function saveSettings() {
     const subscription = state.get('subscription');
     const alerts = state.get('alerts');
 
-    axios.put(`/api/web/push_subscriptions/${subscription.id}`, {
+    axios.put(`/api/web/push_subscriptions/${subscription.get('id')}`, {
       data: {
         alerts,
       },
