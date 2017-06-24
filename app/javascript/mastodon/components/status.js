@@ -7,7 +7,6 @@ import RelativeTimestamp from './relative_timestamp';
 import DisplayName from './display_name';
 import MediaGallery from './media_gallery';
 import VideoPlayer from './video_player';
-import AttachmentList from './attachment_list';
 import StatusContent from './status_content';
 import StatusActionBar from './status_action_bar';
 import { FormattedMessage } from 'react-intl';
@@ -154,7 +153,10 @@ class Status extends ImmutablePureComponent {
   render () {
     let media = null;
     let statusAvatar;
-    const { status, account, ...other } = this.props;
+
+    // Exclude intersectionObserverWrapper from `other` variable
+    // because intersection is managed in here.
+    const { status, account, intersectionObserverWrapper, ...other } = this.props;
     const { isExpanded, isIntersecting, isHidden } = this.state;
 
     if (status === null) {

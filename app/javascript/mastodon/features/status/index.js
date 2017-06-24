@@ -3,8 +3,6 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { fetchStatus } from '../../actions/statuses';
-import Immutable from 'immutable';
-import EmbeddedStatus from '../../components/status';
 import MissingIndicator from '../../components/missing_indicator';
 import DetailedStatus from './components/detailed_status';
 import ActionBar from './components/action_bar';
@@ -21,17 +19,12 @@ import {
 } from '../../actions/compose';
 import { deleteStatus } from '../../actions/statuses';
 import { initReport } from '../../actions/reports';
-import {
-  makeGetStatus,
-  getStatusAncestors,
-  getStatusDescendants,
-} from '../../selectors';
+import { makeGetStatus } from '../../selectors';
 import { ScrollContainer } from 'react-router-scroll';
 import ColumnBackButton from '../../components/column_back_button';
 import StatusContainer from '../../containers/status_container';
 import { openModal } from '../../actions/modal';
-import { isMobile } from '../../is_mobile';
-import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
+import { defineMessages, injectIntl } from 'react-intl';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
 const messages = defineMessages({
@@ -158,8 +151,6 @@ class Status extends ImmutablePureComponent {
         </Column>
       );
     }
-
-    const account = status.get('account');
 
     if (ancestorsIds && ancestorsIds.size > 0) {
       ancestors = <div>{this.renderChildren(ancestorsIds)}</div>;
