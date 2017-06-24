@@ -179,7 +179,7 @@ export default class UI extends React.PureComponent {
     const { children } = this.props;
 
     return (
-      <div className='ui' ref={this.setRef}>
+      <div className='ui auto-columns' ref={this.setRef}>
         <TabsBar />
         <ColumnsAreaContainer singleColumn={isMobile(width)}>
           <WrappedSwitch>
