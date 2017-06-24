@@ -74,6 +74,15 @@ class WrappedRoute extends React.Component {
 
 }
 
+function columnClass(columns) {
+  switch (columns) {
+    case "auto": return "auto-columns";
+    case "single": return "single-column";
+    case "multiple": return "multi-columns";
+    default: return "auto-columns";
+  }
+}
+
 @connect()
 export default class UI extends React.PureComponent {
 
@@ -178,10 +187,12 @@ export default class UI extends React.PureComponent {
     const { width, draggingOver } = this.state;
     const { children } = this.props;
 
+    const columns = "auto";
+
     return (
-      <div className='ui auto-columns' ref={this.setRef}>
+      <div className={'ui ' + columnClass(columns)} ref={this.setRef}>
         <TabsBar />
-        <ColumnsAreaContainer singleColumn={isMobile(width)}>
+        <ColumnsAreaContainer singleColumn={isMobile(width, columns)}>
           <WrappedSwitch>
             <Redirect from='/' to='/getting-started' exact />
             <WrappedRoute path='/getting-started' component={GettingStarted} content={children} />
