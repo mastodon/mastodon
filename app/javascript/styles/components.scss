@@ -660,6 +660,10 @@
   .status__display-name strong {
     color: lighten($ui-base-color, 26%);
   }
+
+  .separator {
+    padding: 0 3px;
+  }
 }
 
 .status__action-bar {
@@ -1068,23 +1072,33 @@
 }
 
 .notification__message {
-  margin-left: 68px;
-  padding: 8px 0;
-  padding-bottom: 0;
+  padding: 8px 0 0 68px;
   cursor: default;
   color: $ui-primary-color;
   font-size: 15px;
   position: relative;
 
+  &.notification-direct {
+    background: lighten($ui-base-color, 8%);
+  }
+
   .fa {
     color: $ui-highlight-color;
   }
+
+  time {
+    display: block;
+    font-size: 14px;
+  }
 }
 
-.notification__favourite-icon-wrapper {
-  left: -26px;
+.notification__icon-wrapper {
+  left: 42px;
   position: absolute;
 
+  .mention-icon {
+    color: $green-mention;
+  }
   .star-icon {
     color: $gold-star;
   }

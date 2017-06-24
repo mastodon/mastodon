@@ -186,6 +186,8 @@ export default class Status extends ImmutablePureComponent {
           <div className='status__prepend'>
             <div className='status__prepend-icon-wrapper'><i className='fa fa-fw fa-retweet status__prepend-icon' /></div>
             <FormattedMessage id='status.reblogged_by' defaultMessage='{name} boosted' values={{ name: <a onClick={this.handleAccountClick} data-id={status.getIn(['account', 'id'])} href={status.getIn(['account', 'url'])} className='status__display-name muted'><strong dangerouslySetInnerHTML={displayNameHTML} /></a> }} />
+            <span className='separator'>-</span>
+            <RelativeTimestamp timestamp={status.get('created_at')} />
           </div>
 
           <Status {...other} wrapped status={status.get('reblog')} account={status.get('account')} />
