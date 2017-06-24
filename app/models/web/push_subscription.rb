@@ -92,7 +92,7 @@ class Web::PushSubscription < ApplicationRecord
   def url_str(notification)
     case notification.type
     when :mention then web_url("statuses/#{notification.target_status.id}")
-    when :follow then web_url("accounts/#{notification.follow.id}")
+    when :follow then web_url("accounts/#{notification.from_account.id}")
     when :follow_request then web_url('follow_requests')
     when :favourite then web_url("statuses/#{notification.target_status.id}")
     when :reblog then web_url("statuses/#{notification.target_status.id}")
