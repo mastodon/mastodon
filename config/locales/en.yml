@@ -1,9 +1,5 @@
 ---
 en:
-  sessions:
-    description: Description
-    ip: IP
-    activity: Last activity
   about:
     about_mastodon: Mastodon is a <em>free, open-source</em> social network. A <em>decentralized</em> alternative to commercial platforms, it avoids the risks of a single company monopolizing your communication. Pick a server that you trust &mdash; whichever you choose, you can interact with everyone else. Anyone can run their own Mastodon instance and participate in the <em>social network</em> seamlessly.
     about_this: About this instance
@@ -324,6 +320,13 @@ en:
     missing_resource: Could not find the required redirect URL for your account
     proceed: Proceed to follow
     prompt: 'You are going to follow:'
+  sessions:
+    activity: Last activity
+    browser: Browser
+    description: "%{browser} on %{platform}"
+    explanation: These are the web browsers currently logged in to your Mastodon account.
+    ip: IP
+    title: Sessions
   settings:
     authorized_apps: Authorized apps
     back: Back to Mastodon

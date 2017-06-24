@@ -91,8 +91,13 @@ class User < ApplicationRecord
     settings.auto_play_gif
   end
 
-  def activate_session(description, ip)
-    session_activations.activate(SecureRandom.hex, description, ip).session_id
+  def activate_session(request)
+    detection = Browser.new(request.user_agent)
+
+    session_activations.activate(session_id: SecureRandom.hex,
+                                 browser: detection.name,
+                                 platform: detection.platform.id,
+                                 ip: request.ip).session_id
   end
 
   def exclusive_session(id)

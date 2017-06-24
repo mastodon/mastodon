@@ -1,0 +1,16 @@
+%h6= t 'sessions.title'
+%p.muted-hint= t 'sessions.explanation'
+
+%table.table
+  %thead
+    %tr
+      %th= t 'sessions.browser'
+      %th= t 'sessions.ip'
+      %th= t 'sessions.activity'
+  %tbody
+    - @sessions.each do |session|
+      %tr
+        %td= t 'sessions.description', browser: session.browser, platform: session.platform.capitalize
+        %td= session.ip
+        %td
+          %time.time-ago{ datetime: session.updated_at.iso8601, title: l(session.updated_at) }= l(session.updated_at)
