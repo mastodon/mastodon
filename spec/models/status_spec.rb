@@ -201,17 +201,17 @@ RSpec.describe Status, type: :model do
       expect(@results).to include(@self_status)
     end
 
-    it 'includes direct statuses from self' do
-      expect(@results).to include(@self_direct_status)
+    it 'does not include direct statuses from self' do
+      expect(@results).to_not include(@self_direct_status)
     end
 
     it 'includes statuses from followed' do
       expect(@results).to include(@followed_status)
     end
 
-    it 'includes direct statuses mentioning recipient from followed' do
+    it 'does not include direct statuses mentioning recipient from followed' do
       Fabricate(:mention, account: account, status: @followed_direct_status)
-      expect(@results).to include(@followed_direct_status)
+      expect(@results).to_not include(@followed_direct_status)
     end
 
     it 'does not include direct statuses not mentioning recipient from followed' do

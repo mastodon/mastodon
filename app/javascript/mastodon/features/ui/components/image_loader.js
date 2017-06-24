@@ -41,7 +41,7 @@ class ImageLoader extends React.PureComponent {
 
   render() {
     const { alt, src, previewSrc, width, height } = this.props;
-    const { loading, error } = this.state;
+    const { loading } = this.state;
 
     return (
       <div className='image-loader'>

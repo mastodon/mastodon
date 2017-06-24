@@ -33,7 +33,7 @@ class Pubsubhubbub::DistributionWorker
     return if stream_entries.empty?
 
     @payload = AtomSerializer.render(AtomSerializer.new.feed(@account, stream_entries))
-    @domains = @account.followers_domains
+    @domains = @account.followers.domains
 
     Pubsubhubbub::DeliveryWorker.push_bulk(@subscriptions.reject { |s| !allowed_to_receive?(s.callback_url) }) do |subscription|
       [subscription.id, @payload]

@@ -1,5 +1,4 @@
 import React from 'react';
-import LoadingIndicator from '../../../components/loading_indicator';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
 import ExtendedVideoPlayer from '../../../components/extended_video_player';

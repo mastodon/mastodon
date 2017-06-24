@@ -32,7 +32,6 @@ class StatusContent extends React.PureComponent {
     for (var i = 0; i < links.length; ++i) {
       let link    = links[i];
       let mention = this.props.status.get('mentions').find(item => link.href === item.get('url'));
-      let media   = this.props.status.get('media_attachments').find(item => link.href === item.get('text_url') || (item.get('remote_url').length > 0 && link.href === item.get('remote_url')));
 
       if (mention) {
         link.addEventListener('click', this.onMentionClick.bind(this, mention), false);
