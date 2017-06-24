@@ -56,7 +56,9 @@ describe Api::Web::PushSubscriptionsController do
 
       post :create, format: :json, params: create_payload
     end
+  end
 
+  describe 'PUT #update' do
     it 'changes alert settings' do
       sign_in(user)
 
@@ -64,9 +66,9 @@ describe Api::Web::PushSubscriptionsController do
 
       post :create, format: :json, params: create_payload
 
-      alerts_payload[:data][:id] = Web::PushSubscription.find_by(endpoint: create_payload[:data][:endpoint]).id
+      alerts_payload[:id] = Web::PushSubscription.find_by(endpoint: create_payload[:data][:endpoint]).id
 
-      post :create, format: :json, params: alerts_payload
+      put :update, format: :json, params: alerts_payload
 
       push_subscription = Web::PushSubscription.find_by(endpoint: create_payload[:data][:endpoint])
 

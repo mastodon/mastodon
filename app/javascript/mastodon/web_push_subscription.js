@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { store } from './containers/mastodon';
-import { setBrowserSupport, setSubscription, clearSubscription } from './actions/push_notifications';
+import { setBrowserSupport, setSubscription, clearSubscription, saveSettings } from './actions/push_notifications';
 
 // Taken from https://www.npmjs.com/package/web-push
 const urlBase64ToUint8Array = (base64String) => {
@@ -52,8 +52,9 @@ export function register () {
         if (subscription !== null) {
           const currentServerKey = (new Uint8Array(subscription.options.applicationServerKey)).toString();
           const subscriptionServerKey = urlBase64ToUint8Array(getApplicationServerKey()).toString();
+          const serverEndpoint = store.getState().getIn(['push_notifications', 'subscription', 'endpoint']);
 
-          if (subscriptionServerKey === currentServerKey) {
+          if (subscriptionServerKey === currentServerKey && subscription.endpoint === serverEndpoint) {
             return subscription;
           } else {
             return unsubscribe({ registration, subscription }).then(subscribe).then(sendSubscriptionToBackend);
@@ -62,17 +63,23 @@ export function register () {
 
         return subscribe(registration).then(sendSubscriptionToBackend);
       })
-      .then(subscription => store.dispatch(setSubscription(subscription)))
+      .then(subscription => {
+        if (!(subscription instanceof PushSubscription)) {
+          store.dispatch(setSubscription(subscription));
+        }
+      })
       .catch(error => {
         console.error(error);
+
         store.dispatch(clearSubscription());
+        store.dispatch(saveSettings());
 
         try {
           getRegistration()
             .then(getPushSubscription)
             .then(unsubscribe);
         } catch (e) {
-
+          console.error(error);
         }
       });
   }

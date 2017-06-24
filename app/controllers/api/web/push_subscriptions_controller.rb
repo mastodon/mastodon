@@ -6,8 +6,6 @@ class Api::Web::PushSubscriptionsController < Api::BaseController
   before_action :require_user!
 
   def create
-    return update if params[:data].key?('alerts')
-
     web_subscription = ::Web::PushSubscription.new(
       endpoint: params[:data][:endpoint],
       key_p256dh: params[:data][:keys][:p256dh],
@@ -23,8 +21,7 @@ class Api::Web::PushSubscriptionsController < Api::BaseController
   end
 
   def update
-    # TODO: Call from /api/web/push_subscriptions/:id
-    web_subscription = ::Web::PushSubscription.find(params[:data][:id])
+    web_subscription = ::Web::PushSubscription.find(params[:id])
 
     web_subscription.data = params[:data]
     web_subscription.save!

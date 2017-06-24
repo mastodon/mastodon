@@ -206,8 +206,7 @@ Rails.application.routes.draw do
 
     namespace :web do
       resource :settings, only: [:update]
-      resource :push_subscriptions, only: [:create] do
-        # Why doesn't PUT /api/web/push_subscriptions/:id work?
+      resources :push_subscriptions, only: [:create] do
         member do
           put :update
         end
