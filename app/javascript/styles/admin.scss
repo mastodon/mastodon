@@ -136,12 +136,18 @@
 
     .label_input {
       label.select {
+        display: inline;
         width: 50%;
       }
 
       select {
         width: 50%;
         float: right;
+      }
+
+      label.file {
+        display: inline-block;
+        width: 100px;
       }
     }
   }
