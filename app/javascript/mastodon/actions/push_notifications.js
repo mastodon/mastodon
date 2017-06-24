@@ -39,7 +39,9 @@ export function changeAlerts(key, value) {
 
 export function saveSettings() {
   return (_, getState) => {
-    const { subscription, alerts } = getState().get('push_notifications').toJS();
+    const state = getState().get('push_notifications');
+    const subscription = state.get('subscription');
+    const alerts = state.get('alerts');
 
     axios.put(`/api/web/push_subscriptions/${subscription.id}`, {
       data: {

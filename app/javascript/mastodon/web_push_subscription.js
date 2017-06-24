@@ -32,8 +32,7 @@ const subscribe = (registration) =>
     applicationServerKey: urlBase64ToUint8Array(getApplicationServerKey()),
   });
 
-const unsubscribe = ({ registration, subscription }) =>
-  subscription.unsubscribe().then(() => registration);
+const unsubscribe = ({ registration, subscription }) => subscription.unsubscribe().then(() => registration);
 
 const sendSubscriptionToBackend = (subscription) =>
   axios.post('/api/web/push_subscriptions', {
@@ -42,9 +41,9 @@ const sendSubscriptionToBackend = (subscription) =>
 
 const supportsPushNotifications = ('serviceWorker' in navigator && 'PushManager' in window);
 
-store.dispatch(setBrowserSupport(supportsPushNotifications));
-
 export function register () {
+  store.dispatch(setBrowserSupport(supportsPushNotifications));
+
   if (supportsPushNotifications) {
     if (!getApplicationServerKey()) {
       console.error('The VAPID public key is not set. You will not be able to receive push notifications.');
@@ -55,20 +54,27 @@ export function register () {
       .then(getPushSubscription)
       .then(({ registration, subscription }) => {
         if (subscription !== null) {
+          // We have a subscription, check if it is still valid
           const currentServerKey = (new Uint8Array(subscription.options.applicationServerKey)).toString();
           const subscriptionServerKey = urlBase64ToUint8Array(getApplicationServerKey()).toString();
           const serverEndpoint = store.getState().getIn(['push_notifications', 'subscription', 'endpoint']);
 
+          // If the VAPID public key did not change and the endpoint corresponds
+          // to the endpoint saved in the backend, the subscription is valid
           if (subscriptionServerKey === currentServerKey && subscription.endpoint === serverEndpoint) {
             return subscription;
           } else {
+            // Something went wrong, try to subscribe again
             return unsubscribe({ registration, subscription }).then(subscribe).then(sendSubscriptionToBackend);
           }
         }
 
+        // No subscription, try to subscribe
         return subscribe(registration).then(sendSubscriptionToBackend);
       })
       .then(subscription => {
+        // If we got a PushSubscription (and not a subscription object from the backend)
+        // it means that the backend subscription is valid (and was set during hydration)
         if (!(subscription instanceof PushSubscription)) {
           store.dispatch(setSubscription(subscription));
         }
@@ -76,6 +82,7 @@ export function register () {
       .catch(error => {
         console.error(error);
 
+        // Clear alerts and hide UI settings
         store.dispatch(clearSubscription());
         store.dispatch(saveSettings());
 

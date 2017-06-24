@@ -10,6 +10,9 @@ const handlePush = (event) => {
 const handleNotificationClick = (event) => {
   event.notification.close();
 
+  // If there is an open Mastodon tab, focus it, otherwise open a new tab.
+  // Might be better to always open a new tab, since it will always be relevant
+  // to the content of the notification (will be a deep link).
   const reactToNotificationClick = self.clients.matchAll().then(clientList => {
     if (clientList.length !== 0) {
       clientList[0].focus();
