@@ -20,8 +20,7 @@ const messages = defineMessages({
   uncollapse: { id: 'status.uncollapse', defaultMessage: 'Uncollapse' },
 });
 
-@injectIntl
-export default class Status extends ImmutablePureComponent {
+class StatusUnextended extends ImmutablePureComponent {
 
   static contextTypes = {
     router: PropTypes.object,
@@ -104,7 +103,7 @@ export default class Status extends ImmutablePureComponent {
       this.handleIntersection
     );
 
-    if (node.clientHeight > 400) this.setState({ isCollapsed: true });
+    if (node.clientHeight > 400 && !(this.props.status.get('reblog', null) !== null && typeof this.props.status.get('reblog') === 'object')) this.setState({ isCollapsed: true });
 
     this.componentMounted = true;
   }
@@ -260,9 +259,12 @@ export default class Status extends ImmutablePureComponent {
 
         {isCollapsed ? null : media}
 
-        {isCollapsed ? null : <StatusActionBar {...this.props} />}
+        {isCollapsed ? null : <StatusActionBar status={status} account={account} {...other} />}
       </div>
     );
   }
 
 }
+
+const Status = injectIntl(StatusUnextended);
+export default Status;
