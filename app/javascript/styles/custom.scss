@@ -1,6 +1,6 @@
 @import 'application';
 
-@media screen and (min-width: 1300px) { 
+@include multi-columns('screen and (min-width: 1300px)', $parent: null) {
   .column {
     flex-grow: 1 !important;
     max-width: 400px;

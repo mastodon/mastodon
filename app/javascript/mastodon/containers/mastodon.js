@@ -24,6 +24,11 @@ addLocaleData(localeData);
 
 const store = configureStore();
 const initialState = JSON.parse(document.getElementById('initial-state').textContent);
+try {
+  initialState.localSettings = JSON.parse(localStorage.getItem('mastodon-settings'));
+} catch (e) {
+  initialState.localSettings = {};
+}
 store.dispatch(hydrateStore(initialState));
 
 export default class Mastodon extends React.PureComponent {

@@ -74,12 +74,17 @@ class WrappedRoute extends React.Component {
 
 }
 
-@connect()
+const mapStateToProps = state => ({
+  layout: state.getIn(['localSettings', 'layout']),
+});
+
+@connect(mapStateToProps)
 export default class UI extends React.PureComponent {
 
   static propTypes = {
     dispatch: PropTypes.func.isRequired,
     children: PropTypes.node,
+    layout: PropTypes.string,
   };
 
   state = {
@@ -176,12 +181,23 @@ export default class UI extends React.PureComponent {
 
   render () {
     const { width, draggingOver } = this.state;
-    const { children } = this.props;
+    const { children, layout } = this.props;
+
+    const columnsClass = layout => {
+      switch (layout) {
+      case 'single':
+        return 'single-column';
+      case 'multiple':
+        return 'multi-columns';
+      default:
+        return 'auto-columns';
+      }
+    };
 
     return (
-      <div className='ui' ref={this.setRef}>
+      <div className={'ui ' + columnsClass(layout)} ref={this.setRef}>
         <TabsBar />
-        <ColumnsAreaContainer singleColumn={isMobile(width)}>
+        <ColumnsAreaContainer singleColumn={isMobile(width, layout)}>
           <WrappedSwitch>
             <Redirect from='/' to='/getting-started' exact />
             <WrappedRoute path='/getting-started' component={GettingStarted} content={children} />

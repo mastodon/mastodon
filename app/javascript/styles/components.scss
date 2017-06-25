@@ -1328,11 +1328,12 @@
   justify-content: flex-start;
   overflow-x: auto;
   position: relative;
+  padding: 10px;
 }
 
-@media screen and (min-width: 360px) {
+@include limited-single-column('screen and (max-width: 360px)', $parent: null) {
   .columns-area {
-    padding: 10px;
+    padding: 0;
   }
 }
 
@@ -1386,18 +1387,17 @@
   }
 }
 
-@media screen and (min-width: 360px) {
+@include limited-single-column('screen and (max-width: 360px)', $parent: null) {
   .tabs-bar {
-    margin: 10px;
-    margin-bottom: 0;
+    margin: 0;
   }
 
   .search {
-    margin-bottom: 10px;
+    margin-bottom: 0;
   }
 }
 
-@media screen and (max-width: 1024px) {
+@include single-column('screen and (max-width: 1024px)', $parent: null) {
   .column,
   .drawer {
     width: 100%;
@@ -1414,7 +1414,7 @@
   }
 }
 
-@media screen and (min-width: 1025px) {
+@include multi-columns('screen and (min-width: 1025px)', $parent: null) {
   .columns-area {
     padding: 0;
   }
@@ -1447,28 +1447,26 @@
 .drawer__pager {
   box-sizing: border-box;
   padding: 0;
-  flex-grow: 1;
+  flex: 0 0 auto;
   position: relative;
   overflow: hidden;
-  display: flex;
 }
 
 .drawer__inner {
-  position: absolute;
-  top: 0;
-  left: 0;
   background: lighten($ui-base-color, 13%);
   box-sizing: border-box;
   padding: 0;
-  display: flex;
-  flex-direction: column;
   overflow: hidden;
   overflow-y: auto;
   width: 100%;
-  height: 100%;
 
   &.darker {
+    position: absolute;
+    top: 0;
+    left: 0;
     background: $ui-base-color;
+    width: 100%;
+    height: 100%;
   }
 }
 
@@ -1496,11 +1494,32 @@
   }
 }
 
+.layout__selector {
+  margin-top: 20px;
+
+  a {
+    text-decoration: underline;
+    cursor: pointer;
+    color: lighten($ui-base-color, 26%);
+  }
+
+  b {
+    font-weight: bold;
+  }
+
+  p {
+    font-size: 13px;
+    color: $ui-secondary-color;
+  }
+}
+
 .tabs-bar {
   display: flex;
   background: lighten($ui-base-color, 8%);
   flex: 0 0 auto;
   overflow-y: auto;
+  margin: 10px;
+  margin-bottom: 0;
 }
 
 .tabs-bar__link {
@@ -1528,7 +1547,7 @@
   &:hover,
   &:focus,
   &:active {
-    @media screen and (min-width: 1025px) {
+    @include multi-columns('screen and (min-width: 1025px)') {
       background: lighten($ui-base-color, 14%);
       transition: all 100ms linear;
     }
@@ -1540,7 +1559,7 @@
   }
 }
 
-@media screen and (min-width: 600px) {
+@include limited-single-column('screen and (max-width: 600px)', $parent: null) {
   .tabs-bar__link {
     span {
       display: inline;
@@ -1548,7 +1567,7 @@
   }
 }
 
-@media screen and (min-width: 1025px) {
+@include multi-columns('screen and (min-width: 1025px)', $parent: null) {
   .tabs-bar {
     display: none;
   }
@@ -1737,7 +1756,7 @@
   }
 
   &.hidden-on-mobile {
-    @media screen and (max-width: 1024px) {
+    @include single-column('screen and (max-width: 1024px)') {
       display: none;
     }
   }
@@ -1781,7 +1800,7 @@
     outline: 0;
   }
 
-  @media screen and (max-width: 600px) {
+  @include limited-single-column('screen and (max-width: 600px)') {
     font-size: 16px;
   }
 }
@@ -1798,7 +1817,7 @@
   padding-right: 10px + 22px;
   resize: none;
 
-  @media screen and (max-width: 600px) {
+  @include limited-single-column('screen and (max-width: 600px)') {
     height: 100px !important; // prevent auto-resize textarea
     resize: vertical;
   }
@@ -1911,7 +1930,7 @@
     border-bottom-color: $ui-highlight-color;
   }
 
-  @media screen and (max-width: 600px) {
+  @include limited-single-column('screen and (max-width: 600px)') {
     font-size: 16px;
   }
 }
@@ -2114,7 +2133,7 @@ button.icon-button.active i.fa-retweet {
   }
 
   &.hidden-on-mobile {
-    @media screen and (max-width: 1024px) {
+    @include single-column('screen and (max-width: 1024px)') {
       display: none;
     }
   }
@@ -2872,6 +2891,7 @@ button.icon-button.active i.fa-retweet {
 
 .search {
   position: relative;
+  margin-bottom: 10px;
 }
 
 .search__input {
@@ -2904,7 +2924,7 @@ button.icon-button.active i.fa-retweet {
     background: lighten($ui-base-color, 4%);
   }
 
-  @media screen and (max-width: 600px) {
+  @include limited-single-column('screen and (max-width: 600px)') {
     font-size: 16px;
   }
 }

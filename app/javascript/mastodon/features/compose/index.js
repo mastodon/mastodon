@@ -4,8 +4,9 @@ import NavigationContainer from './containers/navigation_container';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { mountCompose, unmountCompose } from '../../actions/compose';
+import { changeLocalSetting } from '../../actions/local_settings';
 import Link from 'react-router-dom/Link';
-import { injectIntl, defineMessages } from 'react-intl';
+import { injectIntl, defineMessages, FormattedMessage } from 'react-intl';
 import SearchContainer from './containers/search_container';
 import Motion from 'react-motion/lib/Motion';
 import spring from 'react-motion/lib/spring';
@@ -21,6 +22,7 @@ const messages = defineMessages({
 
 const mapStateToProps = state => ({
   showSearch: state.getIn(['search', 'submitted']) && !state.getIn(['search', 'hidden']),
+  layout: state.getIn(['localSettings', 'layout']),
 });
 
 @connect(mapStateToProps)
@@ -32,6 +34,7 @@ export default class Compose extends React.PureComponent {
     multiColumn: PropTypes.bool,
     showSearch: PropTypes.bool,
     intl: PropTypes.object.isRequired,
+    layout: PropTypes.string,
   };
 
   componentDidMount () {
@@ -42,8 +45,14 @@ export default class Compose extends React.PureComponent {
     this.props.dispatch(unmountCompose());
   }
 
+  onLayoutClick = (e) => {
+    const layout = e.currentTarget.getAttribute('data-mastodon-layout');
+    this.props.dispatch(changeLocalSetting(['layout'], layout));
+    e.preventDefault();
+  }
+
   render () {
-    const { multiColumn, showSearch, intl } = this.props;
+    const { multiColumn, showSearch, intl, layout } = this.props;
 
     let header = '';
 
@@ -57,6 +66,47 @@ export default class Compose extends React.PureComponent {
           <a href='/auth/sign_out' className='drawer__tab' data-method='delete' title={intl.formatMessage(messages.logout)}><i role='img' aria-label={intl.formatMessage(messages.logout)} className='fa fa-fw fa-sign-out' /></a>
         </div>
       );
+    }
+
+    let layoutContent = '';
+
+    switch (layout) {
+    case 'single':
+      layoutContent = (
+        <div className='layout__selector'>
+          <p>
+            <FormattedMessage id='layout.current_is' defaultMessage='Your current layout is:' /> <b><FormattedMessage id='layout.mobile' defaultMessage='Mobile' /></b>
+          </p>
+          <p>
+            <a onClick={this.onLayoutClick} role='button' tabIndex='0' data-mastodon-layout='auto'><FormattedMessage id='layout.auto' defaultMessage='Auto' /></a> • <a onClick={this.onLayoutClick} role='button' tabIndex='0' data-mastodon-layout='multiple'><FormattedMessage id='layout.desktop' defaultMessage='Desktop' /></a>
+          </p>
+        </div>
+      );
+      break;
+    case 'multiple':
+      layoutContent = (
+        <div className='layout__selector'>
+          <p>
+            <FormattedMessage id='layout.current_is' defaultMessage='Your current layout is:' /> <b><FormattedMessage id='layout.desktop' defaultMessage='Desktop' /></b>
+          </p>
+          <p>
+            <a onClick={this.onLayoutClick} role='button' tabIndex='0' data-mastodon-layout='auto'><FormattedMessage id='layout.auto' defaultMessage='Auto' /></a> • <a onClick={this.onLayoutClick} role='button' tabIndex='0' data-mastodon-layout='single'><FormattedMessage id='layout.mobile' defaultMessage='Mobile' /></a>
+          </p>
+        </div>
+      );
+      break;
+    default:
+      layoutContent = (
+        <div className='layout__selector'>
+          <p>
+            <FormattedMessage id='layout.current_is' defaultMessage='Your current layout is:' /> <b><FormattedMessage id='layout.auto' defaultMessage='Auto' /></b>
+          </p>
+          <p>
+            <a onClick={this.onLayoutClick} role='button' tabIndex='0' data-mastodon-layout='multiple'><FormattedMessage id='layout.desktop' defaultMessage='Desktop' /></a> • <a onClick={this.onLayoutClick} role='button' tabIndex='0' data-mastodon-layout='single'><FormattedMessage id='layout.mobile' defaultMessage='Mobile' /></a>
+          </p>
+        </div>
+      );
+      break;
     }
 
     return (
@@ -79,6 +129,9 @@ export default class Compose extends React.PureComponent {
             }
           </Motion>
         </div>
+
+        {layoutContent}
+
       </div>
     );
   }
