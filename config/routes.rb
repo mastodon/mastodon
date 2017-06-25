@@ -61,6 +61,7 @@ Rails.application.routes.draw do
 
     resource :two_factor_authentication, only: [:show, :create, :destroy]
     namespace :two_factor_authentication do
+      resources :recovery_codes, only: [:create]
       resource :confirmation, only: [:new, :create]
     end
 
