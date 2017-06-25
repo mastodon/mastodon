@@ -175,6 +175,7 @@ class StatusUnextended extends ImmutablePureComponent {
 
   render () {
     let media = null;
+    let mediaType = null;
     let thumb = null;
     let statusAvatar;
 
@@ -222,9 +223,11 @@ class StatusUnextended extends ImmutablePureComponent {
 
       } else if (status.getIn(['media_attachments', 0, 'type']) === 'video') {
         media = <VideoPlayer media={status.getIn(['media_attachments', 0])} sensitive={status.get('sensitive')} onOpenVideo={this.props.onOpenVideo} />;
+        mediaType = <i className='fa fa-fw fa-video-camera' aria-hidden='true' />;
         if (!status.get('sensitive')) thumb = status.getIn(['media_attachments', 0]).get('preview_url');
       } else {
         media = <MediaGallery media={status.get('media_attachments')} sensitive={status.get('sensitive')} height={110} onOpenMedia={this.props.onOpenMedia} autoPlayGif={this.props.autoPlayGif} />;
+        mediaType = status.get('media_attachments').size > 1 ? <i className='fa fa-fw fa-th-large' aria-hidden='true' /> : <i className='fa fa-fw fa-picture-o' aria-hidden='true' />;
         if (!status.get('sensitive')) thumb = status.getIn(['media_attachments', 0]).get('preview_url');
       }
     }
@@ -239,14 +242,17 @@ class StatusUnextended extends ImmutablePureComponent {
       <div className={`status ${this.props.muted ? 'muted' : ''} status-${status.get('visibility')} ${isCollapsed ? 'status-collapsed' : ''}`} data-id={status.get('id')} ref={this.handleRef} style={{ backgroundImage: thumb && isCollapsed ? 'url(' + thumb + ')' : 'none' }}>
         <div className='status__info'>
 
-          <IconButton
-            className='status__collapse-button'
-            animate flip
-            active={isCollapsed}
-            title={isCollapsed ? intl.formatMessage(messages.uncollapse) : intl.formatMessage(messages.collapse)}
-            icon='angle-double-up'
-            onClick={this.handleCollapsedClick}
-          />
+          <div className='status__info__icons'>
+            {mediaType}
+            <IconButton
+              className='status__collapse-button'
+              animate flip
+              active={isCollapsed}
+              title={isCollapsed ? intl.formatMessage(messages.uncollapse) : intl.formatMessage(messages.collapse)}
+              icon='angle-double-up'
+              onClick={this.handleCollapsedClick}
+            />
+          </div>
 
           <a onClick={this.handleAccountClick} data-id={status.getIn(['account', 'id'])} href={status.getIn(['account', 'url'])} className='status__display-name'>
             <div className='status__avatar'>
