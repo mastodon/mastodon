@@ -454,6 +454,7 @@
 
 .status__content,
 .reply-indicator__content {
+  position: relative;
   font-size: 15px;
   line-height: 20px;
   color: $primary-text-color;
@@ -604,6 +605,19 @@
 
   &.status-collapsed {
     height: 48px;
+    background-position: center;
+    background-size: cover;
+
+    &::before {
+      display: block;
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+    	background-image: linear-gradient(to bottom, transparentize($ui-base-color, .15), transparentize($ui-base-color, .3) 24px, transparentize($ui-base-color, .35));
+      content: "";
+    }
 
     .status__content {
       height: 20px;
@@ -644,6 +658,7 @@
 }
 
 .status__collapse-button {
+  position: relative;
   float: right;
 }
 
@@ -1162,6 +1177,7 @@
 
 .display-name {
   display: block;
+  position: relative;
   max-width: 100%;
   overflow: hidden;
   text-overflow: ellipsis;
