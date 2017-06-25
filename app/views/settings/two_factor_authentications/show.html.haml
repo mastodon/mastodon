@@ -1,26 +1,34 @@
 - content_for :page_title do
   = t('settings.two_factor_authentication')
 
-.simple_form
-  %p.hint
-    = t('two_factor_authentication.description_html')
-
-  - if current_user.otp_required_for_login
-    = link_to t('two_factor_authentication.disable'),
-      settings_two_factor_authentication_path,
-      data: { method: :delete },
-      class: 'block-button'
-  - else
-    = link_to t('two_factor_authentication.setup'),
-      settings_two_factor_authentication_path,
-      data: { method: :post },
-      class: 'block-button'
-
 - if current_user.otp_required_for_login
-  .simple_form
-    %p.hint
-      = t('two_factor_authentication.lost_recovery_codes')
+  %p.positive-hint
+    = fa_icon 'check'
+    = ' '
+    = t 'two_factor_authentication.enabled'
+
+  %hr/
+
+  = simple_form_for @confirmation, url: settings_two_factor_authentication_path, method: :delete do |f|
+    = f.input :code, hint: t('two_factor_authentication.code_hint'), placeholder: t('simple_form.labels.defaults.otp_attempt')
+
+    .actions
+      = f.button :button, t('two_factor_authentication.disable'), type: :submit
+
+  %hr/
+
+  %h6= t('two_factor_authentication.recovery_codes')
+  %p.muted-hint
+    = t('two_factor_authentication.lost_recovery_codes')
     = link_to t('two_factor_authentication.generate_recovery_codes'),
       settings_two_factor_authentication_recovery_codes_path,
+      data: { method: :post }
+
+- else
+  .simple_form
+    %p.hint= t('two_factor_authentication.description_html')
+
+    = link_to t('two_factor_authentication.setup'),
+      settings_two_factor_authentication_path,
       data: { method: :post },
       class: 'block-button'
