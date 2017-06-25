@@ -155,8 +155,7 @@ const PageSix = ({ admin, domain }) => {
     </div>
   );
 };
-<a href='https://github.com/glitch-soc/mastodon' target='_blank' rel='noopener'>GitHub</a> }} /></p>
-      <p><FormattedMessage id='onboarding.page_six.apps_available' defaultMessage='There are {apps} available for iOS, Android and other platforms.' values={{ apps: <a href='https://github.com/tootsuite/documentation/blob/master/Using-Mast
+
 PageSix.propTypes = {
   admin: ImmutablePropTypes.map,
   domain: PropTypes.string.isRequired,
