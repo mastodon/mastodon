@@ -132,7 +132,7 @@ export default class ColumnHeader extends React.PureComponent {
         </div>
 
         <div className={collapsibleClassName} onTransitionEnd={this.handleTransitionEnd}>
-          <div>
+          <div className='column-header__collapsible-inner'>
             {(!collapsed || animating) && collapsedContent}
           </div>
         </div>
