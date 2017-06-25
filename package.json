@@ -3,7 +3,7 @@
   "license": "AGPL-3.0",
   "scripts": {
     "postversion": "git push --tags",
-    "build:development": "cross-env RAILS_ENV=development ASSET_HOST=http://0.0.0.0:8080 ./bin/webpack",
+    "build:development": "cross-env RAILS_ENV=development ./bin/webpack",
     "build:production": "cross-env RAILS_ENV=production ./bin/webpack",
     "manage:translations": "node ./config/webpack/translationRunner.js",
     "start": "rimraf ./tmp/streaming && babel ./streaming/index.js --out-dir ./tmp && node ./tmp/streaming/index.js",
