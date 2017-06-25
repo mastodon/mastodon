@@ -504,15 +504,6 @@
     }
   }
 
-  .status__content__spoiler-link {
-    background: lighten($ui-base-color, 30%);
-
-    &:hover {
-      background: lighten($ui-base-color, 33%);
-      text-decoration: none;
-    }
-  }
-
   .status__content__text {
     display: none;
 
@@ -525,15 +516,27 @@
 .status__content__spoiler-link {
   display: inline-block;
   border-radius: 2px;
-  background: transparent;
-  border: 0;
+  background: lighten($ui-base-color, 30%);
+  border: 1px lighten($ui-base-color, 30%) solid;
   color: lighten($ui-base-color, 8%);
   font-weight: 500;
   font-size: 11px;
-  padding: 0 6px;
+  padding: 0 5px;
   text-transform: uppercase;
-  line-height: inherit;
+  line-height: 18px;
   cursor: pointer;
+  transition: background-color .3s, color .3s;
+
+    &:hover {
+      background: lighten($ui-base-color, 33%);
+      text-decoration: none;
+    }
+
+  .status-collapsed &, .status-collapsed &:hover {
+    background: transparent;
+    color: lighten($ui-base-color, 30%);
+    vertical-align: bottom;
+  }
 }
 
 .status__prepend-icon-wrapper {

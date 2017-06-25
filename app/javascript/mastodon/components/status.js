@@ -166,7 +166,7 @@ class StatusUnextended extends ImmutablePureComponent {
   }
 
   handleExpandedToggle = () => {
-    this.setState({ isExpanded: !this.state.isExpanded });
+    if (!this.state.isCollapsed) this.setState({ isExpanded: !this.state.isExpanded });
   };
 
   handleCollapsedClick = () => {
