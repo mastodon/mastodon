@@ -18,10 +18,10 @@ development:
 test:
   <<: *default
   database: mastodon_test<%= ENV['TEST_ENV_NUMBER'] %>
-  username: <%= ENV['TEST_DB_USER'] %>
-  password: <%= ENV['TEST_DB_PASS'] %>
-  host: <%= ENV['TEST_DB_HOST'] %>
-  port: <%= ENV['TEST_DB_PORT'] %>
+  username: <%= ENV['DB_USER'] %>
+  password: <%= ENV['DB_PASS'] %>
+  host: <%= ENV['DB_HOST'] %>
+  port: <%= ENV['DB_PORT'] %>
 
 production:
   <<: *default
