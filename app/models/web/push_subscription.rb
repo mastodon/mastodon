@@ -30,6 +30,9 @@ class Web::PushSubscription < ApplicationRecord
     dir = dir_str body
     url = url_str notification
     image = image_str notification
+    actions = actions_arr notification
+
+    access_token = actions ? find_or_create_access_token(notification).token : nil
 
     Webpush.payload_send(
       message: JSON.generate(
@@ -43,6 +46,8 @@ class Web::PushSubscription < ApplicationRecord
           icon: notification.from_account.avatar_static_url,
           data: {
             url: url,
+            actions: actions,
+            access_token: access_token,
           },
         }
       ),
@@ -99,6 +104,27 @@ class Web::PushSubscription < ApplicationRecord
     end
   end
 
+  def actions_arr(notification)
+    case notification.type
+    when :mention then [
+      {
+        title: translate('push_notifications.mention.action_favourite'),
+        icon: full_asset_url('emoji/2764.png'),
+        type: 'request',
+        method: 'POST',
+        action: "/api/v1/statuses/#{notification.target_status.id}/favourite",
+      },
+      {
+        title: translate('push_notifications.mention.action_boost'),
+        icon: full_asset_url('/emoji/1f504.png'),
+        type: 'request',
+        method: 'POST',
+        action: "/api/v1/statuses/#{notification.target_status.id}/reblog",
+      },
+    ]
+    end
+  end
+
   def image_str(notification)
     return nil if notification.target_status.nil? || notification.target_status.media_attachments.empty?
 
@@ -131,6 +157,16 @@ class Web::PushSubscription < ApplicationRecord
         private_key: Rails.configuration.x.vapid_private_key,
         public_key: Rails.configuration.x.vapid_public_key,
       }
+    )
+  end
+
+  def find_or_create_access_token(notification)
+    Doorkeeper::AccessToken.find_or_create_for(
+      Doorkeeper::Application.find_by(superapp: true),
+      notification.account.user.id,
+      Doorkeeper::OAuth::Scopes.from_string('read write follow'),
+      Doorkeeper.configuration.access_token_expires_in,
+      Doorkeeper.configuration.refresh_token_enabled?
     )
   end
 end
