@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { cancelReport, changeReportComment, submitReport } from '../../actions/reports';
+import { changeReportComment, submitReport } from '../../actions/reports';
 import { refreshAccountTimeline } from '../../actions/timelines';
 import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
@@ -52,7 +52,7 @@ class Report extends React.PureComponent {
 
   componentWillMount () {
     if (!this.props.account) {
-      this.context.router.replace('/');
+      this.context.router.history.replace('/');
     }
   }
 
@@ -76,7 +76,7 @@ class Report extends React.PureComponent {
 
   handleSubmit = () => {
     this.props.dispatch(submitReport());
-    this.context.router.replace('/');
+    this.context.router.history.replace('/');
   }
 
   render () {

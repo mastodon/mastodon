@@ -1,5 +1,4 @@
 import { configure } from '@storybook/react';
-import React from 'react';
 import { addLocaleData } from 'react-intl';
 import en from 'react-intl/locale-data/en';
 import '../app/javascript/styles/application.scss';
