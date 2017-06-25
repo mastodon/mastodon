@@ -43,7 +43,7 @@ class Pubsubhubbub::DeliveryWorker
   end
 
   def host
-    Addressable::URI.parse(subscription.callback_url).normalize.host
+    Addressable::URI.parse(subscription.callback_url).normalized_host
   end
 
   def headers

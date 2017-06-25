@@ -160,7 +160,7 @@ class Account < ApplicationRecord
 
   class << self
     def domains
-      reorder(nil).pluck('distinct accounts.domain')
+      reorder(nil).pluck('distinct accounts.domain') + where.not(web_domain: nil).reorder(nil).pluck('distinct accounts.web_domain')
     end
 
     def triadic_closures(account, limit: 5, offset: 0)
@@ -255,5 +255,7 @@ class Account < ApplicationRecord
     return if local?
 
     self.domain = TagManager.instance.normalize_domain(domain)
+    remote_domain = Addressable::URI.parse(remote_url).normalized_host
+    self.web_domain = remote_domain unless domain == remote_domain
   end
 end

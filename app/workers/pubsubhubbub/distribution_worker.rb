@@ -45,6 +45,6 @@ class Pubsubhubbub::DistributionWorker
   end
 
   def allowed_to_receive?(callback_url)
-    @domains.include?(Addressable::URI.parse(callback_url).host)
+    @domains.include?(Addressable::URI.parse(callback_url).normalized_host)
   end
 end
