@@ -25,6 +25,10 @@ class SessionActivation < ApplicationRecord
     detection.platform.id
   end
 
+  before_save do
+    self.user_agent = '' if user_agent.nil?
+  end
+
   class << self
     def active?(id)
       id && where(session_id: id).exists?
