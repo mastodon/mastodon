@@ -3,6 +3,7 @@
 #
 # Table name: session_activations
 #
+
 #  id              :integer          not null, primary key
 #  user_id         :integer          not null
 #  session_id      :string           not null
