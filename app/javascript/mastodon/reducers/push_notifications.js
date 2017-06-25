@@ -19,6 +19,8 @@ export default function push_subscriptions(state = initialState, action) {
   case STORE_HYDRATE: {
     const push_subscription = action.state.get('push_subscription');
 
+    console.log('Setting push subscription from the backend:', push_subscription && push_subscription.toJS());
+
     if (push_subscription) {
       return state
         .set('subscription', new Immutable.Map({

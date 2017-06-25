@@ -30,7 +30,11 @@ const subscribe = (registration) =>
   registration.pushManager.subscribe({
     userVisibleOnly: true,
     applicationServerKey: urlBase64ToUint8Array(getApplicationServerKey()),
-  });
+  })
+    .then(subscription => {
+      console.log('Got new subscription:', subscription.endpoint);
+      return subscription;
+    });
 
 const unsubscribe = ({ registration, subscription }) => subscription.unsubscribe().then(() => registration);
 
@@ -45,6 +49,7 @@ export function register () {
   store.dispatch(setBrowserSupport(supportsPushNotifications));
 
   if (supportsPushNotifications) {
+    console.log('This browser supports web push notifications.');
     if (!getApplicationServerKey()) {
       console.error('The VAPID public key is not set. You will not be able to receive push notifications.');
       return;
@@ -54,20 +59,36 @@ export function register () {
       .then(getPushSubscription)
       .then(({ registration, subscription }) => {
         if (subscription !== null) {
+          console.log('Subscription exists, checking if valid...');
           // We have a subscription, check if it is still valid
           const currentServerKey = (new Uint8Array(subscription.options.applicationServerKey)).toString();
           const subscriptionServerKey = urlBase64ToUint8Array(getApplicationServerKey()).toString();
           const serverEndpoint = store.getState().getIn(['push_notifications', 'subscription', 'endpoint']);
+
+          console.log('VAPID public key is unchanged:', subscriptionServerKey === currentServerKey);
+          console.log('Backend has same endpoint:', subscription.endpoint === serverEndpoint);
+
+          if (!serverEndpoint) {
+            console.log('Hm, the subscriptions seems to have removed in the backend...');
+          }
 
           // If the VAPID public key did not change and the endpoint corresponds
           // to the endpoint saved in the backend, the subscription is valid
           if (subscriptionServerKey === currentServerKey && subscription.endpoint === serverEndpoint) {
             return subscription;
           } else {
+            if (subscription.endpoint !== serverEndpoint) {
+              console.log('Backend endpoint:', serverEndpoint);
+              console.log('Subscr. endpoint:', subscription.endpoint);
+            }
+
+            console.log('Unsubscribing and subscribing...');
             // Something went wrong, try to subscribe again
             return unsubscribe({ registration, subscription }).then(subscribe).then(sendSubscriptionToBackend);
           }
         }
+
+        console.log('Not subscribed, subscribing...');
 
         // No subscription, try to subscribe
         return subscribe(registration).then(sendSubscriptionToBackend);
@@ -76,24 +97,31 @@ export function register () {
         // If we got a PushSubscription (and not a subscription object from the backend)
         // it means that the backend subscription is valid (and was set during hydration)
         if (!(subscription instanceof PushSubscription)) {
+          console.log('Got a new subscription from the backend, dispatching action to save it in the store.');
           store.dispatch(setSubscription(subscription));
+        } else {
+          console.log('Got a PushSubscription, which is already saved in the store.');
         }
       })
       .catch(error => {
-        console.error(error);
+        console.error('Something went wrong:', error);
 
         // Clear alerts and hide UI settings
+        console.log('Clearing subscription from the store...');
         store.dispatch(clearSubscription());
         store.dispatch(saveSettings());
 
         try {
+          console.log('Fetching subscription and unsubscribing...');
           getRegistration()
             .then(getPushSubscription)
             .then(unsubscribe);
         } catch (e) {
-          console.error(error);
+          console.error('Something went worng yet again:', error);
         }
       });
+  } else {
+    console.log('This browser does not support web push notifications.');
   }
 }
 
