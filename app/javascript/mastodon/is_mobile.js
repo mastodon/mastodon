@@ -2,9 +2,9 @@ const LAYOUT_BREAKPOINT = 1024;
 
 export function isMobile(width, columns) {
   switch (columns) {
-  case "multiple":
+  case 'multiple':
     return false;
-  case "single":
+  case 'single':
     return true;
   default:
     return width <= LAYOUT_BREAKPOINT;

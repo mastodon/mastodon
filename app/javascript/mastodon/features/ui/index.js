@@ -74,21 +74,17 @@ class WrappedRoute extends React.Component {
 
 }
 
-function columnClass(columns) {
-  switch (columns) {
-    case "auto": return "auto-columns";
-    case "single": return "single-column";
-    case "multiple": return "multi-columns";
-    default: return "auto-columns";
-  }
-}
+const mapStateToProps = state => ({
+  layout: state.getIn(['settings', 'layout']),
+});
 
-@connect()
+@connect(mapStateToProps)
 export default class UI extends React.PureComponent {
 
   static propTypes = {
     dispatch: PropTypes.func.isRequired,
     children: PropTypes.node,
+    layout: PropTypes.string,
   };
 
   state = {
@@ -184,15 +180,24 @@ export default class UI extends React.PureComponent {
   }
 
   render () {
-    const { width, draggingOver } = this.state;
+    const { width, draggingOver, layout } = this.state;
     const { children } = this.props;
 
-    const columns = "auto";
+    const columnsClass = layout => {
+      switch (layout) {
+      case 'single':
+        return 'single-column';
+      case 'multiple':
+        return 'multiple-columns';
+      default:
+        return 'auto-columns';
+      }
+    }
 
     return (
-      <div className={'ui ' + columnClass(columns)} ref={this.setRef}>
+      <div className={'ui ' + columnsClass(layout)} ref={this.setRef}>
         <TabsBar />
-        <ColumnsAreaContainer singleColumn={isMobile(width, columns)}>
+        <ColumnsAreaContainer singleColumn={isMobile(width, layout)}>
           <WrappedSwitch>
             <Redirect from='/' to='/getting-started' exact />
             <WrappedRoute path='/getting-started' component={GettingStarted} content={children} />

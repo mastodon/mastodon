@@ -6,6 +6,7 @@ import uuid from '../uuid';
 
 const initialState = Immutable.Map({
   onboarded: false,
+  layout: 'auto',
 
   home: Immutable.Map({
     shows: Immutable.Map({
