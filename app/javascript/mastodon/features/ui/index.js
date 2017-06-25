@@ -75,7 +75,7 @@ class WrappedRoute extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  layout: state.getIn(['settings', 'layout']),
+  layout: state.getIn(['localSettings', 'layout']),
 });
 
 @connect(mapStateToProps)
@@ -180,19 +180,19 @@ export default class UI extends React.PureComponent {
   }
 
   render () {
-    const { width, draggingOver, layout } = this.state;
-    const { children } = this.props;
+    const { width, draggingOver } = this.state;
+    const { children, layout } = this.props;
 
     const columnsClass = layout => {
       switch (layout) {
       case 'single':
         return 'single-column';
       case 'multiple':
-        return 'multiple-columns';
+        return 'multi-columns';
       default:
         return 'auto-columns';
       }
-    }
+    };
 
     return (
       <div className={'ui ' + columnsClass(layout)} ref={this.setRef}>
