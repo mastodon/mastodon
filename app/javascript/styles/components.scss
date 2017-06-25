@@ -1447,28 +1447,26 @@
 .drawer__pager {
   box-sizing: border-box;
   padding: 0;
-  flex-grow: 1;
+  flex: 0 0 auto;
   position: relative;
   overflow: hidden;
-  display: flex;
 }
 
 .drawer__inner {
-  position: absolute;
-  top: 0;
-  left: 0;
   background: lighten($ui-base-color, 13%);
   box-sizing: border-box;
   padding: 0;
-  display: flex;
-  flex-direction: column;
   overflow: hidden;
   overflow-y: auto;
   width: 100%;
-  height: 100%;
 
   &.darker {
+    position: absolute;
+    top: 0;
+    left: 0;
     background: $ui-base-color;
+    width: 100%;
+    height: 100%;
   }
 }
 
@@ -1493,6 +1491,25 @@
       background: lighten($ui-base-color, 3%);
       transition: background 200ms ease-out;
     }
+  }
+}
+
+.layout__selector {
+  margin-top: 20px;
+
+  a {
+    text-decoration: underline;
+    cursor: pointer;
+    color: lighten($ui-base-color, 26%);
+  }
+
+  b {
+    font-weight: bold;
+  }
+
+  p {
+    font-size: 13px;
+    color: $ui-secondary-color;
   }
 }
 
