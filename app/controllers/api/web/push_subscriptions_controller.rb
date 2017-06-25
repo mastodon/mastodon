@@ -6,6 +6,11 @@ class Api::Web::PushSubscriptionsController < Api::BaseController
   before_action :require_user!
 
   def create
+    unless current_account.user.active_session.web_push_subscription.nil?
+      current_account.user.active_session.web_push_subscription.destroy!
+      current_account.user.active_session.save!
+    end
+
     web_subscription = ::Web::PushSubscription.new(
       endpoint: params[:data][:endpoint],
       key_p256dh: params[:data][:keys][:p256dh],
