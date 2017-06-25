@@ -153,8 +153,9 @@ class StatusUnextended extends ImmutablePureComponent {
   }
 
   handleClick = () => {
-    const { status } = this.props;
-    this.context.router.history.push(`/statuses/${status.getIn(['reblog', 'id'], status.get('id'))}`);
+    const { status, isCollapsed } = this.props;
+    if (isCollapsed) this.handleCollapsedClick();
+    else this.context.router.history.push(`/statuses/${status.getIn(['reblog', 'id'], status.get('id'))}`);
   }
 
   handleAccountClick = (e) => {
