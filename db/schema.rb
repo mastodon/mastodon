@@ -255,8 +255,7 @@ ActiveRecord::Schema.define(version: 20170624134742) do
     t.string "session_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "browser", default: "", null: false
-    t.string "platform", default: "", null: false
+    t.string "user_agent", default: "", null: false
     t.inet "ip"
     t.index ["session_id"], name: "index_session_activations_on_session_id", unique: true
     t.index ["user_id"], name: "index_session_activations_on_user_id"

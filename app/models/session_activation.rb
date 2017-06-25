@@ -8,12 +8,23 @@
 #  session_id :string           not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
-#  browser    :string           default(""), not null
-#  platform   :string           default(""), not null
+#  user_agent :string           default(""), not null
 #  ip         :inet
 #
 
 class SessionActivation < ApplicationRecord
+  def detection
+    @detection ||= Browser.new(user_agent)
+  end
+
+  def browser
+    detection.id
+  end
+
+  def platform
+    detection.platform.id
+  end
+
   class << self
     def active?(id)
       id && where(session_id: id).exists?

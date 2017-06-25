@@ -92,11 +92,8 @@ class User < ApplicationRecord
   end
 
   def activate_session(request)
-    detection = Browser.new(request.user_agent)
-
     session_activations.activate(session_id: SecureRandom.hex,
-                                 browser: detection.name,
-                                 platform: detection.platform.id,
+                                 user_agent: request.user_agent,
                                  ip: request.ip).session_id
   end
 
