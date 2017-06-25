@@ -3,7 +3,7 @@
   margin: 0 auto;
   margin-top: 40px;
 
-  @include single-column('screen and (max-width: 700px)') {
+  @media screen and (max-width: 700px) {
     width: 100%;
     margin: 0;
   }
@@ -15,7 +15,7 @@
   margin-bottom: 0;
   cursor: default;
 
-  @include single-column('screen and (max-width: 360px)') {
+  @media screen and (max-width: 360px) {
     margin: 30px auto;
   }
 

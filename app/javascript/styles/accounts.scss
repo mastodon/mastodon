@@ -9,7 +9,7 @@
   overflow: hidden;
   position: relative;
 
-  @include single-column('screen and (max-width: 700px)') {
+  @media screen and (max-width: 700px) {
     border-radius: 0;
     box-shadow: none;
   }
@@ -148,7 +148,7 @@
     order: 1;
   }
 
-  @include single-column('screen and (max-width: 480px)') {
+  @media screen and (max-width: 480px) {
     .details {
       display: block;
     }
@@ -230,7 +230,7 @@
     color: lighten($ui-base-color, 10%);
   }
 
-  @include single-column('screen and (max-width: 360px)') {
+  @media screen and (max-width: 360px) {
     padding: 30px 20px;
 
     a,
@@ -258,7 +258,7 @@
   display: flex;
   flex-wrap: wrap;
 
-  @include single-column('screen and (max-width: 700px)') {
+  @media screen and (max-width: 700px) {
     border-radius: 0;
     box-shadow: none;
   }
