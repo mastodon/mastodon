@@ -525,16 +525,13 @@
   text-transform: uppercase;
   line-height: 18px;
   cursor: pointer;
-  transition: background-color .3s, color .3s;
 
     &:hover {
       background: lighten($ui-base-color, 33%);
       text-decoration: none;
     }
 
-  .status-collapsed &, .status-collapsed &:hover {
-    background: transparent;
-    color: lighten($ui-base-color, 30%);
+  .status-collapsed & {
     vertical-align: bottom;
   }
 }
