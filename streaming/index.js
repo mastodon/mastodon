@@ -78,11 +78,11 @@ const startWorker = (workerId) => {
 
   const pgConfigs = {
     development: {
-      user:     process.env.DB_USER || 'mastodon',
-      password: process.env.DB_PASS || '',
+      user:     process.env.DB_USER || pg.defaults.user,
+      password: process.env.DB_PASS || pg.defaults.password,
       database: process.env.DB_NAME || 'mastodon_development',
-      host:     process.env.DB_HOST || 'localhost',
-      port:     process.env.DB_PORT || 5432,
+      host:     process.env.DB_HOST || pg.defaults.host,
+      port:     process.env.DB_PORT || pg.defaults.port,
       max:      10,
     },
 
