@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170625140443) do
+ActiveRecord::Schema.define(version: 20170625190709) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -258,6 +258,7 @@ ActiveRecord::Schema.define(version: 20170625140443) do
     t.string "user_agent", default: "", null: false
     t.inet "ip"
     t.integer "access_token_id"
+    t.integer "web_push_subscription_id"
     t.index ["session_id"], name: "index_session_activations_on_session_id", unique: true
     t.index ["user_id"], name: "index_session_activations_on_user_id"
   end
@@ -369,6 +370,15 @@ ActiveRecord::Schema.define(version: 20170625140443) do
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["filtered_languages"], name: "index_users_on_filtered_languages", using: :gin
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  end
+
+  create_table "web_push_subscriptions", force: :cascade do |t|
+    t.string "endpoint"
+    t.string "key_p256dh"
+    t.string "key_auth"
+    t.json "data"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "web_settings", id: :serial, force: :cascade do |t|
