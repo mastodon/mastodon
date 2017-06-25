@@ -24,7 +24,7 @@ class ProcessMentionsService < BaseService
 
       next if mentioned_account.nil?
 
-      mentioned_account.mentions.where(status: status).first_or_create(status: status)
+      mentioned_account.mentions.where(status: status).first_or_create(status: status, delivered: false)
     end
 
     status.mentions.includes(:account).each do |mention|
@@ -33,7 +33,7 @@ class ProcessMentionsService < BaseService
       if mentioned_account.local?
         NotifyService.new.call(mentioned_account, mention)
       else
-        NotificationWorker.perform_async(stream_entry_to_xml(status.stream_entry), status.account_id, mentioned_account.id)
+        NotificationWorker.perform_async(stream_entry_to_xml(status.stream_entry), status.account_id, mentioned_account.id, mention.id)
       end
     end
   end

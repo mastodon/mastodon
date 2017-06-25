@@ -8,6 +8,7 @@
 #  status_id  :integer
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  delivered  :boolean
 #
 
 class Mention < ApplicationRecord
@@ -24,4 +25,9 @@ class Mention < ApplicationRecord
     to: :account,
     prefix: true
   )
+
+  def set_delivered(delivery_status)
+    self.delivered = delivery_status
+    save!
+  end
 end

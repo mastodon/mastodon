@@ -9,6 +9,7 @@ class NotifyService < BaseService
     return if recipient.user.nil? || blocked?
 
     create_notification
+    activity.set_delivered(true) if activity.respond_to? :set_delivered
     send_email if email_enabled?
   rescue ActiveRecord::RecordInvalid
     return
