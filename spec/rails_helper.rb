@@ -23,7 +23,7 @@ Devise::Test::ControllerHelpers.module_eval do
     original_sign_in(resource, scope: scope)
 
     SessionActivation.deactivate warden.raw_session["auth_id"]
-    warden.raw_session["auth_id"] = resource.activate_session
+    warden.raw_session["auth_id"] = resource.activate_session(warden.request)
   end
 end
 
