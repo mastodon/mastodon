@@ -391,13 +391,17 @@ en:
     description_html: If you enable <strong>two-factor authentication</strong>, logging in will require you to be in possession of your phone, which will generate tokens for you to enter.
     disable: Disable
     enable: Enable
+    enabled: Two-factor authentication is enabled
     enabled_success: Two-factor authentication successfully enabled
-    generate_recovery_codes: Generate Recovery Codes
+    generate_recovery_codes: Generate recovery codes
     instructions_html: "<strong>Scan this QR code into Google Authenticator or a similiar TOTP app on your phone</strong>. From now on, that app will generate tokens that you will have to enter when logging in."
     lost_recovery_codes: Recovery codes allow you to regain access to your account if you lose your phone. If you've lost your recovery codes, you can regenerate them here. Your old recovery codes will be invalidated.
     manual_instructions: 'If you can''t scan the QR code and need to enter it manually, here is the plain-text secret:'
+    recovery_codes: Backup recovery codes
     recovery_codes_regenerated: Recovery codes successfully regenerated
-    recovery_instructions: If you ever lose access to your phone, you can use one of the recovery codes below to regain access to your account. Keep the recovery codes safe. (For example, you may print them and store them with other important documents.)
+    recovery_instructions_html:
+      If you ever lose access to your phone, you can use one of the recovery codes below to regain access to your account. <strong>Keep the recovery codes safe</strong>.
+      For example, you may print them and store them with other important documents.
     setup: Set up
     wrong_code: The entered code was invalid! Are server time and device time correct?
   users:
