@@ -1,6 +1,6 @@
 FROM ruby:2.4.1-alpine
 
-LABEL maintainer="https://github.com/tootsuite/mastodon" \
+LABEL maintainer="https://github.com/tri-star/mastodon" \
       description="A GNU Social-compatible microblogging server"
 
 ENV UID=991 GID=991 \
@@ -38,11 +38,15 @@ RUN echo "@edge https://nl.alpinelinux.org/alpine/edge/main" >> /etc/apk/reposit
  && update-ca-certificates \
  && rm -rf /tmp/* /var/cache/apk/*
 
+VOLUME /mastodon/
+
 COPY Gemfile Gemfile.lock package.json yarn.lock /mastodon/
 
 RUN bundle install --deployment --without test development \
  && yarn --ignore-optional --pure-lockfile
 
 COPY . /mastodon
+
+VOLUME /mastodon/public/assets /mastodon/public/packs
 
 RUN chmod +x /mastodon/web_boot.sh

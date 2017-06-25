@@ -5,17 +5,17 @@ services:
     restart: always
     image: postgres:alpine
     volumes:
-    - /var/data/docker-data/mastodon-postgres:/var/lib/postgresql/data
+    - /var/data/docker-data/catgram-postgres:/var/lib/postgresql/data
 
   redis:
     restart: always
     image: redis:alpine
     volumes:
-    - /var/data/docker-data/mastodon-redis:/data
+    - /var/data/docker-data/catgram-redis:/data
 
   web:
     build: .
-    image: gargron/mastodon
+    image: us.gcr.io/centi-gitlab/catgram
     restart: always
     env_file: .env.production
     command: /mastodon/web_boot.sh
@@ -27,7 +27,7 @@ services:
 
   streaming:
     build: .
-    image: gargron/mastodon
+    image: us.gcr.io/centi-gitlab/catgram
     restart: always
     env_file: .env.production
     command: npm run start
@@ -39,7 +39,7 @@ services:
 
   sidekiq:
     build: .
-    image: gargron/mastodon
+    image: us.gcr.io/centi-gitlab/catgram
     restart: always
     env_file: .env.production
     command: bundle exec sidekiq -q default -q mailers -q pull -q push
