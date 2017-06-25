@@ -38,8 +38,6 @@ RUN echo "@edge https://nl.alpinelinux.org/alpine/edge/main" >> /etc/apk/reposit
  && update-ca-certificates \
  && rm -rf /tmp/* /var/cache/apk/*
 
-VOLUME /mastodon/
-
 COPY Gemfile Gemfile.lock package.json yarn.lock /mastodon/
 
 RUN bundle install --deployment --without test development \
