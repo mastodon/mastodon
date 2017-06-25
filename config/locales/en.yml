@@ -193,6 +193,10 @@ en:
       title: PubSubHubbub
       topic: Topic
     title: Administration
+  admin_mailer:
+    new_report:
+      body: "%{reporter} has reported %{target}"
+      subject: New report for %{instance} (#%{id})
   application_mailer:
     settings: 'Change e-mail preferences: %{link}'
     signature: Mastodon notifications from %{instance}
@@ -399,9 +403,7 @@ en:
     manual_instructions: 'If you can''t scan the QR code and need to enter it manually, here is the plain-text secret:'
     recovery_codes: Backup recovery codes
     recovery_codes_regenerated: Recovery codes successfully regenerated
-    recovery_instructions_html:
-      If you ever lose access to your phone, you can use one of the recovery codes below to regain access to your account. <strong>Keep the recovery codes safe</strong>.
-      For example, you may print them and store them with other important documents.
+    recovery_instructions_html: If you ever lose access to your phone, you can use one of the recovery codes below to regain access to your account. <strong>Keep the recovery codes safe</strong>. For example, you may print them and store them with other important documents.
     setup: Set up
     wrong_code: The entered code was invalid! Are server time and device time correct?
   users:
