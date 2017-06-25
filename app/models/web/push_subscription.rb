@@ -32,7 +32,7 @@ class Web::PushSubscription < ApplicationRecord
     image = image_str notification
     actions = actions_arr notification
 
-    access_token = actions ? find_or_create_access_token(notification).token : nil
+    access_token = actions.empty? ? nil : find_or_create_access_token(notification).token
 
     Webpush.payload_send(
       message: JSON.generate(
@@ -116,12 +116,13 @@ class Web::PushSubscription < ApplicationRecord
       },
       {
         title: translate('push_notifications.mention.action_boost'),
-        icon: full_asset_url('/emoji/1f504.png'),
+        icon: full_asset_url('emoji/1f504.png'),
         type: 'request',
         method: 'POST',
         action: "/api/v1/statuses/#{notification.target_status.id}/reblog",
       },
     ]
+    else []
     end
   end
 
@@ -145,6 +146,7 @@ class Web::PushSubscription < ApplicationRecord
         title: translate('push_notifications.subscribed.title'),
         options: {
           body: translate('push_notifications.subscribed.body'),
+          icon: full_asset_url('android-chrome-192x192.png'),
           data: {
             url: web_url('notifications'),
           },

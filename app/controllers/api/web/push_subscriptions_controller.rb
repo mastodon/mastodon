@@ -6,9 +6,11 @@ class Api::Web::PushSubscriptionsController < Api::BaseController
   before_action :require_user!
 
   def create
-    unless current_account.user.active_session.web_push_subscription.nil?
-      current_account.user.active_session.web_push_subscription.destroy!
-      current_account.user.active_session.save!
+    active_session = current_account.user.active_session(session)
+
+    unless active_session.web_push_subscription.nil?
+      active_session.web_push_subscription.destroy!
+      active_session.save!
     end
 
     web_subscription = ::Web::PushSubscription.new(
@@ -19,8 +21,8 @@ class Api::Web::PushSubscriptionsController < Api::BaseController
 
     web_subscription.save!
 
-    current_account.user.active_session.web_push_subscription = web_subscription
-    current_account.user.active_session.save!
+    active_session.web_push_subscription = web_subscription
+    active_session.save!
 
     render json: web_subscription.as_payload
   end

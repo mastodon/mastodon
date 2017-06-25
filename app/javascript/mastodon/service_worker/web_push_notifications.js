@@ -1,7 +1,6 @@
 const handlePush = (event) => {
   const { title, options } = event.data.json();
 
-  options.icon = options.icon || '/android-chrome-192x192.png';
   options.timestamp = options.timestamp && new Date(options.timestamp);
   options.actions = options.data.actions;
 

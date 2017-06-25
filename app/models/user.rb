@@ -95,10 +95,6 @@ class User < ApplicationRecord
     settings.system_font_ui
   end
 
-  def active_session
-    @_active_session ||= session_activations.find_by(user_id: self)
-  end
-
   def activate_session(request)
     session_activations.activate(session_id: SecureRandom.hex,
                                  user_agent: request.user_agent,
@@ -111,6 +107,16 @@ class User < ApplicationRecord
 
   def session_active?(id)
     session_activations.active? id
+  end
+
+  def active_session(session)
+    session_activations.find_by(session_id: session['auth_id'])
+  end
+
+  def web_push_subscription(session)
+    current_session = active_session(session)
+
+    current_session.web_push_subscription.nil? ? nil : current_session.web_push_subscription.as_payload
   end
 
   protected
