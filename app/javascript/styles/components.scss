@@ -1328,11 +1328,12 @@
   justify-content: flex-start;
   overflow-x: auto;
   position: relative;
+  padding: 10px;
 }
 
-@media screen and (min-width: 360px) {
+@include limited-single-column('screen and (max-width: 360px)', $parent: null) {
   .columns-area {
-    padding: 10px;
+    padding: 0;
   }
 }
 
@@ -1386,14 +1387,13 @@
   }
 }
 
-@media screen and (min-width: 360px) {
+@include limited-single-column('screen and (max-width: 360px)', $parent: null) {
   .tabs-bar {
-    margin: 10px;
-    margin-bottom: 0;
+    margin: 0;
   }
 
   .search {
-    margin-bottom: 10px;
+    margin-bottom: 0;
   }
 }
 
@@ -1518,6 +1518,8 @@
   background: lighten($ui-base-color, 8%);
   flex: 0 0 auto;
   overflow-y: auto;
+  margin: 10px;
+  margin-bottom: 0;
 }
 
 .tabs-bar__link {
@@ -1545,7 +1547,7 @@
   &:hover,
   &:focus,
   &:active {
-    @media screen and (min-width: 1025px) {
+    @include multi-columns('screen and (min-width: 1025px)') {
       background: lighten($ui-base-color, 14%);
       transition: all 100ms linear;
     }
@@ -1557,7 +1559,7 @@
   }
 }
 
-@media screen and (min-width: 600px) {
+@include limited-single-column('screen and (max-width: 600px)', $parent: null) {
   .tabs-bar__link {
     span {
       display: inline;
@@ -1798,7 +1800,7 @@
     outline: 0;
   }
 
-  @media screen and (max-width: 600px) {
+  @include limited-single-column('screen and (max-width: 600px)') {
     font-size: 16px;
   }
 }
@@ -1815,7 +1817,7 @@
   padding-right: 10px + 22px;
   resize: none;
 
-  @media screen and (max-width: 600px) {
+  @include limited-single-column('screen and (max-width: 600px)') {
     height: 100px !important; // prevent auto-resize textarea
     resize: vertical;
   }
@@ -1928,7 +1930,7 @@
     border-bottom-color: $ui-highlight-color;
   }
 
-  @media screen and (max-width: 600px) {
+  @include limited-single-column('screen and (max-width: 600px)') {
     font-size: 16px;
   }
 }
@@ -2889,6 +2891,7 @@ button.icon-button.active i.fa-retweet {
 
 .search {
   position: relative;
+  margin-bottom: 10px;
 }
 
 .search__input {
@@ -2921,7 +2924,7 @@ button.icon-button.active i.fa-retweet {
     background: lighten($ui-base-color, 4%);
   }
 
-  @media screen and (max-width: 600px) {
+  @include limited-single-column('screen and (max-width: 600px)') {
     font-size: 16px;
   }
 }

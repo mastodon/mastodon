@@ -22,6 +22,14 @@
   }
 }
 
+@mixin limited-single-column($media, $parent: '&') {
+  .auto-columns #{$parent}, .single-column #{$parent} {
+    @media #{$media} {
+      @content;
+    }
+  }
+}
+
 @mixin multi-columns($media, $parent: '&') {
   .auto-columns #{$parent} {
     @media #{$media} {
