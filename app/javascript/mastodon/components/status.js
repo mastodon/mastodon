@@ -169,7 +169,8 @@ class StatusUnextended extends ImmutablePureComponent {
     if (e.button === 0) {
       const id = Number(e.currentTarget.getAttribute('data-id'));
       e.preventDefault();
-      this.context.router.history.push(`/accounts/${id}`);
+      if (this.state.isCollapsed) this.handleCollapsedClick();
+      else this.context.router.history.push(`/accounts/${id}`);
     }
   }
 
