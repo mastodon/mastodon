@@ -3449,10 +3449,15 @@ button.icon-button.active i.fa-retweet {
   background-repeat: no-repeat;
   background-size: cover;
   cursor: zoom-in;
-  display: block;
-  height: 100%;
+  display: flex;
+  align-items: center;
   text-decoration: none;
-  width: 100%;
+  height: 100%;
+
+  &,
+  img {
+    width: 100%;
+  }
 }
 
 .media-gallery__gifv {
