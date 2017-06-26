@@ -26,8 +26,8 @@ class Formatter
 
     html = raw_content
     html = "RT @#{prepend_reblog} #{html}" if prepend_reblog
-    html = encode_and_link_urls(html, linkable_accounts)
     html, marks = CodeBlockFormatter.swap_code_literal_to_marker(html)
+    html = encode_and_link_urls(html, linkable_accounts)
     html = simple_format(html, {}, sanitize: false)
     html = html.delete("\n")
     html = CodeBlockFormatter.swap_marker_to_code_blocks(html, marks)
