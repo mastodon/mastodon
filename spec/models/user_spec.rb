@@ -285,8 +285,7 @@ RSpec.describe User, type: :model do
     end
 
     it 'is nil if user does not own app' do
-      app.owner = nil
-      app.save!
+      app.update!(owner: nil)
 
       expect(user.token_for_app(app)).to be_nil
     end

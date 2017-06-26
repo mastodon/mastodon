@@ -30,6 +30,7 @@ describe Settings::ApplicationsController do
     it 'returns http success' do
       get :show, params: { id: app.id }
       expect(response).to have_http_status(:success)
+      expect(assigns[:application]).to eql(app)
     end
 
     it 'returns 404 if you dont own app' do
@@ -49,8 +50,8 @@ describe Settings::ApplicationsController do
   end
 
   describe 'POST #create' do
-    describe 'success' do
-      before do
+    context 'success' do
+      def call_create
         post :create, params: {
                doorkeeper_application: {
                  name: 'My New App',
@@ -59,14 +60,19 @@ describe Settings::ApplicationsController do
                  scopes: 'read write follow'
                }
              }
+        response
+      end
+
+      it 'creates an entry in the database' do
+        expect { call_create }.to change(Doorkeeper::Application, :count)
       end
       
       it 'redirects back to applications page' do
-        expect(response).to redirect_to(settings_applications_path)
+        expect(call_create).to redirect_to(settings_applications_path)
       end
     end
 
-    describe 'failure' do
+    context 'failure' do
       before do
         post :create, params: {
                doorkeeper_application: {
@@ -88,23 +94,33 @@ describe Settings::ApplicationsController do
     end
   end
   
-  describe 'PUT #update' do
-    describe 'success' do
-      before do
+  describe 'PATCH #update' do
+    context 'success' do
+      let(:opts) {
+        {
+          website: 'https://foo.bar/'
+        }
+      }
+
+      def call_update
         patch :update, params: {
                 id: app.id,
-                doorkeeper_application: {
-                  website: 'https://foo.bar/'
-                }
+                doorkeeper_application: opts
               }
+        response
+      end
+
+      it 'updates existing application' do
+        call_update
+        expect(app.reload.website).to eql(opts[:website])
       end
       
       it 'redirects back to applications page' do
-        expect(response).to redirect_to(settings_applications_path)
+        expect(call_update).to redirect_to(settings_applications_path)
       end
     end
 
-    describe 'failure' do
+    context 'failure' do
       before do
         patch :update, params: {
                 id: app.id,
@@ -149,7 +165,7 @@ describe Settings::ApplicationsController do
     end
 
     it 'should create new token' do
-      expect( user.token_for_app(app) ).to_not eql(token)
+      expect(user.token_for_app(app)).to_not eql(token)
     end
   end
 end

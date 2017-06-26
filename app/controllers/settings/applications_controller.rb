@@ -22,7 +22,6 @@ class Settings::ApplicationsController < ApplicationController
 
   def create
     @application = current_user.applications.build(application_params)
-
     if @application.save
       redirect_to settings_applications_path, notice: I18n.t('application.created')
     else
