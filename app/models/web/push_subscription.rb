@@ -78,7 +78,6 @@ class Web::PushSubscription < ApplicationRecord
     case notification.type
     when :mention then translate('push_notifications.mention.title', name: name)
     when :follow then translate('push_notifications.follow.title', name: name)
-    when :follow_request then translate('push_notifications.follow_request.title', name: name)
     when :favourite then translate('push_notifications.favourite.title', name: name)
     when :reblog then translate('push_notifications.reblog.title', name: name)
     end
@@ -88,7 +87,6 @@ class Web::PushSubscription < ApplicationRecord
     case notification.type
     when :mention then notification.target_status.text
     when :follow then notification.from_account.note
-    when :follow_request then notification.from_account.note
     when :favourite then notification.target_status.text
     when :reblog then notification.target_status.text
     end
@@ -98,7 +96,6 @@ class Web::PushSubscription < ApplicationRecord
     case notification.type
     when :mention then web_url("statuses/#{notification.target_status.id}")
     when :follow then web_url("accounts/#{notification.from_account.id}")
-    when :follow_request then web_url('follow_requests')
     when :favourite then web_url("statuses/#{notification.target_status.id}")
     when :reblog then web_url("statuses/#{notification.target_status.id}")
     end
