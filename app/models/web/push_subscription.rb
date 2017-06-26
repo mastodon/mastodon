@@ -58,7 +58,8 @@ class Web::PushSubscription < ApplicationRecord
         subject: "mailto:#{Setting.site_contact_email}",
         private_key: Rails.configuration.x.vapid_private_key,
         public_key: Rails.configuration.x.vapid_public_key,
-      }
+      },
+      ttl: 40 * 60 * 60 # 48 hours
     )
   end
 
@@ -157,7 +158,8 @@ class Web::PushSubscription < ApplicationRecord
         subject: "mailto:#{Setting.site_contact_email}",
         private_key: Rails.configuration.x.vapid_private_key,
         public_key: Rails.configuration.x.vapid_public_key,
-      }
+      },
+      ttl: 5 * 60 # 5 minutes
     )
   end
 
