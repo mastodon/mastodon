@@ -1,8 +1,17 @@
 import React from 'react';
+import NavLink from 'react-router-dom/NavLink';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { FormattedMessage } from 'react-intl';
+import { connect } from 'react-redux';
+import ImmutablePropTypes from 'react-immutable-proptypes';
 
+const mapStateToProps = state => ({
+  me: state.getIn(['accounts', state.getIn(['meta', 'me'])]),
+  columns: state.getIn(['settings', 'columns']),
+});
+
+@connect(mapStateToProps)
 export default class ColumnHeader extends React.PureComponent {
 
   static contextTypes = {
@@ -20,6 +29,8 @@ export default class ColumnHeader extends React.PureComponent {
     onPin: PropTypes.func,
     onMove: PropTypes.func,
     onClick: PropTypes.func,
+    me: ImmutablePropTypes.map.isRequired,
+    columns: ImmutablePropTypes.list,
   };
 
   state = {
@@ -54,7 +65,7 @@ export default class ColumnHeader extends React.PureComponent {
   }
 
   render () {
-    const { title, icon, active, children, pinned, onPin, multiColumn, showBackButton } = this.props;
+    const { title, icon, active, children, pinned, onPin, multiColumn, showBackButton, me, columns } = this.props;
     const { collapsed, animating } = this.state;
 
     const wrapperClassName = classNames('column-header__wrapper', {
@@ -74,7 +85,7 @@ export default class ColumnHeader extends React.PureComponent {
       'active': !collapsed,
     });
 
-    let extraContent, pinButton, moveButtons, backButton, collapseButton;
+    let extraContent, pinButton, moveButtons, backButton, collapseButton, tabsBar;
 
     if (children) {
       extraContent = (
@@ -94,6 +105,39 @@ export default class ColumnHeader extends React.PureComponent {
         </div>
       );
     } else if (multiColumn) {
+      let navItems = [];
+
+      if (!columns.find(item => item.get('id') === 'HOME')) {
+        navItems.push(<NavLink className='tabs-bar__link primary' activeClassName='active' to='/timelines/home'><i className='fa fa-fw fa-home' /></NavLink>);
+      }
+
+      if (!columns.find(item => item.get('id') === 'NOTIFICATIONS')) {
+        navItems.push(<NavLink className='tabs-bar__link primary' activeClassName='active' to='/notifications'><i className='fa fa-fw fa-bell' /></NavLink>);
+      }
+
+      if (!columns.find(item => item.get('id') === 'COMMUNITY')) {
+        navItems.push(<NavLink className='tabs-bar__link secondary' activeClassName='active' to='/timelines/local'><i className='fa fa-fw fa-users' /></NavLink>);
+      }
+
+      if (!columns.find(item => item.get('id') === 'PUBLIC')) {
+        navItems.push(<NavLink className='tabs-bar__link secondary' activeClassName='active' to='/timelines/public'><i className='fa fa-fw fa-globe' /></NavLink>);
+      }
+
+      navItems.push(<NavLink className='tabs-bar__link primary' activeClassName='active' to='/favourites'><i className='fa fa-fw fa-star' /></NavLink>);
+
+      if (me.get('locked')) {
+        navItems.push(<NavLink className='tabs-bar__link primary' activeClassName='active' to='/follow_requests'><i className='fa fa-fw fa-users' /></NavLink>);
+      }
+
+      navItems = navItems.concat([
+        <NavLink className='tabs-bar__link primary' activeClassName='active' to='/mutes'><i className='fa fa-fw fa-volume-off' /></NavLink>,
+        <NavLink className='tabs-bar__link primary' activeClassName='active' to='/blocks'><i className='fa fa-fw fa-ban' /></NavLink>
+      ]);
+      tabsBar = (
+        <div className='drawer__header'>
+          {navItems}
+        </div>
+      );
       pinButton = <button key='pin-button' className='text-btn column-header__setting-btn' onClick={onPin}><i className='fa fa fa-plus' /> <FormattedMessage id='column_header.pin' defaultMessage='Pin' /></button>;
     }
 
@@ -121,6 +165,7 @@ export default class ColumnHeader extends React.PureComponent {
 
     return (
       <div className={wrapperClassName}>
+        {tabsBar}
         <div role='button heading' tabIndex='0' className={buttonClassName} onClick={this.handleTitleClick}>
           <i className={`fa fa-fw fa-${icon} column-header__icon`} />
           {title}
