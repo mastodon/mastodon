@@ -1,14 +1,11 @@
 import React from 'react';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import Avatar from '../../../components/avatar';
-import IconButton from '../../../components/icon_button';
-import DisplayName from '../../../components/display_name';
 import Permalink from '../../../components/permalink';
 import { FormattedMessage } from 'react-intl';
-import Link from 'react-router/lib/Link';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
-class NavigationBar extends ImmutablePureComponent {
+export default class NavigationBar extends ImmutablePureComponent {
 
   static propTypes = {
     account: ImmutablePropTypes.map.isRequired,
@@ -33,5 +30,3 @@ class NavigationBar extends ImmutablePureComponent {
   }
 
 }
-
-export default NavigationBar;

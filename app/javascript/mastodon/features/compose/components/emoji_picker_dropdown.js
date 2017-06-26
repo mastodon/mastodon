@@ -24,7 +24,8 @@ const settings = {
 
 let EmojiPicker; // load asynchronously
 
-class EmojiPickerDropdown extends React.PureComponent {
+@injectIntl
+export default class EmojiPickerDropdown extends React.PureComponent {
 
   static propTypes = {
     intl: PropTypes.object.isRequired,
@@ -52,7 +53,7 @@ class EmojiPickerDropdown extends React.PureComponent {
       import(/* webpackChunkName: "emojione_picker" */ 'emojione-picker').then(TheEmojiPicker => {
         EmojiPicker = TheEmojiPicker.default;
         this.setState({ loading: false });
-      }).catch(err => {
+      }).catch(() => {
         // TODO: show the user an error?
         this.setState({ loading: false });
       });
@@ -123,5 +124,3 @@ class EmojiPickerDropdown extends React.PureComponent {
   }
 
 }
-
-export default injectIntl(EmojiPickerDropdown);

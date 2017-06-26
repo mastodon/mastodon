@@ -11,6 +11,10 @@ RSpec.describe Tag, type: :model do
     it 'does not match URLs with hashtag-like anchors' do
       expect(subject.match('https://en.wikipedia.org/wiki/Ghostbusters_(song)#Lawsuit')).to be_nil
     end
+
+    it 'matches ﻿#ａｅｓｔｈｅｔｉｃ' do
+      expect(subject.match('﻿this is #ａｅｓｔｈｅｔｉｃ')).to_not be_nil
+    end
   end
 
   describe '.search_for' do

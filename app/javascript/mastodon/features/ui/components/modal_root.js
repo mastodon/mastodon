@@ -16,7 +16,7 @@ const MODAL_COMPONENTS = {
   'CONFIRM': ConfirmationModal,
 };
 
-class ModalRoot extends React.PureComponent {
+export default class ModalRoot extends React.PureComponent {
 
   static propTypes = {
     type: PropTypes.string,
@@ -87,5 +87,3 @@ class ModalRoot extends React.PureComponent {
   }
 
 }
-
-export default ModalRoot;
