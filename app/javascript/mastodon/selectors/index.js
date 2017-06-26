@@ -1,9 +1,6 @@
 import { createSelector } from 'reselect';
 import Immutable from 'immutable';
 
-const getStatuses = state => state.get('statuses');
-const getAccounts = state => state.get('accounts');
-
 const getAccountBase         = (state, id) => state.getIn(['accounts', id], null);
 const getAccountCounters     = (state, id) => state.getIn(['accounts_counters', id], null);
 const getAccountRelationship = (state, id) => state.getIn(['relationships', id], null);

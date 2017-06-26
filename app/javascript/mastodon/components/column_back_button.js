@@ -2,15 +2,15 @@ import React from 'react';
 import { FormattedMessage } from 'react-intl';
 import PropTypes from 'prop-types';
 
-class ColumnBackButton extends React.PureComponent {
+export default class ColumnBackButton extends React.PureComponent {
 
   static contextTypes = {
     router: PropTypes.object,
   };
 
   handleClick = () => {
-    if (window.history && window.history.length === 1) this.context.router.push('/');
-    else this.context.router.goBack();
+    if (window.history && window.history.length === 1) this.context.router.history.push('/');
+    else this.context.router.history.goBack();
   }
 
   render () {
@@ -23,5 +23,3 @@ class ColumnBackButton extends React.PureComponent {
   }
 
 }
-
-export default ColumnBackButton;

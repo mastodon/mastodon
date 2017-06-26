@@ -14,7 +14,6 @@ import {
 } from '../../actions/timelines';
 import { addColumn, removeColumn, moveColumn } from '../../actions/columns';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
-import ColumnBackButtonSlim from '../../components/column_back_button_slim';
 import ColumnSettingsContainer from './containers/column_settings_container';
 import createStream from '../../stream';
 
@@ -28,7 +27,9 @@ const mapStateToProps = state => ({
   accessToken: state.getIn(['meta', 'access_token']),
 });
 
-class CommunityTimeline extends React.PureComponent {
+@connect(mapStateToProps)
+@injectIntl
+export default class CommunityTimeline extends React.PureComponent {
 
   static propTypes = {
     dispatch: PropTypes.func.isRequired,
@@ -142,5 +143,3 @@ class CommunityTimeline extends React.PureComponent {
   }
 
 }
-
-export default connect(mapStateToProps)(injectIntl(CommunityTimeline));

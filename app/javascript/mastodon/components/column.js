@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import scrollTop from '../scroll';
 
-class Column extends React.PureComponent {
+export default class Column extends React.PureComponent {
 
   static propTypes = {
     children: PropTypes.node,
@@ -41,5 +41,3 @@ class Column extends React.PureComponent {
   }
 
 }
-
-export default Column;

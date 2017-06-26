@@ -4,7 +4,7 @@ ca:
     about_mastodon: Mastodon és un servidor de xarxa social <em>lliure i de codi obert</em>. Una alternativa <em>descentralitzada</em> a plataformes comercials, que evita el risc que una única companyia monopolitzi la teva comunicació. Qualsevol pot executar Mastodon i participar sense problemes en la <em>xarxa social</em>.
     about_this: Sobre aquesta instància
     apps: Apps
-    business_email: 'Correu de negocis:'
+    business_email: 'Adreça de contacte:'
     closed_registrations: Els registres estan actualment tancats en aquesta instància.
     contact: Contacte
     description_headline: Què es %{domain}?
@@ -39,6 +39,7 @@ ca:
     people_who_follow: Usuaris que segueixn a %{name}
     posts: Toots
     remote_follow: Seguir
+    reserved_username: El nom d'usuari està reservat
     unfollow: Deixar de seguir
   activitypub:
     activity:
@@ -85,8 +86,10 @@ ca:
       profile_url: URL del perfil
       public: Públic
       push_subscription_expires: La subscripció PuSH expira
+      redownload: Refrescar avatar
       reset: Reajustar
       reset_password: Restablir la contrasenya
+      resubscribe: Resubscribir
       salmon_url: URL Salmon
       search: Cerca
       show:
@@ -95,9 +98,11 @@ ca:
         targeted_reports: Informes realitzats sobre aquest compte
       silence: Silenci
       statuses: Estats
+      subscribe: Subscribir
       title: Comptes
       undo_silenced: Desfer silenci
       undo_suspension: Desfer suspensió
+      unsubscribe: Donar-se de baixa
       username: Nom d'usuari
       web: Web
     domain_blocks:
@@ -135,6 +140,7 @@ ca:
       domain_name: Domini
       title: Instàncies conegudes
     reports:
+      action_taken_by: Mesures adoptades per
       are_you_sure: Estàs segur?
       comment:
         label: Comentari
@@ -195,8 +201,10 @@ ca:
     invalid_url: La URL proporcionada es incorrecte
   auth:
     change_password: Canviar contrasenya
-    didnt_get_confirmation: "¿No vas rebre el correu de confirmació?"
-    forgot_password: "¿Has oblidat la contrassenya?"
+    delete_account: Esborrar el compte
+    delete_account_html: Si vols esborrar el teu compte pots <a href="%{path}">fer-ho aquí</a>. S'et demanarà confirmació.
+    didnt_get_confirmation: "No vas rebre el correu de confirmació?"
+    forgot_password: "Has oblidat la contrasenya?"
     login: Iniciar sessió
     logout: Tancar sessió
     register: Enregistrarse
@@ -222,6 +230,14 @@ ca:
       x_minutes: "%{count}m"
       x_months: "%{count}m"
       x_seconds: "%{count}s"
+  deletes:
+    bad_password_msg: Bon intent hackers! Contrasenya incorrecta
+    confirm_password: Introdueix la contrasenya actual per verificar la teva identitat
+    description_html: Això eliminarà de forma <strong>irreversible i permanent</strong> el contingut del teu compte i el desactivarà. El teu nom d'usuari romandrà reservat per evitar que algú volgués fer-se passar per tu.
+    proceed: Esborrar el compte
+    success_msg: El teu compte s'ha eliminat correctament
+    warning_html: Només està garantida l'eliminació d'aquesta particular instància. El contingut que ha estat àmpliament compartit que deixi petjades. Els servidors fora de línia i els que ja no estan subscrits no actualitzaran les seves bases de dades.
+    warning_title: Disponibilitat de contingut disseminat
   errors:
     '403': No tens permís per veure aquesta pàgina.
     '404': La pàgina que estàs buscant no existeix.
@@ -230,6 +246,7 @@ ca:
       content: La verificació de seguretat ha fallat. Bloquejes les galetes?
       title: La verificació de seguretat ha fallat
     '429': Estrangulat
+    noscript: Per utilitzar Mastodon si us plau activa JavaScript.
   exports:
     blocks: Persones que has bloquejat
     csv: CSV
@@ -306,6 +323,7 @@ ca:
   settings:
     authorized_apps: Aplicacions autoritzades
     back: Tornar al inici
+    delete: Eliminació del compte
     edit_profile: Editar perfil
     export: Exportar informació
     followers: Seguidors autoritzats
@@ -342,7 +360,7 @@ ca:
     lost_recovery_codes: Els codis de recuperació et permeten recuperar l'accés al teu compte si perds el telèfon. Si has perdut els teus codis de recuperació els pots regenerar aquí. Els codis de recuperació anteriors seran anul·lats.
     manual_instructions: 'Si no pots escanejar el codi QR code i necessites introduir-lo manualment, aquí tens el secret en text plà:'
     recovery_codes_regenerated: Codis de recuperació regenerats amb èxit
-    recovery_instructions: Si alguna vegada perds l'accéss al telèfon pots utilitzar un dels codis de recuperació a continuació per recuperar l'accés al teu compte. Cal mantenir els codis de recuperació en lloc segur, per exemple imprimint-los i guardar-los amb altres documents importants.
+    recovery_instructions_html: Si alguna vegada perds l'accéss al telèfon pots utilitzar un dels codis de recuperació a continuació per recuperar l'accés al teu compte. Cal mantenir els codis de recuperació en lloc segur, per exemple imprimint-los i guardar-los amb altres documents importants.
     setup: Establir
     wrong_code: El codi introduït es invalid! Es correcta la hora del servidor i del dispositiu?
   users:

@@ -1,14 +1,14 @@
-import os from 'os';
-import throng from 'throng';
-import dotenv from 'dotenv';
-import express from 'express';
-import http from 'http';
-import redis from 'redis';
-import pg from 'pg';
-import log from 'npmlog';
-import url from 'url';
-import WebSocket from 'uws';
-import uuid from 'uuid';
+const os = require('os');
+const throng = require('throng');
+const dotenv = require('dotenv');
+const express = require('express');
+const http = require('http');
+const redis = require('redis');
+const pg = require('pg');
+const log = require('npmlog');
+const url = require('url');
+const WebSocket = require('uws');
+const uuid = require('uuid');
 
 const env = process.env.NODE_ENV || 'development';
 
@@ -78,7 +78,11 @@ const startWorker = (workerId) => {
 
   const pgConfigs = {
     development: {
+      user:     process.env.DB_USER || pg.defaults.user,
+      password: process.env.DB_PASS || pg.defaults.password,
       database: 'mastodon_development',
+      host:     process.env.DB_HOST || pg.defaults.host,
+      port:     process.env.DB_PORT || pg.defaults.port,
       max:      10,
     },
 
@@ -115,7 +119,7 @@ const startWorker = (workerId) => {
 
   const subs = {};
 
-  redisSubscribeClient.on('pmessage', (_, channel, message) => {
+  redisSubscribeClient.on('message', (channel, message) => {
     const callbacks = subs[channel];
 
     log.silly(`New message on channel ${channel}`);
@@ -126,8 +130,6 @@ const startWorker = (workerId) => {
 
     callbacks.forEach(callback => callback(message));
   });
-
-  redisSubscribeClient.psubscribe(`${redisPrefix}timeline:*`);
 
   const subscriptionHeartbeat = (channel) => {
     const interval = 6*60;
@@ -144,12 +146,20 @@ const startWorker = (workerId) => {
   const subscribe = (channel, callback) => {
     log.silly(`Adding listener for ${channel}`);
     subs[channel] = subs[channel] || [];
+    if (subs[channel].length === 0) {
+      log.verbose(`Subscribe ${channel}`);
+      redisSubscribeClient.subscribe(channel);
+    }
     subs[channel].push(callback);
   };
 
   const unsubscribe = (channel, callback) => {
     log.silly(`Removing listener for ${channel}`);
     subs[channel] = subs[channel].filter(item => item !== callback);
+    if (subs[channel].length === 0) {
+      log.verbose(`Unsubscribe ${channel}`);
+      redisSubscribeClient.unsubscribe(channel);
+    }
   };
 
   const allowCrossDomain = (req, res, next) => {
@@ -236,7 +246,7 @@ const startWorker = (workerId) => {
     accountFromRequest(req, next);
   };
 
-  const errorMiddleware = (err, req, res, next) => {
+  const errorMiddleware = (err, req, res, {}) => {
     log.error(req.requestId, err.toString());
     res.writeHead(err.statusCode || 500, { 'Content-Type': 'application/json' });
     res.end(JSON.stringify({ error: err.statusCode ? err.toString() : 'An unexpected error occurred' }));
@@ -360,7 +370,7 @@ const startWorker = (workerId) => {
       }
     });
 
-    ws.on('error', e => {
+    ws.on('error', () => {
       log.verbose(req.requestId, `Ending stream for ${req.accountId}`);
       unsubscribe(id, listener);
       if (closeHandler) {
@@ -437,7 +447,7 @@ const startWorker = (workerId) => {
     }
   });
 
-  const wsInterval = setInterval(() => {
+  setInterval(() => {
     wss.clients.forEach(ws => {
       if (ws.isAlive === false) {
         ws.terminate();
