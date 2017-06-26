@@ -1,14 +1,14 @@
-import os from 'os';
-import throng from 'throng';
-import dotenv from 'dotenv';
-import express from 'express';
-import http from 'http';
-import redis from 'redis';
-import pg from 'pg';
-import log from 'npmlog';
-import url from 'url';
-import WebSocket from 'uws';
-import uuid from 'uuid';
+const os = require('os');
+const throng = require('throng');
+const dotenv = require('dotenv');
+const express = require('express');
+const http = require('http');
+const redis = require('redis');
+const pg = require('pg');
+const log = require('npmlog');
+const url = require('url');
+const WebSocket = require('uws');
+const uuid = require('uuid');
 
 const env = process.env.NODE_ENV || 'development';
 

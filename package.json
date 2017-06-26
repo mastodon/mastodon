@@ -6,7 +6,7 @@
     "build:development": "cross-env RAILS_ENV=development ./bin/webpack",
     "build:production": "cross-env RAILS_ENV=production ./bin/webpack",
     "manage:translations": "node ./config/webpack/translationRunner.js",
-    "start": "rimraf ./tmp/streaming && babel ./streaming/index.js --out-dir ./tmp && node ./tmp/streaming/index.js",
+    "start": "node ./streaming/index.js",
     "storybook": "cross-env NODE_ENV=test start-storybook -s ./public -p 9001 -c storybook",
     "test": "npm run test:lint && npm run test:mocha",
     "test:lint": "eslint -c .eslintrc.yml --ext=js app/javascript/ config/webpack/ spec/javascript/ storybook/ streaming/",
