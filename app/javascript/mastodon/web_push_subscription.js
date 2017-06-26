@@ -109,7 +109,6 @@ export function register () {
         // Clear alerts and hide UI settings
         console.log('Clearing subscription from the store...');
         store.dispatch(clearSubscription());
-        store.dispatch(saveSettings());
 
         try {
           console.log('Fetching subscription and unsubscribing...');
