@@ -126,7 +126,7 @@ class Web::PushSubscription < ApplicationRecord
   end
 
   def image_str(notification)
-    return nil if notification.target_status.nil? || notification.target_status.media_attachments.empty?
+    return nil if notification.target_status.nil? || notification.target_status.sensitive || notification.target_status.media_attachments.empty?
 
     full_asset_url(notification.target_status.media_attachments.first.file.url(:small))
   end
