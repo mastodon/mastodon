@@ -32,7 +32,7 @@ export default function soundsMiddleware() {
     ]),
   };
 
-  return ({ dispatch }) => next => (action) => {
+  return () => next => action => {
     if (action.meta && action.meta.sound && soundCache[action.meta.sound]) {
       play(soundCache[action.meta.sound]);
     }

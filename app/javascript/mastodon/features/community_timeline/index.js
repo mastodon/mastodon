@@ -14,7 +14,6 @@ import {
 } from '../../actions/timelines';
 import { addColumn, removeColumn, moveColumn } from '../../actions/columns';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
-import ColumnBackButtonSlim from '../../components/column_back_button_slim';
 import ColumnSettingsContainer from './containers/column_settings_container';
 import createStream from '../../stream';
 

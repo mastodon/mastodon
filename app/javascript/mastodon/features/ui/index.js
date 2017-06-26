@@ -1,4 +1,7 @@
 import React from 'react';
+import Switch from 'react-router-dom/Switch';
+import Route from 'react-router-dom/Route';
+import Redirect from 'react-router-dom/Redirect';
 import NotificationsContainer from './containers/notifications_container';
 import PropTypes from 'prop-types';
 import LoadingBarContainer from './containers/loading_bar_container';
@@ -13,7 +16,63 @@ import { refreshNotifications } from '../../actions/notifications';
 import UploadArea from './components/upload_area';
 import ColumnsAreaContainer from './containers/columns_area_container';
 
-const noOp = () => false;
+import Status from '../../features/status';
+import GettingStarted from '../../features/getting_started';
+import PublicTimeline from '../../features/public_timeline';
+import CommunityTimeline from '../../features/community_timeline';
+import AccountTimeline from '../../features/account_timeline';
+import AccountGallery from '../../features/account_gallery';
+import HomeTimeline from '../../features/home_timeline';
+import Compose from '../../features/compose';
+import Followers from '../../features/followers';
+import Following from '../../features/following';
+import Reblogs from '../../features/reblogs';
+import Favourites from '../../features/favourites';
+import HashtagTimeline from '../../features/hashtag_timeline';
+import Notifications from '../../features/notifications';
+import FollowRequests from '../../features/follow_requests';
+import GenericNotFound from '../../features/generic_not_found';
+import FavouritedStatuses from '../../features/favourited_statuses';
+import Blocks from '../../features/blocks';
+import Mutes from '../../features/mutes';
+import Report from '../../features/report';
+
+// Small wrapper to pass multiColumn to the route components
+const WrappedSwitch = ({ multiColumn, children }) => (
+  <Switch>
+    {React.Children.map(children, child => React.cloneElement(child, { multiColumn }))}
+  </Switch>
+);
+
+WrappedSwitch.propTypes = {
+  multiColumn: PropTypes.bool,
+  children: PropTypes.node,
+};
+
+// Small Wraper to extract the params from the route and pass
+// them to the rendered component, together with the content to
+// be rendered inside (the children)
+class WrappedRoute extends React.Component {
+
+  static propTypes = {
+    component: PropTypes.func.isRequired,
+    content: PropTypes.node,
+    multiColumn: PropTypes.bool,
+  }
+
+  renderComponent = ({ match: { params } }) => {
+    const { component: Component, content, multiColumn } = this.props;
+
+    return <Component params={params} multiColumn={multiColumn}>{content}</Component>;
+  }
+
+  render () {
+    const { component: Component, content, ...rest } = this.props;
+
+    return <Route {...rest} render={this.renderComponent} />;
+  }
+
+}
 
 class UI extends React.PureComponent {
 
@@ -27,9 +86,11 @@ class UI extends React.PureComponent {
     draggingOver: false,
   };
 
-  handleResize = () => {
+  handleResize = debounce(() => {
     this.setState({ width: window.innerWidth });
-  }
+  }, 500, {
+    trailing: true,
+  });
 
   handleDragEnter = (e) => {
     e.preventDefault();
@@ -119,7 +180,36 @@ class UI extends React.PureComponent {
     return (
       <div className='ui' ref={this.setRef}>
         <TabsBar />
-        <ColumnsAreaContainer singleColumn={isMobile(width)}>{children}</ColumnsAreaContainer>
+        <ColumnsAreaContainer singleColumn={isMobile(width)}>
+          <WrappedSwitch>
+            <Redirect from='/' to='/getting-started' exact />
+            <WrappedRoute path='/getting-started' component={GettingStarted} content={children} />
+            <WrappedRoute path='/timelines/home' component={HomeTimeline} content={children} />
+            <WrappedRoute path='/timelines/public' exact component={PublicTimeline} content={children} />
+            <WrappedRoute path='/timelines/public/local' component={CommunityTimeline} content={children} />
+            <WrappedRoute path='/timelines/tag/:id' component={HashtagTimeline} content={children} />
+
+            <WrappedRoute path='/notifications' component={Notifications} content={children} />
+            <WrappedRoute path='/favourites' component={FavouritedStatuses} content={children} />
+
+            <WrappedRoute path='/statuses/new' component={Compose} content={children} />
+            <WrappedRoute path='/statuses/:statusId' exact component={Status} content={children} />
+            <WrappedRoute path='/statuses/:statusId/reblogs' component={Reblogs} content={children} />
+            <WrappedRoute path='/statuses/:statusId/favourites' component={Favourites} content={children} />
+
+            <WrappedRoute path='/accounts/:accountId' exact component={AccountTimeline} content={children} />
+            <WrappedRoute path='/accounts/:accountId/followers' component={Followers} content={children} />
+            <WrappedRoute path='/accounts/:accountId/following' component={Following} content={children} />
+            <WrappedRoute path='/accounts/:accountId/media' component={AccountGallery} content={children} />
+
+            <WrappedRoute path='/follow_requests' component={FollowRequests} content={children} />
+            <WrappedRoute path='/blocks' component={Blocks} content={children} />
+            <WrappedRoute path='/mutes' component={Mutes} content={children} />
+            <WrappedRoute path='/report' component={Report} content={children} />
+
+            <WrappedRoute component={GenericNotFound} content={children} />
+          </WrappedSwitch>
+        </ColumnsAreaContainer>
         <NotificationsContainer />
         <LoadingBarContainer className='loading-bar' />
         <ModalContainer />

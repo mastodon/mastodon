@@ -59,7 +59,7 @@ gem 'sprockets-rails', '~> 3.2', require: 'sprockets/railtie'
 gem 'statsd-instrument', '~> 2.1'
 gem 'twitter-text', '~> 1.14'
 gem 'tzinfo-data', '~> 1.2017'
-gem 'webpacker', '~> 1.2'
+gem 'webpacker', '~> 2.0'
 
 group :development, :test do
   gem 'fabrication', '~> 2.16'
