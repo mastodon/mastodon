@@ -80,7 +80,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.box = "ubuntu/trusty64"
 
   config.vm.provider :virtualbox do |vb|
-    vb.name = "mastodon"
+    vb.name = "catgram"
     vb.customize ["modifyvm", :id, "--memory", "2048"]
 
     # Disable VirtualBox DNS proxy to skip long-delay IPv6 resolutions.
@@ -94,7 +94,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   end
 
-  config.vm.hostname = "mastodon.dev"
+  config.vm.hostname = "catgram.dev"
 
   # This uses the vagrant-hostsupdater plugin, and lets you
   # access the development site at http://mastodon.dev.
