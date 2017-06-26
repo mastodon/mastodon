@@ -55,6 +55,7 @@ class Web::PushSubscription < ApplicationRecord
       p256dh: key_p256dh,
       auth: key_auth,
       vapid: {
+        subject: "mailto:#{Setting.site_contact_email}",
         private_key: Rails.configuration.x.vapid_private_key,
         public_key: Rails.configuration.x.vapid_public_key,
       }
@@ -153,6 +154,7 @@ class Web::PushSubscription < ApplicationRecord
       p256dh: key_p256dh,
       auth: key_auth,
       vapid: {
+        subject: "mailto:#{Setting.site_contact_email}",
         private_key: Rails.configuration.x.vapid_private_key,
         public_key: Rails.configuration.x.vapid_public_key,
       }
