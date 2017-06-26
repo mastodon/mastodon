@@ -4,6 +4,7 @@ import { delegate } from 'rails-ujs';
 import emojify from '../mastodon/emoji';
 import { getLocale } from '../mastodon/locales';
 import loadPolyfills from '../mastodon/load_polyfills';
+import { processBio } from '../mastodon/features/account/util/bio_metadata';
 
 require.context('../images/', true);
 
@@ -87,7 +88,8 @@ function main() {
   delegate(document, '.account_note', 'input', ({ target }) => {
     const noteCounter = document.querySelector('.note-counter');
     if (noteCounter) {
-      noteCounter.textContent = 500 - length(target.value);
+      const noteWithoutMetadata = processBio(target.value).text;
+      noteCounter.textContent = 500 - length(noteWithoutMetadata);
     }
   });
 }
