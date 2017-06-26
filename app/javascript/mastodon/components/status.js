@@ -272,7 +272,7 @@ class StatusUnextended extends ImmutablePureComponent {
 
         </div>
 
-        <StatusContent status={status} onClick={this.handleClick} expanded={isExpanded} onExpandedToggle={this.handleExpandedToggle} onHeightUpdate={this.saveHeight}>
+        <StatusContent status={status} onClick={this.handleClick} expanded={isExpanded} collapsed={isCollapsed} onExpandedToggle={this.handleExpandedToggle} onHeightUpdate={this.saveHeight}>
 
           {isCollapsed ? null : media}
 

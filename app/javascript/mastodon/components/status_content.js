@@ -16,6 +16,7 @@ export default class StatusContent extends React.PureComponent {
   static propTypes = {
     status: ImmutablePropTypes.map.isRequired,
     expanded: PropTypes.bool,
+    collapsed: PropTypes.bool,
     onExpandedToggle: PropTypes.func,
     onHeightUpdate: PropTypes.func,
     onClick: PropTypes.func,
@@ -40,6 +41,7 @@ export default class StatusContent extends React.PureComponent {
       } else if (link.textContent[0] === '#' || (link.previousSibling && link.previousSibling.textContent && link.previousSibling.textContent[link.previousSibling.textContent.length - 1] === '#')) {
         link.addEventListener('click', this.onHashtagClick.bind(this, link.text), false);
       } else {
+        link.addEventListener('click', this.onLinkClick.bind(this), false);
         link.setAttribute('target', '_blank');
         link.setAttribute('rel', 'noopener');
         link.setAttribute('title', link.href);
@@ -53,10 +55,18 @@ export default class StatusContent extends React.PureComponent {
     }
   }
 
+  onLinkClick = (e) => {
+    if (e.button === 0 && this.props.collapsed) {
+      e.preventDefault();
+      if (this.props.onClick) this.props.onClick();
+    }
+  }
+
   onMentionClick = (mention, e) => {
     if (e.button === 0) {
       e.preventDefault();
-      this.context.router.history.push(`/accounts/${mention.get('id')}`);
+      if (!this.props.collapsed) this.context.router.history.push(`/accounts/${mention.get('id')}`);
+      else if (this.props.onClick) this.props.onClick();
     }
   }
 
@@ -65,7 +75,8 @@ export default class StatusContent extends React.PureComponent {
 
     if (e.button === 0) {
       e.preventDefault();
-      this.context.router.history.push(`/timelines/tag/${hashtag}`);
+      if (!this.props.collapsed) this.context.router.history.push(`/timelines/tag/${hashtag}`);
+      else if (this.props.onClick) this.props.onClick();
     }
   }
 
