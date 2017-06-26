@@ -41,6 +41,7 @@ class StatusUnextended extends ImmutablePureComponent {
     boostModal: PropTypes.bool,
     autoPlayGif: PropTypes.bool,
     muted: PropTypes.bool,
+    collapse: PropTypes.bool,
     intersectionObserverWrapper: PropTypes.object,
     intl: PropTypes.object.isRequired,
   };
@@ -62,16 +63,20 @@ class StatusUnextended extends ImmutablePureComponent {
     'boostModal',
     'autoPlayGif',
     'muted',
+    'collapse',
   ]
 
-  updateOnStates = ['isExpanded']
+  updateOnStates = [
+    'isExpanded',
+    'isCollapsed',
+  ]
+
+  componentWillReceiveProps (nextProps) {
+    if (nextProps.collapse !== this.props.collapse && nextProps.collapse !== undefined) this.setState({ isCollapsed: !!nextProps.collapse });
+  }
 
   shouldComponentUpdate (nextProps, nextState) {
-    if (nextState.isCollapsed !== this.state.isCollapsed) {
-      // If the collapsed state of the element has changed then we definitely
-      // need to re-update.
-      return true;
-    } else if (!nextState.isIntersecting && nextState.isHidden) {
+    if (!nextState.isIntersecting && nextState.isHidden) {
       // It's only if we're not intersecting (i.e. offscreen) and isHidden is true
       // that either "isIntersecting" or "isHidden" matter, and then they're
       // the only things that matter.
@@ -92,6 +97,9 @@ class StatusUnextended extends ImmutablePureComponent {
   componentDidMount () {
     const node = this.node;
 
+    if (this.props.collapse !== undefined) this.setState({ isCollapsed: !!this.props.collapse });
+    else if (node.clientHeight > 400 && !(this.props.status.get('reblog', null) !== null && typeof this.props.status.get('reblog') === 'object')) this.setState({ isCollapsed: true });
+
     if (!this.props.intersectionObserverWrapper) {
       // TODO: enable IntersectionObserver optimization for notification statuses.
       // These are managed in notifications/index.js rather than status_list.js
@@ -102,8 +110,6 @@ class StatusUnextended extends ImmutablePureComponent {
       this.node,
       this.handleIntersection
     );
-
-    if (node.clientHeight > 400 && !(this.props.status.get('reblog', null) !== null && typeof this.props.status.get('reblog') === 'object')) this.setState({ isCollapsed: true });
 
     this.componentMounted = true;
   }

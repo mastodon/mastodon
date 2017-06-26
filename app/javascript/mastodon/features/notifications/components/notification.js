@@ -44,7 +44,7 @@ export default class Notification extends ImmutablePureComponent {
           <FormattedMessage id='notification.favourite' defaultMessage='{name} favourited your status' values={{ name: link }} />
         </div>
 
-        <StatusContainer id={notification.get('status')} account={notification.get('account')} muted withDismiss />
+        <StatusContainer id={notification.get('status')} account={notification.get('account')} muted collapse withDismiss />
       </div>
     );
   }
@@ -59,7 +59,7 @@ export default class Notification extends ImmutablePureComponent {
           <FormattedMessage id='notification.reblog' defaultMessage='{name} boosted your status' values={{ name: link }} />
         </div>
 
-        <StatusContainer id={notification.get('status')} account={notification.get('account')} muted withDismiss />
+        <StatusContainer id={notification.get('status')} account={notification.get('account')} muted collapse withDismiss />
       </div>
     );
   }
