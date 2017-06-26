@@ -1377,6 +1377,7 @@
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
+  overflow: hidden;
 
   > .scrollable {
     background: $ui-base-color;
@@ -1397,7 +1398,7 @@
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  overflow-y: hidden;
+  overflow-y: auto;
 }
 
 .drawer__tab {
@@ -1415,7 +1416,6 @@
 .column,
 .drawer {
   flex: 1 1 100%;
-  overflow: hidden;
   @supports(display: grid) { // hack to fix Chrome <57
     contain: strict;
   }
@@ -1483,7 +1483,6 @@
   padding: 0;
   flex: 0 0 auto;
   position: relative;
-  overflow: hidden;
 }
 
 .drawer__inner {
