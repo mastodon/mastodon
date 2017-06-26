@@ -41,6 +41,7 @@ class Web::PushSubscription < ApplicationRecord
           body: body,
           dir: dir,
           image: image,
+          badge: full_asset_url('badge.png'),
           tag: notification.id,
           timestamp: notification.created_at,
           icon: notification.from_account.avatar_static_url,
@@ -146,6 +147,7 @@ class Web::PushSubscription < ApplicationRecord
         options: {
           body: translate('push_notifications.subscribed.body'),
           icon: full_asset_url('android-chrome-192x192.png'),
+          badge: full_asset_url('badge.png'),
           data: {
             url: web_url('notifications'),
           },
