@@ -636,9 +636,16 @@
 }
 
 .status__relative-time {
+  display: inline-block;
   margin-left: auto;
+  padding-left: 18px;
+  width: 115px;
   color: lighten($ui-base-color, 26%);
   font-size: 14px;
+  text-align: right;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .status__display-name {
@@ -701,11 +708,19 @@
   display: flex;
   margin-top: 10px;
   margin-left: -58px;
+
+  &::before {
+    display: block;
+    flex: 1 1 0;
+    max-width: 58px;
+    content: "";
+  }
 }
 
 .status__action-bar-button {
   float: left;
   margin-right: 18px;
+  flex: 0 0 auto;
 }
 
 .status__action-bar-dropdown {
