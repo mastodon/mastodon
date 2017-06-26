@@ -460,8 +460,7 @@
   color: $primary-text-color;
   word-wrap: break-word;
   font-weight: 400;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  overflow: visible;
   white-space: pre-wrap;
 
   .emojione {
@@ -504,10 +503,10 @@
     }
   }
 
-  .status__content__text {
+  .status__content__spoiler {
     display: none;
 
-    &.status__content__text--visible {
+    &.status__content__spoiler--visible {
       display: block;
     }
   }
@@ -517,23 +516,20 @@
   display: inline-block;
   border-radius: 2px;
   background: lighten($ui-base-color, 30%);
-  border: 1px lighten($ui-base-color, 30%) solid;
+  border: none;
   color: lighten($ui-base-color, 8%);
   font-weight: 500;
   font-size: 11px;
   padding: 0 5px;
   text-transform: uppercase;
-  line-height: 18px;
+  line-height: inherit;
   cursor: pointer;
+  vertical-align: bottom;
 
     &:hover {
       background: lighten($ui-base-color, 33%);
       text-decoration: none;
     }
-
-  .status-collapsed & {
-    vertical-align: bottom;
-  }
 }
 
 .status__prepend-icon-wrapper {
@@ -621,6 +617,9 @@
 
     .status__content {
       height: 20px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
     }
   }
 }
