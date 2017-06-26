@@ -20,6 +20,9 @@
     = image_tag asset_pack_path('logo.png')
     = Setting.site_title
 
+  - unless @instance_presenter.site_description.blank?
+    %p!= @instance_presenter.site_description
+
   .screenshot-with-signup
     .mascot= image_tag asset_pack_path('fluffy-elephant-friend.png')
 
@@ -38,48 +41,12 @@
           ·
           = link_to t('about.about_this'), about_more_path
 
-  %h3= t('about.features_headline')
-
-  .features-list
-    .features-list__column
-      %ul.fa-ul
-        %li
-          = fa_icon('li check-square')
-          = t 'about.features.chronology'
-        %li
-          = fa_icon('li check-square')
-          = t 'about.features.public'
-        %li
-          = fa_icon('li check-square')
-          = t 'about.features.characters'
-        %li
-          = fa_icon('li check-square')
-          = t 'about.features.gifv'
-    .features-list__column
-      %ul.fa-ul
-        %li
-          = fa_icon('li check-square')
-          = t 'about.features.privacy'
-        %li
-          = fa_icon('li check-square')
-          = t 'about.features.blocks'
-        %li
-          = fa_icon('li check-square')
-          = t 'about.features.ethics'
-        %li
-          = fa_icon('li check-square')
-          = t 'about.features.api'
-
-  - unless @instance_presenter.site_description.blank?
-    %h3= t('about.description_headline', domain: site_hostname)
-    %p!= @instance_presenter.site_description
-
   .actions
     .info
       = link_to t('about.terms'), terms_path
       ·
       = link_to t('about.apps'), 'https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/Apps.md'
       ·
-      = link_to t('about.source_code'), 'https://github.com/tootsuite/mastodon'
+      = link_to t('about.source_code'), 'https://github.com/tri-star/mastodon'
       ·
       = link_to t('about.other_instances'), 'https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/List-of-Mastodon-instances.md'
