@@ -12,7 +12,6 @@ class Bundle extends React.Component {
     error: PropTypes.func,
     children: PropTypes.func.isRequired,
     renderDelay: PropTypes.number,
-    onRender: PropTypes.func,
     onFetch: PropTypes.func,
     onFetchSuccess: PropTypes.func,
     onFetchFail: PropTypes.func,
@@ -22,7 +21,6 @@ class Bundle extends React.Component {
     loading: emptyComponent,
     error: emptyComponent,
     renderDelay: 0,
-    onRender: noop,
     onFetch: noop,
     onFetchSuccess: noop,
     onFetchFail: noop,
@@ -41,10 +39,6 @@ class Bundle extends React.Component {
     if (nextProps.fetchComponent !== this.props.fetchComponent) {
       this.load(nextProps);
     }
-  }
-
-  componentDidUpdate () {
-    this.props.onRender();
   }
 
   componentWillUnmount () {
