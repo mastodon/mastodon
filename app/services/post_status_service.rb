@@ -37,7 +37,8 @@ class PostStatusService < BaseService
     LinkCrawlWorker.perform_async(status.id) unless status.spoiler_text?
     DistributionWorker.perform_async(status.id)
 
-    unless /👁$/.match?(status.content)
+    # match both with and without U+FE0F (the emoji variation selector)
+    unless /[👁👁️]$/.match?(status.content)
       Pubsubhubbub::DistributionWorker.perform_async(status.stream_entry.id)
     end
 
