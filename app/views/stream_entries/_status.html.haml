@@ -25,7 +25,7 @@
         = link_to TagManager.instance.url_for(status.account), class: 'status__display-name muted' do
           %strong.emojify= display_name(status.account)
         = t('stream_entries.reblogged')
-      %span.separator -
+      %span.separator{ 'aria-hidden' => 'true' } -
       %time.time-ago{ datetime: status.created_at.iso8601, title: l(status.created_at) }= l(status.created_at)
 
   = render (centered ? 'stream_entries/detailed_status' : 'stream_entries/simple_status'), status: status.proper
