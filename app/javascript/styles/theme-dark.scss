@@ -454,8 +454,14 @@ $accent-border-color: #444;
 }
 
 .missing-indicator {
+  background-color: $background-color;
   border: 1px solid $border-color;
   padding-bottom: 30px;
+  color: $text-color;
+}
+
+.missing-indicator > div {
+  background-size: 50%;
 }
 
 .reply-indicator {
