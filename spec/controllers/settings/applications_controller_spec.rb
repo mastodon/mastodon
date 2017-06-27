@@ -11,11 +11,7 @@ describe Settings::ApplicationsController do
   end
 
   describe 'GET #index' do
-    let(:other_app) { Fabricate(:application) }
-    before {
-      app
-      other_app
-    }
+    let!(:other_app) { Fabricate(:application) }
 
     it 'shows apps' do
       get :index
