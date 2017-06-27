@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require_relative './sanitize_config'
+
 module CodeBlockFormatter
   MULTILINE_CODEBLOCK_REGEXP = /^```(?<language>[^:\n]*)(?::(?<filename>[^\n]*))?\n(?<code>.*?)\n```$/m
   INLINE_CODEBLOCK_REGEXP = /`(?<code>[^`\n]+?)`/
@@ -33,6 +35,13 @@ module CodeBlockFormatter
     end
 
     [html, marker_and_contents]
+  end
+
+  def remove_code_blocks(html)
+    html, marker_and_contents = swap_code_literal_to_marker(html)
+    marker_and_contents.reverse.reduce(html) do |html, (marker, block_html)|
+      html.sub(marker) { ' ' }
+    end
   end
 
   def swap_marker_to_code_blocks(html, marker_and_contents)

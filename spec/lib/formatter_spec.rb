@@ -220,6 +220,37 @@ RSpec.describe Formatter do
             expect(subject).to include('<span><code class="inline">hi</code></span>')
           end
         end
+
+        context 'contains a mention literal in the code block' do
+          let(:status) { Fabricate(:status, mentions: [ Fabricate(:mention, account: local_account) ], text: local_text) }
+          let(:local_text) { '@alice `@alice`' }
+
+          before { local_account }
+
+          it 'has code block and its mention is raw text' do
+            expect(subject).to include('<span><code class="inline">@alice</code></span>')
+          end
+        end
+
+        context 'contains a hashtag in the code block' do
+          let(:local_text) { '`#ruby`' }
+
+          before { local_account }
+
+          it 'has code block and its mention is raw text' do
+            expect(subject).to include('<span><code class="inline">#ruby</code></span>')
+          end
+        end
+
+        context 'contains a link in the code block' do
+          let(:local_text) { '`http://example.com`' }
+
+          before { local_account }
+
+          it 'has code block and its link is raw text' do
+            expect(subject).to include('<span><code class="inline">http://example.com</code></span>')
+          end
+        end
       end
 
       context do
