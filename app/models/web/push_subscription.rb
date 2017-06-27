@@ -37,19 +37,18 @@ class Web::PushSubscription < ApplicationRecord
     Webpush.payload_send(
       message: JSON.generate(
         title: title,
-        options: {
-          body: body,
-          dir: dir,
-          image: image,
-          badge: full_asset_url('badge.png'),
-          tag: notification.id,
-          timestamp: notification.created_at,
-          icon: notification.from_account.avatar_static_url,
-          data: {
-            url: url,
-            actions: actions,
-            access_token: access_token,
-          },
+        dir: dir,
+        image: image,
+        badge: full_asset_url('badge.png'),
+        tag: notification.id,
+        timestamp: notification.created_at,
+        icon: notification.from_account.avatar_static_url,
+        data: {
+          content: body,
+          nsfw: notification.target_status.spoiler_text.empty? ? nil : notification.target_status.spoiler_text,
+          url: url,
+          actions: actions,
+          access_token: access_token,
         }
       ),
       endpoint: endpoint,
@@ -105,7 +104,7 @@ class Web::PushSubscription < ApplicationRecord
   end
 
   def actions_arr(notification)
-    case notification.type
+    actions = case notification.type
     when :mention then [
       {
         title: translate('push_notifications.mention.action_favourite'),
@@ -124,10 +123,19 @@ class Web::PushSubscription < ApplicationRecord
     ]
     else []
     end
+
+    expand_action = notification.type.equal?(:mention) && !notification.target_status.nil? && (notification.target_status.sensitive || !notification.target_status.spoiler_text.empty?) ? [{
+      title: translate('push_notifications.mention.action_expand'),
+      icon: full_asset_url('emoji/1f441.png'),
+      todo: 'expand',
+      action: 'expand',
+    }] : []
+
+    expand_action.concat(actions)
   end
 
   def image_str(notification)
-    return nil if notification.target_status.nil? || notification.target_status.sensitive || notification.target_status.media_attachments.empty?
+    return nil if notification.target_status.nil? || notification.target_status.media_attachments.empty?
 
     full_asset_url(notification.target_status.media_attachments.first.file.url(:small))
   end
@@ -144,14 +152,13 @@ class Web::PushSubscription < ApplicationRecord
     Webpush.payload_send(
       message: JSON.generate(
         title: translate('push_notifications.subscribed.title'),
-        options: {
-          body: translate('push_notifications.subscribed.body'),
-          icon: full_asset_url('android-chrome-192x192.png'),
-          badge: full_asset_url('badge.png'),
-          data: {
-            url: web_url('notifications'),
-          },
-        }
+        icon: full_asset_url('android-chrome-192x192.png'),
+        badge: full_asset_url('badge.png'),
+        data: {
+          content: translate('push_notifications.subscribed.body'),
+          actions: [],
+          url: web_url('notifications'),
+        },
       ),
       endpoint: endpoint,
       p256dh: key_p256dh,

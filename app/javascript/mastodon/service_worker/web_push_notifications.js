@@ -1,10 +1,42 @@
 const handlePush = (event) => {
-  const { title, options } = event.data.json();
+  const options = event.data.json();
 
+  options.body = options.data.nsfw || options.data.content;
   options.timestamp = options.timestamp && new Date(options.timestamp);
-  options.actions = options.data.actions;
 
-  event.waitUntil(self.registration.showNotification(title, options));
+  const expandAction = options.data.actions.find(action => action.todo === 'expand');
+
+  if (expandAction) {
+    options.actions = [expandAction];
+    options.hiddenActions = options.data.actions.filter(action => action !== expandAction);
+
+    options.data.hiddenImage = options.image;
+    options.image = null;
+  } else {
+    options.actions = options.data.actions;
+  }
+
+  event.waitUntil(self.registration.showNotification(options.title, options));
+};
+
+const cloneNotification = (notification) => {
+  const clone = {  };
+
+  for(var k in notification) {
+    clone[k] = notification[k];
+  }
+
+  return clone;
+};
+
+const expandNotification = (notification) => {
+  const nextNotification = cloneNotification(notification);
+
+  nextNotification.body = notification.data.content;
+  nextNotification.image = notification.data.hiddenImage;
+  nextNotification.actions = notification.data.actions.filter(action => action.todo !== 'expand');
+
+  return self.registration.showNotification(nextNotification.title, nextNotification);
 };
 
 const makeRequest = (notification, action) =>
@@ -20,11 +52,7 @@ const makeRequest = (notification, action) =>
 const removeActionFromNotification = (notification, action) => {
   const actions = notification.actions.filter(act => act.action !== action.action);
 
-  const nextNotification = {  };
-
-  for(var k in notification) {
-    nextNotification[k] = notification[k];
-  }
+  const nextNotification = cloneNotification(notification);
 
   nextNotification.actions = actions;
 
@@ -36,7 +64,9 @@ const handleNotificationClick = (event) => {
     if (event.action) {
       const action = event.notification.data.actions.find(({ action }) => action === event.action);
 
-      if (action.todo === 'request') {
+      if (action.todo === 'expand') {
+        return expandNotification(event.notification);
+      } else if (action.todo === 'request') {
         return makeRequest(event.notification, action)
           .then(() => removeActionFromNotification(event.notification, action))
           .then(resolve)
