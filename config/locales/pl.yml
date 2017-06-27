@@ -193,9 +193,13 @@ pl:
       title: PubSubHubbub
       topic: Temat
     title: Administracja
+  admin_mailer:
+    new_report:
+      body: "Użytkownik %{reporter} zgłosił %{target}"
+      subject: Nowe zgłoszenie na %{instance} (#%{id})
   application_mailer:
     settings: 'Zmień ustawienia powiadamiania: %{link}'
-    signature: Powiadomienie Mastodona, wysłane przez %{instance}
+    signature: Powiadomienie Mastodona z instancji %{instance}
     view: 'Zobacz:'
   applications:
     invalid_url: Ten URL jest nieprawidłowy
@@ -403,9 +407,7 @@ pl:
     manual_instructions: 'Jeżeli nie możesz zeskanować kodu QR, musisz wprowadzić ten kod ręcznie:'
     recovery_codes: Przywróć kody zapasowe
     recovery_codes_regenerated: Pomyślnie wygenerowano ponownie kody zapasowe
-    recovery_instructions_html:
-      Jeżeli kiedykolwiek utracisz dostęp do telefonu, możesz wykorzystać jeden z kodów zapasowych, aby odzyskać dostęp do konta. <strong>Trzymaj je w bezpiecznym miejscu</strong>.
-      Na przykład, wydrukuj je i przechowuj z ważnymu dokumentami.
+    recovery_instructions_html: Jeżeli kiedykolwiek utracisz dostęp do telefonu, możesz wykorzystać jeden z kodów zapasowych, aby odzyskać dostęp do konta. <strong>Trzymaj je w bezpiecznym miejscu</strong>. Na przykład, wydrukuj je i przechowuj z ważnymu dokumentami.
     setup: Skonfiguruj
     wrong_code: Wprowadzony kod jest niepoprawny! Czy czas serwera i urządzenia jest poprawny?
   users:
