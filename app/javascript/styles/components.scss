@@ -1099,20 +1099,22 @@
 
 .image-loader {
   position: relative;
-}
 
-.image-loader__preview-img {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  filter: blur(2px);
-}
+  &.image-loader--loading {
+    .image-loader__preview-canvas {
+      filter: blur(2px);
+    }
+  }
 
-.media-modal img.image-loader__preview-img {
-  width: 100%;
-  height: 100%;
+  .image-loader__img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background-image: none;
+  }
 }
 
 .navigation-bar {
@@ -2933,6 +2935,7 @@ button.icon-button.active i.fa-retweet {
   position: relative;
 
   img,
+  canvas,
   video {
     max-width: 80vw;
     max-height: 80vh;
@@ -2940,7 +2943,8 @@ button.icon-button.active i.fa-retweet {
     height: auto;
   }
 
-  img {
+  img,
+  canvas {
     display: block;
     background: url('../images/void.png') repeat;
   }
