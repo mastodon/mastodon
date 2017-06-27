@@ -42,6 +42,21 @@ namespace :mastodon do
     end
   end
 
+  desc 'Refetch missing avatar and header'
+  task refetch_avatar_header: :environment do
+    Account.remote.find_each do |account|
+      %w(avatar header).each do |field|
+        next unless account.send(field + '_file_name').present? && account.send(field + '_remote_url').present?
+        begin
+          account.send(field + '=', URI.parse(account.send(field + '_remote_url')))
+        rescue => ex
+          p ex
+        end
+        account.save
+      end
+    end
+  end
+
   namespace :media do
     desc 'Removes media attachments that have not been assigned to any status for longer than a day'
     task clear: :environment do
