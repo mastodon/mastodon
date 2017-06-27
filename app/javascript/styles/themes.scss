@@ -7,9 +7,8 @@ body.theme-dark {
 }
 
 @media screen and (min-width: 1025px) {
-  .columns-area>div:last-child>.column,
-  .mastodon-column-container>.column {
-    flex: 1;
+  .columns-area>div:last-child {
+    flex: 1 0 auto;
     max-width: 640px;
   }
 }

@@ -27,12 +27,14 @@ $accent-border-color: #444;
 %accent-box-styles {
   background-color: $accent-background-color;
   border: 1px solid $border-color;
+  color: $accent-text-color;
 }
 
 %text-area-styles {
   background-color: $sub-background-color;
   border: 1px solid $border-color;
   caret-color: $caret-color;
+  color: $text-color;
 }
 
 // Override original styles
@@ -58,7 +60,6 @@ $accent-border-color: #444;
 .search__input {
   @extend %text-area-styles;
   border-radius: 2px;
-  color: $text-color;
 }
 
 .search__input:focus {
@@ -95,7 +96,6 @@ $accent-border-color: #444;
 .autosuggest-textarea__textarea {
   @extend %text-area-styles;
   border-radius: 2px;
-  color: $text-color;
   border-bottom-right-radius: 2px;
 }
 
@@ -156,6 +156,17 @@ $accent-border-color: #444;
   color: $accent-text-color;
   border-top-left-radius: 2px;
   border-top-right-radius: 2px;
+}
+
+.column-header__button,
+.column-header__button.active:hover {
+  @extend %accent-box-styles;
+  border: 0;
+}
+
+.column-header__back-button {
+  @extend %accent-box-styles;
+  border: 0;
 }
 
 .collapsable-collapsed,
@@ -226,16 +237,20 @@ $accent-border-color: #444;
   background-color: $sub-background-color;
 }
 
-.column-settings__outer {
+.column-header__collapsible > div {
   @extend %box-styles;
   border-bottom: 0;
+}
+
+.column-header__setting-btn {
+  color: $text-color;
 }
 
 .column-settings__section {
   color: $sub-text-color;
 }
 
-.setting-toggle {
+.setting-toggle__label {
   color: $text-color;
 }
 
@@ -338,6 +353,10 @@ $accent-border-color: #444;
   color: $sub-text-color-strong;
 }
 
+.notification__display-name:hover {
+  color: $sub-text-color-strong;
+}
+
 ::-webkit-scrollbar-thumb {
   background-color: $sub-background-color;
   border: 0 none $sub-background-color;
@@ -406,6 +425,10 @@ $accent-border-color: #444;
   color: $text-color;
 }
 
+.account__header__display-name {
+  color: $text-color;
+}
+
 .account__header__username {
   color: $text-color;
 }
@@ -430,6 +453,17 @@ $accent-border-color: #444;
   color: darken($text-color, 10%);
 }
 
+.account-section-headline {
+  background-color: $background-color;
+  border-bottom-color: $border-color;
+  color: $text-color;
+}
+
+.account-section-headline:after,
+.account-section-headline:before {
+  border-color: transparent transparent $border-color;
+}
+
 .status__content a,
 .reply-indicator__content a,
 .empty-column-indicator a,
@@ -438,8 +472,14 @@ $accent-border-color: #444;
 }
 
 .missing-indicator {
+  background-color: $background-color;
   border: 1px solid $border-color;
   padding-bottom: 30px;
+  color: $text-color;
+}
+
+.missing-indicator > div {
+  background-size: 50%;
 }
 
 .reply-indicator {
@@ -526,6 +566,71 @@ $accent-border-color: #444;
 .tabs-bar__link:focus,
 .tabs-bar__link:active {
   background-color: lighten($accent-background-color, 5%);
+}
+
+.status-card {
+  border-color: $border-color;
+  color: $sub-text-color;
+}
+
+.status-card:hover {
+  background-color: $base-background-color;
+}
+
+.status-card__image {
+  background-color: transparent;
+}
+
+.status-card__title {
+  font-weight: bold;
+  color: $text-color;
+}
+
+.status-card__description {
+  color: $text-color;
+}
+
+.boost-modal, .confirmation-modal {
+  @extend %box-styles;
+  color: $text-color;
+}
+
+.confirmation-modal__action-bar {
+  background-color: $sub-background-color;
+}
+
+.confirmation-modal__cancel-button,
+.confirmation-modal__cancel-button:hover {
+  background-color: transparent;
+  color: $sub-text-color-strong;
+}
+
+.report__target {
+  border-bottom-color: $border-color;
+  color: $sub-text-color;
+}
+
+.report__target strong {
+  color: $text-color;
+}
+
+.report__textarea {
+  border-bottom-color: $border-color;
+  color: $text-color;
+}
+
+.report__textarea:active,
+.report__textarea:focus {
+  background-color: $sub-background-color;
+}
+
+.status-check-box {
+  border-bottom-color: $border-color;
+}
+
+.status-check-box .status__content {
+  background-color: $background-color;
+  color: $sub-text-color;
 }
 
 // Customize retweet button
