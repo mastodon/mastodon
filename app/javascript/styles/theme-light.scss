@@ -34,6 +34,7 @@ $accent-border-color: #52b03b;
   background-color: $background-color;
   border: 1px solid $border-color;
   caret-color: $caret-color;
+  color: $text-color;
 }
 
 // Override original styles
@@ -59,7 +60,6 @@ $accent-border-color: #52b03b;
 .search__input {
   @extend %text-area-styles;
   border-radius: 2px;
-  color: $text-color;
 }
 
 .search__input:focus {
@@ -96,7 +96,6 @@ $accent-border-color: #52b03b;
 .autosuggest-textarea__textarea {
   @extend %text-area-styles;
   border-radius: 2px;
-  color: $text-color;
   border-bottom-right-radius: 2px;
 }
 
