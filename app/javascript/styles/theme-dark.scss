@@ -27,6 +27,7 @@ $accent-border-color: #444;
 %accent-box-styles {
   background-color: $accent-background-color;
   border: 1px solid $border-color;
+  color: $accent-text-color;
 }
 
 %text-area-styles {
@@ -158,6 +159,17 @@ $accent-border-color: #444;
   border-top-right-radius: 2px;
 }
 
+.column-header__button,
+.column-header__button.active:hover {
+  @extend %accent-box-styles;
+  border: 0;
+}
+
+.column-header__back-button {
+  @extend %accent-box-styles;
+  border: 0;
+}
+
 .collapsable-collapsed,
 .column-icon {
   background-color: transparent;
@@ -226,16 +238,20 @@ $accent-border-color: #444;
   background-color: $sub-background-color;
 }
 
-.column-settings__outer {
+.column-header__collapsible > div {
   @extend %box-styles;
   border-bottom: 0;
+}
+
+.column-header__setting-btn {
+  color: $text-color;
 }
 
 .column-settings__section {
   color: $sub-text-color;
 }
 
-.setting-toggle {
+.setting-toggle__label {
   color: $text-color;
 }
 
