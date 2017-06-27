@@ -18,7 +18,7 @@ module SettingsHelper
     id: 'Bahasa Indonesia',
     io: 'Ido',
     it: 'Italiano',
-    ja: '日本語',
+    ja: '大阪弁',
     nl: 'Nederlands',
     no: 'Norsk',
     oc: 'Occitan',
