@@ -3,8 +3,8 @@ require 'rails_helper'
 describe Settings::ApplicationsController do
   render_views
   
-  let(:user) { Fabricate(:user) }
-  let(:app) { Fabricate(:application, owner: user) }
+  let!(:user) { Fabricate(:user) }
+  let!(:app) { Fabricate(:application, owner: user) }
   
   before do
     sign_in user, scope: :user
@@ -34,8 +34,7 @@ describe Settings::ApplicationsController do
     end
 
     it 'returns 404 if you dont own app' do
-      app.owner = nil
-      app.save
+      app.update!(owner: nil)
 
       get :show, params: { id: app.id }
       expect(response.status).to eq 404
@@ -153,7 +152,7 @@ describe Settings::ApplicationsController do
     end
 
     it 'removes the app' do
-      expect(Doorkeeper::Application.find_by(id: app.id)).to be nil
+      expect(Doorkeeper::Application.find_by(id: app.id)).to be_nil
     end
   end
 
