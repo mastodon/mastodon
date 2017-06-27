@@ -601,6 +601,34 @@ $accent-border-color: #52b03b;
   color: $sub-text-color-strong;
 }
 
+.report__target {
+  border-bottom-color: $border-color;
+  color: $sub-text-color;
+}
+
+.report__target strong {
+  color: $text-color;
+}
+
+.report__textarea {
+  border-bottom-color: $border-color;
+  color: $text-color;
+}
+
+.report__textarea:active,
+.report__textarea:focus {
+  background-color: $sub-background-color;
+}
+
+.status-check-box {
+  border-bottom-color: $border-color;
+}
+
+.status-check-box .status__content {
+  background-color: $background-color;
+  color: $sub-text-color;
+}
+
 // Customize retweet button
 
 button.icon-button i.fa-retweet {
