@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { store } from './containers/mastodon';
-import { setBrowserSupport, setSubscription, clearSubscription, saveSettings } from './actions/push_notifications';
+import { setBrowserSupport, setSubscription, clearSubscription } from './actions/push_notifications';
 
 // Taken from https://www.npmjs.com/package/web-push
 const urlBase64ToUint8Array = (base64String) => {
