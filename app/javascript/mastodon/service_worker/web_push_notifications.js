@@ -36,7 +36,7 @@ const handleNotificationClick = (event) => {
     if (event.action) {
       const action = event.notification.data.actions.find(({ action }) => action === event.action);
 
-      if (action.type === 'request') {
+      if (action.todo === 'request') {
         return makeRequest(event.notification, action)
           .then(() => removeActionFromNotification(event.notification, action))
           .then(resolve)

@@ -110,14 +110,14 @@ class Web::PushSubscription < ApplicationRecord
       {
         title: translate('push_notifications.mention.action_favourite'),
         icon: full_asset_url('emoji/2764.png'),
-        type: 'request',
+        todo: 'request',
         method: 'POST',
         action: "/api/v1/statuses/#{notification.target_status.id}/favourite",
       },
       {
         title: translate('push_notifications.mention.action_boost'),
         icon: full_asset_url('emoji/1f504.png'),
-        type: 'request',
+        todo: 'request',
         method: 'POST',
         action: "/api/v1/statuses/#{notification.target_status.id}/reblog",
       },
