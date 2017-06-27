@@ -56,7 +56,6 @@ export default class ActionBar extends React.PureComponent {
 
   handleReport = () => {
     this.props.onReport(this.props.status);
-    this.context.router.history.push('/report');
   }
 
   render () {
