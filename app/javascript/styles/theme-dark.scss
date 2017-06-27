@@ -446,6 +446,17 @@ $accent-border-color: #444;
   color: darken($text-color, 10%);
 }
 
+.account-section-headline {
+  background-color: $background-color;
+  border-bottom-color: $border-color;
+  color: $text-color;
+}
+
+.account-section-headline:after,
+.account-section-headline:before {
+  border-color: transparent transparent $border-color;
+}
+
 .status__content a,
 .reply-indicator__content a,
 .empty-column-indicator a,
