@@ -124,7 +124,7 @@ export default class Status extends ImmutablePureComponent {
 
   saveHeight = () => {
     if (this.node && this.node.children.length !== 0) {
-      this.height = this.node.clientHeight;
+      this.height = this.node.getBoundingClientRect().height;
     }
   }
 
