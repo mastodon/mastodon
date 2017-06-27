@@ -939,37 +939,53 @@
 }
 
 .account__metadata {
-  display: block;
+  width: 100%;
   font-size: 15px;
-  line-height: 36px;
+  line-height: 20px;
   overflow: hidden;
+  border-collapse: collapse;
 
-  .account__metadata-item {
-    display: flex;
-    flex-direction: row;
+  a {
+    text-decoration: none;
+
+    &:hover{
+      text-decoration: underline;
+    }
+  }
+
+  tr {
     border-top: 1px solid lighten($ui-base-color, 8%);
+  }
 
-    & > span, & > strong {
-      display: inline-block;
-      padding: 10px 20px;
-      overflow: hidden;
+   th, td {
+    padding: 14px 20px;
+    vertical-align: middle;
+
+    & > div {
+      max-height: 40px;
+      overflow-y: auto;
       text-overflow: ellipsis;
-      white-space: nowrap;
     }
+  }
 
-    & > span {
-      flex: 0 0 auto;
-      width: 120px;
-      color: $ui-primary-color;
-      background: lighten($ui-base-color, 13%);
-      font-variant: small-caps;
-    }
+  th {
+    color: $ui-primary-color;
+    background: lighten($ui-base-color, 13%);
+    font-variant: small-caps;
+    max-width: 120px;
 
-    & > strong {
-      flex: auto;
+    a {
       color: $primary-text-color;
-      background: $ui-base-color;
-      font-weight: bold;
+    }
+  }
+
+  td {
+    flex: auto;
+    color: $primary-text-color;
+    background: $ui-base-color;
+
+    a {
+      color: $ui-highlight-color;
     }
   }
 }

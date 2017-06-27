@@ -1,50 +1,295 @@
-/*
-  THIS IS A MESS BECAUSE EFFING MASTODON AND ITS EFFING HTML BIOS
-  INSTEAD OF JUST STORING EVERYTHING IN PLAIN EFFING TEXT ! ! ! !
-  BLANK LINES ALSO WON'T WORK BECAUSE RIGHT NOW MASTODON CONVERTS
-  THOSE INTO `<P>` ELEMENTS INSTEAD OF LEAVING IT AS `<BR><BR>` !
-  TL:DR; THIS IS LARGELY A HACK. WITH BETTER BACKEND STUFF WE CAN
-  IMPROVE THIS BY BETTER PREDICTING HOW THE METADATA WILL BE SENT
-  WHILE MAINTAINING BASIC PLAIN-TEXT PROCESSING. THE OTHER OPTION
-  IS TO TURN ALL BIOS INTO PLAIN-TEXT VIA A TREE-WALKER, AND THEN
-  PROCESS THE YAML AND LINKS AND EVERYTHING OURSELVES. THIS WOULD
-  BE INCREDIBLY COMPLICATED, AND IT WOULD BE A MILLION TIMES LESS
-  DIFFICULT IF MASTODON JUST GAVE US PLAIN-TEXT BIOS (WHICH QUITE
-  FRANKLY MAKES THE MOST SENSE SINCE THAT'S WHAT USERS PROVIDE IN
-  SETTINGS) TO BEGIN WITH AND LEFT ALL PROCESSING TO THE FRONTEND
-  TO HANDLE ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! !
-  ANYWAY I KNOW WHAT NEEDS TO BE DONE REGARDING BACKEND STUFF BUT
-  I'M NOT SMART ENOUGH TO FIGURE OUT HOW TO ACTUALLY IMPLEMENT IT
-  SO FEEL FREE TO @ ME IF YOU NEED MY IDEAS REGARDING THAT. UNTIL
-  THEN WE'LL JUST HAVE TO MAKE DO WITH THIS MESSY AND UNFORTUNATE
-  HACKING ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! !
+/*********************************************************************\
 
-                                           with love,
-                                           @kibi@glitch.social <3
-*/
+                                       To my lovely code maintainers,
 
-const NEW_LINE    = /(?:^|\r?\n|<br\s*\/?>)/g;
-const YAML_OPENER = /---/;
-const YAML_CLOSER = /(?:---|\.\.\.)/;
-const YAML_STRING = /(?:"(?:[^"\n]){1,32}"|'(?:[^'\n]){1,32}'|(?:[^'":\n]){1,32})/g;
-const YAML_LINE = new RegExp('\\s*' + YAML_STRING.source + '\\s*:\\s*' + YAML_STRING.source + '\\s*', 'g');
-const BIO_REGEX = new RegExp(NEW_LINE.source + '*' + YAML_OPENER.source + NEW_LINE.source + '+(?:' + YAML_LINE.source + NEW_LINE.source + '+){0,4}' + YAML_CLOSER.source + NEW_LINE.source + '*');
+  The syntax recognized by the Mastodon frontend for its bio metadata
+  feature is a subset of that provided by the YAML 1.2 specification.
+  In particular, Mastodon recognizes metadata which is provided as an
+  implicit YAML map, where each key-value pair takes up only a single
+  line (no multi-line values are permitted). To simplify the level of
+  processing required, Mastodon metadata frontmatter has been limited
+  to only allow those characters in the `c-printable` set, as defined
+  by the YAML 1.2 specification, instead of permitting those from the
+  `nb-json` characters inside double-quoted strings like YAML proper.
+    ¶ It is important to note that Mastodon only borrows the *syntax*
+  of YAML, not its semantics. This is to say, Mastodon won't make any
+  attempt to interpret the data it receives. `true` will not become a
+  boolean; `56` will not be interpreted as a number. Rather, each key
+  and every value will be read as a string, and as a string they will
+  remain. The order of the pairs is unchanged, and any duplicate keys
+  are preserved. However, YAML escape sequences will be replaced with
+  the proper interpretations according to the YAML 1.2 specification.
+    ¶ The implementation provided below interprets `<br>` as `\n` and
+  allows for an open <p> tag at the beginning of the bio. It replaces
+  the escaped character entities `&apos;` and `&quot;` with single or
+  double quotes, respectively, prior to processing. However, no other
+  escaped characters are replaced, not even those which might have an
+  impact on the syntax otherwise. These minor allowances are provided
+  because the Mastodon backend will insert these things automatically
+  into a bio before sending it through the API, so it is important we
+  account for them. Aside from this, the YAML frontmatter must be the
+  very first thing in the bio, leading with three consecutive hyphen-
+  minues (`---`), and ending with the same or, alternatively, instead
+  with three periods (`...`). No limits have been set with respect to
+  the number of characters permitted in the frontmatter, although one
+  should note that only limited space is provided for them in the UI.
+    ¶ The regular expression used to check the existence of, and then
+  process, the YAML frontmatter has been split into a number of small
+  components in the code below, in the vain hope that it will be much
+  easier to read and to maintain. I leave it to the future readers of
+  this code to determine the extent of my successes in this endeavor.
 
-export function processBio(data) {
-  let props = { text: data, metadata: [] };
-  let yaml = data.match(BIO_REGEX);
-  if (!yaml) return props;
-  else yaml = yaml[0];
-  let start = props.text.indexOf(yaml);
-  let end = start + yaml.length;
-  props.text = props.text.substr(0, start) + props.text.substr(end);
-  yaml = yaml.replace(NEW_LINE, '\n');
-  let metadata = (yaml ? yaml.match(YAML_LINE) : []) || [];
-  for (let i = 0; i < metadata.length; i++) {
-    let result = metadata[i].match(YAML_STRING);
-    if (result[0][0] === '"' || result[0][0] === '\'') result[0] = result[0].substr(1, result[0].length - 2);
-    if (result[1][0] === '"' || result[1][0] === '\'') result[0] = result[1].substr(1, result[1].length - 2);
-    props.metadata.push(result);
+                                       Sending love + warmth eternal,
+                                       - kibigo [@kibi@glitch.social]
+
+\*********************************************************************/
+
+/*  CONVENIENCE FUNCTIONS  */
+
+const unirex = str => new RegExp(str, 'u');
+const rexstr = exp => '(?:' + exp.source + ')';
+
+/*  CHARACTER CLASSES  */
+
+const DOCUMENT_START    = /^/;
+const DOCUMENT_END      = /$/;
+const ALLOWED_CHAR      =  //  `c-printable` in the YAML 1.2 spec.
+  /[\t\n\r\x20-\x7e\x85\xa0-\ud7ff\ue000-\ufffd\u{10000}-\u{10FFFF}]/u;
+const WHITE_SPACE       = /[ \t]/;
+const INDENTATION       = / */;  //  Indentation must be only spaces.
+const LINE_BREAK        = /\r?\n|\r|<br\s*\/?>/;
+const ESCAPE_CHAR       = /[0abt\tnvfre "\/\\N_LP]/;
+const HEXADECIMAL_CHARS = /[0-9a-fA-F]/;
+const INDICATOR         = /[-?:,[\]{}&#*!|>'"%@`]/;
+const FLOW_CHAR         = /[,[\]{}]/;
+
+/*  NEGATED CHARACTER CLASSES  */
+
+const NOT_WHITE_SPACE   = unirex('(?!' + rexstr(WHITE_SPACE) + ')[^]');
+const NOT_LINE_BREAK    = unirex('(?!' + rexstr(LINE_BREAK) + ')[^]');
+const NOT_INDICATOR     = unirex('(?!' + rexstr(INDICATOR) + ')[^]');
+const NOT_FLOW_CHAR     = unirex('(?!' + rexstr(FLOW_CHAR) + ')[^]');
+
+/*  BASIC CONSTRUCTS  */
+
+const ANY_WHITE_SPACE   = unirex(rexstr(WHITE_SPACE) + '*');
+const ANY_ALLOWED_CHARS = unirex(rexstr(ALLOWED_CHAR) + '*');
+const NEW_LINE          = unirex(
+  rexstr(ANY_WHITE_SPACE) + rexstr(LINE_BREAK)
+);
+const SOME_NEW_LINES    = unirex(
+  '(?:' + rexstr(ANY_WHITE_SPACE) + rexstr(LINE_BREAK) + ')+'
+);
+const POSSIBLE_STARTS   = unirex(
+  rexstr(DOCUMENT_START) + rexstr(/<p[^<>]*>/) + '?'
+);
+const POSSIBLE_ENDS     = unirex(
+  rexstr(SOME_NEW_LINES) + '|' +
+  rexstr(DOCUMENT_END) + '|' +
+  rexstr(/<\/p>/)
+);
+const CHARACTER_ESCAPE  = unirex(
+  rexstr(/\\/) +
+  '(?:' +
+    rexstr(ESCAPE_CHAR) + '|' +
+    rexstr(/x/) + rexstr(HEXADECIMAL_CHARS) + '{2}' + '|' +
+    rexstr(/u/) + rexstr(HEXADECIMAL_CHARS) + '{4}' + '|' +
+    rexstr(/U/) + rexstr(HEXADECIMAL_CHARS) + '{8}' +
+  ')'
+);
+const ESCAPED_CHAR      = unirex(
+  rexstr(/(?!["\\])/) + rexstr(NOT_LINE_BREAK) + '|' +
+  rexstr(CHARACTER_ESCAPE)
+);
+const ANY_ESCAPED_CHARS = unirex(
+  rexstr(ESCAPED_CHAR) + '*'
+);
+const ESCAPED_APOS      = unirex(
+  '(?=' + rexstr(NOT_LINE_BREAK) + ')' + rexstr(/[^']|''/)
+);
+const ANY_ESCAPED_APOS  = unirex(
+  rexstr(ESCAPED_APOS) + '*'
+);
+const FIRST_KEY_CHAR    = unirex(
+  '(?=' + rexstr(NOT_LINE_BREAK) + ')' +
+  '(?=' + rexstr(NOT_WHITE_SPACE) + ')' +
+  rexstr(NOT_INDICATOR) + '|' +
+  rexstr(/[?:-]/) +
+  '(?=' + rexstr(NOT_LINE_BREAK) + ')' +
+  '(?=' + rexstr(NOT_WHITE_SPACE) + ')' +
+  '(?=' + rexstr(NOT_FLOW_CHAR) + ')'
+);
+const FIRST_VALUE_CHAR  = unirex(
+  '(?=' + rexstr(NOT_LINE_BREAK) + ')' +
+  '(?=' + rexstr(NOT_WHITE_SPACE) + ')' +
+  rexstr(NOT_INDICATOR) + '|' +
+  rexstr(/[?:-]/) +
+  '(?=' + rexstr(NOT_LINE_BREAK) + ')' +
+  '(?=' + rexstr(NOT_WHITE_SPACE) + ')'
+  //  Flow indicators are allowed in values.
+);
+const LATER_KEY_CHAR    = unirex(
+  rexstr(WHITE_SPACE) + '|' +
+  '(?=' + rexstr(NOT_LINE_BREAK) + ')' +
+  '(?=' + rexstr(NOT_WHITE_SPACE) + ')' +
+  '(?=' + rexstr(NOT_FLOW_CHAR) + ')' +
+  rexstr(/[^:#]#?/) + '|' +
+  rexstr(/:/) + '(?=' + rexstr(NOT_WHITE_SPACE) + ')'
+);
+const LATER_VALUE_CHAR  = unirex(
+  rexstr(WHITE_SPACE) + '|' +
+  '(?=' + rexstr(NOT_LINE_BREAK) + ')' +
+  '(?=' + rexstr(NOT_WHITE_SPACE) + ')' +
+  //  Flow indicators are allowed in values.
+  rexstr(/[^:#]#?/) + '|' +
+  rexstr(/:/) + '(?=' + rexstr(NOT_WHITE_SPACE) + ')'
+);
+
+/*  YAML CONSTRUCTS  */
+
+const YAML_START        = unirex(
+  rexstr(ANY_WHITE_SPACE) + rexstr(/---/)
+);
+const YAML_END          = unirex(
+  rexstr(ANY_WHITE_SPACE) + rexstr(/(?:---|\.\.\.)/)
+);
+const YAML_LOOKAHEAD    = unirex(
+  '(?=' +
+    rexstr(YAML_START) +
+    rexstr(ANY_ALLOWED_CHARS) + rexstr(NEW_LINE) +
+    rexstr(YAML_END) + rexstr(POSSIBLE_ENDS) +
+  ')'
+);
+const YAML_DOUBLE_QUOTE = unirex(
+  rexstr(/"/) + rexstr(ANY_ESCAPED_CHARS) + rexstr(/"/)
+);
+const YAML_SINGLE_QUOTE = unirex(
+  rexstr(/'/) + rexstr(ANY_ESCAPED_APOS) + rexstr(/'/)
+);
+const YAML_SIMPLE_KEY   = unirex(
+  rexstr(FIRST_KEY_CHAR) + rexstr(LATER_KEY_CHAR) + '*'
+);
+const YAML_SIMPLE_VALUE = unirex(
+  rexstr(FIRST_VALUE_CHAR) + rexstr(LATER_VALUE_CHAR) + '*'
+);
+const YAML_KEY          = unirex(
+  rexstr(YAML_DOUBLE_QUOTE) + '|' +
+  rexstr(YAML_SINGLE_QUOTE) + '|' +
+  rexstr(YAML_SIMPLE_KEY)
+);
+const YAML_VALUE        = unirex(
+  rexstr(YAML_DOUBLE_QUOTE) + '|' +
+  rexstr(YAML_SINGLE_QUOTE) + '|' +
+  rexstr(YAML_SIMPLE_VALUE)
+);
+const YAML_SEPARATOR    = unirex(
+  rexstr(ANY_WHITE_SPACE) +
+  ':' + rexstr(WHITE_SPACE) +
+  rexstr(ANY_WHITE_SPACE)
+);
+const YAML_LINE         = unirex(
+  '(' + rexstr(YAML_KEY) + ')' +
+  rexstr(YAML_SEPARATOR) +
+  '(' + rexstr(YAML_VALUE) + ')'
+);
+
+/*  FRONTMATTER REGEX  */
+
+const YAML_FRONTMATTER  = unirex(
+  rexstr(POSSIBLE_STARTS) +
+  rexstr(YAML_LOOKAHEAD) +
+  rexstr(YAML_START) + rexstr(SOME_NEW_LINES) +
+  '(?:' +
+    '(' + rexstr(INDENTATION) + ')' +
+    rexstr(YAML_LINE) + rexstr(SOME_NEW_LINES) +
+    '(?:' +
+      '\\1' + rexstr(YAML_LINE) + rexstr(SOME_NEW_LINES) +
+    '){0,4}' +
+  ')?' +
+  rexstr(YAML_END) + rexstr(POSSIBLE_ENDS)
+);
+
+/*  SEARCHES  */
+
+const FIND_YAML_LINES   = unirex(
+  rexstr(NEW_LINE) + rexstr(INDENTATION) + rexstr(YAML_LINE)
+);
+
+/*  STRING PROCESSING  */
+
+function processString(str) {
+  switch (str.charAt(0)) {
+  case '"':
+    return str
+      .substring(1, str.length - 1)
+      .replace(/\\0/g, '\x00')
+      .replace(/\\a/g, '\x07')
+      .replace(/\\b/g, '\x08')
+      .replace(/\\t/g, '\x09')
+      .replace(/\\n/g, '\x0a')
+      .replace(/\\v/g, '\x0b')
+      .replace(/\\f/g, '\x0c')
+      .replace(/\\r/g, '\x0d')
+      .replace(/\\e/g, '\x1b')
+      .replace(/\\ /g, '\x20')
+      .replace(/\\"/g, '\x22')
+      .replace(/\\\//g, '\x2f')
+      .replace(/\\\\/g, '\x5c')
+      .replace(/\\N/g, '\x85')
+      .replace(/\\_/g, '\xa0')
+      .replace(/\\L/g, '\u2028')
+      .replace(/\\P/g, '\u2029')
+      .replace(
+        new RegExp(
+          unirex(
+            rexstr(/\\x/) + '(' + rexstr(HEXADECIMAL_CHARS) + '{2})'
+          ), 'gu'
+        ), (_, n) => String.fromCodePoint('0x' + n)
+      )
+      .replace(
+        new RegExp(
+          unirex(
+            rexstr(/\\u/) + '(' + rexstr(HEXADECIMAL_CHARS) + '{4})'
+          ), 'gu'
+        ), (_, n) => String.fromCodePoint('0x' + n)
+      )
+      .replace(
+        new RegExp(
+          unirex(
+            rexstr(/\\U/) + '(' + rexstr(HEXADECIMAL_CHARS) + '{8})'
+          ), 'gu'
+        ), (_, n) => String.fromCodePoint('0x' + n)
+      );
+  case '\'':
+    return str
+      .substring(1, str.length - 1)
+      .replace(/''/g, '\'');
+  default:
+    return str;
   }
-  return props;
+}
+
+/*  BIO PROCESSING  */
+
+export function processBio(content) {
+  content = content.replace(/&quot;/g, '"').replace(/&apos;/g, '\'');
+  let result = {
+    text: content,
+    metadata: [],
+  };
+  let yaml = content.match(YAML_FRONTMATTER);
+  if (!yaml) return result;
+  else yaml = yaml[0];
+  let start = content.search(YAML_START);
+  let end = start + yaml.length - yaml.search(YAML_START);
+  result.text = content.substr(0, start) + content.substr(end);
+  let metadata = null;
+  let query = new RegExp(FIND_YAML_LINES, 'g');
+  while ((metadata = query.exec(yaml))) {
+    result.metadata.push([
+      processString(metadata[1]),
+      processString(metadata[2]),
+    ]);
+  }
+  return result;
 }

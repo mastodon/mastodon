@@ -85,24 +85,20 @@ export default class Header extends ImmutablePureComponent {
         </div>
 
         {metadata.length && (
-          <div className='account__metadata'>
+          <table className='account__metadata'>
             {(() => {
               let data = [];
               for (let i = 0; i < metadata.length; i++) {
                 data.push(
-                  <div
-                    className='account__metadata-item'
-                    title={metadata[i][0] + ':' + metadata[i][1]}
-                    key={i}
-                  >
-                    <span dangerouslySetInnerHTML={{ __html: emojify(metadata[i][0]) }} />
-                    <strong dangerouslySetInnerHTML={{ __html: emojify(metadata[i][1]) }} />
-                  </div>
+                  <tr key={i}>
+                    <th scope='row'><div dangerouslySetInnerHTML={{ __html: emojify(metadata[i][0]) }} /></th>
+                    <td><div dangerouslySetInnerHTML={{ __html: emojify(metadata[i][1]) }} /></td>
+                  </tr>
                 );
               }
               return data;
             })()}
-          </div>
+          </table>
         ) || null}
       </div>
     );
