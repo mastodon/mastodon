@@ -572,6 +572,21 @@ $accent-border-color: #444;
   color: $text-color;
 }
 
+.boost-modal, .confirmation-modal {
+  @extend %box-styles;
+  color: $text-color;
+}
+
+.confirmation-modal__action-bar {
+  background-color: $sub-background-color;
+}
+
+.confirmation-modal__cancel-button,
+.confirmation-modal__cancel-button:hover {
+  background-color: transparent;
+  color: $sub-text-color-strong;
+}
+
 // Customize retweet button
 
 button.icon-button i.fa-retweet {
