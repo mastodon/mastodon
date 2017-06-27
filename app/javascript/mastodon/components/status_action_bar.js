@@ -88,7 +88,6 @@ export default class StatusActionBar extends ImmutablePureComponent {
 
   handleReport = () => {
     this.props.onReport(this.props.status);
-    this.context.router.history.push('/report');
   }
 
   handleConversationMuteClick = () => {

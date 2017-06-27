@@ -42,6 +42,18 @@
   strong {
     font-weight: 500;
   }
+
+  &.inline-table {
+    td,
+    th {
+      padding: 8px 0;
+    }
+
+    & > tbody > tr:nth-child(odd) > td,
+    & > tbody > tr:nth-child(odd) > th {
+      background: transparent;
+    }
+  }
 }
 
 samp {

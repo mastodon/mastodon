@@ -1,6 +1,6 @@
 Warden::Manager.after_set_user except: :fetch do |user, warden|
   SessionActivation.deactivate warden.raw_session['auth_id']
-  warden.raw_session['auth_id'] = user.activate_session
+  warden.raw_session['auth_id'] = user.activate_session(warden.request)
 end
 
 Warden::Manager.after_fetch do |user, warden|
