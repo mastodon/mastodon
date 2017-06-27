@@ -544,6 +544,28 @@ $accent-border-color: #52b03b;
   background-color: lighten($accent-background-color, 5%);
 }
 
+.status-card {
+  border-color: $border-color;
+  color: $sub-text-color;
+}
+
+.status-card:hover {
+  background-color: $base-background-color;
+}
+
+.status-card__image {
+  background-color: transparent;
+}
+
+.status-card__title {
+  font-weight: bold;
+  color: $text-color;
+}
+
+.status-card__description {
+  color: $sub-text-color;
+}
+
 // Customize retweet button
 
 button.icon-button i.fa-retweet {
