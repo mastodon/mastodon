@@ -97,7 +97,7 @@ class Item extends React.PureComponent {
       thumbnail = (
         <a
           className='media-gallery__item-thumbnail'
-          href={originalUrl}
+          href={attachment.get('remote_url') || originalUrl}
           onClick={this.handleClick}
           target='_blank'
         >
