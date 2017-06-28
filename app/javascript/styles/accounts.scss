@@ -1,9 +1,24 @@
 .card {
   display: flex;
+  position: relative;
   background: $ui-base-color;
+  background-size: cover;
+  background-position: center;
   border-radius: 4px 4px 0 0;
   box-shadow: 0 0 15px rgba($base-shadow-color, 0.2);
   overflow: hidden;
+
+  &::after {
+    background: linear-gradient(rgba($base-shadow-color, 0.5), rgba($base-shadow-color, 0.8));
+    display: block;
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+  }
 
   @media screen and (max-width: 700px) {
     border-radius: 0;
@@ -13,22 +28,9 @@
   .details {
     position: relative;
     padding: 60px 0 0;
-    background-size: cover;
-    background-position: center;
     text-align: center;
     flex: auto;
-
-    &::after {
-      background: linear-gradient(rgba($base-shadow-color, 0.5), rgba($base-shadow-color, 0.8));
-      display: block;
-      content: "";
-      position: absolute;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 1;
-    }
+    z-index: 2;
   }
 
   .name {
@@ -38,8 +40,6 @@
     color: $primary-text-color;
     font-weight: 500;
     text-align: center;
-    position: relative;
-    z-index: 2;
     text-shadow: 0 0 2px $base-shadow-color;
 
     small {
@@ -54,8 +54,6 @@
     @include avatar-size(120px);
     margin: 0 auto;
     margin-bottom: 15px;
-    position: relative;
-    z-index: 2;
 
     img {
       @include avatar-radius();
@@ -72,11 +70,9 @@
   }
 
   .details-counters {
-    position: relative;
     display: inline-flex;
     flex-direction: row;
     margin: 15px 0;
-    z-index: 2;
   }
 
   .counter {
@@ -124,22 +120,23 @@
   }
 
   .bio {
-    position: relative;
     font-size: 14px;
     line-height: 18px;
     margin: 15px 0;
     padding: 5px 10px;
     color: $ui-secondary-color;
-    z-index: 2;
   }
 
   .metadata {
+    position: relative;
+    min-width: 180px;
     max-width: 40%;
-    background: $ui-base-color;
+    background: rgba($base-shadow-color, 0.8);
     color: $primary-text-color;
     text-align: left;
     overflow-y: auto;
     white-space: pre-wrap;
+    z-index: 3;
 
     .metadata-item {
       border-bottom: 1px $ui-primary-color solid;
@@ -168,6 +165,25 @@
         a {
           color: $ui-primary-color;
         }
+      }
+    }
+  }
+}
+
+
+
+@media screen and (max-width: 500px) {
+
+  .card {
+    display: block;
+
+    .metadata {
+      max-width: none;
+      background: $base-shadow-color;
+      border-top: 1px $ui-primary-color solid;
+
+      .metadata-item {
+        padding: 15px 20px;
       }
     }
   }

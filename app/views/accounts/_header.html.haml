@@ -1,6 +1,6 @@
 - processed_bio = FrontmatterHandler.instance.process_bio Formatter.instance.simplified_format account
-.card.h-card.p-author
-  .details{ style: "background-image: url(#{account.header.url(:original)})" }
+.card.h-card.p-author{ style: "background-image: url(#{account.header.url(:original)})" }
+  .details
     - if user_signed_in? && current_account.id != account.id && !current_account.requested?(account)
       .controls
         - if current_account.following?(account)
