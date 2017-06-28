@@ -6,6 +6,7 @@ import NotificationsContainer from './containers/notifications_container';
 import PropTypes from 'prop-types';
 import LoadingBarContainer from './containers/loading_bar_container';
 import TabsBar from './components/tabs_bar';
+import CachedColumn from './components/cached_column';
 import ModalContainer from './containers/modal_container';
 import { connect } from 'react-redux';
 import { isMobile } from '../../is_mobile';
@@ -56,6 +57,7 @@ class WrappedRoute extends React.Component {
     component: PropTypes.func.isRequired,
     content: PropTypes.node,
     multiColumn: PropTypes.bool,
+    cached: PropTypes.bool,
   }
 
   renderComponent = ({ match: { params } }) => {
@@ -64,10 +66,27 @@ class WrappedRoute extends React.Component {
     return <Component params={params} multiColumn={multiColumn}>{content}</Component>;
   }
 
-  render () {
-    const { component: Component, content, ...rest } = this.props;
+  renderCachedComponent = ({ match }) => {
+    const { component, content, multiColumn } = this.props;
 
-    return <Route {...rest} render={this.renderComponent} />;
+    if (match) {
+      this.cachedParams = match.params;
+    }
+
+    const visible = !!match;
+    const params = this.cachedParams;
+
+    return <CachedColumn component={component} params={params} visible={visible} multiColumn={multiColumn}>{content}</CachedColumn>;
+  }
+
+  render () {
+    const { component: Component, content, cached, ...rest } = this.props;
+
+    if (cached) {
+      return <Route {...rest} children={this.renderCachedComponent} />;
+    } else {
+      return <Route {...rest} render={this.renderComponent} />;
+    }
   }
 
 }
@@ -180,12 +199,15 @@ export default class UI extends React.PureComponent {
       <div className='ui' ref={this.setRef}>
         <TabsBar />
         <ColumnsAreaContainer singleColumn={isMobile(width)}>
+          <WrappedRoute path='/timelines/home' component={HomeTimeline} content={children} cached />
+          <WrappedRoute path='/timelines/public' exact component={PublicTimeline} content={children} cached />
+          <WrappedRoute path='/timelines/public/local' component={CommunityTimeline} content={children} cached />
           <WrappedSwitch>
             <Redirect from='/' to='/getting-started' exact />
             <WrappedRoute path='/getting-started' component={GettingStarted} content={children} />
-            <WrappedRoute path='/timelines/home' component={HomeTimeline} content={children} />
-            <WrappedRoute path='/timelines/public' exact component={PublicTimeline} content={children} />
-            <WrappedRoute path='/timelines/public/local' component={CommunityTimeline} content={children} />
+            <Route path='/timelines/home' />
+            <Route path='/timelines/public' exact />
+            <Route path='/timelines/public/local' />
             <WrappedRoute path='/timelines/tag/:id' component={HashtagTimeline} content={children} />
 
             <WrappedRoute path='/notifications' component={Notifications} content={children} />

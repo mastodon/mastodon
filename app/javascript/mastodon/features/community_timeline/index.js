@@ -39,7 +39,12 @@ export default class CommunityTimeline extends React.PureComponent {
     accessToken: PropTypes.string.isRequired,
     hasUnread: PropTypes.bool,
     multiColumn: PropTypes.bool,
+    visible: PropTypes.bool,
   };
+
+  static defaultProps = {
+    visible: true,
+  }
 
   handlePin = () => {
     const { columnId, dispatch } = this.props;
@@ -113,11 +118,11 @@ export default class CommunityTimeline extends React.PureComponent {
   }
 
   render () {
-    const { intl, hasUnread, columnId, multiColumn } = this.props;
+    const { intl, hasUnread, columnId, multiColumn, visible } = this.props;
     const pinned = !!columnId;
 
     return (
-      <Column ref={this.setRef}>
+      <Column ref={this.setRef} visible={visible}>
         <ColumnHeader
           icon='users'
           active={hasUnread}

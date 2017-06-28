@@ -39,7 +39,12 @@ export default class PublicTimeline extends React.PureComponent {
     streamingAPIBaseURL: PropTypes.string.isRequired,
     accessToken: PropTypes.string.isRequired,
     hasUnread: PropTypes.bool,
+    visible: PropTypes.bool,
   };
+
+  static defaultProps = {
+    visible: true,
+  }
 
   handlePin = () => {
     const { columnId, dispatch } = this.props;
@@ -113,11 +118,11 @@ export default class PublicTimeline extends React.PureComponent {
   }
 
   render () {
-    const { intl, columnId, hasUnread, multiColumn } = this.props;
+    const { intl, columnId, hasUnread, multiColumn, visible } = this.props;
     const pinned = !!columnId;
 
     return (
-      <Column ref={this.setRef}>
+      <Column ref={this.setRef} visible={visible}>
         <ColumnHeader
           icon='globe'
           active={hasUnread}
