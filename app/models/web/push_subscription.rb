@@ -114,18 +114,24 @@ class Web::PushSubscription < ApplicationRecord
           method: 'POST',
           action: "/api/v1/statuses/#{notification.target_status.id}/favourite",
         },
-        {
-          title: translate('push_notifications.mention.action_boost'),
-          icon: full_asset_url('emoji/1f504.png'),
-          todo: 'request',
-          method: 'POST',
-          action: "/api/v1/statuses/#{notification.target_status.id}/reblog",
-        },
       ]
       else []
       end
 
     should_hide = notification.type.equal?(:mention) && !notification.target_status.nil? && (notification.target_status.sensitive || !notification.target_status.spoiler_text.empty?)
+    can_boost = notification.type.equal?(:mention) && !notification.target_status.nil? && !notification.target_status.hidden?
+
+    boost_action = if can_boost
+                     [{
+                       title: translate('push_notifications.mention.action_boost'),
+                       icon: full_asset_url('emoji/1f504.png'),
+                       todo: 'request',
+                       method: 'POST',
+                       action: "/api/v1/statuses/#{notification.target_status.id}/reblog",
+                     }]
+                   else
+                     []
+                   end
 
     expand_action = if should_hide
                       [{
@@ -138,7 +144,7 @@ class Web::PushSubscription < ApplicationRecord
                       []
                     end
 
-    expand_action.concat(actions)
+    expand_action.concat(boost_action).concat(actions)
   end
 
   def image_str(notification)
