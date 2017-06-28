@@ -14,7 +14,7 @@ class PrecomputeFeedService < BaseService
 
   def populate_feed
     redis.pipelined do
-      statuses.each do |status|
+      statuses.reverse_each do |status|
         process_status(status)
       end
 

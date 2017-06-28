@@ -13,6 +13,7 @@ Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
 
 ActiveRecord::Migration.maintain_test_schema!
 WebMock.disable_net_connect!
+Redis.current = Redis::Namespace.new("mastodon_test#{ENV['TEST_ENV_NUMBER']}", redis: Redis.current)
 Sidekiq::Testing.inline!
 Sidekiq::Logging.logger = nil
 
@@ -42,6 +43,11 @@ RSpec.configure do |config|
   config.before :each, type: :feature do
     https = ENV['LOCAL_HTTPS'] == 'true'
     Capybara.app_host = "http#{https ? 's' : ''}://#{ENV.fetch('LOCAL_DOMAIN')}"
+  end
+
+  config.after :each do
+    keys = Redis.current.keys
+    Redis.current.del(keys) if keys.any?
   end
 end
 
