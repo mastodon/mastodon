@@ -9,7 +9,7 @@ import VideoPlayer from './video_player';
 import StatusContent from './status_content';
 import StatusActionBar from './status_action_bar';
 import IconButton from './icon_button';
-import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
+import { defineMessages, FormattedMessage } from 'react-intl';
 import emojify from '../emoji';
 import escapeTextContentForBrowser from 'escape-html';
 import ImmutablePureComponent from 'react-immutable-pure-component';
@@ -20,7 +20,75 @@ const messages = defineMessages({
   uncollapse: { id: 'status.uncollapse', defaultMessage: 'Uncollapse' },
 });
 
-class StatusUnextended extends ImmutablePureComponent {
+export default class StatusOrReblog extends ImmutablePureComponent {
+
+  static propTypes = {
+    status: ImmutablePropTypes.map,
+    account: ImmutablePropTypes.map,
+    wrapped: PropTypes.bool,
+    onReply: PropTypes.func,
+    onFavourite: PropTypes.func,
+    onReblog: PropTypes.func,
+    onDelete: PropTypes.func,
+    onOpenMedia: PropTypes.func,
+    onOpenVideo: PropTypes.func,
+    onBlock: PropTypes.func,
+    me: PropTypes.number,
+    boostModal: PropTypes.bool,
+    autoPlayGif: PropTypes.bool,
+    muted: PropTypes.bool,
+    collapse: PropTypes.bool,
+    intersectionObserverWrapper: PropTypes.object,
+    intl: PropTypes.object.isRequired,
+  };
+
+  // Avoid checking props that are functions (and whose equality will always
+  // evaluate to false. See react-immutable-pure-component for usage.
+  updateOnProps = [
+    'status',
+    'account',
+    'wrapped',
+    'me',
+    'boostModal',
+    'autoPlayGif',
+    'muted',
+    'collapse',
+  ]
+
+  render () {
+    // Exclude intersectionObserverWrapper from `other` variable
+    // because intersection is managed in here.
+    const { status, account, ...other } = this.props;
+
+    if (status === null) {
+      return null;
+    }
+
+    if (status.get('reblog', null) !== null && typeof status.get('reblog') === 'object') {
+      let displayName = status.getIn(['account', 'display_name']);
+
+      if (displayName.length === 0) {
+        displayName = status.getIn(['account', 'username']);
+      }
+
+      const displayNameHTML = { __html: emojify(escapeTextContentForBrowser(displayName)) };
+
+      return (
+        <div className='status__wrapper' ref={this.handleRef} data-id={status.get('id')} >
+          <div className='status__prepend'>
+            <div className='status__prepend-icon-wrapper'><i className='fa fa-fw fa-retweet status__prepend-icon' /></div>
+            <FormattedMessage id='status.reblogged_by' defaultMessage='{name} boosted' values={{ name: <a onClick={this.handleAccountClick} data-id={status.getIn(['account', 'id'])} href={status.getIn(['account', 'url'])} className='status__display-name muted'><strong dangerouslySetInnerHTML={displayNameHTML} /></a> }} />
+          </div>
+
+          <Status {...other} status={status.get('reblog')} account={status.get('account')} wrapped />
+        </div>
+      );
+    } else return <Status {...this.props} />;
+  }
+
+}
+
+class Status extends ImmutablePureComponent {
 
   static contextTypes = {
     router: PropTypes.object,
@@ -90,15 +158,15 @@ class StatusUnextended extends ImmutablePureComponent {
     return super.shouldComponentUpdate(nextProps, nextState);
   }
 
-  componentDidUpdate (prevProps, prevState) {
-    if (prevState.isCollapsed !== this.state.isCollapsed) this.saveHeight();
+  componentDidUpdate () {
+    if (this.state.isIntersecting || !this.state.isHidden) this.saveHeight();
   }
 
   componentDidMount () {
     const node = this.node;
 
     if (this.props.collapse !== undefined) this.setState({ isCollapsed: !!this.props.collapse });
-    else if (node.clientHeight > 400 && !(this.props.status.get('reblog', null) !== null && typeof this.props.status.get('reblog') === 'object')) this.setState({ isCollapsed: true });
+    else if (node.clientHeight > 400) this.setState({ isCollapsed: true });
 
     if (!this.props.intersectionObserverWrapper) {
       // TODO: enable IntersectionObserver optimization for notification statuses.
@@ -123,7 +191,7 @@ class StatusUnextended extends ImmutablePureComponent {
     // https://developer.microsoft.com/en-us/microsoft-edge/platform/issues/12156111/
     // https://github.com/WICG/IntersectionObserver/issues/211
     const isIntersecting = (typeof entry.isIntersecting === 'boolean') ?
-      entry.isIntersecting : entry.intersectionRect.height > 0;
+    entry.isIntersecting : entry.intersectionRect.height > 0;
     this.setState((prevState) => {
       if (prevState.isIntersecting && !isIntersecting) {
         scheduleIdleTask(this.hideIfNotIntersecting);
@@ -206,27 +274,6 @@ class StatusUnextended extends ImmutablePureComponent {
       );
     }
 
-    if (status.get('reblog', null) !== null && typeof status.get('reblog') === 'object') {
-      let displayName = status.getIn(['account', 'display_name']);
-
-      if (displayName.length === 0) {
-        displayName = status.getIn(['account', 'username']);
-      }
-
-      const displayNameHTML = { __html: emojify(escapeTextContentForBrowser(displayName)) };
-
-      return (
-        <div className='status__wrapper' ref={this.handleRef} data-id={status.get('id')} >
-          <div className='status__prepend'>
-            <div className='status__prepend-icon-wrapper'><i className='fa fa-fw fa-retweet status__prepend-icon' /></div>
-            <FormattedMessage id='status.reblogged_by' defaultMessage='{name} boosted' values={{ name: <a onClick={this.handleAccountClick} data-id={status.getIn(['account', 'id'])} href={status.getIn(['account', 'url'])} className='status__display-name muted'><strong dangerouslySetInnerHTML={displayNameHTML} /></a> }} />
-          </div>
-
-          <Status {...other} wrapped status={status.get('reblog')} account={status.get('account')} />
-        </div>
-      );
-    }
-
     if (status.get('media_attachments').size > 0 && !this.props.muted) {
       if (status.get('media_attachments').some(item => item.get('type') === 'unknown')) {
 
@@ -285,6 +332,3 @@ class StatusUnextended extends ImmutablePureComponent {
   }
 
 }
-
-const Status = injectIntl(StatusUnextended);
-export default Status;
