@@ -6,6 +6,7 @@ class Api::V1::Accounts::CredentialsController < Api::BaseController
 
   def show
     @account = current_account
+    @plain_text_note = query_params[:note_format] == 'plain'
     render 'api/v1/accounts/show'
   end
 
@@ -19,5 +20,9 @@ class Api::V1::Accounts::CredentialsController < Api::BaseController
 
   def account_params
     params.permit(:display_name, :note, :avatar, :header)
+  end
+
+  def query_params
+    params.permit(:note_format)
   end
 end

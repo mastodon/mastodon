@@ -15,6 +15,26 @@ describe Api::V1::Accounts::CredentialsController do
       get :show
       expect(response).to have_http_status(:success)
     end
+    
+    context 'with note_format=plain' do
+      let(:params) { {note_format: 'plain'} }
+
+      it do
+        get :show, params: params
+        expect(response).to have_http_status(:success) 
+      end
+
+      context 'and remote account' do
+        before do
+          allow_any_instance_of(Account).to receive(:local?).and_return false
+        end
+
+        it do
+          get :show, params: params
+          expect(response).to have_http_status(:unprocessable_entity)
+        end
+      end
+    end
   end
 
   describe 'PATCH #update' do
