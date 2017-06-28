@@ -1,6 +1,11 @@
 machine:
   services:
     - docker
+general:
+  branches:
+    only:
+      - qiitadon
+      - increments-mastodon
 database:
   override:
     - echo "Skip database phase"
