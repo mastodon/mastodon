@@ -10,7 +10,7 @@ class FrontmatterHandler
   #  CONVENIENCE FUNCTIONS  #
 
   def self.unirex(str)
-    Regexp.new str, false, 'um'
+    Regexp.new str, Regexp::MULTILINE, 'u'
   end
   def self.rexstr(exp)
     '(?:' + exp.source + ')'
