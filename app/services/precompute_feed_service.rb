@@ -31,7 +31,7 @@ class PrecomputeFeedService < BaseService
   end
 
   def status_filtered?(status)
-    FeedManager.instance.filter?(:home, status, account.id)
+    FeedManager.instance.filter_subscribers(status, Account.where(id: account.id)).empty?
   end
 
   def account_home_key

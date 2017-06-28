@@ -16,26 +16,6 @@ class NotifyService < BaseService
 
   private
 
-  def blocked_mention?
-    FeedManager.instance.filter?(:mentions, @notification.mention.status, @recipient.id)
-  end
-
-  def blocked_favourite?
-    @recipient.muting?(@notification.from_account)
-  end
-
-  def blocked_follow?
-    false
-  end
-
-  def blocked_reblog?
-    false
-  end
-
-  def blocked_follow_request?
-    false
-  end
-
   def blocked?
     blocked   = @recipient.suspended?                                                                                                # Skip if the recipient account is suspended anyway
     blocked ||= @recipient.id == @notification.from_account.id                                                                       # Skip for interactions with self
@@ -45,7 +25,6 @@ class NotifyService < BaseService
     blocked ||= (@recipient.user.settings.interactions['must_be_follower']  && !@notification.from_account.following?(@recipient))   # Options
     blocked ||= (@recipient.user.settings.interactions['must_be_following'] && !@recipient.following?(@notification.from_account))   # Options
     blocked ||= conversation_muted?
-    blocked ||= send("blocked_#{@notification.type}?")                                                                               # Type-dependent filters
     blocked
   end
 

@@ -17,6 +17,7 @@ describe Api::V1::Timelines::HomeController do
     describe 'GET #show' do
       before do
         follow = Fabricate(:follow, account: user.account)
+        Redis.current.set("subscribed:timeline:#{user.account.id}", '1')
         PostStatusService.new.call(follow.target_account, 'New status for user home timeline.')
       end
 

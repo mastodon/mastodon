@@ -11,40 +11,101 @@ class FeedManager
     "feed:#{type}:#{id}"
   end
 
-  def filter?(timeline_type, status, receiver_id)
-    if timeline_type == :home
-      filter_from_home?(status, receiver_id)
-    elsif timeline_type == :mentions
-      filter_from_mentions?(status, receiver_id)
-    else
-      false
+  def filter_subscribers(status, subscribers)
+    return Account.none if status.reply? && status.in_reply_to_id.nil?
+
+    check_for_mutes = [status.account]
+    check_for_mutes.concat([status.reblog.account]) if status.reblog?
+
+    check_for_blocks = status.mentions.map(&:account)
+    check_for_blocks.concat([status.reblog.account]) if status.reblog?
+
+    subscribers = subscribers.where.not(id: Block.where(target_account: check_for_blocks).select(:account_id))
+                             .where.not(id: Mute.where(target_account: check_for_mutes).select(:account_id))
+
+    if status.reply? && !status.in_reply_to_account_id.nil?                                              # Filter out if it's a reply
+      if status.account_id != status.in_reply_to_account_id                                              # and it's not a self-reply
+        subscribers = subscribers.joins(:following)
+
+        # Inconsistent results with #or in ActiveRecord::Relation with respect to documentation Issue #24055 rails/rails
+        # https://github.com/rails/rails/issues/24055
+        subscribers = subscribers.where.not(follows: { target_account_id: nil })
+
+        subscribers = subscribers.where(follows: { target_account_id: status.in_reply_to_account_id })   # unless I'm following the person it's a reply to
+                                 .or(subscribers.where(id: status.in_reply_to_account_id))               # unless it's a reply to me
+      end
+    elsif status.reblog?                                                                                                          # Filter out a reblog
+      subscribers = subscribers.where.not(id: Block.where(account: status.reblog.account).select(:target_account_id))             # if the author of the reblogged status is blocking me
+                               .where.not(id: AccountDomainBlock.where(domain: status.reblog.account.domain).select(:account_id)) # or if the author's domain is blocked
     end
+
+    subscribers
+  end
+
+  def filter_mentions(status)
+    check_for_blocks = [status.account]
+    check_for_blocks.concat(status.mentions.map(&:account))
+    check_for_blocks.concat([status.in_reply_to_account]) if status.reply? && !status.in_reply_to_account.nil?
+
+    mentions = status.mentions
+                     .where.not(account_id: status.account_id)                                                 # I'm not mentioning myself
+                     .where.not(account_id: Block.where(target_account: check_for_blocks).select(:account_id)) # It's not from someone I blocked, in reply to someone I blocked, nor mentioning someone I blocked
+
+    if status.account.silenced?                                    # Filter out if the account is silenced
+      mentions = mentions.joins(:account)
+                         .merge(Account.following(status.account)) # unless I'm following them
+    end
+
+    mentions
   end
 
   def push(timeline_type, account, status)
-    timeline_key = key(timeline_type, account.id)
+    push_bulk(timeline_type, [account], status)
+  end
+
+  def push_bulk(timeline_type, accounts, status)
+    account_ids = accounts.pluck(:id)
+    return if account_ids.empty?
 
     if status.reblog?
-      # If the original status is within 40 statuses from top, do not re-insert it into the feed
-      rank = redis.zrevrank(timeline_key, status.reblog_of_id)
-      return if !rank.nil? && rank < 40
-      redis.zadd(timeline_key, status.id, status.reblog_of_id)
+      ranks = redis.pipelined do
+        account_ids.each do |account_id|
+          redis.zrevrank(key(timeline_type, account_id), status.reblog_of_id)
+        end
+      end
+
+      account_indexes = account_ids.size.times.lazy.reject do |index|
+        rank = ranks[index]
+        # If the original status is within 40 statuses from top, do not re-insert it into the feed
+        rank.present? && rank < 40
+      end
+
+      filtered_account_ids = account_indexes.map do |index|
+        account_id = account_ids[index]
+        redis.zadd(key(timeline_type, account_id), status.id, status.reblog_of_id)
+        account_id
+      end
+
+      redis.pipelined do
+        account_ids = filtered_account_ids.to_a
+      end
     else
-      redis.zadd(timeline_key, status.id, status.id)
-      trim(timeline_type, account.id)
+      timeline_keys = nil
+
+      redis.pipelined do
+        timeline_keys = account_ids.map do |account_id|
+          timeline_key = key(timeline_type, account_id)
+          redis.zadd(timeline_key, status.id, status.id)
+          timeline_key
+        end
+      end
+
+      trim_bulk(timeline_keys)
     end
 
-    PushUpdateWorker.perform_async(account.id, status.id) if push_update_required?(timeline_type, account.id)
-  end
-
-  def trim(type, account_id)
-    return unless redis.zcard(key(type, account_id)) > FeedManager::MAX_ITEMS
-    last = redis.zrevrange(key(type, account_id), FeedManager::MAX_ITEMS - 1, FeedManager::MAX_ITEMS - 1)
-    redis.zremrangebyscore(key(type, account_id), '-inf', "(#{last.last}")
-  end
-
-  def push_update_required?(timeline_type, account_id)
-    timeline_type != :home || redis.get("subscribed:timeline:#{account_id}").present?
+    subscribing_account_ids(timeline_type, account_ids).each do |account_id|
+      PushUpdateWorker.perform_async(account_id, status.id)
+    end
   end
 
   def merge_into_timeline(from_account, into_account)
@@ -58,12 +119,12 @@ class FeedManager
 
     redis.pipelined do
       query.each do |status|
-        next if status.direct_visibility? || filter?(:home, status, into_account)
+        next if status.direct_visibility? || filter_subscribers(status, Account.where(id: into_account.id)).empty?
         redis.zadd(timeline_key, status.id, status.id)
       end
     end
 
-    trim(:home, into_account.id)
+    trim_bulk([key(:home, into_account.id)])
   end
 
   def unmerge_from_timeline(from_account, into_account)
@@ -90,46 +151,39 @@ class FeedManager
 
   private
 
-  def redis
-    Redis.current
+  def subscribing_account_ids(timeline_type, account_ids)
+    if timeline_type == :home
+      subscribeds = subscribed_bulk(account_ids)
+
+      account_ids.size.times.lazy
+                 .select { |index| subscribeds[index].present? }
+                 .map { |index| account_ids[index] }
+    else
+      account_ids
+    end
   end
 
-  def filter_from_home?(status, receiver_id)
-    return true if status.reply? && status.in_reply_to_id.nil?
+  def subscribed_bulk(account_ids)
+    keys = account_ids.map { |account_id| "subscribed:timeline:#{account_id}" }
+    redis.mget(keys)
+  end
 
-    check_for_mutes = [status.account_id]
-    check_for_mutes.concat([status.reblog.account_id]) if status.reblog?
-
-    return true if Mute.where(account_id: receiver_id, target_account_id: check_for_mutes).any?
-
-    check_for_blocks = status.mentions.pluck(:account_id)
-    check_for_blocks.concat([status.reblog.account_id]) if status.reblog?
-
-    return true if Block.where(account_id: receiver_id, target_account_id: check_for_blocks).any?
-
-    if status.reply? && !status.in_reply_to_account_id.nil?                                                              # Filter out if it's a reply
-      should_filter   = !Follow.where(account_id: receiver_id, target_account_id: status.in_reply_to_account_id).exists? # and I'm not following the person it's a reply to
-      should_filter &&= receiver_id != status.in_reply_to_account_id                                                     # and it's not a reply to me
-      should_filter &&= status.account_id != status.in_reply_to_account_id                                               # and it's not a self-reply
-      return should_filter
-    elsif status.reblog?                                                                                                 # Filter out a reblog
-      should_filter   = Block.where(account_id: status.reblog.account_id, target_account_id: receiver_id).exists?        # or if the author of the reblogged status is blocking me
-      should_filter ||= AccountDomainBlock.where(account_id: receiver_id, domain: status.reblog.account.domain).exists?  # or the author's domain is blocked
-      return should_filter
+  def trim_bulk(timeline_keys)
+    timeline_lasts = redis.pipelined do
+      timeline_keys.each do |timeline_key|
+        redis.zrevrange(timeline_key, FeedManager::MAX_ITEMS - 1, FeedManager::MAX_ITEMS - 1)
+      end
     end
 
-    false
+    redis.pipelined do
+      timeline_keys.each_with_index do |timeline_key, index|
+        last = timeline_lasts[index]
+        redis.zremrangebyscore(timeline_key, '-inf', "(#{last.last}") if last.any?
+      end
+    end
   end
 
-  def filter_from_mentions?(status, receiver_id)
-    check_for_blocks = [status.account_id]
-    check_for_blocks.concat(status.mentions.pluck(:account_id))
-    check_for_blocks.concat([status.in_reply_to_account]) if status.reply? && !status.in_reply_to_account_id.nil?
-
-    should_filter   = receiver_id == status.account_id                                                                                   # Filter if I'm mentioning myself
-    should_filter ||= Block.where(account_id: receiver_id, target_account_id: check_for_blocks).any?                                     # or it's from someone I blocked, in reply to someone I blocked, or mentioning someone I blocked
-    should_filter ||= (status.account.silenced? && !Follow.where(account_id: receiver_id, target_account_id: status.account_id).exists?) # of if the account is silenced and I'm not following them
-
-    should_filter
+  def redis
+    Redis.current
   end
 end

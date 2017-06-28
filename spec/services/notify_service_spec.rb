@@ -47,11 +47,6 @@ RSpec.describe NotifyService do
       recipient.mute_conversation!(activity.status.conversation)
       is_expected.to_not change(Notification, :count)
     end
-
-    it 'does not notify when it is a reply to a blocked user' do
-      recipient.block!(asshole)
-      is_expected.to_not change(Notification, :count)
-    end
   end
 
   context do

@@ -27,14 +27,12 @@ class ProcessMentionsService < BaseService
       mentioned_account.mentions.where(status: status).first_or_create(status: status)
     end
 
-    status.mentions.includes(:account).each do |mention|
-      mentioned_account = mention.account
+    FeedManager.instance.filter_mentions(status).each do |mention|
+      NotifyService.new.call(mention.account, mention)
+    end
 
-      if mentioned_account.local?
-        NotifyService.new.call(mentioned_account, mention)
-      else
-        NotificationWorker.perform_async(stream_entry_to_xml(status.stream_entry), status.account_id, mentioned_account.id)
-      end
+    status.mentions.includes(:account).where.not(accounts: { domain: nil }).each do |mention|
+      NotificationWorker.perform_async(stream_entry_to_xml(status.stream_entry), status.account_id, mention.account.id)
     end
   end
 

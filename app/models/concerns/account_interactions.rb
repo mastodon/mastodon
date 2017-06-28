@@ -60,6 +60,10 @@ module AccountInteractions
     has_many :muted_by, -> { order('mutes.id desc') }, through: :muted_by_relationships, source: :account
     has_many :conversation_mutes, dependent: :destroy
     has_many :domain_blocks, class_name: 'AccountDomainBlock', dependent: :destroy
+
+    scope(:following, ->(other_account) do
+      joins(:following).where(followings_accounts: { id: other_account.id })
+    end)
   end
 
   def follow!(other_account)

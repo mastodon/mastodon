@@ -718,6 +718,16 @@ RSpec.describe Account, type: :model do
       end
     end
 
+    describe 'following' do
+      it 'returns an array of accounts who are following the specified one' do
+        account_1 = Fabricate(:account)
+        account_2 = Fabricate(:account)
+        followee = Fabricate(:account)
+        account_1.follow!(followee)
+        expect(Account.following(followee)).to match_array([account_1])
+      end
+    end
+
     describe 'without_followers' do
       it 'returns a relation of accounts without followers' do
         account_1 = Fabricate(:account)
