@@ -104,32 +104,39 @@ class Web::PushSubscription < ApplicationRecord
   end
 
   def actions_arr(notification)
-    actions = case notification.type
-    when :mention then [
-      {
-        title: translate('push_notifications.mention.action_favourite'),
-        icon: full_asset_url('emoji/2764.png'),
-        todo: 'request',
-        method: 'POST',
-        action: "/api/v1/statuses/#{notification.target_status.id}/favourite",
-      },
-      {
-        title: translate('push_notifications.mention.action_boost'),
-        icon: full_asset_url('emoji/1f504.png'),
-        todo: 'request',
-        method: 'POST',
-        action: "/api/v1/statuses/#{notification.target_status.id}/reblog",
-      },
-    ]
-    else []
-    end
+    actions =
+      case notification.type
+      when :mention then [
+        {
+          title: translate('push_notifications.mention.action_favourite'),
+          icon: full_asset_url('emoji/2764.png'),
+          todo: 'request',
+          method: 'POST',
+          action: "/api/v1/statuses/#{notification.target_status.id}/favourite",
+        },
+        {
+          title: translate('push_notifications.mention.action_boost'),
+          icon: full_asset_url('emoji/1f504.png'),
+          todo: 'request',
+          method: 'POST',
+          action: "/api/v1/statuses/#{notification.target_status.id}/reblog",
+        },
+      ]
+      else []
+      end
 
-    expand_action = notification.type.equal?(:mention) && !notification.target_status.nil? && (notification.target_status.sensitive || !notification.target_status.spoiler_text.empty?) ? [{
-      title: translate('push_notifications.mention.action_expand'),
-      icon: full_asset_url('emoji/1f441.png'),
-      todo: 'expand',
-      action: 'expand',
-    }] : []
+    should_hide = notification.type.equal?(:mention) && !notification.target_status.nil? && (notification.target_status.sensitive || !notification.target_status.spoiler_text.empty?)
+
+    expand_action = if should_hide
+                      [{
+                        title: translate('push_notifications.mention.action_expand'),
+                        icon: full_asset_url('emoji/1f441.png'),
+                        todo: 'expand',
+                        action: 'expand',
+                      }]
+                    else
+                      []
+                    end
 
     expand_action.concat(actions)
   end
@@ -158,7 +165,7 @@ class Web::PushSubscription < ApplicationRecord
           content: translate('push_notifications.subscribed.body'),
           actions: [],
           url: web_url('notifications'),
-        },
+        }
       ),
       endpoint: endpoint,
       p256dh: key_p256dh,
