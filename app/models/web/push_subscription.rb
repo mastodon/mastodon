@@ -44,8 +44,8 @@ class Web::PushSubscription < ApplicationRecord
         timestamp: notification.created_at,
         icon: notification.from_account.avatar_static_url,
         data: {
-          content: body,
-          nsfw: notification.target_status.spoiler_text.empty? ? nil : notification.target_status.spoiler_text,
+          content: HTMLEntities.new.decode(body),
+          nsfw: notification.target_status.spoiler_text.empty? ? nil : HTMLEntities.new.decode(notification.target_status.spoiler_text),
           url: url,
           actions: actions,
           access_token: access_token,
