@@ -69,9 +69,7 @@ class SessionActivation < ApplicationRecord
   def assign_access_token
     superapp = Doorkeeper::Application.find_by(superapp: true)
 
-    return if superapp.nil?
-
-    self.access_token = Doorkeeper::AccessToken.create!(application_id: superapp.id,
+    self.access_token = Doorkeeper::AccessToken.create!(application_id: superapp&.id,
                                                         resource_owner_id: user_id,
                                                         scopes: 'read write follow',
                                                         expires_in: Doorkeeper.configuration.access_token_expires_in,
