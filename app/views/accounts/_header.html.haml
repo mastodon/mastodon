@@ -1,23 +1,24 @@
-.card.h-card.p-author{ style: "background-image: url(#{account.header.url(:original)})" }
-  - if user_signed_in? && current_account.id != account.id && !current_account.requested?(account)
-    .controls
-      - if current_account.following?(account)
-        = link_to t('accounts.unfollow'), account_unfollow_path(account), data: { method: :post }, class: 'button'
-      - else
-        = link_to t('accounts.follow'), account_follow_path(account), data: { method: :post }, class: 'button'
-  - elsif !user_signed_in?
-    .controls
-      .remote-follow
-        = link_to t('accounts.remote_follow'), account_remote_follow_path(account), class: 'button'
-  .avatar= image_tag account.avatar.url(:original), class: 'u-photo'
-  %h1.name
-    %span.p-name.emojify= display_name(account)
-    %small
-      %span @#{account.username}
-      = fa_icon('lock') if account.locked?
-  .details
+- processed_bio = FrontmatterHandler.instance.process_bio Formatter.instance.simplified_format account
+.card.h-card.p-author
+  .details{ style: "background-image: url(#{account.header.url(:original)})" }
+    - if user_signed_in? && current_account.id != account.id && !current_account.requested?(account)
+      .controls
+        - if current_account.following?(account)
+          = link_to t('accounts.unfollow'), account_unfollow_path(account), data: { method: :post }, class: 'button'
+        - else
+          = link_to t('accounts.follow'), account_follow_path(account), data: { method: :post }, class: 'button'
+    - elsif !user_signed_in?
+      .controls
+        .remote-follow
+          = link_to t('accounts.remote_follow'), account_remote_follow_path(account), class: 'button'
+    .avatar= image_tag account.avatar.url(:original), class: 'u-photo'
+    %h1.name
+      %span.p-name.emojify= display_name(account)
+      %small
+        %span @#{account.username}
+        = fa_icon('lock') if account.locked?
     .bio
-      .account__header__content.p-note.emojify= Formatter.instance.simplified_format(account)
+      .account__header__content.p-note.emojify!=processed_bio[:text]
 
     .details-counters
       .counter{ class: active_nav_class(short_account_url(account)) }
@@ -32,3 +33,9 @@
         = link_to account_followers_url(account) do
           %span.counter-label= t('accounts.followers')
           %span.counter-number= number_with_delimiter account.followers_count
+  - if processed_bio[:metadata].length > 0
+    .metadata<
+      - processed_bio[:metadata].each do |i|
+        .metadata-item><
+          %b.emojify>!=i[0]
+          %span.emojify>!=i[1]
