@@ -78,7 +78,7 @@ class Bundle extends React.Component {
   render() {
     const { loading: Loading, error: Error, children, renderDelay } = this.props;
     const { mod, forceRender } = this.state;
-    const elapsed = new Date() - this.timestamp;
+    const elapsed = this.timestamp ? (new Date() - this.timestamp) : renderDelay;
 
     if (mod === undefined) {
       return (elapsed >= renderDelay || forceRender) ? <Loading /> : null;
