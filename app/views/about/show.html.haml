@@ -29,7 +29,9 @@
       = render 'registration'
     - else
       .closed-registrations-message
-        - if @instance_presenter.closed_registrations_message.blank?
+        - if Rails.configuration.x.use_ldap
+          %p= t('about.ldap_registrations')
+        - elsif @instance_presenter.closed_registrations_message.blank?
           %p= t('about.closed_registrations')
         - else
           != @instance_presenter.closed_registrations_message

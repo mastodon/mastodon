@@ -364,10 +364,12 @@ ActiveRecord::Schema.define(version: 20170625140443) do
     t.datetime "last_emailed_at"
     t.string "otp_backup_codes", array: true
     t.string "filtered_languages", default: [], null: false, array: true
+    t.text "ldap_dn"
     t.index ["account_id"], name: "index_users_on_account_id"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["filtered_languages"], name: "index_users_on_filtered_languages", using: :gin
+    t.index ["ldap_dn"], name: "index_users_on_ldap_dn"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 

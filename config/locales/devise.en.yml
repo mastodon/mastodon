@@ -15,6 +15,11 @@ en:
       timeout: Your session expired. Please sign in again to continue.
       unauthenticated: You need to sign in or sign up before continuing.
       unconfirmed: You have to confirm your email address before continuing.
+      user:
+        ldap_configuration_error: LDAP configuration error.
+        ldap_invalid_login: Invalid LDAP credentials.
+        ldap_existing_email: A non-LDAP user already exists with your e-mail.
+        ldap_cannot_create_account_without_email: No e-mail was found in your LDAP informations. No account could be created.
     mailer:
       confirmation_instructions:
         subject: 'Mastodon: Confirmation instructions for %{instance}'

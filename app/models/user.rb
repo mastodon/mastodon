@@ -31,6 +31,7 @@
 #  last_emailed_at           :datetime
 #  otp_backup_codes          :string           is an Array
 #  filtered_languages        :string           default([]), not null, is an Array
+#  ldap_dn                   :text
 #
 
 class User < ApplicationRecord
@@ -62,6 +63,7 @@ class User < ApplicationRecord
   # It seems possible that a future release of devise-two-factor will
   # handle this itself, and this can be removed from our User class.
   attribute :otp_secret
+  attribute :ldap_username
 
   has_many :session_activations, dependent: :destroy
 
@@ -105,10 +107,22 @@ class User < ApplicationRecord
     session_activations.active? id
   end
 
+  def ldap_user?
+    Rails.configuration.x.use_ldap && ldap_dn.present?
+  end
+
   protected
 
   def send_devise_notification(notification, *args)
     devise_mailer.send(notification, self, *args).deliver_later
+  end
+
+  def confirmation_required?
+    if ldap_user?
+      !Rails.configuration.x.ldap_skip_email_confirmation
+    else
+      super
+    end
   end
 
   private
