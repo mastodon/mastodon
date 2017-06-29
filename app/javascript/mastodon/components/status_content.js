@@ -141,7 +141,7 @@ export default class StatusContent extends React.PureComponent {
         </Permalink>
       )).reduce((aggregate, item) => [...aggregate, item, ' '], []);
 
-      const toggleText = hidden ? <FormattedMessage id='status.show_more' defaultMessage='Show more' /> : <FormattedMessage id='status.show_less' defaultMessage='Show less' />;
+      const toggleText = hidden ? [<FormattedMessage id='status.show_more' defaultMessage='Show more' key='0' />, mediaIcon ? <i className={`fa fa-fw fa-${mediaIcon} status__content__spoiler-icon`} aria-hidden='true' key='1' /> : null] : [<FormattedMessage id='status.show_less' defaultMessage='Show less' key='0' />];
 
       if (hidden) {
         mentionsPlaceholder = <div>{mentionLinks}</div>;
@@ -153,7 +153,7 @@ export default class StatusContent extends React.PureComponent {
             <span dangerouslySetInnerHTML={spoilerContent} />
             {' '}
             <button tabIndex='0' className='status__content__spoiler-link' onClick={this.handleSpoilerClick}>
-              {toggleText} {mediaIcon ? <i className={`fa fa-fw fa-${mediaIcon}`} aria-hidden='true' /> : null}
+              {toggleText}
             </button>
           </p>
 

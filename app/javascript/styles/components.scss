@@ -495,10 +495,19 @@
   cursor: pointer;
   vertical-align: bottom;
 
-    &:hover {
-      background: lighten($ui-base-color, 33%);
-      text-decoration: none;
-    }
+  &:hover {
+    background: lighten($ui-base-color, 33%);
+    text-decoration: none;
+  }
+
+  .status__content__spoiler-icon {
+    display: inline-block;
+    margin: 0 0 0 5px;
+    border-left: 1px solid currentColor;
+    padding: 0 0 0 4px;
+    font-size: 16px;
+    vertical-align: -2px;
+  }
 }
 
 .status__prepend-icon-wrapper {
