@@ -4,6 +4,7 @@ import NavigationContainer from './containers/navigation_container';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { mountCompose, unmountCompose } from '../../actions/compose';
+import { openModal } from '../../actions/modal';
 import { changeLocalSetting } from '../../actions/local_settings';
 import Link from 'react-router-dom/Link';
 import { injectIntl, defineMessages, FormattedMessage } from 'react-intl';
@@ -16,13 +17,13 @@ const messages = defineMessages({
   start: { id: 'getting_started.heading', defaultMessage: 'Getting started' },
   public: { id: 'navigation_bar.public_timeline', defaultMessage: 'Federated timeline' },
   community: { id: 'navigation_bar.community_timeline', defaultMessage: 'Local timeline' },
-  preferences: { id: 'navigation_bar.preferences', defaultMessage: 'Preferences' },
+  settings: { id: 'navigation_bar.app_settings', defaultMessage: 'App settings' },
   logout: { id: 'navigation_bar.logout', defaultMessage: 'Logout' },
 });
 
 const mapStateToProps = state => ({
   showSearch: state.getIn(['search', 'submitted']) && !state.getIn(['search', 'hidden']),
-  layout: state.getIn(['localSettings', 'layout']),
+  layout: state.getIn(['local_settings', 'layout']),
 });
 
 @connect(mapStateToProps)
@@ -51,6 +52,10 @@ export default class Compose extends React.PureComponent {
     e.preventDefault();
   }
 
+  openSettings = () => {
+    this.props.dispatch(openModal('SETTINGS', {}));
+  }
+
   render () {
     const { multiColumn, showSearch, intl, layout } = this.props;
 
@@ -62,7 +67,7 @@ export default class Compose extends React.PureComponent {
           <Link to='/getting-started' className='drawer__tab' title={intl.formatMessage(messages.start)}><i role='img' aria-label={intl.formatMessage(messages.start)} className='fa fa-fw fa-asterisk' /></Link>
           <Link to='/timelines/public/local' className='drawer__tab' title={intl.formatMessage(messages.community)}><i role='img' aria-label={intl.formatMessage(messages.community)} className='fa fa-fw fa-users' /></Link>
           <Link to='/timelines/public' className='drawer__tab' title={intl.formatMessage(messages.public)}><i role='img' aria-label={intl.formatMessage(messages.public)} className='fa fa-fw fa-globe' /></Link>
-          <a href='/settings/preferences' className='drawer__tab' title={intl.formatMessage(messages.preferences)}><i role='img' aria-label={intl.formatMessage(messages.preferences)} className='fa fa-fw fa-cog' /></a>
+          <a onClick={this.openSettings} role='button' tabIndex='0' className='drawer__tab' title={intl.formatMessage(messages.settings)}><i role='img' aria-label={intl.formatMessage(messages.settings)} className='fa fa-fw fa-cogs' /></a>
           <a href='/auth/sign_out' className='drawer__tab' data-method='delete' title={intl.formatMessage(messages.logout)}><i role='img' aria-label={intl.formatMessage(messages.logout)} className='fa fa-fw fa-sign-out' /></a>
         </div>
       );

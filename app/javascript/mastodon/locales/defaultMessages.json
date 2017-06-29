@@ -189,16 +189,16 @@
   {
     "descriptors": [
       {
-        "defaultMessage": "{name} boosted",
-        "id": "status.reblogged_by"
-      },
-      {
         "defaultMessage": "Collapse",
         "id": "status.collapse"
       },
       {
         "defaultMessage": "Uncollapse",
         "id": "status.uncollapse"
+      },
+      {
+        "defaultMessage": "{name} boosted",
+        "id": "status.reblogged_by"
       }
     ],
     "path": "app/javascript/mastodon/components/status.json"
@@ -652,8 +652,8 @@
         "id": "navigation_bar.community_timeline"
       },
       {
-        "defaultMessage": "Preferences",
-        "id": "navigation_bar.preferences"
+        "defaultMessage": "App settings",
+        "id": "navigation_bar.app_settings"
       },
       {
         "defaultMessage": "Logout",
@@ -668,12 +668,12 @@
         "id": "layout.mobile"
       },
       {
-        "defaultMessage": "Desktop",
-        "id": "layout.desktop"
-      },
-      {
         "defaultMessage": "Auto",
         "id": "layout.auto"
+      },
+      {
+        "defaultMessage": "Desktop",
+        "id": "layout.desktop"
       }
     ],
     "path": "app/javascript/mastodon/features/compose/index.json"
@@ -742,6 +742,10 @@
       {
         "defaultMessage": "Preferences",
         "id": "navigation_bar.preferences"
+      },
+      {
+        "defaultMessage": "App settings",
+        "id": "navigation_bar.app_settings"
       },
       {
         "defaultMessage": "Follow requests",
@@ -1073,7 +1077,7 @@
         "id": "onboarding.page_one.welcome"
       },
       {
-        "defaultMessage": "{domain} is an 'instance' of Mastodon. Mastodon is a network of independent servers joining up to make one larger social network. We call these servers instances.",
+        "defaultMessage": "{domain} is an \"instance\" of Mastodon. Mastodon is a network of independent servers joining up to make one larger social network. We call these servers instances.",
         "id": "onboarding.page_one.federation"
       },
       {
@@ -1121,7 +1125,7 @@
         "id": "onboarding.page_six.almost_done"
       },
       {
-        "defaultMessage": "{domain} runs on Glitchsoc, a friendly fork of {Mastodon}. Glitchsoc is fully compatible with any Mastodon instance or app. You can report bugs, request features, or contribute to the code on {github}.",
+        "defaultMessage": "{domain} runs on Glitchsoc. Glitchsoc is a friendly {fork} of {Mastodon}. Glitchsoc is fully compatible with all Mastodon apps and instances. Glitchsoc is free open-source software. You can report bugs, request features, or contribute to the code on {github}.",
         "id": "onboarding.page_six.github"
       },
       {
@@ -1167,6 +1171,71 @@
       }
     ],
     "path": "app/javascript/mastodon/features/ui/components/report_modal.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "General",
+        "id": "settings.general"
+      },
+      {
+        "defaultMessage": "Wide view (Desktop mode only)",
+        "id": "settings.wide_view"
+      },
+      {
+        "defaultMessage": "Collapsed toots",
+        "id": "settings.collapsed_statuses"
+      },
+      {
+        "defaultMessage": "Enable collapsed toots",
+        "id": "settings.enable_collapsed"
+      },
+      {
+        "defaultMessage": "Automatic collapsing",
+        "id": "settings.auto_collapse"
+      },
+      {
+        "defaultMessage": "Everything",
+        "id": "settings.auto_collapse_all"
+      },
+      {
+        "defaultMessage": "Notifications",
+        "id": "settings.auto_collapse_notifications"
+      },
+      {
+        "defaultMessage": "Lengthy toots",
+        "id": "settings.auto_collapse_lengthy"
+      },
+      {
+        "defaultMessage": "Replies",
+        "id": "settings.auto_collapse_replies"
+      },
+      {
+        "defaultMessage": "Toots with media",
+        "id": "settings.auto_collapse_media"
+      },
+      {
+        "defaultMessage": "Image backgrounds",
+        "id": "settings.image_backgrounds"
+      },
+      {
+        "defaultMessage": "Give collapsed toots an image background",
+        "id": "settings.image_backgrounds_users"
+      },
+      {
+        "defaultMessage": "Preview collapsed toot media",
+        "id": "settings.image_backgrounds_media"
+      },
+      {
+        "defaultMessage": "User preferences",
+        "id": "settings.global_settings"
+      },
+      {
+        "defaultMessage": "Close",
+        "id": "settings.close"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/ui/components/settings_modal.json"
   },
   {
     "descriptors": [

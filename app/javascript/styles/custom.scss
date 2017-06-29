@@ -1,19 +1,5 @@
 @import 'application';
 
-@include multi-columns('screen and (min-width: 1300px)', $parent: null) {
-  .column {
-    flex-grow: 1 !important;
-    max-width: 400px;
-  }
-
-  .drawer {
-    flex-grow: 1 !important;
-    flex-basis: 200px !important;
-    min-width: 268px;
-    max-width: 400px;
-  }
-}
-
 .muted {
   .status__content p, .status__content a {
     color: lighten($ui-base-color, 35%);

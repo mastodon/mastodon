@@ -12,6 +12,7 @@ export default class Notification extends ImmutablePureComponent {
 
   static propTypes = {
     notification: ImmutablePropTypes.map.isRequired,
+    settings: ImmutablePropTypes.map.isRequired,
   };
 
   renderFollow (account, link) {
@@ -34,7 +35,7 @@ export default class Notification extends ImmutablePureComponent {
     return <StatusContainer id={notification.get('status')} withDismiss />;
   }
 
-  renderFavourite (notification, link) {
+  renderFavourite (notification, settings, link) {
     return (
       <div className='notification notification-favourite'>
         <div className='notification__message'>
@@ -44,12 +45,12 @@ export default class Notification extends ImmutablePureComponent {
           <FormattedMessage id='notification.favourite' defaultMessage='{name} favourited your status' values={{ name: link }} />
         </div>
 
-        <StatusContainer id={notification.get('status')} account={notification.get('account')} muted collapse withDismiss />
+        <StatusContainer id={notification.get('status')} account={notification.get('account')} muted collapse={settings.getIn(['collapsed', 'auto', 'notifications'])} withDismiss />
       </div>
     );
   }
 
-  renderReblog (notification, link) {
+  renderReblog (notification, settings, link) {
     return (
       <div className='notification notification-reblog'>
         <div className='notification__message'>
@@ -59,13 +60,13 @@ export default class Notification extends ImmutablePureComponent {
           <FormattedMessage id='notification.reblog' defaultMessage='{name} boosted your status' values={{ name: link }} />
         </div>
 
-        <StatusContainer id={notification.get('status')} account={notification.get('account')} muted collapse withDismiss />
+        <StatusContainer id={notification.get('status')} account={notification.get('account')} muted collapse={settings.getIn(['collapsed', 'auto', 'notifications'])} withDismiss />
       </div>
     );
   }
 
   render () {
-    const { notification } = this.props;
+    const { notification, settings } = this.props;
     const account          = notification.get('account');
     const displayName      = account.get('display_name').length > 0 ? account.get('display_name') : account.get('username');
     const displayNameHTML  = { __html: emojify(escapeTextContentForBrowser(displayName)) };
@@ -77,9 +78,9 @@ export default class Notification extends ImmutablePureComponent {
     case 'mention':
       return this.renderMention(notification);
     case 'favourite':
-      return this.renderFavourite(notification, link);
+      return this.renderFavourite(notification, settings, link);
     case 'reblog':
-      return this.renderReblog(notification, link);
+      return this.renderReblog(notification, settings, link);
     }
 
     return null;

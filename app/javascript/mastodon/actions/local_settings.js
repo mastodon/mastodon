@@ -14,7 +14,7 @@ export function changeLocalSetting(key, value) {
 
 export function saveLocalSettings() {
   return (_, getState) => {
-    const localSettings = getState().get('localSettings').toJS();
+    const localSettings = getState().get('local_settings').toJS();
     localStorage.setItem('mastodon-settings', JSON.stringify(localSettings));
   };
 };

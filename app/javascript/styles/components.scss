@@ -1351,6 +1351,10 @@
   overflow-x: auto;
   position: relative;
   padding: 10px;
+
+  .wide & {
+    justify-content: center;
+  }
 }
 
 @include limited-single-column('screen and (max-width: 360px)', $parent: null) {
@@ -1366,6 +1370,12 @@
   display: flex;
   flex-direction: column;
   overflow: hidden;
+
+  .wide & {
+    flex: auto;
+    min-width: 330px;
+    max-width: 400px;
+  }
 
   > .scrollable {
     background: $ui-base-color;
@@ -1387,6 +1397,12 @@
   display: flex;
   flex-direction: column;
   overflow-y: auto;
+
+  .wide & {
+    flex: 1 1 200px;
+    min-width: 300px;
+    max-width: 400px;
+  }
 }
 
 .drawer__tab {
@@ -1399,11 +1415,12 @@
   text-align: center;
   font-size: 16px;
   border-bottom: 2px solid transparent;
+  outline: none;
+  cursor: pointer;
 }
 
 .column,
 .drawer {
-  flex: 1 1 100%;
   @supports(display: grid) { // hack to fix Chrome <57
     contain: strict;
   }
@@ -1419,20 +1436,25 @@
   }
 }
 
-@include single-column('screen and (max-width: 1024px)', $parent: null) {
-  .column,
-  .drawer {
-    width: 100%;
-    padding: 0;
-  }
+:root {  //  Overrides .wide stylings for mobile view
+  @include single-column('screen and (max-width: 1024px)', $parent: null) {
+    .column,
+    .drawer {
+      flex: auto;
+      width: 100%;
+      min-width: 0;
+      max-width: none;
+      padding: 0;
+    }
 
-  .columns-area {
-    flex-direction: column;
-  }
+    .columns-area {
+      flex-direction: column;
+    }
 
-  .search__input,
-  .autosuggest-textarea__textarea {
-    font-size: 16px;
+    .search__input,
+    .autosuggest-textarea__textarea {
+      font-size: 16px;
+    }
   }
 }
 
@@ -1443,7 +1465,6 @@
 
   .column,
   .drawer {
-    flex: 0 0 auto;
     padding: 10px;
     padding-left: 5px;
     padding-right: 5px;
@@ -1771,6 +1792,8 @@
   font-size: 16px;
   padding: 15px;
   text-decoration: none;
+  cursor: pointer;
+  outline: none;
 
   &:hover {
     background: lighten($ui-base-color, 11%);
@@ -3310,6 +3333,85 @@ button.icon-button.active i.fa-retweet {
   display: block;
   margin: auto;
   margin-bottom: 20px;
+}
+
+.settings-modal {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  background: $ui-secondary-color;
+  color: $ui-base-color;
+  border-radius: 8px;
+  height: 80vh;
+  width: 80vw;
+  max-width: 740px;
+  max-height: 450px;
+  overflow: hidden;
+
+  label {
+    display: block;
+  }
+
+  h1 {
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 24px;
+    margin-bottom: 20px;
+  }
+
+  h2 {
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 20px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+  }
+}
+
+.settings-modal__navigation {
+  background: $primary-text-color;
+  color: $ui-base-color;
+  width: 200px;
+  font-size: 15px;
+  line-height: 20px;
+  overflow-y: auto;
+
+  .settings-modal__navigation-item, .settings-modal__navigation-close {
+    display: block;
+    padding: 15px 20px;
+    cursor: pointer;
+    outline: none;
+    text-decoration: none;
+  }
+
+  .settings-modal__navigation-item {
+    background: $primary-text-color;
+    color: inherit;
+    border-bottom: 1px $ui-primary-color solid;
+    transition: background .3s;
+
+    &:hover {
+      background: $ui-secondary-color;
+    }
+
+    &.active {
+      background: $ui-highlight-color;
+      color: $primary-text-color;
+    }
+  }
+
+  .settings-modal__navigation-close {
+    background: $error-value-color;
+    color: $primary-text-color;
+  }
+}
+
+.settings-modal__content {
+  display: block;
+  flex: auto;
+  padding: 15px 20px 15px 20px;
+  width: 360px;
+  overflow-y: auto;
 }
 
 .onboard-sliders {

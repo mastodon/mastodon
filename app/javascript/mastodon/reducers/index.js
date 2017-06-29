@@ -14,7 +14,7 @@ import relationships from './relationships';
 import search from './search';
 import notifications from './notifications';
 import settings from './settings';
-import localSettings from './local_settings';
+import local_settings from './local_settings';
 import status_lists from './status_lists';
 import cards from './cards';
 import reports from './reports';
@@ -37,7 +37,7 @@ export default combineReducers({
   search,
   notifications,
   settings,
-  localSettings,
+  local_settings,
   cards,
   reports,
   contexts,

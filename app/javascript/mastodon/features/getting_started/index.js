@@ -4,6 +4,7 @@ import ColumnLink from '../ui/components/column_link';
 import ColumnSubheading from '../ui/components/column_subheading';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
+import { openModal } from '../../actions/modal';
 import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
@@ -17,6 +18,7 @@ const messages = defineMessages({
   settings_subheading: { id: 'column_subheading.settings', defaultMessage: 'Settings' },
   community_timeline: { id: 'navigation_bar.community_timeline', defaultMessage: 'Local timeline' },
   preferences: { id: 'navigation_bar.preferences', defaultMessage: 'Preferences' },
+  settings: { id: 'navigation_bar.app_settings', defaultMessage: 'App settings' },
   follow_requests: { id: 'navigation_bar.follow_requests', defaultMessage: 'Follow requests' },
   sign_out: { id: 'navigation_bar.logout', defaultMessage: 'Logout' },
   favourites: { id: 'navigation_bar.favourites', defaultMessage: 'Favourites' },
@@ -39,7 +41,12 @@ export default class GettingStarted extends ImmutablePureComponent {
     me: ImmutablePropTypes.map.isRequired,
     columns: ImmutablePropTypes.list,
     multiColumn: PropTypes.bool,
+    dispatch: PropTypes.func.isRequired,
   };
+
+  openSettings = () => {
+    this.props.dispatch(openModal('SETTINGS', {}));
+  }
 
   render () {
     const { intl, me, columns, multiColumn } = this.props;
@@ -79,27 +86,30 @@ export default class GettingStarted extends ImmutablePureComponent {
 
     return (
       <Column icon='asterisk' heading={intl.formatMessage(messages.heading)} hideHeadingOnMobile>
-        <div className='getting-started__wrapper'>
-          <ColumnSubheading text={intl.formatMessage(messages.navigation_subheading)} />
-          {navItems}
-          <ColumnSubheading text={intl.formatMessage(messages.settings_subheading)} />
-          <ColumnLink icon='book' text={intl.formatMessage(messages.info)} href='/about/more' />
-          <ColumnLink icon='cog' text={intl.formatMessage(messages.preferences)} href='/settings/preferences' />
-          <ColumnLink icon='sign-out' text={intl.formatMessage(messages.sign_out)} href='/auth/sign_out' method='delete' />
-        </div>
+        <div className='scrollable optionally-scrollable'>
+          <div className='getting-started__wrapper'>
+            <ColumnSubheading text={intl.formatMessage(messages.navigation_subheading)} />
+            {navItems}
+            <ColumnSubheading text={intl.formatMessage(messages.settings_subheading)} />
+            <ColumnLink icon='book' text={intl.formatMessage(messages.info)} href='/about/more' />
+            <ColumnLink icon='cog' text={intl.formatMessage(messages.preferences)} href='/settings/preferences' />
+            <ColumnLink icon='cogs' text={intl.formatMessage(messages.settings)} onClick={this.openSettings} />
+            <ColumnLink icon='sign-out' text={intl.formatMessage(messages.sign_out)} href='/auth/sign_out' method='delete' />
+          </div>
 
-        <div className='getting-started__footer scrollable optionally-scrollable'>
-          <div className='static-content getting-started'>
-            <p>
-              <a href='https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/FAQ.md' rel='noopener' target='_blank'><FormattedMessage id='getting_started.faq' defaultMessage='FAQ' /></a> • <a href='https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/User-guide.md' rel='noopener' target='_blank'><FormattedMessage id='getting_started.userguide' defaultMessage='User Guide' /></a> • <a href='https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/Apps.md' rel='noopener' target='_blank'><FormattedMessage id='getting_started.appsshort' defaultMessage='Apps' /></a>
-            </p>
-            <p>
-              <FormattedMessage
-                id='getting_started.open_source_notice'
-                defaultMessage='Glitchsoc is open source software, a friendly fork of {Mastodon}. You can contribute or report issues on GitHub at {github}.'
-                values={{ github: <a href='https://github.com/glitch-soc/mastodon' rel='noopener' target='_blank'>glitch-soc/mastodon</a>, Mastodon: <a href='https://github.com/tootsuite/mastodon' rel='noopener' target='_blank'>Mastodon</a> }}
-              />
-            </p>
+          <div className='getting-started__footer'>
+            <div className='static-content getting-started'>
+              <p>
+                <a href='https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/FAQ.md' rel='noopener' target='_blank'><FormattedMessage id='getting_started.faq' defaultMessage='FAQ' /></a> • <a href='https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/User-guide.md' rel='noopener' target='_blank'><FormattedMessage id='getting_started.userguide' defaultMessage='User Guide' /></a> • <a href='https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/Apps.md' rel='noopener' target='_blank'><FormattedMessage id='getting_started.appsshort' defaultMessage='Apps' /></a>
+              </p>
+              <p>
+                <FormattedMessage
+                  id='getting_started.open_source_notice'
+                  defaultMessage='Glitchsoc is open source software, a friendly fork of {Mastodon}. You can contribute or report issues on GitHub at {github}.'
+                  values={{ github: <a href='https://github.com/glitch-soc/mastodon' rel='noopener' target='_blank'>glitch-soc/mastodon</a>, Mastodon: <a href='https://github.com/tootsuite/mastodon' rel='noopener' target='_blank'>Mastodon</a> }}
+                />
+              </p>
+            </div>
           </div>
         </div>
       </Column>

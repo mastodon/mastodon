@@ -25,9 +25,9 @@ addLocaleData(localeData);
 const store = configureStore();
 const initialState = JSON.parse(document.getElementById('initial-state').textContent);
 try {
-  initialState.localSettings = JSON.parse(localStorage.getItem('mastodon-settings'));
+  initialState.local_settings = JSON.parse(localStorage.getItem('mastodon-settings'));
 } catch (e) {
-  initialState.localSettings = {};
+  initialState.local_settings = {};
 }
 store.dispatch(hydrateStore(initialState));
 

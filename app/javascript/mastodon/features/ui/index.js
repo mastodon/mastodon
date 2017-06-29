@@ -73,7 +73,8 @@ class WrappedRoute extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  layout: state.getIn(['localSettings', 'layout']),
+  layout: state.getIn(['local_settings', 'layout']),
+  isWide: state.getIn(['local_settings', 'stretch']),
 });
 
 @connect(mapStateToProps)
@@ -83,6 +84,7 @@ export default class UI extends React.PureComponent {
     dispatch: PropTypes.func.isRequired,
     children: PropTypes.node,
     layout: PropTypes.string,
+    isWide: PropTypes.bool,
   };
 
   state = {
@@ -179,7 +181,7 @@ export default class UI extends React.PureComponent {
 
   render () {
     const { width, draggingOver } = this.state;
-    const { children, layout } = this.props;
+    const { children, layout, isWide } = this.props;
 
     const columnsClass = layout => {
       switch (layout) {
@@ -193,7 +195,7 @@ export default class UI extends React.PureComponent {
     };
 
     return (
-      <div className={'ui ' + columnsClass(layout)} ref={this.setRef}>
+      <div className={'ui ' + columnsClass(layout) + (isWide ? ' wide' : '')} ref={this.setRef}>
         <TabsBar />
         <ColumnsAreaContainer singleColumn={isMobile(width, layout)}>
           <WrappedSwitch>
