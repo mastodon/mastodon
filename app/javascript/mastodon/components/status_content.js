@@ -20,6 +20,7 @@ export default class StatusContent extends React.PureComponent {
     onExpandedToggle: PropTypes.func,
     onHeightUpdate: PropTypes.func,
     onClick: PropTypes.func,
+    mediaIcon: PropTypes.string,
     children: PropTypes.element,
   };
 
@@ -119,7 +120,7 @@ export default class StatusContent extends React.PureComponent {
   }
 
   render () {
-    const { status, children } = this.props;
+    const { status, children, mediaIcon } = this.props;
 
     const hidden = this.props.onExpandedToggle ? !this.props.expanded : this.state.hidden;
 
@@ -151,7 +152,9 @@ export default class StatusContent extends React.PureComponent {
           <p style={{ marginBottom: hidden && status.get('mentions').isEmpty() ? '0px' : null }}>
             <span dangerouslySetInnerHTML={spoilerContent} />
             {' '}
-            <button tabIndex='0' className='status__content__spoiler-link' onClick={this.handleSpoilerClick}>{toggleText}</button>
+            <button tabIndex='0' className='status__content__spoiler-link' onClick={this.handleSpoilerClick}>
+              {toggleText} {mediaIcon ? <i className={`fa fa-fw fa-${mediaIcon}`} aria-hidden='true' /> : null}
+            </button>
           </p>
 
           {mentionsPlaceholder}

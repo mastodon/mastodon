@@ -176,7 +176,7 @@ class Status extends ImmutablePureComponent {
     else if (settings.getIn(['collapsed', 'auto', 'all'])) this.collapse();
     else if (settings.getIn(['collapsed', 'auto', 'lengthy']) && node.clientHeight > 400) this.collapse();
     else if (settings.getIn(['collapsed', 'auto', 'replies']) && status.get('in_reply_to_id', null) !== null) this.collapse();
-    else if (settings.getIn(['collapsed', 'auto', 'media']) && status.get('media_attachments').size > 0) this.collapse();
+    else if (settings.getIn(['collapsed', 'auto', 'media']) && !(status.get('spoiler_text').length > 0) && status.get('media_attachments').size > 0) this.collapse();
 
     if (!this.props.intersectionObserverWrapper) {
       // TODO: enable IntersectionObserver optimization for notification statuses.
@@ -268,7 +268,7 @@ class Status extends ImmutablePureComponent {
 
   render () {
     let media = null;
-    let mediaType = null;
+    let mediaIcon = null;
     let statusAvatar;
 
     // Exclude intersectionObserverWrapper from `other` variable
@@ -297,10 +297,10 @@ class Status extends ImmutablePureComponent {
 
       } else if (status.getIn(['media_attachments', 0, 'type']) === 'video') {
         media = <VideoPlayer media={status.getIn(['media_attachments', 0])} sensitive={status.get('sensitive')} onOpenVideo={this.props.onOpenVideo} />;
-        mediaType = <i className='fa fa-fw fa-video-camera' aria-hidden='true' />;
+        mediaIcon = 'video-camera';
       } else {
         media = <MediaGallery media={status.get('media_attachments')} sensitive={status.get('sensitive')} height={110} onOpenMedia={this.props.onOpenMedia} autoPlayGif={this.props.autoPlayGif} />;
-        mediaType = status.get('media_attachments').size > 1 ? <i className='fa fa-fw fa-th-large' aria-hidden='true' /> : <i className='fa fa-fw fa-picture-o' aria-hidden='true' />;
+        mediaIcon = 'picture-o';
       }
 
       if (!status.get('sensitive') && !(status.get('spoiler_text').length > 0) && settings.getIn(['collapsed', 'backgrounds', 'preview_images'])) background = status.getIn(['media_attachments', 0]).get('preview_url');
@@ -317,7 +317,7 @@ class Status extends ImmutablePureComponent {
         <div className='status__info'>
 
           <div className='status__info__icons'>
-            {mediaType}
+            {mediaIcon ? <i className={`fa fa-fw fa-${mediaIcon}`} aria-hidden='true' /> : null}
             {settings.getIn(['collapsed', 'enabled']) ? <IconButton
               className='status__collapse-button'
               animate flip
@@ -338,7 +338,7 @@ class Status extends ImmutablePureComponent {
 
         </div>
 
-        <StatusContent status={status} onClick={this.handleClick} expanded={isExpanded} collapsed={isCollapsed} onExpandedToggle={this.handleExpandedToggle} onHeightUpdate={this.saveHeight}>
+        <StatusContent status={status} mediaIcon={mediaIcon} onClick={this.handleClick} expanded={isExpanded} collapsed={isCollapsed} onExpandedToggle={this.handleExpandedToggle} onHeightUpdate={this.saveHeight}>
 
           {isCollapsed ? null : media}
 
