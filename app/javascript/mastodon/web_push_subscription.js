@@ -36,7 +36,8 @@ const subscribe = (registration) =>
       return subscription;
     });
 
-const unsubscribe = ({ registration, subscription }) => subscription.unsubscribe().then(() => registration);
+const unsubscribe = ({ registration, subscription }) =>
+  subscription ? subscription.unsubscribe().then(() => registration) : registration;
 
 const sendSubscriptionToBackend = (subscription) =>
   axios.post('/api/web/push_subscriptions', {
@@ -52,6 +53,7 @@ export function register () {
   if (supportsPushNotifications) {
     console.log('This browser supports web push notifications.');
     if (!getApplicationServerKey()) {
+      // eslint-ignore-next-line no-console
       console.error('The VAPID public key is not set. You will not be able to receive push notifications.');
       return;
     }
@@ -105,7 +107,12 @@ export function register () {
         }
       })
       .catch(error => {
-        console.error('Something went wrong:', error);
+        if (error.code === 5 && error.name === 'InvalidCharacterError') {
+          // eslint-ignore-next-line no-console
+          console.error('The VAPID public key seems to be invalid:', getApplicationServerKey());
+        } else {
+          console.error('Something went wrong:', error);
+        }
 
         // Clear alerts and hide UI settings
         console.log('Clearing subscription from the store...');
@@ -117,11 +124,12 @@ export function register () {
             .then(getPushSubscription)
             .then(unsubscribe);
         } catch (e) {
-          console.error('Something went worng yet again:', error);
+          console.error('Something went wrong yet again:', error);
         }
       });
   } else {
-    console.log('This browser does not support web push notifications.');
+    // eslint-ignore-next-line no-console
+    console.warn('Your browser does not support web push notifications.');
   }
 }
 
