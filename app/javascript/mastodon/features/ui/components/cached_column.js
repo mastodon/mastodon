@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+const preventScrollOnPush = (previous, { history }) => (history && history.action === 'PUSH') ? false : true;
+
 export default class CachedColumn extends React.Component {
 
   static propTypes = {
@@ -54,7 +56,7 @@ export default class CachedColumn extends React.Component {
     const { mounting } = this.state;
 
     if (visible || mounting) {
-      return <Component visible={visible} {...other}>{children}</Component>;
+      return <Component visible={visible} shouldUpdateScroll={preventScrollOnPush} {...other}>{children}</Component>;
     } else {
       return null;
     }

@@ -40,6 +40,7 @@ export default class PublicTimeline extends React.PureComponent {
     accessToken: PropTypes.string.isRequired,
     hasUnread: PropTypes.bool,
     visible: PropTypes.bool,
+    shouldUpdateScroll: PropTypes.func,
   };
 
   static defaultProps = {
@@ -118,7 +119,7 @@ export default class PublicTimeline extends React.PureComponent {
   }
 
   render () {
-    const { intl, columnId, hasUnread, multiColumn, visible } = this.props;
+    const { intl, columnId, hasUnread, multiColumn, visible, shouldUpdateScroll } = this.props;
     const pinned = !!columnId;
 
     return (
@@ -140,6 +141,7 @@ export default class PublicTimeline extends React.PureComponent {
           timelineId='public'
           loadMore={this.handleLoadMore}
           trackScroll={!pinned}
+          shouldUpdateScroll={shouldUpdateScroll}
           scrollKey={`public_timeline-${columnId}`}
           emptyMessage={<FormattedMessage id='empty_column.public' defaultMessage='There is nothing here! Write something publicly, or manually follow users from other instances to fill it up' />}
         />

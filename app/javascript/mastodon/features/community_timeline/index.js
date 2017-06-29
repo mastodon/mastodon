@@ -40,6 +40,7 @@ export default class CommunityTimeline extends React.PureComponent {
     hasUnread: PropTypes.bool,
     multiColumn: PropTypes.bool,
     visible: PropTypes.bool,
+    shouldUpdateScroll: PropTypes.func,
   };
 
   static defaultProps = {
@@ -118,7 +119,7 @@ export default class CommunityTimeline extends React.PureComponent {
   }
 
   render () {
-    const { intl, hasUnread, columnId, multiColumn, visible } = this.props;
+    const { intl, hasUnread, columnId, multiColumn, visible, shouldUpdateScroll } = this.props;
     const pinned = !!columnId;
 
     return (
@@ -138,6 +139,7 @@ export default class CommunityTimeline extends React.PureComponent {
 
         <StatusListContainer
           trackScroll={!pinned}
+          shouldUpdateScroll={shouldUpdateScroll}
           scrollKey={`community_timeline-${columnId}`}
           timelineId='community'
           loadMore={this.handleLoadMore}
