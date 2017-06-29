@@ -72,12 +72,17 @@ class WrappedRoute extends React.Component {
 
 }
 
-@connect()
+const mapStateToProps = state => ({
+  systemFontUi: state.getIn(['meta', 'system_font_ui']),
+});
+
+@connect(mapStateToProps)
 export default class UI extends React.PureComponent {
 
   static propTypes = {
     dispatch: PropTypes.func.isRequired,
     children: PropTypes.node,
+    systemFontUi: PropTypes.bool,
   };
 
   state = {
@@ -176,8 +181,13 @@ export default class UI extends React.PureComponent {
     const { width, draggingOver } = this.state;
     const { children } = this.props;
 
+    let className = 'ui';
+
+    if (this.props.systemFontUi)
+      className += ' has-system-font';
+
     return (
-      <div className='ui' ref={this.setRef}>
+      <div className={className} ref={this.setRef}>
         <TabsBar />
         <ColumnsAreaContainer singleColumn={isMobile(width)}>
           <WrappedSwitch>
