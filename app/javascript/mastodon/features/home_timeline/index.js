@@ -99,7 +99,7 @@ export default class HomeTimeline extends React.PureComponent {
           loadMore={this.handleLoadMore}
           timelineId='home'
           emptyMessage={emptyMessage}
-          preventUpdate={!visible}
+          visible={visible}
         />
       </Column>
     );

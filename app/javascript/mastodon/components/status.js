@@ -37,6 +37,7 @@ export default class Status extends ImmutablePureComponent {
     autoPlayGif: PropTypes.bool,
     muted: PropTypes.bool,
     intersectionObserverWrapper: PropTypes.object,
+    visible: PropTypes.bool,
   };
 
   state = {
@@ -59,8 +60,25 @@ export default class Status extends ImmutablePureComponent {
 
   updateOnStates = ['isExpanded']
 
+  componentWillReceiveProps (nextProps) {
+    if (this.props.visible !== nextProps.visible) {
+      this.setState((prevState, props) => {
+        if (prevState.isIntersecting && !props.visible) {
+          scheduleIdleTask(this.hideIfNotIntersecting);
+        }
+        return {
+          isHidden: props.visible ? !prevState.isIntersecting : prevState.isHidden,
+        };
+      });
+    }
+  }
+
   shouldComponentUpdate (nextProps, nextState) {
-    if (!nextState.isIntersecting && nextState.isHidden) {
+    if (!nextProps.visible && nextState.isHidden) {
+      return this.props.visible || !this.state.isHidden;
+    } else if (nextProps.visible && this.state.isHidden !== nextState.isHidden) {
+      return true;
+    } else if (!nextState.isIntersecting && nextState.isHidden) {
       // It's only if we're not intersecting (i.e. offscreen) and isHidden is true
       // that either "isIntersecting" or "isHidden" matter, and then they're
       // the only things that matter.
@@ -94,6 +112,10 @@ export default class Status extends ImmutablePureComponent {
   }
 
   handleIntersection = (entry) => {
+    if (!this.props.visible) {
+      return;
+    }
+
     // Edge 15 doesn't support isIntersecting, but we can infer it
     // https://developer.microsoft.com/en-us/microsoft-edge/platform/issues/12156111/
     // https://github.com/WICG/IntersectionObserver/issues/211
@@ -119,7 +141,7 @@ export default class Status extends ImmutablePureComponent {
     // and if so, set our isHidden to true to trigger an unrender. The point of
     // this is to save DOM nodes and avoid using up too much memory.
     // See: https://github.com/tootsuite/mastodon/issues/2900
-    this.setState((prevState) => ({ isHidden: !prevState.isIntersecting }));
+    this.setState((prevState, props) => ({ isHidden: !props.visible || !prevState.isIntersecting }));
   }
 
   saveHeight = () => {
@@ -157,13 +179,13 @@ export default class Status extends ImmutablePureComponent {
     // Exclude intersectionObserverWrapper from `other` variable
     // because intersection is managed in here.
     const { status, account, intersectionObserverWrapper, ...other } = this.props;
-    const { isExpanded, isIntersecting, isHidden } = this.state;
+    const { isExpanded, isHidden } = this.state;
 
     if (status === null) {
       return null;
     }
 
-    if (!isIntersecting && isHidden) {
+    if (isHidden) {
       return (
         <div ref={this.handleRef} data-id={status.get('id')} style={{ height: `${this.height}px`, opacity: 0, overflow: 'hidden' }}>
           {status.getIn(['account', 'display_name']) || status.getIn(['account', 'username'])}

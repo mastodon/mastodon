@@ -22,7 +22,7 @@ export default class StatusList extends ImmutablePureComponent {
     hasMore: PropTypes.bool,
     prepend: PropTypes.node,
     emptyMessage: PropTypes.node,
-    preventUpdate: PropTypes.bool,
+    visible: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -53,13 +53,12 @@ export default class StatusList extends ImmutablePureComponent {
   }
 
   shouldComponentUpdate (nextProps, nextState) {
-    return !nextProps.preventUpdate && super.shouldComponentUpdate(nextProps, nextState);
-  }
-
-  componentWillReceiveProps (nextProps) {
-    if (this.props.preventUpdate !== nextProps.preventUpdate && nextProps.preventUpdate) {
-      this.detachIntersectionObserver();
+    // Apply visible changes to child statuses
+    if (this.props.visible !== nextProps.visible) {
+      return true;
     }
+
+    return nextProps.visible && super.shouldComponentUpdate(nextProps, nextState);
   }
 
   componentDidUpdate (prevProps) {
@@ -73,10 +72,6 @@ export default class StatusList extends ImmutablePureComponent {
       if (this.node.scrollTop !== newScrollTop) {
         this.node.scrollTop = newScrollTop;
       }
-    }
-
-    if (prevProps.preventUpdate !== this.props.preventUpdate && this.props.preventUpdate) {
-      this.attachIntersectionObserver();
     }
   }
 
@@ -114,7 +109,7 @@ export default class StatusList extends ImmutablePureComponent {
   }
 
   render () {
-    const { statusIds, scrollKey, trackScroll, shouldUpdateScroll, isLoading, hasMore, prepend, emptyMessage } = this.props;
+    const { statusIds, scrollKey, trackScroll, shouldUpdateScroll, isLoading, hasMore, prepend, emptyMessage, visible } = this.props;
 
     let loadMore       = null;
     let scrollableArea = null;
@@ -130,7 +125,7 @@ export default class StatusList extends ImmutablePureComponent {
             {prepend}
 
             {statusIds.map((statusId) => {
-              return <StatusContainer key={statusId} id={statusId} intersectionObserverWrapper={this.intersectionObserverWrapper} />;
+              return <StatusContainer key={statusId} id={statusId} intersectionObserverWrapper={this.intersectionObserverWrapper} visible={visible} />;
             })}
 
             {loadMore}
