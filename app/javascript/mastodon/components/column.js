@@ -41,7 +41,7 @@ export default class Column extends React.PureComponent {
     const visibleClass = visible ? '' : 'column--hidden';
 
     return (
-      <div role='region' className={`column ${visibleClass}`} ref={this.setRef} onWheel={this.handleWheel}>
+      <div role='region' aria-hidden={!visible} className={`column ${visibleClass}`} ref={this.setRef} onWheel={this.handleWheel}>
         {children}
       </div>
     );
