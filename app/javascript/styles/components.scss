@@ -1351,10 +1351,6 @@
   overflow-x: auto;
   position: relative;
   padding: 10px;
-
-  .wide & {
-    justify-content: center;
-  }
 }
 
 @include limited-single-column('screen and (max-width: 360px)', $parent: null) {
