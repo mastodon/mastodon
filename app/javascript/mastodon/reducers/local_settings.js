@@ -2,7 +2,7 @@ import { LOCAL_SETTING_CHANGE } from '../actions/local_settings';
 import { STORE_HYDRATE } from '../actions/store';
 import Immutable from 'immutable';
 
-const initialState = Immutable.Map({
+const initialState = Immutable.fromJS({
   layout    : 'auto',
   stretch   : true,
   collapsed : {
