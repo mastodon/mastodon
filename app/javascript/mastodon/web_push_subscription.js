@@ -53,8 +53,8 @@ export function register () {
   if (supportsPushNotifications) {
     console.log('This browser supports web push notifications.');
     if (!getApplicationServerKey()) {
-      // eslint-ignore-next-line no-console
-      console.error('The VAPID public key is not set. You will not be able to receive push notifications.');
+      // eslint-disable-next-line no-console
+      console.error('The VAPID public key is not set. You will not be able to receive Web Push Notifications.');
       return;
     }
 
@@ -107,8 +107,11 @@ export function register () {
         }
       })
       .catch(error => {
-        if (error.code === 5 && error.name === 'InvalidCharacterError') {
-          // eslint-ignore-next-line no-console
+        if (error.code === 20 && error.name === 'AbortError') {
+          // eslint-disable-next-line no-console
+          console.warn('Your browser supports Web Push Notifications, but does not seem to implement the VAPID protocol.');
+        } else if (error.code === 5 && error.name === 'InvalidCharacterError') {
+          // eslint-disable-next-line no-console
           console.error('The VAPID public key seems to be invalid:', getApplicationServerKey());
         } else {
           console.error('Something went wrong:', error);
@@ -128,8 +131,7 @@ export function register () {
         }
       });
   } else {
-    // eslint-ignore-next-line no-console
-    console.warn('Your browser does not support web push notifications.');
+    // eslint-disable-next-line no-console
+    console.warn('Your browser does not support Web Push Notifications.');
   }
 }
-
