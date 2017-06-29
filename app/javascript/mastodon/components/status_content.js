@@ -172,10 +172,12 @@ export default class StatusContent extends React.PureComponent {
           ref={this.setRef}
           className='status__content status__content--with-action'
           style={directionStyle}
-          onMouseDown={this.handleMouseDown}
-          onMouseUp={this.handleMouseUp}
         >
-          <div dangerouslySetInnerHTML={content} />
+          <div
+            onMouseDown={this.handleMouseDown}
+            onMouseUp={this.handleMouseUp}
+            dangerouslySetInnerHTML={content}
+          />
           {children}
         </div>
       );
@@ -185,8 +187,6 @@ export default class StatusContent extends React.PureComponent {
           ref={this.setRef}
           className='status__content'
           style={directionStyle}
-          onMouseDown={this.handleMouseDown}
-          onMouseUp={this.handleMouseUp}
         >
           <div dangerouslySetInnerHTML={content} />
           {children}
