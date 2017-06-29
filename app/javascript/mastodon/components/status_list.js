@@ -22,6 +22,7 @@ export default class StatusList extends ImmutablePureComponent {
     hasMore: PropTypes.bool,
     prepend: PropTypes.node,
     emptyMessage: PropTypes.node,
+    preventUpdate: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -51,6 +52,16 @@ export default class StatusList extends ImmutablePureComponent {
     this.attachIntersectionObserver();
   }
 
+  shouldComponentUpdate (nextProps, nextState) {
+    return !nextProps.preventUpdate && super.shouldComponentUpdate(nextProps, nextState);
+  }
+
+  componentWillReceiveProps (nextProps) {
+    if (this.props.preventUpdate !== nextProps.preventUpdate && nextProps.preventUpdate) {
+      this.detachIntersectionObserver();
+    }
+  }
+
   componentDidUpdate (prevProps) {
     // Reset the scroll position when a new toot comes in in order not to
     // jerk the scrollbar around if you're already scrolled down the page.
@@ -62,6 +73,10 @@ export default class StatusList extends ImmutablePureComponent {
       if (this.node.scrollTop !== newScrollTop) {
         this.node.scrollTop = newScrollTop;
       }
+    }
+
+    if (prevProps.preventUpdate !== this.props.preventUpdate && this.props.preventUpdate) {
+      this.attachIntersectionObserver();
     }
   }
 

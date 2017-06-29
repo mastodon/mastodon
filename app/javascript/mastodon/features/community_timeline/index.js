@@ -144,6 +144,7 @@ export default class CommunityTimeline extends React.PureComponent {
           timelineId='community'
           loadMore={this.handleLoadMore}
           emptyMessage={<FormattedMessage id='empty_column.community' defaultMessage='The local timeline is empty. Write something publicly to get the ball rolling!' />}
+          preventUpdate={!visible}
         />
       </Column>
     );
