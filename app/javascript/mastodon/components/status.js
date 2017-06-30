@@ -79,6 +79,10 @@ export default class Status extends ImmutablePureComponent {
   }
 
   componentDidMount () {
+    window.requestAnimationFrame(() => {
+      this.setState({ showDeferedComponents: true });
+    });
+
     if (!this.props.intersectionObserverWrapper) {
       // TODO: enable IntersectionObserver optimization for notification statuses.
       // These are managed in notifications/index.js rather than status_list.js
@@ -91,10 +95,6 @@ export default class Status extends ImmutablePureComponent {
     );
 
     this.componentMounted = true;
-
-    window.requestAnimationFrame(() => {
-      this.setState({ showDeferedComponents: true });
-    });
   }
 
   componentWillUnmount () {
