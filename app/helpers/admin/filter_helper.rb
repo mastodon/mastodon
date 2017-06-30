@@ -16,7 +16,7 @@ module Admin::FilterHelper
     link_to safe_join([fa_icon(icon), text]), path, options.merge(class: 'table-action-link')
   end
 
-  def is_selected(more_params)
+  def selected?(more_params)
     new_url = filtered_url_for(more_params)
     filter_link_class(new_url) == 'selected' ? true : false
   end

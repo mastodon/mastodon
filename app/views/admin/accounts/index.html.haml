@@ -7,12 +7,12 @@
     %ul
       %li= filter_link_to t('admin.accounts.location.all'), local: nil, remote: nil
       %li
-        - if is_selected local: '1', remote: nil
+        - if selected? local: '1', remote: nil
           = filter_link_to t('admin.accounts.location.local'), {local: nil, remote: nil}, {local: '1', remote: nil}
         - else
           = filter_link_to t('admin.accounts.location.local'), local: '1', remote: nil
       %li
-        - if is_selected remote: '1', local: nil
+        - if selected? remote: '1', local: nil
           = filter_link_to t('admin.accounts.location.remote'), {remote: nil, local: nil}, {remote: '1', local: nil}
         - else
           = filter_link_to t('admin.accounts.location.remote'), remote: '1', local: nil
@@ -21,12 +21,12 @@
     %ul
       %li= filter_link_to t('admin.accounts.moderation.all'), silenced: nil, suspended: nil
       %li
-        - if is_selected silenced: '1'
+        - if selected? silenced: '1'
           = filter_link_to t('admin.accounts.moderation.silenced'), {silenced: nil}, {silenced: '1'}
         - else
           = filter_link_to t('admin.accounts.moderation.silenced'), silenced: '1'
       %li
-        - if is_selected suspended: '1'
+        - if selected? suspended: '1'
           = filter_link_to t('admin.accounts.moderation.suspended'), {suspended: nil}, {suspended: '1'}
         - else
           = filter_link_to t('admin.accounts.moderation.suspended'), suspended: '1'
