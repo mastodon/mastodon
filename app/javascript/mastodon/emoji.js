@@ -36,7 +36,7 @@ const shortnameToImage = str => {
       if (shortname in emojione.emojioneList) {
         const unicode = emojione.emojioneList[shortname].unicode[emojione.emojioneList[shortname].unicode.length - 1];
         const alt = emojione.convert(unicode.toUpperCase());
-        const replacement = `<img draggable="false" class="emojione" alt="${alt}" title="${shortname}" src="/emoji/${unicode}.svg" />`
+        const replacement = `<img draggable="false" class="emojione" alt="${alt}" title="${shortname}" src="/emoji/${unicode}.svg" />`;
         str = str.substring(0, i) + replacement + str.substring(shortnameEndIndex + 1);
       } else {
         i++; // stray colon, try again
