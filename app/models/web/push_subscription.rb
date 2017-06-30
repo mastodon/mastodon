@@ -46,7 +46,7 @@ class Web::PushSubscription < ApplicationRecord
         icon: notification.from_account.avatar_static_url,
         data: {
           content: strip_tags(body),
-          nsfw: notification.target_status.spoiler_text.empty? ? nil : strip_tags(notification.target_status.spoiler_text),
+          nsfw: notification.target_status.nil? || notification.target_status.spoiler_text.empty? ? nil : strip_tags(notification.target_status.spoiler_text),
           url: url,
           actions: actions,
           access_token: access_token,
