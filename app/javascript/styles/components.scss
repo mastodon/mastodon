@@ -3421,19 +3421,16 @@ button.icon-button.active i.fa-retweet {
 }
 
 .media-gallery__item-thumbnail {
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
   cursor: zoom-in;
-  display: flex;
-  align-items: center;
+  display: block;
   text-decoration: none;
   height: 100%;
 
   &,
   img {
     width: 100%;
-    overflow: hidden;
+    height: 100%;
+    object-fit: cover;
   }
 }
 
