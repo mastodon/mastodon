@@ -16,7 +16,7 @@ class PrecomputeFeedService < BaseService
     pairs = statuses.reverse_each.map(&method(:process_status))
 
     redis.pipelined do
-      redis.zadd(account_home_key, pairs)
+      redis.zadd(account_home_key, pairs) if pairs.any?
       redis.del("account:#{@account.id}:regeneration")
     end
   end
