@@ -69,6 +69,9 @@ const NOT_WHITE_SPACE   = unirex('(?!' + rexstr(WHITE_SPACE) + ')[^]');
 const NOT_LINE_BREAK    = unirex('(?!' + rexstr(LINE_BREAK) + ')[^]');
 const NOT_INDICATOR     = unirex('(?!' + rexstr(INDICATOR) + ')[^]');
 const NOT_FLOW_CHAR     = unirex('(?!' + rexstr(FLOW_CHAR) + ')[^]');
+const NOT_ALLOWED_CHAR  = unirex(
+  '(?!' + rexstr(ALLOWED_CHAR) + ')[^]'
+);
 
 /*  BASIC CONSTRUCTS  */
 
@@ -226,6 +229,7 @@ function processString(str) {
       .replace(/\\a/g, '\x07')
       .replace(/\\b/g, '\x08')
       .replace(/\\t/g, '\x09')
+      .replace(/\\\x09/g, '\x09')
       .replace(/\\n/g, '\x0a')
       .replace(/\\v/g, '\x0b')
       .replace(/\\f/g, '\x0c')
@@ -292,4 +296,85 @@ export function processBio(content) {
     ]);
   }
   return result;
+}
+
+/*  BIO CREATION  */
+
+export function createBio(note, data) {
+  if (!note) note = '';
+  let frontmatter = '';
+  if ((data && data.length) || note.match(/^\s*---\s+/)) {
+    if (!data) frontmatter = '---\n...\n';
+    else {
+      frontmatter += '---\n';
+      for (let i = 0; i < data.length; i++) {
+        let key = '' + data[i][0];
+        let val = '' + data[i][1];
+
+        //  Key processing
+        if (key === (key.match(YAML_SIMPLE_KEY) || [])[0]) /*  do nothing  */;
+        else if (key.indexOf('\'') === -1 && key === (key.match(ANY_ESCAPED_APOS) || [])[0]) key = '\'' + key + '\'';
+        else {
+          key = key
+            .replace(/\x00/g, '\\0')
+            .replace(/\x07/g, '\\a')
+            .replace(/\x08/g, '\\b')
+            .replace(/\x0a/g, '\\n')
+            .replace(/\x0b/g, '\\v')
+            .replace(/\x0c/g, '\\f')
+            .replace(/\x0d/g, '\\r')
+            .replace(/\x1b/g, '\\e')
+            .replace(/\x22/g, '\\"')
+            .replace(/\x5c/g, '\\\\');
+          let badchars = key.match(
+            new RegExp(rexstr(NOT_ALLOWED_CHAR), 'gu')
+          ) || [];
+          for (let j = 0; j < badchars.length; j++) {
+            key = key.replace(
+              badchars[i],
+              '\\u' + badchars[i].codePointAt(0).toLocaleString('en', {
+                useGrouping: false,
+                minimumIntegerDigits: 4,
+              })
+            );
+          }
+          key = '"' + key + '"';
+        }
+
+        //  Value processing
+        if (val === (val.match(YAML_SIMPLE_VALUE) || [])[0]) /*  do nothing  */;
+        else if (val.indexOf('\'') === -1 && val === (val.match(ANY_ESCAPED_APOS) || [])[0]) val = '\'' + val + '\'';
+        else {
+          val = val
+            .replace(/\x00/g, '\\0')
+            .replace(/\x07/g, '\\a')
+            .replace(/\x08/g, '\\b')
+            .replace(/\x0a/g, '\\n')
+            .replace(/\x0b/g, '\\v')
+            .replace(/\x0c/g, '\\f')
+            .replace(/\x0d/g, '\\r')
+            .replace(/\x1b/g, '\\e')
+            .replace(/\x22/g, '\\"')
+            .replace(/\x5c/g, '\\\\');
+          let badchars = val.match(
+            new RegExp(rexstr(NOT_ALLOWED_CHAR), 'gu')
+          ) || [];
+          for (let j = 0; j < badchars.length; j++) {
+            val = val.replace(
+              badchars[i],
+              '\\u' + badchars[i].codePointAt(0).toLocaleString('en', {
+                useGrouping: false,
+                minimumIntegerDigits: 4,
+              })
+            );
+          }
+          val = '"' + val + '"';
+        }
+
+        frontmatter += key + ': ' + val + '\n';
+      }
+      frontmatter += '...\n';
+    }
+  }
+  return frontmatter + note;
 }

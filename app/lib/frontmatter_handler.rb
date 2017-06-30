@@ -36,6 +36,7 @@ class FrontmatterHandler
   NOT_LINE_BREAK    = unirex '(?!' + rexstr(LINE_BREAK) + ').'
   NOT_INDICATOR     = unirex '(?!' + rexstr(INDICATOR) + ').'
   NOT_FLOW_CHAR     = unirex '(?!' + rexstr(FLOW_CHAR) + ').'
+  NOT_ALLOWED_CHAR  = unirex '(?!' + rexstr(ALLOWED_CHAR) + ').'
 
   #  BASIC CONSTRUCTS  #
 
@@ -192,6 +193,7 @@ class FrontmatterHandler
         .gsub(/\\a/, "\u{07}")
         .gsub(/\\b/, "\u{08}")
         .gsub(/\\t/, "\u{09}")
+        .gsub(/\\\u{09}/, "\u{09}")
         .gsub(/\\n/, "\u{0a}")
         .gsub(/\\v/, "\u{0b}")
         .gsub(/\\f/, "\u{0c}")
