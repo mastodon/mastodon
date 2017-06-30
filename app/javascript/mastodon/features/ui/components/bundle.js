@@ -26,6 +26,8 @@ class Bundle extends React.Component {
     onFetchFail: noop,
   }
 
+  static cache = {}
+
   state = {
     mod: undefined,
     forceRender: false,
@@ -58,8 +60,17 @@ class Bundle extends React.Component {
       this.timeout = setTimeout(() => this.setState({ forceRender: true }), renderDelay);
     }
 
+    if (Bundle.cache[fetchComponent.name]) {
+      const mod = Bundle.cache[fetchComponent.name];
+
+      this.setState({ mod: mod.default });
+      onFetchSuccess();
+      return Promise.resolve();
+    }
+
     return fetchComponent()
       .then((mod) => {
+        Bundle.cache[fetchComponent.name] = mod;
         this.setState({ mod: mod.default });
         onFetchSuccess();
       })
