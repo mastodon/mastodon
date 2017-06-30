@@ -20,6 +20,7 @@ export default class DetailedStatus extends ImmutablePureComponent {
 
   static propTypes = {
     status: ImmutablePropTypes.map.isRequired,
+    settings: ImmutablePropTypes.map.isRequired,
     onOpenMedia: PropTypes.func.isRequired,
     onOpenVideo: PropTypes.func.isRequired,
     autoPlayGif: PropTypes.bool,
@@ -36,6 +37,7 @@ export default class DetailedStatus extends ImmutablePureComponent {
 
   render () {
     const status = this.props.status.get('reblog') ? this.props.status.get('reblog') : this.props.status;
+    const { settings } = this.props;
 
     let media           = '';
     let mediaIcon       = null;
@@ -45,10 +47,28 @@ export default class DetailedStatus extends ImmutablePureComponent {
       if (status.get('media_attachments').some(item => item.get('type') === 'unknown')) {
         media = <AttachmentList media={status.get('media_attachments')} />;
       } else if (status.getIn(['media_attachments', 0, 'type']) === 'video') {
-        media = <VideoPlayer sensitive={status.get('sensitive')} media={status.getIn(['media_attachments', 0])} width={300} height={150} onOpenVideo={this.props.onOpenVideo} autoplay />;
+        media = (
+          <VideoPlayer
+            sensitive={status.get('sensitive')}
+            media={status.getIn(['media_attachments', 0])}
+            letterbox={settings.getIn(['media', 'letterbox'])}
+            height={250}
+            onOpenVideo={this.props.onOpenVideo}
+            autoplay
+          />
+        );
         mediaIcon = 'video-camera';
       } else {
-        media = <MediaGallery sensitive={status.get('sensitive')} media={status.get('media_attachments')} height={300} onOpenMedia={this.props.onOpenMedia} autoPlayGif={this.props.autoPlayGif} />;
+        media = (
+          <MediaGallery
+            sensitive={status.get('sensitive')}
+            media={status.get('media_attachments')}
+            letterbox={settings.getIn(['media', 'letterbox'])}
+            height={250}
+            onOpenMedia={this.props.onOpenMedia}
+            autoPlayGif={this.props.autoPlayGif}
+          />
+        );
         mediaIcon = 'picture-o';
       }
     } else media = <CardContainer statusId={status.get('id')} />;

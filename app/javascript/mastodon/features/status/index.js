@@ -37,6 +37,7 @@ const makeMapStateToProps = () => {
 
   const mapStateToProps = (state, props) => ({
     status: getStatus(state, Number(props.params.statusId)),
+    settings: state.get('local_settings'),
     ancestorsIds: state.getIn(['contexts', 'ancestors', Number(props.params.statusId)]),
     descendantsIds: state.getIn(['contexts', 'descendants', Number(props.params.statusId)]),
     me: state.getIn(['meta', 'me']),
@@ -60,6 +61,7 @@ export default class Status extends ImmutablePureComponent {
     params: PropTypes.object.isRequired,
     dispatch: PropTypes.func.isRequired,
     status: ImmutablePropTypes.map,
+    settings: ImmutablePropTypes.map.isRequired,
     ancestorsIds: ImmutablePropTypes.list,
     descendantsIds: ImmutablePropTypes.list,
     me: PropTypes.number,
@@ -143,7 +145,7 @@ export default class Status extends ImmutablePureComponent {
 
   render () {
     let ancestors, descendants;
-    const { status, ancestorsIds, descendantsIds, me, autoPlayGif } = this.props;
+    const { status, settings, ancestorsIds, descendantsIds, me, autoPlayGif } = this.props;
 
     if (status === null) {
       return (
@@ -172,6 +174,7 @@ export default class Status extends ImmutablePureComponent {
 
             <DetailedStatus
               status={status}
+              settings={settings}
               autoPlayGif={autoPlayGif}
               me={me}
               onOpenVideo={this.handleOpenVideo}

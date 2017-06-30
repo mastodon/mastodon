@@ -15,6 +15,7 @@ class Item extends React.PureComponent {
     attachment: ImmutablePropTypes.map.isRequired,
     index: PropTypes.number.isRequired,
     size: PropTypes.number.isRequired,
+    letterbox: PropTypes.bool,
     onClick: PropTypes.func.isRequired,
     autoPlayGif: PropTypes.bool.isRequired,
   };
@@ -31,7 +32,7 @@ class Item extends React.PureComponent {
   }
 
   render () {
-    const { attachment, index, size } = this.props;
+    const { attachment, index, size, letterbox } = this.props;
 
     let width  = 50;
     let height = 100;
@@ -101,7 +102,7 @@ class Item extends React.PureComponent {
           onClick={this.handleClick}
           target='_blank'
         >
-          <img src={previewUrl} srcSet={srcSet} sizes={sizes} alt='' />
+          <img className={letterbox ? 'letterbox' : ''} src={previewUrl} srcSet={srcSet} sizes={sizes} alt='' />
         </a>
       );
     } else if (attachment.get('type') === 'gifv') {
@@ -110,7 +111,7 @@ class Item extends React.PureComponent {
       thumbnail = (
         <div className={`media-gallery__gifv ${autoPlay ? 'autoplay' : ''}`}>
           <video
-            className='media-gallery__item-gifv-thumbnail'
+            className={`media-gallery__item-gifv-thumbnail${letterbox ? ' letterbox' : ''}`}
             role='application'
             src={attachment.get('url')}
             onClick={this.handleClick}
@@ -139,6 +140,7 @@ export default class MediaGallery extends React.PureComponent {
   static propTypes = {
     sensitive: PropTypes.bool,
     media: ImmutablePropTypes.list.isRequired,
+    letterbox: PropTypes.bool,
     height: PropTypes.number.isRequired,
     onOpenMedia: PropTypes.func.isRequired,
     intl: PropTypes.object.isRequired,
@@ -158,7 +160,7 @@ export default class MediaGallery extends React.PureComponent {
   }
 
   render () {
-    const { media, intl, sensitive } = this.props;
+    const { media, intl, sensitive, letterbox } = this.props;
 
     let children;
 
@@ -179,7 +181,7 @@ export default class MediaGallery extends React.PureComponent {
       );
     } else {
       const size = media.take(4).size;
-      children = media.take(4).map((attachment, i) => <Item key={attachment.get('id')} onClick={this.handleClick} attachment={attachment} autoPlayGif={this.props.autoPlayGif} index={i} size={size} />);
+      children = media.take(4).map((attachment, i) => <Item key={attachment.get('id')} onClick={this.handleClick} attachment={attachment} autoPlayGif={this.props.autoPlayGif} index={i} size={size} letterbox={letterbox} />);
     }
 
     return (

@@ -174,7 +174,7 @@ class Status extends ImmutablePureComponent {
 
     if (collapse !== undefined) this.collapse(collapse);
     else if (settings.getIn(['collapsed', 'auto', 'all'])) this.collapse();
-    else if (settings.getIn(['collapsed', 'auto', 'lengthy']) && node.clientHeight > 400) this.collapse();
+    else if (settings.getIn(['collapsed', 'auto', 'lengthy']) && node.clientHeight > (status.get('media_attachments').size > 0 && !this.props.muted ? 650 : 400)) this.collapse();
     else if (settings.getIn(['collapsed', 'auto', 'replies']) && status.get('in_reply_to_id', null) !== null) this.collapse();
     else if (settings.getIn(['collapsed', 'auto', 'media']) && !(status.get('spoiler_text').length > 0) && status.get('media_attachments').size > 0) this.collapse();
 
@@ -296,10 +296,27 @@ class Status extends ImmutablePureComponent {
       if (status.get('media_attachments').some(item => item.get('type') === 'unknown')) {
 
       } else if (status.getIn(['media_attachments', 0, 'type']) === 'video') {
-        media = <VideoPlayer media={status.getIn(['media_attachments', 0])} sensitive={status.get('sensitive')} onOpenVideo={this.props.onOpenVideo} />;
+        media = (
+          <VideoPlayer
+            media={status.getIn(['media_attachments', 0])}
+            sensitive={status.get('sensitive')}
+            letterbox={settings.getIn(['media', 'letterbox'])}
+            height={250}
+            onOpenVideo={this.props.onOpenVideo}
+          />
+        );
         mediaIcon = 'video-camera';
       } else {
-        media = <MediaGallery media={status.get('media_attachments')} sensitive={status.get('sensitive')} height={110} onOpenMedia={this.props.onOpenMedia} autoPlayGif={this.props.autoPlayGif} />;
+        media = (
+          <MediaGallery
+            media={status.get('media_attachments')}
+            sensitive={status.get('sensitive')}
+            letterbox={settings.getIn(['media', 'letterbox'])}
+            height={250}
+            onOpenMedia={this.props.onOpenMedia}
+            autoPlayGif={this.props.autoPlayGif}
+          />
+        );
         mediaIcon = 'picture-o';
       }
 

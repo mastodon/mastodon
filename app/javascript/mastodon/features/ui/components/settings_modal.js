@@ -168,12 +168,28 @@ export default class SettingsModal extends React.PureComponent {
     );
   }
 
+  Media = () => {
+    return (
+      <div>
+        <h1><FormattedMessage id='settings.media' defaultMessage='Media' /></h1>
+        <SettingsItem
+          settings={this.props.settings}
+          item={['media', 'letterbox']}
+          id='mastodon-settings--media-letterbox'
+          onChange={this.props.toggleSetting}
+        >
+          <FormattedMessage id='settings.media_letterbox' defaultMessage='Letterbox media' />
+        </SettingsItem>
+      </div>
+    );
+  }
+
   navigateTo = (e) =>
     this.setState({ currentIndex: +e.currentTarget.getAttribute('data-mastodon-navigation_index') });
 
   render () {
 
-    const { General, CollapsedStatuses, navigateTo } = this;
+    const { General, CollapsedStatuses, Media, navigateTo } = this;
     const { onClose } = this.props;
     const { currentIndex } = this.state;
 
@@ -187,8 +203,11 @@ export default class SettingsModal extends React.PureComponent {
           <a onClick={navigateTo} role='button' data-mastodon-navigation_index='1' tabIndex='0' className={`settings-modal__navigation-item${currentIndex === 1 ? ' active' : ''}`}>
             <FormattedMessage id='settings.collapsed_statuses' defaultMessage='Collapsed toots' />
           </a>
+          <a onClick={navigateTo} role='button' data-mastodon-navigation_index='2' tabIndex='0' className={`settings-modal__navigation-item${currentIndex === 2 ? ' active' : ''}`}>
+            <FormattedMessage id='settings.media' defaultMessage='Media' />
+          </a>
           <a href='/settings/preferences' className='settings-modal__navigation-item'>
-            <i className='fa fa-fw fa-cogs' /> <FormattedMessage id='settings.preferences' defaultMessage='User preferences' />
+            <i className='fa fa-fw fa-cog' /> <FormattedMessage id='settings.preferences' defaultMessage='User preferences' />
           </a>
           <a onClick={onClose} role='button' tabIndex='0' className='settings-modal__navigation-close'>
             <FormattedMessage id='settings.close' defaultMessage='Close' />
@@ -201,6 +220,7 @@ export default class SettingsModal extends React.PureComponent {
             [
               <General />,
               <CollapsedStatuses />,
+              <Media />,
             ][currentIndex] || <General />
           }
         </div>

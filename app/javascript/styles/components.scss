@@ -3640,10 +3640,17 @@ button.icon-button.active i.fa-retweet {
 /* Media Gallery */
 .media-gallery {
   box-sizing: border-box;
-  margin-top: 8px;
+  margin-top: 15px;
+  margin-left: -68px;
   overflow: hidden;
   position: relative;
-  width: 100%;
+  width: calc(100% + 80px);
+  background: $base-shadow-color;
+
+  .detailed-status & {
+    margin-left:-10px;
+    width: calc(100% + 22px);
+  }
 }
 
 .media-gallery__item {
@@ -3655,18 +3662,20 @@ button.icon-button.active i.fa-retweet {
 }
 
 .media-gallery__item-thumbnail {
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
   cursor: zoom-in;
   display: flex;
   align-items: center;
   text-decoration: none;
+  width: 100%;
   height: 100%;
 
-  &,
   img {
     width: 100%;
+
+    &:not(.letterbox) {
+      height: 100%;
+      object-fit: cover;
+    }
   }
 }
 
@@ -3680,12 +3689,13 @@ button.icon-button.active i.fa-retweet {
 .media-gallery__item-gifv-thumbnail {
   cursor: zoom-in;
   height: 100%;
-  object-fit: cover;
   position: relative;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 100%;
   z-index: 1;
+
+  &:not(.letterbox) {
+    height: 100%;
+    object-fit: cover;
+  }
 }
 
 .media-gallery__item-thumbnail-label {
@@ -3698,22 +3708,27 @@ button.icon-button.active i.fa-retweet {
 
 /* Status Video Player */
 .status__video-player {
-  background: $base-overlay-background;
+  display: flex;
+  align-items: center;
+  background: $base-shadow-color;
   box-sizing: border-box;
   cursor: default; /* May not be needed */
-  margin-top: 8px;
+  margin-top: 15px;
+  margin-left:-68px;
+  width: calc(100% + 80px);
   overflow: hidden;
   position: relative;
 }
 
 .status__video-player-video {
-  height: 100%;
-  object-fit: cover;
   position: relative;
-  top: 50%;
-  transform: translateY(-50%);
   width: 100%;
   z-index: 1;
+
+  &:not(.letterbox) {
+    height: 100%;
+    object-fit: cover;
+  }
 }
 
 .status__video-player-expand,
@@ -3754,7 +3769,9 @@ button.icon-button.active i.fa-retweet {
   background-repeat: no-repeat;
   background-position: center;
   cursor: pointer;
-  margin-top: 8px;
+  margin-top: 15px;
+  margin-left:-68px;
+  width: calc(100% + 80px);
   position: relative;
 }
 

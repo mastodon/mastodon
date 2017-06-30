@@ -19,6 +19,9 @@ const initialState = Immutable.fromJS({
       preview_images   : false,
     },
   },
+  media     : {
+    letterbox   : true,
+  },
 });
 
 const hydrate = (state, localSettings) => state.mergeDeep(localSettings);

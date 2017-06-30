@@ -16,7 +16,7 @@ export default class VideoPlayer extends React.PureComponent {
 
   static propTypes = {
     media: ImmutablePropTypes.map.isRequired,
-    width: PropTypes.number,
+    letterbox: PropTypes.bool,
     height: PropTypes.number,
     sensitive: PropTypes.bool,
     intl: PropTypes.object.isRequired,
@@ -25,7 +25,6 @@ export default class VideoPlayer extends React.PureComponent {
   };
 
   static defaultProps = {
-    width: 239,
     height: 110,
   };
 
@@ -111,7 +110,7 @@ export default class VideoPlayer extends React.PureComponent {
   }
 
   render () {
-    const { media, intl, width, height, sensitive, autoplay } = this.props;
+    const { media, intl, letterbox, height, sensitive, autoplay } = this.props;
 
     let spoilerButton = (
       <div className={`status__video-player-spoiler ${this.state.visible ? 'status__video-player-spoiler--visible' : ''}`}>
@@ -138,7 +137,7 @@ export default class VideoPlayer extends React.PureComponent {
     if (!this.state.visible) {
       if (sensitive) {
         return (
-          <div role='button' tabIndex='0' style={{ width: `${width}px`, height: `${height}px` }} className='media-spoiler' onClick={this.handleVisibility}>
+          <div role='button' tabIndex='0' style={{ height: `${height}px` }} className='media-spoiler' onClick={this.handleVisibility}>
             {spoilerButton}
             <span className='media-spoiler__warning'><FormattedMessage id='status.sensitive_warning' defaultMessage='Sensitive content' /></span>
             <span className='media-spoiler__trigger'><FormattedMessage id='status.sensitive_toggle' defaultMessage='Click to view' /></span>
@@ -146,7 +145,7 @@ export default class VideoPlayer extends React.PureComponent {
         );
       } else {
         return (
-          <div role='button' tabIndex='0' style={{ width: `${width}px`, height: `${height}px` }} className='media-spoiler' onClick={this.handleVisibility}>
+          <div role='button' tabIndex='0' style={{ height: `${height}px` }} className='media-spoiler' onClick={this.handleVisibility}>
             {spoilerButton}
             <span className='media-spoiler__warning'><FormattedMessage id='status.media_hidden' defaultMessage='Media hidden' /></span>
             <span className='media-spoiler__trigger'><FormattedMessage id='status.sensitive_toggle' defaultMessage='Click to view' /></span>
@@ -157,7 +156,7 @@ export default class VideoPlayer extends React.PureComponent {
 
     if (this.state.preview && !autoplay) {
       return (
-        <div role='button' tabIndex='0' className='media-spoiler-video' style={{ width: `${width}px`, height: `${height}px`, backgroundImage: `url(${media.get('preview_url')})` }} onClick={this.handleOpen}>
+        <div role='button' tabIndex='0' className='media-spoiler-video' style={{ height: `${height}px`, backgroundImage: `url(${media.get('preview_url')})` }} onClick={this.handleOpen}>
           {spoilerButton}
           <div className='media-spoiler-video-play-icon'><i className='fa fa-play' /></div>
         </div>
@@ -166,20 +165,20 @@ export default class VideoPlayer extends React.PureComponent {
 
     if (this.state.videoError) {
       return (
-        <div style={{ width: `${width}px`, height: `${height}px` }} className='video-error-cover' >
+        <div style={{ height: `${height}px` }} className='video-error-cover' >
           <span className='media-spoiler__warning'><FormattedMessage id='video_player.video_error' defaultMessage='Video could not be played' /></span>
         </div>
       );
     }
 
     return (
-      <div className='status__video-player' style={{ width: `${width}px`, height: `${height}px` }}>
+      <div className='status__video-player' style={{ height: `${height}px` }}>
         {spoilerButton}
         {muteButton}
         {expandButton}
 
         <video
-          className='status__video-player-video'
+          className={`status__video-player-video${letterbox ? ' letterbox' : ''}`}
           role='button'
           tabIndex='0'
           ref={this.setRef}
