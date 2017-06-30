@@ -80,7 +80,9 @@ export default class Status extends ImmutablePureComponent {
 
   componentDidMount () {
     window.requestAnimationFrame(() => {
-      this.setState({ showDeferedComponents: true });
+      window.requestAnimationFrame(() => {
+        this.setState({ showDeferedComponents: true });
+      });
     });
 
     if (!this.props.intersectionObserverWrapper) {
@@ -233,9 +235,7 @@ export default class Status extends ImmutablePureComponent {
       statusAvatar = <AvatarOverlay staticSrc={status.getIn(['account', 'avatar_static'])} overlaySrc={account.get('avatar_static')} />;
     }
 
-    const displayName = showDeferedComponents ?
-      <DisplayName account={status.get('account')} /> :
-      <div className='display-name'><strong style={{ opacity: 0 }}>Dummy</strong></div>;
+    const displayName = <DisplayName account={status.get('account')} />;
 
     const timestamp = showDeferedComponents ?
       <RelativeTimestamp timestamp={status.get('created_at')} /> :
