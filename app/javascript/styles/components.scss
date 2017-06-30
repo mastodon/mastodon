@@ -2876,6 +2876,79 @@ button.icon-button.active i.fa-retweet {
   }
 }
 
+.advanced-options-dropdown {
+  position: relative;
+}
+
+.advanced-options-dropdown__dropdown {
+  display: none;
+  position: absolute;
+  left: 0;
+  top: 27px;
+  width: 230px;
+  background: $simple-background-color;
+  border-radius: 0 4px 4px;
+  z-index: 2;
+  overflow: hidden;
+}
+
+.advanced-options-dropdown__option {
+  color: $ui-base-color;
+  padding: 10px;
+  cursor: pointer;
+  display: flex;
+
+  &:hover,
+  &.active {
+    background: $ui-highlight-color;
+    color: $primary-text-color;
+
+    .advanced-options-dropdown__option__content {
+      color: $primary-text-color;
+
+      strong {
+        color: $primary-text-color;
+      }
+    }
+  }
+
+  &.active:hover {
+    background: lighten($ui-highlight-color, 4%);
+  }
+}
+
+.advanced-options-dropdown__option__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 10px;
+}
+
+.advanced-options-dropdown__option__content {
+  flex: 1 1 auto;
+  color: darken($ui-primary-color, 24%);
+
+  strong {
+    font-weight: 500;
+    display: block;
+    color: $ui-base-color;
+  }
+}
+
+.advanced-options-dropdown.active {
+  .advanced-options-dropdown__value {
+    background: $simple-background-color;
+    border-radius: 4px 4px 0 0;
+    box-shadow: 0 -4px 4px rgba($base-shadow-color, 0.1);
+  }
+
+  .advanced-options-dropdown__dropdown {
+    display: block;
+    box-shadow: 2px 4px 6px rgba($base-shadow-color, 0.1);
+  }
+}
+
+
 .search {
   position: relative;
   margin-bottom: 10px;
