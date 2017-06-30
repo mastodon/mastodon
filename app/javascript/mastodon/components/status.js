@@ -43,6 +43,7 @@ export default class Status extends ImmutablePureComponent {
   };
 
   state = {
+    showDeferedComponents: false,
     isExpanded: false,
     isIntersecting: true, // assume intersecting until told otherwise
     isHidden: false, // set to true in requestIdleCallback to trigger un-render
@@ -60,7 +61,7 @@ export default class Status extends ImmutablePureComponent {
     'muted',
   ]
 
-  updateOnStates = ['isExpanded']
+  updateOnStates = ['showDeferedComponents', 'isExpanded']
 
   shouldComponentUpdate (nextProps, nextState) {
     if (!nextState.isIntersecting && nextState.isHidden) {
@@ -90,6 +91,10 @@ export default class Status extends ImmutablePureComponent {
     );
 
     this.componentMounted = true;
+
+    window.requestAnimationFrame(() => {
+      this.setState({ showDeferedComponents: true });
+    });
   }
 
   componentWillUnmount () {
@@ -168,7 +173,7 @@ export default class Status extends ImmutablePureComponent {
     // Exclude intersectionObserverWrapper from `other` variable
     // because intersection is managed in here.
     const { status, account, intersectionObserverWrapper, ...other } = this.props;
-    const { isExpanded, isIntersecting, isHidden } = this.state;
+    const { showDeferedComponents, isExpanded, isIntersecting, isHidden } = this.state;
 
     if (status === null) {
       return null;
@@ -228,17 +233,31 @@ export default class Status extends ImmutablePureComponent {
       statusAvatar = <AvatarOverlay staticSrc={status.getIn(['account', 'avatar_static'])} overlaySrc={account.get('avatar_static')} />;
     }
 
+    const displayName = showDeferedComponents ?
+      <DisplayName account={status.get('account')} /> :
+      <div className='display-name'><strong style={{ opacity: 0 }}>Dummy</strong></div>;
+
+    const timestamp = showDeferedComponents ?
+      <RelativeTimestamp timestamp={status.get('created_at')} /> :
+      null;
+
+    const actionBar = showDeferedComponents ?
+      <StatusActionBar {...this.props} /> :
+      <div className='status__action-bar' style={{ height: '23.14px', opacity: 0 }} >Dummy</div>;
+
     return (
       <div className={`status ${this.props.muted ? 'muted' : ''} status-${status.get('visibility')}`} data-id={status.get('id')} ref={this.handleRef}>
         <div className='status__info'>
-          <a href={status.get('url')} className='status__relative-time' target='_blank' rel='noopener'><RelativeTimestamp timestamp={status.get('created_at')} /></a>
+          <a href={status.get('url')} className='status__relative-time' target='_blank' rel='noopener'>
+            {timestamp}
+          </a>
 
           <a onClick={this.handleAccountClick} data-id={status.getIn(['account', 'id'])} href={status.getIn(['account', 'url'])} className='status__display-name'>
             <div className='status__avatar'>
               {statusAvatar}
             </div>
 
-            <DisplayName account={status.get('account')} />
+            {displayName}
           </a>
         </div>
 
@@ -246,7 +265,7 @@ export default class Status extends ImmutablePureComponent {
 
         {media}
 
-        <StatusActionBar {...this.props} />
+        {actionBar}
       </div>
     );
   }
