@@ -55,3 +55,4 @@ script:
   - travis_retry bundle exec parallel_test spec/ --group-by filesize --type rspec
   - npm test
   - bundle exec i18n-tasks unused
+  - bundle exec cap -T
