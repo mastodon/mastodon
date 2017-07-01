@@ -193,14 +193,18 @@ pl:
       title: PubSubHubbub
       topic: Temat
     title: Administracja
+  admin_mailer:
+    new_report:
+      body: "Użytkownik %{reporter} zgłosił %{target}"
+      subject: Nowe zgłoszenie na %{instance} (#%{id})
   application_mailer:
     settings: 'Zmień ustawienia powiadamiania: %{link}'
-    signature: Powiadomienie Mastodona, wysłane przez %{instance}
+    signature: Powiadomienie Mastodona z instancji %{instance}
     view: 'Zobacz:'
   applications:
     invalid_url: Ten URL jest nieprawidłowy
   auth:
-    change_password: Uwierzytelnienie
+    change_password: Bezpieczeństwo
     delete_account: Usunięcie konta
     delete_account_html: Jeżeli próbowałeś usunąć konto, <a href="%{path}">przejdź tutaj</a>. Otrzymasz prośbę o potwierdzenie.
     didnt_get_confirmation: Nie otrzymałeś instrukcji weryfikacji?
@@ -323,7 +327,44 @@ pl:
     acct: Podaj swój adres (nazwa@domena), z którego chcesz śledzić
     missing_resource: Nie udało się znaleźć adresu przekierowania z Twojej domeny
     proceed: Śledź
-    prompt: 'Śledzony będzie:'
+    prompt: 'Zamierzasz śledzić:'
+  sessions:
+    activity: Ostatnia aktywność
+    browser: Przeglądarka
+    browsers:
+      alipay: Alipay
+      blackberry: Blackberry
+      chrome: Chrome
+      edge: Microsoft Edge
+      firefox: Firefox
+      generic: nieznana przeglądarka
+      ie: Internet Explorer
+      micro_messenger: MicroMessenger
+      nokia: Nokia S40 Ovi Browser
+      opera: Opera
+      phantom_js: PhantomJS
+      qq: QQ Browser
+      safari: Safari
+      uc_browser: UCBrowser
+      weibo: Weibo
+    current_session: Obecna sesja
+    description: "%{browser} na %{platform}"
+    explanation: Przeglądarki z aktywną sesją Twojego konta.
+    ip: Adres IP
+    platforms:
+      adobe_air: Adobe Air
+      android: Android
+      blackberry: Blackberry
+      chrome_os: ChromeOS
+      firefox_os: Firefox OS
+      ios: iOS
+      linux: Linux
+      mac: macOS
+      other: nieznana platforma
+      windows: Windows
+      windows_mobile: Windows Mobile
+      windows_phone: Windows Phone
+    title: Sesje
   settings:
     authorized_apps: Uwierzytelnione aplikacje
     back: Powrót do Mastodona
@@ -358,13 +399,15 @@ pl:
     description_html: Jeśli włączysz <strong>uwierzytelnianie dwuetapowe</strong>, logowanie się będzie wymagało podania tokenu wyświetlonego na Twoim telefonie.
     disable: Wyłącz
     enable: Włącz
+    enabled: Uwierzytelnianie dwuetapowe jest włączone
     enabled_success: Pomyślnie aktywowano uwierzytelnianie dwuetapowe
     generate_recovery_codes: Generuj kody zapasowe
     instructions_html: "<strong>Zeskanuj ten kod QR na swoim urządzeniu za pomocą Google Authenticator, FreeOTP lub podobnej aplikacji</strong>. Od teraz będzie ona generowała kody wymagane przy logowaniu."
     lost_recovery_codes: Kody zapasowe pozwolą uzyskać dostęp do portalu, jeżeli utracisz dostęp do telefonu. Jeżeli utracisz dostęp do nich, możesz wygenerować je ponownie tutaj. Poprzednie zostaną unieważnione.
     manual_instructions: 'Jeżeli nie możesz zeskanować kodu QR, musisz wprowadzić ten kod ręcznie:'
+    recovery_codes: Przywróć kody zapasowe
     recovery_codes_regenerated: Pomyślnie wygenerowano ponownie kody zapasowe
-    recovery_instructions: Jeżeli kiedykolwiek utracisz dostęp do telefonu, możesz wykorzystać jeden z kodów zapasowych, aby odzyskać dostęp do konta. Trzymaj je w bezpiecznym miejscu. (Na przykład, wydrukuj je i przechowuj z ważnymu dokumentami.)
+    recovery_instructions_html: Jeżeli kiedykolwiek utracisz dostęp do telefonu, możesz wykorzystać jeden z kodów zapasowych, aby odzyskać dostęp do konta. <strong>Trzymaj je w bezpiecznym miejscu</strong>. Na przykład, wydrukuj je i przechowuj z ważnymu dokumentami.
     setup: Skonfiguruj
     wrong_code: Wprowadzony kod jest niepoprawny! Czy czas serwera i urządzenia jest poprawny?
   users:

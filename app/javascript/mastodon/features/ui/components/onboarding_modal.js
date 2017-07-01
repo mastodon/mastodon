@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
+import ReactSwipeable from 'react-swipeable';
 import classNames from 'classnames';
 import Permalink from '../../../components/permalink';
 import TransitionMotion from 'react-motion/lib/TransitionMotion';
@@ -167,7 +168,9 @@ const mapStateToProps = state => ({
   domain: state.getIn(['meta', 'domain']),
 });
 
-class OnboardingModal extends React.PureComponent {
+@connect(mapStateToProps)
+@injectIntl
+export default class OnboardingModal extends React.PureComponent {
 
   static propTypes = {
     onClose: PropTypes.func.isRequired,
@@ -272,7 +275,7 @@ class OnboardingModal extends React.PureComponent {
       <div className='modal-root__modal onboarding-modal'>
         <TransitionMotion styles={styles}>
           {interpolatedStyles => (
-            <div className='onboarding-modal__pager'>
+            <ReactSwipeable onSwipedRight={this.handlePrev} onSwipedLeft={this.handleNext} className='onboarding-modal__pager'>
               {interpolatedStyles.map(({ key, data, style }, i) => {
                 const className = classNames('onboarding-modal__page__wrapper', {
                   'onboarding-modal__page__wrapper--active': i === currentIndex,
@@ -281,7 +284,7 @@ class OnboardingModal extends React.PureComponent {
                   <div key={key} style={style} className={className}>{data}</div>
                 );
               })}
-            </div>
+            </ReactSwipeable>
           )}
         </TransitionMotion>
 
@@ -322,5 +325,3 @@ class OnboardingModal extends React.PureComponent {
   }
 
 }
-
-export default connect(mapStateToProps)(injectIntl(OnboardingModal));

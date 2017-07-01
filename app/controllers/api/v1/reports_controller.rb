@@ -17,6 +17,9 @@ class Api::V1::ReportsController < Api::BaseController
       status_ids: reported_status_ids,
       comment: report_params[:comment]
     )
+
+    User.admins.includes(:account).each { |u| AdminMailer.new_report(u.account, @report).deliver_later }
+
     render :show
   end
 

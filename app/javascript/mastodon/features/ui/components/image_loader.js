@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 
-class ImageLoader extends React.PureComponent {
+export default class ImageLoader extends React.PureComponent {
 
   static propTypes = {
     alt: PropTypes.string,
@@ -20,50 +21,123 @@ class ImageLoader extends React.PureComponent {
     error: false,
   }
 
-  componentWillMount() {
-    this._loadImage(this.props.src);
+  removers = [];
+
+  get canvasContext() {
+    if (!this.canvas) {
+      return null;
+    }
+    this._canvasContext = this._canvasContext || this.canvas.getContext('2d');
+    return this._canvasContext;
   }
 
-  componentWillReceiveProps(props) {
-    this._loadImage(props.src);
+  componentDidMount () {
+    this.loadImage(this.props);
   }
 
-  _loadImage(src) {
+  componentWillReceiveProps (nextProps) {
+    if (this.props.src !== nextProps.src) {
+      this.loadImage(nextProps);
+    }
+  }
+
+  loadImage (props) {
+    this.removeEventListeners();
+    this.setState({ loading: true, error: false });
+    Promise.all([
+      this.loadPreviewCanvas(props),
+      this.loadOriginalImage(props),
+    ])
+      .then(() => {
+        this.setState({ loading: false, error: false });
+        this.clearPreviewCanvas();
+      })
+      .catch(() => this.setState({ loading: false, error: true }));
+  }
+
+  loadPreviewCanvas = ({ previewSrc, width, height }) => new Promise((resolve, reject) => {
     const image = new Image();
+    const removeEventListeners = () => {
+      image.removeEventListener('error', handleError);
+      image.removeEventListener('load', handleLoad);
+    };
+    const handleError = () => {
+      removeEventListeners();
+      reject();
+    };
+    const handleLoad = () => {
+      removeEventListeners();
+      this.canvasContext.drawImage(image, 0, 0, width, height);
+      resolve();
+    };
+    image.addEventListener('error', handleError);
+    image.addEventListener('load', handleLoad);
+    image.src = previewSrc;
+    this.removers.push(removeEventListeners);
+  })
 
-    image.onerror = () => this.setState({ loading: false, error: true });
-    image.onload  = () => this.setState({ loading: false, error: false });
-
-    image.src = src;
-
-    this.setState({ loading: true });
+  clearPreviewCanvas () {
+    const { width, height } = this.canvas;
+    this.canvasContext.clearRect(0, 0, width, height);
   }
 
-  render() {
-    const { alt, src, previewSrc, width, height } = this.props;
+  loadOriginalImage = ({ src }) => new Promise((resolve, reject) => {
+    const image = new Image();
+    const removeEventListeners = () => {
+      image.removeEventListener('error', handleError);
+      image.removeEventListener('load', handleLoad);
+    };
+    const handleError = () => {
+      removeEventListeners();
+      reject();
+    };
+    const handleLoad = () => {
+      removeEventListeners();
+      resolve();
+    };
+    image.addEventListener('error', handleError);
+    image.addEventListener('load', handleLoad);
+    image.src = src;
+    this.removers.push(removeEventListeners);
+  });
+
+  removeEventListeners () {
+    this.removers.forEach(listeners => listeners());
+    this.removers = [];
+  }
+
+  setCanvasRef = c => {
+    this.canvas = c;
+  }
+
+  render () {
+    const { alt, src, width, height } = this.props;
     const { loading } = this.state;
 
+    const className = classNames('image-loader', {
+      'image-loader--loading': loading,
+    });
+
     return (
-      <div className='image-loader'>
-        <img
-          alt={alt}
-          className='image-loader__img'
-          src={src}
+      <div className={className}>
+        <canvas
+          className='image-loader__preview-canvas'
           width={width}
           height={height}
+          ref={this.setCanvasRef}
         />
 
-        {loading &&
+        {!loading && (
           <img
-            alt=''
-            src={previewSrc}
-            className='image-loader__preview-img'
+            alt={alt}
+            className='image-loader__img'
+            src={src}
+            width={width}
+            height={height}
           />
-        }
+        )}
       </div>
     );
   }
 
 }
-
-export default ImageLoader;

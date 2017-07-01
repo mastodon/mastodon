@@ -193,6 +193,10 @@ ja:
       title: PubSubHubbub
       topic: トピック
     title: 管理
+  admin_mailer:
+    new_report:
+      body: "%{reporter} が %{target} を通報しました"
+      subject: "%{instance} の新しい通報 (#%{id})"
   application_mailer:
     settings: 'メール設定の変更: %{link}'
     signature: Mastodon %{instance} インスタンスからの通知
@@ -320,6 +324,43 @@ ja:
     missing_resource: リダイレクト先が見つかりませんでした
     proceed: フォローする
     prompt: 'フォローしようとしています:'
+  sessions:
+    activity: 最後のアクティビティ
+    browser: ブラウザ
+    browsers:
+      alipay: Alipay
+      blackberry: Blackberry
+      chrome: Chrome
+      edge: Microsoft Edge
+      firefox: Firefox
+      generic: 不明なブラウザ
+      ie: Internet Explorer
+      micro_messenger: MicroMessenger
+      nokia: Nokia S40 Ovi Browser
+      opera: Opera
+      phantom_js: PhantomJS
+      qq: QQ Browser
+      safari: Safari
+      uc_browser: UCBrowser
+      weibo: Weibo
+    current_session: 現在のセッション
+    description: "%{browser} on %{platform}"
+    explanation: あなたのMastodonアカウントに現在ログインしているウェブブラウザの一覧です。
+    ip: IP
+    platforms:
+      adobe_air: Adobe Air
+      android: Android
+      blackberry: Blackberry
+      chrome_os: ChromeOS
+      firefox_os: Firefox OS
+      ios: iOS
+      linux: Linux
+      mac: Mac
+      other: 不明なプラットフォーム
+      windows: Windows
+      windows_mobile: Windows Mobile
+      windows_phone: Windows Phone
+    title: セッション
   settings:
     authorized_apps: 認証済みアプリ
     back: 戻る
@@ -354,13 +395,15 @@ ja:
     description_html: "<strong>二段階認証</strong>を有効にするとログイン時、電話でコードを受け取る必要があります。"
     disable: 無効
     enable: 有効
+    enabled: 二段階認証は有効になっています
     enabled_success: 二段階認証が有効になりました
     generate_recovery_codes: リカバリーコードを生成
     instructions_html: "<strong>Google Authenticatorか、もしくはほかのTOTPアプリでこのQRコードをスキャンしてください。</strong>これ以降、ログインするときはそのアプリで生成されるコードが必要になります。"
     lost_recovery_codes: リカバリーコードを使用すると携帯電話を紛失した場合でもアカウントにアクセスできるようになります。 リカバリーコードを紛失した場合もここで再生成することができますが、古いリカバリーコードは無効になります。
     manual_instructions: 'QRコードがスキャンできず、手動での登録を希望の場合はこのシークレットコードを利用してください。:'
+    recovery_codes: リカバリーコード
     recovery_codes_regenerated: リカバリーコードが再生成されました。
-    recovery_instructions: 携帯電話を紛失した場合、以下の内どれかのリカバリーコードを使用してアカウントへアクセスすることができます。 リカバリーコードは印刷して安全に保管してください。
+    recovery_instructions_html: 携帯電話を紛失した場合、以下の内どれかのリカバリーコードを使用してアカウントへアクセスすることができます。<strong>リカバリーコードは大切に保全してください。</strong>たとえば印刷してほかの重要な書類と一緒に保管することができます。
     setup: 初期設定
     wrong_code: コードが間違っています。サーバー上の時間とデバイス上の時間が一致していることを確認してください。
   users:

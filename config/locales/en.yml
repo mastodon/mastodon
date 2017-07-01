@@ -193,6 +193,10 @@ en:
       title: PubSubHubbub
       topic: Topic
     title: Administration
+  admin_mailer:
+    new_report:
+      body: "%{reporter} has reported %{target}"
+      subject: New report for %{instance} (#%{id})
   application_mailer:
     settings: 'Change e-mail preferences: %{link}'
     signature: Mastodon notifications from %{instance}
@@ -200,7 +204,7 @@ en:
   applications:
     invalid_url: The provided URL is invalid
   auth:
-    change_password: Credentials
+    change_password: Security
     delete_account: Delete account
     delete_account_html: If you wish to delete your account, you can <a href="%{path}">proceed here</a>. You will be asked for confirmation.
     didnt_get_confirmation: Didn't receive confirmation instructions?
@@ -320,6 +324,43 @@ en:
     missing_resource: Could not find the required redirect URL for your account
     proceed: Proceed to follow
     prompt: 'You are going to follow:'
+  sessions:
+    activity: Last activity
+    browser: Browser
+    browsers:
+      alipay: Alipay
+      blackberry: Blackberry
+      chrome: Chrome
+      edge: Microsoft Edge
+      firefox: Firefox
+      generic: Unknown browser
+      ie: Internet Explorer
+      micro_messenger: MicroMessenger
+      nokia: Nokia S40 Ovi Browser
+      opera: Opera
+      phantom_js: PhantomJS
+      qq: QQ Browser
+      safari: Safari
+      uc_browser: UCBrowser
+      weibo: Weibo
+    current_session: Current session
+    description: "%{browser} on %{platform}"
+    explanation: These are the web browsers currently logged in to your Mastodon account.
+    ip: IP
+    platforms:
+      adobe_air: Adobe Air
+      android: Android
+      blackberry: Blackberry
+      chrome_os: ChromeOS
+      firefox_os: Firefox OS
+      ios: iOS
+      linux: Linux
+      mac: Mac
+      other: unknown platform
+      windows: Windows
+      windows_mobile: Windows Mobile
+      windows_phone: Windows Phone
+    title: Sessions
   settings:
     authorized_apps: Authorized apps
     back: Back to Mastodon
@@ -354,13 +395,15 @@ en:
     description_html: If you enable <strong>two-factor authentication</strong>, logging in will require you to be in possession of your phone, which will generate tokens for you to enter.
     disable: Disable
     enable: Enable
+    enabled: Two-factor authentication is enabled
     enabled_success: Two-factor authentication successfully enabled
-    generate_recovery_codes: Generate Recovery Codes
+    generate_recovery_codes: Generate recovery codes
     instructions_html: "<strong>Scan this QR code into Google Authenticator or a similiar TOTP app on your phone</strong>. From now on, that app will generate tokens that you will have to enter when logging in."
     lost_recovery_codes: Recovery codes allow you to regain access to your account if you lose your phone. If you've lost your recovery codes, you can regenerate them here. Your old recovery codes will be invalidated.
     manual_instructions: 'If you can''t scan the QR code and need to enter it manually, here is the plain-text secret:'
+    recovery_codes: Backup recovery codes
     recovery_codes_regenerated: Recovery codes successfully regenerated
-    recovery_instructions: If you ever lose access to your phone, you can use one of the recovery codes below to regain access to your account. Keep the recovery codes safe. (For example, you may print them and store them with other important documents.)
+    recovery_instructions_html: If you ever lose access to your phone, you can use one of the recovery codes below to regain access to your account. <strong>Keep the recovery codes safe</strong>. For example, you may print them and store them with other important documents.
     setup: Set up
     wrong_code: The entered code was invalid! Are server time and device time correct?
   users:
