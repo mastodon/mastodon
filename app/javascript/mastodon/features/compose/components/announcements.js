@@ -25,6 +25,7 @@ Collapsable.propTypes = {
 };
 
 const messages = defineMessages({
+  toggle_visible: { id: 'media_gallery.toggle_visible', defaultMessage: 'Toggle visibility' },
   welcome: { id: 'welcome.message', defaultMessage: 'Welcome to {domain}!' },
 });
 
@@ -49,9 +50,9 @@ class Announcements extends React.PureComponent {
     this.setState({ show: !this.state.show });
   }
   nl2br (text) {
-    return text.split(/(\n)/g).map(function (line) {
+    return text.split(/(\n)/g).map((line, i) => {
       if (line.match(/(\n)/g)) {
-        return React.createElement('br');
+        return React.createElement('br', { key: i });
       }
       return line;
     });
@@ -66,15 +67,15 @@ class Announcements extends React.PureComponent {
           <Collapsable isVisible={this.state.show} fullHeight={300} minHeight={20} >
             <div className='announcements__body'>
               <p>{ this.nl2br(intl.formatMessage(messages.welcome, { domain: document.title }))}</p>
-              {hashtags.map(hashtag =>
-                <Link to={`/timelines/tag/${hashtag}`}>
+              {hashtags.map((hashtag, i) =>
+                <Link key={i} to={`/timelines/tag/${hashtag}`}>
                   #{hashtag}
                 </Link>
               )}
             </div>
           </Collapsable>
           <div className='announcements__icon'>
-            <IconButton icon='caret-up' onClick={this.onClick} size={20} animate active={this.state.show} />
+            <IconButton title={intl.formatMessage(messages.toggle_visible)} icon='caret-up' onClick={this.onClick} size={20} animate active={this.state.show} />
           </div>
         </li>
       </ul>
