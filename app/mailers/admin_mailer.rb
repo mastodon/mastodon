@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class AdminMailer < ApplicationMailer
+  helper StreamEntriesHelper
+
   def new_report(recipient, report)
     @report   = report
     @me       = recipient

@@ -3278,6 +3278,7 @@ button.icon-button.active i.fa-retweet {
 
 .report-modal__statuses {
   min-height: 20vh;
+  max-height: 40vh;
   overflow-y: auto;
   overflow-x: hidden;
 }
@@ -3421,18 +3422,16 @@ button.icon-button.active i.fa-retweet {
 }
 
 .media-gallery__item-thumbnail {
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
   cursor: zoom-in;
-  display: flex;
-  align-items: center;
+  display: block;
   text-decoration: none;
   height: 100%;
 
   &,
   img {
     width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 }
 
