@@ -22,7 +22,8 @@ const messages = defineMessages({
   unmuteConversation: { id: 'status.unmute_conversation', defaultMessage: 'Unmute conversation' },
 });
 
-class StatusActionBar extends ImmutablePureComponent {
+@injectIntl
+export default class StatusActionBar extends ImmutablePureComponent {
 
   static contextTypes = {
     router: PropTypes.object,
@@ -86,7 +87,6 @@ class StatusActionBar extends ImmutablePureComponent {
 
   handleReport = () => {
     this.props.onReport(this.props.status);
-    this.context.router.history.push('/report');
   }
 
   handleConversationMuteClick = () => {
@@ -149,5 +149,3 @@ class StatusActionBar extends ImmutablePureComponent {
   }
 
 }
-
-export default injectIntl(StatusActionBar);

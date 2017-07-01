@@ -1,19 +1,13 @@
-import { jsdom } from 'jsdom/lib/old-api';
+import { JSDOM } from 'jsdom';
 import chai from 'chai';
 import chaiEnzyme from 'chai-enzyme';
 chai.use(chaiEnzyme());
 
-var exposedProperties = ['window', 'navigator', 'document'];
-
-global.document = jsdom('');
-global.window = document.defaultView;
-Object.keys(document.defaultView).forEach((property) => {
+const { window } = new JSDOM('', {
+  userAgent: 'node.js',
+});
+Object.keys(window).forEach(property => {
   if (typeof global[property] === 'undefined') {
-    exposedProperties.push(property);
-    global[property] = document.defaultView[property];
+    global[property] = window[property];
   }
 });
-
-global.navigator = {
-  userAgent: 'node.js',
-};

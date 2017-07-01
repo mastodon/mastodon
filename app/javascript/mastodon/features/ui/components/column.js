@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { debounce } from 'lodash';
 import scrollTop from '../../../scroll';
 
-class Column extends React.PureComponent {
+export default class Column extends React.PureComponent {
 
   static propTypes = {
     heading: PropTypes.string,
@@ -59,5 +59,3 @@ class Column extends React.PureComponent {
   }
 
 }
-
-export default Column;

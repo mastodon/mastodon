@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { length } from 'stringz';
 
-class CharacterCounter extends React.PureComponent {
+export default class CharacterCounter extends React.PureComponent {
 
   static propTypes = {
     text: PropTypes.string.isRequired,
@@ -23,5 +23,3 @@ class CharacterCounter extends React.PureComponent {
   }
 
 }
-
-export default CharacterCounter;

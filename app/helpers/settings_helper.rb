@@ -41,4 +41,16 @@ module SettingsHelper
   def hash_to_object(hash)
     HashObject.new(hash)
   end
+
+  def session_device_icon(session)
+    device = session.detection.device
+
+    if device.mobile?
+      'mobile'
+    elsif device.tablet?
+      'tablet'
+    else
+      'desktop'
+    end
+  end
 end

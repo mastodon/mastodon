@@ -6,7 +6,7 @@ import ActionBar from '../../account/components/action_bar';
 import MissingIndicator from '../../../components/missing_indicator';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
-class Header extends ImmutablePureComponent {
+export default class Header extends ImmutablePureComponent {
 
   static propTypes = {
     account: ImmutablePropTypes.map,
@@ -38,7 +38,6 @@ class Header extends ImmutablePureComponent {
 
   handleReport = () => {
     this.props.onReport(this.props.account);
-    this.context.router.history.push('/report');
   }
 
   handleMute = () => {
@@ -91,5 +90,3 @@ class Header extends ImmutablePureComponent {
   }
 
 }
-
-export default Header;
