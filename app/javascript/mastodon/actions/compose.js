@@ -74,11 +74,14 @@ export function mentionCompose(account, router) {
 
 export function submitCompose() {
   return function (dispatch, getState) {
-    const status = emojione.shortnameToUnicode(getState().getIn(['compose', 'text'], ''));
+    let status = emojione.shortnameToUnicode(getState().getIn(['compose', 'text'], ''));
     if (!status || !status.length) {
       return;
     }
     dispatch(submitComposeRequest());
+    if (getState().getIn(['compose', 'advanced_options', 'do_not_federate'])) {
+      status = status + ' 👁️';
+    }
     api(getState).post('/api/v1/statuses', {
       status,
       in_reply_to_id: getState().getIn(['compose', 'in_reply_to'], null),
