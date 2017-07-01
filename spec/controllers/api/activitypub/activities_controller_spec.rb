@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Api::Activitypub::ActivitiesController, type: :controller do
+RSpec.describe Api::ActivityPub::ActivitiesController, type: :controller do
   render_views
 
   let(:user)  { Fabricate(:user, account: Fabricate(:account, username: 'alice')) }

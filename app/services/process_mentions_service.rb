@@ -41,6 +41,6 @@ class ProcessMentionsService < BaseService
   private
 
   def follow_remote_account_service
-    @follow_remote_account_service ||= FollowRemoteAccountService.new
+    @follow_remote_account_service ||= ResolveRemoteAccountService.new
   end
 end

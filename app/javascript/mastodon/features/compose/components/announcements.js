@@ -1,8 +1,8 @@
 import React from 'react';
 import Immutable from 'immutable';
 import PropTypes from 'prop-types';
-import Link from 'react-router/lib/Link';
-import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
+import Link from 'react-router-dom/Link';
+import { defineMessages, injectIntl } from 'react-intl';
 import IconButton from '../../../components/announcement_icon_button';
 import Motion from 'react-motion/lib/Motion';
 import spring from 'react-motion/lib/spring';

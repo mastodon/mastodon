@@ -11,7 +11,6 @@ import {
   deleteFromTimelines,
 } from '../../actions/timelines';
 import { addColumn, removeColumn, moveColumn } from '../../actions/columns';
-import ColumnBackButtonSlim from '../../components/column_back_button_slim';
 import { FormattedMessage } from 'react-intl';
 import createStream from '../../stream';
 
@@ -60,7 +59,7 @@ class HashtagTimeline extends React.PureComponent {
       received (data) {
         switch(data.event) {
         case 'update':
-          dispatch(updateTimeline('tag', JSON.parse(data.payload)));
+          dispatch(updateTimeline(`hashtag:${id}`, JSON.parse(data.payload)));
           break;
         case 'delete':
           dispatch(deleteFromTimelines(data.payload));
