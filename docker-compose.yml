@@ -5,15 +5,15 @@ services:
     restart: always
     image: postgres:alpine
 ### Uncomment to enable DB persistance
-#    volumes:
-#      - ./postgres:/var/lib/postgresql/data
+    volumes:
+      - ./postgres:/var/lib/postgresql/data
 
   redis:
     restart: always
     image: redis:alpine
 ### Uncomment to enable REDIS persistance
-#    volumes:
-#      - ./redis:/data
+    volumes:
+      - ./redis:/data
 
   web:
     build: .
