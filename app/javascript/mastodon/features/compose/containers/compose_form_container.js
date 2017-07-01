@@ -15,6 +15,7 @@ const mapStateToProps = state => ({
   text: state.getIn(['compose', 'text']),
   suggestion_token: state.getIn(['compose', 'suggestion_token']),
   suggestions: state.getIn(['compose', 'suggestions']),
+  advanced_options: state.getIn(['compose', 'advanced_options']),
   spoiler: state.getIn(['compose', 'spoiler']),
   spoiler_text: state.getIn(['compose', 'spoiler_text']),
   privacy: state.getIn(['compose', 'privacy']),

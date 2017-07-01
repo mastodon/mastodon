@@ -24,6 +24,7 @@ export const COMPOSE_SUGGESTION_SELECT = 'COMPOSE_SUGGESTION_SELECT';
 export const COMPOSE_MOUNT   = 'COMPOSE_MOUNT';
 export const COMPOSE_UNMOUNT = 'COMPOSE_UNMOUNT';
 
+export const COMPOSE_ADVANCED_OPTIONS_CHANGE = 'COMPOSE_ADVANCED_OPTIONS_CHANGE';
 export const COMPOSE_SENSITIVITY_CHANGE = 'COMPOSE_SENSITIVITY_CHANGE';
 export const COMPOSE_SPOILERNESS_CHANGE = 'COMPOSE_SPOILERNESS_CHANGE';
 export const COMPOSE_SPOILER_TEXT_CHANGE = 'COMPOSE_SPOILER_TEXT_CHANGE';
@@ -243,6 +244,13 @@ export function unmountCompose() {
     type: COMPOSE_UNMOUNT,
   };
 };
+
+export function changeComposeAdvancedOption(option) {
+  return {
+    type: COMPOSE_ADVANCED_OPTIONS_CHANGE,
+    option: option,
+  };
+}
 
 export function changeComposeSensitivity() {
   return {

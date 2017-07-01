@@ -1,12 +1,30 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import ImmutablePropTypes from 'react-immutable-proptypes';
 import IconButton from '../../../components/icon_button';
+import { injectIntl, defineMessages } from 'react-intl';
+
+const messages = defineMessages({
+  local_only_short: { id: 'advanced-options.local-only.short', defaultMessage: 'Local-only'},
+  local_only_long: { id: 'advanced-options.local-only.long', defaultMessage: 'bla' },
+  advanced_options_icon_title: { id: 'advanced_options.icon_title', defaultMessage: 'Advanced options' },
+});
 
 const iconStyle = {
   height: null,
   lineHeight: '27px',
 };
 
+@injectIntl
 export default class AdvancedOptionsDropdown extends React.PureComponent {
+  static propTypes = {
+    values: ImmutablePropTypes.contains({
+      do_not_federate: PropTypes.bool.isRequired,
+    }).isRequired,
+    onChange: PropTypes.func.isRequired,
+    intl: PropTypes.object.isRequired,
+  };
+
   onToggleDropdown = () => {
       this.setState({ open: !this.state.open });
   };
@@ -31,30 +49,43 @@ export default class AdvancedOptionsDropdown extends React.PureComponent {
     open: false,
   };
 
+  handleClick = (e) => {
+    const option = e.currentTarget.getAttribute('data-index');
+    e.preventDefault();
+    this.props.onChange(option);
+  }
+
   setRef = (c) => {
     this.node = c;
   }
 
   render () {
     const { open } = this.state;
+    const { intl, values } = this.props;
 
     const options = [
-      { icon: 'wifi', shortText: 'Local-only', longText: 'bla' },
+      { icon: 'wifi', shortText: messages.local_only_short,  longText: messages.local_only_long, key: 'do_not_federate' },
     ];
     const optionElems = options.map((option) => {
-      return <div role='button' className='advanced-options-dropdown__option'>
-        <div className='advanced-options-dropdown__option__icon'>
-          <IconButton icon={option.icon} />
+      const active = values.get(option.key) ? 'active' : '';
+      return (
+        <div role='button' className={`advanced-options-dropdown__option ${active}`}
+          onClick={this.handleClick} data-index={option.key} key={option.key} >
+          <div className='advanced-options-dropdown__option__icon'>
+            <IconButton icon={option.icon} title={intl.formatMessage(option.shortText)} />
+          </div>
+          <div className='advanced-options-dropdown__option__content'>
+            <strong>{intl.formatMessage(option.shortText)}</strong>
+            {intl.formatMessage(option.longText)}
+          </div>
         </div>
-        <div className='advanced-options-dropdown__option__content'>
-          <strong>{option.shortText}</strong>
-          {option.longText}
-        </div>
-      </div>;
+      );
     });
+
     return <div ref={this.setRef} className={`advanced-options-dropdown ${open ? 'active' : ''}`}>
       <div className='advanced-options-dropdown__value'>
         <IconButton className='advanced-options-dropdown__value'
+          title={intl.formatMessage(messages.advanced_options_icon_title)}
           icon='ellipsis-h' active={open}
           size={18} inverted
           style={iconStyle}

@@ -16,6 +16,7 @@ import {
   COMPOSE_SUGGESTIONS_CLEAR,
   COMPOSE_SUGGESTIONS_READY,
   COMPOSE_SUGGESTION_SELECT,
+  COMPOSE_ADVANCED_OPTIONS_CHANGE,
   COMPOSE_SENSITIVITY_CHANGE,
   COMPOSE_SPOILERNESS_CHANGE,
   COMPOSE_SPOILER_TEXT_CHANGE,
@@ -29,6 +30,9 @@ import uuid from '../uuid';
 
 const initialState = Immutable.Map({
   mounted: false,
+  advanced_options: Immutable.Map({
+    do_not_federate: false
+  }),
   sensitive: false,
   spoiler: false,
   spoiler_text: '',
@@ -140,6 +144,11 @@ export default function compose(state = initialState, action) {
     return state.set('mounted', true);
   case COMPOSE_UNMOUNT:
     return state.set('mounted', false);
+  case COMPOSE_ADVANCED_OPTIONS_CHANGE:
+    return state
+      .set('advanced_options',
+        state.get('advanced_options').set(action.option, !state.getIn(['advanced_options', action.option])))
+      .set('idempotencyKey', uuid());
   case COMPOSE_SENSITIVITY_CHANGE:
     return state
       .set('sensitive', !state.get('sensitive'))
