@@ -18,6 +18,8 @@ class FetchLinkCardService < BaseService
     return if res.code != 200 || res.mime_type != 'text/html'
 
     attempt_opengraph(card, url) unless attempt_oembed(card, url)
+  rescue HTTP::ConnectionError, OpenSSL::SSL::SSLError
+    nil
   end
 
   private
