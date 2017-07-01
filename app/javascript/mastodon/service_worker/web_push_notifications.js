@@ -2,6 +2,7 @@ const handlePush = (event) => {
   const options = event.data.json();
 
   options.body = options.data.nsfw || options.data.content;
+  options.image = options.image || undefined; // Null results in a network request (404)
   options.timestamp = options.timestamp && new Date(options.timestamp);
 
   const expandAction = options.data.actions.find(action => action.todo === 'expand');
@@ -11,7 +12,7 @@ const handlePush = (event) => {
     options.hiddenActions = options.data.actions.filter(action => action !== expandAction);
 
     options.data.hiddenImage = options.image;
-    options.image = null;
+    options.image = undefined;
   } else {
     options.actions = options.data.actions;
   }
