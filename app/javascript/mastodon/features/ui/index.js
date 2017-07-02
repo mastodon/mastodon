@@ -181,13 +181,13 @@ export default class UI extends React.PureComponent {
     const { width, draggingOver } = this.state;
     const { children } = this.props;
 
-    let className = 'ui';
+    const classNames = ['ui'];
 
     if (this.props.systemFontUi)
-      className += ' has-system-font';
+      classNames.push('has-system-font');
 
     return (
-      <div className={className} ref={this.setRef}>
+      <div className={classNames.join(' ')} ref={this.setRef}>
         <TabsBar />
         <ColumnsAreaContainer singleColumn={isMobile(width)}>
           <WrappedSwitch>
