@@ -46,10 +46,10 @@ fr:
       announce:
         name: "%{account_name} a partagé une activité."
       create:
-        name: "%{account_name} a crée une note."
+        name: "%{account_name} a créé une note."
     outbox:
       name: "Boîte d'envoi de %{account_name}"
-      summary: List d'activités de %{account_name}
+      summary: Liste d'activités de %{account_name}
   admin:
     accounts:
       are_you_sure: Êtes-vous certain⋅e ?
@@ -93,9 +93,9 @@ fr:
       salmon_url: URL Salmon
       search: Rechercher
       show:
-        created_reports: Signalements crées par ce compte
+        created_reports: Signalements créés par ce compte
         report: signalement
-        targeted_reports: Signalements crées visant ce compte
+        targeted_reports: Signalements créés visant ce compte
       silence: Rendre muet
       statuses: Statuts
       subscribe: S'abonner
@@ -152,7 +152,7 @@ fr:
         'false': Ré-afficher les médias
         'true': Masquer les médias
       report: 'Signalement #%{id}'
-      report_contents: Contenus
+      report_contents: Contenu
       reported_account: Compte signalé
       reported_by: Signalé par
       resolved: Résolus
@@ -241,7 +241,7 @@ fr:
       x_months: "%{count}mois"
       x_seconds: "%{count}s"
   deletes:
-    bad_password_msg: Bien essayé! Mot de passe incorrect
+    bad_password_msg: Bien essayé ! Mot de passe incorrect
     confirm_password: Entrez votre mot de passe pour vérifier votre identité
     description_html: Cela va supprimer votre compte et le désactiver de manière <strong>permanente et irréversible</strong>. Votre nom d'utilisateur⋅ice restera réservé afin d'éviter la confusion
     proceed: Supprimer compte
@@ -256,7 +256,7 @@ fr:
       content: Vérification de sécurité échouée. Bloquez-vous les cookies ?
       title: Vérification de sécurité échouée
     '429': Trop de requêtes émises dans un délai donné.
-    noscript: Afin d'utiliser Mastodon, veuillez activer JavaScript
+    noscript: Pour utiliser Mastodon, veuillez activer JavaScript
   exports:
     blocks: Vous bloquez
     csv: CSV
@@ -270,7 +270,7 @@ fr:
     lock_link: Rendez votre compte privé
     purge: Retirer de la liste d'abonné⋅es
     success:
-      one: Suppression des abonné⋅es venant d'une domaine en cours...
+      one: Suppression des abonné⋅es venant d'un domaine en cours...
       other: Suppression des abonné⋅es venant de %{count} domaines en cours...
     true_privacy_html: Soyez conscient⋅es <strong>qu'une vraie confidentialité ne peut être atteinte que par un chiffrement de bout-en-bout</strong>.
     unlocked_warning_html: N'importe qui peut vous suivre et voir vos status privés. %{lock_link} afin de pouvoir vérifier et rejeter des abonné⋅es.
