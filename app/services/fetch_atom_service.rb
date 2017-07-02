@@ -20,6 +20,10 @@ class FetchAtomService < BaseService
     process_html(fetch(url))
   rescue OpenSSL::SSL::SSLError => e
     Rails.logger.debug "SSL error: #{e}"
+    nil
+  rescue HTTP::ConnectionError => e
+    Rails.logger.debug "HTTP ConnectionError: #{e}"
+    nil
   end
 
   private

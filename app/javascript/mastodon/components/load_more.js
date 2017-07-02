@@ -2,7 +2,7 @@ import React from 'react';
 import { FormattedMessage } from 'react-intl';
 import PropTypes from 'prop-types';
 
-class LoadMore extends React.PureComponent {
+export default class LoadMore extends React.PureComponent {
 
   static propTypes = {
     onClick: PropTypes.func,
@@ -17,5 +17,3 @@ class LoadMore extends React.PureComponent {
   }
 
 }
-
-export default LoadMore;

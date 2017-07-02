@@ -2,7 +2,7 @@ import React from 'react';
 import { FormattedMessage } from 'react-intl';
 import PropTypes from 'prop-types';
 
-class ColumnBackButton extends React.PureComponent {
+export default class ColumnBackButton extends React.PureComponent {
 
   static contextTypes = {
     router: PropTypes.object,
@@ -23,5 +23,3 @@ class ColumnBackButton extends React.PureComponent {
   }
 
 }
-
-export default ColumnBackButton;

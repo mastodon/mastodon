@@ -1,6 +1,5 @@
 import React from 'react';
 import ComposeFormContainer from './containers/compose_form_container';
-import UploadFormContainer from './containers/upload_form_container';
 import NavigationContainer from './containers/navigation_container';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -24,7 +23,9 @@ const mapStateToProps = state => ({
   showSearch: state.getIn(['search', 'submitted']) && !state.getIn(['search', 'hidden']),
 });
 
-class Compose extends React.PureComponent {
+@connect(mapStateToProps)
+@injectIntl
+export default class Compose extends React.PureComponent {
 
   static propTypes = {
     dispatch: PropTypes.func.isRequired,
@@ -83,5 +84,3 @@ class Compose extends React.PureComponent {
   }
 
 }
-
-export default connect(mapStateToProps)(injectIntl(Compose));

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-class Permalink extends React.PureComponent {
+export default class Permalink extends React.PureComponent {
 
   static contextTypes = {
     router: PropTypes.object,
@@ -25,12 +25,10 @@ class Permalink extends React.PureComponent {
     const { href, children, className, ...other } = this.props;
 
     return (
-      <a href={href} onClick={this.handleClick} {...other} className={'permalink ' + className}>
+      <a href={href} onClick={this.handleClick} {...other} className={`permalink${className ? ' ' + className : ''}`}>
         {children}
       </a>
     );
   }
 
 }
-
-export default Permalink;

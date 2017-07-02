@@ -20,7 +20,8 @@ const iconStyle = {
   lineHeight: '27px',
 };
 
-class PrivacyDropdown extends React.PureComponent {
+@injectIntl
+export default class PrivacyDropdown extends React.PureComponent {
 
   static propTypes = {
     value: PropTypes.string.isRequired,
@@ -64,7 +65,7 @@ class PrivacyDropdown extends React.PureComponent {
   }
 
   render () {
-    const { value, onChange, intl } = this.props;
+    const { value, intl } = this.props;
     const { open } = this.state;
 
     const options = [
@@ -95,5 +96,3 @@ class PrivacyDropdown extends React.PureComponent {
   }
 
 }
-
-export default injectIntl(PrivacyDropdown);

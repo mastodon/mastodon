@@ -7,7 +7,7 @@ import { isRtl } from '../rtl';
 import { FormattedMessage } from 'react-intl';
 import Permalink from './permalink';
 
-class StatusContent extends React.PureComponent {
+export default class StatusContent extends React.PureComponent {
 
   static contextTypes = {
     router: PropTypes.object,
@@ -32,7 +32,6 @@ class StatusContent extends React.PureComponent {
     for (var i = 0; i < links.length; ++i) {
       let link    = links[i];
       let mention = this.props.status.get('mentions').find(item => link.href === item.get('url'));
-      let media   = this.props.status.get('media_attachments').find(item => link.href === item.get('text_url') || (item.get('remote_url').length > 0 && link.href === item.get('remote_url')));
 
       if (mention) {
         link.addEventListener('click', this.onMentionClick.bind(this, mention), false);
@@ -136,7 +135,7 @@ class StatusContent extends React.PureComponent {
       }
 
       return (
-        <div className='status__content status__content--with_action' ref={this.setRef} onMouseDown={this.handleMouseDown} onMouseUp={this.handleMouseUp}>
+        <div className='status__content status__content--with-action' ref={this.setRef} onMouseDown={this.handleMouseDown} onMouseUp={this.handleMouseUp}>
           <p style={{ marginBottom: hidden && status.get('mentions').isEmpty() ? '0px' : null }}>
             <span dangerouslySetInnerHTML={spoilerContent} />
             {' '}
@@ -172,5 +171,3 @@ class StatusContent extends React.PureComponent {
   }
 
 }
-
-export default StatusContent;

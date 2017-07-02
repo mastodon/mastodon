@@ -1,7 +1,9 @@
 ---
+root: true
+
 env:
   browser: true
-  node: false
+  node: true
   es6: true
 
 parser: babel-eslint
@@ -52,8 +54,14 @@ rules:
   no-mixed-spaces-and-tabs: warn
   no-nested-ternary: warn
   no-trailing-spaces: warn
+  no-undef: error
   no-unreachable: error
   no-unused-expressions: error
+  no-unused-vars:
+  - error
+  - vars: all
+    args: after-used
+    ignoreRestSiblings: true
   object-curly-spacing:
   - error
   - always
@@ -81,7 +89,10 @@ rules:
   - 2
   react/jsx-no-bind: error
   react/jsx-no-duplicate-props: error
+  react/jsx-no-undef: error
   react/jsx-tag-spacing: error
+  react/jsx-uses-react: error
+  react/jsx-uses-vars: error
   react/jsx-wrap-multilines: error
   react/no-multi-comp: off
   react/no-string-refs: error

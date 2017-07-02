@@ -3,7 +3,6 @@ import { Provider } from 'react-redux';
 import PropTypes from 'prop-types';
 import configureStore from '../store/configureStore';
 import {
-  refreshTimelineSuccess,
   updateTimeline,
   deleteFromTimelines,
   refreshHomeTimeline,
@@ -27,7 +26,11 @@ const store = configureStore();
 const initialState = JSON.parse(document.getElementById('initial-state').textContent);
 store.dispatch(hydrateStore(initialState));
 
-class Mastodon extends React.PureComponent {
+export default class Mastodon extends React.PureComponent {
+
+  static propTypes = {
+    locale: PropTypes.string.isRequired,
+  };
 
   componentDidMount() {
     const { locale }  = this.props;
@@ -118,9 +121,3 @@ class Mastodon extends React.PureComponent {
   }
 
 }
-
-Mastodon.propTypes = {
-  locale: PropTypes.string.isRequired,
-};
-
-export default Mastodon;

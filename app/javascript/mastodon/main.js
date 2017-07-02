@@ -20,6 +20,14 @@ function main() {
 
   require.context('../images/', true);
 
+  if (window.history && history.replaceState) {
+    const { pathname, search, hash } = window.location;
+    const path = pathname + search + hash;
+    if (!(/^\/web[$/]/).test(path)) {
+      history.replaceState(null, document.title, `/web${path}`);
+    }
+  }
+
   onDomContentLoaded(() => {
     const mountNode = document.getElementById('mastodon');
     const props = JSON.parse(mountNode.getAttribute('data-props'));

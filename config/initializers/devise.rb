@@ -1,3 +1,19 @@
+Warden::Manager.after_set_user except: :fetch do |user, warden|
+  SessionActivation.deactivate warden.raw_session['auth_id']
+  warden.raw_session['auth_id'] = user.activate_session(warden.request)
+end
+
+Warden::Manager.after_fetch do |user, warden|
+  unless user.session_active?(warden.raw_session['auth_id'])
+    warden.logout
+    throw :warden, message: :unauthenticated
+  end
+end
+
+Warden::Manager.before_logout do |_, warden|
+  SessionActivation.deactivate warden.raw_session['auth_id']
+end
+
 Devise.setup do |config|
   config.warden do |manager|
     manager.default_strategies(scope: :user).unshift :two_factor_authenticatable
