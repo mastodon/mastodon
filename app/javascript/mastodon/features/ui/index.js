@@ -184,7 +184,7 @@ export default class UI extends React.PureComponent {
     const classNames = ['ui'];
 
     if (this.props.systemFontUi)
-      classNames.push('has-system-font');
+      classNames.push('system-font');
 
     return (
       <div className={classNames.join(' ')} ref={this.setRef}>
