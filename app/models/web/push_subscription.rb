@@ -35,6 +35,8 @@ class Web::PushSubscription < ApplicationRecord
 
     access_token = actions.empty? ? nil : find_or_create_access_token(notification).token
 
+    # TODO: Make sure that the payload does not exceed 4KB - Webpush::PayloadTooLarge
+    # TODO: Queue the requests - Webpush::TooManyRequests
     Webpush.payload_send(
       message: JSON.generate(
         title: title,

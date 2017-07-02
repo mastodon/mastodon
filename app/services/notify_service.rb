@@ -70,14 +70,15 @@ class NotifyService < BaseService
     sessions_with_subscriptions.each do |session|
       begin
         session.web_push_subscription.push(@notification)
-      rescue Webpush::InvalidSubscription
+      rescue Webpush::InvalidSubscription, Webpush::ExpiredSubscription => e
+        # Subscription expiration is not currently implemented in any browser
+        Rails.logger.error("#{e.class}: #{e.host}, #{e.response}")
+
         session.web_push_subscription.destroy!
         session.web_push_subscription = nil
         session.save!
-      rescue Webpush::ResponseError
-        session.web_push_subscription.destroy!
-        session.web_push_subscription = nil
-        session.save!
+      rescue Webpush::PayloadTooLarge, Webpush::TooManyRequests => e
+        Rails.logger.error("#{e.class}: #{e.host}, #{e.response}")
       end
     end
   end
