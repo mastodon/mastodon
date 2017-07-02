@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import IconButton from '../../../components/icon_button';
+import Toggle from 'react-toggle';
 import { injectIntl, defineMessages } from 'react-intl';
 
 const messages = defineMessages({
@@ -55,6 +56,10 @@ export default class AdvancedOptionsDropdown extends React.PureComponent {
     this.props.onChange(option);
   }
 
+  toggleHandler(option) {
+    return () => this.props.onChange(option);
+  }
+
   setRef = (c) => {
     this.node = c;
   }
@@ -69,10 +74,9 @@ export default class AdvancedOptionsDropdown extends React.PureComponent {
     const optionElems = options.map((option) => {
       const active = values.get(option.key) ? 'active' : '';
       return (
-        <div role='button' className={`advanced-options-dropdown__option ${active}`}
-          onClick={this.handleClick} data-index={option.key} key={option.key} >
-          <div className='advanced-options-dropdown__option__icon'>
-            <IconButton icon={option.icon} title={intl.formatMessage(option.shortText)} />
+        <div role='button' className={`advanced-options-dropdown__option`} key={option.key} >
+          <div className='advanced-options-dropdown__option__toggle'>
+            <Toggle checked={active} onChange={this.toggleHandler(option.key)} />
           </div>
           <div className='advanced-options-dropdown__option__content'>
             <strong>{intl.formatMessage(option.shortText)}</strong>
