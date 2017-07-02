@@ -2897,18 +2897,11 @@ button.icon-button.active i.fa-retweet {
   padding: 10px;
   cursor: pointer;
   display: flex;
-  border-style: solid;
-  border-color: $simple-background-color;
-  border-width: 5px;
 
-  &:hover {
-    border-color: $ui-highlight-color;
-  }
-
+  &:hover,
   &.active {
     background: $ui-highlight-color;
     color: $primary-text-color;
-    border-color: $ui-highlight-color;
 
     .advanced-options-dropdown__option__content {
       color: $primary-text-color;
@@ -2920,7 +2913,7 @@ button.icon-button.active i.fa-retweet {
   }
 
   &.active:hover {
-    border-color: $simple-background-color;
+    background: lighten($ui-highlight-color, 4%);
   }
 }
 
