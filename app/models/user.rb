@@ -90,7 +90,7 @@ class User < ApplicationRecord
   def setting_auto_play_gif
     settings.auto_play_gif
   end
-  
+
   def setting_system_font_ui
     settings.system_font_ui
   end

@@ -43,7 +43,7 @@ class UserSettingsDecorator
   def delete_modal_preference
     boolean_cast_setting 'setting_delete_modal'
   end
-  
+
   def system_font_ui_preference
     boolean_cast_setting 'setting_system_font_ui'
   end
