@@ -4,8 +4,10 @@ cache:
   yarn: true
   directories:
   - node_modules
+  - public/assets
+  - public/packs-test
 dist: trusty
-sudo: false
+sudo: required
 
 notifications:
   email: false

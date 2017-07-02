@@ -107,7 +107,7 @@ class AtomSerializer
     serialize_status_attributes(object, status)
 
     append_element(object, 'link', nil, rel: :alternate, type: 'text/html', href: TagManager.instance.url_for(status))
-    append_element(object, 'thr:in-reply-to', nil, ref: TagManager.instance.uri_for(status.thread), href: TagManager.instance.url_for(status.thread)) if status.reply? && !status.thread.nil?
+    append_element(object, 'thr:in-reply-to', nil, ref: TagManager.instance.uri_for(status.thread), href: TagManager.instance.url_for(status.thread)) unless status.thread.nil?
     append_element(object, 'ostatus:conversation', nil, ref: conversation_uri(status.conversation)) unless status.conversation_id.nil?
 
     object

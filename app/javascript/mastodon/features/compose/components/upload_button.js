@@ -11,7 +11,7 @@ const messages = defineMessages({
 });
 
 const makeMapStateToProps = () => {
-  const mapStateToProps = (state, props) => ({
+  const mapStateToProps = state => ({
     acceptContentTypes: state.getIn(['media_attachments', 'accept_content_types']),
   });
 
@@ -23,7 +23,9 @@ const iconStyle = {
   lineHeight: '27px',
 };
 
-class UploadButton extends ImmutablePureComponent {
+@connect(makeMapStateToProps)
+@injectIntl
+export default class UploadButton extends ImmutablePureComponent {
 
   static propTypes = {
     disabled: PropTypes.bool,
@@ -54,13 +56,13 @@ class UploadButton extends ImmutablePureComponent {
 
     return (
       <div className='compose-form__upload-button'>
-        <IconButton icon='camera' title={intl.formatMessage(messages.upload)} disabled={disabled} onClick={this.handleClick} className='compose-form__upload-button-icon' size={18} inverted style={iconStyle}/>
+        <IconButton icon='camera' title={intl.formatMessage(messages.upload)} disabled={disabled} onClick={this.handleClick} className='compose-form__upload-button-icon' size={18} inverted style={iconStyle} />
         <input
           key={resetFileKey}
           ref={this.setRef}
           type='file'
           multiple={false}
-          accept={ acceptContentTypes.toArray().join(',')}
+          accept={acceptContentTypes.toArray().join(',')}
           onChange={this.handleChange}
           disabled={disabled}
           style={{ display: 'none' }}
@@ -70,5 +72,3 @@ class UploadButton extends ImmutablePureComponent {
   }
 
 }
-
-export default connect(makeMapStateToProps)(injectIntl(UploadButton));

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-class AvatarOverlay extends React.PureComponent {
+export default class AvatarOverlay extends React.PureComponent {
 
   static propTypes = {
     staticSrc: PropTypes.string.isRequired,
@@ -21,12 +21,10 @@ class AvatarOverlay extends React.PureComponent {
 
     return (
       <div className='account__avatar-overlay'>
-        <div className="account__avatar-overlay-base" style={baseStyle} />
-        <div className="account__avatar-overlay-overlay" style={overlayStyle} />
+        <div className='account__avatar-overlay-base' style={baseStyle} />
+        <div className='account__avatar-overlay-overlay' style={overlayStyle} />
       </div>
     );
   }
 
 }
-
-export default AvatarOverlay;

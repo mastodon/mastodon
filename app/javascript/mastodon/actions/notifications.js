@@ -17,7 +17,7 @@ export const NOTIFICATIONS_EXPAND_FAIL    = 'NOTIFICATIONS_EXPAND_FAIL';
 export const NOTIFICATIONS_CLEAR      = 'NOTIFICATIONS_CLEAR';
 export const NOTIFICATIONS_SCROLL_TOP = 'NOTIFICATIONS_SCROLL_TOP';
 
-const messages = defineMessages({
+defineMessages({
   mention: { id: 'notification.mention', defaultMessage: '{name} mentioned you' },
 });
 
@@ -124,25 +124,22 @@ export function refreshNotificationsFail(error, skipLoading) {
 
 export function expandNotifications() {
   return (dispatch, getState) => {
-    const url    = getState().getIn(['notifications', 'next'], null);
-    const lastId = getState().getIn(['notifications', 'items']).last();
+    const items  = getState().getIn(['notifications', 'items'], Immutable.List());
 
-    if (url === null || getState().getIn(['notifications', 'isLoading'])) {
+    if (getState().getIn(['notifications', 'isLoading']) || items.size === 0) {
       return;
     }
 
-    dispatch(expandNotificationsRequest());
-
     const params = {
-      max_id: lastId,
+      max_id: items.last().get('id'),
       limit: 20,
+      exclude_types: excludeTypesFromSettings(getState()),
     };
 
-    params.exclude_types = excludeTypesFromSettings(getState());
+    dispatch(expandNotificationsRequest());
 
-    api(getState).get(url, params).then(response => {
+    api(getState).get('/api/v1/notifications', { params }).then(response => {
       const next = getLinks(response).refs.find(link => link.rel === 'next');
-
       dispatch(expandNotificationsSuccess(response.data, next ? next.uri : null));
       fetchRelatedRelationships(dispatch, response.data);
     }).catch(error => {

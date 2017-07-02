@@ -47,7 +47,7 @@ class User < ApplicationRecord
   accepts_nested_attributes_for :account
 
   validates :locale, inclusion: I18n.available_locales.map(&:to_s), if: :locale?
-  validates :email, email: true
+  validates_with BlacklistedEmailValidator, if: :email_changed?
 
   scope :recent,    -> { order(id: :desc) }
   scope :admins,    -> { where(admin: true) }
@@ -62,6 +62,8 @@ class User < ApplicationRecord
   # It seems possible that a future release of devise-two-factor will
   # handle this itself, and this can be removed from our User class.
   attribute :otp_secret
+
+  has_many :session_activations, dependent: :destroy
 
   def confirmed?
     confirmed_at.present?
@@ -87,6 +89,20 @@ class User < ApplicationRecord
 
   def setting_auto_play_gif
     settings.auto_play_gif
+  end
+
+  def activate_session(request)
+    session_activations.activate(session_id: SecureRandom.hex,
+                                 user_agent: request.user_agent,
+                                 ip: request.ip).session_id
+  end
+
+  def exclusive_session(id)
+    session_activations.exclusive(id)
+  end
+
+  def session_active?(id)
+    session_activations.active? id
   end
 
   protected

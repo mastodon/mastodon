@@ -13,23 +13,16 @@ class PrecomputeFeedService < BaseService
   attr_reader :account
 
   def populate_feed
+    pairs = statuses.reverse_each.map(&method(:process_status))
+
     redis.pipelined do
-      statuses.each do |status|
-        process_status(status)
-      end
+      redis.zadd(account_home_key, pairs) if pairs.any?
+      redis.del("account:#{@account.id}:regeneration")
     end
   end
 
   def process_status(status)
-    add_status_to_feed(status) unless skip_status?(status)
-  end
-
-  def skip_status?(status)
-    status.direct_visibility? || status_filtered?(status)
-  end
-
-  def add_status_to_feed(status)
-    redis.zadd(account_home_key, status.id, status.reblog? ? status.reblog_of_id : status.id)
+    [status.id, status.reblog? ? status.reblog_of_id : status.id] unless status_filtered?(status)
   end
 
   def status_filtered?(status)

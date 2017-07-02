@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Api::V1::Accounts::FollowingAccountsController < ApiController
+class Api::V1::Accounts::FollowingAccountsController < Api::BaseController
   before_action -> { doorkeeper_authorize! :read }
   before_action :set_account
   after_action :insert_pagination_headers

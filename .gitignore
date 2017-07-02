@@ -20,6 +20,7 @@ coverage
 public/system
 public/assets
 public/packs
+public/packs-test
 .env
 .env.production
 node_modules/
@@ -33,6 +34,7 @@ config/deploy/*
 
 # Ignore IDE files
 .vscode/
+.idea/
 
 # Ignore postgres + redis volume optionally created by docker-compose
 postgres

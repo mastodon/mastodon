@@ -10,7 +10,7 @@ class LanguageDetector
   end
 
   def to_iso_s
-    detected_language_code || default_locale.to_sym
+    detected_language_code || default_locale
   end
 
   def prepared_text
@@ -43,6 +43,6 @@ class LanguageDetector
   end
 
   def default_locale
-    account&.user_locale || I18n.default_locale
+    account&.user_locale&.to_sym || nil
   end
 end

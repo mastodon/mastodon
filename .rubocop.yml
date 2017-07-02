@@ -17,11 +17,18 @@ Bundler/OrderedGems:
 Layout/AccessModifierIndentation:
   EnforcedStyle: indent
 
+Layout/EmptyLineAfterMagicComment:
+  Enabled: false
+
 Layout/SpaceInsideHashLiteralBraces:
   EnforcedStyle: space
 
 Metrics/AbcSize:
   Max: 100
+
+Metrics/BlockLength:
+  Exclude:
+    - 'lib/tasks/**/*'
 
 Metrics/BlockNesting:
   Max: 3
@@ -58,6 +65,9 @@ Rails:
 Rails/HasAndBelongsToMany:
   Enabled: false
 
+Rails/SkipsModelValidations:
+  Enabled: false
+
 Style/ClassAndModuleChildren:
   Enabled: false
 
@@ -81,10 +91,18 @@ Style/GuardClause:
 Style/Lambda:
   Enabled: false
 
+Style/PercentLiteralDelimiters:
+  PreferredDelimiters:
+    '%i': '()'
+    '%w': '()'
+
 Style/PerlBackrefs:
   AutoCorrect: false
 
 Style/RegexpLiteral:
+  Enabled: false
+
+Style/SymbolArray:
   Enabled: false
 
 Style/TrailingCommaInLiteral:

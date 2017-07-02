@@ -16,10 +16,14 @@ class FetchAtomService < BaseService
 
     return nil if response.code != 200
     return [url, fetch(url)] if response.mime_type == 'application/atom+xml'
-    return process_headers(url, response) unless response['Link'].blank?
+    return process_headers(url, response) if response['Link'].present?
     process_html(fetch(url))
   rescue OpenSSL::SSL::SSLError => e
     Rails.logger.debug "SSL error: #{e}"
+    nil
+  rescue HTTP::ConnectionError => e
+    Rails.logger.debug "HTTP ConnectionError: #{e}"
+    nil
   end
 
   private

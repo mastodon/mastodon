@@ -17,11 +17,15 @@ export function isRtl(text) {
     return false;
   }
 
+  text = text.replace(/(?:^|[^\/\w])@([a-z0-9_]+(@[a-z0-9\.\-]+)?)/ig, '');
+  text = text.replace(/(?:^|[^\/\w])#([\S]+)/ig, '');
+  text = text.replace(/\s+/g, '');
+
   const matches = text.match(rtlChars);
 
   if (!matches) {
     return false;
   }
 
-  return matches.length / text.trim().length > 0.3;
+  return matches.length / text.length > 0.3;
 };

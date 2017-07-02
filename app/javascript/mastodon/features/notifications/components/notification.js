@@ -2,14 +2,13 @@ import React from 'react';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import StatusContainer from '../../../containers/status_container';
 import AccountContainer from '../../../containers/account_container';
-import Avatar from '../../../components/avatar';
 import { FormattedMessage } from 'react-intl';
 import Permalink from '../../../components/permalink';
 import emojify from '../../../emoji';
 import escapeTextContentForBrowser from 'escape-html';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
-class Notification extends ImmutablePureComponent {
+export default class Notification extends ImmutablePureComponent {
 
   static propTypes = {
     notification: ImmutablePropTypes.map.isRequired,
@@ -40,12 +39,12 @@ class Notification extends ImmutablePureComponent {
       <div className='notification notification-favourite'>
         <div className='notification__message'>
           <div className='notification__favourite-icon-wrapper'>
-            <i className='fa fa-fw fa-star star-icon'/>
+            <i className='fa fa-fw fa-star star-icon' />
           </div>
           <FormattedMessage id='notification.favourite' defaultMessage='{name} favourited your status' values={{ name: link }} />
         </div>
 
-        <StatusContainer id={notification.get('status')} account={notification.get('account')} muted={true} withDismiss />
+        <StatusContainer id={notification.get('status')} account={notification.get('account')} muted withDismiss />
       </div>
     );
   }
@@ -60,16 +59,16 @@ class Notification extends ImmutablePureComponent {
           <FormattedMessage id='notification.reblog' defaultMessage='{name} boosted your status' values={{ name: link }} />
         </div>
 
-        <StatusContainer id={notification.get('status')} account={notification.get('account')} muted={true} withDismiss />
+        <StatusContainer id={notification.get('status')} account={notification.get('account')} muted withDismiss />
       </div>
     );
   }
 
-  render () { // eslint-disable-line consistent-return
+  render () {
     const { notification } = this.props;
     const account          = notification.get('account');
     const displayName      = account.get('display_name').length > 0 ? account.get('display_name') : account.get('username');
-    const displayNameHTML = { __html: emojify(escapeTextContentForBrowser(displayName)) };
+    const displayNameHTML  = { __html: emojify(escapeTextContentForBrowser(displayName)) };
     const link             = <Permalink className='notification__display-name' href={account.get('url')} title={account.get('acct')} to={`/accounts/${account.get('id')}`} dangerouslySetInnerHTML={displayNameHTML} />;
 
     switch(notification.get('type')) {
@@ -82,8 +81,8 @@ class Notification extends ImmutablePureComponent {
     case 'reblog':
       return this.renderReblog(notification, link);
     }
+
+    return null;
   }
 
 }
-
-export default Notification;

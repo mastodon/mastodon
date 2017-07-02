@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 module StreamEntriesHelper
-  EMBEDDED_CONTROLLER = 'stream_entries'.freeze
-  EMBEDDED_ACTION = 'embed'.freeze
+  EMBEDDED_CONTROLLER = 'stream_entries'
+  EMBEDDED_ACTION = 'embed'
 
   def display_name(account)
     account.display_name.presence || account.username
@@ -47,12 +47,17 @@ module StreamEntriesHelper
     end
   end
 
-  def rtl?(text)
-    rtl_characters = /[\p{Hebrew}|\p{Arabic}|\p{Syriac}|\p{Thaana}|\p{Nko}]+/m.match(text)
+  def rtl_status?(status)
+    status.local? ? rtl?(status.text) : rtl?(strip_tags(status.text))
+  end
 
-    if rtl_characters.present?
-      total_size = text.strip.size.to_f
-      rtl_size(rtl_characters.to_a) / total_size > 0.3
+  def rtl?(text)
+    text = simplified_text(text)
+    rtl_words = text.scan(/[\p{Hebrew}\p{Arabic}\p{Syriac}\p{Thaana}\p{Nko}]+/m)
+
+    if rtl_words.present?
+      total_size = text.size.to_f
+      rtl_size(rtl_words) / total_size > 0.3
     else
       false
     end
@@ -60,8 +65,20 @@ module StreamEntriesHelper
 
   private
 
-  def rtl_size(characters)
-    characters.reduce(0) { |acc, elem| acc + elem.size }.to_f
+  def simplified_text(text)
+    text.dup.tap do |new_text|
+      URI.extract(new_text).each do |url|
+        new_text.gsub!(url, '')
+      end
+
+      new_text.gsub!(Account::MENTION_RE, '')
+      new_text.gsub!(Tag::HASHTAG_RE, '')
+      new_text.gsub!(/\s+/, '')
+    end
+  end
+
+  def rtl_size(words)
+    words.reduce(0) { |acc, elem| acc + elem.size }.to_f
   end
 
   def embedded_view?

@@ -51,6 +51,11 @@ class ProcessFeedService < BaseService
 
       Rails.logger.debug "Creating remote status #{id}"
 
+      if verb == :share
+        original_status = shared_status_from_xml(@xml.at_xpath('.//activity:object', activity: TagManager::AS_XMLNS))
+        return nil if original_status.nil?
+      end
+
       ApplicationRecord.transaction do
         status, just_created = status_from_xml(@xml)
 
@@ -58,18 +63,15 @@ class ProcessFeedService < BaseService
         return status unless just_created
 
         if verb == :share
-          original_status = shared_status_from_xml(@xml.at_xpath('.//activity:object', activity: TagManager::AS_XMLNS))
-          status.reblog   = original_status
-
-          if original_status.nil?
-            status.destroy
-            return nil
-          elsif original_status.reblog?
-            status.reblog = original_status.reblog
-          end
+          status.reblog = original_status.reblog? ? original_status.reblog : original_status
         end
 
         status.save!
+      end
+
+      if thread?(@xml) && status.thread.nil?
+        Rails.logger.debug "Trying to attach #{status.id} (#{id(@xml)}) to #{thread(@xml).first}"
+        ThreadResolveWorker.perform_async(status.id, thread(@xml).second)
       end
 
       notify_about_mentions!(status) unless status.reblog?
@@ -151,27 +153,15 @@ class ProcessFeedService < BaseService
         reply: thread?(entry),
         language: content_language(entry),
         visibility: visibility_scope(entry),
-        conversation: find_or_create_conversation(entry)
+        conversation: find_or_create_conversation(entry),
+        thread: thread?(entry) ? find_status(thread(entry).first) : nil
       )
-
-      if thread?(entry)
-        Rails.logger.debug "Trying to attach #{status.id} (#{id(entry)}) to #{thread(entry).first}"
-        status.thread = find_or_resolve_status(status, *thread(entry))
-      end
 
       mentions_from_xml(status, entry)
       hashtags_from_xml(status, entry)
       media_from_xml(status, entry)
 
       [status, true]
-    end
-
-    def find_or_resolve_status(parent, uri, url)
-      status = find_status(uri)
-
-      ThreadResolveWorker.perform_async(parent.id, url) if status.nil?
-
-      status
     end
 
     def find_or_create_conversation(xml)
@@ -183,7 +173,7 @@ class ProcessFeedService < BaseService
         return Conversation.find_by(id: local_id)
       end
 
-      Conversation.find_by(uri: uri)
+      Conversation.find_by(uri: uri) || Conversation.create!(uri: uri)
     end
 
     def find_status(uri)

@@ -96,6 +96,13 @@
       margin-bottom: 40px;
     }
 
+    h6 {
+      font-size: 16px;
+      color: $ui-primary-color;
+      line-height: 28px;
+      font-weight: 400;
+    }
+
     & > p {
       font-size: 14px;
       line-height: 18px;
@@ -113,6 +120,19 @@
       border: 0;
       background: transparent;
       border-bottom: 1px solid $ui-base-color;
+    }
+
+    .muted-hint {
+      color: lighten($ui-base-color, 27%);
+
+      a {
+        color: $ui-primary-color;
+      }
+    }
+
+    .positive-hint {
+      color: $valid-value-color;
+      font-weight: 500;
     }
   }
 
@@ -245,19 +265,13 @@
 
 .report-status__actions {
   flex: 0 0 auto;
-  position: relative;
+  display: flex;
+  flex-direction: column;
 
-  .nsfw-button {
-    color: $white;
-    font-size: 11px;
-    width: 11px;
-    display: block;
-  }
-
-  .trash-button {
-    position: absolute;
-    bottom: 10px;
+  .icon-button {
     font-size: 24px;
     width: 24px;
+    text-align: center;
+    margin-bottom: 10px;
   }
 }

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Api::SubscriptionsController < ApiController
+class Api::SubscriptionsController < Api::BaseController
   before_action :set_account
   respond_to :txt
 

@@ -11,3 +11,13 @@
 
   .actions
     = f.button :button, t('generic.save_changes'), type: :submit
+
+%hr/
+
+= render 'sessions'
+
+- if open_deletion?
+  %hr/
+
+  %h6= t('auth.delete_account')
+  %p.muted-hint= t('auth.delete_account_html', path: settings_delete_path)

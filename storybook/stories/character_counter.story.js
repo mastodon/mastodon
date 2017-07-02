@@ -1,5 +1,5 @@
 import React from 'react';
-import { storiesOf } from '@kadira/storybook';
+import { storiesOf } from '@storybook/react';
 import CharacterCounter from 'mastodon/features/compose/components/character_counter';
 
 storiesOf('CharacterCounter', module)

@@ -17,6 +17,7 @@ Rails.application.routes.draw do
 
   get '.well-known/host-meta', to: 'well_known/host_meta#show', as: :host_meta, defaults: { format: 'xml' }
   get '.well-known/webfinger', to: 'well_known/webfinger#show', as: :webfinger
+  get 'manifest', to: 'manifests#show', defaults: { format: 'json' }
 
   devise_for :users, path: 'auth', controllers: {
     sessions:           'auth/sessions',
@@ -65,6 +66,7 @@ Rails.application.routes.draw do
     end
 
     resource :follower_domains, only: [:show, :update]
+    resource :delete, only: [:show, :destroy]
   end
 
   resources :media, only: [:show]
@@ -84,6 +86,12 @@ Rails.application.routes.draw do
     end
 
     resources :accounts, only: [:index, :show] do
+      member do
+        post :subscribe
+        post :unsubscribe
+        post :redownload
+      end
+
       resource :reset, only: [:create]
       resource :silence, only: [:create, :destroy]
       resource :suspension, only: [:create, :destroy]
@@ -121,18 +129,22 @@ Rails.application.routes.draw do
     # JSON / REST API
     namespace :v1 do
       resources :statuses, only: [:create, :show, :destroy] do
+        scope module: :statuses do
+          resources :reblogged_by, controller: :reblogged_by_accounts, only: :index
+          resources :favourited_by, controller: :favourited_by_accounts, only: :index
+          resource :reblog, only: :create
+          post :unreblog, to: 'reblogs#destroy'
+
+          resource :favourite, only: :create
+          post :unfavourite, to: 'favourites#destroy'
+
+          resource :mute, only: :create
+          post :unmute, to: 'mutes#destroy'
+        end
+
         member do
           get :context
           get :card
-          get :reblogged_by
-          get :favourited_by
-
-          post :reblog
-          post :unreblog
-          post :favourite
-          post :unfavourite
-          post :mute
-          post :unmute
         end
       end
 
@@ -141,6 +153,7 @@ Rails.application.routes.draw do
         resource :public, only: :show, controller: :public
         resources :tag, only: :show
       end
+      resources :streaming,  only: [:index]
 
       get '/search', to: 'search#index', as: :search
 

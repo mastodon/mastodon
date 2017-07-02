@@ -1,9 +1,6 @@
 import { createSelector } from 'reselect';
 import Immutable from 'immutable';
 
-const getStatuses = state => state.get('statuses');
-const getAccounts = state => state.get('accounts');
-
 const getAccountBase         = (state, id) => state.getIn(['accounts', id], null);
 const getAccountCounters     = (state, id) => state.getIn(['accounts_counters', id], null);
 const getAccountRelationship = (state, id) => state.getIn(['relationships', id], null);
@@ -76,7 +73,7 @@ export const makeGetNotification = () => {
 };
 
 export const getAccountGallery = createSelector([
-  (state, id) => state.getIn(['timelines', 'accounts_media_timelines', id, 'items'], Immutable.List()),
+  (state, id) => state.getIn(['timelines', `account:${id}:media`, 'items'], Immutable.List()),
   state       => state.get('statuses'),
 ], (statusIds, statuses) => {
   let medias = Immutable.List();

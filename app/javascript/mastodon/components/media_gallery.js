@@ -85,14 +85,24 @@ class Item extends React.PureComponent {
     let thumbnail = '';
 
     if (attachment.get('type') === 'image') {
+      const previewUrl = attachment.get('preview_url');
+      const previewWidth = attachment.getIn(['meta', 'small', 'width']);
+
+      const originalUrl = attachment.get('url');
+      const originalWidth = attachment.getIn(['meta', 'original', 'width']);
+
+      const srcSet = `${originalUrl} ${originalWidth}w, ${previewUrl} ${previewWidth}w`;
+      const sizes = `(min-width: 1025px) ${320 * (width / 100)}px, ${width}vw`;
+
       thumbnail = (
         <a
           className='media-gallery__item-thumbnail'
-          href={attachment.get('remote_url') || attachment.get('url')}
+          href={attachment.get('remote_url') || originalUrl}
           onClick={this.handleClick}
           target='_blank'
-          style={{ backgroundImage: `url(${attachment.get('preview_url')})` }}
-        />
+        >
+          <img src={previewUrl} srcSet={srcSet} sizes={sizes} alt='' />
+        </a>
       );
     } else if (attachment.get('type') === 'gifv') {
       const autoPlay = !isIOS() && this.props.autoPlayGif;
@@ -105,8 +115,8 @@ class Item extends React.PureComponent {
             src={attachment.get('url')}
             onClick={this.handleClick}
             autoPlay={autoPlay}
-            loop={true}
-            muted={true}
+            loop
+            muted
           />
 
           <span className='media-gallery__gifv__label'>GIF</span>
@@ -123,7 +133,8 @@ class Item extends React.PureComponent {
 
 }
 
-class MediaGallery extends React.PureComponent {
+@injectIntl
+export default class MediaGallery extends React.PureComponent {
 
   static propTypes = {
     sensitive: PropTypes.bool,
@@ -138,7 +149,7 @@ class MediaGallery extends React.PureComponent {
     visible: !this.props.sensitive,
   };
 
-  handleOpen = (e) => {
+  handleOpen = () => {
     this.setState({ visible: !this.state.visible });
   }
 
@@ -183,5 +194,3 @@ class MediaGallery extends React.PureComponent {
   }
 
 }
-
-export default injectIntl(MediaGallery);

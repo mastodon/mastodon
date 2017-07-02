@@ -13,7 +13,8 @@ class SendInteractionService < BaseService
     return if block_notification?
 
     envelope = salmon.pack(@xml, @source_account.keypair)
-    salmon.post(@target_account.salmon_url, envelope)
+    delivery = salmon.post(@target_account.salmon_url, envelope)
+    raise "Delivery failed for #{target_account.salmon_url}: HTTP #{delivery.code}" unless delivery.code > 199 && delivery.code < 300
   end
 
   private

@@ -31,7 +31,7 @@ const textAtCursorMatchesToken = (str, caretPosition) => {
   }
 };
 
-class AutosuggestTextarea extends ImmutablePureComponent {
+export default class AutosuggestTextarea extends ImmutablePureComponent {
 
   static propTypes = {
     value: PropTypes.string,
@@ -124,13 +124,7 @@ class AutosuggestTextarea extends ImmutablePureComponent {
   }
 
   onBlur = () => {
-    // If we hide the suggestions immediately, then this will prevent the
-    // onClick for the suggestions themselves from firing.
-    // Setting a short window for that to take place before hiding the
-    // suggestions ensures that can't happen.
-    setTimeout(() => {
-      this.setState({ suggestionsHidden: true });
-    }, 100);
+    this.setState({ suggestionsHidden: true });
   }
 
   onSuggestionClick = (e) => {
@@ -191,7 +185,8 @@ class AutosuggestTextarea extends ImmutablePureComponent {
               key={suggestion}
               data-index={suggestion}
               className={`autosuggest-textarea__suggestions__item ${i === selectedSuggestion ? 'selected' : ''}`}
-              onClick={this.onSuggestionClick}>
+              onMouseDown={this.onSuggestionClick}
+            >
               <AutosuggestAccountContainer id={suggestion} />
             </div>
           ))}
@@ -201,5 +196,3 @@ class AutosuggestTextarea extends ImmutablePureComponent {
   }
 
 }
-
-export default AutosuggestTextarea;

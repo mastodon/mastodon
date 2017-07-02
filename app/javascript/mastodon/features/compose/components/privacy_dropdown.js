@@ -20,7 +20,8 @@ const iconStyle = {
   lineHeight: '27px',
 };
 
-class PrivacyDropdown extends React.PureComponent {
+@injectIntl
+export default class PrivacyDropdown extends React.PureComponent {
 
   static propTypes = {
     value: PropTypes.string.isRequired,
@@ -64,7 +65,7 @@ class PrivacyDropdown extends React.PureComponent {
   }
 
   render () {
-    const { value, onChange, intl } = this.props;
+    const { value, intl } = this.props;
     const { open } = this.state;
 
     const options = [
@@ -78,7 +79,7 @@ class PrivacyDropdown extends React.PureComponent {
 
     return (
       <div ref={this.setRef} className={`privacy-dropdown ${open ? 'active' : ''}`}>
-        <div className='privacy-dropdown__value'><IconButton className='privacy-dropdown__value-icon' icon={valueOption.icon} title={intl.formatMessage(messages.change_privacy)} size={18} active={open} inverted onClick={this.handleToggle} style={iconStyle}/></div>
+        <div className='privacy-dropdown__value'><IconButton className='privacy-dropdown__value-icon' icon={valueOption.icon} title={intl.formatMessage(messages.change_privacy)} size={18} active={open} inverted onClick={this.handleToggle} style={iconStyle} /></div>
         <div className='privacy-dropdown__dropdown'>
           {open && options.map(item =>
             <div role='button' tabIndex='0' key={item.value} data-index={item.value} onClick={this.handleClick} className={`privacy-dropdown__option ${item.value === value ? 'active' : ''}`}>
@@ -95,5 +96,3 @@ class PrivacyDropdown extends React.PureComponent {
   }
 
 }
-
-export default injectIntl(PrivacyDropdown);

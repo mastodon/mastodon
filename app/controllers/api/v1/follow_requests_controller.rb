@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Api::V1::FollowRequestsController < ApiController
+class Api::V1::FollowRequestsController < Api::BaseController
   before_action -> { doorkeeper_authorize! :follow }
   before_action :require_user!
   after_action :insert_pagination_headers, only: :index

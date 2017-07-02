@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Api::Activitypub::ActivitiesController < ApiController
+class Api::ActivityPub::ActivitiesController < Api::BaseController
   include Authorization
 
   # before_action :set_follow, only: [:show_follow]

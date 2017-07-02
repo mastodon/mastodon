@@ -5,6 +5,7 @@ import OnboardingModal from './onboarding_modal';
 import VideoModal from './video_modal';
 import BoostModal from './boost_modal';
 import ConfirmationModal from './confirmation_modal';
+import ReportModal from './report_modal';
 import TransitionMotion from 'react-motion/lib/TransitionMotion';
 import spring from 'react-motion/lib/spring';
 
@@ -14,9 +15,10 @@ const MODAL_COMPONENTS = {
   'VIDEO': VideoModal,
   'BOOST': BoostModal,
   'CONFIRM': ConfirmationModal,
+  'REPORT': ReportModal,
 };
 
-class ModalRoot extends React.PureComponent {
+export default class ModalRoot extends React.PureComponent {
 
   static propTypes = {
     type: PropTypes.string,
@@ -64,7 +66,8 @@ class ModalRoot extends React.PureComponent {
       <TransitionMotion
         styles={items}
         willEnter={this.willEnter}
-        willLeave={this.willLeave}>
+        willLeave={this.willLeave}
+      >
         {interpolatedStyles =>
           <div className='modal-root'>
             {interpolatedStyles.map(({ key, data: { type, props }, style }) => {
@@ -86,5 +89,3 @@ class ModalRoot extends React.PureComponent {
   }
 
 }
-
-export default ModalRoot;

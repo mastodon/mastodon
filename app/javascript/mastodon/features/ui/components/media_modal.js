@@ -1,5 +1,5 @@
 import React from 'react';
-import LoadingIndicator from '../../../components/loading_indicator';
+import ReactSwipeable from 'react-swipeable';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
 import ExtendedVideoPlayer from '../../../components/extended_video_player';
@@ -12,7 +12,8 @@ const messages = defineMessages({
   close: { id: 'lightbox.close', defaultMessage: 'Close' },
 });
 
-class MediaModal extends ImmutablePureComponent {
+@injectIntl
+export default class MediaModal extends ImmutablePureComponent {
 
   static propTypes = {
     media: ImmutablePropTypes.list.isRequired,
@@ -73,9 +74,9 @@ class MediaModal extends ImmutablePureComponent {
     }
 
     if (attachment.get('type') === 'image') {
-      content = <ImageLoader src={url} />;
+      content = <ImageLoader previewSrc={attachment.get('preview_url')} src={url} width={attachment.getIn(['meta', 'original', 'width'])} height={attachment.getIn(['meta', 'original', 'height'])} />;
     } else if (attachment.get('type') === 'gifv') {
-      content = <ExtendedVideoPlayer src={url} muted={true} controls={false} />;
+      content = <ExtendedVideoPlayer src={url} muted controls={false} />;
     }
 
     return (
@@ -84,7 +85,9 @@ class MediaModal extends ImmutablePureComponent {
 
         <div className='media-modal__content'>
           <IconButton className='media-modal__close' title={intl.formatMessage(messages.close)} icon='times' onClick={onClose} size={16} />
-          {content}
+          <ReactSwipeable onSwipedRight={this.handlePrevClick} onSwipedLeft={this.handleNextClick}>
+            {content}
+          </ReactSwipeable>
         </div>
 
         {rightNav}
@@ -93,5 +96,3 @@ class MediaModal extends ImmutablePureComponent {
   }
 
 }
-
-export default injectIntl(MediaModal);

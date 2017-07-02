@@ -58,38 +58,6 @@
   position: relative;
 }
 
-.column-collapsable {
-  position: relative;
-  flex: 0 0 auto;
-
-  .column-collapsable__content {
-    overflow: auto;
-    transition: 300ms ease;
-    opacity: 1;
-    max-height: 70vh;
-  }
-
-  &.collapsed .column-collapsable__content {
-    height: 0 !important;
-    opacity: 0;
-  }
-
-  .column-collapsable__button {
-    color: $primary-text-color;
-    background: lighten($ui-base-color, 8%);
-
-    &:hover {
-      color: $primary-text-color;
-      background: lighten($ui-base-color, 8%);
-    }
-  }
-
-  &.collapsed .column-collapsable__button {
-    color: $ui-primary-color;
-    background: lighten($ui-base-color, 4%);
-  }
-}
-
 .column-icon {
   background: lighten($ui-base-color, 4%);
   color: $ui-primary-color;
@@ -103,22 +71,6 @@
 
   &:hover {
     color: lighten($ui-primary-color, 7%);
-  }
-}
-
-.column-icon-clear {
-  font-size: 16px;
-  padding: 15px;
-  position: absolute;
-  right: 48px;
-  top: 0;
-  cursor: pointer;
-  z-index: 2;
-}
-
-@media screen and (min-width: 1025px) {
-  .column-icon-clear {
-    top: 10px;
   }
 }
 
@@ -323,6 +275,18 @@
   line-height: 27px;
 }
 
+.compose-form__sensitive-button {
+  display: none;
+
+  &.compose-form__sensitive-button--visible {
+    display: block;
+  }
+
+  .compose-form__sensitive-button__icon {
+    line-height: 27px;
+  }
+}
+
 .compose-form__upload-wrapper {
   overflow: hidden;
 }
@@ -453,12 +417,8 @@
   margin-right: 5px;
 }
 
-.status__content {
+.status__content--with-action {
   cursor: pointer;
-}
-
-.status__content--no-action {
-  cursor: default;
 }
 
 .status__content,
@@ -640,13 +600,15 @@
 }
 
 .status-check-box {
-  border-bottom: 1px solid lighten($ui-base-color, 8%);
+  border-bottom: 1px solid $ui-secondary-color;
   display: flex;
 
   .status__content {
-    background: lighten($ui-base-color, 4%);
     flex: 1 1 auto;
     padding: 10px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 }
 
@@ -1137,13 +1099,24 @@
   }
 }
 
-.image-loader__img {
-  transition: opacity 0.3s linear;
-  opacity: 1;
-}
+.image-loader {
+  position: relative;
 
-.image-loader__img-loading {
-  opacity: 0.7;
+  &.image-loader--loading {
+    .image-loader__preview-canvas {
+      filter: blur(2px);
+    }
+  }
+
+  .image-loader__img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background-image: none;
+  }
 }
 
 .navigation-bar {
@@ -1473,8 +1446,10 @@
   &:hover,
   &:focus,
   &:active {
-    background: lighten($ui-base-color, 14%);
-    transition: all 100ms linear;
+    @media screen and (min-width: 1025px) {
+      background: lighten($ui-base-color, 14%);
+      transition: all 100ms linear;
+    }
   }
 
   span {
@@ -1519,6 +1494,22 @@
   flex: 0 0 auto;
   font-size: 16px;
   padding: 15px;
+  z-index: 3;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.column-header__back-button {
+  background: lighten($ui-base-color, 4%);
+  border: 0;
+  font-family: inherit;
+  color: $ui-highlight-color;
+  cursor: pointer;
+  flex: 0 0 auto;
+  font-size: 16px;
+  padding: 0 5px 0 0;
   z-index: 3;
 
   &:hover {
@@ -1841,6 +1832,17 @@
   @media screen and (max-width: 600px) {
     font-size: 16px;
   }
+
+  &.light {
+    color: $ui-base-color;
+    border-bottom: 2px solid lighten($ui-base-color, 27%);
+
+    &:focus,
+    &:active {
+      color: $ui-base-color;
+      border-bottom-color: $ui-highlight-color;
+    }
+  }
 }
 
 @import 'boost';
@@ -1999,6 +2001,28 @@ button.icon-button.active i.fa-retweet {
   }
 }
 
+.column-header__wrapper {
+  position: relative;
+  flex: 0 0 auto;
+
+  &.active {
+    &::before {
+      display: block;
+      content: "";
+      position: absolute;
+      top: 35px;
+      left: 0;
+      right: 0;
+      margin: 0 auto;
+      width: 60%;
+      pointer-events: none;
+      height: 28px;
+      z-index: 1;
+      background: radial-gradient(ellipse, rgba($ui-highlight-color, 0.23) 0%, rgba($ui-highlight-color, 0) 60%);
+    }
+  }
+}
+
 .column-header {
   padding: 15px;
   font-size: 16px;
@@ -2011,11 +2035,11 @@ button.icon-button.active i.fa-retweet {
 
   &.active {
     box-shadow: 0 1px 0 rgba($ui-highlight-color, 0.3);
-  }
 
-  &.active .fa {
-    color: $ui-highlight-color;
-    text-shadow: 0 0 10px rgba($ui-highlight-color, 0.4);
+    .column-header__icon {
+      color: $ui-highlight-color;
+      text-shadow: 0 0 10px rgba($ui-highlight-color, 0.4);
+    }
   }
 
   &.hidden-on-mobile {
@@ -2028,6 +2052,91 @@ button.icon-button.active i.fa-retweet {
   &:active {
     outline: 0;
   }
+}
+
+.column-header__buttons {
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 100%;
+  display: flex;
+  height: 48px;
+}
+
+.column-header__button {
+  background: lighten($ui-base-color, 4%);
+  border: 0;
+  color: $ui-primary-color;
+  cursor: pointer;
+  font-size: 16px;
+  padding: 0 15px;
+
+  &:hover {
+    color: lighten($ui-primary-color, 7%);
+  }
+
+  &.active {
+    color: $primary-text-color;
+    background: lighten($ui-base-color, 8%);
+
+    &:hover {
+      color: $primary-text-color;
+      background: lighten($ui-base-color, 8%);
+    }
+  }
+}
+
+.column-header__collapsible {
+  max-height: 70vh;
+  overflow: hidden;
+  overflow-y: auto;
+  color: $ui-primary-color;
+  transition: max-height 150ms ease-in-out, opacity 300ms linear;
+  opacity: 1;
+
+  &.collapsed {
+    max-height: 0;
+    opacity: 0.5;
+  }
+
+  &.animating {
+    overflow-y: hidden;
+  }
+}
+
+.column-header__collapsible-inner {
+  background: lighten($ui-base-color, 8%);
+  padding: 15px;
+}
+
+.column-header__setting-btn {
+  &:hover {
+    color: lighten($ui-primary-color, 4%);
+    text-decoration: underline;
+  }
+}
+
+.column-header__setting-arrows {
+  float: right;
+
+  .column-header__setting-btn {
+    padding: 0 10px;
+
+    &:last-child {
+      padding-right: 0;
+    }
+  }
+}
+
+.text-btn {
+  display: inline-block;
+  padding: 0;
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
 }
 
 .column-header__icon {
@@ -2128,6 +2237,12 @@ button.icon-button.active i.fa-retweet {
   margin-bottom: 10px;
 }
 
+.column-settings__row {
+  .text-btn {
+    margin-bottom: 15px;
+  }
+}
+
 .modal-container__nav {
   align-items: center;
   background: rgba($base-overlay-background, 0.5);
@@ -2172,79 +2287,17 @@ button.icon-button.active i.fa-retweet {
   left: 20px;
 }
 
-.setting-toggle__label {
+.setting-toggle {
   display: block;
   line-height: 24px;
-  vertical-align: middle;
 }
 
-.setting-toggle {
+.setting-toggle__label {
   color: $ui-primary-color;
   display: inline-block;
   margin-bottom: 14px;
   margin-left: 8px;
   vertical-align: middle;
-}
-
-.report.scrollable {
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  max-height: 100%;
-}
-
-.report__target {
-  border-bottom: 1px solid lighten($ui-base-color, 4%);
-  color: $ui-secondary-color;
-  flex: 0 0 auto;
-  padding: 10px;
-
-  strong {
-    display: block;
-    color: $primary-text-color;
-    font-weight: 500;
-  }
-}
-
-.report__statuses {
-  flex: 1 1 auto;
-}
-
-.report__textarea-wrapper {
-  flex: 0 0 100px;
-  padding: 10px;
-}
-
-.report__textarea {
-  background: transparent;
-  box-sizing: border-box;
-  border: 0;
-  border-bottom: 2px solid $ui-primary-color;
-  border-radius: 2px 2px 0 0;
-  color: $primary-text-color;
-  display: block;
-  font-family: inherit;
-  font-size: 14px;
-  margin-bottom: 10px;
-  outline: 0;
-  padding: 7px 4px;
-  resize: vertical;
-  width: 100%;
-
-  &:active,
-  &:focus {
-    border-bottom-color: $ui-highlight-color;
-    background: rgba($base-overlay-background, 0.1);
-  }
-}
-
-.report__submit {
-  margin-top: 10px;
-  overflow: hidden;
-}
-
-.report__submit-button {
-  float: right;
 }
 
 .empty-column-indicator {
@@ -2271,20 +2324,6 @@ button.icon-button.active i.fa-retweet {
       text-decoration: underline;
     }
   }
-}
-
-.status-list__unread-indicator,
-.notifications__unread-indicator {
-  position: absolute;
-  top: 35px;
-  left: 0;
-  right: 0;
-  margin: 0 auto;
-  width: 60%;
-  pointer-events: none;
-  height: 28px;
-  z-index: 1;
-  background: radial-gradient(ellipse, rgba($ui-highlight-color, 0.23) 0%, rgba($ui-highlight-color, 0) 60%);
 }
 
 @keyframes pulse {
@@ -2848,12 +2887,16 @@ button.icon-button.active i.fa-retweet {
   position: relative;
 
   img,
+  canvas,
   video {
     max-width: 80vw;
     max-height: 80vh;
+    width: auto;
+    height: auto;
   }
 
-  img {
+  img,
+  canvas {
     display: block;
     background: url('../images/void.png') repeat;
   }
@@ -2974,6 +3017,14 @@ button.icon-button.active i.fa-retweet {
   }
 }
 
+.onboarding-modal__page__wrapper {
+  pointer-events: none;
+
+  &.onboarding-modal__page__wrapper--active {
+    pointer-events: auto;
+  }
+}
+
 .onboarding-modal__page {
   cursor: default;
   line-height: 21px;
@@ -3031,6 +3082,7 @@ button.icon-button.active i.fa-retweet {
 @media screen and (max-width: 400px) {
   .onboarding-modal__page-one {
     flex-direction: column;
+    align-items: normal;
   }
 
   .onboarding-modal__page-one__elephant-friend {
@@ -3145,7 +3197,8 @@ button.icon-button.active i.fa-retweet {
 }
 
 .boost-modal,
-.confirmation-modal {
+.confirmation-modal,
+.report-modal {
   background: lighten($ui-secondary-color, 8%);
   color: $ui-base-color;
   border-radius: 8px;
@@ -3181,7 +3234,8 @@ button.icon-button.active i.fa-retweet {
 }
 
 .boost-modal__action-bar,
-.confirmation-modal__action-bar {
+.confirmation-modal__action-bar,
+.report-modal__action-bar {
   display: flex;
   justify-content: space-between;
   background: $ui-secondary-color;
@@ -3217,6 +3271,24 @@ button.icon-button.active i.fa-retweet {
   }
 }
 
+.report-modal__statuses,
+.report-modal__comment {
+  padding: 10px;
+}
+
+.report-modal__statuses {
+  min-height: 20vh;
+  max-height: 40vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.report-modal__comment {
+  .setting-text {
+    margin-top: 10px;
+  }
+}
+
 .confirmation-modal__action-bar {
   .confirmation-modal__cancel-button {
     background-color: transparent;
@@ -3232,7 +3304,8 @@ button.icon-button.active i.fa-retweet {
   }
 }
 
-.confirmation-modal__container {
+.confirmation-modal__container,
+.report-modal__target {
   padding: 30px;
   font-size: 16px;
   text-align: center;
@@ -3349,14 +3422,17 @@ button.icon-button.active i.fa-retweet {
 }
 
 .media-gallery__item-thumbnail {
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
   cursor: zoom-in;
   display: block;
-  height: 100%;
   text-decoration: none;
-  width: 100%;
+  height: 100%;
+
+  &,
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
 }
 
 .media-gallery__gifv {
@@ -3508,5 +3584,14 @@ button.icon-button.active i.fa-retweet {
   &::after {
     bottom: -1px;
     border-color: transparent transparent $ui-base-color;
+  }
+}
+
+noscript {
+  text-align: center;
+
+  div {
+    font-size: 20px;
+    margin: 20px 0;
   }
 }

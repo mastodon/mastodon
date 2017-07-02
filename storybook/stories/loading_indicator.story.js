@@ -1,6 +1,6 @@
 import React from 'react';
 import { IntlProvider } from 'react-intl';
-import { storiesOf } from '@kadira/storybook';
+import { storiesOf } from '@storybook/react';
 import en from 'mastodon/locales/en.json';
 import LoadingIndicator from 'mastodon/components/loading_indicator';
 

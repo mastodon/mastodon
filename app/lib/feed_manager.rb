@@ -34,13 +34,15 @@ class FeedManager
       trim(timeline_type, account.id)
     end
 
-    PushUpdateWorker.perform_async(account.id, status.id)
+    PushUpdateWorker.perform_async(account.id, status.id) if push_update_required?(timeline_type, account.id)
   end
 
   def trim(type, account_id)
-    return unless redis.zcard(key(type, account_id)) > FeedManager::MAX_ITEMS
-    last = redis.zrevrange(key(type, account_id), FeedManager::MAX_ITEMS - 1, FeedManager::MAX_ITEMS - 1)
-    redis.zremrangebyscore(key(type, account_id), '-inf', "(#{last.last}")
+    redis.zremrangebyrank(key(type, account_id), '0', (-(FeedManager::MAX_ITEMS + 1)).to_s)
+  end
+
+  def push_update_required?(timeline_type, account_id)
+    timeline_type != :home || redis.get("subscribed:timeline:#{account_id}").present?
   end
 
   def merge_into_timeline(from_account, into_account)
@@ -105,8 +107,8 @@ class FeedManager
 
     if status.reply? && !status.in_reply_to_account_id.nil?                                                              # Filter out if it's a reply
       should_filter   = !Follow.where(account_id: receiver_id, target_account_id: status.in_reply_to_account_id).exists? # and I'm not following the person it's a reply to
-      should_filter &&= !(receiver_id == status.in_reply_to_account_id)                                                  # and it's not a reply to me
-      should_filter &&= !(status.account_id == status.in_reply_to_account_id)                                            # and it's not a self-reply
+      should_filter &&= receiver_id != status.in_reply_to_account_id                                                     # and it's not a reply to me
+      should_filter &&= status.account_id != status.in_reply_to_account_id                                               # and it's not a self-reply
       return should_filter
     elsif status.reblog?                                                                                                 # Filter out a reblog
       should_filter   = Block.where(account_id: status.reblog.account_id, target_account_id: receiver_id).exists?        # or if the author of the reblogged status is blocking me

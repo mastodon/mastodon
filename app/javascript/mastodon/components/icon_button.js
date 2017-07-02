@@ -3,7 +3,7 @@ import Motion from 'react-motion/lib/Motion';
 import spring from 'react-motion/lib/spring';
 import PropTypes from 'prop-types';
 
-class IconButton extends React.PureComponent {
+export default class IconButton extends React.PureComponent {
 
   static propTypes = {
     className: PropTypes.string,
@@ -76,7 +76,8 @@ class IconButton extends React.PureComponent {
             title={this.props.title}
             className={classes.join(' ')}
             onClick={this.handleClick}
-            style={style}>
+            style={style}
+          >
             <i style={{ transform: `rotate(${rotate}deg)` }} className={`fa fa-fw fa-${this.props.icon}`} aria-hidden='true' />
           </button>
         }
@@ -85,5 +86,3 @@ class IconButton extends React.PureComponent {
   }
 
 }
-
-export default IconButton;

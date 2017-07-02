@@ -14,6 +14,14 @@ describe StreamEntryFinder do
       it 'finds the stream entry' do
         expect(subject.stream_entry).to eq(status.stream_entry)
       end
+
+      it 'raises an error if action is not :show' do
+        recognized = Rails.application.routes.recognize_path(url)
+        expect(recognized).to receive(:[]).with(:action).and_return(:create)
+        expect(Rails.application.routes).to receive(:recognize_path).with(url).and_return(recognized)
+
+        expect { subject.stream_entry }.to raise_error(ActiveRecord::RecordNotFound)
+      end
     end
 
     context 'with a stream entry url' do
