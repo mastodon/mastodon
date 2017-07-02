@@ -189,7 +189,7 @@ RSpec.describe User, type: :model do
     it 'returns system font ui setting' do
       user = Fabricate(:user)
       user.settings[:system_font_ui] = false
-      expect(user.system_font_ui).to eq false
+      expect(user.setting_system_font_ui).to eq false
     end
   end
 
