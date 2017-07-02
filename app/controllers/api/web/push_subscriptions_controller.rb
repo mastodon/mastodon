@@ -10,6 +10,7 @@ class Api::Web::PushSubscriptionsController < Api::BaseController
 
     unless active_session.web_push_subscription.nil?
       active_session.web_push_subscription.destroy!
+      active_session.web_push_subscription = nil
       active_session.save!
     end
 

@@ -72,8 +72,12 @@ class NotifyService < BaseService
         session.web_push_subscription.push(@notification)
       rescue Webpush::InvalidSubscription
         session.web_push_subscription.destroy!
+        session.web_push_subscription = nil
+        session.save!
       rescue Webpush::ResponseError
         session.web_push_subscription.destroy!
+        session.web_push_subscription = nil
+        session.save!
       end
     end
   end
