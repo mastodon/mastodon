@@ -93,9 +93,9 @@ fr:
       salmon_url: URL Salmon
       search: Rechercher
       show:
-        created_reports: Rapports crées par ce compte
+        created_reports: Signalements crées par ce compte
         report: report
-        targeted_reports: Rapports crées visant ce compte
+        targeted_reports: Signalements crées visant ce compte
       silence: Rendre muet
       statuses: Statuts
       subscribe: S'abonner
@@ -195,8 +195,8 @@ fr:
     title: Administration
   admin_mailer:
     new_report:
-      body: "%{reporter} a reporté %{target}"
-      subject: Nouveau rapport sur %{instance} (#%{id})
+      body: "%{reporter} a signalé %{target}"
+      subject: Nouveau signalement sur %{instance} (#%{id})
   application_mailer:
     settings: 'Changer les préférences courriel : %{link}'
     signature: Notifications de Mastodon depuis %{instance}
