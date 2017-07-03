@@ -44,9 +44,9 @@ ko:
   activitypub:
     activity:
       announce:
-        name: "%{account_name} 님이 액티비티를 공유하였습니다"
+        name: "%{account_name} 님이 액티비티를 공유했습니다"
       create:
-        name: "%{account_name} 님이 노트를 작성하였습니다"
+        name: "%{account_name} 님이 노트를 작성했습니다"
     outbox:
       name: "%{account_name} 님의 送信トレイ"
       summary: "%{account_name} 님의 액비비티 모음"
@@ -72,7 +72,7 @@ ko:
       media_attachments: 첨부된 미디어
       moderation:
         all: 전체
-        silenced: 사일런스 중
+        silenced: 침묵 중
         suspended: 정지 중
         title: モデレーション
       most_recent_activity: 최근 활동
@@ -96,32 +96,32 @@ ko:
         created_reports: 이 계정에서 제출된 신고
         report: 신고
         targeted_reports: 이 계정에 대한 신고
-      silence: 사일런스
+      silence: 침묵
       statuses: Toot 수
       subscribe: 구독하기
       title: 계정
-      undo_silenced: 사일런스 해제
+      undo_silenced: 침묵 해제
       undo_suspension: 정지 해제
       unsubscribe: 구독 해제
       username: 사용자명
       web: Web
     domain_blocks:
       add_new: 추가하기
-      created_msg: 도메인 차단 처리를 완료하였습니다.
-      destroyed_msg: 도메인 차단을 해제하였습니다.
+      created_msg: 도메인 차단 처리를 완료했습니다.
+      destroyed_msg: 도메인 차단을 해제했습니다.
       domain: 도메인
       new:
         create: 차단 추가
         hint: 도메인 차단은 데이터베이스에 계정이 생성되는 것을 막을 수는 없지만, ドメインブロックはデータベース中のアカウント項目の作成を妨げませんが、遡って自動的に指定されたモデレーションをそれらのアカウントに適用します。
         severity:
           desc_html: "<strong>サイレンス</strong>はアカウントのトゥートをフォローしていない人から隠します。<strong>停止</strong>はそのアカウントのコンテンツ、メディア、プロフィールデータをすべて削除します。"
-          silence: 사일런스
+          silence: 침묵
           suspend: 정지
         title: 新規ドメインブロック
       reject_media: 미디어 파일 거부하기
       reject_media_hint: 로컬에 저장된 미디어 파일을 삭제하고, 이후로도 다운로드를 거부합니다. 정지하고는 관계 없습니다.
       severities:
-        silence: 사일런스
+        silence: 침묵
         suspend: 정지
       severity: 심각도
       show:
@@ -129,7 +129,7 @@ ko:
           one: 데이터베이스 중 1개의 계정에 영향을 끼칩니다
           other: 데이터베이스 중 %{count}개의 계정에 영향을 끼칩니다
         retroactive:
-          silence: 이 도메인에 존재하는 모든 계정의 사일런스를 해제
+          silence: 이 도메인에 존재하는 모든 계정의 침묵를 해제
           suspend: 이 도메인에 존재하는 모든 계정의 계정 정지를 해제
         title: "%{domain}의 도메인 차단을 해제"
         undo: 실행 취소
@@ -156,7 +156,7 @@ ko:
       reported_account: 신고 대상 계정
       reported_by: 신고자
       resolved: 해결됨
-      silence_account: 계정을 사일런스 처리
+      silence_account: 계정을 침묵 처리
       status: 상태
       suspend_account: 계정을 정지
       target: 대상
@@ -195,7 +195,7 @@ ko:
     title: 관리
   admin_mailer:
     new_report:
-      body: "%{reporter} 가 %{target} 를 신고하였습니다"
+      body: "%{reporter} 가 %{target} 를 신고했습니다"
       subject: "%{instance} 에 새 신고 등록됨 (#%{id})"
   application_mailer:
     settings: 'メール設定の変更: %{link}'
@@ -216,9 +216,9 @@ ko:
     reset_password: 비밀번호 재설정
     set_new_password: 새 비밀번호
   authorize_follow:
-    error: 리모트 팔로우 도중 오류가 발생하였습니다.
+    error: 리모트 팔로우 도중 오류가 발생했습니다.
     follow: 팔로우
-    prompt_html: '나(<strong>%{self}</strong>) 는 아래 계정의 팔로우를 요청하였습니다:'
+    prompt_html: '나(<strong>%{self}</strong>) 는 아래 계정의 팔로우를 요청했습니다:'
     title: "%{acct} 를 팔로우"
   datetime:
     distance_in_words:
@@ -247,9 +247,9 @@ ko:
     '404': 페이지를 찾을 수 없습니다
     '410': 이 페이지는 더 이상 존재하지 않습니다
     '422':
-      content: 보안 인증에 실패하였습니다. Cookie를 차단하고 있진 않나요?
+      content: 보안 인증에 실패했습니다. Cookie를 차단하고 있진 않습니까?
       title: 보안 인증 실패
-    '429': 요청 횟수 제한에 도달하였습니다.
+    '429': 요청 횟수 제한에 도달했습니다.
     noscript: Mastodon을 사용하기 위해서는 JavaScript를 켜 주십시오.
   exports:
     blocks: 차단
@@ -274,8 +274,8 @@ ko:
     powered_by: powered by %{link}
     save_changes: 변경 사항을 저장
     validation_errors:
-      one: 오류가 발생하였습니다. 아래 오류를 확인하여 주십시오
-      other: 오류가 발생하였습니다. 아래 %{count}개 오류를 확인하여 주십시오
+      one: 오류가 발생했습니다. 아래 오류를 확인하여 주십시오
+      other: 오류가 발생했습니다. 아래 %{count}개 오류를 확인하여 주십시오
   imports:
     preface: 다른 인스턴스에서 내보내기 한 파일에서 팔로우 / 차단 정보를 이 인스턴스 계정으로 불러올 수 있습니다.
     success: 파일이 정상적으로 업로드 되었으며, 현재 처리 중입니다. 잠시 후 다시 확인하여 주십시오.
@@ -293,19 +293,19 @@ ko:
   notification_mailer:
     digest:
       body: "%{instance} での最後のログインからの出来事:"
-      mention: "%{name} 님이 답장하였습니다:"
+      mention: "%{name} 님이 답장했습니다:"
       new_followers_summary:
-        one: 새 팔로워를 획득하였습니다
-        other: "%{count} 명의 새 팔로워를 획득하였습니다!"
+        one: 새 팔로워를 획득했습니다
+        other: "%{count} 명의 새 팔로워를 획득했습니다!"
       subject:
         one: "1건의 새로운 알림 \U0001F418"
         other: "%{count}건의 새로운 알림 \U0001F418"
     favourite:
-      body: '%{name} 님이 내 Toot을 즐겨찾기에 등록하였습니다.'
-      subject: "%{name} 님이 내 Toot을 즐겨찾기에 등록하였습니다"
+      body: '%{name} 님이 내 Toot을 즐겨찾기에 등록했습니다.'
+      subject: "%{name} 님이 내 Toot을 즐겨찾기에 등록했습니다"
     follow:
-      body: "%{name} 님이 나를 팔로우 하였습니다"
-      subject: "%{name} 님이 나를 팔로우 하였습니다"
+      body: "%{name} 님이 나를 팔로우 했습니다"
+      subject: "%{name} 님이 나를 팔로우 했습니다"
     follow_request:
       body: "%{name} 님이 내게 팔로우 요청을 보냈습니다."
       subject: "%{name} 님으로터의 팔로우 요청"
@@ -313,8 +313,8 @@ ko:
       body: "%{name} 님이 답장을 보냈습니다:"
       subject: "%{name} 님이 답장을 보냈습니다"
     reblog:
-      body: "%{name} 님이 내 Toot을 부스트 하였습니다:"
-      subject: "%{name} 님이 내 Toot을 부스트 하였습니다"
+      body: "%{name} 님이 내 Toot을 부스트 했습니다:"
+      subject: "%{name} 님이 내 Toot을 부스트 했습니다"
   pagination:
     next: 다음
     prev: 이전
