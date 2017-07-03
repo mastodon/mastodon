@@ -71,6 +71,8 @@ export default class AdvancedOptionsDropdown extends React.PureComponent {
     const options = [
       { icon: 'wifi', shortText: messages.local_only_short,  longText: messages.local_only_long, key: 'do_not_federate' },
     ];
+
+    const anyEnabled = values.some((enabled) => enabled); 
     const optionElems = options.map((option) => {
       const active = values.get(option.key) ? 'active' : '';
       return (
@@ -86,11 +88,11 @@ export default class AdvancedOptionsDropdown extends React.PureComponent {
       );
     });
 
-    return <div ref={this.setRef} className={`advanced-options-dropdown ${open ? 'active' : ''}`}>
+    return <div ref={this.setRef} className={`advanced-options-dropdown ${open ?  'open' : ''} ${anyEnabled ? 'active' : ''} `}>
       <div className='advanced-options-dropdown__value'>
         <IconButton className='advanced-options-dropdown__value'
           title={intl.formatMessage(messages.advanced_options_icon_title)}
-          icon='ellipsis-h' active={open}
+          icon='ellipsis-h' active={open || anyEnabled}
           size={18} inverted
           style={iconStyle}
           onClick={this.onToggleDropdown} />
