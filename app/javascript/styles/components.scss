@@ -2935,15 +2935,13 @@ button.icon-button.active i.fa-retweet {
   }
 }
 
-.advanced-options-dropdown.active {
+.advanced-options-dropdown.open {
   .advanced-options-dropdown__value {
     background: $simple-background-color;
     border-radius: 4px 4px 0 0;
     box-shadow: 0 -4px 4px rgba($base-shadow-color, 0.1);
   }
-}
-
-.advanced-options-dropdown.open {
+   
   .advanced-options-dropdown__dropdown {
     display: block;
     box-shadow: 2px 4px 6px rgba($base-shadow-color, 0.1);

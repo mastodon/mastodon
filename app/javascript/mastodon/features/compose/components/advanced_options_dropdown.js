@@ -93,7 +93,7 @@ export default class AdvancedOptionsDropdown extends React.PureComponent {
         <IconButton className='advanced-options-dropdown__value'
           title={intl.formatMessage(messages.advanced_options_icon_title)}
           icon='ellipsis-h' active={open || anyEnabled}
-          size={18} inverted
+          size={18}
           style={iconStyle}
           onClick={this.onToggleDropdown} />
       </div>
