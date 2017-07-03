@@ -29,7 +29,7 @@ class Api::V1::Timelines::PublicController < Api::BaseController
   end
 
   def public_timeline_statuses
-    Status.as_public_timeline(current_account, params[:local])
+    Timeline.public(account: current_account, limit: params[:local])
   end
 
   def insert_pagination_headers
