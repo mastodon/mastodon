@@ -1,13 +1,13 @@
 ---
 ko:
   about:
-    about_mastodon: Mastodon 은<em>자유로운 오픈 소스</em>소셜 네트워크입니다. 상용 플랫폼의 대체로써 <em>분산형 구조</em>를 채택하여, 여러분의 대화가 한 회사에 독점되는 것을 방지합니다. 신뢰할 수 있는 인스턴스를 선택하세요 &mdash; 어떤 인스턴스를 고르더라도, 누구와도 대화할 수 있습니다. 누구나 자신만의 Mastodon 인스턴스를 만들 수 있으며, Seamless하게 <em>소셜 네트워크</em>에 참가할 수 있습니다.
+    about_mastodon: Mastodon 은<em>자유로운 오픈 소스</em>소셜 네트워크입니다. 상용 플랫폼의 대체로써 <em>분산형 구조</em>를 채택해, 여러분의 대화가 한 회사에 독점되는 것을 방지합니다. 신뢰할 수 있는 인스턴스를 선택하세요 &mdash; 어떤 인스턴스를 고르더라도, 누구와도 대화할 수 있습니다. 누구나 자신만의 Mastodon 인스턴스를 만들 수 있으며, Seamless하게 <em>소셜 네트워크</em>에 참가할 수 있습니다.
     about_this: 이 인스턴스에 대해서
     apps: 어플리케이션
     business_email: '비즈니스 메일 주소:'
     closed_registrations: 현재 이 인스턴스에서는 신규 등록을 받고 있지 않습니다.
     contact: 연락처
-    description_headline: "%{domain} 이란?"
+    description_headline: "%{domain} 는 무엇인가요?"
     domain_count_after: 개의 인스턴스
     domain_count_before: 접속 중
     features:
@@ -236,7 +236,7 @@ ko:
       x_seconds: "%{count}초"
   deletes:
     bad_password_msg: 비밀번호가 올바르지 않습니다
-    confirm_password: 본인 확인을 위해, 현재 사용 중인 비밀번호를 입력하여 주십시오.
+    confirm_password: 본인 확인을 위해, 현재 사용 중인 비밀번호를 입력해 주십시오.
     description_html: 계정에 업로드된 모든 컨텐츠가 삭제되며, 계정은 비활성화 됩니다. 이것은 영구적으로 이루어지는 것이므로 <strong>되돌릴 수 없습니다</strong>. 사칭 행위를 방지하기 위해 같은 계정명으로 다시 등록하는 것은 불가능합니다.
     proceed: 계정 삭제
     success_msg: 계정이 정상적으로 삭제되었습니다.
@@ -264,9 +264,9 @@ ko:
     lock_link: 비공개 계정
     purge: 팔로워에서 삭제
     success:
-      one: 1개 도메인에서 팔로워를 소프트 블락 처리 중...
-      other: "%{count}개 도메인에서 팔로워를 소프트 블락 처리 중..."
-    true_privacy_html: "<strong>프라이버시 보호는 End-to-End 암호화로만 이루어 질 수 있다는 것에 유의</strong>하여 주십시오."
+      one: 1개 도메인에서 팔로워를 soft-block 처리 중...
+      other: "%{count}개 도메인에서 팔로워를 soft-block 처리 중..."
+    true_privacy_html: "<strong>프라이버시 보호는 End-to-End 암호화로만 이루어 질 수 있다는 것에 유의</strong>해 주십시오."
     unlocked_warning_html: 누구든 여러분을 팔로우 할 수 있으며, 여러분의 프라이빗 투고를 볼 수 있습니다. 팔로우 할 수 있는 사람을 제한하고 싶은 경우 %{lock_link}에서 설정해 주십시오.
     unlocked_warning_title: 이 계정은 비공개로 설정되어 있지 않습니다.
   generic:
@@ -274,11 +274,11 @@ ko:
     powered_by: powered by %{link}
     save_changes: 변경 사항을 저장
     validation_errors:
-      one: 오류가 발생했습니다. 아래 오류를 확인하여 주십시오
-      other: 오류가 발생했습니다. 아래 %{count}개 오류를 확인하여 주십시오
+      one: 오류가 발생했습니다. 아래 오류를 확인해 주십시오
+      other: 오류가 발생했습니다. 아래 %{count}개 오류를 확인해 주십시오
   imports:
     preface: 다른 인스턴스에서 내보내기 한 파일에서 팔로우 / 차단 정보를 이 인스턴스 계정으로 불러올 수 있습니다.
-    success: 파일이 정상적으로 업로드 되었으며, 현재 처리 중입니다. 잠시 후 다시 확인하여 주십시오.
+    success: 파일이 정상적으로 업로드 되었으며, 현재 처리 중입니다. 잠시 후 다시 확인해 주십시오.
     types:
       blocking: 차단한 계정 목록
       following: 팔로우 중인 계정 목록
@@ -292,7 +292,7 @@ ko:
       too_many: 최대 4개까지 첨부할 수 있습니다.
   notification_mailer:
     digest:
-      body: "%{instance} での最後のログインからの出来事:"
+      body: "%{instance} 에서 마지막 로그인 뒤로 일어난 일:"
       mention: "%{name} 님이 답장했습니다:"
       new_followers_summary:
         one: 새 팔로워를 획득했습니다
@@ -320,8 +320,8 @@ ko:
     prev: 이전
     truncate: "&hellip;"
   remote_follow:
-    acct: 사용자명@도메인을 입력하여 주십시오
-    missing_resource: 리디렉션 주소를 찾을 수 없습니다
+    acct: 사용자명@도메인을 입력해 주십시오
+    missing_resource: 리디렉션 대상을 찾을 수 없습니다
     proceed: 팔로우 하기
     prompt: '팔로우 하려 하고 있습니다'
   sessions:
@@ -391,21 +391,21 @@ ko:
     formats:
       default: "%Y년 %m월 %d일 %H:%M"
   two_factor_authentication:
-    code_hint: 확인하기 위해서 인증 어플리케이션에서 표시된 코드를 입력하여 주십시오
+    code_hint: 확인하기 위해서 인증 어플리케이션에서 표시된 코드를 입력해 주십시오
     description_html: "<strong>2단계 인증</strong>을 활성화 하면 로그인 시 전화로 인증 코드를 받을 필요가 있습니다."
     disable: 비활성화
     enable: 활성화
     enabled: 2단계 인증이 활성화 되어 있습니다
     enabled_success: 2단계 인증이 활성화 되었습니다
     generate_recovery_codes: 복구 코드 생성
-    instructions_html: "<strong>Google Authenticator, 또는 타 TOTP 어플리케이션에서 이 QR 코드를 스캔하여 주십시오.</strong> 이후 로그인 시에는 이 어플리케이션에서 생성되는 코드가 필요합니다."
+    instructions_html: "<strong>Google Authenticator, 또는 타 TOTP 어플리케이션에서 이 QR 코드를 스캔해 주십시오.</strong> 이후 로그인 시에는 이 어플리케이션에서 생성되는 코드가 필요합니다."
     lost_recovery_codes: 복구 코드를 사용하면 휴대전화를 분실한 경우에도 계정에 접근할 수 있게 됩니다. 복구 코드를 분실한 경우에도 여기서 다시 생성할 수 있지만, 예전 복구 코드는 비활성화 됩니다.
-    manual_instructions: 'QR 코드를 스캔할 수 없어 수동으로 등록을 원하시는 경우 이 비밀 코드를 사용하여 주십시오: '
+    manual_instructions: 'QR 코드를 스캔할 수 없어 수동으로 등록을 원하시는 경우 이 비밀 코드를 사용해 주십시오: '
     recovery_codes: 복구 코드
     recovery_codes_regenerated: 복구 코드가 다시 생성되었습니다.
-    recovery_instructions_html: 휴대전화를 분실한 경우, 아래 복구 코드 중 하나를 사용하여 계정에 접근할 수 있습니다. <strong>복구 코드는 안전하게 보관하여 주십시오.</strong> 이 코드를 인쇄하여 중요한 서류와 함께 보관하는 것도 좋습니다.
+    recovery_instructions_html: 휴대전화를 분실한 경우, 아래 복구 코드 중 하나를 사용해 계정에 접근할 수 있습니다. <strong>복구 코드는 안전하게 보관해 주십시오.</strong> 이 코드를 인쇄해 중요한 서류와 함께 보관하는 것도 좋습니다.
     setup: 초기 설정
-    wrong_code: 코드가 올바르지 않습니다. 서버와 휴대전화 간 시간이 일치하는지 확인하여 주십시오.
+    wrong_code: 코드가 올바르지 않습니다. 서버와 휴대전화 간 시간이 일치하는지 확인해 주십시오.
   users:
     invalid_email: 메일 주소가 올바르지 않습니다
     invalid_otp_token: 2단계 인증 코드가 올바르지 않습니다
