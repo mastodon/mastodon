@@ -33,6 +33,11 @@ function main() {
     const props = JSON.parse(mountNode.getAttribute('data-props'));
 
     ReactDOM.render(<Mastodon {...props} />, mountNode);
+    if (process.env.NODE_ENV === 'production') {
+      // avoid offline in dev mode because it's harder to debug
+      const OfflinePluginRuntime = require('offline-plugin/runtime');
+      OfflinePluginRuntime.install();
+    }
     perf.stop('main()');
   });
 }
