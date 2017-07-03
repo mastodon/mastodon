@@ -6,7 +6,7 @@ import Toggle from 'react-toggle';
 import { injectIntl, defineMessages } from 'react-intl';
 
 const messages = defineMessages({
-  local_only_short: { id: 'advanced-options.local-only.short', defaultMessage: 'Local-only'},
+  local_only_short: { id: 'advanced-options.local-only.short', defaultMessage: 'Local-only' },
   local_only_long: { id: 'advanced-options.local-only.long', defaultMessage: 'bla' },
   advanced_options_icon_title: { id: 'advanced_options.icon_title', defaultMessage: 'Advanced options' },
 });
@@ -18,6 +18,7 @@ const iconStyle = {
 
 @injectIntl
 export default class AdvancedOptionsDropdown extends React.PureComponent {
+
   static propTypes = {
     values: ImmutablePropTypes.contains({
       do_not_federate: PropTypes.bool.isRequired,
@@ -27,7 +28,7 @@ export default class AdvancedOptionsDropdown extends React.PureComponent {
   };
 
   onToggleDropdown = () => {
-      this.setState({ open: !this.state.open });
+    this.setState({ open: !this.state.open });
   };
 
   onGlobalClick = (e) => {
@@ -72,11 +73,11 @@ export default class AdvancedOptionsDropdown extends React.PureComponent {
       { icon: 'wifi', shortText: messages.local_only_short,  longText: messages.local_only_long, key: 'do_not_federate' },
     ];
 
-    const anyEnabled = values.some((enabled) => enabled); 
+    const anyEnabled = values.some((enabled) => enabled);
     const optionElems = options.map((option) => {
       const active = values.get(option.key) ? 'active' : '';
       return (
-        <div role='button' className={`advanced-options-dropdown__option`} key={option.key} >
+        <div role='button' className='advanced-options-dropdown__option' key={option.key} >
           <div className='advanced-options-dropdown__option__toggle'>
             <Toggle checked={active} onChange={this.toggleHandler(option.key)} />
           </div>
@@ -88,18 +89,21 @@ export default class AdvancedOptionsDropdown extends React.PureComponent {
       );
     });
 
-    return <div ref={this.setRef} className={`advanced-options-dropdown ${open ?  'open' : ''} ${anyEnabled ? 'active' : ''} `}>
+    return (<div ref={this.setRef} className={`advanced-options-dropdown ${open ?  'open' : ''} ${anyEnabled ? 'active' : ''} `}>
       <div className='advanced-options-dropdown__value'>
-        <IconButton className='advanced-options-dropdown__value'
+        <IconButton
+          className='advanced-options-dropdown__value'
           title={intl.formatMessage(messages.advanced_options_icon_title)}
           icon='ellipsis-h' active={open || anyEnabled}
           size={18}
           style={iconStyle}
-          onClick={this.onToggleDropdown} />
+          onClick={this.onToggleDropdown}
+        />
       </div>
       <div className='advanced-options-dropdown__dropdown'>
         {optionElems}
       </div>
-    </div>;
+    </div>);
   }
+
 }

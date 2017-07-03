@@ -31,7 +31,7 @@ import uuid from '../uuid';
 const initialState = Immutable.Map({
   mounted: false,
   advanced_options: Immutable.Map({
-    do_not_federate: false
+    do_not_federate: false,
   }),
   sensitive: false,
   spoiler: false,
@@ -49,7 +49,7 @@ const initialState = Immutable.Map({
   suggestions: Immutable.List(),
   me: null,
   default_advanced_options: Immutable.Map({
-    do_not_federate: false
+    do_not_federate: false,
   }),
   default_privacy: 'public',
   resetFileKey: Math.floor((Math.random() * 0x10000)),
