@@ -138,7 +138,7 @@ export default class Notifications extends React.PureComponent {
           {unread}
 
           <div>
-            {notifications.map(item => <NotificationContainer key={item.get('id')} notification={item} accountId={item.get('account')} />)}
+            {notifications.map(item => <NotificationContainer key={item.get('id')} notification={item} accountId={item.get('account')} />).toArray()}
             {loadMore}
           </div>
         </div>

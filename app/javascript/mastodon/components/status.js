@@ -80,6 +80,9 @@ export default class Status extends ImmutablePureComponent {
       // These are managed in notifications/index.js rather than status_list.js
       return;
     }
+
+    this.saveHeight();
+
     this.props.intersectionObserverWrapper.observe(
       this.props.id,
       this.node,
@@ -130,7 +133,6 @@ export default class Status extends ImmutablePureComponent {
 
   handleRef = (node) => {
     this.node = node;
-    this.saveHeight();
   }
 
   handleClick = () => {

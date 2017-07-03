@@ -179,7 +179,7 @@ export default class MediaGallery extends React.PureComponent {
       );
     } else {
       const size = media.take(4).size;
-      children = media.take(4).map((attachment, i) => <Item key={attachment.get('id')} onClick={this.handleClick} attachment={attachment} autoPlayGif={this.props.autoPlayGif} index={i} size={size} />);
+      children = media.take(4).map((attachment, i) => <Item key={attachment.get('id')} onClick={this.handleClick} attachment={attachment} autoPlayGif={this.props.autoPlayGif} index={i} size={size} />).toArray();
     }
 
     return (
