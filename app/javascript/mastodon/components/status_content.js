@@ -31,10 +31,10 @@ export default class StatusContent extends React.PureComponent {
 
     for (var i = 0; i < links.length; ++i) {
       let link = links[i];
-      if ((' '+link.className+' ').indexOf(' status-link ') >= 0) {
+      if (link.classList.contains('status-link')) {
         continue;
       }
-      link.className += ' status-link';
+      link.classList.add('status-link');
 
       let mention = this.props.status.get('mentions').find(item => link.href === item.get('url'));
 
