@@ -1,15 +1,16 @@
-class Auth::OmniauthCallbacksController < Devise::OmniauthCallbacksController
+# frozen_string_literal: true
 
+class Auth::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   def self.provides_callback_for(provider)
-    _provider = provider.to_s.chomp "_oauth2"
+    provider_id = provider.to_s.chomp '_oauth2'
     define_method provider do
-      @user = User.find_for_oauth(env["omniauth.auth"], current_user)
+      @user = User.find_for_oauth(env['omniauth.auth'], current_user)
 
       if @user.persisted?
         sign_in_and_redirect @user, event: :authentication
-        set_flash_message(:notice, :success, kind: _provider.capitalize) if is_navigational_format?
+        set_flash_message(:notice, :success, kind: provider_id.capitalize) if is_navigational_format?
       else
-        session["devise.#{provider}_data"] = env["omniauth.auth"]
+        session["devise.#{provider}_data"] = env['omniauth.auth']
         redirect_to new_user_registration_url
       end
     end

@@ -14,11 +14,10 @@ module Omniauthable
     end
 
     def email_verified?
-      self.email && self.email !~ TEMP_EMAIL_REGEX
+      email && email !~ TEMP_EMAIL_REGEX
     end
 
     def self.find_for_oauth(auth, signed_in_resource = nil)
-
       # EOLE-SSO Patch
       if auth.uid.is_a? Hashie::Array
         auth.uid = auth.uid[0][:uid] || auth.uid[0][:user]
@@ -44,28 +43,30 @@ module Omniauthable
         uid = auth.uid
 
         if uid
-          account = Account.where(username: uid).first
+          account = Account.find_by(username: uid)
           user = account.try(:user)
         end
-        if user.nil? and email
-          user = User.where(email: email).first
+        if user.nil? && email
+          user = User.find_by(email: email)
         end
 
         # Create the user if it's a new registration
         if user.nil?
-          username, i = uid, 0
-          while Account.exists?(username: username) do i+=1
+          username = uid
+          i = 0
+          while Account.exists?(username: username)
+            i += 1
             username = "#{uid}_#{i}"
           end
           user = User.new(
             email: email ? email : "#{TEMP_EMAIL_PREFIX}-#{auth.uid}-#{auth.provider}.com",
-            password: Devise.friendly_token[0,20],
-            account: Account.new({
+            password: Devise.friendly_token[0, 20],
+            account: Account.new(
               username: username,
               display_name: [auth.info.first_name, auth.info.last_name].join(' '),
-            })
+            )
           )
-          user.account.avatar = open(auth.info.image, allow_redirections: :safe) if auth.info.image =~ /\A#{URI::regexp(['http', 'https'])}\z/
+          user.account.avatar = open(auth.info.image, allow_redirections: :safe) if auth.info.image =~ /\A#{URI.regexp(%W{http https})}\z/
           user.skip_confirmation!
           user.save!
         end
