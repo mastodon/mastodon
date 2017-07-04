@@ -1545,25 +1545,6 @@
   }
 }
 
-.layout__selector {
-  margin-top: 20px;
-
-  a {
-    text-decoration: underline;
-    cursor: pointer;
-    color: lighten($ui-base-color, 26%);
-  }
-
-  b {
-    font-weight: bold;
-  }
-
-  p {
-    font-size: 13px;
-    color: $ui-secondary-color;
-  }
-}
-
 .tabs-bar {
   display: flex;
   background: lighten($ui-base-color, 8%);
@@ -3428,6 +3409,10 @@ button.icon-button.active i.fa-retweet {
   padding: 15px 20px 15px 20px;
   width: 360px;
   overflow-y: auto;
+
+  select {
+    margin-bottom: 5px;
+  }
 }
 
 .onboard-sliders {

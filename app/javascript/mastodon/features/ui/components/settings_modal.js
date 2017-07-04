@@ -1,18 +1,30 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, injectIntl, defineMessages } from 'react-intl';
 
+const messages = defineMessages({
+  layout_auto: {  id: 'layout.auto', defaultMessage: 'Auto' },
+  layout_desktop: { id: 'layout.desktop', defaultMessage: 'Desktop' },
+  layout_mobile: { id: 'layout.single', defaultMessage: 'Mobile' },
+});
+
+@injectIntl
 class SettingsItem extends React.PureComponent {
 
   static propTypes = {
     settings: ImmutablePropTypes.map.isRequired,
     item: PropTypes.array.isRequired,
     id: PropTypes.string.isRequired,
+    options: PropTypes.arrayOf(PropTypes.shape({
+      value: PropTypes.string.isRequired,
+      message: PropTypes.object.isRequired,
+    })),
     dependsOn: PropTypes.array,
     dependsOnNot: PropTypes.array,
     children: PropTypes.element.isRequired,
     onChange: PropTypes.func.isRequired,
+    intl: PropTypes.object.isRequired,
   };
 
   handleChange = (e) => {
@@ -21,7 +33,7 @@ class SettingsItem extends React.PureComponent {
   }
 
   render () {
-    const { settings, item, id, children, dependsOn, dependsOnNot } = this.props;
+    const { settings, item, id, options, children, dependsOn, dependsOnNot, intl } = this.props;
     let enabled = true;
 
     if (dependsOn) {
@@ -35,18 +47,41 @@ class SettingsItem extends React.PureComponent {
       }
     }
 
-    return (
-      <label htmlFor={id}>
-        <input
-          id={id}
-          type='checkbox'
-          checked={settings.getIn(item)}
-          onChange={this.handleChange}
-          disabled={!enabled}
-        />
-        {children}
-      </label>
-    );
+    if (options && options.length > 0) {
+      const currentValue = settings.getIn(item);
+      const optionElems = options && options.length > 0 && options.map((opt) => (
+        <option key={opt.value} selected={currentValue === opt.value} value={opt.value} >
+          {intl.formatMessage(opt.message)}
+        </option>
+      ));
+      return (
+        <label htmlFor={id}>
+          <p>{children}</p>
+          <p>
+            <select
+              id={id}
+              disabled={!enabled}
+              onBlur={this.handleChange}
+            >
+              {optionElems}
+            </select>
+          </p>
+        </label>
+      );
+    } else {
+      return (
+        <label htmlFor={id}>
+          <input
+            id={id}
+            type='checkbox'
+            checked={settings.getIn(item)}
+            onChange={this.handleChange}
+            disabled={!enabled}
+          />
+          {children}
+        </label>
+      );
+    }
   }
 
 }
@@ -56,6 +91,7 @@ export default class SettingsModal extends React.PureComponent {
   static propTypes = {
     settings: ImmutablePropTypes.map.isRequired,
     toggleSetting: PropTypes.func.isRequired,
+    changeSetting: PropTypes.func.isRequired,
     onClose: PropTypes.func.isRequired,
   };
 
@@ -69,12 +105,27 @@ export default class SettingsModal extends React.PureComponent {
         <h1><FormattedMessage id='settings.general' defaultMessage='General' /></h1>
         <SettingsItem
           settings={this.props.settings}
+          item={['layout']}
+          id='mastodon-settings--layout'
+          options={[
+            { value: 'auto', message: messages.layout_auto },
+            { value: 'multiple', message: messages.layout_desktop },
+            { value: 'single', message: messages.layout_mobile },
+          ]}
+          onChange={this.props.changeSetting}
+        >
+          <FormattedMessage id='settings.layout' defaultMessage='Layout:' />
+        </SettingsItem>
+
+        <SettingsItem
+          settings={this.props.settings}
           item={['stretch']}
           id='mastodon-settings--stretch'
           onChange={this.props.toggleSetting}
         >
           <FormattedMessage id='settings.wide_view' defaultMessage='Wide view (Desktop mode only)' />
         </SettingsItem>
+
       </div>
     );
   }

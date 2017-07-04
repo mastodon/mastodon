@@ -11,6 +11,9 @@ const mapDispatchToProps = dispatch => ({
   toggleSetting (setting, e) {
     dispatch(changeLocalSetting(setting, e.target.checked));
   },
+  changeSetting (setting, e) {
+    dispatch(changeLocalSetting(setting, e.target.value));
+  },
   onClose () {
     dispatch(closeModal());
   },

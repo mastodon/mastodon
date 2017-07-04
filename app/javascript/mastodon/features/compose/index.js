@@ -7,7 +7,7 @@ import { mountCompose, unmountCompose } from '../../actions/compose';
 import { openModal } from '../../actions/modal';
 import { changeLocalSetting } from '../../actions/local_settings';
 import Link from 'react-router-dom/Link';
-import { injectIntl, defineMessages, FormattedMessage } from 'react-intl';
+import { injectIntl, defineMessages } from 'react-intl';
 import SearchContainer from './containers/search_container';
 import Motion from 'react-motion/lib/Motion';
 import spring from 'react-motion/lib/spring';
@@ -23,7 +23,6 @@ const messages = defineMessages({
 
 const mapStateToProps = state => ({
   showSearch: state.getIn(['search', 'submitted']) && !state.getIn(['search', 'hidden']),
-  layout: state.getIn(['local_settings', 'layout']),
 });
 
 @connect(mapStateToProps)
@@ -35,7 +34,6 @@ export default class Compose extends React.PureComponent {
     multiColumn: PropTypes.bool,
     showSearch: PropTypes.bool,
     intl: PropTypes.object.isRequired,
-    layout: PropTypes.string,
   };
 
   componentDidMount () {
@@ -57,7 +55,7 @@ export default class Compose extends React.PureComponent {
   }
 
   render () {
-    const { multiColumn, showSearch, intl, layout } = this.props;
+    const { multiColumn, showSearch, intl } = this.props;
 
     let header = '';
 
@@ -73,46 +71,7 @@ export default class Compose extends React.PureComponent {
       );
     }
 
-    let layoutContent = '';
 
-    switch (layout) {
-    case 'single':
-      layoutContent = (
-        <div className='layout__selector'>
-          <p>
-            <FormattedMessage id='layout.current_is' defaultMessage='Your current layout is:' /> <b><FormattedMessage id='layout.mobile' defaultMessage='Mobile' /></b>
-          </p>
-          <p>
-            <a onClick={this.onLayoutClick} role='button' tabIndex='0' data-mastodon-layout='auto'><FormattedMessage id='layout.auto' defaultMessage='Auto' /></a> • <a onClick={this.onLayoutClick} role='button' tabIndex='0' data-mastodon-layout='multiple'><FormattedMessage id='layout.desktop' defaultMessage='Desktop' /></a>
-          </p>
-        </div>
-      );
-      break;
-    case 'multiple':
-      layoutContent = (
-        <div className='layout__selector'>
-          <p>
-            <FormattedMessage id='layout.current_is' defaultMessage='Your current layout is:' /> <b><FormattedMessage id='layout.desktop' defaultMessage='Desktop' /></b>
-          </p>
-          <p>
-            <a onClick={this.onLayoutClick} role='button' tabIndex='0' data-mastodon-layout='auto'><FormattedMessage id='layout.auto' defaultMessage='Auto' /></a> • <a onClick={this.onLayoutClick} role='button' tabIndex='0' data-mastodon-layout='single'><FormattedMessage id='layout.mobile' defaultMessage='Mobile' /></a>
-          </p>
-        </div>
-      );
-      break;
-    default:
-      layoutContent = (
-        <div className='layout__selector'>
-          <p>
-            <FormattedMessage id='layout.current_is' defaultMessage='Your current layout is:' /> <b><FormattedMessage id='layout.auto' defaultMessage='Auto' /></b>
-          </p>
-          <p>
-            <a onClick={this.onLayoutClick} role='button' tabIndex='0' data-mastodon-layout='multiple'><FormattedMessage id='layout.desktop' defaultMessage='Desktop' /></a> • <a onClick={this.onLayoutClick} role='button' tabIndex='0' data-mastodon-layout='single'><FormattedMessage id='layout.mobile' defaultMessage='Mobile' /></a>
-          </p>
-        </div>
-      );
-      break;
-    }
 
     return (
       <div className='drawer'>
@@ -134,8 +93,6 @@ export default class Compose extends React.PureComponent {
             }
           </Motion>
         </div>
-
-        {layoutContent}
 
       </div>
     );
