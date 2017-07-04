@@ -45,6 +45,4 @@ RUN bundle install --deployment --without test development \
 
 COPY . /mastodon
 
-VOLUME /mastodon/public/assets /mastodon/public/packs
-
 RUN chmod +x /mastodon/web_boot.sh
