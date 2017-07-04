@@ -39,7 +39,7 @@ ko:
     people_who_follow: "%{name} 님을 팔로우 중인 계정"
     posts: 포스트
     remote_follow: 리모트 팔로우
-    reserved_username: 이 사용자 명은 예약되어 있습니다.
+    reserved_username: 이 아이디는 예약되어 있습니다.
     unfollow: 팔로우 해제
   activitypub:
     activity:
@@ -56,7 +56,7 @@ ko:
       confirm: 확인
       confirmed: 확인됨
       disable_two_factor_authentication: 2단계 인증을 비활성화
-      display_name: 계정명
+      display_name: 이름
       domain: 도메인
       edit: 편집
       email: E-mail
@@ -103,7 +103,7 @@ ko:
       undo_silenced: 침묵 해제
       undo_suspension: 정지 해제
       unsubscribe: 구독 해제
-      username: 사용자명
+      username: 아이디
       web: Web
     domain_blocks:
       add_new: 추가하기
@@ -167,7 +167,7 @@ ko:
       contact_information:
         email: 공개할 메일 주소를 입력
         label: 연락처 정보
-        username: 사용자명을 입력
+        username: 아이디를 입력
       registrations:
         closed_message:
           desc_html: 신규 등록을 받지 않을 때 프론트 페이지에 표시됩니다. <br>HTML 태그를 사용할 수 있습니다.
@@ -237,7 +237,7 @@ ko:
   deletes:
     bad_password_msg: 비밀번호가 올바르지 않습니다
     confirm_password: 본인 확인을 위해, 현재 사용 중인 비밀번호를 입력해 주십시오.
-    description_html: 계정에 업로드된 모든 컨텐츠가 삭제되며, 계정은 비활성화 됩니다. 이것은 영구적으로 이루어지는 것이므로 <strong>되돌릴 수 없습니다</strong>. 사칭 행위를 방지하기 위해 같은 계정명으로 다시 등록하는 것은 불가능합니다.
+    description_html: 계정에 업로드된 모든 컨텐츠가 삭제되며, 계정은 비활성화 됩니다. 이것은 영구적으로 이루어지는 것이므로 <strong>되돌릴 수 없습니다</strong>. 사칭 행위를 방지하기 위해 같은 아이디로 다시 등록하는 것은 불가능합니다.
     proceed: 계정 삭제
     success_msg: 계정이 정상적으로 삭제되었습니다.
     warning_html: 삭제가 보장되는 것은 이 인스턴스 상에서의 컨텐츠에 한합니다. 타 인스턴스 등, 외부에 멀리 공유된 컨텐츠는 흔적이 남아 삭제되지 않는 경우도 있습니다. 그리고 현재 접속이 불가능한 서버나, 업데이트를 받지 않게 된 서버에 대해서는 삭제가 반영되지 않을 수도 있습니다.
@@ -295,8 +295,8 @@ ko:
       body: "%{instance} 에서 마지막 로그인 뒤로 일어난 일:"
       mention: "%{name} 님이 답장했습니다:"
       new_followers_summary:
-        one: 새 팔로워를 획득했습니다
-        other: "%{count} 명의 새 팔로워를 획득했습니다!"
+        one: 새 팔로워가 생겼습니다!
+        other: "%{count} 명의 팔로워가 생겼습니다!"
       subject:
         one: "1건의 새로운 알림 \U0001F418"
         other: "%{count}건의 새로운 알림 \U0001F418"
@@ -308,7 +308,7 @@ ko:
       subject: "%{name} 님이 나를 팔로우 했습니다"
     follow_request:
       body: "%{name} 님이 내게 팔로우 요청을 보냈습니다."
-      subject: "%{name} 님으로터의 팔로우 요청"
+      subject: "%{name} 님이 보낸 팔로우 요청"
     mention:
       body: "%{name} 님이 답장을 보냈습니다:"
       subject: "%{name} 님이 답장을 보냈습니다"
@@ -320,7 +320,7 @@ ko:
     prev: 이전
     truncate: "&hellip;"
   remote_follow:
-    acct: 사용자명@도메인을 입력해 주십시오
+    acct: 아이디@도메인을 입력해 주십시오
     missing_resource: 리디렉션 대상을 찾을 수 없습니다
     proceed: 팔로우 하기
     prompt: '팔로우 하려 하고 있습니다'
@@ -405,7 +405,7 @@ ko:
     recovery_codes_regenerated: 복구 코드가 다시 생성되었습니다.
     recovery_instructions_html: 휴대전화를 분실한 경우, 아래 복구 코드 중 하나를 사용해 계정에 접근할 수 있습니다. <strong>복구 코드는 안전하게 보관해 주십시오.</strong> 이 코드를 인쇄해 중요한 서류와 함께 보관하는 것도 좋습니다.
     setup: 초기 설정
-    wrong_code: 코드가 올바르지 않습니다. 서버와 휴대전화 간 시간이 일치하는지 확인해 주십시오.
+    wrong_code: 코드가 올바르지 않습니다. 서버와 휴대전화 간의 시간이 일치하는지 확인해 주십시오.
   users:
     invalid_email: 메일 주소가 올바르지 않습니다
     invalid_otp_token: 2단계 인증 코드가 올바르지 않습니다
