@@ -19,6 +19,11 @@ module Omniauthable
 
     def self.find_for_oauth(auth, signed_in_resource = nil)
 
+      # EOLE-SSO Patch
+      if auth.uid.is_a? Hashie::Array
+        auth.uid = auth.uid[0][:uid] || auth.uid[0][:user]
+      end
+
       # Get the identity and user if they exist
       identity = Identity.find_for_oauth(auth)
 
@@ -62,11 +67,7 @@ module Omniauthable
           )
           user.account.avatar = open(auth.info.image, allow_redirections: :safe) if auth.info.image =~ /\A#{URI::regexp(['http', 'https'])}\z/
           user.skip_confirmation!
-          begin
-            user.save!
-          #rescue ActiveRecord::RecordInvalid => invalid
-          #  puts invalid.record.errors.inspect
-          end
+          user.save!
         end
       end
 
