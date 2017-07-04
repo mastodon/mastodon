@@ -48,8 +48,8 @@ ko:
       create:
         name: "%{account_name} 님이 노트를 작성했습니다"
     outbox:
-      name: "%{account_name} 님의 送信トレイ"
-      summary: "%{account_name} 님의 액비비티 모음"
+      name: "%{account_name} 님의 송신함"
+      summary: "%{account_name} 님의 액티비티 모음"
   admin:
     accounts:
       are_you_sure: 정말로 실행하시겠습니까?
@@ -74,7 +74,7 @@ ko:
         all: 전체
         silenced: 침묵 중
         suspended: 정지 중
-        title: モデレーション
+        title: 모더레이션
       most_recent_activity: 최근 활동
       most_recent_ip: 최근 IP
       not_subscribed: 구독하지 않음
@@ -112,12 +112,12 @@ ko:
       domain: 도메인
       new:
         create: 차단 추가
-        hint: 도메인 차단은 데이터베이스에 계정이 생성되는 것을 막을 수는 없지만, ドメインブロックはデータベース中のアカウント項目の作成を妨げませんが、遡って自動的に指定されたモデレーションをそれらのアカウントに適用します。
+        hint: 도메인 차단은 내부 데이터베이스에 계정이 생성되는 것까지는 막을 수 없지만, 그 도메인에서 생성된 계정에 자동적으로 특정한 모더레이션을 적용하게 할 수 있습니다.
         severity:
-          desc_html: "<strong>サイレンス</strong>はアカウントのトゥートをフォローしていない人から隠します。<strong>停止</strong>はそのアカウントのコンテンツ、メディア、プロフィールデータをすべて削除します。"
+          desc_html: "<strong>침묵</strong>은 계정을 팔로우 하지 않고 있는 사람들에겐 계정의 Toot을 보이지 않게 합니다. <strong>정지</strong>는 계정의 컨텐츠, 미디어, 프로필 데이터를 삭제합니다."
           silence: 침묵
           suspend: 정지
-        title: 新規ドメインブロック
+        title: 새로운 도메인 차단
       reject_media: 미디어 파일 거부하기
       reject_media_hint: 로컬에 저장된 미디어 파일을 삭제하고, 이후로도 다운로드를 거부합니다. 정지하고는 관계 없습니다.
       severities:
@@ -136,9 +136,9 @@ ko:
       title: 도메인 차단
       undo: 실행 취소
     instances:
-      account_count: 既知のアカウント数
-      domain_name: ドメイン名
-      title: 既知のインスタンス
+      account_count: 알려진 계정의 수
+      domain_name: 도메인 이름
+      title: 알려진 인스턴스들
     reports:
       action_taken_by: 신고 처리자
       are_you_sure: 정말로 실행하시겠습니까?
@@ -178,7 +178,7 @@ ko:
           title: 신규 등록을 받음
       setting: 설정
       site_description:
-        desc_html: 탑 페이지와 meta 태그에 사용됩니다.<br>HTMLタグ、特に<code>&lt;a&gt;</code> と <code>&lt;em&gt;</code>が利用可能です。
+        desc_html: 탑 페이지와 meta 태그에 사용됩니다.<br>HTML 태그, 예를 들어<code>&lt;a&gt;</code> 태그와 <code>&lt;em&gt;</code> 태그를 사용할 수 있습니다.
         title: 사이트 설명
       site_description_extended:
         desc_html: 인스턴스 정보 페이지에 표시됩니다.<br>HTML 태그를 사용할 수 있습니다.
@@ -198,7 +198,7 @@ ko:
       body: "%{reporter} 가 %{target} 를 신고했습니다"
       subject: "%{instance} 에 새 신고 등록됨 (#%{id})"
   application_mailer:
-    settings: 'メール設定の変更: %{link}'
+    settings: '메일 설정을 변경: %{link}'
     signature: Mastodon %{instance} 인스턴스로에서 알림
     view: 'View:'
   applications:
