@@ -6,6 +6,8 @@ RSpec.describe FetchLinkCardService do
   before do
     stub_request(:head, 'http://example.xn--fiqs8s/').to_return(status: 200, headers: { 'Content-Type' => 'text/html' })
     stub_request(:get, 'http://example.xn--fiqs8s/').to_return(request_fixture('idn.txt'))
+    stub_request(:head, 'http://example.com/sjis').to_return(status: 200, headers: { 'Content-Type' => 'text/html' })
+    stub_request(:get, 'http://example.com/sjis').to_return(request_fixture('sjis.txt'))
     stub_request(:head, 'https://github.com/qbi/WannaCry').to_return(status: 404)
 
     subject.call(status)
@@ -17,6 +19,14 @@ RSpec.describe FetchLinkCardService do
 
       it 'works with IDN URLs' do
         expect(a_request(:get, 'http://example.xn--fiqs8s/')).to have_been_made.at_least_once
+      end
+    end
+
+    context do
+      let(:status) { Fabricate(:status, text: 'Check out http://example.com/sjis') }
+
+      it 'works with SJIS' do
+        expect(a_request(:get, 'http://example.com/sjis')).to have_been_made.at_least_once
       end
     end
   end
