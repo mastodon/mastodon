@@ -1,0 +1,8 @@
+- content_for :page_title do
+  = t('terms.title', instance: site_hostname)
+
+.wrapper
+  - if @instance_presenter.site_terms.present?
+    = raw @instance_presenter.site_terms
+  - else
+    = t('terms.body_html')
