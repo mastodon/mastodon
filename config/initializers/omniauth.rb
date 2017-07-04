@@ -8,7 +8,7 @@ Devise.setup do |config|
   # Cas strategy
   if ENV['CAS_ENABLED'] == 'true'
     cas_options = {}
-    cas_options[:url] = ENV['CAS_URL'] || "https://localhost:8443/"
+    cas_options[:url] = ENV['CAS_URL'] || "https://localhost:8443"
     cas_options[:host] = ENV['CAS_HOST'] if ENV['CAS_HOST']
     cas_options[:port] = ENV['CAS_PORT'] if ENV['CAS_PORT']
     cas_options[:ssl] = ENV['CAS_SSL'] == 'true' if ENV['CAS_SSL']

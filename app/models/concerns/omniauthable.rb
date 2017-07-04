@@ -16,8 +16,10 @@ module Omniauthable
     def email_verified?
       email && email !~ TEMP_EMAIL_REGEX
     end
+  end
 
-    def self.find_for_oauth(auth, signed_in_resource = nil)
+  class_methods do
+    def find_for_oauth(auth, signed_in_resource = nil)
       # EOLE-SSO Patch
       if auth.uid.is_a? Hashie::Array
         auth.uid = auth.uid[0][:uid] || auth.uid[0][:user]
@@ -46,9 +48,7 @@ module Omniauthable
           account = Account.find_by(username: uid)
           user = account.try(:user)
         end
-        if user.nil? && email
-          user = User.find_by(email: email)
-        end
+        user = User.find_by(email: email) if user.nil? && email
 
         # Create the user if it's a new registration
         if user.nil?
@@ -63,10 +63,10 @@ module Omniauthable
             password: Devise.friendly_token[0, 20],
             account: Account.new(
               username: username,
-              display_name: [auth.info.first_name, auth.info.last_name].join(' '),
+              display_name: [auth.info.first_name, auth.info.last_name].join(' ')
             )
           )
-          user.account.avatar = open(auth.info.image, allow_redirections: :safe) if auth.info.image =~ /\A#{URI.regexp(%W{http https})}\z/
+          user.account.avatar = open(auth.info.image, allow_redirections: :safe) if auth.info.image =~ /\A#{URI.regexp(%w(http https))}\z/
           user.skip_confirmation!
           user.save!
         end
