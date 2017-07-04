@@ -21,9 +21,7 @@ module Omniauthable
   class_methods do
     def find_for_oauth(auth, signed_in_resource = nil)
       # EOLE-SSO Patch
-      if auth.uid.is_a? Hashie::Array
-        auth.uid = auth.uid[0][:uid] || auth.uid[0][:user]
-      end
+      auth.uid = (auth.uid[0][:uid] || auth.uid[0][:user]) if auth.uid.is_a? Hashie::Array
 
       # Get the identity and user if they exist
       identity = Identity.find_for_oauth(auth)
@@ -35,48 +33,50 @@ module Omniauthable
       user = signed_in_resource ? signed_in_resource : identity.user
 
       # Create the user if needed
-      if user.nil?
-
-        # Get the existing user by email if the provider gives us a verified email.
-        # If no verified email was provided we assign a temporary email and ask the
-        # user to verify it on the next step via UsersController.finish_signup
-        email_is_verified = auth.info.email && (auth.info.verified || auth.info.verified_email)
-        email = auth.info.email if email_is_verified
-        uid = auth.uid
-
-        if uid
-          account = Account.find_by(username: uid)
-          user = account.try(:user)
-        end
-        user = User.find_by(email: email) if user.nil? && email
-
-        # Create the user if it's a new registration
-        if user.nil?
-          username = uid
-          i = 0
-          while Account.exists?(username: username)
-            i += 1
-            username = "#{uid}_#{i}"
-          end
-          user = User.new(
-            email: email ? email : "#{TEMP_EMAIL_PREFIX}-#{auth.uid}-#{auth.provider}.com",
-            password: Devise.friendly_token[0, 20],
-            account: Account.new(
-              username: username,
-              display_name: [auth.info.first_name, auth.info.last_name].join(' ')
-            )
-          )
-          user.account.avatar = open(auth.info.image, allow_redirections: :safe) if auth.info.image =~ /\A#{URI.regexp(%w(http https))}\z/
-          user.skip_confirmation!
-          user.save!
-        end
-      end
+      user = find_or_create_user_for_oauth(auth) if user.nil?
 
       # Associate the identity with the user if needed
       if identity.user != user
         identity.user = user
         identity.save!
       end
+
+      user
+    end
+
+    def find_or_create_user_for_oauth(auth)
+      # Get the existing user by email if the provider gives us a verified email.
+      # If no verified email was provided we assign a temporary email and ask the
+      # user to verify it on the next step via UsersController.finish_signup
+      email_is_verified = auth.info.email && (auth.info.verified || auth.info.verified_email)
+      email = auth.info.email if email_is_verified
+      uid = auth.uid
+      user = Account.find_by(username: uid).try(:user) if uid
+      user = User.find_by(email: email) if user.nil? && email
+
+      # Create the user if it's a new registration
+      user = create_user_for_oauth(auth, uid, email) if user.nil?
+      user
+    end
+
+    def create_user_for_oauth(auth, uid, email)
+      username = uid
+      i = 0
+      while Account.exists?(username: username)
+        i += 1
+        username = "#{uid}_#{i}"
+      end
+      user = User.new(
+        email: email ? email : "#{TEMP_EMAIL_PREFIX}-#{auth.uid}-#{auth.provider}.com",
+        password: Devise.friendly_token[0, 20],
+        account: Account.new(
+          username: username,
+          display_name: [auth.info.first_name, auth.info.last_name].join(' ')
+        )
+      )
+      user.account.avatar = open(auth.info.image, allow_redirections: :safe) if auth.info.image =~ /\A#{URI.regexp(%w(http https))}\z/
+      user.skip_confirmation!
+      user.save!
       user
     end
   end
