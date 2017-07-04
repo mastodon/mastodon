@@ -37,6 +37,7 @@ gem 'nokogiri', '~> 1.7'
 gem 'oj', '~> 3.0'
 
 gem 'omniauth-cas', '~> 1.1'
+gem 'omniauth-saml', '~> 1.8'
 gem 'omniauth', '~> 1.2'
 gem 'ostatus2', '~> 2.0'
 gem 'ox', '~> 2.5'

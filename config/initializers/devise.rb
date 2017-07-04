@@ -268,6 +268,19 @@ Devise.setup do |config|
     config.omniauth :cas, cas_options
   end
 
+  if ENV['SAML_ENABLED'] == 'true'
+    saml_options = {}
+    saml_options[:assertion_consumer_service_url] = ENV['SAML_ACS_URL'] if ENV['SAML_ACS_URL']
+    saml_options[:issuer] = ENV['SAML_ISSUER'] || 'mastodon'
+    saml_options[:idp_sso_target_url] = ENV['SAML_IDP_SSO_TARGET_URL']  if ENV['SAML_IDP_SSO_TARGET_URL']
+    saml_options[:idp_sso_target_url_runtime_params] = ENV['SAML_IDP_SSO_TARGET_PARAMS'] if ENV['SAML_IDP_SSO_TARGET_PARAMS'] # Hash
+    saml_options[:idp_cert] = ENV['SAML_IDP_CERT'] if ENV['SAML_IDP_CERT']
+    saml_options[:idp_cert_fingerprint] = ENV['SAML_IDP_CERT_FINGERPRINT'] if ENV['SAML_IDP_CERT_FINGERPRINT']
+    saml_options[:idp_cert_fingerprint_validator] = ENV['SAML_IDP_CERT_FINGERPRINT_VALIDATOR'] if ENV['SAML_IDP_CERT_FINGERPRINT_VALIDATOR'] # Lambda { |fingerprint| }
+    saml_options[:name_identifier_format] = ENV['SAML_NAME_IDENTIFIER_FORMAT'] if ENV['SAML_NAME_IDENTIFIER_FORMAT']
+    config.omiauth :saml, saml_options
+  end
+
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or
   # change the failure app, you can configure them inside the config.warden block.
