@@ -1,4 +1,5 @@
 import React from 'react';
+import classNames from 'classnames';
 import Switch from 'react-router-dom/Switch';
 import Route from 'react-router-dom/Route';
 import Redirect from 'react-router-dom/Redirect';
@@ -181,13 +182,12 @@ export default class UI extends React.PureComponent {
     const { width, draggingOver } = this.state;
     const { children } = this.props;
 
-    const classNames = ['ui'];
-
-    if (this.props.systemFontUi)
-      classNames.push('system-font');
+    const className = classNames('ui', {
+      'system-font': this.props.systemFontUi,
+    });
 
     return (
-      <div className={classNames.join(' ')} ref={this.setRef}>
+      <div className={className} ref={this.setRef}>
         <TabsBar />
         <ColumnsAreaContainer singleColumn={isMobile(width)}>
           <WrappedSwitch>
