@@ -34,6 +34,7 @@ class Web::PushSubscription < ApplicationRecord
     actions = actions_arr notification
 
     access_token = actions.empty? ? nil : find_or_create_access_token(notification).token
+    nsfw = notification.target_status.nil? || notification.target_status.spoiler_text.empty? ? nil : notification.target_status.spoiler_text
 
     # TODO: Make sure that the payload does not exceed 4KB - Webpush::PayloadTooLarge
     # TODO: Queue the requests - Webpush::TooManyRequests
@@ -47,8 +48,8 @@ class Web::PushSubscription < ApplicationRecord
         timestamp: notification.created_at,
         icon: notification.from_account.avatar_static_url,
         data: {
-          content: HTMLEntities.new.decode(strip_tags(body)),
-          nsfw: notification.target_status.nil? || notification.target_status.spoiler_text.empty? ? nil : HTMLEntities.new.decode(strip_tags(notification.target_status.spoiler_text)),
+          content: decoder.decode(strip_tags(body)),
+          nsfw: nsfw.nil? ? nil : decoder.decode(strip_tags(nsfw)),
           url: url,
           actions: actions,
           access_token: access_token,
@@ -124,30 +125,15 @@ class Web::PushSubscription < ApplicationRecord
     should_hide = notification.type.equal?(:mention) && !notification.target_status.nil? && (notification.target_status.sensitive || !notification.target_status.spoiler_text.empty?)
     can_boost = notification.type.equal?(:mention) && !notification.target_status.nil? && !notification.target_status.hidden?
 
-    boost_action = if can_boost
-                     [{
-                       title: translate('push_notifications.mention.action_boost'),
-                       icon: full_asset_url('emoji/1f504.png'),
-                       todo: 'request',
-                       method: 'POST',
-                       action: "/api/v1/statuses/#{notification.target_status.id}/reblog",
-                     }]
-                   else
-                     []
-                   end
+    if should_hide
+      actions.insert(0, title: translate('push_notifications.mention.action_expand'), icon: full_asset_url('emoji/1f441.png'), todo: 'expand', action: 'expand')
+    end
 
-    expand_action = if should_hide
-                      [{
-                        title: translate('push_notifications.mention.action_expand'),
-                        icon: full_asset_url('emoji/1f441.png'),
-                        todo: 'expand',
-                        action: 'expand',
-                      }]
-                    else
-                      []
-                    end
+    if can_boost
+      actions << { title: translate('push_notifications.mention.action_boost'), icon: full_asset_url('emoji/1f504.png'), todo: 'request', method: 'POST', action: "/api/v1/statuses/#{notification.target_status.id}/reblog" }
+    end
 
-    expand_action.concat(boost_action).concat(actions)
+    actions
   end
 
   def image_str(notification)
@@ -196,5 +182,9 @@ class Web::PushSubscription < ApplicationRecord
       Doorkeeper.configuration.access_token_expires_in,
       Doorkeeper.configuration.refresh_token_enabled?
     )
+  end
+
+  def decoder
+    @decoder ||= HTMLEntities.new
   end
 end
