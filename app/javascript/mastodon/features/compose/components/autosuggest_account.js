@@ -4,7 +4,7 @@ import DisplayName from '../../../components/display_name';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
-class AutosuggestAccount extends ImmutablePureComponent {
+export default class AutosuggestAccount extends ImmutablePureComponent {
 
   static propTypes = {
     account: ImmutablePropTypes.map.isRequired,
@@ -22,5 +22,3 @@ class AutosuggestAccount extends ImmutablePureComponent {
   }
 
 }
-
-export default AutosuggestAccount;

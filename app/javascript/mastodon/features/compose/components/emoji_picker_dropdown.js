@@ -24,7 +24,8 @@ const settings = {
 
 let EmojiPicker; // load asynchronously
 
-class EmojiPickerDropdown extends React.PureComponent {
+@injectIntl
+export default class EmojiPickerDropdown extends React.PureComponent {
 
   static propTypes = {
     intl: PropTypes.object.isRequired,
@@ -123,5 +124,3 @@ class EmojiPickerDropdown extends React.PureComponent {
   }
 
 }
-
-export default injectIntl(EmojiPickerDropdown);

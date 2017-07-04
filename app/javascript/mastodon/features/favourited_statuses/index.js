@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import ImmutablePropTypes from 'react-immutable-proptypes';
 import LoadingIndicator from '../../components/loading_indicator';
 import { fetchFavouritedStatuses, expandFavouritedStatuses } from '../../actions/favourites';
 import Column from '../ui/components/column';
@@ -14,15 +15,21 @@ const messages = defineMessages({
 });
 
 const mapStateToProps = state => ({
+  statusIds: state.getIn(['status_lists', 'favourites', 'items']),
   loaded: state.getIn(['status_lists', 'favourites', 'loaded']),
+  me: state.getIn(['meta', 'me']),
 });
 
-class Favourites extends ImmutablePureComponent {
+@connect(mapStateToProps)
+@injectIntl
+export default class Favourites extends ImmutablePureComponent {
 
   static propTypes = {
     dispatch: PropTypes.func.isRequired,
+    statusIds: ImmutablePropTypes.list.isRequired,
     loaded: PropTypes.bool,
     intl: PropTypes.object.isRequired,
+    me: PropTypes.number.isRequired,
   };
 
   componentWillMount () {
@@ -53,5 +60,3 @@ class Favourites extends ImmutablePureComponent {
   }
 
 }
-
-export default connect(mapStateToProps)(injectIntl(Favourites));

@@ -25,7 +25,9 @@ const mapStateToProps = state => ({
   showSearch: state.getIn(['search', 'submitted']) && !state.getIn(['search', 'hidden']),
 });
 
-class Compose extends React.PureComponent {
+@connect(mapStateToProps)
+@injectIntl
+export default class Compose extends React.PureComponent {
 
   static propTypes = {
     dispatch: PropTypes.func.isRequired,
@@ -86,5 +88,3 @@ class Compose extends React.PureComponent {
   }
 
 }
-
-export default connect(mapStateToProps)(injectIntl(Compose));
