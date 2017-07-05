@@ -247,7 +247,7 @@ class Status < ApplicationRecord
   end
 
   def set_visibility
-    self.visibility = (account.locked? ? :private : :public) if visibility.nil?
+    self.visibility = :public if visibility.nil?
   end
 
   def set_conversation
