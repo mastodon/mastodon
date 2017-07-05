@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Api::Activitypub::OutboxController < ApiController
+class Api::Activitypub::OutboxController < Api::BaseController
   before_action :set_account
 
   respond_to :activitystreams2

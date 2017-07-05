@@ -61,8 +61,13 @@ class FollowRemoteAccountService < BaseService
     account.uri     = get_account_uri(xml)
     account.hub_url = hubs.first.attribute('href').value
 
-    account.save!
-    get_profile(body, account)
+    begin
+      account.save!
+      get_profile(body, account)
+    rescue ActiveRecord::RecordNotUnique
+      # The account has been added by another worker!
+      return Account.find_remote(confirmed_username, confirmed_domain)
+    end
 
     account
   end

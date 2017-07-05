@@ -6,16 +6,29 @@ RSpec.describe Api::SubscriptionsController, type: :controller do
   let(:account) { Fabricate(:account, username: 'gargron', domain: 'quitter.no', remote_url: 'topic_url', secret: 'abc') }
 
   describe 'GET #show' do
-    before do
-      get :show, params: { :id => account.id, 'hub.topic' => 'topic_url', 'hub.challenge' => '456', 'hub.lease_seconds' => "#{86400 * 30}" }
+    context 'with valid subscription' do
+      before do
+        get :show, params: { :id => account.id, 'hub.topic' => 'topic_url', 'hub.challenge' => '456', 'hub.lease_seconds' => "#{86400 * 30}" }
+      end
+
+      it 'returns http success' do
+        expect(response).to have_http_status(:success)
+      end
+
+      it 'echoes back the challenge' do
+        expect(response.body).to match '456'
+      end
     end
 
-    it 'returns http success' do
-      expect(response).to have_http_status(:success)
-    end
+    context 'with invalid subscription' do
+      before do
+        expect_any_instance_of(Account).to receive_message_chain(:subscription, :valid?).and_return(false)
+        get :show, params: { :id => account.id }
+      end
 
-    it 'echoes back the challenge' do
-      expect(response.body).to match '456'
+      it 'returns http success' do
+        expect(response).to have_http_status(:missing)
+      end
     end
   end
 

@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import StatusList from '../../../components/status_list';
-import { expandTimeline, scrollTopTimeline } from '../../../actions/timelines';
+import { scrollTopTimeline } from '../../../actions/timelines';
 import Immutable from 'immutable';
 import { createSelector } from 'reselect';
 import { debounce } from 'lodash';
@@ -39,31 +39,28 @@ const makeGetStatusIds = () => createSelector([
 const makeMapStateToProps = () => {
   const getStatusIds = makeGetStatusIds();
 
-  const mapStateToProps = (state, props) => ({
-    scrollKey: props.scrollKey,
-    shouldUpdateScroll: props.shouldUpdateScroll,
-    statusIds: getStatusIds(state, props),
-    isLoading: state.getIn(['timelines', props.type, 'isLoading'], true),
-    isUnread: state.getIn(['timelines', props.type, 'unread']) > 0,
-    hasMore: !!state.getIn(['timelines', props.type, 'next']),
+  const mapStateToProps = (state, { timelineId }) => ({
+    statusIds: getStatusIds(state, { type: timelineId }),
+    isLoading: state.getIn(['timelines', timelineId, 'isLoading'], true),
+    hasMore: !!state.getIn(['timelines', timelineId, 'next']),
   });
 
   return mapStateToProps;
 };
 
-const mapDispatchToProps = (dispatch, { type, id }) => ({
+const mapDispatchToProps = (dispatch, { timelineId, loadMore }) => ({
 
   onScrollToBottom: debounce(() => {
-    dispatch(scrollTopTimeline(type, false));
-    dispatch(expandTimeline(type, id));
-  }, 300, {leading: true}),
+    dispatch(scrollTopTimeline(timelineId, false));
+    loadMore();
+  }, 300, { leading: true }),
 
   onScrollToTop: debounce(() => {
-    dispatch(scrollTopTimeline(type, true));
+    dispatch(scrollTopTimeline(timelineId, true));
   }, 100),
 
   onScroll: debounce(() => {
-    dispatch(scrollTopTimeline(type, false));
+    dispatch(scrollTopTimeline(timelineId, false));
   }, 100),
 
 });
