@@ -98,7 +98,7 @@ class FetchLinkCardService < BaseService
       set_card_values(card, page)
     end
 
-    unless response.charset && [ card.title, card.description ].all?(&:valid_encoding?)
+    unless response.charset && [card.title, card.description].all?(&:valid_encoding?)
       detection = CharlockHolmes::EncodingDetector.detect(html)
       page = Nokogiri::HTML(html, nil, detection[:encoding])
       set_card_values(card, page)
