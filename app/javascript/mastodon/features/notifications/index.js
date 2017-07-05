@@ -122,7 +122,7 @@ export default class Notifications extends React.PureComponent {
     let unread         = '';
     let scrollContainer = '';
 
-    if (!isLoading && notifications.size > 0 && hasMore) {
+    if (!isLoading && hasMore) {
       loadMore = <LoadMore onClick={this.handleLoadMore} />;
     }
 
@@ -132,7 +132,7 @@ export default class Notifications extends React.PureComponent {
 
     if (isLoading && this.scrollableArea) {
       scrollableArea = this.scrollableArea;
-    } else if (notifications.size > 0) {
+    } else if (notifications.size > 0 || hasMore) {
       scrollableArea = (
         <div className='scrollable' onScroll={this.handleScroll} ref={this.setRef}>
           {unread}
