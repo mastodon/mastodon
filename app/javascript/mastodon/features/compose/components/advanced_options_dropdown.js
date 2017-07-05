@@ -7,7 +7,7 @@ import { injectIntl, defineMessages } from 'react-intl';
 
 const messages = defineMessages({
   local_only_short: { id: 'advanced-options.local-only.short', defaultMessage: 'Local-only' },
-  local_only_long: { id: 'advanced-options.local-only.long', defaultMessage: 'bla' },
+  local_only_long: { id: 'advanced-options.local-only.long', defaultMessage: 'Do not post to other instances' },
   advanced_options_icon_title: { id: 'advanced_options.icon_title', defaultMessage: 'Advanced options' },
 });
 
