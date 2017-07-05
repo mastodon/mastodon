@@ -15,6 +15,11 @@ fr:
       timeout: Votre session a expiré. Veuillez vous reconnecter pour continuer.
       unauthenticated: Vous devez vous connecter ou vous inscrire pour continuer.
       unconfirmed: Vous devez valider votre compte pour continuer.
+      user:
+        ldap_configuration_error: Erreur de configuration LDAP.
+        ldap_invalid_login: login ou mot de passe LDAP incorrect.
+        ldap_existing_email: Un utilisateur non-LDAP existe déjà avec votre courriel.
+        ldap_cannot_create_account_without_email: Aucun courriel n’a pu être trouvé dans vos informations LDAP. Votre compte n’a pu être créé.
     mailer:
       confirmation_instructions:
         subject: "Merci de confirmer votre inscription sur %{instance}"

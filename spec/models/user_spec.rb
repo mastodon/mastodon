@@ -219,6 +219,28 @@ RSpec.describe User, type: :model do
     end
   end
 
+  describe '#ldap_user?' do
+    around(:each) do |example|
+      old_ldap = Rails.configuration.x.use_ldap
+
+      Rails.configuration.x.use_ldap = true
+
+      example.run
+
+      Rails.configuration.x.use_ldap = old_ldap
+    end
+
+    it 'returns true for ldap users' do
+      user = Fabricate(:user, ldap_dn: "uid=foo,dc=example,dc=com")
+      expect(user.ldap_user?).to eq true
+    end
+
+    it 'returns false for other users' do
+      user = Fabricate(:user)
+      expect(user.ldap_user?).to eq false
+    end
+  end
+
   describe 'whitelist' do
     around(:each) do |example|
       old_whitelist = Rails.configuration.x.email_whitelist
