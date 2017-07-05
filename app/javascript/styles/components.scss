@@ -1499,7 +1499,7 @@
 .drawer__pager {
   box-sizing: border-box;
   padding: 0;
-  flex: 0 0 auto;
+  flex: 1 1 auto;
   position: relative;
 }
 
@@ -1507,7 +1507,8 @@
   background: lighten($ui-base-color, 13%);
   box-sizing: border-box;
   padding: 0;
-  overflow-y: visible;
+  position: absolute;
+  height: 100%;
   width: 100%;
 
   &.darker {
