@@ -9,9 +9,9 @@ Warden::Manager.after_set_user except: :fetch do |user, warden|
 end
 
 Warden::Manager.after_fetch do |user, warden|
-  if user.session_active?(warden.cookies.signed['_session_id'])
+  if user.session_active?(warden.cookies.signed['_session_id'] || warden.raw_session['auth_id'])
     warden.cookies.signed['_session_id'] = {
-      value: warden.cookies.signed['_session_id'],
+      value: warden.cookies.signed['_session_id'] || warden.raw_session['auth_id'],
       expires: 1.year.from_now,
       httponly: true,
     }
