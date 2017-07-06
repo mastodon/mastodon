@@ -25,12 +25,17 @@ export default class StatusContent extends React.PureComponent {
     hidden: true,
   };
 
-  componentDidMount () {
+  _updateStatusLinks () {
     const node  = this.node;
     const links = node.querySelectorAll('a');
 
     for (var i = 0; i < links.length; ++i) {
-      let link    = links[i];
+      let link = links[i];
+      if (link.classList.contains('status-link')) {
+        continue;
+      }
+      link.classList.add('status-link');
+
       let mention = this.props.status.get('mentions').find(item => link.href === item.get('url'));
 
       if (mention) {
@@ -46,10 +51,15 @@ export default class StatusContent extends React.PureComponent {
     }
   }
 
+  componentDidMount () {
+    this._updateStatusLinks();
+  }
+
   componentDidUpdate () {
     if (this.props.onHeightUpdate) {
       this.props.onHeightUpdate();
     }
+    this._updateStatusLinks();
   }
 
   onMentionClick = (mention, e) => {
