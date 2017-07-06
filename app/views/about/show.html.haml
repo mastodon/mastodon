@@ -1,4 +1,5 @@
 - content_for :header_tags do
+  %script#initial-state{ type: 'application/json' }!= json_escape(@initial_state_json)
   = javascript_pack_tag 'public', integrity: true, crossorigin: 'anonymous'
 
 - content_for :page_title do
@@ -15,73 +16,71 @@
   %meta{ property: 'og:image:height', content: '400' }/
   %meta{ property: 'twitter:card', content: 'summary' }/
 
-.wrapper
-  %h1
-    = image_tag asset_pack_path('logo.png')
-    = Setting.site_title
+.landing-page
+  .header
+    .container.links
+      .brand
+        = link_to root_url do
+          = image_tag asset_pack_path('logo.svg')
+          Mastodon
 
-  %p!= t('about.about_mastodon')
+      %ul.nav
+        %li= link_to t('auth.login'), new_user_session_path, class: 'webapp-btn'
+        %li= link_to t('about.about_this'), about_more_path
+        %li= link_to t('about.other_instances'), 'https://joinmastodon.org/'
 
-  .screenshot-with-signup
-    .mascot= image_tag asset_pack_path('fluffy-elephant-friend.png')
+    .container.hero
+      .heading
+        %h1
+          = @instance_presenter.site_title
+          %small= t 'about.hosted_on', domain: site_hostname
+      - if @instance_presenter.open_registrations
+        = render 'registration'
+      - else
+        .closed-registrations-message
+          %div
+            - if @instance_presenter.closed_registrations_message.blank?
+              %p= t('about.closed_registrations')
+            - else
+              = @instance_presenter.closed_registrations_message.html_safe
+          = link_to t('about.find_another_instance'), 'https://joinmastodon.org', class: 'button button-alternative button--block'
 
-    - if @instance_presenter.open_registrations
-      = render 'registration'
-    - else
-      .closed-registrations-message
-        - if @instance_presenter.closed_registrations_message.blank?
-          %p= t('about.closed_registrations')
-        - else
-          != @instance_presenter.closed_registrations_message
-        .info
-          = link_to t('auth.login'), new_user_session_path, class: 'webapp-btn'
-          ·
-          = link_to t('about.other_instances'), 'https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/List-of-Mastodon-instances.md'
-          ·
-          = link_to t('about.about_this'), about_more_path
+  .learn-more-cta
+    .container
+      %h3= t('about.description_headline', domain: site_hostname)
+      %p= @instance_presenter.site_description.html_safe.presence || t('about.generic_description')
 
-  %h3= t('about.features_headline')
+  .features
+    .container
+      #mastodon-timeline{ data: { props: Oj.dump(default_props) } }
 
-  .features-list
-    .features-list__column
-      %ul.fa-ul
-        %li
-          = fa_icon('li check-square')
-          = t 'about.features.chronology'
-        %li
-          = fa_icon('li check-square')
-          = t 'about.features.public'
-        %li
-          = fa_icon('li check-square')
-          = t 'about.features.characters'
-        %li
-          = fa_icon('li check-square')
-          = t 'about.features.gifv'
-    .features-list__column
-      %ul.fa-ul
-        %li
-          = fa_icon('li check-square')
-          = t 'about.features.privacy'
-        %li
-          = fa_icon('li check-square')
-          = t 'about.features.blocks'
-        %li
-          = fa_icon('li check-square')
-          = t 'about.features.ethics'
-        %li
-          = fa_icon('li check-square')
-          = t 'about.features.api'
+      .about-mastodon
+        %h3= t 'about.what_is_mastodon'
+        %p= t 'about.about_mastodon_html'
+        %a.button.button-secondary{ href: 'https://joinmastodon.org' }= t 'about.learn_more'
 
-  - unless @instance_presenter.site_description.blank?
-    %h3= t('about.description_headline', domain: site_hostname)
-    %p!= @instance_presenter.site_description
-
-  .actions
-    .info
-      = link_to t('about.terms'), terms_path
-      ·
-      = link_to t('about.apps'), 'https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/Apps.md'
-      ·
-      = link_to t('about.source_code'), 'https://github.com/tootsuite/mastodon'
-      ·
-      = link_to t('about.other_instances'), 'https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/List-of-Mastodon-instances.md'
+        .features-list
+          .features-list__row
+            .text
+              %h6= t 'about.features.real_conversation_title'
+              = t 'about.features.real_conversation_body'
+            .visual
+              = fa_icon 'fw comments'
+          .features-list__row
+            .text
+              %h6= t 'about.features.not_a_product_title'
+              = t 'about.features.not_a_product_body'
+            .visual
+              = fa_icon 'fw users'
+          .features-list__row
+            .text
+              %h6= t 'about.features.within_reach_title'
+              = t 'about.features.within_reach_body'
+            .visual
+              = fa_icon 'fw mobile'
+          .features-list__row
+            .text
+              %h6= t 'about.features.humane_approach_title'
+              = t 'about.features.humane_approach_body'
+            .visual
+              = fa_icon 'fw leaf'

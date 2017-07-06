@@ -2,10 +2,10 @@ import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import appReducer, { createReducer } from '../reducers';
 import { hydrateStoreLazy } from '../actions/store';
-import { hydrateAction } from '../containers/mastodon';
 import loadingBarMiddleware from '../middleware/loading_bar';
 import errorsMiddleware from '../middleware/errors';
 import soundsMiddleware from '../middleware/sounds';
+import { hydrateAction } from '../containers/mastodon';
 
 export default function configureStore() {
   const store = createStore(appReducer, compose(applyMiddleware(

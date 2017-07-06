@@ -42,8 +42,38 @@
     cursor: default;
   }
 
+  &.button-alternative {
+    font-size: 16px;
+    line-height: 36px;
+    height: auto;
+    color: $ui-base-color;
+    background: $ui-primary-color;
+    text-transform: none;
+    padding: 4px 16px;
+
+    &:active,
+    &:focus,
+    &:hover {
+      background-color: lighten($ui-primary-color, 4%);
+    }
+  }
+
   &.button-secondary {
-    //
+    font-size: 16px;
+    line-height: 36px;
+    height: auto;
+    color: $ui-primary-color;
+    text-transform: none;
+    background: transparent;
+    padding: 3px 15px;
+    border: 1px solid $ui-primary-color;
+
+    &:active,
+    &:focus,
+    &:hover {
+      border-color: lighten($ui-primary-color, 4%);
+      color: lighten($ui-primary-color, 4%);
+    }
   }
 
   &.button--block {
