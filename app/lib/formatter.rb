@@ -52,6 +52,11 @@ class Formatter
     html.html_safe # rubocop:disable Rails/OutputSafety
   end
 
+  def simplified_plain_text_format(account)
+    raise Mastodon::ValidationError, 'Local account needed to get note in plain text. Got remote account.' unless account.local?
+    encode(account.note)
+  end
+
   def sanitize(html, config)
     Sanitize.fragment(html, config)
   end
