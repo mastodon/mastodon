@@ -1,6 +1,6 @@
 @function hex-color($color) {
   @if type-of($color) == 'color' {
-    $color: str-slice(ie-hex-str($color), 4)
+    $color: str-slice(ie-hex-str($color), 4);
   }
   @return '%23' + unquote($color)
 }
