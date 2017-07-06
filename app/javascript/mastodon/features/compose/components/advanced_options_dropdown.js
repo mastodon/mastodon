@@ -75,7 +75,7 @@ export default class AdvancedOptionsDropdown extends React.PureComponent {
 
     const anyEnabled = values.some((enabled) => enabled);
     const optionElems = options.map((option) => {
-      const active = values.get(option.key) ? 'active' : '';
+      const active = values.get(option.key);
       return (
         <div role='button' className='advanced-options-dropdown__option' key={option.key} >
           <div className='advanced-options-dropdown__option__toggle'>
