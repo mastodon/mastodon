@@ -1,7 +1,34 @@
+/*
+
+`<StatusContainer>`
+===================
+
+Original file by @gargron@mastodon.social et al as part of
+tootsuite/mastodon. Documentation by @kibi@glitch.social. The code
+detecting reblogs has been moved here from <Status>.
+
+*/
+
+                            /* * * * */
+
+/*
+
+Imports:
+--------
+
+*/
+
+//  Our standard React/Redux imports:
 import React from 'react';
 import { connect } from 'react-redux';
+
+//  Our `<Status>`:
 import Status from '../components/status';
+
+//  This selector helps us get our status from the store:
 import { makeGetStatus } from '../selectors';
+
+//  These are our various `<Status>`-related actions:
 import {
   replyCompose,
   mentionCompose,
@@ -16,32 +43,129 @@ import {
   blockAccount,
   muteAccount,
 } from '../actions/accounts';
-import { muteStatus, unmuteStatus, deleteStatus } from '../actions/statuses';
+import {
+  muteStatus,
+  unmuteStatus,
+  deleteStatus,
+} from '../actions/statuses';
 import { initReport } from '../actions/reports';
 import { openModal } from '../actions/modal';
-import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
+
+//  We will need internationalization in this component:
+import {
+  defineMessages,
+  injectIntl,
+  FormattedMessage,
+} from 'react-intl';
+
+                            /* * * * */
+
+/*
+
+Inital setup:
+-------------
+
+The `messages` constant is used to define any messages that we will
+need in our component. In our case, these are the various confirmation
+messages used with statuses.
+
+*/
 
 const messages = defineMessages({
-  deleteConfirm: { id: 'confirmations.delete.confirm', defaultMessage: 'Delete' },
-  deleteMessage: { id: 'confirmations.delete.message', defaultMessage: 'Are you sure you want to delete this status?' },
-  blockConfirm: { id: 'confirmations.block.confirm', defaultMessage: 'Block' },
-  muteConfirm: { id: 'confirmations.mute.confirm', defaultMessage: 'Mute' },
+  deleteConfirm : {
+    id             : 'confirmations.delete.confirm',
+    defaultMessage : 'Delete',
+  },
+  deleteMessage : {
+    id             : 'confirmations.delete.message',
+    defaultMessage : 'Are you sure you want to delete this status?',
+  },
+  blockConfirm  : {
+    id             : 'confirmations.block.confirm',
+    defaultMessage : 'Block',
+  },
+  muteConfirm : {
+    id             : 'confirmations.mute.confirm',
+    defaultMessage : 'Mute',
+  },
 });
+
+                            /* * * * */
+
+/*
+
+State mapping:
+--------------
+
+The `mapStateToProps()` function maps various state properties to the
+props of our component. We wrap this in a `makeMapStateToProps()`
+function to give us closure and preserve `getStatus()` across function
+calls.
+
+*/
 
 const makeMapStateToProps = () => {
   const getStatus = makeGetStatus();
 
-  const mapStateToProps = (state, props) => ({
-    status: getStatus(state, props.id),
-    me: state.getIn(['meta', 'me']),
-    settings: state.get('local_settings'),
-    boostModal: state.getIn(['meta', 'boost_modal']),
-    deleteModal: state.getIn(['meta', 'delete_modal']),
-    autoPlayGif: state.getIn(['meta', 'auto_play_gif']),
-  });
+  const mapStateToProps = (state, ownProps) => {
+
+    let status = getStatus(state, ownProps.id);
+    let reblogStatus = status.get('reblog', null);
+    let account = undefined;
+    let prepend = undefined;
+
+/*
+
+Here we process reblogs. If our status is a reblog, then we create a
+`prependMessage` to pass along to our `<Status>` along with the
+reblogger's `account`, and set `coreStatus` (the one we will actually
+render) to the status which has been reblogged.
+
+*/
+
+    if (reblogStatus !== null && typeof reblogStatus === 'object') {
+      account = status.get('account');
+      status = reblogStatus;
+      prepend = 'reblogged_by';
+    }
+
+/*
+
+Here are the props we pass to `<Status>`.
+
+*/
+
+    return {
+      status      : status,
+      account     : account || ownProps.account,
+      me          : state.getIn(['meta', 'me']),
+      settings    : state.get('local_settings'),
+      prepend     : prepend || ownProps.prepend,
+      reblogModal : state.getIn(['meta', 'boost_modal']),
+      deleteModal : state.getIn(['meta', 'delete_modal']),
+      autoPlayGif : state.getIn(['meta', 'auto_play_gif']),
+    };
+  };
 
   return mapStateToProps;
 };
+
+                            /* * * * */
+
+/*
+
+Dispatch mapping:
+-----------------
+
+The `mapDispatchToProps()` function maps dispatches to our store to the
+various props of our component. We need to provide dispatches for all
+of the things you can do with a status: reply, reblog, favourite, et
+cetera.
+
+For a few of these dispatches, we open up confirmation modals; the rest
+just immediately execute their corresponding actions.
+
+*/
 
 const mapDispatchToProps = (dispatch, { intl }) => ({
 
@@ -57,7 +181,7 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
     if (status.get('reblogged')) {
       dispatch(unreblog(status));
     } else {
-      if (e.shiftKey || !this.boostModal) {
+      if (e.shiftKey || !this.reblogModal) {
         this.onModalReblog(status);
       } else {
         dispatch(openModal('BOOST', { status, onReblog: this.onModalReblog }));
@@ -127,4 +251,6 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
 
 });
 
-export default injectIntl(connect(makeMapStateToProps, mapDispatchToProps)(Status));
+export default injectIntl(
+  connect(makeMapStateToProps, mapDispatchToProps)(Status)
+);

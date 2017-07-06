@@ -577,19 +577,19 @@
     }
   }
 
-  &.status-collapsed {
-    height: 48px;
+  &.collapsed {
     background-position: center;
     background-size: cover;
+    user-select: none;
 
-    &::before {
+    &.has-background::before {
       display: block;
       position: absolute;
       left: 0;
       right: 0;
       top: 0;
       bottom: 0;
-    	background-image: linear-gradient(to bottom, transparentize($ui-base-color, .15), transparentize($ui-base-color, .3) 24px, transparentize($ui-base-color, .35));
+    	background-image: linear-gradient(to bottom, rgba($base-shadow-color, .75), rgba($base-shadow-color, .65) 24px, rgba($base-shadow-color, .8));
       content: "";
     }
 
@@ -601,6 +601,10 @@
       height: 20px;
       overflow: hidden;
       text-overflow: ellipsis;
+
+      a:hover {
+        text-decoration: none;
+      }
     }
   }
 }
@@ -673,10 +677,9 @@
 }
 
 .status__prepend {
-  margin-left: 68px;
+  margin: -10px 0 10px;
   color: lighten($ui-base-color, 26%);
-  padding: 8px 0;
-  padding-bottom: 2px;
+  padding: 8px 0 2px;
   font-size: 14px;
   position: relative;
 
@@ -1072,12 +1075,6 @@
   strong {
     color: $primary-text-color;
   }
-
-  &.muted {
-    .emojione {
-      opacity: 0.5;
-    }
-  }
 }
 
 .status__display-name,
@@ -1122,10 +1119,9 @@
 }
 
 .status__avatar {
-  height: 48px;
-  left: 10px;
   position: absolute;
-  top: 10px;
+  margin-left: -58px;
+  height: 48px;
   width: 48px;
 }
 
@@ -1139,7 +1135,7 @@
     color: lighten($ui-base-color, 26%);
   }
 
-  .status__avatar {
+  .status__avatar, .emojione {
     opacity: 0.5;
   }
 
@@ -1155,7 +1151,7 @@
 }
 
 .notification__message {
-  margin-left: 68px;
+  margin: -10px 0 10px;
   padding: 8px 0;
   padding-bottom: 0;
   cursor: default;
@@ -2314,9 +2310,6 @@ button.icon-button.active i.fa-retweet {
   position: relative;
   text-align: center;
   z-index: 100;
-  margin-top: 15px;
-  margin-left:-68px;
-  width: calc(100% + 80px);
 }
 
 .media-spoiler__warning {

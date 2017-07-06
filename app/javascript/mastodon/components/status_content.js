@@ -15,13 +15,12 @@ export default class StatusContent extends React.PureComponent {
 
   static propTypes = {
     status: ImmutablePropTypes.map.isRequired,
-    expanded: PropTypes.bool,
-    collapsed: PropTypes.bool,
-    onExpandedToggle: PropTypes.func,
+    expanded: PropTypes.oneOf([true, false, null]),
+    setExpansion: PropTypes.func,
     onHeightUpdate: PropTypes.func,
-    onClick: PropTypes.func,
+    media: PropTypes.element,
     mediaIcon: PropTypes.string,
-    children: PropTypes.element,
+    parseClick: PropTypes.func,
   };
 
   state = {
@@ -57,27 +56,22 @@ export default class StatusContent extends React.PureComponent {
   }
 
   onLinkClick = (e) => {
-    if (e.button === 0 && this.props.collapsed) {
-      e.preventDefault();
-      if (this.props.onClick) this.props.onClick();
+    if (this.props.expanded === false) {
+      if (this.props.parseClick) this.props.parseClick(e);
     }
   }
 
   onMentionClick = (mention, e) => {
-    if (e.button === 0) {
-      e.preventDefault();
-      if (!this.props.collapsed) this.context.router.history.push(`/accounts/${mention.get('id')}`);
-      else if (this.props.onClick) this.props.onClick();
+    if (this.props.parseClick) {
+      this.props.parseClick(e, `/accounts/${mention.get('id')}`);
     }
   }
 
   onHashtagClick = (hashtag, e) => {
     hashtag = hashtag.replace(/^#/, '').toLowerCase();
 
-    if (e.button === 0) {
-      e.preventDefault();
-      if (!this.props.collapsed) this.context.router.history.push(`/timelines/tag/${hashtag}`);
-      else if (this.props.onClick) this.props.onClick();
+    if (this.props.parseClick) {
+      this.props.parseClick(e, `/timelines/tag/${hashtag}`);
     }
   }
 
@@ -86,6 +80,8 @@ export default class StatusContent extends React.PureComponent {
   }
 
   handleMouseUp = (e) => {
+    const { parseClick } = this.props;
+
     if (!this.startXY) {
       return;
     }
@@ -97,8 +93,8 @@ export default class StatusContent extends React.PureComponent {
       return;
     }
 
-    if (deltaX + deltaY < 5 && e.button === 0 && this.props.onClick) {
-      this.props.onClick();
+    if (deltaX + deltaY < 5 && e.button === 0 && parseClick) {
+      parseClick(e);
     }
 
     this.startXY = null;
@@ -107,9 +103,8 @@ export default class StatusContent extends React.PureComponent {
   handleSpoilerClick = (e) => {
     e.preventDefault();
 
-    if (this.props.onExpandedToggle) {
-      // The parent manages the state
-      this.props.onExpandedToggle();
+    if (this.props.setExpansion) {
+      this.props.setExpansion(this.props.expanded ? null : true);
     } else {
       this.setState({ hidden: !this.state.hidden });
     }
@@ -120,12 +115,20 @@ export default class StatusContent extends React.PureComponent {
   }
 
   render () {
-    const { status, children, mediaIcon } = this.props;
+    const { status, media, mediaIcon } = this.props;
 
-    const hidden = this.props.onExpandedToggle ? !this.props.expanded : this.state.hidden;
+    const hidden = (
+      this.props.setExpansion ?
+      !this.props.expanded :
+      this.state.hidden
+    );
 
     const content = { __html: emojify(status.get('content')) };
-    const spoilerContent = { __html: emojify(escapeTextContentForBrowser(status.get('spoiler_text', ''))) };
+    const spoilerContent = {
+      __html: emojify(escapeTextContentForBrowser(
+        status.get('spoiler_text', '')
+      )),
+    };
     const directionStyle = { direction: 'ltr' };
 
     if (isRtl(status.get('search_index'))) {
@@ -136,12 +139,38 @@ export default class StatusContent extends React.PureComponent {
       let mentionsPlaceholder = '';
 
       const mentionLinks = status.get('mentions').map(item => (
-        <Permalink to={`/accounts/${item.get('id')}`} href={item.get('url')} key={item.get('id')} className='mention'>
+        <Permalink
+          to={`/accounts/${item.get('id')}`}
+          href={item.get('url')}
+          key={item.get('id')}
+          className='mention'
+        >
           @<span>{item.get('username')}</span>
         </Permalink>
       )).reduce((aggregate, item) => [...aggregate, item, ' '], []);
 
-      const toggleText = hidden ? [<FormattedMessage id='status.show_more' defaultMessage='Show more' key='0' />, mediaIcon ? <i className={`fa fa-fw fa-${mediaIcon} status__content__spoiler-icon`} aria-hidden='true' key='1' /> : null] : [<FormattedMessage id='status.show_less' defaultMessage='Show less' key='0' />];
+      const toggleText = hidden ? [
+        <FormattedMessage
+          id='status.show_more'
+          defaultMessage='Show more'
+          key='0'
+        />,
+        mediaIcon ? (
+          <i
+            className={
+              `fa fa-fw fa-${mediaIcon} status__content__spoiler-icon`
+            }
+            aria-hidden='true'
+            key='1'
+          />
+        ) : null,
+      ] : [
+        <FormattedMessage
+          id='status.show_less'
+          defaultMessage='Show less'
+          key='0'
+        />,
+      ];
 
       if (hidden) {
         mentionsPlaceholder = <div>{mentionLinks}</div>;
@@ -170,12 +199,12 @@ export default class StatusContent extends React.PureComponent {
               onMouseUp={this.handleMouseUp}
               dangerouslySetInnerHTML={content}
             />
-            {children}
+            {media}
           </div>
 
         </div>
       );
-    } else if (this.props.onClick) {
+    } else if (this.props.parseClick) {
       return (
         <div
           ref={this.setRef}
@@ -187,7 +216,7 @@ export default class StatusContent extends React.PureComponent {
             onMouseUp={this.handleMouseUp}
             dangerouslySetInnerHTML={content}
           />
-          {children}
+          {media}
         </div>
       );
     } else {
@@ -198,7 +227,7 @@ export default class StatusContent extends React.PureComponent {
           style={directionStyle}
         >
           <div dangerouslySetInnerHTML={content} />
-          {children}
+          {media}
         </div>
       );
     }

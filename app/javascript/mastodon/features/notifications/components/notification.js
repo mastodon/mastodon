@@ -15,7 +15,11 @@ export default class Notification extends ImmutablePureComponent {
     settings: ImmutablePropTypes.map.isRequired,
   };
 
-  renderFollow (account, link) {
+  renderFollow (notification) {
+    const account          = notification.get('account');
+    const displayName      = account.get('display_name').length > 0 ? account.get('display_name') : account.get('username');
+    const displayNameHTML  = { __html: emojify(escapeTextContentForBrowser(displayName)) };
+    const link             = <Permalink className='notification__display-name' href={account.get('url')} title={account.get('acct')} to={`/accounts/${account.get('id')}`} dangerouslySetInnerHTML={displayNameHTML} />;
     return (
       <div className='notification notification-follow'>
         <div className='notification__message'>
@@ -32,55 +36,50 @@ export default class Notification extends ImmutablePureComponent {
   }
 
   renderMention (notification) {
-    return <StatusContainer id={notification.get('status')} withDismiss />;
-  }
-
-  renderFavourite (notification, settings, link) {
     return (
-      <div className='notification notification-favourite'>
-        <div className='notification__message'>
-          <div className='notification__favourite-icon-wrapper'>
-            <i className='fa fa-fw fa-star star-icon' />
-          </div>
-          <FormattedMessage id='notification.favourite' defaultMessage='{name} favourited your status' values={{ name: link }} />
-        </div>
-
-        <StatusContainer id={notification.get('status')} account={notification.get('account')} muted collapse={settings.getIn(['collapsed', 'auto', 'notifications'])} withDismiss />
-      </div>
+      <StatusContainer
+        id={notification.get('status')}
+        withDismiss
+      />
     );
   }
 
-  renderReblog (notification, settings, link) {
+  renderFavourite (notification) {
     return (
-      <div className='notification notification-reblog'>
-        <div className='notification__message'>
-          <div className='notification__favourite-icon-wrapper'>
-            <i className='fa fa-fw fa-retweet' />
-          </div>
-          <FormattedMessage id='notification.reblog' defaultMessage='{name} boosted your status' values={{ name: link }} />
-        </div>
+      <StatusContainer
+        id={notification.get('status')}
+        account={notification.get('account')}
+        prepend='favourite'
+        muted
+        withDismiss
+      />
+    );
+  }
 
-        <StatusContainer id={notification.get('status')} account={notification.get('account')} muted collapse={settings.getIn(['collapsed', 'auto', 'notifications'])} withDismiss />
-      </div>
+  renderReblog (notification) {
+    return (
+      <StatusContainer
+        id={notification.get('status')}
+        account={notification.get('account')}
+        prepend='reblog'
+        muted
+        withDismiss
+      />
     );
   }
 
   render () {
-    const { notification, settings } = this.props;
-    const account          = notification.get('account');
-    const displayName      = account.get('display_name').length > 0 ? account.get('display_name') : account.get('username');
-    const displayNameHTML  = { __html: emojify(escapeTextContentForBrowser(displayName)) };
-    const link             = <Permalink className='notification__display-name' href={account.get('url')} title={account.get('acct')} to={`/accounts/${account.get('id')}`} dangerouslySetInnerHTML={displayNameHTML} />;
+    const { notification } = this.props;
 
     switch(notification.get('type')) {
     case 'follow':
-      return this.renderFollow(account, link);
+      return this.renderFollow(notification);
     case 'mention':
       return this.renderMention(notification);
     case 'favourite':
-      return this.renderFavourite(notification, settings, link);
+      return this.renderFavourite(notification);
     case 'reblog':
-      return this.renderReblog(notification, settings, link);
+      return this.renderReblog(notification);
     }
 
     return null;

@@ -84,7 +84,11 @@ export default class DetailedStatus extends ImmutablePureComponent {
           <DisplayName account={status.get('account')} />
         </a>
 
-        <StatusContent status={status} mediaIcon={mediaIcon}>{media}</StatusContent>
+        <StatusContent
+          status={status}
+          media={media}
+          mediaIcon={mediaIcon}
+        />
 
         <div className='detailed-status__meta'>
           <a className='detailed-status__datetime' href={status.get('url')} target='_blank' rel='noopener'>
