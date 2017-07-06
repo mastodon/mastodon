@@ -607,6 +607,10 @@
       }
     }
   }
+
+  .notification__message {
+    margin: -10px 0 10px;
+  }
 }
 
 .notification-favourite {
@@ -1151,7 +1155,7 @@
 }
 
 .notification__message {
-  margin: -10px 0 10px;
+  margin-left: 68px;
   padding: 8px 0;
   padding-bottom: 0;
   cursor: default;
@@ -2934,7 +2938,7 @@ button.icon-button.active i.fa-retweet {
     border-radius: 4px 4px 0 0;
     box-shadow: 0 -4px 4px rgba($base-shadow-color, 0.1);
   }
-   
+
   .advanced-options-dropdown__dropdown {
     display: block;
     box-shadow: 2px 4px 6px rgba($base-shadow-color, 0.1);
