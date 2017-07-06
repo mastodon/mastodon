@@ -38,6 +38,7 @@ export default class DetailedStatus extends ImmutablePureComponent {
     const status = this.props.status.get('reblog') ? this.props.status.get('reblog') : this.props.status;
 
     let media           = '';
+    let mediaIcon       = null;
     let applicationLink = '';
 
     if (status.get('media_attachments').size > 0) {
@@ -45,12 +46,12 @@ export default class DetailedStatus extends ImmutablePureComponent {
         media = <AttachmentList media={status.get('media_attachments')} />;
       } else if (status.getIn(['media_attachments', 0, 'type']) === 'video') {
         media = <VideoPlayer sensitive={status.get('sensitive')} media={status.getIn(['media_attachments', 0])} width={300} height={150} onOpenVideo={this.props.onOpenVideo} autoplay />;
+        mediaIcon = 'video-camera';
       } else {
         media = <MediaGallery sensitive={status.get('sensitive')} media={status.get('media_attachments')} height={300} onOpenMedia={this.props.onOpenMedia} autoPlayGif={this.props.autoPlayGif} />;
+        mediaIcon = 'picture-o';
       }
-    } else if (status.get('spoiler_text').length === 0) {
-      media = <CardContainer statusId={status.get('id')} />;
-    }
+    } else media = <CardContainer statusId={status.get('id')} />;
 
     if (status.get('application')) {
       applicationLink = <span> · <a className='detailed-status__application' href={status.getIn(['application', 'website'])} target='_blank' rel='noopener'>{status.getIn(['application', 'name'])}</a></span>;
@@ -63,9 +64,7 @@ export default class DetailedStatus extends ImmutablePureComponent {
           <DisplayName account={status.get('account')} />
         </a>
 
-        <StatusContent status={status} />
-
-        {media}
+        <StatusContent status={status} mediaIcon={mediaIcon}>{media}</StatusContent>
 
         <div className='detailed-status__meta'>
           <a className='detailed-status__datetime' href={status.get('url')} target='_blank' rel='noopener'>

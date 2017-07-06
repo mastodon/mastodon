@@ -156,6 +156,7 @@ export default class Status extends ImmutablePureComponent {
 
   render () {
     let media = null;
+    let mediaIcon = null;
     let statusAvatar;
 
     // Exclude intersectionObserverWrapper from `other` variable
@@ -202,8 +203,10 @@ export default class Status extends ImmutablePureComponent {
 
       } else if (status.getIn(['media_attachments', 0, 'type']) === 'video') {
         media = <VideoPlayer media={status.getIn(['media_attachments', 0])} sensitive={status.get('sensitive')} onOpenVideo={this.props.onOpenVideo} />;
+        mediaIcon = 'video-camera';
       } else {
         media = <MediaGallery media={status.get('media_attachments')} sensitive={status.get('sensitive')} height={110} onOpenMedia={this.props.onOpenMedia} autoPlayGif={this.props.autoPlayGif} />;
+        mediaIcon = 'picture-o';
       }
     }
 
@@ -227,9 +230,11 @@ export default class Status extends ImmutablePureComponent {
           </a>
         </div>
 
-        <StatusContent status={status} onClick={this.handleClick} expanded={isExpanded} onExpandedToggle={this.handleExpandedToggle} onHeightUpdate={this.saveHeight} />
+        <StatusContent status={status} mediaIcon={mediaIcon} onClick={this.handleClick} expanded={isExpanded} onExpandedToggle={this.handleExpandedToggle} onHeightUpdate={this.saveHeight}>
 
-        {media}
+          {media}
+
+        </StatusContent>
 
         <StatusActionBar {...this.props} />
       </div>
