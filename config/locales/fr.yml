@@ -27,8 +27,9 @@ fr:
     status_count_after: posts
     status_count_before: Ayant publié
     terms: Conditions d’utilisation
-    user_count_after: utilisateurs⋅trices
+    user_count_after: utilisateur⋅ice⋅s
     user_count_before: Abrite
+    version: Version
   accounts:
     follow: Suivre
     followers: Abonné⋅es
@@ -38,10 +39,23 @@ fr:
     people_who_follow: Personnes qui suivent %{name}
     posts: Statuts
     remote_follow: Suivre à distance
+    reserved_username: Ce nom d'utilisateur⋅ice est réservé
     unfollow: Ne plus suivre
+  activitypub:
+    activity:
+      announce:
+        name: "%{account_name} a partagé une activité."
+      create:
+        name: "%{account_name} a créé une note."
+    outbox:
+      name: "Boîte d'envoi de %{account_name}"
+      summary: Liste d'activités de %{account_name}
   admin:
     accounts:
-      are_you_sure: Êtes-vous certain ?
+      are_you_sure: Êtes-vous certain⋅e ?
+      confirm: Confirmer
+      confirmed: Confirmé
+      disable_two_factor_authentication: Désactiver l'authentification à deux facteurs
       display_name: Nom affiché
       domain: Domaine
       edit: Éditer
@@ -49,6 +63,7 @@ fr:
       feed_url: URL du flux
       followers: Abonné⋅es
       follows: Abonnements
+      ip: Adresse IP
       location:
         all: Tous
         local: Local
@@ -71,14 +86,24 @@ fr:
       profile_url: URL du profil
       public: Public
       push_subscription_expires: Expiration de l'abonnement PuSH
+      redownload: Rafraîchir les avatars
+      reset: Réinitialiser
       reset_password: Réinitialiser le mot de passe
+      resubscribe: Se réabonner
       salmon_url: URL Salmon
+      search: Rechercher
+      show:
+        created_reports: Signalements créés par ce compte
+        report: signalement
+        targeted_reports: Signalements créés visant ce compte
       silence: Rendre muet
       statuses: Statuts
+      subscribe: S'abonner
       title: Comptes
       undo_silenced: Annuler le silence
       undo_suspension: Annuler la suspension
-      username: Nom d'utilisateur
+      unsubscribe: Se désabonner
+      username: Nom d'utilisateur⋅ice
       web: Web
     domain_blocks:
       add_new: Ajouter
@@ -110,14 +135,24 @@ fr:
         undo: Annuler
       title: Blocage de domaines
       undo: Annuler
+    instances:
+      account_count: Comptes connus
+      domain_name: Domaine
+      title: Instances connues
     reports:
+      action_taken_by: Intervention de
+      are_you_sure: Êtes vous certain⋅e?
       comment:
         label: Commentaire
         none: Aucun
       delete: Supprimer
       id: ID
       mark_as_resolved: Marquer comme résolu
+      nsfw:
+        'false': Ré-afficher les médias
+        'true': Masquer les médias
       report: 'Signalement #%{id}'
+      report_contents: Contenu
       reported_account: Compte signalé
       reported_by: Signalé par
       resolved: Résolus
@@ -132,7 +167,7 @@ fr:
       contact_information:
         email: Entrez une adresse courriel publique
         label: Informations de contact
-        username: Entrez un nom d'utilisateur
+        username: Entrez un nom d'utilisateur⋅ice
       registrations:
         closed_message:
           desc_html: Affiché sur la page d'accueil lorsque les inscriptions sont fermées<br>Vous pouvez utiliser des balises HTML
@@ -158,6 +193,10 @@ fr:
       title: PubSubHubbub
       topic: Sujet
     title: Administration
+  admin_mailer:
+    new_report:
+      body: "%{reporter} a signalé %{target}"
+      subject: Nouveau signalement sur %{instance} (#%{id})
   application_mailer:
     settings: 'Changer les préférences courriel : %{link}'
     signature: Notifications de Mastodon depuis %{instance}
@@ -166,6 +205,8 @@ fr:
     invalid_url: L'URL fournie est invalide
   auth:
     change_password: Changer de mot de passe
+    delete_account: Supprimer le compte
+    delete_account_html: Si vous désirez supprimer votre compte, vous pouvez cliquer ici. Il vous sera demandé de confirmer cette action.
     didnt_get_confirmation: Vous n’avez pas reçu les consignes de confirmation ?
     forgot_password: Mot de passe oublié ?
     login: Se connecter
@@ -199,18 +240,41 @@ fr:
       x_minutes: "%{count}min"
       x_months: "%{count}mois"
       x_seconds: "%{count}s"
+  deletes:
+    bad_password_msg: Bien essayé ! Mot de passe incorrect
+    confirm_password: Entrez votre mot de passe pour vérifier votre identité
+    description_html: Cela va supprimer votre compte et le désactiver de manière <strong>permanente et irréversible</strong>. Votre nom d'utilisateur⋅ice restera réservé afin d'éviter la confusion
+    proceed: Supprimer compte
+    success_msg: Votre compte a été supprimé avec succès
+    warning_html: Seule la suppression du contenu depuis cette instance est garantie. Le contenu qui a été partagé est susceptible de laisser des traces. Les serveurs hors-lignes ainsi que ceux n'étant plus abonnés à vos publications ne mettront pas leur base de données à jour.
+    warning_title: Disponibilité du contenu disséminé
   errors:
+    '403': Vous n'avez pas accès à cette page.
     '404': La page que vous recherchez n'existe pas.
     '410': La page que vous recherchez n'existe plus.
     '422':
       content: Vérification de sécurité échouée. Bloquez-vous les cookies ?
       title: Vérification de sécurité échouée
+    '429': Trop de requêtes émises dans un délai donné.
+    noscript: Pour utiliser Mastodon, veuillez activer JavaScript
   exports:
     blocks: Vous bloquez
     csv: CSV
     follows: Vous suivez
     mutes: Vous faites taire
     storage: Médias stockés
+  followers:
+    domain: Domaine
+    explanation_html: Si vous voulez être sûr⋅e que vos status restent privés, vous devez savoir qui vous suit. <strong>Vos status privés seront diffusés à toutes les instances des utilisateur⋅ice⋅s qui vous suivent</strong>. Vous voudrez peut-être les passer en revue et les supprimer si vous n'êtes pas sûr⋅e que votre vie privée sera respectée par l'administration ou le logiciel de ces instances.
+    followers_count: Nombre d'abonné⋅es
+    lock_link: Rendez votre compte privé
+    purge: Retirer de la liste d'abonné⋅es
+    success:
+      one: Suppression des abonné⋅es venant d'un domaine en cours...
+      other: Suppression des abonné⋅es venant de %{count} domaines en cours...
+    true_privacy_html: Soyez conscient⋅es <strong>qu'une vraie confidentialité ne peut être atteinte que par un chiffrement de bout-en-bout</strong>.
+    unlocked_warning_html: N'importe qui peut vous suivre et voir vos status privés. %{lock_link} afin de pouvoir vérifier et rejeter des abonné⋅es.
+    unlocked_warning_title: Votre compte n'est pas privé
   generic:
     changes_saved_msg: Les modifications ont été enregistrées avec succès !
     powered_by: propulsé par %{link}
@@ -222,9 +286,9 @@ fr:
     preface: Vous pouvez importer certaines données comme les personnes que vous suivez ou bloquez sur votre compte sur cette instance à partir de fichiers créés sur une autre instance.
     success: Vos données ont été importées avec succès et seront traitées en temps et en heure
     types:
-      blocking: Liste d'utilisateurs⋅trices bloqué⋅es
-      following: Liste d'utilisateurs⋅trices suivi⋅es
-      muting: Liste d'utilisateurs⋅trices que vous faites taire
+      blocking: Liste d'utilisateur⋅ice⋅s bloqué⋅es
+      following: Liste d'utilisateur⋅ice⋅s suivi⋅es
+      muting: Liste d'utilisateur⋅ice⋅s que vous faites taire
     upload: Importer
   landing_strip_html: <strong>%{name}</strong> utilise %{link_to_root_path}. Vous pouvez le/la suivre et interagir si vous possédez un compte quelque part dans le "fediverse".
   landing_strip_signup_html: Si ce n'est pas le cas, vous pouvez <a href="%{sign_up_path}">en créer un ici</a>.
@@ -265,11 +329,50 @@ fr:
     missing_resource: L'URL de redirection n'a pas pu être trouvée
     proceed: Continuez pour suivre
     prompt: 'Vous allez suivre :'
+  sessions:
+    activity: Dernière activité
+    browser: Navigateur
+    browsers:
+      alipay: Alipay
+      blackberry: Blackberry
+      chrome: Chrome
+      edge: Microsoft Edge
+      firefox: Firefox
+      generic: Navigateur inconnu
+      ie: Internet Explorer
+      micro_messenger: MicroMessenger
+      nokia: Nokia S40 Ovi Browser
+      opera: Opera
+      phantom_js: PhantomJS
+      qq: QQ Browser
+      safari: Safari
+      uc_browser: UCBrowser
+      weibo: Weibo
+    current_session: Session courante
+    description: "%{browser} sur %{platform}"
+    explanation: Ceci est la liste des navigateurs actuellement connectés à votre compte Mastodon.
+    ip: Adresse IP
+    platforms:
+      adobe_air: Adobe Air
+      android: Android
+      blackberry: Blackberry
+      chrome_os: ChromeOS
+      firefox_os: Firefox OS
+      ios: iOS
+      linux: Linux
+      mac: Mac
+      other: système inconnu
+      windows: Windows
+      windows_mobile: Windows Mobile
+      windows_phone: Windows Phone
+    title: Sessions
   settings:
     authorized_apps: Applications autorisées
     back: Retour vers Mastodon
+    delete: Suppression de compte
     edit_profile: Modifier le profil
     export: Export de données
+    followers: Abonné⋅es autorisé⋅es
     import: Import de données
     preferences: Préférences
     settings: Réglages
@@ -280,8 +383,11 @@ fr:
     show_more: Afficher plus
     visibilities:
       private: Abonné⋅es uniquement
+      private_long: Seul⋅es vos abonné⋅es verront vos status
       public: Public
+      public_long: Tout le monde peut voir vos status
       unlisted: Public sans être affiché sur le fil public
+      unlisted_long: Tout le monde peut voir vos status mais ils ne seront pas sur listés sur les fils publics
   stream_entries:
     click_to_show: Cliquer pour afficher
     reblogged: partagé
@@ -294,11 +400,13 @@ fr:
     description_html: Si vous activez <strong>l'identification à deux facteurs</strong>, vous devrez être en possession de votre téléphone afin de générer un code de connexion.
     disable: Désactiver
     enable: Activer
+    enabled: L'authentification à deux facteurs est activée
     enabled_success: Identification à deux facteurs activée avec succès
     generate_recovery_codes: Générer les codes de récupération
     instructions_html: "<strong>Scannez ce QR code grâce à Google Authenticator, Authy ou une application similaire sur votre téléphone</strong>. Désormais, cette application générera des jetons que vous devrez saisir à chaque connexion."
     lost_recovery_codes: Les codes de récupération vous permettent de retrouver les accès à votre comptre si vous perdez votre téléphone. Si vous perdez vos codes de récupération, vous pouvez les générer à nouveau ici. Vos anciens codes de récupération seront invalidés.
     manual_instructions: 'Si vous ne pouvez pas scanner ce QR code et devez l''entrer manuellement, voici le secret en clair :'
+    recovery_codes: Codes de récupération
     recovery_codes_regenerated: Codes de récupération régénérés avec succès
     recovery_instructions_html: Si vous perdez l'accès à votre téléphone, vous pouvez utiliser un des codes de récupération ci-dessous pour récupérer l'accès à votre compte. Conservez les codes de récupération en toute sécurité, par exemple, en les imprimant et en les stockant avec vos autres documents importants.
     setup: Installer

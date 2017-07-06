@@ -8,6 +8,7 @@ module Admin
       site_title
       site_description
       site_extended_description
+      site_terms
       open_registrations
       closed_registrations_message
     ).freeze

@@ -53,7 +53,7 @@ export default class ColumnsArea extends ImmutablePureComponent {
 
     if (singleColumn) {
       return (
-        <ReactSwipeable onSwipedLeft={this.handleLeftSwipe} onSwipedRight={this.handleRightSwipe} className='columns-area'>
+        <ReactSwipeable onSwipedLeft={this.handleLeftSwipe} onSwipedRight={this.handleRightSwipe} delta={30} className='columns-area'>
           {children}
         </ReactSwipeable>
       );
