@@ -6,7 +6,8 @@ class Api::V1::SearchController < Api::BaseController
   respond_to :json
 
   def index
-    @search = OpenStruct.new(search_results)
+    @search = Search.new(search_results)
+    render json: @search, serializer: REST::SearchSerializer
   end
 
   private
