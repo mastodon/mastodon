@@ -79,13 +79,6 @@ class FetchLinkCardService < BaseService
     false
   end
 
-  def set_card_values(card, page)
-    card.type             = :link
-    card.title            = meta_property(page, 'og:title') || page.at_xpath('//title')&.content
-    card.description      = meta_property(page, 'og:description') || meta_property(page, 'description')
-    card.image_remote_url = meta_property(page, 'og:image') if meta_property(page, 'og:image')
-  end
-
   def attempt_opengraph(card, url)
     response = http_client.get(url)
 
@@ -93,16 +86,16 @@ class FetchLinkCardService < BaseService
 
     html = response.to_s
 
-    if response.charset
-      page = Nokogiri::HTML(html, nil, response.charset)
-      set_card_values(card, page)
-    end
+    detector = CharlockHolmes::EncodingDetector.new
+    detector.strip_tags = true
 
-    unless response.charset && [card.title, card.description].all?(&:valid_encoding?)
-      detection = CharlockHolmes::EncodingDetector.detect(html)
-      page = Nokogiri::HTML(html, nil, detection[:encoding])
-      set_card_values(card, page)
-    end
+    guess = detector.detect(html, response.charset)
+    page = Nokogiri::HTML(html, nil, guess&.fetch(:encoding))
+
+    card.type             = :link
+    card.title            = meta_property(page, 'og:title') || page.at_xpath('//title')&.content
+    card.description      = meta_property(page, 'og:description') || meta_property(page, 'description')
+    card.image_remote_url = meta_property(page, 'og:image') if meta_property(page, 'og:image')
 
     return if card.title.blank?
 
