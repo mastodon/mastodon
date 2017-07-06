@@ -19,6 +19,8 @@ class ImportWorker
       process_follows
     when 'muting'
       process_mutes
+    when 'favourites'
+      process_favourites
     end
 
     @import.destroy
@@ -67,6 +69,20 @@ class ImportWorker
       begin
         FollowService.new.call(from_account, row.first)
       rescue Mastodon::NotPermittedError, ActiveRecord::RecordNotFound, Goldfinger::Error, HTTP::Error, OpenSSL::SSL::SSLError
+        next
+      end
+    end
+  end
+
+  def process_favourites
+    import_rows.each do |row|
+      begin
+        domain, account, id = row
+
+        status = (domain == Rails.configuration.x.local_domain) ? Status.find(id) : FetchRemoteStatusService.new.call("http://#{domain}/users/#{account}/#{id}.atom")
+
+        FavouriteService.new.call(from_account, status)
+      rescue Mastodon::NotPermittedError, ActiveRecord::RecordNotFound, ActiveRecord::RecordInvalid, Goldfinger::Error, HTTP::Error, OpenSSL::SSL::SSLError
         next
       end
     end

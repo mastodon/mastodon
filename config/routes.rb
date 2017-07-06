@@ -57,6 +57,7 @@ Rails.application.routes.draw do
       resources :follows, only: :index, controller: :following_accounts
       resources :blocks, only: :index, controller: :blocked_accounts
       resources :mutes, only: :index, controller: :muted_accounts
+      resources :favourites, only: :index, controller: :favourite_posts
     end
 
     resource :two_factor_authentication, only: [:show, :create, :destroy]
