@@ -90,6 +90,10 @@ export default class Status extends ImmutablePureComponent {
   }
 
   componentWillUnmount () {
+    if (this.props.intersectionObserverWrapper) {
+      this.props.intersectionObserverWrapper.unobserve(this.props.id, this.node);
+    }
+
     this.componentMounted = false;
   }
 
