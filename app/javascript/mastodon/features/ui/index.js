@@ -1,4 +1,5 @@
 import React from 'react';
+import classNames from 'classnames';
 import Switch from 'react-router-dom/Switch';
 import Route from 'react-router-dom/Route';
 import Redirect from 'react-router-dom/Redirect';
@@ -72,12 +73,17 @@ class WrappedRoute extends React.Component {
 
 }
 
-@connect()
+const mapStateToProps = state => ({
+  systemFontUi: state.getIn(['meta', 'system_font_ui']),
+});
+
+@connect(mapStateToProps)
 export default class UI extends React.PureComponent {
 
   static propTypes = {
     dispatch: PropTypes.func.isRequired,
     children: PropTypes.node,
+    systemFontUi: PropTypes.bool,
   };
 
   state = {
@@ -176,8 +182,12 @@ export default class UI extends React.PureComponent {
     const { width, draggingOver } = this.state;
     const { children } = this.props;
 
+    const className = classNames('ui', {
+      'system-font': this.props.systemFontUi,
+    });
+
     return (
-      <div className='ui' ref={this.setRef}>
+      <div className={className} ref={this.setRef}>
         <TabsBar />
         <ColumnsAreaContainer singleColumn={isMobile(width)}>
           <WrappedSwitch>
