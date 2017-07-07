@@ -39,7 +39,13 @@ export default class CommunityTimeline extends React.PureComponent {
     accessToken: PropTypes.string.isRequired,
     hasUnread: PropTypes.bool,
     multiColumn: PropTypes.bool,
+    visible: PropTypes.bool,
+    shouldUpdateScroll: PropTypes.func,
   };
+
+  static defaultProps = {
+    visible: true,
+  }
 
   handlePin = () => {
     const { columnId, dispatch } = this.props;
@@ -113,11 +119,11 @@ export default class CommunityTimeline extends React.PureComponent {
   }
 
   render () {
-    const { intl, hasUnread, columnId, multiColumn } = this.props;
+    const { intl, hasUnread, columnId, multiColumn, visible, shouldUpdateScroll } = this.props;
     const pinned = !!columnId;
 
     return (
-      <Column ref={this.setRef}>
+      <Column ref={this.setRef} visible={visible}>
         <ColumnHeader
           icon='users'
           active={hasUnread}
@@ -133,10 +139,12 @@ export default class CommunityTimeline extends React.PureComponent {
 
         <StatusListContainer
           trackScroll={!pinned}
+          shouldUpdateScroll={shouldUpdateScroll}
           scrollKey={`community_timeline-${columnId}`}
           timelineId='community'
           loadMore={this.handleLoadMore}
           emptyMessage={<FormattedMessage id='empty_column.community' defaultMessage='The local timeline is empty. Write something publicly to get the ball rolling!' />}
+          visible={visible}
         />
       </Column>
     );

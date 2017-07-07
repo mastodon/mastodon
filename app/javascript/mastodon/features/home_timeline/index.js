@@ -30,7 +30,13 @@ export default class HomeTimeline extends React.PureComponent {
     hasFollows: PropTypes.bool,
     columnId: PropTypes.string,
     multiColumn: PropTypes.bool,
+    visible: PropTypes.bool,
+    shouldUpdateScroll: PropTypes.func,
   };
+
+  static defaultProps = {
+    visible: true,
+  }
 
   handlePin = () => {
     const { columnId, dispatch } = this.props;
@@ -60,7 +66,7 @@ export default class HomeTimeline extends React.PureComponent {
   }
 
   render () {
-    const { intl, hasUnread, hasFollows, columnId, multiColumn } = this.props;
+    const { intl, hasUnread, hasFollows, columnId, multiColumn, visible, shouldUpdateScroll } = this.props;
     const pinned = !!columnId;
 
     let emptyMessage;
@@ -72,7 +78,7 @@ export default class HomeTimeline extends React.PureComponent {
     }
 
     return (
-      <Column ref={this.setRef}>
+      <Column ref={this.setRef} visible={visible}>
         <ColumnHeader
           icon='home'
           active={hasUnread}
@@ -88,10 +94,12 @@ export default class HomeTimeline extends React.PureComponent {
 
         <StatusListContainer
           trackScroll={!pinned}
+          shouldUpdateScroll={shouldUpdateScroll}
           scrollKey={`home_timeline-${columnId}`}
           loadMore={this.handleLoadMore}
           timelineId='home'
           emptyMessage={emptyMessage}
+          visible={visible}
         />
       </Column>
     );

@@ -6,7 +6,12 @@ export default class Column extends React.PureComponent {
 
   static propTypes = {
     children: PropTypes.node,
+    visible: PropTypes.bool,
   };
+
+  static defaultProps = {
+    visible: true,
+  }
 
   scrollTop () {
     const scrollable = this.node.querySelector('.scrollable');
@@ -31,10 +36,12 @@ export default class Column extends React.PureComponent {
   }
 
   render () {
-    const { children } = this.props;
+    const { children, visible } = this.props;
+
+    const visibleClass = visible ? '' : 'column--hidden';
 
     return (
-      <div role='region' className='column' ref={this.setRef} onWheel={this.handleWheel}>
+      <div role='region' aria-hidden={!visible} className={`column ${visibleClass}`} ref={this.setRef} onWheel={this.handleWheel}>
         {children}
       </div>
     );

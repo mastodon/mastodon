@@ -22,6 +22,7 @@ export default class StatusList extends ImmutablePureComponent {
     hasMore: PropTypes.bool,
     prepend: PropTypes.node,
     emptyMessage: PropTypes.node,
+    visible: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -49,6 +50,15 @@ export default class StatusList extends ImmutablePureComponent {
   componentDidMount () {
     this.attachScrollListener();
     this.attachIntersectionObserver();
+  }
+
+  shouldComponentUpdate (nextProps, nextState) {
+    // Apply visible changes to child statuses
+    if (this.props.visible !== nextProps.visible) {
+      return true;
+    }
+
+    return nextProps.visible && super.shouldComponentUpdate(nextProps, nextState);
   }
 
   componentDidUpdate (prevProps) {
@@ -99,7 +109,7 @@ export default class StatusList extends ImmutablePureComponent {
   }
 
   render () {
-    const { statusIds, scrollKey, trackScroll, shouldUpdateScroll, isLoading, hasMore, prepend, emptyMessage } = this.props;
+    const { statusIds, scrollKey, trackScroll, shouldUpdateScroll, isLoading, hasMore, prepend, emptyMessage, visible } = this.props;
 
     let loadMore       = null;
     let scrollableArea = null;
@@ -115,7 +125,7 @@ export default class StatusList extends ImmutablePureComponent {
             {prepend}
 
             {statusIds.map((statusId) => {
-              return <StatusContainer key={statusId} id={statusId} intersectionObserverWrapper={this.intersectionObserverWrapper} />;
+              return <StatusContainer key={statusId} id={statusId} intersectionObserverWrapper={this.intersectionObserverWrapper} visible={visible} />;
             })}
 
             {loadMore}
