@@ -17,7 +17,6 @@ export default class StatusContent extends React.PureComponent {
     status: ImmutablePropTypes.map.isRequired,
     expanded: PropTypes.bool,
     onExpandedToggle: PropTypes.func,
-    onHeightUpdate: PropTypes.func,
     onClick: PropTypes.func,
   };
 
@@ -56,9 +55,6 @@ export default class StatusContent extends React.PureComponent {
   }
 
   componentDidUpdate () {
-    if (this.props.onHeightUpdate) {
-      this.props.onHeightUpdate();
-    }
     this._updateStatusLinks();
   }
 

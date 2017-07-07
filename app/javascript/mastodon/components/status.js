@@ -17,6 +17,7 @@ import { MediaGallery, VideoPlayer } from '../features/ui/util/async-components'
 // We use the component (and not the container) since we do not want
 // to use the progress bar to show download progress
 import Bundle from '../features/ui/components/bundle';
+import getRectFromEntry from '../features/ui/util/get_rect_from_entry';
 
 export default class Status extends ImmutablePureComponent {
 
@@ -101,6 +102,11 @@ export default class Status extends ImmutablePureComponent {
   }
 
   handleIntersection = (entry) => {
+    if (this.node && this.node.children.length !== 0) {
+      // save the height of the fully-rendered element
+      this.height = getRectFromEntry(entry).height;
+    }
+
     // Edge 15 doesn't support isIntersecting, but we can infer it
     // https://developer.microsoft.com/en-us/microsoft-edge/platform/issues/12156111/
     // https://github.com/WICG/IntersectionObserver/issues/211
@@ -129,15 +135,8 @@ export default class Status extends ImmutablePureComponent {
     this.setState((prevState) => ({ isHidden: !prevState.isIntersecting }));
   }
 
-  saveHeight = () => {
-    if (this.node && this.node.children.length !== 0) {
-      this.height = this.node.getBoundingClientRect().height;
-    }
-  }
-
   handleRef = (node) => {
     this.node = node;
-    this.saveHeight();
   }
 
   handleClick = () => {
@@ -213,13 +212,13 @@ export default class Status extends ImmutablePureComponent {
 
       } else if (status.getIn(['media_attachments', 0, 'type']) === 'video') {
         media = (
-          <Bundle fetchComponent={VideoPlayer} loading={this.renderLoadingVideoPlayer} onRender={this.saveHeight} >
+          <Bundle fetchComponent={VideoPlayer} loading={this.renderLoadingVideoPlayer} >
             {Component => <Component media={status.getIn(['media_attachments', 0])} sensitive={status.get('sensitive')} onOpenVideo={this.props.onOpenVideo} />}
           </Bundle>
         );
       } else {
         media = (
-          <Bundle fetchComponent={MediaGallery} loading={this.renderLoadingMediaGallery} onRender={this.saveHeight} >
+          <Bundle fetchComponent={MediaGallery} loading={this.renderLoadingMediaGallery} >
             {Component => <Component media={status.get('media_attachments')} sensitive={status.get('sensitive')} height={110} onOpenMedia={this.props.onOpenMedia} autoPlayGif={this.props.autoPlayGif} />}
           </Bundle>
         );
@@ -246,7 +245,7 @@ export default class Status extends ImmutablePureComponent {
           </a>
         </div>
 
-        <StatusContent status={status} onClick={this.handleClick} expanded={isExpanded} onExpandedToggle={this.handleExpandedToggle} onHeightUpdate={this.saveHeight} />
+        <StatusContent status={status} onClick={this.handleClick} expanded={isExpanded} onExpandedToggle={this.handleExpandedToggle} />
 
         {media}
 
