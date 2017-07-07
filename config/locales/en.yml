@@ -293,21 +293,6 @@ en:
     validations:
       images_and_video: Cannot attach a video to a status that already contains images
       too_many: Cannot attach more than 4 files
-  push_notifications:
-    subscribed:
-      title: "Subscription registered!"
-      body: "You can now receive push notifications."
-    favourite:
-      title: "%{name} favourited your status"
-    follow:
-      title: "%{name} is now following you"
-    mention:
-      title: "%{name} mentioned you"
-      action_expand: 'Show more'
-      action_boost: 'Boost'
-      action_favourite: 'Favourite'
-    reblog:
-      title: "%{name} boosted your status"
   notification_mailer:
     digest:
       body: 'Here is a brief summary of what you missed on %{instance} since your last visit on %{since}:'
@@ -337,6 +322,21 @@ en:
     next: Next
     prev: Prev
     truncate: "&hellip;"
+  push_notifications:
+    favourite:
+      title: "%{name} favourited your status"
+    follow:
+      title: "%{name} is now following you"
+    mention:
+      action_boost: 'Boost'
+      action_expand: 'Show more'
+      action_favourite: 'Favourite'
+      title: "%{name} mentioned you"
+    reblog:
+      title: "%{name} boosted your status"
+    subscribed:
+      body: "You can now receive push notifications."
+      title: "Subscription registered!"
   remote_follow:
     acct: Enter your username@domain you want to follow from
     missing_resource: Could not find the required redirect URL for your account
