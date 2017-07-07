@@ -15,7 +15,9 @@ class AccountsController < ApplicationController
         render xml: AtomSerializer.render(AtomSerializer.new.feed(@account, @entries.to_a))
       end
 
-      format.json
+      format.json do
+        render json: @account, serializer: ActivityPub::ActorSerializer, adapter: ActivityPub::Adapter
+      end
     end
   end
 

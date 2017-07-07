@@ -19,7 +19,9 @@ class StatusesController < ApplicationController
         render 'stream_entries/show'
       end
 
-      format.json
+      format.json do
+        render json: @status, serializer: ActivityPub::NoteSerializer, adapter: ActivityPub::Adapter
+      end
     end
   end
 

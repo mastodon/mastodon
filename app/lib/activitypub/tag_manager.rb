@@ -42,4 +42,8 @@ class ActivityPub::TagManager
       status.mentions.map { |mention| uri_for(mention.account) }
     end
   end
+
+  def cc(status)
+    COLLECTIONS[:public] if status.unlisted_visibility?
+  end
 end
