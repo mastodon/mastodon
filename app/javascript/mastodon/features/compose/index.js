@@ -13,6 +13,7 @@ import SearchResultsContainer from './containers/search_results_container';
 
 const messages = defineMessages({
   start: { id: 'getting_started.heading', defaultMessage: 'Getting started' },
+  notifications: { id: 'tabs_bar.notifications', defaultMessage: 'Notifications' },
   public: { id: 'navigation_bar.public_timeline', defaultMessage: 'Federated timeline' },
   community: { id: 'navigation_bar.community_timeline', defaultMessage: 'Local timeline' },
   preferences: { id: 'navigation_bar.preferences', defaultMessage: 'Preferences' },
@@ -21,6 +22,7 @@ const messages = defineMessages({
 
 const mapStateToProps = state => ({
   showSearch: state.getIn(['search', 'submitted']) && !state.getIn(['search', 'hidden']),
+  showNotifications: !state.getIn(['settings', 'columns']).some(column => column.get('id') === 'NOTIFICATIONS'),
 });
 
 @connect(mapStateToProps)
@@ -31,6 +33,7 @@ export default class Compose extends React.PureComponent {
     dispatch: PropTypes.func.isRequired,
     multiColumn: PropTypes.bool,
     showSearch: PropTypes.bool,
+    showNotifications: PropTypes.bool,
     intl: PropTypes.object.isRequired,
   };
 
@@ -43,7 +46,7 @@ export default class Compose extends React.PureComponent {
   }
 
   render () {
-    const { multiColumn, showSearch, intl } = this.props;
+    const { multiColumn, showSearch, showNotifications, intl } = this.props;
 
     let header = '';
 
@@ -51,6 +54,9 @@ export default class Compose extends React.PureComponent {
       header = (
         <div className='drawer__header'>
           <Link to='/getting-started' className='drawer__tab' title={intl.formatMessage(messages.start)}><i role='img' aria-label={intl.formatMessage(messages.start)} className='fa fa-fw fa-asterisk' /></Link>
+          {showNotifications && (
+            <Link to='/notifications' className='drawer__tab' title={intl.formatMessage(messages.notifications)}><i role='img' className='fa fa-fw fa-bell' aria-label={intl.formatMessage(messages.notifications)} /></Link>
+          )}
           <Link to='/timelines/public/local' className='drawer__tab' title={intl.formatMessage(messages.community)}><i role='img' aria-label={intl.formatMessage(messages.community)} className='fa fa-fw fa-users' /></Link>
           <Link to='/timelines/public' className='drawer__tab' title={intl.formatMessage(messages.public)}><i role='img' aria-label={intl.formatMessage(messages.public)} className='fa fa-fw fa-globe' /></Link>
           <a href='/settings/preferences' className='drawer__tab' title={intl.formatMessage(messages.preferences)}><i role='img' aria-label={intl.formatMessage(messages.preferences)} className='fa fa-fw fa-cog' /></a>
