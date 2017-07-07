@@ -6,7 +6,7 @@ class Api::Web::PushSubscriptionsController < Api::BaseController
   before_action :require_user!
 
   def create
-    active_session = SessionActivation.find_by(session_id: cookies.signed['_session_id'])
+    active_session = current_session
 
     unless active_session.web_push_subscription.nil?
       active_session.web_push_subscription.destroy!
