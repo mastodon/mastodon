@@ -44,6 +44,7 @@ class Announcements extends React.PureComponent {
 
   state = {
     show: false,
+    isLoaded: false,
   };
 
   onClick = () => {
@@ -83,8 +84,10 @@ class Announcements extends React.PureComponent {
   }
 
   componentWillReceiveProps (nextProps) {
-    if (!nextProps.isLoading && (nextProps.homeSize === 0 || this.props.homeSize !== nextProps.homeSize)) {
-      this.setState({ show: nextProps.homeSize < 5 });
+    if (!this.state.isLoaded) {
+      if (!nextProps.isLoading && (nextProps.homeSize === 0 || this.props.homeSize !== nextProps.homeSize)) {
+        this.setState({ show: nextProps.homeSize < 5, isLoaded: true });
+      }
     }
   }
 
