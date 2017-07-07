@@ -180,7 +180,9 @@ export default function compose(state = initialState, action) {
       map.set('in_reply_to', action.status.get('id'));
       map.set('text', statusToTextMentions(state, action.status));
       map.set('privacy', privacyPreference(action.status.get('visibility'), state.get('default_privacy')));
-      map.set('advanced_options', state.get('default_advanced_options'));
+      map.set('advanced_options', new Immutable.Map({
+        do_not_federate: /👁\ufe0f?<\/p>$/.test(action.status.get('content')),
+      }));
       map.set('focusDate', new Date());
       map.set('preselectDate', new Date());
       map.set('idempotencyKey', uuid());

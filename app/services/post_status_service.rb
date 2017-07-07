@@ -38,7 +38,7 @@ class PostStatusService < BaseService
     DistributionWorker.perform_async(status.id)
 
     # match both with and without U+FE0F (the emoji variation selector)
-    unless /[👁👁️]$/.match?(status.content)
+    unless /👁\ufe0f?\z/.match?(status.content)
       Pubsubhubbub::DistributionWorker.perform_async(status.stream_entry.id)
     end
 
