@@ -122,11 +122,13 @@ export default class StatusActionBar extends ImmutablePureComponent {
       menu.push({ text: intl.formatMessage(messages.report, { name: status.getIn(['account', 'username']) }), action: this.handleReport });
     }
 
+    /*
     if (status.get('visibility') === 'direct') {
       reblogIcon = 'envelope';
     } else if (status.get('visibility') === 'private') {
       reblogIcon = 'lock';
     }
+    */
 
     if (status.get('in_reply_to_id', null) === null) {
       replyIcon = 'reply';
