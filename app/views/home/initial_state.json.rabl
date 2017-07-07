@@ -24,8 +24,8 @@ end
 
 node(:accounts) do
   store = {}
-  store[current_account.id] = partial('api/v1/accounts/show', object: current_account)
-  store[@admin.id] = partial('api/v1/accounts/show', object: @admin) unless @admin.nil?
+  store[current_account.id] = ActiveModelSerializers::SerializableResource.new(current_account, serializer: REST::AccountSerializer)
+  store[@admin.id] = ActiveModelSerializers::SerializableResource.new(@admin, serializer: REST::AccountSerializer) unless @admin.nil?
   store
 end
 
