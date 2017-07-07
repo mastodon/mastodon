@@ -107,7 +107,15 @@ export function MediaModal () {
 }
 
 export function OnboardingModal () {
-  return import(/* webpackChunkName: "modals/onboarding_modal" */'../components/onboarding_modal');
+  return Promise.all([
+    import(/* webpackChunkName: "modals/onboarding_modal" */'../components/onboarding_modal'),
+    import(/* webpackChunkName: "reducers/compose" */'../../../reducers/compose'),
+    import(/* webpackChunkName: "reducers/media_attachments" */'../../../reducers/media_attachments'),
+  ]).then(([component, composeReducer, mediaAttachmentsReducer]) => {
+    injectAsyncReducer(store, 'compose', composeReducer.default);
+    injectAsyncReducer(store, 'media_attachments', mediaAttachmentsReducer.default);
+    return component;
+  });
 }
 
 export function VideoModal () {
