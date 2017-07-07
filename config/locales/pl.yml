@@ -61,8 +61,8 @@ pl:
       edit: Edytuj
       email: Adres e-mail
       feed_url: Adres kanału
-      followers: Obserwujący
-      follows: Obserwacje
+      followers: Śledzący
+      follows: Śledzeni
       ip: Adres IP
       location:
         all: Wszystkie
@@ -114,7 +114,7 @@ pl:
         create: Utwórz blokadę
         hint: Blokada domen nie zabroni tworzenia wpisów kont w bazie danych, ale pozwoli na automatyczną moderację kont do nich należących.
         severity:
-          desc_html: "<strong>Wyciszenie</strong> uczyni wpisy użytkownika niewidoczne dla osób, które go nie obserwują. <strong>Zawieszenie</strong> spowoduje usunięcie całej zawartości dodanej przez użytkownika."
+          desc_html: "<strong>Wyciszenie</strong> uczyni wpisy użytkownika widoczne tylko dla osób, które go śledzą. <strong>Zawieszenie</strong> spowoduje usunięcie całej zawartości dodanej przez użytkownika."
           silence: Wycisz
           suspend: Zawieś
         title: Nowa blokada domen
@@ -262,15 +262,15 @@ pl:
     storage: Urządzenie przechowujące dane
   followers:
     domain: Domena
-    explanation_html: Jeżeli chcesz mieć pewność, kto może przeczytać Twoje statusy, musisz kontrolować, kto Cię obserwuje. <strong>Twoje prywatne statusy są dostarczane na te instancje, na których jesteś obserwowany</strong>. Możesz sprawdzać swoich obserwowanych i blokować ich, jeśli nie ufasz właścicielom lub oprogramowaniu danej instancji.
-    followers_count: Liczba obserwujących
+    explanation_html: Jeżeli chcesz mieć pewność, kto może przeczytać Twoje statusy, musisz kontrolować, kto śledzi Twój profil. <strong>Twoje prywatne statusy są dostarczane na te instancje, na których jesteś śledzony</strong>. Możesz sprawdzać, kto Cię śledzi i blokować ich, jeśli nie ufasz właścicielom lub oprogramowaniu danej instancji.
+    followers_count: Liczba śledzących
     lock_link: Zablokuj swoje konto
-    purge: Usuń z obserwujących
+    purge: Przestań śledzić
     success:
-      one: W trakcie usuwania obserwujcych z jednej domeny…
-      other: W trakcie usuwania obserwujących z %{count} domen…
+      one: W trakcie usuwania śledzących z jednej domeny…
+      other: W trakcie usuwania śledzących z %{count} domen…
     true_privacy_html: Pamiętaj, że <strong>rzeczywista prywatność może zostać uzyskana wyłącznie dzięki szyfrowaniu end-to-end</strong>.
-    unlocked_warning_html: Każdy może cię zaobserwować, aby natychmiastowo zobaczyć twoje statusy. %{lock_link} aby móc kontrolować obserwujących.
+    unlocked_warning_html: Każdy może cię śledzić, aby natychmiastowo zobaczyć twoje statusy. %{lock_link} aby móc kontrolować, kto Cię śledzi.
     unlocked_warning_title: Twoje konto nie jest zablokowane
   generic:
     changes_saved_msg: Ustawienia zapisane!
@@ -374,7 +374,7 @@ pl:
     delete: Usuń konto
     edit_profile: Edytuj profil
     export: Eksportuj dane
-    followers: Autoryzowani obserwujący
+    followers: Autoryzowani śledzący
     import: Importuj dane
     preferences: Preferencje
     settings: Ustawienia
@@ -385,7 +385,7 @@ pl:
     show_more: Pokaż więcej
     visibilities:
       private: Tylko dla śledzących
-      private_long: Widoczne tylko obserwowanych
+      private_long: Widoczne tylko dla śledzących
       public: Publiczny
       public_long: Widoczne dla wszystkich
       unlisted: Niewypisany
