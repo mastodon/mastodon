@@ -692,6 +692,7 @@ collapsed.
           account={status.get('account')}
           friend={account}
           mediaIcon={mediaIcon}
+          visibility={status.get('visibility')}
           collapsible={settings.getIn(['collapsed', 'enabled'])}
           collapsed={isExpanded === false}
           parseClick={parseClick}

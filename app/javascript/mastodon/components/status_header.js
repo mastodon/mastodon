@@ -48,6 +48,10 @@ from inside props. In our case, these are the `collapse` and
 const messages = defineMessages({
   collapse: { id: 'status.collapse', defaultMessage: 'Collapse' },
   uncollapse: { id: 'status.uncollapse', defaultMessage: 'Uncollapse' },
+  public: { id: 'privacy.public.short', defaultMessage: 'Public' },
+  unlisted: { id: 'privacy.unlisted.short', defaultMessage: 'Unlisted' },
+  private: { id: 'privacy.private.short', defaultMessage: 'Followers-only' },
+  direct: { id: 'privacy.direct.short', defaultMessage: 'Direct' },
 });
 
                             /* * * * */
@@ -100,6 +104,7 @@ export default class StatusHeader extends React.PureComponent {
     parseClick: PropTypes.func.isRequired,
     setExpansion: PropTypes.func.isRequired,
     intl: PropTypes.object.isRequired,
+    visibility: PropTypes.string,
   };
 
 /*
@@ -153,7 +158,15 @@ has a very straightforward rendering process.
       collapsible,
       collapsed,
       intl,
+      visibility,
     } = this.props;
+
+    const visibilityClass = {
+      public: 'globe',
+      unlisted: 'unlock-alt',
+      private: 'lock',
+      direct: 'envelope',
+    }[visibility];
 
     return (
       <header className='status__info'>
@@ -174,6 +187,13 @@ it is rendered as a float.
               aria-hidden='true'
             />
           ) : null}
+          {(
+            <i
+              className={`status__visibility-icon fa fa-fw fa-${visibilityClass}`}
+              title={intl.formatMessage(messages[visibility])}
+              aria-hidden='true'
+            />
+          )}
           {collapsible ? (
             <IconButton
               className='status__collapse-button'
