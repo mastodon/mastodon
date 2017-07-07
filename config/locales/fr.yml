@@ -7,7 +7,7 @@ fr:
     business_email: Courriel professionnel
     closed_registrations: Les inscriptions sont actuellement fermées sur cette instance.
     contact: Contact
-    description_headline: Qu’est-ce que %{domain} ?
+    description_headline: Qu’est-ce que %{domain} ?
     domain_count_after: autres instances
     domain_count_before: Connectés à
     features:
@@ -34,7 +34,7 @@ fr:
     follow: Suivre
     followers: Abonné⋅es
     following: Abonnements
-    nothing_here: Rien à voir ici !
+    nothing_here: Rien à voir ici !
     people_followed_by: Personnes suivies par %{name}
     people_who_follow: Personnes qui suivent %{name}
     posts: Statuts
@@ -52,7 +52,7 @@ fr:
       summary: Liste d’activités de %{account_name}
   admin:
     accounts:
-      are_you_sure: Êtes-vous certain⋅e ?
+      are_you_sure: Êtes-vous certain⋅e ?
       confirm: Confirmer
       confirmed: Confirmé
       disable_two_factor_authentication: Désactiver l’authentification à deux facteurs
@@ -198,17 +198,17 @@ fr:
       body: "%{reporter} a signalé %{target}"
       subject: Nouveau signalement sur %{instance} (#%{id})
   application_mailer:
-    settings: 'Changer les préférences courriel : %{link}'
+    settings: 'Changer les préférences courriel : %{link}'
     signature: Notifications de Mastodon depuis %{instance}
-    view: 'Voir :'
+    view: 'Voir :'
   applications:
     invalid_url: L’URL fournie est invalide
   auth:
     change_password: Sécurité
     delete_account: Supprimer le compte
     delete_account_html: Si vous désirez supprimer votre compte, vous pouvez cliquer ici. Il vous sera demandé de confirmer cette action.
-    didnt_get_confirmation: Vous n’avez pas reçu les consignes de confirmation ?
-    forgot_password: Mot de passe oublié ?
+    didnt_get_confirmation: Vous n’avez pas reçu les consignes de confirmation ?
+    forgot_password: Mot de passe oublié ?
     login: Se connecter
     logout: Se déconnecter
     register: S’inscrire
@@ -218,7 +218,7 @@ fr:
   authorize_follow:
     error: Malheureusement, il y a eu une erreur en cherchant les détails du compte distant
     follow: Suivre
-    prompt_html: 'Vous (<strong>%{self}</strong>) avez demandé à suivre :'
+    prompt_html: 'Vous (<strong>%{self}</strong>) avez demandé à suivre :'
     title: Suivre %{acct}
   datetime:
     distance_in_words:
@@ -241,7 +241,7 @@ fr:
       x_months: "%{count}mois"
       x_seconds: "%{count}s"
   deletes:
-    bad_password_msg: Bien essayé ! Mot de passe incorrect
+    bad_password_msg: Bien essayé ! Mot de passe incorrect
     confirm_password: Entrez votre mot de passe pour vérifier votre identité
     description_html: Cela va supprimer votre compte et le désactiver de manière <strong>permanente et irréversible</strong>. Votre nom d’utilisateur⋅ice restera réservé afin d’éviter la confusion
     proceed: Supprimer compte
@@ -253,7 +253,7 @@ fr:
     '404': La page que vous recherchez n’existe pas.
     '410': La page que vous recherchez n’existe plus.
     '422':
-      content: Vérification de sécurité échouée. Bloquez-vous les cookies ?
+      content: Vérification de sécurité échouée. Bloquez-vous les cookies ?
       title: Vérification de sécurité échouée
     '429': Trop de requêtes émises dans un délai donné.
     noscript: Pour utiliser Mastodon, veuillez activer JavaScript
@@ -276,12 +276,12 @@ fr:
     unlocked_warning_html: N’importe qui peut vous suivre et voir vos status privés. %{lock_link} afin de pouvoir vérifier et rejeter des abonné⋅es.
     unlocked_warning_title: Votre compte n’est pas privé
   generic:
-    changes_saved_msg: Les modifications ont été enregistrées avec succès !
+    changes_saved_msg: Les modifications ont été enregistrées avec succès !
     powered_by: propulsé par %{link}
     save_changes: Enregistrer les modifications
     validation_errors:
-      one: Quelque chose ne va pas ! Vérifiez l’erreur ci-dessous.
-      other: Certaines choses ne vont pas ! Vérifiez les erreurs ci-dessous.
+      one: Quelque chose ne va pas ! Vérifiez l’erreur ci-dessous.
+      other: Certaines choses ne vont pas ! Vérifiez les erreurs ci-dessous.
   imports:
     preface: Vous pouvez importer certaines données comme les personnes que vous suivez ou bloquez sur votre compte sur cette instance à partir de fichiers créés sur une autre instance.
     success: Vos données ont été importées avec succès et seront traitées en temps et en heure
@@ -298,28 +298,28 @@ fr:
       too_many: Impossible de joindre plus de 4 fichiers
   notification_mailer:
     digest:
-      body: 'Voici ce que vous avez raté sur ${instance} depuis votre dernière visite (%{}) :'
+      body: 'Voici ce que vous avez raté sur ${instance} depuis votre dernière visite (%{}) :'
       mention: "%{name} vous a mentionné⋅e"
       new_followers_summary:
-        one: Vous avez un⋅e nouvel⋅le abonné⋅e ! Youpi !
-        other: Vous avez %{count} nouveaux⋅elles abonné⋅e⋅s ! Incroyable !
+        one: Vous avez un⋅e nouvel⋅le abonné⋅e ! Youpi !
+        other: Vous avez %{count} nouveaux⋅elles abonné⋅e⋅s ! Incroyable !
       subject:
         one: "Une nouvelle notification depuis votre dernière visite \U0001F418"
         other: "%{count} nouvelles notifications depuis votre dernière visite \U0001F418"
     favourite:
-      body: "%{name} a ajouté votre post à ses favoris :"
+      body: "%{name} a ajouté votre post à ses favoris :"
       subject: "%{name} a ajouté votre post à ses favoris"
     follow:
-      body: "%{name} vous suit !"
+      body: "%{name} vous suit !"
       subject: "%{name} vous suit"
     follow_request:
       body: "%{name} a demandé à vous suivre"
-      subject: 'Abonné⋅es en attente : %{name}'
+      subject: 'Abonné⋅es en attente : %{name}'
     mention:
-      body: "%{name} vous a mentionné⋅e dans :"
+      body: "%{name} vous a mentionné⋅e dans :"
       subject: "%{name} vous a mentionné⋅e"
     reblog:
-      body: "%{name} a partagé votre statut :"
+      body: "%{name} a partagé votre statut :"
       subject: "%{name} a partagé votre statut"
   pagination:
     next: Suivant
@@ -328,7 +328,7 @@ fr:
     acct: Entrez votre pseudo@instance depuis lequel vous voulez suivre ce⋅tte utilisateur⋅trice
     missing_resource: L’URL de redirection n’a pas pu être trouvée
     proceed: Continuez pour suivre
-    prompt: 'Vous allez suivre :'
+    prompt: 'Vous allez suivre :'
   sessions:
     activity: Dernière activité
     browser: Navigateur
@@ -405,12 +405,12 @@ fr:
     generate_recovery_codes: Générer les codes de récupération
     instructions_html: "<strong>Scannez ce QR code grâce à Google Authenticator, Authy ou une application similaire sur votre téléphone</strong>. Désormais, cette application générera des jetons que vous devrez saisir à chaque connexion."
     lost_recovery_codes: Les codes de récupération vous permettent de retrouver les accès à votre comptre si vous perdez votre téléphone. Si vous perdez vos codes de récupération, vous pouvez les générer à nouveau ici. Vos anciens codes de récupération seront invalidés.
-    manual_instructions: 'Si vous ne pouvez pas scanner ce QR code et devez l’entrer manuellement, voici le secret en clair :'
+    manual_instructions: 'Si vous ne pouvez pas scanner ce QR code et devez l’entrer manuellement, voici le secret en clair :'
     recovery_codes: Codes de récupération
     recovery_codes_regenerated: Codes de récupération régénérés avec succès
     recovery_instructions_html: Si vous perdez l’accès à votre téléphone, vous pouvez utiliser un des codes de récupération ci-dessous pour récupérer l’accès à votre compte. Conservez les codes de récupération en toute sécurité, par exemple, en les imprimant et en les stockant avec vos autres documents importants.
     setup: Installer
-    wrong_code: Les codes entrés sont incorrects ! L’heure du serveur et celle de votre appareil sont-elles correctes ?
+    wrong_code: Les codes entrés sont incorrects ! L’heure du serveur et celle de votre appareil sont-elles correctes ?
   users:
     invalid_email: L’adresse courriel est invalide
     invalid_otp_token: Le code d’authentification à deux facteurs est invalide
