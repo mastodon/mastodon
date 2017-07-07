@@ -65,8 +65,7 @@
     .status__avatar {
       position: absolute;
       @include avatar-size(48px);
-      left: 14px;
-      top: 14px;
+      margin-left: -62px;
 
       & > div {
         @include avatar-size(48px);
