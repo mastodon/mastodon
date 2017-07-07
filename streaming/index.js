@@ -265,7 +265,7 @@ const startWorker = (workerId) => {
         const now            = new Date().getTime();
         const delta          = now - queued_at;
         const encodedPayload = typeof payload === 'number' ? payload : JSON.stringify(payload);
-        
+
         log.silly(req.requestId, `Transmitting for ${req.accountId}: ${event} ${encodedPayload} Delay: ${delta}ms`);
         output(event, encodedPayload);
       };
