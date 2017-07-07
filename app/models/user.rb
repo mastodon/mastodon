@@ -109,14 +109,8 @@ class User < ApplicationRecord
     session_activations.active? id
   end
 
-  def active_session(session)
-    session_activations.find_by(session_id: session['auth_id'])
-  end
-
   def web_push_subscription(session)
-    current_session = active_session(session)
-
-    current_session.web_push_subscription.nil? ? nil : current_session.web_push_subscription.as_payload
+    session.web_push_subscription.nil? ? nil : session.web_push_subscription.as_payload
   end
 
   protected
