@@ -3,6 +3,7 @@
 class Auth::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   def self.provides_callback_for(provider)
     provider_id = provider.to_s.chomp '_oauth2'
+
     define_method provider do
       @user = User.find_for_oauth(env['omniauth.auth'], current_user)
 
@@ -16,7 +17,7 @@ class Auth::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     end
   end
 
-  [:ldap, :cas].each do |provider|
+  Devise.omniauth_configs.keys.each do |provider|
     provides_callback_for provider
   end
 

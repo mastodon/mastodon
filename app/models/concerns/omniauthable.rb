@@ -8,9 +8,7 @@ module Omniauthable
 
   included do
     def omniauth_providers
-      providers = []
-      providers << :cas if ENV['CAS_ENABLED']
-      providers
+      Devise.omniauth_configs.keys
     end
 
     def email_verified?
@@ -33,10 +31,10 @@ module Omniauthable
       user = signed_in_resource ? signed_in_resource : identity.user
 
       # Create the user if needed
-      user = find_or_create_user_for_oauth(auth) if user.nil?
+      user = create_for_oauth(auth) if user.nil?
 
       # Associate the identity with the user if needed
-      if identity.user != user
+      if identity.user.nil?
         identity.user = user
         identity.save!
       end
@@ -44,27 +42,18 @@ module Omniauthable
       user
     end
 
-    def find_or_create_user_for_oauth(auth)
-      # Get the existing user by email if the provider gives us a verified email.
-      # If no verified email was provided we assign a temporary email and ask the
-      # user to verify it on the next step via UsersController.finish_signup
+    def create_for_oauth(auth)
+      # Check if the user exists with provided email if the provider gives us a
+      # verified email.  If no verified email was provided or the user already
+      # exists, we assign a temporary email and ask the user to verify it on
+      # the next step via Auth::ConfirmationsController.finish_signup
       email_is_verified = auth.info.email && (auth.info.verified || auth.info.verified_email)
-      email = auth.info.email if email_is_verified
-      uid = auth.uid
-      user = Account.find_by(username: uid).try(:user) if uid
-      user = User.find_by(email: email) if user.nil? && email
-
-      # Create the user if it's a new registration
-      user = create_user_for_oauth(auth, uid, email) if user.nil?
-      user
-    end
-
-    def create_user_for_oauth(auth, uid, email)
-      username = uid
+      email = auth.info.email if email_is_verified && !User.exists?(email: auth.info.email)
+      username = auth.uid
       i = 0
       while Account.exists?(username: username)
         i += 1
-        username = "#{uid}_#{i}"
+        username = "#{auth.uid}_#{i}"
       end
       user = User.new(
         email: email ? email : "#{TEMP_EMAIL_PREFIX}-#{auth.uid}-#{auth.provider}.com",
