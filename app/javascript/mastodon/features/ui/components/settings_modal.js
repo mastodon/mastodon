@@ -231,6 +231,14 @@ export default class SettingsModal extends React.PureComponent {
         >
           <FormattedMessage id='settings.media_letterbox' defaultMessage='Letterbox media' />
         </SettingsItem>
+        <SettingsItem
+          settings={this.props.settings}
+          item={['media', 'fullwidth']}
+          id='mastodon-settings--media-fullwidth'
+          onChange={this.props.toggleSetting}
+        >
+          <FormattedMessage id='settings.media_fullwidth' defaultMessage='Full-width media previews' />
+        </SettingsItem>
       </div>
     );
   }

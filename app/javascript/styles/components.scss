@@ -2318,6 +2318,11 @@ button.icon-button.active i.fa-retweet {
   position: relative;
   text-align: center;
   z-index: 100;
+
+  margin-top: 15px; // Add margin when used bare for NSFW video player
+  .media-gallery & {
+    margin-top: 0;
+  }
 }
 
 .media-spoiler__warning {
@@ -3707,11 +3712,15 @@ button.icon-button.active i.fa-retweet {
 .media-gallery {
   box-sizing: border-box;
   margin-top: 15px;
-  margin-left: -68px;
   overflow: hidden;
   position: relative;
-  width: calc(100% + 80px);
   background: $base-shadow-color;
+  width: 100%;
+
+  &.full-width {
+    margin-left: -68px;
+    width: calc(100% + 80px);
+  }
 
   .detailed-status & {
     margin-left:-10px;
@@ -3780,10 +3789,14 @@ button.icon-button.active i.fa-retweet {
   box-sizing: border-box;
   cursor: default; /* May not be needed */
   margin-top: 15px;
-  margin-left:-68px;
-  width: calc(100% + 80px);
   overflow: hidden;
   position: relative;
+  width: 100%;
+
+  &.full-width {
+    margin-left: -68px;
+    width: calc(100% + 80px);
+  }
 }
 
 .status__video-player-video {
@@ -3836,9 +3849,13 @@ button.icon-button.active i.fa-retweet {
   background-position: center;
   cursor: pointer;
   margin-top: 15px;
-  margin-left: -68px;
-  width: calc(100% + 80px);
   position: relative;
+  width: 100%;
+
+  &.full-width {
+    margin-left: -68px;
+    width: calc(100% + 80px);
+  }
 }
 
 .media-spoiler-video-play-icon {

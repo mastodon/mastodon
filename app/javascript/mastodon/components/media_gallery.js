@@ -141,6 +141,7 @@ export default class MediaGallery extends React.PureComponent {
     sensitive: PropTypes.bool,
     media: ImmutablePropTypes.list.isRequired,
     letterbox: PropTypes.bool,
+    fullwidth: PropTypes.bool,
     height: PropTypes.number.isRequired,
     onOpenMedia: PropTypes.func.isRequired,
     intl: PropTypes.object.isRequired,
@@ -160,7 +161,7 @@ export default class MediaGallery extends React.PureComponent {
   }
 
   render () {
-    const { media, intl, sensitive, letterbox } = this.props;
+    const { media, intl, sensitive, letterbox, fullwidth } = this.props;
 
     let children;
 
@@ -185,7 +186,7 @@ export default class MediaGallery extends React.PureComponent {
     }
 
     return (
-      <div className='media-gallery' style={{ height: `${this.props.height}px` }}>
+      <div className={`media-gallery ${fullwidth ? 'full-width' : ''}`} style={{ height: `${this.props.height}px` }}>
         <div className={`spoiler-button ${this.state.visible ? 'spoiler-button--visible' : ''}`}>
           <IconButton title={intl.formatMessage(messages.toggle_visible)} icon={this.state.visible ? 'eye' : 'eye-slash'} overlay onClick={this.handleOpen} />
         </div>

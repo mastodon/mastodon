@@ -626,6 +626,7 @@ backgrounds for collapsed statuses are enabled.
             media={attachments.get(0)}
             sensitive={status.get('sensitive')}
             letterbox={settings.getIn(['media', 'letterbox'])}
+            fullwidth={settings.getIn(['media', 'fullwidth'])}
             height={250}
             onOpenVideo={onOpenVideo}
           />
@@ -637,6 +638,7 @@ backgrounds for collapsed statuses are enabled.
             media={attachments}
             sensitive={status.get('sensitive')}
             letterbox={settings.getIn(['media', 'letterbox'])}
+            fullwidth={settings.getIn(['media', 'fullwidth'])}
             height={250}
             onOpenMedia={onOpenMedia}
             autoPlayGif={autoPlayGif}

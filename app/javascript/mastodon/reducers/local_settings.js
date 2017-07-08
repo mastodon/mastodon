@@ -21,6 +21,7 @@ const initialState = Immutable.fromJS({
   },
   media     : {
     letterbox   : true,
+    fullwidth   : true,
   },
 });
 

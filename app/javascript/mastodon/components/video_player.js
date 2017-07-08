@@ -17,6 +17,7 @@ export default class VideoPlayer extends React.PureComponent {
   static propTypes = {
     media: ImmutablePropTypes.map.isRequired,
     letterbox: PropTypes.bool,
+    fullwidth: PropTypes.bool,
     height: PropTypes.number,
     sensitive: PropTypes.bool,
     intl: PropTypes.object.isRequired,
@@ -110,7 +111,7 @@ export default class VideoPlayer extends React.PureComponent {
   }
 
   render () {
-    const { media, intl, letterbox, height, sensitive, autoplay } = this.props;
+    const { media, intl, letterbox, fullwidth, height, sensitive, autoplay } = this.props;
 
     let spoilerButton = (
       <div className={`status__video-player-spoiler ${this.state.visible ? 'status__video-player-spoiler--visible' : ''}`}>
@@ -156,7 +157,7 @@ export default class VideoPlayer extends React.PureComponent {
 
     if (this.state.preview && !autoplay) {
       return (
-        <div role='button' tabIndex='0' className='media-spoiler-video' style={{ height: `${height}px`, backgroundImage: `url(${media.get('preview_url')})` }} onClick={this.handleOpen}>
+        <div role='button' tabIndex='0' className={`media-spoiler-video ${fullwidth ? 'full-width' : ''}`} style={{ height: `${height}px`, backgroundImage: `url(${media.get('preview_url')})` }} onClick={this.handleOpen}>
           {spoilerButton}
           <div className='media-spoiler-video-play-icon'><i className='fa fa-play' /></div>
         </div>
@@ -172,7 +173,7 @@ export default class VideoPlayer extends React.PureComponent {
     }
 
     return (
-      <div className='status__video-player' style={{ height: `${height}px` }}>
+      <div className={`status__video-player ${fullwidth ? 'full-width' : ''}`} style={{ height: `${height}px` }}>
         {spoilerButton}
         {muteButton}
         {expandButton}
