@@ -10,6 +10,7 @@ defaults: &defaults
   site_title: Mastodon
   site_description: ''
   site_extended_description: ''
+  site_terms: ''
   site_contact_username: ''
   site_contact_email: ''
   open_registrations: true
@@ -18,6 +19,7 @@ defaults: &defaults
   boost_modal: false
   auto_play_gif: true
   delete_modal: true
+  system_font_ui: false
   notification_emails:
     follow: false
     reblog: false

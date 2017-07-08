@@ -21,6 +21,7 @@ class UserSettingsDecorator
     user.settings['boost_modal'] = boost_modal_preference
     user.settings['delete_modal'] = delete_modal_preference
     user.settings['auto_play_gif'] = auto_play_gif_preference
+    user.settings['system_font_ui'] = system_font_ui_preference
   end
 
   def merged_notification_emails
@@ -41,6 +42,10 @@ class UserSettingsDecorator
 
   def delete_modal_preference
     boolean_cast_setting 'setting_delete_modal'
+  end
+
+  def system_font_ui_preference
+    boolean_cast_setting 'setting_system_font_ui'
   end
 
   def auto_play_gif_preference

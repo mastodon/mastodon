@@ -42,6 +42,13 @@
           rows: 8
       %tr
         %td
+          %strong= t('admin.settings.site_terms.title')
+          %p= t('admin.settings.site_terms.desc_html')
+        %td= text_area_tag :site_terms,
+          @settings['site_terms'].value,
+          rows: 8
+      %tr
+        %td
           %strong= t('admin.settings.registrations.open.title')
         %td
           = select_tag :open_registrations,

@@ -1,6 +1,5 @@
 import React from 'react';
-import Switch from 'react-router-dom/Switch';
-import Route from 'react-router-dom/Route';
+import classNames from 'classnames';
 import Redirect from 'react-router-dom/Redirect';
 import NotificationsContainer from './containers/notifications_container';
 import PropTypes from 'prop-types';
@@ -12,74 +11,46 @@ import { isMobile } from '../../is_mobile';
 import { debounce } from 'lodash';
 import { uploadCompose } from '../../actions/compose';
 import { refreshHomeTimeline } from '../../actions/timelines';
-import { refreshNotifications } from '../../actions/notifications';
+import { WrappedSwitch, WrappedRoute } from './util/react_router_helpers';
 import UploadArea from './components/upload_area';
 import ColumnsAreaContainer from './containers/columns_area_container';
+import {
+  Compose,
+  Status,
+  GettingStarted,
+  PublicTimeline,
+  CommunityTimeline,
+  AccountTimeline,
+  AccountGallery,
+  HomeTimeline,
+  Followers,
+  Following,
+  Reblogs,
+  Favourites,
+  HashtagTimeline,
+  Notifications,
+  FollowRequests,
+  GenericNotFound,
+  FavouritedStatuses,
+  Blocks,
+  Mutes,
+} from './util/async-components';
 
-import Status from '../../features/status';
-import GettingStarted from '../../features/getting_started';
-import PublicTimeline from '../../features/public_timeline';
-import CommunityTimeline from '../../features/community_timeline';
-import AccountTimeline from '../../features/account_timeline';
-import AccountGallery from '../../features/account_gallery';
-import HomeTimeline from '../../features/home_timeline';
-import Compose from '../../features/compose';
-import Followers from '../../features/followers';
-import Following from '../../features/following';
-import Reblogs from '../../features/reblogs';
-import Favourites from '../../features/favourites';
-import HashtagTimeline from '../../features/hashtag_timeline';
-import Notifications from '../../features/notifications';
-import FollowRequests from '../../features/follow_requests';
-import GenericNotFound from '../../features/generic_not_found';
-import FavouritedStatuses from '../../features/favourited_statuses';
-import Blocks from '../../features/blocks';
-import Mutes from '../../features/mutes';
-import Report from '../../features/report';
+// Dummy import, to make sure that <Status /> ends up in the application bundle.
+// Without this it ends up in ~8 very commonly used bundles.
+import '../../components/status';
 
-// Small wrapper to pass multiColumn to the route components
-const WrappedSwitch = ({ multiColumn, children }) => (
-  <Switch>
-    {React.Children.map(children, child => React.cloneElement(child, { multiColumn }))}
-  </Switch>
-);
+const mapStateToProps = state => ({
+  systemFontUi: state.getIn(['meta', 'system_font_ui']),
+});
 
-WrappedSwitch.propTypes = {
-  multiColumn: PropTypes.bool,
-  children: PropTypes.node,
-};
-
-// Small Wraper to extract the params from the route and pass
-// them to the rendered component, together with the content to
-// be rendered inside (the children)
-class WrappedRoute extends React.Component {
-
-  static propTypes = {
-    component: PropTypes.func.isRequired,
-    content: PropTypes.node,
-    multiColumn: PropTypes.bool,
-  }
-
-  renderComponent = ({ match: { params } }) => {
-    const { component: Component, content, multiColumn } = this.props;
-
-    return <Component params={params} multiColumn={multiColumn}>{content}</Component>;
-  }
-
-  render () {
-    const { component: Component, content, ...rest } = this.props;
-
-    return <Route {...rest} render={this.renderComponent} />;
-  }
-
-}
-
-@connect()
+@connect(mapStateToProps)
 export default class UI extends React.PureComponent {
 
   static propTypes = {
     dispatch: PropTypes.func.isRequired,
     children: PropTypes.node,
+    systemFontUi: PropTypes.bool,
   };
 
   state = {
@@ -158,7 +129,6 @@ export default class UI extends React.PureComponent {
     document.addEventListener('dragend', this.handleDragEnd, false);
 
     this.props.dispatch(refreshHomeTimeline());
-    this.props.dispatch(refreshNotifications());
   }
 
   componentWillUnmount () {
@@ -178,8 +148,12 @@ export default class UI extends React.PureComponent {
     const { width, draggingOver } = this.state;
     const { children } = this.props;
 
+    const className = classNames('ui', {
+      'system-font': this.props.systemFontUi,
+    });
+
     return (
-      <div className='ui' ref={this.setRef}>
+      <div className={className} ref={this.setRef}>
         <TabsBar />
         <ColumnsAreaContainer singleColumn={isMobile(width)}>
           <WrappedSwitch>
@@ -206,7 +180,6 @@ export default class UI extends React.PureComponent {
             <WrappedRoute path='/follow_requests' component={FollowRequests} content={children} />
             <WrappedRoute path='/blocks' component={Blocks} content={children} />
             <WrappedRoute path='/mutes' component={Mutes} content={children} />
-            <WrappedRoute path='/report' component={Report} content={children} />
 
             <WrappedRoute component={GenericNotFound} content={children} />
           </WrappedSwitch>

@@ -38,7 +38,6 @@ export default class Header extends ImmutablePureComponent {
 
   handleReport = () => {
     this.props.onReport(this.props.account);
-    this.context.router.history.push('/report');
   }
 
   handleMute = () => {
