@@ -11,10 +11,8 @@ import { isMobile } from '../../is_mobile';
 import { debounce } from 'lodash';
 import { uploadCompose } from '../../actions/compose';
 import { refreshHomeTimeline } from '../../actions/timelines';
-import { refreshNotifications } from '../../actions/notifications';
 import { WrappedSwitch, WrappedRoute } from './util/react_router_helpers';
 import UploadArea from './components/upload_area';
-import { store } from '../../containers/mastodon';
 import ColumnsAreaContainer from './containers/columns_area_container';
 import {
   Compose,
@@ -30,18 +28,13 @@ import {
   Reblogs,
   Favourites,
   HashtagTimeline,
-  Notifications as AsyncNotifications,
+  Notifications,
   FollowRequests,
   GenericNotFound,
   FavouritedStatuses,
   Blocks,
   Mutes,
 } from './util/async-components';
-
-const Notifications = () => AsyncNotifications().then(component => {
-  store.dispatch(refreshNotifications());
-  return component;
-});
 
 // Dummy import, to make sure that <Status /> ends up in the application bundle.
 // Without this it ends up in ~8 very commonly used bundles.

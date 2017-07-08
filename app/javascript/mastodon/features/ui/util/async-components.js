@@ -1,4 +1,5 @@
 import { store } from '../../../containers/mastodon';
+import { refreshNotifications } from '../../../actions/notifications';
 import { injectAsyncReducer } from '../../../store/configureStore';
 
 // NOTE: When lazy-loading reducers, make sure to add them
@@ -29,6 +30,8 @@ export function Notifications () {
     import(/* webpackChunkName: "reducers/notifications" */'../../../reducers/notifications'),
   ]).then(([component, notificationsReducer]) => {
     injectAsyncReducer(store, 'notifications', notificationsReducer.default);
+
+    store.dispatch(refreshNotifications());
 
     return component;
   });
