@@ -37,6 +37,7 @@ sudo apt-get install \
   yarn \
   libprotobuf-dev \
   libreadline-dev \
+  libicu-dev \
   -y
 
 # Install rvm
