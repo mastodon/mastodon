@@ -16,7 +16,7 @@ class HomeController < ApplicationController
 
   def set_initial_state_json
     state = InitialStatePresenter.new(settings: Web::Setting.find_by(user: current_user)&.data || {},
-                                      web_push_subscription: current_account.user.web_push_subscription(current_session),
+                                      push_subscription: current_account.user.web_push_subscription(current_session),
                                       current_account: current_account,
                                       token: current_session.token,
                                       admin: Account.find_local(Setting.site_contact_username))
