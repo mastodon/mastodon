@@ -14,6 +14,7 @@ export default class DropdownMenu extends React.PureComponent {
     size: PropTypes.number.isRequired,
     direction: PropTypes.string,
     ariaLabel: PropTypes.string,
+    disabled: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -68,9 +69,17 @@ export default class DropdownMenu extends React.PureComponent {
   }
 
   render () {
-    const { icon, items, size, direction, ariaLabel } = this.props;
+    const { icon, items, size, direction, ariaLabel, disabled } = this.props;
     const { expanded } = this.state;
     const directionClass = (direction === 'left') ? 'dropdown__left' : 'dropdown__right';
+
+    if (disabled) {
+      return (
+        <div className='icon-button disabled' style={{ fontSize: `${size}px`, width: `${size}px`, lineHeight: `${size}px` }} aria-label={ariaLabel}>
+          <i className={`fa fa-fw fa-${icon} dropdown__icon`} aria-hidden />
+        </div>
+      );
+    }
 
     const dropdownItems = expanded && (
       <ul className='dropdown__content-list'>
@@ -81,7 +90,7 @@ export default class DropdownMenu extends React.PureComponent {
     return (
       <Dropdown ref={this.setRef} onShow={this.handleShow} onHide={this.handleHide}>
         <DropdownTrigger className='icon-button' style={{ fontSize: `${size}px`, width: `${size}px`, lineHeight: `${size}px` }} aria-label={ariaLabel}>
-          <i className={`fa fa-fw fa-${icon} dropdown__icon`}  aria-hidden />
+          <i className={`fa fa-fw fa-${icon} dropdown__icon`} aria-hidden />
         </DropdownTrigger>
 
         <DropdownContent className={directionClass}>

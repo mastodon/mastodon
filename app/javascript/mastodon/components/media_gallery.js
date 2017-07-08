@@ -11,18 +11,26 @@ const messages = defineMessages({
 
 class Item extends React.PureComponent {
 
+  static contextTypes = {
+    router: PropTypes.object,
+  };
+
   static propTypes = {
     attachment: ImmutablePropTypes.map.isRequired,
     index: PropTypes.number.isRequired,
     size: PropTypes.number.isRequired,
     onClick: PropTypes.func.isRequired,
-    autoPlayGif: PropTypes.bool.isRequired,
+    autoPlayGif: PropTypes.bool,
+  };
+
+  static defaultProps = {
+    autoPlayGif: true,
   };
 
   handleClick = (e) => {
     const { index, onClick } = this.props;
 
-    if (e.button === 0) {
+    if (this.context.router && e.button === 0) {
       e.preventDefault();
       onClick(index);
     }
@@ -144,7 +152,11 @@ export default class MediaGallery extends React.PureComponent {
     height: PropTypes.number.isRequired,
     onOpenMedia: PropTypes.func.isRequired,
     intl: PropTypes.object.isRequired,
-    autoPlayGif: PropTypes.bool.isRequired,
+    autoPlayGif: PropTypes.bool,
+  };
+
+  static defaultProps = {
+    autoPlayGif: true,
   };
 
   state = {

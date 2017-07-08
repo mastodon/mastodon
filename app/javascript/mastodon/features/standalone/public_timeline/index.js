@@ -16,12 +16,11 @@ import ColumnHeader from '../../../components/column_header';
 import { defineMessages, injectIntl } from 'react-intl';
 
 const messages = defineMessages({
-  title: { id: 'column.public', defaultMessage: 'Federated timeline' },
+  title: { id: 'standalone.public_title', defaultMessage: 'A look inside...' },
 });
 
 const mapStateToProps = state => ({
   streamingAPIBaseURL: state.getIn(['meta', 'streaming_api_base_url']),
-  accessToken: state.getIn(['meta', 'access_token']),
 });
 
 @connect(mapStateToProps)
@@ -32,7 +31,6 @@ export default class PublicTimeline extends React.PureComponent {
     dispatch: PropTypes.func.isRequired,
     intl: PropTypes.object.isRequired,
     streamingAPIBaseURL: PropTypes.string.isRequired,
-    accessToken: PropTypes.string.isRequired,
   };
 
   handleHeaderClick = () => {
@@ -44,7 +42,7 @@ export default class PublicTimeline extends React.PureComponent {
   }
 
   componentDidMount () {
-    const { dispatch, streamingAPIBaseURL, accessToken } = this.props;
+    const { dispatch, streamingAPIBaseURL } = this.props;
 
     dispatch(refreshPublicTimeline());
 
@@ -52,7 +50,7 @@ export default class PublicTimeline extends React.PureComponent {
       return;
     }
 
-    this._subscription = createStream(streamingAPIBaseURL, accessToken, 'public', {
+    this._subscription = createStream(streamingAPIBaseURL, '', 'public', {
 
       connected () {
         dispatch(connectTimeline('public'));
@@ -105,6 +103,7 @@ export default class PublicTimeline extends React.PureComponent {
         <StatusListContainer
           timelineId='public'
           loadMore={this.handleLoadMore}
+          scrollKey='standalone_public_timeline'
           trackScroll={false}
         />
       </Column>
