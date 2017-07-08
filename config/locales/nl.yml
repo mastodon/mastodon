@@ -36,10 +36,33 @@ nl:
     nothing_here: Hier is niets!
     people_followed_by: Mensen die %{name} volgt
     people_who_follow: Mensen die %{name} volgen
-    posts: Berichten
+    posts: Toots
     remote_follow: Extern volgen
     unfollow: Ontvolgen
   admin:
+    reports:
+      action_taken_by: Actie uitgevoerd door
+      are_you_sure: Weet je het zeker?
+      comment:
+        label: Opmerking
+        none: Geen
+      delete: Verwijderen
+      id: ID
+      mark_as_resolved: Markeer als opgelost
+      nsfw:
+        'false': Media tonen
+        'true': Media verbergen
+      report: 'Gerapporteerde toot #%{id}'
+      reported_account: Gerapporteerde account
+      reported_by: Gerapporteerd door
+      resolved: Opgelost
+      silence_account: Account stilzwijgen
+      status: Toot
+      suspend_account: Account blokkeren
+      target: Target
+      title: Gerapporteerde toots
+      unresolved: Onopgelost
+      view: Weergeven
     settings:
       contact_information:
         email: Vul een openbaar gebruikt e-mailadres in
@@ -62,24 +85,11 @@ nl:
         title: Uitgebreide omschrijving Mastodon-server
       site_title: Naam Mastodon-server
       title: Server-instellingen
-  admin.reports:
-    comment:
-      label: Opmerking
-      none: Geen
-    delete: Verwijderen
-    id: ID
-    mark_as_resolved: Markeer als opgelost
-    report: 'Gerapporteerde toot #%{id}'
-    reported_account: Gerapporteerde account
-    reported_by: Gerapporteerd door
-    resolved: Opgelost
-    silence_account: Account stilzwijgen
-    status: Toot
-    suspend_account: Account blokkeren
-    target: Target
-    title: Gerapporteerde toots
-    unresolved: Onopgelost
-    view: Weergeven
+    title: Beheer
+  admin_mailer:
+    new_report:
+      body: "%{reporter} heeft %{target} gerapporteerd"
+      subject: Nieuwe toots gerapporteerd op %{instance} (#%{id})     
   application_mailer:
     settings: 'E-mailvoorkeuren wijzigen: %{link}'
     signature: Mastodon-meldingen van %{instance}
@@ -87,7 +97,9 @@ nl:
   applications:
     invalid_url: De opgegevens URL is ongeldig
   auth:
-    change_password: Inloggegevens
+    change_password: Beveiliging
+    delete_account: Account verwijderen
+    delete_account_html: Wanneer je jouw account graag wilt verwijderen, kan je dat <a href="%{path}">hier doen</a>. We vragen jou daar om een bevestiging.
     didnt_get_confirmation: Geen bevestigingsinstructies ontvangen?
     forgot_password: Wachtwoord vergeten?
     login: Aanmelden
@@ -115,12 +127,23 @@ nl:
       x_minutes: "%{count}m"
       x_months: "%{count}ma"
       x_seconds: "%{count}s"
+  deletes:
+    bad_password_msg: Goed geprobeerd hackers! Ongeldig wachtwoord
+    confirm_password: Voer jouw huidige wachtwoord in om jouw identiteit te bevestigen
+    description_html: Hierdoor worden alle gegevens van jouw account <strong>permanent, onomkeerbaar</strong> verwijderd en wordt deze gedeactiveerd. Om toekomstige identiteitsdiefstal te voorkomen, kan op deze server jouw gebruikersnaam niet meer gebruikt worden.
+    proceed: Account verwijderen 
+    success_msg: Jouw account is succesvol verwijderd
+    warning_html: We kunnen alleen garanderen dat jouw gegevens op deze server worden verwijderd. Berichten (toots), incl. media, die veel zijn gedeeld laten mogelijk sporen achter. Offline servers en servers die niet meer op jouw updates zijn geabonneerd zullen niet hun databases updaten.
+    warning_title: Verwijdering gegevens op andere servers
   errors:
+    '403': Jij hebt geen toestemming om deze pagina te bekijken.
     '404': De pagina waarnaar jij op zoek bent bestaat niet.
     '410': De pagina waarnaar jij op zoek bent bestaat niet meer.
     '422':
       content: Veiligheidsverificatie mislukt. Blokkeer je toevallig cookies?
       title: Veiligheidsverificatie mislukt
+    '429': Te veel verbindingsaanvragen.
+    noscript: Schakel JavaScript in om Mastodon te kunnen gebruiken.
   exports:
     blocks: Jij blokkeert
     csv: CSV
@@ -141,7 +164,7 @@ nl:
     unlocked_warning_title: Jouw account is niet besloten
   generic:
     changes_saved_msg: Wijzigingen succesvol opgeslagen!
-    powered_by: mogelijk gemaakt door %{link}
+    powered_by: wordt mogelijk gemaakt door %{link}
     save_changes: Wijzigingen opslaan
     validation_errors:
       one: Er is iets niet helemaal goed! Bekijk onderstaande fout
@@ -189,6 +212,43 @@ nl:
     missing_resource: Kon vereiste doorverwijzings-URL voor jouw account niet vinden
     proceed: Ga door om te volgen
     prompt: 'Jij gaat volgen:'
+  sessions:
+    activity: Laatst actief
+    browser: Webbrowser
+    browsers:
+      alipay: Alipay
+      blackberry: Blackberry
+      chrome: Chrome
+      edge: Microsoft Edge
+      firefox: Firefox
+      generic: Onbekende webbrowser
+      ie: Internet Explorer
+      micro_messenger: MicroMessenger
+      nokia: Nokia S40 Ovi Browser
+      opera: Opera
+      phantom_js: PhantomJS
+      qq: QQ Browser
+      safari: Safari
+      uc_browser: UCBrowser
+      weibo: Weibo
+    current_session: Huidige sessie
+    description: "%{browser} op %{platform}"
+    explanation: Dit zijn de webbrowsers die momenteel met jouw Mastodon-account zijn ingelogd.
+    ip: IP
+    platforms:
+      adobe_air: Adobe Air
+      android: Android
+      blackberry: Blackberry
+      chrome_os: ChromeOS
+      firefox_os: Firefox OS
+      ios: iOS
+      linux: Linux
+      mac: Mac
+      other: Onbekend platform
+      windows: Windows
+      windows_mobile: Windows Mobile
+      windows_phone: Windows Phone
+    title: Sessies
   settings:
     authorized_apps: Geautoriseerde apps
     back: Terug naar Mastodon
