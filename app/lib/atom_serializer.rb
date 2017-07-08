@@ -84,6 +84,7 @@ class AtomSerializer
     end
 
     append_element(entry, 'link', nil, rel: :alternate, type: 'text/html', href: account_stream_entry_url(stream_entry.account, stream_entry))
+    append_element(entry, 'link', nil, rel: :related, href: TagManager.instance.url_for(stream_entry.status)) unless stream_entry.status.nil?
     append_element(entry, 'link', nil, rel: :self, type: 'application/atom+xml', href: account_stream_entry_url(stream_entry.account, stream_entry, format: 'atom'))
     append_element(entry, 'thr:in-reply-to', nil, ref: TagManager.instance.uri_for(stream_entry.thread), href: TagManager.instance.url_for(stream_entry.thread)) if stream_entry.threaded?
     append_element(entry, 'ostatus:conversation', nil, ref: conversation_uri(stream_entry.status.conversation)) unless stream_entry&.status&.conversation_id.nil?
