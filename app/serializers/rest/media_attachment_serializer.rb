@@ -15,7 +15,7 @@ class REST::MediaAttachmentSerializer < ActiveModel::Serializer
   end
 
   def text_url
-    medium_url(object.id)
+    object.local? ? medium_url(object) : nil
   end
 
   def meta
