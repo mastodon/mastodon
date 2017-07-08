@@ -31,13 +31,11 @@ export class WrappedRoute extends React.Component {
   }
 
   renderComponent = ({ match }) => {
-    this.match = match; // Needed for this.renderBundle
-
-    const { component } = this.props;
+    const { component, content, multiColumn } = this.props;
 
     return (
       <BundleContainer fetchComponent={component} loading={this.renderLoading} error={this.renderError}>
-        {this.renderBundle}
+        {Component => <Component params={match.params} multiColumn={multiColumn}>{content}</Component>}
       </BundleContainer>
     );
   }
@@ -48,12 +46,6 @@ export class WrappedRoute extends React.Component {
 
   renderError = (props) => {
     return <BundleColumnError {...props} />;
-  }
-
-  renderBundle = (Component) => {
-    const { match: { params }, props: { content, multiColumn } } = this;
-
-    return <Component params={params} multiColumn={multiColumn}>{content}</Component>;
   }
 
   render () {
