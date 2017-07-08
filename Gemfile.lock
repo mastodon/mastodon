@@ -24,6 +24,11 @@ GEM
       erubi (~> 1.4)
       rails-dom-testing (~> 2.0)
       rails-html-sanitizer (~> 1.0, >= 1.0.3)
+    active_model_serializers (0.10.6)
+      actionpack (>= 4.1, < 6)
+      activemodel (>= 4.1, < 6)
+      case_transform (>= 0.2)
+      jsonapi-renderer (>= 0.1.1.beta1, < 0.2)
     active_record_query_trace (1.5.4)
     activejob (5.1.2)
       activesupport (= 5.1.2)
@@ -102,6 +107,8 @@ GEM
       rack-test (>= 0.5.4)
       xpath (~> 2.0)
     charlock_holmes (0.7.3)
+    case_transform (0.2)
+      activesupport
     chunky_png (1.3.8)
     cld3 (3.1.3)
       ffi (>= 1.1.0, < 1.10.0)
@@ -201,6 +208,7 @@ GEM
       terminal-table (>= 1.5.1)
     jmespath (1.3.1)
     json (2.1.0)
+    jsonapi-renderer (0.1.2)
     kaminari (1.0.1)
       activesupport (>= 4.1.0)
       kaminari-actionview (= 1.0.1)
@@ -477,6 +485,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  active_model_serializers (~> 0.10)
   active_record_query_trace (~> 1.5)
   addressable (~> 2.5)
   annotate (~> 2.7)
@@ -518,6 +527,7 @@ DEPENDENCIES
   link_header (~> 0.0)
   lograge (~> 0.5)
   microformats2 (~> 3.0)
+  mime-types (~> 3.1)
   nokogiri (~> 1.7)
   oj (~> 3.0)
   ostatus2 (~> 2.0)

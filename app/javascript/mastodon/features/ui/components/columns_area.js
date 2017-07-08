@@ -2,14 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
+
 import ReactSwipeable from 'react-swipeable';
-import HomeTimeline from '../../home_timeline';
-import Notifications from '../../notifications';
-import PublicTimeline from '../../public_timeline';
-import CommunityTimeline from '../../community_timeline';
-import HashtagTimeline from '../../hashtag_timeline';
-import Compose from '../../compose';
 import { getPreviousLink, getNextLink } from './tabs_bar';
+
+import BundleContainer from '../containers/bundle_container';
+import ColumnLoading from './column_loading';
+import BundleColumnError from './bundle_column_error';
+import { Compose, Notifications, HomeTimeline, CommunityTimeline, PublicTimeline, HashtagTimeline } from '../../ui/util/async-components';
 
 const componentMap = {
   'COMPOSE': Compose,
@@ -48,6 +48,14 @@ export default class ColumnsArea extends ImmutablePureComponent {
     }
   };
 
+  renderLoading = () => {
+    return <ColumnLoading />;
+  }
+
+  renderError = (props) => {
+    return <BundleColumnError {...props} />;
+  }
+
   render () {
     const { columns, children, singleColumn } = this.props;
 
@@ -62,9 +70,13 @@ export default class ColumnsArea extends ImmutablePureComponent {
     return (
       <div className='columns-area'>
         {columns.map(column => {
-          const SpecificComponent = componentMap[column.get('id')];
           const params = column.get('params', null) === null ? null : column.get('params').toJS();
-          return <SpecificComponent key={column.get('uuid')} columnId={column.get('uuid')} params={params} multiColumn />;
+
+          return (
+            <BundleContainer key={column.get('uuid')} fetchComponent={componentMap[column.get('id')]} loading={this.renderLoading} error={this.renderError}>
+              {SpecificComponent => <SpecificComponent columnId={column.get('uuid')} params={params} multiColumn />}
+            </BundleContainer>
+          );
         })}
 
         {React.Children.map(children, child => React.cloneElement(child, { multiColumn: true }))}

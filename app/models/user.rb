@@ -91,6 +91,10 @@ class User < ApplicationRecord
     settings.auto_play_gif
   end
 
+  def setting_system_font_ui
+    settings.system_font_ui
+  end
+
   def activate_session(request)
     session_activations.activate(session_id: SecureRandom.hex,
                                  user_agent: request.user_agent,

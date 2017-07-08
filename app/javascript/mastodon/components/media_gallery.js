@@ -91,8 +91,10 @@ class Item extends React.PureComponent {
       const originalUrl = attachment.get('url');
       const originalWidth = attachment.getIn(['meta', 'original', 'width']);
 
-      const srcSet = `${originalUrl} ${originalWidth}w, ${previewUrl} ${previewWidth}w`;
-      const sizes = `(min-width: 1025px) ${320 * (width / 100)}px, ${width}vw`;
+      const hasSize = typeof originalWidth === 'number' && typeof previewWidth === 'number';
+
+      const srcSet = hasSize && `${originalUrl} ${originalWidth}w, ${previewUrl} ${previewWidth}w`;
+      const sizes = hasSize && `(min-width: 1025px) ${320 * (width / 100)}px, ${width}vw`;
 
       thumbnail = (
         <a
