@@ -1117,6 +1117,20 @@
     height: 100%;
     background-image: none;
   }
+
+  &.image-loader--amorphous {
+    position: static;
+
+    .image-loader__preview-canvas {
+      display: none;
+    }
+
+    .image-loader__img {
+      position: static;
+      width: auto;
+      height: auto;
+    }
+  }
 }
 
 .navigation-bar {

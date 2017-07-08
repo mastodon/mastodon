@@ -74,7 +74,10 @@ export default class MediaModal extends ImmutablePureComponent {
     }
 
     if (attachment.get('type') === 'image') {
-      content = <ImageLoader previewSrc={attachment.get('preview_url')} src={url} width={attachment.getIn(['meta', 'original', 'width'])} height={attachment.getIn(['meta', 'original', 'height'])} />;
+      const width  = attachment.getIn(['meta', 'original', 'width']) || null;
+      const height = attachment.getIn(['meta', 'original', 'height']) || null;
+
+      content = <ImageLoader previewSrc={attachment.get('preview_url')} src={url} width={width} height={height} />;
     } else if (attachment.get('type') === 'gifv') {
       content = <ExtendedVideoPlayer src={url} muted controls={false} />;
     }
