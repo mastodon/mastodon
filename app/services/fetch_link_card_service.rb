@@ -1,5 +1,4 @@
 # frozen_string_literal: true
-require 'nkf'
 
 class FetchLinkCardService < BaseService
   include HttpHelper
@@ -86,7 +85,12 @@ class FetchLinkCardService < BaseService
     return if response.code != 200 || response.mime_type != 'text/html'
 
     html = response.to_s
-    page = Nokogiri::HTML(html, nil, NKF.guess(html).to_s)
+
+    detector = CharlockHolmes::EncodingDetector.new
+    detector.strip_tags = true
+
+    guess = detector.detect(html, response.charset)
+    page = Nokogiri::HTML(html, nil, guess&.fetch(:encoding))
 
     card.type             = :link
     card.title            = meta_property(page, 'og:title') || page.at_xpath('//title')&.content

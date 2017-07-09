@@ -11,6 +11,7 @@ import { isMobile } from '../../is_mobile';
 import { debounce } from 'lodash';
 import { uploadCompose } from '../../actions/compose';
 import { refreshHomeTimeline } from '../../actions/timelines';
+import { refreshNotifications } from '../../actions/notifications';
 import { WrappedSwitch, WrappedRoute } from './util/react_router_helpers';
 import UploadArea from './components/upload_area';
 import ColumnsAreaContainer from './containers/columns_area_container';
@@ -129,6 +130,7 @@ export default class UI extends React.PureComponent {
     document.addEventListener('dragend', this.handleDragEnd, false);
 
     this.props.dispatch(refreshHomeTimeline());
+    this.props.dispatch(refreshNotifications());
   }
 
   componentWillUnmount () {

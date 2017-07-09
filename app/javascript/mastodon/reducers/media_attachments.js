@@ -1,4 +1,4 @@
-import { STORE_HYDRATE_LAZY } from '../actions/store';
+import { STORE_HYDRATE } from '../actions/store';
 import Immutable from 'immutable';
 
 const initialState = Immutable.Map({
@@ -7,7 +7,7 @@ const initialState = Immutable.Map({
 
 export default function meta(state = initialState, action) {
   switch(action.type) {
-  case `${STORE_HYDRATE_LAZY}-media_attachments`:
+  case STORE_HYDRATE:
     return state.merge(action.state.get('media_attachments'));
   default:
     return state;

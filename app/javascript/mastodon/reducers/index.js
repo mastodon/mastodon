@@ -14,6 +14,10 @@ import status_lists from './status_lists';
 import cards from './cards';
 import reports from './reports';
 import contexts from './contexts';
+import compose from './compose';
+import search from './search';
+import media_attachments from './media_attachments';
+import notifications from './notifications';
 
 const reducers = {
   timelines,
@@ -31,13 +35,10 @@ const reducers = {
   cards,
   reports,
   contexts,
+  compose,
+  search,
+  media_attachments,
+  notifications,
 };
-
-export function createReducer(asyncReducers) {
-  return combineReducers({
-    ...reducers,
-    ...asyncReducers,
-  });
-}
 
 export default combineReducers(reducers);
