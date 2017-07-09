@@ -9,6 +9,13 @@
     %i.fa.fa-chevron-left.fa-fw
     = t('admin.statuses.back_to_account')
 
+.filters
+  .filter-subset
+    %strong= t('admin.statuses.media.title')
+    %ul
+      %li= link_to t('admin.statuses.no_media'), admin_account_statuses_path(@account.id, current_params.merge(media: nil)), class: !params[:media] && 'selected'
+      %li= link_to t('admin.statuses.with_media'), admin_account_statuses_path(@account.id, current_params.merge(media: true)), class: params[:media] && 'selected'
+
 - if @statuses.empty?
   .accounts-grid
     = render 'accounts/nothing_here'
@@ -16,20 +23,12 @@
   = form_for(@form, url: admin_account_statuses_path(@account.id)) do |f|
     = hidden_field_tag :page, params[:page]
     = hidden_field_tag :media, params[:media]
-    .filters
-      .filter-subset
-        %strong= t('admin.statuses.batch_action')
-        .batch-form-box
-          .batch-checkbox-all
-            = check_box_tag :batch_checkbox_all, nil, false
-          = f.select :action, Form::StatusBatch::ACTION_TYPE.map{|action| [t("admin.statuses.batch.#{action}"), action]}
-          = f.submit t('admin.statuses.execute'), data: { confirm: t('admin.reports.are_you_sure') }
-      .filter-subset
-        %strong= t('admin.statuses.media.title')
-        %ul
-          %li= link_to t('admin.statuses.no_media'), admin_account_statuses_path(@account.id, current_params.merge(media: nil)), class: !params[:media] && 'selected'
-          %li= link_to t('admin.statuses.with_media'), admin_account_statuses_path(@account.id, current_params.merge(media: true)), class: params[:media] && 'selected'
-      .filter-subset
+    .batch-form-box
+      .batch-checkbox-all
+        = check_box_tag :batch_checkbox_all, nil, false
+      = f.select :action, Form::StatusBatch::ACTION_TYPE.map{|action| [t("admin.statuses.batch.#{action}"), action]}
+      = f.submit t('admin.statuses.execute'), data: { confirm: t('admin.reports.are_you_sure') }, class: 'button'
+      .media-spoiler-toggle-buttons
         .media-spoiler-show-button.button= t('admin.statuses.media.show')
         .media-spoiler-hide-button.button= t('admin.statuses.media.hide')
     - @statuses.each do |status|

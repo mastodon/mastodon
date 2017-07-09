@@ -280,7 +280,20 @@
 
 .batch-form-box {
   display: flex;
-  margin-top: 5px;
+  margin-bottom: 10px;
+
+  #form_status_batch_action {
+    margin-right: 5px;
+    font-size: 14px;
+  }
+
+  .media-spoiler-toggle-buttons {
+    margin-left: auto;
+
+    .button {
+      overflow: visible;
+    }
+  }
 }
 
 .batch-checkbox,
