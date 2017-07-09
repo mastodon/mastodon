@@ -7,7 +7,6 @@ import { refreshAccountMediaTimeline, expandAccountMediaTimeline } from '../../a
 import LoadingIndicator from '../../components/loading_indicator';
 import Column from '../ui/components/column';
 import ColumnBackButton from '../../components/column_back_button';
-import Immutable from 'immutable';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { getAccountGallery } from '../../selectors';
 import MediaItem from './components/media_item';
@@ -23,7 +22,8 @@ const mapStateToProps = (state, props) => ({
   autoPlayGif: state.getIn(['meta', 'auto_play_gif']),
 });
 
-class AccountGallery extends ImmutablePureComponent {
+@connect(mapStateToProps)
+export default class AccountGallery extends ImmutablePureComponent {
 
   static propTypes = {
     params: PropTypes.object.isRequired,
@@ -112,5 +112,3 @@ class AccountGallery extends ImmutablePureComponent {
   }
 
 }
-
-export default connect(mapStateToProps)(AccountGallery);

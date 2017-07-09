@@ -54,7 +54,7 @@ const isMathjaxifyable = str => {
     .reduce((prev, elem) => prev || elem, false);
 }
 
-class StatusContent extends React.PureComponent {
+export default class StatusContent extends React.PureComponent {
 
   static contextTypes = {
     router: PropTypes.object,
@@ -79,7 +79,6 @@ class StatusContent extends React.PureComponent {
     for (var i = 0; i < links.length; ++i) {
       let link    = links[i];
       let mention = this.props.status.get('mentions').find(item => link.href === item.get('url'));
-      let media   = this.props.status.get('media_attachments').find(item => link.href === item.get('text_url') || (item.get('remote_url').length > 0 && link.href === item.get('remote_url')));
 
       if (mention) {
         link.addEventListener('click', this.onMentionClick.bind(this, mention), false);
@@ -139,7 +138,7 @@ class StatusContent extends React.PureComponent {
   onMentionClick = (mention, e) => {
     if (e.button === 0) {
       e.preventDefault();
-      this.context.router.push(`/accounts/${mention.get('id')}`);
+      this.context.router.history.push(`/accounts/${mention.get('id')}`);
     }
   }
 
@@ -148,7 +147,7 @@ class StatusContent extends React.PureComponent {
 
     if (e.button === 0) {
       e.preventDefault();
-      this.context.router.push(`/timelines/tag/${hashtag}`);
+      this.context.router.history.push(`/timelines/tag/${hashtag}`);
     }
   }
 
@@ -164,7 +163,7 @@ class StatusContent extends React.PureComponent {
     const [ startX, startY ] = this.startXY;
     const [ deltaX, deltaY ] = [Math.abs(e.clientX - startX), Math.abs(e.clientY - startY)];
 
-    if (e.target.localName === 'button' || e.target.localName === 'span' || e.target.localName === 'a' || (e.target.parentNode && e.target.parentNode.localName === 'a')) {
+    if (e.target.localName === 'button' || e.target.localName === 'a' || (e.target.parentNode && (e.target.parentNode.localName === 'button' || e.target.parentNode.localName === 'a'))) {
       return;
     }
 
@@ -219,7 +218,7 @@ class StatusContent extends React.PureComponent {
       }
 
       return (
-        <div className='status__content' ref={this.setRef} onMouseDown={this.handleMouseDown} onMouseUp={this.handleMouseUp}>
+        <div className='status__content status__content--with-action' ref={this.setRef} onMouseDown={this.handleMouseDown} onMouseUp={this.handleMouseUp}>
           <p style={{ marginBottom: hidden && status.get('mentions').isEmpty() ? '0px' : null }}>
             <span dangerouslySetInnerHTML={spoilerContent} />
             {' '}
@@ -235,7 +234,7 @@ class StatusContent extends React.PureComponent {
       return (
         <div
           ref={this.setRef}
-          className='status__content'
+          className='status__content status__content--with-action'
           style={directionStyle}
           onMouseDown={this.handleMouseDown}
           onMouseUp={this.handleMouseUp}
@@ -246,7 +245,7 @@ class StatusContent extends React.PureComponent {
       return (
         <div
           ref={this.setRef}
-          className='status__content status__content--no-action'
+          className='status__content'
           style={directionStyle}
           dangerouslySetInnerHTML={content}
         />
@@ -255,5 +254,3 @@ class StatusContent extends React.PureComponent {
   }
 
 }
-
-export default StatusContent;

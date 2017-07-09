@@ -42,6 +42,37 @@ namespace :mastodon do
     end
   end
 
+  desc 'Add a user by providing their email, username and initial password.' \
+       'The user will receive a confirmation email, then they must reset their password before logging in.'
+  task add_user: :environment do
+    print 'Enter email: '
+    email = STDIN.gets.chomp
+
+    print 'Enter username: '
+    username = STDIN.gets.chomp
+
+    print 'Create user and send them confirmation mail [y/N]: '
+    confirm = STDIN.gets.chomp
+    puts
+
+    if confirm.casecmp?('y')
+      password = SecureRandom.hex
+      user = User.new(email: email, password: password, account_attributes: { username: username })
+      if user.save
+        puts 'User added and confirmation mail sent to user\'s email address.'
+        puts "Here is the random password generated for the user: #{password}"
+      else
+        puts 'Following errors occured while creating new user:'
+        user.errors.each do |key, val|
+          puts "#{key}: #{val}"
+        end
+      end
+    else
+      puts 'Aborted by user.'
+    end
+    puts
+  end
+
   namespace :media do
     desc 'Removes media attachments that have not been assigned to any status for longer than a day'
     task clear: :environment do

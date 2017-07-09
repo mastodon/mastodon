@@ -18,7 +18,7 @@ class AccountSearchService < BaseService
     return [] if query_blank_or_hashtag? || limit < 1
 
     if resolving_non_matching_remote_account?
-      [FollowRemoteAccountService.new.call("#{query_username}@#{query_domain}")]
+      [ResolveRemoteAccountService.new.call("#{query_username}@#{query_domain}")]
     else
       search_results_and_exact_match.compact.uniq.slice(0, limit)
     end

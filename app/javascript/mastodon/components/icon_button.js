@@ -3,7 +3,7 @@ import Motion from 'react-motion/lib/Motion';
 import spring from 'react-motion/lib/spring';
 import PropTypes from 'prop-types';
 
-class IconButton extends React.PureComponent {
+export default class IconButton extends React.PureComponent {
 
   static propTypes = {
     className: PropTypes.string,
@@ -86,5 +86,3 @@ class IconButton extends React.PureComponent {
   }
 
 }
-
-export default IconButton;

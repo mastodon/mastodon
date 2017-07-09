@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170609145826) do
+ActiveRecord::Schema.define(version: 20170625140443) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -250,6 +250,18 @@ ActiveRecord::Schema.define(version: 20170609145826) do
     t.index ["target_account_id"], name: "index_reports_on_target_account_id"
   end
 
+  create_table "session_activations", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.string "session_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "user_agent", default: "", null: false
+    t.inet "ip"
+    t.integer "access_token_id"
+    t.index ["session_id"], name: "index_session_activations_on_session_id", unique: true
+    t.index ["user_id"], name: "index_session_activations_on_user_id"
+  end
+
   create_table "settings", id: :serial, force: :cascade do |t|
     t.string "var", null: false
     t.text "value"
@@ -279,7 +291,7 @@ ActiveRecord::Schema.define(version: 20170609145826) do
     t.integer "reblogs_count", default: 0, null: false
     t.string "language"
     t.bigint "conversation_id"
-    t.index ["account_id"], name: "index_statuses_on_account_id"
+    t.index ["account_id", "id"], name: "index_statuses_on_account_id_id"
     t.index ["conversation_id"], name: "index_statuses_on_conversation_id"
     t.index ["in_reply_to_id"], name: "index_statuses_on_in_reply_to_id"
     t.index ["reblog_of_id"], name: "index_statuses_on_reblog_of_id"
@@ -395,6 +407,8 @@ ActiveRecord::Schema.define(version: 20170609145826) do
   add_foreign_key "reports", "accounts", column: "action_taken_by_account_id", on_delete: :nullify
   add_foreign_key "reports", "accounts", column: "target_account_id", on_delete: :cascade
   add_foreign_key "reports", "accounts", on_delete: :cascade
+  add_foreign_key "session_activations", "oauth_access_tokens", column: "access_token_id", on_delete: :cascade
+  add_foreign_key "session_activations", "users", on_delete: :cascade
   add_foreign_key "statuses", "accounts", column: "in_reply_to_account_id", on_delete: :nullify
   add_foreign_key "statuses", "accounts", on_delete: :cascade
   add_foreign_key "statuses", "statuses", column: "in_reply_to_id", on_delete: :nullify

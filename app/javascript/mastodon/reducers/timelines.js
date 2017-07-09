@@ -12,12 +12,6 @@ import {
   TIMELINE_DISCONNECT,
 } from '../actions/timelines';
 import {
-  REBLOG_SUCCESS,
-  UNREBLOG_SUCCESS,
-  FAVOURITE_SUCCESS,
-  UNFAVOURITE_SUCCESS,
-} from '../actions/interactions';
-import {
   ACCOUNT_BLOCK_SUCCESS,
   ACCOUNT_MUTE_SUCCESS,
 } from '../actions/accounts';

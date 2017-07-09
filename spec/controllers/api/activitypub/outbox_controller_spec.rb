@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Api::Activitypub::OutboxController, type: :controller do
+RSpec.describe Api::ActivityPub::OutboxController, type: :controller do
   render_views
 
   let(:user)  { Fabricate(:user, account: Fabricate(:account, username: 'alice')) }

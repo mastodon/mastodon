@@ -195,6 +195,8 @@ oc:
     invalid_url: L’URL donada es invalida
   auth:
     change_password: Cambiar lo senhal
+    delete_account: Suprimir lo compte
+    delete_account_html: Se volètz suprimir vòstre compte, podètz <a href="%{path}">o far aquí</a>. Vos demandarem que confirmetz.
     didnt_get_confirmation: Avètz pas recebut las instruccions de confirmacion ?
     forgot_password: Senhal oblidat ?
     login: Se connectar
@@ -218,7 +220,7 @@ oc:
     - dv
     - ds
     abbr_month_names:
-    - 
+    -
     - gen
     - feb
     - mar
@@ -244,7 +246,7 @@ oc:
       long: Lo %B %d de %Y
       short: "%b %d"
     month_names:
-    - 
+    -
     - de genièr
     - de febrièr
     - de març
@@ -281,6 +283,14 @@ oc:
       x_minutes: Fa %{count} minutas
       x_months: Fa %{count} meses
       x_seconds: Fa %{count} segondas
+  deletes:
+    bad_password_msg: Ben ensajat pirata ! Senhal incorrècte
+    confirm_password: Picatz vòstre senhal acutal per verificar vòstra identitat
+    description_html: Aquò suprimirà <strong>definitivament e sens possibilitat de retorn</strong> lo contengut de vòstre compte e lo desactivarà. Lo nom d’utilizaire serà gardat per evitar una futura impostura.
+    proceed: Delete account
+    success_msg: Your account was successfully deleted
+    warning_html: La supression del contengut d’aquesta instància es sola assegurada. Lo contengut fòrça partejat daissarà problablament de traças. Los servidors fòra-linha e los que vos sègon pas mai auràn pas la mesa a jorn de lor basa de donada.
+    warning_title: Disponibilitat del contengut difusat
   errors:
     '404': La pagina que recercatz existís pas.
     '410': La pagina que cercatz existís pas mai.
@@ -342,13 +352,13 @@ oc:
       subject: "%{name} a mes vòstre estatut en favorit"
     follow:
       body: "%{name} vos sèc ara !"
-      subject: "%{name} es a vos sègre ara"
+      subject: "%{name} vos sèc ara"
     follow_request:
-      body: "%{name} a demandar a vos sègre"
+      body: "%{name} a demandat a vos sègre"
       subject: 'Demanda d’abonament : %{name}'
     mention:
-      body: 'Sètz estat mencionat per %{name} dins :'
-      subject: Sètz estat mencionat per %{name}
+      body: "%{name} vos a mencionat dins :"
+      subject: "%{name} vos a mencionat"
     reblog:
       body: "%{name} a tornat partejar vòstre estatut :"
       subject: "%{name} a tornat partejar vòstre estatut"
@@ -364,6 +374,7 @@ oc:
   settings:
     authorized_apps: Aplicacions autorizadas
     back: Tornar a Mastodon
+    delete: Supression de compte
     edit_profile: Modificar lo perfil
     export: Export donadas
     followers: Seguidors autorizats
@@ -383,7 +394,7 @@ oc:
       unlisted: Pas listat
       unlisted_long: Tot lo mond pòt veire mai serà pas visible sul flux public
   stream_entries:
-    click_to_show: Clic per afichar
+    click_to_show: Clicatz per afichar
     reblogged: a partejat
     sensitive_content: Contengut sensible
   time:
@@ -400,7 +411,7 @@ oc:
     lost_recovery_codes: Los còdi de recuperacion vos permeton d’accedir a vòstre compte se perdètz vòstre mobil. S’avètz perdut vòstres còdis de recuperacion los podètz tornar generar aquí. Los ancians còdis seràn pas mai valides.
     manual_instructions: 'Se podètz pas numerizar lo còdi QR e que vos cal picar lo còdi a la man, vaquí lo còdi en clar :'
     recovery_codes_regenerated: Los còdis de recuperacion son ben estats tornats generar
-    recovery_instructions: Se vos arriba de perdre vòstre mobil, podètz utilizar un dels còdis de recuperacion cai-jos per poder tornar accedir a vòstre compte. Gardatz los còdis en seguretat, per exemple, imprimissètz los e gardatz los amb vòstres documents importants.
+    recovery_instructions_html: Se vos arriba de perdre vòstre mobil, podètz utilizar un dels còdis de recuperacion cai-jos per poder tornar accedir a vòstre compte. Gardatz los còdis en seguretat, per exemple, imprimissètz los e gardatz los amb vòstres documents importants.
     setup: Paramètres
     wrong_code: Lo còdi picat es invalid ! L’ora es la bona sul servidor e lo mobil ?
   users:
