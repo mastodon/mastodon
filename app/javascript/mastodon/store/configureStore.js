@@ -4,7 +4,6 @@ import appReducer from '../reducers';
 import loadingBarMiddleware from '../middleware/loading_bar';
 import errorsMiddleware from '../middleware/errors';
 import soundsMiddleware from '../middleware/sounds';
-import { hydrateAction } from '../containers/mastodon';
 
 export default function configureStore() {
   return createStore(appReducer, compose(applyMiddleware(

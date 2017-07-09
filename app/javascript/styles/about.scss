@@ -439,6 +439,7 @@
 
   .container {
     width: 100%;
+    box-sizing: border-box;
     max-width: 800px;
     margin: 0 auto;
   }
@@ -545,4 +546,57 @@
       color: lighten($ui-base-color, 26%);
     }
   }
+
+  @media screen and (max-width: 800px) {
+    .container {
+      padding: 0 20px;
+    }
+  }
+
+  @media screen and (max-width: 675px) {
+    .header .container,
+    .features .container {
+      display: block;
+    }
+
+    .links {
+      padding-top: 15px;
+      background: darken($ui-base-color, 4%);
+    }
+
+    .header {
+      padding-top: 0;
+
+      .hero {
+        margin-top: 30px;
+        padding: 0;
+      }
+
+      .heading,
+      .nav {
+        text-align: center;
+      }
+
+      .heading h1 {
+        padding: 30px 0;
+      }
+
+      .hero {
+        .simple_form,
+        .closed-registrations-message {
+          background: darken($ui-base-color, 8%);
+          width: 100%;
+          border-radius: 0;
+          box-sizing: border-box;
+        }
+      }
+    }
+
+    #mastodon-timeline {
+      height: 70vh;
+      width: 100%;
+      margin-bottom: 50px;
+    }
+  }
 }
+
