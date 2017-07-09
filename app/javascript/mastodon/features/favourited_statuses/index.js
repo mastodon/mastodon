@@ -20,7 +20,9 @@ const mapStateToProps = state => ({
   me: state.getIn(['meta', 'me']),
 });
 
-class Favourites extends ImmutablePureComponent {
+@connect(mapStateToProps)
+@injectIntl
+export default class Favourites extends ImmutablePureComponent {
 
   static propTypes = {
     dispatch: PropTypes.func.isRequired,
@@ -39,7 +41,7 @@ class Favourites extends ImmutablePureComponent {
   }
 
   render () {
-    const { statusIds, loaded, intl, me } = this.props;
+    const { loaded, intl } = this.props;
 
     if (!loaded) {
       return (
@@ -58,5 +60,3 @@ class Favourites extends ImmutablePureComponent {
   }
 
 }
-
-export default connect(mapStateToProps)(injectIntl(Favourites));

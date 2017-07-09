@@ -38,9 +38,7 @@ class FeedManager
   end
 
   def trim(type, account_id)
-    return unless redis.zcard(key(type, account_id)) > FeedManager::MAX_ITEMS
-    last = redis.zrevrange(key(type, account_id), FeedManager::MAX_ITEMS - 1, FeedManager::MAX_ITEMS - 1)
-    redis.zremrangebyscore(key(type, account_id), '-inf', "(#{last.last}")
+    redis.zremrangebyrank(key(type, account_id), '0', (-(FeedManager::MAX_ITEMS + 1)).to_s)
   end
 
   def push_update_required?(timeline_type, account_id)

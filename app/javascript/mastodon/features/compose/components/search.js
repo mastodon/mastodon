@@ -1,12 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
+import { defineMessages, injectIntl } from 'react-intl';
 
 const messages = defineMessages({
   placeholder: { id: 'search.placeholder', defaultMessage: 'Search' },
 });
 
-class Search extends React.PureComponent {
+@injectIntl
+export default class Search extends React.PureComponent {
 
   static propTypes = {
     value: PropTypes.string.isRequired,
@@ -70,5 +71,3 @@ class Search extends React.PureComponent {
   }
 
 }
-
-export default injectIntl(Search);

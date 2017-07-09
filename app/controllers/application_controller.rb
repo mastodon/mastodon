@@ -11,6 +11,7 @@ class ApplicationController < ActionController::Base
   include UserTrackingConcern
 
   helper_method :current_account
+  helper_method :current_session
   helper_method :single_user_mode?
 
   rescue_from ActionController::RoutingError, with: :not_found
@@ -66,6 +67,10 @@ class ApplicationController < ActionController::Base
 
   def current_account
     @current_account ||= current_user.try(:account)
+  end
+
+  def current_session
+    @current_session ||= SessionActivation.find_by(session_id: session['auth_id'])
   end
 
   def cache_collection(raw, klass)

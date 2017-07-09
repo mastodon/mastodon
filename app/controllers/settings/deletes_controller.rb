@@ -3,6 +3,7 @@
 class Settings::DeletesController < ApplicationController
   layout 'admin'
 
+  before_action :check_enabled_deletion
   before_action :authenticate_user!
 
   def show
@@ -20,6 +21,10 @@ class Settings::DeletesController < ApplicationController
   end
 
   private
+
+  def check_enabled_deletion
+    redirect_to root_path unless Setting.open_deletion
+  end
 
   def delete_params
     params.require(:form_delete_confirmation).permit(:password)

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-class ExtendedVideoPlayer extends React.PureComponent {
+export default class ExtendedVideoPlayer extends React.PureComponent {
 
   static propTypes = {
     src: PropTypes.string.isRequired,
@@ -44,5 +44,3 @@ class ExtendedVideoPlayer extends React.PureComponent {
   }
 
 }
-
-export default ExtendedVideoPlayer;

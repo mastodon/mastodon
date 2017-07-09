@@ -13,6 +13,7 @@ import ColumnSettingsContainer from './containers/column_settings_container';
 import { createSelector } from 'reselect';
 import Immutable from 'immutable';
 import LoadMore from '../../components/load_more';
+import { debounce } from 'lodash';
 
 const messages = defineMessages({
   title: { id: 'column.notifications', defaultMessage: 'Notifications' },
@@ -30,7 +31,9 @@ const mapStateToProps = state => ({
   hasMore: !!state.getIn(['notifications', 'next']),
 });
 
-class Notifications extends React.PureComponent {
+@connect(mapStateToProps)
+@injectIntl
+export default class Notifications extends React.PureComponent {
 
   static propTypes = {
     columnId: PropTypes.string,
@@ -48,19 +51,27 @@ class Notifications extends React.PureComponent {
     trackScroll: true,
   };
 
+  dispatchExpandNotifications = debounce(() => {
+    this.props.dispatch(expandNotifications());
+  }, 300, { leading: true });
+
+  dispatchScrollToTop = debounce((top) => {
+    this.props.dispatch(scrollTopNotifications(top));
+  }, 100);
+
   handleScroll = (e) => {
     const { scrollTop, scrollHeight, clientHeight } = e.target;
     const offset = scrollHeight - scrollTop - clientHeight;
     this._oldScrollPosition = scrollHeight - scrollTop;
 
-    if (250 > offset && !this.props.isLoading) {
-      if (this.props.hasMore) {
-        this.props.dispatch(expandNotifications());
-      }
-    } else if (scrollTop < 100) {
-      this.props.dispatch(scrollTopNotifications(true));
+    if (250 > offset && this.props.hasMore && !this.props.isLoading) {
+      this.dispatchExpandNotifications();
+    }
+
+    if (scrollTop < 100) {
+      this.dispatchScrollToTop(true);
     } else {
-      this.props.dispatch(scrollTopNotifications(false));
+      this.dispatchScrollToTop(false);
     }
   }
 
@@ -72,7 +83,7 @@ class Notifications extends React.PureComponent {
 
   handleLoadMore = (e) => {
     e.preventDefault();
-    this.props.dispatch(expandNotifications());
+    this.dispatchExpandNotifications();
   }
 
   handlePin = () => {
@@ -173,5 +184,3 @@ class Notifications extends React.PureComponent {
   }
 
 }
-
-export default connect(mapStateToProps)(injectIntl(Notifications));

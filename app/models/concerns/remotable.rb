@@ -26,8 +26,9 @@ module Remotable
           send("#{attachment_name}_file_name=", filename)
 
           self[attribute_name] = url if has_attribute?(attribute_name)
-        rescue HTTP::TimeoutError, OpenSSL::SSL::SSLError, Paperclip::Errors::NotIdentifiedByImageMagickError => e
+        rescue HTTP::TimeoutError, OpenSSL::SSL::SSLError, Paperclip::Errors::NotIdentifiedByImageMagickError, Addressable::URI::InvalidURIError => e
           Rails.logger.debug "Error fetching remote #{attachment_name}: #{e}"
+          nil
         end
       end
     end

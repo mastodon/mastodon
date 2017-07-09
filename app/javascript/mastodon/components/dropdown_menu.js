@@ -2,7 +2,7 @@ import React from 'react';
 import Dropdown, { DropdownTrigger, DropdownContent } from 'react-simple-dropdown';
 import PropTypes from 'prop-types';
 
-class DropdownMenu extends React.PureComponent {
+export default class DropdownMenu extends React.PureComponent {
 
   static contextTypes = {
     router: PropTypes.object,
@@ -41,7 +41,7 @@ class DropdownMenu extends React.PureComponent {
       action();
     } else if (to) {
       e.preventDefault();
-      this.context.router.push(to);
+      this.context.router.history.push(to);
     }
 
     this.dropdown.hide();
@@ -56,7 +56,7 @@ class DropdownMenu extends React.PureComponent {
       return <li key={`sep-${i}`} className='dropdown__sep' />;
     }
 
-    const { text, action, href = '#' } = item;
+    const { text, href = '#' } = item;
 
     return (
       <li className='dropdown__content-list-item' key={`${text}-${i}`}>
@@ -92,5 +92,3 @@ class DropdownMenu extends React.PureComponent {
   }
 
 }
-
-export default DropdownMenu;
