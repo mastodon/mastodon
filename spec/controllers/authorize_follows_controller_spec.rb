@@ -103,7 +103,7 @@ describe AuthorizeFollowsController do
         post :create, params: { acct: 'acct:user@hostname' }
 
         expect(service).to have_received(:call).with(account, 'user@hostname')
-        expect(response).to redirect_to(web_url('accounts/123'))
+        expect(response).to render_template(:success)
       end
     end
   end
