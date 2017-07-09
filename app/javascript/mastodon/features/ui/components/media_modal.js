@@ -94,7 +94,7 @@ export default class MediaModal extends ImmutablePureComponent {
 
         <div className='media-modal__content'>
           <IconButton className='media-modal__close' title={intl.formatMessage(messages.close)} icon='times' onClick={onClose} size={16} />
-          <ReactSwipeableViews onChangeIndex={this.handleSwipe} index={index}>
+          <ReactSwipeableViews onChangeIndex={this.handleSwipe} index={index} animateHeight>
             {content}
           </ReactSwipeableViews>
         </div>

@@ -1281,6 +1281,10 @@
   }
 }
 
+.media-modal .react-swipeable-view-container {
+  align-items: center;
+}
+
 .react-swipeable-view-container > * {
   height: 100%;
 }
@@ -2935,6 +2939,7 @@ button.icon-button.active i.fa-retweet {
   canvas {
     display: block;
     background: url('../images/void.png') repeat;
+    object-fit: contain;
   }
 }
 

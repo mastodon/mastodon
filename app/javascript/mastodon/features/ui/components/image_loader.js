@@ -133,6 +133,7 @@ export default class ImageLoader extends React.PureComponent {
           width={width}
           height={height}
           ref={this.setCanvasRef}
+          style={{ opacity: loading ? 1 : 0 }}
         />
 
         {!loading && (
