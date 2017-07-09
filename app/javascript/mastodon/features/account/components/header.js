@@ -73,7 +73,7 @@ export default class Header extends ImmutablePureComponent {
         <div className='account__header' style={{ backgroundImage: `url(${account.get('header')})` }}>
           <div>
             <a href={account.get('url')} target='_blank' rel='noopener'>
-              <span className='account__header__avatar'><Avatar src={account.get('avatar')} animate size={90} /></span>
+              <span className='account__header__avatar'><Avatar src={account.get('avatar')} staticSrc={account.get('avatar_static')} size={90} /></span>
               <span className='account__header__display-name' dangerouslySetInnerHTML={displayNameHTML} />
             </a>
             <span className='account__header__username'>@{account.get('acct')} {lockedIcon}</span>
