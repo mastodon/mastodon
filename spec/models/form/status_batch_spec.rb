@@ -15,18 +15,18 @@ describe Form::StatusBatch do
       let(:action) { 'nsfw_on' }
 
       it { expect(form.save).to be true }
-      it { expect { form.save }.to change { Status.find(nonsensitive_status.id).sensitive }.from(false).to(true) }
-      it { expect { form.save }.not_to change { Status.find(sensitive_status.id).sensitive } }
-      it { expect { form.save }.not_to change { Status.find(status.id).sensitive } }
+      it { expect { form.save }.to change { nonsensitive_status.reload.sensitive }.from(false).to(true) }
+      it { expect { form.save }.not_to change { sensitive_status.reload.sensitive } }
+      it { expect { form.save }.not_to change { status.reload.sensitive } }
     end
 
     context 'nsfw_off' do
       let(:action) { 'nsfw_off' }
 
       it { expect(form.save).to be true }
-      it { expect { form.save }.to change { Status.find(sensitive_status.id).sensitive }.from(true).to(false) }
-      it { expect { form.save }.not_to change { Status.find(nonsensitive_status.id).sensitive } }
-      it { expect { form.save }.not_to change { Status.find(status.id).sensitive } }
+      it { expect { form.save }.to change { sensitive_status.reload.sensitive }.from(true).to(false) }
+      it { expect { form.save }.not_to change { nonsensitive_status.reload.sensitive } }
+      it { expect { form.save }.not_to change { status.reload.sensitive } }
     end
   end
 

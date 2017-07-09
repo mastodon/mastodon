@@ -9,9 +9,8 @@ module Admin
 
     def create
       @form = Form::StatusBatch.new(form_status_batch_params)
-      unless @form.save
-        flash[:alert] = t('admin.statuses.failed_to_execute')
-      end
+      flash[:alert] = t('admin.statuses.failed_to_execute') unless @form.save
+
       redirect_to admin_report_path(@report)
     end
 
