@@ -24,6 +24,7 @@ code {
 
   p.hint {
     margin-bottom: 15px;
+    color: lighten($ui-base-color, 32%);
 
     &.subtle-hint {
       text-align: center;
@@ -31,6 +32,7 @@ code {
       line-height: 18px;
       margin-top: 15px;
       margin-bottom: 0;
+      color: lighten($ui-base-color, 26%);
 
       a {
         color: $ui-primary-color;
@@ -271,7 +273,7 @@ code {
   text-align: center;
 
   a {
-    color: $primary-text-color;
+    color: $ui-primary-color;
     text-decoration: none;
 
     &:hover {
