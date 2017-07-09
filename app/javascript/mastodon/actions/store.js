@@ -16,10 +16,3 @@ export function hydrateStore(rawState) {
     state,
   };
 };
-
-export function hydrateStoreLazy(name, state) {
-  return {
-    type: `${STORE_HYDRATE_LAZY}-${name}`,
-    state,
-  };
-};

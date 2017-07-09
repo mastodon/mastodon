@@ -1,40 +1,13 @@
-import { store } from '../../../containers/mastodon';
-import { refreshNotifications } from '../../../actions/notifications';
-import { injectAsyncReducer } from '../../../store/configureStore';
-
-// NOTE: When lazy-loading reducers, make sure to add them
-// to application.html.haml (if the component is preloaded there)
-
 export function EmojiPicker () {
   return import(/* webpackChunkName: "emojione_picker" */'emojione-picker');
 }
 
 export function Compose () {
-  return Promise.all([
-    import(/* webpackChunkName: "features/compose" */'../../compose'),
-    import(/* webpackChunkName: "reducers/compose" */'../../../reducers/compose'),
-    import(/* webpackChunkName: "reducers/media_attachments" */'../../../reducers/media_attachments'),
-    import(/* webpackChunkName: "reducers/search" */'../../../reducers/search'),
-  ]).then(([component, composeReducer, mediaAttachmentsReducer, searchReducer]) => {
-    injectAsyncReducer(store, 'compose', composeReducer.default);
-    injectAsyncReducer(store, 'media_attachments', mediaAttachmentsReducer.default);
-    injectAsyncReducer(store, 'search', searchReducer.default);
-
-    return component;
-  });
+  return import(/* webpackChunkName: "features/compose" */'../../compose');
 }
 
 export function Notifications () {
-  return Promise.all([
-    import(/* webpackChunkName: "features/notifications" */'../../notifications'),
-    import(/* webpackChunkName: "reducers/notifications" */'../../../reducers/notifications'),
-  ]).then(([component, notificationsReducer]) => {
-    injectAsyncReducer(store, 'notifications', notificationsReducer.default);
-
-    store.dispatch(refreshNotifications());
-
-    return component;
-  });
+  return import(/* webpackChunkName: "features/notifications" */'../../notifications');
 }
 
 export function HomeTimeline () {
@@ -110,15 +83,7 @@ export function MediaModal () {
 }
 
 export function OnboardingModal () {
-  return Promise.all([
-    import(/* webpackChunkName: "modals/onboarding_modal" */'../components/onboarding_modal'),
-    import(/* webpackChunkName: "reducers/compose" */'../../../reducers/compose'),
-    import(/* webpackChunkName: "reducers/media_attachments" */'../../../reducers/media_attachments'),
-  ]).then(([component, composeReducer, mediaAttachmentsReducer]) => {
-    injectAsyncReducer(store, 'compose', composeReducer.default);
-    injectAsyncReducer(store, 'media_attachments', mediaAttachmentsReducer.default);
-    return component;
-  });
+  return import(/* webpackChunkName: "modals/onboarding_modal" */'../components/onboarding_modal');
 }
 
 export function VideoModal () {
