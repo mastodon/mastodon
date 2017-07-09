@@ -596,6 +596,21 @@
     }
   }
 
+  .footer-links {
+    padding-bottom: 50px;
+    text-align: right;
+    color: lighten($ui-base-color, 26%);
+
+    p {
+      font-size: 14px;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: underline;
+    }
+  }
+
   @media screen and (max-width: 800px) {
     .container {
       padding: 0 20px;

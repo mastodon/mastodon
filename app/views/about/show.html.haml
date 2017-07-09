@@ -88,3 +88,9 @@
               = t 'about.features.humane_approach_body'
             .visual
               = fa_icon 'fw leaf'
+
+  .footer-links
+    .container
+      %p
+        = link_to t('about.source_code'), 'https://github.com/tootsuite/mastodon'
+        = " (#{@instance_presenter.version_number})"
