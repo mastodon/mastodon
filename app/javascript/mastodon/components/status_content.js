@@ -6,6 +6,7 @@ import emojify from '../emoji';
 import { isRtl } from '../rtl';
 import { FormattedMessage } from 'react-intl';
 import Permalink from './permalink';
+import classnames from 'classnames';
 
 export default class StatusContent extends React.PureComponent {
 
@@ -121,7 +122,9 @@ export default class StatusContent extends React.PureComponent {
     const content = { __html: emojify(status.get('content')) };
     const spoilerContent = { __html: emojify(escapeTextContentForBrowser(status.get('spoiler_text', ''))) };
     const directionStyle = { direction: 'ltr' };
-    const classNames = this.props.onClick && this.context.router ? 'status__content status__content--with-action' : 'status__content';
+    const classNames = classnames('status__content', {
+      'status__content--with-action': this.props.onClick && this.context.router,
+    });
 
     if (isRtl(status.get('search_index'))) {
       directionStyle.direction = 'rtl';

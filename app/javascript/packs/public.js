@@ -42,7 +42,7 @@ function loaded() {
 
   const mountNode = document.getElementById('mastodon-timeline');
 
-  if (mountNode) {
+  if (mountNode !== null) {
     const props = JSON.parse(mountNode.getAttribute('data-props'));
     ReactDOM.render(<TimelineContainer {...props} />, mountNode);
   }

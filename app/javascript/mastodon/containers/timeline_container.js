@@ -11,9 +11,12 @@ const { localeData, messages } = getLocale();
 addLocaleData(localeData);
 
 const store = configureStore();
-const initialState = JSON.parse(document.getElementById('initial-state').textContent);
+const initialStateContainer = document.getElementById('initial-state');
 
-store.dispatch(hydrateStore(initialState));
+if (initialStateContainer !== null) {
+  const initialState = JSON.parse(initialStateContainer.textContent);
+  store.dispatch(hydrateStore(initialState));
+}
 
 export default class TimelineContainer extends React.PureComponent {
 
