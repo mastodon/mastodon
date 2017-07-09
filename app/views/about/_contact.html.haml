@@ -9,7 +9,7 @@
             %span.display_name.emojify= display_name(contact.contact_account)
             %span.username @#{contact.contact_account.acct}
 
-    - if contact.site_contact_email
+    - unless contact.site_contact_email.blank?
       .contact-email
         = t 'about.business_email'
         %strong= contact.site_contact_email

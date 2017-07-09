@@ -35,6 +35,13 @@ describe UserSettingsDecorator do
       expect(user.settings['boost_modal']).to eq true
     end
 
+    it 'updates the user settings value for delete toot modal' do
+      values = { 'setting_delete_modal' => '0' }
+
+      settings.update(values)
+      expect(user.settings['delete_modal']).to eq false
+    end
+
     it 'updates the user settings value for gif auto play' do
       values = { 'setting_auto_play_gif' => '0' }
 

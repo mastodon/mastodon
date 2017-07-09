@@ -3,6 +3,10 @@
 require 'rails_helper'
 
 describe 'Localization' do
+  after(:all) do
+    I18n.locale = I18n.default_locale
+  end
+  
   it 'uses a specific region when provided' do
     headers = { 'Accept-Language' => 'zh-HK' }
 

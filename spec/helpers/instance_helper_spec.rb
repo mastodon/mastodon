@@ -4,6 +4,12 @@ require 'rails_helper'
 
 describe InstanceHelper do
   describe 'site_title' do
+    around do |example|
+      site_title = Setting.site_title
+      example.run
+      Setting.site_title = site_title
+    end
+
     it 'Uses the Setting.site_title value when it exists' do
       Setting.site_title = 'New site title'
 

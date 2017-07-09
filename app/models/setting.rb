@@ -13,7 +13,7 @@
 #
 
 class Setting < RailsSettings::Base
-  source Rails.root.join('config/settings.yml')
+  source Rails.root.join('config', 'settings.yml')
 
   def to_param
     var

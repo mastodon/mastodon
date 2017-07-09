@@ -11,6 +11,3 @@ Rails.application.config.assets.version = '1.0'
 # Rails.application.config.assets.precompile += %w(application_public.js custom.css)
 
 Rails.application.config.assets.initialize_on_precompile = true
-# Rails.application.config.assets.precompile = []
-
-# Rails.application.config.assets.initialize_on_precompile = false
