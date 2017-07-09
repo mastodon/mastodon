@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
-import ReactSwipeable from 'react-swipeable';
-import { getPreviousLink, getNextLink } from './tabs_bar';
+import ReactSwipeableViews from 'react-swipeable-views';
+import { links, getIndex, getLink } from './tabs_bar';
 
 import BundleContainer from '../containers/bundle_container';
 import ColumnLoading from './column_loading';
@@ -32,21 +32,29 @@ export default class ColumnsArea extends ImmutablePureComponent {
     children: PropTypes.node,
   };
 
-  handleRightSwipe = () => {
-    const previousLink = getPreviousLink(this.context.router.history.location.pathname);
-
-    if (previousLink) {
-      this.context.router.history.push(previousLink);
-    }
+  handleSwipe = (index) => {
+    window.requestAnimationFrame(() => {
+      window.requestAnimationFrame(() => {
+        this.context.router.history.push(getLink(index));
+      });
+    });
   }
 
-  handleLeftSwipe = () => {
-    const previousLink = getNextLink(this.context.router.history.location.pathname);
+  renderView = (link, index) => {
+    const columnIndex = getIndex(this.context.router.history.location.pathname);
+    const title = link.props.children[1] && React.cloneElement(link.props.children[1]);
+    const icon = (link.props.children[0] || link.props.children).props.className.split(' ')[2].split('-')[1];
 
-    if (previousLink) {
-      this.context.router.history.push(previousLink);
-    }
-  };
+    const view = (index === columnIndex) ?
+      React.cloneElement(this.props.children) :
+      <ColumnLoading title={title} icon={icon} />;
+
+    return (
+      <div className='columns-area' key={index}>
+        {view}
+      </div>
+    );
+  }
 
   renderLoading = () => {
     return <ColumnLoading />;
@@ -59,12 +67,14 @@ export default class ColumnsArea extends ImmutablePureComponent {
   render () {
     const { columns, children, singleColumn } = this.props;
 
+    const columnIndex = getIndex(this.context.router.history.location.pathname);
+
     if (singleColumn) {
-      return (
-        <ReactSwipeable onSwipedLeft={this.handleLeftSwipe} onSwipedRight={this.handleRightSwipe} delta={30} className='columns-area'>
-          {children}
-        </ReactSwipeable>
-      );
+      return columnIndex !== -1 ? (
+        <ReactSwipeableViews index={columnIndex} onChangeIndex={this.handleSwipe} animateTransitions={false} style={{ height: '100%' }}>
+          {links.map(this.renderView)}
+        </ReactSwipeableViews>
+      ) : <div className='columns-area'>{children}></div>;
     }
 
     return (

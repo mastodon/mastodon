@@ -1266,6 +1266,23 @@
   .columns-area {
     padding: 10px;
   }
+
+  .react-swipeable-view-container .columns-area {
+    height: calc(100% - 20px) !important;
+  }
+}
+
+.react-swipeable-view-container {
+  &,
+  .columns-area,
+  .drawer,
+  .column {
+    height: 100%;
+  }
+}
+
+.react-swipeable-view-container > * {
+  height: 100%;
 }
 
 .column {
@@ -2910,7 +2927,7 @@ button.icon-button.active i.fa-retweet {
   video {
     max-width: 80vw;
     max-height: 80vh;
-    width: auto;
+    width: 100%;
     height: auto;
   }
 
@@ -2938,7 +2955,26 @@ button.icon-button.active i.fa-retweet {
   flex-direction: column;
 }
 
-.onboarding-modal__pager,
+.onboarding-modal__pager {
+  height: 80vh;
+  width: 80vw;
+  max-width: 520px;
+  max-height: 420px;
+
+  .react-swipeable-view-container > div {
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    padding: 25px;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    user-select: text;
+  }
+}
+
 .error-modal__body {
   height: 80vh;
   width: 80vw;
