@@ -2319,9 +2319,13 @@ button.icon-button.active i.fa-retweet {
   text-align: center;
   z-index: 100;
 
-  margin-top: 15px; // Add margin when used bare for NSFW video player
-  .media-gallery & {
-    margin-top: 0;
+  .status__content > & {
+    margin-top: 15px; // Add margin when used bare for NSFW video player
+  }
+
+  &.full-width {
+    margin-left: -68px;
+    width: calc(100% + 80px);
   }
 }
 

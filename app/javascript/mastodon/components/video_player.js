@@ -138,7 +138,7 @@ export default class VideoPlayer extends React.PureComponent {
     if (!this.state.visible) {
       if (sensitive) {
         return (
-          <div role='button' tabIndex='0' style={{ height: `${height}px` }} className='media-spoiler' onClick={this.handleVisibility}>
+          <div role='button' tabIndex='0' style={{ height: `${height}px` }} className={`media-spoiler ${fullwidth ? 'full-width' : ''}`} onClick={this.handleVisibility}>
             {spoilerButton}
             <span className='media-spoiler__warning'><FormattedMessage id='status.sensitive_warning' defaultMessage='Sensitive content' /></span>
             <span className='media-spoiler__trigger'><FormattedMessage id='status.sensitive_toggle' defaultMessage='Click to view' /></span>
@@ -146,7 +146,7 @@ export default class VideoPlayer extends React.PureComponent {
         );
       } else {
         return (
-          <div role='button' tabIndex='0' style={{ height: `${height}px` }} className='media-spoiler' onClick={this.handleVisibility}>
+          <div role='button' tabIndex='0' style={{ height: `${height}px` }} className={`media-spoiler ${fullwidth ? 'full-width' : ''}`} onClick={this.handleVisibility}>
             {spoilerButton}
             <span className='media-spoiler__warning'><FormattedMessage id='status.media_hidden' defaultMessage='Media hidden' /></span>
             <span className='media-spoiler__trigger'><FormattedMessage id='status.sensitive_toggle' defaultMessage='Click to view' /></span>
