@@ -48,6 +48,7 @@ module.exports = merge(sharedConfig, {
       caches: { }, // do not cache things, we only use it for push notifications for now
       ServiceWorker: {
         entry: path.join(__dirname, '../../app/javascript/mastodon/service_worker/entry.js'),
+        cacheName: 'mastodon',
         output: '../sw.js',
         publicPath: '/sw.js',
         minify: false,
