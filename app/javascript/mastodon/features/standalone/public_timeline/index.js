@@ -5,12 +5,7 @@ import StatusListContainer from '../../ui/containers/status_list_container';
 import {
   refreshPublicTimeline,
   expandPublicTimeline,
-  updateTimeline,
-  deleteFromTimelines,
-  connectTimeline,
-  disconnectTimeline,
 } from '../../../actions/timelines';
-import createStream from '../../../stream';
 import Column from '../../../components/column';
 import ColumnHeader from '../../../components/column_header';
 import { defineMessages, injectIntl } from 'react-intl';
@@ -19,18 +14,13 @@ const messages = defineMessages({
   title: { id: 'standalone.public_title', defaultMessage: 'A look inside...' },
 });
 
-const mapStateToProps = state => ({
-  streamingAPIBaseURL: state.getIn(['meta', 'streaming_api_base_url']),
-});
-
-@connect(mapStateToProps)
+@connect()
 @injectIntl
 export default class PublicTimeline extends React.PureComponent {
 
   static propTypes = {
     dispatch: PropTypes.func.isRequired,
     intl: PropTypes.object.isRequired,
-    streamingAPIBaseURL: PropTypes.string.isRequired,
   };
 
   handleHeaderClick = () => {
@@ -42,46 +32,19 @@ export default class PublicTimeline extends React.PureComponent {
   }
 
   componentDidMount () {
-    const { dispatch, streamingAPIBaseURL } = this.props;
+    const { dispatch } = this.props;
 
     dispatch(refreshPublicTimeline());
 
-    if (typeof this._subscription !== 'undefined') {
-      return;
-    }
-
-    this._subscription = createStream(streamingAPIBaseURL, '', 'public', {
-
-      connected () {
-        dispatch(connectTimeline('public'));
-      },
-
-      reconnected () {
-        dispatch(connectTimeline('public'));
-      },
-
-      disconnected () {
-        dispatch(disconnectTimeline('public'));
-      },
-
-      received (data) {
-        switch(data.event) {
-        case 'update':
-          dispatch(updateTimeline('public', JSON.parse(data.payload)));
-          break;
-        case 'delete':
-          dispatch(deleteFromTimelines(data.payload));
-          break;
-        }
-      },
-
-    });
+    this.polling = setInterval(() => {
+      dispatch(refreshPublicTimeline());
+    }, 5000);
   }
 
   componentWillUnmount () {
-    if (typeof this._subscription !== 'undefined') {
-      this._subscription.close();
-      this._subscription = null;
+    if (typeof this.polling !== 'undefined') {
+      clearInterval(this.polling);
+      this.polling = null;
     }
   }
 
