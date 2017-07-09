@@ -5,7 +5,7 @@ class AboutController < ApplicationController
   before_action :set_instance_presenter, only: [:show, :more, :terms]
 
   def show
-    serializable_resource = ActiveModelSerializers::SerializableResource.new(InitialStatePresenter.new(settings: {}), serializer: InitialStateSerializer)
+    serializable_resource = ActiveModelSerializers::SerializableResource.new(InitialStatePresenter.new(initial_state_params), serializer: InitialStateSerializer)
     @initial_state_json   = serializable_resource.to_json
   end
 
@@ -27,5 +27,12 @@ class AboutController < ApplicationController
 
   def set_body_classes
     @body_classes = 'about-body'
+  end
+
+  def initial_state_params
+    {
+      settings: {},
+      token: current_session&.token,
+    }
   end
 end
