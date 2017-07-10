@@ -24,10 +24,10 @@ import {
 } from '../actions/compose';
 import { TIMELINE_DELETE } from '../actions/timelines';
 import { STORE_HYDRATE } from '../actions/store';
-import Immutable from 'immutable';
+import { Map as ImmutableMap, List as ImmutableList, OrderedSet as ImmutableOrderedSet, fromJS } from 'immutable';
 import uuid from '../uuid';
 
-const initialState = Immutable.Map({
+const initialState = ImmutableMap({
   mounted: false,
   sensitive: false,
   spoiler: false,
@@ -40,9 +40,9 @@ const initialState = Immutable.Map({
   is_submitting: false,
   is_uploading: false,
   progress: 0,
-  media_attachments: Immutable.List(),
+  media_attachments: ImmutableList(),
   suggestion_token: null,
-  suggestions: Immutable.List(),
+  suggestions: ImmutableList(),
   me: null,
   default_privacy: 'public',
   default_sensitive: false,
@@ -51,7 +51,7 @@ const initialState = Immutable.Map({
 });
 
 function statusToTextMentions(state, status) {
-  let set = Immutable.OrderedSet([]);
+  let set = ImmutableOrderedSet([]);
   let me  = state.get('me');
 
   if (status.getIn(['account', 'id']) !== me) {
@@ -111,7 +111,7 @@ const insertSuggestion = (state, position, token, completion) => {
   return state.withMutations(map => {
     map.update('text', oldText => `${oldText.slice(0, position)}${completion} ${oldText.slice(position + token.length)}`);
     map.set('suggestion_token', null);
-    map.update('suggestions', Immutable.List(), list => list.clear());
+    map.update('suggestions', ImmutableList(), list => list.clear());
     map.set('focusDate', new Date());
     map.set('idempotencyKey', uuid());
   });
@@ -206,7 +206,7 @@ export default function compose(state = initialState, action) {
       map.set('is_uploading', true);
     });
   case COMPOSE_UPLOAD_SUCCESS:
-    return appendMedia(state, Immutable.fromJS(action.media));
+    return appendMedia(state, fromJS(action.media));
   case COMPOSE_UPLOAD_FAIL:
     return state.set('is_uploading', false);
   case COMPOSE_UPLOAD_UNDO:
@@ -219,9 +219,9 @@ export default function compose(state = initialState, action) {
       .set('focusDate', new Date())
       .set('idempotencyKey', uuid());
   case COMPOSE_SUGGESTIONS_CLEAR:
-    return state.update('suggestions', Immutable.List(), list => list.clear()).set('suggestion_token', null);
+    return state.update('suggestions', ImmutableList(), list => list.clear()).set('suggestion_token', null);
   case COMPOSE_SUGGESTIONS_READY:
-    return state.set('suggestions', Immutable.List(action.accounts.map(item => item.id))).set('suggestion_token', action.token);
+    return state.set('suggestions', ImmutableList(action.accounts.map(item => item.id))).set('suggestion_token', action.token);
   case COMPOSE_SUGGESTION_SELECT:
     return insertSuggestion(state, action.position, action.token, action.completion);
   case TIMELINE_DELETE:

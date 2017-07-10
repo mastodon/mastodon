@@ -2,13 +2,13 @@ import {
   FAVOURITED_STATUSES_FETCH_SUCCESS,
   FAVOURITED_STATUSES_EXPAND_SUCCESS,
 } from '../actions/favourites';
-import Immutable from 'immutable';
+import { Map as ImmutableMap, List as ImmutableList } from 'immutable';
 
-const initialState = Immutable.Map({
-  favourites: Immutable.Map({
+const initialState = ImmutableMap({
+  favourites: ImmutableMap({
     next: null,
     loaded: false,
-    items: Immutable.List(),
+    items: ImmutableList(),
   }),
 });
 
@@ -16,7 +16,7 @@ const normalizeList = (state, listType, statuses, next) => {
   return state.update(listType, listMap => listMap.withMutations(map => {
     map.set('next', next);
     map.set('loaded', true);
-    map.set('items', Immutable.List(statuses.map(item => item.id)));
+    map.set('items', ImmutableList(statuses.map(item => item.id)));
   }));
 };
 

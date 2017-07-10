@@ -1,13 +1,13 @@
 import { connect } from 'react-redux';
 import StatusList from '../../../components/status_list';
 import { scrollTopTimeline } from '../../../actions/timelines';
-import Immutable from 'immutable';
+import { Map as ImmutableMap, List as ImmutableList } from 'immutable';
 import { createSelector } from 'reselect';
 import { debounce } from 'lodash';
 
 const makeGetStatusIds = () => createSelector([
-  (state, { type }) => state.getIn(['settings', type], Immutable.Map()),
-  (state, { type }) => state.getIn(['timelines', type, 'items'], Immutable.List()),
+  (state, { type }) => state.getIn(['settings', type], ImmutableMap()),
+  (state, { type }) => state.getIn(['timelines', type, 'items'], ImmutableList()),
   (state)           => state.get('statuses'),
   (state)           => state.getIn(['meta', 'me']),
 ], (columnSettings, statusIds, statuses, me) => statusIds.filter(id => {

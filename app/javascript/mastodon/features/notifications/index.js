@@ -11,7 +11,7 @@ import { ScrollContainer } from 'react-router-scroll';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import ColumnSettingsContainer from './containers/column_settings_container';
 import { createSelector } from 'reselect';
-import Immutable from 'immutable';
+import { List as ImmutableList } from 'immutable';
 import LoadMore from '../../components/load_more';
 import { debounce } from 'lodash';
 
@@ -20,7 +20,7 @@ const messages = defineMessages({
 });
 
 const getNotifications = createSelector([
-  state => Immutable.List(state.getIn(['settings', 'notifications', 'shows']).filter(item => !item).keys()),
+  state => ImmutableList(state.getIn(['settings', 'notifications', 'shows']).filter(item => !item).keys()),
   state => state.getIn(['notifications', 'items']),
 ], (excludedTypes, notifications) => notifications.filterNot(item => excludedTypes.includes(item.get('type'))));
 
