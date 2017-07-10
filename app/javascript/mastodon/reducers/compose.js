@@ -45,6 +45,7 @@ const initialState = Immutable.Map({
   suggestions: Immutable.List(),
   me: null,
   default_privacy: 'public',
+  default_sensitive: false,
   resetFileKey: Math.floor((Math.random() * 0x10000)),
   idempotencyKey: null,
 });
@@ -75,6 +76,8 @@ function clearAll(state) {
 };
 
 function appendMedia(state, media) {
+  const prevSize = state.get('media_attachments').size;
+
   return state.withMutations(map => {
     map.update('media_attachments', list => list.push(media));
     map.set('is_uploading', false);
@@ -82,6 +85,10 @@ function appendMedia(state, media) {
     map.update('text', oldText => `${oldText.trim()} ${media.get('text_url')}`);
     map.set('focusDate', new Date());
     map.set('idempotencyKey', uuid());
+
+    if (prevSize === 0 && state.get('default_sensitive')) {
+      map.set('sensitive', true);
+    }
   });
 };
 
