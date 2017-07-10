@@ -94,7 +94,7 @@ describe AuthorizeFollowsController do
       end
 
       it 'follows account when found' do
-        target_account = double(id: '123')
+        target_account = Account.new
         result_account = double(target_account: target_account)
         service = double
         allow(FollowService).to receive(:new).and_return(service)
