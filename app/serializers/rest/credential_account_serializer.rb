@@ -7,6 +7,7 @@ class REST::CredentialAccountSerializer < REST::AccountSerializer
     user = object.user
     {
       privacy: user.setting_default_privacy,
+      sensitive: user.setting_default_sensitive,
       note: object.note,
     }
   end

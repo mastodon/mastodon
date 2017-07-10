@@ -79,6 +79,10 @@ class User < ApplicationRecord
     settings.default_privacy || (account.locked? ? 'private' : 'public')
   end
 
+  def setting_default_sensitive
+    settings.default_sensitive
+  end
+
   def setting_boost_modal
     settings.boost_modal
   end

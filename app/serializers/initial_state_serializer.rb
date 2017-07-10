@@ -23,6 +23,7 @@ class InitialStateSerializer < ActiveModel::Serializer
     {
       me: object.current_account.id,
       default_privacy: object.current_account.user.setting_default_privacy,
+      default_sensitive: object.current_account.user.setting_default_sensitive,
     }
   end
 
