@@ -931,27 +931,6 @@
   {
     "descriptors": [
       {
-        "defaultMessage": "New report",
-        "id": "report.heading"
-      },
-      {
-        "defaultMessage": "Additional comments",
-        "id": "report.placeholder"
-      },
-      {
-        "defaultMessage": "Submit",
-        "id": "report.submit"
-      },
-      {
-        "defaultMessage": "Reporting",
-        "id": "report.target"
-      }
-    ],
-    "path": "app/javascript/mastodon/features/report/index.json"
-  },
-  {
-    "descriptors": [
-      {
         "defaultMessage": "Delete",
         "id": "status.delete"
       },
@@ -1007,6 +986,40 @@
       }
     ],
     "path": "app/javascript/mastodon/features/ui/components/boost_modal.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "Network error",
+        "id": "bundle_column_error.title"
+      },
+      {
+        "defaultMessage": "Something went wrong while loading this component.",
+        "id": "bundle_column_error.body"
+      },
+      {
+        "defaultMessage": "Try again",
+        "id": "bundle_column_error.retry"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/ui/components/bundle_column_error.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "Something went wrong while loading this component.",
+        "id": "bundle_modal_error.message"
+      },
+      {
+        "defaultMessage": "Try again",
+        "id": "bundle_modal_error.retry"
+      },
+      {
+        "defaultMessage": "Close",
+        "id": "bundle_modal_error.close"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/ui/components/bundle_modal_error.json"
   },
   {
     "descriptors": [

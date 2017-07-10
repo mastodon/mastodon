@@ -24,7 +24,7 @@ module Admin
         setting.update(value: value_for_update(key, value))
       end
 
-      flash[:notice] = 'Success!'
+      flash[:notice] = I18n.t('generic.changes_saved_msg')
       redirect_to edit_admin_settings_path
     end
 

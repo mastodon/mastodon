@@ -28,8 +28,9 @@ class InitialStateSerializer < ActiveModel::Serializer
     store = {}
 
     if object.current_account
-      store[:me]              = object.current_account.id
-      store[:default_privacy] = object.current_account.user.setting_default_privacy
+      store[:me]                = object.current_account.id
+      store[:default_privacy]   = object.current_account.user.setting_default_privacy
+      store[:default_sensitive] = object.current_account.user.setting_default_sensitive,
     end
 
     store

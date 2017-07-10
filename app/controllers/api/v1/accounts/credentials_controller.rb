@@ -6,13 +6,13 @@ class Api::V1::Accounts::CredentialsController < Api::BaseController
 
   def show
     @account = current_account
-    render json: @account, serializer: REST::AccountSerializer
+    render json: @account, serializer: REST::CredentialAccountSerializer
   end
 
   def update
     current_account.update!(account_params)
     @account = current_account
-    render json: @account, serializer: REST::AccountSerializer
+    render json: @account, serializer: REST::CredentialAccountSerializer
   end
 
   private
