@@ -297,14 +297,14 @@
   }
 }
 
-.features-list {
-  margin-top: 10px;
-}
-
 .features-list__row {
   display: flex;
   padding: 10px 0;
   justify-content: space-between;
+
+  &:first-child {
+    padding-top: 0;
+  }
 
   .visual {
     flex: 0 0 auto;
@@ -562,8 +562,14 @@
   }
 
   .about-mastodon {
+    max-width: 500px;
+
     p {
       margin-bottom: 20px;
+    }
+
+    .features-list {
+      margin-top: 20px;
     }
   }
 
