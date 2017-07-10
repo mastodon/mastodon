@@ -1,0 +1,51 @@
+---
+ar:
+  simple_form:
+    hints:
+      defaults:
+        avatar: PNG, GIF أو JPG. على الأكثر 2 ميغابيت . سوف يتم تصغيرها إلى 120x120px
+        display_name: '<span class="name-counter">%{count}</span> أحرف متبقية'
+        header: PNG, GIF or JPG. على الأكثر 2 ميغابيت . سوف يتم تصغيرها إلى 700x335px
+        locked: يتطلب منك الموافقة يدويا على كل طلب للإشتراك بحسابك و منشوراتك تعرض لمتابعيك فقط دون غيرهم
+        note: '<span class="note-counter">%{count}</span> أحرف متبقية'
+      imports:
+        data: ملف CSV تم تصديره من خادوم مثيل  آخر لماستدون
+      sessions:
+        otp: أدخل الرمز الثنائي من هاتفك أو استخدم أحد رموز الاسترداد.
+    labels:
+      defaults:
+        avatar: الصورة الرمزية
+        confirm_new_password: تأكيد كلمة المرور الجديدة
+        confirm_password: تأكيد كلمة المرور
+        current_password: كلمة المرور الحالية
+        data: البيانات
+        display_name: الاسم الذي يتم عرضه
+        email: عنوان البريد الإلكتروني
+        header: رأس الصفحة
+        locale: اللغة
+        locked: إجعل حسابك خاصًا
+        new_password: كلمة مرور جديدة
+        note: السيرة الذاتية
+        otp_attempt: الرمز الثنائي
+        password: كلمة المرور
+        setting_auto_play_gif: تشغيل صور جيف المتحركة تلقائي
+        setting_boost_modal: إظهار مربع حوار التأكيد قبل القيام بالترقية
+        setting_default_privacy: خصوصية المنشور
+        severity: الشدة
+        type: نوع الإستيراد
+        username: اسم المستخدم
+      interactions:
+        must_be_follower: حظر اشعارات الأشخاص الذين لا يتبعونك
+        must_be_following: حظر اشعارات الأشخاص الذين لا تتبعهم
+      notification_emails:
+        digest: إرسال رسائل بريد إلكتروني ملخصة
+        favourite: إبعث بريداً إلكترونياً عندما يعجب احدهم بمنشورك
+        follow: إبعث بريداً إلكترونياً عندما يتبعك أحد
+        follow_request: إبعث بريداً إلكترونياً عند تلقيك طلب بالمتابعة
+        mention: إبعث بريداً إلكترونياً عندما يشار إليك
+        reblog: إبعث بريداً إلكترونياً عندما يُرقّي احدهم منشورك
+    'no': لا
+    required:
+      mark: "*"
+      text: مطلوب
+    'yes': نعم

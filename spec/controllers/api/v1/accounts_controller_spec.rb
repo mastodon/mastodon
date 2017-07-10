@@ -17,34 +17,6 @@ RSpec.describe Api::V1::AccountsController, type: :controller do
     end
   end
 
-  describe 'GET #verify_credentials' do
-    it 'returns http success' do
-      get :verify_credentials
-      expect(response).to have_http_status(:success)
-    end
-  end
-
-  describe 'GET #statuses' do
-    it 'returns http success' do
-      get :statuses, params: { id: user.account.id }
-      expect(response).to have_http_status(:success)
-    end
-  end
-
-  describe 'GET #followers' do
-    it 'returns http success' do
-      get :followers, params: { id: user.account.id }
-      expect(response).to have_http_status(:success)
-    end
-  end
-
-  describe 'GET #following' do
-    it 'returns http success' do
-      get :following, params: { id: user.account.id }
-      expect(response).to have_http_status(:success)
-    end
-  end
-
   describe 'POST #follow' do
     let(:other_account) { Fabricate(:user, email: 'bob@example.com', account: Fabricate(:account, username: 'bob')).account }
 
@@ -151,48 +123,6 @@ RSpec.describe Api::V1::AccountsController, type: :controller do
 
     it 'removes the muting relation between user and target user' do
       expect(user.account.muting?(other_account)).to be false
-    end
-  end
-
-  describe 'GET #relationships' do
-    let(:simon) { Fabricate(:user, email: 'simon@example.com', account: Fabricate(:account, username: 'simon')).account }
-    let(:lewis) { Fabricate(:user, email: 'lewis@example.com', account: Fabricate(:account, username: 'lewis')).account }
-
-    before do
-      user.account.follow!(simon)
-      lewis.follow!(user.account)
-    end
-
-    context 'provided only one ID' do
-      before do
-        get :relationships, params: { id: simon.id }
-      end
-
-      it 'returns http success' do
-        expect(response).to have_http_status(:success)
-      end
-
-      it 'returns JSON with correct data' do
-        json = body_as_json
-
-        expect(json).to be_a Enumerable
-        expect(json.first[:following]).to be true
-        expect(json.first[:followed_by]).to be false
-      end
-    end
-
-    context 'provided multiple IDs' do
-      before do
-        get :relationships, params: { id: [simon.id, lewis.id] }
-      end
-
-      it 'returns http success' do
-        expect(response).to have_http_status(:success)
-      end
-
-      xit 'returns JSON with correct data' do
-        # todo
-      end
     end
   end
 end

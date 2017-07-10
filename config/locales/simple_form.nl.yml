@@ -1,0 +1,53 @@
+---
+nl:
+  simple_form:
+    hints:
+      defaults:
+        avatar: PNG, GIF of JPG. Maximaal 2MB. Wordt teruggeschaald naar 120x120px
+        display_name: Maximaal 30 tekens
+        header: PNG, GIF of JPG. Maximaal 2MB. Wordt teruggeschaald naar 700x335px
+        locked: Vereist dat je handmatig volgers moet accepteren en stelt de privacy van toots standaard in op alleen volgers
+        note: Maximaal 160 tekens
+      imports:
+        data: CSV-bestand dat op een andere Mastodon-server werd geëxporteerd 
+      sessions:
+        otp: Voer de tweestaps-aanmeldcode vanaf jouw mobiele telefoon in of gebruik een van jouw herstelcode's.        
+      user:
+        filtered_languages: De geselecteerde talen worden uit de lokale en globale tijdlijn verwijderd.        
+    labels:
+      defaults:
+        avatar: Avatar
+        confirm_new_password: Nieuw wachtwoord bevestigen
+        confirm_password: Wachtwoord bevestigen
+        current_password: Huidig wachtwoord
+        data: Gegevens
+        display_name: Weergavenaam
+        email: E-mailadres
+        filtered_languages: Talen filteren
+        header: Omslagfoto
+        locale: Taal
+        locked: Maak account besloten
+        new_password: Nieuwe wachtwoord
+        note: Bio
+        otp_attempt: Tweestaps-aanmeldcode
+        password: Wachtwoord
+        setting_auto_play_gif: Speel geanimeerde GIF's automatisch af
+        setting_boost_modal: Vraag voor het boosten een bevestiging
+        setting_default_privacy: Tootprivacy
+        type: Importtype
+        username: gebruikersnaam
+      interactions:
+        must_be_follower: Blokkeermeldingen van mensen die jou niet volgen
+        must_be_following: Blokkeermeldingen van mensen die jij niet volgt
+      notification_emails:
+        digest: Verstuur periodiek e-mails met een samenvatting
+        favourite: Verstuur een e-mail wanneer iemand jouw toot als favoriet markeert
+        follow: Verstuur een e-mail wanneer iemand jou volgt
+        follow_request: Verstuur een e-mail wanneer iemand jou wilt volgen
+        mention: Verstuur een e-mail wanneer iemand jou vermeld
+        reblog: Verstuur een e-mail wanneer iemand jouw toot heeft geboost
+    'no': 'Nee'
+    required:
+      mark: "*"
+      text: vereist
+    'yes': 'Ja'

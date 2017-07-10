@@ -1,49 +1,87 @@
 # frozen_string_literal: true
 
 module StreamEntriesHelper
+  EMBEDDED_CONTROLLER = 'stream_entries'
+  EMBEDDED_ACTION = 'embed'
+
   def display_name(account)
-    account.display_name.blank? ? account.username : account.display_name
+    account.display_name.presence || account.username
+  end
+
+  def stream_link_target
+    embedded_view? ? '_blank' : nil
   end
 
   def acct(account)
-    "@#{account.acct}#{@external_links && account.local? ? "@#{Rails.configuration.x.local_domain}" : ''}"
+    if embedded_view? && account.local?
+      "@#{account.acct}@#{Rails.configuration.x.local_domain}"
+    else
+      "@#{account.acct}"
+    end
   end
 
-  def avatar_for_status_url(status)
-    status.reblog? ? status.reblog.account.avatar.url(:original) : status.account.avatar.url(:original)
-  end
-
-  def entry_classes(status, is_predecessor, is_successor, include_threads)
+  def style_classes(status, is_predecessor, is_successor, include_threads)
     classes = ['entry']
-    classes << 'entry-reblog u-repost-of h-cite' if status.reblog?
-    classes << 'entry-predecessor u-in-reply-to h-cite' if is_predecessor
-    classes << 'entry-successor u-comment h-cite' if is_successor
-    classes << 'entry-center h-entry' if include_threads
+    classes << 'entry-predecessor' if is_predecessor
+    classes << 'entry-reblog' if status.reblog?
+    classes << 'entry-successor' if is_successor
+    classes << 'entry-center' if include_threads
     classes.join(' ')
   end
 
-  def relative_time(date)
-    date < 5.days.ago ? date.strftime('%d.%m.%Y') : "#{time_ago_in_words(date)} ago"
+  def microformats_classes(status, is_direct_parent, is_direct_child)
+    classes = []
+    classes << 'p-in-reply-to' if is_direct_parent
+    classes << 'p-repost-of' if status.reblog? && is_direct_parent
+    classes << 'p-comment' if is_direct_child
+    classes.join(' ')
   end
 
-  def reblogged_by_me_class(status)
-    user_signed_in? && @reblogged.key?(status.id) ? 'reblogged' : ''
+  def microformats_h_class(status, is_predecessor, is_successor, include_threads)
+    if is_predecessor || status.reblog? || is_successor
+      'h-cite'
+    elsif include_threads
+      ''
+    else
+      'h-entry'
+    end
   end
 
-  def favourited_by_me_class(status)
-    user_signed_in? && @favourited.key?(status.id) ? 'favourited' : ''
+  def rtl_status?(status)
+    status.local? ? rtl?(status.text) : rtl?(strip_tags(status.text))
   end
 
   def rtl?(text)
-    return false if text.empty?
+    text = simplified_text(text)
+    rtl_words = text.scan(/[\p{Hebrew}\p{Arabic}\p{Syriac}\p{Thaana}\p{Nko}]+/m)
 
-    matches = /[\p{Hebrew}|\p{Arabic}|\p{Syriac}|\p{Thaana}|\p{Nko}]+/m.match(text)
+    if rtl_words.present?
+      total_size = text.size.to_f
+      rtl_size(rtl_words) / total_size > 0.3
+    else
+      false
+    end
+  end
 
-    return false unless matches
+  private
 
-    rtl_size = matches.to_a.reduce(0) { |acc, elem| acc + elem.size }.to_f
-    ltr_size = text.strip.size.to_f
+  def simplified_text(text)
+    text.dup.tap do |new_text|
+      URI.extract(new_text).each do |url|
+        new_text.gsub!(url, '')
+      end
 
-    rtl_size / ltr_size > 0.3
+      new_text.gsub!(Account::MENTION_RE, '')
+      new_text.gsub!(Tag::HASHTAG_RE, '')
+      new_text.gsub!(/\s+/, '')
+    end
+  end
+
+  def rtl_size(words)
+    words.reduce(0) { |acc, elem| acc + elem.size }.to_f
+  end
+
+  def embedded_view?
+    params[:controller] == EMBEDDED_CONTROLLER && params[:action] == EMBEDDED_ACTION
   end
 end

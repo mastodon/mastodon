@@ -1,11 +1,17 @@
 - content_for :header_tags do
-  = javascript_include_tag 'application_public'
+  = javascript_pack_tag 'public', integrity: true, crossorigin: 'anonymous'
 
 - content_for :content do
   .container= yield
   .footer
-    %span.domain= link_to Rails.configuration.x.local_domain, root_path
+    - if !user_signed_in? && single_user_mode?
+      %span.single-user-login
+        = link_to t('auth.login'), new_user_session_path
+        &mdash;
+      %span.domain= link_to site_hostname, about_path
+    - else
+      %span.domain= link_to site_hostname, root_path
     %span.powered-by
-      = t('generic.powered_by', link: link_to('Mastodon', 'https://github.com/tootsuite/mastodon')).html_safe
+      != t('generic.powered_by', link: link_to('Mastodon', 'https://joinmastodon.org'))
 
-= render template: "layouts/application"
+= render template: 'layouts/application'

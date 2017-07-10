@@ -48,6 +48,7 @@ class TagManager
   end
 
   def unique_tag_to_local_id(tag, expected_type)
+    return nil unless local_id?(tag)
     matches = Regexp.new("objectId=([\\d]+):objectType=#{expected_type}").match(tag)
     return matches[1] unless matches.nil?
   end
@@ -56,8 +57,20 @@ class TagManager
     id.start_with?("tag:#{Rails.configuration.x.local_domain}")
   end
 
+  def web_domain?(domain)
+    domain.nil? || domain.gsub(/[\/]/, '').casecmp(Rails.configuration.x.web_domain).zero?
+  end
+
   def local_domain?(domain)
     domain.nil? || domain.gsub(/[\/]/, '').casecmp(Rails.configuration.x.local_domain).zero?
+  end
+
+  def normalize_domain(domain)
+    return if domain.nil?
+
+    uri = Addressable::URI.new
+    uri.host = domain.gsub(/[\/]/, '')
+    uri.normalize.host
   end
 
   def same_acct?(canonical, needle)
@@ -67,7 +80,7 @@ class TagManager
   end
 
   def local_url?(url)
-    uri    = Addressable::URI.parse(url)
+    uri    = Addressable::URI.parse(url).normalize
     domain = uri.host + (uri.port ? ":#{uri.port}" : '')
     TagManager.instance.local_domain?(domain)
   end
@@ -80,8 +93,6 @@ class TagManager
       account_url(target)
     when :note, :comment, :activity
       unique_tag(target.created_at, target.id, 'Status')
-    else
-      unique_tag(target.stream_entry.created_at, target.stream_entry.activity_id, target.stream_entry.activity_type)
     end
   end
 
@@ -93,8 +104,6 @@ class TagManager
       short_account_url(target)
     when :note, :comment, :activity
       short_account_status_url(target.account, target)
-    else
-      account_stream_entry_url(target.account, target.stream_entry)
     end
   end
 end

@@ -19,6 +19,11 @@ Rails.application.configure do
   # Apache or NGINX already handles this.
   config.public_file_server.enabled = ENV['RAILS_SERVE_STATIC_FILES'].present?
 
+  ActiveSupport::Logger.new(STDOUT).tap do |logger|
+    logger.formatter = config.log_formatter
+    config.logger = ActiveSupport::TaggedLogging.new(logger)
+  end
+
   # Compress JavaScripts and CSS.
   config.assets.js_compressor = Uglifier.new(mangle: false)
   # config.assets.css_compressor = :sass
@@ -33,42 +38,17 @@ Rails.application.configure do
   config.action_dispatch.x_sendfile_header = 'X-Accel-Redirect' # for NGINX
 
   # Allow to specify public IP of reverse proxy if it's needed
-  config.action_dispatch.trusted_proxies = [IPAddr.new(ENV['TRUSTED_PROXY_IP'])] unless ENV['TRUSTED_PROXY_IP'].blank?
-
-  # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
-  config.force_ssl = false
+  config.action_dispatch.trusted_proxies = ENV['TRUSTED_PROXY_IP'].split.map { |item| IPAddr.new(item) } unless ENV['TRUSTED_PROXY_IP'].blank?
 
   # Use the lowest log level to ensure availability of diagnostic information
   # when problems arise.
-  config.log_level = :debug
+  config.log_level = ENV.fetch('RAILS_LOG_LEVEL', 'info').to_sym
 
   # Prepend all log lines with the following tags.
   config.log_tags = [:request_id]
 
-  # Use a different logger for distributed setups.
-  # config.logger = ActiveSupport::TaggedLogging.new(SyslogLogger.new)
-
-  # Parse and split the REDIS_URL if passed (used with hosting platforms such as Heroku).
-  # Set ENV variables because they are used elsewhere.
-  if ENV['REDIS_URL']
-    redis_url = URI.parse(ENV['REDIS_URL'])
-    ENV['REDIS_HOST'] = redis_url.host
-    ENV['REDIS_PORT'] = redis_url.port.to_s
-    ENV['REDIS_PASSWORD'] = redis_url.password
-  end
-
   # Use a different cache store in production.
-  config.cache_store = :redis_store, {
-    host: ENV.fetch('REDIS_HOST') { 'localhost' },
-    port: ENV.fetch('REDIS_PORT') { 6379 },
-    password: ENV.fetch('REDIS_PASSWORD') { false },
-    db: 0,
-    namespace: 'cache',
-    expires_in: 20.minutes,
-  }
-
-  # Enable serving of images, stylesheets, and JavaScripts from an asset server.
-  # config.action_controller.asset_host = 'http://assets.example.com'
+  config.cache_store = :redis_store, ENV['REDIS_URL'], REDIS_CACHE_PARAMS
 
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
@@ -93,21 +73,25 @@ Rails.application.configure do
   config.action_mailer.perform_caching = false
 
   # E-mails
+  config.action_mailer.default_options = { from: ENV.fetch('SMTP_FROM_ADDRESS') }
+
   config.action_mailer.smtp_settings = {
-    :port           => ENV['SMTP_PORT'],
-    :address        => ENV['SMTP_SERVER'],
-    :user_name      => ENV['SMTP_LOGIN'],
-    :password       => ENV['SMTP_PASSWORD'],
-    :domain         => ENV['SMTP_DOMAIN'] || config.x.local_domain,
-    :authentication => :plain,
+    :port                 => ENV['SMTP_PORT'],
+    :address              => ENV['SMTP_SERVER'],
+    :user_name            => ENV['SMTP_LOGIN'].presence,
+    :password             => ENV['SMTP_PASSWORD'].presence,
+    :domain               => ENV['SMTP_DOMAIN'] || ENV['LOCAL_DOMAIN'],
+    :authentication       => ENV['SMTP_AUTH_METHOD'] == 'none' ? nil : ENV['SMTP_AUTH_METHOD'] || :plain,
+    :ca_file              => ENV['SMTP_CA_FILE'].presence,
+    :openssl_verify_mode  => ENV['SMTP_OPENSSL_VERIFY_MODE'],
+    :enable_starttls_auto => ENV['SMTP_ENABLE_STARTTLS_AUTO'] || true,
   }
 
-  config.action_mailer.delivery_method = :smtp
-
-  config.react.variant = :production
+  config.action_mailer.delivery_method = ENV.fetch('SMTP_DELIVERY_METHOD', 'smtp').to_sym
 
   config.to_prepare do
     StatsD.backend = StatsD::Instrument::Backends::NullBackend.new if ENV['STATSD_ADDR'].blank?
+    Sidekiq::Logging.logger.level = Logger::WARN
   end
 
   config.action_dispatch.default_headers = {

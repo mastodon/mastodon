@@ -1,0 +1,113 @@
+---
+zh-TW:
+  activerecord:
+    attributes:
+      doorkeeper/application:
+        name: 名稱
+        redirect_uri: 重新導向 URI
+    errors:
+      models:
+        doorkeeper/application:
+          attributes:
+            redirect_uri:
+              fragment_present: 'URI 不可包含 "#fragment" 部份'
+              invalid_uri: 必需有正確的 URI.
+              relative_uri: 必需為絕對 URI.
+              secured_uri: 必需使用有 HTTPS/SSL 加密的 URI.
+  doorkeeper:
+    applications:
+      buttons:
+        authorize: 授權
+        cancel: 取消
+        destroy: 移除
+        edit: 編輯
+        submit: 送出
+      confirmations:
+        destroy: 您確定嗎？
+      edit:
+        title: 編輯應用程式
+      form:
+        error: 噢！請檢查表單錯誤訊息
+      help:
+        native_redirect_uri: 使用 %{native_redirect_uri} 作局部測試
+        redirect_uri: 每行輸入一個 URI
+        scopes: 請用半形空格分開權限範圍 (scope)。留空表示使用預設的權限範圍
+      index:
+        callback_url: 回傳網址
+        name: 名稱
+        new: 新增應用程式
+        title: 您的應用程式
+      new:
+        title: 新增應用程式
+      show:
+        actions: 動作
+        application_id: 應用程式 ID
+        callback_urls: 回傳網址
+        scopes: 權限範圍
+        secret: 密碼
+        title: '應用程式︰ %{name}'
+    authorizations:
+      buttons:
+        authorize: 允許
+        deny: 拒絕
+      error:
+        title: 發生錯誤
+      new:
+        able_to: 要求取得權限
+        prompt: 應用程式 %{client_name} 要求取得您帳號的部份權限
+        title: 需要授權
+      show:
+        title: 授權代碼
+    authorized_applications:
+      buttons:
+        revoke: 取消授權
+      confirmations:
+        revoke: 您確定要取消授權？
+      index:
+        application: 應用程式
+        created_at: 授權於
+        date_format: "%Y-%m-%d %H:%M:%S"
+        scopes: 權限範圍
+        title: 已獲您授權的應用程式
+    errors:
+      messages:
+        access_denied: 資源擁有者或授權伺服器不接受請求。
+        credential_flow_not_configured: 資源擁有者密碼認證程序失敗，由於 Doorkeeper.configure.resource_owner_from_credentials 沒有設定。
+        invalid_client: 客戶端驗證失敗，可能是未知的客戶端程式、未包含客戶端驗證、或使用了不支援的認證方法。
+        invalid_grant: 授權申請不正確、逾期、已被取消、與授權請求內的重新導向 URI 不符、或屬於別的客戶端程式。
+        invalid_redirect_uri: 不正確的重新導向網址。
+        invalid_request: 請求缺少必要的參數、包含不支援的參數、或其他輸入錯誤。
+        invalid_resource_owner: 資源擁有者的登入資訊錯誤、或無法找到該資源擁有者。
+        invalid_scope: 請求的權限範圍不正確、未有定義、或輸入錯誤。
+        invalid_token:
+          expired: access token 已過期
+          revoked: access token 已被取消
+          unknown: access token 不正確
+        resource_owner_authenticator_not_configured: 無法找到資源擁有者，由於 Doorkeeper.configure.resource_owner_authenticator 沒有設定。
+        server_error: 認證伺服器發生未知錯誤。
+        temporarily_unavailable: 認證伺服器暫時無法使用。
+        unauthorized_client: 客戶端程式無權使用此方法進行請求。
+        unsupported_grant_type: 授權伺服器不支援這個授權類型。
+        unsupported_response_type: 授權伺服器不支援這個回應類型。
+    flash:
+      applications:
+        create:
+          notice: 已新增應用程式。
+        destroy:
+          notice: 已刪除應用程式。
+        update:
+          notice: 已更新應用程式。
+      authorized_applications:
+        destroy:
+          notice: 已取消應用程式授權。
+    layouts:
+      admin:
+        nav:
+          applications: 應用程式
+          oauth2_provider: OAuth2 供應者
+      application:
+        title: 需要 OAuth 授權
+    scopes:
+      follow: 關注、封鎖、解除封鎖及取消關注帳號
+      read: 讀取您的帳號資料
+      write: 以您的名義發佈文章

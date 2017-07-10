@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class FetchAtomService < BaseService
+  include HttpHelper
+
   def call(url)
     return if url.blank?
 
@@ -14,10 +16,14 @@ class FetchAtomService < BaseService
 
     return nil if response.code != 200
     return [url, fetch(url)] if response.mime_type == 'application/atom+xml'
-    return process_headers(url, response) unless response['Link'].blank?
+    return process_headers(url, response) if response['Link'].present?
     process_html(fetch(url))
   rescue OpenSSL::SSL::SSLError => e
     Rails.logger.debug "SSL error: #{e}"
+    nil
+  rescue HTTP::ConnectionError => e
+    Rails.logger.debug "HTTP ConnectionError: #{e}"
+    nil
   end
 
   private
@@ -44,9 +50,5 @@ class FetchAtomService < BaseService
 
   def fetch(url)
     http_client.get(url).to_s
-  end
-
-  def http_client
-    HTTP.timeout(:per_operation, write: 10, connect: 10, read: 10).follow
   end
 end

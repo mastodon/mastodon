@@ -1,2 +1,20 @@
 ---
 :concurrency: 5
+:queues:
+  - default
+  - push
+  - pull
+  - mailers
+:schedule:
+  subscriptions_scheduler:
+    cron: '0 5 * * *'
+    class: Scheduler::SubscriptionsScheduler
+  media_cleanup_scheduler:
+    cron: '5 4 * * *'
+    class: Scheduler::MediaCleanupScheduler
+  feed_cleanup_scheduler:
+    cron: '0 0 * * *'
+    class: Scheduler::FeedCleanupScheduler
+  doorkeeper_cleanup_scheduler:
+    cron: '1 1 * * 0'
+    class: Scheduler::DoorkeeperCleanupScheduler

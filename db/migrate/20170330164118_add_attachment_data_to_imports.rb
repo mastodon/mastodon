@@ -1,4 +1,4 @@
-class AddAttachmentDataToImports < ActiveRecord::Migration
+class AddAttachmentDataToImports < ActiveRecord::Migration[4.2]
   def self.up
     change_table :imports do |t|
       t.attachment :data

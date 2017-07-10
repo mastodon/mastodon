@@ -2,20 +2,25 @@
 
 class HomeController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_initial_state_json
 
   def index
     @body_classes = 'app-body'
-    @token        = find_or_create_access_token.token
-    @web_settings = Web::Setting.find_by(user: current_user)&.data || {}
   end
 
   private
 
   def authenticate_user!
-    redirect_to(Rails.configuration.x.single_user_mode ? account_path(Account.first) : about_path) unless user_signed_in?
+    redirect_to(single_user_mode? ? account_path(Account.first) : about_path) unless user_signed_in?
   end
 
-  def find_or_create_access_token
-    Doorkeeper::AccessToken.find_or_create_for(Doorkeeper::Application.where(superapp: true).first, current_user.id, 'read write follow', Doorkeeper.configuration.access_token_expires_in, Doorkeeper.configuration.refresh_token_enabled?)
+  def set_initial_state_json
+    state = InitialStatePresenter.new(settings: Web::Setting.find_by(user: current_user)&.data || {},
+                                      current_account: current_account,
+                                      token: current_session.token,
+                                      admin: Account.find_local(Setting.site_contact_username))
+
+    serializable_resource = ActiveModelSerializers::SerializableResource.new(state, serializer: InitialStateSerializer)
+    @initial_state_json   = serializable_resource.to_json
   end
 end

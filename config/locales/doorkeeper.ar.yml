@@ -1,0 +1,113 @@
+---
+ar:
+  activerecord:
+    attributes:
+      doorkeeper/application:
+        name: التسمية
+        redirect_uri: Redirect URI
+    errors:
+      models:
+        doorkeeper/application:
+          attributes:
+            redirect_uri:
+              fragment_present: لا يجب أن يحتوي على كِسرة.
+              invalid_uri: يجب أن يكون رابطا صالحا.
+              relative_uri: يجب أن يكون رابطا مطلقا.
+              secured_uri: يجب أن يكون رابطا آمنا HTTPS/SSL.
+  doorkeeper:
+    applications:
+      buttons:
+        authorize: ترخيص
+        cancel: إلغاء
+        destroy: إبطال
+        edit: تعديل
+        submit: إرسال
+      confirmations:
+        destroy: متأكد ؟
+      edit:
+        title: تعديل التطبيق
+      form:
+        error: عفوا ! تحقق من خُلوّ الاستمارة من الأخطاء من فضلك
+      help:
+        native_redirect_uri: إستخدم %{native_redirect_uri} للاختبار و التجريب محليا
+        redirect_uri: إستخدم خطا واحدا لكل رابط.
+        scopes: Separate scopes with spaces. Leave blank to use the default scopes.
+      index:
+        callback_url: رابط رد النداء
+        name: التسمية
+        new: تطبيق جديد
+        title: تطبيقاتك
+      new:
+        title: تطبيق جديد
+      show:
+        actions: Actions
+        application_id: معرف التطبيق
+        callback_urls: روابط رد النداء
+        scopes: Scopes
+        secret: السر
+        title: 'تطبيق : %{name}'
+    authorizations:
+      buttons:
+        authorize: ترخيص
+        deny: رفض
+      error:
+        title: حدث هناك خطأ
+      new:
+        able_to: يُخوَّل لهذا التطبيق القيام بـ
+        prompt: طلبَ تطبيق %{client_name} تصريحا لاستعمال حسابك.
+        title: إذن بالتصريح
+      show:
+        title: رمز الترخيص
+    authorized_applications:
+      buttons:
+        revoke: إبطال التصريح
+      confirmations:
+        revoke: متأكد ؟
+      index:
+        application: التطبيق
+        created_at: صُرّح له في
+        date_format: "%d-%m-%Y %H:%M:%S"
+        scopes: Scopes
+        title: تطبيقاتك المرخص لها
+    errors:
+      messages:
+        access_denied: The resource owner or authorization server denied the request.
+        credential_flow_not_configured: Resource Owner Password Credentials flow failed due to Doorkeeper.configure.resource_owner_from_credentials being unconfigured.
+        invalid_client: Client authentication failed due to unknown client, no client authentication included, or unsupported authentication method.
+        invalid_grant: The provided authorization grant is invalid, expired, revoked, does not match the redirection URI used in the authorization request, or was issued to another client.
+        invalid_redirect_uri: The redirect uri included is not valid.
+        invalid_request: The request is missing a required parameter, includes an unsupported parameter value, or is otherwise malformed.
+        invalid_resource_owner: The provided resource owner credentials are not valid, or resource owner cannot be found
+        invalid_scope: The requested scope is invalid, unknown, or malformed.
+        invalid_token:
+          expired: إنتهت فترة صلاحيته رمز المصادقة
+          revoked: تم إبطال رمز المصادقة
+          unknown: رمز المصادقة غير صالح
+        resource_owner_authenticator_not_configured: Resource Owner find failed due to Doorkeeper.configure.resource_owner_authenticator being unconfiged.
+        server_error: The authorization server encountered an unexpected condition which prevented it from fulfilling the request.
+        temporarily_unavailable: تعذر على خادم التفويض معالجة الطلب و ذلك بسبب زيادة مؤقتة في التحميل أو عملية صيانة مبرمجة على الخادم.
+        unauthorized_client: لا يصرح للعميل بتنفيذ هذا الطلب باستخدام هذه الطريقة.
+        unsupported_grant_type: هذا النوع من منح التصريح غير معتمد في خادم الترخيص.
+        unsupported_response_type: لا يدعم خادم التصريح هذا النوع من الإجابات و الردود.
+    flash:
+      applications:
+        create:
+          notice: تم إنشاء التطبيق.
+        destroy:
+          notice: تم حذف التطبيق.
+        update:
+          notice: تم تحديث التطبيق.
+      authorized_applications:
+        destroy:
+          notice: تم إبطال التصريح المخول للتطبيق.
+    layouts:
+      admin:
+        nav:
+          applications: التطبيقات
+          oauth2_provider: مزود خدمة التصريح المفتوح OAuth2
+      application:
+        title: طلب تصريح مفتوح OAuth
+    scopes:
+      follow: متابعة و حجب و فك الحجب و إلغاء متابعة حسابات المستخدمين
+      read: قراءة بيانات حسابك
+      write: النشر نيابةً عنك

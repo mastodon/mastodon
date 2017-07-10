@@ -1,23 +1,15 @@
-import { configure, setAddon } from '@kadira/storybook';
-import IntlAddon from 'react-storybook-addon-intl';
-import React from 'react';
-import { storiesOf, action } from '@kadira/storybook';
+import { configure } from '@storybook/react';
 import { addLocaleData } from 'react-intl';
 import en from 'react-intl/locale-data/en';
-import '../app/assets/stylesheets/components.scss'
-import './storybook.scss'
+import '../app/javascript/styles/application.scss';
+import './storybook.scss';
 
-setAddon(IntlAddon);
 addLocaleData(en);
 
-window.storiesOf = storiesOf;
-window.action    = action;
-window.React     = React;
+let req = require.context('./stories/', true, /.story.js$/);
 
 function loadStories () {
-  require('./stories/loading_indicator.story.jsx');
-  require('./stories/button.story.jsx');
-  require('./stories/autosuggest_textarea.story.jsx');
+  req.keys().forEach((filename) => req(filename));
 }
 
 configure(loadStories, module);

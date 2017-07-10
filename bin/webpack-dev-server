@@ -1,0 +1,43 @@
+#!/usr/bin/env ruby
+$stdout.sync = true
+
+require "shellwords"
+require "yaml"
+
+ENV["RAILS_ENV"] ||= "development"
+RAILS_ENV = ENV["RAILS_ENV"]
+
+ENV["NODE_ENV"] ||= RAILS_ENV
+NODE_ENV = ENV["NODE_ENV"]
+
+APP_PATH          = File.expand_path("../", __dir__)
+CONFIG_FILE       = File.join(APP_PATH, "config/webpacker.yml")
+NODE_MODULES_PATH = File.join(APP_PATH, "node_modules")
+WEBPACK_CONFIG    = File.join(APP_PATH, "config/webpack/development.js")
+
+def args(key)
+  index = ARGV.index(key)
+  index ? ARGV[index + 1] : nil
+end
+
+begin
+  dev_server = YAML.load_file(CONFIG_FILE)["development"]["dev_server"]
+
+  DEV_SERVER_HOST = "http#{"s" if args('--https') || dev_server["https"]}://#{dev_server["host"]}:#{args('--port') || dev_server["port"]}"
+
+rescue Errno::ENOENT, NoMethodError
+  puts "Webpack dev_server configuration not found in #{CONFIG_FILE}."
+  puts "Please run bundle exec rails webpacker:install to install webpacker"
+  exit!
+end
+
+newenv = {
+  "NODE_PATH" => NODE_MODULES_PATH.shellescape,
+  "ASSET_HOST" => DEV_SERVER_HOST.shellescape
+}.freeze
+
+cmdline = ["yarn", "run", "webpack-dev-server", "--", "--progress", "--color", "--config", WEBPACK_CONFIG] + ARGV
+
+Dir.chdir(APP_PATH) do
+  exec newenv, *cmdline
+end

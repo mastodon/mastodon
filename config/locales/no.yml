@@ -1,33 +1,35 @@
 ---
 'no':
   about:
-    about_mastodon: Mastodon er et <em>gratis, åpen kildekode</em> sosialt nettverk. Et <em>desentralisert</em> alternativ til kommersielle plattformer. Slik kan det unngå risikoene ved å ha et enkelt selskap med monopol på din kommunikasjon. Velg en tjener du stoler på &mdash; uansett hvilken du velger så kan du interagere med alle andre. Alle kan kjøre sin egen Mastodon og delta sømløst i det sosiale nettverket.
+    about_mastodon: Mastodon er et sosialt nettverk laget med <em>fri programvare</em>. Et <em>desentralisert</em> alternativ til kommersielle plattformer. Slik kan det unngå risikoene ved å ha et enkelt selskap som monopoliserer din kommunikasjon. Velg en tjener du stoler på &mdash; uansett hvilken du velger så kan du kommunisere med alle andre. Alle kan kjøre sin egen Mastodon og delta sømløst i det sosiale nettverket.
     about_this: Om denne instansen
     apps: Applikasjoner
     business_email: 'Bedriftsepost:'
+    closed_registrations: Registreringer er for øyeblikket lukket på denne instansen.
     contact: Kontakt
     description_headline: Hva er %{domain}?
     domain_count_after: andre instanser
     domain_count_before: Koblet til
     features:
-      api: Åpent api for applikasjoner og tjenester
-      blocks: Rikholdige blokkerings verktøy
-      characters: 500 tegn per post
+      api: Åpent API for applikasjoner og tjenester
+      blocks: Rikholdige blokkeringsverktøy
+      characters: 500 tegn per status
       chronology: Tidslinjer er kronologiske
       ethics: 'Etisk design: Ingen reklame, ingen sporing'
-      gifv: GIFV sett og korte videoer
-      privacy: Finmaskete personvernsinnstillinger
-      public: Offentlige tidslinjer
+      gifv: Støtte for GIFV og korte videoer
+      privacy: Finmaskede personvernsinnstillinger
+      public: Felles tidslinjer
     features_headline: Hva skiller Mastodon fra andre sosiale nettverk
     get_started: Kom i gang
     links: Lenker
     other_instances: Andre instanser
     source_code: Kildekode
     status_count_after: statuser
-    status_count_before: Hvem skrev
+    status_count_before: Som skrev
     terms: Betingelser
     user_count_after: brukere
-    user_count_before: Hjem til
+    user_count_before: Her bor
+    version: Versjon
   accounts:
     follow: Følg
     followers: Følgere
@@ -38,9 +40,149 @@
     posts: Poster
     remote_follow: Følg fra andre instanser
     unfollow: Avfølg
+  activitypub:
+    activity:
+      announce:
+        name: "%{account_name} delte en aktivitet."
+      create:
+        name: "%{account_name} laget en aktivitet."
+    outbox:
+      name: "%{account_name} sin utboks"
+      summary: En samling aktiviteter fra brukeren %{account_name}.
+  admin:
+    accounts:
+      are_you_sure: Er du sikker?
+      confirm: Bekreft
+      confirmed: Bekreftet
+      disable_two_factor_authentication: Disable 2FA
+      display_name: Visningsnavn
+      domain: Domene
+      edit: Redigér
+      email: E-post
+      feed_url: Feed-URL
+      followers: Følgere
+      follows: Følginger
+      location:
+        all: Alle
+        local: Lokalt
+        remote: Fjernt
+        title: Sted
+      media_attachments: Mediavedlegg
+      moderation:
+        all: Alle
+        silenced: Målbundet
+        suspended: Utvist
+        title: Moderasjon
+      most_recent_activity: Nyligste aktivitet
+      most_recent_ip: Nyligste IP
+      not_subscribed: Ikke abonnért
+      order:
+        alphabetic: Alfabetisk
+        most_recent: Nyligst
+        title: Rekkefølge
+      perform_full_suspension: Utfør full utvisning
+      profile_url: Profil-URL
+      public: Offentlig
+      push_subscription_expires: PuSH-abonnent utløper
+      reset_password: Nullstill passord
+      salmon_url: Salmon-URL
+      show:
+        created_reports: Rapporter laget av denne kontoen
+        report: rapport
+        targeted_reports: Rapporter laget om denne kontoen
+      silence: Målbind
+      statuses: Statuser
+      title: Kontoer
+      undo_silenced: Angre målbinding
+      undo_suspension: Angre utvisning
+      username: Brukernavn
+      web: Web
+    domain_blocks:
+      add_new: Lag ny
+      created_msg: Domeneblokkering blir nå behandlet
+      destroyed_msg: Domeneblokkering har nå blitt angret
+      domain: Domene
+      new:
+        create: Lag blokkering
+        hint: Domeneblokkeringen vil ikke hindre opprettelse av kontooppføringer i databasen, men vil retroaktivt og automatisk benytte spesifikke moderasjonsmetoder på de kontoene.
+        severity:
+          desc_html: "<strong>Målbind</strong> vil gjøre kontoens poster usynlige for alle som ikke følger den. <strong>Utvis</storng> fjerner alt innhold, media og profildata fra kontoen."
+          silence: Målbind
+          suspend: Utvis
+        title: Ny domeneblokkering
+      reject_media: Avvis mediefiler
+      reject_media_hint: Fjerner lokalt lagrede mediefiler og nekter å laste dem ned i fremtiden. Irrelevant for utvisninger.
+      severities:
+        silence: Målbind
+        suspend: Utvis
+      severity: Alvorlighet
+      show:
+        affected_accounts:
+          one: En konto i databasen påvirket
+          other: "%{count} kontoer i databasen påvirket"
+        retroactive:
+          silence: Avmålbind alle eksisterende kontoer fre dette domenet
+          suspend: Avutvis alle eksisterende kontoer fra dette domenet
+        title: Angre domeneblokkering for %{domain}
+        undo: Angre
+      title: Domeneblokkeringer
+      undo: Angre
+    instances:
+      account_count: Kjente kontoer
+      domain_name: Domene
+      title: Kjente instanser
+    reports:
+      comment:
+        label: Kommentar
+        none: Ingen
+      delete: Slett
+      id: ID
+      mark_as_resolved: Merk som løst
+      report: 'Rapportér #%{id}'
+      report_contents: Innhold
+      reported_account: Rapportert konto
+      reported_by: Rapportert av
+      resolved: Løst
+      silence_account: Målbind konto
+      status: Status
+      suspend_account: Utvis konto
+      target: Mål
+      title: Rapporter
+      unresolved: Uløst
+      view: Vis
+    settings:
+      contact_information:
+        email: Skriv en offentlig e-postadresse
+        label: Kontaktinformasjon
+        username: Skriv brukernavn
+      registrations:
+        closed_message:
+          desc_html: Vises på forsiden når registreringer er lukket<br>Du kan bruke HTML-tagger
+          title: Melding for lukket registrering
+        open:
+          disabled: På
+          enabled: Av
+          title: Åpen registrering
+      setting: Innstilling
+      site_description:
+        desc_html: Vises som et avsnitt på forsiden og brukes som en meta-tagg.<br> Du kan bruke HTML-tagger, spesielt <code>&lt;a&gt;</code> og <code>&lt;em&gt;</code>.
+        title: Nettstedsbeskrivelse
+      site_description_extended:
+        desc_html: Vises på side for utvidet informasjon.<br>Du kan bruke HTML-tagger
+        title: Utvidet nettstedsinformasjon
+      site_title: Nettstedstittel
+      title: Nettstedsinnstillinger
+    subscriptions:
+      callback_url: Callback-URL
+      confirmed: Bekreftet
+      expires_in: Utløper om
+      last_delivery: Siste levering
+      title: PubSubHubbub
+      topic: Emne
+    title: Administrasjon
   application_mailer:
-    settings: 'Endre foretrukne epost innstillinger: %{link}'
-    signature: Mastodon notiser fra %{instance}
+    settings: 'Endre foretrukne e-postinnstillinger: %{link}'
+    signature: Mastodon-notiser fra %{instance}
     view: 'Se:'
   applications:
     invalid_url: Den oppgitte URLen er ugyldig
@@ -55,44 +197,71 @@
     reset_password: Nullstill passord
     set_new_password: Sett nytt passord
   authorize_follow:
-    error: Uheldigvis så skjedde det en feil når vi prøvde å få tak i en konto fra en annen instans.
+    error: Uheldigvis så skjedde det en feil da vi prøvde å få tak i en bruker fra en annen instans.
     follow: Følg
     prompt_html: 'Du (<strong>%{self}</strong>) har spurt om å følge:'
     title: Følg %{acct}
   datetime:
     distance_in_words:
-      about_x_hours: "%{count}t"
-      about_x_months: "%{count}m"
-      about_x_years: "%{count}å"
-      almost_x_years: "%{count}å"
-      half_a_minute: Nylig
-      less_than_x_minutes: "%{count}min"
-      less_than_x_seconds: Nylig
-      over_x_years: "%{count}å"
-      x_days: "%{count}d"
-      x_minutes: "%{count}min"
-      x_months: "%{count}mo"
-      x_seconds: "%{count}s"
+      about_x_hours: "%{count} timer"
+      about_x_months: "%{count} mnd"
+      about_x_years: "%{count} år"
+      almost_x_years: "%{count} år"
+      half_a_minute: Nettopp
+      less_than_x_minutes: "%{count} min"
+      less_than_x_seconds: Nettopp
+      over_x_years: "%{count} år"
+      x_days: "%{count} dager"
+      x_minutes: "%{count} min"
+      x_months: "%{count} mnd"
+      x_seconds: "%{count} sek"
+  errors:
+    '403': Du har ikke tillatelse til å vise denne siden.
+    '404': Siden du leter etter finnes ikke.
+    '410': Siden du leter etter finnes ikke lenger.
+    '422':
+      content: Sikkerhetsverifisering feilet. Blokkerer du informasjonskapsler?
+      title: Sikkerhetsverifisering feilet.
+    '429': Throttled
   exports:
     blocks: Du blokkerer
     csv: CSV
     follows: Du følger
-    storage: Media lagring
+    mutes: Du demper
+    storage: Medialagring
+  followers:
+    domain: Domene
+    explanation_html: Hvis du vil styre hvem som ser statusene dine, må du være klar over hvem som følger deg. <strong>Dine private statuser leveres til alle instanser der du har følgere</strong>. Du bør kanskje se over dem, og fjerne følgere hvis du ikke stoler på at ditt privatliv vil bli respektert av staben eller programvaren på de instansene.
+    followers_count: Antall følgere
+    lock_link: Lås kontoen din
+    purge: Fjern fra følgere
+    success:
+      one: I ferd med å mykblokkere følgere fra ett domene...
+      other: I ferd med å mykblokkere følgere fra %{count} domener...
+    true_privacy_html: Vennligst forstå at <strong>virkelig privatliv kun kan oppnås med ende-til-ende-kryptering.</strong>
+    unlocked_warning_html: Alle kan følge deg for å umiddelbart se dine private statuser. %{lock_link} for å kunne se over og avvise følgere.
+    unlocked_warning_title: Din konto er ikke låst
   generic:
     changes_saved_msg: Vellykket lagring av endringer!
     powered_by: drevet av %{link}
     save_changes: Lagre endringer
     validation_errors:
-      one: Noe er ikke helt riktig ennå. Vær snill å se etter en gang til
+      one: Noe er ikke helt riktig ennå. Vennligst se etter en gang til
       other: Noe er ikke helt riktig ennå. Det er ennå %{count} feil å rette på
   imports:
-    preface: Du kan importere data om mennesker du følger eller blokkerer inn til kontoen din på denne instansen, fra filer opprettet av eksporter fra andre instanser.
-    success: Din data ble mottatt og vil bli prosessert så fort som mulig.
+    preface: Du kan importere data om brukere du følger eller blokkerer til kontoen din på denne instansen med eksportfiler fra andre instanser.
+    success: Din data ble mottatt og vil bli behandlet så fort som mulig.
     types:
       blocking: Blokkeringsliste
       following: Følgeliste
+      muting: Dempeliste
     upload: Opplastning
-  landing_strip_html: <strong>%{name}</strong> er en bruker på <strong>%{domain}</strong>. Du kan følge dem eller interagere med dem hvis du har en konto hvor som helst i fediverset. Hvis du ikke har en konto så kan du <a href="%{sign_up_path}">registrere deg her</a>.
+  landing_strip_html: "<strong>%{name}</strong> er en bruker på %{link_to_root_path}. Du kan følge dem eller kommunisere med dem hvis du har en konto hvor som helst i fediverset."
+  landing_strip_signup_html: Hvis du ikke har en konto så kan du <a href="%{sign_up_path}">registrere deg her</a>.
+  media_attachments:
+    validations:
+      images_and_video: Kan ikke legge ved video på en status som allerede inneholder bilder
+      too_many: Kan ikke legge ved mer enn 4 filer
   notification_mailer:
     digest:
       body: 'Her er en kort oppsummering av hva du har gått glipp av på %{instance} siden du logget deg inn sist den %{since}:'
@@ -104,61 +273,141 @@
         one: "1 ny hendelse siden ditt siste besøk \U0001F418"
         other: "%{count} nye hendelser siden ditt siste besøk \U0001F418"
     favourite:
-      body: 'Din status ble satt som favoritt av %{name}'
-      subject: "%{name} satte din status som favoritt."
+      body: Din status ble likt av %{name}
+      subject: "%{name} likte din status."
     follow:
       body: "%{name} følger deg!"
       subject: "%{name} følger deg"
     follow_request:
-      body: "%{name} har spurt om å få lov til å følge deg"
-      subject: 'Ventende følger: %{name}'
+      body: "%{name} har bedt om lov til å følge deg"
+      subject: 'Ventende følginger: %{name}'
     mention:
       body: 'Du ble nevnt av %{name} i:'
       subject: Du ble nevnt av %{name}
     reblog:
-      body: 'Din status fikk en boost av %{name}:'
-      subject: "%{name} ga din status en boost"
+      body: 'Din status ble fremhevd av %{name}:'
+      subject: "%{name} fremhevde din status"
   pagination:
     next: Neste
     prev: Forrige
+    truncate: "&hellip;"
   remote_follow:
     acct: Tast inn brukernavn@domene som du vil følge fra
     missing_resource: Kunne ikke finne URLen for din konto
     proceed: Fortsett med følging
-    prompt: 'Du kommer til å følge:'
+    prompt: 'Du vil følge:'
   settings:
     authorized_apps: Autoriserte applikasjoner
     back: Tilbake til Mastodon
     edit_profile: Endre profil
-    export: Data eksport
-    import: Importer
-    preferences: Foretrukne valg
+    export: Dataeksport
+    followers: Godkjente følgere
+    import: Importér
+    preferences: Preferanser
     settings: Innstillinger
-    two_factor_auth: To-faktor autentisering
+    two_factor_authentication: Tofaktorautentisering
   statuses:
     open_in_web: Åpne i nettleser
-    over_character_limit: tegngrense på %{max} overskredet
+    over_character_limit: grense på %{max} tegn overskredet
     show_more: Vis mer
     visibilities:
-      private: Vis kun til følgere
+      private: Privat
+      private_long: Synlig kun for følgere
       public: Offentlig
-      unlisted: Offentlig, men vis ikke på offentlig tidslinje
+      public_long: Synlig for alle
+      unlisted: Uoppført
+      unlisted_long: Synlig for alle, men ikke på offentlige tidslinjer
   stream_entries:
     click_to_show: Klikk for å vise
-    reblogged: boostet
-    sensitive_content: Sensitivt innhold
+    reblogged: fremhevde
+    sensitive_content: Følsomt innhold
+  terms:
+    body_html: |
+      <h2>Personvernserklæring</h2>
+
+      <h3 id='collect'>Hvilke opplysninger samler vi?</h3>
+
+      <p>Vi samler opplysninger fra deg når du registrerer deg på nettstedet vårt, og vi samler data når du deltar på forumet ved å lese, skrive og evaluere innholdet som deles her.</p>
+
+      <p>Når du registrerer deg på nettstedet vårt, kan du bli bedt om å oppgi navnet og e-postadressen din. Imidlertid kan du besøke nettstedet vårt uten å registrere deg. E-postadressen din vil bli bekreftet med en e-post som inneholder en unik lenke. Hvis siden den lenker til, blir besøkt, vet vi at du har kontroll over e-postadressen.</p>
+
+      <p>Når du registrerer deg og skriver innlegg, registrerer vi IP-adressen som innlegget stammer fra. Vi kan også oppbevare logger som inkluderer IP-adressen til alle forespørslene sendt til tjeneren vår.</p>
+
+      <h3 id='use'>Hva bruker vi opplysningene dine til?</h3>
+
+      <p>Alle opplysningene vi samler fra deg, kan bli brukt på en av følgende måter:</p>
+
+      <ul>
+        <li>For å gjøre opplevelsen din mer personlig. Opplysningene dine hjelper oss å svare bedre på dine individuelle behov.</li>
+        <li>For å forbedre nettstedet vårt. Vi jobber konstant for å forbedre nettstedets tilbud basert på opplysningene og tilbakemeldingene vi mottar fra deg.</li>
+        <li>For å forbedre vår kundeservice. Dine opplysninger hjelper oss å svare mer effektivt på dine forespørsler sendt til kundeservice eller behov om støtte.</li>
+        <li>For å sende periodiske e-poster. E-postadressen du oppgir, kan bli brukt til å sende deg informasjon, påminnelser som du ber om ved endringer av emner eller ved svar til brukernavnet ditt, til henvendelser, og/eller andre forspørsler eller andre spørsmål.</li>
+      </ul>
+
+      <h3 id='protect'>Hvordan sikrer vi opplysningene?</h3>
+
+      <p>Vi gjennomfører flere sikkerhetstiltak for å holde personopplysningene dine sikre når du skriver inn, lagrer eller henter dem.</p>
+
+      <h3 id='data-retention'>Hva er retningslinjene deres for lagring av data?</h3>
+
+      <p>Vi vil forsøke i god tro å:</p>
+
+      <ul>
+        <li>Ikke oppbevare tjener-logger som inneholder IP-adressen til alle forespørslene til denne tjeneren i lenger enn i 90 dager.</li>
+        <li>Ikke oppbevare IP-adressene forbundet med registrerte brukere og deres innlegg lenger enn i 5 år.</li>
+      </ul>
+
+      <h3 id='cookies'>Bruker vi informasjonskapsler?</h3>
+
+      <p>Ja. Informasjonskapsler er små filer som et nettsted eller dets tjenesteleverandør overfører til harddisken på datamaskinen din gjennom nettleseren din (dersom du tillater det). Disse informasjonskapslene gjør det mulig for nettstedet å gjenkjenne nettleseren din og, dersom du har en konto, knytte nettleseren til den.</p>
+
+      <p>Vi bruker informasjonskapsler for å forstå og lagre preferansene dine for fremtidige besøk og for å samle aggregatdata om trafikk på og samhandling med nettstedet slik at vi kan tilby bedre opplevelser og verktøy på nettstedet i fremtiden. Vi kan inngå avtaler med tredjeparts tjenesteleverandører for å bistå oss i å forstå besøkerne våres bedre. Disse tjenesteleverandørene har ikke lov til å bruke opplysningene samlet på våres vegne unntatt til å hjelpe oss å gjennomføre og forbedre anliggendet vårt.</p>
+
+      <h3 id='disclose'>Gir vi noen opplysninger videre til andre parter?</h3>
+
+      <p>Vi verken selger, handler med eller overfører på noen annen måte til andre parter dine identifiserbare personopplysninger. Dette inkluderer ikke tredjeparter som har vår tillit og bistår oss i å drive nettstedet, utføre våre anliggender eller yter tjenester til deg, så lenge disse partene samtykker til å behandle disse opplysningene fortrolig. Vi kan også frigi opplysningene dine dersom vi tror at å frigi dem er hensiktsmessig for å overholde loven, håndheve nettstedet retningslinjer eller beskytte våre og andres rettigheter. Imidlertid kan opplysninger som ikke er personlig identifiserbare, bli delt med andre parter for markedsføring, reklame eller annet bruk.</p>
+
+      <h3 id='third-party'>Tredjeparts lenker</h3>
+
+      <p>Av og til, etter skjønn, kan vil inkludere eller tilby tredjeparts produkter eller tjenester på nettstedet vårt. Disse tredjeparts nettstedene har separate og selvstendige personvernerklæringer. Vi bærer derfor intet ansvar eller forpliktelser for innholdet eller aktivitetene til disse nettstedene det lenkes til. Ikke mindre prøver vi å bevare vår eget nettsteds integritet og ønsker enhver tilbakemelding om disse nettstedene velkomne.</p>
+
+      <h3 id='coppa'>Overensstemmelse med Children's Online Privacy Protection Act</h3>
+
+      <p>Nettstedet er rettet mot folk som er minst 13 år gamle. Dersom denne tjeneren er i USA, og du er under 13 år i henhold til kravene i  COPPA (<a href="https://en.wikipedia.org/wiki/Children%27s_Online_Privacy_Protection_Act">Children&#39;s Online Privacy Protection Act</a>), ikke bruk dette nettstedet.</p>
+
+      <h3 id='online'>Personvernerklæring bare for nettet</h3>
+
+      <p>Denne nett-personvernerklæringen gjelder bare for informasjon samlet gjennom nettstedet vårt og ikke for opplysninger samlet når en er frakoblet.</p>
+
+      <h3 id='consent'>Ditt samtykke</h3>
+
+      <p>Ved å bruke dette nettstedet samtykker du til nettstedets personvernerklæring.</p>
+
+      <h3 id='changes'>Endringer i vår personvernerklæring</h3>
+
+      <p>Dersom vi beslutter å endre personvernerklæringen vår, vil vi publisere disse endringene på denne siden.</p>
+
+      <p>Dette dokumentet er lisensiert under CC-BY-SA. De ble sist oppdatert 12. april 2017.</p>
+
+      <p>Dokumentet er en adoptert og endret versjon fra <a href="https://github.com/discourse/discourse">Discourse privacy policy</a>.</p>
+    title: "%{instance} Personvern og villkår for bruk av nettstedet"
   time:
     formats:
-      default: "%d, %b %Y, %H:%M"
-  two_factor_auth:
-    description_html: Hvis du skru på <strong>tofaktor autentisering</strong> vil innlogging kreve at du har telefonen din, som vil generere koder som du må taste inn.
+      default: "%-d. %b %Y, %H:%M"
+  two_factor_authentication:
+    code_hint: Tast koden som ble generert av din autentiseringsapp for å bekrefte
+    description_html: Hvis du skrur på <strong>tofaktorautentisering</strong> må du ha din telefon for å logge inn. Denne vil generere koder som du må taste inn.
     disable: Skru av
     enable: Skru på
-    instructions_html: "<strong>Scan denne QR-koden i Google Authenticator eller en lignende app på telefonen din</strong>. Fra nå av så vil denne applikasjonen generere koder for deg som skal brukes under innlogging"
-    plaintext_secret_html: 'Plain-text secret: <samp>%{secret}</samp>'
-    warning: Hvis du ikke kan konfigurere en autentikatorapp nå, så bør du trykke "Skru av"; ellers vil du ikke kunne logge inn.
+    enabled_success: Aktivering av tofaktorautentisering vellykket
+    generate_recovery_codes: Generér gjenopprettingskoder
+    instructions_html: "<strong>Scan denne QR-koden i Google Authenticator eller en lignende app på telefonen din</strong>. Fra nå av vil denne applikasjonen generere koder for deg som skal brukes under innlogging"
+    lost_recovery_codes: Gjenopprettingskoder lar deg gjenoppnå tilgang til din konto hvis du mister din telefon. Hvis du har mistet gjenopprettingskodene, kan du regenerere dem her. Dine gamle gjenopprettingskoder vil bli ugyldige.
+    manual_instructions: 'Hvis du ikke får scannet QR-koden må du skrive inn følgende kode manuelt:'
+    recovery_codes_regenerated: Generering av gjenopprettingskoder vellykket
+    recovery_instructions_html: Hvis du skulle miste tilgang til telefonen din, kan du bruke en av gjenopprettingskodene nedenfor til å gjenopprette tilgang til din konto. Oppbevar gjenopprettingskodene sikkert, for eksempel ved å skrive dem ut og lagre dem sammen med andre viktige dokumenter.
+    setup: Sett opp
+    wrong_code: Den angitte koden var ugyldig! Stemmer instansens tid overalt med enhetens tid?
   users:
-    invalid_email: E-post addressen er ugyldig
-    invalid_otp_token: Ugyldig two-faktor kode
-  will_paginate:
-    page_gap: "&hellip;"
+    invalid_email: E-postaddressen er ugyldig
+    invalid_otp_token: Ugyldig to-faktorkode

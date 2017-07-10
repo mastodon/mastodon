@@ -3,13 +3,22 @@ de:
   simple_form:
     hints:
       defaults:
+        avatar: PNG, GIF oder JPG. Maximal 2MB. Wird auf 120x120px herunterskaliert
+        display_name: '<span class="name-counter">%{count}</span> Zeichen verbleiben'
+        header: PNG, GIF oder JPG. Maximal 2MB. Wird auf 700x335px herunterskaliert
         locked: Erlaubt dir, Nutzer zu überprüfen, bevor sie dir folgen können
+        note: '<span class="note-counter">%{count}</span> Zeichen verbleiben'
+      imports:
+        data: CSV-Datei, die von einer anderen Mastodon-Instanz exportiert wurde
+      sessions:
+        otp: Gib den Zwei-Faktor-Authentisierungs-Code von deinem Telefon ein oder benutze einen deiner Wiederherstellungscodes.
     labels:
       defaults:
-        avatar: Avatar
+        avatar: Profilbild
         confirm_new_password: Neues Passwort bestätigen
         confirm_password: Passwort bestätigen
         current_password: Derzeitiges Passwort
+        data: Daten
         display_name: Anzeigename
         email: E-Mail-Addresse
         header: Kopfbild
@@ -17,19 +26,26 @@ de:
         locked: Gesperrtes Profil
         new_password: Neues Passwort
         note: Über mich
+        otp_attempt: Zwei-Faktor-Authentisierungs-Code
         password: Passwort
+        setting_auto_play_gif: Animierte GIFs automatisch abspielen
+        setting_boost_modal: Zeige einen Bestätigungsdialog vor dem Teilen
+        setting_default_privacy: Beitragsprivatspäre
+        severity: Gewichtung
+        type: Importtyp
         username: Nutzername
       interactions:
         must_be_follower: Benachrichtigungen von Nicht-Folgern blockieren
         must_be_following: Benachrichtigungen von Nutzern blockieren, denen ich nicht folge
       notification_emails:
-        favourite: E-mail senden, wenn jemand meinen Beitrag favorisiert
-        follow: E-mail senden, wenn mir jemand folgt
-        follow_request: E-mail senden, wenn mir jemand folgen möchte
-        mention: E-mail senden, wenn mich jemand erwähnt
-        reblog: E-mail senden, wenn jemand meinen Beitrag teilt
-    'no': Nein
+        digest: Schicke Übersichts-E-Mails
+        favourite: E-Mail senden, wenn jemand meinen Beitrag favorisiert
+        follow: E-Mail senden, wenn mir jemand folgt
+        follow_request: E-Mail senden, wenn mir jemand folgen möchte
+        mention: E-Mail senden, wenn mich jemand erwähnt
+        reblog: E-Mail senden, wenn jemand meinen Beitrag teilt
+    'no': 'Nein'
     required:
       mark: "*"
       text: Pflichtfeld
-    'yes': Ja
+    'yes': 'Ja'

@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class FetchRemoteAccountService < BaseService
+  include AuthorExtractor
+
   def call(url, prefetched_body = nil)
     if prefetched_body.nil?
       atom_url, body = FetchAtomService.new.call(url)
@@ -19,22 +21,19 @@ class FetchRemoteAccountService < BaseService
     xml = Nokogiri::XML(body)
     xml.encoding = 'utf-8'
 
-    url_parts = Addressable::URI.parse(url)
-    username  = xml.at_xpath('//xmlns:author/xmlns:name').try(:content)
-    domain    = url_parts.host
+    account = author_from_xml(xml.at_xpath('/xmlns:feed', xmlns: TagManager::XMLNS), false)
 
-    return nil if username.nil?
-
-    Rails.logger.debug "Going to webfinger #{username}@#{domain}"
-
-    account = FollowRemoteAccountService.new.call("#{username}@#{domain}")
     UpdateRemoteProfileService.new.call(xml, account) unless account.nil?
+
     account
   rescue TypeError
     Rails.logger.debug "Unparseable URL given: #{url}"
     nil
   rescue Nokogiri::XML::XPath::SyntaxError
     Rails.logger.debug 'Invalid XML or missing namespace'
+    nil
+  rescue Goldfinger::NotFoundError, Goldfinger::Error
+    Rails.logger.debug 'Exceptions related to Goldfinger occurs'
     nil
   end
 end

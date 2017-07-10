@@ -4,7 +4,7 @@ de:
     attributes:
       doorkeeper/application:
         name: Name
-        redirect_uri: Redirect URI
+        redirect_uri: Redirect-URI
     errors:
       models:
         doorkeeper/application:
@@ -13,7 +13,7 @@ de:
               fragment_present: darf kein Fragment enthalten.
               invalid_uri: muss ein valider URI (Identifier) sein.
               relative_uri: muss ein absoluter URI (Identifier) sein.
-              secured_uri: muss ein HTTPS/SSL URI (Identifier) sein.
+              secured_uri: muss ein HTTPS/SSL-URI (Identifier) sein.
   doorkeeper:
     applications:
       buttons:
@@ -27,13 +27,13 @@ de:
       edit:
         title: Applikation bearbeiten
       form:
-        error: Whoops! Bitte überprüfe das Formular auf Fehler!
+        error: Hoppla! Bitte überprüfe das Formular auf Fehler!
       help:
         native_redirect_uri: "%{native_redirect_uri} für lokale Tests benutzen"
         redirect_uri: Bitte benutze eine Zeile pro URI
         scopes: Bitte die "Scopes" mit Leerzeichen trennen. Bitte frei lassen für die Verwendung der Default-Werte.
       index:
-        callback_url: Callback URL
+        callback_url: Callback-URL
         name: Name
         new: Neue Applikation
         title: Deine Applikationen
@@ -42,7 +42,7 @@ de:
       show:
         actions: Aktionen
         application_id: Applikations-ID
-        callback_urls: Callback URLs
+        callback_urls: Callback-URLs
         scopes: Scopes
         secret: Secret
         title: 'Applikation: %{name}'
@@ -67,10 +67,11 @@ de:
         application: Applikation
         created_at: erstellt am
         date_format: "%Y-%m-%d %H:%M:%S"
+        scopes: Scopes
         title: Deine autorisierten Applikationen
     errors:
       messages:
-        access_denied: Der Resource Owner oder der Autorisierungs-Server hat die Anfrage verweigert.
+        access_denied: Der Ressourcenbesitzer oder der Autorisierungs-Server hat die Anfrage verweigert.
         credential_flow_not_configured: 'Die Prozedur "Resource Owner Password Credentials" ist fehlgeschlagen: Doorkeeper.configure.resource_owner_from_credentials ist nicht konfiguriert.'
         invalid_client: 'Client-Autorisierung MKIM ist fehlgeschlagen: Unbekannter Client, keine Autorisierung mitgeliefert oder Autorisierungsmethode nicht unterstützt.'
         invalid_grant: Die bereitgestellte Autorisierung ist inkorrekt, abgelaufen, widerrufen, ist mit einem anderen Client verknüpft oder der Redirection URI stimmt nicht mit der Autorisierungs-Anfrage überein.
@@ -79,9 +80,9 @@ de:
         invalid_resource_owner: Die angegebenen Zugangsdaten für den "Resource Owner" sind inkorrekt oder dieser Benutzer existiert nicht.
         invalid_scope: Der angeforderte Scope ist inkorrekt, unbekannt oder fehlerhaft.
         invalid_token:
-          expired: Der Access Token ist abgelaufen
-          revoked: Der Access Token wurde annuliert
-          unknown: Der Access Token ist nicht gültig/korrekt
+          expired: Der Zugriffstoken ist abgelaufen
+          revoked: Der Zugriffsoken wurde annuliert
+          unknown: Der Zugriffsoken ist ungültig
         resource_owner_authenticator_not_configured: 'Die Prozedur "Resource Owner find" ist fehlgeschlagen: Doorkeeper.configure.resource_owner_authenticator ist nicht konfiguriert.'
         server_error: Der Autorisierungs-Server hat ein unerwartetes Problem festgestellt und konnte die Anfrage nicht beenden.
         temporarily_unavailable: Der Autorisierungs-Server ist derzeit auf Grund von temporärer Überlastung oder Wartungsarbeiten am Server nicht in der Lage, die Anfrage zu bearbeiten .
@@ -95,7 +96,7 @@ de:
         destroy:
           notice: Applikation gelöscht.
         update:
-          notice: Applikation geupdated.
+          notice: Applikation aktualisiert.
       authorized_applications:
         destroy:
           notice: Applikation widerrufen.
@@ -103,9 +104,9 @@ de:
       admin:
         nav:
           applications: Applikationen
-          oauth2_provider: OAuth2 Provider
+          oauth2_provider: OAuth2-Anbieter
       application:
-        title: OAuth Autorisierung nötig
+        title: OAuth-Autorisierung nötig
     scopes:
       follow: Nutzer folgen, blocken, entblocken und entfolgen
       read: deine Daten lesen

@@ -1,0 +1,10 @@
+<p><%= @resource.email %> ，嗨呀!</p>
+
+<p>你刚刚在 <%= @instance %> 创建了帐号。</p>
+
+<p>点击下面的链接来完成注册啦 : <br>
+<%= link_to '确认账户', confirmation_url(@resource, confirmation_token: @token) %>
+
+<p>别忘了看看 <%= link_to '使用条款', terms_url %>。</p>
+
+<p> <%= @instance %> 敬上</p>

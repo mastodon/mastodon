@@ -1,51 +1,61 @@
 # frozen_string_literal: true
 
-class Admin::AccountsController < ApplicationController
-  before_action :require_admin!
-  before_action :set_account, except: :index
+module Admin
+  class AccountsController < BaseController
+    before_action :set_account, only: [:show, :subscribe, :unsubscribe, :redownload]
+    before_action :require_remote_account!, only: [:subscribe, :unsubscribe, :redownload]
 
-  layout 'admin'
+    def index
+      @accounts = filtered_accounts.page(params[:page])
+    end
 
-  def index
-    @accounts = Account.alphabetic.paginate(page: params[:page], per_page: 40)
+    def show; end
 
-    @accounts = @accounts.local                             if params[:local].present?
-    @accounts = @accounts.remote                            if params[:remote].present?
-    @accounts = @accounts.where(domain: params[:by_domain]) if params[:by_domain].present?
-    @accounts = @accounts.silenced                          if params[:silenced].present?
-    @accounts = @accounts.recent                            if params[:recent].present?
-    @accounts = @accounts.suspended                         if params[:suspended].present?
-  end
+    def subscribe
+      Pubsubhubbub::SubscribeWorker.perform_async(@account.id)
+      redirect_to admin_account_path(@account.id)
+    end
 
-  def show; end
+    def unsubscribe
+      UnsubscribeService.new.call(@account)
+      redirect_to admin_account_path(@account.id)
+    end
 
-  def suspend
-    Admin::SuspensionWorker.perform_async(@account.id)
-    redirect_to admin_accounts_path
-  end
+    def redownload
+      @account.avatar = @account.avatar_remote_url
+      @account.header = @account.header_remote_url
+      @account.save!
 
-  def unsuspend
-    @account.update(suspended: false)
-    redirect_to admin_accounts_path
-  end
+      redirect_to admin_account_path(@account.id)
+    end
 
-  def silence
-    @account.update(silenced: true)
-    redirect_to admin_accounts_path
-  end
+    private
 
-  def unsilence
-    @account.update(silenced: false)
-    redirect_to admin_accounts_path
-  end
+    def set_account
+      @account = Account.find(params[:id])
+    end
 
-  private
+    def require_remote_account!
+      redirect_to admin_account_path(@account.id) if @account.local?
+    end
 
-  def set_account
-    @account = Account.find(params[:id])
-  end
+    def filtered_accounts
+      AccountFilter.new(filter_params).results
+    end
 
-  def account_params
-    params.require(:account).permit(:silenced, :suspended)
+    def filter_params
+      params.permit(
+        :local,
+        :remote,
+        :by_domain,
+        :silenced,
+        :recent,
+        :suspended,
+        :username,
+        :display_name,
+        :email,
+        :ip
+      )
+    end
   end
 end

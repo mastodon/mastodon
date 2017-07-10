@@ -1,0 +1,9 @@
+- content_for :page_title do
+  = t('settings.two_factor_authentication')
+
+%p.hint= t('two_factor_authentication.recovery_instructions_html')
+
+%ol.recovery-codes
+  - @recovery_codes.each do |code|
+    %li<
+      %samp= code

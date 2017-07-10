@@ -1,6 +1,35 @@
+Warden::Manager.after_set_user except: :fetch do |user, warden|
+  SessionActivation.deactivate warden.cookies.signed['_session_id']
+
+  warden.cookies.signed['_session_id'] = {
+    value: user.activate_session(warden.request),
+    expires: 1.year.from_now,
+    httponly: true,
+  }
+end
+
+Warden::Manager.after_fetch do |user, warden|
+  if user.session_active?(warden.cookies.signed['_session_id'] || warden.raw_session['auth_id'])
+    warden.cookies.signed['_session_id'] = {
+      value: warden.cookies.signed['_session_id'] || warden.raw_session['auth_id'],
+      expires: 1.year.from_now,
+      httponly: true,
+    }
+  else
+    warden.logout
+    throw :warden, message: :unauthenticated
+  end
+end
+
+Warden::Manager.before_logout do |_, warden|
+  SessionActivation.deactivate warden.cookies.signed['_session_id']
+  warden.cookies.delete('_session_id')
+end
+
 Devise.setup do |config|
   config.warden do |manager|
     manager.default_strategies(scope: :user).unshift :two_factor_authenticatable
+    manager.default_strategies(scope: :user).unshift :two_factor_backupable
   end
 
   # The secret key used by Devise. Devise uses this key to generate
@@ -74,7 +103,8 @@ Devise.setup do |config|
   # It will change confirmation, password recovery and other workflows
   # to behave the same regardless if the e-mail provided was right or wrong.
   # Does not affect registerable.
-  # config.paranoid = true
+  # See : https://github.com/plataformatec/devise/wiki/How-To:-Using-paranoid-mode,-avoid-user-enumeration-on-registerable
+  config.paranoid = true
 
   # By default Devise will store the user in session. You can skip storage for
   # particular strategies by setting this option.
