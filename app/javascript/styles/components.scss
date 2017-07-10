@@ -733,6 +733,23 @@
   float: left;
   height: 18px;
   width: 18px;
+
+  // Dropdown style override for centering on the icon
+  .dropdown--active {
+    position: relative;
+
+    .dropdown__content.dropdown__right {
+      left: calc(50% + 3px);
+      right: initial;
+      transform: translate(-50%, 0);
+      top: 22px;
+    }
+
+    &::after {
+      right: 1px;
+      bottom: -2px;
+    }
+  }
 }
 
 .detailed-status__action-bar-dropdown {
