@@ -66,6 +66,7 @@ class Status < ApplicationRecord
   scope :without_reblogs, -> { where('statuses.reblog_of_id IS NULL') }
   scope :with_public_visibility, -> { where(visibility: :public) }
   scope :tagged_with, ->(tag) { joins(:statuses_tags).where(statuses_tags: { tag_id: tag }) }
+  scope :tagged_with_multiple, ->(statuses) { where(id: statuses) }
   scope :local_only, -> { left_outer_joins(:account).where(accounts: { domain: nil }) }
   scope :excluding_silenced_accounts, -> { left_outer_joins(:account).where(accounts: { silenced: false }) }
   scope :including_silenced_accounts, -> { left_outer_joins(:account).where(accounts: { silenced: true }) }
@@ -141,7 +142,19 @@ class Status < ApplicationRecord
     end
 
     def as_tag_timeline(tag, account = nil, local_only = false)
-      query = timeline_scope(local_only).tagged_with(tag)
+      #query = timeline_scope(local_only).tagged_with(tag)
+      tag_id_list = tag.pluck(:id)
+      sql = <<-SQL
+        SELECT status_id AS id
+        FROM
+          (SELECT status_id, COUNT(status_id) AS num_of_tags
+          FROM statuses, tags, statuses_tags
+          WHERE (tag_id IN (:tag_id_list)) AND (statuses.id = status_id) AND (tags.id = tag_id)
+          GROUP BY status_id) AS sub_table
+        WHERE num_of_tags = :num_of_tags
+      SQL
+      statuses_with_tags = Status.find_by_sql([sql, {:tag_id_list => tag_id_list, :num_of_tags => tag_id_list.length}])
+      query = timeline_scope(local_only).tagged_with_multiple(statuses_with_tags)
 
       apply_timeline_filters(query, account, local_only)
     end
