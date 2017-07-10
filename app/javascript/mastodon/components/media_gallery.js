@@ -27,6 +27,24 @@ class Item extends React.PureComponent {
     autoPlayGif: false,
   };
 
+  handleMouseEnter = (e) => {
+    if (this.hoverToPlay()) {
+      e.target.play();
+    }
+  }
+
+  handleMouseLeave = (e) => {
+    if (this.hoverToPlay()) {
+      e.target.pause();
+      e.target.currentTime = 0;
+    }
+  }
+
+  hoverToPlay () {
+    const { attachment, autoPlayGif } = this.props;
+    return !autoPlayGif && attachment.get('type') === 'gifv';
+  }
+
   handleClick = (e) => {
     const { index, onClick } = this.props;
 
@@ -124,6 +142,8 @@ class Item extends React.PureComponent {
             role='application'
             src={attachment.get('url')}
             onClick={this.handleClick}
+            onMouseEnter={this.handleMouseEnter}
+            onMouseLeave={this.handleMouseLeave}
             autoPlay={autoPlay}
             loop
             muted
