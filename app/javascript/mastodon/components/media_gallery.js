@@ -24,7 +24,7 @@ class Item extends React.PureComponent {
   };
 
   static defaultProps = {
-    autoPlayGif: true,
+    autoPlayGif: false,
   };
 
   handleClick = (e) => {
@@ -156,7 +156,7 @@ export default class MediaGallery extends React.PureComponent {
   };
 
   static defaultProps = {
-    autoPlayGif: true,
+    autoPlayGif: false,
   };
 
   state = {
