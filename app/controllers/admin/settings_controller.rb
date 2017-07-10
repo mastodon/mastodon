@@ -11,8 +11,15 @@ module Admin
       site_terms
       open_registrations
       closed_registrations_message
+      open_deletion
+      timeline_preview
     ).freeze
-    BOOLEAN_SETTINGS = %w(open_registrations).freeze
+
+    BOOLEAN_SETTINGS = %w(
+      open_registrations
+      open_deletion
+      timeline_preview
+    ).freeze
 
     def edit
       @settings = Setting.all_as_records

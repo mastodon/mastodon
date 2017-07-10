@@ -12,54 +12,53 @@
       %tr
         %td
           %strong= t('admin.settings.contact_information.label')
-        %td= text_field_tag :site_contact_username,
-          @settings['site_contact_username'].value,
-          place_holder: t('admin.settings.contact_information.username')
+        %td= text_field_tag :site_contact_username, @settings['site_contact_username'].value, place_holder: t('admin.settings.contact_information.username')
       %tr
         %td
           %strong= t('admin.accounts.email')
-        %td= text_field_tag :site_contact_email,
-          @settings['site_contact_email'].value,
-          place_holder: t('admin.settings.contact_information.email')
+        %td= text_field_tag :site_contact_email, @settings['site_contact_email'].value, place_holder: t('admin.settings.contact_information.email')
       %tr
         %td
           %strong= t('admin.settings.site_title')
-        %td= text_field_tag :site_title,
-          @settings['site_title'].value
+        %td= text_field_tag :site_title, @settings['site_title'].value
       %tr
         %td
           %strong= t('admin.settings.site_description.title')
           %p= t('admin.settings.site_description.desc_html')
-        %td= text_area_tag :site_description,
-          @settings['site_description'].value,
-          rows: 8
+        %td= text_area_tag :site_description, @settings['site_description'].value, rows: 8
       %tr
         %td
           %strong= t('admin.settings.site_description_extended.title')
           %p= t('admin.settings.site_description_extended.desc_html')
-        %td= text_area_tag :site_extended_description,
-          @settings['site_extended_description'].value,
-          rows: 8
+        %td= text_area_tag :site_extended_description, @settings['site_extended_description'].value, rows: 8
       %tr
         %td
           %strong= t('admin.settings.site_terms.title')
           %p= t('admin.settings.site_terms.desc_html')
-        %td= text_area_tag :site_terms,
-          @settings['site_terms'].value,
-          rows: 8
+        %td= text_area_tag :site_terms, @settings['site_terms'].value, rows: 8
       %tr
         %td
           %strong= t('admin.settings.registrations.open.title')
+          %p= t('admin.settings.registrations.open.desc_html')
         %td
-          = select_tag :open_registrations,
-          options_for_select({ t('admin.settings.registrations.open.disabled') => false, t('admin.settings.registrations.open.enabled') => true }, @settings['open_registrations'].value)
+          = select_tag :open_registrations, options_for_select({ t('simple_form.no') => false, t('simple_form.yes') => true }, @settings['open_registrations'].value)
       %tr
         %td
           %strong= t('admin.settings.registrations.closed_message.title')
           %p= t('admin.settings.registrations.closed_message.desc_html')
-        %td= text_area_tag :closed_registrations_message,
-          @settings['closed_registrations_message'].value,
-          rows: 8
+        %td= text_area_tag :closed_registrations_message, @settings['closed_registrations_message'].value, rows: 8
+      %tr
+        %td
+          %strong= t('admin.settings.registrations.deletion.title')
+          %p= t('admin.settings.registrations.deletion.desc_html')
+        %td
+          = select_tag :open_deletion, options_for_select({ t('simple_form.no') => false, t('simple_form.yes') => true }, @settings['open_deletion'].value)
+      %tr
+        %td
+          %strong= t('admin.settings.timeline_preview.title')
+          %p= t('admin.settings.timeline_preview.desc_html')
+        %td
+          = select_tag :timeline_preview, options_for_select({ t('simple_form.no') => false, t('simple_form.yes') => true }, @settings['timeline_preview'].value)
 
   .simple_form.actions
     = button_tag t('generic.save_changes'), type: :submit, class: :btn

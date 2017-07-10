@@ -176,9 +176,14 @@ en:
           desc_html: Displayed on frontpage when registrations are closed<br>You can use HTML tags
           title: Closed registration message
         open:
-          disabled: Disabled
-          enabled: Enabled
+          desc_html: Allow anyone to create an account
           title: Open registration
+        deletion:
+          desc_html: Allow anyone to delete their account
+          title: Open deletion
+      timeline_preview:
+        desc_html: Display public timeline on landing page
+        title: Timeline preview
       setting: Setting
       site_description:
         desc_html: Displayed as a paragraph on the frontpage and used as a meta tag.<br>You can use HTML tags, in particular <code>&lt;a&gt;</code> and <code>&lt;em&gt;</code>.
@@ -188,7 +193,7 @@ en:
         title: Extended site description
       site_terms:
         desc_html: Displayed on terms page<br>You can use HTML tags
-        title: Site Privacy Policy
+        title: Privacy policy
       site_title: Site title
       title: Site Settings
     subscriptions:
