@@ -421,6 +421,19 @@
   cursor: pointer;
 }
 
+// Extra clickable area in the status gutter
+@media screen and (min-width: 1024px) {
+  .status__content--with-action > div::after {
+    content: '';
+    display: block;
+    width: 68px;
+    height: calc(100% + 10px);
+    position: absolute;
+    left: -68px;
+    bottom: -40px;
+  }
+}
+
 .status__content,
 .reply-indicator__content {
   position: relative;
