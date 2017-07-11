@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { cancelReport, changeReportComment, submitReport } from '../../actions/reports';
+import { changeReportComment, submitReport } from '../../actions/reports';
 import { refreshAccountTimeline } from '../../actions/timelines';
 import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
@@ -35,7 +35,9 @@ const makeMapStateToProps = () => {
   return mapStateToProps;
 };
 
-class Report extends React.PureComponent {
+@connect(makeMapStateToProps)
+@injectIntl
+export default class Report extends React.PureComponent {
 
   static contextTypes = {
     router: PropTypes.object,
@@ -52,7 +54,7 @@ class Report extends React.PureComponent {
 
   componentWillMount () {
     if (!this.props.account) {
-      this.context.router.replace('/');
+      this.context.router.history.replace('/');
     }
   }
 
@@ -76,7 +78,7 @@ class Report extends React.PureComponent {
 
   handleSubmit = () => {
     this.props.dispatch(submitReport());
-    this.context.router.replace('/');
+    this.context.router.history.replace('/');
   }
 
   render () {
@@ -121,5 +123,3 @@ class Report extends React.PureComponent {
   }
 
 }
-
-export default connect(makeMapStateToProps)(injectIntl(Report));

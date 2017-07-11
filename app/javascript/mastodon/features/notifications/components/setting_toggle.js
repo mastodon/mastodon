@@ -3,22 +3,23 @@ import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import Toggle from 'react-toggle';
 
-class SettingToggle extends React.PureComponent {
+export default class SettingToggle extends React.PureComponent {
 
   static propTypes = {
+    prefix: PropTypes.string,
     settings: ImmutablePropTypes.map.isRequired,
     settingKey: PropTypes.array.isRequired,
     label: PropTypes.node.isRequired,
     onChange: PropTypes.func.isRequired,
   }
 
-  onChange = (e) => {
-    this.props.onChange(this.props.settingKey, e.target.checked);
+  onChange = ({ target }) => {
+    this.props.onChange(this.props.settingKey, target.checked);
   }
 
   render () {
-    const { settings, settingKey, label, onChange } = this.props;
-    const id = `setting-toggle-${settingKey.join('-')}`;
+    const { prefix, settings, settingKey, label } = this.props;
+    const id = ['setting-toggle', prefix, ...settingKey].filter(Boolean).join('-');
 
     return (
       <div className='setting-toggle'>
@@ -29,5 +30,3 @@ class SettingToggle extends React.PureComponent {
   }
 
 }
-
-export default SettingToggle;

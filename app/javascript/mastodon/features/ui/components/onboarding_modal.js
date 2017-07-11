@@ -72,7 +72,7 @@ PageTwo.propTypes = {
   me: ImmutablePropTypes.map.isRequired,
 };
 
-const PageThree = ({ me, domain }) => (
+const PageThree = ({ me }) => (
   <div className='onboarding-modal__page onboarding-modal__page-three'>
     <div className='figure non-interactive'>
       <Search
@@ -95,7 +95,6 @@ const PageThree = ({ me, domain }) => (
 
 PageThree.propTypes = {
   me: ImmutablePropTypes.map.isRequired,
-  domain: PropTypes.string.isRequired,
 };
 
 const PageFour = ({ domain, intl }) => (
@@ -168,7 +167,9 @@ const mapStateToProps = state => ({
   domain: state.getIn(['meta', 'domain']),
 });
 
-class OnboardingModal extends React.PureComponent {
+@connect(mapStateToProps)
+@injectIntl
+export default class OnboardingModal extends React.PureComponent {
 
   static propTypes = {
     onClose: PropTypes.func.isRequired,
@@ -187,7 +188,7 @@ class OnboardingModal extends React.PureComponent {
     this.pages = [
       <PageOne acct={me.get('acct')} domain={domain} />,
       <PageTwo me={me} />,
-      <PageThree me={me} domain={domain} />,
+      <PageThree me={me} />,
       <PageFour domain={domain} intl={intl} />,
       <PageSix admin={admin} domain={domain} />,
     ];
@@ -323,5 +324,3 @@ class OnboardingModal extends React.PureComponent {
   }
 
 }
-
-export default connect(mapStateToProps)(injectIntl(OnboardingModal));

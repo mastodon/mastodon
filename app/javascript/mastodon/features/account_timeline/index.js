@@ -19,7 +19,8 @@ const mapStateToProps = (state, props) => ({
   me: state.getIn(['meta', 'me']),
 });
 
-class AccountTimeline extends ImmutablePureComponent {
+@connect(mapStateToProps)
+export default class AccountTimeline extends ImmutablePureComponent {
 
   static propTypes = {
     params: PropTypes.object.isRequired,
@@ -77,5 +78,3 @@ class AccountTimeline extends ImmutablePureComponent {
   }
 
 }
-
-export default connect(mapStateToProps)(AccountTimeline);

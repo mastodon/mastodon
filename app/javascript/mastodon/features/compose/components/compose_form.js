@@ -7,15 +7,13 @@ import ReplyIndicatorContainer from '../containers/reply_indicator_container';
 import AutosuggestTextarea from '../../../components/autosuggest_textarea';
 import { debounce } from 'lodash';
 import UploadButtonContainer from '../containers/upload_button_container';
-import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
-import Toggle from 'react-toggle';
+import { defineMessages, injectIntl } from 'react-intl';
 import Collapsable from '../../../components/collapsable';
 import SpoilerButtonContainer from '../containers/spoiler_button_container';
 import PrivacyDropdownContainer from '../containers/privacy_dropdown_container';
 import SensitiveButtonContainer from '../containers/sensitive_button_container';
 import EmojiPickerDropdown from './emoji_picker_dropdown';
 import UploadFormContainer from '../containers/upload_form_container';
-import TextIconButton from './text_icon_button';
 import WarningContainer from '../containers/warning_container';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { length } from 'stringz';
@@ -27,7 +25,8 @@ const messages = defineMessages({
   publishLoud: { id: 'compose_form.publish_loud', defaultMessage: '{publish}!' },
 });
 
-class ComposeForm extends ImmutablePureComponent {
+@injectIntl
+export default class ComposeForm extends ImmutablePureComponent {
 
   static propTypes = {
     intl: PropTypes.object.isRequired,
@@ -141,7 +140,6 @@ class ComposeForm extends ImmutablePureComponent {
     const text = [this.props.spoiler_text, this.props.text].join('');
 
     let publishText    = '';
-    let reply_to_other = false;
 
     if (this.props.privacy === 'private' || this.props.privacy === 'direct') {
       publishText = <span className='compose-form__publish-private'><i className='fa fa-lock' /> {intl.formatMessage(messages.publish)}</span>;
@@ -202,5 +200,3 @@ class ComposeForm extends ImmutablePureComponent {
   }
 
 }
-
-export default injectIntl(ComposeForm);

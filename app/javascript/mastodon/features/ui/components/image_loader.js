@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-class ImageLoader extends React.PureComponent {
+export default class ImageLoader extends React.PureComponent {
 
   static propTypes = {
     alt: PropTypes.string,
@@ -41,7 +41,7 @@ class ImageLoader extends React.PureComponent {
 
   render() {
     const { alt, src, previewSrc, width, height } = this.props;
-    const { loading, error } = this.state;
+    const { loading } = this.state;
 
     return (
       <div className='image-loader'>
@@ -65,5 +65,3 @@ class ImageLoader extends React.PureComponent {
   }
 
 }
-
-export default ImageLoader;
