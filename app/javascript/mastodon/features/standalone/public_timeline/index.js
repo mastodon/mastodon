@@ -38,7 +38,7 @@ export default class PublicTimeline extends React.PureComponent {
 
     this.polling = setInterval(() => {
       dispatch(refreshPublicTimeline());
-    }, 5000);
+    }, 3000);
   }
 
   componentWillUnmount () {
