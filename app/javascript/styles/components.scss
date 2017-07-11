@@ -421,18 +421,77 @@
   cursor: pointer;
 }
 
-// Extra clickable area in the status gutter
-@media screen and (min-width: 1024px) {
+// --- Extra clickable area in the status gutter ---
+.ui.wide {
+  @mixin xtraspaces-full {
+    height: calc(100% + 10px);
+    bottom: -40px;
+  }
+  @mixin xtraspaces-short {
+    height: calc(100% - 35px);
+    bottom: 0;
+  }
+
+  // Avi must go on top if the toot is too short
+  .status__avatar {
+    z-index: 10;
+  }
+
+  // Base styles
   .status__content--with-action > div::after {
     content: '';
     display: block;
-    width: 68px;
-    height: calc(100% + 10px);
+    width: 64px;
     position: absolute;
     left: -68px;
-    bottom: -40px;
+
+    // more than 4 never fit on FullHD, short
+    @include xtraspaces-short;
   }
+
+  @media screen and (min-width: 1800px) {
+    // 4, very wide screen
+    .column:nth-child(2):nth-last-child(4) {
+      &, & ~ .column {
+        .status__content--with-action > div::after {
+          @include xtraspaces-full;
+        }
+      }
+    }
+  }
+
+  // 1 or 2, always fit
+  .column:nth-child(2):nth-last-child(1),
+  .column:nth-child(2):nth-last-child(2),
+  .column:nth-child(2):nth-last-child(3) {
+    &, & ~ .column {
+      .status__content--with-action > div::after {
+        @include xtraspaces-full;
+      }
+    }
+  }
+
+  @media screen and (max-width: 1440px) {
+    // 3, small screen
+    .column:nth-child(2):nth-last-child(3) {
+      &, & ~ .column {
+        .status__content--with-action > div::after {
+          @include xtraspaces-short;
+        }
+      }
+    }
+  }
+
+  // Phone or iPad
+  @media screen and (max-width: 1060px) {
+    .status__content--with-action > div::after {
+      display: none;
+    }
+  }
+
+  // I am very sorry
 }
+// --- end extra clickable spaces ---
 
 .status__content,
 .reply-indicator__content {
