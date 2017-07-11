@@ -11,8 +11,15 @@ module Admin
       site_terms
       open_registrations
       closed_registrations_message
+      open_deletion
+      timeline_preview
     ).freeze
-    BOOLEAN_SETTINGS = %w(open_registrations).freeze
+
+    BOOLEAN_SETTINGS = %w(
+      open_registrations
+      open_deletion
+      timeline_preview
+    ).freeze
 
     def edit
       @settings = Setting.all_as_records
@@ -24,7 +31,7 @@ module Admin
         setting.update(value: value_for_update(key, value))
       end
 
-      flash[:notice] = 'Success!'
+      flash[:notice] = I18n.t('generic.changes_saved_msg')
       redirect_to edit_admin_settings_path
     end
 

@@ -40,7 +40,7 @@ export default class StatusActionBar extends ImmutablePureComponent {
     onBlock: PropTypes.func,
     onReport: PropTypes.func,
     onMuteConversation: PropTypes.func,
-    me: PropTypes.number.isRequired,
+    me: PropTypes.number,
     withDismiss: PropTypes.bool,
     intl: PropTypes.object.isRequired,
   };
@@ -97,6 +97,7 @@ export default class StatusActionBar extends ImmutablePureComponent {
     const { status, me, intl, withDismiss } = this.props;
     const reblogDisabled = status.get('visibility') === 'private' || status.get('visibility') === 'direct';
     const mutingConversation = status.get('muted');
+    const anonymousAccess = !me;
 
     let menu = [];
     let reblogIcon = 'retweet';
@@ -137,12 +138,12 @@ export default class StatusActionBar extends ImmutablePureComponent {
 
     return (
       <div className='status__action-bar'>
-        <IconButton className='status__action-bar-button' title={replyTitle} icon={replyIcon} onClick={this.handleReplyClick} />
-        <IconButton className='status__action-bar-button' disabled={reblogDisabled} active={status.get('reblogged')} title={reblogDisabled ? intl.formatMessage(messages.cannot_reblog) : intl.formatMessage(messages.reblog)} icon={reblogIcon} onClick={this.handleReblogClick} />
-        <IconButton className='status__action-bar-button star-icon' animate active={status.get('favourited')} title={intl.formatMessage(messages.favourite)} icon='star' onClick={this.handleFavouriteClick} />
+        <IconButton className='status__action-bar-button' disabled={anonymousAccess} title={replyTitle} icon={replyIcon} onClick={this.handleReplyClick} />
+        <IconButton className='status__action-bar-button' disabled={anonymousAccess || reblogDisabled} active={status.get('reblogged')} title={reblogDisabled ? intl.formatMessage(messages.cannot_reblog) : intl.formatMessage(messages.reblog)} icon={reblogIcon} onClick={this.handleReblogClick} />
+        <IconButton className='status__action-bar-button star-icon' disabled={anonymousAccess} animate active={status.get('favourited')} title={intl.formatMessage(messages.favourite)} icon='star' onClick={this.handleFavouriteClick} />
 
         <div className='status__action-bar-dropdown'>
-          <DropdownMenu items={menu} icon='ellipsis-h' size={18} direction='right' ariaLabel='More' />
+          <DropdownMenu disabled={anonymousAccess} items={menu} icon='ellipsis-h' size={18} direction='right' ariaLabel='More' />
         </div>
       </div>
     );

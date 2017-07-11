@@ -1,5 +1,5 @@
 import api, { getLinks } from '../api';
-import Immutable from 'immutable';
+import { Map as ImmutableMap, List as ImmutableList } from 'immutable';
 
 export const TIMELINE_UPDATE  = 'TIMELINE_UPDATE';
 export const TIMELINE_DELETE  = 'TIMELINE_DELETE';
@@ -66,13 +66,13 @@ export function refreshTimelineRequest(timeline, skipLoading) {
 
 export function refreshTimeline(timelineId, path, params = {}) {
   return function (dispatch, getState) {
-    const timeline = getState().getIn(['timelines', timelineId], Immutable.Map());
+    const timeline = getState().getIn(['timelines', timelineId], ImmutableMap());
 
     if (timeline.get('isLoading') || timeline.get('online')) {
       return;
     }
 
-    const ids      = timeline.get('items', Immutable.List());
+    const ids      = timeline.get('items', ImmutableList());
     const newestId = ids.size > 0 ? ids.first() : null;
 
     let skipLoading = timeline.get('loaded');
@@ -111,8 +111,8 @@ export function refreshTimelineFail(timeline, error, skipLoading) {
 
 export function expandTimeline(timelineId, path, params = {}) {
   return (dispatch, getState) => {
-    const timeline = getState().getIn(['timelines', timelineId], Immutable.Map());
-    const ids      = timeline.get('items', Immutable.List());
+    const timeline = getState().getIn(['timelines', timelineId], ImmutableMap());
+    const ids      = timeline.get('items', ImmutableList());
 
     if (timeline.get('isLoading') || ids.size === 0) {
       return;

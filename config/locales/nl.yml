@@ -3,23 +3,12 @@ nl:
   about:
     about_mastodon: Mastodon is een <em>vrij, gratis en open-source</em> sociaal netwerk. Een <em>gedecentraliseerd</em> alternatief voor commerciële platforms. Het voorkomt de risico's van een enkel bedrijf dat jouw communicatie monopoliseert. Kies een server die je vertrouwt &mdash; welke je ook kiest, je kunt met elke andere server communiceren. Iedereen kan een eigen Mastodon-server draaien en naadloos deelnemen in het <em>sociale netwerk</em>.
     about_this: Over deze server
-    apps: Apps
     business_email: 'E-mailadres:'
     closed_registrations: Registreren op deze server is momenteel uitgeschakeld.
     contact: Contact
     description_headline: Wat is %{domain}?
     domain_count_after: andere servers
     domain_count_before: Verbonden met
-    features:
-      api: Open API voor apps en diensten
-      blocks: Uitgebreide blokkeer- en negeerhulpmiddelen
-      characters: 500 tekens per bericht
-      chronology: Tijdlijnen zijn chronologisch
-      ethics: 'Ethisch design: geen advertenties, geen spionage'
-      gifv: GIFV-sets en korte video's
-      privacy: Nauwkeurige privacyinstellingen per toot (bericht)
-      public: Openbare tijdlijnen
-    features_headline: Wat maakt Mastodon anders
     get_started: Beginnen
     links: Links
     other_instances: Andere servers
@@ -73,8 +62,6 @@ nl:
           desc_html: Wordt op de voorpagina weergegeven wanneer registratie van nieuwe accounts is uitgeschakeld<br>En ook hier kan je HTML gebruiken
           title: Bericht wanneer registratie is uitgeschakeld
         open:
-          disabled: Uitgeschakeld
-          enabled: Ingeschakeld
           title: Open registratie
       setting: Instelling
       site_description:
@@ -89,7 +76,7 @@ nl:
   admin_mailer:
     new_report:
       body: "%{reporter} heeft %{target} gerapporteerd"
-      subject: Nieuwe toots gerapporteerd op %{instance} (#%{id})     
+      subject: Nieuwe toots gerapporteerd op %{instance} (#%{id})
   application_mailer:
     settings: 'E-mailvoorkeuren wijzigen: %{link}'
     signature: Mastodon-meldingen van %{instance}
@@ -131,7 +118,7 @@ nl:
     bad_password_msg: Goed geprobeerd hackers! Ongeldig wachtwoord
     confirm_password: Voer jouw huidige wachtwoord in om jouw identiteit te bevestigen
     description_html: Hierdoor worden alle gegevens van jouw account <strong>permanent, onomkeerbaar</strong> verwijderd en wordt deze gedeactiveerd. Om toekomstige identiteitsdiefstal te voorkomen, kan op deze server jouw gebruikersnaam niet meer gebruikt worden.
-    proceed: Account verwijderen 
+    proceed: Account verwijderen
     success_msg: Jouw account is succesvol verwijderd
     warning_html: We kunnen alleen garanderen dat jouw gegevens op deze server worden verwijderd. Berichten (toots), incl. media, die veel zijn gedeeld laten mogelijk sporen achter. Offline servers en servers die niet meer op jouw updates zijn geabonneerd zullen niet hun databases updaten.
     warning_title: Verwijdering gegevens op andere servers
@@ -177,7 +164,7 @@ nl:
       following: Volglijst
       muting: Negeerlijst
     upload: Uploaden
-  landing_strip_html: <strong>%{name}</strong> is een gebruiker op %{link_to_root_path}. Je kunt deze volgen en ermee communiceren als je ergens in deze fediverse een account hebt.
+  landing_strip_html: "<strong>%{name}</strong> is een gebruiker op %{link_to_root_path}. Je kunt deze volgen en ermee communiceren als je ergens in deze fediverse een account hebt."
   landing_strip_signup_html: Als je dat niet hebt, kun je je <a href="%{sign_up_path}">hier registreren</a>.
   notification_mailer:
     digest:
@@ -286,7 +273,7 @@ nl:
     generate_recovery_codes: Herstelcodes genereren
     instructions_html: "<strong>Scan deze QR-code in Google Authenticator of een soortgelijke app op jouw mobiele telefoon</strong>. Van nu af aan genereert deze app aanmeldcodes die je bij het aanmelden moet invoeren."
     lost_recovery_codes: Met herstelcodes kun je toegang tot jouw account krijgen wanneer je jouw telefoon bent kwijtgeraakt. Wanneer je jouw herstelcodes bent kwijtgeraakt, kan je ze hier opnieuw genereren. Jouw oude herstelcodes zijn daarna ongeldig.
-    manual_instructions: 'Hieronder vind je de geheime code in platte tekst. Voor het geval je de QR-code niet kunt scannen en het handmatig moet invoeren.'
+    manual_instructions: Hieronder vind je de geheime code in platte tekst. Voor het geval je de QR-code niet kunt scannen en het handmatig moet invoeren.
     recovery_codes_regenerated: Opnieuw genereren herstelcodes geslaagd
     recovery_instructions_html: Wanneer je ooit de toegang verliest tot jouw telefoon, kan je met behulp van een van de herstelcodes hieronder opnieuw toegang krijgen tot jouw account. Zorg ervoor dat je de herstelcodes op een veilige plek bewaard. (Je kunt ze bijvoorbeeld printen en ze samen met andere belangrijke documenten bewaren.)
     setup: Instellen

@@ -116,10 +116,6 @@
     .wrapper {
       padding: 20px;
     }
-
-    .features-list {
-      display: block;
-    }
   }
 }
 
@@ -301,80 +297,438 @@
   }
 }
 
-.features-list {
+.features-list__row {
   display: flex;
-  margin-bottom: 20px;
+  padding: 10px 0;
+  justify-content: space-between;
 
-  .features-list__column {
-    flex: 1 1 0;
+  &:first-child {
+    padding-top: 0;
+  }
 
-    ul {
-      list-style: none;
+  .visual {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    margin-left: 15px;
+
+    .fa {
+      display: block;
+      color: $ui-primary-color;
+      font-size: 48px;
     }
+  }
 
-    li {
-      margin: 0;
+  .text {
+    font-size: 16px;
+    line-height: 30px;
+    color: lighten($ui-base-color, 26%);
+
+    h6 {
+      font-weight: 500;
+      color: $ui-primary-color;
     }
   }
 }
 
-.screenshot-with-signup {
-  display: flex;
-  margin-bottom: 20px;
+.landing-page {
+  .header-wrapper {
+    padding-top: 15px;
+    background: $ui-base-color;
+    background: linear-gradient(150deg, lighten($ui-base-color, 8%), $ui-base-color);
+    position: relative;
 
-  .mascot {
-    flex: 1 1 auto;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-
-    img {
-      display: block;
+    .mascot-container {
+      max-width: 800px;
       margin: 0 auto;
-      max-width: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 100%;
+    }
+
+    .mascot {
+      position: absolute;
+      bottom: -14px;
+      width: auto;
       height: auto;
+      left: 60px;
+      z-index: 3;
     }
   }
 
-  .simple_form,
-  .closed-registrations-message {
-    width: 300px;
-    flex: 0 0 auto;
-    background: rgba(darken($ui-base-color, 7%), 0.5);
-    padding: 14px;
-    border-radius: 4px;
-    box-shadow: 0 0 15px rgba($base-shadow-color, 0.4);
+  p,
+  li {
+    font: inherit;
+    font-weight: inherit;
+    margin-bottom: 0;
+  }
 
-    .actions {
-      margin-bottom: 0;
+  .header {
+    line-height: 30px;
+    overflow: hidden;
+
+    .container {
+      display: flex;
+      justify-content: space-between;
     }
 
-    .info {
-      text-align: center;
+    .hero {
+      margin-top: 50px;
+      align-items: center;
+      position: relative;
+
+      .floats {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+
+        img {
+          position: absolute;
+          transition: all 0.1s linear;
+          animation-name: floating;
+          animation-duration: 1.7s;
+          animation-iteration-count: infinite;
+          animation-direction: alternate;
+          animation-timing-function: linear;
+          z-index: 2;
+        }
+
+        .float-1 {
+          height: 170px;
+          right: -120px;
+          bottom: 0;
+        }
+
+        .float-2 {
+          height: 100px;
+          right: 210px;
+          bottom: 0;
+          animation-delay: 0.2s;
+        }
+
+        .float-3 {
+          height: 140px;
+          right: 110px;
+          top: -30px;
+          animation-delay: 0.1s;
+        }
+      }
+
+      .simple_form,
+      .closed-registrations-message {
+        background: darken($ui-base-color, 4%);
+        width: 280px;
+        padding: 15px 20px;
+        border-radius: 4px 4px 0 0;
+        line-height: initial;
+        position: relative;
+        z-index: 4;
+
+        .actions {
+          margin-bottom: 0;
+
+          button,
+          .button,
+          .block-button {
+            margin-bottom: 0;
+          }
+        }
+      }
+
+      .heading {
+        position: relative;
+        z-index: 4;
+        padding-bottom: 150px;
+      }
+
+      .closed-registrations-message {
+        min-height: 330px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+    }
+
+    ul {
+      list-style: none;
+      margin: 0;
+
+      li {
+        display: inline-block;
+        vertical-align: bottom;
+        margin: 0;
+
+        &:first-child a {
+          padding-left: 0;
+        }
+
+        &:last-child a {
+          padding-right: 0;
+        }
+      }
+    }
+
+    .links {
+      position: relative;
+      z-index: 4;
 
       a {
-        color: $ui-secondary-color;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: $ui-primary-color;
+        text-decoration: none;
+        padding: 12px 16px;
+        line-height: 32px;
+        font-family: 'mastodon-font-display', sans-serif;
+        font-weight: 500;
+        font-size: 14px;
+
+        &:hover {
+          color: $ui-secondary-color;
+        }
+      }
+
+      .brand {
+        a {
+          padding-left: 0;
+          color: $white;
+        }
+
+        img {
+          width: 32px;
+          height: 32px;
+          margin-right: 10px;
+        }
       }
     }
   }
 
-  @media screen and (max-width: 625px) {
-    .mascot {
-      display: none;
+  .container {
+    width: 100%;
+    box-sizing: border-box;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .wrapper {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0;
+  }
+
+  .learn-more-cta {
+    background: darken($ui-base-color, 4%);
+    padding: 50px 0;
+  }
+
+  h3 {
+    font-family: 'mastodon-font-display', sans-serif;
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 500;
+    margin-bottom: 20px;
+    color: $ui-primary-color;
+  }
+
+  p {
+    font-size: 16px;
+    line-height: 30px;
+    color: lighten($ui-base-color, 26%);
+  }
+
+  .features {
+    padding: 50px 0;
+
+    .container {
+      display: flex;
+    }
+  }
+
+  #mastodon-timeline {
+    -webkit-overflow-scrolling: touch;
+    -ms-overflow-style: -ms-autohiding-scrollbar;
+    font-family: 'mastodon-font-sans-serif', sans-serif;
+    font-size: 13px;
+    line-height: 18px;
+    font-weight: 400;
+    color: $primary-text-color;
+    width: 330px;
+    margin-right: 30px;
+    flex: 0 0 auto;
+    background: $ui-base-color;
+    overflow: hidden;
+    box-shadow: 0 0 6px rgba($black, 0.1);
+
+    .column {
+      padding: 0;
+      border-radius: 4px;
+      overflow: hidden;
+      height: 100%;
     }
 
-    .simple_form,
-    .closed-registrations-message {
-      flex: auto;
+    .scrollable {
+      height: 400px;
+    }
+
+    p {
+      font-size: inherit;
+      line-height: inherit;
+      font-weight: inherit;
+      color: $primary-text-color;
+
+      a {
+        color: $ui-secondary-color;
+        text-decoration: none;
+      }
+    }
+  }
+
+  .about-mastodon {
+    max-width: 675px;
+
+    p {
+      margin-bottom: 20px;
+    }
+
+    .features-list {
+      margin-top: 20px;
+    }
+  }
+
+  em {
+    display: inline;
+    margin: 0;
+    padding: 0;
+    font-weight: 500;
+    background: transparent;
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+    color: $ui-primary-color;
+  }
+
+  h1 {
+    font-family: 'mastodon-font-display', sans-serif;
+    font-size: 26px;
+    line-height: 30px;
+    margin-bottom: 0;
+    font-weight: 500;
+    color: $ui-secondary-color;
+
+    small {
+      font-family: 'mastodon-font-sans-serif', sans-serif;
+      display: block;
+      font-size: 18px;
+      font-weight: 400;
+      color: lighten($ui-base-color, 26%);
+    }
+  }
+
+  .footer-links {
+    padding-bottom: 50px;
+    text-align: right;
+    color: lighten($ui-base-color, 26%);
+
+    p {
+      font-size: 14px;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: underline;
+    }
+  }
+
+  @media screen and (max-width: 800px) {
+    .container {
+      padding: 0 20px;
+    }
+
+    .header-wrapper .mascot {
+      left: 20px;
+    }
+  }
+
+  @media screen and (max-width: 689px) {
+    .header-wrapper .mascot {
+      display: none;
+    }
+  }
+
+  @media screen and (max-width: 675px) {
+    .header-wrapper {
+      padding-top: 0;
+    }
+
+    .header .container,
+    .features .container {
+      display: block;
+    }
+
+    .links {
+      padding-top: 15px;
+      background: darken($ui-base-color, 4%);
+    }
+
+    .header {
+      padding-top: 0;
+
+      .hero {
+        margin-top: 30px;
+        padding: 0;
+
+        .heading {
+          padding-bottom: 20px;
+        }
+      }
+
+      .floats {
+        display: none;
+      }
+
+      .heading,
+      .nav {
+        text-align: center;
+      }
+
+      .heading h1 {
+        padding: 30px 0;
+      }
+
+      .hero {
+        .simple_form,
+        .closed-registrations-message {
+          background: darken($ui-base-color, 8%);
+          width: 100%;
+          border-radius: 0;
+          box-sizing: border-box;
+        }
+      }
+    }
+
+    #mastodon-timeline {
+      height: 70vh;
+      width: 100%;
+      margin-bottom: 50px;
     }
   }
 }
 
-.closed-registrations-message {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
+@keyframes floating {
+  from {
+    transform: translate(0, 0);
+  }
+
+  65% {
+    transform: translate(0, 4px);
+  }
+
+  to {
+    transform: translate(0, -0);
+  }
 }

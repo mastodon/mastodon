@@ -34,6 +34,7 @@ class Settings::PreferencesController < ApplicationController
   def user_settings_params
     params.require(:user).permit(
       :setting_default_privacy,
+      :setting_default_sensitive,
       :setting_boost_modal,
       :setting_delete_modal,
       :setting_auto_play_gif,

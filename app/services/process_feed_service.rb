@@ -20,8 +20,6 @@ class ProcessFeedService < BaseService
   end
 
   class ProcessEntry
-    include AuthorExtractor
-
     def call(xml, account)
       @account = account
       @xml     = xml
