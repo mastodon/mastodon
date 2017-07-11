@@ -35,7 +35,7 @@ export default class MediaModal extends ImmutablePureComponent {
   }
 
   handlePrevClick = () => {
-    this.setState({ index: (this.getIndex() - 1) % this.props.media.size });
+    this.setState({ index: (this.props.media.size + this.getIndex() - 1) % this.props.media.size });
   }
 
   handleKeyUp = (e) => {
