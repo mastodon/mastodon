@@ -22,8 +22,8 @@ http {
     }
 
     map $http_upgrade $connection_upgrade {
-      default upgrade;
-      ''      close;
+        default upgrade;
+        ''      close;
     }
 
     # Configuration for Nginx

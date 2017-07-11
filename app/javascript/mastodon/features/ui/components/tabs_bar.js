@@ -2,7 +2,7 @@ import React from 'react';
 import NavLink from 'react-router-dom/NavLink';
 import { FormattedMessage } from 'react-intl';
 
-const links = [
+export const links = [
   <NavLink className='tabs-bar__link primary' activeClassName='active' to='/statuses/new'><i className='fa fa-fw fa-pencil' /><FormattedMessage id='tabs_bar.compose' defaultMessage='Compose' /></NavLink>,
   <NavLink className='tabs-bar__link primary' activeClassName='active' to='/timelines/home'><i className='fa fa-fw fa-home' /><FormattedMessage id='tabs_bar.home' defaultMessage='Home' /></NavLink>,
   <NavLink className='tabs-bar__link primary' activeClassName='active' to='/notifications'><i className='fa fa-fw fa-bell' /><FormattedMessage id='tabs_bar.notifications' defaultMessage='Notifications' /></NavLink>,
@@ -13,25 +13,13 @@ const links = [
   <NavLink className='tabs-bar__link primary' activeClassName='active' style={{ flexGrow: '0', flexBasis: '30px' }} to='/getting-started'><i className='fa fa-fw fa-asterisk' /></NavLink>,
 ];
 
-export function getPreviousLink (path) {
-  const index = links.findIndex(link => link.props.to === path);
+export function getIndex (path) {
+  return links.findIndex(link => link.props.to === path);
+}
 
-  if (index > 0) {
-    return links[index - 1].props.to;
-  }
-
-  return null;
-};
-
-export function getNextLink (path) {
-  const index = links.findIndex(link => link.props.to === path);
-
-  if (index !== -1 && index < links.length - 1) {
-    return links[index + 1].props.to;
-  }
-
-  return null;
-};
+export function getLink (index) {
+  return links[index].props.to;
+}
 
 export default class TabsBar extends React.Component {
 

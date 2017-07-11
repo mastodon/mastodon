@@ -9,14 +9,13 @@ class Api::V1::FavouritesController < Api::BaseController
 
   def index
     @statuses = load_statuses
+    render json: @statuses, each_serializer: REST::StatusSerializer, relationships: StatusRelationshipsPresenter.new(@statuses, current_user&.account_id)
   end
 
   private
 
   def load_statuses
-    cached_favourites.tap do |statuses|
-      set_maps(statuses)
-    end
+    cached_favourites
   end
 
   def cached_favourites

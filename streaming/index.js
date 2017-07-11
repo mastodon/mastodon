@@ -1,14 +1,14 @@
-import os from 'os';
-import throng from 'throng';
-import dotenv from 'dotenv';
-import express from 'express';
-import http from 'http';
-import redis from 'redis';
-import pg from 'pg';
-import log from 'npmlog';
-import url from 'url';
-import WebSocket from 'uws';
-import uuid from 'uuid';
+const os = require('os');
+const throng = require('throng');
+const dotenv = require('dotenv');
+const express = require('express');
+const http = require('http');
+const redis = require('redis');
+const pg = require('pg');
+const log = require('npmlog');
+const url = require('url');
+const WebSocket = require('uws');
+const uuid = require('uuid');
 
 const env = process.env.NODE_ENV || 'development';
 
@@ -78,7 +78,11 @@ const startWorker = (workerId) => {
 
   const pgConfigs = {
     development: {
+      user:     process.env.DB_USER || pg.defaults.user,
+      password: process.env.DB_PASS || pg.defaults.password,
       database: 'mastodon_development',
+      host:     process.env.DB_HOST || pg.defaults.host,
+      port:     process.env.DB_PORT || pg.defaults.port,
       max:      10,
     },
 
@@ -242,7 +246,7 @@ const startWorker = (workerId) => {
     accountFromRequest(req, next);
   };
 
-  const errorMiddleware = (err, req, res, next) => {  // eslint-disable-line no-unused-vars
+  const errorMiddleware = (err, req, res, {}) => {
     log.error(req.requestId, err.toString());
     res.writeHead(err.statusCode || 500, { 'Content-Type': 'application/json' });
     res.end(JSON.stringify({ error: err.statusCode ? err.toString() : 'An unexpected error occurred' }));
@@ -258,11 +262,12 @@ const startWorker = (workerId) => {
       const { event, payload, queued_at } = JSON.parse(message);
 
       const transmit = () => {
-        const now   = new Date().getTime();
-        const delta = now - queued_at;
+        const now            = new Date().getTime();
+        const delta          = now - queued_at;
+        const encodedPayload = typeof payload === 'number' ? payload : JSON.stringify(payload);
 
-        log.silly(req.requestId, `Transmitting for ${req.accountId}: ${event} ${payload} Delay: ${delta}ms`);
-        output(event, payload);
+        log.silly(req.requestId, `Transmitting for ${req.accountId}: ${event} ${encodedPayload} Delay: ${delta}ms`);
+        output(event, encodedPayload);
       };
 
       if (notificationOnly && event !== 'notification') {
@@ -278,7 +283,7 @@ const startWorker = (workerId) => {
             return;
           }
 
-          const unpackedPayload  = JSON.parse(payload);
+          const unpackedPayload  = payload;
           const targetAccountIds = [unpackedPayload.account.id].concat(unpackedPayload.mentions.map(item => item.id));
           const accountDomain    = unpackedPayload.account.acct.split('@')[1];
 
@@ -462,6 +467,7 @@ const startWorker = (workerId) => {
   const onExit = () => {
     log.info(`Worker ${workerId} exiting, bye bye`);
     server.close();
+    process.exit(0);
   };
 
   const onError = (err) => {

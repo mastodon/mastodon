@@ -184,6 +184,14 @@ RSpec.describe User, type: :model do
       expect(user.setting_auto_play_gif).to eq false
     end
   end
+  
+  describe '#setting_system_font_ui' do
+    it 'returns system font ui setting' do
+      user = Fabricate(:user)
+      user.settings[:system_font_ui] = false
+      expect(user.setting_system_font_ui).to eq false
+    end
+  end
 
   describe '#setting_boost_modal' do
     it 'returns boost modal setting' do

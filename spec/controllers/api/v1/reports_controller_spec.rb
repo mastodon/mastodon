@@ -21,12 +21,21 @@ RSpec.describe Api::V1::ReportsController, type: :controller do
   end
 
   describe 'POST #create' do
-    it 'creates a report' do
-      status = Fabricate(:status)
-      post :create, params: { status_ids: [status.id], account_id: status.account.id, comment: 'reasons' }
+    let!(:status) { Fabricate(:status) }
+    let!(:admin)  { Fabricate(:user, admin: true) }
 
+    before do
+      allow(AdminMailer).to receive(:new_report).and_return(double('email', deliver_later: nil))
+      post :create, params: { status_ids: [status.id], account_id: status.account.id, comment: 'reasons' }
+    end
+
+    it 'creates a report' do
       expect(status.reload.account.targeted_reports).not_to be_empty
       expect(response).to have_http_status(:success)
+    end
+
+    it 'sends e-mails to admins' do
+      expect(AdminMailer).to have_received(:new_report).with(admin.account, Report)
     end
   end
 end

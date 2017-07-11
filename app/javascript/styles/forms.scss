@@ -358,7 +358,6 @@ code {
 }
 
 .user_filtered_languages {
-
   & > label {
     font-family: inherit;
     font-size: 16px;
@@ -374,5 +373,14 @@ code {
   li {
     float: left;
     width: 50%;
+  }
+}
+
+.post-follow-actions {
+  text-align: center;
+  color: $ui-primary-color;
+
+  div {
+    margin-bottom: 4px;
   }
 }

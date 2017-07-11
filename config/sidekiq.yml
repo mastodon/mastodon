@@ -15,3 +15,6 @@
   feed_cleanup_scheduler:
     cron: '0 0 * * *'
     class: Scheduler::FeedCleanupScheduler
+  doorkeeper_cleanup_scheduler:
+    cron: '1 1 * * 0'
+    class: Scheduler::DoorkeeperCleanupScheduler

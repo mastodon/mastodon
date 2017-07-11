@@ -330,6 +330,18 @@
     }
   }
 
+  .media-spoiler-wrapper {
+    &.media-spoiler-wrapper__visible {
+      .media-spoiler {
+        display: none;
+      }
+
+      .spoiler-button {
+        display: block;
+      }
+    }
+  }
+
   .pre-header {
     padding: 14px 0;
     padding-left: (48px + 14px * 2);

@@ -25,6 +25,7 @@ RUN echo "@edge https://nl.alpinelinux.org/alpine/edge/main" >> /etc/apk/reposit
     ffmpeg \
     file \
     git \
+    icu-dev \
     imagemagick@edge \
     libpq \
     libxml2 \
