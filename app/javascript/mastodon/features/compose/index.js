@@ -14,6 +14,7 @@ import SearchResultsContainer from './containers/search_results_container';
 
 const messages = defineMessages({
   start: { id: 'getting_started.heading', defaultMessage: 'Getting started' },
+  home_timeline: { id: 'tabs_bar.home', defaultMessage: 'Home' },
   notifications: { id: 'tabs_bar.notifications', defaultMessage: 'Notifications' },
   public: { id: 'navigation_bar.public_timeline', defaultMessage: 'Federated timeline' },
   community: { id: 'navigation_bar.community_timeline', defaultMessage: 'Local timeline' },
@@ -56,6 +57,9 @@ export default class Compose extends React.PureComponent {
       header = (
         <div className='drawer__header'>
           <Link to='/getting-started' className='drawer__tab' title={intl.formatMessage(messages.start)}><i role='img' aria-label={intl.formatMessage(messages.start)} className='fa fa-fw fa-asterisk' /></Link>
+          {!columns.some(column => column.get('id') === 'HOME') && (
+            <Link to='/timelines/home' className='drawer__tab' title={intl.formatMessage(messages.home_timeline)}><i role='img' className='fa fa-fw fa-home' aria-label={intl.formatMessage(messages.home_timeline)} /></Link>
+          )}
           {!columns.some(column => column.get('id') === 'NOTIFICATIONS') && (
             <Link to='/notifications' className='drawer__tab' title={intl.formatMessage(messages.notifications)}><i role='img' className='fa fa-fw fa-bell' aria-label={intl.formatMessage(messages.notifications)} /></Link>
           )}
