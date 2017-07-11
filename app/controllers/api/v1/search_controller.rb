@@ -3,6 +3,9 @@
 class Api::V1::SearchController < Api::BaseController
   RESULTS_LIMIT = 5
 
+  before_action -> { doorkeeper_authorize! :read }
+  before_action :require_user!
+
   respond_to :json
 
   def index
