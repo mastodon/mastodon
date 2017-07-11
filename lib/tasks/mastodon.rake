@@ -74,7 +74,7 @@ namespace :mastodon do
   end
 
   namespace :media do
-    desc 'Removes media attachments that have not been assigned to any status for longer than a day'
+    desc 'Removes media attachments that have not been assigned to any status for longer than a day (deprecated)'
     task clear: :environment do
       # No-op
       # This task is now executed via sidekiq-scheduler
@@ -100,6 +100,18 @@ namespace :mastodon do
       MediaAttachment.where(file_file_name: nil).where.not(type: :unknown).in_batches.update_all(type: :unknown)
       Rails.logger.debug 'Done!'
     end
+
+    desc 'Redownload avatars/headers of remote users. Optionally limit to a particular domain with DOMAIN'
+    task redownload_avatars: :environment do
+      accounts = Account.remote
+      accounts = accounts.where(domain: ENV['DOMAIN']) if ENV['DOMAIN'].present?
+
+      accounts.find_each do |account|
+        account.reset_avatar!
+        account.reset_header!
+        account.save
+      end
+    end
   end
 
   namespace :push do
@@ -111,7 +123,7 @@ namespace :mastodon do
       end
     end
 
-    desc 'Re-subscribes to soon expiring PuSH subscriptions'
+    desc 'Re-subscribes to soon expiring PuSH subscriptions (deprecated)'
     task refresh: :environment do
       # No-op
       # This task is now executed via sidekiq-scheduler
@@ -119,13 +131,13 @@ namespace :mastodon do
   end
 
   namespace :feeds do
-    desc 'Clear timelines of inactive users'
+    desc 'Clear timelines of inactive users (deprecated)'
     task clear: :environment do
       # No-op
       # This task is now executed via sidekiq-scheduler
     end
 
-    desc 'Clears all timelines'
+    desc 'Clear all timelines without regenerating them'
     task clear_all: :environment do
       Redis.current.keys('feed:*').each { |key| Redis.current.del(key) }
     end
@@ -151,7 +163,7 @@ namespace :mastodon do
       end
     end
 
-    desc 'List all admin users'
+    desc 'List e-mails of all admin users'
     task admins: :environment do
       puts 'Admin user emails:'
       puts User.admins.map(&:email).join("\n")
