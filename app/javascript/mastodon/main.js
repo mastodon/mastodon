@@ -1,9 +1,5 @@
 const perf = require('./performance');
 
-// import default stylesheet with variables
-require('font-awesome/css/font-awesome.css');
-require('mastodon-application-style');
-
 function onDomContentLoaded(callback) {
   if (document.readyState !== 'loading') {
     callback();
