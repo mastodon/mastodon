@@ -22,285 +22,268 @@ class ProcessFeedService < BaseService
   class ProcessEntry
     def call(xml, account)
       @account = account
-      @fetched = Activity.new(xml)
+      @xml     = xml
 
-      return unless [:activity, :note, :comment].include?(@fetched.type)
+      return if skip_unsupported_type?
 
-      klass = case @fetched.verb
-              when :post
-                PostActivity
-              when :share
-                ShareActivity
-              when :delete
-                DeletionActivity
-              else
-                return
-              end
-
-      @fetched = klass.new(xml, account)
-      @fetched.perform
+      case verb
+      when :post, :share
+        return create_status
+      when :delete
+        return delete_status
+      end
     rescue ActiveRecord::RecordInvalid => e
       Rails.logger.debug "Nothing was saved for #{id} because: #{e}"
       nil
     end
 
-    class Activity
-      def initialize(xml, account = nil)
-        @xml = xml
-        @account = account
+    private
+
+    def create_status
+      if redis.exists("delete_upon_arrival:#{@account.id}:#{id}")
+        Rails.logger.debug "Delete for status #{id} was queued, ignoring"
+        return
       end
 
-      def verb
-        raw = @xml.at_xpath('./activity:verb', activity: TagManager::AS_XMLNS).content
-        TagManager::VERBS.key(raw)
-      rescue
-        :post
+      status, just_created = nil
+
+      Rails.logger.debug "Creating remote status #{id}"
+
+      if verb == :share
+        original_status = shared_status_from_xml(@xml.at_xpath('.//activity:object', activity: TagManager::AS_XMLNS))
+        return nil if original_status.nil?
       end
 
-      def type
-        raw = @xml.at_xpath('./activity:object-type', activity: TagManager::AS_XMLNS).content
-        TagManager::TYPES.key(raw)
-      rescue
-        :activity
-      end
+      ApplicationRecord.transaction do
+        status, just_created = status_from_xml(@xml)
 
-      def id
-        @xml.at_xpath('./xmlns:id', xmlns: TagManager::XMLNS).content
-      end
+        return if status.nil?
+        return status unless just_created
 
-      def url
-        link = @xml.at_xpath('./xmlns:link[@rel="alternate"]', xmlns: TagManager::XMLNS)
-        link.nil? ? nil : link['href']
-      end
-
-      private
-
-      def find_status(uri)
-        if TagManager.instance.local_id?(uri)
-          local_id = TagManager.instance.unique_tag_to_local_id(uri, 'Status')
-          return Status.find_by(id: local_id)
+        if verb == :share
+          status.reblog = original_status.reblog? ? original_status.reblog : original_status
         end
 
-        Status.find_by(uri: uri)
+        status.save!
       end
 
-      def redis
-        Redis.current
+      if thread?(@xml) && status.thread.nil?
+        Rails.logger.debug "Trying to attach #{status.id} (#{id(@xml)}) to #{thread(@xml).first}"
+        ThreadResolveWorker.perform_async(status.id, thread(@xml).second)
+      end
+
+      notify_about_mentions!(status) unless status.reblog?
+      notify_about_reblog!(status) if status.reblog? && status.reblog.account.local?
+
+      Rails.logger.debug "Queuing remote status #{status.id} (#{id}) for distribution"
+
+      LinkCrawlWorker.perform_async(status.id) unless status.spoiler_text?
+      DistributionWorker.perform_async(status.id)
+
+      status
+    end
+
+    def notify_about_mentions!(status)
+      status.mentions.includes(:account).each do |mention|
+        mentioned_account = mention.account
+        next unless mentioned_account.local?
+        NotifyService.new.call(mentioned_account, mention)
       end
     end
 
-    class CreationActivity < Activity
-      def perform
-        if redis.exists("delete_upon_arrival:#{@account.id}:#{id}")
-          Rails.logger.debug "Delete for status #{id} was queued, ignoring"
-          return
-        end
+    def notify_about_reblog!(status)
+      NotifyService.new.call(status.reblog.account, status)
+    end
 
-        Rails.logger.debug "Creating remote status #{id}"
-        # Return early if status already exists in db
-        status = find_status(id)
+    def delete_status
+      Rails.logger.debug "Deleting remote status #{id}"
+      status = Status.find_by(uri: id, account: @account)
 
-        return [status, false] unless status.nil?
+      if status.nil?
+        redis.setex("delete_upon_arrival:#{@account.id}:#{id}", 6 * 3_600, id)
+      else
+        RemoveStatusService.new.call(status)
+      end
+    end
 
-        return [nil, false] if @account.suspended?
+    def skip_unsupported_type?
+      !([:post, :share, :delete].include?(verb) && [:activity, :note, :comment].include?(type))
+    end
 
-        status = Status.create!(
-          uri: id,
-          url: url,
-          account: @account,
-          reblog: reblog,
-          text: content,
-          spoiler_text: content_warning,
-          created_at: published,
-          reply: thread?,
-          language: content_language,
-          visibility: visibility_scope,
-          conversation: converstation_to_persistent&.first,
-          thread: thread? ? find_status(thread.first) : nil
-        )
+    def shared_status_from_xml(entry)
+      status = find_status(id(entry))
 
-        save_mentions(status)
-        save_hashtags(status)
-        save_media(status)
+      return status unless status.nil?
 
-        if thread? && status.thread.nil?
-          Rails.logger.debug "Trying to attach #{status.id} (#{id}) to #{thread.first}"
-          ThreadResolveWorker.perform_async(status.id, thread.second)
-        end
+      FetchRemoteStatusService.new.call(url(entry))
+    end
 
-        Rails.logger.debug "Queuing remote status #{status.id} (#{id}) for distribution"
+    def status_from_xml(entry)
+      # Return early if status already exists in db
+      status = find_status(id(entry))
 
-        LinkCrawlWorker.perform_async(status.id) unless status.spoiler_text?
-        DistributionWorker.perform_async(status.id)
+      return [status, false] unless status.nil?
 
-        [status, true]
+      account = @account
+
+      return [nil, false] if account.suspended?
+
+      status = Status.create!(
+        uri: id(entry),
+        url: url(entry),
+        account: account,
+        text: content(entry),
+        spoiler_text: content_warning(entry),
+        created_at: published(entry),
+        reply: thread?(entry),
+        language: content_language(entry),
+        visibility: visibility_scope(entry),
+        conversation: find_or_create_conversation(entry),
+        thread: thread?(entry) ? find_status(thread(entry).first) : nil
+      )
+
+      mentions_from_xml(status, entry)
+      hashtags_from_xml(status, entry)
+      media_from_xml(status, entry)
+
+      [status, true]
+    end
+
+    def find_or_create_conversation(xml)
+      uri = xml.at_xpath('./ostatus:conversation', ostatus: TagManager::OS_XMLNS)&.attribute('ref')&.content
+      return if uri.nil?
+
+      if TagManager.instance.local_id?(uri)
+        local_id = TagManager.instance.unique_tag_to_local_id(uri, 'Conversation')
+        return Conversation.find_by(id: local_id)
       end
 
-      def content
-        @xml.at_xpath('./xmlns:content', xmlns: TagManager::XMLNS).content
+      Conversation.find_by(uri: uri) || Conversation.create!(uri: uri)
+    end
+
+    def find_status(uri)
+      if TagManager.instance.local_id?(uri)
+        local_id = TagManager.instance.unique_tag_to_local_id(uri, 'Status')
+        return Status.find_by(id: local_id)
       end
 
-      def content_language
-        @xml.at_xpath('./xmlns:content', xmlns: TagManager::XMLNS)['xml:lang']&.presence || 'en'
+      Status.find_by(uri: uri)
+    end
+
+    def mentions_from_xml(parent, xml)
+      processed_account_ids = []
+
+      xml.xpath('./xmlns:link[@rel="mentioned"]', xmlns: TagManager::XMLNS).each do |link|
+        next if [TagManager::TYPES[:group], TagManager::TYPES[:collection]].include? link['ostatus:object-type']
+
+        mentioned_account = account_from_href(link['href'])
+
+        next if mentioned_account.nil? || processed_account_ids.include?(mentioned_account.id)
+
+        mentioned_account.mentions.where(status: parent).first_or_create(status: parent)
+
+        # So we can skip duplicate mentions
+        processed_account_ids << mentioned_account.id
       end
+    end
 
-      def content_warning
-        @xml.at_xpath('./xmlns:summary', xmlns: TagManager::XMLNS)&.content || ''
+    def account_from_href(href)
+      url = Addressable::URI.parse(href).normalize
+
+      if TagManager.instance.web_domain?(url.host)
+        Account.find_local(url.path.gsub('/users/', ''))
+      else
+        Account.where(uri: href).or(Account.where(url: href)).first || FetchRemoteAccountService.new.call(href)
       end
+    end
 
-      def visibility_scope
-        @xml.at_xpath('./mastodon:scope', mastodon: TagManager::MTDN_XMLNS)&.content&.to_sym || :public
-      end
+    def hashtags_from_xml(parent, xml)
+      tags = xml.xpath('./xmlns:category', xmlns: TagManager::XMLNS).map { |category| category['term'] }.select(&:present?)
+      ProcessHashtagsService.new.call(parent, tags)
+    end
 
-      def published
-        @xml.at_xpath('./xmlns:published', xmlns: TagManager::XMLNS).content
-      end
+    def media_from_xml(parent, xml)
+      do_not_download = DomainBlock.find_by(domain: parent.account.domain)&.reject_media?
 
-      def thread?
-        !@xml.at_xpath('./thr:in-reply-to', thr: TagManager::THR_XMLNS).nil?
-      end
+      xml.xpath('./xmlns:link[@rel="enclosure"]', xmlns: TagManager::XMLNS).each do |link|
+        next unless link['href']
 
-      def thread
-        thr = @xml.at_xpath('./thr:in-reply-to', thr: TagManager::THR_XMLNS)
-        [thr['ref'], thr['href']]
-      end
+        media = MediaAttachment.where(status: parent, remote_url: link['href']).first_or_initialize(account: parent.account, status: parent, remote_url: link['href'])
+        parsed_url = Addressable::URI.parse(link['href']).normalize
 
-      private
+        next if !%w(http https).include?(parsed_url.scheme) || parsed_url.host.empty?
 
-      def converstation_to_persistent
-        uri = @xml.at_xpath('./ostatus:conversation', ostatus: TagManager::OS_XMLNS)&.attribute('ref')&.content
-        return if uri.nil?
+        media.save
 
-        if TagManager.instance.local_id?(uri)
-          local_id = TagManager.instance.unique_tag_to_local_id(uri, 'Conversation')
-          return Conversation.find_by(id: local_id)
-        end
+        next if do_not_download
 
-        found = Conversation.find_by(uri: uri)
-        found ? [found, false] : [Conversation.create!(uri: uri), true]
-      end
-
-      def save_mentions(parent)
-        processed_account_ids = []
-
-        @xml.xpath('./xmlns:link[@rel="mentioned"]', xmlns: TagManager::XMLNS).each do |link|
-          next if [TagManager::TYPES[:group], TagManager::TYPES[:collection]].include? link['ostatus:object-type']
-
-          mentioned_account = account_from_href(link['href'])
-
-          next if mentioned_account.nil? || processed_account_ids.include?(mentioned_account.id)
-
-          mentioned_account.mentions.where(status: parent).first_or_create(status: parent)
-
-          # So we can skip duplicate mentions
-          processed_account_ids << mentioned_account.id
-        end
-      end
-
-      def save_hashtags(parent)
-        tags = @xml.xpath('./xmlns:category', xmlns: TagManager::XMLNS).map { |category| category['term'] }.select(&:present?)
-        ProcessHashtagsService.new.call(parent, tags)
-      end
-
-      def save_media(parent)
-        do_not_download = DomainBlock.find_by(domain: parent.account.domain)&.reject_media?
-
-        @xml.xpath('./xmlns:link[@rel="enclosure"]', xmlns: TagManager::XMLNS).each do |link|
-          next unless link['href']
-
-          media = MediaAttachment.where(status: parent, remote_url: link['href']).first_or_initialize(account: parent.account, status: parent, remote_url: link['href'])
-          parsed_url = Addressable::URI.parse(link['href']).normalize
-
-          next if !%w(http https).include?(parsed_url.scheme) || parsed_url.host.empty?
-
-          media.save
-
-          next if do_not_download
-
-          begin
-            media.file_remote_url = link['href']
-            media.save!
-          rescue ActiveRecord::RecordInvalid
-            next
-          end
-        end
-      end
-
-      def account_from_href(href)
-        url = Addressable::URI.parse(href).normalize
-
-        if TagManager.instance.web_domain?(url.host)
-          Account.find_local(url.path.gsub('/users/', ''))
-        else
-          Account.where(uri: href).or(Account.where(url: href)).first || FetchRemoteAccountService.new.call(href)
+        begin
+          media.file_remote_url = link['href']
+          media.save!
+        rescue ActiveRecord::RecordInvalid
+          next
         end
       end
     end
 
-    class ShareActivity < CreationActivity
-      def perform
-        status, just_created = super
-        NotifyService.new.call(reblog.account, status) if reblog&.account&.local? && just_created
-        status
-      end
-
-      def object
-        @xml.at_xpath('.//activity:object', activity: TagManager::AS_XMLNS)
-      end
-
-      private
-
-      def status
-        reblog && super
-      end
-
-      def reblog
-        return @reblog if defined? @reblog
-
-        original_status = RemoteActivity.new(object).perform
-        @reblog = original_status.reblog? ? original_status.reblog : original_status
-      end
+    def id(xml = @xml)
+      xml.at_xpath('./xmlns:id', xmlns: TagManager::XMLNS).content
     end
 
-    class PostActivity < CreationActivity
-      def perform
-        status, just_created = super
-
-        if just_created
-          status.mentions.includes(:account).each do |mention|
-            mentioned_account = mention.account
-            next unless mentioned_account.local?
-            NotifyService.new.call(mentioned_account, mention)
-          end
-        end
-
-        status
-      end
-
-      private
-
-      def reblog
-        nil
-      end
+    def verb(xml = @xml)
+      raw = xml.at_xpath('./activity:verb', activity: TagManager::AS_XMLNS).content
+      TagManager::VERBS.key(raw)
+    rescue
+      :post
     end
 
-    class DeletionActivity < Activity
-      def perform
-        Rails.logger.debug "Deleting remote status #{id}"
-        status = Status.find_by(uri: id, account: @account)
-
-        if status.nil?
-          redis.setex("delete_upon_arrival:#{@account.id}:#{id}", 6 * 3_600, id)
-        else
-          RemoveStatusService.new.call(status)
-        end
-      end
+    def type(xml = @xml)
+      raw = xml.at_xpath('./activity:object-type', activity: TagManager::AS_XMLNS).content
+      TagManager::TYPES.key(raw)
+    rescue
+      :activity
     end
 
-    class RemoteActivity < Activity
-      def perform
-        find_status(id) || FetchRemoteStatusService.new.call(url)
-      end
+    def url(xml = @xml)
+      link = xml.at_xpath('./xmlns:link[@rel="alternate"]', xmlns: TagManager::XMLNS)
+      link.nil? ? nil : link['href']
+    end
+
+    def content(xml = @xml)
+      xml.at_xpath('./xmlns:content', xmlns: TagManager::XMLNS).content
+    end
+
+    def content_language(xml = @xml)
+      xml.at_xpath('./xmlns:content', xmlns: TagManager::XMLNS)['xml:lang']&.presence || 'en'
+    end
+
+    def content_warning(xml = @xml)
+      xml.at_xpath('./xmlns:summary', xmlns: TagManager::XMLNS)&.content || ''
+    end
+
+    def visibility_scope(xml = @xml)
+      xml.at_xpath('./mastodon:scope', mastodon: TagManager::MTDN_XMLNS)&.content&.to_sym || :public
+    end
+
+    def published(xml = @xml)
+      xml.at_xpath('./xmlns:published', xmlns: TagManager::XMLNS).content
+    end
+
+    def thread?(xml = @xml)
+      !xml.at_xpath('./thr:in-reply-to', thr: TagManager::THR_XMLNS).nil?
+    end
+
+    def thread(xml = @xml)
+      thr = xml.at_xpath('./thr:in-reply-to', thr: TagManager::THR_XMLNS)
+      [thr['ref'], thr['href']]
+    end
+
+    def account?(xml = @xml)
+      !xml.at_xpath('./xmlns:author', xmlns: TagManager::XMLNS).nil?
+    end
+
+    def redis
+      Redis.current
     end
   end
 end
