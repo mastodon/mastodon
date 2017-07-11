@@ -3,23 +3,12 @@ ko:
   about:
     about_mastodon: Mastodon 은<em>자유로운 오픈 소스</em>소셜 네트워크입니다. 상용 플랫폼의 대체로써 <em>분산형 구조</em>를 채택해, 여러분의 대화가 한 회사에 독점되는 것을 방지합니다. 신뢰할 수 있는 인스턴스를 선택하세요 &mdash; 어떤 인스턴스를 고르더라도, 누구와도 대화할 수 있습니다. 누구나 자신만의 Mastodon 인스턴스를 만들 수 있으며, Seamless하게 <em>소셜 네트워크</em>에 참가할 수 있습니다.
     about_this: 이 인스턴스에 대해서
-    apps: 어플리케이션
     business_email: '비즈니스 메일 주소:'
     closed_registrations: 현재 이 인스턴스에서는 신규 등록을 받고 있지 않습니다.
     contact: 연락처
     description_headline: "%{domain} 는 무엇인가요?"
     domain_count_after: 개의 인스턴스
     domain_count_before: 연결됨
-    features:
-      api: 어플리케이션이나 그 외 서비스에 API를 공개
-      blocks: 강력한 차단 및 뮤트 기능
-      characters: 한번에 500자까지 포스팅 가능
-      chronology: 시간 순서의 타임라인
-      ethics: 광고도 트래킹도 없습니다
-      gifv: GIFV나 짧은 동영상도 지원
-      privacy: 각 포스팅마다 공개 범위를 상세히 설정 가능
-      public: 공개 타임라인
-    features_headline: Mastodon 의 특징
     get_started: 참가하기
     links: 링크
     other_instances: 다른 인스턴스
@@ -151,7 +140,7 @@ ko:
       nsfw:
         'false': NSFW 꺼짐
         'true': NSFW 켜짐
-      report: "신고 #%{id}"
+      report: '신고 #%{id}'
       report_contents: 내용
       reported_account: 신고 대상 계정
       reported_by: 신고자
@@ -173,8 +162,6 @@ ko:
           desc_html: 신규 등록을 받지 않을 때 프론트 페이지에 표시됩니다. <br>HTML 태그를 사용할 수 있습니다.
           title: 신규 등록 정지 시 메시지
         open:
-          disabled: 꺼짐
-          enabled: 켜짐
           title: 신규 등록을 받음
       setting: 설정
       site_description:
@@ -301,7 +288,7 @@ ko:
         one: "1건의 새로운 알림 \U0001F418"
         other: "%{count}건의 새로운 알림 \U0001F418"
     favourite:
-      body: '%{name} 님이 내 Toot을 즐겨찾기에 등록했습니다.'
+      body: "%{name} 님이 내 Toot을 즐겨찾기에 등록했습니다."
       subject: "%{name} 님이 내 Toot을 즐겨찾기에 등록했습니다"
     follow:
       body: "%{name} 님이 나를 팔로우 했습니다"
@@ -323,7 +310,7 @@ ko:
     acct: 아이디@도메인을 입력해 주십시오
     missing_resource: 리디렉션 대상을 찾을 수 없습니다
     proceed: 팔로우 하기
-    prompt: '팔로우 하려 하고 있습니다'
+    prompt: 팔로우 하려 하고 있습니다
   sessions:
     activity: 마지막 활동
     browser: 브라우저

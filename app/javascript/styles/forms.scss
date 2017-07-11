@@ -24,6 +24,20 @@ code {
 
   p.hint {
     margin-bottom: 15px;
+    color: lighten($ui-base-color, 32%);
+
+    &.subtle-hint {
+      text-align: center;
+      font-size: 12px;
+      line-height: 18px;
+      margin-top: 15px;
+      margin-bottom: 0;
+      color: lighten($ui-base-color, 26%);
+
+      a {
+        color: $ui-primary-color;
+      }
+    }
   }
 
   strong {
@@ -197,8 +211,6 @@ code {
 
     &:active,
     &:focus {
-      position: relative;
-      top: 1px;
       background-color: darken($ui-highlight-color, 5%);
     }
 
@@ -218,6 +230,27 @@ code {
 
   select {
     font-size: 16px;
+  }
+
+  .input-with-append {
+    position: relative;
+
+    .input input {
+      padding-right: 127px;
+    }
+
+    .append {
+      position: absolute;
+      right: 0;
+      top: 0;
+      padding: 7px 4px;
+      padding-bottom: 9px;
+      font-size: 16px;
+      color: lighten($ui-base-color, 26%);
+      font-family: inherit;
+      pointer-events: none;
+      cursor: default;
+    }
   }
 }
 
@@ -240,7 +273,7 @@ code {
   text-align: center;
 
   a {
-    color: $primary-text-color;
+    color: $ui-primary-color;
     text-decoration: none;
 
     &:hover {

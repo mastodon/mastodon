@@ -5,32 +5,41 @@ class InitialStateSerializer < ActiveModel::Serializer
              :media_attachments, :settings
 
   def meta
-    {
+    store = {
       streaming_api_base_url: Rails.configuration.x.streaming_api_base_url,
       access_token: object.token,
       locale: I18n.locale,
       domain: Rails.configuration.x.local_domain,
-      me: object.current_account.id,
       admin: object.admin&.id,
-      boost_modal: object.current_account.user.setting_boost_modal,
-      delete_modal: object.current_account.user.setting_delete_modal,
-      auto_play_gif: object.current_account.user.setting_auto_play_gif,
-      system_font_ui: object.current_account.user.setting_system_font_ui,
     }
+
+    if object.current_account
+      store[:me]             = object.current_account.id
+      store[:boost_modal]    = object.current_account.user.setting_boost_modal
+      store[:delete_modal]   = object.current_account.user.setting_delete_modal
+      store[:auto_play_gif]  = object.current_account.user.setting_auto_play_gif
+      store[:system_font_ui] = object.current_account.user.setting_system_font_ui
+    end
+
+    store
   end
 
   def compose
-    {
-      me: object.current_account.id,
-      default_privacy: object.current_account.user.setting_default_privacy,
-      default_sensitive: object.current_account.user.setting_default_sensitive,
-    }
+    store = {}
+
+    if object.current_account
+      store[:me]                = object.current_account.id
+      store[:default_privacy]   = object.current_account.user.setting_default_privacy
+      store[:default_sensitive] = object.current_account.user.setting_default_sensitive
+    end
+
+    store
   end
 
   def accounts
     store = {}
-    store[object.current_account.id] = ActiveModelSerializers::SerializableResource.new(object.current_account, serializer: REST::AccountSerializer)
-    store[object.admin.id]           = ActiveModelSerializers::SerializableResource.new(object.admin, serializer: REST::AccountSerializer) unless object.admin.nil?
+    store[object.current_account.id] = ActiveModelSerializers::SerializableResource.new(object.current_account, serializer: REST::AccountSerializer) if object.current_account
+    store[object.admin.id]           = ActiveModelSerializers::SerializableResource.new(object.admin, serializer: REST::AccountSerializer) if object.admin
     store
   end
 

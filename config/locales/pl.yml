@@ -3,23 +3,12 @@ pl:
   about:
     about_mastodon: Mastodon jest <em>wolną i otwartą</em> siecią społecznościową, <em>zdecentralizowaną</em> alternatywą dla zamkniętych, komercyjnych platform. Pozwala uniknąć ryzyka monopolizacji Twojej komunikacji przez jedną korporację. Wybierz serwer, któremu ufasz &mdash; nie ograniczy to Twoich możliwości komunikacji z innymi osobami w sieci. Każdy może też uruchomić własną instancję Mastodona i dołączyć do reszty tej <em>sieci społecznościowej</em>.
     about_this: O tej instancji
-    apps: Aplikacje
     business_email: 'Służbowy adres e-mail:'
     closed_registrations: Rejestracja na tej instancji jest obecnie zamknięta.
     contact: Kontakt
     description_headline: Czym jest %{domain}?
     domain_count_after: instancji
     domain_count_before: Serwer połączony z
-    features:
-      api: Otwarte API dla aplikacji i usług
-      blocks: Rozbudowane narzędzia blokowania i ukrywania
-      characters: 500 znaków na wpis
-      chronology: Chronologiczny porządek wyświetlania
-      ethics: 'Etyczne założenia: nie śledzimy, bez reklam'
-      gifv: obsługa GIFV i krótkich wideo
-      privacy: Precyzyjne ustawienia widoczności poszczególnych postów
-      public: Publiczne osie czasu
-    features_headline: Co wyróżnia Mastodona
     get_started: Rozpocznijmy!
     links: Odnośniki
     other_instances: Inne instancje
@@ -48,7 +37,7 @@ pl:
       create:
         name: "%{account_name} utworzył(a) wpis."
     outbox:
-      name: "Skrzynka %{account_name}"
+      name: Skrzynka %{account_name}
       summary: Zbiór aktywności użytkownika %{account_name}.
   admin:
     accounts:
@@ -173,8 +162,6 @@ pl:
           desc_html: Wyświetlana na stronie głównej, gdy możliwość otwarej rejestracji<br>nie jest dostępna. Możesz korzystać z tagów HTML
           title: Wiadomość o nieaktywnej rejestracji
         open:
-          disabled: Nieaktywna
-          enabled: Aktywna
           title: Otwarta rejestracja
       setting: Ustawienie
       site_description:
@@ -198,7 +185,7 @@ pl:
     title: Administracja
   admin_mailer:
     new_report:
-      body: "Użytkownik %{reporter} zgłosił %{target}"
+      body: Użytkownik %{reporter} zgłosił %{target}
       subject: Nowe zgłoszenie na %{instance} (#%{id})
   application_mailer:
     settings: 'Zmień ustawienia powiadamiania: %{link}'
@@ -469,7 +456,7 @@ pl:
       <p>Dokument jest dostępny na licencji CC-BY-SA. Ostatnio modyfikowany 31 maja 2013, przetłumaczony 4 lipca 2017. Tłumaczenie (mimo dołożenia wszelkich starań) może nie być w pełni poprawne.</p>
 
       <p>Tekst bazuje na <a href="https://github.com/discourse/discourse">polityce prywatności Discourse</a>.
-    title: "Zasady korzystania i polityka prywatności %{instance}"
+    title: Zasady korzystania i polityka prywatności %{instance}
   time:
     formats:
       default: "%b %d, %Y, %H:%M"

@@ -1,28 +1,30 @@
 ---
 en:
   about:
-    about_mastodon: Mastodon is a <em>free, open-source</em> social network. A <em>decentralized</em> alternative to commercial platforms, it avoids the risks of a single company monopolizing your communication. Pick a server that you trust &mdash; whichever you choose, you can interact with everyone else. Anyone can run their own Mastodon instance and participate in the <em>social network</em> seamlessly.
-    about_this: About this instance
-    apps: Apps
+    about_mastodon_html: Mastodon is a social network based on open web protocols and free, open-source software. It is decentralized like e-mail.
+    about_this: About
     business_email: 'Business e-mail:'
-    closed_registrations: Registrations are currently closed on this instance.
+    closed_registrations: Registrations are currently closed on this instance. However! You can find a different instance to make an account on and get access to the very same network from there.
     contact: Contact
     description_headline: What is %{domain}?
     domain_count_after: other instances
     domain_count_before: Connected to
     features:
-      api: Open API for apps and services
-      blocks: Rich block and muting tools
-      characters: 500 characters per post
-      chronology: Timelines are chronological
-      ethics: 'Ethical design: no ads, no tracking'
-      gifv: GIFV sets and short videos
-      privacy: Granular, per-post privacy settings
-      public: Public timelines
-    features_headline: What sets Mastodon apart
+      humane_approach_body: Learning from failures of other networks, Mastodon aims to make ethical design choices to combat the misuse of social media.
+      humane_approach_title: A more humane approach
+      not_a_product_body: Mastodon is not a commercial network. No advertising, no data mining, no walled gardens. There is no central authority.
+      not_a_product_title: You’re a person, not a product
+      real_conversation_body: With 500 characters at your disposal and support for granular content and media warnings, you can express yourself the way you want to.
+      real_conversation_title: Built for real conversation
+      within_reach_body: Multiple apps for iOS, Android, and other platforms thanks to a developer-friendly API ecosystem allow you to keep up with your friends anywhere.
+      within_reach_title: Always within reach
+    find_another_instance: Find another instance
+    generic_description: "%{domain} is one server in the network"
     get_started: Get started
+    hosted_on: Mastodon hosted on %{domain}
+    learn_more: Learn more
     links: Links
-    other_instances: Other instances
+    other_instances: Instance list
     source_code: Source code
     status_count_after: statuses
     status_count_before: Who authored
@@ -30,6 +32,7 @@ en:
     user_count_after: users
     user_count_before: Home to
     version: Version
+    what_is_mastodon: What is Mastodon?
   accounts:
     follow: Follow
     followers: Followers
@@ -173,9 +176,14 @@ en:
           desc_html: Displayed on frontpage when registrations are closed<br>You can use HTML tags
           title: Closed registration message
         open:
-          disabled: Disabled
-          enabled: Enabled
+          desc_html: Allow anyone to create an account
           title: Open registration
+        deletion:
+          desc_html: Allow anyone to delete their account
+          title: Open deletion
+      timeline_preview:
+        desc_html: Display public timeline on landing page
+        title: Timeline preview
       setting: Setting
       site_description:
         desc_html: Displayed as a paragraph on the frontpage and used as a meta tag.<br>You can use HTML tags, in particular <code>&lt;a&gt;</code> and <code>&lt;em&gt;</code>.
@@ -185,7 +193,7 @@ en:
         title: Extended site description
       site_terms:
         desc_html: Displayed on terms page<br>You can use HTML tags
-        title: Site Privacy Policy
+        title: Privacy policy
       site_title: Site title
       title: Site Settings
     subscriptions:
@@ -207,6 +215,7 @@ en:
   applications:
     invalid_url: The provided URL is invalid
   auth:
+    agreement_html: By signing up you agree to <a href="%{rules_path}">our terms of service</a> and <a href="%{terms_path}">privacy policy</a>.
     change_password: Security
     delete_account: Delete account
     delete_account_html: If you wish to delete your account, you can <a href="%{path}">proceed here</a>. You will be asked for confirmation.
