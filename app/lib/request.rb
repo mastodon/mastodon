@@ -40,7 +40,7 @@ class Request
   def signature
     key_id    = @account.to_webfinger_s
     algorithm = 'rsa-sha256'
-    signature = Base64.encode64(@account.keypair.sign(OpenSSL::Digest::SHA256.new, signed_string))
+    signature = Base64.strict_encode64(@account.keypair.sign(OpenSSL::Digest::SHA256.new, signed_string))
 
     "keyId=\"#{key_id}\",algorithm=\"#{algorithm}\",headers=\"#{signed_headers}\",signature=\"#{signature}\""
   end

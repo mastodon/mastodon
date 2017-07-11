@@ -2,6 +2,7 @@
 
 class AccountsController < ApplicationController
   include AccountControllerConcern
+  include SignatureVerification
 
   def show
     respond_to do |format|
