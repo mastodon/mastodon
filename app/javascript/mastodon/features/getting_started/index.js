@@ -23,6 +23,7 @@ const messages = defineMessages({
   blocks: { id: 'navigation_bar.blocks', defaultMessage: 'Blocked users' },
   mutes: { id: 'navigation_bar.mutes', defaultMessage: 'Muted users' },
   info: { id: 'navigation_bar.info', defaultMessage: 'Extended information' },
+  library: { id: 'navigation_bar.library', defaultMessage: 'Library (Wiki)' },
 });
 
 const mapStateToProps = state => ({
@@ -82,6 +83,7 @@ export default class GettingStarted extends ImmutablePureComponent {
         <div className='getting-started__wrapper'>
           <ColumnSubheading text={intl.formatMessage(messages.navigation_subheading)} />
           {navItems}
+          <ColumnLink icon='book' text={intl.formatMessage(messages.library)} href='http://library.kemono-friends.info' />
           <ColumnSubheading text={intl.formatMessage(messages.settings_subheading)} />
           <ColumnLink icon='book' text={intl.formatMessage(messages.info)} href='/about/more' />
           <ColumnLink icon='cog' text={intl.formatMessage(messages.preferences)} href='/settings/preferences' />
