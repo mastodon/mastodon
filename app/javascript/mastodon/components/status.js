@@ -238,7 +238,7 @@ uncollapse our status accordingly.
 
   componentWillReceiveProps (nextProps) {
     if (!nextProps.settings.getIn(['collapsed', 'enabled'])) {
-      this.setExpansion(false);
+      this.setExpansion(true);
     } else if (
       nextProps.collapse !== this.props.collapse &&
       nextProps.collapse !== undefined
