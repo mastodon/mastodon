@@ -24,6 +24,10 @@ class Request
     http_client.headers(headers).public_send(@verb, @url.to_s, options_key => @options)
   end
 
+  def headers
+    (@account ? @headers.merge('Signature' => signature) : @headers).without(REQUEST_TARGET)
+  end
+
   private
 
   def set_common_headers!
@@ -31,10 +35,6 @@ class Request
     @headers['User-Agent']   = user_agent
     @headers['Host']         = @url.host
     @headers['Date']         = Time.now.utc.httpdate
-  end
-
-  def headers
-    (@account ? @headers.merge('Signature': signature) : @headers).without(REQUEST_TARGET)
   end
 
   def signature
