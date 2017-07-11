@@ -17,37 +17,41 @@
   %meta{ property: 'twitter:card', content: 'summary' }/
 
 .landing-page
-  .header
-    .container.links
-      .brand
-        = link_to root_url do
-          = image_tag asset_pack_path('logo.svg')
-          Mastodon
+  .header-wrapper
+    .mascot-container
+      = image_tag asset_pack_path('elephant-fren.png'), class: 'mascot'
 
-      %ul.nav
-        %li= link_to t('auth.login'), new_user_session_path, class: 'webapp-btn'
-        %li= link_to t('about.about_this'), about_more_path
-        %li= link_to t('about.other_instances'), 'https://joinmastodon.org/'
+    .header
+      .container.links
+        .brand
+          = link_to root_url do
+            = image_tag asset_pack_path('logo.svg')
+            Mastodon
 
-    .container.hero
-      .floats
-        = image_tag asset_pack_path('cloud2.png'), class: 'float-1'
-        = image_tag asset_pack_path('cloud3.png'), class: 'float-2'
-        = image_tag asset_pack_path('cloud4.png'), class: 'float-3'
-      .heading
-        %h1
-          = @instance_presenter.site_title
-          %small= t 'about.hosted_on', domain: site_hostname
-      - if @instance_presenter.open_registrations
-        = render 'registration'
-      - else
-        .closed-registrations-message
-          %div
-            - if @instance_presenter.closed_registrations_message.blank?
-              %p= t('about.closed_registrations')
-            - else
-              = @instance_presenter.closed_registrations_message.html_safe
-          = link_to t('about.find_another_instance'), 'https://joinmastodon.org', class: 'button button-alternative button--block'
+        %ul.nav
+          %li= link_to t('auth.login'), new_user_session_path, class: 'webapp-btn'
+          %li= link_to t('about.about_this'), about_more_path
+          %li= link_to t('about.other_instances'), 'https://joinmastodon.org/'
+
+      .container.hero
+        .floats
+          = image_tag asset_pack_path('cloud2.png'), class: 'float-1'
+          = image_tag asset_pack_path('cloud3.png'), class: 'float-2'
+          = image_tag asset_pack_path('cloud4.png'), class: 'float-3'
+        .heading
+          %h1
+            = @instance_presenter.site_title
+            %small= t 'about.hosted_on', domain: site_hostname
+        - if @instance_presenter.open_registrations
+          = render 'registration'
+        - else
+          .closed-registrations-message
+            %div
+              - if @instance_presenter.closed_registrations_message.blank?
+                %p= t('about.closed_registrations')
+              - else
+                = @instance_presenter.closed_registrations_message.html_safe
+            = link_to t('about.find_another_instance'), 'https://joinmastodon.org', class: 'button button-alternative button--block'
 
   .learn-more-cta
     .container
