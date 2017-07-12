@@ -17,9 +17,7 @@ class WebPushNotificationWorker
         session.web_push_subscription.destroy!
         session.web_push_subscription = nil
         session.save!
-      rescue Webpush::PayloadTooLarge, Webpush::TooManyRequests => e
-        Rails.logger.error(e)
-      rescue Webpush::Error => e
+      rescue Webpush::PayloadTooLarge => e
         Rails.logger.error(e)
       end
     end
