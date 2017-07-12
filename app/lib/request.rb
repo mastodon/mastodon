@@ -19,9 +19,12 @@ class Request
     @account = account
   end
 
+  def add_headers(new_headers)
+    @headers.merge!(new_headers)
+  end
+
   def perform
-    options_key = @verb == :get ? :params : :form
-    http_client.headers(headers).public_send(@verb, @url.to_s, options_key => @options)
+    http_client.headers(headers).public_send(@verb, @url.to_s, @options)
   end
 
   def headers

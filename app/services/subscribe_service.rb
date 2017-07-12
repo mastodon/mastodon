@@ -23,7 +23,7 @@ class SubscribeService < BaseService
   private
 
   def build_request
-    request = Request.new(:post, @account.hub_url, subscription_params)
+    request = Request.new(:post, @account.hub_url, form: subscription_params)
     request.on_behalf_of(some_local_account) if some_local_account
     request
   end

@@ -17,7 +17,7 @@ class UnsubscribeService < BaseService
   private
 
   def build_request
-    Request.new(:post, @account.hub_url, subscription_params)
+    Request.new(:post, @account.hub_url, form: subscription_params)
   end
 
   def subscription_params

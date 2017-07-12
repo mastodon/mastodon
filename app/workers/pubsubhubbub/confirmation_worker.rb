@@ -60,9 +60,7 @@ class Pubsubhubbub::ConfirmationWorker
   end
 
   def callback_get_with_params
-    HTTP.headers(user_agent: 'Mastodon/PubSubHubbub')
-        .timeout(:per_operation, write: 20, connect: 20, read: 50)
-        .get(subscription.callback_url, params: callback_params)
+    Request.new(:get, subscription.callback_url, params: callback_params).perform
   end
 
   def callback_response_body
@@ -71,10 +69,10 @@ class Pubsubhubbub::ConfirmationWorker
 
   def callback_params
     {
-      'hub.topic' => account_url(subscription.account, format: :atom),
-      'hub.mode' => mode,
-      'hub.challenge' => challenge,
-      'hub.lease_seconds' => subscription.lease_seconds,
+      'hub.topic': account_url(subscription.account, format: :atom),
+      'hub.mode': mode,
+      'hub.challenge': challenge,
+      'hub.lease_seconds': subscription.lease_seconds,
     }
   end
 
