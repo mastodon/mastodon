@@ -20,10 +20,11 @@ const iconStyle = {
 };
 
 class AdvancedOptionToggle extends React.PureComponent {
-  static PropTypes = {
+
+  static propTypes = {
     onChange: PropTypes.func.isRequired,
     active: PropTypes.bool.isRequired,
-    key: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
     shortText: PropTypes.string.isRequired,
     longText: PropTypes.string.isRequired,
   }
@@ -34,18 +35,19 @@ class AdvancedOptionToggle extends React.PureComponent {
 
   render() {
     const { active, shortText, longText } = this.props;
-      return (
-        <div role='button' className='advanced-options-dropdown__option' onClick={this.onToggle}>
-          <div className='advanced-options-dropdown__option__toggle'>
-            <Toggle checked={active} onChange={this.onToggle} />
-          </div>
-          <div className='advanced-options-dropdown__option__content'>
-            <strong>{shortText}</strong>
-            {longText}
-          </div>
+    return (
+      <div role='button' tabIndex='0' className='advanced-options-dropdown__option' onClick={this.onToggle}>
+        <div className='advanced-options-dropdown__option__toggle'>
+          <Toggle checked={active} onChange={this.onToggle} />
         </div>
-      );
+        <div className='advanced-options-dropdown__option__content'>
+          <strong>{shortText}</strong>
+          {longText}
+        </div>
+      </div>
+    );
   }
+
 }
 
 @injectIntl
@@ -98,7 +100,7 @@ export default class ComposeAdvancedOptions extends React.PureComponent {
     const { intl, values } = this.props;
 
     const options = [
-      { icon: 'wifi', shortText: messages.local_only_short,  longText: messages.local_only_long, key: 'do_not_federate' },
+      { icon: 'wifi', shortText: messages.local_only_short, longText: messages.local_only_long, key: 'do_not_federate' },
     ];
 
     const anyEnabled = values.some((enabled) => enabled);
