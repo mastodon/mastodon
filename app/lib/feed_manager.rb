@@ -117,7 +117,7 @@ class FeedManager
     return true if receiver.muting? check_for_mutes.compact
 
     # filter the status if I'm blocking anyone who was mentioned or the original author
-    check_for_blocks  = status.mentions.pluck(:account_id) + [status.reblog&.account_id]
+    check_for_blocks = status.mentions.pluck(:account_id) + [status.reblog&.account_id]
     return true if receiver.blocking? check_for_blocks.compact
 
     false
@@ -134,7 +134,7 @@ class FeedManager
     return true if receiver.blocking? check_for_blocks.compact
 
     # of if the account is silenced and I'm not following them
-    return true if (status.account.silenced? && !receiver.following?(status.account))
+    return true if status.account.silenced? && !receiver.following?(status.account)
 
     false
   end
