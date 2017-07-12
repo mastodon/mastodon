@@ -13,6 +13,7 @@ class Api::V1::StatusesController < Api::BaseController
   def show
     cached  = Rails.cache.read(@status.cache_key)
     @status = cached unless cached.nil?
+    render json: @status, serializer: REST::StatusSerializer
   end
 
   def context
@@ -21,15 +22,20 @@ class Api::V1::StatusesController < Api::BaseController
     loaded_ancestors    = cache_collection(ancestors_results, Status)
     loaded_descendants  = cache_collection(descendants_results, Status)
 
-    @context = OpenStruct.new(ancestors: loaded_ancestors, descendants: loaded_descendants)
-    statuses = [@status] + @context[:ancestors] + @context[:descendants]
+    @context = Context.new(ancestors: loaded_ancestors, descendants: loaded_descendants)
+    statuses = [@status] + @context.ancestors + @context.descendants
 
-    set_maps(statuses)
+    render json: @context, serializer: REST::ContextSerializer, relationships: StatusRelationshipsPresenter.new(statuses, current_user&.account_id)
   end
 
   def card
     @card = PreviewCard.find_by(status: @status)
-    render_empty if @card.nil?
+
+    if @card.nil?
+      render_empty
+    else
+      render json: @card, serializer: REST::PreviewCardSerializer
+    end
   end
 
   def create
@@ -43,7 +49,7 @@ class Api::V1::StatusesController < Api::BaseController
                                          application: doorkeeper_token.application,
                                          idempotency: request.headers['Idempotency-Key'])
 
-    render :show
+    render json: @status, serializer: REST::StatusSerializer
   end
 
   def destroy

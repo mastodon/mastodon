@@ -22,14 +22,15 @@ import { getLocale } from '../locales';
 const { localeData, messages } = getLocale();
 addLocaleData(localeData);
 
-const store = configureStore();
+export const store = configureStore();
 const initialState = JSON.parse(document.getElementById('initial-state').textContent);
 try {
   initialState.local_settings = JSON.parse(localStorage.getItem('mastodon-settings'));
 } catch (e) {
   initialState.local_settings = {};
 }
-store.dispatch(hydrateStore(initialState));
+const hydrateAction = hydrateStore(initialState);
+store.dispatch(hydrateAction);
 
 export default class Mastodon extends React.PureComponent {
 

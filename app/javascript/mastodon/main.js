@@ -1,9 +1,5 @@
 const perf = require('./performance');
 
-// import default stylesheet with variables
-require('font-awesome/css/font-awesome.css');
-require('mastodon-application-style');
-
 function onDomContentLoaded(callback) {
   if (document.readyState !== 'loading') {
     callback();
@@ -19,6 +15,14 @@ function main() {
   const ReactDOM = require('react-dom');
 
   require.context('../images/', true);
+
+  if (window.history && history.replaceState) {
+    const { pathname, search, hash } = window.location;
+    const path = pathname + search + hash;
+    if (!(/^\/web[$/]/).test(path)) {
+      history.replaceState(null, document.title, `/web${path}`);
+    }
+  }
 
   onDomContentLoaded(() => {
     const mountNode = document.getElementById('mastodon');

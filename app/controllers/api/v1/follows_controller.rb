@@ -10,7 +10,7 @@ class Api::V1::FollowsController < Api::BaseController
     raise ActiveRecord::RecordNotFound if follow_params[:uri].blank?
 
     @account = FollowService.new.call(current_user.account, target_uri).try(:target_account)
-    render :show
+    render json: @account, serializer: REST::AccountSerializer
   end
 
   private

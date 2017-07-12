@@ -70,7 +70,7 @@ class ApplicationController < ActionController::Base
   end
 
   def current_session
-    @current_session ||= SessionActivation.find_by(session_id: session['auth_id'])
+    @current_session ||= SessionActivation.find_by(session_id: cookies.signed['_session_id'])
   end
 
   def cache_collection(raw, klass)

@@ -5,6 +5,9 @@ import emojify from '../mastodon/emoji';
 import { getLocale } from '../mastodon/locales';
 import loadPolyfills from '../mastodon/load_polyfills';
 import { processBio } from '../glitch/util/bio_metadata';
+import TimelineContainer from '../mastodon/containers/timeline_container';
+import React from 'react';
+import ReactDOM from 'react-dom';
 
 require.context('../images/', true);
 
@@ -37,6 +40,13 @@ function loaded() {
     const datetime = new Date(content.getAttribute('datetime'));
     content.textContent = relativeFormat.format(datetime);;
   });
+
+  const mountNode = document.getElementById('mastodon-timeline');
+
+  if (mountNode !== null) {
+    const props = JSON.parse(mountNode.getAttribute('data-props'));
+    ReactDOM.render(<TimelineContainer {...props} />, mountNode);
+  }
 }
 
 function main() {
@@ -54,8 +64,12 @@ function main() {
     }
   });
 
-  delegate(document, '.media-spoiler', 'click', ({ target }) => {
-    target.style.display = 'none';
+  delegate(document, '.activity-stream .media-spoiler-wrapper .media-spoiler', 'click', function() {
+    this.parentNode.classList.add('media-spoiler-wrapper__visible');
+  });
+
+  delegate(document, '.activity-stream .media-spoiler-wrapper .spoiler-button', 'click', function() {
+    this.parentNode.classList.remove('media-spoiler-wrapper__visible');
   });
 
   delegate(document, '.webapp-btn', 'click', ({ target, button }) => {

@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactSwipeable from 'react-swipeable';
+import ReactSwipeableViews from 'react-swipeable-views';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
 import ExtendedVideoPlayer from '../../../components/extended_video_player';
@@ -26,12 +26,16 @@ export default class MediaModal extends ImmutablePureComponent {
     index: null,
   };
 
+  handleSwipe = (index) => {
+    this.setState({ index: (index) % this.props.media.size });
+  }
+
   handleNextClick = () => {
     this.setState({ index: (this.getIndex() + 1) % this.props.media.size });
   }
 
   handlePrevClick = () => {
-    this.setState({ index: (this.getIndex() - 1) % this.props.media.size });
+    this.setState({ index: (this.props.media.size + this.getIndex() - 1) % this.props.media.size });
   }
 
   handleKeyUp = (e) => {
@@ -74,7 +78,12 @@ export default class MediaModal extends ImmutablePureComponent {
     }
 
     if (attachment.get('type') === 'image') {
-      content = <ImageLoader previewSrc={attachment.get('preview_url')} src={url} width={attachment.getIn(['meta', 'original', 'width'])} height={attachment.getIn(['meta', 'original', 'height'])} />;
+      content = media.map((image) => {
+        const width  = image.getIn(['meta', 'original', 'width']) || null;
+        const height = image.getIn(['meta', 'original', 'height']) || null;
+
+        return <ImageLoader previewSrc={image.get('preview_url')} src={image.get('url')} width={width} height={height} key={image.get('preview_url')} />;
+      }).toArray();
     } else if (attachment.get('type') === 'gifv') {
       content = <ExtendedVideoPlayer src={url} muted controls={false} />;
     }
@@ -85,9 +94,9 @@ export default class MediaModal extends ImmutablePureComponent {
 
         <div className='media-modal__content'>
           <IconButton className='media-modal__close' title={intl.formatMessage(messages.close)} icon='times' onClick={onClose} size={16} />
-          <ReactSwipeable onSwipedRight={this.handlePrevClick} onSwipedLeft={this.handleNextClick}>
+          <ReactSwipeableViews onChangeIndex={this.handleSwipe} index={index} animateHeight>
             {content}
-          </ReactSwipeable>
+          </ReactSwipeableViews>
         </div>
 
         {rightNav}

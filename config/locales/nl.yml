@@ -3,23 +3,12 @@ nl:
   about:
     about_mastodon: Mastodon is een <em>vrij, gratis en open-source</em> sociaal netwerk. Een <em>gedecentraliseerd</em> alternatief voor commerciële platforms. Het voorkomt de risico's van een enkel bedrijf dat jouw communicatie monopoliseert. Kies een server die je vertrouwt &mdash; welke je ook kiest, je kunt met elke andere server communiceren. Iedereen kan een eigen Mastodon-server draaien en naadloos deelnemen in het <em>sociale netwerk</em>.
     about_this: Over deze server
-    apps: Apps
     business_email: 'E-mailadres:'
     closed_registrations: Registreren op deze server is momenteel uitgeschakeld.
     contact: Contact
     description_headline: Wat is %{domain}?
     domain_count_after: andere servers
     domain_count_before: Verbonden met
-    features:
-      api: Open API voor apps en diensten
-      blocks: Uitgebreide blokkeer- en negeerhulpmiddelen
-      characters: 500 tekens per bericht
-      chronology: Tijdlijnen zijn chronologisch
-      ethics: 'Ethisch design: geen advertenties, geen spionage'
-      gifv: GIFV-sets en korte video's
-      privacy: Nauwkeurige privacyinstellingen per toot (bericht)
-      public: Openbare tijdlijnen
-    features_headline: Wat maakt Mastodon anders
     get_started: Beginnen
     links: Links
     other_instances: Andere servers
@@ -36,24 +25,43 @@ nl:
     nothing_here: Hier is niets!
     people_followed_by: Mensen die %{name} volgt
     people_who_follow: Mensen die %{name} volgen
-    posts: Berichten
+    posts: Toots
     remote_follow: Extern volgen
     unfollow: Ontvolgen
   admin:
+    reports:
+      action_taken_by: Actie uitgevoerd door
+      are_you_sure: Weet je het zeker?
+      comment:
+        label: Opmerking
+        none: Geen
+      delete: Verwijderen
+      id: ID
+      mark_as_resolved: Markeer als opgelost
+      nsfw:
+        'false': Media tonen
+        'true': Media verbergen
+      report: 'Gerapporteerde toot #%{id}'
+      reported_account: Gerapporteerde account
+      reported_by: Gerapporteerd door
+      resolved: Opgelost
+      silence_account: Account stilzwijgen
+      status: Toot
+      suspend_account: Account blokkeren
+      target: Target
+      title: Gerapporteerde toots
+      unresolved: Onopgelost
+      view: Weergeven
     settings:
       contact_information:
         email: Vul een openbaar gebruikt e-mailadres in
-        label: Contactgegevens
         username: Vul een gebruikersnaam in
       registrations:
         closed_message:
           desc_html: Wordt op de voorpagina weergegeven wanneer registratie van nieuwe accounts is uitgeschakeld<br>En ook hier kan je HTML gebruiken
           title: Bericht wanneer registratie is uitgeschakeld
         open:
-          disabled: Uitgeschakeld
-          enabled: Ingeschakeld
           title: Open registratie
-      setting: Instelling
       site_description:
         desc_html: Dit wordt als een alinea op de voorpagina getoond en gebruikt als meta-tag in de paginabron.<br>Je kan HTML gebruiken, zoals <code>&lt;a&gt;</code> en <code>&lt;em&gt;</code>.
         title: Omschrijving Mastodon-server
@@ -62,24 +70,11 @@ nl:
         title: Uitgebreide omschrijving Mastodon-server
       site_title: Naam Mastodon-server
       title: Server-instellingen
-  admin.reports:
-    comment:
-      label: Opmerking
-      none: Geen
-    delete: Verwijderen
-    id: ID
-    mark_as_resolved: Markeer als opgelost
-    report: 'Gerapporteerde toot #%{id}'
-    reported_account: Gerapporteerde account
-    reported_by: Gerapporteerd door
-    resolved: Opgelost
-    silence_account: Account stilzwijgen
-    status: Toot
-    suspend_account: Account blokkeren
-    target: Target
-    title: Gerapporteerde toots
-    unresolved: Onopgelost
-    view: Weergeven
+    title: Beheer
+  admin_mailer:
+    new_report:
+      body: "%{reporter} heeft %{target} gerapporteerd"
+      subject: Nieuwe toots gerapporteerd op %{instance} (#%{id})
   application_mailer:
     settings: 'E-mailvoorkeuren wijzigen: %{link}'
     signature: Mastodon-meldingen van %{instance}
@@ -87,7 +82,9 @@ nl:
   applications:
     invalid_url: De opgegevens URL is ongeldig
   auth:
-    change_password: Inloggegevens
+    change_password: Beveiliging
+    delete_account: Account verwijderen
+    delete_account_html: Wanneer je jouw account graag wilt verwijderen, kan je dat <a href="%{path}">hier doen</a>. We vragen jou daar om een bevestiging.
     didnt_get_confirmation: Geen bevestigingsinstructies ontvangen?
     forgot_password: Wachtwoord vergeten?
     login: Aanmelden
@@ -115,12 +112,23 @@ nl:
       x_minutes: "%{count}m"
       x_months: "%{count}ma"
       x_seconds: "%{count}s"
+  deletes:
+    bad_password_msg: Goed geprobeerd hackers! Ongeldig wachtwoord
+    confirm_password: Voer jouw huidige wachtwoord in om jouw identiteit te bevestigen
+    description_html: Hierdoor worden alle gegevens van jouw account <strong>permanent, onomkeerbaar</strong> verwijderd en wordt deze gedeactiveerd. Om toekomstige identiteitsdiefstal te voorkomen, kan op deze server jouw gebruikersnaam niet meer gebruikt worden.
+    proceed: Account verwijderen
+    success_msg: Jouw account is succesvol verwijderd
+    warning_html: We kunnen alleen garanderen dat jouw gegevens op deze server worden verwijderd. Berichten (toots), incl. media, die veel zijn gedeeld laten mogelijk sporen achter. Offline servers en servers die niet meer op jouw updates zijn geabonneerd zullen niet hun databases updaten.
+    warning_title: Verwijdering gegevens op andere servers
   errors:
+    '403': Jij hebt geen toestemming om deze pagina te bekijken.
     '404': De pagina waarnaar jij op zoek bent bestaat niet.
     '410': De pagina waarnaar jij op zoek bent bestaat niet meer.
     '422':
       content: Veiligheidsverificatie mislukt. Blokkeer je toevallig cookies?
       title: Veiligheidsverificatie mislukt
+    '429': Te veel verbindingsaanvragen.
+    noscript: Schakel JavaScript in om Mastodon te kunnen gebruiken.
   exports:
     blocks: Jij blokkeert
     csv: CSV
@@ -141,7 +149,7 @@ nl:
     unlocked_warning_title: Jouw account is niet besloten
   generic:
     changes_saved_msg: Wijzigingen succesvol opgeslagen!
-    powered_by: mogelijk gemaakt door %{link}
+    powered_by: wordt mogelijk gemaakt door %{link}
     save_changes: Wijzigingen opslaan
     validation_errors:
       one: Er is iets niet helemaal goed! Bekijk onderstaande fout
@@ -154,7 +162,7 @@ nl:
       following: Volglijst
       muting: Negeerlijst
     upload: Uploaden
-  landing_strip_html: <strong>%{name}</strong> is een gebruiker op %{link_to_root_path}. Je kunt deze volgen en ermee communiceren als je ergens in deze fediverse een account hebt.
+  landing_strip_html: "<strong>%{name}</strong> is een gebruiker op %{link_to_root_path}. Je kunt deze volgen en ermee communiceren als je ergens in deze fediverse een account hebt."
   landing_strip_signup_html: Als je dat niet hebt, kun je je <a href="%{sign_up_path}">hier registreren</a>.
   notification_mailer:
     digest:
@@ -189,6 +197,43 @@ nl:
     missing_resource: Kon vereiste doorverwijzings-URL voor jouw account niet vinden
     proceed: Ga door om te volgen
     prompt: 'Jij gaat volgen:'
+  sessions:
+    activity: Laatst actief
+    browser: Webbrowser
+    browsers:
+      alipay: Alipay
+      blackberry: Blackberry
+      chrome: Chrome
+      edge: Microsoft Edge
+      firefox: Firefox
+      generic: Onbekende webbrowser
+      ie: Internet Explorer
+      micro_messenger: MicroMessenger
+      nokia: Nokia S40 Ovi Browser
+      opera: Opera
+      phantom_js: PhantomJS
+      qq: QQ Browser
+      safari: Safari
+      uc_browser: UCBrowser
+      weibo: Weibo
+    current_session: Huidige sessie
+    description: "%{browser} op %{platform}"
+    explanation: Dit zijn de webbrowsers die momenteel met jouw Mastodon-account zijn ingelogd.
+    ip: IP
+    platforms:
+      adobe_air: Adobe Air
+      android: Android
+      blackberry: Blackberry
+      chrome_os: ChromeOS
+      firefox_os: Firefox OS
+      ios: iOS
+      linux: Linux
+      mac: Mac
+      other: Onbekend platform
+      windows: Windows
+      windows_mobile: Windows Mobile
+      windows_phone: Windows Phone
+    title: Sessies
   settings:
     authorized_apps: Geautoriseerde apps
     back: Terug naar Mastodon
@@ -226,7 +271,7 @@ nl:
     generate_recovery_codes: Herstelcodes genereren
     instructions_html: "<strong>Scan deze QR-code in Google Authenticator of een soortgelijke app op jouw mobiele telefoon</strong>. Van nu af aan genereert deze app aanmeldcodes die je bij het aanmelden moet invoeren."
     lost_recovery_codes: Met herstelcodes kun je toegang tot jouw account krijgen wanneer je jouw telefoon bent kwijtgeraakt. Wanneer je jouw herstelcodes bent kwijtgeraakt, kan je ze hier opnieuw genereren. Jouw oude herstelcodes zijn daarna ongeldig.
-    manual_instructions: 'Hieronder vind je de geheime code in platte tekst. Voor het geval je de QR-code niet kunt scannen en het handmatig moet invoeren.'
+    manual_instructions: Hieronder vind je de geheime code in platte tekst. Voor het geval je de QR-code niet kunt scannen en het handmatig moet invoeren.
     recovery_codes_regenerated: Opnieuw genereren herstelcodes geslaagd
     recovery_instructions_html: Wanneer je ooit de toegang verliest tot jouw telefoon, kan je met behulp van een van de herstelcodes hieronder opnieuw toegang krijgen tot jouw account. Zorg ervoor dat je de herstelcodes op een veilige plek bewaard. (Je kunt ze bijvoorbeeld printen en ze samen met andere belangrijke documenten bewaren.)
     setup: Instellen

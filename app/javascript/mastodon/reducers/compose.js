@@ -25,12 +25,12 @@ import {
 } from '../actions/compose';
 import { TIMELINE_DELETE } from '../actions/timelines';
 import { STORE_HYDRATE } from '../actions/store';
-import Immutable from 'immutable';
+import { Map as ImmutableMap, List as ImmutableList, OrderedSet as ImmutableOrderedSet, fromJS } from 'immutable';
 import uuid from '../uuid';
 
-const initialState = Immutable.Map({
+const initialState = ImmutableMap({
   mounted: false,
-  advanced_options: Immutable.Map({
+  advanced_options: ImmutableMap({
     do_not_federate: false,
   }),
   sensitive: false,
@@ -44,20 +44,21 @@ const initialState = Immutable.Map({
   is_submitting: false,
   is_uploading: false,
   progress: 0,
-  media_attachments: Immutable.List(),
+  media_attachments: ImmutableList(),
   suggestion_token: null,
-  suggestions: Immutable.List(),
+  suggestions: ImmutableList(),
   me: null,
-  default_advanced_options: Immutable.Map({
+  default_advanced_options: ImmutableMap({
     do_not_federate: false,
   }),
   default_privacy: 'public',
+  default_sensitive: false,
   resetFileKey: Math.floor((Math.random() * 0x10000)),
   idempotencyKey: null,
 });
 
 function statusToTextMentions(state, status) {
-  let set = Immutable.OrderedSet([]);
+  let set = ImmutableOrderedSet([]);
   let me  = state.get('me');
 
   if (status.getIn(['account', 'id']) !== me) {
@@ -83,6 +84,8 @@ function clearAll(state) {
 };
 
 function appendMedia(state, media) {
+  const prevSize = state.get('media_attachments').size;
+
   return state.withMutations(map => {
     map.update('media_attachments', list => list.push(media));
     map.set('is_uploading', false);
@@ -90,6 +93,10 @@ function appendMedia(state, media) {
     map.update('text', oldText => `${oldText.trim()} ${media.get('text_url')}`);
     map.set('focusDate', new Date());
     map.set('idempotencyKey', uuid());
+
+    if (prevSize === 0 && state.get('default_sensitive')) {
+      map.set('sensitive', true);
+    }
   });
 };
 
@@ -112,7 +119,7 @@ const insertSuggestion = (state, position, token, completion) => {
   return state.withMutations(map => {
     map.update('text', oldText => `${oldText.slice(0, position)}${completion} ${oldText.slice(position + token.length)}`);
     map.set('suggestion_token', null);
-    map.update('suggestions', Immutable.List(), list => list.clear());
+    map.update('suggestions', ImmutableList(), list => list.clear());
     map.set('focusDate', new Date());
     map.set('idempotencyKey', uuid());
   });
@@ -180,7 +187,7 @@ export default function compose(state = initialState, action) {
       map.set('in_reply_to', action.status.get('id'));
       map.set('text', statusToTextMentions(state, action.status));
       map.set('privacy', privacyPreference(action.status.get('visibility'), state.get('default_privacy')));
-      map.set('advanced_options', new Immutable.Map({
+      map.set('advanced_options', new ImmutableMap({
         do_not_federate: /👁\ufe0f?<\/p>$/.test(action.status.get('content')),
       }));
       map.set('focusDate', new Date());
@@ -216,7 +223,7 @@ export default function compose(state = initialState, action) {
       map.set('is_uploading', true);
     });
   case COMPOSE_UPLOAD_SUCCESS:
-    return appendMedia(state, Immutable.fromJS(action.media));
+    return appendMedia(state, fromJS(action.media));
   case COMPOSE_UPLOAD_FAIL:
     return state.set('is_uploading', false);
   case COMPOSE_UPLOAD_UNDO:
@@ -229,9 +236,9 @@ export default function compose(state = initialState, action) {
       .set('focusDate', new Date())
       .set('idempotencyKey', uuid());
   case COMPOSE_SUGGESTIONS_CLEAR:
-    return state.update('suggestions', Immutable.List(), list => list.clear()).set('suggestion_token', null);
+    return state.update('suggestions', ImmutableList(), list => list.clear()).set('suggestion_token', null);
   case COMPOSE_SUGGESTIONS_READY:
-    return state.set('suggestions', Immutable.List(action.accounts.map(item => item.id))).set('suggestion_token', action.token);
+    return state.set('suggestions', ImmutableList(action.accounts.map(item => item.id))).set('suggestion_token', action.token);
   case COMPOSE_SUGGESTION_SELECT:
     return insertSuggestion(state, action.position, action.token, action.completion);
   case TIMELINE_DELETE:

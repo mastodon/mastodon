@@ -20,8 +20,6 @@ class ProcessFeedService < BaseService
   end
 
   class ProcessEntry
-    include AuthorExtractor
-
     def call(xml, account)
       @account = account
       @xml     = xml
@@ -42,7 +40,7 @@ class ProcessFeedService < BaseService
     private
 
     def create_status
-      if redis.exists("delete_upon_arrival:#{id}")
+      if redis.exists("delete_upon_arrival:#{@account.id}:#{id}")
         Rails.logger.debug "Delete for status #{id} was queued, ignoring"
         return
       end
@@ -99,15 +97,13 @@ class ProcessFeedService < BaseService
 
     def delete_status
       Rails.logger.debug "Deleting remote status #{id}"
-      status = Status.find_by(uri: id)
+      status = Status.find_by(uri: id, account: @account)
 
       if status.nil?
-        redis.setex("delete_upon_arrival:#{id}", 6 * 3_600, id)
+        redis.setex("delete_upon_arrival:#{@account.id}:#{id}", 6 * 3_600, id)
       else
         RemoveStatusService.new.call(status)
       end
-
-      nil
     end
 
     def skip_unsupported_type?
@@ -128,18 +124,7 @@ class ProcessFeedService < BaseService
 
       return [status, false] unless status.nil?
 
-      # If status embeds an author, find that author
-      # If that author cannot be found, don't record the status (do not misattribute)
-      if account?(entry)
-        begin
-          account = author_from_xml(entry)
-          return [nil, false] if account.nil?
-        rescue Goldfinger::Error
-          return [nil, false]
-        end
-      else
-        account = @account
-      end
+      account = @account
 
       return [nil, false] if account.suspended?
 

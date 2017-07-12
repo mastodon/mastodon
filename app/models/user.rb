@@ -79,6 +79,10 @@ class User < ApplicationRecord
     settings.default_privacy || (account.locked? ? 'private' : 'public')
   end
 
+  def setting_default_sensitive
+    settings.default_sensitive
+  end
+
   def setting_boost_modal
     settings.boost_modal
   end
@@ -89,6 +93,10 @@ class User < ApplicationRecord
 
   def setting_auto_play_gif
     settings.auto_play_gif
+  end
+
+  def setting_system_font_ui
+    settings.system_font_ui
   end
 
   def activate_session(request)

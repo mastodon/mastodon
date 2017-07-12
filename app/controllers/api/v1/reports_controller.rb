@@ -9,6 +9,7 @@ class Api::V1::ReportsController < Api::BaseController
 
   def index
     @reports = current_account.reports
+    render json: @reports, each_serializer: REST::ReportSerializer
   end
 
   def create
@@ -20,7 +21,7 @@ class Api::V1::ReportsController < Api::BaseController
 
     User.admins.includes(:account).each { |u| AdminMailer.new_report(u.account, @report).deliver_later }
 
-    render :show
+    render json: @report, serializer: REST::ReportSerializer
   end
 
   private
