@@ -16,8 +16,8 @@
 #
 
 class Subscription < ApplicationRecord
-  MIN_EXPIRATION = 7.days.seconds.to_i
-  MAX_EXPIRATION = 30.days.seconds.to_i
+  MIN_EXPIRATION = 1.day.to_i
+  MAX_EXPIRATION = 30.days.to_i
 
   belongs_to :account, required: true
 
