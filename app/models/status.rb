@@ -124,6 +124,7 @@ class Status < ApplicationRecord
   before_validation :set_reblog
   before_validation :set_visibility
   before_validation :set_conversation
+  before_validation :set_sensitivity
 
   class << self
     def not_in_filtered_languages(account)
@@ -248,6 +249,10 @@ class Status < ApplicationRecord
 
   def set_visibility
     self.visibility = (account.locked? ? :private : :public) if visibility.nil?
+  end
+
+  def set_sensitivity
+    self.sensitive = sensitive || spoiler_text.present?
   end
 
   def set_conversation
