@@ -6,7 +6,7 @@ class ActivityPub::ActivitySerializer < ActiveModel::Serializer
   has_one :object, serializer: ActivityPub::NoteSerializer
 
   def id
-    ActivityPub::TagManager.instance.uri_for(object)
+    [ActivityPub::TagManager.instance.uri_for(object), '/activity'].join
   end
 
   def type

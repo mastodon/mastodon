@@ -25,6 +25,10 @@ class StatusesController < ApplicationController
     end
   end
 
+  def activity
+    render json: @status, serializer: ActivityPub::ActivitySerializer, adapter: ActivityPub::Adapter
+  end
+
   private
 
   def set_account
