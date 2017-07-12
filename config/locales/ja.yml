@@ -154,26 +154,31 @@ ja:
       view: 表示
     settings:
       contact_information:
-        email: 公開するメールアドレスを入力
-        label: 連絡先情報
-        username: ユーザー名を入力
+        email: ビジネスメールアドレス
+        username: 連絡先のユーザー名
       registrations:
         closed_message:
-          desc_html: 新規登録を停止しているときにフロントページに表示されます。<br>HTMLタグが利用可能です。
+          desc_html: 新規登録を停止しているときにフロントページに表示されます。HTMLタグが使えます
           title: 新規登録停止時のメッセージ
+        deletion:
+          desc_html: 誰でも自分のアカウントを削除できるようにします
+          title: アカウント削除を受け付ける
         open:
+          desc_html: 誰でも自由にアカウントを作成できるようにします
           title: 新規登録を受け付ける
-      setting: 設定
       site_description:
-        desc_html: トップページへの表示と meta タグに使用されます。<br>HTMLタグ、特に<code>&lt;a&gt;</code> と <code>&lt;em&gt;</code>が利用可能です。
-        title: サイトの説明文
+        desc_html: フロントページへの表示と meta タグに使用される紹介文です。HTMLタグ、特に<code>&lt;a&gt;</code> と <code>&lt;em&gt;</code>が使えます。
+        title: インスタンスの説明
       site_description_extended:
-        desc_html: インスタンスについてのページに表示されます。<br>HTMLタグが利用可能です。
-        title: サイトの詳細な説明
+        desc_html: あなたのインスタンスにおける行動規範やルール、ガイドライン、そのほかの記述をする際に最適な場所です。HTMLタグが使えます
+        title: カスタム詳細説明
       site_terms:
-        desc_html: プライバシーポリシーのページに表示されます。<br>HTMLタグが利用可能です。
-        title: サイトのプライバシーポリシー
-      site_title: サイトのタイトル
+        desc_html: あなたは独自のプライバシーポリシーや利用規約、そのほかの法的根拠を書くことができます。HTMLタグが使えます
+        title: カスタム利用規約
+      site_title: インスタンスの名前
+      timeline_preview:
+        desc_html: ランディングページに公開タイムラインを表示します
+        title: タイムラインプレビュー
       title: サイト設定
     subscriptions:
       callback_url: コールバックURL
@@ -208,6 +213,12 @@ ja:
   authorize_follow:
     error: 残念ながら、リモートアカウントにエラーが発生しました。
     follow: フォロー
+    follow_request: 'あなたは以下のアカウントにフォローリクエストを送信しました:'
+    following: '成功! あなたは現在以下のアカウントをフォローしています:'
+    post_follow:
+      close: またはこのウィンドウを閉じます
+      return: ユーザーのプロフィールに戻る
+      web: Web を開く
     prompt_html: 'あなた（<strong>%{self}</strong>）は以下のアカウントのフォローをリクエストしました:'
     title: "%{acct} をフォロー"
   datetime:
@@ -404,7 +415,7 @@ ja:
 
       <p>このサービスはあなたの個人情報の入力、送信、またはアクセスに際してあなたの個人情報の安全性を維持するために様々なセキュリティ手段をとっています。</p>
 
-      <h3 id="data-retention>データ保持のポリシーはどのようになっていますか？</h3>
+      <h3 id="data-retention">データ保持のポリシーはどのようになっていますか？</h3>
 
       <p>このサービスはデータ保持に関して次のことを行うよう努めます。:</p>
 
