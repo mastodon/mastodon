@@ -1,12 +1,17 @@
+//  Package imports  //
 import React from 'react';
 import ImmutablePropTypes from 'react-immutable-proptypes';
-import StatusContainer from '../../../containers/status_container';
-import AccountContainer from '../../../containers/account_container';
 import { FormattedMessage } from 'react-intl';
-import Permalink from '../../../components/permalink';
-import emojify from '../../../emoji';
 import escapeTextContentForBrowser from 'escape-html';
 import ImmutablePureComponent from 'react-immutable-pure-component';
+
+//  Mastodon imports  //
+import AccountContainer from '../../../mastodon/containers/account_container';
+import Permalink from '../../../mastodon/components/permalink';
+import emojify from '../../../mastodon/emoji';
+
+//  Our imports  //
+import StatusContainer from '../../containers/status';
 
 export default class Notification extends ImmutablePureComponent {
 

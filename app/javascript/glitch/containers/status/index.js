@@ -18,45 +18,41 @@ Imports:
 
 */
 
-//  Our standard React/Redux imports:
+//  Package imports  //
 import React from 'react';
 import { connect } from 'react-redux';
-
-//  Our `<Status>`:
-import Status from '../components/status';
-
-//  This selector helps us get our status from the store:
-import { makeGetStatus } from '../selectors';
-
-//  These are our various `<Status>`-related actions:
-import {
-  replyCompose,
-  mentionCompose,
-} from '../actions/compose';
-import {
-  reblog,
-  favourite,
-  unreblog,
-  unfavourite,
-} from '../actions/interactions';
-import {
-  blockAccount,
-  muteAccount,
-} from '../actions/accounts';
-import {
-  muteStatus,
-  unmuteStatus,
-  deleteStatus,
-} from '../actions/statuses';
-import { initReport } from '../actions/reports';
-import { openModal } from '../actions/modal';
-
-//  We will need internationalization in this component:
 import {
   defineMessages,
   injectIntl,
   FormattedMessage,
 } from 'react-intl';
+
+//  Mastodon imports  //
+import { makeGetStatus } from '../../../mastodon/selectors';
+import {
+  replyCompose,
+  mentionCompose,
+} from '../../../mastodon/actions/compose';
+import {
+  reblog,
+  favourite,
+  unreblog,
+  unfavourite,
+} from '../../../mastodon/actions/interactions';
+import {
+  blockAccount,
+  muteAccount,
+} from '../../../mastodon/actions/accounts';
+import {
+  muteStatus,
+  unmuteStatus,
+  deleteStatus,
+} from '../../../mastodon/actions/statuses';
+import { initReport } from '../../../mastodon/actions/reports';
+import { openModal } from '../../../mastodon/actions/modal';
+
+//  Our imports  //
+import Status from '../../components/status';
 
                             /* * * * */
 

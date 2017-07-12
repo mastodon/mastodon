@@ -1,7 +1,12 @@
+//  Package imports  //
 import { connect } from 'react-redux';
-import { changeLocalSetting } from '../../../actions/local_settings';
-import { closeModal } from '../../../actions/modal';
-import SettingsModal from '../components/settings_modal';
+
+//  Mastodon imports  //
+import { closeModal } from '../../../mastodon/actions/modal';
+
+//  Our imports  //
+import { changeLocalSetting } from '../../actions/local_settings';
+import Settings from '../../components/settings';
 
 const mapStateToProps = state => ({
   settings: state.get('local_settings'),
@@ -19,4 +24,4 @@ const mapDispatchToProps = dispatch => ({
   },
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(SettingsModal);
+export default connect(mapStateToProps, mapDispatchToProps)(Settings);

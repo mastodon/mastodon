@@ -1,11 +1,14 @@
+//  Package imports  //
 import React from 'react';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import escapeTextContentForBrowser from 'escape-html';
 import PropTypes from 'prop-types';
-import emojify from '../emoji';
-import { isRtl } from '../rtl';
 import { FormattedMessage } from 'react-intl';
-import Permalink from './permalink';
+
+//  Mastodon imports  //
+import emojify from '../../../mastodon/emoji';
+import { isRtl } from '../../../mastodon/rtl';
+import Permalink from '../../../mastodon/components/permalink';
 
 export default class StatusContent extends React.PureComponent {
 

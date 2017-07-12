@@ -1,9 +1,12 @@
+//  Package imports  //
 import React from 'react';
 import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
-import IconButton from '../../../components/icon_button';
 import Toggle from 'react-toggle';
 import { injectIntl, defineMessages } from 'react-intl';
+
+//  Mastodon imports  //
+import IconButton from '../../../mastodon/components/icon_button';
 
 const messages = defineMessages({
   local_only_short: { id: 'advanced-options.local-only.short', defaultMessage: 'Local-only' },
@@ -17,7 +20,7 @@ const iconStyle = {
 };
 
 @injectIntl
-export default class AdvancedOptionsDropdown extends React.PureComponent {
+export default class ComposeAdvancedOptions extends React.PureComponent {
 
   static propTypes = {
     values: ImmutablePropTypes.contains({

@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import Avatar from '../../../components/avatar';
 import DisplayName from '../../../components/display_name';
-import StatusContent from '../../../components/status_content';
-import MediaGallery from '../../../components/media_gallery';
-import VideoPlayer from '../../../components/video_player';
+import StatusContent from '../../../../glitch/components/status/content';
+import StatusGallery from '../../../../glitch/components/status/gallery';
+import StatusVideoPlayer from '../../../../glitch/components/status/video_player';
 import AttachmentList from '../../../components/attachment_list';
 import Link from 'react-router-dom/Link';
 import { FormattedDate, FormattedNumber } from 'react-intl';
@@ -48,7 +48,7 @@ export default class DetailedStatus extends ImmutablePureComponent {
         media = <AttachmentList media={status.get('media_attachments')} />;
       } else if (status.getIn(['media_attachments', 0, 'type']) === 'video') {
         media = (
-          <VideoPlayer
+          <StatusVideoPlayer
             sensitive={status.get('sensitive')}
             media={status.getIn(['media_attachments', 0])}
             letterbox={settings.getIn(['media', 'letterbox'])}
@@ -60,7 +60,7 @@ export default class DetailedStatus extends ImmutablePureComponent {
         mediaIcon = 'video-camera';
       } else {
         media = (
-          <MediaGallery
+          <StatusGallery
             sensitive={status.get('sensitive')}
             media={status.get('media_attachments')}
             letterbox={settings.getIn(['media', 'letterbox'])}

@@ -4,7 +4,7 @@ import { delegate } from 'rails-ujs';
 import emojify from '../mastodon/emoji';
 import { getLocale } from '../mastodon/locales';
 import loadPolyfills from '../mastodon/load_polyfills';
-import { processBio } from '../mastodon/features/account/util/bio_metadata';
+import { processBio } from '../glitch/util/bio_metadata';
 
 require.context('../images/', true);
 

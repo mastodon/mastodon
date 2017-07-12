@@ -18,19 +18,17 @@ Imports:
 
 */
 
-//  Our standard React imports:
+//  Package imports  //
 import React from 'react';
 import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
-
-//  We will need internationalization in this component:
 import { defineMessages, injectIntl } from 'react-intl';
 
-//  The various components used when constructing our header:
-import Avatar from './avatar';
-import AvatarOverlay from './avatar_overlay';
-import DisplayName from './display_name';
-import IconButton from './icon_button';
+//  Mastodon imports  //
+import Avatar from '../../../mastodon/components/avatar';
+import AvatarOverlay from '../../../mastodon/components/avatar_overlay';
+import DisplayName from '../../../mastodon/components/display_name';
+import IconButton from '../../../mastodon/components/icon_button';
 
                             /* * * * */
 

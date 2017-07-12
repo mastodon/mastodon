@@ -6,7 +6,7 @@ import Column from '../../components/column';
 import ColumnHeader from '../../components/column_header';
 import { expandNotifications, scrollTopNotifications } from '../../actions/notifications';
 import { addColumn, removeColumn, moveColumn } from '../../actions/columns';
-import NotificationContainer from './containers/notification_container';
+import NotificationContainer from '../../../glitch/containers/notification';
 import { ScrollContainer } from 'react-router-scroll';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import ColumnSettingsContainer from './containers/column_settings_container';

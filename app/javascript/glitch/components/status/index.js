@@ -31,27 +31,22 @@ Imports:
 
 */
 
-//  Our standard React imports:
+//  Package imports  //
 import React from 'react';
 import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
-
-//  `ImmutablePureComponent` gives us `updateOnProps` and
-//  `updateOnStates`:
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
-//  These are our various media types:
-import MediaGallery from './media_gallery';
-import VideoPlayer from './video_player';
+//  Mastodon imports  //
+import scheduleIdleTask from '../../../mastodon/features/ui/util/schedule_idle_task';
 
-//  These are our core status components:
-import StatusPrepend from './status_prepend';
-import StatusHeader from './status_header';
-import StatusContent from './status_content';
-import StatusActionBar from './status_action_bar';
-
-//  This is used to schedule tasks at the browser's convenience:
-import scheduleIdleTask from '../features/ui/util/schedule_idle_task';
+//  Our imports  //
+import StatusPrepend from './prepend';
+import StatusHeader from './header';
+import StatusContent from './content';
+import StatusActionBar from './action_bar';
+import StatusGallery from './gallery';
+import StatusVideoPlayer from './video_player';
 
                             /* * * * */
 
@@ -622,7 +617,7 @@ backgrounds for collapsed statuses are enabled.
         attachments.getIn([0, 'type']) === 'video'
       ) {
         media = (  //  Media type is 'video'
-          <VideoPlayer
+          <StatusVideoPlayer
             media={attachments.get(0)}
             sensitive={status.get('sensitive')}
             letterbox={settings.getIn(['media', 'letterbox'])}
@@ -634,7 +629,7 @@ backgrounds for collapsed statuses are enabled.
         mediaIcon = 'video-camera';
       } else {  //  Media type is 'image' or 'gifv'
         media = (
-          <MediaGallery
+          <StatusGallery
             media={attachments}
             sensitive={status.get('sensitive')}
             letterbox={settings.getIn(['media', 'letterbox'])}

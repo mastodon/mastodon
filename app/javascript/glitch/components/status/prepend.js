@@ -18,15 +18,15 @@ Imports:
 
 */
 
-//  Our standard React imports:
+//  Package imports  //
 import React from 'react';
 import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
-
-//  This helps us process our text:
-import emojify from '../emoji';
 import escapeTextContentForBrowser from 'escape-html';
 import { FormattedMessage } from 'react-intl';
+
+//  Mastodon imports  //
+import emojify from '../../../mastodon/emoji';
 
                             /* * * * */
 

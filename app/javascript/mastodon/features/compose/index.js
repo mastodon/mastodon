@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { mountCompose, unmountCompose } from '../../actions/compose';
 import { openModal } from '../../actions/modal';
-import { changeLocalSetting } from '../../actions/local_settings';
+import { changeLocalSetting } from '../../../glitch/actions/local_settings';
 import Link from 'react-router-dom/Link';
 import { injectIntl, defineMessages } from 'react-intl';
 import SearchContainer from './containers/search_container';

@@ -1,6 +1,11 @@
-import { LOCAL_SETTING_CHANGE } from '../actions/local_settings';
-import { STORE_HYDRATE } from '../actions/store';
+//  Package imports  //
 import Immutable from 'immutable';
+
+//  Mastodon imports  //
+import { STORE_HYDRATE } from '../../mastodon/actions/store';
+
+//  Our imports  //
+import { LOCAL_SETTING_CHANGE } from '../actions/local_settings';
 
 const initialState = Immutable.fromJS({
   layout    : 'auto',

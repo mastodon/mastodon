@@ -1,11 +1,14 @@
+//  Package imports  //
 import React from 'react';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
-import IconButton from './icon_button';
-import DropdownMenu from './dropdown_menu';
 import { defineMessages, injectIntl } from 'react-intl';
 import ImmutablePureComponent from 'react-immutable-pure-component';
-import RelativeTimestamp from './relative_timestamp';
+
+//  Mastodon imports  //
+import RelativeTimestamp from '../../../mastodon/components/relative_timestamp';
+import IconButton from '../../../mastodon/components/icon_button';
+import DropdownMenu from '../../../mastodon/components/dropdown_menu';
 
 const messages = defineMessages({
   delete: { id: 'status.delete', defaultMessage: 'Delete' },

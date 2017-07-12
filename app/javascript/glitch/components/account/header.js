@@ -1,13 +1,18 @@
+//  Package imports  //
 import React from 'react';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
-import emojify from '../../../emoji';
 import escapeTextContentForBrowser from 'escape-html';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
-import IconButton from '../../../components/icon_button';
-import Avatar from '../../../components/avatar';
 import ImmutablePureComponent from 'react-immutable-pure-component';
-import { processBio } from '../util/bio_metadata';
+
+//  Mastodon imports  //
+import emojify from '../../../mastodon/emoji';
+import IconButton from '../../../mastodon/components/icon_button';
+import Avatar from '../../../mastodon/components/avatar';
+
+//  Our imports  //
+import { processBio } from '../../util/bio_metadata';
 
 const messages = defineMessages({
   unfollow: { id: 'account.unfollow', defaultMessage: 'Unfollow' },

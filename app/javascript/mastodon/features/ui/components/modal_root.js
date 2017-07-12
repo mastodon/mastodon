@@ -6,7 +6,7 @@ import VideoModal from './video_modal';
 import BoostModal from './boost_modal';
 import ConfirmationModal from './confirmation_modal';
 import ReportModal from './report_modal';
-import SettingsModal from '../containers/settings_modal_container';
+import SettingsContainer from '../../../../glitch/containers/settings';
 import TransitionMotion from 'react-motion/lib/TransitionMotion';
 import spring from 'react-motion/lib/spring';
 
@@ -17,7 +17,7 @@ const MODAL_COMPONENTS = {
   'BOOST': BoostModal,
   'CONFIRM': ConfirmationModal,
   'REPORT': ReportModal,
-  'SETTINGS': SettingsModal,
+  'SETTINGS': SettingsContainer,
 };
 
 export default class ModalRoot extends React.PureComponent {

@@ -1,9 +1,12 @@
+//  Package imports  //
 import React from 'react';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
-import IconButton from './icon_button';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
-import { isIOS } from '../is_mobile';
+
+//  Mastodon imports  //
+import IconButton from '../../../mastodon/components/icon_button';
+import { isIOS } from '../../../mastodon/is_mobile';
 
 const messages = defineMessages({
   toggle_sound: { id: 'video_player.toggle_sound', defaultMessage: 'Toggle sound' },
@@ -12,7 +15,7 @@ const messages = defineMessages({
 });
 
 @injectIntl
-export default class VideoPlayer extends React.PureComponent {
+export default class StatusVideoPlayer extends React.PureComponent {
 
   static propTypes = {
     media: ImmutablePropTypes.map.isRequired,
