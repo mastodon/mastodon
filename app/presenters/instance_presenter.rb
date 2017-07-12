@@ -29,4 +29,13 @@ class InstancePresenter
   def version_number
     Mastodon::Version
   end
+
+  def commit_hash
+    current_release_file = Pathname.new('CURRENT_RELEASE').expand_path
+    if current_release_file.file?
+        IO.read(current_release_file)
+    else
+        ""
+    end
+  end
 end

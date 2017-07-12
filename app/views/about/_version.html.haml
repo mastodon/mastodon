@@ -1,4 +1,9 @@
 .panel
   .panel-header= t 'about.version'
   .panel-body
-    %strong= version.version_number
+    - if @instance_presenter.commit_hash == ""
+      %strong= version.version_number
+    - else
+      %strong= version.version_number
+      %strong= "#{@instance_presenter.commit_hash}"
+
