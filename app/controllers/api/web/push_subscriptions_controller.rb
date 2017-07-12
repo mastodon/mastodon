@@ -13,20 +13,16 @@ class Api::Web::PushSubscriptionsController < Api::BaseController
 
     unless active_session.web_push_subscription.nil?
       active_session.web_push_subscription.destroy!
-      active_session.web_push_subscription = nil
-      active_session.save!
+      active_session.update!(web_push_subscription: nil)
     end
 
-    web_subscription = ::Web::PushSubscription.new(
+    web_subscription = ::Web::PushSubscription.create!(
       endpoint: params[:data][:endpoint],
       key_p256dh: params[:data][:keys][:p256dh],
       key_auth: params[:data][:keys][:auth]
     )
 
-    web_subscription.save!
-
-    active_session.web_push_subscription = web_subscription
-    active_session.save!
+    active_session.update!(web_push_subscription: web_subscription)
 
     render json: web_subscription.as_payload
   end
@@ -36,8 +32,7 @@ class Api::Web::PushSubscriptionsController < Api::BaseController
 
     web_subscription = ::Web::PushSubscription.find(params[:id])
 
-    web_subscription.data = params[:data]
-    web_subscription.save!
+    web_subscription.update!(data: params[:data])
 
     render json: web_subscription.as_payload
   end
