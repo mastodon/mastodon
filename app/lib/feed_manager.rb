@@ -126,16 +126,16 @@ class FeedManager
   def filter_from_mentions?(status, receiver)
 
     # Filter if I'm mentioning myself
-    should_filter = receiver.id == status.account_id
+    return true if receiver.id == status.account_id
 
     # or it's from someone I blocked, in reply to someone I blocked, or mentioning someone I blocked
-    check_for_blocks  = [status.account_id] + status.mentions.pluck(:account_id)
-    check_for_blocks << status.in_reply_to_account_id
-    should_filter ||= receiver.blocking? check_for_blocks.compact
+    check_for_blocks  = [status.account_id, status.in_reply_to_account_id]
+    check_for_blocks += status.mentions.pluck(:account_id)
+    return true if receiver.blocking? check_for_blocks.compact
 
     # of if the account is silenced and I'm not following them
-    should_filter ||= (status.account.silenced? && !receiver.following?(status.account))
+    return true if (status.account.silenced? && !receiver.following?(status.account))
 
-    should_filter
+    false
   end
 end
