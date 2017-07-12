@@ -22,7 +22,7 @@ module Admin
     ).freeze
 
     def edit
-      @settings = Setting.all_as_records
+      @admin_settings = Form::AdminSettings.new
     end
 
     def update
@@ -38,12 +38,12 @@ module Admin
     private
 
     def settings_params
-      params.permit(ADMIN_SETTINGS)
+      params.require(:form_admin_settings).permit(ADMIN_SETTINGS)
     end
 
     def value_for_update(key, value)
       if BOOLEAN_SETTINGS.include?(key)
-        value == 'true'
+        value == '1'
       else
         value
       end
