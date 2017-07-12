@@ -3,6 +3,8 @@
 class WebPushNotificationWorker
   include Sidekiq::Worker
 
+  sidekiq_options backtrace: true
+
   def perform(recipient_id, notification_id)
     recipient = Account.find(recipient_id)
     notification = Notification.find(notification_id)
