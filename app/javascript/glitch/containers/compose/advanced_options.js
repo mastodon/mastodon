@@ -2,7 +2,7 @@
 import { connect } from 'react-redux';
 
 //  Mastodon imports  //
-import { changeComposeAdvancedOption } from '../../../mastodon/actions/compose';
+import { toggleComposeAdvancedOption } from '../../../mastodon/actions/compose';
 
 //  Our imports  //
 import ComposeAdvancedOptions from '../../components/compose/advanced_options';
@@ -14,7 +14,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
 
   onChange (option) {
-    dispatch(changeComposeAdvancedOption(option));
+    dispatch(toggleComposeAdvancedOption(option));
   },
 
 });

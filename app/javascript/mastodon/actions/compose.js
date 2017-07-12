@@ -248,7 +248,7 @@ export function unmountCompose() {
   };
 };
 
-export function changeComposeAdvancedOption(option) {
+export function toggleComposeAdvancedOption(option) {
   return {
     type: COMPOSE_ADVANCED_OPTIONS_CHANGE,
     option: option,

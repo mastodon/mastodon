@@ -19,6 +19,35 @@ const iconStyle = {
   lineHeight: '27px',
 };
 
+class AdvancedOptionToggle extends React.PureComponent {
+  static PropTypes = {
+    onChange: PropTypes.func.isRequired,
+    active: PropTypes.bool.isRequired,
+    key: PropTypes.string.isRequired,
+    shortText: PropTypes.string.isRequired,
+    longText: PropTypes.string.isRequired,
+  }
+
+  onToggle = () => {
+    this.props.onChange(this.props.name);
+  }
+
+  render() {
+    const { active, shortText, longText } = this.props;
+      return (
+        <div role='button' className='advanced-options-dropdown__option' onClick={this.onToggle}>
+          <div className='advanced-options-dropdown__option__toggle'>
+            <Toggle checked={active} onChange={this.onToggle} />
+          </div>
+          <div className='advanced-options-dropdown__option__content'>
+            <strong>{shortText}</strong>
+            {longText}
+          </div>
+        </div>
+      );
+  }
+}
+
 @injectIntl
 export default class ComposeAdvancedOptions extends React.PureComponent {
 
@@ -60,10 +89,6 @@ export default class ComposeAdvancedOptions extends React.PureComponent {
     this.props.onChange(option);
   }
 
-  toggleHandler(option) {
-    return () => this.props.onChange(option);
-  }
-
   setRef = (c) => {
     this.node = c;
   }
@@ -78,17 +103,15 @@ export default class ComposeAdvancedOptions extends React.PureComponent {
 
     const anyEnabled = values.some((enabled) => enabled);
     const optionElems = options.map((option) => {
-      const active = values.get(option.key);
       return (
-        <div role='button' className='advanced-options-dropdown__option' key={option.key} >
-          <div className='advanced-options-dropdown__option__toggle'>
-            <Toggle checked={active} onChange={this.toggleHandler(option.key)} />
-          </div>
-          <div className='advanced-options-dropdown__option__content'>
-            <strong>{intl.formatMessage(option.shortText)}</strong>
-            {intl.formatMessage(option.longText)}
-          </div>
-        </div>
+        <AdvancedOptionToggle
+          onChange={this.props.onChange}
+          active={values.get(option.key)}
+          key={option.key}
+          name={option.key}
+          shortText={intl.formatMessage(option.shortText)}
+          longText={intl.formatMessage(option.longText)}
+        />
       );
     });
 

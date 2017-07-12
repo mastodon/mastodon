@@ -147,7 +147,8 @@ export default class ComposeForm extends ImmutablePureComponent {
   render () {
     const { intl, onPaste, showSearch } = this.props;
     const disabled = this.props.is_submitting;
-    const text = [this.props.spoiler_text, this.props.text].join('');
+    const maybeEye = this.props.advanced_options.get('do_not_federate') ? ' 👁️' : '';
+    const text = [this.props.spoiler_text, this.props.text, maybeEye].join('');
 
     let publishText    = '';
 
