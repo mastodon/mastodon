@@ -155,7 +155,6 @@ pl:
     settings:
       contact_information:
         email: Wprowadź publiczny adres e-mail
-        label: Informacje kontaktowe
         username: Wprowadź nazwę użytkownika
       registrations:
         closed_message:
@@ -163,7 +162,6 @@ pl:
           title: Wiadomość o nieaktywnej rejestracji
         open:
           title: Otwarta rejestracja
-      setting: Ustawienie
       site_description:
         desc_html: Wyświetlany jako nagłówek na stronie głównej oraz jako meta tag.<br>Możesz korzystać z tagów HTML, w szczególności z <code>&lt;a&gt;</code> i <code>&lt;em&gt;</code>.
         title: Opis strony
@@ -208,12 +206,12 @@ pl:
   authorize_follow:
     error: Niestety, podczas sprawdzania zdalnego konta wystąpił błąd
     follow: Śledź
-    following: 'Pomyślnie! Od teraz śledzisz:'
     follow_request: 'Wysłano prośbę o pozwolenie na obserwację:'
+    following: 'Pomyślnie! Od teraz śledzisz:'
     post_follow:
-      web: Przejdź do sieci
-      return: Powróć do strony użytkownika
       close: Ewentualnie, możesz po prostu zamknąć tą stronę.
+      return: Powróć do strony użytkownika
+      web: Przejdź do sieci
     prompt_html: 'Ty (<strong>%{self}</strong>) chcesz śledzić:'
     title: Śledź %{acct}
   datetime:

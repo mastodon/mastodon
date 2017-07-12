@@ -168,33 +168,31 @@ en:
       view: View
     settings:
       contact_information:
-        email: Enter a public e-mail address
-        label: Contact information
-        username: Enter a username
+        email: Business e-mail
+        username: Contact username
       registrations:
         closed_message:
-          desc_html: Displayed on frontpage when registrations are closed<br>You can use HTML tags
+          desc_html: Displayed on frontpage when registrations are closed. You can use HTML tags
           title: Closed registration message
+        deletion:
+          desc_html: Allow anyone to delete their account
+          title: Open account deletion
         open:
           desc_html: Allow anyone to create an account
           title: Open registration
-        deletion:
-          desc_html: Allow anyone to delete their account
-          title: Open deletion
+      site_description:
+        desc_html: Introductory paragraph on the frontpage and in meta tags. You can use HTML tags, in particular <code>&lt;a&gt;</code> and <code>&lt;em&gt;</code>.
+        title: Instance description
+      site_description_extended:
+        desc_html: A good place for your code of conduct, rules, guidelines and other things that set your instance apart. You can use HTML tags
+        title: Custom extended information
+      site_terms:
+        desc_html: You can write your own privacy policy, terms of service or other legalese. You can use HTML tags
+        title: Custom terms of service
+      site_title: Instance name
       timeline_preview:
         desc_html: Display public timeline on landing page
         title: Timeline preview
-      setting: Setting
-      site_description:
-        desc_html: Displayed as a paragraph on the frontpage and used as a meta tag.<br>You can use HTML tags, in particular <code>&lt;a&gt;</code> and <code>&lt;em&gt;</code>.
-        title: Site description
-      site_description_extended:
-        desc_html: Displayed on extended information page<br>You can use HTML tags
-        title: Extended site description
-      site_terms:
-        desc_html: Displayed on terms page<br>You can use HTML tags
-        title: Privacy policy
-      site_title: Site title
       title: Site Settings
     subscriptions:
       callback_url: Callback URL
@@ -230,12 +228,12 @@ en:
   authorize_follow:
     error: Unfortunately, there was an error looking up the remote account
     follow: Follow
-    following: 'Success! You are now following:'
     follow_request: 'You have sent a follow request to:'
+    following: 'Success! You are now following:'
     post_follow:
-      web: Go to web
-      return: Return to the user's profile
       close: Or, you can just close this window.
+      return: Return to the user's profile
+      web: Go to web
     prompt_html: 'You (<strong>%{self}</strong>) have requested to follow:'
     title: Follow %{acct}
   datetime:
