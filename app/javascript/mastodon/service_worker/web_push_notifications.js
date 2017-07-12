@@ -66,18 +66,16 @@ const handleNotificationClick = (event) => {
       const action = event.notification.data.actions.find(({ action }) => action === event.action);
 
       if (action.todo === 'expand') {
-        return expandNotification(event.notification);
+        resolve(expandNotification(event.notification));
       } else if (action.todo === 'request') {
-        return makeRequest(event.notification, action)
-          .then(() => removeActionFromNotification(event.notification, action))
-          .then(resolve)
-          .catch(reject);
+        resolve(makeRequest(event.notification, action)
+          .then(() => removeActionFromNotification(event.notification, action)));
+      } else {
+        reject(`Unknown action: ${action.todo}`);
       }
-
-      return null;
     } else {
       event.notification.close();
-      return self.clients.openWindow(event.notification.data.url);
+      resolve(self.clients.openWindow(event.notification.data.url));
     }
   });
 

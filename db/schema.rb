@@ -373,9 +373,9 @@ ActiveRecord::Schema.define(version: 20170625190709) do
   end
 
   create_table "web_push_subscriptions", force: :cascade do |t|
-    t.string "endpoint"
-    t.string "key_p256dh"
-    t.string "key_auth"
+    t.string "endpoint", null: false
+    t.string "key_p256dh", null: false
+    t.string "key_auth", null: false
     t.json "data"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

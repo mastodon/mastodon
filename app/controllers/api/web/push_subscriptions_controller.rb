@@ -6,6 +6,9 @@ class Api::Web::PushSubscriptionsController < Api::BaseController
   before_action :require_user!
 
   def create
+    params.require(:data).require(:endpoint)
+    params.require(:data).require(:keys).require([:auth, :p256dh])
+
     active_session = current_session
 
     unless active_session.web_push_subscription.nil?
@@ -29,6 +32,8 @@ class Api::Web::PushSubscriptionsController < Api::BaseController
   end
 
   def update
+    params.require([:id, :data])
+
     web_subscription = ::Web::PushSubscription.find(params[:id])
 
     web_subscription.data = params[:data]

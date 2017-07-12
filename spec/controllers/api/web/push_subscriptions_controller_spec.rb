@@ -5,9 +5,9 @@ require 'rails_helper'
 describe Api::Web::PushSubscriptionsController do
   render_views
 
-  let!(:user) { Fabricate(:user) }
+  let(:user) { Fabricate(:user) }
 
-  let!(:create_payload) do
+  let(:create_payload) do
     {
       data: {
         endpoint: 'https://fcm.googleapis.com/fcm/send/fiuH06a27qE:APA91bHnSiGcLwdaxdyqVXNDR9w1NlztsHb6lyt5WDKOC_Z_Q8BlFxQoR8tWFSXUIDdkyw0EdvxTu63iqamSaqVSevW5LfoFwojws8XYDXv_NRRLH6vo2CdgiN4jgHv5VLt2A8ah6lUX',
@@ -19,7 +19,7 @@ describe Api::Web::PushSubscriptionsController do
     }
   end
 
-  let!(:alerts_payload) do
+  let(:alerts_payload) do
     {
       data: {
         alerts: {
