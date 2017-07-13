@@ -7,7 +7,7 @@ class Request
 
   def initialize(verb, url, options = {})
     @verb    = verb
-    @url     = Addressable::URI.parse(url)
+    @url     = Addressable::URI.parse(url).normalize
     @options = options
     @headers = {}
 
