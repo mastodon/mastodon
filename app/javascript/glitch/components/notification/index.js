@@ -11,7 +11,7 @@ import Permalink from '../../../mastodon/components/permalink';
 import emojify from '../../../mastodon/emoji';
 
 //  Our imports  //
-import StatusContainer from '../status';
+import StatusContainer from '../status/container';
 
 export default class Notification extends ImmutablePureComponent {
 
