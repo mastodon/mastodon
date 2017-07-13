@@ -2951,6 +2951,7 @@ button.icon-button.active i.fa-retweet {
   max-height: 80vh;
   position: relative;
 
+  .extended-video-player,
   img,
   canvas,
   video {
@@ -2958,6 +2959,13 @@ button.icon-button.active i.fa-retweet {
     max-height: 80vh;
     width: 100%;
     height: auto;
+  }
+
+  .extended-video-player,
+  video {
+    display: flex;
+    width: 80vw;
+    height: 80vh;
   }
 
   img,
