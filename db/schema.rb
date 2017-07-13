@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170625140443) do
+ActiveRecord::Schema.define(version: 20170711225116) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -89,7 +89,7 @@ ActiveRecord::Schema.define(version: 20170625140443) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "severity", default: 0
-    t.boolean "reject_media"
+    t.boolean "reject_media", default: false, null: false
     t.index ["domain"], name: "index_domain_blocks_on_domain", unique: true
   end
 
@@ -121,7 +121,7 @@ ActiveRecord::Schema.define(version: 20170625140443) do
   create_table "imports", id: :serial, force: :cascade do |t|
     t.integer "account_id", null: false
     t.integer "type", null: false
-    t.boolean "approved"
+    t.boolean "approved", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "data_file_name"
@@ -281,12 +281,12 @@ ActiveRecord::Schema.define(version: 20170625140443) do
     t.bigint "in_reply_to_id"
     t.bigint "reblog_of_id"
     t.string "url"
-    t.boolean "sensitive", default: false
+    t.boolean "sensitive", default: false, null: false
     t.integer "visibility", default: 0, null: false
     t.integer "in_reply_to_account_id"
     t.integer "application_id"
     t.text "spoiler_text", default: "", null: false
-    t.boolean "reply", default: false
+    t.boolean "reply", default: false, null: false
     t.integer "favourites_count", default: 0, null: false
     t.integer "reblogs_count", default: 0, null: false
     t.string "language"
@@ -350,7 +350,7 @@ ActiveRecord::Schema.define(version: 20170625140443) do
     t.datetime "last_sign_in_at"
     t.inet "current_sign_in_ip"
     t.inet "last_sign_in_ip"
-    t.boolean "admin", default: false
+    t.boolean "admin", default: false, null: false
     t.string "confirmation_token"
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
@@ -360,7 +360,7 @@ ActiveRecord::Schema.define(version: 20170625140443) do
     t.string "encrypted_otp_secret_iv"
     t.string "encrypted_otp_secret_salt"
     t.integer "consumed_timestep"
-    t.boolean "otp_required_for_login"
+    t.boolean "otp_required_for_login", default: false, null: false
     t.datetime "last_emailed_at"
     t.string "otp_backup_codes", array: true
     t.string "filtered_languages", default: [], null: false, array: true

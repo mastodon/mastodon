@@ -12,12 +12,12 @@
 #  in_reply_to_id         :integer
 #  reblog_of_id           :integer
 #  url                    :string
-#  sensitive              :boolean          default(FALSE)
+#  sensitive              :boolean          default(FALSE), not null
 #  visibility             :integer          default("public"), not null
 #  in_reply_to_account_id :integer
 #  application_id         :integer
 #  spoiler_text           :text             default(""), not null
-#  reply                  :boolean          default(FALSE)
+#  reply                  :boolean          default(FALSE), not null
 #  favourites_count       :integer          default(0), not null
 #  reblogs_count          :integer          default(0), not null
 #  language               :string
@@ -249,6 +249,7 @@ class Status < ApplicationRecord
 
   def set_visibility
     self.visibility = (account.locked? ? :private : :public) if visibility.nil?
+    self.sensitive  = false if sensitive.nil?
   end
 
   def set_sensitivity

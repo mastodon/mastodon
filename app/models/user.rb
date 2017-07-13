@@ -17,7 +17,7 @@
 #  last_sign_in_at           :datetime
 #  current_sign_in_ip        :inet
 #  last_sign_in_ip           :inet
-#  admin                     :boolean          default(FALSE)
+#  admin                     :boolean          default(FALSE), not null
 #  confirmation_token        :string
 #  confirmed_at              :datetime
 #  confirmation_sent_at      :datetime
@@ -27,7 +27,7 @@
 #  encrypted_otp_secret_iv   :string
 #  encrypted_otp_secret_salt :string
 #  consumed_timestep         :integer
-#  otp_required_for_login    :boolean
+#  otp_required_for_login    :boolean          default(FALSE), not null
 #  last_emailed_at           :datetime
 #  otp_backup_codes          :string           is an Array
 #  filtered_languages        :string           default([]), not null, is an Array
