@@ -5,7 +5,7 @@ class SendInteractionService < BaseService
   # @param [String] Entry XML
   # @param [Account] source_account
   # @param [Account] target_account
-  def call(xml, source_account, target_account)
+  def call(xml, source_account, target_account, mention_id = nil)
     @xml            = xml
     @source_account = source_account
     @target_account = target_account
@@ -15,6 +15,7 @@ class SendInteractionService < BaseService
     envelope = salmon.pack(@xml, @source_account.keypair)
     delivery = salmon.post(@target_account.salmon_url, envelope)
     raise "Delivery failed for #{target_account.salmon_url}: HTTP #{delivery.code}" unless delivery.code > 199 && delivery.code < 300
+    Mention.find(mention_id).set_delivered(true) unless mention_id.nil?
   end
 
   private

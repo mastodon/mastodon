@@ -21,8 +21,8 @@ class Formatter
 
     return reformat(raw_content) unless status.local?
 
-    linkable_accounts = status.mentions.map(&:account)
-    linkable_accounts << status.account
+    linkable_accounts = status.mentions.map { |item| [item.account, item.delivered] }
+    linkable_accounts << [status.account, true]
 
     html = raw_content
     html = "RT @#{prepend_reblog} #{html}" if prepend_reblog
@@ -113,8 +113,8 @@ class Formatter
 
     return link_to_account(acct) unless linkable_accounts
 
-    account = linkable_accounts.find { |item| TagManager.instance.same_acct?(item.acct, acct) }
-    account ? mention_html(account) : "@#{acct}"
+    account = linkable_accounts.find { |(item, _)| TagManager.instance.same_acct?(item.acct, acct) }
+    account ? mention_html(account[0], account[1]) : "@#{acct}"
   end
 
   def link_to_account(acct)
@@ -144,7 +144,8 @@ class Formatter
     "<a href=\"#{tag_url(tag.downcase)}\" class=\"mention hashtag\" rel=\"tag\">#<span>#{tag}</span></a>"
   end
 
-  def mention_html(account)
-    "<span class=\"h-card\"><a href=\"#{TagManager.instance.url_for(account)}\" class=\"u-url mention\">@<span>#{account.username}</span></a></span>"
+  def mention_html(account, delivered = true)
+    delivered_class = delivered == false ? 'undelivered' : ''
+    "<span class=\"h-card\"><a href=\"#{TagManager.instance.url_for(account)}\" class=\"u-url mention #{delivered_class}\">@<span>#{account.username}</span></a></span>"
   end
 end
