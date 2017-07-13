@@ -41,7 +41,7 @@ export default class ColumnsArea extends ImmutablePureComponent {
   }
 
   handleAnimationEnd = () => {
-    if (this.state.pendingIndex) {
+    if (this.state.pendingIndex !== null) {
       this.context.router.history.push(getLink(this.state.pendingIndex));
       this.setState({ pendingIndex: null });
     }
