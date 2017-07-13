@@ -9,6 +9,10 @@ describe ApplicationController, type: :controller do
     def success
       head 200
     end
+
+    def alternative_success
+      head 200
+    end
   end
 
   before do
@@ -54,6 +58,16 @@ describe ApplicationController, type: :controller do
     describe '#signed_request_account' do
       it 'returns an account' do
         expect(controller.signed_request_account).to eq author
+      end
+
+      it 'returns nil when path does not match' do
+        request.path = '/alternative-path'
+        expect(controller.signed_request_account).to be_nil
+      end
+
+      it 'returns nil when method does not match' do
+        post :success
+        expect(controller.signed_request_account).to be_nil
       end
     end
   end

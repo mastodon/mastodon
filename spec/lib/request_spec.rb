@@ -29,4 +29,26 @@ describe Request do
       expect(subject.headers['Signature']).to be_present
     end
   end
+
+  describe '#add_headers' do
+    it 'adds headers to the request' do
+      subject.add_headers('Test' => 'Foo')
+      expect(subject.headers['Test']).to eq 'Foo'
+    end
+  end
+
+  describe '#perform' do
+    before do
+      stub_request(:get, 'http://example.com')
+      subject.perform
+    end
+
+    it 'executes a HTTP request' do
+      expect(a_request(:get, 'http://example.com')).to have_been_made.once
+    end
+
+    it 'sets headers' do
+      expect(a_request(:get, 'http://example.com').with(headers: subject.headers)).to have_been_made
+    end
+  end
 end
