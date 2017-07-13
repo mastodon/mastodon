@@ -339,6 +339,21 @@ pl:
     next: Następna
     prev: Poprzednia
     truncate: "&hellip;"
+  push_notifications:
+    favourite:
+      title: "%{name} dodał Twój status do ulubionych"
+    follow:
+      title: "%{name} zaczął Cię śledzić"
+    mention:
+      action_boost: 'Podbij'
+      action_expand: 'Pokaż więcej'
+      action_favourite: 'Dodaj do ulubionych'
+      title: "%{name} wspomniał o Tobie"
+    reblog:
+      title: "%{name} podbił Twój status"
+    subscribed:
+      body: "Otrzymujesz teraz powiadomienia push."
+      title: "Zarejestrowano subskrypcję!"
   remote_follow:
     acct: Podaj swój adres (nazwa@domena), z którego chcesz śledzić
     missing_resource: Nie udało się znaleźć adresu przekierowania z Twojej domeny

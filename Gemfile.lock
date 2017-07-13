@@ -181,6 +181,7 @@ GEM
     hashdiff (0.3.4)
     highline (1.7.8)
     hiredis (0.6.1)
+    hkdf (0.3.0)
     htmlentities (4.3.4)
     http (2.2.2)
       addressable (~> 2.3)
@@ -209,6 +210,7 @@ GEM
     jmespath (1.3.1)
     json (2.1.0)
     jsonapi-renderer (0.1.2)
+    jwt (1.5.6)
     kaminari (1.0.1)
       activesupport (>= 4.1.0)
       kaminari-actionview (= 1.0.1)
@@ -475,6 +477,9 @@ GEM
       activesupport (>= 4.2)
       multi_json (~> 1.2)
       railties (>= 4.2)
+    webpush (0.3.2)
+      hkdf (~> 0.2)
+      jwt
     websocket-driver (0.6.5)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.2)
@@ -573,6 +578,7 @@ DEPENDENCIES
   uglifier (~> 3.2)
   webmock (~> 3.0)
   webpacker (~> 2.0)
+  webpush
 
 RUBY VERSION
    ruby 2.4.1p111

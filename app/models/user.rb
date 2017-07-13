@@ -113,6 +113,10 @@ class User < ApplicationRecord
     session_activations.active? id
   end
 
+  def web_push_subscription(session)
+    session.web_push_subscription.nil? ? nil : session.web_push_subscription.as_payload
+  end
+
   protected
 
   def send_devise_notification(notification, *args)

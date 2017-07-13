@@ -206,6 +206,11 @@ Rails.application.routes.draw do
 
     namespace :web do
       resource :settings, only: [:update]
+      resources :push_subscriptions, only: [:create] do
+        member do
+          put :update
+        end
+      end
     end
   end
 
