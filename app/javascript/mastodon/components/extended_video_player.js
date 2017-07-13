@@ -5,6 +5,8 @@ export default class ExtendedVideoPlayer extends React.PureComponent {
 
   static propTypes = {
     src: PropTypes.string.isRequired,
+    width: PropTypes.number,
+    height: PropTypes.number,
     time: PropTypes.number,
     controls: PropTypes.bool.isRequired,
     muted: PropTypes.bool.isRequired,
@@ -30,7 +32,7 @@ export default class ExtendedVideoPlayer extends React.PureComponent {
 
   render () {
     return (
-      <div className='extended-video-player'>
+      <div className='extended-video-player' style={{ width: this.props.width, height: this.props.height }}>
         <video
           ref={this.setRef}
           src={this.props.src}
