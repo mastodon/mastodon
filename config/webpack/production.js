@@ -50,7 +50,7 @@ module.exports = merge(sharedConfig, {
         cacheName: 'mastodon',
         output: '../sw.js',
         publicPath: '/sw.js',
-        minify: false,
+        minify: true,
       },
     }),
   ],
