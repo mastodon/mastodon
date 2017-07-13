@@ -32,12 +32,19 @@ export default class ColumnsArea extends ImmutablePureComponent {
     children: PropTypes.node,
   };
 
+  componentDidUpdate() {
+    this.lastIndex = getIndex(this.context.router.history.location.pathname);
+  }
+
   handleSwipe = (index) => {
-    window.requestAnimationFrame(() => {
-      window.requestAnimationFrame(() => {
-        this.context.router.history.push(getLink(index));
-      });
-    });
+    this.pendingIndex = index;
+  }
+
+  handleAnimationEnd = () => {
+    if (typeof this.pendingIndex === 'number') {
+      this.context.router.history.push(getLink(this.pendingIndex));
+      this.pendingIndex = null;
+    }
   }
 
   renderView = (link, index) => {
@@ -68,10 +75,11 @@ export default class ColumnsArea extends ImmutablePureComponent {
     const { columns, children, singleColumn } = this.props;
 
     const columnIndex = getIndex(this.context.router.history.location.pathname);
+    const shouldAnimate = Math.abs(this.lastIndex - columnIndex) === 1;
 
     if (singleColumn) {
       return columnIndex !== -1 ? (
-        <ReactSwipeableViews index={columnIndex} onChangeIndex={this.handleSwipe} animateTransitions={false} style={{ height: '100%' }}>
+        <ReactSwipeableViews index={columnIndex} onChangeIndex={this.handleSwipe} onTransitionEnd={this.handleAnimationEnd} animateTransitions={shouldAnimate} springConfig={{ duration: '400ms', delay: '0s', easeFunction: 'ease' }} style={{ height: '100%' }}>
           {links.map(this.renderView)}
         </ReactSwipeableViews>
       ) : <div className='columns-area'>{children}</div>;
