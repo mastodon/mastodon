@@ -22,8 +22,23 @@ class Tag < ApplicationRecord
 
   class << self
     def search_for(term, limit = 5)
-      pattern = sanitize_sql_like(term) + '%'
-      Tag.where('name like ?', pattern).order(:name).limit(limit)
+      #pattern = sanitize_sql_like(term) + '%'
+      #Tag.where('name like ?', pattern).order(:name).limit(limit)
+      tags = term.split(' ')
+      if tags.length == 1
+        pattern = sanitize_sql_like(term) + '%'
+        Tag.where('name like ?', pattern).order(:name).limit(limit)
+      else
+        sql = <<-SQL
+          SELECT
+            ARRAY_TO_STRING(
+              ARRAY( SELECT name FROM tags WHERE name IN (:tags)), ' '
+            ) AS name
+          FROM tags
+          LIMIT 1
+        SQL
+        Tag.find_by_sql([sql, {:tags => tags}])
+      end
     end
   end
 end
