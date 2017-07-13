@@ -46,7 +46,7 @@ import StatusHeader from './header';
 import StatusContent from './content';
 import StatusActionBar from './action_bar';
 import StatusGallery from './gallery';
-import StatusVideoPlayer from './video_player';
+import StatusPlayer from './player';
 
                             /* * * * */
 
@@ -619,7 +619,7 @@ backgrounds for collapsed statuses are enabled.
         attachments.getIn([0, 'type']) === 'video'
       ) {
         media = (  //  Media type is 'video'
-          <StatusVideoPlayer
+          <StatusPlayer
             media={attachments.get(0)}
             sensitive={status.get('sensitive')}
             letterbox={settings.getIn(['media', 'letterbox'])}

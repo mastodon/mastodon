@@ -2,10 +2,10 @@
 import { connect } from 'react-redux';
 
 //  Mastodon imports  //
-import { toggleComposeAdvancedOption } from '../../../mastodon/actions/compose';
+import { toggleComposeAdvancedOption } from '../../../../mastodon/actions/compose';
 
 //  Our imports  //
-import ComposeAdvancedOptions from '../../components/compose/advanced_options';
+import ComposeAdvancedOptions from '.';
 
 const mapStateToProps = state => ({
   values: state.getIn(['compose', 'advanced_options']),

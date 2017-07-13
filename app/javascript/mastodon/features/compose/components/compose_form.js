@@ -11,7 +11,7 @@ import { defineMessages, injectIntl } from 'react-intl';
 import Collapsable from '../../../components/collapsable';
 import SpoilerButtonContainer from '../containers/spoiler_button_container';
 import PrivacyDropdownContainer from '../containers/privacy_dropdown_container';
-import ComposeAdvancedOptionsContainer from '../../../../glitch/containers/compose/advanced_options';
+import ComposeAdvancedOptionsContainer from '../../../../glitch/components/compose/advanced_options/container';
 import SensitiveButtonContainer from '../containers/sensitive_button_container';
 import EmojiPickerDropdown from './emoji_picker_dropdown';
 import UploadFormContainer from '../containers/upload_form_container';

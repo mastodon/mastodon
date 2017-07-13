@@ -5,7 +5,7 @@ import Avatar from '../../../components/avatar';
 import DisplayName from '../../../components/display_name';
 import StatusContent from '../../../../glitch/components/status/content';
 import StatusGallery from '../../../../glitch/components/status/gallery';
-import StatusVideoPlayer from '../../../../glitch/components/status/video_player';
+import StatusPlayer from '../../../../glitch/components/status/player';
 import AttachmentList from '../../../components/attachment_list';
 import Link from 'react-router-dom/Link';
 import { FormattedDate, FormattedNumber } from 'react-intl';
@@ -48,7 +48,7 @@ export default class DetailedStatus extends ImmutablePureComponent {
         media = <AttachmentList media={status.get('media_attachments')} />;
       } else if (status.getIn(['media_attachments', 0, 'type']) === 'video') {
         media = (
-          <StatusVideoPlayer
+          <StatusPlayer
             sensitive={status.get('sensitive')}
             media={status.getIn(['media_attachments', 0])}
             letterbox={settings.getIn(['media', 'letterbox'])}

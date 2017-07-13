@@ -103,11 +103,11 @@ export function ReportModal () {
 }
 
 export function SettingsModal () {
-  return import(/* webpackChunkName: "modals/settings_modal" */'../../../../glitch/containers/settings');
+  return import(/* webpackChunkName: "modals/settings_modal" */'../../../../glitch/components/settings/container');
 }
 
 //  THESE AREN'T USED BY US; SEE `glitch/components/status` AND `mastodon/features/status`.  //
-//  HOWEVER, IF MASTODON EVER CHANGES DETAILED STATUSES SO THAT THEY NEED THEM, WE'LL NEED TO UPDATE THE URLS OR SOMETHING LOL.  //
+//  IF MASTODON EVER CHANGES DETAILED STATUSES TO REQUIRE THEM, WE'LL NEED TO UPDATE THE URLS OR SOMETHING LOL.  //
 
 export function MediaGallery () {
   return import(/* webpackChunkName: "status/MediaGallery" */'../../../components/media_gallery');

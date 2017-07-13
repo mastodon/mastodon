@@ -52,7 +52,7 @@ import { initReport } from '../../../mastodon/actions/reports';
 import { openModal } from '../../../mastodon/actions/modal';
 
 //  Our imports  //
-import Status from '../../components/status';
+import Status from '.';
 
                             /* * * * */
 

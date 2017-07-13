@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { makeGetNotification } from '../../../mastodon/selectors';
 
 //  Our imports  //
-import Notification from '../../components/notification';
+import Notification from '.';
 
 const makeMapStateToProps = () => {
   const getNotification = makeGetNotification();

@@ -1,3 +1,6 @@
+//  THIS FILE EXISTS FOR UPSTREAM COMPATIBILITY & SHOULDN'T BE USED !!
+//  SEE INSTEAD : glitch/components/notification
+
 import React from 'react';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import StatusContainer from '../../../containers/status_container';

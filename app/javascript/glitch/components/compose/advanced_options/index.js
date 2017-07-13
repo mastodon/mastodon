@@ -6,7 +6,7 @@ import Toggle from 'react-toggle';
 import { injectIntl, defineMessages } from 'react-intl';
 
 //  Mastodon imports  //
-import IconButton from '../../../mastodon/components/icon_button';
+import IconButton from '../../../../mastodon/components/icon_button';
 
 const messages = defineMessages({
   local_only_short: { id: 'advanced-options.local-only.short', defaultMessage: 'Local-only' },

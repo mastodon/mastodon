@@ -15,7 +15,7 @@ const messages = defineMessages({
 });
 
 @injectIntl
-export default class StatusVideoPlayer extends React.PureComponent {
+export default class StatusPlayer extends React.PureComponent {
 
   static propTypes = {
     media: ImmutablePropTypes.map.isRequired,
