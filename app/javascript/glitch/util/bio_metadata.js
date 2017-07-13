@@ -1,3 +1,33 @@
+/*
+
+`util/bio_metadata`
+========================
+
+>   For more information on the contents of this file, please contact:
+>
+>   - kibigo! [@kibi@glitch.social]
+
+This file provides two functions for dealing with bio metadata. The
+functions are:
+
+ -  __`processBio(content)` :__
+    Processes `content` to extract any frontmatter. The returned
+    object has two properties: `text`, which contains the text of
+    `content` sans-frontmatter, and `metadata`, which is an array
+    of key-value pairs (in two-element array format). If no
+    frontmatter was provided in `content`, then `metadata` will be
+    an empty array.
+
+ -  __`createBio(note, data)` :__
+    Reverses the process in `processBio()`; takes a `note` and an
+    array of two-element arrays (which should give keys and values)
+    and outputs a string containing a well-formed bio with
+    frontmatter.
+
+*/
+
+                            /* * * * */
+
 /*********************************************************************\
 
                                        To my lovely code maintainers,
