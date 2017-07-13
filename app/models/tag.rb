@@ -23,7 +23,7 @@ class Tag < ApplicationRecord
   class << self
     def search_for(term, limit = 5)
       pattern = sanitize_sql_like(term) + '%'
-      Tag.where('name like ?', pattern).order(:name).limit(limit)
+      Tag.where('lower(name) like lower(?)', pattern).order(:name).limit(limit)
     end
   end
 end
