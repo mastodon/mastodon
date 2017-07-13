@@ -11,18 +11,44 @@ const messages = defineMessages({
 
 class Item extends React.PureComponent {
 
+  static contextTypes = {
+    router: PropTypes.object,
+  };
+
   static propTypes = {
     attachment: ImmutablePropTypes.map.isRequired,
     index: PropTypes.number.isRequired,
     size: PropTypes.number.isRequired,
     onClick: PropTypes.func.isRequired,
-    autoPlayGif: PropTypes.bool.isRequired,
+    autoPlayGif: PropTypes.bool,
   };
+
+  static defaultProps = {
+    autoPlayGif: false,
+  };
+
+  handleMouseEnter = (e) => {
+    if (this.hoverToPlay()) {
+      e.target.play();
+    }
+  }
+
+  handleMouseLeave = (e) => {
+    if (this.hoverToPlay()) {
+      e.target.pause();
+      e.target.currentTime = 0;
+    }
+  }
+
+  hoverToPlay () {
+    const { attachment, autoPlayGif } = this.props;
+    return !autoPlayGif && attachment.get('type') === 'gifv';
+  }
 
   handleClick = (e) => {
     const { index, onClick } = this.props;
 
-    if (e.button === 0) {
+    if (this.context.router && e.button === 0) {
       e.preventDefault();
       onClick(index);
     }
@@ -116,6 +142,8 @@ class Item extends React.PureComponent {
             role='application'
             src={attachment.get('url')}
             onClick={this.handleClick}
+            onMouseEnter={this.handleMouseEnter}
+            onMouseLeave={this.handleMouseLeave}
             autoPlay={autoPlay}
             loop
             muted
@@ -144,7 +172,11 @@ export default class MediaGallery extends React.PureComponent {
     height: PropTypes.number.isRequired,
     onOpenMedia: PropTypes.func.isRequired,
     intl: PropTypes.object.isRequired,
-    autoPlayGif: PropTypes.bool.isRequired,
+    autoPlayGif: PropTypes.bool,
+  };
+
+  static defaultProps = {
+    autoPlayGif: false,
   };
 
   state = {

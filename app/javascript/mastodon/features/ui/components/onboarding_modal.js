@@ -10,7 +10,7 @@ import ComposeForm from '../../compose/components/compose_form';
 import Search from '../../compose/components/search';
 import NavigationBar from '../../compose/components/navigation_bar';
 import ColumnHeader from './column_header';
-import Immutable from 'immutable';
+import { List as ImmutableList } from 'immutable';
 
 const noop = () => { };
 
@@ -48,7 +48,7 @@ const PageTwo = ({ me }) => (
       </div>
       <ComposeForm
         text='Awoo! #introductions'
-        suggestions={Immutable.List()}
+        suggestions={ImmutableList()}
         mentionedDomains={[]}
         spoiler={false}
         onChange={noop}

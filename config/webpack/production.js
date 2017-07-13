@@ -12,7 +12,6 @@ module.exports = merge(sharedConfig, {
   stats: 'normal',
 
   plugins: [
-    new webpack.optimize.ModuleConcatenationPlugin(),
     new webpack.optimize.UglifyJsPlugin({
       sourceMap: true,
       mangle: true,
