@@ -140,12 +140,16 @@ export default class Status extends ImmutablePureComponent {
   }
 
   handleClick = () => {
+    if (!this.context.router) {
+      return;
+    }
+
     const { status } = this.props;
     this.context.router.history.push(`/statuses/${status.getIn(['reblog', 'id'], status.get('id'))}`);
   }
 
   handleAccountClick = (e) => {
-    if (e.button === 0) {
+    if (this.context.router && e.button === 0) {
       const id = Number(e.currentTarget.getAttribute('data-id'));
       e.preventDefault();
       this.context.router.history.push(`/accounts/${id}`);
@@ -236,7 +240,7 @@ export default class Status extends ImmutablePureComponent {
         <div className='status__info'>
           <a href={status.get('url')} className='status__relative-time' target='_blank' rel='noopener'><RelativeTimestamp timestamp={status.get('created_at')} /></a>
 
-          <a onClick={this.handleAccountClick} data-id={status.getIn(['account', 'id'])} href={status.getIn(['account', 'url'])} className='status__display-name'>
+          <a onClick={this.handleAccountClick} target='_blank' data-id={status.getIn(['account', 'id'])} href={status.getIn(['account', 'url'])} className='status__display-name'>
             <div className='status__avatar'>
               {statusAvatar}
             </div>

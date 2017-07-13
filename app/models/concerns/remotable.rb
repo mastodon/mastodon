@@ -6,8 +6,9 @@ module Remotable
 
   included do
     attachment_definitions.each_key do |attachment_name|
-      attribute_name = "#{attachment_name}_remote_url".to_sym
-      method_name = "#{attribute_name}=".to_sym
+      attribute_name  = "#{attachment_name}_remote_url".to_sym
+      method_name     = "#{attribute_name}=".to_sym
+      alt_method_name = "reset_#{attachment_name}!".to_sym
 
       define_method method_name do |url|
         begin
@@ -34,6 +35,15 @@ module Remotable
           Rails.logger.debug "Error fetching remote #{attachment_name}: #{e}"
           nil
         end
+      end
+
+      define_method alt_method_name do
+        url = self[attribute_name]
+
+        return if url.blank?
+
+        self[attribute_name] = ''
+        send(method_name, url)
       end
     end
   end

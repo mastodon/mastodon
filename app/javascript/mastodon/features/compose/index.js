@@ -2,6 +2,7 @@ import React from 'react';
 import ComposeFormContainer from './containers/compose_form_container';
 import NavigationContainer from './containers/navigation_container';
 import PropTypes from 'prop-types';
+import ImmutablePropTypes from 'react-immutable-proptypes';
 import { connect } from 'react-redux';
 import { mountCompose, unmountCompose } from '../../actions/compose';
 import Link from 'react-router-dom/Link';
@@ -13,6 +14,8 @@ import SearchResultsContainer from './containers/search_results_container';
 
 const messages = defineMessages({
   start: { id: 'getting_started.heading', defaultMessage: 'Getting started' },
+  home_timeline: { id: 'tabs_bar.home', defaultMessage: 'Home' },
+  notifications: { id: 'tabs_bar.notifications', defaultMessage: 'Notifications' },
   public: { id: 'navigation_bar.public_timeline', defaultMessage: 'Federated timeline' },
   community: { id: 'navigation_bar.community_timeline', defaultMessage: 'Local timeline' },
   preferences: { id: 'navigation_bar.preferences', defaultMessage: 'Preferences' },
@@ -20,6 +23,7 @@ const messages = defineMessages({
 });
 
 const mapStateToProps = state => ({
+  columns: state.getIn(['settings', 'columns']),
   showSearch: state.getIn(['search', 'submitted']) && !state.getIn(['search', 'hidden']),
 });
 
@@ -29,6 +33,7 @@ export default class Compose extends React.PureComponent {
 
   static propTypes = {
     dispatch: PropTypes.func.isRequired,
+    columns: ImmutablePropTypes.list.isRequired,
     multiColumn: PropTypes.bool,
     showSearch: PropTypes.bool,
     intl: PropTypes.object.isRequired,
@@ -48,11 +53,22 @@ export default class Compose extends React.PureComponent {
     let header = '';
 
     if (multiColumn) {
+      const { columns } = this.props;
       header = (
         <div className='drawer__header'>
           <Link to='/getting-started' className='drawer__tab' title={intl.formatMessage(messages.start)}><i role='img' aria-label={intl.formatMessage(messages.start)} className='fa fa-fw fa-asterisk' /></Link>
-          <Link to='/timelines/public/local' className='drawer__tab' title={intl.formatMessage(messages.community)}><i role='img' aria-label={intl.formatMessage(messages.community)} className='fa fa-fw fa-users' /></Link>
-          <Link to='/timelines/public' className='drawer__tab' title={intl.formatMessage(messages.public)}><i role='img' aria-label={intl.formatMessage(messages.public)} className='fa fa-fw fa-globe' /></Link>
+          {!columns.some(column => column.get('id') === 'HOME') && (
+            <Link to='/timelines/home' className='drawer__tab' title={intl.formatMessage(messages.home_timeline)}><i role='img' className='fa fa-fw fa-home' aria-label={intl.formatMessage(messages.home_timeline)} /></Link>
+          )}
+          {!columns.some(column => column.get('id') === 'NOTIFICATIONS') && (
+            <Link to='/notifications' className='drawer__tab' title={intl.formatMessage(messages.notifications)}><i role='img' className='fa fa-fw fa-bell' aria-label={intl.formatMessage(messages.notifications)} /></Link>
+          )}
+          {!columns.some(column => column.get('id') === 'COMMUNITY') && (
+            <Link to='/timelines/public/local' className='drawer__tab' title={intl.formatMessage(messages.community)}><i role='img' aria-label={intl.formatMessage(messages.community)} className='fa fa-fw fa-users' /></Link>
+          )}
+          {!columns.some(column => column.get('id') === 'PUBLIC') && (
+            <Link to='/timelines/public' className='drawer__tab' title={intl.formatMessage(messages.public)}><i role='img' aria-label={intl.formatMessage(messages.public)} className='fa fa-fw fa-globe' /></Link>
+          )}
           <a href='/settings/preferences' className='drawer__tab' title={intl.formatMessage(messages.preferences)}><i role='img' aria-label={intl.formatMessage(messages.preferences)} className='fa fa-fw fa-cog' /></a>
           <a href='/auth/sign_out' className='drawer__tab' data-method='delete' title={intl.formatMessage(messages.logout)}><i role='img' aria-label={intl.formatMessage(messages.logout)} className='fa fa-fw fa-sign-out' /></a>
         </div>

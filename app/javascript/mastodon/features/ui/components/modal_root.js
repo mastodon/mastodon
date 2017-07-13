@@ -54,12 +54,6 @@ export default class ModalRoot extends React.PureComponent {
     return { opacity: spring(0), scale: spring(0.98) };
   }
 
-  renderModal = (SpecificComponent) => {
-    const { props, onClose } = this.props;
-
-    return <SpecificComponent {...props} onClose={onClose} />;
-  }
-
   renderLoading = () => {
     return <ModalLoading />;
   }
@@ -95,7 +89,9 @@ export default class ModalRoot extends React.PureComponent {
               <div key={key} style={{ pointerEvents: visible ? 'auto' : 'none' }}>
                 <div role='presentation' className='modal-root__overlay' style={{ opacity: style.opacity }} onClick={onClose} />
                 <div className='modal-root__container' style={{ opacity: style.opacity, transform: `translateZ(0px) scale(${style.scale})` }}>
-                  <BundleContainer fetchComponent={MODAL_COMPONENTS[type]} loading={this.renderLoading} error={this.renderError} renderDelay={200}>{this.renderModal}</BundleContainer>
+                  <BundleContainer fetchComponent={MODAL_COMPONENTS[type]} loading={this.renderLoading} error={this.renderError} renderDelay={200}>
+                    {(SpecificComponent) => <SpecificComponent {...props} onClose={onClose} />}
+                  </BundleContainer>
                 </div>
               </div>
             ))}
