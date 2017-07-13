@@ -32,18 +32,18 @@ export default class ColumnsArea extends ImmutablePureComponent {
     children: PropTypes.node,
   };
 
-  state = {
-    pendingIndex: null,
+  componentDidUpdate() {
+    this.lastIndex = getIndex(this.context.router.history.location.pathname);
   }
 
   handleSwipe = (index) => {
-    this.setState({ pendingIndex: index });
+    this.pendingIndex = index;
   }
 
   handleAnimationEnd = () => {
-    if (this.state.pendingIndex !== null) {
-      this.context.router.history.push(getLink(this.state.pendingIndex));
-      this.setState({ pendingIndex: null });
+    if (typeof this.pendingIndex === 'number') {
+      this.context.router.history.push(getLink(this.pendingIndex));
+      this.pendingIndex = null;
     }
   }
 
@@ -73,13 +73,13 @@ export default class ColumnsArea extends ImmutablePureComponent {
 
   render () {
     const { columns, children, singleColumn } = this.props;
-    const { pendingIndex } = this.state;
 
     const columnIndex = getIndex(this.context.router.history.location.pathname);
+    const shouldAnimate = Math.abs(this.lastIndex - columnIndex) === 1;
 
     if (singleColumn) {
       return columnIndex !== -1 ? (
-        <ReactSwipeableViews index={columnIndex} onChangeIndex={this.handleSwipe} onTransitionEnd={this.handleAnimationEnd} animateTransitions={pendingIndex !== null} springConfig={{ duration: '400ms', delay: '0s', easeFunction: 'ease' }} style={{ height: '100%' }}>
+        <ReactSwipeableViews index={columnIndex} onChangeIndex={this.handleSwipe} onTransitionEnd={this.handleAnimationEnd} animateTransitions={shouldAnimate} springConfig={{ duration: '400ms', delay: '0s', easeFunction: 'ease' }} style={{ height: '100%' }}>
           {links.map(this.renderView)}
         </ReactSwipeableViews>
       ) : <div className='columns-area'>{children}</div>;
