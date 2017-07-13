@@ -19,7 +19,7 @@ class Formatter
 
     raw_content = status.text
 
-    return Gemojione.replace_unicode_moji_with_images(reformat(raw_content)) unless status.local?
+    return Gemojione.emojify(reformat(raw_content)) unless status.local?
 
     linkable_accounts = status.mentions.map(&:account)
     linkable_accounts << status.account
@@ -30,7 +30,7 @@ class Formatter
     html = simple_format(html, {}, sanitize: false)
     html = html.delete("\n")
 
-    Gemojione.replace_unicode_moji_with_images(html.html_safe) # rubocop:disable Rails/OutputSafety
+    Gemojione.emojify(html.html_safe) # rubocop:disable Rails/OutputSafety
   end
 
   def reformat(html)

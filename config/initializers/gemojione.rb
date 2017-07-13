@@ -15,4 +15,8 @@ Gemojione.module_eval do
   def self.image_tag_for_moji(moji)
     %Q{<img draggable="false" alt="#{moji}" class="emojione" src="#{ image_url_for_unicode_moji(moji) }">}
   end
+
+  def self.emojify(moji)
+    self.replace_named_moji_with_images(self.replace_unicode_moji_with_images(moji))
+  end
 end
