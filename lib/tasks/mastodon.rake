@@ -184,6 +184,15 @@ namespace :mastodon do
     end
   end
 
+  namespace :webpush do
+    desc 'Generate VAPID key'
+    task generate_vapid_key: :environment do
+      vapid_key = Webpush.generate_key
+      puts "VAPID_PRIVATE_KEY=#{vapid_key.private_key}"
+      puts "VAPID_PUBLIC_KEY=#{vapid_key.public_key}"
+    end
+  end
+
   namespace :maintenance do
     desc 'Update counter caches'
     task update_counter_caches: :environment do
