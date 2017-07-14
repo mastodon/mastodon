@@ -66,5 +66,6 @@ class Pubsubhubbub::SubscribeService < BaseService
 
     subscription.domain = domain
     subscription.save!
+    subscription
   end
 end
