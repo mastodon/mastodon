@@ -13,7 +13,7 @@ We're working on ways to improve the planning structure and better solicit feedb
 
 ##  Documentation  ##
 
-The documentation for this repository is available at [`glitch-soc/docs`](https://github.com/glitch-soc/docs).
+The documentation for this repository is available at [`glitch-soc/docs`](https://github.com/glitch-soc/docs) (online at [glitch-soc.github.io/docs/](https://glitch-soc.github.io/docs/)).
 Right now, we've mostly focused on the features that make this fork different from upstream in some manner.
 Adding screenshots, improving descriptions, and so forth are all ways to help contribute to the project even if you don't know any code.
 
