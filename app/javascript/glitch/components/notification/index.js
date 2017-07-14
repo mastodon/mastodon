@@ -8,7 +8,7 @@ import PropTypes from 'prop-types';
 
 //  Our imports  //
 import StatusContainer from '../status/container';
-import FollowNotification from './follow_notification';
+import NotificationFollow from './follow';
 
 export default class Notification extends ImmutablePureComponent {
 
@@ -20,8 +20,8 @@ export default class Notification extends ImmutablePureComponent {
 
   renderFollow (notification) {
     return (
-      <FollowNotification
-        notificationId={notification.get('id')}
+      <NotificationFollow
+        id={notification.get('id')}
         account={notification.get('account')}
         onDeleteNotification={this.props.onDeleteNotification}
       />

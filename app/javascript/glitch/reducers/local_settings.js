@@ -18,12 +18,12 @@ associated actions are:
 
 */
 
-                            /* * * * */
+//  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 
 /*
 
-Imports
--------
+Imports:
+--------
 
 */
 
@@ -36,12 +36,12 @@ import { STORE_HYDRATE } from '../../mastodon/actions/store';
 //  Our imports  //
 import { LOCAL_SETTING_CHANGE } from '../actions/local_settings';
 
-                            /* * * * */
+//  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 
 /*
 
-initialState
-------------
+initialState:
+-------------
 
 You can see the default values for all of our local settings here.
 These are only used if no previously-saved values exist.
@@ -71,12 +71,12 @@ const initialState = ImmutableMap({
   }),
 });
 
-                            /* * * * */
+//  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 
 /*
 
-Helper functions
-----------------
+Helper functions:
+-----------------
 
 ###  `hydrate(state, localSettings)`
 
@@ -89,12 +89,12 @@ from `localStorage`.
 
 const hydrate = (state, localSettings) => state.mergeDeep(localSettings);
 
-                            /* * * * */
+//  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 
 /*
 
-`localSettings(state = initialState, action)`
----------------------------------------------
+`localSettings(state = initialState, action)`:
+----------------------------------------------
 
 This function holds our actual reducer.
 

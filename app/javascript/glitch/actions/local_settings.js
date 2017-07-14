@@ -21,12 +21,12 @@ consists of the following:
 
 */
 
-                            /* * * * */
+//  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 
 /*
 
-Constants
----------
+Constants:
+----------
 
 We provide the following constants:
 
@@ -39,12 +39,12 @@ We provide the following constants:
 
 export const LOCAL_SETTING_CHANGE = 'LOCAL_SETTING_CHANGE';
 
-                            /* * * * */
+//  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 
 /*
 
-`changeLocalSetting(key, value)`
---------------------------------
+`changeLocalSetting(key, value)`:
+---------------------------------
 
 Changes the local setting with the given `key` to the given `value`.
 `key` **MUST** be an array of strings, as required by
@@ -67,12 +67,12 @@ export function changeLocalSetting(key, value) {
   };
 };
 
-                            /* * * * */
+//  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 
 /*
 
-`saveLocalSettings()`
----------------------
+`saveLocalSettings()`:
+----------------------
 
 Saves the local settings to `localStorage` as a JSON object.
 `changeLocalSetting()` calls this whenever it changes a setting. We
