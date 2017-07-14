@@ -61,7 +61,7 @@ fr:
       media_attachments: Fichiers médias
       moderation:
         all: Tous
-        silenced: Muets
+        silenced: Masqués
         suspended: Suspendus
         title: Modération
       most_recent_activity: Dernière activité
@@ -85,11 +85,11 @@ fr:
         created_reports: Signalements créés par ce compte
         report: signalement
         targeted_reports: Signalements créés visant ce compte
-      silence: Rendre muet
+      silence: Masquer
       statuses: Statuts
       subscribe: S’abonner
       title: Comptes
-      undo_silenced: Annuler le silence
+      undo_silenced: Démasquer
       undo_suspension: Annuler la suspension
       unsubscribe: Se désabonner
       username: Nom d’utilisateur⋅ice
@@ -104,13 +104,13 @@ fr:
         hint: Le blocage de domaine n’empêchera pas la création de comptes dans la base de données, mais il appliquera automatiquement et rétrospectivement des méthodes de modération spécifiques sur ces comptes.
         severity:
           desc_html: "<strong>Silence</strong> rendra les messages des comptes concernés invisibles à ceux qui ne les suivent pas. <strong>Suspend</strong> supprimera tout le contenu des comptes concernés, les médias, et les données du profil."
-          silence: Muet
+          silence: Masqué
           suspend: Suspendre
         title: Nouveau blocage de domaine
       reject_media: Fichiers média rejetés
       reject_media_hint: Supprime localement les fichiers média stockés et refuse d’en télécharger ultérieurement. Ne concerne pas les suspensions.
       severities:
-        silence: Rendre muet
+        silence: Masquer
         suspend: Suspendre
       severity: Séverité
       show:
@@ -118,7 +118,7 @@ fr:
           one: Un compte affecté dans la base de données
           other: "%{count} comptes affectés dans la base de données"
         retroactive:
-          silence: Annuler le silence sur tous les comptes existants pour ce domaine
+          silence: Annuler le masquage sur tous les comptes existants pour ce domaine
           suspend: Annuler la suspension sur tous les comptes existants pour ce domaine
         title: Annuler le blocage de domaine pour %{domain}
         undo: Annuler
@@ -145,7 +145,7 @@ fr:
       reported_account: Compte signalé
       reported_by: Signalé par
       resolved: Résolus
-      silence_account: Rendre le compte muet
+      silence_account: Masquer le compte
       status: Statut
       suspend_account: Suspendre le compte
       target: Cible
