@@ -35,7 +35,7 @@ class SubscribeService < BaseService
       'hub.callback': api_subscription_url(@account.id),
       'hub.verify': 'async',
       'hub.secret': @account.secret,
-      'hub.lease_seconds': 30.days.seconds,
+      'hub.lease_seconds': 7.days.seconds,
     }
   end
 

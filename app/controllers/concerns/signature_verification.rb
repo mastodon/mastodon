@@ -41,7 +41,7 @@ module SignatureVerification
     signature             = Base64.decode64(signature_params['signature'])
     compare_signed_string = build_signed_string(signature_params['headers'])
 
-    if matches_time_window? && account.keypair.public_key.verify(OpenSSL::Digest::SHA256.new, signature, compare_signed_string)
+    if account.keypair.public_key.verify(OpenSSL::Digest::SHA256.new, signature, compare_signed_string)
       @signed_request_account = account
       @signed_request_account
     else
