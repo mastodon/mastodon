@@ -21,15 +21,13 @@ class Api::V1::Timelines::PublicController < Api::BaseController
   end
 
   def public_statuses
-    public_timeline_statuses.paginate_by_max_id(
-      limit_param(DEFAULT_STATUSES_LIMIT),
-      params[:max_id],
-      params[:since_id]
+    Status.as_public_timeline(
+      account: current_account,
+      local_only: params[:local],
+      limit: limit_param(DEFAULT_STATUSES_LIMIT),
+      max_id: params[:max_id],
+      since_id: params[:since_id]
     )
-  end
-
-  def public_timeline_statuses
-    Status.as_public_timeline(current_account, params[:local])
   end
 
   def insert_pagination_headers
