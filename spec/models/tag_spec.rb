@@ -1,6 +1,24 @@
 require 'rails_helper'
 
 RSpec.describe Tag, type: :model do
+  describe 'validations' do
+    it 'invalid with #' do
+      expect(Tag.new(name: '#hello_world')).to_not be_valid
+    end
+
+    it 'invalid with .' do
+      expect(Tag.new(name: '.abcdef123')).to_not be_valid
+    end
+
+    it 'invalid with spaces' do
+      expect(Tag.new(name: 'hello world')).to_not be_valid
+    end
+
+    it 'valid with ａｅｓｔｈｅｔｉｃ' do
+      expect(Tag.new(name: 'ａｅｓｔｈｅｔｉｃ')).to be_valid
+    end
+  end
+
   describe 'HASHTAG_RE' do
     subject { Tag::HASHTAG_RE }
 
