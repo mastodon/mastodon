@@ -85,9 +85,11 @@ namespace :mastodon do
       MediaAttachment.where(account: Account.silenced).find_each(&:destroy)
     end
 
-    desc 'Remove cached remote media attachments that are older than a week'
+    desc 'Remove cached remote media attachments that are older than NUM_DAYS. By default 7 (week)'
     task remove_remote: :environment do
-      MediaAttachment.where.not(remote_url: '').where('created_at < ?', 1.week.ago).find_each do |media|
+      time_ago = ENV.fetch('NUM_DAYS') { 7 }.to_i.days.ago
+
+      MediaAttachment.where.not(remote_url: '').where('created_at < ?', time_ago).find_each do |media|
         media.file.destroy
         media.type = :unknown
         media.save
