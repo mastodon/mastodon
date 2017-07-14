@@ -26,4 +26,6 @@ RSpec.describe Notification, type: :model do
       expect(notification.type).to eq :follow
     end
   end
+
+  it_behaves_like 'RecentOrderable', :notification
 end

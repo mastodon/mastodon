@@ -35,7 +35,7 @@ class Api::V1::FollowRequestsController < Api::BaseController
   end
 
   def paginated_follow_requests
-    FollowRequest.where(target_account: current_account).paginate_by_max_id(
+    FollowRequest.where(target_account: current_account).paginate_by_recent(
       limit_param(DEFAULT_ACCOUNTS_LIMIT),
       params[:max_id],
       params[:since_id]

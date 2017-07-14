@@ -44,4 +44,6 @@ RSpec.describe Block, type: :model do
     expect(Rails.cache.exist?("exclude_account_ids_for:#{account.id}")).to eq false
     expect(Rails.cache.exist?("exclude_account_ids_for:#{target_account.id}")).to eq false
   end
+
+  it_behaves_like 'RecentOrderable', :block
 end

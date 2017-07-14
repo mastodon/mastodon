@@ -9,7 +9,7 @@ module Admin
     private
 
     def ordered_subscriptions
-      Subscription.order(id: :desc).includes(:account)
+      Subscription.recent.includes(:account)
     end
 
     def requested_page

@@ -13,7 +13,7 @@
 #
 
 class Notification < ApplicationRecord
-  include Paginable
+  include RecentOrderable
   include Cacheable
 
   TYPE_CLASS_MAP = {

@@ -28,7 +28,7 @@ class Api::V1::Statuses::FavouritedByAccountsController < Api::BaseController
   end
 
   def paginated_favourites
-    Favourite.paginate_by_max_id(
+    Favourite.paginate_by_recent(
       limit_param(DEFAULT_ACCOUNTS_LIMIT),
       params[:max_id],
       params[:since_id]

@@ -29,7 +29,7 @@ class Api::V1::Timelines::TagController < Api::BaseController
     if @tag.nil?
       []
     else
-      tag_timeline_statuses.paginate_by_max_id(
+      tag_timeline_statuses.paginate_by_recent(
         limit_param(DEFAULT_STATUSES_LIMIT),
         params[:max_id],
         params[:since_id]

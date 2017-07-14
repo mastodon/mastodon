@@ -21,7 +21,7 @@ class Api::V1::Timelines::PublicController < Api::BaseController
   end
 
   def public_statuses
-    public_timeline_statuses.paginate_by_max_id(
+    public_timeline_statuses.paginate_by_recent(
       limit_param(DEFAULT_STATUSES_LIMIT),
       params[:max_id],
       params[:since_id]

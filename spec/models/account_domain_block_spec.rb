@@ -19,4 +19,6 @@ RSpec.describe AccountDomainBlock, type: :model do
 
     expect(Rails.cache.exist?("exclude_domains_for:#{account.id}")).to eq false
   end
+
+  it_behaves_like 'RecentOrderable', :account_domain_block
 end

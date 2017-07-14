@@ -11,7 +11,7 @@
 #
 
 class Follow < ApplicationRecord
-  include Paginable
+  include RecentOrderable
 
   belongs_to :account, counter_cache: :following_count, required: true
 
@@ -23,6 +23,4 @@ class Follow < ApplicationRecord
   has_one :notification, as: :activity, dependent: :destroy
 
   validates :account_id, uniqueness: { scope: :target_account_id }
-
-  scope :recent, -> { reorder(id: :desc) }
 end

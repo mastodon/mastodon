@@ -22,4 +22,6 @@ RSpec.describe FollowRequest, type: :model do
       expect(follow_request).to model_have_error_on_field(:target_account)      
     end
   end
+
+  it_behaves_like 'RecentOrderable', :follow_request
 end

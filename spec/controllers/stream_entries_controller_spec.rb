@@ -39,7 +39,7 @@ RSpec.describe StreamEntriesController, type: :controller do
     context 'when activity is nil' do
       it 'raises ActiveRecord::RecordNotFound' do
         account = Fabricate(:account)
-        stream_entry = Fabricate.build(:stream_entry, account: account, activity: nil, activity_type: 'Status')
+        stream_entry = StreamEntry.new(account: account)
         stream_entry.save!(validate: false)
 
         get route, params: { account_username: account.username, id: stream_entry.id }

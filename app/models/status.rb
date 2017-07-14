@@ -25,7 +25,7 @@
 #
 
 class Status < ApplicationRecord
-  include Paginable
+  include RecentOrderable
   include Streamable
   include Cacheable
   include StatusThreadingConcern
@@ -58,7 +58,6 @@ class Status < ApplicationRecord
 
   default_scope { recent }
 
-  scope :recent, -> { reorder(id: :desc) }
   scope :remote, -> { where.not(uri: nil) }
   scope :local, -> { where(uri: nil) }
 

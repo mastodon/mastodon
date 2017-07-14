@@ -11,7 +11,7 @@
 #
 
 class AccountDomainBlock < ApplicationRecord
-  include Paginable
+  include RecentOrderable
 
   belongs_to :account, required: true
   validates :domain, presence: true, uniqueness: { scope: :account_id }

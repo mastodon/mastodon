@@ -695,13 +695,6 @@ RSpec.describe Account, type: :model do
       end
     end
 
-    describe 'recent' do
-      it 'returns a relation of accounts sorted by recent creation' do
-        matches = 2.times.map { Fabricate(:account) }
-        expect(Account.recent).to match_array(matches)
-      end
-    end
-
     describe 'silenced' do
       it 'returns an array of accounts who are silenced' do
         account_1 = Fabricate(:account, silenced: true)
@@ -758,4 +751,5 @@ RSpec.describe Account, type: :model do
   end
 
   include_examples 'AccountAvatar', :account
+  it_behaves_like 'RecentOrderable', :account
 end

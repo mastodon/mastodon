@@ -11,7 +11,7 @@
 #
 
 class Block < ApplicationRecord
-  include Paginable
+  include RecentOrderable
 
   belongs_to :account, required: true
   belongs_to :target_account, class_name: 'Account', required: true
