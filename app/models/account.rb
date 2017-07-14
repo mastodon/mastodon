@@ -47,6 +47,7 @@ class Account < ApplicationRecord
   include AccountInteractions
   include Attachmentable
   include Remotable
+  include EmojiHelper
 
   # Local users
   has_one :user, inverse_of: :account
@@ -240,8 +241,17 @@ class Account < ApplicationRecord
 
   before_create :generate_keys
   before_validation :normalize_domain
+  before_validation :prepare_contents, if: :local?
 
   private
+
+  def prepare_contents
+    display_name&.strip!
+    note&.strip!
+
+    self.display_name = emojify(display_name)
+    self.note         = emojify(note)
+  end
 
   def generate_keys
     return unless local?
