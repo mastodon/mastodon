@@ -1,42 +1,30 @@
 //  Package imports  //
 import React from 'react';
 import ImmutablePropTypes from 'react-immutable-proptypes';
-import { FormattedMessage } from 'react-intl';
-import escapeTextContentForBrowser from 'escape-html';
 import ImmutablePureComponent from 'react-immutable-pure-component';
+import PropTypes from 'prop-types';
 
 //  Mastodon imports  //
-import AccountContainer from '../../../mastodon/containers/account_container';
-import Permalink from '../../../mastodon/components/permalink';
-import emojify from '../../../mastodon/emoji';
 
 //  Our imports  //
 import StatusContainer from '../status/container';
+import FollowNotification from './follow_notification';
 
 export default class Notification extends ImmutablePureComponent {
 
   static propTypes = {
     notification: ImmutablePropTypes.map.isRequired,
     settings: ImmutablePropTypes.map.isRequired,
+    onDeleteNotification: PropTypes.func.isRequired,
   };
 
   renderFollow (notification) {
-    const account          = notification.get('account');
-    const displayName      = account.get('display_name').length > 0 ? account.get('display_name') : account.get('username');
-    const displayNameHTML  = { __html: emojify(escapeTextContentForBrowser(displayName)) };
-    const link             = <Permalink className='notification__display-name' href={account.get('url')} title={account.get('acct')} to={`/accounts/${account.get('id')}`} dangerouslySetInnerHTML={displayNameHTML} />;
     return (
-      <div className='notification notification-follow'>
-        <div className='notification__message'>
-          <div className='notification__favourite-icon-wrapper'>
-            <i className='fa fa-fw fa-user-plus' />
-          </div>
-
-          <FormattedMessage id='notification.follow' defaultMessage='{name} followed you' values={{ name: link }} />
-        </div>
-
-        <AccountContainer id={account.get('id')} withNote={false} />
-      </div>
+      <FollowNotification
+        notificationId={notification.get('id')}
+        account={notification.get('account')}
+        onDeleteNotification={this.props.onDeleteNotification}
+      />
     );
   }
 
@@ -44,6 +32,7 @@ export default class Notification extends ImmutablePureComponent {
     return (
       <StatusContainer
         id={notification.get('status')}
+        notificationId={notification.get('id')}
         withDismiss
       />
     );
@@ -56,6 +45,7 @@ export default class Notification extends ImmutablePureComponent {
         account={notification.get('account')}
         prepend='favourite'
         muted
+        notificationId={notification.get('id')}
         withDismiss
       />
     );
@@ -68,6 +58,7 @@ export default class Notification extends ImmutablePureComponent {
         account={notification.get('account')}
         prepend='reblog'
         muted
+        notificationId={notification.get('id')}
         withDismiss
       />
     );

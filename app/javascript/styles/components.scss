@@ -617,6 +617,27 @@
   position: absolute;
 }
 
+.status__prepend-dismiss-button {
+  border: 0;
+  background: transparent;
+  position: absolute;
+  right: -3px;
+  opacity: 0;
+  transition: opacity 0.1s ease-in-out;
+
+  i.fa {
+    color: crimson;
+  }
+
+  .notification__message:hover & {
+    opacity: 1;
+  }
+
+  .notification-follow & {
+    right: 6px;
+  }
+}
+
 .status {
   padding: 8px 10px;
   padding-left: 68px;

@@ -24,6 +24,7 @@ const messages = defineMessages({
   report: { id: 'status.report', defaultMessage: 'Report @{name}' },
   muteConversation: { id: 'status.mute_conversation', defaultMessage: 'Mute conversation' },
   unmuteConversation: { id: 'status.unmute_conversation', defaultMessage: 'Unmute conversation' },
+  deleteNotification: { id: 'status.dismiss_notification', defaultMessage: 'Dismiss notification' },
 });
 
 @injectIntl
@@ -35,6 +36,7 @@ export default class StatusActionBar extends ImmutablePureComponent {
 
   static propTypes = {
     status: ImmutablePropTypes.map.isRequired,
+    notificationId: PropTypes.number,
     onReply: PropTypes.func,
     onFavourite: PropTypes.func,
     onReblog: PropTypes.func,
@@ -44,6 +46,7 @@ export default class StatusActionBar extends ImmutablePureComponent {
     onBlock: PropTypes.func,
     onReport: PropTypes.func,
     onMuteConversation: PropTypes.func,
+    onDeleteNotification: PropTypes.func,
     me: PropTypes.number.isRequired,
     withDismiss: PropTypes.bool,
     intl: PropTypes.object.isRequired,
@@ -97,6 +100,10 @@ export default class StatusActionBar extends ImmutablePureComponent {
     this.props.onMuteConversation(this.props.status);
   }
 
+  handleNotificationDeleteClick = () => {
+    this.props.onDeleteNotification(this.props.notificationId);
+  }
+
   render () {
     const { status, me, intl, withDismiss } = this.props;
     const reblogDisabled = status.get('visibility') === 'private' || status.get('visibility') === 'direct';
@@ -112,6 +119,7 @@ export default class StatusActionBar extends ImmutablePureComponent {
 
     if (withDismiss) {
       menu.push({ text: intl.formatMessage(mutingConversation ? messages.unmuteConversation : messages.muteConversation), action: this.handleConversationMuteClick });
+      menu.push({ text: intl.formatMessage(messages.deleteNotification), action: this.handleNotificationDeleteClick });
       menu.push(null);
     }
 

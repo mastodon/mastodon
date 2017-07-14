@@ -6,6 +6,8 @@ import { defineMessages } from 'react-intl';
 
 export const NOTIFICATIONS_UPDATE = 'NOTIFICATIONS_UPDATE';
 
+export const NOTIFICATION_DELETE_SUCCESS = 'NOTIFICATION_DELETE_SUCCESS';
+
 export const NOTIFICATIONS_REFRESH_REQUEST = 'NOTIFICATIONS_REFRESH_REQUEST';
 export const NOTIFICATIONS_REFRESH_SUCCESS = 'NOTIFICATIONS_REFRESH_SUCCESS';
 export const NOTIFICATIONS_REFRESH_FAIL    = 'NOTIFICATIONS_REFRESH_FAIL';
@@ -185,5 +187,20 @@ export function scrollTopNotifications(top) {
   return {
     type: NOTIFICATIONS_SCROLL_TOP,
     top,
+  };
+};
+
+export function deleteNotification(id) {
+  return (dispatch, getState) => {
+    api(getState).delete(`/api/v1/notifications/${id}`).then(() => {
+      dispatch(deleteNotificationSuccess(id));
+    });
+  };
+};
+
+export function deleteNotificationSuccess(id) {
+  return {
+    type: NOTIFICATION_DELETE_SUCCESS,
+    id: id,
   };
 };

@@ -170,6 +170,7 @@ export default class Status extends ImmutablePureComponent {
     onReport                    : PropTypes.func,
     onOpenMedia                 : PropTypes.func,
     onOpenVideo                 : PropTypes.func,
+    onDeleteNotification        : PropTypes.func,
     reblogModal                 : PropTypes.bool,
     deleteModal                 : PropTypes.bool,
     autoPlayGif                 : PropTypes.bool,
@@ -177,6 +178,7 @@ export default class Status extends ImmutablePureComponent {
     collapse                    : PropTypes.bool,
     prepend                     : PropTypes.string,
     withDismiss                 : PropTypes.bool,
+    notificationId              : PropTypes.number,
     intersectionObserverWrapper : PropTypes.object,
   };
 
@@ -685,6 +687,8 @@ collapsed.
             type={prepend}
             account={account}
             parseClick={parseClick}
+            notificationId={this.props.notificationId}
+            onDeleteNotification={this.props.onDeleteNotification}
           />
         ) : null}
         <StatusHeader

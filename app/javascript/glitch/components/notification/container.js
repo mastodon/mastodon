@@ -6,6 +6,7 @@ import { makeGetNotification } from '../../../mastodon/selectors';
 
 //  Our imports  //
 import Notification from '.';
+import { deleteNotification } from '../../../mastodon/actions/notifications';
 
 const makeMapStateToProps = () => {
   const getNotification = makeGetNotification();
@@ -18,4 +19,10 @@ const makeMapStateToProps = () => {
   return mapStateToProps;
 };
 
-export default connect(makeMapStateToProps)(Notification);
+const mapDispatchToProps = (dispatch) => ({
+  onDeleteNotification (id) {
+    dispatch(deleteNotification(id));
+  },
+});
+
+export default connect(makeMapStateToProps, mapDispatchToProps)(Notification);

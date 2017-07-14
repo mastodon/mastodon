@@ -8,6 +8,7 @@ import {
   NOTIFICATIONS_EXPAND_FAIL,
   NOTIFICATIONS_CLEAR,
   NOTIFICATIONS_SCROLL_TOP,
+  NOTIFICATION_DELETE_SUCCESS,
 } from '../actions/notifications';
 import { ACCOUNT_BLOCK_SUCCESS } from '../actions/accounts';
 import { TIMELINE_DELETE } from '../actions/timelines';
@@ -92,6 +93,10 @@ const deleteByStatus = (state, statusId) => {
   return state.update('items', list => list.filterNot(item => item.get('status') === statusId));
 };
 
+const deleteById = (state, notificationId) => {
+  return state.update('items', list => list.filterNot(item => item.get('id') === notificationId));
+};
+
 export default function notifications(state = initialState, action) {
   switch(action.type) {
   case NOTIFICATIONS_REFRESH_REQUEST:
@@ -113,6 +118,8 @@ export default function notifications(state = initialState, action) {
     return state.set('items', ImmutableList()).set('next', null);
   case TIMELINE_DELETE:
     return deleteByStatus(state, action.id);
+  case NOTIFICATION_DELETE_SUCCESS:
+    return deleteById(state, action.id);
   default:
     return state;
   }
