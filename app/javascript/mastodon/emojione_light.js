@@ -16,7 +16,7 @@ const emojione = require('emojione');
 
 const mappedUnicode = emojione.mapUnicodeToShort();
 
-module.exports.unicodeToFilename = Object.entries(emojione.jsEscapeMap)
-  .map(([unicodeStr, unicode]) => [unicodeStr, mappedUnicode[unicode]])
+module.exports.unicodeToFilename = Object.keys(emojione.jsEscapeMap)
+  .map(unicodeStr => [unicodeStr, mappedUnicode[emojione.jsEscapeMap[unicodeStr]]])
   .map(([unicodeStr, shortCode]) => ({ [unicodeStr]: emojione.emojioneList[shortCode].fname }))
   .reduce((x, y) => Object.assign(x, y), { });
