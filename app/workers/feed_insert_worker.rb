@@ -27,7 +27,7 @@ class FeedInsertWorker
   end
 
   def feed_filtered?
-    FeedManager.instance.filter?(:home, status, follower.id)
+    FeedManager.instance.filter?(:home, status, follower)
   end
 
   def perform_push
