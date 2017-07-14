@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
 class ActivityPub::ActivitySerializer < ActiveModel::Serializer
-  attributes :id, :type, :actor
+  attributes :id, :type, :actor, :to, :cc
 
-  has_one :object, serializer: ActivityPub::NoteSerializer
+  has_one :proper, key: :object, serializer: ActivityPub::NoteSerializer
 
   def id
     [ActivityPub::TagManager.instance.uri_for(object), '/activity'].join
@@ -15,5 +15,13 @@ class ActivityPub::ActivitySerializer < ActiveModel::Serializer
 
   def actor
     ActivityPub::TagManager.instance.uri_for(object.account)
+  end
+
+  def to
+    ActivityPub::TagManager.instance.to(object)
+  end
+
+  def cc
+    ActivityPub::TagManager.instance.cc(object)
   end
 end

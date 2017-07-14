@@ -21,6 +21,7 @@ class TagsController < ApplicationController
 
   def collection_presenter
     ActivityPub::CollectionPresenter.new(
+      id: tag_url(@tag),
       type: :ordered,
       current: tag_url(@tag),
       size: @tag.statuses.count,

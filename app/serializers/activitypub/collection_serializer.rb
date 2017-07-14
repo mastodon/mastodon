@@ -6,7 +6,8 @@ class ActivityPub::CollectionSerializer < ActiveModel::Serializer
     super
   end
 
-  attributes :type, :total_items, :current
+  attributes :id, :type, :total_items,
+             :current
 
   has_many :items, key: :ordered_items
 

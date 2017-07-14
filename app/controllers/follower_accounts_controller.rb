@@ -19,6 +19,7 @@ class FollowerAccountsController < ApplicationController
 
   def collection_presenter
     ActivityPub::CollectionPresenter.new(
+      id: account_followers_url(@account),
       type: :ordered,
       current: account_followers_url(@account),
       size: @account.followers_count,

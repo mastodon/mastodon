@@ -18,6 +18,7 @@ class ActivityPub::OutboxesController < Api::BaseController
 
   def outbox_presenter
     ActivityPub::CollectionPresenter.new(
+      id: account_outbox_url(@account),
       type: :ordered,
       current: account_outbox_url(@account),
       size: @account.statuses_count,
