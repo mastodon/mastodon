@@ -2,6 +2,7 @@
 
 class StreamEntriesController < ApplicationController
   include Authorization
+  include SignatureVerification
 
   layout 'public'
 

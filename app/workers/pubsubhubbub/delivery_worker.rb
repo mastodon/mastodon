@@ -33,9 +33,9 @@ class Pubsubhubbub::DeliveryWorker
   end
 
   def callback_post_payload
-    HTTP.timeout(:per_operation, write: 50, connect: 20, read: 50)
-        .headers(headers)
-        .post(subscription.callback_url, body: payload)
+    request = Request.new(:post, subscription.callback_url, body: payload)
+    request.add_headers(headers)
+    request.perform
   end
 
   def blocked_domain?
@@ -48,13 +48,12 @@ class Pubsubhubbub::DeliveryWorker
 
   def headers
     {
-      'User-Agent' => 'Mastodon/PubSubHubbub',
       'Content-Type' => 'application/atom+xml',
-      'Link' => link_headers,
+      'Link' => link_header,
     }.merge(signature_headers.to_h)
   end
 
-  def link_headers
+  def link_header
     LinkHeader.new([hub_link_header, self_link_header]).to_s
   end
 

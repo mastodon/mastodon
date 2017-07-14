@@ -130,7 +130,7 @@ class Account < ApplicationRecord
   end
 
   def subscription(webhook_url)
-    OStatus2::Subscription.new(remote_url, secret: secret, lease_seconds: 86_400 * 30, webhook: webhook_url, hub: hub_url)
+    OStatus2::Subscription.new(remote_url, secret: secret, lease_seconds: 30.days.seconds, webhook: webhook_url, hub: hub_url)
   end
 
   def save_with_optional_media!
