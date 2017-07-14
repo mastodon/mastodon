@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170713190709) do
+ActiveRecord::Schema.define(version: 20170714020000) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -292,11 +292,12 @@ ActiveRecord::Schema.define(version: 20170713190709) do
     t.integer "reblogs_count", default: 0, null: false
     t.string "language"
     t.bigint "conversation_id"
+    t.string "remote_url"
     t.index ["account_id", "id"], name: "index_statuses_on_account_id_id"
     t.index ["conversation_id"], name: "index_statuses_on_conversation_id"
     t.index ["in_reply_to_id"], name: "index_statuses_on_in_reply_to_id"
     t.index ["reblog_of_id"], name: "index_statuses_on_reblog_of_id"
-    t.index ["uri"], name: "index_statuses_on_uri", unique: true
+    t.index ["uri", "account_id"], name: "index_statuses_on_uri_account_id", unique: true
   end
 
   create_table "statuses_tags", id: false, force: :cascade do |t|

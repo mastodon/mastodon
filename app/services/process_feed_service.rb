@@ -55,7 +55,7 @@ class ProcessFeedService < BaseService
       end
 
       ApplicationRecord.transaction do
-        status, just_created = status_from_xml(@xml)
+        status, just_created = status_from_xml(@xml, @account)
 
         return if status.nil?
         return status unless just_created
@@ -111,16 +111,16 @@ class ProcessFeedService < BaseService
     end
 
     def shared_status_from_xml(entry)
-      status = find_status(id(entry))
+      status = find_status_by_uri_account(id(entry), author_from_xml(entry))
 
       return status unless status.nil?
 
       FetchRemoteStatusService.new.call(url(entry))
     end
 
-    def status_from_xml(entry)
+    def status_from_xml(entry, account)
       # Return early if status already exists in db
-      status = find_status(id(entry))
+      status = find_status_by_uri_account(id(entry), account)
 
       return [status, false] unless status.nil?
 
@@ -130,6 +130,7 @@ class ProcessFeedService < BaseService
 
       status = Status.create!(
         uri: id(entry),
+        remote_url: remote_url(entry),
         url: url(entry),
         account: account,
         text: content(entry),
@@ -139,7 +140,7 @@ class ProcessFeedService < BaseService
         language: content_language(entry),
         visibility: visibility_scope(entry),
         conversation: find_or_create_conversation(entry),
-        thread: thread?(entry) ? find_status(thread(entry).first) : nil
+        thread: thread?(entry) ? find_status_by_uri_remote_url(*thread(entry)) : nil
       )
 
       mentions_from_xml(status, entry)
@@ -161,13 +162,23 @@ class ProcessFeedService < BaseService
       Conversation.find_by(uri: uri) || Conversation.create!(uri: uri)
     end
 
-    def find_status(uri)
-      if TagManager.instance.local_id?(uri)
+    def find_status_by_uri_account(uri, account)
+      if account.local?
         local_id = TagManager.instance.unique_tag_to_local_id(uri, 'Status')
         return Status.find_by(id: local_id)
       end
 
-      Status.find_by(uri: uri)
+      Status.find_by(uri: uri, account: @account)
+    end
+
+    def find_status_by_uri_remote_url(uri, remote_url)
+      if TagManager.instance.web_domain?(Addressable::URI.parse(remote_url).normalized_host)
+        local_id = TagManager.instance.unique_tag_to_local_id(uri, 'Status')
+        return Status.find_by(id: local_id)
+      end
+
+      statuses = Status.where(uri: uri, remote_url: remote_url)
+      statuses.size == 1 ? statuses.first : nil
     end
 
     def mentions_from_xml(parent, xml)
@@ -193,7 +204,7 @@ class ProcessFeedService < BaseService
       if TagManager.instance.web_domain?(url.host)
         Account.find_local(url.path.gsub('/users/', ''))
       else
-        Account.where(uri: href).or(Account.where(url: href)).first || FetchRemoteAccountService.new.call(href)
+        Account.find_by(url: href) || FetchRemoteAccountService.new.call(href)
       end
     end
 
@@ -242,6 +253,11 @@ class ProcessFeedService < BaseService
       TagManager::TYPES.key(raw)
     rescue
       :activity
+    end
+
+    def remote_url(xml = @xml)
+      link = xml.at_xpath('./xmlns:link[@rel="related"]', xmlns: TagManager::XMLNS)
+      link.nil? ? nil : link['href']
     end
 
     def url(xml = @xml)

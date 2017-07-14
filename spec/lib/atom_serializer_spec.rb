@@ -534,6 +534,16 @@ RSpec.describe AtomSerializer do
       expect(link[:href]).to eq "https://cb6e6126.ngrok.io/users/username/updates/#{status.stream_entry.id}"
     end
 
+    it 'appends link element for related' do
+      account = Fabricate(:account, username: 'username')
+      status = Fabricate(:status, account: account)
+
+      entry = AtomSerializer.new.entry(status.stream_entry)
+
+      link = entry.nodes.find { |node| node.name == 'link' && node[:rel] == 'related' }
+      expect(link[:href]).to eq TagManager.instance.url_for(status)
+    end
+
     it 'appends link element for itself' do
       account = Fabricate(:account, username: 'username')
       status = Fabricate(:status, account: account)
