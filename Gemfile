@@ -78,7 +78,7 @@ group :test do
   gem 'capybara', '~> 2.14'
   gem 'climate_control', '~> 0.2'
   gem 'faker', '~> 1.7'
-  gem 'microformats2', '~> 3.0'
+  gem 'microformats', '~> 4.0'
   gem 'rails-controller-testing', '~> 1.0'
   gem 'rspec-sidekiq', '~> 3.0'
   gem 'simplecov', '~> 0.14', require: false
