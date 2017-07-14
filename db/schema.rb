@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170713190709) do
+ActiveRecord::Schema.define(version: 20170714184731) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -326,6 +326,7 @@ ActiveRecord::Schema.define(version: 20170713190709) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.datetime "last_successful_delivery_at"
+    t.string "domain"
     t.index ["account_id", "callback_url"], name: "index_subscriptions_on_account_id_and_callback_url", unique: true
   end
 

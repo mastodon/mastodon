@@ -1,5 +1,4 @@
 # frozen_string_literal: true
-
 # == Schema Information
 #
 # Table name: subscriptions
@@ -13,6 +12,7 @@
 #  created_at                  :datetime         not null
 #  updated_at                  :datetime         not null
 #  last_successful_delivery_at :datetime
+#  domain                      :string
 #
 
 class Subscription < ApplicationRecord
