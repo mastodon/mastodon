@@ -1,15 +1,4 @@
 // @preval
-
-//     &&&
-//    &&&/&
-//  &\/&|&&&&
-// &&&\&|&/&&&    ,^%---
-//  &&&\|/&&&    <   \
-//   & }}{  &   />\_&       Do I need
-//     }{{     / >       the whole tree?
-//              /|^^
-// http://ascii.co.uk/art/tree
-
 // Force tree shaking on emojione by exposing just a subset of its functionality
 
 const emojione = require('emojione');
