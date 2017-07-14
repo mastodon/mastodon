@@ -99,6 +99,10 @@ class User < ApplicationRecord
     settings.system_font_ui
   end
 
+  def setting_noindex
+    settings.noindex
+  end
+
   def activate_session(request)
     session_activations.activate(session_id: SecureRandom.hex,
                                  user_agent: request.user_agent,
