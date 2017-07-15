@@ -26,7 +26,7 @@ Rails.application.routes.draw do
     confirmations:      'auth/confirmations',
   }
 
-  get '/users/:username', to: redirect('/@%{username}'), constraints: { format: :html }
+  get '/users/:username', to: redirect('/@%{username}'), constraints: lambda { |req| req.format.nil? }
 
   resources :accounts, path: 'users', only: [:show], param: :username do
     resources :stream_entries, path: 'updates', only: [:show] do
@@ -38,10 +38,17 @@ Rails.application.routes.draw do
     get :remote_follow,  to: 'remote_follow#new'
     post :remote_follow, to: 'remote_follow#create'
 
+    resources :statuses, only: [:show] do
+      member do
+        get :activity
+      end
+    end
+
     resources :followers, only: [:index], controller: :follower_accounts
     resources :following, only: [:index], controller: :following_accounts
     resource :follow, only: [:create], controller: :account_follow
     resource :unfollow, only: [:create], controller: :account_unfollow
+    resource :outbox, only: [:show], module: :activitypub
   end
 
   get '/@:username', to: 'accounts#show', as: :short_account
@@ -118,13 +125,6 @@ Rails.application.routes.draw do
 
     # OEmbed
     get '/oembed', to: 'oembed#show', as: :oembed
-
-    # ActivityPub
-    namespace :activitypub do
-      get '/users/:id/outbox', to: 'outbox#show', as: :outbox
-      get '/statuses/:id', to: 'activities#show_status', as: :status
-      resources :notes, only: [:show]
-    end
 
     # JSON / REST API
     namespace :v1 do
