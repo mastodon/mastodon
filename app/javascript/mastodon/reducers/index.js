@@ -11,6 +11,7 @@ import statuses from './statuses';
 import relationships from './relationships';
 import settings from './settings';
 import local_settings from '../../glitch/reducers/local_settings';
+import push_notifications from './push_notifications';
 import status_lists from './status_lists';
 import cards from './cards';
 import reports from './reports';
@@ -33,7 +34,11 @@ const reducers = {
   statuses,
   relationships,
   settings,
+<<<<<<< HEAD
   local_settings,
+=======
+  push_notifications,
+>>>>>>> upstream
   cards,
   reports,
   contexts,

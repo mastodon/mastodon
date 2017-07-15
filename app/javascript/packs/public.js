@@ -5,9 +5,7 @@ import emojify from '../mastodon/emoji';
 import { getLocale } from '../mastodon/locales';
 import loadPolyfills from '../mastodon/load_polyfills';
 import { processBio } from '../glitch/util/bio_metadata';
-import TimelineContainer from '../mastodon/containers/timeline_container';
-import React from 'react';
-import ReactDOM from 'react-dom';
+import ready from '../mastodon/ready';
 
 require.context('../images/', true);
 
@@ -40,21 +38,10 @@ function loaded() {
     const datetime = new Date(content.getAttribute('datetime'));
     content.textContent = relativeFormat.format(datetime);;
   });
-
-  const mountNode = document.getElementById('mastodon-timeline');
-
-  if (mountNode !== null) {
-    const props = JSON.parse(mountNode.getAttribute('data-props'));
-    ReactDOM.render(<TimelineContainer {...props} />, mountNode);
-  }
 }
 
 function main() {
-  if (['interactive', 'complete'].includes(document.readyState)) {
-    loaded();
-  } else {
-    document.addEventListener('DOMContentLoaded', loaded);
-  }
+  ready(loaded);
 
   delegate(document, '.video-player video', 'click', ({ target }) => {
     if (target.paused) {

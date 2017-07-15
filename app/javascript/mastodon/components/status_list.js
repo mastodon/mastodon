@@ -101,12 +101,8 @@ export default class StatusList extends ImmutablePureComponent {
   render () {
     const { statusIds, scrollKey, trackScroll, shouldUpdateScroll, isLoading, hasMore, prepend, emptyMessage } = this.props;
 
-    let loadMore       = null;
+    const loadMore     = <LoadMore visible={!isLoading && statusIds.size > 0 && hasMore} onClick={this.handleLoadMore} />;
     let scrollableArea = null;
-
-    if (!isLoading && statusIds.size > 0 && hasMore) {
-      loadMore = <LoadMore onClick={this.handleLoadMore} />;
-    }
 
     if (isLoading || statusIds.size > 0 || !emptyMessage) {
       scrollableArea = (

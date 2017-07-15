@@ -35,16 +35,16 @@ class Pubsubhubbub::DistributionWorker
     @payload = AtomSerializer.render(AtomSerializer.new.feed(@account, stream_entries))
     @domains = @account.followers.domains
 
-    Pubsubhubbub::DeliveryWorker.push_bulk(@subscriptions.reject { |s| !allowed_to_receive?(s.callback_url) }) do |subscription|
+    Pubsubhubbub::DeliveryWorker.push_bulk(@subscriptions.reject { |s| !allowed_to_receive?(s.callback_url, s.domain) }) do |subscription|
       [subscription.id, @payload]
     end
   end
 
   def active_subscriptions
-    Subscription.where(account: @account).active.select('id, callback_url')
+    Subscription.where(account: @account).active.select('id, callback_url, domain')
   end
 
-  def allowed_to_receive?(callback_url)
-    @domains.include?(Addressable::URI.parse(callback_url).host)
+  def allowed_to_receive?(callback_url, domain)
+    (!domain.nil? && @domains.include?(domain)) || @domains.include?(Addressable::URI.parse(callback_url).host)
   end
 end

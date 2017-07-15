@@ -2,8 +2,6 @@ import api from '../api';
 
 import { updateTimeline } from './timelines';
 
-import * as emojione from 'emojione';
-
 export const COMPOSE_CHANGE          = 'COMPOSE_CHANGE';
 export const COMPOSE_SUBMIT_REQUEST  = 'COMPOSE_SUBMIT_REQUEST';
 export const COMPOSE_SUBMIT_SUCCESS  = 'COMPOSE_SUBMIT_SUCCESS';
@@ -74,10 +72,12 @@ export function mentionCompose(account, router) {
 
 export function submitCompose() {
   return function (dispatch, getState) {
-    let status = emojione.shortnameToUnicode(getState().getIn(['compose', 'text'], ''));
+    const status = getState().getIn(['compose', 'text'], '');
+
     if (!status || !status.length) {
       return;
     }
+
     dispatch(submitComposeRequest());
     if (getState().getIn(['compose', 'advanced_options', 'do_not_federate'])) {
       status = status + ' 👁️';

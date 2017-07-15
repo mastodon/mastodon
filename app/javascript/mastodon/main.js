@@ -1,12 +1,6 @@
-const perf = require('./performance');
+import ready from './ready';
 
-function onDomContentLoaded(callback) {
-  if (document.readyState !== 'loading') {
-    callback();
-  } else {
-    document.addEventListener('DOMContentLoaded', callback);
-  }
-}
+const perf = require('./performance');
 
 function main() {
   perf.start('main()');
@@ -24,11 +18,19 @@ function main() {
     }
   }
 
-  onDomContentLoaded(() => {
+  ready(() => {
     const mountNode = document.getElementById('mastodon');
     const props = JSON.parse(mountNode.getAttribute('data-props'));
 
     ReactDOM.render(<Mastodon {...props} />, mountNode);
+    if (process.env.NODE_ENV === 'production') {
+      // avoid offline in dev mode because it's harder to debug
+      const OfflinePluginRuntime = require('offline-plugin/runtime');
+      const WebPushSubscription = require('./web_push_subscription');
+
+      OfflinePluginRuntime.install();
+      WebPushSubscription.register();
+    }
     perf.stop('main()');
 
     // remember the initial URL

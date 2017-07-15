@@ -85,9 +85,11 @@ namespace :mastodon do
       MediaAttachment.where(account: Account.silenced).find_each(&:destroy)
     end
 
-    desc 'Remove cached remote media attachments that are older than a week'
+    desc 'Remove cached remote media attachments that are older than NUM_DAYS. By default 7 (week)'
     task remove_remote: :environment do
-      MediaAttachment.where.not(remote_url: '').where('created_at < ?', 1.week.ago).find_each do |media|
+      time_ago = ENV.fetch('NUM_DAYS') { 7 }.to_i.days.ago
+
+      MediaAttachment.where.not(remote_url: '').where('created_at < ?', time_ago).find_each do |media|
         media.file.destroy
         media.type = :unknown
         media.save
@@ -179,6 +181,15 @@ namespace :mastodon do
     desc 'Close registrations on this instance'
     task close_registrations: :environment do
       Setting.open_registrations = false
+    end
+  end
+
+  namespace :webpush do
+    desc 'Generate VAPID key'
+    task generate_vapid_key: :environment do
+      vapid_key = Webpush.generate_key
+      puts "VAPID_PRIVATE_KEY=#{vapid_key.private_key}"
+      puts "VAPID_PUBLIC_KEY=#{vapid_key.public_key}"
     end
   end
 

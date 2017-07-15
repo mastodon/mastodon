@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170625140443) do
+ActiveRecord::Schema.define(version: 20170714184731) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -89,7 +89,7 @@ ActiveRecord::Schema.define(version: 20170625140443) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "severity", default: 0
-    t.boolean "reject_media"
+    t.boolean "reject_media", default: false, null: false
     t.index ["domain"], name: "index_domain_blocks_on_domain", unique: true
   end
 
@@ -121,7 +121,7 @@ ActiveRecord::Schema.define(version: 20170625140443) do
   create_table "imports", id: :serial, force: :cascade do |t|
     t.integer "account_id", null: false
     t.integer "type", null: false
-    t.boolean "approved"
+    t.boolean "approved", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "data_file_name"
@@ -258,6 +258,7 @@ ActiveRecord::Schema.define(version: 20170625140443) do
     t.string "user_agent", default: "", null: false
     t.inet "ip"
     t.integer "access_token_id"
+    t.integer "web_push_subscription_id"
     t.index ["session_id"], name: "index_session_activations_on_session_id", unique: true
     t.index ["user_id"], name: "index_session_activations_on_user_id"
   end
@@ -281,12 +282,12 @@ ActiveRecord::Schema.define(version: 20170625140443) do
     t.bigint "in_reply_to_id"
     t.bigint "reblog_of_id"
     t.string "url"
-    t.boolean "sensitive", default: false
+    t.boolean "sensitive", default: false, null: false
     t.integer "visibility", default: 0, null: false
     t.integer "in_reply_to_account_id"
     t.integer "application_id"
     t.text "spoiler_text", default: "", null: false
-    t.boolean "reply", default: false
+    t.boolean "reply", default: false, null: false
     t.integer "favourites_count", default: 0, null: false
     t.integer "reblogs_count", default: 0, null: false
     t.string "language"
@@ -325,6 +326,7 @@ ActiveRecord::Schema.define(version: 20170625140443) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.datetime "last_successful_delivery_at"
+    t.string "domain"
     t.index ["account_id", "callback_url"], name: "index_subscriptions_on_account_id_and_callback_url", unique: true
   end
 
@@ -332,7 +334,7 @@ ActiveRecord::Schema.define(version: 20170625140443) do
     t.string "name", default: "", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index "name text_pattern_ops", name: "hashtag_search_index"
+    t.index "lower((name)::text) text_pattern_ops", name: "hashtag_search_index"
     t.index ["name"], name: "index_tags_on_name", unique: true
   end
 
@@ -350,7 +352,7 @@ ActiveRecord::Schema.define(version: 20170625140443) do
     t.datetime "last_sign_in_at"
     t.inet "current_sign_in_ip"
     t.inet "last_sign_in_ip"
-    t.boolean "admin", default: false
+    t.boolean "admin", default: false, null: false
     t.string "confirmation_token"
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
@@ -360,7 +362,7 @@ ActiveRecord::Schema.define(version: 20170625140443) do
     t.string "encrypted_otp_secret_iv"
     t.string "encrypted_otp_secret_salt"
     t.integer "consumed_timestep"
-    t.boolean "otp_required_for_login"
+    t.boolean "otp_required_for_login", default: false, null: false
     t.datetime "last_emailed_at"
     t.string "otp_backup_codes", array: true
     t.string "filtered_languages", default: [], null: false, array: true
@@ -369,6 +371,15 @@ ActiveRecord::Schema.define(version: 20170625140443) do
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["filtered_languages"], name: "index_users_on_filtered_languages", using: :gin
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  end
+
+  create_table "web_push_subscriptions", force: :cascade do |t|
+    t.string "endpoint", null: false
+    t.string "key_p256dh", null: false
+    t.string "key_auth", null: false
+    t.json "data"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "web_settings", id: :serial, force: :cascade do |t|

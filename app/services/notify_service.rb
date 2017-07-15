@@ -61,6 +61,11 @@ class NotifyService < BaseService
     @notification.save!
     return unless @notification.browserable?
     Redis.current.publish("timeline:#{@recipient.id}", Oj.dump(event: :notification, payload: InlineRenderer.render(@notification, @recipient, :notification)))
+    send_push_notifications
+  end
+
+  def send_push_notifications
+    WebPushNotificationWorker.perform_async(@recipient.id, @notification.id)
   end
 
   def send_email

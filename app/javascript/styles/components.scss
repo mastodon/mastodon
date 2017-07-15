@@ -1554,6 +1554,9 @@
 }
 
 .react-swipeable-view-container > * {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   height: 100%;
 }
 
@@ -2007,6 +2010,7 @@
   width: 100%;
   margin: 0;
   color: $ui-base-color;
+  background: $simple-background-color;
   padding: 10px;
   font-family: inherit;
   font-size: 14px;
@@ -2029,7 +2033,6 @@
 
 .autosuggest-textarea__textarea {
   min-height: 100px;
-  background: $simple-background-color;
   border-radius: 4px 4px 0 0;
   padding-bottom: 0;
   padding-right: 10px + 22px;
@@ -2620,12 +2623,18 @@ button.icon-button.active i.fa-retweet {
   line-height: 24px;
 }
 
-.setting-toggle__label {
+.setting-toggle__label,
+.setting-meta__label {
   color: $ui-primary-color;
   display: inline-block;
   margin-bottom: 14px;
   margin-left: 8px;
   vertical-align: middle;
+}
+
+.setting-meta__label {
+  color: $ui-primary-color;
+  float: right;
 }
 
 .empty-column-indicator,
@@ -2968,6 +2977,7 @@ button.icon-button.active i.fa-retweet {
   margin-left: 2px;
   width: 24px;
   outline: 0;
+  cursor: pointer;
 
   &:active,
   &:focus {
@@ -3297,6 +3307,7 @@ button.icon-button.active i.fa-retweet {
   max-height: 80vh;
   position: relative;
 
+  .extended-video-player,
   img,
   canvas,
   video {
@@ -3304,6 +3315,13 @@ button.icon-button.active i.fa-retweet {
     max-height: 80vh;
     width: 100%;
     height: auto;
+  }
+
+  .extended-video-player,
+  video {
+    display: flex;
+    width: 80vw;
+    height: 80vh;
   }
 
   img,

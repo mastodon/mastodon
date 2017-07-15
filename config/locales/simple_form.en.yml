@@ -12,6 +12,7 @@ en:
         note:
           one: <span class="note-counter">1</span> character left
           other: <span class="note-counter">%{count}</span> characters left
+        setting_noindex: Affects your public profile and status pages
       imports:
         data: CSV file exported from another Mastodon instance
       sessions:
@@ -27,6 +28,7 @@ en:
         data: Data
         display_name: Display name
         email: E-mail address
+        filtered_languages: Filtered languages
         header: Header
         locale: Language
         locked: Lock account
@@ -40,6 +42,7 @@ en:
         setting_default_sensitive: Always mark media as sensitive
         setting_delete_modal: Show confirmation dialog before deleting a toot
         setting_system_font_ui: Use system's default font
+        setting_noindex: Opt-out of search engine indexing
         severity: Severity
         type: Import type
         username: Username

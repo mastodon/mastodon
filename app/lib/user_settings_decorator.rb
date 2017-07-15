@@ -23,6 +23,7 @@ class UserSettingsDecorator
     user.settings['delete_modal'] = delete_modal_preference
     user.settings['auto_play_gif'] = auto_play_gif_preference
     user.settings['system_font_ui'] = system_font_ui_preference
+    user.settings['noindex'] = noindex_preference
   end
 
   def merged_notification_emails
@@ -55,6 +56,10 @@ class UserSettingsDecorator
 
   def auto_play_gif_preference
     boolean_cast_setting 'setting_auto_play_gif'
+  end
+
+  def noindex_preference
+    boolean_cast_setting 'setting_noindex'
   end
 
   def boolean_cast_setting(key)

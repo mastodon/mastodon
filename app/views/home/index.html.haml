@@ -1,4 +1,5 @@
 - content_for :header_tags do
+  %meta{name: 'applicationServerKey', content: Rails.configuration.x.vapid_public_key}
   %script#initial-state{ type: 'application/json' }!= json_escape(@initial_state_json)
 
   = javascript_pack_tag 'application', integrity: true, crossorigin: 'anonymous'

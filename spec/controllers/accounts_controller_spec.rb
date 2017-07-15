@@ -38,7 +38,7 @@ RSpec.describe AccountsController, type: :controller do
 
     context 'activitystreams2' do
       before do
-        get :show, params: { username: alice.username }, format: 'activitystreams2'
+        get :show, params: { username: alice.username }, format: 'json'
       end
 
       it 'assigns @account' do
