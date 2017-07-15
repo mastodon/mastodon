@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Api::V1::SearchController < Api::BaseController
-  RESULTS_LIMIT = 5
+  RESULTS_LIMIT = 10
 
   before_action -> { doorkeeper_authorize! :read }
   before_action :require_user!
