@@ -26,7 +26,7 @@ class ActivityPub::ActorSerializer < ActiveModel::Serializer
   end
 
   def inbox
-    nil
+    account_inbox_url(object)
   end
 
   def outbox
