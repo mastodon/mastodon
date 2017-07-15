@@ -3,7 +3,7 @@
 class ActivityPub::NoteSerializer < ActiveModel::Serializer
   attributes :id, :type, :summary, :content,
              :in_reply_to, :published, :url,
-             :actor, :to, :cc, :sensitive
+             :attributed_to, :to, :cc, :sensitive
 
   has_many :media_attachments, key: :attachment
   has_many :virtual_tags, key: :tag
@@ -36,7 +36,7 @@ class ActivityPub::NoteSerializer < ActiveModel::Serializer
     ActivityPub::TagManager.instance.url_for(object)
   end
 
-  def actor
+  def attributed_to
     ActivityPub::TagManager.instance.uri_for(object.account)
   end
 
