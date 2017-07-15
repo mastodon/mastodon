@@ -17,6 +17,10 @@ const messages = defineMessages({
 @injectIntl
 export default class StatusPlayer extends React.PureComponent {
 
+  static contextTypes = {
+    router: PropTypes.object,
+  };
+
   static propTypes = {
     media: ImmutablePropTypes.map.isRequired,
     letterbox: PropTypes.bool,
@@ -122,7 +126,7 @@ export default class StatusPlayer extends React.PureComponent {
       </div>
     );
 
-    let expandButton = (
+    let expandButton = !this.context.router ? '' : (
       <div className='status__video-player-expand'>
         <IconButton overlay title={intl.formatMessage(messages.expand_video)} icon='expand' onClick={this.handleExpand} />
       </div>

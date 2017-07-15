@@ -220,6 +220,7 @@ if we have a `friend` and a normal `<Avatar>` if we don't.
         }
         <a
           href={account.get('url')}
+          target='_blank'
           className='status__display-name'
           onClick={this.handleAccountClick}
         >

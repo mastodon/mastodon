@@ -4,6 +4,7 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import escapeTextContentForBrowser from 'escape-html';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
+import classnames from 'classnames';
 
 //  Mastodon imports  //
 import emojify from '../../../mastodon/emoji';
@@ -11,10 +12,6 @@ import { isRtl } from '../../../mastodon/rtl';
 import Permalink from '../../../mastodon/components/permalink';
 
 export default class StatusContent extends React.PureComponent {
-
-  static contextTypes = {
-    router: PropTypes.object,
-  };
 
   static propTypes = {
     status: ImmutablePropTypes.map.isRequired,
@@ -24,6 +21,7 @@ export default class StatusContent extends React.PureComponent {
     media: PropTypes.element,
     mediaIcon: PropTypes.string,
     parseClick: PropTypes.func,
+    disabled: PropTypes.bool,
   };
 
   state = {
@@ -45,10 +43,11 @@ export default class StatusContent extends React.PureComponent {
         link.addEventListener('click', this.onHashtagClick.bind(this, link.text), false);
       } else {
         link.addEventListener('click', this.onLinkClick.bind(this), false);
-        link.setAttribute('target', '_blank');
-        link.setAttribute('rel', 'noopener');
         link.setAttribute('title', link.href);
       }
+
+      link.setAttribute('target', '_blank');
+      link.setAttribute('rel', 'noopener');
     }
   }
 
@@ -118,7 +117,13 @@ export default class StatusContent extends React.PureComponent {
   }
 
   render () {
-    const { status, media, mediaIcon } = this.props;
+    const {
+      status,
+      media,
+      mediaIcon,
+      parseClick,
+      disabled,
+    } = this.props;
 
     const hidden = (
       this.props.setExpansion ?
@@ -133,6 +138,9 @@ export default class StatusContent extends React.PureComponent {
       )),
     };
     const directionStyle = { direction: 'ltr' };
+    const classNames = classnames('status__content', {
+      'status__content--with-action': parseClick && !disabled,
+    });
 
     if (isRtl(status.get('search_index'))) {
       directionStyle.direction = 'rtl';
@@ -180,7 +188,7 @@ export default class StatusContent extends React.PureComponent {
       }
 
       return (
-        <div className='status__content status__content--with-action' ref={this.setRef}>
+        <div className={classNames} ref={this.setRef}>
           <p
             style={{ marginBottom: hidden && status.get('mentions').isEmpty() ? '0px' : null }}
             onMouseDown={this.handleMouseDown}
@@ -207,11 +215,11 @@ export default class StatusContent extends React.PureComponent {
 
         </div>
       );
-    } else if (this.props.parseClick) {
+    } else if (parseClick) {
       return (
         <div
           ref={this.setRef}
-          className='status__content status__content--with-action'
+          className={classNames}
           style={directionStyle}
         >
           <div

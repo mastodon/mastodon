@@ -28,7 +28,7 @@ Imports
 */
 
 //  Package imports  //
-import Immutable from 'immutable';
+import { Map as ImmutableMap } from 'immutable';
 
 //  Mastodon imports  //
 import { STORE_HYDRATE } from '../../mastodon/actions/store';
@@ -48,27 +48,27 @@ These are only used if no previously-saved values exist.
 
 */
 
-const initialState = Immutable.fromJS({
+const initialState = ImmutableMap({
   layout    : 'auto',
   stretch   : true,
-  collapsed : {
+  collapsed : ImmutableMap({
     enabled     : true,
-    auto        : {
+    auto        : ImmutableMap({
       all              : false,
       notifications    : true,
       lengthy          : true,
       replies          : false,
       media            : false,
-    },
-    backgrounds : {
+    }),
+    backgrounds : ImmutableMap({
       user_backgrounds : false,
       preview_images   : false,
-    },
-  },
-  media     : {
+    }),
+  }),
+  media     : ImmutableMap({
     letterbox   : true,
     fullwidth   : true,
-  },
+  }),
 });
 
                             /* * * * */

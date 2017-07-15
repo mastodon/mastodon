@@ -507,6 +507,7 @@ applicable.
     const { router } = this.context;
     const { status } = this.props;
     const { isExpanded } = this.state;
+    if (!router) return;
     if (destination === undefined) {
       destination = `/statuses/${
         status.getIn(['reblog', 'id'], status.get('id'))
@@ -532,7 +533,13 @@ this operation are further explained in the code below.
 */
 
   render () {
-    const { parseClick, setExpansion, handleRef } = this;
+    const {
+      parseClick,
+      setExpansion,
+      saveHeight,
+      handleRef,
+    } = this;
+    const { router } = this.context;
     const {
       status,
       account,
@@ -706,9 +713,10 @@ collapsed.
           media={media}
           mediaIcon={mediaIcon}
           expanded={isExpanded}
-          setExpansion={this.setExpansion}
-          onHeightUpdate={this.saveHeight}
+          setExpansion={setExpansion}
+          onHeightUpdate={saveHeight}
           parseClick={parseClick}
+          disabled={!router}
         />
         {isExpanded !== false ? (
           <StatusActionBar
