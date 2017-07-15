@@ -3954,13 +3954,14 @@ button.icon-button.active i.fa-retweet {
 
 .media-gallery__item-thumbnail {
   cursor: zoom-in;
-  display: block;
   text-decoration: none;
   width: 100%;
   height: 100%;
+  display: flex;
 
   img {
     width: 100%;
+    object-fit: contain;
 
     &:not(.letterbox) {
       height: 100%;
@@ -3974,6 +3975,8 @@ button.icon-button.active i.fa-retweet {
   overflow: hidden;
   position: relative;
   width: 100%;
+  display: flex;
+  justify-content: center;
 }
 
 .media-gallery__item-gifv-thumbnail {
@@ -3981,6 +3984,7 @@ button.icon-button.active i.fa-retweet {
   height: 100%;
   position: relative;
   z-index: 1;
+  object-fit: contain;
 
   &:not(.letterbox) {
     height: 100%;
