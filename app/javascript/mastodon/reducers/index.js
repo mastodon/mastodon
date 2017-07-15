@@ -34,11 +34,8 @@ const reducers = {
   statuses,
   relationships,
   settings,
-<<<<<<< HEAD
   local_settings,
-=======
   push_notifications,
->>>>>>> upstream
   cards,
   reports,
   contexts,

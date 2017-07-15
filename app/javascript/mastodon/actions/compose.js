@@ -72,7 +72,7 @@ export function mentionCompose(account, router) {
 
 export function submitCompose() {
   return function (dispatch, getState) {
-    const status = getState().getIn(['compose', 'text'], '');
+    let status = getState().getIn(['compose', 'text'], '');
 
     if (!status || !status.length) {
       return;
