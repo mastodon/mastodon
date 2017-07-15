@@ -33,8 +33,22 @@ export default class ColumnsArea extends ImmutablePureComponent {
     children: PropTypes.node,
   };
 
+  state = {
+    shouldAnimate: false,
+  }
+
+  componentWillReceiveProps() {
+    this.setState({ shouldAnimate: false });
+  }
+
+  componentDidMount() {
+    this.lastIndex = getIndex(this.context.router.history.location.pathname);
+    this.setState({ shouldAnimate: true });
+  }
+
   componentDidUpdate() {
     this.lastIndex = getIndex(this.context.router.history.location.pathname);
+    this.setState({ shouldAnimate: true });
   }
 
   handleSwipe = (index) => {
@@ -74,9 +88,10 @@ export default class ColumnsArea extends ImmutablePureComponent {
 
   render () {
     const { columns, children, singleColumn } = this.props;
+    const { shouldAnimate } = this.state;
 
     const columnIndex = getIndex(this.context.router.history.location.pathname);
-    const shouldAnimate = Math.abs(this.lastIndex - columnIndex) === 1;
+    this.pendingIndex = null;
 
     if (singleColumn) {
       return columnIndex !== -1 ? (
