@@ -1143,8 +1143,8 @@
     top: 0;
     left: 0;
     right: 0;
-    width: 100%;
-    height: 100%;
+    max-width: 100%;
+    max-height: 100%;
     background-image: none;
   }
 
@@ -2967,8 +2967,9 @@ button.icon-button.active i.fa-retweet {
   video {
     max-width: 80vw;
     max-height: 80vh;
-    width: 100%;
+    width: auto;
     height: auto;
+    margin: auto;
   }
 
   .extended-video-player,
@@ -2983,6 +2984,10 @@ button.icon-button.active i.fa-retweet {
     display: block;
     background: url('../images/void.png') repeat;
     object-fit: contain;
+  }
+
+  .react-swipeable-view-container {
+    max-width: 80vw;
   }
 }
 
