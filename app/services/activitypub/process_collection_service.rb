@@ -44,12 +44,38 @@ class ActivityPub::ProcessCollectionService < BaseService
         create_shared_status
       when 'Delete'
         delete_status
-      when 'Follow', 'Like', 'Block', 'Update', 'Undo'
-        raise NotImplementedError
+      when 'Follow'
+        register_follow
+      when 'Like'
+        register_favourite
+      when 'Block'
+        register_block
+      when 'Update'
+        process_update
+      when 'Undo'
+        process_undo
       end
     end
 
     private
+
+    def process_update
+      case @object['type']
+      when 'Actor'
+        update_profile
+      end
+    end
+
+    def process_undo
+      case @object['type']
+      when 'Follow'
+        register_unfollow
+      when 'Like'
+        register_unfavourite
+      when 'Block'
+        register_unblock
+      end
+    end
 
     def create_original_status
       return if delete_arrived_first? || unsupported_object_type?
@@ -235,6 +261,34 @@ class ActivityPub::ProcessCollectionService < BaseService
     def skip_download?
       return @skip_download if defined?(@skip_download)
       @skip_download ||= DomainBlock.find_by(domain: @account.domain)&.reject_media?
+    end
+
+    def register_follow
+      raise NotImplementedError
+    end
+
+    def register_favourite
+      raise NotImplementedError
+    end
+
+    def register_block
+      raise NotImplementedError
+    end
+
+    def update_profile
+      raise NotImplementedError
+    end
+
+    def register_unfollow
+      raise NotImplementedError
+    end
+
+    def register_unfavourite
+      raise NotImplementedError
+    end
+
+    def register_unblock
+      raise NotImplementedError
     end
   end
 end
