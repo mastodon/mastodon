@@ -21,7 +21,6 @@ class FollowerAccountsController < ApplicationController
     ActivityPub::CollectionPresenter.new(
       id: account_followers_url(@account),
       type: :ordered,
-      current: account_followers_url(@account),
       size: @account.followers_count,
       items: @follows.map { |f| ActivityPub::TagManager.instance.uri_for(f.account) }
     )
