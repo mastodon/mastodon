@@ -15,6 +15,7 @@ RUN echo "@edge https://nl.alpinelinux.org/alpine/edge/main" >> /etc/apk/reposit
  && apk -U upgrade \
  && apk add -t build-dependencies \
     build-base \
+    libidn-dev \
     libxml2-dev \
     libxslt-dev \
     postgresql-dev \
@@ -27,6 +28,7 @@ RUN echo "@edge https://nl.alpinelinux.org/alpine/edge/main" >> /etc/apk/reposit
     git \
     icu-dev \
     imagemagick@edge \
+    libidn \
     libpq \
     libxml2 \
     libxslt \
