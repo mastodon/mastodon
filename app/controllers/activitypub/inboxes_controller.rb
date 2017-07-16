@@ -21,6 +21,6 @@ class ActivityPub::InboxesController < Api::BaseController
   end
 
   def process_payload
-    # TODO
+    # FIXME: Call ActivityPub::ProcessCollectionService in the background
   end
 end

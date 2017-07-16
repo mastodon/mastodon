@@ -1,11 +1,13 @@
 # frozen_string_literal: true
 
 class ActivityPub::ProcessCollectionService < BaseService
+  include JsonLdHelper
+
   def call(body, account)
     @account = account
     @json    = Oj.load(body, mode: :strict)
 
-    return unless supported_context?
+    return if @account.suspended? || !supported_context?
 
     case @json['type']
     when 'Collection', 'CollectionPage'
@@ -24,13 +26,16 @@ class ActivityPub::ProcessCollectionService < BaseService
   end
 
   def supported_context?
-    @json['@context'] == ActivityPub::TagManager::CONTEXT
+    equals_or_includes?(@json['@context'], ActivityPub::TagManager::CONTEXT)
   end
 
   class ProcessItem
+    include JsonLdHelper
+
     def call(json, account)
       @account = account
       @json    = json
+      @object  = @json['object']
 
       case @json['type']
       when 'Create'
@@ -45,7 +50,23 @@ class ActivityPub::ProcessCollectionService < BaseService
     private
 
     def create_original_status
-      raise NotImplementedError
+      return if delete_arrived_first? || unsupported_object_type?
+
+      status = Status.find_by(uri: object_uri)
+
+      return status unless status.nil?
+
+      ApplicationRecord.transaction do
+        status = Status.create!(status_params)
+
+        process_tags(status)
+        process_attachments(status)
+      end
+
+      resolve_thread(status)
+      distribute(status)
+
+      status
     end
 
     def create_shared_status
@@ -53,14 +74,154 @@ class ActivityPub::ProcessCollectionService < BaseService
     end
 
     def delete_status
-      uri    = @json['object']
-      status = Status.find_by(uri: uri, account: @account)
+      status = Status.find_by(uri: object_uri, account: @account)
 
       if status.nil?
-        redis.setex("delete_upon_arrival:#{@account.id}:#{uri}", 6.hours.seconds, uri)
+        redis.setex("delete_upon_arrival:#{@account.id}:#{object_uri}", 6.hours.seconds, object_uri)
       else
         RemoveStatusService.new.call(status)
       end
+    end
+
+    def status_params
+      {
+        uri: @object['id'],
+        url: @object['url'],
+        account: @account,
+        text: @object['content'],
+        spoiler_text: @object['summary'],
+        created_at: @object['published'],
+        reply: @object['inReplyTo'].present?,
+        sensitive: @object['sensitive'] || false,
+        visibility: visibility_from_audience,
+        thread: replied_to_status,
+      }
+    end
+
+    def process_tags(status)
+      return unless @object['tag'].is_a?(Array)
+
+      @object['tag'].each do |tag|
+        case tag['type']
+        when 'Hashtag'
+          process_hashtag tag, status
+        when 'Mention'
+          process_mention tag, status
+        end
+      end
+    end
+
+    def process_hashtag(tag, status)
+      hashtag = tag['name'].gsub(/\A#/, '').mb_chars.downcase
+      hashtag = Tag.where(name: hashtag).first_or_initialize(name: hashtag)
+
+      status.tags << hashtag
+    end
+
+    def process_mention(tag, status)
+      account = account_from_uri(tag['href'])
+      return if account.nil?
+      account.mentions.create(status: status)
+    end
+
+    def process_attachments(status)
+      return unless @object['attachment'].is_a?(Array)
+
+      @object['attachment'].each do |attachment|
+        next if unsupported_media_type?(attachment['mediaType'])
+
+        href             = Addressable::URI.parse(attachment['url']).normalize.to_s
+        media_attachment = MediaAttachment.create(status: status, account: status.account, remote_url: href)
+
+        next if skip_download?
+
+        media_attachment.file_remote_url = href
+        media_attachment.save
+      end
+    end
+
+    def resolve_thread(status)
+      return unless status.reply? && status.thread.nil?
+      # FIXME: Resolve inReplyTo in the background
+    end
+
+    def distribute(status)
+      notify_about_mentions(status)
+      crawl_links(status)
+      distribute_to_followers(status)
+    end
+
+    def notify_about_mentions(status)
+      status.mentions.includes(:account).each do |mention|
+        next unless mention.account.local? && audience_includes?(mention.account)
+        NotifyService.new.call(mention.account, mention)
+      end
+    end
+
+    def crawl_links(status)
+      return if status.spoiler_text?
+      LinkCrawlWorker.perform_async(status.id)
+    end
+
+    def distribute_to_followers(status)
+      DistributionWorker.perform_async(status.id)
+    end
+
+    def object_uri
+      @object_uri ||= @object.is_a?(String) ? @object : @object['id']
+    end
+
+    def visibility_from_audience
+      if equals_or_includes?(@object['to'], ActivityPub::TagManager::COLLECTIONS[:public])
+        :public
+      elsif equals_or_includes?(@object['cc'], ActivityPub::TagManager::COLLECTIONS[:public])
+        :unlisted
+      else
+        :private # FIXME: Need followers collection URI to detect private vs direct
+      end
+    end
+
+    def audience_includes?(account)
+      uri = ActivityPub::TagManager.instance.uri_for(account)
+      equals_or_includes?(@object['to'], uri) || equals_or_includes?(@object['cc'], uri)
+    end
+
+    def replied_to_status
+      return if @object['inReplyTo'].blank?
+      @replied_to_status ||= status_from_uri(@object['inReplyTo'])
+    end
+
+    def status_from_uri(uri)
+      if ActivityPub::TagManager.instance.local_uri?(uri)
+        Status.find_by(id: ActivityPub::TagManager.instance.uri_to_local_id(uri))
+      else
+        Status.find_by(uri: uri)
+      end
+    end
+
+    def account_from_uri(uri)
+      if ActivityPub::TagManager.instance.local_uri?(uri)
+        Account.find_by(id: ActivityPub::TagManager.instance.uri_to_local_id(uri))
+      else
+        Account.find_by(uri: uri)
+      end
+    end
+
+    def redis
+      Redis.current
+    end
+
+    def delete_arrived_first?
+      redis.exists("delete_upon_arrival:#{@account.id}:#{object_uri}")
+    end
+
+    def unsupported_object_type?
+      @object.is_a?(String) || !%w(Article Note).include?(@object['type'])
+    end
+
+    def skip_download?
+      return @skip_download if defined?(@skip_download)
+      @skip_download ||= DomainBlock.find_by(domain: @account.domain)&.reject_media?
     end
   end
 end
