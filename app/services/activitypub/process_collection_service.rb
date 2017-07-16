@@ -44,6 +44,8 @@ class ActivityPub::ProcessCollectionService < BaseService
         create_shared_status
       when 'Delete'
         delete_status
+      when 'Follow', 'Like', 'Block', 'Update', 'Undo'
+        raise NotImplementedError
       end
     end
 
@@ -70,7 +72,14 @@ class ActivityPub::ProcessCollectionService < BaseService
     end
 
     def create_shared_status
-      raise NotImplementedError
+      original_status = status_from_uri(object_uri)
+      original_status = ActivityPub::FetchRemoteStatusService.new.call(object_uri) if status.nil?
+
+      return if original_status.nil?
+
+      status = Status.create!(account: @account, reblog: original_status)
+      distribute(status)
+      status
     end
 
     def delete_status
@@ -120,6 +129,7 @@ class ActivityPub::ProcessCollectionService < BaseService
 
     def process_mention(tag, status)
       account = account_from_uri(tag['href'])
+      account = ActivityPub::FetchRemoteAccountService.new.call(tag['href']) if account.nil?
       return if account.nil?
       account.mentions.create(status: status)
     end
@@ -142,13 +152,22 @@ class ActivityPub::ProcessCollectionService < BaseService
 
     def resolve_thread(status)
       return unless status.reply? && status.thread.nil?
-      # FIXME: Resolve inReplyTo in the background
+      ActivityPub::ThreadResolveWorker.perform_async(status.id, @object['inReplyTo'])
     end
 
     def distribute(status)
+      notify_about_reblog(status) if reblog_of_local_account?(status)
       notify_about_mentions(status)
       crawl_links(status)
       distribute_to_followers(status)
+    end
+
+    def reblog_of_local_account?(status)
+      status.reblog? && status.reblog.account.local?
+    end
+
+    def notify_about_reblog(status)
+      NotifyService.new.call(status.reblog.account, status)
     end
 
     def notify_about_mentions(status)
@@ -176,8 +195,10 @@ class ActivityPub::ProcessCollectionService < BaseService
         :public
       elsif equals_or_includes?(@object['cc'], ActivityPub::TagManager::COLLECTIONS[:public])
         :unlisted
+      elsif equals_or_includes?(@object['to'], @account.followers_uri)
+        :private
       else
-        :private # FIXME: Need followers collection URI to detect private vs direct
+        :direct
       end
     end
 
@@ -192,19 +213,11 @@ class ActivityPub::ProcessCollectionService < BaseService
     end
 
     def status_from_uri(uri)
-      if ActivityPub::TagManager.instance.local_uri?(uri)
-        Status.find_by(id: ActivityPub::TagManager.instance.uri_to_local_id(uri))
-      else
-        Status.find_by(uri: uri)
-      end
+      ActivityPub::TagManager.instance.uri_to_resource(uri, Status)
     end
 
     def account_from_uri(uri)
-      if ActivityPub::TagManager.instance.local_uri?(uri)
-        Account.find_by(id: ActivityPub::TagManager.instance.uri_to_local_id(uri))
-      else
-        Account.find_by(uri: uri)
-      end
+      ActivityPub::TagManager.instance.uri_to_resource(uri, Account)
     end
 
     def redis

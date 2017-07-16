@@ -78,4 +78,12 @@ class ActivityPub::TagManager
     path_params = Rails.application.routes.recognize_path(uri)
     path_params[:id]
   end
+
+  def uri_to_resource(uri, klass)
+    if local_uri?(uri)
+      klass.find_by(id: uri_to_local_id(uri))
+    else
+      klass.find_by(uri: uri)
+    end
+  end
 end

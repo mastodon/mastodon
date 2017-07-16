@@ -20,7 +20,11 @@ class ActivityPub::InboxesController < Api::BaseController
     @account = Account.find_local!(params[:account_username])
   end
 
+  def body
+    @body ||= request.body.read
+  end
+
   def process_payload
-    # FIXME: Call ActivityPub::ProcessCollectionService in the background
+    ActivityPub::ProcessingWorker.perform_async(signed_request_account.id, body.force_encoding('UTF-8'))
   end
 end

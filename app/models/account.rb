@@ -140,6 +140,10 @@ class Account < ApplicationRecord
     OStatus2::Subscription.new(remote_url, secret: secret, lease_seconds: 30.days.seconds, webhook: webhook_url, hub: hub_url)
   end
 
+  def followers_uri
+    raise NotImplementedError
+  end
+
   def save_with_optional_media!
     save!
   rescue ActiveRecord::RecordInvalid
