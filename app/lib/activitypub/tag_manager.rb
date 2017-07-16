@@ -6,6 +6,8 @@ class ActivityPub::TagManager
   include Singleton
   include RoutingHelper
 
+  CONTEXT = 'https://www.w3.org/ns/activitystreams'
+
   COLLECTIONS = {
     public: 'https://www.w3.org/ns/activitystreams#Public',
   }.freeze
