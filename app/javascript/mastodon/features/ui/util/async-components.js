@@ -102,6 +102,10 @@ export function ReportModal () {
   return import(/* webpackChunkName: "modals/report_modal" */'../components/report_modal');
 }
 
+export function NotificationsInfoModal () {
+  return import(/* webpackChunkName: "modals/notifications_info" */'../components/notifications_info_modal');
+}
+
 export function MediaGallery () {
   return import(/* webpackChunkName: "status/MediaGallery" */'../../../components/media_gallery');
 }

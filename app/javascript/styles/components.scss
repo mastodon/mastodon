@@ -2367,6 +2367,11 @@ button.icon-button.active i.fa-retweet {
 .setting-meta__label {
   color: $ui-primary-color;
   float: right;
+
+  & > div {
+    display: flex;
+    align-items: center;
+  }
 }
 
 .empty-column-indicator,
@@ -2994,7 +2999,8 @@ button.icon-button.active i.fa-retweet {
 }
 
 .onboarding-modal,
-.error-modal {
+.error-modal,
+.notifications-info-modal {
   background: $ui-secondary-color;
   color: $ui-base-color;
   border-radius: 8px;
@@ -3023,7 +3029,8 @@ button.icon-button.active i.fa-retweet {
   }
 }
 
-.error-modal__body {
+.error-modal__body,
+.notifications-info-modal__body {
   height: 80vh;
   width: 80vw;
   max-width: 520px;
@@ -3073,7 +3080,8 @@ button.icon-button.active i.fa-retweet {
 }
 
 .onboarding-modal__paginator,
-.error-modal__footer {
+.error-modal__footer,
+.notifications-info-modal__footer > div:nth-child(2) {
   flex: 0 0 auto;
   background: darken($ui-secondary-color, 8%);
   display: flex;
@@ -3084,7 +3092,8 @@ button.icon-button.active i.fa-retweet {
   }
 
   .onboarding-modal__nav,
-  .error-modal__nav {
+  .error-modal__nav,
+  .notifications-info-modal__nav {
     color: darken($ui-secondary-color, 34%);
     background-color: transparent;
     border: 0;
@@ -3109,6 +3118,42 @@ button.icon-button.active i.fa-retweet {
 
 .error-modal__footer {
   justify-content: center;
+}
+
+.notifications-info-modal {
+  & > * {
+    text-align: center;
+  }
+
+  h1 {
+    padding: 30px;
+    font-size: 16px;
+  }
+
+  h2 {
+    font-size: 14px;
+    padding-left: 10px;
+  }
+
+  h2:not(:first-of-type) {
+    margin-top: 20px;
+  }
+
+  ol li {
+    margin-left: 15px;
+  }
+
+  .notifications-info-modal__body {
+    height: auto;
+  }
+
+  .notifications-info-modal__footer {
+    margin-top: 30px;
+
+    & > div:nth-child(2) {
+      justify-content: center;
+    }
+  }
 }
 
 .onboarding-modal__dots {
