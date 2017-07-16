@@ -50,6 +50,24 @@ const makeRequest = (notification, action) =>
     credentials: 'include',
   });
 
+const openUrl = url =>
+  self.clients.matchAll({ type: 'window' }).then(clientList => {
+    if (clientList.length !== 0 && 'navigate' in clientList[0]) { // Chrome 42-48 does not support navigate
+      const webClients = clientList
+        .filter(client => /\/web\//.test(client.url))
+        .sort(client => client !== 'visible');
+
+      const visibleClient = clientList.find(client => client.visibilityState === 'visible');
+      const focusedClient = clientList.find(client => client.focused);
+
+      const client = webClients[0] || visibleClient || focusedClient || clientList[0];
+
+      return client.navigate(url).then(client => client.focus());
+    } else {
+      return self.clients.openWindow(url);
+    }
+  });
+
 const removeActionFromNotification = (notification, action) => {
   const actions = notification.actions.filter(act => act.action !== action.action);
 
@@ -75,7 +93,7 @@ const handleNotificationClick = (event) => {
       }
     } else {
       event.notification.close();
-      resolve(self.clients.openWindow(event.notification.data.url));
+      resolve(openUrl(event.notification.data.url));
     }
   });
 
