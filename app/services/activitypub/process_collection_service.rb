@@ -130,6 +130,7 @@ class ActivityPub::ProcessCollectionService < BaseService
         sensitive: @object['sensitive'] || false,
         visibility: visibility_from_audience,
         thread: replied_to_status,
+        conversation: conversation_from_uri(@object['conversation']),
       }
     end
 
@@ -214,6 +215,12 @@ class ActivityPub::ProcessCollectionService < BaseService
 
     def object_uri
       @object_uri ||= @object.is_a?(String) ? @object : @object['id']
+    end
+
+    def conversation_from_uri(uri)
+      return nil if uri.nil?
+      return Conversation.find_by(id: TagManager.instance.unique_tag_to_local_id(uri, 'Conversation')) if TagManager.instance.local_id?(uri)
+      Conversation.find_by(uri: uri) || Conversation.create!(uri: uri)
     end
 
     def visibility_from_audience
