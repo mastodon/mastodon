@@ -68,7 +68,7 @@ class MediaAttachment < ApplicationRecord
   end
 
   before_create :set_shortcode
-  before_post_process :set_type
+  before_post_process :set_type, :set_extension
   after_post_process :set_extension
   before_save :set_meta
 
