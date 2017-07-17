@@ -9,7 +9,7 @@ class WebPushNotificationWorker
     recipient = Account.find(recipient_id)
     notification = Notification.find(notification_id)
 
-    sessions_with_subscriptions = recipient.user.session_activations.reject { |session| session.web_push_subscription.nil? }
+    sessions_with_subscriptions = recipient.user.session_activations.where.not(web_push_subscription: nil)
 
     sessions_with_subscriptions.each do |session|
       begin
