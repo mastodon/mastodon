@@ -71,17 +71,22 @@ class ActivityPub::TagManager
 
   def local_uri?(uri)
     host = Addressable::URI.parse(uri).normalized_host
-    TagManager.instance.local_domain?(host) || TagManager.instance.web_domain?(host)
+    ::TagManager.instance.local_domain?(host) || ::TagManager.instance.web_domain?(host)
   end
 
-  def uri_to_local_id(uri)
+  def uri_to_local_id(uri, param = :id)
     path_params = Rails.application.routes.recognize_path(uri)
-    path_params[:id]
+    path_params[param]
   end
 
   def uri_to_resource(uri, klass)
     if local_uri?(uri)
-      klass.find_by(id: uri_to_local_id(uri))
+      case klass.name
+      when 'Account'
+        klass.find_local(uri_to_local_id(uri, :username))
+      else
+        klass.find_by(id: uri_to_local_id(uri))
+      end
     else
       klass.find_by(uri: uri)
     end
