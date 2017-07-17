@@ -3,12 +3,10 @@
 class ActivityPub::FetchRemoteAccountService < BaseService
   include JsonLdHelper
 
+  # Should be called when uri has already been checked for locality
+  # Does a WebFinger roundtrip on each call
   def call(uri)
-    response = build_request(uri).perform
-
-    return unless response.code == 200
-
-    @json = Oj.load(response.to_s, mode: :strict)
+    @json = fetch_resource(uri)
 
     return unless supported_context? && expected_type?
 
@@ -30,12 +28,6 @@ class ActivityPub::FetchRemoteAccountService < BaseService
 
   private
 
-  def build_request(uri)
-    request = Request.new(:get, uri)
-    request.add_headers('Accept' => 'application/activity+json')
-    request
-  end
-
   def create_account
     @account = Account.new
     @account.username = @username
@@ -46,11 +38,11 @@ class ActivityPub::FetchRemoteAccountService < BaseService
 
   def update_account
     @account.url               = @json['url'] || @uri
-    @account.display_name      = @json['name']
-    @account.note              = @json['summary']
-    @account.avatar_remote_url = @json['icon']                      if @json['icon']
-    @account.header_remote_url = @json['image']                     if @json['image']
-    @account.public_key        = @json['publicKey']['publicKeyPem'] if @json['publicKey']&.is_a?(Hash)
+    @account.display_name      = @json['name'] || ''
+    @account.note              = @json['summary'] || ''
+    @account.avatar_remote_url = image_url('icon')
+    @account.header_remote_url = image_url('image')
+    @account.public_key        = public_key || ''
     @account.save!
   end
 
@@ -76,6 +68,26 @@ class ActivityPub::FetchRemoteAccountService < BaseService
 
   def split_acct(acct)
     acct.gsub(/\Aacct:/, '').split('@')
+  end
+
+  def image_url(key)
+    value = first_of_value(@json[key])
+
+    return if value.nil?
+    return @json[key]['url'] if @json[key].is_a?(Hash)
+
+    image = fetch_resource(value)
+    image['url'] if image
+  end
+
+  def public_key
+    value = first_of_value(@json['publicKey'])
+
+    return if value.nil?
+    return value['publicKeyPem'] if value.is_a?(Hash)
+
+    key = fetch_resource(value)
+    key['publicKeyPem'] if key
   end
 
   def supported_context?

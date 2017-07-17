@@ -9,6 +9,23 @@ class ActivityPub::ActorSerializer < ActiveModel::Serializer
 
   has_one :public_key, serializer: ActivityPub::PublicKeySerializer
 
+  class ImageSerializer < ActiveModel::Serializer
+    include RoutingHelper
+
+    attributes :type, :url
+
+    def type
+      'Image'
+    end
+
+    def url
+      full_asset_url(object.url(:original))
+    end
+  end
+
+  has_one :icon,  serializer: ImageSerializer
+  has_one :image, serializer: ImageSerializer
+
   def id
     account_url(object)
   end
@@ -46,11 +63,11 @@ class ActivityPub::ActorSerializer < ActiveModel::Serializer
   end
 
   def icon
-    full_asset_url(object.avatar.url(:original))
+    object.avatar
   end
 
   def image
-    full_asset_url(object.header.url(:original))
+    object.header
   end
 
   def public_key
