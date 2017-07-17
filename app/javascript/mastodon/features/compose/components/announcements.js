@@ -3,6 +3,7 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import Immutable from 'immutable';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import classnames from 'classnames';
 
 class Announcement extends React.PureComponent {
 
@@ -16,39 +17,26 @@ class Announcement extends React.PureComponent {
     const contents = [];
     contents.push(<div key='body' className='announcements__body'>{item.get('body')}</div>);
     if (item.get('icon')) {
-      const iconStyle = {
-        height: '40px',
-        width: '40px',
-        flex: '0 0 auto',
-        textAlign: 'center',
-      };
       contents.push(
-        <div key='icon' className='announcements__icon' style={iconStyle}>
-          <img src={item.get('icon')} alt='' style={{ maxWidth: '100%', maxHeight: '100%' }} />
+        <div key='icon' className='announcements__icon'>
+          <img src={item.get('icon')} alt='' />
         </div>
       );
     }
 
     const href = item.get('href');
 
-    const style = {
-      display: 'flex',
-      padding: '10px',
-      margin: '10px',
-      backgroundColor: 'white',
-      color: '#313543',
-      boxShadow: '0 0 15px rgba(0,0,0,.2)',
-      borderRadius: '4px',
-      cursor: href ? 'pointer' : null,
-      textDecoration: 'none',
-    };
+    const classname = classnames({
+      'announcements__item': true,
+      'announcements__item--clickable': !!href,
+    });
 
     if (!href) {
-      return (<div className='announcements__item' style={style}>{contents}</div>);
+      return (<div className={classname}>{contents}</div>);
     } else if (href.startsWith('/web/')) {
-      return (<Link to={item.get('href').slice(4)} className='announcements__item' style={style}>{contents}</Link>);
+      return (<Link to={item.get('href').slice(4)} className={classname}>{contents}</Link>);
     } else {
-      return (<a href={item.get('href')} target='_blank' className='announcements__item' style={style}>{contents}</a>);
+      return (<a href={item.get('href')} target='_blank' className={classname}>{contents}</a>);
     }
   }
 
