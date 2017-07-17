@@ -17,8 +17,7 @@ class WebPushNotificationWorker
       rescue Webpush::InvalidSubscription, Webpush::ExpiredSubscription
         # Subscription expiration is not currently implemented in any browser
         session.web_push_subscription.destroy!
-        session.web_push_subscription = nil
-        session.save!
+        session.update!(web_push_subscription: nil)
       rescue Webpush::PayloadTooLarge => e
         Rails.logger.error(e)
       end
