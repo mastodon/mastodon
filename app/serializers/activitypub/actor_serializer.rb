@@ -5,7 +5,7 @@ class ActivityPub::ActorSerializer < ActiveModel::Serializer
 
   attributes :id, :type, :following, :followers,
              :inbox, :outbox, :preferred_username,
-             :name, :summary, :icon, :image
+             :name, :summary, :icon, :image, :url
 
   has_one :public_key, serializer: ActivityPub::PublicKeySerializer
 
@@ -55,5 +55,9 @@ class ActivityPub::ActorSerializer < ActiveModel::Serializer
 
   def public_key
     object
+  end
+
+  def url
+    short_account_url(object)
   end
 end

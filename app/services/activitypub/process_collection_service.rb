@@ -26,7 +26,7 @@ class ActivityPub::ProcessCollectionService < BaseService
   end
 
   def supported_context?
-    equals_or_includes?(@json['@context'], ActivityPub::TagManager::CONTEXT)
+    super(@json)
   end
 
   class ProcessItem
