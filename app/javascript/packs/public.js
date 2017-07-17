@@ -6,8 +6,6 @@ import { getLocale } from '../mastodon/locales';
 import loadPolyfills from '../mastodon/load_polyfills';
 import ready from '../mastodon/ready';
 
-require.context('../images/', true);
-
 const { localeData } = getLocale();
 localeData.forEach(IntlRelativeFormat.__addLocaleData);
 

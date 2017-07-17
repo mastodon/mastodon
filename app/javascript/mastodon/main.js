@@ -8,8 +8,6 @@ function main() {
   const React = require('react');
   const ReactDOM = require('react-dom');
 
-  require.context('../images/', true);
-
   if (window.history && history.replaceState) {
     const { pathname, search, hash } = window.location;
     const path = pathname + search + hash;
