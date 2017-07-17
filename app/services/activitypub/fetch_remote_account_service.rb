@@ -10,7 +10,7 @@ class ActivityPub::FetchRemoteAccountService < BaseService
 
     @json = Oj.load(response.to_s, mode: :strict)
 
-    return unless supported_context?
+    return unless supported_context? && expected_type?
 
     @uri      = @json['id']
     @username = @json['preferredUsername']
@@ -80,5 +80,9 @@ class ActivityPub::FetchRemoteAccountService < BaseService
 
   def supported_context?
     super(@json)
+  end
+
+  def expected_type?
+    @json['type'] == 'Person'
   end
 end
