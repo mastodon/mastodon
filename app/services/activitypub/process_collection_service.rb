@@ -123,7 +123,8 @@ class ActivityPub::ProcessCollectionService < BaseService
         uri: @object['id'],
         url: @object['url'],
         account: @account,
-        text: @object['content'],
+        text: text_from_content,
+        language: language_from_content,
         spoiler_text: @object['summary'],
         created_at: @object['published'],
         reply: @object['inReplyTo'].present?,
@@ -243,6 +244,23 @@ class ActivityPub::ProcessCollectionService < BaseService
     def replied_to_status
       return if @object['inReplyTo'].blank?
       @replied_to_status ||= status_from_uri(@object['inReplyTo'])
+    end
+
+    def text_from_content
+      if @object['content'].present?
+        @object['content']
+      elsif language_map?
+        @object['contentMap'].values.first
+      end
+    end
+
+    def language_from_content
+      return nil unless language_map?
+      @object['contentMap'].keys.first
+    end
+
+    def language_map?
+      @object['contentMap'].is_a?(Hash) && !@object['contentMap'].empty?
     end
 
     def status_from_uri(uri)
