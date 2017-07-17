@@ -17,6 +17,8 @@ class ActivityPub::ProcessCollectionService < BaseService
     else
       process_items [@json]
     end
+  rescue Oj::ParseError
+    nil
   end
 
   private

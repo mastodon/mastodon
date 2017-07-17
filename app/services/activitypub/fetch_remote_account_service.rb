@@ -4,11 +4,11 @@ class ActivityPub::FetchRemoteAccountService < BaseService
   include JsonLdHelper
 
   def call(uri)
-    response = Request.new(:get, uri).perform
+    response = build_request(uri).perform
 
-    return unless response.code.successful?
+    return unless response.code == 200
 
-    @json = Oj.load(response.body, mode: :strict)
+    @json = Oj.load(response.to_s, mode: :strict)
 
     return unless supported_context?
 
@@ -22,9 +22,19 @@ class ActivityPub::FetchRemoteAccountService < BaseService
 
     create_account if @account.nil?
     update_account
+
+    @account
+  rescue Oj::ParseError
+    nil
   end
 
   private
+
+  def build_request(uri)
+    request = Request.new(:get, uri)
+    request.add_headers('Accept' => 'application/activity+json')
+    request
+  end
 
   def create_account
     @account = Account.new
@@ -35,22 +45,22 @@ class ActivityPub::FetchRemoteAccountService < BaseService
   end
 
   def update_account
-    @account.url               = @json['url']
+    @account.url               = @json['url'] || @uri
     @account.display_name      = @json['name']
     @account.note              = @json['summary']
-    @account.avatar_remote_url = @json['icon']
-    @account.header_remote_url = @json['image']
-    @account.public_key        = @json['publicKey']['publicKeyPem']
+    @account.avatar_remote_url = @json['icon']                      if @json['icon']
+    @account.header_remote_url = @json['image']                     if @json['image']
+    @account.public_key        = @json['publicKey']['publicKeyPem'] if @json['publicKey']&.is_a?(Hash)
     @account.save!
   end
 
   def verified_webfinger?
-    webfinger                            = Goldfinger.finger("#{@username}@#{@domain}")
+    webfinger                            = Goldfinger.finger("acct:#{@username}@#{@domain}")
     confirmed_username, confirmed_domain = split_acct(webfinger.subject)
 
     return true if @username.casecmp(confirmed_username).zero? && @domain.casecmp(confirmed_domain).zero?
 
-    webfinger                            = Goldfinger.finger("#{confirmed_username}@#{confirmed_domain}")
+    webfinger                            = Goldfinger.finger("acct:#{confirmed_username}@#{confirmed_domain}")
     confirmed_username, confirmed_domain = split_acct(webfinger.subject)
     self_reference                       = webfinger.link('self')
 
