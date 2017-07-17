@@ -1,7 +1,5 @@
 import loadPolyfills from '../mastodon/load_polyfills';
 
-require.context('../images/', true);
-
 function main() {
   const { length } = require('stringz');
   const IntlRelativeFormat = require('intl-relativeformat').default;
