@@ -32,7 +32,7 @@ export default class ExtendedVideoPlayer extends React.PureComponent {
 
   render () {
     return (
-      <div className='extended-video-player' style={{ width: this.props.width, height: this.props.height }}>
+      <div className='extended-video-player'>
         <video
           ref={this.setRef}
           src={this.props.src}

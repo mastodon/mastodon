@@ -7,8 +7,6 @@ import loadPolyfills from '../mastodon/load_polyfills';
 import { processBio } from '../glitch/util/bio_metadata';
 import ready from '../mastodon/ready';
 
-require.context('../images/', true);
-
 const { localeData } = getLocale();
 localeData.forEach(IntlRelativeFormat.__addLocaleData);
 
