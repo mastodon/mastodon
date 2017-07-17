@@ -18,7 +18,7 @@ class StreamEntriesController < ApplicationController
       end
 
       format.atom do
-        render xml: AtomSerializer.render(AtomSerializer.new.entry(@stream_entry, true))
+        render xml: Ostatus::AtomSerializer.render(Ostatus::AtomSerializer.new.entry(@stream_entry, true))
       end
     end
   end
