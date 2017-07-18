@@ -15,5 +15,5 @@ class FavouriteTag < ApplicationRecord
   belongs_to :tag, required: true
   accepts_nested_attributes_for :tag
 
-  validates :tag, uniqueness: :account
+  validates :tag, uniqueness: { scope: :account }
 end
