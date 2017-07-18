@@ -1,7 +1,7 @@
-import { unicodeToFilename } from './emojione_light';
+import { unicodeMapping } from './emojione_light';
 import Trie from 'substring-trie';
 
-const trie = new Trie(Object.keys(unicodeToFilename));
+const trie = new Trie(Object.keys(unicodeMapping));
 
 function emojify(str) {
   // This walks through the string from start to end, ignoring any tags (<p>, <br>, etc.)
@@ -19,10 +19,10 @@ function emojify(str) {
       insideTag = true;
     } else if (!insideTag && (match = trie.search(str.substring(i)))) {
       const unicodeStr = match;
-      if (unicodeStr in unicodeToFilename) {
-        const filename = unicodeToFilename[unicodeStr];
+      if (unicodeStr in unicodeMapping) {
+        const [filename, shortCode] = unicodeMapping[unicodeStr];
         const alt      = unicodeStr;
-        const replacement =  `<img draggable="false" class="emojione" alt="${alt}" src="/emoji/${filename}.svg" />`;
+        const replacement =  `<img draggable="false" class="emojione" alt="${alt}" title=":${shortCode}:" src="/emoji/${filename}.svg" />`;
         str = str.substring(0, i) + replacement + str.substring(i + unicodeStr.length);
         i += (replacement.length - unicodeStr.length); // jump ahead the length we've added to the string
       }
