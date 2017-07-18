@@ -19,6 +19,7 @@ class UserSettingsDecorator
     user.settings['interactions'] = merged_interactions
     user.settings['default_privacy'] = default_privacy_preference
     user.settings['default_sensitive'] = default_sensitive_preference
+    user.settings['unfollow_modal'] = unfollow_modal_preference
     user.settings['boost_modal'] = boost_modal_preference
     user.settings['delete_modal'] = delete_modal_preference
     user.settings['auto_play_gif'] = auto_play_gif_preference
@@ -40,6 +41,10 @@ class UserSettingsDecorator
 
   def default_sensitive_preference
     boolean_cast_setting 'setting_default_sensitive'
+  end
+
+  def unfollow_modal_preference
+    boolean_cast_setting 'setting_unfollow_modal'
   end
 
   def boost_modal_preference

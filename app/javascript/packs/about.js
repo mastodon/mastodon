@@ -1,12 +1,11 @@
-import TimelineContainer from '../mastodon/containers/timeline_container';
-import React from 'react';
-import ReactDOM from 'react-dom';
 import loadPolyfills from '../mastodon/load_polyfills';
-import ready from '../mastodon/ready';
 
 require.context('../images/', true);
 
 function loaded() {
+  const TimelineContainer = require('../mastodon/containers/timeline_container').default;
+  const React = require('react');
+  const ReactDOM = require('react-dom');
   const mountNode = document.getElementById('mastodon-timeline');
 
   if (mountNode !== null) {
@@ -16,6 +15,7 @@ function loaded() {
 }
 
 function main() {
+  const ready = require('../mastodon/ready').default;
   ready(loaded);
 }
 
