@@ -35,6 +35,7 @@ class Settings::PreferencesController < ApplicationController
     params.require(:user).permit(
       :setting_default_privacy,
       :setting_default_sensitive,
+      :setting_unfollow_modal,
       :setting_boost_modal,
       :setting_delete_modal,
       :setting_auto_play_gif,

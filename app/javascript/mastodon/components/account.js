@@ -22,6 +22,7 @@ export default class Account extends ImmutablePureComponent {
   static propTypes = {
     account: ImmutablePropTypes.map.isRequired,
     me: PropTypes.number.isRequired,
+    unfollowModal: PropTypes.bool,
     onFollow: PropTypes.func.isRequired,
     onBlock: PropTypes.func.isRequired,
     onMute: PropTypes.func.isRequired,
