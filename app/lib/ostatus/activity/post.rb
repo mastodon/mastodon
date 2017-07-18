@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Ostatus::Activity::Post < Ostatus::Activity::Creation
+class OStatus::Activity::Post < OStatus::Activity::Creation
   def perform
     status, just_created = super
 
