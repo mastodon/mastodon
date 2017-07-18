@@ -18,13 +18,13 @@
 .landing-page
   .header-wrapper
     .mascot-container
-      = image_tag asset_pack_path('elephant-fren.png'), class: 'mascot'
+      = image_tag asset_pack_path('elephant-fren.png'), alt: '', role: 'presentation', class: 'mascot'
 
     .header
       .container.links
         .brand
           = link_to root_url do
-            = image_tag asset_pack_path('logo.svg')
+            = image_tag asset_pack_path('logo.svg'), alt: '', role: 'presentation'
             Mastodon
 
         %ul.nav
@@ -38,9 +38,9 @@
 
       .container.hero
         .floats
-          = image_tag asset_pack_path('cloud2.png'), class: 'float-1'
-          = image_tag asset_pack_path('cloud3.png'), class: 'float-2'
-          = image_tag asset_pack_path('cloud4.png'), class: 'float-3'
+          = image_tag asset_pack_path('cloud2.png'), alt: '', role: 'presentation', class: 'float-1'
+          = image_tag asset_pack_path('cloud3.png'), alt: '', role: 'presentation', class: 'float-2'
+          = image_tag asset_pack_path('cloud4.png'), alt: '', role: 'presentation', class: 'float-3'
         .heading
           %h1
             = @instance_presenter.site_title
@@ -54,7 +54,7 @@
                 %p= t('about.closed_registrations')
               - else
                 = @instance_presenter.closed_registrations_message.html_safe
-            = link_to t('about.find_another_instance'), 'https://joinmastodon.org', class: 'button button-alternative button--block'
+            = link_to t('about.find_another_instance'), 'https://joinmastodon.org/', class: 'button button-alternative button--block'
 
   .learn-more-cta
     .container
@@ -69,7 +69,7 @@
       .about-mastodon
         %h3= t 'about.what_is_mastodon'
         %p= t 'about.about_mastodon_html'
-        %a.button.button-secondary{ href: 'https://joinmastodon.org' }= t 'about.learn_more'
+        %a.button.button-secondary{ href: 'https://joinmastodon.org/' }= t 'about.learn_more'
         = render 'features'
   .footer-links
     .container
