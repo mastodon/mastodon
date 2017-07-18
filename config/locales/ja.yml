@@ -1,15 +1,28 @@
 ---
 ja:
   about:
-    about_mastodon: Mastodon は<em>自由でオープンソース</em>なソーシャルネットワークです。商用プラットフォームの代替となる<em>分散型</em>を採用し、あなたのやりとりが一つの会社によって独占されるのを防ぎます。信頼できるインスタンスを選択してください &mdash; どのインスタンスを選んでも、誰とでもやりとりすることができます。 だれでも自分の Mastodon インスタンスを作ることができ、シームレスに<em>ソーシャルネットワーク</em>に参加できます。
+    about_mastodon_html: Mastodon は、オープンなウェブプロトコルを採用した、自由でオープンソースなソーシャルネットワークです。電子メールのような分散型の仕組みを採っています。
     about_this: このインスタンスについて
     business_email: 'ビジネスメールアドレス:'
-    closed_registrations: 現在このインスタンスでの新規登録は受け付けていません。
+    closed_registrations: 現在このインスタンスでの新規登録は受け付けていません。しかし、他のインスタンスにアカウントを作成しても全く同じネットワークに参加することができます。
     contact: 連絡先
     description_headline: "%{domain} とは？"
     domain_count_after: 個のインスタンス
     domain_count_before: 接続中
+    features:
+      humane_approach_body: 他の SNS の失敗から学び、Mastodon はソーシャルメディアが誤った使い方をされることの無いように倫理的な設計を目指しています。
+      humane_approach_title: より思いやりのある設計
+      not_a_product_body: Mastodon は営利的な SNS ではありません。広告や、データの収集・解析は無く、またユーザーの囲い込みもありません。
+      not_a_product_title: あなたは人間であり、商品ではありません
+      real_conversation_body: 好きなように書ける500文字までの投稿や、文章やメディアの内容に警告をつけられる機能で、思い通りに自分自身を表現することができます。
+      real_conversation_title: 本当のコミュニケーションのために
+      within_reach_body: デベロッパーフレンドリーな API により実現された、iOS や Android、その他様々なプラットフォームのためのアプリでどこでも友人とやりとりできます。
+      within_reach_title: いつでも身近に
+    find_another_instance: 他のインスタンスを探す
+    generic_description: "%{domain} は、Mastodon インスタンスの一つです。"
     get_started: 参加する
+    hosted_on: Mastodon hosted on %{domain}
+    learn_more: もっと詳しく
     links: リンク
     other_instances: 他のインスタンス
     source_code: ソースコード
@@ -19,6 +32,7 @@ ja:
     user_count_after: 人
     user_count_before: ユーザー数
     version: バージョン
+    what_is_mastodon: Mastodon とは？
   accounts:
     follow: フォロー
     followers: フォロワー
@@ -171,6 +185,21 @@ ja:
         desc_html: ランディングページに公開タイムラインを表示します
         title: タイムラインプレビュー
       title: サイト設定
+    statuses:
+      back_to_account: アカウントページに戻る
+      batch:
+        delete: 削除
+        nsfw_off: NSFW オフ
+        nsfw_on: NSFW オン
+      execute: 実行
+      failed_to_execute: 実行に失敗しました
+      media:
+        hide: メディアを隠す
+        show: メディアを表示
+        title: メディア
+      no_media: メディアなし
+      with_media: メディアあり
+      title: トゥート一覧
     subscriptions:
       callback_url: コールバックURL
       confirmed: 確認済み
@@ -190,9 +219,10 @@ ja:
   applications:
     invalid_url: URLが無効です
   auth:
+    agreement_html: 登録すると <a href="%{rules_path}">利用規約</a> と <a href="%{terms_path}">プライバシーポリシー</a> に同意したことになります。
     change_password: セキュリティ
     delete_account: アカウントの削除
-    delete_account_html: アカウントを削除したい場合、<a href="%{path}">こちら</a>から手続きが行えます。削除前には確認画面があります。
+    delete_account_html: アカウントを削除したい場合、<a href="%{path}">こちら</a> から手続きが行えます。削除する前に、確認画面があります。
     didnt_get_confirmation: 確認メールを受信できませんか？
     forgot_password: パスワードをお忘れですか？
     login: ログイン

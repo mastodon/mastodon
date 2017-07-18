@@ -8,6 +8,8 @@ ja:
         header: 2MBまでのPNGやGIF、JPGが利用可能です。 700x335pxまで縮小されます。
         locked: フォロワーを手動で承認する必要があります。
         note: あと<span class="note-counter">%{count}</span>文字入力できます。
+        setting_noindex: 公開プロフィールおよび各投稿ページに影響します
+
       imports:
         data: 他の Mastodon インスタンスからエクスポートしたCSVファイルを選択して下さい
       sessions:
@@ -37,6 +39,7 @@ ja:
         setting_default_sensitive: メディアを常に閲覧注意としてマークする
         setting_delete_modal: トゥートを削除する前に確認ダイアログを表示する
         setting_system_font_ui: システムのデフォルトフォントを使う
+        setting_noindex: 検索エンジンによるインデックスを拒否する
         severity: 重大性
         type: インポートする項目
         username: ユーザー名

@@ -53,11 +53,11 @@
       %td= @account.followers_count
     %tr
       %th= t('admin.accounts.statuses')
-      %td= @account.statuses_count
+      %td= link_to @account.statuses_count, admin_account_statuses_path(@account.id)
     %tr
       %th= t('admin.accounts.media_attachments')
       %td
-        = @account.media_attachments.count
+        = link_to @account.media_attachments.count, admin_account_statuses_path(@account.id, { media: true })
         = surround '(', ')' do
           = number_to_human_size @account.media_attachments.sum('file_file_size')
     %tr
