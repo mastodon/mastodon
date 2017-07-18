@@ -85,7 +85,7 @@ export default class ModalRoot extends React.PureComponent {
       >
         {interpolatedStyles =>
           <div className='modal-root'>
-            {interpolatedStyles.map(({ key, data: { type }, style }) => (
+            {interpolatedStyles.map(({ key, data: { type, props }, style }) => (
               <div key={key} style={{ pointerEvents: visible ? 'auto' : 'none' }}>
                 <div role='presentation' className='modal-root__overlay' style={{ opacity: style.opacity }} onClick={onClose} />
                 <div className='modal-root__container' style={{ opacity: style.opacity, transform: `translateZ(0px) scale(${style.scale})` }}>
