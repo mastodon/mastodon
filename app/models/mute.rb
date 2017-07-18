@@ -3,11 +3,12 @@
 #
 # Table name: mutes
 #
-#  id                :integer          not null, primary key
-#  account_id        :integer          not null
-#  target_account_id :integer          not null
-#  created_at        :datetime         not null
-#  updated_at        :datetime         not null
+#  id                 :integer          not null, primary key
+#  account_id         :integer          not null
+#  target_account_id  :integer          not null
+#  created_at         :datetime         not null
+#  updated_at         :datetime         not null
+#  hide_notifications :boolean          default(FALSE), not null
 #
 
 class Mute < ApplicationRecord

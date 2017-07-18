@@ -70,8 +70,8 @@ module AccountInteractions
     block_relationships.find_or_create_by!(target_account: other_account)
   end
 
-  def mute!(other_account)
-    mute_relationships.find_or_create_by!(target_account: other_account)
+  def mute!(other_account, notifications: true)
+    mute_relationships.create_with(hide_notifications: notifications).find_or_create_by!(target_account: other_account)
   end
 
   def mute_conversation!(conversation)
@@ -125,6 +125,10 @@ module AccountInteractions
 
   def muting_conversation?(conversation)
     conversation_mutes.where(conversation: conversation).exists?
+  end
+
+  def muting_notifications?(other_account)
+    mute_relationships.where(target_account: other_account, hide_notifications: true).exists?
   end
 
   def requested?(other_account)

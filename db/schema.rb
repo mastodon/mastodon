@@ -168,6 +168,7 @@ ActiveRecord::Schema.define(version: 20170905165803) do
     t.integer "target_account_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "hide_notifications", default: false, null: false
     t.index ["account_id", "target_account_id"], name: "index_mutes_on_account_id_and_target_account_id", unique: true
   end
 
