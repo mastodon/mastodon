@@ -15,6 +15,7 @@ RUN echo "@edge https://nl.alpinelinux.org/alpine/edge/main" >> /etc/apk/reposit
  && apk -U upgrade \
  && apk add -t build-dependencies \
     build-base \
+    icu-dev \
     libidn-dev \
     libxml2-dev \
     libxslt-dev \
@@ -26,7 +27,7 @@ RUN echo "@edge https://nl.alpinelinux.org/alpine/edge/main" >> /etc/apk/reposit
     ffmpeg \
     file \
     git \
-    icu-dev \
+    icu-libs \
     imagemagick@edge \
     libidn \
     libpq \
