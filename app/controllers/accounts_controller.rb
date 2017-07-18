@@ -13,7 +13,7 @@ class AccountsController < ApplicationController
 
       format.atom do
         @entries = @account.stream_entries.where(hidden: false).with_includes.paginate_by_max_id(20, params[:max_id], params[:since_id])
-        render xml: AtomSerializer.render(AtomSerializer.new.feed(@account, @entries.to_a))
+        render xml: Ostatus::AtomSerializer.render(Ostatus::AtomSerializer.new.feed(@account, @entries.to_a))
       end
 
       format.json do
