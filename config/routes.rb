@@ -89,7 +89,7 @@ Rails.application.routes.draw do
     resources :instances, only: [:index]
 
     resources :reports, only: [:index, :show, :update] do
-      resources :reported_statuses, only: [:update, :destroy]
+      resources :reported_statuses, only: [:create, :update, :destroy]
     end
 
     resources :accounts, only: [:index, :show] do
@@ -103,6 +103,7 @@ Rails.application.routes.draw do
       resource :silence, only: [:create, :destroy]
       resource :suspension, only: [:create, :destroy]
       resource :confirmation, only: [:create]
+      resources :statuses, only: [:index, :create, :update, :destroy]
     end
 
     resources :users, only: [] do
