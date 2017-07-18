@@ -4,6 +4,8 @@ import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { injectIntl, defineMessages, FormattedMessage } from 'react-intl';
 
+import './stylesheet';
+
 //  Our imports  //
 import SettingsItem from './item';
 

@@ -8,5 +8,6 @@ module.exports = {
   loader: 'babel-loader',
   options: {
     forceEnv: process.env.NODE_ENV || 'development',
+    sourceRoot: 'app/javascript',
   },
 };

@@ -1,0 +1,84 @@
+@import 'variables';
+
+.settings-modal {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  background: $ui-secondary-color;
+  color: $ui-base-color;
+  border-radius: 8px;
+  height: 80vh;
+  width: 80vw;
+  max-width: 740px;
+  max-height: 450px;
+  overflow: hidden;
+
+  label {
+    display: block;
+  }
+
+  h1 {
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 24px;
+    margin-bottom: 20px;
+  }
+
+  h2 {
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 20px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+  }
+}
+
+.settings-modal__navigation {
+  background: $primary-text-color;
+  color: $ui-base-color;
+  width: 200px;
+  font-size: 15px;
+  line-height: 20px;
+  overflow-y: auto;
+
+  .settings-modal__navigation-item, .settings-modal__navigation-close {
+    display: block;
+    padding: 15px 20px;
+    cursor: pointer;
+    outline: none;
+    text-decoration: none;
+  }
+
+  .settings-modal__navigation-item {
+    background: $primary-text-color;
+    color: inherit;
+    border-bottom: 1px $ui-primary-color solid;
+    transition: background .3s;
+
+    &:hover {
+      background: $ui-secondary-color;
+    }
+
+    &.active {
+      background: $ui-highlight-color;
+      color: $primary-text-color;
+    }
+  }
+
+  .settings-modal__navigation-close {
+    background: $error-value-color;
+    color: $primary-text-color;
+  }
+}
+
+.settings-modal__content {
+  display: block;
+  flex: auto;
+  padding: 15px 20px 15px 20px;
+  width: 360px;
+  overflow-y: auto;
+
+  select {
+    margin-bottom: 5px;
+  }
+}
