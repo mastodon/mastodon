@@ -38,7 +38,7 @@ class ResolveRemoteAccountService < BaseService
     return Account.find_local(@username) if TagManager.instance.local_domain?(@domain)
 
     @account = Account.find_remote(@username, @domain)
-    
+
     ApplicationRecord.transaction do
       create_account if @account.nil?
       update_account
