@@ -3,6 +3,7 @@
   %script#initial-state{ type: 'application/json' }!= json_escape(@initial_state_json)
 
   = javascript_pack_tag 'application', integrity: true, crossorigin: 'anonymous'
+  = stylesheet_pack_tag 'application', media: 'all'
 
 .app-holder#mastodon{ data: { props: Oj.dump(default_props) } }
   %noscript

@@ -1,13 +1,14 @@
-//  Package imports  //
+//  Package imports
 import React from 'react';
 import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { injectIntl, defineMessages, FormattedMessage } from 'react-intl';
 
-import './stylesheet';
-
-//  Our imports  //
+//  Our imports
 import SettingsItem from './item';
+
+//  Stylesheet imports
+import './style';
 
 const messages = defineMessages({
   layout_auto: {  id: 'layout.auto', defaultMessage: 'Auto' },

@@ -44,7 +44,10 @@ module.exports = {
 
   plugins: [
     new webpack.EnvironmentPlugin(JSON.parse(JSON.stringify(env))),
-    new ExtractTextPlugin(env.NODE_ENV === 'production' ? '[name]-[hash].css' : '[name].css'),
+    new ExtractTextPlugin({
+      filename: env.NODE_ENV === 'production' ? '[name]-[hash].css' : '[name].css',
+      allChunks: true,
+    }),
     new ManifestPlugin({
       publicPath: output.publicPath,
       writeToFileEmit: true,
