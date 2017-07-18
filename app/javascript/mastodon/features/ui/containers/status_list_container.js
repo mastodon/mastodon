@@ -22,13 +22,13 @@ const makeGetStatusIds = () => createSelector([
     showStatus = showStatus && (statusForId.get('in_reply_to_id') === null || statusForId.get('in_reply_to_account_id') === me);
   }
 
-  if (columnSettings.getIn(['regex', 'body'], '').trim().length > 0) {
+  const rawRegex = columnSettings.getIn(['regex', 'body'], '').trim();
+  if (showStatus && statusForId.get('account') !== me && rawRegex.length > 0) {
+    const searchIndex = statusForId.get('reblog') ? statuses.getIn([statusForId.get('reblog'), 'search_index']) : statusForId.get('search_index');
     try {
-      if (showStatus) {
-        const regex = new RegExp(columnSettings.getIn(['regex', 'body']).trim(), 'i');
-        showStatus = !regex.test(statusForId.get('reblog') ? statuses.getIn([statusForId.get('reblog'), 'search_index']) : statusForId.get('search_index'));
-      }
-    } catch(e) {
+      const regex = new RegExp(rawRegex, 'i');
+      showStatus = !regex.test(searchIndex);
+    } catch (e) {
       // Bad regex, don't affect filters
     }
   }
