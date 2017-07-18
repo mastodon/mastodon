@@ -22,7 +22,7 @@ class Pubsubhubbub::DistributionWorker
   def distribute_public!(stream_entries)
     return if stream_entries.empty?
 
-    @payload = Ostatus::AtomSerializer.render(Ostatus::AtomSerializer.new.feed(@account, stream_entries))
+    @payload = OStatus::AtomSerializer.render(OStatus::AtomSerializer.new.feed(@account, stream_entries))
 
     Pubsubhubbub::DeliveryWorker.push_bulk(@subscriptions) do |subscription|
       [subscription.id, @payload]
@@ -32,7 +32,7 @@ class Pubsubhubbub::DistributionWorker
   def distribute_hidden!(stream_entries)
     return if stream_entries.empty?
 
-    @payload = Ostatus::AtomSerializer.render(Ostatus::AtomSerializer.new.feed(@account, stream_entries))
+    @payload = OStatus::AtomSerializer.render(OStatus::AtomSerializer.new.feed(@account, stream_entries))
     @domains = @account.followers.domains
 
     Pubsubhubbub::DeliveryWorker.push_bulk(@subscriptions.reject { |s| !allowed_to_receive?(s.callback_url, s.domain) }) do |subscription|

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Ostatus::AtomSerializer
+class OStatus::AtomSerializer
   include RoutingHelper
   include ActionView::Helpers::SanitizeHelper
 

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Ostatus::Activity::Base
+class OStatus::Activity::Base
   def initialize(xml, account = nil)
     @xml = xml
     @account = account
