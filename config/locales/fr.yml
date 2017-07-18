@@ -1,7 +1,7 @@
 ---
 fr:
   about:
-    about_mastodon: Mastodon est un serveur <em>libre</em> de réseautage social. Alternative <em>décentralisée</em> aux plateformes commerciales, la monopolisation de vos communications par une entreprise unique est évitée. Tout un chacun peut faire tourner Mastodon et participer au <em>réseau social</em> de manière transparente.
+    about_mastodon_html: Mastodon est un réseau social basé sur des technologies <em>libres</em>, <em>gratuites</em> et <em>open source</em>. Il est <em>décentralisé</em> à la manière de l'e-mail.
     about_this: À propos de cette instance
     business_email: Courriel professionnel
     closed_registrations: Les inscriptions sont actuellement fermées sur cette instance.
@@ -9,7 +9,20 @@ fr:
     description_headline: Qu’est-ce que %{domain} ?
     domain_count_after: autres instances
     domain_count_before: Connectés à
+    features:
+      humane_approach_body: Ayant appris des erreurs d'autres réseaux, Mastodon vise à faire des choix de conceptions éthiques afin de combattre les abus des réseaux sociaux
+      humane_approach_title: Une approche plus humaine
+      not_a_product_body: Mastodon n'est pas un réseau commercial. Pas de publicité, pas de pistage. Mastodon est ouvert et ne dispose d'aucune autorité centrale.
+      not_a_product_title: Vous êtes une personne, pas un produit
+      real_conversation_body: Grâce aux 500 caractères à votre disposition et au support d'avertissements de contenus (CW), vous pouvez vous exprimer à votre guise.
+      real_conversation_title: Conçu pour de vraies conversations
+      within_reach_body: De nombreuses apps pour iOS, Android et d'autres platformes sont disponibles, grâce à une API ouverte, vous permettant de rester connecté n'importe où.
+      within_reach_title: Toujours à portée de main
+    find_another_instance: Find another instance
+    generic_description: "%{domain} is one server in the network"
     get_started: Rejoindre le réseau
+    hosted_on: Mastodon hébergé sur %{domain}
+    learn_more: En savoir plus
     links: Liens
     other_instances: Autres instances
     source_code: Code source
@@ -19,6 +32,7 @@ fr:
     user_count_after: utilisateur⋅ice⋅s
     user_count_before: Abrite
     version: Version
+    what_is_mastodon: Qu'est-ce que Mastodon?
   accounts:
     follow: Suivre
     followers: Abonné⋅es
@@ -151,7 +165,11 @@ fr:
         closed_message:
           desc_html: Affiché sur la page d’accueil lorsque les inscriptions sont fermées<br>Vous pouvez utiliser des balises HTML
           title: Message de fermeture des inscriptions
+        deletion:
+          desc_html: Permettre à n'importe qui de supprimer leur compte
+          title: Activer la suppression de compte
         open:
+          desc_html: Permet à n'importe qui de créer un compte
           title: Inscriptions
       site_description:
         desc_html: Affichée sous la forme d’un paragraphe sur la page d’accueil et utilisée comme balise meta.<br>Vous pouvez utiliser des balises HTML, en particulier <code>&lt;a&gt;</code> et <code>&lt;em&gt;</code>.
@@ -159,7 +177,13 @@ fr:
       site_description_extended:
         desc_html: Affichée sur la page d’informations complémentaires du site<br>Vous pouvez utiliser des balises HTML
         title: Description étendue du site
+      site_terms:
+        desc_html: Vous pouvez écrire vos propres termes, conditions d'utilisations ou autre documentation juridique. Vous pouvez utiliser des tags HTML.
+        title: Termes et conditions d'utilisations personalisés
       site_title: Titre du site
+      timeline_preview:
+        desc_html: Afficher le fil public sur la page d'accueil
+        title: Aperçu du fil public
       title: Paramètres du site
     subscriptions:
       callback_url: URL de rappel
@@ -180,6 +204,7 @@ fr:
   applications:
     invalid_url: L’URL fournie est invalide
   auth:
+    agreement_html: En vous inscrivant, vous acceptez nos <a href="%{rules_path}">termes et conditions d'utilisations</a> ainsi que notre <a href="%{terms_path}">politique de confidentialité</a>.
     change_password: Sécurité
     delete_account: Supprimer le compte
     delete_account_html: Si vous désirez supprimer votre compte, vous pouvez cliquer ici. Il vous sera demandé de confirmer cette action.
@@ -194,6 +219,12 @@ fr:
   authorize_follow:
     error: Malheureusement, il y a eu une erreur en cherchant les détails du compte distant
     follow: Suivre
+    follow_request: 'Vous avez demandé⋅e à suivre:'
+    following: 'Youpi! Vous suivez:'
+    post_follow:
+      close: Ou bien, vous pouvez fermer cette fenêtre.
+      return: Retour au profil de l'utilisateur⋅trice
+      web: Retour à l'interface web
     prompt_html: 'Vous (<strong>%{self}</strong>) avez demandé à suivre :'
     title: Suivre %{acct}
   datetime:
@@ -300,6 +331,21 @@ fr:
   pagination:
     next: Suivant
     prev: Précédent
+  push_notifications:
+    favourite:
+      title: "%{name} à mis⋅e votre status en favori"
+    follow:
+      title: "%{name} vous suit"
+    mention:
+      action_boost: Partager
+      action_expand: Montrer plus
+      action_favourite: Ajouter aux favoris
+      title: "%{name} vous a mentionné⋅e"
+    reblog:
+      title: "%{name} a partagé⋅e votre status"
+    subscribed:
+      body: Vous pouvez désormais recevoir des notifications.
+      title: Abonnements aux notifications
   remote_follow:
     acct: Entrez votre pseudo@instance depuis lequel vous voulez suivre ce⋅tte utilisateur⋅trice
     missing_resource: L’URL de redirection n’a pas pu être trouvée
