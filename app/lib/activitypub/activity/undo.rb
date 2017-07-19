@@ -17,18 +17,36 @@ class ActivityPub::Activity::Undo < ActivityPub::Activity
   private
 
   def undo_announce
-    raise NotImplementedError
+    status = Status.find_by(uri: object_uri, account: @account)
+    RemoveStatusService.new.call(status) unless status.nil?
   end
 
   def undo_follow
-    raise NotImplementedError
+    target_account = account_from_uri(target_uri)
+
+    return if target_account.nil? || !target_account.local?
+
+    @account.unfollow!(target_account)
   end
 
   def undo_like
-    raise NotImplementedError
+    status = status_from_uri(target_uri)
+
+    return if status.nil? || !status.account.local?
+
+    favourite = status.favourites.where(account: @account).first
+    favourite&.destroy
   end
 
   def undo_block
-    raise NotImplementedError
+    target_account = account_from_uri(target_uri)
+
+    return if target_account.nil? || !target_account.local?
+
+    UnblockService.new.call(@account, target_account)
+  end
+
+  def target_uri
+    @target_uri ||= @object['object'].is_a?(String) ? @object['object'] : @object['object']['id']
   end
 end
