@@ -7,7 +7,7 @@ class ActivityPub::Activity::Announce < ActivityPub::Activity
 
     return if original_status.nil?
 
-    status = Status.create!(account: @account, reblog: original_status)
+    status = Status.create!(account: @account, reblog: original_status, uri: @json['id'])
     distribute(status)
     status
   end
