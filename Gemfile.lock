@@ -242,6 +242,8 @@ GEM
       nokogiri (>= 1.5.9)
     mail (2.6.6)
       mime-types (>= 1.16, < 4)
+    mario-redis-lock (1.2.0)
+      redis (~> 3, >= 3.0.5)
     method_source (0.8.2)
     microformats (4.0.7)
       json
@@ -535,6 +537,7 @@ DEPENDENCIES
   letter_opener_web (~> 1.3)
   link_header (~> 0.0)
   lograge (~> 0.5)
+  mario-redis-lock (~> 1.2)
   microformats (~> 4.0)
   mime-types (~> 3.1)
   nokogiri (~> 1.7)

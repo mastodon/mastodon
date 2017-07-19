@@ -37,14 +37,17 @@ class ResolveRemoteAccountService < BaseService
 
     return Account.find_local(@username) if TagManager.instance.local_domain?(@domain)
 
-    @account = Account.find_remote(@username, @domain)
+    RedisLock.acquire(lock_options) do |lock|
+      if lock.acquired?
+        @account = Account.find_remote(@username, @domain)
 
-    ApplicationRecord.transaction do
-      create_account if @account.nil?
-      update_account
+        create_account if @account.nil?
+        update_account
+
+        update_account_profile if update_profile
+      end
     end
 
-    update_account_profile if update_profile
     @account
   end
 
@@ -152,5 +155,9 @@ class ResolveRemoteAccountService < BaseService
 
   def update_account_profile
     RemoteProfileUpdateWorker.perform_async(@account.id, atom_body.force_encoding('UTF-8'), false)
+  end
+
+  def lock_options
+    { redis: Redis.current, key: "resolve:#{@username}@#{@domain}" }
   end
 end
