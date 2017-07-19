@@ -2,6 +2,8 @@
 
 class SubscribeService < BaseService
   def call(account)
+    return unless account.ostatus?
+
     @account        = account
     @account.secret = SecureRandom.hex
     @response       = build_request.perform
