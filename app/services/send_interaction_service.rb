@@ -10,7 +10,7 @@ class SendInteractionService < BaseService
     @source_account = source_account
     @target_account = target_account
 
-    return if block_notification?
+    return if !target_account.ostatus? || block_notification?
 
     delivery = build_request.perform
 
