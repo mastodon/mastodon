@@ -45,7 +45,7 @@ class Web::PushSubscription < ApplicationRecord
         title: title,
         dir: dir,
         image: image,
-        badge: full_asset_url('badge.png'),
+        badge: full_asset_url('badge.png', skip_pipeline: true),
         tag: notification.id,
         timestamp: notification.created_at,
         icon: notification.from_account.avatar_static_url,
@@ -115,7 +115,7 @@ class Web::PushSubscription < ApplicationRecord
       when :mention then [
         {
           title: translate('push_notifications.mention.action_favourite'),
-          icon: full_asset_url('emoji/2764.png'),
+          icon: full_asset_url('emoji/2764.png', skip_pipeline: true),
           todo: 'request',
           method: 'POST',
           action: "/api/v1/statuses/#{notification.target_status.id}/favourite",
@@ -156,8 +156,8 @@ class Web::PushSubscription < ApplicationRecord
     Webpush.payload_send(
       message: JSON.generate(
         title: translate('push_notifications.subscribed.title'),
-        icon: full_asset_url('android-chrome-192x192.png'),
-        badge: full_asset_url('badge.png'),
+        icon: full_asset_url('android-chrome-192x192.png', skip_pipeline: true),
+        badge: full_asset_url('badge.png', skip_pipeline: true),
         data: {
           content: translate('push_notifications.subscribed.body'),
           actions: [],
