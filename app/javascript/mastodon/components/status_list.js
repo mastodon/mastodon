@@ -57,13 +57,14 @@ export default class StatusList extends ImmutablePureComponent {
   componentDidUpdate (prevProps) {
     // Reset the scroll position when a new toot comes in in order not to
     // jerk the scrollbar around if you're already scrolled down the page.
-    if (prevProps.statusIds.size < this.props.statusIds.size &&
-        prevProps.statusIds.first() !== this.props.statusIds.first() &&
-        this._oldScrollPosition &&
-        this.node.scrollTop > 0) {
-      let newScrollTop = this.node.scrollHeight - this._oldScrollPosition;
-      if (this.node.scrollTop !== newScrollTop) {
-        this.node.scrollTop = newScrollTop;
+    if (prevProps.statusIds.size < this.props.statusIds.size && this._oldScrollPosition && this.node.scrollTop > 0) {
+      if (prevProps.statusIds.first() !== this.props.statusIds.first()) {
+        let newScrollTop = this.node.scrollHeight - this._oldScrollPosition;
+        if (this.node.scrollTop !== newScrollTop) {
+          this.node.scrollTop = newScrollTop;
+        }
+      } else {
+        this._oldScrollPosition = this.node.scrollHeight - this.node.scrollTop;
       }
     }
   }
