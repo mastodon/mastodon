@@ -5,22 +5,18 @@ class WebPushNotificationWorker
 
   sidekiq_options backtrace: true
 
-  def perform(recipient_id, notification_id)
-    recipient = Account.find(recipient_id)
+  def perform(session_activation_id, notification_id)
+    session_activation = SessionActivation.find(session_activation_id)
     notification = Notification.find(notification_id)
 
-    sessions_with_subscriptions = recipient.user.session_activations.where.not(web_push_subscription: nil)
+    begin
+      session_activation.web_push_subscription.push(notification)
+    rescue Webpush::InvalidSubscription, Webpush::ExpiredSubscription => e
+      # Subscription expiration is not currently implemented in any browser
+      session_activation.web_push_subscription.destroy!
+      session_activation.update!(web_push_subscription: nil)
 
-    sessions_with_subscriptions.each do |session|
-      begin
-        session.web_push_subscription.push(notification)
-      rescue Webpush::InvalidSubscription, Webpush::ExpiredSubscription
-        # Subscription expiration is not currently implemented in any browser
-        session.web_push_subscription.destroy!
-        session.update!(web_push_subscription: nil)
-      rescue Webpush::PayloadTooLarge => e
-        Rails.logger.error(e)
-      end
+      raise e
     end
   end
 end

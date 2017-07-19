@@ -12,6 +12,9 @@
 #  updated_at :datetime         not null
 #
 
+require 'webpush'
+require_relative '../../models/setting'
+
 class Web::PushSubscription < ApplicationRecord
   include RoutingHelper
   include StreamEntriesHelper
@@ -37,7 +40,6 @@ class Web::PushSubscription < ApplicationRecord
     nsfw = notification.target_status.nil? || notification.target_status.spoiler_text.empty? ? nil : notification.target_status.spoiler_text
 
     # TODO: Make sure that the payload does not exceed 4KB - Webpush::PayloadTooLarge
-    # TODO: Queue the requests - Webpush::TooManyRequests
     Webpush.payload_send(
       message: JSON.generate(
         title: title,
@@ -59,7 +61,7 @@ class Web::PushSubscription < ApplicationRecord
       p256dh: key_p256dh,
       auth: key_auth,
       vapid: {
-        # subject: "mailto:#{Setting.site_contact_email}",
+        subject: "mailto:#{Setting.site_contact_email}",
         private_key: Rails.configuration.x.vapid_private_key,
         public_key: Rails.configuration.x.vapid_public_key,
       },
@@ -166,7 +168,7 @@ class Web::PushSubscription < ApplicationRecord
       p256dh: key_p256dh,
       auth: key_auth,
       vapid: {
-        # subject: "mailto:#{Setting.site_contact_email}",
+        subject: "mailto:#{Setting.site_contact_email}",
         private_key: Rails.configuration.x.vapid_private_key,
         public_key: Rails.configuration.x.vapid_public_key,
       },

@@ -83,6 +83,10 @@ class User < ApplicationRecord
     settings.default_sensitive
   end
 
+  def setting_unfollow_modal
+    settings.unfollow_modal
+  end
+
   def setting_boost_modal
     settings.boost_modal
   end
