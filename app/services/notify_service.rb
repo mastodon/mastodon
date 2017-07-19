@@ -65,7 +65,12 @@ class NotifyService < BaseService
   end
 
   def send_push_notifications
-    sessions_with_subscriptions_ids = @recipient.user.session_activations.where.not(web_push_subscription: nil).pluck(:id)
+    # HACK: Can be caused by quickly unfavouriting a status, since creating
+    # a favourite and creating a notification are not wrapped in a transaction.
+    return if @notification.activity.nil?
+
+    sessions_with_subscriptions = @recipient.user.session_activations.where.not(web_push_subscription: nil)
+    sessions_with_subscriptions_ids = sessions_with_subscriptions.select { |session| session.web_push_subscription.pushable? @notification }.map(&:id)
 
     WebPushNotificationWorker.push_bulk(sessions_with_subscriptions_ids) do |session_activation_id|
       [session_activation_id, @notification.id]
