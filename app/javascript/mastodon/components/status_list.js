@@ -30,8 +30,8 @@ export default class StatusList extends ImmutablePureComponent {
 
   intersectionObserverWrapper = new IntersectionObserverWrapper();
 
-  handleScroll = debounce((e) => {
-    const { scrollTop, scrollHeight, clientHeight } = e.target;
+  handleScroll = debounce(() => {
+    const { scrollTop, scrollHeight, clientHeight } = this.node;
     const offset = scrollHeight - scrollTop - clientHeight;
     this._oldScrollPosition = scrollHeight - scrollTop;
 
@@ -49,6 +49,9 @@ export default class StatusList extends ImmutablePureComponent {
   componentDidMount () {
     this.attachScrollListener();
     this.attachIntersectionObserver();
+
+    // Handle initial scroll posiiton
+    this.handleScroll();
   }
 
   componentDidUpdate (prevProps) {
