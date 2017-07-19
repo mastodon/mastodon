@@ -26,8 +26,6 @@ class Web::PushSubscription < ApplicationRecord
   before_create :send_welcome_notification
 
   def push(notification)
-    return unless pushable? notification
-
     name = display_name notification.from_account
     title = title_str(name, notification)
     body = body_str notification
@@ -67,6 +65,10 @@ class Web::PushSubscription < ApplicationRecord
       },
       ttl: 40 * 60 * 60 # 48 hours
     )
+  end
+
+  def pushable?(notification)
+    data && data.key?('alerts') && data['alerts'][notification.type.to_s]
   end
 
   def as_payload
@@ -146,10 +148,6 @@ class Web::PushSubscription < ApplicationRecord
 
   def dir_str(body)
     rtl?(body) ? 'rtl' : 'ltr'
-  end
-
-  def pushable?(notification)
-    data && data.key?('alerts') && data['alerts'][notification.type.to_s]
   end
 
   def send_welcome_notification
