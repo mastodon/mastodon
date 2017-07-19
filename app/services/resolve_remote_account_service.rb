@@ -50,6 +50,9 @@ class ResolveRemoteAccountService < BaseService
     end
 
     @account
+  rescue Goldfinger::Error => e
+    Rails.logger.debug "Webfinger query for #{uri} unsuccessful: #{e}"
+    nil
   end
 
   private
@@ -141,7 +144,7 @@ class ResolveRemoteAccountService < BaseService
 
     response = Request.new(:get, atom_url).perform
 
-    raise Goldfinger::Error, "Feed attempt failed for #{atom_url}: HTTP #{response.code}" unless response.code == 200
+    raise Mastodon::UnexpectedResponseError, response unless response.code == 200
 
     @atom_body = response.to_s
   end
