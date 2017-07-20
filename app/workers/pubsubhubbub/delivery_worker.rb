@@ -15,7 +15,11 @@ class Pubsubhubbub::DeliveryWorker
   def perform(subscription_id, payload)
     @subscription = Subscription.find(subscription_id)
     @payload = payload
-    process_delivery unless blocked_domain?
+    begin
+      process_delivery unless blocked_domain?
+    rescue => e
+      raise "Delivery failed for #{subscription&.account_id}, #{subscription&.callback_url}: #{e.class}: #{e.message}"
+    end
   end
 
   private
