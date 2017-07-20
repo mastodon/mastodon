@@ -29,7 +29,7 @@ export default class NavigationBar extends ImmutablePureComponent {
           <a href='/settings/profile' className='navigation-bar__profile-edit'><FormattedMessage id='navigation_bar.edit_profile' defaultMessage='Edit profile' /></a>
         </div>
 
-        <IconButton title='Close' icon='close' onClick={this.props.onClose} />
+        <IconButton title='' icon='close' onClick={this.props.onClose} />
       </div>
     );
   }
