@@ -20,6 +20,7 @@ import {
   COMPOSE_SPOILERNESS_CHANGE,
   COMPOSE_SPOILER_TEXT_CHANGE,
   COMPOSE_VISIBILITY_CHANGE,
+  COMPOSE_COMPOSING_CHANGE,
   COMPOSE_EMOJI_INSERT,
 } from '../actions/compose';
 import { TIMELINE_DELETE } from '../actions/timelines';
@@ -37,6 +38,7 @@ const initialState = ImmutableMap({
   focusDate: null,
   preselectDate: null,
   in_reply_to: null,
+  is_composing: false,
   is_submitting: false,
   is_uploading: false,
   progress: 0,
@@ -146,7 +148,9 @@ export default function compose(state = initialState, action) {
   case COMPOSE_MOUNT:
     return state.set('mounted', true);
   case COMPOSE_UNMOUNT:
-    return state.set('mounted', false);
+    return state
+      .set('mounted', false)
+      .set('is_composing', false);
   case COMPOSE_SENSITIVITY_CHANGE:
     return state
       .set('sensitive', !state.get('sensitive'))
@@ -169,6 +173,8 @@ export default function compose(state = initialState, action) {
     return state
       .set('text', action.text)
       .set('idempotencyKey', uuid());
+  case COMPOSE_COMPOSING_CHANGE:
+    return state.set('is_composing', action.value);
   case COMPOSE_REPLY:
     return state.withMutations(map => {
       map.set('in_reply_to', action.status.get('id'));

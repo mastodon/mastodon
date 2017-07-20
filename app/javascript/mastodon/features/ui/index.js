@@ -43,6 +43,7 @@ import '../../components/status';
 
 const mapStateToProps = state => ({
   systemFontUi: state.getIn(['meta', 'system_font_ui']),
+  isComposing: state.getIn(['compose', 'is_composing']),
 });
 
 @connect(mapStateToProps)
@@ -52,6 +53,7 @@ export default class UI extends React.PureComponent {
     dispatch: PropTypes.func.isRequired,
     children: PropTypes.node,
     systemFontUi: PropTypes.bool,
+    isComposing: PropTypes.bool,
   };
 
   state = {
@@ -131,6 +133,19 @@ export default class UI extends React.PureComponent {
 
     this.props.dispatch(refreshHomeTimeline());
     this.props.dispatch(refreshNotifications());
+  }
+
+  shouldComponentUpdate (nextProps) {
+    if (nextProps.isComposing !== this.props.isComposing) {
+      // Avoid expensive update just to toggle a class
+      this.node.classList.toggle('is-composing', nextProps.isComposing);
+
+      return false;
+    }
+
+    // Why isn't this working?!?
+    // return super.shouldComponentUpdate(nextProps, nextState);
+    return true;
   }
 
   componentWillUnmount () {
