@@ -103,7 +103,7 @@ export function ReportModal () {
 }
 
 export function SettingsModal () {
-  return import(/* webpackChunkName: "modals/settings_modal" */'../../../../glitch/components/settings/container');
+  return import(/* webpackChunkName: "modals/settings_modal" */'glitch/components/local_settings/container');
 }
 
 //  THESE AREN'T USED BY US; SEE `glitch/components/status` AND `mastodon/features/status`.  //
