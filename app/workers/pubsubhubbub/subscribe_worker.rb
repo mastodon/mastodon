@@ -21,10 +21,8 @@ class Pubsubhubbub::SubscribeWorker
   def perform(account_id)
     account = Account.find(account_id)
     logger.debug "PuSH re-subscribing to #{account.acct}"
-    begin
-      ::SubscribeService.new.call(account)
-    rescue => e
-      raise "Subscribe failed for #{account.acct}: #{e.class}: #{e.message}"
-    end
+    ::SubscribeService.new.call(account)
+  rescue => e
+    raise e.class, "Subscribe failed for #{account&.acct}: #{e.message}"
   end
 end
