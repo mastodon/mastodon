@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Ostatus::Activity::Creation < Ostatus::Activity::Base
+class OStatus::Activity::Creation < OStatus::Activity::Base
   def perform
     if redis.exists("delete_upon_arrival:#{@account.id}:#{id}")
       Rails.logger.debug "Delete for status #{id} was queued, ignoring"

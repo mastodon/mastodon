@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Ostatus::Activity::General < Ostatus::Activity::Base
+class OStatus::Activity::General < OStatus::Activity::Base
   def specialize
     special_class&.new(@xml, @account)
   end
@@ -10,11 +10,11 @@ class Ostatus::Activity::General < Ostatus::Activity::Base
   def special_class
     case verb
     when :post
-      Ostatus::Activity::Post
+      OStatus::Activity::Post
     when :share
-      Ostatus::Activity::Share
+      OStatus::Activity::Share
     when :delete
-      Ostatus::Activity::Deletion
+      OStatus::Activity::Deletion
     end
   end
 end

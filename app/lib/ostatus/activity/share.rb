@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Ostatus::Activity::Share < Ostatus::Activity::Creation
+class OStatus::Activity::Share < OStatus::Activity::Creation
   def perform
     return if reblog.nil?
 
@@ -18,7 +18,7 @@ class Ostatus::Activity::Share < Ostatus::Activity::Creation
   def reblog
     return @reblog if defined? @reblog
 
-    original_status = Ostatus::Activity::Remote.new(object).perform
+    original_status = OStatus::Activity::Remote.new(object).perform
     return if original_status.nil?
 
     @reblog = original_status.reblog? ? original_status.reblog : original_status

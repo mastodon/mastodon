@@ -20,10 +20,10 @@ class ProcessFeedService < BaseService
   end
 
   def process_entry(xml, account)
-    activity = Ostatus::Activity::General.new(xml, account)
+    activity = OStatus::Activity::General.new(xml, account)
     activity.specialize&.perform if activity.status?
   rescue ActiveRecord::RecordInvalid => e
-    Rails.logger.debug "Nothing was saved for #{id} because: #{e}"
+    Rails.logger.debug "Nothing was saved for #{activity.id} because: #{e}"
     nil
   end
 end

@@ -10,6 +10,6 @@ class AuthorizeFollowService < BaseService
   private
 
   def build_xml(follow_request)
-    Ostatus::AtomSerializer.render(Ostatus::AtomSerializer.new.authorize_follow_request_salmon(follow_request))
+    OStatus::AtomSerializer.render(OStatus::AtomSerializer.new.authorize_follow_request_salmon(follow_request))
   end
 end

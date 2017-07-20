@@ -11,6 +11,6 @@ class UnblockService < BaseService
   private
 
   def build_xml(block)
-    Ostatus::AtomSerializer.render(Ostatus::AtomSerializer.new.unblock_salmon(block))
+    OStatus::AtomSerializer.render(OStatus::AtomSerializer.new.unblock_salmon(block))
   end
 end

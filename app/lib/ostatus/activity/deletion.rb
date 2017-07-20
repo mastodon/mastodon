@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Ostatus::Activity::Deletion < Ostatus::Activity::Base
+class OStatus::Activity::Deletion < OStatus::Activity::Base
   def perform
     Rails.logger.debug "Deleting remote status #{id}"
     status = Status.find_by(uri: id, account: @account)

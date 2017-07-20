@@ -36,7 +36,7 @@ function main() {
 
     [].forEach.call(document.querySelectorAll('time.time-ago'), (content) => {
       const datetime = new Date(content.getAttribute('datetime'));
-      content.textContent = relativeFormat.format(datetime);;
+      content.textContent = relativeFormat.format(datetime);
     });
   });
 

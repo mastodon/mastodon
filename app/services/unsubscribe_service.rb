@@ -2,6 +2,8 @@
 
 class UnsubscribeService < BaseService
   def call(account)
+    return unless account.ostatus?
+
     @account  = account
     @response = build_request.perform
 
