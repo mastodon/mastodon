@@ -15,11 +15,9 @@ class Pubsubhubbub::DeliveryWorker
   def perform(subscription_id, payload)
     @subscription = Subscription.find(subscription_id)
     @payload = payload
-    begin
-      process_delivery unless blocked_domain?
-    rescue => e
-      raise "Delivery failed for #{subscription&.callback_url}: #{e.class}: #{e.message}"
-    end
+    process_delivery unless blocked_domain?
+  rescue => e
+    raise Mastodon::WorkerError, "Delivery failed for #{subscription&.callback_url}: #{e.class}: #{e.message}"
   end
 
   private
