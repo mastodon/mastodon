@@ -18,7 +18,7 @@ class Pubsubhubbub::DeliveryWorker
     begin
       process_delivery unless blocked_domain?
     rescue => e
-      raise "Delivery failed for #{subscription&.account_id}, #{subscription&.callback_url}: #{e.class}: #{e.message}"
+      raise "Delivery failed for #{subscription&.callback_url}: #{e.class}: #{e.message}"
     end
   end
 
