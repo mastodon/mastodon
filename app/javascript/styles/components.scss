@@ -1177,6 +1177,10 @@
   .permalink {
     text-decoration: none;
   }
+
+  .icon-button {
+    display: none;
+  }
 }
 
 .navigation-bar__profile {
@@ -3721,5 +3725,24 @@ noscript {
   div {
     font-size: 20px;
     margin: 20px 0;
+  }
+}
+
+@media screen and (max-width: 1024px) and (max-height: 400px) {
+  .tabs-bar,
+  .search {
+    will-change: margin;
+    transition: margin 600ms 100ms;
+  }
+
+  .is-composing {
+    .tabs-bar,
+    .search {
+      margin-top: -50px;
+    }
+
+    .navigation-bar .icon-button {
+      display: block;
+    }
   }
 }
