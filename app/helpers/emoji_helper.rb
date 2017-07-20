@@ -1,19 +1,24 @@
 # frozen_string_literal: true
 
 module EmojiHelper
-  EMOJI_PATTERN = /(?<=[^[:alnum:]:]|\n|^):([\w+-]+):(?=[^[:alnum:]:]|$)/x
-
   def emojify(text)
     return text if text.blank?
 
-    text.gsub(EMOJI_PATTERN) do |match|
-      emoji = Emoji.find_by_alias($1) # rubocop:disable Rails/DynamicFindBy,Style/PerlBackrefs
+    text.gsub(emoji_pattern) do |match|
+      emoji = Emoji.instance.unicode($1) # rubocop:disable Style/PerlBackrefs
 
       if emoji
-        emoji.raw
+        emoji
       else
         match
       end
     end
+  end
+
+  def emoji_pattern
+    @emoji_pattern ||=
+      /(?<=[^[:alnum:]:]|\n|^)
+      (#{Emoji.instance.names.map { |name| Regexp.escape(name) }.join('|')})
+      (?=[^[:alnum:]:]|$)/x
   end
 end
