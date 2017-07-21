@@ -182,6 +182,7 @@ Rails.application.routes.draw do
         collection do
           post :clear
           post :dismiss
+          delete :destroy_multiple
         end
       end
 

@@ -36,7 +36,7 @@ Imports:
 import React from 'react';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
-import { defineMessages, FormattedMessage, injectIntl } from 'react-intl';
+import { FormattedMessage } from 'react-intl';
 import escapeTextContentForBrowser from 'escape-html';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
@@ -45,22 +45,10 @@ import emojify from '../../../mastodon/emoji';
 import Permalink from '../../../mastodon/components/permalink';
 import AccountContainer from '../../../mastodon/containers/account_container';
 
+// Our imports //
+import NotificationOverlayContainer from '../notification/overlay/container';
+
 //  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-
-/*
-
-Inital setup:
--------------
-
-The `messages` constant is used to define any messages that we need
-from inside props.
-
-*/
-
-const messages = defineMessages({
-  deleteNotification :
-    { id: 'status.dismiss_notification', defaultMessage: 'Dismiss notification' },
-});
 
 /*
 
@@ -69,28 +57,13 @@ Implementation:
 
 */
 
-@injectIntl
 export default class NotificationFollow extends ImmutablePureComponent {
 
   static propTypes = {
     id                   : PropTypes.number.isRequired,
-    onDeleteNotification : PropTypes.func.isRequired,
     account              : ImmutablePropTypes.map.isRequired,
-    intl                 : PropTypes.object.isRequired,
+    notification         : ImmutablePropTypes.map.isRequired,
   };
-
-/*
-
-###  `handleNotificationDeleteClick()`
-
-This function just calls our `onDeleteNotification()` prop with the
-notification's `id`.
-
-*/
-
-  handleNotificationDeleteClick = () => {
-    this.props.onDeleteNotification(this.props.id);
-  }
 
 /*
 
@@ -101,26 +74,7 @@ This actually renders the component.
 */
 
   render () {
-    const { account, intl } = this.props;
-
-/*
-
-`dismiss` creates the notification dismissal button. Its title is given
-by `dismissTitle`.
-
-*/
-
-    const dismissTitle = intl.formatMessage(messages.deleteNotification);
-    const dismiss = (
-      <button
-        aria-label={dismissTitle}
-        title={dismissTitle}
-        onClick={this.handleNotificationDeleteClick}
-        className='status__prepend-dismiss-button'
-      >
-        <i className='fa fa-eraser' />
-      </button>
-    );
+    const { account, notification } = this.props;
 
 /*
 
@@ -149,6 +103,7 @@ We can now render our component.
 
     return (
       <div className='notification notification-follow'>
+        <NotificationOverlayContainer notification={notification} />
         <div className='notification__message'>
           <div className='notification__favourite-icon-wrapper'>
             <i className='fa fa-fw fa-user-plus' />
@@ -159,8 +114,6 @@ We can now render our component.
             defaultMessage='{name} followed you'
             values={{ name: link }}
           />
-
-          {dismiss}
         </div>
 
         <AccountContainer id={account.get('id')} withNote={false} />

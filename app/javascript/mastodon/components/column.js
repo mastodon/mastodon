@@ -34,7 +34,12 @@ export default class Column extends React.PureComponent {
     const { children } = this.props;
 
     return (
-      <div role='region' className='column' ref={this.setRef} onWheel={this.handleWheel}>
+      <div
+        role='region'
+        className='column'
+        ref={this.setRef}
+        onWheel={this.handleWheel}
+      >
         {children}
       </div>
     );

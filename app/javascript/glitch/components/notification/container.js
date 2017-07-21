@@ -24,7 +24,6 @@ import { makeGetNotification } from '../../../mastodon/selectors';
 
 //  Our imports  //
 import Notification from '.';
-import { deleteNotification } from '../../../mastodon/actions/notifications';
 
 //  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 
@@ -53,21 +52,4 @@ const makeMapStateToProps = () => {
 
 //  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 
-/*
-
-Dispatch mapping:
------------------
-
-The `mapDispatchToProps()` function maps dispatches to our store to the
-various props of our component. We only need to provide a dispatch for
-deleting notifications.
-
-*/
-
-const mapDispatchToProps = dispatch => ({
-  onDeleteNotification (id) {
-    dispatch(deleteNotification(id));
-  },
-});
-
-export default connect(makeMapStateToProps, mapDispatchToProps)(Notification);
+export default connect(makeMapStateToProps)(Notification);

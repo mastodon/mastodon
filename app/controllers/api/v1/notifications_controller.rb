@@ -33,6 +33,11 @@ class Api::V1::NotificationsController < Api::BaseController
     render_empty
   end
 
+  def destroy_multiple
+    current_account.notifications.where(id: params[:ids]).destroy_all
+    render_empty
+  end
+
   private
 
   def load_notifications

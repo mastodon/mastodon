@@ -1,8 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { FormattedMessage } from 'react-intl';
+import { defineMessages, FormattedMessage, injectIntl } from 'react-intl';
+import ImmutablePropTypes from 'react-immutable-proptypes';
 
+// Glitch imports
+import NotificationPurgeButtonsContainer from '../../glitch/components/column/notif_cleaning_widget/container';
+
+const messages = defineMessages({
+  titleNotifClearing: { id: 'column.notifications_clearing', defaultMessage: 'Dismiss selected notifications:' },
+  titleNotifClearingShort: { id: 'column.notifications_clearing_short', defaultMessage: 'Dismiss selected:' },
+});
+
+@injectIntl
 export default class ColumnHeader extends React.PureComponent {
 
   static contextTypes = {
@@ -13,13 +23,17 @@ export default class ColumnHeader extends React.PureComponent {
     title: PropTypes.node.isRequired,
     icon: PropTypes.string.isRequired,
     active: PropTypes.bool,
+    localSettings : ImmutablePropTypes.map,
     multiColumn: PropTypes.bool,
     showBackButton: PropTypes.bool,
+    notifCleaning: PropTypes.bool, // true only for the notification column
+    notifCleaningActive: PropTypes.bool,
     children: PropTypes.node,
     pinned: PropTypes.bool,
     onPin: PropTypes.func,
     onMove: PropTypes.func,
     onClick: PropTypes.func,
+    intl: PropTypes.object.isRequired,
   };
 
   state = {
@@ -58,8 +72,15 @@ export default class ColumnHeader extends React.PureComponent {
   }
 
   render () {
-    const { title, icon, active, children, pinned, onPin, multiColumn, showBackButton } = this.props;
+    const { intl, icon, active, children, pinned, onPin, multiColumn, showBackButton, notifCleaning, localSettings } = this.props;
     const { collapsed, animating } = this.state;
+
+    let title = this.props.title;
+    if (notifCleaning && this.props.notifCleaningActive) {
+      title = intl.formatMessage(localSettings.getIn(['stretch']) ?
+        messages.titleNotifClearing :
+        messages.titleNotifClearingShort);
+    }
 
     const wrapperClassName = classNames('column-header__wrapper', {
       'active': active,
@@ -130,6 +151,7 @@ export default class ColumnHeader extends React.PureComponent {
           {title}
 
           <div className='column-header__buttons'>
+            {notifCleaning ? (<NotificationPurgeButtonsContainer />) : null}
             {backButton}
             {collapseButton}
           </div>

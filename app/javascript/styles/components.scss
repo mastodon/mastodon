@@ -451,6 +451,63 @@
   cursor: pointer;
 }
 
+.notification__dismiss-overlay {
+  position: absolute;
+  left: 0; top: 0; right: 0; bottom: 0;
+
+  $c1: #00000A;
+  $c2: #222228;
+  background: linear-gradient(to right,
+    rgba($c1, 0.1),
+    rgba($c1, 0.2) 60%,
+    rgba($c2, 1) 90%,
+    rgba($c2, 1));
+
+  z-index: 999;
+  align-items: center;
+  justify-content: flex-end;
+  cursor: pointer;
+
+  display: none;
+
+  &.show {
+    display: flex;
+  }
+
+  // make it brighter
+  &.active {
+    $c: #222931;
+    background: linear-gradient(to right,
+      rgba($c, 0.1),
+      rgba($c, 0.2) 60%,
+      rgba($c, 1) 90%,
+      rgba($c, 1));
+  }
+
+  &:focus {
+    outline: 0 !important;
+  }
+}
+
+.notification__dismiss-overlay__ckbox {
+  border: 2px solid #9baec8;
+  border-radius: 2px;
+  width: 30px;
+  height: 30px;
+  margin-right: 20px;
+  font-size: 20px;
+  color: #c3dcfd;
+  text-shadow: 0 0 5px black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  :focus & {
+    outline: rgb(77, 144, 254) auto 10px;
+    outline: -webkit-focus-ring-color auto 10px;
+  }
+}
+
 // --- Extra clickable area in the status gutter ---
 .ui.wide {
   @mixin xtraspaces-full {
@@ -627,24 +684,14 @@
   position: absolute;
 }
 
-.status__prepend-dismiss-button {
-  border: 0;
-  background: transparent;
-  position: absolute;
-  right: -3px;
-  opacity: 0;
-  transition: opacity 0.1s ease-in-out;
+.notification-follow {
+  position: relative;
 
-  i.fa {
-    color: crimson;
-  }
+  // same like Status
+  border-bottom: 1px solid lighten($ui-base-color, 8%);
 
-  .notification__message:hover & {
-    opacity: 1;
-  }
-
-  .notification-follow & {
-    right: 6px;
+  .account {
+    border-bottom: 0 none;
   }
 }
 
@@ -2405,6 +2452,17 @@ button.icon-button.active i.fa-retweet {
       color: $primary-text-color;
       background: lighten($ui-base-color, 8%);
     }
+  }
+}
+
+.column-header__notif-cleaning-buttons {
+  display: flex;
+  align-items: stretch;
+
+  button {
+    @extend .column-header__button;
+    padding-left: 12px;
+    padding-right: 12px;
   }
 }
 

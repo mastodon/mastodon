@@ -50,7 +50,6 @@ import {
 } from '../../../mastodon/actions/statuses';
 import { initReport } from '../../../mastodon/actions/reports';
 import { openModal } from '../../../mastodon/actions/modal';
-import { deleteNotification } from '../../../mastodon/actions/notifications';
 
 //  Our imports  //
 import Status from '.';
@@ -244,10 +243,6 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
     } else {
       dispatch(muteStatus(status.get('id')));
     }
-  },
-
-  onDeleteNotification (id) {
-    dispatch(deleteNotification(id));
   },
 });
 

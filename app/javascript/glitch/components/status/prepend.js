@@ -23,16 +23,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import escapeTextContentForBrowser from 'escape-html';
-import { defineMessages, injectIntl } from 'react-intl';
 import { FormattedMessage } from 'react-intl';
 
 //  Mastodon imports  //
 import emojify from '../../../mastodon/emoji';
-
-
-const messages = defineMessages({
-  deleteNotification: { id: 'status.dismiss_notification', defaultMessage: 'Dismiss notification' },
-});
 
                             /* * * * */
 
@@ -59,7 +53,6 @@ element.
 
 */
 
-@injectIntl
 export default class StatusPrepend extends React.PureComponent {
 
   static propTypes = {
@@ -67,8 +60,6 @@ export default class StatusPrepend extends React.PureComponent {
     account: ImmutablePropTypes.map.isRequired,
     parseClick: PropTypes.func.isRequired,
     notificationId: PropTypes.number,
-    onDeleteNotification: PropTypes.func,
-    intl: PropTypes.object.isRequired,
   };
 
 /*
@@ -85,10 +76,6 @@ an account link is clicked.
   handleClick = (e) => {
     const { account, parseClick } = this.props;
     parseClick(e, `/accounts/${+account.get('id')}`);
-  }
-
-  handleNotificationDeleteClick = () => {
-    this.props.onDeleteNotification(this.props.notificationId);
   }
 
 /*
@@ -159,19 +146,7 @@ the `<Message>` inside of an <aside>.
 
   render () {
     const { Message } = this;
-    const { type, intl } = this.props;
-
-    const dismissTitle = intl.formatMessage(messages.deleteNotification);
-    const dismiss = this.props.notificationId ? (
-      <button
-        aria-label={dismissTitle}
-        title={dismissTitle}
-        onClick={this.handleNotificationDeleteClick}
-        className='status__prepend-dismiss-button'
-      >
-        <i className='fa fa-eraser' />
-      </button>
-    ) : null;
+    const { type } = this.props;
 
     return !type ? null : (
       <aside className={type === 'reblogged_by' ? 'status__prepend' : 'notification__message'}>
@@ -183,7 +158,6 @@ the `<Message>` inside of an <aside>.
           />
         </div>
         <Message />
-        {dismiss}
       </aside>
     );
   }
