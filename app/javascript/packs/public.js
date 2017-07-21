@@ -88,6 +88,20 @@ function main() {
       noteCounter.textContent = 160 - length(target.value);
     }
   });
+
+  delegate(document, '#account_avatar', 'change', ({ target }) => {
+    const avatar = document.querySelector('.card.compact .avatar img');
+    const [file] = target.files || [];
+    const url = URL.createObjectURL(file);
+    avatar.src = url;
+  });
+
+  delegate(document, '#account_header', 'change', ({ target }) => {
+    const header = document.querySelector('.card.compact');
+    const [file] = target.files || [];
+    const url = URL.createObjectURL(file);
+    header.style.backgroundImage = `url(${url})`;
+  });
 }
 
 loadPolyfills().then(main).catch(error => {
