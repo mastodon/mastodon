@@ -78,7 +78,7 @@ RSpec.describe ResolveRemoteAccountService do
       Thread.new do
         true while wait_for_start
         begin
-          return_values << subject.call('foo@localdomain.com')
+          return_values << ResolveRemoteAccountService.new.call('foo@localdomain.com')
         rescue ActiveRecord::RecordNotUnique
           fail_occurred = true
         end
