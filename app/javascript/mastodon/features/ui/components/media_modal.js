@@ -65,8 +65,6 @@ export default class MediaModal extends ImmutablePureComponent {
     const { media, intl, onClose } = this.props;
 
     const index = this.getIndex();
-    const attachment = media.get(index);
-    const url = attachment.get('url');
 
     let leftNav, rightNav, content;
 
@@ -77,16 +75,18 @@ export default class MediaModal extends ImmutablePureComponent {
       rightNav = <div role='button' tabIndex='0' className='modal-container__nav  modal-container__nav--right' onClick={this.handleNextClick}><i className='fa fa-fw fa-chevron-right' /></div>;
     }
 
-    if (attachment.get('type') === 'image') {
-      content = media.map((image) => {
-        const width  = image.getIn(['meta', 'original', 'width']) || null;
-        const height = image.getIn(['meta', 'original', 'height']) || null;
+    content = media.map((image) => {
+      const width  = image.getIn(['meta', 'original', 'width']) || null;
+      const height = image.getIn(['meta', 'original', 'height']) || null;
 
+      if (image.get('type') === 'image') {
         return <ImageLoader previewSrc={image.get('preview_url')} src={image.get('url')} width={width} height={height} key={image.get('preview_url')} />;
-      }).toArray();
-    } else if (attachment.get('type') === 'gifv') {
-      content = <ExtendedVideoPlayer src={url} muted controls={false} />;
-    }
+      } else if (image.get('type') === 'gifv') {
+        return <ExtendedVideoPlayer src={image.get('url')} muted controls={false} width={width} height={height} key={image.get('preview_url')} />;
+      }
+
+      return null;
+    }).toArray();
 
     return (
       <div className='modal-root__modal media-modal'>

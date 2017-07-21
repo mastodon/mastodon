@@ -29,15 +29,6 @@ fa:
     posts: نوشته
     remote_follow: پیگیری غیرمستقیم
     unfollow: پایان پیگیری
-  activitypub:
-    activity:
-      announce:
-        name: "%{account_name} فعالیتی آغاز کرد."
-      create:
-        name: "%{account_name} یادداشتی نوشت."
-    outbox:
-      name: صندوق خروجی %{account_name}
-      summary: مجموعه‌ای از فعالیت‌های کاربر %{account_name}.
   admin:
     accounts:
       are_you_sure: آیا مطمئن هستید؟
@@ -141,7 +132,6 @@ fa:
     settings:
       contact_information:
         email: یک نشانی ایمیل عمومی وارد کنید
-        label: اطلاعات تماس
         username: یک نام کاربری وارد کنید
       registrations:
         closed_message:
@@ -149,7 +139,6 @@ fa:
           title: پیغام برای فعال‌نبودن ثبت نام
         open:
           title: امکان ثبت نام
-      setting: تنظیمات
       site_description:
         desc_html: روی صفحهٔ اصلی نمایش می‌یابد و همچنین به عنوان تگ‌های HTML.<br>می‌توانید HTML بنویسید, به‌ویژه <code>&lt;a&gt;</code> و <code>&lt;em&gt;</code>.
         title: دربارهٔ سایت

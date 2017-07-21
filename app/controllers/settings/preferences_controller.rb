@@ -35,10 +35,12 @@ class Settings::PreferencesController < ApplicationController
     params.require(:user).permit(
       :setting_default_privacy,
       :setting_default_sensitive,
+      :setting_unfollow_modal,
       :setting_boost_modal,
       :setting_delete_modal,
       :setting_auto_play_gif,
       :setting_system_font_ui,
+      :setting_noindex,
       notification_emails: %i(follow follow_request reblog favourite mention digest),
       interactions: %i(must_be_follower must_be_following)
     )

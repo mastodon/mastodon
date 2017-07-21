@@ -29,15 +29,6 @@ tr:
     posts: Gönderiler
     remote_follow: Uzaktan takip et
     unfollow: Takibi bırak
-  activitypub:
-    activity:
-      announce:
-        name: "%{account_name} bir aktivite paylaştı."
-      create:
-        name: "%{account_name} bir not oluşturdu."
-    outbox:
-      name: "%{account_name}'in Gönderdikleri"
-      summary: "%{account_name}'den gelen aktiviteler."
   admin:
     accounts:
       are_you_sure: Emin misiniz?
@@ -141,7 +132,6 @@ tr:
     settings:
       contact_information:
         email: Herkese açık e-posta adresiniz
-        label: İletişim bilgisi
         username: Bir kullanıcı adı giriniz
       registrations:
         closed_message:
@@ -149,7 +139,6 @@ tr:
           title: Kayıt alımları kapatılma mesajı
         open:
           title: Kayıt alımları
-      setting: Ayar adı
       site_description:
         desc_html: Ana sayfada paragraf olarak görüntülenecek bilgidir.<br>Özellikle <code>&lt;a&gt;</code> ve <code>&lt;em&gt;</code> olmak suretiyle HTML etiketlerini kullanabilirsiniz.
         title: Site açıklaması

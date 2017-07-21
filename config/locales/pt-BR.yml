@@ -29,15 +29,6 @@ pt-BR:
     posts: Posts
     remote_follow: Acesso remoto
     unfollow: Unfollow
-  activitypub:
-    activity:
-      announce:
-        name: "%{account_name} compartilhou uma atividade."
-      create:
-        name: "%{account_name} criou uma nota."
-    outbox:
-      name: "%{account_name}'s Outbox"
-      summary: Uma coleção de atividades do usuário %{account_name}.
   admin:
     accounts:
       are_you_sure: Você tem certeza?
@@ -141,7 +132,6 @@ pt-BR:
     settings:
       contact_information:
         email: Entre um endereço de email público
-        label: Informação de contato
         username: Entre com usuário
       registrations:
         closed_message:
@@ -149,7 +139,6 @@ pt-BR:
           title: Mensagem de registro fechados
         open:
           title: Aberto para registro
-      setting: Preferências
       site_description:
         desc_html: Mostrar como parágrafo e usado como meta tag.<br/>Vôce pode usar tags HTML, em particular <code>&lt;a&gt;</code> e <code>&lt;em&gt;</code>.
         title: Descrição do site

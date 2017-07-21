@@ -1,15 +1,28 @@
 ---
 ja:
   about:
-    about_mastodon: Mastodon は<em>自由でオープンソース</em>なソーシャルネットワークです。商用プラットフォームの代替となる<em>分散型</em>を採用し、あなたのやりとりが一つの会社によって独占されるのを防ぎます。信頼できるインスタンスを選択してください &mdash; どのインスタンスを選んでも、誰とでもやりとりすることができます。 だれでも自分の Mastodon インスタンスを作ることができ、シームレスに<em>ソーシャルネットワーク</em>に参加できます。
+    about_mastodon_html: Mastodon は、オープンなウェブプロトコルを採用した、自由でオープンソースなソーシャルネットワークです。電子メールのような分散型の仕組みを採っています。
     about_this: このインスタンスについて
     business_email: 'ビジネスメールアドレス:'
-    closed_registrations: 現在このインスタンスでの新規登録は受け付けていません。
+    closed_registrations: 現在このインスタンスでの新規登録は受け付けていません。しかし、他のインスタンスにアカウントを作成しても全く同じネットワークに参加することができます。
     contact: 連絡先
     description_headline: "%{domain} とは？"
     domain_count_after: 個のインスタンス
     domain_count_before: 接続中
+    features:
+      humane_approach_body: 他の SNS の失敗から学び、Mastodon はソーシャルメディアが誤った使い方をされることの無いように倫理的な設計を目指しています。
+      humane_approach_title: より思いやりのある設計
+      not_a_product_body: Mastodon は営利的な SNS ではありません。広告や、データの収集・解析は無く、またユーザーの囲い込みもありません。
+      not_a_product_title: あなたは人間であり、商品ではありません
+      real_conversation_body: 好きなように書ける500文字までの投稿や、文章やメディアの内容に警告をつけられる機能で、思い通りに自分自身を表現することができます。
+      real_conversation_title: 本当のコミュニケーションのために
+      within_reach_body: デベロッパーフレンドリーな API により実現された、iOS や Android、その他様々なプラットフォームのためのアプリでどこでも友人とやりとりできます。
+      within_reach_title: いつでも身近に
+    find_another_instance: 他のインスタンスを探す
+    generic_description: "%{domain} は、Mastodon インスタンスの一つです。"
     get_started: 参加する
+    hosted_on: Mastodon hosted on %{domain}
+    learn_more: もっと詳しく
     links: リンク
     other_instances: 他のインスタンス
     source_code: ソースコード
@@ -19,6 +32,7 @@ ja:
     user_count_after: 人
     user_count_before: ユーザー数
     version: バージョン
+    what_is_mastodon: Mastodon とは？
   accounts:
     follow: フォロー
     followers: フォロワー
@@ -30,15 +44,6 @@ ja:
     remote_follow: リモートフォロー
     reserved_username: このユーザー名は予約されています。
     unfollow: フォロー解除
-  activitypub:
-    activity:
-      announce:
-        name: "%{account_name} さんがアクティビティをシェアしました"
-      create:
-        name: "%{account_name} さんがノートを作成しました"
-    outbox:
-      name: "%{account_name} さんの送信トレイ"
-      summary: "%{account_name} さんからのアクティビティコレクション"
   admin:
     accounts:
       are_you_sure: 本当に実行しますか?
@@ -154,27 +159,47 @@ ja:
       view: 表示
     settings:
       contact_information:
-        email: 公開するメールアドレスを入力
-        label: 連絡先情報
-        username: ユーザー名を入力
+        email: ビジネスメールアドレス
+        username: 連絡先のユーザー名
       registrations:
         closed_message:
-          desc_html: 新規登録を停止しているときにフロントページに表示されます。<br>HTMLタグが利用可能です。
+          desc_html: 新規登録を停止しているときにフロントページに表示されます。HTMLタグが使えます
           title: 新規登録停止時のメッセージ
+        deletion:
+          desc_html: 誰でも自分のアカウントを削除できるようにします
+          title: アカウント削除を受け付ける
         open:
+          desc_html: 誰でも自由にアカウントを作成できるようにします
           title: 新規登録を受け付ける
-      setting: 設定
       site_description:
-        desc_html: トップページへの表示と meta タグに使用されます。<br>HTMLタグ、特に<code>&lt;a&gt;</code> と <code>&lt;em&gt;</code>が利用可能です。
-        title: サイトの説明文
+        desc_html: フロントページへの表示と meta タグに使用される紹介文です。HTMLタグ、特に<code>&lt;a&gt;</code> と <code>&lt;em&gt;</code>が使えます。
+        title: インスタンスの説明
       site_description_extended:
-        desc_html: インスタンスについてのページに表示されます。<br>HTMLタグが利用可能です。
-        title: サイトの詳細な説明
+        desc_html: あなたのインスタンスにおける行動規範やルール、ガイドライン、そのほかの記述をする際に最適な場所です。HTMLタグが使えます
+        title: カスタム詳細説明
       site_terms:
-        desc_html: プライバシーポリシーのページに表示されます。<br>HTMLタグが利用可能です。
-        title: サイトのプライバシーポリシー
-      site_title: サイトのタイトル
+        desc_html: あなたは独自のプライバシーポリシーや利用規約、そのほかの法的根拠を書くことができます。HTMLタグが使えます
+        title: カスタム利用規約
+      site_title: インスタンスの名前
+      timeline_preview:
+        desc_html: ランディングページに公開タイムラインを表示します
+        title: タイムラインプレビュー
       title: サイト設定
+    statuses:
+      back_to_account: アカウントページに戻る
+      batch:
+        delete: 削除
+        nsfw_off: NSFW オフ
+        nsfw_on: NSFW オン
+      execute: 実行
+      failed_to_execute: 実行に失敗しました
+      media:
+        hide: メディアを隠す
+        show: メディアを表示
+        title: メディア
+      no_media: メディアなし
+      with_media: メディアあり
+      title: トゥート一覧
     subscriptions:
       callback_url: コールバックURL
       confirmed: 確認済み
@@ -194,9 +219,10 @@ ja:
   applications:
     invalid_url: URLが無効です
   auth:
+    agreement_html: 登録すると <a href="%{rules_path}">利用規約</a> と <a href="%{terms_path}">プライバシーポリシー</a> に同意したことになります。
     change_password: セキュリティ
     delete_account: アカウントの削除
-    delete_account_html: アカウントを削除したい場合、<a href="%{path}">こちら</a>から手続きが行えます。削除前には確認画面があります。
+    delete_account_html: アカウントを削除したい場合、<a href="%{path}">こちら</a> から手続きが行えます。削除する前に、確認画面があります。
     didnt_get_confirmation: 確認メールを受信できませんか？
     forgot_password: パスワードをお忘れですか？
     login: ログイン
@@ -208,6 +234,12 @@ ja:
   authorize_follow:
     error: 残念ながら、リモートアカウントにエラーが発生しました。
     follow: フォロー
+    follow_request: 'あなたは以下のアカウントにフォローリクエストを送信しました:'
+    following: '成功! あなたは現在以下のアカウントをフォローしています:'
+    post_follow:
+      close: またはこのウィンドウを閉じます
+      return: ユーザーのプロフィールに戻る
+      web: Web を開く
     prompt_html: 'あなた（<strong>%{self}</strong>）は以下のアカウントのフォローをリクエストしました:'
     title: "%{acct} をフォロー"
   datetime:
@@ -309,6 +341,21 @@ ja:
     next: 次
     prev: 前
     truncate: "&hellip;"
+  push_notifications:
+    favourite:
+      title: あなたのトゥートが %{name} さんにお気に入り登録されました
+    follow:
+      title: '%{name} さんにフォローされました'
+    mention:
+      action_boost: ブースト
+      action_expand: もっと見る
+      action_favourite: お気に入り
+      title: '%{name} さんから返信がありました'
+    reblog:
+      title: あなたのトゥートが %{name} さんにブーストされました
+    subscribed:
+      body: あなたはプッシュ通知を受け取ることが出来ます
+      title: Subscription が登録されました
   remote_follow:
     acct: あなたの ユーザー名@ドメイン を入力してください
     missing_resource: リダイレクト先が見つかりませんでした
@@ -404,7 +451,7 @@ ja:
 
       <p>このサービスはあなたの個人情報の入力、送信、またはアクセスに際してあなたの個人情報の安全性を維持するために様々なセキュリティ手段をとっています。</p>
 
-      <h3 id="data-retention>データ保持のポリシーはどのようになっていますか？</h3>
+      <h3 id="data-retention">データ保持のポリシーはどのようになっていますか？</h3>
 
       <p>このサービスはデータ保持に関して次のことを行うよう努めます。:</p>
 
@@ -445,7 +492,7 @@ ja:
 
       <p>この文章のライセンスはCC-BY-SAです。このページは2017年5月6日が最終更新です。</p>
 
-      <p>オリジナルの出典 <a href="https://github.com/discourse/discourse">Discourse privacy policy</a>.
+      <p>オリジナルの出典 <a href="https://github.com/discourse/discourse">Discourse privacy policy</a>.</p>
     title: "%{instance} 利用規約・プライバシーポリシー"
   time:
     formats:

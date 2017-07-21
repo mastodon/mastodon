@@ -6,7 +6,7 @@
 #  id                :integer          not null, primary key
 #  account_id        :integer          not null
 #  type              :integer          not null
-#  approved          :boolean
+#  approved          :boolean          default(FALSE), not null
 #  created_at        :datetime         not null
 #  updated_at        :datetime         not null
 #  data_file_name    :string

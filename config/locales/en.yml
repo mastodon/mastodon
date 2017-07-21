@@ -44,15 +44,6 @@ en:
     remote_follow: Remote follow
     reserved_username: The username is reserved
     unfollow: Unfollow
-  activitypub:
-    activity:
-      announce:
-        name: "%{account_name} shared an activity."
-      create:
-        name: "%{account_name} created a note."
-    outbox:
-      name: "%{account_name}'s Outbox"
-      summary: A collection of activities from user %{account_name}.
   admin:
     accounts:
       are_you_sure: Are you sure?
@@ -168,34 +159,47 @@ en:
       view: View
     settings:
       contact_information:
-        email: Enter a public e-mail address
-        label: Contact information
-        username: Enter a username
+        email: Business e-mail
+        username: Contact username
       registrations:
         closed_message:
-          desc_html: Displayed on frontpage when registrations are closed<br>You can use HTML tags
+          desc_html: Displayed on frontpage when registrations are closed. You can use HTML tags
           title: Closed registration message
+        deletion:
+          desc_html: Allow anyone to delete their account
+          title: Open account deletion
         open:
           desc_html: Allow anyone to create an account
           title: Open registration
-        deletion:
-          desc_html: Allow anyone to delete their account
-          title: Open deletion
+      site_description:
+        desc_html: Introductory paragraph on the frontpage and in meta tags. You can use HTML tags, in particular <code>&lt;a&gt;</code> and <code>&lt;em&gt;</code>.
+        title: Instance description
+      site_description_extended:
+        desc_html: A good place for your code of conduct, rules, guidelines and other things that set your instance apart. You can use HTML tags
+        title: Custom extended information
+      site_terms:
+        desc_html: You can write your own privacy policy, terms of service or other legalese. You can use HTML tags
+        title: Custom terms of service
+      site_title: Instance name
       timeline_preview:
         desc_html: Display public timeline on landing page
         title: Timeline preview
-      setting: Setting
-      site_description:
-        desc_html: Displayed as a paragraph on the frontpage and used as a meta tag.<br>You can use HTML tags, in particular <code>&lt;a&gt;</code> and <code>&lt;em&gt;</code>.
-        title: Site description
-      site_description_extended:
-        desc_html: Displayed on extended information page<br>You can use HTML tags
-        title: Extended site description
-      site_terms:
-        desc_html: Displayed on terms page<br>You can use HTML tags
-        title: Privacy policy
-      site_title: Site title
       title: Site Settings
+    statuses:
+      back_to_account: Back to account page
+      batch:
+        delete: Delete
+        nsfw_off: NSFW OFF
+        nsfw_on: NSFW ON
+      execute: Execute
+      failed_to_execute: Failed to execute
+      media:
+        hide: Hide media
+        show: Show media
+        title: Media
+      no_media: No media
+      with_media: With media
+      title: Account statuses
     subscriptions:
       callback_url: Callback URL
       confirmed: Confirmed
@@ -230,12 +234,12 @@ en:
   authorize_follow:
     error: Unfortunately, there was an error looking up the remote account
     follow: Follow
-    following: 'Success! You are now following:'
     follow_request: 'You have sent a follow request to:'
+    following: 'Success! You are now following:'
     post_follow:
-      web: Go to web
-      return: Return to the user's profile
       close: Or, you can just close this window.
+      return: Return to the user's profile
+      web: Go to web
     prompt_html: 'You (<strong>%{self}</strong>) have requested to follow:'
     title: Follow %{acct}
   datetime:
@@ -337,6 +341,21 @@ en:
     next: Next
     prev: Prev
     truncate: "&hellip;"
+  push_notifications:
+    favourite:
+      title: "%{name} favourited your status"
+    follow:
+      title: "%{name} is now following you"
+    mention:
+      action_boost: 'Boost'
+      action_expand: 'Show more'
+      action_favourite: 'Favourite'
+      title: "%{name} mentioned you"
+    reblog:
+      title: "%{name} boosted your status"
+    subscribed:
+      body: "You can now receive push notifications."
+      title: "Subscription registered!"
   remote_follow:
     acct: Enter your username@domain you want to follow from
     missing_resource: Could not find the required redirect URL for your account
@@ -378,6 +397,8 @@ en:
       windows: Windows
       windows_mobile: Windows Mobile
       windows_phone: Windows Phone
+    revoke: Revoke
+    revoke_success: Session successfully revoked
     title: Sessions
   settings:
     authorized_apps: Authorized apps
@@ -473,7 +494,7 @@ en:
 
       <p>This document is CC-BY-SA. It was last updated May 31, 2013.</p>
 
-      <p>Originally adapted from the <a href="https://github.com/discourse/discourse">Discourse privacy policy</a>.
+      <p>Originally adapted from the <a href="https://github.com/discourse/discourse">Discourse privacy policy</a>.</p>
     title: "%{instance} Terms of Service and Privacy Policy"
   time:
     formats:

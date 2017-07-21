@@ -4,4 +4,6 @@ import { start } from 'rails-ujs';
 require('font-awesome/css/font-awesome.css');
 require('mastodon-application-style');
 
+require.context('../images/', true);
+
 start();

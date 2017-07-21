@@ -31,7 +31,7 @@ RSpec.describe Admin::SettingsController, type: :controller do
         it 'cannot create a setting value for a non-admin key' do
           expect(Setting.new_setting_key).to be_blank
 
-          patch :update, params: { new_setting_key: 'New key value' }
+          patch :update, params: { form_admin_settings: { new_setting_key: 'New key value' } }
 
           expect(response).to redirect_to(edit_admin_settings_path)
           expect(Setting.new_setting_key).to be_nil
@@ -40,7 +40,7 @@ RSpec.describe Admin::SettingsController, type: :controller do
         it 'creates a settings value that didnt exist before for eligible key' do
           expect(Setting.site_extended_description).to be_blank
 
-          patch :update, params: { site_extended_description: 'New key value' }
+          patch :update, params: { form_admin_settings: { site_extended_description: 'New key value' } }
 
           expect(response).to redirect_to(edit_admin_settings_path)
           expect(Setting.site_extended_description).to eq 'New key value'
@@ -56,7 +56,7 @@ RSpec.describe Admin::SettingsController, type: :controller do
 
         it 'updates a settings value' do
           Setting.site_title = 'Original'
-          patch :update, params: { site_title: 'New title' }
+          patch :update, params: { form_admin_settings: { site_title: 'New title' } }
 
           expect(response).to redirect_to(edit_admin_settings_path)
           expect(Setting.site_title).to eq 'New title'
@@ -72,7 +72,7 @@ RSpec.describe Admin::SettingsController, type: :controller do
 
         it 'typecasts open_registrations to boolean' do
           Setting.open_registrations = false
-          patch :update, params: { open_registrations: 'true' }
+          patch :update, params: { form_admin_settings: { open_registrations: '1' } }
 
           expect(response).to redirect_to(edit_admin_settings_path)
           expect(Setting.open_registrations).to eq true

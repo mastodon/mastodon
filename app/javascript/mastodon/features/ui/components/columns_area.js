@@ -9,7 +9,7 @@ import { links, getIndex, getLink } from './tabs_bar';
 import BundleContainer from '../containers/bundle_container';
 import ColumnLoading from './column_loading';
 import BundleColumnError from './bundle_column_error';
-import { Compose, Notifications, HomeTimeline, CommunityTimeline, PublicTimeline, HashtagTimeline } from '../../ui/util/async-components';
+import { Compose, Notifications, HomeTimeline, CommunityTimeline, PublicTimeline, HashtagTimeline, FavouritedStatuses } from '../../ui/util/async-components';
 
 const componentMap = {
   'COMPOSE': Compose,
@@ -18,6 +18,7 @@ const componentMap = {
   'PUBLIC': PublicTimeline,
   'COMMUNITY': CommunityTimeline,
   'HASHTAG': HashtagTimeline,
+  'FAVOURITES': FavouritedStatuses,
 };
 
 export default class ColumnsArea extends ImmutablePureComponent {
@@ -32,12 +33,33 @@ export default class ColumnsArea extends ImmutablePureComponent {
     children: PropTypes.node,
   };
 
+  state = {
+    shouldAnimate: false,
+  }
+
+  componentWillReceiveProps() {
+    this.setState({ shouldAnimate: false });
+  }
+
+  componentDidMount() {
+    this.lastIndex = getIndex(this.context.router.history.location.pathname);
+    this.setState({ shouldAnimate: true });
+  }
+
+  componentDidUpdate() {
+    this.lastIndex = getIndex(this.context.router.history.location.pathname);
+    this.setState({ shouldAnimate: true });
+  }
+
   handleSwipe = (index) => {
-    window.requestAnimationFrame(() => {
-      window.requestAnimationFrame(() => {
-        this.context.router.history.push(getLink(index));
-      });
-    });
+    this.pendingIndex = index;
+  }
+
+  handleAnimationEnd = () => {
+    if (typeof this.pendingIndex === 'number') {
+      this.context.router.history.push(getLink(this.pendingIndex));
+      this.pendingIndex = null;
+    }
   }
 
   renderView = (link, index) => {
@@ -66,12 +88,14 @@ export default class ColumnsArea extends ImmutablePureComponent {
 
   render () {
     const { columns, children, singleColumn } = this.props;
+    const { shouldAnimate } = this.state;
 
     const columnIndex = getIndex(this.context.router.history.location.pathname);
+    this.pendingIndex = null;
 
     if (singleColumn) {
       return columnIndex !== -1 ? (
-        <ReactSwipeableViews index={columnIndex} onChangeIndex={this.handleSwipe} animateTransitions={false} style={{ height: '100%' }}>
+        <ReactSwipeableViews index={columnIndex} onChangeIndex={this.handleSwipe} onTransitionEnd={this.handleAnimationEnd} animateTransitions={shouldAnimate} springConfig={{ duration: '400ms', delay: '0s', easeFunction: 'ease' }} style={{ height: '100%' }}>
           {links.map(this.renderView)}
         </ReactSwipeableViews>
       ) : <div className='columns-area'>{children}</div>;
