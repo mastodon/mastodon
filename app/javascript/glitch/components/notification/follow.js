@@ -103,7 +103,6 @@ We can now render our component.
 
     return (
       <div className='notification notification-follow'>
-        <NotificationOverlayContainer notification={notification} />
         <div className='notification__message'>
           <div className='notification__favourite-icon-wrapper'>
             <i className='fa fa-fw fa-user-plus' />
@@ -117,6 +116,7 @@ We can now render our component.
         </div>
 
         <AccountContainer id={account.get('id')} withNote={false} />
+        <NotificationOverlayContainer notification={notification} />
       </div>
     );
   }

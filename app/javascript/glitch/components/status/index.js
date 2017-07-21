@@ -526,10 +526,6 @@ applicable.
     }
   }
 
-  markNotifForDelete = () => {
-    this.setState({ 'markedForDelete' : !this.state.markedForDelete });
-  }
-
 /*
 
 ####  `render()`.
@@ -699,11 +695,6 @@ collapsed.
         }}
         ref={handleRef}
       >
-        {notification ? (
-          <NotificationOverlayContainer
-            notification={notification}
-          />
-        ) : null}
         {prepend && account ? (
           <StatusPrepend
             type={prepend}
@@ -737,6 +728,11 @@ collapsed.
             {...other}
             status={status}
             account={status.get('account')}
+          />
+        ) : null}
+        {notification ? (
+          <NotificationOverlayContainer
+            notification={notification}
           />
         ) : null}
       </article>
