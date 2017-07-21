@@ -9,6 +9,10 @@ export default class DropdownMenu extends React.PureComponent {
   };
 
   static propTypes = {
+    isMobile: PropTypes.func,
+    isModalOpen: PropTypes.bool.isRequired,
+    onModalOpen: PropTypes.func,
+    onModalClose: PropTypes.func,
     icon: PropTypes.string.isRequired,
     items: PropTypes.array.isRequired,
     size: PropTypes.number.isRequired,
@@ -19,6 +23,8 @@ export default class DropdownMenu extends React.PureComponent {
 
   static defaultProps = {
     ariaLabel: 'Menu',
+    isModalOpen: false,
+    isMobile: () => false,
   };
 
   state = {
@@ -34,6 +40,10 @@ export default class DropdownMenu extends React.PureComponent {
     const i = Number(e.currentTarget.getAttribute('data-index'));
     const { action, to } = this.props.items[i];
 
+    if (this.props.isModalOpen) {
+      this.props.onModalClose();
+    }
+
     // Don't call e.preventDefault() when the item uses 'href' property.
     // ex. "Edit profile" on the account action bar
 
@@ -48,7 +58,16 @@ export default class DropdownMenu extends React.PureComponent {
     this.dropdown.hide();
   }
 
-  handleShow = () => this.setState({ expanded: true })
+  handleShow = () => {
+    if (this.props.isMobile(window.innerWidth)) {
+      this.props.onModalOpen({
+        actions: this.props.items,
+        onClick: this.handleClick,
+      });
+    } else {
+      this.setState({ expanded: true });
+    }
+  }
 
   handleHide = () => this.setState({ expanded: false })
 

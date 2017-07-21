@@ -12,6 +12,7 @@ import {
   BoostModal,
   ConfirmationModal,
   ReportModal,
+  ActionsModal,
 } from '../../../features/ui/util/async-components';
 
 const MODAL_COMPONENTS = {
@@ -21,6 +22,7 @@ const MODAL_COMPONENTS = {
   'BOOST': BoostModal,
   'CONFIRM': ConfirmationModal,
   'REPORT': ReportModal,
+  'ACTIONS': ActionsModal,
 };
 
 export default class ModalRoot extends React.PureComponent {

@@ -214,16 +214,18 @@
 }
 
 .dropdown--active::after {
-  content: "";
-  display: block;
-  position: absolute;
-  width: 0;
-  height: 0;
-  border-style: solid;
-  border-width: 0 4.5px 7.8px;
-  border-color: transparent transparent $ui-secondary-color;
-  bottom: 8px;
-  right: 104px;
+  @media screen and (min-width: 1025px) {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 4.5px 7.8px;
+    border-color: transparent transparent $ui-secondary-color;
+    bottom: 8px;
+    right: 104px;
+  }
 }
 
 .invisible {
@@ -3402,7 +3404,8 @@ button.icon-button.active i.fa-retweet {
 
 .boost-modal,
 .confirmation-modal,
-.report-modal {
+.report-modal,
+.actions-modal {
   background: lighten($ui-secondary-color, 8%);
   color: $ui-base-color;
   border-radius: 8px;
@@ -3490,6 +3493,25 @@ button.icon-button.active i.fa-retweet {
 .report-modal__comment {
   .setting-text {
     margin-top: 10px;
+  }
+}
+
+.actions-modal {
+  width: 280px;
+
+  ul {
+    padding: 10px;
+
+    li:not(:empty) {
+      padding: 10px;
+
+      a {
+        display: block;
+        text-align: center;
+        text-decoration: none;
+        color: $ui-base-color;
+      }
+    }
   }
 }
 
