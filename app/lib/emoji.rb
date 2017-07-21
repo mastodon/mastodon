@@ -6,7 +6,7 @@ class Emoji
   include Singleton
 
   def initialize
-    data = Oj.load(File.open(File.join(Rails.root, 'node_modules', 'emojione', 'emoji.json')))
+    data = Oj.load(File.open(File.join(Rails.root, 'lib', 'assets', 'emoji.json')))
 
     @map = {}
 
