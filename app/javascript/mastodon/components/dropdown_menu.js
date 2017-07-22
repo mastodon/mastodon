@@ -9,7 +9,7 @@ export default class DropdownMenu extends React.PureComponent {
   };
 
   static propTypes = {
-    isMobile: PropTypes.func,
+    isUserTouching: PropTypes.func,
     isModalOpen: PropTypes.bool.isRequired,
     onModalOpen: PropTypes.func,
     onModalClose: PropTypes.func,
@@ -24,7 +24,7 @@ export default class DropdownMenu extends React.PureComponent {
   static defaultProps = {
     ariaLabel: 'Menu',
     isModalOpen: false,
-    isMobile: () => false,
+    isUserTouching: () => false,
   };
 
   state = {
@@ -59,7 +59,7 @@ export default class DropdownMenu extends React.PureComponent {
   }
 
   handleShow = () => {
-    if (this.props.isMobile(window.innerWidth)) {
+    if (this.props.isUserTouching()) {
       this.props.onModalOpen({
         actions: this.props.items,
         onClick: this.handleClick,
