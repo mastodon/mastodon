@@ -36,6 +36,11 @@
 #  followers_count         :integer          default(0), not null
 #  following_count         :integer          default(0), not null
 #  last_webfingered_at     :datetime
+#  inbox_url               :string           default(""), not null
+#  outbox_url              :string           default(""), not null
+#  shared_inbox_url        :string           default(""), not null
+#  followers_url           :string           default(""), not null
+#  protocol                :integer          default("ostatus"), not null
 #
 
 class Account < ApplicationRecord
@@ -48,6 +53,8 @@ class Account < ApplicationRecord
   include Attachmentable
   include Remotable
   include EmojiHelper
+
+  enum protocol: [:ostatus, :activitypub]
 
   # Local users
   has_one :user, inverse_of: :account

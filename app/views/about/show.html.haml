@@ -38,9 +38,9 @@
 
       .container.hero
         .floats
-          = image_tag asset_pack_path('cloud2.png'), alt: '', role: 'presentation', class: 'float-1'
-          = image_tag asset_pack_path('cloud3.png'), alt: '', role: 'presentation', class: 'float-2'
-          = image_tag asset_pack_path('cloud4.png'), alt: '', role: 'presentation', class: 'float-3'
+          %div{ role: 'presentation', class: 'float-1' }
+          %div{ role: 'presentation', class: 'float-2' }
+          %div{ role: 'presentation', class: 'float-3' }
         .heading
           %h1
             = @instance_presenter.site_title

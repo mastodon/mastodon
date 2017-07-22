@@ -1,6 +1,8 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import Avatar from '../../../components/avatar';
+import IconButton from '../../../components/icon_button';
 import Permalink from '../../../components/permalink';
 import { FormattedMessage } from 'react-intl';
 import ImmutablePureComponent from 'react-immutable-pure-component';
@@ -9,6 +11,7 @@ export default class NavigationBar extends ImmutablePureComponent {
 
   static propTypes = {
     account: ImmutablePropTypes.map.isRequired,
+    onClose: PropTypes.func.isRequired,
   };
 
   render () {
@@ -25,6 +28,8 @@ export default class NavigationBar extends ImmutablePureComponent {
 
           <a href='/settings/profile' className='navigation-bar__profile-edit'><FormattedMessage id='navigation_bar.edit_profile' defaultMessage='Edit profile' /></a>
         </div>
+
+        <IconButton title='' icon='close' onClick={this.props.onClose} />
       </div>
     );
   }

@@ -26,7 +26,7 @@ describe Pubsubhubbub::DeliveryWorker do
       subscription = Fabricate(:subscription)
 
       stub_request_to_respond_with(subscription, 500)
-      expect { subject.perform(subscription.id, payload) }.to raise_error(/Delivery failed/)
+      expect { subject.perform(subscription.id, payload) }.to raise_error Mastodon::UnexpectedResponseError
     end
 
     it 'updates subscriptions when delivery succeeds' do

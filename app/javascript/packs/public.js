@@ -35,7 +35,7 @@ function main() {
 
     [].forEach.call(document.querySelectorAll('time.time-ago'), (content) => {
       const datetime = new Date(content.getAttribute('datetime'));
-      content.textContent = relativeFormat.format(datetime);;
+      content.textContent = relativeFormat.format(datetime);
     });
   });
 
@@ -87,6 +87,20 @@ function main() {
     if (noteCounter) {
       noteCounter.textContent = 160 - length(target.value);
     }
+  });
+
+  delegate(document, '#account_avatar', 'change', ({ target }) => {
+    const avatar = document.querySelector('.card.compact .avatar img');
+    const [file] = target.files || [];
+    const url = URL.createObjectURL(file);
+    avatar.src = url;
+  });
+
+  delegate(document, '#account_header', 'change', ({ target }) => {
+    const header = document.querySelector('.card.compact');
+    const [file] = target.files || [];
+    const url = URL.createObjectURL(file);
+    header.style.backgroundImage = `url(${url})`;
   });
 }
 

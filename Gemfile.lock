@@ -163,13 +163,13 @@ GEM
     fuubar (2.2.0)
       rspec-core (~> 3.0)
       ruby-progressbar (~> 1.4)
-    gemoji (3.0.0)
     globalid (0.4.0)
       activesupport (>= 4.2.0)
-    goldfinger (1.2.0)
-      addressable (~> 2.4)
-      http (~> 2.0)
-      nokogiri (~> 1.6)
+    goldfinger (2.0.0)
+      addressable (~> 2.5)
+      http (~> 2.2)
+      nokogiri (~> 1.8)
+      oj (~> 3.0)
     hamlit (2.8.4)
       temple (>= 0.8.0)
       thor
@@ -242,6 +242,8 @@ GEM
       nokogiri (>= 1.5.9)
     mail (2.6.6)
       mime-types (>= 1.16, < 4)
+    mario-redis-lock (1.2.0)
+      redis (~> 3, >= 3.0.5)
     method_source (0.8.2)
     microformats (4.0.7)
       json
@@ -520,8 +522,7 @@ DEPENDENCIES
   faker (~> 1.7)
   fast_blank (~> 1.0)
   fuubar (~> 2.2)
-  gemoji (~> 3.0)
-  goldfinger (~> 1.2)
+  goldfinger (~> 2.0)
   hamlit-rails (~> 0.2)
   hiredis (~> 0.6)
   htmlentities (~> 4.3)
@@ -535,6 +536,7 @@ DEPENDENCIES
   letter_opener_web (~> 1.3)
   link_header (~> 0.0)
   lograge (~> 0.5)
+  mario-redis-lock (~> 1.2)
   microformats (~> 4.0)
   mime-types (~> 3.1)
   nokogiri (~> 1.7)
@@ -588,4 +590,4 @@ RUBY VERSION
    ruby 2.4.1p111
 
 BUNDLED WITH
-   1.15.1
+   1.15.2
