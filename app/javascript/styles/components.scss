@@ -3497,17 +3497,21 @@ button.icon-button.active i.fa-retweet {
 }
 
 .actions-modal {
-  width: 280px;
+  .status {
+    overflow-y: auto;
+    max-height: 300px;
+  }
 
   ul {
     padding: 10px;
+    overflow-y: scroll;
+    flex-shrink: 0;
 
     li:not(:empty) {
       padding: 10px;
 
       a {
         display: block;
-        text-align: center;
         text-decoration: none;
         color: $ui-base-color;
       }
