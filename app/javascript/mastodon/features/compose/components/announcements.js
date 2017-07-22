@@ -53,6 +53,10 @@ export default class Announcements extends React.PureComponent {
     this.refresh();
   }
 
+  componentWillUnmount() {
+    this.cancelPolling();
+  }
+
   setPolling = () => {
     this.timer = setTimeout(this.refresh, 60 * 1000);
   }
