@@ -85,9 +85,11 @@ namespace :mastodon do
       MediaAttachment.where(account: Account.silenced).find_each(&:destroy)
     end
 
-    desc 'Remove cached remote media attachments that are older than a week'
+    desc 'Remove cached remote media attachments that are older than NUM_DAYS. By default 7 (week)'
     task remove_remote: :environment do
-      MediaAttachment.where.not(remote_url: '').where('created_at < ?', 1.week.ago).find_each do |media|
+      time_ago = ENV.fetch('NUM_DAYS') { 7 }.to_i.days.ago
+
+      MediaAttachment.where.not(remote_url: '').where('created_at < ?', time_ago).find_each do |media|
         media.file.destroy
         media.type = :unknown
         media.save
@@ -182,6 +184,15 @@ namespace :mastodon do
     end
   end
 
+  namespace :webpush do
+    desc 'Generate VAPID key'
+    task generate_vapid_key: :environment do
+      vapid_key = Webpush.generate_key
+      puts "VAPID_PRIVATE_KEY=#{vapid_key.private_key}"
+      puts "VAPID_PUBLIC_KEY=#{vapid_key.public_key}"
+    end
+  end
+
   namespace :maintenance do
     desc 'Update counter caches'
     task update_counter_caches: :environment do
@@ -221,9 +232,16 @@ namespace :mastodon do
     task prepare_for_foreign_keys: :environment do
       # All the deletes:
       ActiveRecord::Base.connection.execute('DELETE FROM statuses USING statuses s LEFT JOIN accounts a ON a.id = s.account_id WHERE statuses.id = s.id AND a.id IS NULL')
-      ActiveRecord::Base.connection.execute('DELETE FROM account_domain_blocks USING account_domain_blocks adb LEFT JOIN accounts a ON a.id = adb.account_id WHERE account_domain_blocks.id = adb.id AND a.id IS NULL')
-      ActiveRecord::Base.connection.execute('DELETE FROM conversation_mutes USING conversation_mutes cm LEFT JOIN accounts a ON a.id = cm.account_id WHERE conversation_mutes.id = cm.id AND a.id IS NULL')
-      ActiveRecord::Base.connection.execute('DELETE FROM conversation_mutes USING conversation_mutes cm LEFT JOIN conversations c ON c.id = cm.conversation_id WHERE conversation_mutes.id = cm.id AND c.id IS NULL')
+
+      if ActiveRecord::Base.connection.table_exists? :account_domain_blocks
+        ActiveRecord::Base.connection.execute('DELETE FROM account_domain_blocks USING account_domain_blocks adb LEFT JOIN accounts a ON a.id = adb.account_id WHERE account_domain_blocks.id = adb.id AND a.id IS NULL')
+      end
+
+      if ActiveRecord::Base.connection.table_exists? :conversation_mutes
+        ActiveRecord::Base.connection.execute('DELETE FROM conversation_mutes USING conversation_mutes cm LEFT JOIN accounts a ON a.id = cm.account_id WHERE conversation_mutes.id = cm.id AND a.id IS NULL')
+        ActiveRecord::Base.connection.execute('DELETE FROM conversation_mutes USING conversation_mutes cm LEFT JOIN conversations c ON c.id = cm.conversation_id WHERE conversation_mutes.id = cm.id AND c.id IS NULL')
+      end
+
       ActiveRecord::Base.connection.execute('DELETE FROM favourites USING favourites f LEFT JOIN accounts a ON a.id = f.account_id WHERE favourites.id = f.id AND a.id IS NULL')
       ActiveRecord::Base.connection.execute('DELETE FROM favourites USING favourites f LEFT JOIN statuses s ON s.id = f.status_id WHERE favourites.id = f.id AND s.id IS NULL')
       ActiveRecord::Base.connection.execute('DELETE FROM blocks USING blocks b LEFT JOIN accounts a ON a.id = b.account_id WHERE blocks.id = b.id AND a.id IS NULL')

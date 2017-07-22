@@ -1143,8 +1143,8 @@
     top: 0;
     left: 0;
     right: 0;
-    width: 100%;
-    height: 100%;
+    max-width: 100%;
+    max-height: 100%;
     background-image: none;
   }
 
@@ -1176,6 +1176,11 @@
 
   .permalink {
     text-decoration: none;
+  }
+
+  .icon-button {
+    pointer-events: none;
+    opacity: 0;
   }
 }
 
@@ -1312,6 +1317,9 @@
 }
 
 .react-swipeable-view-container > * {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   height: 100%;
 }
 
@@ -1748,6 +1756,7 @@
   width: 100%;
   margin: 0;
   color: $ui-base-color;
+  background: $simple-background-color;
   padding: 10px;
   font-family: inherit;
   font-size: 14px;
@@ -1770,7 +1779,6 @@
 
 .autosuggest-textarea__textarea {
   min-height: 100px;
-  background: $simple-background-color;
   border-radius: 4px 4px 0 0;
   padding-bottom: 0;
   padding-right: 10px + 22px;
@@ -2352,12 +2360,18 @@ button.icon-button.active i.fa-retweet {
   line-height: 24px;
 }
 
-.setting-toggle__label {
+.setting-toggle__label,
+.setting-meta__label {
   color: $ui-primary-color;
   display: inline-block;
   margin-bottom: 14px;
   margin-left: 8px;
   vertical-align: middle;
+}
+
+.setting-meta__label {
+  color: $ui-primary-color;
+  float: right;
 }
 
 .empty-column-indicator,
@@ -2700,6 +2714,7 @@ button.icon-button.active i.fa-retweet {
   margin-left: 2px;
   width: 24px;
   outline: 0;
+  cursor: pointer;
 
   &:active,
   &:focus {
@@ -2951,13 +2966,22 @@ button.icon-button.active i.fa-retweet {
   max-height: 80vh;
   position: relative;
 
+  .extended-video-player,
   img,
   canvas,
   video {
     max-width: 80vw;
     max-height: 80vh;
-    width: 100%;
+    width: auto;
     height: auto;
+    margin: auto;
+  }
+
+  .extended-video-player,
+  video {
+    display: flex;
+    width: 80vw;
+    height: 80vh;
   }
 
   img,
@@ -2965,6 +2989,10 @@ button.icon-button.active i.fa-retweet {
     display: block;
     background: url('../images/void.png') repeat;
     object-fit: contain;
+  }
+
+  .react-swipeable-view-container {
+    max-width: 80vw;
   }
 }
 
@@ -3688,11 +3716,78 @@ button.icon-button.active i.fa-retweet {
   }
 }
 
+::-webkit-scrollbar-thumb {
+  border-radius: 0;
+}
+
 noscript {
   text-align: center;
 
   div {
     font-size: 20px;
     margin: 20px 0;
+  }
+}
+
+@media screen and (max-width: 1024px) and (max-height: 400px) {
+  $duration: 400ms;
+  $delay: 100ms;
+
+  .tabs-bar,
+  .search {
+    will-change: margin-top;
+    transition: margin-top $duration $delay;
+  }
+
+  .navigation-bar {
+    will-change: padding-bottom;
+    transition: padding-bottom $duration $delay;
+  }
+
+  .navigation-bar {
+    & > a:first-child {
+      will-change: margin-top, margin-left, width;
+      transition: margin-top $duration $delay, margin-left $duration ($duration + $delay);
+    }
+
+    & > .navigation-bar__profile-edit {
+      will-change: margin-top;
+      transition: margin-top $duration $delay;
+    }
+
+    & > .icon-button {
+      will-change: opacity;
+      transition: opacity $duration $delay;
+    }
+  }
+
+  .is-composing {
+    .tabs-bar,
+    .search {
+      margin-top: -50px;
+    }
+
+    .navigation-bar {
+      padding-bottom: 0;
+
+      & > a:first-child {
+        margin-top: -50px;
+        margin-left: -40px;
+      }
+
+      .navigation-bar__profile {
+        padding-top: 2px;
+      }
+
+      .navigation-bar__profile-edit {
+        position: absolute;
+        margin-top: -50px;
+      }
+
+      .icon-button {
+        pointer-events: auto;
+        opacity: 1;
+      }
+    }
   }
 }

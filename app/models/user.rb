@@ -17,7 +17,7 @@
 #  last_sign_in_at           :datetime
 #  current_sign_in_ip        :inet
 #  last_sign_in_ip           :inet
-#  admin                     :boolean          default(FALSE)
+#  admin                     :boolean          default(FALSE), not null
 #  confirmation_token        :string
 #  confirmed_at              :datetime
 #  confirmation_sent_at      :datetime
@@ -27,7 +27,7 @@
 #  encrypted_otp_secret_iv   :string
 #  encrypted_otp_secret_salt :string
 #  consumed_timestep         :integer
-#  otp_required_for_login    :boolean
+#  otp_required_for_login    :boolean          default(FALSE), not null
 #  last_emailed_at           :datetime
 #  otp_backup_codes          :string           is an Array
 #  filtered_languages        :string           default([]), not null, is an Array
@@ -83,6 +83,10 @@ class User < ApplicationRecord
     settings.default_sensitive
   end
 
+  def setting_unfollow_modal
+    settings.unfollow_modal
+  end
+
   def setting_boost_modal
     settings.boost_modal
   end
@@ -99,6 +103,10 @@ class User < ApplicationRecord
     settings.system_font_ui
   end
 
+  def setting_noindex
+    settings.noindex
+  end
+
   def activate_session(request)
     session_activations.activate(session_id: SecureRandom.hex,
                                  user_agent: request.user_agent,
@@ -111,6 +119,10 @@ class User < ApplicationRecord
 
   def session_active?(id)
     session_activations.active? id
+  end
+
+  def web_push_subscription(session)
+    session.web_push_subscription.nil? ? nil : session.web_push_subscription.as_payload
   end
 
   protected

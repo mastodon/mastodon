@@ -28,6 +28,6 @@ class FavouriteService < BaseService
   private
 
   def build_xml(favourite)
-    AtomSerializer.render(AtomSerializer.new.favourite_salmon(favourite))
+    OStatus::AtomSerializer.render(OStatus::AtomSerializer.new.favourite_salmon(favourite))
   end
 end

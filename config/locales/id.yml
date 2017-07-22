@@ -29,15 +29,6 @@ id:
     posts: Postingan
     remote_follow: Mengikuti
     unfollow: Berhenti mengikuti
-  activitypub:
-    activity:
-      announce:
-        name: "%{account_name} membagikan aktivitas."
-      create:
-        name: "%{account_name} membuat catatan."
-    outbox:
-      name: "%{account_name} Outbox"
-      summary: Koleksi aktivitas dari pengguna %{account_name}.
   admin:
     accounts:
       are_you_sure: Anda yakin?
@@ -140,7 +131,6 @@ id:
     settings:
       contact_information:
         email: Masukkan alamat email
-        label: Informasi kontak
         username: Masukkan nama pengguna
       registrations:
         closed_message:
@@ -148,7 +138,6 @@ id:
           title: Pesan penutupan pendaftaran
         open:
           title: Pendaftaran terbuka
-      setting: Pengaturan
       site_description:
         desc_html: Ditampilkan sebagai sebuah paragraf di halaman depan dan digunakan sebagai tag meta.<br>Anda bisa menggunakan tag HTML, khususnya <code>&lt;a&gt;</code> dan <code>&lt;em&gt;</code>.
         title: Deskripsi situs

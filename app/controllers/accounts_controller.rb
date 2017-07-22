@@ -2,6 +2,7 @@
 
 class AccountsController < ApplicationController
   include AccountControllerConcern
+  include SignatureVerification
 
   def show
     respond_to do |format|
@@ -12,10 +13,12 @@ class AccountsController < ApplicationController
 
       format.atom do
         @entries = @account.stream_entries.where(hidden: false).with_includes.paginate_by_max_id(20, params[:max_id], params[:since_id])
-        render xml: AtomSerializer.render(AtomSerializer.new.feed(@account, @entries.to_a))
+        render xml: OStatus::AtomSerializer.render(OStatus::AtomSerializer.new.feed(@account, @entries.to_a))
       end
 
-      format.activitystreams2
+      format.json do
+        render json: @account, serializer: ActivityPub::ActorSerializer, adapter: ActivityPub::Adapter
+      end
     end
   end
 

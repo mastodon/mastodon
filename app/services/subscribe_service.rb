@@ -2,34 +2,56 @@
 
 class SubscribeService < BaseService
   def call(account)
-    account.secret = SecureRandom.hex
+    return unless account.ostatus?
 
-    subscription = account.subscription(api_subscription_url(account.id))
-    response     = subscription.subscribe
+    @account        = account
+    @account.secret = SecureRandom.hex
+    @response       = build_request.perform
 
-    if response_failed_permanently?(response)
+    if response_failed_permanently?
       # We're not allowed to subscribe. Fail and move on.
-      account.secret = ''
-      account.save!
-    elsif response_successful?(response)
+      @account.secret = ''
+      @account.save!
+    elsif response_successful?
       # The subscription will be confirmed asynchronously.
-      account.save!
+      @account.save!
     else
       # The response was either a 429 rate limit, or a 5xx error.
       # We need to retry at a later time. Fail loudly!
-      raise "Subscription attempt failed for #{account.acct} (#{account.hub_url}): HTTP #{response.code}"
+      raise Mastodon::UnexpectedResponseError, @response
     end
   end
 
   private
 
+  def build_request
+    request = Request.new(:post, @account.hub_url, form: subscription_params)
+    request.on_behalf_of(some_local_account) if some_local_account
+    request
+  end
+
+  def subscription_params
+    {
+      'hub.topic': @account.remote_url,
+      'hub.mode': 'subscribe',
+      'hub.callback': api_subscription_url(@account.id),
+      'hub.verify': 'async',
+      'hub.secret': @account.secret,
+      'hub.lease_seconds': 7.days.seconds,
+    }
+  end
+
+  def some_local_account
+    @some_local_account ||= Account.local.first
+  end
+
   # Any response in the 3xx or 4xx range, except for 429 (rate limit)
-  def response_failed_permanently?(response)
-    (response.status.redirect? || response.status.client_error?) && !response.status.too_many_requests?
+  def response_failed_permanently?
+    (@response.status.redirect? || @response.status.client_error?) && !@response.status.too_many_requests?
   end
 
   # Any response in the 2xx range
-  def response_successful?(response)
-    response.status.success?
+  def response_successful?
+    @response.status.success?
   end
 end

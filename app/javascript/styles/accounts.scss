@@ -26,6 +26,19 @@
     z-index: 1;
   }
 
+  &.compact {
+    padding: 30px 0;
+    border-radius: 4px;
+
+    .avatar {
+      margin-bottom: 0;
+
+      img {
+        object-fit: cover;
+      }
+    }
+  }
+
   .name {
     display: block;
     font-size: 20px;

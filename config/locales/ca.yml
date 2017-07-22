@@ -30,15 +30,6 @@ ca:
     remote_follow: Seguir
     reserved_username: El nom d'usuari està reservat
     unfollow: Deixar de seguir
-  activitypub:
-    activity:
-      announce:
-        name: "%{account_name} shared an activity."
-      create:
-        name: "%{account_name} created a note."
-    outbox:
-      name: "%{account_name}'s Outbox"
-      summary: A collection of activities from user %{account_name}.
   admin:
     accounts:
       are_you_sure: Estàs segur?
@@ -155,7 +146,6 @@ ca:
     settings:
       contact_information:
         email: Introduir una adreça de correu electrònic pùblica
-        label: Informació de contacte
         username: Introduir un nom d'usuari
       registrations:
         closed_message:
@@ -163,7 +153,6 @@ ca:
           title: Missatge de registre tancat
         open:
           title: Registre obert
-      setting: Ajust
       site_description:
         desc_html: Es mostra com un paràgraf a la pàgina principal i s'utilitza com una etiqueta meta.<br>Pots utilitzar etiquetes HTML, en particular <code>&lt;a&gt;</code> i <code>&lt;em&gt;</code>.
         title: Descripció del lloc

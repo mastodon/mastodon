@@ -29,15 +29,6 @@
     posts: Poster
     remote_follow: Følg fra andre instanser
     unfollow: Avfølg
-  activitypub:
-    activity:
-      announce:
-        name: "%{account_name} delte en aktivitet."
-      create:
-        name: "%{account_name} laget en aktivitet."
-    outbox:
-      name: "%{account_name} sin utboks"
-      summary: En samling aktiviteter fra brukeren %{account_name}.
   admin:
     accounts:
       are_you_sure: Er du sikker?
@@ -142,7 +133,6 @@
     settings:
       contact_information:
         email: Skriv en offentlig e-postadresse
-        label: Kontaktinformasjon
         username: Skriv brukernavn
       registrations:
         closed_message:
@@ -150,7 +140,6 @@
           title: Melding for lukket registrering
         open:
           title: Åpen registrering
-      setting: Innstilling
       site_description:
         desc_html: Vises som et avsnitt på forsiden og brukes som en meta-tagg.<br> Du kan bruke HTML-tagger, spesielt <code>&lt;a&gt;</code> og <code>&lt;em&gt;</code>.
         title: Nettstedsbeskrivelse
