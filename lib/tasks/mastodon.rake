@@ -143,6 +143,13 @@ namespace :mastodon do
     task clear_all: :environment do
       Redis.current.keys('feed:*').each { |key| Redis.current.del(key) }
     end
+
+    desc 'Generates home timelines for users who logged in in the past two weeks'
+    task build: :environment do
+      User.active.includes(:account).find_each do |u|
+        PrecomputeFeedService.new.call(u.account)
+      end
+    end
   end
 
   namespace :emails do
