@@ -1,17 +1,30 @@
 ---
 fr:
   about:
-    about_mastodon: Mastodon est un serveur <em>libre</em> de réseautage social. Alternative <em>décentralisée</em> aux plateformes commerciales, la monopolisation de vos communications par une entreprise unique est évitée. Tout un chacun peut faire tourner Mastodon et participer au <em>réseau social</em> de manière transparente.
-    about_this: À propos de cette instance
+    about_mastodon_html: Mastodon est un réseau social utilisant des formats ouverts et des logiciels libres. Comme le courriel, il est décentralisé.
+    about_this: À propos
     business_email: Courriel professionnel
-    closed_registrations: Les inscriptions sont actuellement fermées sur cette instance.
+    closed_registrations: Les inscriptions sont actuellement fermées sur cette instance. Cependant, vous pouvez trouver une autre instance sur laquelle vous créer un compte et à partir de laquelle vous pourrez accéder au même réseau.
     contact: Contact
     description_headline: Qu’est-ce que %{domain} ?
     domain_count_after: autres instances
     domain_count_before: Connectés à
+    features:
+      humane_approach_body: Ayant appris des échecs d’autres réseaux, Mastodon à l’ambition de combattre l’abus des médias sociaux en effectuant des choix de conception éthiques.
+      humane_approach_title: Une approche plus humaine
+      not_a_product_body: Mastodon n’est pas un réseau commercial. Ici, pas de publicités, pas de prospection de données et pas d’environnement fermés. Il n’y existe aucune autorité centrale.
+      not_a_product_title: Vous êtes une personne, pas un produit
+      real_conversation_body: Avec 500 caractères à votre dispostion, une grande granularité en terme de diffusion et la possibilité de masquer vos messages derrières des avertissements, vous êtes libre de vous exprimer de la manière qui vous plaît.
+      real_conversation_title: Construit pour de vraies conversations
+      within_reach_body: Grâce à l’existence d’un environnement API accueillant pour les développeur·se·s, de multiples applications pour iOS, Android et d’autres plateformes vous permettent de rester en contact avec vos ami·e·s où que vous soyez.
+      within_reach_title: Toujours à portée de main
+    find_another_instance: Trouver une autre instance
+    generic_description: "%{domain} est seulement un serveur du réseau"
     get_started: Rejoindre le réseau
+    hosted_on: Instance Mastodon hébergée par %{domain}
+    learn_more: En savoir plus
     links: Liens
-    other_instances: Autres instances
+    other_instances: Liste des instances
     source_code: Code source
     status_count_after: posts
     status_count_before: Ayant publié
@@ -19,6 +32,7 @@ fr:
     user_count_after: utilisateur⋅ice⋅s
     user_count_before: Abrite
     version: Version
+    what_is_mastodon: Qu’est-ce que Mastodon ?
   accounts:
     follow: Suivre
     followers: Abonné⋅es
@@ -151,15 +165,25 @@ fr:
         closed_message:
           desc_html: Affiché sur la page d’accueil lorsque les inscriptions sont fermées<br>Vous pouvez utiliser des balises HTML
           title: Message de fermeture des inscriptions
+        deletion:
+          desc_html: Permettre à tou·te·s les utilisateur·rice·s de supprimer leur compte
+          title: Autoriser les suppressions de compte
         open:
-          title: Inscriptions
+          desc_html: Autoriser tout le monde à créer un compte
+          title: Ouvrir les inscriptions
       site_description:
         desc_html: Affichée sous la forme d’un paragraphe sur la page d’accueil et utilisée comme balise meta.<br>Vous pouvez utiliser des balises HTML, en particulier <code>&lt;a&gt;</code> et <code>&lt;em&gt;</code>.
         title: Description du site
       site_description_extended:
         desc_html: Affichée sur la page d’informations complémentaires du site<br>Vous pouvez utiliser des balises HTML
         title: Description étendue du site
+      site_terms:
+        desc_html: Affichée sur la page des conditions d’utilisation du site<br>Vous pouvez utiliser des balises HTML
+        title: Politique de confidentialité
       site_title: Titre du site
+      timeline_preview:
+        desc_html: Afficher le fil public sur la page d’accueil
+        title: Prévisualisation du fil global
       title: Paramètres du site
     subscriptions:
       callback_url: URL de rappel
@@ -180,6 +204,7 @@ fr:
   applications:
     invalid_url: L’URL fournie est invalide
   auth:
+    agreement_html: En vous inscrivant, vous souscrivez à <a href="%{rules_path}">nos conditions d’utilisation</a> ainsi qu’à <a href="%{terms_path}">notre politique de confidentialité</a>.
     change_password: Sécurité
     delete_account: Supprimer le compte
     delete_account_html: Si vous désirez supprimer votre compte, vous pouvez cliquer ici. Il vous sera demandé de confirmer cette action.
