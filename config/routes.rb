@@ -88,7 +88,12 @@ Rails.application.routes.draw do
     resources :subscriptions, only: [:index]
     resources :domain_blocks, only: [:index, :new, :create, :show, :destroy]
     resource :settings, only: [:edit, :update]
-    resources :instances, only: [:index]
+    
+    resources :instances, only: [:index] do
+      collection do
+        post :resubscribe
+      end
+    end
 
     resources :reports, only: [:index, :show, :update] do
       resources :reported_statuses, only: [:create, :update, :destroy]
