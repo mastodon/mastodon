@@ -185,7 +185,7 @@ export default class ComposeForm extends ImmutablePureComponent {
             onSuggestionsClearRequested={this.onSuggestionsClearRequested}
             onSuggestionSelected={this.onSuggestionSelected}
             onPaste={onPaste}
-            autoFocus={!showSearch && isMobile(window.innerWidth)}
+            autoFocus={!showSearch && !isMobile(window.innerWidth)}
           />
 
           <EmojiPickerDropdown onPickEmoji={this.handleEmojiPick} />
