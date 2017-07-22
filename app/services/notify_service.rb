@@ -21,7 +21,7 @@ class NotifyService < BaseService
   end
 
   def blocked_favourite?
-    @recipient.muting?(@notification.from_account)
+    false
   end
 
   def blocked_follow?
@@ -41,6 +41,7 @@ class NotifyService < BaseService
     blocked ||= @recipient.id == @notification.from_account.id                                                                       # Skip for interactions with self
     blocked ||= @recipient.domain_blocking?(@notification.from_account.domain) && !@recipient.following?(@notification.from_account) # Skip for domain blocked accounts
     blocked ||= @recipient.blocking?(@notification.from_account)                                                                     # Skip for blocked accounts
+    blocked ||= @recipient.muting?(@notification.from_account)                                                                       # Skip for muted accounts
     blocked ||= (@notification.from_account.silenced? && !@recipient.following?(@notification.from_account))                         # Hellban
     blocked ||= (@recipient.user.settings.interactions['must_be_follower']  && !@notification.from_account.following?(@recipient))   # Options
     blocked ||= (@recipient.user.settings.interactions['must_be_following'] && !@recipient.following?(@notification.from_account))   # Options
