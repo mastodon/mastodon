@@ -18,6 +18,7 @@ import UploadFormContainer from '../containers/upload_form_container';
 import WarningContainer from '../containers/warning_container';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { length } from 'stringz';
+import { isMobile } from '../../../is_mobile';
 
 const messages = defineMessages({
   placeholder: { id: 'compose_form.placeholder', defaultMessage: 'What is on your mind?' },
@@ -184,7 +185,7 @@ export default class ComposeForm extends ImmutablePureComponent {
             onSuggestionsClearRequested={this.onSuggestionsClearRequested}
             onSuggestionSelected={this.onSuggestionSelected}
             onPaste={onPaste}
-            autoFocus={!showSearch}
+            autoFocus={!showSearch && isMobile(window.innerWidth)}
           />
 
           <EmojiPickerDropdown onPickEmoji={this.handleEmojiPick} />
