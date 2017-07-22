@@ -145,6 +145,7 @@ export default class UI extends React.PureComponent {
     if (nextProps.isComposing !== this.props.isComposing) {
       // Avoid expensive update just to toggle a class
       this.node.classList.toggle('is-composing', nextProps.isComposing);
+      this.node.classList.toggle('navbar-under', nextProps.navbarUnder);
 
       return false;
     }
@@ -185,6 +186,7 @@ export default class UI extends React.PureComponent {
     const className = classNames('ui', columnsClass(layout), {
       'wide': isWide,
       'system-font': this.props.systemFontUi,
+      'navbar-under': navbarUnder,
     });
 
     return (

@@ -4227,4 +4227,40 @@ noscript {
       }
     }
   }
+
+  // fixes for the navbar-under mode
+  .is-composing.navbar-under {
+    .search {
+      margin-top: -20px;
+      margin-bottom: -20px;
+      .search__icon {
+        display: none;
+      }
+    }
+  }
+}
+
+// more fixes for the navbar-under mode
+@mixin fix-margins-for-navbar-under {
+  .tabs-bar {
+    margin-top: 0 !important;
+    margin-bottom: -6px !important;
+  }
+}
+
+.single-column.navbar-under {
+  @include fix-margins-for-navbar-under;
+}
+
+.auto-columns.navbar-under {
+  @media screen and (max-width: 360px) {
+    @include fix-margins-for-navbar-under;
+  }
+}
+
+.auto-columns.navbar-under .react-swipeable-view-container .columns-area,
+.single-column.navbar-under .react-swipeable-view-container .columns-area {
+  @media screen and (max-width: 360px) {
+    height: 100% !important;
+  }
 }
