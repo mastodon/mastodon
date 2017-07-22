@@ -53,6 +53,14 @@ export default class LocalSettingsPage extends React.PureComponent {
         >
           <FormattedMessage id='settings.wide_view' defaultMessage='Wide view (Desktop mode only)' />
         </LocalSettingsPageItem>
+        <LocalSettingsPageItem
+          settings={settings}
+          item={['navbar_under']}
+          id='mastodon-settings--navbar_under'
+          onChange={onChange}
+        >
+          <FormattedMessage id='settings.navbar_under' defaultMessage='Navbar at the bottom (Mobile only)' />
+        </LocalSettingsPageItem>
       </div>
     ),
     ({ onChange, settings }) => (

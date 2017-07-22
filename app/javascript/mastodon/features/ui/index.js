@@ -45,6 +45,7 @@ const mapStateToProps = state => ({
   systemFontUi: state.getIn(['meta', 'system_font_ui']),
   layout: state.getIn(['local_settings', 'layout']),
   isWide: state.getIn(['local_settings', 'stretch']),
+  navbarUnder: state.getIn(['local_settings', 'navbar_under']),
   isComposing: state.getIn(['compose', 'is_composing']),
 });
 
@@ -57,6 +58,7 @@ export default class UI extends React.PureComponent {
     layout: PropTypes.string,
     isWide: PropTypes.bool,
     systemFontUi: PropTypes.bool,
+    navbarUnder: PropTypes.bool,
     isComposing: PropTypes.bool,
   };
 
@@ -167,7 +169,7 @@ export default class UI extends React.PureComponent {
 
   render () {
     const { width, draggingOver } = this.state;
-    const { children, layout, isWide } = this.props;
+    const { children, layout, isWide, navbarUnder } = this.props;
 
     const columnsClass = layout => {
       switch (layout) {
@@ -187,7 +189,7 @@ export default class UI extends React.PureComponent {
 
     return (
       <div className={className} ref={this.setRef}>
-        <TabsBar />
+        {navbarUnder ? null : (<TabsBar />)}
         <ColumnsAreaContainer singleColumn={isMobile(width, layout)}>
           <WrappedSwitch>
             <Redirect from='/' to='/getting-started' exact />
@@ -218,6 +220,7 @@ export default class UI extends React.PureComponent {
           </WrappedSwitch>
         </ColumnsAreaContainer>
         <NotificationsContainer />
+        {navbarUnder ? (<TabsBar />) : null}
         <LoadingBarContainer className='loading-bar' />
         <ModalContainer />
         <UploadArea active={draggingOver} onClose={this.closeUploadModal} />

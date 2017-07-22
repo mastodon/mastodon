@@ -51,6 +51,7 @@ These are only used if no previously-saved values exist.
 const initialState = ImmutableMap({
   layout    : 'auto',
   stretch   : true,
+  navbar_under : false,
   collapsed : ImmutableMap({
     enabled     : true,
     auto        : ImmutableMap({
