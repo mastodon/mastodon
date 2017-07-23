@@ -3,7 +3,7 @@
 
 = simple_form_for @domain_block, url: admin_domain_block_path(@domain_block), method: :delete do |f|
 
-  - if (@domain_block.media_only?)
+  - if (@domain_block.noop?)
     = f.input :retroactive,
       as: :hidden,
       input_html: { :value => "0" }

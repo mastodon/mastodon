@@ -22,7 +22,7 @@ RSpec.describe DomainBlock, type: :model do
     end
 
     it 'is invalid if the block does nothing' do
-      domain_block = Fabricate(:domain_block, severity: :media_only)
+      domain_block = Fabricate(:domain_block, severity: :noop)
       domain_block.valid?
       expect(domain_block).to model_have_error_on_field(:severity)
     end

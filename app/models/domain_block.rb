@@ -12,7 +12,7 @@
 #
 
 class DomainBlock < ApplicationRecord
-  enum severity: [:silence, :suspend, :media_only]
+  enum severity: [:silence, :suspend, :noop]
 
   attr_accessor :retroactive
 
