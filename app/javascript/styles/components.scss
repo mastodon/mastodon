@@ -3723,10 +3723,24 @@ button.icon-button.active i.fa-retweet {
 noscript {
   text-align: center;
 
-  div {
-    font-size: 20px;
-    margin: 20px 0;
+  img {
+    width: 200px;
+    opacity: 0.5;
+    animation: flicker 4s infinite;
   }
+
+  div {
+    font-size: 14px;
+    margin: 30px auto;
+    color: $ui-secondary-color;
+    max-width: 400px;
+  }
+}
+
+@keyframes flicker {
+  0% { opacity: 1; }
+  30% { opacity: 0.75; }
+  100% { opacity: 1; }
 }
 
 @media screen and (max-width: 1024px) and (max-height: 400px) {
