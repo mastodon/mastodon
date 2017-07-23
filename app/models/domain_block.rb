@@ -12,11 +12,12 @@
 #
 
 class DomainBlock < ApplicationRecord
-  enum severity: [:silence, :suspend]
+  enum severity: [:silence, :suspend, :media_only]
 
   attr_accessor :retroactive
 
   validates :domain, presence: true, uniqueness: true
+  validates with DomainBlockValidator
 
   has_many :accounts, foreign_key: :domain, primary_key: :domain
   delegate :count, to: :accounts, prefix: true

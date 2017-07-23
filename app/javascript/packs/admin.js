@@ -38,3 +38,16 @@ delegate(document, '.media-spoiler-hide-button', 'click', () => {
     content.classList.remove('media-spoiler-wrapper__visible');
   });
 });
+
+delegate(document, '#domain_block_severity', 'change', ({ target }) => {
+  const element = document.querySelector('#domain_block_reject_media');
+  if (!element) {
+    return;
+  }
+  if (target.options[target.selectedIndex].value !== 'silence') {
+    element.checked = true;
+    element.disabled = true;
+  } else {
+    element.disabled = false;
+  }
+});
