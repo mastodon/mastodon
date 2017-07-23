@@ -120,18 +120,55 @@
 }
 
 .information-board {
-  margin: 20px 0;
-  display: flex;
-  justify-content: space-between;
-  border-top: 1px solid lighten($ui-base-color, 10%);
-  border-bottom: 1px solid lighten($ui-base-color, 10%);
-  padding-right: 14px;
+  background: darken($ui-base-color, 4%);
+  padding: 40px 0;
+
+  .panel {
+    position: absolute;
+    width: 280px;
+    box-sizing: border-box;
+    background: darken($ui-base-color, 8%);
+    padding: 20px;
+    padding-top: 10px;
+    border-radius: 4px 4px 0 0;
+    right: 0;
+    bottom: -40px;
+
+    .panel-header {
+      font-family: 'mastodon-font-display', sans-serif;
+      font-size: 14px;
+      line-height: 24px;
+      font-weight: 500;
+      color: lighten($ui-base-color, 26%);
+      padding-bottom: 5px;
+      margin-bottom: 15px;
+      border-bottom: 1px solid lighten($ui-base-color, 4%);
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
+
+      span {
+        font-weight: 400;
+        color: lighten($ui-base-color, 34%);
+      }
+    }
+  }
+
+  .container {
+    position: relative;
+    padding-right: 280px + 15px;
+  }
+
+  .information-board-sections {
+    display: flex;
+    justify-content: space-between;
+  }
 
   .section {
     flex: 1 0 0;
-    padding: 14px;
-    text-align: right;
     font: 16px/28px 'mastodon-font-sans-serif', sans-serif;
+    text-align: right;
+    padding: 0 15px;
 
     span,
     strong {
@@ -143,7 +180,6 @@
 
       &:last-child {
         color: $ui-secondary-color;
-        font-size: 14px;
       }
     }
 
@@ -337,6 +373,15 @@
     background: $ui-base-color;
     background: linear-gradient(150deg, lighten($ui-base-color, 8%), $ui-base-color);
     position: relative;
+
+    &.compact {
+      background: $ui-base-color;
+      padding-bottom: 15px;
+
+      .hero .heading {
+        padding-bottom: 30px;
+      }
+    }
 
     .mascot-container {
       max-width: 800px;
@@ -541,6 +586,10 @@
     padding: 50px 0;
   }
 
+  .extended-description {
+    padding: 50px 0;
+  }
+
   h3 {
     font-family: 'mastodon-font-display', sans-serif;
     font-size: 16px;
@@ -664,6 +713,29 @@
       padding: 0 20px;
     }
 
+    .information-board {
+      padding-bottom: 20px;
+    }
+
+    .information-board .container {
+      padding-right: 20px;
+
+      .panel {
+        position: static;
+        margin-top: 30px;
+        width: 100%;
+        border-radius: 4px;
+
+        .panel-header {
+          text-align: center;
+        }
+      }
+    }
+
+    .information-board .section {
+      text-align: center;
+    }
+
     .header-wrapper .mascot {
       left: 20px;
     }
@@ -713,6 +785,12 @@
 
       .heading h1 {
         padding: 30px 0;
+      }
+
+      .links .brand img {
+        left: 0;
+        top: 0;
+        margin-right: 0;
       }
 
       .hero {
