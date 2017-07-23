@@ -1298,10 +1298,6 @@
 }
 
 @media screen and (min-width: 360px) {
-  .columns-area {
-    padding: 10px;
-  }
-
   .react-swipeable-view-container .columns-area {
     height: calc(100% - 20px) !important;
   }
@@ -1374,7 +1370,7 @@
 
 @media screen and (min-width: 360px) {
   .tabs-bar {
-    margin: 10px;
+    order: 1;
     margin-bottom: 0;
   }
 
