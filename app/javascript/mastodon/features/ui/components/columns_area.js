@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { injectIntl } from 'react-intl';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
@@ -21,6 +22,7 @@ const componentMap = {
   'FAVOURITES': FavouritedStatuses,
 };
 
+@injectIntl
 export default class ColumnsArea extends ImmutablePureComponent {
 
   static contextTypes = {
@@ -28,6 +30,7 @@ export default class ColumnsArea extends ImmutablePureComponent {
   };
 
   static propTypes = {
+    intl: PropTypes.object.isRequired,
     columns: ImmutablePropTypes.list.isRequired,
     singleColumn: PropTypes.bool,
     children: PropTypes.node,
@@ -64,8 +67,8 @@ export default class ColumnsArea extends ImmutablePureComponent {
 
   renderView = (link, index) => {
     const columnIndex = getIndex(this.context.router.history.location.pathname);
-    const title = link.props.children[1] && React.cloneElement(link.props.children[1]);
-    const icon = (link.props.children[0] || link.props.children).props.className.split(' ')[2].split('-')[1];
+    const title = this.props.intl.formatMessage({ id: link.props['data-preview-title-id'] });
+    const icon = link.props['data-preview-icon'];
 
     const view = (index === columnIndex) ?
       React.cloneElement(this.props.children) :
