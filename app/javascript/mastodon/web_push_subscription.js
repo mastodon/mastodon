@@ -37,7 +37,7 @@ const unsubscribe = ({ registration, subscription }) =>
 
 const sendSubscriptionToBackend = (subscription) =>
   axios.post('/api/web/push_subscriptions', {
-    data: subscription,
+    subscription,
   }).then(response => response.data);
 
 // Last one checks for payload support: https://web-push-book.gauntface.com/chapter-06/01-non-standards-browsers/#no-payload
