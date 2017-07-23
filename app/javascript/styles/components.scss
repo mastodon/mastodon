@@ -1469,10 +1469,13 @@
 
 .tabs-bar {
   display: flex;
-  order: 1;
   background: lighten($ui-base-color, 8%);
   flex: 0 0 auto;
   overflow-y: auto;
+
+  &.bottom {
+    order: 1;
+  }
 }
 
 .tabs-bar__link {

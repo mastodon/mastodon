@@ -104,6 +104,10 @@ class User < ApplicationRecord
     settings.system_font_ui
   end
 
+  def setting_tabs_on_bottom_ui
+    settings.tabs_on_bottom_ui
+  end
+
   def setting_noindex
     settings.noindex
   end

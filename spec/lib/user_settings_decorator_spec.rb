@@ -69,5 +69,12 @@ describe UserSettingsDecorator do
       settings.update(values)
       expect(user.settings['system_font_ui']).to eq false
     end
+
+    it 'updates the user settings value for tabs on bottom in UI' do
+      values = { 'setting_tabs_on_bottom_ui' => '0' }
+
+      settings.update(values)
+      expect(user.settings['tabs_on_bottom_ui']).to eq false
+    end
   end
 end

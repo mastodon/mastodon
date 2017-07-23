@@ -20,6 +20,7 @@ class InitialStateSerializer < ActiveModel::Serializer
       store[:delete_modal]   = object.current_account.user.setting_delete_modal
       store[:auto_play_gif]  = object.current_account.user.setting_auto_play_gif
       store[:system_font_ui] = object.current_account.user.setting_system_font_ui
+      store[:tabs_on_bottom_ui] = object.current_account.user.setting_tabs_on_bottom_ui
     end
 
     store
