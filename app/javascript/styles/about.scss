@@ -505,12 +505,19 @@
         a {
           padding-left: 0;
           color: $white;
+
+          &:hover img {
+            opacity: 1;
+          }
         }
 
         img {
-          width: 32px;
           height: 32px;
           margin-right: 10px;
+          position: relative;
+          top: 4px;
+          left: -10px;
+          opacity: 0.8;
         }
       }
     }
