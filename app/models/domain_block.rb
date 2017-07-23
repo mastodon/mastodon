@@ -17,7 +17,6 @@ class DomainBlock < ApplicationRecord
   attr_accessor :retroactive
 
   validates :domain, presence: true, uniqueness: true
-  validates_with DomainBlockValidator
 
   has_many :accounts, foreign_key: :domain, primary_key: :domain
   delegate :count, to: :accounts, prefix: true

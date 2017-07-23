@@ -20,12 +20,6 @@ RSpec.describe DomainBlock, type: :model do
       domain_block_2.valid?
       expect(domain_block_2).to model_have_error_on_field(:domain)
     end
-
-    it 'is invalid if the block does nothing' do
-      domain_block = Fabricate(:domain_block, severity: :noop)
-      domain_block.valid?
-      expect(domain_block).to model_have_error_on_field(:severity)
-    end
   end
 
   describe 'blocked?' do

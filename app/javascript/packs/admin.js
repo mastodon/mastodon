@@ -8,26 +8,8 @@ function handleDeleteStatus(event) {
   }
 }
 
-function checkDomainBlockSeverity(dropdown) {
-  const checkbox = document.querySelector('#domain_block_reject_media');
-  const div = document.querySelector('div.domain_block_reject_media');
-  if (!checkbox || !div) {
-    return;
-  }
-  if (dropdown.options[dropdown.selectedIndex].value !== 'silence') {
-    checkbox.checked = true;
-    div.style.display = 'none';
-  } else {
-    div.style.display = '';
-  }
-}
-
 [].forEach.call(document.querySelectorAll('.trash-button'), (content) => {
   content.addEventListener('ajax:success', handleDeleteStatus);
-});
-
-[].forEach.call(document.querySelectorAll('#domain_block_severity'), (content) => {
-  checkDomainBlockSeverity(content);
 });
 
 const batchCheckboxClassName = '.batch-checkbox input[type="checkbox"]';
@@ -55,8 +37,4 @@ delegate(document, '.media-spoiler-hide-button', 'click', () => {
   [].forEach.call(document.querySelectorAll('.activity-stream .media-spoiler-wrapper'), (content) => {
     content.classList.remove('media-spoiler-wrapper__visible');
   });
-});
-
-delegate(document, '#domain_block_severity', 'change', ({ target }) => {
-  checkDomainBlockSeverity(target);
 });
