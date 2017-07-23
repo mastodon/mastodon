@@ -1369,11 +1369,6 @@
 }
 
 @media screen and (min-width: 360px) {
-  .tabs-bar {
-    order: 1;
-    margin-bottom: 0;
-  }
-
   .search {
     margin-bottom: 10px;
   }
@@ -1480,6 +1475,7 @@
 
 .tabs-bar {
   display: flex;
+  order: 1;
   background: lighten($ui-base-color, 8%);
   flex: 0 0 auto;
   overflow-y: auto;
