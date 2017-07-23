@@ -1,4 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import classnames from 'classnames';
 import NavLink from 'react-router-dom/NavLink';
 import { FormattedMessage } from 'react-intl';
 
@@ -23,9 +25,21 @@ export function getLink (index) {
 
 export default class TabsBar extends React.Component {
 
+  static propTypes = {
+    bottom: PropTypes.bool,
+  }
+
+  static defaultProps = {
+    bottom: false,
+  }
+
   render () {
+    const className = classnames('tabs-bar', {
+      bottom: this.props.bottom,
+    });
+
     return (
-      <div className='tabs-bar'>
+      <div className={className}>
         {React.Children.toArray(links)}
       </div>
     );

@@ -24,6 +24,7 @@ class UserSettingsDecorator
     user.settings['delete_modal'] = delete_modal_preference
     user.settings['auto_play_gif'] = auto_play_gif_preference
     user.settings['system_font_ui'] = system_font_ui_preference
+    user.settings['tabs_on_bottom_ui'] = tabs_on_bottom_ui_preference
     user.settings['noindex'] = noindex_preference
   end
 
@@ -57,6 +58,10 @@ class UserSettingsDecorator
 
   def system_font_ui_preference
     boolean_cast_setting 'setting_system_font_ui'
+  end
+
+  def tabs_on_bottom_ui_preference
+    boolean_cast_setting 'setting_tabs_on_bottom_ui'
   end
 
   def auto_play_gif_preference
