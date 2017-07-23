@@ -1297,12 +1297,6 @@
   position: relative;
 }
 
-@media screen and (min-width: 360px) {
-  .react-swipeable-view-container .columns-area {
-    height: calc(100% - 20px) !important;
-  }
-}
-
 .react-swipeable-view-container {
   &,
   .columns-area,
@@ -1370,7 +1364,7 @@
 
 @media screen and (min-width: 360px) {
   .search {
-    margin-bottom: 10px;
+    margin: 10px 0;
   }
 }
 
