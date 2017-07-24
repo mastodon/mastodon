@@ -855,6 +855,28 @@
   }
 }
 
+.account__disclaimer {
+  padding: 10px;
+  border-top: 1px solid lighten($ui-base-color, 8%);
+  color: $ui-base-lighter-color;
+
+  strong {
+    font-weight: 500;
+  }
+
+  a {
+    font-weight: 500;
+    color: inherit;
+    text-decoration: underline;
+
+    &:hover,
+    &:focus,
+    &:active {
+      text-decoration: none;
+    }
+  }
+}
+
 .account__header__content {
   color: $ui-primary-color;
   font-size: 14px;
