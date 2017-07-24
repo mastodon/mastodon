@@ -15,6 +15,7 @@ import SensitiveButtonContainer from '../containers/sensitive_button_container';
 import EmojiPickerDropdown from './emoji_picker_dropdown';
 import UploadFormContainer from '../containers/upload_form_container';
 import WarningContainer from '../containers/warning_container';
+import { isMobile } from '../../../is_mobile';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { length } from 'stringz';
 
@@ -179,7 +180,7 @@ export default class ComposeForm extends ImmutablePureComponent {
             onSuggestionsClearRequested={this.onSuggestionsClearRequested}
             onSuggestionSelected={this.onSuggestionSelected}
             onPaste={onPaste}
-            autoFocus={!showSearch}
+            autoFocus={!showSearch && !isMobile(window.innerWidth)}
           />
 
           <EmojiPickerDropdown onPickEmoji={this.handleEmojiPick} />
