@@ -162,14 +162,10 @@ namespace :mastodon do
   end
 
   namespace :users do
-    desc 'Clear out unconfirmed users'
+    desc 'Clear out unconfirmed users (deprecated)'
     task clear: :environment do
-      # Users that never confirmed e-mail never signed in, means they
-      # only have a user record and an avatar record, with no files uploaded
-      User.where('confirmed_at is NULL AND confirmation_sent_at <= ?', 2.days.ago).find_in_batches do |batch|
-        Account.where(id: batch.map(&:account_id)).delete_all
-        User.where(id: batch.map(&:id)).delete_all
-      end
+      # No-op
+      # This task is now executed via sidekiq-scheduler
     end
 
     desc 'List e-mails of all admin users'
