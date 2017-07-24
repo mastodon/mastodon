@@ -1,18 +1,10 @@
 # frozen_string_literal: true
 
 namespace :mastodon do
-  desc 'Execute daily tasks'
+  desc 'Execute daily tasks (deprecated)'
   task :daily do
-    %w(
-      mastodon:feeds:clear
-      mastodon:media:clear
-      mastodon:users:clear
-      mastodon:push:refresh
-    ).each do |task|
-      puts "Starting #{task} at #{Time.now.utc}"
-      Rake::Task[task].invoke
-    end
-    puts "Completed daily tasks at #{Time.now.utc}"
+    # No-op
+    # All of these tasks are now executed via sidekiq-scheduler
   end
 
   desc 'Turn a user into an admin, identified by the USERNAME environment variable'
