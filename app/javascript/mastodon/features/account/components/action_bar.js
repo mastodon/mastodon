@@ -72,7 +72,7 @@ export default class ActionBar extends React.PureComponent {
         <div className='account__disclaimer'>
           <FormattedMessage
             id='account.disclaimer_full'
-            defaultMessage='Information below is the footprint on this instance and may be incomplete.'
+            defaultMessage="Information below may reflect the user's profile incompletely."
           />
           {' '}
           <a target='_blank' rel='noopener' href={account.get('url')}>
