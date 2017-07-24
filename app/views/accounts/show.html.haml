@@ -25,7 +25,7 @@
   - else
     .activity-stream.with-header
       = render partial: 'stream_entries/status', collection: @statuses, as: :status
-  
+
   - if @statuses.size == 20
     .pagination
       = link_to safe_join([t('pagination.next'), fa_icon('chevron-right')], ' '), short_account_url(@account, max_id: @statuses.last.id), class: 'next', rel: 'next'
