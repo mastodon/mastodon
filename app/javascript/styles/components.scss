@@ -2091,6 +2091,32 @@ button.icon-button.active i.fa-retweet {
   }
 }
 
+@media screen and (max-width: 1024px) and (max-height: 800px) {
+  div[aria-hidden="false"][data-swipeable="true"] {
+    .columns-area {
+      will-change: margin-top, padding-top, height;
+      transition: margin-top 200ms, padding-top 200ms, height 200ms;
+    }
+
+    .column-header__wrapper {
+      will-change: margin-top;
+      transition: margin-top 200ms;
+    }
+
+    &.collapsed {
+      .columns-area {
+        margin-top: -10px;
+        padding-top: 0;
+        height: 100% !important;
+      }
+
+      .column-header__wrapper {
+        margin-top: -50px;
+      }
+    }
+  }
+}
+
 .column-header__wrapper {
   position: relative;
   flex: 0 0 auto;

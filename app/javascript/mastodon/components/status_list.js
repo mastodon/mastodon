@@ -33,6 +33,17 @@ export default class StatusList extends ImmutablePureComponent {
   handleScroll = debounce(() => {
     const { scrollTop, scrollHeight, clientHeight } = this.node;
     const offset = scrollHeight - scrollTop - clientHeight;
+
+    if (this._oldScrollPosition) {
+      const isScrollingDown = this._oldScrollPosition > scrollHeight - scrollTop;
+
+      if (scrollTop >= 250 || (!isScrollingDown)) {
+        window.requestAnimationFrame(() => {
+          document.querySelector('div[aria-hidden="false"][data-swipeable="true"]').classList.toggle('collapsed', isScrollingDown);
+        });
+      }
+    }
+
     this._oldScrollPosition = scrollHeight - scrollTop;
 
     if (250 > offset && this.props.onScrollToBottom && !this.props.isLoading) {
@@ -72,6 +83,10 @@ export default class StatusList extends ImmutablePureComponent {
   componentWillUnmount () {
     this.detachScrollListener();
     this.detachIntersectionObserver();
+
+    window.requestAnimationFrame(() => {
+      document.querySelector('div[aria-hidden="false"][data-swipeable="true"]').classList.toggle('collapsed', false);
+    });
   }
 
   attachIntersectionObserver () {
