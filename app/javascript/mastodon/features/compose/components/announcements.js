@@ -48,6 +48,8 @@ export default class Announcements extends React.PureComponent {
     items: Immutable.Map(),
   }
 
+  static isCacheControlled = false
+
   constructor () {
     super();
     this.refresh();
@@ -70,7 +72,13 @@ export default class Announcements extends React.PureComponent {
 
   refresh = () => {
     this.timer = null;
-    axios.get('/system/announcements.json')
+
+    axios.get('/system/announcements.json', {
+      headers: {
+        'Cache-Control': Announcement.isCacheControlled ? '' : 'max-age=0',
+      },
+    })
+    .then(resp => (Announcement.isCacheControlled = !!resp.headers['cache-control'], resp))
     .then(resp => this.setState({ items: Immutable.fromJS(resp.data) }), () => {})
     .then(this.setPolling);
   }
