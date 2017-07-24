@@ -13,7 +13,7 @@
             %span.username @#{contact.contact_account.acct}
     - else
       .owner
-        .avatar= image_tag full_asset_url('avatars/original/missing.png')
+        .avatar= image_tag full_asset_url('avatars/original/missing.png', skip_pipeline: true)
         .name
           %span.display_name= t 'about.contact_missing'
           %span.username= t 'about.contact_unavailable'
