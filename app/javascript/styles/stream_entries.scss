@@ -36,6 +36,18 @@
     }
   }
 
+  &.with-header {
+    .entry {
+      &:first-child {
+        &,
+        .detailed-status.light,
+        .status.light {
+          border-radius: 0;
+        }
+      }
+    }
+  }
+
   .status.light {
     padding: 14px 14px 14px (48px + 14px * 2);
     position: relative;
