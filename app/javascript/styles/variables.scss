@@ -22,7 +22,8 @@ $valid-value-color: $success-green !default;
 $error-value-color: $error-red !default;
 
 // Tell UI to use selected colors
-$ui-base-color: $classic-base-color !default;             // Darkest
-$ui-primary-color: $classic-primary-color !default;       // Lighter
-$ui-secondary-color: $classic-secondary-color !default;   // Lightest
-$ui-highlight-color: $classic-highlight-color !default;   // Vibrant
+$ui-base-color: $classic-base-color !default;                  // Darkest
+$ui-base-lighter-color: lighten($ui-base-color, 26%) !default; // Lighter darkest
+$ui-primary-color: $classic-primary-color !default;            // Lighter
+$ui-secondary-color: $classic-secondary-color !default;        // Lightest
+$ui-highlight-color: $classic-highlight-color !default;        // Vibrant
