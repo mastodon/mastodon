@@ -1,8 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, injectIntl, defineMessages } from 'react-intl';
 
+const messages = defineMessages({
+  show: { id: 'column_header.show_settings', defaultMessage: 'Show settings' },
+  hide: { id: 'column_header.hide_settings', defaultMessage: 'Hide settings' },
+});
+
+@injectIntl
 export default class ColumnHeader extends React.PureComponent {
 
   static contextTypes = {
@@ -10,6 +16,7 @@ export default class ColumnHeader extends React.PureComponent {
   };
 
   static propTypes = {
+    intl: PropTypes.object.isRequired,
     title: PropTypes.node.isRequired,
     icon: PropTypes.string.isRequired,
     active: PropTypes.bool,
@@ -54,7 +61,7 @@ export default class ColumnHeader extends React.PureComponent {
   }
 
   render () {
-    const { title, icon, active, children, pinned, onPin, multiColumn, showBackButton } = this.props;
+    const { title, icon, active, children, pinned, onPin, multiColumn, showBackButton, intl: { formatMessage } } = this.props;
     const { collapsed, animating } = this.state;
 
     const wrapperClassName = classNames('column-header__wrapper', {
@@ -116,7 +123,7 @@ export default class ColumnHeader extends React.PureComponent {
     }
 
     if (children || multiColumn) {
-      collapseButton = <button className={collapsibleButtonClassName} onClick={this.handleToggleClick}><i className='fa fa-sliders' /></button>;
+      collapseButton = <button className={collapsibleButtonClassName} aria-label={formatMessage(collapsed ? messages.show : messages.hide)} onClick={this.handleToggleClick}><i className='fa fa-sliders' /></button>;
     }
 
     return (
