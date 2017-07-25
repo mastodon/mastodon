@@ -646,7 +646,7 @@
     }
   }
 
-  @media screen and (max-width: 800px) {
+  @media screen and (max-width: 840px) {
     .container {
       padding: 0 20px;
     }
@@ -688,6 +688,10 @@
   @media screen and (max-width: 675px) {
     .header-wrapper {
       padding-top: 0;
+
+      &.compact .hero .heading {
+        padding-bottom: 20px;
+      }
     }
 
     .header .container,
@@ -701,15 +705,9 @@
     }
 
     .header {
-      padding-top: 0;
 
       .hero {
         margin-top: 30px;
-        padding: 0;
-
-        .heading {
-          padding-bottom: 20px;
-        }
       }
 
       .floats {
