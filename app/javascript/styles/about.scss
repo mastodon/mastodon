@@ -721,6 +721,16 @@
         text-align: center;
       }
 
+      .nav {
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: space-around;
+      }
+
+      .links a {
+        padding: 12px 8px;
+      }
+
       .heading h1 {
         padding: 30px 0;
       }
