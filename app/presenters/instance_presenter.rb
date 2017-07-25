@@ -35,9 +35,9 @@ class InstancePresenter
   def commit_hash
     current_release_file = Pathname.new('CURRENT_RELEASE').expand_path
     if current_release_file.file?
-        IO.read(current_release_file)
+      IO.read(current_release_file).strip!
     else
-        ""
+      ''
     end
   end
 end

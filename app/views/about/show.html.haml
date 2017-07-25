@@ -73,5 +73,9 @@
   .footer-links
     .container
       %p
-        = link_to t('about.source_code'), 'https://github.com/tootsuite/mastodon'
-        = " (#{@instance_presenter.version_number})"
+        = link_to t('about.source_code'), 'https://github.com/glitch-soc/mastodon'
+        - if @instance_presenter.commit_hash == ""
+          %strong= " (#{@instance_presenter.version_number})"
+        - else
+          %strong= " (#{@instance_presenter.version_number}, "
+          %strong= " #{@instance_presenter.commit_hash})"

@@ -19,7 +19,6 @@ import WarningContainer from '../containers/warning_container';
 import { isMobile } from '../../../is_mobile';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { length } from 'stringz';
-import { isMobile } from '../../../is_mobile';
 
 const messages = defineMessages({
   placeholder: { id: 'compose_form.placeholder', defaultMessage: 'What is on your mind?' },
