@@ -49,7 +49,7 @@ module.exports = merge(sharedConfig, {
         entry: path.join(__dirname, '../../app/javascript/mastodon/service_worker/entry.js'),
         cacheName: 'mastodon',
         output: '../assets/sw.js',
-        publicPath: '/assets/sw.js',
+        publicPath: '/sw.js',
         minify: true,
       },
     }),
