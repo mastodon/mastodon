@@ -272,6 +272,8 @@
 }
 
 .landing-page {
+  $lp-par-color: lighten($ui-base-color, 36%);
+
   .header-wrapper {
     padding-top: 15px;
     background: $ui-base-color;
@@ -284,6 +286,14 @@
 
       .hero .heading {
         padding-bottom: 30px;
+
+        p, li {
+          color: lighten($ui-base-color, 50%);
+        }
+
+        li {
+          margin: 2px 0;
+        }
       }
     }
 
@@ -305,13 +315,6 @@
       left: 60px;
       z-index: 3;
     }
-  }
-
-  p,
-  li {
-    font: inherit;
-    font-weight: inherit;
-    margin-bottom: 0;
   }
 
   .header {
@@ -410,28 +413,24 @@
       }
     }
 
-    ul {
-      list-style: none;
-      margin: 0;
-
-      li {
-        display: inline-block;
-        vertical-align: bottom;
-        margin: 0;
-
-        &:first-child a {
-          padding-left: 0;
-        }
-
-        &:last-child a {
-          padding-right: 0;
-        }
-      }
-    }
-
     .links {
       position: relative;
       z-index: 4;
+
+      ul {
+        list-style: none;
+        margin: 0;
+
+        li {
+          display: inline-block;
+          vertical-align: bottom;
+          margin: 0;
+
+          &:last-child a {
+            padding-right: 0;
+          }
+        }
+      }
 
       a {
         display: flex;
@@ -480,13 +479,11 @@
     padding: 0;
   }
 
-  .learn-more-cta {
-    background: darken($ui-base-color, 4%);
+  .learn-more-cta, .extended-description {
     padding: 50px 0;
-  }
-
-  .extended-description {
-    padding: 50px 0;
+    font-weight: 400;
+    color: $lp-par-color;
+    font: 16px/1.6 'mastodon-font-sans-serif', sans-serif;
 
     ul,
     ol {
@@ -509,15 +506,26 @@
 
     p,
     li {
-      font: 16px/28px 'mastodon-font-sans-serif', sans-serif;
-      font-weight: 400;
-      margin-bottom: 12px;
-      color: $ui-base-lighter-color;
+      color: $lp-par-color;
+      margin-bottom: 6px;
 
       a {
         color: $ui-highlight-color;
         text-decoration: underline;
       }
+    }
+
+    li {
+      margin: 2px 0;
+    }
+  }
+
+  .learn-more-cta {
+    background: darken($ui-base-color, 4%);
+    padding: 50px 0;
+    p {
+      font-size: 16px;
+      line-height: 28px;
     }
   }
 
@@ -532,8 +540,8 @@
 
   p {
     font-size: 16px;
-    line-height: 30px;
-    color: $ui-base-lighter-color;
+    line-height: 28px;
+    color: $lp-par-color;
   }
 
   .features {
