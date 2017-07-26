@@ -10,7 +10,13 @@ describe Pubsubhubbub::DeliveryWorker do
 
   describe 'perform' do
     it 'raises when subscription does not exist' do
-      expect { subject.perform 123, payload }.to raise_error(ActiveRecord::RecordNotFound)
+      expect(
+        begin
+          subject.perform 123, payload
+        rescue Mastodon::WorkerError => e
+          e.cause
+        end
+      ).to be_an(ActiveRecord::RecordNotFound)
     end
 
     it 'does not attempt to deliver when domain blocked' do
@@ -26,7 +32,13 @@ describe Pubsubhubbub::DeliveryWorker do
       subscription = Fabricate(:subscription)
 
       stub_request_to_respond_with(subscription, 500)
-      expect { subject.perform(subscription.id, payload) }.to raise_error Mastodon::UnexpectedResponseError
+      expect(
+        begin
+          subject.perform(subscription.id, payload)
+        rescue Mastodon::WorkerError => e
+          e.cause
+        end
+      ).to be_a(Mastodon::UnexpectedResponseError)
     end
 
     it 'updates subscriptions when delivery succeeds' do
