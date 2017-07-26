@@ -129,13 +129,7 @@ export default class UI extends React.PureComponent {
 
   handleServiceWorkerPostMessage = ({ data }) => {
     if (data.type === 'navigate') {
-      const url = new URL(data.url);
-
-      if (url.host === location.host && url.pathname.startsWith('/web/')) {
-        this.context.router.history.push(url.pathname.slice('/web/'.length - 1));
-      } else {
-        location.href = data.url;
-      }
+      this.context.router.history.push(data.path);
     } else {
       console.warn('Unknown message type:', data.type); // eslint-disable-line no-console
     }
@@ -148,7 +142,10 @@ export default class UI extends React.PureComponent {
     document.addEventListener('drop', this.handleDrop, false);
     document.addEventListener('dragleave', this.handleDragLeave, false);
     document.addEventListener('dragend', this.handleDragEnd, false);
-    navigator.serviceWorker.addEventListener('message', this.handleServiceWorkerPostMessage);
+
+    if ('serviceWorker' in  navigator) {
+      navigator.serviceWorker.addEventListener('message', this.handleServiceWorkerPostMessage);
+    }
 
     this.props.dispatch(refreshHomeTimeline());
     this.props.dispatch(refreshNotifications());
