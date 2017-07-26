@@ -56,6 +56,15 @@ export default class ColumnsArea extends ImmutablePureComponent {
 
   handleSwipe = (index) => {
     this.pendingIndex = index;
+
+    const nextLinkTranslationId = links[index].props['data-preview-title-id'];
+    const currentLinkSelector = '.tabs-bar__link.active';
+    const nextLinkSelector = `.tabs-bar__link[data-preview-title-id="${nextLinkTranslationId}"]`;
+
+    // HACK: Remove the active class from the current link and set it to the next one
+    // React-router does this for us, but too late, feeling laggy.
+    document.querySelector(currentLinkSelector).classList.remove('active');
+    document.querySelector(nextLinkSelector).classList.add('active');
   }
 
   handleAnimationEnd = () => {
