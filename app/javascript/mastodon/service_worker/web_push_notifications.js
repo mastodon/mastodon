@@ -57,12 +57,16 @@ const openUrl = url =>
         .filter(client => /\/web\//.test(client.url))
         .sort(client => client !== 'visible');
 
-      const visibleClient = clientList.find(client => client.visibilityState === 'visible');
-      const focusedClient = clientList.find(client => client.focused);
+      if (webClients.length !== 0) {
+        return webClients[0].focus().then(client => client.postMessage({ type: 'navigate', url }));
+      } else {
+        const visibleClient = clientList.find(client => client.visibilityState === 'visible');
+        const focusedClient = clientList.find(client => client.focused);
 
-      const client = webClients[0] || visibleClient || focusedClient || clientList[0];
+        const client = visibleClient || focusedClient || clientList[0];
 
-      return client.navigate(url).then(client => client.focus());
+        return client.navigate(url).then(client => client.focus());
+      }
     } else {
       return self.clients.openWindow(url);
     }
