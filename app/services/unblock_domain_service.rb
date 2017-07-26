@@ -10,7 +10,7 @@ class UnblockDomainService < BaseService
   end
 
   def process_retroactive_updates
-    blocked_accounts.in_batches.update_all(update_options)
+    blocked_accounts.in_batches.update_all(update_options) unless domain_block.noop?
   end
 
   def blocked_accounts

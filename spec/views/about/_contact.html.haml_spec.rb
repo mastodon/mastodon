@@ -31,12 +31,5 @@ describe 'about/_contact.html.haml' do
 
       expect(rendered).to have_content('admin@example.com')
     end
-
-    it 'does not show info when email is missing' do
-      contact = double(site_contact_email: nil, contact_account: nil)
-      render 'about/contact', contact: contact
-
-      expect(rendered).not_to have_content(I18n.t('about.business_email'))
-    end
   end
 end

@@ -2,8 +2,7 @@
 ja:
   about:
     about_mastodon_html: Mastodon は、オープンなウェブプロトコルを採用した、自由でオープンソースなソーシャルネットワークです。電子メールのような分散型の仕組みを採っています。
-    about_this: このインスタンスについて
-    business_email: 'ビジネスメールアドレス:'
+    about_this: 詳細情報
     closed_registrations: 現在このインスタンスでの新規登録は受け付けていません。しかし、他のインスタンスにアカウントを作成しても全く同じネットワークに参加することができます。
     contact: 連絡先
     description_headline: "%{domain} とは？"
@@ -20,18 +19,14 @@ ja:
       within_reach_title: いつでも身近に
     find_another_instance: 他のインスタンスを探す
     generic_description: "%{domain} は、Mastodon インスタンスの一つです。"
-    get_started: 参加する
     hosted_on: Mastodon hosted on %{domain}
     learn_more: もっと詳しく
-    links: リンク
     other_instances: 他のインスタンス
     source_code: ソースコード
     status_count_after: トゥート
     status_count_before: トゥート数
-    terms: プライバシーポリシー
     user_count_after: 人
     user_count_before: ユーザー数
-    version: バージョン
     what_is_mastodon: Mastodon とは？
   accounts:
     follow: フォロー
@@ -205,7 +200,7 @@ ja:
       confirmed: 確認済み
       expires_in: 期限
       last_delivery: 最終配送
-      title: PubSubHubbub
+      title: WebSub
       topic: トピック
     title: 管理
   admin_mailer:
@@ -272,7 +267,7 @@ ja:
       content: セキュリティ認証に失敗しました。Cookieをブロックしていませんか？
       title: セキュリティ認証に失敗
     '429': リクエストの制限に達しました。
-    noscript: Mastodonを利用する場合はJavaScriptを有効にしてください。
+    noscript: Mastodonのウェブアプリケーションを利用する場合はJavaScriptを有効にしてください。またはあなたのプラットフォーム向けのMastodonネイティブアプリを探すことができます。
   exports:
     blocks: ブロック
     csv: CSV
@@ -400,7 +395,7 @@ ja:
     title: セッション
   settings:
     authorized_apps: 認証済みアプリ
-    back: 戻る
+    back: Mastodon に戻る
     delete: アカウントの削除
     edit_profile: プロフィールを編集
     export: データのエクスポート

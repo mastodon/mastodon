@@ -3,22 +3,17 @@ oc:
   about:
     about_mastodon_html: Mastodon es un malhum social <em>liure e open-source</em>. Una alternativa <em>descentralizada</em> a las plat-formas comercialas, aquò evita qu’una sola companhiá monopolize vòstra comunicacion. Causissètz un servidor que vos fisatz, quina que siasque vòstra causida, podètz interagir amb tot lo mond. Qual que siasque pòt aver son instància Mastodon e participar al <em>malhum social</em> sens cap de problèmas.
     about_this: A prepaus d’aquesta instància
-    business_email: 'Corrièl professional :'
     closed_registrations: Las inscripcions son clavadas pel moment sus aquesta instància.
     contact: Contacte
     description_headline: Qué es %{domain} ?
     domain_count_after: autras instàncias
     domain_count_before: Connectat a
-    get_started: Venètz al malhum
-    links: Ligams
     other_instances: Autras instàncias
     source_code: Còdi font
     status_count_after: estatuts
     status_count_before: qu’an escrich
-    terms: Tèrmes
     user_count_after: personas
     user_count_before: Ostal de
-    version: Version
   accounts:
     follow: Sègre
     followers: Seguidors
@@ -178,14 +173,14 @@ oc:
         show: Mostrar mèdia
         title: Mèdia
       no_media: Cap mèdia
-      with_media: Amb mèdia
       title: Estatuts del compteAccount statuses
+      with_media: Amb mèdia
     subscriptions:
       callback_url: URL de rapèl
       confirmed: Confirmat
       expires_in: S’acaba dins
       last_delivery: Darrièra distribucion
-      title: PubSubHubbub
+      title: WebSub
       topic: Subjècte
     title: Administracion
   application_mailer:
@@ -506,7 +501,7 @@ oc:
       <p>Aqueste document es jos licéncia CC-BY-SA. Darrièra mesa a jorn lo 31 de mai de 2013</p>
 
       <p>Prima adaptacion de la <a href="https://github.com/discourse/discourse">politica de confidencialitat de Discourse</a>.</p>
-    title: "Condicions d’utilizacion e politica de confidencialitat de %{instance}"
+    title: Condicions d’utilizacion e politica de confidencialitat de %{instance}
   time:
     formats:
       default: Lo %d %b de %Y a %Ho%M

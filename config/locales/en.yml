@@ -3,12 +3,16 @@ en:
   about:
     about_mastodon_html: Mastodon is a social network based on open web protocols and free, open-source software. It is decentralized like e-mail.
     about_this: About
-    business_email: 'Business e-mail:'
     closed_registrations: Registrations are currently closed on this instance. However! You can find a different instance to make an account on and get access to the very same network from there.
     contact: Contact
+    contact_missing: Not set
+    contact_unavailable: N/A
     description_headline: What is %{domain}?
     domain_count_after: other instances
     domain_count_before: Connected to
+    extended_description_html: |
+      <h3>A good place for rules</h3>
+      <p>The extended description has not been set up yet.</p>
     features:
       humane_approach_body: Learning from failures of other networks, Mastodon aims to make ethical design choices to combat the misuse of social media.
       humane_approach_title: A more humane approach
@@ -20,18 +24,14 @@ en:
       within_reach_title: Always within reach
     find_another_instance: Find another instance
     generic_description: "%{domain} is one server in the network"
-    get_started: Get started
     hosted_on: Mastodon hosted on %{domain}
     learn_more: Learn more
-    links: Links
     other_instances: Instance list
     source_code: Source code
     status_count_after: statuses
     status_count_before: Who authored
-    terms: Terms
     user_count_after: users
     user_count_before: Home to
-    version: Version
     what_is_mastodon: What is Mastodon?
   accounts:
     follow: Follow
@@ -108,13 +108,15 @@ en:
         create: Create block
         hint: The domain block will not prevent creation of account entries in the database, but will retroactively and automatically apply specific moderation methods on those accounts.
         severity:
-          desc_html: "<strong>Silence</strong> will make the account's posts invisible to anyone who isn't following them. <strong>Suspend</strong> will remove all of the account's content, media, and profile data."
+          desc_html: "<strong>Silence</strong> will make the account's posts invisible to anyone who isn't following them. <strong>Suspend</strong> will remove all of the account's content, media, and profile data. Use <strong>None</strong> if you just want to reject media files."
+          noop: None
           silence: Silence
           suspend: Suspend
         title: New domain block
       reject_media: Reject media files
       reject_media_hint: Removes locally stored media files and refuses to download any in the future. Irrelevant for suspensions
       severities:
+        noop: None
         silence: Silence
         suspend: Suspend
       severity: Severity
@@ -205,7 +207,7 @@ en:
       confirmed: Confirmed
       expires_in: Expires in
       last_delivery: Last delivery
-      title: PubSubHubbub
+      title: WebSub
       topic: Topic
     title: Administration
   admin_mailer:
@@ -272,7 +274,7 @@ en:
       content: Security verification failed. Are you blocking cookies?
       title: Security verification failed
     '429': Throttled
-    noscript: To use Mastodon, please enable JavaScript.
+    noscript: To use the Mastodon web application, please enable JavaScript. Alternatively, find a native app for Mastodon for your platform.
   exports:
     blocks: You block
     csv: CSV

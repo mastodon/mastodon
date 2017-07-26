@@ -1,8 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, injectIntl, defineMessages } from 'react-intl';
 
+const messages = defineMessages({
+  show: { id: 'column_header.show_settings', defaultMessage: 'Show settings' },
+  hide: { id: 'column_header.hide_settings', defaultMessage: 'Hide settings' },
+});
+
+@injectIntl
 export default class ColumnHeader extends React.PureComponent {
 
   static contextTypes = {
@@ -10,10 +16,12 @@ export default class ColumnHeader extends React.PureComponent {
   };
 
   static propTypes = {
+    intl: PropTypes.object.isRequired,
     title: PropTypes.node.isRequired,
     icon: PropTypes.string.isRequired,
     active: PropTypes.bool,
     multiColumn: PropTypes.bool,
+    focusable: PropTypes.bool,
     showBackButton: PropTypes.bool,
     children: PropTypes.node,
     pinned: PropTypes.bool,
@@ -21,6 +29,10 @@ export default class ColumnHeader extends React.PureComponent {
     onMove: PropTypes.func,
     onClick: PropTypes.func,
   };
+
+  static defaultProps = {
+    focusable: true,
+  }
 
   state = {
     collapsed: true,
@@ -54,7 +66,7 @@ export default class ColumnHeader extends React.PureComponent {
   }
 
   render () {
-    const { title, icon, active, children, pinned, onPin, multiColumn, showBackButton } = this.props;
+    const { title, icon, active, children, pinned, onPin, multiColumn, focusable, showBackButton, intl: { formatMessage } } = this.props;
     const { collapsed, animating } = this.state;
 
     const wrapperClassName = classNames('column-header__wrapper', {
@@ -116,12 +128,12 @@ export default class ColumnHeader extends React.PureComponent {
     }
 
     if (children || multiColumn) {
-      collapseButton = <button className={collapsibleButtonClassName} onClick={this.handleToggleClick}><i className='fa fa-sliders' /></button>;
+      collapseButton = <button className={collapsibleButtonClassName} aria-label={formatMessage(collapsed ? messages.show : messages.hide)} aria-pressed={collapsed ? 'false' : 'true'} onClick={this.handleToggleClick}><i className='fa fa-sliders' /></button>;
     }
 
     return (
       <div className={wrapperClassName}>
-        <div role='button heading' tabIndex='0' className={buttonClassName} onClick={this.handleTitleClick}>
+        <div role='heading' tabIndex={focusable && '0'} className={buttonClassName} aria-label={title} onClick={this.handleTitleClick}>
           <i className={`fa fa-fw fa-${icon} column-header__icon`} />
           {title}
 
@@ -131,7 +143,7 @@ export default class ColumnHeader extends React.PureComponent {
           </div>
         </div>
 
-        <div className={collapsibleClassName} onTransitionEnd={this.handleTransitionEnd}>
+        <div className={collapsibleClassName} tabIndex={collapsed && -1} onTransitionEnd={this.handleTransitionEnd}>
           <div className='column-header__collapsible-inner'>
             {(!collapsed || animating) && collapsedContent}
           </div>

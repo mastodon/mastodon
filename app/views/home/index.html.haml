@@ -6,6 +6,7 @@
 
 .app-holder#mastodon{ data: { props: Oj.dump(default_props) } }
   %noscript
-    = image_tag asset_pack_path('logo.svg')
+    = image_tag asset_pack_path('logo.svg'), alt: 'Mastodon'
+
     %div
       = t('errors.noscript')

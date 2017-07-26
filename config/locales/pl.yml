@@ -3,12 +3,16 @@ pl:
   about:
     about_mastodon_html: Mastodon jest wolną i otwartą siecią społecznościową, zdecentralizowaną alternatywą dla zamkniętych, komercyjnych platform.
     about_this: O tej instancji
-    business_email: 'Służbowy adres e-mail:'
     closed_registrations: Rejestracja na tej instancji jest obecnie zamknięta. Możesz jednak zarejestrować się na innej instancji, uzyskując dostęp do tej samej sieci.
     contact: Kontakt
+    contact_missing: Nie ustawiono
+    contact_unavailable: Nie dotyczy
     description_headline: Czym jest %{domain}?
     domain_count_after: instancji
     domain_count_before: Serwer połączony z
+    extended_description_html: |
+      <h3>Dobre miejsce na zasady użytkowania</h3>
+      <p>Nie ustawiono jeszcze szczegółowego opisu</p>
     features:
       humane_approach_body: Nauczeni na błędach innych sieci społecznościowych, zaprojektowaliśmy Mastodona tak, aby uniknąć częstych nadużyć.
       humane_approach_title: Bardziej ludzkie podejście
@@ -20,18 +24,14 @@ pl:
       within_reach_title: Zawsze w Twoim zasięgu
     find_another_instance: Znajdź inną instancję
     generic_description: "%{domain} jest jednym z serwerów sieci"
-    get_started: Rozpocznijmy!
     hosted_on: Mastodon uruchomiony na %{domain}
     learn_more: Dowiedz się więcej
-    links: Odnośniki
     other_instances: Lista instancji
     source_code: Kod źródłowy
     status_count_after: wpisów
     status_count_before: Są autorami
-    terms: Regulamin
     user_count_after: użytkowników
     user_count_before: Z serwera korzysta
-    version: Wersja
     what_is_mastodon: Czym jest Mastodon?
   accounts:
     follow: Śledź
@@ -205,7 +205,7 @@ pl:
       confirmed: Potwierdzono
       expires_in: Wygasa
       last_delivery: Ostatnio doręczono
-      title: PubSubHubbub
+      title: WebSub
       topic: Temat
     title: Administracja
   admin_mailer:
@@ -272,7 +272,7 @@ pl:
       content: Sprawdzanie bezpieczeństwa nie powiodło się. Czy blokujesz pliki cookie?
       title: Sprawdzanie bezpieczeństwa nie powiodło się
     '429': Uduszono
-    noscript: Aby korzystać z Mastodona, włącz JavaScript.
+    noscript: Aby korzystać z aplikacji Mastodon, włącz JavaScript. Możesz też skorzystać z natywnej aplikacji obsługującej Twoje urządzenie.
   exports:
     blocks: Blokujesz
     csv: CSV
@@ -486,7 +486,7 @@ pl:
 
       <h3 id="online">Polityka prywatności dotyczy tylko Internetu</h3>
 
-      <p>Ta polityka prywatności dotyczy jedynie danych zbieranych w Internecie, nie tych, które przechowywane są na Twoim kompurerze, np. pliki cookies.</p>
+      <p>Ta polityka prywatności dotyczy jedynie danych zbieranych w Internecie, nie tych, które przechowywane są na Twoim komputerze, np. pliki cookies.</p>
 
       <h3 id="consent">Wyrażenie zgody</h3>
 

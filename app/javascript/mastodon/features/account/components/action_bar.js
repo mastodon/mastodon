@@ -16,7 +16,6 @@ const messages = defineMessages({
   follow: { id: 'account.follow', defaultMessage: 'Follow' },
   report: { id: 'account.report', defaultMessage: 'Report @{name}' },
   media: { id: 'account.media', defaultMessage: 'Media' },
-  disclaimer: { id: 'account.disclaimer', defaultMessage: 'This user is from another instance. This number may be larger.' },
   blockDomain: { id: 'account.block_domain', defaultMessage: 'Hide everything from {domain}' },
   unblockDomain: { id: 'account.unblock_domain', defaultMessage: 'Unhide {domain}' },
 });
@@ -68,7 +67,19 @@ export default class ActionBar extends React.PureComponent {
 
     if (account.get('acct') !== account.get('username')) {
       const domain = account.get('acct').split('@')[1];
-      extraInfo = <abbr title={intl.formatMessage(messages.disclaimer)}>*</abbr>;
+
+      extraInfo = (
+        <div className='account__disclaimer'>
+          <FormattedMessage
+            id='account.disclaimer_full'
+            defaultMessage="Information below may reflect the user's profile incompletely."
+          />
+          {' '}
+          <a target='_blank' rel='noopener' href={account.get('url')}>
+            <FormattedMessage id='account.view_full_profile' defaultMessage='View full profile' />
+          </a>
+        </div>
+      );
 
       menu.push(null);
 
@@ -80,26 +91,30 @@ export default class ActionBar extends React.PureComponent {
     }
 
     return (
-      <div className='account__action-bar'>
-        <div className='account__action-bar-dropdown'>
-          <DropdownMenu items={menu} icon='bars' size={24} direction='right' />
-        </div>
+      <div>
+        {extraInfo}
 
-        <div className='account__action-bar-links'>
-          <Link className='account__action-bar__tab' to={`/accounts/${account.get('id')}`}>
-            <span><FormattedMessage id='account.posts' defaultMessage='Posts' /></span>
-            <strong><FormattedNumber value={account.get('statuses_count')} /> {extraInfo}</strong>
-          </Link>
+        <div className='account__action-bar'>
+          <div className='account__action-bar-dropdown'>
+            <DropdownMenu items={menu} icon='bars' size={24} direction='right' />
+          </div>
 
-          <Link className='account__action-bar__tab' to={`/accounts/${account.get('id')}/following`}>
-            <span><FormattedMessage id='account.follows' defaultMessage='Follows' /></span>
-            <strong><FormattedNumber value={account.get('following_count')} /> {extraInfo}</strong>
-          </Link>
+          <div className='account__action-bar-links'>
+            <Link className='account__action-bar__tab' to={`/accounts/${account.get('id')}`}>
+              <span><FormattedMessage id='account.posts' defaultMessage='Posts' /></span>
+              <strong><FormattedNumber value={account.get('statuses_count')} /></strong>
+            </Link>
 
-          <Link className='account__action-bar__tab' to={`/accounts/${account.get('id')}/followers`}>
-            <span><FormattedMessage id='account.followers' defaultMessage='Followers' /></span>
-            <strong><FormattedNumber value={account.get('followers_count')} /> {extraInfo}</strong>
-          </Link>
+            <Link className='account__action-bar__tab' to={`/accounts/${account.get('id')}/following`}>
+              <span><FormattedMessage id='account.follows' defaultMessage='Follows' /></span>
+              <strong><FormattedNumber value={account.get('following_count')} /></strong>
+            </Link>
+
+            <Link className='account__action-bar__tab' to={`/accounts/${account.get('id')}/followers`}>
+              <span><FormattedMessage id='account.followers' defaultMessage='Followers' /></span>
+              <strong><FormattedNumber value={account.get('followers_count')} /></strong>
+            </Link>
+          </div>
         </div>
       </div>
     );
