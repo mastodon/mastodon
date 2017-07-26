@@ -3,7 +3,7 @@
 class AfterRemoteFollowWorker
   include Sidekiq::Worker
 
-  sidekiq_options queue: 'pull', retry: 5
+  sidekiq_options queue: 'pull', retry: 5, dead: false
 
   attr_reader :follow
 

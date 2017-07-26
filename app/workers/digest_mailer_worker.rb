@@ -3,7 +3,7 @@
 class DigestMailerWorker
   include Sidekiq::Worker
 
-  sidekiq_options queue: 'mailers'
+  sidekiq_options queue: 'mailers', dead: false
 
   attr_reader :user
 

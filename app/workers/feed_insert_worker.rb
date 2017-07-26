@@ -3,6 +3,8 @@
 class FeedInsertWorker
   include Sidekiq::Worker
 
+  sidekiq_options dead: false
+
   attr_reader :status, :follower
 
   def perform(status_id, follower_id)

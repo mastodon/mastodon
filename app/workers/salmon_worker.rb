@@ -3,7 +3,7 @@
 class SalmonWorker
   include Sidekiq::Worker
 
-  sidekiq_options backtrace: true
+  sidekiq_options backtrace: true, dead: false
 
   def perform(account_id, body)
     ProcessInteractionService.new.call(body, Account.find(account_id))
