@@ -18,6 +18,13 @@ RSpec.describe Block, type: :model do
       block.valid?
       expect(block).to model_have_error_on_field(:target_account)
     end
+
+    it 'is invalid with admin target_account' do
+      target = Fabricate.build(:account, user: Fabricate.build(:user, admin: true))
+      block = Fabricate.build(:block, target_account: target)
+      block.valid?
+      expect(block).to model_have_error_on_field(:target_account)
+    end
   end
 
   it 'removes blocking cache after creation' do
