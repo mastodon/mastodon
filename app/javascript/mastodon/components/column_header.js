@@ -128,7 +128,7 @@ export default class ColumnHeader extends React.PureComponent {
 
     return (
       <div className={wrapperClassName}>
-        <div role='button heading' tabIndex='0' className={buttonClassName} onClick={this.handleTitleClick}>
+        <div role='heading' tabIndex='0' className={buttonClassName} onClick={this.handleTitleClick}>
           <i className={`fa fa-fw fa-${icon} column-header__icon`} />
           {title}
 
