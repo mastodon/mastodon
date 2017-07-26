@@ -38,7 +38,7 @@ export default class Column extends React.PureComponent {
   render () {
     const { heading, icon, children, active, hideHeadingOnMobile } = this.props;
 
-    const showHeading = !hideHeadingOnMobile || (hideHeadingOnMobile && !isMobile(window.innerWidth));
+    const showHeading = heading && (!hideHeadingOnMobile || (hideHeadingOnMobile && !isMobile(window.innerWidth)));
 
     const columnHeaderId = showHeading && heading.replace(/ /g, '-');
     const header = showHeading && (
