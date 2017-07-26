@@ -6,7 +6,7 @@ import StatusContainer from '../containers/status_container';
 import LoadMore from './load_more';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import IntersectionObserverWrapper from '../features/ui/util/intersection_observer_wrapper';
-import { debounce } from 'lodash';
+import { throttle } from 'lodash';
 
 export default class StatusList extends ImmutablePureComponent {
 
@@ -30,13 +30,13 @@ export default class StatusList extends ImmutablePureComponent {
 
   intersectionObserverWrapper = new IntersectionObserverWrapper();
 
-  handleScroll = debounce(() => {
+  handleScroll = throttle(() => {
     if (this.node) {
       const { scrollTop, scrollHeight, clientHeight } = this.node;
       const offset = scrollHeight - scrollTop - clientHeight;
       this._oldScrollPosition = scrollHeight - scrollTop;
 
-      if (250 > offset && this.props.onScrollToBottom && !this.props.isLoading) {
+      if (400 > offset && this.props.onScrollToBottom && !this.props.isLoading) {
         this.props.onScrollToBottom();
       } else if (scrollTop < 100 && this.props.onScrollToTop) {
         this.props.onScrollToTop();
@@ -44,7 +44,7 @@ export default class StatusList extends ImmutablePureComponent {
         this.props.onScroll();
       }
     }
-  }, 200, {
+  }, 150, {
     trailing: true,
   });
 
