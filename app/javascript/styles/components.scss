@@ -1743,12 +1743,6 @@
   &:hover {
     background: lighten($ui-base-color, 11%);
   }
-
-  &.hidden-on-mobile {
-    @media screen and (max-width: 1024px) {
-      display: none;
-    }
-  }
 }
 
 .column-link__icon {
@@ -2129,12 +2123,6 @@ button.icon-button.active i.fa-retweet {
     .column-header__icon {
       color: $ui-highlight-color;
       text-shadow: 0 0 10px rgba($ui-highlight-color, 0.4);
-    }
-  }
-
-  &.hidden-on-mobile {
-    @media screen and (max-width: 1024px) {
-      display: none;
     }
   }
 
