@@ -100,6 +100,7 @@ group :development do
   gem 'brakeman', '~> 3.6', require: false
   gem 'bundler-audit', '~> 0.5', require: false
   gem 'scss_lint', '~> 0.53', require: false
+  gem 'foreman', '~> 0.84'
 
   gem 'capistrano', '~> 3.8'
   gem 'capistrano-rails', '~> 1.2'
