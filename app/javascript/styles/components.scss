@@ -1297,6 +1297,16 @@
   position: relative;
 }
 
+@media screen and (min-width: 360px) {
+  .columns-area {
+    padding: 10px;
+  }
+
+  .react-swipeable-view-container .columns-area {
+    height: calc(100% - 20px) !important;
+  }
+}
+
 .react-swipeable-view-container {
   &,
   .columns-area,
@@ -1363,14 +1373,13 @@
 }
 
 @media screen and (min-width: 360px) {
-  .search {
-    margin: 10px 0;
+  .tabs-bar {
+    margin: 10px;
+    margin-bottom: 0;
   }
-}
 
-@media screen and (min-width: 1024px) {
   .search {
-    margin-top: 0;
+    margin-bottom: 10px;
   }
 }
 
