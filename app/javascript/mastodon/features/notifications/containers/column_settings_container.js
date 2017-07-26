@@ -39,6 +39,10 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
     }));
   },
 
+  onPushNotificationsInfo () {
+    dispatch(openModal('NOTIFICATIONS_INFO'));
+  },
+
 });
 
 export default injectIntl(connect(mapStateToProps, mapDispatchToProps)(ColumnSettings));
