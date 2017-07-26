@@ -30,7 +30,7 @@ export default class TabsBar extends React.Component {
     intl: PropTypes.object.isRequired,
     bottom: PropTypes.bool,
   }
-  
+
   static defaultProps = {
     bottom: false,
   }
