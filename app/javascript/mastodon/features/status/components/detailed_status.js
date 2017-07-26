@@ -11,6 +11,7 @@ import Link from 'react-router-dom/Link';
 import { FormattedDate, FormattedNumber } from 'react-intl';
 import CardContainer from '../containers/card_container';
 import ImmutablePureComponent from 'react-immutable-pure-component';
+import VisibilityIcon from '../../../../glitch/components/status/visibility_icon';
 
 export default class DetailedStatus extends ImmutablePureComponent {
 
@@ -103,7 +104,7 @@ export default class DetailedStatus extends ImmutablePureComponent {
             <span className='detailed-status__favorites'>
               <FormattedNumber value={status.get('favourites_count')} />
             </span>
-          </Link>
+          </Link> · <VisibilityIcon visibility={status.get('visibility')} />
         </div>
       </div>
     );

@@ -29,6 +29,7 @@ import Avatar from '../../../mastodon/components/avatar';
 import AvatarOverlay from '../../../mastodon/components/avatar_overlay';
 import DisplayName from '../../../mastodon/components/display_name';
 import IconButton from '../../../mastodon/components/icon_button';
+import VisibilityIcon from './visibility_icon';
 
                             /* * * * */
 
@@ -94,7 +95,7 @@ icons) into a single `<header>` element.
 export default class StatusHeader extends React.PureComponent {
 
   static propTypes = {
-    account: ImmutablePropTypes.map.isRequired,
+    status: ImmutablePropTypes.map.isRequired,
     friend: ImmutablePropTypes.map,
     mediaIcon: PropTypes.string,
     collapsible: PropTypes.bool,
@@ -102,7 +103,6 @@ export default class StatusHeader extends React.PureComponent {
     parseClick: PropTypes.func.isRequired,
     setExpansion: PropTypes.func.isRequired,
     intl: PropTypes.object.isRequired,
-    visibility: PropTypes.string,
   };
 
 /*
@@ -135,8 +135,8 @@ status.
 */
 
   handleAccountClick = (e) => {
-    const { account, parseClick } = this.props;
-    parseClick(e, `/accounts/${+account.get('id')}`);
+    const { status, parseClick } = this.props;
+    parseClick(e, `/accounts/${+status.getIn(['account', 'id'])}`);
   }
 
 /*
@@ -150,21 +150,15 @@ has a very straightforward rendering process.
 
   render () {
     const {
-      account,
+      status,
       friend,
       mediaIcon,
       collapsible,
       collapsed,
       intl,
-      visibility,
     } = this.props;
 
-    const visibilityClass = {
-      public: 'globe',
-      unlisted: 'unlock-alt',
-      private: 'lock',
-      direct: 'envelope',
-    }[visibility];
+    const account = status.get('account');
 
     return (
       <header className='status__info'>
@@ -186,11 +180,7 @@ it is rendered as a float.
             />
           ) : null}
           {(
-            <i
-              className={`status__visibility-icon fa fa-fw fa-${visibilityClass}`}
-              title={intl.formatMessage(messages[visibility])}
-              aria-hidden='true'
-            />
+            <VisibilityIcon visibility={status.get('visibility')} />
           )}
           {collapsible ? (
             <IconButton

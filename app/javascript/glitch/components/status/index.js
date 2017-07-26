@@ -704,10 +704,9 @@ collapsed.
           />
         ) : null}
         <StatusHeader
-          account={status.get('account')}
+          status={status}
           friend={account}
           mediaIcon={mediaIcon}
-          visibility={status.get('visibility')}
           collapsible={settings.getIn(['collapsed', 'enabled'])}
           collapsed={isExpanded === false}
           parseClick={parseClick}
