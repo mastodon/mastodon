@@ -1,35 +1,19 @@
 ---
 th:
   about:
-    about_mastodon: แมสโทดอน เป็น  <em>ดีเซ็นทรัลไลซ์</em><em>ฟรีโอเพ่นซอร์ส</em> โซเชี่ยวเน็ตเวริ์ค.  เป็นทางเลือกทดแทนโซเชี่ยวเน็ตเวิร์คที่ทำเป็นธุรกิจการค้า, ป้องกันการผูกขาดช่องทางการสื่อสารของคุณ. เลือกเซร์ฟเวอร์ที่คุณไว้ใจ &mdash; ที่คุณเลือกได้เอง, สื่อสารกับคนที่คุณต้องการได้เสมอ. ใครๆก็รันแมสโทดอนอินซะแตนซ์ได้ และ เชื่อมต่อกับ<em>โซเชี่ยวเน็ตเวิร์ค</em> โดยไม่มีอะไรมาขวางกั้น.
+    about_mastodon_html: แมสโทดอน เป็น  <em>ดีเซ็นทรัลไลซ์</em><em>ฟรีโอเพ่นซอร์ส</em> โซเชี่ยวเน็ตเวริ์ค.  เป็นทางเลือกทดแทนโซเชี่ยวเน็ตเวิร์คที่ทำเป็นธุรกิจการค้า, ป้องกันการผูกขาดช่องทางการสื่อสารของคุณ. เลือกเซร์ฟเวอร์ที่คุณไว้ใจ &mdash; ที่คุณเลือกได้เอง, สื่อสารกับคนที่คุณต้องการได้เสมอ. ใครๆก็รันแมสโทดอนอินซะแตนซ์ได้ และ เชื่อมต่อกับ<em>โซเชี่ยวเน็ตเวิร์ค</em> โดยไม่มีอะไรมาขวางกั้น.
     about_this: เกี่ยวกับอินซะแตนซ์นี้
-    apps: แอ๊ฟ
-    business_email: 'อีเมล์ธุรกิจ:'
     closed_registrations: อินซะแตนซ์นี้ปิดรับลงทะเบียนแล้ว.
     contact: ติดต่อ
     description_headline: โดเมนคือ %{domain} ?
     domain_count_after: อินซะแตนซ์อื่นๆ
     domain_count_before: เชื่อมต่อกับ
-    features:
-      api: API เปิดสำหรับ Apps และ Services
-      blocks: มีเครื่องมือสำหรับ Block และ Mute
-      characters: เขียนได้ 500 ตัวอักษรต่อโพสต์
-      chronology: Timelines are chronological
-      ethics: 'ออกแบบด้วยจรรยาบรรณ: ไม่มีโฆษณา, ไม่มีการแทรค'
-      gifv: รองรับภาพ GIFV และ วีดีโอสั้น
-      privacy: Granular, per-post privacy settings
-      public: ไทม์ไลน์สาธารณะ
-    features_headline: What sets Mastodon apart
-    get_started: เริ่มกันเลย
-    links: ลิงก์
     other_instances: อินซะแตนซ์อื่นๆ
     source_code: ซอร์สโค๊ด
     status_count_after: สถานะ
     status_count_before: Who authored
-    terms: เงื่อนไข
     user_count_after: ผู้ใช้
     user_count_before: Home to
-    version: เวอร์ชั่น
   accounts:
     follow: ติดตาม
     followers: ผู้ติดตาม
@@ -40,15 +24,6 @@ th:
     posts: โพสต์
     remote_follow: Remote follow
     unfollow: เลิกติดตาม
-  activitypub:
-    activity:
-      announce:
-        name: "%{account_name} แชร์กิจกรรม."
-      create:
-        name: "%{account_name} สร้างโน๊ต."
-    outbox:
-      name: "%{account_name}'s Outbox"
-      summary: รวมกิจกรรมของผู้ใช้ %{account_name}.
   admin:
     accounts:
       are_you_sure: แน่ใจนะ?
@@ -153,17 +128,13 @@ th:
     settings:
       contact_information:
         email: กรอกที่อยู่อีเมล์สาธารณะ
-        label: ข้อมูลที่ติดต่อ
         username: กรอกชื่อผู้ใช้
       registrations:
         closed_message:
           desc_html: Displayed on frontpage when registrations are closed<br> ใช้ HTML tags ได้
           title: ปิดข้อความลงทะเบียน
         open:
-          disabled: ปิดการใช้งาน
-          enabled: ปิดใช้งาน
           title: เปิดรับลงทะเบียน
-      setting: ตั้งค่า
       site_description:
         desc_html: Displayed as a paragraph on the frontpage and used as a meta tag.<br> ใช้ HTML tags ได้, in particular <code>&lt;a&gt;</code> และ <code>&lt;em&gt;</code>.
         title: คำอธิบายไซต์
@@ -177,7 +148,7 @@ th:
       confirmed: ยืนยัน
       expires_in: หมดอายุภายใน
       last_delivery: จัดส่งครั้งล่าสุด
-      title: PubSubHubbub
+      title: WebSub
       topic: ชื่อเรื่อง
     title: แอดมิน
   application_mailer:

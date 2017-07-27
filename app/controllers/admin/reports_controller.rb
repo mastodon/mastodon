@@ -8,7 +8,9 @@ module Admin
       @reports = filtered_reports.page(params[:page])
     end
 
-    def show; end
+    def show
+      @form = Form::StatusBatch.new
+    end
 
     def update
       process_report

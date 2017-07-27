@@ -1,35 +1,19 @@
 ---
 zh-HK:
   about:
-    about_mastodon: Mastodon（萬象）是<em>自由、開源</em>的社交網絡。服務站<em>各自獨立而互連</em>，避免單一商業機構壟斷。找你所信任的服務站，建立帳號，你即可與任何服務站上的用戶溝通，享受無縫的<em>網絡交流</em>。
+    about_mastodon_html: Mastodon（萬象）是<em>自由、開源</em>的社交網絡。服務站<em>各自獨立而互連</em>，避免單一商業機構壟斷。找你所信任的服務站，建立帳號，你即可與任何服務站上的用戶溝通，享受無縫的<em>網絡交流</em>。
     about_this: 關於本服務站
-    apps: 應用程式
-    business_email: 聯絡網站管理者︰
     closed_registrations: 本服務站暫時停止接受登記。
     contact: 聯絡
     description_headline: 關於 %{domain}
     domain_count_after: 個其他服務站
     domain_count_before: 已連接至
-    features:
-      api: 開放 API，供各式應用程式及服務連入
-      blocks: 完善的封鎖用戶、靜音功能
-      characters: 每篇文章最多 500 字
-      chronology: 時間軸忠實按時排序，不多餘處理
-      ethics: 良心設計︰無廣告，不追蹤用戶
-      gifv: 支援顯示 GIFV 短片圖組
-      privacy: 可逐篇文章設定私隱度
-      public: 公共時間軸
-    features_headline: 甚麼讓 Mastodon 與眾不同
-    get_started: 立即登記
-    links: 連結
     other_instances: 其他服務站
     source_code: 源代碼
     status_count_after: 篇文章
     status_count_before: 他們共發佈了
-    terms: 使用條款
     user_count_after: 位使用者
     user_count_before: 這裏共註冊有
-    version: 版本
   accounts:
     follow: 關注
     followers: 關注者
@@ -40,15 +24,6 @@ zh-HK:
     posts: 文章
     remote_follow: 跨站關注
     unfollow: 取消關注
-  activitypub:
-    activity:
-      announce:
-        name: "%{account_name} 分享了一項活動。"
-      create:
-        name: "%{account_name} 新增了一篇筆記。"
-    outbox:
-      name: "%{account_name} 的活動"
-      summary: "%{account_name} 分享的活動列表。"
   admin:
     accounts:
       are_you_sure: 你確定嗎？
@@ -152,17 +127,13 @@ zh-HK:
     settings:
       contact_information:
         email: 輸入一個公開的電郵地址
-        label: 聯絡資料
         username: 輸入用戶名稱
       registrations:
         closed_message:
           desc_html: 當本站暫停接受註冊時，會顯示這個訊息。<br/> 可使用 HTML
           title: 暫停註冊訊息
         open:
-          disabled: 停用
-          enabled: 啟用
           title: 開放註冊
-      setting: 設定
       site_description:
         desc_html: 在首頁顯示，及在 meta 標籤使用作網站介紹。<br/> 你可以在此使用 <code>&lt;a&gt;</code> 和 <code>&lt;em&gt;</code> 等 HTML 標籤。
         title: 本站介紹

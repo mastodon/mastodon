@@ -1,35 +1,19 @@
 ---
 zh-CN:
   about:
-    about_mastodon: Mastodon（长毛象）是一个<em>自由、开放源码</em>的社交网站。它是一个分布式的服务，避免你的通信被单一商业机构垄断操控。请你选择一家你信任的 Mastodon 实例，在上面创建帐号，然后你就可以和任一 Mastodon 实例上的用户互通，享受无缝的<em>社交</em>交流。
+    about_mastodon_html: Mastodon（长毛象）是一个<em>自由、开放源码</em>的社交网站。它是一个分布式的服务，避免你的通信被单一商业机构垄断操控。请你选择一家你信任的 Mastodon 实例，在上面创建帐号，然后你就可以和任一 Mastodon 实例上的用户互通，享受无缝的<em>社交</em>交流。
     about_this: 关于本实例
-    apps: 应用程序
-    business_email: 商业电邮︰
     closed_registrations: 这个实例目前不开放注册 _(:3」∠)_
     contact: 联络
     description_headline: 关于 %{domain}
     domain_count_after: 个其它实例
     domain_count_before: 现已接入
-    features:
-      api: 开放 API，供各式应用程序及服务接入
-      blocks: 完善的封锁用户、静音功能
-      characters: 每篇嘟文最多 500 字
-      chronology: 纯粹按时间排序，不作多余处理
-      ethics: 良心设计︰没有广告，不追踪你的使用行为
-      gifv: 支持显示 GIFV 动图小视频
-      privacy: 可逐篇嘟文设置隐私
-      public: 提供公共时间轴
-    features_headline: 是什么让 Mastodon 与众不同
-    get_started: 上手使用
-    links: 链接
     other_instances: 其它实例
     source_code: 源码
     status_count_after: 条嘟文
     status_count_before: 他们共嘟出了
-    terms: 条款
     user_count_after: 位用户
     user_count_before: 这里共注册有
-    version: 版本
   accounts:
     follow: 关注
     followers: 粉丝
@@ -40,15 +24,6 @@ zh-CN:
     posts: 嘟文
     remote_follow: 跨站关注
     unfollow: 取消关注
-  activitypub:
-    activity:
-      announce:
-        name: "%{account_name} 分享了一个活动。"
-      create:
-        name: "%{account_name} 创建了一个记事。"
-    outbox:
-      name: "%{account_name} 的集合"
-      summary: "%{account_name} 的活动集合"
   admin:
     accounts:
       are_you_sure: 你确定吗？
@@ -159,17 +134,13 @@ zh-CN:
     settings:
       contact_information:
         email: 输入一个公开的电邮地址
-        label: 联系数据
         username: 输入用户名称
       registrations:
         closed_message:
           desc_html: 当本站暂停接受注册时，会显示这个消息。<br/> 可使用 HTML
           title: 暂停注册消息
         open:
-          disabled: 停用
-          enabled: 启用
           title: 开放注册
-      setting: 设置
       site_description:
         desc_html: 在首页显示，及在 meta 标签中用作网站介绍。<br>你可以在此使用 HTML 标签，尤其是<code>&lt;a&gt;</code> 和 <code>&lt;em&gt;</code>。
         title: 本站介绍
@@ -183,7 +154,7 @@ zh-CN:
       confirmed: 确定
       expires_in: 期限
       last_delivery: 数据最后送抵时间
-      title: PubSubHubbub 订阅
+      title: WebSub 订阅
       topic: 所订阅资源
     title: 管理
   application_mailer:

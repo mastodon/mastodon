@@ -1,87 +1,80 @@
-- content_for :header_tags do
-  = javascript_pack_tag 'public', integrity: true, crossorigin: 'anonymous'
-
 - content_for :page_title do
   = site_hostname
 
 - content_for :header_tags do
+  %script#initial-state{ type: 'application/json' }!= json_escape(@initial_state_json)
+  = javascript_pack_tag 'about', integrity: true, crossorigin: 'anonymous'
+
   %meta{ property: 'og:site_name', content: site_title }/
   %meta{ property: 'og:url', content: about_url }/
   %meta{ property: 'og:type', content: 'website' }/
   %meta{ property: 'og:title', content: site_hostname }/
-  %meta{ property: 'og:description', content: strip_tags(@instance_presenter.site_description.presence || t('about.about_mastodon')) }/
+  %meta{ property: 'og:description', content: strip_tags(@instance_presenter.site_description.presence || t('about.about_mastodon_html')) }/
   %meta{ property: 'og:image', content: asset_pack_path('mastodon_small.jpg', protocol: :request) }/
   %meta{ property: 'og:image:width', content: '400' }/
   %meta{ property: 'og:image:height', content: '400' }/
   %meta{ property: 'twitter:card', content: 'summary' }/
 
-.wrapper
-  %h1
-    = image_tag asset_pack_path('logo.png')
-    = Setting.site_title
+.landing-page
+  .header-wrapper
+    .mascot-container
+      = image_tag asset_pack_path('elephant-fren.png'), alt: '', role: 'presentation', class: 'mascot'
 
-  %p!= t('about.about_mastodon')
+    .header
+      .container.links
+        .brand
+          = link_to root_url do
+            = image_tag asset_pack_path('logo_full.svg'), alt: 'Mastodon'
 
-  .screenshot-with-signup
-    .mascot= image_tag asset_pack_path('fluffy-elephant-friend.png')
+        %ul.nav
+          %li
+            - if user_signed_in?
+              = link_to t('settings.back'), root_url, class: 'webapp-btn'
+            - else
+              = link_to t('auth.login'), new_user_session_path, class: 'webapp-btn'
+          %li= link_to t('about.about_this'), about_more_path
+          %li
+            = link_to 'https://joinmastodon.org/' do
+              = "#{t('about.other_instances')}"
+              %i.fa.fa-external-link{ style: 'padding-left: 5px;' }
 
-    - if @instance_presenter.open_registrations
-      = render 'registration'
-    - else
-      .closed-registrations-message
-        - if @instance_presenter.closed_registrations_message.blank?
-          %p= t('about.closed_registrations')
+      .container.hero
+        .floats
+          %div{ role: 'presentation', class: 'float-1' }
+          %div{ role: 'presentation', class: 'float-2' }
+          %div{ role: 'presentation', class: 'float-3' }
+        .heading
+          %h1
+            = @instance_presenter.site_title
+            %small= t 'about.hosted_on', domain: site_hostname
+        - if @instance_presenter.open_registrations
+          = render 'registration'
         - else
-          != @instance_presenter.closed_registrations_message
-        .info
-          = link_to t('auth.login'), new_user_session_path, class: 'webapp-btn'
-          ·
-          = link_to t('about.other_instances'), 'https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/List-of-Mastodon-instances.md'
-          ·
-          = link_to t('about.about_this'), about_more_path
+          .closed-registrations-message
+            %div
+              - if @instance_presenter.closed_registrations_message.blank?
+                %p= t('about.closed_registrations')
+              - else
+                = @instance_presenter.closed_registrations_message.html_safe
+            = link_to t('about.find_another_instance'), 'https://joinmastodon.org/', class: 'button button-alternative button--block'
 
-  %h3= t('about.features_headline')
+  .learn-more-cta
+    .container
+      %h3= t('about.description_headline', domain: site_hostname)
+      %p= @instance_presenter.site_description.html_safe.presence || t('about.generic_description', domain: site_hostname)
 
-  .features-list
-    .features-list__column
-      %ul.fa-ul
-        %li
-          = fa_icon('li check-square')
-          = t 'about.features.chronology'
-        %li
-          = fa_icon('li check-square')
-          = t 'about.features.public'
-        %li
-          = fa_icon('li check-square')
-          = t 'about.features.characters'
-        %li
-          = fa_icon('li check-square')
-          = t 'about.features.gifv'
-    .features-list__column
-      %ul.fa-ul
-        %li
-          = fa_icon('li check-square')
-          = t 'about.features.privacy'
-        %li
-          = fa_icon('li check-square')
-          = t 'about.features.blocks'
-        %li
-          = fa_icon('li check-square')
-          = t 'about.features.ethics'
-        %li
-          = fa_icon('li check-square')
-          = t 'about.features.api'
+  .features
+    .container
+      - if Setting.timeline_preview
+        #mastodon-timeline{ data: { props: Oj.dump(default_props) } }
 
-  - unless @instance_presenter.site_description.blank?
-    %h3= t('about.description_headline', domain: site_hostname)
-    %p!= @instance_presenter.site_description
-
-  .actions
-    .info
-      = link_to t('about.terms'), terms_path
-      ·
-      = link_to t('about.apps'), 'https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/Apps.md'
-      ·
-      = link_to t('about.source_code'), 'https://github.com/tootsuite/mastodon'
-      ·
-      = link_to t('about.other_instances'), 'https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/List-of-Mastodon-instances.md'
+      .about-mastodon
+        %h3= t 'about.what_is_mastodon'
+        %p= t 'about.about_mastodon_html'
+        %a.button.button-secondary{ href: 'https://joinmastodon.org/' }= t 'about.learn_more'
+        = render 'features'
+  .footer-links
+    .container
+      %p
+        = link_to t('about.source_code'), 'https://github.com/tootsuite/mastodon'
+        = " (#{@instance_presenter.version_number})"

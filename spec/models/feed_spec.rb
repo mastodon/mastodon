@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Feed, type: :model do
   describe '#get' do
-    it 'gets statuses with ids in the range, maintining the order from Redis' do
+    it 'gets statuses with ids in the range' do
       account = Fabricate(:account)
       Fabricate(:status, account: account, id: 1)
       Fabricate(:status, account: account, id: 2)

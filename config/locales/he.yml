@@ -1,35 +1,19 @@
 ---
 he:
   about:
-    about_mastodon: מסטודון היא רשת חברתית <em>חופשית, מבוססת תוכנה חופשית ("קוד פתוח")</em>. כאלטרנטיבה <em>בלתי ריכוזית</em> לפלטפרומות המסחריות, מסטודון מאפשרת להמנע מהסיכונים הנלווים להפקדת התקשורת שלך בידי חברה יחידה. שמת את מבטחך בשרת אחד &mdash; לא משנה במי בחרת, תמיד אפשר לדבר עם כל שאר המשתמשים. לכל מי שרוצה יש את האפשרות להקים שרת מסטודון עצמאי, ולהשתתף ב<em>רשת החברתית</em> באופן חלק.
+    about_mastodon_html: מסטודון היא רשת חברתית <em>חופשית, מבוססת תוכנה חופשית ("קוד פתוח")</em>. כאלטרנטיבה <em>בלתי ריכוזית</em> לפלטפרומות המסחריות, מסטודון מאפשרת להמנע מהסיכונים הנלווים להפקדת התקשורת שלך בידי חברה יחידה. שמת את מבטחך בשרת אחד &mdash; לא משנה במי בחרת, תמיד אפשר לדבר עם כל שאר המשתמשים. לכל מי שרוצה יש את האפשרות להקים שרת מסטודון עצמאי, ולהשתתף ב<em>רשת החברתית</em> באופן חלק.
     about_this: אודות שרת זה
-    apps: ישומים
-    business_email: 'דוא"ל עסקי:'
     closed_registrations: הרשמות סגורות לשרת זה לעת עתה.
     contact: צור קשר
     description_headline: מהו %{domain}?
     domain_count_after: שרתים אחרים
     domain_count_before: מחובר אל
-    features:
-      api: API פתוח לישומים ושירותים
-      blocks: כלי חסימה והשתקה חזקים
-      characters: 500 תווים להודעה
-      chronology: הטורים כרונולוגיים
-      ethics: 'תכנון מוסרי: אין פרסומות, אין מעקב'
-      gifv: GIFV וסרטונים קצרים
-      privacy: אפשרויות פרטיוּת נפרדות לכל הודעה
-      public: טורים פומביים
-    features_headline: מה מייחד קהילות מבוססות מסטודון
-    get_started: בואו נתחיל
-    links: קישורים
     other_instances: שרתים אחרים
     source_code: קוד מקור
     status_count_after: הודעות
     status_count_before: שכתבו
-    terms: תנאים
     user_count_after: משתמשים
     user_count_before: ביתם של
-    version: גרסה
   accounts:
     follow: לעקוב
     followers: עוקבים
@@ -40,15 +24,6 @@ he:
     posts: הודעות
     remote_follow: מעקב מרחוק
     unfollow: הפסקת מעקב
-  activitypub:
-    activity:
-      announce:
-        name: הודעה שותפה על ידי %{account_name}.
-      create:
-        name: הודעה חדשה מאת %{account_name}.
-    outbox:
-      name: תיבת הדוא"ל היוצא של %{account_name}
-      summary: אוסף הפעילויות של %{account_name}.
   admin:
     accounts:
       are_you_sure: בטוח?
@@ -160,17 +135,13 @@ he:
     settings:
       contact_information:
         email: נא להקליד כתובת דוא"ל פומבית
-        label: פרטי התקשרות
         username: נא להכניס שם משתמש
       registrations:
         closed_message:
           desc_html: מוצג על הדף הראשי כאשר ההרשמות סגורות<br>ניתן להשתמש בתגיות HTML
           title: מסר סגירת הרשמות
         open:
-          disabled: מבוטל
-          enabled: מופעל
           title: הרשמה פתוחה
-      setting: הגדרה
       site_description:
         desc_html: מוצג כפסקה על הדף הראשי ומשמש כתגית מטא.<br>ניתן להשתמש בתגיות HTML, ובמיוחד ב־<code>&lt;a&gt;</code> ו־<code>&lt;em&gt;</code>.
         title: תיאור האתר
@@ -184,7 +155,7 @@ he:
       confirmed: מאושר
       expires_in: פג תוקף ב-
       last_delivery: משלוח אחרון
-      title: PubSubHubbub
+      title: WebSub
       topic: נושא
     title: ניהול
   application_mailer:

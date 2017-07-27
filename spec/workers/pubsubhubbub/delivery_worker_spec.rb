@@ -26,7 +26,7 @@ describe Pubsubhubbub::DeliveryWorker do
       subscription = Fabricate(:subscription)
 
       stub_request_to_respond_with(subscription, 500)
-      expect { subject.perform(subscription.id, payload) }.to raise_error(/Delivery failed/)
+      expect { subject.perform(subscription.id, payload) }.to raise_error Mastodon::UnexpectedResponseError
     end
 
     it 'updates subscriptions when delivery succeeds' do
@@ -59,7 +59,6 @@ describe Pubsubhubbub::DeliveryWorker do
         'Content-Type' => 'application/atom+xml',
         'Host' => 'example.com',
         'Link' => "<https://#{Rails.configuration.x.local_domain}/api/push>; rel=\"hub\", <https://#{Rails.configuration.x.local_domain}/users/#{subscription.account.username}.atom>; rel=\"self\"",
-        'User-Agent' => 'Mastodon/PubSubHubbub',
       }.tap do |basic|
         known_digest = OpenSSL::HMAC.hexdigest(OpenSSL::Digest.new('sha1'), subscription.secret.to_s, payload)
         basic.merge('X-Hub-Signature' => "sha1=#{known_digest}") if subscription.secret?

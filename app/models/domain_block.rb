@@ -8,11 +8,11 @@
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
 #  severity     :integer          default("silence")
-#  reject_media :boolean
+#  reject_media :boolean          default(FALSE), not null
 #
 
 class DomainBlock < ApplicationRecord
-  enum severity: [:silence, :suspend]
+  enum severity: [:silence, :suspend, :noop]
 
   attr_accessor :retroactive
 

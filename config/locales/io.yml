@@ -1,32 +1,17 @@
 ---
 io:
   about:
-    about_mastodon: Mastodon esas <em>gratuita, apertitkodexa</em> sociala reto. Ol esas <em>sencentra</em> altra alternativo a komercala servadi. Ol evitigas, ke sola firmo guvernez tua tota komunikadol. Selektez servero, quan tu fidas. Irge qua esas tua selekto, tu povas komunikar kun omna altra uzeri. Irgu povas krear sua propra instaluro di Mastodon en sua servero, e partoprenar en la <em>sociala reto</em> tote glate.
+    about_mastodon_html: Mastodon esas <em>gratuita, apertitkodexa</em> sociala reto. Ol esas <em>sencentra</em> altra alternativo a komercala servadi. Ol evitigas, ke sola firmo guvernez tua tota komunikadol. Selektez servero, quan tu fidas. Irge qua esas tua selekto, tu povas komunikar kun omna altra uzeri. Irgu povas krear sua propra instaluro di Mastodon en sua servero, e partoprenar en la <em>sociala reto</em> tote glate.
     about_this: Pri ta instaluro
-    apps: Apliki
-    business_email: 'Profesionala retpost-adreso:'
     closed_registrations: Membresko ne nun esas posible en ta instaluro.
     contact: Kontaktar
     description_headline: Quo esas %{domain}?
     domain_count_after: altra instaluri
     domain_count_before: Konektita ad
-    features:
-      api: Apertita API por apliki e servadi
-      blocks: Kompleta utensili por blokusar e celar
-      characters: Til 500 signi por singla mesajo
-      chronology: Tempolinei seguntempa
-      ethics: 'Etike kreita: nula anunco, nula trakado'
-      gifv: Posibleso diskononigar mikra videi e GIFV
-      privacy: Videbleso ajustita segun la mesajo
-      public: Publika tempolinei
-    features_headline: Quale Mastodon esas diferanta
-    get_started: Komencar
-    links: Ligili
     other_instances: Altra instaluri
     source_code: Fontkodexo
     status_count_after: mesaji
     status_count_before: Qua publikigis
-    terms: Terms
     user_count_after: uzeri
     user_count_before: Hemo di
   accounts:
@@ -139,17 +124,13 @@ io:
     settings:
       contact_information:
         email: Enter a public e-mail address
-        label: Contact information
         username: Enter a username
       registrations:
         closed_message:
           desc_html: Displayed on frontpage when registrations are closed<br>You can use HTML tags
           title: Closed registration message
         open:
-          disabled: Disabled
-          enabled: Enabled
           title: Open registration
-      setting: Setting
       site_description:
         desc_html: Displayed as a paragraph on the frontpage and used as a meta tag.<br>You can use HTML tags, in particular <code>&lt;a&gt;</code> and <code>&lt;em&gt;</code>.
         title: Site description
@@ -163,7 +144,7 @@ io:
       confirmed: Confirmed
       expires_in: Expires in
       last_delivery: Last delivery
-      title: PubSubHubbub
+      title: WebSub
       topic: Topic
     title: Administration
   application_mailer:

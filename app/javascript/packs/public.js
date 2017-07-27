@@ -1,49 +1,43 @@
-import { length } from 'stringz';
-import IntlRelativeFormat from 'intl-relativeformat';
-import { delegate } from 'rails-ujs';
-import emojify from '../mastodon/emoji';
-import { getLocale } from '../mastodon/locales';
 import loadPolyfills from '../mastodon/load_polyfills';
 
-require.context('../images/', true);
-
-const { localeData } = getLocale();
-localeData.forEach(IntlRelativeFormat.__addLocaleData);
-
-function loaded() {
-  const locale = document.documentElement.lang;
-  const dateTimeFormat = new Intl.DateTimeFormat(locale, {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-    hour: 'numeric',
-    minute: 'numeric',
-  });
-  const relativeFormat = new IntlRelativeFormat(locale);
-
-  [].forEach.call(document.querySelectorAll('.emojify'), (content) => {
-    content.innerHTML = emojify(content.innerHTML);
-  });
-
-  [].forEach.call(document.querySelectorAll('time.formatted'), (content) => {
-    const datetime = new Date(content.getAttribute('datetime'));
-    const formattedDate = dateTimeFormat.format(datetime);
-    content.title = formattedDate;
-    content.textContent = formattedDate;
-  });
-
-  [].forEach.call(document.querySelectorAll('time.time-ago'), (content) => {
-    const datetime = new Date(content.getAttribute('datetime'));
-    content.textContent = relativeFormat.format(datetime);;
-  });
-}
-
 function main() {
-  if (['interactive', 'complete'].includes(document.readyState)) {
-    loaded();
-  } else {
-    document.addEventListener('DOMContentLoaded', loaded);
-  }
+  const { length } = require('stringz');
+  const IntlRelativeFormat = require('intl-relativeformat').default;
+  const { delegate } = require('rails-ujs');
+  const emojify = require('../mastodon/emoji').default;
+  const { getLocale } = require('../mastodon/locales');
+  const ready = require('../mastodon/ready').default;
+
+  const { localeData } = getLocale();
+  localeData.forEach(IntlRelativeFormat.__addLocaleData);
+
+  ready(() => {
+    const locale = document.documentElement.lang;
+    const dateTimeFormat = new Intl.DateTimeFormat(locale, {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+      hour: 'numeric',
+      minute: 'numeric',
+    });
+    const relativeFormat = new IntlRelativeFormat(locale);
+
+    [].forEach.call(document.querySelectorAll('.emojify'), (content) => {
+      content.innerHTML = emojify(content.innerHTML);
+    });
+
+    [].forEach.call(document.querySelectorAll('time.formatted'), (content) => {
+      const datetime = new Date(content.getAttribute('datetime'));
+      const formattedDate = dateTimeFormat.format(datetime);
+      content.title = formattedDate;
+      content.textContent = formattedDate;
+    });
+
+    [].forEach.call(document.querySelectorAll('time.time-ago'), (content) => {
+      const datetime = new Date(content.getAttribute('datetime'));
+      content.textContent = relativeFormat.format(datetime);
+    });
+  });
 
   delegate(document, '.video-player video', 'click', ({ target }) => {
     if (target.paused) {
@@ -53,8 +47,12 @@ function main() {
     }
   });
 
-  delegate(document, '.media-spoiler', 'click', ({ target }) => {
-    target.style.display = 'none';
+  delegate(document, '.activity-stream .media-spoiler-wrapper .media-spoiler', 'click', function() {
+    this.parentNode.classList.add('media-spoiler-wrapper__visible');
+  });
+
+  delegate(document, '.activity-stream .media-spoiler-wrapper .spoiler-button', 'click', function() {
+    this.parentNode.classList.remove('media-spoiler-wrapper__visible');
   });
 
   delegate(document, '.webapp-btn', 'click', ({ target, button }) => {
@@ -89,6 +87,20 @@ function main() {
     if (noteCounter) {
       noteCounter.textContent = 160 - length(target.value);
     }
+  });
+
+  delegate(document, '#account_avatar', 'change', ({ target }) => {
+    const avatar = document.querySelector('.card.compact .avatar img');
+    const [file] = target.files || [];
+    const url = URL.createObjectURL(file);
+    avatar.src = url;
+  });
+
+  delegate(document, '#account_header', 'change', ({ target }) => {
+    const header = document.querySelector('.card.compact');
+    const [file] = target.files || [];
+    const url = URL.createObjectURL(file);
+    header.style.backgroundImage = `url(${url})`;
   });
 }
 

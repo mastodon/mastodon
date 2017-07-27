@@ -1,35 +1,19 @@
 ---
 fa:
   about:
-    about_mastodon: ماستدون (Mastodon) یک شبکهٔ اجتماعی <em>آزاد و کدباز</em> است. یک جایگزین <em>غیرمتمرکز</em> برای شبکه‌های تجاری، که نمی‌گذارد ارتباط‌های شما را یک شرکت در انحصار خود بگیرد. یک سرور مورد اعتماد را انتخاب کنید &mdash; هر سروری که باشد، همچنان می‌توانید با سرورهای دیگر ارتباط داشته باشید. هر کسی می‌تواند سرور ماستدون خود را راه بیندازد و در <em>شبکهٔ اجتماعی</em> سهیم شود.
+    about_mastodon_html: ماستدون (Mastodon) یک شبکهٔ اجتماعی <em>آزاد و کدباز</em> است. یک جایگزین <em>غیرمتمرکز</em> برای شبکه‌های تجاری، که نمی‌گذارد ارتباط‌های شما را یک شرکت در انحصار خود بگیرد. یک سرور مورد اعتماد را انتخاب کنید &mdash; هر سروری که باشد، همچنان می‌توانید با سرورهای دیگر ارتباط داشته باشید. هر کسی می‌تواند سرور ماستدون خود را راه بیندازد و در <em>شبکهٔ اجتماعی</em> سهیم شود.
     about_this: دربارهٔ این سرور
-    apps: برنامه‌ها
-    business_email: 'ایمیل کاری:'
     closed_registrations: امکان ثبت نام روی این سرور هم‌اینک فعال نیست.
     contact: تماس
     description_headline: "%{domain} چیست؟"
     domain_count_after: سرور دیگر
     domain_count_before: متصل به
-    features:
-      api: رابط برنامه‌نویسی برای برنامه‌ها و سرویس‌های دیگر
-      blocks: ابزارهای قدرتمند برای مسدود یا بی‌صدا کردن دیگران
-      characters: ۵۰۰ حرف برای هر نوشته
-      chronology: نمایش نوشته‌های دیگران به ترتیب زمانی
-      ethics: 'اخلاق‌مدار: بدون تبلیغات، بدون ردگیری'
-      gifv: تصاویر متحرک و ویدیوهای کوتاه
-      privacy: تنظیمات حریم خصوصی جداگانه برای هر نوشته
-      public: نمایش نوشته‌های عمومی دیگران از همه‌جا
-    features_headline: برگ‌های برندهٔ ماستدون
-    get_started: آغاز کنید
-    links: پیوندها
     other_instances: سرورهای دیگر
     source_code: کدهای منبع
     status_count_after: چیز نوشته‌اند
     status_count_before: که جمعاً
-    terms: شرایط استفاده
     user_count_after: کاربر
     user_count_before: دارای
-    version: نسخه
   accounts:
     follow: پی بگیرید
     followers: پیگیران
@@ -40,15 +24,6 @@ fa:
     posts: نوشته
     remote_follow: پیگیری غیرمستقیم
     unfollow: پایان پیگیری
-  activitypub:
-    activity:
-      announce:
-        name: "%{account_name} فعالیتی آغاز کرد."
-      create:
-        name: "%{account_name} یادداشتی نوشت."
-    outbox:
-      name: صندوق خروجی %{account_name}
-      summary: مجموعه‌ای از فعالیت‌های کاربر %{account_name}.
   admin:
     accounts:
       are_you_sure: آیا مطمئن هستید؟
@@ -152,17 +127,13 @@ fa:
     settings:
       contact_information:
         email: یک نشانی ایمیل عمومی وارد کنید
-        label: اطلاعات تماس
         username: یک نام کاربری وارد کنید
       registrations:
         closed_message:
           desc_html: وقتی امکان ثبت نام روی سرور فعال نباشد در صفحهٔ اصلی نمایش می‌یابد<br>می‌توانید HTML بنویسید
           title: پیغام برای فعال‌نبودن ثبت نام
         open:
-          disabled: غیرفعال
-          enabled: فعال
           title: امکان ثبت نام
-      setting: تنظیمات
       site_description:
         desc_html: روی صفحهٔ اصلی نمایش می‌یابد و همچنین به عنوان تگ‌های HTML.<br>می‌توانید HTML بنویسید, به‌ویژه <code>&lt;a&gt;</code> و <code>&lt;em&gt;</code>.
         title: دربارهٔ سایت
@@ -176,7 +147,7 @@ fa:
       confirmed: تأییدشده
       expires_in: مهلت انقضا
       last_delivery: آخرین ارسال
-      title: PubSubHubbub
+      title: WebSub
       topic: موضوع
     title: مدیریت
   application_mailer:

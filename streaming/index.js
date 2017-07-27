@@ -262,11 +262,12 @@ const startWorker = (workerId) => {
       const { event, payload, queued_at } = JSON.parse(message);
 
       const transmit = () => {
-        const now   = new Date().getTime();
-        const delta = now - queued_at;
+        const now            = new Date().getTime();
+        const delta          = now - queued_at;
+        const encodedPayload = typeof payload === 'number' ? payload : JSON.stringify(payload);
 
-        log.silly(req.requestId, `Transmitting for ${req.accountId}: ${event} ${payload} Delay: ${delta}ms`);
-        output(event, payload);
+        log.silly(req.requestId, `Transmitting for ${req.accountId}: ${event} ${encodedPayload} Delay: ${delta}ms`);
+        output(event, encodedPayload);
       };
 
       if (notificationOnly && event !== 'notification') {
@@ -282,7 +283,7 @@ const startWorker = (workerId) => {
             return;
           }
 
-          const unpackedPayload  = JSON.parse(payload);
+          const unpackedPayload  = payload;
           const targetAccountIds = [unpackedPayload.account.id].concat(unpackedPayload.mentions.map(item => item.id));
           const accountDomain    = unpackedPayload.account.acct.split('@')[1];
 
@@ -466,6 +467,7 @@ const startWorker = (workerId) => {
   const onExit = () => {
     log.info(`Worker ${workerId} exiting, bye bye`);
     server.close();
+    process.exit(0);
   };
 
   const onError = (err) => {
