@@ -117,7 +117,7 @@ class Web::PushSubscription < ApplicationRecord
       when :mention then [
         {
           title: translate('push_notifications.mention.action_favourite'),
-          icon: full_asset_url('emoji/2764.png', skip_pipeline: true),
+          icon: full_asset_url('emoji/2b50.png', skip_pipeline: true),
           todo: 'request',
           method: 'POST',
           action: "/api/v1/statuses/#{notification.target_status.id}/favourite",
