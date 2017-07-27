@@ -44,6 +44,19 @@ export default class ModalRoot extends React.PureComponent {
     window.addEventListener('keyup', this.handleKeyUp, false);
   }
 
+  componentWillReceiveProps (nextProps) {
+    if (!!nextProps.type && !this.props.type) {
+      this.activeElement = document.activeElement;
+    }
+  }
+
+  componentDidUpdate (prevProps) {
+    if (!this.type && !!prevProps.type) {
+      this.activeElement.focus();
+      this.activeElement = null;
+    }
+  }
+
   componentWillUnmount () {
     window.removeEventListener('keyup', this.handleKeyUp);
   }
