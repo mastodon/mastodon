@@ -12,6 +12,7 @@ export default class IconButton extends React.PureComponent {
     onClick: PropTypes.func,
     size: PropTypes.number,
     active: PropTypes.bool,
+    pressed: PropTypes.bool,
     style: PropTypes.object,
     activeStyle: PropTypes.object,
     disabled: PropTypes.bool,
@@ -73,6 +74,7 @@ export default class IconButton extends React.PureComponent {
         {({ rotate }) =>
           <button
             aria-label={this.props.title}
+            aria-pressed={this.props.pressed}
             title={this.props.title}
             className={classes.join(' ')}
             onClick={this.handleClick}
