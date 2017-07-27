@@ -7,12 +7,11 @@ import RelativeTimestamp from '../../../components/relative_timestamp';
 import DisplayName from '../../../components/display_name';
 import IconButton from '../../../components/icon_button';
 
-export default class ReportModal extends ImmutablePureComponent {
+export default class ActionsModal extends ImmutablePureComponent {
 
   static propTypes = {
     actions: PropTypes.array,
     onClick: PropTypes.func,
-    intl: PropTypes.object.isRequired,
   };
 
   renderAction = (action, i) => {
