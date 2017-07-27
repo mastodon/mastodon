@@ -1,7 +1,7 @@
 run.config:
   engine: ruby
   engine.config:
-    runtime: ruby-2.4.1
+    runtime: ruby-2.4
 
   extra_packages:
     # basic servers:
@@ -20,6 +20,9 @@ run.config:
     # for node-gyp, used in the asset compilation process:
     - python-2
 
+    # i18n:
+    - libidn
+
   cache_dirs:
     - node_modules
 
@@ -35,10 +38,6 @@ run.config:
 
   extra_steps:
     - envsubst < .env.nanobox > .env
-    - gem install bundler
-    - bundle config build.nokogiri --with-iconv-dir=/data/ --with-zlib-dir=/data/
-    - bundle config build.nokogumbo --with-iconv-dir=/data/ --with-zlib-dir=/data/
-    - bundle install --clean
     - yarn
 
   fs_watch: true
