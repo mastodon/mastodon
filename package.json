@@ -7,9 +7,8 @@
     "build:production": "cross-env RAILS_ENV=production ./bin/webpack",
     "manage:translations": "node ./config/webpack/translationRunner.js",
     "start": "node ./streaming/index.js",
-    "storybook": "cross-env NODE_ENV=test start-storybook -s ./public -p 9001 -c storybook",
     "test": "npm run test:lint && npm run test:mocha",
-    "test:lint": "eslint -c .eslintrc.yml --ext=js app/javascript/ config/webpack/ spec/javascript/ storybook/ streaming/",
+    "test:lint": "eslint -c .eslintrc.yml --ext=js app/javascript/ config/webpack/ spec/javascript/ streaming/",
     "test:mocha": "cross-env NODE_ENV=test mocha --require ./spec/javascript/setup.js --compilers js:babel-register ./spec/javascript/components/*.test.js",
     "postinstall": "npm rebuild node-sass"
   },
@@ -120,8 +119,6 @@
     "websocket.js": "^0.1.12"
   },
   "devDependencies": {
-    "@storybook/addon-actions": "^3.1.8",
-    "@storybook/react": "^3.1.8",
     "babel-eslint": "^7.2.3",
     "chai": "^4.1.0",
     "chai-enzyme": "^0.8.0",
