@@ -107,17 +107,12 @@ export default class Status extends ImmutablePureComponent {
       this.height = getRectFromEntry(entry).height;
     }
 
-    // Edge 15 doesn't support isIntersecting, but we can infer it
-    // https://developer.microsoft.com/en-us/microsoft-edge/platform/issues/12156111/
-    // https://github.com/WICG/IntersectionObserver/issues/211
-    const isIntersecting = (typeof entry.isIntersecting === 'boolean') ?
-      entry.isIntersecting : entry.intersectionRect.height > 0;
     this.setState((prevState) => {
-      if (prevState.isIntersecting && !isIntersecting) {
+      if (prevState.isIntersecting && !entry.isIntersecting) {
         scheduleIdleTask(this.hideIfNotIntersecting);
       }
       return {
-        isIntersecting: isIntersecting,
+        isIntersecting: entry.isIntersecting,
         isHidden: false,
       };
     });
