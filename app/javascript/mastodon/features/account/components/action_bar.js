@@ -15,6 +15,7 @@ const messages = defineMessages({
   mute: { id: 'account.mute', defaultMessage: 'Mute @{name}' },
   follow: { id: 'account.follow', defaultMessage: 'Follow' },
   report: { id: 'account.report', defaultMessage: 'Report @{name}' },
+  share: { id: 'account.share', defaultMessage: 'Share @{name}\'s profile' },
   media: { id: 'account.media', defaultMessage: 'Media' },
   blockDomain: { id: 'account.block_domain', defaultMessage: 'Hide everything from {domain}' },
   unblockDomain: { id: 'account.unblock_domain', defaultMessage: 'Unhide {domain}' },
@@ -35,6 +36,12 @@ export default class ActionBar extends React.PureComponent {
     onUnblockDomain: PropTypes.func.isRequired,
     intl: PropTypes.object.isRequired,
   };
+
+  handleShare = () => {
+    navigator.share({
+      url: this.props.account.get('url'),
+    });
+  }
 
   render () {
     const { account, me, intl } = this.props;
@@ -63,6 +70,10 @@ export default class ActionBar extends React.PureComponent {
       }
 
       menu.push({ text: intl.formatMessage(messages.report, { name: account.get('username') }), action: this.props.onReport });
+    }
+
+    if ('share' in navigator) {
+      menu.push({ text: intl.formatMessage(messages.share, { name: account.get('username') }), action: this.handleShare });
     }
 
     if (account.get('acct') !== account.get('username')) {
