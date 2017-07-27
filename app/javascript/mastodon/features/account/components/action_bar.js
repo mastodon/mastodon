@@ -1,7 +1,7 @@
 import React from 'react';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
-import DropdownMenu from '../../../components/dropdown_menu';
+import DropdownMenuContainer from '../../../containers/dropdown_menu_container';
 import Link from 'react-router-dom/Link';
 import { defineMessages, injectIntl, FormattedMessage, FormattedNumber } from 'react-intl';
 
@@ -96,7 +96,7 @@ export default class ActionBar extends React.PureComponent {
 
         <div className='account__action-bar'>
           <div className='account__action-bar-dropdown'>
-            <DropdownMenu items={menu} icon='bars' size={24} direction='right' />
+            <DropdownMenuContainer items={menu} icon='bars' size={24} direction='right' />
           </div>
 
           <div className='account__action-bar-links'>

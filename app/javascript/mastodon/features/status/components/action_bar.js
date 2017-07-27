@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import IconButton from '../../../components/icon_button';
 import ImmutablePropTypes from 'react-immutable-proptypes';
-import DropdownMenu from '../../../components/dropdown_menu';
+import DropdownMenuContainer from '../../../containers/dropdown_menu_container';
 import { defineMessages, injectIntl } from 'react-intl';
 
 const messages = defineMessages({
@@ -84,7 +84,7 @@ export default class ActionBar extends React.PureComponent {
         <div className='detailed-status__button'><IconButton animate active={status.get('favourited')} title={intl.formatMessage(messages.favourite)} icon='star' onClick={this.handleFavouriteClick} activeStyle={{ color: '#ca8f04' }} /></div>
 
         <div className='detailed-status__action-bar-dropdown'>
-          <DropdownMenu size={18} icon='ellipsis-h' items={menu} direction='left' ariaLabel='More' />
+          <DropdownMenuContainer size={18} icon='ellipsis-h' items={menu} direction='left' ariaLabel='More' />
         </div>
       </div>
     );

@@ -1,4 +1,5 @@
 import React from 'react';
+import ImmutablePropTypes from 'react-immutable-proptypes';
 import Dropdown, { DropdownTrigger, DropdownContent } from 'react-simple-dropdown';
 import PropTypes from 'prop-types';
 
@@ -9,16 +10,23 @@ export default class DropdownMenu extends React.PureComponent {
   };
 
   static propTypes = {
+    isUserTouching: PropTypes.func,
+    isModalOpen: PropTypes.bool.isRequired,
+    onModalOpen: PropTypes.func,
+    onModalClose: PropTypes.func,
     icon: PropTypes.string.isRequired,
     items: PropTypes.array.isRequired,
     size: PropTypes.number.isRequired,
     direction: PropTypes.string,
+    status: ImmutablePropTypes.map,
     ariaLabel: PropTypes.string,
     disabled: PropTypes.bool,
   };
 
   static defaultProps = {
     ariaLabel: 'Menu',
+    isModalOpen: false,
+    isUserTouching: () => false,
   };
 
   state = {
@@ -34,6 +42,10 @@ export default class DropdownMenu extends React.PureComponent {
     const i = Number(e.currentTarget.getAttribute('data-index'));
     const { action, to } = this.props.items[i];
 
+    if (this.props.isModalOpen) {
+      this.props.onModalClose();
+    }
+
     // Don't call e.preventDefault() when the item uses 'href' property.
     // ex. "Edit profile" on the account action bar
 
@@ -48,7 +60,17 @@ export default class DropdownMenu extends React.PureComponent {
     this.dropdown.hide();
   }
 
-  handleShow = () => this.setState({ expanded: true })
+  handleShow = () => {
+    if (this.props.isUserTouching()) {
+      this.props.onModalOpen({
+        status: this.props.status,
+        actions: this.props.items,
+        onClick: this.handleClick,
+      });
+    } else {
+      this.setState({ expanded: true });
+    }
+  }
 
   handleHide = () => this.setState({ expanded: false })
 
@@ -71,6 +93,7 @@ export default class DropdownMenu extends React.PureComponent {
   render () {
     const { icon, items, size, direction, ariaLabel, disabled } = this.props;
     const { expanded }   = this.state;
+    const isUserTouching = this.props.isUserTouching();
     const directionClass = (direction === 'left') ? 'dropdown__left' : 'dropdown__right';
     const iconStyle      = { fontSize: `${size}px`, width: `${size}px`, lineHeight: `${size}px` };
     const iconClassname  = `fa fa-fw fa-${icon} dropdown__icon`;
@@ -89,15 +112,21 @@ export default class DropdownMenu extends React.PureComponent {
       </ul>
     );
 
+    // No need to render the actual dropdown if we use the modal. If we
+    // don't render anything <Dropdow /> breaks, so we just put an empty div.
+    const dropdownContent = !isUserTouching ? (
+      <DropdownContent className={directionClass}>
+        {dropdownItems}
+      </DropdownContent>
+    ) : <div />;
+
     return (
-      <Dropdown ref={this.setRef} onShow={this.handleShow} onHide={this.handleHide}>
+      <Dropdown ref={this.setRef} active={isUserTouching ? false : undefined} onShow={this.handleShow} onHide={this.handleHide}>
         <DropdownTrigger className='icon-button' style={iconStyle} aria-label={ariaLabel}>
           <i className={iconClassname} aria-hidden />
         </DropdownTrigger>
 
-        <DropdownContent className={directionClass}>
-          {dropdownItems}
-        </DropdownContent>
+        {dropdownContent}
       </Dropdown>
     );
   }

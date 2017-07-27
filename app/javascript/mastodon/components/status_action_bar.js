@@ -2,7 +2,7 @@ import React from 'react';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
 import IconButton from './icon_button';
-import DropdownMenu from './dropdown_menu';
+import DropdownMenuContainer from '../containers/dropdown_menu_container';
 import { defineMessages, injectIntl } from 'react-intl';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
@@ -156,7 +156,7 @@ export default class StatusActionBar extends ImmutablePureComponent {
         {shareButton}
 
         <div className='status__action-bar-dropdown'>
-          <DropdownMenu disabled={anonymousAccess} items={menu} icon='ellipsis-h' size={18} direction='right' ariaLabel='More' />
+          <DropdownMenuContainer disabled={anonymousAccess} status={status} items={menu} icon='ellipsis-h' size={18} direction='right' ariaLabel='More' />
         </div>
       </div>
     );

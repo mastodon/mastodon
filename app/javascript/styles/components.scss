@@ -214,16 +214,18 @@
 }
 
 .dropdown--active::after {
-  content: "";
-  display: block;
-  position: absolute;
-  width: 0;
-  height: 0;
-  border-style: solid;
-  border-width: 0 4.5px 7.8px;
-  border-color: transparent transparent $ui-secondary-color;
-  bottom: 8px;
-  right: 104px;
+  @media screen and (min-width: 1025px) {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 4.5px 7.8px;
+    border-color: transparent transparent $ui-secondary-color;
+    bottom: 8px;
+    right: 104px;
+  }
 }
 
 .invisible {
@@ -3402,7 +3404,8 @@ button.icon-button.active i.fa-retweet {
 
 .boost-modal,
 .confirmation-modal,
-.report-modal {
+.report-modal,
+.actions-modal {
   background: lighten($ui-secondary-color, 8%);
   color: $ui-base-color;
   border-radius: 8px;
@@ -3490,6 +3493,43 @@ button.icon-button.active i.fa-retweet {
 .report-modal__comment {
   .setting-text {
     margin-top: 10px;
+  }
+}
+
+.actions-modal {
+  .status {
+    overflow-y: auto;
+    max-height: 300px;
+  }
+
+  max-height: 80vh;
+  max-width: 80vw;
+
+  ul {
+    overflow-y: auto;
+    flex-shrink: 0;
+
+    li:not(:empty) {
+      a {
+        color: $ui-base-color;
+        display: flex;
+        padding: 10px;
+        align-items: center;
+        text-decoration: none;
+
+        &.active {
+          &,
+          button {
+            background: $ui-highlight-color;
+            color: $primary-text-color;
+          }
+        }
+
+        button:first-child {
+          margin-right: 10px;
+        }
+      }
+    }
   }
 }
 
