@@ -24,7 +24,7 @@ export default class ActionsModal extends ImmutablePureComponent {
     return (
       <li key={`${text}-${i}`}>
         <a href={href} target='_blank' rel='noopener' onClick={this.props.onClick} data-index={i} className={active && 'active'}>
-          {icon && <IconButton title={text} icon={icon} />}
+          {icon && <IconButton title={text} icon={icon} role='presentation' tabIndex='-1' />}
           <div>
             <div>{text}</div>
             <div>{meta}</div>
