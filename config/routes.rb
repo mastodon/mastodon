@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   get '.well-known/host-meta', to: 'well_known/host_meta#show', as: :host_meta, defaults: { format: 'xml' }
   get '.well-known/webfinger', to: 'well_known/webfinger#show', as: :webfinger
   get 'manifest', to: 'manifests#show', defaults: { format: 'json' }
+  get 'sw.js', to: 'service_worker#show'
 
   devise_for :users, path: 'auth', controllers: {
     sessions:           'auth/sessions',
