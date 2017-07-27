@@ -267,6 +267,21 @@ ru:
     next: След
     prev: Пред
     truncate: "&hellip;"
+  push_notifications:
+    favourite:
+      title: "Ваш статус понравился %{name}"
+    follow:
+      title: "%{name} теперь подписан(а) на Вас"
+    mention:
+      action_boost: Продвинуть
+      action_expand: Развернуть
+      action_favourite: Нравится
+      title: "Вас упомянул(а) %{name}"
+    reblog:
+      title: "%{name} продвинул(а) Ваш статус"
+    subscribed:
+      body: Теперь Вы можете получать push-уведомления.
+      title: Подписка зарегистрирована!
   remote_follow:
     acct: Введите username@domain, откуда Вы хотите подписаться
     missing_resource: Поиск требуемого перенаправления URL для Вашего аккаунта завершился неудачей
@@ -335,6 +350,8 @@ ru:
     click_to_show: Показать
     reblogged: продвинул(а)
     sensitive_content: Чувствительный контент
+  terms:
+    title: "Условия обслуживания и политика конфиденциальности %{instance}"
   time:
     formats:
       default: "%b %d, %Y, %H:%M"
