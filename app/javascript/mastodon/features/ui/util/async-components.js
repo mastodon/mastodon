@@ -102,10 +102,6 @@ export function ReportModal () {
   return import(/* webpackChunkName: "modals/report_modal" */'../components/report_modal');
 }
 
-export function ActionsModal () {
-  return import(/* webpackChunkName: "modals/actions_modal" */'../components/actions_modal');
-}
-
 export function MediaGallery () {
   return import(/* webpackChunkName: "status/MediaGallery" */'../../../components/media_gallery');
 }

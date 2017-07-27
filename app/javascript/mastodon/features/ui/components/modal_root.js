@@ -5,6 +5,7 @@ import spring from 'react-motion/lib/spring';
 import BundleContainer from '../containers/bundle_container';
 import BundleModalError from './bundle_modal_error';
 import ModalLoading from './modal_loading';
+import ActionsModal from '../components/actions_modal';
 import {
   MediaModal,
   OnboardingModal,
@@ -12,7 +13,6 @@ import {
   BoostModal,
   ConfirmationModal,
   ReportModal,
-  ActionsModal,
 } from '../../../features/ui/util/async-components';
 
 const MODAL_COMPONENTS = {
@@ -22,7 +22,7 @@ const MODAL_COMPONENTS = {
   'BOOST': BoostModal,
   'CONFIRM': ConfirmationModal,
   'REPORT': ReportModal,
-  'ACTIONS': ActionsModal,
+  'ACTIONS': () => Promise.resolve({ default: ActionsModal }),
 };
 
 export default class ModalRoot extends React.PureComponent {
