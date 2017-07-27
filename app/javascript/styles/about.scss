@@ -646,7 +646,7 @@
     }
   }
 
-  @media screen and (max-width: 800px) {
+  @media screen and (max-width: 840px) {
     .container {
       padding: 0 20px;
     }
@@ -688,6 +688,10 @@
   @media screen and (max-width: 675px) {
     .header-wrapper {
       padding-top: 0;
+
+      &.compact .hero .heading {
+        padding-bottom: 20px;
+      }
     }
 
     .header .container,
@@ -701,14 +705,13 @@
     }
 
     .header {
-      padding-top: 0;
 
       .hero {
         margin-top: 30px;
         padding: 0;
 
         .heading {
-          padding-bottom: 20px;
+          padding: 0 20px 20px;
         }
       }
 
@@ -719,6 +722,16 @@
       .heading,
       .nav {
         text-align: center;
+      }
+
+      .nav {
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: space-around;
+      }
+
+      .links a {
+        padding: 12px 8px;
       }
 
       .heading h1 {

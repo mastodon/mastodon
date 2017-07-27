@@ -9,6 +9,8 @@ class WebPushNotificationWorker
     session_activation = SessionActivation.find(session_activation_id)
     notification = Notification.find(notification_id)
 
+    return if session_activation.nil? || notification.nil?
+
     begin
       session_activation.web_push_subscription.push(notification)
     rescue Webpush::InvalidSubscription, Webpush::ExpiredSubscription => e

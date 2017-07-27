@@ -16,6 +16,8 @@ class Pubsubhubbub::DeliveryWorker
     @subscription = Subscription.find(subscription_id)
     @payload = payload
     process_delivery unless blocked_domain?
+  rescue => e
+    raise e.class, "Delivery failed for #{subscription&.callback_url}: #{e.message}"
   end
 
   private
