@@ -547,6 +547,7 @@
   }
 
   #mastodon-timeline {
+    display: flex;
     -webkit-overflow-scrolling: touch;
     -ms-overflow-style: -ms-autohiding-scrollbar;
     font-family: 'mastodon-font-sans-serif', sans-serif;
@@ -565,7 +566,6 @@
       padding: 0;
       border-radius: 4px;
       overflow: hidden;
-      height: 100%;
     }
 
     .scrollable {
