@@ -3506,17 +3506,28 @@ button.icon-button.active i.fa-retweet {
   max-width: 80vw;
 
   ul {
-    padding: 10px;
-    overflow-y: scroll;
+    overflow-y: auto;
     flex-shrink: 0;
 
     li:not(:empty) {
-      padding: 5px 10px;
-
       a {
-        display: block;
-        text-decoration: none;
         color: $ui-base-color;
+        display: flex;
+        padding: 10px;
+        align-items: center;
+        text-decoration: none;
+
+        &.active {
+          &,
+          button {
+            background: $ui-highlight-color;
+            color: $primary-text-color;
+          }
+        }
+
+        button:first-child {
+          margin-right: 10px;
+        }
       }
     }
   }

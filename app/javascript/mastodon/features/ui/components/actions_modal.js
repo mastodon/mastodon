@@ -5,6 +5,7 @@ import StatusContent from '../../../components/status_content';
 import Avatar from '../../../components/avatar';
 import RelativeTimestamp from '../../../components/relative_timestamp';
 import DisplayName from '../../../components/display_name';
+import IconButton from '../../../components/icon_button';
 
 export default class ReportModal extends ImmutablePureComponent {
 
@@ -19,12 +20,16 @@ export default class ReportModal extends ImmutablePureComponent {
       return <li key={`sep-${i}`} className='dropdown__sep' />;
     }
 
-    const { text, href = '#' } = action;
+    const { icon = null, text, meta = null, active = false, href = '#' } = action;
 
     return (
       <li key={`${text}-${i}`}>
-        <a href={href} target='_blank' rel='noopener' onClick={this.props.onClick} data-index={i}>
-          {text}
+        <a href={href} target='_blank' rel='noopener' onClick={this.props.onClick} data-index={i} className={active && 'active'}>
+          {icon && <IconButton title={text} icon={icon} />}
+          <div>
+            <div>{text}</div>
+            <div>{meta}</div>
+          </div>
         </a>
       </li>
     );
