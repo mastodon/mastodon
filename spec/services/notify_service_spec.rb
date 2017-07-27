@@ -17,6 +17,16 @@ RSpec.describe NotifyService do
     is_expected.to_not change(Notification, :count)
   end
 
+  it 'does not notify when sender is muted with hide_notifications' do
+    recipient.mute!(sender, notifications: true)
+    is_expected.to_not change(Notification, :count)
+  end
+
+  it 'does notify when sender is muted without hide_notifications' do
+    recipient.mute!(sender, notifications: false)
+    is_expected.to change(Notification, :count)
+  end
+
   it 'does not notify when sender\'s domain is blocked' do
     recipient.block_domain!(sender.domain)
     is_expected.to_not change(Notification, :count)
