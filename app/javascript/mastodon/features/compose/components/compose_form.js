@@ -159,7 +159,10 @@ export default class ComposeForm extends ImmutablePureComponent {
       <div className='compose-form'>
         <Collapsable isVisible={this.props.spoiler} fullHeight={50}>
           <div className='spoiler-input'>
-            <input placeholder={intl.formatMessage(messages.spoiler_placeholder)} value={this.props.spoiler_text} onChange={this.handleChangeSpoilerText} onKeyDown={this.handleKeyDown} type='text' className='spoiler-input__input'  id='cw-spoiler-input' />
+            <label>
+              <span style={{ display: 'none' }}>{intl.formatMessage(messages.spoiler_placeholder)}</span>
+              <input placeholder={intl.formatMessage(messages.spoiler_placeholder)} value={this.props.spoiler_text} onChange={this.handleChangeSpoilerText} onKeyDown={this.handleKeyDown} type='text' className='spoiler-input__input'  id='cw-spoiler-input' />
+            </label>
           </div>
         </Collapsable>
 
