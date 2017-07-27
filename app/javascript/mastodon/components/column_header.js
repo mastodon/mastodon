@@ -6,6 +6,8 @@ import { FormattedMessage, injectIntl, defineMessages } from 'react-intl';
 const messages = defineMessages({
   show: { id: 'column_header.show_settings', defaultMessage: 'Show settings' },
   hide: { id: 'column_header.hide_settings', defaultMessage: 'Hide settings' },
+  moveLeft: { id: 'column_header.moveLeft_settings', defaultMessage: 'Move column to the left' },
+  moveRight: { id: 'column_header.moveRight_settings', defaultMessage: 'Move column to the right' },
 });
 
 @injectIntl
@@ -101,8 +103,8 @@ export default class ColumnHeader extends React.PureComponent {
 
       moveButtons = (
         <div key='move-buttons' className='column-header__setting-arrows'>
-          <button className='text-btn column-header__setting-btn' onClick={this.handleMoveLeft}><i className='fa fa-chevron-left' /></button>
-          <button className='text-btn column-header__setting-btn' onClick={this.handleMoveRight}><i className='fa fa-chevron-right' /></button>
+          <button title={formatMessage(messages.moveLeft)} aria-label={formatMessage(messages.moveLeft)} className='text-btn column-header__setting-btn' onClick={this.handleMoveLeft}><i className='fa fa-chevron-left' /></button>
+          <button title={formatMessage(messages.moveRight)} aria-label={formatMessage(messages.moveRight)} className='text-btn column-header__setting-btn' onClick={this.handleMoveRight}><i className='fa fa-chevron-right' /></button>
         </div>
       );
     } else if (multiColumn) {
