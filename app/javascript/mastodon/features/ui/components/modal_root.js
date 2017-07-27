@@ -44,8 +44,32 @@ export default class ModalRoot extends React.PureComponent {
     window.addEventListener('keyup', this.handleKeyUp, false);
   }
 
+  componentWillReceiveProps (nextProps) {
+    if (!!nextProps.type && !this.props.type) {
+      this.activeElement = document.activeElement;
+
+      this.getSiblings().forEach(sibling => sibling.setAttribute('inert', true));
+    }
+  }
+
+  componentDidUpdate (prevProps) {
+    if (!this.type && !!prevProps.type) {
+      this.getSiblings().forEach(sibling => sibling.removeAttribute('inert'));
+      this.activeElement.focus();
+      this.activeElement = null;
+    }
+  }
+
   componentWillUnmount () {
     window.removeEventListener('keyup', this.handleKeyUp);
+  }
+
+  getSiblings = () => {
+    return Array(...this.node.parentElement.childNodes).filter(node => node !== this.node);
+  }
+
+  setRef = ref => {
+    this.node = ref;
   }
 
   willEnter () {
@@ -86,11 +110,11 @@ export default class ModalRoot extends React.PureComponent {
         willLeave={this.willLeave}
       >
         {interpolatedStyles =>
-          <div className='modal-root'>
+          <div className='modal-root' ref={this.setRef}>
             {interpolatedStyles.map(({ key, data: { type, props }, style }) => (
               <div key={key} style={{ pointerEvents: visible ? 'auto' : 'none' }}>
                 <div role='presentation' className='modal-root__overlay' style={{ opacity: style.opacity }} onClick={onClose} />
-                <div className='modal-root__container' style={{ opacity: style.opacity, transform: `translateZ(0px) scale(${style.scale})` }}>
+                <div role='dialog' className='modal-root__container' style={{ opacity: style.opacity, transform: `translateZ(0px) scale(${style.scale})` }}>
                   <BundleContainer fetchComponent={MODAL_COMPONENTS[type]} loading={this.renderLoading} error={this.renderError} renderDelay={200}>
                     {(SpecificComponent) => <SpecificComponent {...props} onClose={onClose} />}
                   </BundleContainer>
