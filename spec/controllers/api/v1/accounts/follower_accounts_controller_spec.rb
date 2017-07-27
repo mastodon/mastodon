@@ -4,7 +4,7 @@ describe Api::V1::Accounts::FollowerAccountsController do
   render_views
 
   let(:user)  { Fabricate(:user, account: Fabricate(:account, username: 'alice')) }
-  let(:token) { double acceptable?: true, resource_owner_id: user.id }
+  let(:token) { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: 'read') }
 
   before do
     Fabricate(:follow, target_account: user.account)
