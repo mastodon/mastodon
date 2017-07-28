@@ -41,6 +41,10 @@ export default class CommunityTimeline extends React.PureComponent {
     multiColumn: PropTypes.bool,
   };
 
+  static defaultProps = {
+    columnId: 'unpinned',
+  };
+
   handlePin = () => {
     const { columnId, dispatch } = this.props;
 

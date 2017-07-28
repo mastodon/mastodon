@@ -48,6 +48,7 @@ export default class Notifications extends React.PureComponent {
   };
 
   static defaultProps = {
+    columnId: 'unpinned',
     trackScroll: true,
   };
 

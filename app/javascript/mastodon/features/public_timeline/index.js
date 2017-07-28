@@ -41,6 +41,10 @@ export default class PublicTimeline extends React.PureComponent {
     hasUnread: PropTypes.bool,
   };
 
+  static defaultProps = {
+    columnId: 'unpinned',
+  };
+
   handlePin = () => {
     const { columnId, dispatch } = this.props;
 
