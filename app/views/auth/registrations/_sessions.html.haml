@@ -19,10 +19,10 @@
         %td
           %samp= session.ip
         %td
-          - if request.session['auth_id'] == session.session_id
+          - if current_session.session_id == session.session_id
             = t 'sessions.current_session'
           - else
             %time.time-ago{ datetime: session.updated_at.iso8601, title: l(session.updated_at) }= l(session.updated_at)
         %td
-          - if request.session['auth_id'] != session.session_id
+          - if current_session.session_id != session.session_id
             = table_link_to 'times', t('sessions.revoke'), settings_session_path(session), method: :delete
