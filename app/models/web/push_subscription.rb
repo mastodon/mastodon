@@ -118,7 +118,7 @@ class Web::PushSubscription < ApplicationRecord
       when :mention then [
         {
           title: translate('push_notifications.mention.action_favourite'),
-          icon: full_asset_url('emoji/2b50.png', skip_pipeline: true),
+          icon: full_asset_url('web-push-icon_favourite.png', skip_pipeline: true),
           todo: 'request',
           method: 'POST',
           action: "/api/v1/statuses/#{notification.target_status.id}/favourite",
@@ -131,11 +131,11 @@ class Web::PushSubscription < ApplicationRecord
     can_boost = notification.type.equal?(:mention) && !notification.target_status.nil? && !notification.target_status.hidden?
 
     if should_hide
-      actions.insert(0, title: translate('push_notifications.mention.action_expand'), icon: full_asset_url('emoji/1f441.png'), todo: 'expand', action: 'expand')
+      actions.insert(0, title: translate('push_notifications.mention.action_expand'), icon: full_asset_url('web-push-icon_expand.png', skip_pipeline: true), todo: 'expand', action: 'expand')
     end
 
     if can_boost
-      actions << { title: translate('push_notifications.mention.action_boost'), icon: full_asset_url('emoji/1f504.png'), todo: 'request', method: 'POST', action: "/api/v1/statuses/#{notification.target_status.id}/reblog" }
+      actions << { title: translate('push_notifications.mention.action_boost'), icon: full_asset_url('web-push-icon_boost.png', skip_pipeline: true), todo: 'request', method: 'POST', action: "/api/v1/statuses/#{notification.target_status.id}/reblog" }
     end
 
     actions
