@@ -113,11 +113,11 @@ export default class StatusList extends ImmutablePureComponent {
     if (isLoading || statusIds.size > 0 || !emptyMessage) {
       scrollableArea = (
         <div className='scrollable' ref={this.setRef}>
-          <div className='status-list'>
+          <div role='feed' className='status-list'>
             {prepend}
 
-            {statusIds.map((statusId) => {
-              return <StatusContainer key={statusId} id={statusId} intersectionObserverWrapper={this.intersectionObserverWrapper} />;
+            {statusIds.map((statusId, index) => {
+              return <StatusContainer key={statusId} id={statusId} index={index} listLength={statusIds.size} intersectionObserverWrapper={this.intersectionObserverWrapper} />;
             })}
 
             {loadMore}
