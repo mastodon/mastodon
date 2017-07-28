@@ -14,7 +14,7 @@ module AuthorExtractor
 
       return nil if username.blank? || uri.blank?
 
-      domain = Addressable::URI.parse(uri).normalize.host
+      domain = Addressable::URI.parse(uri).normalized_host
       acct   = "#{username}@#{domain}"
     end
 

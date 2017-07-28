@@ -1,35 +1,19 @@
 ---
 pt-BR:
   about:
-    about_mastodon: Mastodon é um servidor de rede social <em>grátis, e open-source</em>. Uma alternativa <em>descentralizada</em> ás plataformas comerciais, que evita o risco de uma única empresa monopolizar a sua comunicação. Escolha um servidor que você confie &mdash; qualquer um que escolher, você poderá interagir com todo o resto. Qualquer um pode ter uma instância Mastodon e assim participar na <em>rede social federada</em> sem problemas.
+    about_mastodon_html: Mastodon é um servidor de rede social <em>grátis, e open-source</em>. Uma alternativa <em>descentralizada</em> ás plataformas comerciais, que evita o risco de uma única empresa monopolizar a sua comunicação. Escolha um servidor que você confie &mdash; qualquer um que escolher, você poderá interagir com todo o resto. Qualquer um pode ter uma instância Mastodon e assim participar na <em>rede social federada</em> sem problemas.
     about_this: Sobre essa instância
-    apps: Aplicações
-    business_email: 'Email comercial:'
     closed_registrations: Registros estão fechadas para essa instância.
     contact: Contato
     description_headline: O que é %{domain}?
     domain_count_after: outras instâncias
     domain_count_before: Conectado a
-    features:
-      api: Aberto para API de aplicações e serviços
-      blocks: Bloqueos e ferramentas para mudar
-      characters: 500 caracteres por post
-      chronology: Timeline são cronologicas
-      ethics: 'Design ético: sem propaganda, sem tracking'
-      gifv: GIFV e vídeos curtos
-      privacy: Granular, privacidade setada por post
-      public: Timelines públicas
-    features_headline: O que torna Mastodon diferente
-    get_started: Comece aqui
-    links: Links
     other_instances: Outras instâncias
     source_code: Source code
     status_count_after: status
     status_count_before: Quem autorizou
-    terms: Termos
     user_count_after: usuários
     user_count_before: Lugar de
-    version: Versão
   accounts:
     follow: Seguir
     followers: Seguidores
@@ -40,15 +24,6 @@ pt-BR:
     posts: Posts
     remote_follow: Acesso remoto
     unfollow: Unfollow
-  activitypub:
-    activity:
-      announce:
-        name: "%{account_name} compartilhou uma atividade."
-      create:
-        name: "%{account_name} criou uma nota."
-    outbox:
-      name: "%{account_name}'s Outbox"
-      summary: Uma coleção de atividades do usuário %{account_name}.
   admin:
     accounts:
       are_you_sure: Você tem certeza?
@@ -152,17 +127,13 @@ pt-BR:
     settings:
       contact_information:
         email: Entre um endereço de email público
-        label: Informação de contato
         username: Entre com usuário
       registrations:
         closed_message:
           desc_html: Mostrar na página inicial quando registros estão fecados<br/>Você pode usar tags HTML
           title: Mensagem de registro fechados
         open:
-          disabled: Desabilitado
-          enabled: Habilitado
           title: Aberto para registro
-      setting: Preferências
       site_description:
         desc_html: Mostrar como parágrafo e usado como meta tag.<br/>Vôce pode usar tags HTML, em particular <code>&lt;a&gt;</code> e <code>&lt;em&gt;</code>.
         title: Descrição do site
@@ -176,7 +147,7 @@ pt-BR:
       confirmed: Confirmado
       expires_in: Expira em
       last_delivery: Última entrega
-      title: PubSubHubbub
+      title: WebSub
       topic: Tópico
     title: Administração
   application_mailer:

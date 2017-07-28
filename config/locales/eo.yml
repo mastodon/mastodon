@@ -1,31 +1,16 @@
 ---
 eo:
   about:
-    about_mastodon: Mastodon estas <em>senpaga, malfermitkoda</em> socia reto. Ĝi estas <em>sencentra</em> alia eblo al komercaj servoj. Ĝi evitigas, ke unusola firmao regu vian tutan komunikadon. Elektu servilon, kiun vi fidas. Kiu ajn estas via elekto, vi povas interagi kun ĉiuj aliaj uzantoj. Iu ajn povas krei sian propran aperaĵon de Mastodon en sia servilo, kaj partopreni en la <em>socia reto</em> tute glate.
+    about_mastodon_html: Mastodon estas <em>senpaga, malfermitkoda</em> socia reto. Ĝi estas <em>sencentra</em> alia eblo al komercaj servoj. Ĝi evitigas, ke unusola firmao regu vian tutan komunikadon. Elektu servilon, kiun vi fidas. Kiu ajn estas via elekto, vi povas interagi kun ĉiuj aliaj uzantoj. Iu ajn povas krei sian propran aperaĵon de Mastodon en sia servilo, kaj partopreni en la <em>socia reto</em> tute glate.
     about_this: Pri tiu aperaĵo
-    apps: Aplikaĵoj
-    business_email: 'Profesia retpoŝt-adreso:'
     contact: Kontakti
     description_headline: Kio estas %{domain}?
     domain_count_after: aliaj aperaĵoj
     domain_count_before: Konektita al
-    features:
-      api: Malfermita API por aplikaĵoj kaj servoj
-      blocks: Kompletaj iloj por bloki kaj kaŝi
-      characters: Po 500 signoj por ĉiu mesaĝo
-      chronology: Tempolinioj laŭtempaj
-      ethics: 'Etike kreita: neniu reklamo, neniu ŝpurado'
-      gifv: Eblo diskonigi etajn videojn kaj GIFV
-      privacy: Videbleco agordita laŭ la mesaĝo
-      public: Publikaj tempolinioj
-    features_headline: Kiel Mastodon estas malsimila
-    get_started: Komenci
-    links: Ligiloj
     other_instances: Aliaj aperaĵoj
     source_code: Fontkodo
     status_count_after: mesaĝoj
     status_count_before: Kiu publikigis
-    terms: Terms
     user_count_after: uzantoj
     user_count_before: Hejmo de
   accounts:
@@ -92,7 +77,7 @@ eo:
       blocking: Listo de blokitoj
       following: Listo de sekvatoj
     upload: Alporti
-  landing_strip_html: <strong>%{name}</strong> estas uzanto en %{link_to_root_path}. Vi povas sekvi tiun aŭ interagi kun tiu, se vi havas konton ie ajn en la Fediverse.
+  landing_strip_html: "<strong>%{name}</strong> estas uzanto en %{link_to_root_path}. Vi povas sekvi tiun aŭ interagi kun tiu, se vi havas konton ie ajn en la Fediverse."
   landing_strip_signup_html: Se vi ne havas, vi povas <a href="%{sign_up_path}">membriĝi ĉi tie.</a>.
   notification_mailer:
     digest:
@@ -105,19 +90,19 @@ eo:
         one: "1 nova sciigo ekde via lasta vizito \U0001F418"
         other: "%{count} novaj sciigoj ekde via lasta vizito \U0001F418"
     favourite:
-      body: '%{name} favoris vian mesaĝon:'
+      body: "%{name} favoris vian mesaĝon:"
       subject: "%{name} favoris vian mesaĝon"
     follow:
       body: "%{name} eksekvis vin:"
       subject: "%{name} eksekvis vin"
     follow_request:
       body: "%{name} petis sekvi vin:"
-      subject: '%{name} petis sekvi vin'
+      subject: "%{name} petis sekvi vin"
     mention:
-      body: '%{name} menciis vin en:'
-      subject: '%{name} menciis vin'
+      body: "%{name} menciis vin en:"
+      subject: "%{name} menciis vin"
     reblog:
-      body: '%{name} diskonigis vian mesaĝon:'
+      body: "%{name} diskonigis vian mesaĝon:"
       subject: "%{name} diskonigis vian mesaĝon"
   pagination:
     next: Sekva

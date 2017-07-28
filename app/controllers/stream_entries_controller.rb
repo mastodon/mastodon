@@ -2,6 +2,7 @@
 
 class StreamEntriesController < ApplicationController
   include Authorization
+  include SignatureVerification
 
   layout 'public'
 
@@ -18,7 +19,7 @@ class StreamEntriesController < ApplicationController
       end
 
       format.atom do
-        render xml: AtomSerializer.render(AtomSerializer.new.entry(@stream_entry, true))
+        render xml: OStatus::AtomSerializer.render(OStatus::AtomSerializer.new.entry(@stream_entry, true))
       end
     end
   end

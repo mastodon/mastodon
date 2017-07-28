@@ -1,0 +1,5 @@
+<%= display_name(@me) %>,
+
+<%= raw t('admin_mailer.new_report.body', target: @report.target_account.acct, reporter: @report.account.acct) %>
+
+<%= raw t('application_mailer.view')%> <%= admin_report_url(@report) %>

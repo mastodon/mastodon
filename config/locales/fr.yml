@@ -1,47 +1,50 @@
 ---
 fr:
   about:
-    about_mastodon: Mastodon est un serveur <em>libre</em> de réseautage social. Alternative <em>décentralisée</em> aux plateformes commerciales, la monopolisation de vos communications par une entreprise unique est évitée. Tout un chacun peut faire tourner Mastodon et participer au <em>réseau social</em> de manière transparente.
-    about_this: À propos de cette instance
-    apps: Applications
-    business_email: Courriel professionnel
-    closed_registrations: Les inscriptions sont actuellement fermées sur cette instance.
+    about_mastodon_html: Mastodon est un réseau social utilisant des formats ouverts et des logiciels libres. Comme le courriel, il est décentralisé.
+    about_this: À propos
+    closed_registrations: Les inscriptions sont actuellement fermées sur cette instance. Cependant, vous pouvez trouver une autre instance sur laquelle vous créer un compte et à partir de laquelle vous pourrez accéder au même réseau.
     contact: Contact
-    description_headline: Qu'est-ce que %{domain} ?
+    description_headline: Qu’est-ce que %{domain} ?
     domain_count_after: autres instances
     domain_count_before: Connectés à
     features:
-      api: API ouverte aux apps et services
-      blocks: Outils complets de bloquage et masquage
-      characters: 500 caractères par post
-      chronology: Fil chronologique
-      ethics: Pas de pubs, pas de pistage
-      gifv: Partage de vidéos et de GIFs
-      privacy: Réglages de confidentialité au niveau des posts
-      public: Fils publics
-    features_headline: Ce qui rend Mastodon différent
-    get_started: Rejoindre le réseau
-    links: Liens
-    other_instances: Autres instances
+      humane_approach_body: Ayant appris des échecs d’autres réseaux, Mastodon à l’ambition de combattre l’abus des médias sociaux en effectuant des choix de conception éthiques.
+      humane_approach_title: Une approche plus humaine
+      not_a_product_body: Mastodon n’est pas un réseau commercial. Ici, pas de publicités, pas de prospection de données et pas d’environnement fermés. Il n’y existe aucune autorité centrale.
+      not_a_product_title: Vous êtes une personne, pas un produit
+      real_conversation_body: Avec 500 caractères à votre dispostion, une grande granularité en terme de diffusion et la possibilité de masquer vos messages derrières des avertissements, vous êtes libre de vous exprimer de la manière qui vous plaît.
+      real_conversation_title: Construit pour de vraies conversations
+      within_reach_body: Grâce à l’existence d’un environnement API accueillant pour les développeur·se·s, de multiples applications pour iOS, Android et d’autres plateformes vous permettent de rester en contact avec vos ami·e·s où que vous soyez.
+      within_reach_title: Toujours à portée de main
+    find_another_instance: Trouver une autre instance
+    generic_description: "%{domain} est seulement un serveur du réseau"
+    hosted_on: Instance Mastodon hébergée par %{domain}
+    learn_more: En savoir plus
+    other_instances: Liste des instances
     source_code: Code source
     status_count_after: posts
     status_count_before: Ayant publié
-    terms: Conditions d’utilisation
-    user_count_after: utilisateurs⋅trices
+    user_count_after: utilisateur⋅ice⋅s
     user_count_before: Abrite
+    what_is_mastodon: Qu’est-ce que Mastodon ?
   accounts:
     follow: Suivre
     followers: Abonné⋅es
     following: Abonnements
-    nothing_here: Rien à voir ici !
+    nothing_here: Rien à voir ici !
     people_followed_by: Personnes suivies par %{name}
     people_who_follow: Personnes qui suivent %{name}
     posts: Statuts
     remote_follow: Suivre à distance
+    reserved_username: Ce nom d’utilisateur⋅ice est réservé
     unfollow: Ne plus suivre
   admin:
     accounts:
-      are_you_sure: Êtes-vous certain ?
+      are_you_sure: Êtes-vous certain⋅e ?
+      confirm: Confirmer
+      confirmed: Confirmé
+      disable_two_factor_authentication: Désactiver l’authentification à deux facteurs
       display_name: Nom affiché
       domain: Domaine
       edit: Éditer
@@ -49,6 +52,7 @@ fr:
       feed_url: URL du flux
       followers: Abonné⋅es
       follows: Abonnements
+      ip: Adresse IP
       location:
         all: Tous
         local: Local
@@ -57,7 +61,7 @@ fr:
       media_attachments: Fichiers médias
       moderation:
         all: Tous
-        silenced: Muets
+        silenced: Masqués
         suspended: Suspendus
         title: Modération
       most_recent_activity: Dernière activité
@@ -70,15 +74,25 @@ fr:
       perform_full_suspension: Effectuer une suspension complète
       profile_url: URL du profil
       public: Public
-      push_subscription_expires: Expiration de l'abonnement PuSH
+      push_subscription_expires: Expiration de l’abonnement PuSH
+      redownload: Rafraîchir les avatars
+      reset: Réinitialiser
       reset_password: Réinitialiser le mot de passe
+      resubscribe: Se réabonner
       salmon_url: URL Salmon
-      silence: Rendre muet
+      search: Rechercher
+      show:
+        created_reports: Signalements créés par ce compte
+        report: signalement
+        targeted_reports: Signalements créés visant ce compte
+      silence: Masquer
       statuses: Statuts
+      subscribe: S’abonner
       title: Comptes
-      undo_silenced: Annuler le silence
+      undo_silenced: Démasquer
       undo_suspension: Annuler la suspension
-      username: Nom d'utilisateur
+      unsubscribe: Se désabonner
+      username: Nom d’utilisateur⋅ice
       web: Web
     domain_blocks:
       add_new: Ajouter
@@ -87,16 +101,16 @@ fr:
       domain: Domaine
       new:
         create: Créer le blocage
-        hint: Le blocage de domaine n'empêchera pas la création de comptes dans la base de données, mais il appliquera automatiquement et rétrospectivement des méthodes de modération spécifiques sur ces comptes.
+        hint: Le blocage de domaine n’empêchera pas la création de comptes dans la base de données, mais il appliquera automatiquement et rétrospectivement des méthodes de modération spécifiques sur ces comptes.
         severity:
           desc_html: "<strong>Silence</strong> rendra les messages des comptes concernés invisibles à ceux qui ne les suivent pas. <strong>Suspend</strong> supprimera tout le contenu des comptes concernés, les médias, et les données du profil."
-          silence: Muet
+          silence: Masqué
           suspend: Suspendre
         title: Nouveau blocage de domaine
       reject_media: Fichiers média rejetés
-      reject_media_hint: Supprime localement les fichiers média stockés et refuse d'en télécharger ultérieurement. Ne concerne pas les suspensions.
+      reject_media_hint: Supprime localement les fichiers média stockés et refuse d’en télécharger ultérieurement. Ne concerne pas les suspensions.
       severities:
-        silence: Rendre muet
+        silence: Masquer
         suspend: Suspendre
       severity: Séverité
       show:
@@ -104,24 +118,34 @@ fr:
           one: Un compte affecté dans la base de données
           other: "%{count} comptes affectés dans la base de données"
         retroactive:
-          silence: Annuler le silence sur tous les comptes existants pour ce domaine
+          silence: Annuler le masquage sur tous les comptes existants pour ce domaine
           suspend: Annuler la suspension sur tous les comptes existants pour ce domaine
         title: Annuler le blocage de domaine pour %{domain}
         undo: Annuler
       title: Blocage de domaines
       undo: Annuler
+    instances:
+      account_count: Comptes connus
+      domain_name: Domaine
+      title: Instances connues
     reports:
+      action_taken_by: Intervention de
+      are_you_sure: Êtes vous certain⋅e?
       comment:
         label: Commentaire
         none: Aucun
       delete: Supprimer
       id: ID
       mark_as_resolved: Marquer comme résolu
+      nsfw:
+        'false': Ré-afficher les médias
+        'true': Masquer les médias
       report: 'Signalement #%{id}'
+      report_contents: Contenu
       reported_account: Compte signalé
       reported_by: Signalé par
       resolved: Résolus
-      silence_account: Rendre le compte muet
+      silence_account: Masquer le compte
       status: Statut
       suspend_account: Suspendre le compte
       target: Cible
@@ -131,43 +155,71 @@ fr:
     settings:
       contact_information:
         email: Entrez une adresse courriel publique
-        label: Informations de contact
-        username: Entrez un nom d'utilisateur
+        username: Entrez un nom d’utilisateur⋅ice
       registrations:
         closed_message:
-          desc_html: Affiché sur la page d'accueil lorsque les inscriptions sont fermées<br>Vous pouvez utiliser des balises HTML
+          desc_html: Affiché sur la page d’accueil lorsque les inscriptions sont fermées<br>Vous pouvez utiliser des balises HTML
           title: Message de fermeture des inscriptions
+        deletion:
+          desc_html: Permettre à tou·te·s les utilisateur·rice·s de supprimer leur compte
+          title: Autoriser les suppressions de compte
         open:
-          disabled: Désactivées
-          enabled: Activées
-          title: Inscriptions
-      setting: Paramètre
+          desc_html: Autoriser tout le monde à créer un compte
+          title: Ouvrir les inscriptions
       site_description:
-        desc_html: Affichée sous la forme d'un paragraphe sur la page d'accueil et utilisée comme balise meta.<br>Vous pouvez utiliser des balises HTML, en particulier <code>&lt;a&gt;</code> et <code>&lt;em&gt;</code>.
+        desc_html: Affichée sous la forme d’un paragraphe sur la page d’accueil et utilisée comme balise meta.<br>Vous pouvez utiliser des balises HTML, en particulier <code>&lt;a&gt;</code> et <code>&lt;em&gt;</code>.
         title: Description du site
       site_description_extended:
-        desc_html: Affichée sur la page d'informations complémentaires du site<br>Vous pouvez utiliser des balises HTML
+        desc_html: Affichée sur la page d’informations complémentaires du site<br>Vous pouvez utiliser des balises HTML
         title: Description étendue du site
+      site_terms:
+        desc_html: Affichée sur la page des conditions d’utilisation du site<br>Vous pouvez utiliser des balises HTML
+        title: Politique de confidentialité
       site_title: Titre du site
+      timeline_preview:
+        desc_html: Afficher le fil public sur la page d’accueil
+        title: Prévisualisation du fil global
       title: Paramètres du site
+    statuses:
+      back_to_account: Retour à la page du compte
+      batch:
+        delete: Supprimer
+        nsfw_off: NSFW OFF
+        nsfw_on: NSFW ON
+      execute: Exécuter
+      failed_to_execute: Erreur d'exécution
+      media:
+        hide: Masquer les médias
+        show: Montrer les médias
+        title: Médias
+      no_media: Aucun média
+      title: État du compte
+      with_media: avec médias
     subscriptions:
       callback_url: URL de rappel
       confirmed: Confirmé
       expires_in: Expire dans
       last_delivery: Dernière livraison
-      title: PubSubHubbub
+      title: WebSub
       topic: Sujet
     title: Administration
+  admin_mailer:
+    new_report:
+      body: "%{reporter} a signalé %{target}"
+      subject: Nouveau signalement sur %{instance} (#%{id})
   application_mailer:
-    settings: 'Changer les préférences courriel : %{link}'
+    settings: 'Changer les préférences courriel : %{link}'
     signature: Notifications de Mastodon depuis %{instance}
-    view: 'Voir :'
+    view: 'Voir :'
   applications:
-    invalid_url: L'URL fournie est invalide
+    invalid_url: L’URL fournie est invalide
   auth:
-    change_password: Changer de mot de passe
-    didnt_get_confirmation: Vous n’avez pas reçu les consignes de confirmation ?
-    forgot_password: Mot de passe oublié ?
+    agreement_html: En vous inscrivant, vous souscrivez à <a href="%{rules_path}">nos conditions d’utilisation</a> ainsi qu’à <a href="%{terms_path}">notre politique de confidentialité</a>.
+    change_password: Sécurité
+    delete_account: Supprimer le compte
+    delete_account_html: Si vous désirez supprimer votre compte, vous pouvez cliquer ici. Il vous sera demandé de confirmer cette action.
+    didnt_get_confirmation: Vous n’avez pas reçu les consignes de confirmation ?
+    forgot_password: Mot de passe oublié ?
     login: Se connecter
     logout: Se déconnecter
     register: S’inscrire
@@ -177,7 +229,13 @@ fr:
   authorize_follow:
     error: Malheureusement, il y a eu une erreur en cherchant les détails du compte distant
     follow: Suivre
-    prompt_html: 'Vous (<strong>%{self}</strong>) avez demandé à suivre :'
+    follow_request: 'Vous avez demandé à suivre:'
+    following: 'Youpi! Vous suivez :'
+    post_follow:
+      close: Ou bien, vous pouvez fermer cette fenêtre.
+      return: Retour au profil de l'utilisateur⋅trice
+      web: Retour à l'interface web
+    prompt_html: 'Vous (<strong>%{self}</strong>) avez demandé à suivre :'
     title: Suivre %{acct}
   datetime:
     distance_in_words:
@@ -189,9 +247,9 @@ fr:
       almost_x_years:
         one: un an
         other: "%{count} ans"
-      half_a_minute: A l'instant
+      half_a_minute: À l’instant
       less_than_x_minutes: "%{count}min"
-      less_than_x_seconds: A l'instant
+      less_than_x_seconds: À l’instant
       over_x_years:
         one: un an
         other: "%{count} ans"
@@ -199,110 +257,197 @@ fr:
       x_minutes: "%{count}min"
       x_months: "%{count}mois"
       x_seconds: "%{count}s"
+  deletes:
+    bad_password_msg: Bien essayé ! Mot de passe incorrect
+    confirm_password: Entrez votre mot de passe pour vérifier votre identité
+    description_html: Cela va supprimer votre compte et le désactiver de manière <strong>permanente et irréversible</strong>. Votre nom d’utilisateur⋅ice restera réservé afin d’éviter la confusion
+    proceed: Supprimer compte
+    success_msg: Votre compte a été supprimé avec succès
+    warning_html: Seule la suppression du contenu depuis cette instance est garantie. Le contenu qui a été partagé est susceptible de laisser des traces. Les serveurs hors-lignes ainsi que ceux n’étant plus abonnés à vos publications ne mettront pas leur base de données à jour.
+    warning_title: Disponibilité du contenu disséminé
   errors:
-    '404': La page que vous recherchez n'existe pas.
-    '410': La page que vous recherchez n'existe plus.
+    '403': Vous n’avez pas accès à cette page.
+    '404': La page que vous recherchez n’existe pas.
+    '410': La page que vous recherchez n’existe plus.
     '422':
-      content: Vérification de sécurité échouée. Bloquez-vous les cookies ?
+      content: Vérification de sécurité échouée. Bloquez-vous les cookies ?
       title: Vérification de sécurité échouée
+    '429': Trop de requêtes émises dans un délai donné.
+    noscript: Pour utiliser Mastodon, veuillez activer JavaScript
   exports:
     blocks: Vous bloquez
     csv: CSV
     follows: Vous suivez
     mutes: Vous faites taire
     storage: Médias stockés
+  followers:
+    domain: Domaine
+    explanation_html: Si vous voulez être sûr⋅e que vos status restent privés, vous devez savoir qui vous suit. <strong>Vos status privés seront diffusés à toutes les instances des utilisateur⋅ice⋅s qui vous suivent</strong>. Vous voudrez peut-être les passer en revue et les supprimer si vous n’êtes pas sûr⋅e que votre vie privée sera respectée par l’administration ou le logiciel de ces instances.
+    followers_count: Nombre d’abonné⋅es
+    lock_link: Rendez votre compte privé
+    purge: Retirer de la liste d’abonné⋅es
+    success:
+      one: Suppression des abonné⋅es venant d’un domaine en cours…
+      other: Suppression des abonné⋅es venant de %{count} domaines en cours…
+    true_privacy_html: Soyez conscient⋅es <strong>qu’une vraie confidentialité ne peut être atteinte que par un chiffrement de bout-en-bout</strong>.
+    unlocked_warning_html: N’importe qui peut vous suivre et voir vos status privés. %{lock_link} afin de pouvoir vérifier et rejeter des abonné⋅es.
+    unlocked_warning_title: Votre compte n’est pas privé
   generic:
-    changes_saved_msg: Les modifications ont été enregistrées avec succès !
+    changes_saved_msg: Les modifications ont été enregistrées avec succès !
     powered_by: propulsé par %{link}
     save_changes: Enregistrer les modifications
     validation_errors:
-      one: Quelque chose ne va pas ! Vérifiez l’erreur ci-dessous.
-      other: Certaines choses ne vont pas ! Vérifiez les erreurs ci-dessous.
+      one: Quelque chose ne va pas ! Vérifiez l’erreur ci-dessous.
+      other: Certaines choses ne vont pas ! Vérifiez les erreurs ci-dessous.
   imports:
     preface: Vous pouvez importer certaines données comme les personnes que vous suivez ou bloquez sur votre compte sur cette instance à partir de fichiers créés sur une autre instance.
     success: Vos données ont été importées avec succès et seront traitées en temps et en heure
     types:
-      blocking: Liste d'utilisateurs⋅trices bloqué⋅es
-      following: Liste d'utilisateurs⋅trices suivi⋅es
-      muting: Liste d'utilisateurs⋅trices que vous faites taire
+      blocking: Liste d’utilisateur⋅ice⋅s bloqué⋅es
+      following: Liste d’utilisateur⋅ice⋅s suivi⋅es
+      muting: Liste d’utilisateur⋅ice⋅s que vous faites taire
     upload: Importer
   landing_strip_html: <strong>%{name}</strong> utilise %{link_to_root_path}. Vous pouvez le/la suivre et interagir si vous possédez un compte quelque part dans le "fediverse".
-  landing_strip_signup_html: Si ce n'est pas le cas, vous pouvez <a href="%{sign_up_path}">en créer un ici</a>.
+  landing_strip_signup_html: Si ce n’est pas le cas, vous pouvez <a href="%{sign_up_path}">en créer un ici</a>.
   media_attachments:
     validations:
-      images_and_video: Impossible de joindre une vidéo à un statut contenant déjà des images
+      images_and_video: Impossible de joindre une vidéo à un status contenant déjà des images
       too_many: Impossible de joindre plus de 4 fichiers
   notification_mailer:
     digest:
-      body: 'Voici ce que vous avez raté sur ${instance} depuis votre dernière visite (%{}) :'
+      body: 'Voici ce que vous avez raté sur ${instance} depuis votre dernière visite (%{}) :'
       mention: "%{name} vous a mentionné⋅e"
       new_followers_summary:
-        one: Vous avez un⋅e nouvel⋅le abonné⋅e ! Youpi !
-        other: Vous avez %{count} nouveaux⋅elles abonné⋅e⋅s ! Incroyable !
+        one: Vous avez un⋅e nouvel⋅le abonné⋅e ! Youpi !
+        other: Vous avez %{count} nouveaux⋅elles abonné⋅e⋅s ! Incroyable !
       subject:
         one: "Une nouvelle notification depuis votre dernière visite \U0001F418"
         other: "%{count} nouvelles notifications depuis votre dernière visite \U0001F418"
     favourite:
-      body: "%{name} a ajouté votre post à ses favoris :"
+      body: "%{name} a ajouté votre post à ses favoris :"
       subject: "%{name} a ajouté votre post à ses favoris"
     follow:
-      body: "%{name} vous suit !"
+      body: "%{name} vous suit !"
       subject: "%{name} vous suit"
     follow_request:
       body: "%{name} a demandé à vous suivre"
-      subject: 'Abonné⋅es en attente : %{name}'
+      subject: 'Abonné⋅es en attente : %{name}'
     mention:
-      body: "%{name} vous a mentionné⋅e dans :"
-      subject: "%{name} vous a mentionné⋅e"
+      body: "%{name} vous a mentionné⋅e dans :"
+      subject: "%{name} vous a mentionné"
     reblog:
-      body: "%{name} a partagé votre statut :"
-      subject: "%{name} a partagé votre statut"
+      body: "%{name} a partagé votre status :"
+      subject: "%{name} a partagé votre status"
   pagination:
     next: Suivant
     prev: Précédent
+  push_notifications:
+    favourite:
+      title: "%{name} à mis votre status en favori"
+    follow:
+      title: "%{name} vous suit"
+    mention:
+      action_boost: Partager
+      action_expand: Montrer plus
+      action_favourite: Ajouter aux favoris
+      title: "%{name} vous a mentionné"
+    reblog:
+      title: "%{name} a partagé⋅e votre status"
+    subscribed:
+      body: Vous pouvez désormais recevoir des notifications push.
+      title: Abonnements aux notifications push
   remote_follow:
     acct: Entrez votre pseudo@instance depuis lequel vous voulez suivre ce⋅tte utilisateur⋅trice
-    missing_resource: L'URL de redirection n'a pas pu être trouvée
+    missing_resource: L’URL de redirection n’a pas pu être trouvée
     proceed: Continuez pour suivre
-    prompt: 'Vous allez suivre :'
+    prompt: 'Vous allez suivre :'
+  sessions:
+    activity: Dernière activité
+    browser: Navigateur
+    browsers:
+      alipay: Alipay
+      blackberry: Blackberry
+      chrome: Chrome
+      edge: Microsoft Edge
+      firefox: Firefox
+      generic: Navigateur inconnu
+      ie: Internet Explorer
+      micro_messenger: MicroMessenger
+      nokia: Nokia S40 Ovi Browser
+      opera: Opera
+      phantom_js: PhantomJS
+      qq: QQ Browser
+      safari: Safari
+      uc_browser: UCBrowser
+      weibo: Weibo
+    current_session: Session courante
+    description: "%{browser} sur %{platform}"
+    explanation: Ceci est la liste des navigateurs actuellement connectés à votre compte Mastodon.
+    ip: Adresse IP
+    platforms:
+      adobe_air: Adobe Air
+      android: Android
+      blackberry: Blackberry
+      chrome_os: ChromeOS
+      firefox_os: Firefox OS
+      ios: iOS
+      linux: Linux
+      mac: Mac
+      other: système inconnu
+      windows: Windows
+      windows_mobile: Windows Mobile
+      windows_phone: Windows Phone
+    revoke: Révoquer
+    revoke_success: Session révoquée avec succès
+    title: Sessions
   settings:
     authorized_apps: Applications autorisées
     back: Retour vers Mastodon
+    delete: Suppression de compte
     edit_profile: Modifier le profil
     export: Export de données
+    followers: Abonné⋅es autorisé⋅es
     import: Import de données
     preferences: Préférences
     settings: Réglages
-    two_factor_authentication: Identification à deux facteurs (Two-factor auth)
+    two_factor_authentication: Identification à deux facteurs
   statuses:
     open_in_web: Ouvrir sur le web
     over_character_limit: limite de caractères dépassée de %{max} caractères
     show_more: Afficher plus
     visibilities:
       private: Abonné⋅es uniquement
+      private_long: Seul⋅es vos abonné⋅es verront vos status
       public: Public
+      public_long: Tout le monde peut voir vos status
       unlisted: Public sans être affiché sur le fil public
+      unlisted_long: Tout le monde peut voir vos status mais ils ne seront pas sur listés sur les fils publics
   stream_entries:
     click_to_show: Cliquer pour afficher
     reblogged: partagé
     sensitive_content: Contenu sensible
+  terms:
+    body_html: "<h2>Politique de confidentialité</h2>\n\n<h3 id=\"collect\">Quelles données collectons-nous?</h3>\n\n<p>Nous collectons des données lorsque vous vous enregistrez sur notre site et les récoltons lorsque vous participez dans le forum en lisant, écrivant, et évaluant le contenu partagé ici.</p>\n\n<p>Lors de l'enregistrement sur notre site, il peut vous être demandé de renseigner votre nom et adresse e-mail. Vous pouvez, cependant, visiter notre site sans inscription. Votre adresse e-mail devra être vérifiée grâce à un e-mail contenant un lien unique. Si ce lien est visité, nous savons que vous contrôlez cette adresse e-mail.</p>\n\n<p>Lors de l'inscription et de la publication de statuts, nous enregistrons l'adresse IP de laquelle le(s) status viennent. Nous pouvons également conserver des historiques serveurs qui contiendront l'adresse IP de chaque requête adressée à notre serveur.</p>\n\n<h3 id=\"use\">Que faisons-nous avec vos données?</h3>\n\n<p>Toute information que nous collectons pourra être utilisée d'une des manières suivantes :</p>\n\n<ul>\n  <li>Pour personnaliser votre expérience &mdash; vos données nous aident à mieux répondre à vos besoins individuels.</li>\n  <li>Pour améliorer notre site &mdash; nous faisons tout notre possible pour améliorer notre site en fonction des données, retours et suggestions que nous recevons.</li>\n  <li>Afin d'améliorer le support client &mdash; vos données nous aident à mieux répondre à vos requêtes et demandes de support.</li>\n  <li>Afin d'envoyer des e-mails à intervalles réguliers &mdash; l'adresse e-mail que vous renseignez peut être utilisée pour vous envoyer des données et notifications concernant des changements ou en réponse à votre nom d'utilisateur⋅trice, en réponse à vos demandes et/ou autres requêtes ou questions</li>\n</ul>\n\n<h3 id=\"protect\">Comment protégeons-nous vos données?</h3>\n  \n<p>Nous appliquons une multitude de mesures afin de maintenir la sécurité de vos données personnelles lorsque vous entrez, soumettez, ou accédez à ces dernières.</p>\n\n<h3 id=\"data-retention\">Quelle est notre politique de conservation des données?</h3>\n\n<p>Nous nous efforçons de:</p>\n\n<ul>\n  <li>Ne pas garder les historiques serveurs contenant l'adresse IP de chaque requête adressée à ce serveur plus de 90 jours.</li>\n  <li>Ne pas conserver les adresses IP associées aux utilisateur⋅trices et leur contenu plus de 5 ans.</li>\n</ul>\n\n<h3 id=\"cookies\">Utilisons nous des \"cookies\"?</h3>\n\n<p>Oui. Les cookies sont de petits fichiers qu'un site ou prestataires de services transfèrent sur le disque dur de votre ordinateur par le biais de votre navigateur Web (si ce dernier le permet). Ces cookies permettent au site de reconnaître votre navigateur et, si vous disposez d'un compte, l'associer à votre compte.</p>\n\n<p>Nous utilisons les cookies pour enregistrer vos préférences pour de futures visites, compiler des données agrégées à propos du trafic et des interactions effectuées sur le site afin de proposer une meilleure expérience dans le futur. Nous pouvons contracter les services d'acteurs tiers afin de nous aider à mieux comprendre les visiteurs de notre site. Ces acteurs ont l'autorisation d'utiliser ces données seulement à des fins d'améliorations.</p>\n\n<h3 id=\"disclose\">Divulguons-nous des données à des acteurs tiers ?</h3>\n\n<p>Nous n'échangeons pas, ne vendons pas ni effectuons de quelconques transferts avec des acteurs tiers d'informations permettant de vous identifier personnellement. Cela n'inclut pas les acteurs de confiance qui nous aident à gérer notre entreprise et à vous servir tant que ces acteurs s'accordent à garder lesdites informations confidentielles. Nous pouvons être amenés à délivrer vos informations lorsque jugé adéquat afin de respecter la loi, d'appliquer la politique de notre site, ou afin de protéger nos droits, ceux des autres, notre propriété ou sécurité. Cependant, aucune information permettant l'identification de nos visiteurs ne sera divulguée à des fins publicitaires, commerciales ou tout autre usage.</p>\n\n<h3 id=\"third-party\">Liens vers des acteurs tiers</h3>\n\n<p>Nous pouvons être amenés à inclure ou offrir les services ou produits d'acteurs tiers sur notre site. Ces acteurs tiers possèdent leur propre politique de confidentialité. Nous ne sommes donc pas responsables du contenu ou activités desdits acteurs. Néanmoins, nous cherchons à protéger l'intégrité de notre site et sommes ouverts à toute remarque concernant ces acteurs.</p>\n\n<h3 id=\"coppa\">Children's Online Privacy Protection Act</h3>\n\n<p>Notre site, nos produits et services sont tous dirigés à l'usage de personnes étant âgés de 13 ans ou plus. Si ce serveur est hébergé aux États-Unis et que vous êtes âgé⋅e de moins de 13 ans, au vu du COPPA (<a href=\"https://fr.wikipedia.org/wiki/Children%27s_Online_Privacy_Protection_Act\">Children's Online Privacy Protection Act</a>) n'utilisez pas ce site.</p>\n\n<h3 id=\"consent\">Votre consentement</h3>\n\n<p>En utilisant notre site, vous consentez à la politique de confiedentialité de notre site Web.</p>\n\n<h3 id=\"changes\">Changements de notre politique de confidentialité</h3>\n\n<p>Si nous décidons d'apporter des changements à notre politique de confidentialité, nous les mettrons à disposition sur cette page.</p>\n\n<p>Ce document est distribué sous licence CC-BY-SA. Il a été mis à jour pour la dernière fois le 31 Mai 2013. Il a été traduit en français en Juillet 2017.</p>\n\n<p>Originellement adapté à partir de la politique de confidentialité de <a href=\"https://github.com/discourse/discourse\">Discourse</a></p>.\n"
+    title: "%{instance} Conditions d'utilisations et Politique de confidentialité"
   time:
     formats:
       default: "%d %b %Y, %H:%M"
   two_factor_authentication:
     code_hint: Entrez le code généré par votre application pour confirmer
-    description_html: Si vous activez <strong>l'identification à deux facteurs</strong>, vous devrez être en possession de votre téléphone afin de générer un code de connexion.
+    description_html: Si vous activez <strong>l’identification à deux facteurs</strong>, vous devrez être en possession de votre téléphone afin de générer un code de connexion.
     disable: Désactiver
     enable: Activer
+    enabled: L’authentification à deux facteurs est activée
     enabled_success: Identification à deux facteurs activée avec succès
     generate_recovery_codes: Générer les codes de récupération
     instructions_html: "<strong>Scannez ce QR code grâce à Google Authenticator, Authy ou une application similaire sur votre téléphone</strong>. Désormais, cette application générera des jetons que vous devrez saisir à chaque connexion."
     lost_recovery_codes: Les codes de récupération vous permettent de retrouver les accès à votre comptre si vous perdez votre téléphone. Si vous perdez vos codes de récupération, vous pouvez les générer à nouveau ici. Vos anciens codes de récupération seront invalidés.
-    manual_instructions: 'Si vous ne pouvez pas scanner ce QR code et devez l''entrer manuellement, voici le secret en clair :'
+    manual_instructions: 'Si vous ne pouvez pas scanner ce QR code et devez l’entrer manuellement, voici le secret en clair :'
+    recovery_codes: Codes de récupération
     recovery_codes_regenerated: Codes de récupération régénérés avec succès
-    recovery_instructions_html: Si vous perdez l'accès à votre téléphone, vous pouvez utiliser un des codes de récupération ci-dessous pour récupérer l'accès à votre compte. Conservez les codes de récupération en toute sécurité, par exemple, en les imprimant et en les stockant avec vos autres documents importants.
+    recovery_instructions_html: Si vous perdez l’accès à votre téléphone, vous pouvez utiliser un des codes de récupération ci-dessous pour récupérer l’accès à votre compte. Conservez les codes de récupération en toute sécurité, par exemple, en les imprimant et en les stockant avec vos autres documents importants.
     setup: Installer
-    wrong_code: Les codes entrés sont incorrects ! L'heure du serveur et celle de votre appareil sont-elles correctes ?
+    wrong_code: Les codes entrés sont incorrects ! L’heure du serveur et celle de votre appareil sont-elles correctes ?
   users:
-    invalid_email: L'adresse courriel est invalide
-    invalid_otp_token: Le code d'authentification à deux facteurs est invalide
+    invalid_email: L’adresse courriel est invalide
+    invalid_otp_token: Le code d’authentification à deux facteurs est invalide

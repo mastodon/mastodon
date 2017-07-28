@@ -1,35 +1,34 @@
-import emojione from 'emojione';
+import { unicodeMapping } from './emojione_light';
+import Trie from 'substring-trie';
 
-const toImage = str => shortnameToImage(unicodeToImage(str));
+const trie = new Trie(Object.keys(unicodeMapping));
 
-const unicodeToImage = str => {
-  const mappedUnicode = emojione.mapUnicodeToShort();
-
-  return str.replace(emojione.regUnicode, unicodeChar => {
-    if (typeof unicodeChar === 'undefined' || unicodeChar === '' || !(unicodeChar in emojione.jsEscapeMap)) {
-      return unicodeChar;
+function emojify(str) {
+  // This walks through the string from start to end, ignoring any tags (<p>, <br>, etc.)
+  // and replacing valid unicode strings
+  // that _aren't_ within tags with an <img> version.
+  // The goal is to be the same as an emojione.regUnicode replacement, but faster.
+  let i = -1;
+  let insideTag = false;
+  let match;
+  while (++i < str.length) {
+    const char = str.charAt(i);
+    if (insideTag && char === '>') {
+      insideTag = false;
+    } else if (char === '<') {
+      insideTag = true;
+    } else if (!insideTag && (match = trie.search(str.substring(i)))) {
+      const unicodeStr = match;
+      if (unicodeStr in unicodeMapping) {
+        const [filename, shortCode] = unicodeMapping[unicodeStr];
+        const alt      = unicodeStr;
+        const replacement =  `<img draggable="false" class="emojione" alt="${alt}" title=":${shortCode}:" src="/emoji/${filename}.svg" />`;
+        str = str.substring(0, i) + replacement + str.substring(i + unicodeStr.length);
+        i += (replacement.length - unicodeStr.length); // jump ahead the length we've added to the string
+      }
     }
-
-    const unicode  = emojione.jsEscapeMap[unicodeChar];
-    const short    = mappedUnicode[unicode];
-    const filename = emojione.emojioneList[short].fname;
-    const alt      = emojione.convert(unicode.toUpperCase());
-
-    return `<img draggable="false" class="emojione" alt="${alt}" title="${short}" src="/emoji/${filename}.svg" />`;
-  });
-};
-
-const shortnameToImage = str => str.replace(emojione.regShortNames, shortname => {
-  if (typeof shortname === 'undefined' || shortname === '' || !(shortname in emojione.emojioneList)) {
-    return shortname;
   }
+  return str;
+}
 
-  const unicode = emojione.emojioneList[shortname].unicode[emojione.emojioneList[shortname].unicode.length - 1];
-  const alt     = emojione.convert(unicode.toUpperCase());
-
-  return `<img draggable="false" class="emojione" alt="${alt}" title="${shortname}" src="/emoji/${unicode}.svg" />`;
-});
-
-export default function emojify(text) {
-  return toImage(text);
-};
+export default emojify;

@@ -12,9 +12,12 @@ EXPOSE 3000 4000
 WORKDIR /mastodon
 
 RUN echo "@edge https://nl.alpinelinux.org/alpine/edge/main" >> /etc/apk/repositories \
+ && echo "@edge https://nl.alpinelinux.org/alpine/edge/community" >> /etc/apk/repositories \
  && apk -U upgrade \
  && apk add -t build-dependencies \
     build-base \
+    icu-dev \
+    libidn-dev \
     libxml2-dev \
     libxslt-dev \
     postgresql-dev \
@@ -25,7 +28,9 @@ RUN echo "@edge https://nl.alpinelinux.org/alpine/edge/main" >> /etc/apk/reposit
     ffmpeg \
     file \
     git \
+    icu-libs \
     imagemagick@edge \
+    libidn \
     libpq \
     libxml2 \
     libxslt \
@@ -34,7 +39,7 @@ RUN echo "@edge https://nl.alpinelinux.org/alpine/edge/main" >> /etc/apk/reposit
     protobuf \
     su-exec \
     tini \
- && npm install -g npm@3 && npm install -g yarn \
+    yarn@edge \
  && update-ca-certificates \
  && rm -rf /tmp/* /var/cache/apk/*
 

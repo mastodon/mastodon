@@ -1,35 +1,19 @@
 ---
 id:
   about:
-    about_mastodon: Mastodon adalah sebuah jejaring sosial <em>terbuka, open-source</em. Sebuah alternatif <em>desentralisasi</em> dari platform komersial, menjauhkan anda resiko dari sebuah perusahaan yang memonopoli komunikasi anda. Pilih server yang anda percayai &mdash; apapun yang anda pilih, anda tetap dapat berinteraksi dengan semua orang. Semua orang dapat menjalankan server Mastodon sendiri dan berpartisipasi dalam <em>jejaring sosial</em> dengan mudah.
+    about_mastodon_html: Mastodon adalah sebuah jejaring sosial <em>terbuka, open-source</em. Sebuah alternatif <em>desentralisasi</em> dari platform komersial, menjauhkan anda resiko dari sebuah perusahaan yang memonopoli komunikasi anda. Pilih server yang anda percayai &mdash; apapun yang anda pilih, anda tetap dapat berinteraksi dengan semua orang. Semua orang dapat menjalankan server Mastodon sendiri dan berpartisipasi dalam <em>jejaring sosial</em> dengan mudah.
     about_this: Tentang server ini
-    apps: Apl
-    business_email: 'E-mail bisnis:'
     closed_registrations: Pendaftaran untuk server ini sedang ditutup.
     contact: Kontak
     description_headline: Apa itu %{domain}?
     domain_count_after: server lain
     domain_count_before: Terhubung dengan
-    features:
-      api: API terbuka untuk aplikasi dan layanan lain
-      blocks: Aneka ragam fitur blokir dan pembisuan
-      characters: 500 karakter per posting
-      chronology: Linimasa berurutan
-      ethics: 'Desain etis: tanpa iklan, tidak ada pelacakan'
-      gifv: Fitur GIFV dan video pendek
-      privacy: Terperinci, pengaturan privasi per postingan
-      public: Linimasa publik
-    features_headline: Yang berbeda dari Mastodon
-    get_started: Mulai
-    links: Link
     other_instances: Server lain
     source_code: Kode sumber
     status_count_after: status
     status_count_before: Yang telah menulis
-    terms: Ketentuan
     user_count_after: pengguna
     user_count_before: Tempat bernaung bagi
-    version: Versi
   accounts:
     follow: Ikuti
     followers: Pengikut
@@ -40,15 +24,6 @@ id:
     posts: Postingan
     remote_follow: Mengikuti
     unfollow: Berhenti mengikuti
-  activitypub:
-    activity:
-      announce:
-        name: "%{account_name} membagikan aktivitas."
-      create:
-        name: "%{account_name} membuat catatan."
-    outbox:
-      name: "%{account_name} Outbox"
-      summary: Koleksi aktivitas dari pengguna %{account_name}.
   admin:
     accounts:
       are_you_sure: Anda yakin?
@@ -151,17 +126,13 @@ id:
     settings:
       contact_information:
         email: Masukkan alamat email
-        label: Informasi kontak
         username: Masukkan nama pengguna
       registrations:
         closed_message:
           desc_html: Ditampilkan pada halaman depan saat pendaftaran ditutup<br>Anda bisa menggunakan tag HTML
           title: Pesan penutupan pendaftaran
         open:
-          disabled: Dinonaktifkan
-          enabled: Diaktifkan
           title: Pendaftaran terbuka
-      setting: Pengaturan
       site_description:
         desc_html: Ditampilkan sebagai sebuah paragraf di halaman depan dan digunakan sebagai tag meta.<br>Anda bisa menggunakan tag HTML, khususnya <code>&lt;a&gt;</code> dan <code>&lt;em&gt;</code>.
         title: Deskripsi situs
@@ -175,7 +146,7 @@ id:
       confirmed: Dikonfirmasi
       expires_in: Kadaluarsa dalam
       last_delivery: Terakhir dikirim
-      title: PubSubHubbub
+      title: WebSub
       topic: Topik
     title: Administrasi
   application_mailer:

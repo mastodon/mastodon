@@ -1,35 +1,19 @@
 ---
 de:
   about:
-    about_mastodon: Mastodon ist ein <em>freier, quelloffener</em> sozialer Netzwerkserver. Als <em>dezentralisierte</em> Alternative zu kommerziellen Plattformen verhindert es die Risiken, die entstehen, wenn eine einzelne Firma deine Kommunikation monopolisiert. Jeder kann Mastodon verwenden und ganz einfach am <em>sozialen Netzwerk</em> teilnehmen.
+    about_mastodon_html: Mastodon ist ein <em>freier, quelloffener</em> sozialer Netzwerkserver. Als <em>dezentralisierte</em> Alternative zu kommerziellen Plattformen verhindert es die Risiken, die entstehen, wenn eine einzelne Firma deine Kommunikation monopolisiert. Jeder kann Mastodon verwenden und ganz einfach am <em>sozialen Netzwerk</em> teilnehmen.
     about_this: Über diese Instanz
-    apps: Apps
-    business_email: 'Geschäftliche E-Mail:'
     closed_registrations: Die Registrierung ist auf dieser Instanz momentan geschlossen.
     contact: Kontakt
     description_headline: Was ist %{domain}?
     domain_count_after: andere Instanzen
     domain_count_before: Verbunden mit
-    features:
-      api: Offene API für Apps und Dienste
-      blocks: Mächtige Block- und Stummschaltungswerkzeuge
-      characters: 500 Zeichen pro Beitrag
-      chronology: Zeitleisten sind chronologisch
-      ethics: 'Ethisches Design: keine Werbung, kein Tracking'
-      gifv: GIFV-Sets und kurze Videos
-      privacy: Granulare Privatsphäre-Einstellungen für jeden Beitrag
-      public: Öffentliche Zeitleisten
-    features_headline: Was Mastodon einzigartig macht
-    get_started: Erste Schritte
-    links: Links
     other_instances: Andere Instanzen
     source_code: Quellcode
     status_count_after: Beiträge verfassten
     status_count_before: die
-    terms: AGB
     user_count_after: Benutzer
     user_count_before: Heimat für
-    version: Version
   accounts:
     follow: Folgen
     followers: Folgende
@@ -140,17 +124,13 @@ de:
     settings:
       contact_information:
         email: Eine öffentliche E-Mail-Adresse angeben
-        label: Kontaktinformationen
         username: Einen Benutzernamen angeben
       registrations:
         closed_message:
           desc_html: Wird auf der Frontseite angezeigt, wenn die Registrierung geschlossen ist<br>Du kannst HTML-Tags benutzen
           title: Nachricht über geschlossene Registrierung
         open:
-          disabled: Deaktiviert
-          enabled: Aktiviert
           title: Offene Registrierung
-      setting: Einstellung
       site_description:
         desc_html: Wird als Absatz auf der Frontseite angezeigt und als Meta-Tag benutzt.<br>Du kannst HTML-Tags benutzen, insbesondere <code>&lt;a&gt;</code> und <code>&lt;em&gt;</code>.
         title: Seitenbeschreibung
@@ -164,7 +144,7 @@ de:
       confirmed: Bestätigt
       expires_in: Verfällt in
       last_delivery: Letzte Zustellung
-      title: PubSubHubbub
+      title: WebSub
       topic: Thema
     title: Administration
   application_mailer:

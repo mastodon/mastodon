@@ -81,6 +81,13 @@ RSpec.describe FeedManager do
         expect(FeedManager.instance.filter?(:home, reply, bob.id)).to be true
       end
 
+      it 'returns true for the second reply by followee to a non-federated status' do
+        reply        = Fabricate(:status, text: 'Reply 1', reply: true, account: alice)
+        second_reply = Fabricate(:status, text: 'Reply 2', thread: reply, account: alice)
+        bob.follow!(alice)
+        expect(FeedManager.instance.filter?(:home, second_reply, bob.id)).to be true
+      end
+
       it 'returns false for status by followee mentioning another account' do
         bob.follow!(alice)
         status = PostStatusService.new.call(alice, 'Hey @jeff')
@@ -129,6 +136,19 @@ RSpec.describe FeedManager do
         bob.follow!(alice)
         expect(FeedManager.instance.filter?(:mentions, status, bob.id)).to be false
       end
+    end
+  end
+
+  describe '#push' do
+    it 'trims timelines if they will have more than FeedManager::MAX_ITEMS' do
+      account = Fabricate(:account)
+      status = Fabricate(:status)
+      members = FeedManager::MAX_ITEMS.times.map { |count| [count, count] }
+      Redis.current.zadd("feed:type:#{account.id}", members)
+
+      FeedManager.instance.push('type', account, status)
+
+      expect(Redis.current.zcard("feed:type:#{account.id}")).to eq FeedManager::MAX_ITEMS
     end
   end
 end
