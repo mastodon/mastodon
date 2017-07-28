@@ -119,7 +119,7 @@ export default class DropdownMenu extends React.PureComponent {
     }
 
     const dropdownItems = expanded && (
-      <ul className='dropdown__content-list' onClick={this.handleHide}>
+      <ul role='group' className='dropdown__content-list' onClick={this.handleHide}>
         {items.map(this.renderItem)}
       </ul>
     );
