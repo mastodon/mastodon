@@ -65,6 +65,22 @@ export default class EmojiPickerDropdown extends React.PureComponent {
     this.setState({ active: false });
   }
 
+  onToggle = (e) => {
+    if (!this.state.loading && (!e.key || e.key === 'Enter')) {
+      if (this.state.active) {
+        this.onHideDropdown();
+      } else {
+        this.onShowDropdown();
+      }
+    }
+  }
+
+  onEmojiPickerKeyDown = (e) => {
+    if (e.key === 'Escape') {
+      this.onHideDropdown();
+    }
+  }
+
   render () {
     const { intl } = this.props;
 
@@ -104,10 +120,11 @@ export default class EmojiPickerDropdown extends React.PureComponent {
     };
 
     const { active, loading } = this.state;
+    const title = intl.formatMessage(messages.emoji);
 
     return (
-      <Dropdown ref={this.setRef} className='emoji-picker__dropdown' onShow={this.onShowDropdown} onHide={this.onHideDropdown}>
-        <DropdownTrigger className='emoji-button' title={intl.formatMessage(messages.emoji)}>
+      <Dropdown ref={this.setRef} className='emoji-picker__dropdown' active={active && !loading} onShow={this.onShowDropdown} onHide={this.onHideDropdown}>
+        <DropdownTrigger className='emoji-button' title={title} aria-label={title} aria-pressed={active} role='button' onKeyDown={this.onToggle} tabIndex={0} >
           <img
             className={`emojione ${active && loading ? 'pulse-loading' : ''}`}
             alt='🙂'
@@ -118,7 +135,7 @@ export default class EmojiPickerDropdown extends React.PureComponent {
         <DropdownContent className='dropdown__left'>
           {
             this.state.active && !this.state.loading &&
-            (<EmojiPicker emojione={settings} onChange={this.handleChange} searchPlaceholder={intl.formatMessage(messages.emoji_search)} categories={categories} search />)
+            (<EmojiPicker emojione={settings} onChange={this.handleChange} searchPlaceholder={intl.formatMessage(messages.emoji_search)} onKeyDown={this.onEmojiPickerKeyDown} categories={categories} search />)
           }
         </DropdownContent>
       </Dropdown>

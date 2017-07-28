@@ -60,10 +60,14 @@ export default class PrivacyDropdown extends React.PureComponent {
   }
 
   handleClick = (e) => {
-    const value = e.currentTarget.getAttribute('data-index');
-    e.preventDefault();
-    this.setState({ open: false });
-    this.props.onChange(value);
+    if (e.key === 'Escape') {
+      this.setState({ open: false });
+    } else if (!e.key || e.key === 'Enter') {
+      const value = e.currentTarget.getAttribute('data-index');
+      e.preventDefault();
+      this.setState({ open: false });
+      this.props.onChange(value);
+    }
   }
 
   onGlobalClick = (e) => {
@@ -105,10 +109,10 @@ export default class PrivacyDropdown extends React.PureComponent {
 
     return (
       <div ref={this.setRef} className={`privacy-dropdown ${open ? 'active' : ''}`}>
-        <div className='privacy-dropdown__value'><IconButton className='privacy-dropdown__value-icon' icon={valueOption.icon} title={intl.formatMessage(messages.change_privacy)} size={18} active={open} inverted onClick={this.handleToggle} style={iconStyle} /></div>
+        <div className='privacy-dropdown__value'><IconButton className='privacy-dropdown__value-icon' icon={valueOption.icon} title={intl.formatMessage(messages.change_privacy)} size={18} pressed={open} active={open} inverted onClick={this.handleToggle} style={iconStyle} /></div>
         <div className='privacy-dropdown__dropdown'>
           {open && this.options.map(item =>
-            <div role='button' tabIndex='0' key={item.value} data-index={item.value} onClick={this.handleClick} className={`privacy-dropdown__option ${item.value === value ? 'active' : ''}`}>
+            <div role='button' tabIndex='0' key={item.value} data-index={item.value} onKeyDown={this.handleClick} onClick={this.handleClick} className={`privacy-dropdown__option ${item.value === value ? 'active' : ''}`}>
               <div className='privacy-dropdown__option__icon'><i className={`fa fa-fw fa-${item.icon}`} /></div>
               <div className='privacy-dropdown__option__content'>
                 <strong>{item.text}</strong>

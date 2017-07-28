@@ -74,6 +74,18 @@ export default class DropdownMenu extends React.PureComponent {
 
   handleHide = () => this.setState({ expanded: false })
 
+  handleToggle = (e) => {
+    if (e.key === 'Enter') {
+      if (this.props.isUserTouching()) {
+        this.handleShow();
+      } else {
+        this.setState({ expanded: !this.state.expanded });
+      }
+    } else if (e.key === 'Escape') {
+      this.setState({ expanded: false });
+    }
+  }
+
   renderItem = (item, i) => {
     if (item === null) {
       return <li key={`sep-${i}`} className='dropdown__sep' />;
@@ -83,7 +95,7 @@ export default class DropdownMenu extends React.PureComponent {
 
     return (
       <li className='dropdown__content-list-item' key={`${text}-${i}`}>
-        <a href={href} target='_blank' rel='noopener' onClick={this.handleClick} data-index={i} className='dropdown__content-list-link'>
+        <a href={href} target='_blank' rel='noopener' role='button' tabIndex='0' autoFocus={i === 0} onClick={this.handleClick} data-index={i} className='dropdown__content-list-link'>
           {text}
         </a>
       </li>
@@ -107,7 +119,7 @@ export default class DropdownMenu extends React.PureComponent {
     }
 
     const dropdownItems = expanded && (
-      <ul className='dropdown__content-list'>
+      <ul role='group' className='dropdown__content-list' onClick={this.handleHide}>
         {items.map(this.renderItem)}
       </ul>
     );
@@ -115,14 +127,14 @@ export default class DropdownMenu extends React.PureComponent {
     // No need to render the actual dropdown if we use the modal. If we
     // don't render anything <Dropdow /> breaks, so we just put an empty div.
     const dropdownContent = !isUserTouching ? (
-      <DropdownContent className={directionClass}>
+      <DropdownContent className={directionClass} >
         {dropdownItems}
       </DropdownContent>
     ) : <div />;
 
     return (
-      <Dropdown ref={this.setRef} active={isUserTouching ? false : undefined} onShow={this.handleShow} onHide={this.handleHide}>
-        <DropdownTrigger className='icon-button' style={iconStyle} aria-label={ariaLabel}>
+      <Dropdown ref={this.setRef} active={isUserTouching ? false : expanded} onShow={this.handleShow} onHide={this.handleHide}>
+        <DropdownTrigger className='icon-button' style={iconStyle} role='button' aria-pressed={expanded} onKeyDown={this.handleToggle} tabIndex='0' aria-label={ariaLabel}>
           <i className={iconClassname} aria-hidden />
         </DropdownTrigger>
 
