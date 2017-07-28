@@ -66,7 +66,7 @@ export default class EmojiPickerDropdown extends React.PureComponent {
   }
 
   onToggle = (e) => {
-    if (!this.state.loading && (!e.key || e.key === 'Enter' || e.key === 'Space')) {
+    if (!this.state.loading && (!e.key || e.key === 'Enter')) {
       if (this.state.active) {
         this.onHideDropdown();
       } else {
