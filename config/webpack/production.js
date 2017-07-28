@@ -10,7 +10,11 @@ const { publicPath } = require('./configuration.js');
 const path = require('path');
 
 module.exports = merge(sharedConfig, {
-  output: { filename: '[name]-[chunkhash].js' },
+  output: {
+    filename: '[name]-[chunkhash].js',
+    chunkFilename: '[name]-[chunkhash].js',
+  },
+
   devtool: 'source-map', // separate sourcemap file, suitable for production
   stats: 'normal',
 
