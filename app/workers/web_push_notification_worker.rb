@@ -3,13 +3,13 @@
 class WebPushNotificationWorker
   include Sidekiq::Worker
 
-  sidekiq_options backtrace: true
+  sidekiq_options backtrace: true, dead: false
 
   def perform(session_activation_id, notification_id)
     session_activation = SessionActivation.find(session_activation_id)
     notification = Notification.find(notification_id)
 
-    return if session_activation.nil? || notification.nil?
+    return if session_activation.web_push_subscription.nil?
 
     begin
       session_activation.web_push_subscription.push(notification)

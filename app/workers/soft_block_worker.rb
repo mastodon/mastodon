@@ -3,7 +3,7 @@
 class SoftBlockWorker
   include Sidekiq::Worker
 
-  sidekiq_options queue: 'pull'
+  sidekiq_options queue: 'pull', dead: false
 
   def perform(account_id, target_account_id)
     account        = Account.find(account_id)

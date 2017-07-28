@@ -3,6 +3,8 @@
 class PushUpdateWorker
   include Sidekiq::Worker
 
+  sidekiq_options dead: false
+
   def perform(account_id, status_id)
     account = Account.find(account_id)
     status  = Status.find(status_id)
