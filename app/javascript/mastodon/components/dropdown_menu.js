@@ -134,7 +134,7 @@ export default class DropdownMenu extends React.PureComponent {
 
     return (
       <Dropdown ref={this.setRef} active={isUserTouching ? false : expanded} onShow={this.handleShow} onHide={this.handleHide}>
-        <DropdownTrigger className='icon-button' style={iconStyle} role='button' aria-pressed={expanded} onKeyDown={this.handleToggle} tabIndex='0' aria-label={ariaLabel}>
+        <DropdownTrigger className='icon-button' style={iconStyle} role='button' aria-expanded={expanded} onKeyDown={this.handleToggle} tabIndex='0' aria-label={ariaLabel}>
           <i className={iconClassname} aria-hidden />
         </DropdownTrigger>
 

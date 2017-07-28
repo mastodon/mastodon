@@ -124,7 +124,7 @@ export default class EmojiPickerDropdown extends React.PureComponent {
 
     return (
       <Dropdown ref={this.setRef} className='emoji-picker__dropdown' active={active && !loading} onShow={this.onShowDropdown} onHide={this.onHideDropdown}>
-        <DropdownTrigger className='emoji-button' title={title} aria-label={title} aria-pressed={active} role='button' onKeyDown={this.onToggle} tabIndex={0} >
+        <DropdownTrigger className='emoji-button' title={title} aria-label={title} aria-expanded={active} role='button' onKeyDown={this.onToggle} tabIndex={0} >
           <img
             className={`emojione ${active && loading ? 'pulse-loading' : ''}`}
             alt='🙂'
