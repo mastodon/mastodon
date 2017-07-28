@@ -3435,19 +3435,6 @@ button.icon-button.active i.fa-retweet {
   }
 }
 
-.actions-modal {
-  .status {
-    background: $white;
-    border-bottom-color: $ui-secondary-color;
-    padding-top: 10px;
-    padding-bottom: 10px;
-  }
-}
-
-.actions-modal__actions {
-  overflow-y: auto;
-}
-
 .boost-modal__container {
   overflow-y: auto;
   padding: 10px;
@@ -3517,16 +3504,21 @@ button.icon-button.active i.fa-retweet {
 
 .actions-modal {
   .status {
+    background: $white;
+    border-bottom-color: $ui-secondary-color;
+    padding-top: 10px;
+    padding-bottom: 10px;
     overflow-y: auto;
     max-height: 300px;
   }
 
-  max-height: 80vh;
-  max-width: 80vw;
-
   ul {
-    overflow-y: auto;
     flex-shrink: 0;
+
+    @media screen and (max-height: 430px) {
+      flex-shrink: 1;
+      overflow-y: auto;
+    }
 
     li:empty {
       margin: 0;
