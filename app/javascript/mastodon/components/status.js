@@ -181,7 +181,7 @@ export default class Status extends ImmutablePureComponent {
 
     if (!isIntersecting && isHidden) {
       return (
-        <article ref={this.handleRef} data-id={status.get('id')} aria-posinset={index} aria-setsize={listLength} style={{ height: `${this.height}px`, opacity: 0, overflow: 'hidden' }}>
+        <article ref={this.handleRef} data-id={status.get('id')} aria-posinset={index} aria-setsize={listLength} tabIndex='0' style={{ height: `${this.height}px`, opacity: 0, overflow: 'hidden' }}>
           {status.getIn(['account', 'display_name']) || status.getIn(['account', 'username'])}
           {status.get('content')}
         </article>
@@ -198,7 +198,7 @@ export default class Status extends ImmutablePureComponent {
       const displayNameHTML = { __html: emojify(escapeTextContentForBrowser(displayName)) };
 
       return (
-        <article className='status__wrapper' ref={this.handleRef} data-id={status.get('id')} aria-posinset={index} aria-setsize={listLength}>
+        <article className='status__wrapper' ref={this.handleRef} data-id={status.get('id')} aria-posinset={index} aria-setsize={listLength} tabIndex='0'>
           <div className='status__prepend'>
             <div className='status__prepend-icon-wrapper'><i className='fa fa-fw fa-retweet status__prepend-icon' /></div>
             <FormattedMessage id='status.reblogged_by' defaultMessage='{name} boosted' values={{ name: <a onClick={this.handleAccountClick} data-id={status.getIn(['account', 'id'])} href={status.getIn(['account', 'url'])} className='status__display-name muted'><strong dangerouslySetInnerHTML={displayNameHTML} /></a> }} />
@@ -234,7 +234,7 @@ export default class Status extends ImmutablePureComponent {
     }
 
     return (
-      <article aria-posinset={index} aria-setsize={listLength} className={`status ${this.props.muted ? 'muted' : ''} status-${status.get('visibility')}`} data-id={status.get('id')} ref={this.handleRef}>
+      <article aria-posinset={index} aria-setsize={listLength} className={`status ${this.props.muted ? 'muted' : ''} status-${status.get('visibility')}`} data-id={status.get('id')} tabIndex='0' ref={this.handleRef}>
         <div className='status__info'>
           <a href={status.get('url')} className='status__relative-time' target='_blank' rel='noopener'><RelativeTimestamp timestamp={status.get('created_at')} /></a>
 
