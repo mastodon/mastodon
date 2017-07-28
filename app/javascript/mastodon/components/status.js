@@ -41,8 +41,8 @@ export default class Status extends ImmutablePureComponent {
     autoPlayGif: PropTypes.bool,
     muted: PropTypes.bool,
     intersectionObserverWrapper: PropTypes.object,
-    index: PropTypes.oneOf(PropTypes.string, PropTypes.number),
-    listLength: PropTypes.oneOf(PropTypes.string, PropTypes.number),
+    index: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    listLength: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   };
 
   state = {
