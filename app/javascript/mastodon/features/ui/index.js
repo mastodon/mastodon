@@ -47,7 +47,7 @@ const mapStateToProps = state => ({
 });
 
 @connect(mapStateToProps)
-export default class UI extends React.PureComponent {
+export default class UI extends React.Component {
 
   static contextTypes = {
     router: PropTypes.object.isRequired,
