@@ -3509,6 +3509,10 @@ button.icon-button.active i.fa-retweet {
     overflow-y: auto;
     flex-shrink: 0;
 
+    li:empty {
+      margin: 0;
+    }
+
     li:not(:empty) {
       a {
         color: $ui-base-color;
