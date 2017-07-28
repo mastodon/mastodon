@@ -43,8 +43,9 @@ export default class TabsBar extends React.Component {
     e.persist();
 
     requestAnimationFrame(() => {
-      const currentTab = this.node.querySelector('.tabs-bar__link.active');
-      const nextTab = e.nativeEvent.path.find(node => node.classList.contains('tabs-bar__link'));
+      const tabs = Array(...this.node.querySelectorAll('.tabs-bar__link'));
+      const currentTab = tabs.find(tab => tab.classList.contains('active'));
+      const nextTab = tabs.find(tab => tab.contains(e.target));
       const { props: { to } } = links[Array(...this.node.childNodes).indexOf(nextTab)];
 
       currentTab.classList.remove('active');
