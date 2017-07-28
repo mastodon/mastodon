@@ -10,7 +10,7 @@
     "test": "npm run test:lint && npm run test:mocha",
     "test:lint": "eslint -c .eslintrc.yml --ext=js app/javascript/ config/webpack/ spec/javascript/ streaming/",
     "test:mocha": "cross-env NODE_ENV=test mocha --require ./spec/javascript/setup.js --compilers js:babel-register ./spec/javascript/components/*.test.js",
-    "postinstall": "npm rebuild node-sass && (cd ./node_modules/react-router-scroll && npm install && npm build)"
+    "postinstall": "npm rebuild node-sass && (cd ./node_modules/react-router-scroll && npm install --save react@next react-dom@next npm install && npm build)"
   },
   "repository": {
     "type": "git",
