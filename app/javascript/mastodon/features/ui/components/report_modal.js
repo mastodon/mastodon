@@ -77,13 +77,13 @@ export default class ReportModal extends ImmutablePureComponent {
           <FormattedMessage id='report.target' defaultMessage='Report {target}' values={{ target: <strong>{account.get('acct')}</strong> }} />
         </div>
 
-        <div className='report-modal__container'>
-          <div className='report-modal__statuses'>
-            <div>
-              {statusIds.map(statusId => <StatusCheckBox id={statusId} key={statusId} disabled={isSubmitting} />)}
-            </div>
+        <div className='report-modal__statuses'>
+          <div>
+            {statusIds.map(statusId => <StatusCheckBox id={statusId} key={statusId} disabled={isSubmitting} />)}
           </div>
+        </div>
 
+        <div className='report-modal__action-bar'>
           <div className='report-modal__comment'>
             <textarea
               className='setting-text light'
@@ -93,9 +93,6 @@ export default class ReportModal extends ImmutablePureComponent {
               disabled={isSubmitting}
             />
           </div>
-        </div>
-
-        <div className='report-modal__action-bar'>
           <Button disabled={isSubmitting} text={intl.formatMessage(messages.submit)} onClick={this.handleSubmit} />
         </div>
       </div>

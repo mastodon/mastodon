@@ -3444,6 +3444,10 @@ button.icon-button.active i.fa-retweet {
   }
 }
 
+.actions-modal__actions {
+  overflow-y: auto;
+}
+
 .boost-modal__container {
   overflow-y: auto;
   padding: 10px;
@@ -3579,14 +3583,15 @@ button.icon-button.active i.fa-retweet {
   }
 }
 
+.report-modal__comment .setting-text {
+  margin: 0;
+}
+
 @media screen and (max-height: 640px) {
   .report-modal__target {
     padding: 20px;
   }
 
-  .report-modal__comment .setting-text {
-    margin: 0;
-  }
 }
 
 .loading-bar {
