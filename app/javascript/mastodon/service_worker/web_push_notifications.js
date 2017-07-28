@@ -50,22 +50,37 @@ const makeRequest = (notification, action) =>
     credentials: 'include',
   });
 
+const findBestClient = clients => {
+  const focusedClient = clients.find(client => client.focused);
+  const visibleClient = clients.find(client => client.visibilityState === 'visible');
+
+  return focusedClient || visibleClient || clients[0];
+};
+
 const openUrl = url =>
   self.clients.matchAll({ type: 'window' }).then(clientList => {
-    if (clientList.length !== 0 && 'navigate' in clientList[0]) { // Chrome 42-48 does not support navigate
-      const webClients = clientList
-        .filter(client => /\/web\//.test(client.url))
-        .sort(client => client !== 'visible');
+    if (clientList.length !== 0) {
+      const webClients = clientList.filter(client => /\/web\//.test(client.url));
 
-      const visibleClient = clientList.find(client => client.visibilityState === 'visible');
-      const focusedClient = clientList.find(client => client.focused);
+      if (webClients.length !== 0) {
+        const client = findBestClient(webClients);
 
-      const client = webClients[0] || visibleClient || focusedClient || clientList[0];
+        const { pathname } = new URL(url);
 
-      return client.navigate(url).then(client => client.focus());
-    } else {
-      return self.clients.openWindow(url);
+        if (pathname.startsWith('/web/')) {
+          return client.focus().then(client => client.postMessage({
+            type: 'navigate',
+            path: pathname.slice('/web/'.length - 1),
+          }));
+        }
+      } else if ('navigate' in clientList[0]) { // Chrome 42-48 does not support navigate
+        const client = findBestClient(clientList);
+
+        return client.navigate(url).then(client => client.focus());
+      }
     }
+
+    return self.clients.openWindow(url);
   });
 
 const removeActionFromNotification = (notification, action) => {

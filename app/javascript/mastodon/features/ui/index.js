@@ -49,6 +49,10 @@ const mapStateToProps = state => ({
 @connect(mapStateToProps)
 export default class UI extends React.PureComponent {
 
+  static contextTypes = {
+    router: PropTypes.object.isRequired,
+  }
+
   static propTypes = {
     dispatch: PropTypes.func.isRequired,
     children: PropTypes.node,
@@ -123,6 +127,14 @@ export default class UI extends React.PureComponent {
     this.setState({ draggingOver: false });
   }
 
+  handleServiceWorkerPostMessage = ({ data }) => {
+    if (data.type === 'navigate') {
+      this.context.router.history.push(data.path);
+    } else {
+      console.warn('Unknown message type:', data.type); // eslint-disable-line no-console
+    }
+  }
+
   componentWillMount () {
     window.addEventListener('resize', this.handleResize, { passive: true });
     document.addEventListener('dragenter', this.handleDragEnter, false);
@@ -130,6 +142,10 @@ export default class UI extends React.PureComponent {
     document.addEventListener('drop', this.handleDrop, false);
     document.addEventListener('dragleave', this.handleDragLeave, false);
     document.addEventListener('dragend', this.handleDragEnd, false);
+
+    if ('serviceWorker' in  navigator) {
+      navigator.serviceWorker.addEventListener('message', this.handleServiceWorkerPostMessage);
+    }
 
     this.props.dispatch(refreshHomeTimeline());
     this.props.dispatch(refreshNotifications());
