@@ -62,7 +62,7 @@ export default class PrivacyDropdown extends React.PureComponent {
   handleClick = (e) => {
     if (e.key === 'Escape') {
       this.setState({ open: false });
-    } else if (!e.key || e.key === 'Enter' || e.key === 'Space') {
+    } else if (!e.key || e.key === 'Enter') {
       const value = e.currentTarget.getAttribute('data-index');
       e.preventDefault();
       this.setState({ open: false });
