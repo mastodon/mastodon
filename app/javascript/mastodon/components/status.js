@@ -41,6 +41,8 @@ export default class Status extends ImmutablePureComponent {
     autoPlayGif: PropTypes.bool,
     muted: PropTypes.bool,
     intersectionObserverWrapper: PropTypes.object,
+    index: PropTypes.oneOf(PropTypes.string, PropTypes.number),
+    listLength: PropTypes.oneOf(PropTypes.string, PropTypes.number),
   };
 
   state = {
@@ -59,6 +61,7 @@ export default class Status extends ImmutablePureComponent {
     'boostModal',
     'autoPlayGif',
     'muted',
+    'listLength',
   ]
 
   updateOnStates = ['isExpanded']
@@ -67,8 +70,8 @@ export default class Status extends ImmutablePureComponent {
     if (!nextState.isIntersecting && nextState.isHidden) {
       // It's only if we're not intersecting (i.e. offscreen) and isHidden is true
       // that either "isIntersecting" or "isHidden" matter, and then they're
-      // the only things that matter.
-      return this.state.isIntersecting || !this.state.isHidden;
+      // the only things that matter (and updated ARIA attributes).
+      return this.state.isIntersecting || !this.state.isHidden || nextProps.listLength !== this.props.listLength;
     } else if (nextState.isIntersecting && !this.state.isIntersecting) {
       // If we're going from a non-intersecting state to an intersecting state,
       // (i.e. offscreen to onscreen), then we definitely need to re-render
@@ -169,7 +172,7 @@ export default class Status extends ImmutablePureComponent {
 
     // Exclude intersectionObserverWrapper from `other` variable
     // because intersection is managed in here.
-    const { status, account, intersectionObserverWrapper, ...other } = this.props;
+    const { status, account, intersectionObserverWrapper, index, listLength, ...other } = this.props;
     const { isExpanded, isIntersecting, isHidden } = this.state;
 
     if (status === null) {
@@ -178,10 +181,10 @@ export default class Status extends ImmutablePureComponent {
 
     if (!isIntersecting && isHidden) {
       return (
-        <div ref={this.handleRef} data-id={status.get('id')} style={{ height: `${this.height}px`, opacity: 0, overflow: 'hidden' }}>
+        <article ref={this.handleRef} data-id={status.get('id')} aria-posinset={index} aria-setsize={listLength} style={{ height: `${this.height}px`, opacity: 0, overflow: 'hidden' }}>
           {status.getIn(['account', 'display_name']) || status.getIn(['account', 'username'])}
           {status.get('content')}
-        </div>
+        </article>
       );
     }
 
@@ -195,14 +198,14 @@ export default class Status extends ImmutablePureComponent {
       const displayNameHTML = { __html: emojify(escapeTextContentForBrowser(displayName)) };
 
       return (
-        <div className='status__wrapper' ref={this.handleRef} data-id={status.get('id')} >
+        <article className='status__wrapper' ref={this.handleRef} data-id={status.get('id')} aria-posinset={index} aria-setsize={listLength}>
           <div className='status__prepend'>
             <div className='status__prepend-icon-wrapper'><i className='fa fa-fw fa-retweet status__prepend-icon' /></div>
             <FormattedMessage id='status.reblogged_by' defaultMessage='{name} boosted' values={{ name: <a onClick={this.handleAccountClick} data-id={status.getIn(['account', 'id'])} href={status.getIn(['account', 'url'])} className='status__display-name muted'><strong dangerouslySetInnerHTML={displayNameHTML} /></a> }} />
           </div>
 
           <Status {...other} wrapped status={status.get('reblog')} account={status.get('account')} />
-        </div>
+        </article>
       );
     }
 
@@ -231,7 +234,7 @@ export default class Status extends ImmutablePureComponent {
     }
 
     return (
-      <div className={`status ${this.props.muted ? 'muted' : ''} status-${status.get('visibility')}`} data-id={status.get('id')} ref={this.handleRef}>
+      <article aria-posinset={index} aria-setsize={listLength} className={`status ${this.props.muted ? 'muted' : ''} status-${status.get('visibility')}`} data-id={status.get('id')} ref={this.handleRef}>
         <div className='status__info'>
           <a href={status.get('url')} className='status__relative-time' target='_blank' rel='noopener'><RelativeTimestamp timestamp={status.get('created_at')} /></a>
 
@@ -249,7 +252,7 @@ export default class Status extends ImmutablePureComponent {
         {media}
 
         <StatusActionBar {...this.props} />
-      </div>
+      </article>
     );
   }
 
