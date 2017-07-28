@@ -9,7 +9,7 @@
     "start": "node ./streaming/index.js",
     "test": "npm run test:lint && npm run test:mocha",
     "test:lint": "eslint -c .eslintrc.yml --ext=js app/javascript/ config/webpack/ spec/javascript/ streaming/",
-    "test:mocha": "cross-env NODE_ENV=test mocha --require ./spec/javascript/setup.js --compilers js:babel-register ./spec/javascript/components/*.test.js",
+    "test:mocha": "cross-env NODE_ENV=test mocha --require ./spec/javascript/setup.js --compilers js:babel-register ./spec/javascript/components/**/*.test.js",
     "postinstall": "npm rebuild node-sass"
   },
   "repository": {
