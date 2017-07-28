@@ -104,6 +104,32 @@ export default class StatusList extends ImmutablePureComponent {
     this.props.onScrollToBottom();
   }
 
+  handleKeyDown = (e) => {
+    if (['PageDown', 'PageUp', 'End', 'Home'].includes(e.key)) {
+      const article = (() => {
+        switch (e.key) {
+        case 'PageDown':
+          return e.nativeEvent.path[0].nodeName === 'ARTICLE' && e.nativeEvent.path[0].nextElementSibling;
+        case 'PageUp':
+          return e.nativeEvent.path[0].nodeName === 'ARTICLE' && e.nativeEvent.path[0].previousElementSibling;
+        case 'End':
+          return this.node.querySelector('[role="feed"] > article:last-of-type');
+        case 'Home':
+          return this.node.querySelector('[role="feed"] > article:first-of-type');
+        default:
+          return null;
+        }
+      })();
+
+
+      if (article) {
+        e.preventDefault();
+        article.focus();
+        article.scrollIntoView();
+      }
+    }
+  }
+
   render () {
     const { statusIds, scrollKey, trackScroll, shouldUpdateScroll, isLoading, hasMore, prepend, emptyMessage } = this.props;
 
@@ -113,7 +139,7 @@ export default class StatusList extends ImmutablePureComponent {
     if (isLoading || statusIds.size > 0 || !emptyMessage) {
       scrollableArea = (
         <div className='scrollable' ref={this.setRef}>
-          <div role='feed' className='status-list'>
+          <div role='feed' className='status-list' onKeyDown={this.handleKeyDown}>
             {prepend}
 
             {statusIds.map((statusId, index) => {
