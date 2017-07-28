@@ -53,6 +53,7 @@ class Web::PushSubscription < ApplicationRecord
           url: url,
           actions: actions,
           access_token: access_token,
+          message: translate('push_notifications.group.title'), # Do not pass count, will be formatted in the ServiceWorker
         }
       ),
       endpoint: endpoint,

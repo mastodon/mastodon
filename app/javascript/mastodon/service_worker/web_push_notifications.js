@@ -1,3 +1,45 @@
+const MAX_NOTIFICATIONS = 5;
+const GROUP_TAG = 'tag';
+
+// Avoid loading intl-messageformat and dealing with locales in the ServiceWorker
+const formatGroupTitle = (message, count) => message.replace('%{count}', count);
+
+const notify = options =>
+  self.registration.getNotifications().then(notifications => {
+    if (notifications.length === MAX_NOTIFICATIONS) {
+      // Reached the maximum number of notifications, proceed with grouping
+      const group = {
+        title: formatGroupTitle(notifications[0].data.message, notifications.length + 1),
+        body: notifications
+          .sort((n1, n2) => n1.timestamp < n2.timestamp)
+          .map(notification => notification.title).join('\n'),
+        badge: '/badge.png',
+        icon: '/android-chrome-192x192.png',
+        tag: GROUP_TAG,
+        data: {
+          url: (new URL('/web/notifications', self.location)).href,
+          count: notifications.length + 1,
+          message: notifications[0].data.message,
+        },
+      };
+
+      notifications.forEach(notification => notification.close());
+
+      return self.registration.showNotification(group.title, group);
+    } else if (notifications.length === 1 && notifications[0].tag === GROUP_TAG) {
+      // Already grouped, proceed with appending the notification to the group
+      const group = cloneNotification(notifications[0]);
+
+      group.title = formatGroupTitle(group.data.message, group.data.count + 1);
+      group.body = `${options.title}\n${group.body}`;
+      group.data = { ...group.data, count: group.data.count + 1 };
+
+      return self.registration.showNotification(group.title, group);
+    }
+
+    return self.registration.showNotification(options.title, options);
+  });
+
 const handlePush = (event) => {
   const options = event.data.json();
 
@@ -17,7 +59,7 @@ const handlePush = (event) => {
     options.actions = options.data.actions;
   }
 
-  event.waitUntil(self.registration.showNotification(options.title, options));
+  event.waitUntil(notify(options));
 };
 
 const cloneNotification = (notification) => {
