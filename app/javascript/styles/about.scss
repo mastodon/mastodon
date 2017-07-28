@@ -121,7 +121,7 @@
 
 .information-board {
   background: darken($ui-base-color, 4%);
-  padding: 40px 0;
+  padding: 20px 0;
 
   .panel {
     position: absolute;
@@ -162,13 +162,14 @@
   .information-board-sections {
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap;
   }
 
   .section {
     flex: 1 0 0;
     font: 16px/28px 'mastodon-font-sans-serif', sans-serif;
     text-align: right;
-    padding: 0 15px;
+    padding: 10px 15px;
 
     span,
     strong {
@@ -188,14 +189,6 @@
       font-size: 32px;
       line-height: 48px;
       color: $primary-text-color;
-    }
-  }
-
-  @media screen and (max-width: 500px) {
-    flex-direction: column;
-
-    .section {
-      text-align: left;
     }
   }
 }
@@ -661,16 +654,12 @@
       padding: 0 20px;
     }
 
-    .information-board {
-      padding-bottom: 20px;
-    }
-
     .information-board .container {
       padding-right: 20px;
 
       .panel {
         position: static;
-        margin-top: 30px;
+        margin-top: 20px;
         width: 100%;
         border-radius: 4px;
 
