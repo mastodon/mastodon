@@ -53,7 +53,7 @@ export default class ModalRoot extends React.PureComponent {
   }
 
   componentDidUpdate (prevProps) {
-    if (!this.type && !!prevProps.type) {
+    if (!this.props.type && !!prevProps.type) {
       this.getSiblings().forEach(sibling => sibling.removeAttribute('inert'));
       this.activeElement.focus();
       this.activeElement = null;
