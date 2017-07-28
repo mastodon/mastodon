@@ -1,14 +1,10 @@
 # frozen_string_literal: true
 
 class MuteService < BaseService
-  def call(account, target_account, notifications: nil)
+  def call(account, target_account, **opts)
     return if account.id == target_account.id
     FeedManager.instance.clear_from_timeline(account, target_account)
-    # This unwieldy approach avoids duplicating the default value here
-    # and in mute!.
-    opts = {}
-    opts[:notifications] = notifications unless notifications.nil?
-    mute = account.mute!(target_account, **opts)
+    mute = account.mute!(target_account, **opts.slice(:notifications))
     BlockWorker.perform_async(account.id, target_account.id)
     mute
   end
