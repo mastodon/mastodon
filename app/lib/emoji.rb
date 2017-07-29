@@ -32,7 +32,7 @@ class Emoji
 
   def codepoint_to_unicode(codepoint)
     if codepoint.include?('-')
-      codepoint.split('-').map(&:hex).pack('U')
+      codepoint.split('-').map(&:hex).pack('U*')
     else
       [codepoint.hex].pack('U')
     end

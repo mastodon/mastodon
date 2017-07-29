@@ -18,6 +18,7 @@ export default class NavigationBar extends ImmutablePureComponent {
     return (
       <div className='navigation-bar'>
         <Permalink href={this.props.account.get('url')} to={`/accounts/${this.props.account.get('id')}`}>
+          <span style={{ display: 'none' }}>{this.props.account.get('acct')}</span>
           <Avatar src={this.props.account.get('avatar')} animate size={40} />
         </Permalink>
 

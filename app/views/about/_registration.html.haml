@@ -14,15 +14,13 @@
     required: true,
     input_html: { 'aria-label' => t('simple_form.labels.defaults.email') }
   = f.input :password,
-    autocomplete: 'off',
     placeholder: t('simple_form.labels.defaults.password'),
     required: true,
-    input_html: { 'aria-label' => t('simple_form.labels.defaults.password') }
+    input_html: { 'aria-label' => t('simple_form.labels.defaults.password'), :autocomplete => 'off' }
   = f.input :password_confirmation,
-    autocomplete: 'off',
     placeholder: t('simple_form.labels.defaults.confirm_password'),
     required: true,
-    input_html: { 'aria-label' => t('simple_form.labels.defaults.confirm_password') }
+    input_html: { 'aria-label' => t('simple_form.labels.defaults.confirm_password'), :autocomplete => 'off' }
 
   .actions
     = f.button :button, t('auth.register'), type: :submit, class: 'button button-alternative'

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import NavLink from 'react-router-dom/NavLink';
 import { FormattedMessage, injectIntl } from 'react-intl';
+import { debounce } from 'lodash';
 
 export const links = [
   <NavLink className='tabs-bar__link primary' to='/statuses/new' data-preview-title-id='tabs_bar.compose' data-preview-icon='pencil' ><i className='fa fa-fw fa-pencil' /><FormattedMessage id='tabs_bar.compose' defaultMessage='Compose' /></NavLink>,
@@ -26,6 +27,10 @@ export function getLink (index) {
 @injectIntl
 export default class TabsBar extends React.Component {
 
+  static contextTypes = {
+    router: PropTypes.object.isRequired,
+  }
+
   static propTypes = {
     intl: PropTypes.object.isRequired,
     bottom: PropTypes.bool,
@@ -35,6 +40,35 @@ export default class TabsBar extends React.Component {
     bottom: false,
   }
 
+  setRef = ref => {
+    this.node = ref;
+  }
+
+  handleClick = (e) => {
+    e.preventDefault();
+    e.persist();
+
+    requestAnimationFrame(() => {
+      const tabs = Array(...this.node.querySelectorAll('.tabs-bar__link'));
+      const currentTab = tabs.find(tab => tab.classList.contains('active'));
+      const nextTab = tabs.find(tab => tab.contains(e.target));
+      const { props: { to } } = links[Array(...this.node.childNodes).indexOf(nextTab)];
+
+      if (currentTab) {
+        currentTab.classList.remove('active');
+      }
+
+      const listener = debounce(() => {
+        nextTab.removeEventListener('transitionend', listener);
+        this.context.router.history.push(to);
+      }, 50);
+
+      nextTab.addEventListener('transitionend', listener);
+      nextTab.classList.add('active');
+    });
+
+  }
+
   render () {
     const { intl: { formatMessage } } = this.props;
     const className = classnames('tabs-bar', {
@@ -42,8 +76,8 @@ export default class TabsBar extends React.Component {
     });
 
     return (
-      <nav className={className}>
-        {links.map(link => React.cloneElement(link, { key: link.props.to, 'aria-label': formatMessage({ id: link.props['data-preview-title-id'] }) }))}
+      <nav className={className} ref={this.setRef}>
+        {links.map(link => React.cloneElement(link, { key: link.props.to, onClick: this.handleClick, 'aria-label': formatMessage({ id: link.props['data-preview-title-id'] }) }))}
       </nav>
     );
   }

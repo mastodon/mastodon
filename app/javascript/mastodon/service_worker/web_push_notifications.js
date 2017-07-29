@@ -1,3 +1,45 @@
+const MAX_NOTIFICATIONS = 5;
+const GROUP_TAG = 'tag';
+
+// Avoid loading intl-messageformat and dealing with locales in the ServiceWorker
+const formatGroupTitle = (message, count) => message.replace('%{count}', count);
+
+const notify = options =>
+  self.registration.getNotifications().then(notifications => {
+    if (notifications.length === MAX_NOTIFICATIONS) {
+      // Reached the maximum number of notifications, proceed with grouping
+      const group = {
+        title: formatGroupTitle(notifications[0].data.message, notifications.length + 1),
+        body: notifications
+          .sort((n1, n2) => n1.timestamp < n2.timestamp)
+          .map(notification => notification.title).join('\n'),
+        badge: '/badge.png',
+        icon: '/android-chrome-192x192.png',
+        tag: GROUP_TAG,
+        data: {
+          url: (new URL('/web/notifications', self.location)).href,
+          count: notifications.length + 1,
+          message: notifications[0].data.message,
+        },
+      };
+
+      notifications.forEach(notification => notification.close());
+
+      return self.registration.showNotification(group.title, group);
+    } else if (notifications.length === 1 && notifications[0].tag === GROUP_TAG) {
+      // Already grouped, proceed with appending the notification to the group
+      const group = cloneNotification(notifications[0]);
+
+      group.title = formatGroupTitle(group.data.message, group.data.count + 1);
+      group.body = `${options.title}\n${group.body}`;
+      group.data = { ...group.data, count: group.data.count + 1 };
+
+      return self.registration.showNotification(group.title, group);
+    }
+
+    return self.registration.showNotification(options.title, options);
+  });
+
 const handlePush = (event) => {
   const options = event.data.json();
 
@@ -17,7 +59,7 @@ const handlePush = (event) => {
     options.actions = options.data.actions;
   }
 
-  event.waitUntil(self.registration.showNotification(options.title, options));
+  event.waitUntil(notify(options));
 };
 
 const cloneNotification = (notification) => {
@@ -50,22 +92,37 @@ const makeRequest = (notification, action) =>
     credentials: 'include',
   });
 
+const findBestClient = clients => {
+  const focusedClient = clients.find(client => client.focused);
+  const visibleClient = clients.find(client => client.visibilityState === 'visible');
+
+  return focusedClient || visibleClient || clients[0];
+};
+
 const openUrl = url =>
   self.clients.matchAll({ type: 'window' }).then(clientList => {
-    if (clientList.length !== 0 && 'navigate' in clientList[0]) { // Chrome 42-48 does not support navigate
-      const webClients = clientList
-        .filter(client => /\/web\//.test(client.url))
-        .sort(client => client !== 'visible');
+    if (clientList.length !== 0) {
+      const webClients = clientList.filter(client => /\/web\//.test(client.url));
 
-      const visibleClient = clientList.find(client => client.visibilityState === 'visible');
-      const focusedClient = clientList.find(client => client.focused);
+      if (webClients.length !== 0) {
+        const client = findBestClient(webClients);
 
-      const client = webClients[0] || visibleClient || focusedClient || clientList[0];
+        const { pathname } = new URL(url);
 
-      return client.navigate(url).then(client => client.focus());
-    } else {
-      return self.clients.openWindow(url);
+        if (pathname.startsWith('/web/')) {
+          return client.focus().then(client => client.postMessage({
+            type: 'navigate',
+            path: pathname.slice('/web/'.length - 1),
+          }));
+        }
+      } else if ('navigate' in clientList[0]) { // Chrome 42-48 does not support navigate
+        const client = findBestClient(clientList);
+
+        return client.navigate(url).then(client => client.focus());
+      }
     }
+
+    return self.clients.openWindow(url);
   });
 
 const removeActionFromNotification = (notification, action) => {

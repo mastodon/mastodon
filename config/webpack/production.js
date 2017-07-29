@@ -10,7 +10,11 @@ const { publicPath } = require('./configuration.js');
 const path = require('path');
 
 module.exports = merge(sharedConfig, {
-  output: { filename: '[name]-[chunkhash].js' },
+  output: {
+    filename: '[name]-[chunkhash].js',
+    chunkFilename: '[name]-[chunkhash].js',
+  },
+
   devtool: 'source-map', // separate sourcemap file, suitable for production
   stats: 'normal',
 
@@ -48,7 +52,7 @@ module.exports = merge(sharedConfig, {
       ServiceWorker: {
         entry: path.join(__dirname, '../../app/javascript/mastodon/service_worker/entry.js'),
         cacheName: 'mastodon',
-        output: '../sw.js',
+        output: '../assets/sw.js',
         publicPath: '/sw.js',
         minify: true,
       },
