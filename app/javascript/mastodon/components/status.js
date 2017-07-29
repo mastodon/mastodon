@@ -36,6 +36,7 @@ export default class Status extends ImmutablePureComponent {
     onOpenMedia: PropTypes.func,
     onOpenVideo: PropTypes.func,
     onBlock: PropTypes.func,
+    onHeightChange: PropTypes.func,
     me: PropTypes.number,
     boostModal: PropTypes.bool,
     autoPlayGif: PropTypes.bool,
@@ -47,7 +48,6 @@ export default class Status extends ImmutablePureComponent {
 
   state = {
     isExpanded: false,
-    isIntersecting: true, // assume intersecting until told otherwise
     isHidden: false, // set to true in requestIdleCallback to trigger un-render
   }
 
@@ -108,6 +108,10 @@ export default class Status extends ImmutablePureComponent {
     if (this.node && this.node.children.length !== 0) {
       // save the height of the fully-rendered element
       this.height = getRectFromEntry(entry).height;
+
+      if (this.props.onHeightChange) {
+        this.props.onHeightChange(this.props.status, this.height);
+      }
     }
 
     this.setState((prevState) => {
@@ -179,9 +183,13 @@ export default class Status extends ImmutablePureComponent {
       return null;
     }
 
-    if (!isIntersecting && isHidden) {
+    const hasIntersectionObserverWrapper = !!this.props.intersectionObserverWrapper;
+    const isHiddenForSure = isIntersecting === false && isHidden;
+    const visibilityUnknownButHeightIsCached = isIntersecting === undefined && status.has('height');
+
+    if (hasIntersectionObserverWrapper && (isHiddenForSure || visibilityUnknownButHeightIsCached)) {
       return (
-        <article ref={this.handleRef} data-id={status.get('id')} aria-posinset={index} aria-setsize={listLength} tabIndex='0' style={{ height: `${this.height}px`, opacity: 0, overflow: 'hidden' }}>
+        <article ref={this.handleRef} data-id={status.get('id')} aria-posinset={index} aria-setsize={listLength} tabIndex='0' style={{ height: `${this.height || status.get('height')}px`, opacity: 0, overflow: 'hidden' }}>
           {status.getIn(['account', 'display_name']) || status.getIn(['account', 'username'])}
           {status.get('content')}
         </article>
