@@ -48,17 +48,20 @@ export default class TabsBar extends React.Component {
       const nextTab = tabs.find(tab => tab.contains(e.target));
       const { props: { to } } = links[Array(...this.node.childNodes).indexOf(nextTab)];
 
-      if (currentTab) {
-        currentTab.classList.remove('active');
+
+      if (currentTab !== nextTab) {
+        if (currentTab) {
+          currentTab.classList.remove('active');
+        }
+
+        const listener = debounce(() => {
+          nextTab.removeEventListener('transitionend', listener);
+          this.context.router.history.push(to);
+        }, 50);
+
+        nextTab.addEventListener('transitionend', listener);
+        nextTab.classList.add('active');
       }
-
-      const listener = debounce(() => {
-        nextTab.removeEventListener('transitionend', listener);
-        this.context.router.history.push(to);
-      }, 50);
-
-      nextTab.addEventListener('transitionend', listener);
-      nextTab.classList.add('active');
     });
 
   }
