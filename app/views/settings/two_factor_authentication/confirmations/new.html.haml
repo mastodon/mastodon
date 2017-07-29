@@ -11,7 +11,7 @@
       %p.hint= t('two_factor_authentication.manual_instructions')
       %samp.qr-alternative__code= current_user.otp_secret.scan(/.{4}/).join(' ')
 
-  = f.input :code, hint: t('two_factor_authentication.code_hint'), placeholder: t('simple_form.labels.defaults.otp_attempt')
+  = f.input :code, hint: t('two_factor_authentication.code_hint'), placeholder: t('simple_form.labels.defaults.otp_attempt'), input_html: { :autocomplete => 'off' }
 
   .actions
     = f.button :button, t('two_factor_authentication.enable'), type: :submit
