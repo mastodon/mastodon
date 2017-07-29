@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import NavLink from 'react-router-dom/NavLink';
 import { FormattedMessage, injectIntl } from 'react-intl';
 import { debounce } from 'lodash';
+import { isUserTouching } from '../../../is_mobile';
 
 export const links = [
   <NavLink className='tabs-bar__link primary' to='/statuses/new' data-preview-title-id='tabs_bar.compose' data-preview-icon='pencil' ><i className='fa fa-fw fa-pencil' /><FormattedMessage id='tabs_bar.compose' defaultMessage='Compose' /></NavLink>,
@@ -39,27 +40,34 @@ export default class TabsBar extends React.Component {
   }
 
   handleClick = (e) => {
-    e.preventDefault();
-    e.persist();
+    // Only apply optimization for touch devices, which we assume are slower
+    // We thus avoid the 250ms delay for non-touch devices and the lag for touch devices
+    if (isUserTouching()) {
+      e.preventDefault();
+      e.persist();
 
-    requestAnimationFrame(() => {
-      const tabs = Array(...this.node.querySelectorAll('.tabs-bar__link'));
-      const currentTab = tabs.find(tab => tab.classList.contains('active'));
-      const nextTab = tabs.find(tab => tab.contains(e.target));
-      const { props: { to } } = links[Array(...this.node.childNodes).indexOf(nextTab)];
+      requestAnimationFrame(() => {
+        const tabs = Array(...this.node.querySelectorAll('.tabs-bar__link'));
+        const currentTab = tabs.find(tab => tab.classList.contains('active'));
+        const nextTab = tabs.find(tab => tab.contains(e.target));
+        const { props: { to } } = links[Array(...this.node.childNodes).indexOf(nextTab)];
 
-      if (currentTab) {
-        currentTab.classList.remove('active');
-      }
 
-      const listener = debounce(() => {
-        nextTab.removeEventListener('transitionend', listener);
-        this.context.router.history.push(to);
-      }, 50);
+        if (currentTab !== nextTab) {
+          if (currentTab) {
+            currentTab.classList.remove('active');
+          }
 
-      nextTab.addEventListener('transitionend', listener);
-      nextTab.classList.add('active');
-    });
+          const listener = debounce(() => {
+            nextTab.removeEventListener('transitionend', listener);
+            this.context.router.history.push(to);
+          }, 50);
+
+          nextTab.addEventListener('transitionend', listener);
+          nextTab.classList.add('active');
+        }
+      });
+    }
 
   }
 
