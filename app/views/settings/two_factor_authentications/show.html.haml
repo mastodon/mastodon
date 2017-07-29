@@ -10,7 +10,7 @@
   %hr/
 
   = simple_form_for @confirmation, url: settings_two_factor_authentication_path, method: :delete do |f|
-    = f.input :code, hint: t('two_factor_authentication.code_hint'), placeholder: t('simple_form.labels.defaults.otp_attempt')
+    = f.input :code, hint: t('two_factor_authentication.code_hint'), placeholder: t('simple_form.labels.defaults.otp_attempt'), input_html: { :autocomplete => 'off' }
 
     .actions
       = f.button :button, t('two_factor_authentication.disable'), type: :submit
