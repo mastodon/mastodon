@@ -1,8 +1,6 @@
 import React from 'react';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
-import emojify from '../../../emoji';
-import escapeTextContentForBrowser from 'escape-html';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import IconButton from '../../../components/icon_button';
 import Motion from 'react-motion/lib/Motion';
@@ -92,14 +90,9 @@ export default class Header extends ImmutablePureComponent {
       return null;
     }
 
-    let displayName = account.get('display_name');
     let info        = '';
     let actionBtn   = '';
     let lockedIcon  = '';
-
-    if (displayName.length === 0) {
-      displayName = account.get('username');
-    }
 
     if (me !== account.get('id') && account.getIn(['relationship', 'followed_by'])) {
       info = <span className='account--follows-info'><FormattedMessage id='account.follows_you' defaultMessage='Follows you' /></span>;
@@ -125,15 +118,15 @@ export default class Header extends ImmutablePureComponent {
       lockedIcon = <i className='fa fa-lock' />;
     }
 
-    const content         = { __html: emojify(account.get('note')) };
-    const displayNameHTML = { __html: emojify(escapeTextContentForBrowser(displayName)) };
+    const content         = { __html: account.get('note_emojified') };
+    const displayNameHtml = { __html: account.get('display_name_html') };
 
     return (
       <div className='account__header' style={{ backgroundImage: `url(${account.get('header')})` }}>
         <div>
           <Avatar account={account} autoPlayGif={this.props.autoPlayGif} />
 
-          <span className='account__header__display-name' dangerouslySetInnerHTML={displayNameHTML} />
+          <span className='account__header__display-name' dangerouslySetInnerHTML={displayNameHtml} />
           <span className='account__header__username'>@{account.get('acct')} {lockedIcon}</span>
           <div className='account__header__content' dangerouslySetInnerHTML={content} />
 
