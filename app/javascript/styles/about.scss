@@ -147,9 +147,13 @@
       white-space: nowrap;
       overflow: hidden;
 
-      a {
+      a,
+      span {
         font-weight: 400;
         color: lighten($ui-base-color, 34%);
+      }
+
+      a {
         text-decoration: none;
       }
     }
