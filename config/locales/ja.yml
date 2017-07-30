@@ -5,9 +5,14 @@ ja:
     about_this: 詳細情報
     closed_registrations: 現在このインスタンスでの新規登録は受け付けていません。しかし、他のインスタンスにアカウントを作成しても全く同じネットワークに参加することができます。
     contact: 連絡先
+    contact_missing: 未設定
+    contact_unavailable: N/A
     description_headline: "%{domain} とは？"
     domain_count_after: 個のインスタンス
     domain_count_before: 接続中
+    extended_description_html: |
+      <h3>ルールを書くのに適した場所</h3>
+      <p>詳細説明が設定されていません。</p>
     features:
       humane_approach_body: 他の SNS の失敗から学び、Mastodon はソーシャルメディアが誤った使い方をされることの無いように倫理的な設計を目指しています。
       humane_approach_title: より思いやりのある設計
@@ -104,12 +109,14 @@ ja:
         hint: ドメインブロックはデータベース中のアカウント項目の作成を妨げませんが、遡って自動的に指定されたモデレーションをそれらのアカウントに適用します。
         severity:
           desc_html: "<strong>サイレンス</strong>はアカウントのトゥートをフォローしていない人から隠します。<strong>停止</strong>はそのアカウントのコンテンツ、メディア、プロフィールデータをすべて削除します。"
+          noop: なし
           silence: サイレンス
           suspend: 停止
         title: 新規ドメインブロック
       reject_media: メディアファイルを拒否
       reject_media_hint: ローカルに保存されたメディアファイルを削除し、今後のダウンロードを拒否します。停止とは無関係です。
       severities:
+        noop: なし
         silence: サイレンス
         suspend: 停止
       severity: 深刻度
@@ -341,6 +348,8 @@ ja:
       title: あなたのトゥートが %{name} さんにお気に入り登録されました
     follow:
       title: "%{name} さんにフォローされました"
+    group:
+      title: "%{count} 件の通知"
     mention:
       action_boost: ブースト
       action_expand: もっと見る
@@ -392,6 +401,8 @@ ja:
       windows: Windows
       windows_mobile: Windows Mobile
       windows_phone: Windows Phone
+    revoke: 削除
+    revoke_success: セッションを削除しました
     title: セッション
   settings:
     authorized_apps: 認証済みアプリ
