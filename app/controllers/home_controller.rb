@@ -6,6 +6,7 @@ class HomeController < ApplicationController
 
   def index
     @body_classes = 'app-body'
+    @frontend     = (params[:frontend] and Rails.configuration.x.available_frontends.include? params[:frontend] + '.js') ? params[:frontend] : 'mastodon'
   end
 
   private

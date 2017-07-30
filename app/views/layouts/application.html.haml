@@ -32,6 +32,9 @@
     = javascript_pack_tag "locale_#{I18n.locale}", integrity: true, crossorigin: 'anonymous'
     = csrf_meta_tags
 
+    - if controller_name != 'home'
+      = stylesheet_pack_tag 'application', integrity: true, media: 'all'
+
     = yield :header_tags
 
   - body_classes ||= @body_classes

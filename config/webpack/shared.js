@@ -2,7 +2,7 @@
 
 const { existsSync } = require('fs');
 const webpack = require('webpack');
-const { basename, dirname, join, relative, resolve, sep } = require('path');
+const { basename, dirname, join, relative, resolve } = require('path');
 const { sync } = require('glob');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const ManifestPlugin = require('webpack-manifest-plugin');
@@ -54,18 +54,7 @@ module.exports = {
     }),
     new webpack.optimize.CommonsChunkPlugin({
       name: 'common',
-      minChunks: (module, count) => {
-        const reactIntlPathRegexp = new RegExp(`node_modules\\${sep}react-intl`);
-
-        if (module.resource && reactIntlPathRegexp.test(module.resource)) {
-          // skip react-intl because it's useless to put in the common chunk,
-          // e.g. because "shared" modules between zh-TW and zh-CN will never
-          // be loaded together
-          return false;
-        }
-
-        return count >= 2;
-      },
+      minChunks: Infinity, // It doesn't make sense to use common chunks with multiple frontend support.
     }),
   ],
 
