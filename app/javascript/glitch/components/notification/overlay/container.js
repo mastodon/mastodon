@@ -43,7 +43,7 @@ const mapDispatchToProps = dispatch => ({
 });
 
 const mapStateToProps = state => ({
-  revealed: state.getIn(['notifications', 'cleaningMode']),
+  show: state.getIn(['notifications', 'cleaningMode']),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(NotificationOverlay);

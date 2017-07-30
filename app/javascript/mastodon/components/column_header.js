@@ -8,8 +8,7 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import NotificationPurgeButtonsContainer from '../../glitch/components/column/notif_cleaning_widget/container';
 
 const messages = defineMessages({
-  titleNotifClearing: { id: 'column.notifications_clearing', defaultMessage: 'Dismiss selected notifications:' },
-  titleNotifClearingShort: { id: 'column.notifications_clearing_short', defaultMessage: 'Dismiss selected:' },
+  enterNotifCleaning : { id: 'notification_purge.start', defaultMessage: 'Enter notification cleaning mode' },
 });
 
 @injectIntl
@@ -28,6 +27,7 @@ export default class ColumnHeader extends React.PureComponent {
     showBackButton: PropTypes.bool,
     notifCleaning: PropTypes.bool, // true only for the notification column
     notifCleaningActive: PropTypes.bool,
+    onEnterCleaningMode: PropTypes.func,
     children: PropTypes.node,
     pinned: PropTypes.bool,
     onPin: PropTypes.func,
@@ -39,6 +39,7 @@ export default class ColumnHeader extends React.PureComponent {
   state = {
     collapsed: true,
     animating: false,
+    animatingNCD: false,
   };
 
   handleToggleClick = (e) => {
@@ -71,16 +72,21 @@ export default class ColumnHeader extends React.PureComponent {
     this.setState({ animating: false });
   }
 
+  handleTransitionEndNCD = () => {
+    this.setState({ animatingNCD: false });
+  }
+
+  onEnterCleaningMode = () => {
+    this.setState({ animatingNCD: true });
+    this.props.onEnterCleaningMode(!this.props.notifCleaningActive);
+  }
+
   render () {
-    const { intl, icon, active, children, pinned, onPin, multiColumn, showBackButton, notifCleaning, localSettings } = this.props;
-    const { collapsed, animating } = this.state;
+    const { intl, icon, active, children, pinned, onPin, multiColumn, showBackButton, notifCleaning, notifCleaningActive } = this.props;
+    const { collapsed, animating, animatingNCD } = this.state;
+
 
     let title = this.props.title;
-    if (notifCleaning && this.props.notifCleaningActive) {
-      title = intl.formatMessage(localSettings.getIn(['stretch']) ?
-        messages.titleNotifClearing :
-        messages.titleNotifClearingShort);
-    }
 
     const wrapperClassName = classNames('column-header__wrapper', {
       'active': active,
@@ -99,7 +105,19 @@ export default class ColumnHeader extends React.PureComponent {
       'active': !collapsed,
     });
 
+    const notifCleaningButtonClassName = classNames('column-header__button', {
+      'active': notifCleaningActive,
+    });
+
+    const notifCleaningDrawerClassName = classNames('ncd column-header__collapsible', {
+      'collapsed': !notifCleaningActive,
+      'animating': animatingNCD,
+    });
+
     let extraContent, pinButton, moveButtons, backButton, collapseButton;
+
+    //*glitch
+    const msgEnterNotifCleaning = intl.formatMessage(messages.enterNotifCleaning);
 
     if (children) {
       extraContent = (
@@ -149,13 +167,29 @@ export default class ColumnHeader extends React.PureComponent {
         <div role='button heading' tabIndex='0' className={buttonClassName} onClick={this.handleTitleClick}>
           <i className={`fa fa-fw fa-${icon} column-header__icon`} />
           {title}
-
           <div className='column-header__buttons'>
-            {notifCleaning ? (<NotificationPurgeButtonsContainer />) : null}
             {backButton}
+            { notifCleaning ? (
+              <button
+                aria-label={msgEnterNotifCleaning}
+                title={msgEnterNotifCleaning}
+                onClick={this.onEnterCleaningMode}
+                className={notifCleaningButtonClassName}
+              >
+                <i className='fa fa-eraser' />
+              </button>
+            ) : null}
             {collapseButton}
           </div>
         </div>
+
+        { notifCleaning ? (
+          <div className={notifCleaningDrawerClassName} onTransitionEnd={this.handleTransitionEndNCD}>
+            <div className='column-header__collapsible-inner nopad-drawer'>
+              {(notifCleaningActive || animatingNCD) ? (<NotificationPurgeButtonsContainer />) : null }
+            </div>
+          </div>
+        ) : null}
 
         <div className={collapsibleClassName} onTransitionEnd={this.handleTransitionEnd}>
           <div className='column-header__collapsible-inner'>

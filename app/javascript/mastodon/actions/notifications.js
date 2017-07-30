@@ -10,6 +10,7 @@ export const NOTIFICATIONS_UPDATE = 'NOTIFICATIONS_UPDATE';
 export const NOTIFICATIONS_DELETE_MARKED_REQUEST = 'NOTIFICATIONS_DELETE_MARKED_REQUEST';
 export const NOTIFICATIONS_DELETE_MARKED_SUCCESS = 'NOTIFICATIONS_DELETE_MARKED_SUCCESS';
 export const NOTIFICATIONS_DELETE_MARKED_FAIL = 'NOTIFICATIONS_DELETE_MARKED_FAIL';
+export const NOTIFICATIONS_MARK_ALL_FOR_DELETE = 'NOTIFICATIONS_MARK_ALL_FOR_DELETE';
 export const NOTIFICATIONS_ENTER_CLEARING_MODE = 'NOTIFICATIONS_ENTER_CLEARING_MODE'; // arg: yes
 // Unmark notifications (when the cleaning mode is left)
 export const NOTIFICATIONS_UNMARK_ALL_FOR_DELETE = 'NOTIFICATIONS_UNMARK_ALL_FOR_DELETE';
@@ -210,13 +211,11 @@ export function deleteMarkedNotifications() {
     });
 
     if (ids.length === 0) {
-      dispatch(enterNotificationClearingMode(false));
       return;
     }
 
     api(getState).delete(`/api/v1/notifications/destroy_multiple?ids[]=${ids.join('&ids[]=')}`).then(() => {
       dispatch(deleteMarkedNotificationsSuccess());
-      dispatch(expandNotifications()); // Load more (to fill the empty space)
     }).catch(error => {
       console.error(error);
       dispatch(deleteMarkedNotificationsFail(error));
@@ -228,6 +227,13 @@ export function enterNotificationClearingMode(yes) {
   return {
     type: NOTIFICATIONS_ENTER_CLEARING_MODE,
     yes: yes,
+  };
+};
+
+export function markAllNotifications(yes) {
+  return {
+    type: NOTIFICATIONS_MARK_ALL_FOR_DELETE,
+    yes: yes, // true, false or null. null = invert
   };
 };
 

@@ -13,6 +13,7 @@ import {
   NOTIFICATION_MARK_FOR_DELETE,
   NOTIFICATIONS_DELETE_MARKED_FAIL,
   NOTIFICATIONS_ENTER_CLEARING_MODE,
+  NOTIFICATIONS_MARK_ALL_FOR_DELETE,
 } from '../actions/notifications';
 import { ACCOUNT_BLOCK_SUCCESS } from '../actions/accounts';
 import { TIMELINE_DELETE } from '../actions/timelines';
@@ -26,13 +27,15 @@ const initialState = ImmutableMap({
   loaded: false,
   isLoading: true,
   cleaningMode: false,
+  // notification removal mark of new notifs loaded whilst cleaningMode is true.
+  markNewForDelete: false,
 });
 
-const notificationToMap = notification => ImmutableMap({
+const notificationToMap = (state, notification) => ImmutableMap({
   id: notification.id,
   type: notification.type,
   account: notification.account.id,
-  markedForDelete: false,
+  markedForDelete: state.get('markNewForDelete'),
   status: notification.status ? notification.status.id : null,
 });
 
@@ -48,7 +51,7 @@ const normalizeNotification = (state, notification) => {
       list = list.take(20);
     }
 
-    return list.unshift(notificationToMap(notification));
+    return list.unshift(notificationToMap(state, notification));
   });
 };
 
@@ -57,7 +60,7 @@ const normalizeNotifications = (state, notifications, next) => {
   const loaded = state.get('loaded');
 
   notifications.forEach((n, i) => {
-    items = items.set(i, notificationToMap(n));
+    items = items.set(i, notificationToMap(state, n));
   });
 
   if (state.get('next') === null) {
@@ -74,7 +77,7 @@ const appendNormalizedNotifications = (state, notifications, next) => {
   let items = ImmutableList();
 
   notifications.forEach((n, i) => {
-    items = items.set(i, notificationToMap(n));
+    items = items.set(i, notificationToMap(state, n));
   });
 
   return state
@@ -109,6 +112,16 @@ const markForDelete = (state, notificationId, yes) => {
   }));
 };
 
+const markAllForDelete = (state, yes) => {
+  return state.update('items', list => list.map(item => {
+    if(yes !== null) {
+      return item.set('markedForDelete', yes);
+    } else {
+      return item.set('markedForDelete', !item.get('markedForDelete'));
+    }
+  }));
+};
+
 const unmarkAllForDelete = (state) => {
   return state.update('items', list => list.map(item => item.set('markedForDelete', false)));
 };
@@ -118,6 +131,8 @@ const deleteMarkedNotifs = (state) => {
 };
 
 export default function notifications(state = initialState, action) {
+  let st;
+
   switch(action.type) {
   case NOTIFICATIONS_REFRESH_REQUEST:
   case NOTIFICATIONS_EXPAND_REQUEST:
@@ -141,15 +156,31 @@ export default function notifications(state = initialState, action) {
     return state.set('items', ImmutableList()).set('next', null);
   case TIMELINE_DELETE:
     return deleteByStatus(state, action.id);
+
   case NOTIFICATION_MARK_FOR_DELETE:
     return markForDelete(state, action.id, action.yes);
+
   case NOTIFICATIONS_DELETE_MARKED_SUCCESS:
-    return deleteMarkedNotifs(state).set('isLoading', false).set('cleaningMode', false);
+    return deleteMarkedNotifs(state).set('isLoading', false);
+
   case NOTIFICATIONS_ENTER_CLEARING_MODE:
-    const st = state.set('cleaningMode', action.yes);
-    if (!action.yes)
-      return unmarkAllForDelete(st);
-    else return st;
+    st = state.set('cleaningMode', action.yes);
+    if (!action.yes) {
+      return unmarkAllForDelete(st).set('markNewForDelete', false);
+    } else {
+      return st;
+    }
+
+  case NOTIFICATIONS_MARK_ALL_FOR_DELETE:
+    st = state;
+    if (action.yes === null) {
+      // Toggle - this is a bit confusing, as it toggles the all-none mode
+      //st = st.set('markNewForDelete', !st.get('markNewForDelete'));
+    } else {
+      st = st.set('markNewForDelete', action.yes);
+    }
+    return markAllForDelete(st, action.yes);
+
   default:
     return state;
   }

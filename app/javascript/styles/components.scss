@@ -1,4 +1,5 @@
 @import 'variables';
+@import 'variables-glitch';
 
 .app-body {
   -webkit-overflow-scrolling: touch;
@@ -451,62 +452,6 @@
   cursor: pointer;
 }
 
-.notification__dismiss-overlay {
-  position: absolute;
-  left: 0; top: 0; right: 0; bottom: 0;
-
-  $c1: #00000A;
-  $c2: #222228;
-  background: linear-gradient(to right,
-    rgba($c1, 0.1),
-    rgba($c1, 0.2) 60%,
-    rgba($c2, 1) 90%,
-    rgba($c2, 1));
-
-  z-index: 999;
-  align-items: center;
-  justify-content: flex-end;
-  cursor: pointer;
-
-  display: none;
-
-  &.show {
-    display: flex;
-  }
-
-  // make it brighter
-  &.active {
-    $c: #222931;
-    background: linear-gradient(to right,
-      rgba($c, 0.1),
-      rgba($c, 0.2) 60%,
-      rgba($c, 1) 90%,
-      rgba($c, 1));
-  }
-
-  &:focus {
-    outline: 0 !important;
-  }
-}
-
-.notification__dismiss-overlay__ckbox {
-  border: 2px solid #9baec8;
-  border-radius: 2px;
-  width: 30px;
-  height: 30px;
-  margin-right: 20px;
-  font-size: 20px;
-  color: #c3dcfd;
-  text-shadow: 0 0 5px black;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  :focus & {
-    box-shadow: 0 0 2px 2px #3e6fc1;
-  }
-}
-
 // --- Extra clickable area in the status gutter ---
 .ui.wide {
   @mixin xtraspaces-full {
@@ -681,6 +626,12 @@
 .status__prepend-icon-wrapper {
   left: -26px;
   position: absolute;
+}
+
+.notif-cleaning {
+  .status, .notification-follow {
+    padding-right: ($dismiss-overlay-width + 0.5rem);
+  }
 }
 
 .notification-follow {
@@ -2479,17 +2430,88 @@ button.icon-button.active i.fa-retweet {
       background: lighten($ui-base-color, 8%);
     }
   }
+
+  // glitch - added focus ring for keyboard navigation
+  &:focus {
+    text-shadow: 0 0 4px darken($ui-highlight-color, 5%);
+  }
+}
+
+.scrollable > div > :first-child .notification__dismiss-overlay > .wrappy {
+  border-top: 1px solid $ui-base-color;
+}
+
+.notification__dismiss-overlay {
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: -1px;
+  padding-left: 15px; // space for the box shadow to be visible
+
+  z-index: 999;
+  align-items: center;
+  justify-content: flex-end;
+  cursor: pointer;
+
+  display: flex;
+
+  .wrappy {
+    width: $dismiss-overlay-width;
+    align-self: stretch;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: lighten($ui-base-color, 8%);
+    border-left: 1px solid lighten($ui-base-color, 20%);
+    box-shadow: 0 0 5px black;
+    border-bottom: 1px solid $ui-base-color;
+  }
+
+  .ckbox {
+    border: 2px solid $ui-primary-color;
+    border-radius: 2px;
+    width: 30px;
+    height: 30px;
+    font-size: 20px;
+    color: $ui-primary-color;
+    text-shadow: 0 0 5px black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &:focus {
+    outline: 0 !important;
+
+    .ckbox {
+      box-shadow: 0 0 1px 1px $ui-highlight-color;
+    }
+  }
 }
 
 .column-header__notif-cleaning-buttons {
   display: flex;
   align-items: stretch;
+  justify-content: space-around;
 
   button {
     @extend .column-header__button;
-    padding-left: 12px;
-    padding-right: 12px;
+    background: transparent;
+    text-align: center;
+    padding: 10px 0;
+    white-space: pre-wrap;
   }
+
+  b {
+    font-weight: bold;
+  }
+}
+
+// The notifs drawer with no padding to have more space for the buttons
+.column-header__collapsible-inner.nopad-drawer {
+  padding: 0;
 }
 
 .column-header__collapsible {
@@ -2507,6 +2529,15 @@ button.icon-button.active i.fa-retweet {
 
   &.animating {
     overflow-y: hidden;
+  }
+
+  // notif cleaning drawer
+  &.ncd {
+    transition: none;
+    &.collapsed {
+      max-height: 0;
+      opacity: 0.7;
+    }
   }
 }
 
