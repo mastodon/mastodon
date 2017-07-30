@@ -88,7 +88,7 @@ function appendMedia(state, media) {
     map.set('focusDate', new Date());
     map.set('idempotencyKey', uuid());
 
-    if (prevSize === 0 && state.get('default_sensitive')) {
+    if (prevSize === 0 && (state.get('default_sensitive') || state.get('spoiler'))) {
       map.set('sensitive', true);
     }
   });
@@ -160,6 +160,10 @@ export default function compose(state = initialState, action) {
       map.set('spoiler_text', '');
       map.set('spoiler', !state.get('spoiler'));
       map.set('idempotencyKey', uuid());
+
+      if (!state.get('sensitive') && state.get('media_attachments').size >= 1) {
+        map.set('sensitive', true);
+      }
     });
   case COMPOSE_SPOILER_TEXT_CHANGE:
     return state
