@@ -463,7 +463,7 @@
   white-space: pre-wrap;
 
   &:focus {
-    outline: 0;
+    outline: rgba($ui-highlight-color, 0.7) solid 2px;
   }
 
   .emojione {
@@ -559,16 +559,18 @@
   opacity: 1;
   animation: fade 150ms linear;
 
-  &:focus {
-    outline: 0;
-  }
-
   &.status-direct {
     background: lighten($ui-base-color, 8%);
 
     .icon-button.disabled {
       color: lighten($ui-base-color, 16%);
     }
+  }
+
+  &:focus,
+  &.status-direct:focus {
+    outline: 0;
+    background-color: lighten($ui-base-color, 10%);
   }
 
   &.light {
