@@ -212,10 +212,10 @@ export default class MediaGallery extends React.PureComponent {
       }
 
       children = (
-        <div role='button' tabIndex='0' className='media-spoiler' onClick={this.handleOpen}>
+        <button className='media-spoiler' onClick={this.handleOpen}>
           <span className='media-spoiler__warning'>{warning}</span>
           <span className='media-spoiler__trigger'><FormattedMessage id='status.sensitive_toggle' defaultMessage='Click to view' /></span>
-        </div>
+        </button>
       );
     } else {
       const size = media.take(4).size;
