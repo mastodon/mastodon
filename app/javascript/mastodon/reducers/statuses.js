@@ -122,7 +122,7 @@ export default function statuses(state = initialState, action) {
   case ACCOUNT_BLOCK_SUCCESS:
     return filterStatuses(state, action.relationship);
   case STATUSES_HYDRATE:
-    return state.merge(action.payload.statuses);
+    return state.merge(action.payload.statuses.map(status => status.set('cached', true)));
   default:
     return state;
   }
