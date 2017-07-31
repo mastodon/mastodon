@@ -31,7 +31,11 @@ module ApplicationHelper
     Rails.env.production? ? site_title : "#{site_title} (Dev)"
   end
 
-  def fa_icon(icon)
-    content_tag(:i, nil, class: 'fa ' + icon.split(' ').map { |cl| "fa-#{cl}" }.join(' '))
+  def fa_icon(icon, attributes = {})
+    class_names = attributes[:class]&.split(' ') || []
+    class_names << 'fa'
+    class_names += icon.split(' ').map { |cl| "fa-#{cl}" }
+
+    content_tag(:i, nil, attributes.merge(class: class_names.join(' ')))
   end
 end

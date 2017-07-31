@@ -22,8 +22,7 @@
 
   - unless status.media_attachments.empty?
     .status__attachments
-      - if status.sensitive?
-        = render partial: 'stream_entries/content_spoiler'
+      = render partial: 'stream_entries/content_spoiler', locals: { sensitive: status.sensitive? }
       - if status.media_attachments.first.video?
         .status__attachments__inner
           .video-item

@@ -36,6 +36,18 @@
     }
   }
 
+  &.with-header {
+    .entry {
+      &:first-child {
+        &,
+        .detailed-status.light,
+        .status.light {
+          border-radius: 0;
+        }
+      }
+    }
+  }
+
   .status.light {
     padding: 14px 14px 14px (48px + 14px * 2);
     position: relative;
@@ -251,7 +263,9 @@
     border: medium none;
     display: block;
     flex: 1 1 auto;
+    width: 100%;
     height: 100%;
+    overflow: hidden;
     margin-right: 2px;
 
     &:last-child {
@@ -326,6 +340,18 @@
       &:last-child {
         font-size: 11px;
         font-weight: 500;
+      }
+    }
+  }
+
+  .media-spoiler-wrapper {
+    &.media-spoiler-wrapper__visible {
+      .media-spoiler {
+        display: none;
+      }
+
+      .spoiler-button {
+        display: block;
       }
     }
   }

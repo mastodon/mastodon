@@ -10,7 +10,7 @@ class Api::V1::Statuses::ReblogsController < Api::BaseController
 
   def create
     @status = ReblogService.new.call(current_user.account, status_for_reblog)
-    render 'api/v1/statuses/show'
+    render json: @status, serializer: REST::StatusSerializer
   end
 
   def destroy
@@ -20,7 +20,7 @@ class Api::V1::Statuses::ReblogsController < Api::BaseController
     authorize status_for_destroy, :unreblog?
     RemovalWorker.perform_async(status_for_destroy.id)
 
-    render 'api/v1/statuses/show'
+    render json: @status, serializer: REST::StatusSerializer, relationships: StatusRelationshipsPresenter.new([@status], current_user&.account_id, reblogs_map: @reblogs_map)
   end
 
   private

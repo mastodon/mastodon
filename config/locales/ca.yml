@@ -1,35 +1,19 @@
 ---
 ca:
   about:
-    about_mastodon: Mastodon és un servidor de xarxa social <em>lliure i de codi obert</em>. Una alternativa <em>descentralitzada</em> a plataformes comercials, que evita el risc que una única companyia monopolitzi la teva comunicació. Qualsevol pot executar Mastodon i participar sense problemes en la <em>xarxa social</em>.
+    about_mastodon_html: Mastodon és un servidor de xarxa social <em>lliure i de codi obert</em>. Una alternativa <em>descentralitzada</em> a plataformes comercials, que evita el risc que una única companyia monopolitzi la teva comunicació. Qualsevol pot executar Mastodon i participar sense problemes en la <em>xarxa social</em>.
     about_this: Sobre aquesta instància
-    apps: Apps
-    business_email: 'Adreça de contacte:'
     closed_registrations: Els registres estan actualment tancats en aquesta instància.
     contact: Contacte
     description_headline: Què es %{domain}?
     domain_count_after: altres instàncies
     domain_count_before: Connectat a
-    features:
-      api: API pública per a aplicacions i serveis
-      blocks: Moderació de contingut
-      characters: 500 caràcters per publicació
-      chronology: Les histories son cronològiques
-      ethics: 'Disseny ètic: sense anuncis, sense rastrejos'
-      gifv: Vídeos curts i GIFV
-      privacy: Configuracions de privacitat ajustables
-      public: Història federada
-    features_headline: El que distingeix a Mastodon
-    get_started: Començar
-    links: Vincles
     other_instances: Altres instàncies
     source_code: Codi font
     status_count_after: estats
     status_count_before: Que han escrit
-    terms: Termes
     user_count_after: usuaris registrats
     user_count_before: Tenim
-    version: Versió
   accounts:
     follow: Seguir
     followers: Seguidors
@@ -41,15 +25,6 @@ ca:
     remote_follow: Seguir
     reserved_username: El nom d'usuari està reservat
     unfollow: Deixar de seguir
-  activitypub:
-    activity:
-      announce:
-        name: "%{account_name} shared an activity."
-      create:
-        name: "%{account_name} created a note."
-    outbox:
-      name: "%{account_name}'s Outbox"
-      summary: A collection of activities from user %{account_name}.
   admin:
     accounts:
       are_you_sure: Estàs segur?
@@ -166,17 +141,13 @@ ca:
     settings:
       contact_information:
         email: Introduir una adreça de correu electrònic pùblica
-        label: Informació de contacte
         username: Introduir un nom d'usuari
       registrations:
         closed_message:
           desc_html: Apareix en la primera pàgina quan es tanquen els registres<br>Pot utilitzar etiquetes HTML
           title: Missatge de registre tancat
         open:
-          disabled: Desactivat
-          enabled: Activat
           title: Registre obert
-      setting: Ajust
       site_description:
         desc_html: Es mostra com un paràgraf a la pàgina principal i s'utilitza com una etiqueta meta.<br>Pots utilitzar etiquetes HTML, en particular <code>&lt;a&gt;</code> i <code>&lt;em&gt;</code>.
         title: Descripció del lloc
@@ -190,7 +161,7 @@ ca:
       confirmed: Confirmat
       expires_in: Expira en
       last_delivery: Últim lliurament
-      title: PubSubHubbub
+      title: WebSub
       topic: Tòpic
     title: Administració
   application_mailer:
@@ -203,8 +174,8 @@ ca:
     change_password: Canviar contrasenya
     delete_account: Esborrar el compte
     delete_account_html: Si vols esborrar el teu compte pots <a href="%{path}">fer-ho aquí</a>. S'et demanarà confirmació.
-    didnt_get_confirmation: "No vas rebre el correu de confirmació?"
-    forgot_password: "Has oblidat la contrasenya?"
+    didnt_get_confirmation: No vas rebre el correu de confirmació?
+    forgot_password: Has oblidat la contrasenya?
     login: Iniciar sessió
     logout: Tancar sessió
     register: Enregistrarse

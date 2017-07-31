@@ -1,34 +1,38 @@
 ---
 nl:
   about:
-    about_mastodon: Mastodon is een <em>vrij, gratis en open-source</em> sociaal netwerk. Een <em>gedecentraliseerd</em> alternatief voor commerciële platforms. Het voorkomt de risico's van een enkel bedrijf dat jouw communicatie monopoliseert. Kies een server die je vertrouwt &mdash; welke je ook kiest, je kunt met elke andere server communiceren. Iedereen kan een eigen Mastodon-server draaien en naadloos deelnemen in het <em>sociale netwerk</em>.
+    about_mastodon_html: Mastodon is een <em>vrij, gratis en open-source</em> sociaal netwerk. Een <em>gedecentraliseerd</em> alternatief voor commerciële platforms. Het voorkomt de risico's van een enkel bedrijf dat jouw communicatie monopoliseert. Kies een server die je vertrouwt &mdash; welke je ook kiest, je kunt met elke andere server communiceren. Iedereen kan een eigen Mastodon-server draaien en naadloos deelnemen in het <em>sociale netwerk</em>.
     about_this: Over deze server
-    apps: Apps
-    business_email: 'E-mailadres:'
     closed_registrations: Registreren op deze server is momenteel uitgeschakeld.
     contact: Contact
+    contact_missing: Niet ingesteld
+    contact_unavailable: N/A
     description_headline: Wat is %{domain}?
     domain_count_after: andere servers
     domain_count_before: Verbonden met
+    extended_description_html: |
+      <h3>Een goede plek voor richtlijnen</h3>
+      <p>De uitgebreide omschrijving is nog niet ingevuld.</p>
     features:
-      api: Open API voor apps en diensten
-      blocks: Uitgebreide blokkeer- en negeerhulpmiddelen
-      characters: 500 tekens per bericht
-      chronology: Tijdlijnen zijn chronologisch
-      ethics: 'Ethisch design: geen advertenties, geen spionage'
-      gifv: GIFV-sets en korte video's
-      privacy: Nauwkeurige privacyinstellingen per toot (bericht)
-      public: Openbare tijdlijnen
-    features_headline: Wat maakt Mastodon anders
-    get_started: Beginnen
-    links: Links
+      humane_approach_body: Na van de fouten van andere netwerken te hebben geleerd, tracht Mastodon ethische ontwerpkeuzes te maken om misbruik van social media te voorkomen.
+      humane_approach_title: Een meer menselijke aanpak
+      not_a_product_body: Mastodon is geen commercieel netwerk. Dus geen advertenties, geen datamining en geen besloten systemen. Er is geen centrale organisatie die alles bepaald.
+      not_a_product_title: Jij bent een persoon, geen product
+      real_conversation_body: Met 500 karakters tot jouw beschikking, en ondersteuning voor tekst- en media-waarschuwingen, kan je jezelf uiten zoals jij dat wil.
+      real_conversation_title: Voor echte gesprekken gemaakt
+      within_reach_body: Meerdere apps voor iOS, Android en andere platformen, met dank aan het ontwikkelaarsvriendelijke API-systeem, zorgen ervoor dat je overal op de hoogte blijft.
+      within_reach_title: Altijd binnen bereik
+    find_another_instance: Vind een andere server
+    generic_description: "%{domain} is een server in het Mastodon-netwerk"
+    hosted_on: Mastodon op %{domain}
+    learn_more: Meer leren
     other_instances: Andere servers
     source_code: Broncode
     status_count_after: toots
     status_count_before: Zij schreven
-    terms: Voorwaarden
     user_count_after: gebruikers
     user_count_before: Thuisbasis van
+    what_is_mastodon: Wat is Mastodon?
   accounts:
     follow: Volgen
     followers: Volgers
@@ -36,58 +40,190 @@ nl:
     nothing_here: Hier is niets!
     people_followed_by: Mensen die %{name} volgt
     people_who_follow: Mensen die %{name} volgen
-    posts: Berichten
+    posts: Toots
     remote_follow: Extern volgen
+    reserved_username: Deze gebruikersnaam is gereserveerd
     unfollow: Ontvolgen
   admin:
+    accounts:
+      are_you_sure: Weet je het zeker?
+      confirm: Bevestigen
+      confirmed: Bevestigd
+      disable_two_factor_authentication: 2FA uitschakelen
+      display_name: Weergavenaam
+      domain: Domein
+      edit: Bewerken
+      email: E-mail
+      feed_url: Feed-URL
+      followers: Volgers
+      follows: Volgt
+      ip: IP
+      location:
+        all: Alles
+        local: Lokaal
+        remote: Extern
+        title: Locatie
+      media_attachments: Media-bijlagen
+      moderation:
+        all: Alles
+        silenced: Genegeerd
+        suspended: Opgeschort
+        title: Moderatie
+      most_recent_activity: Laatst actief
+      most_recent_ip: Laatst gebruikt IP-adres
+      not_subscribed: Niet geabonneerd
+      order:
+        alphabetic: Alfabetisch
+        most_recent: Meest recent
+        title: 
+      perform_full_suspension: Volledig opschorten
+      profile_url: Profiel-URL
+      public: Openbaar
+      push_subscription_expires: PuSH-abonnement verloopt op
+      redownload: Avatar vernieuwen
+      reset: Opnieuw
+      reset_password: Wachtwoord opnieuw instellen
+      resubscribe: Opnieuw abonneren
+      salmon_url: Salmon-URL
+      search: Zoeken
+      show:
+        created_reports: Toots door dit account gerapporteerd
+        report: gerapporteerd
+        targeted_reports: Toots van dit account gerapporteerd
+      silence: Negeren
+      statuses: Toots
+      subscribe: Abonneren
+      title: Accounts
+      undo_silenced: Niet meer negeren
+      undo_suspension: Niet meer opschorten
+      unsubscribe: Opzeggen
+      username: Gebruikersnaam
+      web: Webapp
+    domain_blocks:
+      add_new: Nieuwe toevoegen
+      created_msg: Domeinblokkade wordt nu verwerkt
+      destroyed_msg: Domeinblokkade is ongedaan gemaakt
+      domain: Domein
+      new:
+        create: Blokkade aanmaken
+        hint: Een domeinblokkade voorkomt niet dat accountgegevens van dit domein aan de database worden toegevoegd, maar dat er met terugwerkende kracht en automatisch bepaalde moderatiemethoden op deze accounts worden toegepast. 
+        severity:
+          desc_html: "<strong>Negeren</strong> zorgt ervoor dat berichten van accounts van dit domein voor iedereen onzichtbaar zijn, behalve als een account wordt gevolgd. <strong>Opschorten</strong> zorgt ervoor dat alle berichten, media en profielgegevens van accounts van dit domein worden verwijderd. Gebruik <strong>Geen</strong> wanneer je alleen mediabestanden wilt weigeren."
+          noop: Geen
+          silence: Negeren
+          suspend: Opschorten
+        title: Nieuwe domeinblokkade
+      reject_media: Mediabestanden verwerpen
+      reject_media_hint: Verwijderd lokaal opgeslagen mediabestanden en weigert deze in de toekomst te downloaden. Irrelevant voor opgeschorte domeinen.
+      severities:
+        noop: Geen
+        silence: Negeren
+        suspend: Opschorten
+      severity: Zwaarte
+      show:
+        affected_accounts:
+          one: Eén account in de database aangepast
+          other: "%{count} accounts in de database aangepast"
+        retroactive:
+          silence: Alle genegeerde accounts van dit domein niet meer negeren
+          suspend: Alle opgeschorste accounts van dit domein niet meer opschorten
+        title: Domeinblokkade voor %{domain} ongedaan maken
+        undo: Ongedaan maken
+      title: Domeinblokkades 
+      undo: Ongedaan maken
+    instances:
+      account_count: Bekende accounts
+      domain_name: Domein
+      title: Bekende servers
+    reports:
+      action_taken_by: Actie uitgevoerd door
+      are_you_sure: Weet je het zeker?
+      comment:
+        label: Opmerking
+        none: Geen
+      delete: Verwijderen
+      id: ID
+      mark_as_resolved: Markeer als opgelost
+      nsfw:
+        'false': Media tonen
+        'true': Media verbergen
+      report: 'Gerapporteerde toot #%{id}'
+      report_contents: Inhoud
+      reported_account: Gerapporteerde account
+      reported_by: Gerapporteerd door
+      resolved: Opgelost
+      silence_account: Account negeren
+      status: Toot
+      suspend_account: Account opschorten
+      target: Gerapporteerde account
+      title: Gerapporteerde toots
+      unresolved: Onopgelost
+      view: Weergeven
     settings:
       contact_information:
         email: Vul een openbaar gebruikt e-mailadres in
-        label: Contactgegevens
         username: Vul een gebruikersnaam in
       registrations:
         closed_message:
           desc_html: Wordt op de voorpagina weergegeven wanneer registratie van nieuwe accounts is uitgeschakeld<br>En ook hier kan je HTML gebruiken
           title: Bericht wanneer registratie is uitgeschakeld
+        deletion:
+          desc_html: Toestaan dat iedereen hun eigen account kan verwijderen
+          title:  Verwijderen account toestaan
         open:
-          disabled: Uitgeschakeld
-          enabled: Ingeschakeld
+          desc_html: Toestaan dat iedereen een account kan registereren
           title: Open registratie
-      setting: Instelling
       site_description:
         desc_html: Dit wordt als een alinea op de voorpagina getoond en gebruikt als meta-tag in de paginabron.<br>Je kan HTML gebruiken, zoals <code>&lt;a&gt;</code> en <code>&lt;em&gt;</code>.
         title: Omschrijving Mastodon-server
       site_description_extended:
         desc_html: Wordt op de uitgebreide informatiepagina weergegeven<br>Je kan ook hier HTML gebruiken
         title: Uitgebreide omschrijving Mastodon-server
+      site_terms:
+        desc_html: Je kan hier jouw eigen privacybeleid, gebruikersvoorwaarden en ander juridisch jargon kwijt. Je kan HTML gebruiken.
+        title: Aangepaste gebruikersvoorwaarden
       site_title: Naam Mastodon-server
+      timeline_preview:
+        desc_html: Toon de openbare tijdlijn op de startpagina
+        title: Voorbeeld tijdlijn
       title: Server-instellingen
-  admin.reports:
-    comment:
-      label: Opmerking
-      none: Geen
-    delete: Verwijderen
-    id: ID
-    mark_as_resolved: Markeer als opgelost
-    report: 'Gerapporteerde toot #%{id}'
-    reported_account: Gerapporteerde account
-    reported_by: Gerapporteerd door
-    resolved: Opgelost
-    silence_account: Account stilzwijgen
-    status: Toot
-    suspend_account: Account blokkeren
-    target: Target
-    title: Gerapporteerde toots
-    unresolved: Onopgelost
-    view: Weergeven
+    statuses:
+      back_to_account: Terug naar accountpagina
+      batch:
+        delete: Verwijderen
+        nsfw_off: NSFW UIT
+        nsfw_on: NSFW AAN
+      execute: Uitvoeren
+      failed_to_execute: Uitvoeren mislukt
+      media:
+        hide: Media verbergen
+        show: Media tonen
+        title: Media
+      no_media: Geen media
+      title: Toots van account
+    subscriptions:
+      callback_url: Callback-URL
+      confirmed: Bevestigd
+      expires_in: Verloopt over
+      last_delivery: Laatste bezorging
+      title: WebSub
+      topic: Account
+    title: Beheer
+  admin_mailer:
+    new_report:
+      body: "%{reporter} heeft %{target} gerapporteerd"
+      subject: Nieuwe toots gerapporteerd op %{instance} (#%{id})
   application_mailer:
     settings: 'E-mailvoorkeuren wijzigen: %{link}'
     signature: Mastodon-meldingen van %{instance}
     view: 'Bekijk:'
   applications:
-    invalid_url: De opgegevens URL is ongeldig
+    invalid_url: De opgegeven URL is ongeldig
   auth:
-    change_password: Inloggegevens
+    agreement_html: Wanneer je op registeren klikt ga je akkoord met <a href="%{rules_path}">onze gebruikersvoorwaarden</a> en <a href="%{terms_path}">ons privacybeleid</a>.
+    change_password: Beveiliging
+    delete_account: Account verwijderen
+    delete_account_html: Wanneer je jouw account graag wilt verwijderen, kan je dat <a href="%{path}">hier doen</a>. We vragen jou daar om een bevestiging.
     didnt_get_confirmation: Geen bevestigingsinstructies ontvangen?
     forgot_password: Wachtwoord vergeten?
     login: Aanmelden
@@ -99,6 +235,12 @@ nl:
   authorize_follow:
     error: Helaas, er is een fout opgetreden bij het opzoeken van de externe account
     follow: Volgen
+    follow_request: 'Jij hebt een volgverzoek ingediend bij:'
+    following: 'Succes! Jij volgt nu:'
+    post_follow:
+      close: Of je kan dit venster gewoon sluiten.
+      return: Ga terug naar het profiel van de gebruiker
+      web: Ga naar de webapp
     prompt_html: 'Je (<strong>%{self}</strong>) hebt toestemming gevraagd om iemand te mogen volgen:'
     title: Volg %{acct}
   datetime:
@@ -115,12 +257,23 @@ nl:
       x_minutes: "%{count}m"
       x_months: "%{count}ma"
       x_seconds: "%{count}s"
+  deletes:
+    bad_password_msg: Goed geprobeerd hackers! Ongeldig wachtwoord
+    confirm_password: Voer jouw huidige wachtwoord in om jouw identiteit te bevestigen
+    description_html: Hierdoor worden alle gegevens van jouw account <strong>permanent, onomkeerbaar</strong> verwijderd en wordt deze gedeactiveerd. Om toekomstige identiteitsdiefstal te voorkomen, kan op deze server jouw gebruikersnaam niet meer gebruikt worden.
+    proceed: Account verwijderen
+    success_msg: Jouw account is succesvol verwijderd
+    warning_html: We kunnen alleen garanderen dat jouw gegevens op deze server worden verwijderd. Berichten (toots), incl. media, die veel zijn gedeeld laten mogelijk sporen achter. Offline servers en servers die niet meer op jouw updates zijn geabonneerd zullen niet hun databases updaten.
+    warning_title: Verwijdering gegevens op andere servers
   errors:
+    '403': Jij hebt geen toestemming om deze pagina te bekijken.
     '404': De pagina waarnaar jij op zoek bent bestaat niet.
     '410': De pagina waarnaar jij op zoek bent bestaat niet meer.
     '422':
       content: Veiligheidsverificatie mislukt. Blokkeer je toevallig cookies?
       title: Veiligheidsverificatie mislukt
+    '429': Te veel verbindingsaanvragen.
+    noscript: Schakel JavaScript in om de webapplicatie van Mastodon te gebruiken. Als alternatief kan je een Mastodon-app zoeken voor jouw platform.
   exports:
     blocks: Jij blokkeert
     csv: CSV
@@ -141,7 +294,7 @@ nl:
     unlocked_warning_title: Jouw account is niet besloten
   generic:
     changes_saved_msg: Wijzigingen succesvol opgeslagen!
-    powered_by: mogelijk gemaakt door %{link}
+    powered_by: wordt mogelijk gemaakt door %{link}
     save_changes: Wijzigingen opslaan
     validation_errors:
       one: Er is iets niet helemaal goed! Bekijk onderstaande fout
@@ -156,6 +309,10 @@ nl:
     upload: Uploaden
   landing_strip_html: <strong>%{name}</strong> is een gebruiker op %{link_to_root_path}. Je kunt deze volgen en ermee communiceren als je ergens in deze fediverse een account hebt.
   landing_strip_signup_html: Als je dat niet hebt, kun je je <a href="%{sign_up_path}">hier registreren</a>.
+  media_attachments:
+    validations:
+      images_and_video: Een video kan niet aan een toot met afbeeldingen worden gekoppeld
+      too_many: Er kunnen niet meer dan 4 afbeeldingen toegevoegd worden
   notification_mailer:
     digest:
       body: 'Hier is een korte samenvatting van wat je hebt gemist op %{instance} sinds jouw laatste bezoek op %{since}:'
@@ -180,18 +337,74 @@ nl:
       subject: Jij bent vermeld door %{name}
     reblog:
       body: 'Jouw toot werd door %{name} geboost:'
-      subject: "%{name} booste jouw toot"
+      subject: "%{name} boostte jouw toot"
   pagination:
     next: Volgende
     prev: Vorige
+    truncate: "&hellip;"
+  push_notifications:
+    favourite:
+      title: "%{name} markeerde jouw toot als favoriet"
+    follow:
+      title: "%{name} volgt jou nu"
+    mention:
+      action_boost: Boost
+      action_expand: Meer tonen
+      action_favourite: Favoriet
+      title: "%{name} vermeldde jou"
+    reblog:
+      title: "%{name} boostte jouw toot"
+    subscribed:
+      body: Je kan nu pushmeldingen ontvangen.
+      title: Aanmelding bevestigd!
   remote_follow:
     acct: Geef jouw account@domein.tld op waarvandaan je wilt volgen
     missing_resource: Kon vereiste doorverwijzings-URL voor jouw account niet vinden
     proceed: Ga door om te volgen
     prompt: 'Jij gaat volgen:'
+  sessions:
+    activity: Laatst actief
+    browser: Webbrowser
+    browsers:
+      alipay: Alipay
+      blackberry: Blackberry
+      chrome: Chrome
+      edge: Microsoft Edge
+      firefox: Firefox
+      generic: Onbekende webbrowser
+      ie: Internet Explorer
+      micro_messenger: MicroMessenger
+      nokia: Nokia S40 Ovi Browser
+      opera: Opera
+      phantom_js: PhantomJS
+      qq: QQ Browser
+      safari: Safari
+      uc_browser: UCBrowser
+      weibo: Weibo
+    current_session: Huidige sessie
+    description: "%{browser} op %{platform}"
+    explanation: Dit zijn de webbrowsers die momenteel met jouw Mastodon-account zijn ingelogd.
+    ip: IP
+    platforms:
+      adobe_air: Adobe Air
+      android: Android
+      blackberry: Blackberry
+      chrome_os: ChromeOS
+      firefox_os: Firefox OS
+      ios: iOS
+      linux: Linux
+      mac: Mac
+      other: Onbekend platform
+      windows: Windows
+      windows_mobile: Windows Mobile
+      windows_phone: Windows Phone
+    revoke: Intrekken
+    revoke_success: Sessie succesvol ingetrokken
+    title: Sessies
   settings:
     authorized_apps: Geautoriseerde apps
     back: Terug naar Mastodon
+    delete: Account deletion
     edit_profile: Profiel bewerken
     export: Export
     followers: Geautoriseerde volgers
@@ -200,9 +413,9 @@ nl:
     settings: Instellingen
     two_factor_authentication: Tweestapsverificatie
   statuses:
-    open_in_web: Openen in web
+    open_in_web: In de webapp openen
     over_character_limit: Limiet van %{max} tekens overschreden
-    show_more: Toon meer
+    show_more: Meer tonen
     visibilities:
       private: Alleen volgers
       private_long: Alleen aan volgers tonen
@@ -214,6 +427,76 @@ nl:
     click_to_show: Klik om te tonen
     reblogged: boostte
     sensitive_content: Gevoelige inhoud
+  terms:
+    body_html: |
+      <h2>Privacy Policy</h2>
+
+      <h3 id="collect">What information do we collect?</h3>
+
+      <p>We collect information from you when you register on our site and gather data when you participate in the forum by reading, writing, and evaluating the content shared here.</p>
+
+      <p>When registering on our site, you may be asked to enter your name and e-mail address. You may, however, visit our site without registering. Your e-mail address will be verified by an email containing a unique link. If that link is visited, we know that you control the e-mail address.</p>
+
+      <p>When registered and posting, we record the IP address that the post originated from. We also may retain server logs which include the IP address of every request to our server.</p>
+
+      <h3 id="use">What do we use your information for?</h3>
+
+      <p>Any of the information we collect from you may be used in one of the following ways:</p>
+
+      <ul>
+        <li>To personalize your experience &mdash; your information helps us to better respond to your individual needs.</li>
+        <li>To improve our site &mdash; we continually strive to improve our site offerings based on the information and feedback we receive from you.</li>
+        <li>To improve customer service &mdash; your information helps us to more effectively respond to your customer service requests and support needs.</li>
+        <li>To send periodic emails &mdash; The email address you provide may be used to send you information, notifications that you request about changes to topics or in response to your user name, respond to inquiries, and/or other requests or questions.</li>
+      </ul>
+
+      <h3 id="protect">How do we protect your information?</h3>
+
+      <p>We implement a variety of security measures to maintain the safety of your personal information when you enter, submit, or access your personal information.</p>
+
+      <h3 id="data-retention">What is your data retention policy?</h3>
+
+      <p>We will make a good faith effort to:</p>
+
+      <ul>
+        <li>Retain server logs containing the IP address of all requests to this server no more than 90 days.</li>
+        <li>Retain the IP addresses associated with registered users and their posts no more than 5 years.</li>
+      </ul>
+
+      <h3 id="cookies">Do we use cookies?</h3>
+
+      <p>Yes. Cookies are small files that a site or its service provider transfers to your computer's hard drive through your Web browser (if you allow). These cookies enable the site to recognize your browser and, if you have a registered account, associate it with your registered account.</p>
+
+      <p>We use cookies to understand and save your preferences for future visits and compile aggregate data about site traffic and site interaction so that we can offer better site experiences and tools in the future. We may contract with third-party service providers to assist us in better understanding our site visitors. These service providers are not permitted to use the information collected on our behalf except to help us conduct and improve our business.</p>
+
+      <h3 id="disclose">Do we disclose any information to outside parties?</h3>
+
+      <p>We do not sell, trade, or otherwise transfer to outside parties your personally identifiable information. This does not include trusted third parties who assist us in operating our site, conducting our business, or servicing you, so long as those parties agree to keep this information confidential. We may also release your information when we believe release is appropriate to comply with the law, enforce our site policies, or protect ours or others rights, property, or safety. However, non-personally identifiable visitor information may be provided to other parties for marketing, advertising, or other uses.</p>
+
+      <h3 id="third-party">Third party links</h3>
+
+      <p>Occasionally, at our discretion, we may include or offer third party products or services on our site. These third party sites have separate and independent privacy policies. We therefore have no responsibility or liability for the content and activities of these linked sites. Nonetheless, we seek to protect the integrity of our site and welcome any feedback about these sites.</p>
+
+      <h3 id="coppa">Children's Online Privacy Protection Act Compliance</h3>
+
+      <p>Our site, products and services are all directed to people who are at least 13 years old. If this server is in the USA, and you are under the age of 13, per the requirements of COPPA (<a href="https://en.wikipedia.org/wiki/Children%27s_Online_Privacy_Protection_Act">Children's Online Privacy Protection Act</a>) do not use this site.</p>
+
+      <h3 id="online">Online Privacy Policy Only</h3>
+
+      <p>This online privacy policy applies only to information collected through our site and not to information collected offline.</p>
+
+      <h3 id="consent">Your Consent</h3>
+
+      <p>By using our site, you consent to our web site privacy policy.</p>
+
+      <h3 id="changes">Changes to our Privacy Policy</h3>
+
+      <p>If we decide to change our privacy policy, we will post those changes on this page.</p>
+
+      <p>This document is CC-BY-SA. It was last updated May 31, 2013.</p>
+
+      <p>Originally adapted from the <a href="https://github.com/discourse/discourse">Discourse privacy policy</a>.</p>
+    title: "%{instance} Terms of Service and Privacy Policy"
   time:
     formats:
       default: "%d %B %Y om %H:%M"
@@ -222,11 +505,13 @@ nl:
     description_html: Na het instellen van <strong>tweestapsverificatie</strong>, kun jij je alleen aanmelden als je jouw mobiele telefoon bij je hebt. Hiermee genereer je namelijk de in te voeren aanmeldcode.
     disable: Uitschakelen
     enable: Inschakelen
+    enabled: Tweestapsverificatie is ingeschakeld
     enabled_success: Inschakelen tweestapsverificatie geslaagd
     generate_recovery_codes: Herstelcodes genereren
     instructions_html: "<strong>Scan deze QR-code in Google Authenticator of een soortgelijke app op jouw mobiele telefoon</strong>. Van nu af aan genereert deze app aanmeldcodes die je bij het aanmelden moet invoeren."
     lost_recovery_codes: Met herstelcodes kun je toegang tot jouw account krijgen wanneer je jouw telefoon bent kwijtgeraakt. Wanneer je jouw herstelcodes bent kwijtgeraakt, kan je ze hier opnieuw genereren. Jouw oude herstelcodes zijn daarna ongeldig.
     manual_instructions: 'Hieronder vind je de geheime code in platte tekst. Voor het geval je de QR-code niet kunt scannen en het handmatig moet invoeren.'
+    recovery_codes: Herstelcodes back-uppen
     recovery_codes_regenerated: Opnieuw genereren herstelcodes geslaagd
     recovery_instructions_html: Wanneer je ooit de toegang verliest tot jouw telefoon, kan je met behulp van een van de herstelcodes hieronder opnieuw toegang krijgen tot jouw account. Zorg ervoor dat je de herstelcodes op een veilige plek bewaard. (Je kunt ze bijvoorbeeld printen en ze samen met andere belangrijke documenten bewaren.)
     setup: Instellen

@@ -1,35 +1,19 @@
 ---
 pt:
   about:
-    about_mastodon: Mastodon é uma rede social <em>grátis e em código aberto</em>. Uma alternativa <em>descentralizada</em> às plataformas comerciais, que evita o risco de uma única empresa monopolizar a tua comunicação. Escolhe um servidor que confies, não importa qual, pois vais poder comunicar com todos os outros. Qualquer um pode criar uma instância Mastodon e participar nesta <em>rede social</em>.
+    about_mastodon_html: Mastodon é uma rede social <em>grátis e em código aberto</em>. Uma alternativa <em>descentralizada</em> às plataformas comerciais, que evita o risco de uma única empresa monopolizar a tua comunicação. Escolhe um servidor que confies, não importa qual, pois vais poder comunicar com todos os outros. Qualquer um pode criar uma instância Mastodon e participar nesta <em>rede social</em>.
     about_this: Sobre esta instância
-    apps: Aplicações
-    business_email: 'Email comercial:'
     closed_registrations: Novos registos estão fechados nesta instância.
     contact: Contacto
     description_headline: O que é o %{domain}?
     domain_count_after: outras instâncias
     domain_count_before: Ligado a
-    features:
-      api: API aberta para aplicações e serviços
-      blocks: Ferramentas para silenciar e bloquear
-      characters: 500 caracteres por post
-      chronology: Timelines cronológicas
-      ethics: 'Design ético: sem públicidade ou tracking'
-      gifv: GIFV e pequenos vídeos
-      privacy: Privacidade granular por post
-      public: Timelines públicas
-    features_headline: O que torna Mastodon diferente
-    get_started: Começar
-    links: Links
     other_instances: Outras instâncias
     source_code: Código fonte
     status_count_after: publicações
     status_count_before: Que fizeram
-    terms: Termos
     user_count_after: utilizadores
     user_count_before: Casa para
-    version: Versão
   accounts:
     follow: Seguir
     followers: Seguidores
@@ -40,15 +24,6 @@ pt:
     posts: Posts
     remote_follow: Seguir remotamente
     unfollow: Deixar de seguir
-  activitypub:
-    activity:
-      announce:
-        name: "%{account_name} anunciou uma atividade."
-      create:
-        name: "%{account_name} criou uma nota."
-    outbox:
-      name: "%{account_name}'s Outbox"
-      summary: Uma coleção de atividades do usuário %{account_name}.
   admin:
     accounts:
       are_you_sure: Tens a certeza?
@@ -147,17 +122,13 @@ pt:
     settings:
       contact_information:
         email: Inserir um endereço de email para tornar público
-        label: Informação de contacto
         username: Insira um nome de utilizador
       registrations:
         closed_message:
           desc_html: Mostrar na página inicial quando registos estão encerrados<br/>Podes usar tags HTML
           title: Mensagem de registos encerrados
         open:
-          disabled: Desabilitado
-          enabled: Habilitado
           title: Aceitar novos registos
-      setting: Preferências
       site_description:
         desc_html: Mostrar como parágrafo na página inicial e usado como meta tag.<br/>Podes usar tags HTML, em particular <code>&lt;a&gt;</code> e <code>&lt;em&gt;</code>.
         title: Descrição do site
@@ -171,7 +142,7 @@ pt:
       confirmed: Confirmado
       expires_in: Expira em
       last_delivery: Última entrega
-      title: PubSubHubbub
+      title: WebSub
       topic: Tópico
     title: Administração
   application_mailer:

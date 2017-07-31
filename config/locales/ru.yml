@@ -1,35 +1,19 @@
 ---
 ru:
   about:
-    about_mastodon: Mastodon - это <em>свободная</em> социальная сеть с <em>открытым исходным кодом</em>. Как <em>децентрализованная</em> альтернатива коммерческим платформам, Mastodon предотвращает риск монополизации Вашего общения одной компанией. Выберите сервер, которому Вы доверяете &mdash; что бы Вы ни выбрали, Вы сможете общаться со всеми остальными. Любой может запустить свой собственный узел Mastodon и участвовать в <em>социальной сети</em> совершенно бесшовно.
+    about_mastodon_html: Mastodon - это <em>свободная</em> социальная сеть с <em>открытым исходным кодом</em>. Как <em>децентрализованная</em> альтернатива коммерческим платформам, Mastodon предотвращает риск монополизации Вашего общения одной компанией. Выберите сервер, которому Вы доверяете &mdash; что бы Вы ни выбрали, Вы сможете общаться со всеми остальными. Любой может запустить свой собственный узел Mastodon и участвовать в <em>социальной сети</em> совершенно бесшовно.
     about_this: Об этом узле
-    apps: Приложения
-    business_email: 'Деловой e-mail:'
     closed_registrations: В данный момент регистрация на этом узле закрыта.
     contact: Связаться
     description_headline: Что такое %{domain}?
     domain_count_after: другими узлами
     domain_count_before: Связан с
-    features:
-      api: Открытый API для приложений и сервисов
-      blocks: Продвинутые инструменты блокирования и глушения
-      characters: 500 символов на пост
-      chronology: Хронологические ленты
-      ethics: 'Этичный дизайн: нет рекламы, нет слежения'
-      gifv: GIFV и короткие видео
-      privacy: Тонкие настройки приватности для каждого поста
-      public: Публичные ленты
-    features_headline: Что выделяет Mastodon
-    get_started: Начать
-    links: Ссылки
     other_instances: Другие узлы
     source_code: Исходный код
     status_count_after: статусов
     status_count_before: Опубликовано
-    terms: Условия
     user_count_after: пользователей
     user_count_before: Здесь живет
-    version: Версия
   accounts:
     follow: Подписаться
     followers: Подписчики
@@ -134,17 +118,13 @@ ru:
     settings:
       contact_information:
         email: Введите публичный e-mail
-        label: Контактная информация
         username: Введите имя пользователя
       registrations:
         closed_message:
           desc_html: Отображается на титульной странице, когда закрыта регистрация<br>Можно использовать HTML-теги
           title: Сообщение о закрытой регистрации
         open:
-          disabled: Закрыта
-          enabled: Открыта
           title: Открыть регистрацию
-      setting: Настройка
       site_description:
         desc_html: Отображается в качестве параграфа на титульной странице и используется в качестве мета-тега.<br>Можно использовать HTML-теги, в особенности <code>&lt;a&gt;</code> и <code>&lt;em&gt;</code>.
         title: Описание сайта
@@ -158,7 +138,7 @@ ru:
       confirmed: Подтверждено
       expires_in: Истекает через
       last_delivery: Последняя доставка
-      title: PubSubHubbub
+      title: WebSub
       topic: Тема
     title: Администрирование
   application_mailer:
@@ -287,11 +267,63 @@ ru:
     next: След
     prev: Пред
     truncate: "&hellip;"
+  push_notifications:
+    favourite:
+      title: "Ваш статус понравился %{name}"
+    follow:
+      title: "%{name} теперь подписан(а) на Вас"
+    mention:
+      action_boost: Продвинуть
+      action_expand: Развернуть
+      action_favourite: Нравится
+      title: "Вас упомянул(а) %{name}"
+    reblog:
+      title: "%{name} продвинул(а) Ваш статус"
+    subscribed:
+      body: Теперь Вы можете получать push-уведомления.
+      title: Подписка зарегистрирована!
   remote_follow:
     acct: Введите username@domain, откуда Вы хотите подписаться
     missing_resource: Поиск требуемого перенаправления URL для Вашего аккаунта завершился неудачей
     proceed: Продолжить подписку
     prompt: 'Вы хотите подписаться на:'
+  sessions:
+    activity: Последняя активность
+    browser: Браузер
+    browsers:
+      alipay: Alipay
+      blackberry: Blackberry
+      chrome: Chrome
+      edge: Microsoft Edge
+      firefox: Firefox
+      generic: Неизвестный браузер
+      ie: Internet Explorer
+      micro_messenger: MicroMessenger
+      nokia: Nokia S40 Ovi Browser
+      opera: Opera
+      phantom_js: PhantomJS
+      qq: QQ Browser
+      safari: Safari
+      uc_browser: UCBrowser
+      weibo: Weibo
+    current_session: Текущая сессия
+    description: "%{browser} на %{platform}"
+    explanation: Это веб-браузеры, в которых на данный момент выполнен вход в Ваш аккаунт Mastodon.
+    ip: IP
+    platforms:
+      adobe_air: Adobe Air
+      android: Android
+      blackberry: Blackberry
+      chrome_os: ChromeOS
+      firefox_os: Firefox OS
+      ios: iOS
+      linux: Linux
+      mac: Mac
+      other: неизвестной платформе
+      windows: Windows
+      windows_mobile: Windows Mobile
+      windows_phone: Windows Phone
+    title: Сессии
   settings:
     authorized_apps: Авторизованные приложения
     back: Назад в Mastodon
@@ -318,6 +350,8 @@ ru:
     click_to_show: Показать
     reblogged: продвинул(а)
     sensitive_content: Чувствительный контент
+  terms:
+    title: "Условия обслуживания и политика конфиденциальности %{instance}"
   time:
     formats:
       default: "%b %d, %Y, %H:%M"
