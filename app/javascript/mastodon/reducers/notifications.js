@@ -9,6 +9,7 @@ import {
   NOTIFICATIONS_CLEAR,
   NOTIFICATIONS_SCROLL_TOP,
 } from '../actions/notifications';
+import { REHYDRATE as NOTIFICATIONS_HYDRATE } from 'redux-persist/constants';
 import { ACCOUNT_BLOCK_SUCCESS } from '../actions/accounts';
 import { TIMELINE_DELETE } from '../actions/timelines';
 import { Map as ImmutableMap, List as ImmutableList } from 'immutable';
@@ -113,6 +114,8 @@ export default function notifications(state = initialState, action) {
     return state.set('items', ImmutableList()).set('next', null);
   case TIMELINE_DELETE:
     return deleteByStatus(state, action.id);
+  case NOTIFICATIONS_HYDRATE:
+    return state.merge(action.payload.notifications);
   default:
     return state;
   }
