@@ -148,12 +148,16 @@
       color: $ui-base-lighter-color;
     }
 
-    &.active {
-      color: $ui-highlight-color;
-    }
-
     &.disabled {
       color: $ui-primary-color;
+    }
+
+    &.active {
+      color: $ui-highlight-color;
+
+      &.disabled {
+        color: lighten($ui-highlight-color, 13%);
+      }
     }
   }
 
