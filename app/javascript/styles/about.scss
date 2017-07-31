@@ -150,10 +150,14 @@
       a,
       span {
         font-weight: 400;
+      }
+
+      span {
         color: lighten($ui-base-color, 34%);
       }
 
       a {
+        color: $primary-text-color;
         text-decoration: none;
       }
     }
