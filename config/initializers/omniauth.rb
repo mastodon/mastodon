@@ -5,10 +5,10 @@ end
 Devise.setup do |config|
   # Devise omniauth strategies
 
-  # Cas strategy
+  # CAS strategy
   if ENV['CAS_ENABLED'] == 'true'
     cas_options = {}
-    cas_options[:url] = ENV['CAS_URL'] || "https://localhost:8443"
+    cas_options[:url] = ENV['CAS_URL'] if ENV['CAS_URL']
     cas_options[:host] = ENV['CAS_HOST'] if ENV['CAS_HOST']
     cas_options[:port] = ENV['CAS_PORT'] if ENV['CAS_PORT']
     cas_options[:ssl] = ENV['CAS_SSL'] == 'true' if ENV['CAS_SSL']
@@ -29,6 +29,31 @@ Devise.setup do |config|
     cas_options[:image_key] = ENV['CAS_IMAGE_KEY'] || 'image'
     cas_options[:phone_key] = ENV['CAS_PHONE_KEY'] || 'phone'
     config.omniauth :cas, cas_options
+  end
+
+  # SAML strategy
+  if ENV['SAML_ENABLED'] == 'true'
+    saml_options = {}
+    saml_options[:assertion_consumer_service_url] = ENV['SAML_ACS_URL'] if ENV['SAML_ACS_URL']
+    saml_options[:issuer] = ENV['SAML_ISSUER'] if ENV['SAML_ISSUER']
+    saml_options[:idp_sso_target_url] = ENV['SAML_IDP_SSO_TARGET_URL']  if ENV['SAML_IDP_SSO_TARGET_URL']
+    saml_options[:idp_sso_target_url_runtime_params] = ENV['SAML_IDP_SSO_TARGET_PARAMS'] if ENV['SAML_IDP_SSO_TARGET_PARAMS'] # FIXME: Should be parsable Hash
+    saml_options[:idp_cert] = ENV['SAML_IDP_CERT'] if ENV['SAML_IDP_CERT']
+    saml_options[:idp_cert_fingerprint] = ENV['SAML_IDP_CERT_FINGERPRINT'] if ENV['SAML_IDP_CERT_FINGERPRINT']
+    saml_options[:idp_cert_fingerprint_validator] = ENV['SAML_IDP_CERT_FINGERPRINT_VALIDATOR'] if ENV['SAML_IDP_CERT_FINGERPRINT_VALIDATOR'] # FIXME: Should be Lambda { |fingerprint| }
+    saml_options[:name_identifier_format] = ENV['SAML_NAME_IDENTIFIER_FORMAT'] if ENV['SAML_NAME_IDENTIFIER_FORMAT']
+    saml_options[:request_attributes] = {}
+    saml_options[:certificate] = ENV['SAML_CERT'] if ENV['SAML_CERT']
+    saml_options[:private_key] = ENV['SAML_PRIVATE_KEY'] if ENV['SAML_PRIVATE_KEY']
+    saml_options[:security] = {}
+    saml_options[:security][:want_assertions_signed] = ENV['SAML_SECURITY_WANT_ASSERTION_SIGNED'] == 'true'
+    saml_options[:security][:want_assertions_encrypted] = ENV['SAML_SECURITY_WANT_ASSERTION_ENCRYPTED'] == 'true'
+    saml_options[:attribute_statements] = {}
+    saml_options[:attribute_statements][:uid] = [ENV['SAML_ATTRIBUTES_STATEMENTS_UID']] if ENV['SAML_ATTRIBUTES_STATEMENTS_UID']
+    saml_options[:attribute_statements][:email] = [ENV['SAML_ATTRIBUTES_STATEMENTS_EMAIL']] if ENV['SAML_ATTRIBUTES_STATEMENTS_EMAIL']
+    saml_options[:attribute_statements][:full_name] = [ENV['SAML_ATTRIBUTES_STATEMENTS_FULL_NAME']] if ENV['SAML_ATTRIBUTES_STATEMENTS_FULL_NAME']
+    saml_options[:uid_attribute] = ENV['SAML_UID_ATTRIBUTE'] if ENV['SAML_UID_ATTRIBUTE']
+    config.omniauth :saml, saml_options
   end
 
 end
