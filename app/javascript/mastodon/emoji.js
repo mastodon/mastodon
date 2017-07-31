@@ -3,6 +3,8 @@ import Trie from 'substring-trie';
 
 const trie = new Trie(Object.keys(unicodeMapping));
 
+const excluded = ['™', '©', '®'];
+
 function emojify(str) {
   // This walks through the string from start to end, ignoring any tags (<p>, <br>, etc.)
   // and replacing valid unicode strings
@@ -19,7 +21,7 @@ function emojify(str) {
       insideTag = true;
     } else if (!insideTag && (match = trie.search(str.substring(i)))) {
       const unicodeStr = match;
-      if (unicodeStr in unicodeMapping) {
+      if (unicodeStr in unicodeMapping && excluded.indexOf(unicodeStr) === -1) {
         const [filename, shortCode] = unicodeMapping[unicodeStr];
         const alt      = unicodeStr;
         const replacement =  `<img draggable="false" class="emojione" alt="${alt}" title=":${shortCode}:" src="/emoji/${filename}.svg" />`;
