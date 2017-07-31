@@ -14,17 +14,19 @@ export default function configureStore() {
     soundsMiddleware()
   ), window.devToolsExtension ? window.devToolsExtension() : f => f));
 
-  ReduxPersistImmutable().then(({ persistStore }) => {
-    persistStore(store, {
-      whitelist: [
-        'accounts',
-        'statuses',
-        'timelines',
-        'notifications',
-      ],
-      debounce: 30,
+  if ('serviceWorker' in navigator) {
+    ReduxPersistImmutable().then(({ persistStore }) => {
+      persistStore(store, {
+        whitelist: [
+          'accounts',
+          'statuses',
+          'timelines',
+          'notifications',
+        ],
+        debounce: 30,
+      });
     });
-  });
+  }
 
   return store;
 };
