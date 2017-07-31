@@ -24,6 +24,8 @@ function loadPolyfills() {
   // This avoids shipping them all the polyfills.
   const needsExtraPolyfills = !(
     window.IntersectionObserver &&
+    window.IntersectionObserverEntry &&
+    'isIntersecting' in IntersectionObserverEntry.prototype &&
     window.requestIdleCallback &&
     'object-fit' in (new Image()).style
   );
