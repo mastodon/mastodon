@@ -2,7 +2,10 @@
   .panel-header
     = succeed ':' do
       = t 'about.contact'
-    %span{ title: contact.site_contact_email.presence }= contact.site_contact_email.presence
+    - if contact.site_contact_email.present?
+      = mail_to contact.site_contact_email, nil, title: contact.site_contact_email
+    - else
+      %span= t 'about.contact_unavailable'
   .panel-body
     - if contact.contact_account
       .owner

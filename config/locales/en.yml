@@ -215,6 +215,7 @@ en:
       body: "%{reporter} has reported %{target}"
       subject: New report for %{instance} (#%{id})
   application_mailer:
+    salutation: '%{name},'
     settings: 'Change e-mail preferences: %{link}'
     signature: Mastodon notifications from %{instance}
     view: 'View:'

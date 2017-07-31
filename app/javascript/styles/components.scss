@@ -148,12 +148,16 @@
       color: $ui-base-lighter-color;
     }
 
-    &.active {
-      color: $ui-highlight-color;
-    }
-
     &.disabled {
       color: $ui-primary-color;
+    }
+
+    &.active {
+      color: $ui-highlight-color;
+
+      &.disabled {
+        color: lighten($ui-highlight-color, 13%);
+      }
     }
   }
 
@@ -462,6 +466,10 @@
   overflow: hidden;
   white-space: pre-wrap;
 
+  &:focus {
+    outline: rgba($ui-highlight-color, 0.7) solid 2px;
+  }
+
   .emojione {
     width: 18px;
     height: 18px;
@@ -561,6 +569,12 @@
     .icon-button.disabled {
       color: lighten($ui-base-color, 16%);
     }
+  }
+
+  &:focus,
+  &.status-direct:focus {
+    outline: 0;
+    background-color: lighten($ui-base-color, 10%);
   }
 
   &.light {
@@ -1585,6 +1599,8 @@
   cursor: pointer;
   flex: 0 0 auto;
   font-size: 16px;
+  border: 0;
+  text-align: start;
   padding: 15px;
   z-index: 3;
 
@@ -2315,6 +2331,8 @@ button.icon-button.active i.fa-retweet {
   cursor: pointer;
   display: flex;
   flex-direction: column;
+  border: 0;
+  width: 100%;
   height: 100%;
   justify-content: center;
   position: relative;
@@ -2388,6 +2406,7 @@ button.icon-button.active i.fa-retweet {
   align-items: center;
   background: rgba($base-overlay-background, 0.5);
   box-sizing: border-box;
+  border: 0;
   color: $primary-text-color;
   cursor: pointer;
   display: flex;
@@ -3480,7 +3499,7 @@ button.icon-button.active i.fa-retweet {
 }
 
 .confirmation-modal {
-  max-width: 280px;
+  max-width: 85vw;
 
   @media screen and (min-width: 480px) {
     max-width: 380px;

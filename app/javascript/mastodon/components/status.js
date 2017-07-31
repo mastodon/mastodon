@@ -172,7 +172,7 @@ export default class Status extends ImmutablePureComponent {
 
     // Exclude intersectionObserverWrapper from `other` variable
     // because intersection is managed in here.
-    const { status, account, intersectionObserverWrapper, index, listLength, ...other } = this.props;
+    const { status, account, intersectionObserverWrapper, index, listLength, wrapped, ...other } = this.props;
     const { isExpanded, isIntersecting, isHidden } = this.state;
 
     if (status === null) {
@@ -234,7 +234,7 @@ export default class Status extends ImmutablePureComponent {
     }
 
     return (
-      <article aria-posinset={index} aria-setsize={listLength} className={`status ${this.props.muted ? 'muted' : ''} status-${status.get('visibility')}`} data-id={status.get('id')} tabIndex='0' ref={this.handleRef}>
+      <article aria-posinset={index} aria-setsize={listLength} className={`status ${this.props.muted ? 'muted' : ''} status-${status.get('visibility')}`} data-id={status.get('id')} tabIndex={wrapped ? null : '0'}  ref={this.handleRef}>
         <div className='status__info'>
           <a href={status.get('url')} className='status__relative-time' target='_blank' rel='noopener'><RelativeTimestamp timestamp={status.get('created_at')} /></a>
 

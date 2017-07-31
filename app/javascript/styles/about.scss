@@ -147,9 +147,14 @@
       white-space: nowrap;
       overflow: hidden;
 
+      a,
       span {
         font-weight: 400;
         color: lighten($ui-base-color, 34%);
+      }
+
+      a {
+        text-decoration: none;
       }
     }
   }
@@ -307,6 +312,10 @@
     font: inherit;
     font-weight: inherit;
     margin-bottom: 0;
+  }
+
+  hr {
+    border-color: rgba($ui-base-lighter-color, .6);
   }
 
   .header {

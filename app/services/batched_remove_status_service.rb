@@ -90,7 +90,7 @@ class BatchedRemoveStatusService < BaseService
     key = FeedManager.instance.key(:home, follower_id)
 
     originals = statuses.reject(&:reblog?)
-    reblogs   = statuses.reject { |s| !s.reblog? }
+    reblogs   = statuses.select(&:reblog?)
 
     # Quickly remove all originals
     redis.pipelined do
