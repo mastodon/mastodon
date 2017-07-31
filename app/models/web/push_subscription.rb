@@ -161,6 +161,7 @@ class Web::PushSubscription < ApplicationRecord
           content: translate('push_notifications.subscribed.body'),
           actions: [],
           url: web_url('notifications'),
+          message: translate('push_notifications.group.title'), # Do not pass count, will be formatted in the ServiceWorker
         }
       ),
       endpoint: endpoint,
