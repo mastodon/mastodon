@@ -573,8 +573,7 @@
 
   &:focus,
   &.status-direct:focus {
-    outline: 0;
-    background-color: lighten($ui-base-color, 10%);
+    outline: rgba($ui-highlight-color, 0.7) solid 2px;
   }
 
   &.light {
