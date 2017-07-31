@@ -2,6 +2,10 @@ export function ReduxPersistImmutable () {
   return import(/* webpackChunkName: "redux_persist_immutable" */'redux-persist-immutable');
 }
 
+export function LocalForage () {
+  return import(/* webpackChunkName: "local_forage" */'localforage');
+}
+
 export function EmojiPicker () {
   return import(/* webpackChunkName: "emojione_picker" */'emojione-picker');
 }

@@ -4,7 +4,7 @@ import appReducer from '../reducers';
 import loadingBarMiddleware from '../middleware/loading_bar';
 import errorsMiddleware from '../middleware/errors';
 import soundsMiddleware from '../middleware/sounds';
-import { ReduxPersistImmutable } from '../features/ui/util/async-components';
+import { LocalForage, ReduxPersistImmutable } from '../features/ui/util/async-components';
 
 export default function configureStore() {
   const store = createStore(appReducer, compose(applyMiddleware(
@@ -16,9 +16,12 @@ export default function configureStore() {
 
   if ('serviceWorker' in navigator) {
     requestIdleCallback(() => {
-      ReduxPersistImmutable().then(({ persistStore }) => {
+      const fetchPackages = Promise.all([LocalForage(), ReduxPersistImmutable()]);
+
+      fetchPackages.then(([localForage, { persistStore }]) => {
         requestIdleCallback(() => {
           persistStore(store, {
+            storage: localForage,
             whitelist: [
               'accounts',
               'statuses',
