@@ -466,10 +466,6 @@
   overflow: hidden;
   white-space: pre-wrap;
 
-  &:focus {
-    outline: rgba($ui-highlight-color, 0.7) solid 2px;
-  }
-
   .emojione {
     width: 18px;
     height: 18px;
@@ -569,12 +565,6 @@
     .icon-button.disabled {
       color: lighten($ui-base-color, 16%);
     }
-  }
-
-  &:focus,
-  &.status-direct:focus {
-    outline: 0;
-    background-color: lighten($ui-base-color, 10%);
   }
 
   &.light {
