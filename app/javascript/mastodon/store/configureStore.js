@@ -15,15 +15,19 @@ export default function configureStore() {
   ), window.devToolsExtension ? window.devToolsExtension() : f => f));
 
   if ('serviceWorker' in navigator) {
-    ReduxPersistImmutable().then(({ persistStore }) => {
-      persistStore(store, {
-        whitelist: [
-          'accounts',
-          'statuses',
-          'timelines',
-          'notifications',
-        ],
-        debounce: 30,
+    requestIdleCallback(() => {
+      ReduxPersistImmutable().then(({ persistStore }) => {
+        requestIdleCallback(() => {
+          persistStore(store, {
+            whitelist: [
+              'accounts',
+              'statuses',
+              'timelines',
+              'notifications',
+            ],
+            debounce: 30,
+          });
+        });
       });
     });
   }
