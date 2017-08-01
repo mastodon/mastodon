@@ -214,7 +214,7 @@ pl:
     new_report:
       body: Użytkownik %{reporter} zgłosił %{target}
       subject: Nowe zgłoszenie na %{instance} (#%{id})
-  application_mailer
+  application_mailer:
     salutation: '%{name},'
     settings: 'Zmień ustawienia powiadamiania: %{link}'
     signature: Powiadomienie Mastodona z instancji %{instance}
