@@ -39,6 +39,8 @@ import emojify from '../emoji';
 import { Map as ImmutableMap, fromJS } from 'immutable';
 import escapeTextContentForBrowser from 'escape-html';
 
+const domParser = new DOMParser();
+
 const normalizeStatus = (state, status) => {
   if (!status) {
     return state;
@@ -53,7 +55,7 @@ const normalizeStatus = (state, status) => {
   }
 
   const searchContent = [status.spoiler_text, status.content].join(' ').replace(/<br \/>/g, '\n').replace(/<\/p><p>/g, '\n\n');
-  normalStatus.search_index = new DOMParser().parseFromString(searchContent, 'text/html').documentElement.textContent;
+  normalStatus.search_index = domParser.parseFromString(searchContent, 'text/html').documentElement.textContent;
   normalStatus.contentHtml = emojify(normalStatus.content);
   normalStatus.spoilerHtml = emojify(escapeTextContentForBrowser(normalStatus.spoiler_text || ''));
 
