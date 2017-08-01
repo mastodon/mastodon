@@ -9,7 +9,7 @@ const notify = options =>
     if (notifications.length === MAX_NOTIFICATIONS) {
       // Reached the maximum number of notifications, proceed with grouping
       const group = {
-        title: formatGroupTitle(notifications[0].data.message, notifications.length + 1),
+        title: formatGroupTitle(options.data.message, notifications.length + 1),
         body: notifications
           .sort((n1, n2) => n1.timestamp < n2.timestamp)
           .map(notification => notification.title).join('\n'),
@@ -19,7 +19,7 @@ const notify = options =>
         data: {
           url: (new URL('/web/notifications', self.location)).href,
           count: notifications.length + 1,
-          message: notifications[0].data.message,
+          message: options.data.message,
         },
       };
 
