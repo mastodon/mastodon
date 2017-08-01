@@ -19,7 +19,7 @@ const ColumnLink = ({ icon, text, to, onClick, href, method }) => {
     );
   } else {
     return (
-      <a onClick={onClick} role='button' tabIndex='0' data-method={method}>
+      <a onClick={onClick} className='column-link' role='button' tabIndex='0' data-method={method}>
         <i className={`fa fa-fw fa-${icon} column-link__icon`} />
         {text}
       </a>
