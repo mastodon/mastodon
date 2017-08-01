@@ -121,7 +121,7 @@
 
 .information-board {
   background: darken($ui-base-color, 4%);
-  padding: 40px 0;
+  padding: 20px 0;
 
   .panel {
     position: absolute;
@@ -147,9 +147,14 @@
       white-space: nowrap;
       overflow: hidden;
 
+      a,
       span {
         font-weight: 400;
         color: lighten($ui-base-color, 34%);
+      }
+
+      a {
+        text-decoration: none;
       }
     }
   }
@@ -162,13 +167,14 @@
   .information-board-sections {
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap;
   }
 
   .section {
     flex: 1 0 0;
     font: 16px/28px 'mastodon-font-sans-serif', sans-serif;
     text-align: right;
-    padding: 0 15px;
+    padding: 10px 15px;
 
     span,
     strong {
@@ -188,14 +194,6 @@
       font-size: 32px;
       line-height: 48px;
       color: $primary-text-color;
-    }
-  }
-
-  @media screen and (max-width: 500px) {
-    flex-direction: column;
-
-    .section {
-      text-align: left;
     }
   }
 }
@@ -315,6 +313,17 @@
       left: 60px;
       z-index: 3;
     }
+  }
+
+  p,
+  li {
+    font: inherit;
+    font-weight: inherit;
+    margin-bottom: 0;
+  }
+
+  hr {
+    border-color: rgba($ui-base-lighter-color, .6);
   }
 
   .header {
@@ -553,6 +562,7 @@
   }
 
   #mastodon-timeline {
+    display: flex;
     -webkit-overflow-scrolling: touch;
     -ms-overflow-style: -ms-autohiding-scrollbar;
     font-family: 'mastodon-font-sans-serif', sans-serif;
@@ -567,11 +577,20 @@
     overflow: hidden;
     box-shadow: 0 0 6px rgba($black, 0.1);
 
+    .column-header {
+      color: inherit;
+      font-family: inherit;
+      font-size: 16px;
+      line-height: inherit;
+      font-weight: inherit;
+      margin: 0;
+      padding: 15px;
+    }
+
     .column {
       padding: 0;
       border-radius: 4px;
       overflow: hidden;
-      height: 100%;
     }
 
     .scrollable {
@@ -652,13 +671,9 @@
     }
   }
 
-  @media screen and (max-width: 800px) {
+  @media screen and (max-width: 840px) {
     .container {
       padding: 0 20px;
-    }
-
-    .information-board {
-      padding-bottom: 20px;
     }
 
     .information-board .container {
@@ -666,7 +681,7 @@
 
       .panel {
         position: static;
-        margin-top: 30px;
+        margin-top: 20px;
         width: 100%;
         border-radius: 4px;
 
@@ -694,6 +709,10 @@
   @media screen and (max-width: 675px) {
     .header-wrapper {
       padding-top: 0;
+
+      &.compact .hero .heading {
+        padding-bottom: 20px;
+      }
     }
 
     .header .container,
@@ -707,14 +726,13 @@
     }
 
     .header {
-      padding-top: 0;
 
       .hero {
         margin-top: 30px;
         padding: 0;
 
         .heading {
-          padding-bottom: 20px;
+          padding: 0 20px 20px;
         }
       }
 

@@ -8,11 +8,11 @@ module Mastodon
 
   class UnexpectedResponseError < Error
     def initialize(response = nil)
-      @response = response
-    end
-
-    def to_s
-      "#{@response.uri} returned code #{@response.code}"
+      if response.respond_to? :uri
+        super("#{response.uri} returned code #{response.code}")
+      else
+        super
+      end
     end
   end
 end

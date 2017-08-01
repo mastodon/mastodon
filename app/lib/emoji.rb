@@ -6,7 +6,7 @@ class Emoji
   include Singleton
 
   def initialize
-    data = Oj.load(File.open(File.join(Rails.root, 'lib', 'assets', 'emoji.json')))
+    data = Oj.load(File.open(Rails.root.join('lib', 'assets', 'emoji.json')))
 
     @map = {}
 
@@ -32,7 +32,7 @@ class Emoji
 
   def codepoint_to_unicode(codepoint)
     if codepoint.include?('-')
-      codepoint.split('-').map(&:hex).pack('U')
+      codepoint.split('-').map(&:hex).pack('U*')
     else
       [codepoint.hex].pack('U')
     end

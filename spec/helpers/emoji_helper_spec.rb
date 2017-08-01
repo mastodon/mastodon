@@ -7,6 +7,11 @@ RSpec.describe EmojiHelper, type: :helper do
       expect(emojify(text)).to eq '📖 Book'
     end
 
+    it 'converts composite emoji shortcodes to unicode' do
+      text = ':couple_ww:'
+      expect(emojify(text)).to eq '👩❤👩'
+    end
+
     it 'does not convert shortcodes that are part of a string into unicode' do
       text = ':see_no_evil::hear_no_evil::speak_no_evil:'
       expect(emojify(text)).to eq text

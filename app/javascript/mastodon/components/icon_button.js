@@ -12,6 +12,8 @@ export default class IconButton extends React.PureComponent {
     onClick: PropTypes.func,
     size: PropTypes.number,
     active: PropTypes.bool,
+    pressed: PropTypes.bool,
+    expanded: PropTypes.bool,
     style: PropTypes.object,
     activeStyle: PropTypes.object,
     disabled: PropTypes.bool,
@@ -19,6 +21,7 @@ export default class IconButton extends React.PureComponent {
     animate: PropTypes.bool,
     flip: PropTypes.bool,
     overlay: PropTypes.bool,
+    tabIndex: PropTypes.string,
   };
 
   static defaultProps = {
@@ -27,6 +30,7 @@ export default class IconButton extends React.PureComponent {
     disabled: false,
     animate: false,
     overlay: false,
+    tabIndex: '0',
   };
 
   handleClick = (e) =>  {
@@ -74,10 +78,13 @@ export default class IconButton extends React.PureComponent {
         {({ rotate }) =>
           <button
             aria-label={this.props.title}
+            aria-pressed={this.props.pressed}
+            aria-expanded={this.props.expanded}
             title={this.props.title}
             className={classes.join(' ')}
             onClick={this.handleClick}
             style={style}
+            tabIndex={this.props.tabIndex}
           >
             <i style={{ transform: `rotate(${rotate}deg)` }} className={`fa fa-fw fa-${this.props.icon}`} aria-hidden='true' />
           </button>

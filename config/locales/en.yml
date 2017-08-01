@@ -207,7 +207,7 @@ en:
       confirmed: Confirmed
       expires_in: Expires in
       last_delivery: Last delivery
-      title: PubSubHubbub
+      title: WebSub
       topic: Topic
     title: Administration
   admin_mailer:
@@ -215,6 +215,7 @@ en:
       body: "%{reporter} has reported %{target}"
       subject: New report for %{instance} (#%{id})
   application_mailer:
+    salutation: '%{name},'
     settings: 'Change e-mail preferences: %{link}'
     signature: Mastodon notifications from %{instance}
     view: 'View:'
@@ -348,6 +349,8 @@ en:
       title: "%{name} favourited your status"
     follow:
       title: "%{name} is now following you"
+    group:
+      title: "%{count} notifications"
     mention:
       action_boost: Boost
       action_expand: Show more

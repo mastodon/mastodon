@@ -55,9 +55,10 @@ class Avatar extends ImmutablePureComponent {
     return (
       <Motion defaultStyle={{ radius: 90 }} style={{ radius: spring(isHovered ? 30 : 90, { stiffness: 180, damping: 12 }) }}>
         {({ radius }) =>
-          <a // eslint-disable-line jsx-a11y/anchor-has-content
+          <a
             href={account.get('url')}
             className='account__header__avatar'
+            role='presentation'
             target='_blank'
             rel='noopener'
             style={{ borderRadius: `${radius}px`, backgroundImage: `url(${autoPlayGif || isHovered ? account.get('avatar') : account.get('avatar_static')})` }}
@@ -65,7 +66,9 @@ class Avatar extends ImmutablePureComponent {
             onMouseOut={this.handleMouseOut}
             onFocus={this.handleMouseOver}
             onBlur={this.handleMouseOut}
-          />
+          >
+            <span style={{ display: 'none' }}>{account.get('acct')}</span>
+          </a>
         }
       </Motion>
     );

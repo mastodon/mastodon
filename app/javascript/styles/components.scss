@@ -149,12 +149,16 @@
       color: $ui-base-lighter-color;
     }
 
-    &.active {
-      color: $ui-highlight-color;
-    }
-
     &.disabled {
       color: $ui-primary-color;
+    }
+
+    &.active {
+      color: $ui-highlight-color;
+
+      &.disabled {
+        color: lighten($ui-highlight-color, 13%);
+      }
     }
   }
 
@@ -215,16 +219,18 @@
 }
 
 .dropdown--active::after {
-  content: "";
-  display: block;
-  position: absolute;
-  width: 0;
-  height: 0;
-  border-style: solid;
-  border-width: 0 4.5px 7.8px;
-  border-color: transparent transparent $ui-secondary-color;
-  bottom: 8px;
-  right: 104px;
+  @media screen and (min-width: 1025px) {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 4.5px 7.8px;
+    border-color: transparent transparent $ui-secondary-color;
+    bottom: 8px;
+    right: 104px;
+  }
 }
 
 .invisible {
@@ -1837,6 +1843,8 @@
   cursor: pointer;
   flex: 0 0 auto;
   font-size: 16px;
+  border: 0;
+  text-align: start;
   padding: 15px;
   z-index: 3;
 
@@ -1998,12 +2006,6 @@
 
   &:hover {
     background: lighten($ui-base-color, 11%);
-  }
-
-  &.hidden-on-mobile {
-    @include single-column('screen and (max-width: 1024px)') {
-      display: none;
-    }
   }
 }
 
@@ -2388,12 +2390,6 @@ button.icon-button.active i.fa-retweet {
     }
   }
 
-  &.hidden-on-mobile {
-    @include single-column('screen and (max-width: 1024px)') {
-      display: none;
-    }
-  }
-
   &:focus,
   &:active {
     outline: 0;
@@ -2672,6 +2668,8 @@ button.icon-button.active i.fa-retweet {
   cursor: pointer;
   display: flex;
   flex-direction: column;
+  border: 0;
+  width: 100%;
   height: 100%;
   justify-content: center;
   position: relative;
@@ -2754,6 +2752,7 @@ button.icon-button.active i.fa-retweet {
   align-items: center;
   background: rgba($base-overlay-background, 0.5);
   box-sizing: border-box;
+  border: 0;
   color: $primary-text-color;
   cursor: pointer;
   display: flex;
@@ -3848,7 +3847,8 @@ button.icon-button.active i.fa-retweet {
 
 .boost-modal,
 .confirmation-modal,
-.report-modal {
+.report-modal,
+.actions-modal {
   background: lighten($ui-secondary-color, 8%);
   color: $ui-base-color;
   border-radius: 8px;
@@ -3870,6 +3870,15 @@ button.icon-button.active i.fa-retweet {
     position: absolute;
     top: 10px;
     width: 48px;
+  }
+}
+
+.actions-modal {
+  .status {
+    background: $white;
+    border-bottom-color: $ui-secondary-color;
+    padding-top: 10px;
+    padding-bottom: 10px;
   }
 }
 
@@ -3914,7 +3923,7 @@ button.icon-button.active i.fa-retweet {
 }
 
 .confirmation-modal {
-  max-width: 280px;
+  max-width: 85vw;
 
   @media screen and (min-width: 480px) {
     max-width: 380px;
@@ -3936,6 +3945,47 @@ button.icon-button.active i.fa-retweet {
 .report-modal__comment {
   .setting-text {
     margin-top: 10px;
+  }
+}
+
+.actions-modal {
+  .status {
+    overflow-y: auto;
+    max-height: 300px;
+  }
+
+  max-height: 80vh;
+  max-width: 80vw;
+
+  ul {
+    overflow-y: auto;
+    flex-shrink: 0;
+
+    li:empty {
+      margin: 0;
+    }
+
+    li:not(:empty) {
+      a {
+        color: $ui-base-color;
+        display: flex;
+        padding: 10px;
+        align-items: center;
+        text-decoration: none;
+
+        &.active {
+          &,
+          button {
+            background: $ui-highlight-color;
+            color: $primary-text-color;
+          }
+        }
+
+        button:first-child {
+          margin-right: 10px;
+        }
+      }
+    }
   }
 }
 

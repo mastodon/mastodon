@@ -1,7 +1,7 @@
 import React from 'react';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
-import DropdownMenu from '../../../components/dropdown_menu';
+import DropdownMenuContainer from '../../../containers/dropdown_menu_container';
 import Link from 'react-router-dom/Link';
 import { defineMessages, injectIntl, FormattedMessage, FormattedNumber } from 'react-intl';
 
@@ -15,6 +15,7 @@ const messages = defineMessages({
   mute: { id: 'account.mute', defaultMessage: 'Mute @{name}' },
   follow: { id: 'account.follow', defaultMessage: 'Follow' },
   report: { id: 'account.report', defaultMessage: 'Report @{name}' },
+  share: { id: 'account.share', defaultMessage: 'Share @{name}\'s profile' },
   media: { id: 'account.media', defaultMessage: 'Media' },
   blockDomain: { id: 'account.block_domain', defaultMessage: 'Hide everything from {domain}' },
   unblockDomain: { id: 'account.unblock_domain', defaultMessage: 'Unhide {domain}' },
@@ -36,6 +37,12 @@ export default class ActionBar extends React.PureComponent {
     intl: PropTypes.object.isRequired,
   };
 
+  handleShare = () => {
+    navigator.share({
+      url: this.props.account.get('url'),
+    });
+  }
+
   render () {
     const { account, me, intl } = this.props;
 
@@ -43,6 +50,9 @@ export default class ActionBar extends React.PureComponent {
     let extraInfo = '';
 
     menu.push({ text: intl.formatMessage(messages.mention, { name: account.get('username') }), action: this.props.onMention });
+    if ('share' in navigator) {
+      menu.push({ text: intl.formatMessage(messages.share, { name: account.get('username') }), action: this.handleShare });
+    }
     menu.push(null);
     menu.push({ text: intl.formatMessage(messages.media), to: `/accounts/${account.get('id')}/media` });
     menu.push(null);
@@ -96,7 +106,7 @@ export default class ActionBar extends React.PureComponent {
 
         <div className='account__action-bar'>
           <div className='account__action-bar-dropdown'>
-            <DropdownMenu items={menu} icon='bars' size={24} direction='right' />
+            <DropdownMenuContainer items={menu} icon='bars' size={24} direction='right' />
           </div>
 
           <div className='account__action-bar-links'>

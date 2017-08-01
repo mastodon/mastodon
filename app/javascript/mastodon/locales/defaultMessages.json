@@ -54,6 +54,22 @@
   {
     "descriptors": [
       {
+        "defaultMessage": "Show settings",
+        "id": "column_header.show_settings"
+      },
+      {
+        "defaultMessage": "Hide settings",
+        "id": "column_header.hide_settings"
+      },
+      {
+        "defaultMessage": "Move column to the left",
+        "id": "column_header.moveLeft_settings"
+      },
+      {
+        "defaultMessage": "Move column to the right",
+        "id": "column_header.moveRight_settings"
+      },
+      {
         "defaultMessage": "Unpin",
         "id": "column_header.unpin"
       },
@@ -137,6 +153,10 @@
       {
         "defaultMessage": "Reply",
         "id": "status.reply"
+      },
+      {
+        "defaultMessage": "Share",
+        "id": "status.share"
       },
       {
         "defaultMessage": "Reply to thread",
@@ -353,6 +373,10 @@
       {
         "defaultMessage": "Report @{name}",
         "id": "account.report"
+      },
+      {
+        "defaultMessage": "Share @{name}'s profile",
+        "id": "account.share"
       },
       {
         "defaultMessage": "Media",
@@ -1007,6 +1031,10 @@
       {
         "defaultMessage": "Report @{name}",
         "id": "status.report"
+      },
+      {
+        "defaultMessage": "Share",
+        "id": "status.share"
       }
     ],
     "path": "app/javascript/mastodon/features/status/components/action_bar.json"
@@ -1085,6 +1113,14 @@
       {
         "defaultMessage": "Close",
         "id": "lightbox.close"
+      },
+      {
+        "defaultMessage": "Previous",
+        "id": "lightbox.previous"
+      },
+      {
+        "defaultMessage": "Next",
+        "id": "lightbox.next"
       }
     ],
     "path": "app/javascript/mastodon/features/ui/components/media_modal.json"

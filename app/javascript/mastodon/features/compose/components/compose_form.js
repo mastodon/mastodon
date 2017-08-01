@@ -19,6 +19,7 @@ import WarningContainer from '../containers/warning_container';
 import { isMobile } from '../../../is_mobile';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { length } from 'stringz';
+import { countableText } from '../util/counter';
 
 const messages = defineMessages({
   placeholder: { id: 'compose_form.placeholder', defaultMessage: 'What is on your mind?' },
@@ -150,9 +151,9 @@ export default class ComposeForm extends ImmutablePureComponent {
     const { intl, onPaste, showSearch } = this.props;
     const disabled = this.props.is_submitting;
     const maybeEye = this.props.advanced_options.get('do_not_federate') ? ' 👁️' : '';
-    const text = [this.props.spoiler_text, this.props.text, maybeEye].join('');
+    const text     = [this.props.spoiler_text, countableText(this.props.text), maybeEye].join('');
 
-    let publishText    = '';
+    let publishText = '';
 
     if (this.props.privacy === 'private' || this.props.privacy === 'direct') {
       publishText = <span className='compose-form__publish-private'><i className='fa fa-lock' /> {intl.formatMessage(messages.publish)}</span>;
@@ -164,7 +165,10 @@ export default class ComposeForm extends ImmutablePureComponent {
       <div className='compose-form'>
         <Collapsable isVisible={this.props.spoiler} fullHeight={50}>
           <div className='spoiler-input'>
-            <input placeholder={intl.formatMessage(messages.spoiler_placeholder)} value={this.props.spoiler_text} onChange={this.handleChangeSpoilerText} onKeyDown={this.handleKeyDown} type='text' className='spoiler-input__input'  id='cw-spoiler-input' />
+            <label>
+              <span style={{ display: 'none' }}>{intl.formatMessage(messages.spoiler_placeholder)}</span>
+              <input placeholder={intl.formatMessage(messages.spoiler_placeholder)} value={this.props.spoiler_text} onChange={this.handleChangeSpoilerText} onKeyDown={this.handleKeyDown} type='text' className='spoiler-input__input'  id='cw-spoiler-input' />
+            </label>
           </div>
         </Collapsable>
 
@@ -206,7 +210,7 @@ export default class ComposeForm extends ImmutablePureComponent {
 
           <div className='compose-form__publish'>
             <div className='character-counter__wrapper'><CharacterCounter max={500} text={text} /></div>
-            <div className='compose-form__publish-button-wrapper'><Button text={publishText} onClick={this.handleSubmit} disabled={disabled || this.props.is_uploading || length(text) > 500 || (text.length !==0 && text.trim().length === 0)} block /></div>
+            <div className='compose-form__publish-button-wrapper'><Button text={publishText} onClick={this.handleSubmit} disabled={disabled || this.props.is_uploading || length(text) > 500 || (text.length !== 0 && text.trim().length === 0)} block /></div>
           </div>
         </div>
       </div>
