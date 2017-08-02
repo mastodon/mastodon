@@ -1,8 +1,12 @@
 Warden::Manager.after_set_user except: :fetch do |user, warden|
-  SessionActivation.deactivate warden.cookies.signed['_session_id']
+  if user.session_active?(warden.cookies.signed['_session_id'] || warden.raw_session['auth_id'])
+    session_id = warden.cookies.signed['_session_id'] || warden.raw_session['auth_id']
+  else
+    session_id = user.activate_session(warden.request)
+  end
 
   warden.cookies.signed['_session_id'] = {
-    value: user.activate_session(warden.request),
+    value: session_id,
     expires: 1.year.from_now,
     httponly: true,
   }

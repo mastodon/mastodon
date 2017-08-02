@@ -219,6 +219,14 @@ RSpec.describe User, type: :model do
     end
   end
 
+  describe '#setting_unfollow_modal' do
+    it 'returns unfollow modal setting' do
+      user = Fabricate(:user)
+      user.settings[:unfollow_modal] = true
+      expect(user.setting_unfollow_modal).to eq true
+    end
+  end
+
   describe '#setting_delete_modal' do
     it 'returns delete modal setting' do
       user = Fabricate(:user)

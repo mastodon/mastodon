@@ -13,6 +13,6 @@ class UnfavouriteService < BaseService
   private
 
   def build_xml(favourite)
-    AtomSerializer.render(AtomSerializer.new.unfavourite_salmon(favourite))
+    OStatus::AtomSerializer.render(OStatus::AtomSerializer.new.unfavourite_salmon(favourite))
   end
 end

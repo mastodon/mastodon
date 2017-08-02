@@ -29,6 +29,7 @@ class Status < ApplicationRecord
   include Streamable
   include Cacheable
   include StatusThreadingConcern
+  include EmojiHelper
 
   enum visibility: [:public, :unlisted, :private, :direct], _suffix: :visibility
 
@@ -121,7 +122,7 @@ class Status < ApplicationRecord
     !sensitive? && media_attachments.any?
   end
 
-  before_validation :prepare_contents
+  before_validation :prepare_contents, if: :local?
   before_validation :set_reblog
   before_validation :set_visibility
   before_validation :set_conversation
@@ -254,6 +255,9 @@ class Status < ApplicationRecord
   def prepare_contents
     text&.strip!
     spoiler_text&.strip!
+
+    self.text         = emojify(text)
+    self.spoiler_text = emojify(spoiler_text)
   end
 
   def set_reblog

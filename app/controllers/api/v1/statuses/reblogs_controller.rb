@@ -20,7 +20,7 @@ class Api::V1::Statuses::ReblogsController < Api::BaseController
     authorize status_for_destroy, :unreblog?
     RemovalWorker.perform_async(status_for_destroy.id)
 
-    render json: @status, serializer: REST::StatusSerializer
+    render json: @status, serializer: REST::StatusSerializer, relationships: StatusRelationshipsPresenter.new([@status], current_user&.account_id, reblogs_map: @reblogs_map)
   end
 
   private
