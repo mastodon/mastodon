@@ -1,6 +1,7 @@
 import React from 'react';
 import ComposeFormContainer from './containers/compose_form_container';
 import NavigationContainer from './containers/navigation_container';
+import FavouriteTagsContainer from './containers/favourite_tags_container';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { mountCompose, unmountCompose } from '../../actions/compose';
@@ -73,6 +74,7 @@ export default class Compose extends React.PureComponent {
             <NavigationContainer />
             <ComposeFormContainer />
             <AnnouncementsContainer />
+            <FavouriteTagsContainer />
           </div>
 
           <Motion defaultStyle={{ x: -100 }} style={{ x: spring(showSearch ? 0 : -100, { stiffness: 210, damping: 20 }) }}>

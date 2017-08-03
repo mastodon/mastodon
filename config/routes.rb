@@ -33,6 +33,8 @@ Rails.application.routes.draw do
       member do
         get :embed
       end
+
+      resources :favourite_tags, only: [:index]
     end
 
     get :remote_follow,  to: 'remote_follow#new'
@@ -67,6 +69,7 @@ Rails.application.routes.draw do
 
     resource :follower_domains, only: [:show, :update]
     resource :delete, only: [:show, :destroy]
+    resources :favourite_tags, only: [:index, :create, :destroy]
   end
 
   resources :media, only: [:show]

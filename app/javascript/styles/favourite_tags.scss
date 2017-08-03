@@ -1,0 +1,50 @@
+
+/**
+  * features/compose/components/favourite_tags
+  */
+
+.favourite-tags {
+  background: $ui-base-color;
+  position: relative;
+}
+
+.favourite-tags__header {
+  display: flex;
+  align-items: center;
+  padding: 16px;
+  background: lighten($ui-base-color, 4%);
+  font-size: 16px;
+}
+
+.favourite-tags a {
+  color: $white;
+}
+
+.favourite-tags__header > i {
+  width: 20px;
+}
+
+.favourite-tags__body li {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  position: relative
+}
+
+.favourite-tags__name {
+  font-size: 14px;
+  color: $white;
+  text-decoration: none;
+}
+
+.favourite-tags__name .fa-hashtag {
+  color: $classic-highlight-color;
+  margin-right: 2px;
+}
+
+.favourite-tags__lock {
+  position: absolute;
+  right: 20px;
+  width: 14px;
+  text-align: center;
+}
