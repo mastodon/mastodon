@@ -50,6 +50,12 @@ SimpleForm.setup do |config|
     # b.use :full_error, wrap_with: { tag: :span, class: :error }
   end
 
+  config.wrappers :hidden, class: :input, error_class: :field_with_errors do |b|
+    b.use :html5
+    b.use :input
+    b.use :full_error, wrap_with: { tag: :span, class: :error }
+  end
+
   config.wrappers :with_label, class: [:input, :with_label], hint_class: :field_with_hint, error_class: :field_with_errors do |b|
     b.use :html5
     b.use :label_input, wrap_with: { tag: :div, class: :label_input }
