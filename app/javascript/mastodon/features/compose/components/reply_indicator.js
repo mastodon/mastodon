@@ -12,7 +12,8 @@ const messages = defineMessages({
   cancel: { id: 'reply_indicator.cancel', defaultMessage: 'Cancel' },
 });
 
-class ReplyIndicator extends ImmutablePureComponent {
+@injectIntl
+export default class ReplyIndicator extends ImmutablePureComponent {
 
   static contextTypes = {
     router: PropTypes.object,
@@ -31,7 +32,7 @@ class ReplyIndicator extends ImmutablePureComponent {
   handleAccountClick = (e) => {
     if (e.button === 0) {
       e.preventDefault();
-      this.context.router.push(`/accounts/${this.props.status.getIn(['account', 'id'])}`);
+      this.context.router.history.push(`/accounts/${this.props.status.getIn(['account', 'id'])}`);
     }
   }
 
@@ -61,5 +62,3 @@ class ReplyIndicator extends ImmutablePureComponent {
   }
 
 }
-
-export default injectIntl(ReplyIndicator);

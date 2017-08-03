@@ -1,35 +1,30 @@
-import emojione from 'emojione';
+import { unicodeMapping } from './emojione_light';
+import Trie from 'substring-trie';
 
-const toImage = str => shortnameToImage(unicodeToImage(str));
+const trie = new Trie(Object.keys(unicodeMapping));
 
-const unicodeToImage = str => {
-  const mappedUnicode = emojione.mapUnicodeToShort();
-
-  return str.replace(emojione.regUnicode, unicodeChar => {
-    if (typeof unicodeChar === 'undefined' || unicodeChar === '' || !(unicodeChar in emojione.jsEscapeMap)) {
-      return unicodeChar;
+const emojify = str => {
+  let rtn = '';
+  for (;;) {
+    let match, i = 0;
+    while (i < str.length && str[i] !== '<' && !(match = trie.search(str.slice(i)))) {
+      i += str.codePointAt(i) < 65536 ? 1 : 2;
     }
-
-    const unicode  = emojione.jsEscapeMap[unicodeChar];
-    const short    = mappedUnicode[unicode];
-    const filename = emojione.emojioneList[short].fname;
-    const alt      = emojione.convert(unicode.toUpperCase());
-
-    return `<img draggable="false" class="emojione" alt="${alt}" title="${short}" src="/emoji/${filename}.svg" />`;
-  });
-};
-
-const shortnameToImage = str => str.replace(emojione.regShortNames, shortname => {
-  if (typeof shortname === 'undefined' || shortname === '' || !(shortname in emojione.emojioneList)) {
-    return shortname;
+    if (i === str.length)
+      break;
+    else if (str[i] === '<') {
+      let tagend = str.indexOf('>', i + 1) + 1;
+      if (!tagend)
+        break;
+      rtn += str.slice(0, tagend);
+      str = str.slice(tagend);
+    } else {
+      const [filename, shortCode] = unicodeMapping[match];
+      rtn += str.slice(0, i) + `<img draggable="false" class="emojione" alt="${match}" title=":${shortCode}:" src="/emoji/${filename}.svg" />`;
+      str = str.slice(i + match.length);
+    }
   }
-
-  const unicode = emojione.emojioneList[shortname].unicode[emojione.emojioneList[shortname].unicode.length - 1];
-  const alt     = emojione.convert(unicode.toUpperCase());
-
-  return `<img draggable="false" class="emojione" alt="${alt}" title="${shortname}" src="/emoji/${unicode}.svg" />`;
-});
-
-export default function emojify(text) {
-  return toImage(text);
+  return rtn + str;
 };
+
+export default emojify;

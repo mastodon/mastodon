@@ -1,8 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import detectPassiveEvents from 'detect-passive-events';
 import scrollTop from '../scroll';
 
-class Column extends React.PureComponent {
+export default class Column extends React.PureComponent {
 
   static propTypes = {
     children: PropTypes.node,
@@ -30,16 +31,22 @@ class Column extends React.PureComponent {
     this.node = c;
   }
 
+  componentDidMount () {
+    this.node.addEventListener('wheel', this.handleWheel,  detectPassiveEvents ? { passive: true } : false);
+  }
+
+  componentWillUnmount () {
+    this.node.removeEventListener('wheel', this.handleWheel);
+  }
+
   render () {
     const { children } = this.props;
 
     return (
-      <div role='region' className='column' ref={this.setRef} onWheel={this.handleWheel}>
+      <div role='region' className='column' ref={this.setRef}>
         {children}
       </div>
     );
   }
 
 }
-
-export default Column;

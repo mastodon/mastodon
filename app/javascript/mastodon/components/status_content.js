@@ -6,8 +6,9 @@ import emojify from '../emoji';
 import { isRtl } from '../rtl';
 import { FormattedMessage } from 'react-intl';
 import Permalink from './permalink';
+import classnames from 'classnames';
 
-class StatusContent extends React.PureComponent {
+export default class StatusContent extends React.PureComponent {
 
   static contextTypes = {
     router: PropTypes.object,
@@ -17,7 +18,6 @@ class StatusContent extends React.PureComponent {
     status: ImmutablePropTypes.map.isRequired,
     expanded: PropTypes.bool,
     onExpandedToggle: PropTypes.func,
-    onHeightUpdate: PropTypes.func,
     onClick: PropTypes.func,
   };
 
@@ -25,14 +25,18 @@ class StatusContent extends React.PureComponent {
     hidden: true,
   };
 
-  componentDidMount () {
+  _updateStatusLinks () {
     const node  = this.node;
     const links = node.querySelectorAll('a');
 
     for (var i = 0; i < links.length; ++i) {
-      let link    = links[i];
+      let link = links[i];
+      if (link.classList.contains('status-link')) {
+        continue;
+      }
+      link.classList.add('status-link');
+
       let mention = this.props.status.get('mentions').find(item => link.href === item.get('url'));
-      let media   = this.props.status.get('media_attachments').find(item => link.href === item.get('text_url') || (item.get('remote_url').length > 0 && link.href === item.get('remote_url')));
 
       if (mention) {
         link.addEventListener('click', this.onMentionClick.bind(this, mention), false);
@@ -40,32 +44,35 @@ class StatusContent extends React.PureComponent {
       } else if (link.textContent[0] === '#' || (link.previousSibling && link.previousSibling.textContent && link.previousSibling.textContent[link.previousSibling.textContent.length - 1] === '#')) {
         link.addEventListener('click', this.onHashtagClick.bind(this, link.text), false);
       } else {
-        link.setAttribute('target', '_blank');
-        link.setAttribute('rel', 'noopener');
         link.setAttribute('title', link.href);
       }
+
+      link.setAttribute('target', '_blank');
+      link.setAttribute('rel', 'noopener');
     }
+  }
+
+  componentDidMount () {
+    this._updateStatusLinks();
   }
 
   componentDidUpdate () {
-    if (this.props.onHeightUpdate) {
-      this.props.onHeightUpdate();
-    }
+    this._updateStatusLinks();
   }
 
   onMentionClick = (mention, e) => {
-    if (e.button === 0) {
+    if (this.context.router && e.button === 0) {
       e.preventDefault();
-      this.context.router.push(`/accounts/${mention.get('id')}`);
+      this.context.router.history.push(`/accounts/${mention.get('id')}`);
     }
   }
 
   onHashtagClick = (hashtag, e) => {
     hashtag = hashtag.replace(/^#/, '').toLowerCase();
 
-    if (e.button === 0) {
+    if (this.context.router && e.button === 0) {
       e.preventDefault();
-      this.context.router.push(`/timelines/tag/${hashtag}`);
+      this.context.router.history.push(`/timelines/tag/${hashtag}`);
     }
   }
 
@@ -81,7 +88,7 @@ class StatusContent extends React.PureComponent {
     const [ startX, startY ] = this.startXY;
     const [ deltaX, deltaY ] = [Math.abs(e.clientX - startX), Math.abs(e.clientY - startY)];
 
-    if (e.target.localName === 'button' || e.target.localName === 'span' || e.target.localName === 'a' || (e.target.parentNode && e.target.parentNode.localName === 'a')) {
+    if (e.target.localName === 'button' || e.target.localName === 'a' || (e.target.parentNode && (e.target.parentNode.localName === 'button' || e.target.parentNode.localName === 'a'))) {
       return;
     }
 
@@ -115,6 +122,9 @@ class StatusContent extends React.PureComponent {
     const content = { __html: emojify(status.get('content')) };
     const spoilerContent = { __html: emojify(escapeTextContentForBrowser(status.get('spoiler_text', ''))) };
     const directionStyle = { direction: 'ltr' };
+    const classNames = classnames('status__content', {
+      'status__content--with-action': this.props.onClick && this.context.router,
+    });
 
     if (isRtl(status.get('search_index'))) {
       directionStyle.direction = 'rtl';
@@ -136,7 +146,7 @@ class StatusContent extends React.PureComponent {
       }
 
       return (
-        <div className='status__content' ref={this.setRef} onMouseDown={this.handleMouseDown} onMouseUp={this.handleMouseUp}>
+        <div className={classNames} ref={this.setRef} tabIndex='0' aria-label={status.get('search_index')} onMouseDown={this.handleMouseDown} onMouseUp={this.handleMouseUp}>
           <p style={{ marginBottom: hidden && status.get('mentions').isEmpty() ? '0px' : null }}>
             <span dangerouslySetInnerHTML={spoilerContent} />
             {' '}
@@ -145,14 +155,16 @@ class StatusContent extends React.PureComponent {
 
           {mentionsPlaceholder}
 
-          <div className={`status__content__text ${!hidden ? 'status__content__text--visible' : ''}`} style={directionStyle} dangerouslySetInnerHTML={content} />
+          <div tabIndex={!hidden && 0} className={`status__content__text ${!hidden ? 'status__content__text--visible' : ''}`} style={directionStyle} dangerouslySetInnerHTML={content} />
         </div>
       );
     } else if (this.props.onClick) {
       return (
         <div
           ref={this.setRef}
-          className='status__content'
+          tabIndex='0'
+          aria-label={status.get('search_index')}
+          className={classNames}
           style={directionStyle}
           onMouseDown={this.handleMouseDown}
           onMouseUp={this.handleMouseUp}
@@ -162,8 +174,10 @@ class StatusContent extends React.PureComponent {
     } else {
       return (
         <div
+          tabIndex='0'
+          aria-label={status.get('search_index')}
           ref={this.setRef}
-          className='status__content status__content--no-action'
+          className='status__content'
           style={directionStyle}
           dangerouslySetInnerHTML={content}
         />
@@ -172,5 +186,3 @@ class StatusContent extends React.PureComponent {
   }
 
 }
-
-export default StatusContent;

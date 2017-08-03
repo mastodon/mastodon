@@ -10,52 +10,35 @@
 }
 
 .logo-container {
-  max-width: 400px;
   margin: 100px auto;
-  margin-bottom: 0;
-  cursor: default;
+  margin-bottom: 50px;
 
   @media screen and (max-width: 360px) {
     margin: 30px auto;
   }
 
   h1 {
-    display: block;
-    text-align: center;
-    color: $primary-text-color;
-    font-size: 48px;
-    font-weight: 500;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
     img {
-      display: block;
-      margin: 20px auto;
-      width: 180px;
-      height: 180px;
+      height: 42px;
+      margin-right: 10px;
     }
 
     a {
-      color: inherit;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: $primary-text-color;
       text-decoration: none;
       outline: 0;
-
-      img {
-        opacity: 0.8;
-        transition: opacity 0.8s ease;
-      }
-
-      &:hover {
-        img {
-          opacity: 1;
-          transition-duration: 0.2s;
-        }
-      }
-    }
-
-    small {
-      display: block;
-      font-size: 12px;
-      font-weight: 400;
-      font-family: 'mastodon-font-monospace', monospace;
+      padding: 12px 16px;
+      line-height: 32px;
+      font-family: 'mastodon-font-display', sans-serif;
+      font-weight: 500;
+      font-size: 14px;
     }
   }
 }

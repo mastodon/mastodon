@@ -36,10 +36,15 @@
 #  followers_count         :integer          default(0), not null
 #  following_count         :integer          default(0), not null
 #  last_webfingered_at     :datetime
+#  inbox_url               :string           default(""), not null
+#  outbox_url              :string           default(""), not null
+#  shared_inbox_url        :string           default(""), not null
+#  followers_url           :string           default(""), not null
+#  protocol                :integer          default("ostatus"), not null
 #
 
 class Account < ApplicationRecord
-  MENTION_RE = /(?:^|[^\/[:word:]])@([a-z0-9_]+(?:@[a-z0-9\.\-]+[a-z0-9]+)?)/i
+  MENTION_RE = /(?:^|[^\/[:word:]])@(([a-z0-9_]+)(?:@[a-z0-9\.\-]+[a-z0-9]+)?)/i
 
   include AccountAvatar
   include AccountFinderConcern
@@ -47,6 +52,9 @@ class Account < ApplicationRecord
   include AccountInteractions
   include Attachmentable
   include Remotable
+  include EmojiHelper
+
+  enum protocol: [:ostatus, :activitypub]
 
   # Local users
   has_one :user, inverse_of: :account
@@ -124,16 +132,12 @@ class Account < ApplicationRecord
     subscription_expires_at.present?
   end
 
-  def followers_domains
-    followers.reorder(nil).pluck('distinct accounts.domain')
-  end
-
   def keypair
     OpenSSL::PKey::RSA.new(private_key || public_key)
   end
 
   def subscription(webhook_url)
-    OStatus2::Subscription.new(remote_url, secret: secret, lease_seconds: 86_400 * 30, webhook: webhook_url, hub: hub_url)
+    OStatus2::Subscription.new(remote_url, secret: secret, lease_seconds: 30.days.seconds, webhook: webhook_url, hub: hub_url)
   end
 
   def save_with_optional_media!
@@ -163,6 +167,10 @@ class Account < ApplicationRecord
   end
 
   class << self
+    def domains
+      reorder(nil).pluck('distinct accounts.domain')
+    end
+
     def triadic_closures(account, limit: 5, offset: 0)
       sql = <<-SQL.squish
         WITH first_degree AS (
@@ -236,16 +244,21 @@ class Account < ApplicationRecord
 
       [textsearch, query]
     end
-
-    def follow_mapping(query, field)
-      query.pluck(field).each_with_object({}) { |id, mapping| mapping[id] = true }
-    end
   end
 
   before_create :generate_keys
   before_validation :normalize_domain
+  before_validation :prepare_contents, if: :local?
 
   private
+
+  def prepare_contents
+    display_name&.strip!
+    note&.strip!
+
+    self.display_name = emojify(display_name)
+    self.note         = emojify(note)
+  end
 
   def generate_keys
     return unless local?

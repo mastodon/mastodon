@@ -53,11 +53,11 @@ module StreamEntriesHelper
 
   def rtl?(text)
     text = simplified_text(text)
-    rtl_characters = /[\p{Hebrew}|\p{Arabic}|\p{Syriac}|\p{Thaana}|\p{Nko}]+/m.match(text)
+    rtl_words = text.scan(/[\p{Hebrew}\p{Arabic}\p{Syriac}\p{Thaana}\p{Nko}]+/m)
 
-    if rtl_characters.present?
+    if rtl_words.present?
       total_size = text.size.to_f
-      rtl_size(rtl_characters.to_a) / total_size > 0.3
+      rtl_size(rtl_words) / total_size > 0.3
     else
       false
     end
@@ -77,8 +77,8 @@ module StreamEntriesHelper
     end
   end
 
-  def rtl_size(characters)
-    characters.reduce(0) { |acc, elem| acc + elem.size }.to_f
+  def rtl_size(words)
+    words.reduce(0) { |acc, elem| acc + elem.size }.to_f
   end
 
   def embedded_view?

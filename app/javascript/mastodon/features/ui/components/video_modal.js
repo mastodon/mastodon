@@ -1,5 +1,4 @@
 import React from 'react';
-import LoadingIndicator from '../../../components/loading_indicator';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
 import ExtendedVideoPlayer from '../../../components/extended_video_player';
@@ -11,7 +10,8 @@ const messages = defineMessages({
   close: { id: 'lightbox.close', defaultMessage: 'Close' },
 });
 
-class VideoModal extends ImmutablePureComponent {
+@injectIntl
+export default class VideoModal extends ImmutablePureComponent {
 
   static propTypes = {
     media: ImmutablePropTypes.map.isRequired,
@@ -36,5 +36,3 @@ class VideoModal extends ImmutablePureComponent {
   }
 
 }
-
-export default injectIntl(VideoModal);

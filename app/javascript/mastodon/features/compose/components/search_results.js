@@ -1,12 +1,12 @@
 import React from 'react';
 import ImmutablePropTypes from 'react-immutable-proptypes';
-import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
+import { FormattedMessage } from 'react-intl';
 import AccountContainer from '../../../containers/account_container';
 import StatusContainer from '../../../containers/status_container';
-import Link from 'react-router/lib/Link';
+import Link from 'react-router-dom/Link';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
-class SearchResults extends ImmutablePureComponent {
+export default class SearchResults extends ImmutablePureComponent {
 
   static propTypes = {
     results: ImmutablePropTypes.map.isRequired,
@@ -63,5 +63,3 @@ class SearchResults extends ImmutablePureComponent {
   }
 
 }
-
-export default SearchResults;

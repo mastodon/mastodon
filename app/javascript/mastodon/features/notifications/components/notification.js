@@ -2,14 +2,13 @@ import React from 'react';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import StatusContainer from '../../../containers/status_container';
 import AccountContainer from '../../../containers/account_container';
-import Avatar from '../../../components/avatar';
 import { FormattedMessage } from 'react-intl';
 import Permalink from '../../../components/permalink';
 import emojify from '../../../emoji';
 import escapeTextContentForBrowser from 'escape-html';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
-class Notification extends ImmutablePureComponent {
+export default class Notification extends ImmutablePureComponent {
 
   static propTypes = {
     notification: ImmutablePropTypes.map.isRequired,
@@ -87,5 +86,3 @@ class Notification extends ImmutablePureComponent {
   }
 
 }
-
-export default Notification;

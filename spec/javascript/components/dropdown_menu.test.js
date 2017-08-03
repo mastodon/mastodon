@@ -5,16 +5,24 @@ import React from 'react';
 import DropdownMenu from '../../../app/javascript/mastodon/components/dropdown_menu';
 import Dropdown, { DropdownTrigger, DropdownContent } from 'react-simple-dropdown';
 
+const isTrue = () => true;
+
 describe('<DropdownMenu />', () => {
   const icon = 'my-icon';
   const size = 123;
-  const action = sinon.spy();
+  let items;
+  let wrapper;
+  let action;
 
-  const items = [
-    { text: 'first item',  action: action, href: '/some/url' },
-    { text: 'second item', action: 'noop' },
-  ];
-  const wrapper = shallow(<DropdownMenu icon={icon} items={items} size={size} />);
+  beforeEach(() => {
+    action = sinon.spy();
+
+    items = [
+      { text: 'first item',  action: action, href: '/some/url' },
+      { text: 'second item', action: 'noop' },
+    ];
+    wrapper = shallow(<DropdownMenu icon={icon} items={items} size={size} />);
+  });
 
   it('contains one <Dropdown />', () => {
     expect(wrapper).to.have.exactly(1).descendants(Dropdown);
@@ -26,6 +34,16 @@ describe('<DropdownMenu />', () => {
 
   it('contains one <DropdownContent />', () => {
     expect(wrapper.find(Dropdown)).to.have.exactly(1).descendants(DropdownContent);
+  });
+
+  it('does not contain a <DropdownContent /> if isUserTouching', () => {
+    const touchingWrapper = shallow(<DropdownMenu icon={icon} items={items} size={size} isUserTouching={isTrue} />);
+    expect(touchingWrapper.find(Dropdown)).to.have.exactly(0).descendants(DropdownContent);
+  });
+
+  it('does not contain a <DropdownContent /> if isUserTouching', () => {
+    const touchingWrapper = shallow(<DropdownMenu icon={icon} items={items} size={size} isUserTouching={isTrue} />);
+    expect(touchingWrapper.find(Dropdown)).to.have.exactly(0).descendants(DropdownContent);
   });
 
   it('uses props.size for <DropdownTrigger /> style values', () => {
@@ -51,6 +69,23 @@ describe('<DropdownMenu />', () => {
     const wrapper = mount(<DropdownMenu icon={icon} items={items} size={size} />);
     wrapper.find(DropdownTrigger).first().simulate('click');
     expect(wrapper.state('expanded')).to.be.equal(true);
+  });
+
+  it('calls onModalOpen when clicking the trigger if isUserTouching', () => {
+    const onModalOpen = sinon.spy();
+    const touchingWrapper = mount(<DropdownMenu icon={icon} items={items} status={3.14} size={size} onModalOpen={onModalOpen} isUserTouching={isTrue} />);
+    touchingWrapper.find(DropdownTrigger).first().simulate('click');
+    expect(onModalOpen.calledOnce).to.be.equal(true);
+    expect(onModalOpen.args[0][0]).to.be.deep.equal({ status: 3.14, actions: items, onClick: touchingWrapper.node.handleClick });
+  });
+
+  it('calls onModalClose when clicking an action if isUserTouching and isModalOpen', () => {
+    const onModalOpen = sinon.spy();
+    const onModalClose = sinon.spy();
+    const touchingWrapper = mount(<DropdownMenu icon={icon} items={items} status={3.14} size={size} isModalOpen onModalOpen={onModalOpen} onModalClose={onModalClose} isUserTouching={isTrue} />);
+    touchingWrapper.find(DropdownTrigger).first().simulate('click');
+    touchingWrapper.node.handleClick({ currentTarget: { getAttribute: () => '0' }, preventDefault: () => null });
+    expect(onModalClose.calledOnce).to.be.equal(true);
   });
 
   // Error: ReactWrapper::state() can only be called on the root

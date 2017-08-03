@@ -1,11 +1,9 @@
 # frozen_string_literal: true
 
 class ProviderDiscovery < OEmbed::ProviderDiscovery
-  extend HttpHelper
-
   class << self
     def discover_provider(url, options = {})
-      res    = http_client.get(url)
+      res    = Request.new(:get, url).perform
       format = options[:format]
 
       raise OEmbed::NotFound, url if res.code != 200 || res.mime_type != 'text/html'

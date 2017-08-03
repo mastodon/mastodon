@@ -33,7 +33,7 @@ import {
   FAVOURITED_STATUSES_EXPAND_SUCCESS,
 } from '../actions/favourites';
 import { SEARCH_FETCH_SUCCESS } from '../actions/search';
-import Immutable from 'immutable';
+import { Map as ImmutableMap, fromJS } from 'immutable';
 
 const normalizeStatus = (state, status) => {
   if (!status) {
@@ -51,7 +51,7 @@ const normalizeStatus = (state, status) => {
   const searchContent = [status.spoiler_text, status.content].join(' ').replace(/<br \/>/g, '\n').replace(/<\/p><p>/g, '\n\n');
   normalStatus.search_index = new DOMParser().parseFromString(searchContent, 'text/html').documentElement.textContent;
 
-  return state.update(status.id, Immutable.Map(), map => map.mergeDeep(Immutable.fromJS(normalStatus)));
+  return state.update(status.id, ImmutableMap(), map => map.mergeDeep(fromJS(normalStatus)));
 };
 
 const normalizeStatuses = (state, statuses) => {
@@ -82,7 +82,7 @@ const filterStatuses = (state, relationship) => {
   return state;
 };
 
-const initialState = Immutable.Map();
+const initialState = ImmutableMap();
 
 export default function statuses(state = initialState, action) {
   switch(action.type) {

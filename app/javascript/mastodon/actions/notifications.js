@@ -1,5 +1,5 @@
 import api, { getLinks } from '../api';
-import Immutable from 'immutable';
+import { List as ImmutableList } from 'immutable';
 import IntlMessageFormat from 'intl-messageformat';
 import { fetchRelationships } from './accounts';
 import { defineMessages } from 'react-intl';
@@ -17,7 +17,7 @@ export const NOTIFICATIONS_EXPAND_FAIL    = 'NOTIFICATIONS_EXPAND_FAIL';
 export const NOTIFICATIONS_CLEAR      = 'NOTIFICATIONS_CLEAR';
 export const NOTIFICATIONS_SCROLL_TOP = 'NOTIFICATIONS_SCROLL_TOP';
 
-const messages = defineMessages({
+defineMessages({
   mention: { id: 'notification.mention', defaultMessage: '{name} mentioned you' },
 });
 
@@ -124,7 +124,7 @@ export function refreshNotificationsFail(error, skipLoading) {
 
 export function expandNotifications() {
   return (dispatch, getState) => {
-    const items  = getState().getIn(['notifications', 'items'], Immutable.List());
+    const items  = getState().getIn(['notifications', 'items'], ImmutableList());
 
     if (getState().getIn(['notifications', 'isLoading']) || items.size === 0) {
       return;

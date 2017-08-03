@@ -18,6 +18,6 @@ class BlockService < BaseService
   private
 
   def build_xml(block)
-    AtomSerializer.render(AtomSerializer.new.block_salmon(block))
+    OStatus::AtomSerializer.render(OStatus::AtomSerializer.new.block_salmon(block))
   end
 end

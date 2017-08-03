@@ -25,18 +25,18 @@ oc:
       confirmations:
         destroy: Sètz segur ?
       edit:
-        title: Modificar l'aplicacion
+        title: Modificar l’aplicacion
       form:
         error: Ops ! Verificatz vòstre formulari
       help:
-        native_redirect_uri: Emplegatz %{native_redirect_uri} per d'ensages locales
+        native_redirect_uri: Emplegatz %{native_redirect_uri} per d’ensages locales
         redirect_uri: Utilizatz una linha per URI
         scopes: Separatz los encastres amb d’espacis. Daissatz void per utilizar l’encastre per defaut.
       index:
         callback_url: URL de rapèl
         name: Nom
         new: Nòva aplicacion
-        title: Vòstra aplicacions
+        title: Vòstras aplicacions
       new:
         title: Nòva aplicacion
       show:
@@ -45,7 +45,7 @@ oc:
         callback_urls: urls de rapèls
         scopes: Encastres
         secret: Secret
-        title: 'Aplicacion: %{name}'
+        title: 'Aplicacion : %{name}'
     authorizations:
       buttons:
         authorize: Autorizar
@@ -62,7 +62,7 @@ oc:
       buttons:
         revoke: Revocar
       confirmations:
-        revoke: Ne sètz segur?
+        revoke: Ne sètz segur ?
       index:
         application: Aplicacion
         created_at: Creada lo
@@ -75,7 +75,7 @@ oc:
         credential_flow_not_configured: Lo flux de qualificacion del senhal del proprietari de la ressorça capitèt pas pr’amor que Doorkeeper.configure.resource_owner_from_credentials es pas configurat.
         invalid_client: L’autorizacion del client capitèt pas pr’amor que lo client es desconegut, l’autorizacion del client es pas enclús, o lo metòde d’autorizacion es pas suportat.
         invalid_grant: L’acòrdi d’autorizacion donadat es pas valid, expirat, revocat, una redireccion URI utilizat en la demanda d’autorizacion no correspond, o a estat desliurat a un altre client.
-        invalid_redirect_uri: L'URL de redireccion es pas valida.
+        invalid_redirect_uri: L’URL de redireccion es pas valida.
         invalid_request: La demanda a un paramètre que li manca, a una valor qu’es pas suportada, o quicòm mal format.
         invalid_resource_owner: La qualificacion del proprietari de la ressorça donada es pas valid, o lo proprietari de la ressorça se pòt pas trobar.
         invalid_scope: L’encastre demandat es pas valid, o mal format.
@@ -109,5 +109,5 @@ oc:
         title: Cal una autorizacion OAuth
     scopes:
       follow: sègre, blocar, quitar de blocar e quitar de sègre de comptes
-      read: legissètz las donadas de vòstre compte
-      write: publicatz per vos
+      read: legir las donadas de vòstre compte
+      write: publicar per vos

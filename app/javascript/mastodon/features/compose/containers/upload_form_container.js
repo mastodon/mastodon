@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import UploadForm from '../components/upload_form';
 import { undoUploadCompose } from '../../../actions/compose';
 
-const mapStateToProps = (state, props) => ({
+const mapStateToProps = state => ({
   media: state.getIn(['compose', 'media_attachments']),
 });
 
