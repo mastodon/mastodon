@@ -14,7 +14,12 @@ class Api::V1::Timelines::TagController < Api::BaseController
   private
 
   def load_tag
-    @tag = Tag.find_by(name: params[:id].downcase)
+    #@tag = Tag.find_by(name: params[:id].downcase)
+    name_list = params[:id].downcase.split(' ')
+    @tag = Tag.where(name: name_list)
+    if @tag.length != name_list.length
+      @tag = nil
+    end
   end
 
   def load_statuses
