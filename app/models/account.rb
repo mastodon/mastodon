@@ -257,3 +257,5 @@ class Account < ApplicationRecord
     self.domain = TagManager.instance.normalize_domain(domain)
   end
 end
+
+Account.include(Friends::FavouriteTagsExtension)

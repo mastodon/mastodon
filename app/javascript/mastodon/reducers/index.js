@@ -18,6 +18,7 @@ import status_lists from './status_lists';
 import cards from './cards';
 import reports from './reports';
 import contexts from './contexts';
+import favourite_tags from './favourite_tags';
 
 export default combineReducers({
   timelines,
@@ -39,4 +40,5 @@ export default combineReducers({
   cards,
   reports,
   contexts,
+  favourite_tags,
 });

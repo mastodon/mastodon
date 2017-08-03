@@ -202,8 +202,6 @@ Rails.application.routes.draw do
           post :unmute
         end
       end
-
-      resources :favourite_tags, only: [:index]
     end
 
     namespace :web do
