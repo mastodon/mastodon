@@ -3,7 +3,7 @@
 
 = simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f|
   = render 'shared/error_messages', object: resource
-  = f.input :reset_password_token, as: :hidden
+  = f.input :reset_password_token, as: :hidden, wrapper: :hidden
 
   = f.input :password, autofocus: true, placeholder: t('simple_form.labels.defaults.new_password'), input_html: { 'aria-label' => t('simple_form.labels.defaults.new_password'), :autocomplete => 'off' }
   = f.input :password_confirmation, placeholder: t('simple_form.labels.defaults.confirm_new_password'), input_html: { 'aria-label' => t('simple_form.labels.defaults.confirm_new_password'), :autocomplete => 'off' }
