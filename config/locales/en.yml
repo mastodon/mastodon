@@ -3,12 +3,16 @@ en:
   about:
     about_mastodon_html: Mastodon is a social network based on open web protocols and free, open-source software. It is decentralized like e-mail.
     about_this: About
-    business_email: 'Business e-mail:'
     closed_registrations: Registrations are currently closed on this instance. However! You can find a different instance to make an account on and get access to the very same network from there.
     contact: Contact
+    contact_missing: Not set
+    contact_unavailable: N/A
     description_headline: What is %{domain}?
     domain_count_after: other instances
     domain_count_before: Connected to
+    extended_description_html: |
+      <h3>A good place for rules</h3>
+      <p>The extended description has not been set up yet.</p>
     features:
       humane_approach_body: Learning from failures of other networks, Mastodon aims to make ethical design choices to combat the misuse of social media.
       humane_approach_title: A more humane approach
@@ -20,18 +24,14 @@ en:
       within_reach_title: Always within reach
     find_another_instance: Find another instance
     generic_description: "%{domain} is one server in the network"
-    get_started: Get started
     hosted_on: Mastodon hosted on %{domain}
     learn_more: Learn more
-    links: Links
     other_instances: Instance list
     source_code: Source code
     status_count_after: statuses
     status_count_before: Who authored
-    terms: Terms
     user_count_after: users
     user_count_before: Home to
-    version: Version
     what_is_mastodon: What is Mastodon?
   accounts:
     follow: Follow
@@ -44,15 +44,6 @@ en:
     remote_follow: Remote follow
     reserved_username: The username is reserved
     unfollow: Unfollow
-  activitypub:
-    activity:
-      announce:
-        name: "%{account_name} shared an activity."
-      create:
-        name: "%{account_name} created a note."
-    outbox:
-      name: "%{account_name}'s Outbox"
-      summary: A collection of activities from user %{account_name}.
   admin:
     accounts:
       are_you_sure: Are you sure?
@@ -117,13 +108,15 @@ en:
         create: Create block
         hint: The domain block will not prevent creation of account entries in the database, but will retroactively and automatically apply specific moderation methods on those accounts.
         severity:
-          desc_html: "<strong>Silence</strong> will make the account's posts invisible to anyone who isn't following them. <strong>Suspend</strong> will remove all of the account's content, media, and profile data."
+          desc_html: "<strong>Silence</strong> will make the account's posts invisible to anyone who isn't following them. <strong>Suspend</strong> will remove all of the account's content, media, and profile data. Use <strong>None</strong> if you just want to reject media files."
+          noop: None
           silence: Silence
           suspend: Suspend
         title: New domain block
       reject_media: Reject media files
       reject_media_hint: Removes locally stored media files and refuses to download any in the future. Irrelevant for suspensions
       severities:
+        noop: None
         silence: Silence
         suspend: Suspend
       severity: Severity
@@ -194,12 +187,27 @@ en:
         desc_html: Display public timeline on landing page
         title: Timeline preview
       title: Site Settings
+    statuses:
+      back_to_account: Back to account page
+      batch:
+        delete: Delete
+        nsfw_off: NSFW OFF
+        nsfw_on: NSFW ON
+      execute: Execute
+      failed_to_execute: Failed to execute
+      media:
+        hide: Hide media
+        show: Show media
+        title: Media
+      no_media: No media
+      title: Account statuses
+      with_media: With media
     subscriptions:
       callback_url: Callback URL
       confirmed: Confirmed
       expires_in: Expires in
       last_delivery: Last delivery
-      title: PubSubHubbub
+      title: WebSub
       topic: Topic
     title: Administration
   admin_mailer:
@@ -207,6 +215,7 @@ en:
       body: "%{reporter} has reported %{target}"
       subject: New report for %{instance} (#%{id})
   application_mailer:
+    salutation: '%{name},'
     settings: 'Change e-mail preferences: %{link}'
     signature: Mastodon notifications from %{instance}
     view: 'View:'
@@ -266,7 +275,7 @@ en:
       content: Security verification failed. Are you blocking cookies?
       title: Security verification failed
     '429': Throttled
-    noscript: To use Mastodon, please enable JavaScript.
+    noscript: To use the Mastodon web application, please enable JavaScript. Alternatively, find a native app for Mastodon for your platform.
   exports:
     blocks: You block
     csv: CSV
@@ -335,6 +344,23 @@ en:
     next: Next
     prev: Prev
     truncate: "&hellip;"
+  push_notifications:
+    favourite:
+      title: "%{name} favourited your status"
+    follow:
+      title: "%{name} is now following you"
+    group:
+      title: "%{count} notifications"
+    mention:
+      action_boost: Boost
+      action_expand: Show more
+      action_favourite: Favourite
+      title: "%{name} mentioned you"
+    reblog:
+      title: "%{name} boosted your status"
+    subscribed:
+      body: You can now receive push notifications.
+      title: Subscription registered!
   remote_follow:
     acct: Enter your username@domain you want to follow from
     missing_resource: Could not find the required redirect URL for your account
@@ -376,6 +402,8 @@ en:
       windows: Windows
       windows_mobile: Windows Mobile
       windows_phone: Windows Phone
+    revoke: Revoke
+    revoke_success: Session successfully revoked
     title: Sessions
   settings:
     authorized_apps: Authorized apps
@@ -471,7 +499,7 @@ en:
 
       <p>This document is CC-BY-SA. It was last updated May 31, 2013.</p>
 
-      <p>Originally adapted from the <a href="https://github.com/discourse/discourse">Discourse privacy policy</a>.
+      <p>Originally adapted from the <a href="https://github.com/discourse/discourse">Discourse privacy policy</a>.</p>
     title: "%{instance} Terms of Service and Privacy Policy"
   time:
     formats:

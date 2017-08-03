@@ -6,7 +6,7 @@ import StatusContainer from '../containers/status_container';
 import LoadMore from './load_more';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import IntersectionObserverWrapper from '../features/ui/util/intersection_observer_wrapper';
-import { debounce } from 'lodash';
+import { throttle } from 'lodash';
 
 export default class StatusList extends ImmutablePureComponent {
 
@@ -30,37 +30,43 @@ export default class StatusList extends ImmutablePureComponent {
 
   intersectionObserverWrapper = new IntersectionObserverWrapper();
 
-  handleScroll = debounce((e) => {
-    const { scrollTop, scrollHeight, clientHeight } = e.target;
-    const offset = scrollHeight - scrollTop - clientHeight;
-    this._oldScrollPosition = scrollHeight - scrollTop;
+  handleScroll = throttle(() => {
+    if (this.node) {
+      const { scrollTop, scrollHeight, clientHeight } = this.node;
+      const offset = scrollHeight - scrollTop - clientHeight;
+      this._oldScrollPosition = scrollHeight - scrollTop;
 
-    if (250 > offset && this.props.onScrollToBottom && !this.props.isLoading) {
-      this.props.onScrollToBottom();
-    } else if (scrollTop < 100 && this.props.onScrollToTop) {
-      this.props.onScrollToTop();
-    } else if (this.props.onScroll) {
-      this.props.onScroll();
+      if (400 > offset && this.props.onScrollToBottom && !this.props.isLoading) {
+        this.props.onScrollToBottom();
+      } else if (scrollTop < 100 && this.props.onScrollToTop) {
+        this.props.onScrollToTop();
+      } else if (this.props.onScroll) {
+        this.props.onScroll();
+      }
     }
-  }, 200, {
+  }, 150, {
     trailing: true,
   });
 
   componentDidMount () {
     this.attachScrollListener();
     this.attachIntersectionObserver();
+
+    // Handle initial scroll posiiton
+    this.handleScroll();
   }
 
   componentDidUpdate (prevProps) {
     // Reset the scroll position when a new toot comes in in order not to
     // jerk the scrollbar around if you're already scrolled down the page.
-    if (prevProps.statusIds.size < this.props.statusIds.size &&
-        prevProps.statusIds.first() !== this.props.statusIds.first() &&
-        this._oldScrollPosition &&
-        this.node.scrollTop > 0) {
-      let newScrollTop = this.node.scrollHeight - this._oldScrollPosition;
-      if (this.node.scrollTop !== newScrollTop) {
-        this.node.scrollTop = newScrollTop;
+    if (prevProps.statusIds.size < this.props.statusIds.size && this._oldScrollPosition && this.node.scrollTop > 0) {
+      if (prevProps.statusIds.first() !== this.props.statusIds.first()) {
+        let newScrollTop = this.node.scrollHeight - this._oldScrollPosition;
+        if (this.node.scrollTop !== newScrollTop) {
+          this.node.scrollTop = newScrollTop;
+        }
+      } else {
+        this._oldScrollPosition = this.node.scrollHeight - this.node.scrollTop;
       }
     }
   }
@@ -98,24 +104,46 @@ export default class StatusList extends ImmutablePureComponent {
     this.props.onScrollToBottom();
   }
 
+  handleKeyDown = (e) => {
+    if (['PageDown', 'PageUp', 'End', 'Home'].includes(e.key)) {
+      const article = (() => {
+        switch (e.key) {
+        case 'PageDown':
+          return e.target.nodeName === 'ARTICLE' && e.target.nextElementSibling;
+        case 'PageUp':
+          return e.target.nodeName === 'ARTICLE' && e.target.previousElementSibling;
+        case 'End':
+          return this.node.querySelector('[role="feed"] > article:last-of-type');
+        case 'Home':
+          return this.node.querySelector('[role="feed"] > article:first-of-type');
+        default:
+          return null;
+        }
+      })();
+
+
+      if (article) {
+        e.preventDefault();
+        article.focus();
+        article.scrollIntoView();
+      }
+    }
+  }
+
   render () {
     const { statusIds, scrollKey, trackScroll, shouldUpdateScroll, isLoading, hasMore, prepend, emptyMessage } = this.props;
 
-    let loadMore       = null;
+    const loadMore     = <LoadMore visible={!isLoading && statusIds.size > 0 && hasMore} onClick={this.handleLoadMore} />;
     let scrollableArea = null;
-
-    if (!isLoading && statusIds.size > 0 && hasMore) {
-      loadMore = <LoadMore onClick={this.handleLoadMore} />;
-    }
 
     if (isLoading || statusIds.size > 0 || !emptyMessage) {
       scrollableArea = (
         <div className='scrollable' ref={this.setRef}>
-          <div className='status-list'>
+          <div role='feed' className='status-list' onKeyDown={this.handleKeyDown}>
             {prepend}
 
-            {statusIds.map((statusId) => {
-              return <StatusContainer key={statusId} id={statusId} intersectionObserverWrapper={this.intersectionObserverWrapper} />;
+            {statusIds.map((statusId, index) => {
+              return <StatusContainer key={statusId} id={statusId} index={index} listLength={statusIds.size} intersectionObserverWrapper={this.intersectionObserverWrapper} />;
             })}
 
             {loadMore}

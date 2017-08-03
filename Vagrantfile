@@ -35,9 +35,10 @@ sudo apt-get install \
   postgresql-contrib \
   protobuf-compiler \
   yarn \
+  libicu-dev \
+  libidn11-dev \
   libprotobuf-dev \
   libreadline-dev \
-  libicu-dev \
   -y
 
 # Install rvm

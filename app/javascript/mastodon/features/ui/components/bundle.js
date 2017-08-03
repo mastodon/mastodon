@@ -52,13 +52,7 @@ class Bundle extends React.Component {
   load = (props) => {
     const { fetchComponent, onFetch, onFetchSuccess, onFetchFail, renderDelay } = props || this.props;
 
-    this.setState({ mod: undefined });
     onFetch();
-
-    if (renderDelay !== 0) {
-      this.timestamp = new Date();
-      this.timeout = setTimeout(() => this.setState({ forceRender: true }), renderDelay);
-    }
 
     if (Bundle.cache[fetchComponent.name]) {
       const mod = Bundle.cache[fetchComponent.name];
@@ -66,6 +60,13 @@ class Bundle extends React.Component {
       this.setState({ mod: mod.default });
       onFetchSuccess();
       return Promise.resolve();
+    }
+
+    this.setState({ mod: undefined });
+
+    if (renderDelay !== 0) {
+      this.timestamp = new Date();
+      this.timeout = setTimeout(() => this.setState({ forceRender: true }), renderDelay);
     }
 
     return fetchComponent()

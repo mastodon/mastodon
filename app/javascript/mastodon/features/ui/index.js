@@ -43,15 +43,21 @@ import '../../components/status';
 
 const mapStateToProps = state => ({
   systemFontUi: state.getIn(['meta', 'system_font_ui']),
+  isComposing: state.getIn(['compose', 'is_composing']),
 });
 
 @connect(mapStateToProps)
 export default class UI extends React.PureComponent {
 
+  static contextTypes = {
+    router: PropTypes.object.isRequired,
+  }
+
   static propTypes = {
     dispatch: PropTypes.func.isRequired,
     children: PropTypes.node,
     systemFontUi: PropTypes.bool,
+    isComposing: PropTypes.bool,
   };
 
   state = {
@@ -121,6 +127,14 @@ export default class UI extends React.PureComponent {
     this.setState({ draggingOver: false });
   }
 
+  handleServiceWorkerPostMessage = ({ data }) => {
+    if (data.type === 'navigate') {
+      this.context.router.history.push(data.path);
+    } else {
+      console.warn('Unknown message type:', data.type); // eslint-disable-line no-console
+    }
+  }
+
   componentWillMount () {
     window.addEventListener('resize', this.handleResize, { passive: true });
     document.addEventListener('dragenter', this.handleDragEnter, false);
@@ -129,8 +143,25 @@ export default class UI extends React.PureComponent {
     document.addEventListener('dragleave', this.handleDragLeave, false);
     document.addEventListener('dragend', this.handleDragEnd, false);
 
+    if ('serviceWorker' in  navigator) {
+      navigator.serviceWorker.addEventListener('message', this.handleServiceWorkerPostMessage);
+    }
+
     this.props.dispatch(refreshHomeTimeline());
     this.props.dispatch(refreshNotifications());
+  }
+
+  shouldComponentUpdate (nextProps) {
+    if (nextProps.isComposing !== this.props.isComposing) {
+      // Avoid expensive update just to toggle a class
+      this.node.classList.toggle('is-composing', nextProps.isComposing);
+
+      return false;
+    }
+
+    // Why isn't this working?!?
+    // return super.shouldComponentUpdate(nextProps, nextState);
+    return true;
   }
 
   componentWillUnmount () {

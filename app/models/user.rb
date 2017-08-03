@@ -53,6 +53,7 @@ class User < ApplicationRecord
   scope :admins,    -> { where(admin: true) }
   scope :confirmed, -> { where.not(confirmed_at: nil) }
   scope :inactive, -> { where(arel_table[:current_sign_in_at].lt(ACTIVE_DURATION.ago)) }
+  scope :active, -> { confirmed.where(arel_table[:current_sign_in_at].gteq(ACTIVE_DURATION.ago)).joins(:account).where(accounts: { suspended: false }) }
   scope :matches_email, ->(value) { where(arel_table[:email].matches("#{value}%")) }
   scope :with_recent_ip_address, ->(value) { where(arel_table[:current_sign_in_ip].eq(value).or(arel_table[:last_sign_in_ip].eq(value))) }
 
@@ -83,6 +84,10 @@ class User < ApplicationRecord
     settings.default_sensitive
   end
 
+  def setting_unfollow_modal
+    settings.unfollow_modal
+  end
+
   def setting_boost_modal
     settings.boost_modal
   end
@@ -99,6 +104,10 @@ class User < ApplicationRecord
     settings.system_font_ui
   end
 
+  def setting_noindex
+    settings.noindex
+  end
+
   def activate_session(request)
     session_activations.activate(session_id: SecureRandom.hex,
                                  user_agent: request.user_agent,
@@ -111,6 +120,10 @@ class User < ApplicationRecord
 
   def session_active?(id)
     session_activations.active? id
+  end
+
+  def web_push_subscription(session)
+    session.web_push_subscription.nil? ? nil : session.web_push_subscription.as_payload
   end
 
   protected

@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 module Remotable
-  include HttpHelper
   extend ActiveSupport::Concern
 
   included do
@@ -20,7 +19,7 @@ module Remotable
         return if !%w(http https).include?(parsed_url.scheme) || parsed_url.host.empty? || self[attribute_name] == url
 
         begin
-          response = http_client.get(url)
+          response = Request.new(:get, url).perform
 
           return if response.code != 200
 

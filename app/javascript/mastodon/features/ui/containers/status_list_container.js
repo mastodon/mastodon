@@ -10,31 +10,36 @@ const makeGetStatusIds = () => createSelector([
   (state, { type }) => state.getIn(['timelines', type, 'items'], ImmutableList()),
   (state)           => state.get('statuses'),
   (state)           => state.getIn(['meta', 'me']),
-], (columnSettings, statusIds, statuses, me) => statusIds.filter(id => {
-  const statusForId = statuses.get(id);
-  let showStatus    = true;
+], (columnSettings, statusIds, statuses, me) => {
+  const rawRegex = columnSettings.getIn(['regex', 'body'], '').trim();
+  let regex      = null;
 
-  if (columnSettings.getIn(['shows', 'reblog']) === false) {
-    showStatus = showStatus && statusForId.get('reblog') === null;
+  try {
+    regex = rawRegex && new RegExp(rawRegex, 'i');
+  } catch (e) {
+    // Bad regex, don't affect filters
   }
 
-  if (columnSettings.getIn(['shows', 'reply']) === false) {
-    showStatus = showStatus && (statusForId.get('in_reply_to_id') === null || statusForId.get('in_reply_to_account_id') === me);
-  }
+  return statusIds.filter(id => {
+    const statusForId = statuses.get(id);
+    let showStatus    = true;
 
-  if (columnSettings.getIn(['regex', 'body'], '').trim().length > 0) {
-    try {
-      if (showStatus) {
-        const regex = new RegExp(columnSettings.getIn(['regex', 'body']).trim(), 'i');
-        showStatus = !regex.test(statusForId.get('reblog') ? statuses.getIn([statusForId.get('reblog'), 'search_index']) : statusForId.get('search_index'));
-      }
-    } catch(e) {
-      // Bad regex, don't affect filters
+    if (columnSettings.getIn(['shows', 'reblog']) === false) {
+      showStatus = showStatus && statusForId.get('reblog') === null;
     }
-  }
 
-  return showStatus;
-}));
+    if (columnSettings.getIn(['shows', 'reply']) === false) {
+      showStatus = showStatus && (statusForId.get('in_reply_to_id') === null || statusForId.get('in_reply_to_account_id') === me);
+    }
+
+    if (showStatus && regex && statusForId.get('account') !== me) {
+      const searchIndex = statusForId.get('reblog') ? statuses.getIn([statusForId.get('reblog'), 'search_index']) : statusForId.get('search_index');
+      showStatus = !regex.test(searchIndex);
+    }
+
+    return showStatus;
+  });
+});
 
 const makeMapStateToProps = () => {
   const getStatusIds = makeGetStatusIds();
