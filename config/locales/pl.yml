@@ -109,12 +109,14 @@ pl:
         hint: Blokada domen nie zabroni tworzenia wpisów kont w bazie danych, ale pozwoli na automatyczną moderację kont do nich należących.
         severity:
           desc_html: "<strong>Wyciszenie</strong> uczyni wpisy użytkownika widoczne tylko dla osób, które go śledzą. <strong>Zawieszenie</strong> spowoduje usunięcie całej zawartości dodanej przez użytkownika."
+          noop: Nic nie rób
           silence: Wycisz
           suspend: Zawieś
         title: Nowa blokada domen
       reject_media: Odrzucaj pliki multimedialne
       reject_media_hint: Usuwa przechowywane lokalnie pliki multimedialne i nie pozwala na ich pobieranie. Nieprzydatne przy zawieszeniu
       severities:
+        noop: Nic nie rób
         silence: Wycisz
         suspend: Zawieś
       severity: Priorytet
@@ -213,6 +215,7 @@ pl:
       body: Użytkownik %{reporter} zgłosił %{target}
       subject: Nowe zgłoszenie na %{instance} (#%{id})
   application_mailer:
+    salutation: '%{name},'
     settings: 'Zmień ustawienia powiadamiania: %{link}'
     signature: Powiadomienie Mastodona z instancji %{instance}
     view: 'Zobacz:'
@@ -336,8 +339,8 @@ pl:
       body: "%{name} poprosił o możliwość śledzenia Cię"
       subject: 'Prośba o możliwość śledzenia: %{name}'
     mention:
-      body: "%{name} wspomniał Cię w:"
-      subject: "%{name} Cię wspomniał"
+      body: "%{name} wspomniał o Tobie w:"
+      subject: "%{name} wspomniał o Tobie"
     reblog:
       body: 'Twój wpis został podbity przez %{name}:'
       subject: Twój wpis został podbity przez %{name}
