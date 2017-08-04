@@ -214,6 +214,7 @@ oc:
       body: "%{reporter} a senhalat %{target}"
       subject: Novèl senhalament per %{instance} (#%{id})
   application_mailer:
+    salutation: '%{name},'
     settings: 'Cambiar las preferéncias de corrièl : %{link}'
     signature: Notificacion de Mastodon sus %{instance}
     view: 'Veire :'
@@ -232,6 +233,7 @@ oc:
     resend_confirmation: Tornar mandar las instruccions de confirmacion
     reset_password: Reïnicializar lo senhal
     set_new_password: Picar un nòu senhal
+    invalid_reset_password_token: Ligam de reïnicializacion invalid o acabat. Tornatz ensajar se vos plai.
   authorize_follow:
     error: O planhèm, i a agut una error al moment de cercar lo compte
     follow: Sègre
