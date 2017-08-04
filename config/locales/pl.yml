@@ -215,7 +215,7 @@ pl:
       body: Użytkownik %{reporter} zgłosił %{target}
       subject: Nowe zgłoszenie na %{instance} (#%{id})
   application_mailer:
-    salutation: '%{name},'
+    salutation: "%{name},"
     settings: 'Zmień ustawienia powiadamiania: %{link}'
     signature: Powiadomienie Mastodona z instancji %{instance}
     view: 'Zobacz:'
@@ -243,7 +243,6 @@ pl:
       close: Ewentualnie, możesz po prostu zamknąć tą stronę.
       return: Powróć do strony użytkownika
       web: Przejdź do sieci
-    prompt_html: 'Ty (<strong>%{self}</strong>) chcesz śledzić:'
     title: Śledź %{acct}
   datetime:
     distance_in_words:
