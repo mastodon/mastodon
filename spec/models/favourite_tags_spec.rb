@@ -7,7 +7,7 @@ RSpec.describe FavouriteTag, type: :model do
     let(:account) { Fabricate :account }
     let(:tag) { Tag.new(name: 'unko unko') }
 
-    it { expect(FavouriteTag.new(account: account, tag: tag)).not_to be_valid }
+    pending { expect(FavouriteTag.new(account: account, tag: tag)).not_to be_valid }
   end
 
   describe 'deletion' do
