@@ -7,14 +7,12 @@ class IntentsController < ApplicationController
     if uri.scheme == 'web+mastodon'
       case uri.host
       when 'follow'
-        redirect_to authorize_follow_path(acct: uri.query_values['uri'].gsub(/\Aacct:/, ''))
+        return redirect_to authorize_follow_path(acct: uri.query_values['uri'].gsub(/\Aacct:/, ''))
       when 'share'
-        redirect_to share_path(text: uri.query_values['text'])
-      else
-        not_found
+        return redirect_to share_path(text: uri.query_values['text'])
       end
-    else
-      not_found
     end
+
+    not_found
   end
 end
