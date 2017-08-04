@@ -679,6 +679,7 @@ Users can use those for theming, hiding avatars etc via UserStyle
       const notifKind = {
         favourite: 'favourited',
         reblog: 'boosted',
+        reblogged_by: 'boosted',
       }[prepend];
 
       selectorAttribs[`data-${notifKind}-by`] = `@${account.get('acct')}`;
