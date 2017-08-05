@@ -5,6 +5,7 @@ class Web::NotificationSerializer < ActiveModel::Serializer
 
   class DataSerializer < ActiveModel::Serializer
     include RoutingHelper
+    include ActionView::Helpers::SanitizeHelper
 
     attributes :content, :nsfw, :url, :actions,
                :access_token, :message
