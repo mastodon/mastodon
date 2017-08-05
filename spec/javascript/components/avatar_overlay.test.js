@@ -24,11 +24,11 @@ describe('<Avatar />', () => {
 
   it('renders account static src as base of overlay avatar', () => {
     expect(overlay.find('.account__avatar-overlay-base'))
-      .to.have.style('background-image', `url(${account.avatar_static})`);
+      .to.have.style('background-image', `url(${account.get('avatar_static')})`);
   });
 
   it('renders friend static src as overlay of overlay avatar', () => {
     expect(overlay.find('.account__avatar-overlay-base'))
-      .to.have.style('background-image', `url(${friend.avatar_static})`);
+      .to.have.style('background-image', `url(${friend.get('avatar_static')})`);
   });
 });

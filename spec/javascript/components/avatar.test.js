@@ -18,7 +18,7 @@ describe('<Avatar />', () => {
 
   // Autoplay
   it('renders a div element with the given src as background', () => {
-    expect(animated.find('div')).to.have.style('background-image', `url(${account.avatar})`);
+    expect(animated.find('div')).to.have.style('background-image', `url(${account.get('avatar')})`);
   });
 
   it('renders a div element of the given size', () => {
@@ -29,7 +29,7 @@ describe('<Avatar />', () => {
 
   // Still
   it('renders a div element with the given static src as background if not autoplay', () => {
-    expect(still.find('div')).to.have.style('background-image', `url(${account.avatar_static})`);
+    expect(still.find('div')).to.have.style('background-image', `url(${account.get('avatar_static')})`);
   });
 
   it('renders a div element of the given size if not autoplay', () => {
