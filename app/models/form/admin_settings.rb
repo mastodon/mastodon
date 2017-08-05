@@ -24,6 +24,8 @@ class Form::AdminSettings
     :open_deletion=,
     :timeline_preview,
     :timeline_preview=,
+    :email_address_encode,
+    :email_address_encode=,
     to: Setting
   )
 end

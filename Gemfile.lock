@@ -24,6 +24,8 @@ GEM
       erubi (~> 1.4)
       rails-dom-testing (~> 2.0)
       rails-html-sanitizer (~> 1.0, >= 1.0.3)
+    actionview-encoded_mail_to (1.0.9)
+      rails
     active_model_serializers (0.10.6)
       actionpack (>= 4.1, < 6)
       activemodel (>= 4.1, < 6)
@@ -494,6 +496,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  actionview-encoded_mail_to
   active_model_serializers (~> 0.10)
   active_record_query_trace (~> 1.5)
   addressable (~> 2.5)
