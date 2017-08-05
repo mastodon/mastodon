@@ -28,7 +28,7 @@ describe('<Avatar />', () => {
   });
 
   it('renders friend static src as overlay of overlay avatar', () => {
-    expect(overlay.find('.account__avatar-overlay-base'))
+    expect(overlay.find('.account__avatar-overlay-overlay'))
       .to.have.style('background-image', `url(${friend.get('avatar_static')})`);
   });
 });
