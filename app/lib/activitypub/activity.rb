@@ -91,4 +91,19 @@ class ActivityPub::Activity
   def distribute_to_followers(status)
     DistributionWorker.perform_async(status.id)
   end
+
+  def delete_arrived_first?(uri)
+    key = "delete_upon_arrival:#{@account.id}:#{uri}"
+    
+    if redis.exists(key)
+      redis.del(key)
+      true
+    else
+      false
+    end
+  end
+
+  def delete_later!(uri)
+    redis.setex("delete_upon_arrival:#{@account.id}:#{uri}", 6.hours.seconds, uri)
+  end
 end

@@ -2,7 +2,7 @@
 
 class ActivityPub::Activity::Create < ActivityPub::Activity
   def perform
-    return if delete_arrived_first? || unsupported_object_type?
+    return if delete_arrived_first?(object_uri) || unsupported_object_type?
 
     status = Status.find_by(uri: object_uri)
 
@@ -131,10 +131,6 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
 
   def language_map?
     @object['contentMap'].is_a?(Hash) && !@object['contentMap'].empty?
-  end
-
-  def delete_arrived_first?
-    redis.exists("delete_upon_arrival:#{@account.id}:#{object_uri}")
   end
 
   def unsupported_object_type?
