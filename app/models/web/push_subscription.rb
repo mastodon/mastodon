@@ -18,8 +18,9 @@ class Web::PushSubscription < ApplicationRecord
   has_one :session_activation
 
   def push(notification)
-    # TODO: Make sure that the payload does not exceed 4KB - Webpush::PayloadTooLarge
-    push_payload(message_from(notification), 48.hours.seconds)
+    I18n.with_locale(session_activation.user.locale || I18n.default_locale) do
+      push_payload(message_from(notification), 48.hours.seconds)
+    end
   end
 
   def pushable?(notification)
@@ -39,6 +40,9 @@ class Web::PushSubscription < ApplicationRecord
   private
 
   def push_payload(message, ttl = 5.minutes.seconds)
+    # TODO: Make sure that the payload does not
+    # exceed 4KB - Webpush::PayloadTooLarge
+
     Webpush.payload_send(
       message: Oj.dump(message),
       endpoint: endpoint,
