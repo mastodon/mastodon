@@ -20,7 +20,7 @@
     = f.input :open_deletion, as: :boolean, wrapper: :with_label, label: t('admin.settings.registrations.deletion.title'), hint: t('admin.settings.registrations.deletion.desc_html')
 
   .fields-group
-    = f.input :mail_address_encode, as: :boolean, wrapper: :with_label, label: t('admin.settings.mail_address_encode.title'), hint: t('admin.settings.mail_address_encode.desc_html')
+    = f.input :email_address_encode, as: :boolean, wrapper: :with_label, label: t('admin.settings.email_address_encode.title'), hint: t('admin.settings.email_address_encode.desc_html')
 
   .fields-group
     = f.input :closed_registrations_message, as: :text, wrapper: :with_block_label, label: t('admin.settings.registrations.closed_message.title'), hint: t('admin.settings.registrations.closed_message.desc_html'), input_html: { rows: 8 }

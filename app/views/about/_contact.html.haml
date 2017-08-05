@@ -3,7 +3,7 @@
     = succeed ':' do
       = t 'about.contact'
     - if contact.site_contact_email.present?
-      - if Setting.mail_address_encode
+      - if Setting.email_address_encode
         = mail_to contact.site_contact_email, nil, title: contact.site_contact_email, encode: "javascript"
       - else
         = mail_to contact.site_contact_email, nil, title: contact.site_contact_email

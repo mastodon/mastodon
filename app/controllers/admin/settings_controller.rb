@@ -13,14 +13,14 @@ module Admin
       closed_registrations_message
       open_deletion
       timeline_preview
-      mail_address_encode
+      email_address_encode
     ).freeze
 
     BOOLEAN_SETTINGS = %w(
       open_registrations
       open_deletion
       timeline_preview
-      mail_address_encode
+      email_address_encode
     ).freeze
 
     def edit
