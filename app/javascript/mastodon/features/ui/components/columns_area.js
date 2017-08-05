@@ -55,7 +55,7 @@ export default class ColumnsArea extends ImmutablePureComponent {
     this.lastIndex = getIndex(this.context.router.history.location.pathname);
     this.setState({ shouldAnimate: true });
 
-    if (this.props.children !== prevProps.children) {
+    if (this.props.children !== prevProps.children && !this.props.singleColumn) {
       scrollRight(this.node);
     }
   }
