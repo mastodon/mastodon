@@ -22,8 +22,7 @@ module Paperclip
           return dst
         end
       end
-      tmp_file = Paperclip::TempfileFactory.new.generate(attachment.instance.file_file_name)
-      tmp_file << file.read
+      @file
     end
   end
 end
