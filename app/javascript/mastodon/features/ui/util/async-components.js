@@ -86,6 +86,10 @@ export function OnboardingModal () {
   return import(/* webpackChunkName: "modals/onboarding_modal" */'../components/onboarding_modal');
 }
 
+export function MuteModal () {
+  return import(/* webpackChunkName: "modals/mute_modal" */'../components/mute_modal');
+}
+
 export function ReportModal () {
   return import(/* webpackChunkName: "modals/report_modal" */'../components/report_modal');
 }
