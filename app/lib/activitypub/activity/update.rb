@@ -3,7 +3,7 @@
 class ActivityPub::Activity::Update < ActivityPub::Activity
   def perform
     case @object['type']
-    when 'Account'
+    when 'Person'
       update_account
     end
   end
@@ -12,11 +12,6 @@ class ActivityPub::Activity::Update < ActivityPub::Activity
 
   def update_account
     return if @account.uri != object_uri
-
-    if @object == object_uri
-      ActivityPub::FetchRemoteAccountService.new.call(object_uri)
-    else
-      ActivityPub::ProcessAccountService.new.call(@account.username, @account.domain, @object)
-    end
+    ActivityPub::ProcessAccountService.new.call(@account.username, @account.domain, @object)
   end
 end
