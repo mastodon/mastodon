@@ -194,11 +194,7 @@ Here, we render our component using all the things we've defined above.
           <div>
             <a href={account.get('url')} target='_blank' rel='noopener'>
               <span className='account__header__avatar'>
-                <Avatar
-                  src={account.get('avatar')}
-                  staticSrc={account.get('avatar_static')}
-                  size={90}
-                />
+                <Avatar account={account} size={90} />
               </span>
               <span
                 className='account__header__display-name'

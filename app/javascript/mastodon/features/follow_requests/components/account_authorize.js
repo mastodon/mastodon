@@ -32,7 +32,7 @@ export default class AccountAuthorize extends ImmutablePureComponent {
       <div className='account-authorize__wrapper'>
         <div className='account-authorize'>
           <Permalink href={account.get('url')} to={`/accounts/${account.get('id')}`} className='detailed-status__display-name'>
-            <div className='account-authorize__avatar'><Avatar src={account.get('avatar')} staticSrc={account.get('avatar_static')} size={48} /></div>
+            <div className='account-authorize__avatar'><Avatar account={account} size={48} /></div>
             <DisplayName account={account} />
           </Permalink>
 
