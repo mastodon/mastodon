@@ -74,17 +74,27 @@ functions are:
 
 \*********************************************************************/
 
+/*  "u" FLAG COMPATABILITY  */
+
+let compat_mode = false;
+try {
+  new RegExp('.', 'u');
+} catch (e) {
+  compat_mode = true;
+}
+
 /*  CONVENIENCE FUNCTIONS  */
 
-const unirex = str => new RegExp(str, 'u');
+const unirex = str => compat_mode ? new RegExp(str) : new RegExp(str, 'u');
 const rexstr = exp => '(?:' + exp.source + ')';
 
 /*  CHARACTER CLASSES  */
 
 const DOCUMENT_START    = /^/;
 const DOCUMENT_END      = /$/;
-const ALLOWED_CHAR      =  //  `c-printable` in the YAML 1.2 spec.
-  /[\t\n\r\x20-\x7e\x85\xa0-\ud7ff\ue000-\ufffd\u{10000}-\u{10FFFF}]/u;
+const ALLOWED_CHAR      =  unirex( //  `c-printable` in the YAML 1.2 spec.
+    compat_mode ? '[\t\n\r\x20-\x7e\x85\xa0-\ufffd]' : '[\t\n\r\x20-\x7e\x85\xa0-\ud7ff\ue000-\ufffd\u{10000}-\u{10FFFF}]'
+  );
 const WHITE_SPACE       = /[ \t]/;
 const INDENTATION       = / */;  //  Indentation must be only spaces.
 const LINE_BREAK        = /\r?\n|\r|<br\s*\/?>/;
