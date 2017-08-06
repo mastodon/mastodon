@@ -72,7 +72,7 @@ export default class HomeTimeline extends React.PureComponent {
     }
 
     return (
-      <Column ref={this.setRef}>
+      <Column ref={this.setRef} name='home'>
         <ColumnHeader
           icon='home'
           active={hasUnread}
