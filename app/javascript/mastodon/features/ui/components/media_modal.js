@@ -79,7 +79,11 @@ export default class MediaModal extends ImmutablePureComponent {
 
     if (media.size > 1) {
       media.forEach((item, i) => {
-        pagination.push(<li className='media-modal__list' key={i}><button tabIndex='0' className={`media-modal__button${i === index ? ' active' : ''}`} onClick={this.handleChangeIndex} data-index={i}>{i + 1}</button></li>);
+        const classes = ['media-modal__button'];
+        if (i === index) {
+          classes.push('media-modal__button--active');
+        }
+        pagination.push(<li className='media-modal__page-dot' key={i}><button tabIndex='0' className={classes.join(' ')} onClick={this.handleChangeIndex} data-index={i}>{i + 1}</button></li>);
       });
     }
 

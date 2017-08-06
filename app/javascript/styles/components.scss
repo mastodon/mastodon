@@ -3095,25 +3095,25 @@ button.icon-button.active i.fa-retweet {
   position: absolute;
   left: 0;
   bottom: -40px;
+}
 
-  .media-modal__list {
-    display: inline-block;
-  }
+.media-modal__page-dot {
+  display: inline-block;
+}
 
-  .media-modal__button {
-    background-color: $white;
-    height: 12px;
-    width: 12px;
-    border-radius: 6px;
-    margin: 10px;
-    padding: 0;
-    border: 0;
-    font-size: 0;
+.media-modal__button {
+  background-color: $white;
+  height: 12px;
+  width: 12px;
+  border-radius: 6px;
+  margin: 10px;
+  padding: 0;
+  border: 0;
+  font-size: 0;
+}
 
-    &.active {
-      background-color: $ui-highlight-color;
-    }
-  }
+.media-modal__button--active {
+  background-color: $ui-highlight-color;
 }
 
 .media-modal__close {
