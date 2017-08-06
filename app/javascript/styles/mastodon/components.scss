@@ -3491,7 +3491,8 @@ button.icon-button.active i.fa-retweet {
 .boost-modal,
 .confirmation-modal,
 .report-modal,
-.actions-modal {
+.actions-modal,
+.mute-modal {
   background: lighten($ui-secondary-color, 8%);
   color: $ui-base-color;
   border-radius: 8px;
@@ -3541,6 +3542,7 @@ button.icon-button.active i.fa-retweet {
 
 .boost-modal__action-bar,
 .confirmation-modal__action-bar,
+.mute-modal__action-bar,
 .report-modal__action-bar {
   display: flex;
   justify-content: space-between;
@@ -3649,8 +3651,10 @@ button.icon-button.active i.fa-retweet {
   }
 }
 
-.confirmation-modal__action-bar {
-  .confirmation-modal__cancel-button {
+.confirmation-modal__action-bar,
+.mute-modal__action-bar {
+  .confirmation-modal__cancel-button,
+  .mute-modal__cancel-button {
     background-color: transparent;
     color: darken($ui-secondary-color, 34%);
     font-size: 14px;
@@ -3665,6 +3669,7 @@ button.icon-button.active i.fa-retweet {
 }
 
 .confirmation-modal__container,
+.mute-modal__container,
 .report-modal__target {
   padding: 30px;
   font-size: 16px;
