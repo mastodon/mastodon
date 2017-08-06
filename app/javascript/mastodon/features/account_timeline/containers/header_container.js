@@ -7,7 +7,6 @@ import {
   unfollowAccount,
   blockAccount,
   unblockAccount,
-  muteAccount,
   unmuteAccount,
 } from '../../../actions/accounts';
 import { mentionCompose } from '../../../actions/compose';
