@@ -23,7 +23,7 @@ class ActivityPub::Activity::Undo < ActivityPub::Activity
       delete_later!(object_uri)
     else
       RemoveStatusService.new.call(status)
-    end 
+    end
   end
 
   def undo_follow
