@@ -216,16 +216,9 @@ if we have a `friend` and a normal `<Avatar>` if we don't.
         >
           <div className='status__avatar'>{
             friend ? (
-              <AvatarOverlay
-                staticSrc={account.get('avatar_static')}
-                overlaySrc={friend.get('avatar_static')}
-              />
+              <AvatarOverlay account={account} friend={friend} />
             ) : (
-              <Avatar
-                src={account.get('avatar')}
-                staticSrc={account.get('avatar_static')}
-                size={48}
-              />
+              <Avatar account={account} size={48} />
             )
           }</div>
           <DisplayName account={account} />
