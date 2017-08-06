@@ -11,6 +11,12 @@ class ActivityPub::Activity::Update < ActivityPub::Activity
   private
 
   def update_account
-    raise NotImplementedError
+    return if @account.uri != object_uri
+
+    if @object == object_uri
+      ActivityPub::FetchRemoteAccountService.new.call(object_uri)
+    else
+      ActivityPub::ProcessAccountService.new.call(@account.username, @account.domain, @object)
+    end
   end
 end

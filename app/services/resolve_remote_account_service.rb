@@ -2,6 +2,7 @@
 
 class ResolveRemoteAccountService < BaseService
   include OStatus2::MagicKey
+  include JsonLdHelper
 
   DFRN_NS = 'http://purl.org/macgirvin/dfrn/1.0'
 
@@ -12,6 +13,7 @@ class ResolveRemoteAccountService < BaseService
   # @return [Account]
   def call(uri, update_profile = true, redirected = nil)
     @username, @domain = uri.split('@')
+    @update_profile    = update_profile
 
     return Account.find_local(@username) if TagManager.instance.local_domain?(@domain)
 
@@ -42,10 +44,11 @@ class ResolveRemoteAccountService < BaseService
       if lock.acquired?
         @account = Account.find_remote(@username, @domain)
 
-        create_account if @account.nil?
-        update_account
-
-        update_account_profile if update_profile
+        if activitypub_ready?
+          handle_activitypub
+        else
+          handle_ostatus
+        end
       end
     end
 
@@ -58,16 +61,45 @@ class ResolveRemoteAccountService < BaseService
   private
 
   def links_missing?
-    @webfinger.link('http://schemas.google.com/g/2010#updates-from').nil? ||
+    !(activitypub_ready? || ostatus_ready?)
+  end
+
+  def ostatus_ready?
+    !(@webfinger.link('http://schemas.google.com/g/2010#updates-from').nil? ||
       @webfinger.link('salmon').nil? ||
       @webfinger.link('http://webfinger.net/rel/profile-page').nil? ||
       @webfinger.link('magic-public-key').nil? ||
       canonical_uri.nil? ||
-      hub_url.nil?
+      hub_url.nil?)
   end
 
   def webfinger_update_due?
     @account.nil? || @account.last_webfingered_at.nil? || @account.last_webfingered_at <= 1.day.ago
+  end
+
+  def activitypub_ready?
+    !@webfinger.link('self').nil? &&
+      ['application/activity+json', 'application/ld+json; profile="https://www.w3.org/ns/activitystreams"'].include?(@webfinger.link('self').type)
+  end
+
+  def handle_ostatus
+    create_account if @account.nil?
+    update_account
+    update_account_profile if update_profile?
+  end
+
+  def update_profile?
+    @update_profile
+  end
+
+  def handle_activitypub
+    json = fetch_resource(actor_url)
+
+    return unless supported_context?(json) && json['type'] == 'Person'
+
+    @account = ActivityPub::ProcessAccountService.new.call(@username, @domain, json)
+  rescue Oj::ParseError
+    nil
   end
 
   def create_account
@@ -81,6 +113,7 @@ class ResolveRemoteAccountService < BaseService
 
   def update_account
     @account.last_webfingered_at = Time.now.utc
+    @account.protocol            = :ostatus
     @account.remote_url          = atom_url
     @account.salmon_url          = salmon_url
     @account.url                 = url
@@ -109,6 +142,10 @@ class ResolveRemoteAccountService < BaseService
 
   def salmon_url
     @salmon_url ||= @webfinger.link('salmon').href
+  end
+
+  def actor_url
+    @actor_url ||= @webfinger.link('self').href
   end
 
   def url
