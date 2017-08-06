@@ -15,7 +15,7 @@ export default class AutosuggestAccount extends ImmutablePureComponent {
 
     return (
       <div className='autosuggest-account'>
-        <div className='autosuggest-account-icon'><Avatar src={account.get('avatar')} staticSrc={account.get('avatar_static')} size={18} /></div>
+        <div className='autosuggest-account-icon'><Avatar account={account} size={18} /></div>
         <DisplayName account={account} />
       </div>
     );
