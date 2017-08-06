@@ -39,10 +39,7 @@ import {
   unreblog,
   unfavourite,
 } from '../../../mastodon/actions/interactions';
-import {
-  blockAccount,
-  muteAccount,
-} from '../../../mastodon/actions/accounts';
+import { blockAccount } from '../../../mastodon/actions/accounts';
 import { initMuteModal } from '../../../mastodon/actions/mutes';
 import {
   muteStatus,

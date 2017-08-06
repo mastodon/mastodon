@@ -19,7 +19,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     onConfirm(account, notifications) {
-      dispatch(muteAccount(account.get('id'), notifications))
+      dispatch(muteAccount(account.get('id'), notifications));
     },
 
     onClose() {
@@ -35,6 +35,7 @@ const mapDispatchToProps = dispatch => {
 @connect(mapStateToProps, mapDispatchToProps)
 @injectIntl
 export default class MuteModal extends React.PureComponent {
+
   static propTypes = {
     isSubmitting: PropTypes.bool.isRequired,
     account: PropTypes.object.isRequired,
@@ -73,14 +74,15 @@ export default class MuteModal extends React.PureComponent {
       <div className='modal-root__modal mute-modal'>
         <div className='mute-modal__container'>
           <p>
-            <FormattedMessage id='confirmations.mute.message'
+            <FormattedMessage
+              id='confirmations.mute.message'
               defaultMessage='Are you sure you want to mute {name}?'
               values={{ name: <strong>@{account.get('acct')}</strong> }}
             />
           </p>
           <p>
             <FormattedMessage id='mute_modal.hide_notifications' defaultMessage='Hide notifications from this user?' />
-            <input type="checkbox" checked={notifications} onChange={this.toggleNotifications} />
+            <input type='checkbox' checked={notifications} onChange={this.toggleNotifications} />
           </p>
         </div>
 
@@ -95,4 +97,5 @@ export default class MuteModal extends React.PureComponent {
       </div>
     );
   }
+
 }
