@@ -109,12 +109,14 @@ pl:
         hint: Blokada domen nie zabroni tworzenia wpisów kont w bazie danych, ale pozwoli na automatyczną moderację kont do nich należących.
         severity:
           desc_html: "<strong>Wyciszenie</strong> uczyni wpisy użytkownika widoczne tylko dla osób, które go śledzą. <strong>Zawieszenie</strong> spowoduje usunięcie całej zawartości dodanej przez użytkownika."
+          noop: Nic nie rób
           silence: Wycisz
           suspend: Zawieś
         title: Nowa blokada domen
       reject_media: Odrzucaj pliki multimedialne
       reject_media_hint: Usuwa przechowywane lokalnie pliki multimedialne i nie pozwala na ich pobieranie. Nieprzydatne przy zawieszeniu
       severities:
+        noop: Nic nie rób
         silence: Wycisz
         suspend: Zawieś
       severity: Priorytet
@@ -175,8 +177,8 @@ pl:
         desc_html: Akapit wprowadzający, widoczny na stronie głównej i znacznikach meta. Możesz korzystać z tagów HTML, w szczególności <code>&lt;a&gt;</code> i <code>&lt;em&gt;</code>.
         title: Opis instancji
       site_description_extended:
-        desc_html: Dobre miejsce na zasady użytkowania, wprowadzenie i inne rzeczy, które wyróżniają tą instancję. Możesz korzystać z tagów HTML
-        title: Niestandrdowy opis strony
+        desc_html: Dobre miejsce na zasady użytkowania, wprowadzenie i inne rzeczy, które wyróżniają tę instancję. Możesz korzystać z tagów HTML
+        title: Niestandardowy opis strony
       site_terms:
         desc_html: Miejsce na własną politykę prywatności, zasady użytkowania i inne unormowania prawne. Możesz używać tagów HTML
         title: Niestandardowe zasady użytkowania
@@ -213,6 +215,7 @@ pl:
       body: Użytkownik %{reporter} zgłosił %{target}
       subject: Nowe zgłoszenie na %{instance} (#%{id})
   application_mailer:
+    salutation: "%{name},"
     settings: 'Zmień ustawienia powiadamiania: %{link}'
     signature: Powiadomienie Mastodona z instancji %{instance}
     view: 'Zobacz:'
@@ -237,10 +240,9 @@ pl:
     follow_request: 'Wysłano prośbę o pozwolenie na śledzenie:'
     following: 'Pomyślnie! Od teraz śledzisz:'
     post_follow:
-      close: Ewentualnie, możesz po prostu zamknąć tą stronę.
+      close: Ewentualnie, możesz po prostu zamknąć tę stronę.
       return: Powróć do strony użytkownika
       web: Przejdź do sieci
-    prompt_html: 'Ty (<strong>%{self}</strong>) chcesz śledzić:'
     title: Śledź %{acct}
   datetime:
     distance_in_words:
@@ -262,10 +264,10 @@ pl:
     description_html: Ta opcja usunie <strong>bezpowrotnie i nieodwracalnie</strong> całą zawartość konta i zdezaktywuje je. Twoja nazwa użytkownika pozostanie zarezerwowana, aby zapobiec nadużyciom.
     proceed: Usuń konto
     success_msg: Twoje konto zostało pomyślnie usunięte
-    warning_html: Możemy usunąć zawartość jedynie w obrębie tej instancji. Zawartość udostępniona publicznie pozostawia trwałe ślady. Serwery niepodłączone do sieci, bądź nieśledzące Twoich aktualizacji mogą zachować Twoje dane.
+    warning_html: Możemy usunąć zawartość jedynie w obrębie tej instancji. Zawartość udostępniona publicznie pozostawia trwałe ślady. Serwery niepodłączone do sieci bądź nieśledzące Twoich aktualizacji mogą zachować Twoje dane.
     warning_title: Dostępność usuniętej zawartości
   errors:
-    '403': Nie masz uprawnień, aby wyświetlić tą stronę.
+    '403': Nie masz uprawnień, aby wyświetlić tę stronę.
     '404': Strona, którą próbujesz odwiedzić, nie istnieje.
     '410': Strona, którą próbujesz odwiedzić, już nie istnieje.
     '422':
@@ -336,8 +338,8 @@ pl:
       body: "%{name} poprosił o możliwość śledzenia Cię"
       subject: 'Prośba o możliwość śledzenia: %{name}'
     mention:
-      body: "%{name} wspomniał Cię w:"
-      subject: "%{name} Cię wspomniał"
+      body: "%{name} wspomniał o Tobie w:"
+      subject: "%{name} wspomniał o Tobie"
     reblog:
       body: 'Twój wpis został podbity przez %{name}:'
       subject: Twój wpis został podbity przez %{name}
