@@ -56,8 +56,8 @@ RUN echo "@edge https://nl.alpinelinux.org/alpine/edge/main" >> /etc/apk/reposit
 
 COPY Gemfile Gemfile.lock package.json yarn.lock /mastodon/
 
-RUN bundle config build.nokogiri --with-iconv-lib=/usr/local/lib --with-iconv-include=/usr/local/include --jobs $(getconf _NPROCESSORS_ONLN)\
- && bundle install --deployment --without test development \
+RUN bundle config build.nokogiri --with-iconv-lib=/usr/local/lib --with-iconv-include=/usr/local/include \
+ && bundle install -j$(getconf _NPROCESSORS_ONLN) --deployment --without test development \
  && yarn --ignore-optional --pure-lockfile
 
 COPY . /mastodon
