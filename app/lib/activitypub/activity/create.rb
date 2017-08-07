@@ -99,7 +99,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
       :public
     elsif equals_or_includes?(@object['cc'], ActivityPub::TagManager::COLLECTIONS[:public])
       :unlisted
-    elsif equals_or_includes?(@object['to'], @account.followers_uri)
+    elsif equals_or_includes?(@object['to'], @account.followers_url)
       :private
     else
       :direct
@@ -135,6 +135,10 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
 
   def unsupported_object_type?
     @object.is_a?(String) || !%w(Article Note).include?(@object['type'])
+  end
+
+  def unsupported_media_type?(mime_type)
+    mime_type.present? && !(MediaAttachment::IMAGE_MIME_TYPES + MediaAttachment::VIDEO_MIME_TYPES).include?(mime_type)
   end
 
   def skip_download?
