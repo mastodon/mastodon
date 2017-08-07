@@ -779,7 +779,7 @@
 .status__info .status__display-name {
   display: block;
   max-width: 100%;
-  padding-right: 25px;
+  //padding-right: 25px;
 }
 
 .status__info {
@@ -1386,6 +1386,15 @@
 
 .display-name__account {
   font-size: 14px;
+  display: block;
+  line-height: 1.1; // reduce the distance from the display name
+  padding-bottom: 3px;
+
+  // block ellipsis
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .status__relative-time,
