@@ -8,8 +8,6 @@ import DisplayName from './display_name';
 import StatusContent from './status_content';
 import StatusActionBar from './status_action_bar';
 import { FormattedMessage } from 'react-intl';
-import emojify from '../emoji';
-import escapeTextContentForBrowser from 'escape-html';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import scheduleIdleTask from '../features/ui/util/schedule_idle_task';
 import { MediaGallery, VideoPlayer } from '../features/ui/util/async-components';
@@ -36,6 +34,7 @@ export default class Status extends ImmutablePureComponent {
     onOpenMedia: PropTypes.func,
     onOpenVideo: PropTypes.func,
     onBlock: PropTypes.func,
+    onHeightChange: PropTypes.func,
     me: PropTypes.number,
     boostModal: PropTypes.bool,
     autoPlayGif: PropTypes.bool,
@@ -47,7 +46,6 @@ export default class Status extends ImmutablePureComponent {
 
   state = {
     isExpanded: false,
-    isIntersecting: true, // assume intersecting until told otherwise
     isHidden: false, // set to true in requestIdleCallback to trigger un-render
   }
 
@@ -108,6 +106,10 @@ export default class Status extends ImmutablePureComponent {
     if (this.node && this.node.children.length !== 0) {
       // save the height of the fully-rendered element
       this.height = getRectFromEntry(entry).height;
+
+      if (this.props.onHeightChange) {
+        this.props.onHeightChange(this.props.status, this.height);
+      }
     }
 
     this.setState((prevState) => {
@@ -179,9 +181,13 @@ export default class Status extends ImmutablePureComponent {
       return null;
     }
 
-    if (!isIntersecting && isHidden) {
+    const hasIntersectionObserverWrapper = !!this.props.intersectionObserverWrapper;
+    const isHiddenForSure = isIntersecting === false && isHidden;
+    const visibilityUnknownButHeightIsCached = isIntersecting === undefined && status.has('height');
+
+    if (hasIntersectionObserverWrapper && (isHiddenForSure || visibilityUnknownButHeightIsCached)) {
       return (
-        <article ref={this.handleRef} data-id={status.get('id')} aria-posinset={index} aria-setsize={listLength} tabIndex='0' style={{ height: `${this.height}px`, opacity: 0, overflow: 'hidden' }}>
+        <article ref={this.handleRef} data-id={status.get('id')} aria-posinset={index} aria-setsize={listLength} tabIndex='0' style={{ height: `${this.height || status.get('height')}px`, opacity: 0, overflow: 'hidden' }}>
           {status.getIn(['account', 'display_name']) || status.getIn(['account', 'username'])}
           {status.get('content')}
         </article>
@@ -189,19 +195,13 @@ export default class Status extends ImmutablePureComponent {
     }
 
     if (status.get('reblog', null) !== null && typeof status.get('reblog') === 'object') {
-      let displayName = status.getIn(['account', 'display_name']);
-
-      if (displayName.length === 0) {
-        displayName = status.getIn(['account', 'username']);
-      }
-
-      const displayNameHTML = { __html: emojify(escapeTextContentForBrowser(displayName)) };
+      const display_name_html = { __html: status.getIn(['account', 'display_name_html']) };
 
       return (
         <article className='status__wrapper' ref={this.handleRef} data-id={status.get('id')} aria-posinset={index} aria-setsize={listLength} tabIndex='0'>
           <div className='status__prepend'>
             <div className='status__prepend-icon-wrapper'><i className='fa fa-fw fa-retweet status__prepend-icon' /></div>
-            <FormattedMessage id='status.reblogged_by' defaultMessage='{name} boosted' values={{ name: <a onClick={this.handleAccountClick} data-id={status.getIn(['account', 'id'])} href={status.getIn(['account', 'url'])} className='status__display-name muted'><strong dangerouslySetInnerHTML={displayNameHTML} /></a> }} />
+            <FormattedMessage id='status.reblogged_by' defaultMessage='{name} boosted' values={{ name: <a onClick={this.handleAccountClick} data-id={status.getIn(['account', 'id'])} href={status.getIn(['account', 'url'])} className='status__display-name muted'><strong dangerouslySetInnerHTML={display_name_html} /></a> }} />
           </div>
 
           <Status {...other} wrapped status={status.get('reblog')} account={status.get('account')} />

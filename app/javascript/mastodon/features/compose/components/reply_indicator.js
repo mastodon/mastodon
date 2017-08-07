@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import Avatar from '../../../components/avatar';
 import IconButton from '../../../components/icon_button';
 import DisplayName from '../../../components/display_name';
-import emojify from '../../../emoji';
 import { defineMessages, injectIntl } from 'react-intl';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
@@ -43,7 +42,7 @@ export default class ReplyIndicator extends ImmutablePureComponent {
       return null;
     }
 
-    const content  = { __html: emojify(status.get('content')) };
+    const content  = { __html: status.get('contentHtml') };
 
     return (
       <div className='reply-indicator'>
