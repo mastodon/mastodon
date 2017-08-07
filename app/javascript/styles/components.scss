@@ -1835,7 +1835,6 @@
   overflow-y: scroll;
   overflow-x: hidden;
   flex: 1 1 auto;
-  backface-visibility: hidden;
   -webkit-overflow-scrolling: touch;
   @supports(display: grid) { // hack to fix Chrome <57
     contain: strict;
@@ -1853,8 +1852,9 @@
   flex: 0 0 auto;
   font-size: 16px;
   border: 0;
-  text-align: start;
+  text-align: unset;
   padding: 15px;
+  margin: 0;
   z-index: 3;
 
   &:hover {

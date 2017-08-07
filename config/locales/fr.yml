@@ -220,6 +220,7 @@ fr:
     delete_account_html: Si vous désirez supprimer votre compte, vous pouvez cliquer ici. Il vous sera demandé de confirmer cette action.
     didnt_get_confirmation: Vous n’avez pas reçu les consignes de confirmation ?
     forgot_password: Mot de passe oublié ?
+    invalid_reset_password_token: Le lien de réinitialisation du mot de passe est invalide ou a expiré. Merci de réessayer.
     login: Se connecter
     logout: Se déconnecter
     register: S’inscrire
@@ -235,7 +236,6 @@ fr:
       close: Ou bien, vous pouvez fermer cette fenêtre.
       return: Retour au profil de l'utilisateur⋅trice
       web: Retour à l'interface web
-    prompt_html: 'Vous (<strong>%{self}</strong>) avez demandé à suivre :'
     title: Suivre %{acct}
   datetime:
     distance_in_words:
@@ -278,7 +278,7 @@ fr:
     blocks: Vous bloquez
     csv: CSV
     follows: Vous suivez
-    mutes: Vous faites taire
+    mutes: Vous masquez
     storage: Médias stockés
   followers:
     domain: Domaine
@@ -305,7 +305,7 @@ fr:
     types:
       blocking: Liste d’utilisateur⋅ice⋅s bloqué⋅es
       following: Liste d’utilisateur⋅ice⋅s suivi⋅es
-      muting: Liste d’utilisateur⋅ice⋅s que vous faites taire
+      muting: Liste d’utilisateur⋅ice⋅s que vous masquez
     upload: Importer
   landing_strip_html: <strong>%{name}</strong> utilise %{link_to_root_path}. Vous pouvez le/la suivre et interagir si vous possédez un compte quelque part dans le "fediverse".
   landing_strip_signup_html: Si ce n’est pas le cas, vous pouvez <a href="%{sign_up_path}">en créer un ici</a>.
@@ -451,3 +451,4 @@ fr:
   users:
     invalid_email: L’adresse courriel est invalide
     invalid_otp_token: Le code d’authentification à deux facteurs est invalide
+    signed_in_as: 'Connecté·e en tant que :'

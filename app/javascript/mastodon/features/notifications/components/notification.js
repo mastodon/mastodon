@@ -7,8 +7,6 @@ import StatusContainer from '../../../containers/status_container';
 import AccountContainer from '../../../containers/account_container';
 import { FormattedMessage } from 'react-intl';
 import Permalink from '../../../components/permalink';
-import emojify from '../../../emoji';
-import escapeTextContentForBrowser from 'escape-html';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
 export default class Notification extends ImmutablePureComponent {
@@ -70,9 +68,8 @@ export default class Notification extends ImmutablePureComponent {
   render () {
     const { notification } = this.props;
     const account          = notification.get('account');
-    const displayName      = account.get('display_name').length > 0 ? account.get('display_name') : account.get('username');
-    const displayNameHTML  = { __html: emojify(escapeTextContentForBrowser(displayName)) };
-    const link             = <Permalink className='notification__display-name' href={account.get('url')} title={account.get('acct')} to={`/accounts/${account.get('id')}`} dangerouslySetInnerHTML={displayNameHTML} />;
+    const displayNameHtml  = { __html: account.get('display_name_html') };
+    const link             = <Permalink className='notification__display-name' href={account.get('url')} title={account.get('acct')} to={`/accounts/${account.get('id')}`} dangerouslySetInnerHTML={displayNameHtml} />;
 
     switch(notification.get('type')) {
     case 'follow':

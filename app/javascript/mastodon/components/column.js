@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import detectPassiveEvents from 'detect-passive-events';
-import scrollTop from '../scroll';
+import { scrollTop } from '../scroll';
 
 export default class Column extends React.PureComponent {
 

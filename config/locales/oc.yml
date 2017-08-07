@@ -31,7 +31,7 @@ oc:
     status_count_after: estatuts
     status_count_before: qu’an escrich
     user_count_after: personas
-    user_count_before: Ostal de 
+    user_count_before: Ostal de
     what_is_mastodon: Qu’es Mastodon ?
   accounts:
     follow: Sègre
@@ -214,6 +214,7 @@ oc:
       body: "%{reporter} a senhalat %{target}"
       subject: Novèl senhalament per %{instance} (#%{id})
   application_mailer:
+    salutation: '%{name},'
     settings: 'Cambiar las preferéncias de corrièl : %{link}'
     signature: Notificacion de Mastodon sus %{instance}
     view: 'Veire :'
@@ -232,6 +233,7 @@ oc:
     resend_confirmation: Tornar mandar las instruccions de confirmacion
     reset_password: Reïnicializar lo senhal
     set_new_password: Picar un nòu senhal
+    invalid_reset_password_token: Ligam de reïnicializacion invalid o acabat. Tornatz ensajar se vos plai.
   authorize_follow:
     error: O planhèm, i a agut una error al moment de cercar lo compte
     follow: Sègre
@@ -241,7 +243,6 @@ oc:
       close: O podètz tampar aquesta fenèstra.
       return: Tornar al perfil
       web: Tornar a l’interfàcia Web
-    prompt_html: 'Avètz (<strong>%{self}</strong>) demandat de sègre :'
     title: Sègre %{acct}
   date:
     abbr_day_names:
@@ -579,3 +580,4 @@ oc:
   users:
     invalid_email: L’adreça de corrièl es invalida
     invalid_otp_token: Còdi d’autentificacion en dos temps invalid
+    signed_in_as: 'Session a'

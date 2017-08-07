@@ -234,7 +234,7 @@ ja:
     reset_password: パスワードを再発行
     set_new_password: 新しいパスワード
   authorize_follow:
-    error: 残念ながら、リモートアカウントにエラーが発生しました。
+    error: 残念ながら、リモートアカウント情報の取得中にエラーが発生しました。
     follow: フォロー
     follow_request: 'あなたは以下のアカウントにフォローリクエストを送信しました:'
     following: '成功! あなたは現在以下のアカウントをフォローしています:'
@@ -242,7 +242,6 @@ ja:
       close: またはこのウィンドウを閉じます
       return: ユーザーのプロフィールに戻る
       web: Web を開く
-    prompt_html: 'あなた（<strong>%{self}</strong>）は以下のアカウントのフォローをリクエストしました:'
     title: "%{acct} をフォロー"
   datetime:
     distance_in_words:
@@ -522,3 +521,4 @@ ja:
   users:
     invalid_email: メールアドレスが無効です
     invalid_otp_token: 二段階認証コードが間違っています
+    signed_in_as: '下記でログイン中:'
