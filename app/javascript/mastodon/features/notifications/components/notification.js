@@ -7,6 +7,7 @@ import Permalink from '../../../components/permalink';
 import emojify from '../../../emoji';
 import escapeTextContentForBrowser from 'escape-html';
 import ImmutablePureComponent from 'react-immutable-pure-component';
+import RelativeTimestamp from '../../../components/relative_timestamp';
 
 export default class Notification extends ImmutablePureComponent {
 
@@ -14,14 +15,14 @@ export default class Notification extends ImmutablePureComponent {
     notification: ImmutablePropTypes.map.isRequired,
   };
 
-  renderFollow (account, link) {
+  renderFollow (notification, account, link) {
     return (
       <div className='notification notification-follow'>
         <div className='notification__message'>
-          <div className='notification__favourite-icon-wrapper'>
+          <div className='notification__icon-wrapper'>
             <i className='fa fa-fw fa-user-plus' />
           </div>
-
+          <RelativeTimestamp timestamp={notification.get('created_at')} />
           <FormattedMessage id='notification.follow' defaultMessage='{name} followed you' values={{ name: link }} />
         </div>
 
@@ -30,17 +31,29 @@ export default class Notification extends ImmutablePureComponent {
     );
   }
 
-  renderMention (notification) {
-    return <StatusContainer id={notification.get('status')} withDismiss />;
+  renderMention (notification, link) {
+    return (
+      <div className='notification notification-mention'>
+        <div className={`notification__message notification-${notification.get('visibility')}`}>
+          <div className='notification__icon-wrapper'>
+            <i className='fa fa-fw fa-commenting mention-icon' />
+          </div>
+          <FormattedMessage id='notification.mention' defaultMessage='{name} mentioned you' values={{ name: link }} />
+        </div>
+
+        <StatusContainer id={notification.get('status')} withDismiss />
+      </div>
+    );
   }
 
   renderFavourite (notification, link) {
     return (
       <div className='notification notification-favourite'>
         <div className='notification__message'>
-          <div className='notification__favourite-icon-wrapper'>
+          <div className='notification__icon-wrapper'>
             <i className='fa fa-fw fa-star star-icon' />
           </div>
+          <RelativeTimestamp timestamp={notification.get('created_at')} />
           <FormattedMessage id='notification.favourite' defaultMessage='{name} favourited your status' values={{ name: link }} />
         </div>
 
@@ -53,9 +66,10 @@ export default class Notification extends ImmutablePureComponent {
     return (
       <div className='notification notification-reblog'>
         <div className='notification__message'>
-          <div className='notification__favourite-icon-wrapper'>
+          <div className='notification__icon-wrapper'>
             <i className='fa fa-fw fa-retweet' />
           </div>
+          <RelativeTimestamp timestamp={notification.get('created_at')} />
           <FormattedMessage id='notification.reblog' defaultMessage='{name} boosted your status' values={{ name: link }} />
         </div>
 
@@ -73,9 +87,9 @@ export default class Notification extends ImmutablePureComponent {
 
     switch(notification.get('type')) {
     case 'follow':
-      return this.renderFollow(account, link);
+      return this.renderFollow(notification, account, link);
     case 'mention':
-      return this.renderMention(notification);
+      return this.renderMention(notification, link);
     case 'favourite':
       return this.renderFavourite(notification, link);
     case 'reblog':
