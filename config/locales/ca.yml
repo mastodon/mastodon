@@ -228,6 +228,7 @@ ca:
     delete_account_html: Si vols esborrar el teu compte pots <a href="%{path}">fer-ho aquí</a>. S'et demanarà confirmació.
     didnt_get_confirmation: No vas rebre el correu de confirmació?
     forgot_password: Has oblidat la contrasenya?
+    invalid_reset_password_token: L'enllaç de restabliment de la contrasenya no és vàlid o caducat. Siusplau torna-ho a provar..
     login: Iniciar sessió
     logout: Tancar sessió
     register: Enregistrarse
@@ -243,7 +244,6 @@ ca:
       close: O bé, pots tancar aquesta finestra.
       return: Torna al perfil de l'usuari
       web: Anar a la web
-    prompt_html: 'Tú (<strong>%{self}</strong>) has solicitat seguir:'
     title: Seguir %{acct}
   datetime:
     distance_in_words:
@@ -523,3 +523,4 @@ ca:
   users:
     invalid_email: La direcció de correu es incorrecte
     invalid_otp_token: Codi de dos factors incorrecte
+    signed_in_as: 'Sessió iniciada com a:'

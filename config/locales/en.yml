@@ -215,7 +215,7 @@ en:
       body: "%{reporter} has reported %{target}"
       subject: New report for %{instance} (#%{id})
   application_mailer:
-    salutation: '%{name},'
+    salutation: "%{name},"
     settings: 'Change e-mail preferences: %{link}'
     signature: Mastodon notifications from %{instance}
     view: 'View:'
@@ -228,6 +228,7 @@ en:
     delete_account_html: If you wish to delete your account, you can <a href="%{path}">proceed here</a>. You will be asked for confirmation.
     didnt_get_confirmation: Didn't receive confirmation instructions?
     forgot_password: Forgot your password?
+    invalid_reset_password_token: Password reset link is invalid or expired. Please try again.
     login: Log in
     logout: Logout
     register: Sign up
@@ -243,7 +244,6 @@ en:
       close: Or, you can just close this window.
       return: Return to the user's profile
       web: Go to web
-    prompt_html: 'You (<strong>%{self}</strong>) have requested to follow:'
     title: Follow %{acct}
   datetime:
     distance_in_words:
@@ -523,3 +523,4 @@ en:
   users:
     invalid_email: The e-mail address is invalid
     invalid_otp_token: Invalid two-factor code
+    signed_in_as: 'Signed in as:'

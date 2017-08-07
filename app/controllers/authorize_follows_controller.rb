@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class AuthorizeFollowsController < ApplicationController
-  layout 'public'
+  layout 'modal'
 
   before_action :authenticate_user!
 
