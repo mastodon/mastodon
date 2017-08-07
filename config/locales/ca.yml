@@ -11,28 +11,28 @@ ca:
     domain_count_after: altres instàncies
     domain_count_before: Connectat a
     extended_description_html: |
-      <h3>A good place for rules</h3>
-      <p>The extended description has not been set up yet.</p>
+      <h3>Un bon lloc per les regles</h3>
+      <p>Encara no s'ha configurat la descripció ampliada.</p>
     features:
-      humane_approach_body: Learning from failures of other networks, Mastodon aims to make ethical design choices to combat the misuse of social media.
-      humane_approach_title: A more humane approach
-      not_a_product_body: Mastodon is not a commercial network. No advertising, no data mining, no walled gardens. There is no central authority.
-      not_a_product_title: You’re a person, not a product
-      real_conversation_body: With 500 characters at your disposal and support for granular content and media warnings, you can express yourself the way you want to.
-      real_conversation_title: Built for real conversation
-      within_reach_body: Multiple apps for iOS, Android, and other platforms thanks to a developer-friendly API ecosystem allow you to keep up with your friends anywhere.
-      within_reach_title: Always within reach   
+      humane_approach_body: Aprenent dels errors d'altres xarxes, Mastodon té com a objectiu fer ètiques eleccions de disseny per combatre el mal ús de les xarxes socials.
+      humane_approach_title: Un enfocament més humà
+      not_a_product_body: Mastodon no és una xarxa comercial. Sense publicitat, sense mineria de dades, sense jardins amurallats. No hi ha autoritat central.
+      not_a_product_title: Ets una persona, no un producte
+      real_conversation_body: Amb 500 caràcters a la teva disposició i suport per a continguts granulars i avisos multimèdia, pots expressar-te de la manera que vulguis.
+      real_conversation_title: Construït per a converses reals
+      within_reach_body: Diverses aplicacions per a iOS, Android i altres plataformes gràcies a un ecosistema API amable amb el desenvolupador, et permet mantenir-te al dia amb els teus amics en qualsevol lloc..
+      within_reach_title: Sempre a l'abast   
     find_another_instance: Troba altres instàncies
-    generic_description: "%{domain} is one server in the network"
-    hosted_on: Mastodon hosted on %{domain}
-    learn_more: Learn more
+    generic_description: "%{domain} és un servidor a la xarxa"
+    hosted_on: Mastodon allotjat a %{domain}
+    learn_more: Aprèn més
     other_instances: Altres instàncies
     source_code: Codi font
     status_count_after: estats
     status_count_before: Que han escrit
     user_count_after: usuaris registrats
     user_count_before: Tenim
-    what_is_mastodon: What is Mastodon?
+    what_is_mastodon: Què és Mastodon?
   accounts:
     follow: Seguir
     followers: Seguidors
@@ -180,28 +180,28 @@ ca:
         desc_html: Un bon lloc per al vostre codi de conducta, regles, directrius i altres coses que distingeixen la vostra instància. Podeu utilitzar etiquetes HTML
         title: Descripció estesa del lloc
       site_terms:
-        desc_html: You can write your own privacy policy, terms of service or other legalese. You can use HTML tags
-        title: Custom terms of service
+        desc_html: Pots escriure la teva pròpia política de privadesa, els termes del servei o d'altres normes legals. Pots utilitzar etiquetes HTML
+        title: Termes del servei personalitzats
       site_title: Títol del lloc
       timeline_preview:
-        desc_html: Display public timeline on landing page
-        title: Timeline preview
-      title: Site Settings
+        desc_html: Mostra la línia de temps pública a la pàgina inicial
+        title: Vista prèvia de la línia de temps
+      title: Configuració del lloc
     statuses:
-      back_to_account: Back to account page
+      back_to_account: Torna a la pàgina del compte
       batch:
-        delete: Delete
+        delete: Esborra
         nsfw_off: NSFW OFF
         nsfw_on: NSFW ON
-      execute: Execute
-      failed_to_execute: Failed to execute
+      execute: Executa
+      failed_to_execute: No s'ha pogut executar
       media:
-        hide: Hide media
-        show: Show media
-        title: Media
-      no_media: No media
-      title: Account statuses
-      with_media: With media
+        hide: Amaga multimèdia
+        show: Mostra multimèdia
+        title: Multimèdia
+      no_media: Sense multimèdia
+      title: Estats del compte
+      with_media: Amb multimèdia
     subscriptions:
       callback_url: Callback URL
       confirmed: Confirmat
@@ -212,8 +212,8 @@ ca:
     title: Administració
   admin_mailer:
     new_report:
-      body: "%{reporter} has reported %{target}"
-      subject: New report for %{instance} (#%{id})
+      body: "%{reporter} ha informat de %{target}"
+      subject: Nou informe per a %{instance} (#%{id})
   application_mailer:
     salutation: '%{name},'
     settings: 'Canviar preferències de correu: %{link}'
@@ -222,7 +222,7 @@ ca:
   applications:
     invalid_url: La URL proporcionada es incorrecte
   auth:
-    agreement_html: By signing up you agree to <a href="%{rules_path}">our terms of service</a> and <a href="%{terms_path}">privacy policy</a>.
+    agreement_html: En inscriure't, acceptes <a href="%{rules_path}">les nostres termes del servei</a> i <a href="%{terms_path}">la nostra política de privadesa</a>.
     change_password: Canviar contrasenya
     delete_account: Esborrar el compte
     delete_account_html: Si vols esborrar el teu compte pots <a href="%{path}">fer-ho aquí</a>. S'et demanarà confirmació.
@@ -237,12 +237,12 @@ ca:
   authorize_follow:
     error: Malauradament, ha ocorregut un error buscant el compte remot
     follow: Seguir
-    follow_request: 'You have sent a follow request to:'
-    following: 'Success! You are now following:'
+    follow_request: 'Heu enviat una sol·licitud de seguiment a:'
+    following: 'Èxit! Ara segueixes:'
     post_follow:
-      close: Or, you can just close this window.
-      return: Return to the user's profile
-      web: Go to web
+      close: O bé, pots tancar aquesta finestra.
+      return: Torna al perfil de l'usuari
+      web: Anar a la web
     prompt_html: 'Tú (<strong>%{self}</strong>) has solicitat seguir:'
     title: Seguir %{acct}
   datetime:
@@ -313,7 +313,7 @@ ca:
   landing_strip_signup_html: Si no en tens, pots <a href="%{sign_up_path}">registrar-te aquí</a>.
   media_attachments:
     validations:
-      images_and_video: No es pot adjuntar un vídeo a un estat que ja contingui imatges
+      images_and_video: No es pot adjuntar un vídeo a una publicació que ja contingui imatges
       too_many: No es poden adjuntar més de 4 arxius
   notification_mailer:
     digest:
@@ -353,29 +353,29 @@ ca:
       title: "%{count} notifications"
     mention:
       action_boost: Boost
-      action_expand: Show more
-      action_favourite: Favourite
-      title: "%{name} mentioned you"
+      action_expand: Mostra més
+      action_favourite: Favorit
+      title: "%{name} t'ha mencionat"
     reblog:
-      title: "%{name} boosted your status"
+      title: "%{name} t'ha retootejat"
     subscribed:
-      body: You can now receive push notifications.
-      title: Subscription registered!
+      body: Ara pots rebre notificacions push.
+      title: Subscripció registrada
   remote_follow:
     acct: Escriu el usuari@domini de la persona que vols seguir
     missing_resource: No s'ha pogut trobar la URL de redirecció necessaria per el compte.
     proceed: Procedir a seguir
     prompt: 'Seguiràs a:'
   sessions:
-    activity: Last activity
-    browser: Browser
+    activity: Última activitat
+    browser: Navegador
     browsers:
       alipay: Alipay
       blackberry: Blackberry
       chrome: Chrome
       edge: Microsoft Edge
       firefox: Firefox
-      generic: Unknown browser
+      generic: Navegador desconegut
       ie: Internet Explorer
       micro_messenger: MicroMessenger
       nokia: Nokia S40 Ovi Browser
@@ -385,9 +385,9 @@ ca:
       safari: Safari
       uc_browser: UCBrowser
       weibo: Weibo
-    current_session: Current session
-    description: "%{browser} on %{platform}"
-    explanation: These are the web browsers currently logged in to your Mastodon account.
+    current_session: Sessió actual
+    description: "%{browser} de %{platform}"
+    explanation: Aquests són els navegadors web que actualment han iniciat la sessió al teu compte de Mastodon.
     ip: IP
     platforms:
       adobe_air: Adobe Air
@@ -398,12 +398,12 @@ ca:
       ios: iOS
       linux: Linux
       mac: Mac
-      other: unknown platform
+      other: plataforma desconeguda
       windows: Windows
       windows_mobile: Windows Mobile
       windows_phone: Windows Phone
-    revoke: Revoke
-    revoke_success: Session successfully revoked
+    revoke: Revoca
+    revoke_success: S'ha revocat la sessió amb èxit
     title: Sessions
   settings:
     authorized_apps: Aplicacions autoritzades
@@ -433,74 +433,74 @@ ca:
     sensitive_content: Contingut sensible
   terms:
     body_html: |
-      <h2>Privacy Policy</h2>
+      <h2>Política de privacitat</h2>
 
-      <h3 id="collect">What information do we collect?</h3>
+      <h3 id="collect">Quina informació recollim?</h3>
 
-      <p>We collect information from you when you register on our site and gather data when you participate in the forum by reading, writing, and evaluating the content shared here.</p>
+      <p>Recopilem informació teva quan et registres en aquesta instància i recopilem dades quan participes en el fòrum llegint, escrivint i avaluant el contingut aquí compartit.</p>
 
-      <p>When registering on our site, you may be asked to enter your name and e-mail address. You may, however, visit our site without registering. Your e-mail address will be verified by an email containing a unique link. If that link is visited, we know that you control the e-mail address.</p>
+      <p>En registrar-te en aquesta instància, se't pot demanar que introduexisu el teu nom i l'adreça de correu electrònic. També pots visitar el nostre lloc sense registrar-te. La teva adreça de correu electrònic es verificarà mitjançant un correu electrònic que conté un enllaç únic. Si es visita aquest enllaç, sabem que controles l'adreça de correu electrònic.</p>
 
-      <p>When registered and posting, we record the IP address that the post originated from. We also may retain server logs which include the IP address of every request to our server.</p>
+      <p>Quan es registra i publica, registrem l'adreça IP de la qual es va originar la publicació. També podrem conservar els registres del servidor que inclouen l'adreça IP de cada sol·licitud al nostre servidor.</p>
 
-      <h3 id="use">What do we use your information for?</h3>
+      <h3 id="use">Per a què utilitzem la teva informació?</h3>
 
-      <p>Any of the information we collect from you may be used in one of the following ways:</p>
-
-      <ul>
-        <li>To personalize your experience &mdash; your information helps us to better respond to your individual needs.</li>
-        <li>To improve our site &mdash; we continually strive to improve our site offerings based on the information and feedback we receive from you.</li>
-        <li>To improve customer service &mdash; your information helps us to more effectively respond to your customer service requests and support needs.</li>
-        <li>To send periodic emails &mdash; The email address you provide may be used to send you information, notifications that you request about changes to topics or in response to your user name, respond to inquiries, and/or other requests or questions.</li>
-      </ul>
-
-      <h3 id="protect">How do we protect your information?</h3>
-
-      <p>We implement a variety of security measures to maintain the safety of your personal information when you enter, submit, or access your personal information.</p>
-
-      <h3 id="data-retention">What is your data retention policy?</h3>
-
-      <p>We will make a good faith effort to:</p>
+      <p>Qualsevol de la informació que recopilem de tu pot utilitzar-se d'una de les maneres següents:</p>
 
       <ul>
-        <li>Retain server logs containing the IP address of all requests to this server no more than 90 days.</li>
-        <li>Retain the IP addresses associated with registered users and their posts no more than 5 years.</li>
+        <li>Per a personalitzar la teva experiència &mdash; la teva informació ens ajuda a respondre millor a les teves necessitats individuals.</li>
+        <li>Per millorar el nostre lloc &mdash; ens esforcem contínuament per millorar les nostres ofertes de llocs basats en la informació i els comentaris que rebem de tu.</li>
+        <li>Per millorar el servei al client &mdash; la teva informació ens ajuda a respondre més eficaçment a les teves sol·licituds de servei al client i a les necessitats de suport.</li>
+        <li>Per enviar correus electrònics periòdics &mdash; l'adreça electrònica que proporcionis es pot utilitzar per enviar-te informació, notificacions que sol·licitis sobre canvis en temes o en resposta al teu nom d'usuari, respondre a les consultes i/o altres sol·licituds o preguntes.</li>
       </ul>
 
-      <h3 id="cookies">Do we use cookies?</h3>
+      <h3 id="protect">Com protegim la teva informació?</h3>
 
-      <p>Yes. Cookies are small files that a site or its service provider transfers to your computer's hard drive through your Web browser (if you allow). These cookies enable the site to recognize your browser and, if you have a registered account, associate it with your registered account.</p>
+      <p>Implementem diverses mesures de seguretat per mantenir la seguretat de la teva informació personal quan introdueixes, envies o accedeixes a la teva informació personal.</p>
 
-      <p>We use cookies to understand and save your preferences for future visits and compile aggregate data about site traffic and site interaction so that we can offer better site experiences and tools in the future. We may contract with third-party service providers to assist us in better understanding our site visitors. These service providers are not permitted to use the information collected on our behalf except to help us conduct and improve our business.</p>
+      <h3 id="data-retention">Quina és la nostre política de retenció de dades?</h3>
 
-      <h3 id="disclose">Do we disclose any information to outside parties?</h3>
+      <p>Farem un esforç de bona fe per a:</p>
 
-      <p>We do not sell, trade, or otherwise transfer to outside parties your personally identifiable information. This does not include trusted third parties who assist us in operating our site, conducting our business, or servicing you, so long as those parties agree to keep this information confidential. We may also release your information when we believe release is appropriate to comply with the law, enforce our site policies, or protect ours or others rights, property, or safety. However, non-personally identifiable visitor information may be provided to other parties for marketing, advertising, or other uses.</p>  
+      <ul>
+        <li>Conserva els registres de servidor que continguin l'adreça IP de totes les sol·licituds a aquest servidor no més de 90 dies.</li>
+        <li>Conserva les adreces IP associades als usuaris registrats i les seves publicacions no més de 5 anys.</li>
+      </ul>
 
-      <h3 id="third-party">Third party links</h3>
+      <h3 id="cookies">Utilitzem galetes?</h3>
 
-      <p>Occasionally, at our discretion, we may include or offer third party products or services on our site. These third party sites have separate and independent privacy policies. We therefore have no responsibility or liability for the content and activities of these linked sites. Nonetheless, we seek to protect the integrity of our site and welcome any feedback about these sites.</p>
+      <p>Sí. Les cookies són fitxers petits que un lloc o el proveïdor de serveis transfereix al disc dur del vostre ordinador a través del navegador web (si ho permet). Aquestes galetes permeten al lloc reconèixer el vostre navegador i, si teniu un compte registrat, associar-lo al vostre compte registrat.</p>
 
-      <h3 id="coppa">Children's Online Privacy Protection Act Compliance</h3>
+      <p>Utilitzem cookies per comprendre i desar les vostres preferències per a futures visites i compilar dades agregades sobre el trànsit del lloc i la interacció del lloc, de manera que podrem oferir millors experiències i eines del lloc en el futur. Podem contractar amb proveïdors de serveis de tercers per ajudar-nos a comprendre millor els visitants del nostre lloc. Aquests proveïdors de serveis no estan autoritzats a utilitzar la informació recollida en nom nostre, excepte per ajudar-nos a dur a terme i millorar el nostre negoci.</p>
 
-      <p>Our site, products and services are all directed to people who are at least 13 years old. If this server is in the USA, and you are under the age of 13, per the requirements of COPPA (<a href="https://en.wikipedia.org/wiki/Children%27s_Online_Privacy_Protection_Act">Children's Online Privacy P
+      <h3 id="disclose">Publiquem informació al exterior?</h3>
 
-      <h3 id="online">Online Privacy Policy Only</h3>
+      <p>No venem, comercialitzem ni transmetem a tercers la vostra informació d'identificació personal. Això no inclou tercers de confiança que ens ajudin a operar el nostre lloc, a dur a terme el nostre negoci o a fer-ho, sempre que aquestes parts acceptin mantenir confidencial aquesta informació. També podem publicar la vostra informació quan creiem que l'alliberament és apropiat per complir amb la llei, fer complir les polítiques del nostre lloc o protegir els nostres drets o altres drets, propietat o seguretat. No obstant això, la informació de visitant que no sigui personalment identificable es pot proporcionar a altres parts per a la comercialització, la publicitat o altres usos.</p>  
 
-      <p>This online privacy policy applies only to information collected through our site and not to information collected offline.</p>
+      <h3 id="third-party">Vincles de tercers</h3>
 
-      <h3 id="consent">Your Consent</h3>
+      <p>De tant en tant, segons el nostre criteri, podem incloure o oferir productes o serveis de tercers al nostre lloc. Aquests llocs de tercers tenen polítiques de privadesa separades i independents. Per tant, no tenim responsabilitat ni responsabilitat civil pel contingut i les activitats d'aquests llocs enllaçats. No obstant això, busquem protegir la integritat del nostre lloc i donem la benvinguda a qualsevol comentari sobre aquests llocs.</p>
 
-      <p>By using our site, you consent to our web site privacy policy.</p>
+      <h3 id="coppa">Compliment de la Llei de protecció de la privacitat en línia dels nens</h3>
 
-      <h3 id="changes">Changes to our Privacy Policy</h3>
+      <p>El nostre lloc, productes i serveis estan dirigits a persones que tenen almenys 13 anys. Si aquest servidor es troba als EUA, i teniu menys de 13 anys, segons els requisits de COPPA (<a href="https://en.wikipedia.org/wiki/Children%27s_Online_Privacy_Protection_Act">Children's Online Privacy Protection Act</a>) no feu servir aquest lloc.</p>
 
-      <p>If we decide to change our privacy policy, we will post those changes on this page.</p>
+      <h3 id="online">Només la política de privacitat en línia</h3>
 
-      <p>This document is CC-BY-SA. It was last updated May 31, 2013.</p>
+      <p>Aquesta política de privacitat en línia només s'aplica a la informació recopilada a través del nostre lloc i no a la informació recopilada fora de línia.</p>
 
-      <p>Originally adapted from the <a href="https://github.com/discourse/discourse">Discourse privacy policy</a>.</p>
-    title: "%{instance} Terms of Service and Privacy Policy"
+      <h3 id="consent">El vostre consentiment</h3>
+
+      <p>En utilitzar el nostre lloc, accepta la política de privadesa del nostre lloc web.</p>
+
+      <h3 id="changes">Canvis a la nostra política de privacitat</h3>
+
+      <p>Si decidim canviar la nostra política de privadesa, publicarem aquests canvis en aquesta pàgina.</p>
+
+      <p>Aquest document és CC-BY-SA. Es va actualitzar per última vegada el 31 de maig de 2013.</p>
+
+      <p>Originalment adaptat a la <a href="https://github.com/discourse/discourse">política de privadesa del Discurs</a>.</p>
+    title: "%{instance} Condicions del servei i política de privadesa"
   time:
     formats:
       default: "%b %d, %Y, %H:%M"
