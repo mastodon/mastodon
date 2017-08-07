@@ -8,7 +8,7 @@ module AccountAvatar
   class_methods do
     def avatar_styles(file)
       styles = { original: '120x120#' }
-      styles[:static] = { format: 'png' } if file.content_type == 'image/gif'
+      styles[:static] = { animated: false } if file.content_type == 'image/gif'
       styles
     end
 
