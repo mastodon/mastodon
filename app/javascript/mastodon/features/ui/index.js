@@ -1,12 +1,12 @@
 import React from 'react';
 import classNames from 'classnames';
-import Redirect from 'react-router-dom/Redirect';
 import NotificationsContainer from './containers/notifications_container';
 import PropTypes from 'prop-types';
 import LoadingBarContainer from './containers/loading_bar_container';
 import TabsBar from './components/tabs_bar';
 import ModalContainer from './containers/modal_container';
 import { connect } from 'react-redux';
+import { Redirect, withRouter } from 'react-router-dom';
 import { isMobile } from '../../is_mobile';
 import { debounce } from 'lodash';
 import { uploadCompose } from '../../actions/compose';
@@ -47,6 +47,7 @@ const mapStateToProps = state => ({
 });
 
 @connect(mapStateToProps)
+@withRouter
 export default class UI extends React.PureComponent {
 
   static contextTypes = {
@@ -58,6 +59,7 @@ export default class UI extends React.PureComponent {
     children: PropTypes.node,
     systemFontUi: PropTypes.bool,
     isComposing: PropTypes.bool,
+    location: PropTypes.object,
   };
 
   state = {
@@ -164,6 +166,12 @@ export default class UI extends React.PureComponent {
     return true;
   }
 
+  componentDidUpdate (prevProps) {
+    if (![this.props.location.pathname, '/'].includes(prevProps.location.pathname)) {
+      this.columnsAreaNode.handleChildrenContentChange();
+    }
+  }
+
   componentWillUnmount () {
     window.removeEventListener('resize', this.handleResize);
     document.removeEventListener('dragenter', this.handleDragEnter);
@@ -177,6 +185,10 @@ export default class UI extends React.PureComponent {
     this.node = c;
   }
 
+  setColumnsAreaRef = (c) => {
+    this.columnsAreaNode = c.getWrappedInstance().getWrappedInstance();
+  }
+
   render () {
     const { width, draggingOver } = this.state;
     const { children } = this.props;
@@ -188,7 +200,7 @@ export default class UI extends React.PureComponent {
     return (
       <div className={className} ref={this.setRef}>
         <TabsBar />
-        <ColumnsAreaContainer singleColumn={isMobile(width)}>
+        <ColumnsAreaContainer ref={this.setColumnsAreaRef} singleColumn={isMobile(width)}>
           <WrappedSwitch>
             <Redirect from='/' to='/getting-started' exact />
             <WrappedRoute path='/getting-started' component={GettingStarted} content={children} />
