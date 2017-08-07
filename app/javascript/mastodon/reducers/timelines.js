@@ -15,6 +15,7 @@ import {
   ACCOUNT_BLOCK_SUCCESS,
   ACCOUNT_MUTE_SUCCESS,
 } from '../actions/accounts';
+import { REHYDRATE as TIMELINES_HYDRATE } from 'redux-persist/constants';
 import { Map as ImmutableMap, List as ImmutableList, fromJS } from 'immutable';
 
 const initialState = ImmutableMap();
@@ -140,6 +141,8 @@ export default function timelines(state = initialState, action) {
     return state.update(action.timeline, initialTimeline, map => map.set('online', true));
   case TIMELINE_DISCONNECT:
     return state.update(action.timeline, initialTimeline, map => map.set('online', false));
+  case TIMELINES_HYDRATE:
+    return state.merge(action.payload.timelines);
   default:
     return state;
   }

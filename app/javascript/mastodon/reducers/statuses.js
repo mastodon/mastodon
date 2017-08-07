@@ -32,6 +32,7 @@ import {
   FAVOURITED_STATUSES_FETCH_SUCCESS,
   FAVOURITED_STATUSES_EXPAND_SUCCESS,
 } from '../actions/favourites';
+import { REHYDRATE as STATUSES_HYDRATE } from 'redux-persist/constants';
 import { SEARCH_FETCH_SUCCESS } from '../actions/search';
 import { Map as ImmutableMap, fromJS } from 'immutable';
 
@@ -120,6 +121,8 @@ export default function statuses(state = initialState, action) {
     return deleteStatus(state, action.id, action.references);
   case ACCOUNT_BLOCK_SUCCESS:
     return filterStatuses(state, action.relationship);
+  case STATUSES_HYDRATE:
+    return state.merge(action.payload.statuses.map(status => status.set('cached', true)));
   default:
     return state;
   }
