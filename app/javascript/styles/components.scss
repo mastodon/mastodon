@@ -779,7 +779,6 @@
 .status__info .status__display-name {
   display: block;
   max-width: 100%;
-  //padding-right: 25px;
 }
 
 .status__info {
@@ -793,6 +792,7 @@
   position: relative;
   float: right;
   color: lighten($ui-base-color, 26%);
+  z-index: 5; // to make it clickable
 
   .status__visibility-icon {
     padding-left: 6px;
