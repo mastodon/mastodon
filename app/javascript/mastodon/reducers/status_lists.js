@@ -28,7 +28,7 @@ const appendToList = (state, listType, statuses, next) => {
   }));
 };
 
-const appendOneToList = (state, listType, status) => {
+const prependOneToList = (state, listType, status) => {
   return state.update(listType, listMap => listMap.withMutations(map => {
     map.set('items', map.get('items').unshift(status.get('id')));
   }));
@@ -41,7 +41,7 @@ export default function statusLists(state = initialState, action) {
   case FAVOURITED_STATUSES_EXPAND_SUCCESS:
     return appendToList(state, 'favourites', action.statuses, action.next);
   case FAVOURITE_SUCCESS:
-    return appendOneToList(state, 'favourites', action.status);
+    return prependOneToList(state, 'favourites', action.status);
   default:
     return state;
   }
