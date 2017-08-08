@@ -44,7 +44,7 @@ const PageTwo = ({ me }) => (
   <div className='onboarding-modal__page onboarding-modal__page-two'>
     <div className='figure non-interactive'>
       <div className='pseudo-drawer'>
-        <NavigationBar account={me} />
+        <NavigationBar onClose={noop} account={me} />
       </div>
       <ComposeForm
         text='Awoo! #introductions'
@@ -83,7 +83,7 @@ const PageThree = ({ me }) => (
       />
 
       <div className='pseudo-drawer'>
-        <NavigationBar account={me} />
+        <NavigationBar onClose={noop} account={me} />
       </div>
     </div>
 

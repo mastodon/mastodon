@@ -25,6 +25,7 @@ const messages = defineMessages({
   blocks: { id: 'navigation_bar.blocks', defaultMessage: 'Blocked users' },
   mutes: { id: 'navigation_bar.mutes', defaultMessage: 'Muted users' },
   info: { id: 'navigation_bar.info', defaultMessage: 'Extended information' },
+  show_me_around: { id: 'getting_started.onboarding', defaultMessage: 'Show me around' },
 });
 
 const mapStateToProps = state => ({
@@ -46,6 +47,11 @@ export default class GettingStarted extends ImmutablePureComponent {
 
   openSettings = () => {
     this.props.dispatch(openModal('SETTINGS', {}));
+  }
+
+  openOnboardingModal = (e) => {
+    e.preventDefault();
+    this.props.dispatch(openModal('ONBOARDING'));
   }
 
   render () {
@@ -92,6 +98,7 @@ export default class GettingStarted extends ImmutablePureComponent {
             {navItems}
             <ColumnSubheading text={intl.formatMessage(messages.settings_subheading)} />
             <ColumnLink icon='book' text={intl.formatMessage(messages.info)} href='/about/more' />
+            <ColumnLink icon='hand-o-right' text={intl.formatMessage(messages.show_me_around)} onClick={this.openOnboardingModal} />
             <ColumnLink icon='cog' text={intl.formatMessage(messages.preferences)} href='/settings/preferences' />
             <ColumnLink icon='cogs' text={intl.formatMessage(messages.settings)} onClick={this.openSettings} />
             <ColumnLink icon='sign-out' text={intl.formatMessage(messages.sign_out)} href='/auth/sign_out' method='delete' />
@@ -100,13 +107,24 @@ export default class GettingStarted extends ImmutablePureComponent {
           <div className='getting-started__footer'>
             <div className='static-content getting-started'>
               <p>
-                <a href='https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/FAQ.md' rel='noopener' target='_blank'><FormattedMessage id='getting_started.faq' defaultMessage='FAQ' /></a> • <a href='https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/User-guide.md' rel='noopener' target='_blank'><FormattedMessage id='getting_started.userguide' defaultMessage='User Guide' /></a> • <a href='https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/Apps.md' rel='noopener' target='_blank'><FormattedMessage id='getting_started.appsshort' defaultMessage='Apps' /></a>
+                <a href='https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/FAQ.md' rel='noopener' target='_blank'>
+                  <FormattedMessage id='getting_started.faq' defaultMessage='FAQ' />
+                </a>&nbsp;•&nbsp;
+                <a href='https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/User-guide.md' rel='noopener' target='_blank'>
+                  <FormattedMessage id='getting_started.userguide' defaultMessage='User Guide' />
+                </a>&nbsp;•&nbsp;
+                <a href='https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/Apps.md' rel='noopener' target='_blank'>
+                  <FormattedMessage id='getting_started.appsshort' defaultMessage='Apps' />
+                </a>
               </p>
               <p>
                 <FormattedMessage
                   id='getting_started.open_source_notice'
                   defaultMessage='Glitchsoc is open source software, a friendly fork of {Mastodon}. You can contribute or report issues on GitHub at {github}.'
-                  values={{ github: <a href='https://github.com/glitch-soc/mastodon' rel='noopener' target='_blank'>glitch-soc/mastodon</a>, Mastodon: <a href='https://github.com/tootsuite/mastodon' rel='noopener' target='_blank'>Mastodon</a> }}
+                  values={{
+                    github: <a href='https://github.com/glitch-soc/mastodon' rel='noopener' target='_blank'>glitch-soc/mastodon</a>,
+                    Mastodon: <a href='https://github.com/tootsuite/mastodon' rel='noopener' target='_blank'>Mastodon</a>,
+                  }}
                 />
               </p>
             </div>
