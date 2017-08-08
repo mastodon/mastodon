@@ -35,10 +35,9 @@
               %i.fa.fa-external-link{ style: 'padding-left: 5px;' }
 
       .container.hero
-        .about-short
-          .heading
-            %h3= t('about.description_headline', domain: site_hostname)
-            %p= @instance_presenter.site_description.html_safe.presence || t('about.generic_description', domain: site_hostname)
+        .heading
+          %h3= t('about.description_headline', domain: site_hostname)
+          %p= @instance_presenter.site_description.html_safe.presence || t('about.generic_description', domain: site_hostname)
 
   .information-board
     .container
