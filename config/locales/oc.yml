@@ -214,7 +214,7 @@ oc:
       body: "%{reporter} a senhalat %{target}"
       subject: Novèl senhalament per %{instance} (#%{id})
   application_mailer:
-    salutation: '%{name},'
+    salutation: "%{name},"
     settings: 'Cambiar las preferéncias de corrièl : %{link}'
     signature: Notificacion de Mastodon sus %{instance}
     view: 'Veire :'
@@ -227,13 +227,13 @@ oc:
     delete_account_html: Se volètz suprimir vòstre compte, podètz <a href="%{path}">o far aquí</a>. Vos demandarem que confirmetz.
     didnt_get_confirmation: Avètz pas recebut las instruccions de confirmacion ?
     forgot_password: Senhal oblidat ?
+    invalid_reset_password_token: Ligam de reïnicializacion invalid o acabat. Tornatz ensajar se vos plai.
     login: Se connectar
     logout: Se desconnectar
     register: Se marcar
     resend_confirmation: Tornar mandar las instruccions de confirmacion
     reset_password: Reïnicializar lo senhal
     set_new_password: Picar un nòu senhal
-    invalid_reset_password_token: Ligam de reïnicializacion invalid o acabat. Tornatz ensajar se vos plai.
   authorize_follow:
     error: O planhèm, i a agut una error al moment de cercar lo compte
     follow: Sègre
@@ -333,7 +333,7 @@ oc:
       content: Verificacion de seguretat fracassada. Blocatz los cookies ?
       title: Verificacion de seguretat fracassada
     '429': Lo servidor mòla (subrecargada)
-    noscript: Per utilizar l’aplicacion web de Mastodon, mercés d’activar JavaScript. O podètz utilizar una aplicacion per vòstra plataforma coma alernativa.
+    noscript_html: Per utilizar l’aplicacion web de Mastodon, mercés d’activar JavaScript. O podètz utilizar <a href="https://github.com/tootsuite/documentation/blob/master/Using-Mastodon/Apps.md">una aplicacion</a> per vòstra plataforma coma alernativa.
   exports:
     blocks: Personas que blocatz
     csv: CSV
@@ -580,4 +580,4 @@ oc:
   users:
     invalid_email: L’adreça de corrièl es invalida
     invalid_otp_token: Còdi d’autentificacion en dos temps invalid
-    signed_in_as: 'Session a'
+    signed_in_as: Session a
