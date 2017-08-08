@@ -1,4 +1,4 @@
-<%= display_name(@me) %>,
+<%= raw t('application_mailer.salutation', name: display_name(@me)) %>
 
 <%= raw t('notification_mailer.follow.body', name: @account.acct) %>
 

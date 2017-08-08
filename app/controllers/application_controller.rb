@@ -43,6 +43,10 @@ class ApplicationController < ActionController::Base
     forbidden if current_user.account.suspended?
   end
 
+  def after_sign_out_path_for(_resource_or_scope)
+    new_user_session_path
+  end
+
   protected
 
   def forbidden
@@ -70,7 +74,7 @@ class ApplicationController < ActionController::Base
   end
 
   def current_session
-    @current_session ||= SessionActivation.find_by(session_id: session['auth_id'])
+    @current_session ||= SessionActivation.find_by(session_id: cookies.signed['_session_id'])
   end
 
   def cache_collection(raw, klass)

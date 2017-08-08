@@ -13,7 +13,7 @@ class PrecomputeFeedService < BaseService
   attr_reader :account
 
   def populate_feed
-    pairs = statuses.reverse_each.map(&method(:process_status))
+    pairs = statuses.reverse_each.lazy.reject(&method(:status_filtered?)).map(&method(:process_status)).to_a
 
     redis.pipelined do
       redis.zadd(account_home_key, pairs) if pairs.any?
@@ -22,7 +22,7 @@ class PrecomputeFeedService < BaseService
   end
 
   def process_status(status)
-    [status.id, status.reblog? ? status.reblog_of_id : status.id] unless status_filtered?(status)
+    [status.id, status.reblog? ? status.reblog_of_id : status.id]
   end
 
   def status_filtered?(status)

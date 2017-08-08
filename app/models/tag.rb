@@ -12,9 +12,10 @@
 class Tag < ApplicationRecord
   has_and_belongs_to_many :statuses
 
-  HASHTAG_RE = /(?:^|[^\/\)\w])#([[:word:]_]*[[:alpha:]_][[:word:]_]*)/i
+  HASHTAG_NAME_RE = '[[:word:]_]*[[:alpha:]_][[:word:]_]*'
+  HASHTAG_RE = /(?:^|[^\/\)\w])#(#{HASHTAG_NAME_RE})/i
 
-  validates :name, presence: true, uniqueness: true
+  validates :name, presence: true, uniqueness: true, format: { with: /\A#{HASHTAG_NAME_RE}\z/i }
 
   def to_param
     name
@@ -23,7 +24,7 @@ class Tag < ApplicationRecord
   class << self
     def search_for(term, limit = 5)
       pattern = sanitize_sql_like(term) + '%'
-      Tag.where('name like ?', pattern).order(:name).limit(limit)
+      Tag.where('lower(name) like lower(?)', pattern).order(:name).limit(limit)
     end
   end
 end
