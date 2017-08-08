@@ -6,6 +6,8 @@ class ActivityPub::TagManager
   include Singleton
   include RoutingHelper
 
+  CONTEXT = 'https://www.w3.org/ns/activitystreams'
+
   COLLECTIONS = {
     public: 'https://www.w3.org/ns/activitystreams#Public',
   }.freeze
@@ -65,5 +67,28 @@ class ActivityPub::TagManager
     cc.concat(status.mentions.map { |mention| uri_for(mention.account) }) unless status.direct_visibility?
 
     cc
+  end
+
+  def local_uri?(uri)
+    host = Addressable::URI.parse(uri).normalized_host
+    ::TagManager.instance.local_domain?(host) || ::TagManager.instance.web_domain?(host)
+  end
+
+  def uri_to_local_id(uri, param = :id)
+    path_params = Rails.application.routes.recognize_path(uri)
+    path_params[param]
+  end
+
+  def uri_to_resource(uri, klass)
+    if local_uri?(uri)
+      case klass.name
+      when 'Account'
+        klass.find_local(uri_to_local_id(uri, :username))
+      else
+        klass.find_by(id: uri_to_local_id(uri))
+      end
+    else
+      klass.find_by(uri: uri)
+    end
   end
 end
