@@ -65,12 +65,12 @@ pl:
         title: Położenie
       media_attachments: Załączniki multimedialne
       moderation:
-        all: Wszystko
+        all: Wszystkie
         silenced: Wyciszone
         suspended: Zawieszone
         title: Moderacja
       most_recent_activity: Najnowsza aktywność
-      most_recent_ip: Najnowsze IP
+      most_recent_ip: Ostatnie IP
       not_subscribed: Nie zasubskrybowano
       order:
         alphabetic: Alfabetycznie
@@ -88,9 +88,9 @@ pl:
       search: Szukaj
       show:
         created_reports: Zgłoszenia tego użytkownika
-        report: zgłoszenie
+        report: zgłoszeń
         targeted_reports: Zgłoszenia dotyczące tego użytkownika
-      silence: Cisza
+      silence: Wycisz
       statuses: Statusy
       subscribe: Subskrybuj
       title: Konta
@@ -123,13 +123,14 @@ pl:
       show:
         affected_accounts:
           one: Dotyczy jednego konta w bazie danych
+          many: Dotyczy %{count} kont w bazie danych
           other: Dotyczy %{count} kont w bazie danych
         retroactive:
           silence: Odwołaj wyciszenie wszystkich kont w tej domenie
           suspend: Odwołaj zawieszenie wszystkich kont w tej domenie
         title: Odwołaj blokadę dla domeny %{domain}
         undo: Cofnij
-      title: Blokady domen
+      title: Zablokowane domeny
       undo: Cofnij
     instances:
       account_count: Znane konta
@@ -142,7 +143,7 @@ pl:
         label: Komentarz
         none: Brak
       delete: Usuń
-      id: Identyfikator
+      id: ID
       mark_as_resolved: Oznacz jako rozwiązane
       nsfw:
         'false': Nie oznaczaj jako NSFW
@@ -150,8 +151,8 @@ pl:
       report: 'Zgłoszenie #%{id}'
       report_contents: Zawartość
       reported_account: Zgłoszone konto
-      reported_by: Zgłoszone przez
-      resolved: Rozwiązano
+      reported_by: Zgłaszający
+      resolved: Rozwiązane
       silence_account: Wycisz konto
       status: Status
       suspend_account: Zawieś konto
@@ -180,7 +181,7 @@ pl:
         desc_html: Dobre miejsce na zasady użytkowania, wprowadzenie i inne rzeczy, które wyróżniają tę instancję. Możesz korzystać z tagów HTML
         title: Niestandardowy opis strony
       site_terms:
-        desc_html: Miejsce na własną politykę prywatności, zasady użytkowania i inne unormowania prawne. Możesz używać tagów HTML
+        desc_html: Miejsce na własną politykę prywatności, zasady użytkowania i inne unormowania prawne. Możesz korzystać z tagów HTML
         title: Niestandardowe zasady użytkowania
       site_title: Nazwa instancji
       timeline_preview:
@@ -204,7 +205,7 @@ pl:
       with_media: Z zawartością multimedialną
     subscriptions:
       callback_url: URL zwrotny
-      confirmed: Potwierdzono
+      confirmed: Potwierdzone
       expires_in: Wygasa
       last_delivery: Ostatnio doręczono
       title: WebSub
