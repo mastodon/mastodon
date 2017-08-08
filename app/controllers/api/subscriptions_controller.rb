@@ -42,7 +42,7 @@ class Api::SubscriptionsController < Api::BaseController
   end
 
   def lease_seconds_or_default
-    (params['hub.lease_seconds'] || 86_400).to_i.seconds
+    (params['hub.lease_seconds'] || 1.day).to_i.seconds
   end
 
   def set_account

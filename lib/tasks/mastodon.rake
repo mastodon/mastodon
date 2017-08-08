@@ -1,18 +1,10 @@
 # frozen_string_literal: true
 
 namespace :mastodon do
-  desc 'Execute daily tasks'
+  desc 'Execute daily tasks (deprecated)'
   task :daily do
-    %w(
-      mastodon:feeds:clear
-      mastodon:media:clear
-      mastodon:users:clear
-      mastodon:push:refresh
-    ).each do |task|
-      puts "Starting #{task} at #{Time.now.utc}"
-      Rake::Task[task].invoke
-    end
-    puts "Completed daily tasks at #{Time.now.utc}"
+    # No-op
+    # All of these tasks are now executed via sidekiq-scheduler
   end
 
   desc 'Turn a user into an admin, identified by the USERNAME environment variable'
@@ -74,7 +66,7 @@ namespace :mastodon do
   end
 
   namespace :media do
-    desc 'Removes media attachments that have not been assigned to any status for longer than a day'
+    desc 'Removes media attachments that have not been assigned to any status for longer than a day (deprecated)'
     task clear: :environment do
       # No-op
       # This task is now executed via sidekiq-scheduler
@@ -85,9 +77,11 @@ namespace :mastodon do
       MediaAttachment.where(account: Account.silenced).find_each(&:destroy)
     end
 
-    desc 'Remove cached remote media attachments that are older than a week'
+    desc 'Remove cached remote media attachments that are older than NUM_DAYS. By default 7 (week)'
     task remove_remote: :environment do
-      MediaAttachment.where.not(remote_url: '').where('created_at < ?', 1.week.ago).find_each do |media|
+      time_ago = ENV.fetch('NUM_DAYS') { 7 }.to_i.days.ago
+
+      MediaAttachment.where.not(remote_url: '').where('created_at < ?', time_ago).find_each do |media|
         media.file.destroy
         media.type = :unknown
         media.save
@@ -100,6 +94,18 @@ namespace :mastodon do
       MediaAttachment.where(file_file_name: nil).where.not(type: :unknown).in_batches.update_all(type: :unknown)
       Rails.logger.debug 'Done!'
     end
+
+    desc 'Redownload avatars/headers of remote users. Optionally limit to a particular domain with DOMAIN'
+    task redownload_avatars: :environment do
+      accounts = Account.remote
+      accounts = accounts.where(domain: ENV['DOMAIN']) if ENV['DOMAIN'].present?
+
+      accounts.find_each do |account|
+        account.reset_avatar!
+        account.reset_header!
+        account.save
+      end
+    end
   end
 
   namespace :push do
@@ -111,7 +117,7 @@ namespace :mastodon do
       end
     end
 
-    desc 'Re-subscribes to soon expiring PuSH subscriptions'
+    desc 'Re-subscribes to soon expiring PuSH subscriptions (deprecated)'
     task refresh: :environment do
       # No-op
       # This task is now executed via sidekiq-scheduler
@@ -119,15 +125,22 @@ namespace :mastodon do
   end
 
   namespace :feeds do
-    desc 'Clear timelines of inactive users'
+    desc 'Clear timelines of inactive users (deprecated)'
     task clear: :environment do
       # No-op
       # This task is now executed via sidekiq-scheduler
     end
 
-    desc 'Clears all timelines'
+    desc 'Clear all timelines without regenerating them'
     task clear_all: :environment do
       Redis.current.keys('feed:*').each { |key| Redis.current.del(key) }
+    end
+
+    desc 'Generates home timelines for users who logged in in the past two weeks'
+    task build: :environment do
+      User.active.includes(:account).find_each do |u|
+        PrecomputeFeedService.new.call(u.account)
+      end
     end
   end
 
@@ -141,17 +154,13 @@ namespace :mastodon do
   end
 
   namespace :users do
-    desc 'Clear out unconfirmed users'
+    desc 'Clear out unconfirmed users (deprecated)'
     task clear: :environment do
-      # Users that never confirmed e-mail never signed in, means they
-      # only have a user record and an avatar record, with no files uploaded
-      User.where('confirmed_at is NULL AND confirmation_sent_at <= ?', 2.days.ago).find_in_batches do |batch|
-        Account.where(id: batch.map(&:account_id)).delete_all
-        User.where(id: batch.map(&:id)).delete_all
-      end
+      # No-op
+      # This task is now executed via sidekiq-scheduler
     end
 
-    desc 'List all admin users'
+    desc 'List e-mails of all admin users'
     task admins: :environment do
       puts 'Admin user emails:'
       puts User.admins.map(&:email).join("\n")
@@ -161,16 +170,21 @@ namespace :mastodon do
   namespace :settings do
     desc 'Open registrations on this instance'
     task open_registrations: :environment do
-      setting = Setting.where(var: 'open_registrations').first
-      setting.value = true
-      setting.save
+      Setting.open_registrations = true
     end
 
     desc 'Close registrations on this instance'
     task close_registrations: :environment do
-      setting = Setting.where(var: 'open_registrations').first
-      setting.value = false
-      setting.save
+      Setting.open_registrations = false
+    end
+  end
+
+  namespace :webpush do
+    desc 'Generate VAPID key'
+    task generate_vapid_key: :environment do
+      vapid_key = Webpush.generate_key
+      puts "VAPID_PRIVATE_KEY=#{vapid_key.private_key}"
+      puts "VAPID_PUBLIC_KEY=#{vapid_key.public_key}"
     end
   end
 
@@ -213,9 +227,16 @@ namespace :mastodon do
     task prepare_for_foreign_keys: :environment do
       # All the deletes:
       ActiveRecord::Base.connection.execute('DELETE FROM statuses USING statuses s LEFT JOIN accounts a ON a.id = s.account_id WHERE statuses.id = s.id AND a.id IS NULL')
-      ActiveRecord::Base.connection.execute('DELETE FROM account_domain_blocks USING account_domain_blocks adb LEFT JOIN accounts a ON a.id = adb.account_id WHERE account_domain_blocks.id = adb.id AND a.id IS NULL')
-      ActiveRecord::Base.connection.execute('DELETE FROM conversation_mutes USING conversation_mutes cm LEFT JOIN accounts a ON a.id = cm.account_id WHERE conversation_mutes.id = cm.id AND a.id IS NULL')
-      ActiveRecord::Base.connection.execute('DELETE FROM conversation_mutes USING conversation_mutes cm LEFT JOIN conversations c ON c.id = cm.conversation_id WHERE conversation_mutes.id = cm.id AND c.id IS NULL')
+
+      if ActiveRecord::Base.connection.table_exists? :account_domain_blocks
+        ActiveRecord::Base.connection.execute('DELETE FROM account_domain_blocks USING account_domain_blocks adb LEFT JOIN accounts a ON a.id = adb.account_id WHERE account_domain_blocks.id = adb.id AND a.id IS NULL')
+      end
+
+      if ActiveRecord::Base.connection.table_exists? :conversation_mutes
+        ActiveRecord::Base.connection.execute('DELETE FROM conversation_mutes USING conversation_mutes cm LEFT JOIN accounts a ON a.id = cm.account_id WHERE conversation_mutes.id = cm.id AND a.id IS NULL')
+        ActiveRecord::Base.connection.execute('DELETE FROM conversation_mutes USING conversation_mutes cm LEFT JOIN conversations c ON c.id = cm.conversation_id WHERE conversation_mutes.id = cm.id AND c.id IS NULL')
+      end
+
       ActiveRecord::Base.connection.execute('DELETE FROM favourites USING favourites f LEFT JOIN accounts a ON a.id = f.account_id WHERE favourites.id = f.id AND a.id IS NULL')
       ActiveRecord::Base.connection.execute('DELETE FROM favourites USING favourites f LEFT JOIN statuses s ON s.id = f.status_id WHERE favourites.id = f.id AND s.id IS NULL')
       ActiveRecord::Base.connection.execute('DELETE FROM blocks USING blocks b LEFT JOIN accounts a ON a.id = b.account_id WHERE blocks.id = b.id AND a.id IS NULL')

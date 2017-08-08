@@ -10,6 +10,6 @@ class RejectFollowService < BaseService
   private
 
   def build_xml(follow_request)
-    AtomSerializer.render(AtomSerializer.new.reject_follow_request_salmon(follow_request))
+    OStatus::AtomSerializer.render(OStatus::AtomSerializer.new.reject_follow_request_salmon(follow_request))
   end
 end

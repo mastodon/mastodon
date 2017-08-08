@@ -6,8 +6,9 @@ ja:
         avatar: 2MBまでのPNGやGIF、JPGが利用可能です。120x120pxまで縮小されます。
         display_name: あと<span class="name-counter">%{count}</span>文字入力できます。
         header: 2MBまでのPNGやGIF、JPGが利用可能です。 700x335pxまで縮小されます。
-        locked: フォロワーを手動で承認する必要があります。デフォルトではトゥートの公開範囲はフォロワーのみです。
+        locked: フォロワーを手動で承認する必要があります。
         note: あと<span class="note-counter">%{count}</span>文字入力できます。
+        setting_noindex: 公開プロフィールおよび各投稿ページに影響します
       imports:
         data: 他の Mastodon インスタンスからエクスポートしたCSVファイルを選択して下さい
       sessions:
@@ -34,7 +35,11 @@ ja:
         setting_auto_play_gif: アニメーションGIFを自動再生する
         setting_boost_modal: ブーストする前に確認ダイアログを表示する
         setting_default_privacy: 投稿の公開範囲
+        setting_default_sensitive: メディアを常に閲覧注意としてマークする
         setting_delete_modal: トゥートを削除する前に確認ダイアログを表示する
+        setting_noindex: 検索エンジンによるインデックスを拒否する
+        setting_system_font_ui: システムのデフォルトフォントを使う
+        setting_unfollow_modal: フォロー解除する前に確認ダイアログを表示する
         severity: 重大性
         type: インポートする項目
         username: ユーザー名

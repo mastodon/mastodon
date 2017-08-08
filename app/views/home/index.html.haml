@@ -1,10 +1,12 @@
 - content_for :header_tags do
-  %script#initial-state{ type: 'application/json' }!= json_escape(render(file: 'home/initial_state', formats: :json))
+  %meta{name: 'applicationServerKey', content: Rails.configuration.x.vapid_public_key}
+  %script#initial-state{ type: 'application/json' }!= json_escape(@initial_state_json)
 
   = javascript_pack_tag 'application', integrity: true, crossorigin: 'anonymous'
 
 .app-holder#mastodon{ data: { props: Oj.dump(default_props) } }
   %noscript
-    = image_tag asset_pack_path('logo.png')
+    = image_tag asset_pack_path('logo.svg'), alt: 'Mastodon'
+
     %div
       = t('errors.noscript')

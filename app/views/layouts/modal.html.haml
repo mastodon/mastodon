@@ -1,0 +1,16 @@
+- content_for :header_tags do
+  = javascript_pack_tag 'public', integrity: true, crossorigin: 'anonymous'
+
+- content_for :content do
+  - if user_signed_in?
+    .account-header
+      .avatar= image_tag current_account.avatar.url(:original)
+      .name
+        = t 'users.signed_in_as'
+        %span.username @#{current_account.local_username_and_domain}
+      = link_to destroy_user_session_path, method: :delete, class: 'logout-link icon-button' do
+        = fa_icon 'sign-out'
+
+  .container= yield
+
+= render template: 'layouts/application'

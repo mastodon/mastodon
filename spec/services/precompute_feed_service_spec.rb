@@ -23,5 +23,17 @@ RSpec.describe PrecomputeFeedService do
       account = Fabricate(:account)
       subject.call(account)
     end
+
+    it 'filters statuses' do
+      account = Fabricate(:account)
+      muted_account = Fabricate(:account)
+      Fabricate(:mute, account: account, target_account: muted_account)
+      reblog = Fabricate(:status, account: muted_account)
+      status = Fabricate(:status, account: account, reblog: reblog)
+
+      subject.call(account)
+
+      expect(Redis.current.zscore(FeedManager.instance.key(:home, account.id), reblog.id)).to eq nil
+    end
   end
 end

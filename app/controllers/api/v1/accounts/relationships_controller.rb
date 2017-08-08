@@ -8,15 +8,14 @@ class Api::V1::Accounts::RelationshipsController < Api::BaseController
 
   def index
     @accounts = Account.where(id: account_ids).select('id')
-    @following = Account.following_map(account_ids, current_user.account_id)
-    @followed_by = Account.followed_by_map(account_ids, current_user.account_id)
-    @blocking = Account.blocking_map(account_ids, current_user.account_id)
-    @muting = Account.muting_map(account_ids, current_user.account_id)
-    @requested = Account.requested_map(account_ids, current_user.account_id)
-    @domain_blocking = Account.domain_blocking_map(account_ids, current_user.account_id)
+    render json: @accounts, each_serializer: REST::RelationshipSerializer, relationships: relationships
   end
 
   private
+
+  def relationships
+    AccountRelationshipsPresenter.new(@accounts, current_user.account_id)
+  end
 
   def account_ids
     @_account_ids ||= Array(params[:id]).map(&:to_i)
