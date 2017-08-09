@@ -61,6 +61,14 @@ RSpec.describe Admin::SettingsController, type: :controller do
           expect(response).to redirect_to(edit_admin_settings_path)
           expect(Setting.site_title).to eq 'New title'
         end
+
+        it 'updates a admin announcement' do
+          Setting.admin_announcement = 'Original'
+          patch :update, params: { form_admin_settings: { admin_announcement: 'New title2' } }
+
+          expect(response).to redirect_to(edit_admin_settings_path)
+          expect(Setting.admin_announcement).to eq 'New title2'
+        end
       end
 
       context do

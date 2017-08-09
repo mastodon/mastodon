@@ -9,6 +9,7 @@ RSpec.describe Api::V1::InstancesController, type: :controller do
   let(:token) { Fabricate(:accessible_access_token, resource_owner_id: user.id) }
 
   before do
+    Fabricate(:setting)
     allow(controller).to receive(:doorkeeper_token) { token }
   end
 
@@ -17,6 +18,13 @@ RSpec.describe Api::V1::InstancesController, type: :controller do
       get :show
 
       expect(response).to have_http_status(:success)
+    end
+
+    it 'returns instance parameter' do
+      get :show
+
+      body = JSON.parse(response.body)
+      expect(body['announcement']).to eq 'test_value'
     end
   end
 end
