@@ -7,7 +7,7 @@ class ActivityPub::DistributionWorker
 
   def perform(status_id)
     @status  = Status.find(status_id)
-    @account = status.account
+    @account = @status.account
 
     return if skip_distribution?
 

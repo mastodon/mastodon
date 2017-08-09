@@ -28,13 +28,13 @@ class ProcessMentionsService < BaseService
     end
 
     status.mentions.includes(:account).each do |mention|
-      create_notification(mention)
+      create_notification(status, mention)
     end
   end
 
   private
 
-  def create_notification(mention)
+  def create_notification(status, mention)
     mentioned_account = mention.account
 
     if mentioned_account.local?
