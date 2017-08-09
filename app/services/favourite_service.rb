@@ -24,7 +24,7 @@ class FavouriteService < BaseService
   def create_notification(favourite)
     status = favourite.status
 
-    if status.local?
+    if status.account.local?
       NotifyService.new.call(status.account, favourite)
     elsif status.account.ostatus?
       NotificationWorker.perform_async(build_xml(favourite), favourite.account_id, status.account_id)
