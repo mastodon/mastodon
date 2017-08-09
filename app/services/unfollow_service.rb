@@ -7,11 +7,28 @@ class UnfollowService < BaseService
   def call(source_account, target_account)
     follow = source_account.unfollow!(target_account)
     return unless follow
-    NotificationWorker.perform_async(build_xml(follow), source_account.id, target_account.id) unless target_account.local?
+    create_notification(follow) unless target_account.local?
     UnmergeWorker.perform_async(target_account.id, source_account.id)
+    follow
   end
 
   private
+
+  def create_notification(follow)
+    if follow.target_account.ostatus?
+      NotificationWorker.perform_async(build_xml(follow), follow.account_id, follow.target_account_id)
+    elsif follow.target_account.activitypub?
+      ActivityPub::DeliveryWorker.perform_async(build_json(follow), follow.account_id, follow.target_account.inbox_url)
+    end
+  end
+
+  def build_json(follow)
+    ActiveModelSerializers::SerializableResource.new(
+      follow,
+      serializer: ActivityPub::UndoFollowSerializer,
+      adapter: ActivityPub::Adapter
+    ).to_json
+  end
 
   def build_xml(follow)
     OStatus::AtomSerializer.render(OStatus::AtomSerializer.new.unfollow_salmon(follow))
