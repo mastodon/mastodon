@@ -39,6 +39,10 @@ class ActivityPub::Activity
         ActivityPub::Activity::Update
       when 'Undo'
         ActivityPub::Activity::Undo
+      when 'Accept'
+        ActivityPub::Activity::Accept
+      when 'Reject'
+        ActivityPub::Activity::Reject
       end
     end
   end
