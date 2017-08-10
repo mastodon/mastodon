@@ -394,6 +394,11 @@
       bottom: -1px;
       right: 8px;
     }
+
+    ::-webkit-scrollbar-track:hover,
+    ::-webkit-scrollbar-track:active {
+      background-color: rgba($base-overlay-background, 0.3);
+    }
   }
 }
 
