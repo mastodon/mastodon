@@ -12,7 +12,7 @@ class ActivityPub::Activity::Follow < ActivityPub::Activity
       NotifyService.new.call(target_account, follow_request)
     else
       AuthorizeFollowService.new.call(@account, target_account)
-      NotifyService.new.call(target_account, Follow.find_by(account: @account, target_account: target_account))
+      NotifyService.new.call(target_account, ::Follow.find_by(account: @account, target_account: target_account))
     end
   end
 end
