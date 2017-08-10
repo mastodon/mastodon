@@ -1,10 +1,10 @@
 - content_for :page_title do
-  お気に入りタグ
+  = t('settings.favourite_tags')
 
 = simple_form_for @favourite_tag, url: settings_favourite_tags_url do |f|
   = render 'shared/error_messages', object: @favourite_tag
   = f.simple_fields_for :tag do |ff|
-    = ff.input :name, placeholder: 'タグ名'
+    = ff.input :name, placeholder: t('favourite_tags.name_of_tag')
   = f.button :button, type: 'submit'
 %hr
 
@@ -19,4 +19,4 @@
           = form_for fav_tag, url: settings_favourite_tag_url(fav_tag), method: :delete do |f|
             = f.button :button, type: :submit, class: :negative do
               = fa_icon('times')
-              削除
+              = t('favourite_tags.delete')

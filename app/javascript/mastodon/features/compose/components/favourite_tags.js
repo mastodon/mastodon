@@ -2,10 +2,17 @@ import React from 'react';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import Link from 'react-router-dom/Link';
 import PropTypes from 'prop-types';
+import { injectIntl, defineMessages } from 'react-intl';
 
+const messages = defineMessages({
+  favourite_tags: { id: 'compose_form.favourite_tags', defaultMessage: 'Favourite tags' },
+});
+
+@injectIntl
 class FavouriteTags extends React.PureComponent {
 
   static propTypes = {
+    intl: PropTypes.object.isRequired,
     tags: ImmutablePropTypes.list.isRequired,
     locktag: PropTypes.string.isRequired,
     refreshFavouriteTags: PropTypes.func.isRequired,
@@ -29,6 +36,8 @@ class FavouriteTags extends React.PureComponent {
   }
 
   render () {
+    const { intl } = this.props;
+
     const tags = this.props.tags.map(tag => (
       <li key={tag.get('name')}>
         <Link
@@ -51,7 +60,7 @@ class FavouriteTags extends React.PureComponent {
       <div className='favourite-tags'>
         <div className='favourite-tags__header'>
           <i className='fa fa-tag' />
-          <div className='favourite-tags__header__name'>お気に入りタグ</div>
+          <div className='favourite-tags__header__name'>{intl.formatMessage(messages.favourite_tags)}</div>
           <div className='favourite-tags__lock'>
             <a href='/settings/favourite_tags'>
               <i className='fa fa-gear' />
