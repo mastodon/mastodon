@@ -62,7 +62,7 @@ export default class BoostModal extends ImmutablePureComponent {
 
               <a onClick={this.handleAccountClick} href={status.getIn(['account', 'url'])} className='status__display-name'>
                 <div className='status__avatar'>
-                  <Avatar src={status.getIn(['account', 'avatar'])} staticSrc={status.getIn(['account', 'avatar_static'])} size={48} />
+                  <Avatar account={status.get('account')} size={48} />
                 </div>
 
                 <DisplayName account={status.get('account')} />
