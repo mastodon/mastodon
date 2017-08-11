@@ -16,7 +16,8 @@ const messages = defineMessages({
   unmute: { id: 'account.unmute', defaultMessage: 'Unmute @{name}' },
 });
 
-class Account extends ImmutablePureComponent {
+@injectIntl
+export default class Account extends ImmutablePureComponent {
 
   static propTypes = {
     account: ImmutablePropTypes.map.isRequired,
@@ -82,5 +83,3 @@ class Account extends ImmutablePureComponent {
   }
 
 }
-
-export default injectIntl(Account);

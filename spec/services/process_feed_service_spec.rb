@@ -167,6 +167,46 @@ XML
     expect(created_statuses.first.reblog.text).to eq 'Overwatch rocks'
   end
 
+  it 'ignores reblogs if it failed to retreive reblogged statuses' do
+    stub_request(:head, 'https://overwatch.com/users/tracer/updates/1').to_return(status: 404)
+
+    actor = Fabricate(:account, username: 'tracer', domain: 'overwatch.com')
+
+    body = <<XML
+<?xml version="1.0"?>
+<entry xmlns="http://www.w3.org/2005/Atom" xmlns:thr="http://purl.org/syndication/thread/1.0" xmlns:activity="http://activitystrea.ms/spec/1.0/" xmlns:poco="http://portablecontacts.net/spec/1.0" xmlns:media="http://purl.org/syndication/atommedia" xmlns:ostatus="http://ostatus.org/schema/1.0" xmlns:mastodon="http://mastodon.social/schema/1.0">
+  <id>tag:overwatch.com,2017-04-27:objectId=4467137:objectType=Status</id>
+  <published>2017-04-27T13:49:25Z</published>
+  <updated>2017-04-27T13:49:25Z</updated>
+  <author>
+    <id>https://overwatch.com/users/tracer</id>
+    <activity:object-type>http://activitystrea.ms/schema/1.0/person</activity:object-type>
+    <uri>https://overwatch.com/users/tracer</uri>
+    <name>tracer</name>
+  </author>
+  <activity:object-type>http://activitystrea.ms/schema/1.0/activity</activity:object-type>
+  <activity:verb>http://activitystrea.ms/schema/1.0/share</activity:verb>
+  <content type="html">Overwatch rocks</content>
+  <activity:object>
+    <id>tag:overwatch.com,2017-04-27:objectId=4467137:objectType=Status</id>
+    <activity:object-type>http://activitystrea.ms/schema/1.0/note</activity:object-type>
+    <activity:verb>http://activitystrea.ms/schema/1.0/post</activity:verb>
+    <author>
+      <id>https://overwatch.com/users/tracer</id>
+      <activity:object-type>http://activitystrea.ms/schema/1.0/person</activity:object-type>
+      <uri>https://overwatch.com/users/tracer</uri>
+      <name>tracer</name>
+    </author>
+    <content type="html">Overwatch rocks</content>
+    <link rel="alternate" type="text/html" href="https://overwatch.com/users/tracer/updates/1" />
+  </activity:object>
+XML
+
+    created_statuses = subject.call(body, actor)
+
+    expect(created_statuses).to eq []
+  end
+
   it 'ignores statuses with an out-of-order delete' do
     sender = Fabricate(:account, username: 'tracer', domain: 'overwatch.com')
 

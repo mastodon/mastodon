@@ -9,17 +9,18 @@ import LoadingIndicator from '../../components/loading_indicator';
 import Column from '../ui/components/column';
 import HeaderContainer from './containers/header_container';
 import ColumnBackButton from '../../components/column_back_button';
-import Immutable from 'immutable';
+import { List as ImmutableList } from 'immutable';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
 const mapStateToProps = (state, props) => ({
-  statusIds: state.getIn(['timelines', `account:${Number(props.params.accountId)}`, 'items'], Immutable.List()),
+  statusIds: state.getIn(['timelines', `account:${Number(props.params.accountId)}`, 'items'], ImmutableList()),
   isLoading: state.getIn(['timelines', `account:${Number(props.params.accountId)}`, 'isLoading']),
   hasMore: !!state.getIn(['timelines', `account:${Number(props.params.accountId)}`, 'next']),
   me: state.getIn(['meta', 'me']),
 });
 
-class AccountTimeline extends ImmutablePureComponent {
+@connect(mapStateToProps)
+export default class AccountTimeline extends ImmutablePureComponent {
 
   static propTypes = {
     params: PropTypes.object.isRequired,
@@ -77,5 +78,3 @@ class AccountTimeline extends ImmutablePureComponent {
   }
 
 }
-
-export default connect(mapStateToProps)(AccountTimeline);

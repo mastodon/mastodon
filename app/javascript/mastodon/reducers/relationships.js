@@ -11,9 +11,9 @@ import {
   DOMAIN_BLOCK_SUCCESS,
   DOMAIN_UNBLOCK_SUCCESS,
 } from '../actions/domain_blocks';
-import Immutable from 'immutable';
+import { Map as ImmutableMap, fromJS } from 'immutable';
 
-const normalizeRelationship = (state, relationship) => state.set(relationship.id, Immutable.fromJS(relationship));
+const normalizeRelationship = (state, relationship) => state.set(relationship.id, fromJS(relationship));
 
 const normalizeRelationships = (state, relationships) => {
   relationships.forEach(relationship => {
@@ -23,7 +23,7 @@ const normalizeRelationships = (state, relationships) => {
   return state;
 };
 
-const initialState = Immutable.Map();
+const initialState = ImmutableMap();
 
 export default function relationships(state = initialState, action) {
   switch(action.type) {

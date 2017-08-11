@@ -11,7 +11,8 @@ const dateFormatOptions = {
   minute: '2-digit',
 };
 
-class RelativeTimestamp extends React.Component {
+@injectIntl
+export default class RelativeTimestamp extends React.Component {
 
   static propTypes = {
     intl: PropTypes.object.isRequired,
@@ -37,5 +38,3 @@ class RelativeTimestamp extends React.Component {
   }
 
 }
-
-export default injectIntl(RelativeTimestamp);

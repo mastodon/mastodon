@@ -5,6 +5,9 @@ class FetchRemoteResourceService < BaseService
 
   def call(url)
     @url = url
+
+    return process_local_url if local_url?
+
     process_url unless fetched_atom_feed.nil?
   end
 
@@ -37,5 +40,30 @@ class FetchRemoteResourceService < BaseService
 
   def xml_data
     @_xml_data ||= Nokogiri::XML(body, nil, 'utf-8')
+  end
+
+  def local_url?
+    TagManager.instance.local_url?(@url)
+  end
+
+  def process_local_url
+    recognized_params = Rails.application.routes.recognize_path(@url)
+
+    return unless recognized_params[:action] == 'show'
+
+    if recognized_params[:controller] == 'stream_entries'
+      status = StreamEntry.find_by(id: recognized_params[:id])&.status
+      check_local_status(status)
+    elsif recognized_params[:controller] == 'statuses'
+      status = Status.find_by(id: recognized_params[:id])
+      check_local_status(status)
+    elsif recognized_params[:controller] == 'accounts'
+      Account.find_local(recognized_params[:username])
+    end
+  end
+
+  def check_local_status(status)
+    return if status.nil?
+    status if status.public_visibility? || status.unlisted_visibility?
   end
 end

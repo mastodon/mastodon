@@ -1,7 +1,7 @@
 run.config:
   engine: ruby
   engine.config:
-    runtime: ruby-2.4.1
+    runtime: ruby-2.4
 
   extra_packages:
     # basic servers:
@@ -20,6 +20,9 @@ run.config:
     # for node-gyp, used in the asset compilation process:
     - python-2
 
+    # i18n:
+    - libidn
+
   cache_dirs:
     - node_modules
 
@@ -35,10 +38,6 @@ run.config:
 
   extra_steps:
     - envsubst < .env.nanobox > .env
-    - gem install bundler
-    - bundle config build.nokogiri --with-iconv-dir=/data/ --with-zlib-dir=/data/
-    - bundle config build.nokogumbo --with-iconv-dir=/data/ --with-zlib-dir=/data/
-    - bundle install --clean
     - yarn
 
   fs_watch: true
@@ -153,8 +152,59 @@ worker.sidekiq:
 data.db:
   image: nanobox/postgresql:9.5
 
+  cron:
+    - id: backup
+      schedule: '0 3 * * *'
+      command: |
+        PGPASSWORD=${DATA_POSTGRES_PASS} pg_dump -U ${DATA_POSTGRES_USER} -w -Fc -O gonano |
+        gzip |
+        curl -k -H "X-AUTH-TOKEN: ${WAREHOUSE_DATA_HOARDER_TOKEN}" https://${WAREHOUSE_DATA_HOARDER_HOST}:7410/blobs/backup-${HOSTNAME}-$(date -u +%Y-%m-%d.%H-%M-%S).sql.gz --data-binary @- &&
+        curl -k -s -H "X-AUTH-TOKEN: ${WAREHOUSE_DATA_HOARDER_TOKEN}" https://${WAREHOUSE_DATA_HOARDER_HOST}:7410/blobs/ |
+        json_pp |
+        grep ${HOSTNAME} |
+        sort |
+        head -n-${BACKUP_COUNT:-1} |
+        sed 's/.*: "\(.*\)".*/\1/' |
+        while read file
+        do
+          curl -k -H "X-AUTH-TOKEN: ${WAREHOUSE_DATA_HOARDER_TOKEN}" https://${WAREHOUSE_DATA_HOARDER_HOST}:7410/blobs/${file} -X DELETE
+        done
+
 data.redis:
   image: nanobox/redis:3.0
 
+  cron:
+    - id: backup
+      schedule: '0 3 * * *'
+      command: |
+        curl -k -H "X-AUTH-TOKEN: ${WAREHOUSE_DATA_HOARDER_TOKEN}" https://${WAREHOUSE_DATA_HOARDER_HOST}:7410/blobs/backup-${HOSTNAME}-$(date -u +%Y-%m-%d.%H-%M-%S).rdb --data-binary @/data/var/db/redis/dump.rdb &&
+        curl -k -s -H "X-AUTH-TOKEN: ${WAREHOUSE_DATA_HOARDER_TOKEN}" https://${WAREHOUSE_DATA_HOARDER_HOST}:7410/blobs/ |
+        json_pp |
+        grep ${HOSTNAME} |
+        sort |
+        head -n-${BACKUP_COUNT:-1} |
+        sed 's/.*: "\(.*\)".*/\1/' |
+        while read file
+        do
+          curl -k -H "X-AUTH-TOKEN: ${WAREHOUSE_DATA_HOARDER_TOKEN}" https://${WAREHOUSE_DATA_HOARDER_HOST}:7410/blobs/${file} -X DELETE
+        done
+
 data.storage:
   image: nanobox/unfs:0.9
+
+  cron:
+    - id: backup
+      schedule: '0 3 * * *'
+      command: |
+        tar cz -C /data/var/db/unfs/ |
+        curl -k -H "X-AUTH-TOKEN: ${WAREHOUSE_DATA_HOARDER_TOKEN}" https://${WAREHOUSE_DATA_HOARDER_HOST}:7410/blobs/backup-${HOSTNAME}-$(date -u +%Y-%m-%d.%H-%M-%S).tgz --data-binary @- &&
+        curl -k -s -H "X-AUTH-TOKEN: ${WAREHOUSE_DATA_HOARDER_TOKEN}" https://${WAREHOUSE_DATA_HOARDER_HOST}:7410/blobs/ |
+        json_pp |
+        grep ${HOSTNAME} |
+        sort |
+        head -n-${BACKUP_COUNT:-1} |
+        sed 's/.*: "\(.*\)".*/\1/' |
+        while read file
+        do
+          curl -k -H "X-AUTH-TOKEN: ${WAREHOUSE_DATA_HOARDER_TOKEN}" https://${WAREHOUSE_DATA_HOARDER_HOST}:7410/blobs/${file} -X DELETE
+        done

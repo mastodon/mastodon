@@ -73,6 +73,8 @@ Rails.application.configure do
   config.action_mailer.perform_caching = false
 
   # E-mails
+  config.action_mailer.default_options = { from: ENV.fetch('SMTP_FROM_ADDRESS') }
+
   config.action_mailer.smtp_settings = {
     :port                 => ENV['SMTP_PORT'],
     :address              => ENV['SMTP_SERVER'],
@@ -83,6 +85,7 @@ Rails.application.configure do
     :ca_file              => ENV['SMTP_CA_FILE'].presence,
     :openssl_verify_mode  => ENV['SMTP_OPENSSL_VERIFY_MODE'],
     :enable_starttls_auto => ENV['SMTP_ENABLE_STARTTLS_AUTO'] || true,
+    :tls                  => ENV['SMTP_TLS'].presence,
   }
 
   config.action_mailer.delivery_method = ENV.fetch('SMTP_DELIVERY_METHOD', 'smtp').to_sym

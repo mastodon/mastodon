@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-class Avatar extends React.PureComponent {
+export default class Avatar extends React.PureComponent {
 
   static propTypes = {
     src: PropTypes.string.isRequired,
@@ -66,5 +66,3 @@ class Avatar extends React.PureComponent {
   }
 
 }
-
-export default Avatar;

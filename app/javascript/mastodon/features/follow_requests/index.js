@@ -19,7 +19,9 @@ const mapStateToProps = state => ({
   accountIds: state.getIn(['user_lists', 'follow_requests', 'items']),
 });
 
-class FollowRequests extends ImmutablePureComponent {
+@connect(mapStateToProps)
+@injectIntl
+export default class FollowRequests extends ImmutablePureComponent {
 
   static propTypes = {
     params: PropTypes.object.isRequired,
@@ -67,5 +69,3 @@ class FollowRequests extends ImmutablePureComponent {
   }
 
 }
-
-export default connect(mapStateToProps)(injectIntl(FollowRequests));

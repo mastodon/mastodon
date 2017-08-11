@@ -38,9 +38,7 @@ class FeedManager
   end
 
   def trim(type, account_id)
-    return unless redis.zcard(key(type, account_id)) > FeedManager::MAX_ITEMS
-    last = redis.zrevrange(key(type, account_id), FeedManager::MAX_ITEMS - 1, FeedManager::MAX_ITEMS - 1)
-    redis.zremrangebyscore(key(type, account_id), '-inf', "(#{last.last}")
+    redis.zremrangebyrank(key(type, account_id), '0', (-(FeedManager::MAX_ITEMS + 1)).to_s)
   end
 
   def push_update_required?(timeline_type, account_id)
@@ -95,7 +93,7 @@ class FeedManager
   end
 
   def filter_from_home?(status, receiver_id)
-    return true if status.reply? && status.in_reply_to_id.nil?
+    return true if status.reply? && (status.in_reply_to_id.nil? || status.in_reply_to_account_id.nil?)
 
     check_for_mutes = [status.account_id]
     check_for_mutes.concat([status.reblog.account_id]) if status.reblog?
@@ -122,12 +120,13 @@ class FeedManager
   end
 
   def filter_from_mentions?(status, receiver_id)
+    return true if receiver_id == status.account_id
+
     check_for_blocks = [status.account_id]
     check_for_blocks.concat(status.mentions.pluck(:account_id))
     check_for_blocks.concat([status.in_reply_to_account]) if status.reply? && !status.in_reply_to_account_id.nil?
 
-    should_filter   = receiver_id == status.account_id                                                                                   # Filter if I'm mentioning myself
-    should_filter ||= Block.where(account_id: receiver_id, target_account_id: check_for_blocks).any?                                     # or it's from someone I blocked, in reply to someone I blocked, or mentioning someone I blocked
+    should_filter   = Block.where(account_id: receiver_id, target_account_id: check_for_blocks).any?                                     # Filter if it's from someone I blocked, in reply to someone I blocked, or mentioning someone I blocked
     should_filter ||= (status.account.silenced? && !Follow.where(account_id: receiver_id, target_account_id: status.account_id).exists?) # of if the account is silenced and I'm not following them
 
     should_filter

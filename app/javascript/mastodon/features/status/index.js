@@ -48,7 +48,9 @@ const makeMapStateToProps = () => {
   return mapStateToProps;
 };
 
-class Status extends ImmutablePureComponent {
+@injectIntl
+@connect(makeMapStateToProps)
+export default class Status extends ImmutablePureComponent {
 
   static contextTypes = {
     router: PropTypes.object,
@@ -195,5 +197,3 @@ class Status extends ImmutablePureComponent {
   }
 
 }
-
-export default injectIntl(connect(makeMapStateToProps)(Status));
