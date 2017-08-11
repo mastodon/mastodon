@@ -23,7 +23,7 @@ end
 begin
   dev_server = YAML.load_file(CONFIG_FILE)["development"]["dev_server"]
 
-  DEV_SERVER_HOST = "http#{"s" if args('--https') || dev_server["https"]}://#{args('--host') || dev_server["host"]}:#{args('--port') || dev_server["port"]}"
+  DEV_SERVER_HOST = "http#{"s" if args('--https') || dev_server["https"]}://#{dev_server["host"]}:#{args('--port') || dev_server["port"]}"
 
 rescue Errno::ENOENT, NoMethodError
   puts "Webpack dev_server configuration not found in #{CONFIG_FILE}."

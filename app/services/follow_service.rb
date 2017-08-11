@@ -57,10 +57,10 @@ class FollowService < BaseService
   end
 
   def build_follow_request_xml(follow_request)
-    AtomSerializer.render(AtomSerializer.new.follow_request_salmon(follow_request))
+    OStatus::AtomSerializer.render(OStatus::AtomSerializer.new.follow_request_salmon(follow_request))
   end
 
   def build_follow_xml(follow)
-    AtomSerializer.render(AtomSerializer.new.follow_salmon(follow))
+    OStatus::AtomSerializer.render(OStatus::AtomSerializer.new.follow_salmon(follow))
   end
 end

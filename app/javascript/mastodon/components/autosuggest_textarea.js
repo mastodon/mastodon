@@ -31,7 +31,7 @@ const textAtCursorMatchesToken = (str, caretPosition) => {
   }
 };
 
-class AutosuggestTextarea extends ImmutablePureComponent {
+export default class AutosuggestTextarea extends ImmutablePureComponent {
 
   static propTypes = {
     value: PropTypes.string,
@@ -162,20 +162,23 @@ class AutosuggestTextarea extends ImmutablePureComponent {
 
     return (
       <div className='autosuggest-textarea'>
-        <Textarea
-          inputRef={this.setTextarea}
-          className='autosuggest-textarea__textarea'
-          disabled={disabled}
-          placeholder={placeholder}
-          autoFocus={autoFocus}
-          value={value}
-          onChange={this.onChange}
-          onKeyDown={this.onKeyDown}
-          onKeyUp={onKeyUp}
-          onBlur={this.onBlur}
-          onPaste={this.onPaste}
-          style={style}
-        />
+        <label>
+          <span style={{ display: 'none' }}>{placeholder}</span>
+          <Textarea
+            inputRef={this.setTextarea}
+            className='autosuggest-textarea__textarea'
+            disabled={disabled}
+            placeholder={placeholder}
+            autoFocus={autoFocus}
+            value={value}
+            onChange={this.onChange}
+            onKeyDown={this.onKeyDown}
+            onKeyUp={onKeyUp}
+            onBlur={this.onBlur}
+            onPaste={this.onPaste}
+            style={style}
+          />
+        </label>
 
         <div className={`autosuggest-textarea__suggestions ${suggestionsHidden || suggestions.isEmpty() ? '' : 'autosuggest-textarea__suggestions--visible'}`}>
           {suggestions.map((suggestion, i) => (
@@ -196,5 +199,3 @@ class AutosuggestTextarea extends ImmutablePureComponent {
   }
 
 }
-
-export default AutosuggestTextarea;

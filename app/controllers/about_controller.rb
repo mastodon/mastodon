@@ -2,9 +2,12 @@
 
 class AboutController < ApplicationController
   before_action :set_body_classes
-  before_action :set_instance_presenter, only: [:show, :more]
+  before_action :set_instance_presenter, only: [:show, :more, :terms]
 
-  def show; end
+  def show
+    serializable_resource = ActiveModelSerializers::SerializableResource.new(InitialStatePresenter.new(initial_state_params), serializer: InitialStateSerializer)
+    @initial_state_json   = serializable_resource.to_json
+  end
 
   def more; end
 
@@ -15,6 +18,7 @@ class AboutController < ApplicationController
   def new_user
     User.new.tap(&:build_account)
   end
+
   helper_method :new_user
 
   def set_instance_presenter
@@ -23,5 +27,12 @@ class AboutController < ApplicationController
 
   def set_body_classes
     @body_classes = 'about-body'
+  end
+
+  def initial_state_params
+    {
+      settings: {},
+      token: current_session&.token,
+    }
   end
 end

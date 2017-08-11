@@ -20,14 +20,15 @@ import {
   COMPOSE_SPOILERNESS_CHANGE,
   COMPOSE_SPOILER_TEXT_CHANGE,
   COMPOSE_VISIBILITY_CHANGE,
+  COMPOSE_COMPOSING_CHANGE,
   COMPOSE_EMOJI_INSERT,
 } from '../actions/compose';
 import { TIMELINE_DELETE } from '../actions/timelines';
 import { STORE_HYDRATE } from '../actions/store';
-import Immutable from 'immutable';
+import { Map as ImmutableMap, List as ImmutableList, OrderedSet as ImmutableOrderedSet, fromJS } from 'immutable';
 import uuid from '../uuid';
 
-const initialState = Immutable.Map({
+const initialState = ImmutableMap({
   mounted: false,
   sensitive: false,
   spoiler: false,
@@ -37,20 +38,22 @@ const initialState = Immutable.Map({
   focusDate: null,
   preselectDate: null,
   in_reply_to: null,
+  is_composing: false,
   is_submitting: false,
   is_uploading: false,
   progress: 0,
-  media_attachments: Immutable.List(),
+  media_attachments: ImmutableList(),
   suggestion_token: null,
-  suggestions: Immutable.List(),
+  suggestions: ImmutableList(),
   me: null,
   default_privacy: 'public',
+  default_sensitive: false,
   resetFileKey: Math.floor((Math.random() * 0x10000)),
   idempotencyKey: null,
 });
 
 function statusToTextMentions(state, status) {
-  let set = Immutable.OrderedSet([]);
+  let set = ImmutableOrderedSet([]);
   let me  = state.get('me');
 
   if (status.getIn(['account', 'id']) !== me) {
@@ -75,6 +78,8 @@ function clearAll(state) {
 };
 
 function appendMedia(state, media) {
+  const prevSize = state.get('media_attachments').size;
+
   return state.withMutations(map => {
     map.update('media_attachments', list => list.push(media));
     map.set('is_uploading', false);
@@ -82,6 +87,10 @@ function appendMedia(state, media) {
     map.update('text', oldText => `${oldText.trim()} ${media.get('text_url')}`);
     map.set('focusDate', new Date());
     map.set('idempotencyKey', uuid());
+
+    if (prevSize === 0 && (state.get('default_sensitive') || state.get('spoiler'))) {
+      map.set('sensitive', true);
+    }
   });
 };
 
@@ -104,14 +113,14 @@ const insertSuggestion = (state, position, token, completion) => {
   return state.withMutations(map => {
     map.update('text', oldText => `${oldText.slice(0, position)}${completion} ${oldText.slice(position + token.length)}`);
     map.set('suggestion_token', null);
-    map.update('suggestions', Immutable.List(), list => list.clear());
+    map.update('suggestions', ImmutableList(), list => list.clear());
     map.set('focusDate', new Date());
     map.set('idempotencyKey', uuid());
   });
 };
 
 const insertEmoji = (state, position, emojiData) => {
-  const emoji = emojiData.shortname;
+  const emoji = emojiData.unicode.split('-').map(code => String.fromCodePoint(parseInt(code, 16))).join('');
 
   return state.withMutations(map => {
     map.update('text', oldText => `${oldText.slice(0, position)}${emoji} ${oldText.slice(position)}`);
@@ -139,16 +148,26 @@ export default function compose(state = initialState, action) {
   case COMPOSE_MOUNT:
     return state.set('mounted', true);
   case COMPOSE_UNMOUNT:
-    return state.set('mounted', false);
-  case COMPOSE_SENSITIVITY_CHANGE:
     return state
-      .set('sensitive', !state.get('sensitive'))
-      .set('idempotencyKey', uuid());
+      .set('mounted', false)
+      .set('is_composing', false);
+  case COMPOSE_SENSITIVITY_CHANGE:
+    return state.withMutations(map => {
+      if (!state.get('spoiler')) {
+        map.set('sensitive', !state.get('sensitive'));
+      }
+
+      map.set('idempotencyKey', uuid());
+    });
   case COMPOSE_SPOILERNESS_CHANGE:
     return state.withMutations(map => {
       map.set('spoiler_text', '');
       map.set('spoiler', !state.get('spoiler'));
       map.set('idempotencyKey', uuid());
+
+      if (!state.get('sensitive') && state.get('media_attachments').size >= 1) {
+        map.set('sensitive', true);
+      }
     });
   case COMPOSE_SPOILER_TEXT_CHANGE:
     return state
@@ -162,6 +181,8 @@ export default function compose(state = initialState, action) {
     return state
       .set('text', action.text)
       .set('idempotencyKey', uuid());
+  case COMPOSE_COMPOSING_CHANGE:
+    return state.set('is_composing', action.value);
   case COMPOSE_REPLY:
     return state.withMutations(map => {
       map.set('in_reply_to', action.status.get('id'));
@@ -199,7 +220,7 @@ export default function compose(state = initialState, action) {
       map.set('is_uploading', true);
     });
   case COMPOSE_UPLOAD_SUCCESS:
-    return appendMedia(state, Immutable.fromJS(action.media));
+    return appendMedia(state, fromJS(action.media));
   case COMPOSE_UPLOAD_FAIL:
     return state.set('is_uploading', false);
   case COMPOSE_UPLOAD_UNDO:
@@ -212,9 +233,9 @@ export default function compose(state = initialState, action) {
       .set('focusDate', new Date())
       .set('idempotencyKey', uuid());
   case COMPOSE_SUGGESTIONS_CLEAR:
-    return state.update('suggestions', Immutable.List(), list => list.clear()).set('suggestion_token', null);
+    return state.update('suggestions', ImmutableList(), list => list.clear()).set('suggestion_token', null);
   case COMPOSE_SUGGESTIONS_READY:
-    return state.set('suggestions', Immutable.List(action.accounts.map(item => item.id))).set('suggestion_token', action.token);
+    return state.set('suggestions', ImmutableList(action.accounts.map(item => item.id))).set('suggestion_token', action.token);
   case COMPOSE_SUGGESTION_SELECT:
     return insertSuggestion(state, action.position, action.token, action.completion);
   case TIMELINE_DELETE:

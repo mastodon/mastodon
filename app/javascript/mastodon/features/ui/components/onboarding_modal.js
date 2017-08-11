@@ -3,15 +3,14 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
+import ReactSwipeableViews from 'react-swipeable-views';
 import classNames from 'classnames';
 import Permalink from '../../../components/permalink';
-import TransitionMotion from 'react-motion/lib/TransitionMotion';
-import spring from 'react-motion/lib/spring';
 import ComposeForm from '../../compose/components/compose_form';
 import Search from '../../compose/components/search';
 import NavigationBar from '../../compose/components/navigation_bar';
 import ColumnHeader from './column_header';
-import Immutable from 'immutable';
+import { List as ImmutableList } from 'immutable';
 
 const noop = () => { };
 
@@ -49,7 +48,7 @@ const PageTwo = ({ me }) => (
       </div>
       <ComposeForm
         text='Awoo! #introductions'
-        suggestions={Immutable.List()}
+        suggestions={ImmutableList()}
         mentionedDomains={[]}
         spoiler={false}
         onChange={noop}
@@ -167,7 +166,9 @@ const mapStateToProps = state => ({
   domain: state.getIn(['meta', 'domain']),
 });
 
-class OnboardingModal extends React.PureComponent {
+@connect(mapStateToProps)
+@injectIntl
+export default class OnboardingModal extends React.PureComponent {
 
   static propTypes = {
     onClose: PropTypes.func.isRequired,
@@ -224,6 +225,10 @@ class OnboardingModal extends React.PureComponent {
     }));
   }
 
+  handleSwipe = (index) => {
+    this.setState({ currentIndex: index });
+  }
+
   handleKeyUp = ({ key }) => {
     switch (key) {
     case 'ArrowLeft':
@@ -260,30 +265,18 @@ class OnboardingModal extends React.PureComponent {
       </button>
     );
 
-    const styles = pages.map((data, i) => ({
-      key: `page-${i}`,
-      data,
-      style: {
-        opacity: spring(i === currentIndex ? 1 : 0),
-      },
-    }));
-
     return (
       <div className='modal-root__modal onboarding-modal'>
-        <TransitionMotion styles={styles}>
-          {interpolatedStyles => (
-            <div className='onboarding-modal__pager'>
-              {interpolatedStyles.map(({ key, data, style }, i) => {
-                const className = classNames('onboarding-modal__page__wrapper', {
-                  'onboarding-modal__page__wrapper--active': i === currentIndex,
-                });
-                return (
-                  <div key={key} style={style} className={className}>{data}</div>
-                );
-              })}
-            </div>
-          )}
-        </TransitionMotion>
+        <ReactSwipeableViews index={currentIndex} onChangeIndex={this.handleSwipe} className='onboarding-modal__pager'>
+          {pages.map((page, i) => {
+            const className = classNames('onboarding-modal__page__wrapper', {
+              'onboarding-modal__page__wrapper--active': i === currentIndex,
+            });
+            return (
+              <div key={i} className={className}>{page}</div>
+            );
+          })}
+        </ReactSwipeableViews>
 
         <div className='onboarding-modal__paginator'>
           <div>
@@ -322,5 +315,3 @@ class OnboardingModal extends React.PureComponent {
   }
 
 }
-
-export default connect(mapStateToProps)(injectIntl(OnboardingModal));

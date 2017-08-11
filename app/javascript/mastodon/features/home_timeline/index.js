@@ -19,7 +19,9 @@ const mapStateToProps = state => ({
   hasFollows: state.getIn(['accounts_counters', state.getIn(['meta', 'me']), 'following_count']) > 0,
 });
 
-class HomeTimeline extends React.PureComponent {
+@connect(mapStateToProps)
+@injectIntl
+export default class HomeTimeline extends React.PureComponent {
 
   static propTypes = {
     dispatch: PropTypes.func.isRequired,
@@ -96,5 +98,3 @@ class HomeTimeline extends React.PureComponent {
   }
 
 }
-
-export default connect(mapStateToProps)(injectIntl(HomeTimeline));

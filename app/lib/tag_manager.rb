@@ -70,7 +70,7 @@ class TagManager
 
     uri = Addressable::URI.new
     uri.host = domain.gsub(/[\/]/, '')
-    uri.normalize.host
+    uri.normalized_host
   end
 
   def same_acct?(canonical, needle)

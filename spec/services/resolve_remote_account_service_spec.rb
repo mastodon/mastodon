@@ -22,11 +22,11 @@ RSpec.describe ResolveRemoteAccountService do
   end
 
   it 'raises error if no such user can be resolved via webfinger' do
-    expect { subject.call('catsrgr8@quitter.no') }.to raise_error Goldfinger::Error
+    expect(subject.call('catsrgr8@quitter.no')).to be_nil
   end
 
   it 'raises error if the domain does not have webfinger' do
-    expect { subject.call('catsrgr8@example.com') }.to raise_error Goldfinger::Error
+    expect(subject.call('catsrgr8@example.com')).to be_nil
   end
 
   it 'returns an already existing remote account' do
@@ -58,7 +58,7 @@ RSpec.describe ResolveRemoteAccountService do
   end
 
   it 'prevents hijacking inexisting accounts' do
-    expect { subject.call('hacker2@redirected.com') }.to raise_error Goldfinger::Error
+    expect(subject.call('hacker2@redirected.com')).to be_nil
   end
 
   it 'returns a new remote account' do
@@ -67,5 +67,28 @@ RSpec.describe ResolveRemoteAccountService do
     expect(account.username).to eq 'foo'
     expect(account.domain).to eq 'localdomain.com'
     expect(account.remote_url).to eq 'https://webdomain.com/users/foo.atom'
+  end
+
+  it 'processes one remote account at a time using locks' do
+    wait_for_start = true
+    fail_occurred  = false
+    return_values  = []
+
+    threads = Array.new(5) do
+      Thread.new do
+        true while wait_for_start
+        begin
+          return_values << ResolveRemoteAccountService.new.call('foo@localdomain.com')
+        rescue ActiveRecord::RecordNotUnique
+          fail_occurred = true
+        end
+      end
+    end
+
+    wait_for_start = false
+    threads.each(&:join)
+
+    expect(fail_occurred).to be false
+    expect(return_values).to_not include(nil)
   end
 end
