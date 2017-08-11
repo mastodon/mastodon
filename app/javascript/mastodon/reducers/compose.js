@@ -141,6 +141,23 @@ const privacyPreference = (a, b) => {
   }
 };
 
+function addMentions(state, mentionsStr) {
+  return state.withMutations(map => {
+    const mentionPieces = mentionsStr.split(' ');
+
+    let missing = [];
+    for (const m of mentionPieces) {
+      if (map.get('text').indexOf(m) === -1) {
+        missing.push(m);
+      }
+    }
+
+    if (missing.length) {
+      map.set('text', `${missing.join(' ')} ${map.get('text')}`)
+    }
+  });
+}
+
 export default function compose(state = initialState, action) {
   switch(action.type) {
   case STORE_HYDRATE:
@@ -184,29 +201,27 @@ export default function compose(state = initialState, action) {
   case COMPOSE_COMPOSING_CHANGE:
     return state.set('is_composing', action.value);
   case COMPOSE_REPLY:
-    return state.withMutations(map => {
-      map.set('in_reply_to', action.status.get('id'));
-      map.set('text', statusToTextMentions(state, action.status));
-      map.set('privacy', privacyPreference(action.status.get('visibility'), state.get('default_privacy')));
-      map.set('focusDate', new Date());
-      map.set('preselectDate', new Date());
-      map.set('idempotencyKey', uuid());
+    return addMentions(
+      state.withMutations(map => {
+        map.set('in_reply_to', action.status.get('id'));
 
-      if (action.status.get('spoiler_text').length > 0) {
-        map.set('spoiler', true);
-        map.set('spoiler_text', action.status.get('spoiler_text'));
-      } else {
-        map.set('spoiler', false);
-        map.set('spoiler_text', '');
-      }
-    });
+        map.set('privacy', privacyPreference(action.status.get('visibility'), state.get('default_privacy')));
+
+        map.set('focusDate', new Date());
+        map.set('preselectDate', new Date());
+        map.set('idempotencyKey', uuid());
+
+        // copy spoiler text
+        if (action.status.get('spoiler_text').length > 0) {
+          map.set('spoiler', true);
+          map.set('spoiler_text', action.status.get('spoiler_text'));
+        }
+      }),
+      statusToTextMentions(state, action.status)
+    );
   case COMPOSE_REPLY_CANCEL:
     return state.withMutations(map => {
       map.set('in_reply_to', null);
-      map.set('text', '');
-      map.set('spoiler', false);
-      map.set('spoiler_text', '');
-      map.set('privacy', state.get('default_privacy'));
       map.set('idempotencyKey', uuid());
     });
   case COMPOSE_SUBMIT_REQUEST:
@@ -228,10 +243,12 @@ export default function compose(state = initialState, action) {
   case COMPOSE_UPLOAD_PROGRESS:
     return state.set('progress', Math.round((action.loaded / action.total) * 100));
   case COMPOSE_MENTION:
-    return state
-      .update('text', text => `${text}@${action.account.get('acct')} `)
-      .set('focusDate', new Date())
-      .set('idempotencyKey', uuid());
+    return addMentions(
+      state
+        .set('focusDate', new Date())
+        .set('idempotencyKey', uuid()),
+      `@${action.account.get('acct')}`
+    );
   case COMPOSE_SUGGESTIONS_CLEAR:
     return state.update('suggestions', ImmutableList(), list => list.clear()).set('suggestion_token', null);
   case COMPOSE_SUGGESTIONS_READY:
