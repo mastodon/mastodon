@@ -206,12 +206,11 @@ export default function compose(state = initialState, action) {
         map.set('in_reply_to', action.status.get('id'));
 
         map.set('privacy', privacyPreference(action.status.get('visibility'), state.get('default_privacy')));
-
         map.set('focusDate', new Date());
         map.set('preselectDate', new Date());
         map.set('idempotencyKey', uuid());
 
-        // copy spoiler text
+        // copy spoiler text, do not remove existing
         if (action.status.get('spoiler_text').length > 0) {
           map.set('spoiler', true);
           map.set('spoiler_text', action.status.get('spoiler_text'));
