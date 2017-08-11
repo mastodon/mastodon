@@ -153,7 +153,7 @@ function addMentions(state, mentionsStr) {
     }
 
     if (missing.length) {
-      map.set('text', `${missing.join(' ')} ${map.get('text')}`)
+      map.set('text', `${missing.join(' ')} ${map.get('text')}`);
     }
   });
 }
