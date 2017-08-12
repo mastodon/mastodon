@@ -20,6 +20,8 @@ describe Api::V1::Accounts::CredentialsController do
   describe 'PATCH #update' do
     describe 'with valid data' do
       before do
+        allow(ActivityPub::UpdateDistributionWorker).to receive(:perform_async)
+
         patch :update, params: {
           display_name: "Alice Isn't Dead",
           note: "Hi!\n\nToot toot!",
@@ -39,6 +41,10 @@ describe Api::V1::Accounts::CredentialsController do
         expect(user.account.note).to eq("Hi!\n\nToot toot!")
         expect(user.account.avatar).to exist
         expect(user.account.header).to exist
+      end
+
+      it 'queues up an account update distribution' do
+        expect(ActivityPub::UpdateDistributionWorker).to have_received(:perform_async).with(user.account_id)
       end
     end
 

@@ -15,9 +15,11 @@ class BatchedRemoveStatusService < BaseService
     @mentions = statuses.map { |s| [s.id, s.mentions.includes(:account).to_a] }.to_h
     @tags     = statuses.map { |s| [s.id, s.tags.pluck(:name)] }.to_h
 
-    @stream_entry_batches = []
-    @salmon_batches       = []
-    @json_payloads        = statuses.map { |s| [s.id, Oj.dump(event: :delete, payload: s.id)] }.to_h
+    @stream_entry_batches  = []
+    @salmon_batches        = []
+    @activity_json_batches = []
+    @json_payloads         = statuses.map { |s| [s.id, Oj.dump(event: :delete, payload: s.id)] }.to_h
+    @activity_json         = {}
 
     # Ensure that rendered XML reflects destroyed state
     Status.where(id: statuses.map(&:id)).in_batches.destroy_all
@@ -27,7 +29,11 @@ class BatchedRemoveStatusService < BaseService
       account = account_statuses.first.account
 
       unpush_from_home_timelines(account_statuses)
-      batch_stream_entries(account_statuses) if account.local?
+
+      if account.local?
+        batch_stream_entries(account_statuses)
+        batch_activity_json(account, account_statuses)
+      end
     end
 
     # Cannot be batched
@@ -38,6 +44,7 @@ class BatchedRemoveStatusService < BaseService
 
     Pubsubhubbub::DistributionWorker.push_bulk(@stream_entry_batches) { |batch| batch }
     NotificationWorker.push_bulk(@salmon_batches) { |batch| batch }
+    ActivityPub::DeliveryWorker.push_bulk(@activity_json_batches) { |batch| batch }
   end
 
   private
@@ -47,6 +54,22 @@ class BatchedRemoveStatusService < BaseService
 
     stream_entry_ids.each_slice(100) do |batch_of_stream_entry_ids|
       @stream_entry_batches << [batch_of_stream_entry_ids]
+    end
+  end
+
+  def batch_activity_json(account, statuses)
+    account.followers.inboxes.each do |inbox_url|
+      statuses.each do |status|
+        @activity_json_batches << [build_json(status), account.id, inbox_url]
+      end
+    end
+
+    statuses.each do |status|
+      other_recipients = (status.mentions + status.reblogs).map(&:account).reject(&:local?).select(&:activitypub?).uniq(&:id)
+
+      other_recipients.each do |target_account|
+        @activity_json_batches << [build_json(status), account.id, target_account.inbox_url]
+      end
     end
   end
 
@@ -79,7 +102,7 @@ class BatchedRemoveStatusService < BaseService
     return if @mentions[status.id].empty?
 
     payload    = stream_entry_to_xml(status.stream_entry.reload)
-    recipients = @mentions[status.id].map(&:account).reject(&:local?).uniq(&:domain).map(&:id)
+    recipients = @mentions[status.id].map(&:account).reject(&:local?).select(&:ostatus?).uniq(&:domain).map(&:id)
 
     recipients.each do |recipient_id|
       @salmon_batches << [payload, status.account_id, recipient_id]
@@ -110,5 +133,15 @@ class BatchedRemoveStatusService < BaseService
 
   def redis
     Redis.current
+  end
+
+  def build_json(status)
+    return @activity_json[status.id] if @activity_json.key?(status.id)
+
+    @activity_json[status.id] = ActiveModelSerializers::SerializableResource.new(
+      status,
+      serializer: ActivityPub::DeleteSerializer,
+      adapter: ActivityPub::Adapter
+    ).to_json
   end
 end
