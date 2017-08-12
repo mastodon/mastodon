@@ -9,6 +9,8 @@ class ActivityPub::ActorSerializer < ActiveModel::Serializer
 
   has_one :public_key, serializer: ActivityPub::PublicKeySerializer
 
+  attribute :locked, key: '_:locked'
+
   class ImageSerializer < ActiveModel::Serializer
     include RoutingHelper
 
