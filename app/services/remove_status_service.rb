@@ -25,7 +25,7 @@ class RemoveStatusService < BaseService
     @stream_entry = @stream_entry.reload
 
     remove_from_remote_followers
-    remove_from_remote_mentioned
+    remove_from_remote_affected
   end
 
   private
@@ -40,7 +40,7 @@ class RemoveStatusService < BaseService
     end
   end
 
-  def remove_from_remote_mentioned
+  def remove_from_remote_affected
     # People who got mentioned in the status, or who
     # reblogged it from someone else might not follow
     # the author and wouldn't normally receive the
